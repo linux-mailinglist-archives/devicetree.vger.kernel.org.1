@@ -1,175 +1,171 @@
-Return-Path: <devicetree+bounces-80897-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80899-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32D1E91AB13
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 17:23:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D51291AB4F
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 17:32:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C8435282DAD
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 15:23:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C13D8280DE2
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 15:32:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E696198A27;
-	Thu, 27 Jun 2024 15:23:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IM5S1reW"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C027D198E85;
+	Thu, 27 Jun 2024 15:32:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E4D7197A61;
-	Thu, 27 Jun 2024 15:23:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 461D2198A34;
+	Thu, 27 Jun 2024 15:32:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719501782; cv=none; b=dwKO4A+LMVzJXGub92KsZvsbIcAyTFdBpkGvlGFtVsIQoI48v5V7gbNcT80Q7tkAbEYDQSnU7kp0cGLuAtbkFIgDI8FzkvHYAzTolIRZpPBaz81WomfS8uuxQUfZZbJ+IRc9VaBMhCMYClmjx8xP3M/LFotXBwoJu68V/IdsG8U=
+	t=1719502345; cv=none; b=ZEEjcAmHnMABNADPLKi7YiszfnQ16jKVJcTLX8FMLSN1FkX3nO5K808M5Nly+yMtxmTHzUdb9sXyXns3tRXdWQdyR9CStCbR/HPvaML0pO01T+SBsGJfqTy/2Q25PndGRLpKskOBgKkGLCMc2p8LMLK7NjzBkJP620nttAu7wLY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719501782; c=relaxed/simple;
-	bh=IMOuy42GDAFC2FD3yx7fGuAt6p6IPLwFyJf9jzkK88Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CfKyzzmC1ijxZIEzjlyBVfCaoIl0nr5QwC8tcEI9Y7lfRFlTdh/Y+DyE/JUyAvFULtCQvjFhHIEwUXPQFz8lDx4aAwjMCdWT6Bn9AyscUwxzd3ZrRgE7l5eBioD7IesFcDPGxAvl8jg9Triiwh7Ur5UXyX/x7xPGBUum3vjIHHk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IM5S1reW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B128DC2BBFC;
-	Thu, 27 Jun 2024 15:22:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719501782;
-	bh=IMOuy42GDAFC2FD3yx7fGuAt6p6IPLwFyJf9jzkK88Q=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=IM5S1reW0TiFzFDXONX/TmwOg4ODUf5HwPEUPmFoO1+CkUyq+nC8Mt2YGXbxBVpXK
-	 2qWnLTo4MQKQPm0NEn8T4WIOtBB44c8xoyz9drfDflv3gqc7gZx3W5rhnZD8AOo1tU
-	 2P5X9RnJTZeUllTa/jMHP0SO0hM5bX4HOo44JIL2S1Pim1zsxMjhQaYYCvJLSbtHCk
-	 sZtKIgt2oHx6PVFrt6n69DbyVytRMhUGaiesUw9+pQQ4dR9TWO/BQIcYfetzvWER91
-	 yK+x6vzBqxk+ECL6xOJD6slpY8t9OXbuDErUgWyaTqXlY6g4Wp6Hw9q/S9iE8naCrE
-	 cp6GdX1GJuq7Q==
-Date: Thu, 27 Jun 2024 16:22:56 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: linux-pci@vger.kernel.org, ryder.lee@mediatek.com,
-	jianjun.wang@mediatek.com, lpieralisi@kernel.org, kw@linux.com,
-	robh@kernel.org, bhelgaas@google.com,
-	linux-mediatek@lists.infradead.org, lorenzo.bianconi83@gmail.com,
-	linux-arm-kernel@lists.infradead.org,
-	krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-	nbd@nbd.name, dd@embedd.com, upstream@airoha.com,
-	angelogioacchino.delregno@collabora.com
-Subject: Re: [PATCH v2 1/4] dt-bindings: PCI: mediatek-gen3: add support for
- Airoha EN7581
-Message-ID: <20240627-evergreen-oppressor-21deb5c83412@spud>
-References: <cover.1719475568.git.lorenzo@kernel.org>
- <c11a40dbe3e1d1e4847ceee8715c1f670fd1887b.1719475568.git.lorenzo@kernel.org>
+	s=arc-20240116; t=1719502345; c=relaxed/simple;
+	bh=aVbM1IQMkrPPckh5xWOxqYkHnsmPqgtjycwr/CEZgeY=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=dXUye54xRAy4Kj5n0+unJ/CBv7N98JNEl6pEFtwq8gj9zENH7poUWIVXfhei3NCHfEQom/quMMuzDp3ARh9KvgDb17Z2XecIjAOXjACoXeLLv3dRpC4LTX9oaPpa4xpHqDkF+uP08nAbXtWodBe6LaEbjEao8B7SIp5kqyfI7Vw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+From: Yixun Lan <dlan@gentoo.org>
+Subject: [PATCH v2 00/10] riscv: add initial support for SpacemiT K1
+Date: Thu, 27 Jun 2024 15:31:14 +0000
+Message-Id: <20240627-k1-01-basic-dt-v2-0-cc06c7555f07@gentoo.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="bIMezDrpTcKbQIo4"
-Content-Disposition: inline
-In-Reply-To: <c11a40dbe3e1d1e4847ceee8715c1f670fd1887b.1719475568.git.lorenzo@kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMKFfWYC/x3MPQqAMAxA4atIZgNtlA5eRRz6EzUIVVoRofTuF
+ sdveK9A5iScYeoKJH4kyxkbqO/A7zZujBKagRSNypDBQ6PS6GwWj+FGbe2gmdn5QNCiK/Eq7z+
+ cl1o/6qWQ5mAAAAA=
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Conor Dooley <conor@kernel.org>, 
+ Paul Walmsley <paul.walmsley@sifive.com>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Daniel Lezcano <daniel.lezcano@linaro.org>, 
+ Thomas Gleixner <tglx@linutronix.de>, 
+ Samuel Holland <samuel.holland@sifive.com>, 
+ Anup Patel <anup@brainfault.org>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Jiri Slaby <jirislaby@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Palmer Dabbelt <palmer@sifive.com>, linux-riscv@lists.infradead.org, 
+ linux-serial@vger.kernel.org, Inochi Amaoto <inochiama@outlook.com>, 
+ Meng Zhang <zhangmeng.kevin@spacemit.com>, Yangyu Chen <cyy@cyyself.name>, 
+ Yixun Lan <dlan@gentoo.org>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4039; i=dlan@gentoo.org;
+ h=from:subject:message-id; bh=aVbM1IQMkrPPckh5xWOxqYkHnsmPqgtjycwr/CEZgeY=;
+ b=owEBzQIy/ZANAwAKATGq6kdZTbvtAcsmYgBmfYXcZao4t4/seNTZQlv12YCD3ueUpvzGIelTI
+ x+XqLaMjFiJApMEAAEKAH0WIQS1urjJwxtxFWcCI9wxqupHWU277QUCZn2F3F8UgAAAAAAuAChp
+ c3N1ZXItZnByQG5vdGF0aW9ucy5vcGVucGdwLmZpZnRoaG9yc2VtYW4ubmV0QjVCQUI4QzlDMzF
+ CNzExNTY3MDIyM0RDMzFBQUVBNDc1OTREQkJFRAAKCRAxqupHWU277UNTD/98/CPAZzXwZUxG50
+ N+CfEzPFoSR+6m6Z+zjvH74DWMIFuLEeghYIrET4c3lEE9WtK3QxuZJNh/3Zf9KOgFaRmHRppb/
+ tfwgMiOpFJOr8RlwT4FUBRvqsbfQfNq8pHfdkdj+adTpXPBqOo2i8zEW+GxuA13T7XKWLWumM8V
+ AJjXlmuOFnlbRRncxhaqXwx0YrDsaLoOKnj9PNYj0wn0fl0Kotx6mqeOXtCiZDiHh56xrW2z5g6
+ /Zd8HaIIr6Ir+7niOSRa6PupQmjZ7o2BEv0FMMR7BL3mOL16ELhgFbrp5jeStt7NuE1eN5c6Ixf
+ kgGzDV0KGymWAVw4rPp6ix7FHy2LhRD1ku/ijbIy1xsCb3xJcOML9AoWir/AvXWOyfVMUJPc8Yy
+ k0JVjw+ex1UCVqaAzgf8ejAVl0d55iT6Xsag1OAnQew5+Wsgm3d121LJoUDdLKuSa7JFj8K0P1+
+ RuvdhxoMTMKK+PwTQqNwIiRKCTwtmJB9Ek764dXGc1XJFzdiWX5kNF3VmcLcqtHtbG1y4BlYqFX
+ xPvHS7BCo3I7Yt4/SfgTR6BHTpkTsOq7rtcdARSOh08+Yj5Y0GZDpn0HEefur6Bjb85AbYFD+li
+ Es2bfCsSg+sz2/klkwIHqYvAHk2EMDoptVQCDlM1Axa0T0Gk+uSRxS7ubmHXHb2TnAaQ==
+X-Developer-Key: i=dlan@gentoo.org; a=openpgp;
+ fpr=50B03A1A5CBCD33576EF8CD7920C0DBCAABEFD55
 
+SpacemiT K1 is an ideal chip for some new extension such as RISC-V Vector
+1.0 and Zicond evaluation now. Add initial support for it to allow more
+people to participate in building drivers to mainline for it.
 
---bIMezDrpTcKbQIo4
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This kernel has been tested upon Banana Pi BPI-F3 board on vendor U-Boot
+bootflow generated by Armbian SDK[1] and patched OpenSBI[2] to enable
+Zicboz, which does not in the vendor dts on its U-Boot. Then successfully
+booted to busybox on initrd with this log[3].
 
-On Thu, Jun 27, 2024 at 10:12:11AM +0200, Lorenzo Bianconi wrote:
-> Introduce Airoha EN7581 entry in mediatek-gen3 PCIe controller binding
->=20
-> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> ---
->  .../bindings/pci/mediatek-pcie-gen3.yaml      | 68 +++++++++++++++++--
->  1 file changed, 63 insertions(+), 5 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yam=
-l b/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
-> index 76d742051f73..59112adc9ba1 100644
-> --- a/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
-> +++ b/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
-> @@ -53,6 +53,7 @@ properties:
->                - mediatek,mt8195-pcie
->            - const: mediatek,mt8192-pcie
->        - const: mediatek,mt8192-pcie
-> +      - const: airoha,en7581-pcie
-> =20
->    reg:
->      maxItems: 1
-> @@ -76,20 +77,20 @@ properties:
-> =20
->    resets:
->      minItems: 1
-> -    maxItems: 2
-> +    maxItems: 3
-> =20
->    reset-names:
->      minItems: 1
-> -    maxItems: 2
-> +    maxItems: 3
->      items:
-> -      enum: [ phy, mac ]
-> +      enum: [ phy, mac, phy-lane0, phy-lane1, phy-lane2 ]
-> =20
->    clocks:
-> -    minItems: 4
-> +    minItems: 1
->      maxItems: 6
-> =20
->    clock-names:
-> -    minItems: 4
-> +    minItems: 1
->      maxItems: 6
-> =20
->    assigned-clocks:
-> @@ -147,6 +148,9 @@ allOf:
->            const: mediatek,mt8192-pcie
->      then:
->        properties:
-> +        clocks:
-> +          maxItems: 6
-> +
->          clock-names:
->            items:
->              - const: pl_250m
-> @@ -155,6 +159,15 @@ allOf:
->              - const: tl_32k
->              - const: peri_26m
->              - const: top_133m
-> +
-> +        resets:
-> +          minItems: 1
-> +          maxItems: 2
-> +
-> +        reset-names:
-> +          minItems: 1
-> +          maxItems: 2
-> +
->    - if:
->        properties:
->          compatible:
-> @@ -164,6 +177,9 @@ allOf:
->                - mediatek,mt8195-pcie
->      then:
->        properties:
-> +        clocks:
-> +          maxItems: 6
+As previous discussion in patch v1[4], maintainer expect more basic drivers
+ready before really merging it, which would be fine. For other follow-up patches, 
+that are clk, pinctrl/gpio, reset.. My current goal would target at a headless
+system including SD card, emmc, and ethernet.
 
-How come this is maxItems and not minItems? The max is always 6, before
-and after your patch.
+P.S: talked to Yangyu, I will help and take care of this patch series, thanks
+---
+Changes in v2:
+ - fix timebase-frequency according to current setting
+ - add other uart dt nodes, fix input frequency
+ - introduce new uart compatible for K1 SoC
+ - add 'k1' prefix to bananapi-f3.dts
+ - fix k1-clint compatible
+ - fix some typos
+ - Link to v1: https://lore.kernel.org/r/tencent_BC64B7B1876F5D10479BD19112F73F262505@qq.com
 
-Cheers,
-Conor.
+Link: https://github.com/BPI-SINOVOIP/armbian-build/tree/v24.04.30 [1]
+Link: https://gist.github.com/cyyself/a07096e6e99c949ed13f8fa16d884402 [2]
+Link: https://gist.github.com/cyyself/a2201c01f5c8955a119641f97b7d0280 [3]
+Link: https://lore.kernel.org/r/20240618-hardwood-footrest-ab5ec5bce3cf@wendy [4]
 
---bIMezDrpTcKbQIo4
-Content-Type: application/pgp-signature; name="signature.asc"
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Conor Dooley <conor@kernel.org>
+To: Paul Walmsley <paul.walmsley@sifive.com>
+To: Palmer Dabbelt <palmer@dabbelt.com>
+To: Albert Ou <aou@eecs.berkeley.edu>
+To: Daniel Lezcano <daniel.lezcano@linaro.org>
+To: Thomas Gleixner <tglx@linutronix.de>
+To: Samuel Holland <samuel.holland@sifive.com>
+To: Anup Patel <anup@brainfault.org>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Jiri Slaby <jirislaby@kernel.org>
+To: Lubomir Rintel <lkundrak@v3.sk>
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: Palmer Dabbelt <palmer@sifive.com>
+Cc: linux-riscv@lists.infradead.org
+Cc: linux-serial@vger.kernel.org
+Cc: Inochi Amaoto <inochiama@outlook.com>
+Cc: Meng Zhang <zhangmeng.kevin@spacemit.com>
 
------BEGIN PGP SIGNATURE-----
+Signed-off-by: Yangyu Chen <cyy@cyyself.name>
+Signed-off-by: Yixun Lan <dlan@gentoo.org>
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZn2D0AAKCRB4tDGHoIJi
-0oPFAP9SiYTTYpY6A5LoY15O+RsQ0xC2rbZfeH+2l8EZPQptfwEAwy1aHN1FUMTj
-Yzkp8qaOA+8BKhOvmX4DGsHmGPLurgo=
-=wYS7
------END PGP SIGNATURE-----
+---
+Yangyu Chen (9):
+      dt-bindings: vendor-prefixes: add spacemit
+      dt-bindings: riscv: Add SpacemiT X60 compatibles
+      dt-bindings: riscv: add SpacemiT K1 bindings
+      dt-bindings: timer: Add SpacemiT K1 CLINT
+      dt-bindings: interrupt-controller: Add SpacemiT K1 PLIC
+      riscv: add SpacemiT SOC family Kconfig support
+      riscv: dts: add initial SpacemiT K1 SoC device tree
+      riscv: dts: spacemit: add Banana Pi BPI-F3 board device tree
+      riscv: defconfig: enable SpacemiT SoC
 
---bIMezDrpTcKbQIo4--
+Yixun Lan (1):
+      dt-bindings: serial: 8250: Add SpacemiT K1 uart compatible
+
+ .../interrupt-controller/sifive,plic-1.0.0.yaml    |   5 +-
+ Documentation/devicetree/bindings/riscv/cpus.yaml  |   1 +
+ .../devicetree/bindings/riscv/spacemit.yaml        |  24 ++
+ Documentation/devicetree/bindings/serial/8250.yaml |   4 +-
+ .../devicetree/bindings/timer/sifive,clint.yaml    |   1 +
+ .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
+ arch/riscv/Kconfig.socs                            |   5 +
+ arch/riscv/boot/dts/Makefile                       |   1 +
+ arch/riscv/boot/dts/spacemit/Makefile              |   2 +
+ arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts    |  19 ++
+ arch/riscv/boot/dts/spacemit/k1.dtsi               | 378 +++++++++++++++++++++
+ arch/riscv/configs/defconfig                       |   1 +
+ 12 files changed, 441 insertions(+), 2 deletions(-)
+---
+base-commit: f2661062f16b2de5d7b6a5c42a9a5c96326b8454
+change-id: 20240626-k1-01-basic-dt-1aa31eeebcd2
+
+Best regards,
+-- 
+Yixun Lan <dlan@gentoo.org>
+
 
