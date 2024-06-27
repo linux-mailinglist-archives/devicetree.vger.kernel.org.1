@@ -1,86 +1,149 @@
-Return-Path: <devicetree+bounces-80599-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80598-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E3CF91A0BE
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 09:46:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B602C91A0BC
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 09:46:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DD4FA2832A2
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 07:46:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E7DCE1C210AD
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 07:46:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF56F59164;
-	Thu, 27 Jun 2024 07:46:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BECCA33987;
+	Thu, 27 Jun 2024 07:46:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="bCWTjkhD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kPiug/0o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.14])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3563236134;
-	Thu, 27 Jun 2024 07:46:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.14
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 958DB28FC;
+	Thu, 27 Jun 2024 07:46:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719474405; cv=none; b=tpCOrVWyJ/5hDanBoBiDBMyHGurYyUvgOoCCpnGCV4SIBSp6z3iIgcvXWDUmJNRBLO2W237IxO5utDYROJC9Zc7b28SMWTvoeetFsJxDQ9hO568yehItlPagYP9xEg63i3aV5b9JgbNQQMdU64K2FSV8Q2sJgSPyJNprmj3sfFg=
+	t=1719474396; cv=none; b=NlK+pAAqX16RaX9AJogCYvKaCzl/jwT7G59sJ/BcvmWSlHTJ9emsweWgw2+qg2ZUBEU8qQjun56iQ+Y+CFsuP/EpI/9zR7bdqAQmPoyyiCFxf/DsTLPmZkuckWIq621dEb2KLDuwtSjP2WDarTKX4np/4bmBdg9M0200+9yUURc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719474405; c=relaxed/simple;
-	bh=9hl7XdfnuxgUw05Lbi8M3SRy5tjEHn4ou7phLlGIhMo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XidKPu9oCvLVCseH1gesiKUu/cR11QPBPvaVORGKrCAyFzU/hFul/GHH6IgSYRLriSN5LGbYwwvpmTyL9ickadG4YvQTwDahnj/x8odkHSXF8cucw6S8LcTG+IzWpM1iJf0jQHWOQE8kZAWje4+4hIEErOqpK7IGbVFICYDDZ7w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=bCWTjkhD; arc=none smtp.client-ip=1.95.21.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=C1NFCWVTqKYT4fBMlQ95dp2+wCWYKMyTvR27OCmpRt4=;
-	b=bCWTjkhDJp+1GNbMEsyeXp3BqUuD2s0Sg+g2ZvZeYtH3OSszrS/dF1faOx6mWr
-	hzR6gskkfBYJvAHwxyO1FFh50/3uOM+2JhQ6AMtMkdgVRgRGtT3fmppDoG/gIquL
-	6t5ZyvE4C/21yePuo+LmozmOLjlEDTQSzepOQjy3rMZLI=
-Received: from dragon (unknown [114.218.218.47])
-	by gzsmtp2 (Coremail) with SMTP id Ms8vCgD3v5m6GH1mw6caAA--.27497S3;
-	Thu, 27 Jun 2024 15:46:04 +0800 (CST)
-Date: Thu, 27 Jun 2024 15:46:02 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Adam Ford <aford173@gmail.com>
-Cc: linux-arm-kernel@lists.infradead.org, aford@beaconembedded.com,
-	marex@denx.de, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>,
-	Marco Felsch <m.felsch@pengutronix.de>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: imx8mp: Fix pgc_mlmix location
-Message-ID: <Zn0YuvkauzX7FDOQ@dragon>
-References: <20240617223952.1899201-1-aford173@gmail.com>
+	s=arc-20240116; t=1719474396; c=relaxed/simple;
+	bh=AH9D0ziQVkg9LV3FQsXYXHeGDQQY50zBANCOXWzsJeU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=MjTFPxkoGmiVHUcWMYjhggvnG+8lb58a8SG9VxP0esdaqJV0PVxMLQDVKJVqs+pmO6sBCnH/oFFtgQimbIhj+hi8OD0ASaQBp0FMg+vmFSpWjOopov6HEoYvU6ZdmSaOee7f3T/y227+PIsi5SDTi+V3gskjAr/ZZv+KGCuTLkk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kPiug/0o; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ECF78C2BBFC;
+	Thu, 27 Jun 2024 07:46:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719474396;
+	bh=AH9D0ziQVkg9LV3FQsXYXHeGDQQY50zBANCOXWzsJeU=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=kPiug/0owQPS/BCx+CSqJdw1XzL91EfeAY1WJca3CT1v9+B6H9vIJSYecT0xMC6me
+	 +ZG/knsUgGc1ED5gYFS4B5YbtGTl7ZL9a97keVasBfA8vFeaABZg3f8AeGP0B8zDRn
+	 Y+HlcI+e32YO8VLcYmtfZ798f8DHV1wt7xwh43dIDvNzgWUfOzXJIEgmkh8lp1nYVf
+	 LAWHdKV2SHyg8qARCrrXfidS5sapUsYiKIE7ndDcim8ZNADmXd0NnHunv4SH95b2Zu
+	 T3lqRKHqlGBAKc/c5cWwDpQCLvmAlGugyTgBtAUJwo5VsG3YyFeeX/KZfuo3N2MmHP
+	 jVEi5Eq82kOzg==
+Message-ID: <c7bad597-84cc-445f-8446-398cb5e5005e@kernel.org>
+Date: Thu, 27 Jun 2024 09:46:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240617223952.1899201-1-aford173@gmail.com>
-X-CM-TRANSID:Ms8vCgD3v5m6GH1mw6caAA--.27497S3
-X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxU-7KsUUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiCRsLZWZv-cxqVAABs7
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] ASoC: dt-bindings: simple-audio-mux: add mux-names
+ property
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+ Alexandre Belloni <aleandre.belloni@bootlin.com>,
+ Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Takashi Iwai <tiwai@suse.com>,
+ devicetree@vger.kernel.org, linux-sound@vger.kernel.org
+References: <87bk3nqc0e.wl-kuninori.morimoto.gx@renesas.com>
+ <878qyrqbyt.wl-kuninori.morimoto.gx@renesas.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <878qyrqbyt.wl-kuninori.morimoto.gx@renesas.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, Jun 17, 2024 at 05:39:51PM -0500, Adam Ford wrote:
-> The pgc_mlmix shows a power-domain@24, but the reg value is
-> IMX8MP_POWER_DOMAIN_MLMIX which is set to 4.
+On 27/06/2024 05:52, Kuninori Morimoto wrote:
+> Current simple-audio-mux selects MUX by "Input 1" or "Input 2",
+> it is not user friendly. Adds new "mux-names" property and enable to
+> select MUX by own names.
 > 
-> The stuff after the @ symbol should match the stuff referenced
-> by 'reg' so reorder the pgc_mlmix so it to appear as power-domain@4.
+> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> ---
+>  Documentation/devicetree/bindings/sound/simple-audio-mux.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
-> Fixes: 834464c8504c ("arm64: dts: imx8mp: add mlmix power domain")
-> Fixes: 4bedc468b725 ("arm64: dts: imx8mp: Add NPU Node")
-> 
-> Signed-off-by: Adam Ford <aford173@gmail.com>
+> diff --git a/Documentation/devicetree/bindings/sound/simple-audio-mux.yaml b/Documentation/devicetree/bindings/sound/simple-audio-mux.yaml
+> index 9f319caf3db7..6e4018936887 100644
+> --- a/Documentation/devicetree/bindings/sound/simple-audio-mux.yaml
+> +++ b/Documentation/devicetree/bindings/sound/simple-audio-mux.yaml
+> @@ -24,6 +24,10 @@ properties:
+>      description: |
+>        GPIOs used to select the input line.
+>  
+> +  mux-names:
+> +    description: |
+> +      Name of multiplexers. default is "Input 1", "Input 2"
+> +
 
-Applied, thanks!
+I have troubles with this binding... It seems driver expects only one
+GPIO, but the binding allows any number. Similarly mux-names...
+
+Anyway, this does not look like hardware description but rather
+configuration of driver. What's wrong with input 1 or mux 1 or whatever
+is there for default?
+
+Also: extend the example.
+
+Best regards,
+Krzysztof
 
 
