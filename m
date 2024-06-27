@@ -1,56 +1,71 @@
-Return-Path: <devicetree+bounces-81001-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81002-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A271691B01F
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 22:10:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C02F91B027
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 22:11:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4C6B11F21ABB
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 20:10:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4BFF01C2208E
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 20:11:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4605719CCF9;
-	Thu, 27 Jun 2024 20:10:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4842A19DF67;
+	Thu, 27 Jun 2024 20:10:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XW8SUNtv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vAXc3CAt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13B4145BE4;
-	Thu, 27 Jun 2024 20:10:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 191D219D071;
+	Thu, 27 Jun 2024 20:10:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719519004; cv=none; b=W5XXGkzlDjySZRr0EjlkMnJopgAv7JDQUpbKiZBGLYyDVipkXra+pB1XhDS0MZ7BYJq2MhUOk4Z2ATU/llPasLr/KHj0n1mfWzvc+cxgBXt1ato1B9kdyQDN6DhRxFXweeEKHZJmiGkTgW/KV/NLEWcI8OOU3dIq7QgnWlm0vGk=
+	t=1719519045; cv=none; b=C6ePZRoIuuu9WUe8JxneLXBnoU8ARLh+O/tsJC4ffnAh1KsriYN4mJMHi21508Ze/jB7cTjYGPqjnFpYY4rS01RAtQiv5K6P9YbaKf0FeObJEG/sIsBzK5KsJwQ3aUZ6NZKqTAwTVSobyyxhQAbKQdchYCI1JHJm3rJ4hYcTdOE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719519004; c=relaxed/simple;
-	bh=byVO7bSjc2B50u+ghIN9MhH9E2GcieHSkOgjwGtHUxY=;
+	s=arc-20240116; t=1719519045; c=relaxed/simple;
+	bh=mYZr87v6ibAo2OlmRNIuM9tKRKlKn84LWqsUifYTFBc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JykGQKP+X8xPMYZt1X3AfzTXewyu0y5AEUJYaWOHld8dLKvt2w6NdMVfDJAVhWcb5GOggDSptkalMyXomtluSI0wVD33rIJYF4lNM+yEXUlFHsxoIb3q1CsxJ6spEsQgYtTtdgtPfoqngI3uJK6kMhgRtWUinsq7UvRDSPnW62M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XW8SUNtv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63115C2BBFC;
-	Thu, 27 Jun 2024 20:10:03 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=aQJgdN5PoW0VNhqj7PEBsPc7GebrXwB3j86fCd9ziT0BZNFE9cXjq5uHuX4ZiNKqJIVTZMJAspunKUbY/0A6AsPNj7iiYUIvGmeAs2iDRWzC0TRkK17cVyd5tP14DkHKQkgTV3319AxkultSUdF4ZOGcM4d02/optxRsmtMRHBE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vAXc3CAt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BAF50C2BBFC;
+	Thu, 27 Jun 2024 20:10:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719519003;
-	bh=byVO7bSjc2B50u+ghIN9MhH9E2GcieHSkOgjwGtHUxY=;
+	s=k20201202; t=1719519044;
+	bh=mYZr87v6ibAo2OlmRNIuM9tKRKlKn84LWqsUifYTFBc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XW8SUNtvcIiI8nmRrA1S02VstVj/lK+gigPyPlLjuSeN1O5s2NnKa0kZMrGmCCVFU
-	 i1O4LPPNgbVbhwVwSbtUA7aanH1yg3ptcOzXd9IUnWQAzQHYzKNB4QeKokNmYQfu7x
-	 c4zd/7M6RROnFN+0GZ3Fp4X2cBgQ/MexNgP/c5/k+rwkKm7e+Dz1jkYLBKz1pD1k1a
-	 VmRNxmy/n/0MPLLkcdARaIRXfxkZhORhh6+745cBM+Og349VFGOcd9vRPVN89tLNDu
-	 3HQB+6YWpGkUF63M+94VibmVCt3/SGCeIu/O/zJ2F+6hz0jEgcjlkkF+7BNCiJzpYN
-	 OinbBIIXP8Gow==
-Date: Thu, 27 Jun 2024 14:10:02 -0600
+	b=vAXc3CAtGSBmIKKNUgtpCDBED6l09/SNSCoZZmmbmUTPYPNU/QBhiBp6t9tD8fB8T
+	 X3b6lFx/rEM8xRwP6Whu2Rnkh5RqPkp/IJca7as+dyMA0yj1xtcfTMzgh2G7SPa/A+
+	 5Qs6uCpEWXP302RR37Us1GxF7SW9MxdwSgR5sy9daKqWmogC9k8ccdhhvRbBAwduHN
+	 I6uYKr4k9Nu+uaRnNMCi7QfWYUg0leH8e2vsxHzaQRs+ruN54uwQWOH6FeXC83YBzU
+	 c3jLWn+ahxJy4hutQfXmXd6Rlsfu6sifkjFJoRYiR7YRQiRmo6jrVAHvmiooU3tot1
+	 UkbayKt2FApoQ==
+Date: Thu, 27 Jun 2024 14:10:43 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: krzk+dt@kernel.org, conor+dt@kernel.org, stuyoder@gmail.com,
-	imx@lists.linux.dev, linux-kernel@vger.kernel.org,
-	laurentiu.tudor@nxp.com, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/1] dt-bindings: misc: fsl,qoriq-mc: convert to yaml
- format
-Message-ID: <171951899762.452992.8697118777293539475.robh@kernel.org>
-References: <20240617170934.813321-1-Frank.Li@nxp.com>
+To: Elliot Berman <quic_eberman@quicinc.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Mark Rutland <mark.rutland@arm.com>, linux-pm@vger.kernel.org,
+	Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	devicetree@vger.kernel.org,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	linux-arm-msm@vger.kernel.org,
+	Bjorn Andersson <andersson@kernel.org>,
+	Andy Yan <andy.yan@rock-chips.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, Vinod Koul <vkoul@kernel.org>,
+	Shivendra Pratap <quic_spratap@quicinc.com>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Melody Olvera <quic_molvera@quicinc.com>,
+	linux-kernel@vger.kernel.org,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	Sebastian Reichel <sre@kernel.org>
+Subject: Re: [PATCH v5 1/4] dt-bindings: power: reset: Convert mode-.*
+ properties to array
+Message-ID: <171951904084.453846.10563546710745374942.robh@kernel.org>
+References: <20240617-arm-psci-system_reset2-vendor-reboots-v5-0-086950f650c8@quicinc.com>
+ <20240617-arm-psci-system_reset2-vendor-reboots-v5-1-086950f650c8@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,44 +74,24 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240617170934.813321-1-Frank.Li@nxp.com>
+In-Reply-To: <20240617-arm-psci-system_reset2-vendor-reboots-v5-1-086950f650c8@quicinc.com>
 
 
-On Mon, 17 Jun 2024 13:09:34 -0400, Frank Li wrote:
-> Convert fsl,qoriq-mc from txt to yaml format.
+On Mon, 17 Jun 2024 10:18:07 -0700, Elliot Berman wrote:
+> PSCI reboot mode will map a mode name to multiple magic values instead
+> of just one. Convert the mode-.* property to an array. Users of the
+> reboot-mode schema will need to specify the maxItems of the mode-.*
+> properties. Existing users will all be 1.
 > 
-> Addition changes:
-> - Child node name allow 'ethernet'.
-> - Use 32bit address in example.
-> - Fixed missed ';' in example.
-> - Allow dma-coherent.
-> - Remove smmu, its part in example.
-> - Change child node name as 'ethernet'
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> 
+> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
 > ---
-> Change from v1 to v2
-> - fixed warning find by make refcheckdocs
-> - Change child node name as 'ethernet'
-> - move range after reg in example
-> 
-> Pass dt_binding_check
-> ake ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- -j8  dt_binding_check DT_SCHEMA_FILES=fsl,qoriq-mc.yaml
->   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
->   CHKDT   Documentation/devicetree/bindings
->   LINT    Documentation/devicetree/bindings
->   DTEX    Documentation/devicetree/bindings/misc/fsl,qoriq-mc.example.dts
->   DTC_CHK Documentation/devicetree/bindings/misc/fsl,qoriq-mc.example.dtb
-> ---
->  .../devicetree/bindings/misc/fsl,qoriq-mc.txt | 196 ------------------
->  .../bindings/misc/fsl,qoriq-mc.yaml           | 187 +++++++++++++++++
->  .../ethernet/freescale/dpaa2/overview.rst     |   2 +-
->  3 files changed, 188 insertions(+), 197 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/misc/fsl,qoriq-mc.txt
->  create mode 100644 Documentation/devicetree/bindings/misc/fsl,qoriq-mc.yaml
+>  .../devicetree/bindings/power/reset/nvmem-reboot-mode.yaml         | 4 ++++
+>  Documentation/devicetree/bindings/power/reset/qcom,pon.yaml        | 7 +++++++
+>  Documentation/devicetree/bindings/power/reset/reboot-mode.yaml     | 4 ++--
+>  .../devicetree/bindings/power/reset/syscon-reboot-mode.yaml        | 4 ++++
+>  4 files changed, 17 insertions(+), 2 deletions(-)
 > 
 
-Applied, thanks!
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
