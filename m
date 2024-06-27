@@ -1,77 +1,78 @@
-Return-Path: <devicetree+bounces-80995-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80997-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 327E691AF9F
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 21:27:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BCFD691AFAC
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 21:30:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C5BEDB23BAE
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 19:27:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5935FB24B6C
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 19:30:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 929F919B58A;
-	Thu, 27 Jun 2024 19:27:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B53BB2E62D;
+	Thu, 27 Jun 2024 19:30:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b="Ir1xUpDt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from mail-40137.protonmail.ch (mail-40137.protonmail.ch [185.70.40.137])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C9E319AA70;
-	Thu, 27 Jun 2024 19:27:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0BACC8F3
+	for <devicetree@vger.kernel.org>; Thu, 27 Jun 2024 19:30:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.70.40.137
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719516466; cv=none; b=RjBh1xUWpHNSY0tNOOR9tMlsdioORV4pM+AoS0y2rEgja3pNM5n9zxxVjbJRZijXTgYa20Z6xowiHzXubZUvR/ua6pwmgT51c8hMazCMZNX/faqHlZXOstEYVqUIXVK+vfTEe7gwGG+GvUR72Lg0LBP08NU/J9WJZ6lGKPsNAOQ=
+	t=1719516645; cv=none; b=PVA60LJuSuEZ4TpDdlfAv5YEYnElKgn/oKgpWaUHj1sMOsa55kSE0PLRwt/KahCPv4LUeWAl2oegrDja2fpa1d981Ogv2qd9NqqL6ExADeTpWeUFMr/VXQu8m1K+SuM0HOkEuW9UNkOJVu74OGkC/4lwgGHRWD/jVDdW0bGedNs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719516466; c=relaxed/simple;
-	bh=MdhesZyA9NKzbbqnXJzSrJjGv9Ad7F92y4D6e6hqOTY=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=WbgmK1+qFEUInioStfiBiirVxK+Cf/D5+5NKKJ/hl/A6B7OXbLKQfYSdxfRK4KsqBffAoEd9wgs36iAYn1Fp8ktLzki/ovc0GVZ6O/ot0/M5XWjYYEpaGqeLwwSDMYHFU+/JTKjKNbzxf3hx6zdoYt5t05rG7sVQk+WbQalAXWY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-Received: from i53875b6a.versanet.de ([83.135.91.106] helo=phil.lan)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1sMumM-0000wK-1r; Thu, 27 Jun 2024 21:27:34 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: Johan Jonker <jbx6244@gmail.com>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v1] ARM: dts: rockchip: rk3128: add #sound-dai-cells to hdmi node
-Date: Thu, 27 Jun 2024 21:27:29 +0200
-Message-Id: <171951643515.1057727.16469934160399671556.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <9d0fabb0-70b0-4b4b-ac7c-389b1c7afe20@gmail.com>
-References: <9d0fabb0-70b0-4b4b-ac7c-389b1c7afe20@gmail.com>
+	s=arc-20240116; t=1719516645; c=relaxed/simple;
+	bh=jdGZZuUjU6IKdN0QMbYKEeaNSzN3j5RR+CNHFENctXg=;
+	h=Date:To:From:Cc:Subject:Message-ID:MIME-Version:Content-Type; b=ff1PZOKCwpjS5TlhdbcA9WHDGgoD/FMbBwFX93W8hG3kJkclsThGy+G9XOL6rI6Zq2ZreJiGT9sHbGVtykWwey+oXgVqw9YiqF1kboQSoIIRyfgkr+t0cRfGNvZ4xr9Q94PdLfQtjmzXEFIxqjm6Mndx6CxlAahCyHmkgn0rANo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com; spf=pass smtp.mailfrom=protonmail.com; dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b=Ir1xUpDt; arc=none smtp.client-ip=185.70.40.137
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+	s=protonmail3; t=1719516636; x=1719775836;
+	bh=RU8R7UnTgn6eP1AZKbglvITXdxEQ2SMjUq+6xyiXaQs=;
+	h=Date:To:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
+	 Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
+	b=Ir1xUpDtQL7CxvRvCG1Owj2g79oEAUR18FcZ6bqaPgB2n7M8VxgekDU2xl/mmkAy5
+	 44aaauqztYdNqQXJ357N0sPd+AomUWvljKmKhJ60nmlAyly4cSjK4AH1DUy91QAcrC
+	 9SOdGYpkTdilQMMZ5hiphJg7HtqxtZx7czy3Db0ZNbCxx5icUv/AYCLI3xfFSTn1xV
+	 rp97KmWW9fE8vGpoap6pY4vX3QWXSZKECWqEeuK4xLjukQAWPNTS7bxrhuQpoo4YPt
+	 plGjcNZBYerNsYjr9yw4SSlGxZvpNQpMaQAOQBCqCbv8Ww9H6pQ/r19oTfxLR9lqQn
+	 TCBUb++pzOx7A==
+Date: Thu, 27 Jun 2024 19:30:30 +0000
+To: linux-kernel@vger.kernel.org
+From: Raymond Hackley <raymondhackley@protonmail.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+Subject: [PATCH v2 0/2] ARM: dts: qcom-msm8226-samsung-ms013g: Add initial device tree
+Message-ID: <20240627193013.1800-1-raymondhackley@protonmail.com>
+Feedback-ID: 49437091:user:proton
+X-Pm-Message-ID: bb4aba257863566582ee4be550506691c60cfa84
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, 24 Jun 2024 19:26:48 +0200, Johan Jonker wrote:
-> '#sound-dai-cells' is required to properly interpret
-> the list of DAI specified in the 'sound-dai' property,
-> so add them to the 'hdmi' node for 'rk3128.dtsi'.
-> 
-> 
+Samsung Galaxy Grand 2 is a phone based on MSM8226. It's similar to the
+other Samsung devices based on MSM8226 with only a few minor differences.
 
-Applied, thanks!
+The device trees contain initial support with:
+ - GPIO keys
+ - Regulator haptic
+ - SDHCI (internal and external storage)
+ - UART (on USB connector via the TI TSU6721 MUIC)
+ - Regulators
+ - Touchscreen
+ - Accelerometer
 
-[1/1] ARM: dts: rockchip: rk3128: add #sound-dai-cells to hdmi node
-      commit: 313da6f69fa41d044b03f2ea37e56fe49f1e8a42
+---
+v2: Adjust l3, l15, l22 and l27 regulator voltages. Sort nodes.
+    Set regulator-allow-set-load for vqmmc supplies.
 
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+
 
