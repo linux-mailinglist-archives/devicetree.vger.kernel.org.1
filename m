@@ -1,100 +1,116 @@
-Return-Path: <devicetree+bounces-80987-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80988-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23C9191AF56
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 20:54:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 967A891AF64
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 21:03:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 54F401C21662
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 18:54:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 497011F22C69
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 19:03:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB39B19A2BA;
-	Thu, 27 Jun 2024 18:54:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBB816A33F;
+	Thu, 27 Jun 2024 19:03:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="pRmI6T64"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="flFAOU3m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04ED91BF40;
-	Thu, 27 Jun 2024 18:54:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB985360;
+	Thu, 27 Jun 2024 19:03:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719514449; cv=none; b=AwVHmMmaoMlNP81Z3f4CW+IokU+9DdxPvhabpEeEdjaSQTkxNg1odWWJAlt7Jf2DLzKm9Ey/RB+G1ByuHLyaURJyAMZa/de4a1S6U/RNnxqIBmzUfDDnCfTe9+zs3+F+35xyseAztyuOHgEF5CwsoA7ZoHSXd7fouJQPybumlYo=
+	t=1719514996; cv=none; b=Y+o3VCwfqHnoozHZ+niRfNiZBnA+akIQX4LMi3asAXB0pRqL3M97hcYyE+t/IxmmdeLJV9MqDoZWqiRoLQ4GNc4Fnoqgd9bt4NzH+10aaQASr8+iHV+P5NvxPZP2QNOHcC1YUcAN9EuQgWAY0v9IxrxUH6ZSpoFl5Fp2yk0EnEk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719514449; c=relaxed/simple;
-	bh=qqJuWDqgU1d2pzn5L3V2x4FZCNkPm8iX43xFx3zpmkE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sova/1YK3kAHcZWNaHgBYCFch++a8lCjoutGZqDrcYNjAvKIA53nRpZkrVXOYogyliwFmwjIEq/y2EGsVPgW8JPS8N2hE4b6nVDm+61Mi/wTZVgrSchZfPZegPmaIh5nECuwN37d9XvmdHPeqZwxSCEK9gllx8csHcTEpgM6TC8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=pRmI6T64; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=pKvqSGLfcwX/x9spD289lXQYDSmIZJJ94YFu8au6w54=; b=pRmI6T64rhmuSiqJu5QmZBCp2Z
-	enKLABPtVqOOri45SLyrekDLX6eJdbd8C/pd2dgY1JhTxaw/yc+BP6HwEqVvM7cvUdBucK3Q8Cqqt
-	I+mQg59XkPLlfVe+cZ9a9Q52QvBZ6PSwIKHF9A1efwhpIntlkF/Jw8+rQ4XIgUAClBz0=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1sMuFq-001CUa-Tk; Thu, 27 Jun 2024 20:53:58 +0200
-Date: Thu, 27 Jun 2024 20:53:58 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Ayush Singh <ayush@beagleboard.org>
-Cc: Andrew Davis <afd@ti.com>, Mark Brown <broonie@kernel.org>,
-	Vaishnav M A <vaishnav@beagleboard.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>, Michael Walle <mwalle@kernel.org>,
-	jkridner@beagleboard.org, robertcnelson@beagleboard.org,
-	linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v5 7/7] dts: ti: k3-am625-beagleplay: Add mikroBUS
-Message-ID: <9c5263b4-fcda-4678-95ce-c2611af82bc2@lunn.ch>
-References: <20240627-mikrobus-scratch-spi-v5-0-9e6c148bf5f0@beagleboard.org>
- <20240627-mikrobus-scratch-spi-v5-7-9e6c148bf5f0@beagleboard.org>
- <4e23ec81-b278-4f2b-815d-64ed9390ca55@ti.com>
- <cef08d49-a462-4167-8b9d-bf09e8aac92f@beagleboard.org>
- <70f28343-6738-47f2-97b5-6afa96f1fbcc@ti.com>
- <93cdd5c5-d54c-46c2-9055-5cd9cc79e2da@beagleboard.org>
+	s=arc-20240116; t=1719514996; c=relaxed/simple;
+	bh=s4oEpDuEzHamdfCowVPpqqZfwSmm25BkIYA5zE16y/A=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=DNCxdVrY2/uncIBrDDCDkNBb9ZAmxwkP+2YM1q+xL8svpYbA36ciK0YqWh+W9zmvc/yhnibCnno9wXr2l+Q5KDVr+CKyefMSwXEzRxhkj2pXu79ds3jcCAI9HWY6HLCYxbRQOcY32DJUXCikc9kRMypRWKNZRnLX52QvyJPGlpA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=flFAOU3m; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35677C2BD10;
+	Thu, 27 Jun 2024 19:03:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719514996;
+	bh=s4oEpDuEzHamdfCowVPpqqZfwSmm25BkIYA5zE16y/A=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=flFAOU3mB4XigsWmmjauBMrKEBDeX1+nlGJuXL/zzNIjrrR8INDJFGHsOlpxGYL6c
+	 HkJXVLBdyPfhfYZkeyxZ+ZHDjJ2A3PlidM/rUi02WuqEmqbv3vMi3nSGiTKneEmPG3
+	 tvrM3pY8oH5W1GNqYmBHdKOarQGFHcHIOcxl11ZRa/8V3QBWrIoUsbG5TQsL7gZd36
+	 w7mxcRkJHayxAQQZZuZdBCEF5L++ry71qHbTO/V/NLmteS1q3CrIi7WkohJ4RYnRq7
+	 gHtrPMriQ7oBodIg1RXydoLFmJmtx1D4nH9JZ5KcGSMLGn03FR+wBpRKu7T2bi6YLo
+	 RcD5HI1ktx0zQ==
+Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2ec595d0acbso66403801fa.1;
+        Thu, 27 Jun 2024 12:03:16 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUPe/Vn3VDzxTwK0h3FlRbFsHBWV87KHrsb8N5wRaiX6sk7EfPMTefDBfBrCFz9/Aao2ZqvrVzadnSbXFOXDwoxwu65wT/NvdBRZE4OYBJ0ZiAkcKt5MC6h5BsGlqn9WbpedCgLwl0qZ7TmwfF1AB0ukodntefj0zchiZB2HPZvZA==
+X-Gm-Message-State: AOJu0YyHX8pXalzqBKN+5y5aXX9b2cy7ajhQudLSXvzvUdTHBfd+kI4U
+	PHeBQEfKNEmgW0BXe/WjkQ1Y8BPnHKCt2UJ1MM09cEOrmEHDbUSIW/HjuC49ay/mEsgbHszEb5F
+	wnnjtQWpfgeSGUjEyoSCeo1TePA==
+X-Google-Smtp-Source: AGHT+IERpqYkHVSBMBLutpKK8Ckx8P+bb/s9EpxdS6FVvg+rabR/H1UO1yWL4pgy8bPuumt8TnDS170ObiA6rFOR7/k=
+X-Received: by 2002:ac2:54a8:0:b0:52c:da18:6187 with SMTP id
+ 2adb3069b0e04-52ce185d05fmr10828916e87.43.1719514994561; Thu, 27 Jun 2024
+ 12:03:14 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <93cdd5c5-d54c-46c2-9055-5cd9cc79e2da@beagleboard.org>
+References: <20240625215442.190557-2-robh@kernel.org> <gr7rgy7cptnpj2rkeufhgqkve4ytqddpts6gdekeszoq7znwf2@ivyjpaiyxruk>
+In-Reply-To: <gr7rgy7cptnpj2rkeufhgqkve4ytqddpts6gdekeszoq7znwf2@ivyjpaiyxruk>
+From: Rob Herring <robh@kernel.org>
+Date: Thu, 27 Jun 2024 13:03:01 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLYHbr=Wqg-S0t_hK3uDATe9KKob9chFGFnoTcyt2ttyg@mail.gmail.com>
+Message-ID: <CAL_JsqLYHbr=Wqg-S0t_hK3uDATe9KKob9chFGFnoTcyt2ttyg@mail.gmail.com>
+Subject: Re: [PATCH net-next] dt-bindings: net: Define properties at top-level
+To: Serge Semin <fancer.lancer@gmail.com>
+Cc: "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Lorenzo Bianconi <lorenzo@kernel.org>, Felix Fietkau <nbd@nbd.name>, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, Giuseppe Cavallaro <peppe.cavallaro@st.com>, 
+	Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-> Can you suggest how something similar will be possible if the board node is
-> a child of the connector node? Maybe it is possible to take a generic dt
-> overlay and change the name of parent node on it or something?
+On Wed, Jun 26, 2024 at 9:05=E2=80=AFAM Serge Semin <fancer.lancer@gmail.co=
+m> wrote:
+>
+> Hi Rob
+>
+> On Tue, Jun 25, 2024 at 03:54:41PM -0600, Rob Herring (Arm) wrote:
+> > Convention is DT schemas should define all properties at the top-level
+> > and not inside of if/then schemas. That minimizes the if/then schemas
+> > and is more future proof.
+> >
+> > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> > ---
+> >  .../devicetree/bindings/net/mediatek,net.yaml |  28 +--
+>
+> >  .../devicetree/bindings/net/snps,dwmac.yaml   | 167 +++++++++---------
+>
+> For Synopsys DW MACs you can just move the PBL-properties constraints to
+> the top-level schema part with no compatible-based conditional
+> validation left. It's because the DMA PBL settings are available on all t=
+he
+> DW MAC IP-cores (DW MAC, DW GMAC, DW QoS Eth, DW XGMAC, DW XLGMAC).
+> Moreover the STMMAC driver responsible for the DW MAC device handling
+> parses the pbl* properties for all IP-cores irrespective from the
+> device compatible string.
 
-Maybe that answers my question on an earlier patch.
+That's definitely better. Will still need the TSO flag part though,
+really, who cares if someone wants to set that on h/w without TSO...
 
-So the parent node of the overlay is embedded inside the overlay?
+>
+> Alternatively you can just merge in the attached patch, which BTW you
+> have already reviewed sometime ago.
 
-Making a guess without looking at the code... The code loading an
-overlay must first parse the overlay and find that node name. It then
-must somehow traverses the graph, and find that node. It then must
-apply the overlay at that point.
+Can you send that to the list since it changed from the last version.
 
-Could you not take this code apart, so you can pass it the name of the
-node you want to apply the overlay to, rather than read it from the
-overlay itself? The connector should known its own node in the
-graph. So it can find the overlay, load it, and then ask for it to be
-applied over itself.
-
-	Andrew
+Rob
 
