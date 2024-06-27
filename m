@@ -1,181 +1,84 @@
-Return-Path: <devicetree+bounces-80573-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80574-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3882191A01C
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 09:13:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D416391A038
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 09:17:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CF13B1F23749
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 07:13:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 874F61F233C4
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 07:17:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1690B4D8C6;
-	Thu, 27 Jun 2024 07:13:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4709D4DA1F;
+	Thu, 27 Jun 2024 07:17:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jCUVWjS8"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="nO3n3JOu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD4BB4D8C1;
-	Thu, 27 Jun 2024 07:13:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.17])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2398481DB;
+	Thu, 27 Jun 2024 07:17:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719472384; cv=none; b=NHbuYzEleCkc1hnLpuJeOhx4bWI9aQjSw1PDqoZLAawpxHQK8NHV0OVFja7tBwaqoN585rCwZe76fPW5Ou/9twesx0RatklpMOm1eI4Mc2IWiCzXvB9OG2J+kBCZr2EY76bgKheCp7Z0wj6f9cFTqzYZWK5LQ3S9CRnr7hEApqg=
+	t=1719472640; cv=none; b=OOX4kQWeYlMtVlGpOmzqQE7CIzGuXRSrU6nOugT9Q80CtqG6+D0vVs26XgV62KjGyHxavh0cSd1HcTTjEri+esP6iym8VjPQ014F/aPJXzJ5DRXJQH7sMoRUW3B4TW19Atghq7VeotJ5VpPquoYz19NYmNVqYbeOMvF9nAfBiLY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719472384; c=relaxed/simple;
-	bh=yjGyFvibMRcZKBJ0b9A+p3uvnDiFXIdsxcEBNYYupBk=;
+	s=arc-20240116; t=1719472640; c=relaxed/simple;
+	bh=VZd1DTMsV4Y6GkhYKBwj5DfAYkl/FIXvXfestO3BbMA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FExExMB4PwC9AvmyvgBkEx0p6qymx4IbLMf3pLWy9AI53l6YANaxQFmuFqxagPQTgdp9icIm/KjkkoGLEOsRP9Pkkckv2NYupdIh1Z8B9pVIeYkppUgGMDP4pGldyxqaaiH0IugM8DPkwBBi3VOBRf3biISQELOuuyFwB65Ryaw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jCUVWjS8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A72DC2BBFC;
-	Thu, 27 Jun 2024 07:13:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719472383;
-	bh=yjGyFvibMRcZKBJ0b9A+p3uvnDiFXIdsxcEBNYYupBk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jCUVWjS8Bf+noBUDEGooaxzT11jIGgWEPxnGChglVpZcD5fzzfXv6zLTAlmNJcbX7
-	 Ki7meDBzAFVBRKo7MGuhzOQggDcx60wUC7abtrJEfByWGYEWVsVEfIkiH7t/J9G2Ca
-	 dLIFLeNk5YNy8gzOo+27D8D/MbQywnxauW+B9ibPPps0wQzp3wSrA70VDiC2kt4pnl
-	 BNBUzXoOTh2zGnc9Cut1+OsZc8iYIX+Vytk8P8eKg74fIO8D6edn9EPYcqpDMnvtG3
-	 xGx7jk05kzL34gKHmLuqUPvRuJfXMYaXv9pRowLkZSFH06PfBUn9cL6wouib2Ootkz
-	 PLHEbUy9RoqYQ==
-Date: Thu, 27 Jun 2024 08:12:58 +0100
-From: Lee Jones <lee@kernel.org>
-To: James Ogletree <James.Ogletree@cirrus.com>
-Cc: James Ogletree <jogletre@opensource.cirrus.com>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	"robh+dt@kernel.org" <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
-	Jeff LaBundy <jeff@labundy.com>,
-	"patches@opensource.cirrus.com" <patches@opensource.cirrus.com>,
-	"linux-sound@vger.kernel.org" <linux-sound@vger.kernel.org>,
-	"linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH RESEND v11 0/5] Add support for CS40L50
-Message-ID: <20240627071258.GE2532839@google.com>
-References: <20240620161745.2312359-1-jogletre@opensource.cirrus.com>
- <20240620165935.GT3029315@google.com>
- <21975F67-D71D-4D5D-8042-8EE64E8864CA@cirrus.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=IWZpFrZnUqzBkgIPwsIx98nZttQqGgyfSCxRrbjpMJcTpTCMh+/Ku8RxpZBSIfgXE5pdKhc91n2L4a+51ayeD7g76aYQYTjdZG3loyOMyBh957TAig3vj+qqB+K4prr+pIJ6ysxG0YsNw8WB8PFCvKpeP/zZU6bSKAK16oeBsL8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=nO3n3JOu; arc=none smtp.client-ip=220.197.32.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=YfzRT/YahaCVfCZjCVbpbtKPLzjuLKP7xH/d0hodVsY=;
+	b=nO3n3JOurca8Hv+kmfFWjTkQxKgHDcm4gOLb/cTbLiq0TocaEQp01vxKfkAOxc
+	1CF7UcpBTGGgphtGYNDAuhY1YYmMiGAIXg0MVnazDQqqhGblHP9c7FTPOBQS5bse
+	dR3/bDRW+A7ULMVSjCIk/vZSW3gtJ+BPmXm6lAZwaywp0=
+Received: from dragon (unknown [114.218.218.47])
+	by gzsmtp1 (Coremail) with SMTP id Mc8vCgD3H47bEX1mGbYZAA--.52899S3;
+	Thu, 27 Jun 2024 15:16:45 +0800 (CST)
+Date: Thu, 27 Jun 2024 15:16:43 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Dong Aisheng <aisheng.dong@nxp.com>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>,
+	stable@vger.kernel.org
+Subject: Re: [PATCH v3 0/9] arm64: dts: imx8qm: add subsystem lvds and mipi
+Message-ID: <Zn0R2/lcgcSG03CM@dragon>
+References: <20240614-imx8qm-dts-usb-v3-0-8ecc30678e1c@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <21975F67-D71D-4D5D-8042-8EE64E8864CA@cirrus.com>
+In-Reply-To: <20240614-imx8qm-dts-usb-v3-0-8ecc30678e1c@nxp.com>
+X-CM-TRANSID:Mc8vCgD3H47bEX1mGbYZAA--.52899S3
+X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7v73
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUxEdyUUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiEh0LZWZv-cwvZQAAsT
 
-On Wed, 26 Jun 2024, James Ogletree wrote:
+On Fri, Jun 14, 2024 at 11:06:24AM -0400, Frank Li wrote:
+> Frank Li (9):
+>       arm64: dts: imx8: add basic lvds0 and lvds1 subsystem
+>       arm64: dts: imx8qm: add lvds subsystem
+>       arm64: dts: imx8: add basic mipi subsystem
+>       arm64: dts: imx8qm: add mipi subsystem
+>       arm64: dts: imx8qm-mek: add cm4 remote-proc and related memory region
+>       arm64: dts: imx8qm-mek: add pwm and i2c in lvds subsystem
+>       arm64: dts: imx8qm-mek: add i2c in mipi[0,1] subsystem
+>       arm64: dts: imx8qm-mek: fix gpio number for reg_usdhc2_vmmc
+>       arm64: dts: imx8qm-mek: add usb 3.0 and related type C nodes
 
-> 
-> > On Jun 20, 2024, at 11:59 AM, Lee Jones <lee@kernel.org> wrote:
-> > 
-> > On Thu, 20 Jun 2024, James Ogletree wrote:
-> > 
-> >> Changes in v11:
-> >> - Constified function parameters in ASOC driver
-> >> - Removed an unneeded #include
-> >> - Changed number of max FF effects = 1
-> >> - Minor refactoring in Input driver
-> >> - Reworded comment in MFD driver
-> >> 
-> >> Changes in v10:
-> >> - Minor refactoring and logical improvements all around
-> >> - Renamed and added supplies
-> >> 
-> >> Changes in v9:
-> >> - Fixed empty struct by utilizing cs_dsp's post_run callback
-> >> - Style fixes in MFD driver
-> >> 
-> >> Changes in v8:
-> >> - set_sysclk() -> set_bclk_ratio()
-> >> - Added ID table to codec driver
-> >> - Style improvements
-> >> - Fixed ordering of new write sequence operations
-> >> 
-> >> Changes in v7:
-> >> - Fixed sparse warning
-> >> - Moved write sequences to private data structure
-> >> - Logical and style improvements in write sequence interface
-> >> 
-> >> Changes in v6:
-> >> - Updated write sequencer interface to be control-name based
-> >> - Fixed a race condition and non-handling of repeats in playback callback
-> >> - Stylistic and logical improvements all around
-> >> 
-> >> Changes in v5:
-> >> - Added a codec sub-device to support I2S streaming
-> >> - Moved write sequencer code from cirrus_haptics to cs_dsp
-> >> - Reverted cirrus_haptics library; future Cirrus input
-> >>  drivers will export and utilize cs40l50_vibra functions
-> >> - Added more comments
-> >> - Many small stylistic and logical improvements
-> >> 
-> >> Changes in v4:
-> >> - Moved from Input to MFD
-> >> - Moved common Cirrus haptic functions to a library
-> >> - Incorporated runtime PM framework
-> >> - Many style improvements
-> >> 
-> >> Changes in v3:
-> >> - YAML formatting corrections
-> >> - Fixed typo in MAINTAINERS
-> >> - Used generic node name "haptic-driver"
-> >> - Fixed probe error code paths
-> >> - Switched to "sizeof(*)"
-> >> - Removed tree reference in MAINTAINERS
-> >> 
-> >> Changes in v2:
-> >> - Fixed checkpatch warnings
-> >> 
-> >> James Ogletree (5):
-> >>  firmware: cs_dsp: Add write sequence interface
-> >>  dt-bindings: input: cirrus,cs40l50: Add initial DT binding
-> >>  mfd: cs40l50: Add support for CS40L50 core driver
-> >>  Input: cs40l50 - Add support for the CS40L50 haptic driver
-> >>  ASoC: cs40l50: Support I2S streaming to CS40L50
-> >> 
-> >> .../bindings/input/cirrus,cs40l50.yaml        |  68 +++
-> >> MAINTAINERS                                   |  12 +
-> >> drivers/firmware/cirrus/cs_dsp.c              | 278 +++++++++
-> >> drivers/input/misc/Kconfig                    |  10 +
-> >> drivers/input/misc/Makefile                   |   1 +
-> >> drivers/input/misc/cs40l50-vibra.c            | 555 +++++++++++++++++
-> >> drivers/mfd/Kconfig                           |  30 +
-> >> drivers/mfd/Makefile                          |   4 +
-> >> drivers/mfd/cs40l50-core.c                    | 570 ++++++++++++++++++
-> >> drivers/mfd/cs40l50-i2c.c                     |  68 +++
-> >> drivers/mfd/cs40l50-spi.c                     |  68 +++
-> >> include/linux/firmware/cirrus/cs_dsp.h        |  27 +
-> >> include/linux/mfd/cs40l50.h                   | 137 +++++
-> >> sound/soc/codecs/Kconfig                      |  11 +
-> >> sound/soc/codecs/Makefile                     |   2 +
-> >> sound/soc/codecs/cs40l50-codec.c              | 307 ++++++++++
-> >> 16 files changed, 2148 insertions(+)
-> >> create mode 100644 Documentation/devicetree/bindings/input/cirrus,cs40l50.yaml
-> >> create mode 100644 drivers/input/misc/cs40l50-vibra.c
-> >> create mode 100644 drivers/mfd/cs40l50-core.c
-> >> create mode 100644 drivers/mfd/cs40l50-i2c.c
-> >> create mode 100644 drivers/mfd/cs40l50-spi.c
-> >> create mode 100644 include/linux/mfd/cs40l50.h
-> >> create mode 100644 sound/soc/codecs/cs40l50-codec.c
-> > 
-> > Still needs Acks - ping me when you have them.
-> > 
-> > -- 
-> > Lee Jones [李琼斯]
-> 
-> Hi Lee,
-> 
-> You can take this series now.
+Applied all, thanks!
 
-sound/soc?
-
--- 
-Lee Jones [李琼斯]
 
