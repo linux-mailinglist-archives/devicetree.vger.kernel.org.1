@@ -1,89 +1,78 @@
-Return-Path: <devicetree+bounces-80575-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80576-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37D0F91A03B
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 09:17:46 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E4CD91A052
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 09:22:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E67D4286004
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 07:17:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 12624B21333
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 07:22:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5075487A7;
-	Thu, 27 Jun 2024 07:17:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F3E44C602;
+	Thu, 27 Jun 2024 07:22:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HERNeb5T"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="V0p8vKz8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9A921F5F6;
-	Thu, 27 Jun 2024 07:17:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.16])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 187DA1BF3A;
+	Thu, 27 Jun 2024 07:22:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719472648; cv=none; b=SITSCqyfcdyIeejkUD+G8XJqzEkvDQ80DxK7jX73B+cTrfgOiL+i4TBnZE/xM1yLG7JMqwrsJ6uLI+X4QqmikJ5z0iXtw32b5DMth7GMAwanOZ0YHDuuzcFFiXP6VOVHbmgE7XinNloTdTZ3sa/QY/dpIC/bmnS4ST/QFowLzfM=
+	t=1719472927; cv=none; b=Ni3J399rv3/hSGxGk75sSfuBymQ7njWZmC6uo7LavcosDmWmdZQd83Fc8si/zv1Ex0NLcDfrlrZvJnwnTNqWGU9MQ1SgomO+RtlxptBkQDehlVdJK3j7niYFSlxRJTsDazBm2xtlxNecJy9ULstXRhuZCnCbEXaAJcBusS4lXmk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719472648; c=relaxed/simple;
-	bh=wMJcr2AWNXAAqsBo+j58KGQEpUUJMlJJ71UaBYzBD/0=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=CbjoUqJycZjfzjGe85B6wzr/lTdcOSjO8onil2qbCjn8sjOT7P/zw6zOdAkJyMX8WgB1Gog/bYBmF0eqZx3h4FG+dpWolbL7GNuAUn9atR6pM6N1xpcZ+ycigGTyqJZ6kDSs+jFHsKAa7CuOZCk9mH/R4cIAWt78/XXjdnyEsdE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HERNeb5T; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0E36C2BBFC;
-	Thu, 27 Jun 2024 07:17:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719472648;
-	bh=wMJcr2AWNXAAqsBo+j58KGQEpUUJMlJJ71UaBYzBD/0=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=HERNeb5TFl8wr6/bUfHVUH53eTiaDWeEyKLJokpGnAdBM+PnVnvwt5MA7klY17/5Q
-	 GGn4I/pBdr9thz4SDFbRldbx77fbw5wkKMPd1kq9eVSpc2SkluIawQc2088xXs9TSj
-	 Xgx6cLPeCCam+aV2I/tQx+N+X0I5PfS4h2rmIG0F6MIXrq23huuv4UmeeJSRlzPe96
-	 w9iul2HYRPEOzl8nVVKeAaGoWdlB3kOzx8eI2YCioEy7VPI+fD5B/D18BD+omx0jKm
-	 s78cSBo3FIIGIDS/b3H8wR69hfbwydRIDjOK96D9LNytEg/ss67x0hzwXTRmfREnjh
-	 jzH0FD4lyoIOw==
-From: Lee Jones <lee@kernel.org>
-To: "Rafael J. Wysocki" <rafael@kernel.org>, 
- Viresh Kumar <viresh.kumar@linaro.org>, Lee Jones <lee@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>, 
- Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, 
- Bryan Brattlof <bb@ti.com>
-Cc: Vibhore Vardhan <vibhore@ti.com>, linux-pm@vger.kernel.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org
-In-Reply-To: <20240621-ti-opp-updates-v3-3-d857be6dac8b@ti.com>
-References: <20240621-ti-opp-updates-v3-0-d857be6dac8b@ti.com>
- <20240621-ti-opp-updates-v3-3-d857be6dac8b@ti.com>
-Subject: Re: (subset) [PATCH v3 3/5] dt-bindings: mfd: syscon: add TI's opp
- table compatible
-Message-Id: <171947264540.2846153.16605174762988368253.b4-ty@kernel.org>
-Date: Thu, 27 Jun 2024 08:17:25 +0100
+	s=arc-20240116; t=1719472927; c=relaxed/simple;
+	bh=3+W6nRSgBu1lbDQxXQIfTzbqZ2v1KH75GsdTVrBjpe0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=juTtMLZE6mDFjs8WGl+Oafm+vUjVT6TfqBlD7+DB8L6AZUHGq6uX2T7ab5sboNyVPv2CMEAi5RPSUMZcPC6mlo5Js10H1e1Lkukkk6mTRXFfRbvCRMsS6gqsPL6D+D8wdVrBsVuPOb1qrpkwvvCWdCZQ5QkT38vX4JwoZzQPp70=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=V0p8vKz8; arc=none smtp.client-ip=1.95.21.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=pPy7XUr2n5B4S8tcqEZP00MH9QygojlnIRV1D1K/quw=;
+	b=V0p8vKz8CrFjh/wfLwEawAmyyc9eilmdTunOkzc6oUPs/01lxCYme3tHIX1rv6
+	dlKwoNDR82zl6r60QU9X3IFn6KfhEIzCR620Rd1Q6d48Rx+wGGRl7/zr1Nb4D9Xj
+	8sc0oK4tD4UqNfxIHIMTq808BClZTLQbtt6uWVj7iiW70=
+Received: from dragon (unknown [114.218.218.47])
+	by gzsmtp3 (Coremail) with SMTP id M88vCgC3P_HpEn1mq48ZAA--.26206S3;
+	Thu, 27 Jun 2024 15:21:15 +0800 (CST)
+Date: Thu, 27 Jun 2024 15:21:13 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Li Yang <leoyang.li@nxp.com>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: arm: add MBa8MP-RAS314 SBC
+Message-ID: <Zn0S6fOv01wNBqy7@dragon>
+References: <20240617081229.195638-1-alexander.stein@ew.tq-group.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.13.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240617081229.195638-1-alexander.stein@ew.tq-group.com>
+X-CM-TRANSID:M88vCgC3P_HpEn1mq48ZAA--.26206S3
+X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7v73
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxU2HGQDUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiAgsLZWZv-cy54QAAsH
 
-On Fri, 21 Jun 2024 11:39:39 -0500, Bryan Brattlof wrote:
-> The JTAG_USER_ID_USERCODE efuse address, which is located inside the
-> WKUP_CTRL_MMR0 range holds information to identify the speed grades of
-> various components on TI's K3 SoCs. Add a compatible to allow the
-> cpufreq driver to obtain the data to limit the maximum frequency for the
-> CPUs under Linux control.
+On Mon, Jun 17, 2024 at 10:12:28AM +0200, Alexander Stein wrote:
+> MBa8MP-RAS314 is an SBC based on the embedded module TQMa8MPxL.
+> All relevant interfaces integrated in the CPU have been implemented on
+> the MBa8MP-RAS314 for (an) industrial usage. Due to the numerous interfaces
+> and the small size of this SBC the use in different applications
+> is possible without the need of a [special,custom] design.
 > 
-> 
-> [...]
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Applied, thanks!
-
-[3/5] dt-bindings: mfd: syscon: add TI's opp table compatible
-      commit: ba5901bc8fd7206fb0db445fa405c72e93e36e46
-
---
-Lee Jones [李琼斯]
+Applied both, thanks!
 
 
