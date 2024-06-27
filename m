@@ -1,186 +1,154 @@
-Return-Path: <devicetree+bounces-80624-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80625-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05E0F91A146
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 10:19:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 236EB91A156
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 10:24:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8436B1F229D1
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 08:19:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 543DA1C21A4A
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 08:24:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93CF673467;
-	Thu, 27 Jun 2024 08:19:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0346777F13;
+	Thu, 27 Jun 2024 08:24:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Hyj8fE5Q"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="y6RFNyFZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A0581CAB3;
-	Thu, 27 Jun 2024 08:19:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CD7550285
+	for <devicetree@vger.kernel.org>; Thu, 27 Jun 2024 08:24:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719476342; cv=none; b=lEPLQnWRWvwzOhCmBP8CeojQOUm4Rsx8X4WzUMwcw+4KMEtDeoQaud+52F7jiC9Df303/cICv3rA0K56D1XvlCgconUPVPn1NwsB9XgZnQ13fbq5XClCKTm3x7dvslv1fkLzvqBdSYUlBnEv1dtTZv6Xkn1NO9fqnjJ7IQlu+OM=
+	t=1719476667; cv=none; b=Cf04GzLqBZEF0PElduU7lX6TDrdKB5R/KYhCtcIC4o2/wg+rbH5F+L0Cyk+a7ay7B/QOI/C1zbEf5ui2CYKMfLjD3wcFJrVQbwzpbOssegQo7gTnTDzhLJzxqRVq4Q57m5P/aAL7cIi9h+lFvZEofsq07PYqUrsBpklapboFPbk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719476342; c=relaxed/simple;
-	bh=iVl5R4+HXbf/5A+fy4DPGQQgVODrP+GEinz+6PySv8k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZT5QaFgvyMA/DyVjwJIb6KohxMasycE9z/BjoKzwVml14UVCWLRPCITVuRxbougsa4PR+GTIjpk/wgGZ0jutI5SFA1O4w3ZCqC67b8+K3FtNcuqFYigADyHH49IWBgouNjyMmg0KpQJSMnYCN2nLPiaYzioA2KxEWS765NE2zbQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Hyj8fE5Q; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B81ACC2BBFC;
-	Thu, 27 Jun 2024 08:18:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719476341;
-	bh=iVl5R4+HXbf/5A+fy4DPGQQgVODrP+GEinz+6PySv8k=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Hyj8fE5QZpbW9ucDN27Qui9TvgPDrMEcdEC0Ax958ZvsoFqDYu6yUwBvGdBfdNtOT
-	 uZfMGMTqS/xKoEveEaocX2IfvAGwL62tEoRA1uV4e3ilcBKui2tGU1+hrwK95b0sL9
-	 xg6LTHPZjhS9AyRYRz4h16Hf5RCoYncgGhbsMufJU0yN0Hklajo/TeRa/TK7h7jQC2
-	 FDOrt0GSx65j2k2Kx/zbOqOM0ox/XMQOSWs8l/0Fnb5G17x0pBO3Fqcwigt3rAg8e3
-	 dNBCHB/iDYsYYY0BLsc1OKY54R+jwAE5IsyKcW5BHL48cU9lxLvSNESSHHDluPwM5H
-	 D/l0CGwT9LfHQ==
-Date: Thu, 27 Jun 2024 09:18:53 +0100
-From: Lee Jones <lee@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Orson Zhai <orsonzhai@gmail.com>,
-	Baolin Wang <baolin.wang@linux.alibaba.com>,
-	Chunyan Zhang <zhang.lyra@gmail.com>,
-	Jacky Huang <ychuang3@nuvoton.com>,
-	Shan-Chun Hung <schung@nuvoton.com>,
-	Khuong Dinh <khuong@os.amperecomputing.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chuanhua Lei <lchuanhua@maxlinear.com>,
-	Rahul Tanwar <rtanwar@maxlinear.com>,
-	Lars Povlsen <lars.povlsen@microchip.com>,
-	Steen Hegelund <Steen.Hegelund@microchip.com>,
-	Daniel Machon <daniel.machon@microchip.com>,
-	UNGLinuxDriver@microchip.com, Nishanth Menon <nm@ti.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Jiaxun Yang <jiaxun.yang@flygoat.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Rahul Tanwar <rahul.tanwar@linux.intel.com>,
-	Amireddy Mallikarjuna reddy <mallikarjunax.reddy@intel.com>,
-	"Zhu, Yi Xin" <Yixin.zhu@intel.com>,
-	Maxime Ripard <mripard@kernel.org>
-Subject: Re: [PATCH v3 0/7] dt-bindings: mfd: syscon: Document more
- compatibles and require simpe-mfd description
-Message-ID: <20240627081853.GF2532839@google.com>
-References: <20240626-dt-bindings-mfd-syscon-split-v3-0-3409903bb99b@linaro.org>
+	s=arc-20240116; t=1719476667; c=relaxed/simple;
+	bh=GLr5Rp+jqL3rBtUO44pMEvIN0uIQ21HgG6oe0OyP2P8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=ifVcNSXc83VAQTHKHyKT4imFTldFp/nL1zBw2ISYyNIWRvYgPQiDnSAo+8a9h8IEA+ybFwwiw8+wwlwlWURpvYZND5EMUTDF89VL0fcI3k+4T26XIMhh4DgZBF6CiVD4/VXtWXpHgvCigPLlV9klk7l3+dws5sdJvRCpjt75Xg8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=y6RFNyFZ; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45R7moPB014997;
+	Thu, 27 Jun 2024 10:23:42 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	RfQjGox/hBiZBmFnj//4487z01utcZ3PZ9+Yhl19x2E=; b=y6RFNyFZsciHU7Mx
+	QZgBmECCyboUs7Yr1PvHC8IpgDBq4kuOkKuiGa5s8HhLi3R5vUaXiHynON4dYVBr
+	iS3PV/Wz1ug5qcpgwYIm+ktXkUcetIne6+qDFzcXgP2OlWXTYPo0rlacI/bl5+NV
+	1gZeX0Bbrwymzf8BXGyStDU7KmgKffn4WJC41rH1EsFa+jW2UjetNiOwYyZSMbWf
+	ikoExpsfgvo7yT529vG8jmKMac9qPT1IVJkXRrhGdpU3nDz0Qc4zoTL0lpDJ1TxQ
+	5MhNpuxY0lRHoMrXV5m7rHctrO1ukqFLcOXChZHk/3T3BgrWWyiMdGPdY5MgWcOM
+	BmNinw==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3ywm1gmrs1-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 27 Jun 2024 10:23:42 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id DD84040052;
+	Thu, 27 Jun 2024 10:22:52 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id E3368212FA4;
+	Thu, 27 Jun 2024 10:22:14 +0200 (CEST)
+Received: from [10.48.86.79] (10.48.86.79) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Thu, 27 Jun
+ 2024 10:22:14 +0200
+Message-ID: <5d9da37e-b120-42a3-8436-98a74c20596b@foss.st.com>
+Date: Thu, 27 Jun 2024 10:22:13 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240626-dt-bindings-mfd-syscon-split-v3-0-3409903bb99b@linaro.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] ARM: dts: stm32: Fix STM32MP13xx pinmux node
+ eth2-rgmii-sleep-0 copy-paste error
+To: Marek Vasut <marex@denx.de>, <linux-arm-kernel@lists.infradead.org>
+CC: Christophe Roullier <christophe.roullier@foss.st.com>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Maxime
+ Coquelin <mcoquelin.stm32@gmail.com>,
+        Rob Herring <robh@kernel.org>, <devicetree@vger.kernel.org>,
+        <kernel@dh-electronics.com>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+References: <20240626030736.512113-1-marex@denx.de>
+Content-Language: en-US
+From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20240626030736.512113-1-marex@denx.de>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-27_04,2024-06-25_01,2024-05-17_01
 
-On Wed, 26 Jun 2024, Krzysztof Kozlowski wrote:
+Hi Marek
 
-> Hi,
+On 6/26/24 05:07, Marek Vasut wrote:
+> Fix pin copy-paste error in STM32MP13xx eth2-rgmii-sleep-0 pinmux
+> node. Clearly the pins like PG11 are not supposed to be duplicated
+> in the node pinmux property, fix them up to match the hardware pin
+> assignment.
 > 
-> Dependency
-> ==========
-> Rebased on Lee's MFD tree, because dependency is there already:
-> https://lore.kernel.org/all/171828959006.2643902.8308227314531523435.b4-ty@kernel.org/
-> 
-> Merging
-> =======
-> Preferrably everything via MFD tree (file/context dependencies).
-> 
-> Changes in v3
-> =============
-> - Add tags
-> - intel,lgm-syscon: change maintainers (email bounce)
-> - syscon/Split: drop unneeded |, use const instead of enum in select:
-> - Link to v2: https://lore.kernel.org/r/20240616-dt-bindings-mfd-syscon-split-v2-0-571b5850174a@linaro.org
-> 
-> Changes in v2
-> =============
-> - Add acks
-> - lgm-syscon: add ranges to binding and example
-> - syscon.yaml: add big select with all compatibles for older dtschema
-> - Link to v1: https://lore.kernel.org/r/20240519-dt-bindings-mfd-syscon-split-v1-0-aaf996e2313a@linaro.org
-> 
-> Description/problem
-> ===================
-> Simple syscon nodes can be documented in common syscon.yaml, however
-> devices with simple-mfd compatible, thus some children, should have
-> their own schema listing these children.  Such listing makes the binding
-> specific, allows better validation (so the incorrect child would not
-> appear in the simple-mfd node) and actually enforces repeated rule for
-> simple-mfd devices:
-> 
->   "simple-mfd" is only for simple devices, where the children do not
->   depend on the parent.
-> 
-> Currently the syscon+simple-mfd binding is quite broad and allows
-> any child or property, thus above rule cannot be enforced.
-> 
-> Solution
-> ========
-> 1. Split the syscon.yaml binding into common syscon properties, used
->    potentially by many bindings, and only simple syscon devices (NO
->    simple-mfd!).
-> 2. Move some known simple-mfd bindings from syscon.yaml to dedicated
->    files.
-> 
-> This patchset might introduce new dtbs_check warnings for devices having
-> simple-mfd and being part of syscon.yaml previously. I fixed some of
-> them, but probably not all.
-> 
-> Best regards,
-> Krzysztof
-> 
-> To: Lee Jones <lee@kernel.org>
-> To: Rob Herring <robh@kernel.org>
-> To: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> To: Conor Dooley <conor+dt@kernel.org>
-> To: Lars Povlsen <lars.povlsen@microchip.com>
-> To: Steen Hegelund <Steen.Hegelund@microchip.com>
-> To: Daniel Machon <daniel.machon@microchip.com>
-> To: UNGLinuxDriver@microchip.com
-> To: Nishanth Menon <nm@ti.com>
-> To: Matthias Brugger <matthias.bgg@gmail.com>
-> To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Fixes: d1193e65647e ("ARM: dts: stm32: Add pinmux nodes for DH electronics STM32MP13xx DHCOR SoM and DHSBC board")
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> ---
+> Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
+> Cc: Christophe Roullier <christophe.roullier@foss.st.com>
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
+> Cc: Rob Herring <robh@kernel.org>
 > Cc: devicetree@vger.kernel.org
-> Cc: linux-kernel@vger.kernel.org
+> Cc: kernel@dh-electronics.com
 > Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-mediatek@lists.infradead.org
-> 
+> Cc: linux-stm32@st-md-mailman.stormreply.com
 > ---
-> Krzysztof Kozlowski (7):
->       dt-bindings: mfd: syscon: Drop hwlocks
->       dt-bindings: soc: sprd: sc9863a-glbregs: Document SC9863A syscon
->       dt-bindings: soc: intel: lgm-syscon: Move to dedicated schema
->       dt-bindings: soc: microchip: sparx5-cpu-syscon: Move to dedicated schema
->       dt-bindings: soc: ti: am654-serdes-ctrl: Move to dedicated schema
->       dt-bindings: mfd: syscon: Split and enforce documenting MFD children
->       dt-bindings: mfd: syscon: Add APM poweroff mailbox
+>   arch/arm/boot/dts/st/stm32mp13-pinctrl.dtsi | 14 +++++++-------
+>   1 file changed, 7 insertions(+), 7 deletions(-)
 > 
->  .../devicetree/bindings/mfd/syscon-common.yaml     |  71 +++++
->  Documentation/devicetree/bindings/mfd/syscon.yaml  | 306 ++++++++++++---------
->  .../bindings/soc/intel/intel,lgm-syscon.yaml       |  57 ++++
->  .../soc/microchip/microchip,sparx5-cpu-syscon.yaml |  49 ++++
->  .../bindings/soc/sprd/sprd,sc9863a-glbregs.yaml    |  55 ++++
->  .../bindings/soc/ti/ti,am654-serdes-ctrl.yaml      |  42 +++
->  6 files changed, 457 insertions(+), 123 deletions(-)
-> ---
-> base-commit: 8dc7c29f608649f3d9eca826e9d4fe4b8a32c472
-> change-id: 20240517-dt-bindings-mfd-syscon-split-37e23996523d
+> diff --git a/arch/arm/boot/dts/st/stm32mp13-pinctrl.dtsi b/arch/arm/boot/dts/st/stm32mp13-pinctrl.dtsi
+> index 42995a8f5034c..9c7cf8f3c3e8b 100644
+> --- a/arch/arm/boot/dts/st/stm32mp13-pinctrl.dtsi
+> +++ b/arch/arm/boot/dts/st/stm32mp13-pinctrl.dtsi
+> @@ -157,16 +157,16 @@ eth2_rgmii_sleep_pins_a: eth2-rgmii-sleep-0 {
+>   		pins1 {
+>   			pinmux = <STM32_PINMUX('F', 7, ANALOG)>, /* ETH_RGMII_TXD0 */
+>   				 <STM32_PINMUX('G', 11, ANALOG)>, /* ETH_RGMII_TXD1 */
+> -				 <STM32_PINMUX('G', 11, ANALOG)>, /* ETH_RGMII_TXD2 */
+> -				 <STM32_PINMUX('G', 11, ANALOG)>, /* ETH_RGMII_TXD3 */
+> -				 <STM32_PINMUX('G', 8, ANALOG)>, /* ETH_RGMII_TX_CTL */
+> -				 <STM32_PINMUX('F', 6, ANALOG)>, /* ETH_RGMII_GTX_CLK */
+> -				 <STM32_PINMUX('B', 2, ANALOG)>, /* ETH_MDIO */
+> +				 <STM32_PINMUX('G', 1, ANALOG)>, /* ETH_RGMII_TXD2 */
+> +				 <STM32_PINMUX('E', 6, ANALOG)>, /* ETH_RGMII_TXD3 */
+> +				 <STM32_PINMUX('F', 6, ANALOG)>, /* ETH_RGMII_TX_CTL */
+> +				 <STM32_PINMUX('G', 3, ANALOG)>, /* ETH_RGMII_GTX_CLK */
+> +				 <STM32_PINMUX('B', 6, ANALOG)>, /* ETH_MDIO */
+>   				 <STM32_PINMUX('G', 5, ANALOG)>, /* ETH_MDC */
+>   				 <STM32_PINMUX('F', 4, ANALOG)>, /* ETH_RGMII_RXD0 */
+>   				 <STM32_PINMUX('E', 2, ANALOG)>, /* ETH_RGMII_RXD1 */
+> -				 <STM32_PINMUX('E', 2, ANALOG)>, /* ETH_RGMII_RXD2 */
+> -				 <STM32_PINMUX('E', 2, ANALOG)>, /* ETH_RGMII_RXD3 */
+> +				 <STM32_PINMUX('H', 6, ANALOG)>, /* ETH_RGMII_RXD2 */
+> +				 <STM32_PINMUX('A', 8, ANALOG)>, /* ETH_RGMII_RXD3 */
+>   				 <STM32_PINMUX('A', 12, ANALOG)>, /* ETH_RGMII_RX_CTL */
+>   				 <STM32_PINMUX('H', 11, ANALOG)>; /* ETH_RGMII_RX_CLK */
+>   		};
 
-Okay, I tried to apply these whilst fixing up all the conflicts, but
-lost the will to live.  Please rebase and [RESEND].
+Applied on stm32-next. I think I'll squash the two fixes (this patch and 
+the other one for the makefile) onto the initial patch when I create my 
+PR vor v6.11.
 
--- 
-Lee Jones [李琼斯]
+Regards
+Alex
 
