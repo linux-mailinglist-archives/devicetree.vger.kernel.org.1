@@ -1,54 +1,54 @@
-Return-Path: <devicetree+bounces-80928-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80930-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C4C191AC36
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 18:05:18 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21A0991AC3E
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 18:05:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C48ED1F22302
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 16:05:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E5D4CB2637B
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 16:05:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2F95199384;
-	Thu, 27 Jun 2024 16:05:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0209B199397;
+	Thu, 27 Jun 2024 16:05:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="L/fQAnQy"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="iIXggi/X"
 X-Original-To: devicetree@vger.kernel.org
 Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 276D519925B;
-	Thu, 27 Jun 2024 16:05:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 252EA199253
+	for <devicetree@vger.kernel.org>; Thu, 27 Jun 2024 16:05:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719504311; cv=none; b=gyW5RYoxmlG3Z0R9MBSFEVZwdGj+98fOXUZj+/m5HXChBFlgT0xhCj88N/rFtTuaGp1zKn0+ehDIx2wehFuicJBla2uqJp9udwnQHzkEHqZeKOc3GlZ6TWIgsxQyt5Gqm/uCpHnlZUlB5oZBYfE6YwuS5NcKgTK+0COkEsN4M5E=
+	t=1719504311; cv=none; b=qXZq75nZQT/2n3h3xxl9Gf6D/7fcLEL08EoHz8XAxqjdD8bTm78dRXDwVvMpbGACovsWYyng8+bSdX5mrMY+D87kFoGbxUSYsbqaEGBWCh/PKvNluawlqlPnGybCTZO1SnZGS2XXMoV5/IuOk8C4NNyLxXBkmmq+Sc1PeJ0U4+w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1719504311; c=relaxed/simple;
-	bh=7/AE4qA0WJBEQxdKHPWvxYLKBHXquA6jz3vvqMefh8Y=;
+	bh=zHRcjEaJqaS74pwD4stLNNMgQ3MGcIEAEQ7luzjZP7E=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Qqe0kJgW4vE5xXzfvU4Cco3pEjC20M9lwEpRJUQpmi0SahyYRm04xh6Y55LbesSmH2FjVyBCI8t9frOV81mWAiepzm3iu8FGz0I6vaN62NPUcZZjBNni5ys7yK0RHTfT7Z7QUxlsFvf5Njjaz/JZWmIy+HLc8hvZubCKe+iIko4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=L/fQAnQy; arc=none smtp.client-ip=85.214.62.61
+	 In-Reply-To:Content-Type; b=ZQF3e0TKaQS+3p44yWen5UGx3sxxW8n0UTog3NZjD10bQZv3wmds4sqKpbJ60SiX0YRKdwb9CBMWiqlld+4ufnriMY0XB+ELIFE/rhnkkacdBI7b25WAm1wF1krjg5uVLoPspvVVQPy1KhLtjsB9hvmQLtM4p882AxwgGxbzuz8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=iIXggi/X; arc=none smtp.client-ip=85.214.62.61
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
 Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
 	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
 	(No client certificate requested)
 	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 33301884D1;
-	Thu, 27 Jun 2024 18:05:05 +0200 (CEST)
+	by phobos.denx.de (Postfix) with ESMTPSA id 04A0A87D1A;
+	Thu, 27 Jun 2024 18:05:06 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1719504306;
-	bh=sGVGfQPHCdLVaLQwQoA6M9uYJaRXYHydouJN1pcCY5g=;
+	s=phobos-20191101; t=1719504307;
+	bh=1u9Inh2kN+quodN02T07jrr+3Ha30I2d5OAEnpc8VWQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=L/fQAnQyvrD0jLeqP3Ql3EwHVPPtllqV02J7awwVRJm4elqtYBnRfS7XMyq+E7y6m
-	 Aqocnq0h199W/L4ejGrYF2RwUoP8oZ21S87XjtOv2pFTUds8zsWwsNT0HRk4Xaaiil
-	 uwmC4XmSQKBP7munJCzp15mk7njQ+UbPMj/VnKLwXvPXHaVjfkXV9EgJXwevW8fcXy
-	 UQo/xVKqB0eITKaakzrQUan1ofjZTmhA67o2AQEumjIJ/9oR216CeEO0YLYmE2pw+3
-	 2hkQhsE2jx0zWk0ZiS3tE1Roof/XT559Ku3eYeEC6vzEuKIqoW5FUcCW0a7h8dP3UY
-	 K/5zHVacFMIkg==
-Message-ID: <cadb3878-d744-42e0-8e89-1a3892029ef3@denx.de>
-Date: Thu, 27 Jun 2024 17:08:34 +0200
+	b=iIXggi/XS5YolYFm5Z839qtktsKq5+rVa92/S3OlUW8RBG2NRF6EuxfrNvsw3xk4L
+	 F/D+smq90BqTQlqas+REsoIx+m5VH+6im0LoZGnMVBQCNVnAI2PaybC6cg2nk3XITP
+	 m6b0gzTORJa7OI15FSTO51zMKsFDiaAnYkWfRd0GyjK5Pk+/jda3xmBdY7ZQlWcfRN
+	 AUBwBWhv31oH3PIkbz5o/nP7AKPZSHzqfrsi15HkV/Y3iBHoQs0pTMRmABR525Aws4
+	 +D0y1m3MTfuc0U9tg2FKmb1m88aJxKaUaCQ0FtHs/iY1o5LKSuaJByeVsVPb9eiQFU
+	 uLKm6RvILsUkg==
+Message-ID: <05062715-8ba9-4bfd-bc07-8f5ddc708555@denx.de>
+Date: Thu, 27 Jun 2024 17:20:31 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,47 +56,77 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [net-next,PATCH 2/2] net: stmmac: dwmac-stm32: update err status
- in case different of stm32mp13
-To: Christophe Roullier <christophe.roullier@foss.st.com>,
- "David S . Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+Subject: Re: [PATCH] ARM: dts: stm32: Deduplicate rproc mboxes and IRQs
+To: Alexandre TORGUE <alexandre.torgue@foss.st.com>,
+ linux-arm-kernel@lists.infradead.org
+Cc: Conor Dooley <conor+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
  Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Richard Cochran <richardcochran@gmail.com>, Jose Abreu
- <joabreu@synopsys.com>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240627084917.327592-1-christophe.roullier@foss.st.com>
- <20240627084917.327592-3-christophe.roullier@foss.st.com>
+ Richard Cochran <richardcochran@gmail.com>, Rob Herring
+ <robh+dt@kernel.org>, devicetree@vger.kernel.org, kernel@dh-electronics.com,
+ linux-stm32@st-md-mailman.stormreply.com
+References: <20240623194954.79988-1-marex@denx.de>
+ <0ab8fe8a-2017-432f-80fc-5c2c381d1fd0@foss.st.com>
 Content-Language: en-US
 From: Marek Vasut <marex@denx.de>
-In-Reply-To: <20240627084917.327592-3-christophe.roullier@foss.st.com>
+In-Reply-To: <0ab8fe8a-2017-432f-80fc-5c2c381d1fd0@foss.st.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
 X-Virus-Status: Clean
 
-On 6/27/24 10:49 AM, Christophe Roullier wrote:
-> Second parameter of syscfg property (mask) is mandatory for MP13 but
-> optional for all other cases so need to re init err to 0 for this case
-> to avoid parse issue.
+On 6/27/24 12:48 PM, Alexandre TORGUE wrote:
+> Hi Marek
 
-What parse issue ? Please expand this part of the commit message.
+Hi,
 
-Basically if this is not MP13, and the dev_dbg() is hit, the function 
-should not return error code because for non-MP13 the missing syscfg 
-phandle in DT is not considered an error. So reset err to 0 in that case 
-to support existing DTs without syscfg phandle.
+> On 6/23/24 21:49, Marek Vasut wrote:
+>> Pull mboxes, mbox-names, interrupt-parent, interrupts properties of the
+>> m4_rproc into stm32mp151.dtsi to deduplicate multiple copies of the same
+>> in multiple board files. Worse, those copies were starting to get out of
+>> sync, so this should prevent any such issues in the future.
+>>
+>> Signed-off-by: Marek Vasut <marex@denx.de>
+>> ---
+>> Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
+>> Cc: Conor Dooley <conor+dt@kernel.org>
+>> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+>> Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
+>> Cc: Richard Cochran <richardcochran@gmail.com>
+>> Cc: Rob Herring <robh+dt@kernel.org>
+>> Cc: devicetree@vger.kernel.org
+>> Cc: kernel@dh-electronics.com
+>> Cc: linux-arm-kernel@lists.infradead.org
+>> Cc: linux-stm32@st-md-mailman.stormreply.com
+>> ---
+>>   arch/arm/boot/dts/st/stm32mp151.dtsi                        | 4 ++++
+>>   arch/arm/boot/dts/st/stm32mp157a-icore-stm32mp1.dtsi        | 2 --
+>>   arch/arm/boot/dts/st/stm32mp157a-microgea-stm32mp1.dtsi     | 2 --
+>>   arch/arm/boot/dts/st/stm32mp157c-ed1.dts                    | 4 ----
+>>   arch/arm/boot/dts/st/stm32mp157c-emstamp-argon.dtsi         | 4 ----
+>>   arch/arm/boot/dts/st/stm32mp157c-odyssey-som.dtsi           | 4 ----
+>>   arch/arm/boot/dts/st/stm32mp157c-phycore-stm32mp15-som.dtsi | 4 ----
+>>   arch/arm/boot/dts/st/stm32mp15xx-dhcom-som.dtsi             | 4 ----
+>>   arch/arm/boot/dts/st/stm32mp15xx-dhcor-som.dtsi             | 4 ----
+>>   arch/arm/boot/dts/st/stm32mp15xx-dkx.dtsi                   | 4 ----
+>>   arch/arm/boot/dts/st/stm32mp15xx-osd32.dtsi                 | 4 ----
+>>   11 files changed, 4 insertions(+), 36 deletions(-)
+>>
+> ...
+> 
+> It is an old story we already discussed in the past:
+> 
+> https://lore.kernel.org/linux-arm-kernel/81f4574d-38c2-21f2-b947-d13e5fc99c60@denx.de/T/#mef3a4050ab4ff181416fe5681f1d5cb9fb744573
+> 
+> My position remains the same. Those interrupts depends on your 
+> system/firmware you plan to use. So we give one example in our ST board 
+> which relies on firmware we load in OpenSTLinux. But it is just an 
+> example. For example depending the firmware used, the detach could be 
+> used or not.
+> 
+> So I would prefer to not take it.
 
-With the commit message updated:
+Ugh, I had it in my upstreaming tree so I resubmitted it, lemme drop it.
 
-Reviewed-by: Marek Vasut <marex@denx.de>
-
-[...]
+Thanks for the reminder and constant vigilance.
 
