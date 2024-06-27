@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-80977-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80978-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0850191AE81
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 19:51:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BB7291AE86
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 19:51:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B12391F2418C
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 17:51:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E7DDE28278C
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 17:51:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3DA919AD7B;
-	Thu, 27 Jun 2024 17:50:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 723EA19B58F;
+	Thu, 27 Jun 2024 17:50:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IIYJcPU9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EGnPyufg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6EBF19AA4B;
-	Thu, 27 Jun 2024 17:50:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49A4419B3DC;
+	Thu, 27 Jun 2024 17:50:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719510656; cv=none; b=TOB56bUYTvTazjWFAkdp/95aTqAMkPGA4FwgSUX19/AacbYBrGCWmIDMJ3z7xpUIg01pjxcfKhuv3L8UpXBsb6rkJXSdInlxXCq+cJ7twTnTej4Z9UEDq3Ggw4HZYNqH6lS79bvca5KkGqWswhZ1Nlshrdce94yhzMlM8dcOd5A=
+	t=1719510657; cv=none; b=V+k62c9Os+iPOfVePgEb93PLfRJEet8MkvrM9BbQD2OA8eTCSiVOsjEDyw0iDf0Ze5NivfRPlUFrTSSwTEp69Lbc/W/5JAxB2xMP6s10NEQN2jK158B1nNDwLeU5B0+T80ISjclkahKtth8lAJzoc/7DaeYRKVxlwwggeLsTzaw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719510656; c=relaxed/simple;
-	bh=gOn5wCkQoaz4jCvDxmaxx4Rr4gNeBfnRgSNDr4QSj8U=;
+	s=arc-20240116; t=1719510657; c=relaxed/simple;
+	bh=aEmY+usoEI0JCLbYcZGViK6r8rPMlyAeGBCWtdOs+Ig=;
 	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=crIdX34rEGjhI68hNnRpmvhM1Zl7I6fzNJB1U1OvTklJr8ejRX5CyaJr2rzphzaMXu70emK5ggW6mAaezCn29sBB60rKNhuBdraZ8Y1Ewq0clqFrWsUlUApH1T7wp00MUvsdlUdBsiAKlo2PEdTLiqcWvI3VwpOEHrYC32GWwvE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IIYJcPU9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 8B55CC2BD10;
+	 In-Reply-To:To:Cc; b=gvn0PIZno6auBrqdybHIGpt/sIjTmEI+wUd8yeTeRmuW9s+BKSSPt5BtfiONuqbbxln6+XT0sI1v2yGdJtEFNFkczgoeqSB+O7GxbAED4yJAMiSRI5BLP3vGZFbf5lw4Wu8f+C/XNleut00OyVrx/+ioZUjsHVDaQdEy7fqhOrM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EGnPyufg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id DD36EC4AF14;
 	Thu, 27 Jun 2024 17:50:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1719510656;
-	bh=gOn5wCkQoaz4jCvDxmaxx4Rr4gNeBfnRgSNDr4QSj8U=;
+	bh=aEmY+usoEI0JCLbYcZGViK6r8rPMlyAeGBCWtdOs+Ig=;
 	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=IIYJcPU97Y+PRAS/+YU/5ccbncoZV1uCz57lAqil+V1ijTPByVKGTQFMqmdIktpow
-	 mgUXuwPMGB0hxBKAEtQcmsJRe0kgoK0G4CxAqoS4UnqOc+s7QEYIHK2kt44seSLDnZ
-	 Gh7dIhAcmLSHgaptDShKUVITRiz/vLPn0qdyGC0znkbWHWytZ7ePFuuj2lU7mHIg0F
-	 X0+78irzHOMSVd8cMwuP/4tg088CmEcvevRxvvPs6wzwg65cMt+rL64nQ95qH5Tx37
-	 GB4x63Y5pxbKsGJf0RlDoEvN+uEIHgUB3AusDoc3p6pdooB0KA3nJdCVz0InBkVSKv
-	 iBdVjZUdtNUDQ==
+	b=EGnPyufgOJ4Y9Rs8F7kwwOdwhS+bQgguOfKrrJIZBbTa5uxnvZqznlBjrRpBCGBnV
+	 k5XP/3S35nI0Wu8/9U7JxPdgtTuf1vlM5OVvb5X/1u5ieZcOkP2Bz3LCE7q8wIDgdu
+	 YIZ5YJobggGuX84AsT/quvLa85blZ6oTzHmrltROmVr5jgyAJgamuJ5/2uT2dhfDFj
+	 Wb7KI9XgzhzRK0XLS9BngyYu3ww6sJM5iZFMqs8goXWI7Q92l2djZDm7UepQUnsJAq
+	 QmYWEBGfnUkv6ywkj7Ym5Nj7k4Gjb7Mzez0LwhNI3t0x/P60l9ybF4C7n0OAdpB/OM
+	 wdzAryF8DZTUA==
 Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 5FC7EC43445;
+	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id B415AC43443;
 	Thu, 27 Jun 2024 17:50:56 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
@@ -52,75 +52,41 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v7 00/16] Add support for a few Zc* extensions,
- Zcmop and Zimop
+Subject: Re: [RESEND v4 0/2] dt-bindings: interrupt-controller: riscv,cpu-intc
 From: patchwork-bot+linux-riscv@kernel.org
 Message-Id: 
- <171951065638.6762.17635047001193885957.git-patchwork-notify@kernel.org>
+ <171951065673.6762.2519132722674117186.git-patchwork-notify@kernel.org>
 Date: Thu, 27 Jun 2024 17:50:56 +0000
-References: <20240619113529.676940-1-cleger@rivosinc.com>
-In-Reply-To: <20240619113529.676940-1-cleger@rivosinc.com>
-To: =?utf-8?b?Q2zDqW1lbnQgTMOpZ2VyIDxjbGVnZXJAcml2b3NpbmMuY29tPg==?=@codeaurora.org
-Cc: linux-riscv@lists.infradead.org, corbet@lwn.net, paul.walmsley@sifive.com,
- palmer@dabbelt.com, aou@eecs.berkeley.edu, conor@kernel.org, robh@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, anup@brainfault.org, shuah@kernel.org,
- atishp@atishpatra.org, linux-doc@vger.kernel.org,
+References: <20240615021507.122035-1-kanakshilledar@gmail.com>
+In-Reply-To: <20240615021507.122035-1-kanakshilledar@gmail.com>
+To: Kanak Shilledar <kanakshilledar@gmail.com>
+Cc: linux-riscv@lists.infradead.org, kanakshilledar111@protonmail.com,
+ tglx@linutronix.de, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
+ aou@eecs.berkeley.edu, samuel.holland@sifive.com,
  linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- kvm@vger.kernel.org, kvm-riscv@lists.infradead.org,
- linux-kselftest@vger.kernel.org
+ conor.dooley@microchip.com
 
 Hello:
 
 This series was applied to riscv/linux.git (for-next)
 by Palmer Dabbelt <palmer@rivosinc.com>:
 
-On Wed, 19 Jun 2024 13:35:10 +0200 you wrote:
-> Add support for (yet again) more RVA23U64 missing extensions. Add
-> support for Zimop, Zcmop, Zca, Zcf, Zcd and Zcb extensions ISA string
-> parsing, hwprobe and kvm support. Zce, Zcmt and Zcmp extensions have
-> been left out since they target microcontrollers/embedded CPUs and are
-> not needed by RVA23U64.
+On Sat, 15 Jun 2024 07:45:02 +0530 you wrote:
+> This series of patches converts the RISC-V CPU interrupt controller to
+> the newer dt-schema binding.
 > 
-> Since Zc* extensions states that C implies Zca, Zcf (if F and RV32), Zcd
-> (if D), this series modifies the way ISA string is parsed and now does
-> it in two phases. First one parses the string and the second one
-> validates it for the final ISA description.
+> Patch 1:
+> This patch is currently at v4 as it has been previously rolled out.
+> Contains the bindings for the interrupt controller.
 > 
 > [...]
 
 Here is the summary with links:
-  - [v7,01/16] dt-bindings: riscv: add Zimop ISA extension description
-    https://git.kernel.org/riscv/c/a57b68bc315c
-  - [v7,02/16] riscv: add ISA extension parsing for Zimop
-    https://git.kernel.org/riscv/c/2467c2104f1f
-  - [v7,03/16] riscv: hwprobe: export Zimop ISA extension
-    https://git.kernel.org/riscv/c/36f8960de887
-  - [v7,04/16] RISC-V: KVM: Allow Zimop extension for Guest/VM
-    https://git.kernel.org/riscv/c/fb2a3d63efef
-  - [v7,05/16] KVM: riscv: selftests: Add Zimop extension to get-reg-list test
-    https://git.kernel.org/riscv/c/ca5446406914
-  - [v7,06/16] dt-bindings: riscv: add Zca, Zcf, Zcd and Zcb ISA extension description
-    https://git.kernel.org/riscv/c/e9f9946cad7b
-  - [v7,07/16] riscv: add ISA extensions validation callback
-    https://git.kernel.org/riscv/c/625034abd52a
-  - [v7,08/16] riscv: add ISA parsing for Zca, Zcf, Zcd and Zcb
-    https://git.kernel.org/riscv/c/ba4cd855839d
-  - [v7,09/16] riscv: hwprobe: export Zca, Zcf, Zcd and Zcb ISA extensions
-    https://git.kernel.org/riscv/c/0ad70db5eb21
-  - [v7,10/16] RISC-V: KVM: Allow Zca, Zcf, Zcd and Zcb extensions for Guest/VM
-    https://git.kernel.org/riscv/c/d964e8f2ae65
-  - [v7,11/16] KVM: riscv: selftests: Add some Zc* extensions to get-reg-list test
-    https://git.kernel.org/riscv/c/d27c34a73514
-  - [v7,12/16] dt-bindings: riscv: add Zcmop ISA extension description
-    https://git.kernel.org/riscv/c/700556a73bc7
-  - [v7,13/16] riscv: add ISA extension parsing for Zcmop
-    https://git.kernel.org/riscv/c/164d644059cf
-  - [v7,14/16] riscv: hwprobe: export Zcmop ISA extension
-    https://git.kernel.org/riscv/c/fc078ea317cc
-  - [v7,15/16] RISC-V: KVM: Allow Zcmop extension for Guest/VM
-    https://git.kernel.org/riscv/c/29cf9b803e6e
-  - [v7,16/16] KVM: riscv: selftests: Add Zcmop extension to get-reg-list test
-    https://git.kernel.org/riscv/c/e212d92d1a86
+  - [RESEND,v4,1/2] dt-bindings: interrupt-controller: riscv,cpu-intc: convert to dtschema
+    https://git.kernel.org/riscv/c/9ff141042a62
+  - [RESEND,v4,2/2] dt-bindings: riscv: cpus: add ref to interrupt-controller
+    https://git.kernel.org/riscv/c/1f6e218859f1
 
 You are awesome, thank you!
 -- 
