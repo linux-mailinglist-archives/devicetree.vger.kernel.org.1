@@ -1,138 +1,134 @@
-Return-Path: <devicetree+bounces-80786-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80790-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 425E891A667
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 14:17:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC58891A67D
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 14:21:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1127D282B64
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 12:17:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 720B1284DD8
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 12:21:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0796215382C;
-	Thu, 27 Jun 2024 12:16:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D379156885;
+	Thu, 27 Jun 2024 12:20:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OY4BRyJe"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="ARC3XNZD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f177.google.com (mail-vk1-f177.google.com [209.85.221.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 814A21304A3;
-	Thu, 27 Jun 2024 12:16:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B518E15573B;
+	Thu, 27 Jun 2024 12:20:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719490616; cv=none; b=Cr+vfzlQWBl7RzxSQtdfUILMVZN+nxDS2Oe1R90xm0dkgeGglxTrGLdSLtFlFIO3IRm+HT3XehMeWx3fDg1kKxxmSwe+cNvFATq6OHKDnzbCYCzEqEVkb7OAHLhrPfDS6M7yd7PCzqF4Y/nMwOvkqT0vfFO2tiax98+4ZMFAev0=
+	t=1719490857; cv=none; b=a2gDEpnMC9i4OjMTsqwdE9h08sNsInA8pzyOFOOgbL/Uw6EwB8KBjCGvXMqXJnWbmlEAB2AAz1MtCCUvR6dboB+T5s5FQ0QEX4jUFfRYu4UvZDL5q/MDK5jRuwieAq77lTnv3X5Eur9sxO9ZhcI51prdTrv1EK5+uQ3eYY5e/fg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719490616; c=relaxed/simple;
-	bh=qYwDBLAk1qigX5BoTuaQo8tSM+dSjUUUdY9SZlGwuhE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=asKa7zILN8/Cv2ky3JpV3hew48vqUH9EWwBphEAN2De5C3o6DxwViNxO2UJWqZoo6/CFnIcmw3f5wdOOUAnoebX8k4QyPP/XK3bDD9voQeDgXV94zUzGeyT0DhmGstEHgGExZj+bSq37OL1j7+jJkHcCCmyZS9yj1VDrBlUVC44=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OY4BRyJe; arc=none smtp.client-ip=209.85.221.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f177.google.com with SMTP id 71dfb90a1353d-4ef31ac8b80so2672287e0c.3;
-        Thu, 27 Jun 2024 05:16:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1719490614; x=1720095414; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qXrCK6aViHZBIBVpTq3rbm7WKWJVtcvv5zFkuA5qScc=;
-        b=OY4BRyJe/Z9OxO+a2zWP0YXzi6Qfy6YPFmwW7wORC+VjZ756S4/5RDXLJmLnGh2yyr
-         iAeiH6Bj1Ka51B613/anyKxRGis6ABoQXyqZ/lxNMLm4LdKseUGokF9YwXOR60Mbz++F
-         cDEkwBs8sn+qboiSfKHthRMtvmkHaGtCU7X3YwxnGwAexCHqbG6xCheamUgDK+swFlll
-         +O/6fKIokuANFGSjDLd+LqfDBWRXS6Bs91RaH5xYRVmOZpNIRVjvGJM+hMF309l1RgT1
-         HTFrKDADY3SsEXGwRDmtPCiB9ClW0o4OWWq7JA/Fmc9Q9QQHsu5Mj275yegVaeYLFRVx
-         XOOg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719490614; x=1720095414;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=qXrCK6aViHZBIBVpTq3rbm7WKWJVtcvv5zFkuA5qScc=;
-        b=BtUZwyZd1Ci+wLPxbEsyCNIzqkjZjXPOi+/Qz1e0HmCWh5t63CHzb5holkAruT4taZ
-         bDkPqXZI6X9/ebGo7CoRh/TS0vsYOOZ/d0wzyt8gtmqU7/yQGyV8AqAEC4wOFmBwBpjC
-         Kel7esOKdkrNDOWqX6GYzt+eQEQrofIO88nkt2nvPysUnzFwEvqDwojyeMV1Sn570NP6
-         XmqRibLbckiEF+L241YJnXoWVhnFXO5rRObRMV3C4H4PLfEOAPzUKw1RoINVJOwUJe/q
-         szC4IluqvOBoCZVMISD5uenvPHGVC0OBLThoPS7ih7QPb2f9oqKoOecYSDpTP/qT8KUV
-         94og==
-X-Forwarded-Encrypted: i=1; AJvYcCUGKbk5ynYyzbhix5ucZ1ySdd14kRWrGPbsK8ZcAQGzm8uvWwP2slrEKRn+p5JmS0Q0SriWmmb8+D7iFGruEzAK45APgQgjtXUvt2lixGluLBM8OK0FcUrhlcvnrqD0WP3eMUJ9AVB5+2KKGOp4
-X-Gm-Message-State: AOJu0YyeAd/e+/YZhg5dwV03aOdF/UxbKWwWJI4xg3/JNxufsJHxXxrb
-	IiI5MP3sPC8vlZIo49009MKG6e2kSNIUCK8Jg3hEK+27Q6OS00O1GO9dIj1vIKIjsn+Y3BOPpHG
-	J+jI0id7+ogpasAQfzt3NrFy6wEE=
-X-Google-Smtp-Source: AGHT+IHt18UlNzUc09/MY9SSTOudlA9KqeIPDV4PHzkleJD+CGth5dBWfsdC8d5NPI3HiRmJTZB7z9U9qIZ/0Gq2gMg=
-X-Received: by 2002:a05:6122:45a9:b0:4ef:530b:9d56 with SMTP id
- 71dfb90a1353d-4ef6d80805emr13133959e0c.6.1719490614306; Thu, 27 Jun 2024
- 05:16:54 -0700 (PDT)
+	s=arc-20240116; t=1719490857; c=relaxed/simple;
+	bh=7N0odRzOw1ltNVEc/R/14XetuMEqhPMVC1+GvkLtPmA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=DTHjaO3spjM4KSCDf9sWEn+zrdK3fM36O7sc3NDoXabtOt0zOy6DKEtRdkIeqDyFX9jnohXqYLqmTHmt2OpBHAMdkgdiTjqhb/Jq2XG+ElpjwHU+QGtlC0Xl4Biv7F74XZVZO7U9gOPJUSGnvCeQgeIpLQ3jUEj2g2zpRQgYhcU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=ARC3XNZD; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45R95ARN020835;
+	Thu, 27 Jun 2024 14:20:27 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	AGl8CVfDYYSZflNFW+9FeYoeCPrKt6+mzA+//qho8Gc=; b=ARC3XNZDq7mKTDtw
+	Rd/HVBSE9YxIXlVoQpeT+6Ype3wcHoIr888t2gA9qlKgLMhiKcjMRvnR/Zf4HPL8
+	pSDT/uWI/rQaNF85uvoNSDKw9LNUyhRphQHx82kdlySQg3R+qWm6C4bKFP4vgTYp
+	ZEZ9thnCiLNCdDICQHKES477pNEK4hO10przJi3OV4KkJ3enb1oLOQPOcdShUAD8
+	PRcWAU6eIzNUnkeFvULwpQQgcNW2m9Hdy22WtZFW811UtlVhtyviv0PB7vBmlNO+
+	+aEXimxg/WkGkY5+M6vLdwtxpTjKebOMtP0F+ZBWbntsfiWHNExqzG425KB6cuNX
+	VbPv/g==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3ywnxxngmu-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 27 Jun 2024 14:20:27 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 462774002D;
+	Thu, 27 Jun 2024 14:20:22 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id CAA30218601;
+	Thu, 27 Jun 2024 14:19:08 +0200 (CEST)
+Received: from [10.48.86.79] (10.48.86.79) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Thu, 27 Jun
+ 2024 14:19:07 +0200
+Message-ID: <0b155f29-17d1-4863-be38-fb6c1dec4c31@foss.st.com>
+Date: Thu, 27 Jun 2024 14:19:07 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1718890849.git.geert+renesas@glider.be> <834244e77e5f407ee6fab1ab5c10c98a8a933085.1718890849.git.geert+renesas@glider.be>
-In-Reply-To: <834244e77e5f407ee6fab1ab5c10c98a8a933085.1718890849.git.geert+renesas@glider.be>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Thu, 27 Jun 2024 13:16:27 +0100
-Message-ID: <CA+V-a8tOQsC5sEY2YtTZh7hZdMG7rpTTSbJg+8ZH3qBUvkbtow@mail.gmail.com>
-Subject: Re: [PATCH 6/9] arm64: dts: renesas: r9a07g054: Add missing
- hypervisor virtual timer IRQ
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Magnus Damm <magnus.damm@gmail.com>, 
-	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
-	Biju Das <biju.das.jz@bp.renesas.com>, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, Mark Rutland <mark.rutland@arm.com>, 
-	Marc Zyngier <maz@kernel.org>, linux-renesas-soc@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/3] Series DTs to deliver Ethernet for STM32MP13
+To: Christophe Roullier <christophe.roullier@foss.st.com>,
+        "David S . Miller"
+	<davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski
+	<kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Richard Cochran
+	<richardcochran@gmail.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Liam Girdwood
+	<lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+        Marek Vasut
+	<marex@denx.de>
+CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20240610080309.290444-1-christophe.roullier@foss.st.com>
+Content-Language: en-US
+From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20240610080309.290444-1-christophe.roullier@foss.st.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-27_06,2024-06-27_03,2024-05-17_01
 
-On Thu, Jun 20, 2024 at 3:02=E2=80=AFPM Geert Uytterhoeven
-<geert+renesas@glider.be> wrote:
->
-> Add the missing fifth interrupt to the device node that represents the
-> ARM architected timer.  While at it, add an interrupt-names property for
-> clarity,
->
-> Fixes: 7c2b8198f4f321df ("arm64: dts: renesas: Add initial DTSI for RZ/V2=
-L SoC")
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
->  arch/arm64/boot/dts/renesas/r9a07g054.dtsi | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
->
-Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Hi
 
-Cheers,
-Prabhakar
+On 6/10/24 10:03, Christophe Roullier wrote:
+> STM32MP13 is STM32 SOC with 2 GMACs instances
+>      GMAC IP version is SNPS 4.20.
+>      GMAC IP configure with 1 RX and 1 TX queue.
+>      DMA HW capability register supported
+>      RX Checksum Offload Engine supported
+>      TX Checksum insertion supported
+>      Wake-Up On Lan supported
+>      TSO supported
+> 
+> Christophe Roullier (3):
+>    ARM: dts: stm32: add ethernet1 and ethernet2 support on stm32mp13
+>    ARM: dts: stm32: add ethernet1/2 RMII pins for STM32MP13F-DK board
+>    ARM: dts: stm32: add ethernet1 for STM32MP135F-DK board
+> 
+>   arch/arm/boot/dts/st/stm32mp13-pinctrl.dtsi | 71 +++++++++++++++++++++
+>   arch/arm/boot/dts/st/stm32mp131.dtsi        | 38 +++++++++++
+>   arch/arm/boot/dts/st/stm32mp133.dtsi        | 31 +++++++++
+>   arch/arm/boot/dts/st/stm32mp135f-dk.dts     | 23 +++++++
+>   4 files changed, 163 insertions(+)
+> 
+> 
+> base-commit: 28f961f9d5b7c3d9b9f93cc59e54477ba1278cf9
 
-> diff --git a/arch/arm64/boot/dts/renesas/r9a07g054.dtsi b/arch/arm64/boot=
-/dts/renesas/r9a07g054.dtsi
-> index 8448afa8be54b8ec..1de2e5f0917d91f4 100644
-> --- a/arch/arm64/boot/dts/renesas/r9a07g054.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r9a07g054.dtsi
-> @@ -1342,6 +1342,9 @@ timer {
->                 interrupts-extended =3D <&gic GIC_PPI 13 IRQ_TYPE_LEVEL_L=
-OW>,
->                                       <&gic GIC_PPI 14 IRQ_TYPE_LEVEL_LOW=
->,
->                                       <&gic GIC_PPI 11 IRQ_TYPE_LEVEL_LOW=
->,
-> -                                     <&gic GIC_PPI 10 IRQ_TYPE_LEVEL_LOW=
->;
-> +                                     <&gic GIC_PPI 10 IRQ_TYPE_LEVEL_LOW=
->,
-> +                                     <&gic GIC_PPI 12 IRQ_TYPE_LEVEL_LOW=
->;
-> +               interrupt-names =3D "sec-phys", "phys", "virt", "hyp-phys=
-",
-> +                                 "hyp-virt";
->         };
->  };
-> --
-> 2.34.1
->
->
+Series applied on stm32-next.
+
+regards
+Alex
 
