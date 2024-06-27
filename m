@@ -1,159 +1,140 @@
-Return-Path: <devicetree+bounces-80784-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80783-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F21091A65E
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 14:14:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFABC91A65B
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 14:14:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2A59B1F25EC4
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 12:14:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1D9D3289F4A
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 12:14:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A032D15216F;
-	Thu, 27 Jun 2024 12:14:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1B9915216F;
+	Thu, 27 Jun 2024 12:14:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="mfOu8w+U"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hyCxr++t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f46.google.com (mail-vs1-f46.google.com [209.85.217.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9490314882B
-	for <devicetree@vger.kernel.org>; Thu, 27 Jun 2024 12:14:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 360AF14882B;
+	Thu, 27 Jun 2024 12:14:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719490480; cv=none; b=lPQk2F6fJme1R8MD89qtbcM3suE8fW3y07tH9MC8hBwHfnR+QT+gjoOd7tWBCloogQZOxSPB59es3gHrkI496+ER/KXcB7vxOO80tWOq36wU/tGB94noKjaH9uD86o/1JEuoEJetY5vLnsb/8Rx4rWWY2CE62kjAgS5Xof1NKYQ=
+	t=1719490462; cv=none; b=qBC6USfK6hjWFLVC4ffOugA5vckFRPLNgKguyrv4v+n3YTHoHtPC4imN1ZUYMjqu/BYZb90mkZEtSa5NDqgBLqrvBPZYy5ZRktF3PHLnTmRJn2iVpUptPolvICwTmU+HgxRj4XjcIavUR83bg23W+l9l0PR5f3Yf3dMvLt/WYq8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719490480; c=relaxed/simple;
-	bh=rhR58Z/6MO8Xb+vPZaG389xADtXgw42wxVv/5CC+S6E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=WZeMzEOIDqXAczAS/onNL/F0QgGJvA+zq+aE2OJ+9M4fS73heuPLyaG4NRsHNQhyegSFu1c/dKyPMXsr73eBGXcPVmgxibwhsmgO0hSuF6HQFAMkbEE9O4RQQZqqfwL28jvmeWcqyxi2yqOOz/qrQ4uUUpI3LNsxnOQKAFqArCw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=mfOu8w+U; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45RB4xei013769;
-	Thu, 27 Jun 2024 14:13:48 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	ha2cvNOTE07k+v+MQz0K2fm+9Ef07NW+kplxMiWcFGk=; b=mfOu8w+U37XZoNVO
-	o+88UpQfCcxI5zkBs6JXtmzi9TXGQzOJV/tMFpe6JBM+sPWXNSks+VKdaPX3x8eL
-	onT5F9qGd70YRdq0Bcdu8uPRhzKLtJ920y/EUC5D1GKwAhFh23LMeqpN9wFzwaMd
-	QuukyhjPp1P1UuADkGGrBqefmlfo6sgWJWyCHnxXQxKkNsC0Tip1ebHcgoxT5qwr
-	Mf/wbV/3P7hh77u/+aQfjuXTXeuZfigp4clwyFtkhVvHmK+26R98HSo3qAfdLUnJ
-	fyIi3HucRtEXT/8lXty5GrHeiHG6XcWqcKI6aHhwlwHWQapHRKYMWoQJGmWtDQJk
-	iHm8yw==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3yx9jjjxd1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 27 Jun 2024 14:13:47 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 8A6734002D;
-	Thu, 27 Jun 2024 14:13:43 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 8BB352194F1;
-	Thu, 27 Jun 2024 14:13:05 +0200 (CEST)
-Received: from [10.48.86.79] (10.48.86.79) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Thu, 27 Jun
- 2024 14:13:04 +0200
-Message-ID: <8fb70911-a278-43b3-bcaf-c88b43bddb73@foss.st.com>
-Date: Thu, 27 Jun 2024 14:13:04 +0200
+	s=arc-20240116; t=1719490462; c=relaxed/simple;
+	bh=Ccp42sBsP4wCUNkJ4fWtYGD6GJRKFZhy9CNgXpdHHRw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=BnbQR4Z6XPrD3aceG7lB6hcv/2s/Fu2/VmMJY/TPY07b/9fqS/3zSr/2LpF9zvys/glI7iNLLqoO+QFBteWStHhSZOYM1+BZdG8lIfIKc07futXTCQ26QBBHJvOjPTfWymh1E70akFQE/+Ztfq2P5/PHReMePuhUvZAtEs5U6Jg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hyCxr++t; arc=none smtp.client-ip=209.85.217.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f46.google.com with SMTP id ada2fe7eead31-48f36f57a5aso2219447137.0;
+        Thu, 27 Jun 2024 05:14:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1719490460; x=1720095260; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=kA9Nu3yXPSlmkCAGisPs/HJNxhPzCxuyX/fh1JKdHi4=;
+        b=hyCxr++tjiW3SD4YftMM8/IkeinO9anpmK06x2UBdj+TT4R7psW5iCgfAVfeKpfp2x
+         zWfLkvkLcSH2OEqcJ9aJWsA/AZjyOyDcPV7iDucdM7S0vezfhKsZxdpjKsu3IuNyR47Y
+         IP+4we30pKeibiz7lxcbspQ1HBbpCye+/1VBb8wc9CG1C2uovKJj40soqlhQ9cHYoOGU
+         oFkH5uBjFPfeuEgIMCdIdKEyUXFyiooeWUP7S6+DR01Ogi7JHu8Q0tKUeKDX2Mku/HPC
+         R50dgKG4GyGKDXfb45r184bQVfvCXEaJglzOKTrOi+JcZHyHZ+B+iyyCAUiMgj5WkxIF
+         6ZAw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719490460; x=1720095260;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=kA9Nu3yXPSlmkCAGisPs/HJNxhPzCxuyX/fh1JKdHi4=;
+        b=PuBFQBxiKMZNI1RI0H889UX3OwkuQ6d/O7BEdlv0CfAB96TyNNA5vn8IsS9pOmfbIK
+         BdEcKab0yXBzjLNYCox4rmyMX3KTewKg7IC/hVA1aF9TZGiXjO5ME0tJKMotZ3TCTRpl
+         0R21yaK2AqyJsfIuBbQ7WoJGQBgFHjwzeyTEaVF1G4ugIcEqR5i36hwBXo2XLxj5IytW
+         TLF6upnz7t+lKNsyalR83LNA3JQSQNIrXNzP5nINhgxYIduBJfMvVyFK3HUbb04Xxfgl
+         K+EIVDx2Lv9Nwq5moomoFQ24vnf+T4aAbCwEyt/9z3tL+Xn7C6JqYLu0G0Mni5QefAjW
+         quwA==
+X-Forwarded-Encrypted: i=1; AJvYcCVNMO28ug56mbYuAXoYOAsKNkzmcdNHMdREzu3ssFtDMxix62CQ1KcQFR75FKMGR1piWEKgbSTes9K7hMH6aDeWBvBIakR8vcFDcymfqFyNWOUUduK1P4vKHpdh4JbCw9dRo4WdV0IG3rdLV7QP
+X-Gm-Message-State: AOJu0Yw6EJGMwm8sYcow49Cs5KhDH4cyAE3YEnM8Kxd3BXHbCnTqwL0+
+	XGsV88FGMhTIyhTzaMpEU+9ZmM7LHvn0AMQKrftVbJ0mKfk1eyiYHgjYKVpzandq8JKHHUtyYWM
+	IqoSI2czxpShxZuxeuSzs2CX5pos=
+X-Google-Smtp-Source: AGHT+IHWEG9Ye7gFXJn9i1hqnyKYevBrUPIayLdV/SS2G7pss/nL74+LAxYYXPCD42hu0zyUD6zXy7xdm/szj7GtFb0=
+X-Received: by 2002:a05:6122:45a9:b0:4ef:530b:9d56 with SMTP id
+ 71dfb90a1353d-4ef6d80805emr13123566e0c.6.1719490459837; Thu, 27 Jun 2024
+ 05:14:19 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ARM: dts: stm32: Add phandle to nvmem efuse into
- STM32MP13xx ethernet DT node
-To: Marek Vasut <marex@denx.de>, <linux-arm-kernel@lists.infradead.org>
-CC: Christophe Roullier <christophe.roullier@foss.st.com>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Maxime
- Coquelin <mcoquelin.stm32@gmail.com>,
-        Rob Herring <robh@kernel.org>, <devicetree@vger.kernel.org>,
-        <kernel@dh-electronics.com>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-References: <20240623191602.67424-1-marex@denx.de>
-Content-Language: en-US
-From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <20240623191602.67424-1-marex@denx.de>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-27_06,2024-06-27_03,2024-05-17_01
+References: <cover.1718890849.git.geert+renesas@glider.be> <15cc7a7522b1658327a2bd0c4990d0131bbcb4d7.1718890849.git.geert+renesas@glider.be>
+In-Reply-To: <15cc7a7522b1658327a2bd0c4990d0131bbcb4d7.1718890849.git.geert+renesas@glider.be>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Thu, 27 Jun 2024 13:13:52 +0100
+Message-ID: <CA+V-a8tAP9H7bLvuNL9NOLg=qFRxBnzq=dRDz0Waho6Vh8bWEA@mail.gmail.com>
+Subject: Re: [PATCH 4/9] arm64: dts: renesas: r9a07g043u: Add missing
+ hypervisor virtual timer IRQ
+To: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Magnus Damm <magnus.damm@gmail.com>, 
+	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
+	Biju Das <biju.das.jz@bp.renesas.com>, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, Mark Rutland <mark.rutland@arm.com>, 
+	Marc Zyngier <maz@kernel.org>, linux-renesas-soc@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Marek
-
-On 6/23/24 21:15, Marek Vasut wrote:
-> The efuses on STM32MP13xx can be populated with ethernet MAC address.
-> Add the nvmem-cells/nvmem-cell-name DT properties to ethernet MAC DT
-> nodes to describe the placement of both MAC address fields within the
-> efuses, so the ethernet MAC driver can access the efuses and populate
-> the correct MAC address into the hardware.
-> 
-> Signed-off-by: Marek Vasut <marex@denx.de>
+On Thu, Jun 20, 2024 at 3:03=E2=80=AFPM Geert Uytterhoeven
+<geert+renesas@glider.be> wrote:
+>
+> Add the missing fifth interrupt to the device node that represents the
+> ARM architected timer.  While at it, add an interrupt-names property for
+> clarity,
+>
+> Fixes: cf40c9689e5109bf ("arm64: dts: renesas: Add initial DTSI for RZ/G2=
+UL SoC")
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > ---
-> Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
-> Cc: Christophe Roullier <christophe.roullier@foss.st.com>
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: kernel@dh-electronics.com
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-stm32@st-md-mailman.stormreply.com
-> ---
->   arch/arm/boot/dts/st/stm32mp131.dtsi | 2 ++
->   arch/arm/boot/dts/st/stm32mp133.dtsi | 2 ++
->   2 files changed, 4 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/st/stm32mp131.dtsi b/arch/arm/boot/dts/st/stm32mp131.dtsi
-> index f41508195eb51..55f4150524f3c 100644
-> --- a/arch/arm/boot/dts/st/stm32mp131.dtsi
-> +++ b/arch/arm/boot/dts/st/stm32mp131.dtsi
-> @@ -1528,6 +1528,8 @@ ethernet1: ethernet@5800a000 {
->   					 <&rcc ETH1RX>,
->   					 <&rcc ETH1STP>,
->   					 <&rcc ETH1CK_K>;
-> +				nvmem-cell-names = "mac-address";
-> +				nvmem-cells = <&ethernet_mac1_address>;
+>  arch/arm64/boot/dts/renesas/r9a07g043u.dtsi | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
+>
 
-It should not be defined in soc dtsi file but rather in board file. OTP 
-are provisioned by the end customer not by ST. If you order a SoC to ST 
-it will not be provisioned OTP MAC addr will be set to 0.
+Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Regards
-alex
+Cheers,
+Prabhakar
 
-
-
-
-
-
->   				snps,axi-config = <&stmmac_axi_config_1>;
->   				snps,mixed-burst;
->   				snps,pbl = <2>;
-> diff --git a/arch/arm/boot/dts/st/stm32mp133.dtsi b/arch/arm/boot/dts/st/stm32mp133.dtsi
-> index ae2fbc09e93b9..48b6ddb59badf 100644
-> --- a/arch/arm/boot/dts/st/stm32mp133.dtsi
-> +++ b/arch/arm/boot/dts/st/stm32mp133.dtsi
-> @@ -85,6 +85,8 @@ ethernet2: ethernet@5800e000 {
->   			 <&rcc ETH2RX>,
->   			 <&rcc ETH2STP>,
->   			 <&rcc ETH2CK_K>;
-> +		nvmem-cell-names = "mac-address";
-> +		nvmem-cells = <&ethernet_mac2_address>;
->   		snps,axi-config = <&stmmac_axi_config_2>;
->   		snps,mixed-burst;
->   		snps,pbl = <2>;
+> diff --git a/arch/arm64/boot/dts/renesas/r9a07g043u.dtsi b/arch/arm64/boo=
+t/dts/renesas/r9a07g043u.dtsi
+> index 165bfcfef3bcc69c..18ef297db9336362 100644
+> --- a/arch/arm64/boot/dts/renesas/r9a07g043u.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r9a07g043u.dtsi
+> @@ -50,7 +50,10 @@ timer {
+>                 interrupts-extended =3D <&gic GIC_PPI 13 IRQ_TYPE_LEVEL_L=
+OW>,
+>                                       <&gic GIC_PPI 14 IRQ_TYPE_LEVEL_LOW=
+>,
+>                                       <&gic GIC_PPI 11 IRQ_TYPE_LEVEL_LOW=
+>,
+> -                                     <&gic GIC_PPI 10 IRQ_TYPE_LEVEL_LOW=
+>;
+> +                                     <&gic GIC_PPI 10 IRQ_TYPE_LEVEL_LOW=
+>,
+> +                                     <&gic GIC_PPI 12 IRQ_TYPE_LEVEL_LOW=
+>;
+> +               interrupt-names =3D "sec-phys", "phys", "virt", "hyp-phys=
+",
+> +                                 "hyp-virt";
+>         };
+>  };
+>
+> --
+> 2.34.1
+>
+>
 
