@@ -1,113 +1,87 @@
-Return-Path: <devicetree+bounces-81025-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81030-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AFB091B157
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 23:17:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC0D891B16C
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 23:20:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9F3861F24E59
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 21:17:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DD0441C21169
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 21:20:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C48519D082;
-	Thu, 27 Jun 2024 21:17:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19EC51A2C1B;
+	Thu, 27 Jun 2024 21:19:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Tg+jwLYI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V3IuhCPB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 026B81CF8B;
-	Thu, 27 Jun 2024 21:17:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E25F419A2A3;
+	Thu, 27 Jun 2024 21:19:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719523070; cv=none; b=ZuH9f3KecEkvvk52iZpjEZm7sfs7pGio1UigDGR6hKidJSY9XMgxt4f1Brb+kNtMilVKgqjC5EmxTxaoF+05CFy5K3ddTtWv3Hqs5gp8YnFOXCO80cK3epa4Gxd5yl+W7CxRcK986dL/Z6ynP0gIwrShL8dNXAzMH/XMD2dNy4A=
+	t=1719523149; cv=none; b=X5JzSdUWMCQK/1RcGcKOcnqmdvCKQqI6Slw82pEEpdBg8Qlh2rKvTu3Fb/5AeLYYBEeGXfL4KkcM5HNRsRZAxcl9ene+VjqXRHCOorGO93oHBc1Oxio18J0E+Le5adG8nMaMUZtnXtECmYjS9G9HZltbP4CbW/4ZEh57JB76Na4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719523070; c=relaxed/simple;
-	bh=fIe+WjGyo22eybCG1oWgddFxMBUrGgRXke6p/2u/m0c=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:Content-Type; b=k04EZR4ul20TbF474SGJI5EY2GZRghLreuTl8W+r7gQEA9cAMTzklc8Idvvv8Yq6X2kYbhduw4NO6RRnjXA9ZjBH2zZYvBZmZ5LLz4I9Ikh1qqk3NeVSNmOkv81nfNGZSqQCnM/13JPMg5BeMVVT1FxU09vIye3Z2m6KRe5mFJ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Tg+jwLYI; arc=none smtp.client-ip=209.85.208.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-57d1782679fso2459486a12.0;
-        Thu, 27 Jun 2024 14:17:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1719523067; x=1720127867; darn=vger.kernel.org;
-        h=content-transfer-encoding:content-language:cc:to:subject:from
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Xnk9uIadAbA+bBaIfSx2BcakWTRFKYQJDJDqca2A88I=;
-        b=Tg+jwLYIL9yRVqcA5FvMceZNzpW5h+2wYVTeld4Cuwg7IiSQPSggrIyO+HfJxzlOaA
-         xJ1ZVseaQHGACMxxYt5950vuILpSCjFvasnHGfa2kJqbUD/Y2ppwqtgIWLo0wyKCgF7J
-         guktLYDtczFxN7rfZH9qD3gkktTGHK3+RH0RCBIb6wAwbJJpz0jl5g7JMw7LJ4UOlnft
-         GXdYKuzlKtvbnBIRIaHvRQrAovSAVABXHtyGpHuISsqyPwjYZf35jmf7XtNzmz2grZgP
-         qspmC06i/yeY+1wYekq0JumB0Pqpa2jB9Wkuugw49eHpiVg4A94nRn55f2IikeXRtbh+
-         DbXw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719523067; x=1720127867;
-        h=content-transfer-encoding:content-language:cc:to:subject:from
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=Xnk9uIadAbA+bBaIfSx2BcakWTRFKYQJDJDqca2A88I=;
-        b=tGevrRBtq/6ixgf+SxYXSSapyv3BeHrSYdw/nrAJCr7zfAOZVRNGu0fVbf7fWefML0
-         WekZqh0RgrLkJhW1ToBVLvFdGsenb8vFpSYrxyVPJrTVCG/W3p76kt57rEN8RqU3avS9
-         bh6DHLb2AvE5saXAO6whgiYoyATMXQ6XTXBi9tWte/R0+x0m8VbgXBnvB1FuMXKfkC+V
-         ruGM0HK0tpVyQy4vo2C2MV2j2gqtTJc8Kd5zuXq036M1KooDlonfb5wEBySIjeMPiYl3
-         lM91JpQqyRQj8UE+vamH7SComGRZ9YUNrObbfo5z7JNEVXTSh3FrvHwTtdS2gEtH9tOP
-         AmTA==
-X-Forwarded-Encrypted: i=1; AJvYcCXDpJOBYbjKkcmVxo5wE1AxeV5UFscRXgTHxH/eNIOdB7YfDjkRP3PrWKGKN/wrmQfKTI7ZrNig5kqvmcG7mY3Z3gBUXtfC75zf+j14pcp4yie5Kyv0gTzVJegBxWtOHp1uF3kGGJ6j9Se4uD3kESxg5JusZqenNZE+D4sIiAs+NVg7Ww==
-X-Gm-Message-State: AOJu0YyfDO2A8dYNbCG/6QQejf1MRCuO8rvc7aNylHNZSeCkY2Ie2aOA
-	zfNFt02rzE0UQvNJcZUiJf7WXAv/FTPg0QJ+ecMhoK6mtGRgCMFr6KPkeA==
-X-Google-Smtp-Source: AGHT+IFbtDNlgX18BHhhHB676dlMxYpxY2uD0IhAomzWeFynNtXKV2BsDI/Li5O2s/tR5bnwCUFTRA==
-X-Received: by 2002:a17:906:c309:b0:a6f:64cc:ca2e with SMTP id a640c23a62f3a-a7245b88e46mr977230466b.44.1719523067016;
-        Thu, 27 Jun 2024 14:17:47 -0700 (PDT)
-Received: from ?IPV6:2a02:a449:4071:1:32d0:42ff:fe10:6983? (2a02-a449-4071-1-32d0-42ff-fe10-6983.fixed6.kpn.net. [2a02:a449:4071:1:32d0:42ff:fe10:6983])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a72aaf1843fsm12647866b.39.2024.06.27.14.17.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Jun 2024 14:17:46 -0700 (PDT)
-Message-ID: <6f21c09b-e8d2-4749-aca6-572c79df775d@gmail.com>
-Date: Thu, 27 Jun 2024 23:17:45 +0200
+	s=arc-20240116; t=1719523149; c=relaxed/simple;
+	bh=cBwoSZIppZrvQlV8nXUx4lZE5BKZKNOzCgNv+fE7Sy4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cpCfCe1RWApMQiyd9kM/2Sd9bLM2+WNzgWoNSF2593HJHlrrA2d6uVDi2As7SqF4DqbKenhrfCY1V0/gicuzhgVKQuMMc6YITxBVl+OSon9tIIR+/Q4782dMVTG5+uraGqsIaW5oThjNM0TTivQDUYbBzB7I4wDou20m4iSVu8U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V3IuhCPB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28D98C2BBFC;
+	Thu, 27 Jun 2024 21:19:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719523148;
+	bh=cBwoSZIppZrvQlV8nXUx4lZE5BKZKNOzCgNv+fE7Sy4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=V3IuhCPBRvZ1P86KYL9tK4tvuvmvqpRt6HzZF4TyR5jobMRtrseXzj5q+ECjtVR43
+	 M3ZrAy3/iVp+VtYcwujTv34L9BeIrZTHcL/qjjh0ZTgBUwV9HUmWXhS8QouA2kjvHb
+	 dvgEqQneTDECScgjMWPcMXvPu1cY30x5ddlyDCYVt5aSB9yC2Eggsybv2MvUlntLu4
+	 Rq70CeomCl3CQqRhJD5MwSr55DnVLx+AbbA8Yj/tzrZuQzxzao9td1nf9Iv95cz/AP
+	 JxQh2/1DPih8uoGZIdGvcK8xPzSK6yAGHGqzwXYxZYcLfpWaWwoYmFujDE/kMNVvmk
+	 rU3zFYUz2e3pg==
+Date: Thu, 27 Jun 2024 15:19:07 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Inochi Amaoto <inochiama@outlook.com>
+Cc: Tony Lindgren <tony@atomide.com>, Conor Dooley <conor+dt@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: pinctrl: pinctrl-single: fix schmitt
+ related properties
+Message-ID: <171952314469.580933.1301134384656547237.robh@kernel.org>
+References: <IA1PR20MB4953D5E7D7D68DDCE31C0031BBCF2@IA1PR20MB4953.namprd20.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Johan Jonker <jbx6244@gmail.com>
-Subject: [PATCH v1] dt-bindings: clock: rk3188-cru-common: remove CLK_NR_CLKS
-To: heiko@sntech.de
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <IA1PR20MB4953D5E7D7D68DDCE31C0031BBCF2@IA1PR20MB4953.namprd20.prod.outlook.com>
 
-CLK_NR_CLKS should not be part of the binding.
-Remove since the kernel code no longer uses it.
 
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
----
- include/dt-bindings/clock/rk3188-cru-common.h | 2 --
- 1 file changed, 2 deletions(-)
+On Thu, 20 Jun 2024 07:14:47 +0800, Inochi Amaoto wrote:
+> The "pinctrl-single,input-schmitt" have four arguments in the bindings
+> but the driver needs two. According to the meaning of other properties
+> and driver, it should have "enable" suffix. Fortunately, there is no
+> dts using this property, so it is safe to correct this property with the
+> right name.
+> 
+> Rename existed property "pinctrl-single,input-schmitt" to
+> "pinctrl-single,input-schmitt-enable" and add the right description for
+> property "pinctrl-single,input-schmitt" used by the driver.
+> 
+> Fixes: 677a62482bd6 ("dt-bindings: pinctrl: Update pinctrl-single to use yaml")
+> Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
+> ---
+>  .../devicetree/bindings/pinctrl/pinctrl-single.yaml        | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
 
-diff --git a/include/dt-bindings/clock/rk3188-cru-common.h b/include/dt-bindings/clock/rk3188-cru-common.h
-index afad90680fce..01e14ab252a7 100644
---- a/include/dt-bindings/clock/rk3188-cru-common.h
-+++ b/include/dt-bindings/clock/rk3188-cru-common.h
-@@ -132,8 +132,6 @@
- #define HCLK_VDPU		472
- #define HCLK_HDMI		473
-
--#define CLK_NR_CLKS		(HCLK_HDMI + 1)
--
- /* soft-reset indices */
- #define SRST_MCORE		2
- #define SRST_CORE0		3
---
-2.39.2
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
