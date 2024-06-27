@@ -1,104 +1,104 @@
-Return-Path: <devicetree+bounces-80578-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80579-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAA2591A05C
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 09:24:27 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84B7B91A062
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 09:26:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 65B481F21368
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 07:24:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 367CD1F2133F
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 07:26:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67F8D4D11D;
-	Thu, 27 Jun 2024 07:24:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1FFF4D8C1;
+	Thu, 27 Jun 2024 07:26:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Qwq/A+Nd"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="BaHhItfP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 448D84D8B9
-	for <devicetree@vger.kernel.org>; Thu, 27 Jun 2024 07:24:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.16])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E3BD4D11D;
+	Thu, 27 Jun 2024 07:26:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719473063; cv=none; b=Gi9zlS/tBRLykKeuTRdK7qmMUjHwRwixTgM2UM9GDe5XSsMMzYf/mTCvZjm4OALEwHBumanGJTlgrrqK0epAAfHEtazeuh+cTnXpF3NmgBtAvJQx2jETVZf12mW/dSjAdAKXI9WX8F2Mp8I5s2BBBuoWwXO6Y2//IvgjzTKuyMc=
+	t=1719473196; cv=none; b=uzhh8DLBWd6vzTNcwaDB+KE8L6L9NymLsrunIZfhKmqHLnj2nLXU6EkmwdEjRpT3q8KId9Vs+u/ydrLsCcoSFgIC79CaFb/kc6cCFRIRTdYJfd/yqLbwBW0p+yFfOUyTlMUOJumvPRiqncxCdQ3LQ+Xly7rWopUt3XyvL9sKj+E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719473063; c=relaxed/simple;
-	bh=TCsdtMbl/CjGn1WCzcRbquqZ7hzL1LyyhlF+/7YDxHM=;
+	s=arc-20240116; t=1719473196; c=relaxed/simple;
+	bh=k19oMRwYZixgIkDPdeaKHx3aHREHfP+8oM5zi7YlyiU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FkumE/38pM1E0NQ1+Men3GIX1R9j0a6X7W7gExXcZW31PM2BMB2Qx5dpJg+aUj+T2oLpY6S0RXFXTnx5KhongUwvhIWGZV5dXzyKOLeSZ82jPoBBe7xrqP3MC+NPXmLtWCSvEwYtyXn8jMzZi8hYmIqV86WDZ+eamlfzQwbkXVA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Qwq/A+Nd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 785F7C2BBFC;
-	Thu, 27 Jun 2024 07:24:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719473063;
-	bh=TCsdtMbl/CjGn1WCzcRbquqZ7hzL1LyyhlF+/7YDxHM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Qwq/A+NdWTWyRw5QbbP9Lo3+skvizgHw7DvAfboQeR2lM7s5ghh+ak8ex1uYF2x1E
-	 6GxNkc27yOmVs5UmfGMPSjLfbdSPsDoVKmAua2N//8TTv5Pl7E9YtqUNifAIwsHoZ2
-	 lEp4FSYh+Hw2OFetWQI9iwJCy4pkdyk3TDqeqmlUtnSYfxKTyA6b0Pek/tlZjz6mMn
-	 hxpTUvLPj+T8EcNlhAILE8vCtPNKIlehZAn0LBWfE/NThouvLFYCaYzjGazPjYkThy
-	 xpTa3R0BSG1Ld3fmUkeyi20RADM5Vf1LlvvDpfVdzM70VvN43HGmtlE4vf/mDIqvv1
-	 2rtWVlFa7ejRA==
-Date: Thu, 27 Jun 2024 09:24:20 +0200
-From: Maxime Ripard <mripard@kernel.org>
-To: Marc Gonzalez <mgonzalez@freebox.fr>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
-	Daniel Vetter <daniel@ffwll.ch>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, Arnaud Vrac <avrac@freebox.fr>, 
-	Pierre-Hugues Husson <phhusson@freebox.fr>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: display: bridge: add TI TDP158
-Message-ID: <20240627-abstract-imposing-sambar-eb0c7a@houat>
-References: <20240625-tdp158-v2-0-a3b344707fa7@freebox.fr>
- <20240625-tdp158-v2-1-a3b344707fa7@freebox.fr>
+	 Content-Type:Content-Disposition:In-Reply-To; b=s64xn9Fk4NGQPPQPIlHcLs/9qbRyOTXZBL6Fvx6OWVbHIMdrme2cX03sT/qApaEdY7X3oAk8pI45D/L90yuQxLC7eThXgRWG6iUptbi7nfX7Hy6zNa4rgpJ1Tlx/iAdpZIeWcojaTYRT5prbR9zTSis295hPOYniASK74Ii/+To=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=BaHhItfP; arc=none smtp.client-ip=220.197.32.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=yfnR4f5J5qrRmd7Y0VQuklEvzqrooKhNJa00ntjIhf8=;
+	b=BaHhItfP4Cr8SUBN99K9wfKLESjUGYrMnhQfVViWjvezo7ka93dAz/T/COdN9S
+	snaFx2l78q5n1ITgFa1jokmGNwEYcJbILHiuBN8OQl+JSZjTn3LXi8+PP31qfNx8
+	dgjtItaWxazH6tAn/OAnjNT4CtsylVenItld7Q8AGVxAE=
+Received: from dragon (unknown [114.218.218.47])
+	by gzsmtp2 (Coremail) with SMTP id Ms8vCgD3X8gFFH1m8I0aAA--.52410S3;
+	Thu, 27 Jun 2024 15:25:59 +0800 (CST)
+Date: Thu, 27 Jun 2024 15:25:57 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Michael Walle <mwalle@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>, Li Yang <leoyang.li@nxp.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Priit Laes <plaes@plaes.org>,
+	Michael Grzeschik <m.grzeschik@pengutronix.de>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Marco Felsch <m.felsch@pengutronix.de>, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 00/13] ARM: dts: kontron-samx6i: various fixes
+Message-ID: <Zn0UBS9vx8bJ+6Kc@dragon>
+References: <20240617091341.2375325-1-mwalle@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="jybhjko5zwg63e5r"
-Content-Disposition: inline
-In-Reply-To: <20240625-tdp158-v2-1-a3b344707fa7@freebox.fr>
-
-
---jybhjko5zwg63e5r
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240617091341.2375325-1-mwalle@kernel.org>
+X-CM-TRANSID:Ms8vCgD3X8gFFH1m8I0aAA--.52410S3
+X-Coremail-Antispam: 1Uf129KBjvJXoW7uw1xAw1UuFykWFy5uF4fGrg_yoW8GFW7pr
+	97WrZ2yF1v9w4ftryqqF9FyayYyw4DAr9rtw1DJasFv3y3Zr17ArZIgws8XFyxZFn5ZrsI
+	q3y7urnYy34rCr7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jz1v3UUUUU=
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiCQcLZWZv-cxcAQAAsF
 
-On Tue, Jun 25, 2024 at 06:38:12PM GMT, Marc Gonzalez wrote:
-> The TI TDP158 is an HDMI to TMDS Redriver.
->=20
-> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
+On Mon, Jun 17, 2024 at 11:13:28AM +0200, Michael Walle wrote:
+> While working on a new PHY support for this board I've noticed quite
+> a few errors. Fix these and introduce an actual board for the
+> module. For now, there was just a dtsi and no actual user of it.
+> 
+> v3:
+>  - fix typos and property order. Thanks Shawn.
+> 
+> v2:
+>  - new patch to fix the node names to make the schema happy
+>  - new patch to fix the PCIe reset line polarity
+>  - new patch to remove the unused and invalid wake-up-gpio property
+>  - add required poperties for the supply voltages to the wm8904 node
+>  - enable PCIe in the ADS2 device tree include
+> 
+> Michael Walle (13):
+>   ARM: dts: imx6qdl-kontron-samx6i: fix phy-mode
+>   ARM: dts: imx6qdl-kontron-samx6i: fix PHY reset
+>   ARM: dts: imx6qdl-kontron-samx6i: fix board reset
+>   ARM: dts: imx6qdl-kontron-samx6i: cleanup the PMIC node
+>   ARM: dts: imx6qdl-kontron-samx6i: fix SPI0 chip selects
+>   ARM: dts: imx6qdl-kontron-samx6i: fix product name
+>   ARM: dts: imx6qdl-kontron-samx6i: always enable eMMC
+>   ARM: dts: imx6qdl-kontron-samx6i: add SDIO_PWR_EN support
+>   ARM: dts: imx6qdl-kontron-samx6i: fix node names
+>   ARM: dts: imx6qdl-kontron-samx6i: fix PCIe reset polarity
+>   ARM: dts: imx6qdl-kontron-samx6i: remove wake-up-gpio property
+>   dt-bindings: arm: fsl: document Kontron SMARC-sAMX6i boards
+>   ARM: dts: imx6qdl-kontron-samx6i: add actual device trees
 
-Your commit log needs some work.
+Applied all, thanks!
 
-In particular, that device is more complex than what you're saying, and
-explaining the full capabilities of the device will allow people to help
-you create bindings that will be able to exploit all those capabilities
-without breaking the backward compatibility.
-
-Maxime
-
---jybhjko5zwg63e5r
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZn0TowAKCRDj7w1vZxhR
-xVZXAQDfpWv6vQBq+1yTEVr22T0AR6X9HU9cbwdNsVaNpvMjBgD6Ayzw/+lC1IH4
-fzVPjrW1mX+vvq6kTB+ZUtOLbBOaOQE=
-=OeR4
------END PGP SIGNATURE-----
-
---jybhjko5zwg63e5r--
 
