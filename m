@@ -1,88 +1,86 @@
-Return-Path: <devicetree+bounces-80721-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80723-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1D1A91A442
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 12:48:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72A8B91A452
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 12:50:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5D6FB281494
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 10:48:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9DEBA1C209D4
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 10:50:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12CD013D62E;
-	Thu, 27 Jun 2024 10:48:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EF0313E04F;
+	Thu, 27 Jun 2024 10:50:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZXxmDOWo"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JiRiFRiq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
+Received: from mail-il1-f180.google.com (mail-il1-f180.google.com [209.85.166.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 114F113BC31;
-	Thu, 27 Jun 2024 10:48:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C8FA208A5;
+	Thu, 27 Jun 2024 10:50:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719485329; cv=none; b=AqSFIFKTRNFb76VnbOylpanDvE1NVVaG/edKP8nQ3xn5vDroE6vsicY/Bronw38e72KzDl1n8Zp3lb8sCMuAGi6dqO7jKdijcs/yN4vk9PLG0JBsx5ygM8dQa1152LJBpmBUpc/4IxhNdEhp+exxQIPj6vlcATZzrppMuLIbDKU=
+	t=1719485452; cv=none; b=gANIQ4CExsPmDgJCwfbtFVrDt7aXqIXJXmQ7PtdhLE3M1pqeedGlySk86Rxlm9rKwH4Q5xWy8/5lNvVDxrFEn/xDodZ+W8PmwdN0c0ShQJ9SPWhipaVFiGtfx2rt5HM+FoxJtnCkWw/yPfpARhkhX75YBL3xsn9duw16L2orFA4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719485329; c=relaxed/simple;
-	bh=E3tkZi5Re0xZBXiTJIkaP/WSpbFH1vO+uf3euVwYTiM=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=lhxj5VynEtAFMwFZLZ0dyn45ZKrK6mMpX3mFFHDbpVCeWykCngFvv/h1DJDE+fGZG8pRiWT4UOByEVgf49Npu6Lk/uAOvSIyQlmJ73JkegCRT9VLHTlu7RiTxjiz+/xUUHTLNKyv6ufF7uZoaVVqTV+ma8sotkoqxwBMqk8mDhU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZXxmDOWo; arc=none smtp.client-ip=209.85.167.41
+	s=arc-20240116; t=1719485452; c=relaxed/simple;
+	bh=YBwgjVUikR/vPP6m/xvgU/SfQMiAcLM7lsk6wezZYrE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=DBUxPMTdMV7NkAkQ07TOYkdhyCcyDOHH+y5kqcBshp3wB9/I0GG2DLF7awSAgRzjnV5tJ8suNfLNCjv05lNjqxGZh3EUBN3DGdoIpVJVlsfYSZ8MgYsNqJ3zx3hYkQCWaLL5h2i2gQO/Ermauc9GmsVPsjOorcECnHwIPMO/PQc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JiRiFRiq; arc=none smtp.client-ip=209.85.166.180
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-52cdb0d8107so7715106e87.1;
-        Thu, 27 Jun 2024 03:48:45 -0700 (PDT)
+Received: by mail-il1-f180.google.com with SMTP id e9e14a558f8ab-3762abfe005so32200365ab.2;
+        Thu, 27 Jun 2024 03:50:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1719485324; x=1720090124; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1719485450; x=1720090250; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=UB49lb/IgQI+QFjiW4RxbsxUbcomLADrjUg4RQdZZT4=;
-        b=ZXxmDOWowq+hMegvtszf9cGwFTCoA7ezCP0mSO75rwKbiAIoGkfLWsqivFc0cGj1i2
-         iKww927ffma5nOTYrXAm3lCIqVi8H1RDLwgUZFPAlFvZfRoNeZacrmWnbE8y9rQuTVXD
-         TxToe/evDWM8ePfun6LxLqoVlU7kbwrLPoCmgBTnnNLFAKcHPVIOmPqcLc7mR2SWDw94
-         OV3g+73iqaFhC1LlkYZQtnd8pwCOOQJRvdK1B7f6+sHt85GdwI8SGBjy57QkVNVeBT9L
-         u8Yw3WvBGZJzK6eG4XWcW66RoDs6FeVvj1fNbgIuLoY3s8pzKLO53NwBshWIY9G4UPHy
-         ajsg==
+        bh=1Z0nf81rt4pKCg289A1fafeQoAs93ALMK9Xuprzaa04=;
+        b=JiRiFRiqfjeQ3YF+dRrhfzU+VyMAq8Y+U0LXGz1M8wep8U7GlC/qOBBoT5ITGf2pR3
+         5aVUT8284I/5cEyuTxV2qbKw/k0IRBx2Bp4Z02YuYkSZv7rUosvIXMOkmuco0J+uqr31
+         FI5o7t2USsrnVm/OXiQyGiETYx5yUP4Y+9mJ/6iRgtqpyPg/y/1atNAJHQ05L0ckqFxO
+         uIb3Epf8YeELXPwCoK1ktzjvhUJbX9mS+mM33F2xAjchIZZXTJe0spzVAfvtZFD0K9y+
+         bvp6fCHwyCnqWWXYuj8mmgLUKE7JL03KDnG5xnoNGCcpBOyuMjRxdMUjpOipUUkw4FlU
+         zJZg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719485324; x=1720090124;
+        d=1e100.net; s=20230601; t=1719485450; x=1720090250;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=UB49lb/IgQI+QFjiW4RxbsxUbcomLADrjUg4RQdZZT4=;
-        b=kzp6+rQ1jA6DyJf+Azeom8wOnlKaozbPIct+SJLHQdTx6OuFErZuR9WgX+PRBSsida
-         ciXOpUZeGhk1yLdMoIvUHXo7Om09TCQ0QATymNXmuhSxtNJnD0P9bPGQQGpajlZiG9zH
-         a/1mop3HqgJo0Tfj/SJzVpV/PnHH+DRmaC9UTFWkToPLeKyInJBmW12MrGNHe11kKFVG
-         BG4wqjPiPZlKf1cecXCozhOyCnHJMG3BvIZYy2qatomDKe7YDAJu904HwgJE9IE6d1jS
-         Cel4lsbdmAi8gWbMLxqk0ZFw2AwPNcXY3puKJkXUuwiiUzhqQhjJ59vdYM69Kmb20nBB
-         XWQg==
-X-Forwarded-Encrypted: i=1; AJvYcCXVdpN/M5uW3wwnwuTuMUrv2cz6gbCcVNgUzQPwvZ0v4oQTG+NC0r7l2nmKzK3JM1+sQZYJb8fjGZT/RIMrzqJ4zOKXmZ3HzOD5hDsMMj9sIOChnxJgJxuPPYN+ykR6W29C1RwFkFlfeA==
-X-Gm-Message-State: AOJu0Yyd27BoELtAwL6UTkWc3USwZevgP1pYJi7NbA1ZrNWmddocIqSG
-	UMACHsiQRjt4qM7ZUH6v5+jgsvDeyEZtwB0dJPUOEI2uKdVYNd9D
-X-Google-Smtp-Source: AGHT+IGDdHq5IeXT9AYX+DdXqyQF6IqrQBJnbIU5m4qB7+mYAXJmAApCaCOoT/18L4Yg21S95fHvaQ==
-X-Received: by 2002:ac2:5618:0:b0:52c:dea0:dd55 with SMTP id 2adb3069b0e04-52cdf7f10d2mr8461836e87.24.1719485323871;
-        Thu, 27 Jun 2024 03:48:43 -0700 (PDT)
-Received: from vitor-nb.. ([2001:8a0:e622:f700:9537:8d85:b9f7:78bb])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-424c826a2e7sm58503995e9.21.2024.06.27.03.48.42
+        bh=1Z0nf81rt4pKCg289A1fafeQoAs93ALMK9Xuprzaa04=;
+        b=HueyDeEjSsMFBfTGR08WhNY3LiVOZdmv/8ttn6SPsyHgM0m30P/eqVFqdRTMHOpPA3
+         UTMYxwBhEfBNOkoy0DXp8C5ue5j68aujJeNrDxAMQr/qCIbYgHWEfsrsZt6zxHdoSUd5
+         5RN4jPDTHwW7lJiL8qI+c86Yugeo9n5TqLYtB6B9rFSaYVF27/Booh+VUgrfJZYaGLn1
+         /OmbHCaL7vwrRwxws6K2/6nXEIF0ryKafyrHkykAPBMHDcUeNkLt8cQiN8nZq5XGn/4V
+         pA6vzU2AQfvCGzFkByDnopQ0YcQyz+Py0+6APA/kfFRFFXKCSu6Vq1Qei/R3S6Kyl5bf
+         +k6g==
+X-Forwarded-Encrypted: i=1; AJvYcCUOhChg7MLlbltoeRd762VmcIG0NoVWKRnzx5vLsLOevuXDABDyTBqhF9kfLrHy+kDYFUGmV5WU4WHNpi9/1wmVs/GfpgPQkKb7rHCv50yQp6f8kn9MDZsvbyw3gvfteWSgES68yy4O1ostOhkDMoIo2MHAjEiq7LbhJDJa6FGDwnB0HOJT
+X-Gm-Message-State: AOJu0Yxc8cxr4Gu9VU5NX4eSF9pHsixSYsKIgrM5xOUIJX54ORKn8Iy9
+	rS9zU7RJPd7pPPaMqhCxJmpFSngs7DIfAqeSuCgBsJYiHNEcFqQq
+X-Google-Smtp-Source: AGHT+IGDM0alksr+Hd4IyG19uJTvuI9/pP6uHRFbuipA+wKeHE7MFDNVcAiTXIeALNGcV08o2DrY6g==
+X-Received: by 2002:a05:6e02:1807:b0:375:a6cd:dff2 with SMTP id e9e14a558f8ab-3763f5ca221mr181124435ab.5.1719485449554;
+        Thu, 27 Jun 2024 03:50:49 -0700 (PDT)
+Received: from fedora.one.one.one.one ([2405:201:6013:c9a2:59df:d296:bffe:732c])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-72749c25c3asm830283a12.90.2024.06.27.03.50.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 Jun 2024 03:48:43 -0700 (PDT)
-From: Vitor Soares <ivitro@gmail.com>
-To: Rob Herring <robh@kernel.org>,
+        Thu, 27 Jun 2024 03:50:49 -0700 (PDT)
+From: Animesh Agarwal <animeshagarwal28@gmail.com>
+To: 
+Cc: animeshagarwal28@gmail.com,
+	Daniel Baluta <daniel.baluta@nxp.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Cc: Vitor Soares <vitor.soares@toradex.com>,
+	linux-sound@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	ivitro@gmail.com
-Subject: [PATCH v2] arm64: dts: imx8mm-verdin: add TPM device
-Date: Thu, 27 Jun 2024 11:48:39 +0100
-Message-Id: <20240627104839.645778-1-ivitro@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2] ASoC: dt-bindings: realtek,rt5677: Convert to dtschema
+Date: Thu, 27 Jun 2024 16:20:26 +0530
+Message-ID: <20240627105030.14360-1-animeshagarwal28@gmail.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -91,78 +89,248 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-From: Vitor Soares <vitor.soares@toradex.com>
+Convert the RT5677 audio CODEC bindings to DT schema.
 
-Add TPM device found on Verdin iMX8M Mini PID4 0090 variant.
+Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
+Cc: Daniel Baluta <daniel.baluta@nxp.com>
 
-While adding the node, rename `pinctrl_pmic_tpm_ena` to
-`pinctrl_tpm_spi_cs`.
-
-Signed-off-by: Vitor Soares <vitor.soares@toradex.com>
 ---
-v1->v2
-  - rename `pinctrl_pmic_tpm_ena` to `pinctrl_tpm_spi_cs`.
+Changes in v2:
+  - Used consistant quotes.
+  - Listed jack detect as properties instead of patternProperties.
+---
+ .../bindings/sound/realtek,rt5677.yaml        | 135 ++++++++++++++++++
+ .../devicetree/bindings/sound/rt5677.txt      |  78 ----------
+ 2 files changed, 135 insertions(+), 78 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/realtek,rt5677.yaml
+ delete mode 100644 Documentation/devicetree/bindings/sound/rt5677.txt
 
- .../boot/dts/freescale/imx8mm-verdin.dtsi      | 18 ++++++++++++------
- 1 file changed, 12 insertions(+), 6 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
-index 98544741ce17..6e066bd5d982 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
-@@ -228,15 +228,16 @@ &ecspi2 {
- 	pinctrl-0 = <&pinctrl_ecspi2>;
- };
- 
--/* Verdin CAN_1 (On-module) */
-+/* On-module SPI */
- &ecspi3 {
- 	#address-cells = <1>;
- 	#size-cells = <0>;
--	cs-gpios = <&gpio5 25 GPIO_ACTIVE_LOW>;
-+	cs-gpios = <&gpio5 25 GPIO_ACTIVE_LOW>, <&gpio4 19 GPIO_ACTIVE_LOW>;
- 	pinctrl-names = "default";
--	pinctrl-0 = <&pinctrl_ecspi3>;
-+	pinctrl-0 = <&pinctrl_ecspi3>, <&pinctrl_tpm_spi_cs>;
- 	status = "okay";
- 
-+	/* Verdin CAN_1 */
- 	can1: can@0 {
- 		compatible = "microchip,mcp251xfd";
- 		clocks = <&clk40m>;
-@@ -246,6 +247,12 @@ can1: can@0 {
- 		reg = <0>;
- 		spi-max-frequency = <8500000>;
- 	};
+diff --git a/Documentation/devicetree/bindings/sound/realtek,rt5677.yaml b/Documentation/devicetree/bindings/sound/realtek,rt5677.yaml
+new file mode 100644
+index 000000000000..9ce23e58e5ea
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/realtek,rt5677.yaml
+@@ -0,0 +1,135 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/realtek,rt5677.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+	verdin_som_tpm: tpm@1 {
-+		compatible = "atmel,attpm20p", "tcg,tpm_tis-spi";
-+		reg = <0x1>;
-+		spi-max-frequency = <36000000>;
-+	};
- };
- 
- /* Verdin ETH_1 (On-module PHY) */
-@@ -808,8 +815,7 @@ &iomuxc {
- 	pinctrl-0 = <&pinctrl_gpio1>, <&pinctrl_gpio2>,
- 		    <&pinctrl_gpio3>, <&pinctrl_gpio4>,
- 		    <&pinctrl_gpio7>, <&pinctrl_gpio8>,
--		    <&pinctrl_gpio_hog1>, <&pinctrl_gpio_hog2>, <&pinctrl_gpio_hog3>,
--		    <&pinctrl_pmic_tpm_ena>;
-+		    <&pinctrl_gpio_hog1>, <&pinctrl_gpio_hog2>, <&pinctrl_gpio_hog3>;
- 
- 	pinctrl_can1_int: can1intgrp {
- 		fsl,pins =
-@@ -1111,7 +1117,7 @@ pinctrl_sai5: sai5grp {
- 	};
- 
- 	/* control signal for optional ATTPM20P or SE050 */
--	pinctrl_pmic_tpm_ena: pmictpmenagrp {
-+	pinctrl_tpm_spi_cs: pmictpmenagrp {
- 		fsl,pins =
- 			<MX8MM_IOMUXC_SAI1_TXD7_GPIO4_IO19		0x106>;	/* PMIC_TPM_ENA */
- 	};
++title: RT5677 audio CODEC
++
++maintainers:
++  - Animesh Agarwal <animeshagarwal28@gmail.com>
++
++description: |
++  This device supports I2C only.
++
++  Pins on the device (for linking into audio routes):
++    * IN1P
++    * IN1N
++    * IN2P
++    * IN2N
++    * MICBIAS1
++    * DMIC1
++    * DMIC2
++    * DMIC3
++    * DMIC4
++    * LOUT1
++    * LOUT2
++    * LOUT3
++
++allOf:
++  - $ref: dai-common.yaml#
++
++properties:
++  compatible:
++    const: realtek,rt5677
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  gpio-controller: true
++
++  '#gpio-cells':
++    const: 2
++
++  realtek,pow-ldo2-gpio:
++    maxItems: 1
++    description: CODEC's POW_LDO2 pin.
++
++  realtek,reset-gpio:
++    maxItems: 1
++    description: CODEC's RESET pin. Active low.
++
++  realtek,gpio-config:
++    description: |
++      Array of six 8bit elements that configures GPIO.
++      0 - floating (reset value)
++      1 - pull down
++      2 - pull up
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    minItems: 6
++    maxItems: 6
++    items:
++      maximum: 2
++
++  realtek,jd1-gpio:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum:
++      - 0 # OFF
++      - 1 # GPIO1 for jd1.
++      - 2 # GPIO2 for jd1.
++      - 3 # GPIO3 for jd1.
++    description: Configures GPIO Mic Jack detection 1.
++
++  realtek,jd2-gpio:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum:
++      - 0 # OFF
++      - 1 # GPIO4 for jd2.
++      - 2 # GPIO5 for jd2.
++      - 3 # GPIO6 for jd2.
++    description: Configures GPIO Mic Jack detection 2.
++
++  realtek,jd3-gpio:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum:
++      - 0 # OFF
++      - 1 # GPIO4 for jd3.
++      - 2 # GPIO5 for jd3.
++      - 3 # GPIO6 for jd3.
++    description: Configures GPIO Mic Jack detection 3.
++
++patternProperties:
++  '^realtek,in[1-2]-differential$':
++    type: boolean
++    description: Indicate MIC1/2 input are differential, rather than
++      single-ended.
++
++  '^realtek,lout[1-3]-differential$':
++    type: boolean
++    description: Indicate LOUT1/2/3 outputs are differential, rather than
++      single-ended.
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - gpio-controller
++  - '#gpio-cells'
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        codec@2c {
++            compatible = "realtek,rt5677";
++            reg = <0x2c>;
++            interrupt-parent = <&gpio>;
++            interrupts = <3 IRQ_TYPE_LEVEL_HIGH>;
++            gpio-controller;
++            #gpio-cells = <2>;
++            realtek,pow-ldo2-gpio = <&gpio 3 GPIO_ACTIVE_HIGH>;
++            realtek,reset-gpio = <&gpio 3 GPIO_ACTIVE_LOW>;
++            realtek,in1-differential;
++            realtek,gpio-config = <0 0 0 0 0 2>;
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/sound/rt5677.txt b/Documentation/devicetree/bindings/sound/rt5677.txt
+deleted file mode 100644
+index da2430099181..000000000000
+--- a/Documentation/devicetree/bindings/sound/rt5677.txt
++++ /dev/null
+@@ -1,78 +0,0 @@
+-RT5677 audio CODEC
+-
+-This device supports I2C only.
+-
+-Required properties:
+-
+-- compatible : "realtek,rt5677".
+-
+-- reg : The I2C address of the device.
+-
+-- interrupts : The CODEC's interrupt output.
+-
+-- gpio-controller : Indicates this device is a GPIO controller.
+-
+-- #gpio-cells : Should be two. The first cell is the pin number and the
+-  second cell is used to specify optional parameters (currently unused).
+-
+-Optional properties:
+-
+-- realtek,pow-ldo2-gpio : The GPIO that controls the CODEC's POW_LDO2 pin.
+-- realtek,reset-gpio : The GPIO that controls the CODEC's RESET pin. Active low.
+-
+-- realtek,in1-differential
+-- realtek,in2-differential
+-- realtek,lout1-differential
+-- realtek,lout2-differential
+-- realtek,lout3-differential
+-  Boolean. Indicate MIC1/2 input and LOUT1/2/3 outputs are differential,
+-  rather than single-ended.
+-
+-- realtek,gpio-config
+-  Array of six 8bit elements that configures GPIO.
+-    0 - floating (reset value)
+-    1 - pull down
+-    2 - pull up
+-
+-- realtek,jd1-gpio
+-  Configures GPIO Mic Jack detection 1.
+-  Select 0 ~ 3 as OFF, GPIO1, GPIO2 and GPIO3 respectively.
+-
+-- realtek,jd2-gpio
+-- realtek,jd3-gpio
+-  Configures GPIO Mic Jack detection 2 and 3.
+-  Select 0 ~ 3 as OFF, GPIO4, GPIO5 and GPIO6 respectively.
+-
+-Pins on the device (for linking into audio routes):
+-
+-  * IN1P
+-  * IN1N
+-  * IN2P
+-  * IN2N
+-  * MICBIAS1
+-  * DMIC1
+-  * DMIC2
+-  * DMIC3
+-  * DMIC4
+-  * LOUT1
+-  * LOUT2
+-  * LOUT3
+-
+-Example:
+-
+-rt5677 {
+-	compatible = "realtek,rt5677";
+-	reg = <0x2c>;
+-	interrupt-parent = <&gpio>;
+-	interrupts = <TEGRA_GPIO(W, 3) IRQ_TYPE_LEVEL_HIGH>;
+-
+-	gpio-controller;
+-	#gpio-cells = <2>;
+-
+-	realtek,pow-ldo2-gpio =
+-		<&gpio TEGRA_GPIO(V, 3) GPIO_ACTIVE_HIGH>;
+-	realtek,reset-gpio = <&gpio TEGRA_GPIO(BB, 3) GPIO_ACTIVE_LOW>;
+-	realtek,in1-differential = "true";
+-	realtek,gpio-config = /bits/ 8  <0 0 0 0 0 2>;   /* pull up GPIO6 */
+-	realtek,jd2-gpio = <3>;  /* Enables Jack detection for GPIO6 */
+-};
 -- 
-2.34.1
+2.45.2
 
 
