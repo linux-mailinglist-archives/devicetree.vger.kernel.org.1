@@ -1,116 +1,93 @@
-Return-Path: <devicetree+bounces-80988-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80989-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 967A891AF64
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 21:03:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40B6A91AF6B
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 21:06:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 497011F22C69
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 19:03:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C4C94283A8B
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 19:06:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBB816A33F;
-	Thu, 27 Jun 2024 19:03:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C86EA19AA69;
+	Thu, 27 Jun 2024 19:06:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="flFAOU3m"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XBE8Aixl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB985360;
-	Thu, 27 Jun 2024 19:03:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F29D43AA8;
+	Thu, 27 Jun 2024 19:06:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719514996; cv=none; b=Y+o3VCwfqHnoozHZ+niRfNiZBnA+akIQX4LMi3asAXB0pRqL3M97hcYyE+t/IxmmdeLJV9MqDoZWqiRoLQ4GNc4Fnoqgd9bt4NzH+10aaQASr8+iHV+P5NvxPZP2QNOHcC1YUcAN9EuQgWAY0v9IxrxUH6ZSpoFl5Fp2yk0EnEk=
+	t=1719515172; cv=none; b=cg2alCgf53ibKDzelkGlp7YQPr+KEMp3VoR1MsuCwpRj8BqtQny5Zv9067CPLJ+uhd3xLRjoH1DsdFwEaMUIu09i9MKYZRGJereptF0KSeRi28LY0sGmvQmlTHMnPebiql6P3Dsbf7IkdyO4ZNeoiIJLawtyO5lE8ld6tm/+XBY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719514996; c=relaxed/simple;
-	bh=s4oEpDuEzHamdfCowVPpqqZfwSmm25BkIYA5zE16y/A=;
+	s=arc-20240116; t=1719515172; c=relaxed/simple;
+	bh=qYyuyZyLemINvciwUPmxD+lZf3PlWNhp2SzlF8nutXY=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=DNCxdVrY2/uncIBrDDCDkNBb9ZAmxwkP+2YM1q+xL8svpYbA36ciK0YqWh+W9zmvc/yhnibCnno9wXr2l+Q5KDVr+CKyefMSwXEzRxhkj2pXu79ds3jcCAI9HWY6HLCYxbRQOcY32DJUXCikc9kRMypRWKNZRnLX52QvyJPGlpA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=flFAOU3m; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35677C2BD10;
-	Thu, 27 Jun 2024 19:03:16 +0000 (UTC)
+	 To:Cc:Content-Type; b=BQQeWIZeQtITT4Xx4K8Jo2bgh+kP9bAsRzzbxNU7oNXDNuxYz29IvimAaGhrflSUO3FSCRGWptNX+ex7PzR+q41tf2F1BsSJiafx+dHhc9J7xKOeV5XWxbvuQ+owruFYuzjSIc0QwNvdgeIOqHHmXl/zkJYef2jYoMUEk5E/7/o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XBE8Aixl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A5EAC4AF09;
+	Thu, 27 Jun 2024 19:06:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719514996;
-	bh=s4oEpDuEzHamdfCowVPpqqZfwSmm25BkIYA5zE16y/A=;
+	s=k20201202; t=1719515172;
+	bh=qYyuyZyLemINvciwUPmxD+lZf3PlWNhp2SzlF8nutXY=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=flFAOU3mB4XigsWmmjauBMrKEBDeX1+nlGJuXL/zzNIjrrR8INDJFGHsOlpxGYL6c
-	 HkJXVLBdyPfhfYZkeyxZ+ZHDjJ2A3PlidM/rUi02WuqEmqbv3vMi3nSGiTKneEmPG3
-	 tvrM3pY8oH5W1GNqYmBHdKOarQGFHcHIOcxl11ZRa/8V3QBWrIoUsbG5TQsL7gZd36
-	 w7mxcRkJHayxAQQZZuZdBCEF5L++ry71qHbTO/V/NLmteS1q3CrIi7WkohJ4RYnRq7
-	 gHtrPMriQ7oBodIg1RXydoLFmJmtx1D4nH9JZ5KcGSMLGn03FR+wBpRKu7T2bi6YLo
-	 RcD5HI1ktx0zQ==
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2ec595d0acbso66403801fa.1;
-        Thu, 27 Jun 2024 12:03:16 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUPe/Vn3VDzxTwK0h3FlRbFsHBWV87KHrsb8N5wRaiX6sk7EfPMTefDBfBrCFz9/Aao2ZqvrVzadnSbXFOXDwoxwu65wT/NvdBRZE4OYBJ0ZiAkcKt5MC6h5BsGlqn9WbpedCgLwl0qZ7TmwfF1AB0ukodntefj0zchiZB2HPZvZA==
-X-Gm-Message-State: AOJu0YyHX8pXalzqBKN+5y5aXX9b2cy7ajhQudLSXvzvUdTHBfd+kI4U
-	PHeBQEfKNEmgW0BXe/WjkQ1Y8BPnHKCt2UJ1MM09cEOrmEHDbUSIW/HjuC49ay/mEsgbHszEb5F
-	wnnjtQWpfgeSGUjEyoSCeo1TePA==
-X-Google-Smtp-Source: AGHT+IERpqYkHVSBMBLutpKK8Ckx8P+bb/s9EpxdS6FVvg+rabR/H1UO1yWL4pgy8bPuumt8TnDS170ObiA6rFOR7/k=
-X-Received: by 2002:ac2:54a8:0:b0:52c:da18:6187 with SMTP id
- 2adb3069b0e04-52ce185d05fmr10828916e87.43.1719514994561; Thu, 27 Jun 2024
- 12:03:14 -0700 (PDT)
+	b=XBE8AixloLd1iiARrLilV5u0wjswL07nDhMi9g1vb0sBxWovT4cJifI7ElW8qTWai
+	 LJCD7d6eqmoE0vW47M0fO7YQS7MKz5LRNLujR+x+GPtP6N+TlGSzysbB2pGp4pcTBu
+	 Ir7B9Yt3VsJ6tAdufKXYOQIES8XcQ2f7O1ZDAUsJee/nnQXUdlLiFSBpjR02v3q2Ow
+	 vWMfQrVdgGuxAeyB/o8peffcpkXBD/SVkCfuH2DMct7yooJYcMxG+4orPSG0ZS65k8
+	 aVukMpUAa9LTKM8m6UGRKdmnd4eShMPddzp2IfypQOPuevUhSjmyrUSUiPSLbFPe1i
+	 t0hwGVxlHeFJQ==
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-52cdb0d816bso1877389e87.1;
+        Thu, 27 Jun 2024 12:06:12 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWi5cS1Of0lx9Lqcg8ba5eHALXHaHM3uvwbDc7f3wl8YbxpMy2KhLOUWL/vXbAKTPENH3cnXCo3O2e5l4oODH8kd9mGPY2YDPLF8LYZIAY+3X+CyqAhYxzlWR8nZEewKaHhjVn+wNlkxw==
+X-Gm-Message-State: AOJu0Yzy+n8BUAC7w64PDsBVbFdIZsyf64ndPNyyF1cTD1pEc6vZGXJ0
+	zgzVagFHwflNwYE44RHERaVOC/9ZCnaXShPSiZg3G/sSSJvVMDFbNOueaVkxGQWnqTtFjWNO2ji
+	eeyYOIc2golg+VdR17mgU76kC9w==
+X-Google-Smtp-Source: AGHT+IGfP9KoRm8CMwkTM1fbQMTanmBRhRy4ZLQAosQsk4uhF1VRbF52kp+LpWwAH6YFqg7QjYtHTnnk8iS3F07Tudc=
+X-Received: by 2002:a05:6512:3e26:b0:52b:c14e:3b5a with SMTP id
+ 2adb3069b0e04-52e703aef94mr955517e87.31.1719515170504; Thu, 27 Jun 2024
+ 12:06:10 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240625215442.190557-2-robh@kernel.org> <gr7rgy7cptnpj2rkeufhgqkve4ytqddpts6gdekeszoq7znwf2@ivyjpaiyxruk>
-In-Reply-To: <gr7rgy7cptnpj2rkeufhgqkve4ytqddpts6gdekeszoq7znwf2@ivyjpaiyxruk>
+References: <20240528191536.1444649-1-robh@kernel.org> <CACRpkdZznuUSAKZx-BLgt+smaTDt8fVtJ-xRzL_0u7uYMDGJog@mail.gmail.com>
+In-Reply-To: <CACRpkdZznuUSAKZx-BLgt+smaTDt8fVtJ-xRzL_0u7uYMDGJog@mail.gmail.com>
 From: Rob Herring <robh@kernel.org>
-Date: Thu, 27 Jun 2024 13:03:01 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLYHbr=Wqg-S0t_hK3uDATe9KKob9chFGFnoTcyt2ttyg@mail.gmail.com>
-Message-ID: <CAL_JsqLYHbr=Wqg-S0t_hK3uDATe9KKob9chFGFnoTcyt2ttyg@mail.gmail.com>
-Subject: Re: [PATCH net-next] dt-bindings: net: Define properties at top-level
-To: Serge Semin <fancer.lancer@gmail.com>
-Cc: "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Lorenzo Bianconi <lorenzo@kernel.org>, Felix Fietkau <nbd@nbd.name>, 
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, Giuseppe Cavallaro <peppe.cavallaro@st.com>, 
-	Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org
+Date: Thu, 27 Jun 2024 13:05:58 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKAXnu=CDsOAOoxF0sBnzMxaCDVUU4Z+2k8kseTMvc+eA@mail.gmail.com>
+Message-ID: <CAL_JsqKAXnu=CDsOAOoxF0sBnzMxaCDVUU4Z+2k8kseTMvc+eA@mail.gmail.com>
+Subject: Re: [PATCH 1/2] arm: dts: arm: Drop redundant fixed-factor clocks
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Liviu Dudau <liviu.dudau@arm.com>, Sudeep Holla <sudeep.holla@arm.com>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, linux-arm-kernel@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jun 26, 2024 at 9:05=E2=80=AFAM Serge Semin <fancer.lancer@gmail.co=
-m> wrote:
+On Wed, May 29, 2024 at 2:47=E2=80=AFAM Linus Walleij <linus.walleij@linaro=
+.org> wrote:
 >
-> Hi Rob
+> On Tue, May 28, 2024 at 9:15=E2=80=AFPM Rob Herring (Arm) <robh@kernel.or=
+g> wrote:
 >
-> On Tue, Jun 25, 2024 at 03:54:41PM -0600, Rob Herring (Arm) wrote:
-> > Convention is DT schemas should define all properties at the top-level
-> > and not inside of if/then schemas. That minimizes the if/then schemas
-> > and is more future proof.
+> > There's not much reason to have multiple fixed-factor-clock instances
+> > which are all the same factor and clock input. Drop the nodes, but keep
+> > the labels to minimize the changes and keep some distinction of the
+> > different clocks.
 > >
 > > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> > ---
-> >  .../devicetree/bindings/net/mediatek,net.yaml |  28 +--
 >
-> >  .../devicetree/bindings/net/snps,dwmac.yaml   | 167 +++++++++---------
->
-> For Synopsys DW MACs you can just move the PBL-properties constraints to
-> the top-level schema part with no compatible-based conditional
-> validation left. It's because the DMA PBL settings are available on all t=
-he
-> DW MAC IP-cores (DW MAC, DW GMAC, DW QoS Eth, DW XGMAC, DW XLGMAC).
-> Moreover the STMMAC driver responsible for the DW MAC device handling
-> parses the pbl* properties for all IP-cores irrespective from the
-> device compatible string.
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-That's definitely better. Will still need the TSO flag part though,
-really, who cares if someone wants to set that on h/w without TSO...
-
->
-> Alternatively you can just merge in the attached patch, which BTW you
-> have already reviewed sometime ago.
-
-Can you send that to the list since it changed from the last version.
+Someone going to pick this up?
 
 Rob
 
