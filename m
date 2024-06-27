@@ -1,97 +1,105 @@
-Return-Path: <devicetree+bounces-80978-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80979-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BB7291AE86
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 19:51:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11D2B91AE90
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 19:53:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E7DDE28278C
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 17:51:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3DA5E1C21F2E
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 17:53:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 723EA19B58F;
-	Thu, 27 Jun 2024 17:50:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EGnPyufg"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E95719A2A3;
+	Thu, 27 Jun 2024 17:51:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49A4419B3DC;
-	Thu, 27 Jun 2024 17:50:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2ECDD19A282;
+	Thu, 27 Jun 2024 17:51:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719510657; cv=none; b=V+k62c9Os+iPOfVePgEb93PLfRJEet8MkvrM9BbQD2OA8eTCSiVOsjEDyw0iDf0Ze5NivfRPlUFrTSSwTEp69Lbc/W/5JAxB2xMP6s10NEQN2jK158B1nNDwLeU5B0+T80ISjclkahKtth8lAJzoc/7DaeYRKVxlwwggeLsTzaw=
+	t=1719510684; cv=none; b=UycHUtlDZx06CM47LsBC5MIZoY8eUwX5Qil6bCOnkScBKEJm7O58a/zxpHxLhl6SHOZJGO/OPKsVJveWpS2xKvurzQk8don5RhFgy+msxcdXkeCZ3CADHaOTbEsMdYKTuVh9a83HWA2ggtnilBH3B7+/OU/OQP7cxaYLvedOrms=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719510657; c=relaxed/simple;
-	bh=aEmY+usoEI0JCLbYcZGViK6r8rPMlyAeGBCWtdOs+Ig=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=gvn0PIZno6auBrqdybHIGpt/sIjTmEI+wUd8yeTeRmuW9s+BKSSPt5BtfiONuqbbxln6+XT0sI1v2yGdJtEFNFkczgoeqSB+O7GxbAED4yJAMiSRI5BLP3vGZFbf5lw4Wu8f+C/XNleut00OyVrx/+ioZUjsHVDaQdEy7fqhOrM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EGnPyufg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id DD36EC4AF14;
-	Thu, 27 Jun 2024 17:50:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719510656;
-	bh=aEmY+usoEI0JCLbYcZGViK6r8rPMlyAeGBCWtdOs+Ig=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=EGnPyufgOJ4Y9Rs8F7kwwOdwhS+bQgguOfKrrJIZBbTa5uxnvZqznlBjrRpBCGBnV
-	 k5XP/3S35nI0Wu8/9U7JxPdgtTuf1vlM5OVvb5X/1u5ieZcOkP2Bz3LCE7q8wIDgdu
-	 YIZ5YJobggGuX84AsT/quvLa85blZ6oTzHmrltROmVr5jgyAJgamuJ5/2uT2dhfDFj
-	 Wb7KI9XgzhzRK0XLS9BngyYu3ww6sJM5iZFMqs8goXWI7Q92l2djZDm7UepQUnsJAq
-	 QmYWEBGfnUkv6ywkj7Ym5Nj7k4Gjb7Mzez0LwhNI3t0x/P60l9ybF4C7n0OAdpB/OM
-	 wdzAryF8DZTUA==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id B415AC43443;
-	Thu, 27 Jun 2024 17:50:56 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1719510684; c=relaxed/simple;
+	bh=EdawJHuOqiQcN1Jc5GTtGiguPFhxdTyTM6kSrMQxQWI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=mtRsuqVR3zv8L7gM046ESKUdH6d7JDRZriYuoRnOYLX+6wDqL+lj7FsVi0nhX1Ae8LBwSOooW1/IiMI/f4hYxAQHDQP6hWyoZGsVzB9QIUq2wdmmaIaGR6c7krUG5jHX0vnTrAG+mXXE66GEMtJmp83YxOWmGa9bDQC0nmYoBHY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-52cdd893e5cso6495085e87.1;
+        Thu, 27 Jun 2024 10:51:21 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719510679; x=1720115479;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=EdawJHuOqiQcN1Jc5GTtGiguPFhxdTyTM6kSrMQxQWI=;
+        b=MBcHwOja3x4Bx355j3kuIg9Izv02Uespi/Inj3WV94usOfrYdplb82MeFN3fC+KuIW
+         q7f6dmEjyLyZIitZUyqJtLYToq0884YJjq8WC2ZZIW7TQrPaI5n6l4FqvkVXYRy04XC/
+         2x+7R8xL3Lz/z7RjrHpti3ImkGajQpNa6/f49ShDO1u5rgILh2QitqBEikV3UxFkFiqb
+         7GtJLGAUYT4HgSxNNOwuWKdAEhFZqWojty0kKP5M56yjqtPzwi8azk10GHXFI2w5qrLN
+         eI5fhMa7jPZwJOcOCwVOtQU78eZXthQ3TK3kvUp01MH5Cxib6xEiVGYGsqdJzhRaYpgS
+         Kz8A==
+X-Forwarded-Encrypted: i=1; AJvYcCU5XIeZ8mKbfM2MZ7rd9PWiHdVRIhsi/8PMEz4hJgOBk8xR2FrI2Y58lMwNf3nYda+hJcmWSS+8uxbJ1En2U4kiucbmhZcABoX5ulGGVgCQdL0eW3/x8Uf3jMBSsaYqOWHSC8ecbe092g==
+X-Gm-Message-State: AOJu0Ywk5SCgeBTpa623AcyGlnWJbvkzX5BdFHkvLz9j25tgPqfJl6+c
+	1g8ruHqqb3CynmTVHvkgqt4fqq5l+UoD0JbXBdoTo8YAyRVKghcyz1WT+BDC
+X-Google-Smtp-Source: AGHT+IF+Q9v++jO4dY4HcT8pihyHkJfVfqDsOJ5MtC52ps6N7PWn8RR9Zxvj64g6d7vpoeR9eEMTCg==
+X-Received: by 2002:a05:6512:312d:b0:52c:90b6:170f with SMTP id 2adb3069b0e04-52ce183ad2cmr10372094e87.29.1719510679303;
+        Thu, 27 Jun 2024 10:51:19 -0700 (PDT)
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com. [209.85.208.182])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52e7ab2ea14sm3763e87.213.2024.06.27.10.51.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 27 Jun 2024 10:51:18 -0700 (PDT)
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2ec5fad1984so72145531fa.0;
+        Thu, 27 Jun 2024 10:51:18 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWIrAvavMXvJgMY+FE3Eavi9qkd+ori0AZkElWivKlPDCUpT8kn/MiPFl0hgfwshTkQJfjyvwgsmhWsKdVaEWf5FZp6Yr4cCraLcXrf0kEVljzl8v0YWATFOsTQHYiNLvVWpdPkAGa0gQ==
+X-Received: by 2002:a2e:904b:0:b0:2ec:2993:4363 with SMTP id
+ 38308e7fff4ca-2ec5b31a31bmr99240051fa.25.1719510678740; Thu, 27 Jun 2024
+ 10:51:18 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [RESEND v4 0/2] dt-bindings: interrupt-controller: riscv,cpu-intc
-From: patchwork-bot+linux-riscv@kernel.org
-Message-Id: 
- <171951065673.6762.2519132722674117186.git-patchwork-notify@kernel.org>
-Date: Thu, 27 Jun 2024 17:50:56 +0000
-References: <20240615021507.122035-1-kanakshilledar@gmail.com>
-In-Reply-To: <20240615021507.122035-1-kanakshilledar@gmail.com>
-To: Kanak Shilledar <kanakshilledar@gmail.com>
-Cc: linux-riscv@lists.infradead.org, kanakshilledar111@protonmail.com,
- tglx@linutronix.de, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
- aou@eecs.berkeley.edu, samuel.holland@sifive.com,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- conor.dooley@microchip.com
+References: <20240624232110.9817-1-andre.przywara@arm.com> <20240624232110.9817-3-andre.przywara@arm.com>
+In-Reply-To: <20240624232110.9817-3-andre.przywara@arm.com>
+Reply-To: wens@csie.org
+From: Chen-Yu Tsai <wens@csie.org>
+Date: Fri, 28 Jun 2024 01:51:06 +0800
+X-Gmail-Original-Message-ID: <CAGb2v64mzJAKwupzmVnggw30z7ZqquDDL3Fu9gTYpED3aJXEdQ@mail.gmail.com>
+Message-ID: <CAGb2v64mzJAKwupzmVnggw30z7ZqquDDL3Fu9gTYpED3aJXEdQ@mail.gmail.com>
+Subject: Re: [PATCH v2 2/4] crypto: sun8i-ce - wrap accesses to descriptor
+ address fields
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: Corentin Labbe <clabbe.montjoie@gmail.com>, Herbert Xu <herbert@gondor.apana.org.au>, 
+	"David S . Miller" <davem@davemloft.net>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Samuel Holland <samuel@sholland.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Ryan Walklin <ryan@testtoast.com>, Philippe Simons <simons.philippe@gmail.com>, 
+	linux-crypto@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hello:
+On Tue, Jun 25, 2024 at 7:23=E2=80=AFAM Andre Przywara <andre.przywara@arm.=
+com> wrote:
+>
+> The Allwinner H616 (and later) SoCs support more than 32 bits worth of
+> physical addresses. To accommodate the larger address space, the CE task
+> descriptor fields holding addresses are now encoded as "word addresses",
+> so take the actual address divided by four.
+> This is true for the fields within the descriptor, but also for the
+> descriptor base address, in the CE_TDA register.
+>
+> Wrap all accesses to those fields in a function, which will do the
+> required division if needed. For now this in unused, so there should be
+> no change in behaviour.
+>
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 
-This series was applied to riscv/linux.git (for-next)
-by Palmer Dabbelt <palmer@rivosinc.com>:
-
-On Sat, 15 Jun 2024 07:45:02 +0530 you wrote:
-> This series of patches converts the RISC-V CPU interrupt controller to
-> the newer dt-schema binding.
-> 
-> Patch 1:
-> This patch is currently at v4 as it has been previously rolled out.
-> Contains the bindings for the interrupt controller.
-> 
-> [...]
-
-Here is the summary with links:
-  - [RESEND,v4,1/2] dt-bindings: interrupt-controller: riscv,cpu-intc: convert to dtschema
-    https://git.kernel.org/riscv/c/9ff141042a62
-  - [RESEND,v4,2/2] dt-bindings: riscv: cpus: add ref to interrupt-controller
-    https://git.kernel.org/riscv/c/1f6e218859f1
-
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
-
+Reviewed-by: Chen-Yu Tsai <wens@csie.org>
 
