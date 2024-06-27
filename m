@@ -1,70 +1,69 @@
-Return-Path: <devicetree+bounces-80966-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80967-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 976B691ADC8
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 19:16:58 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DBBF91ADCE
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 19:18:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1F67DB210E7
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 17:16:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1D2251C25F37
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 17:18:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA464199E95;
-	Thu, 27 Jun 2024 17:16:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37CB419A290;
+	Thu, 27 Jun 2024 17:17:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jprvKUkw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YqguWVlD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 822D113AA4C;
-	Thu, 27 Jun 2024 17:16:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13297433B3;
+	Thu, 27 Jun 2024 17:17:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719508611; cv=none; b=drjV6m136fzRW+M7llUm6s25GEdJY4uYHGLoKfs4vxOnUd7aovcUhi8vjibaZWcnibOepssXksm7lpVLNCGmvT+hu8AVXe8K172ck/7Q3w5l2xY+mMJV3RL4RdRPs7c/GxqCguYXpdihDzpOO2uc7KMn0kgFBqUrwNI4xyQE5q8=
+	t=1719508678; cv=none; b=gLxCNOPfq46+OK1L2Er6j4PffUDAzJqa9D3l4M7qQfhAE+mdWAKY2BFM6UPLaWVd5UKzPGCYAkhuk1ksGIBJz543DpobQ0B7Fg2oyzckIZPqaiFzoAdNFWSmKMaw7DEq33SFwAF8kAuIZnnvr/yXrZYRT+vtrCMT6IHAAbJPjKA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719508611; c=relaxed/simple;
-	bh=HJiKA9T0vKSkwoZpE9NHOFCtPUaoW2KbvCxQ/GHdnUc=;
+	s=arc-20240116; t=1719508678; c=relaxed/simple;
+	bh=ND+kxnj03hKFg+c77/LHGw3ycswbF4qk9fiMKZV+Z4U=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=EyjNno6I68MNHdcBpQ3bD2gKuSgZaqkYkt0V4s9ZHWXvSLrLpHpZ23kLy6FJoUjswTTL/YMIZ0ThAdj+hr2jhwzDQrlCO18GL9GQ4MKtGL+YqkSE+8cu7hbUROYDfSUm+rBKLJqHfVSIJpFojKyeWdQ3IcNQHe2R8Y3hVu/rpuQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jprvKUkw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28EF3C2BBFC;
-	Thu, 27 Jun 2024 17:16:51 +0000 (UTC)
+	 To:Cc:Content-Type; b=hMObLxEx9Xz/7FTQWj5TjowMK/fMKsKe7yaTj8tKtnuaHiUVkMG4npCJu3Wui8YALlqDvlCe7J50Q+dhO6Ydgs+W5TufTYhgCpQwqd7LBq741ZoHaWyOza5KymSy3YDKmKD3FTqWmtlLiS7qihfU/euBTf6tnFNtal1CnNJvaig=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YqguWVlD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B169EC4AF0A;
+	Thu, 27 Jun 2024 17:17:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719508611;
-	bh=HJiKA9T0vKSkwoZpE9NHOFCtPUaoW2KbvCxQ/GHdnUc=;
+	s=k20201202; t=1719508677;
+	bh=ND+kxnj03hKFg+c77/LHGw3ycswbF4qk9fiMKZV+Z4U=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=jprvKUkw2xeUQL1mvat8Ygnv5RL7oatwc3ND0BBD/KgI4JAncT8lkYZUWH1OFuEUA
-	 9Ia7N8x0ys15cqQpEiwD3qAzGdX9WvmxyXc/Tg3fLWopfSoA/2/KIRO4d6NjnimvC5
-	 SGK5OOdb0tp9MIV15cLIXPZfDtZezM5Qx0BiGkJenkuYfEpnxS3wyubgqn7iZ7RrBg
-	 Sljp+pG+bG9WJXnNu6ypJwHhqgGQdZ7QPTYJ3KqCcB4VSyBARefEdFXvkWHjhga9qO
-	 YqwoqdbMq1uIkMS+dJjx3KMlrNme+TmN3QPztIlVWp3bfIzCn38Ya0YsTeulfZR46l
-	 q3XcOdpYCcTkw==
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-52e764bb3fbso728012e87.3;
-        Thu, 27 Jun 2024 10:16:51 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWOZq4UC1gn2LWrXhhW/J7SJ5k3aVgGx1LiZega/EgXuxzFuo5be5BjzIGHNSo1tf1DK3/M8DwYO9A4oJFuRGb7pK+AFGl3g++XWpJmc9ueaQirpgrF/Dv7OzR0CuE/iL3r3lLoRfx/AA==
-X-Gm-Message-State: AOJu0YxZEqycqe4Wwno6oLA2iT0HbJZa8DGTb4ioTIMozBrCnHOCWbuZ
-	N3AMo54Tggu0x8QOYYv+fhK1eT/7Y8OomMg4W6WY2L6mcGCi5FMBu1MH0dLxNd55ltpnD1vVMdY
-	n2O0w3hGJCxzKGVlXZQjqDFCp2w==
-X-Google-Smtp-Source: AGHT+IEdXnJ7gLySP871VYYqE62ieoINTcLj0Oixg2Gc/eyvRuSgaiilGKeFzNdeiLnrQ9jY+eYUasTRpkFYB1Nk73U=
-X-Received: by 2002:ac2:46ee:0:b0:52c:d834:a804 with SMTP id
- 2adb3069b0e04-52ce1834254mr8028053e87.16.1719508609532; Thu, 27 Jun 2024
- 10:16:49 -0700 (PDT)
+	b=YqguWVlDtOzpjNpDhA49SzxWALisxIhQeiH5+aTOs7dYzj021HpDd8mGPRmg/ir9R
+	 4FtFIrGGoXePtNB8BIZMr7F/s28ejQEevjSTaG0AghDu8XLO/714NcEs+lh6hmLIZh
+	 gTKuPNBeCJcgLL5U/E6Ifk9RKtn/25PZdL5LbQYicTQD9ypGiSy7fh+6h2fom+DZm0
+	 Vjv7NFFg0ZX9BG2+aOnunpBcix0eVHRmNeTyRZAxKM1DcBCqc2vsdDxgImkOKPDuWy
+	 MZclf43+7Ge7mjUC4Pqmons2g8S8YVm0DEX5ATTzSE29Ue+5cO5yCBbGGpx0iVnU8c
+	 LtUfJn78T1nfg==
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-52cdb9526e2so1918063e87.0;
+        Thu, 27 Jun 2024 10:17:57 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWc1c1bmYilNbPnglI6l80DiYMTRo1A9sGNRSMFDrfazxbYmN+H29WCp1fwBZLC8/ymsVBmSg9Jnkz3DlAmbSVmr8rzRJNAaIGKum5YCVCURjdvCfjZCwrFjJR8nkqG2wari7O547LD4w==
+X-Gm-Message-State: AOJu0YzV9NQPx9pBw+grLMosvInOVbuela4DpJxz/8JvcRPnDAqVwo+d
+	7hYb4vf8DBqelvDLTvwzX4OdsNlcGF0xv7dzolE+C1MoluxsMUqcrzB0oNrIKgdNPT65GCVYva1
+	H9G1fBHr/x/Pv6Ei5m0TH4hI9jQ==
+X-Google-Smtp-Source: AGHT+IF3OE5lw0/7L/P34B6XjIm/Q/MdeaYkB0SxYii0IOeonTKc+sIEbiWY8aflzadLR2ehqIJmgbysOpo4ylgcOcs=
+X-Received: by 2002:a05:6512:2314:b0:52b:9223:be33 with SMTP id
+ 2adb3069b0e04-52e7038b63bmr787238e87.16.1719508676080; Thu, 27 Jun 2024
+ 10:17:56 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240621165149.2275794-1-Frank.Li@nxp.com> <20240621165149.2275794-3-Frank.Li@nxp.com>
-In-Reply-To: <20240621165149.2275794-3-Frank.Li@nxp.com>
+References: <20240626202533.2182846-1-Frank.Li@nxp.com> <20240626202533.2182846-8-Frank.Li@nxp.com>
+In-Reply-To: <20240626202533.2182846-8-Frank.Li@nxp.com>
 From: Rob Herring <robh@kernel.org>
-Date: Thu, 27 Jun 2024 11:16:36 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKo4XwcVKKLYvRNsfmk_BF67nFqwjXs6J-x70jE7LPTYA@mail.gmail.com>
-Message-ID: <CAL_JsqKo4XwcVKKLYvRNsfmk_BF67nFqwjXs6J-x70jE7LPTYA@mail.gmail.com>
-Subject: Re: [PATCH 3/6] arm64: dts: layerscape: add '#power-control-cells'
- for rcpm
+Date: Thu, 27 Jun 2024 11:17:43 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJDOgGWqggWXE-_jv6oQW9nekxU-4Fui+2JFZ6DWUqLtg@mail.gmail.com>
+Message-ID: <CAL_JsqJDOgGWqggWXE-_jv6oQW9nekxU-4Fui+2JFZ6DWUqLtg@mail.gmail.com>
+Subject: Re: [PATCH v2 07/13] arm64: dts: layerscaple: add #dma-cells for qdma
 To: Frank Li <Frank.Li@nxp.com>
 Cc: Shawn Guo <shawnguo@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
 	Conor Dooley <conor+dt@kernel.org>, 
@@ -74,50 +73,17 @@ Cc: Shawn Guo <shawnguo@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jun 21, 2024 at 10:52=E2=80=AFAM Frank Li <Frank.Li@nxp.com> wrote:
+On Wed, Jun 26, 2024 at 2:26=E2=80=AFPM Frank Li <Frank.Li@nxp.com> wrote:
 >
-> Add '#power-control-cells' for rcpm: power-control node to fix below
-
-You mean #power-domain-cells?
-
-> warning.
->
-> power-controller@1ee2140: '#power-domain-cells' is a required property
->         from schema $id: http://devicetree.org/schemas/power/power-domain=
-.yaml#
+> Add #dma-cells for qdma to fix below warning.
+>         dma-controller@8380000: '#dma-cells' is a required property
 >
 > Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
->  arch/arm64/boot/dts/freescale/fsl-ls1012a.dtsi | 1 +
 >  arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi | 1 +
 >  arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi | 1 +
->  arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi | 1 +
->  arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi | 1 +
->  arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi | 1 +
->  6 files changed, 6 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1012a.dtsi b/arch/arm64/=
-boot/dts/freescale/fsl-ls1012a.dtsi
-> index 1331858add942..1b6ab9550cce9 100644
-> --- a/arch/arm64/boot/dts/freescale/fsl-ls1012a.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1012a.dtsi
-> @@ -560,6 +560,7 @@ pcie1: pcie@3400000 {
->                 rcpm: power-controller@1ee2140 {
->                         compatible =3D "fsl,ls1012a-rcpm", "fsl,qoriq-rcp=
-m-2.1+";
->                         reg =3D <0x0 0x1ee2140 0x0 0x4>;
-> +                       #power-domain-cells =3D <0>;
+>  arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi | 1 +
+>  3 files changed, 3 insertions(+)
 
-The thing is this h/w is not controlling power domains nor using the bindin=
-g.
-
-So I think the fix here is either rename the node name or drop this
-schema check ($nodename). We really only do the latter if we want to
-only reference the power-domain.yaml schema from all specific power
-domain controller schemas. That's really only done if there's more
-than just #foo-cells defined by the schema which is not the case here.
-So we should probably rename the node to 'rcpm' or something. Seems
-like a step back, but there's really nothing generic to use here.
-
-Rob
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
