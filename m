@@ -1,191 +1,143 @@
-Return-Path: <devicetree+bounces-80522-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80524-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42157919E00
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 05:52:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6001E919E32
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 06:33:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EDE19280FA3
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 03:52:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 17CCC2862AD
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 04:33:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49E1817BB4;
-	Thu, 27 Jun 2024 03:52:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F42D1BC44;
+	Thu, 27 Jun 2024 04:33:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="gfqjZ95m"
+	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="DoSBtp4b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2088.outbound.protection.outlook.com [40.107.114.88])
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFEDC1C2AD;
-	Thu, 27 Jun 2024 03:52:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.114.88
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719460335; cv=fail; b=d8QAxYykq6ntsSA4pj/HYlMmE5tXp0b+i/qjUZqgSIo7xjI98HhWY05tCNU+ohLBETXha4dAm0wzG5O/dHrgg7htRiXcWcYxmpmtKwXWVxYO98BH4V7ze/BgOa7l8eIouyQv46oZgvrZScGpq9gXo2JzIeYsbOyR3CNzchpdmkg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719460335; c=relaxed/simple;
-	bh=CfimTb1EHnsb4+4k4dgpom5ojoyLgAXCG4OoAJTqsy4=;
-	h=Message-ID:To:In-Reply-To:References:From:Subject:Content-Type:
-	 Date:MIME-Version; b=AUJqn7kIyEbTZdPNqdkCy1QAOOHhm0eYg8Hu301JE4KIlraHnYU88tKNwPIFr4XMCRl2gkNGkvftFgbmbrb9kXsZFfDClYOFUOqhhMHB3a1ZUmzyyrS/aGDWQ1wsjUA3IsbAjmG2Cy+TChITNl9AWWfeaSFUrQB3846qy6Vh56A=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b=gfqjZ95m; arc=fail smtp.client-ip=40.107.114.88
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Sc9VZj+C2JzeRO6LADaj+rjoLkLJEPIG551b92WG2aUmNCDnLIhaLF/UalaCgNIsAtH9nzLnZ9Hm/PN4zHtSoZlYV7YXZ6ndFM07Z2BuZtv565/p6gDlthrTgH9MX5p9KzxI7OtwO5WzGBSZdrHqyMurgK3+j1h1g7xahNO9HJj8YA0hgztvQfzrkELUBPcAIzxrnKVq2g+elNBk4q2Zzucd5+ztoVXsUkVxZCVhPD0wZtRbRtTG1Rz+tAtrpTogIo41Rj1dHXRZw38Cq2uNJHXSQywl82n7WArpNAhVALgCEf+iF2wwcOPH+Qu1bp0dB0Z//3jyhNTFVLebTQPYQQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rM2DfJuMHrl1e7FP+nknzfcN6G4dSbxhgsU9WOrnPic=;
- b=e5F7N37nKi8EpiHbhFsT8YIm3ScAla3y7j7XYtT2BmSetAFh9cXqX/BFQK41/WExR4OWpI+YnRoFMTiZ+K0Sivn6VTW9UCVoAIaEKK6ho1fTvy9aOjvKEz7wx5sLo6pC/od/MGWbyKhyiSDeJn+qObfsUe416eV9l2ylAReVRIEv5xVW3QfZkWOrkx10gHuB3fQEhYFh2pf/Om9Xz9QRhF65sxCH3rZFxJF2HWaRhMLRpamU0G3Ocfjz9xsdHfq6BMt089jzbAeNUNXbeFhrCtrLl71rARxc8gLAb32k0lVvGIlwn50cJp7B7bm6eCMsih8syKB5BhXbamkpaHZEmQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rM2DfJuMHrl1e7FP+nknzfcN6G4dSbxhgsU9WOrnPic=;
- b=gfqjZ95mH4zNzlzaOLxFa3gi6hBxC1t/lCX6SPvXQuG6IOQlJqX2mhQE4wgIlLDUTLhupCe3MIiEJBA7uSDx5ufrRsfSkrp+DOjS0WqEVT8QhAol0oJy2JF8iwzfrngitYbRBdLnTVhf5xVhduWG+4DU+Yo0K7SDlde7OrlHGQI=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
- (2603:1096:400:3a9::11) by OS3PR01MB5782.jpnprd01.prod.outlook.com
- (2603:1096:604:c7::12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7698.35; Thu, 27 Jun
- 2024 03:52:10 +0000
-Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
- ([fe80::c568:1028:2fd1:6e11]) by TYCPR01MB10914.jpnprd01.prod.outlook.com
- ([fe80::c568:1028:2fd1:6e11%5]) with mapi id 15.20.7698.025; Thu, 27 Jun 2024
- 03:52:10 +0000
-Message-ID: <878qyrqbyt.wl-kuninori.morimoto.gx@renesas.com>
-To: Alexandre Belloni <aleandre.belloni@bootlin.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jaroslav Kysela <perex@perex.cz>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Takashi Iwai <tiwai@suse.com>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A84AE1A702
+	for <devicetree@vger.kernel.org>; Thu, 27 Jun 2024 04:33:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1719462807; cv=none; b=jSbX8R8IcgN3lJ5F1Viq6+4NaHnOWQsDR/Pf2uh8UspOP2E3DCO/duSoz8mq/h0thmKab0OFQff34hIEyFCrv/fn269+7Rztfv2Ot6rwrPw94LYP/IX/AaV8lTbOens0snFCTmJimVHSOWt/sfzBHjRAURd4zH29GMRQkuwXw0I=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1719462807; c=relaxed/simple;
+	bh=HkKXhQJ2s3Gpn7ht2bpswjjFfOejAR2SehA9hUpJook=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ciLZ/LvUDXq40aWnt1W8kPtdWkRClm/z7ngPOCEtP1wDmbtcPy5/wdXU25sS5yuxT2h/Q5WLzNRpag3I39B2eWY0saw97gEQCugNn3302Ah0b6BvG7TxIOb4B587IUXa64yiMFJOwL4kHZRtb+YYUjxkkKfd6YvFJP5KB5oaAIA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=DoSBtp4b; arc=none smtp.client-ip=202.36.163.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 5564B2C01F6;
+	Thu, 27 Jun 2024 16:33:22 +1200 (NZST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+	s=mail181024; t=1719462802;
+	bh=VlSev23TkovLAkLueBzWCXRXtr+rCN3WgesPRHKn+S0=;
+	h=From:To:Cc:Subject:Date:From;
+	b=DoSBtp4becHpy687FfEFQDToeFKuHXWcQqNsZ2E+Qu0ZsPraAigYKmDmM1bSk4UhC
+	 QZyEtLUnoNC5+rfH8VEQG7zAp4GayxpTYj/V7iRgTy0+z1RyIpzw30NZdHUaQOE2wH
+	 CADlMrELWhhAxg5tcx8yiH+3JVnI0H2a0BJAh6+Bk7WsaNZk/zi6hBRdrkSAd/wlPj
+	 aijlu10IqMGcnN3qkHdbJz37ZzMLL7E7rOAvH5CopX4sOx+9L+9lG1gP+6QfOoAaZ8
+	 KKNGQV14EHv1T53vjZovyVnMbzi52cE907rO3T8SZRv06geZc/2XcBB8qLte/OAF0g
+	 LYpTEGFAQ5q/g==
+Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+	id <B667ceb910000>; Thu, 27 Jun 2024 16:33:21 +1200
+Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
+	by pat.atlnz.lc (Postfix) with ESMTP id E05B613ED5B;
+	Thu, 27 Jun 2024 16:33:21 +1200 (NZST)
+Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
+	id D89C328078C; Thu, 27 Jun 2024 16:33:21 +1200 (NZST)
+From: Chris Packham <chris.packham@alliedtelesis.co.nz>
+To: tglx@linutronix.de,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	tsbogend@alpha.franken.de,
+	daniel.lezcano@linaro.org,
+	paulburton@kernel.org,
+	peterz@infradead.org,
+	mail@birger-koblitz.de,
+	bert@biot.com,
+	john@phrozen.org,
+	sander@svanheule.net
+Cc: linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-sound@vger.kernel.org
-In-Reply-To: <87bk3nqc0e.wl-kuninori.morimoto.gx@renesas.com>
-References: <87bk3nqc0e.wl-kuninori.morimoto.gx@renesas.com>
-From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Subject: [PATCH 2/2] ASoC: dt-bindings: simple-audio-mux: add mux-names property
-Content-Type: text/plain; charset=US-ASCII
-Date: Thu, 27 Jun 2024 03:52:10 +0000
-X-ClientProxiedBy: TYWPR01CA0041.jpnprd01.prod.outlook.com
- (2603:1096:400:17f::16) To TYCPR01MB10914.jpnprd01.prod.outlook.com
- (2603:1096:400:3a9::11)
+	linux-mips@vger.kernel.org,
+	kabel@kernel.org,
+	ericwouds@gmail.com,
+	Chris Packham <chris.packham@alliedtelesis.co.nz>
+Subject: [PATCH v3 0/9] mips: Support for RTL9302C
+Date: Thu, 27 Jun 2024 16:33:08 +1200
+Message-ID: <20240627043317.3751996-1-chris.packham@alliedtelesis.co.nz>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYCPR01MB10914:EE_|OS3PR01MB5782:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3572b850-2650-4948-9d81-08dc965c85c4
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|52116014|376014|7416014|1800799024|921020|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?raSBGYcmnhuSNjD4u+NfMLxGD5JW1HbqmpE+jkxNDAMOlZBvMcLhoeczP17+?=
- =?us-ascii?Q?eT5T9M5NmTwccnA5AFY7xHlAiDP7HKeCN1OK9/iKXBBeeB4xUfpZFW7HySwj?=
- =?us-ascii?Q?B1SNggtK1IquNW+k6pcMSQr1TAG/VYTqmBjl07ukqlqVBNUro0swB6LyYzRW?=
- =?us-ascii?Q?VxU6y40ecVfPkqfcse423+jLbpqAx0sLbLMc5RJLOZmoAr1hcafhOa1xtxLo?=
- =?us-ascii?Q?ex6vPO6eVXd6oy/9/NOBqXwuhH6/aNwH8ZNk2bDYP8JTN/ZSvRJDt5ZPj5Lg?=
- =?us-ascii?Q?8nzjOo+NpaZgEPkCM9Y1p01zb1VrJPfYfv4zlDXGihzpEHrPsDyfj20TnHT7?=
- =?us-ascii?Q?sR3mWHm+hrIWVHdrcHfNZJoorD8DQ0AoACxmBkZ5r3JU6Wh1v4DwyW0IHxCv?=
- =?us-ascii?Q?VJyDZ6MDJI6+C8MtnDgIruy4vfM4PJoPmKRDmrGEL0v+C3cQJKWF3xKMB8GX?=
- =?us-ascii?Q?MVpi1N8WxE8FyPm4/96BHMj6wx2ihUJYSestc+ZXGyoTJ1SjoUJVWcazIfuu?=
- =?us-ascii?Q?CH8UUlis3yElUja8lvtGuxnIEp8QQ+jDrlsBE3MtrZofoO95Rcq6EccLDGCO?=
- =?us-ascii?Q?3a93lD+nh4ib5YsUrCl8VBr80d4oR9nsOtvBVNarg8HXUkGds6SMtF5raj8u?=
- =?us-ascii?Q?ACElGvchHnevnJGTLuFrXnP3Ds7AnIwlUrg+qudwCJRJLSlrDaDZIh0DNDeb?=
- =?us-ascii?Q?9CKU4iZOSi+4wCcoL60qDwGCzYembF+JnnZfjNg6TqzUoC4MRxLaKB3F1O05?=
- =?us-ascii?Q?7nhS9wATBp4FstHDCBjx9feJZBH0PV53RVACJe/DS3r10RrBc+Xn23QBYZS+?=
- =?us-ascii?Q?VQwBDYCKRpd4+3JX87AfyUi5h6JcF8eJXX2n0eSM8P81xCcPTV7piz7Y5bXZ?=
- =?us-ascii?Q?IqZlaUClx/lxR7m1XLYW/by3aJPuX4XZwLpyMhMFkGD6Vjda7wjJf/G6cAhe?=
- =?us-ascii?Q?/xnKv+wF2TTulA78ukn/AGbbOjS9Kqx7jMQdfToQnmRocMfspDgl6X076J6S?=
- =?us-ascii?Q?M3FmC0yO32dWEIIBmb9grHDzevSmVke4MHA1hPLuCR2EgUBa3/jLU9CtA9fM?=
- =?us-ascii?Q?BMY2rTM9eZQ/do4JVLlgl5Ao2EgYio0+CzgMBDrSuVtU02XOtoWwRxRrs39V?=
- =?us-ascii?Q?rOhWcgOVzGq7jAKkcOZ7crPnpWrB1LN6YpDIa8IQY7OwSESmGeUMedzC9h7Z?=
- =?us-ascii?Q?O0bvkouTm37Ks+At46gVP4vBsvKbujePpSHvS1bdDQMx9oOxzKaeSbP1z4X4?=
- =?us-ascii?Q?oIQxLkuO/DbDGm9+mqSIxOqScWLGbt0iehTIY35XGF5U4mKrDWFl09DLZLUC?=
- =?us-ascii?Q?676DZPoa2PF0qASAx/BkjKDlUKoouqthrPec83pm1xA6fkbicdB4hdtP2xOm?=
- =?us-ascii?Q?6dzt8K92lR89y78o5hLTe+NkbDlzZZCQlmpH8KSBj64Fv7HaKxRJ/vFm9gJp?=
- =?us-ascii?Q?wgabhxB/2AA=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB10914.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(52116014)(376014)(7416014)(1800799024)(921020)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?hXTDB0dgmVJfb/PTrbk1CrXZ4NvI0KaKsRgC8gePllHUKFHRiiF5hox6xu58?=
- =?us-ascii?Q?b/Sxzi+lp83oRnStrSUsIo9omJrRa8u8omrOdSqlPBhO/Kn0cklWasAHoAH5?=
- =?us-ascii?Q?Iz1EHvKHjoyFGeBt8S+Zov+D1oqz+bLfUp4ocLm4pobfSrWD17C9sWtZmU8d?=
- =?us-ascii?Q?iTI9Zral2e+LAZc1r2rB2tFW2OSr88snnrgGFQMf/7XuWkrmAaH7/GsJOeHk?=
- =?us-ascii?Q?xZmfxQtZKCogrvlhCRu4kSMX0kRd9jCoE28tEsD3PEFCXBo+PnXYLP9YAjSo?=
- =?us-ascii?Q?gOV23CfZTeafPsngLTp66hi52sf7Ueqf+qiycvCN/Z+Ky+q8moGZEYnQLEVR?=
- =?us-ascii?Q?m5nzgMU8LXO8FU35yeoudcI3T94qj7e+0lKjkfU0UhHHuQHKowNJUjw6S7go?=
- =?us-ascii?Q?YbcIJPqzAKb+sdQU/UglUl7z3UCi/oNY5RS5lrAvNXKAODboFfjE4u2lUBcM?=
- =?us-ascii?Q?KivR2ul2Y6xnKrBuY+2PTMQf920JDrGZ8ITGEbSoysGtn/vOwrbvxvJTQZDp?=
- =?us-ascii?Q?cqoiV44CvM8oyHEYKEPYX2GQp5/j5xqAcVi6CEti7zHVGQ7g3Orw+UjIItE5?=
- =?us-ascii?Q?/n4N//ZLGl5X8hb9er7I54w1UBZtT72rquhD2GBhhTkXVmYSAFJ/pDmxwAgf?=
- =?us-ascii?Q?/qT5F2O4kCMSxMm+kjx2UqE6kLdipqfw6+IgaUantUPYdOlsUUxpBqoB52OT?=
- =?us-ascii?Q?tf45AA4ZtdX2Bxww0i1q9It1+vCST2praATRUmkf4M7cgwE95SLPEaKMaL1O?=
- =?us-ascii?Q?78txbdt7skZ9UvRZ1oaKPIxRzS8FkFiEaUQSRnRIo6Gynx5we8CYLI705q0u?=
- =?us-ascii?Q?V4A+yx7CfM81+z9GZ+A25CLq3s2YdwbzmDVwWZiWYymeQ+yq0bKr4vAf5Nc7?=
- =?us-ascii?Q?M+mmm+8xfOCM7qtA+IUFmR34a3kEXDhylrquuKDdgJ4MEM9Xz9Y0mwDhveHS?=
- =?us-ascii?Q?8c38hmiEPXnl2rAcvwbQ0dneqRDIftjHzD6y86rbpV3/03UrzPwAmsdfHKNV?=
- =?us-ascii?Q?pNi2zS0+kl27N9HY/zZFsSoulFYRGdPj78sEuju4h+q/hit+2RiMUR/ytyF9?=
- =?us-ascii?Q?hrLoWg3IaIPcIOmWjrb8o+QJY6OwG9qEGc/Bum45Cp+X+kV3por4SS2v0rKE?=
- =?us-ascii?Q?/ZSagBfVNemrHZfHiAFt0vb4nJhNq1h4p2CatPNWL12Lg0BUodmf7R+Zb7Je?=
- =?us-ascii?Q?YW3i5FV7T1IwhHqKdor8UJVjsuHM25FRexIWQvElyak6jjop6NIqLHxAtJNY?=
- =?us-ascii?Q?gDesyAsjiJdJokFjdrlWN+e5GiWIWtkGwVfa534KHy/10j6KnXATaAPgcVD4?=
- =?us-ascii?Q?gx2wq1+WxY+UpUrCceqbGk6XDqDERHx+oXTQxjVuMVI3c2eA3PY6d4MzOqsI?=
- =?us-ascii?Q?+9L+7XUw4GL0DU6qBhSN/8CUjA/tCCw1XFPiyryFsCM+yqFl9ATh5P5KnZHu?=
- =?us-ascii?Q?Ic5NxJPTFnWDwBnispt0EOre4v1Tv8p2gJkS1LS3HVMWEJNHJVvZgIx1sOSf?=
- =?us-ascii?Q?mt+dDxLgMRj6fXjjkqTduUyMfoCaYQ0TE7GoXFcZRB6GSOKDXf6fSkAqtGm2?=
- =?us-ascii?Q?+rjVKYyvleiD+vDMG72xfKVy0zTjDRKeTNUc9FxN8mIhO47XCmN8CQBdhxTJ?=
- =?us-ascii?Q?2/JFofupP9/fr07BKyJ1c+c=3D?=
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3572b850-2650-4948-9d81-08dc965c85c4
-X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB10914.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Jun 2024 03:52:10.6130
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: KxjhsNMBe3GUfGHy4B+kZlGr9yx0spIFN1wV8IWOOkRC7oQo3YoWWgzm4EYXh5T/6f9Noz7i6SUYERWN67MqDI2+woaGsBNsmB42ClKMPAWcwmVS0OMh6K8St0CYQzeq
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS3PR01MB5782
+Content-Transfer-Encoding: quoted-printable
+X-SEG-SpamProfiler-Analysis: v=2.4 cv=CvQccW4D c=1 sm=1 tr=0 ts=667ceb91 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=T1WGqf2p2xoA:10 a=cAq4xmbCUuwB6dAq1EgA:9 a=3ZKOabzyN94A:10
+X-SEG-SpamProfiler-Score: 0
+x-atlnz-ls: pat
 
-Current simple-audio-mux selects MUX by "Input 1" or "Input 2",
-it is not user friendly. Adds new "mux-names" property and enable to
-select MUX by own names.
+This series adds basic support for the RTL9302C reference board. Currentl=
+y the
+focus is on the CPU block stuff. I hope to get around to the DSA switch d=
+river
+eventually but this is a small start that lets me boot a mainline kernel =
+on the
+board I have. I initialiy started with code from openwrt but have paired =
+it
+down to just the clocksource driver and devicetree.
 
-Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
----
- Documentation/devicetree/bindings/sound/simple-audio-mux.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
+The first two patches in this series are fixing some complaints from make
+dtbs_check for some existing realtek dts files. They can be applied on th=
+eir
+own if desired.
 
-diff --git a/Documentation/devicetree/bindings/sound/simple-audio-mux.yaml b/Documentation/devicetree/bindings/sound/simple-audio-mux.yaml
-index 9f319caf3db7..6e4018936887 100644
---- a/Documentation/devicetree/bindings/sound/simple-audio-mux.yaml
-+++ b/Documentation/devicetree/bindings/sound/simple-audio-mux.yaml
-@@ -24,6 +24,10 @@ properties:
-     description: |
-       GPIOs used to select the input line.
- 
-+  mux-names:
-+    description: |
-+      Name of multiplexers. default is "Input 1", "Input 2"
-+
-   sound-name-prefix: true
- 
- required:
--- 
-2.43.0
+Chris Packham (9):
+  mips: dts: realtek: use "serial" instead of "uart" in node name
+  mips: dts: realtek: add device_type property to cpu node
+  dt-bindings: vendor-prefixes: Add Cameo Communications
+  dt-bindings: mips: realtek: Add rtl930x-soc compatible
+  dt-bindings: timer: Add schema for realtek,otto-timer
+  dt-bindings: interrupt-controller: realtek,rtl-intc: Add rtl9300-intc
+  clocksource: realtek: Add timer driver for rtl-otto platforms
+  mips: generic: add fdt fixup for Realtek reference board
+  mips: dts: realtek: Add RTL9302C board
+
+ .../realtek,rtl-intc.yaml                     |  18 +-
+ .../devicetree/bindings/mips/realtek-rtl.yaml |   4 +
+ .../bindings/timer/realtek,otto-timer.yaml    |  63 ++++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/mips/boot/dts/realtek/Makefile           |   1 +
+ .../cameo-rtl9302c-2x-rtl8224-2xge.dts        |  73 +++++
+ arch/mips/boot/dts/realtek/rtl838x.dtsi       |   1 +
+ arch/mips/boot/dts/realtek/rtl83xx.dtsi       |   4 +-
+ arch/mips/boot/dts/realtek/rtl930x.dtsi       |  79 +++++
+ arch/mips/generic/Makefile                    |   1 +
+ arch/mips/generic/board-realtek.c             |  81 +++++
+ drivers/clocksource/Kconfig                   |  10 +
+ drivers/clocksource/Makefile                  |   1 +
+ drivers/clocksource/timer-rtl-otto.c          | 287 ++++++++++++++++++
+ include/linux/cpuhotplug.h                    |   1 +
+ 15 files changed, 623 insertions(+), 3 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/timer/realtek,otto-=
+timer.yaml
+ create mode 100644 arch/mips/boot/dts/realtek/cameo-rtl9302c-2x-rtl8224-=
+2xge.dts
+ create mode 100644 arch/mips/boot/dts/realtek/rtl930x.dtsi
+ create mode 100644 arch/mips/generic/board-realtek.c
+ create mode 100644 drivers/clocksource/timer-rtl-otto.c
+
+--=20
+2.45.2
 
 
