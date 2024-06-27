@@ -1,226 +1,203 @@
-Return-Path: <devicetree+bounces-80974-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80975-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0A5C91AE6F
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 19:48:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5358D91AE78
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 19:50:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 764A1285E44
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 17:48:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 83ECB1C22FB8
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 17:50:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0402C19AA72;
-	Thu, 27 Jun 2024 17:48:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eCiWXR9K"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6673519AA47;
+	Thu, 27 Jun 2024 17:49:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.3ffe.de (0001.3ffe.de [159.69.201.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAC2519AA65;
-	Thu, 27 Jun 2024 17:48:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDCFC4C9A;
+	Thu, 27 Jun 2024 17:49:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.69.201.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719510500; cv=none; b=h9FHshVkcsQJ4r49trFFx1vW3Q+/eHI+IVBr+8qABrDqbxEKCIyJqdjL62+ez+4bpmvvLOkcTAoC2ea3g0fVjrZSPyKJJ/9bXoNeYF4GDAkgEdteSEfQs71Qm77nl3Md8fnFXyF6kAo3nKAFR2oyEvG3olmkd3ghLj1E99w1s6Q=
+	t=1719510562; cv=none; b=I9SHblNXJPFgWL47jWRbKQdQrBTGKCs7YvH2RPLKKaexhefmL+cwYJHGxphfXtI9xc16asyU2CpJ7q2TJifH7ZRWZfmKoGddcrq8tixp7DvMEnZPKu9KDrAIzMOHyPGAGOKT7zZVPb2h0GtZbK8qXzM/v32Z+muw4p/TUc2YYJk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719510500; c=relaxed/simple;
-	bh=7PmzWQkmMO3Dn1RO3gbp/FgtsLrjZ6ti7V62R7Rxfsc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=D5bGWpcyJ9eF8Zr27y9Eoy/bzaMYnvpuX3x+TCqu7bwMIT/n2X/FqUsYD1xidecwFDCwZ2s9XDKNb+kkj6P5IiRE4sVUxyURnlnRVpuRexCS9/ApTM3XA26I0EH06l/0AnAgRkpHm6KLQT9IIRL30y1Vq/cdbqSMXePK2iaKYBM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eCiWXR9K; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2C6FC4AF07;
-	Thu, 27 Jun 2024 17:48:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719510499;
-	bh=7PmzWQkmMO3Dn1RO3gbp/FgtsLrjZ6ti7V62R7Rxfsc=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=eCiWXR9KMoz9cZXBt0bYVwje8vrZth4Fohylmz1hB6HNUh7ZPyqDYibF+OrhrFR97
-	 e6eMe2+qTIeCKwK2JNY9Hb08zWAeftt+a4j0Nn/VDkeaSKkgJLe1xnXFTZx/5nATIS
-	 RHb+6r0KR4dzCtKvgnKr+46u/fUbBAKv+Hss2+vFFxN8vmIh7Is/KYXfJAns4X9E+n
-	 ZvVwdMrx3yPf4AeMPAI3Rj68kQvAh1fD1gHQ2/COFcCkdqTHYg2UJXCvfueJwEP/0A
-	 TdREQMP/w58gA3M9X5n6L3TEGKbZPaOjkYFzhWAyI+NF2a0qeAWQErZcunxCaGaQlr
-	 tPEc4z0kDzztQ==
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-52db11b1d31so3378967e87.0;
-        Thu, 27 Jun 2024 10:48:19 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVNu/YXVbaKtshz1FgBVb3GaLrN1D6wJ9LwvHQ3qtRNmnulsf8Py+lJlh6Ni9nKpJ80vpmHdmD0orpDQys5TpN9BG32PaUzahek6XrO4CinUDP3j5E42gMlJpnmKyiN/rI3lCjzqQI/IeDttL27j2NUurt/aV/8PaIxNjRmVrKwiL66vAk=
-X-Gm-Message-State: AOJu0Yznc7TUiTNg3p+fHIZgoxdo+x83AniYDsF2YQMsWJ4vE55HjQEh
-	qjOA6TOO+/B+IYHYZv8AR0gKPIrgztWHvQGxFUnNP13lP0RH50C0G356QTEC0a94MPGtjkafVKi
-	tImMcb7b0LXQgagNrZmENCJ0POA==
-X-Google-Smtp-Source: AGHT+IF3/jp/Se8SW3GtFuTT+mhw6PLtTffimJ68HQJOQJw6GO4rJiW1gpfVQofLoFVj0WF7muLIr/yZ3J7+kg1ZnfM=
-X-Received: by 2002:a19:6b08:0:b0:52c:8944:2427 with SMTP id
- 2adb3069b0e04-52cdf7f65f3mr9553120e87.31.1719510497932; Thu, 27 Jun 2024
- 10:48:17 -0700 (PDT)
+	s=arc-20240116; t=1719510562; c=relaxed/simple;
+	bh=1w8PitqYQecd9A7PeIKvg2ekZZBQE6TegR88h1yVWps=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:From:To:Subject:
+	 References:In-Reply-To; b=Ay+g27+fXRsj1YDT7dupEz97VkQLHOSnGt/Y1AOlXHpPNjMcfN/k/vFgrjDX4gObxGcZL7jMaKpk0iEOd0wq3tU73wVXdezYU8OFrSRkQwfQX0fS+yRnhW5qT8hHSEhiUaP2T3sNsBfaSoS1MSu18dOq9mzbV2n/WBQsHwGHz3I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org; spf=pass smtp.mailfrom=walle.cc; arc=none smtp.client-ip=159.69.201.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=walle.cc
+Received: from localhost (unknown [IPv6:2a02:810b:4340:4ee9:4685:ff:fe12:5967])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mail.3ffe.de (Postfix) with ESMTPSA id 147894CC;
+	Thu, 27 Jun 2024 19:49:18 +0200 (CEST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20240627043317.3751996-1-chris.packham@alliedtelesis.co.nz> <20240627043317.3751996-9-chris.packham@alliedtelesis.co.nz>
-In-Reply-To: <20240627043317.3751996-9-chris.packham@alliedtelesis.co.nz>
-From: Rob Herring <robh@kernel.org>
-Date: Thu, 27 Jun 2024 11:48:05 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKGJ_MNbfuApdziDusYzYoFC3LD_zqkt1ZkWL4AWkjVrw@mail.gmail.com>
-Message-ID: <CAL_JsqKGJ_MNbfuApdziDusYzYoFC3LD_zqkt1ZkWL4AWkjVrw@mail.gmail.com>
-Subject: Re: [PATCH v3 8/9] mips: generic: add fdt fixup for Realtek reference board
-To: Chris Packham <chris.packham@alliedtelesis.co.nz>
-Cc: tglx@linutronix.de, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	tsbogend@alpha.franken.de, daniel.lezcano@linaro.org, paulburton@kernel.org, 
-	peterz@infradead.org, mail@birger-koblitz.de, bert@biot.com, john@phrozen.org, 
-	sander@svanheule.net, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-mips@vger.kernel.org, kabel@kernel.org, 
-	ericwouds@gmail.com
-Content-Type: text/plain; charset="UTF-8"
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Thu, 27 Jun 2024 19:49:17 +0200
+Message-Id: <D2AZMD2YYGAQ.1B3AGXIC7B44@kernel.org>
+Cc: <linux-spi@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+From: "Michael Walle" <mwalle@kernel.org>
+To: "Ayush Singh" <ayush@beagleboard.org>, "Mark Brown"
+ <broonie@kernel.org>, "Vaishnav M A" <vaishnav@beagleboard.org>, "Rob
+ Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>, "Derek Kiernan"
+ <derek.kiernan@amd.com>, "Dragan Cvetic" <dragan.cvetic@amd.com>, "Arnd
+ Bergmann" <arnd@arndb.de>, "Greg Kroah-Hartman"
+ <gregkh@linuxfoundation.org>, "Nishanth Menon" <nm@ti.com>, "Vignesh
+ Raghavendra" <vigneshr@ti.com>, "Tero Kristo" <kristo@kernel.org>, "Andrew
+ Lunn" <andrew@lunn.ch>, <jkridner@beagleboard.org>,
+ <robertcnelson@beagleboard.org>
+Subject: Re: [PATCH v5 1/7] dt-bindings: connector: Add mikrobus-connector
+X-Mailer: aerc 0.16.0
+References: <20240627-mikrobus-scratch-spi-v5-0-9e6c148bf5f0@beagleboard.org> <20240627-mikrobus-scratch-spi-v5-1-9e6c148bf5f0@beagleboard.org> <D2AYUH4XY0SK.1SYOUCT0PLAKT@kernel.org> <e0f9754e-4d84-4ab4-82a4-34cb12800927@beagleboard.org>
+In-Reply-To: <e0f9754e-4d84-4ab4-82a4-34cb12800927@beagleboard.org>
 
-On Wed, Jun 26, 2024 at 10:33=E2=80=AFPM Chris Packham
-<chris.packham@alliedtelesis.co.nz> wrote:
->
-> The bootloader used on the Realtek RTL9302C boards is an ancient vendor
-> fork of U-Boot that doesn't understand device trees. So to run a modern
-> kernel it is necessary use one of the APPENDED_DTB options.
->
-> When appending the DTB the inintrd information, if present, needs to be
-> inserted into the /chosen device tree node. The bootloader provides the
-> initrd start/size via the firmware environment. Add a fdt fixup that
-> will update the device tree with the initrd information.
+Hi,
 
-Is this really specific to this board/soc? I think there are lots of
-MIPS boards in this state. The code to handle all the possible
-combinations of bootloader handoff information and sources of DTB is
-quite the mess. Just for DTB source you have bootloader DTB, appended
-DTB, or built-in DTB (and there's even logic if you have multiple of
-those). Contrast that to arm32 ('the zoo"), where you have 2 choices:
-bootloader DTB or appended DTB with legacy bootloader parameters
-transferred to DTB. All the uglyness is contained and the kernel boot
-deals with 1 possibility. </rant>
+On Thu Jun 27, 2024 at 7:29 PM CEST, Ayush Singh wrote:
+> On 6/27/24 22:42, Michael Walle wrote:
+>
+> > Hi,
+> >
+> > Could you give us a DT snippet of how this should look like with a
+> > board?
+> >
+> > On Thu Jun 27, 2024 at 6:26 PM CEST, Ayush Singh wrote:
+> >> +  board:
+> >> +    description: board attached to mikrobus connector
+> >> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> > Shouldn't this be a subnode of the connector?
+> >
+> > i.e.
+> >
+> > connector {
+> > 	compatible =3D "mikrobus-connector";
+> >
+> > 	// phandles to the parent controllers
+> >
+> > 	spi {
+> > 		temp-sensor@0 {
+> > 			compatible =3D "maxim,max31855k";
+> > 			reg =3D <0>;
+> > 		};
+> > 	};
+> >
+> > 	i2c {
+> > 		..
+> > 	};
+> > };
+> >
+> > I don't think you can introduce a new
+> >    compatible =3D "maxim,max31855k", "mikrobus,spi";
+> > if there is already a binding for "maxim,max31855k". But I might be
+> > wrong. Why is this compatible needed at all?
+>
+> So I did consider the design you just proposed, but I was not able to=20
+> solve a few issues.
+>
+> 1. How to deal with say 2 mikrobus connectors in a single system?
+
+Yes, interesting problem. That info should go into the cover letter.
+
+> My goal is to have only 1 overlay required for the board config at most.=
+=20
+> Ideally, I would actually like to add the dt for most mikroBUS boards to=
+=20
+> upstream and thus only the following overlay would be required:
+>
+> ```
+>
+> &connector0 {
+>
+>  =C2=A0=C2=A0=C2=A0 board =3D <&temp-board>;
+>
+> };
+
+That's then per board, per click board. right?
 
 >
-> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
-> ---
+> ```
 >
-> Notes:
->     Changes in v3:
->     - None
->     Changes in v2:
->     - update compatible string
 >
->  arch/mips/generic/Makefile        |  1 +
->  arch/mips/generic/board-realtek.c | 81 +++++++++++++++++++++++++++++++
->  2 files changed, 82 insertions(+)
->  create mode 100644 arch/mips/generic/board-realtek.c
->
-> diff --git a/arch/mips/generic/Makefile b/arch/mips/generic/Makefile
-> index 56011d738441..ea0e4ad5e600 100644
-> --- a/arch/mips/generic/Makefile
-> +++ b/arch/mips/generic/Makefile
-> @@ -13,3 +13,4 @@ obj-$(CONFIG_LEGACY_BOARD_SEAD3)      +=3D board-sead3.=
-o
->  obj-$(CONFIG_LEGACY_BOARD_OCELOT)      +=3D board-ocelot.o
->  obj-$(CONFIG_MACH_INGENIC)                     +=3D board-ingenic.o
->  obj-$(CONFIG_VIRT_BOARD_RANCHU)                +=3D board-ranchu.o
-> +obj-$(CONFIG_MACH_REALTEK_RTL)         +=3D board-realtek.o
-> diff --git a/arch/mips/generic/board-realtek.c b/arch/mips/generic/board-=
-realtek.c
-> new file mode 100644
-> index 000000000000..cd83fbf1968c
-> --- /dev/null
-> +++ b/arch/mips/generic/board-realtek.c
-> @@ -0,0 +1,81 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
+> The problem with making it children is that each connector will require=
+=20
+> seperate overlays for board configs.
 
-Kernel license by default is GPL-2.0-only. Why do something different?
+Right.
 
-> +/*
-> + * Copyright (C) 2024 Allied Telesis
-> + */
-> +
-> +#include <linux/errno.h>
-> +#include <linux/libfdt.h>
-> +#include <linux/of_address.h>
+> Additionally, there are boards with 1 wire eeprom available which can=20
+> theselves store the overlay. In the current setup it will look as follows=
+:
+>
+> ```
+>
+> &mikrobus_board {
 
-You aren't using this header.
+Where is that phandle pointing to? And what if there are two boards?
 
-> +#include <linux/types.h>
-> +
-> +#include <asm/fw/fw.h>
-> +#include <asm/machine.h>
-> +
-> +static __init int realtek_add_initrd(void *fdt)
-> +{
-> +       int node, err;
-> +       u32 start, size;
-> +
-> +       node =3D fdt_path_offset(fdt, "/chosen");
-> +       if (node < 0) {
-> +               pr_err("/chosen node not found\n");
-> +               return -ENOENT;
-> +       }
-> +
-> +       start =3D fw_getenvl("initrd_start");
-> +       size =3D fw_getenvl("initrd_size");
-> +
-> +       if (start =3D=3D 0 && size =3D=3D 0)
-> +               return 0;
-> +
-> +       pr_info("Adding initrd info from environment\n");
-> +
-> +       err =3D fdt_setprop_u32(fdt, node, "linux,initrd-start", start);
-> +       if (err) {
-> +               pr_err("unable to set initrd-start: %d\n", err);
-> +               return err;
-> +       }
-> +
-> +       err =3D fdt_setprop_u32(fdt, node, "linux,initrd-end", start + si=
-ze);
-> +       if (err) {
-> +               pr_err("unable to set initrd-end: %d\n", err);
-> +               return err;
-> +       }
-> +
-> +       return 0;
-> +}
-> +
-> +static const struct mips_fdt_fixup realtek_fdt_fixups[] __initconst =3D =
-{
-> +       { realtek_add_initrd, "add initrd" },
-> +       {},
-> +};
-> +
-> +static __init const void *realtek_fixup_fdt(const void *fdt, const void =
-*match_data)
-> +{
-> +       static unsigned char fdt_buf[16 << 10] __initdata;
-> +       int err;
-> +
-> +       if (fdt_check_header(fdt))
-> +               panic("Corrupt DT");
-> +
-> +       fw_init_cmdline();
-> +
-> +       err =3D apply_mips_fdt_fixups(fdt_buf, sizeof(fdt_buf), fdt, real=
-tek_fdt_fixups);
-> +       if (err)
-> +               panic("Unable to fixup FDT: %d", err);
-> +
-> +       return fdt_buf;
-> +
-> +}
-> +
-> +static const struct of_device_id realtek_of_match[] __initconst =3D {
-> +       {
-> +               .compatible =3D "realtek,rtl9302",
-> +       },
-> +       {}
-> +};
-> +
-> +MIPS_MACHINE(realtek) =3D {
-> +       .matches =3D realtek_of_match,
-> +       .fixup_fdt =3D realtek_fixup_fdt,
-> +};
-> --
-> 2.45.2
+>
+>  =C2=A0=C2=A0=C2=A0 thermo-sensor {
+>
+>  =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 ...
+>
+>  =C2=A0=C2=A0=C2=A0 };
+>
+> };
+
+But here you can have subnodes, no? These could then be just
+enumerated as usual.
+
+&mikrobus_board {
+	mikrobus_gpio: gpio {
+		gpio-controller;
+		#gpio-cells =3D <1>;
+	};
+
+	spi {
+		cs-gpios =3D <&mikrobus_gpio 1>;
+
+		spi@0 {
+			compatible =3D "mydevice";
+			reg =3D <0>;
+		};
+	};
+};
+
+
+> ```
+
+Not sure what this is, but my mail reader doesn't render RST? ;)
+
+-michael
+
+>
+> Which is completely independent of the connector. If the same can be=20
+> achieved with child-node as well, then I am open to doing that.
 >
 >
+> >
+> > Also, the mikrobus-connector driver could translate the chipselects.
+> >
+> > -michael
+>
+> Yes, so it is currently doing that. Translating chip select name to the=
+=20
+> actual number. I am doing it the name way since some boards might use=20
+> pins other than CS as chipselect and not all connectors will allow all=20
+> pins to be used as chipselect.
+>
+>
+> Ayush Singh
+
 
