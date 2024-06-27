@@ -1,124 +1,133 @@
-Return-Path: <devicetree+bounces-80796-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80795-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0916391A6C7
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 14:44:20 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F27F191A6C2
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 14:43:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B4168284B86
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 12:44:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8588AB24FAC
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 12:43:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA5A7161337;
-	Thu, 27 Jun 2024 12:43:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0FD215EFCA;
+	Thu, 27 Jun 2024 12:43:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="GtnRWrDW"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ixL28et/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EC41161314;
-	Thu, 27 Jun 2024 12:43:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6C7415ECEF;
+	Thu, 27 Jun 2024 12:43:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719492237; cv=none; b=P7UlGjks6jwblu4kCMyTEJIhpRP4MCCA/WqwIgtjZunV3WxO02Ztpxzz8z50F7eEBD3aXEjbXl4ixd7tRhBvofaOLQNZFPk/n6J4HoCjreuSuh9qvMOQot3VqT7A61rdrEHLH+I+e7BJGXg//0E0b2LtyVHn799W4hsMIOLfbek=
+	t=1719492210; cv=none; b=CZnuv/w2EF5TtssFPSqyCF8AcmqnVjSIxpTf3YxM69XXN2NHujZVvsOwVKGGMm2kgv7pVReQjEDuMkemfjZ/ld/x6oY0vQehrTYaaWqhjJD9tWmvMKlbXWAz7OlP0BJ3dRv2ZXpBmBNWHsXPHtpULjOPn+bWnHyiiWBDuDaZMu0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719492237; c=relaxed/simple;
-	bh=ozMDR0fkbEQta+UOJZ1FFXQo1ZGGSn1y5K98kho/9pc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=trQ8JFkZzGWdIFCz08fQuZD3hr9BfmyZPjGomfVXgKf5UD7OPUi1hgsugZOBIkqB+mNYVsEqXuSwi79UxWp3r8WP3HALpl2A9VUlT6LpXNjk/o/8P63nYV1bWDZUbdn73wytdEMaP3QB05SomzUukd7PlenHWVG6IubuUFO5KZQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=GtnRWrDW; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45R9ZMS3011277;
-	Thu, 27 Jun 2024 14:43:29 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	bvWJeEz7wgq1kb1F+RfxA0OnfFRUKW1rLsdX1vbv/18=; b=GtnRWrDW7l/RHIL3
-	DNyn7KxrcBxc+AE0eh8g9Tir7OKU7onm/JuFafJfnVWMSLZEEXPpi5viIs99qWxB
-	oLwrYWA8Xf1BrgOz9XgTjPoWC+VAkuEYjDv5RMt9Li5YsD6Oykr/vISr2F0gQlSD
-	Z4rdTmi+pMBlys61FRXBVeq63HcQRxNO5QrPONw4aLWLD6QnLQuempMZiplRSPUJ
-	rXKiMGO3wt5Q+9sf/HD3vFmkh5XBAuxSFvWwu3XjYz3owu4Nj3DCf1CnbrjrfHUJ
-	fAcK7mXSxCmyC0yGFiLFFRSerA9/9Ja3gjMkkVmQ3i8oYKrYwrjPAtKsn6zp9vI9
-	PSV+oA==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3yx860uenb-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 27 Jun 2024 14:43:29 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 5AD794002D;
-	Thu, 27 Jun 2024 14:43:24 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id A32C721A900;
-	Thu, 27 Jun 2024 14:42:12 +0200 (CEST)
-Received: from [10.48.86.79] (10.48.86.79) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Thu, 27 Jun
- 2024 14:42:11 +0200
-Message-ID: <1a13b19b-cf16-4a49-8d80-21579dc1da94@foss.st.com>
-Date: Thu, 27 Jun 2024 14:42:11 +0200
+	s=arc-20240116; t=1719492210; c=relaxed/simple;
+	bh=MIa5UbAwdN0MQZHDYIq4AocxOOiHJlQicygyyMYL9aU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lRF8Ul9G/vrjynbzR/FRX5lXRpyU0mGoGVk9aLgFdM7Q7TXQQC0Z9RUHpUnDtsEEw+rxyVfzs8Y6rKRRoqNh9hGvGXFHP3/2LhqEZ3yBqiPCdd6gJSuKIvkvXoahwcfYCf5zuI8GlANxUyUZ98CrP7Ty/Y42CuoBRpipr3smpXI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ixL28et/; arc=none smtp.client-ip=198.175.65.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1719492209; x=1751028209;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=MIa5UbAwdN0MQZHDYIq4AocxOOiHJlQicygyyMYL9aU=;
+  b=ixL28et/Cx921ZfyPz+SP9YS/Y8zAk8A0q/s2f/2/vx1Wq3FTTpTIKay
+   kLr1gw93kqlWb43HPx3YNg9tmp3z2f0clxiQGfZtt7FGMQ0RFVyjZnHwP
+   yNbSxr6A7XUyY1AY6slsmmVxQCBwzBoTb4iAhjQIBa8lWUSuPcKWmWlbI
+   orvV8wyNCb8IZv0QlzNSifGmHayLXqZ5LkOk7N5Kx4AdRpg6SOMBjRKY6
+   WVpWA4Hw4dlBOmAhQl2J06gCo3eBhfyJ2xIpp6HBX//gsc996jGri2hRv
+   EaeK+6+ftL+HtbmYBGmU2nkr4moG3tPKF1b97dv814D+xT4d5UySe+lj3
+   A==;
+X-CSE-ConnectionGUID: HXSwzJDbR3C8+M9dPg5xTw==
+X-CSE-MsgGUID: XEjtTFj6RhWK4/4+/+5I2g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11115"; a="20435161"
+X-IronPort-AV: E=Sophos;i="6.09,166,1716274800"; 
+   d="scan'208";a="20435161"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jun 2024 05:43:27 -0700
+X-CSE-ConnectionGUID: wtTd6FqOQ+SyMrQRmMdeLg==
+X-CSE-MsgGUID: TxNoo/aqRMu0POgQB/IcaA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,166,1716274800"; 
+   d="scan'208";a="45022904"
+Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
+  by orviesa007.jf.intel.com with ESMTP; 27 Jun 2024 05:43:23 -0700
+Received: from kbuild by 68891e0c336b with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sMoTA-000GCo-17;
+	Thu, 27 Jun 2024 12:43:20 +0000
+Date: Thu, 27 Jun 2024 20:42:29 +0800
+From: kernel test robot <lkp@intel.com>
+To: Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>, sboyd@kernel.org,
+	andersson@kernel.org, bjorn.andersson@linaro.org,
+	david.brown@linaro.org, devicetree@vger.kernel.org,
+	jassisinghbrar@gmail.com, linux-arm-msm@vger.kernel.org,
+	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-remoteproc@vger.kernel.org, mark.rutland@arm.com,
+	mturquette@baylibre.com, ohad@wizery.com, robh@kernel.org,
+	sricharan@codeaurora.org
+Cc: oe-kbuild-all@lists.linux.dev, gokulsri@codeaurora.org
+Subject: Re: [PATCH v9 8/8] arm64: dts: qcom: Enable Q6v5 WCSS for ipq8074 SoC
+Message-ID: <202406272012.krpg0wbC-lkp@intel.com>
+References: <20240621114659.2958170-9-quic_gokulsri@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/1] Add MCP23S08 pinctrl support
-To: Christophe Roullier <christophe.roullier@foss.st.com>,
-        "David S . Miller"
-	<davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>, Jakub Kicinski
-	<kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Richard Cochran
-	<richardcochran@gmail.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Liam Girdwood
-	<lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-        Marek Vasut
-	<marex@denx.de>
-CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-References: <20240611084206.734367-1-christophe.roullier@foss.st.com>
-Content-Language: en-US
-From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <20240611084206.734367-1-christophe.roullier@foss.st.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-27_08,2024-06-27_03,2024-05-17_01
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240621114659.2958170-9-quic_gokulsri@quicinc.com>
 
+Hi Gokul,
 
+kernel test robot noticed the following build warnings:
 
-On 6/11/24 10:42, Christophe Roullier wrote:
-> Enable MCP23S08 pinctrl support
-> 
-> V2: - Remark from Krzysztof (Change built-in to module)
-> 
-> Christophe Roullier (1):
->    ARM: multi_v7_defconfig: Add MCP23S08 pinctrl support
-> 
->   arch/arm/configs/multi_v7_defconfig | 1 +
->   1 file changed, 1 insertion(+)
-> 
-> 
-> base-commit: bb678f01804ccaa861b012b2b9426d69673d8a84
+[auto build test WARNING on remoteproc/rproc-next]
+[also build test WARNING on clk/clk-next robh/for-next linus/master v6.10-rc5 next-20240626]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Applied on stm32-next.
+url:    https://github.com/intel-lab-lkp/linux/commits/Gokul-Sriram-Palanisamy/remoteproc-qcom-Add-PRNG-proxy-clock/20240625-162317
+base:   git://git.kernel.org/pub/scm/linux/kernel/git/remoteproc/linux.git rproc-next
+patch link:    https://lore.kernel.org/r/20240621114659.2958170-9-quic_gokulsri%40quicinc.com
+patch subject: [PATCH v9 8/8] arm64: dts: qcom: Enable Q6v5 WCSS for ipq8074 SoC
+config: arm64-randconfig-051-20240627 (https://download.01.org/0day-ci/archive/20240627/202406272012.krpg0wbC-lkp@intel.com/config)
+compiler: clang version 19.0.0git (https://github.com/llvm/llvm-project ad79a14c9e5ec4a369eed4adf567c22cc029863f)
+dtschema version: 2024.6.dev1+g833054f
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240627/202406272012.krpg0wbC-lkp@intel.com/reproduce)
 
-Thanks
-Alex
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202406272012.krpg0wbC-lkp@intel.com/
+
+dtcheck warnings: (new ones prefixed by >>)
+   arch/arm64/boot/dts/qcom/ipq8074-hk01.dtb: phy@59000: 'vdda-pll-supply' is a required property
+   	from schema $id: http://devicetree.org/schemas/phy/qcom,qusb2-phy.yaml#
+   arch/arm64/boot/dts/qcom/ipq8074-hk01.dtb: phy@59000: 'vdda-phy-dpdm-supply' is a required property
+   	from schema $id: http://devicetree.org/schemas/phy/qcom,qusb2-phy.yaml#
+   arch/arm64/boot/dts/qcom/ipq8074-hk01.dtb: phy@79000: 'vdd-supply' is a required property
+   	from schema $id: http://devicetree.org/schemas/phy/qcom,qusb2-phy.yaml#
+   arch/arm64/boot/dts/qcom/ipq8074-hk01.dtb: phy@79000: 'vdda-pll-supply' is a required property
+   	from schema $id: http://devicetree.org/schemas/phy/qcom,qusb2-phy.yaml#
+   arch/arm64/boot/dts/qcom/ipq8074-hk01.dtb: phy@79000: 'vdda-phy-dpdm-supply' is a required property
+   	from schema $id: http://devicetree.org/schemas/phy/qcom,qusb2-phy.yaml#
+>> arch/arm64/boot/dts/qcom/ipq8074-hk01.dtb: /soc@0/remoteproc@cd00000: failed to match any schema with compatible: ['qcom,ipq8074-wcss-pil']
+--
+>> arch/arm64/boot/dts/qcom/ipq8074-hk10-c1.dtb: /soc@0/remoteproc@cd00000: failed to match any schema with compatible: ['qcom,ipq8074-wcss-pil']
+--
+>> arch/arm64/boot/dts/qcom/ipq8074-hk10-c2.dtb: /soc@0/remoteproc@cd00000: failed to match any schema with compatible: ['qcom,ipq8074-wcss-pil']
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
