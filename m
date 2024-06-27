@@ -1,55 +1,56 @@
-Return-Path: <devicetree+bounces-80681-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80682-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 757FB91A310
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 11:53:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 069EA91A31A
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 11:54:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A74D11C21061
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 09:53:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B607A284758
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 09:54:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E34513BC31;
-	Thu, 27 Jun 2024 09:53:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77B8413C81E;
+	Thu, 27 Jun 2024 09:54:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Ki0GmH9D"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="C+wJ9AO2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7B9913AD09;
-	Thu, 27 Jun 2024 09:53:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AC1113C3C2;
+	Thu, 27 Jun 2024 09:54:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719481985; cv=none; b=QfMt2S4u/wEiYKyYo0QTCFGFTZS0Xz0XoQwkD2qUHJtm1KB0ImCphfrLRwrfvwcQAdfLWs4fOhD84+w3XSPz0QUQosxb5cfGnbLKWREf+GC5V4wm+x+WRK5ZfQOfEJNEZmdlGpaw9s7aqBs9Qy+u7XLritkRj1OEalnBbBihBvs=
+	t=1719482068; cv=none; b=jqaUBk9yLgFpYORy2oOoQuIXbC7YFa+Jh6A/QpNamjT+2pYHyPG9wAbla66MxeGoBA9nwPqhdpNder0kUj2ywpGyCotO6NaI5S0/+OrC1EK4u5xPJXeb6orYDe6MxZdMJi5abPy1GGep5FG/hAdYDKq/9TGXJh5e85mCZqkj35g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719481985; c=relaxed/simple;
-	bh=lQ6DZuV1MIf49SNkyEYjAOSZq1CCitf77+c9UVPABIA=;
+	s=arc-20240116; t=1719482068; c=relaxed/simple;
+	bh=ds5qgnPrb2bN+kFBGjS/sc0PxsC5dx7vPl8UC1KzFmk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SYXygdT63AtRRpTIg+Hgp1z2YfKeLk3Nr/P3/vTieknUFc+gQhY9s/Uoi/iylj9tkgeMwkbblf9aqa5paRoACxx5H17Ivl/CA1A1Jmd0fhJIrT1MkoOJ7uZPnMR2NSzQ6h7z6KvN0rIQtoQJhhJF2sixQxxqmJxtDcf+7DjGbAk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Ki0GmH9D; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1719481982;
-	bh=lQ6DZuV1MIf49SNkyEYjAOSZq1CCitf77+c9UVPABIA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Ki0GmH9DwSk4BJbAk4tWjyZkVUEoHnZ5ie1gsExxyL3MuNtbTuP2E4zlK+er+RkHA
-	 3eNy1vN0NwqrPy/0Q0M+KJc9YyrF988yaJFQhHrFlsrAZyEWQAdDeYe7InmchyBuDS
-	 0dFtUM7HNchGWhZRAlmiANzpMgjFnc1875fQ8+weLTo+k+s1RgK3rgH6qNTBF1MudQ
-	 tC5lodeoqRwxagtB4HDp476UmbzZsZ3tZCzoQeSs5UYV2ur3Ex6CFCwDLVHBaeNJRO
-	 wYsKcNc2iKjIN1vf4fGlirgQWHW681H/Jj8Z46AqFs8o7YCn/Jxc1pYbEwat9X6j5k
-	 xST95ASScAtLA==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 165EE37810CD;
-	Thu, 27 Jun 2024 09:53:01 +0000 (UTC)
-Message-ID: <b5bb67e8-ebd6-43db-b9d6-2aae38f2a08d@collabora.com>
-Date: Thu, 27 Jun 2024 11:53:00 +0200
+	 In-Reply-To:Content-Type; b=IWNSt5zXMNG3+F1DqmW9hSkNYsq9nmPQCYdYkBL/WLcqOSBhuA3xpUd+NlOpfvggKv8Tj6gpgfvdI3ILjKWGHEXrQbdukyUS3iXgPMSnQpdlHXOzHDtrCalHW+V1V3YdB8m8RIUVmvGqEprb+gu+CZxycP4TVozM3yZmp9xhBtw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=C+wJ9AO2; arc=none smtp.client-ip=212.227.15.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
+	s=s31663417; t=1719482049; x=1720086849; i=wahrenst@gmx.net;
+	bh=qe5FDI+md3Pge9LtwMQZf8FokKyoNNSJDrbmKAhp1tY=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=C+wJ9AO2f72MXxZw6oTrZHYZPBDf1f5r9nmClivCv6w5OeIXYnCzm/zsQiv2ZOuU
+	 GJFkpvn8xoF+Y0ywOsg4egdgjNAvcfq5Ui0t8NHfAkFUX0VcyRuQzHvMa2g3Ko63C
+	 TlLAkY0GI7xtnAj4IaQtTO4Xjc4Fm0Bk5qtd3NN/UX4TIHZIYa7ivYSMHG0nQeA4K
+	 BbqfUWrreBk81h7LwjzOlBvmOQ1bfF4qqdZRly0iHMFMqbXqM49IH1fF7vk3CF1kB
+	 EM2mBs6/B6kA6df2gLL1x0ur0TPpM0nyOsq5lW7HqjsXKoe34DBiWIDU5BdpLofo3
+	 x9tD+LUrjYIxMg0Lfg==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.1.127] ([37.4.248.43]) by mail.gmx.net (mrgmx005
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1N4hvR-1sUuWs0y3z-00yzZ8; Thu, 27
+ Jun 2024 11:54:09 +0200
+Message-ID: <964072fc-1aa9-4d4e-955f-8777e2692346@gmx.net>
+Date: Thu, 27 Jun 2024 11:54:05 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,94 +58,87 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/4] dt-bindings: clock: airoha: Add reset support to
- EN7581 clock binding
-To: Conor Dooley <conor.dooley@microchip.com>
-Cc: Lorenzo Bianconi <lorenzo@kernel.org>, linux-clk@vger.kernel.org,
- p.zabel@pengutronix.de, mturquette@baylibre.com, sboyd@kernel.org,
- lorenzo.bianconi83@gmail.com, conor@kernel.org,
- linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, nbd@nbd.name, john@phrozen.org, dd@embedd.com,
- catalin.marinas@arm.com, will@kernel.org, upstream@airoha.com
-References: <cover.1718282056.git.lorenzo@kernel.org>
- <ac557b6f4029cb3428d4c0ed1582d0c602481fb6.1718282056.git.lorenzo@kernel.org>
- <d1021a8d-6e7f-4839-845e-88e2c8673c34@collabora.com>
- <20240627-vending-lisp-4e1cf45e552c@wendy>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH v7 0/2] pwm: Add GPIO PWM driver
+To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
+ Linus Walleij <linus.walleij@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, andy.shevchenko@gmail.com,
+ Philip Howard <phil@gadgetoid.com>, Sean Young <sean@mess.org>,
+ Chris Morgan <macromorgan@hotmail.com>, linux-gpio@vger.kernel.org,
+ linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+ Nicola Di Lieto <nicola.dilieto@gmail.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Dhruva Gole <d-gole@ti.com>, Vincent Whitchurch
+ <vincent.whitchurch@axis.com>, Andy Shevchenko <andy@kernel.org>
+References: <20240604-pwm-gpio-v7-0-6b67cf60db92@linaro.org>
+ <oytpr6q3rmyj4n6ufktl5okg7ugusks5csgkg3zvs32b4jqh24@lmfovdemzi4y>
 Content-Language: en-US
-In-Reply-To: <20240627-vending-lisp-4e1cf45e552c@wendy>
+From: Stefan Wahren <wahrenst@gmx.net>
+In-Reply-To: <oytpr6q3rmyj4n6ufktl5okg7ugusks5csgkg3zvs32b4jqh24@lmfovdemzi4y>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:GsRmZwGIvZ7DCjXsgmLZHA3JY0bbTTqncYRKHdX4LgqHeSr7LsJ
+ ksd46B0pIsXtEbHZb2D+DmW4k+jwXSWG6Fd5oy8OoILvnGnlu1yJwGI+arSglVl1yTUDJLW
+ uErzWFWchsnWPMj0r2VLFA5sFS4Kdr1uFh/MnyXPqMLPDftmamY9BBcrPSESqt2M8KEcA2R
+ /VZgsSYw4Z/6vocebkVsQ==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:26aPyoLUc1o=;dvfuFXGeATA9mtObEvreSzN9uJB
+ +fXEQOUoMRn44xph2lQst/l9biO/VDikJ2dZrO4dQR/n50URJnSlIrsvxvnoTp6g/YGCoaAZh
+ nRMiNWKM+znz5NRlx99T6oZD/Hs/FfLQTkTZP44GRxra0pBFiT+4Phy+bRmzhrjdhwagLRELy
+ Jrv0QehrVTktMXj11Bm5olrzY935xxWmZWY2Lq4gyV1ab5rrN3ryB7knxwLopS6GLmSIT908y
+ nsod2YE5IJNxG3CIhOyHmju6vZT8EuIZ3KqdWQESpSPutKxc0l4rR91YBQ8KVLhWFyiohCB86
+ KNh128w+87xdVhJp/OIJwo36UANpwABb2hshX0EudXtHkiBqJ1rYGt9aTMwXXFY/FixmXPBKD
+ Kq37IdMEt18YxtMiA8m22U6GG1lwHzaH/BIEBwfs24t9tZDn68cVKxK8ygUOscog2yAt87Txd
+ LBBIaRLO7GVchvy7enMe/TR6JPIRw7db8diUoUL8m4vukqrvLkvaeu9S66JwehVZjy8caSH9A
+ vOwP/cXY7GX2c/GQoubJCLGj+bIYShDRIpa1Wu9hJQk/uxLGrdE9hEitbTMHqqnp2DCmdlqqk
+ /RK7rp/fKNctzGFMiuQ989u+bfr0xeSKPZmmD3YrOHfweDgPDmUQ2ChfEu6j2vOkXcWJsOMLU
+ U8yZE7mqHowjGYTSS4547aQ9NvNJuUYXmSTWw1m2tME0BASjzlm/8ZcMUYEfkJ51g+xgkPx3a
+ JhgJEFydFu3t14ngb09Gtz0JKYihjxCZL8FDqK22N/WeOIh4mmKBoOC7M5TsoQxv3XA3zjhUH
+ OpebLZZ0RCNDaLQgf3tVuD2eKkXeEE8D6KM71sVzeG1mI=
 
-Il 27/06/24 11:47, Conor Dooley ha scritto:
-> On Thu, Jun 27, 2024 at 11:33:47AM +0200, AngeloGioacchino Del Regno wrote:
->> Il 13/06/24 14:47, Lorenzo Bianconi ha scritto:
->>> Introduce reset capability to EN7581 device-tree clock binding
->>> documentation.
->>>
->>> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
->>> ---
->>>    .../bindings/clock/airoha,en7523-scu.yaml     | 25 ++++++-
->>>    .../dt-bindings/reset/airoha,en7581-reset.h   | 66 +++++++++++++++++++
->>>    2 files changed, 90 insertions(+), 1 deletion(-)
->>>    create mode 100644 include/dt-bindings/reset/airoha,en7581-reset.h
->>>
->>> diff --git a/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml b/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
->>> index 3f4266637733..84353fd09428 100644
->>> --- a/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
->>> +++ b/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
->>> @@ -35,7 +35,7 @@ properties:
->>>      reg:
->>>        minItems: 2
->>> -    maxItems: 3
->>> +    maxItems: 4
->>>      "#clock-cells":
->>>        description:
->>> @@ -43,6 +43,10 @@ properties:
->>>          clocks.
->>>        const: 1
->>> +  '#reset-cells':
->>> +    description: ID of the controller reset line
->>> +    const: 1
->>> +
->>>    required:
->>>      - compatible
->>>      - reg
->>> @@ -60,6 +64,8 @@ allOf:
->>>                - description: scu base address
->>>                - description: misc scu base address
->>> +        '#reset-cells': false
->>> +
->>>      - if:
->>>          properties:
->>>            compatible:
->>> @@ -70,6 +76,7 @@ allOf:
->>>              items:
->>>                - description: scu base address
->>>                - description: misc scu base address
->>> +            - description: reset base address
+Am 27.06.24 um 08:52 schrieb Uwe Kleine-K=C3=B6nig:
+> Hello,
+>
+> On Tue, Jun 04, 2024 at 11:00:39PM +0200, Linus Walleij wrote:
+>> Add a software PWM which toggles a GPIO from a high-resolution timer.
 >>
->> Are you sure that the indentation is correct? :-)
+>> Recent discussions in the Raspberry Pi community revealt that a lot
+>> of users still use MMIO userspace tools for GPIO access. One argument
+>> for this approach is the lack of a GPIO PWM kernel driver. So this
+>> series tries to fill this gap.
 >>
->> After fixing the indentation,
+>> This continues the work of Vincent Whitchurch [1], which is easier
+>> to read and more consequent by rejecting sleeping GPIOs than Nicola's
+>> approach [2]. It further takes over where Stefan Wahren left off.
 >>
->> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>> I have not looked into the interrupt storm problem mentioned in [3]
+>> but instead focused on some real-life tests:
 >>
->>>                - description: pb scu base address
-> 
-> The indentation actually looks okay when I apply this locally, but how is
-> it backwards compatible to add this register in the middle of the list??
+>> The IXP4xx NSLU2 has a speaker connected directly to a GPIO, and I
+>> wanted to use this patch to provide a proper beeper for the machine
+>> and not have to rely on custom hacks.
+>>
+>> I added a DTS patch like this:
+>>
+>> gpio_pwm: pwm {
+>>          #pwm-cells =3D <3>;
+>>          compatible =3D "pwm-gpio";
+>>          gpios =3D <&gpio0 4 GPIO_ACTIVE_HIGH>;
+>> };
+>>
+>> beeper {
+>>          compatible =3D "pwm-beeper";
+>>          pwms =3D <&gpio_pwm 0 1 0>;
+>>          beeper-hz =3D <1000>;
+>> };
+> Applied both patches to
+> https://git.kernel.org/pub/scm/linux/kernel/git/ukleinek/linux.git pwm/f=
+or-next
+\o/
 
-It's not, and this is actually something done on purpose - there is no DT using
-this binding yet (here, nor uboot), and Lorenzo acknowledged the mistake before
-it was too late...
+Thanks
+>
+> Thanks
+> Uwe
 
-At least this time, it wasn't a misattention :-P
-
-Btw, as far as I know, the reset base address is in between misc scu and pb scu,
-that's why it was put there in the middle.
-
-Cheers!
-Angelo
 
