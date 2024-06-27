@@ -1,79 +1,100 @@
-Return-Path: <devicetree+bounces-80689-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80691-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94E1591A36E
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 12:05:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1668D91A384
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 12:10:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 482B21F226B1
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 10:05:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AEB9C1F22C06
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 10:10:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8531D13C3CF;
-	Thu, 27 Jun 2024 10:05:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAEA213CFA1;
+	Thu, 27 Jun 2024 10:10:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="i5T/sRWC"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="YbdrfXp3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.17])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6C9922EF2
-	for <devicetree@vger.kernel.org>; Thu, 27 Jun 2024 10:05:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.17
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7E0C13C831;
+	Thu, 27 Jun 2024 10:10:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719482740; cv=none; b=mHTBSTL+EIYOveHsz9brWgvuVKTejcaAOyFhK/QKiVqkpbUpwOsmDqHY+hWv73mogDec1yYjQn3tVBb8j+rtCQhbAgWvAwDIVsZ1J9B9g8Y8ysn7Sc4DWA8dQh0pwE8U4fAGTRVcOYulM0ymDbntL7DNcG1mhdjrixPKMoVoq20=
+	t=1719483025; cv=none; b=dPKpggiwkcUbGlEBJTei/WKIeblex2CzltQK/Qngfm6oC8M9+opQzu5rTJl4FdX39FjO3L5QRxZ1N11y/QMcD3Cg25pVIyHYWyxggSnyyLqsmh7I/kcYec1Hca2ePrqfQ58vhLrmM4M0Ol/ZRfNpJuTLkC+y3R6cIqlxXHmSJSE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719482740; c=relaxed/simple;
-	bh=xczqqtXsVrrwAMvmh9AI1sXsOJfyF1tCCQOsGAFdmLM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PXomjuNqGHqsfmw7ntrNXFoViFoOm5MYxBaZwwSVUVPZLYsq6gP15tuWm910lcwYoIGGM5QFc9pATzRyK+daRbdwxWgsbT4WuOByt7qUbGRcU2kRDqi9S01N9wqCTfvVhN2n+LpXn5R0itlLxt09XHsxy6tVBk8gYu3ggwm15yw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=i5T/sRWC; arc=none smtp.client-ip=1.95.21.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=Q3DO9iZvJ7SWjOlivAqabwQjr44lGGsASnW0CVN/hA0=;
-	b=i5T/sRWCT2LmS4VrZuTAz1vNCl+X+OW0d+D3kIY0NYIn4wAh3F4ErieHHLMQc3
-	8r4GvAi78hu/ixUtMD2mtoIKoc9hfvwHAftFFhtxpz5km3DRhFxmq1ZDVIjMKN/6
-	K3ukBh7XLkBy+UKJ19rn0abOEO3nmEbnySckwyv8X7voY=
-Received: from dragon (unknown [114.218.218.47])
-	by gzsmtp3 (Coremail) with SMTP id M88vCgD33x1LOX1mv0AaAA--.52926S3;
-	Thu, 27 Jun 2024 18:05:01 +0800 (CST)
-Date: Thu, 27 Jun 2024 18:04:59 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Fabio Estevam <festevam@gmail.com>
-Cc: shawnguo@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	Fabio Estevam <festevam@denx.de>
-Subject: Re: [PATCH] arm64: dts: imx8qxp-mek: Pass memory-region to the DSP
- node
-Message-ID: <Zn05S5ATfw5USx29@dragon>
-References: <20240626140532.615857-1-festevam@gmail.com>
+	s=arc-20240116; t=1719483025; c=relaxed/simple;
+	bh=ngp1FT+UOeOQu3QXLveoVHx3x4aIgCnlqdTftkNgha4=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=qEE65DjYxRGLOIm+AYqCvbRRduHAFwtOHqcR2iVeVe7kqKq0+lxFBWNt7ejaqsu9kG3Mp0mIO1GY90KZMnn7WmJh7A8axoIW6jd6srz0P/7SsXzMrUuz0xBedfSbZxL+MIkMNqW7YWS27/xzAGkl2yh6zwtnBWgfemsbKZaqF1Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=YbdrfXp3; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 45RAA82j062259;
+	Thu, 27 Jun 2024 05:10:08 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1719483008;
+	bh=DbAR1yoE7ko87b798yH4OO+KqU4hl93ILHvTCW1Chgs=;
+	h=From:To:CC:Subject:Date;
+	b=YbdrfXp3mWuFuzcHbiSQ8v9iuo4mjc0s6rL1m3tFo4NbbLwxnoIOEiPyU+/19rsHm
+	 MiDECSHiex0qxAJ9BolgaIRbLS3K9oaAMAm8YnuOErd6KrY78VRB0UBO+jhDCrML+y
+	 qG0u9G47nZ+lDpOgBxNnePZfne8dnf76qIITMX4A=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 45RAA8T6014605
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 27 Jun 2024 05:10:08 -0500
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 27
+ Jun 2024 05:10:08 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 27 Jun 2024 05:10:08 -0500
+Received: from a0497641-HP-Z2-Tower-G9-Workstation-Desktop-PC.dhcp.ti.com (a0497641-hp-z2-tower-g9-workstation-desktop-pc.dhcp.ti.com [172.24.227.36])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 45RAA4ST019141;
+	Thu, 27 Jun 2024 05:10:05 -0500
+From: Neha Malcom Francis <n-francis@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>, <n-francis@ti.com>
+Subject: [PATCH] arm: dts: k3-j721e-mcu-wakeup: Add bootph-all to chipid
+Date: Thu, 27 Jun 2024 15:40:03 +0530
+Message-ID: <20240627101003.3608397-1-n-francis@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240626140532.615857-1-festevam@gmail.com>
-X-CM-TRANSID:M88vCgD33x1LOX1mv0AaAA--.52926S3
-X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUxXo2UUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiCw0LZWZv-czt0AAAst
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Wed, Jun 26, 2024 at 11:05:32AM -0300, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@denx.de>
-> 
-> According to fsl,dsp.yaml, 'memory-region' is a required property.
-> 
-> Pass 'memory-region' to fix the following dt-schema warning:
-> 
-> imx8qxp-mek.dtb: dsp@596e8000: 'memory-region' is a required property
-> 
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
+Add bootph-all property to the chipid node so that it is available at
+bootloader stage for obtaining the SoC ID and revision.
 
-Applied, thanks!
+Signed-off-by: Neha Malcom Francis <n-francis@ti.com>
+---
+ arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
+index 9349ae07c046..c2417ef614cf 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
+@@ -57,6 +57,7 @@ wkup_conf: bus@43000000 {
+ 		chipid: chipid@14 {
+ 			compatible = "ti,am654-chipid";
+ 			reg = <0x14 0x4>;
++			bootph-all;
+ 		};
+ 	};
+ 
+-- 
+2.34.1
 
 
