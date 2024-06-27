@@ -1,219 +1,103 @@
-Return-Path: <devicetree+bounces-80821-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80810-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F57B91A78C
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 15:12:41 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5A2991A774
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 15:11:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C193E1C2359F
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 13:12:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 75A0CB25E72
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 13:11:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B88CA1922CA;
-	Thu, 27 Jun 2024 13:10:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91F01188CA1;
+	Thu, 27 Jun 2024 13:10:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Ncaa1QRy"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="MiYLuIVa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01F70191491;
-	Thu, 27 Jun 2024 13:10:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0A54187541;
+	Thu, 27 Jun 2024 13:10:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719493857; cv=none; b=EDLbMhIpD7ep3y8uf52MatB8HfV8Av1AHzlVAMys3R1M0ZxR0H9QS2wIjoGumHpweOoWpJmf6HgqSo6XV/OZarCwLYMjetZfm16MtCoGlF8wXFvs3fPd/464pc0uwtc15Ddl0fgNub8QcdZZCPha8SqFAPqIi9+5LM2Fd/mgoHE=
+	t=1719493841; cv=none; b=BT+N/HxrhWL4VTTellXn7v1ozcldY6+8nUnKUD/328GSjQ4Q2NMOuIgI++bilLymw8qJ/JFhRp1BPi/wGVV7zvw141g6ouarjErFNBDlNuqCkB1Fq1cYk9Lq/y760EVbV8gWH31BO4jz2XkXi+dwjrnGMA6raaGTFmAiQrzTZFg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719493857; c=relaxed/simple;
-	bh=FbcR+dVVbxUGN0wBjf6lwvb+us2pjWAIe25ELsV0j6A=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=WpdXU8v2YMz93F8JFuUWX/6bHYGBTJ2ScvA/pQrWPz8dYufWbDZ0HUOVWNeDIOzOLsJcGEnllskUWZZ5bujl3AGnmyMYxneDzewgzyzgI6iwqETK4jRSPgL8a3GGffp6LGKltwE58UyFxnikCsvEW1UFDnC4HfN0hDrradCn4hY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Ncaa1QRy; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 45RDAiKD110257;
-	Thu, 27 Jun 2024 08:10:44 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1719493844;
-	bh=W9I8M0fJ29EEa1Vs6py4YdDpWiT/n+FZs2W3TvBARoY=;
-	h=From:Date:Subject:References:In-Reply-To:To:CC;
-	b=Ncaa1QRyHcB6HIbgB9a1F70yTCxDCAEM0J/+TgdAwbJKcQM9Sk1fXpA3nw7Jhtarb
-	 x6xH8e/2VzngLT1LfympFwLoAWO0jL6H/1M/D6NiAFHJsYVdF6uAzzote8rAQK74IZ
-	 ZgnO40rd1TkIGG1eZZ1eHn19BaJNDClZbF8rjNQQ=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 45RDAik3029431
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 27 Jun 2024 08:10:44 -0500
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 27
- Jun 2024 08:10:44 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 27 Jun 2024 08:10:44 -0500
-Received: from localhost (jluthra.dhcp.ti.com [172.24.227.116])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 45RDAhJh072744;
-	Thu, 27 Jun 2024 08:10:44 -0500
-From: Jai Luthra <j-luthra@ti.com>
-Date: Thu, 27 Jun 2024 18:40:08 +0530
-Subject: [PATCH v2 13/13] media: ti: j721e-csi2rx: Submit all available
- buffers
+	s=arc-20240116; t=1719493841; c=relaxed/simple;
+	bh=0yWDqT9cZHuQXEI72ujjcegfN2UGNSzTzu0vBUTEMI4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=REyNTKiJzRvuPLwl1/WRhYmfM/s1M2zJYoPnKapUe6ZHQH7iWtjYqasFRmewrGTrVueIz53Pwuc9zR7eoaI62WQ6dbJcJfuDfiqIVIkVY4Tg/Y0ODW7SgVUvqi4GPjmPV1/zG1zULBkz7d2AcqYQ3+lG7fPwifiKddCWFwlRE0M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=MiYLuIVa; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=yopBcUIB6oeeZ7aRWdWnVXoVTZwVXNOBbL6N5h0D2C0=; b=MiYLuIVaMlVHAAiA6xJgBkahUU
+	WmrTzQQMrXzDWzUcq0UHMzG1AiducsQjg5/vSreM6SPi3eNG+5BDVaMuMCesrlkXlzr5Gv8S8m+BV
+	RC1625Zlhj8vBVeFp16d0CO35KXS3S6/Uw3jOZRZSl1MnZMfchjv5ZEJSL/RmG1fLjbA=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1sMotG-001A7Y-JN; Thu, 27 Jun 2024 15:10:18 +0200
+Date: Thu, 27 Jun 2024 15:10:18 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Serge Semin <fancer.lancer@gmail.com>
+Cc: Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Jose Abreu <Jose.Abreu@synopsys.com>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Sagar Cheluvegowda <quic_scheluve@quicinc.com>,
+	Abhishek Chauhan <quic_abchauha@quicinc.com>,
+	Andrew Halaney <ahalaney@redhat.com>,
+	Jiawen Wu <jiawenwu@trustnetic.com>,
+	Mengyuan Lou <mengyuanlou@net-swift.com>,
+	Tomer Maimon <tmaimon77@gmail.com>, openbmc@lists.ozlabs.org,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v3 03/10] net: pcs: xpcs: Convert xpcs_id to
+ dw_xpcs_desc
+Message-ID: <15754e63-be47-4847-8b61-af7f8a818a3c@lunn.ch>
+References: <20240627004142.8106-1-fancer.lancer@gmail.com>
+ <20240627004142.8106-4-fancer.lancer@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20240627-multistream-v2-13-6ae96c54c1c3@ti.com>
-References: <20240627-multistream-v2-0-6ae96c54c1c3@ti.com>
-In-Reply-To: <20240627-multistream-v2-0-6ae96c54c1c3@ti.com>
-To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-        Mauro Carvalho Chehab
-	<mchehab@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans
- Verkuil <hverkuil-cisco@xs4all.nl>,
-        Vaishnav Achath <vaishnav.a@ti.com>,
-        Maxime Ripard <mripard@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Vignesh
- Raghavendra <vigneshr@ti.com>,
-        Aradhya Bhatia <a-bhatia1@ti.com>, Devarsh
- Thakkar <devarsht@ti.com>,
-        Changhuang Liang
-	<changhuang.liang@starfivetech.com>,
-        Jack Zhu <jack.zhu@starfivetech.com>,
-        Julien Massot <julien.massot@collabora.com>,
-        Laurent Pinchart
-	<laurent.pinchart@ideasonboard.com>,
-        Jai Luthra <j-luthra@ti.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3576; i=j-luthra@ti.com;
- h=from:subject:message-id; bh=FbcR+dVVbxUGN0wBjf6lwvb+us2pjWAIe25ELsV0j6A=;
- b=owEBbQKS/ZANAwAIAUPekfkkmnFFAcsmYgBmfWS+jgHgO1a5SJEwXQ37yzNnduJruvc/sx6CU
- 4hkmKyvqUmJAjMEAAEIAB0WIQRN4NgY5dV16NRar8VD3pH5JJpxRQUCZn1kvgAKCRBD3pH5JJpx
- RdyjD/9QcfTeOz89dcMzVZ3z4tXfZyeKqFX5GXRBDV/S+SqZemYQ3K4Pkw1ABQRL8tSRo5LcZvh
- CqsMIZVGWgY2A1cIynS0mSI9qrGDJbUXSyUS/bL5ceWTUYiKd8m/J0/6Og7+3/3x6i0jQmgNkW7
- rlLibDNaZYTqWEIDTnqGpXbTZInqjFzhte2IBKH51BtrHk3zxX/BWLU1jbW5Z0o+DiEJt+NfICu
- WOiW+Y5yp266MoLG5RyGcTIrv4ndwkMMGqBhOP0bZsMyH7j+qkBN4h84j4YcDlxtTZN6/58Iw6p
- n8UhynuGNG38zZQNOop5OOuCkbzFnkDThp7ClCz6Q6nJEfHK6V8u6ZiZb5c489RP2G/fwGFwySc
- XwNRFg7UyoJ4r3YKw/VfdzVfPMZid8ZqOfIY+uEDiNB1fmt+2LUd+vvUhZzZPI3jLbeJL7CSJxK
- qC5iEHD7Ty0EG/XEP8dY8fAxrLmjYZ0e8mYfIvg4zW0+fFIJEMpeY+D8GxIknTir/HHjDQ2JKrs
- EirR25dDLy2AEw1sMMJ25HL3/CXUrhj8Rym/xTVKdUh+DSKon5nVBuLPwL0OBiys0j+vZHnfnOt
- pd0VrpKSnL+F8B/dUg7ZbwruvT8iolrNtFIt5mvlwzcwi9GiRtbngS7GsV8YNrV8bHJqBpNDyyv
- w1Pxq7uJqC3mSCg==
-X-Developer-Key: i=j-luthra@ti.com; a=openpgp;
- fpr=4DE0D818E5D575E8D45AAFC543DE91F9249A7145
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240627004142.8106-4-fancer.lancer@gmail.com>
 
-We already make sure to submit all available buffers to DMA in each DMA
-completion callback.
+> -	for (i = 0; i < ARRAY_SIZE(xpcs_id_list); i++) {
+> -		const struct xpcs_id *entry = &xpcs_id_list[i];
+> +	for (i = 0; i < ARRAY_SIZE(xpcs_desc_list); i++) {
+> +		const struct dw_xpcs_desc *entry = &xpcs_desc_list[i];
+>  
+>  		if ((xpcs_id & entry->mask) != entry->id)
+>  			continue;
+>  
+> -		xpcs->id = entry;
+> +		xpcs->desc = entry;
 
-Move that logic in a separate function, and use it during stream start
-as well, as most application queue all their buffers before stream on.
+Maybe rename entry to desc here?
 
-Signed-off-by: Jai Luthra <j-luthra@ti.com>
----
- .../media/platform/ti/j721e-csi2rx/j721e-csi2rx.c  | 43 ++++++++++++----------
- 1 file changed, 24 insertions(+), 19 deletions(-)
+Otherwise
 
-diff --git a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
-index 84b972c251e8..a258477b9084 100644
---- a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
-+++ b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
-@@ -637,6 +637,27 @@ static int ti_csi2rx_drain_dma(struct ti_csi2rx_ctx *ctx)
- 	return ret;
- }
- 
-+static int ti_csi2rx_dma_submit_pending(struct ti_csi2rx_ctx *ctx)
-+{
-+	struct ti_csi2rx_dma *dma = &ctx->dma;
-+	struct ti_csi2rx_buffer *buf;
-+	int ret = 0;
-+
-+	/* If there are more buffers to process then start their transfer. */
-+	while (!list_empty(&dma->queue)) {
-+		buf = list_entry(dma->queue.next, struct ti_csi2rx_buffer, list);
-+		ret = ti_csi2rx_start_dma(ctx, buf);
-+		if (ret) {
-+			dev_err(ctx->csi->dev,
-+				"Failed to queue the next buffer for DMA\n");
-+			vb2_buffer_done(&buf->vb.vb2_buf, VB2_BUF_STATE_ERROR);
-+			break;
-+		}
-+		list_move_tail(&buf->list, &dma->submitted);
-+	}
-+	return ret;
-+}
-+
- static void ti_csi2rx_dma_callback(void *param)
- {
- 	struct ti_csi2rx_buffer *buf = param;
-@@ -657,18 +678,7 @@ static void ti_csi2rx_dma_callback(void *param)
- 	vb2_buffer_done(&buf->vb.vb2_buf, VB2_BUF_STATE_DONE);
- 	list_del(&buf->list);
- 
--	/* If there are more buffers to process then start their transfer. */
--	while (!list_empty(&dma->queue)) {
--		buf = list_entry(dma->queue.next, struct ti_csi2rx_buffer, list);
--
--		if (ti_csi2rx_start_dma(ctx, buf)) {
--			dev_err(ctx->csi->dev,
--				"Failed to queue the next buffer for DMA\n");
--			vb2_buffer_done(&buf->vb.vb2_buf, VB2_BUF_STATE_ERROR);
--		} else {
--			list_move_tail(&buf->list, &dma->submitted);
--		}
--	}
-+	ti_csi2rx_dma_submit_pending(ctx);
- 
- 	if (list_empty(&dma->submitted))
- 		dma->state = TI_CSI2RX_DMA_IDLE;
-@@ -877,7 +887,6 @@ static int ti_csi2rx_start_streaming(struct vb2_queue *vq, unsigned int count)
- 	struct ti_csi2rx_ctx *ctx = vb2_get_drv_priv(vq);
- 	struct ti_csi2rx_dev *csi = ctx->csi;
- 	struct ti_csi2rx_dma *dma = &ctx->dma;
--	struct ti_csi2rx_buffer *buf;
- 	struct v4l2_subdev_krouting *routing;
- 	struct v4l2_subdev_route *route = NULL;
- 	struct media_pad *remote_pad;
-@@ -943,16 +952,13 @@ static int ti_csi2rx_start_streaming(struct vb2_queue *vq, unsigned int count)
- 	ctx->sequence = 0;
- 
- 	spin_lock_irqsave(&dma->lock, flags);
--	buf = list_entry(dma->queue.next, struct ti_csi2rx_buffer, list);
- 
--	ret = ti_csi2rx_start_dma(ctx, buf);
-+	ret = ti_csi2rx_dma_submit_pending(ctx);
- 	if (ret) {
--		dev_err(csi->dev, "Failed to start DMA: %d\n", ret);
- 		spin_unlock_irqrestore(&dma->lock, flags);
--		goto err_pipeline;
-+		goto err_dma;
- 	}
- 
--	list_move_tail(&buf->list, &dma->submitted);
- 	dma->state = TI_CSI2RX_DMA_ACTIVE;
- 	spin_unlock_irqrestore(&dma->lock, flags);
- 
-@@ -967,7 +973,6 @@ static int ti_csi2rx_start_streaming(struct vb2_queue *vq, unsigned int count)
- 
- err_dma:
- 	ti_csi2rx_stop_dma(ctx);
--err_pipeline:
- 	video_device_pipeline_stop(&ctx->vdev);
- 	writel(0, csi->shim + SHIM_CNTL);
- 	writel(0, csi->shim + SHIM_DMACNTX(ctx->idx));
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
--- 
-2.43.0
-
+    Andrew
 
