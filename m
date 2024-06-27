@@ -1,215 +1,260 @@
-Return-Path: <devicetree+bounces-80697-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80698-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 053A691A3A2
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 12:20:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13C9591A3AE
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 12:24:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 27A3B1C210FF
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 10:20:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BC1B9283E8D
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 10:24:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E11513D291;
-	Thu, 27 Jun 2024 10:20:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE60213D29A;
+	Thu, 27 Jun 2024 10:24:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="tNvJw67x"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lB6UsJEh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDAB213AA31;
-	Thu, 27 Jun 2024 10:20:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEF9226AF5
+	for <devicetree@vger.kernel.org>; Thu, 27 Jun 2024 10:24:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719483637; cv=none; b=unitLc3LXVFHYVZqSKjjPaMt1KVUCgEjAbnBsLBfDhKQ+cymVWeS/zzA6eFSnjDu9DMBDIYtzqRiIcIsutqhU22mwGZWa3OJL/AEkzcsakeuf91JUATk+ESUR1YrRAQs6apKGmpoIgOQoZmijt25jCaizmOgS16P+KkbMDcjHNc=
+	t=1719483878; cv=none; b=NW6QqkfxnuWmhchzuCci8qzsiFUVlkrnWC4Al4JgkJKM/bLewZD7J//z/SZDY4VPwnW2ZhQxnkD1UU5ppqqsxTLIbQNLBQwTMiUp4QOA6RNQCtXAZn4vGCAyMr9M3at/xRVmqE/h1xSqiDDkrjcVTL3v++kyWQZ7P79lDtBS6w4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719483637; c=relaxed/simple;
-	bh=x0pTPriGYq8/Oq6T3iZrhaAwgdpV3HDNcy08tazRkqg=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YR9aMr0VCU9gRBHIDiQkrZ4iiJkaVmDlB+j7pYq+xKdJK9Su2w+i+ZuLqMsUHDHaGISLRJxRhknaJEGZJl5EMECN+0bOZomrwGDasj9nryanlCjCyY4wVcHq9j69CXkhzva9THT6yKMhe3VD9krfyjTRzh+v/KpddyvadrqjYJk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=tNvJw67x; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1719483634; x=1751019634;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=x0pTPriGYq8/Oq6T3iZrhaAwgdpV3HDNcy08tazRkqg=;
-  b=tNvJw67xA37lyYPoSInI3MWHcAfn8Z72tOJhR5SP8pY1K8qTOtoyaw1K
-   z8ne6S92So2jR7NZAbkqjYRJas/OjSZFMdKEdn9d4GIbL/lczyfy6fNgV
-   dk5W0sWF4RLwMzaXu2fhypHo5q8VScGOOWpwxmzPRX1//JF0jnz3MOP2C
-   TXaQcN4/BJ0xUeIeF0m2ZO56q9D26FJP+URx/aZ3TWtAcjYNJgNNKODu1
-   NTkAgLd/Be+mrnwzb5NkOKi7i4nY+Ik4RnUv80mSfVI3rmOivja8WVub6
-   EExy3GPtr3GobKu5pYKB0N5Ue1o8C31unAivdmeMGy1yXq/NFAPLWKeLb
-   w==;
-X-CSE-ConnectionGUID: BdnfriUqTeKbI2LFOCpaDw==
-X-CSE-MsgGUID: qPqGnLYKTdG3f0rB3lHn5g==
-X-IronPort-AV: E=Sophos;i="6.08,269,1712646000"; 
-   d="asc'?scan'208";a="28543575"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 27 Jun 2024 03:20:33 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 27 Jun 2024 03:20:09 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex03.mchp-main.com (10.10.85.151)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
- Transport; Thu, 27 Jun 2024 03:20:06 -0700
-Date: Thu, 27 Jun 2024 11:19:50 +0100
-From: Conor Dooley <conor.dooley@microchip.com>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-CC: Lorenzo Bianconi <lorenzo@kernel.org>, <linux-clk@vger.kernel.org>,
-	<p.zabel@pengutronix.de>, <mturquette@baylibre.com>, <sboyd@kernel.org>,
-	<lorenzo.bianconi83@gmail.com>, <conor@kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-	<devicetree@vger.kernel.org>, <nbd@nbd.name>, <john@phrozen.org>,
-	<dd@embedd.com>, <catalin.marinas@arm.com>, <will@kernel.org>,
-	<upstream@airoha.com>
-Subject: Re: [PATCH v3 1/4] dt-bindings: clock: airoha: Add reset support to
- EN7581 clock binding
-Message-ID: <20240627-woven-devourer-1869276e043f@wendy>
-References: <cover.1718282056.git.lorenzo@kernel.org>
- <ac557b6f4029cb3428d4c0ed1582d0c602481fb6.1718282056.git.lorenzo@kernel.org>
- <d1021a8d-6e7f-4839-845e-88e2c8673c34@collabora.com>
- <20240627-vending-lisp-4e1cf45e552c@wendy>
- <b5bb67e8-ebd6-43db-b9d6-2aae38f2a08d@collabora.com>
- <20240627-undying-overcoat-192e5aa20c55@wendy>
- <0ae5ff1c-1abe-4b45-a1dd-4599a867f8c8@collabora.com>
+	s=arc-20240116; t=1719483878; c=relaxed/simple;
+	bh=csyrj9cQ7wHLkYNYllJXOc3jr7MT+6bQmIzxQhbxTU0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=i6DKk27j8Y0k+je2pEaPRViIeUxUrIxFh+si8IGxWZWTazuQ0bO6/9g1N5p5Kvdm14fu7UM65wkV8Zgfq8l0OIWQZCUcW4Vrp4d7eSUWGuGKk8pXhCBtJcZ8d7PD7ua1sELmoRAxSUDkLVA0C32lEHs9pAX7cednZUyKHuAWX0s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lB6UsJEh; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-4255fa23f7bso11662775e9.2
+        for <devicetree@vger.kernel.org>; Thu, 27 Jun 2024 03:24:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1719483875; x=1720088675; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=HrHWBfM8Gz62vxt+DbqISSl1Mr1EVk+bFajDRx+3iAE=;
+        b=lB6UsJEhwp1JrRAMaUjDX0BaW8EgNZ9HaWzBbZJn2nRXZXu78hjDUo3sAiaBHxKeTF
+         Vil2RynB3JAE77T5l4pJKNGI37hfGoggMqHh99v5RgagYc5J9N+s6/8KLmebx+TVJ05y
+         dKmgF91HScB6eM1Wlx5iKavmlh/SxOjVxH2a9YG0d7eeAb4vIHmrgd03mEqPfhzebBTn
+         ZI7pvBRD5S0Cf4IO+zInrIv5a8mtYYk9Rx4NB8XzMdBqaF2uMmBXQwAwYycFxOjM+PxA
+         glNnaVNUoQ5y5Dw2mEmKFk0Wg0xR8R4Jz+B3yFAh9HWZBewLAxMor7XgtDlYamK9akIc
+         pYrg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719483875; x=1720088675;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HrHWBfM8Gz62vxt+DbqISSl1Mr1EVk+bFajDRx+3iAE=;
+        b=PJvwNW23r2YqYysJTkRN2+BInL2bYJhhmbGNIy06atv3ISAGD+gIigri4kyvCWwpI8
+         LaGAebqcPXJCH8TGUwS5e8Yb3oBrNUOiqzcpEoDtscmRc9opO88fFAoaU1+Zd4cE98uY
+         uqiWXoVZd9vwRt6QkLNBvorYV3u87KAnl3v8FbX9nqGaC4pAItBZLEgY8e6NLIAjZ/if
+         m0FQ1fI58P+3u07+v8sUlP6gxnrmnh5vEXPYl5lG4e7cZtpd1Z3FzZ9NaJIB/0S1q8bL
+         vb/3q3EY6e8HqPfHwa4jpMM57WTlmi905M9x0ENET/uxmNGJjNkh9jrX0Se1Nm22nsHf
+         xRHw==
+X-Forwarded-Encrypted: i=1; AJvYcCWi4J8wN+sv2n8FWSOvsz2eaiBK2xivouZ2WPdG54tH+7hiVW1g9XynBLQ2TtoMiNmk8L1eMJE4Mc435sDNclLotiXaYgA7jzm6mA==
+X-Gm-Message-State: AOJu0YyTSFhJti2FkFjQ+0YhtdB1mFyYoBnBBJ2THMke8uctGroXDauI
+	5/D3LJ79z3nW6cKJ+2PCfmMGxxfJTy/sIRqTJfx6NHeCjBAlB09zhT9+nTQ/NXc=
+X-Google-Smtp-Source: AGHT+IF2cIA0cRyZgTPo7KIFW4Ep61Ur5pRkr06EGL2BkduhkLMb1vRc6DFigVeKlzcmeV43lu5xDg==
+X-Received: by 2002:a05:600c:470d:b0:424:7dae:7d79 with SMTP id 5b1f17b1804b1-4248cc177b2mr80264235e9.7.1719483874921;
+        Thu, 27 Jun 2024 03:24:34 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.137])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-424c8245e7csm59444105e9.3.2024.06.27.03.24.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 27 Jun 2024 03:24:34 -0700 (PDT)
+Message-ID: <58d1e88c-b2cd-49c7-b250-84104e82ed67@linaro.org>
+Date: Thu, 27 Jun 2024 12:24:31 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="bbQwYd7tdTi6asDw"
-Content-Disposition: inline
-In-Reply-To: <0ae5ff1c-1abe-4b45-a1dd-4599a867f8c8@collabora.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 0/7] dt-bindings: mfd: syscon: Document more
+ compatibles and require simpe-mfd description
+To: Lee Jones <lee@kernel.org>
+Cc: Orson Zhai <orsonzhai@gmail.com>,
+ Baolin Wang <baolin.wang@linux.alibaba.com>,
+ Chunyan Zhang <zhang.lyra@gmail.com>, Jacky Huang <ychuang3@nuvoton.com>,
+ Shan-Chun Hung <schung@nuvoton.com>,
+ Khuong Dinh <khuong@os.amperecomputing.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Chuanhua Lei <lchuanhua@maxlinear.com>,
+ Rahul Tanwar <rtanwar@maxlinear.com>,
+ Lars Povlsen <lars.povlsen@microchip.com>,
+ Steen Hegelund <Steen.Hegelund@microchip.com>,
+ Daniel Machon <daniel.machon@microchip.com>, UNGLinuxDriver@microchip.com,
+ Nishanth Menon <nm@ti.com>, Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Jiaxun Yang <jiaxun.yang@flygoat.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, Conor Dooley
+ <conor.dooley@microchip.com>, Rahul Tanwar <rahul.tanwar@linux.intel.com>,
+ Amireddy Mallikarjuna reddy <mallikarjunax.reddy@intel.com>,
+ "Zhu, Yi Xin" <Yixin.zhu@intel.com>, Maxime Ripard <mripard@kernel.org>
+References: <20240626-dt-bindings-mfd-syscon-split-v3-0-3409903bb99b@linaro.org>
+ <20240627081853.GF2532839@google.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240627081853.GF2532839@google.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
---bbQwYd7tdTi6asDw
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 27/06/2024 10:18, Lee Jones wrote:
+> On Wed, 26 Jun 2024, Krzysztof Kozlowski wrote:
+> 
+>> Hi,
+>>
+>> Dependency
+>> ==========
+>> Rebased on Lee's MFD tree, because dependency is there already:
+>> https://lore.kernel.org/all/171828959006.2643902.8308227314531523435.b4-ty@kernel.org/
+>>
+>> Merging
+>> =======
+>> Preferrably everything via MFD tree (file/context dependencies).
+>>
+>> Changes in v3
+>> =============
+>> - Add tags
+>> - intel,lgm-syscon: change maintainers (email bounce)
+>> - syscon/Split: drop unneeded |, use const instead of enum in select:
+>> - Link to v2: https://lore.kernel.org/r/20240616-dt-bindings-mfd-syscon-split-v2-0-571b5850174a@linaro.org
+>>
+>> Changes in v2
+>> =============
+>> - Add acks
+>> - lgm-syscon: add ranges to binding and example
+>> - syscon.yaml: add big select with all compatibles for older dtschema
+>> - Link to v1: https://lore.kernel.org/r/20240519-dt-bindings-mfd-syscon-split-v1-0-aaf996e2313a@linaro.org
+>>
+>> Description/problem
+>> ===================
+>> Simple syscon nodes can be documented in common syscon.yaml, however
+>> devices with simple-mfd compatible, thus some children, should have
+>> their own schema listing these children.  Such listing makes the binding
+>> specific, allows better validation (so the incorrect child would not
+>> appear in the simple-mfd node) and actually enforces repeated rule for
+>> simple-mfd devices:
+>>
+>>   "simple-mfd" is only for simple devices, where the children do not
+>>   depend on the parent.
+>>
+>> Currently the syscon+simple-mfd binding is quite broad and allows
+>> any child or property, thus above rule cannot be enforced.
+>>
+>> Solution
+>> ========
+>> 1. Split the syscon.yaml binding into common syscon properties, used
+>>    potentially by many bindings, and only simple syscon devices (NO
+>>    simple-mfd!).
+>> 2. Move some known simple-mfd bindings from syscon.yaml to dedicated
+>>    files.
+>>
+>> This patchset might introduce new dtbs_check warnings for devices having
+>> simple-mfd and being part of syscon.yaml previously. I fixed some of
+>> them, but probably not all.
+>>
+>> Best regards,
+>> Krzysztof
+>>
+>> To: Lee Jones <lee@kernel.org>
+>> To: Rob Herring <robh@kernel.org>
+>> To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+>> To: Conor Dooley <conor+dt@kernel.org>
+>> To: Lars Povlsen <lars.povlsen@microchip.com>
+>> To: Steen Hegelund <Steen.Hegelund@microchip.com>
+>> To: Daniel Machon <daniel.machon@microchip.com>
+>> To: UNGLinuxDriver@microchip.com
+>> To: Nishanth Menon <nm@ti.com>
+>> To: Matthias Brugger <matthias.bgg@gmail.com>
+>> To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>> Cc: devicetree@vger.kernel.org
+>> Cc: linux-kernel@vger.kernel.org
+>> Cc: linux-arm-kernel@lists.infradead.org
+>> Cc: linux-mediatek@lists.infradead.org
+>>
+>> ---
+>> Krzysztof Kozlowski (7):
+>>       dt-bindings: mfd: syscon: Drop hwlocks
+>>       dt-bindings: soc: sprd: sc9863a-glbregs: Document SC9863A syscon
+>>       dt-bindings: soc: intel: lgm-syscon: Move to dedicated schema
+>>       dt-bindings: soc: microchip: sparx5-cpu-syscon: Move to dedicated schema
+>>       dt-bindings: soc: ti: am654-serdes-ctrl: Move to dedicated schema
+>>       dt-bindings: mfd: syscon: Split and enforce documenting MFD children
+>>       dt-bindings: mfd: syscon: Add APM poweroff mailbox
+>>
+>>  .../devicetree/bindings/mfd/syscon-common.yaml     |  71 +++++
+>>  Documentation/devicetree/bindings/mfd/syscon.yaml  | 306 ++++++++++++---------
+>>  .../bindings/soc/intel/intel,lgm-syscon.yaml       |  57 ++++
+>>  .../soc/microchip/microchip,sparx5-cpu-syscon.yaml |  49 ++++
+>>  .../bindings/soc/sprd/sprd,sc9863a-glbregs.yaml    |  55 ++++
+>>  .../bindings/soc/ti/ti,am654-serdes-ctrl.yaml      |  42 +++
+>>  6 files changed, 457 insertions(+), 123 deletions(-)
+>> ---
+>> base-commit: 8dc7c29f608649f3d9eca826e9d4fe4b8a32c472
+>> change-id: 20240517-dt-bindings-mfd-syscon-split-37e23996523d
+> 
+> Okay, I tried to apply these whilst fixing up all the conflicts, but
+> lost the will to live.  Please rebase and [RESEND].
 
-On Thu, Jun 27, 2024 at 12:03:38PM +0200, AngeloGioacchino Del Regno wrote:
-> Il 27/06/24 11:57, Conor Dooley ha scritto:
-> > On Thu, Jun 27, 2024 at 11:53:00AM +0200, AngeloGioacchino Del Regno wr=
-ote:
-> > > Il 27/06/24 11:47, Conor Dooley ha scritto:
-> > > > On Thu, Jun 27, 2024 at 11:33:47AM +0200, AngeloGioacchino Del Regn=
-o wrote:
-> > > > > Il 13/06/24 14:47, Lorenzo Bianconi ha scritto:
-> > > > > > Introduce reset capability to EN7581 device-tree clock binding
-> > > > > > documentation.
-> > > > > >=20
-> > > > > > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> > > > > > ---
-> > > > > >     .../bindings/clock/airoha,en7523-scu.yaml     | 25 ++++++-
-> > > > > >     .../dt-bindings/reset/airoha,en7581-reset.h   | 66 ++++++++=
-+++++++++++
-> > > > > >     2 files changed, 90 insertions(+), 1 deletion(-)
-> > > > > >     create mode 100644 include/dt-bindings/reset/airoha,en7581-=
-reset.h
-> > > > > >=20
-> > > > > > diff --git a/Documentation/devicetree/bindings/clock/airoha,en7=
-523-scu.yaml b/Documentation/devicetree/bindings/clock/airoha,en7523-scu.ya=
-ml
-> > > > > > index 3f4266637733..84353fd09428 100644
-> > > > > > --- a/Documentation/devicetree/bindings/clock/airoha,en7523-scu=
-=2Eyaml
-> > > > > > +++ b/Documentation/devicetree/bindings/clock/airoha,en7523-scu=
-=2Eyaml
-> > > > > > @@ -35,7 +35,7 @@ properties:
-> > > > > >       reg:
-> > > > > >         minItems: 2
-> > > > > > -    maxItems: 3
-> > > > > > +    maxItems: 4
-> > > > > >       "#clock-cells":
-> > > > > >         description:
-> > > > > > @@ -43,6 +43,10 @@ properties:
-> > > > > >           clocks.
-> > > > > >         const: 1
-> > > > > > +  '#reset-cells':
-> > > > > > +    description: ID of the controller reset line
-> > > > > > +    const: 1
-> > > > > > +
-> > > > > >     required:
-> > > > > >       - compatible
-> > > > > >       - reg
-> > > > > > @@ -60,6 +64,8 @@ allOf:
-> > > > > >                 - description: scu base address
-> > > > > >                 - description: misc scu base address
-> > > > > > +        '#reset-cells': false
-> > > > > > +
-> > > > > >       - if:
-> > > > > >           properties:
-> > > > > >             compatible:
-> > > > > > @@ -70,6 +76,7 @@ allOf:
-> > > > > >               items:
-> > > > > >                 - description: scu base address
-> > > > > >                 - description: misc scu base address
-> > > > > > +            - description: reset base address
-> > > > >=20
-> > > > > Are you sure that the indentation is correct? :-)
-> > > > >=20
-> > > > > After fixing the indentation,
-> > > > >=20
-> > > > > Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregn=
-o@collabora.com>
-> > > > >=20
-> > > > > >                 - description: pb scu base address
-> > > >=20
-> > > > The indentation actually looks okay when I apply this locally, but =
-how is
-> > > > it backwards compatible to add this register in the middle of the l=
-ist??
-> > >=20
-> > > It's not, and this is actually something done on purpose - there is n=
-o DT using
-> > > this binding yet (here, nor uboot), and Lorenzo acknowledged the mist=
-ake before
-> > > it was too late...
-> > >=20
-> > > At least this time, it wasn't a misattention :-P
-> >=20
-> > The rationale for this being okay really should be in the commit
-> > message...
-> >=20
-> > > Btw, as far as I know, the reset base address is in between misc scu =
-and pb scu,
-> > > that's why it was put there in the middle.
-> >=20
-> > ...but I don't really see why this needs to be done incompatibly at all
-> > in the first place. Just put it at the end of the list, there's no rule
-> > that the order of reg properties needs to match the MMIO addresses.
-> >=20
->=20
-> It's just a perfection thing... but whatever, if that's unacceptable for =
-you,
-> putting it at the end of the list isn't a huge deal anyway.
->=20
-> Your call - it's okay for me either way.
+This was based on your for-next 8dc7c29f608649f3d9ec "mfd: lm3533: Move
+to new GPIO descriptor-based APIs". I'll rebase.
 
-It has not been in a release yet, so it's not a hard block for me,
-however, I would want to see a commit message update and a Fixes: tag.
-The patch should also appear in 6.10, rather than being 6.11 material.
+> 
 
---bbQwYd7tdTi6asDw
-Content-Type: application/pgp-signature; name="signature.asc"
+Best regards,
+Krzysztof
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZn08xgAKCRB4tDGHoIJi
-0kMGAQCMDsHLn9lDeNcWejLJHGUjpjdw3jCMv8jKUsVET3B8bwEAv/K1l1tGtfU/
-L8yqEyVZi0CQbtZ4ui3uZwx4h3nV9wA=
-=l0nE
------END PGP SIGNATURE-----
-
---bbQwYd7tdTi6asDw--
 
