@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-80585-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80586-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EC7091A085
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 09:38:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0BA691A08A
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 09:39:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CDBE51C20F60
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 07:38:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2D2FE1C21116
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 07:39:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 961294F20C;
-	Thu, 27 Jun 2024 07:38:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D44A250A6C;
+	Thu, 27 Jun 2024 07:39:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O8H4Oyky"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CeLr20m/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 714B04206E
-	for <devicetree@vger.kernel.org>; Thu, 27 Jun 2024 07:38:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6F221C6B5;
+	Thu, 27 Jun 2024 07:39:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719473901; cv=none; b=ssvral8ldce5aKrorsnpZZ9bRAkxUfULJIXjGKwQEC7dzVh+hUmx6k2g88TYvZqeUUzBrQp9MjpCo7E488tgOgbF+XBsvjGQvfwgLM4v6UoIynjRzVt/H9Mf+owoVXtdG+AFQNL7AfGH6Pm3nFUhd5E2LM7Z8Rrhd43cKDf/9sA=
+	t=1719473992; cv=none; b=PRjfkdVx7hOG2aWAcSz4J1nh7bSaElngtZtAiqI33Kpe9BKWuuz6TmD0XdjBDTNPj0qttayXRaD6DSW+MDwCOtRnu9BJWP0bJGm9m9NEMi4NVFZJiOR60IwhoDluq8PfQ7BqtpVwVjYbZHVHPKJN9wQ9CMxsno1DKvC57n6xx9M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719473901; c=relaxed/simple;
-	bh=ENCBuGAXKC9Grz2QNd2si+KNDs561YvlPXCEUcRR/TY=;
+	s=arc-20240116; t=1719473992; c=relaxed/simple;
+	bh=aSNO9ARzJP954tAFUbze+mAtbiPuPF2fx20FCP7CKUQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Vskz2iF2RMHM2Vhd0JiU1OtUUrRqfRHNiaiF0a/R+2AX5/bT7bywGlKUsh1XqPbJBMGaPgC115JjBTqhJMSgfTd86HY+TPVlkmNaOZfIyec9z8glTAjEkWzXNEcPVvEK9YQVHExmK2fm2S0oRzCJS0KIAMYq2SQvq245vKbZBiw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O8H4Oyky; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB939C4AF07;
-	Thu, 27 Jun 2024 07:38:16 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=avgthu74E5Nq1tkIX/PKw5DTn+bBhvw3SDVk6zkISfefUx/RrY+7dSEO+Lnr5YaTX4GCGPqLjU30jKnWVV2vhJfIcDm9dZMolltcAlDcV3l8MlfnzYl5bJnc3JgjLYdUHpA0tNLZeXSoxdLUf8xpJS0HvBsMq0LTf19chD1UQqU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CeLr20m/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B8ECC2BBFC;
+	Thu, 27 Jun 2024 07:39:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719473901;
-	bh=ENCBuGAXKC9Grz2QNd2si+KNDs561YvlPXCEUcRR/TY=;
+	s=k20201202; t=1719473992;
+	bh=aSNO9ARzJP954tAFUbze+mAtbiPuPF2fx20FCP7CKUQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=O8H4Oyky5Mv5IUUwzqw+PMwTI69nT6F5IsE5e+mrl/V9mM0UzEkgx9LWIs8wcX443
-	 6JuWper7KcidjZDC1JZDnhyzYVKIxY3KpYFOfYD7ow2/9o20Y0ex1BIKdBxHNTSWk4
-	 rIui/HNxbod+1u6vjjexT5+CeYje56zS2c2XEIn4Eh9abt7pBf38Yr1Apqt7JiHz5+
-	 uUJv68Z7JXOO4LK/A0V69lJKC8lIRg8JJnWR8knzO9LD5+CzvISbu7ero9TFLC5uAH
-	 p+iZRC1L8M/TjDt4T0yXX/CY5foF45mJS9Lh/w5h2aeq52iOevnkU3FMq/1BywE1IX
-	 67iHxYTTZsDAA==
-Message-ID: <44574fda-43e4-426a-8e50-3f28ead2d783@kernel.org>
-Date: Thu, 27 Jun 2024 09:38:16 +0200
+	b=CeLr20m/CY2MpXXKIYPVZGupmxzGOWuPli0OYIFycq3sGl04PVB7rFMlm8EgxkgK2
+	 wu88f1VrRISPc5CvVJWJZxR117h6Um8akUQngB9zON/X8gQf4R7L2pq+0jsLGQAUyz
+	 9nWMoRrgQUxN96blie6rljMAL+R5iZBAb3ya9NdoeEJPDQp8sr2w3OqF2qZkNzSPRC
+	 dXeCFNU4mpLfjUqItmQ3XxKV0+YIQ6Zog/6JGYv/F24AugXUhkGbsJNaCwAmEFumCm
+	 DplPnNLUMZcaPjw9wDPxoZLdUAc3p/DEKPvlLDDwhIc8/Xc8wW65i6SBH/URut2HWw
+	 1LVTPotTUnU7g==
+Message-ID: <0878267a-9f86-4c59-a397-9195fe0d5b33@kernel.org>
+Date: Thu, 27 Jun 2024 09:39:44 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] MAINTAINERS: add cache binding directory to cache
- driver entry
-To: Conor Dooley <conor@kernel.org>, devicetree@vger.kernel.org
-Cc: Conor Dooley <conor.dooley@microchip.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Nicolas Ferre <nicolas.ferre@microchip.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Claudiu Beznea <claudiu.beznea@tuxon.dev>,
- Lars Povlsen <lars.povlsen@microchip.com>,
- Steen Hegelund <Steen.Hegelund@microchip.com>,
- Daniel Machon <daniel.machon@microchip.com>
-References: <20240626-platter-scarcity-d503fda8a2fd@spud>
- <20240626-rebate-hertz-6d944eee7dda@spud>
+Subject: Re: [PATCH v3 3/9] dt-bindings: vendor-prefixes: Add Cameo
+ Communications
+To: Chris Packham <chris.packham@alliedtelesis.co.nz>, tglx@linutronix.de,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ tsbogend@alpha.franken.de, daniel.lezcano@linaro.org, paulburton@kernel.org,
+ peterz@infradead.org, mail@birger-koblitz.de, bert@biot.com,
+ john@phrozen.org, sander@svanheule.net
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-mips@vger.kernel.org, kabel@kernel.org, ericwouds@gmail.com
+References: <20240627043317.3751996-1-chris.packham@alliedtelesis.co.nz>
+ <20240627043317.3751996-4-chris.packham@alliedtelesis.co.nz>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,18 +106,16 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240626-rebate-hertz-6d944eee7dda@spud>
+In-Reply-To: <20240627043317.3751996-4-chris.packham@alliedtelesis.co.nz>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 26/06/2024 17:54, Conor Dooley wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
+On 27/06/2024 06:33, Chris Packham wrote:
+> Add entry for Cameo Communications (https://www.cameo.com.tw/)
 > 
-> The directory covering cache controller bindings has no MAINTAINER other
-> than the fallback to myself, Rob and Krzysztof. Add it to the entry for
-> the corresponding drivers.
+> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> ---
 > 
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
