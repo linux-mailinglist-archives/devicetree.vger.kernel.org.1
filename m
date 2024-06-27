@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-80871-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80872-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24CDD91A9BA
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 16:51:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F74191A9BC
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 16:51:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 562851C20FAE
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 14:51:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0B95D281BB0
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 14:51:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACE301990A2;
-	Thu, 27 Jun 2024 14:48:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 263471990C9;
+	Thu, 27 Jun 2024 14:48:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UZ9QjJY2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ha3PNmCE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84410198A0A;
-	Thu, 27 Jun 2024 14:48:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 027481990C5
+	for <devicetree@vger.kernel.org>; Thu, 27 Jun 2024 14:48:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719499729; cv=none; b=R9fCZ6jTxQUyl0tKFzIBLk/nFNLO0XaLVTU3VSDS/3bT6Ox/tjq0nLRbYWO7Iygc+cQYI4JYpFxL3GTQCmwEwWbbtrheSxi4ullE1nvEZvGREiXhC4+74GkrL8cUS6yGm00F5Lv9gAT9G0FXnFTOmerntu/CIy85GKnTgqsy/fQ=
+	t=1719499731; cv=none; b=j34JMNU1U7MtfLe9oa3XAXN6n36tWEaNeD342tCDwbaOAD89NfqI+BMaSnykR958h0Xc+TD7iuGm/Nz344vaBMD/YnxU9NKskmc6ZEej2AZ8TdPv3QhuXuTRtMzCfmcYYy6RRd3v12Wl9aelbrkIdn3co0NQdfmTcamzB/9FNTM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719499729; c=relaxed/simple;
-	bh=d8LbeMrXrnMpFcQld1fOek1N8Ag6qgXMrlSDVv0fOsQ=;
+	s=arc-20240116; t=1719499731; c=relaxed/simple;
+	bh=j9blfb7coQFPpA0hvriFzY5GKbnQ+Fgqvq7qHGHI4dY=;
 	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=rfPPP1my2Gr37JPT2BxEVGr1QtzJ7JHzSmxG8+FHOQ5twLcEaZJCfYBdyDWOP78im8KAtYhGNVQfRNGMRBKSjvWM28SOAFDxOzV3XFmcMMHDKQ+uVJAMX8okiXM2l8rzJoK+xU/RBWR7NkE1GsaYcOf5TbnjF0y5O+95wsIHND0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UZ9QjJY2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0F2FC2BBFC;
-	Thu, 27 Jun 2024 14:48:48 +0000 (UTC)
+	 Message-Id:Subject; b=uS0kdg2an7yi1exOFxx17ND2CyQWYjWlgHTPfH7EdRQQLIRrwMWap1H2JzWXCm1OuYLwF1PsGQzxvxPZikysYQ5YkjYnPgbavuFC1WHw+/Sq0nNih0zDZWED6E/poeZqfPUGt4Fr5rC01gqvz/BGOncg845r3iUruC7MmeWiySU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ha3PNmCE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 595A5C32786;
+	Thu, 27 Jun 2024 14:48:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719499729;
-	bh=d8LbeMrXrnMpFcQld1fOek1N8Ag6qgXMrlSDVv0fOsQ=;
+	s=k20201202; t=1719499730;
+	bh=j9blfb7coQFPpA0hvriFzY5GKbnQ+Fgqvq7qHGHI4dY=;
 	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=UZ9QjJY26Q6BUnNdFz/EQvNr44kfvbyZqopalZ5LEWXrUykasUFhm6ooxqHC64iJd
-	 1fisXuT/ZmKLKUrSuCCEb+CcixBy3ce3eHkO6EJipIPFeHbXb4CjDXMBJWpAJoY7BE
-	 63SXgkCp1cyi+5EROFfBvEwxNRMvXpU4bSbZqdGVPFEMzIECpB+mOmSMoerW16IQPT
-	 bZ7V+c8+mX7CDEm1Ss8Cf6a/Lm5TQprByolMrAb60N7nBs8E+mo+FTnu2w2zODqQU9
-	 oTXWiu8SFJAwJVth3KOiM9drTaOethNl/tYVIX8Im8G8+rbZjDlB/16pP9JMtPo6tD
-	 cz50r3MP26lBg==
-Date: Thu, 27 Jun 2024 08:48:47 -0600
+	b=Ha3PNmCEXoiwoiuOAE/4Ya2BeSbOw5qfoFxlRDgTTZqIxVAp880kvPVQhD4DTtbVm
+	 XqRYUUalQabyVi6RGBMxAUmReaQHkAZxEvAgJSNVURFic7v3uHob1f6cE7gm2vgElE
+	 Rkwn7GdBQVaq0OHA5Vs7uwM3D1+ftO/5BzCFz3idv7LiXJoUc5AWj3NjlJXVhNRM9b
+	 NKWdK0T3ikIrgYdgg3pQ1q5BAhDdLg5pXCWyYEJ1LmlMt3vXhl1KliUSoYAvviW49l
+	 QcoSZsGGJ84yxuNxfzYFItUFhtl8PLiljTO5qOmlbcg0pTC29K/ILhYdSLNsKzaKdS
+	 RIb9Li1tjKiKw==
+Date: Thu, 27 Jun 2024 08:48:49 -0600
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -51,59 +51,41 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Peter Yin <peteryin.openbmc@gmail.com>
-Cc: Andrew Jeffery <andrew@codeconstruct.com.au>, patrick@stwcx.xyz, 
- linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>, 
- linux-aspeed@lists.ozlabs.org, amithash@meta.com, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Joel Stanley <joel@jms.id.au>
-In-Reply-To: <20240627070013.2509150-1-peteryin.openbmc@gmail.com>
-References: <20240627070013.2509150-1-peteryin.openbmc@gmail.com>
-Message-Id: <171949936638.3312359.3954253966631367606.robh@kernel.org>
-Subject: Re: [PATCH v2 00/10] Revise Meta(Facebook) Harma BMC(AST2600)
+To: Leith Bade <leith@bade.nz>
+Cc: frank-w@public-files.de, linux-mediatek@lists.infradead.org, 
+ matthias.bgg@gmail.com, krzk+dt@kernel.org, didi.debian@cknow.org, 
+ devicetree@vger.kernel.org, angelogioacchino.delregno@collabora.com, 
+ linux-arm-kernel@lists.infradead.org, conor+dt@kernel.org
+In-Reply-To: <20240627075856.2314804-1-leith@bade.nz>
+References: <20240627075856.2314804-1-leith@bade.nz>
+Message-Id: <171949936716.3312392.7734746271986363667.robh@kernel.org>
+Subject: Re: [PATCH 0/4] fix up pin definitions for BPI-R3 board
 
 
-On Thu, 27 Jun 2024 15:00:02 +0800, Peter Yin wrote:
-> Summary:
-> Revise linux device tree entry related to Meta(Facebook) Harma
-> specific devices connected to BMC(AST2600) SoC.
+On Thu, 27 Jun 2024 17:58:52 +1000, Leith Bade wrote:
+> This is my first patch submission to Linux so I apologise in advance for
+> any mistakes.
 > 
-> Base on: https://lore.kernel.org/all/CAPSyxFRj0twCJG6Lr5UZpznrUHyd_L0Reo=kZSFwCw3FNQ+x+A@mail.gmail.com/
+> These changes were motivated by a pin conflict with the PCIe M.2 connector
+> and the push buttons. As a result I decided go work through all 100 GPIO
+> pins using the public board schematics. As I need to acquire a M.2 SSD to
+> test the PCIe pin change that patch is not included in this series yet.
 > 
-> Change log:
+> Working though the pins I noticed a bug with with the MT7531 chip's reset
+> line which was on the wrong GPIO. Since it was conflicting with the boot
+> mode switch input GPIO pins I looked into ways to document the use of
+> those pins with the switch. I ended up choosing a gpio-hog, but please
+> let me know if there is a better alternative.
 > 
-> v1 -> v2
->   - Patch 0007  - add fru device
->   - Patch 0008  - add temperature device
->   - Patch 0009  - enable mctp controller
->   - Patch 00010 - fixed dtb_check warning
+> I also added some missing pin groups for some of the built-in SoC devices
+> to clearly document the use of those GPIO pins.
 > 
-> v1
->   - Patch 0001 - revise hsc chip
->   - Patch 0002 - add VR device
->   - Patch 0003 - add sgpio name
->   - Patch 0004 - add ina238
->   - Patch 0005 - add power monitor xdp710
->   - Patch 0006 - remove multi-host property
->   - Patch 0007 - remove pca9546
+> I have actually written up a gpio-line-names list give all the pins
+> names to match their usage on this board. If there is interest in this
+> I can submit this as an additional patch. I see only some MT8xxx devices
+> in the mediatek directory have a gpio-line-names so I wasn't sure if I
+> should add it.
 > 
-> Peter Yin (10):
->   ARM: dts: aspeed: Harma: revise hsc chip
->   ARM: dts: aspeed: Harma: add VR device
->   ARM: dts: aspeed: Harma: add sgpio name
->   ARM: dts: aspeed: Harma: add ina238
->   ARM: dts: aspeed: Harma: add power monitor xdp710
->   ARM: dts: aspeed: Harma: remove multi-host property
->   ARM: dts: aspeed: Harma: add fru device
->   ARM: dts: aspeed: Harma: add temperature device
->   ARM: dts: aspeed: Harma: enable mctp controller
->   ARM: dts: aspeed: Harma: fixed dtb_check warning
-> 
->  .../dts/aspeed/aspeed-bmc-facebook-harma.dts  | 146 ++++++++++++++++--
->  1 file changed, 132 insertions(+), 14 deletions(-)
-> 
-> --
-> 2.25.1
 > 
 > 
 > 
@@ -123,13 +105,10 @@ make sure dt-schema is up to date:
   pip3 install dtschema --upgrade
 
 
-New warnings running 'make CHECK_DTBS=y aspeed/aspeed-bmc-facebook-harma.dtb' for 20240627070013.2509150-1-peteryin.openbmc@gmail.com:
+New warnings running 'make CHECK_DTBS=y mediatek/mt7986a-bananapi-bpi-r3.dtb' for 20240627075856.2314804-1-leith@bade.nz:
 
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dtb: ftgmac@1e690000: Unevaluated properties are not allowed ('#address-cells', '#size-cells' were unexpected)
-	from schema $id: http://devicetree.org/schemas/net/faraday,ftgmac100.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dtb: /ahb/apb/bus@1e78a000/i2c@700/i2c-mux@70/i2c@0/power-monitor@61: failed to match any schema with compatible: ['isil,isl69260']
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dtb: /ahb/apb/bus@1e78a000/i2c@700/i2c-mux@70/i2c@0/power-monitor@62: failed to match any schema with compatible: ['isil,isl69260']
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dtb: /ahb/apb/bus@1e78a000/i2c@700/i2c-mux@70/i2c@0/power-monitor@63: failed to match any schema with compatible: ['isil,isl69260']
+arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dtb: pinctrl@1001f000: 'boot-mode-hog' does not match any of the regexes: '-pins$', 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/pinctrl/mediatek,mt7986-pinctrl.yaml#
 
 
 
