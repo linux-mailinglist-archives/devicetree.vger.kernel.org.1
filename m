@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-80673-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80674-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53F0191A2B9
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 11:33:56 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F340291A2C7
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 11:40:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F38891F2333D
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 09:33:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 75792B225EF
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 09:40:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94B3C13A418;
-	Thu, 27 Jun 2024 09:33:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00A1613B2BC;
+	Thu, 27 Jun 2024 09:40:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="gTCkWHsM"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="HfDwFd+z"
 X-Original-To: devicetree@vger.kernel.org
 Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D7AE139D0A;
-	Thu, 27 Jun 2024 09:33:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58F4513AD38;
+	Thu, 27 Jun 2024 09:40:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719480832; cv=none; b=j7/8UXZaFQOYTeM0MZ6cYZZg2cIlrvVyPHQmLNTR/kmlne1IdHyuNFrFSQbu6x5l+BYjN+VDiqm6TE09p+8gV5y4bEjpRBnTG193ijj1C4rNssNtkl0YYqF8YRtX2G6dKOp9zrq2WiaeeCK0B/OW7kPKXjH8lyCWIjYPMvbvz4k=
+	t=1719481210; cv=none; b=fsy/pdQIBkAp/fKj0CKd0XtZccbixs5418GgwrlJHIcxWKWLuCMOT9smHT4vZkxAX3pKICkERQvWl4iOxX9nROw1EYH/M+WDHUpc0QWgg7OMyPaRbMUExpi7mGMFR3nZOFYPmU0Nyt8DCnabre3hvxpgNlILYJCUqysdiEEFST8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719480832; c=relaxed/simple;
-	bh=KLuMXqR+MS8P13l+zugshwDLDpOMABzhmZMkO3CZO94=;
+	s=arc-20240116; t=1719481210; c=relaxed/simple;
+	bh=sPv2gjPKrEsO6IWBmkkAWYYhbPMP+ICh+j0TbkMyX3s=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cUbPQy4u/EflQHwrb8l9N7zBLRnTNZdYbetK2mbYpClUwfPigq+tA5bVbqOUxUboMVrg8diEQqXJksvYjKvkFFSXWf2RhzyqFjRQrvbsZI4QQAVCoKmMl1kB0qKuu+pOiX0h62h1rD3qoSp/Dh+VKVGpoxplB0vvHcNrs/NLfH4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=gTCkWHsM; arc=none smtp.client-ip=46.235.227.194
+	 In-Reply-To:Content-Type; b=loOR61LQXq8HZDQVCkpGIo7pH5H7Y/AwGNFjEdaRxk+Lorx6z4FDOFI5gvMjbiLVgmx4hWVuaKIWNLIfCfC9B3Vg6gpkCIXPOtIuhVgNj/mY4V8MbEqqMDc/e2QYQsXZngVJ4I6uCxpMhY5OjJKxMvulWkHpqFt6WkmARbT+iTw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=HfDwFd+z; arc=none smtp.client-ip=46.235.227.194
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1719480829;
-	bh=KLuMXqR+MS8P13l+zugshwDLDpOMABzhmZMkO3CZO94=;
+	s=mail; t=1719481207;
+	bh=sPv2gjPKrEsO6IWBmkkAWYYhbPMP+ICh+j0TbkMyX3s=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=gTCkWHsMLs0vGQx/T/F762RQpQh0BGayVYxVsjDhj3jnXm4Luc5VBD+EAiJFC/wNc
-	 oZbgaVNqxCmmarHFJ83bpAHuccWqQSmFdq7aJdZ07cXVS4+2Z++a7kiEht2LMqFem6
-	 dPpUMuBAMkEhbtJe/Y98TgT5hmNLYZ+FdlHGHMWYJ7dQTLTCflGFA1mCNGOsfWj4j6
-	 C35TDVs1KqcIC7CKqIwKFoVaZ76/ajtLc2rusGhYiCmPhk7oqn6VlGkhtYhAHvV582
-	 lUaBHcXXpESEHVBgzauXaiMOrqvTjlOhGaQAj0WWzhg+zn3ZRYhQZ5rOtp9Zc7TB5e
-	 IDC+TOq4Z0ZcQ==
+	b=HfDwFd+zHoT5Jj8ZGgmgoHp1v3hfIQ8/KX9qu9PyumVNC/JV0Sdv7jiOSGSuqWcXC
+	 q8GIKLy6Q3ZwF+yNQtEUQgZN1gXaH5Mao5Whl4E/yPv+WXjwFgBhZUI1NNA/KG2VvU
+	 1h8+DOrvkSRcIJdG5wMdDZu+F4A81x2Sd2DO6dEkG6V0xOu239uYgMwCdoFRwIyYf9
+	 4swknVx3jWW+tVQTUHnVAP+Y+7eaZ/D1gXrtaEvJDLXSvkCQgQ1VPG4vPLBEdVurKJ
+	 MgGwikfbhA6L7pdWbzlECR8EC0w73k6uOsyBTfsYrM3I3ID52UKb7lpuFVS8gGn1Hp
+	 uqkUbCy2dU5Ug==
 Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
 	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 4D65937810CD;
-	Thu, 27 Jun 2024 09:33:48 +0000 (UTC)
-Message-ID: <d1021a8d-6e7f-4839-845e-88e2c8673c34@collabora.com>
-Date: Thu, 27 Jun 2024 11:33:47 +0200
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 95D4A37810CD;
+	Thu, 27 Jun 2024 09:40:06 +0000 (UTC)
+Message-ID: <f97c7ebc-4aad-4125-90df-21cd8a63c68d@collabora.com>
+Date: Thu, 27 Jun 2024 11:40:06 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,79 +57,68 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/4] dt-bindings: clock: airoha: Add reset support to
- EN7581 clock binding
-To: Lorenzo Bianconi <lorenzo@kernel.org>, linux-clk@vger.kernel.org
-Cc: p.zabel@pengutronix.de, mturquette@baylibre.com, sboyd@kernel.org,
- lorenzo.bianconi83@gmail.com, conor@kernel.org,
- linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, nbd@nbd.name, john@phrozen.org, dd@embedd.com,
- catalin.marinas@arm.com, will@kernel.org, upstream@airoha.com
-References: <cover.1718282056.git.lorenzo@kernel.org>
- <ac557b6f4029cb3428d4c0ed1582d0c602481fb6.1718282056.git.lorenzo@kernel.org>
+Subject: Re: [PATCH v2 4/4] PCI: mediatek-gen3: Add Airoha EN7581 support
+To: Lorenzo Bianconi <lorenzo@kernel.org>, linux-pci@vger.kernel.org
+Cc: ryder.lee@mediatek.com, jianjun.wang@mediatek.com, lpieralisi@kernel.org,
+ kw@linux.com, robh@kernel.org, bhelgaas@google.com,
+ linux-mediatek@lists.infradead.org, lorenzo.bianconi83@gmail.com,
+ linux-arm-kernel@lists.infradead.org, krzysztof.kozlowski+dt@linaro.org,
+ devicetree@vger.kernel.org, nbd@nbd.name, dd@embedd.com, upstream@airoha.com
+References: <cover.1719475568.git.lorenzo@kernel.org>
+ <b2c794b21e15ec85a57de144006db9582ce0c949.1719475568.git.lorenzo@kernel.org>
 From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-In-Reply-To: <ac557b6f4029cb3428d4c0ed1582d0c602481fb6.1718282056.git.lorenzo@kernel.org>
+In-Reply-To: <b2c794b21e15ec85a57de144006db9582ce0c949.1719475568.git.lorenzo@kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Il 13/06/24 14:47, Lorenzo Bianconi ha scritto:
-> Introduce reset capability to EN7581 device-tree clock binding
-> documentation.
+Il 27/06/24 10:12, Lorenzo Bianconi ha scritto:
+> Introduce support for Airoha EN7581 PCIe controller to mediatek-gen3
+> PCIe controller driver.
 > 
+> Tested-by: Zhengping Zhang <zhengping.zhang@airoha.com>
 > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
 > ---
->   .../bindings/clock/airoha,en7523-scu.yaml     | 25 ++++++-
->   .../dt-bindings/reset/airoha,en7581-reset.h   | 66 +++++++++++++++++++
->   2 files changed, 90 insertions(+), 1 deletion(-)
->   create mode 100644 include/dt-bindings/reset/airoha,en7581-reset.h
+>   drivers/pci/controller/Kconfig              |  2 +-
+>   drivers/pci/controller/pcie-mediatek-gen3.c | 96 ++++++++++++++++++++-
+>   2 files changed, 96 insertions(+), 2 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml b/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
-> index 3f4266637733..84353fd09428 100644
-> --- a/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
-> +++ b/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
-> @@ -35,7 +35,7 @@ properties:
+> diff --git a/drivers/pci/controller/Kconfig b/drivers/pci/controller/Kconfig
+> index e534c02ee34f..3bd6c9430010 100644
+> --- a/drivers/pci/controller/Kconfig
+> +++ b/drivers/pci/controller/Kconfig
+> @@ -196,7 +196,7 @@ config PCIE_MEDIATEK
 >   
->     reg:
->       minItems: 2
-> -    maxItems: 3
-> +    maxItems: 4
->   
->     "#clock-cells":
->       description:
-> @@ -43,6 +43,10 @@ properties:
->         clocks.
->       const: 1
->   
-> +  '#reset-cells':
-> +    description: ID of the controller reset line
-> +    const: 1
-> +
->   required:
->     - compatible
->     - reg
-> @@ -60,6 +64,8 @@ allOf:
->               - description: scu base address
->               - description: misc scu base address
->   
-> +        '#reset-cells': false
-> +
->     - if:
->         properties:
->           compatible:
-> @@ -70,6 +76,7 @@ allOf:
->             items:
->               - description: scu base address
->               - description: misc scu base address
-> +            - description: reset base address
+>   config PCIE_MEDIATEK_GEN3
+>   	tristate "MediaTek Gen3 PCIe controller"
+> -	depends on ARCH_MEDIATEK || COMPILE_TEST
+> +	depends on ARCH_AIROHA || ARCH_MEDIATEK || COMPILE_TEST
+>   	depends on PCI_MSI
+>   	help
+>   	  Adds support for PCIe Gen3 MAC controller for MediaTek SoCs.
+> diff --git a/drivers/pci/controller/pcie-mediatek-gen3.c b/drivers/pci/controller/pcie-mediatek-gen3.c
+> index 438a5222d986..af567b4355fa 100644
+> --- a/drivers/pci/controller/pcie-mediatek-gen3.c
+> +++ b/drivers/pci/controller/pcie-mediatek-gen3.c
 
-Are you sure that the indentation is correct? :-)
+..snip..
 
-After fixing the indentation,
+> +
+>   static const struct of_device_id mtk_pcie_of_match[] = {
+>   	{ .compatible = "mediatek,mt8192-pcie", .data = &mtk_pcie_soc_mt8192 },
+> +	{ .compatible = "airoha,en7581-pcie", .data = &mtk_pcie_soc_en7581 },
+
+My bad, in the last review I didn't notice that the ordering here is not good.
+
+A ... iroha comes before
+M ... ediatek :-)
+
+Please put the airoha entry before the mediatek one, after which:
 
 Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
->               - description: pb scu base address
+>   	{},
+>   };
+>   MODULE_DEVICE_TABLE(of, mtk_pcie_of_match);
 
 
