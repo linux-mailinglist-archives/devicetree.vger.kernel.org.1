@@ -1,132 +1,142 @@
-Return-Path: <devicetree+bounces-81054-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81055-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A9B691B20C
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 00:13:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id ACC6691B212
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 00:15:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2C1341C210AF
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 22:13:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 61CD11F21449
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 22:15:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F08EA1A0B07;
-	Thu, 27 Jun 2024 22:13:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C96B81A01CB;
+	Thu, 27 Jun 2024 22:15:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KXxsqcrj"
+	dkim=pass (2048-bit key) header.d=kernel-dk.20230601.gappssmtp.com header.i=@kernel-dk.20230601.gappssmtp.com header.b="diOMoWRu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+Received: from mail-io1-f47.google.com (mail-io1-f47.google.com [209.85.166.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A970266D4;
-	Thu, 27 Jun 2024 22:13:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 542AF6A33F
+	for <devicetree@vger.kernel.org>; Thu, 27 Jun 2024 22:15:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719526428; cv=none; b=VdJoOEUp4RJk+dH9Ea7IIWFSGN5wD/x5lormItu1J+dLCaRKoITfNtzFEmhpT4NMq9NdNRL4DkLDIYENyiV8cZLu49lFCXuGYttLZNC4++KZtLq+rtfKVEVYUPvfPg6Lzo2W+GSaJKuowhBlB0q3vp8LYMpZeIyyFYI5hIvw3Cs=
+	t=1719526530; cv=none; b=EI3KOpDICAypGnP34cOtHpBSJ9lbr6tddrKJtME7yEjzDkifPEPkd5FAVs5+n4MzSXt7moZGoZIljtF0TGYUNEz4os15pW+a3gXUhuONn3tirfWgLAemfX7apJB07HEa+CDHM6bW/H67Y+A2UqDLKL9Xz+LseYS2bN1i5ENMuN4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719526428; c=relaxed/simple;
-	bh=PJtHNXt5xhdpnPi1S0hdgD9An4T7UhkzlMgAiH5twrw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FXoLu0e43Pgn1uilaiCZqaN17pg/GUG67Wl9wU1E3nPxyDolUR8CuKLDBLadiGbu45sA7oevNLrNEa/QQTjnN6HVGRJugdvKEAA3QBaw2S/ynFkZaZ0ygl2XEqa4lrKmKo2UGGUMjkKZtxUJs+yiJ+1t4WCfu6cefmu3NUEfyJ0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KXxsqcrj; arc=none smtp.client-ip=209.85.128.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-424ad991c1cso28795175e9.1;
-        Thu, 27 Jun 2024 15:13:47 -0700 (PDT)
+	s=arc-20240116; t=1719526530; c=relaxed/simple;
+	bh=4H4YR0/K52vVw0BEDoTImD+JL5bNhzc9m0ae+WYCdSo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=uqAxktjwbIlBKa17GhsORy0V2clfNTLb4r33MSeGYzL3bBQZ50CGOw+NB5qx/YxMd1OTVhyszVXg15C/mDNMeZwVGPdRh4+WJGfqGkJoq9GQq49+dCLsslmkATynbZ4zGSGMTNgukv6T0bmaNyRNjFUk1bEV2jGmJNolI4KRxl8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kernel.dk; spf=pass smtp.mailfrom=kernel.dk; dkim=pass (2048-bit key) header.d=kernel-dk.20230601.gappssmtp.com header.i=@kernel-dk.20230601.gappssmtp.com header.b=diOMoWRu; arc=none smtp.client-ip=209.85.166.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kernel.dk
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kernel.dk
+Received: by mail-io1-f47.google.com with SMTP id ca18e2360f4ac-7f61ce48f8fso373539f.2
+        for <devicetree@vger.kernel.org>; Thu, 27 Jun 2024 15:15:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1719526426; x=1720131226; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Z/rFsDxh3nwIfQg18F9xjhHPwne2si1Ovzi68PnLOqk=;
-        b=KXxsqcrj8j24bjS9xCvrD2KNnFJbeWW7UxZQNxxLW0slobSZkSTb2I9vbR11ZuIl5F
-         UkBU36z1OQqromLcI8b5ib1S5F6k9a/JT4Oq/oN3AD4bK1GR0bn+4iU8XjSK/JQfoj6+
-         5fi911m8ygmsGp2WiHDxlTTRhxdAJ7nDNJvWMixYfxNVySk3dbA9KKx7BsveNqsTc5hR
-         tgg6iEA8ONS87A5Nek9NPL//H4sv0sD236UBs8gLmnBoyfFBAGIoQViLuReOhrcOujj+
-         AgxYUBOtvxKRQgXt1W9cORiK/cDnf3setE1pNgqOO7DlkWjl0S88xTsvg2KkzlgBrQBq
-         t96g==
+        d=kernel-dk.20230601.gappssmtp.com; s=20230601; t=1719526528; x=1720131328; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=X+U5P6sQtlqvHqVMqUmWBld5jM5RmHwrjJ1USH3XW9c=;
+        b=diOMoWRux+Z5jH1wwm0MXZNVX/tmVkhOl7guHntKH7lzqUXRoNbmp33hz58EBXqMbs
+         BuHixE2ObB+tc1UTBuO5VPVJ828uXPiC0xFEMKMvTETYAusX9d6Tk8eWdFPC53ecqegs
+         DRvdCi2AL9QLL54d9lYhLlBZtuBfTfhsJXJzNjTYDyP0wR7/WGdn5dL2FfwuhCB+2ZBh
+         J+3zm8JGsE1GXIHfBa1rznBytn/QlhZooK/d5nQb1DMP2C7B+/bg3rje7mBgoVmdb9fe
+         AjoQDq6YXbRvYYV8497A9K4CcK1qx1+SHFD32qP/bOMfGBxTeY6HvG91ZNR5e86e/yNR
+         c6Ng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719526426; x=1720131226;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Z/rFsDxh3nwIfQg18F9xjhHPwne2si1Ovzi68PnLOqk=;
-        b=lW9ViSJlBbS1cVLeJFbcMnWPwlwu58W9x9zHipQG+2ZmpfKnaaS6Nl4YRckjY8Kr0+
-         NHIxPIffhhIvVfAx3BlYvOQiXIznJClmz3lxI0nw1MYXPi9BgdaEehLM0UFTOLRYnMho
-         qv8rMw0s6z1IwuZUPCXDGchDIFWLDU3NBB1wD+LiEBFE/z6Ym8bJrSzBCHvRBZM4dyWX
-         qew3oySuKvXcOeuUIOCxIK2F1GOliWu05CDgXELtIlDY54CrGi8oWLGP4X9/T0GQluVg
-         ZyWxvDQBZJKgrj8S3aeL4L/cU4jit5SStjs4Ay+ojM9EOjqr7z+/cEIGy5blHks44Bbv
-         8ukA==
-X-Forwarded-Encrypted: i=1; AJvYcCUlROfExw1UvfVhT6gi0CHt3zLKnTbfd4Mvg2SGSYadqsQGxlUTN89HNutEHbFG+chc+veFGsmd24UVvujdbQrhFzDS1rWZIA6TGNderfsg2nl9Ty5nruplaHR2ed8ls3o+x8kxbq7XVPi5Q8VF5RsdetYTdQXcpcxu551lbuDRP3o9KA==
-X-Gm-Message-State: AOJu0Yztb5FD9lLonZwtweeMDJFjdXC+zf0s8GLckUIeA2gQpVIiqBL7
-	92fykVf2yY5C+6ozcwaHUYSsb75IaCcUnwJK0b9V76UtHt4Scz8yBUJ5tteI
-X-Google-Smtp-Source: AGHT+IHCtSExRriW/XH2nhOc1jBWGaEOWvV7SvmGoJ3haFGm6g7tuIWcotwJ+F3u6MEYEmrMnhpXIQ==
-X-Received: by 2002:a05:600c:2e04:b0:425:641c:5f40 with SMTP id 5b1f17b1804b1-425641c606amr27217095e9.39.1719526425486;
-        Thu, 27 Jun 2024 15:13:45 -0700 (PDT)
-Received: from skbuf ([79.115.210.53])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4256af3cf90sm9222035e9.5.2024.06.27.15.13.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 Jun 2024 15:13:44 -0700 (PDT)
-Date: Fri, 28 Jun 2024 01:13:42 +0300
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"open list:FREESCALE DSPI DRIVER" <linux-spi@vger.kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
-Subject: Re: [PATCH 1/1] spi: dt-bindings: fsl-dspi: add dmas and dma-names
- properties
-Message-ID: <20240627221342.zi4iw5nnvumyijyc@skbuf>
-References: <20240627203308.476437-1-Frank.Li@nxp.com>
- <20240627215338.qrry6zpkusw5nazw@skbuf>
- <Zn3ijCEwiqgFfwTj@lizhi-Precision-Tower-5810>
+        d=1e100.net; s=20230601; t=1719526528; x=1720131328;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=X+U5P6sQtlqvHqVMqUmWBld5jM5RmHwrjJ1USH3XW9c=;
+        b=QcHrV2Zov/4aJPKItjfD9GZS0H1ogmOPIQslT2fAWbrbnHXQd+wJl7fPdQ/AVVfYBK
+         Pe+wMR+rPBdsjEhU2Rm+FjMEc8QmKFosO8/afifKuYml+ToNMYvTm26S8EVziD4GlqNd
+         PuPKNMgN9rpXLTbRoBMfP/P7Xsp5tkAdt2rT5iGagRsB0z04L5pctXVNfk7cM3+OG4BS
+         G6lS5op2k2LyZ91q7VLa0jixoKr70iToUO/SHTHvHFi9rHbmbq7snEwpwnphEO5kX06h
+         urlS/vCdf7A3EWliv7VPkBTFrZbkP948kV8i0krcGGrt3wmELjaFSfgIl+XkZMalFBe0
+         8lQQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU0OV1tXgvPwpJkO/V4vuADwm9WzUwWB+InwDJiPuKaN0xy577G9f9ldhgA0rSjFwIApeJRmXBbPgipwLP1Uc/P/CWuSYII19dohQ==
+X-Gm-Message-State: AOJu0Yz/mqTLHSyQdhHmGorbXWzQw1SotXA+oK/8DTiozLbmpJhUXh+4
+	b+5BjUJxx9dDc4qdyeXBSjcP8yNlPlO0h/EI1DE37QJ0vIQPJaSuBvqc0I+EuvQ=
+X-Google-Smtp-Source: AGHT+IE+c3oTCSG4DXvfFxRH7ZmI2eqlsqlemsaW1irAg97d62AxsEpde/+Ps9QA1t3PJ2h5vj0L4Q==
+X-Received: by 2002:a6b:4f0b:0:b0:7f3:cd61:32f5 with SMTP id ca18e2360f4ac-7f3cd613354mr658652339f.2.1719526528386;
+        Thu, 27 Jun 2024 15:15:28 -0700 (PDT)
+Received: from [192.168.1.150] ([198.8.77.157])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-70801e54936sm222787b3a.35.2024.06.27.15.15.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 27 Jun 2024 15:15:27 -0700 (PDT)
+Message-ID: <5ac45dc2-f434-4ec3-9f9a-dab6bb029deb@kernel.dk>
+Date: Thu, 27 Jun 2024 16:15:25 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Zn3ijCEwiqgFfwTj@lizhi-Precision-Tower-5810>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 0/4] block: preparations for NVMEM provider
+To: Daniel Golle <daniel@makrotopia.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
+ Hauke Mehrtens <hauke@hauke-m.de>, Felix Fietkau <nbd@nbd.name>,
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+ Dave Chinner <dchinner@redhat.com>, Jan Kara <jack@suse.cz>,
+ Christian Brauner <brauner@kernel.org>,
+ =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>,
+ Al Viro <viro@zeniv.linux.org.uk>, Li Lingfeng <lilingfeng3@huawei.com>,
+ Christian Heusel <christian@heusel.eu>, Min Li <min15.li@samsung.com>,
+ Avri Altman <avri.altman@wdc.com>, Adrian Hunter <adrian.hunter@intel.com>,
+ Hannes Reinecke <hare@suse.de>, Mikko Rapeli <mikko.rapeli@linaro.org>,
+ Yeqi Fu <asuk4.q@gmail.com>, Victor Shih <victor.shih@genesyslogic.com.tw>,
+ Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+ Li Zhijian <lizhijian@fujitsu.com>,
+ "Ricardo B. Marliere" <ricardo@marliere.net>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
+ linux-block@vger.kernel.org
+References: <cover.1719520771.git.daniel@makrotopia.org>
+Content-Language: en-US
+From: Jens Axboe <axboe@kernel.dk>
+In-Reply-To: <cover.1719520771.git.daniel@makrotopia.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Jun 27, 2024 at 06:07:08PM -0400, Frank Li wrote:
-> On Fri, Jun 28, 2024 at 12:53:38AM +0300, Vladimir Oltean wrote:
-> > On Thu, Jun 27, 2024 at 04:33:08PM -0400, Frank Li wrote:
-> > > Add dmas and dma-names properties because dspi support dma transfer.
-> > > Fix below warnings:
-> > > arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var1.dtb: spi@2120000: Unevaluated properties are not allowed ('dma-names', 'dmas', 'little-endian' were unexpected)
-> > >         from schema $id: http://devicetree.org/schemas/spi/fsl,dspi.yaml#
-> > > 
-> > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> > > ---
-> > 
-> > For the contents:
-> > 
-> > Reviewed-by: Vladimir Oltean <olteanv@gmail.com>
-> > 
-> > and FWIW, I noticed this as well, but didn't want to put yet another
-> > roadblock in the conversion of a binding which was way overdue.
-> > I was planning to send a patch as well, once the binding was merged.
-> > 
-> > But... to whose tree is this targeted? I only got a notification
-> > from Shawn for patch 3/3 (the device tree change), but none for the
-> > acceptance of the other 2 patches.
+On 6/27/24 2:49 PM, Daniel Golle wrote:
+> On embedded devices using an eMMC it is common that one or more (hw/sw)
+> partitions on the eMMC are used to store MAC addresses and Wi-Fi
+> calibration EEPROM data.
 > 
-> This patch base on the below patch:
-> https://lore.kernel.org/imx/20240624-ls_qspi-v4-0-3d1c6f5005bf@nxp.com/T/#t
+> Typically the NVMEM framework is used to have kernel drivers read and
+> use binary data from EEPROMs, efuses, flash memory (MTD), ...
 > 
-> Sorry, I miss understand 3 patches already picked. Actually only pick 3rd
-> one.
+> Using references to NVMEM bits in Device Tree allows the kernel to
+> access and apply e.g. the Ethernet MAC address, which can be a requirement
+> for userland to come up (e.g. for nfsroot).
 > 
-> Frank
+> The goal of this series is to prepare the block subsystem to allow for
+> the implementation of an NVMEM provider similar to other types of
+> non-volatile storage, so the same approach already used for EEPROMs, MTD
+> (raw flashes) and UBI-managed NAND can also be used for devices storing
+> those bits on an eMMC.
 > 
+> Define a device tree schema for block devices and partitions on them,
+> which (similar to how it now works also for UBI volumes) can be matched
+> by one or more properties.
+> 
+> Also add a simple notification API for other subsystems to be notified
+> about additions and removals of block devices, which is going to be used
+> by the block-backed NVMEM provider.
+> 
+> Overall, this enables uniform handling across practially all flash
+> storage types used for this purpose (MTD, UBI, and soon also MMC or and
+> in future maybe also other block devices).
 
-Yup. I guess it's best to resend a new version of the (reduced) series
-to the SPI tree now, with this patch rolled up into the dt-schema
-conversion, and the review tags preserved.
+2-4 look fine to me now, but I don't know anything about the device
+bindings so someone qualified should review that before it gets queued
+up.
+ 
+-- 
+Jens Axboe
 
-But you might want to wait at least 24 hours since you sent this patch,
-to allow people a chance to respond.
 
