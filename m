@@ -1,106 +1,125 @@
-Return-Path: <devicetree+bounces-80925-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80926-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDC9991AC02
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 17:57:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E599191AC22
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 18:01:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 232F1B24C66
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 15:56:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 230821C22C6C
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 16:01:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CD141991DB;
-	Thu, 27 Jun 2024 15:56:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE83519923E;
+	Thu, 27 Jun 2024 16:00:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Kf8/d11m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 045FA1991BB;
-	Thu, 27 Jun 2024 15:56:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1EB1198841;
+	Thu, 27 Jun 2024 16:00:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719503788; cv=none; b=Z2/Cjtzq1sD5eHfJjN6aKEE1XIYaRQgh4sGvG83go4IKuL2Ydt8Mrt7KPk5itAE4vhtYazIxFTp8UICKxTTo/hLsPwqODKP8JhxDW6AZyrC8oNHj7qjRQe5ilWjurexxhIVNThp3RKHVQsUk3D1k4MXNq6IxAG0/wJat8Nc1saU=
+	t=1719504053; cv=none; b=kH40c7ksz5PSFhxTzTufWqyF7wBP8wyhCjPvdFq3k+pWnLYBwUEHhgeUectuZtyHgxqG10Zio1nfOCFtKwYr2jFL5Tjge+u79rkYpdG/b1NL27rIqtcDdHhqtseY7VfpcbhTzz/BaMoWClbGjqu3Qr7QgWsfN4spRBFw9/SCGQo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719503788; c=relaxed/simple;
-	bh=6dZaJznz0z/Um3prps8njOwBk/YYpaBXEvp4VEuRNjQ=;
+	s=arc-20240116; t=1719504053; c=relaxed/simple;
+	bh=Irj6F3lt/s1vut1bLWbjR1ksXGXlZEgpu38CWFEBbgg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Otz7pWHJgu3XhM1CFtVjliqliU6fX5A3bfRluElF+bpmffufjrG4uEnTJPpSwFZKXNB+GYd1m7OLrLG13roZlweX6Uc2b/m1p7bBoBbTEodR7067U98xz+2X0A4ITzNRTcaN7xhkhT3aG6yiMGvlelTwlCm1E5tToJ/6vougp8Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-Date: Thu, 27 Jun 2024 15:56:20 +0000
-From: Yixun Lan <dlan@gentoo.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Anup Patel <anup@brainfault.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Palmer Dabbelt <palmer@sifive.com>, linux-riscv@lists.infradead.org,
-	linux-serial@vger.kernel.org, Inochi Amaoto <inochiama@outlook.com>,
-	Meng Zhang <zhangmeng.kevin@spacemit.com>,
-	Yangyu Chen <cyy@cyyself.name>
-Subject: Re: [PATCH v2 00/10] riscv: add initial support for SpacemiT K1
-Message-ID: <20240627155620.GA1622265@ofsar>
-References: <20240627-k1-01-basic-dt-v2-0-cc06c7555f07@gentoo.org>
- <20240627-flinch-rented-1f2a2e5d73ca@spud>
+	 Content-Type:Content-Disposition:In-Reply-To; b=KNHr6BqWSN8y9XP0SkmUCvwD2A21zeuCcco4iuwn40pxISJj7vy/s4fsnU4JTRzbdCsmWJq+S1IKvuA6sSrtlMf+ttGgttQfLQaXPFxrxeUTO+g9HJ+6JXaJc2dVjWq7+YYdciaLDsrZ2LP94Jq8XswT5vl9Dds4ZOuXR8wMnXg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Kf8/d11m; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B8E8C2BBFC;
+	Thu, 27 Jun 2024 16:00:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719504053;
+	bh=Irj6F3lt/s1vut1bLWbjR1ksXGXlZEgpu38CWFEBbgg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Kf8/d11mM17XwDXDPGsItEKlSPzWzaRyNyCqzYnsMHJvXvKxzzAX00LA85S4TrWZB
+	 ZpWuY7I5Cpr7W0yvS3sIpf2bEnQKJwOfzvMw66OfmtO4UE6mfEwdunGPT6zGyrPNpd
+	 nYU8pswhZ8mGS+jy7eXdU8+bb6w8mkMfDmcq6xidHueD4ksB501wuTydNRCoJcjRgt
+	 z+AuKN/HdHYkwoKMteBUelhg2QvyE3OlbBYjXrKk5Y0ezKuk54nrfrS9aYr7QiwfAJ
+	 RZzUuX+m7kdA98Vv06GPZGeMdN+h6KYJLbRl0at4xBqpVB2FsQVQjreQd4jwXvAozV
+	 vUB5dtejzx2Dg==
+Date: Thu, 27 Jun 2024 17:00:49 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: Raymond Hackley <raymondhackley@protonmail.com>,
+	linux-kernel@vger.kernel.org,
+	Bjorn Andersson <andersson@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH 2/2] ARM: dts: qcom-msm8226-samsung-ms013g: Add initial
+ device tree
+Message-ID: <20240627-camera-appeasing-9ec979f1bc7e@spud>
+References: <20240626191829.280611-1-raymondhackley@protonmail.com>
+ <20240626191829.280611-3-raymondhackley@protonmail.com>
+ <5021ca42-f8d8-4dff-b0e2-21c7f9d680fa@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="7RPZU7Zawm7OiEi/"
+Content-Disposition: inline
+In-Reply-To: <5021ca42-f8d8-4dff-b0e2-21c7f9d680fa@linaro.org>
+
+
+--7RPZU7Zawm7OiEi/
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240627-flinch-rented-1f2a2e5d73ca@spud>
+Content-Transfer-Encoding: quoted-printable
 
-Hi Conor:
-
-On 16:39 Thu 27 Jun     , Conor Dooley wrote:
-> On Thu, Jun 27, 2024 at 03:31:14PM +0000, Yixun Lan wrote:
-> > SpacemiT K1 is an ideal chip for some new extension such as RISC-V Vector
-> > 1.0 and Zicond evaluation now. Add initial support for it to allow more
-> > people to participate in building drivers to mainline for it.
-> > 
-> > This kernel has been tested upon Banana Pi BPI-F3 board on vendor U-Boot
-> > bootflow generated by Armbian SDK[1] and patched OpenSBI[2] to enable
-> > Zicboz, which does not in the vendor dts on its U-Boot. Then successfully
-> > booted to busybox on initrd with this log[3].
-> > 
-> > As previous discussion in patch v1[4], maintainer expect more basic drivers
-> > ready before really merging it, which would be fine. For other follow-up patches, 
-> > that are clk, pinctrl/gpio, reset.. My current goal would target at a headless
-> > system including SD card, emmc, and ethernet.
-> > 
-> > P.S: talked to Yangyu, I will help and take care of this patch series, thanks
+On Wed, Jun 26, 2024 at 11:52:04PM +0200, Konrad Dybcio wrote:
+> On 26.06.2024 9:18 PM, Raymond Hackley wrote:
+> > Samsung Galaxy Grand 2 is a phone based on MSM8226. It's similar to the
+> > other Samsung devices based on MSM8226 with only a few minor difference=
+s.
+> >=20
+> > The device trees contain initial support with:
+> >  - GPIO keys
+> >  - Regulator haptic
+> >  - SDHCI (internal and external storage)
+> >  - UART (on USB connector via the TI TSU6721 MUIC)
+> >  - Regulators
+> >  - Touchscreen
+> >  - Accelerometer
+> >=20
+> > Signed-off-by: Raymond Hackley <raymondhackley@protonmail.com>
 > > ---
-> > Changes in v2:
-> >  - fix timebase-frequency according to current setting
-> >  - add other uart dt nodes, fix input frequency
-> >  - introduce new uart compatible for K1 SoC
-> >  - add 'k1' prefix to bananapi-f3.dts
-> >  - fix k1-clint compatible
-> >  - fix some typos
-> >  - Link to v1: https://lore.kernel.org/r/tencent_BC64B7B1876F5D10479BD19112F73F262505@qq.com
-> 
-> I will take a closer look at this series later, but there's a few
-> patches here missing Acks that I gave alongside some nitpick remarks.
-> Could you look at v1 again and add those to whatever other comments I
-> leave when I take a closer look?
-> 
-sure, thanks for your quick reply, I will do this tomorrow, and potentially
-wait all reviews, combine all tags I receive in v2, and address them in v3..
+>=20
+> [...]
+>=20
+> > +	reserved-memory {
+>=20
+> 'r' > 'g'
 
--- 
-Yixun Lan (dlan)
-Gentoo Linux Developer
-GPG Key ID AABEFD55
+I assume by this you mean "please the reserved memory node after the
+gpio one, in alphanumerical order?
+
+>=20
+> > +		smem_region: smem@fa00000 {
+> > +			reg =3D <0x0fa00000 0x100000>;
+> > +			no-map;
+> > +		};
+> > +	};
+> > +
+> > +	gpio-hall-sensor {
+
+--7RPZU7Zawm7OiEi/
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZn2MsQAKCRB4tDGHoIJi
+0vfsAQDngxyZBhF+AJoEY8F/Nrs3lJzVvDlKyd2lem4ooIrRGgEAmbJ/j/Ra+UkH
+ULinDOTPN8uPXTvabJEoDyAT7Dzlzwc=
+=SVgT
+-----END PGP SIGNATURE-----
+
+--7RPZU7Zawm7OiEi/--
 
