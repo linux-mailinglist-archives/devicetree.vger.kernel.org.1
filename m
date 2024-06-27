@@ -1,135 +1,79 @@
-Return-Path: <devicetree+bounces-80695-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80689-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F41891A38E
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 12:11:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94E1591A36E
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 12:05:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 262101F23998
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 10:11:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 482B21F226B1
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 10:05:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3A83143C7A;
-	Thu, 27 Jun 2024 10:10:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8531D13C3CF;
+	Thu, 27 Jun 2024 10:05:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="i5T/sRWC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from inva020.nxp.com (inva020.nxp.com [92.121.34.13])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09AB413E05F;
-	Thu, 27 Jun 2024 10:10:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.13
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.17])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6C9922EF2
+	for <devicetree@vger.kernel.org>; Thu, 27 Jun 2024 10:05:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719483045; cv=none; b=owHwPyX7pH2MV6fsD9aE6jTr77sC/gED75WJ6q2w4e2JmYei10PtjFhuJ0UUPslJAEV5AMAafmYkByEPQAxQ8FmPUaZHvhgl2YzF5im3Wl6GmjgAU+hBranxTM0nEtJsn5OICKc250wBqB3K7R8hbfSZKc5gCvkRfPJLe1ywh98=
+	t=1719482740; cv=none; b=mHTBSTL+EIYOveHsz9brWgvuVKTejcaAOyFhK/QKiVqkpbUpwOsmDqHY+hWv73mogDec1yYjQn3tVBb8j+rtCQhbAgWvAwDIVsZ1J9B9g8Y8ysn7Sc4DWA8dQh0pwE8U4fAGTRVcOYulM0ymDbntL7DNcG1mhdjrixPKMoVoq20=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719483045; c=relaxed/simple;
-	bh=JumFjepAK5BceEeoilJQ1Y3XfINuUODu8VGkkHsJI0E=;
-	h=From:To:Subject:Date:Message-Id:In-Reply-To:References; b=niwmGEUl5Qr0CaboTxco0Ls11MEIv+H9oDkfAdlF5DUjyz204kwcGOaeSqESgsiLJUYkrxnOvxTkaWjuX9A+huTWluhAlEGwgzhHaM5QJgrE6LigEv06GuiL3GPvoRPze9/94nujZp4o8VrlnxZMMUkX9zc19W6AGYb9B5y/RQA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id AE3501A0868;
-	Thu, 27 Jun 2024 12:10:36 +0200 (CEST)
-Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
-	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 75CB11A0738;
-	Thu, 27 Jun 2024 12:10:36 +0200 (CEST)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 9FEC3180222F;
-	Thu, 27 Jun 2024 18:10:34 +0800 (+08)
-From: Shengjiu Wang <shengjiu.wang@nxp.com>
-To: lgirdwood@gmail.com,
-	broonie@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	shengjiu.wang@gmail.com,
-	linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	shawnguo@kernel.org,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de,
-	festevam@gmail.com,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 3/3] arm64: dts: imx8mp-evk: Add audio XCVR sound card
-Date: Thu, 27 Jun 2024 17:53:01 +0800
-Message-Id: <1719481981-4069-4-git-send-email-shengjiu.wang@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1719481981-4069-1-git-send-email-shengjiu.wang@nxp.com>
-References: <1719481981-4069-1-git-send-email-shengjiu.wang@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+	s=arc-20240116; t=1719482740; c=relaxed/simple;
+	bh=xczqqtXsVrrwAMvmh9AI1sXsOJfyF1tCCQOsGAFdmLM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PXomjuNqGHqsfmw7ntrNXFoViFoOm5MYxBaZwwSVUVPZLYsq6gP15tuWm910lcwYoIGGM5QFc9pATzRyK+daRbdwxWgsbT4WuOByt7qUbGRcU2kRDqi9S01N9wqCTfvVhN2n+LpXn5R0itlLxt09XHsxy6tVBk8gYu3ggwm15yw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=i5T/sRWC; arc=none smtp.client-ip=1.95.21.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=Q3DO9iZvJ7SWjOlivAqabwQjr44lGGsASnW0CVN/hA0=;
+	b=i5T/sRWCT2LmS4VrZuTAz1vNCl+X+OW0d+D3kIY0NYIn4wAh3F4ErieHHLMQc3
+	8r4GvAi78hu/ixUtMD2mtoIKoc9hfvwHAftFFhtxpz5km3DRhFxmq1ZDVIjMKN/6
+	K3ukBh7XLkBy+UKJ19rn0abOEO3nmEbnySckwyv8X7voY=
+Received: from dragon (unknown [114.218.218.47])
+	by gzsmtp3 (Coremail) with SMTP id M88vCgD33x1LOX1mv0AaAA--.52926S3;
+	Thu, 27 Jun 2024 18:05:01 +0800 (CST)
+Date: Thu, 27 Jun 2024 18:04:59 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Fabio Estevam <festevam@gmail.com>
+Cc: shawnguo@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	Fabio Estevam <festevam@denx.de>
+Subject: Re: [PATCH] arm64: dts: imx8qxp-mek: Pass memory-region to the DSP
+ node
+Message-ID: <Zn05S5ATfw5USx29@dragon>
+References: <20240626140532.615857-1-festevam@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240626140532.615857-1-festevam@gmail.com>
+X-CM-TRANSID:M88vCgD33x1LOX1mv0AaAA--.52926S3
+X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUxXo2UUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiCw0LZWZv-czt0AAAst
 
-Add audio XCVR sound card, which supports SPDIF TX & RX,
-eARC RX, ARC RX functions.
+On Wed, Jun 26, 2024 at 11:05:32AM -0300, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@denx.de>
+> 
+> According to fsl,dsp.yaml, 'memory-region' is a required property.
+> 
+> Pass 'memory-region' to fix the following dt-schema warning:
+> 
+> imx8qxp-mek.dtb: dsp@596e8000: 'memory-region' is a required property
+> 
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
 
-HDMI_HPD is shared with the HDMI module so use pinctrl_hog.
-
-Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx8mp-evk.dts | 27 ++++++++++++++++++++
- 1 file changed, 27 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-index c2c708c492c0..a64e8a6c830d 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-@@ -209,6 +209,19 @@ cpu {
- 		};
- 	};
- 
-+	sound-xcvr {
-+		compatible = "fsl,imx-audio-card";
-+		model = "imx-audio-xcvr";
-+
-+		pri-dai-link {
-+			link-name = "XCVR PCM";
-+
-+			cpu {
-+				sound-dai = <&xcvr>;
-+			};
-+		};
-+	};
-+
- 	reserved-memory {
- 		#address-cells = <2>;
- 		#size-cells = <2>;
-@@ -748,7 +761,15 @@ &wdog1 {
- 	status = "okay";
- };
- 
-+&xcvr {
-+	#sound-dai-cells = <0>;
-+	status = "okay";
-+};
-+
- &iomuxc {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_hog>;
-+
- 	pinctrl_audio_pwr_reg: audiopwrreggrp {
- 		fsl,pins = <
- 			MX8MP_IOMUXC_SAI3_RXC__GPIO4_IO29		0xd6
-@@ -838,6 +859,12 @@ MX8MP_IOMUXC_NAND_READY_B__GPIO3_IO16	0x140
- 		>;
- 	};
- 
-+	pinctrl_hog: hoggrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_HDMI_HPD__HDMIMIX_HDMI_HPD		0x40000010
-+		>;
-+	};
-+
- 	pinctrl_i2c1: i2c1grp {
- 		fsl,pins = <
- 			MX8MP_IOMUXC_I2C1_SCL__I2C1_SCL		0x400001c2
--- 
-2.34.1
+Applied, thanks!
 
 
