@@ -1,132 +1,92 @@
-Return-Path: <devicetree+bounces-80992-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80996-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C655891AF8F
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 21:21:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 55FAC91AFA5
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 21:28:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 744C51F22A2A
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 19:21:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0A2431F22C75
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 19:28:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02C48199E93;
-	Thu, 27 Jun 2024 19:21:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dth0Q3cO"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4715C19EED2;
+	Thu, 27 Jun 2024 19:27:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3A612EAEA;
-	Thu, 27 Jun 2024 19:21:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1625D19D07B;
+	Thu, 27 Jun 2024 19:27:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719516103; cv=none; b=uZ6kntJT2htCCsrUiZPeazFGZHorlqSfiv7OjMfH2yjIddVLQ80fUMHvM5TO9xtur2FrB9MSU22uRS5TLS0ebqdp/ePvadhXUSQD7OKPGGqHMfrkItb2oW+5BJWKhs7Ff7gyDmpTMZGTVUdWCdFfALnjbzA6LzZc6m3X9bK0sp8=
+	t=1719516469; cv=none; b=CEdU5Fgl+kXwEGs4gtexOP77eYXjDQHwECEVRiXb2hwVW1MnKMkjVEsJIfPFKPYwaEwUJvW7/tOzfTrqLMhN7VuLeI7KcoAnITnQZiSaHfCWpcgzTm+Cdd65X2yEaE7R4EgEdN7Lzww1F8JTAy1kEzAPnpWZR1fVZe4yMR1YcZY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719516103; c=relaxed/simple;
-	bh=zP/DduxMo+Pi/jf7b4MTK+rTemYqKvWKL0pkpzGGOgk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=u8Pcv7eTdRRr7JPoNJUCdKAuL4Q9XTn/1iDNgEo6IMUtCIE7SBYLYr41gxCp58qksxP8PiS23c9gep1A8LrwaqfLZM/vuCdcykm80MI9h840KsDoGk0Jm1Z5m7Gbfi8e8cAiksyIkiITNqPm4MHKCNI7EFaQikyqMiXSGTIxv6M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dth0Q3cO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71C75C4AF0C;
-	Thu, 27 Jun 2024 19:21:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719516103;
-	bh=zP/DduxMo+Pi/jf7b4MTK+rTemYqKvWKL0pkpzGGOgk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dth0Q3cOrsTCNADJS7wBZw9ePNLt5Xq51kGiA8Rvvy73rKX0/hgj4VC25lgC8WWKg
-	 yi9L95uMe2fY9kJa/Rd9PJgRd5zkJG/ttVfWNmKjbT3wVyo0vv3rrK37gQ43eo37lc
-	 HZ1IUD2VXGQRky/+Fp8bYOqpQl4NRzox+Vs/9ZOpqxUUr/7nYnaqzgGxNY+yN/B1oN
-	 7Y/si+K+40h7gMfHqekWECgU6hll+5W9FXZX9x3nfJX9bcv0d5QAXjD60/NiPoTumP
-	 u17JlHZFC1VTJfyet0ZTmGttWRr+uTuol91NjdzJbR1Vzsd22XBFgY9Pp6zC9Ha8K7
-	 mosY3yIqSAMCA==
-Date: Thu, 27 Jun 2024 21:21:39 +0200
-From: Andi Shyti <andi.shyti@kernel.org>
-To: claudiu beznea <claudiu.beznea@tuxon.dev>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>, 
-	Chris Brandt <Chris.Brandt@renesas.com>, "robh@kernel.org" <robh@kernel.org>, 
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
-	"geert+renesas@glider.be" <geert+renesas@glider.be>, "magnus.damm@gmail.com" <magnus.damm@gmail.com>, 
-	"mturquette@baylibre.com" <mturquette@baylibre.com>, "sboyd@kernel.org" <sboyd@kernel.org>, 
-	"p.zabel@pengutronix.de" <p.zabel@pengutronix.de>, 
-	"wsa+renesas@sang-engineering.com" <wsa+renesas@sang-engineering.com>, 
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Subject: Re: [PATCH v2 04/12] i2c: riic: Use pm_runtime_resume_and_get()
-Message-ID: <kfaiindnm4wpyr4iruczjlichq5g7n5ru5nvzeproty3qx3n6g@tu3fenmprzjy>
-References: <20240625121358.590547-1-claudiu.beznea.uj@bp.renesas.com>
- <20240625121358.590547-5-claudiu.beznea.uj@bp.renesas.com>
- <TY3PR01MB11346F03386D05D608041DE8D86D52@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <14167607-e67b-4627-99f0-6e99acc7f880@tuxon.dev>
- <TY3PR01MB11346A47493E0EE96CB2CF17B86D62@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <a8b5ccee-f9a9-4bfa-be70-085d2fe7f8d2@tuxon.dev>
+	s=arc-20240116; t=1719516469; c=relaxed/simple;
+	bh=v/KpyaavinuxAkCGEPei9KO4qGaKS4tLF18S/Uu0KcY=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=d8ikShbbKvObYWOmvxFbjOEqLn3A6MTpSKUze6YWP28K9OQ+yXd5rxMk7fdEIWexglmrjj/x0yW8HKdqD6i3jD5aLkdDpmeCClueHnB6T7O6CTMkGDVHO1je9PTeSseKGMphQNmnyIjVGLAFvEUxreihZ5FdEoiwThnd/57MLa4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+Received: from i53875b6a.versanet.de ([83.135.91.106] helo=phil.lan)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1sMumK-0000wK-L0; Thu, 27 Jun 2024 21:27:32 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: Furkan Kardame <f.kardame@manjaro.org>,
+	Zhang Qing <zhangqing@rock-chips.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+	Chris Morgan <macromorgan@hotmail.com>,
+	Lee Jones <lee@kernel.org>,
+	Chris Zhong <zyw@rock-chips.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Michael Riesch <michael.riesch@wolfvision.net>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	kernel@collabora.com,
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: (subset) [PATCH v2 0/5] DT fixes for Rockchip RK809 audio codec support
+Date: Thu, 27 Jun 2024 21:27:26 +0200
+Message-Id: <171951643514.1057727.17430383742626789629.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20240622-rk809-fixes-v2-0-c0db420d3639@collabora.com>
+References: <20240622-rk809-fixes-v2-0-c0db420d3639@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <a8b5ccee-f9a9-4bfa-be70-085d2fe7f8d2@tuxon.dev>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-Hi Claudiu,
-
-First of all, thanks Biju for checking the code and bringing up
-this topic.
-
-On Wed, Jun 26, 2024 at 09:30:52AM GMT, claudiu beznea wrote:
-> >> On 25.06.2024 18:53, Biju Das wrote:
-
-...
-
-> >>>>  static inline void riic_writeb(struct riic_dev *riic, u8 val, u8 offset)  {
-> >>>>  	writeb(val, riic->base + riic->info->regs[offset]); @@ -133,10
-> >>>> +135,14 @@ static int riic_xfer(struct i2c_adapter *adap, struct i2c_msg msgs[], int num)
-> >>>>  	struct riic_dev *riic = i2c_get_adapdata(adap);
-> >>>>  	struct device *dev = adap->dev.parent;
-> >>>>  	unsigned long time_left;
-> >>>> -	int i;
-> >>>> +	int i, ret;
-> >>>>  	u8 start_bit;
-> >>>>
-> >>>> -	pm_runtime_get_sync(dev);
-> >>>> +	ret = pm_runtime_resume_and_get(dev);
-> >>>> +	if (ret) {
-> >>>> +		dev_err(dev, riic_rpm_err_msg);
-> >>>
-> >>> As at the moment we don't know how to reproduce this error condition
-> >>> Can we use WARN_ON_ONCE() instead to catch detailed error condition here??
-> >>
-> >> [1] states "So, naturally, use of WARN_ON() is also now discouraged much of the time". I've go with
-> >> dev_err() or something similar.
-> > 
-> > WARN_ON_ONCE() should be ok I guess as people are using for printing this info only once??
+On Sat, 22 Jun 2024 00:57:17 +0300, Cristian Ciocaltea wrote:
+> Rockchip RK809 MFD provides a RK817 compatible audio codec, supported by
+> the rk817_codec driver.
 > 
-> Ok, I'm leaving this to I2C maintainers.
+> This patch series fixes a few issues identified by dtbs_check for the
+> boards making use of the codec: rk3566-quartz64-b, k3566-roc-pc,
+> rk3568-evb1-v10, rk3568-lubancat-2, rk3568-odroid-m1, rk3568-rock-3a.
 > 
-> Andi, Wolfram,
-> 
-> Would you prefer having WARN_ON_ONCE() instead of dev_err() for potential
-> failures of pm_runtime_resume_and_get()?
+> [...]
 
-I prefer dev_err. WARN_ON should be used for some serious
-failures in the code.
+Applied, thanks!
 
-E.g. memory corruption, like:
+[3/5] arm64: dts: rockchip: Drop invalid mic-in-differential on rk3568-rock-3a
+      commit: c5e56e620410696922cc01d4ab473fa03c627ca7
+[4/5] arm64: dts: rockchip: Fix mic-in-differential usage on rk3566-roc-pc
+      commit: 26067ce0934480d772b76cb674055ef66411bc09
+[5/5] arm64: dts: rockchip: Fix mic-in-differential usage on rk3568-evb1-v10
+      commit: 592d17ded2d569b60bd35d91889a79c70e5c6c5f
 
-	a = 5;
-	WARN_ON(a != 5);
-
-but the system might still work even with such errors (otherwise
-there is BUG_ON()).
-
-Besides, WARN_ON() prints some information that are not really
-useful to understand why the system didn't resume. For example
-you don't need the stack trace for power management failures, but
-you need it for code tracing code bugs.
-
-Andi
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
