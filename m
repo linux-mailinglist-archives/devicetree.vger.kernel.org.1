@@ -1,123 +1,311 @@
-Return-Path: <devicetree+bounces-80959-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80960-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEE7291AD35
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 18:51:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 694C691AD6C
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 19:07:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E1F141C25DF4
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 16:51:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E15861F26B4B
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 17:07:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CA781991A9;
-	Thu, 27 Jun 2024 16:51:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 892D61993AE;
+	Thu, 27 Jun 2024 17:07:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kQi/AgxK"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="u4FcjLQB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D23791991DB;
-	Thu, 27 Jun 2024 16:51:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 573241993B6;
+	Thu, 27 Jun 2024 17:07:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719507074; cv=none; b=dCdm1Ug6KZX0urgDCwHdWaFFbHS3LfWIloPkL/Zn+0+Bvfxexlf9VcIPNukofbNaagU57/MIV03GB00dOVjlVa/vWItDzG2uvpfibVBqu7QUINtAQx3/wqDyo6qAghQENdmvn9R+TUovYmremfgrWoZvZQjhMALLxB3r/bdy4NU=
+	t=1719508054; cv=none; b=blyWsPfuyvJ6H97U3VeFoOL1PMK/ICJO4NLkbUsvtfgqtt3hV8ccsaFVvnbBPwEaUhC4J5/ZmYVKSc6QnOiVToqE+oY0kdX8B0L+va6GmLffPhyWGoccZX1OeY9WbTGbHabdo8ZFxiccOOaPqb4tH3ImDydI0KxSosA+M2AcioA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719507074; c=relaxed/simple;
-	bh=zpcwn9flbKcq0T6UN63hvuzvkWllw7Tqpb3Aa9DMctE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YLwW7UY7xCacxJYrF6R9mfHBjpXagWFGDf/OWOvqax3p2eXLFoXcoFFwb5mVLxi8dE7Vpc/RF2fzJjZtYv4bI9cl3k2R7m+ekHJ1ZyjsrTbjyW1Ch9FDxM1/lr3WW6tMVSF+YGh4q7QSRvy7JWbySxgzFlKsRiZ2kz/QBU53MTk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kQi/AgxK; arc=none smtp.client-ip=209.85.210.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-7067435d376so1501292b3a.0;
-        Thu, 27 Jun 2024 09:51:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1719507072; x=1720111872; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=q+P8ZMHBFh7Ea0PmzSMD7AKjbgN9ipTjqguYxy6dCKE=;
-        b=kQi/AgxKbrOaTCQcbqljQdJ0uhD16kALh6KHedKaoHrd8r6FtZi2ot/WsfhDNAamTR
-         dpdKFuNS2UybYc6f7YCJsrgi7WatvAtnO9doDOK9nUxJNT0RRKXhHN7hjPiaOMBwoQ2e
-         iH21tWXJ6KmVlttKvoeBM0nv7HiQSoWvyma2Zs4g6CzNNbMGdkw3c7HKHv89MJpEmrpi
-         VxdFwlyMDY4jP65xlmgTcEOZPdcQlyu2OhBNVLr+hU+WJQzqyW0Otgqqd/2eL5srru+x
-         qBvQ26zqTXzs8ShOyYoI6Ze8KhugQ6yqQDGe9HE+lVmI4mcE4lJzxItWN31Rou4CB6BX
-         LgTg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719507072; x=1720111872;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=q+P8ZMHBFh7Ea0PmzSMD7AKjbgN9ipTjqguYxy6dCKE=;
-        b=DAFujQxTGgowZ9O4rJ/0stznGz7Icgia+wC/+O+wgmz1iUHSw6u/YBg2GrnPhKg0kt
-         7YbiUq8s4dq1167hz/OpM0HuPZo/yUJON4T0v69TCVMppeXvueDmyBfbbf029LT7haBh
-         0LYebxY7ztjwh+WkSu9oWJbB1HJ0LOW48c62bCSYJnqkZfATISz5fpicuXJHopvqL09s
-         /iXmxcjIxDVMmfB2f249X3toeBFrk+VD32PQmM33UOLs7GRvaVafahTtIuQZLFSqKeB7
-         gNh3v+SbtdcoCQXt+yqWkt1zmC/7zhyKO5p51FQKdyJ6uP1i+0LQcmzqIb90ohxdt74z
-         +IIQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWc8fVz0dDYoPfHJNmxKW4woywtG3CVe/g/V/9aCy3yZqZQ22FguXuw5mi0DID9Tj19WG72/01H/YRw+I9cRT8tDfu/Op/pI9SVk6ISB+0GBzyjTbjSBeMoSnW/EIDR254Kc97e8piyQc1Y0kHFAYViGSvEaF8ia/4hLaym9tuVpLnEwYtJ
-X-Gm-Message-State: AOJu0YzYM7zJxmaWfReq0KhLJzHvBqznMXyQI9E1IJM+66mILK94lgeo
-	UJJByWFc1xt1zSnMfXOyQHjfg28lV8v3GJcEIuTPA1Kx0pML+0NW
-X-Google-Smtp-Source: AGHT+IEtsHGRa5kfKuqYiySLzZn6IDZD4AjzxULhgcZLdzw6y6a3eBUMXL/wpPOeXdDOqPwZo5HkNg==
-X-Received: by 2002:a05:6a00:928f:b0:706:7797:27ef with SMTP id d2e1a72fcca58-706b4fec34emr3808432b3a.1.1719507071890;
-        Thu, 27 Jun 2024 09:51:11 -0700 (PDT)
-Received: from google.com ([2620:15c:9d:2:c4ea:7ce4:91ae:d360])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-706b4a073c3sm1585740b3a.115.2024.06.27.09.51.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 Jun 2024 09:51:11 -0700 (PDT)
-Date: Thu, 27 Jun 2024 09:51:09 -0700
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Philipp Zabel <p.zabel@pengutronix.de>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	kernel@pengutronix.de
-Subject: Re: [PATCH] Input: exc3000 - add EXC81W32 support
-Message-ID: <Zn2Yfeaewi-Bxx83@google.com>
-References: <20240626-input-exc3000-exc81w32-v1-1-ac42d3b87aff@pengutronix.de>
+	s=arc-20240116; t=1719508054; c=relaxed/simple;
+	bh=Z/c+lxJwd7UIuARllGjxVL6q+N2isc3AH0/Vo8Ni5H0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=MGwZuQDaEbZ1VaY2kt8Y3vx6Ia6vtS1sxDPXcyxJAYucxLoKRQ12P9ywl08gkh0ABleKtQZO1azSbYofXSmhRirn7/Iz/I2xPubtS/ZT90vip64seyvY+mMn8yxNotDSkOJ/uyJNY/vDS89SPAwyvrToNk7PpictQAOI5B9w+5E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=u4FcjLQB; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 45RH7AWp063539;
+	Thu, 27 Jun 2024 12:07:10 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1719508030;
+	bh=BcQL+NqV6utnh+IZGZTuEzll45Xa3ROniFOcHtO7a0s=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=u4FcjLQBTFvh17RASYvDE3PrENT7vP4PqD+ooJJuBeq1FOwEZurxyNgaweGQYF1uP
+	 WZtf5SODIau9Azb05maWB2ohUa9h6n1lUkII0hhNvP9T4ohoQ9g8BA+mfOYNFvAFyk
+	 pGCrKzJERNH61uGpwc3esLSP58qG1FrE/vOkO50A=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 45RH7A7Q018299
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 27 Jun 2024 12:07:10 -0500
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 27
+ Jun 2024 12:07:10 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 27 Jun 2024 12:07:10 -0500
+Received: from [10.249.42.149] ([10.249.42.149])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 45RH79hX030213;
+	Thu, 27 Jun 2024 12:07:09 -0500
+Message-ID: <4e23ec81-b278-4f2b-815d-64ed9390ca55@ti.com>
+Date: Thu, 27 Jun 2024 12:07:09 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240626-input-exc3000-exc81w32-v1-1-ac42d3b87aff@pengutronix.de>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 7/7] dts: ti: k3-am625-beagleplay: Add mikroBUS
+To: Ayush Singh <ayush@beagleboard.org>, Mark Brown <broonie@kernel.org>,
+        Vaishnav M A <vaishnav@beagleboard.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Derek Kiernan <derek.kiernan@amd.com>,
+        Dragan Cvetic <dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman
+	<gregkh@linuxfoundation.org>,
+        Nishanth Menon <nm@ti.com>, Vignesh Raghavendra
+	<vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>, Michael Walle
+	<mwalle@kernel.org>,
+        Andrew Lunn <andrew@lunn.ch>, <jkridner@beagleboard.org>,
+        <robertcnelson@beagleboard.org>
+CC: <linux-spi@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+References: <20240627-mikrobus-scratch-spi-v5-0-9e6c148bf5f0@beagleboard.org>
+ <20240627-mikrobus-scratch-spi-v5-7-9e6c148bf5f0@beagleboard.org>
+Content-Language: en-US
+From: Andrew Davis <afd@ti.com>
+In-Reply-To: <20240627-mikrobus-scratch-spi-v5-7-9e6c148bf5f0@beagleboard.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hi Philipp,
-
-On Wed, Jun 26, 2024 at 04:26:48PM +0200, Philipp Zabel wrote:
-> This adds support for EXC81W32 controllers.
+On 6/27/24 11:26 AM, Ayush Singh wrote:
+> DONOTMERGE
 > 
-> Tested with firmware reported as type "PCAP81X32 Series",
-> model "Orion_0183_1019", fw_version "8001280G".
+> Add mikroBUS connector and some mikroBUS boards support for Beagleplay.
+> The mikroBUS boards node should probably be moved to a more appropriate
+> location but I am not quite sure where it should go since it is not
+> dependent on specific arch.
 > 
-> Signed-off-by: Philipp Zabel <p.zabel@pengutronix.de>
+> Signed-off-by: Ayush Singh <ayush@beagleboard.org>
 > ---
->  .../devicetree/bindings/input/touchscreen/eeti,exc3000.yaml        | 1 +
->  drivers/input/touchscreen/exc3000.c                                | 7 +++++++
->  2 files changed, 8 insertions(+)
+>   arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts | 94 +++++++++++++++++++++++---
+>   1 file changed, 86 insertions(+), 8 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/input/touchscreen/eeti,exc3000.yaml b/Documentation/devicetree/bindings/input/touchscreen/eeti,exc3000.yaml
-> index 9dc25d30a0a8..c299838e2680 100644
-> --- a/Documentation/devicetree/bindings/input/touchscreen/eeti,exc3000.yaml
-> +++ b/Documentation/devicetree/bindings/input/touchscreen/eeti,exc3000.yaml
-> @@ -18,6 +18,7 @@ properties:
->        - eeti,exc3000
->        - eeti,exc80h60
->        - eeti,exc80h84
-> +      - eeti,exc81w32
->    reg:
->      const: 0x2a
->    interrupts:
+> diff --git a/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts b/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
+> index 70de288d728e..3f3cd70345c4 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
+> @@ -38,6 +38,7 @@ aliases {
+>   		serial2 = &main_uart0;
+>   		usb0 = &usb0;
+>   		usb1 = &usb1;
+> +		mikrobus0 = &mikrobus0;
+>   	};
+>   
+>   	chosen {
+> @@ -227,6 +228,56 @@ simple-audio-card,codec {
+>   		};
+>   	};
+>   
+> +	mikrobus0: mikrobus-connector {
+> +		compatible = "mikrobus-connector";
+> +		pinctrl-names = "default", "pwm_default", "pwm_gpio",
+> +				"uart_default", "uart_gpio", "i2c_default",
+> +				"i2c_gpio", "spi_default", "spi_gpio";
+> +		pinctrl-0 = <&mikrobus_gpio_pins_default>;
+> +		pinctrl-1 = <&mikrobus_pwm_pins_default>;
+> +		pinctrl-2 = <&mikrobus_pwm_pins_gpio>;
+> +		pinctrl-3 = <&mikrobus_uart_pins_default>;
+> +		pinctrl-4 = <&mikrobus_uart_pins_gpio>;
+> +		pinctrl-5 = <&mikrobus_i2c_pins_default>;
+> +		pinctrl-6 = <&mikrobus_i2c_pins_gpio>;
+> +		pinctrl-7 = <&mikrobus_spi_pins_default>;
+> +		pinctrl-8 = <&mikrobus_spi_pins_gpio>;
+> +
+> +		mikrobus-gpio-names = "pwm", "int", "rx", "tx", "scl", "sda",
+> +				      "mosi", "miso", "sck", "cs", "rst", "an";
+> +		mikrobus-gpios = <&main_gpio1 11 GPIO_ACTIVE_HIGH>,
+> +				 <&main_gpio1 9 GPIO_ACTIVE_HIGH>,
+> +				 <&main_gpio1 24 GPIO_ACTIVE_HIGH>,
+> +				 <&main_gpio1 25 GPIO_ACTIVE_HIGH>,
+> +				 <&main_gpio1 22 GPIO_ACTIVE_HIGH>,
+> +				 <&main_gpio1 23 GPIO_ACTIVE_HIGH>,
+> +				 <&main_gpio1 7 GPIO_ACTIVE_HIGH>,
+> +				 <&main_gpio1 8 GPIO_ACTIVE_HIGH>,
+> +				 <&main_gpio1 14 GPIO_ACTIVE_HIGH>,
+> +				 <&main_gpio1 13 GPIO_ACTIVE_HIGH>,
+> +				 <&main_gpio1 12 GPIO_ACTIVE_HIGH>,
+> +				 <&main_gpio1 10 GPIO_ACTIVE_HIGH>;
+> +
+> +		spi-controller = <&main_spi2>;
+> +		spi-cs = <0>;
+> +		spi-cs-names = "default";
+> +
+> +		board = <&lsm6dsl_click>;
+> +	};
+> +
+> +	mikrobus_boards {
+> +		thermo_click: thermo-click {
+> +			compatible = "maxim,max31855k", "mikrobus-spi";
 
-Could you please split this chunk into a separate patch so that DT folks
-can chime in on it separately from the driver change?
+I might be missing something, but your solution cannot possibly be
+to list every click board that could be connected (all 1500+ of them)
+to every mikroBUS connector on every device's DT file..
 
-Thanks.
+Each click board should have a single DTSO overlay file to describe the
+click board, one per click board total. And then that overlay should
+apply cleanly to any device that has a mikroBUS interface.
 
--- 
-Dmitry
+Which means you have not completely solved the fundamental problem of
+abstracting the mikroBUS connector in DT. Each of these click device child
+nodes has to be under the parent connector node. Which means a phandle
+to the parent node, which is not generically named. For instance
+if my board has 2 connectors, I would have mikrobus0 and mikrobus1,
+the click board's overlay would look like this:
+
+/dts-v1/;
+/plugin/;
+
+&mikrobus0 {
+	status = "okay";
+
+	mikrobus_board {
+		thermo-click {
+			compatible = "maxim,max31855k", "mikrobus-spi";
+			spi-max-frequency = <1000000>;
+			pinctrl-apply = "spi_default";
+		};
+	};
+};
+
+I think this solution is almost there, but once you solve the above
+issue, we could just apply the right overlay for our attached click
+board ahead of time and not need the mikroBUS bus driver at all.
+
+Andrew
+
+> +			spi-max-frequency = <1000000>;
+> +			pinctrl-apply = "spi_default";
+> +		};
+> +
+> +		lsm6dsl_click: lsm6dsl-click {
+> +			compatible = "st,lsm6ds3", "mikrobus-spi";
+> +			spi-max-frequency = <1000000>;
+> +			pinctrl-apply = "spi_default";
+> +		};
+> +	};
+>   };
+>   
+>   &main_pmx0 {
+> @@ -387,6 +438,18 @@ AM62X_IOPAD(0x01f0, PIN_OUTPUT, 5) /* (A18) EXT_REFCLK1.CLKOUT0 */
+>   		>;
+>   	};
+>   
+> +	mikrobus_pwm_pins_default: mikrobus-pwm-default-pins {
+> +		pinctrl-single,pins = <
+> +			AM62X_IOPAD(0x01a4, PIN_INPUT, 2) /* (B20) MCASP0_ACLKX.ECAP2_IN_APWM_OUT */
+> +		>;
+> +	};
+> +
+> +	mikrobus_pwm_pins_gpio: mikrobus-pwm-gpio-pins {
+> +		pinctrl-single,pins = <
+> +			AM62X_IOPAD(0x01a4, PIN_INPUT, 7) /* (B20) MCASP0_ACLKX.GPIO1_11 */
+> +		>;
+> +	};
+> +
+>   	mikrobus_i2c_pins_default: mikrobus-i2c-default-pins {
+>   		pinctrl-single,pins = <
+>   			AM62X_IOPAD(0x01d0, PIN_INPUT_PULLUP, 2) /* (A15) UART0_CTSn.I2C3_SCL */
+> @@ -394,6 +457,13 @@ AM62X_IOPAD(0x01d4, PIN_INPUT_PULLUP, 2) /* (B15) UART0_RTSn.I2C3_SDA */
+>   		>;
+>   	};
+>   
+> +	mikrobus_i2c_pins_gpio: mikrobus-i2c-gpio-pins {
+> +		pinctrl-single,pins = <
+> +			AM62X_IOPAD(0x01d0, PIN_INPUT, 7) /* (A15) UART0_CTSn.GPIO1_22 */
+> +			AM62X_IOPAD(0x01d4, PIN_INPUT, 7) /* (B15) UART0_RTSn.GPIO1_23 */
+> +		>;
+> +	};
+> +
+>   	mikrobus_uart_pins_default: mikrobus-uart-default-pins {
+>   		pinctrl-single,pins = <
+>   			AM62X_IOPAD(0x01d8, PIN_INPUT, 1) /* (C15) MCAN0_TX.UART5_RXD */
+> @@ -401,6 +471,13 @@ AM62X_IOPAD(0x01dc, PIN_OUTPUT, 1) /* (E15) MCAN0_RX.UART5_TXD */
+>   		>;
+>   	};
+>   
+> +	mikrobus_uart_pins_gpio: mikrobus-uart-gpio-pins {
+> +		pinctrl-single,pins = <
+> +			AM62X_IOPAD(0x01d8, PIN_INPUT, 7) /* (C15) MCAN0_TX.GPIO1_24 */
+> +			AM62X_IOPAD(0x01dc, PIN_INPUT, 7) /* (E15) MCAN0_RX.GPIO1_25 */
+> +		>;
+> +	};
+> +
+>   	mikrobus_spi_pins_default: mikrobus-spi-default-pins {
+>   		pinctrl-single,pins = <
+>   			AM62X_IOPAD(0x01b0, PIN_INPUT, 1) /* (A20) MCASP0_ACLKR.SPI2_CLK */
+> @@ -410,6 +487,15 @@ AM62X_IOPAD(0x0198, PIN_INPUT, 1) /* (A19) MCASP0_AXR2.SPI2_D1 */
+>   		>;
+>   	};
+>   
+> +	mikrobus_spi_pins_gpio: mikrobus-spi-gpio-pins {
+> +		pinctrl-single,pins = <
+> +			AM62X_IOPAD(0x0194, PIN_INPUT, 7) /* (B19) MCASP0_AXR3.GPIO1_7 */
+> +			AM62X_IOPAD(0x0198, PIN_INPUT, 7) /* (A19) MCASP0_AXR2.GPIO1_8 */
+> +			AM62X_IOPAD(0x01ac, PIN_INPUT, 7) /* (E19) MCASP0_AFSR.GPIO1_13 */
+> +			AM62X_IOPAD(0x01b0, PIN_INPUT, 7) /* (A20) MCASP0_ACLKR.GPIO1_14 */
+> +		>;
+> +	};
+> +
+>   	mikrobus_gpio_pins_default: mikrobus-gpio-default-pins {
+>   		bootph-all;
+>   		pinctrl-single,pins = <
+> @@ -630,8 +716,6 @@ &main_gpio0 {
+>   
+>   &main_gpio1 {
+>   	bootph-all;
+> -	pinctrl-names = "default";
+> -	pinctrl-0 = <&mikrobus_gpio_pins_default>;
+>   	gpio-line-names = "", "", "", "", "",			/* 0-4 */
+>   		"SPE_RSTN", "SPE_INTN", "MIKROBUS_GPIO1_7",	/* 5-7 */
+>   		"MIKROBUS_GPIO1_8", "MIKROBUS_GPIO1_9",		/* 8-9 */
+> @@ -804,15 +888,11 @@ it66121_out: endpoint {
+>   };
+>   
+>   &main_i2c3 {
+> -	pinctrl-names = "default";
+> -	pinctrl-0 = <&mikrobus_i2c_pins_default>;
+>   	clock-frequency = <400000>;
+>   	status = "okay";
+>   };
+>   
+>   &main_spi2 {
+> -	pinctrl-names = "default";
+> -	pinctrl-0 = <&mikrobus_spi_pins_default>;
+>   	status = "okay";
+>   };
+>   
+> @@ -876,8 +956,6 @@ &main_uart1 {
+>   };
+>   
+>   &main_uart5 {
+> -	pinctrl-names = "default";
+> -	pinctrl-0 = <&mikrobus_uart_pins_default>;
+>   	status = "okay";
+>   };
+>   
+> 
 
