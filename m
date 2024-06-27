@@ -1,126 +1,95 @@
-Return-Path: <devicetree+bounces-80752-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80754-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 347AB91A5A4
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 13:48:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D798991A5C1
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 13:55:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DEA2A1F218F5
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 11:48:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 824091F21D34
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 11:55:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C398914EC53;
-	Thu, 27 Jun 2024 11:47:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rDLFp2F3"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14AAC14C58E;
+	Thu, 27 Jun 2024 11:55:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.naobsd.org (sakura.naobsd.org [160.16.200.221])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EFE414AD0E;
-	Thu, 27 Jun 2024 11:47:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76E9A4500C
+	for <devicetree@vger.kernel.org>; Thu, 27 Jun 2024 11:55:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=160.16.200.221
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719488875; cv=none; b=ZQUFZTe7nIkjs4VAfs60odRRJc4t5fUOb0ieJeyXMllBTFXmKyVvnkWJgmo4hRIFsXHO7yZRFLTpgdmKuhQEGGBQmHoDmM41QE96Mm9AMQB8wkC69g3rMwgZnbqNacWUmf25US2+orGn7PQOkF6wZTbvqE4ji9tfHRxTR2HkMV0=
+	t=1719489354; cv=none; b=uJnrjQPYAPduL5yHvvSrqts0zBLIec8IsATaRZwYW9dOywHFbukPhxYK3ifmpIP2ZhtY8ysePSoQ+2h+ULVXvK3ZYIV7NFJMz9P/e2lcit5BXqKMWZo4THIhkDEGTZzRAdfQ3cRart/BF7yo10SUnXah4qRaxyOcKzVzRRcH9+E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719488875; c=relaxed/simple;
-	bh=eyjxy3sxdu3xoTQb6Z89zNdOHxg3M/MGMf8s4ii97+g=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=CABkcBY6RanvXyhjFVV/Y201kYJb9QPuh6OgiQ2CDPJjLXzSVSyJasz+c3yh7jRUkjunxJESGBl1fuw5zx3FV2q+ym4jKIpMX+ZwpXS16aqTPeKHBZ1kisxKN6QwtIyeL08n1oSOUnEoaoTomwM3Ynu+QCB1FohNAS3i2htypFs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rDLFp2F3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 48081C4AF0E;
-	Thu, 27 Jun 2024 11:47:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719488875;
-	bh=eyjxy3sxdu3xoTQb6Z89zNdOHxg3M/MGMf8s4ii97+g=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=rDLFp2F3ezKHScCh4xiy2zMKT7119vaePYGsezyMJTEf0gHUygZ77vJiqtPOBOVr0
-	 +6e99Xc+Cm8nxJigQbla1J6r4IUo8yG5/5jyz7ojRJAD4DVYLI4wWU/PF+Mn9sH5pX
-	 zfbUl6T/ZF+AVgcgxm2b6iatsg762IjB2zz8c2zYuLcvMmDRyqV3xwupRmdTtVWuVE
-	 rH6LGjzNV94nPaOwXo/uuE8g2GN2xZqrX0wHvY/dYmhxAoK4IDZDq7sgm6+UHwXRiR
-	 NDohfTn4+TPoQtJKlfcpA2bVwqt9msQuoXUPOO8TnEiAdiG+wi06yZZvhPovL6pIs/
-	 qq2MDj8Fiuiag==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3C098C2BD09;
-	Thu, 27 Jun 2024 11:47:55 +0000 (UTC)
-From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Thu, 27 Jun 2024 19:47:53 +0800
-Subject: [PATCH 3/3] arm64: dts: amlogic: a5: add power domain controller
- node
+	s=arc-20240116; t=1719489354; c=relaxed/simple;
+	bh=E9LCP7C5rv644waCW4aV6L5OsMn+NC6NNrGxm0vJL1Q=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=B+UcwnPtbGn6zGeO/8GyTkKlCvaR+F8vFHplZe3MJEEn/VD5M829JENQMwSb8Rd3ajnotTTrAJKc+yh9WKK+jXsiCoxHa6nWuJUx1Rgo++vI8ceAwT17s43H4HaqJR5P79QOVEgnXA+O0cxQ2HlmpKeu2BEFWv1idSABTgjA8aY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=milkv.io; spf=none smtp.mailfrom=milkv.io; arc=none smtp.client-ip=160.16.200.221
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=milkv.io
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=milkv.io
+Received: from secure.fukaumi.org ([10.0.0.2])
+	by mail.naobsd.org (8.14.4/8.14.4/Debian-4.1ubuntu1.1) with ESMTP id 45RBr0rZ021179;
+	Thu, 27 Jun 2024 20:53:01 +0900
+From: FUKAUMI Naoki <naoki@milkv.io>
+To: kernel@esmil.dk
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        FUKAUMI Naoki <naoki@milkv.io>
+Subject: [PATCH v3 1/4] riscv: defconfig: enable "heartbeat" led trigger
+Date: Thu, 27 Jun 2024 20:52:33 +0900
+Message-ID: <20240627115236.618-1-naoki@milkv.io>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240627-a5_secpower-v1-3-1f47dde1270c@amlogic.com>
-References: <20240627-a5_secpower-v1-0-1f47dde1270c@amlogic.com>
-In-Reply-To: <20240627-a5_secpower-v1-0-1f47dde1270c@amlogic.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Jianxin Pan <jianxin.pan@amlogic.com>, Ulf Hansson <ulf.hansson@linaro.org>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-pm@vger.kernel.org, Xianwei Zhao <xianwei.zhao@amlogic.com>, 
- Hongyu Chen <hongyu.chen1@amlogic.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1719488872; l=952;
- i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
- bh=a2Zu+uHx7AvPgs0U7XpBlBsH/P/9nCVcrhSWZWMj+mI=;
- b=QgBeyLD1Kac4MHjy5kyxtif4bCHe3DmeuihH4WAyneRpGvyo31dywxlvvHylqdPXeH7o/vv3N
- QBZtc7xUpsQAbNsGbVbH85wfd+4zPivbRtVm+3Ojs5fVy7LPkc+N2nM
-X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
- pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
-X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
- auth_id=107
-X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-Reply-To: xianwei.zhao@amlogic.com
+Content-Transfer-Encoding: 8bit
 
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+following JH7110 based boards have a LED for heartbeat.
 
-Add power domain controller node for Amlogic A5 SoC.
+- Milk-V Mars
+- Pine64 Star64
+- StarFive VisionFive 2
 
-Signed-off-by: Hongyu Chen <hongyu.chen1@amlogic.com>
-Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+This patch adds and enables related configuration for it.
+
+Signed-off-by: FUKAUMI Naoki <naoki@milkv.io>
+
+Changes in v2:
+- reword commit message to include other JH7110 based boards
 ---
- arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ arch/riscv/configs/defconfig | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi
-index 43f68a7da2f7..17a6316de891 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi
-@@ -4,6 +4,7 @@
-  */
- 
- #include "amlogic-a4-common.dtsi"
-+#include <dt-bindings/power/amlogic,a5-pwrc.h>
- / {
- 	cpus {
- 		#address-cells = <2>;
-@@ -37,4 +38,13 @@ cpu3: cpu@300 {
- 			enable-method = "psci";
- 		};
- 	};
-+
-+	sm: secure-monitor {
-+		compatible = "amlogic,meson-gxbb-sm";
-+
-+		pwrc: power-controller {
-+			compatible = "amlogic,a5-pwrc";
-+			#power-domain-cells = <1>;
-+		};
-+	};
- };
-
+diff --git a/arch/riscv/configs/defconfig b/arch/riscv/configs/defconfig
+index 3f1f055866af..5f5582d7d7fd 100644
+--- a/arch/riscv/configs/defconfig
++++ b/arch/riscv/configs/defconfig
+@@ -147,6 +147,7 @@ CONFIG_MICREL_PHY=y
+ CONFIG_MICROSEMI_PHY=y
+ CONFIG_MOTORCOMM_PHY=y
+ CONFIG_CAN_RCAR_CANFD=m
++# CONFIG_INPUT_LEDS is not set
+ CONFIG_INPUT_MOUSEDEV=y
+ CONFIG_KEYBOARD_SUN4I_LRADC=m
+ CONFIG_SERIAL_8250=y
+@@ -246,6 +247,11 @@ CONFIG_MMC_DW=y
+ CONFIG_MMC_DW_STARFIVE=y
+ CONFIG_MMC_SDHI=y
+ CONFIG_MMC_SUNXI=y
++CONFIG_NEW_LEDS=y
++CONFIG_LEDS_CLASS=y
++CONFIG_LEDS_GPIO=y
++CONFIG_LEDS_TRIGGERS=y
++CONFIG_LEDS_TRIGGER_HEARTBEAT=y
+ CONFIG_RTC_CLASS=y
+ CONFIG_RTC_DRV_SUN6I=y
+ CONFIG_DMADEVICES=y
 -- 
-2.37.1
-
+2.43.0
 
 
