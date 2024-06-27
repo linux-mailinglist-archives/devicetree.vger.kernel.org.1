@@ -1,300 +1,228 @@
-Return-Path: <devicetree+bounces-80528-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80533-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5E6D919E41
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 06:34:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB302919E55
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 06:46:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E9B9A1C2339D
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 04:34:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 615E9286A74
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 04:46:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D22A535894;
-	Thu, 27 Jun 2024 04:33:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="oJz0BbLm"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B2D71AACB;
+	Thu, 27 Jun 2024 04:46:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B62441CD29
-	for <devicetree@vger.kernel.org>; Thu, 27 Jun 2024 04:33:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 821361B285;
+	Thu, 27 Jun 2024 04:46:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719462810; cv=none; b=Hmotzb/hc67Va+CN7lZ7+bYaPVBS+WbwfcbvwDlag3/aTKa86gG7eGG8ETVFJPnjN0CI2Q3/XFyx8/aVVRJq7GiUDMZbxKmS9ESkjBjp116DGqjVJQJ2ARuyL6+eqfX7sUoKWLlu6sy6AChUjNmqtZQ7J4arS5FS0Merek7Ya2I=
+	t=1719463601; cv=none; b=r8PVx5LfukfqW+U41kzOR7Eplu/FNF2bV26VRQUEYXexwVEtoAVbx7aWaLiNPEHpIBXkTG38eAQEOoLlvhhXXRvs+hit2hc148/mNkGvE1Vm7JkXQpGlgcx8M1rulAAKRlAiSkQOJYgXHXZjwcgLJmpeM+cLxfqqQqmHW0+2tBI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719462810; c=relaxed/simple;
-	bh=9OHHBeRNYkf08tWVOx58hAsOaRBNPBBISNQUuPYyddg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Hq4WbnVBIzf8ZOqW7c9+m/r25jx81Zfd//MrftHZ1KXjPYwm9ekOfyifo4xDJvqYP6/j6t+lFBrkG4Jjxtb11/X5GzV2Y/q6EVbXdjI9BYDgQXjPp428wqtyT4Sxvbw2WQ3s/k+Y8nM4ujTMutGYZmznRkqEkL5D8k6B9LlpRfI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=oJz0BbLm; arc=none smtp.client-ip=202.36.163.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id E4C6D2C0C2E;
-	Thu, 27 Jun 2024 16:33:22 +1200 (NZST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-	s=mail181024; t=1719462802;
-	bh=OyAj5xTANs1fjuTKws7ah8fvMoeSnsG3zKFlZspY/G4=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=oJz0BbLmXa7Oo/PtEYHyLCZumN+NOpaPYGEFea+bfEvWiiwyrwjwLdc5ytFNx0ora
-	 HO9IbsBV68cacyRQxZ/mBYswWK/NTfaxn5bdKnssP/lJhlbKaB+SkXEqcKmf6SkWtH
-	 e2p77VHDx5LWH1gDQxE5l/2P4hlqRoVbqJZMvisHJOttsQa+cn1EZPgDc1JE+6zaUR
-	 uBzQPgkWHmO9Dai5VwjF6F84ByJJI4hJKu4D4yFIqpl0Zs+517B9Y2yxNaaGDc60pF
-	 QSqVU7zHkXxOLt4cznTPOj03zoJLHIzykQGA3PglsTE3wOu/pCez2nAMokBtOCbjzm
-	 k4dws3Xop8EBA==
-Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-	id <B667ceb920003>; Thu, 27 Jun 2024 16:33:22 +1200
-Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
-	by pat.atlnz.lc (Postfix) with ESMTP id 0ECCA13EE9B;
-	Thu, 27 Jun 2024 16:33:22 +1200 (NZST)
-Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
-	id 0BE9B28078C; Thu, 27 Jun 2024 16:33:22 +1200 (NZST)
-From: Chris Packham <chris.packham@alliedtelesis.co.nz>
-To: tglx@linutronix.de,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	tsbogend@alpha.franken.de,
-	daniel.lezcano@linaro.org,
-	paulburton@kernel.org,
-	peterz@infradead.org,
-	mail@birger-koblitz.de,
-	bert@biot.com,
-	john@phrozen.org,
-	sander@svanheule.net
-Cc: linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-mips@vger.kernel.org,
-	kabel@kernel.org,
-	ericwouds@gmail.com,
-	Chris Packham <chris.packham@alliedtelesis.co.nz>
-Subject: [PATCH v3 9/9] mips: dts: realtek: Add RTL9302C board
-Date: Thu, 27 Jun 2024 16:33:17 +1200
-Message-ID: <20240627043317.3751996-10-chris.packham@alliedtelesis.co.nz>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240627043317.3751996-1-chris.packham@alliedtelesis.co.nz>
-References: <20240627043317.3751996-1-chris.packham@alliedtelesis.co.nz>
+	s=arc-20240116; t=1719463601; c=relaxed/simple;
+	bh=Eyzwyg/tu5NPQedjnVbHLIo0K6W0fq/cXYtZla4SNtM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=pAlh1c3cXeZZ0e+/S+t1F6ug7CYZRAGUFCBwT8n+8JefQ5v2OtEwspcH8qaHOG4SBBGGy0ExkcJwuY5LirT26P0iql2yCxRJwrMWARD7kGGJ/HWqGIhnZWujrGmO4SE36fExsNV8iwUIbNKazOMCgzcw81mrJ/8QwXc7oonMnv4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.208.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2ec17eb4493so101504291fa.2;
+        Wed, 26 Jun 2024 21:46:39 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719463595; x=1720068395;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=WKv2o+iwUcFccFiTIdN0pCkxYMcGxRiXtYwoj0O/Tas=;
+        b=rJ/U1NcTct1hfFPXXfbMIg0aiRi/PIPUJ6sYCMCO2V1UaPPhPI/jpLCXKAdJgy8UY9
+         EtTJRkEhdxoCQHHzPSkYQ4JoW94CPwMMBFzSuvKbx5Erq9gRGlvK/P8PC6ezu3uqS9r7
+         LCiFQokJQdgfifh0sephqksnvAF6NQJiD2KVIzZXY7UCGQjnQe1/8IRnW1BMbpXGdiBd
+         VEtSJqV2i4qcNvHRCQwN9dD5HsKgqu+RhW/cZqrNolLsyWqfStoG0sazOqobJ+Knyvvk
+         yQUpS9qeyxw7hgw1r+vdjiKb0qiguhBKXIzcOCb62HXh+DJ3k6HwRyvOPs6zu2K5QoNc
+         i2aw==
+X-Forwarded-Encrypted: i=1; AJvYcCVLGjoF4KGR6Tkenqv2bwoilDpnPOkuBA3JlwcOnCiI/vpNNhJNHYbyewiMO/lP32tXgl3smu2ABf8OJFui6lEnzlHQmTAsNoFrICFpcKJf+njpv1EHI/Dp2+QcX4AI2VAxWM8xotpnIoLdkcfXdBQWHwOaZGFgi6+xevBTD2qojdNw+PJTg8eitlwJRQy6tXSAH3xVW+APsQKGGQ==
+X-Gm-Message-State: AOJu0YzAkucKXxnzxTBCkc9WepboCq6FXYyC4Y3hSekjYgPjYfwnvMR1
+	zj8SbxyfUPsgpnhTpaOQ0vpSGCMrjXJ12REjG8rojRwH9DMtt7g27TUOIf++
+X-Google-Smtp-Source: AGHT+IG3ZKqvsw5dcd6YAEuwe3x+/pDx/otqCpF2/ukLZYX17P9RSQZShdLpby7WY+Us3Nm4zU/Inw==
+X-Received: by 2002:a2e:9917:0:b0:2ec:4bb7:d7f6 with SMTP id 38308e7fff4ca-2ec5b2c4daemr89803401fa.7.1719463595299;
+        Wed, 26 Jun 2024 21:46:35 -0700 (PDT)
+Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com. [209.85.208.181])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2ee4a4cf7a3sm1050841fa.135.2024.06.26.21.46.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 26 Jun 2024 21:46:34 -0700 (PDT)
+Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2eaea28868dso99587741fa.3;
+        Wed, 26 Jun 2024 21:46:33 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUGLuBRbWOS6IWo/a8WzWleVtmdfmmxTJ01PYD1s+P6bzO0kp3d78TpsJ6prmfXP/pzthtqFVmJ6ocb1pof7y/RlZwJ6Vvgprg8470ElB7UUc8Lc4LzwFdONCBg+9P3iXYxgliq0YRQ9GxMuCGXTy/GKXHcgnb0Ol7mI1xzG12W2zNUsib67xFof77epaWQ7qlNrCjQUys/wfZ6ww==
+X-Received: by 2002:a2e:7c07:0:b0:2ec:4f0c:36f9 with SMTP id
+ 38308e7fff4ca-2ec5b31d140mr101577061fa.36.1719463593379; Wed, 26 Jun 2024
+ 21:46:33 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20240310-pinephone-pll-fixes-v4-1-46fc80c83637@oltmanns.dev>
+ <DM6PR01MB58047C810DDD5D0AE397CADFF7C22@DM6PR01MB5804.prod.exchangelabs.com>
+ <87wmmjfxcj.fsf@oltmanns.dev> <DM6PR01MB58043A518B836D1CC3509554F7D62@DM6PR01MB5804.prod.exchangelabs.com>
+ <1b359d7e-fe85-48ca-87aa-37ab7e34aaf6@oltmanns.dev> <CH2PR01MB57990FBF72970DECF96294E2F7D72@CH2PR01MB5799.prod.exchangelabs.com>
+In-Reply-To: <CH2PR01MB57990FBF72970DECF96294E2F7D72@CH2PR01MB5799.prod.exchangelabs.com>
+Reply-To: wens@csie.org
+From: Chen-Yu Tsai <wens@csie.org>
+Date: Thu, 27 Jun 2024 12:46:20 +0800
+X-Gmail-Original-Message-ID: <CAGb2v64hwUcU5QntuJgFi3mvBzbgTrG4_vuErDB8X1jKNMgvOA@mail.gmail.com>
+Message-ID: <CAGb2v64hwUcU5QntuJgFi3mvBzbgTrG4_vuErDB8X1jKNMgvOA@mail.gmail.com>
+Subject: Re: [PATCH v4 1/5] clk: sunxi-ng: common: Support minimum and maximum rate
+To: "Pafford, Robert J." <pafford.9@buckeyemail.osu.edu>
+Cc: Frank Oltmanns <frank@oltmanns.dev>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Samuel Holland <samuel@sholland.org>, =?UTF-8?Q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>, 
+	Purism Kernel Team <kernel@puri.sm>, Ondrej Jirman <megi@xff.cz>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
+	"linux-sunxi@lists.linux.dev" <linux-sunxi@lists.linux.dev>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"stable@vger.kernel.org" <stable@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-SEG-SpamProfiler-Analysis: v=2.4 cv=CvQccW4D c=1 sm=1 tr=0 ts=667ceb92 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=T1WGqf2p2xoA:10 a=FkagyKZCYwirPjr5IuAA:9 a=3ZKOabzyN94A:10
-X-SEG-SpamProfiler-Score: 0
-x-atlnz-ls: pat
 
-Add support for the RTL9302 SoC and the RTL9302C_2xRTL8224_2XGE
-reference board.
+On Thu, Jun 27, 2024 at 9:23=E2=80=AFAM Pafford, Robert J.
+<pafford.9@buckeyemail.osu.edu> wrote:
+>
+> Frank Oltmanns <frank@oltmanns.dev> writes:
+>
+> > Hi Robert,
+> >
+> > 26.06.2024 18:03:24 Pafford, Robert J. <pafford.9@buckeyemail.osu.edu>:
+> >
+> >> Hi Frank,
+> >>
+> >> Moving to a new for loop makes sense. Let me know when you have a patc=
+h
+> >
+> > The patch is here, strange you didn't receive it:
+> > https://lore.kernel.org/all/20240623-sunxi-ng_fix_common_probe-v1-1-7c9=
+7e32824a1@oltmanns.dev/
+>
+> Ah, this must have slipped through my inbox. I just applied it on my boar=
+d and it is
+> now cooperating with the min/max clock rates!
 
-The RTL930x family of SoCs are Realtek switches with an embedded MIPS
-core (800MHz 34Kc). Most of the peripherals are similar to the RTL838x
-SoC and can make use of many existing drivers.
+Please reply to the thread and give a Tested-by.
 
-Add in full DSA switch support is still a work in progress.
+ChenYu
 
-Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
----
-
-Notes:
-    Changes in v3:
-    - Use full board name
-    Changes in v2:
-    - Use specific compatibles instead of rtl930x
-    - Remove unnecessary irq flags (interrupt controller is one-cell)
-    - Remove earlycon
-    - Name clocks as recommended in dt schema
-
- arch/mips/boot/dts/realtek/Makefile           |  1 +
- .../cameo-rtl9302c-2x-rtl8224-2xge.dts        | 73 +++++++++++++++++
- arch/mips/boot/dts/realtek/rtl930x.dtsi       | 79 +++++++++++++++++++
- 3 files changed, 153 insertions(+)
- create mode 100644 arch/mips/boot/dts/realtek/cameo-rtl9302c-2x-rtl8224-=
-2xge.dts
- create mode 100644 arch/mips/boot/dts/realtek/rtl930x.dtsi
-
-diff --git a/arch/mips/boot/dts/realtek/Makefile b/arch/mips/boot/dts/rea=
-ltek/Makefile
-index fba4e93187a6..d2709798763f 100644
---- a/arch/mips/boot/dts/realtek/Makefile
-+++ b/arch/mips/boot/dts/realtek/Makefile
-@@ -1,2 +1,3 @@
- # SPDX-License-Identifier: GPL-2.0
- dtb-y	+=3D cisco_sg220-26.dtb
-+dtb-y	+=3D cameo-rtl9302c-2x-rtl8224-2xge.dtb
-diff --git a/arch/mips/boot/dts/realtek/cameo-rtl9302c-2x-rtl8224-2xge.dt=
-s b/arch/mips/boot/dts/realtek/cameo-rtl9302c-2x-rtl8224-2xge.dts
-new file mode 100644
-index 000000000000..b51e10ae4950
---- /dev/null
-+++ b/arch/mips/boot/dts/realtek/cameo-rtl9302c-2x-rtl8224-2xge.dts
-@@ -0,0 +1,73 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/dts-v1/;
-+
-+#include "rtl930x.dtsi"
-+
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/thermal/thermal.h>
-+
-+/ {
-+	compatible =3D "cameo,rtl9302c-2x-rtl8224-2xge", "realtek,rtl9302-soc";
-+	model =3D "RTL9302C Development Board";
-+
-+	memory@0 {
-+		device_type =3D "memory";
-+		reg =3D <0x0 0x8000000>;
-+	};
-+
-+	chosen {
-+		stdout-path =3D "serial0:115200n8";
-+	};
-+};
-+
-+&uart0 {
-+	status =3D "okay";
-+};
-+
-+&spi0 {
-+	status =3D "okay";
-+	flash@0 {
-+		compatible =3D "jedec,spi-nor";
-+		reg =3D <0>;
-+		spi-max-frequency =3D <10000000>;
-+
-+		partitions {
-+			compatible =3D "fixed-partitions";
-+			#address-cells =3D <1>;
-+			#size-cells =3D <1>;
-+
-+			partition@0 {
-+				label =3D "u-boot";
-+				reg =3D <0x0 0xe0000>;
-+				read-only;
-+			};
-+			partition@e0000 {
-+				label =3D "u-boot-env";
-+				reg =3D <0xe0000 0x10000>;
-+			};
-+			partition@f0000 {
-+				label =3D "u-boot-env2";
-+				reg =3D <0xf0000 0x10000>;
-+				read-only;
-+			};
-+			partition@100000 {
-+				label =3D "jffs";
-+				reg =3D <0x100000 0x100000>;
-+			};
-+			partition@200000 {
-+				label =3D "jffs2";
-+				reg =3D <0x200000 0x100000>;
-+			};
-+			partition@300000 {
-+				label =3D "runtime";
-+				reg =3D <0x300000 0xe80000>;
-+			};
-+			partition@1180000 {
-+				label =3D "runtime2";
-+				reg =3D <0x1180000 0xe80000>;
-+			};
-+		};
-+	};
-+};
-diff --git a/arch/mips/boot/dts/realtek/rtl930x.dtsi b/arch/mips/boot/dts=
-/realtek/rtl930x.dtsi
-new file mode 100644
-index 000000000000..f271940f82be
---- /dev/null
-+++ b/arch/mips/boot/dts/realtek/rtl930x.dtsi
-@@ -0,0 +1,79 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR BSD-2-Clause
-+
-+#include "rtl83xx.dtsi"
-+
-+/ {
-+	compatible =3D "realtek,rtl9302-soc";
-+
-+	cpus {
-+		#address-cells =3D <1>;
-+		#size-cells =3D <0>;
-+
-+		cpu@0 {
-+			device_type =3D "cpu";
-+			compatible =3D "mips,mips34Kc";
-+			reg =3D <0>;
-+			clocks =3D <&baseclk 0>;
-+			clock-names =3D "cpu";
-+		};
-+	};
-+
-+	baseclk: clock-800mhz {
-+		compatible =3D "fixed-clock";
-+		#clock-cells =3D <0>;
-+		clock-frequency =3D <800000000>;
-+	};
-+
-+	lx_clk: clock-175mhz {
-+		compatible =3D "fixed-clock";
-+		#clock-cells =3D <0>;
-+		clock-frequency  =3D <175000000>;
-+	};
-+};
-+
-+&soc {
-+	intc: interrupt-controller@3000 {
-+		compatible =3D "realtek,rtl9300-intc", "realtek,rtl-intc";
-+		reg =3D <0x3000 0x18>, <0x3018 0x18>;
-+		interrupt-controller;
-+		#interrupt-cells =3D <1>;
-+
-+		interrupt-parent =3D <&cpuintc>;
-+		interrupts =3D <2>, <3>, <4>, <5>, <6>, <7>;
-+	};
-+
-+	spi0: spi@1200 {
-+		compatible =3D "realtek,rtl8380-spi";
-+		reg =3D <0x1200 0x100>;
-+
-+		#address-cells =3D <1>;
-+		#size-cells =3D <0>;
-+	};
-+
-+	timer0: timer@3200 {
-+		compatible =3D "realtek,rtl9302-timer", "realtek,otto-timer";
-+		reg =3D <0x3200 0x10>, <0x3210 0x10>, <0x3220 0x10>,
-+		    <0x3230 0x10>, <0x3240 0x10>;
-+
-+		interrupt-parent =3D <&intc>;
-+		interrupts =3D <7>, <8>, <9>, <10>, <11>;
-+		clocks =3D <&lx_clk>;
-+	};
-+};
-+
-+&uart0 {
-+	/delete-property/ clock-frequency;
-+	clocks =3D <&lx_clk>;
-+
-+	interrupt-parent =3D <&intc>;
-+	interrupts =3D <30>;
-+};
-+
-+&uart1 {
-+	/delete-property/ clock-frequency;
-+	clocks =3D <&lx_clk>;
-+
-+	interrupt-parent =3D <&intc>;
-+	interrupts =3D <31>;
-+};
-+
---=20
-2.45.2
-
+> >
+> >> and I'll be glad to test it on my board. I do also wonder if this may
+> >> have contributed to some of the HDMI issues seen in the other thread.
+> >
+> > My thought's exactly!
+> >
+> > Best regards,
+> >   Frank
+> >
+> >>
+> >> Best,
+> >> Robert
+> >>
+> >>> Hi Robert,
+> >>>
+> >>> I'm truly sorry for the trouble the patch has caused you and for my l=
+ate
+> >>> reply!
+> >>>
+> >>> On 2024-06-14 at 23:52:08 +0000, "Pafford, Robert J." <pafford.9@buck=
+eyemail.osu.edu> wrote:
+> >>>>> The Allwinner SoC's typically have an upper and lower limit for the=
+ir
+> >>>>> clocks' rates. Up until now, support for that has been implemented
+> >>>>> separately for each clock type.
+> >>>>>
+> >>>>> Implement that functionality in the sunxi-ng's common part making u=
+se of
+> >>>>> the CCF rate liming capabilities, so that it is available for all c=
+lock
+> >>>>> types.
+> >>>>>
+> >>>>> Suggested-by: Maxime Ripard <mripard@kernel.org>
+> >>>>> Signed-off-by: Frank Oltmanns <frank@oltmanns.dev>
+> >>>>> Cc: stable@vger.kernel.org
+> >>>>> ---
+> >>>>>   drivers/clk/sunxi-ng/ccu_common.c | 19 +++++++++++++++++++
+> >>>>>   drivers/clk/sunxi-ng/ccu_common.h |  3 +++
+> >>>>>   2 files changed, 22 insertions(+)
+> >>>>
+> >>>> This patch appears to cause a buffer under-read bug due to the call =
+to 'hw_to_ccu_common', which assumes all entries
+> >>>> in the desc->hw_clocks->hws array are contained in ccu_common struct=
+s.
+> >>>>
+> >>>> However, not all clocks in the array are contained in ccu_common str=
+ucts. For example, as part
+> >>>> of the "sun20i-d1-ccu" driver, the "pll-video0" clock holds the 'clk=
+_hw' struct inside of a 'clk_fixed_factor' struct,
+> >>>> as it is a fixed factor clock based on the "pll-video0-4x" clock, cr=
+eated with the CLK_FIXED_FACTOR_HWS macro.
+> >>>> This results in undefined behavior as the hw_to_ccu_common returns a=
+n invalid pointer referencing memory before the
+> >>>> 'clk_fixed_factor' struct.
+> >>>>
+> >>>
+> >>> Great catch! At first glance, it seems to me that calling
+> >>> clk_hw_set_rate_range() in sunxi_ccu_probe() should not have happenen=
+d
+> >>> in the loop that iterates over the hw_clks.
+> >>>
+> >>> Instead we should add one more loop that iterates over the ccu_clks.
+> >>> Note, that there is already one such loop but, unfortunately, we can'=
+t
+> >>> use that as it happens before the hw_clks loop and we can only call
+> >>> clk_hw_set_rate_range() after the hw_clk has been registered.
+> >>>
+> >>> Hence, I propose to move the offending code to a new loop:
+> >>>         for (i =3D 0; i < desc->num_ccu_clks; i++) {
+> >>>                 struct ccu_common *cclk =3D desc->ccu_clks[i];
+> >>>
+> >>>                 if (!cclk)
+> >>>                         continue;
+> >>>
+> >>>                 if (cclk->max_rate)
+> >>>                         clk_hw_set_rate_range(&cclk->hw, common->min_=
+rate,
+> >>>                                               common->max_rate);
+> >>>                 else
+> >>>                         WARN(cclk->min_rate,
+> >>>                              "No max_rate, ignoring min_rate of clock=
+ %d - %s\n",
+> >>>                              i, cclk->hw.init->name);
+> >>>         }
+> >>>
+> >>> I haven't tested (or even compiled) the above, but I'll test and send=
+ a
+> >>> patch within the next few days for you to test.
+> >>>
+> >>> Thanks again,
+> >>>   Frank
+> >>>
+> >>>>
+> >>>> I have attached kernel warnings from a system based on the "sun8i-t1=
+13s.dtsi" device tree, where the memory contains
+> >>>> a non-zero value for the min-rate but a zero value for the max-rate,=
+ triggering the "No max_rate, ignoring min_rate"
+> >>>> warning in the 'sunxi_ccu_probe' function.
+> >>>>
+> >>>> [...]
+>
+> Thanks,
+> Robert
 
