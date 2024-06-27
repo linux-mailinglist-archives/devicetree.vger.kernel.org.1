@@ -1,76 +1,77 @@
-Return-Path: <devicetree+bounces-80792-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80793-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 950C791A69C
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 14:33:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 36FAF91A6A0
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 14:33:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B79C71C2417A
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 12:33:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5B1D81C24147
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 12:33:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3769F15ECDF;
-	Thu, 27 Jun 2024 12:33:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECF3115EFAE;
+	Thu, 27 Jun 2024 12:33:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KSjMZhra"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zerBwzW5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7652315ECD3
-	for <devicetree@vger.kernel.org>; Thu, 27 Jun 2024 12:33:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A6B515E5DB
+	for <devicetree@vger.kernel.org>; Thu, 27 Jun 2024 12:33:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719491595; cv=none; b=lYXmmM3tzg04YsPQiqx3c8UrE7LUKfUJjXw1AeM0YCtSz0mthbxpV6k0NYc5LcGSj+NJ0EWz2IsEN+aE6wy+Wb+NjskFHEQIAP5WdO5Npk6eqzmwsKr9XMxBF8z4M1cNXecGdxyWVgybJvl8oUri6uROrj8VGFXzl1TiLyC/hco=
+	t=1719491606; cv=none; b=AWo3vQq86dJCFOJxHQXbgOqRo0+OeVOFO/feBHsKktLu/OSr3GlpesCTsXjzE5X++MfYvN8uXqm3mqR1rW/H6IIBSPTZijSCCGFymL59vNGdO+vWD4wh7mzhfveJK1g9HYM75rigSOfQcgm/WLSX9hS9Agta7U2wJgb2x/v6UVQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719491595; c=relaxed/simple;
-	bh=rKImNuNyP0kUWfD10+YakRIi9Im2VwsKi4y6b22VpIg=;
+	s=arc-20240116; t=1719491606; c=relaxed/simple;
+	bh=FKu7h2CrzfpqbFFVjCEemoKSuRxILyYxIMw5GwiiAlM=;
 	h=Message-ID:Date:MIME-Version:From:Subject:To:References:
-	 In-Reply-To:Content-Type; b=CWp/ZRKRTI6Ao69pjcNokl1LMdn1bRL10rAtwCd76VXyQO4pC4JH8SGYzNx1/vvzd7qPrIjeKOeiERlOFOrlhDb0yePo6TRTOEGYNAhLPMDiEbvPX9OxZAiO76Yd04Bb+tzom3KkGchIrKeKqRWgeULTUh9WZmVKi5LYBgd2MK8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KSjMZhra; arc=none smtp.client-ip=209.85.128.44
+	 In-Reply-To:Content-Type; b=rF30bi5FcncN3Gp7IlMG63hgB9DjVKwouwJUwoiRFZbfVEazj+rEFUq0YeGck/+0EZm5awdpCpHiVW2rw/bIr/0iktHag4H7vCn3XD9vCPoIcqSmnnatPxBeqJhVwjAxT9pOnSzhzUsIfIoHDKNIYh8OMV2AJyoKGe8ozguU8NQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zerBwzW5; arc=none smtp.client-ip=209.85.208.180
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-4248e28de9eso40585595e9.2
-        for <devicetree@vger.kernel.org>; Thu, 27 Jun 2024 05:33:13 -0700 (PDT)
+Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2eaafda3b5cso80169251fa.3
+        for <devicetree@vger.kernel.org>; Thu, 27 Jun 2024 05:33:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719491592; x=1720096392; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1719491603; x=1720096403; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=DsUYI8ZdgTNmZjR3ci5nVBsqVIiuWb+7e/emhFAHzOc=;
-        b=KSjMZhrasCwE8wALo6ZsNOqMHEczoEoPp8G5gvS0DsL3NV4kg2Ipnz+fYT6jStySq6
-         rzMNyjQ/Em6I8dE7xcMjSZJELcPYa3jgOSaoJqyHP+gRr4ySKlAfGGvghyjUiTYBWWvv
-         zn5qABBHkMl+QkxfSwDUPLRiSYHVuOs9ibx2vMe57nGdi3dweBlKkHzTERm1jK2lXJr0
-         UbFeBKoBaSgJL9Y5zIReY25XwI9QXFRSD8Mlg6v6BOGzWciFrQ10kJH89jFZuY5Aqv9p
-         SNmgIGxshU2d7k9hkS3JQ5q5Ni9NzaJYEAPUPzLfGQrVlQYBbQz5Y3ciOmPRMxZMLs31
-         uzRg==
+        bh=Y+IgSdfM/vHkRT6iolawcPUETT8e7KP7OY6NFAw9j9A=;
+        b=zerBwzW5DV8c8+AVR4FNT82QEwsSs74gh6fzQGok56IsjXIGyW7+T4wnEscjiRmQBM
+         latC60BqEgbLJ/xXfvfqaXaCc+ZTfQ4GfZbWTiZ9BFnsWzLEBlTZObTa0uewFOXV2oJx
+         a4qyPJHe0SI6FsqTSVUw6TL/3FXapw196vRMFkX7WIIhf/F4+sz9tcwzO+uI6y+H++qc
+         659FuQKE9U6vhtcZsqEQaFQuuvMYvOAZ7OiiXz6PspUzWuqAnu8i5aC7Ym1g7+aby9uT
+         7XVndbcC+wymL4sgnGMmX9IIUJtmavJSUbCE45YeABXmbwv2oKi/hzhYFnU+/O6HSGmc
+         8NgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719491592; x=1720096392;
+        d=1e100.net; s=20230601; t=1719491603; x=1720096403;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=DsUYI8ZdgTNmZjR3ci5nVBsqVIiuWb+7e/emhFAHzOc=;
-        b=PV8EQzUu5jzLwthuUOvfbF8x2bxb2+W8dPCbP31PhE3ty0FDDaBMYvGWzbLfiT6tku
-         BJlv8eV3hAP8BcNNlW7hP4p5H0AhJIWIGqfDvBYSd66qWQZDU5iP0JJnmoFbiiPG4M1x
-         eQjqABCUpk/+ntHrcJCm5lQEjUKtZKLR/1ESRuaaTDv7IqfCdOg8i2NzJ2O3m62ikvUI
-         znndoS2UFP0X8KjOLODJE2T7LwSVZvJDAXzzgzlyF9VvkhThFmpGDTecJedEiVHQDFjb
-         cLMJk36yA6CE60zaG9LtiByv2QIj3slEhCf31zZcjKGLSHNR8Jn0xtrU3TcSqupcHLah
-         VeTw==
-X-Forwarded-Encrypted: i=1; AJvYcCV+yH3q6t/kOdIajPFymnQziF7FiI0rULBNNPHMpnokOI/wuSCocyQ+Wf8Ids/StoxUXj9Br/pz+aLbSFndDtkL8363thPF8/VDpQ==
-X-Gm-Message-State: AOJu0YwkbXlJqslJukXu2xHQrWnkKdSPw2YnauT7r3OjCpLaQi4r9SFr
-	1LaT4+JxgGnzBSeVu75g3/xnU2WZDw82ZEfZi5vjgKKTjCBF0vBEJHZnJJYh25U=
-X-Google-Smtp-Source: AGHT+IGVkUw6MyHynhoz12govxVzmDm7rLZL+1VOOWb5KCDHRNDLFRSo4bzE5gM3iWckNvaVBv1eIQ==
-X-Received: by 2002:a05:600c:3ca5:b0:424:9023:a7f1 with SMTP id 5b1f17b1804b1-4249023a855mr78213105e9.25.1719491591329;
-        Thu, 27 Jun 2024 05:33:11 -0700 (PDT)
+        bh=Y+IgSdfM/vHkRT6iolawcPUETT8e7KP7OY6NFAw9j9A=;
+        b=qt5cCPlRe882qSLVLWfvzUe3I+CWHc1P0z/P16zlwuun5AxTUIWnYXEw33OJacAb+k
+         gktiMv1vD4ngj/p5x+7lcppYmBSXfWaDuQxTWepa1zIQ3v7PfGKOoYMiJ3NO8L/Ri0GF
+         OUBNQbfDSd6Vxgug6bQK9UoMSnj9lknFUjDkrlZxA4HKpQ+bKHnX/WHZPzXiDWVBmHAp
+         pWKpCbSmt7hImZYSZ9CM4THaGpXDaGAbO1256aDKkUAu3fkfBtI3xi5HPG7zpnQruF/7
+         Q0nKOJCEnXq2tESd1UZCaPdk1eM3VgYAgcW5Ofb0bs3UHcmP6qrVrflyGVHIC+198tgn
+         +lsg==
+X-Forwarded-Encrypted: i=1; AJvYcCU8FNtewQZSo/pLuVr3NenZGxAOCcGYgwIvTavkCkCatJ2fTCRWDOK9+5M3gtZ0q3N4IDD32mjzEt293GPrL4tfztYlWQcXsgb3ow==
+X-Gm-Message-State: AOJu0Yw98wwHqg7HoabgdOT82JTF/nO6Mf5M3gIcm+BLgXzo2cUVMpM2
+	xqGlXmNYq6g/pDbEObwUqsSgeKDGF5WKmgF5UCTPbadjX0NpRllerWn7sil9b+YWSBfrHt7khzV
+	b6yI=
+X-Google-Smtp-Source: AGHT+IEdwXJj2/W9HISdtPqx06RJN14hIO49fhIBq/t8/7bILAAqutemgqzWHTBTL+9deo0EPQAP1Q==
+X-Received: by 2002:a2e:9cd4:0:b0:2ec:520d:f1dd with SMTP id 38308e7fff4ca-2ec593be843mr79089181fa.3.1719491602963;
+        Thu, 27 Jun 2024 05:33:22 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:982:cbb0:feeb:faed:66fa:9e6a? ([2a01:e0a:982:cbb0:feeb:faed:66fa:9e6a])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42564b7d1b3sm25263495e9.26.2024.06.27.05.33.10
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42564bd6bdesm24235455e9.48.2024.06.27.05.33.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Jun 2024 05:33:10 -0700 (PDT)
-Message-ID: <c448c177-e4df-4c9c-8c6b-788d1b55e0f4@linaro.org>
-Date: Thu, 27 Jun 2024 14:33:09 +0200
+        Thu, 27 Jun 2024 05:33:22 -0700 (PDT)
+Message-ID: <2cce537f-cf6a-4b85-b7a7-91c14602bca4@linaro.org>
+Date: Thu, 27 Jun 2024 14:33:19 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,7 +81,7 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: neil.armstrong@linaro.org
 Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 2/3] arm64: dts: qcom: sm8550-mtp: add port mapping to
+Subject: Re: [PATCH 1/3] arm64: dts: qcom: sm8550-hdk: add port mapping to
  speakers
 To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
  Bjorn Andersson <andersson@kernel.org>,
@@ -89,7 +90,6 @@ To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
  <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20240627122015.30945-1-krzysztof.kozlowski@linaro.org>
- <20240627122015.30945-2-krzysztof.kozlowski@linaro.org>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -116,13 +116,13 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20240627122015.30945-2-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20240627122015.30945-1-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
 On 27/06/2024 14:20, Krzysztof Kozlowski wrote:
 > Add appropriate mappings of Soundwire ports of WSA8845 speaker.  This
-> solves second (right) speaker sound distortions when playing audio.
+> solves second (south) speaker sound distortions when playing audio.
 > 
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > 
@@ -133,25 +133,25 @@ On 27/06/2024 14:20, Krzysztof Kozlowski wrote:
 > 
 > Can be applied independently, if bindings are fine.
 > ---
->   arch/arm64/boot/dts/qcom/sm8550-mtp.dts | 2 ++
+>   arch/arm64/boot/dts/qcom/sm8550-hdk.dts | 2 ++
 >   1 file changed, 2 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-> index 26dfca0c3e05..ab447fc252f7 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-> @@ -842,6 +842,7 @@ left_spkr: speaker@0,0 {
+> diff --git a/arch/arm64/boot/dts/qcom/sm8550-hdk.dts b/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
+> index e0dc03a97771..2e12219006c9 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
+> @@ -1106,6 +1106,7 @@ north_spkr: speaker@0,0 {
+>   
+>   		#sound-dai-cells = <0>;
 >   		sound-name-prefix = "SpkrLeft";
->   		vdd-1p8-supply = <&vreg_l15b_1p8>;
->   		vdd-io-supply = <&vreg_l3g_1p2>;
 > +		qcom,port-mapping = <1 2 3 7 10 13>;
 >   	};
 >   
->   	/* WSA8845 */
-> @@ -855,6 +856,7 @@ right_spkr: speaker@0,1 {
+>   	/* WSA8845, Speaker South */
+> @@ -1123,6 +1124,7 @@ south_spkr: speaker@0,1 {
+>   
+>   		#sound-dai-cells = <0>;
 >   		sound-name-prefix = "SpkrRight";
->   		vdd-1p8-supply = <&vreg_l15b_1p8>;
->   		vdd-io-supply = <&vreg_l3g_1p2>;
 > +		qcom,port-mapping = <4 5 6 7 11 13>;
 >   	};
 >   };
