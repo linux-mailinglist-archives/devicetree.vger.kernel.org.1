@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-80598-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80600-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B602C91A0BC
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 09:46:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5120191A0C2
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 09:47:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E7DCE1C210AD
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 07:46:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0BF2B282600
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 07:47:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BECCA33987;
-	Thu, 27 Jun 2024 07:46:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 190764D599;
+	Thu, 27 Jun 2024 07:47:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kPiug/0o"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PDcD5kIt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 958DB28FC;
-	Thu, 27 Jun 2024 07:46:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3B6D36134;
+	Thu, 27 Jun 2024 07:47:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719474396; cv=none; b=NlK+pAAqX16RaX9AJogCYvKaCzl/jwT7G59sJ/BcvmWSlHTJ9emsweWgw2+qg2ZUBEU8qQjun56iQ+Y+CFsuP/EpI/9zR7bdqAQmPoyyiCFxf/DsTLPmZkuckWIq621dEb2KLDuwtSjP2WDarTKX4np/4bmBdg9M0200+9yUURc=
+	t=1719474455; cv=none; b=QyLMfbPb1v4DGq2WLjX0pt7rfIucKtS+MB0bipdqDX4Q+HFTUgxWCJcKNpCR6ioE02Z0wQmuRd1Ij9yW4zPh2Tv+KajSrMF3LtJL0gFPmkX+ig3edCkJLNcfhnZhky67dPRYQcny844IzqPwbRqOdAf5wcTuPh4IJMELMKs7WsM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719474396; c=relaxed/simple;
-	bh=AH9D0ziQVkg9LV3FQsXYXHeGDQQY50zBANCOXWzsJeU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=MjTFPxkoGmiVHUcWMYjhggvnG+8lb58a8SG9VxP0esdaqJV0PVxMLQDVKJVqs+pmO6sBCnH/oFFtgQimbIhj+hi8OD0ASaQBp0FMg+vmFSpWjOopov6HEoYvU6ZdmSaOee7f3T/y227+PIsi5SDTi+V3gskjAr/ZZv+KGCuTLkk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kPiug/0o; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ECF78C2BBFC;
-	Thu, 27 Jun 2024 07:46:31 +0000 (UTC)
+	s=arc-20240116; t=1719474455; c=relaxed/simple;
+	bh=1PnLz/9w2RexQ3a0Zo1hIFxde42xWJ6l/Vcd4gldnCM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Ov5NC4SbemuVUzPjQso3SakbgW4t/nfRvswqD6k8N7pjK/c30tGgV2crA8/lKjhFZih0rFub/+M4ipczjm9wo7XGtq6PToggrDSUR5NV+cXZib5f3SabALmr3RtxJDFD8bOQs4JJ8Ilo8OsJbVA1gkWO20mingsqRbBxwUle1jU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PDcD5kIt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0BD25C2BBFC;
+	Thu, 27 Jun 2024 07:47:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719474396;
-	bh=AH9D0ziQVkg9LV3FQsXYXHeGDQQY50zBANCOXWzsJeU=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=kPiug/0owQPS/BCx+CSqJdw1XzL91EfeAY1WJca3CT1v9+B6H9vIJSYecT0xMC6me
-	 +ZG/knsUgGc1ED5gYFS4B5YbtGTl7ZL9a97keVasBfA8vFeaABZg3f8AeGP0B8zDRn
-	 Y+HlcI+e32YO8VLcYmtfZ798f8DHV1wt7xwh43dIDvNzgWUfOzXJIEgmkh8lp1nYVf
-	 LAWHdKV2SHyg8qARCrrXfidS5sapUsYiKIE7ndDcim8ZNADmXd0NnHunv4SH95b2Zu
-	 T3lqRKHqlGBAKc/c5cWwDpQCLvmAlGugyTgBtAUJwo5VsG3YyFeeX/KZfuo3N2MmHP
-	 jVEi5Eq82kOzg==
-Message-ID: <c7bad597-84cc-445f-8446-398cb5e5005e@kernel.org>
-Date: Thu, 27 Jun 2024 09:46:29 +0200
+	s=k20201202; t=1719474454;
+	bh=1PnLz/9w2RexQ3a0Zo1hIFxde42xWJ6l/Vcd4gldnCM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=PDcD5kItcTBp5kY+epu6CO5l/8TFU8gGa85cc0cNW0ubjFVmkP2eBTx8oNe+3qpG2
+	 lBVuG5EHVAhFVXHGwI9qFFcZ1bQdz4OCj71mXMSozxKqiLCRbrMrUftXSiBf8rM+Fv
+	 9mVyYFUHWIMYfCXRgUuShwWAPqBryE6rVKpUo0xZiUDqVd7QeA9NYFHLXZ7GLgMN15
+	 WmpaHrcDS6Sn7dOv2gdxGR/zQZM437yATwuNUDDfrlfWNPkyqyVtl/09GisKg7OX/5
+	 v3QVeuG5VsyI8gvInorgiJl2VgTZ/hit1tSf0oBq4RlmiV/XAt34X0BNfkGfDdVCva
+	 YekymiLRfGQiQ==
+Message-ID: <0318fc56-789c-47fd-8f28-1ddf1ebc1cf3@kernel.org>
+Date: Thu, 27 Jun 2024 09:47:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] ASoC: dt-bindings: simple-audio-mux: add mux-names
- property
-To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
- Alexandre Belloni <aleandre.belloni@bootlin.com>,
- Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Takashi Iwai <tiwai@suse.com>,
- devicetree@vger.kernel.org, linux-sound@vger.kernel.org
-References: <87bk3nqc0e.wl-kuninori.morimoto.gx@renesas.com>
- <878qyrqbyt.wl-kuninori.morimoto.gx@renesas.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: arm: rockchip: Add Xunlong Orange Pi
+ 3B
+To: Jonas Karlman <jonas@kwiboo.se>, Heiko Stuebner <heiko@sntech.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20240626230319.1425316-1-jonas@kwiboo.se>
+ <20240626230319.1425316-2-jonas@kwiboo.se>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,41 +104,17 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <878qyrqbyt.wl-kuninori.morimoto.gx@renesas.com>
+In-Reply-To: <20240626230319.1425316-2-jonas@kwiboo.se>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 27/06/2024 05:52, Kuninori Morimoto wrote:
-> Current simple-audio-mux selects MUX by "Input 1" or "Input 2",
-> it is not user friendly. Adds new "mux-names" property and enable to
-> select MUX by own names.
+On 27/06/2024 01:03, Jonas Karlman wrote:
+> Add devicetree binding for the Xunlong Orange Pi 3B board.
 > 
-> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
 > ---
->  Documentation/devicetree/bindings/sound/simple-audio-mux.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/simple-audio-mux.yaml b/Documentation/devicetree/bindings/sound/simple-audio-mux.yaml
-> index 9f319caf3db7..6e4018936887 100644
-> --- a/Documentation/devicetree/bindings/sound/simple-audio-mux.yaml
-> +++ b/Documentation/devicetree/bindings/sound/simple-audio-mux.yaml
-> @@ -24,6 +24,10 @@ properties:
->      description: |
->        GPIOs used to select the input line.
->  
-> +  mux-names:
-> +    description: |
-> +      Name of multiplexers. default is "Input 1", "Input 2"
-> +
 
-I have troubles with this binding... It seems driver expects only one
-GPIO, but the binding allows any number. Similarly mux-names...
-
-Anyway, this does not look like hardware description but rather
-configuration of driver. What's wrong with input 1 or mux 1 or whatever
-is there for default?
-
-Also: extend the example.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
