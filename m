@@ -1,115 +1,225 @@
-Return-Path: <devicetree+bounces-80535-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80537-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A325F919EC2
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 07:38:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 05246919ECF
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 07:40:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 545FE288141
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 05:38:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 290981C22111
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 05:40:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA4A91CA96;
-	Thu, 27 Jun 2024 05:38:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 710021CD13;
+	Thu, 27 Jun 2024 05:40:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ssMgWk2p"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="i1C8ibX0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BD881C2AD;
-	Thu, 27 Jun 2024 05:38:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07E791A702;
+	Thu, 27 Jun 2024 05:40:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719466680; cv=none; b=umS7yfwqCFt6LlDL/iZuBHQ/EeWEHjFChpYWk4up6MxhdGWZ55uZjADaKT3d41ID7uVqztDlH+UEvHRmTPK35+TMDXTZ1LXN8ms3+I4KB33bTHfoW3PSTGwgXdXTKxmfQ4JbPvj20mla0krH3P1cffSrvmKvysROPTzGatxhpbk=
+	t=1719466825; cv=none; b=hiHSJcbx2leXiKP3FcOhHItq9bgqrFoKRxP+/OEbT2+vcd6OHLqlq0ezcEBnLer59+kIsPifbh5Q4Njr2F5TK5l/3bqQ7WsS9dbo4+cAhGuTcsIGZuJ1d4eo+ARL501xBdMeHyR15MDnJidf2NezKBQq1a8SeUYEjpXkn4EYfpY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719466680; c=relaxed/simple;
-	bh=3WT/rR8DVWsgB7SqkR4qilHgXUMUozxNxRpqv6b4Ywo=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=dDZPU3cI2kcdZtj6P5vDdYDk6+iVp+noOK6OULkHgKpZddOgG1esMeo4OZCyNSO6V6dYkZo06WJBdT9tm4RxeK6l6IEr4mqOBEABEr/uhpayC75Q9lqwfvx1XKb4cPeuZs5Dh1Gr/fjRzh2FIMhs6eJr9xthRWSqcvVxAq+i4qw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ssMgWk2p; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB853C2BBFC;
-	Thu, 27 Jun 2024 05:37:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719466680;
-	bh=3WT/rR8DVWsgB7SqkR4qilHgXUMUozxNxRpqv6b4Ywo=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=ssMgWk2pusBuyLhMyLFvvIrjrhDCsRtccsk0xmlalB7isZN2HhmQTKMkVGK4tmWkd
-	 aJIPkw83ZwPzeuJBn/5y5V2tHdTkKleS2rSSsRuD1spL3WknuPWRbQpSWeuDGU7CDP
-	 08oXaa5uYQny2dD1v3J6cY5LJXXGHMqP9inzaRgZxkKVUITeTY0JNQT63zbK6+iQqR
-	 VP6ohOxBy+/+2GTZYrjgtzlvgl180gYFBKCoF/uQ4f5gjaeaJ8HFXxNRRyn2zh9SDX
-	 NFHZVOtmVLTzH30v8rF/aC3LWSkroZ3Nxu17x7ghG9wRWUbv35LFcC6oLDBhLILnYS
-	 0x0ZiNgONq9fQ==
-Date: Wed, 26 Jun 2024 23:37:58 -0600
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+	s=arc-20240116; t=1719466825; c=relaxed/simple;
+	bh=cG52z7OFLVSh3hRcZbHs+RVwsunZuZJWq3nw64oi8bA=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=tGCx/qoP17OX4vlXCrl4sBUcxw82qYpvZz6581n/EZKsdqRepl9AsPXLGNXh2QquGBHXfZ6NAUtyjDaYhV+HRzP5GaCKmjKjViUcKEgbeh8uCuFfjfE5BFvF9L3d7rzlZtEMHF5vr0N1/MEVDtg4WIxF4xBwl0f0o0X/FHPNbeI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=i1C8ibX0; arc=none smtp.client-ip=209.85.218.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a689ad8d1f6so990759566b.2;
+        Wed, 26 Jun 2024 22:40:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1719466821; x=1720071621; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=bEwwpPztKOpZdSo7WcUxDYJ/5pj6Ekde9GfAMib96bM=;
+        b=i1C8ibX0dI4kR15Tim8nC88UQz5LC1YhpBB9RCwpn0BEVzbOU7riP0FwS7+qn6byKz
+         FGHBFIr9plsWoAv7HR5muyIl8ydX+DR3k1RmiyPExUCAMAXCLxhnClGMZjQzqdEZfce1
+         B91UhtQ1x5f1auEoxYYQl666OmhxPudkm3+msOPMw5LeyCIy5ozGEIZs0MsAsw+WoLoN
+         N9jkwQMDEWj0HJQ4TT0WCdvUgSBh5DRkOOCvQwAMqj/UG1pkS+b482i43aC9zgqOUC7L
+         TQDEL2gq2CwhbQredh6psPyDMdC6zR4EX6mltCIgIYX4n9+BypGiTOmiC/0SPK/ZALzO
+         at3g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719466821; x=1720071621;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=bEwwpPztKOpZdSo7WcUxDYJ/5pj6Ekde9GfAMib96bM=;
+        b=TsD3sfAbq8X7bkVXNHHJRXuUueS6aPXC3L1kQkzhyhnOXdQku2+0yg17sAK+X13wRE
+         CEl5NBv4MOos0w5f3umi6MOtToyStjUQ3Y5SV41mSunr/IdI/uDrFW+rQGCahWidsbmH
+         IvTyJ+IMqrzgxTtOqQhoDMDjwNYuCSdisYlTPJdJt4dnSatCLa/fypyUawnuFw6zaAVR
+         +AX77dn6K4tKdDrYcX5akwFdSCgqb72Si2eABFDbd1PbqfH4KJhtQ4v8ILO9IGpf/UM5
+         GF70jN6QlPJDCfiN1RtHWkc45ellJGLTPoNqW0TdHhMj5YWqOkrG93+c6DGp7rPjEM6i
+         N1YQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXGkv3tnIrIwyDfFFHrdNh5YPx3lr8spprzVUK6fBsn5iw2GtXk6tt1ZNqPQvxEInvrmFKhjNRTStpZkmLc/8QRjdVPyUAsHFKo5+DKsiXuJsic2KurydzNQYgG8ed+YFrt8d3kkblcF/3XXDyiBh11uEkgiIUyGf0qWvD9lX1Lo1KTlA==
+X-Gm-Message-State: AOJu0YwDqkpsQXZcYsdey6vrqV3cZEpdel7skGPJmEnTtTa9SGj2SRG1
+	1zcqAjbDmlmxeQMzYaxftPRQB5yPuE6P02pqRlw3Pq0CopI5wMfv
+X-Google-Smtp-Source: AGHT+IGJTzzisCNs2LoZuqnirLLGTmklhBGyKduxLjCFQSvCSMCT112XldrpxNn1SEENYWOPqBn/SA==
+X-Received: by 2002:a17:907:a644:b0:a72:7c0d:8fd6 with SMTP id a640c23a62f3a-a727c0d9072mr475288066b.2.1719466821170;
+        Wed, 26 Jun 2024 22:40:21 -0700 (PDT)
+Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a729d778b6fsm24551066b.98.2024.06.26.22.40.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 Jun 2024 22:40:20 -0700 (PDT)
+From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To: "David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Marcel Holtmann <marcel@holtmann.org>,
+	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Sean Wang <sean.wang@mediatek.com>,
+	linux-bluetooth@vger.kernel.org,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH] dt-bindings: net: bluetooth: convert MT7622 Bluetooth to the json-schema
+Date: Thu, 27 Jun 2024 07:40:11 +0200
+Message-Id: <20240627054011.26621-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.35.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Chris Packham <chris.packham@alliedtelesis.co.nz>
-Cc: krzk+dt@kernel.org, ericwouds@gmail.com, bert@biot.com, 
- conor+dt@kernel.org, tsbogend@alpha.franken.de, linux-mips@vger.kernel.org, 
- devicetree@vger.kernel.org, sander@svanheule.net, tglx@linutronix.de, 
- paulburton@kernel.org, john@phrozen.org, kabel@kernel.org, 
- daniel.lezcano@linaro.org, peterz@infradead.org, mail@birger-koblitz.de, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20240627043317.3751996-7-chris.packham@alliedtelesis.co.nz>
-References: <20240627043317.3751996-1-chris.packham@alliedtelesis.co.nz>
- <20240627043317.3751996-7-chris.packham@alliedtelesis.co.nz>
-Message-Id: <171946667846.1784649.14059031623063461479.robh@kernel.org>
-Subject: Re: [PATCH v3 6/9] dt-bindings: interrupt-controller:
- realtek,rtl-intc: Add rtl9300-intc
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
+From: Rafał Miłecki <rafal@milecki.pl>
 
-On Thu, 27 Jun 2024 16:33:14 +1200, Chris Packham wrote:
-> Add a compatible string for the interrupt controller found on the
-> rtl930x SoCs. The interrupt controller has registers for VPE1 so these
-> are added as a second reg cell.
-> 
-> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
-> ---
-> 
-> Notes:
->     Changes in v3:
->     - Use items to describe the regs property
->     Changes in v2:
->     - Set reg:maxItems to 2 to allow for VPE1 registers on the rtl9300. Add
->       a condition to enforce the old limit on other SoCs.
->     - Connor and Krzysztof offered acks on v1 but I think the changes here
->       are big enough to void those.
-> 
->  .../interrupt-controller/realtek,rtl-intc.yaml | 18 +++++++++++++++++-
->  1 file changed, 17 insertions(+), 1 deletion(-)
-> 
+This helps validating DTS files.
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+ .../bluetooth/mediatek,mt7622-bluetooth.yaml  | 61 +++++++++++++++++++
+ .../bindings/net/mediatek-bluetooth.txt       | 36 -----------
+ 2 files changed, 61 insertions(+), 36 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/bluetooth/mediatek,mt7622-bluetooth.yaml
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/realtek,rtl-intc.example.dtb: interrupt-controller@3000: reg: [[12288, 24]] is too short
-	from schema $id: http://devicetree.org/schemas/interrupt-controller/realtek,rtl-intc.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240627043317.3751996-7-chris.packham@alliedtelesis.co.nz
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+diff --git a/Documentation/devicetree/bindings/net/bluetooth/mediatek,mt7622-bluetooth.yaml b/Documentation/devicetree/bindings/net/bluetooth/mediatek,mt7622-bluetooth.yaml
+new file mode 100644
+index 000000000000..cb8ff93c93eb
+--- /dev/null
++++ b/Documentation/devicetree/bindings/net/bluetooth/mediatek,mt7622-bluetooth.yaml
+@@ -0,0 +1,61 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/net/bluetooth/mediatek,mt7622-bluetooth.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: MediaTek SoC built-in Bluetooth
++
++description:
++  This device is a serial attached device to BTIF device and thus it must be a
++  child node of the serial node with BTIF. The dt-bindings details for BTIF
++  device can be known via Documentation/devicetree/bindings/serial/8250.yaml.
++
++maintainers:
++  - Sean Wang <sean.wang@mediatek.com>
++
++allOf:
++  - $ref: bluetooth-controller.yaml#
++
++properties:
++  compatible:
++    const: mediatek,mt7622-bluetooth
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    const: ref
++
++  power-domains:
++    maxItems: 1
++
++required:
++  - clocks
++  - clock-names
++  - power-domains
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/mt7622-clk.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/power/mt7622-power.h>
++
++    serial@1100c000 {
++        compatible = "mediatek,mt7622-btif", "mediatek,mtk-btif";
++        reg = <0 0x1100c000 0 0x1000>;
++        interrupts = <GIC_SPI 90 IRQ_TYPE_LEVEL_LOW>;
++        clocks = <&pericfg CLK_PERI_BTIF_PD>;
++        clock-names = "main";
++        reg-shift = <2>;
++        reg-io-width = <4>;
++
++        bluetooth {
++            compatible = "mediatek,mt7622-bluetooth";
++            power-domains = <&scpsys MT7622_POWER_DOMAIN_WB>;
++            clocks = <&clk25m>;
++            clock-names = "ref";
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/net/mediatek-bluetooth.txt b/Documentation/devicetree/bindings/net/mediatek-bluetooth.txt
+index 9ef5bacda8c1..988c72685cbf 100644
+--- a/Documentation/devicetree/bindings/net/mediatek-bluetooth.txt
++++ b/Documentation/devicetree/bindings/net/mediatek-bluetooth.txt
+@@ -1,39 +1,3 @@
+-MediaTek SoC built-in Bluetooth Devices
+-==================================
+-
+-This device is a serial attached device to BTIF device and thus it must be a
+-child node of the serial node with BTIF. The dt-bindings details for BTIF
+-device can be known via Documentation/devicetree/bindings/serial/8250.yaml.
+-
+-Required properties:
+-
+-- compatible:	Must be
+-		  "mediatek,mt7622-bluetooth": for MT7622 SoC
+-- clocks:	Should be the clock specifiers corresponding to the entry in
+-		clock-names property.
+-- clock-names:	Should contain "ref" entries.
+-- power-domains: Phandle to the power domain that the device is part of
+-
+-Example:
+-
+-	btif: serial@1100c000 {
+-		compatible = "mediatek,mt7622-btif",
+-			     "mediatek,mtk-btif";
+-		reg = <0 0x1100c000 0 0x1000>;
+-		interrupts = <GIC_SPI 90 IRQ_TYPE_LEVEL_LOW>;
+-		clocks = <&pericfg CLK_PERI_BTIF_PD>;
+-		clock-names = "main";
+-		reg-shift = <2>;
+-		reg-io-width = <4>;
+-
+-		bluetooth {
+-			compatible = "mediatek,mt7622-bluetooth";
+-			power-domains = <&scpsys MT7622_POWER_DOMAIN_WB>;
+-			clocks = <&clk25m>;
+-			clock-names = "ref";
+-		};
+-	};
+-
+ MediaTek UART based Bluetooth Devices
+ ==================================
+ 
+-- 
+2.35.3
 
 
