@@ -1,258 +1,124 @@
-Return-Path: <devicetree+bounces-80571-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80572-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37F5A919FF0
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 09:04:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E133891A00E
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 09:10:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E0224288454
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 07:04:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1BA9D1C20C11
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 07:10:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CCCD43AC0;
-	Thu, 27 Jun 2024 07:03:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79C1E46BA6;
+	Thu, 27 Jun 2024 07:10:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R/JG439T"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="iQfEbi8k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45BB246421;
-	Thu, 27 Jun 2024 07:03:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BCF04317C;
+	Thu, 27 Jun 2024 07:10:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719471819; cv=none; b=bkJ9s22w4hXcJgNlvhcqLVdox2hj/ve8Ru/QDH8039gkNieBFPgC4qwSdyUaaT68gvwSOFueiK/Krxf/SMKzyoq78Ktvxwo77iWcThQEnjS+vbkeo+hio5WsGYcOQtlKuTN2ff5kThCN0y7U0SaZh8ETN+XYoM1fYNwOS+7HxZQ=
+	t=1719472227; cv=none; b=j+fgF8EPzUGA0ich0RMp9RRrad0TrSxMUtleWt67X81VnusUeiFLBShGew2aNnrwssJol7PMJRF8Mh+sfmrxQnpqz1g0Zcd8mp8QuB01Stms2yVEcfasHNXLC17jdO1OP/m0+915jk1dsRXlByo473DZuxdwBNqf4BXhcHPsyqQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719471819; c=relaxed/simple;
-	bh=edmrATqWfwDQp7TUO5fi4qh+vRbNRuaAI4fOnDLa3vc=;
+	s=arc-20240116; t=1719472227; c=relaxed/simple;
+	bh=JkyTsbt0XpHbrywuNeYXvJrV2o5AkptgABGcKkNbjZU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=T7zWUoGSNikH7e3xzi9hOrj1FulACXr80GmOQ6sCMK+xYK2tCOKO6qVQ3j/18lR29bMTilWUKWfwaC5GMntuFer2Lmz5QENVDwyOOWEBhjCmfDpCzKd+voNOhI6qKVvy/XA3hbZVgHctLAB/zog9jR3DIMtz26AafmbSMF1u2Mc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R/JG439T; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50C70C2BBFC;
-	Thu, 27 Jun 2024 07:03:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719471818;
-	bh=edmrATqWfwDQp7TUO5fi4qh+vRbNRuaAI4fOnDLa3vc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=R/JG439TiDTUxtn+UkgDW473rP2JUcGU1EZh6BUoofM45pzIfepiPTsA2CHGXSG8e
-	 WWLlfPG+yE5Y5Bzrc8uOUgq2l7UY44+nKCJqkAWS4WgxR4ERDWj2cC4Zfam0UHN8Y0
-	 6im6SMvyH2W9M8YfzZDma/oNOrr9o5sqIN9K6nPjT7cPowhOIrAefZi/OlseLWmnxV
-	 JZtRJvjWgnBRPSKy1PqxflO/b9tyG+LADo838wlzYTmpr+2lbARZ1O0C3NjxKNQZ5z
-	 dNl+4iRK1WLwEvyTQfKt8b5wrSObTCcdI1PR0BKPM/HrNWNQhau28ahbBGTs+SH3To
-	 ytnqvGlqT9tQQ==
-Date: Thu, 27 Jun 2024 09:03:35 +0200
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: linux-pci@vger.kernel.org, ryder.lee@mediatek.com,
-	lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
-	bhelgaas@google.com, linux-mediatek@lists.infradead.org,
-	lorenzo.bianconi83@gmail.com, linux-arm-kernel@lists.infradead.org,
-	krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-	nbd@nbd.name, dd@embedd.com, upstream@airoha.com
-Subject: Re: [PATCH 3/4] PCI: mediatek-gen3: rely on reset_bulk APIs for phy
- reset lines
-Message-ID: <Zn0Ox8HTfNLQddsR@lore-desk>
-References: <cover.1718980864.git.lorenzo@kernel.org>
- <e8ab615a56759a4832833211257d83f56bf64303.1718980864.git.lorenzo@kernel.org>
- <ee7ef59d-a698-41ba-a3a6-1e9e32313e2d@collabora.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=JisrNyYSPnRjjoJRzNxGWu3U9HTo31Ou3ZDYGIrZ5QREJMQ4fut+1mGujvWHGGwtC3b/97jaCHoKlYSc5SR8feej6mWTlSnA5MIPbkHQij/FyhRUhaufEoH9ABC1SiaBCs7XDbiSvMGXYhtpEvCRJIbhry/nsDDB1HL5ud/VrtA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=iQfEbi8k; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from gaggiata.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+	by mail11.truemail.it (Postfix) with ESMTPA id DE8A91FA3E;
+	Thu, 27 Jun 2024 09:10:08 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1719472209;
+	bh=aIZFoMXfj1PU3tfY2GaKFw28zmjn7K0QpfMx01nMzAU=;
+	h=Received:From:To:Subject;
+	b=iQfEbi8kTmTmCjrUZbZKsFhUbS5CpAnCL2BVQTvbcn3pD1l1atpGTdXHSL6+kAe0v
+	 /Paq+AsjBSBBpRpoTqx7NtGnYTi66iNvb3TpkkI9zpTZSO6YqFExBOEbZYtIk+g/A2
+	 0ncLIXJqPKUUOFcAejHWM4Np0Hz39EP8YDTqd5f7c1Ze/y06XxSbnHH+DroqtS7/Va
+	 DqDUoRVNPIxfgw+jpjetathiUKKGcghD9YodMm9/eoDJcRNl1zYiXMmgz+2P6Zsevk
+	 ebjEpxQMf2fbllOzqXet2YdD2YV/ebFySIZzVLPRrAhtUXFtqIFcc04iT61zgUFWSM
+	 kD95Sf3uFci+Q==
+Received: by gaggiata.pivistrello.it (Postfix, from userid 1000)
+	id 81CEF7F93B; Thu, 27 Jun 2024 09:10:08 +0200 (CEST)
+Date: Thu, 27 Jun 2024 09:10:08 +0200
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Shawn Guo <shawnguo2@yeah.net>
+Cc: Francesco Dolcini <francesco@dolcini.it>,
+	Vitor Soares <ivitro@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Vitor Soares <vitor.soares@toradex.com>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1] arm64: dts: imx8mm-verdin: add TPM device
+Message-ID: <Zn0QUJ9wR1zzFGyC@gaggiata.pivistrello.it>
+References: <20240613134150.318755-1-ivitro@gmail.com>
+ <Zm+gjpsGhzjbEgP8@dragon>
+ <20240617071842.GA4832@francesco-nb>
+ <Zn0NbIvFdfpMPHAx@dragon>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="sxHPfjnzL9+afZ9G"
-Content-Disposition: inline
-In-Reply-To: <ee7ef59d-a698-41ba-a3a6-1e9e32313e2d@collabora.com>
-
-
---sxHPfjnzL9+afZ9G
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <Zn0NbIvFdfpMPHAx@dragon>
 
-> Il 21/06/24 16:48, Lorenzo Bianconi ha scritto:
-> > Use reset_bulk APIs to manage phy reset lines. This is a preliminary
-> > patch in order to add Airoha EN7581 pcie support.
-> >=20
-> > Tested-by: Zhengping Zhang <zhengping.zhang@airoha.com>
-> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> > ---
-> >   drivers/pci/controller/pcie-mediatek-gen3.c | 49 ++++++++++++++++-----
-> >   1 file changed, 37 insertions(+), 12 deletions(-)
-> >=20
-> > diff --git a/drivers/pci/controller/pcie-mediatek-gen3.c b/drivers/pci/=
-controller/pcie-mediatek-gen3.c
-> > index 4859bd875bc4..9842617795a9 100644
-> > --- a/drivers/pci/controller/pcie-mediatek-gen3.c
-> > +++ b/drivers/pci/controller/pcie-mediatek-gen3.c
-> > @@ -100,14 +100,21 @@
-> >   #define PCIE_ATR_TLP_TYPE_MEM		PCIE_ATR_TLP_TYPE(0)
-> >   #define PCIE_ATR_TLP_TYPE_IO		PCIE_ATR_TLP_TYPE(2)
-> > +#define MAX_NUM_PHY_RSTS		1
-> > +
-> >   struct mtk_gen3_pcie;
-> >   /**
-> >    * struct mtk_pcie_soc - differentiate between host generations
-> >    * @power_up: pcie power_up callback
-> > + * @phy_resets: phy reset lines SoC data.
-> >    */
-> >   struct mtk_pcie_soc {
-> >   	int (*power_up)(struct mtk_gen3_pcie *pcie);
-> > +	struct {
-> > +		const char *id[MAX_NUM_PHY_RSTS];
-> > +		int num_rsts;
->=20
-> Well, it's just two chars after all, so "num_resets" looks better imo.
+On Thu, Jun 27, 2024 at 02:57:48PM +0800, Shawn Guo wrote:
+> On Mon, Jun 17, 2024 at 09:18:42AM +0200, Francesco Dolcini wrote:
+> > Hello Shawn,
+> > 
+> > On Mon, Jun 17, 2024 at 10:33:50AM +0800, Shawn Guo wrote:
+> > > On Thu, Jun 13, 2024 at 02:41:50PM +0100, Vitor Soares wrote:
+> > > > From: Vitor Soares <vitor.soares@toradex.com>
+> > > > 
+> > > > Add TPM device found on Verdin iMX8M Mini PID4 0090 variant.
+> > > > 
+> > > > Signed-off-by: Vitor Soares <vitor.soares@toradex.com>
+> > > > ---
+> > > >  arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi | 16 +++++++++++-----
+> > > >  1 file changed, 11 insertions(+), 5 deletions(-)
+> > > > 
+> > > > diff --git a/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
+> > > > index 4768b05fd765..c9ae5f0bb526 100644
+> > > > --- a/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
+> > > > +++ b/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
+> > > > @@ -227,15 +227,16 @@ &ecspi2 {
+> > > >  	pinctrl-0 = <&pinctrl_ecspi2>;
+> > > >  };
+> > > >  
+> > > > -/* Verdin CAN_1 (On-module) */
+> > > > +/* On-module SPI */
+> > > >  &ecspi3 {
+> > > >  	#address-cells = <1>;
+> > > >  	#size-cells = <0>;
+> > > > -	cs-gpios = <&gpio5 25 GPIO_ACTIVE_LOW>;
+> > > > +	cs-gpios = <&gpio5 25 GPIO_ACTIVE_LOW>, <&gpio4 19 GPIO_ACTIVE_LOW>;
+> > > >  	pinctrl-names = "default";
+> > > > -	pinctrl-0 = <&pinctrl_ecspi3>;
+> > > > +	pinctrl-0 = <&pinctrl_ecspi3>, <&pinctrl_pmic_tpm_ena>;
+> > > 
+> > > Would it make more sense to have tpm pinctrl in node tpm@1 below?
+> > It's the pinctrl of the SPI Chip Select pin, not something about the
+> > TPM, I think it's correct to have it into the ecspi node.
+> 
+> The name pinctrl_pmic_tpm_ena seems confusing then.
 
-ack, fine. Naming is always hard :)
+I agree (this is coming from the schematics net name, let's blame the HW folks).
 
->=20
-> > +	} phy_resets;
-> >   };
-> >   /**
-> > @@ -128,7 +135,7 @@ struct mtk_msi_set {
-> >    * @base: IO mapped register base
-> >    * @reg_base: physical register base
-> >    * @mac_reset: MAC reset control
-> > - * @phy_reset: PHY reset control
-> > + * @phy_resets: PHY reset controllers
-> >    * @phy: PHY controller block
-> >    * @clks: PCIe clocks
-> >    * @num_clks: PCIe clocks count for this port
-> > @@ -148,7 +155,7 @@ struct mtk_gen3_pcie {
-> >   	void __iomem *base;
-> >   	phys_addr_t reg_base;
-> >   	struct reset_control *mac_reset;
-> > -	struct reset_control *phy_reset;
-> > +	struct reset_control_bulk_data phy_resets[MAX_NUM_PHY_RSTS];
-> >   	struct phy *phy;
-> >   	struct clk_bulk_data *clks;
-> >   	int num_clks;
-> > @@ -790,8 +797,8 @@ static int mtk_pcie_parse_port(struct mtk_gen3_pcie=
- *pcie)
-> >   {
-> >   	struct device *dev =3D pcie->dev;
-> >   	struct platform_device *pdev =3D to_platform_device(dev);
-> > +	int i, ret, num_rsts =3D pcie->soc->phy_resets.num_rsts; >   	struct =
-resource *regs;
-> > -	int ret;
-> >   	regs =3D platform_get_resource_byname(pdev, IORESOURCE_MEM, "pcie-ma=
-c");
-> >   	if (!regs)
-> > @@ -804,12 +811,13 @@ static int mtk_pcie_parse_port(struct mtk_gen3_pc=
-ie *pcie)
-> >   	pcie->reg_base =3D regs->start;
-> > -	pcie->phy_reset =3D devm_reset_control_get_optional_exclusive(dev, "p=
-hy");
-> > -	if (IS_ERR(pcie->phy_reset)) {
-> > -		ret =3D PTR_ERR(pcie->phy_reset);
-> > -		if (ret !=3D -EPROBE_DEFER)
-> > -			dev_err(dev, "failed to get PHY reset\n");
-> > +	for (i =3D 0; i < num_rsts; i++)
-> > +		pcie->phy_resets[i].id =3D pcie->soc->phy_resets.id[i];
-> > +	ret =3D devm_reset_control_bulk_get_optional_shared(dev, num_rsts,
-> > +							  pcie->phy_resets);
->=20
-> 92 columns is ok, you can use one line for that.
+With that said, let's rename this to `pinctrl_tpm_spi_cs`. Vitor?
 
-I usually prefer to stay below 79 column limit, but I do not have a strong
-opinion about it. I will fix it and even all below.
+Francesco
 
-Regards,
-Lorenzo
-
->=20
-> > +	if (ret) {
-> > +		dev_err(dev, "failed to get PHY bulk reset\n");
-> >   		return ret;
-> >   	}
-> > @@ -846,7 +854,12 @@ static int mtk_pcie_power_up(struct mtk_gen3_pcie =
-*pcie)
-> >   	int err;
-> >   	/* PHY power on and enable pipe clock */
-> > -	reset_control_deassert(pcie->phy_reset);
-> > +	err =3D reset_control_bulk_deassert(pcie->soc->phy_resets.num_rsts,
-> > +					  pcie->phy_resets);
-> > +	if (err) {
-> > +		dev_err(dev, "failed to deassert PHYs\n");
-> > +		return err;
-> > +	}
-> >   	err =3D phy_init(pcie->phy);
-> >   	if (err) {
-> > @@ -882,7 +895,8 @@ static int mtk_pcie_power_up(struct mtk_gen3_pcie *=
-pcie)
-> >   err_phy_on:
-> >   	phy_exit(pcie->phy);
-> >   err_phy_init:
-> > -	reset_control_assert(pcie->phy_reset);
-> > +	reset_control_bulk_assert(pcie->soc->phy_resets.num_rsts,
-> > +				  pcie->phy_resets);
->=20
-> same here
->=20
-> >   	return err;
-> >   }
-> > @@ -897,7 +911,8 @@ static void mtk_pcie_power_down(struct mtk_gen3_pci=
-e *pcie)
-> >   	phy_power_off(pcie->phy);
-> >   	phy_exit(pcie->phy);
-> > -	reset_control_assert(pcie->phy_reset);
-> > +	reset_control_bulk_assert(pcie->soc->phy_resets.num_rsts,
-> > +				  pcie->phy_resets);
->=20
-> ditto
->=20
-> >   }
-> >   static int mtk_pcie_setup(struct mtk_gen3_pcie *pcie)
-> > @@ -912,7 +927,13 @@ static int mtk_pcie_setup(struct mtk_gen3_pcie *pc=
-ie)
-> >   	 * The controller may have been left out of reset by the bootloader
-> >   	 * so make sure that we get a clean start by asserting resets here.
-> >   	 */
-> > -	reset_control_assert(pcie->phy_reset);
-> > +	reset_control_bulk_deassert(pcie->soc->phy_resets.num_rsts,
-> > +				    pcie->phy_resets);
->=20
-> and again...
->=20
-> > +	usleep_range(5000, 10000);
-> > +	reset_control_bulk_assert(pcie->soc->phy_resets.num_rsts,
-> > +				  pcie->phy_resets);
->=20
-> .... :-)
->=20
-> Cheers,
-> Angelo
->=20
-> > +	msleep(100);
-> > +
-> >   	reset_control_assert(pcie->mac_reset);
-> >   	usleep_range(10, 20);
-> > @@ -1090,6 +1111,10 @@ static const struct dev_pm_ops mtk_pcie_pm_ops =
-=3D {
-> >   static const struct mtk_pcie_soc mtk_pcie_soc_mt8192 =3D {
-> >   	.power_up =3D mtk_pcie_power_up,
-> > +	.phy_resets =3D {
-> > +		.id[0] =3D "phy",
-> > +		.num_rsts =3D 1,
-> > +	},
-> >   };
-> >   static const struct of_device_id mtk_pcie_of_match[] =3D {
->=20
-
---sxHPfjnzL9+afZ9G
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZn0OxwAKCRA6cBh0uS2t
-rBlFAP4i50NyDltoQcWvAv3AXWyJjkeLhRpWwkB/MOAcyLSctwD+KcjoGcHz6lYT
-vGpHOSROki0wf8rwx97eI48jsmQDhA8=
-=1Y6c
------END PGP SIGNATURE-----
-
---sxHPfjnzL9+afZ9G--
 
