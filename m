@@ -1,65 +1,55 @@
-Return-Path: <devicetree+bounces-80645-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80644-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30D4691A1C9
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 10:42:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A528591A1C1
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 10:40:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AD47CB20BEE
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 08:42:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0B3F2B240A9
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 08:39:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA97A82486;
-	Thu, 27 Jun 2024 08:42:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A08C12B143;
+	Thu, 27 Jun 2024 08:39:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="W2SOULC7"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="aRvdGEAs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB24378C60
-	for <devicetree@vger.kernel.org>; Thu, 27 Jun 2024 08:42:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E32241304A3;
+	Thu, 27 Jun 2024 08:39:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719477757; cv=none; b=lJw83Uw64GCTiugVHCtcuCCuhTjknzmSjzr6xm6vGYOPQzSJR96lME5AJnteLpbdh5kG+Ia7biW2KS/dMhTFOo9QqSRn6JjC/pKc9r/gGYl6crQMIMsK/9w3qwHDVlYEbv4xXfVWw/8usgogKI76UITuLapNtCC/1J/ZBGD5lS8=
+	t=1719477546; cv=none; b=FU3Hf27nru1SxtcAgm8s+P2rB6eZEQE6GGvhjEzCHRL3pDuJHNYv5LnyF3YeFR5Y9y4UOSnM5i0SD8lB8UmzDxRdlO9WNzzcgTocDIdknV3xKyG60B811/G7a7hzDu45PWtTTQ4FhdrYBa4SlomZ0SPJRxHBEvx1EA+iXinU524=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719477757; c=relaxed/simple;
-	bh=ERHqnf+IIhUPKVQrCKNWUdpSOY29Yfm7ncfJZJOkWy4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=lE71CnVNwCyJziAp4nPHwbW8Ge9HwqTvKPvtLwsaWmuNTR+KHZ4nMxK3fz7rDBrOpLKcMpsPfH4Qh9w5Ss7vnRFpTBaa8+/rUtr85errjwgQZbV/+uogNKEoIE4i7KdQ3LKoBYeGTtbhUc4JJI85lOz9lGD1vZ+EEeWLCJV9Osk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=W2SOULC7; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45R8034X026625;
-	Thu, 27 Jun 2024 10:39:13 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	xjPP4W+BU82TAbrE67kZo4dj4qLTsmEemGauaFgAobA=; b=W2SOULC79NbGB1SK
-	TGwMKVzCHognJFgsosC1vhq3ie5daPOd9KT4b/1JONSE6kU7po0tFY6zralW6uS2
-	L8QSxXO6Rl+mPFLww9WCfWzwAGLgo6KArLGYxHBRTN88wqewlFzStM+qTla/9nsn
-	xJyh2dNAXox0vn6nRd4cMbpj7wJ+Je1J0UasI4FsRv/VHQfmhHUqcEbwcFuBMaJG
-	GGXN9UqKvwXpF7kDvr31LMoMYeNO3KdQvjtLh7FP5qqV8oui8FiQFHO+dwIIlETZ
-	i3GnE/BvqEIAn+LNQsRAnzOWo6SS6EU6E5LqR/jwsqNVBT3oZcZLdgBUSukJ7Fp6
-	pXkRaw==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3ywnxxmest-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 27 Jun 2024 10:39:13 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 664CE4002D;
-	Thu, 27 Jun 2024 10:39:08 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 9D8A62132F8;
-	Thu, 27 Jun 2024 10:38:35 +0200 (CEST)
-Received: from [10.48.86.79] (10.48.86.79) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Thu, 27 Jun
- 2024 10:38:35 +0200
-Message-ID: <b2796be8-d372-44e6-959c-e212097e99e8@foss.st.com>
-Date: Thu, 27 Jun 2024 10:38:34 +0200
+	s=arc-20240116; t=1719477546; c=relaxed/simple;
+	bh=EyoPoXrPDGo2VmUULjYB6t4i7WeQmc3bKPn161Uq5C4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=APUhho1V87xEhSO2xU4WHfSQZaw1UEgqtMoTywUYPcpGJVteUTgMkbx7tOx/7A318OqPDgjLJhUMqLa8xpPnro2yhurKeZgSyOpV322l2vpiMstLjjpNnX1p0g4lGPsFO/lAvTjx6OQUYHfsPP+KZ1In+Lo8AnrhIAmvPzDGDe4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=aRvdGEAs; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1719477543;
+	bh=EyoPoXrPDGo2VmUULjYB6t4i7WeQmc3bKPn161Uq5C4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=aRvdGEAs/GUEQ0n0QxDwOX4pNpA2bj5xIypAsKVq3+ZqSP5/i0mH3Iss5UD4hTKAQ
+	 JRAd62aimRIaXDW1Rfgyzt2AY2oadnB665vfEJcuLCtTOZ2ylxlX3gE5lKBJV9cdMm
+	 rAbZ+Ry6xHvFzIlWDBhgM3FzZo1PvIILqSbw+UDH7bDOPoMKYM4OVAhNS++6dWOYYz
+	 tqHXKh87FScwc63ckIolkzqrVkxG8PXGIG2Ix6MpqPAtBR9pXSXxwQuu1UDyutIEr3
+	 4gc8e8F+QG+dsVtKVqRmAU0Tw69tF9lhROLrWVzW9kVrX06IlAuhEp8jLtVxciOa/c
+	 gLgPzgMTHq8lQ==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 279AB3780626;
+	Thu, 27 Jun 2024 08:39:02 +0000 (UTC)
+Message-ID: <1e32a8b4-0cae-47c7-9112-f0b6e78bf31b@collabora.com>
+Date: Thu, 27 Jun 2024 10:39:01 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,82 +57,58 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ARM: dts: stm32mp135f-dk: Document output pins for PWMs
-To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
-        Maxime
- Coquelin <mcoquelin.stm32@gmail.com>
-CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20240613080229.2292413-2-u.kleine-koenig@baylibre.com>
+Subject: Re: [PATCH v4 2/2] clk: mediatek: Add drivers for MediaTek MT6735
+ main clock and reset drivers
+To: Yassine Oudjana <yassine.oudjana@gmail.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Daniel Golle
+ <daniel@makrotopia.org>, jason-ch chen <Jason-ch.Chen@mediatek.com>,
+ Sam Shih <sam.shih@mediatek.com>, Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: Yassine Oudjana <y.oudjana@protonmail.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+ linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+References: <20240626202406.846961-1-y.oudjana@protonmail.com>
+ <20240626202406.846961-3-y.oudjana@protonmail.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <20240613080229.2292413-2-u.kleine-koenig@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-27_04,2024-06-25_01,2024-05-17_01
+In-Reply-To: <20240626202406.846961-3-y.oudjana@protonmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Uwe
-
-On 6/13/24 10:02, Uwe Kleine-König wrote:
-> To simplify identifying the pins where the PWM output is routed to,
-> add a comment to each PWM device about the respective pin on the
-> expansion connector.
+Il 26/06/24 22:24, Yassine Oudjana ha scritto:
+> From: Yassine Oudjana <y.oudjana@protonmail.com>
 > 
-> Signed-off-by: Uwe Kleine-König <u.kleine-koenig@baylibre.com>
+> Add drivers for MT6735 apmixedsys, topckgen, infracfg and pericfg
+> clock and reset controllers. These provide the base clocks and resets
+> on the platform, enough to bring up all essential blocks including
+> PWRAP, MSDC and peripherals (UART, I2C, SPI).
+> 
+> Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
+
+If the resets were properly bound, you'd get my R-b here. :-(
+
+It's a 20 minutes job anyway, go-go-go! :) :) :)
+
+Cheers,
+Angelo
+
 > ---
->   arch/arm/boot/dts/st/stm32mp135f-dk.dts | 4 ++++
->   1 file changed, 4 insertions(+)
+>   MAINTAINERS                                  |   4 +
+>   drivers/clk/mediatek/Kconfig                 |   9 +
+>   drivers/clk/mediatek/Makefile                |   1 +
+>   drivers/clk/mediatek/clk-mt6735-apmixedsys.c | 138 +++++++
+>   drivers/clk/mediatek/clk-mt6735-infracfg.c   |  79 ++++
+>   drivers/clk/mediatek/clk-mt6735-pericfg.c    |  92 +++++
+>   drivers/clk/mediatek/clk-mt6735-topckgen.c   | 394 +++++++++++++++++++
+>   7 files changed, 717 insertions(+)
+>   create mode 100644 drivers/clk/mediatek/clk-mt6735-apmixedsys.c
+>   create mode 100644 drivers/clk/mediatek/clk-mt6735-infracfg.c
+>   create mode 100644 drivers/clk/mediatek/clk-mt6735-pericfg.c
+>   create mode 100644 drivers/clk/mediatek/clk-mt6735-topckgen.c
 > 
-> diff --git a/arch/arm/boot/dts/st/stm32mp135f-dk.dts b/arch/arm/boot/dts/st/stm32mp135f-dk.dts
-> index 567e53ad285f..f1b50e4c1059 100644
-> --- a/arch/arm/boot/dts/st/stm32mp135f-dk.dts
-> +++ b/arch/arm/boot/dts/st/stm32mp135f-dk.dts
-> @@ -273,6 +273,7 @@ &timers3 {
->   	/delete-property/dma-names;
->   	status = "disabled";
->   	pwm {
-> +		/* PWM output on pin 7 of the expansion connector (CN8.7) using TIM3_CH4 function */
->   		pinctrl-0 = <&pwm3_pins_a>;
->   		pinctrl-1 = <&pwm3_sleep_pins_a>;
->   		pinctrl-names = "default", "sleep";
-> @@ -288,6 +289,7 @@ &timers4 {
->   	/delete-property/dma-names;
->   	status = "disabled";
->   	pwm {
-> +		/* PWM output on pin 31 of the expansion connector (CN8.31) using TIM4_CH2 function */
->   		pinctrl-0 = <&pwm4_pins_a>;
->   		pinctrl-1 = <&pwm4_sleep_pins_a>;
->   		pinctrl-names = "default", "sleep";
-> @@ -303,6 +305,7 @@ &timers8 {
->   	/delete-property/dma-names;
->   	status = "disabled";
->   	pwm {
-> +		/* PWM output on pin 32 of the expansion connector (CN8.32) using TIM8_CH3 function */
->   		pinctrl-0 = <&pwm8_pins_a>;
->   		pinctrl-1 = <&pwm8_sleep_pins_a>;
->   		pinctrl-names = "default", "sleep";
-> @@ -316,6 +319,7 @@ timer@7 {
->   &timers14 {
->   	status = "disabled";
->   	pwm {
-> +		/* PWM output on pin 33 of the expansion connector (CN8.33) using TIM14_CH1 function */
->   		pinctrl-0 = <&pwm14_pins_a>;
->   		pinctrl-1 = <&pwm14_sleep_pins_a>;
->   		pinctrl-names = "default", "sleep";
-> 
-> base-commit: 1613e604df0cd359cf2a7fbd9be7a0bcfacfabd0
 
-Good idea. Some lines exceed the 100 char. I could remove "function" or 
-only keep "func" instead. What do u think ?
 
-Note also that commit should be: "ARM: dts: stm32: ....". i can fix it 
-by myself.
-
-Alex
 
