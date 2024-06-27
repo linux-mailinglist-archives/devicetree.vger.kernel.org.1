@@ -1,136 +1,178 @@
-Return-Path: <devicetree+bounces-80980-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80981-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11E5291AE95
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 19:54:25 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB9AF91AEA0
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 19:59:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C0A8828777B
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 17:54:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 76EB41F21B16
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 17:59:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57E9419A28A;
-	Thu, 27 Jun 2024 17:54:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B11BF199EA9;
+	Thu, 27 Jun 2024 17:59:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Nk7JdKex"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f52.google.com (mail-io1-f52.google.com [209.85.166.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E720918645;
-	Thu, 27 Jun 2024 17:54:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D32718645
+	for <devicetree@vger.kernel.org>; Thu, 27 Jun 2024 17:59:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719510861; cv=none; b=TJHfNBnjfrDwiO7o0D0QdqtxPxalYRTHCxbSBbtPSCRBFatriFAycSNPz7rjMycgTmJEB6RvSiSSTEqX677Ad0VfCtcG5SDIHsy/l9tjKO3fLNBh/h5OdulERja3RQCJb2EV/X+0xwV5e7xRS5TNR9pzzZU4kCNc7QpwN7Gyxts=
+	t=1719511165; cv=none; b=q/Ha5pcr84v1O7M4uCzcBFXgHUtAovw+KBZI/UrIsCOG54O9Yqn3v49FVj7mJ12klaTbGBSd3ENmcv1YugaeqFS1nRRv5j2ZMWCKFgg3ee5VLool0t5Loof2BZ8YokUKLZRbzg8VqNdGoylG+R7hl7TQV2Gp6xwMfIkLpD6bzKI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719510861; c=relaxed/simple;
-	bh=kWAsnel3A5mFApn7lpqazOCEOcFEQnU+u987bPBxcBs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=OnlbQayknp5I0+C5emLdWeUdoKPG10IlQzmR8I0FFQXU68dOQ7Ixw4Y3P19ULwBhKNZKboBwMeerAObfhHtM3JxfSft7hwh5NTf6BqLuVwYnR/qEmrFzMHCyGkIlNBx2CXwB9YQTNaXcurS6Ia4jS6xUMa83Y4mspEB7bOCPFes=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.166.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-io1-f52.google.com with SMTP id ca18e2360f4ac-7eee7728b00so301464639f.3;
-        Thu, 27 Jun 2024 10:54:19 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719510855; x=1720115655;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=tUDjh8HPRo//13YfMMh5tGFz16cFbmNK3MEKPkttN6E=;
-        b=dta15JrwJWU6xxNVUoB9a1fLb3uxcN330HbaS/nR/mhBf4jyIwuFSkWLqdOFkHTJP6
-         CniQNbxnRpViR60vwutKCpQKE00o1FQwF/H3H6IWyHbFn4opMD/n2/zNGOHh/SbyQK+9
-         IvfEXnhzvcnBD2rGGhmRpvYCVjDo2lLGqSE7jF2VFdQfHc6Wjv1rgl4JmCBh4Xkg+O3k
-         /Pk3PYBAwotdHVWTW1uLO+tiM6cSzO7QJNIBWTOzFcVLjPh3UQj4P4Pisn3YVXjW8pn2
-         T/0ziJ+EwTi4lwXvkYH9wqAdMQShhFti1XMtcrRehSBIdrdCosrBVCu5SIV3mH3W0g4D
-         tetg==
-X-Forwarded-Encrypted: i=1; AJvYcCUrEyB6f9Mc5kl3APYC2szcMPhu9g+PmyfBwe3ewlHoTUh47/ARJuiWIEMl0OUW3kIfl+yibwAN1C5as1VRFT6PvboIw3X/hJS7wHlf0mEhF/KvI4iVM70+1GZt7rYyhrYFWtLQoekjpA==
-X-Gm-Message-State: AOJu0YxfTuAWPo7okLZ3AKnUZ1j6Y5Pu22kwKXdeE5eKt9Y0lZEbmfqD
-	To87kcj4VZyHczG1KpkO8ho2d9ouxkFLcJ6yN88ba8LC5Lz/++fcnb48NgCu6fM=
-X-Google-Smtp-Source: AGHT+IHTh21GGYSW3yXrGcelvZqRDXGhtlfEt12UZciiuywurRFpUsLpmiE/krFMsAYME2N0cD8Blw==
-X-Received: by 2002:a05:6602:13d4:b0:7eb:85fd:e29d with SMTP id ca18e2360f4ac-7f3a75b301cmr1829277239f.16.1719510855197;
-        Thu, 27 Jun 2024 10:54:15 -0700 (PDT)
-Received: from mail-io1-f47.google.com (mail-io1-f47.google.com. [209.85.166.47])
-        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-4bb73dd7c44sm43760173.69.2024.06.27.10.54.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Jun 2024 10:54:14 -0700 (PDT)
-Received: by mail-io1-f47.google.com with SMTP id ca18e2360f4ac-7f3d3f1294dso77705839f.2;
-        Thu, 27 Jun 2024 10:54:14 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVqLcIrkEpLqYktK366ELQT1dLJMEiYQt8nu1XP9yfRVRy0nVd0he/UoF8E994bqCKDgWxd3/XctRoaDdykhXr7N3R512kTRyZUV+txphm6xNFnZE4xc5GDB0076GKeBN/Tspp+BsJoBw==
-X-Received: by 2002:a05:6602:6d8c:b0:7eb:c7ff:26e6 with SMTP id
- ca18e2360f4ac-7f3a75b3440mr1645762339f.15.1719510854318; Thu, 27 Jun 2024
- 10:54:14 -0700 (PDT)
+	s=arc-20240116; t=1719511165; c=relaxed/simple;
+	bh=lBEClSvwhghoIa9OYDcLoHFN4V4Z8etu4uaix2/Obyw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bdjMZcbPf+dKspTQcaGlyNP4uOmy37XmBsLmgcWqiwBK2VsS6kX3b/pU30Cmjmx0FJPA3UW2WYwKYhY3nQUHxfUUlLg+D5V++HF1XVYMaE26VetE3TPMsgLg9HF9DoJsL/htHtRnmzTonMgZidG0RtlsM2Y6XcbTj6mxNVcMSaM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Nk7JdKex; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B265C2BBFC;
+	Thu, 27 Jun 2024 17:59:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719511165;
+	bh=lBEClSvwhghoIa9OYDcLoHFN4V4Z8etu4uaix2/Obyw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Nk7JdKexzCOJMLqs59XvkQmR/jraHn7BaxzgNJF7mRNo0EGdxc/Tai5sTAu022jRU
+	 S0B3Yz9QVGbnxV4mBzOoZy+ZhQZZAEJUGVSEsbIFXVdo62jEWOW6F/dYarOYC2Z8iw
+	 7GGGxBwZ/uaGpAHktoWhUm+5JY+nGyl5izqS773SK1Jo2TWfgfQVX4ctPLPiEIQLYA
+	 lluX0XmDAJ6LvKQx4wlWBXjpANLXr5vnlQLxQ5GAfuea9J7tGlmWs9J0l6yD94gZXd
+	 50reWxpYrZPuRWGI76x+rkhvgsg4oLsOnKwFZn/CzjdpxRztKv7Eowdyz9t98MVc1h
+	 PlchxoRT3YcFA==
+Date: Thu, 27 Jun 2024 19:59:22 +0200
+From: Maxime Ripard <mripard@kernel.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
+	Ryan Walklin <ryan@testtoast.com>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>, 
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Hironori KIKUCHI <kikuchan98@gmail.com>, 
+	Chris Morgan <macroalpha82@gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: display: panel: Rename WL-355608-A8
+ panel
+Message-ID: <20240627-muskox-of-nonconcrete-art-e4bcfd@houat>
+References: <20240626112005.248576-1-ryan@testtoast.com>
+ <20240626112005.248576-2-ryan@testtoast.com>
+ <a4d33da3-2a2a-48ce-874d-95a5889f2f1f@linaro.org>
+ <20240626-loyal-squirrel-of-charisma-4e784f@houat>
+ <20240626-procreate-goldmine-800179f909e9@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240624232110.9817-1-andre.przywara@arm.com> <20240624232110.9817-5-andre.przywara@arm.com>
-In-Reply-To: <20240624232110.9817-5-andre.przywara@arm.com>
-Reply-To: wens@csie.org
-From: Chen-Yu Tsai <wens@csie.org>
-Date: Fri, 28 Jun 2024 01:54:00 +0800
-X-Gmail-Original-Message-ID: <CAGb2v67qo7qgf2uzBAUf9-C9NHrHG47mLc579NRkTO7qLDtV7Q@mail.gmail.com>
-Message-ID: <CAGb2v67qo7qgf2uzBAUf9-C9NHrHG47mLc579NRkTO7qLDtV7Q@mail.gmail.com>
-Subject: Re: [PATCH v2 4/4] arm64: dts: allwinner: h616: add crypto engine node
-To: Andre Przywara <andre.przywara@arm.com>
-Cc: Corentin Labbe <clabbe.montjoie@gmail.com>, Herbert Xu <herbert@gondor.apana.org.au>, 
-	"David S . Miller" <davem@davemloft.net>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Samuel Holland <samuel@sholland.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Ryan Walklin <ryan@testtoast.com>, Philippe Simons <simons.philippe@gmail.com>, 
-	linux-crypto@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="el265p2nem5547d2"
+Content-Disposition: inline
+In-Reply-To: <20240626-procreate-goldmine-800179f909e9@spud>
+
+
+--el265p2nem5547d2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jun 25, 2024 at 7:23=E2=80=AFAM Andre Przywara <andre.przywara@arm.=
-com> wrote:
->
-> The Allwinner H616 SoC contains a crypto engine very similar to the H6
-> version, but with all base addresses in the DMA descriptors shifted by
-> two bits. This requires a new compatible string.
-> Also the H616 CE relies on the internal osciallator for the TRNG
-> operation, so we need to reference this clock.
->
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> ---
->  arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi | 10 ++++++++++
->  1 file changed, 10 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi b/arch/arm64/=
-boot/dts/allwinner/sun50i-h616.dtsi
-> index 921d5f61d8d6a..187663d45ed72 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-> @@ -113,6 +113,16 @@ soc {
->                 #size-cells =3D <1>;
->                 ranges =3D <0x0 0x0 0x0 0x40000000>;
->
-> +               crypto: crypto@1904000 {
-> +                       compatible =3D "allwinner,sun50i-h616-crypto";
-> +                       reg =3D <0x01904000 0x1000>;
+On Wed, Jun 26, 2024 at 04:34:11PM GMT, Conor Dooley wrote:
+> On Wed, Jun 26, 2024 at 05:04:19PM +0200, Maxime Ripard wrote:
+> > On Wed, Jun 26, 2024 at 02:25:54PM GMT, Neil Armstrong wrote:
+> > > On 26/06/2024 13:17, Ryan Walklin wrote:
+> > > > The WL-355608-A8 is a 3.5" 640x480@60Hz RGB LCD display from an unk=
+nown
+> > > > OEM used in a number of handheld gaming devices made by Anbernic.
+> > > > Previously committed using the OEM serial without a vendor prefix,
+> > > > however the preference is to use the integrating device vendor and =
+name
+> > > > where the OEM is unknown.
+> > > >=20
+> > > > Alter the filename and compatible string to reflect the convention.
+> > > >=20
+> > > > Fixes: f08aac40639c ("drm: panel: nv3052c: Add WL-355608-A8 panel")
+> > > > Signed-off-by: Ryan Walklin <ryan@testtoast.com>
+> > > > ---
+> > > >   .../{wl-355608-a8.yaml =3D> anbernic,rg35xx-panel.yaml}     | 8 +=
++++----
+> > > >   1 file changed, 4 insertions(+), 4 deletions(-)
+> > > >   rename Documentation/devicetree/bindings/display/panel/{wl-355608=
+-a8.yaml =3D> anbernic,rg35xx-panel.yaml} (81%)
+> > > >=20
+> > > > diff --git a/Documentation/devicetree/bindings/display/panel/wl-355=
+608-a8.yaml b/Documentation/devicetree/bindings/display/panel/anbernic,rg35=
+xx-panel.yaml
+> > > > similarity index 81%
+> > > > rename from Documentation/devicetree/bindings/display/panel/wl-3556=
+08-a8.yaml
+> > > > rename to Documentation/devicetree/bindings/display/panel/anbernic,=
+rg35xx-panel.yaml
+> > > > index 397c26be9bda5..a7d5ad0f29389 100644
+> > > > --- a/Documentation/devicetree/bindings/display/panel/wl-355608-a8.=
+yaml
+> > > > +++ b/Documentation/devicetree/bindings/display/panel/anbernic,rg35=
+xx-panel.yaml
+> > > > @@ -1,10 +1,10 @@
+> > > >   # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > >   %YAML 1.2
+> > > >   ---
+> > > > -$id: http://devicetree.org/schemas/display/panel/wl-355608-a8.yaml#
+> > > > +$id: http://devicetree.org/schemas/display/panel/anbernic,rg35xx-p=
+anel.yaml#
+> > > >   $schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > -title: WL-355608-A8 3.5" (640x480 pixels) 24-bit IPS LCD panel
+> > > > +title: Anbernic RG35XX (WL-355608-A8) 3.5" 640x480 24-bit IPS LCD =
+panel
+> > > >   maintainers:
+> > > >     - Ryan Walklin <ryan@testtoast.com>
+> > > > @@ -15,7 +15,7 @@ allOf:
+> > > >   properties:
+> > > >     compatible:
+> > > > -    const: wl-355608-a8
+> > > > +    const: anbernic,rg35xx-panel
+> > > >     reg:
+> > > >       maxItems: 1
+> > > > @@ -41,7 +41,7 @@ examples:
+> > > >           #size-cells =3D <0>;
+> > > >           panel@0 {
+> > > > -            compatible =3D "wl-355608-a8";
+> > > > +            compatible =3D "anbernic,rg35xx-panel";
+> > >=20
+> > > Can it be more specific ? because there's a lot of rg35xx defined in =
+bindings:
+> > >  anbernic,rg351m
+> > >  anbernic,rg351v
+> > >  anbernic,rg353p
+> > >  anbernic,rg353ps
+> > >  anbernic,rg353v
+> > >  anbernic,rg353vs
+> > >  anbernic,rg35xx-2024
+> > >  anbernic,rg35xx-plus
+> > >  anbernic,rg35xx-h
+> >=20
+> > Yeah, if we have an identified model name, we should probably use that,
+> > with a comment that we couldn't figure out what the vendor was and thus
+> > went for anbernic.
+>=20
+> What's wrong with using the wl name that already exists as the model?
+> Using rg<whatever>-panel is total invention on our part, especially
+> seeing as the commit message says that multiple models can use it.
 
-The address range only goes up to 0x019047ff. The other half is the
-secure crypto engine. The other bits look correct.
+Yeah, that makes sense, sorry for the noise
 
-I can fix this up when applying, assuming the driver parts get merged
-in the next few days.
+Maxime
 
-Chenyu
+--el265p2nem5547d2
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> +                       interrupts =3D <GIC_SPI 91 IRQ_TYPE_LEVEL_HIGH>;
-> +                       clocks =3D <&ccu CLK_BUS_CE>, <&ccu CLK_CE>,
-> +                                <&ccu CLK_MBUS_CE>, <&rtc CLK_IOSC>;
-> +                       clock-names =3D "bus", "mod", "ram", "trng";
-> +                       resets =3D <&ccu RST_BUS_CE>;
-> +               };
-> +
->                 syscon: syscon@3000000 {
->                         compatible =3D "allwinner,sun50i-h616-system-cont=
-rol";
->                         reg =3D <0x03000000 0x1000>;
-> --
-> 2.39.4
->
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZn2oeQAKCRDj7w1vZxhR
+xfSPAP0fC7twyZuMau+OeqZZt/CLvx2Bog6ZZvkm018Vna3gHgD+Mu54nJHKF//5
+/A3hb+LcU4obG0pCB2XPESr4pfbKyQc=
+=CbuO
+-----END PGP SIGNATURE-----
+
+--el265p2nem5547d2--
 
