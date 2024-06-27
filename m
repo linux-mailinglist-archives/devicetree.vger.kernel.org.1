@@ -1,129 +1,364 @@
-Return-Path: <devicetree+bounces-81020-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81022-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A46C91B101
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 22:53:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1EEE91B118
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 22:57:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E9884288469
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 20:53:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 65DCA282AA4
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 20:57:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B7DF19F488;
-	Thu, 27 Jun 2024 20:53:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F08E619EECF;
+	Thu, 27 Jun 2024 20:57:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="X0BQOwDH"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="t8zkxINh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86F6C192B9E;
-	Thu, 27 Jun 2024 20:53:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A23519E827;
+	Thu, 27 Jun 2024 20:57:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719521595; cv=none; b=IedlNesm8vBtLIFersqc7dcTNqdoIvF3lusDlXveoEybBYoyXptsR+gsKktGEa9WIiSCU82ZTnSBNf8zAVT5eDANCuDtmNvZmbONYF+1l4c2InyVeneSFURIZpPfSz9l4pw6LupDTEXWodWrufgLSFdEOiJUhTgB/d25N57Ii9Q=
+	t=1719521838; cv=none; b=sHnHtJsZ4xbubn658svVk7ZzXThAsPHKqNrce9xHI2paDj82fS8+IiUyw0bP58wCV6o7JM0kegY/p3B4HZKYCmyycWYiZZjAcKIwBIyHbG+MPf/uKYciHNFRfol7kJ0jTSxc7qeM1DY95pP8Pj7T3+B8ylpdZyMRN2hlTw03v6g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719521595; c=relaxed/simple;
-	bh=W4qU4oeYH8KReh4HFuS89zwmi3lZBe4STxOdeUihYWA=;
+	s=arc-20240116; t=1719521838; c=relaxed/simple;
+	bh=94U5cGjSgJ1hmDnRlX7E28/EM3+Vb46f9mlumivB4cA=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=RRVhOlxCjSO1+Sz+uUjdGe5hJUUvg/zQ0zTFPsF98TDM8LqUpnf+HR/F4IQM3at+OKBFYgdZiebbPMOVTeLJmb/WYdoBeyXqhT4jwV4+M10xgtQi70l+mRzt59tPB+KsJSYafrSHZG/HsG6Qyaf7gTcP0Nzh7NrgLCU6EkZrAYg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=X0BQOwDH; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-4256742f67fso7549685e9.3;
-        Thu, 27 Jun 2024 13:53:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1719521592; x=1720126392; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=orywsiSsHFizGWPRMJO9II17AovA2NvzyC8C3hh8ugk=;
-        b=X0BQOwDHHG39k6a77m68Edx6agg4DCiyndiPoRMrsyBCdsipCA6bibX+Qq6et0dRVy
-         T8o7PeLql5wcT0BZKZcnSzHfAFLQfxnGcpq+XeEE/LkPsHsRVggrkFMW73yKMHKiYS1k
-         lQV2+FVGcnwKrgThmPBEe9UtsDCO8Vg+O9q1F/94RHR75xRA46F4rKtWkM+HHv4U/KYX
-         qBiOB3IHotxsmKRm9GcrpriIzeoPEe2CFVMzHZKkdH16iVmq1G1htAgbQYPIGFWnd48e
-         ga29v5c1b1xn190JewuVlD8CMVqlqqb+uDve+WYanqlv5ilg/0GdLyc7sV9WkpmyCMVF
-         wTaQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719521592; x=1720126392;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=orywsiSsHFizGWPRMJO9II17AovA2NvzyC8C3hh8ugk=;
-        b=Jn1q2EBcQ1c00xu65+fqzECCw5EZy1eKPqRpsCM2bNzUX5z4OL6R4mwol2XieFjWF2
-         cuJ9Ggn8byeidlt11Sr9A+jTqpuUVqJpU8WTh8habdYc+EbKScCsmjFmGid5WAMRZGoe
-         +k4yWqor1n94FoOh/yiNgKtjHnrDLK8TAH7puMlxVW3Fj1iZ0/ofmqRthIwayAv5QWqu
-         CQqjSJtU7PNBVJlF7HR0szBaHz5NYuDI+Sv125WdU/6NPcwqaybfx3Llw7CWakIl4zG1
-         b/EcxL+c/X6/f8w56r+iogk/bGQatX4YK8Gk+rbaPnSQnrxFih3QlMCEHvQLlnZM2OoO
-         qnaA==
-X-Forwarded-Encrypted: i=1; AJvYcCXnr1sQyFyN8Bqf55TWfkhzPzx4j3o28Z5BqgyyuUUwzzi9WHP66O6DIbYX0w8xIh+eiDz+LLbgXHChsQcoBCTZTpRtiPmxlHbHBiBpsipQ2RApTNJLJGMmsPR+3Yc/6zuhWkLkrNlftzJWFdprJCe+QmZm/Cl5BmcKCDDFMyc1+RopDg==
-X-Gm-Message-State: AOJu0YzmKOmRXX42ycCN23IKN+3qv1VWSIZUGm0L4QHhH3S6M+zbDolH
-	whab3weCgNYvv3w6PKafziFzvf/7x3B8qzwXnpRoZYmA9tJtnubkI0Zc3Q==
-X-Google-Smtp-Source: AGHT+IFFefpf9EmSQzF2ndA0UUf4D0il0rbi4xGB2yByQtpidlfBs2BCPDHayZyQ7ccf43Ee8xQRGQ==
-X-Received: by 2002:a05:600c:42d1:b0:424:ad6d:c2ea with SMTP id 5b1f17b1804b1-424ad6dc5dfmr35864035e9.41.1719521591852;
-        Thu, 27 Jun 2024 13:53:11 -0700 (PDT)
-Received: from localhost.localdomain (93-34-90-105.ip49.fastwebnet.it. [93.34.90.105])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-4256b068e93sm7216935e9.24.2024.06.27.13.53.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 Jun 2024 13:53:11 -0700 (PDT)
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Cc: Christian Marangi <ansuelsmth@gmail.com>
-Subject: [PATCH 2/2] dt-bindings: clock: mediatek: add syscon compatible for mt7622 pciesys
-Date: Thu, 27 Jun 2024 22:52:57 +0200
-Message-ID: <20240627205309.28742-2-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.45.1
-In-Reply-To: <20240627205309.28742-1-ansuelsmth@gmail.com>
-References: <20240627205309.28742-1-ansuelsmth@gmail.com>
+	 MIME-Version:Content-Type; b=a9vfisPsakpvwRFj3MKd8bCs3gP8MMoCQqHQZO4eLlUsZ7acfpY/nB5bNlliwkXDEMjcX7N/zzSKd5a2h0Fw7pUj7ujjIJU2/mBv2JAQdlyt6PlCfwV1FjMva8ibTfulyIBLaw/duSTx5ieqvoWoxsSq+X/xoYle76Rj4RXKTBU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=t8zkxINh; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1719521835;
+	bh=94U5cGjSgJ1hmDnRlX7E28/EM3+Vb46f9mlumivB4cA=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=t8zkxINhHkDzCSd9X9ePrVARE6/Y2F+GuQelkWVqy4xKnmOK4Kr8qx4WUT3M/Pk2/
+	 JE3Ah1GvnM8JKWYOhYEdvodc8afdh4KiZgeR+E9mzm4Bb0M8XjKxgAhYmawYvLewfi
+	 ElXtVCOavSOy51PJsjMaqyCfaFpqaekNgIyA4EMgFNvFwRjGRNsnDoBmTfQ3U65YVE
+	 iH3qfeerjb/nI8PPoZKTi0a0MePNnEiVDnhCTkWwZdoXpVF3THr8pq+t27iXB0AgS5
+	 J2hmfZAmLtHK4emxthcFcP46Id4N7K3hBBCAArQcOtzgT1xqHIh1teiga/hwqfYskT
+	 IRur3TRj/84gA==
+Received: from arisu.localnet (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: detlev)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id B802037821E5;
+	Thu, 27 Jun 2024 20:57:11 +0000 (UTC)
+From: Detlev Casanova <detlev.casanova@collabora.com>
+To: Alex Bee <knaerzche@gmail.com>, Jonas Karlman <jonas@kwiboo.se>
+Cc: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Heiko Stuebner <heiko@sntech.de>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Dragan Simic <dsimic@manjaro.org>, Diederik de Haas <didi.debian@cknow.org>,
+ Andy Yan <andy.yan@rock-chips.com>,
+ Boris Brezillon <boris.brezillon@collabora.com>,
+ Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+ Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+ linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-staging@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject:
+ Re: [PATCH v2 4/4] arm64: dts: rockchip: Add rkvdec2 Video Decoder on
+ rk3588(s)
+Date: Thu, 27 Jun 2024 16:56:43 -0400
+Message-ID: <4356151.ejJDZkT8p0@arisu>
+Organization: Collabora
+In-Reply-To: <156b5aaf-8b9a-46b9-82c2-d7e32f4899f5@kwiboo.se>
+References:
+ <20240619150029.59730-1-detlev.casanova@collabora.com>
+ <5790441.DvuYhMxLoT@arisu> <156b5aaf-8b9a-46b9-82c2-d7e32f4899f5@kwiboo.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; boundary="nextPart2196199.Mh6RI2rZIc";
+ micalg="pgp-sha256"; protocol="application/pgp-signature"
 
-Add required syscon compatible for mt7622 pciesys. This is required for
-SATA interface as the regs are shared.
+--nextPart2196199.Mh6RI2rZIc
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
+From: Detlev Casanova <detlev.casanova@collabora.com>
+To: Alex Bee <knaerzche@gmail.com>, Jonas Karlman <jonas@kwiboo.se>
+Date: Thu, 27 Jun 2024 16:56:43 -0400
+Message-ID: <4356151.ejJDZkT8p0@arisu>
+Organization: Collabora
+In-Reply-To: <156b5aaf-8b9a-46b9-82c2-d7e32f4899f5@kwiboo.se>
+MIME-Version: 1.0
 
-Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
----
- .../bindings/clock/mediatek,mt7622-pciesys.yaml           | 8 +++++---
- 1 file changed, 5 insertions(+), 3 deletions(-)
+Hi Jonas,
 
-diff --git a/Documentation/devicetree/bindings/clock/mediatek,mt7622-pciesys.yaml b/Documentation/devicetree/bindings/clock/mediatek,mt7622-pciesys.yaml
-index c77111d10f90..17f0d960c314 100644
---- a/Documentation/devicetree/bindings/clock/mediatek,mt7622-pciesys.yaml
-+++ b/Documentation/devicetree/bindings/clock/mediatek,mt7622-pciesys.yaml
-@@ -14,9 +14,11 @@ maintainers:
- 
- properties:
-   compatible:
--    enum:
--      - mediatek,mt7622-pciesys
--      - mediatek,mt7629-pciesys
-+    oneOf:
-+      - items:
-+          - const: mediatek,mt7622-pciesys
-+          - const: syscon
-+      - const: mediatek,mt7629-pciesys
- 
-   reg:
-     maxItems: 1
--- 
-2.45.1
+On Monday, June 24, 2024 5:16:33 A.M. EDT Jonas Karlman wrote:
+> Hi Detlev and Alex,
+> 
+> On 2024-06-20 15:31, Detlev Casanova wrote:
+> > Hi Jonas, Alex,
+> > 
+> > On Wednesday, June 19, 2024 2:06:40 P.M. EDT Jonas Karlman wrote:
+> >> Hi Alex,
+> >> 
+> >> On 2024-06-19 19:19, Alex Bee wrote:
+> >>> Am 19.06.24 um 17:28 schrieb Jonas Karlman:
+> >>>> Hi Detlev,
+> >>>> 
+> >>>> On 2024-06-19 16:57, Detlev Casanova wrote:
+> >>>>> Add the rkvdec2 Video Decoder to the RK3588s devicetree.
+> >>>>> 
+> >>>>> Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
+> >>>>> ---
+> >>>>> 
+> >>>>>   arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 50
+> >>>>>   +++++++++++++++++++++++
+> >>>>>   1 file changed, 50 insertions(+)
+> >>>>> 
+> >>>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+> >>>>> b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi index
+> >>>>> 6ac5ac8b48ab..7690632f57f1 100644
+> >>>>> --- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+> >>>>> +++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+> >>>>> @@ -2596,6 +2596,16 @@ system_sram2: sram@ff001000 {
+> >>>>> 
+> >>>>>   		ranges = <0x0 0x0 0xff001000 0xef000>;
+> >>>>>   		#address-cells = <1>;
+> >>>>>   		#size-cells = <1>;
+> >>>>> 
+> >>>>> +
+> >>>>> +		vdec0_sram: rkvdec-sram@0 {
+> >>>>> +			reg = <0x0 0x78000>;
+> >>>>> +			pool;
+> >>>>> +		};
+> >>>>> +
+> >>>>> +		vdec1_sram: rkvdec-sram@1 {
+> >>>>> +			reg = <0x78000 0x77000>;
+> >>>>> +			pool;
+> >>>>> +		};
+> >>>>> 
+> >>>>>   	};
+> >>>>>   	
+> >>>>>   	pinctrl: pinctrl {
+> >>>>> 
+> >>>>> @@ -2665,6 +2675,46 @@ gpio4: gpio@fec50000 {
+> >>>>> 
+> >>>>>   			#interrupt-cells = <2>;
+> >>>>>   		
+> >>>>>   		};
+> >>>>>   	
+> >>>>>   	};
+> >>>>> 
+> >>>>> +
+> >>>>> +	vdec0: video-decoder@fdc38100 {
+> >>>>> +		compatible = "rockchip,rk3588-vdec";
+> >>>>> +		reg = <0x0 0xfdc38100 0x0 0x500>;
+> >>>>> +		interrupts = <GIC_SPI 95 IRQ_TYPE_LEVEL_HIGH 0>;
+> >>>>> +		clocks = <&cru ACLK_RKVDEC0>, <&cru HCLK_RKVDEC0>,
+> > 
+> > <&cru
+> > 
+> >>>>> CLK_RKVDEC0_CA>, +			 <&cru
+> > 
+> > CLK_RKVDEC0_CORE>, <&cru
+> > 
+> >>>>> CLK_RKVDEC0_HEVC_CA>;
+> >>>>> +		clock-names = "axi", "ahb", "cabac", "core",
+> > 
+> > "hevc_cabac";
+> > 
+> >>>>> +		assigned-clocks = <&cru ACLK_RKVDEC0>, <&cru
+> > 
+> > CLK_RKVDEC0_CORE>,
+> > 
+> >>>>> +				  <&cru CLK_RKVDEC0_CA>, <&cru
+> > 
+> > CLK_RKVDEC0_HEVC_CA>;
+> > 
+> >>>>> +		assigned-clock-rates = <800000000>, <600000000>,
+> >>>>> +				       <600000000>, <1000000000>;
+> >>>>> +		resets = <&cru SRST_A_RKVDEC0>, <&cru SRST_H_RKVDEC0>,
+> > 
+> > <&cru
+> > 
+> >>>>> SRST_RKVDEC0_CA>, +			 <&cru
+> > 
+> > SRST_RKVDEC0_CORE>, <&cru
+> > 
+> >>>>> SRST_RKVDEC0_HEVC_CA>;
+> >>>>> +		reset-names = "rst_axi", "rst_ahb", "rst_cabac",
+> >>>>> +			      "rst_core", "rst_hevc_cabac";
+> >>>>> +		power-domains = <&power RK3588_PD_RKVDEC0>;
+> >>>>> +		sram = <&vdec0_sram>;
+> >>>>> +		status = "okay";
+> >>>>> +	};
+> >>>>> +
+> >>>>> +	vdec1: video-decoder@fdc40100 {
+> >>>>> +		compatible = "rockchip,rk3588-vdec";
+> >>>>> +		reg = <0x0 0xfdc40100 0x0 0x500>;
+> >>>>> +		interrupts = <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH 0>;
+> >>>>> +		clocks = <&cru ACLK_RKVDEC1>, <&cru HCLK_RKVDEC1>,
+> > 
+> > <&cru
+> > 
+> >>>>> CLK_RKVDEC1_CA>, +			 <&cru
+> > 
+> > CLK_RKVDEC1_CORE>, <&cru
+> > 
+> >>>>> CLK_RKVDEC1_HEVC_CA>;
+> >>>>> +		clock-names = "axi", "ahb", "cabac", "core",
+> > 
+> > "hevc_cabac";
+> > 
+> >>>>> +		assigned-clocks = <&cru ACLK_RKVDEC1>, <&cru
+> > 
+> > CLK_RKVDEC1_CORE>,
+> > 
+> >>>>> +				  <&cru CLK_RKVDEC1_CA>, <&cru
+> > 
+> > CLK_RKVDEC1_HEVC_CA>;
+> > 
+> >>>>> +		assigned-clock-rates = <800000000>, <600000000>,
+> >>>>> +				       <600000000>, <1000000000>;
+> >>>>> +		resets = <&cru SRST_A_RKVDEC1>, <&cru SRST_H_RKVDEC1>,
+> > 
+> > <&cru
+> > 
+> >>>>> SRST_RKVDEC1_CA>, +			 <&cru
+> > 
+> > SRST_RKVDEC1_CORE>, <&cru
+> > 
+> >>>>> SRST_RKVDEC1_HEVC_CA>;
+> >>>>> +		reset-names = "rst_axi", "rst_ahb", "rst_cabac",
+> >>>>> +			      "rst_core", "rst_hevc_cabac";
+> >>>>> +		power-domains = <&power RK3588_PD_RKVDEC1>;
+> >>>>> +		sram = <&vdec1_sram>;
+> >>>>> +		status = "okay";
+> >>>>> +	};
+> >>>> 
+> >>>> This is still missing the iommus, please add the iommus, they should be
+> >>>> 
+> >>>> supported/same as the one used for e.g. VOP2:
+> >>>>    compatible = "rockchip,rk3588-iommu", "rockchip,rk3568-iommu";
+> >>>> 
+> >>>> The VOP2 MMUs does have one extra mmu_cfg_mode flag in AUTO_GATING,
+> >>>> compared to the VDPU381 MMUs, however only the AV1D MMU should be
+> >>>> special on RK3588.
+> >>>> 
+> >>>> Please add the iommus :-)
+> >>> 
+> >>> When looking add the vendor DT/iommu driver I'm seeing serval quirks
+> >>> applied for vdec's iommus. Since it's rightly frowned upon adding such
+> >>> boolean-quirk-properties to upstream devicetrees, we'd at least need
+> >>> additional (fallback-) compatibles, even if it works with the iommu
+> >>> driver
+> >>> as is (what I doubt, but haven't tested). We need to be able to apply
+> >>> those
+> >>> quirks later without changing the devicetree (as usual) and I'm sure RK
+> >>> devs haven't added these quirks for the personal amusement.
+> >> 
+> >> Based on what I investigated the hw should work similar, and the quirks
+> >> mostly seem related to optimizations and sw quirks, like do not zap each
+> >> line, keep it alive even when pm runtime say it is not in use and other
+> >> quirks that seem to be more of sw nature on how to best utilize the hw.
+> > 
+> > I did some testing with the IOMMU but unfortunately, I'm only getting page
+> > fault errors. This may be something I'm doing wrong, but it clearly needs
+> > more investigation.
+> 
+> I re-tested and the addition of sram seem to now cause page faults, the
+> sram also need to be mapped in the iommu.
+> 
+> However, doing more testing revealed that use of iommu present the same
+> issue as seen with hevc on rk3399, after a fail fluster tests continue
+> to fail until a reset.
+> 
+> Seeing how this issue was very similar I re-tested on rk3399 without
+> iommu and cma=1G and could observe that there was no longer any need to
+> reset after a failed test. Interestingly the score also went up from
+> 135 to 137/147.
+> 
+> Digging some more revealed that the iommu also is reset during the
+> internal rkvdec soft reset on error, leaving the iommu with dte_addr=0
+> and paging in disabled state.
+> 
+> Ensuring that the iommu was reconfigured after a failure fixed the issue
+> observed on rk3399 and I now also get 137/147 hevc fluster score using
+> the iommu.
+> 
+> Will send out a rkvdec hevc v2 series after some more testing.
+> 
+> Guessing there is a similar need to reconfigure iommu on rk3588, and my
+> initial tests also showed promising result, however more tests are
+> needed.
+
+I did some testing with the IOMMU. The good news is that it now works with the 
+SRAM.
+I am also able to hack the iommu driver to force a reset in case of an error 
+in the decoder. I'm not sure how to implement that with the IOMMU kernel API 
+though.
+
+Another issue is that resetting the iommu will drop all buffer addresses of 
+other decoding contexts that may be running in parallel.
+
+I *think* that the downstream mpp remaps the buffers in the iommu for each 
+frame, but I'm not sure about that either.
+
+So running fluster with `-j 1` gives me the expected 129/135 passed tests, but 
+`-j 8` will start failing all tests after the first fail (well, first fail 
+because of decoder error).
+
+> Regards,
+> Jonas
+> 
+> >>> If Detlev says
+> >>> iommu is out of scope for this series (which is valid), I'd say it's
+> >>> fine
+> >>> to leave them out for now (as no binding exists) and the HW works
+> >>> (obviously) fine without them.
+> >> 
+> >> Sure, use of MMU can be added later.
+> > 
+> > I'd rather go for that for now. I'll add that IMMU support is missing in
+> > the TODO file.
+> > 
+> >> Regards,
+> >> Jonas
+> >> 
+> >>>> Regards,
+> >>>> Jonas
+> >>>> 
+> >>>>>   };
+> >>>>>   
+> >>>>>   #include "rk3588s-pinctrl.dtsi"
+
+
+--nextPart2196199.Mh6RI2rZIc
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCAAdFiEEonF9IvGrXNkDg+CX5EFKUk4x7bYFAmZ90gsACgkQ5EFKUk4x
+7bYa6gf+MiaSK8Y5oLb5OSnCyDTkgoikfs0H7IRjhc9JfuVseIw/XGzQ5T8i83SE
+stQe2/brIQeUu5zchivSMvfmJg+ru2YMamAbT/mnMcpB3yeDrAqNBEvkssw4NHgg
+bu2QBJgjJHOyNshda9CX5tCs1qkZG2O90QF/UPl01LaLxQ9ELSlEAcbDhsl7bwHJ
+2jaPH9Jjx/aKF85ejNCG1/uprnRp0Lt6rSaPl7tmxBbod/kzU92WZmAoDOvoroRr
+d8VKGBINQ5pJKfBo4+tavqd7UR1OAH0cVR4E4b2kGjG57qOU32qizZoF3qr/nQBl
+A3ePYf8XuUKjf33eZ2SkF1kqF2fWOw==
+=JJQJ
+-----END PGP SIGNATURE-----
+
+--nextPart2196199.Mh6RI2rZIc--
+
+
 
 
