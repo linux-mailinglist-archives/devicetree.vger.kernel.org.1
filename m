@@ -1,403 +1,117 @@
-Return-Path: <devicetree+bounces-81005-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81007-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DA0691B049
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 22:23:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D8B191B057
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 22:26:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 403A81C21A14
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 20:23:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 351A2281F8A
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 20:26:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AFCE19CD15;
-	Thu, 27 Jun 2024 20:22:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AF0E19DF4F;
+	Thu, 27 Jun 2024 20:26:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MjZyqjio"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mbG/bkPr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 304061BF58;
-	Thu, 27 Jun 2024 20:22:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95C3D74070
+	for <devicetree@vger.kernel.org>; Thu, 27 Jun 2024 20:26:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719519776; cv=none; b=ncJMz3rkPGOKHJDi5vdLbEC2YZyCdrJPl0ZGPTIvN+HIfUUbS+P0nfhvseAIwn3InUg2TMQ9EXJezNIfEFn+Z6d0f/W9cR9rt6cL0obeISkUCroIF8xdW08gPBamMKwyr3hhb5TydmRImIMjkCofwF9tuCaoUcFo5H2vcs+lnls=
+	t=1719520014; cv=none; b=EsHx6aCoWne+e27o5/mk5kLkc/HRYloYVaW39hCsCKTT/GATdMWZm6tiJywV2Evx3KoXdS5oVrzpvSfD8IcUEqJ7mF0UO0STlVE7H0L7hXRgCUE0CWHX74haRH7AcftLqW+82Yku9d79DXYLQHlEcdFt8Nq2Ib6zvyBt959C9pE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719519776; c=relaxed/simple;
-	bh=giiTTsdZUF21D4ghdF2Pg3NLw3WIQrmPlZao298+PdY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tIvAdLFUG0J93DzIr1Cvu7cs/DJgFkGNOF7g+V9FP4NOqIE+RmTSqIO1YOzCNzNMNNnka6sqgEkBHMYwYY20vgmkZGtvioypZwfOCa3oIWn68x55yZ076tQV3Iuq3zj7Ija89Y/IVbNwomFuIDBTWLbj/R7iZy2XpteHYj5vwRE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MjZyqjio; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52BCDC2BBFC;
-	Thu, 27 Jun 2024 20:22:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719519775;
-	bh=giiTTsdZUF21D4ghdF2Pg3NLw3WIQrmPlZao298+PdY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MjZyqjioiEsEy7FlMM01W/axEp0kj0UdS+5c9uAaNglsHmGiHF2IXpacuVUztuwpJ
-	 DeGYGNDpk/nyjkcs3dL7TlxARf1YQp0UWoMqcTvuRbnLVAPfGgzZAjYf7YI9AVYHAO
-	 6sLvMauP8nGbv7wDnCx7ACQHYHpBX5urXHmvFV3ey+ux0NCt2dKPwsQ0z8vsBJmid8
-	 JgjmJ5mBB911oZSmdhY9U3+4zkdCvet85AvK3vMOQh1Ot+UH4f6a8OHS2eMDZRJYHS
-	 CMZ0mgS50odSKWF8KfUB5/13j8joPG2thoBpvYKyBd2auzAOpNVOVygZzp89Bx15Qg
-	 213RFUO8RuMZg==
-Date: Thu, 27 Jun 2024 14:22:54 -0600
-From: Rob Herring <robh@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"open list:COMMON CLK FRAMEWORK" <linux-clk@vger.kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
-Subject: Re: [PATCH 1/1] dt-bindings: clock: qoriq-clock: convert to yaml
- format
-Message-ID: <20240627202254.GA454755-robh@kernel.org>
-References: <20240617181410.921090-1-Frank.Li@nxp.com>
+	s=arc-20240116; t=1719520014; c=relaxed/simple;
+	bh=RGVGg8f7DBxYNIjZHq8kWvdX8KI04mlNvh9Z47WtPGU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=hYcZ2RtsRgdaaZNgGRXzYTgyhvG3862avKxn1hbClmRMjxoWe1eq5iy02/IyX1X4KmOA3CU7PiDdIsUQICePGgV0ekHyiKaFruc5RdrRMw2N1dcXwidEXNS1OobcbbCaVWUxNyirBxNfYfv9xtfqTBj6TIpc/5wz4wOCKXtI4A0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mbG/bkPr; arc=none smtp.client-ip=209.85.167.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-52db11b1d31so3544944e87.0
+        for <devicetree@vger.kernel.org>; Thu, 27 Jun 2024 13:26:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1719520011; x=1720124811; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=RGVGg8f7DBxYNIjZHq8kWvdX8KI04mlNvh9Z47WtPGU=;
+        b=mbG/bkPr+yabCOxyMSpOwkV38l7aqAbT1S034xAPNppVDr1x4coRm4QA6rwTnNeUi/
+         k7wlH2a4aTWxXoMf2L4ol+fMjAmhA/i0yMBh9OEOjxASFxnZjNt5ZuLMIuFaLJg9yX7F
+         gPbTU0VL1mHZYx1qH8U4k2A2GxKQh5lCOBNvSlUIX5JTOy2szvVlUNtTyr39mavNfnm/
+         HBIht695MYnFC0lKcVPY1Oh8o984jMsNy2Bd/2Sxji9LkZfnsb/CPbvuwFqE00nvv02X
+         mHTK2nS7RKFLh7Ny3XQhFVoyck4aCAByotrfR0vV1dwCIi0KbGtPwnBuKU1hL5dMc8Vi
+         gtgw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719520011; x=1720124811;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=RGVGg8f7DBxYNIjZHq8kWvdX8KI04mlNvh9Z47WtPGU=;
+        b=k360I8ftAIBrJRMw3tb06snYUeNtf4YoP3J8HfqsIeZ6UiRkQCsz1DmxeRDNTtp0m6
+         OeE0PN71dvKOsYKsXph82ZXUpN6YEEEAkBGK+TPs02ADhzEncDPme8/m9BXgOKIqt6rp
+         tZBRPTkP5HG4NEGWE+wxyOhpQNwmA82+T0zN1jlqSs6baUE9au+HWo8XHSzerVQphP/9
+         5SQyuL4lBk0u5cHQIox3+lVVz4KruMdmHfqwx/5+jtiU40yJPhV54DhtGLiegV/RRlr/
+         pun3Te15PnJjR+CIADGP5Ig51QVmScAe2tKVRbhPPYJ/66O6ncYb7KkySj4VnANW9Fut
+         Yu/Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVaKH9sGRYHe91n12qRPSMjs5lBCicK3coduYlKxYwGY2NiX9KpM32c13pUJMy+cubSLx72d7nzyevQeY3qvjH/QgF9Eb6kPjyf+w==
+X-Gm-Message-State: AOJu0YxxF1A3GQqbvi9gcDh6U3Th0AUZPhamyQ+xZ/sheVBOKQXjGrqh
+	V7phlTC01uV7buxItIm44r3BSCgD6JrtpmD/buJOkoGOmoHyjnFb4qvc0cNdIxBcb3ozrvrKF62
+	KOc+YPnl/4CdlKWRHLhRvAU7r3YjeoxA6Tt9T5w==
+X-Google-Smtp-Source: AGHT+IGZmO/lpYnkfdi+ZwB/Zq0xLlJuMNB2u9exwn3vugOCxHcKNeelxSv5hf2+kDzvi8nqjG7Lka9UyeUh50bVpGw=
+X-Received: by 2002:a05:6512:2810:b0:52e:6da6:f94 with SMTP id
+ 2adb3069b0e04-52e6da6100emr3757924e87.60.1719520010802; Thu, 27 Jun 2024
+ 13:26:50 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240617181410.921090-1-Frank.Li@nxp.com>
+References: <20240528191536.1444649-1-robh@kernel.org> <CACRpkdZznuUSAKZx-BLgt+smaTDt8fVtJ-xRzL_0u7uYMDGJog@mail.gmail.com>
+ <CAL_JsqKAXnu=CDsOAOoxF0sBnzMxaCDVUU4Z+2k8kseTMvc+eA@mail.gmail.com>
+In-Reply-To: <CAL_JsqKAXnu=CDsOAOoxF0sBnzMxaCDVUU4Z+2k8kseTMvc+eA@mail.gmail.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Thu, 27 Jun 2024 22:26:39 +0200
+Message-ID: <CACRpkdaCMfpa25Ap3NyeWgiTTsiWJZD5Ui3YPdDB8p05OE_Lxg@mail.gmail.com>
+Subject: Re: [PATCH 1/2] arm: dts: arm: Drop redundant fixed-factor clocks
+To: Rob Herring <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Liviu Dudau <liviu.dudau@arm.com>, Sudeep Holla <sudeep.holla@arm.com>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, linux-arm-kernel@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jun 17, 2024 at 02:14:09PM -0400, Frank Li wrote:
-> Convert qoria-clock DT binding to yaml format. Split to two files
-> qoriq-clock.yaml and qoriq-clock-legancy.yaml.
-> 
-> Addtional change:
-> - Remove clock consumer part in example
-> - Fixed example dts error
-> - Deprecated legancy node
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
->  .../clock/fsl,qoriq-clock-legacy.yaml         |  84 +++++++
->  .../bindings/clock/fsl,qoriq-clock.yaml       | 203 +++++++++++++++++
->  .../devicetree/bindings/clock/qoriq-clock.txt | 212 ------------------
->  3 files changed, 287 insertions(+), 212 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/clock/fsl,qoriq-clock-legacy.yaml
->  create mode 100644 Documentation/devicetree/bindings/clock/fsl,qoriq-clock.yaml
->  delete mode 100644 Documentation/devicetree/bindings/clock/qoriq-clock.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/fsl,qoriq-clock-legacy.yaml b/Documentation/devicetree/bindings/clock/fsl,qoriq-clock-legacy.yaml
-> new file mode 100644
-> index 0000000000000..97b96a1a58254
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/fsl,qoriq-clock-legacy.yaml
-> @@ -0,0 +1,84 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/fsl,qoriq-clock-legacy.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Legacy Clock Block on Freescale QorIQ Platforms
-> +
-> +maintainers:
-> +  - Frank Li <Frank.Li@nxp.com>
-> +
-> +description: |
-> +  These nodes are deprecated.  Kernels should continue to support
-> +  device trees with these nodes, but new device trees should not use them.
-> +
-> +  Most of the bindings are from the common clock binding[1].
-> +  [1] Documentation/devicetree/bindings/clock/clock-bindings.txt
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - fsl,qoriq-core-pll-1.0
-> +      - fsl,qoriq-core-pll-2.0
-> +      - fsl,qoriq-core-mux-1.0
-> +      - fsl,qoriq-core-mux-2.0
-> +      - fsl,qoriq-sysclk-1.0
-> +      - fsl,qoriq-sysclk-2.0
-> +      - fsl,qoriq-platform-pll-1.0
-> +      - fsl,qoriq-platform-pll-2.0
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    minItems: 1
-> +    maxItems: 4
-> +
-> +  clock-names:
-> +    minItems: 1
-> +    maxItems: 4
-> +
-> +  clock-output-names:
-> +    minItems: 1
-> +    maxItems: 8
-> +
-> +  '#clock-cells':
-> +    minimum: 0
-> +    maximum: 1
-> +
-> +required:
-> +  - compatible
-> +  - '#clock-cells'
-> +
-> +additionalProperties: false
-> +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - fsl,qoriq-sysclk-1.0
-> +              - fsl,qoriq-sysclk-2.0
-> +    then:
-> +      properties:
-> +        '#clock-cells':
-> +          const: 0
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - fsl,qoriq-core-pll-1.0
-> +              - fsl,qoriq-core-pll-2.0
-> +    then:
-> +      properties:
-> +        '#clock-cells':
-> +          const: 1
-> +          description: |
-> +            * 0 - equal to the PLL frequency
-> +            * 1 - equal to the PLL frequency divided by 2
-> +            * 2 - equal to the PLL frequency divided by 4
-> +
-> diff --git a/Documentation/devicetree/bindings/clock/fsl,qoriq-clock.yaml b/Documentation/devicetree/bindings/clock/fsl,qoriq-clock.yaml
-> new file mode 100644
-> index 0000000000000..d641756b04635
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/fsl,qoriq-clock.yaml
-> @@ -0,0 +1,203 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/fsl,qoriq-clock.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Clock Block on Freescale QorIQ Platforms
-> +
-> +maintainers:
-> +  - Frank Li <Frank.Li@nxp.com>
-> +
-> +
+On Thu, Jun 27, 2024 at 9:06=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
+:
+> On Wed, May 29, 2024 at 2:47=E2=80=AFAM Linus Walleij <linus.walleij@lina=
+ro.org> wrote:
+> > On Tue, May 28, 2024 at 9:15=E2=80=AFPM Rob Herring (Arm) <robh@kernel.=
+org> wrote:
+> >
+> > > There's not much reason to have multiple fixed-factor-clock instances
+> > > which are all the same factor and clock input. Drop the nodes, but ke=
+ep
+> > > the labels to minimize the changes and keep some distinction of the
+> > > different clocks.
+> > >
+> > > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> >
+> > Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+>
+> Someone going to pick this up?
 
-Just 1 blank line
+I put patch 1/2 into the SoC patchwork:
+https://patchwork.kernel.org/project/linux-soc/patch/20240627-arm-dts-fixes=
+-v1-1-40a2cb7d344b@linaro.org/
 
-> +description: |
-> +
+I think Sudeep probably want to pick up patch 2/2 so as to avoid
+conflicts.
 
-drop blank line
-
-> +  Freescale QorIQ chips take primary clocking input from the external
-> +  SYSCLK signal. The SYSCLK input (frequency) is multiplied using
-> +  multiple phase locked loops (PLL) to create a variety of frequencies
-> +  which can then be passed to a variety of internal logic, including
-> +  cores and peripheral IP blocks.
-> +  Please refer to the Reference Manual for details.
-> +
-> +  All references to "1.0" and "2.0" refer to the QorIQ chassis version to
-> +  which the chip complies.
-> +
-> +  Chassis Version    Example Chips
-> +  ---------------    -------------
-> +       1.0      p4080, p5020, p5040
-> +       2.0      t4240, b4860
-> +
-> +  Clock Provider
-> +
-> +  The clockgen node should act as a clock provider, though in older device
-> +  trees the children of the clockgen node are the clock providers.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - fsl,p2041-clockgen
-> +          - fsl,p3041-clockgen
-> +          - fsl,p4080-clockgen
-> +          - fsl,p5020-clockgen
-> +          - fsl,p5040-clockgen
-> +          - fsl,t1023-clockgen
-> +          - fsl,t1024-clockgen
-> +          - fsl,t1040-clockgen
-> +          - fsl,t1042-clockgen
-> +          - fsl,t2080-clockgen
-> +          - fsl,t2081-clockgen
-> +          - fsl,t4240-clockgen
-> +          - fsl,b4420-clockgen
-> +          - fsl,b4860-clockgen
-
-> +          - fsl,ls1012a-clockgen
-> +          - fsl,ls1021a-clockgen
-> +          - fsl,ls1028a-clockgen
-> +          - fsl,ls1043a-clockgen
-> +          - fsl,ls1046a-clockgen
-> +          - fsl,ls1088a-clockgen
-> +          - fsl,ls2080a-clockgen
-> +          - fsl,lx2160a-clockgen
-
-It doesn't look to me like these platforms use this binding.
-
-> +      - enum:
-> +          - fsl,qoriq-clockgen-1.0
-> +          - fsl,qoriq-clockgen-2.0
-
-This allows invalid combinations. You need 2 entries splitting 1.0 and 
-2.0.
-
-> +    minItems: 1
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  ranges: true
-> +
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 1
-> +
-> +  '#clock-cells':
-> +    const: 2
-> +    description: |
-> +      The first cell of the clock specifier is the clock type, and the
-> +      second cell is the clock index for the specified type.
-> +
-> +        Type#  Name       Index Cell
-> +        0  sysclk          must be 0
-> +        1  cmux            index (n in CLKCnCSR)
-> +        2  hwaccel         index (n in CLKCGnHWACSR)
-> +        3  fman            0 for fm1, 1 for fm2
-> +        4  platform pll    n=pll/(n+1). For example, when n=1,
-> +                          that means output_freq=PLL_freq/2.
-> +        5  coreclk         must be 0
-> +
-> +  clock-frequency:
-> +    description: Input system clock frequency (SYSCLK)
-> +
-> +  clocks:
-> +    items:
-> +      - description:
-> +          sysclk may be provided as an input clock.  Either clock-frequency
-> +          or clocks must be provided.
-> +      - description:
-> +          A second input clock, called "coreclk", may be provided if
-> +          core PLLs are based on a different input clock from the
-> +          platform PLL.
-> +    minItems: 1
-> +
-> +  clock-names:
-> +    items:
-> +      - const: sysclk
-> +      - const: coreclk
-> +
-> +patternProperties:
-> +  '^mux[0-9]@[a-f0-9]+$':
-> +    deprecated: true
-> +    $ref: fsl,qoriq-clock-legacy.yaml
-> +
-> +  '^sysclk+$':
-
-This means 'sysclkkkkkkkkkk' is valid.
-
-> +    deprecated: true
-> +    $ref: fsl,qoriq-clock-legacy.yaml
-> +
-> +  '^pll[0-9]@[a-f0-9]+$':
-> +    deprecated: true
-> +    $ref: fsl,qoriq-clock-legacy.yaml
-> +
-> +  '^platform\-pll@[a-f0-9]+$':
-> +    deprecated: true
-> +    $ref: fsl,qoriq-clock-legacy.yaml
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - '#clock-cells'
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    /* clock provider example */
-> +    global-utilities@e1000 {
-> +        compatible = "fsl,p5020-clockgen", "fsl,qoriq-clockgen-1.0";
-> +        reg = <0xe1000 0x1000>;
-> +        clock-frequency = <133333333>;
-> +        #clock-cells = <2>;
-> +    };
-> +
-> +  - |
-> +    /* Legacy example */
-> +    global-utilities@e1000 {
-> +        compatible = "fsl,p5020-clockgen", "fsl,qoriq-clockgen-1.0";
-> +        reg = <0xe1000 0x1000>;
-> +        ranges = <0x0 0xe1000 0x1000>;
-> +        clock-frequency = <133333333>;
-> +        #address-cells = <1>;
-> +        #size-cells = <1>;
-> +        #clock-cells = <2>;
-> +
-> +        sysclk: sysclk {
-> +            compatible = "fsl,qoriq-sysclk-1.0";
-> +            clock-output-names = "sysclk";
-> +            #clock-cells = <0>;
-> +        };
-> +
-> +        pll0: pll0@800 {
-> +            compatible = "fsl,qoriq-core-pll-1.0";
-> +            reg = <0x800 0x4>;
-> +            #clock-cells = <1>;
-> +            clocks = <&sysclk>;
-> +            clock-output-names = "pll0", "pll0-div2";
-> +        };
-> +
-> +        pll1: pll1@820 {
-> +            compatible = "fsl,qoriq-core-pll-1.0";
-> +            reg = <0x820 0x4>;
-> +            #clock-cells = <1>;
-> +            clocks = <&sysclk>;
-> +            clock-output-names = "pll1", "pll1-div2";
-> +        };
-> +
-> +        mux0: mux0@0 {
-> +            compatible = "fsl,qoriq-core-mux-1.0";
-> +            reg = <0x0 0x4>;
-> +            #clock-cells = <0>;
-> +            clocks = <&pll0 0>, <&pll0 1>, <&pll1 0>, <&pll1 1>;
-> +            clock-names = "pll0", "pll0-div2", "pll1", "pll1-div2";
-> +            clock-output-names = "cmux0";
-> +        };
-> +
-> +        mux1: mux1@20 {
-> +            compatible = "fsl,qoriq-core-mux-1.0";
-> +            reg = <0x20 0x4>;
-> +            #clock-cells = <0>;
-> +            clocks = <&pll0 0>, <&pll0 1>, <&pll1 0>, <&pll1 1>;
-> +            clock-names = "pll0", "pll0-div2", "pll1", "pll1-div2";
-> +            clock-output-names = "cmux1";
-> +        };
-> +
-> +        platform-pll@c00 {
-> +            #clock-cells = <1>;
-> +            reg = <0xc00 0x4>;
-> +            compatible = "fsl,qoriq-platform-pll-1.0";
-> +            clocks = <&sysclk>;
-> +            clock-output-names = "platform-pll", "platform-pll-div2";
-> +        };
-> +    };
+Yours,
+Linus Walleij
 
