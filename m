@@ -1,77 +1,65 @@
-Return-Path: <devicetree+bounces-80793-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80794-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36FAF91A6A0
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 14:33:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A620E91A6AB
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 14:38:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5B1D81C24147
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 12:33:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D87C81C2039B
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 12:38:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECF3115EFAE;
-	Thu, 27 Jun 2024 12:33:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C0A6156F27;
+	Thu, 27 Jun 2024 12:38:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zerBwzW5"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="ExgHoHNw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A6B515E5DB
-	for <devicetree@vger.kernel.org>; Thu, 27 Jun 2024 12:33:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B481F15ECC2
+	for <devicetree@vger.kernel.org>; Thu, 27 Jun 2024 12:37:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719491606; cv=none; b=AWo3vQq86dJCFOJxHQXbgOqRo0+OeVOFO/feBHsKktLu/OSr3GlpesCTsXjzE5X++MfYvN8uXqm3mqR1rW/H6IIBSPTZijSCCGFymL59vNGdO+vWD4wh7mzhfveJK1g9HYM75rigSOfQcgm/WLSX9hS9Agta7U2wJgb2x/v6UVQ=
+	t=1719491881; cv=none; b=s8908CKjb2FI1ktJBULr2kvlMVtdpL1Wv8jGiYEtmdyz2U/Gofhxwk9T1FC/Znp/U9ClVBulxDATGH/45GtJ5z7k0uSIGOD/nHiDqHXXI7+ukdCxMKo/H5liDsniM/3ors5hMdgI4SmZiLJ2tS29zdNQTeEUVbKGfttDc1J5SAA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719491606; c=relaxed/simple;
-	bh=FKu7h2CrzfpqbFFVjCEemoKSuRxILyYxIMw5GwiiAlM=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:References:
-	 In-Reply-To:Content-Type; b=rF30bi5FcncN3Gp7IlMG63hgB9DjVKwouwJUwoiRFZbfVEazj+rEFUq0YeGck/+0EZm5awdpCpHiVW2rw/bIr/0iktHag4H7vCn3XD9vCPoIcqSmnnatPxBeqJhVwjAxT9pOnSzhzUsIfIoHDKNIYh8OMV2AJyoKGe8ozguU8NQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zerBwzW5; arc=none smtp.client-ip=209.85.208.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2eaafda3b5cso80169251fa.3
-        for <devicetree@vger.kernel.org>; Thu, 27 Jun 2024 05:33:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719491603; x=1720096403; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Y+IgSdfM/vHkRT6iolawcPUETT8e7KP7OY6NFAw9j9A=;
-        b=zerBwzW5DV8c8+AVR4FNT82QEwsSs74gh6fzQGok56IsjXIGyW7+T4wnEscjiRmQBM
-         latC60BqEgbLJ/xXfvfqaXaCc+ZTfQ4GfZbWTiZ9BFnsWzLEBlTZObTa0uewFOXV2oJx
-         a4qyPJHe0SI6FsqTSVUw6TL/3FXapw196vRMFkX7WIIhf/F4+sz9tcwzO+uI6y+H++qc
-         659FuQKE9U6vhtcZsqEQaFQuuvMYvOAZ7OiiXz6PspUzWuqAnu8i5aC7Ym1g7+aby9uT
-         7XVndbcC+wymL4sgnGMmX9IIUJtmavJSUbCE45YeABXmbwv2oKi/hzhYFnU+/O6HSGmc
-         8NgQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719491603; x=1720096403;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=Y+IgSdfM/vHkRT6iolawcPUETT8e7KP7OY6NFAw9j9A=;
-        b=qt5cCPlRe882qSLVLWfvzUe3I+CWHc1P0z/P16zlwuun5AxTUIWnYXEw33OJacAb+k
-         gktiMv1vD4ngj/p5x+7lcppYmBSXfWaDuQxTWepa1zIQ3v7PfGKOoYMiJ3NO8L/Ri0GF
-         OUBNQbfDSd6Vxgug6bQK9UoMSnj9lknFUjDkrlZxA4HKpQ+bKHnX/WHZPzXiDWVBmHAp
-         pWKpCbSmt7hImZYSZ9CM4THaGpXDaGAbO1256aDKkUAu3fkfBtI3xi5HPG7zpnQruF/7
-         Q0nKOJCEnXq2tESd1UZCaPdk1eM3VgYAgcW5Ofb0bs3UHcmP6qrVrflyGVHIC+198tgn
-         +lsg==
-X-Forwarded-Encrypted: i=1; AJvYcCU8FNtewQZSo/pLuVr3NenZGxAOCcGYgwIvTavkCkCatJ2fTCRWDOK9+5M3gtZ0q3N4IDD32mjzEt293GPrL4tfztYlWQcXsgb3ow==
-X-Gm-Message-State: AOJu0Yw98wwHqg7HoabgdOT82JTF/nO6Mf5M3gIcm+BLgXzo2cUVMpM2
-	xqGlXmNYq6g/pDbEObwUqsSgeKDGF5WKmgF5UCTPbadjX0NpRllerWn7sil9b+YWSBfrHt7khzV
-	b6yI=
-X-Google-Smtp-Source: AGHT+IEdwXJj2/W9HISdtPqx06RJN14hIO49fhIBq/t8/7bILAAqutemgqzWHTBTL+9deo0EPQAP1Q==
-X-Received: by 2002:a2e:9cd4:0:b0:2ec:520d:f1dd with SMTP id 38308e7fff4ca-2ec593be843mr79089181fa.3.1719491602963;
-        Thu, 27 Jun 2024 05:33:22 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:feeb:faed:66fa:9e6a? ([2a01:e0a:982:cbb0:feeb:faed:66fa:9e6a])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42564bd6bdesm24235455e9.48.2024.06.27.05.33.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Jun 2024 05:33:22 -0700 (PDT)
-Message-ID: <2cce537f-cf6a-4b85-b7a7-91c14602bca4@linaro.org>
-Date: Thu, 27 Jun 2024 14:33:19 +0200
+	s=arc-20240116; t=1719491881; c=relaxed/simple;
+	bh=DmZfpVmgwwxE8eu6we2qwQbtiu2HkOvcwk1Q9VC+tOg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Bwj94yH4kuqKBIs+lRyEYUNokTsf9rcOtPDwkf9QEZO9CNI1a+RNRGz7QOhUvghSwxdU7Y2z0UEWlp9nUqtAQ3rLUv8Idnx3bTqte7PMUooVgwJpKUdnuPqPShxIxfLibnLQkz0nPYNtWU8NzMOfPw0mOJt0QVgV7GD/bYGUEAI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=ExgHoHNw; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45RAAHsf000355;
+	Thu, 27 Jun 2024 14:37:30 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	vRRJzG9lj7qRTt/Te+8nxpqFK2MQhPEtndbFf7AS3Nk=; b=ExgHoHNwDPh9PgaU
+	hnKJ7bNSLiF0gIKaW0CpJ9dou/BP2tHZOJ83h4tjGOUxlziI0Ge+hN4Jsf3/6jfn
+	VrIHXQtTpD5pYqvgl+A4Px6wSoDbFhGsyt+LZK2qwEsQN0ec1gxQiNK3sFT4uYby
+	gGz5LgHygK/nqf+EVwkHxOdpDFVAzDSVJW6/VStLwP2Dlcn9MWumc0j0IehLGSsW
+	NRU1A/5Jqqv3vzwZEON1zO7k0x3pN6GL6wTCQUwGrNwizMIDjlyM2S3LFvq+TJ2F
+	/Z+oaFDWAt1tppVFnd91zTZ8+Qp1bcPazAOe1ZJv2GDN8dRVRMJ7446W1VQHELzT
+	G0xuXg==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3ywm1gp0h8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 27 Jun 2024 14:37:30 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 104064002D;
+	Thu, 27 Jun 2024 14:37:25 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 3B7BA2171FF;
+	Thu, 27 Jun 2024 14:36:47 +0200 (CEST)
+Received: from [10.48.86.79] (10.48.86.79) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Thu, 27 Jun
+ 2024 14:36:46 +0200
+Message-ID: <c5399907-e4b5-427b-bace-caf1b2492257@foss.st.com>
+Date: Thu, 27 Jun 2024 14:36:46 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,83 +67,138 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 1/3] arm64: dts: qcom: sm8550-hdk: add port mapping to
- speakers
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240627122015.30945-1-krzysztof.kozlowski@linaro.org>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20240627122015.30945-1-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Subject: Re: [PATCH] ARM: dts: stm32: Add ethernet support for DH STM32MP13xx
+ DHCOR DHSBC board
+To: Marek Vasut <marex@denx.de>, <linux-arm-kernel@lists.infradead.org>
+CC: Christophe Roullier <christophe.roullier@foss.st.com>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Maxime
+ Coquelin <mcoquelin.stm32@gmail.com>,
+        Rob Herring <robh@kernel.org>, <devicetree@vger.kernel.org>,
+        <kernel@dh-electronics.com>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+References: <20240623195233.81550-1-marex@denx.de>
+Content-Language: en-US
+From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20240623195233.81550-1-marex@denx.de>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-27_08,2024-06-27_03,2024-05-17_01
 
-On 27/06/2024 14:20, Krzysztof Kozlowski wrote:
-> Add appropriate mappings of Soundwire ports of WSA8845 speaker.  This
-> solves second (south) speaker sound distortions when playing audio.
+Hi Marek
+
+On 6/23/24 21:51, Marek Vasut wrote:
+> Add ethernet support for the DH STM32MP13xx DHCOR DHSBC carrier board.
+> This carrier board is populated with two gigabit ethernet ports and two
+> Realtek RTL8211F PHYs, both are described in this DT patch.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
+> Signed-off-by: Marek Vasut <marex@denx.de>
 > ---
-> 
-> Bindings:
-> https://lore.kernel.org/all/20240626-port-map-v1-3-bd8987d2b332@linaro.org/
-> 
-> Can be applied independently, if bindings are fine.
+> Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
+> Cc: Christophe Roullier <christophe.roullier@foss.st.com>
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Cc: kernel@dh-electronics.com
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: linux-stm32@st-md-mailman.stormreply.com
 > ---
->   arch/arm64/boot/dts/qcom/sm8550-hdk.dts | 2 ++
->   1 file changed, 2 insertions(+)
+>   .../boot/dts/st/stm32mp135f-dhcor-dhsbc.dts   | 56 +++++++++++++++++++
+>   1 file changed, 56 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8550-hdk.dts b/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
-> index e0dc03a97771..2e12219006c9 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
-> @@ -1106,6 +1106,7 @@ north_spkr: speaker@0,0 {
+> diff --git a/arch/arm/boot/dts/st/stm32mp135f-dhcor-dhsbc.dts b/arch/arm/boot/dts/st/stm32mp135f-dhcor-dhsbc.dts
+> index 5f4f6b6e427a5..bacb70b4256bc 100644
+> --- a/arch/arm/boot/dts/st/stm32mp135f-dhcor-dhsbc.dts
+> +++ b/arch/arm/boot/dts/st/stm32mp135f-dhcor-dhsbc.dts
+> @@ -22,6 +22,8 @@ / {
+>   		     "st,stm32mp135";
 >   
->   		#sound-dai-cells = <0>;
->   		sound-name-prefix = "SpkrLeft";
-> +		qcom,port-mapping = <1 2 3 7 10 13>;
+>   	aliases {
+> +		ethernet0 = &ethernet1;
+> +		ethernet1 = &ethernet2;
+>   		serial2 = &usart1;
+>   		serial3 = &usart2;
 >   	};
->   
->   	/* WSA8845, Speaker South */
-> @@ -1123,6 +1124,7 @@ south_spkr: speaker@0,1 {
->   
->   		#sound-dai-cells = <0>;
->   		sound-name-prefix = "SpkrRight";
-> +		qcom,port-mapping = <4 5 6 7 11 13>;
+> @@ -72,6 +74,60 @@ channel@12 {
 >   	};
 >   };
 >   
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+
+Kernel bot issue was linked to a dependency with Christophe Roullier 
+patches which introduced ethernet1/2 on stm32mp131.dtsi. Those patches 
+have been merged on stm32-next, so no more issues with yours.
+
+So:
+Applied on stm32-next.
+
+Cheers
+Alex
+
+
+> +&ethernet1 {
+> +	phy-handle = <&ethphy1>;
+> +	phy-mode = "rgmii-id";
+> +	pinctrl-0 = <&eth1_rgmii_pins_a>;
+> +	pinctrl-1 = <&eth1_rgmii_sleep_pins_a>;
+> +	pinctrl-names = "default", "sleep";
+> +	st,ext-phyclk;
+> +	status = "okay";
+> +
+> +	mdio {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		compatible = "snps,dwmac-mdio";
+> +
+> +		ethphy1: ethernet-phy@1 {
+> +			/* RTL8211F */
+> +			compatible = "ethernet-phy-id001c.c916";
+> +			interrupt-parent = <&gpiog>;
+> +			interrupts = <12 IRQ_TYPE_LEVEL_LOW>;
+> +			reg = <1>;
+> +			reset-assert-us = <15000>;
+> +			reset-deassert-us = <55000>;
+> +			reset-gpios = <&gpioa 11 GPIO_ACTIVE_LOW>;
+> +		};
+> +	};
+> +};
+> +
+> +&ethernet2 {
+> +	phy-handle = <&ethphy2>;
+> +	phy-mode = "rgmii-id";
+> +	pinctrl-0 = <&eth2_rgmii_pins_a>;
+> +	pinctrl-1 = <&eth2_rgmii_sleep_pins_a>;
+> +	pinctrl-names = "default", "sleep";
+> +	st,ext-phyclk;
+> +	status = "okay";
+> +
+> +	mdio {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		compatible = "snps,dwmac-mdio";
+> +
+> +		ethphy2: ethernet-phy@1 {
+> +			/* RTL8211F */
+> +			compatible = "ethernet-phy-id001c.c916";
+> +			interrupt-parent = <&gpiog>;
+> +			interrupts = <15 IRQ_TYPE_LEVEL_LOW>;
+> +			reg = <1>;
+> +			reset-assert-us = <15000>;
+> +			reset-deassert-us = <55000>;
+> +			reset-gpios = <&gpiog 8 GPIO_ACTIVE_LOW>;
+> +		};
+> +	};
+> +};
+> +
+>   &gpioa {
+>   	gpio-line-names = "", "", "", "",
+>   			  "", "DHSBC_USB_PWR_CC1", "", "",
 
