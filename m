@@ -1,176 +1,169 @@
-Return-Path: <devicetree+bounces-80838-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80839-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEDE391A849
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 15:48:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C34C91A85B
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 15:53:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3D1181F239DF
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 13:48:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BD6831C22561
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 13:53:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F015E194AEF;
-	Thu, 27 Jun 2024 13:48:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDFFA1957ED;
+	Thu, 27 Jun 2024 13:53:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ftO65CXM"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="chxmMBze"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 680031946B8;
-	Thu, 27 Jun 2024 13:48:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15FF11946BB;
+	Thu, 27 Jun 2024 13:53:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719496127; cv=none; b=njEvYTWa+gDmfWWcIFWnn5oQwAMW7QW7UrP7FLt+SYYT8X3RNjU07rSZdE4nTSSCTlcgLiJdBOYUHnMQX6sdaQ6T0va1mH0DuTXGXRlev267EpCxrMxOZPa32XBZGvuQwsXr75e8C6qJZUH8Jt0TeM+nIe99kbXQ4rEPYH+pqWE=
+	t=1719496395; cv=none; b=TH98iKfXGgAOZ708aChznnVyXHilUc089R0nc/ybiOcrcYdtclwWWWvQmGSlvAJI4B8bj9QZRdw12ctKslCKNVRrJmz+peQzcNxImD7GSQAeA331eDcpDaAWPcOCceI/DtjydQtSijlIS41Skdsk7lEKlqUkqbLdOcVATnd//1Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719496127; c=relaxed/simple;
-	bh=cocmvvpYzS373Zson0OV7k7L9zx2ghMdncO1Wj0A5Iw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=MmNiSP1/HovQ524O6Rx6MlVHUm6rvKbnzPoPPRc+sADOS70IR5tFC7CcLXmCadsDVwyHtaOlIAGJ4c2MlWOxhuZ+OoZTtVDIx/KepOzVqdCiTghheGgbIzQl4QV5zRvAPkcs0eTMf3zJfHDwNgG2SbiPqRTtnlXe4kWFIdsUL7s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ftO65CXM; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45RD6FXK027216;
-	Thu, 27 Jun 2024 13:47:53 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	0sunZxUyt487LjiCTkHh5aPa/ti1QKjKiGhk414XqTM=; b=ftO65CXM7pNHa55e
-	bb1t1xjhRJg/mjuSUUvgIPX4SEIKcHMwyQjm8STXEwnMPtjU1E68imvaKr/8wl3b
-	NLFTF5gGk2kh9V0F8Ej1dPYxg3fdMTCd8aMG2ripP0zA6k8HWtlvKWYTZ2Ib94q1
-	sPr24xj5OoPLjHzNcVZBzOFnjiSVY2tm6OtdIzolreM9oIX7JDcMgRIgE/pKZN0I
-	i2KWIuH1MdEbvRpUw0BWvFqGOsrcZdBnyTK1H8NaFWl8wBuQadlvMJOOZFcXNJst
-	GLebvFS7fq6DtB56wwMMWBvXcpIaXJammL3i8zDjd7/oiAswsxJsSZ5sH4RneDBQ
-	PBqm6Q==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ywnjs42k3-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 27 Jun 2024 13:47:53 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45RDlqd6031310
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 27 Jun 2024 13:47:52 GMT
-Received: from [10.50.52.175] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 27 Jun
- 2024 06:47:42 -0700
-Message-ID: <62beeb3e-494c-43d8-b539-30ec4eac3fe6@quicinc.com>
-Date: Thu, 27 Jun 2024 19:17:38 +0530
+	s=arc-20240116; t=1719496395; c=relaxed/simple;
+	bh=mKgxZFERBkLeUE2nY35u5owDkA0UeUZU/3BEl4SzNH8=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=IwIAdVBAGkx00QDmjg6dUP7HYsPORkfYhka9MdRoJtFZ7C2rKkVrCY7e9btNK3x40CMtbVk6scAAcwhL2XZodFybeqJXhrgfBem++ZEgx5/bczYXPTJWVM1wGKKvn14TdA0shYXaQOu/iP7Suq9BuoKLc7pfH2GQIgadDInGd6U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=chxmMBze; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1719496392;
+	bh=mKgxZFERBkLeUE2nY35u5owDkA0UeUZU/3BEl4SzNH8=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+	b=chxmMBze7QEbuDf1i5ujeX+ucPi5EsGeeQUsojAcsx3/WZjSZ3omK2B1fE1oRS9S0
+	 7m35maflibi2jM2C+mZksYjRd6DstbZxkDZhdXCTnYLuMw2zoR/OBq3n3KHqipQlHa
+	 YUhTPGRjcFtypvPeW/FBFL+3rKpwceBcKKOMxYNx+t5nVo6XO5QUd/79+av4ONLZVH
+	 jomqckRPJAwDMYux7uTMY42nPVsPFt66WGXcX9mQjU+ccDhJtMtjY7F2mDfWn1xBDh
+	 k2Y9OICU1wku6HqFtUGOQPQcKceI1SV0D7SNAkI+ItU/ZXIkhWrcEg5xJdCK+ULuye
+	 /eQK+R9B3lY0w==
+Received: from nicolas-tpx395.localdomain (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: nicolas)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 2016E3781188;
+	Thu, 27 Jun 2024 13:53:10 +0000 (UTC)
+Message-ID: <0fe5ee653af4e7ecdf8a7a605e9e80c91011a53d.camel@collabora.com>
+Subject: Re: [PATCH v7 6/6] arm64: dts: rockchip: Add VPU121 support for
+ RK3588
+From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+To: Jianfeng Liu <liujianfeng1994@gmail.com>
+Cc: conor+dt@kernel.org, detlev.casanova@collabora.com, 
+	devicetree@vger.kernel.org, ezequiel@vanguardiasur.com.ar, 
+	frattaroli.nicolas@gmail.com, heiko@sntech.de, kernel@collabora.com, 
+	krzk+dt@kernel.org, linkmauve@linkmauve.fr, linux-kernel@vger.kernel.org, 
+	linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+	p.zabel@pengutronix.de, robh@kernel.org, sebastian.reichel@collabora.com, 
+	sigmaris@gmail.com
+Date: Thu, 27 Jun 2024 09:53:01 -0400
+In-Reply-To: <20240627081310.583427-1-liujianfeng1994@gmail.com>
+References: <f04e25bf3c09c55049775e8f012cb653cb4682ba.camel@collabora.com>
+	 <20240627081310.583427-1-liujianfeng1994@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.2 (3.52.2-1.fc40) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V5 4/7] dt-bindings: clock: Add ipq9574 NSSCC clock and
- reset definitions
-To: Krzysztof Kozlowski <krzk@kernel.org>, Andrew Lunn <andrew@lunn.ch>
-CC: <catalin.marinas@arm.com>, <u-kumar1@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>, <krzk+dt@kernel.org>,
-        <geert+renesas@glider.be>, <neil.armstrong@linaro.org>,
-        <nfraprado@collabora.com>, <mturquette@baylibre.com>,
-        <linux-kernel@vger.kernel.org>, <dmitry.baryshkov@linaro.org>,
-        <netdev@vger.kernel.org>, <konrad.dybcio@linaro.org>,
-        <m.szyprowski@samsung.com>, <arnd@arndb.de>,
-        <richardcochran@gmail.com>, <will@kernel.org>, <sboyd@kernel.org>,
-        <andersson@kernel.org>, <p.zabel@pengutronix.de>,
-        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>
-References: <20240626143302.810632-1-quic_devipriy@quicinc.com>
- <20240626143302.810632-5-quic_devipriy@quicinc.com>
- <171941612020.3280624.794530163562164163.robh@kernel.org>
- <eeea33c7-02bd-4ea4-a53f-fd6af839ca90@lunn.ch>
- <4bf9dff9-3cb4-4276-8d21-697850e01170@quicinc.com>
- <bf87c34e-a4ff-4e03-9d6a-dc365fec06a5@kernel.org>
-Content-Language: en-US
-From: Devi Priya <quic_devipriy@quicinc.com>
-In-Reply-To: <bf87c34e-a4ff-4e03-9d6a-dc365fec06a5@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 8HG0pE4TV2I03JOKoNoZ7ep-0x8WaxJ3
-X-Proofpoint-ORIG-GUID: 8HG0pE4TV2I03JOKoNoZ7ep-0x8WaxJ3
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-27_09,2024-06-27_03,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- clxscore=1015 mlxscore=0 suspectscore=0 adultscore=0 mlxlogscore=999
- impostorscore=0 bulkscore=0 malwarescore=0 spamscore=0 phishscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2406140001 definitions=main-2406270104
 
+Le jeudi 27 juin 2024 =C3=A0 16:13 +0800, Jianfeng Liu a =C3=A9crit=C2=A0:
+> Hi Nicolas,
+>=20
+> On Wed, 26 Jun 2024 13:46:03 -0400, Nicolas Dufresne wrote:
+> > Just to clarify, since you are right that it won't work well with GStre=
+amer. It
+> > does work with multiple decoders (it exposes them all), it is simply th=
+at it
+> > will randomly pick one when decoding, and it may not pick the best one.
+>=20
+> I have tested rkvdec2 and vpu121 with gstreamer 1.24.2 on rk356x to decod=
+e
+> a 4K video, and gstreamer always fall with error:
+> "v4l2slh264dec0: Failed to configure H264 decoder".
+> I guess that's because 1080p vpu is at fdea0000 which is always
+> initialized earlier than rkvdec2 at fdf80200, so gstreamer will always
+> choose the 1080p decoder.
 
+I've never done any research, but that is plausible.
 
-On 6/27/2024 1:12 PM, Krzysztof Kozlowski wrote:
-> On 27/06/2024 07:25, Devi Priya wrote:
->>
->>
->> On 6/26/2024 10:56 PM, Andrew Lunn wrote:
->>> On Wed, Jun 26, 2024 at 09:35:20AM -0600, Rob Herring (Arm) wrote:
->>>>
->>>> On Wed, 26 Jun 2024 20:02:59 +0530, Devi Priya wrote:
->>>>> Add NSSCC clock and reset definitions for ipq9574.
->>>>>
->>>>> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
->>>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>>> ---
->>>>>    Changes in V5:
->>>>> 	- Dropped interconnects and added interconnect-cells to NSS
->>>>> 	  clock provider so that it can be  used as icc provider.
->>>>>
->>>>>    .../bindings/clock/qcom,ipq9574-nsscc.yaml    |  74 +++++++++
->>>>>    .../dt-bindings/clock/qcom,ipq9574-nsscc.h    | 152 ++++++++++++++++++
->>>>>    .../dt-bindings/reset/qcom,ipq9574-nsscc.h    | 134 +++++++++++++++
->>>>>    3 files changed, 360 insertions(+)
->>>>>    create mode 100644 Documentation/devicetree/bindings/clock/qcom,ipq9574-nsscc.yaml
->>>>>    create mode 100644 include/dt-bindings/clock/qcom,ipq9574-nsscc.h
->>>>>    create mode 100644 include/dt-bindings/reset/qcom,ipq9574-nsscc.h
->>>>>
->>>>
->>>> My bot found errors running 'make dt_binding_check' on your patch:
->>>>
->>>> yamllint warnings/errors:
->>>>
->>>> dtschema/dtc warnings/errors:
->>>> Error: Documentation/devicetree/bindings/clock/qcom,ipq9574-nsscc.example.dts:26.26-27 syntax error
->>>> FATAL ERROR: Unable to parse input tree
->>>
->>> Hi Devi
->>>
->>> Version 4 of these patches had the same exact problem. There was not
->>> an email explaining it is a false positive etc, so i have to assume it
->>> is a real error. So why has it not been fixed?
->>>
->>> Qualcomm patches are under a microscope at the moment because of how
->>> bad things went a couple of months ago with patches. You cannot ignore
->>> things like this, because the damage to Qualcomm reputation is going
->>> to make it impossible to get patches merged soon.
->>>
->> Hi Andrew,
->> Very sorry for the inconvenience.
->> I had run dt_binding_check locally on V4 patches and did not face any
->> errors. I somehow missed to notice the binding check error that was
->> reported on V4. Thus I went ahead and posted the same in V5.
->> Will ensure such things are not repeated henceforth.
-> 
-> If the warning is expected, e.g. due to missing patches, it's beneficial
-> to mention this in the changelog (---). Otherwise all maintainers my
-> ignore your patch because you have issues reported by automation.
-> 
-Sure, got it
+- Probe happen in address order, since DT are in address order
+- Media notes are assigned in probe order
+- GStreamer register the element in the same order in its registry
+- In adsence of a rank or capabilities to differentiate, the probe order is
+maintained.
 
-Thanks,
-Devi Priya
+>=20
+> > In the long term, I'd like to stop having to do "like downstream" and e=
+xpose
+> > them all. I believe the fix is fairly straightforward in GStreamer. We =
+need to
+> > expose in the generated element the width/height ranges, and for H.264 =
+the
+> > supported profiles and level. With that, we at least won't randomly fai=
+l at
+> > decoding 4K, and it should be good enough.
+>=20
+> Not only gstreamer, chromium also has similar issue. Chromium will only
+> check video resolution globally before starting to use one decoder: if
+> there is a 4K decoder detected before, it will mark 4K resolution as
+> supported. But when decoding videos, it will choose the first decoder
+> supporting profile like H264. So chromium may use a 1080p decoder to
+> decode a 4K video.
+>=20
+> Chromium's code about v4l2 is complicated for me. I may create a bug abou=
+t
+> it. But chrome os doesn't support devices with multi v4l2 decoders like
+> rockchip's socs, I don't know if they have the motion to fix it quickly.
 
-> Anyway, up to you.
-> 
-> Best regards,
-> Krzysztof
-> 
+That's an interesting bug, which makes its more of less equal to GStreamer
+"unimplemented behaviour". Filing a bug is best indeed, ChromeOS team, who
+maintains this, is probably unaware as they don't have any SoC with multipl=
+e
+decoders. Even on PC side, their Chromebooks only ever have a single GPU, I
+haven't heard about any eGPU support either.
+
+>=20
+> > For RK3588, which is a new SoC, its not a problem to upstream something=
+ that
+> > does not work with existing userspace. It would only be a regression if=
+ we where
+> > to enable VDPU121 on RK3399, as now updating linux would cause bugs wit=
+h
+> > existing userspace.
+>=20
+> There is an old soc just like RK3399: RK3328, which also has a 1080p
+> hantro h264 decoder and a 4K rkvdec h264 decoder. I guess less people car=
+e
+> about its mainline decoding with gstreamer/chromium so it still has 1080p
+> decoder enabled.
+
+What I meant by new/old, is supported mainline or not. But yes, on timeline=
+,
+there is many older SoC with dual decoders in the Rockchip line.
+
+>=20
+> > For users, it would be best if we get this sorted out in GStreamer by t=
+he time
+> > we have a second decoder. Note that I have some vacation coming up this=
+ month,
+> > so there might be extra delays. Yet, its logical to merge this (the "wo=
+rst"
+> > decoder) first, since then randomly picking a better one won't be a reg=
+ression.
+>=20
+> Happy vacation days! I will also take a look at chromium's code to see if
+> I can fix it.
+
+Great, let's keep everyone on sync, I'm sure we can come up with something
+better then disabling the possibly useful hardware.
+
+Nicolas
 
