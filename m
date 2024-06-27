@@ -1,119 +1,264 @@
-Return-Path: <devicetree+bounces-80923-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80924-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8F9F91ABF4
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 17:55:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A13091ABFC
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 17:56:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EA0581C21DF7
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 15:55:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AD1511C21983
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 15:56:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00CBD1991C3;
-	Thu, 27 Jun 2024 15:55:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 703CF199384;
+	Thu, 27 Jun 2024 15:55:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e+Uut/Wt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ya9uCh3t"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9D82198E69;
-	Thu, 27 Jun 2024 15:55:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B5D0199380;
+	Thu, 27 Jun 2024 15:55:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719503709; cv=none; b=rvm61Q9KdVzwf5hmo4+3Kjub6taJONwlEbm5kZ0cSqcnnIdcZRF89pTyOABMVnbJZKe+nGJgHKFTb8QexY6TxuqDn0bGido6pN7FvVnG2AByR5A8ajQ9SIMaawdrP8olK56BiBDf2z0cD1elq0AZMpniNFUnBKRAewipBawIdJk=
+	t=1719503749; cv=none; b=bvZIPiMSZMxNXT2PdAvwc4o9GMHUnhKuhVtgEA9m/xt1z1tI7wD4KJOQi4+ob4fzp4JKmSO3mUJe+RWYyHkPusjTz5IBvDRVSPM/29WQ2FqDyfkxL0N98oxvVnYhJUxqcWfEyO5022X2g12AMYco7a7lMJGoQd9x1drdSkHfxOE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719503709; c=relaxed/simple;
-	bh=9pMDF+LsTD/iBTbXNEpVt3s5aczAsdOLMMbKgkXR3BM=;
+	s=arc-20240116; t=1719503749; c=relaxed/simple;
+	bh=vjjBMHjej31enUTmvqptyhQfKR/B9MM98Qv4lFn4Kkk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kyF1wYEkCxnQus16w8JWEmKBm9ljFDF3Lz+RFWTJVG4/Snfi7UfZOyjgWDIs5hEw8/gC0kMLCJiyGokfvAlT62CXfTpEpUYTBnEDT/MG5r9REtY+3UX4Y1z5cVUPUyG/NyAFdtaSHNm22NlkVHAOsC07hFImtz5CMrtKSeLwDkg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e+Uut/Wt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B25E5C2BBFC;
-	Thu, 27 Jun 2024 15:55:05 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=kTY0gRgpQELGh7LDccN8v8ruzU9pmSsBlt34jhLV0xx+A1fAGPUNPF/y0WjEBBVtWcXraGBzvENraBYrkvVBb65riTjeMUNvpGEPH/feVaO0cU9a/2sgx4hhNcBwUPpglsd+U3ptgyDGXA+mKX74DD6JO5TPJ6nCnO9taAwh0Nc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ya9uCh3t; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8D006C2BBFC;
+	Thu, 27 Jun 2024 15:55:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719503709;
-	bh=9pMDF+LsTD/iBTbXNEpVt3s5aczAsdOLMMbKgkXR3BM=;
+	s=k20201202; t=1719503748;
+	bh=vjjBMHjej31enUTmvqptyhQfKR/B9MM98Qv4lFn4Kkk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=e+Uut/Wt9ADdwIp7mwKF5gVeKXfcgyrdlzltjciB4aCsgjQYT4XjH95VEGKypJhPJ
-	 CRhnXj58LqLZCHFmnqKqHHEr0kxuflHifqjzgziQ72TE2vtjtJdgrOXlxPgJ73Q961
-	 XDuSekCpy1f+hoR2vwBK3hI+F/fJIc4+ccbBinorYMO4DQF9InBnJWcxIc62Y5hItR
-	 p8TALs/nL+wqdXLLzNyd8yleq1fXwUqabmjVqEFrbGvjVZ6nwFP8Dt7ieZOhd1Pqoe
-	 JZsgxtErgHl92YWYNGxBdcDEtl5d2NDn2EOJc+OCtSrh8phR256bsdFsSuYFl8VSVV
-	 WYbfj0m4w0Qsw==
-Date: Thu, 27 Jun 2024 16:55:03 +0100
-From: Conor Dooley <conor@kernel.org>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Yassine Oudjana <yassine.oudjana@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Daniel Golle <daniel@makrotopia.org>,
-	jason-ch chen <Jason-ch.Chen@mediatek.com>,
-	Sam Shih <sam.shih@mediatek.com>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Yassine Oudjana <y.oudjana@protonmail.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org, linux-mediatek@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v4 1/2] dt-bindings: clock: Add MediaTek MT6735 clock and
- reset bindings
-Message-ID: <20240627-deranged-yard-c84283135fbc@spud>
-References: <20240626202406.846961-1-y.oudjana@protonmail.com>
- <20240626202406.846961-2-y.oudjana@protonmail.com>
- <96b436c1-50c3-4091-9577-c00187518779@collabora.com>
+	b=Ya9uCh3t88u6Pn7B+3OBfK9PEvcnwpVi+2Yltf5ff4KnMJAQRjcrYRAHcpkSXwGMA
+	 AUErY2d24yUd1NFR8XNbnN6RjoNqiPyvPvsWQc+wLKlbzBJM16qo6a5zTKFehMJXG9
+	 JnqRGnYyVtaBRlXMQ3wccTXKeHKvF6+iMR30yQNc5aeEe33/EudP1hICmfalhbpaZm
+	 y27kQEvRzFOdi4nGu7kc9xSbPpScfdDY+vzoWnYUsrK2meXwgp9WdJmK7VLAGcYXgq
+	 /hhtCmlLfVcWuNAfHlC/7jL0JhTpLAH8QtYAz147hzDWLYjRy6o9t0hJb+wYSqH30t
+	 AuGfM9d8v5kBQ==
+Date: Thu, 27 Jun 2024 09:55:47 -0600
+From: Rob Herring <robh@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: krzk@kernel.org, conor+dt@kernel.org, davem@davemloft.net,
+	devicetree@vger.kernel.org, edumazet@google.com,
+	imx@lists.linux.dev, krzk+dt@kernel.org, kuba@kernel.org,
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+	pabeni@redhat.com
+Subject: Re: [PATCH v2 1/1] dt-bindings: net: convert enetc to yaml
+Message-ID: <20240627155547.GB3480309-robh@kernel.org>
+References: <20240626162307.1748759-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="8CP9nh8xoEAPoXZZ"
-Content-Disposition: inline
-In-Reply-To: <96b436c1-50c3-4091-9577-c00187518779@collabora.com>
-
-
---8CP9nh8xoEAPoXZZ
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240626162307.1748759-1-Frank.Li@nxp.com>
 
-On Thu, Jun 27, 2024 at 10:37:03AM +0200, AngeloGioacchino Del Regno wrote:
-> Il 26/06/24 22:24, Yassine Oudjana ha scritto:
-> > From: Yassine Oudjana <y.oudjana@protonmail.com>
-> >=20
-> > Add DT bindings for for the main clock and reset controllers of MT6735
-> > (apmixedsys, topckgen, infracfg and pericfg).
-> >=20
-> > Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
->=20
-> This commit needs just one small nit to be fixed before being ready to be=
- picked,
-> check below...
+On Wed, Jun 26, 2024 at 12:23:07PM -0400, Frank Li wrote:
+> Convert enetc device binding file to yaml. Split to 3 yaml files,
+> 'fsl,enetc.yaml', 'fsl,enetc-mdio.yaml', 'fsl,enetc-ierb.yaml'.
+> 
+> Additional Changes:
+> - Add pci<vendor id>,<production id> in compatible string.
+> - Ref to common ethernet-controller.yaml and mdio.yaml.
+> - Remove fixed-link part.
+> 
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+> Change from v1 to v2
+> - renamee file as fsl,enetc-mdio.yaml, fsl,enetc-ierb.yaml, fsl,enetc.yaml
+> - example include pcie node
+> ---
+>  .../bindings/net/fsl,enetc-ierb.yaml          |  35 ++++++
+>  .../bindings/net/fsl,enetc-mdio.yaml          |  53 ++++++++
+>  .../devicetree/bindings/net/fsl,enetc.yaml    |  50 ++++++++
+>  .../devicetree/bindings/net/fsl-enetc.txt     | 119 ------------------
+>  4 files changed, 138 insertions(+), 119 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/net/fsl,enetc-ierb.yaml
+>  create mode 100644 Documentation/devicetree/bindings/net/fsl,enetc-mdio.yaml
+>  create mode 100644 Documentation/devicetree/bindings/net/fsl,enetc.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/net/fsl-enetc.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/net/fsl,enetc-ierb.yaml b/Documentation/devicetree/bindings/net/fsl,enetc-ierb.yaml
+> new file mode 100644
+> index 0000000000000..ce88d7ce07a5e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/fsl,enetc-ierb.yaml
+> @@ -0,0 +1,35 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/fsl,enetc-ierb.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Integrated Endpoint Register Block
+> +
+> +description:
+> +  The fsl_enetc driver can probe on the Integrated Endpoint Register
+> +  Block, which preconfigures the FIFO limits for the ENETC ports.
 
-You say "one small nit" and follow it with "you *shall*", dunno if
-that's really a nit! With the namings fixed up
+Wrap at 80 chars
 
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> +
+> +maintainers:
+> +  - Frank Li <Frank.Li@nxp.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - fsl,ls1028a-enetc-ierb
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    ierb@1f0800000 {
 
-Thanks,
-Conor.
+unit-address doesn't match
 
---8CP9nh8xoEAPoXZZ
-Content-Type: application/pgp-signature; name="signature.asc"
+> +        compatible = "fsl,ls1028a-enetc-ierb";
+> +        reg = <0xf0800000 0x10000>;
+> +    };
+> diff --git a/Documentation/devicetree/bindings/net/fsl,enetc-mdio.yaml b/Documentation/devicetree/bindings/net/fsl,enetc-mdio.yaml
+> new file mode 100644
+> index 0000000000000..60740ea56cb08
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/fsl,enetc-mdio.yaml
+> @@ -0,0 +1,53 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/fsl,enetc-mdio.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ENETC the central MDIO PCIe endpoint device
+> +
+> +description:
+> +  In this case, the mdio node should be defined as another PCIe
+> +  endpoint node, at the same level with the ENETC port nodes
+> +
+> +maintainers:
+> +  - Frank Li <Frank.Li@nxp.com>.
 
------BEGIN PGP SIGNATURE-----
+stray '.'                         ^
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZn2LVwAKCRB4tDGHoIJi
-0nEKAP9yR5y++DNT8wYwjg3zQzQhwqljNZNTjvB5Hdghil7ztQEAlMDvABPPZ4jg
-vkp0P5ZlpPE0zRVgChCAysGnRoyg+gU=
-=Agy2
------END PGP SIGNATURE-----
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - pci1957,ee01
+> +      - const: fsl,enetc-mdio
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +allOf:
+> +  - $ref: mdio.yaml
 
---8CP9nh8xoEAPoXZZ--
+As a PCI device, also needs pci-device.yaml.
+
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    pcie@1f0000000 {
+> +        compatible = "pci-host-ecam-generic";
+> +        reg = <0x01 0xf0000000 0x0 0x100000>;
+
+Drop compatible and reg. Just need the minimum to define a PCI bus node.
+
+> +        #address-cells = <3>;
+> +        #size-cells = <2>;
+> +
+> +        mdio@0,3 {
+> +            compatible = "pci1957,ee01", "fsl,enetc-mdio";
+> +            reg = <0x000300 0 0 0 0>;
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            ethernet-phy@2 {
+> +                reg = <0x2>;
+> +            };
+> +        };
+> +    };
+> diff --git a/Documentation/devicetree/bindings/net/fsl,enetc.yaml b/Documentation/devicetree/bindings/net/fsl,enetc.yaml
+> new file mode 100644
+> index 0000000000000..843c27e357f2d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/fsl,enetc.yaml
+> @@ -0,0 +1,50 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/fsl,enetc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ENETC ethernet
+> +
+> +description:
+> +  Depending on board design and ENETC port type (internal or
+> +  external) there are two supported link modes specified by
+> +  below device tree bindings.
+> +
+> +maintainers:
+> +  - Frank Li <Frank.Li@nxp.com>
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - pci1957,e100
+> +      - const: fsl,enetc
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +allOf:
+> +  - $ref: ethernet-controller.yaml
+
+As a PCI device, also needs pci-device.yaml.
+
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    pcie@1f0000000 {
+> +        compatible = "pci-host-ecam-generic";
+> +        reg = <0x01 0xf0000000 0x0 0x100000>;
+> +        #address-cells = <3>;
+> +        #size-cells = <2>;
+> +
+> +        ethernet@0,0 {
+> +            compatible = "pci1957,e100", "fsl,enetc";
+> +            reg = <0x000000 0 0 0 0>;
+> +            phy-handle = <&sgmii_phy0>;
+> +            phy-connection-type = "sgmii";
+> +        };
+> +    };
 
