@@ -1,69 +1,97 @@
-Return-Path: <devicetree+bounces-80621-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80622-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0C4F91A137
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 10:13:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D5AB91A138
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 10:13:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 11300B21E60
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 08:13:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EAF4B1F230BE
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 08:13:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B3E8763E7;
-	Thu, 27 Jun 2024 08:13:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBEB47347E;
+	Thu, 27 Jun 2024 08:13:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F45GtDt1"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NpJWAkrR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 133F7446BF;
-	Thu, 27 Jun 2024 08:13:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CA5D446BF;
+	Thu, 27 Jun 2024 08:13:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719475992; cv=none; b=qcRJhxJv40J2bTWXSbGt92KxUFC0/jQVYUZEAyoatn9fnq1D/J6OvqAkI4lyJbe6AvqWy4/x2y6JRcknLl1c/OUwqnO8bC6y3XzLQUATalhh71bQ1lo+C2iJvz4czXZt4KOFdYBJCRwCmv1TO71b+CyLrEfadUBiywhS/8PWaaI=
+	t=1719475998; cv=none; b=H+NtFPwHe1EI9t3BwGD+VVU239PKiTbjDTbU3GmIX+nQ6mmh9vBqM7uDsWcyMa2jUQT3TJzBR4KF+MFUESyGnrCXk65dCYi7TeL0QsaCqYQiKN4vighW7BGUEMDZE73AmHey52EEpBGunPhIDw9Poe0NMPbXz3ZZVuVHCVmuMXs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719475992; c=relaxed/simple;
-	bh=bctJ5X8cViosGAXVyA5Plj7UDdWbweJa/szjoCURJkc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=OjXhrL5pngyYNUsQmYKX2es0lx8blYNBu42wjVV0Tl6t1673LTyULJnUsBtvwmiNeOy/Vgw5vqeDCn0DtiYWj8+eG/E90WjwBznWi628Y6RzAZRwGezchUpEqWsWKRbwGWVfqa6y559bXMohckK0nzvOuV6dXwgNCINoWDa8K/4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F45GtDt1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F29BC2BD10;
-	Thu, 27 Jun 2024 08:13:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719475991;
-	bh=bctJ5X8cViosGAXVyA5Plj7UDdWbweJa/szjoCURJkc=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=F45GtDt1c7heeSvsahoIETmRGmlMdWJktstJhuW3WBxpyvRsXCWiUmD3jhlGtA7fX
-	 ph6PQ//jQ1AT5d2gYr4bxYHQ0FloVvCKPFxKkJ3nenknHUl3QllAleK41rGgvm7Aw6
-	 NJJ08UnhDuapOm3u2Lx9+uMc0pxA+7mLYcst5AZ+TP1YNSFGAn1DZCreXmCTlMeRgG
-	 aXRuCXr1WH2GvZe6OIAr+1naFL4HTpufXPWnUCCeKURR8VMew5Q8A1Ieq5Kl/Jc4rF
-	 mNCsvr6sSgeKD6zIFAnBiYGCcNRsB58dDaF5J43L79B6Wah1917GCgFeDcuQEHb+vO
-	 NO0RXO98xPWOw==
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: linux-pci@vger.kernel.org
-Cc: ryder.lee@mediatek.com,
-	jianjun.wang@mediatek.com,
-	lpieralisi@kernel.org,
-	kw@linux.com,
-	robh@kernel.org,
-	bhelgaas@google.com,
-	linux-mediatek@lists.infradead.org,
-	lorenzo.bianconi83@gmail.com,
-	linux-arm-kernel@lists.infradead.org,
-	krzysztof.kozlowski+dt@linaro.org,
+	s=arc-20240116; t=1719475998; c=relaxed/simple;
+	bh=aqwTrcSYiqQJUhfArYN0dEmmLzN0Z0hlc2lvyFyjTgc=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=jppUajXFCmnm3SOe1CaxJTGStAkziK5qCHZhU2/Q1WKIXwtK1VVed57SJXKRCXIM0FLu6OP1shPbrdlotx8SUbkTOzLgD+b0Wj8DYkdrINpt2u1eAWvpUDPfUY6YzsDy0XFlp7p2ecRjzM2Blnpmwa4PaDGR+YW2Q5mTXvwYRZk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NpJWAkrR; arc=none smtp.client-ip=209.85.214.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-1fa07e4f44eso45091145ad.2;
+        Thu, 27 Jun 2024 01:13:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1719475997; x=1720080797; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=aqwTrcSYiqQJUhfArYN0dEmmLzN0Z0hlc2lvyFyjTgc=;
+        b=NpJWAkrRpVic+B+lXkfstsegROQzN7Yie0McEC4lyKIdUT+tzM1uM3V2tTsAuwb3nx
+         cRHRa8zJWwVigrMjpDV/3e1+zu8cZy6HtvbvCfZlNq1qERS2y/ygVHdGh+A+SblxMy2g
+         gZZ0ttmZ+Du/rd+xOPOdT/CxDD+hkB56hMvfASYuXGjub71eAy6w5wgayXNado56Fozb
+         tv9G9Dsu8NGBqEHhfrYe9oi/JWFiUU7eeJ3/+FT9YQeJena19K8VUVo9jdDNznoCDi7E
+         xENHlD8rIeA5/KUIPPwXlfA377j4HiTBTfkXpZuKCbSAfcZRJccgqghhFpIPdMx1eHyD
+         UDTg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719475997; x=1720080797;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=aqwTrcSYiqQJUhfArYN0dEmmLzN0Z0hlc2lvyFyjTgc=;
+        b=umAW07wBPmi1SAulMmT0LTcXvkehKRiL/nLEsp2VHuJmKZ0VznUWO5fLZmKUIGd/5Z
+         VZRml2cpzF9TMxgLnQQoYiz2hOGTzDIFrP0u1lohQrHED2nuv/hun/VnIeLCbuzDL6nI
+         3kONMwbDmW7JQUW9ILXn1momt/elhozYMA5nXoUZJmRTi60EhYSsEesWLaSDx12K71DW
+         CiYv288DbjBwF63oW+6czqnLt2DI2XzNgLlzTCcTECjycTSIcBLwvqCJ15gu93qQFGA0
+         JER+we1KzlJpoCdc/nbZH9/88vI/4/cO+UeU9TEHWZLqbPtG+Gqi724KLhsKUkK/FTUu
+         C/3Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVYrJRP1StiaZuhyOQT9O8pmV3qHZG84K3sfKSZT7peuf+HE39lkw3nkoyDKLiE4TsNpzeqxE1oREtprJFBEyHHk/xN47WlSTN8NcOkLMfqsaF9L3s3UugNw6k1vR+4tzafRJuLxVRuAYisz3w/egBFuQb+yHeU1KhSCibZY0BPWTy3QPU9
+X-Gm-Message-State: AOJu0YyCu+5GU69oewBILCR1/EnkF7IrzCxkudaLqeh0QHrnmQFuB84s
+	e5yZrjsPueauPgZjnxSBOa8Czyx9ksQwJgI497imb9wKYzKUp4ey
+X-Google-Smtp-Source: AGHT+IE0n90VUhe4DUiFkf3qdpni5UChtIA8uA1O2viLG9jXpeWy1fCOwI7kkSkvPn50aebe+Ahylg==
+X-Received: by 2002:a17:902:d4d2:b0:1f7:3a4:f66f with SMTP id d9443c01a7336-1fa23ef7c2cmr141387655ad.43.1719475996534;
+        Thu, 27 Jun 2024 01:13:16 -0700 (PDT)
+Received: from localhost.localdomain ([221.220.128.96])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1faac8f286fsm7548675ad.82.2024.06.27.01.13.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 27 Jun 2024 01:13:16 -0700 (PDT)
+From: Jianfeng Liu <liujianfeng1994@gmail.com>
+To: nicolas.dufresne@collabora.com
+Cc: conor+dt@kernel.org,
+	detlev.casanova@collabora.com,
 	devicetree@vger.kernel.org,
-	nbd@nbd.name,
-	dd@embedd.com,
-	upstream@airoha.com,
-	angelogioacchino.delregno@collabora.com
-Subject: [PATCH v2 4/4] PCI: mediatek-gen3: Add Airoha EN7581 support
-Date: Thu, 27 Jun 2024 10:12:14 +0200
-Message-ID: <b2c794b21e15ec85a57de144006db9582ce0c949.1719475568.git.lorenzo@kernel.org>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <cover.1719475568.git.lorenzo@kernel.org>
-References: <cover.1719475568.git.lorenzo@kernel.org>
+	ezequiel@vanguardiasur.com.ar,
+	frattaroli.nicolas@gmail.com,
+	heiko@sntech.de,
+	kernel@collabora.com,
+	krzk+dt@kernel.org,
+	linkmauve@linkmauve.fr,
+	linux-kernel@vger.kernel.org,
+	linux-media@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	liujianfeng1994@gmail.com,
+	p.zabel@pengutronix.de,
+	robh@kernel.org,
+	sebastian.reichel@collabora.com,
+	sigmaris@gmail.com
+Subject: Re: [PATCH v7 6/6] arm64: dts: rockchip: Add VPU121 support for RK3588
+Date: Thu, 27 Jun 2024 16:13:10 +0800
+Message-Id: <20240627081310.583427-1-liujianfeng1994@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <f04e25bf3c09c55049775e8f012cb653cb4682ba.camel@collabora.com>
+References: <f04e25bf3c09c55049775e8f012cb653cb4682ba.camel@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,181 +100,55 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Introduce support for Airoha EN7581 PCIe controller to mediatek-gen3
-PCIe controller driver.
+Hi Nicolas,
 
-Tested-by: Zhengping Zhang <zhengping.zhang@airoha.com>
-Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
----
- drivers/pci/controller/Kconfig              |  2 +-
- drivers/pci/controller/pcie-mediatek-gen3.c | 96 ++++++++++++++++++++-
- 2 files changed, 96 insertions(+), 2 deletions(-)
+On Wed, 26 Jun 2024 13:46:03 -0400, Nicolas Dufresne wrote:
+>Just to clarify, since you are right that it won't work well with GStreamer. It
+>does work with multiple decoders (it exposes them all), it is simply that it
+>will randomly pick one when decoding, and it may not pick the best one.
 
-diff --git a/drivers/pci/controller/Kconfig b/drivers/pci/controller/Kconfig
-index e534c02ee34f..3bd6c9430010 100644
---- a/drivers/pci/controller/Kconfig
-+++ b/drivers/pci/controller/Kconfig
-@@ -196,7 +196,7 @@ config PCIE_MEDIATEK
- 
- config PCIE_MEDIATEK_GEN3
- 	tristate "MediaTek Gen3 PCIe controller"
--	depends on ARCH_MEDIATEK || COMPILE_TEST
-+	depends on ARCH_AIROHA || ARCH_MEDIATEK || COMPILE_TEST
- 	depends on PCI_MSI
- 	help
- 	  Adds support for PCIe Gen3 MAC controller for MediaTek SoCs.
-diff --git a/drivers/pci/controller/pcie-mediatek-gen3.c b/drivers/pci/controller/pcie-mediatek-gen3.c
-index 438a5222d986..af567b4355fa 100644
---- a/drivers/pci/controller/pcie-mediatek-gen3.c
-+++ b/drivers/pci/controller/pcie-mediatek-gen3.c
-@@ -7,6 +7,7 @@
-  */
- 
- #include <linux/clk.h>
-+#include <linux/clk-provider.h>
- #include <linux/delay.h>
- #include <linux/iopoll.h>
- #include <linux/irq.h>
-@@ -15,6 +16,8 @@
- #include <linux/kernel.h>
- #include <linux/module.h>
- #include <linux/msi.h>
-+#include <linux/of_device.h>
-+#include <linux/of_pci.h>
- #include <linux/pci.h>
- #include <linux/phy/phy.h>
- #include <linux/platform_device.h>
-@@ -29,6 +32,7 @@
- #define PCI_CLASS(class)		(class << 8)
- #define PCIE_RC_MODE			BIT(0)
- 
-+#define PCIE_EQ_PRESET_01_REF		0x100
- #define PCIE_CFGNUM_REG			0x140
- #define PCIE_CFG_DEVFN(devfn)		((devfn) & GENMASK(7, 0))
- #define PCIE_CFG_BUS(bus)		(((bus) << 8) & GENMASK(15, 8))
-@@ -68,6 +72,7 @@
- #define PCIE_MSI_SET_ENABLE_REG		0x190
- #define PCIE_MSI_SET_ENABLE		GENMASK(PCIE_MSI_SET_NUM - 1, 0)
- 
-+#define PCIE_PIPE4_PIE8_REG		0x338
- #define PCIE_MSI_SET_BASE_REG		0xc00
- #define PCIE_MSI_SET_OFFSET		0x10
- #define PCIE_MSI_SET_STATUS_OFFSET	0x04
-@@ -100,7 +105,17 @@
- #define PCIE_ATR_TLP_TYPE_MEM		PCIE_ATR_TLP_TYPE(0)
- #define PCIE_ATR_TLP_TYPE_IO		PCIE_ATR_TLP_TYPE(2)
- 
--#define MAX_NUM_PHY_RESETS		1
-+/* EN7581 */
-+#define PCIE_PEXTP_DIG_GLB44_P0_REG	0x10044
-+#define PCIE_PEXTP_DIG_LN_RX30_P0_REG	0x15030
-+#define PCIE_PEXTP_DIG_LN_RX30_P1_REG	0x15130
-+
-+/* PCIe-PHY initialization delay in ms */
-+#define PHY_INIT_TIME_MS		30
-+/* PCIe reset line delay in ms */
-+#define PCIE_RESET_TIME_MS		100
-+
-+#define MAX_NUM_PHY_RESETS		3
- 
- struct mtk_gen3_pcie;
- 
-@@ -847,6 +862,74 @@ static int mtk_pcie_parse_port(struct mtk_gen3_pcie *pcie)
- 	return 0;
- }
- 
-+static int mtk_pcie_en7581_power_up(struct mtk_gen3_pcie *pcie)
-+{
-+	struct device *dev = pcie->dev;
-+	int err;
-+
-+	/* Wait for bulk assert completion in mtk_pcie_setup */
-+	mdelay(PCIE_RESET_TIME_MS);
-+
-+	/* Setup Tx-Rx detect time */
-+	writel_relaxed(0x23020133, pcie->base + PCIE_PEXTP_DIG_GLB44_P0_REG);
-+	/* Setup Rx AEQ training time */
-+	writel_relaxed(0x50500032, pcie->base + PCIE_PEXTP_DIG_LN_RX30_P0_REG);
-+	writel_relaxed(0x50500032, pcie->base + PCIE_PEXTP_DIG_LN_RX30_P1_REG);
-+
-+	err = phy_init(pcie->phy);
-+	if (err) {
-+		dev_err(dev, "failed to initialize PHY\n");
-+		return err;
-+	}
-+	mdelay(PHY_INIT_TIME_MS);
-+
-+	err = phy_power_on(pcie->phy);
-+	if (err) {
-+		dev_err(dev, "failed to power on PHY\n");
-+		goto err_phy_on;
-+	}
-+
-+	err = reset_control_bulk_deassert(pcie->soc->phy_resets.num_resets, pcie->phy_resets);
-+	if (err) {
-+		dev_err(dev, "failed to deassert PHYs\n");
-+		goto err_phy_deassert;
-+	}
-+	mdelay(PCIE_RESET_TIME_MS);
-+
-+	pm_runtime_enable(dev);
-+	pm_runtime_get_sync(dev);
-+
-+	err = clk_bulk_prepare(pcie->num_clks, pcie->clks);
-+	if (err) {
-+		dev_err(dev, "failed to prepare clock\n");
-+		goto err_clk_prepare;
-+	}
-+
-+	writel_relaxed(0x41474147, pcie->base + PCIE_EQ_PRESET_01_REF);
-+	writel_relaxed(0x1018020f, pcie->base + PCIE_PIPE4_PIE8_REG);
-+
-+	err = clk_bulk_enable(pcie->num_clks, pcie->clks);
-+	if (err) {
-+		dev_err(dev, "failed to prepare clock\n");
-+		goto err_clk_enable;
-+	}
-+
-+	return 0;
-+
-+err_clk_enable:
-+	clk_bulk_unprepare(pcie->num_clks, pcie->clks);
-+err_clk_prepare:
-+	pm_runtime_put_sync(dev);
-+	pm_runtime_disable(dev);
-+	reset_control_bulk_assert(pcie->soc->phy_resets.num_resets, pcie->phy_resets);
-+err_phy_deassert:
-+	phy_power_off(pcie->phy);
-+err_phy_on:
-+	phy_exit(pcie->phy);
-+
-+	return err;
-+}
-+
- static int mtk_pcie_power_up(struct mtk_gen3_pcie *pcie)
- {
- 	struct device *dev = pcie->dev;
-@@ -1113,8 +1196,19 @@ static const struct mtk_gen3_pcie_pdata mtk_pcie_soc_mt8192 = {
- 	},
- };
- 
-+static const struct mtk_gen3_pcie_pdata mtk_pcie_soc_en7581 = {
-+	.power_up = mtk_pcie_en7581_power_up,
-+	.phy_resets = {
-+		.id[0] = "phy-lane0",
-+		.id[1] = "phy-lane1",
-+		.id[2] = "phy-lane2",
-+		.num_resets = 3,
-+	},
-+};
-+
- static const struct of_device_id mtk_pcie_of_match[] = {
- 	{ .compatible = "mediatek,mt8192-pcie", .data = &mtk_pcie_soc_mt8192 },
-+	{ .compatible = "airoha,en7581-pcie", .data = &mtk_pcie_soc_en7581 },
- 	{},
- };
- MODULE_DEVICE_TABLE(of, mtk_pcie_of_match);
--- 
-2.45.2
+I have tested rkvdec2 and vpu121 with gstreamer 1.24.2 on rk356x to decode
+a 4K video, and gstreamer always fall with error:
+"v4l2slh264dec0: Failed to configure H264 decoder".
+I guess that's because 1080p vpu is at fdea0000 which is always
+initialized earlier than rkvdec2 at fdf80200, so gstreamer will always
+choose the 1080p decoder.
 
+>In the long term, I'd like to stop having to do "like downstream" and expose
+>them all. I believe the fix is fairly straightforward in GStreamer. We need to
+>expose in the generated element the width/height ranges, and for H.264 the
+>supported profiles and level. With that, we at least won't randomly fail at
+>decoding 4K, and it should be good enough.
+
+Not only gstreamer, chromium also has similar issue. Chromium will only
+check video resolution globally before starting to use one decoder: if
+there is a 4K decoder detected before, it will mark 4K resolution as
+supported. But when decoding videos, it will choose the first decoder
+supporting profile like H264. So chromium may use a 1080p decoder to
+decode a 4K video.
+
+Chromium's code about v4l2 is complicated for me. I may create a bug about
+it. But chrome os doesn't support devices with multi v4l2 decoders like
+rockchip's socs, I don't know if they have the motion to fix it quickly.
+
+>For RK3588, which is a new SoC, its not a problem to upstream something that
+>does not work with existing userspace. It would only be a regression if we where
+>to enable VDPU121 on RK3399, as now updating linux would cause bugs with
+>existing userspace.
+
+There is an old soc just like RK3399: RK3328, which also has a 1080p
+hantro h264 decoder and a 4K rkvdec h264 decoder. I guess less people care
+about its mainline decoding with gstreamer/chromium so it still has 1080p
+decoder enabled.
+
+>For users, it would be best if we get this sorted out in GStreamer by the time
+>we have a second decoder. Note that I have some vacation coming up this month,
+>so there might be extra delays. Yet, its logical to merge this (the "worst"
+>decoder) first, since then randomly picking a better one won't be a regression.
+
+Happy vacation days! I will also take a look at chromium's code to see if
+I can fix it.
+
+Best regards,
+Jianfeng
 
