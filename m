@@ -1,60 +1,56 @@
-Return-Path: <devicetree+bounces-80940-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80941-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7CEB91AC6C
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 18:18:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FC9591AC80
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 18:22:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E674C1C22D47
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 16:18:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D8F351F248D3
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 16:22:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1DD0199230;
-	Thu, 27 Jun 2024 16:18:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20FC0199393;
+	Thu, 27 Jun 2024 16:22:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fKjRxvxG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BkTVsFGh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6966197A65;
-	Thu, 27 Jun 2024 16:18:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA86E197A65;
+	Thu, 27 Jun 2024 16:22:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719505103; cv=none; b=aMN466jMDDSZ0mjLvUcdpjGonymIcFsRF4gAXRrXW8rX+29DosqtgqRHbrH2ZW5Q20D/CiRUdt3SbFqihLydWfh3VtRTZSSJ8zSRqp4peoM9baQGzxWkPfenXF0iQzxKQHOn7lGTGhhuJ8gBvcSSZQCUxETPuAlrygOeBFNy7sY=
+	t=1719505352; cv=none; b=n8gtziQ0tENm+FMpkz7hvhB0gz3BE7ZSQQGC6ImzLLudzVDoyOyT4pb19tesETBNoi6CD6arzavNvOEy2NA5sP4hOniRe+a83u+SQ4hOvGBKUmCdkT/3Hf4A1/Pd+L5CMgqcxyo7vQ27Lc+60uEr1Hm7ZCIllBALbAB3bScBFsk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719505103; c=relaxed/simple;
-	bh=gmT88TfnjaS2vhKOWeRDOUNUQ6+OhlkFPvnZgNOTto0=;
+	s=arc-20240116; t=1719505352; c=relaxed/simple;
+	bh=TMnrFsjqTQSFOQs7nIdl6/67gGRZGNEZGkvjDhvZqvo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Q0WP9fdH0lBUXgpS9v0gunVZflu3s/Mu2AaTnenPkXxLZ/XrJAc4SOl7VTRxI7Q2idkdGFXZWujI28mqbPkWr8fxiotnCowN9ot7Z9CyTpGynlKirsC3upBPdCWIeQqxmc5cTALcJ4JBhoGMnWEM/H1jARR/MYWB9okxsHS//Lk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fKjRxvxG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 153EFC2BBFC;
-	Thu, 27 Jun 2024 16:18:19 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ajKQR3+2EHorOBc119GRQ0ktl2lf/1Wc1eTg/HqCUKkxLqiUaqw7sRRG96EMRRA6SUiSjkc8APpPzs7QM97imP1MHTROZOWC2LyF4cWgyOvD9QDRy7uQujc8n6oWWx2oNTphDg6TigCicjKKnImb1BQsYD80sckea82V3zsiBxw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BkTVsFGh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4AA85C2BBFC;
+	Thu, 27 Jun 2024 16:22:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719505103;
-	bh=gmT88TfnjaS2vhKOWeRDOUNUQ6+OhlkFPvnZgNOTto0=;
+	s=k20201202; t=1719505351;
+	bh=TMnrFsjqTQSFOQs7nIdl6/67gGRZGNEZGkvjDhvZqvo=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fKjRxvxGEPrpl4qtAvlcLOEdC28cCVGWJ+wUUw2a237jDiriozhi8pogh5Aqi+8Vl
-	 ut+jywh5Fdnaa29+CZJv38cMz49da/Kfv3vQ/lA+EgEkWKeJyMA4yoKfEim1MbTW8L
-	 tzxmQqIytPNoh569tqMgRiEjOyH2+jXtGstW1kWejG4B7S5NN+LHZM7r5Tvwb1zqv0
-	 0TPOcI27uB9j8hEuvOqcOOGk5q4c+/oWYucEZdOFg3czx30HbL50bC9lEw8bjXRp/Y
-	 iI0LxdluK0HuSzyuroroJFLPlW0U6LJBn4p+YpRpcO48UysLxnC5+sKfeSUAxVBMCI
-	 WD1bddLVF7xWA==
-Date: Thu, 27 Jun 2024 17:18:18 +0100
+	b=BkTVsFGhqUuZ2Es9Q5UvBx5RFlrHO58V1O6B3TRwelvxkIyL4ySfxxS40sUY3F3R0
+	 FentU0+s3sWywiz8PAGk0HYmc6bJoktx8/hxRU2eFp6nIibWgWVJfXDMKR+TPE1bx/
+	 u6LiVVijXAVewGUbomz0Sxf5soBihgvSQtL/OmTPsE1bkr2iuQE0zYTuONKcmlWtd6
+	 EXsD7irBelwyIPfVS73FSPYlbGU3trPHNruS0MZGKj1KgZwZL2zHgVZ9SNnbwgYhdm
+	 5TaSnC8ioToQ0zwCa9D+oEW5JBpcvmEuLYT11jrmRZe/UsiUQiaK8jeK6XF6tnj/Z2
+	 hw9th42gY863g==
+Date: Thu, 27 Jun 2024 17:22:27 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Marco Felsch <m.felsch@pengutronix.de>
-Cc: neil.armstrong@linaro.org, quic_jesszhan@quicinc.com, sam@ravnborg.org,
-	maarten.lankhorst@linux.intel.com, mripard@kernel.org,
-	tzimmermann@suse.de, airlied@gmail.com, daniel@ffwll.ch,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	thierry.reding@gmail.com, kernel@pengutronix.de,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: display: simple: Add Jiangsu Smartwin
- SMMT043480272A-A19
-Message-ID: <20240627-gloating-unsnap-bfe0f45c8715@spud>
-References: <20240626161714.4057983-1-m.felsch@pengutronix.de>
+To: matthew.gerlach@linux.intel.com
+Cc: lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
+	bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org,
+	joyce.ooi@intel.com, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7] dt-bindings: PCI: altera: Convert to YAML
+Message-ID: <20240627-finer-expel-2c7ab9f05733@spud>
+References: <20240614163520.494047-1-matthew.gerlach@linux.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,34 +58,137 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="3zxCmR2rZoVz2I/F"
+	protocol="application/pgp-signature"; boundary="9ilwJNtWwmRhDcGd"
 Content-Disposition: inline
-In-Reply-To: <20240626161714.4057983-1-m.felsch@pengutronix.de>
+In-Reply-To: <20240614163520.494047-1-matthew.gerlach@linux.intel.com>
 
 
---3zxCmR2rZoVz2I/F
+--9ilwJNtWwmRhDcGd
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jun 26, 2024 at 06:17:12PM +0200, Marco Felsch wrote:
-> Add compatible to panel-simple for Jiangsu Smartwin Electronics
-> SMMT043480272A-A19 4.3" 480x272 LCD-TFT panel.
+Been stalling replying here, was wondering if Rob would look given he
+reviewed the previous versions.
+
+On Fri, Jun 14, 2024 at 11:35:20AM -0500, matthew.gerlach@linux.intel.com w=
+rote:
+> From: Matthew Gerlach <matthew.gerlach@linux.intel.com>
 >=20
-> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> Convert the device tree bindings for the Altera Root Port PCIe controller
+> from text to YAML. Update the entries in the interrupt-map field to have
+> the correct number of address cells for the interrupt parent.
+>=20
+> Signed-off-by: Matthew Gerlach <matthew.gerlach@linux.intel.com>
+> diff --git a/Documentation/devicetree/bindings/pci/altera-pcie.txt b/Docu=
+mentation/devicetree/bindings/pci/altera-pcie.txt
+> deleted file mode 100644
+> index 816b244a221e..000000000000
+> --- a/Documentation/devicetree/bindings/pci/altera-pcie.txt
+> +++ /dev/null
+> @@ -1,50 +0,0 @@
+> -* Altera PCIe controller
+> -
+> -Required properties:
+> -- compatible :	should contain "altr,pcie-root-port-1.0" or "altr,pcie-ro=
+ot-port-2.0"
+> -- reg:		a list of physical base address and length for TXS and CRA.
+> -		For "altr,pcie-root-port-2.0", additional HIP base address and length.
+> -- reg-names:	must include the following entries:
+> -		"Txs": TX slave port region
+> -		"Cra": Control register access region
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> -		"Hip": Hard IP region (if "altr,pcie-root-port-2.0")
 
---3zxCmR2rZoVz2I/F
+I think this should be constrained in the new yaml binding by setting
+maxItems: for reg/reg-names to 2 for 1.0 and, if I am not
+misunderstanding what "must include" means, minItems: to 3 for 2.0.
+
+Thanks,
+Conor.
+
+> diff --git a/Documentation/devicetree/bindings/pci/altr,pcie-root-port.ya=
+ml b/Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml
+> new file mode 100644
+> index 000000000000..0aaf5dbcc9cc
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml
+> @@ -0,0 +1,93 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright (C) 2015, 2019, 2024, Intel Corporation
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/altr,pcie-root-port.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Altera PCIe Root Port
+> +
+> +maintainers:
+> +  - Matthew Gerlach <matthew.gerlach@linux.intel.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - altr,pcie-root-port-1.0
+> +      - altr,pcie-root-port-2.0
+> +
+> +  reg:
+> +    items:
+> +      - description: TX slave port region
+> +      - description: Control register access region
+> +      - description: Hard IP region
+> +    minItems: 2
+> +
+> +  reg-names:
+> +    items:
+> +      - const: Txs
+> +      - const: Cra
+> +      - const: Hip
+> +    minItems: 2
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  interrupt-controller: true
+> +
+> +  interrupt-map-mask:
+> +    items:
+> +      - const: 0
+> +      - const: 0
+> +      - const: 0
+> +      - const: 7
+> +
+> +  interrupt-map:
+> +    maxItems: 4
+> +
+> +  "#interrupt-cells":
+> +    const: 1
+> +
+> +  msi-parent: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - interrupts
+> +  - "#interrupt-cells"
+> +  - interrupt-controller
+> +  - interrupt-map
+> +  - interrupt-map-mask
+> +
+> +allOf:
+> +  - $ref: /schemas/pci/pci-host-bridge.yaml#
+
+--9ilwJNtWwmRhDcGd
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZn2QyQAKCRB4tDGHoIJi
-0qUQAQDNtUooY97mEN8EqltkKioCV7gjVL4rr85IfXPhZYFmRwEAmY62ml6PzPJm
-bGL3KxkjR7YB/4xDoSzdzyr7bFTbbgU=
-=r+Zr
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZn2RwwAKCRB4tDGHoIJi
+0qYAAP4wDJobiNVvDe2lGN5IVp5yaFQBWs3S96o3aWzteZHlxwD/Rdn4PgaiT4i+
+MzHMBW+Uslp5+U4KxXeTXIBrp8WeSwA=
+=b0h0
 -----END PGP SIGNATURE-----
 
---3zxCmR2rZoVz2I/F--
+--9ilwJNtWwmRhDcGd--
 
