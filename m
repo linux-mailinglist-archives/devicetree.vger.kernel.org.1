@@ -1,65 +1,48 @@
-Return-Path: <devicetree+bounces-80719-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80720-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E610791A433
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 12:43:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4AC991A439
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 12:47:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 222131C20C38
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 10:43:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 857C91F22544
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 10:47:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 755F313C80E;
-	Thu, 27 Jun 2024 10:43:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67A0313BC31;
+	Thu, 27 Jun 2024 10:47:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="5hGace9b"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rBq8keNj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1FE01386BF
-	for <devicetree@vger.kernel.org>; Thu, 27 Jun 2024 10:43:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34455208A5;
+	Thu, 27 Jun 2024 10:47:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719485028; cv=none; b=pwBf39ioiW8cE0r1XUwC4RBLor3L3k5ADOIN4rq8MNaXchoeZ3p1P5DsE4IB/57ukkiEbhDDB1kXx7WSv2vTywSrJ926KZsqqYG8YH/CdRMASfN9Y+flZeMecuQi6vGCEnVlqj1HCIFYdO/q8iepXwABDiv+TQQFPldWxXKW52Q=
+	t=1719485232; cv=none; b=KMMo22Mr15X9B0aLM82B16bOwEPewGita122yG+TvZErr8SD3ehoU256r980ngsPj4ZUzcbBF5ZS5QLB7JC1JqeEx9bATAN00ComhAxSBuW95I60MtXonxq4MUzJJO2LOZzdOwgnlhUf9YDWH6VuDfdZK53AdFMwIYCQosplYRk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719485028; c=relaxed/simple;
-	bh=DnYvv7/W+MmS428L7uHoHHUf6/iBPaqGlimELKm8Qwo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=KeAcbdB6fqOTPZupGp4o0kOxBBU84Vh3joxPkN5JseNvE5RMJdxhA8xzIfbgd4UWAL7OuWFpvukhP8FI0vTbys5AiWqZPSF6SVTjCMk3boWDcpglVFW4s0Yz8wGGzjYLn+bc24Q6OX9Coyu/U16pikP4eJmiGZYYxEPfDH0km4I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=5hGace9b; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45R8EbnJ026443;
-	Thu, 27 Jun 2024 12:43:27 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	AJYD8b2/740UOauybVmSxUpYPZbVD+9o8cFwUSbzzlU=; b=5hGace9bZ6Fa+vlb
-	kjWd3lUV3fOYuoCtSxVKUYWhGy6gqV84KswXhn+SUq+W+6LvC19GTSExwtdXAj5d
-	9EpMxXlS/2oxYHvhriRrvfEITTU8VaDG3BwtgfkbPo2D7jm6DvJd+aXMAPCqcq7b
-	ZqYgNnbwwgXSddVE7uAiH2UT8nGjrwj3psqd2+P/4oPqvJfgmJNLf1vqO5m81Pv0
-	nWv+5c5PbRgWtzqQ2FlLmusaSTnSrVjZbOh0M6hDjQ3v5OIMbnvG7zn4wXHL5ySF
-	lwgaakvHHaEyD8x8epqaTgacBx8+fZI5YfZCl1NouMW36GqeaT33+z7qJWRrHXqm
-	cD8QYw==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3ywngdmphy-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 27 Jun 2024 12:43:27 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id F13724002D;
-	Thu, 27 Jun 2024 12:43:23 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 2CBD2216EDA;
-	Thu, 27 Jun 2024 12:42:50 +0200 (CEST)
-Received: from [10.48.86.79] (10.48.86.79) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Thu, 27 Jun
- 2024 12:42:49 +0200
-Message-ID: <63b22300-d43e-41de-a518-3771c1a2386c@foss.st.com>
-Date: Thu, 27 Jun 2024 12:42:48 +0200
+	s=arc-20240116; t=1719485232; c=relaxed/simple;
+	bh=OyBFFVfSvqTHAxuaZCU+Adga5FafxLrEJvMj1Fa5Bqs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=rffv3RORTZX01DkNNPfGtNAFpwfe905JAKSX3HPnd4Z+uR9D+etBXmLVbE3SiwBFhgEal6YJqQzc3HBpzT6Di+B7nbOTMxXu1KevgZ9X1MbZdk2wonOT+QB0jB8u0Xi8N80yatA5ijhDp9HuAhQDLBJpXFVvdBn/af34vN/Q5mM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rBq8keNj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C33DEC2BBFC;
+	Thu, 27 Jun 2024 10:47:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719485231;
+	bh=OyBFFVfSvqTHAxuaZCU+Adga5FafxLrEJvMj1Fa5Bqs=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=rBq8keNjjehT/IysCvMakPHET5AmvZsZ3CVOHhq2eI7rMAobLGugA6z6C6y0yVK9K
+	 9/gRt97YUe49xJnsaVlgwFzrnv3eUJbSje3sl5GKbT0puKyM65JqFnHMVySlwTnHlX
+	 lDawr88q3Vx6lnNDtswZzb/kLpJ6cCjnrSgXYZH8WFpF+NicBdCur2W1TlsOOf5BMl
+	 z1Exmes7+J3Q/8uHIgjJiVaAFSFoiTx2/v0A06OBjMrkG1GBTX6DiPAlR0iTKNMK7i
+	 ksHwtv49KqfYkQAikNUcvS/yWjVeu//qngz7GApzYX46yxHG1bT0D6QEn5iXfIpb5y
+	 JHyaxtRPoPI2g==
+Message-ID: <fd840123-31d5-4472-a755-ef6a47613e5c@kernel.org>
+Date: Thu, 27 Jun 2024 12:47:03 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,79 +50,79 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ARM: dts: stm32mp135f-dk: Document output pins for PWMs
-To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
-        Maxime
- Coquelin <mcoquelin.stm32@gmail.com>
-CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20240613080229.2292413-2-u.kleine-koenig@baylibre.com>
+Subject: Re: [PATCH 0/3] Add syscon-reboot and syscon-poweroff support for
+ gs101/Pixel 6
+To: Peter Griffin <peter.griffin@linaro.org>, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, alim.akhtar@samsung.com,
+ s.nawrocki@samsung.com, cw00.choi@samsung.com, mturquette@baylibre.com,
+ sboyd@kernel.org
+Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ linux-kernel@vger.kernel.org, tudor.ambarus@linaro.org,
+ andre.draszik@linaro.org, kernel-team@android.com, willmcvicker@google.com,
+ devicetree@vger.kernel.org, linux-clk@vger.kernel.org
+References: <20240626194300.302327-1-peter.griffin@linaro.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <20240613080229.2292413-2-u.kleine-koenig@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-27_06,2024-06-27_02,2024-05-17_01
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240626194300.302327-1-peter.griffin@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Uwe
-
-On 6/13/24 10:02, Uwe Kleine-König wrote:
-> To simplify identifying the pins where the PWM output is routed to,
-> add a comment to each PWM device about the respective pin on the
-> expansion connector.
+On 26/06/2024 21:42, Peter Griffin wrote:
+> Hi Krzysztof,
 > 
-> Signed-off-by: Uwe Kleine-König <u.kleine-koenig@baylibre.com>
-> ---
->   arch/arm/boot/dts/st/stm32mp135f-dk.dts | 4 ++++
->   1 file changed, 4 insertions(+)
+> This series adds support for syscon-reboot and syscon-poweroff to gs101/Oriole.
+> It has been tested with reboot and poweroff commands respectively.
 > 
-> diff --git a/arch/arm/boot/dts/st/stm32mp135f-dk.dts b/arch/arm/boot/dts/st/stm32mp135f-dk.dts
-> index 567e53ad285f..f1b50e4c1059 100644
-> --- a/arch/arm/boot/dts/st/stm32mp135f-dk.dts
-> +++ b/arch/arm/boot/dts/st/stm32mp135f-dk.dts
-> @@ -273,6 +273,7 @@ &timers3 {
->   	/delete-property/dma-names;
->   	status = "disabled";
->   	pwm {
-> +		/* PWM output on pin 7 of the expansion connector (CN8.7) using TIM3_CH4 function */
->   		pinctrl-0 = <&pwm3_pins_a>;
->   		pinctrl-1 = <&pwm3_sleep_pins_a>;
->   		pinctrl-names = "default", "sleep";
-> @@ -288,6 +289,7 @@ &timers4 {
->   	/delete-property/dma-names;
->   	status = "disabled";
->   	pwm {
-> +		/* PWM output on pin 31 of the expansion connector (CN8.31) using TIM4_CH2 function */
->   		pinctrl-0 = <&pwm4_pins_a>;
->   		pinctrl-1 = <&pwm4_sleep_pins_a>;
->   		pinctrl-names = "default", "sleep";
-> @@ -303,6 +305,7 @@ &timers8 {
->   	/delete-property/dma-names;
->   	status = "disabled";
->   	pwm {
-> +		/* PWM output on pin 32 of the expansion connector (CN8.32) using TIM8_CH3 function */
->   		pinctrl-0 = <&pwm8_pins_a>;
->   		pinctrl-1 = <&pwm8_sleep_pins_a>;
->   		pinctrl-names = "default", "sleep";
-> @@ -316,6 +319,7 @@ timer@7 {
->   &timers14 {
->   	status = "disabled";
->   	pwm {
-> +		/* PWM output on pin 33 of the expansion connector (CN8.33) using TIM14_CH1 function */
->   		pinctrl-0 = <&pwm14_pins_a>;
->   		pinctrl-1 = <&pwm14_sleep_pins_a>;
->   		pinctrl-names = "default", "sleep";
-> 
-> base-commit: 1613e604df0cd359cf2a7fbd9be7a0bcfacfabd0
+> Note the syscon-reboot/poweroff has *runtime* dependencies on the exynos-pmu
 
-With small modifications discussed: applied on stm32-next.
+How does the runtime dependency manifests? Something get broken if there
+are no dependencies? Or maybe reboot does not work, but probably it did
+not work before, either?
 
-Thanks!
-Alex
+Best regards,
+Krzysztof
+
 
