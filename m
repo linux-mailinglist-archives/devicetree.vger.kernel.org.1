@@ -1,180 +1,258 @@
-Return-Path: <devicetree+bounces-80570-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80571-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A70C7919FEC
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 09:03:52 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37F5A919FF0
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 09:04:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 419CB1F29BE2
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 07:03:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E0224288454
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 07:04:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B70FB4D8A2;
-	Thu, 27 Jun 2024 07:01:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CCCD43AC0;
+	Thu, 27 Jun 2024 07:03:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R/JG439T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E423482C6;
-	Thu, 27 Jun 2024 07:01:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45BB246421;
+	Thu, 27 Jun 2024 07:03:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719471662; cv=none; b=U5oPbLPKK8KL2QO+hW4cBweazKUi7zJky6wW9922JLD7voAeyAY0aI6PViuCB3knV8v1cIu5ijAyRl5ABDNVrWveP0u1kifVesx4z5A8P/3T/4QX65czfkkLUNslOyt9Dl6xtnFpwrDAmJbSllvR4wx36ePR2tixcih5JjjHlC4=
+	t=1719471819; cv=none; b=bkJ9s22w4hXcJgNlvhcqLVdox2hj/ve8Ru/QDH8039gkNieBFPgC4qwSdyUaaT68gvwSOFueiK/Krxf/SMKzyoq78Ktvxwo77iWcThQEnjS+vbkeo+hio5WsGYcOQtlKuTN2ff5kThCN0y7U0SaZh8ETN+XYoM1fYNwOS+7HxZQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719471662; c=relaxed/simple;
-	bh=cQTs5obvIz+zbP/bqzVwSgdCDbVf5EHSOMYOzR4h8PE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=mWou1d6YKgNG4+uG6H1ZRS3Zsb39I0GPZE/wuuYHvjfqWGeeW6upb4OnJ1OIO8A+4u2rO6pd/diEeqG0WS76xUsdm4yQsMORdNvFC0gEMivNZynmVD0am2ylZtO8/PX4FVlaENssXUg2jsw5eezhbjiVEMRs2REJl9ymxyZBitI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-63186c222eeso73141587b3.2;
-        Thu, 27 Jun 2024 00:01:00 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719471659; x=1720076459;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zeSzhEBQcb0vZIx0UKX6NdnnkgY4A2rNCHo2p+fUG8Q=;
-        b=K5OeD9srI3qiYe4PczYE+JG330f5kiaCW/lWygvyecxR8FHGOuLAAzYjPrt6G4reyl
-         TLoCVcaxZAbBxfg3qiTQNQfoCWC9z4Ke0UogSJgvikHpRMfJVOw+ptjD2cbJmhChCikw
-         mPCASyIx5teOZ2XkXQZ24tWNomldLAcB4ePdPHkVlG0p3LXj0WEs9zgoqnYrQIqaO8Li
-         Ue31F+8hBx8vLEWaJoB/C8fp24UfBU4I6cSu0dq1nJ73avX9yjPwl3Dsra3MPzVxY8dm
-         5/1Bi3TrmtogQg6+/bIwo6vD2lsGj0r5zmzIJwkgqB0cj72CMmytVgN0beMRln0Yrr8u
-         wpGg==
-X-Forwarded-Encrypted: i=1; AJvYcCW469Cp6ZiJSj9bfDVIiWid+Rv0mb1wRwgzQm1CHhuvNXoh22Z4/q413juV3U2KlPg7SQhXgPUzBE7klzO8E9VHnJTINqEAPeRlxjLC4Cr2hQBbuNmbAka1H2N7kYwuc6vyBDYMDcYdcOWua59GZxqElr2MNVtDNwT5pUf0s/eGAAM9e8+EDHf+OpBh4eISXPRXck0b7+EePxrr2o5mGo3U/1VzZ+CR
-X-Gm-Message-State: AOJu0YxNpssNGG9h/jFMsjhRWkVsb/vj5SDVcyL/COA8Ech6Q4TsELuA
-	VHb/3SJWouLiPu/yeHWCDb3JJjefpJn9utoBBDMIBsDyBYG7Aq0z7jeQ2/iw
-X-Google-Smtp-Source: AGHT+IFRx25U/w0GJx9IFrQAPU/iDv513wydbb3N9qpcHY26IGrTm54XUw1DHgwJsU45qiwx5e/Wbg==
-X-Received: by 2002:a81:ad22:0:b0:618:8bd6:abc5 with SMTP id 00721157ae682-643ac9150f5mr121054897b3.34.1719471658639;
-        Thu, 27 Jun 2024 00:00:58 -0700 (PDT)
-Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com. [209.85.128.176])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-64978a6f451sm1518687b3.14.2024.06.27.00.00.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Jun 2024 00:00:57 -0700 (PDT)
-Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-63186c222eeso73140737b3.2;
-        Thu, 27 Jun 2024 00:00:57 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCV2baPSPix2RkrnxtfO0oanX9v84/XiEVaewlR2lA6TY4G4Tq+0RH8kpovUAz3K7L1Axe6RjmRxoxOFTF02BgS2EoAoc+20OMvbdTIUa8IUCP7myo2egsbpkuX9jA/0O9BtPK/Lg4ZErdHuC20nddE9n9M9tAAQUEnubSEd37XqNcQapBaLvN+APMQxzouD79q32qrRBUQpWHhe0mE++RF1AvkeluSY
-X-Received: by 2002:a0d:ea0e:0:b0:627:dca5:407b with SMTP id
- 00721157ae682-643aaa8604amr111891557b3.13.1719471657173; Thu, 27 Jun 2024
- 00:00:57 -0700 (PDT)
+	s=arc-20240116; t=1719471819; c=relaxed/simple;
+	bh=edmrATqWfwDQp7TUO5fi4qh+vRbNRuaAI4fOnDLa3vc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=T7zWUoGSNikH7e3xzi9hOrj1FulACXr80GmOQ6sCMK+xYK2tCOKO6qVQ3j/18lR29bMTilWUKWfwaC5GMntuFer2Lmz5QENVDwyOOWEBhjCmfDpCzKd+voNOhI6qKVvy/XA3hbZVgHctLAB/zog9jR3DIMtz26AafmbSMF1u2Mc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R/JG439T; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50C70C2BBFC;
+	Thu, 27 Jun 2024 07:03:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719471818;
+	bh=edmrATqWfwDQp7TUO5fi4qh+vRbNRuaAI4fOnDLa3vc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=R/JG439TiDTUxtn+UkgDW473rP2JUcGU1EZh6BUoofM45pzIfepiPTsA2CHGXSG8e
+	 WWLlfPG+yE5Y5Bzrc8uOUgq2l7UY44+nKCJqkAWS4WgxR4ERDWj2cC4Zfam0UHN8Y0
+	 6im6SMvyH2W9M8YfzZDma/oNOrr9o5sqIN9K6nPjT7cPowhOIrAefZi/OlseLWmnxV
+	 JZtRJvjWgnBRPSKy1PqxflO/b9tyG+LADo838wlzYTmpr+2lbARZ1O0C3NjxKNQZ5z
+	 dNl+4iRK1WLwEvyTQfKt8b5wrSObTCcdI1PR0BKPM/HrNWNQhau28ahbBGTs+SH3To
+	 ytnqvGlqT9tQQ==
+Date: Thu, 27 Jun 2024 09:03:35 +0200
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: linux-pci@vger.kernel.org, ryder.lee@mediatek.com,
+	lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
+	bhelgaas@google.com, linux-mediatek@lists.infradead.org,
+	lorenzo.bianconi83@gmail.com, linux-arm-kernel@lists.infradead.org,
+	krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+	nbd@nbd.name, dd@embedd.com, upstream@airoha.com
+Subject: Re: [PATCH 3/4] PCI: mediatek-gen3: rely on reset_bulk APIs for phy
+ reset lines
+Message-ID: <Zn0Ox8HTfNLQddsR@lore-desk>
+References: <cover.1718980864.git.lorenzo@kernel.org>
+ <e8ab615a56759a4832833211257d83f56bf64303.1718980864.git.lorenzo@kernel.org>
+ <ee7ef59d-a698-41ba-a3a6-1e9e32313e2d@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240610233221.242749-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20240610233221.242749-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <CAMuHMdVOvdU4ajB_f9OtQ8ao0Aodg+Rb9eGTmbNGC8o+aW-hzg@mail.gmail.com> <CA+V-a8sqJBo2Q7+-_AYtFkmzYrxAjvJ7mLXgpLcmZNuGWi0BDA@mail.gmail.com>
-In-Reply-To: <CA+V-a8sqJBo2Q7+-_AYtFkmzYrxAjvJ7mLXgpLcmZNuGWi0BDA@mail.gmail.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 27 Jun 2024 09:00:44 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUryuN9xfYEX_eVGp1hV9zzhw5=bjvJBQb1FwcBcrNs4g@mail.gmail.com>
-Message-ID: <CAMuHMdUryuN9xfYEX_eVGp1hV9zzhw5=bjvJBQb1FwcBcrNs4g@mail.gmail.com>
-Subject: Re: [RFC PATCH v2 3/4] clk: renesas: Add family-specific clock driver
- for RZ/V2H(P)
-To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="sxHPfjnzL9+afZ9G"
+Content-Disposition: inline
+In-Reply-To: <ee7ef59d-a698-41ba-a3a6-1e9e32313e2d@collabora.com>
+
+
+--sxHPfjnzL9+afZ9G
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi Prabhakar,
+> Il 21/06/24 16:48, Lorenzo Bianconi ha scritto:
+> > Use reset_bulk APIs to manage phy reset lines. This is a preliminary
+> > patch in order to add Airoha EN7581 pcie support.
+> >=20
+> > Tested-by: Zhengping Zhang <zhengping.zhang@airoha.com>
+> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> > ---
+> >   drivers/pci/controller/pcie-mediatek-gen3.c | 49 ++++++++++++++++-----
+> >   1 file changed, 37 insertions(+), 12 deletions(-)
+> >=20
+> > diff --git a/drivers/pci/controller/pcie-mediatek-gen3.c b/drivers/pci/=
+controller/pcie-mediatek-gen3.c
+> > index 4859bd875bc4..9842617795a9 100644
+> > --- a/drivers/pci/controller/pcie-mediatek-gen3.c
+> > +++ b/drivers/pci/controller/pcie-mediatek-gen3.c
+> > @@ -100,14 +100,21 @@
+> >   #define PCIE_ATR_TLP_TYPE_MEM		PCIE_ATR_TLP_TYPE(0)
+> >   #define PCIE_ATR_TLP_TYPE_IO		PCIE_ATR_TLP_TYPE(2)
+> > +#define MAX_NUM_PHY_RSTS		1
+> > +
+> >   struct mtk_gen3_pcie;
+> >   /**
+> >    * struct mtk_pcie_soc - differentiate between host generations
+> >    * @power_up: pcie power_up callback
+> > + * @phy_resets: phy reset lines SoC data.
+> >    */
+> >   struct mtk_pcie_soc {
+> >   	int (*power_up)(struct mtk_gen3_pcie *pcie);
+> > +	struct {
+> > +		const char *id[MAX_NUM_PHY_RSTS];
+> > +		int num_rsts;
+>=20
+> Well, it's just two chars after all, so "num_resets" looks better imo.
 
-On Wed, Jun 26, 2024 at 7:36=E2=80=AFPM Lad, Prabhakar
-<prabhakar.csengg@gmail.com> wrote:
-> On Wed, Jun 26, 2024 at 11:07=E2=80=AFAM Geert Uytterhoeven
-> <geert@linux-m68k.org> wrote:
-> > On Tue, Jun 11, 2024 at 1:32=E2=80=AFAM Prabhakar <prabhakar.csengg@gma=
-il.com> wrote:
-> > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > >
-> > > Add family-specific clock driver for RZ/V2H(P) SoCs.
-> > >
-> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com=
->
+ack, fine. Naming is always hard :)
 
-> > > +/**
-> > > + * struct mod_clock - Module clock
-> > > + *
-> > > + * @hw: handle between common and hardware-specific interfaces
-> > > + * @off: register offset
-> > > + * @bit: ON/MON bit
-> > > + * @monoff: monitor register offset
-> > > + * @monbit: montor bit
-> > > + * @priv: CPG private data
-> > > + */
-> > > +struct mod_clock {
-> > > +       struct clk_hw hw;
-> > > +       u8 on_index;
-> > > +       u8 on_bit;
-> > > +       u16 mon_index;
+>=20
+> > +	} phy_resets;
+> >   };
+> >   /**
+> > @@ -128,7 +135,7 @@ struct mtk_msi_set {
+> >    * @base: IO mapped register base
+> >    * @reg_base: physical register base
+> >    * @mac_reset: MAC reset control
+> > - * @phy_reset: PHY reset control
+> > + * @phy_resets: PHY reset controllers
+> >    * @phy: PHY controller block
+> >    * @clks: PCIe clocks
+> >    * @num_clks: PCIe clocks count for this port
+> > @@ -148,7 +155,7 @@ struct mtk_gen3_pcie {
+> >   	void __iomem *base;
+> >   	phys_addr_t reg_base;
+> >   	struct reset_control *mac_reset;
+> > -	struct reset_control *phy_reset;
+> > +	struct reset_control_bulk_data phy_resets[MAX_NUM_PHY_RSTS];
+> >   	struct phy *phy;
+> >   	struct clk_bulk_data *clks;
+> >   	int num_clks;
+> > @@ -790,8 +797,8 @@ static int mtk_pcie_parse_port(struct mtk_gen3_pcie=
+ *pcie)
+> >   {
+> >   	struct device *dev =3D pcie->dev;
+> >   	struct platform_device *pdev =3D to_platform_device(dev);
+> > +	int i, ret, num_rsts =3D pcie->soc->phy_resets.num_rsts; >   	struct =
+resource *regs;
+> > -	int ret;
+> >   	regs =3D platform_get_resource_byname(pdev, IORESOURCE_MEM, "pcie-ma=
+c");
+> >   	if (!regs)
+> > @@ -804,12 +811,13 @@ static int mtk_pcie_parse_port(struct mtk_gen3_pc=
+ie *pcie)
+> >   	pcie->reg_base =3D regs->start;
+> > -	pcie->phy_reset =3D devm_reset_control_get_optional_exclusive(dev, "p=
+hy");
+> > -	if (IS_ERR(pcie->phy_reset)) {
+> > -		ret =3D PTR_ERR(pcie->phy_reset);
+> > -		if (ret !=3D -EPROBE_DEFER)
+> > -			dev_err(dev, "failed to get PHY reset\n");
+> > +	for (i =3D 0; i < num_rsts; i++)
+> > +		pcie->phy_resets[i].id =3D pcie->soc->phy_resets.id[i];
+> > +	ret =3D devm_reset_control_bulk_get_optional_shared(dev, num_rsts,
+> > +							  pcie->phy_resets);
+>=20
+> 92 columns is ok, you can use one line for that.
 
-BTW, why is this u16? The corresponding member in rzv2h_mod_clk is u8.
+I usually prefer to stay below 79 column limit, but I do not have a strong
+opinion about it. I will fix it and even all below.
 
-> > > +       u8 mon_bit;
+Regards,
+Lorenzo
 
-> > > +static int rzv2h_mod_clock_endisable(struct clk_hw *hw, bool enable)
-> > > +{
-> > > +       struct mod_clock *clock =3D to_mod_clock(hw);
-> > > +       unsigned int reg =3D GET_CLK_ON_OFFSET(clock->on_index);
-> > > +       struct rzv2h_cpg_priv *priv =3D clock->priv;
-> > > +       u32 bitmask =3D BIT(clock->on_bit);
-> > > +       struct device *dev =3D priv->dev;
-> > > +       u32 value;
-> > > +       int error;
-> > > +
-> > > +       dev_dbg(dev, "CLK_ON 0x%x/%pC %s\n", reg, hw->clk,
-> > > +               enable ? "ON" : "OFF");
-> > > +
-> > > +       value =3D bitmask << 16;
-> > > +       if (enable)
-> > > +               value |=3D bitmask;
-> > > +
-> > > +       writel(value, priv->base + reg);
-> > > +
-> > > +       if (!enable)
-> > > +               return 0;
-> > > +
-> > > +       reg =3D GET_CLK_MON_OFFSET(clock->mon_index);
-> >
-> > What if a clock does not have a clock monitor bit?
-> > Clock bits in registers CPG_CLKON_22 and later do not have correspondin=
-g
-> > clock monitor bits.
-> >
-> Oops I had missed this case.
->
-> I'll introduce a macro (NO_MON_REG_INDEX) for clocks which do not have
-> monitor support and add a check above to skip clk monitor operation if
-> clock->mon_index =3D=3D NO_MON_REG_INDEX.
->
-> /* monitor index for clocks which do not have CLKMON support */
-> #define NO_MON_REG_INDEX    0xff
->
-> Does this sound OK?
+>=20
+> > +	if (ret) {
+> > +		dev_err(dev, "failed to get PHY bulk reset\n");
+> >   		return ret;
+> >   	}
+> > @@ -846,7 +854,12 @@ static int mtk_pcie_power_up(struct mtk_gen3_pcie =
+*pcie)
+> >   	int err;
+> >   	/* PHY power on and enable pipe clock */
+> > -	reset_control_deassert(pcie->phy_reset);
+> > +	err =3D reset_control_bulk_deassert(pcie->soc->phy_resets.num_rsts,
+> > +					  pcie->phy_resets);
+> > +	if (err) {
+> > +		dev_err(dev, "failed to deassert PHYs\n");
+> > +		return err;
+> > +	}
+> >   	err =3D phy_init(pcie->phy);
+> >   	if (err) {
+> > @@ -882,7 +895,8 @@ static int mtk_pcie_power_up(struct mtk_gen3_pcie *=
+pcie)
+> >   err_phy_on:
+> >   	phy_exit(pcie->phy);
+> >   err_phy_init:
+> > -	reset_control_assert(pcie->phy_reset);
+> > +	reset_control_bulk_assert(pcie->soc->phy_resets.num_rsts,
+> > +				  pcie->phy_resets);
+>=20
+> same here
+>=20
+> >   	return err;
+> >   }
+> > @@ -897,7 +911,8 @@ static void mtk_pcie_power_down(struct mtk_gen3_pci=
+e *pcie)
+> >   	phy_power_off(pcie->phy);
+> >   	phy_exit(pcie->phy);
+> > -	reset_control_assert(pcie->phy_reset);
+> > +	reset_control_bulk_assert(pcie->soc->phy_resets.num_rsts,
+> > +				  pcie->phy_resets);
+>=20
+> ditto
+>=20
+> >   }
+> >   static int mtk_pcie_setup(struct mtk_gen3_pcie *pcie)
+> > @@ -912,7 +927,13 @@ static int mtk_pcie_setup(struct mtk_gen3_pcie *pc=
+ie)
+> >   	 * The controller may have been left out of reset by the bootloader
+> >   	 * so make sure that we get a clean start by asserting resets here.
+> >   	 */
+> > -	reset_control_assert(pcie->phy_reset);
+> > +	reset_control_bulk_deassert(pcie->soc->phy_resets.num_rsts,
+> > +				    pcie->phy_resets);
+>=20
+> and again...
+>=20
+> > +	usleep_range(5000, 10000);
+> > +	reset_control_bulk_assert(pcie->soc->phy_resets.num_rsts,
+> > +				  pcie->phy_resets);
+>=20
+> .... :-)
+>=20
+> Cheers,
+> Angelo
+>=20
+> > +	msleep(100);
+> > +
+> >   	reset_control_assert(pcie->mac_reset);
+> >   	usleep_range(10, 20);
+> > @@ -1090,6 +1111,10 @@ static const struct dev_pm_ops mtk_pcie_pm_ops =
+=3D {
+> >   static const struct mtk_pcie_soc mtk_pcie_soc_mt8192 =3D {
+> >   	.power_up =3D mtk_pcie_power_up,
+> > +	.phy_resets =3D {
+> > +		.id[0] =3D "phy",
+> > +		.num_rsts =3D 1,
+> > +	},
+> >   };
+> >   static const struct of_device_id mtk_pcie_of_match[] =3D {
+>=20
 
-Either that, or make mon_index signed (which would reduce its
-effective range by one bit).
+--sxHPfjnzL9+afZ9G
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Gr{oetje,eeting}s,
+-----BEGIN PGP SIGNATURE-----
 
-                        Geert
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZn0OxwAKCRA6cBh0uS2t
+rBlFAP4i50NyDltoQcWvAv3AXWyJjkeLhRpWwkB/MOAcyLSctwD+KcjoGcHz6lYT
+vGpHOSROki0wf8rwx97eI48jsmQDhA8=
+=1Y6c
+-----END PGP SIGNATURE-----
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+--sxHPfjnzL9+afZ9G--
 
