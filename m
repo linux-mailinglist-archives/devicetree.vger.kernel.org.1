@@ -1,87 +1,168 @@
-Return-Path: <devicetree+bounces-80677-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80679-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00BC991A2D1
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 11:42:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EA7991A2F4
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 11:48:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AABE9284766
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 09:42:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 491E7281BD5
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 09:48:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F20F113AD09;
-	Thu, 27 Jun 2024 09:42:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FA3F7A15B;
+	Thu, 27 Jun 2024 09:48:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="3E0lvpcu"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="fBGiEh9E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FFAB13AD04;
-	Thu, 27 Jun 2024 09:42:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2C8E4D5BD;
+	Thu, 27 Jun 2024 09:48:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719481329; cv=none; b=hpMGZHwwTgf5IDRw3/eWs5lCPI+nr2f2xjKjIdKDHWO/yq6Wp4Q0DvS6+gqG/s8Dc1emoKJVrgH9BYJRiAdneUwIOm6C+aTLYk4ajDmYu5Pt4j0KotW35RX9k2H+5vW48qMGbEYb0du7BUAPbLnQuNzdIYJzJ2Yu5QJd+GV4b70=
+	t=1719481727; cv=none; b=QzJ2XbI/Jjo4ECWyeM7FwtkODgur+JTfbGlajV8x7+uIUBoO9Es+6HTeUclGUcfNA6+fObw17ez4Y2Vly409LNkRjOlUniQAs1ThW7xOaXaUs5HLsdmVt/Z/QAdSLgfP9Nrui+V1cwpW+Vn13tOQsAAvep7/dL8Tl/vSWYdvBsU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719481329; c=relaxed/simple;
-	bh=SHwLopLsuJIvSoRHrncD2LhBaww5jF0LXUvXBdkPh1U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NuK1KVCunaO+5JsKInF5nEuFkn2jIPzcW81bkaLCziRt47CRycAufrMQ0C4mK8o52F0EAZTpd+hfHzIjpPyXLFxvkVQeR7YnKM0UP/nJCaY0m2lU7zVDd7SuSnzfsZPh05FABmMECoa5C5hzzbtDP3yT5kIfvhxtNcrOosUYLDk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=3E0lvpcu; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1719481326;
-	bh=SHwLopLsuJIvSoRHrncD2LhBaww5jF0LXUvXBdkPh1U=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=3E0lvpcuKE3e8QWwPBbxCTgvq4PKGcEBnxcp5hOp+6ajKdBlRNPdDaoS3hHrqhDQ7
-	 nzW/fNe8tpWt/LIzd6UbZ1XNDoA69KO+gO/J9V67FivqK1L36aWuw3VQeRNFRd5dAZ
-	 p8NIH49Zi2UUhYPUSIKOTQtlHvxvrFLeFqHry0gBriPY+9tQKcNEjWoYL2q277JNgA
-	 vDMTW+dkhAS+McRw/WDHQA5VJme406aOrY74HP6hC+Xoxtr9ZA/1Mb8rpIm9Pjlfbo
-	 fTYi4vMa+0Es7GH9cZZsfZkvnn14hBXyPB7ayfQCtoJLLlLNUPedma4V+iNOUp3gs9
-	 X3VFPzVcRWnhg==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 12E3E37821B3;
-	Thu, 27 Jun 2024 09:42:06 +0000 (UTC)
-Message-ID: <512e50d7-50ae-411c-bccd-656a74d740a3@collabora.com>
-Date: Thu, 27 Jun 2024 11:42:05 +0200
+	s=arc-20240116; t=1719481727; c=relaxed/simple;
+	bh=pN6Re2YMPpgDHIrU8wMqUUX+Nho2aAX2ZPo1klf9HU8=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=oTLwld+SfXLpchnKraV2Dk/yVnuS+iNIWHinorg95JJ0Aisjr/MW0OMuNVXV52dRf3DCsqjHVwrNLrJGK+qJyUEtoHmQKaDGjmvKmZ4qlBQ1zBd8iXHvispKeLFhZYmcy0XV++EM7lnZ6kCm4YfRSwR/4Wdnz95prK4aELGF8yw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=fBGiEh9E; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1719481724; x=1751017724;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=pN6Re2YMPpgDHIrU8wMqUUX+Nho2aAX2ZPo1klf9HU8=;
+  b=fBGiEh9Em59jN+zpa9+xl582dhp3szI2T34/UKvmJJaC7SLc6PzUuDzA
+   VOT9COn1ivunHkzzUeqlJhwUBtuCP0c4g62I+Tsn235puhuDs2AnwSS0x
+   GDBZ91bVTUS1OwQyaWlBYEckp3uCG3UmHsFZJ7wrJnkhGqLAz2vMbMQbI
+   Tn+sDotOTIqUdVyWT77djQ/WhqsKeaDN906I34cBk8EJx9PgFfmd85qoT
+   IjUm6bxrQ5unAwLwsP4D/a11ACpQDInsQ1VzPXcpUz4bi4NKbXK2XVnY0
+   bQLtSIxLsJ6MXt6E0dQPUWZhGa67wKfvUS65/Rwj4gqzEojUxLfCSQlV0
+   g==;
+X-CSE-ConnectionGUID: NBd6lt7fQhy2ONg/2E6sVw==
+X-CSE-MsgGUID: Bv/NKQg2Rf+WO9W5JVD94w==
+X-IronPort-AV: E=Sophos;i="6.08,269,1712646000"; 
+   d="asc'?scan'208";a="28542469"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 27 Jun 2024 02:48:39 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Thu, 27 Jun 2024 02:47:56 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex01.mchp-main.com (10.10.85.143)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
+ Transport; Thu, 27 Jun 2024 02:47:53 -0700
+Date: Thu, 27 Jun 2024 10:47:36 +0100
+From: Conor Dooley <conor.dooley@microchip.com>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+CC: Lorenzo Bianconi <lorenzo@kernel.org>, <linux-clk@vger.kernel.org>,
+	<p.zabel@pengutronix.de>, <mturquette@baylibre.com>, <sboyd@kernel.org>,
+	<lorenzo.bianconi83@gmail.com>, <conor@kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<devicetree@vger.kernel.org>, <nbd@nbd.name>, <john@phrozen.org>,
+	<dd@embedd.com>, <catalin.marinas@arm.com>, <will@kernel.org>,
+	<upstream@airoha.com>
+Subject: Re: [PATCH v3 1/4] dt-bindings: clock: airoha: Add reset support to
+ EN7581 clock binding
+Message-ID: <20240627-vending-lisp-4e1cf45e552c@wendy>
+References: <cover.1718282056.git.lorenzo@kernel.org>
+ <ac557b6f4029cb3428d4c0ed1582d0c602481fb6.1718282056.git.lorenzo@kernel.org>
+ <d1021a8d-6e7f-4839-845e-88e2c8673c34@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/4] PCI: mediatek-gen3: Add mtk_gen3_pcie_pdata data
- structure
-To: Lorenzo Bianconi <lorenzo@kernel.org>, linux-pci@vger.kernel.org
-Cc: ryder.lee@mediatek.com, jianjun.wang@mediatek.com, lpieralisi@kernel.org,
- kw@linux.com, robh@kernel.org, bhelgaas@google.com,
- linux-mediatek@lists.infradead.org, lorenzo.bianconi83@gmail.com,
- linux-arm-kernel@lists.infradead.org, krzysztof.kozlowski+dt@linaro.org,
- devicetree@vger.kernel.org, nbd@nbd.name, dd@embedd.com, upstream@airoha.com
-References: <cover.1719475568.git.lorenzo@kernel.org>
- <62c00de24f702260ba0da93008277e95f471a2ab.1719475568.git.lorenzo@kernel.org>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <62c00de24f702260ba0da93008277e95f471a2ab.1719475568.git.lorenzo@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="viUMoJ5rJMO/GO7n"
+Content-Disposition: inline
+In-Reply-To: <d1021a8d-6e7f-4839-845e-88e2c8673c34@collabora.com>
 
-Il 27/06/24 10:12, Lorenzo Bianconi ha scritto:
-> Introduce mtk_gen3_pcie_pdata data structure in order to define
-> multiple callbacks for each supported SoC. This is a preliminary
-> patch to introduce EN7581 PCIe support.
-> 
-> Tested-by: Zhengping Zhang <zhengping.zhang@airoha.com>
-> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+--viUMoJ5rJMO/GO7n
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+On Thu, Jun 27, 2024 at 11:33:47AM +0200, AngeloGioacchino Del Regno wrote:
+> Il 13/06/24 14:47, Lorenzo Bianconi ha scritto:
+> > Introduce reset capability to EN7581 device-tree clock binding
+> > documentation.
+> >=20
+> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> > ---
+> >   .../bindings/clock/airoha,en7523-scu.yaml     | 25 ++++++-
+> >   .../dt-bindings/reset/airoha,en7581-reset.h   | 66 +++++++++++++++++++
+> >   2 files changed, 90 insertions(+), 1 deletion(-)
+> >   create mode 100644 include/dt-bindings/reset/airoha,en7581-reset.h
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/clock/airoha,en7523-scu.=
+yaml b/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
+> > index 3f4266637733..84353fd09428 100644
+> > --- a/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
+> > +++ b/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
+> > @@ -35,7 +35,7 @@ properties:
+> >     reg:
+> >       minItems: 2
+> > -    maxItems: 3
+> > +    maxItems: 4
+> >     "#clock-cells":
+> >       description:
+> > @@ -43,6 +43,10 @@ properties:
+> >         clocks.
+> >       const: 1
+> > +  '#reset-cells':
+> > +    description: ID of the controller reset line
+> > +    const: 1
+> > +
+> >   required:
+> >     - compatible
+> >     - reg
+> > @@ -60,6 +64,8 @@ allOf:
+> >               - description: scu base address
+> >               - description: misc scu base address
+> > +        '#reset-cells': false
+> > +
+> >     - if:
+> >         properties:
+> >           compatible:
+> > @@ -70,6 +76,7 @@ allOf:
+> >             items:
+> >               - description: scu base address
+> >               - description: misc scu base address
+> > +            - description: reset base address
+>=20
+> Are you sure that the indentation is correct? :-)
+>=20
+> After fixing the indentation,
+>=20
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collab=
+ora.com>
+>=20
+> >               - description: pb scu base address
 
+The indentation actually looks okay when I apply this locally, but how is
+it backwards compatible to add this register in the middle of the list??
 
+--viUMoJ5rJMO/GO7n
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZn01OAAKCRB4tDGHoIJi
+0vcdAQCBipoQf2eE2rN/hzS8JbT/6QvauBj5IJM9wOfgfJSwMgD/TJA3+UBXnUsQ
+veYPLRUTwCkZ/3p+b+nwKpEjKhEFrQw=
+=M+Wq
+-----END PGP SIGNATURE-----
+
+--viUMoJ5rJMO/GO7n--
 
