@@ -1,141 +1,158 @@
-Return-Path: <devicetree+bounces-81012-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81013-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FC2191B0B6
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 22:45:21 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9ED9491B0E2
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 22:50:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9F2BBB244BE
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 20:45:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EE78DB25909
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 20:50:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA57F1A2547;
-	Thu, 27 Jun 2024 20:44:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UpJOHbOj"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA3E619AD55;
+	Thu, 27 Jun 2024 20:50:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E55D19F46D;
-	Thu, 27 Jun 2024 20:44:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A90D64EB37;
+	Thu, 27 Jun 2024 20:50:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719521047; cv=none; b=AMjMVQR0Bf6OmgWxmOHKT0t8Cn4JfLSXEf/6ZD901gsNFzWE+bFw60Ej1CpHT/zxdwT6VzCflgR+/bqemINMXyJ5vSEJArDxyWK7/c2vpbFGZE1nlE9t9ZpCy6ME8JtCuXY4YrDXMf8aiDRI1sHI1Z4zlMMOjZDagUSSbMPVHMY=
+	t=1719521429; cv=none; b=Iqs+ShZJWOU9NvMQfiq+KHA4RHwJD4mueQBmqZd2rHUXvf8lUWdOw6utg/uSlgtK45ptngSnx+ac4tRMDEqtcCGYpswRSM9LOwBTU5Ffs2lAFflecldSIwqYrQrCZjBybQfK9R7gOD0QiiKPLG2Rb6pi1j+T4wfTIjlp7P44KZ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719521047; c=relaxed/simple;
-	bh=KRz3Wwjp0DZmm5tZweJgQynTTMc/MpaTAzpm85PtvWM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GY2DkI924kT2zwHGjMkj65ZqGG7jCupoUi81PC58o3SoPdSQYSGh/AMoSdwv68AKGTFdPbm9WLGTkNbRKNC64MNCq7bxJx49OPOpZAe16O5XjA2wJgf2+pIdR/iG9QY5YRCjAosxugbWREzlTsb7KTgBIHT2FO/jiWUEOROc74Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UpJOHbOj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB32EC2BD10;
-	Thu, 27 Jun 2024 20:44:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719521047;
-	bh=KRz3Wwjp0DZmm5tZweJgQynTTMc/MpaTAzpm85PtvWM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UpJOHbOjOekA4y+xp1K8M6hbKgsiq82JNdPsM1YZYZsSF2p0thpeC+584G2HSQJEd
-	 TMkGd7jvx+sPOkbQFTZ7n7JZ1Bh187tVL98dTXRlqxkTTyfLz65ylkybQwX0JwyIoK
-	 TISF2ph1KxNhmSTLt5WXR+yFrpnavdA3ds/+F2V0UI4SXG2jw7pwGqDVFl2ZUKWXZs
-	 f75WfemHe4VELewXS46B2j9eTwSGAfenyysP8TthggnsDMIHbg78BgOqi1v0R+sDBU
-	 LPS9+hFuwZ9XqK+TB7pwUC3fDiPQtYVTvF9t9oynnVlZIQxMyB3qxKLX8Zv6puM+8c
-	 9bN6wjQSvr2fA==
-Date: Thu, 27 Jun 2024 14:44:05 -0600
-From: Rob Herring <robh@kernel.org>
-To: Jiaxun Yang <jiaxun.yang@flygoat.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Lee Jones <lee@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1719521429; c=relaxed/simple;
+	bh=QO4mqrMGBNCou1YAOdGtl/B4FJn9dLGZV/WpWr0/f7Q=;
+	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=elQYTl9nNB8F3bnGs0ypfOdmKRHtdFktYqK91Kv0L88xoWcRXa9GxBcVPya+8r04IgS+DjvomRekcp7jjJ/Y/MjBkX2XwpAT2ipsOtyryDKwiltQZc09FrUl8UMaZ0YOPEc+QZ7SOqe/8HlVCxS5C7KIV+R0zN7IPOd3pOlC2bg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.97.1)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1sMw3u-000000007kJ-0D2F;
+	Thu, 27 Jun 2024 20:49:46 +0000
+Date: Thu, 27 Jun 2024 21:49:38 +0100
+From: Daniel Golle <daniel@makrotopia.org>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	"paulburton@kernel.org" <paulburton@kernel.org>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	Ulf Hansson <ulf.hansson@linaro.org>, Jens Axboe <axboe@kernel.dk>,
+	Hauke Mehrtens <hauke@hauke-m.de>, Felix Fietkau <nbd@nbd.name>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Dave Chinner <dchinner@redhat.com>, Jan Kara <jack@suse.cz>,
+	Christian Brauner <brauner@kernel.org>,
+	Thomas =?iso-8859-1?Q?Wei=DFschuh?= <linux@weissschuh.net>,
+	Al Viro <viro@zeniv.linux.org.uk>,
+	Li Lingfeng <lilingfeng3@huawei.com>,
+	Christian Heusel <christian@heusel.eu>,
+	Min Li <min15.li@samsung.com>, Avri Altman <avri.altman@wdc.com>,
+	Adrian Hunter <adrian.hunter@intel.com>,
+	Hannes Reinecke <hare@suse.de>,
+	Mikko Rapeli <mikko.rapeli@linaro.org>, Yeqi Fu <asuk4.q@gmail.com>,
+	Victor Shih <victor.shih@genesyslogic.com.tw>,
+	Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+	Li Zhijian <lizhijian@fujitsu.com>,
+	"Ricardo B. Marliere" <ricardo@marliere.net>,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	"linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>
-Subject: Re: [PATCH v3 7/8] dt-bindings: mfd: Add img,boston-platform-regs
-Message-ID: <20240627204405.GA479596-robh@kernel.org>
-References: <20240618-boston-syscon-v3-0-c47c06647a26@flygoat.com>
- <20240618-boston-syscon-v3-7-c47c06647a26@flygoat.com>
- <6d3fbd07-72a0-43fd-a1e5-c39e3a833bc1@kernel.org>
- <51557e31-0a59-4278-a8c1-25cf66fa3c3f@app.fastmail.com>
+	linux-mmc@vger.kernel.org, linux-block@vger.kernel.org
+Subject: [PATCH v4 0/4] block: preparations for NVMEM provider
+Message-ID: <cover.1719520771.git.daniel@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <51557e31-0a59-4278-a8c1-25cf66fa3c3f@app.fastmail.com>
 
-On Wed, Jun 19, 2024 at 12:20:54PM +0100, Jiaxun Yang wrote:
-> 
-> 
-> 在2024年6月19日六月 上午10:28，Krzysztof Kozlowski写道：
-> > On 18/06/2024 17:11, Jiaxun Yang wrote:
-> >> This compatible has been used in arch/mips/boot/dts/img/boston.dts
-> >> for a while but never documented properly.
-> >> 
-> >
-> >> diff --git a/Documentation/devicetree/bindings/mfd/img,boston-platform-regs.yaml b/Documentation/devicetree/bindings/mfd/img,boston-platform-regs.yaml
-> >> new file mode 100644
-> >> index 000000000000..79cae87c6758
-> >> --- /dev/null
-> >> +++ b/Documentation/devicetree/bindings/mfd/img,boston-platform-regs.yaml
-> >> @@ -0,0 +1,74 @@
-> >> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> >> +%YAML 1.2
-> >> +---
-> >> +$id: http://devicetree.org/schemas/mfd/img,boston-platform-regs.yaml#
-> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >> +
-> >> +title: Imagination Technologies Boston Platform Registers
-> >> +
-> >> +maintainers:
-> >> +  - Jiaxun Yang <jiaxun.yang@flygoat.com>
-> >> +
-> >> +properties:
-> >> +  compatible:
-> >> +    items:
-> >> +      - const: img,boston-platform-regs
-> >> +      - const: syscon
-> >> +      - const: simple-mfd
-> >
-> >
-> > Fix U-boot to populate devices instead of relying on simple-mfd.
-> 
-> Hi Krzysztof,
-> 
-> I believe U-Boot's implementation is correct. As per simple-mfd binding:
-> 
-> ```
-> simple-mfd" - this signifies that the operating system should
->   consider all subnodes of the MFD device as separate devices akin to how
->   "simple-bus" indicates when to see subnodes as children for a simple
->   memory-mapped bus.
-> ```
-> 
-> This reads to me as "if you want sub nodes to be populated as devices
-> you need this."
-> 
-> In our case there are "clock" and "reset" node sub nodes which should be
-> probed as regular device, so it's true for us.
-> 
-> Linux managed to work without "simple-mfd" only because clock subsystem
-> is bypassing regular OF population process. Semantically we need this.
+On embedded devices using an eMMC it is common that one or more (hw/sw)
+partitions on the eMMC are used to store MAC addresses and Wi-Fi
+calibration EEPROM data.
 
-I'm confused. Neither u-boot nor linux .dts files have 'simple-mfd' for 
-this binding. So why do you need it? Why are we changing a platform 
-that's had 1 dts change since 2018?
+Typically the NVMEM framework is used to have kernel drivers read and
+use binary data from EEPROMs, efuses, flash memory (MTD), ...
 
-If anything, add it in a separate patch and we can discuss it there 
-instead of a conversion.
+Using references to NVMEM bits in Device Tree allows the kernel to
+access and apply e.g. the Ethernet MAC address, which can be a requirement
+for userland to come up (e.g. for nfsroot).
 
-> Besides Linux as upstream of devicetree source had accepted U-Boot
-> only stuff here, such as "bootph-all" property.
+The goal of this series is to prepare the block subsystem to allow for
+the implementation of an NVMEM provider similar to other types of
+non-volatile storage, so the same approach already used for EEPROMs, MTD
+(raw flashes) and UBI-managed NAND can also be used for devices storing
+those bits on an eMMC.
 
-Yes, and there are things we've rejected. See Arm FFA threads if you 
-want to waste a few hours reading.
+Define a device tree schema for block devices and partitions on them,
+which (similar to how it now works also for UBI volumes) can be matched
+by one or more properties.
 
-Rob
+Also add a simple notification API for other subsystems to be notified
+about additions and removals of block devices, which is going to be used
+by the block-backed NVMEM provider.
+
+Overall, this enables uniform handling across practially all flash
+storage types used for this purpose (MTD, UBI, and soon also MMC or and
+in future maybe also other block devices).
+---
+Changes since v3 sent on Jun 26th, addressing comments from Jens Axboe:
+ - improve readability and error-handling in fwnode-matching code
+ - remove forgotten code from earlier development accessing ddev->parent
+ - use '#if defined' instead of '#ifdef' in header
+ - provide inline dummies in case of CONFIG_BLOCK_NOTIFIERS not being set
+
+Changes since v2 sent on May 30th 2024 [1] addressing comments from
+Hauke Mehrtens (https://patchwork.kernel.org/comment/25892133/)
+ - Check length of UUID and PARTNAME.
+ - Remove forgotten fallback to get 'partitions' subnode from parent.
+   It is no longer needed and was a left over from earlier development.
+ - Split series into 3 parts, one for each affected subsystem. This is
+   the first part covering only the changes needed in the block
+   subsystem. The second part adds the actual nvmem provider to
+   drivers/nvmem/, the third part is going to make use of it for MMC
+   block devices and cover changes in drivers/mmc.
+
+Changes since v1 sent on March 21st 2024 [2]:
+ - introduce notifications for block device addition and removal for
+   in-kernel users. This allows the nvmem driver to be built as a module
+   and avoids using class_interface and block subsystem internals as
+   suggested in https://patchwork.kernel.org/comment/25771998/ and
+   https://patchwork.kernel.org/comment/25770441/
+
+This series has previously been submitted as RFC on July 19th 2023[3]
+and most of the basic idea did not change since. Another round of RFC
+was submitted on March 5th 2024[4].
+
+[1]: https://patchwork.kernel.org/project/linux-block/list/?series=857192
+[2]: https://patchwork.kernel.org/project/linux-block/list/?series=837150&archive=both
+[3]: https://patchwork.kernel.org/project/linux-block/list/?series=767565
+[4]: https://patchwork.kernel.org/project/linux-block/list/?series=832705
+
+
+Daniel Golle (4):
+  dt-bindings: block: add basic bindings for block devices
+  block: partitions: populate fwnode
+  block: add support for notifications
+  block: add new genhd flag GENHD_FL_NVMEM
+
+ .../bindings/block/block-device.yaml          | 22 +++++
+ .../devicetree/bindings/block/partition.yaml  | 51 +++++++++++
+ .../devicetree/bindings/block/partitions.yaml | 20 +++++
+ block/Kconfig                                 |  6 ++
+ block/Makefile                                |  1 +
+ block/blk-notify.c                            | 87 +++++++++++++++++++
+ block/partitions/core.c                       | 70 +++++++++++++++
+ include/linux/blkdev.h                        | 13 +++
+ 8 files changed, 270 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/block/block-device.yaml
+ create mode 100644 Documentation/devicetree/bindings/block/partition.yaml
+ create mode 100644 Documentation/devicetree/bindings/block/partitions.yaml
+ create mode 100644 block/blk-notify.c
+
+-- 
+2.45.2
 
