@@ -1,89 +1,66 @@
-Return-Path: <devicetree+bounces-80616-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80617-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEE4991A10B
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 10:00:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C79991A12E
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 10:13:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 991212836DF
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 08:00:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E82E81F22726
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 08:12:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49C5974BED;
-	Thu, 27 Jun 2024 08:00:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB7DB5FEE6;
+	Thu, 27 Jun 2024 08:12:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bade.nz header.i=@bade.nz header.b="O+0Q5dDW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XuzT0Kor"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f49.google.com (mail-oo1-f49.google.com [209.85.161.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D48E288BD
-	for <devicetree@vger.kernel.org>; Thu, 27 Jun 2024 08:00:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C22CF4D8C8;
+	Thu, 27 Jun 2024 08:12:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719475203; cv=none; b=Ewmp/JFCeqiU2Wgl2V1f0LLEUV0FRBXzoFrC4xZGBFZ3nmfNpEakizqdSPMI9ykIwzvDwRX4AiQrDYhcIWbH6Hk8VDQfBe2+Y2Obx9LMl9TjtH7qCvP+5Nj5mmbJmb1CEET4TXWHeK4lur3uepys1ZTc7poJBSax9JLXr38VXNg=
+	t=1719475976; cv=none; b=HhRnY+9HamZ4f+9hLdI0JKszfgnmRxPbO1aOvJFNE4BH5Pt9+TunfvIWqJODhg6FdFoiUz9CKuyyKXGw0jwEyLy3UE7mN8c0yvyt+TJ5yOJTJJP8Fj0cH7xjBfSgH1vjujQ9jLWTffWwNjQcDM/eJpb4nZDh9ODlt2Ygxhobb9k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719475203; c=relaxed/simple;
-	bh=ApUY0Y6md/Cs42Qw8WaDkAdcw5VpPHX7kJHHeSU4Fjc=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=ksln2ozh+3gWq3H/GuNaXN0I9GTM+NGkY/k382qNmI2t+hcFl2fo85h+Q3SJyaaH4w0a7wqvKXrVSW6eq2H9MmQraoKOWcFLGbUMpAjEr5QK1WTq+fOLr7tOFfENJl32Du7VhdO4UDo3K9gU+icaCHAV6uKKkaCkcTneSL6wvqk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bade.nz; spf=pass smtp.mailfrom=leithalweapon.geek.nz; dkim=pass (2048-bit key) header.d=bade.nz header.i=@bade.nz header.b=O+0Q5dDW; arc=none smtp.client-ip=209.85.161.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bade.nz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=leithalweapon.geek.nz
-Received: by mail-oo1-f49.google.com with SMTP id 006d021491bc7-5b9776123a3so3401334eaf.0
-        for <devicetree@vger.kernel.org>; Thu, 27 Jun 2024 01:00:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bade.nz; s=google; t=1719475201; x=1720080001; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HLrEboALRZdxdEXYrbHRXF19aT/W7AkEgiNEUpYGTaU=;
-        b=O+0Q5dDWOPnwTOIJmxgL+T2jZ9eNCN3ejnJ8SFp2B22g5rquqbTssnaKoJU1uOgix3
-         JLtCH3T9lGarqDATUX71Pm8eDwSNWiEMEpnk+P1+7ctigu1CpRiJHvCQqNbijf1q9G5N
-         uU2chSy5RLAg/620IyUOpThRvzrl1f6y7l/3YAGJA2CLeprx+8CL1gQIf1/UpMha3/pc
-         BO2au/P1WhFjDiIpuht49SD0jEYAEdURhYFQQ6IVYY/1Avf0G2FgLlpy7EaxXBxTiIyi
-         D8+S9m+13oxEtHCwOzSfc3gTTDrALwO72bBz2UtCuiioqwg1zg7ct3CIDwwWMQ7b+WWo
-         ypWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719475201; x=1720080001;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=HLrEboALRZdxdEXYrbHRXF19aT/W7AkEgiNEUpYGTaU=;
-        b=i8a0+z1qUljbr/dZPMBqqwLTDUJbCIycQ3R0ySYizDeWHPMd/JKNJCMM7FyOh675xg
-         Ke1Eatj/8lP+TFYn9CVLfIEAl06OOyp/ytE2AGfptL1UUqgeDO4tGM2+rkOrKNldP5hJ
-         NUywpTuHJ0RC+q5+MWHCZlzdmcj3TBHb52VYutW8p+u/0uWA6237GCrRv3Bs6/QgwAxB
-         MWs5/qcn0f4thW1uY+yMpBTHS7LdHs3wFGrIH4UDwddCAG1UYWi49KBZD07wEK9JEVI3
-         RF4+A3rbIHO9MJ5HxgmQE8RyYfdo8hs6zehAl8FpEVf6ClWb9hp/aNhBpMWrCDbBdqf+
-         qiwA==
-X-Gm-Message-State: AOJu0YzqPefGsOGgKccyqmlBkBGZOz3/h+VAYn5dLN4W3O6PE9Uu6RFI
-	GYjaF7fWlzDGQO8lpOr9BPoMmd4U59JB2L+v3WfW8Qm8gN2egpJV9xKWRqlQBA==
-X-Google-Smtp-Source: AGHT+IFkN0ubSaKPqjXkvWd5Aw4rBqZo9lhwryAwfy3XDy7tr4/U2Sfjt2ekvvF7l3gOffo10mAi1w==
-X-Received: by 2002:a05:6358:7e47:b0:1a6:7af3:22ce with SMTP id e5c5f4694b2df-1a67af32e24mr94322855d.2.1719475200751;
-        Thu, 27 Jun 2024 01:00:00 -0700 (PDT)
-Received: from localhost.localdomain ([2403:5816:cd6c:0:6d45:ae2f:1ead:bd58])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1faac9c4cf4sm7181895ad.290.2024.06.27.00.59.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 Jun 2024 01:00:00 -0700 (PDT)
-From: Leith Bade <leith@bade.nz>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com,
-	frank-w@public-files.de
-Cc: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
+	s=arc-20240116; t=1719475976; c=relaxed/simple;
+	bh=amUTYbcz2Egm/QZ6bc3w45w4qx9G/lTJ+yraUnLwzCA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=NZnEksUONMSnLnqyxNclCHyD5hZ61oba5eG85bIw55UWpCvs0dlJOnYmxOGONAMMFX76xLBKPD8U3bzmRMpUFY7OStp34K5N1EM7EYjVIWy+8HJArhRWll5bzPJ/CMiIJZKWvj5dmuCykZi9d9BaU9CEbkNzeFKEQZ+/NBjOFzY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XuzT0Kor; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8BDDC2BBFC;
+	Thu, 27 Jun 2024 08:12:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719475976;
+	bh=amUTYbcz2Egm/QZ6bc3w45w4qx9G/lTJ+yraUnLwzCA=;
+	h=From:To:Cc:Subject:Date:From;
+	b=XuzT0KorWcHa0DrTvhfubLEJ7/cSfgzFRxsHSk3Iu4zDuijlZ5iExFu0k0fmFbN6Q
+	 CBlZquTI16hu0vh8w9Yowvx1YmCCPMD8W2q2LBMPaLCaJOANPhbg3RhYh/+/C5/slP
+	 wWUrFo0uXnFXfqzoJm9T+Q573l+ldWdXeHRJDbybJIA2pz38/B4xcOxDsKQpX8woH+
+	 uQRcbq15Ey71a9sxXg7pMw+VSdNyyyHUzqAxMP6fnoV7L/HDhMXumpYHRO9ULUJ6Gf
+	 qE2po5Qb7QlRADYyZSwUurmHwDJ46NnTOtSEN7Q1zRNR1XABpEZmj3jmb07P9qh/r9
+	 raUO31zezUkxA==
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: linux-pci@vger.kernel.org
+Cc: ryder.lee@mediatek.com,
+	jianjun.wang@mediatek.com,
+	lpieralisi@kernel.org,
+	kw@linux.com,
+	robh@kernel.org,
+	bhelgaas@google.com,
 	linux-mediatek@lists.infradead.org,
-	didi.debian@cknow.org,
-	Leith Bade <leith@bade.nz>
-Subject: [PATCH 4/4] arm64: dts: mediatek: mt7986: add missing UART1 CTS/RTS pins in BPI-R3
-Date: Thu, 27 Jun 2024 17:58:56 +1000
-Message-Id: <20240627075856.2314804-5-leith@bade.nz>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240627075856.2314804-1-leith@bade.nz>
-References: <20240627075856.2314804-1-leith@bade.nz>
+	lorenzo.bianconi83@gmail.com,
+	linux-arm-kernel@lists.infradead.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	devicetree@vger.kernel.org,
+	nbd@nbd.name,
+	dd@embedd.com,
+	upstream@airoha.com,
+	angelogioacchino.delregno@collabora.com
+Subject: [PATCH v2 0/4] Add Airoha EN7581 PCIe support
+Date: Thu, 27 Jun 2024 10:12:10 +0200
+Message-ID: <cover.1719475568.git.lorenzo@kernel.org>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -92,38 +69,26 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The current definition of the uart1_pins pin group does not include the
-CTS and RTS pins that are available on header CON1.
+Introduce support for EN7581 SoC to mediatek-gen3 PCIe driver
 
-In the public schematic for the BPI-R3 (titled "BPI-R3-MT7986A",
-revision "V1.1", sheet 4), the UART1_RTS and UART1_CTS pins are connected
-via nets to the connector CON1 (sheet 14) UART0-RTS and UART0-CTS pins.
-The datasheet does not show these nets as connected to anything else.
+Changes since v1:
+- remove register magic values
+- remove delay magic values
+- cosmetics
+- fix dts binding for clock/reset
 
-These pins can be configured for either UART1 or as a GPIO, with no other
-alternate usage listed in the pinctrl driver. By changing the pin group
-definition from uart1_rx_tx to uart1 the additional RTS and CTS pins are
-included.
+Lorenzo Bianconi (4):
+  dt-bindings: PCI: mediatek-gen3: add support for Airoha EN7581
+  PCI: mediatek-gen3: Add mtk_gen3_pcie_pdata data structure
+  PCI: mediatek-gen3: Rely on reset_bulk APIs for PHY reset lines
+  PCI: mediatek-gen3: Add Airoha EN7581 support
 
-Signed-off-by: Leith Bade <leith@bade.nz>
----
- arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../bindings/pci/mediatek-pcie-gen3.yaml      |  68 +++++++-
+ drivers/pci/controller/Kconfig                |   2 +-
+ drivers/pci/controller/pcie-mediatek-gen3.c   | 163 ++++++++++++++++--
+ 3 files changed, 212 insertions(+), 21 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts
-index 54087001cc8c..48bd1e04963c 100644
---- a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts
-@@ -349,7 +349,7 @@ mux {
- 	uart1_pins: uart1-pins {
- 		mux {
- 			function = "uart";
--			groups = "uart1_rx_tx";
-+			groups = "uart1";
- 		};
- 	};
- 
 -- 
-2.25.1
+2.45.2
 
 
