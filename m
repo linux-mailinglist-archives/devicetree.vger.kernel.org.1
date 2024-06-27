@@ -1,161 +1,82 @@
-Return-Path: <devicetree+bounces-80605-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80607-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14AED91A0DA
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 09:52:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2889291A0E1
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 09:53:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 72A9DB22816
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 07:52:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5892C1C214D7
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 07:53:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84269757FC;
-	Thu, 27 Jun 2024 07:52:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92F457172F;
+	Thu, 27 Jun 2024 07:52:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="USSkShYw"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="SmeuuByr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB5636F2F4
-	for <devicetree@vger.kernel.org>; Thu, 27 Jun 2024 07:52:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.16])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9478C7BB14;
+	Thu, 27 Jun 2024 07:52:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719474738; cv=none; b=t5dIOPhjx1oICJUvebJkO/ogaJ8hF6XMDjk7ApaqFVinCj1QtuKOJAEhfUxgjpfLqUkTt8lQFHSeOktha66JQpGj8gyOa7qcgJdtTSf/Xlxt/C0lqx8DUtJOdePgZw68rWCrZNX40c8bYk0J56tulNpbumsDXiurCrFXTScddyQ=
+	t=1719474776; cv=none; b=FZS3YVaDsbfP6WRkqmJOKZvLXkXp0EzxoZVhKqiPn9c/D6oFKcfwesF6ZPL54xlrbnfZ73mkybHPnvlqnIFmF4RMzM3IMwUh6bs4z+AkLzFw1ls0YfdUvzCIPu8tBUYZ28ycxGSAxvSC90FP2GnU8WWwz02j/vU0IjKJhpal7mU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719474738; c=relaxed/simple;
-	bh=CPYR1hPVE1flFMf8KEd5p3bzirmrED+VzmsLSEVpaMg=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=ZNY4K2e2CgYa0nWjGglsCpyljsOLZ402S4w2T8aJo8HGV9OV4pEI8lmvF/k75Xlqf7yEby3mIEFbvo5toUlnLuB771sALVrUjd6makl6Sb/PGUCGZ0PoMo/7AaVtX/CVJQMxb0y3JkRRufgmSKcwnEZqcyN6Khx61Y2khmIiarM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=USSkShYw; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-424f2b73629so17021585e9.2
-        for <devicetree@vger.kernel.org>; Thu, 27 Jun 2024 00:52:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719474735; x=1720079535; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=XBCMffxn4LAJXAIWptmBWF5BGGjLSTVC76JfyXsytmc=;
-        b=USSkShYwiuTuFhaE2eHRdkyItogmBk6sPyMx6ejYzbQKh8pFsfJAVFbHZe4i5XwRgB
-         +9JaSySgCkvkWVZzhJiDF93VeKK/dYzJ7dI2oh+/9G/mc4+f2BjnWOj28d3bnIfURx+v
-         nENDdldtKbM73d6pKrJ0SGn64dwqR8hHNwc/KtnleHzZzOYCzo5ynE9XWB97BdDe0qWp
-         rTkOlknopHqppa6yZjwE6SdlknHY7jWWnWcuS0NwdCXOjRG4yCRtZ9OGVEj16bIEn1Jw
-         s1Wx9yCWC15imDgTHM/iLwDsHETJ7QZ/CKZDktTkEN6GXysdZy8WhWp60lPjAJHzVLY/
-         6qUQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719474735; x=1720079535;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=XBCMffxn4LAJXAIWptmBWF5BGGjLSTVC76JfyXsytmc=;
-        b=ZA+fVn8ZQNPsGtjpP2uM7M4QJptL05oBn34k5FOH6MUfpgL/dr2DmQ9fjmIYKYMiMC
-         A3/GQdXIdrdzzPw5Y1lIFl/L/GXrNby6Bw5yxINuzRN0/ZuoJ2xX/WaIwlK9V/NBtAl7
-         5tE4ahUQ7CGnkTzgLFiN4L/1zr1uNrOJS28B85v2Haw0S6Wf8F+u28t1EyYoT68OXwb8
-         auU8bUDn5O7ZCx2MOTTbT6hjq2BCzB2C/lMTfcafrozj5sn4Od+iVJeJ6aVSfPM6duEm
-         wF07LQ2P4t3lk5M+pLs+Xa1GCB4ayfNnFKYTWeJrzelXEMGqwRrkLKBazekSNxXIlho9
-         zbSw==
-X-Forwarded-Encrypted: i=1; AJvYcCUqaZW+cSPbLD/nqLJAtsOiMtynYm5l72OYG6HcktUzDov8Sa2WKQ1F1FJJ3+zUD6oxMr/wYG3OWS4sSRWlHCrVbpIZuxq4YPjc9Q==
-X-Gm-Message-State: AOJu0Yww36auy1yzw2Q/08XUD1zuWVrfh+RYKJJZ++z/LIeWnPChwcDe
-	dEAPWok6T+sODViipQ6eVG+WXUANYqaBiqkHYXQQ7EMoFeeLVlTIz7Lg9Pp6zqQ=
-X-Google-Smtp-Source: AGHT+IEjUL+j70G/hi3yuY2Bt9Gi9CL/4CNNycH9kWTRZ1nc6f9jw44NE1DzWx8PIaKqbU2R2xAN0Q==
-X-Received: by 2002:a05:600c:681:b0:424:a578:fcc with SMTP id 5b1f17b1804b1-424a5781102mr48497425e9.7.1719474734436;
-        Thu, 27 Jun 2024 00:52:14 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:feeb:faed:66fa:9e6a? ([2a01:e0a:982:cbb0:feeb:faed:66fa:9e6a])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-424c8266a37sm52129085e9.19.2024.06.27.00.52.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Jun 2024 00:52:13 -0700 (PDT)
-Message-ID: <02a58f83-2340-4004-9412-692967639908@linaro.org>
-Date: Thu, 27 Jun 2024 09:52:12 +0200
+	s=arc-20240116; t=1719474776; c=relaxed/simple;
+	bh=GYU8HzIdO9hP2JGYf0FV96iOrnHzrbnLscaU/Hs1bXg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dw6AgCr3ME9btnj0n5Qq/zS/1Xdot8rR4IfEBmEmisIuTrvcYXUY/P7K4uQwj/MUPEfYlCBbdKYO9KtZK2iSdSED8oUr/DGTFZ1fWtauZTr0YQDPJViQB9eX6HHbDnE5y3jaPLxUmOhRQi5HJn4ekM3wgbSKlqEbv8Nj/vByLBQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=SmeuuByr; arc=none smtp.client-ip=220.197.32.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=QXWOD1o91C9uwUf55ogz7RKsgNBQyzukXCYzNlkSrzY=;
+	b=SmeuuByrA3RzzJp+BSKvb71mCndt/XQo1w/fuzaVqXpXv1Rft3U1xsVsswJ4cw
+	njUHA39THvCIDQLa5znKVjmYjJ+7EOLWDyStZFgJS/ZVDx7Kd0pf+BnFSYKznvJK
+	54xEalcn0jl7PJ79ZMXqU7eJ8DB8wBnlKHEOemYi/PojE=
+Received: from dragon (unknown [114.218.218.47])
+	by gzsmtp1 (Coremail) with SMTP id Mc8vCgD3H44vGn1m8t4ZAA--.53094S3;
+	Thu, 27 Jun 2024 15:52:17 +0800 (CST)
+Date: Thu, 27 Jun 2024 15:52:15 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Adam Ford <aford173@gmail.com>
+Cc: linux-arm-kernel@lists.infradead.org, aford@beaconembedded.com,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: imx8mp: Fix pgc vpu locations
+Message-ID: <Zn0aL5jz8162ImRr@dragon>
+References: <20240619101045.6317-1-aford173@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v8 2/2] arm64: dts: amlogic: Add Amlogic S4 PWM
-To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>
-Cc: kelvin.zhang@amlogic.com,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-pwm@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- Junyi Zhao <junyi.zhao@amlogic.com>, George Stark <gnstark@salutedevices.com>
-References: <20240613-s4-pwm-v8-0-b5bd0a768282@amlogic.com>
- <20240613-s4-pwm-v8-2-b5bd0a768282@amlogic.com>
- <a5ucz5r4eb2z5uzi4zaunpqhym5b6l37qszozhv4igcuduatnp@lzzk4tvil3yd>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <a5ucz5r4eb2z5uzi4zaunpqhym5b6l37qszozhv4igcuduatnp@lzzk4tvil3yd>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240619101045.6317-1-aford173@gmail.com>
+X-CM-TRANSID:Mc8vCgD3H44vGn1m8t4ZAA--.53094S3
+X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxU-o7KDUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiEhELZWZv-cxPuAAAsi
 
-Hi Uwe,
+On Wed, Jun 19, 2024 at 05:10:44AM -0500, Adam Ford wrote:
+> The various pgv_vpu nodes have a mismatch between the value after
+> the @ symbol and what is referenced by 'reg' so reorder the nodes
+> to align.
+> 
+> Fixes: df680992dd62 ("arm64: dts: imx8mp: add vpu pgc nodes")
+> Suggested-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Signed-off-by: Adam Ford <aford173@gmail.com>
 
-On 27/06/2024 07:50, Uwe Kleine-König wrote:
-> Hello,
-> 
-> On Thu, Jun 13, 2024 at 07:46:36PM +0800, Kelvin Zhang via B4 Relay wrote:
->> From: Junyi Zhao <junyi.zhao@amlogic.com>
->>
->> Add device nodes for PWM_AB, PWM_CD, PWM_EF, PWM_GH and PWM_IJ
->> along with GPIO PIN configs of each channel.
->>
->> Signed-off-by: Junyi Zhao <junyi.zhao@amlogic.com>
->> Reviewed-by: George Stark <gnstark@salutedevices.com>
->> Signed-off-by: Kelvin Zhang <kelvin.zhang@amlogic.com>
->> ---
->>   arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 199 ++++++++++++++++++++++++++++++
->>   1 file changed, 199 insertions(+)
-> 
-> What is the merge plan for this patch? Technically it's independent from
-> driver support (i.e. patch #1 in this series). The obvious options are:
-> 
->   - I pick it up together with patch #1 via pwm
->   - You pick it up via arm-soc
-> 
-> Can I please get an Ack iff you prefer the first option?
-
-I can take but I was waiting for the driver part to be merged.
-
-Anyway, I'll take, something less on the list!
-
-Neil
-> 
-> Best regards
-> Uwe
+Applied, thanks!
 
 
