@@ -1,80 +1,167 @@
-Return-Path: <devicetree+bounces-80687-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80688-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 795EA91A361
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 12:03:25 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D398A91A365
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 12:03:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 219751F2295D
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 10:03:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 67C99B20D46
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 10:03:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4909B13B288;
-	Thu, 27 Jun 2024 10:03:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76C7713C3D2;
+	Thu, 27 Jun 2024 10:03:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="LYzeAr9y"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="ggGaWUs/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.15])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B9DF4D8C3;
-	Thu, 27 Jun 2024 10:03:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.15
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0A924D8C3;
+	Thu, 27 Jun 2024 10:03:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719482599; cv=none; b=lPVKU8+G1yXSMI9Xz0SgzdVzcG7YSas8510U9ymJuvz2budBlbpWHlYP4jabA61VqMNHe0Zy7dOJjgVDR99ZdGYW5kdnUhtE6dfMCHmGf9erYevCk0iQT/tOJwj3PPTAinBloCu3JNDw74h7tOCOq83GQzFKzIWnpiXNyKSvuKg=
+	t=1719482623; cv=none; b=Jh9V2+c9QmCcktRH+YKSOt+MrI1zNq1xlPKz7jOoKIdY9QRtdCwMicPHfmh7KdQadvvIocTvO+AoTllCMr3M+DC4yS/Hj4cvxcRdI6LxYthPbHpH+c7sPSnI6FNZwHJAyxAGCh3cCxGyUJOXfZBMDTQDLwaKx+xkSaZmKVfZJy8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719482599; c=relaxed/simple;
-	bh=sd/Bmg+cTQfe4mxJdiKI08z/ZTvjG8ksqd41kgQzsqg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oP4z7h+ah9493YkQIjzRqWyk4ftEly8Kshta9RCW+Jw67/q+0krlR9Z+b+hQEzt95+2vhbOITU6cWNwkHN+A5azTJE7aV65xzDzbWCWtexRrSrf7b+Z2cu8qeISYUPVxA3kM1GEgJI1tFw+8P+0beCGYy01W57YpHIK0ZHeSh30=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=LYzeAr9y; arc=none smtp.client-ip=1.95.21.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=hhsRFv2EXZuOOhQ6fkf9E6H06LwU61sWInvDM5ISGq4=;
-	b=LYzeAr9yuaR75d71phnr/Hd8NxQSJXVokySJobyKIyykoyN5ZO0EqJ1NIb9q3b
-	S9A+FnEP9FgDxUAIy8jlJgzn0DpvyMz9/a3kmwVUKKuzUOFu4lp0Qh0WstMrIyg9
-	CCiWKRJGyGSh4ONv+MFw9J6uhECAD3gcVijVnUQZPKB5g=
-Received: from dragon (unknown [114.218.218.47])
-	by gzsmtp3 (Coremail) with SMTP id M88vCgDXX_GwOH1mCz4aAA--.26752S3;
-	Thu, 27 Jun 2024 18:02:26 +0800 (CST)
-Date: Thu, 27 Jun 2024 18:02:24 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	"open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <imx@lists.linux.dev>,
-	"moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
-	open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 1/4] arm64: dts: imx95: add '#address-cells' and
- '#size-cells' for all i2c
-Message-ID: <Zn04sE+HzkmSJr2C@dragon>
-References: <20240620161622.3986692-1-Frank.Li@nxp.com>
+	s=arc-20240116; t=1719482623; c=relaxed/simple;
+	bh=ZCTzlpwLsWbTLztEOQEh4XVwMCM6VQF1qZuE0NLxfhE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=m/S3//614/ymL2NEH7XzZHBnrPMMkmr1ONBYO2xVC3uRAgKr62YjZUxEPwzUOEfNMrvJndMuRiwFf6dqHt/MuJHFbv1WdW8Kd4aPbUAISWOL3yqxEp7aUbEdEXa53SJi5u7VC8PppR1ZNLUIt/glR5HkwxMLr+KVplQXA94Q9Fk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=ggGaWUs/; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1719482619;
+	bh=ZCTzlpwLsWbTLztEOQEh4XVwMCM6VQF1qZuE0NLxfhE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ggGaWUs/rmGhBU9s8SMuOMuju8gA2dG+j5aPFpDSYcSu08CDg56hKXiKOCrVB9JSK
+	 0UmEMDDyiX/Y2exM7GBGdWg6tmTwOXUqf0tDmbKE9k07jWdvRkeDXnHOicH03ciiQs
+	 0IP/dARslsQaMwJ8hwBDgEs6gcorsIAjHcyTJE1NyPiBvURc2dbwJKwipbExB7/8QL
+	 /jDRAEIzuuwPzeKlO2Rv+oP1z2h4ngyedmU/rO5+hEHomwPSMvZrf6uOG0C++yf5ov
+	 ZHm6o3Z2H5nhGqs3rEV9nj1sXkHxnd3iuA8YA7IxmAyfbHsS9SOOFe0/lsgk0c3jwu
+	 yvDulUL//grjA==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id E54963782181;
+	Thu, 27 Jun 2024 10:03:38 +0000 (UTC)
+Message-ID: <0ae5ff1c-1abe-4b45-a1dd-4599a867f8c8@collabora.com>
+Date: Thu, 27 Jun 2024 12:03:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240620161622.3986692-1-Frank.Li@nxp.com>
-X-CM-TRANSID:M88vCgDXX_GwOH1mCz4aAA--.26752S3
-X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUV8u4UUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiAhILZWZv-c1HrgAAsu
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/4] dt-bindings: clock: airoha: Add reset support to
+ EN7581 clock binding
+To: Conor Dooley <conor.dooley@microchip.com>
+Cc: Lorenzo Bianconi <lorenzo@kernel.org>, linux-clk@vger.kernel.org,
+ p.zabel@pengutronix.de, mturquette@baylibre.com, sboyd@kernel.org,
+ lorenzo.bianconi83@gmail.com, conor@kernel.org,
+ linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, nbd@nbd.name, john@phrozen.org, dd@embedd.com,
+ catalin.marinas@arm.com, will@kernel.org, upstream@airoha.com
+References: <cover.1718282056.git.lorenzo@kernel.org>
+ <ac557b6f4029cb3428d4c0ed1582d0c602481fb6.1718282056.git.lorenzo@kernel.org>
+ <d1021a8d-6e7f-4839-845e-88e2c8673c34@collabora.com>
+ <20240627-vending-lisp-4e1cf45e552c@wendy>
+ <b5bb67e8-ebd6-43db-b9d6-2aae38f2a08d@collabora.com>
+ <20240627-undying-overcoat-192e5aa20c55@wendy>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20240627-undying-overcoat-192e5aa20c55@wendy>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, Jun 20, 2024 at 12:16:19PM -0400, Frank Li wrote:
-> Add '#address-cells' and '#size-cells' for all I2C to avoid duplicate these
-> at every board files.
+Il 27/06/24 11:57, Conor Dooley ha scritto:
+> On Thu, Jun 27, 2024 at 11:53:00AM +0200, AngeloGioacchino Del Regno wrote:
+>> Il 27/06/24 11:47, Conor Dooley ha scritto:
+>>> On Thu, Jun 27, 2024 at 11:33:47AM +0200, AngeloGioacchino Del Regno wrote:
+>>>> Il 13/06/24 14:47, Lorenzo Bianconi ha scritto:
+>>>>> Introduce reset capability to EN7581 device-tree clock binding
+>>>>> documentation.
+>>>>>
+>>>>> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+>>>>> ---
+>>>>>     .../bindings/clock/airoha,en7523-scu.yaml     | 25 ++++++-
+>>>>>     .../dt-bindings/reset/airoha,en7581-reset.h   | 66 +++++++++++++++++++
+>>>>>     2 files changed, 90 insertions(+), 1 deletion(-)
+>>>>>     create mode 100644 include/dt-bindings/reset/airoha,en7581-reset.h
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml b/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
+>>>>> index 3f4266637733..84353fd09428 100644
+>>>>> --- a/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
+>>>>> @@ -35,7 +35,7 @@ properties:
+>>>>>       reg:
+>>>>>         minItems: 2
+>>>>> -    maxItems: 3
+>>>>> +    maxItems: 4
+>>>>>       "#clock-cells":
+>>>>>         description:
+>>>>> @@ -43,6 +43,10 @@ properties:
+>>>>>           clocks.
+>>>>>         const: 1
+>>>>> +  '#reset-cells':
+>>>>> +    description: ID of the controller reset line
+>>>>> +    const: 1
+>>>>> +
+>>>>>     required:
+>>>>>       - compatible
+>>>>>       - reg
+>>>>> @@ -60,6 +64,8 @@ allOf:
+>>>>>                 - description: scu base address
+>>>>>                 - description: misc scu base address
+>>>>> +        '#reset-cells': false
+>>>>> +
+>>>>>       - if:
+>>>>>           properties:
+>>>>>             compatible:
+>>>>> @@ -70,6 +76,7 @@ allOf:
+>>>>>               items:
+>>>>>                 - description: scu base address
+>>>>>                 - description: misc scu base address
+>>>>> +            - description: reset base address
+>>>>
+>>>> Are you sure that the indentation is correct? :-)
+>>>>
+>>>> After fixing the indentation,
+>>>>
+>>>> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>>>>
+>>>>>                 - description: pb scu base address
+>>>
+>>> The indentation actually looks okay when I apply this locally, but how is
+>>> it backwards compatible to add this register in the middle of the list??
+>>
+>> It's not, and this is actually something done on purpose - there is no DT using
+>> this binding yet (here, nor uboot), and Lorenzo acknowledged the mistake before
+>> it was too late...
+>>
+>> At least this time, it wasn't a misattention :-P
 > 
-> Reviewed-by: Peng Fan <peng.fan@nxp.com>
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> The rationale for this being okay really should be in the commit
+> message...
+> 
+>> Btw, as far as I know, the reset base address is in between misc scu and pb scu,
+>> that's why it was put there in the middle.
+> 
+> ...but I don't really see why this needs to be done incompatibly at all
+> in the first place. Just put it at the end of the list, there's no rule
+> that the order of reg properties needs to match the MMIO addresses.
+> 
 
-Applied all, thanks!
+It's just a perfection thing... but whatever, if that's unacceptable for you,
+putting it at the end of the list isn't a huge deal anyway.
 
+Your call - it's okay for me either way.
+
+Cheers,
+Angelo
 
