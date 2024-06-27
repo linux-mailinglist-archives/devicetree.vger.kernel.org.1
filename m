@@ -1,111 +1,112 @@
-Return-Path: <devicetree+bounces-80495-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80496-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91107919B50
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 01:40:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0264E919B9C
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 02:13:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 08888B22FC7
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 23:40:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 33DB71C223EB
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 00:13:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F04E7194156;
-	Wed, 26 Jun 2024 23:40:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0323A3F;
+	Thu, 27 Jun 2024 00:13:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="iRXaG7j+"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="XZtqf9Ku"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A133C192B69
-	for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 23:40:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBE36A2D;
+	Thu, 27 Jun 2024 00:13:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719445212; cv=none; b=gTztcYPTgKUncwOED5eaH6djI0vQfIlPYkWHuMMF1xH06cgmnRcWvY/4Stbjckul193ODwdEDq/3a/Uyk2CcZZHI2WZV4fvm9Zhty/yNiMh0cZ+esKs0/T6owN+51UFMRxEL7iFC7aXsB7mOSP7M9pYdAuM980uvIH/ZJ9BwYh8=
+	t=1719447200; cv=none; b=Mpr87IzSIrOL6WA9mEvVUr0ECdxOf6UlZ4a8M4wnnQe0Kyz2ZmJJ3VsM5kg2VdkKmhyo/80jm7Djvh3LRwlHu2Ie2q2w60fQCE7Pt0pWpwcfZoNgPZ6rUsf6Jl+3AKIqZw+z4xco66lVEPfV9/AHaMc2UZZOnSI+8+v5PM7TFPs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719445212; c=relaxed/simple;
-	bh=019CaFVh3lhoS0w68HPIP9ng8eI8idSw76yT38lMbnw=;
+	s=arc-20240116; t=1719447200; c=relaxed/simple;
+	bh=FsEmZL7mq/PHCSkhTNbOJqlrMaH7nibO5ZGG4gPoXAE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hUyhe38/pIimbfk/vvXVIqRSVxAXbG4mg222tDGxa7BbNe9hagIZCD1D+zirlj9Gz2899As7vqT+OuzX+wAu305pR0TGblNCVe6B19D3JA37F32Eg6R4UF6z4lqVz4wfYmQU8Skl9W3hwCC//gFQam31x0mGK/pLyeSNS/aTqcw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=iRXaG7j+; arc=none smtp.client-ip=209.85.214.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-1fa901ad6f3so39525ad.0
-        for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 16:40:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1719445211; x=1720050011; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=cYUt50CXgSrSaz+HXS9uk+LgKfhLcjaXpXf0DU8eqcI=;
-        b=iRXaG7j+1XO5wSVH1ggF3Hk1ivlNRrYsOVzBOY4GSdqQ2D9W9tOFGubX47Y6t+coDo
-         KvUf/2TygQAptptFsYn5OwjFPr739t8h/eEn7Fxht/K9Eue1Vx0NVezGkCdmVnITWA3Y
-         GfzTjK9HmAH9+LMVYQ3LkQO8kMJ0Rfa8/FBJFf4OGXdb6Vd70UJ24kSbMlY+qegx7C4E
-         Cxj22dgWVi7Tsp4frCCvw+v90w6rIZPjluEMKDBOOjksQVV++Y7QdP0w/hxdTEAZ1kla
-         /uzzYawBQ8+zN8tFUwwwST9rgR7O7fCihtauBI5ZkxcEEXcLyhOAa0Jfn6kLFSfhNT/I
-         lQiA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719445211; x=1720050011;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cYUt50CXgSrSaz+HXS9uk+LgKfhLcjaXpXf0DU8eqcI=;
-        b=E/0sGLLjuImlgzud9dNegDHjwzfXlPa8YAnEUsUlo5NmoX+hpL/GvJd9mo7wG05xul
-         fUxThw2NPY6buYBDq2KHk522QonrNqFAJWleWrEC87aHhZXzSrR5MeNrJULZ8+Fq/p0l
-         EnWgd0st0Mqxc8bqZcsJEa4gQ6sEGyL/s+u9lj+/u9GFOpg1RyZ0K/hdwVM5pPHWhr1b
-         /2+wXs+6CTE9wgSJZ1alC9OStUYLhS9XNJjCNK9sSfUg/je6/Ob/FM7KGXh+yUtkBSvy
-         D14U6vSDMzssfYyIbz2eNmF92tBYrvC5YwEOVOMNHf0oHl7s/scx3q7YPyh+VycE9NDS
-         gq6Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVIFCA0MbF6ub1zmKjOOg1VebWVuaosielhD30oKYTW7RMzLqaOwyLZ+XpFpeUpqLU7mr9zG4sPvA2KNlylgkQNf2TIltzYN/VJOw==
-X-Gm-Message-State: AOJu0Ywtg85r7DbHbTnBWmnzu4kvk+U+rSioNgM335wxqnCoOD153Btu
-	bIPyQjjPCPb5cvEpK824BAD13uqGOsroFat6M8lqODjbG6q8iIB3PNPHoTKm7w==
-X-Google-Smtp-Source: AGHT+IHlKaAmURTLh3ZeZvxHBLbh/zTd2wDSCpmqMl4TBrZZ7NKfHf0vVsBEj0+hsbeFfCuPgzzyhg==
-X-Received: by 2002:a17:902:82c6:b0:1f4:7db0:afbd with SMTP id d9443c01a7336-1faa999eb47mr1582755ad.28.1719445209827;
-        Wed, 26 Jun 2024 16:40:09 -0700 (PDT)
-Received: from google.com (7.104.168.34.bc.googleusercontent.com. [34.168.104.7])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1faac979499sm514875ad.144.2024.06.26.16.40.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Jun 2024 16:40:09 -0700 (PDT)
-Date: Wed, 26 Jun 2024 16:40:06 -0700
-From: William McVicker <willmcvicker@google.com>
-To: Peter Griffin <peter.griffin@linaro.org>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	alim.akhtar@samsung.com, s.nawrocki@samsung.com,
-	cw00.choi@samsung.com, mturquette@baylibre.com, sboyd@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-	tudor.ambarus@linaro.org, andre.draszik@linaro.org,
-	kernel-team@android.com, devicetree@vger.kernel.org,
-	linux-clk@vger.kernel.org
-Subject: Re: [PATCH 3/3] clk: samsung: gs101: mark
- gout_hsi2_ufs_embd_i_clk_unipro as critical
-Message-ID: <Znym1qR9hyYwy5Ll@google.com>
-References: <20240626194300.302327-1-peter.griffin@linaro.org>
- <20240626194300.302327-4-peter.griffin@linaro.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=fS/AbGOlrA2MAe/s1HyivSBZ51BXlfft1KiB6yb4U9zapDefyrrIrgaaHGiHaFbJME9cJSoHMg1Lg61vPYbSV88keD5WNY9LEkYN0D2A4syTTnQR5mKJsbF/1uTh76343OJtU48MWsItgIrtVT+nEkrrQs9rwRLMrXcHprcB1gY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=XZtqf9Ku; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+	In-Reply-To:References; bh=Y/oie4D7vMLSlRHkXYeX6gGQHuuqioTWp0KRoGukRbU=; b=XZ
+	tqf9Kuz/yKkf10DqErr96j4qpNaXrG6wfrswfQTKClOJWAOlEk+QMrUF8m1SvxvkatiHXALRcL0BZ
+	kPpvFe2dVK9sQswQ7K5ZossXeTx3U4ZaEYyMdru5FmZ5IWL6ENyIAS41oDK9ma92CDFn3Y3WtNYhG
+	KAEhQ/ya3+VOXFE=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1sMckv-0015iQ-V6; Thu, 27 Jun 2024 02:12:53 +0200
+Date: Thu, 27 Jun 2024 02:12:53 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Sagar Cheluvegowda <quic_scheluve@quicinc.com>
+Cc: Vinod Koul <vkoul@kernel.org>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Russell King <linux@armlinux.org.uk>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bhupesh Sharma <bhupesh.sharma@linaro.org>, kernel@quicinc.com,
+	Andrew Halaney <ahalaney@redhat.com>, linux-arm-msm@vger.kernel.org,
+	netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] net: stmmac: Add interconnect support
+Message-ID: <974114ca-98ed-44a7-a038-eb3f71bd03ef@lunn.ch>
+References: <20240625-icc_bw_voting_from_ethqos-v2-0-eaa7cf9060f0@quicinc.com>
+ <20240625-icc_bw_voting_from_ethqos-v2-2-eaa7cf9060f0@quicinc.com>
+ <4123b96c-ae1e-4fdd-aab2-70478031c59a@lunn.ch>
+ <81e97c36-e244-4e94-b752-b06334a06db0@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240626194300.302327-4-peter.griffin@linaro.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <81e97c36-e244-4e94-b752-b06334a06db0@quicinc.com>
 
-On 06/26/2024, Peter Griffin wrote:
-> The system hangs on poweroff when this UFS clock is turned off, meaning
-> the system never powers down. For the moment mark the clock as critical.
+On Wed, Jun 26, 2024 at 04:36:06PM -0700, Sagar Cheluvegowda wrote:
 > 
-> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+> 
+> On 6/26/2024 6:07 AM, Andrew Lunn wrote:
+> >> +	plat->axi_icc_path = devm_of_icc_get(&pdev->dev, "axi");
+> >> +	if (IS_ERR(plat->axi_icc_path)) {
+> >> +		ret = (void *)plat->axi_icc_path;
+> > 
+> > Casting	to a void * seems odd. ERR_PTR()?
+> > 
+> > 	Andrew
+> 
+> The output of devm_of_icc_get is a pointer of type icc_path,
+> i am getting below warning when i try to ERR_PTR instead of Void*
+> as ERR_PTR will try to convert a long integer to a Void*.
+> 
+> "warning: passing argument 1 of ‘ERR_PTR’ makes integer from pointer without a cast"
+> 
 
-Reviewed-by: Will McVicker <willmcvicker@google.com>
-Tested-by: Will McVicker <willmcvicker@google.com>
+https://elixir.bootlin.com/linux/v6.10-rc5/source/drivers/crypto/qce/core.c#L224
+https://elixir.bootlin.com/linux/v6.10-rc5/source/drivers/gpu/drm/msm/adreno/a3xx_gpu.c#L591
+https://elixir.bootlin.com/linux/v6.10-rc5/source/drivers/gpu/drm/msm/adreno/a3xx_gpu.c#L597
+https://elixir.bootlin.com/linux/v6.10-rc5/source/drivers/spi/spi-qup.c#L1052
 
-[...]
+Sorry, PTR_ERR().
 
-Thanks! I verified my Pixel 6 Pro reboots and powers off fine with these
-changes.
+In general, a cast to a void * is a red flag and will get looked
+at. It is generally wrong. So you might want to fixup where ever you
+copied this from.
 
-Regards,
-Will
+	Andrew
 
