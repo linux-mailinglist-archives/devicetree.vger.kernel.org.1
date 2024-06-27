@@ -1,436 +1,252 @@
-Return-Path: <devicetree+bounces-80983-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80984-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97CF391AEE0
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 20:16:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC9E091AEFE
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 20:26:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0AFD5B27720
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 18:16:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D6D3C1F2409E
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 18:25:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3A5B19AA42;
-	Thu, 27 Jun 2024 18:16:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86C2419CCFA;
+	Thu, 27 Jun 2024 18:25:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b="p7VzlnAF"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="lFU8II/x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f178.google.com (mail-il1-f178.google.com [209.85.166.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79C131BF38
-	for <devicetree@vger.kernel.org>; Thu, 27 Jun 2024 18:16:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59F2119AD58;
+	Thu, 27 Jun 2024 18:25:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719512204; cv=none; b=Z772SikSFNDu6/p4MGVkUTD8H/a7SfzCEpmkcTQaeDDOUZA/mzIc6pk0lcz+I0g1lFeouTLWo6cNnWAJWtIzLWWm5TBHC2VurqDXw+twMxR7UriAj8DCPxCuGa3Iv0kN/jw/HumMuhzC+lgUqI+jNQeKYybtGE01kusw//b84WQ=
+	t=1719512721; cv=none; b=lDmsvmZ9GCW3YIw/eNPjslY2VxpcrdsiGzX6ukCrEHIr/qyCFGEUMqEXXiFYBOxo4SwZzp6eaPOpfrBRu73lyFF8L9qBSa6Bgax1DFp6GEPe1m+/3VJDeCCHqnlEUrdabTZYHYjy6LlTUHjILJY83Mv9XuQ1SmiQpK0tD+zYeW8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719512204; c=relaxed/simple;
-	bh=Rjbub/7SbWzz3x2O07QzwXxLjt5+VzgYUZpnj9b6HcE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BOz7GhfQA100rL5nbDIMV2IAbRY8/XTkjWNx0gcScoDSyq7VPJIbQzf05ontVIShmCmquBtxCjw0LJ6C4XUgzfujYxtlGXF8RXHfLLPxFbAOpozXJesvdsyos6l6vuncu9Gn0cHFEJLFmna7HGBBgNyv7w8NkxCFL9p/b+1qXcI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org; spf=fail smtp.mailfrom=beagleboard.org; dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b=p7VzlnAF; arc=none smtp.client-ip=209.85.166.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=beagleboard.org
-Received: by mail-il1-f178.google.com with SMTP id e9e14a558f8ab-375dea76edaso3638785ab.2
-        for <devicetree@vger.kernel.org>; Thu, 27 Jun 2024 11:16:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=beagleboard-org.20230601.gappssmtp.com; s=20230601; t=1719512200; x=1720117000; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=eLDikSdk/1sOE2P/qXbu74mkWY2cTfnLGql7zUD9KQQ=;
-        b=p7VzlnAFsvyQdQuJSE9vxbTTuBziWC2DV58rmSn0qq2gUN2sQH82kY8luBE2nL3Odv
-         MTNfbYPankb9YfZ+Yzu0Nnuqngk8JWRYc4NWWFaknUXDfcDP9UzH7JoMr24vbP/75W8i
-         Hw89pS/3gTVpXB4Ci/AJXtDn+wI6nItrknpRNu6TgSwf+1RCIFHwlswQ4UcW6b9N/K8C
-         dOu1OMVm6bTgL/raC88IzOhVfuIQDl/NQp/rs2RpCSXov3NmimrarenCuIytclm/k/Q3
-         2zA+7QkMtau6wcp/RPIrCKI5XND1bUgF4cWcoemiUxHVX6Scw9dI8sZ/rokClxboItXT
-         7g7w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719512200; x=1720117000;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=eLDikSdk/1sOE2P/qXbu74mkWY2cTfnLGql7zUD9KQQ=;
-        b=jH+cQSb6bbxIjvzRHwZbs+Noh2BMV0rQcmJdPByAXSOBEEGrJMUYGq4ALphDVwb8KH
-         5SKH/i9PuTe87DboDqDAMfKwLxrwEFbR5sBGJRy0NGza09YFikI+T8HcVv2QwSR4/g5b
-         iOMRz2raQttbmsSuOFPb370Kjd1sQzIsad4bvAZSgRy9rQDMHLi9SapQkQHOW5Ok2Twn
-         4DRINmcC9lhosSiKD3x+WcOYeqbFOKMu676Mh9vCjrFLfOonQaWUGN4cQrw7g84pxA84
-         7bBNqWV1vUEEvN9zsfj3fMQM/L+tL6V9oviBXn/FXFIrnQFcrGJcAdMRDG2yiNGPgM8h
-         DN5g==
-X-Forwarded-Encrypted: i=1; AJvYcCWPiXllD5nU3y/770cQh3cW3EeAnC2Yxub7GFyDAezHuABLYsp4laTGxXKQtAiACC4uJlToUzEJM46Uh5L8XX8wj2pQ51jF5S/4rA==
-X-Gm-Message-State: AOJu0YyFI77O9K5lWZwzZ8LvBx+n/3c8MmGNW22lwFW9Ocgc0wAcw6DV
-	fg8nzTQNWtTEuyu8CKDlnI0RZhEME+qhi5UlnNrrsysmF9U9TdVduMRuPmfbvw==
-X-Google-Smtp-Source: AGHT+IHavFLzL5XbWg1BfGQFlomVOvXihRfVsBBzcOPdhahsJHdov+JEipjG1MSyp7mxPv2g+nDSCQ==
-X-Received: by 2002:a05:6e02:4b2:b0:379:2b4d:d5de with SMTP id e9e14a558f8ab-3792b4dd9cdmr39861015ab.2.1719512200604;
-        Thu, 27 Jun 2024 11:16:40 -0700 (PDT)
-Received: from ?IPV6:2401:4900:1f3e:18b0:f314:9f76:9f94:eb43? ([2401:4900:1f3e:18b0:f314:9f76:9f94:eb43])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-72c6c7f72a7sm17867a12.63.2024.06.27.11.16.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Jun 2024 11:16:40 -0700 (PDT)
-Message-ID: <93cdd5c5-d54c-46c2-9055-5cd9cc79e2da@beagleboard.org>
-Date: Thu, 27 Jun 2024 23:46:31 +0530
+	s=arc-20240116; t=1719512721; c=relaxed/simple;
+	bh=hkbH3h5i6uGsXa8uzjWtbfxWSJess7YTCGvakbQvPXY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pjbhgxcI3feXg7wvs40/RcVTwLVTo3mQx5opj1tL884uqfCdXs0tn1chg2xSklEuGgsc3+wYomZifXcTHvf1LMjNL8P8iNiHtBXF9xRGOxkjWMuXNVvlHMOH4U+o3wZhHpUXf0h5hdJpj2DYABv39dUIkdW2MDMJTOyhuvHh3ME=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=lFU8II/x; arc=none smtp.client-ip=192.198.163.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1719512718; x=1751048718;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=hkbH3h5i6uGsXa8uzjWtbfxWSJess7YTCGvakbQvPXY=;
+  b=lFU8II/xSunAAy1OHa/W80Ve9O7bz+BK7qcjSzH/7UNK1nurkCTDu0Zq
+   FmLKp4tBm4KwjxtOH7OK0Hfzr6uzqhTBbXfuHmUDWGsE7+/vE+X3xSEdb
+   kSsbJcEijbXzklINkMJrTiR9MqOQ+4hsmA3FaCygllmfTpsAuYHHZD78n
+   T+W5r5f2Nj4D8yvNCWHIlm1bvIKnll1E8rNwx44tT6yu/NBU9fdXc4PzN
+   vI9+sL4CRPk14qhD6VZFFxUu+dRWIrSlZkJPdfU30EQQNKp+jN+Nj/pI5
+   pnBT8vnHMey3W4AKUbUJ6EE2DZjoOPuUZtqwBjZfrvZHcRMB7nNWiUOPk
+   A==;
+X-CSE-ConnectionGUID: hIEgCB7aQaaawLJ3cdV4HA==
+X-CSE-MsgGUID: /1aBDSMLSUSIP7FBCnpmSQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11116"; a="16345764"
+X-IronPort-AV: E=Sophos;i="6.09,166,1716274800"; 
+   d="scan'208";a="16345764"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jun 2024 11:25:17 -0700
+X-CSE-ConnectionGUID: Ee3EDbM+Tpuq9RV7L2Kj0w==
+X-CSE-MsgGUID: DPfCvDUHTxeU4kbEH+bqdw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,166,1716274800"; 
+   d="scan'208";a="48808509"
+Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
+  by fmviesa003.fm.intel.com with ESMTP; 27 Jun 2024 11:25:13 -0700
+Received: from kbuild by 68891e0c336b with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sMtny-000GQC-3D;
+	Thu, 27 Jun 2024 18:25:11 +0000
+Date: Fri, 28 Jun 2024 02:25:05 +0800
+From: kernel test robot <lkp@intel.com>
+To: "Rob Herring (Arm)" <robh@kernel.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Lorenzo Bianconi <lorenzo@kernel.org>, Felix Fietkau <nbd@nbd.name>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	Jose Abreu <joabreu@synopsys.com>
+Cc: oe-kbuild-all@lists.linux.dev, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH net-next] dt-bindings: net: Define properties at top-level
+Message-ID: <202406280202.IRKWOMQk-lkp@intel.com>
+References: <20240625215442.190557-2-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 7/7] dts: ti: k3-am625-beagleplay: Add mikroBUS
-Content-Language: en-US
-To: Andrew Davis <afd@ti.com>, Mark Brown <broonie@kernel.org>,
- Vaishnav M A <vaishnav@beagleboard.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Derek Kiernan <derek.kiernan@amd.com>,
- Dragan Cvetic <dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Nishanth Menon <nm@ti.com>,
- Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
- Michael Walle <mwalle@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
- jkridner@beagleboard.org, robertcnelson@beagleboard.org
-Cc: linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20240627-mikrobus-scratch-spi-v5-0-9e6c148bf5f0@beagleboard.org>
- <20240627-mikrobus-scratch-spi-v5-7-9e6c148bf5f0@beagleboard.org>
- <4e23ec81-b278-4f2b-815d-64ed9390ca55@ti.com>
- <cef08d49-a462-4167-8b9d-bf09e8aac92f@beagleboard.org>
- <70f28343-6738-47f2-97b5-6afa96f1fbcc@ti.com>
-From: Ayush Singh <ayush@beagleboard.org>
-In-Reply-To: <70f28343-6738-47f2-97b5-6afa96f1fbcc@ti.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240625215442.190557-2-robh@kernel.org>
 
+Hi Rob,
 
-On 6/27/24 23:20, Andrew Davis wrote:
-> On 6/27/24 12:16 PM, Ayush Singh wrote:
->>
->> On 6/27/24 22:37, Andrew Davis wrote:
->>> On 6/27/24 11:26 AM, Ayush Singh wrote:
->>>> DONOTMERGE
->>>>
->>>> Add mikroBUS connector and some mikroBUS boards support for 
->>>> Beagleplay.
->>>> The mikroBUS boards node should probably be moved to a more 
->>>> appropriate
->>>> location but I am not quite sure where it should go since it is not
->>>> dependent on specific arch.
->>>>
->>>> Signed-off-by: Ayush Singh <ayush@beagleboard.org>
->>>> ---
->>>>   arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts | 94 
->>>> +++++++++++++++++++++++---
->>>>   1 file changed, 86 insertions(+), 8 deletions(-)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts 
->>>> b/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
->>>> index 70de288d728e..3f3cd70345c4 100644
->>>> --- a/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
->>>> +++ b/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
->>>> @@ -38,6 +38,7 @@ aliases {
->>>>           serial2 = &main_uart0;
->>>>           usb0 = &usb0;
->>>>           usb1 = &usb1;
->>>> +        mikrobus0 = &mikrobus0;
->>>>       };
->>>>         chosen {
->>>> @@ -227,6 +228,56 @@ simple-audio-card,codec {
->>>>           };
->>>>       };
->>>>   +    mikrobus0: mikrobus-connector {
->>>> +        compatible = "mikrobus-connector";
->>>> +        pinctrl-names = "default", "pwm_default", "pwm_gpio",
->>>> +                "uart_default", "uart_gpio", "i2c_default",
->>>> +                "i2c_gpio", "spi_default", "spi_gpio";
->>>> +        pinctrl-0 = <&mikrobus_gpio_pins_default>;
->>>> +        pinctrl-1 = <&mikrobus_pwm_pins_default>;
->>>> +        pinctrl-2 = <&mikrobus_pwm_pins_gpio>;
->>>> +        pinctrl-3 = <&mikrobus_uart_pins_default>;
->>>> +        pinctrl-4 = <&mikrobus_uart_pins_gpio>;
->>>> +        pinctrl-5 = <&mikrobus_i2c_pins_default>;
->>>> +        pinctrl-6 = <&mikrobus_i2c_pins_gpio>;
->>>> +        pinctrl-7 = <&mikrobus_spi_pins_default>;
->>>> +        pinctrl-8 = <&mikrobus_spi_pins_gpio>;
->>>> +
->>>> +        mikrobus-gpio-names = "pwm", "int", "rx", "tx", "scl", "sda",
->>>> +                      "mosi", "miso", "sck", "cs", "rst", "an";
->>>> +        mikrobus-gpios = <&main_gpio1 11 GPIO_ACTIVE_HIGH>,
->>>> +                 <&main_gpio1 9 GPIO_ACTIVE_HIGH>,
->>>> +                 <&main_gpio1 24 GPIO_ACTIVE_HIGH>,
->>>> +                 <&main_gpio1 25 GPIO_ACTIVE_HIGH>,
->>>> +                 <&main_gpio1 22 GPIO_ACTIVE_HIGH>,
->>>> +                 <&main_gpio1 23 GPIO_ACTIVE_HIGH>,
->>>> +                 <&main_gpio1 7 GPIO_ACTIVE_HIGH>,
->>>> +                 <&main_gpio1 8 GPIO_ACTIVE_HIGH>,
->>>> +                 <&main_gpio1 14 GPIO_ACTIVE_HIGH>,
->>>> +                 <&main_gpio1 13 GPIO_ACTIVE_HIGH>,
->>>> +                 <&main_gpio1 12 GPIO_ACTIVE_HIGH>,
->>>> +                 <&main_gpio1 10 GPIO_ACTIVE_HIGH>;
->>>> +
->>>> +        spi-controller = <&main_spi2>;
->>>> +        spi-cs = <0>;
->>>> +        spi-cs-names = "default";
->>>> +
->>>> +        board = <&lsm6dsl_click>;
->>>> +    };
->>>> +
->>>> +    mikrobus_boards {
->>>> +        thermo_click: thermo-click {
->>>> +            compatible = "maxim,max31855k", "mikrobus-spi";
->>>
->>> I might be missing something, but your solution cannot possibly be
->>> to list every click board that could be connected (all 1500+ of them)
->>> to every mikroBUS connector on every device's DT file..
->>
->>
->> I think you missed something. `mikrobus-boards` is not a child node 
->> of `mikrobus0`. See the `board` property in `mikrobus0`. That is what 
->> selects the board attached to the connector.
->>
->
-> That seems even worse.. That means the board file needs to know about the
-> attached board, which is not how DT works. It describes hardware in a
-> hierarchical/acyclic graph. For instance, take an I2C device, its node
-> is a child of the I2C bus, and has phandle pointers to the IRQ it uses
-> (or whatever else provider it needs). What you have here is like the
-> I2C bus node phandle pointing to the connected child devices.
->
->> The `mikcrobus-boards` node itself should be moved to some 
->> independent location and included from a system that wants to support 
->> mikrobus boards. The connector will only have a phandle to the board 
->> (or boards in case a single mikroBUS board has 1 i2c and 1 spi sensor 
->> or some combination).
->>
->
-> How about providing the full/final example then (this series should be 
-> marked
-> as RFC as it is now has missing parts). Move the click board node into 
-> a DTSO
-> file and put that in a common location (click boards are common to all 
-> boards
-> right, so lets say in drivers/of/click for now just for the RFC).
->
->>
->>>
->>> Each click board should have a single DTSO overlay file to describe the
->>> click board, one per click board total. And then that overlay should
->>> apply cleanly to any device that has a mikroBUS interface.
->>
->>
->> Yes, that is the goal.
->>
->>
->>>
->>> Which means you have not completely solved the fundamental problem of
->>> abstracting the mikroBUS connector in DT. Each of these click device 
->>> child
->>> nodes has to be under the parent connector node. Which means a phandle
->>> to the parent node, which is not generically named. For instance
->>> if my board has 2 connectors, I would have mikrobus0 and mikrobus1,
->>> the click board's overlay would look like this:
->>>
->>> /dts-v1/;
->>> /plugin/;
->>>
->>> &mikrobus0 {
->>>     status = "okay";
->>>
->>>     mikrobus_board {
->>>         thermo-click {
->>>             compatible = "maxim,max31855k", "mikrobus-spi";
->>>             spi-max-frequency = <1000000>;
->>>             pinctrl-apply = "spi_default";
->>>         };
->>>     };
->>> };
->>
->>
->> No, it will look as follows:
->>
->> ```
->>
->> &mikrobus0 {
->
->           ^^^
-> So same issue, what if I want to attach this click board
-> to the second mikrobus connector on my board (i.e. mikrobus1),
-> I'd have to modify the overlay.. Or have an overlay for every
-> possible connector instance number.
+kernel test robot noticed the following build warnings:
 
+[auto build test WARNING on net-next/main]
 
-The plan is to have a sysfs `new_device` and `delete_device` entry like 
-I2C has where the board name is passed. The driver can then create a dt 
-changeset apply to live tree. In the current dt, the changeset is to add 
-a `board` property with the phandle of a board (if found).
+url:    https://github.com/intel-lab-lkp/linux/commits/Rob-Herring-Arm/dt-bindings-net-Define-properties-at-top-level/20240626-091748
+base:   net-next/main
+patch link:    https://lore.kernel.org/r/20240625215442.190557-2-robh%40kernel.org
+patch subject: [PATCH net-next] dt-bindings: net: Define properties at top-level
+config: arc-randconfig-051-20240628 (https://download.01.org/0day-ci/archive/20240628/202406280202.IRKWOMQk-lkp@intel.com/config)
+compiler: arceb-elf-gcc (GCC) 13.2.0
+dtschema version: 2024.6.dev2+g3b69bad
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240628/202406280202.IRKWOMQk-lkp@intel.com/reproduce)
 
-Can you suggest how something similar will be possible if the board node 
-is a child of the connector node? Maybe it is possible to take a generic 
-dt overlay and change the name of parent node on it or something?
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202406280202.IRKWOMQk-lkp@intel.com/
 
+dtcheck warnings: (new ones prefixed by >>)
+   arch/arc/boot/dts/axs101.dtb: axs10x_mb: connector: 'ranges' is a required property
+   	from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
+   arch/arc/boot/dts/axs101.dtb: axs10x_mb: clocks: 'ranges' is a required property
+   	from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
+   arch/arc/boot/dts/axs101.dtb: axs10x_mb: sound_playback: 'ranges' is a required property
+   	from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
+   arch/arc/boot/dts/axs101.dtb: /axs10x_mb/i2sclk@100a0: failed to match any schema with compatible: ['snps,axs10x-i2s-pll-clock']
+   arch/arc/boot/dts/axs101.dtb: i2cclk: clock-frequency:0:0: 50000000 is greater than the maximum of 5000000
+   	from schema $id: http://devicetree.org/schemas/i2c/i2c-controller.yaml#
+   arch/arc/boot/dts/axs101.dtb: /axs10x_mb/pguclk@10080: failed to match any schema with compatible: ['snps,axs10x-pgu-pll-clock']
+>> arch/arc/boot/dts/axs101.dtb: ethernet@18000: snps,pbl: False schema does not allow [[32]]
+   	from schema $id: http://devicetree.org/schemas/net/snps,dwmac.yaml#
+   arch/arc/boot/dts/axs101.dtb: uart@20000: $nodename:0: 'uart@20000' does not match '^serial(@.*)?$'
+   	from schema $id: http://devicetree.org/schemas/serial/snps-dw-apb-uart.yaml#
+   arch/arc/boot/dts/axs101.dtb: uart@20000: Unevaluated properties are not allowed ('baud' was unexpected)
+   	from schema $id: http://devicetree.org/schemas/serial/snps-dw-apb-uart.yaml#
+   arch/arc/boot/dts/axs101.dtb: uart@21000: $nodename:0: 'uart@21000' does not match '^serial(@.*)?$'
+   	from schema $id: http://devicetree.org/schemas/serial/snps-dw-apb-uart.yaml#
+   arch/arc/boot/dts/axs101.dtb: uart@21000: Unevaluated properties are not allowed ('baud' was unexpected)
+   	from schema $id: http://devicetree.org/schemas/serial/snps-dw-apb-uart.yaml#
+   arch/arc/boot/dts/axs101.dtb: uart@22000: $nodename:0: 'uart@22000' does not match '^serial(@.*)?$'
+--
+   	from schema $id: http://devicetree.org/schemas/serial/snps-dw-apb-uart.yaml#
+   arch/arc/boot/dts/axs103.dtb: /cpu_card/pct: failed to match any schema with compatible: ['snps,archs-pct']
+   arch/arc/boot/dts/axs103.dtb: axs10x_mb: $nodename:0: 'axs10x_mb' does not match '^([a-z][a-z0-9\\-]+-bus|bus|localbus|soc|axi|ahb|apb)(@.+)?$'
+   	from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
+   arch/arc/boot/dts/axs103.dtb: axs10x_mb: connector: 'ranges' is a required property
+   	from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
+   arch/arc/boot/dts/axs103.dtb: axs10x_mb: clocks: 'ranges' is a required property
+   	from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
+   arch/arc/boot/dts/axs103.dtb: axs10x_mb: sound_playback: 'ranges' is a required property
+   	from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
+>> arch/arc/boot/dts/axs103.dtb: ethernet@18000: snps,pbl: False schema does not allow [[32]]
+   	from schema $id: http://devicetree.org/schemas/net/snps,dwmac.yaml#
+   arch/arc/boot/dts/axs103.dtb: usb@40000: Unevaluated properties are not allowed ('dma-coherent' was unexpected)
+   	from schema $id: http://devicetree.org/schemas/usb/generic-ehci.yaml#
+   arch/arc/boot/dts/axs103.dtb: usb@60000: Unevaluated properties are not allowed ('dma-coherent' was unexpected)
+   	from schema $id: http://devicetree.org/schemas/usb/generic-ohci.yaml#
+   arch/arc/boot/dts/axs103.dtb: mmc@15000: Unevaluated properties are not allowed ('dma-coherent' was unexpected)
+   	from schema $id: http://devicetree.org/schemas/mmc/synopsys-dw-mshc.yaml#
+   arch/arc/boot/dts/axs103.dtb: /axs10x_mb/i2sclk@100a0: failed to match any schema with compatible: ['snps,axs10x-i2s-pll-clock']
+   arch/arc/boot/dts/axs103.dtb: i2cclk: clock-frequency:0:0: 50000000 is greater than the maximum of 5000000
+   	from schema $id: http://devicetree.org/schemas/i2c/i2c-controller.yaml#
+--
+   	from schema $id: http://devicetree.org/schemas/serial/snps-dw-apb-uart.yaml#
+   arch/arc/boot/dts/axs103_idu.dtb: /cpu_card/pct: failed to match any schema with compatible: ['snps,archs-pct']
+   arch/arc/boot/dts/axs103_idu.dtb: axs10x_mb: $nodename:0: 'axs10x_mb' does not match '^([a-z][a-z0-9\\-]+-bus|bus|localbus|soc|axi|ahb|apb)(@.+)?$'
+   	from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
+   arch/arc/boot/dts/axs103_idu.dtb: axs10x_mb: connector: 'ranges' is a required property
+   	from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
+   arch/arc/boot/dts/axs103_idu.dtb: axs10x_mb: clocks: 'ranges' is a required property
+   	from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
+   arch/arc/boot/dts/axs103_idu.dtb: axs10x_mb: sound_playback: 'ranges' is a required property
+   	from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
+>> arch/arc/boot/dts/axs103_idu.dtb: ethernet@18000: snps,pbl: False schema does not allow [[32]]
+   	from schema $id: http://devicetree.org/schemas/net/snps,dwmac.yaml#
+   arch/arc/boot/dts/axs103_idu.dtb: usb@40000: Unevaluated properties are not allowed ('dma-coherent' was unexpected)
+   	from schema $id: http://devicetree.org/schemas/usb/generic-ehci.yaml#
+   arch/arc/boot/dts/axs103_idu.dtb: usb@60000: Unevaluated properties are not allowed ('dma-coherent' was unexpected)
+   	from schema $id: http://devicetree.org/schemas/usb/generic-ohci.yaml#
+   arch/arc/boot/dts/axs103_idu.dtb: mmc@15000: Unevaluated properties are not allowed ('dma-coherent' was unexpected)
+   	from schema $id: http://devicetree.org/schemas/mmc/synopsys-dw-mshc.yaml#
+   arch/arc/boot/dts/axs103_idu.dtb: /axs10x_mb/i2sclk@100a0: failed to match any schema with compatible: ['snps,axs10x-i2s-pll-clock']
+   arch/arc/boot/dts/axs103_idu.dtb: i2cclk: clock-frequency:0:0: 50000000 is greater than the maximum of 5000000
+   	from schema $id: http://devicetree.org/schemas/i2c/i2c-controller.yaml#
+--
+   arch/arc/boot/dts/hsdk.dtb: soc: gpu-core-clk: 'ranges' is a required property
+   	from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
+   arch/arc/boot/dts/hsdk.dtb: soc: mmcclk-biu: 'ranges' is a required property
+   	from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
+   arch/arc/boot/dts/hsdk.dtb: soc: gpu-cfg-clk: 'ranges' is a required property
+   	from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
+   arch/arc/boot/dts/hsdk.dtb: /soc/reset-controller@8a0: failed to match any schema with compatible: ['snps,hsdk-reset']
+   arch/arc/boot/dts/hsdk.dtb: /soc/core-clk@0: failed to match any schema with compatible: ['snps,hsdk-core-pll-clock']
+   arch/arc/boot/dts/hsdk.dtb: serial@5000: Unevaluated properties are not allowed ('baud' was unexpected)
+   	from schema $id: http://devicetree.org/schemas/serial/snps-dw-apb-uart.yaml#
+>> arch/arc/boot/dts/hsdk.dtb: ethernet@8000: snps,pbl: False schema does not allow [[32]]
+   	from schema $id: http://devicetree.org/schemas/net/snps,dwmac.yaml#
+   arch/arc/boot/dts/hsdk.dtb: usb@60000: Unevaluated properties are not allowed ('dma-coherent' was unexpected)
+   	from schema $id: http://devicetree.org/schemas/usb/generic-ohci.yaml#
+   arch/arc/boot/dts/hsdk.dtb: usb@40000: Unevaluated properties are not allowed ('dma-coherent' was unexpected)
+   	from schema $id: http://devicetree.org/schemas/usb/generic-ehci.yaml#
+   arch/arc/boot/dts/hsdk.dtb: mmc@a000: Unevaluated properties are not allowed ('dma-coherent', 'num-slots' were unexpected)
+   	from schema $id: http://devicetree.org/schemas/mmc/synopsys-dw-mshc.yaml#
+   arch/arc/boot/dts/hsdk.dtb: /soc/gpio@14b0: failed to match any schema with compatible: ['snps,creg-gpio-hsdk']
+   arch/arc/boot/dts/hsdk.dtb: dmac@80000: '#dma-cells' is a required property
+   	from schema $id: http://devicetree.org/schemas/dma/snps,dw-axi-dmac.yaml#
+--
+   arch/arc/boot/dts/vdk_hs38.dtb: /cpu_card/archs-intc@cpu: failed to match any schema with compatible: ['snps,archs-intc']
+   arch/arc/boot/dts/vdk_hs38.dtb: dw-apb-uart@5000: $nodename:0: 'dw-apb-uart@5000' does not match '^serial(@.*)?$'
+   	from schema $id: http://devicetree.org/schemas/serial/snps-dw-apb-uart.yaml#
+   arch/arc/boot/dts/vdk_hs38.dtb: dw-apb-uart@5000: Unevaluated properties are not allowed ('baud' was unexpected)
+   	from schema $id: http://devicetree.org/schemas/serial/snps-dw-apb-uart.yaml#
+   arch/arc/boot/dts/vdk_hs38.dtb: /interrupt-controller@e0012000: failed to match any schema with compatible: ['snps,dw-apb-ictl']
+   arch/arc/boot/dts/vdk_hs38.dtb: axs10x_mb_vdk: $nodename:0: 'axs10x_mb_vdk' does not match '^([a-z][a-z0-9\\-]+-bus|bus|localbus|soc|axi|ahb|apb)(@.+)?$'
+   	from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
+   arch/arc/boot/dts/vdk_hs38.dtb: axs10x_mb_vdk: clocks: 'ranges' is a required property
+   	from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
+>> arch/arc/boot/dts/vdk_hs38.dtb: ethernet@18000: snps,pbl: False schema does not allow [[32]]
+   	from schema $id: http://devicetree.org/schemas/net/snps,dwmac.yaml#
+   arch/arc/boot/dts/vdk_hs38.dtb: uart@20000: $nodename:0: 'uart@20000' does not match '^serial(@.*)?$'
+   	from schema $id: http://devicetree.org/schemas/serial/snps-dw-apb-uart.yaml#
+   arch/arc/boot/dts/vdk_hs38.dtb: uart@20000: Unevaluated properties are not allowed ('baud' was unexpected)
+   	from schema $id: http://devicetree.org/schemas/serial/snps-dw-apb-uart.yaml#
+   arch/arc/boot/dts/vdk_hs38.dtb: uart@21000: $nodename:0: 'uart@21000' does not match '^serial(@.*)?$'
+   	from schema $id: http://devicetree.org/schemas/serial/snps-dw-apb-uart.yaml#
+   arch/arc/boot/dts/vdk_hs38.dtb: uart@21000: Unevaluated properties are not allowed ('baud' was unexpected)
+   	from schema $id: http://devicetree.org/schemas/serial/snps-dw-apb-uart.yaml#
+   arch/arc/boot/dts/vdk_hs38.dtb: uart@22000: $nodename:0: 'uart@22000' does not match '^serial(@.*)?$'
+--
+   arch/arc/boot/dts/vdk_hs38_smp.dtb: /cpu_card/idu-interrupt-controller: failed to match any schema with compatible: ['snps,archs-idu-intc']
+   arch/arc/boot/dts/vdk_hs38_smp.dtb: dw-apb-uart@5000: $nodename:0: 'dw-apb-uart@5000' does not match '^serial(@.*)?$'
+   	from schema $id: http://devicetree.org/schemas/serial/snps-dw-apb-uart.yaml#
+   arch/arc/boot/dts/vdk_hs38_smp.dtb: dw-apb-uart@5000: Unevaluated properties are not allowed ('baud' was unexpected)
+   	from schema $id: http://devicetree.org/schemas/serial/snps-dw-apb-uart.yaml#
+   arch/arc/boot/dts/vdk_hs38_smp.dtb: /interrupt-controller@e0012000: failed to match any schema with compatible: ['snps,dw-apb-ictl']
+   arch/arc/boot/dts/vdk_hs38_smp.dtb: axs10x_mb_vdk: $nodename:0: 'axs10x_mb_vdk' does not match '^([a-z][a-z0-9\\-]+-bus|bus|localbus|soc|axi|ahb|apb)(@.+)?$'
+   	from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
+   arch/arc/boot/dts/vdk_hs38_smp.dtb: axs10x_mb_vdk: clocks: 'ranges' is a required property
+   	from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
+>> arch/arc/boot/dts/vdk_hs38_smp.dtb: ethernet@18000: snps,pbl: False schema does not allow [[32]]
+   	from schema $id: http://devicetree.org/schemas/net/snps,dwmac.yaml#
+   arch/arc/boot/dts/vdk_hs38_smp.dtb: uart@20000: $nodename:0: 'uart@20000' does not match '^serial(@.*)?$'
+   	from schema $id: http://devicetree.org/schemas/serial/snps-dw-apb-uart.yaml#
+   arch/arc/boot/dts/vdk_hs38_smp.dtb: uart@20000: Unevaluated properties are not allowed ('baud' was unexpected)
+   	from schema $id: http://devicetree.org/schemas/serial/snps-dw-apb-uart.yaml#
+   arch/arc/boot/dts/vdk_hs38_smp.dtb: uart@21000: $nodename:0: 'uart@21000' does not match '^serial(@.*)?$'
+   	from schema $id: http://devicetree.org/schemas/serial/snps-dw-apb-uart.yaml#
+   arch/arc/boot/dts/vdk_hs38_smp.dtb: uart@21000: Unevaluated properties are not allowed ('baud' was unexpected)
+   	from schema $id: http://devicetree.org/schemas/serial/snps-dw-apb-uart.yaml#
+   arch/arc/boot/dts/vdk_hs38_smp.dtb: uart@22000: $nodename:0: 'uart@22000' does not match '^serial(@.*)?$'
 
->
->>      status = "okay";
->>
->>      board = <&thermo-click>;
->>
->> };
->>
->>
->> &mikrobus_board {
->>          thermo-click {
->>              compatible = "maxim,max31855k", "mikrobus-spi";
->>              spi-max-frequency = <1000000>;
->>              pinctrl-apply = "spi_default";
->>          };
->>    };
->>
->> ```
->>
->>
->>>
->>> I think this solution is almost there, but once you solve the above
->>> issue, we could just apply the right overlay for our attached click
->>> board ahead of time and not need the mikroBUS bus driver at all.
->>
->>
->> Well, the driver is still needed because some things cannot be done 
->> generically in dt. Eg:
->>
->> 1. SPI chipselect. Each connector will have different chipselect 
->> number mapped to CS pin. In fact a mikrobus board might use other 
->> pins like RST as chipselect as well.
->>
->> 2. Using pins other than their intended purpose like GPIO.
->>
->
-> Then these are two things you'll need to solve. We can add
-> these functions to the base DT/OF support if they are generic
-> problems (which they are, other connectors/daughterboards have
-> this same issue, RPi header, Seeed Grove connector, Sparkfun QWIIC
-> headers, etc..).
->
-> Andrew
->
->>
->>>
->>> Andrew
->>>
->>>> +            spi-max-frequency = <1000000>;
->>>> +            pinctrl-apply = "spi_default";
->>>> +        };
->>>> +
->>>> +        lsm6dsl_click: lsm6dsl-click {
->>>> +            compatible = "st,lsm6ds3", "mikrobus-spi";
->>>> +            spi-max-frequency = <1000000>;
->>>> +            pinctrl-apply = "spi_default";
->>>> +        };
->>>> +    };
->>>>   };
->>>>     &main_pmx0 {
->>>> @@ -387,6 +438,18 @@ AM62X_IOPAD(0x01f0, PIN_OUTPUT, 5) /* (A18) 
->>>> EXT_REFCLK1.CLKOUT0 */
->>>>           >;
->>>>       };
->>>>   +    mikrobus_pwm_pins_default: mikrobus-pwm-default-pins {
->>>> +        pinctrl-single,pins = <
->>>> +            AM62X_IOPAD(0x01a4, PIN_INPUT, 2) /* (B20) 
->>>> MCASP0_ACLKX.ECAP2_IN_APWM_OUT */
->>>> +        >;
->>>> +    };
->>>> +
->>>> +    mikrobus_pwm_pins_gpio: mikrobus-pwm-gpio-pins {
->>>> +        pinctrl-single,pins = <
->>>> +            AM62X_IOPAD(0x01a4, PIN_INPUT, 7) /* (B20) 
->>>> MCASP0_ACLKX.GPIO1_11 */
->>>> +        >;
->>>> +    };
->>>> +
->>>>       mikrobus_i2c_pins_default: mikrobus-i2c-default-pins {
->>>>           pinctrl-single,pins = <
->>>>               AM62X_IOPAD(0x01d0, PIN_INPUT_PULLUP, 2) /* (A15) 
->>>> UART0_CTSn.I2C3_SCL */
->>>> @@ -394,6 +457,13 @@ AM62X_IOPAD(0x01d4, PIN_INPUT_PULLUP, 2) /* 
->>>> (B15) UART0_RTSn.I2C3_SDA */
->>>>           >;
->>>>       };
->>>>   +    mikrobus_i2c_pins_gpio: mikrobus-i2c-gpio-pins {
->>>> +        pinctrl-single,pins = <
->>>> +            AM62X_IOPAD(0x01d0, PIN_INPUT, 7) /* (A15) 
->>>> UART0_CTSn.GPIO1_22 */
->>>> +            AM62X_IOPAD(0x01d4, PIN_INPUT, 7) /* (B15) 
->>>> UART0_RTSn.GPIO1_23 */
->>>> +        >;
->>>> +    };
->>>> +
->>>>       mikrobus_uart_pins_default: mikrobus-uart-default-pins {
->>>>           pinctrl-single,pins = <
->>>>               AM62X_IOPAD(0x01d8, PIN_INPUT, 1) /* (C15) 
->>>> MCAN0_TX.UART5_RXD */
->>>> @@ -401,6 +471,13 @@ AM62X_IOPAD(0x01dc, PIN_OUTPUT, 1) /* (E15) 
->>>> MCAN0_RX.UART5_TXD */
->>>>           >;
->>>>       };
->>>>   +    mikrobus_uart_pins_gpio: mikrobus-uart-gpio-pins {
->>>> +        pinctrl-single,pins = <
->>>> +            AM62X_IOPAD(0x01d8, PIN_INPUT, 7) /* (C15) 
->>>> MCAN0_TX.GPIO1_24 */
->>>> +            AM62X_IOPAD(0x01dc, PIN_INPUT, 7) /* (E15) 
->>>> MCAN0_RX.GPIO1_25 */
->>>> +        >;
->>>> +    };
->>>> +
->>>>       mikrobus_spi_pins_default: mikrobus-spi-default-pins {
->>>>           pinctrl-single,pins = <
->>>>               AM62X_IOPAD(0x01b0, PIN_INPUT, 1) /* (A20) 
->>>> MCASP0_ACLKR.SPI2_CLK */
->>>> @@ -410,6 +487,15 @@ AM62X_IOPAD(0x0198, PIN_INPUT, 1) /* (A19) 
->>>> MCASP0_AXR2.SPI2_D1 */
->>>>           >;
->>>>       };
->>>>   +    mikrobus_spi_pins_gpio: mikrobus-spi-gpio-pins {
->>>> +        pinctrl-single,pins = <
->>>> +            AM62X_IOPAD(0x0194, PIN_INPUT, 7) /* (B19) 
->>>> MCASP0_AXR3.GPIO1_7 */
->>>> +            AM62X_IOPAD(0x0198, PIN_INPUT, 7) /* (A19) 
->>>> MCASP0_AXR2.GPIO1_8 */
->>>> +            AM62X_IOPAD(0x01ac, PIN_INPUT, 7) /* (E19) 
->>>> MCASP0_AFSR.GPIO1_13 */
->>>> +            AM62X_IOPAD(0x01b0, PIN_INPUT, 7) /* (A20) 
->>>> MCASP0_ACLKR.GPIO1_14 */
->>>> +        >;
->>>> +    };
->>>> +
->>>>       mikrobus_gpio_pins_default: mikrobus-gpio-default-pins {
->>>>           bootph-all;
->>>>           pinctrl-single,pins = <
->>>> @@ -630,8 +716,6 @@ &main_gpio0 {
->>>>     &main_gpio1 {
->>>>       bootph-all;
->>>> -    pinctrl-names = "default";
->>>> -    pinctrl-0 = <&mikrobus_gpio_pins_default>;
->>>>       gpio-line-names = "", "", "", "", "",            /* 0-4 */
->>>>           "SPE_RSTN", "SPE_INTN", "MIKROBUS_GPIO1_7",    /* 5-7 */
->>>>           "MIKROBUS_GPIO1_8", "MIKROBUS_GPIO1_9",        /* 8-9 */
->>>> @@ -804,15 +888,11 @@ it66121_out: endpoint {
->>>>   };
->>>>     &main_i2c3 {
->>>> -    pinctrl-names = "default";
->>>> -    pinctrl-0 = <&mikrobus_i2c_pins_default>;
->>>>       clock-frequency = <400000>;
->>>>       status = "okay";
->>>>   };
->>>>     &main_spi2 {
->>>> -    pinctrl-names = "default";
->>>> -    pinctrl-0 = <&mikrobus_spi_pins_default>;
->>>>       status = "okay";
->>>>   };
->>>>   @@ -876,8 +956,6 @@ &main_uart1 {
->>>>   };
->>>>     &main_uart5 {
->>>> -    pinctrl-names = "default";
->>>> -    pinctrl-0 = <&mikrobus_uart_pins_default>;
->>>>       status = "okay";
->>>>   };
->>>>
->>
->> Ayush Singh
->>
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
