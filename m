@@ -1,194 +1,126 @@
-Return-Path: <devicetree+bounces-80941-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80944-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FC9591AC80
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 18:22:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 446B091ACA2
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 18:26:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D8F351F248D3
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 16:22:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E23361F21139
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 16:26:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20FC0199393;
-	Thu, 27 Jun 2024 16:22:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED8C9199EA8;
+	Thu, 27 Jun 2024 16:25:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BkTVsFGh"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="X4gHTvhE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA86E197A65;
-	Thu, 27 Jun 2024 16:22:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DEEB199E95;
+	Thu, 27 Jun 2024 16:25:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719505352; cv=none; b=n8gtziQ0tENm+FMpkz7hvhB0gz3BE7ZSQQGC6ImzLLudzVDoyOyT4pb19tesETBNoi6CD6arzavNvOEy2NA5sP4hOniRe+a83u+SQ4hOvGBKUmCdkT/3Hf4A1/Pd+L5CMgqcxyo7vQ27Lc+60uEr1Hm7ZCIllBALbAB3bScBFsk=
+	t=1719505556; cv=none; b=gwsYIG1hQSeDXEop2HUY14OmuFJKiKwhh0NKaYb5mahtXSZ42kfK95vqJZPFqDE9sur5e8G1rvPjeuN+YVXNDr8PKY+YT45Vo32OKrxXJShwIP8792CzzBomzUitiwwoyjp0wFNzbzZLt6tRV15fzUIY0RNfzNDAYeRz6S/aSaM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719505352; c=relaxed/simple;
-	bh=TMnrFsjqTQSFOQs7nIdl6/67gGRZGNEZGkvjDhvZqvo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ajKQR3+2EHorOBc119GRQ0ktl2lf/1Wc1eTg/HqCUKkxLqiUaqw7sRRG96EMRRA6SUiSjkc8APpPzs7QM97imP1MHTROZOWC2LyF4cWgyOvD9QDRy7uQujc8n6oWWx2oNTphDg6TigCicjKKnImb1BQsYD80sckea82V3zsiBxw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BkTVsFGh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4AA85C2BBFC;
-	Thu, 27 Jun 2024 16:22:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719505351;
-	bh=TMnrFsjqTQSFOQs7nIdl6/67gGRZGNEZGkvjDhvZqvo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BkTVsFGhqUuZ2Es9Q5UvBx5RFlrHO58V1O6B3TRwelvxkIyL4ySfxxS40sUY3F3R0
-	 FentU0+s3sWywiz8PAGk0HYmc6bJoktx8/hxRU2eFp6nIibWgWVJfXDMKR+TPE1bx/
-	 u6LiVVijXAVewGUbomz0Sxf5soBihgvSQtL/OmTPsE1bkr2iuQE0zYTuONKcmlWtd6
-	 EXsD7irBelwyIPfVS73FSPYlbGU3trPHNruS0MZGKj1KgZwZL2zHgVZ9SNnbwgYhdm
-	 5TaSnC8ioToQ0zwCa9D+oEW5JBpcvmEuLYT11jrmRZe/UsiUQiaK8jeK6XF6tnj/Z2
-	 hw9th42gY863g==
-Date: Thu, 27 Jun 2024 17:22:27 +0100
-From: Conor Dooley <conor@kernel.org>
-To: matthew.gerlach@linux.intel.com
-Cc: lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
-	bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org,
-	joyce.ooi@intel.com, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7] dt-bindings: PCI: altera: Convert to YAML
-Message-ID: <20240627-finer-expel-2c7ab9f05733@spud>
-References: <20240614163520.494047-1-matthew.gerlach@linux.intel.com>
+	s=arc-20240116; t=1719505556; c=relaxed/simple;
+	bh=4483B/KPKHfUrPDphNJJ5o2UgzjO9LKvAYfFIVeIgeo=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=I9GB7hh6ULdrRApTo5lLTGbn8wKExJUeagpaQ7FkzqDUViYzCmf68GZM4KnzTSzYlfLgf8hKDu5wt8AZr6t/pz2fFYJCcBZSiukjNn3XZo852+89Fj9klyPm0LqngxP7H8E16uEM82AKZcc54xyypxsVmQ4KtPWqAdoVRGThIbQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=X4gHTvhE; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 45RGPf8H049641;
+	Thu, 27 Jun 2024 11:25:41 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1719505541;
+	bh=fgYhpcw093MJq02OE39ek/JeBKZVyhhLarJy9EUqBvg=;
+	h=From:To:CC:Subject:Date;
+	b=X4gHTvhELPwJyEfZYqyvL5rrpo1wwoW0pQFkn8l9V4C9HKjVJObjrIXZfV72e1NH3
+	 oFBcjApl5KaYHPikwi0Uuo2Qiq4HrAmAmkQbm1rCHx/iCHOYgusjgGlL9qsLHA//RS
+	 EjM6B3a4zTM1mgtmcr6ML2B3407BVgaDXpsbnAT0=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 45RGPfEH079358
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 27 Jun 2024 11:25:41 -0500
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 27
+ Jun 2024 11:25:41 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 27 Jun 2024 11:25:41 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 45RGPeV2130217;
+	Thu, 27 Jun 2024 11:25:41 -0500
+From: Nishanth Menon <nm@ti.com>
+To: Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Rob Herring <robh@kernel.org>, Vignesh Raghavendra
+	<vigneshr@ti.com>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Tero Kristo <kristo@kernel.org>, Vaishnav Achath <vaishnav.a@ti.com>,
+        Jared McArthur <j-mcarthur@ti.com>, Bryan Brattlof <bb@ti.com>,
+        Dhruva Gole <d-gole@ti.com>, Nishanth Menon
+	<nm@ti.com>
+Subject: [PATCH V2 0/3] arm64: dts: ti: k3-am62p/j722s: Add gpio-ranges properties
+Date: Thu, 27 Jun 2024 11:25:36 -0500
+Message-ID: <20240627162539.691223-1-nm@ti.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="9ilwJNtWwmRhDcGd"
-Content-Disposition: inline
-In-Reply-To: <20240614163520.494047-1-matthew.gerlach@linux.intel.com>
+Organization: Texas Instruments, Inc.
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
+Hi,
 
---9ilwJNtWwmRhDcGd
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This series was tested on BeagleY-AI[1] using the script[2].
 
-Been stalling replying here, was wondering if Rob would look given he
-reviewed the previous versions.
+This allows gpiod to request for a gpio that is not in the default GPIO
+mux mode and the framework controls the mux over to required GPIO mode.
 
-On Fri, Jun 14, 2024 at 11:35:20AM -0500, matthew.gerlach@linux.intel.com w=
-rote:
-> From: Matthew Gerlach <matthew.gerlach@linux.intel.com>
->=20
-> Convert the device tree bindings for the Altera Root Port PCIe controller
-> from text to YAML. Update the entries in the interrupt-map field to have
-> the correct number of address cells for the interrupt parent.
->=20
-> Signed-off-by: Matthew Gerlach <matthew.gerlach@linux.intel.com>
-> diff --git a/Documentation/devicetree/bindings/pci/altera-pcie.txt b/Docu=
-mentation/devicetree/bindings/pci/altera-pcie.txt
-> deleted file mode 100644
-> index 816b244a221e..000000000000
-> --- a/Documentation/devicetree/bindings/pci/altera-pcie.txt
-> +++ /dev/null
-> @@ -1,50 +0,0 @@
-> -* Altera PCIe controller
-> -
-> -Required properties:
-> -- compatible :	should contain "altr,pcie-root-port-1.0" or "altr,pcie-ro=
-ot-port-2.0"
-> -- reg:		a list of physical base address and length for TXS and CRA.
-> -		For "altr,pcie-root-port-2.0", additional HIP base address and length.
-> -- reg-names:	must include the following entries:
-> -		"Txs": TX slave port region
-> -		"Cra": Control register access region
+The series is based off next-20240617.
 
-> -		"Hip": Hard IP region (if "altr,pcie-root-port-2.0")
+NOTE: there is also a dtb_warning that is added, The fix for which is in
+the binding[3].
 
-I think this should be constrained in the new yaml binding by setting
-maxItems: for reg/reg-names to 2 for 1.0 and, if I am not
-misunderstanding what "must include" means, minItems: to 3 for 2.0.
+Changes since V1:
+ - Mux definition PIN_GPIO_RANGE_IOPAD instead of PIN_GPIO_MUX_MODE
+ - Refactored on top of next-20240626
+ - Note: since the patches have changed, I have skipped Dhruva's
+   reviewed-by
 
-Thanks,
-Conor.
+V1: https://lore.kernel.org/linux-arm-kernel/20240618173123.2592074-1-nm@ti.com/
 
-> diff --git a/Documentation/devicetree/bindings/pci/altr,pcie-root-port.ya=
-ml b/Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml
-> new file mode 100644
-> index 000000000000..0aaf5dbcc9cc
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml
-> @@ -0,0 +1,93 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright (C) 2015, 2019, 2024, Intel Corporation
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/altr,pcie-root-port.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Altera PCIe Root Port
-> +
-> +maintainers:
-> +  - Matthew Gerlach <matthew.gerlach@linux.intel.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - altr,pcie-root-port-1.0
-> +      - altr,pcie-root-port-2.0
-> +
-> +  reg:
-> +    items:
-> +      - description: TX slave port region
-> +      - description: Control register access region
-> +      - description: Hard IP region
-> +    minItems: 2
-> +
-> +  reg-names:
-> +    items:
-> +      - const: Txs
-> +      - const: Cra
-> +      - const: Hip
-> +    minItems: 2
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  interrupt-controller: true
-> +
-> +  interrupt-map-mask:
-> +    items:
-> +      - const: 0
-> +      - const: 0
-> +      - const: 0
-> +      - const: 7
-> +
-> +  interrupt-map:
-> +    maxItems: 4
-> +
-> +  "#interrupt-cells":
-> +    const: 1
-> +
-> +  msi-parent: true
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - interrupts
-> +  - "#interrupt-cells"
-> +  - interrupt-controller
-> +  - interrupt-map
-> +  - interrupt-map-mask
-> +
-> +allOf:
-> +  - $ref: /schemas/pci/pci-host-bridge.yaml#
+Jared McArthur (1):
+  arm64: dts: ti: k3-j722s: Add gpio-ranges properties
 
---9ilwJNtWwmRhDcGd
-Content-Type: application/pgp-signature; name="signature.asc"
+Nishanth Menon (2):
+  arm64: dts: ti: k3-pinctrl: Define a generic GPIO MUX Mode
+  arm64: dts: ti: k3-am62p: Add gpio-ranges properties
 
------BEGIN PGP SIGNATURE-----
+ .../boot/dts/ti/k3-am62p-j722s-common-mcu.dtsi |  8 ++++++++
+ arch/arm64/boot/dts/ti/k3-am62p-main.dtsi      | 17 +++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-j722s-main.dtsi      | 18 ++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-pinctrl.h            |  3 +++
+ 4 files changed, 46 insertions(+)
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZn2RwwAKCRB4tDGHoIJi
-0qYAAP4wDJobiNVvDe2lGN5IVp5yaFQBWs3S96o3aWzteZHlxwD/Rdn4PgaiT4i+
-MzHMBW+Uslp5+U4KxXeTXIBrp8WeSwA=
-=b0h0
------END PGP SIGNATURE-----
+base-commit: df9574a57d02b265322e77fb8628d4d33641dda9
 
---9ilwJNtWwmRhDcGd--
+[1] https://www.beagleboard.org/boards/beagley-ai
+[2] https://gist.github.com/nmenon/4973770cf0df3f02c2e4f7f3d048d80d
+[3] https://lore.kernel.org/linux-arm-kernel/20240627150610.469645-1-nm@ti.com/
+
+-- 
+2.43.0
 
