@@ -1,55 +1,65 @@
-Return-Path: <devicetree+bounces-80642-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80645-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A780191A1A3
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 10:37:20 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30D4691A1C9
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 10:42:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5EDDD280EE8
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 08:37:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AD47CB20BEE
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 08:42:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F89080031;
-	Thu, 27 Jun 2024 08:37:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA97A82486;
+	Thu, 27 Jun 2024 08:42:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="f4sQNpyS"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="W2SOULC7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F49E7C097;
-	Thu, 27 Jun 2024 08:37:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB24378C60
+	for <devicetree@vger.kernel.org>; Thu, 27 Jun 2024 08:42:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719477435; cv=none; b=eG3uK5dIHG5XHpoGYW0V+nKOF8zGo1LJsy8lNAcpgECTRtXPgFLHRzc+SFGUYHe/Euk3u1I0ef0rESTElCl+nAunr5JqnZiogkW70a3ITyhJTvivqZ+sO4G3mU6U7++rQorJrNmcAC/9E4MxvHGF8Qf0bbRnOzAPUJwZ9vGyRsw=
+	t=1719477757; cv=none; b=lJw83Uw64GCTiugVHCtcuCCuhTjknzmSjzr6xm6vGYOPQzSJR96lME5AJnteLpbdh5kG+Ia7biW2KS/dMhTFOo9QqSRn6JjC/pKc9r/gGYl6crQMIMsK/9w3qwHDVlYEbv4xXfVWw/8usgogKI76UITuLapNtCC/1J/ZBGD5lS8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719477435; c=relaxed/simple;
-	bh=XREYqkvCwbtnY/wTDk2oBMANkBPSKjKF3TFWthonUGA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UNLGZiXKI14uRpKe4IRRPsLzOMjqUkcIGffMUed0X/UdXPIoGnkT+3n1hGanSGvIGiOp0+dLZ/PttW8ORRpoDsDEIYT0028CVngn3L4DpN+WDdYr07+K6ukJCjdf++AURghEqXqefFtqSSn0T4B/ZXP39gYOTXRHVqaYur84HNU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=f4sQNpyS; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1719477425;
-	bh=XREYqkvCwbtnY/wTDk2oBMANkBPSKjKF3TFWthonUGA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=f4sQNpySpezWwtUlEczADnMWiKwsxMhyPdXapEZq0VoLPmutf2cJeMw9wtQfdGaYB
-	 cHEqweDX1YFIJkZimqnOZC5LyTlgTX+uygBFFZ7nbDrHRZQyFxGLgbFsJRHws9Ix8a
-	 VQxgGsFYbyeJcAZNlPUyqf5jIWwVHSzEQt4oE/PKzqJMqA10S2Ku+fBZCJPCeVJ/nX
-	 2fnJ11lzRk6irZIL9Kq5wi3+uN2Ok2FXZrgGnIGrlfBoZW+10cnmn3swpLHfBRc1Ep
-	 nzWm2QuBjscLmHodCrScrQA9bYMB8TRyT9aADw07nCMsJzjit599SB41UMJvKgZxic
-	 7NDGEp7U76DuA==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 940C83780626;
-	Thu, 27 Jun 2024 08:37:04 +0000 (UTC)
-Message-ID: <96b436c1-50c3-4091-9577-c00187518779@collabora.com>
-Date: Thu, 27 Jun 2024 10:37:03 +0200
+	s=arc-20240116; t=1719477757; c=relaxed/simple;
+	bh=ERHqnf+IIhUPKVQrCKNWUdpSOY29Yfm7ncfJZJOkWy4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=lE71CnVNwCyJziAp4nPHwbW8Ge9HwqTvKPvtLwsaWmuNTR+KHZ4nMxK3fz7rDBrOpLKcMpsPfH4Qh9w5Ss7vnRFpTBaa8+/rUtr85errjwgQZbV/+uogNKEoIE4i7KdQ3LKoBYeGTtbhUc4JJI85lOz9lGD1vZ+EEeWLCJV9Osk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=W2SOULC7; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45R8034X026625;
+	Thu, 27 Jun 2024 10:39:13 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	xjPP4W+BU82TAbrE67kZo4dj4qLTsmEemGauaFgAobA=; b=W2SOULC79NbGB1SK
+	TGwMKVzCHognJFgsosC1vhq3ie5daPOd9KT4b/1JONSE6kU7po0tFY6zralW6uS2
+	L8QSxXO6Rl+mPFLww9WCfWzwAGLgo6KArLGYxHBRTN88wqewlFzStM+qTla/9nsn
+	xJyh2dNAXox0vn6nRd4cMbpj7wJ+Je1J0UasI4FsRv/VHQfmhHUqcEbwcFuBMaJG
+	GGXN9UqKvwXpF7kDvr31LMoMYeNO3KdQvjtLh7FP5qqV8oui8FiQFHO+dwIIlETZ
+	i3GnE/BvqEIAn+LNQsRAnzOWo6SS6EU6E5LqR/jwsqNVBT3oZcZLdgBUSukJ7Fp6
+	pXkRaw==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3ywnxxmest-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 27 Jun 2024 10:39:13 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 664CE4002D;
+	Thu, 27 Jun 2024 10:39:08 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 9D8A62132F8;
+	Thu, 27 Jun 2024 10:38:35 +0200 (CEST)
+Received: from [10.48.86.79] (10.48.86.79) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Thu, 27 Jun
+ 2024 10:38:35 +0200
+Message-ID: <b2796be8-d372-44e6-959c-e212097e99e8@foss.st.com>
+Date: Thu, 27 Jun 2024 10:38:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,268 +67,82 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] dt-bindings: clock: Add MediaTek MT6735 clock and
- reset bindings
-To: Yassine Oudjana <yassine.oudjana@gmail.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, Daniel Golle
- <daniel@makrotopia.org>, jason-ch chen <Jason-ch.Chen@mediatek.com>,
- Sam Shih <sam.shih@mediatek.com>, Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Yassine Oudjana <y.oudjana@protonmail.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-References: <20240626202406.846961-1-y.oudjana@protonmail.com>
- <20240626202406.846961-2-y.oudjana@protonmail.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH] ARM: dts: stm32mp135f-dk: Document output pins for PWMs
+To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
+        Maxime
+ Coquelin <mcoquelin.stm32@gmail.com>
+CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20240613080229.2292413-2-u.kleine-koenig@baylibre.com>
 Content-Language: en-US
-In-Reply-To: <20240626202406.846961-2-y.oudjana@protonmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20240613080229.2292413-2-u.kleine-koenig@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-27_04,2024-06-25_01,2024-05-17_01
 
-Il 26/06/24 22:24, Yassine Oudjana ha scritto:
-> From: Yassine Oudjana <y.oudjana@protonmail.com>
+Hi Uwe
+
+On 6/13/24 10:02, Uwe Kleine-König wrote:
+> To simplify identifying the pins where the PWM output is routed to,
+> add a comment to each PWM device about the respective pin on the
+> expansion connector.
 > 
-> Add DT bindings for for the main clock and reset controllers of MT6735
-> (apmixedsys, topckgen, infracfg and pericfg).
-> 
-> Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
-
-This commit needs just one small nit to be fixed before being ready to be picked,
-check below...
-
+> Signed-off-by: Uwe Kleine-König <u.kleine-koenig@baylibre.com>
 > ---
->   .../arm/mediatek/mediatek,infracfg.yaml       |  8 +-
->   .../arm/mediatek/mediatek,pericfg.yaml        |  1 +
->   .../bindings/clock/mediatek,apmixedsys.yaml   |  4 +-
->   .../bindings/clock/mediatek,topckgen.yaml     |  4 +-
->   MAINTAINERS                                   | 12 +++
->   .../clock/mediatek,mt6735-apmixedsys.h        | 16 ++++
->   .../clock/mediatek,mt6735-infracfg.h          | 25 ++++++
->   .../clock/mediatek,mt6735-pericfg.h           | 37 +++++++++
->   .../clock/mediatek,mt6735-topckgen.h          | 79 +++++++++++++++++++
->   .../reset/mediatek,mt6735-infracfg.h          | 31 ++++++++
->   .../reset/mediatek,mt6735-pericfg.h           | 31 ++++++++
->   11 files changed, 243 insertions(+), 5 deletions(-)
->   create mode 100644 include/dt-bindings/clock/mediatek,mt6735-apmixedsys.h
->   create mode 100644 include/dt-bindings/clock/mediatek,mt6735-infracfg.h
->   create mode 100644 include/dt-bindings/clock/mediatek,mt6735-pericfg.h
->   create mode 100644 include/dt-bindings/clock/mediatek,mt6735-topckgen.h
->   create mode 100644 include/dt-bindings/reset/mediatek,mt6735-infracfg.h
->   create mode 100644 include/dt-bindings/reset/mediatek,mt6735-pericfg.h
+>   arch/arm/boot/dts/st/stm32mp135f-dk.dts | 4 ++++
+>   1 file changed, 4 insertions(+)
 > 
+> diff --git a/arch/arm/boot/dts/st/stm32mp135f-dk.dts b/arch/arm/boot/dts/st/stm32mp135f-dk.dts
+> index 567e53ad285f..f1b50e4c1059 100644
+> --- a/arch/arm/boot/dts/st/stm32mp135f-dk.dts
+> +++ b/arch/arm/boot/dts/st/stm32mp135f-dk.dts
+> @@ -273,6 +273,7 @@ &timers3 {
+>   	/delete-property/dma-names;
+>   	status = "disabled";
+>   	pwm {
+> +		/* PWM output on pin 7 of the expansion connector (CN8.7) using TIM3_CH4 function */
+>   		pinctrl-0 = <&pwm3_pins_a>;
+>   		pinctrl-1 = <&pwm3_sleep_pins_a>;
+>   		pinctrl-names = "default", "sleep";
+> @@ -288,6 +289,7 @@ &timers4 {
+>   	/delete-property/dma-names;
+>   	status = "disabled";
+>   	pwm {
+> +		/* PWM output on pin 31 of the expansion connector (CN8.31) using TIM4_CH2 function */
+>   		pinctrl-0 = <&pwm4_pins_a>;
+>   		pinctrl-1 = <&pwm4_sleep_pins_a>;
+>   		pinctrl-names = "default", "sleep";
+> @@ -303,6 +305,7 @@ &timers8 {
+>   	/delete-property/dma-names;
+>   	status = "disabled";
+>   	pwm {
+> +		/* PWM output on pin 32 of the expansion connector (CN8.32) using TIM8_CH3 function */
+>   		pinctrl-0 = <&pwm8_pins_a>;
+>   		pinctrl-1 = <&pwm8_sleep_pins_a>;
+>   		pinctrl-names = "default", "sleep";
+> @@ -316,6 +319,7 @@ timer@7 {
+>   &timers14 {
+>   	status = "disabled";
+>   	pwm {
+> +		/* PWM output on pin 33 of the expansion connector (CN8.33) using TIM14_CH1 function */
+>   		pinctrl-0 = <&pwm14_pins_a>;
+>   		pinctrl-1 = <&pwm14_sleep_pins_a>;
+>   		pinctrl-names = "default", "sleep";
+> 
+> base-commit: 1613e604df0cd359cf2a7fbd9be7a0bcfacfabd0
 
-..snip..
+Good idea. Some lines exceed the 100 char. I could remove "function" or 
+only keep "func" instead. What do u think ?
 
-> diff --git a/include/dt-bindings/clock/mediatek,mt6735-apmixedsys.h b/include/dt-bindings/clock/mediatek,mt6735-apmixedsys.h
-> new file mode 100644
-> index 0000000000000..3dda719fd5d53
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/mediatek,mt6735-apmixedsys.h
-> @@ -0,0 +1,16 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> +
-> +#ifndef _DT_BINDINGS_CLK_MT6735_APMIXEDSYS_H
-> +#define _DT_BINDINGS_CLK_MT6735_APMIXEDSYS_H
-> +
-> +#define ARMPLL				0
+Note also that commit should be: "ARM: dts: stm32: ....". i can fix it 
+by myself.
 
-All of the definitions inside of the clock bindings for MediaTek have a specific
-format and, for consistency, you *shall* follow that.
-
-#define CLK_(ip-name)_(clock)    x
-
-For example,
-
-#define CLK_APMIXED_ARMPLL	0
-#define CLK_APMIXED_MAINPLL	1
-... etc
-
-> +#define MAINPLL				1
-> +#define UNIVPLL				2
-> +#define MMPLL				3
-> +#define MSDCPLL				4
-> +#define VENCPLL				5
-> +#define TVDPLL				6
-> +#define APLL1				7
-> +#define APLL2				8
-> +
-> +#endif
-> diff --git a/include/dt-bindings/clock/mediatek,mt6735-infracfg.h b/include/dt-bindings/clock/mediatek,mt6735-infracfg.h
-> new file mode 100644
-> index 0000000000000..a42be76c778d1
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/mediatek,mt6735-infracfg.h
-> @@ -0,0 +1,25 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> +
-> +#ifndef _DT_BINDINGS_CLK_MT6735_INFRACFG_H
-> +#define _DT_BINDINGS_CLK_MT6735_INFRACFG_H
-> +
-> +#define CLK_DBG				0
-
-#define CLK_INFRA_DBG	0
-#define CLK_INFRA_GCE	1
-.....etc
-
-> +#define CLK_GCE				1
-> +#define CLK_TRBG			2
-> +#define CLK_CPUM			3
-> +#define CLK_DEVAPC			4
-> +#define CLK_AUDIO			5
-> +#define CLK_GCPU			6
-> +#define CLK_L2C_SRAM			7
-> +#define CLK_M4U				8
-> +#define CLK_CLDMA			9
-> +#define CLK_CONNMCU_BUS			10
-> +#define CLK_KP				11
-> +#define CLK_APXGPT			12
-> +#define CLK_SEJ				13
-> +#define CLK_CCIF0_AP			14
-> +#define CLK_CCIF1_AP			15
-> +#define CLK_PMIC_SPI			16
-> +#define CLK_PMIC_WRAP			17
-> +
-> +#endif
-> diff --git a/include/dt-bindings/clock/mediatek,mt6735-pericfg.h b/include/dt-bindings/clock/mediatek,mt6735-pericfg.h
-> new file mode 100644
-> index 0000000000000..72401f009176a
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/mediatek,mt6735-pericfg.h
-> @@ -0,0 +1,37 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> +
-> +#ifndef _DT_BINDINGS_CLK_MT6735_PERICFG_H
-> +#define _DT_BINDINGS_CLK_MT6735_PERICFG_H
-> +
-> +#define CLK_DISP_PWM			0
-
-#define CLK_PERI_DISP_PWM
-#define CLK_PERI_THERM
-....etc
-
-> +#define CLK_THERM			1
-> +#define CLK_PWM1			2
-
-..snip..
-
-> +
-> +#endif
-> diff --git a/include/dt-bindings/clock/mediatek,mt6735-topckgen.h b/include/dt-bindings/clock/mediatek,mt6735-topckgen.h
-> new file mode 100644
-> index 0000000000000..a771910a4b8a6
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/mediatek,mt6735-topckgen.h
-> @@ -0,0 +1,79 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> +
-> +#ifndef _DT_BINDINGS_CLK_MT6735_TOPCKGEN_H
-> +#define _DT_BINDINGS_CLK_MT6735_TOPCKGEN_H
-> +
-> +#define AD_SYS_26M_CK			0
-
-#define CLK_TOP_AD_SYS_26M_CK
-#define CLK_TOP_CLKPH_MCK_O
-#define CLK_TOP_DMPLL
-
-....etc
-
-> +#define CLKPH_MCK_O			1
-> +#define DMPLL				2
-
-..snip...
-
-> +
-> +#endif
-> diff --git a/include/dt-bindings/reset/mediatek,mt6735-infracfg.h b/include/dt-bindings/reset/mediatek,mt6735-infracfg.h
-> new file mode 100644
-> index 0000000000000..5d24c7a1317f8
-> --- /dev/null
-> +++ b/include/dt-bindings/reset/mediatek,mt6735-infracfg.h
-> @@ -0,0 +1,31 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> +
-> +#ifndef _DT_BINDINGS_RESET_MT6735_INFRACFG_H
-> +#define _DT_BINDINGS_RESET_MT6735_INFRACFG_H
-> +
-
-For resets, the names are, instead...
-
-#define (socmodel)_(ip-name)_(instance)_(reset-name)
-
-so, for example...
-
-#define MT6735_INFRA_RST0_EMI_REG	0
-#define MT6735_INFRA_RST0_DRAMC0_AO	1
-
-and no holes are permitted, so:
-
-#define MT6735_INFRA_RST0_AP_CIRQ_EINT	2
-
-...this means that, unless you know what is at 2, you have to define
-a .rst_idx_map which will effectively map the binding to the actual
-real reset bit in the reset register.
-
-In the driver:
-
-#define RST_NR_PER_BANK		32
-
-static u16 infra_idx_map[] = {
-	[MT6735_INFRA_RST0_EMI_REG] = 0 * RST_NR_PER_BANK + 0
-	......
-	[MT7635_INFRA_RST0_AP_CIRQ_EINT] = 0 * RST_NR_PER_BANK + 3
-	... etc
-};
-
-> +#define RST_EMI_REG			0
-> +#define RST_DRAMC0_AO			1
-> +#define RST_AP_CIRQ_EINT		3
-> +#define RST_APXGPT			4
-> +#define RST_SCPSYS			5
-> +#define RST_KP				6
-> +#define RST_PMIC_WRAP			7
-> +#define RST_CLDMA_AO_TOP		8
-> +#define RST_EMI				16
-> +#define RST_CCIF			17
-> +#define RST_DRAMC0			18
-> +#define RST_EMI_AO_REG			19
-> +#define RST_CCIF_AO			20
-> +#define RST_TRNG			21
-> +#define RST_SYS_CIRQ			22
-> +#define RST_GCE				23
-> +#define RST_M4U				24
-> +#define RST_CCIF1			25
-> +#define RST_CLDMA_TOP_PD		26
-> +#define RST_CBIP_P2P_MFG		27
-> +#define RST_CBIP_P2P_APMIXED		28
-> +#define RST_CBIP_P2P_CKSYS		29
-> +#define RST_CBIP_P2P_MIPI		30
-> +#define RST_CBIP_P2P_DDRPHY		31
-> +
-> +#endif
-> diff --git a/include/dt-bindings/reset/mediatek,mt6735-pericfg.h b/include/dt-bindings/reset/mediatek,mt6735-pericfg.h
-> new file mode 100644
-> index 0000000000000..90ee8ed8923fd
-> --- /dev/null
-> +++ b/include/dt-bindings/reset/mediatek,mt6735-pericfg.h
-> @@ -0,0 +1,31 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> +
-> +#ifndef _DT_BINDINGS_RESET_MT6735_PERICFG_H
-> +#define _DT_BINDINGS_RESET_MT6735_PERICFG_H
-> +
-> +#define RST_UART0			0
-
-#define MT6735_PERI_RST0_UART0 ......etc
-
-
-You're almost there, getting this stuff upstream is just one small effort ahead.
-Keep it up!
-
-Cheers,
-Angelo
-
-
+Alex
 
