@@ -1,48 +1,65 @@
-Return-Path: <devicetree+bounces-80581-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80582-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50D6C91A072
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 09:32:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B79191A07B
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 09:35:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C04301F21BBE
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 07:32:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 226FC28238F
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 07:35:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCAC03F8E4;
-	Thu, 27 Jun 2024 07:32:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F60959164;
+	Thu, 27 Jun 2024 07:35:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nQ+7ymNR"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="HZ1Lk4vq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85EC31BF3A;
-	Thu, 27 Jun 2024 07:32:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6964F3EA76
+	for <devicetree@vger.kernel.org>; Thu, 27 Jun 2024 07:35:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719473562; cv=none; b=Gzh4EySLNkLT+0XXyzsKYGNpirgQ/6hPHoGebMOhKN77YeCqaQfqFOoL7WLKD8zSatF25MUXydb+juUuzVoidSNdY14unJbAYSWPCa2ndVOpyN2j0xSuf2QWqRjRc1sYLsH3gDV+wUgCaqUMLtvJ9/GCyaI7C3K0jJTxrPPW+C0=
+	t=1719473725; cv=none; b=diGoAS3lPT/yHBrBHNK2VNT2uK/CYRzBdbgew4jFGbJ6u+ElwMmM3ZyuTiBKoqOg6WlnIXvQenA7poHJC4nrWxArfFD9mCYkzfQ4WNg/p1JLogINOzVOpUeTlMO8i8k9wz9PBgr1JRLVXG5nngqrZPmOPo+Nck6KidUqn6jtY8g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719473562; c=relaxed/simple;
-	bh=pJ+NlyOp1B3uLhCizMN0QSkalyE/7b6qoqlU9e2ePvg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=QS+qEgecKMdyRYs1cujYFutDtnJ5GE9A4Cy/7ux6mBcA0/1pSAUk/Ylnf5/NAesw/d+nNwWVH3hDwUrbk22hfIrEPpLQ4YyNG3RQXDrH8tq4ZunC4W8pWhmoYzTjLMebz368BQZHGOOM9kRQ3yCr/QZ9GAE/ePWygH9x/s36xTY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nQ+7ymNR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D315C2BBFC;
-	Thu, 27 Jun 2024 07:32:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719473562;
-	bh=pJ+NlyOp1B3uLhCizMN0QSkalyE/7b6qoqlU9e2ePvg=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=nQ+7ymNR3ElXywfxd/KXf0nOVGTi5IY/2DiowVKLj0Ys4JDZJ/GtobwIB4NpMnTIZ
-	 9DVFGteto6MWle8qwTQLbTn59ULX+dHzBmQCHpoTzbzMTmh9HtoBsq9ZY4H9eMjZYt
-	 5DMBl5OflOrflHrSau0AEGxDjG/GgPo8hC6lAso6u+h/XnkAw4MvIoPtYfPDmfBfhn
-	 8UV7B8p5cVK05MoFk+odJVu9KyW5VKkGtvx7qET/PD7zDAUAC1Chx8KRrduTZ8R8xF
-	 /jU7XVPNmho8wGm0tXH4lCqKeukeZwRUPLU51st74LJcw6VvOdrLcRitlqpCN8P4n0
-	 mW0jKopQaq7Bg==
-Message-ID: <e9170dd5-34f8-4d36-ba78-331242c2f63d@kernel.org>
-Date: Thu, 27 Jun 2024 09:32:31 +0200
+	s=arc-20240116; t=1719473725; c=relaxed/simple;
+	bh=AOOIce+tZxnTL8aeA6Veoq0sdvFXqGDLji3p5KTAR50=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=YQip+aC11Qozl+UQSaK/hhY0Fsu/jsy0pPRbPHWk7KGkCH1+9T2L+uAd8sgwIO8RcB3PB/zNq6DhEXkMMBsNcbB+yL6U0YLrU2BuArFJNLBNSWGiqeQorQ5tzfluwEB4msxWnlMWsw4Zup+GqjbiIM9lKa1KBjTwm/68Vc+EMAo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=HZ1Lk4vq; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1719473723; x=1751009723;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=AOOIce+tZxnTL8aeA6Veoq0sdvFXqGDLji3p5KTAR50=;
+  b=HZ1Lk4vqrNdXdiAWYEROKPo3O8ASzOjhwf9sHZaoAtH/Gd6p7Qx6BwLF
+   oYBbKwkDDTIe9pAZwuP7REWRNz8QMt9s7hpjw+RUOsozxpnvYYWwhKFMw
+   IJW7B/Q34chIfzDF6LwEhA4K62kNTUl7+XgFYmIB2TCUkJjZb5b0F4moQ
+   PwleABLix4IoSswJdWvu6xyMILrN0Ob6h61IbQJKLui90hfHeReQhMBz5
+   wbaJjSyVzsLZnQzVsN37zbualT9cs+8P8UpzBe8w4MDlvqOeSPDPXMAe7
+   39oFgK2QsrJiDIs6AjSuOqpDyvI9o17vazLg9WBomHOavVzV5ozmb//99
+   Q==;
+X-CSE-ConnectionGUID: AvttvU+vQS6kjuWC7c9CCw==
+X-CSE-MsgGUID: 8VqTP6eXSCGtsggpCCtzSw==
+X-IronPort-AV: E=Sophos;i="6.08,269,1712646000"; 
+   d="scan'208";a="195959555"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 27 Jun 2024 00:35:16 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Thu, 27 Jun 2024 00:35:13 -0700
+Received: from [10.180.116.106] (10.10.85.11) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
+ Transport; Thu, 27 Jun 2024 00:35:10 -0700
+Message-ID: <6da15a23-7ba0-4046-acd2-c9a2aa61dfe8@microchip.com>
+Date: Thu, 27 Jun 2024 09:35:37 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,77 +67,66 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 4/9] dt-bindings: soc: qcom: cpr3: Add bindings for
- IPQ9574
-To: Varadarajan Narayanan <quic_varada@quicinc.com>, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org,
- angelogioacchino.delregno@collabora.com, andersson@kernel.org,
- konrad.dybcio@linaro.org, mturquette@baylibre.com, sboyd@kernel.org,
- ilia.lin@kernel.org, rafael@kernel.org, viresh.kumar@linaro.org,
- ulf.hansson@linaro.org, quic_sibis@quicinc.com, otto.pflueger@abscue.de,
- neil.armstrong@linaro.org, luca@z3ntu.xyz, abel.vesa@linaro.org,
- danila@jiaxyga.com, quic_ipkumar@quicinc.com, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-pm@vger.kernel.org
-References: <20240626104002.420535-1-quic_varada@quicinc.com>
- <20240626104002.420535-5-quic_varada@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240626104002.420535-5-quic_varada@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+Subject: Re: [PATCH 1/2] MAINTAINERS: add microchip soc binding directory to
+ microchip soc driver entry
+To: Conor Dooley <conor@kernel.org>, <devicetree@vger.kernel.org>
+CC: Conor Dooley <conor.dooley@microchip.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, Claudiu Beznea
+	<claudiu.beznea@tuxon.dev>, Lars Povlsen <lars.povlsen@microchip.com>, "Steen
+ Hegelund" <Steen.Hegelund@microchip.com>, Daniel Machon
+	<daniel.machon@microchip.com>
+References: <20240626-platter-scarcity-d503fda8a2fd@spud>
+Content-Language: en-US, fr-FR
+From: Nicolas Ferre <nicolas.ferre@microchip.com>
+Organization: microchip
+In-Reply-To: <20240626-platter-scarcity-d503fda8a2fd@spud>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 26/06/2024 12:39, Varadarajan Narayanan wrote:
-> Add the bindings for the IPQ9574 CPR3 driver to the documentation.
+On 26/06/2024 at 17:54, Conor Dooley wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
 > 
-> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> I noticed that there's technically not an explicit maintainer for this
+> directory, even if the files currently in it are covered by either the
+> Mircochip FPGA or AT91 entries. Add it to the entry covering the
+> corresponding driver directory.
+> 
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+> CC: Rob Herring <robh@kernel.org>
+> CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> CC: Conor Dooley <conor+dt@kernel.org>
+> CC: devicetree@vger.kernel.org
+> CC: Nicolas Ferre <nicolas.ferre@microchip.com>
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+Thanks Conor, best regards,
+   Nicolas
 
-Best regards,
-Krzysztof
+> CC: Alexandre Belloni <alexandre.belloni@bootlin.com>
+> CC: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+> CC: Lars Povlsen <lars.povlsen@microchip.com>
+> CC: Steen Hegelund <Steen.Hegelund@microchip.com>
+> CC: Daniel Machon <daniel.machon@microchip.com>
+> ---
+>   MAINTAINERS | 1 +
+>   1 file changed, 1 insertion(+)
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index e2d8fdda1737..c74fd2b70532 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -14975,6 +14975,7 @@ MICROCHIP SOC DRIVERS
+>   M:     Conor Dooley <conor@kernel.org>
+>   S:     Supported
+>   T:     git https://git.kernel.org/pub/scm/linux/kernel/git/conor/linux.git/
+> +F:     Documentation/devicetree/bindings/soc/microchip/
+>   F:     drivers/soc/microchip/
+> 
+>   MICROCHIP SPI DRIVER
+> --
+> 2.43.0
+> 
 
 
