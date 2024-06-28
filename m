@@ -1,63 +1,53 @@
-Return-Path: <devicetree+bounces-81492-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81493-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B76891C6E4
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 21:55:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C188891C6FD
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 21:58:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E44151F2537E
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 19:55:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7843E284A48
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 19:58:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27EF377F2D;
-	Fri, 28 Jun 2024 19:55:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0812770F0;
+	Fri, 28 Jun 2024 19:58:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="pZyltw4g"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=nbd.name header.i=@nbd.name header.b="POcrKtHK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from nbd.name (nbd.name [46.4.11.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A14247710C;
-	Fri, 28 Jun 2024 19:55:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4CC3757ED;
+	Fri, 28 Jun 2024 19:58:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.4.11.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719604532; cv=none; b=hJgrlRbM9aNJatiGnrqFkG0mk5nilYND90j5brmABi1Y0X0BGqwDCfpMZBEfhcDlIsthDJkJ8xzFhfyoHhTCLpZMl8E2Vib21sr73MwuX4r7i+5hZdL+G2q0Mvi+pdiBsKUKIxMcppdGgfbRnMVEvw0HZzxklS+6KIypRzEIBGA=
+	t=1719604698; cv=none; b=CtR0aHEnnAvDUwWN2B33jQDzjz1s9uJ1R7fixmQnxL25oqgkc3kWjJPmee3RVgtVKwgmFWC9JgeppjfpzG07u8KhyHp9mha0g7U+zsg0lyU8Y5MFyVMd+pCnqpS1AY0ErpDKNPmC54jIuGGxvYQR8wn7lkqZBQUfrYSy4wl7CKQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719604532; c=relaxed/simple;
-	bh=YM+yQDNqkkBhY/x5WBPZk5abMHgkfaWP73Nw6FDu1FQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=acmzoJG77jmGchgtZvaZGfzcAgmQGsfj0PoZVZP/bq2OWUjmZGUFYATj+QUF7wV8/cjoGJDIgT3w24w59THEsOnQYBhBC0l7bek62cRTbNkblX7Mf1AxMK7ral5IE/Dkzc0FuMfzy9vTkgpuzB316hUOpJSDnemOtGQorC2RUvM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=pZyltw4g; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45SGc1DM000900;
-	Fri, 28 Jun 2024 19:55:05 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	eRgvqU3QHpMQzWa7BXNysUM8bokPIDW5+DmiJDF3IHA=; b=pZyltw4g79cEf8Jl
-	fnVkh6v6K4sYoVw32c5Gw38yXqV+CPh1dnf+hJ+kJLLhsGN/pIJpueL7dgMN7HOv
-	uXg3rn+vHLiybEp4ScJmmrsOF/aFLAXRRLi20NZeuB29THaxJJYaENKvOadtb+lR
-	AmoeskMXsagX46NXoELKavNw837JtPSH93xfaTA4D6GZSsFjhamS71qvxgRuTDIC
-	S0PlVe9pZQ0Nl1XE5j3MzdNxfx0qJoAIMDNK24cKyfIikszWBEqCMssYd5442LdI
-	iJMR7FSEcg23E+6v34fo+8fRZ6/9NduQZkeoIpUuPXgAMel1cMobwuOm5HZ0rYF4
-	XLXZuQ==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 400f90rc92-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 28 Jun 2024 19:55:05 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA01.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45SJt42L013084
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 28 Jun 2024 19:55:04 GMT
-Received: from [10.110.112.228] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 28 Jun
- 2024 12:55:00 -0700
-Message-ID: <e4f397c5-e266-44ff-b358-f0bd51bc52a0@quicinc.com>
-Date: Fri, 28 Jun 2024 12:55:00 -0700
+	s=arc-20240116; t=1719604698; c=relaxed/simple;
+	bh=HC7XejqTSDq8JmmZQR6kTmlT6s38ElC7/BJdCkeCDoE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pd+eMU6yI2kMyGN1wq/X/REyUhONtdlgr+Q1QLa6UrXejTKPvxKrvyK9r5yNNkT9v2vB4XfQ7JGVNO3Rt9WpDJaqp45jC/4FuTJS5mE64UXB8I5a6crM0y6MtPTRMxZcA4xG16I4L/30n6kX70CShKIrgeQDDkUa7xezb+ouybs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nbd.name; spf=none smtp.mailfrom=nbd.name; dkim=pass (1024-bit key) header.d=nbd.name header.i=@nbd.name header.b=POcrKtHK; arc=none smtp.client-ip=46.4.11.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nbd.name
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=nbd.name
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=nbd.name;
+	s=20160729; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+	References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=Sh9NkNmBlbDEM3+46XPxqidE2npRUNTYyIv5P3xGwTA=; b=POcrKtHKpHJ4edH2e1sV8hKbbq
+	DFFK9Tc5qH8t5Vug4hNLTYNByL6I6H4sR8txYjlsImlhj9w8tSsyN4jaDTLEv5y3pS8PWgt8octaw
+	Ho2ZSINdacuPDxgHF0yIjiwzc8Lun46GcCVC7TSb38WRmicfUzf4IsO+BDZxj3BSrabo=;
+Received: from p4ff13dca.dip0.t-ipconnect.de ([79.241.61.202] helo=nf.local)
+	by ds12 with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+	(Exim 4.96)
+	(envelope-from <nbd@nbd.name>)
+	id 1sNHj6-000Pxz-2M;
+	Fri, 28 Jun 2024 21:57:44 +0200
+Message-ID: <6c9f98de-4090-4fe2-8fa3-446c1907f50b@nbd.name>
+Date: Fri, 28 Jun 2024 21:57:43 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,83 +55,96 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] net: stmmac: Add interconnect support
-To: Andrew Lunn <andrew@lunn.ch>
-CC: Andrew Halaney <ahalaney@redhat.com>, Vinod Koul <vkoul@kernel.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu
-	<joabreu@synopsys.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet
-	<edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni
-	<pabeni@redhat.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        "Russell
- King" <linux@armlinux.org.uk>, Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "Bhupesh
- Sharma" <bhupesh.sharma@linaro.org>, <kernel@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <netdev@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-References: <20240625-icc_bw_voting_from_ethqos-v2-0-eaa7cf9060f0@quicinc.com>
- <20240625-icc_bw_voting_from_ethqos-v2-2-eaa7cf9060f0@quicinc.com>
- <owkerbnbenzwtnu2kbbas5brhnak2e37azxtzezmw3hb6mficq@ffpqrqglmp4c>
- <cf6c2526-ba12-4627-b4e9-20ce5b4d175c@quicinc.com>
- <c7bcc2ae-eb27-4acc-b18c-8cb584b4d616@lunn.ch>
+Subject: Re: [PATCH v2 net-next 2/2] net: airoha: Introduce ethernet support
+ for EN7581 SoC
+To: Arnd Bergmann <arnd@arndb.de>, Lorenzo Bianconi <lorenzo@kernel.org>
+Cc: Netdev <netdev@vger.kernel.org>, lorenzo.bianconi83@gmail.com,
+ "David S . Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Conor Dooley <conor@kernel.org>,
+ linux-arm-kernel@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
+ krzysztof.kozlowski+dt@linaro.org, Conor Dooley <conor+dt@kernel.org>,
+ devicetree@vger.kernel.org, Catalin Marinas <catalin.marinas@arm.com>,
+ Will Deacon <will@kernel.org>, upstream@airoha.com,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ benjamin.larsson@genexis.eu, linux-clk@vger.kernel.org,
+ Ratheesh Kannoth <rkannoth@marvell.com>, Sunil Goutham
+ <sgoutham@marvell.com>, Andrew Lunn <andrew@lunn.ch>
+References: <cover.1718696209.git.lorenzo@kernel.org>
+ <f146a6f58492394a77f7d159f3c650a268fbe489.1718696209.git.lorenzo@kernel.org>
+ <2d74f9c1-2b46-4544-a9c2-aa470ce36f80@app.fastmail.com>
+ <Zn7ykZeBWXN3cObh@lore-desk>
+ <6b234ecb-e870-4e5b-b942-bee98e139590@app.fastmail.com>
+From: Felix Fietkau <nbd@nbd.name>
 Content-Language: en-US
-From: Sagar Cheluvegowda <quic_scheluve@quicinc.com>
-In-Reply-To: <c7bcc2ae-eb27-4acc-b18c-8cb584b4d616@lunn.ch>
-Content-Type: text/plain; charset="UTF-8"
+Autocrypt: addr=nbd@nbd.name; keydata=
+ xsDiBEah5CcRBADIY7pu4LIv3jBlyQ/2u87iIZGe6f0f8pyB4UjzfJNXhJb8JylYYRzIOSxh
+ ExKsdLCnJqsG1PY1mqTtoG8sONpwsHr2oJ4itjcGHfn5NJSUGTbtbbxLro13tHkGFCoCr4Z5
+ Pv+XRgiANSpYlIigiMbOkide6wbggQK32tC20QxUIwCg4k6dtV/4kwEeiOUfErq00TVqIiEE
+ AKcUi4taOuh/PQWx/Ujjl/P1LfJXqLKRPa8PwD4j2yjoc9l+7LptSxJThL9KSu6gtXQjcoR2
+ vCK0OeYJhgO4kYMI78h1TSaxmtImEAnjFPYJYVsxrhay92jisYc7z5R/76AaELfF6RCjjGeP
+ wdalulG+erWju710Bif7E1yjYVWeA/9Wd1lsOmx6uwwYgNqoFtcAunDaMKi9xVQW18FsUusM
+ TdRvTZLBpoUAy+MajAL+R73TwLq3LnKpIcCwftyQXK5pEDKq57OhxJVv1Q8XkA9Dn1SBOjNB
+ l25vJDFAT9ntp9THeDD2fv15yk4EKpWhu4H00/YX8KkhFsrtUs69+vZQwc0cRmVsaXggRmll
+ dGthdSA8bmJkQG5iZC5uYW1lPsJgBBMRAgAgBQJGoeQnAhsjBgsJCAcDAgQVAggDBBYCAwEC
+ HgECF4AACgkQ130UHQKnbvXsvgCgjsAIIOsY7xZ8VcSm7NABpi91yTMAniMMmH7FRenEAYMa
+ VrwYTIThkTlQzsFNBEah5FQQCACMIep/hTzgPZ9HbCTKm9xN4bZX0JjrqjFem1Nxf3MBM5vN
+ CYGBn8F4sGIzPmLhl4xFeq3k5irVg/YvxSDbQN6NJv8o+tP6zsMeWX2JjtV0P4aDIN1pK2/w
+ VxcicArw0VYdv2ZCarccFBgH2a6GjswqlCqVM3gNIMI8ikzenKcso8YErGGiKYeMEZLwHaxE
+ Y7mTPuOTrWL8uWWRL5mVjhZEVvDez6em/OYvzBwbkhImrryF29e3Po2cfY2n7EKjjr3/141K
+ DHBBdgXlPNfDwROnA5ugjjEBjwkwBQqPpDA7AYPvpHh5vLbZnVGu5CwG7NAsrb2isRmjYoqk
+ wu++3117AAMFB/9S0Sj7qFFQcD4laADVsabTpNNpaV4wAgVTRHKV/kC9luItzwDnUcsZUPdQ
+ f3MueRJ3jIHU0UmRBG3uQftqbZJj3ikhnfvyLmkCNe+/hXhPu9sGvXyi2D4vszICvc1KL4RD
+ aLSrOsROx22eZ26KqcW4ny7+va2FnvjsZgI8h4sDmaLzKczVRIiLITiMpLFEU/VoSv0m1F4B
+ FtRgoiyjFzigWG0MsTdAN6FJzGh4mWWGIlE7o5JraNhnTd+yTUIPtw3ym6l8P+gbvfoZida0
+ TspgwBWLnXQvP5EDvlZnNaKa/3oBes6z0QdaSOwZCRA3QSLHBwtgUsrT6RxRSweLrcabwkkE
+ GBECAAkFAkah5FQCGwwACgkQ130UHQKnbvW2GgCeMncXpbbWNT2AtoAYICrKyX5R3iMAoMhw
+ cL98efvrjdstUfTCP2pfetyN
+In-Reply-To: <6b234ecb-e870-4e5b-b942-bee98e139590@app.fastmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: Ij94Dj5NvOC2j9lvQX6ynyrM829I5u-W
-X-Proofpoint-GUID: Ij94Dj5NvOC2j9lvQX6ynyrM829I5u-W
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-28_15,2024-06-28_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 suspectscore=0
- spamscore=0 malwarescore=0 mlxlogscore=800 mlxscore=0 adultscore=0
- impostorscore=0 lowpriorityscore=0 phishscore=0 priorityscore=1501
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2406140001 definitions=main-2406280149
 
-
-
-On 6/26/2024 5:14 PM, Andrew Lunn wrote:
-> On Wed, Jun 26, 2024 at 04:38:34PM -0700, Sagar Cheluvegowda wrote:
+On 28.06.24 21:34, Arnd Bergmann wrote:
+>>> > +static irqreturn_t airoha_irq_handler(int irq, void *dev_instance)
+>>> > +{
+>>> > +	struct airoha_eth *eth = dev_instance;
+>>> > +	u32 intr[ARRAY_SIZE(eth->irqmask)];
+>>> > +	int i;
+>>> > +
+>>> > +	for (i = 0; i < ARRAY_SIZE(eth->irqmask); i++) {
+>>> > +		intr[i] = airoha_qdma_rr(eth, REG_INT_STATUS(i));
+>>> > +		intr[i] &= eth->irqmask[i];
+>>> > +		airoha_qdma_wr(eth, REG_INT_STATUS(i), intr[i]);
+>>> > +	}
+>>> 
+>>> This looks like you send an interrupt Ack to each
+>>> interrupt in order to re-arm it, but then you disable
+>>> it again. Would it be possible to leave the interrupt enabled
+>>> but defer the Ack until the napi poll function is completed?
 >>
->>
->> On 6/26/2024 7:54 AM, Andrew Halaney wrote:
->>> On Tue, Jun 25, 2024 at 04:49:29PM GMT, Sagar Cheluvegowda wrote:
->>>> Add interconnect support to vote for bus bandwidth based
->>>> on the current speed of the driver.This change adds support
->>>> for two different paths - one from ethernet to DDR and the
->>>> other from Apps to ethernet.
->>>
->>> "APPS" is a qualcomm term, since you're trying to go the generic route
->>> here maybe just say CPU to ethernet?
->>>
->> I can update this in my next patch.
->>
->> Sagar
+>> I guess doing so we are not using NAPIs as expected since they are
+>> supposed to run with interrupt disabled. Agree?
 > 
-> Please trim emails when replying to just the needed context.
+> The idea of NAPI is that you don't get the same interrupt
+> again until all remaining events have been processed.
 > 
-> Also, i asked what Apps meant in response to an earlier version of
-> this patch. I think you ignored me....
-> 
->        Andrew
+> How this is achieved is device dependent, and it can either
+> be done by masking the interrupt as you do here, or by
+> not rearming the interrupt if it gets turned off automatically
+> by the hardware. My guess is that writing to REG_INT_STATUS(i)
+> is the rearming here, but the device documentation should
+> clarify that. It's also possible that this is an Ack that
+> is required so you don't immediately get another interrupt.
 
+The interrupt handling of this hardware is pretty much the same as what 
+many other devices do: the interrupt status is not automatically cleared 
+by the hardware, so the write at the beginning of the interrupt handler 
+does that explicitly.
+Within the same handler, the interrupt is then masked to ensure that it 
+does not fire again until the NAPI poll has completed.
 
-Thanks Andrew, i will take a note of it when replying next time.
+Performing the status write after the poll has completed would be wrong, 
+since that leaves open a small race window where events might be missed.
 
-Regarding the Apps part, i had replied to your email on 06/21.
+- Felix
 
