@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-81143-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81144-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FDDB91B6EB
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 08:21:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 989A191B6F9
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 08:24:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 91F7D1C2289E
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 06:21:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 48B4C285E50
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 06:24:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3202548EE;
-	Fri, 28 Jun 2024 06:21:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A86E755898;
+	Fri, 28 Jun 2024 06:24:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G58EjGeC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DhHULUZd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC3D053E22;
-	Fri, 28 Jun 2024 06:21:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E04355884;
+	Fri, 28 Jun 2024 06:24:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719555675; cv=none; b=W2BnYHmG5ihV1vLKG+qghgHvTb2OoEnXM5L4R6tO0womr/06HSEorKJlEsvmQtdEsKfZlXsPUwK7ZDBi9HHMdZ6nTT/GhOHZ8H4rQ1LTFWD/N6sFcVvDUbP5TT2EZ8nKzebG81+MzP7+acqKuoFR5sA1C4uqD5TmCvhouZZNaXo=
+	t=1719555865; cv=none; b=WCXT3kfgcmglHLenH4MiNCA8qE1WKz38hIP/y/DpALnGAuhTP8kLJhOrD51ptgLNeZdJ5C8hh05Px3GXPYq+ZnrVoEYvMpyOEsSf2VDr/X+yIn5m9NJmvNTJQLh0MoJ6+/07qZ0FqCyLJ/LWZnPobaWGaj/pj93J47fMjnPxjGs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719555675; c=relaxed/simple;
-	bh=yBTv5tI3Sw2vpf33F6ktr6RkDe8svdLFayCCcurDMy4=;
+	s=arc-20240116; t=1719555865; c=relaxed/simple;
+	bh=CoZpPaIVx8YVW8mjXAoTrmwo9/8K5PCV+Yw5r106JqM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RQ/f+zGBsmQti0+a7vj/KASJiTu4Q3dL4WtEKWTu2+CijtrV+bTwXQsBE0z1Twm2sksQIZgmvY9eMs/LzXBJvOPaNpJT7ukmie4ywSKMUTi/R6plBAAYXwX1zz2Lk9JQLSMxKnVUDOfhV52mxPlno+AqlTUqrZbAZUbtpX0mAnU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G58EjGeC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5E656C116B1;
-	Fri, 28 Jun 2024 06:21:08 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=stJ605lweYGlfMi3nr2wN3bwOvLEQgNBBvMl5nUMeeERj/DNj+8U+QGR2hZo0TNTIEvG40BVh26wu2YNNs+EuKOgqX+0z/7dcdN/rfB1T3RihXsRJ7QofLFUtYuG6e8UrmoTlq6WwTIzrmuyOK/lHifQyVAn8ziZGLgctwQVnco=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DhHULUZd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE13BC32789;
+	Fri, 28 Jun 2024 06:24:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719555675;
-	bh=yBTv5tI3Sw2vpf33F6ktr6RkDe8svdLFayCCcurDMy4=;
+	s=k20201202; t=1719555865;
+	bh=CoZpPaIVx8YVW8mjXAoTrmwo9/8K5PCV+Yw5r106JqM=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=G58EjGeCjrdn8DXizeITnU9RyPa05/QjdYaCK1GiuLKUqD5ohnOn8HSvQFFmzA5D6
-	 qA/CmX5SJN5v3kOJFMH5EbPvAxOAx5LP7SISO/RKJxxNfwbHl6BtOlsdUmFa9z1/0O
-	 wXZJkSYU6MO6/dKroxDHTyLb/xvd9A7kP+YRCszTsevJWgnzzLOJNuFteiCtRS8Qup
-	 mhP0HMbvyo5RsPE/EeCt9qpwtq86Z9AOluvvsm3ttWC5Q4q7aYmTf51UxP/73ePpXr
-	 wb593U6nOalNTX38NmOPoeRLpNTKzovNVO+LXBF8L//zM+//PWOay0mx/RHPfmbGpv
-	 D4nmqERmet7cg==
-Message-ID: <79955001-132c-4eef-b741-9e6a35da1361@kernel.org>
-Date: Fri, 28 Jun 2024 08:21:05 +0200
+	b=DhHULUZdd6C/jTaHjWsbZUYCi8zwOJyCvNrBdJhnYOQM0neOIStILxWa1Kk0dS2WL
+	 w7TuGQt4BoRTyzOhsX5SyHUZjWn7AHz45IbnIprBlcybGdSPvhyfJOsUSlzrQCC0UY
+	 mSUWOVX62CViNGk4sZR4MHmkQIFB7kdRNo4fWKEBiRE+4kcUkT3aBkKhjvK2zDNcpn
+	 FRmEDfP2Sy7TVOikkDbJWyNyoaT+IjDqak3+p8KmUTy/mUskgdjY8LTBFDK3u3DS5k
+	 KVticidszd5oL60o31h2z8frMCjy696IrIgrfLRMKalhkl40AerupZcGZ7igYIn5Pt
+	 +uz94afLLo99A==
+Message-ID: <e177530a-046b-407b-8da5-85947d2d1340@kernel.org>
+Date: Fri, 28 Jun 2024 08:24:18 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,32 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] clk: imx93: Drop macro IMX93_CLK_END
-To: Peng Fan <peng.fan@nxp.com>, Pengfei Li <pengfei.li_1@nxp.com>
-Cc: "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "robh@kernel.org" <robh@kernel.org>,
- "abelvesa@kernel.org" <abelvesa@kernel.org>,
- "mturquette@baylibre.com" <mturquette@baylibre.com>,
- "sboyd@kernel.org" <sboyd@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "shawnguo@kernel.org" <shawnguo@kernel.org>,
- "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
- Jacky Bai <ping.bai@nxp.com>, Ye Li <ye.li@nxp.com>,
- Aisheng Dong <aisheng.dong@nxp.com>, Frank Li <frank.li@nxp.com>,
- "kernel@pengutronix.de" <kernel@pengutronix.de>,
- "festevam@gmail.com" <festevam@gmail.com>,
- "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
- "imx@lists.linux.dev" <imx@lists.linux.dev>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20240625175147.94985-1-pengfei.li_1@nxp.com>
- <20240625175147.94985-2-pengfei.li_1@nxp.com>
- <39bcab8b-ed9c-4da9-b1ee-32dbfb2a23a4@kernel.org>
- <ZnqfIudepX4sH4oL@pengfei-OptiPlex-Tower-Plus-7010>
- <61c1eb8b-b8fd-4e9e-b0fc-27ce1c2eb2b1@kernel.org>
- <AM6PR04MB5941061D0DCA71B31F44497488D02@AM6PR04MB5941.eurprd04.prod.outlook.com>
+Subject: Re: [PATCH v2 1/2] ASoC: codecs: nau8824: Add master clock handling
+To: Maxim Kochetkov <fido_max@inbox.ru>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
+ Andy Shevchenko <andy.shevchenko@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, John Hsu <KCHSU0@nuvoton.com>
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ alsa-devel@alsa-project.org
+References: <20240628061750.11141-1-fido_max@inbox.ru>
+ <20240628061750.11141-2-fido_max@inbox.ru>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -121,120 +107,77 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <AM6PR04MB5941061D0DCA71B31F44497488D02@AM6PR04MB5941.eurprd04.prod.outlook.com>
+In-Reply-To: <20240628061750.11141-2-fido_max@inbox.ru>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 28/06/2024 03:17, Peng Fan wrote:
->> Subject: Re: [PATCH 1/2] clk: imx93: Drop macro IMX93_CLK_END
->>
->> On 25/06/2024 12:43, Pengfei Li wrote:
->>> On Tue, Jun 25, 2024 at 09:44:42AM +0200, Krzysztof Kozlowski
->> wrote:
->>>> On 25/06/2024 19:51, Pengfei Li wrote:
->>>>> IMX93_CLK_END was previously defined in imx93-clock.h to
->> indicate
->>>>> the number of clocks, but it is not part of the ABI, so it should be
->>>>> dropped.
->>>>>
->>>>> Now, the driver gets the number of clks by querying the maximum
->>>>> index in the clk array. Due to the discontinuity in the definition
->>>>> of clk index, with some gaps present, the total count cannot be
->>>>> obtained by summing the array size.
->>>>>
->>>>> Signed-off-by: Pengfei Li <pengfei.li_1@nxp.com>
->>>>> ---
->>>>>  drivers/clk/imx/clk-imx93.c | 25 +++++++++++++++++++++----
->>>>>  1 file changed, 21 insertions(+), 4 deletions(-)
->>>>>
->>>>> diff --git a/drivers/clk/imx/clk-imx93.c
->>>>> b/drivers/clk/imx/clk-imx93.c index c6a9bc8ecc1f..68c929512e16
->>>>> 100644
->>>>> --- a/drivers/clk/imx/clk-imx93.c
->>>>> +++ b/drivers/clk/imx/clk-imx93.c
->>>>> @@ -257,6 +257,20 @@ static const struct imx93_clk_ccgr
->> {  static
->>>>> struct clk_hw_onecell_data *clk_hw_data;  static struct clk_hw
->>>>> **clks;
->>>>>
->>>>> +static int imx_clks_get_num(void)
->>>>> +{
->>>>> +	u32 val = 0;
->>>>> +	int i;
->>>>> +
->>>>> +	for (i = 0; i < ARRAY_SIZE(root_array); i++)
->>>>> +		val = max_t(u32, val, root_array[i].clk);
->>>>> +
->>>>> +	for (i = 0; i < ARRAY_SIZE(ccgr_array); i++)
->>>>> +		val = max_t(u32, val, ccgr_array[i].clk);
->>>>> +
->>>>> +	return val + 1;
->>>>> +}
->>>>> +
->>>>>  static int imx93_clocks_probe(struct platform_device *pdev)  {
->>>>>  	struct device *dev = &pdev->dev;
->>>>> @@ -264,14 +278,17 @@ static int imx93_clocks_probe(struct
->> platform_device *pdev)
->>>>>  	const struct imx93_clk_root *root;
->>>>>  	const struct imx93_clk_ccgr *ccgr;
->>>>>  	void __iomem *base, *anatop_base;
->>>>> +	int clks_num;
->>>>>  	int i, ret;
->>>>>
->>>>> +	clks_num = imx_clks_get_num();
->>>>> +
->>>>>  	clk_hw_data = devm_kzalloc(dev, struct_size(clk_hw_data,
->> hws,
->>>>> -					  IMX93_CLK_END),
->> GFP_KERNEL);
->>>>> +					  clks_num), GFP_KERNEL);
->>>>>  	if (!clk_hw_data)
->>>>>  		return -ENOMEM;
->>>>>
->>>>> -	clk_hw_data->num = IMX93_CLK_END;
->>>>> +	clk_hw_data->num = clks_num;
->>>>
->>>> Why so complicated code instead of pre-processor define or array
->> size?
->>>>
->>>> Best regards,
->>>> Krzysztof
->>>>
->>>>
->>>
->>> Hi Krzysztof,
->>>
->>> Thanks for the comment, here are some of our thoughts.
->>>
->>> Regarding the predefined method, it's easy to forget to update the
->>> macro definition when adding some new clocks to imx93-clock.h in
->> the future.
->>
->> Somehow most developers in most platforms can do it... Anyway, that
->> would be build time detectable so no problem at all.
->>
->>>
->>> Also, we cannot use the array size method in this scenario, as some
->>> unnecessary clocks have been removed in the past, resulting in
->>> discontinuous definitions of clock indexes. This means that the
->>> maximum clock index can be larger than the allocated clk_hw array
->> size. At this point, using the maximum index to access the clk_hw array
->> will result in an out of bounds error.
->>
->> You mix bindings with array entries. That's independent or just clock
->> drivers are broken.
+On 28/06/2024 08:17, Maxim Kochetkov wrote:
+> Use master clock "mclk" if provided through device tree.
 > 
-> But there is issue that binding update and clock driver are normally in
-> two patches.  So if just use the IMX93_CLK_END in this file,
-> it will be easy to break `git bisect`.
+> Signed-off-by: Maxim Kochetkov <fido_max@inbox.ru>
+> ---
+>  sound/soc/codecs/nau8824.c | 21 +++++++++++++++++++--
+>  sound/soc/codecs/nau8824.h |  1 +
+>  2 files changed, 20 insertions(+), 2 deletions(-)
+> 
+> diff --git a/sound/soc/codecs/nau8824.c b/sound/soc/codecs/nau8824.c
+> index f92b95b21cae..7153b746f4b1 100644
+> --- a/sound/soc/codecs/nau8824.c
+> +++ b/sound/soc/codecs/nau8824.c
+> @@ -520,8 +520,15 @@ static int system_clock_control(struct snd_soc_dapm_widget *w,
+>  		} else {
+>  			nau8824_config_sysclk(nau8824, NAU8824_CLK_DIS, 0);
+>  		}
+> +
+> +		if (!IS_ERR(nau8824->mclk))
+> +			clk_disable_unprepare(nau8824->mclk);
+>  	} else {
+>  		dev_dbg(nau8824->dev, "system clock control : POWER ON\n");
+> +
+> +		if (!IS_ERR(nau8824->mclk))
 
-There is no issue. Srsly, this would be the only, only one driver having
-that issue.
+Nah, clock API is not used like this. Open clk_prepare_enable() and look
+how it handles NULL ptr.
 
-How is this even possible? How adding one new define for pre-processor
-would cause driver issues or some sort of bisectability problems?
+> +			clk_prepare_enable(nau8824->mclk);
+> +
+>  		/* Check the clock source setting is proper or not
+>  		 * no matter the source is from FLL or MCLK.
+>  		 */
+> @@ -563,16 +570,22 @@ static int dmic_clock_control(struct snd_soc_dapm_widget *w,
+>  	struct snd_soc_component *component = snd_soc_dapm_to_component(w->dapm);
+>  	struct nau8824 *nau8824 = snd_soc_component_get_drvdata(component);
+>  	int src;
+> +	unsigned int freq;
+> +
+> +	if (!IS_ERR(nau8824->mclk))
+> +		freq = clk_get_rate(nau8824->mclk);
+> +	else
+> +		freq = nau8824->fs * 256;
+>  
+>  	/* The DMIC clock is gotten from system clock (256fs) divided by
+>  	 * DMIC_SRC (1, 2, 4, 8, 16, 32). The clock has to be equal or
+>  	 * less than 3.072 MHz.
+>  	 */
+>  	for (src = 0; src < 5; src++) {
+> -		if ((0x1 << (8 - src)) * nau8824->fs <= DMIC_CLK)
+> +		if (freq / (0x1 << src) <= DMIC_CLK)
+>  			break;
+>  	}
+> -	dev_dbg(nau8824->dev, "dmic src %d for mclk %d\n", src, nau8824->fs * 256);
+> +	dev_dbg(nau8824->dev, "dmic src %d for mclk %d\n", src, freq);
+>  	regmap_update_bits(nau8824->regmap, NAU8824_REG_CLK_DIVIDER,
+>  		NAU8824_CLK_DMIC_SRC_MASK, (src << NAU8824_CLK_DMIC_SRC_SFT));
+>  
+> @@ -1871,6 +1884,10 @@ static int nau8824_read_device_properties(struct device *dev,
+>  	if (ret)
+>  		nau8824->jack_eject_debounce = 1;
+>  
+> +	nau8824->mclk = devm_clk_get(dev, "mclk");
+> +	if (PTR_ERR(nau8824->mclk) == -EPROBE_DEFER)
+> +		return -EPROBE_DEFER;
 
-These are basics of C we talk about now...
+Aren't you open-coding getting optional clock?
 
 Best regards,
 Krzysztof
