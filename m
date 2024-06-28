@@ -1,149 +1,152 @@
-Return-Path: <devicetree+bounces-81453-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81454-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C47C91C43A
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 18:55:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53D3591C441
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 19:00:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AD9CC1C22509
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 16:55:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 772561C21819
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 17:00:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A282A1CCCA2;
-	Fri, 28 Jun 2024 16:55:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F9DE15697A;
+	Fri, 28 Jun 2024 17:00:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eTPzQGDT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ME7HKGDy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 757CF1CB31D;
-	Fri, 28 Jun 2024 16:55:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02BD21E878;
+	Fri, 28 Jun 2024 17:00:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719593736; cv=none; b=YJAvpg68N6SHd38PECM2YQ1cbTB3Kg9vSUnnvmxOJwSAL1y7P8XKrGSKC+35cXGzPEMPE0+GjnP+FJJi+Fmul5Ithh2efTlTsDbyT5lg4QrJ+3Qcphc8JHdQ1mhf5HNzP6wLVw3kO8MLNDq0eBJSg1mA+OX/TO+Owcfu/4AGbHo=
+	t=1719594030; cv=none; b=I4YWNbXgbSk4pn3AMIyBFnlexk+WKwISGxccr8JW+rp7Kn93AKHGsYmE7pYq5sWFgtSW9+mM8jHLhQJQYFmZ93fVgwXl/hyiQU/DyAC2r6dnvPBfKlD+2OXIqWdm2vENh0RwL175Bk6M9AXQ0SlWQucD4Kqr8p6tRZ1eBrBzjF0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719593736; c=relaxed/simple;
-	bh=Pd+7NBlLsmAzz1QimnTRzsiSfj0EsfrN9P0KZ8kQCRY=;
+	s=arc-20240116; t=1719594030; c=relaxed/simple;
+	bh=MxOYvKjuMI3QpMjNWfn56U4u2xBXujTyJcHf91HZg9s=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ETB2uy8v/zhsP9UN9YnUKnIpsEzu5JNays3zYpzJJ6ITyNJS8dV68W/F+zhEkyz6jn9OOZXTGm0TYjtBZZSg3dyFEA3Z9ZsSWkifGsX/MjPEVC/N6AKefB8VVDc8dhfVxIz5aZmSFIMQ+UN++x6x58dX3DmBHkbxBR/NSzciuHk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eTPzQGDT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A1F4C32786;
-	Fri, 28 Jun 2024 16:55:33 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=faZsur3odUHpktH6LOLVUsVfosa9YQQus+o4WNEoJjHk6FcuS43c2S0RTc4OjCXI5vra24hQUzxv3uqCaDy0FM5SMEeHG8b30RWTJwpc52VXjtUxm/bUrqSL3uljD3JHYoqwsY69X55p0w6GQqlq7OM79TkreiWxnZ+tIN5l/EQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ME7HKGDy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68470C2BD10;
+	Fri, 28 Jun 2024 17:00:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719593736;
-	bh=Pd+7NBlLsmAzz1QimnTRzsiSfj0EsfrN9P0KZ8kQCRY=;
+	s=k20201202; t=1719594029;
+	bh=MxOYvKjuMI3QpMjNWfn56U4u2xBXujTyJcHf91HZg9s=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=eTPzQGDT73HXe4C2+OccCM3aQMgLkoLzgS3s99YwDKWqgPqh1yr8234P5jRVO7aqv
-	 BSrHayga5hvuVssJXBvFeLGNVJGtW1AORb3vWh6po00i3OnVvkm/95CdED6trwPZMt
-	 iJfhQBW2W+qwClWQDL4/sl/UlGMTfVz6kDx2n73ajtHZ6nanbqRScmgqYDI0oswu3T
-	 /hmr09eoZKj1s5aTAbwWGjW6gySsXbKojjFEEZ1KFOefAtHCi+JU3P5y1jYUHrGQfP
-	 R7vyuLkhPV7Dkynk8mzwzjzlmR0vp8XuvpkFeTkuizXIeEgBVDy6DTj4yni1jinYuw
-	 nKpKpl2RjuesQ==
-Date: Fri, 28 Jun 2024 17:55:31 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Esteban Blanc <eblanc@baylibre.com>
-Cc: baylibre-upstreaming@groups.io, Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+	b=ME7HKGDym/YY+UZq2i3/UIO4lFek7ScUa/1CjEH3iAnx8RuqdysJmZaenOzj7bl4h
+	 8jkiG6/Syd7VXRrbtXvM6IqEw5I4Mjjwn4JPuZEb2L09dVbUjvyS4BYPHR1WpvHmYO
+	 K1C0mRqOyTjT02LUYyp8FQrq0O6XL3knJV/JjUJN2JWXm2e4f3xN9jPMEDQAeELAif
+	 X0mvcAOjBfq7mO9j77DoRunae/18l6XTw/SEAriw3CXp1Vt8IJ1LnkvP5mW2xey64X
+	 T3eFGQFCPSyqwCIeCaCdkGmLrALvefWZo22ax2BIbeLPD/bkIpXHa5HA4hDOGdqkrd
+	 a7jh91FWxhl7A==
+Date: Fri, 28 Jun 2024 11:00:28 -0600
+From: Rob Herring <robh@kernel.org>
+To: Ayush Singh <ayush@beagleboard.org>
+Cc: Michael Walle <mwalle@kernel.org>, Mark Brown <broonie@kernel.org>,
+	Vaishnav M A <vaishnav@beagleboard.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Nuno Sa <nuno.sa@analog.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, David Lechner <dlechner@baylibre.com>
-Subject: Re: [PATCH RFC 1/5] dt-bindings: iio: adc: add ADI ad4030 and ad4630
-Message-ID: <20240628-gents-bath-7af7ecd9e7d5@spud>
-References: <20240627-eblanc-ad4630_v1-v1-0-fdc0610c23b0@baylibre.com>
- <20240627-eblanc-ad4630_v1-v1-1-fdc0610c23b0@baylibre.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+	jkridner@beagleboard.org, robertcnelson@beagleboard.org,
+	linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v5 1/7] dt-bindings: connector: Add mikrobus-connector
+Message-ID: <20240628170028.GC3143032-robh@kernel.org>
+References: <20240627-mikrobus-scratch-spi-v5-0-9e6c148bf5f0@beagleboard.org>
+ <20240627-mikrobus-scratch-spi-v5-1-9e6c148bf5f0@beagleboard.org>
+ <D2AYUH4XY0SK.1SYOUCT0PLAKT@kernel.org>
+ <e0f9754e-4d84-4ab4-82a4-34cb12800927@beagleboard.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="oYZhIyDc3nJvZaZH"
-Content-Disposition: inline
-In-Reply-To: <20240627-eblanc-ad4630_v1-v1-1-fdc0610c23b0@baylibre.com>
-
-
---oYZhIyDc3nJvZaZH
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <e0f9754e-4d84-4ab4-82a4-34cb12800927@beagleboard.org>
 
-On Thu, Jun 27, 2024 at 01:59:12PM +0200, Esteban Blanc wrote:
-> This adds a binding specification for the Analog Devices Inc. AD4030 and
-> AD4630 families of ADCs.
->=20
-> Signed-off-by: Esteban Blanc <eblanc@baylibre.com>
-> ---
->  .../devicetree/bindings/iio/adc/adi,ad4030.yaml    | 113 +++++++++++++++=
-++++++
->  MAINTAINERS                                        |   8 ++
->  2 files changed, 121 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad4030.yaml b/=
-Documentation/devicetree/bindings/iio/adc/adi,ad4030.yaml
-> new file mode 100644
-> index 000000000000..7957c0c0ac7a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad4030.yaml
-> @@ -0,0 +1,113 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright 2024 Analog Devices Inc.
-> +# Copyright 2024 BayLibre, SAS.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/adc/adi,ad4030.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Analog Devices AD4030 and AD4630 ADC family device driver
-> +
-> +maintainers:
-> +  - Nuno Sa <nuno.sa@analog.com>
-> +  - Michael Hennerich <michael.hennerich@analog.com>
-> +
-> +description: |
-> +  Analog Devices AD4030 single channel and AD4630 dual channel precision=
- SAR ADC
-> +  family
-> +
-> +  * https://www.analog.com/media/en/technical-documentation/data-sheets/=
-ad4030-24-4032-24.pdf
-> +  * https://www.analog.com/media/en/technical-documentation/data-sheets/=
-ad4630-24_ad4632-24.pdf
-> +  * https://www.analog.com/media/en/technical-documentation/data-sheets/=
-ad4630-16-4632-16.pdf
-> +
-> +properties:
-> +
-> +  compatible:
-> +    enum:
-> +      - adi,ad4030-24
-> +      - adi,ad4630-16
-> +      - adi,ad4630-24
-> +      - adi,ad4632-16
-> +      - adi,ad4632-24
+On Thu, Jun 27, 2024 at 10:59:46PM +0530, Ayush Singh wrote:
+> On 6/27/24 22:42, Michael Walle wrote:
+> 
+> > Hi,
+> > 
+> > Could you give us a DT snippet of how this should look like with a
+> > board?
+> > 
+> > On Thu Jun 27, 2024 at 6:26 PM CEST, Ayush Singh wrote:
+> > > +  board:
+> > > +    description: board attached to mikrobus connector
+> > > +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> > Shouldn't this be a subnode of the connector?
+> > 
+> > i.e.
+> > 
+> > connector {
+> > 	compatible = "mikrobus-connector";
+> > 
+> > 	// phandles to the parent controllers
 
-I think this binding is fine, but I'd appreciate a note in the commit
-message that mentions why these devices are not compatible. I presume it
-is because the 16 and 24 denote how many bits there are and the number
-of channels vary, but why the 4632-16 and 4630-16 aren't isn't as clear.
+These are per bus, so put them in the child bus nodes:
 
-Cheers,
-Conor.
+> > 
+> > 	spi {
 
---oYZhIyDc3nJvZaZH
-Content-Type: application/pgp-signature; name="signature.asc"
+                spi-bus = <&spiN>;
+                spi-cs = ...
 
------BEGIN PGP SIGNATURE-----
+The base DT would have the spi node and these properties. The overlay 
+would still apply to the connector node, but also have the 'spi' node 
+along with the devices.
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZn7rAwAKCRB4tDGHoIJi
-0sgmAQC5feD40ST7WVauPDpH0hzN8Xvkqy7VHitAjytrCj5u0QEAqzLafgR8LS6B
-9NBiXjVaCrBgkF8M3x5YiWlLgXTl2Ac=
-=Actx
------END PGP SIGNATURE-----
+Note that whatever is done here, I expect to work on any connector with 
+SPI, I2C, etc. So structuring the bindings for that would be nice. There 
+is also this effort which needs the same bindings[1].
 
---oYZhIyDc3nJvZaZH--
+
+> > 		temp-sensor@0 {
+> > 			compatible = "maxim,max31855k";
+> > 			reg = <0>;
+> > 		};
+> > 	};
+> > 
+> > 	i2c {
+> > 		..
+> > 	};
+> > };
+> > 
+> > I don't think you can introduce a new
+> >    compatible = "maxim,max31855k", "mikrobus,spi";
+> > if there is already a binding for "maxim,max31855k". But I might be
+> > wrong. Why is this compatible needed at all?
+> 
+> So I did consider the design you just proposed, but I was not able to solve
+> a few issues.
+> 
+> 1. How to deal with say 2 mikrobus connectors in a single system?
+
+I don't understand why that's a problem? It's no different than the same 
+overlay working on multiple vendor's boards which I imagine you want 
+too. The connector node in the base DT has to remap everything from base 
+DT into a mikrobus defined number/name space. For example, host GPIO N 
+is mapped to mikrobus connector GPIO 0 and so on.
+
+There is one issue in knowing what the target node is. Standardizing the 
+target path or connector node label only works for 1 connector per 
+system. You can have an empty target path in the overlay and something 
+else can decide the target. This is what's being done for overlays with 
+the dynamic PCI nodes. For example, maybe an eeprom tells the driver 
+what overlay to apply.
+
+Rob
+
+
+[1] https://lore.kernel.org/all/20240510-hotplug-drm-bridge-v2-0-ec32f2c66d56@bootlin.com/
 
