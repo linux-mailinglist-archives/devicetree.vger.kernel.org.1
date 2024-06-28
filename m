@@ -1,144 +1,128 @@
-Return-Path: <devicetree+bounces-81485-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81486-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BAC391C6A2
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 21:32:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37A1791C6A8
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 21:34:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 073531F2537A
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 19:32:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 664BA1C20FE0
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 19:34:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5571474076;
-	Fri, 28 Jun 2024 19:32:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3D01757ED;
+	Fri, 28 Jun 2024 19:34:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="B2llm/2b"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SW7PCzVX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0C496F2EA;
-	Fri, 28 Jun 2024 19:32:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 964354CB4B;
+	Fri, 28 Jun 2024 19:34:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719603138; cv=none; b=DKXSCvc7fsYC6cfCfHIcRg9qczZefRkZUydi62QsIQDHn59CvRREHTpjoRC0HM2dlbOaBx9hU6/tfRHqHYhsxNyPEBFws8TxAgmCT51je8FI0hV/I/2cnk6JjCAkCqB0rBvjMt+H/OplUbQYj6W1wIlRhvfUHaXtbPRcyoxSduA=
+	t=1719603246; cv=none; b=Pq4ey8s4qALlJurFZCEaS4ppnkVeirppOnLPtnn21Qjrxlo5WlEwqzpR0YFoEBZ8x53IDjTi9H2x6OsttUlmJrfKUgugSmzTGjl02J3/lEAbAJ5rNq1JUHLm5mrTQa5OsjD6NMWFEZbPcMeeozd+Tza6Jbni3hBShAh7BXPLdK4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719603138; c=relaxed/simple;
-	bh=PxckOsAOkmt2Z/dhIOH0h8pCT8yqSu788yaL0xNxpAg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=szFzc9uES+Qp8QIypGF+DbXVlOwgczmdO8smMTI+7g+JxXHARCjdmBGwdtVFikh2ZZe46oCWP1Jh/rvnKypHSEZJ4gGgRxu/qHDWDxumNjaZSRzWQbfZfZTarUVl22b1x/fajBUCc25DKrhels5FYdQuX1J9hLxYvIXBs6/a2+w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=B2llm/2b; arc=none smtp.client-ip=209.85.218.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a724a8097deso119598466b.1;
-        Fri, 28 Jun 2024 12:32:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1719603135; x=1720207935; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=PxckOsAOkmt2Z/dhIOH0h8pCT8yqSu788yaL0xNxpAg=;
-        b=B2llm/2bC9v3seUx5RvEi4SEBE7Bl/Mz3zmR0t4jAsjYrXvjvoms0bBZHs5kB8wIka
-         CSK5IW04CXJacJxWAtMfOS9NZuxwyYnqJDc3GcSB/Rb/zf+bpLGKYZXLsM8kATOJZxWe
-         o8x7m7Hsj45PSaTW9rfVi3nJIGsyKvrpbHSbL3ZgCcemE1mk3+uaq7uJT6O/a1O+/fqH
-         CoNYVWfcpzBh1tVQlN4f6lYQ8xdvxV3x3UFqbWxxSr0rZtiRwOjtmyZqwQ/DSdU2pbCE
-         nL6xz7PwXPsWzw8Dy6TjYWGGl7fUYaTC1+RSwfKM9HNFy00PXUxzbDb3TDC+5evnq/wo
-         rBdw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719603135; x=1720207935;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=PxckOsAOkmt2Z/dhIOH0h8pCT8yqSu788yaL0xNxpAg=;
-        b=bQkSrrbJoGjzyeaoTC6NUP7A8m7W2/JlT5cTLZ7w76UVnZIQIqX1JygZoWOUJ/1S6s
-         tQa5QfDZf7SroesdfyqEF8dLW33Y1Tk8KF3xsF0/4Wj9v0jXCMV4vMoz28wyM+W58i0O
-         q6Q8pKC1ixb3X86+NOCwJix/QPmOixCWgqoiF6FOXq1L2PwcCDODzi8h+E+D4PhmtF8W
-         RNgem96TkQDk+pu946v3FqeuH/Y42o5UaHd6MahBdIpVuiDH/T/+mL8itiJGgkHDOwiR
-         LviMWjdGgMQexFeL2KLJ0+xlXWQ+x45Jcn+nQ/KPpmr7YNAaCuOR4iaO9HRXA1P+55/2
-         4qiQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUh3qHRxp4dFfrhQlRLzOX5yb9MqYWr9eVN4+y+AnlVbHhUe2IEdAzVdLjpugrCrX6Ys3Fbf6iULHF8mEYvrBz7DZQvsOmjTP3OqxNEti92h9/TnFazYKeuShbINzdOXVuyx/RxBR6vEQ==
-X-Gm-Message-State: AOJu0Yzlp/xiELyxtjtNAaZUVvd3gfHcPPc/gIN5vKZQtb/CWnI+Nh85
-	VfzTxDpKqklDUAavxmhyFy0w3539zqQT96WBujKwKuLIwJlhn9iaAw6JqVt44E8OzZ3osznl9c9
-	/lApiUPHnp+jQRqdXrU513SXgkg==
-X-Google-Smtp-Source: AGHT+IEcIJk3aOEVCfHZaTOBEzliwOv1OW0IgkYWVgv3YyCrG+TRBh+fl5e85vwIPrct8FMab5SprzZALrLoAgdlAkc=
-X-Received: by 2002:a17:907:c816:b0:a6e:f594:a292 with SMTP id
- a640c23a62f3a-a7242e119dbmr1458130966b.63.1719603134625; Fri, 28 Jun 2024
- 12:32:14 -0700 (PDT)
+	s=arc-20240116; t=1719603246; c=relaxed/simple;
+	bh=yjCUTIYEfShWpFf89z1mVEG427+uOb9/A8IYTG9e/NM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kxI/vZde9tWqxfTKgi6Lg/VRiMp/X27RXLBV7vDSUrLkO4a1S1UBGENSoi6CYdgDkmUmlRghxVSgo7HMwSVB7TyoBV/BQUa6s6L4ESjKfGZ92oAwAVC3B1ulYBMIBBTFpKEvbUkF2TZFRNYk3+4OM0pV6WB06PdDb3Ojpqst7Fg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SW7PCzVX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0591C116B1;
+	Fri, 28 Jun 2024 19:34:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719603246;
+	bh=yjCUTIYEfShWpFf89z1mVEG427+uOb9/A8IYTG9e/NM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=SW7PCzVX3hluUKlCIYLBXkd409r8ZtagalI+cC5oRATkdJDzhkspjuEdvljwoAKC3
+	 vQJ6YP+YPTnI5dsUIFpD1ZVwU48sbb7jgwrNVxoffS6u43IRf2AbrH/u2cWXBSnFcH
+	 rsh1ICVvPDoNrqHLF5AA1sB0NAkCq78Xvh5+lXIBJ/LHOlwyS8HS2NbM+5NVU3sB2H
+	 sk17EFxOOkmgv1h6WKuFOcAdyiGcaMsE0liX1Eu9dh+jHH4ZTMo93ZnOuGthcH70E2
+	 cmC8ybSf6k7OOUusaGff9Nv2//61BM93dz8t39YZkNywe9Uo843EKpWeYM5nnj9j3k
+	 hTjcmmuNRi43A==
+Date: Fri, 28 Jun 2024 13:34:04 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: linux-arm-kernel@lists.infradead.org, linuxppc-dev@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+	krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/1] dt-bindings: soc: fsl: Convert q(b)man-* to yaml
+ format
+Message-ID: <171960324209.86780.5210954798222723537.robh@kernel.org>
+References: <20240626193753.2088926-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240628140328.279792-1-erezgeva@nwtime.org> <20240628140328.279792-4-erezgeva@nwtime.org>
- <20240628-refuse-actress-b76985aa020c@spud> <D2BS0YMA48BG.1PEPFC3KMFV8N@kernel.org>
- <CANeKEMMrXK=mw=n=9DuTnprkTs3ct446oaC2QTJyst8Nd+D6rw@mail.gmail.com>
- <D2BT0DT9UQ66.2L497FSY7GMAL@kernel.org> <CANeKEMO9hBhBs91nZkZRht9J29iRC2Tgf6ucWq=nbO7XAqzzng@mail.gmail.com>
- <D2BU69BDUOL0.63A7T034CORP@kernel.org>
-In-Reply-To: <D2BU69BDUOL0.63A7T034CORP@kernel.org>
-From: Erez <erezgeva2@gmail.com>
-Date: Fri, 28 Jun 2024 21:31:37 +0200
-Message-ID: <CANeKEMPLqdc0iKPcD5d16r91tsbKZwZ0getq2gxOhc42sdu7Mg@mail.gmail.com>
-Subject: Re: [PATCH 3/4] dt-bindings: mtd: macronix,mx25l12833f: add SPI-NOR chip
-To: Michael Walle <mwalle@kernel.org>
-Cc: Conor Dooley <conor@kernel.org>, Erez Geva <erezgeva@nwtime.org>, linux-mtd@lists.infradead.org, 
-	Tudor Ambarus <tudor.ambarus@linaro.org>, Pratyush Yadav <pratyush@kernel.org>, 
-	linux-kernel@vger.kernel.org, Miquel Raynal <miquel.raynal@bootlin.com>, 
-	Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, devicetree@vger.kernel.org, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240626193753.2088926-1-Frank.Li@nxp.com>
 
-On Fri, 28 Jun 2024 at 19:45, Michael Walle <mwalle@kernel.org> wrote:
->
-> > What is the kernel policy regarding obsolete flash chips?
-> > Macronix annonce on end of life of mx25l12805d in 2010.
->
-> Which doesn't mean there are no boards using it. But EOL in 2010
-> might be a strong argument to remove it. But I don't see the need
-> for it, yet.
 
-Fair enough. That means I was in the right direction.
-Just need a better description for the patch :-)
-I'll update for version 2.
+On Wed, 26 Jun 2024 15:37:53 -0400, Frank Li wrote:
+> Convert qman, bman, qman-portals, bman-portals to yaml format.
+> 
+> Additional Change for fsl,q(b)man-portal:
+> - Only keep one example.
+> - Add fsl,qman-channel-id property.
+> - Use interrupt type macro.
+> - Remove top level qman-portals@ff4200000 at example.
+> 
+> Additional change for fsl,q(b)man:
+> - Fixed example error.
+> - Remove redundent part, only keep fsl,qman node.
+> - Change memory-regions to memory-region.
+> - fsl,q(b)man-portals is not required property
+> 
+> Additional change for fsl,qman-fqd.yaml:
+> - Fixed example error.
+> - Only keep one example.
+> - Ref to reserve-memory.yaml
+> - Merge fsl,bman reserver memory part
+> 
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+> Change from v1 to v2
+> - fix typo chang
+> - fix typo porta
+> - Add | for reg description
+> - wrap to 80 for reg descritption
+> - memory-region set maxItems: 2
+> - fix regex parttern
+> - drop  See clock-bindings.txt
+> - "see reserved-memory.yaml" change to
+> "see reserved-memory/reserved-memory.yaml in dtschema project"
+> 
+> - A strange thing in fsl,qman-fqd.yaml, if example compatible string
+> change to fsl,qman-fqd, dt_binding_check report below error.
+> 	qman-fqd: False schema does not allow {'compatible': ['fsl,qman-fqd'], 'size': [[4194304]], 'alignment': [[4194304]], 'no-map': True, '$nodename': ['qman-fqd']}
+> 
+> but I replace "fsl,qman-fqd" with "abc", it pass check.
+> ---
+>  .../bindings/soc/fsl/bman-portals.txt         |  56 ------
+>  .../devicetree/bindings/soc/fsl/bman.txt      | 137 -------------
+>  .../bindings/soc/fsl/fsl,bman-portal.yaml     |  52 +++++
+>  .../devicetree/bindings/soc/fsl/fsl,bman.yaml |  83 ++++++++
+>  .../bindings/soc/fsl/fsl,qman-fqd.yaml        |  69 +++++++
+>  .../bindings/soc/fsl/fsl,qman-portal.yaml     | 110 +++++++++++
+>  .../devicetree/bindings/soc/fsl/fsl,qman.yaml |  93 +++++++++
+>  .../bindings/soc/fsl/qman-portals.txt         | 134 -------------
+>  .../devicetree/bindings/soc/fsl/qman.txt      | 187 ------------------
+>  9 files changed, 407 insertions(+), 514 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/soc/fsl/bman-portals.txt
+>  delete mode 100644 Documentation/devicetree/bindings/soc/fsl/bman.txt
+>  create mode 100644 Documentation/devicetree/bindings/soc/fsl/fsl,bman-portal.yaml
+>  create mode 100644 Documentation/devicetree/bindings/soc/fsl/fsl,bman.yaml
+>  create mode 100644 Documentation/devicetree/bindings/soc/fsl/fsl,qman-fqd.yaml
+>  create mode 100644 Documentation/devicetree/bindings/soc/fsl/fsl,qman-portal.yaml
+>  create mode 100644 Documentation/devicetree/bindings/soc/fsl/fsl,qman.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/soc/fsl/qman-portals.txt
+>  delete mode 100644 Documentation/devicetree/bindings/soc/fsl/qman.txt
+> 
 
->
-> > > Also please have a look at
-> > > https://docs.kernel.org/driver-api/mtd/spi-nor.html
-> >
-> > The new mx25l12833f supports SFDP, the obsolete mx25l12805d does not.
-> > I did manage to read the SFDP, though I do not have a copy of it (I do
-> > not have the hardware any more).
->
-> So how would you test newer versions of this series?
+Applied, thanks!
 
-I develop the OTP callbacks with a mx25l12805d for a company using it.
-I am no longer in contact with them.
-
-The testing can be done with any Macronix SPI-NOR with OTP.
-I did not check, but I guess most of their chips have an OTP using the
-same opcodes/methods.
-
-At least mx25l12805d and mx25l12833f use the same.
-I did not add mx25l12833f as I did not use it and as it uses
-asymmetric OTP (the MTD supports symmetric OTP).
-
->
-> > To my best knowledge SFDP table do not contain information on OTP,
->
-> That's true, but we need it to detect flashes during runtime in the
-> future. Imagine sometime later, there's a third flash with this
-> exact ID, then we need to have the SFDP to figure out if there are
-> any differences between yours and the new one.
-
-Sure, as I said the mx25l12833f does provide SFDP.
-In patch 4, I removed the size property to force the driver to read SFDP.
-I was not sure about the flags though.
-I did not see any difference compared to using the setting of
-mx25l12805d without SFDP.
-Yet my focus of work was the OTP.
-
-Erez
-
->
-> -michael
 
