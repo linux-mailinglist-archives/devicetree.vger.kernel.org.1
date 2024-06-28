@@ -1,187 +1,156 @@
-Return-Path: <devicetree+bounces-81183-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81184-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B05091B8E9
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 09:49:30 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76E7091B8ED
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 09:50:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 12CC9287A86
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 07:49:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 20C421F22625
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 07:50:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0228142E88;
-	Fri, 28 Jun 2024 07:49:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C2D9143734;
+	Fri, 28 Jun 2024 07:50:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HmsgpO8D"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lFT7dJ7D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D22B614373A
-	for <devicetree@vger.kernel.org>; Fri, 28 Jun 2024 07:49:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C3A2558B9;
+	Fri, 28 Jun 2024 07:50:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719560964; cv=none; b=aalfVv7LvfItT0tuZfVW31FqDO7c//x/ZksMfQarqAfxR8s8BaZd7TSCqkjKpie0MeM2HGFyb+CpRld+kd7yuxm0I0BO+jfmlPWWnJE3d3WBRF2KnOPkKwa8zxrm5LstVwhbSlPA/XnNMPisdtnWCTe1ilKXYk7DOucDRrwBvW8=
+	t=1719561030; cv=none; b=oG0lwZorJG1TyQFdY6vMLEoLE3MHY241REu1jJv6DbRPRZz1HeSRR1LFrcJsqd3fMVkMOhhOGi/A+QALe6wJeZEDz+vgKGL8bFR7VsDTFa6EKBjI47KO4g3mAg+Y0npqU7u8FIDXICFx0YiTTjWeYasLvhKeFKqXTJ28lfxEx6Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719560964; c=relaxed/simple;
-	bh=lpLJqQ8ZY5m2Pw3hOOXQsc0ES06UYXr21vFR21HJ3fY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=o0+/Q7+soWh2XJbXRr/rvt23Rc0NlRXjvpBLarso90GleYs6jlc+pbi2pVWyRAaFwISAzIO97/o2kbcLX//6I5Cgtm/lw5Kww/N0crO24Nj+Ob8eNZCAOAC4GrijCCBuJY/pisNq+hEsKiLvtjZbRLwbGRaXgiNqWYyDZC3svvc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HmsgpO8D; arc=none smtp.client-ip=209.85.167.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-52db11b1d31so418970e87.0
-        for <devicetree@vger.kernel.org>; Fri, 28 Jun 2024 00:49:22 -0700 (PDT)
+	s=arc-20240116; t=1719561030; c=relaxed/simple;
+	bh=kpNKN5IrnV1df46CTDwJWgiWoENWRsYsWyLgRfk3dY4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=QZt6M+/nlPGchf9vLfeTXJJf4jytpibt80KamKFvoAZgN2uMB+LrVAm9JhJ0sGOELb9Sic7XENZozYpfyaH2bKUIulw+m5e2UaazqpMmvxlkI8T4vKezJSAlAnhkCz1OaNoEJH3APClEo5WkAb93P1iJH8mBt3KiQGJpohoSv3c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lFT7dJ7D; arc=none smtp.client-ip=209.85.210.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ot1-f49.google.com with SMTP id 46e09a7af769-701f227c256so167993a34.3;
+        Fri, 28 Jun 2024 00:50:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719560961; x=1720165761; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=3n4lUcycdMQ3kKfIM5iWr5aZZYsbiBaz6fBAdV+RFUA=;
-        b=HmsgpO8Dnzs6qvW9GmOOtfVwdga/kmmKeLmDHsuTpAfXA4CE+c7RHGfvo26DoCoYqp
-         WIlSWkubxaLOkD4m314DNjxdyTxRHVZ06++AvRNxvGD8iEUkt5UKlramavaaO8Rofwzh
-         9DNGQrBMOaVNx8FixX1TVALSFG3FlwbladGtewfDbo0YdRPjeboY6R/jceuvpjozn2wG
-         O2zS3kIDXZnL+1KmBAxpGau54eQb5q8UErCVznApwCU9R6DTGHMigwMVVd2WNzeS364R
-         As79e4Wd4aQdcxYpX7myQdJJZVzEuAc7kSZLJChz9e2se4EnH4DQZ1oKjwYaX01zi3Tk
-         tcZw==
+        d=gmail.com; s=20230601; t=1719561028; x=1720165828; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=4Ut43npliJLjCO5SImS5MkBvEx66ZUngy2TmpPvYaKw=;
+        b=lFT7dJ7D/6qUihLdUx83jTQbSnUVb3kiiPXNBsVNSenjpvW3+uyoljt62S16YxzhIT
+         /eJBFPu68L2psKjyaRn8f7CbWq2hcwMbs7O2rFPOfnNaIKXf63EAaGCAnzyU0S29WvGv
+         UrDoiqIndVtT8aiAD2WgpuuiGVRHvv/w+KE9XOZ0w5G1r5cFpgX1OMbbQiaewJi3Pt58
+         fuvQZwDpapY1NBNTe/wGjBaoTRRA+wFqMH9+D1TL7cPs3K0d4kfZx/fnbdzbln3faIgV
+         zHfAzRs64MvghavtdQEYTuptqVfBpWcIjYM2olafg7AlJ2k+6vrVp0jW8uzacllh5PJ5
+         ZUcg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719560961; x=1720165761;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3n4lUcycdMQ3kKfIM5iWr5aZZYsbiBaz6fBAdV+RFUA=;
-        b=tKaI5mkppCZsLWP2o3uByir+9uKI4FG7wUsTUtXndrcyhIfpd0xBdncbRfUjVVC9Qk
-         TPfbVXae0AwCqOQAJtNyaaIjd4nydSWva77ck5OLfF4Eb1xSUcP7TfB1RGfXnj41lF/y
-         RzPj+FEeXuEmEBAx1lBprDXHJj0Ur3aAQ8HkE+zBcf1RebuCW8KYi9ov2g++C3yeTjj9
-         b158Y1zQyXWTgS/8BQQSEM+7Y/rsS2bdgv/qaXxOBQRuvg8Pefik9bSNxGyWjdygbBs1
-         Q6K/J7h5N4RAEVUGqiR81sTQu4Fc8LWg4PC340m8s1oNOItKJfN0Mq10GjkuAs49mQ4V
-         tsvg==
-X-Forwarded-Encrypted: i=1; AJvYcCVmRdpnE7mm0PlhV3zBre2aqWEqhciO4WvLuHp0adUv7Fs/Nh9H9T4D1Vx8Jct57uQSg7PBo4wa1A5+0/XZnaOKt5loHHMNpxiT/g==
-X-Gm-Message-State: AOJu0YzABZBLKt0tzvVQ5knfKDyCGKwqEXcdN1OW7fmMa9CtAASd/QgY
-	S7SJwP7cB+h+sjpFGDb5G3HvcGlPCJKyMDkjWsmoIN6KKav7lG/CH+2qpFahIN0=
-X-Google-Smtp-Source: AGHT+IFgdWWt6QizMbUEw8zOQHS4r9yxk4aTjYOpJkS9saJqX2dR+ej/kTOnXMw05r8RHY1JZr9nMw==
-X-Received: by 2002:a19:5f5a:0:b0:52c:c9b6:df0f with SMTP id 2adb3069b0e04-52cdf8260f2mr9926203e87.61.1719560960944;
-        Fri, 28 Jun 2024 00:49:20 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52e7ab27b6bsm196141e87.156.2024.06.28.00.49.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 28 Jun 2024 00:49:20 -0700 (PDT)
-Date: Fri, 28 Jun 2024 10:49:19 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Marc Gonzalez <mgonzalez@freebox.fr>, Conor Dooley <conor@kernel.org>, 
-	Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
-	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
-	Daniel Vetter <daniel@ffwll.ch>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	Arnaud Vrac <avrac@freebox.fr>, Pierre-Hugues Husson <phhusson@freebox.fr>
-Subject: Re: [PATCH v3 1/2] dt-bindings: display: bridge: add TI TDP158
-Message-ID: <3wwp34miu2pibsylv3v2sjzyeso2ugslutm2zqnddlx4ipily2@bcrfetrjngft>
-References: <20240627-tdp158-v3-0-fb2fbc808346@freebox.fr>
- <20240627-tdp158-v3-1-fb2fbc808346@freebox.fr>
- <20240627-display-quantum-48c2fa48ed1a@spud>
- <2fe0c2c0-2f67-4549-b62f-3b9db005d3f7@freebox.fr>
- <46d7c95f-20b0-4526-8583-1d8878afaa2f@kernel.org>
+        d=1e100.net; s=20230601; t=1719561028; x=1720165828;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=4Ut43npliJLjCO5SImS5MkBvEx66ZUngy2TmpPvYaKw=;
+        b=hl+elCtEpmf0sFooB3UoIezz/H/fsQkzNcmA8J3kxaH5w4ORoMeXNWCLSEtal8ZxOj
+         pTAqeecBOYrRrdXw4+pURZHraUBwxmHRyWHyAJv+Wko0lKl7qxQk8Ue0NEsp+si7zHWn
+         vY92usu9UqmuMSQjeGIn0oT/yaCieso4NLQ+r65doorLxsP4T/2RkSCGLFI5MEWdCq2R
+         VcqUQjS8M0vuBVFtOLJHL6ANWq8vJUPamKofGDOhNQP14dDPpVHQfLkhcztksWi4fqvE
+         m4Gh/9tOFedxGF8wjb05BnMq+31GAp1C77Cr22inmMGoubVX6ZtKxyP2/I9JILydmOyR
+         QOng==
+X-Forwarded-Encrypted: i=1; AJvYcCWar9fc7zBTk8XGgB7tucEsBi9WJKMGexoAK6W1arrWtj/yZxqYDlHnrtBdICALVRrECC2XT8S2Utby6fwUZTKgfWut7vk8naxsaXG99VewIdcsJZWcs3xTVHI3GFuVhYEQg3/2AcF9OSZY/SFoYdAOkqryUgF966rqoJvXqeHnyNQzog==
+X-Gm-Message-State: AOJu0YxyKnUh+SFd5VHSAeS8AJJca6XcZYtaEfp1l1AXB8/ZEXBwQwt7
+	rWlqoq0mJEvE7EUAGYjKSoMMukhnHGG+lFeiZjnGwHHqszh2/0Gs
+X-Google-Smtp-Source: AGHT+IG81TXv6cpLvn9mvPZPAsNd0RQHEY0Ddu8BPsGbU1z/qydncY5VMcfNUGc+bNg5CBr8gzQCLg==
+X-Received: by 2002:a05:6358:310a:b0:19f:436b:f6b0 with SMTP id e5c5f4694b2df-1a23fafaf3dmr1881852955d.4.1719561028040;
+        Fri, 28 Jun 2024 00:50:28 -0700 (PDT)
+Received: from [172.19.1.51] (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-72c6a3139f1sm810210a12.20.2024.06.28.00.50.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 28 Jun 2024 00:50:27 -0700 (PDT)
+Message-ID: <d5875415-07a6-475c-959a-4703f5d4e559@gmail.com>
+Date: Fri, 28 Jun 2024 15:50:22 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <46d7c95f-20b0-4526-8583-1d8878afaa2f@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] mmc: sdhci-of-ma35d1: Add Nuvoton MA35D1 SDHCI
+ driver
+To: Krzysztof Kozlowski <krzk@kernel.org>, ulf.hansson@linaro.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ adrian.hunter@intel.com, p.zabel@pengutronix.de, pbrobinson@gmail.com,
+ serghox@gmail.com, mcgrof@kernel.org,
+ prabhakar.mahadev-lad.rj@bp.renesas.com, forbidden405@outlook.com,
+ tmaimon77@gmail.com, andy.shevchenko@gmail.com,
+ linux-arm-kernel@lists.infradead.org, linux-mmc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: ychuang3@nuvoton.com, schung@nuvoton.com
+References: <20240626094900.581552-1-shanchun1218@gmail.com>
+ <20240626094900.581552-3-shanchun1218@gmail.com>
+ <0cc0aab1-f7bf-4a87-af5a-22cf842fbf80@kernel.org>
+Content-Language: en-US
+From: Shan-Chun Hung <shanchun1218@gmail.com>
+In-Reply-To: <0cc0aab1-f7bf-4a87-af5a-22cf842fbf80@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Fri, Jun 28, 2024 at 09:36:57AM GMT, Krzysztof Kozlowski wrote:
-> On 27/06/2024 18:45, Marc Gonzalez wrote:
-> > On 27/06/2024 18:25, Conor Dooley wrote:
-> > 
-> >> On Thu, Jun 27, 2024 at 01:13:03PM +0200, Marc Gonzalez wrote:
-> >>
-> >>> TDP158 is an AC-coupled DVI / HDMI to TMDS level shifting Redriver.
-> >>> It supports DVI 1.0, HDMI 1.4b and 2.0b.
-> >>> It supports 4 TMDS channels, HPD, and a DDC interface.
-> >>> It supports dual power supply rails (1.1V on VDD, 3.3V on VCC)
-> >>> for power reduction. Several methods of power management are
-> >>> implemented to reduce overall power consumption.
-> >>> It supports fixed receiver EQ gain using I2C or pin strap to
-> >>> compensate for different lengths input cable or board traces.
-> >>>
-> >>> Features
-> >>>
-> >>> - AC-coupled TMDS or DisplayPort dual-mode physical layer input
-> >>> to HDMI 2.0b TMDS physical layer output supporting up to 6Gbps
-> >>> data rate, compatible with HDMI 2.0b electrical parameters
-> >>> - DisplayPort dual-mode standard version 1.1
-> >>> - Programmable fixed receiver equalizer up to 15.5dB
-> >>> - Global or independent high speed lane control, pre-emphasis
-> >>> and transmit swing, and slew rate control
-> >>> - I2C or pin strap programmable
-> >>> - Configurable as a DisplayPort redriver through I2C
-> >>> - Full lane swap on main lanes
-> >>> - Low power consumption (200 mW at 6Gbps, 8 mW in shutdown)
-> >>>
-> >>> https://www.ti.com/lit/ds/symlink/tdp158.pdf
-> >>>
-> >>> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
-> >>> ---
-> >>>  .../bindings/display/bridge/ti,tdp158.yaml         | 51 ++++++++++++++++++++++
-> >>>  1 file changed, 51 insertions(+)
-> >>>
-> >>> diff --git a/Documentation/devicetree/bindings/display/bridge/ti,tdp158.yaml b/Documentation/devicetree/bindings/display/bridge/ti,tdp158.yaml
-> >>> new file mode 100644
-> >>> index 0000000000000..21c8585c3bb2d
-> >>> --- /dev/null
-> >>> +++ b/Documentation/devicetree/bindings/display/bridge/ti,tdp158.yaml
-> >>> @@ -0,0 +1,51 @@
-> >>> +# SPDX-License-Identifier: GPL-2.0-only
-> >>> +%YAML 1.2
-> >>> +---
-> >>> +$id: http://devicetree.org/schemas/display/bridge/ti,tdp158.yaml#
-> >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >>> +
-> >>> +title: TI TDP158 HDMI to TMDS Redriver
-> >>> +
-> >>> +maintainers:
-> >>> +  - Arnaud Vrac <avrac@freebox.fr>
-> >>> +  - Pierre-Hugues Husson <phhusson@freebox.fr>
-> >>> +
-> >>> +properties:
-> >>> +  compatible:
-> >>> +    const: ti,tdp158
-> >>> +
-> >>> +  reg:
-> >>> +    description: I2C address of the device
-> >>
-> >> Is reg not required? How do you communicate with the device if the i2c
-> >> bus is not connected? Is the enable GPIO enough to operate it in some
-> >> situations?
-> >>
-> >> Otherwise this looks good to me, but given Maxime commented about the
-> >> complexity of the device, I'm probably out of my depth!
-> > 
-> > Valid question.
-> > 
-> > As discussed in my brilliantly expanded commit message (:p)
-> > the device can be configured in various ways, either through I2C registers
-> > or by pin strap. We use the device in its default settings, so we don't
-> > touch any I2C registers, thus I'm not sure the reg property is required.
-> 
-> But then how would it be represented in the DT? Where / under which parent?
-> 
-> If this is supposed to be always in I2C bus in DT, then you always need
-> reg. If you could place it in other place, then your reasoning is valid
-> - reg is optional.
+Dear Krzysztof,
 
-As far as I understood, the device is connected to I2C bus, it just
-doesn't need to be programmed. So I'd conclude that reg is required.
+Thanks for your review.
 
--- 
-With best wishes
-Dmitry
+On 2024/6/28 下午 03:31, Krzysztof Kozlowski wrote:
+> On 26/06/2024 11:49, Shan-Chun Hung wrote:
+>> Add the SDHCI driver for the MA35D1 platform. It is based upon the
+>> SDHCI interface, but requires some extra initialization.
+>>
+>
+>> +static int ma35_probe(struct platform_device *pdev)
+>> +{
+>> +	struct device *dev = &pdev->dev;
+>> +	struct sdhci_pltfm_host *pltfm_host;
+>> +	struct sdhci_host *host;
+>> +	struct ma35_priv *priv;
+>> +	int err;
+>> +	u32 extra, ctl;
+>> +
+>> +	host = sdhci_pltfm_init(pdev, &sdhci_ma35_pdata, sizeof(struct ma35_priv));
+>> +	if (IS_ERR(host))
+>> +		return PTR_ERR(host);
+>> +
+>> +	err = devm_add_action_or_reset(dev, ma35_sdhci_pltfm_free, pdev);
+>> +	if (err)
+>> +		return dev_err_probe(dev, err, "Failed to register sdhci_pltfm_free action\n");
+>> +
+>> +	/* Extra adma table cnt for cross 128M boundary handling. */
+>> +	extra = DIV_ROUND_UP_ULL(dma_get_required_mask(dev), SZ_128M);
+>> +	extra = min(extra, SDHCI_MAX_SEGS);
+>> +
+>> +	host->adma_table_cnt += extra;
+>> +	pltfm_host = sdhci_priv(host);
+>> +	priv = sdhci_pltfm_priv(pltfm_host);
+>> +
+>> +	pltfm_host->clk = devm_clk_get_optional_enabled(dev, NULL);
+>> +	if (IS_ERR(pltfm_host->clk))
+>> +		return dev_err_probe(dev, IS_ERR(pltfm_host->clk), "failed to get clk\n");
+> Ykes, you cannot return IS_ERR.
+I will fix it to PTR_ERR.
+>> +
+>> +	err = mmc_of_parse(host->mmc);
+>> +	if (err)
+>> +		return err;
+>> +
+>> +	priv->rst = devm_reset_control_get_exclusive(dev, NULL);
+>> +	if (IS_ERR(priv->rst))
+>> +		return dev_err_probe(dev, PTR_ERR(priv->rst), "failed to get reset control\n");
+>> +
+>
+> Best regards,
+> Krzysztof
+
+Best Regards,
+
+Shan-Chun
+
 
