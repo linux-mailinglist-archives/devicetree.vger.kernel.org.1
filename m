@@ -1,337 +1,237 @@
-Return-Path: <devicetree+bounces-81305-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81306-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC9DB91BEA8
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 14:34:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B506191BEB8
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 14:38:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5B80C1F223A8
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 12:34:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D87001C20A3B
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 12:38:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD1DC15749F;
-	Fri, 28 Jun 2024 12:33:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EC331586F5;
+	Fri, 28 Jun 2024 12:38:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="G5cGWo0q"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fZXyErKp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2053.outbound.protection.outlook.com [40.107.22.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DB104D8DB;
-	Fri, 28 Jun 2024 12:33:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.53
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719578038; cv=fail; b=haTednKTGysiOJwp4BJmP9EKYntWv+6f816DSWNvH9SR2TBfYnn8lWei4Kh9qEEuB45Ca4UWC4TbrF4z+hZYGGR3JfWmPjWbO3HC6JACvujmC6dwwqqHHWf+aZ40EU/tw1ox3H6czdgWjrvHY6bSlE7jfl8+78xcsCX7ArYSDnE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719578038; c=relaxed/simple;
-	bh=JMuKrz6zRCyi7lj838o6tPJX/yvk6B+sQJCFPyGH5zo=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=AgItKc8yjreDo346R+npxQje96wtpXw0ycR2YIwDnCp1v8UGqAA5PmOUAdGqacbios/IWCT1JlCJzVSsu0YqSbQHZ+6Qzgfg6z236XWiKE/aOwtkzPe3FT1wwPu5d8RM8ewvFEDycMGkWB8/biUGJA+Lvb0x8WfyF2Ts2niKS3Y=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=G5cGWo0q; arc=fail smtp.client-ip=40.107.22.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=b7xatxdovw6odc2HAJASNhtVtOV5nJnSW5pwUOm/0nI2qk9hYnbrkcDSDVgFr/qZDxVTkPjx0+ljDE3d1w/MiSAqLhi7OPZT5JJlqCg8yzCqcxDkY8g7MNaajcNivZSsznD5sOK8EqsjukPOcp+SJ6132vZYeQ5c1/ZcfX9t2wwoRlIJR9khKuo4uYVAJffPBuSVImF0W9OJinV96R8ruJ8dFiH+9aQVb4XwP947M178l9zRuPuh5GK4U/lkBEbAz0t0yOirv/oTSZNm+/4UJV8V+Hb10nvQzRUhofy1egxANC6I9GfNCkPAL12DQL2ymLAW8/fwcoSp1mom04IuIw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rXrtWTFSMRGU0VFisGTKQDl9B0coaotLGThkY0OONas=;
- b=RtER0ZxWI1NKTffleFNqt2Jtq5fh43dxbXxwJdthJmCpAczBIbQs8hJq98nfbq7k378Wfw/Tdf9n4Ty/6fHUTCEmNhoXZDK744NZNnT2WJSbPnOMyyta/WxZQrY/MWh82j4egkVHmNTpvZtSmfIl2IBjtS6+RmVwco+mCEiqlO2VdBwxn6Ui0G8GbOS/cQj3hkNEDSosCZE+Zf5oPNofxELAOE+ew5+fw8pNo3mBoH5ZndursQ3CKyJy/grzfrC86m/LQKvVDUWteCJMM135Vr+0rEc/7YvSiFS4Du2hWxep6y+atJ5Ubj20stLNf3lDqz4LwdSqkv4ytvhjq3FaIA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rXrtWTFSMRGU0VFisGTKQDl9B0coaotLGThkY0OONas=;
- b=G5cGWo0qtuuqtrbVjpKRw/+IsblhIpaScyF/W36/DnMVgKWLOYpWHJjiSZySduBE+8zYty/KcGrV4yeti8MFxAQtbtMdr4yMjbCR4bxCNarmwzMDGE5WKywdB99q74Iyp1gmPEgijw/4EOjw0ZT7IMDnVRzUfCQHMUP2pusQ/tw=
-Received: from AM6PR04MB5941.eurprd04.prod.outlook.com (2603:10a6:20b:9e::16)
- by DU4PR04MB10768.eurprd04.prod.outlook.com (2603:10a6:10:585::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7698.32; Fri, 28 Jun
- 2024 12:33:53 +0000
-Received: from AM6PR04MB5941.eurprd04.prod.outlook.com
- ([fe80::9f4e:b695:f5f0:5256]) by AM6PR04MB5941.eurprd04.prod.outlook.com
- ([fe80::9f4e:b695:f5f0:5256%4]) with mapi id 15.20.7698.025; Fri, 28 Jun 2024
- 12:33:53 +0000
-From: Peng Fan <peng.fan@nxp.com>
-To: Rob Herring <robh@kernel.org>, "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>
-CC: Saravana Kannan <saravanak@google.com>, Michael Turquette
-	<mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>
-Subject: RE: [PATCH 1/2] of: property: add of_property_for_each_u64
-Thread-Topic: [PATCH 1/2] of: property: add of_property_for_each_u64
-Thread-Index: AQHaw9ZmlXnGs5ZPSEao+eKKDoQ6w7HcLoqAgAD3VmA=
-Date: Fri, 28 Jun 2024 12:33:53 +0000
-Message-ID:
- <AM6PR04MB59416E3C8FFC904450F3B02D88D02@AM6PR04MB5941.eurprd04.prod.outlook.com>
-References: <20240621-clk-u64-v1-0-d28a611b2621@nxp.com>
- <20240621-clk-u64-v1-1-d28a611b2621@nxp.com>
- <20240627214355.GA601888-robh@kernel.org>
-In-Reply-To: <20240627214355.GA601888-robh@kernel.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: AM6PR04MB5941:EE_|DU4PR04MB10768:EE_
-x-ms-office365-filtering-correlation-id: 496611f2-5e95-4d3c-a2a0-08dc976e9241
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|366016|376014|1800799024|38070700018;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?mVf9CamlrfjNGdW0XM3ZcyZEF7lAPh06tBSGAO0XsPpvwnPjTw2knwCJw2UL?=
- =?us-ascii?Q?Yvxy4A2QDXwaMQ/xPxIh4TYy/8rz0wShoW2JM8cOIzRknz6/q3W3R6CF1+WN?=
- =?us-ascii?Q?IpcSzLOYbCOdITnd2nner3MvjKUEvR5mAI8LMG0VtGgcgqI5ReX3fppU8/mQ?=
- =?us-ascii?Q?DQ4wgAv8VpkR9KCAeQfIiv9jDc3PUOQ9a4r1Kua83Q9OOeMqyj9zbEwLnUmN?=
- =?us-ascii?Q?mvhJICSZ9pZXH46YL3hqLRDj5JvlEJ93y0lTVTwrnWYGu2nwfrVifE2yMIF/?=
- =?us-ascii?Q?y+nLe9SCE9DWLAX1/C61Ri2CF+zTcuaPXaECW0XbDw9mTWPwRCl0vW6SMQMy?=
- =?us-ascii?Q?fJw4GeuknYG4oWlVtlOP9JDqGiRaIn6C07AkoIsN3QaLsq1JCqQzkeuSooHh?=
- =?us-ascii?Q?fMReNYfWUf8au/xpdA/gZhp7p7Rvt9nU/8fGGJdln6b+zjREkL2zOvG7ugQn?=
- =?us-ascii?Q?Hw5GHvSIKir6Nic/7VPsApC9SBxZfG2ZMfiljOs/cE19hELP7DArdMEPpbyP?=
- =?us-ascii?Q?pxQuMCiRfoCVQ+ViswfmeiYhh8SwqcpZdXp5AzNEGKZFn4iNPQ48abEk6LpW?=
- =?us-ascii?Q?t1dvrfKom7GuFz2PbHYoN2EodoJVULkjSKbgq/ZZN/+nOzcRJh9iJg9YfWdP?=
- =?us-ascii?Q?1qeB8G1AfhTLke0XPIhEicNsol7IK8BFwLCCgg1g+oGCJWRN3flotMO1Kn7L?=
- =?us-ascii?Q?SH0f1A4VWkKLaML3ukjME139Sd/85ZWgaU+aWt6KAjCBJOCqKxmoV/TpfqY3?=
- =?us-ascii?Q?Y7sWW+wyNqd4VTLgj0guJkzH5e6uzrJwU98OfExOryC3+KxeRhUIMcHE+rLo?=
- =?us-ascii?Q?74vUhpGcVJtBzyimXhLtOiAWRcJIV+nDX0QDrQvePaSaN7rxuRryt2JQpCfr?=
- =?us-ascii?Q?LTyCtoAo94vZv8YwLhEvWWKYVfkK8+/3SnI1KTk4bYSs8YLjMpJ9rivbQndF?=
- =?us-ascii?Q?QZiNe5LQkckZ7M4nQR1wPOBQzReBr031fFdf346ctsEets29WolNp5ZavCmm?=
- =?us-ascii?Q?6METbn0I+uQWJze+OTLN1IfNBVmo3yEqF7hQ8mrYil8ne7uW+KbM/ov73xTd?=
- =?us-ascii?Q?ofhfvanI8eeuPvR8ogkdnzINEnWp+JmZJ+bZFBdpS5WtwGJGtMfP6DsoaIdE?=
- =?us-ascii?Q?jIJ2mhB7wnMxJ266s6zYRXxiJa7jy3OifuGudtz6p25BButHyx17WEL8IAJZ?=
- =?us-ascii?Q?3clsf2xaYHK9Cc55UIwRaWTBUKXnvNniuphlH13YVJ558c7Q050l3Iq/i1/b?=
- =?us-ascii?Q?1A2PB1dzUhHxz/L+2noSgbVNvoml7jqKMmgJ7CEXeF0MR9mMRiGzlVEXMgrF?=
- =?us-ascii?Q?yTQ3bAMdrIqAFV2evRBnV7WRTeBrRv9bsCyjDUFNfPbJ5o/bn1/Ri/f1ErqF?=
- =?us-ascii?Q?Dh3F1tU=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB5941.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(1800799024)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?IJXIPsXNRdgLYSY2+dAzTdQ17k6kiwSEUL4i8Bh66haecKy1W7RaIGn9b+uu?=
- =?us-ascii?Q?XRv9w0Ffd8Y2BE4imMzBr4nlH0fj0YufFFTX1Dz1JlJx2s+eM7nSxwh70Fqh?=
- =?us-ascii?Q?1+xwDSPprsVtvfReGx+lt1zd8cPNSnSLfRsXYv9HCAdoLIh69pBhuRcU+5Wa?=
- =?us-ascii?Q?0bCt5C5LiHyCEHATEtwC/TLUEqfgCmI0LA5NEdtc8bEcLOx3MIkpiWJMz0kQ?=
- =?us-ascii?Q?kmTyFpMnEHFzyfVLBgUhL5oA6/MaRr6BwhH3soEhDwxVgaceY5oTYxaRu2yV?=
- =?us-ascii?Q?LVOPzvz4aZ3CBvlggqWgsbcLu/snBNEga5C/+uFtLbunUO3/445QZQdulm5E?=
- =?us-ascii?Q?c9DXiOfnp3KQ6mFEPRQOOHIYapfXO8/bdcQgCBdkhN4p/dqs3l3dxunq1YkD?=
- =?us-ascii?Q?pyRBfKYfcF7f+UdA0wKbYS7+W5Iq38fWr96NsdO2Jj4tkDU8moTXWhP+Yrro?=
- =?us-ascii?Q?GG11rXeV9Q3afKtrEDMhZV5rypXgVlg3Ssys6uzMNwg8mgRifO6FRXbeDCJL?=
- =?us-ascii?Q?oSmWv8pQRm+VUNGkHU16ZFW6tAjgfdCVqyC0szlB+kwLNqDI4wdXoSZqOF5g?=
- =?us-ascii?Q?ATd5SSADiA3fiPSDOFyrdFjrVxLUtilqvaQpUkVXYEAUDVa1PTXvMCbBpEdC?=
- =?us-ascii?Q?bQ2Xb2vMHHlAJRCFsAk6Gsusfz7ZHlhshDVHT+mrUjNxUcAcNZYXE5gDzBvo?=
- =?us-ascii?Q?QfrqugIxK8MepbqMtLfQFq65mcpDllZxGdr8U4BYvnYHpAwYuDKWSYi1N02p?=
- =?us-ascii?Q?9c4uAPYLt5LLxlItaYOvYxALhJrg40kgBa0A3PUwH0ofXFuD4wXgxRik4VA0?=
- =?us-ascii?Q?D+lQ4ngfn8snSjFiHqOFy1+LaXz2g2scCDZm5I4gLW4FOjtV0q8RBxBmmorY?=
- =?us-ascii?Q?1N/h++HxNnykF1/aFGHWPxywmDZW2StXnZdTV69weQ6qSAvnI1UZymzEReWt?=
- =?us-ascii?Q?QDgsYqS60VUsajUwXy4AkaPtNbyKoPWSitKlORewDvuOUVCUazCrkVVfTXno?=
- =?us-ascii?Q?nhuiVRdq53xi6f6R4Q8Hk8VxjE1R3GidjHMFboqaV78j1ZGzQg9GrAZGJX1D?=
- =?us-ascii?Q?MiQnksusClRPXgXfR7+9sy5k/uC8O3A0ESs/g3o+1nml3FGj1j3w3zkINOES?=
- =?us-ascii?Q?U8fDkW752vRsI8UD/j0USd5kFpcivhkzxJgjPpbsh8a5kZRYhSyaTQ94ygOQ?=
- =?us-ascii?Q?f4CBrnR6iR1rBypeNpJ6Y0pWcwe8uHXC/OOVDnLHjdD844AqNjJwtYCdyfZV?=
- =?us-ascii?Q?a1XLvGG5i9/P1oJv3/iQIgJWo0bY+Y7BmkB4UdUYGhGIU2GAqzjuaCHqKm0D?=
- =?us-ascii?Q?pHqoU07n40XZoWhBbskyIIl7pLbuEw+uFfvh53cJkX4VLkDl+BHztMc+cdtb?=
- =?us-ascii?Q?rUMkLbFOFaJSLnQSkc4LDJ/fKSRkn5JytNh9wjyZ8DDrYlf7Sd3B7cH8RaL5?=
- =?us-ascii?Q?xwdm0me/42Z/lE85r6dO9QQCr7PHH9PPDYGjAWu7J4pL6Nfn1VYh8jtmYdb/?=
- =?us-ascii?Q?vhYOpW+QkoMnun3YFt5jrjax5Qnom5xAK+fz4xlmUQniTze4vVxErmwYacgu?=
- =?us-ascii?Q?q2z9ybTJaLAbKAtko1I=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC492154433;
+	Fri, 28 Jun 2024 12:38:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1719578304; cv=none; b=vFMZ8im8N4p3fRR/8NCilXZujpspSqThaOG1sxn5sw89SduKwojantndA9zgm6V1E+v6bAYjHYP1fvxnpp5Y26lqnWXD/hU7ZZsG29WeMyTjpTmrxcWhiunBQnOarTOO5DINC47xN0lZjtcFZhqtDmdvHRhCC35MjmlN9gEOe1Q=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1719578304; c=relaxed/simple;
+	bh=/y8mMKKrHG9A1ANX63ZvHeKjPDpFlD2tQhWeTVeD3UM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Br8WNB2XahnjuMzwLP/0wLbfNao4pUTsHoZiwuTT6r3gFaqz0vP+m7no272Efu+4ROK0h3YisDcDwHVonKObnJ3uPerbTMfTHKT0G3umOjCZfvtnQ1kmGd5NPBQWIPU5wXNRfAUkQbBjLPl7LvorNQb8qC0tqKL3VkJZ+nfacpY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fZXyErKp; arc=none smtp.client-ip=209.85.128.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-42573d3f7e4so1316975e9.0;
+        Fri, 28 Jun 2024 05:38:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1719578301; x=1720183101; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=UkB9FJLP2us4SWIDZi7Xked72Jv5/nb/0qDRVeIMogM=;
+        b=fZXyErKpZgDGDXE5rEQWDl9+Rziyq8KX/SOHoK6pzGsymfevWHSFNeaaw1j//u3/Ab
+         HEFb09yVzuPgLK6MkVJCTVrZXWC8Dr+dcGfsHGEk+HwYe9+Cs8rpLpucIIOTXbSGo9Y8
+         Bffp7EKtMa+oM7+nf4MYEMI20c6ug2OKnjHA4mtvY2RFf4zDEQ64KCetoTIwxh4IZfXH
+         jV9lzPHIqCQ2Lr8ynaYguAidYFosmvik50US6r5Nrqg14+6ukvtOemOe9lGvg7DMV7Fa
+         rm8KlFBI36VVfBBOgR3nwWJ/VMrfD4iT0LirRJbUwqdhArIWGxPmNvAlINAcaBaLT9Ys
+         Sobw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719578301; x=1720183101;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=UkB9FJLP2us4SWIDZi7Xked72Jv5/nb/0qDRVeIMogM=;
+        b=nwM/nq21IxRwHpiDILtm0CvLLxIBB2c315HG8DCiShczS0FUA7kWBIsijW251QLtVH
+         h6H5WVzhj7KTR4X8THhjasv5g+4diRGbLSXOs8vOBvVIF/dfzEK7eHn74EqwkXuzrUVp
+         bfp3DoFpphoE5ZEkR91CiKKIS5XLxWKJL3eN+vg9DL8o2zPBxshyFGNoTvKAryddQlL2
+         4bJael1mRCadKOmLZRBFq01NC3W865zSRO+BDr0ceGpI8YW9fHqAoZxJGIVv5/RQbJaz
+         8gALclNwpPvnb+TAMpUZjNgsKvVpagO8FrrohUvpgS7dadvsnQ0KwW7cUbErUJfw5Www
+         d8kA==
+X-Forwarded-Encrypted: i=1; AJvYcCX7/60ps89vpYVd6GS0HNoll8pmVgV0wnsnUIeySrLB3KfE5/vcbnHsCRsNPx2a9ZMmw0OFyBDoOMZN51jSPHqlsHYbmmp0zJ6jawQd4y7c5Ed9V+f/3v3dRqY1ktk0zhwiWMeYCDkItqUxFAn2NM9VCzfhAdO4YU6vz07caz9iTbCEl+kc
+X-Gm-Message-State: AOJu0Yxox2l9LWqaUo00yS2TYKfpEZlvibjRuJUCVR1gki7Y+ym5nKVt
+	1x9bUFukLe7yZr+gTLeusX3/xPM57IAT0S/jI8ffAYpXt6FLCByr
+X-Google-Smtp-Source: AGHT+IGKPig1mllBhdyoWDfOAICdvFqpjzxk+CF0oztCa+Z2hIe/+Ak7GWhb6YuhdCYfjXEa57wE4g==
+X-Received: by 2002:adf:fd4b:0:b0:367:2ae1:9c4d with SMTP id ffacd0b85a97d-3672ae19d30mr5464759f8f.29.1719578300608;
+        Fri, 28 Jun 2024 05:38:20 -0700 (PDT)
+Received: from orome (p200300e41f162000f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f16:2000:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3675a0fc4c9sm2197872f8f.86.2024.06.28.05.38.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 28 Jun 2024 05:38:20 -0700 (PDT)
+Date: Fri, 28 Jun 2024 14:38:18 +0200
+From: Thierry Reding <thierry.reding@gmail.com>
+To: Yong Wu <yong.wu@mediatek.com>
+Cc: Rob Herring <robh+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, christian.koenig@amd.com, Sumit Semwal <sumit.semwal@linaro.org>, 
+	Andrew Morton <akpm@linux-foundation.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
+	Brian Starkey <Brian.Starkey@arm.com>, John Stultz <jstultz@google.com>, tjmercier@google.com, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+	Robin Murphy <robin.murphy@arm.com>, Vijayanand Jitta <quic_vjitta@quicinc.com>, 
+	Joakim Bech <joakim.bech@linaro.org>, Jeffrey Kardatzke <jkardatzke@google.com>, 
+	Pavel Machek <pavel@ucw.cz>, Simon Ser <contact@emersion.fr>, 
+	Pekka Paalanen <ppaalanen@gmail.com>, willy@infradead.org, Logan Gunthorpe <logang@deltatee.com>, 
+	Daniel Vetter <daniel@ffwll.ch>, jianjiao.zeng@mediatek.com, kuohong.wang@mediatek.com, 
+	youlin.pei@mediatek.com
+Subject: Re: [PATCH v5 7/9] dma-buf: heaps: restricted_heap: Add MediaTek
+ restricted heap and heap_init
+Message-ID: <pmweipswfysn3sjwf7jphwcjkt36s5d2o5ox6e63btqiyj7taj@kti5j36ttfbc>
+References: <20240515112308.10171-1-yong.wu@mediatek.com>
+ <20240515112308.10171-8-yong.wu@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB5941.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 496611f2-5e95-4d3c-a2a0-08dc976e9241
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Jun 2024 12:33:53.5670
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: mBYmQiGw+Y4H8LsT2PTVexLzxxsE06pFppCTAccs3IPZ3LYBrGVjVLXWalDOcnFYWuLcInhPh0nW5b20ahvNyg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU4PR04MB10768
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="5z4oex5oy2lm7v2z"
+Content-Disposition: inline
+In-Reply-To: <20240515112308.10171-8-yong.wu@mediatek.com>
 
-> Subject: Re: [PATCH 1/2] of: property: add of_property_for_each_u64
->=20
-> +Luca
->=20
-> On Fri, Jun 21, 2024 at 08:36:39PM +0800, Peng Fan (OSS) wrote:
-> > From: Peng Fan <peng.fan@nxp.com>
-> >
-> > Preparing for assigned-clock-rates-u64 support, add function
-> > of_property_for_each_u64 to iterate each u64 value
-> >
-> > Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> > ---
-> >  drivers/of/property.c | 23 +++++++++++++++++++++++
-> >  include/linux/of.h    | 24 ++++++++++++++++++++++++
-> >  2 files changed, 47 insertions(+)
-> >
-> > diff --git a/drivers/of/property.c b/drivers/of/property.c index
-> > 164d77cb9445..b89c3ab01d44 100644
-> > --- a/drivers/of/property.c
-> > +++ b/drivers/of/property.c
-> > @@ -548,6 +548,29 @@ const __be32 *of_prop_next_u32(struct
-> property
-> > *prop, const __be32 *cur,  }
-> EXPORT_SYMBOL_GPL(of_prop_next_u32);
-> >
-> > +const __be32 *of_prop_next_u64(struct property *prop, const
-> __be32 *cur,
-> > +			       u64 *pu)
->=20
-> struct property can be const
 
-Fix in v2. BTW, I am thinking something as below:=20
+--5z4oex5oy2lm7v2z
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-const __be64 *of_prop_next_u64(const struct property *prop, const __be64 *c=
-ur,                     =20
-                               u64 *pu)                                    =
-                        =20
-{                                                                          =
-                        =20
-        const void *curv =3D cur;                                          =
-                          =20
-                                                                           =
-                        =20
-        if (!prop)                                                         =
-                        =20
-                return NULL;                                               =
-                        =20
-                                                                           =
-                        =20
-        if (!cur) {                                                        =
-                        =20
-                curv =3D prop->value;                                      =
-                          =20
-                goto out_val;                                              =
-                        =20
-        }                                                                  =
-                        =20
-                                                                           =
-                        =20
-        curv +=3D sizeof(*cur);                                            =
-                          =20
-        if (curv >=3D prop->value + prop->length)                          =
-                          =20
-                return NULL;                                               =
-                        =20
-                                                                           =
-                        =20
-out_val:                                                                   =
-                        =20
-        *pu =3D be64_to_cpup(curv);                                        =
-                          =20
-        return curv;                                                       =
-                        =20
-}                                                                          =
-                        =20
-EXPORT_SYMBOL_GPL(of_prop_next_u64);
+On Wed, May 15, 2024 at 07:23:06PM GMT, Yong Wu wrote:
+> Add a MediaTek restricted heap which uses TEE service call to restrict
+> buffer. Currently this restricted heap is NULL, Prepare for the later
+> patch. Mainly there are two changes:
+> a) Add a heap_init ops since TEE probe late than restricted heap, thus
+>    initialize the heap when we require the buffer the first time.
+> b) Add a priv_data for each heap, like the special data used by MTK
+>    (such as "TEE session") can be placed in priv_data.
+>=20
+> Currently our heap depends on CMA which could only be bool, thus
+> depend on "TEE=3Dy".
+>=20
+> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+> ---
+>  drivers/dma-buf/heaps/Kconfig               |   7 ++
+>  drivers/dma-buf/heaps/Makefile              |   1 +
+>  drivers/dma-buf/heaps/restricted_heap.c     |  11 ++
+>  drivers/dma-buf/heaps/restricted_heap.h     |   2 +
+>  drivers/dma-buf/heaps/restricted_heap_mtk.c | 115 ++++++++++++++++++++
+>  5 files changed, 136 insertions(+)
+>  create mode 100644 drivers/dma-buf/heaps/restricted_heap_mtk.c
+>=20
+> diff --git a/drivers/dma-buf/heaps/Kconfig b/drivers/dma-buf/heaps/Kconfig
+> index e54506f480ea..84f748fb2856 100644
+> --- a/drivers/dma-buf/heaps/Kconfig
+> +++ b/drivers/dma-buf/heaps/Kconfig
+> @@ -21,3 +21,10 @@ config DMABUF_HEAPS_RESTRICTED
+>  	  heap is to manage buffers that are inaccessible to the kernel and use=
+r space.
+>  	  There may be several ways to restrict it, for example it may be encry=
+pted or
+>  	  protected by a TEE or hypervisor. If in doubt, say N.
+> +
+> +config DMABUF_HEAPS_RESTRICTED_MTK
+> +	bool "MediaTek DMA-BUF Restricted Heap"
+> +	depends on DMABUF_HEAPS_RESTRICTED && TEE=3Dy
+> +	help
+> +	  Enable restricted dma-buf heaps for MediaTek platform. This heap is b=
+acked by
+> +	  TEE client interfaces. If in doubt, say N.
+> diff --git a/drivers/dma-buf/heaps/Makefile b/drivers/dma-buf/heaps/Makef=
+ile
+> index a2437c1817e2..0028aa9d875f 100644
+> --- a/drivers/dma-buf/heaps/Makefile
+> +++ b/drivers/dma-buf/heaps/Makefile
+> @@ -1,4 +1,5 @@
+>  # SPDX-License-Identifier: GPL-2.0
+>  obj-$(CONFIG_DMABUF_HEAPS_CMA)		+=3D cma_heap.o
+>  obj-$(CONFIG_DMABUF_HEAPS_RESTRICTED)	+=3D restricted_heap.o
+> +obj-$(CONFIG_DMABUF_HEAPS_RESTRICTED_MTK)	+=3D restricted_heap_mtk.o
+>  obj-$(CONFIG_DMABUF_HEAPS_SYSTEM)	+=3D system_heap.o
+> diff --git a/drivers/dma-buf/heaps/restricted_heap.c b/drivers/dma-buf/he=
+aps/restricted_heap.c
+> index 4e45d46a6467..8bc8a5e3f969 100644
+> --- a/drivers/dma-buf/heaps/restricted_heap.c
+> +++ b/drivers/dma-buf/heaps/restricted_heap.c
+> @@ -151,11 +151,22 @@ restricted_heap_allocate(struct dma_heap *heap, uns=
+igned long size,
+>  			 unsigned long fd_flags, unsigned long heap_flags)
+>  {
+>  	struct restricted_heap *rheap =3D dma_heap_get_drvdata(heap);
+> +	const struct restricted_heap_ops *ops =3D rheap->ops;
+>  	struct restricted_buffer *restricted_buf;
+>  	DEFINE_DMA_BUF_EXPORT_INFO(exp_info);
+>  	struct dma_buf *dmabuf;
+>  	int ret;
+> =20
+> +	/*
+> +	 * In some implements, TEE is required to protect buffer. However TEE p=
+robe
+> +	 * may be late, Thus heap_init is performed when the first buffer is re=
+quested.
+> +	 */
+> +	if (ops->heap_init) {
+> +		ret =3D ops->heap_init(rheap);
+> +		if (ret)
+> +			return ERR_PTR(ret);
+> +	}
 
->=20
-> > +{
-> > +	const void *curv =3D cur;
-> > +
-> > +	if (!prop)
-> > +		return NULL;
-> > +
-> > +	if (!cur) {
-> > +		curv =3D prop->value;
-> > +		goto out_val;
-> > +	}
-> > +
-> > +	curv +=3D sizeof(*cur) * 2;
-> > +	if (curv >=3D prop->value + prop->length)
-> > +		return NULL;
-> > +
-> > +out_val:
-> > +	*pu =3D of_read_number(curv, 2);
-> > +	return curv;
-> > +}
-> > +EXPORT_SYMBOL_GPL(of_prop_next_u64);
-> > +
-> >  const char *of_prop_next_string(struct property *prop, const char
-> > *cur)  {
-> >  	const void *curv =3D cur;
-> > diff --git a/include/linux/of.h b/include/linux/of.h index
-> > 13cf7a43b473..464eca6a4636 100644
-> > --- a/include/linux/of.h
-> > +++ b/include/linux/of.h
-> > @@ -439,6 +439,18 @@ extern int of_detach_node(struct
-> device_node *);
-> >   */
-> >  const __be32 *of_prop_next_u32(struct property *prop, const
-> __be32 *cur,
-> >  			       u32 *pu);
-> > +
-> > +/*
-> > + * struct property *prop;
-> > + * const __be32 *p;
-> > + * u64 u;
-> > + *
-> > + * of_property_for_each_u64(np, "propname", prop, p, u)
-> > + *         printk("U64 value: %llx\n", u);
-> > + */
-> > +const __be32 *of_prop_next_u64(struct property *prop, const
-> __be32 *cur,
-> > +			       u64 *pu);
-> > +
-> >  /*
-> >   * struct property *prop;
-> >   * const char *s;
-> > @@ -834,6 +846,12 @@ static inline const __be32
-> *of_prop_next_u32(struct property *prop,
-> >  	return NULL;
-> >  }
-> >
-> > +static inline const __be32 *of_prop_next_u64(struct property *prop,
-> > +		const __be32 *cur, u64 *pu)
-> > +{
-> > +	return NULL;
-> > +}
-> > +
-> >  static inline const char *of_prop_next_string(struct property *prop,
-> >  		const char *cur)
-> >  {
-> > @@ -1437,6 +1455,12 @@ static inline int
-> of_property_read_s32(const struct device_node *np,
-> >  		p;						\
-> >  		p =3D of_prop_next_u32(prop, p, &u))
-> >
-> > +#define of_property_for_each_u64(np, propname, prop, p, u)	\
-> > +	for (prop =3D of_find_property(np, propname, NULL),	\
-> > +		p =3D of_prop_next_u64(prop, NULL, &u);		\
-> > +		p;						\
-> > +		p =3D of_prop_next_u64(prop, p, &u))
->=20
-> I think we want to define this differently to avoid exposing struct
-> property and the property data directly. Like this:
->=20
-> #define of_property_for_each_u64(np, propname, u) \
->   for (struct property *_prop =3D of_find_property(np, propname, NULL),
->          const __be32 *_p =3D of_prop_next_u64(_prop, NULL, &u);
->          _p;
->          _p =3D of_prop_next_u64(_prop, _p, &u))
->=20
+I wonder if we should make this parameterized rather than the default.
+Perhaps we can add a "init_on_demand" (or whatever other name) flag to
+struct restricted_heap_ops and then call this from heap initialization
+if possible and defer initialization depending on the restricted heap
+provider?
 
-Sure, I will fix in v2.
+> +
+>  	restricted_buf =3D kzalloc(sizeof(*restricted_buf), GFP_KERNEL);
+>  	if (!restricted_buf)
+>  		return ERR_PTR(-ENOMEM);
+> diff --git a/drivers/dma-buf/heaps/restricted_heap.h b/drivers/dma-buf/he=
+aps/restricted_heap.h
+> index 6d9599a4a34e..2a33a1c7a48b 100644
+> --- a/drivers/dma-buf/heaps/restricted_heap.h
+> +++ b/drivers/dma-buf/heaps/restricted_heap.h
+> @@ -19,6 +19,8 @@ struct restricted_heap {
+>  	const char		*name;
+> =20
+>  	const struct restricted_heap_ops *ops;
+> +
+> +	void			*priv_data;
 
-Thanks,
-Peng.
+Honestly, I would just get rid of any of this extra padding/indentation
+in these structures. There's really no benefit to this, except maybe if
+you *really* like things to be aligned, in which case the above is now
+probably worse than if you didn't try to align in the first place.
 
-> See this discussion for context[1].
->=20
-> Rob
->=20
-> [1] https://lore.kernel.org/all/20240624232122.3cfe03f8@booty/
+Thierry
 
+--5z4oex5oy2lm7v2z
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmZ+rroACgkQ3SOs138+
+s6EB/hAAlquMNwNzbko/vJ18thfHMMKEC/LnnxyK/L6hWo7sf3oV1B8fuUN/r+A5
+qzDZZmYdzjgCrR7bY/80cCOUVhJz1/y+eiQXSyBoG/5UM7SDPSSnRHCDYxGk8PUs
+6Tl7I1KmB994jWeX3qBUs8jM1EQym+2aYPevhR9E7bmKUfdGaaeBOwOv85Ku0rC9
+DhnQfteSJx9jRhnMzQE+ADzjqtnVhR4oSmfpugMPXV/WkVhJ81fMLDr6O3YAfFMy
+59NfXGreJN+yG/9FmuF6aIsesBcH8loA6UyM+RIv7eubHAZCCzAbXrHvdBg3neGN
+F2lRw/QN3PYdXAayYTDTw1619gN9oABCreu1TMJEPZmxypM8T89h17rSl06wUjxe
+tgFwkbvdsYQzpYBT54Jugie8+HCkQAxItrb2uFHI4zHKcg4OuvrlQP4ZLpA2qh4q
+2DK34GYRim44TCdKhL+R3LWAGVEIbzdnIUFt69k44rwj0qwTXaFofMQhDC/zS8Z6
+H1g4Ls4sNl7iPhnwfxtphdhvtw33ofgAqKtffPYlJKzSR+T08vOTENLDWIWf62NZ
+5R0I+LJ8DHBzZKprzeBkA7KL4mlctZKGEaf/d3G2cPoWBoCdBkRDOi+XTFtiVHKa
+kuNAR3Rsd/TbSDZYGcozLxD+mGBgZclxEO8kyHNENQR+xvetWiY=
+=oI/a
+-----END PGP SIGNATURE-----
+
+--5z4oex5oy2lm7v2z--
 
