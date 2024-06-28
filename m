@@ -1,64 +1,61 @@
-Return-Path: <devicetree+bounces-81518-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81519-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22DBF91C85C
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 23:44:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 637B791C85F
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 23:45:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7D1F9B25914
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 21:44:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1E0F5288598
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 21:45:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E37880023;
-	Fri, 28 Jun 2024 21:41:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 786317CF25;
+	Fri, 28 Jun 2024 21:45:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N0J0skdv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KW8vMAWW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC1FB7F48A;
-	Fri, 28 Jun 2024 21:41:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 507F36BFA3;
+	Fri, 28 Jun 2024 21:45:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719610904; cv=none; b=dM5FJdBtn0jV6VkNdzqtM0pLBOtfuez2C1CrjbWTuq3i/QJ1Ch1UaPXfuzPnYYM/e5zIY/Cr254JRtxTVcMJMZwKWKlUdMwB+M22hWeCC3L24LvejdAw6EYcA0e6w27gAADP+RbTUkIz65NZiOVfYp3KzA5jB4yR6pDIh8MxjNI=
+	t=1719611117; cv=none; b=Rql0xFpF4BdpWJgvYU2htsjbOLUfw9V1VI6HCvwKsaAvua9ngG+/CN9ln04BYsMrAmbKHhZEyJra4so01HKVVNQyK/vzTLYY6qG/uvQ5l83Mg0tpX7iErvifi9/mflv1Lycm2Ovl16cjRK86bmkE7rRFdVkTwH1nzVsvOaf6QrA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719610904; c=relaxed/simple;
-	bh=EaMOHcF4+ZY1s8wbh4ElbToAQrZkbsMN7isSG8r+yCo=;
+	s=arc-20240116; t=1719611117; c=relaxed/simple;
+	bh=y7GscZKAEhTTav+2EsjnRaIb7jLEj21bhOW5nSQvK60=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SyFLJkIGmMltrIRXklcRZPrFaJjcc2sYxE8YaQRS7OL73g78jKujN/zSuSZSVzADabpyi/Wyuj20JvOEdI4HVe78IX90gyhZyTRzA0LF6ABr1nDAdNnQ6ZKKUkf7pT70WUaezf51U9jnlr+CmKklwok1GQW0lNp9mvnC565yEl0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N0J0skdv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B18DC116B1;
-	Fri, 28 Jun 2024 21:41:42 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=iiXo5SQA7Zay4G591SNrKt3kErx4rEOynAzh3T/FrG8OhNCOQ5EDhNa5VtzqLT7zTY2C9xikn8qItMOwphvsXnG+itfslmYExBggvJho5aahO8Hcejz23yzdXEiaq3ihvZ/Amlcn6hjNxzgWLPi55UosrPTEBzDgjs3EsirZIAo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KW8vMAWW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F8FEC116B1;
+	Fri, 28 Jun 2024 21:45:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719610903;
-	bh=EaMOHcF4+ZY1s8wbh4ElbToAQrZkbsMN7isSG8r+yCo=;
+	s=k20201202; t=1719611116;
+	bh=y7GscZKAEhTTav+2EsjnRaIb7jLEj21bhOW5nSQvK60=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=N0J0skdv0v8hvLu7Z04gLfS3io68IkghmqnQ6az2b76hk32xiEsckZC5pYOgf79GU
-	 Ci5XT+EWFWFRSp034PqCSCPeR0vLnvc1gg3hWhW8n0gm8o11jGYW0Hdz0wKuEHCGDs
-	 hFUzCLA4rIqWHhF/jEOvpFoheNKf4FI7clViFdZ3+oQ9sr+M8KFwV8QcE9W/3HEpbw
-	 QHmVf0xNpgRWkJjXff3CjhW47XdbwxjK2axQ7PZf41p1FxDCXtc4T4sAagLbdfrHo8
-	 mo67awh/b0wIiZDV4cJodOldyxbZQ8smg3i+NttuTkQ2W/B30QJjnEWHALvkBCps69
-	 /HwO0acDIhUcg==
-Date: Fri, 28 Jun 2024 15:41:40 -0600
+	b=KW8vMAWWZcfPHw3Mb17QOnNZZKplGLh3fA1qGjPXHt++83tZJmr8QU+KVsoX58j3U
+	 eOi9cYzb43rWb7+Y+MOjAOxcGuFbBAw/gdcvoidweTOgVoIZpKAE46+YbwkH9ddKmZ
+	 e5QLo1oUU+ubYXWa/9Ik1RqvKF+ghUtQ8tf2i5gdF3b1L4ysCFvD99AlBfJuGyAzhE
+	 MUFJhr3x9DGPDduw0+rbMcQswqvzvQm5OrGQP3JnF2zt8cz+vZbwrJ7VLg1+o5DYZw
+	 tSzIcNtI0fon0EVgdnUSN2eSy27FiWuzRNyQ8Epy0WiLAaQbD3eiTvEuYHJFMevF0C
+	 7PQi5IEZx7xbg==
+Date: Fri, 28 Jun 2024 15:45:14 -0600
 From: Rob Herring <robh@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Marc Kleine-Budde <mkl@pengutronix.de>,
-	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+To: Jan Kiszka <jan.kiszka@siemens.com>
+Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	"open list:CAN NETWORK DRIVERS" <linux-can@vger.kernel.org>,
-	"open list:NETWORKING DRIVERS" <netdev@vger.kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
-Subject: Re: [PATCH 1/1] dt-bindings: can: fsl,flexcan: add can-transceiver
- for fsl,flexcan
-Message-ID: <20240628214140.GA255511-robh@kernel.org>
-References: <20240625203145.3962165-1-Frank.Li@nxp.com>
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, Bao Cheng Su <baocheng.su@siemens.com>,
+	Diogo Ivo <diogo.ivo@siemens.com>
+Subject: Re: [PATCH v2 3/4] dt-bindings: soc: ti: am645-system-controller:
+ add child nodes used by main domain
+Message-ID: <20240628214514.GA258254-robh@kernel.org>
+References: <cover.1719376928.git.jan.kiszka@siemens.com>
+ <1ac6bf9ef2d77dfc606a825d768bd4d23853052a.1719376928.git.jan.kiszka@siemens.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,35 +64,61 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240625203145.3962165-1-Frank.Li@nxp.com>
+In-Reply-To: <1ac6bf9ef2d77dfc606a825d768bd4d23853052a.1719376928.git.jan.kiszka@siemens.com>
 
-On Tue, Jun 25, 2024 at 04:31:45PM -0400, Frank Li wrote:
-> Add 'can-transceiver' children node for fsl,flexcan to allow update
-> can-transceiver property.
+On Wed, Jun 26, 2024 at 06:42:07AM +0200, Jan Kiszka wrote:
+> From: Jan Kiszka <jan.kiszka@siemens.com>
 > 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> Expand bindings to cover both the MCU and the main usage of the AM654
+> system controller.
+> 
+> Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
 > ---
->  Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml | 3 +++
->  1 file changed, 3 insertions(+)
+>  .../soc/ti/ti,am654-system-controller.yaml    | 25 +++++++++++++++++++
+>  1 file changed, 25 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml b/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml
-> index f197d9b516bb2..d003200247b03 100644
-> --- a/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml
-> +++ b/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml
-> @@ -80,6 +80,9 @@ properties:
->        node then controller is assumed to be little endian. If this property is
->        present then controller is assumed to be big endian.
+> diff --git a/Documentation/devicetree/bindings/soc/ti/ti,am654-system-controller.yaml b/Documentation/devicetree/bindings/soc/ti/ti,am654-system-controller.yaml
+> index e79803e586ca..a03e13cf2677 100644
+> --- a/Documentation/devicetree/bindings/soc/ti/ti,am654-system-controller.yaml
+> +++ b/Documentation/devicetree/bindings/soc/ti/ti,am654-system-controller.yaml
+> @@ -34,6 +34,31 @@ patternProperties:
+>      type: object
+>      $ref: /schemas/phy/ti,phy-gmii-sel.yaml#
 >  
-> +  can-transceiver:
-> +    $ref: can-transceiver.yaml#
+> +  "^mux-controller$":
 
-       unevaluatedProperties: false
+That's not a pattern, but fixed string. Move to 'properties'. I thought 
+the tools check this. Maybe it didn't apply to rc1 for the bot and you 
+didn't test either?
 
+> +    type: object
+> +    ref: /schemas/mux/reg-mux.yaml#
+> +    description:
+> +      This is the SERDES lane control mux.
 > +
->    fsl,stop-mode:
->      description: |
->        Register bits of stop mode control.
+> +  "^clock@[0-9a-f]+$":
+> +    type: object
+> +    $ref: /schemas/soc/ti/ti,am654-serdes-ctrl.yaml#
+> +
+> +  "^dss-oldi-io-ctrl@[0-9a-f]+$":
+> +    type: object
+> +    $ref: /schemas/mfd/syscon.yaml#
+> +    properties:
+> +      compatible:
+> +        items:
+> +          - const: ti,am654-dss-oldi-io-ctrl
+> +          - const: syscon
+> +
+> +  "^clock-controller@[0-9a-f]+$":
+> +    type: object
+> +    $ref: /schemas/clock/ti,am654-ehrpwm-tbclk.yaml#
+> +    description:
+> +      Clock provider for TI EHRPWM nodes.
+> +
+>  required:
+>    - compatible
+>    - reg
 > -- 
-> 2.34.1
+> 2.43.0
 > 
 
