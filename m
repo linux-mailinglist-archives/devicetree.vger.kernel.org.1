@@ -1,512 +1,204 @@
-Return-Path: <devicetree+bounces-81503-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81504-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFF4291C777
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 22:44:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02D3A91C787
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 22:54:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D35421C226D5
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 20:44:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7A5A11F2170B
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 20:54:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C36978C9E;
-	Fri, 28 Jun 2024 20:44:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5AC77BB0A;
+	Fri, 28 Jun 2024 20:54:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="LUJXneGX"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="W6QzlEk/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2050.outbound.protection.outlook.com [40.107.20.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7A1A5381A;
-	Fri, 28 Jun 2024 20:44:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.50
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719607468; cv=fail; b=Q19KAWMy3NBoAOAFyp2irBVVJdGxL0V4Z29dfrhkhaRfGVfmizNqspoae6Ox4dlEy+SUaAG4532XoKiG50yJXE7YM5/2Vb48YU+h2yuOJ463MDOvVuwgAmzvlHs3NS+I35Af4mHF9ajWMp0noNNs8qwyecTlrToGXccyWY75vNg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719607468; c=relaxed/simple;
-	bh=Ng86F4EgjhgHkO99aqgFXTZOJkvBlb+MorfZ6b4xXEE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=XEaETpHdcwgDGkA2ODo63Y0fTD33wk1W/PESqwx8kManYDdctq/I9UHtDPOz1C9hAfJwfiOdc/OxEOfOic1GKb91lqtgo568qhbanaEdqXO8u0jfw0i1cImaMptSZYwgpGJ97A/81nt9LA3jbwZmVynKcf6hA1P5BGoGkOXcUt4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=LUJXneGX; arc=fail smtp.client-ip=40.107.20.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=RhIb4A6yHEUXMTt257NXtBf4whfjdYpgJF2oY9v9UmYAi3d76TKG2qGK4VvMyvYYMLcu9GBOTWNOK/nwNORmNhTDMj8btAbbiFK+zL9fBOlktWZC+IlvQtEJLsKVGDifh3SkuylTgnNEuZBPQ8BitZ9+IhqNYwFBw9F2ZGhGi/Bmfo9NUTk2hiS2fqaiP60Oy99dkQJuozHVlgjpJv985LMzKTJgQp+vlHeWwZQOZwjqIg5Wt7QVw7iYK6dxcbxIFPL+Tr9MC28C16n6fWKu0BaPOuD7vOUl7t5E+8yTAfXFLjGoQYaUucbeXN4LQF0p0LsM93WAPK+MDsTqZHameQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4SPl5/3jMEKtZ7AVqWIo+DaM+lors4QZu1x5TaFCWXs=;
- b=N22n/vv+kyoA/Q8jnU7GzXk+DnfsJcbLRHq4qDQS53jkhtbVeqWXFB+jq/RC+sQBFnEWwB099Fv0/CkfeypLjYqCxbzOca02WjQCDIL7JYHjLIna+BlMADN6EbqhVkEb2P6Fw4LokOw3001mhEXsyBlSP4CB4V+0eeJM4PI0KNDUtNLNkf+N8zZjj3XOTkVVMQ+xNfmiLxR51T7qnxUVvn99Tkw/L/ImVDa209rCxHWPShKBgQVMnTt94c40741FeLVfMrErmmtUPxNXSu53ZzaMCJt6ksxSB05jwQQHCSwBMVCqMZZllm8Re3ezXKJ2T51WPRzrXsYHMtJxheP7Yg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4SPl5/3jMEKtZ7AVqWIo+DaM+lors4QZu1x5TaFCWXs=;
- b=LUJXneGX+e4nyb/eWb3FLMl35dfO0QTlYWtrKaX2+btYBYEm00l5lwbk6m3AnRZfC+RpcXdtMmLslmvClL3sXkjFhyQERtSAillsM7H9df2eKuIBarQi1OyYgvusGyL3oIR/BFU18sJFaOPAGVEvJt1NtHu0hLb53KG1+YqZFLI=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by GV1PR04MB9104.eurprd04.prod.outlook.com (2603:10a6:150:23::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7719.26; Fri, 28 Jun
- 2024 20:44:21 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%2]) with mapi id 15.20.7719.022; Fri, 28 Jun 2024
- 20:44:20 +0000
-Date: Fri, 28 Jun 2024 16:44:12 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"open list:COMMON CLK FRAMEWORK" <linux-clk@vger.kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
-Subject: Re: [PATCH 1/1] dt-bindings: clock: qoriq-clock: convert to yaml
- format
-Message-ID: <Zn8gnEI7asP2w/Y2@lizhi-Precision-Tower-5810>
-References: <20240617181410.921090-1-Frank.Li@nxp.com>
- <20240627202254.GA454755-robh@kernel.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240627202254.GA454755-robh@kernel.org>
-X-ClientProxiedBy: SJ0PR03CA0037.namprd03.prod.outlook.com
- (2603:10b6:a03:33e::12) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 490017B3F3
+	for <devicetree@vger.kernel.org>; Fri, 28 Jun 2024 20:54:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1719608077; cv=none; b=uhTEDWiXMD86B1fraSwmz3vdIR0aKm00qmsUZ660cnLw6f2E02icMoBftZgmVRef7VFKCFI4G00sYGwInumv6t6r0zo1uTbO50WM5RvPTFJuJGKS9mygoOFkG8NxFRNCDef+2n4+zSUnH6MT3+vhzUWe+7v4TqKs9p4CJQBZC+E=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1719608077; c=relaxed/simple;
+	bh=3QUV6Id5e6TqoXpmf/FRuK3OoQZ3YpOC2fa6XfKHwmY=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type; b=m0F/Et49v1D7sbtXH6p+gV2VsrHgSwxI7vRjdRSs1CZwQTMK2aOF7dul4FZ3IZkCu1ZuQ0a9l90IAQtvRgev5JrXNZCctkhviWjQvHP/PoRWAZK3+1I0p7f0Kr6M7GX+0RpF9tRRzrQGlZj6CEB9B+F7GmR0Wm7+vDvHxSzS0VY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=W6QzlEk/; arc=none smtp.client-ip=209.85.214.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-1fab03d2f23so9195215ad.0
+        for <devicetree@vger.kernel.org>; Fri, 28 Jun 2024 13:54:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google; t=1719608075; x=1720212875; darn=vger.kernel.org;
+        h=message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=bBWYGEgUfxOqISazEsE8q875PshShWbEN/AMwQ5YFnk=;
+        b=W6QzlEk/GFbc8drOxjf9c48WoMSMP/hNoxx+UOorAi/T+S/prIkHyEyHUJy8ztAqIN
+         413iRDcEw6InBQSovsJwGM4XoYuQne0BwQRzVDef3AjTLGz2yvQKX3MESf+Rv32Ya+s+
+         KwXP4W4X4Tc7H47Q1Hf5SYMWDsDI2KV5LsJyc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719608075; x=1720212875;
+        h=message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=bBWYGEgUfxOqISazEsE8q875PshShWbEN/AMwQ5YFnk=;
+        b=Pb7pjA89cln6+ZVH5VfyBls7Psw9/D+xSkgy/K7tD1O/ZZaJaH+8zg/vcRMhhDoFpk
+         9pR9Xoqd42YVY6umPktt7gM9DxI8ay9j3ABm/NxmzLZOnmxrjqcnwkpI5eLNzgTnuuqC
+         /gLWcuYAODr7bh5fw33cyJ7mMZv8qtiCEPkdm0cMu0c9INWYP2TwsE8NQnJf7V8UEt5s
+         /hTUnlFh2SJygTpocDRdnYdrsUxhS9q7UGf1RvOBC9ZdaCVxTf12zngy/KGtj+5cXF6L
+         k4teYSr4ArugLvFTWHjWU3MqNVOHQUCDZz9+ZvilInGcQD21Q3FFKbQNo25ocELAcD//
+         nuPA==
+X-Gm-Message-State: AOJu0YzHdcL7Ujuz9rBfGr8h5609nUAMG9if6SrGT7MrxdyzZNJHMiKu
+	iN7EcEHhZfw+GP/9o7CoEhZcyJ9Mwza+EPJi7S5preVkWYM/jrrDhrT5ElRuLA==
+X-Google-Smtp-Source: AGHT+IExn1xgwDBp3uQgZDhc/WDI7h1Vwt8yV2LBBYABkESqfH4bzqU/+lbwF5sN35wJVioUwkVO6g==
+X-Received: by 2002:a17:903:22ca:b0:1f8:67e4:3977 with SMTP id d9443c01a7336-1fa158e5e78mr157015725ad.34.1719608075590;
+        Fri, 28 Jun 2024 13:54:35 -0700 (PDT)
+Received: from stbsrv-and-01.and.broadcom.net ([192.19.144.250])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1fac15393d1sm19695135ad.157.2024.06.28.13.54.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 28 Jun 2024 13:54:35 -0700 (PDT)
+From: Jim Quinlan <james.quinlan@broadcom.com>
+To: linux-pci@vger.kernel.org,
+	Nicolas Saenz Julienne <nsaenz@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+	Cyril Brulebois <kibi@debian.org>,
+	Stanimir Varbanov <svarbanov@suse.de>,
+	bcm-kernel-feedback-list@broadcom.com,
+	jim2101024@gmail.com,
+	james.quinlan@broadcom.com
+Cc: devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-arm-kernel@lists.infradead.org (moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE),
+	linux-kernel@vger.kernel.org (open list),
+	linux-rpi-kernel@lists.infradead.org (moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE),
+	Rob Herring <robh@kernel.org>
+Subject: [PATCH v1 0/8] PCI: brcnstb: Enable STB 7712 SOC
+Date: Fri, 28 Jun 2024 16:54:19 -0400
+Message-Id: <20240628205430.24775-1-james.quinlan@broadcom.com>
+X-Mailer: git-send-email 2.17.1
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
+	boundary="000000000000853621061bf974d8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|GV1PR04MB9104:EE_
-X-MS-Office365-Filtering-Correlation-Id: bd8e02c3-4c83-45de-a452-08dc97b31620
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|366016|1800799024|52116014|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?2I4/Un6UN0kPbQhgIUeWrQmAdA8BsFfvnY4ya1uTfNRigCxtGodlvkCmeR/Q?=
- =?us-ascii?Q?MxPFGeG5NHI68+M/BntS6GUrnAAUlzp/84qZCe4UiTrQG5HrYMdB4en44+1i?=
- =?us-ascii?Q?PwQI+eLNMjV+USOhuTu9AL8gxfkSRAzJo3n6gt8g1G5Z0FUR3reF+Hc8GaNm?=
- =?us-ascii?Q?rmcK6of0AZwbxYHY6HT2ZFeL7aU3rlzSjz+dkb/TMum+oMDWUIAuQoAPrjj7?=
- =?us-ascii?Q?9N7+Cnd8voW63UClZcUiZWtLxQsrNNWMiF8f/rcVT31M5nyeFS6CU0eXKUEI?=
- =?us-ascii?Q?cU6eq3U/ATuDsBDWqKjRvSv/UQFfrRosHpSi9gJtbFOGtgrnSgEDc/4hokgA?=
- =?us-ascii?Q?DHSYyIzddXQUNa985OfvI+tWF89GuDiSaPN2n59BpX8jR6FD2+g++1rI/YiX?=
- =?us-ascii?Q?+Xv5A3kOv4uOmIcVA4FuSy1F8wY6mdLAwpimDIub/wotXEDRPB2pT4vgZw/I?=
- =?us-ascii?Q?C2JaX2+GuabdAnj8pxX0ugmgQ+1eAIgksznUHBkt11zttwqvmxUvHJJmO9tm?=
- =?us-ascii?Q?GYRQ8vjWa8OXUlaDv0VqISTfL4nOKs3jLGZaUqjWWSHI82cUCVeV7kB9kTW9?=
- =?us-ascii?Q?wSCUg30ubuvhk6Y6/Fc+WDzG7Klo8J8LYyp0ZQlUTlroVHUHNcn7CBhV9H5O?=
- =?us-ascii?Q?pf9Cpbr/Jn7qfp/nCwQ+IxrkWzlWIszupYJel2HoBCYXF5+tpGfKBxtRfJFA?=
- =?us-ascii?Q?eJzWArh0gW0ZGyT7ypkAHF+PoTQNtFGH3WZFEluy+ILVsmeVFmSHxDA++kwz?=
- =?us-ascii?Q?dAb0fOAtQerVhomsqDH3pzkBI8Y+Jmq+PMaJJcJ6loMnYMDIBwOIA2fwUEFd?=
- =?us-ascii?Q?AYTQvmH5J+w08LMLDgOOQolSTulk5mV6pfYffVcDFVHTWEnof9/spkjB/N8M?=
- =?us-ascii?Q?pRmm/eEQ7mOnL3AwfJKE98/XFWv5DCon+V0K+2XoluoNobDGgy+A+eD/UwfL?=
- =?us-ascii?Q?+5Ih4jqx/YzJQUjb+m8reTM9jIqVv8HXngq8F6NDCXQTUCiqD7cAQYDyLkm/?=
- =?us-ascii?Q?Z4933UAf3vpsw16k/UsgAJ3nuf269GRxE8Ar2jpbNpId5IsqWcQXXRlV8oW0?=
- =?us-ascii?Q?spMFV4mDrgzFfBMSwlmDqC75+e/rx6LzkP6UzMyJcGclpIHG7sJLfIVTSODm?=
- =?us-ascii?Q?lCkhAaqAB5FoXTprKgr77p0F+hrGfNZvDkoIrVYR4+HUfQK8ktwJcy/oDfxN?=
- =?us-ascii?Q?4px2a6BcFnWIhpW6s1DSBzMF89EB+7vQFlIOci1f/tUj0i36+HlfP4inwYGB?=
- =?us-ascii?Q?W9sfThqIv3V/g2zpq0VyxK6v8FjZXjdTmM2/48XMwmfz6pSTUjQWOHDP+xu+?=
- =?us-ascii?Q?zonvERYDhW1KIdmf3+L/rOFoHgl62hqdgN8oOclcwA5KhB22R7XQ8078x86E?=
- =?us-ascii?Q?I3597g0=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(1800799024)(52116014)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?Hp5qaxd9tvNSCtQY2SwuwQ5FrQ8L2bkppp/y4QTRht97G796tOR8oCmkriRx?=
- =?us-ascii?Q?gFGQREFy3y+CfhHg6Hx7rmIGieT0zka2M2poLThwIQktZDsOObGplcs3Z5k3?=
- =?us-ascii?Q?cLA+3JpqHWy+WLY6J2deAuZ8bqaXACYR9NceiltqVJ1znk5v0606+eQ1i5k4?=
- =?us-ascii?Q?Pdy5zVPc7arnnA8hKK3JR/WOw+IJrFJuOFlBIjNYqKhChzku7KGNaBuhZiwa?=
- =?us-ascii?Q?vV+nuQQWQYiAZFBuer477XzYqrXy4qTusgeosYfgB+B3eFkMCMG9OwbdX7ea?=
- =?us-ascii?Q?2hEuaMhnUNMcK2SQyc4ehMZ/u+iPp26sdAPsZdyccddxY+0jWwRN45LcBA32?=
- =?us-ascii?Q?Wuw1fULQc2AAtVWGZKZN9pMG8VAQsSdnc6QTp2ya+xhA1BUNOmcIZGfg1+gr?=
- =?us-ascii?Q?pqTyFImK3RRemCHZ8jb+5iXjihMsqlr7ofFlrfx3xdgzkrYlXpbrhI2iSHas?=
- =?us-ascii?Q?GT6xTyeOxZMGi/f0Oa4XyqjTc/1737rNlf6NrzaR6MSWKtJJM3m1NjScLeJF?=
- =?us-ascii?Q?DaEPkIbdBFrHnOHVpEZokMxMruW+gS7L9GgnJeUqPBzltBXn/Kw+7ncNJAyH?=
- =?us-ascii?Q?cpHrC3v94dfq1nb3KylOJbNxKSlpP+a575ERENUK3/rzSVe/bfUqzr/Xm1S2?=
- =?us-ascii?Q?noJsb3m0AQ4AoqpmUrnyynsG9TGr5sGsnjg75QADKOQoG9nP/H1ZCQ3NALe+?=
- =?us-ascii?Q?jheHWL1TT+DPvWjsNUHhQrkxoXjeEt3Dxtpyp2OUv3KcaRoZgqbPjO7xbRqV?=
- =?us-ascii?Q?CpALkYC+VJfmt7h9Ac0AKCNn0vFN2own5YG/EX8IgiXGJjOeDEIeK+iJUC31?=
- =?us-ascii?Q?q6Vr2cjgJS+b8mBh1Xs6F5skyMvJGjELhbSPFQJYXK0vmZv6UYKsT6Lmc1sl?=
- =?us-ascii?Q?mo+Gyf3f60Mo7MQsecnPzHh92In8jUOeBrgDrgEkMIosFiAOFg7IfGup9dNf?=
- =?us-ascii?Q?MY9+EQxZRCsPPPFaMInO/rC7bcBnjesvrgVmjECOn2E7NyFzHQZste+OkNfv?=
- =?us-ascii?Q?1ZhlWUTdviz13lIFLf743Az9j84mP+wFQQ/XEyxd2Y9TuBaKtjcq1SSr117M?=
- =?us-ascii?Q?m6HreoGAPZaff30pCbG5G8OCphhel7tPPd31ytarBKiptT+XHezR/Rq7Zi7g?=
- =?us-ascii?Q?QcIvw+qkm7fK1H10BOnSz9thDAV5K8+3OxRQIqpgzSQbCVjeP2eV2ImdDZcT?=
- =?us-ascii?Q?rq+p3nkmUDSQZPGlymo+vl8ful7KCOzAf1ljbmWyKyJdvg20TIef0xTgXaWX?=
- =?us-ascii?Q?l14EMiUYVmVBiCs0LVdGM7fFXBQyp36EloyaFPqwJMiYXFApc6ClWVEbRDMv?=
- =?us-ascii?Q?poACThbJTOxDgDzV1tTPyIMIDjhCj/0BnX04JbZeF07YRKLficrGGKBqV8Cx?=
- =?us-ascii?Q?T7wl65/Cia7Jb630geOTJPL46b4lUUaPvNNoTXaGwUoLjsAqSHB47gFZBDCI?=
- =?us-ascii?Q?i/8EnZ/0DGSMGW+fME1ziL3MvvidtXOahenl6ShKrzpYPGNKIo1/KOKd+f4B?=
- =?us-ascii?Q?WTNGf9btor3qpww/ZBHk51MxWJ59CSVymIOE3fbm7YTUVp1Iy7KQOIk7bwye?=
- =?us-ascii?Q?eWuBiT/TCO0meALmJhepXrzO+5xxivH+r0RG8nlq?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bd8e02c3-4c83-45de-a452-08dc97b31620
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jun 2024 20:44:20.7078
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: z7xDD7+8vuCLNjTkiY0ncesHlc9o6cwzLQ3pIZN299yH4Zwg5ldZgURTfR7C/fLJSUo8uhr+egsQHY8B2wvdbw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR04MB9104
 
-On Thu, Jun 27, 2024 at 02:22:54PM -0600, Rob Herring wrote:
-> On Mon, Jun 17, 2024 at 02:14:09PM -0400, Frank Li wrote:
-> > Convert qoria-clock DT binding to yaml format. Split to two files
-> > qoriq-clock.yaml and qoriq-clock-legancy.yaml.
-> > 
-> > Addtional change:
-> > - Remove clock consumer part in example
-> > - Fixed example dts error
-> > - Deprecated legancy node
-> > 
-> > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> > ---
-> >  .../clock/fsl,qoriq-clock-legacy.yaml         |  84 +++++++
-> >  .../bindings/clock/fsl,qoriq-clock.yaml       | 203 +++++++++++++++++
-> >  .../devicetree/bindings/clock/qoriq-clock.txt | 212 ------------------
-> >  3 files changed, 287 insertions(+), 212 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/clock/fsl,qoriq-clock-legacy.yaml
-> >  create mode 100644 Documentation/devicetree/bindings/clock/fsl,qoriq-clock.yaml
-> >  delete mode 100644 Documentation/devicetree/bindings/clock/qoriq-clock.txt
-> > 
-> > diff --git a/Documentation/devicetree/bindings/clock/fsl,qoriq-clock-legacy.yaml b/Documentation/devicetree/bindings/clock/fsl,qoriq-clock-legacy.yaml
-> > new file mode 100644
-> > index 0000000000000..97b96a1a58254
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/clock/fsl,qoriq-clock-legacy.yaml
-> > @@ -0,0 +1,84 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/clock/fsl,qoriq-clock-legacy.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Legacy Clock Block on Freescale QorIQ Platforms
-> > +
-> > +maintainers:
-> > +  - Frank Li <Frank.Li@nxp.com>
-> > +
-> > +description: |
-> > +  These nodes are deprecated.  Kernels should continue to support
-> > +  device trees with these nodes, but new device trees should not use them.
-> > +
-> > +  Most of the bindings are from the common clock binding[1].
-> > +  [1] Documentation/devicetree/bindings/clock/clock-bindings.txt
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - fsl,qoriq-core-pll-1.0
-> > +      - fsl,qoriq-core-pll-2.0
-> > +      - fsl,qoriq-core-mux-1.0
-> > +      - fsl,qoriq-core-mux-2.0
-> > +      - fsl,qoriq-sysclk-1.0
-> > +      - fsl,qoriq-sysclk-2.0
-> > +      - fsl,qoriq-platform-pll-1.0
-> > +      - fsl,qoriq-platform-pll-2.0
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    minItems: 1
-> > +    maxItems: 4
-> > +
-> > +  clock-names:
-> > +    minItems: 1
-> > +    maxItems: 4
-> > +
-> > +  clock-output-names:
-> > +    minItems: 1
-> > +    maxItems: 8
-> > +
-> > +  '#clock-cells':
-> > +    minimum: 0
-> > +    maximum: 1
-> > +
-> > +required:
-> > +  - compatible
-> > +  - '#clock-cells'
-> > +
-> > +additionalProperties: false
-> > +
-> > +allOf:
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            enum:
-> > +              - fsl,qoriq-sysclk-1.0
-> > +              - fsl,qoriq-sysclk-2.0
-> > +    then:
-> > +      properties:
-> > +        '#clock-cells':
-> > +          const: 0
-> > +
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            enum:
-> > +              - fsl,qoriq-core-pll-1.0
-> > +              - fsl,qoriq-core-pll-2.0
-> > +    then:
-> > +      properties:
-> > +        '#clock-cells':
-> > +          const: 1
-> > +          description: |
-> > +            * 0 - equal to the PLL frequency
-> > +            * 1 - equal to the PLL frequency divided by 2
-> > +            * 2 - equal to the PLL frequency divided by 4
-> > +
-> > diff --git a/Documentation/devicetree/bindings/clock/fsl,qoriq-clock.yaml b/Documentation/devicetree/bindings/clock/fsl,qoriq-clock.yaml
-> > new file mode 100644
-> > index 0000000000000..d641756b04635
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/clock/fsl,qoriq-clock.yaml
-> > @@ -0,0 +1,203 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/clock/fsl,qoriq-clock.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Clock Block on Freescale QorIQ Platforms
-> > +
-> > +maintainers:
-> > +  - Frank Li <Frank.Li@nxp.com>
-> > +
-> > +
-> 
-> Just 1 blank line
-> 
-> > +description: |
-> > +
-> 
-> drop blank line
-> 
-> > +  Freescale QorIQ chips take primary clocking input from the external
-> > +  SYSCLK signal. The SYSCLK input (frequency) is multiplied using
-> > +  multiple phase locked loops (PLL) to create a variety of frequencies
-> > +  which can then be passed to a variety of internal logic, including
-> > +  cores and peripheral IP blocks.
-> > +  Please refer to the Reference Manual for details.
-> > +
-> > +  All references to "1.0" and "2.0" refer to the QorIQ chassis version to
-> > +  which the chip complies.
-> > +
-> > +  Chassis Version    Example Chips
-> > +  ---------------    -------------
-> > +       1.0      p4080, p5020, p5040
-> > +       2.0      t4240, b4860
-> > +
-> > +  Clock Provider
-> > +
-> > +  The clockgen node should act as a clock provider, though in older device
-> > +  trees the children of the clockgen node are the clock providers.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    items:
-> > +      - enum:
-> > +          - fsl,p2041-clockgen
-> > +          - fsl,p3041-clockgen
-> > +          - fsl,p4080-clockgen
-> > +          - fsl,p5020-clockgen
-> > +          - fsl,p5040-clockgen
-> > +          - fsl,t1023-clockgen
-> > +          - fsl,t1024-clockgen
-> > +          - fsl,t1040-clockgen
-> > +          - fsl,t1042-clockgen
-> > +          - fsl,t2080-clockgen
-> > +          - fsl,t2081-clockgen
-> > +          - fsl,t4240-clockgen
-> > +          - fsl,b4420-clockgen
-> > +          - fsl,b4860-clockgen
-> 
-> > +          - fsl,ls1012a-clockgen
-> > +          - fsl,ls1021a-clockgen
-> > +          - fsl,ls1028a-clockgen
-> > +          - fsl,ls1043a-clockgen
-> > +          - fsl,ls1046a-clockgen
-> > +          - fsl,ls1088a-clockgen
-> > +          - fsl,ls2080a-clockgen
-> > +          - fsl,lx2160a-clockgen
-> 
-> It doesn't look to me like these platforms use this binding.
+--000000000000853621061bf974d8
 
-It should be used.
+This submission is for the Broadcom STB 7712, sibling SOC of the RPi5 chip.
+Stanimir has already submitted a patch "Add PCIe support for bcm2712" for
+the RPi version of the SOC.  It is hoped that Stanimir will allow us to
+submit this series first and subsequently rebase his patch(es).
 
-git grep -r "a\-clockgen" arch/arm64/
+The largest commit, "Refactor for chips with many regular inbound BARs"
+affects both the STB and RPi SOCs.  It allows for multiple inbound ranges
+where previously only one was effectively used.  This feature will also
+be present in future STB chips, as well as Broadcom's Cable Modem group.
 
-arch/arm64/boot/dts/freescale/fsl-ls1012a.dtsi:                 compatible = "fsl,ls1012a-clockgen";
-arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi:                 compatible = "fsl,ls1028a-clockgen";
-arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi:                 compatible = "fsl,ls1043a-clockgen";
-arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi:                 compatible = "fsl,ls1046a-clockgen";
-arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi:                 compatible = "fsl,ls1088a-clockgen";
-arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi:                 compatible = "fsl,ls2080a-clockgen";
-arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi:                 compatible = "fsl,lx2160a-clockgen";
 
-Frank
+Jim Quinlan (8):
+  dt-bindings: PCI: Add Broadcom STB 7712 SOC, update maintainter
+  PCI: brcmstb: Use "clk_out" error path label
+  PCI: brcmstb: Use bridge reset if available
+  PCI: brcmstb: Use swinit reset if available
+  PCI: brcmstb: Two more register offsets vary by SOC
+  PCI: brcmstb: Don't conflate the reset rescal with phy ctrl
+  PCI: brcmstb: Refactor for chips with many regular inbound BARs
+  PCI: brcmstb: Enable 7712 SOCs
 
-> 
-> > +      - enum:
-> > +          - fsl,qoriq-clockgen-1.0
-> > +          - fsl,qoriq-clockgen-2.0
-> 
-> This allows invalid combinations. You need 2 entries splitting 1.0 and 
-> 2.0.
-> 
-> > +    minItems: 1
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  ranges: true
-> > +
-> > +  '#address-cells':
-> > +    const: 1
-> > +
-> > +  '#size-cells':
-> > +    const: 1
-> > +
-> > +  '#clock-cells':
-> > +    const: 2
-> > +    description: |
-> > +      The first cell of the clock specifier is the clock type, and the
-> > +      second cell is the clock index for the specified type.
-> > +
-> > +        Type#  Name       Index Cell
-> > +        0  sysclk          must be 0
-> > +        1  cmux            index (n in CLKCnCSR)
-> > +        2  hwaccel         index (n in CLKCGnHWACSR)
-> > +        3  fman            0 for fm1, 1 for fm2
-> > +        4  platform pll    n=pll/(n+1). For example, when n=1,
-> > +                          that means output_freq=PLL_freq/2.
-> > +        5  coreclk         must be 0
-> > +
-> > +  clock-frequency:
-> > +    description: Input system clock frequency (SYSCLK)
-> > +
-> > +  clocks:
-> > +    items:
-> > +      - description:
-> > +          sysclk may be provided as an input clock.  Either clock-frequency
-> > +          or clocks must be provided.
-> > +      - description:
-> > +          A second input clock, called "coreclk", may be provided if
-> > +          core PLLs are based on a different input clock from the
-> > +          platform PLL.
-> > +    minItems: 1
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: sysclk
-> > +      - const: coreclk
-> > +
-> > +patternProperties:
-> > +  '^mux[0-9]@[a-f0-9]+$':
-> > +    deprecated: true
-> > +    $ref: fsl,qoriq-clock-legacy.yaml
-> > +
-> > +  '^sysclk+$':
-> 
-> This means 'sysclkkkkkkkkkk' is valid.
-> 
-> > +    deprecated: true
-> > +    $ref: fsl,qoriq-clock-legacy.yaml
-> > +
-> > +  '^pll[0-9]@[a-f0-9]+$':
-> > +    deprecated: true
-> > +    $ref: fsl,qoriq-clock-legacy.yaml
-> > +
-> > +  '^platform\-pll@[a-f0-9]+$':
-> > +    deprecated: true
-> > +    $ref: fsl,qoriq-clock-legacy.yaml
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - '#clock-cells'
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    /* clock provider example */
-> > +    global-utilities@e1000 {
-> > +        compatible = "fsl,p5020-clockgen", "fsl,qoriq-clockgen-1.0";
-> > +        reg = <0xe1000 0x1000>;
-> > +        clock-frequency = <133333333>;
-> > +        #clock-cells = <2>;
-> > +    };
-> > +
-> > +  - |
-> > +    /* Legacy example */
-> > +    global-utilities@e1000 {
-> > +        compatible = "fsl,p5020-clockgen", "fsl,qoriq-clockgen-1.0";
-> > +        reg = <0xe1000 0x1000>;
-> > +        ranges = <0x0 0xe1000 0x1000>;
-> > +        clock-frequency = <133333333>;
-> > +        #address-cells = <1>;
-> > +        #size-cells = <1>;
-> > +        #clock-cells = <2>;
-> > +
-> > +        sysclk: sysclk {
-> > +            compatible = "fsl,qoriq-sysclk-1.0";
-> > +            clock-output-names = "sysclk";
-> > +            #clock-cells = <0>;
-> > +        };
-> > +
-> > +        pll0: pll0@800 {
-> > +            compatible = "fsl,qoriq-core-pll-1.0";
-> > +            reg = <0x800 0x4>;
-> > +            #clock-cells = <1>;
-> > +            clocks = <&sysclk>;
-> > +            clock-output-names = "pll0", "pll0-div2";
-> > +        };
-> > +
-> > +        pll1: pll1@820 {
-> > +            compatible = "fsl,qoriq-core-pll-1.0";
-> > +            reg = <0x820 0x4>;
-> > +            #clock-cells = <1>;
-> > +            clocks = <&sysclk>;
-> > +            clock-output-names = "pll1", "pll1-div2";
-> > +        };
-> > +
-> > +        mux0: mux0@0 {
-> > +            compatible = "fsl,qoriq-core-mux-1.0";
-> > +            reg = <0x0 0x4>;
-> > +            #clock-cells = <0>;
-> > +            clocks = <&pll0 0>, <&pll0 1>, <&pll1 0>, <&pll1 1>;
-> > +            clock-names = "pll0", "pll0-div2", "pll1", "pll1-div2";
-> > +            clock-output-names = "cmux0";
-> > +        };
-> > +
-> > +        mux1: mux1@20 {
-> > +            compatible = "fsl,qoriq-core-mux-1.0";
-> > +            reg = <0x20 0x4>;
-> > +            #clock-cells = <0>;
-> > +            clocks = <&pll0 0>, <&pll0 1>, <&pll1 0>, <&pll1 1>;
-> > +            clock-names = "pll0", "pll0-div2", "pll1", "pll1-div2";
-> > +            clock-output-names = "cmux1";
-> > +        };
-> > +
-> > +        platform-pll@c00 {
-> > +            #clock-cells = <1>;
-> > +            reg = <0xc00 0x4>;
-> > +            compatible = "fsl,qoriq-platform-pll-1.0";
-> > +            clocks = <&sysclk>;
-> > +            clock-output-names = "platform-pll", "platform-pll-div2";
-> > +        };
-> > +    };
+ .../bindings/pci/brcm,stb-pcie.yaml           |  24 +-
+ drivers/pci/controller/pcie-brcmstb.c         | 330 ++++++++++++++----
+ 2 files changed, 276 insertions(+), 78 deletions(-)
+
+
+base-commit: 55027e689933ba2e64f3d245fb1ff185b3e7fc81
+-- 
+2.17.1
+
+
+--000000000000853621061bf974d8
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
+
+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
+mOAplh6h3nMZUZxBguxG3g2p3iD4EgibUYneEzqOQafIQB/naf2uetKb8y9jKgWJxq2Y4y8Jqg2u
+uVIO1AyOJjWwqdgN+QhuIlat+qZd03P48Gim9ZPEMDUCAwEAAaOCAdswggHXMA4GA1UdDwEB/wQE
+AwIFoDCBowYIKwYBBQUHAQEEgZYwgZMwTgYIKwYBBQUHMAKGQmh0dHA6Ly9zZWN1cmUuZ2xvYmFs
+c2lnbi5jb20vY2FjZXJ0L2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNydDBBBggrBgEFBQcw
+AYY1aHR0cDovL29jc3AuZ2xvYmFsc2lnbi5jb20vZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAw
+TQYDVR0gBEYwRDBCBgorBgEEAaAyASgKMDQwMgYIKwYBBQUHAgEWJmh0dHBzOi8vd3d3Lmdsb2Jh
+bHNpZ24uY29tL3JlcG9zaXRvcnkvMAkGA1UdEwQCMAAwSQYDVR0fBEIwQDA+oDygOoY4aHR0cDov
+L2NybC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAyMC5jcmwwJQYDVR0R
+BB4wHIEaamFtZXMucXVpbmxhbkBicm9hZGNvbS5jb20wEwYDVR0lBAwwCgYIKwYBBQUHAwQwHwYD
+VR0jBBgwFoAUljPR5lgXWzR1ioFWZNW+SN6hj88wHQYDVR0OBBYEFGx/E27aeGBP2eJktrILxlhK
+z8f6MA0GCSqGSIb3DQEBCwUAA4IBAQBdQQukiELsPfse49X4QNy/UN43dPUw0I1asiQ8wye3nAuD
+b3GFmf3SZKlgxBTdWJoaNmmUFW2H3HWOoQBnTeedLtV9M2Tb9vOKMncQD1f9hvWZR6LnZpjBIlKe
++R+v6CLF07qYmBI6olvOY/Rsv9QpW9W8qZYk+2RkWHz/fR5N5YldKlJHP0NDT4Wjc5fEzV+mZC8A
+AlT80qiuCVv+IQP08ovEVSLPhUp8i1pwsHT9atbWOfXQjbq1B/ditFIbPzwmwJPuGUc7n7vpmtxB
+75sSFMj27j4JXl5W9vORgHR2YzuPBzfzDJU1ul0DIofSWVF6E1dx4tZohRED1Yl/T/ZGMYICbTCC
+AmkCAQEwazBbMQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTExMC8GA1UE
+AxMoR2xvYmFsU2lnbiBHQ0MgUjMgUGVyc29uYWxTaWduIDIgQ0EgMjAyMAIMSO43VW7D5NP1X/KD
+MA0GCWCGSAFlAwQCAQUAoIHUMC8GCSqGSIb3DQEJBDEiBCAXKy0HrbeSTcdWowIWC9T/b6dlc3ea
+ibQTJVP+9bGXAzAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0yNDA2
+MjgyMDU0MzVaMGkGCSqGSIb3DQEJDzFcMFowCwYJYIZIAWUDBAEqMAsGCWCGSAFlAwQBFjALBglg
+hkgBZQMEAQIwCgYIKoZIhvcNAwcwCwYJKoZIhvcNAQEKMAsGCSqGSIb3DQEBBzALBglghkgBZQME
+AgEwDQYJKoZIhvcNAQEBBQAEggEAbwlFQiNjpqiyjRTtfhKlhXu+Vc3gBFI5pJttdykBSLsTmb2P
+82Qb5by9oVLlzX7Xsl1QCghMmMjh8pSpKWYxtf5qfX3ZtqP2L70MQDOR1JxPW8NUlP7ulGXtDpnk
+fQwWmGre11bKSQn8aUi5bMrSpj4S70xN/Lr3yAEzQj7474EO68havVn4yF8I8qEVvs9ZWuis53u6
+9J9zcYCQVglLGKtssULjzBsmHy3bc5RcImKNRAQuvfb6qv34jrtEWM1xIFiTrP5lS4PyPOUL2X6g
+Pt2VMiIQl+1s/qqqQ0jnRv3/0aGSAeew2j04qlIVg+Caes79lv4lYWpDZspFCTmiSQ==
+--000000000000853621061bf974d8--
 
