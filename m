@@ -1,242 +1,193 @@
-Return-Path: <devicetree+bounces-81081-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81082-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1FE791B322
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 02:06:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF53191B339
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 02:13:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CBD971C20CAB
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 00:06:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8678E283B0C
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 00:13:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21F2537B;
-	Fri, 28 Jun 2024 00:06:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EB32196;
+	Fri, 28 Jun 2024 00:13:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="it2hPG6r"
+	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="BUuYU+Cv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01on2042.outbound.protection.outlook.com [40.107.113.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F726191;
-	Fri, 28 Jun 2024 00:05:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719533161; cv=none; b=U05hKR2kfIYsiLFkc5DbdCoVG7X3PJyfSw+xRTTBH46cdS5KQ8QwHVLCJiYrN3mWPAV4vPovGIXtPZKt7Iu0cWh4NcJwmpnQr0Fp1Mq0Py95C6lOB9wgG2GI5FoDirP+wTl0+9SZfJDZdk+SsxsIyH+4LmjmepfjKn7pBMMscg0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719533161; c=relaxed/simple;
-	bh=dokR8Fm2CKhCvAzDfAdyB4SxWiGcs4M3DQR4tXuRD/M=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SgK0w7MtAHqLRx+bitgv5kli5jH/ietkfJWcLjCMkpr8d2ZX5xGwlRKv3C6c6io3MJHnqn7YD+nAsGtKEcdZeghwTNlQCABzO2WA4oHprHYiaZgfbBdo3Crki1LR7q3zVISzuBv51DbsK+orvFliaGSF41d+lYdPkaifFzZKIOo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=it2hPG6r; arc=none smtp.client-ip=209.85.214.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-1f6fabe9da3so113855ad.0;
-        Thu, 27 Jun 2024 17:05:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1719533159; x=1720137959; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=q0ZSvkaYPL0aMiPJTdyZjWw4rhkAuBmNQ840zqqrBqw=;
-        b=it2hPG6r0Z9y6FvqpBNOD72X/o+/N8qTxPk895VSpt/a9dFr+tTPISWFH6XSdowtYr
-         fwKoRou+XizbYLNZWxX6KP00m2uoenaYO4aHiJkohou2sOM3J/qyNMAiNKvAN6fg0egx
-         boOwO1xaCU4j80k9KCZ9Kdw4im6Eom9GBBDMBkrLeoFfaQ9etBfSyuaBONB78P+gWvW9
-         sjoC6FKcjoO3UNGhMUnRQ6HZeL60ecqjQDtiCmdHCHVe/l6xqhSc44oE8vjCu8XG56hv
-         tCQKGNPVZ/SYSnIDGbkaDzv2MXckh5Hn0GVmMPh0h9naGNewbQdHkIYLpNx8cKoO3vWM
-         PIPA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719533159; x=1720137959;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=q0ZSvkaYPL0aMiPJTdyZjWw4rhkAuBmNQ840zqqrBqw=;
-        b=hDa7391n9H0yK6yd+CNpGs4Q9nNH3f2WFp3dMp0621RO6xppTZlh1UbZiv9HneSGKz
-         IE7Y6gXbnC9/v63VAtqoM+040mh5C+dCkrup5Nms9glpKqviI/9s3BSrvIhfAdZK5rYg
-         QmhH7wckEyX+/lxCpaXX02XgKprgJ3GjPZbaVROQ+yasMAtL/wG281PPXRrK2nFM8qWU
-         n8nY0UJ91BpF9yhDtZi+EM5nW2sEGo5eX9fBXjjG9gT5nxNOlLxoAXlSLpbkr2zm2XU/
-         5V7gTcXPKZ6jJg3Oq4zMKP2WaELIyhXq1xnLNRgoBkAFFPpS69+dtpZXwNm681ntiiSJ
-         KKVw==
-X-Forwarded-Encrypted: i=1; AJvYcCXmUoXjvBFENBvWyszH9B7qobnmDy3RdvPQSFtk4o4RxM7FXc2IM7wlgGlrCQdR+myYxQNTG9xkA8IzzhaCqvSHg7cPCGyrmFpQQnPn5+8byeeyEbvevMy1KW3k/OVIxS9/KXPpH7aKm8fPKlTmBCVS91uc/k9/0r8xxTMLHy9rxgRjuA==
-X-Gm-Message-State: AOJu0YxOE8+ATL/ux+UL4oq7VaVM94AU6pUpGTouaZ7foah9+NoiwXq3
-	/pdYi3rKUUmGJ0Q6dz3tA9yJr6txRBFnu9DK+FKZrBpdqX+b64RW
-X-Google-Smtp-Source: AGHT+IH/QWpADj9D7MciL00kSwES1GkfECaQH7fjfH0/mq7eWSZ/ccaxiPO/zqqPT6IKLCNy18Co4w==
-X-Received: by 2002:a17:902:a501:b0:1fa:d77:21f8 with SMTP id d9443c01a7336-1fa23f158c6mr108575135ad.42.1719533158537;
-        Thu, 27 Jun 2024 17:05:58 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1fac1596675sm3333215ad.249.2024.06.27.17.05.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Jun 2024 17:05:57 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <dbfa52ab-c6fa-4c11-89bd-87445941bac3@roeck-us.net>
-Date: Thu, 27 Jun 2024 17:05:55 -0700
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA82CA38;
+	Fri, 28 Jun 2024 00:13:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.113.42
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1719533605; cv=fail; b=MkLwbMojrJ4j3vuWpHylDH9drx8IGNs6peLGSKeZaKTvJraGdVppFfAOfbfxDNBL9a4VJlW3iAhjuQ+kOI78l1rawcRe9Z+CrLOV5zaFjqIdEoDcucTBrHyetVxFyd1wvy6dxzqlCaVBtrDTDwmsuB/9O88fgkeCCDWnPDCGsqI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1719533605; c=relaxed/simple;
+	bh=8O2FGimlgNJvaWe4kAsIXR8pFIZh3locyRXA3j44x0A=;
+	h=Message-ID:To:From:Subject:Content-Type:Date:MIME-Version; b=IenpQ/IlMjnRFPjvtjgxrKURtXVDgrLAIIVCXRE6VR6YioU8b6gCKTV4o7IQsLyrJdamCYNJDOXHZ1DfyOzesAkryOe1WaFXzzbJcIoR46GH1DGL2Qe0xVPg3fNjBhgbEg96aVgudCbzaqBbsRS1ecwq+XNsYSMQh4zN8Mbsp2c=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b=BUuYU+Cv; arc=fail smtp.client-ip=40.107.113.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=VxwAmWnYPzxyTtTWFQwYiviws9DV64chpUrjoErggWpLnzTVgrQPESAGqX2cg9PfZvHGNvG+8lxp2qJHdmMtEilYkCvOGx+9TTL09ohLxdJc9HR2Or8r3T4qSHGWPPiMaihNu+gJFEC2lI2kuD19V5H7HLb9uARry07D7em+Y5dmbsScgPKvlYmw4gtT9XhIUXYlRsoE4Ylg6MGR/7HozhmbBXJMoIDyc/zfLaGuC+P6TuJpNVw4A/+zeXZVhXpEe3uJ88CdGwJbpSL1EujcfyQSBPLHC+KIDYyx75O+ozgXUSJHZvp0b0Evi8c8E3pxsFaPhDF+HXcXre4WftSeHQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Rxz+Ru9jUqXO/qxtXEbePrLSWeGR/JlZbKcKVX0lof0=;
+ b=DfI2lo8JNgg9pHzoykE9Ia9tpMEX+4mdcqWGZd+ztr52hStdMVzvuL2uPkophd4mrU05LLj5fIa9T91qR7ROQ7iELDyQ4gDoTyxgf9uv7AcvFGNXMXcICR4f7tzyih/0CfIQqvi1WtkBCmTxtUBWfy8Z31I1Oy/zLGdcq6MhBENd32JOHgXgx8hA80gcDVqK8Afl4xbWOLWF0z8OJKrURm/ajBt2TCxuMQFPL1dNytQLiMFfd1J0Yez6U9hwIavgYBaVCbkj3ZWXlD2v5d0EcQ4Kzgthtbv6pfnBMGFy51RhfVG64bZ7czBGwfwpPyyg8/Fe7i00MOorRnexSL/VIA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Rxz+Ru9jUqXO/qxtXEbePrLSWeGR/JlZbKcKVX0lof0=;
+ b=BUuYU+Cvd2PZzFOXgChf64kOc7+kvmhHgWnKwy4kLR1cmxfs00/MUv87JG5gzdbQvbCxzsX3doArUbrD+rPcmA/fhYK4IJqGvWeHS4a1ulDo8G+99D+bPp1nZemmuiD02gbVrOvGFSe8ggOGFkzpDRr+gY1di0H7CXlBJfEafQk=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
+ (2603:1096:400:3a9::11) by TYCPR01MB9386.jpnprd01.prod.outlook.com
+ (2603:1096:400:196::13) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7698.35; Fri, 28 Jun
+ 2024 00:13:19 +0000
+Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
+ ([fe80::c568:1028:2fd1:6e11]) by TYCPR01MB10914.jpnprd01.prod.outlook.com
+ ([fe80::c568:1028:2fd1:6e11%5]) with mapi id 15.20.7719.022; Fri, 28 Jun 2024
+ 00:13:19 +0000
+Message-ID: <87sewxapr5.wl-kuninori.morimoto.gx@renesas.com>
+To: Alexandre Belloni <aleandre.belloni@bootlin.com>, Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, Takashi Iwai <tiwai@suse.com>, devicetree@vger.kernel.org, linux-sound@vger.kernel.org
+From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Subject: [PATCH v2 0/2] ASoC: simple-audio-mux: add state-labels
+User-Agent: Wanderlust/2.15.9 Emacs/29.3 Mule/6.0
+Content-Type: text/plain; charset=US-ASCII
+Date: Fri, 28 Jun 2024 00:13:18 +0000
+X-ClientProxiedBy: TYAPR01CA0164.jpnprd01.prod.outlook.com
+ (2603:1096:404:7e::32) To TYCPR01MB10914.jpnprd01.prod.outlook.com
+ (2603:1096:400:3a9::11)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 0/9] Add Mule MFD support
-To: Farouk Bouabid <farouk.bouabid@cherry.de>,
- Quentin Schulz <quentin.schulz@cherry.de>, Jean Delvare <jdelvare@suse.com>,
- Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
- Peter Rosin <peda@axentia.se>, Heiko Stuebner <heiko@sntech.de>
-Cc: linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org
-References: <20240618-dev-mule-i2c-mux-v4-0-5462d28354c8@cherry.de>
- <fdeea79f-4568-4e70-9b49-0c02abc91170@roeck-us.net>
- <4f92528b-8311-4c0b-998b-f0221d7bd474@cherry.de>
- <c2803eed-b4f4-44cf-a7f7-9557d05e798e@roeck-us.net>
- <19ee521d-298d-4718-bdc6-f282666de371@cherry.de>
- <2a1ae708-3718-4f70-9837-bcc50b7c8f66@roeck-us.net>
- <85b2061a-9f5b-4998-b9cb-21308ee1965f@cherry.de>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <85b2061a-9f5b-4998-b9cb-21308ee1965f@cherry.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYCPR01MB10914:EE_|TYCPR01MB9386:EE_
+X-MS-Office365-Filtering-Correlation-Id: 46472191-4769-43e1-0de1-08dc97071d1d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|52116014|7416014|376014|1800799024|366016|921020|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?/kTTrjy9NOILhSmFhz2X+icsIXI6ikkkFWX7jGPHLodAbyBJs0tAOFl5CEv3?=
+ =?us-ascii?Q?V7Na7TyrcXF0j9h6B9sqcoNaPi34al7HsvG0h8pnxwRjv1PvBlQhZAXnIxlZ?=
+ =?us-ascii?Q?Knaj1exTHMHTqu3k0Qi/TMlJcqGlFvoK8IBEyCIH3Q0a+FOGsfp6tFd8uCZT?=
+ =?us-ascii?Q?RDWLGeGtaTX267o4tXx7nCP7BhIpLMYQucv7MuVuKJFsyrA82NxbopnTVx3l?=
+ =?us-ascii?Q?mShsbN+xBJS/6PqHUVm0bCwcO4EwfHaF8brae9giY8cdgIBv57EUv4vdP1Wm?=
+ =?us-ascii?Q?rWGLyORB8TsFSKrUNGql7fAeo8w3aqgZWxvmYbkimqSZdBbXKgDNbf6UFbcQ?=
+ =?us-ascii?Q?ayE6rcbbmIs4vuaRLAhqTRHogsJtYHiS94DcewhCJeaNh/AstksSNJ6OcXr0?=
+ =?us-ascii?Q?5hy/vzd+fpJ3ssKklDb9u0N9HG/Ur+HF/ElhzlxFIDakDpnfZLI643LJc9li?=
+ =?us-ascii?Q?SVe3NLJfCVSMgIfKRIctlCchueehFfO1Ni63yAq/bwhnlzKx6lOsy8LIUxaq?=
+ =?us-ascii?Q?FXmKao4w0uWQ2qV+VACogMpx/6jpISovmDhw7Py+nyuF4NvvKpQNW3RHsqte?=
+ =?us-ascii?Q?YX8L1WUlI6hUtXnzqjX/Y/BYv6Hm04Dy4qrW0js3xggnihJUmg+ufpvwMESN?=
+ =?us-ascii?Q?E6IY0OiV8k10rAkbmXAiiYKEnczp0SeebjjQ0apjoP96NmDoTWcRiOLfViGD?=
+ =?us-ascii?Q?bS6Ny06SuSzY6LqoP4+C4qT0M7bOxc3NSjZpIzHFXgp/7TnNaSRgdOwLc9Yf?=
+ =?us-ascii?Q?MLU5a/epUXNKmIgcS5kzUIMlq9Pmdt1k9awRj2VUjcuTRt8HSrZpyltuApGC?=
+ =?us-ascii?Q?qzFMgSqrUM5f8AJVzsCM82EBmBqBedO/WJ1i+juYswYEU4eQQ8XVonRIKyjV?=
+ =?us-ascii?Q?p4rqX1r8mWhCJeBa6BK7cqekFh2pS7WUa5ud0v898tjFVBGGpWmcqjSbzKfG?=
+ =?us-ascii?Q?4+i5Xz07PDasm8fVK+g1LC9r2b71P8Es6DL8eTqj9Nb01ARW7M4L0/NYRFrG?=
+ =?us-ascii?Q?xxrRjDb01ewb8JJAca43gA9SlsDMGx5eyy47amYkjY31Kzf0HcDoy3hysdLS?=
+ =?us-ascii?Q?GDX71YWmUcMvNXUZH1ZbmHXd7Nih7R3Z8+9+LWo2CVANNRnjEds9B9qzpGjK?=
+ =?us-ascii?Q?RpECFMI59zEgQvUzbhfa9LmLsp8SrPwfF9djzzA45hxhyUIUc5BcUarYeDIR?=
+ =?us-ascii?Q?WUCAvNaSH2vAffp/OTQuNdJ1OgAA9R8kY9tAqZ51CJEkWUCWM4uctLTzVzMI?=
+ =?us-ascii?Q?xGb600CWEd51rIueire+PzeksO0GqW+7G5+73Mgdj07l3sqX+Va3h46+pLfZ?=
+ =?us-ascii?Q?hd+Q1Poo4C4+YWe3/1X8t4/w/7cYq/4tbsVODM5z/zI+3XB27rl3THyDfKCb?=
+ =?us-ascii?Q?XOuz1zbMkKCGeI4FU8aMRJsS31z2?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB10914.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(7416014)(376014)(1800799024)(366016)(921020)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?EB3gFaeGzIimRqTrGZSUisrGOG2cU+QoSMfBgU1SE+wzsfZTYQWDyAVbJ0ZM?=
+ =?us-ascii?Q?41Qwb2Rt49YJV6kzlzrg4K/8ELSz4kCNrmT0P3M+FTdb5b0A68htkkL7tJsU?=
+ =?us-ascii?Q?YxAF6NPQwE0z6aKWLIzhVPxF060347WpaV+XNpG0Mg59uHwvn1SUbqPMaiQN?=
+ =?us-ascii?Q?PzLl5MZUlNdRTcFKXuDR283/0th/oHea9WrF+v7xtI8Xwmb6RjOn9OWVi7t6?=
+ =?us-ascii?Q?cXU26qDLPyWny6TN+aJmYOkE83o5lfrC5nKeJZcqX6c/hZwALDUJiCFxumJX?=
+ =?us-ascii?Q?rDBR+Wq6X+ubSS2ifw5ur2Umc8GSoCqGu0BGKiSJTPDJEyEc04kaWtMNJyL7?=
+ =?us-ascii?Q?rdPLFeOHrXN5RzWnE8wMwb3OX3kdawAONuC52U9ugWOWrO4nvJkSz3wP8Fxz?=
+ =?us-ascii?Q?UZnRdLV/bbBtMPjed4+URa4Vb1uOlgp+tCYzE03OgtqhjhA8TRxrqb3Qgp8R?=
+ =?us-ascii?Q?8uPmV4CBiQ/rBB6gUtU4tnD29p6roJgatr17gF2wKUc5vjflnV+Qaq7RM2Ej?=
+ =?us-ascii?Q?mecoSSxpPyRFWKnsH+PTDbD1PcjNaH/R9FMgJyqYOEnbXSCUXEXBUu0PZDwb?=
+ =?us-ascii?Q?VPy0QBs3Id9uH4HcuuOS+497klWYfncOL0nZlOCID4AfKB2RYaTGgvKpQLl0?=
+ =?us-ascii?Q?eFyoOoqZVf6BQg0pjBsU1PRDTlje1+0stmB7TVe9iOLbi3MLR4gOBU7qdBlM?=
+ =?us-ascii?Q?0rhh/axwuj/s36FTEYbJEA+phChdyX/6cmarbRTzQO2FWEXuQ5SfVCqtYf3W?=
+ =?us-ascii?Q?g8ezCB8FtfLyz9DIs55b8kCFm1cnKYtPOkZ46tO082vP6hCyattOeIBhAuvU?=
+ =?us-ascii?Q?VmzO79dVBAEFvW7Ro8A3Wgdag+O8DSEcBjRMeoFX/l4liZFS5JoDM9Nqalla?=
+ =?us-ascii?Q?3mRx55DdsSTWn9M+Hwsc8Cv6KvoTmsqZVG4miQ6qGkRmcLdKKP4CLciSnDGM?=
+ =?us-ascii?Q?mv9LqeCP0e3rhGsZ1lRKBATWHwFd2QwEZG9ZSjvKzUNT4awr578pqVBsqw3n?=
+ =?us-ascii?Q?nvqkPtKqjfV6OEPpSlyig+NJT6m+YwZ6He+HALuoQ1mtIuMqWoGQ72ZyVFSG?=
+ =?us-ascii?Q?rvY/KrOmxG/hGVo7FqgT+tOeZ2ySgj043fU9UXarDAmhk6bJYyvnCGrSy3Fz?=
+ =?us-ascii?Q?tHpHJCgw7K1nF7GhuxSX0SulCLGvV3UlpQu8qYaPn7lcxmNgLkYhQ17sVraD?=
+ =?us-ascii?Q?UU60UTf95cHDS8rtbtbzXsMFZHNoSbeK4nEz5luV2UwZp31mwKyJFc1JNgIS?=
+ =?us-ascii?Q?87Mugn4m357BgRJ22f4d7Wvm272cm23Clg0JLj74eqEKRwvte9878dzX1cFc?=
+ =?us-ascii?Q?EJAgtijZk18XzXQEsEcC/lJqgSCYDfIzm2blZQT+sT815B3/70dh6nVh1cYm?=
+ =?us-ascii?Q?THSBWZ0scM8QM551GQRmQ/Nd0SxDEm7UeLc5O3XnTmJgIcpUjjmiwGNR9/GV?=
+ =?us-ascii?Q?WCl6MGfUIsIfMU3rc+gG7cCXkhjiAc0JX13EEoiRB91fFL1jMoo/Z2Go37jl?=
+ =?us-ascii?Q?SfQweIzo8yxl4ZSyTaGC2hbQzPHVUmkMB0HKi8t8dfmeH+KF6mHH88WL8/M4?=
+ =?us-ascii?Q?Gwycr9G7scKv+uV1xvQOgRGHpSgUllBZRCinofVIVK5zlLxaSJGLAVlCWEjs?=
+ =?us-ascii?Q?l3Kw2zyi9pe3y/xXKkw7kHM=3D?=
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 46472191-4769-43e1-0de1-08dc97071d1d
+X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB10914.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jun 2024 00:13:19.0409
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: VcD52CK6O12zake1SzVdf4Ku/wk7lXqJD1kZUbwTWsYNizTV/e0dG9jnILAwWDSxYs66JgBcqIyNeOBv3Mwp1feTkS3541mSHOeZPgof4OEOyeS4wxXR7sBe5V/SnjlT
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB9386
 
-On 6/24/24 09:13, Farouk Bouabid wrote:
-> Hi Guenter,
-> 
-> On 19.06.24 15:31, Guenter Roeck wrote:
->> On 6/19/24 00:45, Farouk Bouabid wrote:
->>
->>>>
->>>> If it is properly defined in devicetree, the emulated AMC6821 should be
->>>> an i2c device, possibly sitting behind an i2c multiplexer, not a
->>>> platform device.
->>>
->>>
->>> The emulated AMC6821 and the Mule I2C mux are both reachable using I2C address (0x18), and hence the use of MFD as the mux only uses one I2C register that is not used by AMC6821.
->>>
->>
->> Whatever you do, the amc chip is still an i2c driver and needs to remain one.
->> Modeling it as platform driver is simply wrong, and I won't accept those patches.
->>
-> 
-> The issue that we have cannot be handled by an I2C mux because in that case both the mux and its child would have the same address which is not supported in the I2C subsystem:
-> 
-> 
-> i2c-mux@18 {
-> 
->          compatible = "tsd,mule-i2c-mux";
-> 
->          reg = <0x18>;
-> 
->          #address-cells = <1>;
-> 
->          #size-cells = <0>;
-> 
-> 
->          i2c10: i2c@0 {
-> 
->                  reg = <0x0>;
-> 
->                  #address-cells = <1>;
-> 
->                  #size-cells = <0>;
-> 
-> 
->                  fan: fan@18 {
-> 
->                          compatible = "ti, amc6821";
-> 
->                          reg = <0x18>;
-> 
->                  };
-> 
->          };
-> 
-> };
-> 
-> 
-> The I2C maintainer rejected supporting this use case and suggested that an MFD could probably be more suitable.
-> 
-> 
-> On one hand, the MFD looks indeed more appropriate and a lot of I2C devices are modeled through platform sub devices. On the other hand we are emulating the amc6821 in our device which requires us to have it modeled as platform:
-> 
 
-The difference is that those other i2c devices are real multi-function
-devices.
+Hi Mark
 
-> 
->        +--------+----------------+------------------------------+
->        |  Mule         (MFD)                                    |
->   0x18 |        +----------------+                              |
-> --------+----->|    amc6821     |                              |
->        | |      +----------------+                              |
->        | +----->|      Mux       |-----+                        |
->        |        +----------------+     |                        |
->        |                               V__          +---------+ |
->        |                              |   \-------->| isl1208 | |
->        |                              |   |         +---------+ |
->   0x6f |                              | M |-------->| dev #1  | |
-> ------------------------------------>| U |         +---------+ |
->        |                              | X |-------->| dev #2  | |
->        |                              |   |         +---------+ |
->        |                              |   /-------->| dev #3  | |
->        |                              |__/          +---------+ |
->        +--------------------------------------------------------+
-> 
-> 
+simple-audio-mux is designed to be used generally, thus "Input 1" or
+"Input 2" are used to selecting MUX input. This numbered inputs would work,
+but might be not user friendly in some case, for example in case of system
+hardware design has some clear labels.
+Adds new "state-labels" property and enable to select MUX by own state names.
 
-It would have been much more appropriate to use a different I2C address for the mux.
+Original
+	> amixer set "MUX" "Input 1"
+	> amixer set "MUX" "Input 2"
 
-> If we cannot proceed with that then we could add a compatible to the amc6821 driver to add the mux device (Basically the "tsd,mule" compatible in amc6821 compatible list would be a combo driver with mux logic + amc6821). Do you think that is more appropriate ?
-> 
+Use mux-names
+	sound_mux: mux {
+		compatible = "simple-audio-mux";
+		mux-gpios = <...>;
+=>		state-labels = "Label_A", "Label_B";
+	};
 
-Implement the mux as part of the amc6821 driver ? No. We could discuss
-instantiating the i2c mux driver from the amc6821 driver.
+	> amixer set "MUX" "Label_A"
+	> amixer set "MUX" "Label_B"
 
-Guenter
+v1 -> v2
+	- update git-log explanation
+	- update property description
+	- change property name "mux-names" -> "state-labels"
+
+Link: https://lore.kernel.org/r/87bk3nqc0e.wl-kuninori.morimoto.gx@renesas.com
+
+
+Kuninori Morimoto (2):
+  ASoC: simple-audio-mux: enable to select MUX names
+  ASoC: dt-bindings: simple-audio-mux: add mux-names property
+
+ .../bindings/sound/simple-audio-mux.yaml      |  4 ++
+ sound/soc/codecs/simple-mux.c                 | 55 ++++++++++++++-----
+ 2 files changed, 44 insertions(+), 15 deletions(-)
+
+-- 
+2.43.0
 
 
