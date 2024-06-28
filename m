@@ -1,94 +1,129 @@
-Return-Path: <devicetree+bounces-81128-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81129-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43CB691B5C7
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 06:46:13 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F6C691B5E5
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 07:11:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D706CB22131
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 04:46:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6D5221F238B8
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 05:11:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47AF422619;
-	Fri, 28 Jun 2024 04:46:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01C362374E;
+	Fri, 28 Jun 2024 05:11:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="lr48Y3e8"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hR/dammC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86E43224D2;
-	Fri, 28 Jun 2024 04:45:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.137.202.133
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E178182;
+	Fri, 28 Jun 2024 05:10:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719549965; cv=none; b=n5gNzOqLSjthJSJ+NnI0IuRz79eC5GpVX0kaHWB6CroUg5FybSxThwZeHIGrYUEgE9sqjn4wqvOp+3lwlsF5K7PmeICNBFZBsZgJpZj6W4G/ndfjw5Sa2f9MbQIwikOVODjEiG7QaiZRa01/NLMfM1vpn7YQ3jHFxpeXCpcVX4I=
+	t=1719551460; cv=none; b=frCP6Y81L0psiSHV3VoxCLAjmi8IAA7genTJ3kyEkWUQV+RXUtseFcrTA4b2KpQpx8RO5eRP6fFC8LobXwH1Xm2U7AnLQLa8poIz69IMWdXO4D+vzAYOxMIS9fZzvEAAJJ1rAuJ9n8O2D43gtlXoQs8erjDrBB1+MZI+2p5B99s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719549965; c=relaxed/simple;
-	bh=TZaytH0FOBjY2yQDNKE2k83Kg5kahh8jLSo707GKNUw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cEE7Y+KSiBqgJBxFIleVXVpWP5GTjgrVc32elR2la+OXRozCII2bPrpvKZH1pfO56HKRF91a88zLPqRs+mWq0bKY08J7I8M/UO5fWEKZ6Mcy7WTU8VMEPSO1C56yhtdGn/u3DY+YQhWQpDl//TddKnlygzZhv/6vOIs/UDL1Yys=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=bombadil.srs.infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=lr48Y3e8; arc=none smtp.client-ip=198.137.202.133
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bombadil.srs.infradead.org
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=bombadil.20210309; h=In-Reply-To:Content-Type:MIME-Version
-	:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description;
-	bh=OWENhf3IvxmXVRFf5yQMQm7YyD2+KzXnZP3WnXTnfoI=; b=lr48Y3e8PTQJ+nEQ/sSUctbZ6s
-	TALaGDeZKcMePZdFl4XK9saGMPyX87Lz9o/t+6Zoh7RnCqrrdJQ4pQ3MmTL1+b+kuuEilA2fqN/n7
-	vdDh7ozE+Lkm95Sh19a7+E+MS2pEh0/+v/C6qegF3V0in2wBZHWBWA33pqS4wKNFW9OOfAMNH6W5d
-	725QV5o6I1blGT+XTEzrqZeILkCQqvSTSHInsj9c8wVmgRYPFdIljcRVMOMt7oedBeDT/NyQp2/ql
-	oLZjl2HrupBoN6ZRygslTiH856XMeJXvXE2SKL2rHBeIa467teJbC/u6mvGZ4DrVr6MR+3bjEblB9
-	fXwfHLdw==;
-Received: from hch by bombadil.infradead.org with local (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sN3UX-0000000CYSN-3JQs;
-	Fri, 28 Jun 2024 04:45:45 +0000
-Date: Thu, 27 Jun 2024 21:45:45 -0700
-From: Christoph Hellwig <hch@infradead.org>
-To: Daniel Golle <daniel@makrotopia.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1719551460; c=relaxed/simple;
+	bh=b81UiFGaLy/MZV2n16kv7Qt/YzZaFowtduRwojJ9x8A=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=GAzSxQyx4oTS/HcxZ2bngvV++RuiILnBstk1bCuWvVSuHzzxpi4qWb2dvleNQsU5XEx/uuZoPrewRrp/r/0l9GVivoYPKFx+pol/Q9MvyeZv8lRn4az8x2bf7xNhDovcnwwZy0/SsrJ0WK9Jjp4tCMjOspZ1fBkhnukGI1jbK7g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hR/dammC; arc=none smtp.client-ip=209.85.210.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ot1-f46.google.com with SMTP id 46e09a7af769-701ef9594a2so139489a34.3;
+        Thu, 27 Jun 2024 22:10:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1719551458; x=1720156258; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=QZOviDQs/MBQD8ld1vhQDebgxIDzTBqHnA9k/ikra64=;
+        b=hR/dammCGwsSClp+jbWgmZtC2L31J1WcC9yNxwDi0kIk7IvqUEWQIy/pAXa9oM3g/I
+         RAI0iwToywATnjjmQBO5dAy33tyx5o/GObLqUT4UTkJCFe/oF1aavRKV+HhvXq5A/LdM
+         W6dJLkzPdjEChz0FJgzXdPnXMaSDWHTbOJW0MHnZEcYgXN0TGD5YNePvZS+kLZhOIWC/
+         gWs/NPpiG2T6axgNs3eZGIFxhMBI+zs8ppu/zxSBUBh4XCpJHy22w6StvBj4YSfzZxPJ
+         V9ECMfD2WKPBSd2/gHK5YvY0dAVRmAmd5P2KzqVl+zXykhQrWwJNptRHaK8/3jnmeMz3
+         E+xg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719551458; x=1720156258;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=QZOviDQs/MBQD8ld1vhQDebgxIDzTBqHnA9k/ikra64=;
+        b=P0e4Ln/NhAMppmd1OuqYnVRjTrxH6zBvpQ+zJ/aY5zpVAmXBGMPny9X0q5o5dxdqLS
+         RQd8s4J4A2ZXl6vb482LBloJwe2fMYekSbQ6Nla1sXbcquRP7kydYiyAb7CwMJFnC7dA
+         Pw9MFjst1p19iWWu03fPjLv8z9WykKTyYdGBcSQ8kRgYKMZlaIM3FhWHv/h9luquDX4R
+         oOzfPX0RCIWQxzLg6CEipnp4BhWzk/r1rrVsr7umvUVTA5MP8U79kk/XEtWDEmpKtYJ/
+         RJedFMPJDVr8Ldxuej+GB2Ux+mDbOhJjosbpr7bYpzO9smhAsUXdLecU5Z0GVso8HpLl
+         puzA==
+X-Forwarded-Encrypted: i=1; AJvYcCXpoY8qU2+OLqsiQ5oUzHYYz0MJlvBh7kmEsTZb4/gvYlP1VGESrSRWdFNivPKsMzfHCW+3JDlNKEBCZRIdX8JtpW/DsvI5oy+7JQ==
+X-Gm-Message-State: AOJu0Yz3nJpIQO67+Hns8yWOhyRK2YLh8YEMmdBt+I8NExHn6N3wznmW
+	qzVEhKs4yIrDi5hrzrz+xBkUR8gf3XK0MgeG4NFU/GtuYmqQk89fQ8vMnYWy/xM=
+X-Google-Smtp-Source: AGHT+IEM3bDBrt30alpajKkos/IxGqPZ7xRkmoOjUEHyZ4phZitXVg3133+I0ub4CXr8Kt4EtjoiEQ==
+X-Received: by 2002:a05:6871:588f:b0:254:b0b0:9335 with SMTP id 586e51a60fabf-25d016e7c2cmr15937221fac.33.1719551458463;
+        Thu, 27 Jun 2024 22:10:58 -0700 (PDT)
+Received: from noel.flets-west.jp ([2405:6586:4480:a10:167:9818:d778:5c14])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-70804893e4bsm624716b3a.184.2024.06.27.22.10.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 27 Jun 2024 22:10:57 -0700 (PDT)
+From: Hironori KIKUCHI <kikuchan98@gmail.com>
+To: linux-kernel@vger.kernel.org
+Cc: Hironori KIKUCHI <kikuchan98@gmail.com>,
+	Jagan Teki <jagan@amarulasolutions.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Jessica Zhang <quic_jesszhan@quicinc.com>,
+	Sam Ravnborg <sam@ravnborg.org>,
+	David Airlie <airlied@gmail.com>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Ulf Hansson <ulf.hansson@linaro.org>, Jens Axboe <axboe@kernel.dk>,
-	Hauke Mehrtens <hauke@hauke-m.de>, Felix Fietkau <nbd@nbd.name>,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	Dave Chinner <dchinner@redhat.com>, Jan Kara <jack@suse.cz>,
-	Christian Brauner <brauner@kernel.org>,
-	Thomas =?iso-8859-1?Q?Wei=DFschuh?= <linux@weissschuh.net>,
-	Al Viro <viro@zeniv.linux.org.uk>,
-	Li Lingfeng <lilingfeng3@huawei.com>,
-	Christian Heusel <christian@heusel.eu>,
-	Min Li <min15.li@samsung.com>, Avri Altman <avri.altman@wdc.com>,
-	Adrian Hunter <adrian.hunter@intel.com>,
-	Hannes Reinecke <hare@suse.de>,
-	Mikko Rapeli <mikko.rapeli@linaro.org>, Yeqi Fu <asuk4.q@gmail.com>,
-	Victor Shih <victor.shih@genesyslogic.com.tw>,
-	Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
-	Li Zhijian <lizhijian@fujitsu.com>,
-	"Ricardo B. Marliere" <ricardo@marliere.net>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-mmc@vger.kernel.org, linux-block@vger.kernel.org
-Subject: Re: [PATCH v4 3/4] block: add support for notifications
-Message-ID: <Zn4_-alKtxuZ6zNt@infradead.org>
-References: <cover.1719520771.git.daniel@makrotopia.org>
- <4ebef78f07ff1ea4d553c481ffa9e130d65db772.1719520771.git.daniel@makrotopia.org>
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH v2 0/3] drm/panel: st7701: Add Anbernic RG28XX panel support
+Date: Fri, 28 Jun 2024 14:10:14 +0900
+Message-ID: <20240628051019.975172-1-kikuchan98@gmail.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <4ebef78f07ff1ea4d553c481ffa9e130d65db772.1719520771.git.daniel@makrotopia.org>
-X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by bombadil.infradead.org. See http://www.infradead.org/rpr.html
+Content-Transfer-Encoding: 8bit
 
-On Thu, Jun 27, 2024 at 09:50:50PM +0100, Daniel Golle wrote:
-> Add notifier block to notify other subsystems about the addition or
-> removal of block devices.
+Add support for the display panel of the Anbernic RG28XX, a handheld
+gaming device from Anbernic.
 
-Notification for what?  I really hate the concept of random modular
-code being able to hook into device discovery / partition scanning.
-And not actually having a user for it is a complete no-go.
+This panel is driven by a variant of the ST7701 driver IC internally,
+and is connected via an RGB parallel interface for image transmission and
+an SPI interface for configuration.
+
+Since the current panel driver for the ST7701 variants only supports MIPI
+DSI as the configuration interface, add support for SPI as well.
+
+v2:
+  - Update dt-bindings
+  - Rename DSI_CMD* macros to ST7701_CMD*
+  - Rename ST7701_DSI macro to ST7701_WRITE
+  - Fix incorrect dev_err_probe() usage
+  - Remove GPIOD_FLAGS_BIT_NONEXCLUSIVE flag
+  - Remove st7701_remove() and st7701_spi_remove()
+  - Call drm_panel_disable() and drm_panel_unprepare() on cleanup
+
+Hironori KIKUCHI (3):
+  dt-bindings: display: st7701: Add Anbernic RG28XX panel
+  drm/panel: st7701: Add support for SPI for configuration
+  drm/panel: st7701: Add Anbernic RG28XX panel support
+
+ .../display/panel/sitronix,st7701.yaml        |   69 +-
+ drivers/gpu/drm/panel/Kconfig                 |    2 +
+ drivers/gpu/drm/panel/panel-sitronix-st7701.c | 1074 ++++++++++-------
+ 3 files changed, 732 insertions(+), 413 deletions(-)
+
+-- 
+2.45.2
 
 
