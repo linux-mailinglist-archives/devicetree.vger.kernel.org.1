@@ -1,50 +1,74 @@
-Return-Path: <devicetree+bounces-81188-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81189-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFB4591B931
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 10:00:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9051191B93D
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 10:02:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0BDE01C21B0C
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 08:00:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4CC7028228C
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 08:02:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A2E913C674;
-	Fri, 28 Jun 2024 08:00:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BE9F1422CA;
+	Fri, 28 Jun 2024 08:02:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uipkXCMK"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="Vi+aQqGe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 118DB79F2;
-	Fri, 28 Jun 2024 08:00:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0431547F59;
+	Fri, 28 Jun 2024 08:02:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719561629; cv=none; b=TM0iaTzsb5nenxLLCyuX6R50ofaGu63KXbku+doAFHKHvg4TpA45Re946gsc2tbU8aiE6YoZ+kSJ+PqaiGomH95lenFW7LAQplPMnTK3GdqZrmQtiBi47jgwbcStoy4B9dIDiO5xpVHwqDXryaV8QtCKAOMvivCc8BJKoX9We9I=
+	t=1719561736; cv=none; b=qt9WZ+DnyABxwHos+COioLIuhjfELtbP6s+TyLC+z9ZlK9XWB/ZyiwYnzajI6YqyCujEGzlnkO4LrEI9nzUWacWtdC0aQN2R6kbN7uFmJcWxr39SoUmNfyj9F9TjE5zmstVaYKgnZX1C9cDc+mpvflZZM/ft3Wndc1ISOh3VDdY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719561629; c=relaxed/simple;
-	bh=XhNNQC6yWru73k0KmPtS/LA0y6wVM9NuF8Rpi2oA4e0=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=czq4cUiVAZMo7qZi05sTiuz8tP/QwOvicHlOUHfU2zqQtlNZnoLWCSLfSZxFHZSIDiynfde4EXTRvQsCKpEGQIBleJv0b7RzJfvGM24bczNelpAZ5I8DiyDGFWW0Z/JBKkaypDN0XwNztMbt3BhtAkdayIPEalEqT5of8YCQCXA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uipkXCMK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 9288DC32789;
-	Fri, 28 Jun 2024 08:00:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719561628;
-	bh=XhNNQC6yWru73k0KmPtS/LA0y6wVM9NuF8Rpi2oA4e0=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=uipkXCMKZN1khEQwc/Ztxz5SIcYSzJq+yWz5gOIYvA0R1f2WnFCfFuZJA5ZEdJWnN
-	 2yHX+kZVbip0AEhtKBHPwRsqaZAf++OiJQTHOv3XVhfY4B1tVJwqUB9BYIy/O3IDdw
-	 L7vSdXsTiUBPKZ/dzJRx5AcOPSPL4LqnEECVem5dp2xuJsx/f0nAkCbVUkBYtChhJA
-	 /3vbxhrrXn+uT4G/kR1ouXISdzXx9ZXHqSLFsJhGBUq1l4v3k+DzTup1J7XxJ5OqCO
-	 p+SP67g+XpTm0Re0TH4G4/w0veTV+7g0c/YWoPrjBE4/jDVAEMhSVklvIjVilPEHzP
-	 p129y/7xmALeQ==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 7C50DC43335;
-	Fri, 28 Jun 2024 08:00:28 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1719561736; c=relaxed/simple;
+	bh=E+RwYhQWe3us4X5mYKbaGAu7IQpfutu+1BRbgFsfN+U=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=tpzOsJUnOG2Y+6PMQr8a0dOCRmIUGDyOAbVxiy1UglLgWSCWajOw+NLg8px2gxgHft3yYzAJYShpc75Yk9B0pOL3FrmIIXYwUtn4gDFzNtldtnKECLS0/J74owIB+5bPrToHrEkFEop/jTjl2WqawdNDObPRlfFQUozjO+luQfI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=Vi+aQqGe; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1719561734; x=1751097734;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=E+RwYhQWe3us4X5mYKbaGAu7IQpfutu+1BRbgFsfN+U=;
+  b=Vi+aQqGeAvbmI833Wr24oj7fQ+fFVO4dVjqK67Oy9H+KYDdZu365imV1
+   Tqg7jRDA/i7z++kQcsadrHDqif5CROtr9wCvhcG/hrjYQmfVf6jZWbF8H
+   blRlJAsa34x3S6g7qUMoaWbuaFkw/eJqZT3Rp5aky2c9A+NudNs8JB9gf
+   sKAlk/zWukl3LxfWYRjN0/ieB+8MCY/R5lUL7ufC0WTjRENgQkYrOkssk
+   IcZbDPjNEcywe8qu74JVJby/x3EdXMg1ERgL5SQSO8kJHpMo+edKUi7xi
+   uoDkZLOpxJWBZsYxFQnL6hNnsMNdre5MQQcW5qYc3nZnBtPtYYcX5+eXr
+   g==;
+X-CSE-ConnectionGUID: 13wLbFbFTQqpXPeqjmJlLw==
+X-CSE-MsgGUID: eCuxYOU4R5SZ3O67sbsd5w==
+X-IronPort-AV: E=Sophos;i="6.09,168,1716274800"; 
+   d="scan'208";a="196011929"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 28 Jun 2024 01:02:06 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Fri, 28 Jun 2024 01:02:01 -0700
+Received: from ROB-ULT-M76677.microchip.com (10.10.85.11) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
+ 15.1.2507.35 via Frontend Transport; Fri, 28 Jun 2024 01:01:58 -0700
+From: Andrei Simion <andrei.simion@microchip.com>
+To: <brgl@bgdev.pl>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <nicolas.ferre@microchip.com>,
+	<alexandre.belloni@bootlin.com>, <claudiu.beznea@tuxon.dev>, <arnd@arndb.de>,
+	<gregkh@linuxfoundation.org>
+CC: <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	Andrei Simion <andrei.simion@microchip.com>
+Subject: [PATCH v3 0/3] Read MAC address through NVMEM for sama7g5ek
+Date: Fri, 28 Jun 2024 11:01:43 +0300
+Message-ID: <20240628080146.49545-1-andrei.simion@microchip.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -52,58 +76,62 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: Re: [net-next,PATCH v2] dt-bindings: net: realtek,rtl82xx: Document known
- PHY IDs as compatible strings
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: 
- <171956162850.13450.13594375026580373967.git-patchwork-notify@kernel.org>
-Date: Fri, 28 Jun 2024 08:00:28 +0000
-References: <20240625184359.153423-1-marex@denx.de>
-In-Reply-To: <20240625184359.153423-1-marex@denx.de>
-To: Marek Vasut <marex@denx.de>
-Cc: netdev@vger.kernel.org, andrew@lunn.ch, conor+dt@kernel.org,
- davem@davemloft.net, edumazet@google.com, f.fainelli@gmail.com,
- hkallweit1@gmail.com, kuba@kernel.org, qiangqing.zhang@nxp.com,
- krzk+dt@kernel.org, pabeni@redhat.com, robh@kernel.org,
- devicetree@vger.kernel.org, kernel@dh-electronics.com
+Content-Type: text/plain
 
-Hello:
+This series proposes to add EEPROM support and reading MAC addresses
+through NVMEM (via Devicetree) for sama7g5ek:
+- Add in DT bindings document the EEPROM compatibles :
+"microchip,24aa025e48" and "microchip,24aa025e64"
+- Update to the driver to support "microchip,24aa025e48" and
+"microchip,24aa025e64" and adjusting offset for those 24AA025E{48, 64}.
+- Added the nodes in devicetree for eeproms where are stored EUI-48 MAC,
+and update gmac nodes to read the MAC via devicetree through NVMEM.
 
-This patch was applied to netdev/net-next.git (main)
-by David S. Miller <davem@davemloft.net>:
+------------------------------------------------------------------
+v2 -> v3:
+* dt-bindings: eeprom: at24: Add Microchip 24AA025E48/24AA025E64
+  - commit subject changed to reference Microchip 24AA025E48/24AA025E64
+  - drop the pattern: mac02e4$ and mac02e6$ and a-z from regex
+  - add these two devices down at the bottom
+  - added Reviewed-by
 
-On Tue, 25 Jun 2024 20:42:28 +0200 you wrote:
-> Extract known PHY IDs from Linux kernel realtek PHY driver
-> and convert them into supported compatible string list for
-> this DT binding document.
-> 
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> ---
-> Cc: Andrew Lunn <andrew@lunn.ch>
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: David S. Miller <davem@davemloft.net>
-> Cc: Eric Dumazet <edumazet@google.com>
-> Cc: Florian Fainelli <f.fainelli@gmail.com>
-> Cc: Heiner Kallweit <hkallweit1@gmail.com>
-> Cc: Jakub Kicinski <kuba@kernel.org>
-> Cc: Joakim Zhang <qiangqing.zhang@nxp.com>
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> Cc: Paolo Abeni <pabeni@redhat.com>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: kernel@dh-electronics.com
-> Cc: netdev@vger.kernel.org
-> 
-> [...]
+* eeprom: at24: avoid adjusting offset for 24AA025E{48, 64}
+  - add specific compatible names according with
+https://ww1.microchip.com/downloads/en/DeviceDoc/24AA02E48-24AA025E48-24AA02E64-24AA025E64-Data-Sheet-20002124H.pdf
+  - add extended macros to initialize the structure with explicit value for adjoff
+  - drop co-developed-by to maintain the commit history
+  (chronological order of modifications)
 
-Here is the summary with links:
-  - [net-next,v2] dt-bindings: net: realtek,rtl82xx: Document known PHY IDs as compatible strings
-    https://git.kernel.org/netdev/net-next/c/8fda53719a59
+* ARM: dts: at91: at91-sama7g5ek: add EEPROMs
+  - change from atmel,24mac02e4 to microchip,24aa025e48 to align with the datasheet
+  - drop co-developed-by to maintain the chronological order of the changes
 
-You are awesome, thank you!
+v1 -> v2:
+* dt-bindings: eeprom: at24: Add at24,mac02e4 and at24,mac02e6
+  - change pattern into "^atmel,(24(c|cs|mac)[a-z0-9]+|spd)$" to keep simpler
+
+* eeprom: at24: avoid adjusting offset for 24AA025E{48, 64}
+  - no change
+
+* ARM: dts: at91: at91-sama7g5ek: add EEPROMs
+  - remove unnecessary #address-cells #size-cells
+
+------------------------------------------------------------------
+Andrei Simion (1):
+  dt-bindings: eeprom: at24: Add Microchip 24AA025E48/24AA025E64
+
+Claudiu Beznea (2):
+  eeprom: at24: avoid adjusting offset for 24AA025E{48, 64}
+  ARM: dts: at91: at91-sama7g5ek: add EEPROMs
+
+ .../devicetree/bindings/eeprom/at24.yaml      |  4 ++
+ .../arm/boot/dts/microchip/at91-sama7g5ek.dts | 40 +++++++++++++++++++
+ drivers/misc/eeprom/at24.c                    | 28 ++++++++++---
+ 3 files changed, 67 insertions(+), 5 deletions(-)
+
+
+base-commit: 642a16ca7994a50d7de85715996a8ce171a5bdfb
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+2.34.1
 
 
