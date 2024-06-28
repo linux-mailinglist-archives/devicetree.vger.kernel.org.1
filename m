@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-81163-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81164-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C61591B83E
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 09:27:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7715A91B844
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 09:28:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B44201C20BAF
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 07:27:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1BF9B2814AB
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 07:28:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A876613EFEF;
-	Fri, 28 Jun 2024 07:27:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B2AC13F435;
+	Fri, 28 Jun 2024 07:28:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HxYfUthh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oGXpFF0K"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 777C213E3FD;
-	Fri, 28 Jun 2024 07:27:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AD3F2D05E;
+	Fri, 28 Jun 2024 07:28:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719559640; cv=none; b=ixbw4Nraw5wadbBLZ9a7POQk5REDySoFzplBWrfjhSz1db6FFqwcSAVzDBtMBClet8Z06KMvVM7BalBO+GOzyMWH1ZVBgTXJSWlsWs5f212BvRuXYZff4tricbYsZa7N0RmMY/teLy856g+OYAJJbS4F1JDKgRei7l1RSNZvVlo=
+	t=1719559698; cv=none; b=o7bdTxU4vJn0po2/bg9mf8t0I4nZttRpQGxcfmi0MZtj08li1ZCjOaeP8/eQ9Lvm2EooVHNT/c5H8hLunh50u9bt7b28SM1EVcFmnVNZgZ3gXsSx2dygQofhSq39r4a4NPU2VnUcGnUmFBwhzJ4QYBDBc3/9ZHROfe75gUq2/5U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719559640; c=relaxed/simple;
-	bh=egkyfMszya5WTVA6DXG7jP6/5qLLtFmBuBhbT56FZ90=;
+	s=arc-20240116; t=1719559698; c=relaxed/simple;
+	bh=P1rkD1ZLttF6haWdELRr7ZVi3OVnI20vQQSBpE8Bt1g=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mysk8Km/k581NazPnuFz1x8RhGvsxJsPeD9/YU4LIhvHtD7qGIwvx+HXYNT10qVjgLD74CVcYJ6hAdojsLvkUT+NJkQ3MvGDdGcQo6oP83WeJVrmxjMp9AumzoPwQRQ/TNM59/k9b1L2tKAquDexZY6c6xtKCgBh5XGK0ZZB7ns=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HxYfUthh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CFB27C116B1;
-	Fri, 28 Jun 2024 07:27:16 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=mZfQO8HVJm/Srj8De6tWBwU/xd2Hb7PYejMw6BC8SZ6DPg44blh6/EJo4948gV5ZG4/pAF0/DIFtuaVQNddRh0/7BkBD/ZI0ZK3Pc30ARYFA5ovljXogISVEvA0Af7JaX9sTv8lJx4+eWCRqmizTGCTt8Kp6eyOFmvC5kqqKtcA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oGXpFF0K; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29D08C116B1;
+	Fri, 28 Jun 2024 07:28:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719559640;
-	bh=egkyfMszya5WTVA6DXG7jP6/5qLLtFmBuBhbT56FZ90=;
+	s=k20201202; t=1719559698;
+	bh=P1rkD1ZLttF6haWdELRr7ZVi3OVnI20vQQSBpE8Bt1g=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=HxYfUthhJxiBTULc+iPKabR34IjTYKzUUqM/U5QFneIXO1eJArG5yRZ7hmkXZHODT
-	 ISVOLLv/abB7mB7jgTmi1abUdejTov//zRJ3OzqNR2rY1+7E45RMxZ74KpQ7njuyAQ
-	 7tBsfLOTzHhzDKG+K3GtrPgA9y6ewJN0yfp6NSpLA1uwrqNaDo5gw/+wocV7YXTyye
-	 Mk77xiMNpxq9MXA7QovLwDiTZVratlQNeP+i2VTZpctd4KDrO3lyjeEDgP15blz4ec
-	 MGxiSP2vQv6VK+xrBi904XTQSs6F7Sw5XPUWCx7jyfIjJJmfa823LWLRx/NGmBsy6L
-	 xQFII3ezgj+sg==
-Message-ID: <d8df3cd5-c602-4693-b78a-63a963aa6522@kernel.org>
-Date: Fri, 28 Jun 2024 09:27:14 +0200
+	b=oGXpFF0KO6sH+ORQiqWd2VaIQHoPKHscfNL6tL6UgBDDP7y2I6fCoN/qmHHLudDAc
+	 P8B5VAywvNqQtf7TOBmJTxly+zWLrtkWTwNvekNcqCHSR+3Jr1CUDlEChPJzaCQyqp
+	 iL/I88XvGusxUDaiBUB1cn+4S7+fmllBRk7vXD2c2GQsc+Ea6jPDOyP5OBmeeFX01O
+	 9K7IuYyz4UQSXC+NNmoUcVRExvnRtMsBUM1Z4U5rIw0n97PPa04VvftmXle4d90Un4
+	 hwm9hTcLHpXNxAlOMUkplAVpMP32DeJm9AkuOLaU0PF44tt+ji/E4u8Z84lWVdnXZs
+	 jctb5wkqUeE7w==
+Message-ID: <ead8926a-f56f-4102-b7de-4464dc087d3d@kernel.org>
+Date: Fri, 28 Jun 2024 09:28:12 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,14 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1] dt-bindings: clock: rk3188-cru-common: remove
- CLK_NR_CLKS
-To: Johan Jonker <jbx6244@gmail.com>, heiko@sntech.de
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <6f21c09b-e8d2-4749-aca6-572c79df775d@gmail.com>
+Subject: Re: [PATCH 1/1] dt-bindings: gpio: fsl,qoriq-gpio: add common
+ property gpio-line-names
+To: Frank Li <Frank.Li@nxp.com>, Linus Walleij <linus.walleij@linaro.org>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, "open list:GPIO SUBSYSTEM"
+ <linux-gpio@vger.kernel.org>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
+Cc: imx@lists.linux.dev
+References: <20240627202151.456812-1-Frank.Li@nxp.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -103,35 +106,20 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <6f21c09b-e8d2-4749-aca6-572c79df775d@gmail.com>
+In-Reply-To: <20240627202151.456812-1-Frank.Li@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 27/06/2024 23:17, Johan Jonker wrote:
-> CLK_NR_CLKS should not be part of the binding.
-> Remove since the kernel code no longer uses it.
-
-Please wrap neither too early nor over the limit. Not one sentence per line.
-
-
-
+On 27/06/2024 22:21, Frank Li wrote:
+> Add common gpio-line-names property for fsl,qoriq-gpio to fix below
+> warning.
 > 
-> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
-> ---
->  include/dt-bindings/clock/rk3188-cru-common.h | 2 --
->  1 file changed, 2 deletions(-)
+> arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-kbox-a-230-ls.dtb: gpio@2300000: 'gpio-line-names' does not match any of the regexes: 'pinctrl-[0-9]+'
+>         from schema $id: http://devicetree.org/schemas/gpio/fsl,qoriq-gpio.yaml
 > 
-> diff --git a/include/dt-bindings/clock/rk3188-cru-common.h b/include/dt-bindings/clock/rk3188-cru-common.h
-> index afad90680fce..01e14ab252a7 100644
-> --- a/include/dt-bindings/clock/rk3188-cru-common.h
-> +++ b/include/dt-bindings/clock/rk3188-cru-common.h
-> @@ -132,8 +132,6 @@
->  #define HCLK_VDPU		472
->  #define HCLK_HDMI		473
-> 
-> -#define CLK_NR_CLKS		(HCLK_HDMI + 1)
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 
-I still see it as being used in linux-next. Some explanation is missing.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
