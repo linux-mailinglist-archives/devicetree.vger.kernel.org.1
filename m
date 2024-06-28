@@ -1,296 +1,106 @@
-Return-Path: <devicetree+bounces-81463-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81464-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16AD091C4D6
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 19:27:55 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23D0E91C4DC
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 19:28:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BF862282B85
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 17:27:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 862F8B22D6D
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 17:28:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 748411CB33A;
-	Fri, 28 Jun 2024 17:27:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 259C01CCCB0;
+	Fri, 28 Jun 2024 17:28:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mdbkcKzr"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RPxOPxUS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49EE71C230B;
-	Fri, 28 Jun 2024 17:27:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99A3FBA53;
+	Fri, 28 Jun 2024 17:28:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719595670; cv=none; b=WUSUoQ8hgucMAgDmj9FivABX5fQW6Ab1P3hdjXRhMRVhS1qFi7qar6TdRiMrgYNo9B8Zx3gUSicKqNDCY2wKIcYnmnwLcgzT++dZL9ZD7L8zHGIcJcYqWGxRg5DUYRAnen+SoQCl6BQyOao94oUGFSCaLubkUcueSYQf3miCwqo=
+	t=1719595696; cv=none; b=nHotQqWOPD+ggF6iGytH/yXtxJGPit+4sMKud4iI8PCAL/lb8+/2RCth0tSq80miWkUCmM1Xo361eawIMHpv7C7LDDHFXfNLwiOwnvmX24TpMpZVOFzTW2raosB64bUS4h0YwoGDYwL08SEN+6Na2fVoVywmmBzqyC9XxKCKG14=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719595670; c=relaxed/simple;
-	bh=lBJ+V/WP7/c1CrV2xu7wL2q0aSyrJyvTu2qPUtu18Wo=;
+	s=arc-20240116; t=1719595696; c=relaxed/simple;
+	bh=HOyVDrWiX/dR27g9rx4QYAQ9fvfK4lGO5ieLcCsDcX8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lcAXabh275eCaOeBlTIwIj5WSnys1By4V4sAx49xsPvsOW1bKPmHiXOMsPuRxAoI2vWmWLldA9XOK+1Tfm29TE2x61l1q0i0w63YNFybJMoLWbIxSTdy15Tz5yMSIJj1XsOCtmCh5d9qTWzotAlAGV7w02Y5gaG6Z1yJcT0Cv+8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mdbkcKzr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47FBEC116B1;
-	Fri, 28 Jun 2024 17:27:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719595669;
-	bh=lBJ+V/WP7/c1CrV2xu7wL2q0aSyrJyvTu2qPUtu18Wo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mdbkcKzrCJJMsPQHLelcCjB/Xx9Cz8zcrgMcf/2Pk6X0MpzNdevHfJhlrlHX/x9Vx
-	 +rGrowUCcCYUx4wk/qiRnFGtwotlnMl8ZLST0NfaX8hJHsRjqfcy/XxSCbbSTPHI5o
-	 iLyrQHtjTg+wFLOYbF5g/2Agx5j5gnim/EzG6FEiMCOazC/N7cHBEVWOhH9QazsLfH
-	 BbyzRk2+n5rllmC7a5+ySfiaeAhkoCcl/CzENBWvg/LURrIURgjbdFrPAJXncR7gTt
-	 DDi9ruNwWmaJQIQZQ9dKdAKLeBRYozU4I/dH9N7DYjGnObLzTSE70v0viBVaXt1IUm
-	 YZY2JAI2d9/4g==
-Date: Fri, 28 Jun 2024 19:27:45 +0200
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: Arnd Bergmann <arnd@arndb.de>
-Cc: Netdev <netdev@vger.kernel.org>, Felix Fietkau <nbd@nbd.name>,
-	lorenzo.bianconi83@gmail.com,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Conor Dooley <conor@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	Rob Herring <robh+dt@kernel.org>, krzysztof.kozlowski+dt@linaro.org,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, upstream@airoha.com,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	benjamin.larsson@genexis.eu, linux-clk@vger.kernel.org,
-	Ratheesh Kannoth <rkannoth@marvell.com>,
-	Sunil Goutham <sgoutham@marvell.com>, Andrew Lunn <andrew@lunn.ch>
-Subject: Re: [PATCH v2 net-next 2/2] net: airoha: Introduce ethernet support
- for EN7581 SoC
-Message-ID: <Zn7ykZeBWXN3cObh@lore-desk>
-References: <cover.1718696209.git.lorenzo@kernel.org>
- <f146a6f58492394a77f7d159f3c650a268fbe489.1718696209.git.lorenzo@kernel.org>
- <2d74f9c1-2b46-4544-a9c2-aa470ce36f80@app.fastmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=tuGGtUe0IvBivmuHayjQaOHBWrlldlzRrTCNt0wO//NIxaoNoWTNRjLRASlyb6SZzgXmtORPuTl/JMlAJZEdjbLK5O3MHKpmJoCVqgrovqsm9U/5VSJggG/KL626YblMIYsgw+e2tlruv9vHm7cKzPH5K1GR2lj/GMITPAxKJ7c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RPxOPxUS; arc=none smtp.client-ip=209.85.167.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oi1-f176.google.com with SMTP id 5614622812f47-3d5eed9c62eso509722b6e.2;
+        Fri, 28 Jun 2024 10:28:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1719595693; x=1720200493; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=FbSoYYDjTo4d3VEl4YBriUtrngjxcNuUSCZG0Ditu+k=;
+        b=RPxOPxUS+4VnvTpw5q+KmHUjcs/sy9Q/d8yZwOSJZEVWHMnSqqOdX7n4k2RMNh6tWL
+         piwZdb8D6kFPkV5h6Q9SB5bSyLfP59C/GdViFbwaK0nIxPOm0gPhgVIFcssuztz+zFKj
+         YROscpTOKhmFHBq0w3XHWf9HZQwGtTwPPL/H6t9gN+9JovGwpdH4r8s4y02ScbJmBj5n
+         DdudoC26l3JvF6kOmToPJzcYFbbAA7EoyJEIBKRCmIHfapvn4H1bKPk75nu499j+6K/6
+         2KFeHgMfd+flrrrryhTN3ddxCikxckhksdoKAMRBxNU9Ws2vPUHPZJn9vpFBx0C4vWUY
+         HWUQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719595693; x=1720200493;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=FbSoYYDjTo4d3VEl4YBriUtrngjxcNuUSCZG0Ditu+k=;
+        b=TDeTqSQU5IqKR5PxWlk1YPCSUsZLJhPl/Qb4lMF4m+3XuR9nstcKaXCgF6YWJyfsXJ
+         V1xMMyOFH5IJ/A6e17Ziz5yPrcW96wjFR5+VjIqsNTh1jaabR4KWoHzre836q7jSQLXI
+         Q/SbzjvvcdfQQWsgSYnXSLkHDGlwBszBA7fwkZQHiiVZ+/PQJyO+a1wzslic9KhD1xAm
+         Nn9bTqObvvUWQJOZKG91HAizfGwpQ1LV3DW89ffK2qLrHi5/Ri8DgFPXCNz29MhVly3o
+         5293wVlvRVqB4e+KO6NebGQJX+vaNKhj8Wp6ggIsAixwL1/LuL0pJmEurg3RF5gKcog5
+         B2rw==
+X-Forwarded-Encrypted: i=1; AJvYcCWHR5xQidAk3zywQ/gk7wECv1vNqsnVf1WMbzqmAAIGtRSXuATJ5rOqtHSxuzil7Wkc+jodkuSxVApc0bKoZymBWblx6HI2Sg0UzKvXwevMV4e0YfMQbFzt8nfQ9uRuFw6fBc/gwQrozcNigFkzhBDfIv9ZQm4X3X3iPdJ9VVpDfB87JqFMOPGCOSLyJckV2RUgJGjEQiIAtN75o4NiFEgeAPzjg5pGt3xJiUuhIeryOgIvoes4QKNoVU52
+X-Gm-Message-State: AOJu0YzZh7aAcf242aMSsndCHNwpGyTESEH9fiyca+tBXRDXiw7P/30A
+	kdfMJmf/DTpG0yS/aDk9qqldG/lqhC/ZcZwE+2HTB4EjR6Kt83E0
+X-Google-Smtp-Source: AGHT+IEtdj3a1ttH4GXg2gEnfOp5VM35geEZbKSc9qVySUD09QB8JjDq3vGoTCGICa+9rlsy4ai0Nw==
+X-Received: by 2002:a05:6808:1826:b0:3d5:fdc5:cfb9 with SMTP id 5614622812f47-3d5fdc5d275mr6058156b6e.1.1719595693573;
+        Fri, 28 Jun 2024 10:28:13 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-70803ecfa65sm1870809b3a.129.2024.06.28.10.28.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 28 Jun 2024 10:28:13 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Fri, 28 Jun 2024 10:28:12 -0700
+From: Guenter Roeck <linux@roeck-us.net>
+To: Noah Wang <noahwang.wang@outlook.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	jdelvare@suse.com, corbet@lwn.net, Delphine_CC_Chiu@wiwynn.com,
+	peteryin.openbmc@gmail.com, javier.carrasco.cruz@gmail.com,
+	patrick.rudolph@9elements.com, bhelgaas@google.com, lukas@wunner.de,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org,
+	linux-i2c@vger.kernel.org
+Subject: Re: [PATCH v5 2/2] hwmon: add MP2891 driver
+Message-ID: <09d4857a-4367-4a8d-bec1-d10c48adddc9@roeck-us.net>
+References: <SEYPR04MB6482EE353C207DA6977C974DFAD62@SEYPR04MB6482.apcprd04.prod.outlook.com>
+ <20240626094601.52298-1-noahwang.wang@outlook.com>
+ <SEYPR04MB64828A352836982C0184AA10FAD62@SEYPR04MB6482.apcprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="bMeKq3pp0ZgKPQdb"
-Content-Disposition: inline
-In-Reply-To: <2d74f9c1-2b46-4544-a9c2-aa470ce36f80@app.fastmail.com>
-
-
---bMeKq3pp0ZgKPQdb
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <SEYPR04MB64828A352836982C0184AA10FAD62@SEYPR04MB6482.apcprd04.prod.outlook.com>
 
-> On Tue, Jun 18, 2024, at 09:49, Lorenzo Bianconi wrote:
-> > Add airoha_eth driver in order to introduce ethernet support for
-> > Airoha EN7581 SoC available on EN7581 development board (en7581-evb).
-> > en7581-evb networking architecture is composed by airoha_eth as mac
-> > controller (cpu port) and a mt7530 dsa based switch.
-> > EN7581 mac controller is mainly composed by Frame Engine (FE) and
-> > QoS-DMA (QDMA) modules. FE is used for traffic offloading (just basic
-> > functionalities are supported now) while QDMA is used for DMA operation
-> > and QOS functionalities between mac layer and the dsa switch (hw QoS is
-> > not available yet and it will be added in the future).
-> > Currently only hw lan features are available, hw wan will be added with
-> > subsequent patches.
-> >
-> > Tested-by: Benjamin Larsson <benjamin.larsson@genexis.eu>
-> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
->=20
-> I noticed a few small things that you may want to improve:
+On Wed, Jun 26, 2024 at 05:46:01PM +0800, Noah Wang wrote:
+> Add support for MPS VR controller mp2891. This driver exposes
+> telemetry and limit value readings and writtings.
+> 
+> Signed-off-by: Noah Wang <noahwang.wang@outlook.com>
 
-Hi Arnd,
+Applied.
 
-thx for the review.
-
->=20
-> > +static void airoha_qdma_set_irqmask(struct airoha_eth *eth, int index,
-> > +				    u32 clear, u32 set)
-> > +{
-> > +	unsigned long flags;
-> > +
-> > +	if (WARN_ON_ONCE(index >=3D ARRAY_SIZE(eth->irqmask)))
-> > +		return;
-> > +
-> > +	spin_lock_irqsave(&eth->irq_lock, flags);
-> > +
-> > +	eth->irqmask[index] &=3D ~clear;
-> > +	eth->irqmask[index] |=3D set;
-> > +	airoha_qdma_wr(eth, REG_INT_ENABLE(index), eth->irqmask[index]);
-> > +
-> > +	spin_unlock_irqrestore(&eth->irq_lock, flags);
-> > +}
->=20
-> spin_lock_irqsave() is fairly expensive here, and it doesn't
-> actually protect the register write since that is posted
-> and can leak out of the spinlock.
->=20
-> You can probably just remove the lock and instead do the mask
-> with atomic_cmpxchg() here.
-
-I did not get what you mean here. I guess the spin_lock is used to avoid
-concurrent irq registers updates from user/bh context or irq handler.
-Am I missing something?
-
->=20
-> > +
-> > +		dma_sync_single_for_device(dev, e->dma_addr, e->dma_len, dir);
-> > +
-> > +		val =3D FIELD_PREP(QDMA_DESC_LEN_MASK, e->dma_len);
-> > +		WRITE_ONCE(desc->ctrl, cpu_to_le32(val));
-> > +		WRITE_ONCE(desc->addr, cpu_to_le32(e->dma_addr));
-> > +		val =3D FIELD_PREP(QDMA_DESC_NEXT_ID_MASK, q->head);
-> > +		WRITE_ONCE(desc->data, cpu_to_le32(val));
-> > +		WRITE_ONCE(desc->msg0, 0);
-> > +		WRITE_ONCE(desc->msg1, 0);
-> > +		WRITE_ONCE(desc->msg2, 0);
-> > +		WRITE_ONCE(desc->msg3, 0);
-> > +
-> > +		wmb();
-> > +		airoha_qdma_rmw(eth, REG_RX_CPU_IDX(qid), RX_RING_CPU_IDX_MASK,
-> > +				FIELD_PREP(RX_RING_CPU_IDX_MASK, q->head));
->=20
-> The wmb() between the descriptor write and the MMIO does nothing
-> and can probably just be removed here, a writel() already contains
-> all the barriers you need to make DMA memory visible before the
-> MMIO write.
->=20
-> If there is a chance that the device might read the descriptor
-> while it is being updated by you have not written to the
-> register, there should be a barrier before the last store to
-> the descriptor that sets a 'valid' bit. That one can be a
-> cheaper dma_wmb() then.
-
-ack, I will fix it in v4.
-
->=20
-> > +static irqreturn_t airoha_irq_handler(int irq, void *dev_instance)
-> > +{
-> > +	struct airoha_eth *eth =3D dev_instance;
-> > +	u32 intr[ARRAY_SIZE(eth->irqmask)];
-> > +	int i;
-> > +
-> > +	for (i =3D 0; i < ARRAY_SIZE(eth->irqmask); i++) {
-> > +		intr[i] =3D airoha_qdma_rr(eth, REG_INT_STATUS(i));
-> > +		intr[i] &=3D eth->irqmask[i];
-> > +		airoha_qdma_wr(eth, REG_INT_STATUS(i), intr[i]);
-> > +	}
->=20
-> This looks like you send an interrupt Ack to each
-> interrupt in order to re-arm it, but then you disable
-> it again. Would it be possible to leave the interrupt enabled
-> but defer the Ack until the napi poll function is completed?
-
-I guess doing so we are not using NAPIs as expected since they are
-supposed to run with interrupt disabled. Agree?
-
->=20
-> > +	if (!test_bit(DEV_STATE_INITIALIZED, &eth->state))
-> > +		return IRQ_NONE;
-> > +
-> > +	if (intr[1] & RX_DONE_INT_MASK) {
-> > +		airoha_qdma_irq_disable(eth, QDMA_INT_REG_IDX1,
-> > +					RX_DONE_INT_MASK);
-> > +		airoha_qdma_for_each_q_rx(eth, i) {
-> > +			if (intr[1] & BIT(i))
-> > +				napi_schedule(&eth->q_rx[i].napi);
-> > +		}
-> > +	}
->=20
-> Something seems wrong here, but that's probably just me
-> misunderstanding the design: if all queues are signaled
-> through the same interrupt handler, and you then do
-> napi_schedule() for each queue, I would expect them to
-> just all get run on the same CPU.
->=20
-> If you have separate queues, doesn't that mean you also need
-> separate irq numbers here so they can be distributed to the
-> available CPUs?
-
-Actually I missed to mark the NAPI as threaded. Doing so, even if we have a
-single irq line shared by all Rx queues, the scheduler can run the NAPIs in
-parallel on different CPUs. I will fix it in v4.
-
->=20
-> > +		val =3D FIELD_PREP(QDMA_DESC_LEN_MASK, len);
-> > +		if (i < nr_frags - 1)
-> > +			val |=3D FIELD_PREP(QDMA_DESC_MORE_MASK, 1);
-> > +		WRITE_ONCE(desc->ctrl, cpu_to_le32(val));
-> > +		WRITE_ONCE(desc->addr, cpu_to_le32(addr));
-> > +		val =3D FIELD_PREP(QDMA_DESC_NEXT_ID_MASK, index);
-> > +		WRITE_ONCE(desc->data, cpu_to_le32(val));
-> > +		WRITE_ONCE(desc->msg0, cpu_to_le32(msg0));
-> > +		WRITE_ONCE(desc->msg1, cpu_to_le32(msg1));
-> > +		WRITE_ONCE(desc->msg2, cpu_to_le32(0xffff));
-> > +
-> > +		e->skb =3D i ? NULL : skb;
-> > +		e->dma_addr =3D addr;
-> > +		e->dma_len =3D len;
-> > +
-> > +		wmb();
-> > +		airoha_qdma_rmw(eth, REG_TX_CPU_IDX(qid), TX_RING_CPU_IDX_MASK,
-> > +				FIELD_PREP(TX_RING_CPU_IDX_MASK, index));
->=20
-> Same as above with the wmb().
-
-ack, I will fix it in v4.
-
->=20
-> > +static int airoha_rx_queues_show(struct seq_file *s, void *data)
-> > +{
-> > +	struct airoha_eth *eth =3D s->private;
-> > +	int i;
-> > +
-> ...
-> > +static int airoha_xmit_queues_show(struct seq_file *s, void *data)
-> > +{
-> > +	struct airoha_eth *eth =3D s->private;
-> > +	int i;
-> > +
->=20
-> Isn't this information available through ethtool already?
-
-I guess we can get rid of this debugfs since it was just for debugging.
-
->=20
-> > b/drivers/net/ethernet/mediatek/airoha_eth.h
-> > new file mode 100644
-> > index 000000000000..fcd684e1418a
-> > --- /dev/null
-> > +++ b/drivers/net/ethernet/mediatek/airoha_eth.h
-> > @@ -0,0 +1,793 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * Copyright (C) 2024 Lorenzo Bianconi <lorenzo@kernel.org>
-> > + */
-> > +
-> > +#define AIROHA_MAX_NUM_RSTS		3
-> > +#define AIROHA_MAX_NUM_XSI_RSTS		4
->=20
-> If your driver only has a single .c file, I would suggest moving all the
-> contents of the .h file into that as well for better readability.
-
-I do not have a strong opinion about it but since we will extend the driver
-in the future, keeping .c and .h in different files, seems a bit more tidy.
-What do you think?
-
-Regards,
-Lorenzo
-
->=20
->       Arnd=20
-
---bMeKq3pp0ZgKPQdb
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZn7ykQAKCRA6cBh0uS2t
-rM9CAQCiagTiOXfG6lOuuAmsCt3qGVZIIDLSfcOb+VChPh5bAgD/ROl7fEb/iugs
-RcHNy+AlLKCbxagsGTgZtDTKz4eC6AE=
-=nayO
------END PGP SIGNATURE-----
-
---bMeKq3pp0ZgKPQdb--
+Thanks,
+Guenter
 
