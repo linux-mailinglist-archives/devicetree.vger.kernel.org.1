@@ -1,189 +1,160 @@
-Return-Path: <devicetree+bounces-81449-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81450-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8090991C3F5
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 18:43:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9763591C40F
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 18:45:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A781DB23CC4
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 16:43:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 581C0280A24
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 16:45:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11E9D1C9ED3;
-	Fri, 28 Jun 2024 16:43:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47F5E1C8FB0;
+	Fri, 28 Jun 2024 16:45:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DTdsSCmp"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="l/7OVUFY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB2B51BE87E;
-	Fri, 28 Jun 2024 16:43:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86B2BD2E5;
+	Fri, 28 Jun 2024 16:45:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719592987; cv=none; b=lY5g++lUCW5HWTp05jnm+IzmSiXdJMsQ3k+blKhcKDdfW1W78sYjqKdvg5Gw33P8WSpUepCwNyCL7eAS+ea7TB78S83wPUJWSUmnXs2cRXV/husNpSntlBaw1HgAurCmieRJ3Ux4u7GZDZM+yIwPCW7FUL7EvIoblk/mC+UUi2Q=
+	t=1719593116; cv=none; b=jC21yKGdwW2XlZFmWXxy4wJCPCDDMPrnnBX2jlet2YJvRV+cvBFnoxikYT1EyQyYZieiVQq8yBtvRzrpOCm9qXCkug4UKHu19I/eYc3q5drmMO0pM7IqMhihCPDmRECkuhKXn2HCMoFQiAkCVwi7m6FDVpaG8lc1WaXkD1Hc8VE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719592987; c=relaxed/simple;
-	bh=/k1CPyU+XO2vXsbEnUV0QGlSHspgxIC0z5i/wwJgdsQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DisBPNiDHq9Evkuwk86+TxbWR5Rqrf3TteycVbxrhF+wOOkPBieWf8Ve3JDfAZ4i+CoP0aeZ3WHA3jsWt9ZMn2In1N5Qv0HFjKDrXuKjDReurLHRebadYBAyF5VQmCcM9vrJeACPgauD2XsDiBEeB/AoDaQtH6ak4Pmpv49K4HE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DTdsSCmp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1AC1FC116B1;
-	Fri, 28 Jun 2024 16:43:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719592986;
-	bh=/k1CPyU+XO2vXsbEnUV0QGlSHspgxIC0z5i/wwJgdsQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DTdsSCmp/RV3A0DWzYJo5AY5jA6vTjzSmfYAvRAmsjcejNx+rZ5x209iqIc4/hpSo
-	 j3QbrCS5MLZ2CsJIVid/k4a6xgeb6lqe04SheFd78mUZ8MU31dj6oOUbCQP3lm/vTH
-	 yviwXfPLD4odoqzN9OUcNaxPvQklUukKh7r3jKDd1Dxnf1Utl8c09LnN4+gUzndEmv
-	 XfayDPc4WE7vMMIkY3Ea5q4/IqxQhne4bOKB/HtMAaXbJsZR4nFcWosgsTprm8pqAJ
-	 hqJwVXZCIxEE+UtLXksaioXvIBQi7pVOnIARt5FNSX6xpydywhJKpB1hhskB0Cw0/X
-	 mJjfAh/GBjgYQ==
-Date: Fri, 28 Jun 2024 17:42:58 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Serge Semin <fancer.lancer@gmail.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	Jose Abreu <Jose.Abreu@synopsys.com>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Sagar Cheluvegowda <quic_scheluve@quicinc.com>,
-	Abhishek Chauhan <quic_abchauha@quicinc.com>,
-	Andrew Halaney <ahalaney@redhat.com>,
-	Jiawen Wu <jiawenwu@trustnetic.com>,
-	Mengyuan Lou <mengyuanlou@net-swift.com>,
-	Tomer Maimon <tmaimon77@gmail.com>, openbmc@lists.ozlabs.org,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v3 06/10] dt-bindings: net: Add Synopsys DW xPCS
- bindings
-Message-ID: <20240628-ovary-bucket-3d23c67c82ed@spud>
-References: <20240627004142.8106-1-fancer.lancer@gmail.com>
- <20240627004142.8106-7-fancer.lancer@gmail.com>
- <20240627-hurry-gills-19a2496797f3@spud>
- <e5mqaztxz62b7jktr47mojjrz7ht5m4ou4mqsxtozpp3xba7e4@uh7v5zn2pbn2>
+	s=arc-20240116; t=1719593116; c=relaxed/simple;
+	bh=mO+L0yvC60vMhtCoipGkdzIY7TPHWg+4f4+4ccnL1Dc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=tnwD+YYzOvHAzsAItCV+F/R7HXjazxlLrlgYaP/h/wawl+eJvhe4eV3FvLmFSApzo8djmvftB0h+KCpVJXXwoo4MrD3h6dft8n3K5N2Sr7Rm6tCipVGQYXw3JzIPP7+cXGyZPZ53cnfcsCs8SwgbitXZ2wvyvMBqMHILd5uPTZw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=l/7OVUFY; arc=none smtp.client-ip=209.85.218.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a728f74c23dso96222866b.1;
+        Fri, 28 Jun 2024 09:45:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1719593113; x=1720197913; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=p6opEP+oxPf4EYU4j61G6/Gb7Qxsmf3nFQOvrXXgQuQ=;
+        b=l/7OVUFYooXbNsV77YW1R/nkf0LOf+KSVwN8DeqkwrXJLc/v+t3/v8RkkJKO4y8KMC
+         V/MJ35LCkFTd6twZ/Nhwal3fmSQ628GfonD0Q+W6o55aNyQnix6enkya1U39ksx0OPcH
+         XFwJvgJbcuL0fzgG2/XtEEJiKD2T7kZPTHsqEPgPSaLd4tYV2tY9WnWHJ37IjUIh93q2
+         smoxkpQjsYqbNBAEj9fhAMULxUJ1dskdfnkz2SQgVtKHOcuPp+1tXu8utb51JQ53AX2p
+         hnQEJtocfSpZAQsHU/UZKlab/agVKQU69XFPZmOJQ2nlUgB6b8DB93lkzUJ7nie0yz/n
+         4aag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719593113; x=1720197913;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=p6opEP+oxPf4EYU4j61G6/Gb7Qxsmf3nFQOvrXXgQuQ=;
+        b=COgTYjrw0WuDVH9z8xS20dwhHUhOyx5dpEULwaXvqc3wmAii4XooZl/U6swaHnW6gX
+         gumQc6cMy74gp/Gd953Pfy0sirSj4GKuRPSo8Ic4CXTawK6h7hbiCt+XE+qkMMY/lDBo
+         UBCceyZi3L88Fx2+ut7VZbSpED5/r7jbcGWNBX3dTnV2iGwzyXVcD31OxjEKYYZ7hhMH
+         usRKTsfvSL022J3iU/22bXXJ9SnXJZKSpeeGozgW4mUOGY85k1bTF7UugF9IY3rnwGl6
+         ia4kYIFg523ZSEqpLEQt+0zw7sPm+R3n3EKOP4F+nlQl318ZPyzp/hVWiN4IsZLe3vk6
+         oNZg==
+X-Forwarded-Encrypted: i=1; AJvYcCULpANSg0gp7Cgl1W3D9BHn0EK+V2ilSeykcWF3f6RgaLbfpgSof9SVAhWv/tok6kyVD30dcCpt8Hbd/4pFTEplrRjXBnsb08arOLED1bBLjmqnXkdFLciYnvjlIIgaRxxtT0tfeHv4oQ==
+X-Gm-Message-State: AOJu0Yx9Vd52wlNw5kbj/JBIBBSZPbxly0wOj3u5QwgnLSvSswcravD0
+	Adid6UMtzyOs0LQDOLOOD63YHEo2V4R154E8EdBow/KFiSJWqaf3xS3h2o7QIE34L5Tac5BgvDF
+	8NDtLiPERRcgWMwBaxejInIfjlmr+HOFNTw==
+X-Google-Smtp-Source: AGHT+IETF8QqAle/XkSXEMA6ZayfuArJ+Hq5jcKLkHKXXN/m33bSmDsyVwGe1XbiT9NZr31/GDrpxiJSd9Q5Xul+La4=
+X-Received: by 2002:a17:907:a607:b0:a72:744e:670d with SMTP id
+ a640c23a62f3a-a72744e6a5amr871187866b.60.1719593112739; Fri, 28 Jun 2024
+ 09:45:12 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="BMxyj/+lWel1Q7do"
-Content-Disposition: inline
-In-Reply-To: <e5mqaztxz62b7jktr47mojjrz7ht5m4ou4mqsxtozpp3xba7e4@uh7v5zn2pbn2>
+References: <20240628140328.279792-1-erezgeva@nwtime.org> <20240628140328.279792-4-erezgeva@nwtime.org>
+ <20240628-refuse-actress-b76985aa020c@spud> <D2BS0YMA48BG.1PEPFC3KMFV8N@kernel.org>
+ <CANeKEMMrXK=mw=n=9DuTnprkTs3ct446oaC2QTJyst8Nd+D6rw@mail.gmail.com>
+In-Reply-To: <CANeKEMMrXK=mw=n=9DuTnprkTs3ct446oaC2QTJyst8Nd+D6rw@mail.gmail.com>
+From: Erez <erezgeva2@gmail.com>
+Date: Fri, 28 Jun 2024 18:44:35 +0200
+Message-ID: <CANeKEMPAv-jXuE2OwRQaEvru3yPt0rgBU8=p35ub8nK9UtnbQQ@mail.gmail.com>
+Subject: Re: [PATCH 3/4] dt-bindings: mtd: macronix,mx25l12833f: add SPI-NOR chip
+To: Michael Walle <mwalle@kernel.org>
+Cc: Conor Dooley <conor@kernel.org>, Erez Geva <erezgeva@nwtime.org>, linux-mtd@lists.infradead.org, 
+	Tudor Ambarus <tudor.ambarus@linaro.org>, Pratyush Yadav <pratyush@kernel.org>, 
+	linux-kernel@vger.kernel.org, Miquel Raynal <miquel.raynal@bootlin.com>, 
+	Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, devicetree@vger.kernel.org, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 
+On Fri, 28 Jun 2024 at 18:30, Erez <erezgeva2@gmail.com> wrote:
+>
+>
+>
+> On Fri, 28 Jun 2024 at 18:04, Michael Walle <mwalle@kernel.org> wrote:
+>>
+>> Hi,
+>>
+>> On Fri Jun 28, 2024 at 5:57 PM CEST, Conor Dooley wrote:
+>> > On Fri, Jun 28, 2024 at 04:03:27PM +0200, Erez Geva wrote:
+>> > > From: Erez Geva <ErezGeva2@gmail.com>
+>> > >
+>> > > Add Macronix SPI-NOR mx25l12833f.
+>> > >
+>> > > Signed-off-by: Erez Geva <ErezGeva2@gmail.com>
+>> >
+>> > Should the email in here and in the From: field be your nwtime one?
+>> > Otherwise
+>> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
+>>
+>> Actually, you're not supposed to add any compatibles to this list.
+>>
+>> From the binding:
+>>     description:
+>>       SPI NOR flashes compatible with the JEDEC SFDP standard or which may be
+>>       identified with the READ ID opcode (0x9F) do not deserve a specific
+>>       compatible. They should instead only be matched against the generic
+>>       "jedec,spi-nor" compatible.
+>>
+>> I presume the Macronix flash does support the read id opcode.
+>
+>
+> Yes, they do support.
+> The new mx25l12833f also supports SFDP.
+>
+> I do not know why they decided to use the same JEDEC ID for two chips.
+> Your guess is as good as mine.
 
---BMxyj/+lWel1Q7do
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+https://www.macronix.com/en-us/products/NOR-Flash/Serial-NOR-Flash/Pages/spec.aspx?p=MX25L12805D&m=Serial%20NOR%20Flash&n=PM1310
 
-On Thu, Jun 27, 2024 at 08:10:48PM +0300, Serge Semin wrote:
-> On Thu, Jun 27, 2024 at 04:51:22PM +0100, Conor Dooley wrote:
-> > On Thu, Jun 27, 2024 at 03:41:26AM +0300, Serge Semin wrote:
-> > > +  clocks:
-> > > +    description:
-> > > +      Both MCI and APB3 interfaces are supposed to be equipped with =
-a clock
-> > > +      source connected via the clk_csr_i line.
-> > > +
-> > > +      PCS/PMA layer can be clocked by an internal reference clock so=
-urce
-> > > +      (phyN_core_refclk) or by an externally connected (phyN_pad_ref=
-clk) clock
-> > > +      generator. Both clocks can be supplied at a time.
-> > > +    minItems: 1
-> > > +    maxItems: 3
-> > > +
-> > > +  clock-names:
-> > > +    oneOf:
-> > > +      - minItems: 1
-> > > +        items:
-> > > +          - enum: [core, pad]
-> > > +          - const: pad
-> > > +      - minItems: 1
-> > > +        items:
-> > > +          - const: pclk
-> > > +          - enum: [core, pad]
-> > > +          - const: pad
-> >=20
->=20
-> > While reading this, I'm kinda struggling to map "clk_csr_i" to a clock
-> > name. Is that pclk? And why pclk if it is connected to "clk_csr_i"?
->=20
-> Right. It's "pclk". The reason of using the "pclk" name is that it has
-> turned to be a de-facto standard name in the DT-bindings for the
-> peripheral bus clock sources utilized for the CSR-space IO buses.
-> Moreover the STMMAC driver responsible for the parental DW *MAC
-> devices handling also has the "pclk" name utilized for the clk_csr_i
-> signal. So using the "pclk" name in the tightly coupled devices (MAC
-> and PCS) for the same signal seemed a good idea.
->=20
-> > If two interfaces are meant to be "equipped" with that clock, how come
-> > it is optional? I'm probably missing something...
->=20
-> MCI and APB3 interfaces are basically the same from the bindings
-> pointer of view. Both of them can be utilized for the DW XPCS
-> installed on the SoC system bus, so the device could be accessed using
-> the simple MMIO ops.
->=20
-> The first "clock-names" schema is meant to be applied on the DW XPCS
-> accessible over an _MDIO_ bus, which obviously doesn't have any
-> special CSR IO bus. In that case the DW XPCS device is supposed to be
-> defined as a subnode of the MDIO-bus DT-node.
->=20
-> The second "clock-names" constraint is supposed to be applied to the
-> DW XPCS synthesized with the MCI/APB3 CSRs IO interface. The device in
-> that case should be defined in the DT source file as a normal memory
-> mapped device.
->=20
-> >=20
-> > Otherwise this binding looks fine to me.
->=20
-> Shall I add a note to the clock description that the "clk_csr_i"
-> signal is named as "pclk"? I'll need to resubmit the series anyway.
+End of Life (EOL)
+https://www.macronix.com/Lists/TechDoc/Attachments/9861/PCN31_2009%20PCN_MX25L6405D%20and%20MX25L12805D.pdf
+Macronix will continue the support of the existing MX25L6405D and
+MX25L12805D as the following schedule:
+The Last Time Order Date: 31st Aug., 2010
+The Last Time Shipment Date: 30th Nov., 2010
 
-Better yet, could you mention MDIO? It wasn't clear to me (but I'm just
-reviewing bindings not a dwmac-ist) that MCI and APB3 were only two of
-the options and that the first clock-names was for MDIO. Maybe something
-like:
+Erez
 
-  clock-names:
-    oneOf:
-      - minItems: 1
-        items: # MDIO
-          - enum: [core, pad]
-          - const: pad
-      - minItems: 1
-        items: # MCI or APB
-          - const: pclk
-          - enum: [core, pad]
-          - const: pad
-
---BMxyj/+lWel1Q7do
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZn7oEgAKCRB4tDGHoIJi
-0vUkAP91mL5HozxNT6oDCThjtd+7mltthe8Q+r0IJLYFCEMEEgEAma2+j1iod5gj
-qAd6c89tOFymOHfSWvAKjyGEyH9YZwE=
-=8AMU
------END PGP SIGNATURE-----
-
---BMxyj/+lWel1Q7do--
+>
+> I know the two chips have the same flash size.
+> Though the new mx25l12833f chip has a bigger OTP.
+> Secondly, the old mx25l12805d has an asymmetric OTP, the 2 regions are of different size.
+>
+> As I see it, the first 2 patches are the real contribution.
+> As I remember, the kernel maintainers usually like to see something using the code.
+> I don't care if it was another Macronix chip. I simply tested it with the mx25l12833f chip.
+> "[PATCH 1/4] Add generic functions for accessing the SPI-NOR chip."
+> "[PATCH 2/4] Add support for SPI-NOR Macronix OTP."
+>
+> I did not think it is important to have a kernel configuration for choosing mx25l12833f over mx25l12805d.
+>
+> Erez
+>
+>
+>
+>
+>
+>>
+>>
+>> -michael
 
