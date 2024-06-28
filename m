@@ -1,238 +1,137 @@
-Return-Path: <devicetree+bounces-81200-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81201-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C33D591B988
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 10:11:08 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90F5891B98B
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 10:12:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 448801F2298C
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 08:11:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 292AFB21284
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 08:12:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97323145354;
-	Fri, 28 Jun 2024 08:11:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E80671459EF;
+	Fri, 28 Jun 2024 08:12:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KsX4zqa0"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Lc+D3vwQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C2394436A;
-	Fri, 28 Jun 2024 08:11:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A17779F2
+	for <devicetree@vger.kernel.org>; Fri, 28 Jun 2024 08:12:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719562262; cv=none; b=tSGS75SUffqIfgANnwoC98a6+Dvc5OYMl6TuEq1DncABorCoNT56jAXtya25sK5kNHB4JqUcbrMW69DDYzYSYY/So6MA2Ccv0kL2c+FbY6NOnkzRmObsHFJmgie6kFayMhxkozEfxwh3yiHBSq4o3SrQkrtveRXrTMsLtv0V/44=
+	t=1719562334; cv=none; b=M3f4dg6V3GjTZ3pSK4FJ3tnMOqTSQ5IeTbWX1LavIiViQN09FZ9OzMwlebdNOKmhQYZh4XbPbGR+gbfbrhLbORz7Rcf0T5ayR6NsNVvNzuinAKXWMcwMAmgdwxQYATxZSEYWj955Y8lZHnJ/SNRBIadEgMLoIMB4NMN7W5mCbj0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719562262; c=relaxed/simple;
-	bh=qH0hUeJp5WdywexB7qHSHvkmDo/Ev7rR2aoYaZNMI5o=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=idbGlH8jmEwkxEQYc0f62t91H9thlbBUzl4+XfXVlRGZkyitJEUoiUiSnWGpYud6CI8wHzR/9ChIQpOyk2QPWnw9O/fNVIqb4YlG6GLpqedu3jR72Rhayc/Yz4+vOfH6jQA46Io7DerzhDutxYTmzd4IOpAO4Wzv0DvRfD/UYbM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KsX4zqa0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5F23C116B1;
-	Fri, 28 Jun 2024 08:11:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719562262;
-	bh=qH0hUeJp5WdywexB7qHSHvkmDo/Ev7rR2aoYaZNMI5o=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KsX4zqa0BRH73ZVGwqcnwn0JCbyHSAucP2Edj4cnc23buK7a2nT9Wek38SInslxRl
-	 glYvthHmIs4Y2W85caJa0m+63U7lwSOOPBWDURc8RF4Brpq8dRN0dNnzklpKelImv1
-	 jfD6JWUu1xCvBUjx212nZnaC39UnUn4lwAV/AZQv2gbOhdMy+qVVxV5ckDFj+9Vu5g
-	 x1t8+X9aSU9Xlmhd0zFc4+Es6FAOa5eg5hSNKT98tQWTCcgoA41VejCFSxKsov9FbU
-	 ivRqXuq+6Urm9sKsPCjpa+P9Dk2ckmW+apN+WGtpbS7N3VhTo0WKLfiR6xZnTXHXDO
-	 5jaPu/vjSV9LA==
-Date: Fri, 28 Jun 2024 10:10:58 +0200
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: netdev@vger.kernel.org, nbd@nbd.name, lorenzo.bianconi83@gmail.com,
-	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, conor@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, catalin.marinas@arm.com,
-	will@kernel.org, upstream@airoha.com,
-	angelogioacchino.delregno@collabora.com,
-	benjamin.larsson@genexis.eu, rkannoth@marvell.com,
-	sgoutham@marvell.com, andrew@lunn.ch
-Subject: Re: [PATCH v3 net-next 1/2] dt-bindings: net: airoha: Add EN7581
- ethernet controller
-Message-ID: <Zn5wErirnIlkzaoj@lore-desk>
-References: <cover.1719159076.git.lorenzo@kernel.org>
- <ec00d7042f43d289f7a88e0fed70a68905db0bde.1719159076.git.lorenzo@kernel.org>
- <20240627221007.GA646876-robh@kernel.org>
+	s=arc-20240116; t=1719562334; c=relaxed/simple;
+	bh=VfMZ3EyZOT/+Dlgo+TPCcRfEdLOwVwZ6yf9Azc6a5no=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=QIOV+mZWKNQQclXc0ZHtlq0Xz8mG0Wnm7gr5WNVMMHqyKzRfeRyNTqGGSWYGWXREC98HweyVpkPd/XnmOtAE468nqmz226Zr4m54WVtfDXKRd820yIEAi7nliRS1bdHcz0ZToZEhiLz4h2tcgo+7F0zXmNjhctqgHW1XClQz2dc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Lc+D3vwQ; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-421f4d1c057so2603925e9.3
+        for <devicetree@vger.kernel.org>; Fri, 28 Jun 2024 01:12:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1719562331; x=1720167131; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Za8GJzSQvEWguBnhsVgMgbxpdx2OWPVe0QVMP4Zex7M=;
+        b=Lc+D3vwQEKwwhXXBSCHzQImzDMqy0Fei/UstJEGLOw0wJkUgcQCS6IcrDs77WOv6sh
+         E7cXy8JBzF2B3awvqkjuvcrBNpNvcEesPGhoegfEBs24I6VK3JNQz4WNzhoL2XC1Rtqg
+         RLmrH/h57bfNAF5f3L34wo4ndM+4BWXd+dAhCGclUAc9V1XeDCAkk7cqYc5monBlyN+D
+         j1dOEnpICyzWz/q7p0fnhkBEUR5NSglFYnUKUFFPzJEGafWGgW14L1tXuseOmKh/Ce+I
+         JgOjvSP0y/JACynIim6Bi84AlPcKMN897HzTY2ZLeLYbNDd92hLANX7XT63LkKWHJcWt
+         7tcw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719562331; x=1720167131;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Za8GJzSQvEWguBnhsVgMgbxpdx2OWPVe0QVMP4Zex7M=;
+        b=IsrZjjt7GFcT2OKxRnGxWS/2cgSmYxuXd8nBh14kSVRXkEdHBq0HqCSvMWDOPZXtKM
+         vygaPqaCDCRfJBvmhGPV99okCtp/5gGgj7QQv68K6yHe82NMEz5LXHywBnTM+enDx8W7
+         acqa7oaVByaSjMFVA1iQUIUEzIPocKNwjXX9eDumshaIv7kmNdpnm9XrWPovOzUMt9qq
+         ik1Q9JJpwhALhxoxwz8OyKa0xLNBbyaQytKtxOyj2BgeXiySZSVbPonutbaGqcGnAXoN
+         pEMirrOgqJfk3gw5lNJXM+LyLYiG8yGcC75HC136W0OTlyJNJMWIJQyCMot+TLGwDUsv
+         flWw==
+X-Forwarded-Encrypted: i=1; AJvYcCWrwCgsGCgC6cAHsYt5o0deGRnC0vQoR8XkcjvgX0COs2MfQLiExvQaR/zIZda9RjfUbf2MCMmZihRYr0f0/6QuC8+HJbcbKnmG6g==
+X-Gm-Message-State: AOJu0Yyxhw0CxmhqJnmyanU2drkVrM34+ZGK89EXrVc54bemVMaCb0OZ
+	dlhOK5tm3MyAoqbMzOBr9pPlnN29nXkLYXc2QcGV9nBJPUWJD4Nx+7vCMgr71P8=
+X-Google-Smtp-Source: AGHT+IH1Ga8ve4A/0au2rmwtSixHp2ho56UaJ52/y9SYN40XIU8gYHAdzQXzwMD6SK6QXmXie5tssQ==
+X-Received: by 2002:a05:600c:56cc:b0:421:7bed:5274 with SMTP id 5b1f17b1804b1-4248b95d0edmr124015215e9.10.1719562331060;
+        Fri, 28 Jun 2024 01:12:11 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4256d664052sm12589185e9.27.2024.06.28.01.12.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 28 Jun 2024 01:12:10 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+To: Jerome Brunet <jbrunet@baylibre.com>
+Cc: Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org, 
+ linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+In-Reply-To: <20240626152733.1350376-1-jbrunet@baylibre.com>
+References: <20240626152733.1350376-1-jbrunet@baylibre.com>
+Subject: Re: [PATCH 0/2] arm64: dts: amlogic: handle hdmi system clock
+Message-Id: <171956233006.862799.7789348204436390137.b4-ty@linaro.org>
+Date: Fri, 28 Jun 2024 10:12:10 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="mE1ojJjZZ6/R0duQ"
-Content-Disposition: inline
-In-Reply-To: <20240627221007.GA646876-robh@kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13.0
 
+Hi,
 
---mE1ojJjZZ6/R0duQ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Wed, 26 Jun 2024 17:27:29 +0200, Jerome Brunet wrote:
+> This patchset adds the setup of the HDMI system clock for HDMI Tx.
+> 
+> This is another step in cleaning HDMI Tx and its direct usage of HHI
+> register space. Eventually, this will help remove component usage from
+> the Amlogic display drivers.
+> 
+> Jerome Brunet (2):
+>   arm64: dts: amlogic: gx: correct hdmi clocks
+>   arm64: dts: amlogic: setup hdmi system clock
+> 
+> [...]
 
-> On Sun, Jun 23, 2024 at 06:19:56PM +0200, Lorenzo Bianconi wrote:
-> > Introduce device-tree binding documentation for Airoha EN7581 ethernet
-> > mac controller.
-> >=20
-> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> > ---
-> >  .../bindings/net/airoha,en7581-eth.yaml       | 108 ++++++++++++++++++
-> >  1 file changed, 108 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/net/airoha,en7581=
--eth.yaml
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/net/airoha,en7581-eth.ya=
-ml b/Documentation/devicetree/bindings/net/airoha,en7581-eth.yaml
-> > new file mode 100644
-> > index 000000000000..e25a462a75d4
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/net/airoha,en7581-eth.yaml
-> > @@ -0,0 +1,108 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/net/airoha,en7581-eth.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Airoha EN7581 Frame Engine Ethernet controller
-> > +
-> > +allOf:
-> > +  - $ref: ethernet-controller.yaml#
-> > +
-> > +maintainers:
-> > +  - Lorenzo Bianconi <lorenzo@kernel.org>
-> > +
-> > +description:
-> > +  The frame engine ethernet controller can be found on Airoha SoCs.
-> > +  These SoCs have dual GMAC ports.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - airoha,en7581-eth
-> > +
-> > +  reg:
-> > +    items:
-> > +      - description: Frame engine base address
-> > +      - description: QDMA0 base address
-> > +      - description: QDMA1 base address
-> > +
-> > +  reg-names:
-> > +    items:
-> > +      - const: fe
-> > +      - const: qdma0
-> > +      - const: qdma1
-> > +
-> > +  interrupts:
-> > +    maxItems: 10
->=20
-> You need to define what each interrupt is. Just like 'reg'.
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.11/arm64-dt)
 
-ack, I will fix it in v4.
+[1/2] arm64: dts: amlogic: gx: correct hdmi clocks
+      https://git.kernel.org/amlogic/c/0602ba0dcd0e76067a0b7543e92b2de3fb231073
+[2/2] arm64: dts: amlogic: setup hdmi system clock
+      https://git.kernel.org/amlogic/c/1443b6ea806dfcdcee6c894784332c9c947ac319
 
->=20
-> > +
-> > +  resets:
-> > +    maxItems: 8
-> > +
-> > +  reset-names:
-> > +    items:
-> > +      - const: fe
-> > +      - const: pdma
-> > +      - const: qdma
-> > +      - const: xsi-mac
-> > +      - const: hsi0-mac
-> > +      - const: hsi1-mac
-> > +      - const: hsi-mac
-> > +      - const: xfp-mac
-> > +
->=20
-> > +  "#address-cells":
-> > +    const: 1
-> > +
-> > +  "#size-cells":
-> > +    const: 0
->=20
-> What are these for? You have no child nodes to use them.
+These changes has been applied on the intermediate git tree [1].
 
-ack, in v4 I will add mac ethernet subnode.
+The v6.11/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+for inclusion in their intermediate git branches in order to be sent to Linus during
+the next merge window, or sooner if it's a set of fixes.
 
-Regards,
-Lorenzo
+In the cases of fixes, those will be merged in the current release candidate
+kernel and as soon they appear on the Linux master branch they will be
+backported to the previous Stable and Long-Stable kernels [2].
 
->=20
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +  - resets
-> > +  - reset-names
-> > +
-> > +unevaluatedProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +    #include <dt-bindings/clock/en7523-clk.h>
-> > +
-> > +    soc {
-> > +      #address-cells =3D <2>;
-> > +      #size-cells =3D <2>;
-> > +
-> > +      eth0: ethernet@1fb50000 {
-> > +        compatible =3D "airoha,en7581-eth";
-> > +        reg =3D <0 0x1fb50000 0 0x2600>,
-> > +              <0 0x1fb54000 0 0x2000>,
-> > +              <0 0x1fb56000 0 0x2000>;
-> > +        reg-names =3D "fe", "qdma0", "qdma1";
-> > +
-> > +        resets =3D <&scuclk 44>,
-> > +                 <&scuclk 30>,
-> > +                 <&scuclk 31>,
-> > +                 <&scuclk 6>,
-> > +                 <&scuclk 15>,
-> > +                 <&scuclk 16>,
-> > +                 <&scuclk 17>,
-> > +                 <&scuclk 26>;
-> > +        reset-names =3D "fe", "pdma", "qdma", "xsi-mac",
-> > +                      "hsi0-mac", "hsi1-mac", "hsi-mac",
-> > +                      "xfp-mac";
-> > +
-> > +        interrupts =3D <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>,
-> > +                     <GIC_SPI 55 IRQ_TYPE_LEVEL_HIGH>,
-> > +                     <GIC_SPI 56 IRQ_TYPE_LEVEL_HIGH>,
-> > +                     <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>,
-> > +                     <GIC_SPI 38 IRQ_TYPE_LEVEL_HIGH>,
-> > +                     <GIC_SPI 58 IRQ_TYPE_LEVEL_HIGH>,
-> > +                     <GIC_SPI 59 IRQ_TYPE_LEVEL_HIGH>,
-> > +                     <GIC_SPI 60 IRQ_TYPE_LEVEL_HIGH>,
-> > +                     <GIC_SPI 49 IRQ_TYPE_LEVEL_HIGH>,
-> > +                     <GIC_SPI 64 IRQ_TYPE_LEVEL_HIGH>;
-> > +      };
-> > +    };
-> > --=20
-> > 2.45.2
-> >=20
+The intermediate git branches are merged daily in the linux-next tree [3],
+people are encouraged testing these pre-release kernels and report issues on the
+relevant mailing-lists.
 
---mE1ojJjZZ6/R0duQ
-Content-Type: application/pgp-signature; name="signature.asc"
+If problems are discovered on those changes, please submit a signed-off-by revert
+patch followed by a corrective changeset.
 
------BEGIN PGP SIGNATURE-----
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
 
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZn5wEgAKCRA6cBh0uS2t
-rPBDAP0VFISvwEjp5slaMCIeahLjeBlxThDttQpEv3MVItyDGAEAyIJ24SNWoigy
-vMJ/oqNXrVsk72tvU1hdyCLn8y4BhAA=
-=4SEp
------END PGP SIGNATURE-----
+-- 
+Neil
 
---mE1ojJjZZ6/R0duQ--
 
