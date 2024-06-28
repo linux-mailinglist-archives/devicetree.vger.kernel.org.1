@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-81211-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81212-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6906091B9C8
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 10:24:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A51AE91B9CB
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 10:25:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 22C652834EF
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 08:24:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 60780281CA2
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 08:25:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2C5314B970;
-	Fri, 28 Jun 2024 08:24:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1FDC147C89;
+	Fri, 28 Jun 2024 08:25:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Milod0EH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qJpgm91y"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4D6D14B96E;
-	Fri, 28 Jun 2024 08:24:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A99E8146D49;
+	Fri, 28 Jun 2024 08:25:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719563063; cv=none; b=MzMpJnibwvm03AYr7PW6vPfqJvU1X6IoSQs06fkGRwiF6I5kU1u+VM5PFb8MRBL0jFfDS8zBpUmp3MXQCqh7nYaV+kU8uCrBl46gVTHDTMsYBjY/CYp9EwBOruijB5buPKv/VwR9sQ8cl/l4HqGrpTIPs2ZDNh05BiTurho9eGg=
+	t=1719563149; cv=none; b=kDEd4kc7Ur+4DIABAVAOeGdqCF3VGEDUf3kGdznYQ2f2Pl5Z6Pgm1VYiPjcxAePHYcA7ceuKcLcATEKB2Y5HVywD6POm/cUjKEfhw8sC34tRoq9hWCyHho4gojAgBnA7svMccoyv+a7J+DG+4oTSZP/PBoQ7pX3tUJDgN1aGf2s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719563063; c=relaxed/simple;
-	bh=/MUpdrF3nlqr+IAGTowp+9hU9kH4jqrBQKCdCSMxJxc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=i0Tu+qMyPICNmCjwPa8v7Ueqa4M9CidA+3LdwxraSDA+FcLRIMeQWVxlaLu4Uw5Gw/O/slnjXsKZL6zhL9GJqTrrbnvq2ykOLDB6BYQnCNNtauEv2eEtVBYWV+7Z8EI0S3FxR4aQGvhBZ7hyAagoMw5GdAPD9uUQb3vJc2Y9874=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Milod0EH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7287AC32789;
-	Fri, 28 Jun 2024 08:24:20 +0000 (UTC)
+	s=arc-20240116; t=1719563149; c=relaxed/simple;
+	bh=4U7tRlvkBlHQY/+p5os0DKjcPT3AF5nDvp+hDjp7dm0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=ekgkzEKJX7cxClMS8iq86W09FA/v9sZudbja9adUQJhTBs7ygeAruj3OuwL62Vn+P2c6iA4TvkAyHQ4VPdzXM4P3aDeL4lEJ7mkApEekxrWtFvfxUP3xTacQtroKf6JmVmpnYaOMLC6IA8J0apa8gv2Jq+xrAXr+On70dUxphoc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qJpgm91y; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A607EC116B1;
+	Fri, 28 Jun 2024 08:25:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719563063;
-	bh=/MUpdrF3nlqr+IAGTowp+9hU9kH4jqrBQKCdCSMxJxc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Milod0EHQGnwDFJ7rAbhImeSCAdSalwXzDVC+PJoU+ri1Elxe/qFtB5KOM0dYq338
-	 4wICoA/DyEbNK5mqfNkhSS/W0GHLBG3TBMVJs/9L6KUvuyCg4UXdQBMMPOS33SiO3L
-	 FjnDY6vOx8q/P3RNXEjVkwBT7UbhQgRjDbf3T6JDklLgqh61CLkJCiYZT201jZ0/Xh
-	 Nhf0cFX0u0cu+Zog1v/OOvYCqFI4k57xQcy8QvDn8FhFY6r2nujaYK0RTJ2sDjTBwL
-	 BNJETwOvXgLOBM77zKaD+Cbct4/BPtqVVWn/hW0LNs8GXVa+fUB5BAxc4xoLq5UZIz
-	 gQkbgNS0Ucj3w==
-Message-ID: <76cc65cf-1340-4046-9fe5-b431d8f79e33@kernel.org>
-Date: Fri, 28 Jun 2024 10:24:18 +0200
+	s=k20201202; t=1719563149;
+	bh=4U7tRlvkBlHQY/+p5os0DKjcPT3AF5nDvp+hDjp7dm0=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=qJpgm91yrlvmVpBT5CRBdn+hSV7k//jQiX+Vp6jWsqjd3XDgzZ0Miyy45lF1UnNHM
+	 2n7J/ViWUumZPvz7adnJMOrNZXactcCvxVbF11CXV2lOnAvU8IpCqDItK4l28kad6B
+	 Oq7OZM7Q43nW/+NENzdTe5BF90PKDG2aEgZVzCfqWyynZszUYoJ+OJ+auw5upf703E
+	 1YxEQ9518yegNwlqNFjtCmOIwnAhvHCZSMuHJEdE5at//4Sc8vT/RPxkEs96Zdih8+
+	 7Sg3NU7evQxkSAn47dphgUnsfn1LvA/Kaf8YAClgcoI+5kAFzGcta91U7sx8YJ7ASu
+	 /S7epxTjB4QgA==
+Message-ID: <08f686f7-b0eb-4e40-9f31-75e2db9660d8@kernel.org>
+Date: Fri, 28 Jun 2024 10:25:43 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/1] dt-bindings: interrupt-controller: convert
- fsl,ls-scfg-msi to yaml
-To: Frank Li <Frank.Li@nxp.com>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, imx@lists.linux.dev,
- krzk+dt@kernel.org, linux-kernel@vger.kernel.org, robh@kernel.org,
- tglx@linutronix.de
-References: <20240627144207.4003708-1-Frank.Li@nxp.com>
-Content-Language: en-US
+Subject: Re: [PATCH v4 2/2] ASoC: dt-bindings: simple-audio-mux: add mux-names
+ property
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+ Alexandre Belloni <aleandre.belloni@bootlin.com>,
+ Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Takashi Iwai <tiwai@suse.com>,
+ devicetree@vger.kernel.org, linux-sound@vger.kernel.org
+References: <87h6ddale3.wl-kuninori.morimoto.gx@renesas.com>
+ <87ed8halde.wl-kuninori.morimoto.gx@renesas.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -102,25 +107,41 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240627144207.4003708-1-Frank.Li@nxp.com>
+In-Reply-To: <87ed8halde.wl-kuninori.morimoto.gx@renesas.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 27/06/2024 16:42, Frank Li wrote:
-> Convert device tree binding fsl,ls-scfg-msi to yaml format.
+On 28/06/2024 03:47, Kuninori Morimoto wrote:
+> simple-audio-mux is designed to be used generally, thus "Input 1" or
+> "Input 2" are used to selecting MUX input. This numbered inputs would
+> work, but might be not user friendly in some case, for example in case
+> of system hardware design has some clear labels.
+> Adds new "state-labels" property and enable to select MUX by own state
+> names.
 > 
-> Additional changes:
-> - Include gic.h and use predefined macro in example.
-> - Remove label in example.
-> - Change node name to interrupt-controller in example.
-> - Fix error in example.
-> - ls1046a allow 4 irqs, other platform only 1 irq.
-> - Add $ref: msi-controller.yaml
-> - Add #msi-cells.
+> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> ---
+>  .../devicetree/bindings/sound/simple-audio-mux.yaml         | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> diff --git a/Documentation/devicetree/bindings/sound/simple-audio-mux.yaml b/Documentation/devicetree/bindings/sound/simple-audio-mux.yaml
+> index 9f319caf3db7..3b38a0753282 100644
+> --- a/Documentation/devicetree/bindings/sound/simple-audio-mux.yaml
+> +++ b/Documentation/devicetree/bindings/sound/simple-audio-mux.yaml
+> @@ -24,6 +24,11 @@ properties:
+>      description: |
+>        GPIOs used to select the input line.
+>  
+> +  state-labels:
+> +    description: |
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Do not need '|' unless you need to preserve formatting.
+
+> +      State of input line. default is "Input 1", "Input 2"
+> +    $ref: /schemas/types.yaml#/definitions/string-array
+
+If I understood correctly the driver, you have only one GPIO and only
+two states, right? If so, then "maxItems: 2".
 
 Best regards,
 Krzysztof
