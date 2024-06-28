@@ -1,214 +1,144 @@
-Return-Path: <devicetree+bounces-81254-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81256-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61BD691BB8F
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 11:35:42 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5E6391BB9F
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 11:38:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1CAA8283E32
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 09:35:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EA8EAB215D0
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 09:38:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71A5915252C;
-	Fri, 28 Jun 2024 09:35:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BDC71552FE;
+	Fri, 28 Jun 2024 09:38:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Ls8yHE2m"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="TP58STNX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com [209.85.215.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F1531CD32;
-	Fri, 28 Jun 2024 09:35:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE0B6154BEA
+	for <devicetree@vger.kernel.org>; Fri, 28 Jun 2024 09:38:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719567340; cv=none; b=KM9p74mfUpVbJqxhIj5fZ9yiUltowGuTyx4GvzJ1Bj4IzbAdQEov12KIkEt9rhs654V7yNwbrdVvfuKvvS7iQXXLQjxYKURevQleGjSWy0+VafAwyca2++halnYW/+YkxfyGT9FtZzbFeXM7CKAhcZg+ZU8vht3Sz7sdWSDjESk=
+	t=1719567489; cv=none; b=GCRbLA+iulPXAkoSZEzAt8aNkamXLvOu6H2itBFfAdNzv6B4DVB4LnZALARRBWsU5t2qFztVL2q7BS0LiClDLrFGqwVstpYZv/Qeo0VA7Myc478MKyr7yDujBggg8wGotdwv16eo729UiVPAbYVr3xHAx2QOV/4WQJOA9Nmr5r0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719567340; c=relaxed/simple;
-	bh=hjiIfz72Bk2cugfGhtbE90kF7F6N0LOlLITfx0DKqA4=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=vA7LVzJL7xsMuOkHngOpIgkF2RdGjX336cvMuRZrfCL5wrUSkhXx1O2XeG4F+qtTJv2omlXLv6x2dXaFJ+sbdiOcV0u92DT5kCA9PmowH8JqnNEr3HLC+JdVEZY+Y68yjNVa5h3eMsqxJQpeEY9d1U/3qNaZE4Qbz7BfKpDOofM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Ls8yHE2m; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 45S9ZMMu039653;
-	Fri, 28 Jun 2024 04:35:22 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1719567322;
-	bh=nU2b9U9/eq2O0U7zidGrCy9Ko1KMfa4NRadBXwQEG88=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=Ls8yHE2moWAnON2B7c2RgkCmsDV3Z7ZdO+x1570Uwkdbt0kiysX+lBaSzUa0SXaLf
-	 9O/qjXtjqmWK4w2kj4OBhaVcNUyjO0pKPApUbg31JgbngCtoSKuHCqyazeh9AyKyEM
-	 rAfs+wEzuu+9aAKhvVyrnRyPPJWXZSpIFl3a3KG0=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 45S9ZMl6128979
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 28 Jun 2024 04:35:22 -0500
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 28
- Jun 2024 04:35:22 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 28 Jun 2024 04:35:22 -0500
-Received: from localhost (jluthra.dhcp.ti.com [172.24.227.116])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 45S9ZLUr104010;
-	Fri, 28 Jun 2024 04:35:22 -0500
-Date: Fri, 28 Jun 2024 15:05:21 +0530
-From: Jai Luthra <j-luthra@ti.com>
-To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-CC: <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Vignesh
- Raghavendra <vigneshr@ti.com>,
-        Aradhya Bhatia <a-bhatia1@ti.com>, Devarsh
- Thakkar <devarsht@ti.com>,
-        Changhuang Liang
-	<changhuang.liang@starfivetech.com>,
-        Jack Zhu <jack.zhu@starfivetech.com>,
-        Julien Massot <julien.massot@collabora.com>,
-        Laurent Pinchart
-	<laurent.pinchart@ideasonboard.com>,
-        Mauro Carvalho Chehab
-	<mchehab@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans
- Verkuil <hverkuil-cisco@xs4all.nl>,
-        Vaishnav Achath <vaishnav.a@ti.com>,
-        Maxime Ripard <mripard@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-Subject: Re: Re: [PATCH v2 00/13] media: cadence,ti: CSI2RX Multistream
- Support
-Message-ID: <kge5gelwwiukrupotdjiaj6rr2yxplumnhh5q4jjak3nyp35td@ctwvefoevxzx>
-References: <20240627-multistream-v2-0-6ae96c54c1c3@ti.com>
- <99fda0f2-57e9-4b37-a848-b7781f3b1dd7@ideasonboard.com>
+	s=arc-20240116; t=1719567489; c=relaxed/simple;
+	bh=ONgrN1lIcSl02qRIHLXZVgvQprShqnN5GII+tATavQA=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=lmEhHf3DJ4GskFe81qX3QnGNVAohzkZf4MXQb+kTKAz361GJoIbivbnHlFHFWs/FNNi/q9NfeU+kK2/zSRxcK8utmvTlOxYYS8xtbRVJ9KjQFgNkNoiaYxcPUFKq5XAj+Er1Ib1ia6FgEjkhKaP8Q10jJyHXmsyffRoSlQyOQdo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=TP58STNX; arc=none smtp.client-ip=209.85.215.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
+Received: by mail-pg1-f171.google.com with SMTP id 41be03b00d2f7-6c5bcb8e8edso306148a12.2
+        for <devicetree@vger.kernel.org>; Fri, 28 Jun 2024 02:38:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google; t=1719567487; x=1720172287; darn=vger.kernel.org;
+        h=references:in-reply-to:message-id:date:subject:cc:to:from:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=YA0dWEkzXvI8/KpPhKTDAN4RTMFwdU95qGVE5ffUQFc=;
+        b=TP58STNXnKWesOPeYw6CQD20/ccvXIziu1010ZZdWxfsijNKFEgzUvRvblm5Vpqui9
+         adVcWsInbecAF5L8hvaixOEK9wgOf8UKsQuT8WJ424ikxU6wRGYzG3LGGrn/lDyPc8tz
+         xoqZ2a1Ap2evwEW9xLhn1GDPIjKauBXfN9HLGFezuxilDkyOiFweQfdxdokjkDT66emd
+         mKVvYQKhrvMKIqL+j4eHrJdGL5CsPLTfRiPyL5d8M+aidV21nxtKOESJh6xbHkKHP8Fc
+         1h0UtAsioLro56DyoZmMk1Yk90UVyX5MzlnpSdS+o+64G/lddWAZttqFw+ljF04rNPVy
+         m9wQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719567487; x=1720172287;
+        h=references:in-reply-to:message-id:date:subject:cc:to:from
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=YA0dWEkzXvI8/KpPhKTDAN4RTMFwdU95qGVE5ffUQFc=;
+        b=TqX07dpByNfo0z/B1CgLX5KXzvJptzzPOX8kvtsfdwebpbS0V2FSPhFunNfsc3tH7e
+         e0daqD0/FshTpjgVgAo3EV9s1Wn0f7DPEWl6gePweIdG6dKkrpv5WvM/ZiC/uHQ8hWEQ
+         nJMaqPYm9oLOLMttV1cDaebnICGTDmKeQu+0kWMsnRElGckS5BSGdPsankxkxlBouS9j
+         wjiCWYAsL234twAOoywm6a7Ho7RYSJPzHiebi7xhEtTf5i3CEOZH/G+JjqiiwMTecJ1g
+         fhbMNzslr/BaKPw7jFrdxq8BJa+sSBGxPsyEdfRr98pYQHOrnGc8zHrAlGBwC/029EaU
+         5qog==
+X-Forwarded-Encrypted: i=1; AJvYcCWrSBzNURclQ7QQsxFHPP5MVInB4bu8rhLTAd8bFZU31TS0pnMAEsBe/4PhB5SuKejh0icf/Rwvj0iB5jSS9UL1jLe75OPytAPURg==
+X-Gm-Message-State: AOJu0Yy6ckltp2/t2klw++8vDXkSXHP2/lMN40zeH84l5waszO1kaUg4
+	CLXhm4YboIvCvTDeUAYMsF3gs1a95MuNbsdfhgbKnKr7tuQXRQdfiTHOvXAZ7pg=
+X-Google-Smtp-Source: AGHT+IEr7EQCj6dcAAmXxE9nTudy+Q1tr3NBQMPkn5K3OhDpK9au3cIf3F6kgtczs2qpjnr6GuG+cA==
+X-Received: by 2002:a05:6a20:6a90:b0:1bd:91aa:79a0 with SMTP id adf61e73a8af0-1bd91aa7a7dmr7189755637.12.1719567486974;
+        Fri, 28 Jun 2024 02:38:06 -0700 (PDT)
+Received: from hsinchu26.internal.sifive.com (59-124-168-89.hinet-ip.hinet.net. [59.124.168.89])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1fac10c6c8dsm11087155ad.26.2024.06.28.02.38.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 28 Jun 2024 02:38:06 -0700 (PDT)
+From: Yong-Xuan Wang <yongxuan.wang@sifive.com>
+To: linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	kvm-riscv@lists.infradead.org,
+	kvm@vger.kernel.org
+Cc: greentime.hu@sifive.com,
+	vincent.chen@sifive.com,
+	Yong-Xuan Wang <yongxuan.wang@sifive.com>,
+	Conor Dooley <conor@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	devicetree@vger.kernel.org
+Subject: [PATCH v6 2/4] dt-bindings: riscv: Add Svade and Svadu Entries
+Date: Fri, 28 Jun 2024 17:37:06 +0800
+Message-Id: <20240628093711.11716-3-yongxuan.wang@sifive.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20240628093711.11716-1-yongxuan.wang@sifive.com>
+References: <20240628093711.11716-1-yongxuan.wang@sifive.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <99fda0f2-57e9-4b37-a848-b7781f3b1dd7@ideasonboard.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hi Tomi,
+Add entries for the Svade and Svadu extensions to the riscv,isa-extensions
+property.
 
-On Jun 28, 2024 at 11:26:59 +0300, Tomi Valkeinen wrote:
-> Hi Jai,
-> 
-> On 27/06/2024 16:09, Jai Luthra wrote:
-> > This series adds multi-stream support for Cadence CSI2RX and TI CSI2RX
-> > Shim drivers.
-> > 
-> > PATCH 1:	Runtime Power Management for Cadence CSI2RX
-> > PATCH 2-7:	Support multiple DMA contexts/video nodes in TI CSI2RX
-> > PATCH 8-9:	Use get_frame_desc to propagate virtual channel information
-> > 		across Cadence and TI CSI-RX subdevs
-> > PATCH 10-12:	Use new multi-stream APIs across the drivers to support
-> > 		multiplexed cameras from sources like UB960 (FPDLink)
-> > PATCH 13:	Optimize stream on by submitting all queued buffers to DMA
-> > 
-> > This applies on top of today's linux-next (next-20240626)
+Signed-off-by: Yong-Xuan Wang <yongxuan.wang@sifive.com>
+---
+ .../devicetree/bindings/riscv/extensions.yaml | 28 +++++++++++++++++++
+ 1 file changed, 28 insertions(+)
 
-This series is based on top of next-20240626 
-
-> > (also tested rebase with media_stage.git master)
-> > 
-> > Signed-off-by: Jai Luthra <j-luthra@ti.com>
-> > ---
-> > Changes in v2:
-> > 
-> > - Change the multi-camera capture architecture to be similar to that of
-> >    Tomi's RPi5 FE series, where the driver will wait for userspace to
-> >    start streaming on all "actively routed" video nodes before starting
-> >    streaming on the source. This simplifies things a lot from the HW
-> >    perspective, which might run into deadlocks due to a shared FIFO
-> >    between multiple DMA channels.
-> > 
-> > - Drop a few fixes that were posted separately and are already merged
-> > - Fix dtschema warnings reported by Rob on [02/13]
-> > - Fix warnings for uninitialized `used_vc` variable in cdns-csi2rx.c
-> > - Return -EBUSY if someone updates routes for j721e-csi2rx subdev while
-> >    streaming
-> > - Only allow single-streams to be routed to the source pads (linked to
-> >    video nodes) of the j721e-csi2rx device
-> > - Squash the patches marked "SQUASH" in the v1 RFC series
-> > 
-> > - Link to RFC (v1):
-> >    https://lore.kernel.org/r/20240222-multistream-v1-0-1837ed916eeb@ti.com
-> > 
-> > ---
-> > Jai Luthra (8):
-> >        dt-bindings: media: ti,j721e-csi2rx-shim: Support 32 dma chans
-> >        media: ti: j721e-csi2rx: separate out device and context
-> >        media: ti: j721e-csi2rx: add a subdev for the core device
-> >        media: ti: j721e-csi2rx: add support for processing virtual channels
-> >        media: cadence: csi2rx: Use new enable stream APIs
-> >        media: cadence: csi2rx: Enable multi-stream support
-> >        media: ti: j721e-csi2rx: add multistream support
-> >        media: ti: j721e-csi2rx: Submit all available buffers
-> > 
-> > Jayshri Pawar (1):
-> >        media: cadence: csi2rx: Support runtime PM
-> > 
-> > Pratyush Yadav (4):
-> >        media: ti: j721e-csi2rx: prepare SHIM code for multiple contexts
-> >        media: ti: j721e-csi2rx: allocate DMA channel based on context index
-> >        media: ti: j721e-csi2rx: get number of contexts from device tree
-> >        media: cadence: csi2rx: add get_frame_desc wrapper
-> > 
-> >   .../bindings/media/ti,j721e-csi2rx-shim.yaml       |  39 +-
-> >   drivers/media/platform/cadence/cdns-csi2rx.c       | 440 +++++++++--
-> >   .../media/platform/ti/j721e-csi2rx/j721e-csi2rx.c  | 879 ++++++++++++++++-----
-> >   3 files changed, 1071 insertions(+), 287 deletions(-)
-> > ---
-> > base-commit: df9574a57d02b265322e77fb8628d4d33641dda9
-> > change-id: 20240221-multistream-fbba6ffe47a3
-> 
-> You have based this series on top of your private branch. Don't do that.
-> Base on top of a kernel tag, or a commonly known tree (linux-media-stage for
-> example), and preferably mention the base in the cover letter.
-
-The base commit SHA populated by b4 is the same as next-20240626 as 
-mentioned above
-
-https://gitlab.com/linux-kernel/linux-next/-/commits/df9574a57d02b265322e77fb8628d4d33641dda9
-
-I chose to not use media-stage as the base, but this series applies 
-cleanly (and compiles) on top of that as well.
-
-> 
-> Your private branch contains e.g. dtsos needed for testing. If you have such
-> a branch, you should point to it in the cover letter as it's valuable for
-> reviewers/testers.
-
-Ah my bad, I missed mentioning my github branch that can be used for 
-testing the content of this series. It contains some DTSOs and defconfig 
-updates, along with support for FPDLink/V3Link sensors.
-
-https://github.com/jailuthra/linux/commits/b4/multistream/
-
-> 
-> Only base on top of a private branch if your patches compile-time depend on
-> something from there, and in that case point to the branch and mention this
-> dependency clearly in the cover letter.
-
-Makes sense, will take extra care to mention the dependencies and base 
-branch from next version.
-
-> 
->  Tomi
-> 
-
+diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Documentation/devicetree/bindings/riscv/extensions.yaml
+index 468c646247aa..c3d053ce7783 100644
+--- a/Documentation/devicetree/bindings/riscv/extensions.yaml
++++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
+@@ -153,6 +153,34 @@ properties:
+             ratified at commit 3f9ed34 ("Add ability to manually trigger
+             workflow. (#2)") of riscv-time-compare.
+ 
++        - const: svade
++          description: |
++            The standard Svade supervisor-level extension for SW-managed PTE A/D
++            bit updates as ratified in the 20240213 version of the privileged
++            ISA specification.
++
++            Both Svade and Svadu extensions control the hardware behavior when
++            the PTE A/D bits need to be set. The default behavior for the four
++            possible combinations of these extensions in the device tree are:
++            1) Neither Svade nor Svadu present in DT => It is technically
++               unknown whether the platform uses Svade or Svadu. Supervisor may
++               assume Svade to be present and enabled or it can discover based
++               on mvendorid, marchid, and mimpid.
++            2) Only Svade present in DT => Supervisor must assume Svade to be
++               always enabled. (Obvious)
++            3) Only Svadu present in DT => Supervisor must assume Svadu to be
++               always enabled. (Obvious)
++            4) Both Svade and Svadu present in DT => Supervisor must assume
++               Svadu turned-off at boot time. To use Svadu, supervisor must
++               explicitly enable it using the SBI FWFT extension.
++
++        - const: svadu
++          description: |
++            The standard Svadu supervisor-level extension for hardware updating
++            of PTE A/D bits as ratified at commit c1abccf ("Merge pull request
++            #25 from ved-rivos/ratified") of riscv-svadu. Please refer to Svade
++            dt-binding description for more details.
++
+         - const: svinval
+           description:
+             The standard Svinval supervisor-level extension for fine-grained
 -- 
-Thanks,
-Jai
+2.17.1
 
-GPG Fingerprint: 4DE0 D818 E5D5 75E8 D45A AFC5 43DE 91F9 249A 7145
 
