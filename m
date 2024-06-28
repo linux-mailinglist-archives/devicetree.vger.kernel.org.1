@@ -1,280 +1,188 @@
-Return-Path: <devicetree+bounces-81513-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81514-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8046B91C82B
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 23:35:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3440C91C831
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 23:37:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 023A11F22D41
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 21:35:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 567F51C22335
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 21:37:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5445770F3;
-	Fri, 28 Jun 2024 21:35:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 218BE7F48A;
+	Fri, 28 Jun 2024 21:37:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q+Ixt1Tr"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="czyFJWar"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from EUR03-DBA-obe.outbound.protection.outlook.com (mail-dbaeur03on2088.outbound.protection.outlook.com [40.107.104.88])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7884D7345B;
-	Fri, 28 Jun 2024 21:35:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719610520; cv=none; b=r10QTIr0CFeLSPKSC9p3uOyB79Lo6guULi0WxEgYLe8k8Qqi0O6k/xEQ/sCLPiuopmAyaheYBhGrpunAx/FlNz736InVO+YnBfRw6P51Lq3Qzlr3hJPn7lQyTg63GjmW8K1GJrfXykDoEVfSjfe0QkenonG8c06RHqerTfHHzng=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719610520; c=relaxed/simple;
-	bh=TQSYZSsDtzsMcr8D2e2z9zHsl5dNXJP4IAvQWDj6Sgw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Cc++UKEil3/eJMxL+TsZIC6KFD5Q6kKKHjvf7biQjfkoZF165QeXRoIZ1A6YSoEodzyYL/BZ03TDxgXAr1IbBCe/oUj1alilmSvHROern19XJRHTBiw+1y6xFRfoTU2u5ZWGKmfsrl4m+NwwA8YgSvH0q4aLDCbtjXngCrOfkt8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q+Ixt1Tr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B5CFDC116B1;
-	Fri, 28 Jun 2024 21:35:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719610520;
-	bh=TQSYZSsDtzsMcr8D2e2z9zHsl5dNXJP4IAvQWDj6Sgw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Q+Ixt1TryhrnJ6NBZK+ofuKGvY4vXaT8TcLw6X4GD9WWrdch5TtpcAqDhExQ6FPCi
-	 LFyBnOxvYZfsEnh3k87aspOCmC5/xr+Osj3E8QfqqVx294jt1/A5T47WaVI/bvX2+G
-	 hUWfMxlCKxeODdivD1rvWGCCZW4/yEJ2KlxhKsDnU9hkhSdRE5uKBLdptl4o72PxFe
-	 QZkv7xqa8Ty+y87+5OYOkTs3P70xwEaO+kZJbK55SQpzWJf5VANqpkrzVKah6WsYWd
-	 fKh4uoGtaYaMJ6n14xsyR9yNOuX+70SVuaB23qng+cZ/xMiANl4Bcd/IK4JPZ87mhL
-	 SXMTdxQMDibZw==
-Date: Fri, 28 Jun 2024 15:35:17 -0600
-From: Rob Herring <robh@kernel.org>
-To: Olivier Moysan <olivier.moysan@foss.st.com>
-Cc: fabrice.gasnier@foss.st.com,
-	Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8961C3FBA5;
+	Fri, 28 Jun 2024 21:37:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.104.88
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1719610659; cv=fail; b=NdWxV6fOwDayRWWm5qzGs4parKI9yXij4OOoHifAzFiLeao19jHx2U8eYpFr1d+BtaWPmNiEc60VY71K9BqaGJn9UFeVeFbtl3LDMq3xjoHYlcaTB0CfK1tn4FtujY0UCpba+V5ipVazeHNJxsE3ZYhdvtUu6g0ldQgnc7VweUw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1719610659; c=relaxed/simple;
+	bh=AS6CD7e8vb2FcvaNm/mMenQRk9Ljb5D7PXsgb5E9b68=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=jle0Y7Bb5j/foXTuY+uCqw5749qyRKHr3A00+sAyLQa/WvUsilEkRF+Up9wA+Kgza006xPHNPJbSTo1ad57xy31USZ6oqTS4H+by9H10+AfeTplOP2TcVp/CvtzoQ1W4nwTqYjYSluZAb6llLXJWwTPL7ZU4KUluMJh83ayh1Ls=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=czyFJWar; arc=fail smtp.client-ip=40.107.104.88
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=YvaEZIfSNQ2BbLyOr6XVuZIgZ9KL0wzb+68s1DXZX3xDujcsGhXKeDf5w2rT2oChIT3KzadzKpdNmTKC5lezE7HwxRlUKAyEVgy0ZW8NIHiqkvrcxURfzjx+YPzmjaQPH1NrNUhjQiLAwxndkgMH0Juxb/9a9PE11Qsek+IH/MAZaOyLhFg9Ui9AuwjyuRpsIdkdYnQvU8QgrZNRsAQGVUTvDLg9S+rk2dKrlvtduoAj5rDdusLVuXvF0rRIFozjd2QRs4LIYYPPUorQ9sfe7N/ecZXF0UmfMTrxjziyMsAx+hrVGyw8Nch+FbW9urM5YYlN/dqTzHvM93UKYrLwvg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=pIzdQLzEu8sguOhtosnhc93kz1FfCq79mmN1SzRSPAc=;
+ b=KnNOP4t7g8VWwAXCyK5GHTPXofJMOgzyXJ+hqODRQVx6GLzStTJNKeuiIN54xwFtDxDZqHUx4e4Cj4QP6qEBgDnoE6WwPaiBt+xZoCfTdn1art+F8Zg8Y6oJ5QaXYrLNfgPMxrixn8FC62o8stBJplf2pwRxYTsEl8x4q1+fJnjwlDcSq8bDgFCH4BrF/fdiZhWUDMzCxPpkmxpcECBccc1VXYU/ZNnN5G4WWVcdqLc8D9f5viiC4XbIujf+dRxtDN7Jh0b9jCT4gGhzrUuQgWwB6YLSeOOvMhY0cos0aijIbWvVBB9RxSm77QhLHXV6Qe6rT+mCmJAqEBIOpjMkPA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=pIzdQLzEu8sguOhtosnhc93kz1FfCq79mmN1SzRSPAc=;
+ b=czyFJWaryQmYmCN3Bddl3dG49bejkuYpJDy62Y4cLKH53UNmsE1YU/ACPNrQYjPOmnbFRlndubmlZwy463x76hEk6qtkMj5hERSW/a2jkR0ld7WWMSgKl0SO7wlWVyotcNIIMrKlUpQq/m3fswF3HIQT/vog4d/W+JUEaMk5xwE=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by DU0PR04MB9346.eurprd04.prod.outlook.com (2603:10a6:10:356::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7719.28; Fri, 28 Jun
+ 2024 21:37:33 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%2]) with mapi id 15.20.7719.022; Fri, 28 Jun 2024
+ 21:37:32 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: Madalin Bucur <madalin.bucur@nxp.com>,
+	Sean Anderson <sean.anderson@seco.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	alsa-devel@alsa-project.org, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 4/8] dt-bindings: iio: dfsdm: move to backend framework
-Message-ID: <20240628213517.GA225013-robh@kernel.org>
-References: <20240625150717.1038212-1-olivier.moysan@foss.st.com>
- <20240625150717.1038212-5-olivier.moysan@foss.st.com>
+	netdev@vger.kernel.org (open list:FREESCALE QORIQ DPAA FMAN DRIVER),
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-kernel@vger.kernel.org (open list)
+Cc: imx@lists.linux.dev
+Subject: [PATCH 1/2] dt-bindings: net: fsl,fman: allow dma-coherence property
+Date: Fri, 28 Jun 2024 17:37:10 -0400
+Message-Id: <20240628213711.3114790-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: BYAPR08CA0063.namprd08.prod.outlook.com
+ (2603:10b6:a03:117::40) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240625150717.1038212-5-olivier.moysan@foss.st.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DU0PR04MB9346:EE_
+X-MS-Office365-Filtering-Correlation-Id: 74cf2c03-54a1-45e6-918b-08dc97ba848c
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+ BCL:0;ARA:13230040|7416014|376014|1800799024|52116014|366016|921020|38350700014;
+X-Microsoft-Antispam-Message-Info:
+ =?us-ascii?Q?ewZsXwjUXTrkIpBCp9uaKufDf3jewc4H1rehYKxvla8BN5x228Mgz2FI7n/R?=
+ =?us-ascii?Q?pE2Es2NnDN/pOCjvkArA9senkrO5xJD9MTB9XQ8A15Pqy4LEpsWW9Tx1wk3r?=
+ =?us-ascii?Q?n47AQqM06EtVOWyfuXpw9z90WZvpkuF3yr+cSLt/zJRCZfxIb5j7uYvGAYge?=
+ =?us-ascii?Q?fUKIxnBIJ0dZUQsEP+gnsODHveB15MfsPTs1mUmATlPhD8uUvxNU6q2oLGGJ?=
+ =?us-ascii?Q?vaCDyga6TPAnY6BRULkEJxkUL08Mibv7erceQT0I5QzSowAZVzetJmQNBR0T?=
+ =?us-ascii?Q?Ny7aOO3Y6GAnpSMcCNHMFHZzGG4wvQN3SDhEgtjhOFD4v9EQ9xa8D2CtLsBG?=
+ =?us-ascii?Q?Lkbt8tz3lTa7E/n68ZL0pvWDi1Kw9tnZdeIqQYuKbXnrY0Hz9rY5ckHijbyh?=
+ =?us-ascii?Q?wF9XMoFpQfS14Znjws8tUEYE3XVZtpRo9i8MEblKM24Set1/u/r+hU0wGon1?=
+ =?us-ascii?Q?JqiBlGJ8zEfBySpYQV9IlRqHim0CW6D8bLNj2STowNoDQ889QefnAdk7XHfw?=
+ =?us-ascii?Q?EnCVwPJqbCs4nXWBRfdvy4lqKihH5QpQWMPUgWGPfdNIYzVU11IlmJqgnCko?=
+ =?us-ascii?Q?/d6QI0ljgaApVmqDYP9hjNYf1MKDJ4SVZ3JpnG2UjXZPG6Dg0Rnh9C8PHnmm?=
+ =?us-ascii?Q?HMa3PCZff93cKgnuKKaXEz4fiMiDXNCeWsy2sdwm2g4POwiDVA3vhJHy+oh0?=
+ =?us-ascii?Q?31sr9vjwr6kDldn7bOkS09xd4gEBhgMIw5by/iAU0WtZZsNHt8373utGWMEU?=
+ =?us-ascii?Q?0dpjC0x0GOcaUmmC25rPKIE/2U2r5nDF1wwyM/jfhc09gNTIdXmKZuoGtp8M?=
+ =?us-ascii?Q?9VTiCA1Vyn/8TKFPxTRh4uoGaybzZuCqIBp6Co2n4WThxF6P/4Q0xkGxSHsR?=
+ =?us-ascii?Q?p8EDv5Joeas9StGXMkrynnLydbUjZBV0KgU+T+vvcDiHhgYJ2zFBxPycMszr?=
+ =?us-ascii?Q?Rw338pwidLCEMc0n4f1pKTPwlPHQLQ4Wny1YL9XKjhGpNBbIeh3Fs0q3ts2J?=
+ =?us-ascii?Q?sBHy1+Q7ZGN5VlskJsM6vTQI/nu2cqidIhzh9Ym+B7+7LBJaJT0J5uCmRJE0?=
+ =?us-ascii?Q?gGK/iF0cZNswUbfVD6ncm0wMtfAadeRaDd8Y217T6lLb5rCXqLoz7gupG+Ih?=
+ =?us-ascii?Q?bcS2tVGJAhL7e6Ccj5ITPZmA09MpaXfQryY1ipVcNOlVFVrrbU53Q4EjjVRA?=
+ =?us-ascii?Q?hAcU4uz5iAXSH4Gd1OLEX9R8hgys1yBciXpZGYPN16MxXydxYdDQV1Bpmtsc?=
+ =?us-ascii?Q?jyA8nW4u1B40Ij/GHp7ARyfnhxSi2OQouqiH/vqOgFn2gq08ncR/XBYIrvj5?=
+ =?us-ascii?Q?6UobAUpKRzjB3OV3R2ilrbkDvaNMeL85xb+LRYVwVZa9OIEa+6YetZizaKwd?=
+ =?us-ascii?Q?5Ci1WU6D+E+iXxwu8uFYnE1ubtk1?=
+X-Forefront-Antispam-Report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(52116014)(366016)(921020)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+ =?us-ascii?Q?ZgkIOYqmbzPZmLp2FuVQJmck5joDo2Q24bFJDcoXUdaoPw+cLa3LtshPF/NP?=
+ =?us-ascii?Q?SGgju8L1IAea0N59pshk+pNGHuqYDmx5YiqqTRlgGPeP3AJ6AEIkzmnnCgyf?=
+ =?us-ascii?Q?gGQthL6lpIplzz1SxzKt60vBpdRBeZ7Xg7A6Ru2CVOY4LCIecsyrI51/+xhv?=
+ =?us-ascii?Q?Ys60oTh/TZrQyx+jEsO2qg8EbeRGGOnYzXdp4d7s9fVqw+dLvfiaduTpRp77?=
+ =?us-ascii?Q?PJAAIJQgkdsCNq4xixDrslFwMRmfRCA7jvfIzL3rfCbAUxxDvgauICnzo3MD?=
+ =?us-ascii?Q?TKLxY0jkB+/TkGmgQ497Mw31qatJnhcfCdWVFQq26cpeRGrrk4EhqTTwhaRN?=
+ =?us-ascii?Q?w0Gcwih/DtxAJ+MKCPCuNoWwXPw9xE+kSDTnjKvE8l//7o9lV0KDYcj5daFE?=
+ =?us-ascii?Q?w4CMf2Q/PBRY5Sy6cSDkMzx6N1MTgZD88Sejl6/BsZBuv9x2RGAxnBAQwx0A?=
+ =?us-ascii?Q?V+7LLgqtlLX4wKd3gvbuMZ/segDot8zKTURT9UgBiROpIWqF92HaODqE+PYt?=
+ =?us-ascii?Q?5ltug3dFaCS+dAR1ZGEQDHwokCT4+mKzfp4vQRZ9oE30yWkILM4wFVz69lGQ?=
+ =?us-ascii?Q?GneXz0eLYPj5nfnxWy6KuwbxTCARglBEQ8jZTxQypn8DwbrP1zh0lfhEMmUB?=
+ =?us-ascii?Q?Ziba2bL885StvG2XWbCYmj/eYNjkrZSPKIQ9AED66uhCJjSiT38z6wIymcDS?=
+ =?us-ascii?Q?yLL/1+1jk6qiv7pO6I8LiL+GScCmPKE9EEY278ITv+aCouJxSTO0EZQz84+b?=
+ =?us-ascii?Q?jvqPT2Z6GU+j2t8sHYk5wMyfJjhuacaEeObgWLnOS04i6N/Tm6xmFdAgd19V?=
+ =?us-ascii?Q?2VloDeuvpZ87qOyOnS0ALEK4zy/rD+Nq3A/vvnGeMxfYV8EHyAy0Typg8wZJ?=
+ =?us-ascii?Q?Dw2rp6Vtn2RFdZ4Ldc46sYzKbQ692WZ1X9n1OKdTw5MRyOSq7LwxBHW4Rs0g?=
+ =?us-ascii?Q?VbDOSJGOz9Aw3AvZ/OKkGSN+Z1eBCuUhE0as+JC23xeknjUBTtBjQIVnARoK?=
+ =?us-ascii?Q?Tr0N3f7x2mgJ/K3Z3il0S8HfVhk1m0tsv8GFyjPCeSIIZ58bM99VbXjfaqEz?=
+ =?us-ascii?Q?qBqqf74p6ixMrVD9Sh+J1y59kRcJWBqb9McO8gWsZJa/5wUkdVkG+pQ+HjWG?=
+ =?us-ascii?Q?+y45aBIJr8e01HDEesFK0MNnQGOiiu6ak/qSEJ6eS8EQf1o4BMFir2InEKo2?=
+ =?us-ascii?Q?hfU7ZjzmxL+HXb0a0ZBKBsm9YlIxDzLVSZz6TL10HZISkIisLq+vTyorWSob?=
+ =?us-ascii?Q?5F98hgETxk3W8HMvvmrGCimpnONLEg9cve5+anbPwDmiYdOFcHW9HARHw7cj?=
+ =?us-ascii?Q?zp+yJuc8t/X4/uDMDNE8HuNfwztt71k9JYb3y//sXFa9ZFsRS1xQV2BW/yVP?=
+ =?us-ascii?Q?8KG7QZqqc1wOL4f9MFG38zTFpzKe7oTza6qb8ObuUxYBpR4vy5xEeh3jEQSa?=
+ =?us-ascii?Q?lyuTIv0I3nSQ8GDaLrpjXdY2tRgl2HQ50s1oLsGjdDs+7jDCw9N0/yOG2DNP?=
+ =?us-ascii?Q?odanTFanPYejtxo+p/WgB/TiJTXgY+GUCOyAlLy6r/y5OGT+K7YPoyKe5DGW?=
+ =?us-ascii?Q?/WI6nhePP89cGvxRvCBAWEByiQmfq8XwHVgIWfg8?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 74cf2c03-54a1-45e6-918b-08dc97ba848c
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jun 2024 21:37:32.6453
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: JHCgIgf6U81A0cRW9BnYck3MA9V8QCgFWf1lNaO6vHEFyAisDKYU5dxXYtyBjUUO8TmBXqoi8k1nNWsEmIF50Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR04MB9346
 
-On Tue, Jun 25, 2024 at 05:07:12PM +0200, Olivier Moysan wrote:
-> Change the DFSDM binding to use the new IIO backend framework,
-> along with the adoption of IIO generic channels.
-> This binding change allows to add scaling support to the DFSDM.
-> 
-> Keep the legacy binding as deprecated for backward compatibility.
-> 
-> The io-backends property is supported only in generic IIO channel
-> binding.
-> 
-> - Channel description with the generic binding (Audio and Analog):
-> 
->   Properties superseded by generic properties:
->     st,adc-channels: becomes "reg" property in channel node
->     st,adc-channel-names: becomes "label" property in channel node
->   Properties moved to channel child node:
->     st,adc-channel-types: becomes st,adc-channel-type
->     st,adc-channel-clk-src, st,adc-alt-channel
-> 
-> - Analog binding:
-> 
->   DFSDM filter channel is configured as an IIO backend consumer.
->   Add io-backends property in channel child nodes.
-> 
->   DFSDM is no more configured as a channel consumer from SD modulator.
->   Use of io-channels in DFSDM node is deprecated.
-> 
-> - Audio binding:
-> 
->   DFSDM audio DAI is configured as a channel consumer from DFSDM filter.
->   No change compare to legacy.
-> 
-> Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
-> ---
->  .../bindings/iio/adc/st,stm32-dfsdm-adc.yaml  | 157 +++++++++++++++++-
->  1 file changed, 151 insertions(+), 6 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/st,stm32-dfsdm-adc.yaml b/Documentation/devicetree/bindings/iio/adc/st,stm32-dfsdm-adc.yaml
-> index c1b1324fa132..1802120b16b0 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/st,stm32-dfsdm-adc.yaml
-> +++ b/Documentation/devicetree/bindings/iio/adc/st,stm32-dfsdm-adc.yaml
-> @@ -102,9 +102,11 @@ patternProperties:
->          items:
->            minimum: 0
->            maximum: 7
-> +        deprecated: true
->  
->        st,adc-channel-names:
->          description: List of single-ended channel names.
-> +        deprecated: true
->  
->        st,filter-order:
->          description: |
-> @@ -118,6 +120,12 @@ patternProperties:
->        "#io-channel-cells":
->          const: 1
->  
-> +      '#address-cells':
-> +        const: 1
-> +
-> +      '#size-cells':
-> +        const: 0
-> +
->        st,adc-channel-types:
->          description: |
->            Single-ended channel input type.
-> @@ -128,6 +136,7 @@ patternProperties:
->          items:
->            enum: [ SPI_R, SPI_F, MANCH_R, MANCH_F ]
->          $ref: /schemas/types.yaml#/definitions/non-unique-string-array
-> +        deprecated: true
->  
->        st,adc-channel-clk-src:
->          description: |
-> @@ -139,6 +148,7 @@ patternProperties:
->          items:
->            enum: [ CLKIN, CLKOUT, CLKOUT_F, CLKOUT_R ]
->          $ref: /schemas/types.yaml#/definitions/non-unique-string-array
-> +        deprecated: true
->  
->        st,adc-alt-channel:
->          description:
-> @@ -147,6 +157,7 @@ patternProperties:
->            If not set, channel n is connected to SPI input n.
->            If set, channel n is connected to SPI input n + 1.
->          type: boolean
-> +        deprecated: true
->  
->        st,filter0-sync:
->          description:
-> @@ -165,11 +176,64 @@ patternProperties:
->        - compatible
->        - reg
->        - interrupts
-> -      - st,adc-channels
-> -      - st,adc-channel-names
->        - st,filter-order
->        - "#io-channel-cells"
->  
-> +    patternProperties:
-> +      "^channel@([0-9]|1[0-9])$":
+Add dma-coherence property to fix below warning.
+arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var1.dtb: dma-controller@8380000: '#dma-cells' is a required property
+        from schema $id: http://devicetree.org/schemas/dma/fsl-qdma.yaml#
 
-Unit-addresses are normally hex. And according to reg below, the max 
-value is 8.
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
+---
+ Documentation/devicetree/bindings/net/fsl,fman.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-> +        type: object
-> +        $ref: adc.yaml
-> +        description: Represents the external channels which are connected to the DFSDM.
-> +
-> +        properties:
-> +          reg:
-> +            items:
-> +              minimum: 0
-> +              maximum: 8
-
-More than 1 reg entry valid? Either way, you need maxItems. Or you can 
-just drop 'items'
-
-> +
-> +          label:
-> +            description:
-> +              Unique name to identify which channel this is.
-> +
-> +          st,adc-channel-type:
-> +            description: |
-> +              Single-ended channel input type.
-> +              - "SPI_R": SPI with data on rising edge (default)
-> +              - "SPI_F": SPI with data on falling edge
-> +              - "MANCH_R": manchester codec, rising edge = logic 0, falling edge = logic 1
-> +              - "MANCH_F": manchester codec, rising edge = logic 1, falling edge = logic 0
-> +            items:
-
-'items' is for arrays, but...
-
-> +              enum: [ SPI_R, SPI_F, MANCH_R, MANCH_F ]
-> +            $ref: /schemas/types.yaml#/definitions/string
-
-not an array.
-
-> +
-> +          st,adc-channel-clk-src:
-> +            description: |
-> +              Conversion clock source.
-> +              - "CLKIN": external SPI clock (CLKIN x)
-> +              - "CLKOUT": internal SPI clock (CLKOUT) (default)
-> +              - "CLKOUT_F": internal SPI clock divided by 2 (falling edge).
-> +              - "CLKOUT_R": internal SPI clock divided by 2 (rising edge).
-> +            items:
-
-ditto
-
-> +              enum: [ CLKIN, CLKOUT, CLKOUT_F, CLKOUT_R ]
-> +            $ref: /schemas/types.yaml#/definitions/string
-> +
-> +          st,adc-alt-channel:
-> +            description:
-> +              Must be defined if two sigma delta modulators are
-> +              connected on same SPI input.
-> +              If not set, channel n is connected to SPI input n.
-> +              If set, channel n is connected to SPI input n + 1.
-> +            type: boolean
-> +
-> +          io-backends:
-> +            description:
-> +              Used to pipe external sigma delta modulator or internal ADC backend to DFSDM channel.
-
-How many entries (maxItems)?
-
-> +
-> +        required:
-> +          - reg
-> +
-> +        additionalProperties: false
-
-Put this next to the $ref for the node. And switch to 
-unevaluatedProperties and drop 'label' from here.
-
-> +
->      allOf:
->        - if:
->            properties:
-> @@ -199,9 +263,19 @@ patternProperties:
->                description:
->                  From common IIO binding. Used to pipe external sigma delta
->                  modulator or internal ADC output to DFSDM channel.
-> +              deprecated: true
->  
-> -          required:
-> -            - io-channels
-> +          if:
-> +            required:
-> +              - st,adc-channels
-> +          then:
-> +            required:
-> +              - io-channels
-> +
-> +          patternProperties:
-> +            "^channel@([0-9]|1[0-9])$":
-> +              required:
-> +                - io-backends
-
-Don't think this is needed here. If channel node is present, the 
-io-backends should always be required, right? Then this can go under the 
-node schema.
-
-Rob
+diff --git a/Documentation/devicetree/bindings/net/fsl,fman.yaml b/Documentation/devicetree/bindings/net/fsl,fman.yaml
+index 7908f67413dea..f0261861f3cb2 100644
+--- a/Documentation/devicetree/bindings/net/fsl,fman.yaml
++++ b/Documentation/devicetree/bindings/net/fsl,fman.yaml
+@@ -78,6 +78,8 @@ properties:
+       - description: The first element is associated with the event interrupts.
+       - description: the second element is associated with the error interrupts.
+ 
++  dma-coherent: true
++
+   fsl,qman-channel-range:
+     $ref: /schemas/types.yaml#/definitions/uint32-array
+     description:
+-- 
+2.34.1
 
 
