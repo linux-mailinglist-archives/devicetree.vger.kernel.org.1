@@ -1,101 +1,116 @@
-Return-Path: <devicetree+bounces-81307-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81308-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86A8791BEBB
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 14:38:53 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3942D91BECB
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 14:42:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 42B982841D3
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 12:38:52 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 49182B21719
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 12:42:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35DF6158855;
-	Fri, 28 Jun 2024 12:38:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C935515884F;
+	Fri, 28 Jun 2024 12:42:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iV9LUABN"
+	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="VrmM3xJo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06E421586D3;
-	Fri, 28 Jun 2024 12:38:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18A6D13E029;
+	Fri, 28 Jun 2024 12:42:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.137.202.133
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719578331; cv=none; b=LhXvvwvtPFG4mAZDXyHZIFqM+YDMsasheHQ3VLqSu0IEqZphf7KLsIdevXspyr3WFPrlqgm+B+GGIOEH1a1YlH+ngThA36ag0qm+eOzOtClbDU7uO6/HxgbPgo1HeXq09KfgapDVWPe4z35OecvCa9CL0IA/6j6EK8YvXcdL5hk=
+	t=1719578532; cv=none; b=uRN61714HHt0I7dmuB6M493y8Xha0bl2UaiMZSu623xg6rZxjX3/GZOP9qeGERUYOmlLK6wPRZlPA+2ibUUb7Y4NfkdofxCxHZygI0XDz7zy9+n+0EjyJy/lhTwWSodtMbyAtUZi+hXp1nuE2rWjwih6+pulLw9ey1jVYFI4HJA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719578331; c=relaxed/simple;
-	bh=v6Tmwm2SOnpAxDFJbKcNvIWNVRmLAY0tK6sWL8pyKhI=;
+	s=arc-20240116; t=1719578532; c=relaxed/simple;
+	bh=C5ObWTNXLfzCZasTtKx8inESnd8H/PFX95IOQz3bASI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZLlILYj+KfW5K9bQwVPhVPBjC7vcv+NSUOEAr9K6D+y9oRI3XETFIw/xqaxPLbBphlY1GMqURsjKOVukMXX/8JOETaGRZNUQYH0LqpfbpGamR4R1UHbVNHOh9v+V8MVokjJcak7mJ5ro4HrT5Pb3IxQVVHSTaikrB/gfirwdBFM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iV9LUABN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 74767C116B1;
-	Fri, 28 Jun 2024 12:38:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719578330;
-	bh=v6Tmwm2SOnpAxDFJbKcNvIWNVRmLAY0tK6sWL8pyKhI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=iV9LUABNUwxUeCSVH2+KO0en83O3mEy1tn0QNmBWn27DVjzBkNXW1DpPFGdKmYzqf
-	 aYM4W4FAWV39OgEks8UlCC1cbkoYDQ4JdRafnQKLnfDKTPwe9IUi6fPc+T5xonWG9e
-	 ViPTle9+gqvwtdoLkiYdLUZh1ydWPErX0Crq+XD/1uI6ALC9D/p1MPPJOfXurMLGC7
-	 C5nUxoPxer+/h2WvMF7glkcUymgm24tFW4JYDKPnjz0rGlqwX4v5VPcHi52Z7w+1Xc
-	 ke2w/mWeQAXME9068ycq8Z3BFRHe1PW5RGtGkjgOkKYVgPzc0a6cKJ0nXaqvbMcfsu
-	 iFRy0Gc1gy94A==
-Date: Fri, 28 Jun 2024 13:38:45 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Vladimir Oltean <olteanv@gmail.com>
-Cc: Frank Li <Frank.Li@nxp.com>, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=D18/qMoFraA5BvebzRl9W4oYnTjid+QNDBN4I7wPPHsVylEJ8zqttAcq4BX5KOxk78pmIBTc2xvf7/R5mJffMDagpQFKd0wKDy8qdXMoYQ/qz0LxvYpRgMWCqPsReY49wo3MTvSykORBBAtAgRdYDtVcTbtjyyIomIrFxIWnrg8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=bombadil.srs.infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=VrmM3xJo; arc=none smtp.client-ip=198.137.202.133
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bombadil.srs.infradead.org
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=bombadil.20210309; h=In-Reply-To:Content-Type:MIME-Version
+	:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description;
+	bh=4oAc/X7cngP3Cawle+vTIhf1va3SXMhGGdRju0o8W1k=; b=VrmM3xJo5IOH3EcYcRTQBgkmvc
+	uA7pP0AMsTqyT3ni2ImBU38XpclLVulClJ25GKrYNJlEaTuZvSvuZfXv22c7D0I+wFz0nSGK419Ya
+	2XEJ4M+Lt6fzLv1vxMCXtULXcDdQjX7bRW4Kbr/4pqq0uxh3J+9PqlJnzvygyXYQHga1SOf4FY2t6
+	YbKIdvXZcQnZVzEbIchBYkLSWM7sYc8RbdA0U9i4bG9IkMSuH0GVbVQtby9Hy1/8HUw+gm2ZUMjHS
+	W+BQiGmWxShocMCqlXnpOg1wPPAKvUeU6ceHaWrT9sm/bd/dZCQZ4a94BDQs+l2eJJT6ZbAHR+uhv
+	05fDjz2w==;
+Received: from hch by bombadil.infradead.org with local (Exim 4.97.1 #2 (Red Hat Linux))
+	id 1sNAvG-0000000Dijs-16qK;
+	Fri, 28 Jun 2024 12:41:50 +0000
+Date: Fri, 28 Jun 2024 05:41:50 -0700
+From: Christoph Hellwig <hch@infradead.org>
+To: Daniel Golle <daniel@makrotopia.org>
+Cc: Christoph Hellwig <hch@infradead.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	"open list:FREESCALE DSPI DRIVER" <linux-spi@vger.kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
-Subject: Re: [PATCH 1/1] spi: dt-bindings: fsl-dspi: add dmas and dma-names
- properties
-Message-ID: <195094ea-a80e-41f1-acaf-5fc54189f80b@sirena.org.uk>
-References: <20240627203308.476437-1-Frank.Li@nxp.com>
- <20240627215338.qrry6zpkusw5nazw@skbuf>
+	Ulf Hansson <ulf.hansson@linaro.org>, Jens Axboe <axboe@kernel.dk>,
+	Hauke Mehrtens <hauke@hauke-m.de>, Felix Fietkau <nbd@nbd.name>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Dave Chinner <dchinner@redhat.com>, Jan Kara <jack@suse.cz>,
+	Christian Brauner <brauner@kernel.org>,
+	Thomas =?iso-8859-1?Q?Wei=DFschuh?= <linux@weissschuh.net>,
+	Al Viro <viro@zeniv.linux.org.uk>,
+	Li Lingfeng <lilingfeng3@huawei.com>,
+	Christian Heusel <christian@heusel.eu>,
+	Min Li <min15.li@samsung.com>, Avri Altman <avri.altman@wdc.com>,
+	Adrian Hunter <adrian.hunter@intel.com>,
+	Hannes Reinecke <hare@suse.de>,
+	Mikko Rapeli <mikko.rapeli@linaro.org>, Yeqi Fu <asuk4.q@gmail.com>,
+	Victor Shih <victor.shih@genesyslogic.com.tw>,
+	Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+	Li Zhijian <lizhijian@fujitsu.com>,
+	"Ricardo B. Marliere" <ricardo@marliere.net>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-mmc@vger.kernel.org, linux-block@vger.kernel.org
+Subject: Re: [PATCH v4 2/4] block: partitions: populate fwnode
+Message-ID: <Zn6vjmNf4QjBkqh6@infradead.org>
+References: <cover.1719520771.git.daniel@makrotopia.org>
+ <6acc459a392d562abc58f7e55c6f04dba8073257.1719520771.git.daniel@makrotopia.org>
+ <Zn4_rMJVm6cpIEZV@infradead.org>
+ <Zn6pje4DcAYEk6Kw@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="kaMkPeSm3pq+liID"
-Content-Disposition: inline
-In-Reply-To: <20240627215338.qrry6zpkusw5nazw@skbuf>
-X-Cookie: divorce, n:
-
-
---kaMkPeSm3pq+liID
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <Zn6pje4DcAYEk6Kw@makrotopia.org>
+X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by bombadil.infradead.org. See http://www.infradead.org/rpr.html
 
-On Fri, Jun 28, 2024 at 12:53:38AM +0300, Vladimir Oltean wrote:
+On Fri, Jun 28, 2024 at 01:16:13PM +0100, Daniel Golle wrote:
+> > Overly long lines, which is really annyoing for block comments.
+> 
+> Should I use 80 chars as limit everywhere?
 
-> and FWIW, I noticed this as well, but didn't want to put yet another
-> roadblock in the conversion of a binding which was way overdue.
-> I was planning to send a patch as well, once the binding was merged.
+In my opinion that makes things easier.  The coding style allows to
+exceed it for individual lines where it improves readability, which
+is a bit of an odd case.
 
-If I've seen a report that a new binding introduces errors then I'm very
-unlikely to apply it, I'd guess that's true for other maintainers too -
-it's probably best to fix reported errors promptly by default.
+> > Can we please not use the crazy part_meta stuff for anything new?
+> > We should never have merge it, and right now it is at least isolated
+> > to the boot time root dev_t partsing, and I'd really prefer to keep it
+> > in that corner.
+> > 
+> 
+> At least up to my understanding there isn't any other to know a
+> partitions UUID or volume name.
+> 
+> If there is another way to access this information I'd happily make
+> use of it, but I couldn't find any.
 
---kaMkPeSm3pq+liID
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmZ+rtUACgkQJNaLcl1U
-h9AJTQf+PEHTn93k4qLukGylGhh845NbqrD670qzR5ZpFpnl8m+8qo+eWuybYaP0
-UqbUOuZWz4AMYpNzqyXSRZjV4m3FHB5cC4o2jG4foJcdbGhuvEG0JIw1JYPEDUei
-73a+GhuspCYVFFBMhpMxUk5nispBSapETUPcZb/1xmiseM1TV6l4VEnaSFQ9Twdu
-k6dhWgyg2yIYovFaXjxYpn5eLfR102i3Ua2o1Wp02qgV23jYZ3pGHEUn2CkAdGsP
-RC/FI0AzSyPphTxvVCRr6yDpK7nZ96cxeLIoj9333nYt7fFP5FSzaqpVQ87qr1LF
-7EMM5uHx9jM00aHrVEmX5oEDw2TBRw==
-=Uh4I
------END PGP SIGNATURE-----
-
---kaMkPeSm3pq+liID--
+That is true, but except for the early dev_t parsing we actually never
+use these partition uuids in the kernel at all.  Also in all the
+normal file system references either use the file system uuid,
+or the device provided one for devices that support them.  Most of
+that is handled entirely in userspace, though - the kernel largely
+operates just on the dev_t.
 
