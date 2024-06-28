@@ -1,141 +1,129 @@
-Return-Path: <devicetree+bounces-81250-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81259-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B9CD91BB54
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 11:22:26 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F4F891BBAE
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 11:40:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B5A3C1F22B82
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 09:22:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8DEE7B23F65
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 09:40:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB24F14F133;
-	Fri, 28 Jun 2024 09:22:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CE28152E00;
+	Fri, 28 Jun 2024 09:40:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com [209.85.128.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15CBB21105;
-	Fri, 28 Jun 2024 09:22:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.173
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B4BC15278D;
+	Fri, 28 Jun 2024 09:40:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719566542; cv=none; b=KSCNkEpeiq82p0uRNJvB+mJHVTGXP2MzvIZ5uKBphKNpQSGS9C+7yrdGPvj2gO+D0AHvnbYBkS5PpOQO8mlD6QvC3yE4ZOQ52fJmKRlaMXFG+IueyFQU2WAwRf/CQBIHEJzLJr4dTXRAtWOw3StRo2h419ICM47BVN3MtDivR7g=
+	t=1719567610; cv=none; b=nFuD/hIekIj7WCUETrJv0FqfQLLD/HVLLsm7QR30/nOYZctB6cEbrDGP91gUc5ak5eFx4U9ekOepvZw34j1w/eIfvzEU9QRBf/7pOkDWpNhjBY3N26wkFcmd2RsqtZzeoa34/dsysJBsf3AWa9TbS0jrIhzqHb4l8KeT8FeWn8s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719566542; c=relaxed/simple;
-	bh=s2v0SCtuLdBGXTNA/pzfiqK5TXKCGtl+5CoWL2zIOrM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=eN+xzs3lu1kIkacXjhQIxPQbLol6vpYITnYTLFNZFgP8wl2EZ2LDjlWIGXY+2EnE6ynUUtJxEu+NMFC9YOhE9IvAjbHFN08IoKfZd0ldlCap5UdzDVpsAUfaHACDslwKZuzVWnBNXcZG4WGcMz5jYrcidyasD2Bl9Wwmu9HiVbA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-6327e303739so3517797b3.2;
-        Fri, 28 Jun 2024 02:22:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719566537; x=1720171337;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=lPkiiuvvTvf4U3Ro8IqPKqYL9PdIgEp2Zf9jQK+VOus=;
-        b=oMPO7I0L4R2LYjIdQ4c6u7uRtIxsaDSbtyiwhlqlOXaTukyIi4HXkXlLTEEX8NtN64
-         BqOv5l1aep5FsWmB9kejIAFb4eJdLxjAY9AaCENEjoRJ5MoZCcmJXZ5EzJ9O+pof8Zoz
-         SqWcKIFZh47e+CFHSOTcoNLJgZIWnpohM6Q89sVX0XQGExJUbD8OxbWmA6DBtQdn9q4g
-         OGgxvQS3dAbEiQerXF26W5A9Hov1ikGspGG2j87X95n6OR44MmOOE4Vo2BVtWr2EatBs
-         TZuKq10xs3BPACE2Up2G4UZaqVeV6vA+e2WfRFbrUnY9DfwcRnF9h3/sU7/hdXX0Nh3m
-         ldQA==
-X-Forwarded-Encrypted: i=1; AJvYcCWI5l5WrCna+LLwqqcEEDE5omLEa/QAz8ip/niAqT9BElXA13rVeh+SNoyn9H0Z8dW5dRDTXVguvzPoeBpN7USxN9IZhwsFz1g6hMNn0sLLF7+JspYAcnkdnnxzwDyePhgzyi1J7uMmnVylhxba2NDz3Et82Z5FEOK9M0cOR25tgwhozMVrLFmgOCZUVr8mo184JxqUJAXOkC1xUzhoxlypUWeDvZiQPD7I7T/Qlua955Pf2zSHBVBmql3k3G7m99gk
-X-Gm-Message-State: AOJu0Yy7wVItFMjFayVGbBX7KXO8V4d3WseyuavraBCmGQsFwBGY3MvY
-	eZA7PSYGvsASepsyC9CZnNc7tjsKLY2J0lHBxjrHIpgLRMXDc+QhH0sijoNn
-X-Google-Smtp-Source: AGHT+IF2U2yL59gFoBHuaQ1ZeXCm8HFBJrGLAq524F2DrTFgDuSmurln8J3OH7v2V5dlY6M32jQHNg==
-X-Received: by 2002:a05:690c:360e:b0:64b:69f0:f900 with SMTP id 00721157ae682-64b69f10411mr2105477b3.23.1719566537524;
-        Fri, 28 Jun 2024 02:22:17 -0700 (PDT)
-Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com. [209.85.128.176])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-64a9a803a15sm2695677b3.68.2024.06.28.02.22.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 28 Jun 2024 02:22:16 -0700 (PDT)
-Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-64b0d45a7aaso3209207b3.0;
-        Fri, 28 Jun 2024 02:22:16 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUL63FHWF6lOdRcp1BfDlfvNIi9cp+9pS8PiPfA0oh3J48DMFWP+gmmw/2+Yll302Lmr6niy/6qJBgGip53budHEU60ekm+uXj7cq8HY0wcUFmCWcCh6YHTVwKh9igcertpXBYRhj9RR4kVAleBDeQkk0SxVLDBf14oz7B4lka8bGnC6Fby/URj6UmseXjkpyG467OFDKoTXQktBKEFnYiH+DtMXkeVtEF/qhHOoScO72jO09eY96cfcd00HO0RsP7t
-X-Received: by 2002:a81:a20a:0:b0:61b:33c8:7bce with SMTP id
- 00721157ae682-643aab82cc5mr155916427b3.31.1719566536472; Fri, 28 Jun 2024
- 02:22:16 -0700 (PDT)
+	s=arc-20240116; t=1719567610; c=relaxed/simple;
+	bh=vwWYuw8MReSjhj/uWrhsSw093dCcYZAc3JIqgm9h7vs=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Ja8EpLB/lGeejANlqcCHlNmnR7MCCE2qmNhWYg5zqCVd8xSlhlvIAF51SwG2r3f7HNs44V27+0Rrb+OuN/2+wGsjfqpw7CGhCd+xV6NnP/mWeMnAxRf5oce65w9FfXvTi8vdS7/PIMiTvL5N4JjBtXjorSRXbl+v2wKpVyM4l2I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D8EEB106F;
+	Fri, 28 Jun 2024 02:30:38 -0700 (PDT)
+Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id F0FEF3F6A8;
+	Fri, 28 Jun 2024 02:30:11 -0700 (PDT)
+Date: Fri, 28 Jun 2024 10:30:07 +0100
+From: Andre Przywara <andre.przywara@arm.com>
+To: Chen-Yu Tsai <wens@csie.org>
+Cc: Corentin Labbe <clabbe.montjoie@gmail.com>, Herbert Xu
+ <herbert@gondor.apana.org.au>, "David S . Miller" <davem@davemloft.net>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland
+ <samuel@sholland.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Ryan Walklin
+ <ryan@testtoast.com>, Philippe Simons <simons.philippe@gmail.com>,
+ linux-crypto@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 4/4] arm64: dts: allwinner: h616: add crypto engine
+ node
+Message-ID: <20240628103007.6ea3685c@donnerap.manchester.arm.com>
+In-Reply-To: <CAGb2v67qo7qgf2uzBAUf9-C9NHrHG47mLc579NRkTO7qLDtV7Q@mail.gmail.com>
+References: <20240624232110.9817-1-andre.przywara@arm.com>
+	<20240624232110.9817-5-andre.przywara@arm.com>
+	<CAGb2v67qo7qgf2uzBAUf9-C9NHrHG47mLc579NRkTO7qLDtV7Q@mail.gmail.com>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240625121358.590547-1-claudiu.beznea.uj@bp.renesas.com> <20240625121358.590547-10-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20240625121358.590547-10-claudiu.beznea.uj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 28 Jun 2024 11:22:05 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdX4hWou9OtdE8XgU7-U0ghJ6vk2kVqgT90U0ZjsxzR5DA@mail.gmail.com>
-Message-ID: <CAMuHMdX4hWou9OtdE8XgU7-U0ghJ6vk2kVqgT90U0ZjsxzR5DA@mail.gmail.com>
-Subject: Re: [PATCH v2 09/12] i2c: riic: Add support for fast mode plus
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: chris.brandt@renesas.com, andi.shyti@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, magnus.damm@gmail.com, 
-	mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de, 
-	wsa+renesas@sang-engineering.com, linux-renesas-soc@vger.kernel.org, 
-	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi Claudiu,
+On Fri, 28 Jun 2024 01:54:00 +0800
+Chen-Yu Tsai <wens@csie.org> wrote:
 
-On Tue, Jun 25, 2024 at 2:14=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.dev> =
-wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->
-> Fast mode plus is available on most of the IP variants that RIIC driver
-> is working with. The exception is (according to HW manuals of the SoCs
-> where this IP is available) the Renesas RZ/A1H. For this, patch
-> introduces the struct riic_of_data::fast_mode_plus.
->
-> Fast mode plus was tested on RZ/G3S, RZ/G2{L,UL,LC}, RZ/Five by
-> instantiating the RIIC frequency to 1MHz and issuing i2c reads on the
-> fast mode plus capable devices (and the i2c clock frequency was checked o=
-n
-> RZ/G3S).
->
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Hi Chen-Yu,
 
-Thanks for your patch!
+> On Tue, Jun 25, 2024 at 7:23=E2=80=AFAM Andre Przywara <andre.przywara@ar=
+m.com> wrote:
+> >
+> > The Allwinner H616 SoC contains a crypto engine very similar to the H6
+> > version, but with all base addresses in the DMA descriptors shifted by
+> > two bits. This requires a new compatible string.
+> > Also the H616 CE relies on the internal osciallator for the TRNG
+> > operation, so we need to reference this clock.
+> >
+> > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> > ---
+> >  arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi | 10 ++++++++++
+> >  1 file changed, 10 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi b/arch/arm6=
+4/boot/dts/allwinner/sun50i-h616.dtsi
+> > index 921d5f61d8d6a..187663d45ed72 100644
+> > --- a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
+> > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
+> > @@ -113,6 +113,16 @@ soc {
+> >                 #size-cells =3D <1>;
+> >                 ranges =3D <0x0 0x0 0x0 0x40000000>;
+> >
+> > +               crypto: crypto@1904000 {
+> > +                       compatible =3D "allwinner,sun50i-h616-crypto";
+> > +                       reg =3D <0x01904000 0x1000>; =20
+>=20
+> The address range only goes up to 0x019047ff. The other half is the
+> secure crypto engine. The other bits look correct.
 
-> --- a/drivers/i2c/busses/i2c-riic.c
-> +++ b/drivers/i2c/busses/i2c-riic.c
-> @@ -407,6 +413,9 @@ static int riic_init_hw(struct riic_dev *riic)
->         riic_writeb(riic, 0, RIIC_ICSER);
->         riic_writeb(riic, ICMR3_ACKWP | ICMR3_RDRFS, RIIC_ICMR3);
->
-> +       if (info->fast_mode_plus && t->bus_freq_hz =3D=3D I2C_MAX_FAST_MO=
-DE_PLUS_FREQ)
-> +               riic_clear_set_bit(riic, 0, ICFER_FMPE, RIIC_ICFER);
+You are right, the manual restricts CE_NS to 0x019047ff, and we certainly
+use much less registers than that anyway. So good catch!
 
-Unless FM+ is specified, RIIC_ICFER is never written to.
-Probably the register should always be initialized, also to make sure
-the FMPE bit is cleared when it was set by the boot loader, but FM+
-is not to be used.
+> I can fix this up when applying, assuming the driver parts get merged
+> in the next few days.
 
+Many thanks, I'd be very grateful if you could fix this up!
 
-> +
->         riic_clear_set_bit(riic, ICCR1_IICRST, 0, RIIC_ICCR1);
->
->         pm_runtime_mark_last_busy(dev);
+Cheers,
+Andre
 
-Gr{oetje,eeting}s,
+>=20
+> Chenyu
+>=20
+> > +                       interrupts =3D <GIC_SPI 91 IRQ_TYPE_LEVEL_HIGH>;
+> > +                       clocks =3D <&ccu CLK_BUS_CE>, <&ccu CLK_CE>,
+> > +                                <&ccu CLK_MBUS_CE>, <&rtc CLK_IOSC>;
+> > +                       clock-names =3D "bus", "mod", "ram", "trng";
+> > +                       resets =3D <&ccu RST_BUS_CE>;
+> > +               };
+> > +
+> >                 syscon: syscon@3000000 {
+> >                         compatible =3D "allwinner,sun50i-h616-system-co=
+ntrol";
+> >                         reg =3D <0x03000000 0x1000>;
+> > --
+> > 2.39.4
+> > =20
 
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
