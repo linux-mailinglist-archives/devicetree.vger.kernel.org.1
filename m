@@ -1,136 +1,223 @@
-Return-Path: <devicetree+bounces-81319-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81320-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E5F191BF31
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 15:07:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4ADC91BF37
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 15:08:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 234541F21A33
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 13:07:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 400971F24161
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 13:08:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D53B71AC228;
-	Fri, 28 Jun 2024 13:07:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D20E21B3F35;
+	Fri, 28 Jun 2024 13:08:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="f6nRYzvj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BQhvLOzd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 186EC194C67;
-	Fri, 28 Jun 2024 13:07:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A60A5194C67;
+	Fri, 28 Jun 2024 13:08:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719580027; cv=none; b=AIDNVTvubl7ZhGNDi3IB4sh+gSkGJoTseNik60lv3XTOUo7wzQm0hv1TZ7diuzzAyRLRc3M99KyzSwIrNelezyDLw42hjVJRMbVp37+Y7Pnq40yL+MmauUYccYy8ajcsM6XLjp/W/1T6s6SRnwz1n0/k0alCw/AJ7dgV46Ja+qc=
+	t=1719580129; cv=none; b=VlTFLVhnxUKFmGyPXaH9aw/dOsVQHz/HAPvaWAhQLU0tIJiY77g2eRWx9wwWDgJJGR1LJRoAPEVfB8CI9C7lNmRhPtq9ngU2WlMoahR7Xlcr7MHMnei+qm4yu+E1GVzpx6YvEpClEQjIi2K3ZTV/wbHltBMjPY2PeFNQMV8BQcQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719580027; c=relaxed/simple;
-	bh=qWEehPSVEYKhPzyWJRgf6X298EwczVbvcUE/LXyT/GI=;
+	s=arc-20240116; t=1719580129; c=relaxed/simple;
+	bh=O/aBFslEXfrhEnPLAQUllJnOitVfX9x7Hsz9OFt1hX0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PTBmMWwmziGj2VnB7fU1Xid8RAlWzFlyQeYYAK3FnnD9KkAKayVUJLdygFh7sHy7aCK8gQlO6q1r/ThQdVnVodEK31zkiU/ftPXK85cxpBysMoLfMa5uPMi8b2uwaLfCXpQiMm2l21kFCamPzkMyM/X/5rhlX0AoOed1hTyoqqM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=f6nRYzvj; arc=none smtp.client-ip=198.175.65.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1719580025; x=1751116025;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=qWEehPSVEYKhPzyWJRgf6X298EwczVbvcUE/LXyT/GI=;
-  b=f6nRYzvjLHGihGzxGR27WgfHx8kw/rWRqqySD7WcS7L1q98PXBJQo1yA
-   8eCT1UGxQ29OFzwt0ZRVBXX+epuSRMnwj7VRddN49s3Up5JdIuMsmntgb
-   G57D0+jB0wMWo/KJ02XF0cUuTI9xly+KujYYEy5XkpM4WjDQlzYkLn7S3
-   5S6RzbMDN+4Hamz8ST7lWUUEzrA8HxaOxZCZYhUhxR5RNxE/h2wjciuC1
-   1BO75lT91HoW20Yeva//qQokQh74knQ4YZm1AGJSTd6A+XgdpOLbCUDOE
-   GBX4tGAkCLGiMX22HLJYqXsybQdXauaxbl5KHWAGe9KcRrvKZxZD6E/Y7
-   A==;
-X-CSE-ConnectionGUID: +h3YyPi1RnSC1fPxNjhTvQ==
-X-CSE-MsgGUID: KATHcaE3Q/qgiOgLYDE1IQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11116"; a="16892492"
-X-IronPort-AV: E=Sophos;i="6.09,169,1716274800"; 
-   d="scan'208";a="16892492"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jun 2024 06:07:04 -0700
-X-CSE-ConnectionGUID: jTneSz1ORgig3jYbLChAEg==
-X-CSE-MsgGUID: oJGYvT0HTLKjr8IzXshXMg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,169,1716274800"; 
-   d="scan'208";a="75470390"
-Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
-  by orviesa002.jf.intel.com with ESMTP; 28 Jun 2024 06:07:03 -0700
-Received: from kbuild by 68891e0c336b with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sNBJb-000H7i-3D;
-	Fri, 28 Jun 2024 13:06:59 +0000
-Date: Fri, 28 Jun 2024 21:06:36 +0800
-From: kernel test robot <lkp@intel.com>
-To: Jonathan Liu <net147@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>
-Cc: oe-kbuild-all@lists.linux.dev, Jonathan Liu <net147@gmail.com>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: rockchip: Enable RK809 audio codec for Radxa
- ROCK 4C+
-Message-ID: <202406282049.ZRM6qCDn-lkp@intel.com>
-References: <20240621130903.2572986-1-net147@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=IANQGUiVdEahlkxcDaVP2nGW8ZnEYNk0fsDgPSNKrlvoA3hPmWHvzQ7L7bqWuFkq0KwVOriYRGbHQ49++2tjdExwYHd6LLUOUeQJ0uDVatIycdMFAiXkKkOphfPGkzPY0DBahp0hSOk45E/V9DD63w0nB7uc2dfKLfwZKF8EWwM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BQhvLOzd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 010D3C116B1;
+	Fri, 28 Jun 2024 13:08:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719580129;
+	bh=O/aBFslEXfrhEnPLAQUllJnOitVfX9x7Hsz9OFt1hX0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=BQhvLOzdZhNlJM42b0AyIzoqJxiqefiq428eKmo4AychyOlTFQ0pQAbFphUmHT1hq
+	 s9b9fULacP4tgraPTA+5e13wAqKuWDUJ7dLSr0Lwd0rUsd6j52bOIhxMJbcENfm4i/
+	 bM3F/cde6cafbq4/CIZZ4doKoxuLixKEMPZup4iKQW8c/xIVbsiA0CdaaWNQVacPV6
+	 2ErQCzyNTpYo+OuiT6jC8N8AKV8lYsWHup6EAP2P1eCw30v8OzZvelayJgsiUSfRM5
+	 iV21adQUiBH1BtcXx1EDowlbd6cvoimEaSOB8zzwskIIScmewPhzLArkOpvTZS6tau
+	 cohkXxBaaArDg==
+Date: Fri, 28 Jun 2024 15:08:46 +0200
+From: Maxime Ripard <mripard@kernel.org>
+To: Thierry Reding <thierry.reding@gmail.com>
+Cc: John Stultz <jstultz@google.com>, Rob Herring <robh@kernel.org>, 
+	Saravana Kannan <saravanak@google.com>, Sumit Semwal <sumit.semwal@linaro.org>, 
+	Benjamin Gaignard <benjamin.gaignard@collabora.com>, Brian Starkey <Brian.Starkey@arm.com>, 
+	"T.J. Mercier" <tjmercier@google.com>, Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>, 
+	Mattijs Korpershoek <mkorpershoek@baylibre.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org
+Subject: Re: [PATCH 0/8] dma-buf: heaps: Support carved-out heaps and ECC
+ related-flags
+Message-ID: <20240628-resilient-resolute-rook-0fc531@houat>
+References: <20240515-dma-buf-ecc-heap-v1-0-54cbbd049511@kernel.org>
+ <CANDhNCoOKwtpstFE2VDcUvzdXUWkZ-Zx+fz6xrdPWTyciVXMXQ@mail.gmail.com>
+ <ZkXmWwmdPsqAo7VU@phenom.ffwll.local>
+ <CANDhNCo5hSC-sLwdkBi3e-Ja-MzdqcGGbn-4G3XNYwCzZUwscw@mail.gmail.com>
+ <ZkyOOwpM57HIiO3v@phenom.ffwll.local>
+ <qy7aczeu6kumv5utemoevi7omp5ryq55zmgzxh5hrz5orf2osp@wypg66awof4n>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="aklav4ucjv2rektt"
 Content-Disposition: inline
-In-Reply-To: <20240621130903.2572986-1-net147@gmail.com>
+In-Reply-To: <qy7aczeu6kumv5utemoevi7omp5ryq55zmgzxh5hrz5orf2osp@wypg66awof4n>
 
-Hi Jonathan,
 
-kernel test robot noticed the following build warnings:
+--aklav4ucjv2rektt
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-[auto build test WARNING on rockchip/for-next]
-[also build test WARNING on krzk/for-next krzk-dt/for-next linus/master v6.10-rc5 next-20240627]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Hi,
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Jonathan-Liu/arm64-dts-rockchip-Enable-RK809-audio-codec-for-Radxa-ROCK-4C/20240625-210156
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git for-next
-patch link:    https://lore.kernel.org/r/20240621130903.2572986-1-net147%40gmail.com
-patch subject: [PATCH] arm64: dts: rockchip: Enable RK809 audio codec for Radxa ROCK 4C+
-config: arm64-randconfig-051-20240628 (https://download.01.org/0day-ci/archive/20240628/202406282049.ZRM6qCDn-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 13.2.0
-dtschema version: 2024.6.dev3+g650bf2d
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240628/202406282049.ZRM6qCDn-lkp@intel.com/reproduce)
+On Fri, Jun 28, 2024 at 01:29:17PM GMT, Thierry Reding wrote:
+> On Tue, May 21, 2024 at 02:06:19PM GMT, Daniel Vetter wrote:
+> > On Thu, May 16, 2024 at 09:51:35AM -0700, John Stultz wrote:
+> > > On Thu, May 16, 2024 at 3:56=E2=80=AFAM Daniel Vetter <daniel@ffwll.c=
+h> wrote:
+> > > > On Wed, May 15, 2024 at 11:42:58AM -0700, John Stultz wrote:
+> > > > > But it makes me a little nervous to add a new generic allocation =
+flag
+> > > > > for a feature most hardware doesn't support (yet, at least). So i=
+t's
+> > > > > hard to weigh how common the actual usage will be across all the
+> > > > > heaps.
+> > > > >
+> > > > > I apologize as my worry is mostly born out of seeing vendors real=
+ly
+> > > > > push opaque feature flags in their old ion heaps, so in providing=
+ a
+> > > > > flags argument, it was mostly intended as an escape hatch for
+> > > > > obviously common attributes. So having the first be something that
+> > > > > seems reasonable, but isn't actually that common makes me fret so=
+me.
+> > > > >
+> > > > > So again, not an objection, just something for folks to stew on to
+> > > > > make sure this is really the right approach.
+> > > >
+> > > > Another good reason to go with full heap names instead of opaque fl=
+ags on
+> > > > existing heaps is that with the former we can use symlinks in sysfs=
+ to
+> > > > specify heaps, with the latter we need a new idea. We haven't yet g=
+otten
+> > > > around to implement this anywhere, but it's been in the dma-buf/hea=
+p todo
+> > > > since forever, and I like it as a design approach. So would be a go=
+od idea
+> > > > to not toss it. With that display would have symlinks to cma-ecc an=
+d cma,
+> > > > and rendering maybe cma-ecc, shmem, cma heaps (in priority order) f=
+or a
+> > > > SoC where the display needs contig memory for scanout.
+> > >=20
+> > > So indeed that is a good point to keep in mind, but I also think it
+> > > might re-inforce the choice of having ECC as a flag here.
+> > >=20
+> > > Since my understanding of the sysfs symlinks to heaps idea is about
+> > > being able to figure out a common heap from a collection of devices,
+> > > it's really about the ability for the driver to access the type of
+> > > memory. If ECC is just an attribute of the type of memory (as in this
+> > > patch series), it being on or off won't necessarily affect
+> > > compatibility of the buffer with the device.  Similarly "uncached"
+> > > seems more of an attribute of memory type and not a type itself.
+> > > Hardware that can access non-contiguous "system" buffers can access
+> > > uncached system buffers.
+> >=20
+> > Yeah, but in graphics there's a wide band where "shit performance" is
+> > defacto "not useable (as intended at least)".
+> >=20
+> > So if we limit the symlink idea to just making sure zero-copy access is
+> > possible, then we might not actually solve the real world problem we ne=
+ed
+> > to solve. And so the symlinks become somewhat useless, and we need to
+> > somewhere encode which flags you need to use with each symlink.
+> >=20
+> > But I also see the argument that there's a bit a combinatorial explosion
+> > possible. So I guess the question is where we want to handle it ...
+>=20
+> Sorry for jumping into this discussion so late. But are we really
+> concerned about this combinatorial explosion in practice? It may be
+> theoretically possible to create any combination of these, but do we
+> expect more than a couple of heaps to exist in any given system?
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202406282049.ZRM6qCDn-lkp@intel.com/
+I don't worry too much about the number of heaps available in a given
+system, it would indeed be fairly low.
 
-dtcheck warnings: (new ones prefixed by >>)
-   arch/arm64/boot/dts/rockchip/rk3399.dtsi:566.26-600.4: Warning (unit_address_vs_reg): /usb@fe900000: node has a unit name, but no reg or ranges property
-   arch/arm64/boot/dts/rockchip/rk3399.dtsi:2063.25-2102.4: Warning (avoid_unnecessary_addr_size): /dsi@ff960000: unnecessary #address-cells/#size-cells without "ranges" or child "reg" property
-   arch/arm64/boot/dts/rockchip/rk3399.dtsi:2104.26-2144.4: Warning (avoid_unnecessary_addr_size): /dsi@ff968000: unnecessary #address-cells/#size-cells without "ranges" or child "reg" property
-   arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dtb: ethernet@fe300000: Unevaluated properties are not allowed ('snps,txpbl' was unexpected)
-   	from schema $id: http://devicetree.org/schemas/net/rockchip-dwmac.yaml#
-   arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dtb: usb@fe800000: 'extcon' does not match any of the regexes: '^usb@', 'pinctrl-[0-9]+'
-   	from schema $id: http://devicetree.org/schemas/usb/rockchip,rk3399-dwc3.yaml#
-   arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dtb: /dp@fec00000: failed to match any schema with compatible: ['rockchip,rk3399-cdn-dp']
->> arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dtb: pmic@20: '#sound-dai-cells', 'clock-names', 'clocks' do not match any of the regexes: 'pinctrl-[0-9]+'
-   	from schema $id: http://devicetree.org/schemas/mfd/rockchip,rk809.yaml#
-   arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dtb: regulator@40: Unevaluated properties are not allowed ('regulator-compatible' was unexpected)
-   	from schema $id: http://devicetree.org/schemas/regulator/fcs,fan53555.yaml#
-   arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dtb: regulator@41: Unevaluated properties are not allowed ('regulator-compatible' was unexpected)
-   	from schema $id: http://devicetree.org/schemas/regulator/fcs,fan53555.yaml#
-   arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dtb: /syscon@ff770000/phy@f780: failed to match any schema with compatible: ['rockchip,rk3399-emmc-phy']
-   arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dtb: /syscon@ff770000/pcie-phy: failed to match any schema with compatible: ['rockchip,rk3399-pcie-phy']
-   arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dtb: /phy@ff7c0000: failed to match any schema with compatible: ['rockchip,rk3399-typec-phy']
-   arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dtb: /phy@ff800000: failed to match any schema with compatible: ['rockchip,rk3399-typec-phy']
-   arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dtb: pmic: vsel1-gpio: {'rockchip,pins': [[1, 17, 0, 194]], 'phandle': [[138]]} is not of type 'array'
+My concern is about the semantics combinatorial explosion. So far, the
+name has carried what semantics we were supposed to get from the buffer
+we allocate from that heap.
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+The more variations and concepts we'll have, the more heap names we'll
+need, and with confusing names since we wouldn't be able to change the
+names of the heaps we already have.
+
+> Would it perhaps make more sense to let a platform override the heap
+> name to make it more easily identifiable? Maybe this is a naive
+> assumption, but aren't userspace applications and drivers not primarily
+> interested in the "type" of heap rather than whatever specific flags
+> have been set for it?
+
+I guess it depends on what you call the type of a heap. Where we
+allocate the memory from, sure, an application won't care about that.
+How the buffer behaves on the other end is definitely something
+applications are going to be interested in though.
+
+And if we allow any platform to change a given heap name, then a generic
+application won't be able to support that without some kind of
+platform-specific configuration.
+
+> For example, if an applications wants to use a protected buffer, the
+> application doesn't (and shouldn't need to) care about whether the heap
+> for that buffer supports ECC or is backed by CMA. All it really needs to
+> know is that it's the system's "protected" heap.
+
+I mean... "protected" very much means backed by CMA already, it's pretty
+much the only thing we document, and we call it as such in Kconfig.
+
+But yeah, I agree that being backed by CMA is probably not what an
+application cares about (and we even have might some discussions about
+that), but if the ECC protection comes at a performance cost then it
+will very much care about it. Or if it comes with caches enabled or not.
+
+> This rather than try to represent every possible combination we
+> basically make this a "configuration" issue. System designers need to
+> settle on whatever combination of flags work for all the desired use-
+> cases and then we expose that combination as a named heap.
+
+This just pushes the problem down to applications, and carry the flags
+mentioned earlier in the heap name. So the same information, but harder
+to process or discover for an application.
+
+> One problem that this doesn't solve is that we still don't have a way of
+> retrieving these flags in drivers which may need them.
+
+I'm not sure drivers should actually need to allocate from heaps, but we
+could do it just like I suggested we'd do it for applications: we add a
+new function that allows to discover what a given heap capabilities are.
+And then we just have to iterate and choose the best suited for our
+needs.
+
+Maxime
+
+--aklav4ucjv2rektt
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZn613QAKCRDj7w1vZxhR
+xYMzAP9dgioI8HY72Rg1/06cgP7C/9nqV2DIO+/GP/sWV0wxSgEA1OIr44+4QM8r
+5QGSEyAfi7yOTBEB+QlJqdPGv5f2pAQ=
+=Pd1A
+-----END PGP SIGNATURE-----
+
+--aklav4ucjv2rektt--
 
