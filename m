@@ -1,159 +1,198 @@
-Return-Path: <devicetree+bounces-81195-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81196-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7108891B966
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 10:05:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8394F91B971
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 10:07:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E9C131F22B00
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 08:05:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A58C21C22BE8
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 08:07:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05783143C45;
-	Fri, 28 Jun 2024 08:05:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0151C14389A;
+	Fri, 28 Jun 2024 08:06:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="AqEK5PJ2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ddWAcFDj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com [209.85.160.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65B9114290E
-	for <devicetree@vger.kernel.org>; Fri, 28 Jun 2024 08:05:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C67C94436A;
+	Fri, 28 Jun 2024 08:06:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719561909; cv=none; b=T7aQhNZDGXn36xAqVzBG+U/hK9xNcsbNdL7p8gDkdCkvBdoGLTj5tCp5NFKgv18n+omUqfNygbB79WJdjkKvAYy0vSZk07f7MvIREsGK2Y47XsKl1C8oJdA+/7a2HJir3orsPxXMjmszwtYB4N0ltSVwmAPp1HejkMMZjBH2+Xc=
+	t=1719562018; cv=none; b=CyNqn1GD8jr+lc5pG29RtM98Ewae+e6njuS1AhOjmAzSTgJOSmn5xbDb8FSlXTj9BI4E2n7nBRVKrr75opZnyIVL/pxcC33ESchzx9etrDEmJRWF5z+cP/o4OI5QMUhFxmZCvNuyfAMpN3AGc02GdTYnYwk6kKoytAz6UlMBFh8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719561909; c=relaxed/simple;
-	bh=JzJrqoFrrLlYjlFvyfWzcuywlzt232DBEfu3youbBSY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=GdZGwEI6JpJ3JBqrJdxOoiqa+mM/1zV/Urw2nL0G6BTG4wCUMAJQNOEG6Zg5W0CY+AdEEAiBUMG1tz1c7cBAgj5psFllmN5vPEvni9rrA2zQwi9rtkB3U27gTYqHt8lnj5Pa+bHfBhHKb0a5rHDJkIViPcrJuliDsWsXS/dBrZg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=AqEK5PJ2; arc=none smtp.client-ip=209.85.160.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-qt1-f170.google.com with SMTP id d75a77b69052e-44502bfbb4bso2545721cf.2
-        for <devicetree@vger.kernel.org>; Fri, 28 Jun 2024 01:05:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1719561907; x=1720166707; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=JzJrqoFrrLlYjlFvyfWzcuywlzt232DBEfu3youbBSY=;
-        b=AqEK5PJ2rxoIIIVQwXxRwNtPUpvxZNTbk3bFdnjTil6t4j9gHmOO9f6sn6LomA1z73
-         2If5fklFrF6ABz0j9aH8I+qYOdcIV9Ny9JHROITlwzF3UqtzcsTTjRfUPgl/DASBPTgf
-         L/eMf0v/jdf8UYw+9NiH/V4Yy1xyqDuFwpBBU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719561907; x=1720166707;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=JzJrqoFrrLlYjlFvyfWzcuywlzt232DBEfu3youbBSY=;
-        b=bdVcLtKEAtMLH7cWz3LtG6nd3D85VKElPjfM4IYN1QzmCfBZKQ5BXob/F/qb5iJKK/
-         v3XGAbBABCUIpGq81CMm5fPOcSG3DXQo9zF1rIJfT+Nb2/4Ux3A30ej/En4rpgVw4TP4
-         0O1jXraidgBtRL5nxx/7/88rp9qlpSgGqVT9nO4mLDh9t1EJDh2/3RL+P3rnvjQLOPlF
-         ZpFVkkKRC1EBMueREauEUG4YQv01N79ogm6a4V0kpJFQwSMRFp5c/aZVLATIsM/fDdCa
-         8WSKTQGODY7oy9gM/rrfpOcVHJ3ddA4+AB9pyr33+Zcy7aYuY9lS3KgCUmQCjpB/xDtx
-         VIMQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWM4wg3wHPDVCbE6FJKFRmWcQkiLhNFZNYnk6g7avRpwGIA+4XcC0Fxxo6mhZ9kZaLPuIr5blNohCfYI0TEv1V0YmJM478ZqAGz+Q==
-X-Gm-Message-State: AOJu0Yyl+qbGWLhUbsSHruLMae0rWyxPtpyqaUlvYkUOEKT7upqiuI56
-	iX53KtPnjntsl8g1IBAJZNA4mOdCDXvRjD6JZEtnhaRDMpI5TupRTPhRuMVpLUH99TS0DD7koyV
-	8u336QGX3oiFrqRt3z9BDPBezg/UxynkoIytZ
-X-Google-Smtp-Source: AGHT+IF0otSsDTnS1XWFIT01k1cgVlGvDRjEaZz815q/WnFkdlw4tS8NYw01YMmeU5bEvep9bbqcDylPNPoaN8d4UEU=
-X-Received: by 2002:a0c:f10b:0:b0:6b5:4b10:7849 with SMTP id
- 6a1803df08f44-6b54b107986mr143489446d6.1.1719561907384; Fri, 28 Jun 2024
- 01:05:07 -0700 (PDT)
+	s=arc-20240116; t=1719562018; c=relaxed/simple;
+	bh=Iy8/UxZRhExwvU1/4dAFYZkxite/l0ek3Z7R2WkUJCA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Fpxudu7N7JDANKtqy8pyc46dSGDMMLPK1k9Twv5Gi7iDFYxXsX2SullfBF3e+pGkMjcz0fVn6FAWS9T12DUKLSfTZxT5Y9xwZUFphR8xtW696P6uVJ2ZxkNpymFuWfb6Uw/3suCWOS2TiHDZY641DBFtE9VKRpuJ/HBNGjEfrzM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ddWAcFDj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1CAF9C32781;
+	Fri, 28 Jun 2024 08:06:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719562018;
+	bh=Iy8/UxZRhExwvU1/4dAFYZkxite/l0ek3Z7R2WkUJCA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ddWAcFDjX0QfautySQE9b+e04FLKN6UtAFVjcXXUG+KFdZ7cu2KxlcYX7JZ9j+SBI
+	 /l3QHtcjZAm0H+pqMjqa7UNXNqi3KLUVLNfQs2t96afCUgs5VRRZdiflY+UwVzNGQy
+	 6chnlUZw5ixIa77vbxSSN/M1LOqVrFsB3A/JVtxPoo0MqpwZ21Yy4tdyLHbtBNxzcG
+	 5GYkHugbz5ll775Y3nQQY/P5vBGUP2TVh9XYkRliuyYCcG0Qm6E8oPCg3fkBA2mu2T
+	 DqsizVQ1ZYc9yknrnBZ8VxjX1jI+o0iKUZIp/Kzz241EPN1vp54yDt+cQ2MKkbfIyj
+	 Ts4Vy/xh+w8/Q==
+Date: Fri, 28 Jun 2024 09:06:53 +0100
+From: Lee Jones <lee@kernel.org>
+To: James Ogletree <James.Ogletree@cirrus.com>
+Cc: James Ogletree <jogletre@opensource.cirrus.com>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	"robh+dt@kernel.org" <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
+	Jeff LaBundy <jeff@labundy.com>,
+	"patches@opensource.cirrus.com" <patches@opensource.cirrus.com>,
+	"linux-sound@vger.kernel.org" <linux-sound@vger.kernel.org>,
+	"linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH RESEND v11 0/5] Add support for CS40L50
+Message-ID: <20240628080653.GJ2532839@google.com>
+References: <20240620161745.2312359-1-jogletre@opensource.cirrus.com>
+ <20240620165935.GT3029315@google.com>
+ <21975F67-D71D-4D5D-8042-8EE64E8864CA@cirrus.com>
+ <20240627071258.GE2532839@google.com>
+ <C8C41985-E19A-400C-9DF2-720BCDE984E1@cirrus.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240521-board-ids-v3-0-e6c71d05f4d2@quicinc.com>
- <CAFLszTjexpNEjo1sGVs67L0CAgGZLNkyn9RGfHRD7iHak_mtmg@mail.gmail.com>
- <20240605100246481-0700.eberman@hu-eberman-lv.qualcomm.com>
- <CAFLszThbe_aUAq_5rCCiPV-bj60oq9UCc=vdDHwM3i6t44ohLw@mail.gmail.com>
- <20240621142054973-0700.eberman@hu-eberman-lv.qualcomm.com> <CAFLszThO1doxsXSYTrTTPy9QCW4hrBb07k0VdSNWip=4MKtTnA@mail.gmail.com>
-In-Reply-To: <CAFLszThO1doxsXSYTrTTPy9QCW4hrBb07k0VdSNWip=4MKtTnA@mail.gmail.com>
-From: Simon Glass <sjg@chromium.org>
-Date: Fri, 28 Jun 2024 09:04:56 +0100
-Message-ID: <CAFLszTiACk98KaqA4Aa65d8ck9iJZevQyeFfq90JjsyZhx_HjA@mail.gmail.com>
-Subject: Re: [PATCH RFC v3 0/9] dt-bindings: hwinfo: Introduce board-id
-To: Elliot Berman <quic_eberman@quicinc.com>
-Cc: Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Amrit Anand <quic_amrianan@quicinc.com>, Peter Griffin <peter.griffin@linaro.org>, 
-	Caleb Connolly <caleb.connolly@linaro.org>, Andy Gross <agross@kernel.org>, 
-	Doug Anderson <dianders@chromium.org>, Chen-Yu Tsai <wenst@chromium.org>, 
-	Julius Werner <jwerner@chromium.org>, "Humphreys, Jonathan" <j-humphreys@ti.com>, 
-	Sumit Garg <sumit.garg@linaro.org>, Michal Simek <michal.simek@amd.com>, 
-	boot-architecture@lists.linaro.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-arm-msm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <C8C41985-E19A-400C-9DF2-720BCDE984E1@cirrus.com>
 
-On Fri, 28 Jun 2024 at 08:33, Simon Glass <sjg@chromium.org> wrote:
->
-> Hi Elliot,
->
-> On Fri, 21 Jun 2024 at 23:40, Elliot Berman <quic_eberman@quicinc.com> wrote:
-> >
-> > Hi Simon,
-> >
-> > On Thu, Jun 06, 2024 at 10:00:54AM -0600, Simon Glass wrote:
-> > > On Wed, 5 Jun 2024 at 11:17, Elliot Berman <quic_eberman@quicinc.com> wrote:
-> > > > On Wed, Jun 05, 2024 at 07:17:35AM -0600, Simon Glass wrote:
-> > > > > Hi Elliot,
-> > > > >
-> > > > > I am just picking up the discussion here, which was started on another thread.
-> > > > >
-> > > > > I can't see why this new feature is needed. We should be able to use
-> > > > > compatible strings, as we do now. I added a 'usage' section to the FIT
-> > > > > spec [1] which might help. I also incorporated the board revision and
-> > > > > variant information and some notes on how to add to the available
-> > > > > suffixes.
-> > > > >
-> > > > > Does that handle your use case?
-> > > >
-> > > > -rev and -sku don't fit the versioning scheme for QTI devices, so this
-> > > > isn't a generic enough approach. Patch 5 in this series describes the
-> > > > versioning scheme for us.
-> > > >
-> > > > In the other thread, we had talked about using some regex based approach
-> > > > for matching the root node compatible. I haven't had chance to work on
-> > > > that proposal and will try to get to it in the next couple weeks.
-> > >
-> > > OK, I look forward to it. Please do check the FIT best match approach
-> > > and see how it might be extended to handle your requirements. So far I
-> > > have not seen a need for regexes, but it is certainly a possibility.
-> > >
-> >
-> > I spent some time collecting feedback from the team on using compatible
-> > strings + regex-style approach and we're not able to add a regex library
-> > into firmware, so this approach unfortunately won't work for us.
-> > Because we have more axes of board identification than chromebook, using
-> > FIT's compatible strings isn't a scalable solution for us. I don't think
-> > we have incompatible problems, we only have more than 2-3 axes of
-> > information.
->
-> I understand that. I assume that you have a lot of devices that use
-> the same SoC but different PMICs, displays, etc. Some of these can be
-> handled in the bootloader, e.g. by detecting hardware and applying an
-> overlay, or enabling/disabling a node in the DT. It can be useful to
-> have a hardware-readable ID to indicate things which cannot be probed,
-> e.g. with GPIOs or ADC + resistors.
->
-> Another option is to give names to your projects, so that machines
-> with the same SoC but major hardware differences end up with a
-> different name (see rk3399-xx.dts for examples).
->
-> I'm sure you are already doing some/all of these things. I still feel
-> (so far) that you don't need to invent something new here.
->
-> Re "FIT's compatible strings isn't a scalable solution for us", how is
-> what you are doing different from other vendors? Is it the sheer
-> number of variations, or something else?
+On Thu, 27 Jun 2024, James Ogletree wrote:
 
-Here I am referring to the actual number of separate boards which
-appear in the wild, not the multiplication of the number of axes which
-produced them.
+> 
+> > On Jun 27, 2024, at 2:12 AM, Lee Jones <lee@kernel.org> wrote:
+> > 
+> > On Wed, 26 Jun 2024, James Ogletree wrote:
+> > 
+> >> 
+> >>> On Jun 20, 2024, at 11:59 AM, Lee Jones <lee@kernel.org> wrote:
+> >>> 
+> >>> On Thu, 20 Jun 2024, James Ogletree wrote:
+> >>> 
+> >>>> Changes in v11:
+> >>>> - Constified function parameters in ASOC driver
+> >>>> - Removed an unneeded #include
+> >>>> - Changed number of max FF effects = 1
+> >>>> - Minor refactoring in Input driver
+> >>>> - Reworded comment in MFD driver
+> >>>> 
+> >>>> Changes in v10:
+> >>>> - Minor refactoring and logical improvements all around
+> >>>> - Renamed and added supplies
+> >>>> 
+> >>>> Changes in v9:
+> >>>> - Fixed empty struct by utilizing cs_dsp's post_run callback
+> >>>> - Style fixes in MFD driver
+> >>>> 
+> >>>> Changes in v8:
+> >>>> - set_sysclk() -> set_bclk_ratio()
+> >>>> - Added ID table to codec driver
+> >>>> - Style improvements
+> >>>> - Fixed ordering of new write sequence operations
+> >>>> 
+> >>>> Changes in v7:
+> >>>> - Fixed sparse warning
+> >>>> - Moved write sequences to private data structure
+> >>>> - Logical and style improvements in write sequence interface
+> >>>> 
+> >>>> Changes in v6:
+> >>>> - Updated write sequencer interface to be control-name based
+> >>>> - Fixed a race condition and non-handling of repeats in playback callback
+> >>>> - Stylistic and logical improvements all around
+> >>>> 
+> >>>> Changes in v5:
+> >>>> - Added a codec sub-device to support I2S streaming
+> >>>> - Moved write sequencer code from cirrus_haptics to cs_dsp
+> >>>> - Reverted cirrus_haptics library; future Cirrus input
+> >>>> drivers will export and utilize cs40l50_vibra functions
+> >>>> - Added more comments
+> >>>> - Many small stylistic and logical improvements
+> >>>> 
+> >>>> Changes in v4:
+> >>>> - Moved from Input to MFD
+> >>>> - Moved common Cirrus haptic functions to a library
+> >>>> - Incorporated runtime PM framework
+> >>>> - Many style improvements
+> >>>> 
+> >>>> Changes in v3:
+> >>>> - YAML formatting corrections
+> >>>> - Fixed typo in MAINTAINERS
+> >>>> - Used generic node name "haptic-driver"
+> >>>> - Fixed probe error code paths
+> >>>> - Switched to "sizeof(*)"
+> >>>> - Removed tree reference in MAINTAINERS
+> >>>> 
+> >>>> Changes in v2:
+> >>>> - Fixed checkpatch warnings
+> >>>> 
+> >>>> James Ogletree (5):
+> >>>> firmware: cs_dsp: Add write sequence interface
+> >>>> dt-bindings: input: cirrus,cs40l50: Add initial DT binding
+> >>>> mfd: cs40l50: Add support for CS40L50 core driver
+> >>>> Input: cs40l50 - Add support for the CS40L50 haptic driver
+> >>>> ASoC: cs40l50: Support I2S streaming to CS40L50
+> >>>> 
+> >>>> .../bindings/input/cirrus,cs40l50.yaml        |  68 +++
+> >>>> MAINTAINERS                                   |  12 +
+> >>>> drivers/firmware/cirrus/cs_dsp.c              | 278 +++++++++
+> >>>> drivers/input/misc/Kconfig                    |  10 +
+> >>>> drivers/input/misc/Makefile                   |   1 +
+> >>>> drivers/input/misc/cs40l50-vibra.c            | 555 +++++++++++++++++
+> >>>> drivers/mfd/Kconfig                           |  30 +
+> >>>> drivers/mfd/Makefile                          |   4 +
+> >>>> drivers/mfd/cs40l50-core.c                    | 570 ++++++++++++++++++
+> >>>> drivers/mfd/cs40l50-i2c.c                     |  68 +++
+> >>>> drivers/mfd/cs40l50-spi.c                     |  68 +++
+> >>>> include/linux/firmware/cirrus/cs_dsp.h        |  27 +
+> >>>> include/linux/mfd/cs40l50.h                   | 137 +++++
+> >>>> sound/soc/codecs/Kconfig                      |  11 +
+> >>>> sound/soc/codecs/Makefile                     |   2 +
+> >>>> sound/soc/codecs/cs40l50-codec.c              | 307 ++++++++++
+> >>>> 16 files changed, 2148 insertions(+)
+> >>>> create mode 100644 Documentation/devicetree/bindings/input/cirrus,cs40l50.yaml
+> >>>> create mode 100644 drivers/input/misc/cs40l50-vibra.c
+> >>>> create mode 100644 drivers/mfd/cs40l50-core.c
+> >>>> create mode 100644 drivers/mfd/cs40l50-i2c.c
+> >>>> create mode 100644 drivers/mfd/cs40l50-spi.c
+> >>>> create mode 100644 include/linux/mfd/cs40l50.h
+> >>>> create mode 100644 sound/soc/codecs/cs40l50-codec.c
+> >>> 
+> >>> Still needs Acks - ping me when you have them.
+> >>> 
+> >>> -- 
+> >>> Lee Jones [李琼斯]
+> >> 
+> >> Hi Lee,
+> >> 
+> >> You can take this series now.
+> > 
+> > sound/soc?
+> > 
+> > -- 
+> > Lee Jones [李琼斯]
+> 
+> Mark has Acked the original v11 series here:
+> https://lore.kernel.org/all/a85e09d6-d8eb-4c60-ae83-b4dbf875a926@sirena.org.uk/
+
+Ah, you just forgot to add it to the RESEND?
+
+Okay, leave it with me then.
+
+-- 
+Lee Jones [李琼斯]
 
