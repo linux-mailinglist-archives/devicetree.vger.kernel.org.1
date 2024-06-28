@@ -1,116 +1,147 @@
-Return-Path: <devicetree+bounces-81491-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81492-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 549E691C6CB
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 21:45:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B76891C6E4
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 21:55:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0A82B1F2575B
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 19:45:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E44151F2537E
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 19:55:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA98A7347F;
-	Fri, 28 Jun 2024 19:45:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27EF377F2D;
+	Fri, 28 Jun 2024 19:55:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EOEhQh50"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="pZyltw4g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5ADB6026A;
-	Fri, 28 Jun 2024 19:45:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A14247710C;
+	Fri, 28 Jun 2024 19:55:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719603931; cv=none; b=RQrKfpxaRQf5Lyp967hQWM6/CqD3aQbF3pNx+BcCp+pa6XgjG1QxFuk055y1ByiN8GWc0FwptF8tsVKqwOftCvn85cXabwIro2tv2yhwHrN6frAw6NbgnD+jIoO/Su6cflIyTgaW9BF5AQxi1gH2zhO+nb1Oanei+7u5yv+gRYE=
+	t=1719604532; cv=none; b=hJgrlRbM9aNJatiGnrqFkG0mk5nilYND90j5brmABi1Y0X0BGqwDCfpMZBEfhcDlIsthDJkJ8xzFhfyoHhTCLpZMl8E2Vib21sr73MwuX4r7i+5hZdL+G2q0Mvi+pdiBsKUKIxMcppdGgfbRnMVEvw0HZzxklS+6KIypRzEIBGA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719603931; c=relaxed/simple;
-	bh=+rsJw1URSZZTnoBatuivHpXNy+C9BdH8uE2OqsLRkKE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mH4PYxq6MVig4nVH/cBPIwYmi+HZ+GhSyI+zKXbV2KHa3I86vpOUImZ0sJ9LpICOkUY1DaSzdjcOQ0JcV2nFLAy8WsjquhAAy61b2YRLmkcuktmwCtyKjOoc09WZW/aqAOfjRWXyjrrMz/JadRHRaiWW+OFN6O+bBcywkZIm9s0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EOEhQh50; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C782C116B1;
-	Fri, 28 Jun 2024 19:45:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719603931;
-	bh=+rsJw1URSZZTnoBatuivHpXNy+C9BdH8uE2OqsLRkKE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EOEhQh50sHrr4d6/28vhXk3OLs8gqY5qV+q0/s3rjUG0PxmaF/65Htzcyle95pgh5
-	 QAz+TkRm6Ew2lw5IkuZmYKEslsCc7bWPPNrc41CvkHTWgR/HMYK1OI96sHgJ1J0R6V
-	 WEgOo53TV0ZWypZZ5r3fDsX4lWE/lJeiHjlebCx72RxCsPxnvWilsfsBqYD/M8H0F8
-	 v5kaPVFETGSaI2AsDYXTuF56fINvPC6NmRMVKG/VJMEQpv5ffOGhEJYmYFk5/0fz46
-	 gH2ajcVVKquqSk/y+S4aSawxFNoQoUMeydn0YsqbuK+yuI4VOrLfkMjTwAjuwPtnoq
-	 R2/muRRzdzNhA==
-Date: Fri, 28 Jun 2024 13:45:30 -0600
-From: Rob Herring <robh@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"open list:PCI SUBSYSTEM" <linux-pci@vger.kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
-Subject: Re: [PATCH 1/1] dt-bindings: PCI: layerscape-pci: Fix property
- 'fsl,pcie-scfg' type
-Message-ID: <20240628194530.GA99543-robh@kernel.org>
-References: <20240628144858.2363300-1-Frank.Li@nxp.com>
+	s=arc-20240116; t=1719604532; c=relaxed/simple;
+	bh=YM+yQDNqkkBhY/x5WBPZk5abMHgkfaWP73Nw6FDu1FQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=acmzoJG77jmGchgtZvaZGfzcAgmQGsfj0PoZVZP/bq2OWUjmZGUFYATj+QUF7wV8/cjoGJDIgT3w24w59THEsOnQYBhBC0l7bek62cRTbNkblX7Mf1AxMK7ral5IE/Dkzc0FuMfzy9vTkgpuzB316hUOpJSDnemOtGQorC2RUvM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=pZyltw4g; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45SGc1DM000900;
+	Fri, 28 Jun 2024 19:55:05 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	eRgvqU3QHpMQzWa7BXNysUM8bokPIDW5+DmiJDF3IHA=; b=pZyltw4g79cEf8Jl
+	fnVkh6v6K4sYoVw32c5Gw38yXqV+CPh1dnf+hJ+kJLLhsGN/pIJpueL7dgMN7HOv
+	uXg3rn+vHLiybEp4ScJmmrsOF/aFLAXRRLi20NZeuB29THaxJJYaENKvOadtb+lR
+	AmoeskMXsagX46NXoELKavNw837JtPSH93xfaTA4D6GZSsFjhamS71qvxgRuTDIC
+	S0PlVe9pZQ0Nl1XE5j3MzdNxfx0qJoAIMDNK24cKyfIikszWBEqCMssYd5442LdI
+	iJMR7FSEcg23E+6v34fo+8fRZ6/9NduQZkeoIpUuPXgAMel1cMobwuOm5HZ0rYF4
+	XLXZuQ==
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 400f90rc92-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 28 Jun 2024 19:55:05 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA01.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45SJt42L013084
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 28 Jun 2024 19:55:04 GMT
+Received: from [10.110.112.228] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 28 Jun
+ 2024 12:55:00 -0700
+Message-ID: <e4f397c5-e266-44ff-b358-f0bd51bc52a0@quicinc.com>
+Date: Fri, 28 Jun 2024 12:55:00 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240628144858.2363300-1-Frank.Li@nxp.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/3] net: stmmac: Add interconnect support
+To: Andrew Lunn <andrew@lunn.ch>
+CC: Andrew Halaney <ahalaney@redhat.com>, Vinod Koul <vkoul@kernel.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu
+	<joabreu@synopsys.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet
+	<edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni
+	<pabeni@redhat.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        "Russell
+ King" <linux@armlinux.org.uk>, Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Bhupesh
+ Sharma" <bhupesh.sharma@linaro.org>, <kernel@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <netdev@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <20240625-icc_bw_voting_from_ethqos-v2-0-eaa7cf9060f0@quicinc.com>
+ <20240625-icc_bw_voting_from_ethqos-v2-2-eaa7cf9060f0@quicinc.com>
+ <owkerbnbenzwtnu2kbbas5brhnak2e37azxtzezmw3hb6mficq@ffpqrqglmp4c>
+ <cf6c2526-ba12-4627-b4e9-20ce5b4d175c@quicinc.com>
+ <c7bcc2ae-eb27-4acc-b18c-8cb584b4d616@lunn.ch>
+Content-Language: en-US
+From: Sagar Cheluvegowda <quic_scheluve@quicinc.com>
+In-Reply-To: <c7bcc2ae-eb27-4acc-b18c-8cb584b4d616@lunn.ch>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: Ij94Dj5NvOC2j9lvQX6ynyrM829I5u-W
+X-Proofpoint-GUID: Ij94Dj5NvOC2j9lvQX6ynyrM829I5u-W
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-28_15,2024-06-28_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 suspectscore=0
+ spamscore=0 malwarescore=0 mlxlogscore=800 mlxscore=0 adultscore=0
+ impostorscore=0 lowpriorityscore=0 phishscore=0 priorityscore=1501
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2406140001 definitions=main-2406280149
 
-On Fri, Jun 28, 2024 at 10:48:57AM -0400, Frank Li wrote:
-> fsl,pcie-scfg actually need an argument when there are more than one PCIe
-> instances. Change it to phandle-array and use items to describe each field
-> means.
-> 
-> Fix below warning.
-> 
-> arch/arm64/boot/dts/freescale/fsl-ls1043a-rdb.dtb: pcie@3400000: fsl,pcie-scfg:0: [22, 0] is too long
->         from schema $id: http://devicetree.org/schemas/pci/fsl,layerscape-pcie.yaml#
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
-> Change from v1 to v2
-> - update commit message.
-> ---
->  .../devicetree/bindings/pci/fsl,layerscape-pcie.yaml      | 8 +++++++-
->  1 file changed, 7 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/fsl,layerscape-pcie.yaml b/Documentation/devicetree/bindings/pci/fsl,layerscape-pcie.yaml
-> index 793986c5af7ff..679c2989de7a2 100644
-> --- a/Documentation/devicetree/bindings/pci/fsl,layerscape-pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/fsl,layerscape-pcie.yaml
-> @@ -43,10 +43,16 @@ properties:
->        - const: config
->  
->    fsl,pcie-scfg:
-> -    $ref: /schemas/types.yaml#/definitions/phandle
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
->      description: A phandle to the SCFG device node. The second entry is the
->        physical PCIe controller index starting from '0'. This is used to get
->        SCFG PEXN registers.
-> +    items:
-> +      items:
-> +        - description: A phandle to the SCFG device node
-> +        - description: PCIe controller index starting from '0'
-> +      minItems: 1
 
-Are there any cases with only the phandle? I don't see any in tree and 
-looks like the driver requires the 2nd entry.
 
-> +    maxItems: 1
->  
->    big-endian:
->      $ref: /schemas/types.yaml#/definitions/flag
-> -- 
-> 2.34.1
+On 6/26/2024 5:14 PM, Andrew Lunn wrote:
+> On Wed, Jun 26, 2024 at 04:38:34PM -0700, Sagar Cheluvegowda wrote:
+>>
+>>
+>> On 6/26/2024 7:54 AM, Andrew Halaney wrote:
+>>> On Tue, Jun 25, 2024 at 04:49:29PM GMT, Sagar Cheluvegowda wrote:
+>>>> Add interconnect support to vote for bus bandwidth based
+>>>> on the current speed of the driver.This change adds support
+>>>> for two different paths - one from ethernet to DDR and the
+>>>> other from Apps to ethernet.
+>>>
+>>> "APPS" is a qualcomm term, since you're trying to go the generic route
+>>> here maybe just say CPU to ethernet?
+>>>
+>> I can update this in my next patch.
+>>
+>> Sagar
 > 
+> Please trim emails when replying to just the needed context.
+> 
+> Also, i asked what Apps meant in response to an earlier version of
+> this patch. I think you ignored me....
+> 
+>        Andrew
+
+
+Thanks Andrew, i will take a note of it when replying next time.
+
+Regarding the Apps part, i had replied to your email on 06/21.
 
