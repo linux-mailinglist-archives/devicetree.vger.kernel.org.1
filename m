@@ -1,172 +1,145 @@
-Return-Path: <devicetree+bounces-81483-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81484-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F0E991C64B
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 21:02:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DCB5991C678
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 21:16:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6341F1C210E6
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 19:02:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 943B51F24C57
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 19:16:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2496256B8C;
-	Fri, 28 Jun 2024 19:02:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF3076CDA3;
+	Fri, 28 Jun 2024 19:16:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uqc8rRT+"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GLP3OKRa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8B474F5FA;
-	Fri, 28 Jun 2024 19:02:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C7AC42ABB;
+	Fri, 28 Jun 2024 19:16:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719601375; cv=none; b=dTgMxpdKWvKZftil0reYk8j91gZshgzyZm7iYWkjMAt8tBd8X9/7S77RdbueISwg43AKhgWaJm1N9/g/rhB1d8w0bgmvhDU7cJZ1GwMHP8nDQw7+iSCSbbB/qA+42N4P/RcI+72Sfsk5KZ5Ho+6wmx+oanTgC4yUpz3GPwu5zkI=
+	t=1719602184; cv=none; b=P0zy0sxAcwjQlhTCh6y21OT2ww1UewCpPs3p9o1DVJ5Qz/0j3K+MmIYT+ps6jKLKV/e/BvpAnUU+m5y/v0qmwJxnh7eFAlP6Mnb6JzwSlpyt9Xz8ryVNyrdjf8WF+JXhEwbHGCX/C1SYINvnkuFu4jORhBL/XK+XSYbzCN7sGjg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719601375; c=relaxed/simple;
-	bh=N9t03XZKgQccCItCN7cqx3ors/e3qKc5BJRS16l4OdQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=SyA6fDGfqTDbJIYW83/7KIgrwZ6yQT9e6IJD5uzo3ODynIZK4fm6haD1toqKDbGqwx4rCO0k6AdsU+DMIWIuoIXzDWHJxy9I2TiGVkSlMUPrEGtXxSIsVnL1TRymcDV1AojGjorb++c90TGflnCRI7cwhzt4eKKrJv5Co3Pts2w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uqc8rRT+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BEE7DC116B1;
-	Fri, 28 Jun 2024 19:02:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719601374;
-	bh=N9t03XZKgQccCItCN7cqx3ors/e3qKc5BJRS16l4OdQ=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=uqc8rRT+E+dEuSRf1LMFu46ldn2wDeNlGcbaNLP2xEd5uy2x2zJX+3VNnmQN0ive1
-	 vj3i9NtqbGXY8EcZWmlOaR/4PXl6zqC7ktciSnIdvvv8xLms2pXljt7Ev+yWQPvnc8
-	 Pthtz1fF5CsIGkFW8ZGEPco4bv4xYw4zSAh83lQJbKz0OxlSotSRfwsAk/J+FiziKE
-	 DvRzMbxcSPZtKf1SKFcZRZCnTqoqtP9fglEimi+HPKhjLsf/8jzXkwzdtmPF/Yb0c3
-	 Zsnj38yGIxHQjdY1wrNoN+UaUkKpp3wzFHu4ZUvjGwGcgMeCtRzR4GCW/dBSNGNDIr
-	 dDImIql4s6Xxw==
-Date: Fri, 28 Jun 2024 20:02:43 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: "Paller, Kim Seer" <KimSeer.Paller@analog.com>, Jonathan Cameron
- <Jonathan.Cameron@huawei.com>, "linux-kernel@vger.kernel.org"
- <linux-kernel@vger.kernel.org>, "linux-iio@vger.kernel.org"
- <linux-iio@vger.kernel.org>, "devicetree@vger.kernel.org"
- <devicetree@vger.kernel.org>, David Lechner <dlechner@baylibre.com>,
- Lars-Peter Clausen <lars@metafoo.de>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Dimitri Fedrau <dima.fedrau@gmail.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, "Hennerich, Michael"
- <Michael.Hennerich@analog.com>, Nuno =?UTF-8?B?U8Oh?=
- <noname.nuno@gmail.com>
-Subject: Re: [PATCH v4 4/5] dt-bindings: iio: dac: Add adi,ltc2672.yaml
-Message-ID: <20240628200243.14b5f1b5@jic23-huawei>
-In-Reply-To: <20240625-roster-umbrella-3782caa23791@spud>
-References: <20240619064904.73832-1-kimseer.paller@analog.com>
-	<20240619064904.73832-5-kimseer.paller@analog.com>
-	<20240619-vanity-crowd-24d93dda47b8@spud>
-	<20240623144339.6a5087cf@jic23-huawei>
-	<PH0PR03MB71419D55571B07479B4F4FB8F9D42@PH0PR03MB7141.namprd03.prod.outlook.com>
-	<20240624-untracked-molasses-31e8769dddd3@spud>
-	<20240624183753.0000218c@Huawei.com>
-	<PH0PR03MB7141EE1309B35372201A6A80F9D52@PH0PR03MB7141.namprd03.prod.outlook.com>
-	<20240625-roster-umbrella-3782caa23791@spud>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1719602184; c=relaxed/simple;
+	bh=lE1e3q04Oaaz0cYIxpbk4qvsN5PFLOvkmeBSPKZLJYo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=mErGCTTqo4XAsWbPZiYTlVg3tc3kAyJVajS6+GvxSa/ztUtM1YykYHq1tJMDnw7ZZRGuRfXisJ5aIfv0zAVOC/N7sB6+54CMi7jprYipz2vfcNVJ8bfoinZoAnNXkOZ9Sj9dH5JO/mQxzM0UYNHhkmIQQ7XFtYJOIg+wz/zMxDg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GLP3OKRa; arc=none smtp.client-ip=209.85.208.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2ec6635aa43so9364351fa.1;
+        Fri, 28 Jun 2024 12:16:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1719602181; x=1720206981; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=68M77nW3v8XXRFfDre+5sPrzFR3uc3r0s1ijjg1BMWE=;
+        b=GLP3OKRatVKPWT7ZU7QDfnVgQgH889fg0Yq5FVzs7eVlyf2+rEEB5krG92pq6kVEbR
+         ZrIr2IAjM/wOUGbQYguLusHbaFeZmm0eJFZJRqf3JMIbzIvE2U/JoTl12u+hjTOQDg9b
+         tByFCroXph7vy1wkw1IKuPgWAq5q+ASWscv0fHOAuJqf0pkE9vHbsg1mjK9TL69vQGvS
+         OuUK0BrETgMpSZ3DHbn5tSUlKZBO7WiQa9jBTubVyCTDnzegcWKAPZ1GNlP0DOjnq8UT
+         AanTEkc6IoxBZPeffyysCo4+EcasTkBEcj4IGtTlbgDrvPmM5m3FI4hMAD8xy4yIlqo5
+         tlkw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719602181; x=1720206981;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=68M77nW3v8XXRFfDre+5sPrzFR3uc3r0s1ijjg1BMWE=;
+        b=HHr7zc2+2eBsjsayLS21J9xFLdjoA6soEz7/svMRexpknh1vs2ge88r3NyVGvZBpTH
+         0YyvA/zApHvAygv2YO/Xy2byTOVigHpWRZ8ELHf8TSoAFwtKrfoEZL7hJgzmo3eQcCux
+         cSYnd1MzfVLJX3jL1baDLCOOR2rZpZY6jeXeCsXr7uXy7Nk2SCdWpLnwlym95yh3qVl+
+         t679ja/Bd21orKtMNYMH4DBRNF4vdq6tvWrOaepmCbAi+mweWdFyvVMX/PfOVys6c6T9
+         C/IN7dFhVa1o/Qag9+k9q8O0AblVx6esdh+nn4NmcmJz5XRTl75uHH3jfaJjleSY1itV
+         wiBw==
+X-Forwarded-Encrypted: i=1; AJvYcCUKlALJtiVnweG+67cAJ1VitN5oMyNCM9Puf+/JCUh2jyuTFB09KlGbhtfCijaMcO56k1AlZ+onTUmUfxBeREYIzC9pMHPWarOvhzYDL0aWkPr4r/98wOKGpbXtQffNEDPRc3eZjCy+k2FkL43w/As1kwZFCA19ss7dhsrZe5725OqOXclUsNKPEgUZV9V5AJY9LZTADGrCNfLfassZtJS7r1jVaQ==
+X-Gm-Message-State: AOJu0YxCL7qF/DSSzs63sLmXWjicLY0Z7mgjrZiePwXF/GTGTPZOwD6B
+	jhlQt5SKGj6Pg44vxueUTSmu9l3uceAQqn+yGz0zflkBEszDN7xfq265ME6UYUkH1bxQ9ALyrQm
+	HQEmuTraEZ3phIOOlN99GDAqNUnM=
+X-Google-Smtp-Source: AGHT+IGpN8QxF3pXRib/zfzelzrYeDZIlU5+sMPA5QY5A/ATwRFJOAbsuKBykt1qnJh3PszAFmdg4YmO1wenSRed97w=
+X-Received: by 2002:a2e:bc88:0:b0:2ee:4c72:204e with SMTP id
+ 38308e7fff4ca-2ee4c7223e0mr45904391fa.0.1719602180953; Fri, 28 Jun 2024
+ 12:16:20 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <20240624-b4-sc7180-camss-v3-0-89ece6471431@gmail.com>
+ <20240624-b4-sc7180-camss-v3-1-89ece6471431@gmail.com> <c33dde93-2c3a-4a00-93ee-e4de303c9057@kernel.org>
+ <CADgMGSvN=uAW7z1dpETGVRewzDG=K2MAtzOkhK7xAcskU_oeZg@mail.gmail.com>
+ <0a35f0bd-ceec-487f-b9fd-ae9698b74048@kernel.org> <CADgMGSt9Hu5Ciq=ndMTaVK23Y_ixTVtTuSfy4hJkJooFH2uv9Q@mail.gmail.com>
+ <CADgMGSv+x2Z9FsWTHW0auttvpdfNDnOPxiJhXnUaW3yQczN_Ag@mail.gmail.com>
+ <a7306019-9f19-4619-875f-e6b71add5607@kernel.org> <CADgMGStvxkaj_LxXLuwEUtm5dPT-MCr6aKp_DKZngHsRPTjmng@mail.gmail.com>
+ <7ea5890e-5c74-447c-903c-9d3e9aabb7e4@linaro.org>
+In-Reply-To: <7ea5890e-5c74-447c-903c-9d3e9aabb7e4@linaro.org>
+From: george chan <gchan9527@gmail.com>
+Date: Sat, 29 Jun 2024 03:16:09 +0800
+Message-ID: <CADgMGSvyCBAYex7CsxhdayLk7moSOj7g9MrJLvREKAsmm0-CNg@mail.gmail.com>
+Subject: Re: [PATCH RFT v3 1/5] dt-bindings: media: camss: Add qcom,sc7180-camss
+To: "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	cros-qcom-dts-watchers@chromium.org, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, linux-media@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, 25 Jun 2024 17:20:48 +0100
-Conor Dooley <conor@kernel.org> wrote:
+On Thu, Jun 27, 2024 at 11:40=E2=80=AFPM Bryan O'Donoghue
+<bryan.odonoghue@linaro.org> wrote:
+>
+> On 26/06/2024 10:04, george chan wrote:
+> > On Wed, Jun 26, 2024 at 4:58=E2=80=AFPM Krzysztof Kozlowski <krzk@kerne=
+l.org> wrote:
+> >>
+> >> On 26/06/2024 10:38, george chan wrote:
+> >>> On Wed, Jun 26, 2024 at 4:17=E2=80=AFPM george chan <gchan9527@gmail.=
+com> wrote:
+> >>>>
+> >>>> On Wed, Jun 26, 2024 at 3:15=E2=80=AFPM Krzysztof Kozlowski <krzk@ke=
+rnel.org> wrote:
+> >>>>> Keep the list in "required:" in the same order as the list in "prop=
+erties:".
+> >>>>
+> >>>> ok gotcha
+> >>> btw, i checked  "required:" and "properties:" are aligned, both of
+> >>
+> >> No, they are not.
+> >>
+> >> Which is the first entry in "properties"?
+> >>
+> >> Which is the first entry in "required"?
+> >>
+> >> Please stop wasting reviewers time by disagreeing on every little piec=
+e
+> >> of this. The feedback was quite clear but somehow you do not read it a=
+nd
+> >> respond with some inaccurate statements.
+> >>
+> >> Best regards,
+> >> Krzysztof
+> >>
+> >
+> > Then my apology. I might take a break here. Appreciated if some
+> > developer is willing to take over it too.
+>
+> George are you resending this with Krzysztof's comments addressed ?
+>
+> I'm trying to figure out what we are targeting for merge.
+>
+> ---
+> bod
 
-> On Tue, Jun 25, 2024 at 03:51:27PM +0000, Paller, Kim Seer wrote:
-> > 
-> >   
-> > > From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>  
-> 
-> > > On Mon, 24 Jun 2024 18:00:24 +0100
-> > > Conor Dooley <conor@kernel.org> wrote:
-> > >   
-> > > > On Mon, Jun 24, 2024 at 03:26:26PM +0000, Paller, Kim Seer wrote:  
-> > > > >
-> > > > >  
-> > > > > > From: Jonathan Cameron <jic23@kernel.org>  
-> 
-> > > > > > Subject: Re: [PATCH v4 4/5] dt-bindings: iio: dac: Add adi,ltc2672.yaml
-> > > > > >
-> > > > > >
-> > > > > > On Wed, 19 Jun 2024 18:57:59 +0100
-> > > > > > Conor Dooley <conor@kernel.org> wrote:
-> > > > > >  
-> > > > > > > On Wed, Jun 19, 2024 at 02:49:03PM +0800, Kim Seer Paller wrote:  
-> > > > > > > > +patternProperties:
-> > > > > > > > +  "^channel@[0-4]$":
-> > > > > > > > +    type: object
-> > > > > > > > +    additionalProperties: false
-> > > > > > > > +
-> > > > > > > > +    properties:
-> > > > > > > > +      reg:
-> > > > > > > > +        description: The channel number representing the DAC output  
-> > > > > > channel.  
-> > > > > > > > +        maximum: 4
-> > > > > > > > +
-> > > > > > > > +      adi,toggle-mode:
-> > > > > > > > +        description:
-> > > > > > > > +          Set the channel as a toggle enabled channel. Toggle operation  
-> > > > > > enables  
-> > > > > > > > +          fast switching of a DAC output between two different DAC  
-> > > codes  
-> > > > > > without  
-> > > > > > > > +          any SPI transaction.
-> > > > > > > > +        type: boolean
-> > > > > > > > +
-> > > > > > > > +      adi,output-range-microamp:
-> > > > > > > > +        description: Specify the channel output full scale range.
-> > > > > > > > +        enum: [3125000, 6250000, 12500000, 25000000, 50000000,  
-> > > > > > 100000000,  
-> > > > > > > > +               200000000, 300000000]  
-> > > > > > >
-> > > > > > > IIO folks, is this sort of thing common/likely to exist on other DACs?  
-> > > > > >
-> > > > > > Fair point. It is probably time to conclude this is at least moderately  
-> > > common  
-> > > > > > and generalize it - which will need a dac.yaml similar to the one we have  
-> > > for  
-> > > > > > ADCs in adc/adc.yaml.  That will need to make this a per channel node  
-> > > property  
-> > > > > > (same as the adc ones).  
-> > > > >
-> > > > > Should I proceed with generalizing common DAC properties in this series  
-> > > and does  
-> > > >
-> > > > I think so, yes.  
-> > > 
-> > > Yes, that would great.  
-> > 
-> > I was wondering who would be the designated maintainer for new dac.yaml?  
-> 
-> I'd suggest Jonathan!
-
-Sure.  Though if anyone else wants to maintain this one they'd be welcome :)
-
-> 
-> > > > > this mean somehow removing these common properties from existing DAC  
-> > > bindings?  
-> > > >
-> > > > I think that that one is up to Jonathan.  
-> > > 
-> > > We can deprecate them.  At somepoint we can remove them form the
-> > > documented bindings
-> > > but we will need to keep them in drivers forever (which won't be costly in this
-> > > case).  
-> 
-> Right. Anything where the name _would change_ needs to be deprecated and
-> kept forever. I was thinking more about properties that are defined in
-> multiple locations with the same name, e.g. if "output-range-microvolts"
-> existed in 6 different bindings.
-> 
-> Thanks,
-> Conor.
-
+Since my phone is EOL, I can't test new patches so I can only give up
+from here. My suggestion is to drop this atm and let sc7280 patches
+get in early.
 
