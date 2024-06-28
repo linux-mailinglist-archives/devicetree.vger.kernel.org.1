@@ -1,63 +1,72 @@
-Return-Path: <devicetree+bounces-81482-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81483-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD77891C626
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 20:56:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F0E991C64B
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 21:02:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 77EE128574F
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 18:56:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6341F1C210E6
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 19:02:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 401726A8BE;
-	Fri, 28 Jun 2024 18:56:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2496256B8C;
+	Fri, 28 Jun 2024 19:02:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gJshG7sA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uqc8rRT+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 159E027725;
-	Fri, 28 Jun 2024 18:56:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8B474F5FA;
+	Fri, 28 Jun 2024 19:02:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719600968; cv=none; b=lBvfimXSsOHbo/nwvkf7IeXBBXktduHbwnPRTBJyn+JRJZwQSL60s3Vk9r/CYR7FKwIzcPG8v4UwBaOAFP0po5QDMifSI9BeXUpCzr2gKKzWDAYFHMPlHxDD2JdORGRIP5bc2oWhjgjyVIFJ02r/sgzATbhrL3fUDkykiYFG5l8=
+	t=1719601375; cv=none; b=dTgMxpdKWvKZftil0reYk8j91gZshgzyZm7iYWkjMAt8tBd8X9/7S77RdbueISwg43AKhgWaJm1N9/g/rhB1d8w0bgmvhDU7cJZ1GwMHP8nDQw7+iSCSbbB/qA+42N4P/RcI+72Sfsk5KZ5Ho+6wmx+oanTgC4yUpz3GPwu5zkI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719600968; c=relaxed/simple;
-	bh=nbZ4B4IuGzfJbPVBIOmAq3RdE0TDLUZCXRFXhHZu+Og=;
+	s=arc-20240116; t=1719601375; c=relaxed/simple;
+	bh=N9t03XZKgQccCItCN7cqx3ors/e3qKc5BJRS16l4OdQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Uo2r2P7wZAo/dLnuh+EIZwtFRgwDsDjRMdPNvaXCQJOczKO++by3Fos6ba3wEFifxYrJCK3uZihjN58Md4GJQ/vZ3klKh+clJ8mzjEQ9f/QyUMXvM37yagg15WvvJ3mx/+YcXt/FGBhqWz256ZCeLDT390fXmAggkBgc2intNd4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gJshG7sA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9C38C32786;
-	Fri, 28 Jun 2024 18:56:03 +0000 (UTC)
+	 MIME-Version:Content-Type; b=SyA6fDGfqTDbJIYW83/7KIgrwZ6yQT9e6IJD5uzo3ODynIZK4fm6haD1toqKDbGqwx4rCO0k6AdsU+DMIWIuoIXzDWHJxy9I2TiGVkSlMUPrEGtXxSIsVnL1TRymcDV1AojGjorb++c90TGflnCRI7cwhzt4eKKrJv5Co3Pts2w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uqc8rRT+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BEE7DC116B1;
+	Fri, 28 Jun 2024 19:02:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719600967;
-	bh=nbZ4B4IuGzfJbPVBIOmAq3RdE0TDLUZCXRFXhHZu+Og=;
+	s=k20201202; t=1719601374;
+	bh=N9t03XZKgQccCItCN7cqx3ors/e3qKc5BJRS16l4OdQ=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=gJshG7sAzkli8Ku4dDLbq7WqEPiAmGjfjwS28P42WdkkeNjV0Dv68mtlkPn0X5+lb
-	 gEZ02GOVBsAKsO5kxHT/coAxwFlaZw2cLlsD/ov7y3OTYuEydLxB+JDNuh2cbapWRF
-	 1cyXqblStMzwyVWxPEGmXln/zF4/nqXdjdare73iQaMZ7e3jiQMaH0jYHUEoE/zg7I
-	 D4F3LwVxJ3UW9AAJMSqJxdOiMxwu8m8ACWjkGD9T4Tt307HkAUuqI5WNfQBLZNBPio
-	 DUKs9kBsfNRZqvCfYv8kNxjk3fyxYmUFQJpBY2c8b4JdOKuT7rVL/++GMctkEX+ahY
-	 4znbyfQH/3NXA==
-Date: Fri, 28 Jun 2024 19:55:58 +0100
+	b=uqc8rRT+E+dEuSRf1LMFu46ldn2wDeNlGcbaNLP2xEd5uy2x2zJX+3VNnmQN0ive1
+	 vj3i9NtqbGXY8EcZWmlOaR/4PXl6zqC7ktciSnIdvvv8xLms2pXljt7Ev+yWQPvnc8
+	 Pthtz1fF5CsIGkFW8ZGEPco4bv4xYw4zSAh83lQJbKz0OxlSotSRfwsAk/J+FiziKE
+	 DvRzMbxcSPZtKf1SKFcZRZCnTqoqtP9fglEimi+HPKhjLsf/8jzXkwzdtmPF/Yb0c3
+	 Zsnj38yGIxHQjdY1wrNoN+UaUkKpp3wzFHu4ZUvjGwGcgMeCtRzR4GCW/dBSNGNDIr
+	 dDImIql4s6Xxw==
+Date: Fri, 28 Jun 2024 20:02:43 +0100
 From: Jonathan Cameron <jic23@kernel.org>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Olivier Moysan <olivier.moysan@foss.st.com>, Alexandre Torgue
- <alexandre.torgue@foss.st.com>, Fabrice Gasnier
- <fabrice.gasnier@foss.st.com>, linux-stm32@st-md-mailman.stormreply.com,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org, Lars-Peter Clausen
- <lars@metafoo.de>, Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, alsa-devel@alsa-project.org
-Subject: Re: [PATCH] dt-bindings: iio: stm32: dfsdm: fix dtbs warnings on
- dfsdm audio port
-Message-ID: <20240628195558.121de053@jic23-huawei>
-In-Reply-To: <171952014620.474983.15354726969773132715.robh@kernel.org>
-References: <20240618115912.706912-1-olivier.moysan@foss.st.com>
-	<171952014620.474983.15354726969773132715.robh@kernel.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: "Paller, Kim Seer" <KimSeer.Paller@analog.com>, Jonathan Cameron
+ <Jonathan.Cameron@huawei.com>, "linux-kernel@vger.kernel.org"
+ <linux-kernel@vger.kernel.org>, "linux-iio@vger.kernel.org"
+ <linux-iio@vger.kernel.org>, "devicetree@vger.kernel.org"
+ <devicetree@vger.kernel.org>, David Lechner <dlechner@baylibre.com>,
+ Lars-Peter Clausen <lars@metafoo.de>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Dimitri Fedrau <dima.fedrau@gmail.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, "Hennerich, Michael"
+ <Michael.Hennerich@analog.com>, Nuno =?UTF-8?B?U8Oh?=
+ <noname.nuno@gmail.com>
+Subject: Re: [PATCH v4 4/5] dt-bindings: iio: dac: Add adi,ltc2672.yaml
+Message-ID: <20240628200243.14b5f1b5@jic23-huawei>
+In-Reply-To: <20240625-roster-umbrella-3782caa23791@spud>
+References: <20240619064904.73832-1-kimseer.paller@analog.com>
+	<20240619064904.73832-5-kimseer.paller@analog.com>
+	<20240619-vanity-crowd-24d93dda47b8@spud>
+	<20240623144339.6a5087cf@jic23-huawei>
+	<PH0PR03MB71419D55571B07479B4F4FB8F9D42@PH0PR03MB7141.namprd03.prod.outlook.com>
+	<20240624-untracked-molasses-31e8769dddd3@spud>
+	<20240624183753.0000218c@Huawei.com>
+	<PH0PR03MB7141EE1309B35372201A6A80F9D52@PH0PR03MB7141.namprd03.prod.outlook.com>
+	<20240625-roster-umbrella-3782caa23791@spud>
 X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -68,26 +77,96 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On Thu, 27 Jun 2024 14:29:08 -0600
-"Rob Herring (Arm)" <robh@kernel.org> wrote:
+On Tue, 25 Jun 2024 17:20:48 +0100
+Conor Dooley <conor@kernel.org> wrote:
 
-> On Tue, 18 Jun 2024 13:59:12 +0200, Olivier Moysan wrote:
-> > Fix warnings on DFSDM dtbs check
-> > Unevaluated properties are not allowed ('dfsdm-dai' was unexpected)
-> > 'port' does not match any of the regexes: 'pinctrl-[0-9]+'
+> On Tue, Jun 25, 2024 at 03:51:27PM +0000, Paller, Kim Seer wrote:
 > > 
-> > Fixes: 11183ac07a74 ("dt-bindings: stm32: convert dfsdm to json-schema")
-> > Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
-> > ---
-> >  .../devicetree/bindings/iio/adc/st,stm32-dfsdm-adc.yaml       | 4 ++++
-> >  1 file changed, 4 insertions(+)
 > >   
+> > > From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>  
 > 
-> Acked-by: Rob Herring (Arm) <robh@kernel.org>
+> > > On Mon, 24 Jun 2024 18:00:24 +0100
+> > > Conor Dooley <conor@kernel.org> wrote:
+> > >   
+> > > > On Mon, Jun 24, 2024 at 03:26:26PM +0000, Paller, Kim Seer wrote:  
+> > > > >
+> > > > >  
+> > > > > > From: Jonathan Cameron <jic23@kernel.org>  
 > 
+> > > > > > Subject: Re: [PATCH v4 4/5] dt-bindings: iio: dac: Add adi,ltc2672.yaml
+> > > > > >
+> > > > > >
+> > > > > > On Wed, 19 Jun 2024 18:57:59 +0100
+> > > > > > Conor Dooley <conor@kernel.org> wrote:
+> > > > > >  
+> > > > > > > On Wed, Jun 19, 2024 at 02:49:03PM +0800, Kim Seer Paller wrote:  
+> > > > > > > > +patternProperties:
+> > > > > > > > +  "^channel@[0-4]$":
+> > > > > > > > +    type: object
+> > > > > > > > +    additionalProperties: false
+> > > > > > > > +
+> > > > > > > > +    properties:
+> > > > > > > > +      reg:
+> > > > > > > > +        description: The channel number representing the DAC output  
+> > > > > > channel.  
+> > > > > > > > +        maximum: 4
+> > > > > > > > +
+> > > > > > > > +      adi,toggle-mode:
+> > > > > > > > +        description:
+> > > > > > > > +          Set the channel as a toggle enabled channel. Toggle operation  
+> > > > > > enables  
+> > > > > > > > +          fast switching of a DAC output between two different DAC  
+> > > codes  
+> > > > > > without  
+> > > > > > > > +          any SPI transaction.
+> > > > > > > > +        type: boolean
+> > > > > > > > +
+> > > > > > > > +      adi,output-range-microamp:
+> > > > > > > > +        description: Specify the channel output full scale range.
+> > > > > > > > +        enum: [3125000, 6250000, 12500000, 25000000, 50000000,  
+> > > > > > 100000000,  
+> > > > > > > > +               200000000, 300000000]  
+> > > > > > >
+> > > > > > > IIO folks, is this sort of thing common/likely to exist on other DACs?  
+> > > > > >
+> > > > > > Fair point. It is probably time to conclude this is at least moderately  
+> > > common  
+> > > > > > and generalize it - which will need a dac.yaml similar to the one we have  
+> > > for  
+> > > > > > ADCs in adc/adc.yaml.  That will need to make this a per channel node  
+> > > property  
+> > > > > > (same as the adc ones).  
+> > > > >
+> > > > > Should I proceed with generalizing common DAC properties in this series  
+> > > and does  
+> > > >
+> > > > I think so, yes.  
+> > > 
+> > > Yes, that would great.  
+> > 
+> > I was wondering who would be the designated maintainer for new dac.yaml?  
+> 
+> I'd suggest Jonathan!
 
-Applied  to the togreg branch of iio.git and pushed out as testing for
-all the normal reasons.
+Sure.  Though if anyone else wants to maintain this one they'd be welcome :)
 
-J
+> 
+> > > > > this mean somehow removing these common properties from existing DAC  
+> > > bindings?  
+> > > >
+> > > > I think that that one is up to Jonathan.  
+> > > 
+> > > We can deprecate them.  At somepoint we can remove them form the
+> > > documented bindings
+> > > but we will need to keep them in drivers forever (which won't be costly in this
+> > > case).  
+> 
+> Right. Anything where the name _would change_ needs to be deprecated and
+> kept forever. I was thinking more about properties that are defined in
+> multiple locations with the same name, e.g. if "output-range-microvolts"
+> existed in 6 different bindings.
+> 
+> Thanks,
+> Conor.
+
 
