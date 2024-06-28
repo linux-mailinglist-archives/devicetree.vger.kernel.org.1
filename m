@@ -1,207 +1,129 @@
-Return-Path: <devicetree+bounces-81248-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81249-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C61C291BB42
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 11:15:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D3AA91BB45
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 11:15:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 54FE71F22F2C
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 09:15:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 02AB82815E8
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 09:15:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8C03152792;
-	Fri, 28 Jun 2024 09:15:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAD1914BF92;
+	Fri, 28 Jun 2024 09:15:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="b02fMvTd";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="pSoL9liW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FX47cPZ1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 065941514D4
-	for <devicetree@vger.kernel.org>; Fri, 28 Jun 2024 09:15:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99B09D2E5;
+	Fri, 28 Jun 2024 09:15:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719566105; cv=none; b=ZkAMhI7u22cei+O2R0V+k7vIAFh6oiRfzMVtbCKIsU20g6aZbKrWTEahjfF3n0lR5EeogqcijhyGK6S5KXHP43+8lfdrznMe5GSozIAq1nJ/yWOv7ESlgW0EFlcrBHHRHv0/f9OHb2AshhO69Oei5mECcwT/yeBIjh9A2ShlQRw=
+	t=1719566127; cv=none; b=ZrI3FLj80BwcgXiScc2DwTtCk2iWfAEEsALqHM4NCKA7EZfnHOuArMfOlt19Go5uTJvwj62La1/84wFIes+/YRbSPIRGhUDRIN89B1R5OEUwKc6BzUXSzmvjd6T/CQo3D40RhfKjZLTznUv89r6YgFk/AeleJbRWJ11SEI+iTaA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719566105; c=relaxed/simple;
-	bh=Oa/01lsMxvPYX+rOBXFPRFF3tkXlEWs/V5e66/YqmkM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=i6iEk0M0Pcp897XVPXrALedq+1f/3l3U4LkJXsRSQZK+IOS5AM8ceRlRdJ9WKiFbyfj9AyysCW3WGvk17zhslxB/iskxgqhQWw2UZYG9+dDBN5jr3I/97C28r5ToFCOmBKzkeS/ODz6HRg4B1m1GvPbe4eDcD72zsE9W09YV/wI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=b02fMvTd; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=pSoL9liW reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1719566102; x=1751102102;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=EXcyRDCaJB09jaDRAMlmuxE97++8Tda7l+ochk/FMPA=;
-  b=b02fMvTdtxB+LjMdQwVgVxXRLtPkqhBf2m3CcvIDFm/llOY9tG61/EeN
-   6VVSzrhEmN7kChP3RsUlIQIwqNK766xJY7Xl8AJvFSLWcZwW1guNMLnS6
-   t9NV/9ZvA3fZLOSovE3ei/KLNFqBBiI4YGc6XqgYkj5VblS3Lh2rX6AhY
-   2hw7lcXZGgO9HoPqtf3aqsjA2NPL6n7EFtj3HRlZ5ZsXte6VrZJDIsB3+
-   Och6GqLjdFXOjzpEjoxG033EsyqaA37PUUgu5ofpQt/N6g0StST/fo6Aq
-   O9BFRVXwxdQ06u2gbPpjAU00XrofQmytgm8RGsCep4VPvUgIhGfd+nh6/
-   A==;
-X-CSE-ConnectionGUID: 3uHoSeWRTF6jY+THVhd5ww==
-X-CSE-MsgGUID: R/DCuKDpQwCPgAWWYmfvcQ==
-X-IronPort-AV: E=Sophos;i="6.09,168,1716242400"; 
-   d="scan'208";a="37642892"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 28 Jun 2024 11:14:53 +0200
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 281B216440A;
-	Fri, 28 Jun 2024 11:14:47 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1719566089;
-	h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=EXcyRDCaJB09jaDRAMlmuxE97++8Tda7l+ochk/FMPA=;
-	b=pSoL9liWiY3aHHTf9XtmJ6S+AMLi3vi7rXkZ/u9KMRWcOYzaWUyjxXUSIjSjp4taiGSHrJ
-	kaV1bxOnFYEnc9S16x8pQ/NZtPWQQBff+5m2FFgH8bzKmaD1TcdFrYwOAU0/2eQ7/efVQO
-	bfr4m9cY14zXDLARV3ByXgzFI7F4oXOXltFzHklLOEZ4LldtpnKct0sGXSqiMf6m/xfhZe
-	joOEmJX7is5RUx5Hxu5WjXwL/7mOfdQ1Yvo3tUCLM3gWmCGbLcSbK1WAPrkXNGxfbtGue6
-	Ot8jNBoS4MBvmO6YzQrDd0l5e3xPp78cXy8vP0xNTYB9t+8E9AAe7+WYEjmEoA==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: MyungJoo Ham <myungjoo.ham@samsung.com>, Chanwoo Choi <cw00.choi@samsung.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v5 1/2] dt-bindings: extcon-usb-gpio: convert to DT schema format
-Date: Fri, 28 Jun 2024 11:14:49 +0200
-Message-ID: <2550039.Sgy9Pd6rRy@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20240215093214.796821-2-alexander.stein@ew.tq-group.com>
-References: <20240215093214.796821-1-alexander.stein@ew.tq-group.com> <20240215093214.796821-2-alexander.stein@ew.tq-group.com>
+	s=arc-20240116; t=1719566127; c=relaxed/simple;
+	bh=ht+XWmP+iKg1xhbQdDPB2b/Buv/E5MPfb1jxIlaOU6w=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hYhpuXJk/01yn9QGFPc4DhHBFwjldY3x9uVUdkhUbph8bqYzOn/IhW+ZODVaDg4abqjU8oJ5E+W4xyXzrwq97kq9WtH63PkyoPuhwf4DQqMkwELUFQbto9yux7UDHL1TLucAyTp4efmFV0rtHiJDK4T1+c44hIPHIUtY9P8AfrY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FX47cPZ1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 58DBFC116B1;
+	Fri, 28 Jun 2024 09:15:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719566127;
+	bh=ht+XWmP+iKg1xhbQdDPB2b/Buv/E5MPfb1jxIlaOU6w=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=FX47cPZ1DvveqWludg83WvqeGaQ/P8TKJrK1ZrTTNT1jMlMjFSI8yNFhkVvQ5R/9V
+	 vMcQgAhVTx9QP34UVEYvMF8XOwINXzxso/yGDC/VIO64dzt/n53VJUNwU4D0W3fg4d
+	 BMdL/CVAkSjTieDHbr4WnxMFxNtQez0NMvzZQcL/J3i/90w1quT1FoHNMb0cDSZsMh
+	 RlIlG00aBu9aMWvwUB8nAx/Tx1X25Ja+/ervd8CNx5DpAyR8XD3Uf/9EptU9N5INMu
+	 0x1d6P3v8vqLfZoaIRiRGFXnKmaRbh2S1BCUbJ9xXmSnQuzl9wCHULvQJHuBUuHLNN
+	 ECkknXaUuMUxg==
+Message-ID: <5f01259a-6c23-4c67-92de-03a8f2339d93@kernel.org>
+Date: Fri, 28 Jun 2024 11:15:18 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/1] dt-bindings: display/msm: dsi-controller-main: Add
+ SM7150
+To: Danila Tikhonov <danila@jiaxyga.com>, Rob Clark <robdclark@gmail.com>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Krishna Manikandan <quic_mkrishn@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240628082343.28341-1-danila@jiaxyga.com>
+ <20240628082343.28341-2-danila@jiaxyga.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
+ QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
+ gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
+ /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
+ iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
+ VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
+ 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
+ xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
+ eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
+ AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
+ MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
+ Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
+ ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
+ vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
+ oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
+ lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
+ t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
+ uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
+ 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
+ 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
+In-Reply-To: <20240628082343.28341-2-danila@jiaxyga.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Am Donnerstag, 15. Februar 2024, 10:32:13 CEST schrieb Alexander Stein:
-> Convert the binding to DT schema format. Change the GPIO properties to new
-> naming convention using -gpios as well.
->=20
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+On 28/06/2024 10:23, Danila Tikhonov wrote:
+> Add the DSI host found on SM7150.
+> 
+> Signed-off-by: Danila Tikhonov <danila@jiaxyga.com>
 
-Patch 2 has been applied as 5b6df373ec95cf051264f655be0dbe1d6caa173c
-Who is going to pick this?
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Thanks
-Alexander
-
-> ---
->  .../bindings/extcon/extcon-usb-gpio.txt       | 21 --------
->  .../bindings/extcon/extcon-usb-gpio.yaml      | 51 +++++++++++++++++++
->  2 files changed, 51 insertions(+), 21 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/extcon/extcon-usb-g=
-pio.txt
->  create mode 100644 Documentation/devicetree/bindings/extcon/extcon-usb-g=
-pio.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/extcon/extcon-usb-gpio.txt=
- b/Documentation/devicetree/bindings/extcon/extcon-usb-gpio.txt
-> deleted file mode 100644
-> index dfc14f71e81fb..0000000000000
-> --- a/Documentation/devicetree/bindings/extcon/extcon-usb-gpio.txt
-> +++ /dev/null
-> @@ -1,21 +0,0 @@
-> -USB GPIO Extcon device
-> -
-> -This is a virtual device used to generate USB cable states from the USB =
-ID pin
-> -connected to a GPIO pin.
-> -
-> -Required properties:
-> -- compatible: Should be "linux,extcon-usb-gpio"
-> -
-> -Either one of id-gpio or vbus-gpio must be present. Both can be present =
-as well.
-> -- id-gpio: gpio for USB ID pin. See gpio binding.
-> -- vbus-gpio: gpio for USB VBUS pin.
-> -
-> -Example: Examples of extcon-usb-gpio node in dra7-evm.dts as listed belo=
-w:
-> -	extcon_usb1 {
-> -		compatible =3D "linux,extcon-usb-gpio";
-> -		id-gpio =3D <&gpio6 1 GPIO_ACTIVE_HIGH>;
-> -	}
-> -
-> -	&omap_dwc3_1 {
-> -		extcon =3D <&extcon_usb1>;
-> -	};
-> diff --git a/Documentation/devicetree/bindings/extcon/extcon-usb-gpio.yam=
-l b/Documentation/devicetree/bindings/extcon/extcon-usb-gpio.yaml
-> new file mode 100644
-> index 0000000000000..136f865b87816
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/extcon/extcon-usb-gpio.yaml
-> @@ -0,0 +1,51 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/extcon/extcon-usb-gpio.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: USB GPIO Extcon device
-> +
-> +maintainers:
-> +  - Alexander Stein <alexander.stein@ew.tq-group.com>
-> +
-> +description:
-> +  This is a virtual device used to generate USB cable states from the
-> +  USB ID pin connected to a GPIO pin.
-> +  Deprecated, use USB connector node instead.
-> +
-> +deprecated: true
-> +
-> +properties:
-> +  compatible:
-> +    const: linux,extcon-usb-gpio
-> +
-> +  id-gpios:
-> +    description: An input gpio for USB ID pin.
-> +    maxItems: 1
-> +
-> +  vbus-gpios:
-> +    description: An input gpio for USB VBus pin, used to detect presence=
- of
-> +      VBUS 5V.
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +
-> +anyOf:
-> +  - required:
-> +      - id-gpios
-> +  - required:
-> +      - vbus-gpios
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    extcon-usb1 {
-> +      compatible =3D "linux,extcon-usb-gpio";
-> +      id-gpios =3D <&gpio6 1 GPIO_ACTIVE_HIGH>;
-> +      vbus-gpios =3D <&gpio6 2 GPIO_ACTIVE_HIGH>;
-> +    };
->=20
-
-
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
-
+Best regards,
+Krzysztof
 
 
