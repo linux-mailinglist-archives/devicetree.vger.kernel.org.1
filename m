@@ -1,181 +1,119 @@
-Return-Path: <devicetree+bounces-81142-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81154-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8458391B6E1
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 08:17:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FDD591B752
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 08:50:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A77281C22F1D
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 06:17:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 285DA283498
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 06:50:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93E284D8DF;
-	Fri, 28 Jun 2024 06:17:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4FF51369AA;
+	Fri, 28 Jun 2024 06:50:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qFKacbE9"
+	dkim=pass (2048-bit key) header.d=inbox.ru header.i=@inbox.ru header.b="VX9jrYYd";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=inbox.ru header.i=@inbox.ru header.b="SesQfzcE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fallback24.i.mail.ru (fallback24.i.mail.ru [79.137.243.78])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA1E74D8A4
-	for <devicetree@vger.kernel.org>; Fri, 28 Jun 2024 06:17:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8517F13212E;
+	Fri, 28 Jun 2024 06:50:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=79.137.243.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719555451; cv=none; b=J8WJsGSZuw4eR/gQ8FJ4KkAPytno/coura9BWG3U4nWuqfSv0KvED1Hcjb2IjI7RkW2cDRrKMpFGXq6k1AXMSnCBBtUvIxtZffy56NK+YNOxN238LgVW+OcpZk+l+kXuBQACqHGF3EU73afmnHwCXCGfBT1pfHLMnj/kiaVRYFk=
+	t=1719557403; cv=none; b=Cx7RFB9R8hPbBXZQgSc8MbWDjQjFJXWUU1ncV+hvCEb3yQF6HB/j/7AbGP8TNhohyfCPwTumgrGb+uAH97gtW4KxzKiH6MKVmfWR64sntkcNlrIYnYmfCA7SHEP0E2obj6RvkTy3oOswFM6UCX9yif686RwO8JmY7hU2RrpbHv4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719555451; c=relaxed/simple;
-	bh=z9UIB5rrLY/cxp9IDsiz9q0oKv8hf241y0FJMc9qyfg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GkPc2JEIJANMQeB4JBdtE9tlpxNycWWvUf4D7wFN5jmbFLXSCLCtelM7jGZbKhwbyWhG9JQhx8n1quCXL/eB90V04MNugKyXVT9NiwcNd77ggNWvsktfGHBmBeZR0OnBmexXADJZqjg/AMTs89YcCE1xUYmTnPBi6AO5wT54y3I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qFKacbE9; arc=none smtp.client-ip=209.85.208.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2eaae2a6dc1so2707921fa.0
-        for <devicetree@vger.kernel.org>; Thu, 27 Jun 2024 23:17:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719555447; x=1720160247; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=cvL1Kpr+Y0kubwCGNWw6QnVBNlgmQ51dGFE/mo0TWS4=;
-        b=qFKacbE91QJRC+Mdgt/Q4oRB6zqR2OPRlTagtUn2PdZLGE1jLZPpUxRYJyQluDtPQ+
-         ATs9TgiSVKmoKg1NE9xfbxODdeYsTYoYXecVJsuIIVVAWtw01AbVVJhGFXKuu4Xzykm8
-         aqKbeVoaxWCRHKU8OStA+xuPrmDFBG9JIHz+YrhYnjmOgF+hReWez/+4aI0m2l6KI7cN
-         0ocRwjiTsj4ky5W48wKfvaQVqgVsar3ojZQq3HYEbUgx98gUsjVTeAm1bArouCdr0fYr
-         s7xQYXHWtJV4PyeOr42XDAmBQj1qPrhze2Bg+FUykqxH3rJL8EUZ+ltwwWBXqyyhsXRg
-         6JRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719555447; x=1720160247;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=cvL1Kpr+Y0kubwCGNWw6QnVBNlgmQ51dGFE/mo0TWS4=;
-        b=mkogJcnfvvk6fVehjd8OTZuYNXmVBo2MKR2b4B/H1ZeV6xdtwJLwBptQ1KvRlOUfeW
-         l0uGh3HxnS9AbbX95ySqYzCWuo12xxJ8vlrSlOjCT+QrV+1seEnW3vkZ47xAXhonJ/9A
-         3bEzxAMMA3+IySGqqOrBU7QnTbTgdhS2Qn3Fu1PiYBsIRBu2sfjocSdcC+3w7n6cvrty
-         1NPdVret2F0W766gl6tON6ZEJHa3kqAnXEM9FUNxZp2ImycEaRrBI6zuv9a08M/ZH5Io
-         7Nj343TR2XUnNg84LO+30XcSaAOdEXCxmSmBfr7Hmn7Bo6IfR2u23CuzOqgjeGBRoi5+
-         8OJg==
-X-Forwarded-Encrypted: i=1; AJvYcCXwx6z4JDzDrNg2cjug87RlWRsoW/lBP1T1Ddl5e8FeohNbu/g6LrQfkuKi29uvMdWd4Oijy8ub+m6h0E1L+gZlp/U2hWqGHTJaqQ==
-X-Gm-Message-State: AOJu0YyK0KUuGn+aouWz0WFFjXP1tn0wrT3CO2nCXciMjU991vtehLv/
-	q8ThgeCjuiXJ3fmkPufy2zuLun2WT0zifjaZWdIzDVVOU1lfbQqD6BqisY7cqP8=
-X-Google-Smtp-Source: AGHT+IGctVcgVA83EGYdDu70N8ryw4vx7TISaUQGYnxOzUZXWrpgYGOAAhjn8A4wHTQl74HS5QgbvA==
-X-Received: by 2002:a2e:8193:0:b0:2ec:2038:925d with SMTP id 38308e7fff4ca-2ec5b2c4f38mr108962601fa.1.1719555447004;
-        Thu, 27 Jun 2024 23:17:27 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.137])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4256af5ba67sm20005225e9.19.2024.06.27.23.17.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Jun 2024 23:17:26 -0700 (PDT)
-Message-ID: <53a591ef-caf8-4494-a672-0ee95d8dfd68@linaro.org>
-Date: Fri, 28 Jun 2024 08:17:24 +0200
+	s=arc-20240116; t=1719557403; c=relaxed/simple;
+	bh=y3OfKL/mIWCD2CU0dUGjLIhEKka14zVDGf/boSGV1qQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=nTr+B0WApZMmGB7sS0WwkKwZuh+e/xBZQguRaX0RpvegxlNMHcvqrstkAPcMsrN07+NK0dk+oCnzusbApqPvJz38ewcJQvBrYD8Q71706WtPL9q6LfS7e4+bytI6ZbGmDL4SVU9GBFBQSMilTQiJVWbYZx0JoDXIiSL+BHJVxko=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=inbox.ru; spf=pass smtp.mailfrom=inbox.ru; dkim=pass (2048-bit key) header.d=inbox.ru header.i=@inbox.ru header.b=VX9jrYYd; dkim=pass (2048-bit key) header.d=inbox.ru header.i=@inbox.ru header.b=SesQfzcE; arc=none smtp.client-ip=79.137.243.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=inbox.ru
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=inbox.ru
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=inbox.ru; s=mail4;
+	h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:Cc:To:From:From:Subject:Content-Type:Content-Transfer-Encoding:To:Cc; bh=ge1m5xNnSjp5O705qLECpZaJUXZrf8RDfmnJN/mnCGg=;
+	t=1719557400;x=1719647400; 
+	b=VX9jrYYdpQP3swybF2ltAk44rPbI7gksaTRlnMZZR+GsM3uuvWVM6WDVb33tTVvTxMwNztvFNtTFpDMaHz83A3Rpfizd5hNf4qzrBil9yt/MEY9WNEvM38k2oj481i9lLVxYxEjYQ3ZTNd5qJr5fA+dwXoeyOcZ4a37UAkM6g77lh7YPsn6vnWRxOoLHo++7hzl38RhKnSafztMoeQCO/uIrldpsDvG60wWqrCNEZgGng7/hCsRn6bznkfY+ZJNkYkbAmeaDCEB/AMWduUcY5c2LMkkH2Lve05zKC5aZAq0pN80d7Fu2g3LP83Pi5wg1/oXzY357MUJX3PVKvkRDzw==;
+Received: from [10.12.4.29] (port=47096 helo=smtp51.i.mail.ru)
+	by fallback24.i.mail.ru with esmtp (envelope-from <fido_max@inbox.ru>)
+	id 1sN4we-008JsP-Tx; Fri, 28 Jun 2024 09:18:53 +0300
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=inbox.ru;
+	s=mail4; h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:Cc:
+	To:From:From:Sender:Reply-To:To:Cc:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive:
+	X-Cloud-Ids:Disposition-Notification-To;
+	bh=ge1m5xNnSjp5O705qLECpZaJUXZrf8RDfmnJN/mnCGg=; t=1719555532; x=1719645532; 
+	b=SesQfzcEUEFe1KcFlVH2aeR3/Wd6X8GFjFSoQxC58k6QgtRJhGmTHGsglKAxsTxWb+8xyLxzeVv
+	rJ9AeXDzAxVLZjmxaiMIa20D8wHWdYTxDckjGZt3WkVvJNHVe5d+Bm79LR5saYyDF85M2j69LeifK
+	mepfKwPJJL+tV+lv8FS8GIXbU+rLJPhDkuxJJV/Kp1vkNFRkWajfrt/ptp4qzlGQLhXLcphzovNxb
+	2HQPzEK5iL815k/6w8S6ASXbjCShzVVI1wHAbF1tqZ42b0A3AwO/X8WS+P2PuZMv+JJ9xMoP3vz4i
+	WR4+MvcojeX2zo3MUwW6Wtlk/e1D+H6TyBxQ==;
+Received: by smtp51.i.mail.ru with esmtpa (envelope-from <fido_max@inbox.ru>)
+	id 1sN4wO-0000000DKRj-3U8Q; Fri, 28 Jun 2024 09:18:37 +0300
+From: Maxim Kochetkov <fido_max@inbox.ru>
+To: Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>,
+	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
+	Andy Shevchenko <andy.shevchenko@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	John Hsu <KCHSU0@nuvoton.com>
+Cc: Maxim Kochetkov <fido_max@inbox.ru>,
+	linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	alsa-devel@alsa-project.org
+Subject: [PATCH v2 0/2] Add master clock handling for nau8824
+Date: Fri, 28 Jun 2024 09:17:45 +0300
+Message-ID: <20240628061750.11141-1-fido_max@inbox.ru>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 7/7] arm64: dts: qcom: qrb4210-rb2: add HDMI audio
- playback support
-To: Alexey Klimov <alexey.klimov@linaro.org>, linux-sound@vger.kernel.org,
- srinivas.kandagatla@linaro.org, bgoswami@quicinc.com, lgirdwood@gmail.com,
- broonie@kernel.org
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- andersson@kernel.org, konrad.dybcio@linaro.org, perex@perex.cz,
- tiwai@suse.com, linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
- devicetree@vger.kernel.org, elder@linaro.org, dmitry.baryshkov@linaro.org,
- caleb.connolly@linaro.org, linux-kernel@vger.kernel.org
-References: <20240628010715.438471-1-alexey.klimov@linaro.org>
- <20240628010715.438471-8-alexey.klimov@linaro.org>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240628010715.438471-8-alexey.klimov@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-Mailru-Src: smtp
+X-7564579A: 78E4E2B564C1792B
+X-77F55803: 4F1203BC0FB41BD9749DDC91F62168F9434C08151801B152E33043C08F8D7FF8182A05F538085040B75E958E13EECA91AC8EDD30083ED68E5B7803034921C6E57BD3776DDB6887748E62883BDF625A9B
+X-7FA49CB5: FF5795518A3D127A4AD6D5ED66289B5278DA827A17800CE757AEC41D7AA04458EA1F7E6F0F101C67BD4B6F7A4D31EC0BCC500DACC3FED6E28638F802B75D45FF8AA50765F79006379A6B93796C91DCB58638F802B75D45FF36EB9D2243A4F8B5A6FCA7DBDB1FC311F39EFFDF887939037866D6147AF826D83C6E4B3470113C446682DC0906D38882DEF22AD61BD8707C20879F7C8C5043D14489FFFB0AA5F4BFA417C69337E82CC2CC7F00164DA146DAFE8445B8C89999728AA50765F79006377C70927E34808485389733CBF5DBD5E9C8A9BA7A39EFB766F5D81C698A659EA7CC7F00164DA146DA9985D098DBDEAEC86089696B24BB1D19F6B57BC7E6449061A352F6E88A58FB86F5D81C698A659EA7E827F84554CEF5019E625A9149C048EE9ECD01F8117BC8BEE2021AF6380DFAD18AA50765F790063735872C767BF85DA227C277FBC8AE2E8BDCE939D40DBB93CA75ECD9A6C639B01B4E70A05D1297E1BBCB5012B2E24CD356
+X-C1DE0DAB: 0D63561A33F958A5ACF5F6CCAA16077E5002B1117B3ED69690200D2D90457A39B74D9144D44E4FCF823CB91A9FED034534781492E4B8EEADF1165EFABA1780A6C79554A2A72441328621D336A7BC284946AD531847A6065A17B107DEF921CE79BDAD6C7F3747799A
+X-C8649E89: 1C3962B70DF3F0ADE00A9FD3E00BEEDF77DD89D51EBB7742D3581295AF09D3DF87807E0823442EA2ED31085941D9CD0AF7F820E7B07EA4CFC936A6000BFCC5EC7E936901FCABE1E64C628756CA9BDA33FE87FE105843AC59FB7A4CF61EC7A84F44A12D68860EECB7B3683851FD3713BC896C0CB3C25AE39F07416E56C15988D2146D90F64BF3396102C26D483E81D6BEEB84411BD425175970A7FB4ED9620804ADE12199CE9660BE
+X-D57D3AED: 3ZO7eAau8CL7WIMRKs4sN3D3tLDjz0dLbV79QFUyzQ2Ujvy7cMT6pYYqY16iZVKkSc3dCLJ7zSJH7+u4VD18S7Vl4ZUrpaVfd2+vE6kuoey4m4VkSEu530nj6fImhcD4MUrOEAnl0W826KZ9Q+tr5ycPtXkTV4k65bRjmOUUP8cvGozZ33TWg5HZplvhhXbhDGzqmQDTd6OAevLeAnq3Ra9uf7zvY2zzsIhlcp/Y7m53TZgf2aB4JOg4gkr2biojOl9CAQoHe3lFbbuTUPvMtA==
+X-Mailru-Sender: 689FA8AB762F7393C6D0B12EA33CAA9BB0D3F26E3BD54D41A12365E67D9B78B74F465673F7486D3C90DE4A6105A3658D481B2AED7BCCC0A49AE3A01A4DD0D55C6C99E19F044156F45FEEDEB644C299C0ED14614B50AE0675
+X-Mras: Ok
+X-7564579A: 646B95376F6C166E
+X-77F55803: 6242723A09DB00B44E72EF7427BD9C0864826EF222902C20973E2E13D56EC51A049FFFDB7839CE9EFDED2BF4F082F1951A39C9102C0F54495B4BF95CC9E659609E5F7F5C3DADE618
+X-7FA49CB5: 0D63561A33F958A5A7EC19C2A94EDA0445CCA3F679D463662381EB71AEE44723CACD7DF95DA8FC8BD5E8D9A59859A8B64071617579528AACCC7F00164DA146DAFE8445B8C89999728AA50765F7900637E12249F0E86D8F40389733CBF5DBD5E9C8A9BA7A39EFB766F5D81C698A659EA7CC7F00164DA146DA9985D098DBDEAEC8540F9B2D9BA47D56F6B57BC7E6449061A352F6E88A58FB86F5D81C698A659EA775ECD9A6C639B01B78DA827A17800CE77DCDFB3399A2F72843847C11F186F3C59DAA53EE0834AAEE
+X-D57D3AED: 3ZO7eAau8CL7WIMRKs4sN3D3tLDjz0dLbV79QFUyzQ2Ujvy7cMT6pYYqY16iZVKkSc3dCLJ7zSJH7+u4VD18S7Vl4ZUrpaVfd2+vE6kuoey4m4VkSEu530nj6fImhcD4MUrOEAnl0W826KZ9Q+tr5ycPtXkTV4k65bRjmOUUP8cvGozZ33TWg5HZplvhhXbhDGzqmQDTd6OAevLeAnq3Ra9uf7zvY2zzsIhlcp/Y7m53TZgf2aB4JOg4gkr2biojOl9CAQoHe3nAWffgjItudA==
+X-Mailru-MI: 8000000000000800
+X-Mras: Ok
 
-On 28/06/2024 03:07, Alexey Klimov wrote:
-> Add sound node, dsp-related pieces and LPASS pinctrl to enable
-> HDMI audio support on Qualcomm QRB4210 RB2 board. That is the
-> only sound output supported for now.
-> 
-> Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/qrb4210-rb2.dts | 73 ++++++++++++++++++++++++
->  1 file changed, 73 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
-> index 2c39bb1b97db..9f4dde927be4 100644
-> --- a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
-> +++ b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
-> @@ -6,6 +6,8 @@
->  /dts-v1/;
->  
->  #include <dt-bindings/leds/common.h>
-> +#include <dt-bindings/sound/qcom,q6afe.h>
-> +#include <dt-bindings/sound/qcom,q6asm.h>
->  #include <dt-bindings/usb/pd.h>
->  #include "sm4250.dtsi"
->  #include "pm6125.dtsi"
-> @@ -230,6 +232,10 @@ lt9611_out: endpoint {
->  	};
->  };
->  
-> +&lpass_tlmm {
-> +	status = "okay";
+nau8824 has external MCLK pin. So add enable/disable external clock
+management.
 
-Why LPASS TLMM was disabled? I do not see any missing resource.
+Signed-off-by: Maxim Kochetkov <fido_max@inbox.ru>
+---
+Changes in v2:
+- move the devm_clk_get() to the nau8824_read_device()
 
-Drop.
+---
+Maxim Kochetkov (2):
+  ASoC: codecs: nau8824: Add master clock handling
+  ASoC: dt-bindings: nau8824: Add master clock handling
 
+ .../bindings/sound/nuvoton,nau8824.yaml       |  8 +++++++
+ sound/soc/codecs/nau8824.c                    | 21 +++++++++++++++++--
+ sound/soc/codecs/nau8824.h                    |  1 +
+ 3 files changed, 28 insertions(+), 2 deletions(-)
 
-
-Best regards,
-Krzysztof
+-- 
+2.45.2
 
 
