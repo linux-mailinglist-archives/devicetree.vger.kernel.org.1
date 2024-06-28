@@ -1,134 +1,99 @@
-Return-Path: <devicetree+bounces-81458-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81459-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1642191C4A9
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 19:19:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68CC991C4B7
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 19:21:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C68A8281DC5
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 17:19:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 229022813A1
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 17:21:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCFD11CE0B8;
-	Fri, 28 Jun 2024 17:18:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E14281C9EC6;
+	Fri, 28 Jun 2024 17:21:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aMS1qgSC"
+	dkim=pass (2048-bit key) header.d=mff.cuni.cz header.i=@mff.cuni.cz header.b="kbMcgn20"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp1.ms.mff.cuni.cz (smtp-in1.ms.mff.cuni.cz [195.113.20.234])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2946A1CF3C4;
-	Fri, 28 Jun 2024 17:18:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91B8D1DDCE;
+	Fri, 28 Jun 2024 17:21:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.113.20.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719595103; cv=none; b=HMxy9zTgv88AtvJirQNztIyKsMWKb6QL5LCwBr00SPjseZg70Hn2bU+tj342ajE1YQkUWhHB9TdVLUHtM+moAzJG2YnURIbzfvPilMzbTAn79rHpsIUTpxbFU2QtuvUdFCaZA5ssuKrxOYUswYy7cJ2h6gHq1/UuOKlATm7OfrM=
+	t=1719595290; cv=none; b=osuwn7nF7t3PAJCqUfRDidNrkf8PYO4VXnqDqmNC43GrFbbs8MdtlsQhYWAuWM8Z/ZbKA94kVomYfk24eujupznGoXO8s8ATXBF9IWnzFijimixTPvq5dEV7IvJ2LvmHbKO5wXyjLJQQ7BDO85LEf/hGep9K8DXO71zh0QZmSYM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719595103; c=relaxed/simple;
-	bh=0kDYpLaDUluAMzQIp88EZDW06QTvh4nYNM1WCMKD7L8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=bNPrnq9aZzcHbns2KDHRwqgUHdkna2Rs+xFYU9nWliF/0F7zx2OSw0ktRBrN8zKjO1/prOwBKnqFD3VRr8TYS34oGC7xst2iP471UtAke9d4gwdReMxNHodsKZouAxHW1EAXca2uTGl4+sgNKHMfnTOVUoeURb0FA20tAG6AOqA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aMS1qgSC; arc=none smtp.client-ip=209.85.218.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a724a8097deso105385366b.1;
-        Fri, 28 Jun 2024 10:18:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1719595100; x=1720199900; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=o3nvsIkFRTprl2veHnwGjNIAA2Gwnu2oo8W5vdGeBr8=;
-        b=aMS1qgSCsi7K57kBaSo0vpqpIS1t6Sr4afMde5WrWOChVrCEsBEODP8wfLIyjawjg0
-         Oz51N2o5TwP1SwkfrZstjkakePHFp08QEYg7CFmLO6AbF3m5bP3scdrGDjvFH3pbNmnC
-         oOLCji2c0B7nDiQ0vIy3ZOFvHUumV3PcITIk6SroziclGu8N6iUVHTsuslsBLY6Zfpla
-         TjOTlPP7FFlCYXoTLZhiRH0qexbDHlrfWPXe7Q52Bl5KOHzkrePSezdy/K48i9TpxKlA
-         AFbXQD6V9GdndhodRNsRYRVg4MDUmzyQV9TmtJzpWlgtnhwN3R0mjUppCP4oiBNk5VPk
-         g6Fg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719595100; x=1720199900;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=o3nvsIkFRTprl2veHnwGjNIAA2Gwnu2oo8W5vdGeBr8=;
-        b=aTFtFif3Ebb7kpSPEcthy7dUNhmXpSrYXyD1kuS9S8jWPYDQLCyNLMoBC1i6d6LhVR
-         OFIZcjpzJN3jhFQlPwfDk9G6XQcs5Cj3pvfN1gpvwihA1UViWQueLSJ9APJ0mlyTJmnD
-         e4oL5aLdEyIUJ+P3lsUV23tL3FYcKZhzcc0zhHlvKmih/n0BYLrn2q/9vYU2CgYAZGLd
-         YQtPGp5+Usc2vWre5xvJjwtzAV2hXdBMjwUL55nbzVHoMYe2PIqCkG7JABLayp5Pup68
-         vxzT78CuEa/ddGF6lmP6blBXuHs+Eyl6l8XikgNoxWuMBwVLp3or1/3U/FkBFsN6kb3S
-         lF7w==
-X-Forwarded-Encrypted: i=1; AJvYcCURoH/A+Cb9gR0oNKHvMbfvbnmPrp0lybQMOMU6AR4Arq5KXSAQS4hhjemtumsAegcs/tkWgnFr8akEUmi8q9paOE9prMKrqJ5jjn5cC/2XggnQad9kqRVzCouxCJj52t9xD2wfCspaHw==
-X-Gm-Message-State: AOJu0YxmV02U8mk59B4GK4k2xuSsNQTR906i0CqRX7jHtBkujykQtDJz
-	eRgBDEXBn/wLBTZ6KxLyE7nr5gW2aMplKRsJNhe8nDQQsrcwfmXApL4Mq+fn32+VrlOl1lStuH2
-	X1NnDQYxHrcFHPkh5/GUb7NX4uw==
-X-Google-Smtp-Source: AGHT+IFTZVskAjk2l5yWcH1+gZhoO6yQpm6ONFChSoLYbpKIhZVBVjX6P7gzsYaRUL4jBvTsbM8BFPkV4wxIIQ+MkWQ=
-X-Received: by 2002:a17:907:c78e:b0:a6f:bc02:a008 with SMTP id
- a640c23a62f3a-a7242c4de49mr1349695666b.4.1719595100397; Fri, 28 Jun 2024
- 10:18:20 -0700 (PDT)
+	s=arc-20240116; t=1719595290; c=relaxed/simple;
+	bh=NbOS8wtvU7uKZD7BIvMjlCuVnUcuWUyNlr4dVg1GJ5w=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:To:From:
+	 References:In-Reply-To; b=Whx5V12RGS9g9fMMhYdmsOzqLNBfD9INUISPaM0rdO2j8sKPD0VSKShirVXnN4O91f7cxwhDL9XuxjZtYV75+VujXaqrRCS4WVklAmnF0RDdu/+J4TL5B8gHMv5E93hRfwPHP7Kpn/1qR/iBGzyIcZFmsW5bmJGx2kZaCyOlq7s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=matfyz.cz; spf=pass smtp.mailfrom=matfyz.cz; dkim=pass (2048-bit key) header.d=mff.cuni.cz header.i=@mff.cuni.cz header.b=kbMcgn20; arc=none smtp.client-ip=195.113.20.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=matfyz.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=matfyz.cz
+X-SubmittedBy: id balejk@matfyz.cz subject /postalCode=110+2000/O=Univerzita+20Karlova/street=Ovocn+5CxC3+5CxBD+20trh+20560/5/ST=Praha,+20Hlavn+5CxC3+5CxAD+20m+5CxC4+5Cx9Bsto/C=CZ/CN=Karel+20Balej/emailAddress=balejk@matfyz.cz
+	serial F5FD910E8FE2121B897F7E55B84E351D
+	issued by /C=NL/O=GEANT+20Vereniging/CN=GEANT+20Personal+20CA+204
+	auth type TLS.CUNI
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mff.cuni.cz;
+	s=submission; t=1719595214; x=1720895214;
+	bh=NbOS8wtvU7uKZD7BIvMjlCuVnUcuWUyNlr4dVg1GJ5w=; h=From;
+	b=kbMcgn20SSqY+/JxddiLXwHe9sRBJ9BKqp4uHpNCQLh5PZrbZvIQO1XMKrGNPI2PT
+	 HpY0OkPKM4Ui8kXeCfb1+coH564dkDDw6PkYgz6EkKrSWIh1TNtu9LryK4YUuzb1a4
+	 9LBh6/yHSWk+3RqJjtVf8iafrA4dSQFqerg7nD5eRfhMJbbfswm9us0YK7jrzY5dlr
+	 bZCM6C6Vv+kGGfBI5WA+olaLCjIVuoFMEfSoQkxuhkagIsOwjZGbqg8kOklomUq0OP
+	 3My/2ZHjF+yi2Nc1qL7dRtCXCFihkSLm6X8xKW9kyfOF/iD0nyhI2XMioUWg1En8Md
+	 u7jQLsnSNXIfA==
+Received: from localhost (cdwifi-a110.cd-t.cz [213.235.133.110] (may be forged))
+	(authenticated)
+	by smtp1.ms.mff.cuni.cz (8.16.1/8.16.1) with ESMTPS id 45SHKBZq057515
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=OK);
+	Fri, 28 Jun 2024 19:20:13 +0200 (CEST)
+	(envelope-from balejk@matfyz.cz)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20240628140328.279792-1-erezgeva@nwtime.org> <20240628140328.279792-4-erezgeva@nwtime.org>
- <20240628-refuse-actress-b76985aa020c@spud> <D2BS0YMA48BG.1PEPFC3KMFV8N@kernel.org>
- <CANeKEMMrXK=mw=n=9DuTnprkTs3ct446oaC2QTJyst8Nd+D6rw@mail.gmail.com> <D2BT0DT9UQ66.2L497FSY7GMAL@kernel.org>
-In-Reply-To: <D2BT0DT9UQ66.2L497FSY7GMAL@kernel.org>
-From: Erez <erezgeva2@gmail.com>
-Date: Fri, 28 Jun 2024 19:17:42 +0200
-Message-ID: <CANeKEMO9hBhBs91nZkZRht9J29iRC2Tgf6ucWq=nbO7XAqzzng@mail.gmail.com>
-Subject: Re: [PATCH 3/4] dt-bindings: mtd: macronix,mx25l12833f: add SPI-NOR chip
-To: Michael Walle <mwalle@kernel.org>
-Cc: Conor Dooley <conor@kernel.org>, Erez Geva <erezgeva@nwtime.org>, linux-mtd@lists.infradead.org, 
-	Tudor Ambarus <tudor.ambarus@linaro.org>, Pratyush Yadav <pratyush@kernel.org>, 
-	linux-kernel@vger.kernel.org, Miquel Raynal <miquel.raynal@bootlin.com>, 
-	Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, devicetree@vger.kernel.org, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 28 Jun 2024 19:20:50 +0200
+Message-Id: <D2BTN4CHSFO0.1H59EH2PH7HAG@matfyz.cz>
+Cc: =?utf-8?q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
+        <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>
+Subject: Re: [PATCH v7 0/5] initial support for Marvell 88PM886 PMIC
+To: "Lee Jones" <lee@kernel.org>, "Rob Herring" <robh@kernel.org>,
+        "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+        "Conor Dooley"
+ <conor+dt@kernel.org>,
+        "Dmitry Torokhov" <dmitry.torokhov@gmail.com>,
+        "Liam
+ Girdwood" <lgirdwood@gmail.com>,
+        "Mark Brown" <broonie@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-input@vger.kernel.org>
+From: "Karel Balej" <balejk@matfyz.cz>
+References: <20240531175109.15599-1-balejk@matfyz.cz>
+ <171958569931.3316488.12728822093231549974.b4-ty@kernel.org>
+In-Reply-To: <171958569931.3316488.12728822093231549974.b4-ty@kernel.org>
 
-On Fri, 28 Jun 2024 at 18:51, Michael Walle <mwalle@kernel.org> wrote:
+Lee Jones, 2024-06-28T15:41:39+01:00:
+> On Fri, 31 May 2024 19:34:55 +0200, Karel Balej wrote:
+> > the following implements basic support for Marvell's 88PM886 PMIC which
+> > is found for instance as a component of the samsung,coreprimevelte
+> > smartphone which inspired this and also serves as a testing platform.
+> >=20
+> > The code for the MFD is based primarily on this old series [1] with the
+> > addition of poweroff based on the smartphone's downstream kernel tree
+> > [2]. The onkey and regulators drivers are based on the latter. I am not
+> > in possesion of the datasheet.
+> >=20
+> > [...]
 >
-> On Fri Jun 28, 2024 at 6:30 PM CEST, Erez wrote:
-> > I do not know why they decided to use the same JEDEC ID for two chips.
-> > Your guess is as good as mine.
->
-> That's a common pattern and we try hard to figure that out during
-> probe time instead of hardcoding it. E.g. by looking at the SFDP
-> data. Have a look at various fixups in drivers/mtd/spi-nor/.
+> Applied, thanks!
 
-That's a good approach.
-The obsolete mx25l12805d does not support the SFDP table.
-The new mx25l12833f does.
+Thank you and thank you and everybody else for all the feedback and
+reviews, I appreciate it.
 
-What is the kernel policy regarding obsolete flash chips?
-Macronix annonce on end of life of mx25l12805d in 2010.
-Perhaps we should remove mx25l12805d,
- and leave the mx25l12833f configuration in mtd/spi-nor/macronix.c?
-
->
-> compatibles are really the last resort to distinguish flash devices.
-
-I totally agree. Use JEDEC ID a lot better.
-In this case Macronix decided to reuse an obsolete chip ID.
-
->
-> Next time, please mention such information in the commit message,
-> please.
-
-Thanks for the tip.
-I did write it in the fourth patch, but I can add it in part 3 as well.
-
-> Also please have a look at
-> https://docs.kernel.org/driver-api/mtd/spi-nor.html
-
-The new mx25l12833f supports SFDP, the obsolete mx25l12805d does not.
-I did manage to read the SFDP, though I do not have a copy of it (I do
-not have the hardware any more).
-To my best knowledge SFDP table do not contain information on OTP,
-
-Thanks
-  Erez Geva
-
->
-> -michael
+K. B.
 
