@@ -1,211 +1,116 @@
-Return-Path: <devicetree+bounces-81490-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81491-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 088DB91C6C5
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 21:44:00 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 549E691C6CB
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 21:45:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2D4AA1C20A3F
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 19:43:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0A82B1F2575B
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 19:45:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AEC776025;
-	Fri, 28 Jun 2024 19:43:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA98A7347F;
+	Fri, 28 Jun 2024 19:45:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="J9DEP9xn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EOEhQh50"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52D2F56444;
-	Fri, 28 Jun 2024 19:43:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5ADB6026A;
+	Fri, 28 Jun 2024 19:45:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719603835; cv=none; b=jl+o2v35v2Ma8+sga63g52V7aK14Ssf8ITXIQrl8hZ0dS9H2nx5qfeyyDDkMEMvT9TU8nKKElML04ELKiNU7/bRw0ORsftXAuUPmqeCybv/sD9Y0CYCWU7ulvV0lUVErPHxPYaOlnEeHQxuW6LfRdGrG3jRLndcooaj8/zxU/eI=
+	t=1719603931; cv=none; b=RQrKfpxaRQf5Lyp967hQWM6/CqD3aQbF3pNx+BcCp+pa6XgjG1QxFuk055y1ByiN8GWc0FwptF8tsVKqwOftCvn85cXabwIro2tv2yhwHrN6frAw6NbgnD+jIoO/Su6cflIyTgaW9BF5AQxi1gH2zhO+nb1Oanei+7u5yv+gRYE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719603835; c=relaxed/simple;
-	bh=WGNksG5kOJNWNCKgCePps0v1mU4HZN9ji19NGJ4mjE4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=GEjNO4JbSREX4Fi5jmKSdmUSUC+r8gwg96CneaohqKnjSVvkQQxA6MRRpAOpppKvv1BlXxlGSeEcJw+JaYigzySf13EjlIOOXYuM6CYOoV6NUhpr7fVrvQ/jIw3UJNg5pqjSs5HNtfzYZSv6qWtN9Au5kIN3glbxThNK3YgpQsA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=J9DEP9xn; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45SG03G2023502;
-	Fri, 28 Jun 2024 19:43:20 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Q2LwIZf2YSx0t9IwF7Za6LUyQTFQF1vHoMrv5nB0WaQ=; b=J9DEP9xngBn2qDZu
-	tBRk+/+oD2MHpfdgB+U46Fu2pb/3jgLEgiB4nluSn66JxqzcmOYS1zEFBDJSfWpA
-	RvXrg0CRybCERedwaI9jqdOzGElEaUqWeQCJkfaHRQQeZggNed7wP2uaRNQUtn0T
-	YUJWFuyi67f74BvX9YI8rPLJlP/HZn9OqiXzrq62lYwVwAxuFMk15XdkxUWvPIef
-	7/cYMHk4tZu17XqfzE5mv5HQXZ0lYBiwaS39cYc8A5EkUFfEjMpZ4KGEgzidTGBo
-	gBO9xN63t8tRyCpnoHfvADxJScIPB27Tb23+nSJUDAdag3wWPUuyUa0J/2dwbZqq
-	tCPsBA==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 400f90rbn6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 28 Jun 2024 19:43:19 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA02.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45SJhIRF026415
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 28 Jun 2024 19:43:18 GMT
-Received: from [10.110.112.228] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 28 Jun
- 2024 12:43:14 -0700
-Message-ID: <0666cba0-a5bb-44bf-845a-6a1c689cb485@quicinc.com>
-Date: Fri, 28 Jun 2024 12:43:04 -0700
+	s=arc-20240116; t=1719603931; c=relaxed/simple;
+	bh=+rsJw1URSZZTnoBatuivHpXNy+C9BdH8uE2OqsLRkKE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mH4PYxq6MVig4nVH/cBPIwYmi+HZ+GhSyI+zKXbV2KHa3I86vpOUImZ0sJ9LpICOkUY1DaSzdjcOQ0JcV2nFLAy8WsjquhAAy61b2YRLmkcuktmwCtyKjOoc09WZW/aqAOfjRWXyjrrMz/JadRHRaiWW+OFN6O+bBcywkZIm9s0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EOEhQh50; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C782C116B1;
+	Fri, 28 Jun 2024 19:45:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719603931;
+	bh=+rsJw1URSZZTnoBatuivHpXNy+C9BdH8uE2OqsLRkKE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=EOEhQh50sHrr4d6/28vhXk3OLs8gqY5qV+q0/s3rjUG0PxmaF/65Htzcyle95pgh5
+	 QAz+TkRm6Ew2lw5IkuZmYKEslsCc7bWPPNrc41CvkHTWgR/HMYK1OI96sHgJ1J0R6V
+	 WEgOo53TV0ZWypZZ5r3fDsX4lWE/lJeiHjlebCx72RxCsPxnvWilsfsBqYD/M8H0F8
+	 v5kaPVFETGSaI2AsDYXTuF56fINvPC6NmRMVKG/VJMEQpv5ffOGhEJYmYFk5/0fz46
+	 gH2ajcVVKquqSk/y+S4aSawxFNoQoUMeydn0YsqbuK+yuI4VOrLfkMjTwAjuwPtnoq
+	 R2/muRRzdzNhA==
+Date: Fri, 28 Jun 2024 13:45:30 -0600
+From: Rob Herring <robh@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"open list:PCI SUBSYSTEM" <linux-pci@vger.kernel.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
+Subject: Re: [PATCH 1/1] dt-bindings: PCI: layerscape-pci: Fix property
+ 'fsl,pcie-scfg' type
+Message-ID: <20240628194530.GA99543-robh@kernel.org>
+References: <20240628144858.2363300-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] net: stmmac: Add interconnect support
-To: Krzysztof Kozlowski <krzk@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu
-	<joabreu@synopsys.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet
-	<edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni
-	<pabeni@redhat.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        "Russell
- King" <linux@armlinux.org.uk>, Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "Bhupesh
- Sharma" <bhupesh.sharma@linaro.org>
-CC: <kernel@quicinc.com>, Andrew Halaney <ahalaney@redhat.com>,
-        Andrew Lunn
-	<andrew@lunn.ch>, <linux-arm-msm@vger.kernel.org>,
-        <netdev@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-References: <20240625-icc_bw_voting_from_ethqos-v2-0-eaa7cf9060f0@quicinc.com>
- <20240625-icc_bw_voting_from_ethqos-v2-2-eaa7cf9060f0@quicinc.com>
- <da62cf15-0329-40e5-83f3-16c4b60f7b46@kernel.org>
-Content-Language: en-US
-From: Sagar Cheluvegowda <quic_scheluve@quicinc.com>
-In-Reply-To: <da62cf15-0329-40e5-83f3-16c4b60f7b46@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 0FeFVnqejeMeELFyeYLIzzxaZwFUhdS1
-X-Proofpoint-GUID: 0FeFVnqejeMeELFyeYLIzzxaZwFUhdS1
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-28_14,2024-06-28_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 suspectscore=0
- spamscore=0 malwarescore=0 mlxlogscore=999 mlxscore=0 adultscore=0
- impostorscore=0 lowpriorityscore=0 phishscore=0 priorityscore=1501
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2406140001 definitions=main-2406280147
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240628144858.2363300-1-Frank.Li@nxp.com>
 
+On Fri, Jun 28, 2024 at 10:48:57AM -0400, Frank Li wrote:
+> fsl,pcie-scfg actually need an argument when there are more than one PCIe
+> instances. Change it to phandle-array and use items to describe each field
+> means.
+> 
+> Fix below warning.
+> 
+> arch/arm64/boot/dts/freescale/fsl-ls1043a-rdb.dtb: pcie@3400000: fsl,pcie-scfg:0: [22, 0] is too long
+>         from schema $id: http://devicetree.org/schemas/pci/fsl,layerscape-pcie.yaml#
+> 
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+> Change from v1 to v2
+> - update commit message.
+> ---
+>  .../devicetree/bindings/pci/fsl,layerscape-pcie.yaml      | 8 +++++++-
+>  1 file changed, 7 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/fsl,layerscape-pcie.yaml b/Documentation/devicetree/bindings/pci/fsl,layerscape-pcie.yaml
+> index 793986c5af7ff..679c2989de7a2 100644
+> --- a/Documentation/devicetree/bindings/pci/fsl,layerscape-pcie.yaml
+> +++ b/Documentation/devicetree/bindings/pci/fsl,layerscape-pcie.yaml
+> @@ -43,10 +43,16 @@ properties:
+>        - const: config
+>  
+>    fsl,pcie-scfg:
+> -    $ref: /schemas/types.yaml#/definitions/phandle
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+>      description: A phandle to the SCFG device node. The second entry is the
+>        physical PCIe controller index starting from '0'. This is used to get
+>        SCFG PEXN registers.
+> +    items:
+> +      items:
+> +        - description: A phandle to the SCFG device node
+> +        - description: PCIe controller index starting from '0'
+> +      minItems: 1
 
+Are there any cases with only the phandle? I don't see any in tree and 
+looks like the driver requires the 2nd entry.
 
-On 6/26/2024 12:40 AM, Krzysztof Kozlowski wrote:
-> On 26/06/2024 01:49, Sagar Cheluvegowda wrote:
->> Add interconnect support to vote for bus bandwidth based
->> on the current speed of the driver.This change adds support
+> +    maxItems: 1
+>  
+>    big-endian:
+>      $ref: /schemas/types.yaml#/definitions/flag
+> -- 
+> 2.34.1
 > 
-> Please do not use "This commit/patch/change", but imperative mood. See
-> longer explanation here:
-> https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
-> 
-> Also, space after full stop.
-> Agreed, i will fix this in my next patch.
->> for two different paths - one from ethernet to DDR and the
->> other from Apps to ethernet.
->> Vote from each interconnect client is aggregated and the on-chip
->> interconnect hardware is configured to the most appropriate
->> bandwidth profile.
->>
->> Suggested-by: Andrew Halaney <ahalaney@redhat.com>
->> Signed-off-by: Sagar Cheluvegowda <quic_scheluve@quicinc.com>
->> ---
->>  drivers/net/ethernet/stmicro/stmmac/stmmac.h          |  1 +
->>  drivers/net/ethernet/stmicro/stmmac/stmmac_main.c     |  8 ++++++++
->>  drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c | 12 ++++++++++++
->>  include/linux/stmmac.h                                |  2 ++
->>  4 files changed, 23 insertions(+)
->>
->> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac.h b/drivers/net/ethernet/stmicro/stmmac/stmmac.h
->> index b23b920eedb1..56a282d2b8cd 100644
->> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac.h
->> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac.h
->> @@ -21,6 +21,7 @@
->>  #include <linux/ptp_clock_kernel.h>
->>  #include <linux/net_tstamp.h>
->>  #include <linux/reset.h>
->> +#include <linux/interconnect.h>
->>  #include <net/page_pool/types.h>
->>  #include <net/xdp.h>
->>  #include <uapi/linux/bpf.h>
->> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
->> index b3afc7cb7d72..ec7c61ee44d4 100644
->> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
->> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
->> @@ -985,6 +985,12 @@ static void stmmac_fpe_link_state_handle(struct stmmac_priv *priv, bool is_up)
->>  	}
->>  }
->>  
->> +static void stmmac_set_icc_bw(struct stmmac_priv *priv, unsigned int speed)
->> +{
->> +	icc_set_bw(priv->plat->axi_icc_path, Mbps_to_icc(speed), Mbps_to_icc(speed));
->> +	icc_set_bw(priv->plat->ahb_icc_path, Mbps_to_icc(speed), Mbps_to_icc(speed));
->> +}
->> +
->>  static void stmmac_mac_link_down(struct phylink_config *config,
->>  				 unsigned int mode, phy_interface_t interface)
->>  {
->> @@ -1080,6 +1086,8 @@ static void stmmac_mac_link_up(struct phylink_config *config,
->>  	if (priv->plat->fix_mac_speed)
->>  		priv->plat->fix_mac_speed(priv->plat->bsp_priv, speed, mode);
->>  
->> +	stmmac_set_icc_bw(priv, speed);
->> +
->>  	if (!duplex)
->>  		ctrl &= ~priv->hw->link.duplex;
->>  	else
->> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
->> index 54797edc9b38..e46c94b643a3 100644
->> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
->> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
->> @@ -642,6 +642,18 @@ stmmac_probe_config_dt(struct platform_device *pdev, u8 *mac)
->>  		dev_dbg(&pdev->dev, "PTP rate %d\n", plat->clk_ptp_rate);
->>  	}
->>  
->> +	plat->axi_icc_path = devm_of_icc_get(&pdev->dev, "axi");
->> +	if (IS_ERR(plat->axi_icc_path)) {
->> +		ret = (void *)plat->axi_icc_path;
->> +		goto error_hw_init;
-> 
-> This sounds like an ABI break. Considering the interconnects are not
-> required by the binding, are you sure this behaves correctly without
-> interconnects in DTS?
->
-> Best regards,
-> Krzysztof
-> 
-Yes, i did check without the interconnect entries in the dtsi and
-things are working fine, devm_of_icc_get is properly clearing out
-all the references in the case when "interconnects" are not present
-in the dtsi.
-In the stmmac driver we are only handling the error case and 
-if the entries are not present in the dtsi we are simply continuing with
-the regular code flow.
-
-Regards,
-Sagar
 
