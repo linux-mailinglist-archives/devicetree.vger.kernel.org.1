@@ -1,129 +1,118 @@
-Return-Path: <devicetree+bounces-81259-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81251-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F4F891BBAE
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 11:40:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11E7191BB79
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 11:30:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8DEE7B23F65
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 09:40:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C39862835FA
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 09:30:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CE28152E00;
-	Fri, 28 Jun 2024 09:40:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A23791509AF;
+	Fri, 28 Jun 2024 09:30:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aXKyTlJv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B4BC15278D;
-	Fri, 28 Jun 2024 09:40:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EE171CD32;
+	Fri, 28 Jun 2024 09:30:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719567610; cv=none; b=nFuD/hIekIj7WCUETrJv0FqfQLLD/HVLLsm7QR30/nOYZctB6cEbrDGP91gUc5ak5eFx4U9ekOepvZw34j1w/eIfvzEU9QRBf/7pOkDWpNhjBY3N26wkFcmd2RsqtZzeoa34/dsysJBsf3AWa9TbS0jrIhzqHb4l8KeT8FeWn8s=
+	t=1719567033; cv=none; b=q8ZlJpFq1pisvqbnA5Dpc2XXbT7qiB7ZwphazetUHxAtqgd9cDxbcOnrQgm9SY30qBzSvvA91d0olP0KTdNsxg09EAxfqBPz90YfC4A03pJo0OyL9LwJ7VENrDMiV/wlekqlvse4Vr0yAVu+QS96WGZz6WnvJmnQXWSqWifY5OA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719567610; c=relaxed/simple;
-	bh=vwWYuw8MReSjhj/uWrhsSw093dCcYZAc3JIqgm9h7vs=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Ja8EpLB/lGeejANlqcCHlNmnR7MCCE2qmNhWYg5zqCVd8xSlhlvIAF51SwG2r3f7HNs44V27+0Rrb+OuN/2+wGsjfqpw7CGhCd+xV6NnP/mWeMnAxRf5oce65w9FfXvTi8vdS7/PIMiTvL5N4JjBtXjorSRXbl+v2wKpVyM4l2I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D8EEB106F;
-	Fri, 28 Jun 2024 02:30:38 -0700 (PDT)
-Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id F0FEF3F6A8;
-	Fri, 28 Jun 2024 02:30:11 -0700 (PDT)
-Date: Fri, 28 Jun 2024 10:30:07 +0100
-From: Andre Przywara <andre.przywara@arm.com>
-To: Chen-Yu Tsai <wens@csie.org>
-Cc: Corentin Labbe <clabbe.montjoie@gmail.com>, Herbert Xu
- <herbert@gondor.apana.org.au>, "David S . Miller" <davem@davemloft.net>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland
- <samuel@sholland.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Ryan Walklin
- <ryan@testtoast.com>, Philippe Simons <simons.philippe@gmail.com>,
- linux-crypto@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 4/4] arm64: dts: allwinner: h616: add crypto engine
- node
-Message-ID: <20240628103007.6ea3685c@donnerap.manchester.arm.com>
-In-Reply-To: <CAGb2v67qo7qgf2uzBAUf9-C9NHrHG47mLc579NRkTO7qLDtV7Q@mail.gmail.com>
-References: <20240624232110.9817-1-andre.przywara@arm.com>
-	<20240624232110.9817-5-andre.przywara@arm.com>
-	<CAGb2v67qo7qgf2uzBAUf9-C9NHrHG47mLc579NRkTO7qLDtV7Q@mail.gmail.com>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+	s=arc-20240116; t=1719567033; c=relaxed/simple;
+	bh=VmYjwKp6mlAJ1kzDY8yon8mWRyRJ52jWM6niGqaHDo8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=k8HnPj+V0cl37OK0JnpRyyDI/YM3ERjlwmUUnck+G+6HrQmmCsDlIbZZ+9yYDox/jM936F8j4wzGXzIRAuuvKk4KsTA45fCGt9RcSPWjDSHyTnTRIlnDrpvqwzcpQ2CL8xx/i1A9fmXHm8Z6fgtkJHjcvVPSNx1gTBmNDAwxeoc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aXKyTlJv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A45BC2BD10;
+	Fri, 28 Jun 2024 09:30:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719567032;
+	bh=VmYjwKp6mlAJ1kzDY8yon8mWRyRJ52jWM6niGqaHDo8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=aXKyTlJvGFF4l0YoEAgw1mg6eLOctUu4JfxelD5BGvoLP4KW1ofc+zd9L+DopGwYT
+	 2vYCSXxt1UOqrggvJ5hVYtje9EoUIcHFCrOnXQ4I3St7MyeeWSyGpmDTyvsmS2Q8kf
+	 zIzEMELR+jo0Ab2N5U4McKq+O0jkamZ9i/FbS/jQ/9S4uT/w5+tAA9Sr0UFx8Jq81Z
+	 c7T7JOdphvQiPlparHZOn7FEBI4l+Gb7e9pGnSf9lHI926SwTLJZGVltvjEMyzcf61
+	 2lQalOEORVTJi8qVuebUSf2KNJhlS1qsKqSIsJvmRu4qq0U4QBQWBoZNT31QrpQlIn
+	 oWwgCQ1sFA1VQ==
+Date: Fri, 28 Jun 2024 11:30:28 +0200
+From: Andi Shyti <andi.shyti@kernel.org>
+To: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
+	Drew Fustini <dfustini@tenstorrent.com>, Emil Renner Berthing <emil.renner.berthing@canonical.com>, 
+	Conor Dooley <conor@kernel.org>, Jarkko Nikula <jarkko.nikula@linux.intel.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+	=?utf-8?Q?Miqu=C3=A8l?= Raynal <miquel.raynal@bootlin.com>, linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v3 0/3] Add I2C support on TH1520
+Message-ID: <xkdmrmtiizoqo6mpc7i6iyhilxlw57nawn6ogv6dryaveyqddc@ach3rwy4abpe>
+References: <20240618-i2c-th1520-v3-0-3042590a16b1@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240618-i2c-th1520-v3-0-3042590a16b1@bootlin.com>
 
-On Fri, 28 Jun 2024 01:54:00 +0800
-Chen-Yu Tsai <wens@csie.org> wrote:
+Hi,
 
-Hi Chen-Yu,
+On Tue, Jun 18, 2024 at 09:42:37AM GMT, Thomas Bonnefille wrote:
+> This adds I2C support in the device tree of the T-Head TH1520 RISCV-SoC
+> and a default configuration for the BeagleV-Ahead. It appears that the
+> TH1520 I2C is already supported in the upstream kernel through the
+> Synopsis Designware I2C adapter driver.
+> 
+> This patch depends on the clock patch from Drew Fustini
+> Link: https://lore.kernel.org/linux-riscv/20240615-th1520-clk-v1-0-3ba4978c4d6b@tenstorrent.com
+> and the pinctrl patch from Emil Renner Berthing
+> Link: https://lore.kernel.org/linux-riscv/20240103132852.298964-1-emil.renner.berthing@canonical.com
 
-> On Tue, Jun 25, 2024 at 7:23=E2=80=AFAM Andre Przywara <andre.przywara@ar=
-m.com> wrote:
-> >
-> > The Allwinner H616 SoC contains a crypto engine very similar to the H6
-> > version, but with all base addresses in the DMA descriptors shifted by
-> > two bits. This requires a new compatible string.
-> > Also the H616 CE relies on the internal osciallator for the TRNG
-> > operation, so we need to reference this clock.
-> >
-> > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> > ---
-> >  arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi | 10 ++++++++++
-> >  1 file changed, 10 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi b/arch/arm6=
-4/boot/dts/allwinner/sun50i-h616.dtsi
-> > index 921d5f61d8d6a..187663d45ed72 100644
-> > --- a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-> > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-> > @@ -113,6 +113,16 @@ soc {
-> >                 #size-cells =3D <1>;
-> >                 ranges =3D <0x0 0x0 0x0 0x40000000>;
-> >
-> > +               crypto: crypto@1904000 {
-> > +                       compatible =3D "allwinner,sun50i-h616-crypto";
-> > +                       reg =3D <0x01904000 0x1000>; =20
->=20
-> The address range only goes up to 0x019047ff. The other half is the
-> secure crypto engine. The other bits look correct.
+I think after these two go in...
 
-You are right, the manual restricts CE_NS to 0x019047ff, and we certainly
-use much less registers than that anyway. So good catch!
+> Changed from v1:
+> 1. Remove redundant example for Synopsis DesignWare-I2C bindings
+> 2. Remove Node Ordering commit as it has already been taken
+> 3. Remove EEPROM label
+> 4. Rebase on pinctrl and clock driver patches
+> 5. Add pinctrl configuration
+> 6. Replaced the fixed-clock with a correct configuration
+> 
+> Changed from v2:
+> 1. Reorder nodes to conserve ascending register node ordering
+> 2. Add support for I2C2 as it probably use the same controller
+> 3. Format comments to match kernel coding style
+> 4. Reorder nodes to conserve alphabetical node ordering
+> 6. Declare I2C2
+> 6. Set pinctrl pull-up resistor to the highest value
+> 
+> Signed-off-by: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+> ---
+> Thomas Bonnefille (3):
+>       dt-bindings: i2c: dw: Document compatible thead,th1520-i2c
 
-> I can fix this up when applying, assuming the driver parts get merged
-> in the next few days.
+... this goes throught i2c...
 
-Many thanks, I'd be very grateful if you could fix this up!
+>       riscv: dts: thead: Add TH1520 I2C nodes
+>       riscv: dts: thead: Enable I2C on the BeagleV-Ahead
 
-Cheers,
-Andre
+... and these two go thrhough Conor's branches.
 
->=20
-> Chenyu
->=20
-> > +                       interrupts =3D <GIC_SPI 91 IRQ_TYPE_LEVEL_HIGH>;
-> > +                       clocks =3D <&ccu CLK_BUS_CE>, <&ccu CLK_CE>,
-> > +                                <&ccu CLK_MBUS_CE>, <&rtc CLK_IOSC>;
-> > +                       clock-names =3D "bus", "mod", "ram", "trng";
-> > +                       resets =3D <&ccu RST_BUS_CE>;
-> > +               };
-> > +
-> >                 syscon: syscon@3000000 {
-> >                         compatible =3D "allwinner,sun50i-h616-system-co=
-ntrol";
-> >                         reg =3D <0x03000000 0x1000>;
-> > --
-> > 2.39.4
-> > =20
+Do you mind sending a ping when Drew's patches are included in
+the merge window? I can put the first patch on a special branch
+to keep it under my watch.
 
+Andi
 
