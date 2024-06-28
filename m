@@ -1,60 +1,64 @@
-Return-Path: <devicetree+bounces-81517-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81518-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7997891C839
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 23:39:14 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22DBF91C85C
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 23:44:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AABFD1C2281D
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 21:39:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7D1F9B25914
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 21:44:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AB487F7C3;
-	Fri, 28 Jun 2024 21:39:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E37880023;
+	Fri, 28 Jun 2024 21:41:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jEKsQbkd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N0J0skdv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 339497FBA0;
-	Fri, 28 Jun 2024 21:39:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC1FB7F48A;
+	Fri, 28 Jun 2024 21:41:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719610749; cv=none; b=gQHmNIYmpvSyTIDMrL1GzIuZnB9IEBeEj3ooxjYyUw9nrBCZZWaK0lFJVpnkW2s0Sx49rCo2Z8cRRqpKIUNwUUMVKkhZlsm/cGFYG2nS1e7z0WjAn4znIHpaGLXX4SQ0VN9Hnjae5SLPWNz0Dm5k92qcZOjKyf+zq9YK8G3D/JA=
+	t=1719610904; cv=none; b=dM5FJdBtn0jV6VkNdzqtM0pLBOtfuez2C1CrjbWTuq3i/QJ1Ch1UaPXfuzPnYYM/e5zIY/Cr254JRtxTVcMJMZwKWKlUdMwB+M22hWeCC3L24LvejdAw6EYcA0e6w27gAADP+RbTUkIz65NZiOVfYp3KzA5jB4yR6pDIh8MxjNI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719610749; c=relaxed/simple;
-	bh=rPLzipj8gwiNtptMkcgDEIdoBXBcmk8bXuwas4haqkE=;
+	s=arc-20240116; t=1719610904; c=relaxed/simple;
+	bh=EaMOHcF4+ZY1s8wbh4ElbToAQrZkbsMN7isSG8r+yCo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hVDA1fhzQNcq/8Kakk5+Cocbn5rQ3nwQ0YIB6jqe9drKo6IjQWgOgXwfgKncrwDV5hAzsQoWMBUppBwPuwo40+jQ/BKds9NY/viGAw+7ahtXiVLbZe9dqzp33oJ0xQqWcnmapxb4fsQrk/wYQYM+gy3e6zZ33Ggj8luZecj6AXE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jEKsQbkd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B0EBC116B1;
-	Fri, 28 Jun 2024 21:39:08 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=SyFLJkIGmMltrIRXklcRZPrFaJjcc2sYxE8YaQRS7OL73g78jKujN/zSuSZSVzADabpyi/Wyuj20JvOEdI4HVe78IX90gyhZyTRzA0LF6ABr1nDAdNnQ6ZKKUkf7pT70WUaezf51U9jnlr+CmKklwok1GQW0lNp9mvnC565yEl0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N0J0skdv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B18DC116B1;
+	Fri, 28 Jun 2024 21:41:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719610748;
-	bh=rPLzipj8gwiNtptMkcgDEIdoBXBcmk8bXuwas4haqkE=;
+	s=k20201202; t=1719610903;
+	bh=EaMOHcF4+ZY1s8wbh4ElbToAQrZkbsMN7isSG8r+yCo=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jEKsQbkdjx/D0QAxnGVRHWPRmGl7qVLcbrq1H0a7+p4GpAjPv9IdfP+CQP3CtePWM
-	 7RGCiHKQIMU6/drhs/mA8ifMJwcg5EBE6nOodxG/XYrfWgufwFgEj686RpCdHJ3lTc
-	 IpYQMvZawoW0w55UQVWmN2vt38ouEhyCH8L87SWVtlHnebCfXSXfaNF0HAUvXBD8Th
-	 mb8QdmB8vQDMQ20EF9wqBSkNPKBPTNhpO27U1y6U474ieqNlaHvFVa8y9JuXeQX98g
-	 y88duo44pqYC12327uRQZOGS6REiO+UQq7d4n2CL14FiRqFBSyEBRVlGpaA18HtRv7
-	 GhaqF0grv56nQ==
-Date: Fri, 28 Jun 2024 15:39:06 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Andrew Davis <afd@ti.com>
-Cc: Vignesh Raghavendra <vigneshr@ti.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Jan Kiszka <jan.kiszka@siemens.com>,
+	b=N0J0skdv0v8hvLu7Z04gLfS3io68IkghmqnQ6az2b76hk32xiEsckZC5pYOgf79GU
+	 Ci5XT+EWFWFRSp034PqCSCPeR0vLnvc1gg3hWhW8n0gm8o11jGYW0Hdz0wKuEHCGDs
+	 hFUzCLA4rIqWHhF/jEOvpFoheNKf4FI7clViFdZ3+oQ9sr+M8KFwV8QcE9W/3HEpbw
+	 QHmVf0xNpgRWkJjXff3CjhW47XdbwxjK2axQ7PZf41p1FxDCXtc4T4sAagLbdfrHo8
+	 mo67awh/b0wIiZDV4cJodOldyxbZQ8smg3i+NttuTkQ2W/B30QJjnEWHALvkBCps69
+	 /HwO0acDIhUcg==
+Date: Fri, 28 Jun 2024 15:41:40 -0600
+From: Rob Herring <robh@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Marc Kleine-Budde <mkl@pengutronix.de>,
+	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Nishanth Menon <nm@ti.com>,
-	Tony Lindgren <tony@atomide.com>
-Subject: Re: [PATCH 1/2] dt-bindings: soc: ti: am654-serdes-ctrl: Add
- simple-mfd to compatible items
-Message-ID: <171961073512.253446.2203467446314091893.robh@kernel.org>
-References: <20240625164528.183107-1-afd@ti.com>
+	"open list:CAN NETWORK DRIVERS" <linux-can@vger.kernel.org>,
+	"open list:NETWORKING DRIVERS" <netdev@vger.kernel.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
+Subject: Re: [PATCH 1/1] dt-bindings: can: fsl,flexcan: add can-transceiver
+ for fsl,flexcan
+Message-ID: <20240628214140.GA255511-robh@kernel.org>
+References: <20240625203145.3962165-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,19 +67,35 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240625164528.183107-1-afd@ti.com>
+In-Reply-To: <20240625203145.3962165-1-Frank.Li@nxp.com>
 
-
-On Tue, 25 Jun 2024 11:45:27 -0500, Andrew Davis wrote:
-> This node contains a child which is only probed if simple-mfd is in the
-> compatible list. Add this here.
+On Tue, Jun 25, 2024 at 04:31:45PM -0400, Frank Li wrote:
+> Add 'can-transceiver' children node for fsl,flexcan to allow update
+> can-transceiver property.
 > 
-> Signed-off-by: Andrew Davis <afd@ti.com>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
->  .../devicetree/bindings/soc/ti/ti,am654-serdes-ctrl.yaml       | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
+>  Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml b/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml
+> index f197d9b516bb2..d003200247b03 100644
+> --- a/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml
+> +++ b/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml
+> @@ -80,6 +80,9 @@ properties:
+>        node then controller is assumed to be little endian. If this property is
+>        present then controller is assumed to be big endian.
+>  
+> +  can-transceiver:
+> +    $ref: can-transceiver.yaml#
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+       unevaluatedProperties: false
 
+> +
+>    fsl,stop-mode:
+>      description: |
+>        Register bits of stop mode control.
+> -- 
+> 2.34.1
+> 
 
