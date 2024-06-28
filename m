@@ -1,236 +1,122 @@
-Return-Path: <devicetree+bounces-81537-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81538-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD33C91C958
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 00:56:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3A9A91C972
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 01:06:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E03211C22B23
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 22:56:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 772F1284D4F
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 23:06:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75C22824A0;
-	Fri, 28 Jun 2024 22:56:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7A1D811F1;
+	Fri, 28 Jun 2024 23:06:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nipEa4aN"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="SHh2hKNE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com [209.85.215.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E69478002A;
-	Fri, 28 Jun 2024 22:56:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A95646F30A;
+	Fri, 28 Jun 2024 23:06:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719615378; cv=none; b=RBwei/aVOedlYQpe0TI8eNTUFBr7Q+OEmEpTURMCmvGgGYOGDQALuxe77k11cVa3OrVLyZ6dkZpWGeuy7ZBviYUMGORJyKymNEPO3S3utE1ur4UBwJJSZIasvKwJ6634iIMVdDTMhLFjL3xAN8A7cs6brZSKoIa2Ua4AhHR45ww=
+	t=1719615994; cv=none; b=mueXzFvlcvpIIqWHUrHBrPdcZg2CMgD3NqjBpeLCyX21QzF/+hgAdTGOz8QO2uoKbt/7zFwSZTUnc1iDXgejqLMRPvP4iFbKcjd30Kd/8wdfjESJwRXPeZp4mOwjbbKl17Jr82Avo0XMFSSjWGTMpWig+d5xq4eT3gg1hM+TXT8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719615378; c=relaxed/simple;
-	bh=jqYFSUT/a2n7uSZLnvdv9HsDOXaAO27gYxryHNzeCEI=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Fj26knmwE/kz3l4rEnLmFl5sEprsT2lKNmxFgHxjuZJMsF7qz/mfe2LTqkY455FT3PkU+EC1Sll9Q8RdV/cwdunp7lJ2vNQ7m/s2Vc0nPNySrTPGYIu7xaY2Ojwgvkw/BIZFWK7abbGgIeni9u5K7VNIuhzvm5rsJdXlIoQ97Bg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nipEa4aN; arc=none smtp.client-ip=209.85.215.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f171.google.com with SMTP id 41be03b00d2f7-7180308e90bso795686a12.1;
-        Fri, 28 Jun 2024 15:56:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1719615376; x=1720220176; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=xUcQS852IggxOCmKXqE3YJJNYXGvn0FPbNBN8y1e0Sc=;
-        b=nipEa4aN5/DRpNre/mZ2R3kmiAOak4l0cFdUZCyJPXH/8FWqZUlREizPRDky/YM4GT
-         moL+8cnhvVEEN/MoWb0UceOvZ7S2erjY35Gr8L5tStFaA6FdBTIXNv5pwSGjkLLV8mKb
-         sWYsed9upcfWBGGYHe/O+P527djykRFA6rVpVyq/LlLt1ltw+uPPuoV6AcXcglhVhceX
-         MGT7Cci2zGsOIcKJ21pbAB5CW48PE6KDoLyKje6L9JfQI7QZK8uxfa03r77KAm/efmZy
-         S64Lq+O0Qm/8+medi6OE4AAsOGbXgofJPQOWYXmCcCkP0QiuziIKpIgX18YWPY2RGjhk
-         UY1A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719615376; x=1720220176;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=xUcQS852IggxOCmKXqE3YJJNYXGvn0FPbNBN8y1e0Sc=;
-        b=vKLMkS81V2GQRBuvxlzWXSRzuNcHMfdvKG08tFUPvHuIFpDHpEzTSMSU2Ng4BmD4ES
-         C0B8rKKU0LNDPyhGq5oX3/C7Wlj0IY50mg59bg2uaI2jo5uZs0379wHfdcVsH9XrF+AO
-         NAhADk/9X5hte8nzavw0a/okpcCMPF5Wlor+qIOphAszB53ZPy1oJxSMqnvCnOzzGUR4
-         0HjE2CI+WjO8EyLwFO64zJrp6y/Y2Ewbbg7Z7iNm9MwYQiyHeDBLXMUfNNVVB0IjhquL
-         n3Kt8BvQeZrg1TO8pkiPyPuDVGxHj8Y0MWD0dHHQD/cN2fBu6X3ep7NYaGZ96xX0oPIr
-         4VNA==
-X-Forwarded-Encrypted: i=1; AJvYcCVDZ7Z1LQoxXG1txwEhBAxJgHQsYmZbmEHzKcKSvzmYBEGVq0AR97rrL1A4MpUtbc5AVp7WpnO1eXKwqXY2NtypSSxncSSBIAOgCy4SsvYlemCCBpdiuonJ/R6oXoamg/PqeZUUv1YJgg==
-X-Gm-Message-State: AOJu0Yx5YaqqV8Wdrb2VO/X/2gcMIKgXGRkiQhYAsgQKw/iZn+thxmT8
-	cJIiMu7OEtbpJ+d0ksgrYhQTT+9S3fxrCoN70qhJR8St7/iFe1cf
-X-Google-Smtp-Source: AGHT+IEZnjxDA5OCNYz7pbDMXf6iKykKThrzOkcD/z8qiGIfTDi72Ed5E+eRlHQkwB0H36m+T2fExA==
-X-Received: by 2002:a05:6a20:c123:b0:1bd:2994:b5bc with SMTP id adf61e73a8af0-1bd2994b984mr9724732637.58.1719615376114;
-        Fri, 28 Jun 2024 15:56:16 -0700 (PDT)
-Received: from localhost.localdomain ([177.194.39.94])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2c91ce17a5fsm2176711a91.3.2024.06.28.15.56.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 28 Jun 2024 15:56:15 -0700 (PDT)
-From: Lucca fachinetti <luccafachinetti@gmail.com>
-To: pavel@ucw.cz,
-	dmurphy@ti.com,
-	robh+dt@kernel.org,
-	lee@kernel.org
-Cc: linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	g.luiztrevisan@gmail.com,
-	Lucca Fachinetti <luccafachinetti@gmail.com>
-Subject: [PATCH 1/1] dt-bindings: leds: max77650: convert the binding document to yaml
-Date: Fri, 28 Jun 2024 19:55:51 -0300
-Message-Id: <20240628225551.107833-1-luccafachinetti@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1719615994; c=relaxed/simple;
+	bh=CJFC1i/rFNcMAu2c0rgyW0EJOBSzUMuWmmIGpUhihYo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=WVW+tbsXyAKxvEz2+AbFQFWh6RFjVfEuytjuOIl1kqfKZuC/4Igu46hbq7XBYCy/r0wN9eKSXAMdkAz896NgZ+DiaMnjxXaosZxzInaaUUSoTvwO0TDjrnnv5IQSRf8uktvt5zhLpHYwNhL0Vn7v1ZHbfwqAA6NflZpNohD6XjQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=SHh2hKNE; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 45SN6I0Y096817;
+	Fri, 28 Jun 2024 18:06:18 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1719615978;
+	bh=qvdjnBB+g2iBGUqRGrha8gu64eIVrsfmJ+nP8zaZi+g=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=SHh2hKNE/mQPe/0oOZy/auoSKa+tZFsRcS0lp4BczDZIQ80llbIMmD1jbIOygC4Yu
+	 1qwcwZpRDTzifsfrRiAlA/CnhxbfNMft67oeH6sSszwtCzDvSf9AoMqjbEk+0+GqzZ
+	 WmrLrR1+pJwhQN9uiOrbl1bKcOlyHaT9KHr9dUzQ=
+Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 45SN6IaG066063
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 28 Jun 2024 18:06:18 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 28
+ Jun 2024 18:06:18 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 28 Jun 2024 18:06:18 -0500
+Received: from [10.249.42.149] ([10.249.42.149])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 45SN6HPl098510;
+	Fri, 28 Jun 2024 18:06:18 -0500
+Message-ID: <0a58eda0-7c11-4d4d-ab85-2b3831a1c758@ti.com>
+Date: Fri, 28 Jun 2024 18:06:16 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: soc: ti: am654-serdes-ctrl: Add
+ simple-mfd to compatible items
+To: Rob Herring <robh@kernel.org>
+CC: Jan Kiszka <jan.kiszka@siemens.com>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, Tony
+ Lindgren <tony@atomide.com>,
+        Nishanth Menon <nm@ti.com>, Vignesh Raghavendra
+	<vigneshr@ti.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20240625164528.183107-1-afd@ti.com>
+ <6ebc89dc-fbb3-4073-8b1b-cd413907ebf8@ti.com>
+ <7fbb62b3-cc71-4fa8-a0c4-fca558292c75@siemens.com>
+ <c3f4a289-03b1-48a5-a3dd-7cb7ca594055@ti.com>
+ <20240628213833.GA250523-robh@kernel.org>
+Content-Language: en-US
+From: Andrew Davis <afd@ti.com>
+In-Reply-To: <20240628213833.GA250523-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-From: Lucca Fachinetti <luccafachinetti@gmail.com>
+On 6/28/24 4:38 PM, Rob Herring wrote:
+> On Tue, Jun 25, 2024 at 05:23:22PM -0500, Andrew Davis wrote:
+>> On 6/25/24 2:46 PM, Jan Kiszka wrote:
+>>> On 25.06.24 18:49, Andrew Davis wrote:
+>>>> On 6/25/24 11:45 AM, Andrew Davis wrote:
+>>>>> This node contains a child which is only probed if simple-mfd is in the
+>>>>> compatible list. Add this here.
+>>>>>
+>>>>> Signed-off-by: Andrew Davis <afd@ti.com>
+>>>>> ---
+>>>>
+>>>> This patch depends on https://www.spinics.net/lists/kernel/msg5253666.html
+>>>>
+>>>
+>>> But is that patch already scheduled for 6.10 as well?
+>>
+>> I don't think so.. But only [patch 2/2] from this series needs applied
+>> back to 6.10 to fix the issue. This one [Patch 1/2] just removes a dts warning.
+> 
+> Both or none should be applied...
+> 
 
-Convert the binding document for max77650 LED module to yaml.
+Both should be applied to master.
 
-Signed-off-by: Lucca Fachinetti <luccafachinetti@gmail.com>
----
- .../bindings/leds/leds-is31fl32xx.txt         | 52 --------------
- .../bindings/leds/leds-is31fl32xx.yaml        | 67 +++++++++++++++++++
- 2 files changed, 67 insertions(+), 52 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/leds/leds-is31fl32xx.txt
- create mode 100644 Documentation/devicetree/bindings/leds/leds-is31fl32xx.yaml
+Only [2/2] is a fix that should then be backported to v6.10.x to fix an issue in v6.10.
 
-diff --git a/Documentation/devicetree/bindings/leds/leds-is31fl32xx.txt b/Documentation/devicetree/bindings/leds/leds-is31fl32xx.txt
-deleted file mode 100644
-index 926c2117942c..000000000000
---- a/Documentation/devicetree/bindings/leds/leds-is31fl32xx.txt
-+++ /dev/null
-@@ -1,52 +0,0 @@
--Binding for ISSI IS31FL32xx and Si-En SN32xx LED Drivers
--
--The IS31FL32xx/SN32xx family of LED drivers are I2C devices with multiple
--constant-current channels, each with independent 256-level PWM control.
--Each LED is represented as a sub-node of the device.
--
--Required properties:
--- compatible: one of
--	issi,is31fl3236
--	issi,is31fl3235
--	issi,is31fl3218
--	issi,is31fl3216
--	si-en,sn3218
--	si-en,sn3216
--- reg: I2C slave address
--- address-cells : must be 1
--- size-cells : must be 0
--
--LED sub-node properties:
--- reg : LED channel number (1..N)
--- label :  (optional)
--  see Documentation/devicetree/bindings/leds/common.txt
--- linux,default-trigger :  (optional)
--  see Documentation/devicetree/bindings/leds/common.txt
--
--
--Example:
--
--is31fl3236: led-controller@3c {
--	compatible = "issi,is31fl3236";
--	reg = <0x3c>;
--	#address-cells = <1>;
--	#size-cells = <0>;
--
--	led@1 {
--		reg = <1>;
--		label = "EB:blue:usr0";
--	};
--	led@2 {
--		reg = <2>;
--		label = "EB:blue:usr1";
--	};
--	...
--	led@36 {
--		reg = <36>;
--		label = "EB:blue:usr35";
--	};
--};
--
--For more product information please see the links below:
--http://www.issi.com/US/product-analog-fxled-driver.shtml
--http://www.si-en.com/product.asp?parentid=890
-diff --git a/Documentation/devicetree/bindings/leds/leds-is31fl32xx.yaml b/Documentation/devicetree/bindings/leds/leds-is31fl32xx.yaml
-new file mode 100644
-index 000000000000..0f4c7c3440c6
---- /dev/null
-+++ b/Documentation/devicetree/bindings/leds/leds-is31fl32xx.yaml
-@@ -0,0 +1,67 @@
-+ # SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/leds/leds-is31fl32xx.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: LED driver for is31fl32xx and Si-En SN32xx.
-+
-+maintainers:
-+  - Pavel Machek <pavel@ucw.cz>
-+  - Lee Jones <lee@kernel.org>
-+
-+description: |
-+  Binding for ISSI is31fl32xx and Si-En SN32xx LED Drivers
-+
-+  The is31fl32xx/SN32xx family of LED drivers are I2C devices with multiple
-+  constant-current channels, each with independent 256-level PWM control.
-+  Each LED is represented as a sub-node of the device.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - issi,is31fl3236
-+      - issi,is31fl3235
-+      - issi,is31fl3218
-+      - issi,is31fl3216
-+      - si-en,sn3218
-+      - si-en,sn3216
-+
-+  reg:
-+    maxItems: 1
-+    description:
-+      I2C slave address
-+
-+  '#address-cells':
-+    const: 1
-+
-+  "#size-cells":
-+    const: 0
-+
-+patternProperties:
-+  "^led@[1-9][0-9]*$":
-+    type: object
-+    description: |
-+      Properties for a single subnode LED.
-+    additionalProperties: false
-+
-+    properties:
-+      reg:
-+        minItems: 1
-+        description:
-+          LED channel number (1..N)
-+
-+      label: true
-+
-+      linux,default-trigger: true
-+
-+    required:
-+      - reg
-+
-+required:
-+  - compatible
-+  - reg
-+  - "#size-cells"
-+  - "#address-cells"
-+
-+additionalProperties: false
--- 
-2.34.1
+[1/2] has a dependency on a patch that will not be in v6.10 so it cannot be backported,
+but luckily [1/2] is just a fix for a DTB check warning. [2/2] doesn't depend on [1/2].
+So no issue there, [2/2] should backport cleanly all by itself.
 
+Andrew
 
