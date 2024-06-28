@@ -1,123 +1,92 @@
-Return-Path: <devicetree+bounces-81365-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81366-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E62291C10E
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 16:34:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9DE891C126
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 16:37:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4839F28378E
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 14:34:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 27F241C21CD8
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 14:37:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F6121586C1;
-	Fri, 28 Jun 2024 14:34:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A56911C0050;
+	Fri, 28 Jun 2024 14:36:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZzIWXVmc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DC1TqMbe"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42B581E522;
-	Fri, 28 Jun 2024 14:34:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 759A61E522;
+	Fri, 28 Jun 2024 14:36:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719585265; cv=none; b=p6vItlEfm3RskuyZMOnXyIFpBZ+GqXFZsMZy85jgmBt8xa7CiQyooij3wgAz16A3TgAHjnyCXlilk9g5uzxPnvgIna9GTkGLdp0NvLrRYlV5BxGCREoP8ykPaggP3GAGm/18N7iWZBoWP8SpsglIF/FIMIAFVO3StyHLAiDmRu8=
+	t=1719585390; cv=none; b=b7ReVuJq7TU+iMJXj185US5ebVrj+mEelSXL5FrE34LwB8SClTREi9ylIWcTTbgUyROCCwNBYRtfxGmTvjeatU0NLS02ajYyrAZefEBCoxWwpJn7X60wEpW9iSRJld72itIQmKG8xBsICaB+8fY7Vi4sE9YxARcWNcYmNc1kyvI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719585265; c=relaxed/simple;
-	bh=M93Nvl53wprdqB1rCgjlA3JH/jyBzpgsj3DjF0i+/Uc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oZenfuvy6Jptjzi3gqTSuDOqqqxrz+ylIl80HiEH0erLaJ1GGKUJ/zPN0zsPQSpBFlCPdLWpP1+ziaIfy/I9g+M4oxtLYy3BtYAfL3N0Y2BCNAZMu3ZrPQPPEi6k44o77G2ngfxyVl0IQ7UOOtb3m48pef6TXL+Z836n5C/ihUo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZzIWXVmc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A0E8C116B1;
-	Fri, 28 Jun 2024 14:34:22 +0000 (UTC)
+	s=arc-20240116; t=1719585390; c=relaxed/simple;
+	bh=spqwbjtFsgEKo2SVTzF7qyYyS/KPXyhIwwS8IkgZw9g=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=tma2wQ8IEqGOHoNVUdvamcR22YtuIURVwnsUctIBBluhbZe+hKt07oEEnyA7FIhYf60rqf/V3ld0fQ8aM2wHRk247l1lDV0OIB3LOUK+aEdom19b62K5phHV7KIlCQ8tYPhA46ZuNLq1yyXqwKxwdVxdJErcKJYzeJFgydNagVc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DC1TqMbe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D74FDC116B1;
+	Fri, 28 Jun 2024 14:36:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719585265;
-	bh=M93Nvl53wprdqB1rCgjlA3JH/jyBzpgsj3DjF0i+/Uc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ZzIWXVmc2KqAbYAU7z50dq5r2g665ts4K1cpp2jdj1J6YPrDCEB6HMK/GOJNdjRb6
-	 9C0DYeiuqZdZMZbuE3RYCXBMjHOLstLaQ3PLpZ8iIFp3iw9EaZDMH2NmH5LaHf+OMQ
-	 bTBeSzPmEPVO3z5ecU+9iVdlNzqsVaY1fomUGHeI+VLb3V1HjASRJ2rE+gBacxxmzz
-	 goG2+AaLa6/JT8bHF6r8FP0Nw422XgA2LnvkkXua6cACceBw8GLLzGBQCTLrOzUApF
-	 rlCy9LaLzIPpX0iIWjk1Ex0uuB4cmttnD/NrS0rxDeOsm4mt6u1du9g+E0v8lCn51o
-	 o+slq1Moa5gUQ==
-Date: Fri, 28 Jun 2024 15:34:19 +0100
+	s=k20201202; t=1719585390;
+	bh=spqwbjtFsgEKo2SVTzF7qyYyS/KPXyhIwwS8IkgZw9g=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=DC1TqMbev6wyBRDKvI+XZMg5XWaogkmLNT/l8I4NrqaUC2dTDDXIQyzLjE4nZfvZf
+	 KLe7OS3Jik7WNSjWPk/wV34z8QxY4R5bnFqlirmBZnXH8M3z4v8PL7Yju8kSN3AatZ
+	 UZf2s+HY8elzAn1ao/0SvVpYiV81wBtpKYKsjTeZNZqprBbLp+0s2RItLALrbMTfPt
+	 CE9pV2bYrsn1HXG9/LruaTnBQurH/q3O7LK6Hc4ShjHmM8d96F/yXFhN8QH9rLV63W
+	 /lfuYZN7tpTzZ+hpLpyqTJ60qb1cfXFhu6A08greN+DoEKjFjBNWVjbH9ykCflttm5
+	 LV+HRbWsyEJTA==
 From: Lee Jones <lee@kernel.org>
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org
-Subject: [GIT PULL] Immutable branch between MFD, Regulator and Watchdog due
- for the v6.11 merge window
-Message-ID: <20240628143419.GO2532839@google.com>
-References: <cover.1719473802.git.mazziesaccount@gmail.com>
+To: dmitry.torokhov@gmail.com, robh+dt@kernel.org, 
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, lee@kernel.org, 
+ broonie@kernel.org, jeff@labundy.com, 
+ James Ogletree <jogletre@opensource.cirrus.com>
+Cc: patches@opensource.cirrus.com, linux-sound@vger.kernel.org, 
+ linux-input@vger.kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20240620161745.2312359-1-jogletre@opensource.cirrus.com>
+References: <20240620161745.2312359-1-jogletre@opensource.cirrus.com>
+Subject: Re: [PATCH RESEND v11 0/5] Add support for CS40L50
+Message-Id: <171958538756.3311721.9922103612711130930.b4-ty@kernel.org>
+Date: Fri, 28 Jun 2024 15:36:27 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <cover.1719473802.git.mazziesaccount@gmail.com>
+X-Mailer: b4 0.13.0
 
-Enjoy!
+On Thu, 20 Jun 2024 16:17:40 +0000, James Ogletree wrote:
+> Changes in v11:
+> - Constified function parameters in ASOC driver
+> - Removed an unneeded #include
+> - Changed number of max FF effects = 1
+> - Minor refactoring in Input driver
+> - Reworded comment in MFD driver
+> 
+> [...]
 
-The following changes since commit 1613e604df0cd359cf2a7fbd9be7a0bcfacfabd0:
+Applied, thanks!
 
-  Linux 6.10-rc1 (2024-05-26 15:20:12 -0700)
+[1/5] firmware: cs_dsp: Add write sequence interface
+      commit: 205fdba5d0ffe1ad8de61763d74323e88b640d41
+[2/5] dt-bindings: input: cirrus,cs40l50: Add initial DT binding
+      commit: 2fab5abad124fe7e1b99ccba3305aa4c5a24496b
+[3/5] mfd: cs40l50: Add support for CS40L50 core driver
+      commit: cb626376cbd00cd69329371519a8e9568baef715
+[4/5] Input: cs40l50 - Add support for the CS40L50 haptic driver
+      commit: c38fe1bb5d21c2ce0857965ee06174ee587d6b42
+[5/5] ASoC: cs40l50: Support I2S streaming to CS40L50
+      commit: c486def5b3ba6c55294cee9abc7396d9dc18f223
 
-are available in the Git repository at:
-
-  ssh://git@gitolite.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git tags/ib-mfd-regulator-watchdog-v6.11
-
-for you to fetch changes up to fcf1f960a6aa45a22efd4d49114c672ed305b85f:
-
-  MAINTAINERS: Add ROHM BD96801 'scalable PMIC' entries (2024-06-27 09:24:45 +0100)
-
-----------------------------------------------------------------
-Immutable branch between MFD, Regulator and Watchdog due for the v6.11 merge window
-
-----------------------------------------------------------------
-Matti Vaittinen (6):
-      dt-bindings: ROHM BD96801 PMIC regulators
-      dt-bindings: mfd: bd96801 PMIC core
-      mfd: support ROHM BD96801 PMIC core
-      regulator: bd96801: ROHM BD96801 PMIC regulators
-      watchdog: ROHM BD96801 PMIC WDG driver
-      MAINTAINERS: Add ROHM BD96801 'scalable PMIC' entries
-
- .../devicetree/bindings/mfd/rohm,bd96801-pmic.yaml | 173 ++++
- .../bindings/regulator/rohm,bd96801-regulator.yaml |  63 ++
- MAINTAINERS                                        |   4 +
- drivers/mfd/Kconfig                                |  13 +
- drivers/mfd/Makefile                               |   1 +
- drivers/mfd/rohm-bd96801.c                         | 273 +++++++
- drivers/regulator/Kconfig                          |  12 +
- drivers/regulator/Makefile                         |   1 +
- drivers/regulator/bd96801-regulator.c              | 908 +++++++++++++++++++++
- drivers/watchdog/Kconfig                           |  13 +
- drivers/watchdog/Makefile                          |   1 +
- drivers/watchdog/bd96801_wdt.c                     | 416 ++++++++++
- include/linux/mfd/rohm-bd96801.h                   | 215 +++++
- include/linux/mfd/rohm-generic.h                   |   1 +
- 14 files changed, 2094 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/mfd/rohm,bd96801-pmic.yaml
- create mode 100644 Documentation/devicetree/bindings/regulator/rohm,bd96801-regulator.yaml
- create mode 100644 drivers/mfd/rohm-bd96801.c
- create mode 100644 drivers/regulator/bd96801-regulator.c
- create mode 100644 drivers/watchdog/bd96801_wdt.c
- create mode 100644 include/linux/mfd/rohm-bd96801.h
-
--- 
+--
 Lee Jones [李琼斯]
+
 
