@@ -1,162 +1,136 @@
-Return-Path: <devicetree+bounces-81180-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81181-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7393891B8CB
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 09:47:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DAA1C91B8D2
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 09:47:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 96B091C22497
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 07:47:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 91EF71F2321F
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 07:47:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4EFC14262C;
-	Fri, 28 Jun 2024 07:47:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BC83143734;
+	Fri, 28 Jun 2024 07:47:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="D1vi+bni"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rw85o+ri"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F62C12F397
-	for <devicetree@vger.kernel.org>; Fri, 28 Jun 2024 07:47:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EC4A558B9;
+	Fri, 28 Jun 2024 07:47:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719560833; cv=none; b=pMiSTRFhynXRYKA+rZXKbXrkXI1cc1QRm5iUASsiQwnxVoJPTcBmoIlsfJTd3Qik4ithEkS0ONtWzGzzbmzh1K4f+flmTXclpmRf5PgJ3QLPOiVeMBa0H09L6OSLVyMb2YrIXW59Mev5OVRmVUeKBml52+2pUjq7pgeUBmdhiV0=
+	t=1719560864; cv=none; b=GylQ7F7kvNUN5Us9uMewYJOd4/Euf0zso1vTK3RwjGaN29WZmjuvt3V3EJel0GDPAWaTnTIAUJccmj9oviy3jWD1Cah/y6WeHL8RXh54Wox9ZaFHvpwSt0xweuJJi8CKApIOUR1rxalJ84zkj/+Upc8J6XrmDW5lQ4s1mRa8CYo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719560833; c=relaxed/simple;
-	bh=X1XDg4CWqLekR5BIvTtoObyb6G/m6s5Hzu4qSPrR74o=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qjXqNc0ReJbxuj2Jzl2M3qZiozvMeV69gIq4mQl4jfxartSB641KEeSzg1v98E63uLLKiRoNGnMEe3HGMd1eQZpKklPihgAz8dUhwznHEn0G2w2fjAt7Dcfxhhqekeij9jl12AP9WekmQvX0ap2nSIYOsaLqVq+1izxvFOW2ztI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=D1vi+bni; arc=none smtp.client-ip=209.85.208.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2ebe6495aedso2784151fa.0
-        for <devicetree@vger.kernel.org>; Fri, 28 Jun 2024 00:47:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719560830; x=1720165630; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Nc4Qf7GLtkVCveBTGX7EpUl9LATF5aggezB8l/JLORQ=;
-        b=D1vi+bniCua+mbHIjXYINUB/IsSvMoAof0vyXF95cZLQgPuCD9lKewEs5JyP39YNiL
-         qRaoUPXFsnH6F21OmWSqbLXNlnfu1qj7QiyMJKEuN56U5XZN2TV8ss7Q0z0Qes85FC5X
-         yGtVVwN4QerUNqzU02zuMC0zmjEa+rR7NbXvGjizGKfe1H6IN3L+QMNgSmWmLLPhFKJn
-         QSrDvN1kZ0iiApkSHGp84qe2ka584xJzXqKYbeUkaJoauqhQP0rVihkDp5Dq6L0fACGa
-         Ua0WbnfFxqCeLroQcPw/ZKykcHqtRUrgOX+22+wlXd8fMTKP/ssDFpBt+aZR98k+TYo9
-         xPpA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719560830; x=1720165630;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Nc4Qf7GLtkVCveBTGX7EpUl9LATF5aggezB8l/JLORQ=;
-        b=bD0goJ8T7QlrFAgDLuWn9elSTUq1Wk+XWWfXpvgjvKoHSFofroeog4k/ijV9iPZeIZ
-         wH76Kn1d8F4frQ8/I9LQWK8wVqHsqZQewLYeS1WEa0/lyaHbTjHTYxPJdc0X4hxXoR3w
-         UQpDqDeTDiXK5nBJ+0Ndt0pANalws6uDDcsp+6k91p+tuV5NU+HPpymV1BvWVPQhZf+u
-         AumlKxzjF+y4OWfFIB27bjnpAumzuQhHV1y4XM7qFSETIjZ0mCEocDdKNo5ntVAre5BD
-         bT7MyaCbwkidi2SpljBHMdbShcOCshSqv/2jruCBcHF5+TXV5hUOc566Y/8WXW+mM7vn
-         uKbA==
-X-Forwarded-Encrypted: i=1; AJvYcCXySB+DfNZ9eoTvVwNzHtU9/GXRq5It9j0wskl+Cyab3edqCuNQG507FGdSA05nCFMP1eX0jp089l/eAt8NNJAReiHMA3VB1G/0Xg==
-X-Gm-Message-State: AOJu0YzoEqWM83LTfCT3RJ8TgunGIYCWUYOdRz2x00ybehRpouYEX7YC
-	0ItIQ/0FE4+dXt5mfrVT0oQDxvwMgLrr/mapp320EszSzSrJaB7B5uopIbLOxmQ=
-X-Google-Smtp-Source: AGHT+IEDr3s7URgwk4byM1UEJod82amd+japUT2kSdheEtNmdtI5YyE+4VmV/k4KdQ5AmSQUb0CC7w==
-X-Received: by 2002:a05:6512:6c7:b0:52e:6d6e:577e with SMTP id 2adb3069b0e04-52e6d6e5833mr4844105e87.2.1719560830271;
-        Fri, 28 Jun 2024 00:47:10 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52e7ab278edsm193556e87.173.2024.06.28.00.47.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 28 Jun 2024 00:47:09 -0700 (PDT)
-Date: Fri, 28 Jun 2024 10:47:08 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Alexey Klimov <alexey.klimov@linaro.org>
-Cc: linux-sound@vger.kernel.org, srinivas.kandagatla@linaro.org, 
-	bgoswami@quicinc.com, lgirdwood@gmail.com, broonie@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, andersson@kernel.org, 
-	konrad.dybcio@linaro.org, perex@perex.cz, tiwai@suse.com, linux-arm-msm@vger.kernel.org, 
-	alsa-devel@alsa-project.org, devicetree@vger.kernel.org, elder@linaro.org, 
-	krzysztof.kozlowski@linaro.org, caleb.connolly@linaro.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 7/7] arm64: dts: qcom: qrb4210-rb2: add HDMI audio
- playback support
-Message-ID: <tqjjrkpdrqjobg5fp5jml5pj23ollc4yolln46lb533kwsgncf@tfzaxwydqhht>
-References: <20240628010715.438471-1-alexey.klimov@linaro.org>
- <20240628010715.438471-8-alexey.klimov@linaro.org>
+	s=arc-20240116; t=1719560864; c=relaxed/simple;
+	bh=uCD5TGiepGiYZ3McqKERrGy9PD1OaIIbz3xxYakKfFw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=mskmrTy5V75pPwgTf8lRm48goKqGCzZtz/4xtnvG/SQmTFl5w3nbT9CiVKEUNzxYF8mV5mZwPFq2NFQjO9WrOPjuFJ/8Q6bV0womYLwjxGjR7J6kGId4m5bjNkaMDrLlquamD5C1Z1I0INXFpHQB5lK4rLj+2Kup95X9yIGLbxM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rw85o+ri; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2B71C116B1;
+	Fri, 28 Jun 2024 07:47:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719560863;
+	bh=uCD5TGiepGiYZ3McqKERrGy9PD1OaIIbz3xxYakKfFw=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=rw85o+rim2AaTbsryjVXocCSTIlky1QApL8M2f6EISMpuQnbVCy6DKELhPL2Y+ves
+	 ic0hueZT0Vhjw5W/WMP8ScUwtmWgYe5ddFkp0WSMnfwkKyOIaPm8g72GAP4a9oRYIh
+	 eczRGNHi2x+9ZbEtaBPBCMAIRUWwewUQq0n+9WN/mn+H0p/41j6p7w9R7UUftUP2wp
+	 p5aDOhdD69kHxVxNI4gy4WJqN98J5POMN/Lrn6XJI0YFiO5MZcM4CjWCO4LKStdKd5
+	 zLwOMKhLv6NWw5ozJgMSKa7zNwOjxzyqTMkrfFOmbmAxHjZrQPoRrM9g8di5jQbsrx
+	 llS6jAQ+ZH/pA==
+Message-ID: <c99dbf5e-9396-44bc-973f-cb7edaf6c0dc@kernel.org>
+Date: Fri, 28 Jun 2024 09:47:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240628010715.438471-8-alexey.klimov@linaro.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [Patch v5 02/12] dt-bindings: dma: Add lpc32xx DMA mux binding
+To: Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>,
+ Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, "J.M.B. Downing" <jonathan.downing@nautel.com>,
+ Vladimir Zapolskiy <vz@mleia.com>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Russell King <linux@armlinux.org.uk>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+ Miquel Raynal <miquel.raynal@bootlin.com>,
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ Yangtao Li <frank.li@vivo.com>, Arnd Bergmann <arnd@arndb.de>,
+ Li Zetao <lizetao1@huawei.com>, Michael Ellerman <mpe@ellerman.id.au>,
+ Chancel Liu <chancel.liu@nxp.com>, Corentin Labbe <clabbe@baylibre.com>,
+ dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ alsa-devel@alsa-project.org, linuxppc-dev@lists.ozlabs.org,
+ linux-sound@vger.kernel.org, linux-clk@vger.kernel.org,
+ linux-i2c@vger.kernel.org, linux-mtd@lists.infradead.org
+References: <20240627150046.258795-1-piotr.wojtaszczyk@timesys.com>
+ <20240627150046.258795-3-piotr.wojtaszczyk@timesys.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240627150046.258795-3-piotr.wojtaszczyk@timesys.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fri, Jun 28, 2024 at 02:07:15AM GMT, Alexey Klimov wrote:
-> Add sound node, dsp-related pieces and LPASS pinctrl to enable
-> HDMI audio support on Qualcomm QRB4210 RB2 board. That is the
-> only sound output supported for now.
-
-I see that you have also added the MultiMedia DAIs, which don't seem to
-be used with this patch.
-
+On 27/06/2024 17:00, Piotr Wojtaszczyk wrote:
+> LPC32XX SoCs use pl080 dma controller which have few request signals
+> multiplexed between peripherals. This binding describes how devices can
+> use the multiplexed request signals.
 > 
-> Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/qrb4210-rb2.dts | 73 ++++++++++++++++++++++++
->  1 file changed, 73 insertions(+)
-> 
-> +&sound {
-> +	compatible = "qcom,qrb4210-rb2-sndcard";
-> +	pinctrl-0 = <&lpi_i2s2_active>;
-> +	pinctrl-names = "default";
-> +	model = "Qualcomm-RB2-WSA8815-Speakers-DMIC0";
-> +	audio-routing = "MM_DL1",  "MultiMedia1 Playback",
-> +			"MM_DL2",  "MultiMedia2 Playback";
-> +
-> +	mm1-dai-link {
-> +		link-name = "MultiMedia1";
-> +		cpu {
-> +			sound-dai = <&q6asmdai  MSM_FRONTEND_DAI_MULTIMEDIA1>;
-> +		};
-> +	};
-> +
-> +	mm2-dai-link {
-> +		link-name = "MultiMedia2";
-> +		cpu {
-> +			sound-dai = <&q6asmdai  MSM_FRONTEND_DAI_MULTIMEDIA2>;
-> +		};
-> +	};
-> +
-> +	mm3-dai-link {
-> +		link-name = "MultiMedia3";
-> +		cpu {
-> +			sound-dai = <&q6asmdai  MSM_FRONTEND_DAI_MULTIMEDIA3>;
-> +		};
-> +	};
-> +
-> +	hdmi-dai-link {
-> +		link-name = "HDMI Playback";
-> +		cpu {
-> +			sound-dai = <&q6afedai SECONDARY_MI2S_RX>;
-> +		};
-> +
-> +		platform {
-> +			sound-dai = <&q6routing>;
-> +		};
-> +
-> +		codec {
-> +			sound-dai = <&lt9611_codec 0>;
-> +		};
-> +	};
-> +};
-> +
->  &tlmm {
->  	gpio-reserved-ranges = <43 2>, <49 1>, <54 1>,
->  			       <56 3>, <61 2>, <64 1>,
-> -- 
-> 2.45.2
-> 
+> Signed-off-by: Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>
 
--- 
-With best wishes
-Dmitry
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
+
 
