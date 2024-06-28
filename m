@@ -1,69 +1,72 @@
-Return-Path: <devicetree+bounces-81310-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81311-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE5F191BEE1
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 14:44:59 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0DFE91BEE8
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 14:45:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F250A1C20C4F
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 12:44:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 250A7B22AE3
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 12:45:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EFB9158853;
-	Fri, 28 Jun 2024 12:44:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 797CD14E2CD;
+	Fri, 28 Jun 2024 12:45:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b="vMI+92T/"
+	dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b="DlnXkk9K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 058EE1CF9B
-	for <devicetree@vger.kernel.org>; Fri, 28 Jun 2024 12:44:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEC2C15ADBC
+	for <devicetree@vger.kernel.org>; Fri, 28 Jun 2024 12:45:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719578695; cv=none; b=HV7+ycGgRj0JgH0Og/YIFgukBKGrJmnZbnYScENWEHdQw+AtXZpdp8pvAdNVoYGKcQZGY8lisW4f9I76CiuAPNombiTJokchGbTAJYeUNO6QHIYz6jbCDH5c1esZcgoHu02QLNBxSbbS8ru42nJWGPbBn9fUAhy0C5tN6GEIGZQ=
+	t=1719578705; cv=none; b=Bcmctqbf6edp9I2ym7mLoaVam+yuxHs44hVsa/XnMvzuTNfyujf4uIjh8rmz1er1ErLIKsfmdZz0INNFWuMI5D2maGz0WJFb00A1vV7cmHur2wo88DC/FmAoYXsmwZ+Fwl6GFVw7h0zUZCINWIcVvfoRfEjliynt7+bOqen2Qbw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719578695; c=relaxed/simple;
-	bh=xZ09umop2njKwDmORIziHM7OVlyULHAxuuSQZf6Z7rA=;
-	h=From:To:Cc:Subject:Date:Message-Id; b=Zx6gCsqZ5bJbFu/85eXrfqn+UTXZUd//IbO0rIg4C1073uLmXJuN6mN5zuzhlJuqfUNRu+bYrFCY2i95w+VyZmA9JvjJmZ37l5DCcT5J/EI39vzGlYpgTNz1vHpm92mvsF+PTqRoF2KUCaNANF3rHfu5m6dRW1Wbpy1cm+EdsHo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com; dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b=vMI+92T/; arc=none smtp.client-ip=209.85.214.181
+	s=arc-20240116; t=1719578705; c=relaxed/simple;
+	bh=3Wr3HwAp7vIf3GIE6N56s2VaPqa+C6jocnxeOEJv6eI=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=U7LQqIHhLupa45gly+wu1utmGE8JCgy1jxE2QfYE3aXp+hVnshsqR+1IYsPEjofYPsM1+u5TgPJRYGputRNinavr5tU6T1T4JJiy0ufN+evr+WzS5dFZjV001+HhDFNJ2VP+8vpWiaslg8KmTWb+Ib5RCnMahwFS06TOSeV3c9A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com; dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b=DlnXkk9K; arc=none smtp.client-ip=209.85.214.171
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com
-Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-1f70c457823so2574485ad.3
-        for <devicetree@vger.kernel.org>; Fri, 28 Jun 2024 05:44:53 -0700 (PDT)
+Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-1f9ffd24262so3388305ad.0
+        for <devicetree@vger.kernel.org>; Fri, 28 Jun 2024 05:45:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=huaqin-corp-partner-google-com.20230601.gappssmtp.com; s=20230601; t=1719578693; x=1720183493; darn=vger.kernel.org;
-        h=message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=huaqin-corp-partner-google-com.20230601.gappssmtp.com; s=20230601; t=1719578703; x=1720183503; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ft63GgjralOgMe++xlYUJpktC9o9kPzkBcld+WAsA1g=;
-        b=vMI+92T/1an93S8fZal64OdtepIi7buhrG/xkvJgiNcYNrCVZrzajlgrObSuPe4pfQ
-         YyoSKMjTg9ockZjBRy8iLdC1eMascbjIyK7SXZt3ffUQXIDURgW+5y60kEQdyvBzw3YT
-         fP2QtSy6FZaWZgtPlyI0h8qX1HA+ZQL7Aei0Wtk/hFB/39dh+29u1Y5JHjw/JTbu/Inl
-         Ntv5hzpEeZ5cnzmChWxgB+eyo67k4lSBoEVehrTZbkagq1OTsh+0WXWMsi92JUGkDEU1
-         6VkRaQ9B/PuclF0f9NdpRpskEkPjzJknoBplAdvHTM7Ypxoh2/aYJN/ZGZm1TI5k1FdU
-         ZCcA==
+        bh=OeseQiv7/DSaLni1dvL6OOnrfuUA5o+HEQL8eICjloc=;
+        b=DlnXkk9K2hhMBdZmCFcFWn2RieutYAquKdfanhGfH1eWaZokadF+MB1AbncxNCCmMK
+         cbZtbjcFxxtj9IRrIqiHa+ok6y0RHQi4KUbeFYwXiXk8KcsSn++6//S+qAx6Jjb6iKaQ
+         OBJVIBSgLtX+o7Lr9Aiu2VSFdxK3MACydM6+BLojfAUR9ttDOhfXltB/00I+7LYCeGFy
+         Ik9xEI1nSl7ZFVU/Zd3vx8m5NW7jU04ZVjrCfgS+33ENkKoWN7InE9Yxbq2YfxQLBmZn
+         6MXP+gMAXJUXCooK/ay8R+8mCb3v6kTmpuVCFuOHHutEuwwRdBuAvfDEuudaAGqS8yOS
+         t9Zg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719578693; x=1720183493;
-        h=message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1719578703; x=1720183503;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=ft63GgjralOgMe++xlYUJpktC9o9kPzkBcld+WAsA1g=;
-        b=tondGOc1UBeOWHVJ5CuPMeU+5hIJFrUBegXQHDvWqkfUqx5ks6PoFSMh3nMjHNJoti
-         nGFp8MnoGWS/5fgJrhrG9UF22NbxPhB4aDKb6ww9+IDSRegDQELnfa0qak7oS3QzwjBv
-         q/oXTQ7RSH9MU7xigHZFILuIkl8ueWgBMwfYBJPZawPKA1aqWBQggRXWsXGO910zhyz+
-         xQdevqhyZV2DCNO58O+nGPnlORwhfjE21zmA/RO/DXR5gNAfBg5Cq0+nIOt1xuM41Tix
-         s0EXjqPSit4uUU7hGXBQyBPv/bLxPqa4x+Mx7E41Nk/UBSI3QfRE9PMUOeNrerUg8DGd
-         krkQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVBaVIxowerBBzMVTHkoTdcfC/O7GQ1d9aKIUHLEfdP/m8Zs57R5VjRJmiSnnEo8CfBctddGMGDfHZ6mygqk0b3hMdJYWLcYRm0pw==
-X-Gm-Message-State: AOJu0YyLuhKilbPS82AqxXzGm6Wa0ZSWUElUG8uC4s/DddEjrZv3+bXS
-	N6yplpO0G/NkZpQRGelnL7evbgLxYjnZpFM18RNP2AisDdlhq8McsjTjPFi8yM0=
-X-Google-Smtp-Source: AGHT+IGNId4+C8dYDixct0tmKy6AQ4GcMFTQnFAYcvYlU1iuODGUyQya+hJnG1DQIIT/aPu1xslN2g==
-X-Received: by 2002:a17:902:f789:b0:1fa:acf0:72b7 with SMTP id d9443c01a7336-1faacf07565mr36744995ad.15.1719578693175;
-        Fri, 28 Jun 2024 05:44:53 -0700 (PDT)
+        bh=OeseQiv7/DSaLni1dvL6OOnrfuUA5o+HEQL8eICjloc=;
+        b=MU5ct1j4nZQ34qB7VQoS2NHhxeJLShoB7Nq/EUe1AEP22vKQGgMhb0G+9veMO+ID7O
+         MhBNwuzQ5wGr0Wz9GQI6pLao30Adi2dssabOXW5odpcWv4k011kAN8d8rE4dKV0+iaLJ
+         Dw9VthNg/TSv8I53Rgaqy3AcCsntQSHL6yekz3VNKuAoTWN0jyJcoEJ7TNZGEQr/b4GV
+         lGHJIHQw+as9s/S38rIWbMBx1LbNC+kEm6TDsDJ0wiFdRu2qJTFZz/vzKjdWx8lltfcR
+         N+4NdZD3PXCRBxYVVtJNWZQqP6pkW45vDg7TpbJMGvP5ThOLjc+zaTN1SCid5mX/jvf7
+         79Gw==
+X-Forwarded-Encrypted: i=1; AJvYcCVJTm6Ki17FL0KQB4qiO79r+HFuBCIxsXZdGH5VIhrNg8ovIVymH0IuxIG74NdtV6N9KDPmfisGPiuK+6d3hUoSAJJzZF5KLnjI4Q==
+X-Gm-Message-State: AOJu0Yz21PwPvCyNoZ0KXceBhn3JUfvqgjqrYc9pfZuqBlREwiG3i6+J
+	tue13fJ0bcOE8OteAVqJ4K9O3UvXztMXl17IQzAHZ4DGGqi0LPgY2NQHCnOokcI=
+X-Google-Smtp-Source: AGHT+IGWadE2l1MOGIvcH+qhTXfxLERu8D+lorl26DB268SY32VCtG8S/9RsP0BCd2bpECNPNyPGVw==
+X-Received: by 2002:a17:902:dac6:b0:1f9:d279:a870 with SMTP id d9443c01a7336-1fa23fb2949mr156225565ad.25.1719578702961;
+        Fri, 28 Jun 2024 05:45:02 -0700 (PDT)
 Received: from lvzhaoxiong-KLVC-WXX9.huaqin.com ([116.66.212.162])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1fac15695b4sm14346255ad.225.2024.06.28.05.44.49
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1fac15695b4sm14346255ad.225.2024.06.28.05.44.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 28 Jun 2024 05:44:52 -0700 (PDT)
+        Fri, 28 Jun 2024 05:45:02 -0700 (PDT)
 From: Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com>
 To: dmitry.torokhov@gmail.com,
 	robh@kernel.org,
@@ -81,79 +84,114 @@ Cc: dri-devel@lists.freedesktop.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com>
-Subject: [PATCH v6 0/5] Add kd101ne3-40ti configuration in driver jd9365da
-Date: Fri, 28 Jun 2024 20:44:39 +0800
-Message-Id: <20240628124444.28152-1-lvzhaoxiong@huaqin.corp-partner.google.com>
+Subject: [PATCH v6 1/5] drm/panel: jd9365da: Modify the method of sending commands
+Date: Fri, 28 Jun 2024 20:44:40 +0800
+Message-Id: <20240628124444.28152-2-lvzhaoxiong@huaqin.corp-partner.google.com>
 X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20240628124444.28152-1-lvzhaoxiong@huaqin.corp-partner.google.com>
+References: <20240628124444.28152-1-lvzhaoxiong@huaqin.corp-partner.google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-This kingdisplay panel uses the jd9365da controller, so add it to 
-panel-jadard-jd9365da-h3.c driver, but because the init_code and timing 
-are different, some variables are added in struct jadard_panel_des to 
-control it.
+Currently, the init_code of the jd9365da driver is placed
+in the enable() function and sent, but this seems to take
+a long time. It takes 17ms to send each instruction (an init
+code consists of about 200 instructions), so it takes
+about 3.5s to send the init_code. So we moved the sending
+of the inti_code to the prepare() function, and each
+instruction seemed to take only 25μs.
 
-In addition, since sending init_code in the enable() function takes a long time, 
-it is moved to the prepare() function.
+We checked the DSI host and found that the difference in
+command sending time is caused by the different modes of
+the DSI host in prepare() and enable() functions.
+Our DSI Host only supports sending cmd in LP mode, The
+prepare() function can directly send init_code (LP->cmd)
+in LP mode, but the enable() function is in HS mode and
+needs to switch to LP mode before sending init code
+(HS->LP->cmd->HS). Therefore, it takes longer to send
+the command.
 
+Signed-off-by: Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com>
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
+---
 Changes between V6 and V5:
-- PATCH 1/5: No changes.
-- PATCH 2/5: No changes.
-- PATCH 3/5: Convert the hex from UPPERCASE to lowercase.
-- PATCH 4/5: No changes.
-- PATCH 5/5: No changes..
-- Link to v5: https://lore.kernel.org/all/20240624141926.5250-1-lvzhaoxiong@huaqin.corp-partner.google.com/
+- 1. No changes.
+
+V5:https://lore.kernel.org/all/20240624141926.5250-2-lvzhaoxiong@huaqin.corp-partner.google.com/
 
 Changes between V5 and V4:
-- PATCH 1/5: No changes.
-- PATCH 2/5: No changes.
-- PATCH 3/5: New Patch, Switch jd9365da to use mipi_dsi_dcs_write_seq_multi() but no
--            functional changes.
-- PATCH 4/5: Add a "_ms" suffix to the variables.
--            Use more "_multi" in the enable/disable function
--            Use mipi_dsi_dcs_write_seq_multi() in the init() function.
-- PATCH 5/5: Use dev_err_probe().
-- Link to v4: https://lore.kernel.org/all/20240620080509.18504-1-lvzhaoxiong@huaqin.corp-partner.google.com/
+- 1. No changes.
+
+V4:https://lore.kernel.org/all/20240620080509.18504-2-lvzhaoxiong@huaqin.corp-partner.google.com/
 
 Changes between V4 and V3:
-- PATCH 1/4: Only move mipi_dsi_dcs_write_buffer from enable() function to prepare() function,
--            and no longer use mipi_dsi_dcs_write_seq_multi.
-- PATCH 2/4: Move positions to keep the list sorted.
-- PATCH 3/4: Use mipi_dsi_msleep.
--            Adjust the ".clock" assignment format.
--            Adjust "compatible" positions to keep the list sorted.
-- PATCH 4/4: No changes.
-- Link to v3: https://lore.kernel.org/all/20240614145510.22965-1-lvzhaoxiong@huaqin.corp-partner.google.com/
+- 1. Only move mipi_dsi_dcs_write_buffer from enable() function to prepare() function,
+-    and no longer use mipi_dsi_dcs_write_seq_multi.
 
-Changes between V3 and V2:
-- PATCH 1/4: Modify the init_code sending method
-- PATCH 2/4: Add binding for kingdisplay-kd101ne3 in jadard,jd9365da-h3.yaml
-- PATCH 3/4: Add compatibility for kingdisplay-kd101ne3 in panel-jadard-jd9365da-h3.c driver,
--            and add some variables to control timing.
-- PATCH 4/4: Add the function of adjusting orientation.
-- Link to v2: https://lore.kernel.org/all/20240601084528.22502-1-lvzhaoxiong@huaqin.corp-partner.google.com/
+V3:https://lore.kernel.org/all/20240614145510.22965-2-lvzhaoxiong@huaqin.corp-partner.google.com/
 
-Changes between V2 and V1:
-- PATCH 1/4: Delete some unnecessary information.
-- PATCH 2/4: Use the new mipi_dsi_dcs_write_seq_multi() function, deleted some unnecessary functions.
-- PATCH 3/4: Add compatible for Starry-er88577.
-- PATCH 4/4: Add starry panel configuration in panel-kingdisplay-kd101ne3 driver.
-- Link to v1: https://lore.kernel.org/all/20240418081548.12160-1-lvzhaoxiong@huaqin.corp-partner.google.com/
+---
+ .../gpu/drm/panel/panel-jadard-jd9365da-h3.c  | 24 +++++++++----------
+ 1 file changed, 11 insertions(+), 13 deletions(-)
 
-Zhaoxiong Lv (5):
-  drm/panel: jd9365da: Modify the method of sending commands
-  dt-bindings: display: panel: Add compatible for kingdisplay-kd101ne3
-  drm/panel: panel-jadard-jd9365da-h3: use wrapped MIPI DCS functions
-  drm/panel: jd9365da: Support for kd101ne3-40ti MIPI-DSI panel
-  drm/panel: jd9365da: Add the function of adjusting orientation
-
- .../display/panel/jadard,jd9365da-h3.yaml     |    1 +
- .../gpu/drm/panel/panel-jadard-jd9365da-h3.c  | 1088 +++++++++++------
- 2 files changed, 682 insertions(+), 407 deletions(-)
-
+diff --git a/drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c b/drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c
+index 4879835fe101..a9c483a7b3fa 100644
+--- a/drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c
++++ b/drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c
+@@ -52,21 +52,9 @@ static int jadard_enable(struct drm_panel *panel)
+ {
+ 	struct device *dev = panel->dev;
+ 	struct jadard *jadard = panel_to_jadard(panel);
+-	const struct jadard_panel_desc *desc = jadard->desc;
+ 	struct mipi_dsi_device *dsi = jadard->dsi;
+-	unsigned int i;
+ 	int err;
+ 
+-	msleep(10);
+-
+-	for (i = 0; i < desc->num_init_cmds; i++) {
+-		const struct jadard_init_cmd *cmd = &desc->init_cmds[i];
+-
+-		err = mipi_dsi_dcs_write_buffer(dsi, cmd->data, JD9365DA_INIT_CMD_LEN);
+-		if (err < 0)
+-			return err;
+-	}
+-
+ 	msleep(120);
+ 
+ 	err = mipi_dsi_dcs_exit_sleep_mode(dsi);
+@@ -100,6 +88,8 @@ static int jadard_disable(struct drm_panel *panel)
+ static int jadard_prepare(struct drm_panel *panel)
+ {
+ 	struct jadard *jadard = panel_to_jadard(panel);
++	const struct jadard_panel_desc *desc = jadard->desc;
++	unsigned int i;
+ 	int ret;
+ 
+ 	ret = regulator_enable(jadard->vccio);
+@@ -117,7 +107,15 @@ static int jadard_prepare(struct drm_panel *panel)
+ 	msleep(10);
+ 
+ 	gpiod_set_value(jadard->reset, 1);
+-	msleep(120);
++	msleep(130);
++
++	for (i = 0; i < desc->num_init_cmds; i++) {
++		const struct jadard_init_cmd *cmd = &desc->init_cmds[i];
++
++		ret = mipi_dsi_dcs_write_buffer(dsi, cmd->data, JD9365DA_INIT_CMD_LEN);
++		if (ret < 0)
++			return ret;
++	}
+ 
+ 	return 0;
+ }
 -- 
 2.17.1
 
