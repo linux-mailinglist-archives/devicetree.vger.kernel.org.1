@@ -1,72 +1,69 @@
-Return-Path: <devicetree+bounces-81311-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81312-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0DFE91BEE8
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 14:45:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 524A791BEED
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 14:45:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 250A7B22AE3
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 12:45:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 751A21C226B4
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 12:45:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 797CD14E2CD;
-	Fri, 28 Jun 2024 12:45:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66D8116EB4F;
+	Fri, 28 Jun 2024 12:45:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b="DlnXkk9K"
+	dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b="twqjjH84"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
+Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com [209.85.215.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEC2C15ADBC
-	for <devicetree@vger.kernel.org>; Fri, 28 Jun 2024 12:45:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 965E716089A
+	for <devicetree@vger.kernel.org>; Fri, 28 Jun 2024 12:45:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719578705; cv=none; b=Bcmctqbf6edp9I2ym7mLoaVam+yuxHs44hVsa/XnMvzuTNfyujf4uIjh8rmz1er1ErLIKsfmdZz0INNFWuMI5D2maGz0WJFb00A1vV7cmHur2wo88DC/FmAoYXsmwZ+Fwl6GFVw7h0zUZCINWIcVvfoRfEjliynt7+bOqen2Qbw=
+	t=1719578715; cv=none; b=NeT8SFVdAkSdJCirj8HpGbfHLyY2v5CJuiN9rbJbtF6Lmhl3kz2IWj3xZ7hGrw+P3YWAj9K2b+dNWorwVhpZHign2AE+nMANIzPJvCsPO93OCfVDgozrEUIOOKsKNrdp62hzSUgnDrgnd1aHQTcsSKFmVPF18lMav4nV2bxjFq8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719578705; c=relaxed/simple;
-	bh=3Wr3HwAp7vIf3GIE6N56s2VaPqa+C6jocnxeOEJv6eI=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=U7LQqIHhLupa45gly+wu1utmGE8JCgy1jxE2QfYE3aXp+hVnshsqR+1IYsPEjofYPsM1+u5TgPJRYGputRNinavr5tU6T1T4JJiy0ufN+evr+WzS5dFZjV001+HhDFNJ2VP+8vpWiaslg8KmTWb+Ib5RCnMahwFS06TOSeV3c9A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com; dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b=DlnXkk9K; arc=none smtp.client-ip=209.85.214.171
+	s=arc-20240116; t=1719578715; c=relaxed/simple;
+	bh=LUhQ8DOjFI0nAVmPoRbYAZ6OVRmmrigAYi6Li9gLvYg=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=TeRWV5jSgZhz2vDQkfIyb/Rr61FWQDQ0GwpRuZbnwkBtlb03XDMbUUwF8UD/g0WutVab6USNf7xquEcIvMHW1lDEXtjTMC6bUxKx6OG57lc8VrrnZe2U9iNtw2cERjtHgTFZEiKTrn72gY7Qfmhhwphq+rtE32zTRz7SqnwSOC0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com; dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b=twqjjH84; arc=none smtp.client-ip=209.85.215.171
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com
-Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-1f9ffd24262so3388305ad.0
-        for <devicetree@vger.kernel.org>; Fri, 28 Jun 2024 05:45:03 -0700 (PDT)
+Received: by mail-pg1-f171.google.com with SMTP id 41be03b00d2f7-7178727da84so349169a12.0
+        for <devicetree@vger.kernel.org>; Fri, 28 Jun 2024 05:45:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=huaqin-corp-partner-google-com.20230601.gappssmtp.com; s=20230601; t=1719578703; x=1720183503; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OeseQiv7/DSaLni1dvL6OOnrfuUA5o+HEQL8eICjloc=;
-        b=DlnXkk9K2hhMBdZmCFcFWn2RieutYAquKdfanhGfH1eWaZokadF+MB1AbncxNCCmMK
-         cbZtbjcFxxtj9IRrIqiHa+ok6y0RHQi4KUbeFYwXiXk8KcsSn++6//S+qAx6Jjb6iKaQ
-         OBJVIBSgLtX+o7Lr9Aiu2VSFdxK3MACydM6+BLojfAUR9ttDOhfXltB/00I+7LYCeGFy
-         Ik9xEI1nSl7ZFVU/Zd3vx8m5NW7jU04ZVjrCfgS+33ENkKoWN7InE9Yxbq2YfxQLBmZn
-         6MXP+gMAXJUXCooK/ay8R+8mCb3v6kTmpuVCFuOHHutEuwwRdBuAvfDEuudaAGqS8yOS
-         t9Zg==
+        d=huaqin-corp-partner-google-com.20230601.gappssmtp.com; s=20230601; t=1719578709; x=1720183509; darn=vger.kernel.org;
+        h=references:in-reply-to:message-id:date:subject:cc:to:from:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=rg3tdU7ppY8HgCadeya2IfmEx35gEyixCgdQukzslp8=;
+        b=twqjjH84MR7/uErEEBpp8BvlE3/2BlAfgOd29awkoX+vXAMo8uzAtrtfOOM5qwzFzV
+         TkCxYbUPIUmD4+zIqfnsH19yBDXAY4PzcgMkbpxQ0JI0i23us0vRaHIvvkbjB1j1ZpFg
+         ikLHPlhLkC8aaOmZrtmiV9JtpMSfxF0JNXSZQLlVtYmMxLVetKInjxrGzWFg9qtD9V6g
+         9UM+FqrgasWbafWtLsPYWYxz4wqHYZtTx6pPcfQpRga1vLWsVEmSqPXgup9sJPoG8Gt7
+         1iqYUfoi5BB+Rmur1fs7d1INTao04Gjy7nQvu1FWci/VDAx9NpZ+7l+/7/u5w+9o5G9k
+         z+BA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719578703; x=1720183503;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=OeseQiv7/DSaLni1dvL6OOnrfuUA5o+HEQL8eICjloc=;
-        b=MU5ct1j4nZQ34qB7VQoS2NHhxeJLShoB7Nq/EUe1AEP22vKQGgMhb0G+9veMO+ID7O
-         MhBNwuzQ5wGr0Wz9GQI6pLao30Adi2dssabOXW5odpcWv4k011kAN8d8rE4dKV0+iaLJ
-         Dw9VthNg/TSv8I53Rgaqy3AcCsntQSHL6yekz3VNKuAoTWN0jyJcoEJ7TNZGEQr/b4GV
-         lGHJIHQw+as9s/S38rIWbMBx1LbNC+kEm6TDsDJ0wiFdRu2qJTFZz/vzKjdWx8lltfcR
-         N+4NdZD3PXCRBxYVVtJNWZQqP6pkW45vDg7TpbJMGvP5ThOLjc+zaTN1SCid5mX/jvf7
-         79Gw==
-X-Forwarded-Encrypted: i=1; AJvYcCVJTm6Ki17FL0KQB4qiO79r+HFuBCIxsXZdGH5VIhrNg8ovIVymH0IuxIG74NdtV6N9KDPmfisGPiuK+6d3hUoSAJJzZF5KLnjI4Q==
-X-Gm-Message-State: AOJu0Yz21PwPvCyNoZ0KXceBhn3JUfvqgjqrYc9pfZuqBlREwiG3i6+J
-	tue13fJ0bcOE8OteAVqJ4K9O3UvXztMXl17IQzAHZ4DGGqi0LPgY2NQHCnOokcI=
-X-Google-Smtp-Source: AGHT+IGWadE2l1MOGIvcH+qhTXfxLERu8D+lorl26DB268SY32VCtG8S/9RsP0BCd2bpECNPNyPGVw==
-X-Received: by 2002:a17:902:dac6:b0:1f9:d279:a870 with SMTP id d9443c01a7336-1fa23fb2949mr156225565ad.25.1719578702961;
-        Fri, 28 Jun 2024 05:45:02 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1719578709; x=1720183509;
+        h=references:in-reply-to:message-id:date:subject:cc:to:from
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=rg3tdU7ppY8HgCadeya2IfmEx35gEyixCgdQukzslp8=;
+        b=fYj4U8lrtYnkMjXlK70XNwdFtsfd0wy0R8nrWG57She3Tly6cI9jal7RxD2vu2Oy8F
+         N9jkj5lj6la9vV9/rvoLWcgVxSCS4NZ/wcl6AUno6/9lL0OgMUX3ABug5Cnlsy2S2WMd
+         9czdrcf3UvROolX/Nxg+rSeSN9m8tbH3kBuPJ2MK8J7XHMsGGYi5uphFzsx4hEjDBrj1
+         TjqCen6eUi7C+nF8cNJTpip9mIaHBeqOwtSKWRmkWMjy50dt0JaSsIbsTS3iqS0DAU8I
+         79/SBIbmXYlPI/TfGgiydoFrNS35DoCHRI9A2QoB90VZCco1HGhJsoTmy9x2PFIScw6g
+         Vntg==
+X-Forwarded-Encrypted: i=1; AJvYcCUycsrUmFEwmaYdTRBSBpMzSi15RNxQMYQLbfPMaI7hTiTDO1McrlAgmAwVWRuijB5RF2MKeqUcOWDZd9d5sNxae5zyUn3cWPOQ5A==
+X-Gm-Message-State: AOJu0Yz5vbDlXkhy3zAHT3pkkRK62+3mTI411+2uxqC2mxNw+RukAAOm
+	Z/1rc+Pol4cYBAXPsDJpFV8RbCetJ9VlyKY2dqI0/H53/oE9EANP1wy2vhGDcF8=
+X-Google-Smtp-Source: AGHT+IGi1fGSVYxtAxmFf/MTdTm122/UI6yNXUDQyXrOEFT3f8SKiRbbUQL8tC6sqxHVlH4xLvD96Q==
+X-Received: by 2002:a05:6a20:72a0:b0:1be:eae8:9975 with SMTP id adf61e73a8af0-1beeae89b72mr627357637.15.1719578709482;
+        Fri, 28 Jun 2024 05:45:09 -0700 (PDT)
 Received: from lvzhaoxiong-KLVC-WXX9.huaqin.com ([116.66.212.162])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1fac15695b4sm14346255ad.225.2024.06.28.05.44.59
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1fac15695b4sm14346255ad.225.2024.06.28.05.45.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 28 Jun 2024 05:45:02 -0700 (PDT)
+        Fri, 28 Jun 2024 05:45:09 -0700 (PDT)
 From: Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com>
 To: dmitry.torokhov@gmail.com,
 	robh@kernel.org,
@@ -84,9 +81,9 @@ Cc: dri-devel@lists.freedesktop.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com>
-Subject: [PATCH v6 1/5] drm/panel: jd9365da: Modify the method of sending commands
-Date: Fri, 28 Jun 2024 20:44:40 +0800
-Message-Id: <20240628124444.28152-2-lvzhaoxiong@huaqin.corp-partner.google.com>
+Subject: [PATCH v6 2/5] dt-bindings: display: panel: Add compatible for kingdisplay-kd101ne3
+Date: Fri, 28 Jun 2024 20:44:41 +0800
+Message-Id: <20240628124444.28152-3-lvzhaoxiong@huaqin.corp-partner.google.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20240628124444.28152-1-lvzhaoxiong@huaqin.corp-partner.google.com>
 References: <20240628124444.28152-1-lvzhaoxiong@huaqin.corp-partner.google.com>
@@ -95,103 +92,54 @@ X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
 
-Currently, the init_code of the jd9365da driver is placed
-in the enable() function and sent, but this seems to take
-a long time. It takes 17ms to send each instruction (an init
-code consists of about 200 instructions), so it takes
-about 3.5s to send the init_code. So we moved the sending
-of the inti_code to the prepare() function, and each
-instruction seemed to take only 25μs.
-
-We checked the DSI host and found that the difference in
-command sending time is caused by the different modes of
-the DSI host in prepare() and enable() functions.
-Our DSI Host only supports sending cmd in LP mode, The
-prepare() function can directly send init_code (LP->cmd)
-in LP mode, but the enable() function is in HS mode and
-needs to switch to LP mode before sending init code
-(HS->LP->cmd->HS). Therefore, it takes longer to send
-the command.
+The kingdisplay-kd101ne3 is a 10.1" WXGA TFT-LCD panel with
+jadard-jd9365da controller. Hence, we add a new compatible
+with panel specific config.
 
 Signed-off-by: Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com>
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 ---
 Changes between V6 and V5:
 - 1. No changes.
-
-V5:https://lore.kernel.org/all/20240624141926.5250-2-lvzhaoxiong@huaqin.corp-partner.google.com/
+V5:https://lore.kernel.org/all/20240624141926.5250-3-lvzhaoxiong@huaqin.corp-partner.google.com/
 
 Changes between V5 and V4:
 - 1. No changes.
-
-V4:https://lore.kernel.org/all/20240620080509.18504-2-lvzhaoxiong@huaqin.corp-partner.google.com/
+V4:https://lore.kernel.org/all/20240620080509.18504-3-lvzhaoxiong@huaqin.corp-partner.google.com/
 
 Changes between V4 and V3:
-- 1. Only move mipi_dsi_dcs_write_buffer from enable() function to prepare() function,
--    and no longer use mipi_dsi_dcs_write_seq_multi.
+- 1. Move positions to keep the list sorted.
 
-V3:https://lore.kernel.org/all/20240614145510.22965-2-lvzhaoxiong@huaqin.corp-partner.google.com/
+V3:https://lore.kernel.org/all/20240614145510.22965-3-lvzhaoxiong@huaqin.corp-partner.google.com/
 
+Changes between V3 and V2:
+- 1. Abandon the V2 patch and add kingdisplay kd101ne3-40ti binding to 
+-    jadard,jd9365da-h3.yaml again.
+
+V2:https://lore.kernel.org/all/20240601084528.22502-2-lvzhaoxiong@huaqin.corp-partner.google.com/
+
+Changes between V2 and V1:
+-  Drop some properties that have already been defined in panel-common.
+-  The header file 'dt-bindings/gpio/gpio.h' is not used, delete it
+
+V1: https://lore.kernel.org/all/20240418081548.12160-2-lvzhaoxiong@huaqin.corp-partner.google.com/
 ---
- .../gpu/drm/panel/panel-jadard-jd9365da-h3.c  | 24 +++++++++----------
- 1 file changed, 11 insertions(+), 13 deletions(-)
+ .../devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml    | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c b/drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c
-index 4879835fe101..a9c483a7b3fa 100644
---- a/drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c
-+++ b/drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c
-@@ -52,21 +52,9 @@ static int jadard_enable(struct drm_panel *panel)
- {
- 	struct device *dev = panel->dev;
- 	struct jadard *jadard = panel_to_jadard(panel);
--	const struct jadard_panel_desc *desc = jadard->desc;
- 	struct mipi_dsi_device *dsi = jadard->dsi;
--	unsigned int i;
- 	int err;
- 
--	msleep(10);
--
--	for (i = 0; i < desc->num_init_cmds; i++) {
--		const struct jadard_init_cmd *cmd = &desc->init_cmds[i];
--
--		err = mipi_dsi_dcs_write_buffer(dsi, cmd->data, JD9365DA_INIT_CMD_LEN);
--		if (err < 0)
--			return err;
--	}
--
- 	msleep(120);
- 
- 	err = mipi_dsi_dcs_exit_sleep_mode(dsi);
-@@ -100,6 +88,8 @@ static int jadard_disable(struct drm_panel *panel)
- static int jadard_prepare(struct drm_panel *panel)
- {
- 	struct jadard *jadard = panel_to_jadard(panel);
-+	const struct jadard_panel_desc *desc = jadard->desc;
-+	unsigned int i;
- 	int ret;
- 
- 	ret = regulator_enable(jadard->vccio);
-@@ -117,7 +107,15 @@ static int jadard_prepare(struct drm_panel *panel)
- 	msleep(10);
- 
- 	gpiod_set_value(jadard->reset, 1);
--	msleep(120);
-+	msleep(130);
-+
-+	for (i = 0; i < desc->num_init_cmds; i++) {
-+		const struct jadard_init_cmd *cmd = &desc->init_cmds[i];
-+
-+		ret = mipi_dsi_dcs_write_buffer(dsi, cmd->data, JD9365DA_INIT_CMD_LEN);
-+		if (ret < 0)
-+			return ret;
-+	}
- 
- 	return 0;
- }
+diff --git a/Documentation/devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml b/Documentation/devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml
+index 41eb7fbf7715..2b977292dc48 100644
+--- a/Documentation/devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml
++++ b/Documentation/devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml
+@@ -17,6 +17,7 @@ properties:
+     items:
+       - enum:
+           - chongzhou,cz101b4001
++          - kingdisplay,kd101ne3-40ti
+           - radxa,display-10hd-ad001
+           - radxa,display-8hd-ad002
+       - const: jadard,jd9365da-h3
 -- 
 2.17.1
 
