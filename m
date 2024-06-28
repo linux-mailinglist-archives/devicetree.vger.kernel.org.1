@@ -1,206 +1,173 @@
-Return-Path: <devicetree+bounces-81291-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81292-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A841E91BDE2
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 13:54:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F83391BDF4
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 14:00:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9D6621C227C6
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 11:54:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9441A2847D5
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 12:00:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA6C8158214;
-	Fri, 28 Jun 2024 11:54:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A190E15688F;
+	Fri, 28 Jun 2024 12:00:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Gwv3z3k5"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="ln4dJ0vJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFB171865A;
-	Fri, 28 Jun 2024 11:54:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01C9F1865A;
+	Fri, 28 Jun 2024 11:59:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719575646; cv=none; b=LO8Suj/5CdLG3aRcgE/nypKF7gq6YnYq9g+lj10FHmcZ15l7sJ8KcEIV5BBmT5BYHitqNy2vaZqoUNBo6uWxLAe6245mDZYeCSvSexv15BKSwDU6bEuPXLPG1Nc+t2zP3osyQFBbz/TkbJwd73xMG0scqA2+dcWnRRvbsoy8crc=
+	t=1719576002; cv=none; b=YCcCrtBXHIRKfy5uFz4HxdCi0omx6C/9Tp0ib9X1E2Dg2S6a5Yfqi1zJCnUNcwqVRp4QAL5HdwfU8CQlh6jD7BbvBFqv+H1T+o+UOzQDlyog3ZyoECUu7DyIxLvGORxbb1m/JGa/0vcj3248XqaNBabkWMA77WZdMjXJOYbMpVk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719575646; c=relaxed/simple;
-	bh=EfZPK4bQlzDxBEzFkfeTiecD2ZjbyZUL5K5NzJWy8bM=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gP8SZ4mIyLczJl21V0bqqa02J0DNMull+0ECpNhOo5kFamoo51GguooSFJ9wJjkFHJH51iE35mGDnYLGiUaIS7I1VjSTxrOV2pIuCdVoFoHOmhOMzTS0FCt2sNt8huK/3BeLNed6FEke9HVUb6XjHSpWzE+5LV1SWNCyvQHRE3k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Gwv3z3k5; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45S8EoQN015125;
-	Fri, 28 Jun 2024 11:53:51 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=9At5m60WgpAapqFuAPwU1Hli
-	wnsb0FkeiKytGYb9+YA=; b=Gwv3z3k5DjFBLwP9W3KTTI9oJm6iGxryDIbMJw0e
-	XzhN7ngX3Ge1+hr3Z2FaFSj/kH+y4UJHbckJ4qLvOxDbzAAywGJlAK/jrrbkK/4o
-	L4t1jJTAE9Ejw36cg5OrKeV+I0RWnw/4LS9eEX65pQwmkW48m5e1n0q4Zk6C7/Lv
-	dOaxMf8bxiJET7kkVWprAm9EmHk3OkO0LjCxdZ1E0IzzouM/VaC34EOaTQu3HUJW
-	2A/q72AGincj8xFb2+7R5tNEufuTLZgCXoELHz/1Ev+gtBV/zCk5sDbTT+ep+ybT
-	jfSf+kSO1YPhoFSUsA8RM4RAfnY2QaoHJeWJHMwsgCJ8Mg==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ywqshysxs-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 28 Jun 2024 11:53:50 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA02.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45SBrnnD027966
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 28 Jun 2024 11:53:49 GMT
-Received: from hu-varada-blr.qualcomm.com (10.80.80.8) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Fri, 28 Jun 2024 04:53:42 -0700
-Date: Fri, 28 Jun 2024 17:23:38 +0530
-From: Varadarajan Narayanan <quic_varada@quicinc.com>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <angelogioacchino.delregno@collabora.com>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <mturquette@baylibre.com>,
-        <sboyd@kernel.org>, <ilia.lin@kernel.org>, <rafael@kernel.org>,
-        <viresh.kumar@linaro.org>, <ulf.hansson@linaro.org>,
-        <quic_sibis@quicinc.com>, <otto.pflueger@abscue.de>,
-        <neil.armstrong@linaro.org>, <luca@z3ntu.xyz>, <abel.vesa@linaro.org>,
-        <danila@jiaxyga.com>, <quic_ipkumar@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>
-Subject: Re: [PATCH v3 8/9] soc: qcom: cpr3: Add IPQ9574 definitions
-Message-ID: <Zn6kQuw1Fm9ylppX@hu-varada-blr.qualcomm.com>
-References: <20240626104002.420535-1-quic_varada@quicinc.com>
- <20240626104002.420535-9-quic_varada@quicinc.com>
- <txid2b47zhnuknz35xaosfctuojrnrskcjehhqmyqubuxdimqj@7q7pzxlavk6k>
- <Zn0TZiIDQ9W/ttox@hu-varada-blr.qualcomm.com>
- <3mzerxpsa2gj227pryu2pg5rgaoqya7y3fplvpdsq5cnffuzj3@puwzk4j2t2t5>
+	s=arc-20240116; t=1719576002; c=relaxed/simple;
+	bh=sf6fbq4Th6RnCsXrNzNrN/n+89ot45o4S3y89hVBu/U=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=D6s77cbv9W70Ve0Ut1VXxGEfdupocZn23+i5lIdoWPNk2ThTVkCTzQZYOycBW4TBjY3XjDuWx2cQNp1qdujqXg/KAm+PLOBUgI2MAcy1HGC7Q15RNQK5cPT3MqjboIhT9vh5EmNXlC9xGIbHWE85PPlDMXjtkRDnp27PJ8O0Wzs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=ln4dJ0vJ; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1719576000; x=1751112000;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=sf6fbq4Th6RnCsXrNzNrN/n+89ot45o4S3y89hVBu/U=;
+  b=ln4dJ0vJ23Z6l5JADJzrm5uivqoG8H5iqH0g3G8if2KeyMbNhS66h8wK
+   bZkx0E7wz2n+xeyemVmKqpxOn+jnLBJsE8S/IiVrJc5/FRGWajVSZchC0
+   9EwYrG17WqOSpq8p0TPHON5xt4uSWMlNNipaInwXa/Hb69bWJ/p1H/fvY
+   UpxPgLoT49NEn6iqsjNtERR0GmEl0oPHMZrod407J4S17Hm6CwAuhsGby
+   6roqYrXhzvu68GbwjS5tIFnt6DPdlLUPA+5Ah+JjaCu4VOc7RUX21zFIl
+   Lh7ToYBeAYNc1qiOnLMZPneC1b3EUtJ/FvYpVw+Ecek0hOe60evShWdf+
+   A==;
+X-CSE-ConnectionGUID: fhzcQ281QiKf1QfzQI0hzg==
+X-CSE-MsgGUID: Ac/yOfHzTam/pke6/HYVlQ==
+X-IronPort-AV: E=Sophos;i="6.09,169,1716274800"; 
+   d="scan'208";a="259502555"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 28 Jun 2024 04:59:59 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Fri, 28 Jun 2024 04:59:24 -0700
+Received: from daire-X570.microchip.com (10.10.85.11) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
+ 15.1.2507.35 via Frontend Transport; Fri, 28 Jun 2024 04:59:22 -0700
+From: <daire.mcnamara@microchip.com>
+To: <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC: <conor.dooley@microchip.com>, <lpieralisi@kernel.org>, <kw@linux.com>,
+	<robh@kernel.org>, <bhelgaas@google.com>, <linux-kernel@vger.kernel.org>,
+	<linux-riscv@lists.infradead.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <daire.mcnamara@microchip.com>,
+	<ilpo.jarvinen@linux.intel.com>
+Subject: [PATCH v6 0/3] Fix address translations on MPFS PCIe controller
+Date: Fri, 28 Jun 2024 12:59:20 +0100
+Message-ID: <20240628115923.4133286-1-daire.mcnamara@microchip.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <3mzerxpsa2gj227pryu2pg5rgaoqya7y3fplvpdsq5cnffuzj3@puwzk4j2t2t5>
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: eEv0sBU4hXyiL4tztb316o4l1ifuEe84
-X-Proofpoint-GUID: eEv0sBU4hXyiL4tztb316o4l1ifuEe84
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-28_08,2024-06-28_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 clxscore=1015
- bulkscore=0 phishscore=0 suspectscore=0 lowpriorityscore=0 malwarescore=0
- mlxscore=0 impostorscore=0 mlxlogscore=999 priorityscore=1501 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2406140001
- definitions=main-2406280087
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-On Thu, Jun 27, 2024 at 04:46:05PM +0300, Dmitry Baryshkov wrote:
-> On Thu, Jun 27, 2024 at 12:53:18PM GMT, Varadarajan Narayanan wrote:
-> > On Wed, Jun 26, 2024 at 09:27:53PM +0300, Dmitry Baryshkov wrote:
-> > > On Wed, Jun 26, 2024 at 04:10:01PM GMT, Varadarajan Narayanan wrote:
-> > > > From: Praveenkumar I <quic_ipkumar@quicinc.com>
-> > > >
-> > > > Add thread, scaling factor, CPR descriptor defines to enable CPR
-> > > > on IPQ9574.
-> > > >
-> > > > Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
-> > > > Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> > > > ---
-> > > > v3: Fix patch author
-> > > >     Included below information in cover letter
-> > > > v2: Fix Signed-off-by order
-> > > > Depends:
-> > > > 	[1] https://lore.kernel.org/lkml/20230217-topic-cpr3h-v14-0-9fd23241493d@linaro.org/T/
-> > > > 	[2] https://github.com/quic-varada/cpr/commits/konrad/
-> > > > ---
-> > > >  drivers/pmdomain/qcom/cpr3.c | 137 +++++++++++++++++++++++++++++++++++
-> > > >  1 file changed, 137 insertions(+)
-> > > >
-> > > > diff --git a/drivers/pmdomain/qcom/cpr3.c b/drivers/pmdomain/qcom/cpr3.c
-> > > > index c28028be50d8..66c8a4bd9adc 100644
-> > > > --- a/drivers/pmdomain/qcom/cpr3.c
-> > > > +++ b/drivers/pmdomain/qcom/cpr3.c
-> > >
-> > > > +
-> > > > +static const struct cpr_desc ipq9574_cpr_desc = {
-> > > > +	.cpr_type = CTRL_TYPE_CPR4,
-> > >
-> > > So, is it CPR4 or CPRh?
-> >
-> > CPR4.
->
-> Then why do you have cprh in the compatible?
+From: Daire McNamara <daire.mcnamara@microchip.com>
 
-Sorry, copy-paste from msm8998. Will fix that in the next version.
+Hi all,
 
-Thanks
-Varada
+On Microchip PolarFire SoC (MPFS), the PCIe controller is connected to the
+CPU via one of three Fabric Interface Connectors (FICs).  Each FIC present
+to the CPU complex as 64-bit AXI-M and 64-bit AXI-S.  To preserve
+compatibility with other PolarFire family members, the PCIe controller is
+connected to its encapsulating FIC via a 32-bit AXI-M and 32-bit AXI-S
+interface.
 
-> > > > +	.num_threads = 1,
-> > > > +	.apm_threshold = 850000,
-> > > > +	.apm_crossover = 880000,
-> > > > +	.apm_hysteresis = 0,
-> > > > +	.cpr_base_voltage = 700000,
-> > > > +	.cpr_max_voltage = 1100000,
-> > > > +	.timer_delay_us = 5000,
-> > > > +	.timer_cons_up = 0,
-> > > > +	.timer_cons_down = 0,
-> > > > +	.up_threshold = 2,
-> > > > +	.down_threshold = 2,
-> > > > +	.idle_clocks = 15,
-> > > > +	.count_mode = CPR3_CPR_CTL_COUNT_MODE_ALL_AT_ONCE_MIN,
-> > > > +	.count_repeat = 1,
-> > > > +	.gcnt_us = 1,
-> > > > +	.vreg_step_fixed = 12500,
-> > > > +	.vreg_step_up_limit = 1,
-> > > > +	.vreg_step_down_limit = 1,
-> > > > +	.vdd_settle_time_us = 34,
-> > > > +	.corner_settle_time_us = 6,
-> > > > +	.reduce_to_corner_uV = true,
-> > > > +	.hw_closed_loop_en = false,
-> > > > +	.threads = (const struct cpr_thread_desc *[]) {
-> > > > +		&ipq9574_thread_silver,
-> > >
-> > > If it's silver, where is gold or bronze?
-> >
-> > Will rename this as "ipq9574_thread"
-> >
-> > Thanks
-> > Varada
-> >
-> > > > +	},
-> > > > +};
-> > > > +
-> > > > +static const struct cpr_acc_desc ipq9574_cpr_acc_desc = {
-> > > > +	.cpr_desc = &ipq9574_cpr_desc,
-> > > > +};
-> > > > +
-> > > >  static const int sdm630_gold_scaling_factor[][CPR3_RO_COUNT] = {
-> > > >  	/* Same RO factors for all fuse corners */
-> > > >  	{
-> > > > @@ -2828,6 +2964,7 @@ static void cpr_remove(struct platform_device *pdev)
-> > > >  }
-> > > >
-> > > >  static const struct of_device_id cpr3_match_table[] = {
-> > > > +	{ .compatible = "qcom,ipq9574-cprh", .data = &ipq9574_cpr_acc_desc },
-> > > >  	{ .compatible = "qcom,msm8998-cprh", .data = &msm8998_cpr_acc_desc },
-> > > >  	{ .compatible = "qcom,sdm630-cprh", .data = &sdm630_cpr_acc_desc },
-> > > >  	{ }
-> > > > --
-> > > > 2.34.1
-> > > >
-> > >
-> > > --
-> > > With best wishes
-> > > Dmitry
->
-> --
-> With best wishes
-> Dmitry
+Each FIC is implemented in FPGA logic and can incorporate logic along its 64-bit
+AXI-M to 32-bit AXI-M chain (including address translation) and, likewise, along
+its 32-bit AXI-S to 64-bit AXI-S chain (again including address translation).
+
+In order to reduce the potential support space for the PCIe controller in
+this environment, MPFS supports certain reference designs for these address
+translations: reference designs for cache-coherent memory accesses
+and reference designs for non-cache-coherent memory accesses. The precise
+details of these reference designs and associated customer guidelines
+recommending that customers adhere to the addressing schemes used in those
+reference designs are available from Microchip, but the implication for the
+PCIe controller address translation between CPU-space and PCIe-space are:
+
+For outbound address translation, the PCIe controller address translation tables
+are treated as if they are 32-bit only.  Any further address translation must
+be done in FPGA fabric.
+
+For inbound address translation, the PCIe controller is configurable for two
+cases:
+* In the case of cache-coherent designs, the base of the AXI-S side of the
+  address translation must be set to 0 and the size should be 4 GiB wide. The
+  FPGA fabric must complete any address translations based on that 0-based
+  address translation.
+* In the case of non-cache coherent designs, the base of AXI-S side of the
+  address translation must be set to 0x8000'0000 and the size shall be 2 GiB
+  wide.  The FPGA fabric must complete any address translation based on that
+  0x80000000 base.
+
+So, for example, in the non-cache-coherent case, with a device tree property
+that maps an inbound range from 0x10'0000'0000 in PCIe space to 0x10'0000'0000
+in CPU space, the PCIe rootport will translate a PCIe address of 0x10'0000'0000
+to an intermediate 32-bit AXI-S address of 0x8000'0000 and the FIC is
+responsible for translating that intermediate 32-bit AXI-S address of
+0x8000'0000 to a 64-bit AXI-S address of 0x10'0000'0000.
+
+And similarly, for example, in the cache-coherent case, with a device tree
+property that maps an inbound range from 0x10'0000'0000 in PCIe space to
+0x10'0000'0000 in CPU space, the PCIe rootport will translate a PCIe address
+of 0x10'0000'0000 to an intermediate 32-bit AXI-S address of 0x0000'0000 and
+the FIC is responsible for translating that intermediate 32-bit AXI-S address
+of 0x0000'0000 to a 64-bit AXI-S address of 0x10'0000'0000.
+
+See https://lore.kernel.org/all/20220902142202.2437658-1-daire.mcnamara@microchip.com/T/
+for backstory.
+
+Changes since v5:
+- Reverted setup_inbound_atr size parameter to u64 as ci system reported
+  SZ_4G getting truncated to 0 on mips when I try to use size_t or resource_size_t.
+  Added Acked-by tags
+
+Changes since v4:
+- Added more cleanups suggested by Ilpo Jarvinen
+  Added cleanups for inbound v4 and outbound v3.
+
+Changes since v3:
+- Added nice cleanups suggested by Ilpo Jarvinen
+
+Changes since v2:
+- Added <Signed-off-by: tag>
+
+Changes since v1:
+- added bindings patch to allow dma-noncoherent
+- changed a size_t to u64 to pass 32-bit compile tests
+- allowed 64-bit outbound pcie translations
+- tied PCIe side of eCAM translation table to 0
+
+Conor Dooley (1):
+  dt-bindings: PCI: microchip,pcie-host: allow dma-noncoherent
+
+Daire McNamara (2):
+  PCI: microchip: Fix outbound address translation tables
+  PCI: microchip: Fix inbound address translation tables
+
+ .../bindings/pci/microchip,pcie-host.yaml     |   2 +
+ drivers/pci/controller/pcie-microchip-host.c  | 118 +++++++++++++++---
+ 2 files changed, 106 insertions(+), 14 deletions(-)
+
+
+base-commit: a38297e3fb012ddfa7ce0321a7e5a8daeb1872b6
+-- 
+2.34.1
+
 
