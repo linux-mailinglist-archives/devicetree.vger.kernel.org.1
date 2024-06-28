@@ -1,235 +1,250 @@
-Return-Path: <devicetree+bounces-81268-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81269-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9B2491BC98
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 12:29:13 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 862D691BC9B
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 12:29:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 17FE41C2264E
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 10:29:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3DDB0285D51
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 10:29:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 658901553BB;
-	Fri, 28 Jun 2024 10:29:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0462154BEA;
+	Fri, 28 Jun 2024 10:29:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="ptzsed1R"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="OS16T+zD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0159154434
-	for <devicetree@vger.kernel.org>; Fri, 28 Jun 2024 10:29:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3769154434;
+	Fri, 28 Jun 2024 10:29:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719570545; cv=none; b=k2YbJpkhDvXUx9xQeblexSr3wq6+wSOBdVGY6VuXn1oMG06acrZ/Oa3ZxrMAHNWvlhDOn+yK6DLpy3+ejZegElYdfyfgiwCT9Euw9j4xZppKi7l7a74n6iD5GcHlB5/xc4K62DtH3n4RkUWyjVrocGDKM3vcLigoWp59c+oZ+PI=
+	t=1719570571; cv=none; b=HoDz57cPZXu67eKYy0Vgh151YkeDrSR5iXGGiJRYxclcxnlGKZ089+PwEwGCOa9KoPsLu4A9/NFMOSAxvFfbjLET4++uX5rGKgoUh6nnXr65LmRCKad80wCQs9RladZHS1zUWPWRYOOKo8zv+Ss0h6C4WTcQkM/+bnoUTzGABKY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719570545; c=relaxed/simple;
-	bh=w2Ma/Gjvlg8oufsUs+3sDRJDwFue5i1t5t/mj72HMB8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=t9a32TEikNfs+xFVE+e6mGP8qe2ITFdrQweAnq5Vn1azXUxnetK+pn514F3OV/3yrp970HccVkGfdQbPwoOEGEJVvB9UdjSdVJG3bS2HAZCjtyuomVJGZjKRUy/towQlh0TBJyNv+//Ax+8vY5drpdkvnQ/ooirEc3yZYjADaEU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=ptzsed1R; arc=none smtp.client-ip=209.85.208.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-57d4ee2aaabso511442a12.2
-        for <devicetree@vger.kernel.org>; Fri, 28 Jun 2024 03:29:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1719570541; x=1720175341; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=H1Yuc8HPdjefPq+QJsoY4VAF1d5sHQPx0WEKNSi2S60=;
-        b=ptzsed1RcvacNpjcsnFM3b7X5t8k52wTsjA9aJnwALiUkxOx02Gkwr2WEOwxiHeA8Z
-         YDrcPlAEIQ6Xe7cR8lgbapqxBdUst79z5MCUhiB1PP/UPZrwqDUshwMKD9riMDCcR0Vr
-         cYE0pt8dhuRXiKZucopfe23D+4tcs9j34biIERlRjnp9PlGConqbtlB0NjQuB0AUJCka
-         tEPRI4fLbZT8mxC9bm2b8Q07Z9e7heeEAxgitqCoC6MyHFMBU7L4Jobk0r321DRYQ+Zt
-         wXNHs7fhYCd5oRL4nP3IAGmpeBxF9goK71BiB7usE62TmaywnCtsM/Q31JPzTxKcqYyC
-         tnXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719570541; x=1720175341;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=H1Yuc8HPdjefPq+QJsoY4VAF1d5sHQPx0WEKNSi2S60=;
-        b=YVk34m8gSYE0AK45kbhppsYINdGyUA9QY/CEHWZzNiDUaiVjy6QFt7ZGMFQwE8j2+N
-         e4ZeNMkBXxMrM9ixEVwl2YCmcay758cuOGoU9xqoMTI41mNKN4rkJ11V6EcTfaT2+b3C
-         19BriRcFd8uCP70V+/TKNQJtL4YpdTFh/T/lh+aB+Slmah5zcIWQHGk7OCwao4Nzfpmw
-         cnQPondvR1YxxKyNXnPImnP6dSEEQFcn2TW7Yd/1tMhJtAh8UEgXcRf2nMPuDQ1Hcz6o
-         W217VDGyWvB4GhMm2+1ZXYypOycim6gjjqjxk0jVkEn+reWXJ0btX3uPU/jnAXZc7BWh
-         IbxQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUKZJZt6hL9iGFb/sbyVvaRVHnRgi5jG0UEYYsi2ZKPaJ2LXHBKZdBy1d4d4Qd2OuGnzE+8Ee/eSFUxOiELUCGZ8Q0v5guOucHTaw==
-X-Gm-Message-State: AOJu0YwgiFigG6FvnV4+uFytD0Z381yNLqz5N3ZKiDoUyJXUZ2HN0k/l
-	jQs5JaAl0gvHY6qQ3smB/UnTLdFYlq/lbPw0zMqRYnEStteA8aYQms0qb92mx0k=
-X-Google-Smtp-Source: AGHT+IGe0+LPjJDA+086uzSs+k4pBy3W/YqLLanB3vnbyU1MPnomcsSYewlm0BJeRxppWtiWVGHm1A==
-X-Received: by 2002:a17:906:3c3:b0:a6f:b08b:86ca with SMTP id a640c23a62f3a-a7245df73b4mr991080266b.75.1719570541128;
-        Fri, 28 Jun 2024 03:29:01 -0700 (PDT)
-Received: from [192.168.50.4] ([82.78.167.70])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a72ab08cc07sm67417366b.149.2024.06.28.03.28.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 28 Jun 2024 03:29:00 -0700 (PDT)
-Message-ID: <7c542f46-c644-4f22-bbc4-408b7dad8273@tuxon.dev>
-Date: Fri, 28 Jun 2024 13:28:58 +0300
+	s=arc-20240116; t=1719570571; c=relaxed/simple;
+	bh=vxVuxy4G9Z/yjZuelZ2RTtq0UonUagGSBDmQsSdtf40=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cIFbEfDNUbXxJh/PqyAxY1IpIvZGSLxYQ8embWgDAIbQ4l+nWWQ78KO3mZinNoipH4nnwtnQJqFyoE32M41rCe08lQvKvW5GPWsxKgXIVu8cDxXOOOletWB7zkHcv1E9vdRbFXiqyNN/u6xLvY5SRfRSwd5tXojUKyDhBa4U94E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=OS16T+zD; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 45SAT3WM106326;
+	Fri, 28 Jun 2024 05:29:03 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1719570543;
+	bh=O1SD/SKmNp86A/Keh4WYIgKmz878Pggh5TiJBNXEglk=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=OS16T+zD0pfoZnrjEtL71OntJJnPQmkRGGiS50pMc6hGzKxsi/yLI4tkZEvMw4tca
+	 6B79Te8dlQtp+HFogIBVPGZENVZrnIX1pfmyymbJAMpXEeDlmXqZeLQy+/kEcNOvh9
+	 IjrSk6Io0X17ZEkE92Gu+IppTgMxmpRAMy+kEGus=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 45SAT3gG007463
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 28 Jun 2024 05:29:03 -0500
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 28
+ Jun 2024 05:29:02 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 28 Jun 2024 05:29:03 -0500
+Received: from localhost (jluthra.dhcp.ti.com [172.24.227.116])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 45SAT2kg047469;
+	Fri, 28 Jun 2024 05:29:02 -0500
+Date: Fri, 28 Jun 2024 15:59:01 +0530
+From: Jai Luthra <j-luthra@ti.com>
+To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+CC: <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Vignesh
+ Raghavendra <vigneshr@ti.com>,
+        Aradhya Bhatia <a-bhatia1@ti.com>, Devarsh
+ Thakkar <devarsht@ti.com>,
+        Changhuang Liang
+	<changhuang.liang@starfivetech.com>,
+        Jack Zhu <jack.zhu@starfivetech.com>,
+        Julien Massot <julien.massot@collabora.com>,
+        Laurent Pinchart
+	<laurent.pinchart@ideasonboard.com>,
+        Mauro Carvalho Chehab
+	<mchehab@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans
+ Verkuil <hverkuil-cisco@xs4all.nl>,
+        Vaishnav Achath <vaishnav.a@ti.com>,
+        Maxime Ripard <mripard@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+Subject: Re: Re: [PATCH v2 00/13] media: cadence,ti: CSI2RX Multistream
+ Support
+Message-ID: <hh7feba2m5dogtfhfnbylfuvsdadsrkwzy5j66fdcxi4nmdhr2@dgxnl4gjxyje>
+References: <20240627-multistream-v2-0-6ae96c54c1c3@ti.com>
+ <99fda0f2-57e9-4b37-a848-b7781f3b1dd7@ideasonboard.com>
+ <kge5gelwwiukrupotdjiaj6rr2yxplumnhh5q4jjak3nyp35td@ctwvefoevxzx>
+ <5e4905d1-27dc-4466-994c-389c2df8f2e8@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 07/12] i2c: riic: Define individual arrays to describe
- the register offsets
-Content-Language: en-US
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
- Chris Brandt <Chris.Brandt@renesas.com>,
- "andi.shyti@kernel.org" <andi.shyti@kernel.org>,
- "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
- <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "geert+renesas@glider.be" <geert+renesas@glider.be>,
- "magnus.damm@gmail.com" <magnus.damm@gmail.com>,
- "mturquette@baylibre.com" <mturquette@baylibre.com>,
- "sboyd@kernel.org" <sboyd@kernel.org>,
- "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
- "wsa+renesas@sang-engineering.com" <wsa+renesas@sang-engineering.com>,
- "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
- "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-References: <20240625121358.590547-1-claudiu.beznea.uj@bp.renesas.com>
- <20240625121358.590547-8-claudiu.beznea.uj@bp.renesas.com>
- <TY3PR01MB11346EF9A001F68162148B70F86D02@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <6289f329-118f-4970-a525-75c3a48bd28b@tuxon.dev>
- <TY3PR01MB1134603F92C72D9B6C6C3733C86D02@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <2f162986-33c5-4d80-958c-4f857adaad20@tuxon.dev>
- <TY3PR01MB11346CA73575CF61B2024F3B386D02@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <79c26030-4b92-4ef3-b8ce-d011f492161b@tuxon.dev>
- <CAMuHMdXJ8eKLzMqCPR2ewS9gr_m5OQPneETPMC-rOOmW+--f5A@mail.gmail.com>
-From: claudiu beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <CAMuHMdXJ8eKLzMqCPR2ewS9gr_m5OQPneETPMC-rOOmW+--f5A@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <5e4905d1-27dc-4466-994c-389c2df8f2e8@ideasonboard.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hi, Geert,
-
-On 28.06.2024 12:13, Geert Uytterhoeven wrote:
-> Hi Claudiu,
+On Jun 28, 2024 at 12:53:04 +0300, Tomi Valkeinen wrote:
+> On 28/06/2024 12:35, Jai Luthra wrote:
+> > Hi Tomi,
+> > 
+> > On Jun 28, 2024 at 11:26:59 +0300, Tomi Valkeinen wrote:
+> > > Hi Jai,
+> > > 
+> > > On 27/06/2024 16:09, Jai Luthra wrote:
+> > > > This series adds multi-stream support for Cadence CSI2RX and TI CSI2RX
+> > > > Shim drivers.
+> > > > 
+> > > > PATCH 1:	Runtime Power Management for Cadence CSI2RX
+> > > > PATCH 2-7:	Support multiple DMA contexts/video nodes in TI CSI2RX
+> > > > PATCH 8-9:	Use get_frame_desc to propagate virtual channel information
+> > > > 		across Cadence and TI CSI-RX subdevs
+> > > > PATCH 10-12:	Use new multi-stream APIs across the drivers to support
+> > > > 		multiplexed cameras from sources like UB960 (FPDLink)
+> > > > PATCH 13:	Optimize stream on by submitting all queued buffers to DMA
+> > > > 
+> > > > This applies on top of today's linux-next (next-20240626)
+> > 
+> > This series is based on top of next-20240626
+> > 
+> > > > (also tested rebase with media_stage.git master)
+> > > > 
+> > > > Signed-off-by: Jai Luthra <j-luthra@ti.com>
+> > > > ---
+> > > > Changes in v2:
+> > > > 
+> > > > - Change the multi-camera capture architecture to be similar to that of
+> > > >     Tomi's RPi5 FE series, where the driver will wait for userspace to
+> > > >     start streaming on all "actively routed" video nodes before starting
+> > > >     streaming on the source. This simplifies things a lot from the HW
+> > > >     perspective, which might run into deadlocks due to a shared FIFO
+> > > >     between multiple DMA channels.
+> > > > 
+> > > > - Drop a few fixes that were posted separately and are already merged
+> > > > - Fix dtschema warnings reported by Rob on [02/13]
+> > > > - Fix warnings for uninitialized `used_vc` variable in cdns-csi2rx.c
+> > > > - Return -EBUSY if someone updates routes for j721e-csi2rx subdev while
+> > > >     streaming
+> > > > - Only allow single-streams to be routed to the source pads (linked to
+> > > >     video nodes) of the j721e-csi2rx device
+> > > > - Squash the patches marked "SQUASH" in the v1 RFC series
+> > > > 
+> > > > - Link to RFC (v1):
+> > > >     https://lore.kernel.org/r/20240222-multistream-v1-0-1837ed916eeb@ti.com
+> > > > 
+> > > > ---
+> > > > Jai Luthra (8):
+> > > >         dt-bindings: media: ti,j721e-csi2rx-shim: Support 32 dma chans
+> > > >         media: ti: j721e-csi2rx: separate out device and context
+> > > >         media: ti: j721e-csi2rx: add a subdev for the core device
+> > > >         media: ti: j721e-csi2rx: add support for processing virtual channels
+> > > >         media: cadence: csi2rx: Use new enable stream APIs
+> > > >         media: cadence: csi2rx: Enable multi-stream support
+> > > >         media: ti: j721e-csi2rx: add multistream support
+> > > >         media: ti: j721e-csi2rx: Submit all available buffers
+> > > > 
+> > > > Jayshri Pawar (1):
+> > > >         media: cadence: csi2rx: Support runtime PM
+> > > > 
+> > > > Pratyush Yadav (4):
+> > > >         media: ti: j721e-csi2rx: prepare SHIM code for multiple contexts
+> > > >         media: ti: j721e-csi2rx: allocate DMA channel based on context index
+> > > >         media: ti: j721e-csi2rx: get number of contexts from device tree
+> > > >         media: cadence: csi2rx: add get_frame_desc wrapper
+> > > > 
+> > > >    .../bindings/media/ti,j721e-csi2rx-shim.yaml       |  39 +-
+> > > >    drivers/media/platform/cadence/cdns-csi2rx.c       | 440 +++++++++--
+> > > >    .../media/platform/ti/j721e-csi2rx/j721e-csi2rx.c  | 879 ++++++++++++++++-----
+> > > >    3 files changed, 1071 insertions(+), 287 deletions(-)
+> > > > ---
+> > > > base-commit: df9574a57d02b265322e77fb8628d4d33641dda9
+> > > > change-id: 20240221-multistream-fbba6ffe47a3
+> > > 
+> > > You have based this series on top of your private branch. Don't do that.
+> > > Base on top of a kernel tag, or a commonly known tree (linux-media-stage for
+> > > example), and preferably mention the base in the cover letter.
+> > 
+> > The base commit SHA populated by b4 is the same as next-20240626 as
+> > mentioned above
 > 
-> On Fri, Jun 28, 2024 at 10:12 AM claudiu beznea
-> <claudiu.beznea@tuxon.dev> wrote:
->> On 28.06.2024 11:09, Biju Das wrote:
->>>> -----Original Message-----
->>>> From: claudiu beznea <claudiu.beznea@tuxon.dev>
->>>> Sent: Friday, June 28, 2024 9:03 AM
->>>> Subject: Re: [PATCH v2 07/12] i2c: riic: Define individual arrays to describe the register offsets
->>>>
->>>>
->>>>
->>>> On 28.06.2024 10:55, Biju Das wrote:
->>>>> Hi Claudiu,
->>>>>
->>>>>> -----Original Message-----
->>>>>> From: claudiu beznea <claudiu.beznea@tuxon.dev>
->>>>>> Sent: Friday, June 28, 2024 8:32 AM
->>>>>> Subject: Re: [PATCH v2 07/12] i2c: riic: Define individual arrays to
->>>>>> describe the register offsets
->>>>>>
->>>>>> Hi, Biju,
->>>>>>
->>>>>> On 28.06.2024 08:59, Biju Das wrote:
->>>>>>> Hi Claudiu,
->>>>>>>
->>>>>>>> -----Original Message-----
->>>>>>>> From: Claudiu <claudiu.beznea@tuxon.dev>
->>>>>>>> Sent: Tuesday, June 25, 2024 1:14 PM
->>>>>>>> Subject: [PATCH v2 07/12] i2c: riic: Define individual arrays to
->>>>>>>> describe the register offsets
->>>>>>>>
->>>>>>>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>>>>>>>
->>>>>>>> Define individual arrays to describe the register offsets. In this
->>>>>>>> way we can describe different IP variants that share the same
->>>>>>>> register offsets but have differences in other characteristics.
->>>>>>>> Commit prepares for the addition
->>>>>> of fast mode plus.
->>>>>>>>
->>>>>>>> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>>>>>>> ---
->>>>>>>>
->>>>>>>> Changes in v2:
->>>>>>>> - none
->>>>>>>>
->>>>>>>>  drivers/i2c/busses/i2c-riic.c | 58
->>>>>>>> +++++++++++++++++++----------------
->>>>>>>>  1 file changed, 31 insertions(+), 27 deletions(-)
->>>>>>>>
->>>>>>>> diff --git a/drivers/i2c/busses/i2c-riic.c
->>>>>>>> b/drivers/i2c/busses/i2c-riic.c index
->>>>>>>> 9fe007609076..8ffbead95492 100644
->>>>>>>> --- a/drivers/i2c/busses/i2c-riic.c
->>>>>>>> +++ b/drivers/i2c/busses/i2c-riic.c
->>>>>>>> @@ -91,7 +91,7 @@ enum riic_reg_list {  };
->>>>>>>>
->>>>>>>>  struct riic_of_data {
->>>>>>>> -        u8 regs[RIIC_REG_END];
->>>>>>>> +        const u8 *regs;
->>>>>>>
->>>>>>>
->>>>>>> Since you are touching this part, can we drop struct and Use u8* as
->>>>>>> device_data instead?
->>>>>>
->>>>>> Patch 09/12 "i2c: riic: Add support for fast mode plus" adds a new member to struct
->>>> riic_of_data.
->>>>>> That new member is needed to differentiate b/w hardware versions
->>>>>> supporting fast mode plus based on compatible.
->>>>>
->>>>> Are we sure RZ/A does not support fast mode plus?
->>>>
->>>> From commit description of patch 09/12:
->>>>
->>>> Fast mode plus is available on most of the IP variants that RIIC driver is working with. The
->>>> exception is (according to HW manuals of the SoCs where this IP is available) the Renesas RZ/A1H.
->>>> For this, patch introduces the struct riic_of_data::fast_mode_plus.
->>>>
->>>> I checked the manuals of all the SoCs where this driver is used.
->>>>
->>>> I haven't checked the H/W manual?
->>>>
->>>> On the manual I've downloaded from Renesas web site the FMPE bit of RIICnFER is not available on
->>>> RZ/A1H.
->>>
->>> I just found RZ/A2M manual, it supports FMP and register layout looks similar to RZ/G2L.
->>
->> I introduced struct riic_of_data::fast_mode_plus because of RZ/A1H.
-> 
-> Do you need to check for that?
-> 
-> The ICFER_FMPE bit won't be set unless the user specifies the FM+
-> clock-frequency.  Setting clock-frequency beyond Fast Mode on RZ/A1H
-> would be very wrong.
+> Ah, right, my bad. I took your branch
+> https://github.com/jailuthra/linux/commits/b4/multistream/, and assumed it's
+> the one you used to send these patches. In that branch these patches are not
+> based on linux-next.
 
-I need it to avoid this scenario ^. In patch 09/12 there is this code:
-
-+	if ((!info->fast_mode_plus && t->bus_freq_hz > I2C_MAX_FAST_MODE_FREQ) ||
-+	    (info->fast_mode_plus && t->bus_freq_hz > I2C_MAX_FAST_MODE_PLUS_FREQ)) {
-+		dev_err(dev, "unsupported bus speed (%dHz). %d max\n", t->bus_freq_hz,
-+			info->fast_mode_plus ? I2C_MAX_FAST_MODE_PLUS_FREQ :
-+			I2C_MAX_FAST_MODE_FREQ);
- 		return -EINVAL;
-
-to avoid giving the user the possibility to set FM+ freq on platforms not
-supporting it.
-
-Please let me know if I'm missing something (or wrongly understood your
-statement).
-
-Thank you,
-Claudiu Beznea
+Ah, yes I cherry-picked them in after posting.
 
 > 
-> Gr{oetje,eeting}s,
+> > https://gitlab.com/linux-kernel/linux-next/-/commits/df9574a57d02b265322e77fb8628d4d33641dda9
+> > 
+> > I chose to not use media-stage as the base, but this series applies
+> > cleanly (and compiles) on top of that as well.
 > 
->                         Geert
+> I'd still recommend media-stage, as that's where these patches would be
+> merged (or just linux-media). linux-next is good for testing, but I wouldn't
+> normally base patches on top of that, or at last send patches based on that.
+
+Understood, will use media-stage while posting future revisions.
+
 > 
+> > > Your private branch contains e.g. dtsos needed for testing. If you have such
+> > > a branch, you should point to it in the cover letter as it's valuable for
+> > > reviewers/testers.
+> > 
+> > Ah my bad, I missed mentioning my github branch that can be used for
+> > testing the content of this series. It contains some DTSOs and defconfig
+> > updates, along with support for FPDLink/V3Link sensors.
+> > 
+> > https://github.com/jailuthra/linux/commits/b4/multistream/
+> 
+> Jfyi, I've tested this with am62a and arducam's fpdlink board with imx219
+> sensors, and works fine for me.
+
+Neat! Thanks for testing it out.
+
+> 
+> I only tested with pixel streams, I'd like to also add all the patches
+> needed for embedded data and test that (I think all of those have been
+> posted to the lists), but I don't think I'll have time for that right now.
+
+I see, I haven't been following the recent series adding support for 
+internal pads and embedded data in IMX219. I will try to merge those in 
+and see if I can get something working.
+
+> 
+>  Tomi
+> 
+> > > Only base on top of a private branch if your patches compile-time depend on
+> > > something from there, and in that case point to the branch and mention this
+> > > dependency clearly in the cover letter.
+> > 
+> > Makes sense, will take extra care to mention the dependencies and base
+> > branch from next version.
+> > 
+> > > 
+> > >   Tomi
+> > > 
+> > 
+> 
+
+-- 
+Thanks,
+Jai
+
+GPG Fingerprint: 4DE0 D818 E5D5 75E8 D45A AFC5 43DE 91F9 249A 7145
 
