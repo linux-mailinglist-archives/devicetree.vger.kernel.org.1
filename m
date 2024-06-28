@@ -1,108 +1,120 @@
-Return-Path: <devicetree+bounces-81341-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81342-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C273791C04A
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 16:05:09 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CF7191C065
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 16:07:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 80663283155
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 14:05:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 07D411F21DBD
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 14:07:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AACE51C0064;
-	Fri, 28 Jun 2024 14:04:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39A5F1BF32C;
+	Fri, 28 Jun 2024 14:06:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="hMhR/BSG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from chessie.everett.org (chessie.fmt1.pfcs.com [66.220.13.234])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC2F71BE843;
-	Fri, 28 Jun 2024 14:04:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=66.220.13.234
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719583473; cv=none; b=gmYandhQokEfpz/iDTXWITmybLH/wpkkPLArFxc6U7UOPii79D6Tl+O7nF5eb1ex/1KFfNz4MtrdRmOk78iW22BeeR50bslJoPppGy7otJ1R+iA+a3IEHj3yC6Lhm6jYvo2R35usav0v6nztKVHgvMTDEzT1l7rxHCFUhV9X8jo=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719583473; c=relaxed/simple;
-	bh=majJpbIEZ5L9h6UbAm35Av5QMsq9MbUrx/XGexo7JsQ=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=TpNR/7Y8xHJmxKZ+WbVGBt+Lzxa3L4Hzimq/5goYxXls8EZtceVLHJjMS9HDjB6ZFeikTzYkmH8GLmA/EsgEHO/2al5PhL/m61kFEZNvmsx7rLri4IYZ2F/znpNZ2UFH3Gn0bc0VS4hmbId+U4zp3AZRnxvviBxCyGU28Ii9ORI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=nwtime.org; spf=pass smtp.mailfrom=nwtime.org; arc=none smtp.client-ip=66.220.13.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=nwtime.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nwtime.org
-Received: from localhost.localdomain (unknown [31.16.248.93])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by chessie.everett.org (Postfix) with ESMTPSA id 4W9ccY3L1GzMQLT;
-	Fri, 28 Jun 2024 14:04:13 +0000 (UTC)
-From: Erez Geva <erezgeva@nwtime.org>
-To: linux-mtd@lists.infradead.org,
-	Tudor Ambarus <tudor.ambarus@linaro.org>,
-	Pratyush Yadav <pratyush@kernel.org>,
-	Michael Walle <mwalle@kernel.org>
-Cc: linux-kernel@vger.kernel.org,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	devicetree@vger.kernel.org,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52C9F1BF31C;
+	Fri, 28 Jun 2024 14:06:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1719583588; cv=none; b=P0+tSyppIYBcKjiXave/RZU+gKYD9jzQLDoxQLWxe70VK2MmbebtmGudgB/uY5ctjk5PvT4+pP7Fg5qLF8esSSG2lhazcN3DMNX8K15/7kHEMK2ncHE8IMyzwm0CMuCStsPqUnvQats8okDyCiJns2n4irkLVuCww/SkCmS+ipY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1719583588; c=relaxed/simple;
+	bh=wOnST97FxgzdmpjvSNkj0KjQdFL4Sf4iYe7yyizGLtc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=t5iKn3KnCA0dAtrXSYeGK1bJHVUYEDZpTgZuWco4aATG2sNfpO12NJEMROEXbudmBJPE3wP4aPXowSzLZs3OLk3i6sNDMlJf75ZyHVwfiG+gMMztvG7zf5BxsFdmCoQ+3x+Co7oruRua2M8TXbU51nDFf/HPaDGEleAMcDaH5l0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=hMhR/BSG; arc=none smtp.client-ip=198.175.65.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1719583586; x=1751119586;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=wOnST97FxgzdmpjvSNkj0KjQdFL4Sf4iYe7yyizGLtc=;
+  b=hMhR/BSG7pIsxWVKuuvXmAhiBxlTxUeaEm6HPKmW7mR9H23KNb0kMzUG
+   hZkVQTWn6zdKPT2/XV/Rnob7MCxOy7oRMCo6aHNsVb4pwBeju5xA3r6IO
+   JRJeRxl7QFEnCVleUn8JrGhbS5OChAtmQZ/wEUFJ+nHiq3mXFLGpW1kPw
+   UIIQUMq81dmbu2Y8tyocKUfMPJ68LQ63FSdHS5nbFRFisqWbs0ZpQdaqW
+   b+vsrAjSDcx+73S1+DucHg7jHf0yqcctIDiMfIVnXBT5n8eHEEZ734gxF
+   meD0RIzgYlL381SbPmO+SK9l5aWIoTNr82JOK9RaC5e4X30ZSam4cVZr0
+   Q==;
+X-CSE-ConnectionGUID: 2xnVoSnTSiqlh/5Eas1TcA==
+X-CSE-MsgGUID: ulZ6ZFYDS5ebM/6UncVnVw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11117"; a="16898751"
+X-IronPort-AV: E=Sophos;i="6.09,169,1716274800"; 
+   d="scan'208";a="16898751"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jun 2024 07:06:21 -0700
+X-CSE-ConnectionGUID: U9vuz4AVTXuk0xm15Y3jZA==
+X-CSE-MsgGUID: D+QA0ovYTwGTVNFI8IE75w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,169,1716274800"; 
+   d="scan'208";a="44587532"
+Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
+  by fmviesa006.fm.intel.com with ESMTP; 28 Jun 2024 07:06:18 -0700
+Received: from kbuild by 68891e0c336b with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sNCEy-000HBt-21;
+	Fri, 28 Jun 2024 14:06:16 +0000
+Date: Fri, 28 Jun 2024 22:05:12 +0800
+From: kernel test robot <lkp@intel.com>
+To: Jonas Karlman <jonas@kwiboo.se>, Heiko Stuebner <heiko@sntech.de>,
 	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Erez Geva <ErezGeva2@gmail.com>
-Subject: [PATCH 4/4] Add Macronix SPI-NOR mx25l12833f with OTP.
-Date: Fri, 28 Jun 2024 16:03:28 +0200
-Message-Id: <20240628140328.279792-5-erezgeva@nwtime.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240628140328.279792-1-erezgeva@nwtime.org>
-References: <20240628140328.279792-1-erezgeva@nwtime.org>
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, FUKAUMI Naoki <naoki@radxa.com>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Jonas Karlman <jonas@kwiboo.se>
+Subject: Re: [PATCH v2 2/2] arm64: dts: rockchip: Add Radxa ROCK 3B
+Message-ID: <202406282157.SmRgaZOQ-lkp@intel.com>
+References: <20240626201502.1384123-3-jonas@kwiboo.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240626201502.1384123-3-jonas@kwiboo.se>
 
-From: Erez Geva <ErezGeva2@gmail.com>
+Hi Jonas,
 
-mx25l12833f uses the same JEDEC-id as mx25l12805d.
-The 2 chips have the same flash size.
-mx25l12833f support SFDP and
- have a bigger symmetric OTP.
+kernel test robot noticed the following build warnings:
 
-Signed-off-by: Erez Geva <ErezGeva2@gmail.com>
----
- drivers/mtd/spi-nor/core.c     | 1 +
- drivers/mtd/spi-nor/macronix.c | 5 +++++
- 2 files changed, 6 insertions(+)
+[auto build test WARNING on rockchip/for-next]
+[also build test WARNING on krzk/for-next krzk-dt/for-next krzk-mem-ctrl/for-next linus/master v6.10-rc5 next-20240627]
+[cannot apply to robh/for-next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-diff --git a/drivers/mtd/spi-nor/core.c b/drivers/mtd/spi-nor/core.c
-index 0f267da339a4..f2a46add2695 100644
---- a/drivers/mtd/spi-nor/core.c
-+++ b/drivers/mtd/spi-nor/core.c
-@@ -3799,6 +3799,7 @@ static const struct spi_device_id spi_nor_dev_ids[] = {
- 	 */
- 	{"at25df321a"},	{"at25df641"},	{"at26df081a"},
- 	{"mx25l4005a"},	{"mx25l1606e"},	{"mx25l6405d"},	{"mx25l12805d"},
-+	{"mx25l12833f"}, /* uses the same jedec ID of mx25l12805d */
- 	{"mx25l25635e"},{"mx66l51235l"},
- 	{"n25q064"},	{"n25q128a11"},	{"n25q128a13"},	{"n25q512a"},
- 	{"s25fl256s1"},	{"s25fl512s"},	{"s25sl12801"},	{"s25fl008k"},
-diff --git a/drivers/mtd/spi-nor/macronix.c b/drivers/mtd/spi-nor/macronix.c
-index f210231468a6..fba3fc8e0d49 100644
---- a/drivers/mtd/spi-nor/macronix.c
-+++ b/drivers/mtd/spi-nor/macronix.c
-@@ -247,6 +247,11 @@ static const struct flash_info macronix_nor_parts[] = {
- 		.size = SZ_16M,
- 		.flags = SPI_NOR_HAS_LOCK | SPI_NOR_4BIT_BP,
- 		.no_sfdp_flags = SECT_4K,
-+	}, {	/* Yes, Same JEDEC-id as mx25l12805d */
-+		.id = SNOR_ID(0xc2, 0x20, 0x18),
-+		.name = "mx25l12833f",
-+		.flags = SPI_NOR_HAS_LOCK | SPI_NOR_4BIT_BP,
-+		.otp = SNOR_OTP(512, 2, 0x000, 0x200),
- 	}, {
- 		.id = SNOR_ID(0xc2, 0x20, 0x19),
- 		.name = "mx25l25635e",
+url:    https://github.com/intel-lab-lkp/linux/commits/Jonas-Karlman/dt-bindings-arm-rockchip-Add-Radxa-ROCK-3B/20240627-160354
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git for-next
+patch link:    https://lore.kernel.org/r/20240626201502.1384123-3-jonas%40kwiboo.se
+patch subject: [PATCH v2 2/2] arm64: dts: rockchip: Add Radxa ROCK 3B
+config: arm64-randconfig-051-20240628 (https://download.01.org/0day-ci/archive/20240628/202406282157.SmRgaZOQ-lkp@intel.com/config)
+compiler: aarch64-linux-gcc (GCC) 13.2.0
+dtschema version: 2024.6.dev3+g650bf2d
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240628/202406282157.SmRgaZOQ-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202406282157.SmRgaZOQ-lkp@intel.com/
+
+dtcheck warnings: (new ones prefixed by >>)
+>> arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dtb: pmic@20: '#sound-dai-cells', 'assigned-clock-parents', 'assigned-clocks', 'clock-names', 'clocks' do not match any of the regexes: 'pinctrl-[0-9]+'
+   	from schema $id: http://devicetree.org/schemas/mfd/rockchip,rk809.yaml#
+
 -- 
-2.39.2
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
