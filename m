@@ -1,185 +1,109 @@
-Return-Path: <devicetree+bounces-81300-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81301-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8B6191BE2F
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 14:08:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA29B91BE52
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 14:17:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 650441F2314B
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 12:08:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8485A284D18
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 12:17:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAD2C1581E4;
-	Fri, 28 Jun 2024 12:08:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="c4+L47Br"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5949F1411EE;
+	Fri, 28 Jun 2024 12:17:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A88A1E492;
-	Fri, 28 Jun 2024 12:08:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9A0D1DFF7;
+	Fri, 28 Jun 2024 12:16:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719576497; cv=none; b=Y/PESww6HT3+IYSkw5P643MePBs08tXw6evoC9rIM4e2DFdKxim05YEuRh2y484xlTyxX2++OyXpK9vcDlymFVXQfUIgIpIpeBMu/R6/kekXYVFjhrnKXsOQlJwRHRAO6VHPYrOPOgO1QuwyGLrRjH0lMFnJZTytewbMT0CsAZk=
+	t=1719577024; cv=none; b=ng/pf89OhO9TaAGd1e+XKLtgUzBi5GQa3tWBaQ5CTC9Fwh09b/Kg58zVq+hX3Zr0uoeF54d7kLaSAMuLekAJ+smx6Moxgruy7FAS3Qs1uoPEf3tR4d3nmwCuo4xJqH+Mf3jwPKt8n++mHJulgKYR/F7Ku2NIQc8KaemtgnWY8YU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719576497; c=relaxed/simple;
-	bh=Rlq0WqzihhkeL6wZg4CBjygd+CaipHSo+ZHvvPst5+Q=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Z3Q+oIfaoAzSRWtDRls9BkYWit0fLRBN8kqxJcftew7EGOEs9fFABOeGSM5SSeMMPoDNxqve8TW44adel15ce7Fzcv9zscZ7nDMhPav1TenpWdTmp0uTE5p+qDA7TimUmn7hogIafvqrHhVsfcBQT0kWr5Me8iSFsccqScLoU6I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=c4+L47Br; arc=none smtp.client-ip=209.85.208.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-57ccd1111aeso700041a12.0;
-        Fri, 28 Jun 2024 05:08:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1719576494; x=1720181294; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=O/QwPiwzSZOk4Q6RbA8p937/Li3WK6XZCuDkf/fR6vE=;
-        b=c4+L47BrHNlQV0RP8wPu6SjtrrJLr6IixOX97xCYvMASpze6paZM3dxgIYiO3Esf6m
-         mx9y7ELypwdqV2OBnRnP2iDLnppWZZP5mlQIJkesy9Zf4WnOPLsawawNhA/P6bthSM62
-         wyPg1sztcNRPMR9WKrROouarhfu6VeFosJIc6h9geZb4lUmoLjA6evQw5xMKUfYo6mCG
-         HJxn2ORc98XJYREHfjfbOzYdN0XPMtM76v3G8AfbK2SR2ShESqO7v2GDRoeMOghDa7qL
-         DJsIfIMuOoJU5lhmW+j9E63iM7WDyPCtWDeFJ/tMyD3PtJ84q42vj34hZc71BnME+Oll
-         Y9wA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719576494; x=1720181294;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=O/QwPiwzSZOk4Q6RbA8p937/Li3WK6XZCuDkf/fR6vE=;
-        b=T8NPi3EtBniz9hMALQdUOv2uaxE7jmssTM8pxSIYRM/LwVZUD+fJ7HEosdfdAX2bj0
-         W4uldbedC79BOPBZaWoawr1iQUfHCODSAysEbzGdi2arzcXfnv7T9xV0kxdFb7tQxcAt
-         a6eqYfmrKUluqQI3d+2vugnDknkHGPrdzJb1wEuY7bT47RgOG8xw3VOtjw2g+F0kv2jx
-         vV7RiRz47ZNjJ3ZMvVxRhuw+yfxGreogqN6RpvE/M5BfBRcoU7C3jC++6Fvs3hZrYtdb
-         4m9bvpwKUM4RasiH3MagWMEcc5xEl3wFpdPzlJaIh9ZzI6Q0GKkAvJ+v/vKxGwr6qp3q
-         X83w==
-X-Forwarded-Encrypted: i=1; AJvYcCXzVlUmd36/7EhFx7FQ2nAJ/B/Ri7xDZQ9NDpd37B/12ktqenSEEI4jhL8Q8A+70YBIqFejJegCYC/zMCwZbj9KSSUnSa2CI82bZg9VpNO/5qIsaXmTi0yRWXETRlcLfCy572R6NA8JOV/vLotmxrjBf9sbQ1K186Em+uk/jzzmTRezOuEyEXnlTVCnSMb/5dLAGxc57RIlIZppmTTQ/uY=
-X-Gm-Message-State: AOJu0Yyl8xPyqMqlV/ZSsW1a/+f5FV2Opsu2K2VAxWh3yO7xn5fIpp9H
-	a7p8/GwN/S2ELX8FSc0aOVQ3G7o6pDHIokXWYg57zLsWkn3DDtNxglXZ9suj6cna1TAvdJzInAk
-	1V+/HkNQL5Wa+z33O5l6i7Psqclw=
-X-Google-Smtp-Source: AGHT+IEeOmHcYeyBM9vdMvSUCMXEjfEksvTMrtTl63tXcl5SMpXT8DoHqdqha8zQeeVtKUpRgDLSBKLuB/8RprKcdsM=
-X-Received: by 2002:a50:d503:0:b0:57d:4d7:4c06 with SMTP id
- 4fb4d7f45d1cf-57d4a2815b1mr13818662a12.13.1719576494290; Fri, 28 Jun 2024
- 05:08:14 -0700 (PDT)
+	s=arc-20240116; t=1719577024; c=relaxed/simple;
+	bh=TFtNw1QJxkB2xWynZD+N88ma/reysTzvF3rsH+P5DIs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=aDfCgGJg6Ht1ohNMVJl7mbtJGrUpZqOeoVzKxHLNLeCF0+d7lr8qfCm2su/vxma1BRzDJWLG/pm6iV61TntMNX+MsjShefnpqRo72XNKpASq/DzE4yRmr3tGy5MVI+opRI8xTf+KZ1XHiNRTuwbgJBv7dON3xwQiaEEK3farfZ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.97.1)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1sNAWa-000000002oo-2LIO;
+	Fri, 28 Jun 2024 12:16:20 +0000
+Date: Fri, 28 Jun 2024 13:16:13 +0100
+From: Daniel Golle <daniel@makrotopia.org>
+To: Christoph Hellwig <hch@infradead.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Ulf Hansson <ulf.hansson@linaro.org>, Jens Axboe <axboe@kernel.dk>,
+	Hauke Mehrtens <hauke@hauke-m.de>, Felix Fietkau <nbd@nbd.name>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Dave Chinner <dchinner@redhat.com>, Jan Kara <jack@suse.cz>,
+	Christian Brauner <brauner@kernel.org>,
+	Thomas =?iso-8859-1?Q?Wei=DFschuh?= <linux@weissschuh.net>,
+	Al Viro <viro@zeniv.linux.org.uk>,
+	Li Lingfeng <lilingfeng3@huawei.com>,
+	Christian Heusel <christian@heusel.eu>,
+	Min Li <min15.li@samsung.com>, Avri Altman <avri.altman@wdc.com>,
+	Adrian Hunter <adrian.hunter@intel.com>,
+	Hannes Reinecke <hare@suse.de>,
+	Mikko Rapeli <mikko.rapeli@linaro.org>, Yeqi Fu <asuk4.q@gmail.com>,
+	Victor Shih <victor.shih@genesyslogic.com.tw>,
+	Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+	Li Zhijian <lizhijian@fujitsu.com>,
+	"Ricardo B. Marliere" <ricardo@marliere.net>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-mmc@vger.kernel.org, linux-block@vger.kernel.org
+Subject: Re: [PATCH v4 2/4] block: partitions: populate fwnode
+Message-ID: <Zn6pje4DcAYEk6Kw@makrotopia.org>
+References: <cover.1719520771.git.daniel@makrotopia.org>
+ <6acc459a392d562abc58f7e55c6f04dba8073257.1719520771.git.daniel@makrotopia.org>
+ <Zn4_rMJVm6cpIEZV@infradead.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240613-loongson1-dma-v9-0-6181f2c7dece@gmail.com>
-In-Reply-To: <20240613-loongson1-dma-v9-0-6181f2c7dece@gmail.com>
-From: Keguang Zhang <keguang.zhang@gmail.com>
-Date: Fri, 28 Jun 2024 20:07:38 +0800
-Message-ID: <CAJhJPsWMs0=k+7051mxG+DiOG8oNrPoG_3RUoC-ni7t2_3dyDg@mail.gmail.com>
-Subject: Re: [PATCH v9 0/2] Add support for Loongson1 APB DMA
-To: keguang.zhang@gmail.com
-Cc: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-mips@vger.kernel.org, dmaengine@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Conor Dooley <conor.dooley@microchip.com>, Jiaxun Yang <jiaxun.yang@flygoat.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Zn4_rMJVm6cpIEZV@infradead.org>
 
-Hi Vinod,
-Sorry to bother you.
-For this patchset, is there anything that needs improvement?
-Thank very much!
+Hi Christoph,
 
+thank you for reviewing.
 
-On Thu, Jun 13, 2024 at 7:50=E2=80=AFPM Keguang Zhang via B4 Relay
-<devnull+keguang.zhang.gmail.com@kernel.org> wrote:
->
-> Add the driver and dt-binding document for Loongson1 APB DMA.
->
-> ---
-> Changes in v9:
-> - Fix all the errors and warnings when building with W=3D1 and C=3D1
-> - Link to v8: https://lore.kernel.org/r/20240607-loongson1-dma-v8-0-f9992=
-d257250@gmail.com
->
-> Changes in v8:
-> - Change 'interrupts' property to an items list
-> - Link to v7: https://lore.kernel.org/r/20240329-loongson1-dma-v7-0-37db5=
-8608de5@gmail.com
->
-> Changes in v7:
-> - Change the comptible to 'loongson,ls1*-apbdma' (suggested by Huacai Che=
-n)
-> - Update the title and description part accordingly
-> - Rename the file to loongson,ls1b-apbdma.yaml
-> - Add a compatible string for LS1A
-> - Delete minItems of 'interrupts'
-> - Change patterns of 'interrupt-names' to const
-> - Rename the file to loongson1-apb-dma.c to keep the consistency
-> - Update Kconfig and Makefile accordingly
-> - Link to v6: https://lore.kernel.org/r/20240316-loongson1-dma-v6-0-90de2=
-c3cc928@gmail.com
->
-> Changes in v6:
-> - Change the compatible to the fallback
-> - Implement .device_prep_dma_cyclic for Loongson1 sound driver,
-> - as well as .device_pause and .device_resume.
-> - Set the limitation LS1X_DMA_MAX_DESC and put all descriptors
-> - into one page to save memory
-> - Move dma_pool_zalloc() into ls1x_dma_alloc_desc()
-> - Drop dma_slave_config structure
-> - Use .remove_new instead of .remove
-> - Use KBUILD_MODNAME for the driver name
-> - Improve the debug information
-> - Some minor fixes
->
-> Changes in v5:
-> - Add the dt-binding document
-> - Add DT support
-> - Use DT information instead of platform data
-> - Use chan_id of struct dma_chan instead of own id
-> - Use of_dma_xlate_by_chan_id() instead of ls1x_dma_filter()
-> - Update the author information to my official name
->
-> Changes in v4:
-> - Use dma_slave_map to find the proper channel.
-> - Explicitly call devm_request_irq() and tasklet_kill().
-> - Fix namespace issue.
-> - Some minor fixes and cleanups.
->
-> Changes in v3:
-> - Rename ls1x_dma_filter_fn to ls1x_dma_filter.
->
-> Changes in v2:
-> - Change the config from 'DMA_LOONGSON1' to 'LOONGSON1_DMA',
-> - and rearrange it in alphabetical order in Kconfig and Makefile.
-> - Fix comment style.
->
-> ---
-> Keguang Zhang (2):
->       dt-bindings: dma: Add Loongson-1 APB DMA
->       dmaengine: Loongson1: Add Loongson-1 APB DMA driver
->
->  .../bindings/dma/loongson,ls1b-apbdma.yaml         |  67 +++
->  drivers/dma/Kconfig                                |   9 +
->  drivers/dma/Makefile                               |   1 +
->  drivers/dma/loongson1-apb-dma.c                    | 665 +++++++++++++++=
-++++++
->  4 files changed, 742 insertions(+)
-> ---
-> base-commit: d35b2284e966c0bef3e2182a5c5ea02177dd32e4
-> change-id: 20231120-loongson1-dma-163afe5708b9
->
-> Best regards,
-> --
-> Keguang Zhang <keguang.zhang@gmail.com>
->
->
+On Thu, Jun 27, 2024 at 09:44:28PM -0700, Christoph Hellwig wrote:
+> On Thu, Jun 27, 2024 at 09:50:39PM +0100, Daniel Golle wrote:
+> > +		/*
+> > +		 * In case 'uuid' is defined in the partitions firmware node require
+> > +		 * partition meta info being present and the specified uuid to match.
+> > +		 */
+> 
+> Overly long lines, which is really annyoing for block comments.
 
+Should I use 80 chars as limit everywhere?
 
---
-Best regards,
+> 
+> > +		got_uuid = !fwnode_property_read_string(fw_part, "uuid", &uuid);
+> > +		if (got_uuid && (!bdev->bd_meta_info ||
+> > +				 !part_meta_match(uuid, bdev->bd_meta_info->uuid,
+> > +						  PARTITION_META_INFO_UUIDLTH)))
+> 
+> Can we please not use the crazy part_meta stuff for anything new?
+> We should never have merge it, and right now it is at least isolated
+> to the boot time root dev_t partsing, and I'd really prefer to keep it
+> in that corner.
+> 
 
-Keguang Zhang
+At least up to my understanding there isn't any other to know a
+partitions UUID or volume name.
+
+If there is another way to access this information I'd happily make
+use of it, but I couldn't find any.
 
