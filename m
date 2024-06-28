@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-81193-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81194-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45FF491B950
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 10:03:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 921F991B961
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 10:05:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 671831C214B3
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 08:03:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B40741C22A11
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 08:04:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09FB5145A1F;
-	Fri, 28 Jun 2024 08:02:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2889A14532C;
+	Fri, 28 Jun 2024 08:04:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="kalId1eJ"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="GkEwpIVp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B562B14387E
-	for <devicetree@vger.kernel.org>; Fri, 28 Jun 2024 08:02:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5178914389A
+	for <devicetree@vger.kernel.org>; Fri, 28 Jun 2024 08:04:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719561777; cv=none; b=k4gy3Aepcl9uyskV0PnuhrvLU8o0d8zfGZV+JmYUSHmOG5hxIMX/Rp2z9A23N7y2+Q/Uvsv6Ij58dNnvqd9a4GeH+9W0a66fV+reAGGGQBt6yhagRJtvtkHBCYtLapG10ymXyJEb9XwBzpcvRBnRvBstE3sFIxOrCJH9ivi2E68=
+	t=1719561897; cv=none; b=KKj3wu7/C1tZaZZV1HmjhweN2Q058Ack5h6V8UMvRfYIq2mN0gzxa0HMO/arupK+fDqBaYgJHeSRlPjZGsx1hEMyAzRMEsmRJzJNvANWGjShB0ajcszbj5cpeaRsgXMxVZr0SMv0H1rgbhKVTzHImDets5JDqVLg3sCrHo+tItQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719561777; c=relaxed/simple;
-	bh=QXYx6rkU0AQabrspd6YVjPYtAZW/WYWgvStOMy1phM8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Pr+9J3jyJBN3VIv1eJNClZBvZzPo2K+lATn/xSQ4Oz6QYGscRS6OUFobhQyTbmGM40QfybiZ5dS6yNSoJVC1ReE5PkSEUbIGh4YyUNGqgM7/1Qab0riW17NnekkX1+j0Wunb01a0BBcUFizHAqhd11uD/8PVLqHUxvfIZ8Onfx0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=kalId1eJ; arc=none smtp.client-ip=209.85.167.50
+	s=arc-20240116; t=1719561897; c=relaxed/simple;
+	bh=lnOtj8I56jMsFfYKFuX/EzixqJd4tPPdOFoxBK7Mu48=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=GfNrcQFxFasi+FtpKn17LLGjJxXGGuyOQHLEIx0g+QCU4pCHaM+uUxtLAMoIevzGUVAC0Duj2ScK2gkDzOA+nwsxFH21ROiZtdFiG1RQwNcDOQEOgLJ0c4ClH/c1YcrP/9KKsVzI/01zwo7exUJT1Yva8b9nyvepcqLr6FL9FkI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=GkEwpIVp; arc=none smtp.client-ip=209.85.167.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-52cdf4bc083so415489e87.2
-        for <devicetree@vger.kernel.org>; Fri, 28 Jun 2024 01:02:54 -0700 (PDT)
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-52d259dbe3cso324948e87.0
+        for <devicetree@vger.kernel.org>; Fri, 28 Jun 2024 01:04:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1719561773; x=1720166573; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=tuxon.dev; s=google; t=1719561894; x=1720166694; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=yRZz2tsfNxD7GWDFKOlUJ52oUZ9Phz5yzlW6R6P2fIk=;
-        b=kalId1eJcHB2c+gA1rSMEHEJ/HFeAFBQQzBA9bGjlTrAKalHAkO7SyxoD3ZnF2NnH3
-         mmHQceD3SNd9WLw6u0DOTNiwkkKm1JReIUjaMGwJn9cmxi2VsG+VQ/Yny574qXgkWTZT
-         y988OYooRtWoyH0CH1iVCNzvs2ypbG+CZ+4RZWpVP9PDWnUumAX8jNHYsutfsiIS4mSV
-         jstiQ+Z5D8eaFQ3bPD6U26m8WFZY+o5m0TIuziOBnObb7UpF87WI52/uLebVMiW4GAfL
-         KbD46+EnUdXz5Z6Vw2WvPnVDILwdd6T1sxmGbijtdPqUeBJ3Ud9et8/V78EvEF7UxBhk
-         lNFg==
+        bh=aQTbdcsWjYj1lBw9v1FiUsxFG/GqhZjpAf7y14wz4Vc=;
+        b=GkEwpIVpS92RWV1cE9aWm1m+G+YrK5uHuO8ropmUb1/V3LuJ7kJC3/+D+FiccOBJl1
+         VNO4iLm5+VR7aNNtv/IrSc+29QwrnmKH4qUi2DZw7EZJ97ROVnpOsQ2jrrdVjEyzLsTX
+         D2npllU+0OxD8mJTejuvKZ0u0sVMs7pRne2xSggBOasCaVF5KTheB9idNMtKY9VLaB/1
+         VwkJhWfAy0ODz2Cx8ywy3uhc2yvtCcT7HqTeKSphetE4ATKCWtRZa3B6c/cXBW83tp7t
+         J+dp/SwTtQlL8hZBo3KHt+yKZnWwr1zgzoX599LuxLg9FU0Stjc/GGs3lQkb/EDqFdjR
+         Fnaw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719561773; x=1720166573;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=1e100.net; s=20230601; t=1719561894; x=1720166694;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yRZz2tsfNxD7GWDFKOlUJ52oUZ9Phz5yzlW6R6P2fIk=;
-        b=XAZyWLwB7c+Wj2ufzpfgPua/F9NR0Le5w5aet77o+PM5rGU5VeZoVGhPd3NnjG6rlK
-         W94WwAvMw5La25IlVezEOl7D8zGHfriAnNSBvqkel3a6n0ocJEkVoEPAN+gfOMRSxvmB
-         6Yj3wMBGAd38zWR6AaHdLgx9EDCzvXfRkF5lFFBLA2P1Q3uKP+DuEb1iIDwde+3ukwfp
-         ut+svaLMgxhtn3+kRh/3msyiSfYYxnvKKzdNx9L1aO2Q6OPXB5tmYlvHsY/fHJZatWKU
-         tuvp/RR/wC0BmE3TrxgTwXYb3JhAoLpeEPYyH69J+AG/MfMByAYACinVEJHWNjl36hkK
-         HrqA==
-X-Forwarded-Encrypted: i=1; AJvYcCX2vqkvmLiS497swHYGT85yqcrCRtmYdFvHUcKUGlknYsNIbzgX6u4L9ClNeQcIApaMqbe+SdiYsUPSvNkW6dustpZaNETlBaN/WQ==
-X-Gm-Message-State: AOJu0YyxW3tAJP7+DsUHwEX19WiamclY3crMGKsFGwiy44t8EGY02D6f
-	zFxQvDta5PKnCxr3U6qcugRv/zQHT86wzoT6TnK48zQ7pNDHt21WmgH0aDffQmo=
-X-Google-Smtp-Source: AGHT+IFT/fp8+C8tAy9VJfwqFHoTu04HnMgmLLyaEnM4DD3aQT6hgmQpsdTV/mdHCYEPvuo5cEcr+g==
-X-Received: by 2002:a19:8c4d:0:b0:52c:d36f:f78b with SMTP id 2adb3069b0e04-52ce061f766mr11031618e87.31.1719561772772;
-        Fri, 28 Jun 2024 01:02:52 -0700 (PDT)
+        bh=aQTbdcsWjYj1lBw9v1FiUsxFG/GqhZjpAf7y14wz4Vc=;
+        b=GpudVUmmIKd0Wo0ibzm8hUZzsdRFEMHir1KHCX8Zi9B0YyFZjI71N8bR7WSkeoA7Fc
+         RMpzlIaoI3EsZjeqC7gWZPvcZqB7LpHtjUe0bAy0l/se12+sWdT/IES73k7hcKSRtF9c
+         NGsSrGb42g6vmvJEc7irUJRDsaFgqfx0nzExbzoVJKXRXb3Q9XgXeD7DqBoOe91PrmXx
+         7h0HLKImltql6645L2HqgeglfF3Rqo6W0JMhENPc71YLUr6zZRf81Q6MBUVOBOJLJy+A
+         /Ng6lwTmSLYC5dLhBqelCzqtWQ3Jwtg3Yk6NO36Dr/oeWTc6iUx1ZP/YWRNiweqZAPFZ
+         fk8g==
+X-Forwarded-Encrypted: i=1; AJvYcCWulE31p/qTg7zr9h//7soOZJtt3wVWlYVBtL7Y3HcL6jdby08sBfXL8ccLys1pmAg2AycFFPwOZmD2jh9ePIY3secS/04wL+5pTw==
+X-Gm-Message-State: AOJu0Yz5UONe/D9j+Uh/K9seM/75/FqzqYE7mq7tztppOaDyB0QNHNlW
+	8JPWd9+ASQf/SHBh4mLo3Lwr5XRrdoMzzgai44k2oJAq0yC69v50gqLw15xJnko=
+X-Google-Smtp-Source: AGHT+IHNu9Q8Wq3NTTfdUge/DFwXYvXY70ZuXmhDK16DCxvOvq5z2lwiF6FDZR3J+aYhaLMBsqf6Jg==
+X-Received: by 2002:a19:c514:0:b0:52c:8591:1f7b with SMTP id 2adb3069b0e04-52ce061b07dmr11458375e87.24.1719561893435;
+        Fri, 28 Jun 2024 01:04:53 -0700 (PDT)
 Received: from [192.168.50.4] ([82.78.167.70])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4256b097b82sm23496605e9.34.2024.06.28.01.02.51
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4256b099c72sm22804585e9.37.2024.06.28.01.04.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 28 Jun 2024 01:02:52 -0700 (PDT)
-Message-ID: <2f162986-33c5-4d80-958c-4f857adaad20@tuxon.dev>
-Date: Fri, 28 Jun 2024 11:02:50 +0300
+        Fri, 28 Jun 2024 01:04:52 -0700 (PDT)
+Message-ID: <471b8375-3966-4e0a-98ba-3aee4254c969@tuxon.dev>
+Date: Fri, 28 Jun 2024 11:04:51 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,6 +79,7 @@ User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v2 07/12] i2c: riic: Define individual arrays to describe
  the register offsets
 Content-Language: en-US
+From: claudiu beznea <claudiu.beznea@tuxon.dev>
 To: Biju Das <biju.das.jz@bp.renesas.com>,
  Chris Brandt <Chris.Brandt@renesas.com>,
  "andi.shyti@kernel.org" <andi.shyti@kernel.org>,
@@ -101,176 +102,182 @@ References: <20240625121358.590547-1-claudiu.beznea.uj@bp.renesas.com>
  <TY3PR01MB11346EF9A001F68162148B70F86D02@TY3PR01MB11346.jpnprd01.prod.outlook.com>
  <6289f329-118f-4970-a525-75c3a48bd28b@tuxon.dev>
  <TY3PR01MB1134603F92C72D9B6C6C3733C86D02@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-From: claudiu beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <TY3PR01MB1134603F92C72D9B6C6C3733C86D02@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+ <2f162986-33c5-4d80-958c-4f857adaad20@tuxon.dev>
+In-Reply-To: <2f162986-33c5-4d80-958c-4f857adaad20@tuxon.dev>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 
 
-On 28.06.2024 10:55, Biju Das wrote:
-> Hi Claudiu,
+On 28.06.2024 11:02, claudiu beznea wrote:
 > 
->> -----Original Message-----
->> From: claudiu beznea <claudiu.beznea@tuxon.dev>
->> Sent: Friday, June 28, 2024 8:32 AM
->> Subject: Re: [PATCH v2 07/12] i2c: riic: Define individual arrays to describe the register offsets
->>
->> Hi, Biju,
->>
->> On 28.06.2024 08:59, Biju Das wrote:
->>> Hi Claudiu,
->>>
->>>> -----Original Message-----
->>>> From: Claudiu <claudiu.beznea@tuxon.dev>
->>>> Sent: Tuesday, June 25, 2024 1:14 PM
->>>> Subject: [PATCH v2 07/12] i2c: riic: Define individual arrays to
->>>> describe the register offsets
->>>>
->>>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>>>
->>>> Define individual arrays to describe the register offsets. In this
->>>> way we can describe different IP variants that share the same
->>>> register offsets but have differences in other characteristics. Commit prepares for the addition
->> of fast mode plus.
->>>>
->>>> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>>> ---
->>>>
->>>> Changes in v2:
->>>> - none
->>>>
->>>>  drivers/i2c/busses/i2c-riic.c | 58
->>>> +++++++++++++++++++----------------
->>>>  1 file changed, 31 insertions(+), 27 deletions(-)
->>>>
->>>> diff --git a/drivers/i2c/busses/i2c-riic.c
->>>> b/drivers/i2c/busses/i2c-riic.c index
->>>> 9fe007609076..8ffbead95492 100644
->>>> --- a/drivers/i2c/busses/i2c-riic.c
->>>> +++ b/drivers/i2c/busses/i2c-riic.c
->>>> @@ -91,7 +91,7 @@ enum riic_reg_list {  };
->>>>
->>>>  struct riic_of_data {
->>>> -	u8 regs[RIIC_REG_END];
->>>> +	const u8 *regs;
->>>
->>>
->>> Since you are touching this part, can we drop struct and Use u8* as
->>> device_data instead?
->>
->> Patch 09/12 "i2c: riic: Add support for fast mode plus" adds a new member to struct riic_of_data.
->> That new member is needed to differentiate b/w hardware versions supporting fast mode plus based on
->> compatible.
 > 
-> Are we sure RZ/A does not support fast mode plus?
-
-From commit description of patch 09/12:
-
-Fast mode plus is available on most of the IP variants that RIIC driver
-is working with. The exception is (according to HW manuals of the SoCs
-where this IP is available) the Renesas RZ/A1H. For this, patch
-introduces the struct riic_of_data::fast_mode_plus.
-
-I checked the manuals of all the SoCs where this driver is used.
-
-I haven't checked the H/W manual?
-
-On the manual I've downloaded from Renesas web site the FMPE bit of
-RIICnFER is not available on RZ/A1H.
-
-Thank you,
-Claudiu Beznea
-
-> If it does not, then it make sense to keep the patch as it is.
+> On 28.06.2024 10:55, Biju Das wrote:
+>> Hi Claudiu,
+>>
+>>> -----Original Message-----
+>>> From: claudiu beznea <claudiu.beznea@tuxon.dev>
+>>> Sent: Friday, June 28, 2024 8:32 AM
+>>> Subject: Re: [PATCH v2 07/12] i2c: riic: Define individual arrays to describe the register offsets
+>>>
+>>> Hi, Biju,
+>>>
+>>> On 28.06.2024 08:59, Biju Das wrote:
+>>>> Hi Claudiu,
+>>>>
+>>>>> -----Original Message-----
+>>>>> From: Claudiu <claudiu.beznea@tuxon.dev>
+>>>>> Sent: Tuesday, June 25, 2024 1:14 PM
+>>>>> Subject: [PATCH v2 07/12] i2c: riic: Define individual arrays to
+>>>>> describe the register offsets
+>>>>>
+>>>>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>>>>>
+>>>>> Define individual arrays to describe the register offsets. In this
+>>>>> way we can describe different IP variants that share the same
+>>>>> register offsets but have differences in other characteristics. Commit prepares for the addition
+>>> of fast mode plus.
+>>>>>
+>>>>> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>>>>> ---
+>>>>>
+>>>>> Changes in v2:
+>>>>> - none
+>>>>>
+>>>>>  drivers/i2c/busses/i2c-riic.c | 58
+>>>>> +++++++++++++++++++----------------
+>>>>>  1 file changed, 31 insertions(+), 27 deletions(-)
+>>>>>
+>>>>> diff --git a/drivers/i2c/busses/i2c-riic.c
+>>>>> b/drivers/i2c/busses/i2c-riic.c index
+>>>>> 9fe007609076..8ffbead95492 100644
+>>>>> --- a/drivers/i2c/busses/i2c-riic.c
+>>>>> +++ b/drivers/i2c/busses/i2c-riic.c
+>>>>> @@ -91,7 +91,7 @@ enum riic_reg_list {  };
+>>>>>
+>>>>>  struct riic_of_data {
+>>>>> -	u8 regs[RIIC_REG_END];
+>>>>> +	const u8 *regs;
+>>>>
+>>>>
+>>>> Since you are touching this part, can we drop struct and Use u8* as
+>>>> device_data instead?
+>>>
+>>> Patch 09/12 "i2c: riic: Add support for fast mode plus" adds a new member to struct riic_of_data.
+>>> That new member is needed to differentiate b/w hardware versions supporting fast mode plus based on
+>>> compatible.
+>>
+>> Are we sure RZ/A does not support fast mode plus?
 > 
-> Cheers,
-> Biju
+> From commit description of patch 09/12:
 > 
+> Fast mode plus is available on most of the IP variants that RIIC driver
+> is working with. The exception is (according to HW manuals of the SoCs
+> where this IP is available) the Renesas RZ/A1H. For this, patch
+> introduces the struct riic_of_data::fast_mode_plus.
+> 
+> I checked the manuals of all the SoCs where this driver is used.
+> 
+> I haven't checked the H/W manual?
+
+That's Biju's previous statement. Sorry for not formatting it properly.
+
+> 
+> On the manual I've downloaded from Renesas web site the FMPE bit of
+> RIICnFER is not available on RZ/A1H.
+> 
+> Thank you,
+> Claudiu Beznea
+> 
+>> If it does not, then it make sense to keep the patch as it is.
 >>
->> Keeping struct riic_of_data is necessary (unless I misunderstood your proposal).
->>
->> Thank you,
->> Claudiu Beznea
+>> Cheers,
+>> Biju
 >>
 >>>
->>> ie, replace const struct riic_of_data *info->const u8 *regs in struct
->>> riic_dev and use .data = riic_rz_xx_regs in of_match_table?
+>>> Keeping struct riic_of_data is necessary (unless I misunderstood your proposal).
 >>>
->>> Cheers,
->>> Biju
->>>>  };
->>>>
->>>>  struct riic_dev {
->>>> @@ -531,36 +531,40 @@ static void riic_i2c_remove(struct platform_device *pdev)
->>>>  	pm_runtime_dont_use_autosuspend(dev);
->>>>  }
->>>>
->>>> +static const u8 riic_rz_a_regs[RIIC_REG_END] = {
->>>> +	[RIIC_ICCR1] = 0x00,
->>>> +	[RIIC_ICCR2] = 0x04,
->>>> +	[RIIC_ICMR1] = 0x08,
->>>> +	[RIIC_ICMR3] = 0x10,
->>>> +	[RIIC_ICSER] = 0x18,
->>>> +	[RIIC_ICIER] = 0x1c,
->>>> +	[RIIC_ICSR2] = 0x24,
->>>> +	[RIIC_ICBRL] = 0x34,
->>>> +	[RIIC_ICBRH] = 0x38,
->>>> +	[RIIC_ICDRT] = 0x3c,
->>>> +	[RIIC_ICDRR] = 0x40,
->>>> +};
->>>> +
->>>>  static const struct riic_of_data riic_rz_a_info = {
->>>> -	.regs = {
->>>> -		[RIIC_ICCR1] = 0x00,
->>>> -		[RIIC_ICCR2] = 0x04,
->>>> -		[RIIC_ICMR1] = 0x08,
->>>> -		[RIIC_ICMR3] = 0x10,
->>>> -		[RIIC_ICSER] = 0x18,
->>>> -		[RIIC_ICIER] = 0x1c,
->>>> -		[RIIC_ICSR2] = 0x24,
->>>> -		[RIIC_ICBRL] = 0x34,
->>>> -		[RIIC_ICBRH] = 0x38,
->>>> -		[RIIC_ICDRT] = 0x3c,
->>>> -		[RIIC_ICDRR] = 0x40,
->>>> -	},
->>>> +	.regs = riic_rz_a_regs,
->>>> +};
->>>> +
->>>> +static const u8 riic_rz_v2h_regs[RIIC_REG_END] = {
->>>> +	[RIIC_ICCR1] = 0x00,
->>>> +	[RIIC_ICCR2] = 0x01,
->>>> +	[RIIC_ICMR1] = 0x02,
->>>> +	[RIIC_ICMR3] = 0x04,
->>>> +	[RIIC_ICSER] = 0x06,
->>>> +	[RIIC_ICIER] = 0x07,
->>>> +	[RIIC_ICSR2] = 0x09,
->>>> +	[RIIC_ICBRL] = 0x10,
->>>> +	[RIIC_ICBRH] = 0x11,
->>>> +	[RIIC_ICDRT] = 0x12,
->>>> +	[RIIC_ICDRR] = 0x13,
->>>>  };
->>>>
->>>>  static const struct riic_of_data riic_rz_v2h_info = {
->>>> -	.regs = {
->>>> -		[RIIC_ICCR1] = 0x00,
->>>> -		[RIIC_ICCR2] = 0x01,
->>>> -		[RIIC_ICMR1] = 0x02,
->>>> -		[RIIC_ICMR3] = 0x04,
->>>> -		[RIIC_ICSER] = 0x06,
->>>> -		[RIIC_ICIER] = 0x07,
->>>> -		[RIIC_ICSR2] = 0x09,
->>>> -		[RIIC_ICBRL] = 0x10,
->>>> -		[RIIC_ICBRH] = 0x11,
->>>> -		[RIIC_ICDRT] = 0x12,
->>>> -		[RIIC_ICDRR] = 0x13,
->>>> -	},
->>>> +	.regs = riic_rz_v2h_regs,
->>>>  };
->>>>
->>>>  static int riic_i2c_suspend(struct device *dev)
->>>> --
->>>> 2.39.2
->>>>
+>>> Thank you,
+>>> Claudiu Beznea
 >>>
+>>>>
+>>>> ie, replace const struct riic_of_data *info->const u8 *regs in struct
+>>>> riic_dev and use .data = riic_rz_xx_regs in of_match_table?
+>>>>
+>>>> Cheers,
+>>>> Biju
+>>>>>  };
+>>>>>
+>>>>>  struct riic_dev {
+>>>>> @@ -531,36 +531,40 @@ static void riic_i2c_remove(struct platform_device *pdev)
+>>>>>  	pm_runtime_dont_use_autosuspend(dev);
+>>>>>  }
+>>>>>
+>>>>> +static const u8 riic_rz_a_regs[RIIC_REG_END] = {
+>>>>> +	[RIIC_ICCR1] = 0x00,
+>>>>> +	[RIIC_ICCR2] = 0x04,
+>>>>> +	[RIIC_ICMR1] = 0x08,
+>>>>> +	[RIIC_ICMR3] = 0x10,
+>>>>> +	[RIIC_ICSER] = 0x18,
+>>>>> +	[RIIC_ICIER] = 0x1c,
+>>>>> +	[RIIC_ICSR2] = 0x24,
+>>>>> +	[RIIC_ICBRL] = 0x34,
+>>>>> +	[RIIC_ICBRH] = 0x38,
+>>>>> +	[RIIC_ICDRT] = 0x3c,
+>>>>> +	[RIIC_ICDRR] = 0x40,
+>>>>> +};
+>>>>> +
+>>>>>  static const struct riic_of_data riic_rz_a_info = {
+>>>>> -	.regs = {
+>>>>> -		[RIIC_ICCR1] = 0x00,
+>>>>> -		[RIIC_ICCR2] = 0x04,
+>>>>> -		[RIIC_ICMR1] = 0x08,
+>>>>> -		[RIIC_ICMR3] = 0x10,
+>>>>> -		[RIIC_ICSER] = 0x18,
+>>>>> -		[RIIC_ICIER] = 0x1c,
+>>>>> -		[RIIC_ICSR2] = 0x24,
+>>>>> -		[RIIC_ICBRL] = 0x34,
+>>>>> -		[RIIC_ICBRH] = 0x38,
+>>>>> -		[RIIC_ICDRT] = 0x3c,
+>>>>> -		[RIIC_ICDRR] = 0x40,
+>>>>> -	},
+>>>>> +	.regs = riic_rz_a_regs,
+>>>>> +};
+>>>>> +
+>>>>> +static const u8 riic_rz_v2h_regs[RIIC_REG_END] = {
+>>>>> +	[RIIC_ICCR1] = 0x00,
+>>>>> +	[RIIC_ICCR2] = 0x01,
+>>>>> +	[RIIC_ICMR1] = 0x02,
+>>>>> +	[RIIC_ICMR3] = 0x04,
+>>>>> +	[RIIC_ICSER] = 0x06,
+>>>>> +	[RIIC_ICIER] = 0x07,
+>>>>> +	[RIIC_ICSR2] = 0x09,
+>>>>> +	[RIIC_ICBRL] = 0x10,
+>>>>> +	[RIIC_ICBRH] = 0x11,
+>>>>> +	[RIIC_ICDRT] = 0x12,
+>>>>> +	[RIIC_ICDRR] = 0x13,
+>>>>>  };
+>>>>>
+>>>>>  static const struct riic_of_data riic_rz_v2h_info = {
+>>>>> -	.regs = {
+>>>>> -		[RIIC_ICCR1] = 0x00,
+>>>>> -		[RIIC_ICCR2] = 0x01,
+>>>>> -		[RIIC_ICMR1] = 0x02,
+>>>>> -		[RIIC_ICMR3] = 0x04,
+>>>>> -		[RIIC_ICSER] = 0x06,
+>>>>> -		[RIIC_ICIER] = 0x07,
+>>>>> -		[RIIC_ICSR2] = 0x09,
+>>>>> -		[RIIC_ICBRL] = 0x10,
+>>>>> -		[RIIC_ICBRH] = 0x11,
+>>>>> -		[RIIC_ICDRT] = 0x12,
+>>>>> -		[RIIC_ICDRR] = 0x13,
+>>>>> -	},
+>>>>> +	.regs = riic_rz_v2h_regs,
+>>>>>  };
+>>>>>
+>>>>>  static int riic_i2c_suspend(struct device *dev)
+>>>>> --
+>>>>> 2.39.2
+>>>>>
+>>>>
 
