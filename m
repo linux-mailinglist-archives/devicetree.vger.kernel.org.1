@@ -1,106 +1,140 @@
-Return-Path: <devicetree+bounces-81423-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81424-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CD9691C314
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 18:01:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A96E791C31B
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 18:04:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BC030B22850
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 16:01:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 65925283B40
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 16:04:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3939158DDC;
-	Fri, 28 Jun 2024 16:00:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCC3A1C688C;
+	Fri, 28 Jun 2024 16:04:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D7ZgCR7W"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TXGHVV84"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4B77182B9;
-	Fri, 28 Jun 2024 16:00:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B24D1C0DCC;
+	Fri, 28 Jun 2024 16:04:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719590443; cv=none; b=eb1RMUAagDVlG91eHgS3fXHdM2CG+IJtBFqXaXi//bFQQCYADAvbrDyAXqi9bcpmvIX0qCK9e6k40BOhwxDhtPMeOFFrwGlJqOmoWqHtgOXXvx30OQ4RDnNWddaePPXEVk29uXmxrqA1Ute+K+QBLIJU12NVArMOMqPX0c9vooI=
+	t=1719590679; cv=none; b=nWr8IFhe/t4+jrlB4EYG4Vi8Pof6dW9wWy7lKk/jIBeIihbdNG0PsVanVjQPNHRn+xWJZVRq34S0hohh6PyBA2zOTO7NLxVyeEsOUVzYJUE8w6WAFMcAjQJxFls+XMhbDVHvmLSGOKyV+a85YpiT1NOA1l3pknm/69GBq/q7PQI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719590443; c=relaxed/simple;
-	bh=d9+vGavIHjuofdvT9YcleeT1YhLvXjb51TCcEY2RgGI=;
+	s=arc-20240116; t=1719590679; c=relaxed/simple;
+	bh=oTXfR2N6eN/rBWJlM/QQkHwnHvpBAkB6fBJKmFWgmyk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QG6p5I7mWbETR8k5QuCwF89wMK8zeEUK6QTUR9Oc6Fv3abVsoqdd+KjswDl3PquCrbzbyJYum/HeoLvuNeYATu4sdceNfClN6880Z/UBRx3Dem69xZIlPmX+ICP6OuH9TXIWp49/955akJknUQNKQJXPZ/YVYDfLY4n+oi/pqOs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D7ZgCR7W; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8531DC116B1;
-	Fri, 28 Jun 2024 16:00:39 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=dJGVgwVrTieOhnnU+cZZZCd1jM4bhNPOneJ5keOSae65XwzHd4nvaWG4XFGQlgJjZCxa859GivQmIz3yxImwJrzq02z1cpt6rDgVeJmMVwlR2U3cl7D9DhgLJPtGo2f5GLDIuVIA+12+NU+ug4JBE/EkkpjkhuWxJjmeZn7diWk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TXGHVV84; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96D7CC116B1;
+	Fri, 28 Jun 2024 16:04:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719590443;
-	bh=d9+vGavIHjuofdvT9YcleeT1YhLvXjb51TCcEY2RgGI=;
+	s=k20201202; t=1719590679;
+	bh=oTXfR2N6eN/rBWJlM/QQkHwnHvpBAkB6fBJKmFWgmyk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=D7ZgCR7W1RR8XTrsAVAvb9of2sucd2e/K7kgGry628m8JzAo1AVQQ3GIflWbdACVL
-	 YStgSOV9OrFI0jajAUxoKcPucGwGuKhuROG6JYZGBE+8K1KrVnSMrmo8CHlXp6ssJg
-	 8CQh6QBXjXLkAXk5V1L5PJSopXMRP3G2KfvH54DxcqRE0NxMIdkkI7/YcHIKSQoQC0
-	 gtGKYP1Deu1YwN0XY5+eBqUtU5DB7ENCUkQtoaKQ75/KMA89c+XLk7LLm8IPQCcFKb
-	 JVFwG7p/+SLFGmKDDCoTwrwzVdRaUGmRBRl7eldy6YWTnC6eRu2STatYDtcuvv5iLL
-	 TrUuypIzv/9IQ==
-Date: Fri, 28 Jun 2024 17:00:37 +0100
-From: Conor Dooley <conor@kernel.org>
-To: iansdannapel@gmail.com
-Cc: Moritz Fischer <mdf@kernel.org>, Wu Hao <hao.wu@intel.com>,
-	Xu Yilun <yilun.xu@intel.com>, Tom Rix <trix@redhat.com>,
-	Rob Herring <robh@kernel.org>,
+	b=TXGHVV84R2UNCEu9g298LoeAx0ZyOEsBfQK44L0ec56H4f3VQwhojE+81Rnwy+TcM
+	 I5AjHgSndtYSBRNJQ6eVyUB8t3tCOT+iVlvVxoszKdjMcfTVVoCQQFdT/0CmcFaJBC
+	 CsQcOvngcssNeMhHRU4M7ho7VYtt115QGJR6zUEyNKoc3I0CQBRMNcV/NU1rfbIYPd
+	 11LIlC34+YcAO7Lork3rWefTA4utV4aLhP7kgdVDzv6iIqONVJf994omfi67deCeSB
+	 RytUpxaEetfcST35QVs9DQNLFl8scGjVrE/JtYVNVspVUrhNn998yVet/oDyZUtPh8
+	 Ur9qQgERo7pQA==
+Date: Fri, 28 Jun 2024 10:04:36 -0600
+From: Rob Herring <robh@kernel.org>
+To: Ayush Singh <ayush@beagleboard.org>
+Cc: Mark Brown <broonie@kernel.org>,
+	Vaishnav M A <vaishnav@beagleboard.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko.stuebner@cherry.de>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Sebastian Reichel <sre@kernel.org>,
-	Chris Morgan <macromorgan@hotmail.com>,
-	Michael Riesch <michael.riesch@wolfvision.net>,
-	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-	Andre Przywara <andre.przywara@arm.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	linux-fpga@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] dt-bindings: vendor-prefix: Add prefix for
- Efinix, Inc.
-Message-ID: <20240628-hash-prior-4efcc411aeb6@spud>
-References: <20240620144217.124733-1-iansdannapel@gmail.com>
- <20240628152348.61133-1-iansdannapel@gmail.com>
- <20240628152348.61133-4-iansdannapel@gmail.com>
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>, Michael Walle <mwalle@kernel.org>,
+	Andrew Lunn <andrew@lunn.ch>, jkridner@beagleboard.org,
+	robertcnelson@beagleboard.org, linux-spi@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v5 2/7] dt-bindings: mikrobus: Add mikrobus board base
+Message-ID: <20240628160436.GA3143032-robh@kernel.org>
+References: <20240627-mikrobus-scratch-spi-v5-0-9e6c148bf5f0@beagleboard.org>
+ <20240627-mikrobus-scratch-spi-v5-2-9e6c148bf5f0@beagleboard.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="++Rd30xAIlfdFz2F"
-Content-Disposition: inline
-In-Reply-To: <20240628152348.61133-4-iansdannapel@gmail.com>
-
-
---++Rd30xAIlfdFz2F
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240627-mikrobus-scratch-spi-v5-2-9e6c148bf5f0@beagleboard.org>
 
-On Fri, Jun 28, 2024 at 05:23:48PM +0200, iansdannapel@gmail.com wrote:
-> From: Ian Dannapel <iansdannapel@gmail.com>
->=20
-> Add entry for Efinix, Inc. (https://www.efinixinc.com/)
->=20
-> Signed-off-by: Ian Dannapel <iansdannapel@gmail.com>
+On Thu, Jun 27, 2024 at 09:56:12PM +0530, Ayush Singh wrote:
+> Base dt bindings for mikrobus addon boards. Contains properties that are
+> part of all types of boards (SPI, I2C, etc).
+> 
+> Each pin in mikroBUS connector can either be used for it's original
+> purpose (UART, I2C, SPI, etc) or as a normal GPIO. Introducing
+> `pinctrl-apply` allows selecting the pin configuration by name.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+This seems pointless. If a board uses UART, then uart_default has to be 
+supported. Why does the board need to list it?
 
---++Rd30xAIlfdFz2F
-Content-Type: application/pgp-signature; name="signature.asc"
+> 
+> Note: Some mikrobus-connectors might not support all valid pinctrl.
+> 
+> Signed-off-by: Ayush Singh <ayush@beagleboard.org>
+> ---
+>  .../devicetree/bindings/mikrobus/mikrobus-board.yaml | 20 ++++++++++++++++++++
+>  MAINTAINERS                                          |  1 +
+>  2 files changed, 21 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mikrobus/mikrobus-board.yaml b/Documentation/devicetree/bindings/mikrobus/mikrobus-board.yaml
+> new file mode 100644
+> index 000000000000..42e2219c596f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mikrobus/mikrobus-board.yaml
+> @@ -0,0 +1,20 @@
+> +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mikrobus/mikrobus-board.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: mikroBUS add-on board properties
+> +
+> +maintainers:
+> +  - Ayush Singh <ayush@beagleboard.org>
+> +
+> +properties:
+> +  pinctrl-apply:
 
------BEGIN PGP SIGNATURE-----
+Missing a description.
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZn7eJQAKCRB4tDGHoIJi
-0t8gAP4p60AjNbDpk3hf65X2ivbOdXhL6s3iRXN8vLWp6k7TgwEA7D/ZwuyqkDAm
-Tf/kqqN12Tje3F4e97Kr2c9hOkF7JQI=
-=Rxew
------END PGP SIGNATURE-----
-
---++Rd30xAIlfdFz2F--
+> +    minItems: 1
+> +    maxItems: 9
+> +    items:
+> +      enum: [default, pwm_default, pwm_gpio, uart_default, uart_gpio, i2c_default, i2c_gpio, spi_default,
+> +             spi_gpio]
+> +
+> +additionalProperties: false
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 8e4115e93aeb..14eba18832d5 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -15113,6 +15113,7 @@ M:	Ayush Singh <ayush@beagleboard.org>
+>  M:	Vaishnav M A <vaishnav@beagleboard.org>
+>  S:	Maintained
+>  F:	Documentation/devicetree/bindings/connector/mikrobus-connector.yaml
+> +F:	Documentation/devicetree/bindings/mikrobus/mikrobus-board.yaml
+>  
+>  MIKROTIK CRS3XX 98DX3236 BOARD SUPPORT
+>  M:	Luka Kovacic <luka.kovacic@sartura.hr>
+> 
+> -- 
+> 2.45.2
+> 
 
