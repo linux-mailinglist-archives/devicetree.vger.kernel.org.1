@@ -1,155 +1,212 @@
-Return-Path: <devicetree+bounces-81245-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81246-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 802AC91BB2E
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 11:11:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 97B9391BB35
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 11:14:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2ED09284351
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 09:11:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 491C42813A4
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 09:14:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2F4514F9FE;
-	Fri, 28 Jun 2024 09:10:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="Y7zB9kc4"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BC3914F9D0;
+	Fri, 28 Jun 2024 09:13:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com [209.85.219.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A9E914EC79
-	for <devicetree@vger.kernel.org>; Fri, 28 Jun 2024 09:10:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA0D913FD9C;
+	Fri, 28 Jun 2024 09:13:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719565848; cv=none; b=Z6F1ZuumaNCyTVTfZB/XRsu6DH7ck7izRIxRcqwjDfYhOv+I35huuLht27HTL5Kxkhtf8EAU3aWjplohNAIMVJOYIT3aOBXNRNJIzaXlmVUqM8IZ5sfP4ByGUPRLCQmY9cLoOxmYZvhn/Jja444Rzs/jdLOKfS99qGmysEBbLWg=
+	t=1719566037; cv=none; b=YdniMnA1NVIN+nbZIkVhAssKx9XXE1WwHYq07kI5rubzNBn/GHqABOpuAWyh+YGrNIy88Ctgd0Sg32lnwoKbJ4BNTpgB7vhp+CMfVEA9NmWUvudpxjpdn9aFGDMV33s8UvwojHfNud4ryneaDMGOt0ksCEdz9r4NgGvdeewl8I8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719565848; c=relaxed/simple;
-	bh=Y49yne1+Id5qg7r47bMdTW2UJ9Vwgb/0SrPLAcJZv7I=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=iOTCOOS8DDzqLYH53xz/gBH0Msb7sCQGPRVZKF0d7b2vhICLfl9JuNKEtMuxTwNU5YLDlXEPZ0Sx70LxR4+5mGLmS4hNjH9TPrvUsmvLyAXXxxrVcHJDydLkXE/eAin2o6x6GIJ1ZFmlKWPPEL1K0Olp2o/Q+7fMKoXyyoVjBP0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=Y7zB9kc4; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-364a39824baso250583f8f.1
-        for <devicetree@vger.kernel.org>; Fri, 28 Jun 2024 02:10:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1719565845; x=1720170645; darn=vger.kernel.org;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=5ww0hI7XhMOpeyVcfMbag2lDGd/Ez+xcshxdAQFbPSo=;
-        b=Y7zB9kc4zAtRbrYkxlG0maQrmxG0QPc2Gw286q19dBGbZL1YBqS5M9DujvhDB9z4QJ
-         lC4+6vLW9nFPBfcZVdmEIIbDw6WIjYBS8vkcDP7qxXo/4v2OQN7bp9A9RbJ/vb/OaRFf
-         0Qfg/ko5TAFf3+bmrPpzg4hRFtNPTXS2lp6gRvnpH4A4deTUKX90mvGHXUqVKw5/fsz4
-         A9rqjbwfQ0xBm9tLLe/NSVou2nX4INaquMqyLb19pqp5283enfV8UHEsENA+h5CEtKzs
-         bZCMfsptczS+1zrDFdIZFqP+9Bml6eGupkKVkKjYwmnDqZQOjrMJBltw8tDFwb3Gg2Bn
-         pJNQ==
+	s=arc-20240116; t=1719566037; c=relaxed/simple;
+	bh=MAQPkLcYx9XStCCPe7HrxPpQJ62LVuaYAOnkvcDW5Mc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=fokd2TpmOLfIisLKrzFgjUBlyBrNIWmq5wtPC0W6wziNs7NdS4InELyTwcadmLWCR/U69LynRfuPhGe9V2T6Jmq9y05z7UR0Phhvg3eIx+lz62rAmWf9IE9XlX2jIjZw1UB8N6o0yFSfzvlOuv8N1OFgDiCT9hvP+SIagOp/Jfs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f171.google.com with SMTP id 3f1490d57ef6-dfdb6122992so309488276.3;
+        Fri, 28 Jun 2024 02:13:55 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719565845; x=1720170645;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5ww0hI7XhMOpeyVcfMbag2lDGd/Ez+xcshxdAQFbPSo=;
-        b=dKKOT1Goaecs5zHDGlS/u2vgPCvH3+Mk4y1gkiGVXFtZuJd1X0WlPDT3EtH+q8dxH4
-         b94vdN01WUduw0c2DHNn92/OWIFeR7JH2fXOSXxyu2WzBlxAnBepaOGvd8E3EWxo9oYz
-         C5FBVCHz69OoTrIiMXnb5sSV9D39+Nd92Z+BSG+ZnIecw4CzOWIFoeoMtHvEU3Op2b6D
-         3XPuH9nWUWV+O2kO3uTT503HSNT0qpir0pY+yCKmGbvp4phaNyqD2ro8500VO7OcOtGY
-         k9LAVlZt7Bc7kfBp7PrWIoKof324tnw6OoSPETihiqPq7ZqE8BKt6v4znTOIfNJWcOke
-         cgOA==
-X-Forwarded-Encrypted: i=1; AJvYcCWISkZQB4l/OTNCF/ksGD55BnefU0TMeKx71u6J8s+WBuLR3oKUhnWMmUW4UkjiyxyvZjsyJeRC0taENS6julp3oS6LrZ9VMmIydw==
-X-Gm-Message-State: AOJu0YwruQpdx5POqwt5RMkMEDhLY/YVq7K3VRlJoR37mhgFzE1xFmMv
-	SbcnXJSedrBvcrEDEDNp+JZzUImNwmY6LTw5Dl7RUDUJO1d66SPArmf/qa083BE=
-X-Google-Smtp-Source: AGHT+IGfaRuokgh8AwoWqD+NRn4IvomA5WN9aP0+KKJTCP84NJnYxZfzokA4lANRvxjFgX20EM79nw==
-X-Received: by 2002:a05:6000:2c5:b0:366:e89c:342b with SMTP id ffacd0b85a97d-366e89c34bcmr14945201f8f.52.1719565844836;
-        Fri, 28 Jun 2024 02:10:44 -0700 (PDT)
-Received: from localhost ([2a01:e0a:3c5:5fb1:d2a2:5e83:89ff:e781])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3675a0cd60dsm1652136f8f.2.2024.06.28.02.10.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 28 Jun 2024 02:10:44 -0700 (PDT)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Kevin Hilman <khilman@baylibre.com>,  linux-kernel@vger.kernel.org,
-  linux-amlogic@lists.infradead.org,  devicetree@vger.kernel.org,  Rob
- Herring <robh@kernel.org>,  Krzysztof Kozlowski <krzk+dt@kernel.org>,
-  Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH 0/2] arm64: dts: amlogic: handle hdmi system clock
-In-Reply-To: <16ec9c9a-badb-4626-9227-fb03f0ee3ee6@linaro.org> (Neil
-	Armstrong's message of "Fri, 28 Jun 2024 10:10:22 +0200")
-References: <20240626152733.1350376-1-jbrunet@baylibre.com>
-	<16ec9c9a-badb-4626-9227-fb03f0ee3ee6@linaro.org>
-Date: Fri, 28 Jun 2024 11:10:43 +0200
-Message-ID: <1j7ce9xwj0.fsf@starbuckisacylon.baylibre.com>
+        d=1e100.net; s=20230601; t=1719566034; x=1720170834;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=5ggUsABRPu6n/gyhT1zy1+IkWXP3pHpkQgN5AG3/lfc=;
+        b=MmRWX+k5UWMQAF6ehzhLqE4sZVqA73McBuIU2xh1XkdkenRNFuchlm4j1Y5690v4fB
+         dKgvVzZ8M/1IYKhXlNUolPrOg6IZbm9ICB9AtsZ2uZUe9WBrEKfvv+IPV8xNpgj9/Otk
+         vHhzeSKIHJ3weDljR2rixJVEzEu/jQzd8bTOYvc915ruFvnmzODwj0lD1HMSi/9QgImf
+         6/iaI4O5IQlWfvWFFOnQbZAq1elpU4Cj5F6DQwpRH9ipJ5+XyxeZub9LDBhNMkxe2cMc
+         OunEJzR+A0u1NEBmyncXQBLvTKtC7alWpQFa0s9kOIhUgeI9dfczZ8sOC79gd0k8bN7t
+         83xA==
+X-Forwarded-Encrypted: i=1; AJvYcCWGU8zjfd+BGL41bOfFH1MOU2TG1wzssRvtCPcOJCCo1Fe3T6FutJ0yhE9FmispgJvCMnjfYU7VO+J24Ng40MLcbmVz3klj1QfT7itFpREy7bZxka0qEk0fPEbLXi0pCFIaZu7LxaiO0sc8GwG5TsouRPmBf/MUEUPR2oFXAjgxdxO7UprezG1qgWImgJ19r7e39cLeKgn6N2RJNEmPFFeyxSYHJpaM01ggwHT0clX2gqL9Bh/t7sXrL7XJmfVZm1tN
+X-Gm-Message-State: AOJu0YycTVOoa3up97HsRT54ohM4+3eyoy7JNxrnd+ozbmLPZinpqHu/
+	XbDgFieougBFBwf2SBufABLyZAiHQJfl8/Yo+CGh6b2/hKGnfQ55h51kYvUp
+X-Google-Smtp-Source: AGHT+IFc05sp2wYlrEc0pNQV5/HuVdXkkEd1Hq9DDv/bDe9LySpTHJpdam2QMnX9g9SOCZwmSspreA==
+X-Received: by 2002:a25:5f50:0:b0:e03:63c7:7b46 with SMTP id 3f1490d57ef6-e0363c77d3emr50565276.20.1719566034438;
+        Fri, 28 Jun 2024 02:13:54 -0700 (PDT)
+Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com. [209.85.128.177])
+        by smtp.gmail.com with ESMTPSA id 3f1490d57ef6-e0353d591d8sm261816276.12.2024.06.28.02.13.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 28 Jun 2024 02:13:54 -0700 (PDT)
+Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-64a6bf15db9so3481427b3.0;
+        Fri, 28 Jun 2024 02:13:54 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCU/OjhH6AcRp7qTcIaNDiKSAYERaL03mUndBc+bKSD48eOUJLfo0d3MBXIRJfS9rlWKP33Qihs3N2I26aVDJAYJNfzguj2HjHH5vWfxGT3qdsxTSJK1hL18nuwf16XgynH5k5Rrk1o9hz2PLMbWEHM7GdWXQM78ayvv/ZSbzoeKDax1I7QSHllfPcc0AY6Z6zQzWN0Sv6bvoZpi/x1zYCx7MBhRHAPQWomdjrC6yTiBBrh8gsuJwf4Z2wYIaq7gu9M+
+X-Received: by 2002:a05:690c:3709:b0:64b:44f2:70fb with SMTP id
+ 00721157ae682-64b44f272f0mr5563117b3.41.1719566033879; Fri, 28 Jun 2024
+ 02:13:53 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+References: <20240625121358.590547-1-claudiu.beznea.uj@bp.renesas.com>
+ <20240625121358.590547-8-claudiu.beznea.uj@bp.renesas.com>
+ <TY3PR01MB11346EF9A001F68162148B70F86D02@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+ <6289f329-118f-4970-a525-75c3a48bd28b@tuxon.dev> <TY3PR01MB1134603F92C72D9B6C6C3733C86D02@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+ <2f162986-33c5-4d80-958c-4f857adaad20@tuxon.dev> <TY3PR01MB11346CA73575CF61B2024F3B386D02@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+ <79c26030-4b92-4ef3-b8ce-d011f492161b@tuxon.dev>
+In-Reply-To: <79c26030-4b92-4ef3-b8ce-d011f492161b@tuxon.dev>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 28 Jun 2024 11:13:42 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXJ8eKLzMqCPR2ewS9gr_m5OQPneETPMC-rOOmW+--f5A@mail.gmail.com>
+Message-ID: <CAMuHMdXJ8eKLzMqCPR2ewS9gr_m5OQPneETPMC-rOOmW+--f5A@mail.gmail.com>
+Subject: Re: [PATCH v2 07/12] i2c: riic: Define individual arrays to describe
+ the register offsets
+To: claudiu beznea <claudiu.beznea@tuxon.dev>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>, Chris Brandt <Chris.Brandt@renesas.com>, 
+	"andi.shyti@kernel.org" <andi.shyti@kernel.org>, "robh@kernel.org" <robh@kernel.org>, 
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
+	"geert+renesas@glider.be" <geert+renesas@glider.be>, "magnus.damm@gmail.com" <magnus.damm@gmail.com>, 
+	"mturquette@baylibre.com" <mturquette@baylibre.com>, "sboyd@kernel.org" <sboyd@kernel.org>, 
+	"p.zabel@pengutronix.de" <p.zabel@pengutronix.de>, 
+	"wsa+renesas@sang-engineering.com" <wsa+renesas@sang-engineering.com>, 
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, 
+	"linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri 28 Jun 2024 at 10:10, Neil Armstrong <neil.armstrong@linaro.org> wrote:
+Hi Claudiu,
 
-> Hi,
+On Fri, Jun 28, 2024 at 10:12=E2=80=AFAM claudiu beznea
+<claudiu.beznea@tuxon.dev> wrote:
+> On 28.06.2024 11:09, Biju Das wrote:
+> >> -----Original Message-----
+> >> From: claudiu beznea <claudiu.beznea@tuxon.dev>
+> >> Sent: Friday, June 28, 2024 9:03 AM
+> >> Subject: Re: [PATCH v2 07/12] i2c: riic: Define individual arrays to d=
+escribe the register offsets
+> >>
+> >>
+> >>
+> >> On 28.06.2024 10:55, Biju Das wrote:
+> >>> Hi Claudiu,
+> >>>
+> >>>> -----Original Message-----
+> >>>> From: claudiu beznea <claudiu.beznea@tuxon.dev>
+> >>>> Sent: Friday, June 28, 2024 8:32 AM
+> >>>> Subject: Re: [PATCH v2 07/12] i2c: riic: Define individual arrays to
+> >>>> describe the register offsets
+> >>>>
+> >>>> Hi, Biju,
+> >>>>
+> >>>> On 28.06.2024 08:59, Biju Das wrote:
+> >>>>> Hi Claudiu,
+> >>>>>
+> >>>>>> -----Original Message-----
+> >>>>>> From: Claudiu <claudiu.beznea@tuxon.dev>
+> >>>>>> Sent: Tuesday, June 25, 2024 1:14 PM
+> >>>>>> Subject: [PATCH v2 07/12] i2c: riic: Define individual arrays to
+> >>>>>> describe the register offsets
+> >>>>>>
+> >>>>>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> >>>>>>
+> >>>>>> Define individual arrays to describe the register offsets. In this
+> >>>>>> way we can describe different IP variants that share the same
+> >>>>>> register offsets but have differences in other characteristics.
+> >>>>>> Commit prepares for the addition
+> >>>> of fast mode plus.
+> >>>>>>
+> >>>>>> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> >>>>>> ---
+> >>>>>>
+> >>>>>> Changes in v2:
+> >>>>>> - none
+> >>>>>>
+> >>>>>>  drivers/i2c/busses/i2c-riic.c | 58
+> >>>>>> +++++++++++++++++++----------------
+> >>>>>>  1 file changed, 31 insertions(+), 27 deletions(-)
+> >>>>>>
+> >>>>>> diff --git a/drivers/i2c/busses/i2c-riic.c
+> >>>>>> b/drivers/i2c/busses/i2c-riic.c index
+> >>>>>> 9fe007609076..8ffbead95492 100644
+> >>>>>> --- a/drivers/i2c/busses/i2c-riic.c
+> >>>>>> +++ b/drivers/i2c/busses/i2c-riic.c
+> >>>>>> @@ -91,7 +91,7 @@ enum riic_reg_list {  };
+> >>>>>>
+> >>>>>>  struct riic_of_data {
+> >>>>>> -        u8 regs[RIIC_REG_END];
+> >>>>>> +        const u8 *regs;
+> >>>>>
+> >>>>>
+> >>>>> Since you are touching this part, can we drop struct and Use u8* as
+> >>>>> device_data instead?
+> >>>>
+> >>>> Patch 09/12 "i2c: riic: Add support for fast mode plus" adds a new m=
+ember to struct
+> >> riic_of_data.
+> >>>> That new member is needed to differentiate b/w hardware versions
+> >>>> supporting fast mode plus based on compatible.
+> >>>
+> >>> Are we sure RZ/A does not support fast mode plus?
+> >>
+> >> From commit description of patch 09/12:
+> >>
+> >> Fast mode plus is available on most of the IP variants that RIIC drive=
+r is working with. The
+> >> exception is (according to HW manuals of the SoCs where this IP is ava=
+ilable) the Renesas RZ/A1H.
+> >> For this, patch introduces the struct riic_of_data::fast_mode_plus.
+> >>
+> >> I checked the manuals of all the SoCs where this driver is used.
+> >>
+> >> I haven't checked the H/W manual?
+> >>
+> >> On the manual I've downloaded from Renesas web site the FMPE bit of RI=
+ICnFER is not available on
+> >> RZ/A1H.
+> >
+> > I just found RZ/A2M manual, it supports FMP and register layout looks s=
+imilar to RZ/G2L.
 >
-> On 26/06/2024 17:27, Jerome Brunet wrote:
->> This patchset adds the setup of the HDMI system clock for HDMI Tx.
->> This is another step in cleaning HDMI Tx and its direct usage of HHI
->> register space. Eventually, this will help remove component usage from
->> the Amlogic display drivers.
->
-> Thanks,
->
-> Beware we will need to keep old DT with new kernel functional for a while,
-> do removal of component & HHI in meson_dw_hdmi would need to wait for multiple
-> kernel releases.
+> I introduced struct riic_of_data::fast_mode_plus because of RZ/A1H.
 
-Oh, I'm aware of the pain DT backward compatibility will be on this one.
-Situation is slightly more complex than the PWM ...
+Do you need to check for that?
 
-I'm not sure how keeping support both for the 'legacy HHI direct access'
-and 'modern API and region' approaches will look like. It's likely to be a
-mess.
+The ICFER_FMPE bit won't be set unless the user specifies the FM+
+clock-frequency.  Setting clock-frequency beyond Fast Mode on RZ/A1H
+would be very wrong.
 
-What I posted so far are things I'm sure of and will not cause issue.
-When I get to the controversial stuff, I'll post an RFC first.
+Gr{oetje,eeting}s,
 
->
-> A migration step would be to add a phandle to hhi right now, so we can drop
-> components earlier, then in a second time add a proper PHY and then mark
-> the hhi reg as deprecated.
+                        Geert
 
-Giving the hhi syscon to HDMI-Tx is solving half the problem.
-IMO, HDMI-TX should just get the HDMI PHY register space in HHI. Indeed
-that could be added now as well, without causing issue to the existing
-DTs and drivers.
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-The display drivers should not directly poke in the HHI bus, nor should it have
-access to the whole bus.
-
-If we are going to take the pain of fixing the DT interface, better do
-it once and for all.
-
-The 2 main HHI offenders are HDMI-Tx and vclk:
-* HDMI-TX: I've got the that mostly sorted out, for an RFC at least.
-* Vclk: Here it is more a matter CCF usage that HHI
-  * The HDMI pll could use the regular DCO/mult-range driver from what I
-    can see
-  * The vclk display would need to get the DCO clock along with all the
-    ODs/divider handle. Without rate propagation, it would be free to
-    recreate the setups it needs. I don't have the full list and I did
-    not spend much time on this yet but that's the idea.
-
->
-> Neil
->
->> Jerome Brunet (2):
->>    arm64: dts: amlogic: gx: correct hdmi clocks
->>    arm64: dts: amlogic: setup hdmi system clock
->>   arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 5 +++++
->>   arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi       | 9 +++++++--
->>   arch/arm64/boot/dts/amlogic/meson-gxl.dtsi        | 9 +++++++--
->>   3 files changed, 19 insertions(+), 4 deletions(-)
->> 
-
--- 
-Jerome
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
