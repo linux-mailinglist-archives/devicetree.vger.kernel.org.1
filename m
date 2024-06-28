@@ -1,281 +1,238 @@
-Return-Path: <devicetree+bounces-81329-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81330-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9541591BFFA
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 15:53:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39EB091C00B
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 15:56:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E46A61F213AF
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 13:53:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AA2401F22032
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 13:56:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 654241E89A;
-	Fri, 28 Jun 2024 13:52:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AD8A1BE871;
+	Fri, 28 Jun 2024 13:56:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="g0dOOupc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pKIAxit7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94C2E15D5A1;
-	Fri, 28 Jun 2024 13:52:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 618E21BE86A;
+	Fri, 28 Jun 2024 13:56:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719582773; cv=none; b=egafKc/11zY4uPxC1SB2M5aM6PdRJWuKFfNyybaZ/t+FMC8cQpIJulOsejfSe6mk4ja5hN++XVPLSgcPh3dxXCRN3IZ8BVLjlchZksbh8OK4eY8HULP6814o7I1xMChTFy08fUqE7cRD6rTt97R+I/CD7hmjq/dpYKvE2yKH1tE=
+	t=1719582976; cv=none; b=WSg4Ul6vitmUW6KH2lEvjf0stZmsfh+Iv2u3KKc6wRIttcD6CYzosyi6WBYrfZFz98oqgzqAsjRPDggCXMwObtiKO0RVc54yGKKDHXaHrGVVejQOwG0tKConf4tFA+jZRxUnvDJJNpo7U+71UAg78CgNTuse0VSEZIDKLoYutk0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719582773; c=relaxed/simple;
-	bh=U1TAumktn6Sm4R3ZOj65CqP7axdosB/bF8DF4p0HZNg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MeBzv8zTeB7pP0nAO1tzR0jTqUooIl/0NyDcvpEZgASiAwijJpdEq2KM7K3Q+rdeuPbvUPgeLthZje7GoBRkY47k9hQK8mFG19vn7w2c7D5Eih7nokjvkjxD6TjiWeaJAQSuBwjH76cyPoatGDCVG7iYYTJgJGqfxEYDxcTAZAA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=g0dOOupc; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
-	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
-	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-	In-Reply-To:References; bh=WHiUc3wKGhPy/FKSmZsZ6rm8aSzCPZ4IGMmq7c4bAes=; b=g0
-	dOOupcZ55sAyN6G38x64E/X2Z8qIMZ2bH6OYpgM/Ya94338pkjUOwkXxKbFURbqfs6PFAQlPOg8Oq
-	92YM3qqT72yS0tgUk77y6MykBOJn7W2poFEF+ZLBdPjxPamqZ62X92/Lgo9vNr1lsBx5VKSc5T/nH
-	YM4eN+MVhTvqgNo=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1sNC1o-001HoU-Vt; Fri, 28 Jun 2024 15:52:40 +0200
-Date: Fri, 28 Jun 2024 15:52:40 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Ayush Singh <ayush@beagleboard.org>
-Cc: Mark Brown <broonie@kernel.org>,
-	Vaishnav M A <vaishnav@beagleboard.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>, Michael Walle <mwalle@kernel.org>,
-	jkridner@beagleboard.org, robertcnelson@beagleboard.org,
-	linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	Ayush Singh <ayushdevel1325@gmail.com>
-Subject: Re: [PATCH v5 0/7] misc: Add mikroBUS driver
-Message-ID: <54c18009-40c6-4c92-852e-6b7117e706a2@lunn.ch>
-References: <20240627-mikrobus-scratch-spi-v5-0-9e6c148bf5f0@beagleboard.org>
- <1edcfd98-e73c-477e-a4ce-98cb41e66ab6@beagleboard.org>
+	s=arc-20240116; t=1719582976; c=relaxed/simple;
+	bh=uuGfVhtrSJSncGQAm5FKxyqOUX2TvLhYQc+8uxapyfo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=dx9rTsBzdBONs9+E5MggAWcogsGO8wRqUxDwf+4dlcKs3aJcg8Gy0HcB9lG7/JLA8IL3w8Q+sH0BUpH/hbvLvf+0Lyq73qpr1IaPdvle5sfmUKHswMdJlvTA40fGm8S0ub+mfvB3R4vgtOflHjZTmgasZwkK/1sHPhtYKQY2070=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pKIAxit7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EAA40C4AF0B;
+	Fri, 28 Jun 2024 13:56:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719582976;
+	bh=uuGfVhtrSJSncGQAm5FKxyqOUX2TvLhYQc+8uxapyfo=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=pKIAxit7mEekCWoFMhO0TwG4DQDi45J3e1COQO25+Uz2iUJqJEaY7bK+Ofho19Blr
+	 IiJpgfngUpxuoa9appozhqnxuy2+gWOojLRFRqQRtSCWHGtPUhpXnUuJ4e78MRPaIn
+	 Zb6tz0Ujczlsb5Ft2yA8jfOVsMOqzSORg8QChg0ZCV8tqeb6PhqNM33F3tJ+3hQsoE
+	 chlXUHrz1Nd85YUgWD6w66P1hsR11nJlXSIqQORocHUbVi1HCz2wM8tJSWu+Gt5p7w
+	 m3LUUs1yfEYDKnKRPP9iv12zVXu8EIJo34PByfK5F42awDbSNO+V3DyzQV78wKAe+n
+	 dL9gWCrPGtvgw==
+Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-24c5ec50da1so105158fac.3;
+        Fri, 28 Jun 2024 06:56:15 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXwbnSpLDuBOFEuRpuuHEW1IXpPuSm1tX9VBli58zONsOMPwfOH9R6bWS8yLc77DcvHawzo7LUsboN2ELcUvrfPjdPjfO6wpgXRROOl0yRSei1Gm06YAsrM1KYB3Qt2AFYAp/F1bv3z1eQWvVwsG4+8Uob0hGy8ULEJuXVWx6Qx+zQn
+X-Gm-Message-State: AOJu0YxdNB3fv20VRBtbnAw4syP58bmP3XjDvdrxJO7DRXCWeBPeoNMI
+	v20UgYUjlqmwrzaZVbpECJfIo2pdSTFq9cyqEC6dqIFW8qZ2BJabL5FdVryPRA90UoqJwvztCO9
+	CESWV4+iyE02UwG0RCwew9IxrlC0=
+X-Google-Smtp-Source: AGHT+IEX7rPoas1TpLj5qVxI/aiEo+17h38Ck3qE1izpJ/wb83v/fdSxe/MggSfJin1xMq2xJL9+GZHmqGCS3QzwsuQ=
+X-Received: by 2002:a05:6870:5589:b0:250:826d:5202 with SMTP id
+ 586e51a60fabf-25cf3f2d0bbmr19118740fac.3.1719582975158; Fri, 28 Jun 2024
+ 06:56:15 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <1edcfd98-e73c-477e-a4ce-98cb41e66ab6@beagleboard.org>
+References: <20240627085451.3813989-1-daniel.lezcano@linaro.org>
+In-Reply-To: <20240627085451.3813989-1-daniel.lezcano@linaro.org>
+From: "Rafael J. Wysocki" <rafael@kernel.org>
+Date: Fri, 28 Jun 2024 15:56:04 +0200
+X-Gmail-Original-Message-ID: <CAJZ5v0iO6MrX3QxAu4Wj4grUL2g7gPPXO3f8PFmZBot-Ud32TQ@mail.gmail.com>
+Message-ID: <CAJZ5v0iO6MrX3QxAu4Wj4grUL2g7gPPXO3f8PFmZBot-Ud32TQ@mail.gmail.com>
+Subject: Re: [PATCH] thermal/core: Introduce user trip points
+To: Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc: rafael@kernel.org, linux-pm@vger.kernel.org, 
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-> 3. Allowing creation of sysfs entries `new_device` and `delete_device`
-> similar to what already exists for I2C, etc.
+On Thu, Jun 27, 2024 at 10:55=E2=80=AFAM Daniel Lezcano
+<daniel.lezcano@linaro.org> wrote:
+>
+> Currently the thermal framework has 4 trip point types:
+>
+> - active : basically for fans (or anything requiring energy to cool
+>   down)
+>
+> - passive : a performance limiter
+>
+> - hot : for a last action before reaching critical
+>
+> - critical : a without return threshold leading to a system shutdown
+>
+> A thermal zone monitors the temperature regarding these trip
+> points. The old way to do that is actively polling the temperature
+> which is very bad for embedded systems, especially mobile and it is
+> even worse today as we can have more than fifty thermal zones. The
+> modern way is to rely on the driver to send an interrupt when the trip
+> points are crossed, so the system can sleep while the temperature
+> monitoring is offloaded to a dedicated hardware.
+>
+> However, the thermal aspect is also managed from userspace to protect
+> the user, especially tracking down the skin temperature sensor. The
+> logic is more complex than what we found in the kernel because it
+> needs multiple sources indicating the thermal situation of the entire
+> system.
+>
+> For this reason it needs to setup trip points at different levels in
+> order to get informed about what is going on with some thermal zones
+> when running some specific application.
+>
+> For instance, the skin temperature must be limited to 43=C2=B0C on a long
+> run but can go to 48=C2=B0C for 10 minutes, or 60=C2=B0C for 1 minute.
+>
+> The thermal engine must then rely on trip points to monitor those
+> temperatures. Unfortunately, today there is only 'active' and
+> 'passive' trip points which has a specific meaning for the kernel, not
+> the userspace. That leads to hacks in different platforms for mobile
+> and embedded systems where 'active' trip points are used to send
+> notification to the userspace. This is obviously not right because
+> these trip are handled by the kernel.
+>
+> This patch introduces the 'user' trip point type where its semantic is
+> simple: do nothing at the kernel level, just send a notification to
+> the user space.
+>
+> Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+> ---
+>  .../devicetree/bindings/thermal/thermal-zones.yaml        | 1 +
+>  drivers/thermal/thermal_core.c                            | 8 ++++++++
+>  drivers/thermal/thermal_of.c                              | 1 +
+>  drivers/thermal/thermal_trace.h                           | 4 +++-
+>  drivers/thermal/thermal_trip.c                            | 1 +
+>  include/uapi/linux/thermal.h                              | 1 +
+>  6 files changed, 15 insertions(+), 1 deletion(-)
+>
+> diff --git a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml=
+ b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
+> index 68398e7e8655..cb9ea54a192e 100644
+> --- a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
+> +++ b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
+> @@ -153,6 +153,7 @@ patternProperties:
+>                type:
+>                  $ref: /schemas/types.yaml#/definitions/string
+>                  enum:
+> +                  - user     # enable user notification
+>                    - active   # enable active cooling e.g. fans
+>                    - passive  # enable passive cooling e.g. throttling cp=
+u
+>                    - hot      # send notification to driver
+> diff --git a/drivers/thermal/thermal_core.c b/drivers/thermal/thermal_cor=
+e.c
+> index 2aa04c46a425..506f880d9aa9 100644
+> --- a/drivers/thermal/thermal_core.c
+> +++ b/drivers/thermal/thermal_core.c
+> @@ -734,6 +734,14 @@ int thermal_bind_cdev_to_trip(struct thermal_zone_de=
+vice *tz,
+>         if (tz !=3D pos1 || cdev !=3D pos2)
+>                 return -EINVAL;
+>
+> +       /*
+> +        * It is not allowed to bind a cooling device with a trip
+> +        * point user type because no mitigation should happen from
+> +        * the kernel with these trip points
+> +        */
+> +       if (trip->type =3D=3D THERMAL_TRIP_USER)
+> +               return -EINVAL;
 
-On the I2C bus, these operate at the device level, you instantiate a
-new I2C device.  I assume here you are actually talking about board
-level operations? So they would be 'new_board', and 'delete_board'
-files in sysfs?
+Maybe print a debug message when bailing out here?
 
-> 
-> 4. Allow using 1-wire-eeprom in a fashion that allows automatic board
-> discovery.
-> 
-> 
-> Let me now introduce the 2 architectures we will be discussing:
-> 
-> 1. mikrobus-connector has phandle to mikrobus-board:
-> 
-> ```
-> 
-> \ {
-> 
->     connector1 {
-> 
->         board = <&board1>;
-> 
->     };
-> 
-> 
->     mikrobus_boards {
-> 
->         board1 {
-> 
->             ...
-> 
->         };
-> 
->     };
-> 
-> };
-> 
-> ```
-> 
-> 
-> 2. mikrobus board is a child node of mikrobus-connector:
-> 
-> ```
-> 
-> \ {
-> 
->     connector1 {
-> 
->         ...
-> 
->         spi {
+A check for "user" trips would need to be added to
+thermal_governor_trip_crossed() and to the .manage() callbacks in the
+power allocator, step-wise and fair-share governors, if I'm not
+mistaken.  Especially fair-share and power allocator should not take
+them into account IMV.
 
-So there would actually be multiple child nodes, one per bus, and then
-maybe a simple-bus for nodes which do not correspond to a bus,
-e.g. gpio-key, gpio-leds, etc.,
-
-> 
->             board1 {
-> 
->                 ...
-> 
->             };
-> 
->         };
-> 
->     };
-> 
-> };
-> 
-> ```
-> 
-> 
-> I will now go over how each of these goals might look like in both of the
-> architecture.
-> 
-> 1. Keeping the device tree properties upstream in a system independent way:
-> 
-> a. mikrobus-connector has phandle to mikrobus-board
-> 
-> It is possible to create an overlay as follows which will work with any
-> system that defines the `mikrobus_boards` node. This node is completely
-> independent of mikroBUS connector and thus does not need to be rewritten (or
-> generated) for each board. There are no problems for system with more than 1
-> mikrobus connector.
-> 
-> ```
-> 
-> &mikrobus_boards {
-> 
->     board2 {
-> 
->         ...
-> 
->     };
-> 
-> 
->     board3 {
-> 
->         ...
-> 
->     };
-> 
-> };
-
-So by default, you have an empty mikrobus_boards node? You then use DT
-overlay to load the needed board into this node, and then update the
-phandle in the connection node to point to the newly loaded node?
-
-> b. mikrobus board is a child node of mikrobus-connector:
-> 
-> Not sure how to do something similar here. The overlay needs to be rewritten
-> (or generated) for each board.
-
-It would be good to explain why...
-
-> Systems with multiple mikrobus connectors
-> will need multiple overlays adding the boards as child node of each
-> connector (with status = "disabled").
-
-Why? Just load the one overlay actually required.
-
-> &connector1 {
-> 
->     spi = {
-> 
->         board 2 {
-> 
->             ...
-> 
->         };
-> 
->         board 3 {
-> 
->             ...
-> 
->         };
-> 
->     };
-> 
-> };
-
-I don't actually understand this description. I was expecting more
-like:
-
-connector1: {
-
-	spi =  {
-	    /* Optional TI TSC2046 touchscreen controller */
-            opt_touch: touchscreen@0 {
-                    compatible = "ti,tsc2046";
-                    spi-max-frequency = <2500000>;
-                    reg = <0>;
-                    pinctrl-0 = <&pmx_gpio_13>;
-                    pinctrl-names = "default";
-                    interrupts-extended = <&gpio0 13 IRQ_TYPE_EDGE_FALLING>;
-            };
-	};
-
-	i2c = {
-	        opt_audio: audio@1a {
-                compatible = "ti,tlv320aic23";
-                reg = <0x1a>;
-        };
-
-	the_rest = {
-        	gpio_keys {
-                    compatible = "gpio-keys";
-                    #address-cells = <1>;
-                    #size-cells = <0>;
-                    pinctrl-0 = <&pmx_reset_button &pmx_USB_copy_button>;
-                    pinctrl-names = "default";
-    
-                    copy {
-                            label = "USB Copy";
-                            linux,code = <KEY_COPY>;
-                            gpios = <&gpio0 15 GPIO_ACTIVE_LOW>;
-                    };
-                    reset {
-                            label = "Reset";
-                            linux,code = <KEY_RESTART>;
-                            gpios = <&gpio0 16 GPIO_ACTIVE_LOW>;
-                    };
-            };
-
-This is completely made up. You probably should use an example of a
-real complex board using multiple busses.
-
-So for each actual bus on Mikrobus, you have a bus node, and then a
-node for everything which is not bus orientated, like gpio-keys.
-
-So the overlay would simply populate these child nodes.
-
-> Maybe it is possible to have special behavior for mikrobus-connector nodes
-> in dt overlay but that will break compatibility with exisiting
-> infrastructure which isn't great.
-
-You have not explain what special behaviour is actually needed.
-
-	Andrew
+> +
+>         /* lower default 0, upper default max_state */
+>         lower =3D lower =3D=3D THERMAL_NO_LIMIT ? 0 : lower;
+>
+> diff --git a/drivers/thermal/thermal_of.c b/drivers/thermal/thermal_of.c
+> index aa34b6e82e26..f6daf921a136 100644
+> --- a/drivers/thermal/thermal_of.c
+> +++ b/drivers/thermal/thermal_of.c
+> @@ -60,6 +60,7 @@ static const char * const trip_types[] =3D {
+>         [THERMAL_TRIP_PASSIVE]  =3D "passive",
+>         [THERMAL_TRIP_HOT]      =3D "hot",
+>         [THERMAL_TRIP_CRITICAL] =3D "critical",
+> +       [THERMAL_TRIP_USER]     =3D "user",
+>  };
+>
+>  /**
+> diff --git a/drivers/thermal/thermal_trace.h b/drivers/thermal/thermal_tr=
+ace.h
+> index df8f4edd6068..739228ecc2e2 100644
+> --- a/drivers/thermal/thermal_trace.h
+> +++ b/drivers/thermal/thermal_trace.h
+> @@ -15,13 +15,15 @@ TRACE_DEFINE_ENUM(THERMAL_TRIP_CRITICAL);
+>  TRACE_DEFINE_ENUM(THERMAL_TRIP_HOT);
+>  TRACE_DEFINE_ENUM(THERMAL_TRIP_PASSIVE);
+>  TRACE_DEFINE_ENUM(THERMAL_TRIP_ACTIVE);
+> +TRACE_DEFINE_ENUM(THERMAL_TRIP_USER);
+>
+>  #define show_tzt_type(type)                                    \
+>         __print_symbolic(type,                                  \
+>                          { THERMAL_TRIP_CRITICAL, "CRITICAL"},  \
+>                          { THERMAL_TRIP_HOT,      "HOT"},       \
+>                          { THERMAL_TRIP_PASSIVE,  "PASSIVE"},   \
+> -                        { THERMAL_TRIP_ACTIVE,   "ACTIVE"})
+> +                        { THERMAL_TRIP_ACTIVE,   "ACTIVE"}),   \
+> +                        { THERMAL_TRIP_USER,     "USER"})
+>
+>  TRACE_EVENT(thermal_temperature,
+>
+> diff --git a/drivers/thermal/thermal_trip.c b/drivers/thermal/thermal_tri=
+p.c
+> index 2a876d3b93aa..a0780bb4ff0d 100644
+> --- a/drivers/thermal/thermal_trip.c
+> +++ b/drivers/thermal/thermal_trip.c
+> @@ -10,6 +10,7 @@
+>  #include "thermal_core.h"
+>
+>  static const char *trip_type_names[] =3D {
+> +       [THERMAL_TRIP_USER] =3D "user",
+>         [THERMAL_TRIP_ACTIVE] =3D "active",
+>         [THERMAL_TRIP_PASSIVE] =3D "passive",
+>         [THERMAL_TRIP_HOT] =3D "hot",
+> diff --git a/include/uapi/linux/thermal.h b/include/uapi/linux/thermal.h
+> index fc78bf3aead7..84e556ace5f5 100644
+> --- a/include/uapi/linux/thermal.h
+> +++ b/include/uapi/linux/thermal.h
+> @@ -14,6 +14,7 @@ enum thermal_trip_type {
+>         THERMAL_TRIP_PASSIVE,
+>         THERMAL_TRIP_HOT,
+>         THERMAL_TRIP_CRITICAL,
+> +       THERMAL_TRIP_USER,
+>  };
+>
+>  /* Adding event notification support elements */
+> --
+> 2.43.0
+>
 
