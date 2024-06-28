@@ -1,57 +1,81 @@
-Return-Path: <devicetree+bounces-81120-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81121-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 052B291B520
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 04:40:44 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 871AA91B527
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 04:47:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9A0411F2280D
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 02:40:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 12273B21D17
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 02:47:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 107F0182B9;
-	Fri, 28 Jun 2024 02:40:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD14817C66;
+	Fri, 28 Jun 2024 02:47:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="fGJNLona"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="nW1FkHOn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.16])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AFFE17F8;
-	Fri, 28 Jun 2024 02:40:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.16
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B038D1C6A4;
+	Fri, 28 Jun 2024 02:47:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719542438; cv=none; b=hHVcOMMnDK71xbBshhDpyZBX8BIESBfoLOl0/GV8CMwKSTApONncpwk7Ejj0djVyG5geFvKm+r5SQapKGH7V71iuGub00eFxEqwhhBYOlh+3R4uo3+kSQrEuUdc6Dz/O7OymGE1ilI/T1dDLE4znOVsWWMYd6pSLVVDPyX38UoA=
+	t=1719542865; cv=none; b=kpC0jrp2MzhOCz/2sbCKQ3rGgr63IA8a8RS9/FtOBqJoyKNA+e9buzO8F7l9JnDTHKlL1BoNLAkcFwSJv8HD7E3o8PAlj84ELTmf0YTGjZAGv6LhUpkKO2Q0MYmq8o9sgEkJnshNdB0c/CjKAZcDC116g+z4t8KDitJqLyd/G30=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719542438; c=relaxed/simple;
-	bh=74dj5OWeDe2N1LLXBqrERSuPwGSNMZQpqkVO1KRNPrQ=;
+	s=arc-20240116; t=1719542865; c=relaxed/simple;
+	bh=RugJsmSoFQ0Opqso7x3i6LNEuu1OqPbWR4QAu9YtPQI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BwEjqsTfzY2IuQmdURyqDePvx9GnXI1SySRWPKc360wGrMgia0XlHpg8D/raU49viYStJ7GuuFA0xqe10CYxK60cq79smtUQ9HoVe+aqppncqPJdxH4QLpanq5uBjkK44yqro7u6m/O9h+/jttfagSYXgxCjpjDTpOfgvfhVJA0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=fGJNLona; arc=none smtp.client-ip=220.197.32.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=0GEOf0v7br4hfLswkDuL3KNYPqNgLFgdWMvq96UChp4=;
-	b=fGJNLonaHFhaASh0ziDtDROZK0xCloH2/0f63CsFqireU3V/9qfesLyghBDmPy
-	6IbXqOsD3X9nhGv1PzLv5cSDzMv3vcA4+zTZO7k1D7dpJEg7nitY5RN12iaNKay5
-	Ym5AwMY/e5/0tfO0gyyeyB67adjZOastufCVYJpQuNYIg=
-Received: from dragon (unknown [114.218.218.47])
-	by gzsmtp1 (Coremail) with SMTP id Mc8vCgD3X4h+In5mbCofAA--.55796S3;
-	Fri, 28 Jun 2024 10:40:00 +0800 (CST)
-Date: Fri, 28 Jun 2024 10:39:58 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Vitor Soares <ivitro@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Vitor Soares <vitor.soares@toradex.com>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] arm64: dts: imx8mm-verdin: add TPM device
-Message-ID: <Zn4ifj63+OwQPXx7@dragon>
-References: <20240627104839.645778-1-ivitro@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=MNd6EEkojHfe7RqcNnt6FiMWN1ZSS7lBelRmJkPaBjkdrdhnSyI7B7Zv5kn+qwxYvxt0B0mohtsk/7bgC1OvJKXTZcapYkNReDU87vOqIWh3rQAWD8CMJ+ku/d2lkrJZ5vIHEZK0SwawcvFZ0qBoulO563KwiKDIwLlJTqWfCSg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=nW1FkHOn; arc=none smtp.client-ip=198.175.65.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1719542864; x=1751078864;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=RugJsmSoFQ0Opqso7x3i6LNEuu1OqPbWR4QAu9YtPQI=;
+  b=nW1FkHOnP1gqYRdE4mrG8BYvthA7CXPkNmSTaDM2gn+0QvM4OSYl7+vL
+   Hu1maylCNZmgqxTXJdUn2W5+h2s3WFcvbZEwg5csnsECBNrwlNDoNWJjX
+   ZkULuCWQo27coMCjdHQO+6/1qY8ULnNH4nwny1rv3UG7L/9ZsXGO58OjH
+   KUwQgPlXtLpFodr99GZ9i5yGCtHcvi+STmY7u3G8HFLuJ9CcrilfT2yPh
+   g0DkKUKDP8uumtRIWo4OqS6wf0d05ax2liDBQ5P3+sPjT5+olbkpuqjzn
+   F+4ptPaGQ19x/dNvqQIysRi3DJ1kNvTn9PjH8bELJyzjtOY8lswkd2Bj7
+   w==;
+X-CSE-ConnectionGUID: Y5NZR/XLSWuKhNTxuDTtrA==
+X-CSE-MsgGUID: 7GeDU7PMR2iTKj7rfJie9w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11116"; a="16841296"
+X-IronPort-AV: E=Sophos;i="6.09,167,1716274800"; 
+   d="scan'208";a="16841296"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jun 2024 19:47:43 -0700
+X-CSE-ConnectionGUID: 0C3QM5UYRGaMVHm8ynMGug==
+X-CSE-MsgGUID: 6Ri0fHKYTxyAa0KtLme04A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,167,1716274800"; 
+   d="scan'208";a="49554408"
+Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
+  by orviesa005.jf.intel.com with ESMTP; 27 Jun 2024 19:47:39 -0700
+Received: from kbuild by 68891e0c336b with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sN1eC-000Gjq-2k;
+	Fri, 28 Jun 2024 02:47:36 +0000
+Date: Fri, 28 Jun 2024 10:47:15 +0800
+From: kernel test robot <lkp@intel.com>
+To: Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>, sboyd@kernel.org,
+	andersson@kernel.org, bjorn.andersson@linaro.org,
+	david.brown@linaro.org, devicetree@vger.kernel.org,
+	jassisinghbrar@gmail.com, linux-arm-msm@vger.kernel.org,
+	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-remoteproc@vger.kernel.org, mark.rutland@arm.com,
+	mturquette@baylibre.com, ohad@wizery.com, robh@kernel.org,
+	sricharan@codeaurora.org
+Cc: oe-kbuild-all@lists.linux.dev, gokulsri@codeaurora.org
+Subject: Re: [PATCH v9 8/8] arm64: dts: qcom: Enable Q6v5 WCSS for ipq8074 SoC
+Message-ID: <202406281044.3vIaThJc-lkp@intel.com>
+References: <20240621114659.2958170-9-quic_gokulsri@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,93 +84,50 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240627104839.645778-1-ivitro@gmail.com>
-X-CM-TRANSID:Mc8vCgD3X4h+In5mbCofAA--.55796S3
-X-Coremail-Antispam: 1Uf129KBjvJXoWxJrW7WFWkJryftw4fWr4Uurg_yoW5Jr4fpr
-	sxAr4rJr4xJrsxJ3s0qr47Cr9I9an7ArsF9w1akry8tr1FqFy8tF17Gr4fur4q9FZ5Aw4S
-	qF17ZFy8uFnxAw7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07j1KZXUUUUU=
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiBAAMZWZqryPkjwAAsG
+In-Reply-To: <20240621114659.2958170-9-quic_gokulsri@quicinc.com>
 
-On Thu, Jun 27, 2024 at 11:48:39AM +0100, Vitor Soares wrote:
-> From: Vitor Soares <vitor.soares@toradex.com>
-> 
-> Add TPM device found on Verdin iMX8M Mini PID4 0090 variant.
-> 
-> While adding the node, rename `pinctrl_pmic_tpm_ena` to
-> `pinctrl_tpm_spi_cs`.
-> 
-> Signed-off-by: Vitor Soares <vitor.soares@toradex.com>
-> ---
-> v1->v2
->   - rename `pinctrl_pmic_tpm_ena` to `pinctrl_tpm_spi_cs`.
-> 
->  .../boot/dts/freescale/imx8mm-verdin.dtsi      | 18 ++++++++++++------
->  1 file changed, 12 insertions(+), 6 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
-> index 98544741ce17..6e066bd5d982 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
-> @@ -228,15 +228,16 @@ &ecspi2 {
->  	pinctrl-0 = <&pinctrl_ecspi2>;
->  };
->  
-> -/* Verdin CAN_1 (On-module) */
-> +/* On-module SPI */
->  &ecspi3 {
->  	#address-cells = <1>;
->  	#size-cells = <0>;
-> -	cs-gpios = <&gpio5 25 GPIO_ACTIVE_LOW>;
-> +	cs-gpios = <&gpio5 25 GPIO_ACTIVE_LOW>, <&gpio4 19 GPIO_ACTIVE_LOW>;
->  	pinctrl-names = "default";
-> -	pinctrl-0 = <&pinctrl_ecspi3>;
-> +	pinctrl-0 = <&pinctrl_ecspi3>, <&pinctrl_tpm_spi_cs>;
->  	status = "okay";
->  
-> +	/* Verdin CAN_1 */
->  	can1: can@0 {
->  		compatible = "microchip,mcp251xfd";
->  		clocks = <&clk40m>;
-> @@ -246,6 +247,12 @@ can1: can@0 {
->  		reg = <0>;
->  		spi-max-frequency = <8500000>;
->  	};
-> +
-> +	verdin_som_tpm: tpm@1 {
-> +		compatible = "atmel,attpm20p", "tcg,tpm_tis-spi";
-> +		reg = <0x1>;
-> +		spi-max-frequency = <36000000>;
-> +	};
->  };
->  
->  /* Verdin ETH_1 (On-module PHY) */
-> @@ -808,8 +815,7 @@ &iomuxc {
->  	pinctrl-0 = <&pinctrl_gpio1>, <&pinctrl_gpio2>,
->  		    <&pinctrl_gpio3>, <&pinctrl_gpio4>,
->  		    <&pinctrl_gpio7>, <&pinctrl_gpio8>,
-> -		    <&pinctrl_gpio_hog1>, <&pinctrl_gpio_hog2>, <&pinctrl_gpio_hog3>,
-> -		    <&pinctrl_pmic_tpm_ena>;
-> +		    <&pinctrl_gpio_hog1>, <&pinctrl_gpio_hog2>, <&pinctrl_gpio_hog3>;
->  
->  	pinctrl_can1_int: can1intgrp {
->  		fsl,pins =
-> @@ -1111,7 +1117,7 @@ pinctrl_sai5: sai5grp {
->  	};
->  
->  	/* control signal for optional ATTPM20P or SE050 */
-> -	pinctrl_pmic_tpm_ena: pmictpmenagrp {
-> +	pinctrl_tpm_spi_cs: pmictpmenagrp {
+Hi Gokul,
 
-The node name should probably be updated to match pinctrl label?
+kernel test robot noticed the following build warnings:
 
-Shawn
+[auto build test WARNING on remoteproc/rproc-next]
+[also build test WARNING on clk/clk-next robh/for-next linus/master v6.10-rc5 next-20240627]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
->  		fsl,pins =
->  			<MX8MM_IOMUXC_SAI1_TXD7_GPIO4_IO19		0x106>;	/* PMIC_TPM_ENA */
->  	};
-> -- 
-> 2.34.1
-> 
+url:    https://github.com/intel-lab-lkp/linux/commits/Gokul-Sriram-Palanisamy/remoteproc-qcom-Add-PRNG-proxy-clock/20240625-162317
+base:   git://git.kernel.org/pub/scm/linux/kernel/git/remoteproc/linux.git rproc-next
+patch link:    https://lore.kernel.org/r/20240621114659.2958170-9-quic_gokulsri%40quicinc.com
+patch subject: [PATCH v9 8/8] arm64: dts: qcom: Enable Q6v5 WCSS for ipq8074 SoC
+config: arm64-randconfig-051-20240627 (https://download.01.org/0day-ci/archive/20240628/202406281044.3vIaThJc-lkp@intel.com/config)
+compiler: clang version 19.0.0git (https://github.com/llvm/llvm-project ad79a14c9e5ec4a369eed4adf567c22cc029863f)
+dtschema version: 2024.6.dev2+g3b69bad
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240628/202406281044.3vIaThJc-lkp@intel.com/reproduce)
 
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202406281044.3vIaThJc-lkp@intel.com/
+
+dtcheck warnings: (new ones prefixed by >>)
+   arch/arm64/boot/dts/qcom/ipq8074-hk01.dtb: phy@59000: 'vdda-pll-supply' is a required property
+   	from schema $id: http://devicetree.org/schemas/phy/qcom,qusb2-phy.yaml#
+   arch/arm64/boot/dts/qcom/ipq8074-hk01.dtb: phy@59000: 'vdda-phy-dpdm-supply' is a required property
+   	from schema $id: http://devicetree.org/schemas/phy/qcom,qusb2-phy.yaml#
+   arch/arm64/boot/dts/qcom/ipq8074-hk01.dtb: phy@79000: 'vdd-supply' is a required property
+   	from schema $id: http://devicetree.org/schemas/phy/qcom,qusb2-phy.yaml#
+   arch/arm64/boot/dts/qcom/ipq8074-hk01.dtb: phy@79000: 'vdda-pll-supply' is a required property
+   	from schema $id: http://devicetree.org/schemas/phy/qcom,qusb2-phy.yaml#
+   arch/arm64/boot/dts/qcom/ipq8074-hk01.dtb: phy@79000: 'vdda-phy-dpdm-supply' is a required property
+   	from schema $id: http://devicetree.org/schemas/phy/qcom,qusb2-phy.yaml#
+>> arch/arm64/boot/dts/qcom/ipq8074-hk01.dtb: /soc@0/remoteproc@cd00000: failed to match any schema with compatible: ['qcom,ipq8074-wcss-pil']
+--
+>> arch/arm64/boot/dts/qcom/ipq8074-hk10-c1.dtb: /soc@0/remoteproc@cd00000: failed to match any schema with compatible: ['qcom,ipq8074-wcss-pil']
+--
+>> arch/arm64/boot/dts/qcom/ipq8074-hk10-c2.dtb: /soc@0/remoteproc@cd00000: failed to match any schema with compatible: ['qcom,ipq8074-wcss-pil']
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
