@@ -1,188 +1,106 @@
-Return-Path: <devicetree+bounces-81422-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81423-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6539A91C307
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 17:58:17 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CD9691C314
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 18:01:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1B072283D8A
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 15:58:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BC030B22850
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 16:01:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 255E01C68B9;
-	Fri, 28 Jun 2024 15:58:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3939158DDC;
+	Fri, 28 Jun 2024 16:00:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="OSxY7Xll"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D7ZgCR7W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E7611DDCE;
-	Fri, 28 Jun 2024 15:58:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4B77182B9;
+	Fri, 28 Jun 2024 16:00:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719590294; cv=none; b=SNBt9EoSZmwfeDZ7mVqL01uwEp1L2IR/48sOxKOkiWHIu0FZ3xm1sX1M7KNli499WdbXxAbr+zvQ4w7YHEFUuXu6ecT+gh03DS5Xz+xq8uxPniK8B9oqPpD6XSD4Ay6DUFhoB7lIBZ/9XZa/j5TBjhVWLX1xP5rwV7wKdcp5L9E=
+	t=1719590443; cv=none; b=eb1RMUAagDVlG91eHgS3fXHdM2CG+IJtBFqXaXi//bFQQCYADAvbrDyAXqi9bcpmvIX0qCK9e6k40BOhwxDhtPMeOFFrwGlJqOmoWqHtgOXXvx30OQ4RDnNWddaePPXEVk29uXmxrqA1Ute+K+QBLIJU12NVArMOMqPX0c9vooI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719590294; c=relaxed/simple;
-	bh=qSyfUZRhIYm81WysBaE9QTBFV50mLFB3nk25UK46qyA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Wp075KI/ySHfGghIFsvPlsvk5SpUchCYadx1JAdpyhyt/CqVn6yZkrZg31qudXaZQMJ5HbJiBZrjicrqsXMvLBUO8uag9VfrKtJiSLXzTFNI/QhTIZWfhj6GPT6JaIBL4p2qMtdT3sd9l56aqJMcg886cj7cJgP3SfN4C7GiSaA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=OSxY7Xll; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 45SFvr26011342;
-	Fri, 28 Jun 2024 10:57:53 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1719590273;
-	bh=1WLmlIL5ljAVKXiYskw3f7MwXsEfMQXSwRhFlqHHNtU=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=OSxY7XllP/UBKGNuyCwEqtB2tr0G77ZSkUw9UOl5WWEh5EBtdhDXhWHs4wO/tYCZr
-	 WCmgnfHVRGPBk5ju7y6XgyFdbAouWZeLIQ8eQOloIc57a8h0q99uu7beZhFYYh05sw
-	 /SWFRBc2P7RGAChkZS4cbjVAKe6fKclnBPSCZrkU=
-Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 45SFvr7o012400
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 28 Jun 2024 10:57:53 -0500
-Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 28
- Jun 2024 10:57:53 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 28 Jun 2024 10:57:53 -0500
-Received: from [172.24.227.193] (devarsht.dhcp.ti.com [172.24.227.193] (may be forged))
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 45SFvlHh028474;
-	Fri, 28 Jun 2024 10:57:48 -0500
-Message-ID: <64b78ba2-776c-1de6-4c13-001d11000ff0@ti.com>
-Date: Fri, 28 Jun 2024 21:27:46 +0530
+	s=arc-20240116; t=1719590443; c=relaxed/simple;
+	bh=d9+vGavIHjuofdvT9YcleeT1YhLvXjb51TCcEY2RgGI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QG6p5I7mWbETR8k5QuCwF89wMK8zeEUK6QTUR9Oc6Fv3abVsoqdd+KjswDl3PquCrbzbyJYum/HeoLvuNeYATu4sdceNfClN6880Z/UBRx3Dem69xZIlPmX+ICP6OuH9TXIWp49/955akJknUQNKQJXPZ/YVYDfLY4n+oi/pqOs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D7ZgCR7W; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8531DC116B1;
+	Fri, 28 Jun 2024 16:00:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719590443;
+	bh=d9+vGavIHjuofdvT9YcleeT1YhLvXjb51TCcEY2RgGI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=D7ZgCR7W1RR8XTrsAVAvb9of2sucd2e/K7kgGry628m8JzAo1AVQQ3GIflWbdACVL
+	 YStgSOV9OrFI0jajAUxoKcPucGwGuKhuROG6JYZGBE+8K1KrVnSMrmo8CHlXp6ssJg
+	 8CQh6QBXjXLkAXk5V1L5PJSopXMRP3G2KfvH54DxcqRE0NxMIdkkI7/YcHIKSQoQC0
+	 gtGKYP1Deu1YwN0XY5+eBqUtU5DB7ENCUkQtoaKQ75/KMA89c+XLk7LLm8IPQCcFKb
+	 JVFwG7p/+SLFGmKDDCoTwrwzVdRaUGmRBRl7eldy6YWTnC6eRu2STatYDtcuvv5iLL
+	 TrUuypIzv/9IQ==
+Date: Fri, 28 Jun 2024 17:00:37 +0100
+From: Conor Dooley <conor@kernel.org>
+To: iansdannapel@gmail.com
+Cc: Moritz Fischer <mdf@kernel.org>, Wu Hao <hao.wu@intel.com>,
+	Xu Yilun <yilun.xu@intel.com>, Tom Rix <trix@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko.stuebner@cherry.de>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Sebastian Reichel <sre@kernel.org>,
+	Chris Morgan <macromorgan@hotmail.com>,
+	Michael Riesch <michael.riesch@wolfvision.net>,
+	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+	Andre Przywara <andre.przywara@arm.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	linux-fpga@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 3/3] dt-bindings: vendor-prefix: Add prefix for
+ Efinix, Inc.
+Message-ID: <20240628-hash-prior-4efcc411aeb6@spud>
+References: <20240620144217.124733-1-iansdannapel@gmail.com>
+ <20240628152348.61133-1-iansdannapel@gmail.com>
+ <20240628152348.61133-4-iansdannapel@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 0/3] Add global CMA reserve area
-Content-Language: en-US
-To: Andrew Davis <afd@ti.com>, Randolph Sapp <rs@ti.com>, <nm@ti.com>,
-        <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC: <praneeth@ti.com>, <a-bhatia1@ti.com>, <j-luthra@ti.com>,
-        <b-brnich@ti.com>, <detheridge@ti.com>, <p-mantena@ti.com>,
-        <vijayp@ti.com>, "Khasim, Syed Mohammed" <khasim@ti.com>
-References: <20240613150902.2173582-1-devarsht@ti.com>
- <D1ZXO8F3XN2I.3CTTE245I0TYY@ti.com>
- <24c0ed06-3c32-4cc3-922c-4717d35a1112@ti.com>
-From: Devarsh Thakkar <devarsht@ti.com>
-In-Reply-To: <24c0ed06-3c32-4cc3-922c-4717d35a1112@ti.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-
-Hi Andrew, Vignesh,
-
-On 24/06/24 22:03, Andrew Davis wrote:
-> On 6/14/24 12:58 PM, Randolph Sapp wrote:
->> On Thu Jun 13, 2024 at 10:08 AM CDT, Devarsh Thakkar wrote:
->>> Add global CMA reserve area for AM62x, AM62A and AM62P SoCs.
->>> These SoCs do not have MMU and hence require contiguous memory pool to
->>> support various multimedia use-cases.
->>>
->>> Brandon Brnich (1):
->>>    arm64: dts: ti: k3-am62p5-sk: Reserve 576 MiB of global CMA
->>>
->>> Devarsh Thakkar (2):
->>>    arm64: dts: ti: k3-am62x-sk-common: Reserve 128MiB of global CMA
->>>    arm64: dts: ti: k3-am62a7-sk: Reserve 576MiB of global CMA
->>>
->>>   arch/arm64/boot/dts/ti/k3-am62a7-sk.dts        | 9 +++++++++
->>>   arch/arm64/boot/dts/ti/k3-am62p5-sk.dts        | 7 +++++++
->>>   arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi | 8 ++++++++
->>>   3 files changed, 24 insertions(+)
->>
->> I'm still a little torn about putting this allocation into the device tree
->> directly as the actual required allocation size depends on the task.
->>
-> 
-> That is the exact reason this does not belong in DT. For everyone *not*
-> using the most extreme case (12x decodes at the same time), this is
-> all wasted space. If one is running out of CMA, they can add more on
-> the kernel cmdline.
-> 
-
-I disagree with this. The 12x decode for 480p is not an extreme use-case this
-is something VPU is capable to run at optimum frame-rate (12x 1080p it can't)
-and as the AM62A7 is meant to be AI + multimedia centric device, per the
-device definition we were given the requirements to support a list of
-multimedia use-cases which should work out of box and 12x decode for 480p was
-one of them as device is very much capable of doing that with optimum
-performance and I don't think it is right to change these requirements on the fly.
-
-The AM62A7 board has 4 GiB of DDR and we have been using this CMA value since
-more than a year, I have never heard anyone complain about out of memory or
-CMA starvation and it suffices to requirements of *most use-cases*, but if for
-some specific use-case it doesn't suffice, user can change it via kernel cmdline.
-
-The kernelcmdline suggestion doesn't suffice out of box experience required,
-we don't want to ask the user to reboot the board everytime they run out of CMA.
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="++Rd30xAIlfdFz2F"
+Content-Disposition: inline
+In-Reply-To: <20240628152348.61133-4-iansdannapel@gmail.com>
 
 
->> If it's allowed though, this series is fine for introducing those changes. This
->> uses the long-tested values we've been using on our tree for a bit now. The
->> only
->> thing that's a little worrying is the missing range definitions for devices
->> with
->> more than 32bits of addressable memory as Brandon has pointed out. Once that's
->> addressed:
->>
->> Reviewed-by: Randolph Sapp <rs@ti.com>
->>
->> Specifying these regions using the kernel cmdline parameter via u-boot was
->> brought up as a potential workaround. This is fine until you get into distro
->> boot methods which will almost certainly attempt to override those. I don't
->> know. Still a little odd. Curious how the community feels about it.
->>
->> Technically the user or distro can still override it with the cmdline parameter
->> if necessary, so this may be the best way to have a useful default.
->>
-> 
+--++Rd30xAIlfdFz2F
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Unlike above, this solution is independent of distro as it should be as we
-want that all the supported multimedia use-cases should work out of box. This
-solution is nothing illegal as CMA region carveouts are not a kernel
-deprecated feature.
+On Fri, Jun 28, 2024 at 05:23:48PM +0200, iansdannapel@gmail.com wrote:
+> From: Ian Dannapel <iansdannapel@gmail.com>
+>=20
+> Add entry for Efinix, Inc. (https://www.efinixinc.com/)
+>=20
+> Signed-off-by: Ian Dannapel <iansdannapel@gmail.com>
 
-> The most useful default is one that doesn't eat 576 MiB of memory "just in case".
-> Needing that much CMA is the exception case and should be the one that requires
-> adding something to the kernel cmdline.
-> 
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-I disagree with this, I would have agreed if this point was made in context of
-generic device, but we are forgetting here that AM62A7 is a AI+multimedia
-centric device and customers expect multimedia use-cases to work out of box.
+--++Rd30xAIlfdFz2F
+Content-Type: application/pgp-signature; name="signature.asc"
 
-We have 4 GiB RAM and if carving out 576 MiB is helping achieve all major
-multimedia use-cases then what's the problem ? What exactly is failing for you
-? If some specific scenarios are getting hurt then in that case overlays or
-kernel cmdline option can be used to override the cma.
+-----BEGIN PGP SIGNATURE-----
 
-I feel we are over-complicating things here and going back-and-forth each
-cycle even though there are no competing alternatives present today.
-And this blocks out of box experience, as today even the basic HDMI and GPU
-use-cases don't work out of box.
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZn7eJQAKCRB4tDGHoIJi
+0t8gAP4p60AjNbDpk3hf65X2ivbOdXhL6s3iRXN8vLWp6k7TgwEA7D/ZwuyqkDAm
+Tf/kqqN12Tje3F4e97Kr2c9hOkF7JQI=
+=Rxew
+-----END PGP SIGNATURE-----
 
-I had also discussed around this with community on last OSS summit as
-discussed here [1] were it was suggested too to use this solution as adopted
-by other vendors.
-
-[1]: https://lore.kernel.org/all/0eee0424-f177-808f-3a86-499443155ddb@ti.com/
-
-Regards
-Devarsh
+--++Rd30xAIlfdFz2F--
 
