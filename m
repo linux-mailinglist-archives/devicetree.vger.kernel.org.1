@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-81162-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81163-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A60CE91B83A
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 09:25:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C61591B83E
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 09:27:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 24A941F21896
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 07:25:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B44201C20BAF
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 07:27:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E6B513E409;
-	Fri, 28 Jun 2024 07:24:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A876613EFEF;
+	Fri, 28 Jun 2024 07:27:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P0aA1pgD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HxYfUthh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16556558BB;
-	Fri, 28 Jun 2024 07:24:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 777C213E3FD;
+	Fri, 28 Jun 2024 07:27:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719559498; cv=none; b=WOSci48z5Aaep69BWgk+pIxoYS+8sVlkR7MaoIq/mskpwbW3JkfFVdarIuNNz3WAujLyUgm8GuxanurIihRfyZ53+r4EnE9pfzkTX49GWvlk7h+nkhBluL7dRVEwuHrIJelPbij8uD2JGDH/ZmSX6RdNUezT9i6RAGO2ccYCvzk=
+	t=1719559640; cv=none; b=ixbw4Nraw5wadbBLZ9a7POQk5REDySoFzplBWrfjhSz1db6FFqwcSAVzDBtMBClet8Z06KMvVM7BalBO+GOzyMWH1ZVBgTXJSWlsWs5f212BvRuXYZff4tricbYsZa7N0RmMY/teLy856g+OYAJJbS4F1JDKgRei7l1RSNZvVlo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719559498; c=relaxed/simple;
-	bh=M7v4UiGH6tVUECVROSIjJLXmbgvVsk07DNnV1qQMklw=;
+	s=arc-20240116; t=1719559640; c=relaxed/simple;
+	bh=egkyfMszya5WTVA6DXG7jP6/5qLLtFmBuBhbT56FZ90=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TVN0rSwvyndpXpJf8om3cn9n4+hm+RPUiI8nuW8D4qbsqhZSVu4cbIOT/EiKSHukWP7j4UG5BloV4sjDEOR3QmzX3rzK4um2fCZweoPB7TzBOD8mi4xFO4LS2SLI5VYD5bvtafUwrzAqWyvDLkMneu1sfxcB04W+OTKbeRMdUG0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P0aA1pgD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9AC97C116B1;
-	Fri, 28 Jun 2024 07:24:54 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=mysk8Km/k581NazPnuFz1x8RhGvsxJsPeD9/YU4LIhvHtD7qGIwvx+HXYNT10qVjgLD74CVcYJ6hAdojsLvkUT+NJkQ3MvGDdGcQo6oP83WeJVrmxjMp9AumzoPwQRQ/TNM59/k9b1L2tKAquDexZY6c6xtKCgBh5XGK0ZZB7ns=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HxYfUthh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CFB27C116B1;
+	Fri, 28 Jun 2024 07:27:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719559497;
-	bh=M7v4UiGH6tVUECVROSIjJLXmbgvVsk07DNnV1qQMklw=;
+	s=k20201202; t=1719559640;
+	bh=egkyfMszya5WTVA6DXG7jP6/5qLLtFmBuBhbT56FZ90=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=P0aA1pgDzamPYIv0yLAcM72XRj73ygv81blYgj7eTUKFStQc2FZ5Xq48A+7cnhp/S
-	 DnJid6njTTW2/74GH0DnrSHdCpYJPDjYfmN0cFHCTTvylrNOBhSRquI25lr9K0LGv+
-	 1Ha78DpDGPLRo/e7N94Cj3GJJt4KWGfWjRfNRmkw6zVCD8SXw7w2/y6KwCugYQvYcM
-	 fsrnUh/xh0E2nRVhIYudihU1YlTJ0IKPrls7K/kPQbE4k+Kd0VGR+QdZNC5oBzTEbl
-	 4TQ+2jrq7NbD0GkpDCk1/UOQU8WtRLNzoAr8y5ToypOzEnruiPJ+EgYcYqs0VdbAcG
-	 GurV0OdgVfRNQ==
-Message-ID: <72c29785-eb7a-4cc8-a74c-3aad50129a23@kernel.org>
-Date: Fri, 28 Jun 2024 09:24:52 +0200
+	b=HxYfUthhJxiBTULc+iPKabR34IjTYKzUUqM/U5QFneIXO1eJArG5yRZ7hmkXZHODT
+	 ISVOLLv/abB7mB7jgTmi1abUdejTov//zRJ3OzqNR2rY1+7E45RMxZ74KpQ7njuyAQ
+	 7tBsfLOTzHhzDKG+K3GtrPgA9y6ewJN0yfp6NSpLA1uwrqNaDo5gw/+wocV7YXTyye
+	 Mk77xiMNpxq9MXA7QovLwDiTZVratlQNeP+i2VTZpctd4KDrO3lyjeEDgP15blz4ec
+	 MGxiSP2vQv6VK+xrBi904XTQSs6F7Sw5XPUWCx7jyfIjJJmfa823LWLRx/NGmBsy6L
+	 xQFII3ezgj+sg==
+Message-ID: <d8df3cd5-c602-4693-b78a-63a963aa6522@kernel.org>
+Date: Fri, 28 Jun 2024 09:27:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/1] dt-bindings: fsl-qdma: fix interrupts 'if' check
- logic
-To: Frank Li <Frank.Li@nxp.com>, Vinod Koul <vkoul@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- "open list:DMA GENERIC OFFLOAD ENGINE SUBSYSTEM"
- <dmaengine@vger.kernel.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
-Cc: imx@lists.linux.dev
-References: <20240627221217.713633-1-Frank.Li@nxp.com>
-Content-Language: en-US
+Subject: Re: [PATCH v1] dt-bindings: clock: rk3188-cru-common: remove
+ CLK_NR_CLKS
+To: Johan Jonker <jbx6244@gmail.com>, heiko@sntech.de
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <6f21c09b-e8d2-4749-aca6-572c79df775d@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -106,60 +103,35 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240627221217.713633-1-Frank.Li@nxp.com>
+In-Reply-To: <6f21c09b-e8d2-4749-aca6-572c79df775d@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 28/06/2024 00:12, Frank Li wrote:
-> All compatible string include 'fsl,ls1021a-qdma'. Previous if check are
-> always true.
+On 27/06/2024 23:17, Johan Jonker wrote:
+> CLK_NR_CLKS should not be part of the binding.
+> Remove since the kernel code no longer uses it.
+
+Please wrap neither too early nor over the limit. Not one sentence per line.
+
+
+
 > 
-> if:
->   properties:
->     compatible:
->       contains:
->        enum:
->          - fsl,ls1021a-qdma
-> 
-> Change to check other compatible strings to get correct logic and fix
-> below CHECK_DTB warnings.
-> 
-> arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var1.dtb:
-> dma-controller@8380000: interrupts: [[0, 43, 4], [0, 251, 4], [0, 252, 4], [0, 253, 4], [0, 254, 4]] is too long
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
 > ---
->  Documentation/devicetree/bindings/dma/fsl-qdma.yaml | 10 +++++++++-
->  1 file changed, 9 insertions(+), 1 deletion(-)
+>  include/dt-bindings/clock/rk3188-cru-common.h | 2 --
+>  1 file changed, 2 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/dma/fsl-qdma.yaml b/Documentation/devicetree/bindings/dma/fsl-qdma.yaml
-> index 25e410a149fce..48dcf1d1f25ce 100644
-> --- a/Documentation/devicetree/bindings/dma/fsl-qdma.yaml
-> +++ b/Documentation/devicetree/bindings/dma/fsl-qdma.yaml
-> @@ -92,8 +92,16 @@ allOf:
->          compatible:
->            contains:
->              enum:
-> -              - fsl,ls1021a-qdma
-> +              - fsl,ls1028a-qdma
-> +              - fsl,ls1043a-qdma
-> +              - fsl,ls1046a-qdma
->      then:
-> +      properties:
-> +        interrupts:
+> diff --git a/include/dt-bindings/clock/rk3188-cru-common.h b/include/dt-bindings/clock/rk3188-cru-common.h
+> index afad90680fce..01e14ab252a7 100644
+> --- a/include/dt-bindings/clock/rk3188-cru-common.h
+> +++ b/include/dt-bindings/clock/rk3188-cru-common.h
+> @@ -132,8 +132,6 @@
+>  #define HCLK_VDPU		472
+>  #define HCLK_HDMI		473
+> 
+> -#define CLK_NR_CLKS		(HCLK_HDMI + 1)
 
-You need here minItems: 5 (that's a new dtschema requirement)
-
-> +          maxItems: 5
-> +        interrupt-names:
-
-You need here minItems: 5
-
-> +          maxItems: 5
-> +    else:
->        properties:
->          interrupts:
->            maxItems: 3
+I still see it as being used in linux-next. Some explanation is missing.
 
 Best regards,
 Krzysztof
