@@ -1,160 +1,196 @@
-Return-Path: <devicetree+bounces-81450-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81451-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9763591C40F
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 18:45:21 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFA9691C41A
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 18:48:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 581C0280A24
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 16:45:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 62294B23E00
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 16:48:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47F5E1C8FB0;
-	Fri, 28 Jun 2024 16:45:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C6631C8FB5;
+	Fri, 28 Jun 2024 16:48:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="l/7OVUFY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FBIG95UM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86B2BD2E5;
-	Fri, 28 Jun 2024 16:45:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFF38D2E5;
+	Fri, 28 Jun 2024 16:48:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719593116; cv=none; b=jC21yKGdwW2XlZFmWXxy4wJCPCDDMPrnnBX2jlet2YJvRV+cvBFnoxikYT1EyQyYZieiVQq8yBtvRzrpOCm9qXCkug4UKHu19I/eYc3q5drmMO0pM7IqMhihCPDmRECkuhKXn2HCMoFQiAkCVwi7m6FDVpaG8lc1WaXkD1Hc8VE=
+	t=1719593313; cv=none; b=D2webenikSr63oU2RXdMFHYMZr9rqOekL4UJlgfdHNq19bE7nwsCrx+u1IR773G8wMLwejq/7jpa6RLbDcXzYwqajw+NZs+wtiWop09l745klcQst0TVrdOXokAYMlM249n7orlMP74cqOfs+dhCrBO1u+fp4yQXFute4lSxzoU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719593116; c=relaxed/simple;
-	bh=mO+L0yvC60vMhtCoipGkdzIY7TPHWg+4f4+4ccnL1Dc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=tnwD+YYzOvHAzsAItCV+F/R7HXjazxlLrlgYaP/h/wawl+eJvhe4eV3FvLmFSApzo8djmvftB0h+KCpVJXXwoo4MrD3h6dft8n3K5N2Sr7Rm6tCipVGQYXw3JzIPP7+cXGyZPZ53cnfcsCs8SwgbitXZ2wvyvMBqMHILd5uPTZw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=l/7OVUFY; arc=none smtp.client-ip=209.85.218.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a728f74c23dso96222866b.1;
-        Fri, 28 Jun 2024 09:45:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1719593113; x=1720197913; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=p6opEP+oxPf4EYU4j61G6/Gb7Qxsmf3nFQOvrXXgQuQ=;
-        b=l/7OVUFYooXbNsV77YW1R/nkf0LOf+KSVwN8DeqkwrXJLc/v+t3/v8RkkJKO4y8KMC
-         V/MJ35LCkFTd6twZ/Nhwal3fmSQ628GfonD0Q+W6o55aNyQnix6enkya1U39ksx0OPcH
-         XFwJvgJbcuL0fzgG2/XtEEJiKD2T7kZPTHsqEPgPSaLd4tYV2tY9WnWHJ37IjUIh93q2
-         smoxkpQjsYqbNBAEj9fhAMULxUJ1dskdfnkz2SQgVtKHOcuPp+1tXu8utb51JQ53AX2p
-         hnQEJtocfSpZAQsHU/UZKlab/agVKQU69XFPZmOJQ2nlUgB6b8DB93lkzUJ7nie0yz/n
-         4aag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719593113; x=1720197913;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=p6opEP+oxPf4EYU4j61G6/Gb7Qxsmf3nFQOvrXXgQuQ=;
-        b=COgTYjrw0WuDVH9z8xS20dwhHUhOyx5dpEULwaXvqc3wmAii4XooZl/U6swaHnW6gX
-         gumQc6cMy74gp/Gd953Pfy0sirSj4GKuRPSo8Ic4CXTawK6h7hbiCt+XE+qkMMY/lDBo
-         UBCceyZi3L88Fx2+ut7VZbSpED5/r7jbcGWNBX3dTnV2iGwzyXVcD31OxjEKYYZ7hhMH
-         usRKTsfvSL022J3iU/22bXXJ9SnXJZKSpeeGozgW4mUOGY85k1bTF7UugF9IY3rnwGl6
-         ia4kYIFg523ZSEqpLEQt+0zw7sPm+R3n3EKOP4F+nlQl318ZPyzp/hVWiN4IsZLe3vk6
-         oNZg==
-X-Forwarded-Encrypted: i=1; AJvYcCULpANSg0gp7Cgl1W3D9BHn0EK+V2ilSeykcWF3f6RgaLbfpgSof9SVAhWv/tok6kyVD30dcCpt8Hbd/4pFTEplrRjXBnsb08arOLED1bBLjmqnXkdFLciYnvjlIIgaRxxtT0tfeHv4oQ==
-X-Gm-Message-State: AOJu0Yx9Vd52wlNw5kbj/JBIBBSZPbxly0wOj3u5QwgnLSvSswcravD0
-	Adid6UMtzyOs0LQDOLOOD63YHEo2V4R154E8EdBow/KFiSJWqaf3xS3h2o7QIE34L5Tac5BgvDF
-	8NDtLiPERRcgWMwBaxejInIfjlmr+HOFNTw==
-X-Google-Smtp-Source: AGHT+IETF8QqAle/XkSXEMA6ZayfuArJ+Hq5jcKLkHKXXN/m33bSmDsyVwGe1XbiT9NZr31/GDrpxiJSd9Q5Xul+La4=
-X-Received: by 2002:a17:907:a607:b0:a72:744e:670d with SMTP id
- a640c23a62f3a-a72744e6a5amr871187866b.60.1719593112739; Fri, 28 Jun 2024
- 09:45:12 -0700 (PDT)
+	s=arc-20240116; t=1719593313; c=relaxed/simple;
+	bh=xPTahYQJelAr+V5E11fJx0UgUKke4AGftBFZip9Tksg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CDVXvUl7iYOE80/Izf3A8hGfDZvOHtHc8teYknsPPqiMRAwWe488RFCYY5ZacQwcXJPJxtppLhIMElXNOzBbGrkLPDxNMeJnVn5e268iuU915bDM7rqKWUYJOxlM2hBdv/uErpdVSMTBYwpVqfrC2fsz+HG5RMQuG4YemuaRuxQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FBIG95UM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4CADDC116B1;
+	Fri, 28 Jun 2024 16:48:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719593312;
+	bh=xPTahYQJelAr+V5E11fJx0UgUKke4AGftBFZip9Tksg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=FBIG95UM2bQkGjm2FtAz7IEzUjyfJDIV3TSKc6ZjvqMuCacQ1xi2PZwCMW2GQUs5U
+	 5yvMQu6Z2aRdAm3Y0j4GvCX0/vHU9Dyf3UVzMesJe4pzbcFbe30IufPxKCaPlQVKBy
+	 DybzGI0pilibQLVCvg6CcdOJNBsWpbjn/bVKRznUSIbHqGog15KzVsSXVp7belElSf
+	 A1WNhLne0185tQBoFJoPVej7lWzh4mZqJIlCI7GeYFCCuMh8LN6Cb494fVNIV9WKJD
+	 njpKEj1SMqxCjONfgu1kV/PvpmOWJaKfnDqqGjQOLRLvuaUXRTemupatmjRn5eWxvF
+	 pwgtbV7H8RZUQ==
+Date: Fri, 28 Jun 2024 17:48:26 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Ayush Singh <ayush@beagleboard.org>
+Cc: Mark Brown <broonie@kernel.org>,
+	Vaishnav M A <vaishnav@beagleboard.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>, Michael Walle <mwalle@kernel.org>,
+	Andrew Lunn <andrew@lunn.ch>, jkridner@beagleboard.org,
+	robertcnelson@beagleboard.org, linux-spi@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v5 3/7] dt-bindings: mikrobus: Add mikrobus-spi binding
+Message-ID: <20240628-cake-ocean-25363137b1ab@spud>
+References: <20240627-mikrobus-scratch-spi-v5-0-9e6c148bf5f0@beagleboard.org>
+ <20240627-mikrobus-scratch-spi-v5-3-9e6c148bf5f0@beagleboard.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240628140328.279792-1-erezgeva@nwtime.org> <20240628140328.279792-4-erezgeva@nwtime.org>
- <20240628-refuse-actress-b76985aa020c@spud> <D2BS0YMA48BG.1PEPFC3KMFV8N@kernel.org>
- <CANeKEMMrXK=mw=n=9DuTnprkTs3ct446oaC2QTJyst8Nd+D6rw@mail.gmail.com>
-In-Reply-To: <CANeKEMMrXK=mw=n=9DuTnprkTs3ct446oaC2QTJyst8Nd+D6rw@mail.gmail.com>
-From: Erez <erezgeva2@gmail.com>
-Date: Fri, 28 Jun 2024 18:44:35 +0200
-Message-ID: <CANeKEMPAv-jXuE2OwRQaEvru3yPt0rgBU8=p35ub8nK9UtnbQQ@mail.gmail.com>
-Subject: Re: [PATCH 3/4] dt-bindings: mtd: macronix,mx25l12833f: add SPI-NOR chip
-To: Michael Walle <mwalle@kernel.org>
-Cc: Conor Dooley <conor@kernel.org>, Erez Geva <erezgeva@nwtime.org>, linux-mtd@lists.infradead.org, 
-	Tudor Ambarus <tudor.ambarus@linaro.org>, Pratyush Yadav <pratyush@kernel.org>, 
-	linux-kernel@vger.kernel.org, Miquel Raynal <miquel.raynal@bootlin.com>, 
-	Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, devicetree@vger.kernel.org, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="q7m1m69FJSotxIJN"
+Content-Disposition: inline
+In-Reply-To: <20240627-mikrobus-scratch-spi-v5-3-9e6c148bf5f0@beagleboard.org>
 
-On Fri, 28 Jun 2024 at 18:30, Erez <erezgeva2@gmail.com> wrote:
->
->
->
-> On Fri, 28 Jun 2024 at 18:04, Michael Walle <mwalle@kernel.org> wrote:
->>
->> Hi,
->>
->> On Fri Jun 28, 2024 at 5:57 PM CEST, Conor Dooley wrote:
->> > On Fri, Jun 28, 2024 at 04:03:27PM +0200, Erez Geva wrote:
->> > > From: Erez Geva <ErezGeva2@gmail.com>
->> > >
->> > > Add Macronix SPI-NOR mx25l12833f.
->> > >
->> > > Signed-off-by: Erez Geva <ErezGeva2@gmail.com>
->> >
->> > Should the email in here and in the From: field be your nwtime one?
->> > Otherwise
->> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
->>
->> Actually, you're not supposed to add any compatibles to this list.
->>
->> From the binding:
->>     description:
->>       SPI NOR flashes compatible with the JEDEC SFDP standard or which may be
->>       identified with the READ ID opcode (0x9F) do not deserve a specific
->>       compatible. They should instead only be matched against the generic
->>       "jedec,spi-nor" compatible.
->>
->> I presume the Macronix flash does support the read id opcode.
->
->
-> Yes, they do support.
-> The new mx25l12833f also supports SFDP.
->
-> I do not know why they decided to use the same JEDEC ID for two chips.
-> Your guess is as good as mine.
 
-https://www.macronix.com/en-us/products/NOR-Flash/Serial-NOR-Flash/Pages/spec.aspx?p=MX25L12805D&m=Serial%20NOR%20Flash&n=PM1310
+--q7m1m69FJSotxIJN
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-End of Life (EOL)
-https://www.macronix.com/Lists/TechDoc/Attachments/9861/PCN31_2009%20PCN_MX25L6405D%20and%20MX25L12805D.pdf
-Macronix will continue the support of the existing MX25L6405D and
-MX25L12805D as the following schedule:
-The Last Time Order Date: 31st Aug., 2010
-The Last Time Shipment Date: 30th Nov., 2010
+On Thu, Jun 27, 2024 at 09:56:13PM +0530, Ayush Singh wrote:
+> Add bindings for MikroBUS boards using SPI interface.
+>=20
+> Almost all of the properties that are valid for SPI devices can be used
+> except reg. Since the goal is to allow use of the same MikroBUS board
+> across different connectors, config needs to be independent of the actual
+> SPI controller in mikroBUS port(s), it is not possible to define the
+> chipselect by number in advance. Thus, `spi-cs-apply` property is used to
+> specify the chipselect(s) by name.
+>=20
+> Another important fact is that while there is a CS pin in the mikroBUS
+> connector, some boards (eg SPI Extend Click) use additional pins as
+> chipselect. Thus we need a way to specify the CS pin(s) in terms of
+> mikcrobus-connector which can then handle bindings the actual CS pin(s).
+>=20
+> Link: https://www.mikroe.com/spi-extend-click SPI Extend Click
+>=20
+> Signed-off-by: Ayush Singh <ayush@beagleboard.org>
+> ---
+>  .../devicetree/bindings/mikrobus/mikrobus-spi.yaml | 37 ++++++++++++++++=
+++++++
+>  MAINTAINERS                                        |  1 +
+>  2 files changed, 38 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/mikrobus/mikrobus-spi.yaml=
+ b/Documentation/devicetree/bindings/mikrobus/mikrobus-spi.yaml
+> new file mode 100644
+> index 000000000000..35ca2cce3b03
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mikrobus/mikrobus-spi.yaml
+> @@ -0,0 +1,37 @@
+> +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mikrobus/mikrobus-spi.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: mikroBUS add-on board using SPI
+> +
+> +maintainers:
+> +  - Ayush Singh <ayush@beagleboard.org>
+> +
+> +allOf:
+> +  - $ref: /schemas/mikrobus/mikrobus-board.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: mikrobus-spi
+> +
+> +  spi-cs-apply:
+> +    minItems: 1
+> +    maxItems: 12
+> +    items:
+> +      enum: [default, pwm, int, rx, tx, scl, sda, an, rst, sck, cipo, co=
+pi]
 
-Erez
+Property descriptions belong in the property, not in the commit message.
 
->
-> I know the two chips have the same flash size.
-> Though the new mx25l12833f chip has a bigger OTP.
-> Secondly, the old mx25l12805d has an asymmetric OTP, the 2 regions are of different size.
->
-> As I see it, the first 2 patches are the real contribution.
-> As I remember, the kernel maintainers usually like to see something using the code.
-> I don't care if it was another Macronix chip. I simply tested it with the mx25l12833f chip.
-> "[PATCH 1/4] Add generic functions for accessing the SPI-NOR chip."
-> "[PATCH 2/4] Add support for SPI-NOR Macronix OTP."
->
-> I did not think it is important to have a kernel configuration for choosing mx25l12833f over mx25l12805d.
->
-> Erez
->
->
->
->
->
->>
->>
->> -michael
+
+> +
+> +required:
+> +  - compatible
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    thermo-click {
+> +      compatible =3D "maxim,max31855k", "mikrobus,spi";
+
+I am really not keen on what this implies, as I think Rob and I have
+already mentioned, the connector should handle the "mapping" and the
+regular SPI/I2C/whatever bindings for the SPI devices themselves
+should be usable.
+
+Also you clearly didn't test this binding - please test them.
+
+Thanks,
+Conor.
+
+> +      spi-max-frequency =3D <1000000>;
+> +      pinctrl-apply =3D "default", "spi_default";
+> +      spi-cs-apply =3D "default";
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 14eba18832d5..88f2b3adc824 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -15114,6 +15114,7 @@ M:	Vaishnav M A <vaishnav@beagleboard.org>
+>  S:	Maintained
+>  F:	Documentation/devicetree/bindings/connector/mikrobus-connector.yaml
+>  F:	Documentation/devicetree/bindings/mikrobus/mikrobus-board.yaml
+> +F:	Documentation/devicetree/bindings/mikrobus/mikrobus-spi.yaml
+> =20
+>  MIKROTIK CRS3XX 98DX3236 BOARD SUPPORT
+>  M:	Luka Kovacic <luka.kovacic@sartura.hr>
+>=20
+> --=20
+> 2.45.2
+>=20
+
+--q7m1m69FJSotxIJN
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZn7pWgAKCRB4tDGHoIJi
+0t+BAP9xCq4ptTm0LV6thbxqhsSKb00MXWPQyiah0LuqX6j+BAEA45D3y7cLzK8q
+UE7G5invTOoL958xU4V3zI+AeAlTXAo=
+=S7NC
+-----END PGP SIGNATURE-----
+
+--q7m1m69FJSotxIJN--
 
