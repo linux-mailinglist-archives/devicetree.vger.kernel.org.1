@@ -1,82 +1,95 @@
-Return-Path: <devicetree+bounces-81351-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81349-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4795991C08E
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 16:12:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CF2391C081
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 16:10:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 05B0B282634
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 14:12:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4B306285153
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 14:10:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 787D51BF302;
-	Fri, 28 Jun 2024 14:11:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CCEC1BF302;
+	Fri, 28 Jun 2024 14:10:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="Ahnfd0qh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from chessie.everett.org (chessie.fmt1.pfcs.com [66.220.13.234])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 200161BE85F;
-	Fri, 28 Jun 2024 14:11:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=66.220.13.234
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719583919; cv=none; b=AQRazHUAcc+lhiYaR4c25gsMa5VDcBP/ccYUEVqWfZQr0vT80Ijo4fMBRuYa3T998Lvlbm7IbQRtww9xnlWyKUeWJbgyG0vO4BqJgpLeB5zr1ksXILDNwx+/jicv5k1Bjt1rH9dV3pZI6ouhOeU/E2sRqZQCQhD6I2OJO/x4tQs=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719583919; c=relaxed/simple;
-	bh=Ukl6IswPq9u8vcIcLC9yjMxtDPey4eGMS6U5jtPmtWc=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=He2I2EZqfjtvUilMqjdjuPxmskugC60/9c3RXPglygg2UB6T5GZVNudApp9FQCwZ8vyEWKF1uDeM3vT22WkPgj3IlurBLEsOgJaWgQkOqbyjVdeJlrNP+jpuhx0WspmC3O6D9jnOyU/Tl8i0jwUebjdPryTzbCopL5U2cA/txWg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=nwtime.org; spf=pass smtp.mailfrom=nwtime.org; arc=none smtp.client-ip=66.220.13.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=nwtime.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nwtime.org
-Received: from localhost.localdomain (unknown [31.16.248.93])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by chessie.everett.org (Postfix) with ESMTPSA id 4W9ccK4ZHBzMQKt;
-	Fri, 28 Jun 2024 14:04:01 +0000 (UTC)
-From: Erez Geva <erezgeva@nwtime.org>
-To: linux-mtd@lists.infradead.org,
-	Tudor Ambarus <tudor.ambarus@linaro.org>,
-	Pratyush Yadav <pratyush@kernel.org>,
-	Michael Walle <mwalle@kernel.org>
-Cc: linux-kernel@vger.kernel.org,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	devicetree@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7308619B5A2;
+	Fri, 28 Jun 2024 14:09:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1719583800; cv=none; b=h2ffSy3fu+QKMcZqyipBw7r8VNyHn9WzQq+ji7XiSJenhGk+H8VdvCwlVOQR8Z4JdyHmKdmOU2m/dYh9GsfavLllKwVKNvtSoDvu9XucZLFnyQQ02WkrjtCLJ3AvabPO8zInsIYnLh415fsdyj7ZsAev9dVQPfBAHdSXsiwrpbI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1719583800; c=relaxed/simple;
+	bh=uOtQMuL1X1bCXgLRk8CEj7G6Dj5LK1iiftQXY+Rv9Lk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=t1omIVBGRdVtnLPTrt8BKY8z2/S214iMGylhI6a2nK5V/scEPFa+dZDWkKN5sWOlvuitvd3MyOlZYviK1wRYtDVOzSH88mGM/Q++G+ONQ23nFZNubvaaGjPnPfjhdRP1Sqcrl1wNNpQn+sKg0w4Gt3JuG0JabTQuxbck87X42uc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=Ahnfd0qh; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=p9/TdaF6sDe7VwbrSuMbzC40JZtDM24SJtp78alf1DY=; b=Ahnfd0qh/15hFWKLitt7TYAlxC
+	qlfisPoWXjQK5TrxnqMA34GdmjB78L1VZufe8mes3tP3D0HqwL8NsJB8dQLCd6xaTNwebKYge8dhQ
+	9VtTKjAP/uETAaHtjbITw3pVgalTT1z0gQD8yL7eB0DQEhh4eaSCQlFFbreP826Nmops=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1sNCIS-001HzG-5N; Fri, 28 Jun 2024 16:09:52 +0200
+Date: Fri, 28 Jun 2024 16:09:52 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Peng Fan <peng.fan@nxp.com>
+Cc: Marek Vasut <marex@denx.de>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Erez Geva <ErezGeva2@gmail.com>
-Subject: [PATCH 0/4] Add support for SPI-NOR Macronix OTP
-Date: Fri, 28 Jun 2024 16:03:24 +0200
-Message-Id: <20240628140328.279792-1-erezgeva@nwtime.org>
-X-Mailer: git-send-email 2.39.2
+	Fabio Estevam <festevam@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"kernel@dh-electronics.com" <kernel@dh-electronics.com>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2] arm64: dts: imx8mp: Update Fast ethernet PHY MDIO
+ addresses to match DH i.MX8MP DHCOM rev.200
+Message-ID: <6687963b-1cbf-4093-aa8d-b90ce9ba7c0b@lunn.ch>
+References: <20240627233045.80551-1-marex@denx.de>
+ <AM6PR04MB5941804BFE1CC6F72E776F9588D02@AM6PR04MB5941.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <AM6PR04MB5941804BFE1CC6F72E776F9588D02@AM6PR04MB5941.eurprd04.prod.outlook.com>
 
-From: Erez Geva <ErezGeva2@gmail.com>
+On Fri, Jun 28, 2024 at 01:01:49AM +0000, Peng Fan wrote:
+> > Subject: [PATCH v2] arm64: dts: imx8mp: Update Fast ethernet PHY
+> > MDIO addresses to match DH i.MX8MP DHCOM rev.200
+> > 
+> > The production DH i.MX8MP DHCOM SoM rev.200 uses updated PHY
+> > MDIO addresses for the Fast ethernet PHYs. Update the base SoM DT
+> > to cater for this change.
+> > Prototype rev.100 SoM was never publicly available and was
+> > manufactured in limited series, anything currently available is rev.200
+> > or newer, so it is safe to update the DT this way.
+> > 
+> > Signed-off-by: Marek Vasut <marex@denx.de>
+> > ---
+> 
+> Reviewed-by: Peng Fan <peng.fan@nxp.com>
 
-Add support for SPI-NOR Macronix OTP.
-And add mx25l12833f with OTP.
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-Erez Geva (4):
-  Add generic functions for accessing the SPI chip.
-  Add support for SPI-NOR Macronix OTP.
-  dt-bindings: mtd: macronix,mx25l12833f: add SPI-NOR chip
-  Add Macronix SPI-NOR mx25l12833f with OTP.
-
- .../bindings/mtd/jedec,spi-nor.yaml           |   2 +-
- drivers/mtd/spi-nor/core.c                    | 131 ++++++++----
- drivers/mtd/spi-nor/core.h                    |  27 +--
- drivers/mtd/spi-nor/macronix.c                | 190 ++++++++++++++++++
- include/linux/mtd/spi-nor.h                   |  10 +
- 5 files changed, 301 insertions(+), 59 deletions(-)
-
--- 
-2.39.2
-
+    Andrew
 
