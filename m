@@ -1,143 +1,241 @@
-Return-Path: <devicetree+bounces-81353-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81354-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4F4B91C097
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 16:13:44 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5F7F91C0A2
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 16:16:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3A9B3B241E7
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 14:13:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 016A3B21587
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 14:16:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 576B81BE85F;
-	Fri, 28 Jun 2024 14:13:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D53151BF326;
+	Fri, 28 Jun 2024 14:16:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="BZJNQnO0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FE8815886A;
-	Fri, 28 Jun 2024 14:13:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C38AE155747;
+	Fri, 28 Jun 2024 14:16:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719584017; cv=none; b=QdS9M15GQ7gKMX3kWt2NJZ0zI6Gu2dIXbFQizPKckEBkxPcZzuj0vEEFSPOnjwcJmVLrhc70kiHTG1wAm0NxGc3V7Wl8xLaKbApdq3+jq2I5XM1+Nw6qGBNcM5EQBVRq6c6UvvGgUOZcHTFJsCZ8Ky+RxTQ2Vwu1qQdslyAKyDQ=
+	t=1719584189; cv=none; b=BGopKwHSBDWLfMpDgrE+VYx4JBN5yMIHO34yGGKUt/3X57mlEFPndOSshly9LeynLDl1ROZ4c6ErmECMVyZVajNsK/TzfdDogr2Cn5BlZuROvzziYleeEokE5MuMnTKkxHSmiP5d+q0itoc4SAAEpkt+Xmk9PRW81xibO0u7H/k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719584017; c=relaxed/simple;
-	bh=iisC1B21y+cGmgIvl5L5E3tSQXxDoTSSFnQWyK+orR0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=fglflG0I3F+EiKjj3zxRWFw9ZqP9H83R2jU3a0DIc97TKa6Eyh3vzoxkAD9xx5X/TWnqwvAUA6plwmipWeClWudLd84zS4Jrk5PMHkczSX2P71vLKsfj0A1kJN3cAoDw0ZphmgfBk49s/8EXSlX9xFhqmHtYPTKJMCE0wxvCovA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-Received: from i53875b6a.versanet.de ([83.135.91.106] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1sNCLy-0007nT-U2; Fri, 28 Jun 2024 16:13:30 +0200
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Chukun Pan <amadeus@jmu.edu.cn>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- Chukun Pan <amadeus@jmu.edu.cn>
-Subject:
- Re: [PATCH 4/5] arm64: dts: rockchip: use generic Ethernet PHY reset bindings
- for Lunzn Fastrhino R68S
-Date: Fri, 28 Jun 2024 16:13:30 +0200
-Message-ID: <10487566.nUPlyArG6x@diego>
-In-Reply-To: <20240628140104.551760-4-amadeus@jmu.edu.cn>
-References:
- <20240628140104.551760-1-amadeus@jmu.edu.cn>
- <20240628140104.551760-4-amadeus@jmu.edu.cn>
+	s=arc-20240116; t=1719584189; c=relaxed/simple;
+	bh=MDismG/dTlveonUJX95mSDTM3qVtjeX9xPGjEEAaTWI=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=fvm7cbovmShjumf7EKpufxp64XynpmVxnBOk0O3kwD9ZOjX7Jx4NX57nfiQXkI3Ekf6XSgBU+hHTCQltLJStFFuXiLTZPp7NYK7X/WeMIiNyVonBV1RBp7GK8dHGYloNHM4Vn3L/pB/dI2X+RrGR7oT4jUDnNNBBTqSGIfjvKf0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=BZJNQnO0; arc=none smtp.client-ip=217.70.183.200
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id C1E0920007;
+	Fri, 28 Jun 2024 14:16:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1719584179;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=wnJ6ux2mqzbGIMAIiaH2qnutd8jMPLZABsQY/zaXnog=;
+	b=BZJNQnO0QaK6H17/09imC21hMX6bX04voc6jt6FWB1Sq/YDtGgX5NdrXjdRDcd3VhwEmT0
+	IiHbRD5d/eFQ9MfeQKovP08fBIoaYjLtEfJJbqu/CarEZLKjoIU3UIWYtLlISNv0MW8EzB
+	A+EQqFT51jS/v2rzlCDOXpAHcPpiS8gJEGjhgyJx4lZhzydvRixR8IcSGhQD8yaCy+aE0u
+	kVLT9RMRydAwHHHPoUZLuhxaHWXsH8CkfCy4lGPUWZpncXrvDFpFWxPyBya9QiI8ZKuKHR
+	rWn7hruHk2QmF9OeiaoujKJWpe0FS8wVRn7fzcg1C0ZQoxnxDRKRxR/xmsd97Q==
+Date: Fri, 28 Jun 2024 16:16:17 +0200
+From: Luca Ceresoli <luca.ceresoli@bootlin.com>
+To: Peng Fan <peng.fan@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+ Saravana Kannan <saravanak@google.com>, Michael Turquette
+ <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>
+Subject: Re: [PATCH 1/2] of: property: add of_property_for_each_u64
+Message-ID: <20240628161617.6bc9ca3c@booty>
+In-Reply-To: <AM6PR04MB5941D30C26F2CB818FEC082C88D02@AM6PR04MB5941.eurprd04.prod.outlook.com>
+References: <20240621-clk-u64-v1-0-d28a611b2621@nxp.com>
+	<20240621-clk-u64-v1-1-d28a611b2621@nxp.com>
+	<20240627214355.GA601888-robh@kernel.org>
+	<AM6PR04MB59416E3C8FFC904450F3B02D88D02@AM6PR04MB5941.eurprd04.prod.outlook.com>
+	<AM6PR04MB5941D30C26F2CB818FEC082C88D02@AM6PR04MB5941.eurprd04.prod.outlook.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-GND-Sasl: luca.ceresoli@bootlin.com
 
-Am Freitag, 28. Juni 2024, 16:01:03 CEST schrieb Chukun Pan:
-> Replace the deprecated snps,reset-xxx bindings to the generic Ethernet PHY
-> reset GPIO bindings. Also fixed the PHY address and reset GPIOs (does not
-> match the corresponding pinctrl). Since we use rgmii-id as the phy mode,
-> remove the useless tx_delay and rx_delay.
+Hello Peng,
 
-Please split this commit into multiple ones.
+On Fri, 28 Jun 2024 13:10:34 +0000
+Peng Fan <peng.fan@nxp.com> wrote:
 
-When need to "list" changes in your commit message, it is often a good
-indicator for needing to split a change.
-
-
-> Fixes: b9f8ca655d80 ("arm64: dts: rockchip: Add Lunzn Fastrhino R68S")
-> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
-> ---
->  .../dts/rockchip/rk3568-fastrhino-r68s.dts    | 26 +++++++------------
->  1 file changed, 10 insertions(+), 16 deletions(-)
+> > Subject: RE: [PATCH 1/2] of: property: add of_property_for_each_u64
+> >   
+> > > Subject: Re: [PATCH 1/2] of: property: add of_property_for_each_u64
+> > >
+> > > +Luca
+> > >
+> > > On Fri, Jun 21, 2024 at 08:36:39PM +0800, Peng Fan (OSS) wrote:  
+> > > > From: Peng Fan <peng.fan@nxp.com>
+> > > >
+> > > > Preparing for assigned-clock-rates-u64 support, add function
+> > > > of_property_for_each_u64 to iterate each u64 value
+> > > >
+> > > > Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> > > > ---
+> > > >  drivers/of/property.c | 23 +++++++++++++++++++++++
+> > > >  include/linux/of.h    | 24 ++++++++++++++++++++++++
+> > > >  2 files changed, 47 insertions(+)
+> > > >
+> > > > diff --git a/drivers/of/property.c b/drivers/of/property.c index
+> > > > 164d77cb9445..b89c3ab01d44 100644
+> > > > --- a/drivers/of/property.c
+> > > > +++ b/drivers/of/property.c
+> > > > @@ -548,6 +548,29 @@ const __be32 *of_prop_next_u32(struct  
+> > > property  
+> > > > *prop, const __be32 *cur,  }  
+> > > EXPORT_SYMBOL_GPL(of_prop_next_u32);  
+> > > >
+> > > > +const __be32 *of_prop_next_u64(struct property *prop, const  
+> > > __be32 *cur,  
+> > > > +			       u64 *pu)  
+> > >
+> > > struct property can be const  
+> > 
+> > Fix in v2. BTW, I am thinking something as below:
+> > 
+> > const __be64 *of_prop_next_u64(const struct property *prop, const
+> > __be64 *cur,
+> >                                u64 *pu)
+> > {
+> >         const void *curv = cur;
+> > 
+> >         if (!prop)
+> >                 return NULL;
+> > 
+> >         if (!cur) {
+> >                 curv = prop->value;
+> >                 goto out_val;
+> >         }
+> > 
+> >         curv += sizeof(*cur);
+> >         if (curv >= prop->value + prop->length)
+> >                 return NULL;
+> > 
+> > out_val:
+> >         *pu = be64_to_cpup(curv);
+> >         return curv;
+> > }
+> > EXPORT_SYMBOL_GPL(of_prop_next_u64);
+> >   
+> > >  
+> > > > +{
+> > > > +	const void *curv = cur;
+> > > > +
+> > > > +	if (!prop)
+> > > > +		return NULL;
+> > > > +
+> > > > +	if (!cur) {
+> > > > +		curv = prop->value;
+> > > > +		goto out_val;
+> > > > +	}
+> > > > +
+> > > > +	curv += sizeof(*cur) * 2;
+> > > > +	if (curv >= prop->value + prop->length)
+> > > > +		return NULL;
+> > > > +
+> > > > +out_val:
+> > > > +	*pu = of_read_number(curv, 2);
+> > > > +	return curv;
+> > > > +}
+> > > > +EXPORT_SYMBOL_GPL(of_prop_next_u64);
+> > > > +
+> > > >  const char *of_prop_next_string(struct property *prop, const char
+> > > > *cur)  {
+> > > >  	const void *curv = cur;
+> > > > diff --git a/include/linux/of.h b/include/linux/of.h index
+> > > > 13cf7a43b473..464eca6a4636 100644
+> > > > --- a/include/linux/of.h
+> > > > +++ b/include/linux/of.h
+> > > > @@ -439,6 +439,18 @@ extern int of_detach_node(struct  
+> > > device_node *);  
+> > > >   */
+> > > >  const __be32 *of_prop_next_u32(struct property *prop, const  
+> > > __be32 *cur,  
+> > > >  			       u32 *pu);
+> > > > +
+> > > > +/*
+> > > > + * struct property *prop;
+> > > > + * const __be32 *p;
+> > > > + * u64 u;
+> > > > + *
+> > > > + * of_property_for_each_u64(np, "propname", prop, p, u)
+> > > > + *         printk("U64 value: %llx\n", u);
+> > > > + */
+> > > > +const __be32 *of_prop_next_u64(struct property *prop, const  
+> > > __be32 *cur,  
+> > > > +			       u64 *pu);
+> > > > +
+> > > >  /*
+> > > >   * struct property *prop;
+> > > >   * const char *s;
+> > > > @@ -834,6 +846,12 @@ static inline const __be32  
+> > > *of_prop_next_u32(struct property *prop,  
+> > > >  	return NULL;
+> > > >  }
+> > > >
+> > > > +static inline const __be32 *of_prop_next_u64(struct property  
+> > *prop,  
+> > > > +		const __be32 *cur, u64 *pu)
+> > > > +{
+> > > > +	return NULL;
+> > > > +}
+> > > > +
+> > > >  static inline const char *of_prop_next_string(struct property *prop,
+> > > >  		const char *cur)
+> > > >  {
+> > > > @@ -1437,6 +1455,12 @@ static inline int  
+> > > of_property_read_s32(const struct device_node *np,  
+> > > >  		p;						\
+> > > >  		p = of_prop_next_u32(prop, p, &u))
+> > > >
+> > > > +#define of_property_for_each_u64(np, propname, prop, p, u)	\
+> > > > +	for (prop = of_find_property(np, propname, NULL),	\
+> > > > +		p = of_prop_next_u64(prop, NULL, &u);		\
+> > > > +		p;						\
+> > > > +		p = of_prop_next_u64(prop, p, &u))  
+> > >
+> > > I think we want to define this differently to avoid exposing struct
+> > > property and the property data directly. Like this:
+> > >
+> > > #define of_property_for_each_u64(np, propname, u) \
+> > >   for (struct property *_prop = of_find_property(np, propname, NULL),
+> > >          const __be32 *_p = of_prop_next_u64(_prop, NULL, &u);
+> > >          _p;
+> > >          _p = of_prop_next_u64(_prop, _p, &u))  
 > 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-fastrhino-r68s.dts b/arch/arm64/boot/dts/rockchip/rk3568-fastrhino-r68s.dts
-> index a3339186e89c..d27eb37b5b35 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3568-fastrhino-r68s.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3568-fastrhino-r68s.dts
-> @@ -39,12 +39,6 @@ &gmac0_tx_bus2
->  		     &gmac0_rx_bus2
->  		     &gmac0_rgmii_clk
->  		     &gmac0_rgmii_bus>;
-> -	snps,reset-gpio = <&gpio0 RK_PB0 GPIO_ACTIVE_LOW>;
-> -	snps,reset-active-low;
-> -	/* Reset time is 15ms, 50ms for rtl8211f */
-> -	snps,reset-delays-us = <0 15000 50000>;
-> -	tx_delay = <0x3c>;
-> -	rx_delay = <0x2f>;
->  	status = "okay";
->  };
->  
-> @@ -61,30 +55,30 @@ &gmac1m1_tx_bus2
->  		     &gmac1m1_rx_bus2
->  		     &gmac1m1_rgmii_clk
->  		     &gmac1m1_rgmii_bus>;
-> -	snps,reset-gpio = <&gpio0 RK_PB1 GPIO_ACTIVE_LOW>;
-> -	snps,reset-active-low;
-> -	/* Reset time is 15ms, 50ms for rtl8211f */
-> -	snps,reset-delays-us = <0 15000 50000>;
-> -	tx_delay = <0x4f>;
-> -	rx_delay = <0x26>;
->  	status = "okay";
->  };
->  
->  &mdio0 {
-> -	rgmii_phy0: ethernet-phy@0 {
-> +	rgmii_phy0: ethernet-phy@1 {
->  		compatible = "ethernet-phy-ieee802.3-c22";
-> -		reg = <0>;
-> +		reg = <0x1>;
->  		pinctrl-0 = <&eth_phy0_reset_pin>;
->  		pinctrl-names = "default";
-> +		reset-assert-us = <20000>;
-> +		reset-deassert-us = <100000>;
-> +		reset-gpios = <&gpio1 RK_PB0 GPIO_ACTIVE_LOW>;
->  	};
->  };
->  
->  &mdio1 {
-> -	rgmii_phy1: ethernet-phy@0 {
-> +	rgmii_phy1: ethernet-phy@1 {
->  		compatible = "ethernet-phy-ieee802.3-c22";
-> -		reg = <0>;
-> +		reg = <0x1>;
->  		pinctrl-0 = <&eth_phy1_reset_pin>;
->  		pinctrl-names = "default";
-> +		reset-assert-us = <20000>;
-> +		reset-deassert-us = <100000>;
-> +		reset-gpios = <&gpio1 RK_PB1 GPIO_ACTIVE_LOW>;
->  	};
->  };
->  
-> 
+> This will trigger a compilation error, because C not allow
+> declare two variables with different types as for loop expression 1.
+> Need to think about other methods.
 
+I have a working draft here where I solved it somehow, let me just find
+the proper branch and send it. Perhaps next week, but I'm striving to do
+that by Mon-Tue.
 
+Luca
 
-
+-- 
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
