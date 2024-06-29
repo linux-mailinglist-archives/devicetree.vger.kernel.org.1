@@ -1,115 +1,241 @@
-Return-Path: <devicetree+bounces-81564-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81565-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F73A91CC26
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 12:40:42 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A1F191CC34
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 12:57:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0A4311F22861
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 10:40:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8C7A2B21BD2
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 10:57:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A5F25BAD7;
-	Sat, 29 Jun 2024 10:39:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD08047F53;
+	Sat, 29 Jun 2024 10:57:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NKR68Z2C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from chessie.everett.org (chessie.fmt1.pfcs.com [66.220.13.234])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F6E4548FD;
-	Sat, 29 Jun 2024 10:39:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=66.220.13.234
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719657593; cv=none; b=BS5ozXRfGw2DHyTOWcFqSvnoFqjFHVfVqTPonzpHnksbxdQVKafFeZPEJIrEVp3tIvCssob+Qq7oPPIGmaPzKNlAZ1nC6+DiKuQIR2ijOyS5IMmdXh4WMMW6VGtDG5rKXgq3E/1of3+EYHO8aIct1YHZIJ78g7Sb3P1wSQIHMpU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719657593; c=relaxed/simple;
-	bh=uZ2YnKUN1+47QeDnb1e0FnFLPlZBFZXdCO5qwChC5CI=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=HvyIV1bSk4eRjH5zwAZ3QKueQN+BFoi9zIG01RXwf3Vh1WXqqD57oVYj8ApOvYXTcWrw21Ajco1Uvn8Im5iw7jD88SeQQk5lyyfYAvRVqgPTADfX4UPxGhyjGCIL+KuWsW51phLYLfM5r5aVAwqF8rrBqhiEJwkMJLGHEdKvZVI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=nwtime.org; spf=pass smtp.mailfrom=nwtime.org; arc=none smtp.client-ip=66.220.13.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=nwtime.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nwtime.org
-Received: from localhost.localdomain (unknown [31.16.248.93])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by chessie.everett.org (Postfix) with ESMTPSA id 4WB82410BczMQLy;
-	Sat, 29 Jun 2024 10:39:39 +0000 (UTC)
-From: Erez Geva <erezgeva@nwtime.org>
-To: linux-mtd@lists.infradead.org,
-	Tudor Ambarus <tudor.ambarus@linaro.org>,
-	Pratyush Yadav <pratyush@kernel.org>,
-	Michael Walle <mwalle@kernel.org>
-Cc: linux-kernel@vger.kernel.org,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	devicetree@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Erez Geva <ErezGeva2@gmail.com>
-Subject: [PATCH v2 4/4] Add Macronix SPI-NOR mx25l12833f with OTP.
-Date: Sat, 29 Jun 2024 12:39:13 +0200
-Message-Id: <20240629103914.161530-5-erezgeva@nwtime.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240629103914.161530-1-erezgeva@nwtime.org>
-References: <20240629103914.161530-1-erezgeva@nwtime.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F49F43AC0
+	for <devicetree@vger.kernel.org>; Sat, 29 Jun 2024 10:57:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1719658663; cv=none; b=SFZnCmQdlwcUpgVvhTlm647fKiDzYnxskEHC5+P4JY4T8Tf0jevvfU9ibnwn9ctJgKcsBD4ksdTexMLq7vZuhdJX2fTNICVGf5freZuWRce/M/ezyDiul8JXHLZ2rspaUHTGsFCd8UiNFMxxqI9lUEVMGpNkJ69N5d9BuylV0Ts=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1719658663; c=relaxed/simple;
+	bh=gjzxog3Mb8JMf2rUUMDAlM7leBu6VGGWWpEbchnY51E=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Bi+OT1JXr0VD6QOl7JZTZiOwiPctBs96dwfjzZo+D0mP53chrGZRtEhQfJN3R19qZlgSRVAXyJ2g6+T22VWKi5hN6a3T5Nx2m9wMNh722S86QoCJ4ECZLsustrs0Acz+TPQNhOtD2ocGrpo/yyy7I8jVBpkSdKvBve8O9dVR7h4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=NKR68Z2C; arc=none smtp.client-ip=209.85.221.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-362b32fbb3bso868971f8f.2
+        for <devicetree@vger.kernel.org>; Sat, 29 Jun 2024 03:57:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1719658659; x=1720263459; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=dPzoYFWOBijSuxNipZNf1hsOuMejTmHC//0xYNGUiGY=;
+        b=NKR68Z2CbXCMYL8XTjpyN+Z6NUGxVRMV96hHjoQLNgOYB8glg4UoAnWwqM5M+8pvM9
+         RFnaow2V2sb57QbZQX7uH2lX3x61v9y/ep7lXfZenIgi4W8ZxjCy8mrPdcbfzAEZ0aSt
+         wffnDB3VgWkWY/qB6XPZuMAHEV8Js4FK15Mn6RYi6z77CGNOqbZCja3m4U+uRB2WU4G7
+         uoidFx74I0UBldDRQvwfIuCgm1dZqeEv2VE+PY0cGNXcwmC0NOEfj87LJEff/LhztnwH
+         1YqQg9bW2Cq27lN3dRyAHFxMIpPdWK+Y4EDuTcUZIGIum6Y3sk5iEB+Or2JyrVbhP0Fv
+         yCSA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719658659; x=1720263459;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=dPzoYFWOBijSuxNipZNf1hsOuMejTmHC//0xYNGUiGY=;
+        b=OPzd+JI7vq1DnOsA4ThF5Ys9Ea8Kn0UPCrNxQglmf5tVYLIYg/VLDd49LklpSWxemn
+         RIChrNpp6Mv8BEzy5RHp4BMmog0dOiM27EUhtmJig8Qbv26khS4fCI0+o1w1aPvJgWdW
+         BMrsr0ccj+yCzGRd84ul8qB7lJVDPC33wsdW1FZxYCM4T2EfOOOrCVfEOzEIpyfWQCFP
+         5bSgN1Afgy5E9CwM3WL5jyZtqnU/jXiSxxHXMM9R4bnYKC/0NJ7fjQrTXPYSTU/hMHyN
+         1KqQOesVRmSUiG7wWq2ymOWRlTCkh1Be2vWe3jHmmTl96P75SGu7Port6XOWwPLPzB+C
+         Bqdw==
+X-Forwarded-Encrypted: i=1; AJvYcCXLjbUXnfHykXhrZiRmImQDrS3VGlGfjGenGq3H8GpdeX+mxEUXtc3d7ZTfEeqBtxFCmLgHwvk1WREMj7j2Ubkl6aXu2NiMgB5Veg==
+X-Gm-Message-State: AOJu0Yz4Mr4Bf/pKPiAiG+c2mbJUk2AGkqqsw1Z9M9z+jWxIVYU37x7/
+	FjZ28LlEEdRm3hxuKYphd/EuoHBNOwj1lcTagOBX64QHR3Fl0AAE4C6sZI8vM4E=
+X-Google-Smtp-Source: AGHT+IGoM/9KSNdxFL7CwwE4+Ftp75/mDJK5QMpVY+2F6WHOPdSUELuNgowwn+bUUJXWyTo1CjDgqQ==
+X-Received: by 2002:a05:6000:18aa:b0:367:4ddf:385c with SMTP id ffacd0b85a97d-36775699491mr511746f8f.6.1719658659384;
+        Sat, 29 Jun 2024 03:57:39 -0700 (PDT)
+Received: from [192.168.0.38] ([176.61.106.227])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3675a112a54sm4598514f8f.115.2024.06.29.03.57.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 29 Jun 2024 03:57:39 -0700 (PDT)
+Message-ID: <94810ad7-a6e8-4e25-b158-3065c1ab0294@linaro.org>
+Date: Sat, 29 Jun 2024 11:57:36 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/6] media: dt-bindings: media: camss: Add
+ qcom,sc7280-camss binding
+To: Vikram Sharma <quic_vikramsa@quicinc.com>, Robert Foss
+ <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Kapatrala Syed <akapatra@quicinc.com>,
+ Hariram Purushothaman <hariramp@quicinc.com>,
+ cros-qcom-dts-watchers@chromium.org, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Loic Poulain <loic.poulain@linaro.org>, Andi Shyti <andi.shyti@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-i2c@vger.kernel.org, Suresh Vankadara <quic_svankada@quicinc.com>,
+ Trishansh Bhardwaj <quic_tbhardwa@quicinc.com>
+References: <20240629-camss_first_post_linux_next-v1-0-bc798edabc3a@quicinc.com>
+ <20240629-camss_first_post_linux_next-v1-1-bc798edabc3a@quicinc.com>
+Content-Language: en-US
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20240629-camss_first_post_linux_next-v1-1-bc798edabc3a@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Erez Geva <ErezGeva2@gmail.com>
+On 28/06/2024 19:32, Vikram Sharma wrote:
+> Add bindings for qcom,sc7280-camss in order to support the camera
+> subsystem for sc7280.
+> 
+> Signed-off-by: Suresh Vankadara <quic_svankada@quicinc.com>
+> Signed-off-by: Trishansh Bhardwaj <quic_tbhardwa@quicinc.com>
+> Signed-off-by: Vikram Sharma <quic_vikramsa@quicinc.com>
+> ---
+>   .../bindings/media/qcom,sc7280-camss.yaml          | 477 +++++++++++++++++++++
+>   1 file changed, 477 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/qcom,sc7280-camss.yaml b/Documentation/devicetree/bindings/media/qcom,sc7280-camss.yaml
+> new file mode 100644
+> index 000000000000..588c6fb50e2f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/qcom,sc7280-camss.yaml
+> @@ -0,0 +1,477 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +
+> +---
+> +$id: http://devicetree.org/schemas/media/qcom,sc7280-camss.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm Technologies, Inc. SC7280 CAMSS ISP
+> +
+> +maintainers:
+> +  - Azam Sadiq Pasha Kapatrala Syed <akapatra@quicinc.com>
+> +  - Hariram Purushothaman <hariramp@quicinc.com>
+> +
+> +description: |
+> +  The CAMSS IP is a CSI decoder and ISP present on
+> +  Qualcomm Technologies, Inc. platforms.
+> +
+> +properties:
+> +  compatible:
+> +    const: qcom,sc7280-camss
+> +
+> +  clocks:
+> +    minItems: 41
+> +    maxItems: 41
+> +
+> +  clock-names:
+> +    items:
+> +
+> +      - const: cam_hf_axi
+> +      - const: slow_ahb_src
+> +      - const: cpas_ahb
+> +      - const: camnoc_axi_src
 
-mx25l12833f uses the same JEDEC ID as mx25l12805d.
+You almost certainly don't need to include the "_src" clocks in the list 
+of clocks since the CAMCC driver lists "someclock" as having parent 
+"someclock_src"
 
-The 2 chips have the same flash size.
-So user can use mx25l12805d setting with mx25l12833f chip.
+> +      - const: camnoc_axi
+> +      - const: csiphy0
+> +      - const: csiphy0_timer
+> +      - const: csiphy0_timer_src
+> +      - const: csiphy1
+> +      - const: csiphy1_timer
+> +      - const: csiphy1_timer_src
+> +      - const: csiphy2
+> +      - const: csiphy2_timer
+> +      - const: csiphy2_timer_src
+> +      - const: csiphy3
+> +      - const: csiphy3_timer
+> +      - const: csiphy3_timer_src
+> +      - const: csiphy4
+> +      - const: csiphy4_timer
+> +      - const: csiphy4_timer_src
+> +      - const: vfe0_csid
+> +      - const: vfe0_cphy_rx
+> +      - const: vfe0
+> +      - const: vfe0_axi
+> +      - const: csiphy_rx_src
+> +      - const: vfe1_csid
+> +      - const: vfe1_cphy_rx
+> +      - const: vfe1
+> +      - const: vfe1_axi
+> +      - const: vfe2_csid
+> +      - const: vfe2_cphy_rx
+> +      - const: vfe2
+> +      - const: vfe2_axi
+> +      - const: vfe0_lite_csid
+> +      - const: vfe0_lite_cphy_rx
+> +      - const: vfe0_lite
+> +      - const: vfe1_lite_csid
+> +      - const: vfe1_lite_cphy_rx
+> +      - const: vfe1_lite
+> +      - const: vfe_lite0
+> +      - const: vfe_lite1
+> +
+> +  interrupts:
+> +    minItems: 15
+> +    maxItems: 15
+> +
+> +  interrupt-names:
+> +    items:
+> +      - const: csiphy0
+> +      - const: csiphy1
+> +      - const: csiphy2
+> +      - const: csiphy3
+> +      - const: csiphy4
+> +      - const: csid0
+> +      - const: csid1
+> +      - const: csid2
+> +      - const: csid_lite0
+> +      - const: csid_lite1
+> +      - const: vfe0
+> +      - const: vfe1
+> +      - const: vfe2
+> +      - const: vfe_lite0
+> +      - const: vfe_lite1
+> +
+> +  iommus:
+> +    maxItems: 1
+> +
+> +  interconnects:
+> +    minItems: 2
+> +    maxItems: 2
+> +
+> +  interconnect-names:
+> +    items:
+> +      - const: cam_ahb
+> +      - const: cam_hf_0
+> +
+> +  power-domains:
+> +    items:
+> +      - description: IFE0 GDSC - Image Front End, Global Distributed Switch Controller.
+> +      - description: IFE1 GDSC - Image Front End, Global Distributed Switch Controller.
+> +      - description: IFE2 GDSC - Image Front End, Global Distributed Switch Controller.
+> +      - description: Titan GDSC - Titan ISP Block, Global Distributed Switch Controller.
 
-mx25l12833f support SFDP and have a bigger symmetric OTP.
+Please name these power domains.
 
-Macronix annonce the end of life of mx25l12805d in 2010.
+https://lore.kernel.org/linux-arm-msm/fcdb072d-6099-4423-b4b5-21e9052b82cc@linaro.org/
 
-See:
-  "https://www.macronix.com/Lists/TechDoc/Attachments/9861/PCN31_2009 PCN_MX25L6405D and MX25L12805D.pdf"
-
-Signed-off-by: Erez Geva <ErezGeva2@gmail.com>
 ---
- drivers/mtd/spi-nor/core.c     | 1 +
- drivers/mtd/spi-nor/macronix.c | 5 +++++
- 2 files changed, 6 insertions(+)
-
-diff --git a/drivers/mtd/spi-nor/core.c b/drivers/mtd/spi-nor/core.c
-index 0f267da339a4..6a5caa199978 100644
---- a/drivers/mtd/spi-nor/core.c
-+++ b/drivers/mtd/spi-nor/core.c
-@@ -3799,6 +3799,7 @@ static const struct spi_device_id spi_nor_dev_ids[] = {
- 	 */
- 	{"at25df321a"},	{"at25df641"},	{"at26df081a"},
- 	{"mx25l4005a"},	{"mx25l1606e"},	{"mx25l6405d"},	{"mx25l12805d"},
-+	{"mx25l12833f"}, /* Uses the same JEDEC ID of mx25l12805d */
- 	{"mx25l25635e"},{"mx66l51235l"},
- 	{"n25q064"},	{"n25q128a11"},	{"n25q128a13"},	{"n25q512a"},
- 	{"s25fl256s1"},	{"s25fl512s"},	{"s25sl12801"},	{"s25fl008k"},
-diff --git a/drivers/mtd/spi-nor/macronix.c b/drivers/mtd/spi-nor/macronix.c
-index f210231468a6..28ae6041fe8c 100644
---- a/drivers/mtd/spi-nor/macronix.c
-+++ b/drivers/mtd/spi-nor/macronix.c
-@@ -247,6 +247,11 @@ static const struct flash_info macronix_nor_parts[] = {
- 		.size = SZ_16M,
- 		.flags = SPI_NOR_HAS_LOCK | SPI_NOR_4BIT_BP,
- 		.no_sfdp_flags = SECT_4K,
-+	}, {	/* Yes, Same JEDEC ID as mx25l12805d */
-+		.id = SNOR_ID(0xc2, 0x20, 0x18),
-+		.name = "mx25l12833f",
-+		.flags = SPI_NOR_HAS_LOCK | SPI_NOR_4BIT_BP,
-+		.otp = SNOR_OTP(512, 2, 0x000, 0x200),
- 	}, {
- 		.id = SNOR_ID(0xc2, 0x20, 0x19),
- 		.name = "mx25l25635e",
--- 
-2.39.2
-
+bod
 
