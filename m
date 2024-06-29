@@ -1,120 +1,111 @@
-Return-Path: <devicetree+bounces-81629-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81630-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0205391CE3D
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 19:11:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F07691CE49
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 19:36:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A3AB92827E3
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 17:11:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BF2432829FE
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 17:36:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5D6C2230F;
-	Sat, 29 Jun 2024 17:11:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 003D781AD7;
+	Sat, 29 Jun 2024 17:35:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="yzrJkqWc"
+	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="B+epOElV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout.web.de (mout.web.de [217.72.192.78])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A30341E4AF
-	for <devicetree@vger.kernel.org>; Sat, 29 Jun 2024 17:11:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6732F22EED;
+	Sat, 29 Jun 2024 17:35:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.72.192.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719681083; cv=none; b=AvyGDi2qrD84aa1g9PRN/lNw3ULBplp0d1CUd86+I5RAB+tdleejf+AlPe8t3Rem+WwEfof4msrw/NGGIMngngXygtSV4xhDXdVz+bx36rOesh9w0TSTj3XNzRqQKzrMmGmcY79JyUhhB05I1VfzW3fj48WnnHQVmEyDpd5g+sM=
+	t=1719682556; cv=none; b=LMjI6GxwE2tSPV7IhLF3rs/oeF4lvON/c2ui6t9YWxfhQYre064Wi2TujPtuR4iofZLbLEf9YIrKScwvKfc8dNRHzTYTUXeJfBjouq67nGBrZwgDPO54qtNc7jF/hfyEbBuIUeoPNXwVHa/cx8vk6aqiJtHTkEHLE1OVlsLC9VQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719681083; c=relaxed/simple;
-	bh=zNzp4b5hfBJwpbJNhb3XM49BtE39Q+D0gbYD8ZyR67c=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=lHOSR0R1iVeCAe3O9A1jVpxkMEKzEF7qKZzasvbf+kddW/NaHO0tQEEqfJuEN5kIWPtR83ZgKH/lC/IQENNbXXfhKGjh4penyXuVmGRSvbf1yyextYm1dx5TEq5hGr7Gon3gDEAnXbrmnfUXSuBdlti6UwFKgYy7sy2+eL7xrLU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=yzrJkqWc; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id A479787FC2;
-	Sat, 29 Jun 2024 19:11:13 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1719681074;
-	bh=sXLvVRJlnSoumegu1MRQL7hswbQ2cfgnVfoisYRYjcE=;
-	h=From:To:Cc:Subject:Date:From;
-	b=yzrJkqWcwQtnPC2aAnWxKnDLVNuQc5Bm6+1ZDXINAszJqxSvO9XMg3t5v1bEUsM8E
-	 0M8qJ2xZ3GXxEThXylOOKELYESXVJ+on1nnh/zHs91oogU0baJ/4paZBsk1X4tI138
-	 tp0EiTprSYAJQmK3jI0mUwpa8jdfO7K5ituOaFJzZIz46LVZrOMJIHY2yRwDq0q/gG
-	 1brdrEuu31V+ewMh9Y5vmA5q5uIo0KO5iUV1vqsxIWeEBeYKEt705V6uJjVWDgrC0D
-	 zfFqdRgWi+g3SdHVBtSp7tSfpkEggYLWBOgIOVrgin2m7nWONw5E0MYMKXIfiZcQHO
-	 k5Mb19sfXH8uw==
-From: Marek Vasut <marex@denx.de>
-To: linux-arm-kernel@lists.infradead.org
-Cc: Marek Vasut <marex@denx.de>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Christophe Roullier <christophe.roullier@foss.st.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	devicetree@vger.kernel.org,
-	kernel@dh-electronics.com,
-	linux-stm32@st-md-mailman.stormreply.com
-Subject: [PATCH] ARM: dts: stm32: Add ethernet MAC nvmem cells to DH STM32MP13xx DHCOR DHSBC board
-Date: Sat, 29 Jun 2024 19:10:30 +0200
-Message-ID: <20240629171100.20285-1-marex@denx.de>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1719682556; c=relaxed/simple;
+	bh=tsJg2UT0g/WSTAeN0OossZ9r+TgWqAkhMXJOZv5nhmg=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=l2tGqLxn0Vof7Psr6AMf2PwcynGrE2gSvz9+OoVfoszp35fTUESjjFLpwhLRiL+eZljGAfn/dr5e7IvgTpuW+d+GoimrxcOPKgrWW/GAy8xmh+engq0Tj58Fs7/TOOHjrCp3ayi/Yj0IPdFsRdsbT4f4g9NQjb+WInMZb/mSiKU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=B+epOElV; arc=none smtp.client-ip=217.72.192.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+	s=s29768273; t=1719682519; x=1720287319; i=markus.elfring@web.de;
+	bh=tsJg2UT0g/WSTAeN0OossZ9r+TgWqAkhMXJOZv5nhmg=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:From:Subject:To:
+	 Cc:References:In-Reply-To:Content-Type:Content-Transfer-Encoding:
+	 cc:content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=B+epOElVMYgXswpTdA5mRf6qTcC2Gx0fzEhcDHw5s5nkT5d5aMTz1ZhQZFi5hU02
+	 3X/+HskmAxZVytDvl8MBVFp/SkcieaiYOLld8ODp0Cz2+uldK966Kxqji29REhhgN
+	 P3IJRkiOE989iEhMRrWduoE0JMXAf40AH8KWzoxvv+oaoA8eC8OXyIA+u9Bf6L/HI
+	 uEygyCcJJ5k1x1qb/vLVNbJUZ2INU6EoqGAK/1HYiwuB9puvZZGFXKmreMopvroJq
+	 JyktWO2a8OYUGJ9PIuHBjyOD6ORUwwopCZa335gyyn3nBu9D+CsZd814Bn3nYBiHL
+	 Q1TCBVGSfCwj0LODZg==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from [192.168.178.21] ([94.31.82.95]) by smtp.web.de (mrweb105
+ [213.165.67.124]) with ESMTPSA (Nemesis) id 1N4N9I-1sGYvR0bQ6-00zBAC; Sat, 29
+ Jun 2024 19:35:19 +0200
+Message-ID: <9f67af8b-9c8c-4ad6-88c3-03d9fd9673d2@web.de>
+Date: Sat, 29 Jun 2024 19:35:01 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+User-Agent: Mozilla Thunderbird
+From: Markus Elfring <Markus.Elfring@web.de>
+Subject: Re: [PATCH v2 1/2] arm64: dts: mediatek: mt7622: readd syscon to
+ pciesys node
+To: Christian Marangi <ansuelsmth@gmail.com>,
+ Frank Wunderlich <frank-w@public-files.de>,
+ linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+ Angelo Gioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ Michael Turquette <mturquette@baylibre.com>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
+ <rafal@milecki.pl>, Rob Herring <robh@kernel.org>,
+ Stephen Boyd <sboyd@kernel.org>
+Cc: stable@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>
+References: <20240628105542.5456-1-ansuelsmth@gmail.com>
+Content-Language: en-GB
+In-Reply-To: <20240628105542.5456-1-ansuelsmth@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:v8gBJ2lGpjG9X3tIzafMhs3tI5PY4M5B34TedERy2La5e4vj+id
+ 4Fp2ViEGYUwJKeWuxBkYDYwAPlaXtJbpgWSDpucxZjT/bLtrEKyJTo15qU2ZypHtriQukLW
+ 95oWGGQ3uQYixiAlYFNCzpWAjQO2zOVBi7bjeNSXeblGoeIzE1zqhHnMeGS8zL6eMII02Pt
+ mdRjaCFcl1hGsqIWnC0+A==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:MNZwi5QpEBs=;rNwPC0lM5Jg4hhO2G++/jY1PrJy
+ 3Vqy/ghHNt3QkFVS1+2qNdMETT7EQEs7epsyP5HuXtx57kvvHufS6PIhuduEV7cyXaZH/kWAg
+ gxBhyraJWmtilolZpQctgb1byPcCG/GDN2vAz43As+2mOY7SBdAsyo0sGLrc3fFTbPXg4PZ2q
+ iUkl//5A8u0HwULkvavPY3hHIRIgEZH9dQDT5CaEp4X+OO3oaboYuRdcaiVbOfJaItSR20j5N
+ t6YRVBR17nGhJMcSB20gYZMZxcT7daciEpT6cacM3f/e4rF4aPoO0DYWcjIDPeaG/nbW0LAlG
+ P8/NHTE9X8kaqTqlKo0G4F3u2S4cutR7LodNRAD1gdZxDZnd8yNwF7iZcOuzQmJX0Hd25gwS2
+ izz+qS2MMRXs+w2WK6mO8t4E0OxK7OmH2LNthYD9LYPrgOUVT/RwIo87UUSMXFuaVSnRQf2G/
+ A0NQSIzC1D5bkpSrI++2YaAQ0AnX+dsX8pI0H+dYkqGo5tISw/2PlJq4QvVYm6/AUCUOGkHlb
+ 077XAl00o7Q7eMh0zJizKkWLnHwIRzur/A20acj/mmg/MD1wCD+NBsO0K1QoCOly9VXqVJQIq
+ 9I8ehgJqqNtUWf3g/5E6Ego03gPIp8u8kcAiJZtA0arS99Dii3nDLpqaaDb6UIzQjCDzR7qR+
+ jC7bPSbTvohs4ZrhUE48kDQIzCeI1cROuMTTegjfpo7D5S5XxiJOPURMvWTcRnQXBVLRxRKJo
+ ux6xXoYfBPgftPf0oh68r207mIaX8dg99ZS90PIjpiQfRJ31O3xjv1xQr4gGWZS1qaQsOhOKb
+ bAmELv+sp/7Fqp3miBHR9miIl4tiDouSz/u7Ix+3wTJdQ=
 
-Describe ethernet MAC address nvmem cells in DH STM32MP13xx DHCOR DHSBC
-board DT. The MAC address can be fused in BSEC OTP fuses and used to set
-up MAC address for both ethernet MACs on this board.
+> Sata node reference the pciesys with the property mediatek,phy-node
+> and that is used as a syscon to access the pciesys regs.
+>
+> Readd the syscon compatible to pciesys node to restore correct
+> functionality of the SATA interface.
+=E2=80=A6
+> Reported-by: Frank Wunderlich =E2=80=A6
 
-Signed-off-by: Marek Vasut <marex@denx.de>
----
-Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc: Christophe Roullier <christophe.roullier@foss.st.com>
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
-Cc: Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org
-Cc: kernel@dh-electronics.com
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-stm32@st-md-mailman.stormreply.com
----
- arch/arm/boot/dts/st/stm32mp135f-dhcor-dhsbc.dts | 4 ++++
- 1 file changed, 4 insertions(+)
+Was any related information published?
 
-diff --git a/arch/arm/boot/dts/st/stm32mp135f-dhcor-dhsbc.dts b/arch/arm/boot/dts/st/stm32mp135f-dhcor-dhsbc.dts
-index bacb70b4256bc..3cc9ad88d61bc 100644
---- a/arch/arm/boot/dts/st/stm32mp135f-dhcor-dhsbc.dts
-+++ b/arch/arm/boot/dts/st/stm32mp135f-dhcor-dhsbc.dts
-@@ -75,6 +75,8 @@ channel@12 {
- };
- 
- &ethernet1 {
-+	nvmem-cell-names = "mac-address";
-+	nvmem-cells = <&ethernet_mac1_address>;
- 	phy-handle = <&ethphy1>;
- 	phy-mode = "rgmii-id";
- 	pinctrl-0 = <&eth1_rgmii_pins_a>;
-@@ -102,6 +104,8 @@ ethphy1: ethernet-phy@1 {
- };
- 
- &ethernet2 {
-+	nvmem-cell-names = "mac-address";
-+	nvmem-cells = <&ethernet_mac2_address>;
- 	phy-handle = <&ethphy2>;
- 	phy-mode = "rgmii-id";
- 	pinctrl-0 = <&eth2_rgmii_pins_a>;
--- 
-2.43.0
+Regards,
+Markus
 
 
