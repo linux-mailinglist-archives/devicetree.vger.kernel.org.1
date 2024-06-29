@@ -1,98 +1,67 @@
-Return-Path: <devicetree+bounces-81654-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81655-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E62691CEFF
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 22:12:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D55F791CF05
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 22:29:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E0D26B21337
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 20:12:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 47EF12825FD
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 20:29:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58A9B143740;
-	Sat, 29 Jun 2024 20:12:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1777013BC3F;
+	Sat, 29 Jun 2024 20:29:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="CMD8uRK2"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="YohQ/Igd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f47.google.com (mail-oo1-f47.google.com [209.85.161.47])
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F14B14372C
-	for <devicetree@vger.kernel.org>; Sat, 29 Jun 2024 20:12:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5736B3C36
+	for <devicetree@vger.kernel.org>; Sat, 29 Jun 2024 20:29:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719691925; cv=none; b=kE6pyYe7MBU3ha+lAGm2QAHGYuwCObTQuH6Jrf/fY3hO4tW3ccwdoxhmeJpi1ospwxZ9L+57DGVNA0ZbRdpFhJT8dKMnV3fjQuvnfLoHDWNyvsJDSqUdMOzFKy83sxjtUzKw8svfU3Lor6nf5U7Kn+CdoYSkMyWscZ4h/z7yN5g=
+	t=1719692949; cv=none; b=fSY34oWZIFdxtaHhJhWDQf3NsDB4vpZFXNCv0yZ1CeHCzVPfC/idfwJe++1hQlRtuq3PmdPL7b6iEokctwoX4y/+Esq2fJClDYpzwDiQWSlTWXxHXyUP3owha+K4n2D90b9HBiQvwshheNskMMSEen9NP/0m8CW8R4sgCAEXnvw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719691925; c=relaxed/simple;
-	bh=em4fT6gc4FKgIY5Dn0mKLeU5n6+xY+c5SD9nUabtX7w=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=aeBn8qCjD7u/pwSSY8tGltn8vjDUP+XDEyDctASigdbXrgHQhGtZiqjbWnCGKhP0hDT4aqVb9C3cWZqlibqofwZXO0mwuvdDeUWsVSFze9HDrTFB80KxBEYHEYvTiTslyNLhAk2Z29fpq6KgABDGroq8O1LwCI/bwvkzJERQ76w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=CMD8uRK2; arc=none smtp.client-ip=209.85.161.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-oo1-f47.google.com with SMTP id 006d021491bc7-5b970a97e8eso887324eaf.1
-        for <devicetree@vger.kernel.org>; Sat, 29 Jun 2024 13:12:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1719691923; x=1720296723; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wz8mCbvpvyvinIWniLr2yCzgz2midVzsHqb0HV25yDo=;
-        b=CMD8uRK2DNSr66jaQoUHDlmoAA0abRrUZiaGZfqjBq05NKlKrHf+XE4BtKbtD4Aq0Q
-         VobuHOcBJbtz9MVh8SdUhS7izjFR3Vhl20yRPMjXBNJgD2QSwq2gidBkedK0xxJXbaXh
-         SZ2GPjsFFxIcw3+j1ukEgH7d94vsGMoqAQFgA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719691923; x=1720296723;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wz8mCbvpvyvinIWniLr2yCzgz2midVzsHqb0HV25yDo=;
-        b=oTFC+cHGWAFvfCswhkiAZ+0xmzqxYYMDg9lQLA8NRZ7jExBnhe8nLME9+WcOURAi3g
-         u5zbbzWb0piKeormG5zCe0fI0jd9P0hLgwMI8eL4q4XQYYD8KIbjANlcB09yWRZqeNRQ
-         PWoDG5GUx1TM2N6dbGE79OQtVR8PJ/c2zftGcFFYmRetzqb7RJHSUfHTmtL1aEvJVXs0
-         8KRLgAt8bFpe/ssXzTqszuHq2NhYc0YxSNh10i9JO9lx3IS8pJKBa1ueDU5eK1/+L7d7
-         7A4rO1hPOgvkZ5EZYtUJk0qxOcIUmjqUSTyh5vblwguq++8QdK4iSKdIugSXfNn3QITj
-         2vcA==
-X-Forwarded-Encrypted: i=1; AJvYcCWTNQ4TL07xz5L9fiNAbv58WM9Wx/f57m+u2uG4KmxUzWJDxmCftm5z+EHSdVgGNKCXGr6WX5Og8LCHc+X6TJPAOypggHyDw2mVJw==
-X-Gm-Message-State: AOJu0YxKEIHXsEpH+f7klLTBOV3NNbebBkY3ueG4W5ewUGduO2ZJEpsj
-	lEWTk8Cw05yRVYEW8efMDDPglf/SW5mV2WzvGLTi3EXczNnpkhsEbRn2EUPoew==
-X-Google-Smtp-Source: AGHT+IHrZjsLZQfqR6BkKRHpaf31OvHUDoQcMupSCa8wBy/iaapmDXKFCwHPIIu2VQeR4Ptwa1/jWw==
-X-Received: by 2002:a05:6358:71c6:b0:19f:4c1b:f0f8 with SMTP id e5c5f4694b2df-1a6acec74e8mr178525255d.24.1719691922719;
-        Sat, 29 Jun 2024 13:12:02 -0700 (PDT)
-Received: from pc98uv11.mtv.corp.google.com ([2620:15c:9d:2:db78:5dbf:8bdd:601d])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2c91ce43460sm3750412a91.20.2024.06.29.13.12.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 29 Jun 2024 13:12:02 -0700 (PDT)
-From: Daisuke Nojiri <dnojiri@chromium.org>
-To: 
-Cc: Benson Leung <bleung@chromium.org>,
-	Tzung-Bi Shih <tzungbi@kernel.org>,
-	Guenter Roeck <groeck@chromium.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1719692949; c=relaxed/simple;
+	bh=7+APUSAjYKR289pv7EcSN0jUi+Rjae4GIgJoKokjKyg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=abKvoELf6o/KEH+ge5RWCAgQdfnMC0pOKACVEwzJxdxslxAa/2IEppjvbFmuIsSr1YpLVa1LhNTlw3d51agdHdjcIG6fWWBtNPWyuxFExgeOTBvjqsCh9+/ItVR00FQiEgaKQHkUO17Z6GsfYXfHX5laoHlSNkomjT7ZZy0rKXQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=YohQ/Igd; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id EEB1887DC7;
+	Sat, 29 Jun 2024 22:29:03 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1719692944;
+	bh=g6ZGg6AJR7TK10wveq4SKcbkt2J+EBtrC7Modkd9kPY=;
+	h=From:To:Cc:Subject:Date:From;
+	b=YohQ/IgdWmheu7vZJfLg1EV2NlgSL8elW9v+CUoDpOjiyTz1hQQvNHCMtqTIETWMl
+	 k00Nrf32xRo47jTeHK70mhYBIf1Ig1KsUhdjz02SyLrlkv6MPS8FxYJ1jQTzpqVfMb
+	 SUakiJMn1ZbRDoE2apSlwXOhXMkdh1h0kydSoW8pO6+Qf9/J48/5s2XPLG+8qInIks
+	 XTILbluGw5w8Kiu2oJg31pevJo6YfSAJo9otJ187D3BiLKZYc8mvxfG/Mq2oUTnfNA
+	 YU83FiP22WwjOIt/nvv0sIEwCb0cm+WTuyAMvgjfLIw+552g4u81sf+a1KU+j3k8oz
+	 fPDJaX2iFZzqA==
+From: Marek Vasut <marex@denx.de>
+To: linux-arm-kernel@lists.infradead.org
+Cc: Marek Vasut <marex@denx.de>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Christophe Roullier <christophe.roullier@foss.st.com>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-	Reka Norman <rekanorman@chromium.org>,
-	Pavan Holla <pholla@chromium.org>,
-	Abhishek Pandit-Subedi <abhishekpandit@google.com>,
-	Gwendal Grignou <gwendal@chromium.org>,
-	Daisuke Nojiri <dnojiri@chromium.org>,
-	Ching-Kang Yen <chingkang@chromium.org>,
-	Lukasz Majczak <lma@chromium.org>,
-	Prashant Malani <pmalani@chromium.org>,
-	Stephen Boyd <swboyd@chromium.org>,
-	chrome-platform@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH v6 2/2] dt-bindings: cros-ec-keyboard: Add keyboard matrix v3.0
-Date: Sat, 29 Jun 2024 13:11:31 -0700
-Message-ID: <9544ef0e9911dbe8f5e2fcd7123adc20a0a2f7f2.1719691604.git.dnojiri@chromium.org>
-X-Mailer: git-send-email 2.45.2.803.g4e1b14247a-goog
-In-Reply-To: <cover.1719691604.git.dnojiri@chromium.org>
-References: <cover.1719691604.git.dnojiri@chromium.org>
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	devicetree@vger.kernel.org,
+	kernel@dh-electronics.com,
+	linux-stm32@st-md-mailman.stormreply.com
+Subject: [PATCH] ARM: dts: stm32: Keep MDIO bus in AF across suspend DH STM32MP13xx DHCOR DHSBC board
+Date: Sat, 29 Jun 2024 22:28:41 +0200
+Message-ID: <20240629202847.90693-1-marex@denx.de>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -100,129 +69,83 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-Add support for keyboard matrix version 3.0, which reduces keyboard
-ghosting.
+The RTL8211F PHY gets confused when the MDIO bus lines get switched
+to ANALOG during suspend/resume cycle. Keep the MDIO and MDC lines
+in AF during suspend/resume to avoid confusing the PHY. The PHY can
+be brought out of the confused state by restarting auto-negotiation
+too, but that seems like an odd workaround and shouldn't be in the
+PHY driver.
 
-Signed-off-by: Daisuke Nojiri <dnojiri@chromium.org>
+Signed-off-by: Marek Vasut <marex@denx.de>
 ---
- include/dt-bindings/input/cros-ec-keyboard.h | 104 +++++++++++++++++++
- 1 file changed, 104 insertions(+)
+Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc: Christophe Roullier <christophe.roullier@foss.st.com>
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
+Cc: Rob Herring <robh@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: kernel@dh-electronics.com
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-stm32@st-md-mailman.stormreply.com
+---
+ arch/arm/boot/dts/st/stm32mp13-pinctrl.dtsi | 20 ++++++++++++++++----
+ 1 file changed, 16 insertions(+), 4 deletions(-)
 
-diff --git a/include/dt-bindings/input/cros-ec-keyboard.h b/include/dt-bindings/input/cros-ec-keyboard.h
-index f0ae03634a96..afc12f6aa642 100644
---- a/include/dt-bindings/input/cros-ec-keyboard.h
-+++ b/include/dt-bindings/input/cros-ec-keyboard.h
-@@ -100,4 +100,108 @@
- 	MATRIX_KEY(0x07, 0x0b, KEY_UP)		\
- 	MATRIX_KEY(0x07, 0x0c, KEY_LEFT)
+diff --git a/arch/arm/boot/dts/st/stm32mp13-pinctrl.dtsi b/arch/arm/boot/dts/st/stm32mp13-pinctrl.dtsi
+index d3deec602ae7a..e6c0dceee9866 100644
+--- a/arch/arm/boot/dts/st/stm32mp13-pinctrl.dtsi
++++ b/arch/arm/boot/dts/st/stm32mp13-pinctrl.dtsi
+@@ -88,14 +88,20 @@ pins2 {
  
-+/* No numpad */
-+#define CROS_TOP_ROW_KEYMAP_V30 \
-+	MATRIX_KEY(0x00, 0x01, KEY_F11)		/* T11 */	\
-+	MATRIX_KEY(0x00, 0x02, KEY_F1)		/* T1 */	\
-+	MATRIX_KEY(0x00, 0x04, KEY_F10)		/* T10 */	\
-+	MATRIX_KEY(0x00, 0x0b, KEY_F14)		/* T14 */	\
-+	MATRIX_KEY(0x00, 0x0c, KEY_F15)		/* T15 */	\
-+	MATRIX_KEY(0x01, 0x02, KEY_F4)		/* T4 */	\
-+	MATRIX_KEY(0x01, 0x04, KEY_F7)		/* T7 */	\
-+	MATRIX_KEY(0x01, 0x05, KEY_F12)		/* T12 */	\
-+	MATRIX_KEY(0x01, 0x09, KEY_F9)		/* T9 */	\
-+	MATRIX_KEY(0x02, 0x02, KEY_F3)		/* T3 */	\
-+	MATRIX_KEY(0x02, 0x04, KEY_F6)		/* T6 */	\
-+	MATRIX_KEY(0x02, 0x0b, KEY_F8)		/* T8 */	\
-+	MATRIX_KEY(0x03, 0x02, KEY_F2)		/* T2 */	\
-+	MATRIX_KEY(0x03, 0x05, KEY_F13)		/* T13 */	\
-+	MATRIX_KEY(0x04, 0x04, KEY_F5)		/* T5 */
+ 	eth1_rgmii_sleep_pins_a: eth1-rgmii-sleep-0 {
+ 		pins1 {
++			pinmux = <STM32_PINMUX('A', 2, AF11)>, /* ETH_MDIO */
++				 <STM32_PINMUX('G', 2, AF11)>; /* ETH_MDC */
++			bias-disable;
++			drive-push-pull;
++			slew-rate = <2>;
++		};
 +
-+#define CROS_MAIN_KEYMAP_V30			/* Keycode */	\
-+	MATRIX_KEY(0x00, 0x03, KEY_B)		/* 50 */	\
-+	MATRIX_KEY(0x00, 0x05, KEY_N)		/* 51 */	\
-+	MATRIX_KEY(0x00, 0x06, KEY_RO)		/* 56 (JIS) */	\
-+	MATRIX_KEY(0x00, 0x08, KEY_EQUAL)	/* 13 */	\
-+	MATRIX_KEY(0x00, 0x09, KEY_HOME)	/* 80 (Numpad) */	\
-+	MATRIX_KEY(0x00, 0x0a, KEY_RIGHTALT)	/* 62 */	\
-+	MATRIX_KEY(0x00, 0x10, KEY_FN)		/* 127 */	\
-+								\
-+	MATRIX_KEY(0x01, 0x01, KEY_ESC)		/* 110 */	\
-+	MATRIX_KEY(0x01, 0x03, KEY_G)		/* 35 */	\
-+	MATRIX_KEY(0x01, 0x06, KEY_H)		/* 36 */	\
-+	MATRIX_KEY(0x01, 0x08, KEY_APOSTROPHE)	/* 41 */	\
-+	MATRIX_KEY(0x01, 0x0b, KEY_BACKSPACE)	/* 15 */	\
-+	MATRIX_KEY(0x01, 0x0c, KEY_HENKAN)	/* 65 (JIS) */	\
-+	MATRIX_KEY(0x01, 0x0e, KEY_LEFTCTRL)	/* 58 */	\
-+								\
-+	MATRIX_KEY(0x02, 0x01, KEY_TAB)		/* 16 */	\
-+	MATRIX_KEY(0x02, 0x03, KEY_T)		/* 21 */	\
-+	MATRIX_KEY(0x02, 0x05, KEY_RIGHTBRACE)	/* 28 */	\
-+	MATRIX_KEY(0x02, 0x06, KEY_Y)		/* 22 */	\
-+	MATRIX_KEY(0x02, 0x08, KEY_LEFTBRACE)	/* 27 */	\
-+	MATRIX_KEY(0x02, 0x09, KEY_DELETE)	/* 76 (Numpad) */	\
-+	MATRIX_KEY(0x02, 0x0c, KEY_PAGEUP)	/* 85 (Numpad) */	\
-+	MATRIX_KEY(0x02, 0x011, KEY_YEN)	/* 14 (JIS) */	\
-+								\
-+	MATRIX_KEY(0x03, 0x00, KEY_LEFTMETA)	/* Launcher */	\
-+	MATRIX_KEY(0x03, 0x01, KEY_GRAVE)	/* 1 */	\
-+	MATRIX_KEY(0x03, 0x03, KEY_5)		/* 6 */	\
-+	MATRIX_KEY(0x03, 0x04, KEY_S)		/* 32 */	\
-+	MATRIX_KEY(0x03, 0x06, KEY_MINUS)	/* 12 */	\
-+	MATRIX_KEY(0x03, 0x08, KEY_6)		/* 7 */		\
-+	MATRIX_KEY(0x03, 0x09, KEY_SLEEP)	/* Lock */	\
-+	MATRIX_KEY(0x03, 0x0b, KEY_BACKSLASH)	/* 29 */	\
-+	MATRIX_KEY(0x03, 0x0c, KEY_MUHENKAN)	/* 63 (JIS) */	\
-+	MATRIX_KEY(0x03, 0x0e, KEY_RIGHTCTRL)	/* 64 */	\
-+								\
-+	MATRIX_KEY(0x04, 0x01, KEY_A)		/* 31 */	\
-+	MATRIX_KEY(0x04, 0x02, KEY_D)		/* 33 */	\
-+	MATRIX_KEY(0x04, 0x03, KEY_F)		/* 34 */	\
-+	MATRIX_KEY(0x04, 0x05, KEY_K)		/* 38 */	\
-+	MATRIX_KEY(0x04, 0x06, KEY_J)		/* 37 */	\
-+	MATRIX_KEY(0x04, 0x08, KEY_SEMICOLON)	/* 40 */	\
-+	MATRIX_KEY(0x04, 0x09, KEY_L)		/* 39 */	\
-+	MATRIX_KEY(0x04, 0x0b, KEY_ENTER)	/* 43 */	\
-+	MATRIX_KEY(0x04, 0x0c, KEY_END)		/* 81 (Numpad) */	\
-+								\
-+	MATRIX_KEY(0x05, 0x01, KEY_1)		/* 2 */	\
-+	MATRIX_KEY(0x05, 0x02, KEY_COMMA)	/* 53 */	\
-+	MATRIX_KEY(0x05, 0x03, KEY_DOT)		/* 54 */	\
-+	MATRIX_KEY(0x05, 0x04, KEY_SLASH)	/* 55 */	\
-+	MATRIX_KEY(0x05, 0x05, KEY_C)		/* 48 */	\
-+	MATRIX_KEY(0x05, 0x06, KEY_SPACE)	/* 61 */	\
-+	MATRIX_KEY(0x05, 0x07, KEY_LEFTSHIFT)	/* 44 */	\
-+	MATRIX_KEY(0x05, 0x08, KEY_X)		/* 47 */	\
-+	MATRIX_KEY(0x05, 0x09, KEY_V)		/* 49 */	\
-+	MATRIX_KEY(0x05, 0x0b, KEY_M)		/* 52 */	\
-+	MATRIX_KEY(0x05, 0x0c, KEY_PAGEDOWN)	/* 86 (Numpad) */	\
-+								\
-+	MATRIX_KEY(0x06, 0x01, KEY_Z)		/* 46 */	\
-+	MATRIX_KEY(0x06, 0x02, KEY_3)		/* 4 */		\
-+	MATRIX_KEY(0x06, 0x03, KEY_4)		/* 5 */		\
-+	MATRIX_KEY(0x06, 0x04, KEY_2)		/* 3 */		\
-+	MATRIX_KEY(0x06, 0x05, KEY_8)		/* 9 */		\
-+	MATRIX_KEY(0x06, 0x06, KEY_0)		/* 11 */	\
-+	MATRIX_KEY(0x06, 0x08, KEY_7)		/* 8 */		\
-+	MATRIX_KEY(0x06, 0x09, KEY_9)		/* 10 */	\
-+	MATRIX_KEY(0x06, 0x0b, KEY_DOWN)	/* 84 */	\
-+	MATRIX_KEY(0x06, 0x0c, KEY_RIGHT)	/* 89 */	\
-+	MATRIX_KEY(0x06, 0x0d, KEY_LEFTALT)	/* 60 */	\
-+	MATRIX_KEY(0x06, 0x0f, KEY_ASSISTANT)	/* 128 */	\
-+	MATRIX_KEY(0x06, 0x11, KEY_BACKSLASH)	/* 42 (JIS, ISO) */	\
-+								\
-+	MATRIX_KEY(0x07, 0x01, KEY_U)		/* 23 */	\
-+	MATRIX_KEY(0x07, 0x02, KEY_I)		/* 24 */	\
-+	MATRIX_KEY(0x07, 0x03, KEY_O)		/* 25 */	\
-+	MATRIX_KEY(0x07, 0x04, KEY_P)		/* 26 */	\
-+	MATRIX_KEY(0x07, 0x05, KEY_Q)		/* 17 */	\
-+	MATRIX_KEY(0x07, 0x06, KEY_W)		/* 18 */	\
-+	MATRIX_KEY(0x07, 0x07, KEY_RIGHTSHIFT)	/* 57 */	\
-+	MATRIX_KEY(0x07, 0x08, KEY_E)		/* 19 */	\
-+	MATRIX_KEY(0x07, 0x09, KEY_R)		/* 20 */	\
-+	MATRIX_KEY(0x07, 0x0b, KEY_UP)		/* 83 */	\
-+	MATRIX_KEY(0x07, 0x0c, KEY_LEFT)	/* 79 */	\
-+	MATRIX_KEY(0x07, 0x11, KEY_102ND)	/* 45 (ISO) */
++		pins2 {
+ 			pinmux = <STM32_PINMUX('G', 13, ANALOG)>, /* ETH_RGMII_TXD0 */
+ 				 <STM32_PINMUX('G', 14, ANALOG)>, /* ETH_RGMII_TXD1 */
+ 				 <STM32_PINMUX('C', 2, ANALOG)>, /* ETH_RGMII_TXD2 */
+ 				 <STM32_PINMUX('E', 5, ANALOG)>, /* ETH_RGMII_TXD3 */
+ 				 <STM32_PINMUX('B', 11, ANALOG)>, /* ETH_RGMII_TX_CTL */
+ 				 <STM32_PINMUX('C', 1, ANALOG)>, /* ETH_RGMII_GTX_CLK */
+-				 <STM32_PINMUX('A', 2, ANALOG)>, /* ETH_MDIO */
+-				 <STM32_PINMUX('G', 2, ANALOG)>, /* ETH_MDC */
+ 				 <STM32_PINMUX('C', 4, ANALOG)>, /* ETH_RGMII_RXD0 */
+ 				 <STM32_PINMUX('C', 5, ANALOG)>, /* ETH_RGMII_RXD1 */
+ 				 <STM32_PINMUX('B', 0, ANALOG)>, /* ETH_RGMII_RXD1 */
+@@ -169,14 +175,20 @@ pins2 {
+ 
+ 	eth2_rgmii_sleep_pins_a: eth2-rgmii-sleep-0 {
+ 		pins1 {
++			pinmux = <STM32_PINMUX('B', 6, ANALOG)>, /* ETH_MDIO */
++				 <STM32_PINMUX('G', 5, ANALOG)>; /* ETH_MDC */
++			bias-disable;
++			drive-push-pull;
++			slew-rate = <2>;
++		};
 +
- #endif /* _CROS_EC_KEYBOARD_H */
++		pins2 {
+ 			pinmux = <STM32_PINMUX('F', 7, ANALOG)>, /* ETH_RGMII_TXD0 */
+ 				 <STM32_PINMUX('G', 11, ANALOG)>, /* ETH_RGMII_TXD1 */
+ 				 <STM32_PINMUX('G', 1, ANALOG)>, /* ETH_RGMII_TXD2 */
+ 				 <STM32_PINMUX('E', 6, ANALOG)>, /* ETH_RGMII_TXD3 */
+ 				 <STM32_PINMUX('F', 6, ANALOG)>, /* ETH_RGMII_TX_CTL */
+ 				 <STM32_PINMUX('G', 3, ANALOG)>, /* ETH_RGMII_GTX_CLK */
+-				 <STM32_PINMUX('B', 6, ANALOG)>, /* ETH_MDIO */
+-				 <STM32_PINMUX('G', 5, ANALOG)>, /* ETH_MDC */
+ 				 <STM32_PINMUX('F', 4, ANALOG)>, /* ETH_RGMII_RXD0 */
+ 				 <STM32_PINMUX('E', 2, ANALOG)>, /* ETH_RGMII_RXD1 */
+ 				 <STM32_PINMUX('H', 6, ANALOG)>, /* ETH_RGMII_RXD2 */
 -- 
-2.45.2.803.g4e1b14247a-goog
+2.43.0
 
 
