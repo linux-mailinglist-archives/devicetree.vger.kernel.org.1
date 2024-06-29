@@ -1,146 +1,158 @@
-Return-Path: <devicetree+bounces-81581-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81582-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD6F491CCE8
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 15:04:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E89E91CCEB
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 15:05:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F2F92B21F1F
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 13:04:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E8C4D1F2211F
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 13:05:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7434477107;
-	Sat, 29 Jun 2024 13:04:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DA4F7E0E8;
+	Sat, 29 Jun 2024 13:05:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ndtnis4L"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Fvx13+dx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
+Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD3187F483
-	for <devicetree@vger.kernel.org>; Sat, 29 Jun 2024 13:04:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2438577107
+	for <devicetree@vger.kernel.org>; Sat, 29 Jun 2024 13:05:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719666259; cv=none; b=nzX21HVsr/Ou51vW9FoHsUk73OEJ58zsz9Qx+3voJy5Q7IitP/zsOarBdRPYlAv77pPu+e1opwwVYoo28KdTZ/V+FhTIrfDBoFkkezhUfbKB96G4bfNhRSmYcL7A2wmoxxZ+Y+oJDV7LDgsvUfQZIg0RqDP2lSdinripQfjDqyM=
+	t=1719666335; cv=none; b=Gf8YqqwpFzen22LxduwLThdUzJl+zZDSwV46sKAW253YEGYzGcsSg9UklYauW0HTK7djMouSMqsHaWbLfU66azoNNBgW90M+3LEkMoqaN0nZVqgawTXFq0ZVFhjGvIpsJWv4nuuUex5CREjs0yhlTDSp/gGiKMHBMZDkwlorkRs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719666259; c=relaxed/simple;
-	bh=5PAYIRjgVBBS3zFOwULbXF/1Vu42rQ834I7ZMdp37dY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fABnf/XHEXb1/D3Ahr3ykczW7VKtLUP0qKTyZSi9Q/YzftY/S83sSU8S5L0begeeimetJ55coDhUseiqxyES+7JtpNWluwjuD8ekc5R9IeiXFCfWaMVOQX/FtSfRglqnazEoczBd5EtjMRCEohl+LdoppaL4LDdhkChYgrD/Wz8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ndtnis4L; arc=none smtp.client-ip=209.85.208.177
+	s=arc-20240116; t=1719666335; c=relaxed/simple;
+	bh=+GloaJVSprqCGpULiUI/O36iec3Yuequ8ZLM2WLDhNA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=s82XfQfVU6JJR8nuhPo1KgSs1mBYkGNCdKrC16dIkHL2FN8ml0AK/CBnwy9UFnmFeP1l6fQPpyBV+lfi5gCkqV0+B9fKsLHihCs6aSL9H4M7VfpZwA2v6Hbqne64vx+dbkHdeCgUBwJMxgK1bkhMmAYgpA1v68oECwbxNV+tRso=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Fvx13+dx; arc=none smtp.client-ip=209.85.214.181
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2ebe40673d8so19129281fa.3
-        for <devicetree@vger.kernel.org>; Sat, 29 Jun 2024 06:04:17 -0700 (PDT)
+Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-1f480624d10so11059315ad.1
+        for <devicetree@vger.kernel.org>; Sat, 29 Jun 2024 06:05:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719666256; x=1720271056; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=+hMhKjEObUAKJ1IKbGtbahJo7olJ5ZuXPb3nVMpK2Tg=;
-        b=ndtnis4LwkBPAEsN3XzLl4rh/7lai9YoFCALcToydhquuw0rpFhmRFaqjJRGposWoa
-         +uPxHFYqesFImY+VzUOquNdH7kxdMVSl3HBWk+q6eXUfSBlvAEiAn2NBKbxLqHsFs4N0
-         nZNXjDXQ97y4P1VeDfjDP4mYCPA1/UNGrZZsMaLrDpdg5QUnViqvOdt7f2mVMHasv3oD
-         BRA2AA4Z9r4GRYVVUmNPqHpU1Rug+KktxAfb1fEKJQAfkKb/QKY8lWYEASHrBVY1H9qc
-         DdfGn+UJtxyhNfhFwqYuPH9NVHSW2xLp/o25W/P/Kd2Mb+FDVDlZwikq4aaOxAGN831F
-         fYtg==
+        d=linaro.org; s=google; t=1719666333; x=1720271133; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=Hr41jn7CS+JV7JYEOXmHYOhJrr4EACp9o9fXqaxlvEQ=;
+        b=Fvx13+dxBbvCO9u8msJoUvEAv1quxljn6PMdinzrtSpow4qFafKr1PgzG9K3+VrK8V
+         hx2F1y4oMyaOD/vGaJ/y+uzBBt2w9adBd1UyDtCnvVS4eJEqkqcgrllFGXXTckZj59Ot
+         kAM023AAI+GyaE2Ve701KoAEZKJZHJgPi2IOOEhrByPd9MNwZSGjyMNqO6KvKWk/I+sY
+         OoAAQ6d+KhFi7pBONQ/5OZ02OZjQA0/aVA7IoFXWA2OpbJIRVvRswRLiNGdZfzCDmBpg
+         69oum7A7SHU62W8wWgt0zOlUGPJd1PUq1SufyMQwnZf+ysbOcgRERDd/Q8165ePRjzgG
+         RdkA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719666256; x=1720271056;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+hMhKjEObUAKJ1IKbGtbahJo7olJ5ZuXPb3nVMpK2Tg=;
-        b=s6NNW649BXZ8UbwczrRKGY24Use51SPOQmrJfaSdJQanlsHY35MfotIbdxsKRH5PUG
-         U5Z2kBGzgTQj4uZm/mTkBn+u8rL2ZbnyNkASL3V1AxS1kUc2K+acE4nGviLujLhFEIvW
-         ugtpIqbUm5IWVIoGkbzhhOIQh8b339sE3zvPTeXscX/0PH4Thu/JPTqL/yXIP5MXC4Lu
-         3stuRnIIBfycE/NNCVPvqveBeixK/wJnkm0DAeld60pV4AtF2b2T2/cfsORqCdOFzJTj
-         q6ickZcCB1hOq50ci9QIbdKuCgU22LOgdtYDZlb9zt6EH8pvp/J6S58jzo2h2fRLFs6g
-         9GWQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVpDgC10Qph8puRy7TorxJWjY2+xQS26UnRwiZdKoLQ/SZ/qNOLcqdZY1N0fOJgUtZV2X18i7zGPdfyZ7ykrN47N9iymmaD1MnlzA==
-X-Gm-Message-State: AOJu0YzRKpkZV5/A4dTLD7nk4TVacNPIl1fGJDhSjaFC1MAmQwf3cpqn
-	PQAvjEsmIW1JmDxInOSEztTBoGp0C5zXOeLN+K8Ya0GAZDqgdMN14pyePXEl5cg=
-X-Google-Smtp-Source: AGHT+IHNHcSAqFqF6iqsWHaRbUrhjZsQihjxBU+bVzLCiepT/usiIw4TrW8Nv4s6wMvI/8OQ8U8C7w==
-X-Received: by 2002:a2e:9e15:0:b0:2ee:5a38:751a with SMTP id 38308e7fff4ca-2ee5e3759d8mr7006711fa.28.1719666255790;
-        Sat, 29 Jun 2024 06:04:15 -0700 (PDT)
-Received: from [192.168.215.29] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5861381640dsm2243695a12.50.2024.06.29.06.04.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 29 Jun 2024 06:04:15 -0700 (PDT)
-Message-ID: <472a7d55-df0a-486a-845c-f24a4196c29b@linaro.org>
-Date: Sat, 29 Jun 2024 15:04:13 +0200
+        d=1e100.net; s=20230601; t=1719666333; x=1720271133;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Hr41jn7CS+JV7JYEOXmHYOhJrr4EACp9o9fXqaxlvEQ=;
+        b=OpWlSf73okNA1JO+wlOKgMyXzmcP4ia+Ala+n1wJwr8hJCfMGjNubkQ9b2LSdeFV35
+         +IO3z5g4n+YTMMgS//wEs8PTAVSr7h63sxjbE1g6gV2Dq2LbzvF3uWtIrLJw762R0CFb
+         8E8yNonxl6MQobrzxhQCJuajqJ3vkP7RURSbPkGL8K2W9R2zJLD1BkyjZxWBq0czKGCO
+         hx7OXghI7Bs2SQgdy+HmiS5/t12NKpqSd4x3csIMLGHSoYro5PzIYNiaoafGXBZeka8H
+         ohJv6G/DudkN8WefcGIlouLOxve4jBVy/rIJM6pWdQxTojK+fLJn8e+rPBKqtFB0I+j/
+         mY3g==
+X-Forwarded-Encrypted: i=1; AJvYcCXHV3z+XRs0UqkzkpY93dcykLcwRkNnl/KpX/czYEtlYgGm+pBLfPsAsh7wh/0LECdVeiOD9sOoxIPoX7/bAE/wVEvzIXhD+PL/9A==
+X-Gm-Message-State: AOJu0Ywp7E9fmMr/NKHAPTlfRXvdH0T9sByN90uV/6rWESpgPr/8cjNv
+	r3U/O2vgjH1XMtDDTSDnx+wrmIQgDojqfkcHfcW8FWTYUz+/i7tMs2jPDvsryA==
+X-Google-Smtp-Source: AGHT+IE5aU4sW0gZNOnsBZmQhd5QPQlm2dJswEqAC+AISCYfDs6s10N0soFFT4U1SUdqSjSMRwrfaA==
+X-Received: by 2002:a17:903:2349:b0:1f7:23ee:d496 with SMTP id d9443c01a7336-1fadbcb2064mr6324365ad.30.1719666333190;
+        Sat, 29 Jun 2024 06:05:33 -0700 (PDT)
+Received: from thinkpad ([220.158.156.249])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1fac1598576sm31531345ad.278.2024.06.29.06.05.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 29 Jun 2024 06:05:32 -0700 (PDT)
+Date: Sat, 29 Jun 2024 18:35:25 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Richard Zhu <hongxing.zhu@nxp.com>,
+	Lucas Stach <l.stach@pengutronix.de>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-pci@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, bpf@vger.kernel.org,
+	devicetree@vger.kernel.org, Jason Liu <jason.hui.liu@nxp.com>
+Subject: Re: [PATCH v6 02/10] PCI: imx6: Fix i.MX8MP PCIe EP's occasional
+ failure to trigger MSI
+Message-ID: <20240629130525.GC5608@thinkpad>
+References: <20240617-pci2_upstream-v6-0-e0821238f997@nxp.com>
+ <20240617-pci2_upstream-v6-2-e0821238f997@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/5] drm/msm/adreno: Add support for X185 GPU
-To: Akhil P Oommen <quic_akhilpo@quicinc.com>,
- freedreno <freedreno@lists.freedesktop.org>,
- dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
- OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS
- <devicetree@vger.kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Rob Clark <robdclark@gmail.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Krzysztof Kozlowski <krzk@kernel.org>, Will Deacon <will@kernel.org>
-Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>, Daniel Vetter
- <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>,
- Marijn Suijten <marijn.suijten@somainline.org>, Sean Paul <sean@poorly.run>,
- linux-kernel@vger.kernel.org
-References: <20240629015111.264564-1-quic_akhilpo@quicinc.com>
- <20240629015111.264564-3-quic_akhilpo@quicinc.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
- BB/OmIWU6X+LZW6P88ZmHe+KeyABLMP5s1tJNK1j4ntT7mECcWZDzafPWF4F6m4WJOG27kTJ
- HGWdmtO+RvadOVi6CoUDqALsmfS3MUG5Pj2Ne9+0jRg4hEnB92AyF9rW2G3qisFcwPgvatt7
- TXD5E38mLyOPOUyXNj9XpDbt1hNwKQfiidmPh5e7VNAWRnW1iCMMoKqzM1Anzq7e5Afyeifz
- zRcQPLaqrPjnKqZGL2BKQSZDh6NkI5ZLRhhHQf61fkWcUpTp1oDC6jWVfT7hwRVIQLrrNj9G
- MpPzrlN4YuAqKeIer1FMt8cq64ifgTzxHzXsMcUdclzq2LTk2RXaPl6Jg/IXWqUClJHbamSk
- t1bfif3SnmhA6TiNvEpDKPiT3IDs42THU6ygslrBxyROQPWLI9IL1y8S6RtEh8H+NZQWZNzm
- UQ3imZirlPjxZtvz1BtnnBWS06e7x/UEAguj7VHCuymVgpl2Za17d1jj81YN5Rp5L9GXxkV1
- aUEwONM3eCI3qcYm5JNc5X+JthZOWsbIPSC1Rhxz3JmWIwP1udr5E3oNRe9u2LIEq+wH/toH
- kpPDhTeMkvt4KfE5m5ercid9+ZXAqoaYLUL4HCEw+HW0DXcKDwARAQABzShLb25yYWQgRHli
- Y2lvIDxrb25yYWQuZHliY2lvQGxpbmFyby5vcmc+wsGOBBMBCAA4FiEEU24if9oCL2zdAAQV
- R4cBcg5dfFgFAmQ5bqwCGwMFCwkIBwIGFQoJCAsCBBYCAwECHgECF4AACgkQR4cBcg5dfFjO
- BQ//YQV6fkbqQCceYebGg6TiisWCy8LG77zV7DB0VMIWJv7Km7Sz0QQrHQVzhEr3trNenZrf
- yy+o2tQOF2biICzbLM8oyQPY8B///KJTWI2khoB8IJSJq3kNG68NjPg2vkP6CMltC/X3ohAo
- xL2UgwN5vj74QnlNneOjc0vGbtA7zURNhTz5P/YuTudCqcAbxJkbqZM4WymjQhe0XgwHLkiH
- 5LHSZ31MRKp/+4Kqs4DTXMctc7vFhtUdmatAExDKw8oEz5NbskKbW+qHjW1XUcUIrxRr667V
- GWH6MkVceT9ZBrtLoSzMLYaQXvi3sSAup0qiJiBYszc/VOu3RbIpNLRcXN3KYuxdQAptacTE
- mA+5+4Y4DfC3rUSun+hWLDeac9z9jjHm5rE998OqZnOU9aztbd6zQG5VL6EKgsVXAZD4D3RP
- x1NaAjdA3MD06eyvbOWiA5NSzIcC8UIQvgx09xm7dThCuQYJR4Yxjd+9JPJHI6apzNZpDGvQ
- BBZzvwxV6L1CojUEpnilmMG1ZOTstktWpNzw3G2Gis0XihDUef0MWVsQYJAl0wfiv/0By+XK
- mm2zRR+l/dnzxnlbgJ5pO0imC2w0TVxLkAp0eo0LHw619finad2u6UPQAkZ4oj++iIGrJkt5
- Lkn2XgB+IW8ESflz6nDY3b5KQRF8Z6XLP0+IEdLOOARkOW7yEgorBgEEAZdVAQUBAQdAwmUx
- xrbSCx2ksDxz7rFFGX1KmTkdRtcgC6F3NfuNYkYDAQgHwsF2BBgBCAAgFiEEU24if9oCL2zd
- AAQVR4cBcg5dfFgFAmQ5bvICGwwACgkQR4cBcg5dfFju1Q//Xta1ShwL0MLSC1KL1lXGXeRM
- 8arzfyiB5wJ9tb9U/nZvhhdfilEDLe0jKJY0RJErbdRHsalwQCrtq/1ewQpMpsRxXzAjgfRN
- jc4tgxRWmI+aVTzSRpywNahzZBT695hMz81cVZJoZzaV0KaMTlSnBkrviPz1nIGHYCHJxF9r
- cIu0GSIyUjZ/7xslxdvjpLth16H27JCWDzDqIQMtg61063gNyEyWgt1qRSaK14JIH/DoYRfn
- jfFQSC8bffFjat7BQGFz4ZpRavkMUFuDirn5Tf28oc5ebe2cIHp4/kajTx/7JOxWZ80U70mA
- cBgEeYSrYYnX+UJsSxpzLc/0sT1eRJDEhI4XIQM4ClIzpsCIN5HnVF76UQXh3a9zpwh3dk8i
- bhN/URmCOTH+LHNJYN/MxY8wuukq877DWB7k86pBs5IDLAXmW8v3gIDWyIcgYqb2v8QO2Mqx
- YMqL7UZxVLul4/JbllsQB8F/fNI8AfttmAQL9cwo6C8yDTXKdho920W4WUR9k8NT/OBqWSyk
- bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
- nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
- izWDgYvmBE8=
-In-Reply-To: <20240629015111.264564-3-quic_akhilpo@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240617-pci2_upstream-v6-2-e0821238f997@nxp.com>
 
-On 29.06.2024 3:49 AM, Akhil P Oommen wrote:
-> Add support in drm/msm driver for the Adreno X185 gpu found in
-> Snapdragon X1 Elite chipset.
+On Mon, Jun 17, 2024 at 04:16:38PM -0400, Frank Li wrote:
+> From: Richard Zhu <hongxing.zhu@nxp.com>
 > 
-> Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
+> Correct occasional MSI triggering failures in i.MX8MP PCIe EP by apply 64KB
+> hardware alignment requirement.
+> 
+> MSI triggering fail if the outbound MSI memory region (ep->msi_mem) is not
+> aligned to 64KB.
+> 
+> In dw_pcie_ep_init():
+> 
+> ep->msi_mem = pci_epc_mem_alloc_addr(epc, &ep->msi_mem_phys,
+> 				     epc->mem->window.page_size);
+> 
+
+So this is an alignment restriction w.r.t iATU. In that case, we should be
+passing 'pci_epc_features::align' instead?
+
+- Mani
+
+> Set ep->page_size to match drvdata::epc_features::align since different
+> SOCs have different alignment requirements.
+> 
+> Fixes: 1bd0d43dcf3b ("PCI: imx6: Clean up addr_space retrieval code")
+> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+> Acked-by: Jason Liu <jason.hui.liu@nxp.com>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
+>  drivers/pci/controller/dwc/pci-imx6.c | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controller/dwc/pci-imx6.c
+> index 9a71b8aa09b3c..ca9a000c9a96d 100644
+> --- a/drivers/pci/controller/dwc/pci-imx6.c
+> +++ b/drivers/pci/controller/dwc/pci-imx6.c
+> @@ -1118,6 +1118,8 @@ static int imx6_add_pcie_ep(struct imx6_pcie *imx6_pcie,
+>  	if (imx6_check_flag(imx6_pcie, IMX6_PCIE_FLAG_SUPPORT_64BIT))
+>  		dma_set_mask_and_coherent(dev, DMA_BIT_MASK(64));
+>  
+> +	ep->page_size = imx6_pcie->drvdata->epc_features->align;
+> +
+>  	ret = dw_pcie_ep_init(ep);
+>  	if (ret) {
+>  		dev_err(dev, "failed to initialize endpoint\n");
+> 
+> -- 
+> 2.34.1
+> 
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-
-Konrad
+-- 
+மணிவண்ணன் சதாசிவம்
 
