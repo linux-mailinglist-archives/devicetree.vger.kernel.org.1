@@ -1,822 +1,159 @@
-Return-Path: <devicetree+bounces-81656-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81657-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54EB391CF08
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 22:37:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 096DB91CF0E
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 22:46:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0CD022823AB
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 20:37:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B3E98282571
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 20:46:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CA2D3839C;
-	Sat, 29 Jun 2024 20:37:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF90813BC35;
+	Sat, 29 Jun 2024 20:46:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="Zscn9rby"
+	dkim=pass (2048-bit key) header.d=svanheule.net header.i=@svanheule.net header.b="ga9h4jZ2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from polaris.svanheule.net (polaris.svanheule.net [84.16.241.116])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DECFD1CFA9
-	for <devicetree@vger.kernel.org>; Sat, 29 Jun 2024 20:37:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3ECC62032B
+	for <devicetree@vger.kernel.org>; Sat, 29 Jun 2024 20:46:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=84.16.241.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719693444; cv=none; b=EMl/GwYD499bRZ4xyxiDmH5CwnVLt//krDtqZRxNFgmUmSbnS3rTI8nGiFmKt0gBtxoC48zaEZ/Q9upWg/xicliDRgcKaxQXYmGs7X6ENb2FDl8nq31Fa6W3e3PDfFgQLMIlPSnzE+3R+QPMXJ1SD4JAT8Yd3dgT/tg8HWiS9Bo=
+	t=1719694010; cv=none; b=F+eGC2veOeD01Pdt5RF78gnIFYJ4vzlWKbivHucJXh4muUWIL+r+sPrKt+iISo8zGUSOnehE2x/9nLf9oWfff7mQys99k9HVocTu0Qu9z4tkaxphTrYQh7t/y+GpD+L9yc9s1pQqQC80mtT+NvsY42fkkXBSuxR8VqAhQNTeR0c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719693444; c=relaxed/simple;
-	bh=htp2p7MwfW9z9PHh2c+IgAA4vl2JeXDq/wQzeHi5wxA=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=j/jrTokwXSdSrjlyrp/2pFcJxxfzuwtGNw3v9GFnyVxhqK1asuA8Td1PTtDx9HaVR7GFz1axmVg3fDOIu11A0Qsm/Mv5fl/yN4eticlvZeq6AQNXDJl74rdCN2IDLeFKAS7LFVITgrrLYVLYOiI0GV9ZFA1DS0aORCwD7yMpyV8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=Zscn9rby; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+	s=arc-20240116; t=1719694010; c=relaxed/simple;
+	bh=yNMhGK1opgE2HSUTgSYp/GhoMx5lkgWtAFvzWwgNagM=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=O3r5443sVtdIP6G1qYaPW0ruvw5vobdThStCM/hpc4IJJfaVVwGcqijhOk8WcYhpvAHB12deL/F+jqFwd6z/iE86uFmvu65VJ123+WTs3+YLSOG9+Qba9FD2RrAcC/q8Uir7j9hGNW4RoJiTnavAuS/hW3r6VMrpwxZorDcqj6g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svanheule.net; spf=pass smtp.mailfrom=svanheule.net; dkim=pass (2048-bit key) header.d=svanheule.net header.i=@svanheule.net header.b=ga9h4jZ2; arc=none smtp.client-ip=84.16.241.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svanheule.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=svanheule.net
+Received: from mars.vega.svanheule.net (unknown [94.110.49.146])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 3417887E13;
-	Sat, 29 Jun 2024 22:37:19 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1719693440;
-	bh=k5GM9SyY7kfz48mYDpuHdJDdwCl336FqNMdLmzAvezw=;
-	h=From:To:Cc:Subject:Date:From;
-	b=Zscn9rby5zDTosvqMbsKpupFuYL/VWUwrYK3cJoU1THkBLEVIoYcqgiAJecdc7Hd7
-	 c2Zh38snapy1s5A1id5Bxw/pbLIVSAxonL3VRXy7o4wThkf3nOwMAA0Wyw64qP88n+
-	 cpd8L4j/Vv0ttLroNSljT8qT9PaEPAt+YhbWVuBYz966iy8sBCDhU7CLAhBzt1sz5W
-	 0mG/mBEVJh8kEtjMRhlppd6G0CVvxd8M9weW5jmu2blacfq2OVTznxCOVpKeKIcQn5
-	 EhfrDR3dX9pr6oAq7xau5Zyx1wJlvODYl/qjnuetkRo1PQ3oP+eEmez09soUxbMS7A
-	 RIhaQXYbBhnyQ==
-From: Marek Vasut <marex@denx.de>
-To: linux-arm-kernel@lists.infradead.org
-Cc: Marek Vasut <marex@denx.de>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Christophe Roullier <christophe.roullier@foss.st.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	devicetree@vger.kernel.org,
-	kernel@dh-electronics.com,
-	linux-stm32@st-md-mailman.stormreply.com
-Subject: [PATCH] ARM: dts: stm32: omit unused pinctrl groups from stm32mp13 dtb files
-Date: Sat, 29 Jun 2024 22:36:42 +0200
-Message-ID: <20240629203706.93145-1-marex@denx.de>
-X-Mailer: git-send-email 2.43.0
+	(Authenticated sender: sander@svanheule.net)
+	by polaris.svanheule.net (Postfix) with ESMTPSA id D5CF950CF11;
+	Sat, 29 Jun 2024 22:40:21 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
+	s=mail1707; t=1719693622;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=VZAHodOL3wsA9f2Wkj7btMgY0z9vyT6v2GBhO/wOmdM=;
+	b=ga9h4jZ26D9Fzzlzj56TP24EJR8nWR1Xfxdc5s8rsPMX2hoUDlpYYzBCRiDq2w3HtsQcPX
+	nS1TNoMBR6yaZ2tVeI1hrHMksIEdpef+LYfWzx9TFN4rUUvsryL5EkLIfTL4T5lN6FIlmP
+	O61m9r4FKrz7ryRMYo9je9ySUmWZTi3s6zJaXN+YbgIjwASFknRX02ePMS0fbPRHH1vc0X
+	D8QBdZE1TlZtcQXXEjKaXyLTGVWI7J/0lb1tnT4NCZlfC36JPy7hsgThqUvS/1gvcfSR16
+	W9HcvvLwLHqQllmvoaLP1ZLaEBGG4muatvNFhnzxzXzh5r1RyGIib+Yh6fwbDQ==
+Message-ID: <4427a46483d9b7d122ce6923c2fc8cf0d470c6dd.camel@svanheule.net>
+Subject: Re: [PATCH v3 5/9] dt-bindings: timer: Add schema for
+ realtek,otto-timer
+From: Sander Vanheule <sander@svanheule.net>
+To: Chris Packham <chris.packham@alliedtelesis.co.nz>, tglx@linutronix.de, 
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+ tsbogend@alpha.franken.de, daniel.lezcano@linaro.org,
+ paulburton@kernel.org,  peterz@infradead.org, mail@birger-koblitz.de,
+ bert@biot.com, john@phrozen.org
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-mips@vger.kernel.org, kabel@kernel.org, ericwouds@gmail.com
+Date: Sat, 29 Jun 2024 22:40:20 +0200
+In-Reply-To: <20240627043317.3751996-6-chris.packham@alliedtelesis.co.nz>
+References: <20240627043317.3751996-1-chris.packham@alliedtelesis.co.nz>
+	 <20240627043317.3751996-6-chris.packham@alliedtelesis.co.nz>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.2 (3.52.2-1.fc40) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
 
-stm32mp13-pinctrl.dtsi contains nearly all pinctrl groups collected from
-all boards. Most of them end up unused by a board and only waste binary
-space. Add /omit-if-no-ref/ to the groups to scrub the unused groups
-from the dtbs.
+Hi Chris,
 
-Use the following regex to update the file and drop two useless newlines too:
-s@^\t[^:]\+: [^ ]\+ {$@\t/omit-if-no-ref/\r&@
+Thanks for submitting these patches!
 
-Signed-off-by: Marek Vasut <marex@denx.de>
----
-Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc: Christophe Roullier <christophe.roullier@foss.st.com>
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
-Cc: Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org
-Cc: kernel@dh-electronics.com
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-stm32@st-md-mailman.stormreply.com
----
- arch/arm/boot/dts/st/stm32mp13-pinctrl.dtsi | 92 ++++++++++++++++++++-
- 1 file changed, 90 insertions(+), 2 deletions(-)
+On Thu, 2024-06-27 at 16:33 +1200, Chris Packham wrote:
+> Add the devicetree schema for the realtek,otto-timer present on a number
+> of Realtek SoCs.
+>=20
+> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> ---
+[...]
 
-diff --git a/arch/arm/boot/dts/st/stm32mp13-pinctrl.dtsi b/arch/arm/boot/dts/st/stm32mp13-pinctrl.dtsi
-index d3deec602ae7a..ca19c8c6b6771 100644
---- a/arch/arm/boot/dts/st/stm32mp13-pinctrl.dtsi
-+++ b/arch/arm/boot/dts/st/stm32mp13-pinctrl.dtsi
-@@ -6,12 +6,14 @@
- #include <dt-bindings/pinctrl/stm32-pinfunc.h>
- 
- &pinctrl {
-+	/omit-if-no-ref/
- 	adc1_pins_a: adc1-pins-0 {
- 		pins {
- 			pinmux = <STM32_PINMUX('A', 3, ANALOG)>; /* ADC1 in12 */
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	adc1_usb_cc_pins_a: adc1-usb-cc-pins-0 {
- 		pins {
- 			pinmux = <STM32_PINMUX('F', 12, ANALOG)>, /* ADC1 in6 */
-@@ -19,6 +21,7 @@ pins {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	adc1_usb_cc_pins_b: adc1-usb-cc-pins-1 {
- 		pins {
- 			pinmux = <STM32_PINMUX('A', 5, ANALOG)>, /* ADC1_INP2 */
-@@ -26,6 +29,7 @@ pins {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	dcmipp_pins_a: dcmi-0 {
- 		pins1 {
- 			pinmux = <STM32_PINMUX('H',  8,  AF13)>,/* DCMI_HSYNC */
-@@ -43,6 +47,7 @@ pins1 {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	dcmipp_sleep_pins_a: dcmi-sleep-0 {
- 		pins1 {
- 			pinmux = <STM32_PINMUX('H',  8,  ANALOG)>,/* DCMI_HSYNC */
-@@ -59,6 +64,7 @@ pins1 {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	eth1_rgmii_pins_a: eth1-rgmii-0 {
- 		pins1 {
- 			pinmux = <STM32_PINMUX('G', 13, AF11)>, /* ETH_RGMII_TXD0 */
-@@ -83,9 +89,9 @@ pins2 {
- 				 <STM32_PINMUX('D', 7, AF10)>; /* ETH_RGMII_RX_CLK */
- 			bias-disable;
- 		};
--
- 	};
- 
-+	/omit-if-no-ref/
- 	eth1_rgmii_sleep_pins_a: eth1-rgmii-sleep-0 {
- 		pins1 {
- 			pinmux = <STM32_PINMUX('G', 13, ANALOG)>, /* ETH_RGMII_TXD0 */
-@@ -105,6 +111,7 @@ pins1 {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	eth1_rmii_pins_a: eth1-rmii-0 {
- 		pins1 {
- 			pinmux = <STM32_PINMUX('G', 13, AF11)>, /* ETH_RMII_TXD0 */
-@@ -124,9 +131,9 @@ pins2 {
- 				 <STM32_PINMUX('C', 1, AF10)>; /* ETH_RMII_CRS_DV */
- 			bias-disable;
- 		};
--
- 	};
- 
-+	/omit-if-no-ref/
- 	eth1_rmii_sleep_pins_a: eth1-rmii-sleep-0 {
- 		pins1 {
- 			pinmux = <STM32_PINMUX('G', 13, ANALOG)>, /* ETH_RMII_TXD0 */
-@@ -141,6 +148,7 @@ pins1 {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	eth2_rgmii_pins_a: eth2-rgmii-0 {
- 		pins1 {
- 			pinmux = <STM32_PINMUX('F', 7, AF11)>, /* ETH_RGMII_TXD0 */
-@@ -167,6 +175,7 @@ pins2 {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	eth2_rgmii_sleep_pins_a: eth2-rgmii-sleep-0 {
- 		pins1 {
- 			pinmux = <STM32_PINMUX('F', 7, ANALOG)>, /* ETH_RGMII_TXD0 */
-@@ -186,6 +195,7 @@ pins1 {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	eth2_rmii_pins_a: eth2-rmii-0 {
- 		pins1 {
- 			pinmux = <STM32_PINMUX('F', 7, AF11)>, /* ETH_RMII_TXD0 */
-@@ -207,6 +217,7 @@ pins2 {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	eth2_rmii_sleep_pins_a: eth2-rmii-sleep-0 {
- 		pins1 {
- 			pinmux = <STM32_PINMUX('F', 7, ANALOG)>, /* ETH_RMII_TXD0 */
-@@ -221,6 +232,7 @@ pins1 {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	goodix_pins_a: goodix-0 {
- 		/*
- 		 * touchscreen reset needs to be configured
-@@ -243,6 +255,7 @@ pins2 {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	i2c1_pins_a: i2c1-0 {
- 		pins {
- 			pinmux = <STM32_PINMUX('D', 12, AF5)>, /* I2C1_SCL */
-@@ -253,6 +266,7 @@ pins {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	i2c1_sleep_pins_a: i2c1-sleep-0 {
- 		pins {
- 			pinmux = <STM32_PINMUX('D', 12, ANALOG)>, /* I2C1_SCL */
-@@ -260,6 +274,7 @@ pins {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	i2c5_pins_a: i2c5-0 {
- 		pins {
- 			pinmux = <STM32_PINMUX('D', 1, AF4)>, /* I2C5_SCL */
-@@ -270,6 +285,7 @@ pins {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	i2c5_sleep_pins_a: i2c5-sleep-0 {
- 		pins {
- 			pinmux = <STM32_PINMUX('D', 1, ANALOG)>, /* I2C5_SCL */
-@@ -277,6 +293,7 @@ pins {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	i2c5_pins_b: i2c5-1 {
- 		pins {
- 			pinmux = <STM32_PINMUX('D', 1, AF4)>, /* I2C5_SCL */
-@@ -287,6 +304,7 @@ pins {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	i2c5_sleep_pins_b: i2c5-sleep-1 {
- 		pins {
- 			pinmux = <STM32_PINMUX('D', 1, ANALOG)>, /* I2C5_SCL */
-@@ -294,6 +312,7 @@ pins {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	ltdc_pins_a: ltdc-0 {
- 		pins {
- 			pinmux = <STM32_PINMUX('D',  9, AF13)>, /* LCD_CLK */
-@@ -324,6 +343,7 @@ pins {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	ltdc_sleep_pins_a: ltdc-sleep-0 {
- 		pins {
- 			pinmux = <STM32_PINMUX('D',  9, ANALOG)>, /* LCD_CLK */
-@@ -351,6 +371,7 @@ pins {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	m_can1_pins_a: m-can1-0 {
- 		pins1 {
- 			pinmux = <STM32_PINMUX('G', 10, AF9)>; /* CAN1_TX */
-@@ -364,6 +385,7 @@ pins2 {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	m_can1_sleep_pins_a: m_can1-sleep-0 {
- 		pins {
- 			pinmux = <STM32_PINMUX('G', 10, ANALOG)>, /* CAN1_TX */
-@@ -371,6 +393,7 @@ pins {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	m_can2_pins_a: m-can2-0 {
- 		pins1 {
- 			pinmux = <STM32_PINMUX('G', 0, AF9)>; /* CAN2_TX */
-@@ -384,6 +407,7 @@ pins2 {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	m_can2_sleep_pins_a: m_can2-sleep-0 {
- 		pins {
- 			pinmux = <STM32_PINMUX('G', 0, ANALOG)>, /* CAN2_TX */
-@@ -391,6 +415,7 @@ pins {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	mcp23017_pins_a: mcp23017-0 {
- 		pins {
- 			pinmux = <STM32_PINMUX('G', 12, GPIO)>;
-@@ -398,6 +423,7 @@ pins {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	pwm3_pins_a: pwm3-0 {
- 		pins {
- 			pinmux = <STM32_PINMUX('B', 1, AF2)>; /* TIM3_CH4 */
-@@ -407,12 +433,14 @@ pins {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	pwm3_sleep_pins_a: pwm3-sleep-0 {
- 		pins {
- 			pinmux = <STM32_PINMUX('B', 1, ANALOG)>; /* TIM3_CH4 */
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	pwm4_pins_a: pwm4-0 {
- 		pins {
- 			pinmux = <STM32_PINMUX('D', 13, AF2)>; /* TIM4_CH2 */
-@@ -422,12 +450,14 @@ pins {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	pwm4_sleep_pins_a: pwm4-sleep-0 {
- 		pins {
- 			pinmux = <STM32_PINMUX('D', 13, ANALOG)>; /* TIM4_CH2 */
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	pwm5_pins_a: pwm5-0 {
- 		pins {
- 			pinmux = <STM32_PINMUX('H', 12, AF2)>; /* TIM5_CH3 */
-@@ -437,12 +467,14 @@ pins {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	pwm5_sleep_pins_a: pwm5-sleep-0 {
- 		pins {
- 			pinmux = <STM32_PINMUX('H', 12, ANALOG)>; /* TIM5_CH3 */
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	pwm8_pins_a: pwm8-0 {
- 		pins {
- 			pinmux = <STM32_PINMUX('E', 5, AF3)>; /* TIM8_CH3 */
-@@ -452,12 +484,14 @@ pins {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	pwm8_sleep_pins_a: pwm8-sleep-0 {
- 		pins {
- 			pinmux = <STM32_PINMUX('E', 5, ANALOG)>; /* TIM8_CH3 */
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	pwm13_pins_a: pwm13-0 {
- 		pins {
- 			pinmux = <STM32_PINMUX('A', 6, AF9)>; /* TIM13_CH1 */
-@@ -467,12 +501,14 @@ pins {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	pwm13_sleep_pins_a: pwm13-sleep-0 {
- 		pins {
- 			pinmux = <STM32_PINMUX('A', 6, ANALOG)>; /* TIM13_CH1 */
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	pwm14_pins_a: pwm14-0 {
- 		pins {
- 			pinmux = <STM32_PINMUX('F', 9, AF9)>; /* TIM14_CH1 */
-@@ -482,12 +518,14 @@ pins {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	pwm14_sleep_pins_a: pwm14-sleep-0 {
- 		pins {
- 			pinmux = <STM32_PINMUX('F', 9, ANALOG)>; /* TIM14_CH1 */
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	qspi_clk_pins_a: qspi-clk-0 {
- 		pins {
- 			pinmux = <STM32_PINMUX('F', 10, AF9)>; /* QSPI_CLK */
-@@ -497,12 +535,14 @@ pins {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	qspi_clk_sleep_pins_a: qspi-clk-sleep-0 {
- 		pins {
- 			pinmux = <STM32_PINMUX('F', 10, ANALOG)>; /* QSPI_CLK */
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	qspi_bk1_pins_a: qspi-bk1-0 {
- 		pins {
- 			pinmux = <STM32_PINMUX('F', 8, AF10)>, /* QSPI_BK1_IO0 */
-@@ -515,6 +555,7 @@ pins {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	qspi_bk1_sleep_pins_a: qspi-bk1-sleep-0 {
- 		pins {
- 			pinmux = <STM32_PINMUX('F', 8, ANALOG)>, /* QSPI_BK1_IO0 */
-@@ -524,6 +565,7 @@ pins {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	qspi_cs1_pins_a: qspi-cs1-0 {
- 		pins {
- 			pinmux = <STM32_PINMUX('B', 2, AF9)>; /* QSPI_BK1_NCS */
-@@ -533,12 +575,14 @@ pins {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	qspi_cs1_sleep_pins_a: qspi-cs1-sleep-0 {
- 		pins {
- 			pinmux = <STM32_PINMUX('B', 2, ANALOG)>; /* QSPI_BK1_NCS */
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	sai1a_pins_a: sai1a-0 {
- 		pins {
- 			pinmux = <STM32_PINMUX('A', 4, AF12)>, /* SAI1_SCK_A */
-@@ -550,6 +594,7 @@ pins {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	sai1a_sleep_pins_a: sai1a-sleep-0 {
- 		pins {
- 			pinmux = <STM32_PINMUX('A', 4, ANALOG)>, /* SAI1_SCK_A */
-@@ -558,6 +603,7 @@ pins {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	sai1b_pins_a: sai1b-0 {
- 		pins {
- 			pinmux = <STM32_PINMUX('A', 0, AF6)>; /* SAI1_SD_B */
-@@ -565,12 +611,14 @@ pins {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	sai1b_sleep_pins_a: sai1b-sleep-0 {
- 		pins {
- 			pinmux = <STM32_PINMUX('A', 0, ANALOG)>; /* SAI1_SD_B */
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	sdmmc1_b4_pins_a: sdmmc1-b4-0 {
- 		pins {
- 			pinmux = <STM32_PINMUX('C', 8, AF12)>, /* SDMMC1_D0 */
-@@ -584,6 +632,7 @@ pins {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	sdmmc1_b4_od_pins_a: sdmmc1-b4-od-0 {
- 		pins1 {
- 			pinmux = <STM32_PINMUX('C', 8, AF12)>, /* SDMMC1_D0 */
-@@ -602,6 +651,7 @@ pins2 {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	sdmmc1_b4_sleep_pins_a: sdmmc1-b4-sleep-0 {
- 		pins {
- 			pinmux = <STM32_PINMUX('C', 8, ANALOG)>, /* SDMMC1_D0 */
-@@ -613,6 +663,7 @@ pins {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	sdmmc1_clk_pins_a: sdmmc1-clk-0 {
- 		pins {
- 			pinmux = <STM32_PINMUX('C', 12, AF12)>; /* SDMMC1_CK */
-@@ -622,6 +673,7 @@ pins {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	sdmmc2_b4_pins_a: sdmmc2-b4-0 {
- 		pins {
- 			pinmux = <STM32_PINMUX('B', 14, AF10)>, /* SDMMC2_D0 */
-@@ -635,6 +687,7 @@ pins {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	sdmmc2_b4_od_pins_a: sdmmc2-b4-od-0 {
- 		pins1 {
- 			pinmux = <STM32_PINMUX('B', 14, AF10)>, /* SDMMC2_D0 */
-@@ -653,6 +706,7 @@ pins2 {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	sdmmc2_b4_sleep_pins_a: sdmmc2-b4-sleep-0 {
- 		pins {
- 			pinmux = <STM32_PINMUX('B', 14, ANALOG)>, /* SDMMC2_D0 */
-@@ -664,6 +718,7 @@ pins {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	sdmmc2_clk_pins_a: sdmmc2-clk-0 {
- 		pins {
- 			pinmux = <STM32_PINMUX('E', 3, AF10)>; /* SDMMC2_CK */
-@@ -673,6 +728,7 @@ pins {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	sdmmc2_d47_pins_a: sdmmc2-d47-0 {
- 		pins {
- 			pinmux = <STM32_PINMUX('F', 0, AF10)>, /* SDMMC2_D4 */
-@@ -685,6 +741,7 @@ pins {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	sdmmc2_d47_sleep_pins_a: sdmmc2-d47-sleep-0 {
- 		pins {
- 			pinmux = <STM32_PINMUX('F', 0, ANALOG)>, /* SDMMC2_D4 */
-@@ -694,6 +751,7 @@ pins {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	spi2_pins_a: spi2-0 {
- 		pins1 {
- 			pinmux = <STM32_PINMUX('B', 10, AF6)>, /* SPI2_SCK */
-@@ -709,6 +767,7 @@ pins2 {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	spi2_sleep_pins_a: spi2-sleep-0 {
- 		pins {
- 			pinmux = <STM32_PINMUX('B', 10, ANALOG)>, /* SPI2_SCK */
-@@ -717,6 +776,7 @@ pins {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	spi3_pins_a: spi3-0 {
- 		pins1 {
- 			pinmux = <STM32_PINMUX('H', 13, AF6)>, /* SPI3_SCK */
-@@ -732,6 +792,7 @@ pins2 {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	spi3_sleep_pins_a: spi3-sleep-0 {
- 		pins {
- 			pinmux = <STM32_PINMUX('H', 13, ANALOG)>, /* SPI3_SCK */
-@@ -740,6 +801,7 @@ pins {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	spi5_pins_a: spi5-0 {
- 		pins1 {
- 			pinmux = <STM32_PINMUX('H', 7, AF6)>, /* SPI5_SCK */
-@@ -755,6 +817,7 @@ pins2 {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	spi5_sleep_pins_a: spi5-sleep-0 {
- 		pins {
- 			pinmux = <STM32_PINMUX('H', 7, ANALOG)>, /* SPI5_SCK */
-@@ -763,6 +826,7 @@ pins {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	stm32g0_intn_pins_a: stm32g0-intn-0 {
- 		pins {
- 			pinmux = <STM32_PINMUX('I', 2, GPIO)>;
-@@ -770,6 +834,7 @@ pins {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	uart4_pins_a: uart4-0 {
- 		pins1 {
- 			pinmux = <STM32_PINMUX('D', 6, AF8)>; /* UART4_TX */
-@@ -783,6 +848,7 @@ pins2 {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	uart4_idle_pins_a: uart4-idle-0 {
- 		pins1 {
- 			pinmux = <STM32_PINMUX('D', 6, ANALOG)>; /* UART4_TX */
-@@ -793,6 +859,7 @@ pins2 {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	uart4_sleep_pins_a: uart4-sleep-0 {
- 		pins {
- 			pinmux = <STM32_PINMUX('D', 6, ANALOG)>, /* UART4_TX */
-@@ -800,6 +867,7 @@ pins {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	uart4_pins_b: uart4-1 {
- 		pins1 {
- 			pinmux = <STM32_PINMUX('A', 9, AF8)>; /* UART4_TX */
-@@ -813,6 +881,7 @@ pins2 {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	uart4_idle_pins_b: uart4-idle-1 {
- 		pins1 {
- 			pinmux = <STM32_PINMUX('A', 9, ANALOG)>; /* UART4_TX */
-@@ -823,6 +892,7 @@ pins2 {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	uart4_sleep_pins_b: uart4-sleep-1 {
- 		pins {
- 			pinmux = <STM32_PINMUX('A', 9, ANALOG)>, /* UART4_TX */
-@@ -830,6 +900,7 @@ pins {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	uart7_pins_a: uart7-0 {
- 		pins1 {
- 			pinmux = <STM32_PINMUX('H', 2, AF8)>, /* UART7_TX */
-@@ -845,6 +916,7 @@ pins2 {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	uart7_idle_pins_a: uart7-idle-0 {
- 		pins1 {
- 			pinmux = <STM32_PINMUX('H', 2, ANALOG)>, /* UART7_TX */
-@@ -862,6 +934,7 @@ pins3 {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	uart7_sleep_pins_a: uart7-sleep-0 {
- 		pins {
- 			pinmux = <STM32_PINMUX('H', 2, ANALOG)>, /* UART7_TX */
-@@ -871,6 +944,7 @@ pins {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	uart8_pins_a: uart8-0 {
- 		pins1 {
- 			pinmux = <STM32_PINMUX('E', 1, AF8)>; /* UART8_TX */
-@@ -884,6 +958,7 @@ pins2 {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	uart8_idle_pins_a: uart8-idle-0 {
- 		pins1 {
- 			pinmux = <STM32_PINMUX('E', 1, ANALOG)>; /* UART8_TX */
-@@ -894,6 +969,7 @@ pins2 {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	uart8_sleep_pins_a: uart8-sleep-0 {
- 		pins {
- 			pinmux = <STM32_PINMUX('E', 1, ANALOG)>, /* UART8_TX */
-@@ -901,6 +977,7 @@ pins {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	usart1_pins_a: usart1-0 {
- 		pins1 {
- 			pinmux = <STM32_PINMUX('C', 0, AF7)>, /* USART1_TX */
-@@ -916,6 +993,7 @@ pins2 {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	usart1_idle_pins_a: usart1-idle-0 {
- 		pins1 {
- 			pinmux = <STM32_PINMUX('C', 0, ANALOG)>, /* USART1_TX */
-@@ -933,6 +1011,7 @@ pins3 {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	usart1_sleep_pins_a: usart1-sleep-0 {
- 		pins {
- 			pinmux = <STM32_PINMUX('C', 0, ANALOG)>, /* USART1_TX */
-@@ -942,6 +1021,7 @@ pins {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	usart1_pins_b: usart1-1 {
- 		pins1 {
- 			pinmux = <STM32_PINMUX('C', 0, AF7)>; /* USART1_TX */
-@@ -955,6 +1035,7 @@ pins2 {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	usart1_idle_pins_b: usart1-idle-1 {
- 		pins1 {
- 			pinmux = <STM32_PINMUX('C', 0, ANALOG)>; /* USART1_TX */
-@@ -965,6 +1046,7 @@ pins2 {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	usart1_sleep_pins_b: usart1-sleep-1 {
- 		pins {
- 			pinmux = <STM32_PINMUX('C', 0, ANALOG)>, /* USART1_TX */
-@@ -972,6 +1054,7 @@ pins {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	usart2_pins_a: usart2-0 {
- 		pins1 {
- 			pinmux = <STM32_PINMUX('H', 12, AF1)>, /* USART2_TX */
-@@ -987,6 +1070,7 @@ pins2 {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	usart2_idle_pins_a: usart2-idle-0 {
- 		pins1 {
- 			pinmux = <STM32_PINMUX('H', 12, ANALOG)>, /* USART2_TX */
-@@ -1004,6 +1088,7 @@ pins3 {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	usart2_sleep_pins_a: usart2-sleep-0 {
- 		pins {
- 			pinmux = <STM32_PINMUX('H', 12, ANALOG)>, /* USART2_TX */
-@@ -1013,6 +1098,7 @@ pins {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	usart2_pins_b: usart2-0 {
- 		pins1 {
- 			pinmux = <STM32_PINMUX('F', 11, AF1)>, /* USART2_TX */
-@@ -1028,6 +1114,7 @@ pins2 {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	usart2_idle_pins_b: usart2-idle-0 {
- 		pins1 {
- 			pinmux = <STM32_PINMUX('F', 11, ANALOG)>, /* USART2_TX */
-@@ -1045,6 +1132,7 @@ pins3 {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
- 	usart2_sleep_pins_b: usart2-sleep-0 {
- 		pins {
- 			pinmux = <STM32_PINMUX('F', 11, ANALOG)>, /* USART2_TX */
--- 
-2.43.0
+> +
+> +=C2=A0 reg:
+> +=C2=A0=C2=A0=C2=A0 items:
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: timer0 registers
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: timer1 registers
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: timer2 registers
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: timer3 registers
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: timer4 registers
+> +
+> +=C2=A0 clocks:
+> +=C2=A0=C2=A0=C2=A0 maxItems: 1
+> +
+> +=C2=A0 interrupts:
+> +=C2=A0=C2=A0=C2=A0 items:
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: timer0 interrupt
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: timer1 interrupt
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: timer2 interrupt
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: timer3 interrupt
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: timer4 interrupt
 
+Instead of providing a (SoC dependent) number of reg and interrupt items, c=
+an't we just
+provide one reg+interrupt per timer and instantiate one block for however m=
+any timers the
+SoC has?
+
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +=C2=A0 - |
+> +=C2=A0=C2=A0=C2=A0 timer@3200 {
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible =3D "realtek,rtl9302-timer", "=
+realtek,otto-timer";
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reg =3D <0x3200 0x10>, <0x3210 0x10>, <0x=
+3220 0x10>,
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <0x32=
+30 0x10>, <0x3240 0x10>;
+> +
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 interrupt-parent =3D <&intc>;
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 interrupts =3D <7>, <8>, <9>, <10>, <11>;
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clocks =3D <&lx_clk>;
+> +=C2=A0=C2=A0=C2=A0 };
+
+So this would become:
+	timer@3200 {
+		compatible =3D ...
+		reg =3D <0x3200 0x10>;
+		interrupt-parent =3D <&intc>;
+		interrupts =3D <7>;
+		...
+	};
+	timer@3210 {
+		compatible =3D ...
+		reg =3D <0x3210 0x10>;
+		interrupt-parent =3D <&intc>;
+		interrupts =3D <8>;
+		...
+	};
+	...
+
+More verbose, but it also makes the binding a bit simpler. The driver can t=
+hen still do
+whatever it wants with all the timers that are registered, although some mo=
+re resource
+locking might be required.
+
+Best,
+Sander
 
