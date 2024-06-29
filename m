@@ -1,138 +1,167 @@
-Return-Path: <devicetree+bounces-81659-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81660-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAA4B91CF1B
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 23:03:22 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A04191CF5F
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 00:02:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5A0791F2172A
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 21:03:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 58A3D1C20BBF
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 22:02:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09DB4139CFE;
-	Sat, 29 Jun 2024 21:03:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B71213BC3F;
+	Sat, 29 Jun 2024 22:02:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=svanheule.net header.i=@svanheule.net header.b="XReh2JTh"
+	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="GTCN+DWR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from polaris.svanheule.net (polaris.svanheule.net [84.16.241.116])
+Received: from out-172.mta1.migadu.com (out-172.mta1.migadu.com [95.215.58.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68B2B4B5A6
-	for <devicetree@vger.kernel.org>; Sat, 29 Jun 2024 21:03:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=84.16.241.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA0372594
+	for <devicetree@vger.kernel.org>; Sat, 29 Jun 2024 22:01:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719694998; cv=none; b=ZZESAmzZbn0QpRn7raN5IAzEzI7faPYHhq4X7uEauaRxrnGTzhi5oH+jTY+v3XVxnkQ7Wwlp9HKjNE9405e1quynLD+UHI8k1eS/g++lDGl3zVpxNzp6JJfiTVCqBjIAEbtRBZxSeirJI56i27GbrJmhO1c8jl7B7MmiDs99Vck=
+	t=1719698521; cv=none; b=PKIKjYF1jVrAiKgxAD4OZV6vnal8wCFWKCRN48d2MqzrtsGO0+0rojZsmiS06MgcDHFXaqCnZVGTwr28sP1O74BQmN4a2UWtUXGN0PI4pDCC+6KtsZ4GuSKdeZoPHS5zYCSzZz1jo1191JmFf1x/Hr/lhGcTtZ4LcfEjtt53PdA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719694998; c=relaxed/simple;
-	bh=+jQfiXKKOHuxkd0OeYkrcVbG0bY626ByuZ9J+7PQEjw=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=G8DvapTW6aHD2zeyRgKQkYHR/LOksAjjcs/nJFkrj53ZNbGB6zsXB9b2hwlNoWnpuuwZYUJ/tCd26V94FXXOdK3fo4ccVybcLsGC5ehfoz+W9i9viiLAJOAiR8YlqK2J4C2TylIH/QOtZh/sKLAzq8/8KgxdhqvYpWyYi/5cWno=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svanheule.net; spf=pass smtp.mailfrom=svanheule.net; dkim=pass (2048-bit key) header.d=svanheule.net header.i=@svanheule.net header.b=XReh2JTh; arc=none smtp.client-ip=84.16.241.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svanheule.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=svanheule.net
-Received: from mars.vega.svanheule.net (unknown [94.110.49.146])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sander@svanheule.net)
-	by polaris.svanheule.net (Postfix) with ESMTPSA id 0C8AF50CF2E;
-	Sat, 29 Jun 2024 23:03:14 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
-	s=mail1707; t=1719694994;
+	s=arc-20240116; t=1719698521; c=relaxed/simple;
+	bh=Q49OzQnfAYa/aLJQrn/hsoa776DUSHoaalMU757j7aU=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=b8dI5xW/W8iFv73kwzs1uXdLqHz4Yj08HEfQSr1DccfBqAi2FfIVD2qDRZyjzIhYwiIeWigTbnRvTIKyK1yWvJDnQTmIaA27EUYKRR6sEIQthymg12a7RdENcC92HX+fw2qUKPXge1GNgHB/x64YC/MgQ/mcCtElE4OLU6N9f5k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=GTCN+DWR; arc=none smtp.client-ip=95.215.58.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
+X-Envelope-To: linux-rockchip@lists.infradead.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
+	t=1719698515;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=EOt20HLhQmGQw8jZ8eMvbLL+V4dAOnTiGGiOjMXATI8=;
-	b=XReh2JThCDlVXVXO2mHGANRM/Zb4Itn0A+Qwk2MznJ4YIU4qzXYJkrZvE0EBRv3Y1eYQ/9
-	8drQBSs/833MK+a9LD8cV6i1nPdT3dhcKsWTaCZI7G2ViB7S4kdfqd3zS7ytiHy90IacN2
-	n+Dc0N26vB8RgXWLeCevCbIQ/1wnDpk0VDN7DtinVtLNTQLLH/6zgpJCZhYDdL70U3x1MK
-	Y9vjSvbeTjb+6QCNqhbqJUsY6ZyMvuk7c6QkTtmoP26L911U2vFT2BzWz2CZPof5OOmOjs
-	EvV2CRFnr0tQgb4cNvhLczAFGjU4XElMwcrrZ0SHAXXyIQUl+73bCVrFrXOo1w==
-Message-ID: <e0f0f6ceb37225dd3d85038773b09c7ceee96499.camel@svanheule.net>
-Subject: Re: [PATCH v3 7/9] clocksource: realtek: Add timer driver for
- rtl-otto platforms
-From: Sander Vanheule <sander@svanheule.net>
-To: Chris Packham <chris.packham@alliedtelesis.co.nz>, tglx@linutronix.de, 
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
- tsbogend@alpha.franken.de, daniel.lezcano@linaro.org,
- paulburton@kernel.org,  peterz@infradead.org, mail@birger-koblitz.de,
- bert@biot.com, john@phrozen.org
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-mips@vger.kernel.org, kabel@kernel.org, ericwouds@gmail.com, Markus
- Stockhausen <markus.stockhausen@gmx.de>
-Date: Sat, 29 Jun 2024 23:03:12 +0200
-In-Reply-To: <20240627043317.3751996-8-chris.packham@alliedtelesis.co.nz>
-References: <20240627043317.3751996-1-chris.packham@alliedtelesis.co.nz>
-	 <20240627043317.3751996-8-chris.packham@alliedtelesis.co.nz>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.2 (3.52.2-1.fc40) 
+	bh=m1o1vsrZvTo7w5mqkqn99pIT4RNtcwpqiHGAg8MQ6WE=;
+	b=GTCN+DWRgIZo/u+pWipknXtRkLAjdyUrwU+HdUc7083DraYzcL9bw6yzLoQpnRJoGGnwNb
+	dc/nvykEyF4yotpKigjxNzlX4v84unJ0XqM+7wETRKKq/fQhSaLX3HxZv4G1aovakg2vL4
+	ROr86QVDV9xNhDLR3QN/3VcwRL4VHVWup3JTVvf7uBnKD1q4SBdGKJCHhqhbYGc1eok9cm
+	lbek1QJQP0HK0h25BHCwe5yEbpCoASQKeUK4s9wg2DYA4bjmrgsjMK3Ih3SgTRTOKI1TcJ
+	emelpSSQpjggUSZSQBMyOLfjLZ8D35lAEypdk7kULY/zr1HraN/P/zrO19XwwQ==
+X-Envelope-To: dsimic@manjaro.org
+X-Envelope-To: heiko@sntech.de
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+X-Envelope-To: devicetree@vger.kernel.org
+X-Envelope-To: robh@kernel.org
+X-Envelope-To: krzk+dt@kernel.org
+X-Envelope-To: conor+dt@kernel.org
+X-Envelope-To: linux-kernel@vger.kernel.org
+X-Envelope-To: jonas@kwiboo.se
+X-Envelope-To: didi.debian@cknow.org
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Diederik de Haas <didi.debian@cknow.org>
+To: linux-rockchip@lists.infradead.org, Dragan Simic <dsimic@manjaro.org>
+Cc: heiko@sntech.de, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, linux-kernel@vger.kernel.org,
+ Jonas Karlman <jonas@kwiboo.se>, Diederik de Haas <didi.debian@cknow.org>
+Subject:
+ Re: [PATCH v2] arm64: dts: rockchip: Add GPU OPP voltage ranges to RK356x SoC
+ dtsi
+Date: Sun, 30 Jun 2024 00:01:41 +0200
+Message-ID: <2442162.AJoTavkB1d@bagend>
+Organization: Connecting Knowledge
+In-Reply-To:
+ <bdb60f1f793166cd65f58ab7aea025347076019c.1719679068.git.dsimic@manjaro.org>
+References:
+ <bdb60f1f793166cd65f58ab7aea025347076019c.1719679068.git.dsimic@manjaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; boundary="nextPart1882325.2XYCnfxICR";
+ micalg="pgp-sha256"; protocol="application/pgp-signature"
+X-Migadu-Flow: FLOW_OUT
 
-Hi Chris,
+--nextPart1882325.2XYCnfxICR
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
+From: Diederik de Haas <didi.debian@cknow.org>
+Date: Sun, 30 Jun 2024 00:01:41 +0200
+Message-ID: <2442162.AJoTavkB1d@bagend>
+Organization: Connecting Knowledge
+MIME-Version: 1.0
 
-On Thu, 2024-06-27 at 16:33 +1200, Chris Packham wrote:
-> The timer/counter block on the Realtek SoCs provides up to 5 timers. It
-> also includes a watchdog timer but this isn't being used currently (it
-> will be added as a separate wdt driver).
+On Saturday, 29 June 2024 18:39:02 CEST Dragan Simic wrote:
+> Add support for voltage ranges to the GPU OPPs defined in the SoC dtsi for
+> RK356x.  These voltage ranges are useful for RK356x-based boards that are
+> designed to use the same power supply for the GPU and NPU portions of the
+> SoC, which is described further in the following documents:
+> 
+>   - Rockchip RK3566 Hardware Design Guide, version 1.1.0, page 37
+>   - Rockchip RK3568 Hardware Design Guide, version 1.2, page 78
 
-Do you mean the watchdog timer supported by drivers/watchdog/realtek_otto_w=
-dt.c? Or are
-you referring to another watchdog timer?
+That was interesting to read, thanks.
+Now I understand the difference between rk809(-5) and rk817(-5).
 
-> One timer will be used per CPU as a local clock event generator. An
-> additional timer will be used as an overal stable clocksource.
->=20
-> Signed-off-by: Markus Stockhausen <markus.stockhausen@gmx.de>
-> Signed-off-by: Sander Vanheule <sander@svanheule.net>
-> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
-> ---
+But AFAIUI the above description described why there were separate tables for 
+rk809 and rk817 in v1. But that was dropped in v2. So it seems to me the 
+(commit) message should be updated accordingly?
 
-For reference, I submitted a driver for the same hardware back in 2022, but=
- didn't manage
-to follow up to finalize the submission:
+I also expected that (for v1) there would be a similar construct as was 
+recently added for rk3588. But I should interpret Heiko's comments as that 
+strategy should not be applied to rk356x?
 
-https://lore.kernel.org/all/cover.1642369117.git.sander@svanheule.net/
+> The values for the exact GPU OPP voltages and the lower limits for the GPU
+> OPP voltage ranges differ from the values found in the vendor kernel source
+> (cf. downstream commit f8b9431ee38e ("arm64: dts: rockchip: rk3568: support
+> adjust opp-table by otp")). [1][2]  
+
+Why? In their latest update Rockchip changed it to the values as specified in 
+the links. My assumption is that based on extensive testing they did and/or 
+the feedback they got from the client/customers, they felt the need to change 
+it to the values they did.
+
+I think we should follow their values unless we have an explicit and very good 
+reason to deviate from that.
+
+> However, our values have served us well so far, so let's keep them for now,
+
+And I don't think that qualifies as a (very) good reason.
+I think it's reasonable to assume that far more (stress) testing has been done 
+with the downstream code, then has happened with the upstream code.
+Hopefully that'll change in the future, but I don't think we're there yet.
+
+When we/upstream adds npu support, I think we should also follow downstream's 
+OPP values, unless we have a very good reason to deviate from that.
+
+> until we actually start supporting the CPU and GPU binning, together with
+> the related voltage adjustments.
+
+I may not fully understand what you mean by that, but I think it's (again) 
+reasonable to assume that Rockchip has far more insight into this then we do.
+
+Cheers,
+  Diederik
+
+> [1]
+> https://github.com/rockchip-linux/kernel/commit/f8b9431ee38ed561650be7092ab
+> 93f564598daa9 [2]
+> https://raw.githubusercontent.com/rockchip-linux/kernel/f8b9431ee38ed561650
+> be7092ab93f564598daa9/arch/arm64/boot/dts/rockchip/rk3568.dtsi
+
+--nextPart1882325.2XYCnfxICR
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCZoCERQAKCRDXblvOeH7b
+bmLfAP0QPd2WlC4AazLxIQOIFkV2bx4wFpfRqdN+4AFpLEgYvAD5AQC+00IJVpXB
+cFuaeWYS5g5ZLUCOXWd2dGxRo/CDVg4=
+=tszs
+-----END PGP SIGNATURE-----
+
+--nextPart1882325.2XYCnfxICR--
 
 
-> +
-> +/* Module initialization part. */
-> +static DEFINE_PER_CPU(struct timer_of, rttm_to) =3D {
-> +	.flags				=3D TIMER_OF_BASE | TIMER_OF_CLOCK |
-> TIMER_OF_IRQ,
-> +	.of_irq =3D {
-> +		.flags			=3D IRQF_PERCPU | IRQF_TIMER,
-
-In the original review of this code, I had some doubts about the use of IRQ=
-F_PERCPU. Maybe
-the people in Cc can shed some light on this.
-
-If I understand correctly, the SoC interrupts these timers use are not per-=
-cpu interrupts.
-(For comparison, AFAICT the MIPS CPU interrupts are)
-
-
-
-> +		.handler		=3D rttm_timer_interrupt,
-> +	},
-> +	.clkevt =3D {
-> +		.rating			=3D 400,
-> +		.features		=3D CLOCK_EVT_FEAT_PERIODIC |
-> CLOCK_EVT_FEAT_ONESHOT,
-
-If the use of IRQF_PERCPU is appropriate, I wonder if the driver should als=
-o use
-CLOCK_EVT_FEAT_PERCPU.
-
-
-Best,
-Sander
 
 
