@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-81635-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81636-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82E8391CE6D
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 19:52:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 607C591CE6E
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 19:52:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DC56CB21362
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 17:52:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0B05A1F21D1F
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 17:52:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A239412FF83;
-	Sat, 29 Jun 2024 17:52:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71FB986255;
+	Sat, 29 Jun 2024 17:52:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TTs49XYf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LArRIdi8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F44321364
-	for <devicetree@vger.kernel.org>; Sat, 29 Jun 2024 17:52:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C5FA21364
+	for <devicetree@vger.kernel.org>; Sat, 29 Jun 2024 17:52:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719683537; cv=none; b=ueOX6uGIMq7bNtXbpNuFsz0IAc1bw6pS5AG77oowtSCjhd+MIWibnkeI1lJSfkrRNDqAd7VihMaCKywH0vkYs7U/52h7aNZfy5jY+GbmrVgJpsuO8dgZUOpuAR8w+ZEXlLmVc6HjfDC2XABTSfUIdCb/M6Src4feOIhYXKhTjzE=
+	t=1719683541; cv=none; b=sgL5a3axIcmM/vvIbiUGev3RPRL8XejlH8tbwvZ3WGccmXsU7sNptTL/g7bvBvFnPYZPnUVFfhypsz2OGbJ8V1InJsWHx5E0d2WKsSXHPTYulxiEg4fjm6M9Y1ZBjtNI1TlX0rQMCtssKh1fmA6LmwLgvgpmDibMqoxf2+yha7Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719683537; c=relaxed/simple;
-	bh=gVIxk8cHCVHUdA3fTQzmUY1+r/VjucLVQod4LejfzhI=;
+	s=arc-20240116; t=1719683541; c=relaxed/simple;
+	bh=j4MLfR2m8g6WYEp5qi2r2g0cT9THXcets+OgQX0XZCA=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=IFeF5CBNE/SbKEVd99DohTotH0Wo4wq3UiMVHK7mlE9bTNAGxCSMJjQSfsPT0QbhfqOrbteDW8js7Mmc3ErNluiyp28xHWPTkVdqQcDx0rYb+4UuMiutjSJIGKxvviPm2EuOkZoFWBJUE/ScREQhaYLkuaoSUKlMCMSpRMNlioA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TTs49XYf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C273AC2BBFC;
-	Sat, 29 Jun 2024 17:52:16 +0000 (UTC)
+	 MIME-Version; b=cKpLBy9s4C68taoztaC+P8UCFC7MaHXO4GcdGI8tgegd/Pe9Q7B1NEKQZN91OJx75nIFRlvm5MqhJk0boHnvCd+u/66OXj3AwkZAM5Il5KHkZYNAAeScL7nIwHvWDzxk7h5oHCbV0Q9C0d1ce9hZx83nd6Ayqe/PwWk2tMfpN8E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LArRIdi8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81F35C2BBFC;
+	Sat, 29 Jun 2024 17:52:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719683537;
-	bh=gVIxk8cHCVHUdA3fTQzmUY1+r/VjucLVQod4LejfzhI=;
+	s=k20201202; t=1719683540;
+	bh=j4MLfR2m8g6WYEp5qi2r2g0cT9THXcets+OgQX0XZCA=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=TTs49XYfP3ql5lIR6MW6ictTaIjmRBmIZoBsUXFdretopDobLw2UkMRTJ0BFLJ+3o
-	 9dBCeW6gnK5+gjDVs7V2t52KeL/3Yn6xIfrzt0oK7ACLQwZ/iX5xHSf+PkjQaNkmNu
-	 lHrFVM1icb731iQ1EdvvMDIWOQVdsrTPF82JEV/Wn561vvtpZTAJJ732mseq544Vr7
-	 TU2Tmn0WEoKh7x2V11PPo4Mvw2i3yu+8YU2bVO7tuzWk81BPh6g36s6QdZHMJm+N7y
-	 GLpr9BLHSpmOWLdK8ac0iqpn8AaGqgiT5mgV4osMjftqSptjXM0GhOupfvGmNNtJYj
-	 tQ2lczTcCjtEA==
+	b=LArRIdi8JeqjXSfmGUUy4PMdnwoH9p0aQnvi+vMeaiebau8/JyFWVANbj6YCRU10G
+	 lUlvvZFQxaCJMNv0I+kCs9U99OFHS7TvJSv+ntQB1BUmZkuhQDORfadu8sr1478WTX
+	 rJEdnAdAgcxYambt+ZYqQFmGwQcIThXvOy8GF92dR3tCih0a0I4IoI6TkjCgGNwM7C
+	 gvgGz2XP7NdP9fADWH8mTecy1uJi4YhQ2ZU0ao3NMCZF/2i50CWFh3LaXCPEH6bQxJ
+	 4EvkAcdO+uZjlhD/JgfvO8SE2AL6nvXgvPQZtf5n66ndxjSh/1r6i9G+UHUFFXHJvJ
+	 s3RYGyZOj0u4g==
 From: Lorenzo Bianconi <lorenzo@kernel.org>
 To: linux-phy@lists.infradead.org
 Cc: vkoul@kernel.org,
@@ -59,9 +59,9 @@ Cc: vkoul@kernel.org,
 	will@kernel.org,
 	upstream@airoha.com,
 	angelogioacchino.delregno@collabora.com
-Subject: [PATCH 1/2] dt-bindings: phy: airoha: Add dtime and Rx AEQ IO registers
-Date: Sat, 29 Jun 2024 19:51:48 +0200
-Message-ID: <a018329ff9678f3360bc6381294f95c62d34f3e3.1719682943.git.lorenzo@kernel.org>
+Subject: [PATCH 2/2] phy: airoha: Add dtime and Rx AEQ IO registers
+Date: Sat, 29 Jun 2024 19:51:49 +0200
+Message-ID: <edf3b28926177166c65256604d69f2f576cb6fb3.1719682943.git.lorenzo@kernel.org>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <cover.1719682943.git.lorenzo@kernel.org>
 References: <cover.1719682943.git.lorenzo@kernel.org>
@@ -73,53 +73,114 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Introduce Tx-Rx detection time and Rx AEQ mappings in Airoha EN7581
-PCIe-PHY binding. This change is not introducing any backward compatibility
-issue since the EN7581 dts is not upstream yet.
+Introduce Tx-Rx detection Time and Rx AEQ training mappings to
+phy-airoha-pcie driver. This is a preliminary patch to introduce PCIe
+support to En7581 SoC through the mediatek-gen3 PCIe driver.
+This change is not introducing any backward compatibility issue since
+the EN7581 dts is not upstream yet.
 
 Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
 ---
- .../bindings/phy/airoha,en7581-pcie-phy.yaml      | 15 +++++++++++++--
- 1 file changed, 13 insertions(+), 2 deletions(-)
+ drivers/phy/phy-airoha-pcie-regs.h | 17 +++++++++++++
+ drivers/phy/phy-airoha-pcie.c      | 38 ++++++++++++++++++++++++++++++
+ 2 files changed, 55 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/phy/airoha,en7581-pcie-phy.yaml b/Documentation/devicetree/bindings/phy/airoha,en7581-pcie-phy.yaml
-index e26c30d17ff0..98fcb1b364de 100644
---- a/Documentation/devicetree/bindings/phy/airoha,en7581-pcie-phy.yaml
-+++ b/Documentation/devicetree/bindings/phy/airoha,en7581-pcie-phy.yaml
-@@ -21,12 +21,18 @@ properties:
-       - description: PCIE analog base address
-       - description: PCIE lane0 base address
-       - description: PCIE lane1 base address
-+      - description: PCIE lane0 detection time base address
-+      - description: PCIE lane1 detection time base address
-+      - description: PCIE Rx AEQ base address
+diff --git a/drivers/phy/phy-airoha-pcie-regs.h b/drivers/phy/phy-airoha-pcie-regs.h
+index 0c6496b89a71..bb1f679ca1df 100644
+--- a/drivers/phy/phy-airoha-pcie-regs.h
++++ b/drivers/phy/phy-airoha-pcie-regs.h
+@@ -474,4 +474,21 @@
+ #define REG_PCIE_PMA_DIG_RESERVE_27		0x0908
+ #define REG_PCIE_PMA_DIG_RESERVE_30		0x0914
  
-   reg-names:
-     items:
-       - const: csr-2l
-       - const: pma0
-       - const: pma1
-+      - const: p0-xr-dtime
-+      - const: p1-xr-dtime
-+      - const: rx-aeq
++/* DTIME */
++#define REG_PCIE_PEXTP_DIG_GLB44		0x00
++#define PCIE_XTP_RXDET_VCM_OFF_STB_T_SEL	GENMASK(7, 0)
++#define PCIE_XTP_RXDET_EN_STB_T_SEL		GENMASK(15, 8)
++#define PCIE_XTP_RXDET_FINISH_STB_T_SEL		GENMASK(23, 16)
++#define PCIE_XTP_TXPD_TX_DATA_EN_DLY		GENMASK(27, 24)
++#define PCIE_XTP_TXPD_RXDET_DONE_CDT		BIT(28)
++#define PCIE_XTP_RXDET_LATCH_STB_T_SEL		GENMASK(31, 29)
++
++/* RX AEQ */
++#define REG_PCIE_PEXTP_DIG_LN_RX30_P0		0x0000
++#define PCIE_XTP_LN_RX_PDOWN_L1P2_EXIT_WAIT	GENMASK(7, 0)
++#define PCIE_XTP_LN_RX_PDOWN_T2RLB_DIG_EN	BIT(8)
++#define PCIE_XTP_LN_RX_PDOWN_E0_AEQEN_WAIT	GENMASK(31, 16)
++
++#define REG_PCIE_PEXTP_DIG_LN_RX30_P1		0x0100
++
+ #endif /* _PHY_AIROHA_PCIE_H */
+diff --git a/drivers/phy/phy-airoha-pcie.c b/drivers/phy/phy-airoha-pcie.c
+index bba382badb2e..bd3edaa986c8 100644
+--- a/drivers/phy/phy-airoha-pcie.c
++++ b/drivers/phy/phy-airoha-pcie.c
+@@ -31,6 +31,9 @@ enum airoha_pcie_port_gen {
+  * @csr_2l: Analogic lane IO mapped register base address
+  * @pma0: IO mapped register base address of PMA0-PCIe
+  * @pma1: IO mapped register base address of PMA1-PCIe
++ * @p0_xr_dtime: IO mapped register base address of port0 Tx-Rx detection time
++ * @p1_xr_dtime: IO mapped register base address of port1 Tx-Rx detection time
++ * @rx_aeq: IO mapped register base address of Rx AEQ training
+  */
+ struct airoha_pcie_phy {
+ 	struct device *dev;
+@@ -38,6 +41,9 @@ struct airoha_pcie_phy {
+ 	void __iomem *csr_2l;
+ 	void __iomem *pma0;
+ 	void __iomem *pma1;
++	void __iomem *p0_xr_dtime;
++	void __iomem *p1_xr_dtime;
++	void __iomem *rx_aeq;
+ };
  
-   "#phy-cells":
-     const: 0
-@@ -52,7 +58,12 @@ examples:
-             #phy-cells = <0>;
-             reg = <0x0 0x1fa5a000 0x0 0xfff>,
-                   <0x0 0x1fa5b000 0x0 0xfff>,
--                  <0x0 0x1fa5c000 0x0 0xfff>;
--            reg-names = "csr-2l", "pma0", "pma1";
-+                  <0x0 0x1fa5c000 0x0 0xfff>,
-+                  <0x0 0x1fc10044 0x0 0x4>,
-+                  <0x0 0x1fc30044 0x0 0x4>,
-+                  <0x0 0x1fc15030 0x0 0x104>;
-+            reg-names = "csr-2l", "pma0", "pma1",
-+                        "p0-xr-dtime", "p1-xr-dtime",
-+                        "rx-aeq";
-         };
-     };
+ static void airoha_phy_clear_bits(void __iomem *reg, u32 mask)
+@@ -1101,6 +1107,21 @@ static void airoha_pcie_phy_load_kflow(struct airoha_pcie_phy *pcie_phy)
+ static int airoha_pcie_phy_init(struct phy *phy)
+ {
+ 	struct airoha_pcie_phy *pcie_phy = phy_get_drvdata(phy);
++	u32 val;
++
++	/* Setup Tx-Rx detection time */
++	val = FIELD_PREP(PCIE_XTP_RXDET_VCM_OFF_STB_T_SEL, 0x33) |
++	      FIELD_PREP(PCIE_XTP_RXDET_EN_STB_T_SEL, 0x1) |
++	      FIELD_PREP(PCIE_XTP_RXDET_FINISH_STB_T_SEL, 0x2) |
++	      FIELD_PREP(PCIE_XTP_TXPD_TX_DATA_EN_DLY, 0x3) |
++	      FIELD_PREP(PCIE_XTP_RXDET_LATCH_STB_T_SEL, 0x1);
++	writel(val, pcie_phy->p0_xr_dtime + REG_PCIE_PEXTP_DIG_GLB44);
++	writel(val, pcie_phy->p1_xr_dtime + REG_PCIE_PEXTP_DIG_GLB44);
++	/* Setup Rx AEQ training time */
++	val = FIELD_PREP(PCIE_XTP_LN_RX_PDOWN_L1P2_EXIT_WAIT, 0x32) |
++	      FIELD_PREP(PCIE_XTP_LN_RX_PDOWN_E0_AEQEN_WAIT, 0x5050);
++	writel(val, pcie_phy->rx_aeq + REG_PCIE_PEXTP_DIG_LN_RX30_P0);
++	writel(val, pcie_phy->rx_aeq + REG_PCIE_PEXTP_DIG_LN_RX30_P1);
+ 
+ 	/* enable load FLL-K flow */
+ 	airoha_phy_pma0_set_bits(pcie_phy, REG_PCIE_PMA_DIG_RESERVE_14,
+@@ -1217,6 +1238,23 @@ static int airoha_pcie_phy_probe(struct platform_device *pdev)
+ 		return dev_err_probe(dev, PTR_ERR(pcie_phy->phy),
+ 				     "Failed to create PCIe phy\n");
+ 
++	pcie_phy->p0_xr_dtime =
++		devm_platform_ioremap_resource_byname(pdev, "p0-xr-dtime");
++	if (IS_ERR(pcie_phy->p0_xr_dtime))
++		return dev_err_probe(dev, PTR_ERR(pcie_phy->p0_xr_dtime),
++				     "Failed to map P0 Tx-Rx dtime base\n");
++
++	pcie_phy->p1_xr_dtime =
++		devm_platform_ioremap_resource_byname(pdev, "p1-xr-dtime");
++	if (IS_ERR(pcie_phy->p1_xr_dtime))
++		return dev_err_probe(dev, PTR_ERR(pcie_phy->p1_xr_dtime),
++				     "Failed to map P1 Tx-Rx dtime base\n");
++
++	pcie_phy->rx_aeq = devm_platform_ioremap_resource_byname(pdev, "rx-aeq");
++	if (IS_ERR(pcie_phy->rx_aeq))
++		return dev_err_probe(dev, PTR_ERR(pcie_phy->rx_aeq),
++				     "Failed to map Rx AEQ base\n");
++
+ 	pcie_phy->dev = dev;
+ 	phy_set_drvdata(pcie_phy->phy, pcie_phy);
+ 
 -- 
 2.45.2
 
