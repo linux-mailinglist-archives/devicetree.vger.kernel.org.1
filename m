@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-81580-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81581-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CB3791CCDC
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 15:00:39 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD6F491CCE8
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 15:04:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7AE85B2153C
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 13:00:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F2F92B21F1F
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 13:04:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EDDB7EEF5;
-	Sat, 29 Jun 2024 13:00:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7434477107;
+	Sat, 29 Jun 2024 13:04:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jetnY5ka"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ndtnis4L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
+Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76E1B1E493
-	for <devicetree@vger.kernel.org>; Sat, 29 Jun 2024 13:00:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD3187F483
+	for <devicetree@vger.kernel.org>; Sat, 29 Jun 2024 13:04:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719666028; cv=none; b=o1bjwpjVUtp/rg/KMTC3sbV+Lg1TNa7ROeu3Ou2UydsOBGlzRMKpHzZWRRnil3544Nuaee/edyHj2NTjrPQhXYutgT3H3L4gvY8SuxVSy7KIZSrzfEOQ2OZIfeAEC71kRc2jgMokTaDfvWr8ucE05Xxq4Jb9AYpTeZpa1tjjMjQ=
+	t=1719666259; cv=none; b=nzX21HVsr/Ou51vW9FoHsUk73OEJ58zsz9Qx+3voJy5Q7IitP/zsOarBdRPYlAv77pPu+e1opwwVYoo28KdTZ/V+FhTIrfDBoFkkezhUfbKB96G4bfNhRSmYcL7A2wmoxxZ+Y+oJDV7LDgsvUfQZIg0RqDP2lSdinripQfjDqyM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719666028; c=relaxed/simple;
-	bh=ot5a8rokzctOylmDMW7OKTocc2lhbdL+QbEkX/+xEOA=;
+	s=arc-20240116; t=1719666259; c=relaxed/simple;
+	bh=5PAYIRjgVBBS3zFOwULbXF/1Vu42rQ834I7ZMdp37dY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GmEtwDcmj+188RX3L8tWIAgM7nZR8ByzGo7A0MTexH046R6Onvs+urATixGUdVEHyVfg0j3VdmWRgA1VqEfkZ0qEwlV4NLRlfLAF2DDtmGIqzclt4FRsmaNVEAssb04+Av7kUBmOrvT4mV/p+TnZrVvFk8s5JhPlcFZFVtMcTrc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jetnY5ka; arc=none smtp.client-ip=209.85.208.41
+	 In-Reply-To:Content-Type; b=fABnf/XHEXb1/D3Ahr3ykczW7VKtLUP0qKTyZSi9Q/YzftY/S83sSU8S5L0begeeimetJ55coDhUseiqxyES+7JtpNWluwjuD8ekc5R9IeiXFCfWaMVOQX/FtSfRglqnazEoczBd5EtjMRCEohl+LdoppaL4LDdhkChYgrD/Wz8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ndtnis4L; arc=none smtp.client-ip=209.85.208.177
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-584ef6c07c2so3870595a12.1
-        for <devicetree@vger.kernel.org>; Sat, 29 Jun 2024 06:00:25 -0700 (PDT)
+Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2ebe40673d8so19129281fa.3
+        for <devicetree@vger.kernel.org>; Sat, 29 Jun 2024 06:04:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719666024; x=1720270824; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1719666256; x=1720271056; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=UEg/qecc9GOxiH4G4/QXpIKmp7IY8s4FIWFEbQvcIJg=;
-        b=jetnY5kaZq7w0PoIWyCCpp9sSmuvfhNzFVBgcjZA7teXSacnkZFp7lXWXMP4/4MImM
-         qUdcaqp0hp03v7CnqcBdRVrNPMrSqG339araAt0qRQ6+tyolQCp6foNMHTF5xsB6JFGJ
-         pMyStqDNwuVnD+Rw7oxBk7T99RWB5YVqQqPuo/h7xftP6Y1/riBs3o5FfkCEpv5ppLu0
-         pHB8sZJqw4PrXD63O9QK0d55YZBNt9qaf6f7pTrhx4SMGtWZj9LT5MvnEDvEUQjN5MWQ
-         WE4fZjquO+olJDLGYEX+cQSIPu9axnWOL5RoibkJZdbC6dobS5fO1apGpwMewBmi4YKE
-         iBgw==
+        bh=+hMhKjEObUAKJ1IKbGtbahJo7olJ5ZuXPb3nVMpK2Tg=;
+        b=ndtnis4LwkBPAEsN3XzLl4rh/7lai9YoFCALcToydhquuw0rpFhmRFaqjJRGposWoa
+         +uPxHFYqesFImY+VzUOquNdH7kxdMVSl3HBWk+q6eXUfSBlvAEiAn2NBKbxLqHsFs4N0
+         nZNXjDXQ97y4P1VeDfjDP4mYCPA1/UNGrZZsMaLrDpdg5QUnViqvOdt7f2mVMHasv3oD
+         BRA2AA4Z9r4GRYVVUmNPqHpU1Rug+KktxAfb1fEKJQAfkKb/QKY8lWYEASHrBVY1H9qc
+         DdfGn+UJtxyhNfhFwqYuPH9NVHSW2xLp/o25W/P/Kd2Mb+FDVDlZwikq4aaOxAGN831F
+         fYtg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719666024; x=1720270824;
+        d=1e100.net; s=20230601; t=1719666256; x=1720271056;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=UEg/qecc9GOxiH4G4/QXpIKmp7IY8s4FIWFEbQvcIJg=;
-        b=Q5SJDEh8nj3C3dZzvVdsxcWi5xiBQc0hFJCCQgldvl/izmkV3yHy0/OFw1ibX86bse
-         GN1KU+uU7XYykqDLvVSYAWaEsBrgLmiEW5i+kSq+AE0ASxdSMrmdqjESVmRrqcWe/V1E
-         skIk0U8H09fAsIkk6nz2VZNGAQpsDVdelywAiupVHQOtBPTbvgNqTt75e7XwLNzrftRj
-         XB2c8Q/jX0jvj23XtoE3B46h1IvGAXm/KSRMHzwyMq4N8K6UXamrDqSgdFDPSPyEX4iH
-         ijapoqvHym0mzej2JHRn8aVvW1/kN8YwegGRS275NXiHbvEKT5zLUyYBYiGXRLke1o4+
-         zhpw==
-X-Forwarded-Encrypted: i=1; AJvYcCUhEWrkX5hAozaubjX235umW6/nTPHwICUcqbVkCqmHVAjNzo3pf3gzAo/NhteahAnmCJpP9RncLXd1tO9Xzcc8aNN8gQtw5BpWQg==
-X-Gm-Message-State: AOJu0YzdnU0+DmlFS+u7VuXsY0/Xj7T2WSpdQq8xYV/xtp6ZGhToJQ+G
-	prCtueJhuDU0fjeA8AnWd8sz5LoowIVL/se7jJsvGtAFxpKg7yB5DPc4fOG+WbU=
-X-Google-Smtp-Source: AGHT+IHkCYiVDJCqvGrXKmZQC+62RHHte3QlwzzTtlB3bLbOCJsrqfldJ62Q4CC196+iqqHX43vVxw==
-X-Received: by 2002:a05:6402:5107:b0:57c:603a:6b2b with SMTP id 4fb4d7f45d1cf-58782a534a0mr770292a12.21.1719666023628;
-        Sat, 29 Jun 2024 06:00:23 -0700 (PDT)
+        bh=+hMhKjEObUAKJ1IKbGtbahJo7olJ5ZuXPb3nVMpK2Tg=;
+        b=s6NNW649BXZ8UbwczrRKGY24Use51SPOQmrJfaSdJQanlsHY35MfotIbdxsKRH5PUG
+         U5Z2kBGzgTQj4uZm/mTkBn+u8rL2ZbnyNkASL3V1AxS1kUc2K+acE4nGviLujLhFEIvW
+         ugtpIqbUm5IWVIoGkbzhhOIQh8b339sE3zvPTeXscX/0PH4Thu/JPTqL/yXIP5MXC4Lu
+         3stuRnIIBfycE/NNCVPvqveBeixK/wJnkm0DAeld60pV4AtF2b2T2/cfsORqCdOFzJTj
+         q6ickZcCB1hOq50ci9QIbdKuCgU22LOgdtYDZlb9zt6EH8pvp/J6S58jzo2h2fRLFs6g
+         9GWQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVpDgC10Qph8puRy7TorxJWjY2+xQS26UnRwiZdKoLQ/SZ/qNOLcqdZY1N0fOJgUtZV2X18i7zGPdfyZ7ykrN47N9iymmaD1MnlzA==
+X-Gm-Message-State: AOJu0YzRKpkZV5/A4dTLD7nk4TVacNPIl1fGJDhSjaFC1MAmQwf3cpqn
+	PQAvjEsmIW1JmDxInOSEztTBoGp0C5zXOeLN+K8Ya0GAZDqgdMN14pyePXEl5cg=
+X-Google-Smtp-Source: AGHT+IHNHcSAqFqF6iqsWHaRbUrhjZsQihjxBU+bVzLCiepT/usiIw4TrW8Nv4s6wMvI/8OQ8U8C7w==
+X-Received: by 2002:a2e:9e15:0:b0:2ee:5a38:751a with SMTP id 38308e7fff4ca-2ee5e3759d8mr7006711fa.28.1719666255790;
+        Sat, 29 Jun 2024 06:04:15 -0700 (PDT)
 Received: from [192.168.215.29] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-58614d503a6sm2217159a12.76.2024.06.29.06.00.21
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5861381640dsm2243695a12.50.2024.06.29.06.04.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 29 Jun 2024 06:00:23 -0700 (PDT)
-Message-ID: <6c074d15-79b4-44b0-b0fd-698da7b8eb9f@linaro.org>
-Date: Sat, 29 Jun 2024 15:00:20 +0200
+        Sat, 29 Jun 2024 06:04:15 -0700 (PDT)
+Message-ID: <472a7d55-df0a-486a-845c-f24a4196c29b@linaro.org>
+Date: Sat, 29 Jun 2024 15:04:13 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,19 +77,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 7/7] arm64: dts: qcom: qrb4210-rb2: add HDMI audio
- playback support
-To: Alexey Klimov <alexey.klimov@linaro.org>, linux-sound@vger.kernel.org,
- srinivas.kandagatla@linaro.org, bgoswami@quicinc.com, lgirdwood@gmail.com,
- broonie@kernel.org
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- andersson@kernel.org, perex@perex.cz, tiwai@suse.com,
- linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
- devicetree@vger.kernel.org, elder@linaro.org, dmitry.baryshkov@linaro.org,
- krzysztof.kozlowski@linaro.org, caleb.connolly@linaro.org,
+Subject: Re: [PATCH v2 2/5] drm/msm/adreno: Add support for X185 GPU
+To: Akhil P Oommen <quic_akhilpo@quicinc.com>,
+ freedreno <freedreno@lists.freedesktop.org>,
+ dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS
+ <devicetree@vger.kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Rob Clark <robdclark@gmail.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Krzysztof Kozlowski <krzk@kernel.org>, Will Deacon <will@kernel.org>
+Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>, Daniel Vetter
+ <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>,
+ Marijn Suijten <marijn.suijten@somainline.org>, Sean Paul <sean@poorly.run>,
  linux-kernel@vger.kernel.org
-References: <20240628010715.438471-1-alexey.klimov@linaro.org>
- <20240628010715.438471-8-alexey.klimov@linaro.org>
+References: <20240629015111.264564-1-quic_akhilpo@quicinc.com>
+ <20240629015111.264564-3-quic_akhilpo@quicinc.com>
 Content-Language: en-US
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
@@ -127,34 +129,18 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20240628010715.438471-8-alexey.klimov@linaro.org>
+In-Reply-To: <20240629015111.264564-3-quic_akhilpo@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 28.06.2024 3:07 AM, Alexey Klimov wrote:
-> Add sound node, dsp-related pieces and LPASS pinctrl to enable
-> HDMI audio support on Qualcomm QRB4210 RB2 board. That is the
-> only sound output supported for now.
+On 29.06.2024 3:49 AM, Akhil P Oommen wrote:
+> Add support in drm/msm driver for the Adreno X185 gpu found in
+> Snapdragon X1 Elite chipset.
 > 
-> Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
+> Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
 > ---
 
-[...]
-
-> +&q6asmdai {
-> +	dai@0 {
-> +		reg = <0>;
-> +	};
-> +
-> +	dai@1 {
-> +		reg = <1>;
-> +	};
-> +
-> +	dai@2 {
-> +		reg = <2>;
-> +	};
-
-Should these DAIs be moved to the SoC node?
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
 
