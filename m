@@ -1,187 +1,124 @@
-Return-Path: <devicetree+bounces-81636-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81637-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 607C591CE6E
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 19:52:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 29BF091CE73
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 19:59:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0B05A1F21D1F
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 17:52:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C3BA41F21D8F
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 17:59:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71FB986255;
-	Sat, 29 Jun 2024 17:52:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1229A13210E;
+	Sat, 29 Jun 2024 17:58:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LArRIdi8"
+	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="HyvcYbt8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C5FA21364
-	for <devicetree@vger.kernel.org>; Sat, 29 Jun 2024 17:52:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6749D200AF;
+	Sat, 29 Jun 2024 17:58:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719683541; cv=none; b=sgL5a3axIcmM/vvIbiUGev3RPRL8XejlH8tbwvZ3WGccmXsU7sNptTL/g7bvBvFnPYZPnUVFfhypsz2OGbJ8V1InJsWHx5E0d2WKsSXHPTYulxiEg4fjm6M9Y1ZBjtNI1TlX0rQMCtssKh1fmA6LmwLgvgpmDibMqoxf2+yha7Q=
+	t=1719683939; cv=none; b=P3twygdiG0edW04bTOPtQFsIuLpOgnctoST0bJ45L3chovND59ZcGtPpZ4ZplOwhXIiL8OG4LsFpK9TWQscXRSyuuAsA/lMHeyrSkbhMDunyYNzhl7NUqQWBCbAcBBEXY5fW6SKNYtSSVATQsU7bEU6C3Em1nBSQEvdC4sPp374=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719683541; c=relaxed/simple;
-	bh=j4MLfR2m8g6WYEp5qi2r2g0cT9THXcets+OgQX0XZCA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=cKpLBy9s4C68taoztaC+P8UCFC7MaHXO4GcdGI8tgegd/Pe9Q7B1NEKQZN91OJx75nIFRlvm5MqhJk0boHnvCd+u/66OXj3AwkZAM5Il5KHkZYNAAeScL7nIwHvWDzxk7h5oHCbV0Q9C0d1ce9hZx83nd6Ayqe/PwWk2tMfpN8E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LArRIdi8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81F35C2BBFC;
-	Sat, 29 Jun 2024 17:52:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719683540;
-	bh=j4MLfR2m8g6WYEp5qi2r2g0cT9THXcets+OgQX0XZCA=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=LArRIdi8JeqjXSfmGUUy4PMdnwoH9p0aQnvi+vMeaiebau8/JyFWVANbj6YCRU10G
-	 lUlvvZFQxaCJMNv0I+kCs9U99OFHS7TvJSv+ntQB1BUmZkuhQDORfadu8sr1478WTX
-	 rJEdnAdAgcxYambt+ZYqQFmGwQcIThXvOy8GF92dR3tCih0a0I4IoI6TkjCgGNwM7C
-	 gvgGz2XP7NdP9fADWH8mTecy1uJi4YhQ2ZU0ao3NMCZF/2i50CWFh3LaXCPEH6bQxJ
-	 4EvkAcdO+uZjlhD/JgfvO8SE2AL6nvXgvPQZtf5n66ndxjSh/1r6i9G+UHUFFXHJvJ
-	 s3RYGyZOj0u4g==
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: linux-phy@lists.infradead.org
-Cc: vkoul@kernel.org,
-	kishon@kernel.org,
-	lorenzo.bianconi83@gmail.com,
-	conor@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	nbd@nbd.name,
-	john@phrozen.org,
-	dd@embedd.com,
-	catalin.marinas@arm.com,
-	will@kernel.org,
-	upstream@airoha.com,
-	angelogioacchino.delregno@collabora.com
-Subject: [PATCH 2/2] phy: airoha: Add dtime and Rx AEQ IO registers
-Date: Sat, 29 Jun 2024 19:51:49 +0200
-Message-ID: <edf3b28926177166c65256604d69f2f576cb6fb3.1719682943.git.lorenzo@kernel.org>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <cover.1719682943.git.lorenzo@kernel.org>
-References: <cover.1719682943.git.lorenzo@kernel.org>
+	s=arc-20240116; t=1719683939; c=relaxed/simple;
+	bh=aLrT4oOnpymwjd8DVpGHvZEJrdv2DOdEX0kQWZpJWRA=;
+	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
+	 MIME-Version:Content-Type; b=qvQ38NKBFrT/3N3syaYx57AeLX2LwxcKt43Qig/cYsjkn1vQ7JeM5RQGlAIVIAgwrtxhzlQT7RUvoyzLJu/+qzfvKOxdeWrkxRGhWK96k2nxtd2aLWRzXRIOUh3QTBbrxFsO4xK/dbFcFjl35H0WKv53lbkGaVDM2iitjPf95Yg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de; spf=pass smtp.mailfrom=public-files.de; dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b=HyvcYbt8; arc=none smtp.client-ip=212.227.15.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=public-files.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=public-files.de;
+	s=s31663417; t=1719683920; x=1720288720; i=frank-w@public-files.de;
+	bh=aLrT4oOnpymwjd8DVpGHvZEJrdv2DOdEX0kQWZpJWRA=;
+	h=X-UI-Sender-Class:Date:From:To:CC:Subject:Reply-to:In-Reply-To:
+	 References:Message-ID:MIME-Version:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=HyvcYbt8SJ7A8KWkB1a032mAMta423UnsOZPh6Z/cAD08ObBFIif9W+6xAiEx7Uf
+	 gUfW9YnxAseq0SsQcg3bajeU4DOPvCoIuBT3R3Jv4Yfr/ernWvBFi1nOrWefPcfnt
+	 cdEpjSH7YbYC0HjHdcDXKnEk2nAPkXzOhBkuFXOEeZJzyLEa586GF8a+mhRUtKJAz
+	 YZv1dWrI8V6YJdXqzwmXV+r/y3n+MWj1TPcrs8yWhGtvnZnmmdwFLnvI+gBq+pYto
+	 Rmu0qsOA1Pg1oEKjhG/uhcG7Jqvb5qg7u6TCKVTcsPqOZddt8rBDmdaICck4uYEGW
+	 aJ6nwhBUZfIRNW6CYQ==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [127.0.0.1] ([80.245.77.57]) by mail.gmx.net (mrgmx004
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1M6Ue3-1sUV2E3kxl-008jaY; Sat, 29
+ Jun 2024 19:58:40 +0200
+Date: Sat, 29 Jun 2024 19:58:38 +0200
+From: Frank Wunderlich <frank-w@public-files.de>
+To: Markus Elfring <Markus.Elfring@web.de>,
+ Christian Marangi <ansuelsmth@gmail.com>, linux-mediatek@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-clk@vger.kernel.org,
+ Angelo Gioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ Michael Turquette <mturquette@baylibre.com>,
+ =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>,
+ Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>
+CC: stable@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>
+Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v2_1/2=5D_arm64=3A_dts=3A_mediate?=
+ =?US-ASCII?Q?k=3A_mt7622=3A_readd_syscon_to_pciesys_node?=
+User-Agent: K-9 Mail for Android
+Reply-to: frank-w@public-files.de
+In-Reply-To: <9f67af8b-9c8c-4ad6-88c3-03d9fd9673d2@web.de>
+References: <20240628105542.5456-1-ansuelsmth@gmail.com> <9f67af8b-9c8c-4ad6-88c3-03d9fd9673d2@web.de>
+Message-ID: <7B85B9EF-589B-4025-9933-847C6BDCF284@public-files.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:/XeJwdnckIOl1ojd6eCqyn4n7VHLmaLRB1MmDzcRq4iP+LgaqM9
+ aoGV8ocSw5XCK4SmmZ1AbuTshcCrdsRGiL+8VJHOJ1BlVgb4RS0Rd85iUeJ2E7Mg0xQbLRM
+ pR5Ahj6teUQXjEAd/oS/GXWScw0jHEKyEElJ3x6U02BecSyNGKNtGAs0Rx3ZO2Qs+NeqDgk
+ trX5YINi4Ej7VdcpAZinA==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:aXtMXo6gijc=;daTEpV3dzaZ3Xfnp2LUT3IOkcIi
+ ITveyJxrT/X8ytrJYBRNKr/x95owVeX/C9T7qBD/Kmtd2U3QUSPqpXFR5E4dUzjgE7g35amDP
+ /zkpkeIHV8ipLjst1NnPEG0iarLJVo9Hs1Ijkzop02rQMhBEb4Bx3j4S3YB5ZvNL3n7M8oKGw
+ fPdMJJduhdtG1ToRI1EpPWczgVYycNv0UBfi8yMKzwy/o6t6eEkxPNmaMrunHK8yERfyvEVEX
+ NnK6zUkDwaqLEmqE7LAuNpseuRZgRFff9npL2cK5HC+PXDh3vvidymtN7GJ/UZcG5RZ7zwSdg
+ RKSNV0JH1wux420g3qhWF5ovJHiOyOmOrDAaIe4nbVy37B7vgoeuXEv5tiE5BQV55XeHd+Rng
+ KIS0JcpFyh6lAhixklb/llgvBEmo8SQfY1VoEYL+bYItPnghx70X4TDQNYYNN9QvsEfsF1VcG
+ Eo4vsgx9MFWnawBrIMyYvil9UDpNE+MUc8ABhnF357XiVNMp1E4Wwjjctq4cRRnA0UeZrSZmc
+ gKlG7PmI90ODmiecKDgsE9nOftb/zbBChNgGNKbQC5Zv88CKepaAES6A2a432Yi7nSmmPY8RV
+ RMJwXhhS5xfd3x7uAaSucm1K3FZrAjsVZl3Fky+eWGhMHtOfabaTj6x3hyJsHcknYhjwotnsj
+ Upg+TXk6bxPGRRIJ4uCZSbLO27nl5eZAI2VS4WODbF6RO4NgVcFBvIxu6nJv8irTJ1mnOFhAu
+ G/a62lLZuVX8YJDT689FohWgNFXt92hDEOC+lz36w6rptZkal8xiTnIkhTMeLRpJIXZnRSQ98
+ 1vgJich+5VizoOGmB27nJlslGE7vaoitXvpEbb+5sOhuY=
 
-Introduce Tx-Rx detection Time and Rx AEQ training mappings to
-phy-airoha-pcie driver. This is a preliminary patch to introduce PCIe
-support to En7581 SoC through the mediatek-gen3 PCIe driver.
-This change is not introducing any backward compatibility issue since
-the EN7581 dts is not upstream yet.
+Am 29=2E Juni 2024 19:35:01 MESZ schrieb Markus Elfring <Markus=2EElfring@w=
+eb=2Ede>:
+>> Sata node reference the pciesys with the property mediatek,phy-node
+>> and that is used as a syscon to access the pciesys regs=2E
+>>
+>> Readd the syscon compatible to pciesys node to restore correct
+>> functionality of the SATA interface=2E
+>=E2=80=A6
+>> Reported-by: Frank Wunderlich =E2=80=A6
+>
+>Was any related information published?
+>
+>Regards,
+>Markus
+>
 
-Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
----
- drivers/phy/phy-airoha-pcie-regs.h | 17 +++++++++++++
- drivers/phy/phy-airoha-pcie.c      | 38 ++++++++++++++++++++++++++++++
- 2 files changed, 55 insertions(+)
+Hi,
 
-diff --git a/drivers/phy/phy-airoha-pcie-regs.h b/drivers/phy/phy-airoha-pcie-regs.h
-index 0c6496b89a71..bb1f679ca1df 100644
---- a/drivers/phy/phy-airoha-pcie-regs.h
-+++ b/drivers/phy/phy-airoha-pcie-regs.h
-@@ -474,4 +474,21 @@
- #define REG_PCIE_PMA_DIG_RESERVE_27		0x0908
- #define REG_PCIE_PMA_DIG_RESERVE_30		0x0914
- 
-+/* DTIME */
-+#define REG_PCIE_PEXTP_DIG_GLB44		0x00
-+#define PCIE_XTP_RXDET_VCM_OFF_STB_T_SEL	GENMASK(7, 0)
-+#define PCIE_XTP_RXDET_EN_STB_T_SEL		GENMASK(15, 8)
-+#define PCIE_XTP_RXDET_FINISH_STB_T_SEL		GENMASK(23, 16)
-+#define PCIE_XTP_TXPD_TX_DATA_EN_DLY		GENMASK(27, 24)
-+#define PCIE_XTP_TXPD_RXDET_DONE_CDT		BIT(28)
-+#define PCIE_XTP_RXDET_LATCH_STB_T_SEL		GENMASK(31, 29)
-+
-+/* RX AEQ */
-+#define REG_PCIE_PEXTP_DIG_LN_RX30_P0		0x0000
-+#define PCIE_XTP_LN_RX_PDOWN_L1P2_EXIT_WAIT	GENMASK(7, 0)
-+#define PCIE_XTP_LN_RX_PDOWN_T2RLB_DIG_EN	BIT(8)
-+#define PCIE_XTP_LN_RX_PDOWN_E0_AEQEN_WAIT	GENMASK(31, 16)
-+
-+#define REG_PCIE_PEXTP_DIG_LN_RX30_P1		0x0100
-+
- #endif /* _PHY_AIROHA_PCIE_H */
-diff --git a/drivers/phy/phy-airoha-pcie.c b/drivers/phy/phy-airoha-pcie.c
-index bba382badb2e..bd3edaa986c8 100644
---- a/drivers/phy/phy-airoha-pcie.c
-+++ b/drivers/phy/phy-airoha-pcie.c
-@@ -31,6 +31,9 @@ enum airoha_pcie_port_gen {
-  * @csr_2l: Analogic lane IO mapped register base address
-  * @pma0: IO mapped register base address of PMA0-PCIe
-  * @pma1: IO mapped register base address of PMA1-PCIe
-+ * @p0_xr_dtime: IO mapped register base address of port0 Tx-Rx detection time
-+ * @p1_xr_dtime: IO mapped register base address of port1 Tx-Rx detection time
-+ * @rx_aeq: IO mapped register base address of Rx AEQ training
-  */
- struct airoha_pcie_phy {
- 	struct device *dev;
-@@ -38,6 +41,9 @@ struct airoha_pcie_phy {
- 	void __iomem *csr_2l;
- 	void __iomem *pma0;
- 	void __iomem *pma1;
-+	void __iomem *p0_xr_dtime;
-+	void __iomem *p1_xr_dtime;
-+	void __iomem *rx_aeq;
- };
- 
- static void airoha_phy_clear_bits(void __iomem *reg, u32 mask)
-@@ -1101,6 +1107,21 @@ static void airoha_pcie_phy_load_kflow(struct airoha_pcie_phy *pcie_phy)
- static int airoha_pcie_phy_init(struct phy *phy)
- {
- 	struct airoha_pcie_phy *pcie_phy = phy_get_drvdata(phy);
-+	u32 val;
-+
-+	/* Setup Tx-Rx detection time */
-+	val = FIELD_PREP(PCIE_XTP_RXDET_VCM_OFF_STB_T_SEL, 0x33) |
-+	      FIELD_PREP(PCIE_XTP_RXDET_EN_STB_T_SEL, 0x1) |
-+	      FIELD_PREP(PCIE_XTP_RXDET_FINISH_STB_T_SEL, 0x2) |
-+	      FIELD_PREP(PCIE_XTP_TXPD_TX_DATA_EN_DLY, 0x3) |
-+	      FIELD_PREP(PCIE_XTP_RXDET_LATCH_STB_T_SEL, 0x1);
-+	writel(val, pcie_phy->p0_xr_dtime + REG_PCIE_PEXTP_DIG_GLB44);
-+	writel(val, pcie_phy->p1_xr_dtime + REG_PCIE_PEXTP_DIG_GLB44);
-+	/* Setup Rx AEQ training time */
-+	val = FIELD_PREP(PCIE_XTP_LN_RX_PDOWN_L1P2_EXIT_WAIT, 0x32) |
-+	      FIELD_PREP(PCIE_XTP_LN_RX_PDOWN_E0_AEQEN_WAIT, 0x5050);
-+	writel(val, pcie_phy->rx_aeq + REG_PCIE_PEXTP_DIG_LN_RX30_P0);
-+	writel(val, pcie_phy->rx_aeq + REG_PCIE_PEXTP_DIG_LN_RX30_P1);
- 
- 	/* enable load FLL-K flow */
- 	airoha_phy_pma0_set_bits(pcie_phy, REG_PCIE_PMA_DIG_RESERVE_14,
-@@ -1217,6 +1238,23 @@ static int airoha_pcie_phy_probe(struct platform_device *pdev)
- 		return dev_err_probe(dev, PTR_ERR(pcie_phy->phy),
- 				     "Failed to create PCIe phy\n");
- 
-+	pcie_phy->p0_xr_dtime =
-+		devm_platform_ioremap_resource_byname(pdev, "p0-xr-dtime");
-+	if (IS_ERR(pcie_phy->p0_xr_dtime))
-+		return dev_err_probe(dev, PTR_ERR(pcie_phy->p0_xr_dtime),
-+				     "Failed to map P0 Tx-Rx dtime base\n");
-+
-+	pcie_phy->p1_xr_dtime =
-+		devm_platform_ioremap_resource_byname(pdev, "p1-xr-dtime");
-+	if (IS_ERR(pcie_phy->p1_xr_dtime))
-+		return dev_err_probe(dev, PTR_ERR(pcie_phy->p1_xr_dtime),
-+				     "Failed to map P1 Tx-Rx dtime base\n");
-+
-+	pcie_phy->rx_aeq = devm_platform_ioremap_resource_byname(pdev, "rx-aeq");
-+	if (IS_ERR(pcie_phy->rx_aeq))
-+		return dev_err_probe(dev, PTR_ERR(pcie_phy->rx_aeq),
-+				     "Failed to map Rx AEQ base\n");
-+
- 	pcie_phy->dev = dev;
- 	phy_set_drvdata(pcie_phy->phy, pcie_phy);
- 
--- 
-2.45.2
+I found this while changing uboot to of_upstream and fixed it there (not y=
+et send to mailinglist)=2E As of_upstream uses linux dts,i rechecked if it =
+is broken there too and yes it is=2E
 
+But i have not sent issue to mailinglist because we fixed it before :)
+regards Frank
 
