@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-81596-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81598-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8E5D91CD52
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 15:42:40 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E90CF91CD60
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 15:45:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1AAAEB213B4
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 13:42:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3FF21B215D9
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 13:45:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D60280614;
-	Sat, 29 Jun 2024 13:42:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 004E0811FE;
+	Sat, 29 Jun 2024 13:44:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FjFkMWjV"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rjD6Hi26"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 964B81D52D
-	for <devicetree@vger.kernel.org>; Sat, 29 Jun 2024 13:42:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34AE180BEE
+	for <devicetree@vger.kernel.org>; Sat, 29 Jun 2024 13:44:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719668553; cv=none; b=UwbO5AQnM1xVC//HmXO3zdbScgr+X0vLLPzXR+28ZFfODsukfU1mPM4dTcKW/t4M3HRJRLrNsGqBXMwF3ibiGJvrViHr01IoyZcNWDIKRIN6t3car9vMq/LruEEthbK5aFExDQsnwZGETS1n4YNyuFCTrRuJ1Cp3ZSOFcIiswsA=
+	t=1719668694; cv=none; b=o2ZDTAD4iTA60gDqlF9vXTmOTS9OXrjO8iQAOO/DSbL2wYQGbjwFMdEkP7/k1fPSGC4W0i3HS6Tdv6SlkTg5XZxNAyKzpbBk2H4c5fabEhpdRvOSHkPlbO7V0HIKkquIgePjph16ATcxR6m0yNbk112MPNM9fAqs/SqdKRril/Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719668553; c=relaxed/simple;
-	bh=cXPfd0fEa4S+VFemAZ2d5w+WNgzF42fOneK5lp8jG9w=;
+	s=arc-20240116; t=1719668694; c=relaxed/simple;
+	bh=KrcgbJ1puMGcbkVzIGTwThQKjLIaV0Caw+5FdV2M5/I=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UJarkliBhitumo7v6Y9hBIOnEiaks4vl9RT4RyB2QM5g7iOgx7ekfgW8HmeCLDdZOwkf5PCNFYx+WWJ84n1Ro6paRDdhKLsVr8hCyfzG1EnOgGA40uZeLfcXX7K9x89uYyAjfXHSQbkZNhSVSXjTNbsBwwMPVQBBCvtp4zvTQfI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FjFkMWjV; arc=none smtp.client-ip=209.85.218.42
+	 In-Reply-To:Content-Type; b=clPIZXJOewV2TwbOTHEYUTfxKHQB+EASDV+u+5zLau7ItEDTwYkv4CKxt6o3ZACgtBhRiuQyw5/3M4KcLdZzTTH+09edgwinxqFVeD6DC5DKnsBRYuSwIMmMRHG7BG7kuH4URO9Za4dSBBIeZpRFOHV8a7BFVH23dALfhmmGuJg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rjD6Hi26; arc=none smtp.client-ip=209.85.208.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a7194ce90afso151849666b.2
-        for <devicetree@vger.kernel.org>; Sat, 29 Jun 2024 06:42:31 -0700 (PDT)
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-584ee8da49aso4645709a12.0
+        for <devicetree@vger.kernel.org>; Sat, 29 Jun 2024 06:44:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719668550; x=1720273350; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1719668691; x=1720273491; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=89hU81MffUVomnG27nax1DyzxTndt9qlamfVFczEjJY=;
-        b=FjFkMWjV/93glYTIps7HTbeLGOaW+juhf798WQzC0Fb2u3KqShgC77qSgF5zgjYobv
-         2a/Q71mcJGEQs9tZtJaEV78O47VApwYHV+T0J2s6YdNaQPSfWEX8SaaNxj5OKpAZZak8
-         DJ9kpalXAirzQRY4RwYvRC2EDOloyF5THofe6uUPPZH6fRZFlui6wXf4vklNlyI8De46
-         djj1YjrtQsnMhDpW20BDWk4nReF7FT92VbsfqvKNph6VgYiJDAKcEB4tdTkBKK3cYpjo
-         fjGW1+fiB5ys869sbM/K5rLx5ZMAmsKxeEKsm+B0vSE/jFW690oa599jAqv5DNeIeRJM
-         NXEQ==
+        bh=tjqFOHz9rQraJDNUFdzsmiqtJacfGrFQhh+FT7r7mzU=;
+        b=rjD6Hi260M5utO2x7cxqzC0oV+qz4UAZWGuKcAFshSAKtAIILt58e3ywqzVXqKTHvt
+         z6/kzt1xdSaMN0XAOTgNN1aROYETeARxPbPiYKipUhhNDS60/2RpTDy2cpzbFXILgOYl
+         xeH4lT9KTS+ucZbE2Kg1TRkvwqcj69tUvKg/9q6PV85IZb1bkn1RgqaJE4Lgg3JcFVhA
+         LITQg1D0LdpZUDueQzkcjTOIWegPH24Dybqf3dU7IEc8j16psKq+QVMDSuCRHkz4pGWI
+         8a4Nz5p47uSlGUUgl7PPgmPKbFJ8g35xUtYfVA9Ctvs5bsfsYyyozxHmqe/l7SCfC6Kr
+         A05A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719668550; x=1720273350;
+        d=1e100.net; s=20230601; t=1719668691; x=1720273491;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=89hU81MffUVomnG27nax1DyzxTndt9qlamfVFczEjJY=;
-        b=k6rifcSS3gHvWuCM5IqP+BV2M0ndjVwGyqd/oFd+Wr7vtUjDmxNcchNta5wuq0GzfP
-         OTc/S6lYt96teZQxvZYQZPPzgnQs3vRmCyEU4zVKNfr67ziQSBARTQdMvHzOFrPIaQG6
-         YljW0bjNi3/EZdhF/P3MECFUwomfyXFaFFbDmmqYrnyWF7ctumWnoSPtCjvC0VhtCWe+
-         QhJA6i7Sr7kBPGibrsKwA5vYDqlbjDdFT1lMJXXt+kVvUHqE9DAA6GQjpBxryMY03BlM
-         orhkxU5QkKl8uNAj96e5vrKwMo5b9ZdtcVp6xCTjwwf3he4d793gPPbnLo9iVLHo1Y+/
-         /gJw==
-X-Forwarded-Encrypted: i=1; AJvYcCUvIMgTFlql5IYWYVcW6rZkdKZGLKucEIjH71xfiD0LkJOaVudgkjJMhACixyPdbzNVURwBij66M7tzVoZjDOx1I5NezIMhAIQdQQ==
-X-Gm-Message-State: AOJu0YyJITggkNLXNIvm4Y8jqHtXWlHb0uEmUZyl7INQKw3rwdFbHMVa
-	m4X1nnJdx75WEN/UxPRcoyNKuyc/yUKjaGozHRb8BhppxJB7W2u8UrPsOEnrsIc=
-X-Google-Smtp-Source: AGHT+IGkI4CdDPFLm5hkOo2eXhclVzqaDP/BK686i7v6/fhp22g57DOv+8mTR622ezzn20kugpZ60g==
-X-Received: by 2002:a17:906:c0c7:b0:a5a:6bde:c3fb with SMTP id a640c23a62f3a-a751441e94amr70454766b.28.1719668549740;
-        Sat, 29 Jun 2024 06:42:29 -0700 (PDT)
+        bh=tjqFOHz9rQraJDNUFdzsmiqtJacfGrFQhh+FT7r7mzU=;
+        b=WiTma6uIW7Bje1dEDlgOx7UpznlSh7XRqEgEwF4YSx12xKEinEcalbGvGJKRKkW2XL
+         f8OuJpZeo/4O2bGMzf3xE3Om9oTIPDjDoUzLx+VQPvcz9hEvE34fumRdssoIj3c3RBcY
+         /Xe7o+m9+Iyl1XiWL+w6ouvY/GFGQ9c5NlD5CIzTQQE2lNRKTmTKIhmyIBsOBoqDFe+b
+         LeYoOX3FWjbSUlkP3Gp2sWqX+PNAYeSMQ8omuB+DinqoMENuWhH8pXMv+i/KLLtPASqp
+         kGNHEIy8++2reFGTl7iB3Kopam6ka2anEUThRBXCB0LIfsRkOAEp5h/zEbRS9Rx7Q6w5
+         HMKg==
+X-Forwarded-Encrypted: i=1; AJvYcCVXTunn7M4xEryfgVv9JZM5tnthC5whJKYnS/VLLA/hUzpnrQSxXrZGTQCRVtvogkxuUFXErYKhjqzogfuDeaG8hx3H0UyKqG0mlg==
+X-Gm-Message-State: AOJu0YzUOEpQEsF33pRvlwZxl6KdtAq2vniLnOyI3v6o4J0rITvGjZiE
+	z7AyOiqfTFrl6Msx221gUhwY2H9dJRMj8cK4ah4v5avO5VNwTNzBsWXISCGaJ8U=
+X-Google-Smtp-Source: AGHT+IELUqLfJ5TnvRHiTP2PU3ZaLeU4YyiJYhvuKfCq0XuSqLIyrQU7ywN7liHIjwD3OE/wTlLxJw==
+X-Received: by 2002:a17:907:a4b:b0:a72:afd9:6109 with SMTP id a640c23a62f3a-a72afd9622dmr426675766b.16.1719668691213;
+        Sat, 29 Jun 2024 06:44:51 -0700 (PDT)
 Received: from [192.168.215.29] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a72ab065187sm165453966b.139.2024.06.29.06.42.28
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a72ab0900f1sm164829366b.168.2024.06.29.06.44.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 29 Jun 2024 06:42:29 -0700 (PDT)
-Message-ID: <a392f063-3914-4fff-969f-1b9f6de71241@linaro.org>
-Date: Sat, 29 Jun 2024 15:42:27 +0200
+        Sat, 29 Jun 2024 06:44:50 -0700 (PDT)
+Message-ID: <a2c92840-093b-4ed5-a315-31de357ed2e1@linaro.org>
+Date: Sat, 29 Jun 2024 15:44:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,22 +77,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/5] drm/msm/adreno: Implement SMEM-based speed bin
-To: Elliot Berman <quic_eberman@quicinc.com>
-Cc: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Marijn Suijten <marijn.suijten@somainline.org>,
- linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
- freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20240625-topic-smem_speedbin-v4-0-f6f8493ab814@linaro.org>
- <20240625-topic-smem_speedbin-v4-1-f6f8493ab814@linaro.org>
- <20240628101549127-0700.eberman@hu-eberman-lv.qualcomm.com>
- <20240628102726231-0700.eberman@hu-eberman-lv.qualcomm.com>
+Subject: Re: [PATCH v5 3/3] arm64: dts: qcom: msm8939-longcheer-l9100: Add
+ rear flash
+To: git@apitzsch.eu, Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+ Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+ Trilok Soni <quic_tsoni@quicinc.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Kees Cook <kees@kernel.org>
+Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+ phone-devel@vger.kernel.org
+References: <20240624-sy7802-v5-0-7abc9d96bfa6@apitzsch.eu>
+ <20240624-sy7802-v5-3-7abc9d96bfa6@apitzsch.eu>
 Content-Language: en-US
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
@@ -130,61 +129,38 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20240628102726231-0700.eberman@hu-eberman-lv.qualcomm.com>
+In-Reply-To: <20240624-sy7802-v5-3-7abc9d96bfa6@apitzsch.eu>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 28.06.2024 7:31 PM, Elliot Berman wrote:
-> On Fri, Jun 28, 2024 at 10:24:52AM -0700, Elliot Berman wrote:
->> On Tue, Jun 25, 2024 at 08:28:06PM +0200, Konrad Dybcio wrote:
->>> On recent (SM8550+) Snapdragon platforms, the GPU speed bin data is
->>> abstracted through SMEM, instead of being directly available in a fuse.
->>>
->>> Add support for SMEM-based speed binning, which includes getting
->>> "feature code" and "product code" from said source and parsing them
->>> to form something that lets us match OPPs against.
->>>
->>> Due to the product code being ignored in the context of Adreno on
->>> production parts (as of SM8650), hardcode it to SOCINFO_PC_UNKNOWN.
->>>
->>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->>> ---
-
-[...]
-
->>> +	ret = qcom_smem_get_feature_code(&fcode);
->>> +	if (!ret)
->>> +		*fuse = ADRENO_SKU_ID(fcode);
->>> +	else if (ret != -EOPNOTSUPP)
->>> +		return dev_err_probe(dev, ret, "Couldn't get feature code from SMEM\n");
->>
->> Probably want to update a6xx_set_supported_hw() error handling to ignore
->> -EOPNOTSUPP or do:
->>
->> 	else /* ret == -EOPNOTSUPP */
->> 		return -ENOENT;
->>
->>
->>
->>> +#endif
->>> +
->>> +	return 0;
->>
->> I noticed that if SMEM isn't enabled and nvmem returns -ENOENT, we still
->> return 0. That could lead to uninitialized access of speedbin in both
->> users of adreno_read_speedbin(). Maybe:
->>
->> 	return ret;
->>
+On 24.06.2024 11:25 PM, André Apitzsch via B4 Relay wrote:
+> From: André Apitzsch <git@apitzsch.eu>
 > 
-> Ah, I see patch 4 in the series now, but I wonder if we can do something
-> better so that this patch works without relying on later patch in
-> series?
+> The phone has a Silergy SY7802 flash LED controller.
+> 
+> Signed-off-by: André Apitzsch <git@apitzsch.eu>
+> ---
+>  .../boot/dts/qcom/msm8939-longcheer-l9100.dts      | 26 ++++++++++++++++++++++
+>  1 file changed, 26 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/msm8939-longcheer-l9100.dts b/arch/arm64/boot/dts/qcom/msm8939-longcheer-l9100.dts
+> index e3404c4455cf..528737929274 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8939-longcheer-l9100.dts
+> +++ b/arch/arm64/boot/dts/qcom/msm8939-longcheer-l9100.dts
+> @@ -159,6 +159,25 @@ led@2 {
+>  			};
+>  		};
+>  	};
+> +
+> +	flash-led-controller@53 {
+> +		compatible = "silergy,sy7802";
+> +		reg = <0x53>;
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
 
-Looks like rebase mess on my side :/
+#address-/size-cells usually go at the end, but looks good otherwise
 
-Rob already picked this up for next.. Guess we could ask really nicely for
-a forcepush there?
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
 
