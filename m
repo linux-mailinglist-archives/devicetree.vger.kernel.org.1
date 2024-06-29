@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-81588-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81589-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1755191CD05
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 15:10:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A441C91CD11
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 15:26:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 980F01F2351A
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 13:10:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 49F6B2835AD
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 13:26:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CB5F7F48C;
-	Sat, 29 Jun 2024 13:10:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F29DA7EF09;
+	Sat, 29 Jun 2024 13:25:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lUgoBi7P"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="khB+ZG3o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9595B7EF09
-	for <devicetree@vger.kernel.org>; Sat, 29 Jun 2024 13:10:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 225814F606
+	for <devicetree@vger.kernel.org>; Sat, 29 Jun 2024 13:25:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719666649; cv=none; b=dpwO3+zlYQJBSxEGC1eC6ybnz537qkURAttVXkt/3z2jUCwAtCATAKYDnoU+7u6oHIcuXh9YG4PtCpF/xgEP18PEQJFbncqK4vOHWfnZWBAsV74LtI/KPSRlua2vomvpGQChX6yW5fzxsYJ2cwiaRksX6vrSyZocvqjvilMUJpM=
+	t=1719667557; cv=none; b=CNDS/r/rbJy0pN/bD2RADMBOdVXIKs1pQ3m7DA4FH+ChTWMtWTu93ASAjf0+rqkkxjETe0JjG80VzKp6UhYnjPj8xxziLu5Qzx7LeFOGUnBbd6iQ/Nv4TkXsqnpbHibnEE/sK2oyEauccLsIdiQwqcAO6mg5yv1b7xlXDQ8pkAQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719666649; c=relaxed/simple;
-	bh=Zc9sO0I5Bw+ymeOBrEoIlWnptOfQfEsWBo61k8+NyvY=;
+	s=arc-20240116; t=1719667557; c=relaxed/simple;
+	bh=6EhUsA3UxVX3IQKQ+u+Zt+mCTBTcxt3GZzyVOlXeRrs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Fmzep8eGoTi1MezDLvK5YJKA4nZbupDCTHzPRu446wD31LBIBEB9yWPeoFkPNocJrfeJKo6yWR5gsmQJwhcFHY3dWoyHfM0UhyQvQMCOwZQaIOrmCa1V9/ztvsSD1ii9tk8t6YKn1POiXXG7wuo36HjDhCfKhRRkdbzTJJJ4wlE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lUgoBi7P; arc=none smtp.client-ip=209.85.218.53
+	 In-Reply-To:Content-Type; b=g/0kvsEHMu/bIiHADpIsAAaQcaI+6z9eVHK+2i2PMLXka8gVAcEhOQdqp2ThnQrRRKwq/uDralRciTtcsAnerzGq3sDE7Q/Awj9R6YXMhLzuZW1A/+pLq1ZLK0lKAD4+t9UYTXV0c++ZHO5vA53iaQnoqJA1ER22nF2ncgBq/nc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=khB+ZG3o; arc=none smtp.client-ip=209.85.218.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a689ad8d1f6so179268966b.2
-        for <devicetree@vger.kernel.org>; Sat, 29 Jun 2024 06:10:47 -0700 (PDT)
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a724b4f1218so203575066b.2
+        for <devicetree@vger.kernel.org>; Sat, 29 Jun 2024 06:25:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719666646; x=1720271446; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1719667554; x=1720272354; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=NYxUnwUSohZuqH5Y3Oi4aiVD5zcwYSgn+PulSvwJzXQ=;
-        b=lUgoBi7PZyZazKChLZOIhAWtoTXHWBvK73zEYmwhjyKyO/agvUBakL8OP2/pvnA4dd
-         aa/xzcqwxt4nHtIkuYTBNBbJ7jhdOLJJy1c37EeyApPs9zEw1CJxgBgkDtBXWw9yNxAs
-         G6oBbxhi/HqWMnSqs4t2id9i/0ZCa7lrCFz4I/HYd32APBMnUTS7uYywk1B2NyXuFKVu
-         ONm6Fxbx6Wkx/8MitNmzYK2jD0CF1aXF6bmBs2RGBF6HV6IXWTgVSbToouFnJxWzAlHz
-         5RJLVz2FALnnz/4gjOc3lOotpgiHqt8N9675edo998KAfsthvl7PcqEfDFwHlL+EieFr
-         nzgw==
+        bh=3fkbnmyjpmYb5mPmveRTWfsHhRYjv7G8dpWohhpks2o=;
+        b=khB+ZG3oz6xg97Dv+97B1Rq9EV9P8O/N9G8NpUhsOT42mjr3bzUNDiZDppf4bBDwN3
+         qXlMPHFX7LrUivXG4XhIiWW4udYh9+iEuOF+T/zJ4M09VMrFdhIJvPIkvLGNjld3lzTZ
+         xWQkfnurcLohiHo8MzwT0B5m5FSGccpNnDNh0plZ33YLadNo24lK3lHldrTncwgujjjY
+         DPtOwJ7Nu5b6VP7VBRDIlHyRV8e1rqonqB5GnfvBqPvG21UF7Zg2U1eVPjxjBNsMYkLd
+         9ksfI9C9IDH78FznmmmEDmjutsFtp5nuRoLLMoobMbOxzPn716U4xMhllXWz/RHXJdBx
+         kdzw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719666646; x=1720271446;
+        d=1e100.net; s=20230601; t=1719667554; x=1720272354;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=NYxUnwUSohZuqH5Y3Oi4aiVD5zcwYSgn+PulSvwJzXQ=;
-        b=HArWRDlPopgJkg+BD7W54ipEVcsMNkR35TGYFXETRF8kiRDoyuT+hzrom3d7yMhiid
-         8NaaEJSG7ppCI71R9BK/2kWGewhx0+50w4GD8eW+ryppJadul94Qe7uiqZ8jdo1G3Tvr
-         JH7o2TYFPRPjsDzfS2lW7QVYDC7hsFKTN0TStrks3S6sDRaCk/xJrl7R1bsFCbjAPUSu
-         suCG0saMoJAE2yUVa/p6MaOBJWTkS3qHisFKv50AwxMcRv3zLWT09ySYtNKs2jjJhtK4
-         gtFiA4IAXEkhiclTfWevoM6nhWjgX+Fzao6acJmSKoy5yQxawokmfgaaExyhehjOQZod
-         uCBw==
-X-Forwarded-Encrypted: i=1; AJvYcCWEkBKkrafhyxWD57kcdcW4eHwTrfOj+oCUDll36fnQAppV5qWhqcXqbrGmwfh3vNMAN3XdjMTV87vapNL0cqSpQZ2SC5q6J8h6ig==
-X-Gm-Message-State: AOJu0Yzjm0+f55VRfxTB6P5GrQfW97ZpPXNVTgsMuFxBwgnyzkIdoVYk
-	6DttS+m3BnnqEbjnOCpDfhe1imiticZd4PGjc+ktvWPhHpWD1li7nsD6yyHY7SY=
-X-Google-Smtp-Source: AGHT+IF+d1chV2WaX+/TeZL5Zwzjo9i5T/U6DacLXmVqnZmlmiiqw31CXiOO6ryly0BzFkD1Mv1m5Q==
-X-Received: by 2002:a17:907:728e:b0:a6f:9b06:6b42 with SMTP id a640c23a62f3a-a75142d855bmr67725466b.5.1719666645529;
-        Sat, 29 Jun 2024 06:10:45 -0700 (PDT)
+        bh=3fkbnmyjpmYb5mPmveRTWfsHhRYjv7G8dpWohhpks2o=;
+        b=FsDLEZrQpT7CDk8FE/qhdT0pV+85Q+TuY1aKWCXIRzI/b/HydAKRF7Z4FspPzfePuh
+         B56Mp3A8+glrhXgf6tJM2hB3IZvyXbZ0nh/eQJcN4C4/IptDyGPBl/6TomzqDb9DcP6a
+         qmUonJKEcdUQg69PQjyX9oZlDuiBgRim/aLxTwxfhTkFy+dqrHzq5lYTx8nmagihs08G
+         ALWTIV1IywXKJysGo2zCgvZCKVXx6F9rPzdf6w8LVon2C6Ht/qtrgfcoaH51dTe76F4b
+         iKOeNwETBBYGNMRvs+UoKYL6JwcJbPzzjFWtPdMYHKyDfso4pYtRzbaXFZjqeV47JhnA
+         wxbQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU7TSwGaVliGUfdWpj/H5vh07EYckVJVgCll9Wre8a/ueWAOsG8EiPeT05ttKN24i0QYvD4aKs9gJ2H3dAwUZeG2sECTxBYHXf8wg==
+X-Gm-Message-State: AOJu0YwZfnNy5GlFlYGU5Y6by7+gA/t0qea5SIYdfV3mBiqAgGXtAFRv
+	r+5M8LEwkZzCNO+sQs3KoDN0gkDIYxAYqYH/iHw1x6B8Z9F6+XxsMq9iDHQJ9rk=
+X-Google-Smtp-Source: AGHT+IHxXY3GnqAyDZpcxtE7Yybd2qLLCguisyhttFM3FF7Lao1hk9scg++tV+vI4pVCEzZTgoMfnQ==
+X-Received: by 2002:a17:907:9620:b0:a72:88e2:c30f with SMTP id a640c23a62f3a-a751447b26cmr88092866b.48.1719667554305;
+        Sat, 29 Jun 2024 06:25:54 -0700 (PDT)
 Received: from [192.168.215.29] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a72ab0b56a0sm163117866b.199.2024.06.29.06.10.43
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a72ab0b7dcfsm164134366b.209.2024.06.29.06.25.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 29 Jun 2024 06:10:45 -0700 (PDT)
-Message-ID: <a35aacc5-a9d6-4a8e-b016-c23236413871@linaro.org>
-Date: Sat, 29 Jun 2024 15:10:41 +0200
+        Sat, 29 Jun 2024 06:25:53 -0700 (PDT)
+Message-ID: <e758edc4-49b5-4b3c-abe2-7d5cbce52ee2@linaro.org>
+Date: Sat, 29 Jun 2024 15:25:51 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,22 +77,27 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/6] arm64: dts: qcom: sc7280: Add IMX577 camera sensor
-To: Vikram Sharma <quic_vikramsa@quicinc.com>, Robert Foss
- <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Kapatrala Syed <akapatra@quicinc.com>,
- Hariram Purushothaman <hariramp@quicinc.com>,
- cros-qcom-dts-watchers@chromium.org, Bjorn Andersson <andersson@kernel.org>,
- Loic Poulain <loic.poulain@linaro.org>, Andi Shyti <andi.shyti@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+Subject: Re: [PATCH v9 6/6] arm64: dts: qcom: ipq9574: Add icc provider
+ ability to gcc
+To: Varadarajan Narayanan <quic_varada@quicinc.com>
+Cc: Georgi Djakov <djakov@kernel.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, andersson@kernel.org,
+ mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, quic_anusha@quicinc.com,
+ linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-i2c@vger.kernel.org, Hariram Purushothaman
- <quic_hariramp@quicinc.com>, Trishansh Bhardwaj <quic_tbhardwa@quicinc.com>
-References: <20240629-camss_first_post_linux_next-v1-0-bc798edabc3a@quicinc.com>
- <20240629-camss_first_post_linux_next-v1-3-bc798edabc3a@quicinc.com>
+ linux-pm@vger.kernel.org
+References: <1a08ef42-b52f-4c97-90d7-e7fdee7725b4@linaro.org>
+ <Zmgb+OjdBNw71sC1@hu-varada-blr.qualcomm.com>
+ <176137e5-6312-4d46-97b6-c4494bc1c61b@kernel.org>
+ <ZmlAdETV0+6Md8HC@hu-varada-blr.qualcomm.com>
+ <e24cfd23-6f77-46a0-b020-9cb3daef6930@kernel.org>
+ <Zml4RQ5R5s3mVMnI@hu-varada-blr.qualcomm.com>
+ <8e32a8be-dbbf-49ca-92a1-2fe3c8bfb571@kernel.org>
+ <ZmpsOdsl9AMTSH88@hu-varada-blr.qualcomm.com>
+ <ZnKKjomRQtJS2ZgL@hu-varada-blr.qualcomm.com>
+ <9938a67b-1f6b-4955-b4c0-a9f78c55f276@linaro.org>
+ <Zn54xhM/qfBv58e2@hu-varada-blr.qualcomm.com>
 Content-Language: en-US
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
@@ -130,46 +135,94 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20240629-camss_first_post_linux_next-v1-3-bc798edabc3a@quicinc.com>
+In-Reply-To: <Zn54xhM/qfBv58e2@hu-varada-blr.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 28.06.2024 8:32 PM, Vikram Sharma wrote:
-> Add support for IMX577 camera sensor for SC7280 SoC.
+On 28.06.2024 10:48 AM, Varadarajan Narayanan wrote:
+> On Thu, Jun 27, 2024 at 12:00:35AM +0200, Konrad Dybcio wrote:
+>> On 19.06.2024 9:36 AM, Varadarajan Narayanan wrote:
+>>
+>> [...]
+>>
+>>
+>>> Tested the patches with both gcc and nsscc providers having
+>>> 'sync_state' set to icc_sync_state.
+>>>
+>>> 	# dmesg | grep synced
+>>> 	[    3.029820] qcom,gcc-ipq9574 1800000.clock-controller: interconnect provider is in synced state
+>>> 	[    3.470106] qcom,nsscc-ipq9574 39b00000.clock-controller: interconnect provider is in synced state
+>>>
+>>> I can see that icc_sync_state is getting called and clocks
+>>> related to paths with zero bandwidth are getting disabled.
+>>>
+>>> Will post the NSSCC patches to get the full picture.
+>>
+>> Going back to the original question, does removing interconnects = from
+>> things like PCIe now make them not work / crash the device, which would
+>> indicate the NoC clocks were indeed gated?
 > 
-> Signed-off-by: Hariram Purushothaman <quic_hariramp@quicinc.com>
-> Signed-off-by: Trishansh Bhardwaj <quic_tbhardwa@quicinc.com>
-> Signed-off-by: Vikram Sharma <quic_vikramsa@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/sc7280.dtsi | 33 +++++++++++++++++++++++++++++++++
->  1 file changed, 33 insertions(+)
+> Yes. With and without 'interconnects =', the following behaviour
+> is same
+> 	* Boot completes
+> 	* PCIe devices were probed succesfully and can be
+> 	  seen in /proc/bus/pci/devices.
+> 	* icc_sync_state is called. The system has 4 pcie nodes
+> 	  in the DT, out of which pcie0 is not enabled.
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index 9ac251fec262..1c99ee09a11a 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -5167,6 +5167,39 @@ cci3_sleep: cci3-sleep-state {
->  				bias-pull-down;
->  			};
->  
-> +			cam2_default: cam2-default {
-> +				rst {
-> +					pins = "gpio78"; /*cam3*/
+> The difference is seen in icc_sync_state
+> 
+>     With 'interconnects ='
+> 
+> 	* During icc_sync_state, the following 2 clocks
+> 	  corresponding to the interconnects of 'pcie0' get
+> 	  disabled.
+> 
+> 	[    2.986356] ---> clk_core_disable_lock: gcc_anoc_pcie0_1lane_m_clk
+> 	[    3.012486] ---> clk_core_disable_lock: gcc_snoc_pcie0_1lane_s_clk
+> 
+> 	* System shutdown also completes without issues
+> 
+>     Without the 'interconnects =',
+> 
+> 	* During icc_sync_state, the following clocks
+> 	  corresponding to the interconnects of all the 4 PCIe
+> 	  nodes get disabled.
+> 
+> 	[    2.887860] ---> clk_core_disable_lock: gcc_anoc_pcie0_1lane_m_clk
+> 	[    2.913988] ---> clk_core_disable_lock: gcc_snoc_pcie0_1lane_s_clk
+> 	[    2.939857] ---> clk_core_disable_lock: gcc_anoc_pcie1_1lane_m_clk
+> 	[    2.965725] ---> clk_core_disable_lock: gcc_snoc_pcie1_1lane_s_clk
+> 	[    2.991594] ---> clk_core_disable_lock: gcc_anoc_pcie2_2lane_m_clk
+> 	[    3.017463] ---> clk_core_disable_lock: gcc_snoc_pcie2_2lane_s_clk
+> 	[    3.043328] ---> clk_core_disable_lock: gcc_anoc_pcie3_2lane_m_clk
+> 	[    3.069201] ---> clk_core_disable_lock: gcc_snoc_pcie3_2lane_s_clk
+> 
+> 	* System shutdown hangs (possibly due to un-clocked
+> 	  access of PCIe register) in pcie_pme_interrupt_enable
+> 
+> 		[   10.773134]  dump_stack+0x18/0x24
+> 		[   10.776779]  pcie_pme_remove+0x2c/0x88
+> 		[   10.780078]  pcie_port_remove_service+0x50/0x74
+> 		[   10.783725]  device_remove+0x12c/0x148
+> 		[   10.788151]  __device_release_driver+0x65c/0x8cc
+> 		[   10.791972]  device_release_driver+0x2c/0x44
+> 		[   10.796746]  bus_remove_device+0xcc/0x10c
+> 		[   10.800999]  device_del+0x14c/0x400
+> 		[   10.804904]  device_unregister+0x18/0x34
+> 		[   10.808203]  remove_iter+0x2c/0x3c
+> 		[   10.812369]  device_for_each_child+0x60/0xb4
+> 		[   10.815583]  pcie_portdrv_shutdown+0x34/0x90
+> 		[   10.820009]  pci_device_shutdown+0x34/0x74
+> 		[   10.824263]  device_shutdown+0x150/0x258
+> 		[   10.828169]  kernel_restart_prepare+0x98/0xbc
+> 		[   10.832249]  kernel_restart+0x44/0x110
+> 		[   10.836502]  __do_sys_reboot+0x18c/0x304
+> 
+> I believe, this is confirms NOC clocks getting disabled by
+> icc_sync_state.
 
-You can drop these comments.. the node name and label suggest this is
-cam*2* anyway
-
-> +					function = "gpio";
-> +					drive-strength = <2>;
-> +					bias-disable;
-> +				};
-> +
-> +				mclk {
-> +					pins = "gpio67"; /*cam3*/
-> +					function = "cam_mclk";
-> +					drive-strength = <2>; /*RB5 was 16 and i changed to 2 here*/
-
-/* why? */
+Yes, this looks good now, thanks.
 
 Konrad
 
