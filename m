@@ -1,191 +1,364 @@
-Return-Path: <devicetree+bounces-81594-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81595-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51F3791CD40
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 15:37:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16D2491CD46
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 15:37:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D34361F224F6
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 13:36:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 303491C20F90
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 13:37:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FDAA80C09;
-	Sat, 29 Jun 2024 13:36:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0C1A1D52D;
+	Sat, 29 Jun 2024 13:37:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="m9wQ9gaE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R60em4vZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EBA18003A
-	for <devicetree@vger.kernel.org>; Sat, 29 Jun 2024 13:36:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A73D11879;
+	Sat, 29 Jun 2024 13:37:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719668212; cv=none; b=kItraKsY9udYePV+LATF1KoG0Zfy/iIhRVRk9uQ2IgWlqHbgpTbhEaK2jr75hdhk3cjDxiw3Qm0dxL2ky4T57Jnqb6E8vOgbUuQkYA4YiKOlX/Ck3M90B7yiG1CZ9SpEWIqxk2DwEWAxEDg9et46bbbsUuHL3M4uEYNVeaaLJGk=
+	t=1719668272; cv=none; b=VFsJ0WmKu0acNxHkX0aFHCDaMAdcjvssMxA/B8o+DwspLa3qsL92KRvwETeun7BKV+tOGNj2PZv8WrOAZlWJCRh1drmDrUs8/CmxBlW3QKEh5SrKAClx9lPIxU6318do2fdWefNKdpLvb6DKIWoF8tkuxt+5lHjzVJzZogeM+RI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719668212; c=relaxed/simple;
-	bh=pEKkk9d0dkZtVkvo71avDXYFjS+/LQXs6eudgJgzkCU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PUGT6Gn7eo41audHvVMZWGn+v9eM4gYvX6RXRoGBoCc+EaTJ0Q7dhIJNzm0w8Gu1OYljDpc8i5CGZ+QclvQS9EJE0ifZ6PC9CnYb1nfQaqF6eGMpdhTp4rLZrQ8pKq9/KpXbwNdZa3Vn6HLwJZ86Blx8q6F2ETaQj1tl8q7Mc3s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=m9wQ9gaE; arc=none smtp.client-ip=209.85.208.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2ec5fad1984so20881131fa.0
-        for <devicetree@vger.kernel.org>; Sat, 29 Jun 2024 06:36:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719668208; x=1720273008; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=Fb+wSaIrJVe+pkmIcOdPYU+4bx32BHvpwZol/N+Ajuo=;
-        b=m9wQ9gaEGSueTlCiFflwMTHImkHduTDhofaQZ0/fB+JwSTOdcAfWvfs865Co1e4rkf
-         rdTVWXva2aNUp8bvRbmgTRb2oLPE+EO5tlDjMM6D2k1Os1nrMCCtM3mW5M6uFURybKvF
-         xn7IuEtilhwXAe/PIuh6fopUYkk7WYfwQkfVvsRgMsEPxMXKZ9uTW+DYzJBDcMgY8Pb6
-         QaIndoqSXTV6qU1HT5e8+BC59xQfh5/zZj0MyFm3w0gc9D6rbJRh7p7ICzXkEElrnzlK
-         hWh/P5wNlUJpc/hbYL1x/uVgDhZ4y4ZrIIkK3yfge4yC0pfFDv63Gw7VU4FxmnEdvnb5
-         kCnQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719668208; x=1720273008;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Fb+wSaIrJVe+pkmIcOdPYU+4bx32BHvpwZol/N+Ajuo=;
-        b=RLhll+nAot68nTYEj0KtqYA2lSTYy4NuLTEjjB1OVpphBq3ve8V1q1aNygrlfDD+0V
-         c0ZL9Qz9njnmpW9OteKWprolydva0IVPXeZNmW88m2ktRzL1nfUt6+q5ggrohZAjC/qG
-         KSsiyItvdzqRoGcXaQEtC4LF1Z8GHg8qkLyF2WGuFyP8ewL5qFTbu+9CBHla0jGHwd6A
-         mJHMq1UfLzZeeXKdYoM7JFfgo0WbciXUQNQwGy/inkNP0753ziKBz+4Iea6fAwPryv3M
-         JbVn0NI9jbU/edl1lQRkeuVTXRHNOGuvbQOoEZQsrgq3LLXn4EstmKsieOXRf3cxTVtV
-         QErg==
-X-Forwarded-Encrypted: i=1; AJvYcCUZypKn8VlNtx2KiKfVkpZXc8fzSudgjLd2EK30XOBm1+kBueAKCPDfzszeH8Sgot3bS2NwBnT00Ec3QL1YbT3wUvTkMsRjrpSEWA==
-X-Gm-Message-State: AOJu0Yxr7XLzAITx9Pvmz/Y7HGAZcJ6s2nktOmOFYcalst8uKELcipB8
-	rQJMYYCXxHITCFpQnDBFEknGXztMWndpS6rvQWbYRLFyDKk/qNY80xluIcrpsHg=
-X-Google-Smtp-Source: AGHT+IFViPkvLnjVI+tzuVPmDLNUpmDc9Ajbta0rj8EHH09MphUCQjSVvr6pLzm9yp2KFajt9W7Q6A==
-X-Received: by 2002:a2e:b00e:0:b0:2ec:5785:ee97 with SMTP id 38308e7fff4ca-2ee5e707ddemr8165451fa.53.1719668208268;
-        Sat, 29 Jun 2024 06:36:48 -0700 (PDT)
-Received: from [192.168.215.29] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5861381756esm2268082a12.56.2024.06.29.06.36.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 29 Jun 2024 06:36:47 -0700 (PDT)
-Message-ID: <bc6d0faa-b3d6-4094-b569-dec3a5ed7545@linaro.org>
-Date: Sat, 29 Jun 2024 15:36:46 +0200
+	s=arc-20240116; t=1719668272; c=relaxed/simple;
+	bh=QYzIwoDSwjddkb499/EKg87JPomcxVyhRm2s4gnORDg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bdb5SQAlEP03BbaFLzSBDkJnE26QZw9F550W/4cez0tJbJ+mIfDHfRTYwY/MbROjM/vTUG+EVoSfZXO2ti232ir0t9u+cUBqm284TQezkZFNeTER490MhNA1qIJiQpT+GFVwS6CKWA24aWi6xh2vvC4fs4cVw+yL0EaYfGGQfIs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R60em4vZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C300EC2BBFC;
+	Sat, 29 Jun 2024 13:37:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719668272;
+	bh=QYzIwoDSwjddkb499/EKg87JPomcxVyhRm2s4gnORDg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=R60em4vZnP8S0zyRiFAWiDWvgcX2ZVkpCZeuB9QQEDGcxH2ceEmuHcugVZly/D4X5
+	 4k0Y/KhpkHrugFNuJwbeGqgZEu/fWWBSalQY2psjZzjI/iCst+ry7F+Y9VZzI676yk
+	 9UX6JgkbOIVmXq6sZkvLHLeX+e7KbIYRUFH9+bU9sp+OE32dUK/laDwT3F2mjo4YrA
+	 mCslujW1nwKMY2EjjWJJk8lu6Azs/IfBnsSLQN/rHMjgQG09p4tG4DS9GRSOAUUMp2
+	 iuCXhESnJJQnEt66lpp+jo40NnP2Ast3PJ79u7hMSLufmsWgUigZNB2BbWxD+LvVNQ
+	 ffRIFSICYOBWg==
+Date: Sat, 29 Jun 2024 15:37:48 +0200
+From: "lorenzo@kernel.org" <lorenzo@kernel.org>
+To: Jianjun Wang =?utf-8?B?KOeOi+W7uuWGmyk=?= <Jianjun.Wang@mediatek.com>
+Cc: "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+	"angelogioacchino.delregno@collabora.com" <angelogioacchino.delregno@collabora.com>,
+	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"nbd@nbd.name" <nbd@nbd.name>, "dd@embedd.com" <dd@embedd.com>,
+	"robh@kernel.org" <robh@kernel.org>, "kw@linux.com" <kw@linux.com>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"bhelgaas@google.com" <bhelgaas@google.com>,
+	"lpieralisi@kernel.org" <lpieralisi@kernel.org>,
+	Ryder Lee <Ryder.Lee@mediatek.com>,
+	"lorenzo.bianconi83@gmail.com" <lorenzo.bianconi83@gmail.com>,
+	upstream <upstream@airoha.com>
+Subject: Re: [PATCH v2 4/4] PCI: mediatek-gen3: Add Airoha EN7581 support
+Message-ID: <ZoAOLIiwa4VrVYAo@lore-desk>
+References: <cover.1719475568.git.lorenzo@kernel.org>
+ <b2c794b21e15ec85a57de144006db9582ce0c949.1719475568.git.lorenzo@kernel.org>
+ <d817ac92756c9c7d96d8f8cc8a8538bbcabd85f1.camel@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v11 0/6] Add interconnect driver for IPQ9574 SoC
-To: Varadarajan Narayanan <quic_varada@quicinc.com>
-Cc: andersson@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, djakov@kernel.org,
- dmitry.baryshkov@linaro.org, quic_anusha@quicinc.com,
- linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org, bryan.odonoghue@linaro.org
-References: <20240430064214.2030013-1-quic_varada@quicinc.com>
- <ZjXrTywO6+iRaEYk@hu-varada-blr.qualcomm.com>
- <90bb9256-d54d-4e01-aa06-4184e2b95d48@linaro.org>
- <Zmgc+Qzwt6Zbg/w+@hu-varada-blr.qualcomm.com>
- <ZnumpkYR2ILpbOwF@hu-varada-blr.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <ZnumpkYR2ILpbOwF@hu-varada-blr.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="9/tn1eEvOs4Ib4Jn"
+Content-Disposition: inline
+In-Reply-To: <d817ac92756c9c7d96d8f8cc8a8538bbcabd85f1.camel@mediatek.com>
 
-On 26.06.2024 7:27 AM, Varadarajan Narayanan wrote:
-> On Tue, Jun 11, 2024 at 03:16:33PM +0530, Varadarajan Narayanan wrote:
->> On Thu, Jun 06, 2024 at 04:07:23PM +0200, Konrad Dybcio wrote:
->>> On 4.05.2024 10:01 AM, Varadarajan Narayanan wrote:
->>>> Bjorn,
->>>>
->>>>> On Tue, Apr 30, 2024 at 12:12:08PM +0530, Varadarajan Narayanan wrote:
->>>>> MSM platforms manage NoC related clocks and scaling from RPM.
->>>>> However, in IPQ SoCs, RPM is not involved in managing NoC
->>>>> related clocks and there is no NoC scaling.
->>>>>
->>>>> However, there is a requirement to enable some NoC interface
->>>>> clocks for the accessing the peripherals present in the
->>>>> system. Hence add a minimalistic interconnect driver that
->>>>> establishes a path from the processor/memory to those peripherals
->>>>> and vice versa.
->>>>>
->>>>> Change icc-clk driver to take master and slave ids instead
->>>>> of auto generating.
->>>>>
->>>>> Currently, drivers/clk/qcom/clk-cbf-8996.c is the only user of
->>>>> icc-clk. And, it had exactly one master and one slave node.
->>>>> For this the auto generated master (= 1) and slave (= 0) was
->>>>> enough.
->>>>>
->>>>> However, when drivers/clk/qcom/gcc-ipq9574.c wanted to make use
->>>>> of the icc-clk framework, it had more number of master and slave
->>>>> nodes and the auto generated ids did not suit the usage.
->>>>>
->>>>> ---
->>>>> v11:	No code changes
->>>>> 	Commit log changed for the first patch
->>>>> 	Added Acked-By: to 3 patches
->>>>
->>>> Can this be included in your driver changes for 6.10?
->>>
->> Konrad,
->>
->>> FWIW there is still an open discussion at v9
->>> <CAA8EJpqENsojPQmCbma_nQLEZq8nK1fz1K0JdtvLd=kPrH_DBw@mail.gmail.com>
->>
->> Thanks for reminding. Have responded to it.
->> https://lore.kernel.org/linux-arm-msm/Zmgb+OjdBNw71sC1@hu-varada-blr.qualcomm.com/
-> 
-> Bjorn/Konrad,
-> 
-> Can this be merged for 6.11. I believe the discussion open at v9
-> has been addressed. Please let me know if anything is still pending.
-> 
-> Below patches depend on this series:
-> 
-> 	PCI: https://lore.kernel.org/linux-arm-msm/20240512082858.1806694-1-quic_devipriy@quicinc.com/
-> 	NSSCC: https://lore.kernel.org/linux-arm-msm/20240625070536.3043630-1-quic_devipriy@quicinc.com/
 
-Looks solved now! Bjorn, feel free to pick this up
+--9/tn1eEvOs4Ib4Jn
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Konrad
+> Hi Lorenzo,
+
+Hi Jianjun,
+
+>=20
+> On Thu, 2024-06-27 at 10:12 +0200, Lorenzo Bianconi wrote:
+> >  	=20
+> > External email : Please do not click links or open attachments until
+> > you have verified the sender or the content.
+> >  Introduce support for Airoha EN7581 PCIe controller to mediatek-gen3
+> > PCIe controller driver.
+> >=20
+> > Tested-by: Zhengping Zhang <zhengping.zhang@airoha.com>
+> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> > ---
+> >  drivers/pci/controller/Kconfig              |  2 +-
+> >  drivers/pci/controller/pcie-mediatek-gen3.c | 96
+> > ++++++++++++++++++++-
+> >  2 files changed, 96 insertions(+), 2 deletions(-)
+> >=20
+> > diff --git a/drivers/pci/controller/Kconfig
+> > b/drivers/pci/controller/Kconfig
+> > index e534c02ee34f..3bd6c9430010 100644
+> > --- a/drivers/pci/controller/Kconfig
+> > +++ b/drivers/pci/controller/Kconfig
+> > @@ -196,7 +196,7 @@ config PCIE_MEDIATEK
+> > =20
+> >  config PCIE_MEDIATEK_GEN3
+> >  	tristate "MediaTek Gen3 PCIe controller"
+> > -	depends on ARCH_MEDIATEK || COMPILE_TEST
+> > +	depends on ARCH_AIROHA || ARCH_MEDIATEK || COMPILE_TEST
+> >  	depends on PCI_MSI
+> >  	help
+> >  	  Adds support for PCIe Gen3 MAC controller for MediaTek SoCs.
+> > diff --git a/drivers/pci/controller/pcie-mediatek-gen3.c
+> > b/drivers/pci/controller/pcie-mediatek-gen3.c
+> > index 438a5222d986..af567b4355fa 100644
+> > --- a/drivers/pci/controller/pcie-mediatek-gen3.c
+> > +++ b/drivers/pci/controller/pcie-mediatek-gen3.c
+> > @@ -7,6 +7,7 @@
+> >   */
+> > =20
+> >  #include <linux/clk.h>
+> > +#include <linux/clk-provider.h>
+> >  #include <linux/delay.h>
+> >  #include <linux/iopoll.h>
+> >  #include <linux/irq.h>
+> > @@ -15,6 +16,8 @@
+> >  #include <linux/kernel.h>
+> >  #include <linux/module.h>
+> >  #include <linux/msi.h>
+> > +#include <linux/of_device.h>
+> > +#include <linux/of_pci.h>
+> >  #include <linux/pci.h>
+> >  #include <linux/phy/phy.h>
+> >  #include <linux/platform_device.h>
+> > @@ -29,6 +32,7 @@
+> >  #define PCI_CLASS(class)		(class << 8)
+> >  #define PCIE_RC_MODE			BIT(0)
+> > =20
+> > +#define PCIE_EQ_PRESET_01_REF		0x100
+> Should be PCIE_EQ_PRESET_01_REG
+
+ack, I will fix it in v3.
+
+>=20
+> >  #define PCIE_CFGNUM_REG			0x140
+> >  #define PCIE_CFG_DEVFN(devfn)		((devfn) & GENMASK(7,
+> > 0))
+> >  #define PCIE_CFG_BUS(bus)		(((bus) << 8) & GENMASK(15, 8))
+> > @@ -68,6 +72,7 @@
+> >  #define PCIE_MSI_SET_ENABLE_REG		0x190
+> >  #define PCIE_MSI_SET_ENABLE		GENMASK(PCIE_MSI_SET_NUM - 1,
+> > 0)
+> > =20
+> > +#define PCIE_PIPE4_PIE8_REG		0x338
+> >  #define PCIE_MSI_SET_BASE_REG		0xc00
+> >  #define PCIE_MSI_SET_OFFSET		0x10
+> >  #define PCIE_MSI_SET_STATUS_OFFSET	0x04
+> > @@ -100,7 +105,17 @@
+> >  #define PCIE_ATR_TLP_TYPE_MEM		PCIE_ATR_TLP_TYPE(0)
+> >  #define PCIE_ATR_TLP_TYPE_IO		PCIE_ATR_TLP_TYPE(2)
+> > =20
+> > -#define MAX_NUM_PHY_RESETS		1
+> > +/* EN7581 */
+> > +#define PCIE_PEXTP_DIG_GLB44_P0_REG	0x10044
+> > +#define PCIE_PEXTP_DIG_LN_RX30_P0_REG	0x15030
+> > +#define PCIE_PEXTP_DIG_LN_RX30_P1_REG	0x15130
+> These registers belong to PHY, I think they should be added in the phy
+> driver, which is located at drivers/phy/mediatek/phy-mtk-pcie.c.
+
+ack, I will move this configuration in the pcie-phy driver.
+
+>=20
+> > +
+> > +/* PCIe-PHY initialization delay in ms */
+> > +#define PHY_INIT_TIME_MS		30
+> > +/* PCIe reset line delay in ms */
+> > +#define PCIE_RESET_TIME_MS		100
+> > +
+> > +#define MAX_NUM_PHY_RESETS		3
+> > =20
+> >  struct mtk_gen3_pcie;
+> > =20
+> > @@ -847,6 +862,74 @@ static int mtk_pcie_parse_port(struct
+> > mtk_gen3_pcie *pcie)
+> >  	return 0;
+> >  }
+> > =20
+> > +static int mtk_pcie_en7581_power_up(struct mtk_gen3_pcie *pcie)
+> > +{
+> > +	struct device *dev =3D pcie->dev;
+> > +	int err;
+> > +
+> > +	/* Wait for bulk assert completion in mtk_pcie_setup */
+> > +	mdelay(PCIE_RESET_TIME_MS);
+> > +
+> > +	/* Setup Tx-Rx detect time */
+> > +	writel_relaxed(0x23020133, pcie->base +
+> > PCIE_PEXTP_DIG_GLB44_P0_REG);
+> Please also add definitions for each field, the layout for
+> PCIE_PEXTP_DIG_GLB44_P0_REG is:
+> Bit[7:0]=20
+>   Name: rg_xtp_rxdet_vcm_off_stb_t_sel
+>   Description: Stable Time Selection of tx_cmkp_en De-Assert (DC Common
+> Mode Turn-Off) During RX Detection, unit: 4 us
+> Bit[15:8]
+>   Name: rg_xtp_rxdet_en_stb_t_sel
+>   Description: Stable Time Selection of tx_rxdet_en Assert During RX
+> Detection, unit: 1 us
+> Bit[23:16]
+>   Name: rg_xtp_rxdet_finish_stb_t_sel
+>   Description: rxdet finish stable time selection, unit: 1 tx250m_ck
+> Bit[27:24]
+>   Name: rg_xtp_txpd_tx_data_en_dly
+>   Description: ckpd_tx_data_en_sync delay selection, unit: 1 tx250m_ck
+> Bit[28:28]
+>   Name: rg_xtp_txpd_rxdet_done_cdt
+>   Description: rxdet_done cdt selection, 0: !pipe_tx_detect_rx  1:
+> pipe_phy_status
+> Bit[31:29]
+>   Name: rg_xtp_rxdet_latch_stb_t_sel
+>   Description: rxdet_latch state stable time selection, unit: 1
+> tx250m_ck
+>=20
+> > +	/* Setup Rx AEQ training time */
+> > +	writel_relaxed(0x50500032, pcie->base +
+> > PCIE_PEXTP_DIG_LN_RX30_P0_REG);
+> > +	writel_relaxed(0x50500032, pcie->base +
+> > PCIE_PEXTP_DIG_LN_RX30_P1_REG);
+> Layout for PEXTP_DIG_LN_RX30:
+> Bit[7:0] rg_xtp_ln_rx_pdown_l1p2_exit_wait_cnt
+> Bit[8] rg_xtp_ln_rx_pdown_t2rlb_dig_en
+> Bit[28:16] rg_xtp_ln_rx_pdown_e0_aeqen_wait_us
+>=20
+> > +
+> > +	err =3D phy_init(pcie->phy);
+> > +	if (err) {
+> > +		dev_err(dev, "failed to initialize PHY\n");
+> > +		return err;
+> > +	}
+> > +	mdelay(PHY_INIT_TIME_MS);
+> > +
+> > +	err =3D phy_power_on(pcie->phy);
+> > +	if (err) {
+> > +		dev_err(dev, "failed to power on PHY\n");
+> > +		goto err_phy_on;
+> > +	}
+> > +
+> > +	err =3D reset_control_bulk_deassert(pcie->soc-
+> > >phy_resets.num_resets, pcie->phy_resets);
+> > +	if (err) {
+> > +		dev_err(dev, "failed to deassert PHYs\n");
+> > +		goto err_phy_deassert;
+> > +	}
+> > +	mdelay(PCIE_RESET_TIME_MS);
+> > +
+> > +	pm_runtime_enable(dev);
+> > +	pm_runtime_get_sync(dev);
+> > +
+> > +	err =3D clk_bulk_prepare(pcie->num_clks, pcie->clks);
+> > +	if (err) {
+> > +		dev_err(dev, "failed to prepare clock\n");
+> > +		goto err_clk_prepare;
+> > +	}
+> > +
+> > +	writel_relaxed(0x41474147, pcie->base + PCIE_EQ_PRESET_01_REF);
+> Bit[6:0] val_ln0_dn
+>   Bit [3:0]: Downstream port transmitter preset
+>   Bit [6:4]: Downstream port receiver preset hint
+> Bit[14:8] val_ln0_up
+>   Bit [11:8]: Upstream port transmitter preset
+>   Bit [14:12]: Upstream port receiver preset hint
+> Bit[22:16] val_ln1_dn
+>   Bit [19:16]: Downstream port transmitter preset
+>   Bit [22:20]: Downstream port receiver preset hint
+> BIt[30:24] val_ln1_up
+>   Bit [27:24]: Upstream port transmitter preset
+>   Bit [30:28]: Upstream port receiver preset hint
+>=20
+> > +	writel_relaxed(0x1018020f, pcie->base + PCIE_PIPE4_PIE8_REG);
+> Bit[5:0] k_finetune_max
+> Bit[7:6] k_finetune_err
+> Bit[18:8] k_preset_to_use
+> Bit[19:19] k_phyparam_query
+> Bit[20:20] k_query_timeout
+> Bit[31:21] k_preset_to_use_16g
+>=20
+
+ack, thx for the clarification. I will add them in v4.
+
+Regards,
+Lorenzo
+
+> Thanks.
+>=20
+> > +
+> > +	err =3D clk_bulk_enable(pcie->num_clks, pcie->clks);
+> > +	if (err) {
+> > +		dev_err(dev, "failed to prepare clock\n");
+> > +		goto err_clk_enable;
+> > +	}
+> > +
+> > +	return 0;
+> > +
+> > +err_clk_enable:
+> > +	clk_bulk_unprepare(pcie->num_clks, pcie->clks);
+> > +err_clk_prepare:
+> > +	pm_runtime_put_sync(dev);
+> > +	pm_runtime_disable(dev);
+> > +	reset_control_bulk_assert(pcie->soc->phy_resets.num_resets,
+> > pcie->phy_resets);
+> > +err_phy_deassert:
+> > +	phy_power_off(pcie->phy);
+> > +err_phy_on:
+> > +	phy_exit(pcie->phy);
+> > +
+> > +	return err;
+> > +}
+> > +
+> >  static int mtk_pcie_power_up(struct mtk_gen3_pcie *pcie)
+> >  {
+> >  	struct device *dev =3D pcie->dev;
+> > @@ -1113,8 +1196,19 @@ static const struct mtk_gen3_pcie_pdata
+> > mtk_pcie_soc_mt8192 =3D {
+> >  	},
+> >  };
+> > =20
+> > +static const struct mtk_gen3_pcie_pdata mtk_pcie_soc_en7581 =3D {
+> > +	.power_up =3D mtk_pcie_en7581_power_up,
+> > +	.phy_resets =3D {
+> > +		.id[0] =3D "phy-lane0",
+> > +		.id[1] =3D "phy-lane1",
+> > +		.id[2] =3D "phy-lane2",
+> > +		.num_resets =3D 3,
+> > +	},
+> > +};
+> > +
+> >  static const struct of_device_id mtk_pcie_of_match[] =3D {
+> >  	{ .compatible =3D "mediatek,mt8192-pcie", .data =3D
+> > &mtk_pcie_soc_mt8192 },
+> > +	{ .compatible =3D "airoha,en7581-pcie", .data =3D
+> > &mtk_pcie_soc_en7581 },
+> >  	{},
+> >  };
+> >  MODULE_DEVICE_TABLE(of, mtk_pcie_of_match);
+> > --=20
+> > 2.45.2
+> >=20
+
+--9/tn1eEvOs4Ib4Jn
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZoAOLAAKCRA6cBh0uS2t
+rKcdAP4udH/FA1kqGICbwUA39JKy7rSUZuzATSP7OTOAZ+3j6wD8Ct3kmI/AVvgQ
+Sokyo7wqeh+NESGdnNPGXYYaVGPCJQE=
+=A7ol
+-----END PGP SIGNATURE-----
+
+--9/tn1eEvOs4Ib4Jn--
 
