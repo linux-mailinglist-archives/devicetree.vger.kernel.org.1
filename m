@@ -1,279 +1,504 @@
-Return-Path: <devicetree+bounces-81556-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81557-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0220691CBA7
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 10:27:13 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7810F91CBCE
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 11:01:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A0AC1281C3A
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 08:27:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E74511F22B1F
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 09:01:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25F0B383AE;
-	Sat, 29 Jun 2024 08:27:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AE9036AEC;
+	Sat, 29 Jun 2024 09:01:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="J4lPAW1j"
+	dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b="5cUUna29"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
+Received: from ahti.lucaweiss.eu (ahti.lucaweiss.eu [128.199.32.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D8523307B;
-	Sat, 29 Jun 2024 08:27:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 277FB14A85;
+	Sat, 29 Jun 2024 09:01:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=128.199.32.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719649630; cv=none; b=embsXH/6pPRiZJsL945q6Tq/WpHagdK+L6jn5p1xBZYQRBGWiHWsBNmmBW8adisYP4IEWUldm+6MQ+tR1NSAaAiKaonviXlVmZ3UHjSh85DtbLV8KIS+GcRUUIhOMuEfjXfSB5OqG7LGipp1b0cd309Uwq45xnUbEw3A00nFFhU=
+	t=1719651699; cv=none; b=uzQ3+9feCApCjnwObL62H4+HuJbaPScemdDEXuyATG0TMDKs0fLa07H0M62sCa4JgUfoUK7MEu2gwMz1DzsC8nEALvseLyY/D6Ie6wOJgIAddEjUihTgU7bvN3B06GPVE1z22e9d97wd1iRfpVZkZrByxwYMccduMLifIJpQThU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719649630; c=relaxed/simple;
-	bh=rcef8iIzGURe7pXw1mQCZTzP2eKL/Z3lfN2RM1HkMS4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=iKSVZ9N7LXwTF62gW4Zz2VbRLdkrQhHrmd36osGE15k/IeEhEoTJoyEQirAC3x02bAUYRuA7rZHHD/iE2MlkAnGgB9mJAhVG6Gbd82SFJzED5nKi9k81TIGoT4B6D4457Y4SiFql6eA9ITcMJN5qkRl2cfNXUNxOk4TnuSoUKkg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=J4lPAW1j; arc=none smtp.client-ip=209.85.128.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-63f7d53bd88so14084427b3.2;
-        Sat, 29 Jun 2024 01:27:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1719649627; x=1720254427; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xkIrYflEOoy6jtTabWktMcFcPY7E3RXh56B/EgJcCTQ=;
-        b=J4lPAW1jbhWZc0rW6p6lKTf3bwYH5JykCQPUPL6ooGSvbpiIrskWWU0yGjp1uHxqcY
-         J/wp+WBoHcFMQgAPUK5bkCcN+l3gsxM2FnAI4lZuSO5J/68PMfL4QtEI9PeVsR2CueXc
-         xklfKEmk2tXrRLBU+b+kVopXbPY7MOH9EN9vMrlpcLI3twhXQ0TWkuVwNmbXKyIUgnwA
-         /ftqYeaDcjnOCb9aso67AozLjfTL0JcIIho5s01RgkxohpNcVbNsuUSPMiI95XhdS+/w
-         8mqOfEmsVlmTYJvlT0LbTw+pBW7+hoxlS4d1uajaXfO+yv5FuuuQZh+cEzMkB7To8u2M
-         zbEw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719649627; x=1720254427;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xkIrYflEOoy6jtTabWktMcFcPY7E3RXh56B/EgJcCTQ=;
-        b=rzYSfBefIgkH9YCAin8/cfLvlMaKM7roVN8rxEP23etX4aw4BTxbzjCjc8vyn6H82V
-         qksk/tpILzj0FfoW1xuRI5Z/WkPsNacvRxU1lE6yqwm7gKikwKOb1BBPYqJwTvvuxuDb
-         +QGbreVuQ+arDMyO0adxvAT9LNc8gMWzVnLU83snHjrcUjoFiyprSsmigh1EeDwnb10N
-         UBfzoRrEFR2BERViXBoi9RbOqa/mA2FHGmZoz7o+lO7l3qbCKN5Rgvx2JO3UrR6fENLH
-         OC3UQ9Cg016azsBaXNUA57ez08uGdk9MHjlEQHILqaVTxOjwNWnCCFrX7G4KJaLyuPph
-         Q9cw==
-X-Forwarded-Encrypted: i=1; AJvYcCU+YYbCZ4vW2cUKr8o7O2U5OYR1C+SJj3auYmML3DgdlG0qotYbdBD8qmlspmP7Iekix19CR8x/7VPl6quLnOPVK2yIHQvLod3VCQ==
-X-Gm-Message-State: AOJu0Yyed3wM23QbQtsW2SlV2N4zEUqlkKkpwf7DDli7MlBVrAmHi2Hk
-	0lXehKAnMJyzPe2r6o4X7+TtehDqHzsvE4f/wLx01F/Xo+OG0NgxCTpbTsyiXTU2U4sdhqjbr3j
-	SsW5l1gdUw4TXcvV8CLRtqbGOZXE=
-X-Google-Smtp-Source: AGHT+IHIWwG40xdoyk9zXVmAxYMSBaZ/ND6gAS8dOzZl1jedjTZmN5V7ueba1+HzrCC+PVHsS+xTVD4BocQqM7rYpBQ=
-X-Received: by 2002:a0d:e612:0:b0:64a:3d7c:2782 with SMTP id
- 00721157ae682-64c73606e65mr4798507b3.41.1719649627349; Sat, 29 Jun 2024
- 01:27:07 -0700 (PDT)
+	s=arc-20240116; t=1719651699; c=relaxed/simple;
+	bh=W7NIudphB47cxV64suN18o18T+N2b7fBSp/JSfsbbkI=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=mOzRYnVP3PkxnmHJLNUe33UwwYuoCZibwoSVgVjFPKOfH40Szdc4qHQPgYdoysscHzioEjw97C568f6MDtH544itVYJy1ayl1vEJsmbnICnAP94owhd/CYmXp66O23ltSXxAr8YeqBcaPA9ym/j5qHyAwHpTEEJ1O+HiFhHGbkA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=lucaweiss.eu; spf=pass smtp.mailfrom=lucaweiss.eu; dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b=5cUUna29; arc=none smtp.client-ip=128.199.32.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=lucaweiss.eu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lucaweiss.eu
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lucaweiss.eu; s=s1;
+	t=1719651695; bh=W7NIudphB47cxV64suN18o18T+N2b7fBSp/JSfsbbkI=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=5cUUna29N0H9y1eZHHLIms3UTC6ssxLU9u5hK4Ytv+NvJTNnIr6OMKEF7rmXEnGjs
+	 vHWTfYT1fqnkFdRS3XBpGkhuvRxSz4pDt0aHMXjPAGRBO0Yc2WOpiUSe8AM3O//9/P
+	 wwkSxlr0UPoX3jBufRHUsCCa+10ktMVuvSFxtjPs=
+From: Luca Weiss <luca@lucaweiss.eu>
+To: linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, phone-devel@vger.kernel.org,
+ ~postmarketos/upstreaming@lists.sr.ht,
+ Raymond Hackley <raymondhackley@protonmail.com>
+Subject:
+ Re: [PATCH v2 2/2] ARM: dts: qcom-msm8226-samsung-ms013g: Add initial device
+ tree
+Date: Sat, 29 Jun 2024 11:01:34 +0200
+Message-ID: <6223513.lOV4Wx5bFT@g550jk>
+In-Reply-To: <20240627193013.1800-3-raymondhackley@protonmail.com>
+References:
+ <20240627193013.1800-1-raymondhackley@protonmail.com>
+ <20240627193013.1800-3-raymondhackley@protonmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240628051019.975172-1-kikuchan98@gmail.com> <20240628051019.975172-2-kikuchan98@gmail.com>
- <20240628-splashy-slug-1d74e3fd9fe6@spud>
-In-Reply-To: <20240628-splashy-slug-1d74e3fd9fe6@spud>
-From: Hironori KIKUCHI <kikuchan98@gmail.com>
-Date: Sat, 29 Jun 2024 17:26:56 +0900
-Message-ID: <CAG40kxERY2r2cj58kjVMMg1JVOChRKraKYFo_K5C5fnx0g80Qw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: display: st7701: Add Anbernic RG28XX panel
-To: Conor Dooley <conor@kernel.org>
-Cc: linux-kernel@vger.kernel.org, Jagan Teki <jagan@amarulasolutions.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
-	Sam Ravnborg <sam@ravnborg.org>, David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
 
-Hello Conor,
+On Donnerstag, 27. Juni 2024 21:30:52 MESZ Raymond Hackley wrote:
+> Samsung Galaxy Grand 2 is a phone based on MSM8226. It's similar to the
+> other Samsung devices based on MSM8226 with only a few minor differences.
+> 
+> The device trees contain initial support with:
+>  - GPIO keys
+>  - Regulator haptic
+>  - SDHCI (internal and external storage)
+>  - UART (on USB connector via the TI TSU6721 MUIC)
+>  - Regulators
+>  - Touchscreen
+>  - Accelerometer
+> 
+> Signed-off-by: Raymond Hackley <raymondhackley@protonmail.com>
+> ---
+>  arch/arm/boot/dts/qcom/Makefile               |   1 +
+>  .../dts/qcom/qcom-msm8226-samsung-ms013g.dts  | 386 ++++++++++++++++++
+>  2 files changed, 387 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/qcom/qcom-msm8226-samsung-ms013g.dts
+> 
+> diff --git a/arch/arm/boot/dts/qcom/Makefile b/arch/arm/boot/dts/qcom/Makefile
+> index ccd4ce6353df..f06c6d425e91 100644
+> --- a/arch/arm/boot/dts/qcom/Makefile
+> +++ b/arch/arm/boot/dts/qcom/Makefile
+> @@ -28,6 +28,7 @@ dtb-$(CONFIG_ARCH_QCOM) += \
+>  	qcom-msm8226-microsoft-dempsey.dtb \
+>  	qcom-msm8226-microsoft-makepeace.dtb \
+>  	qcom-msm8226-microsoft-moneypenny.dtb \
+> +	qcom-msm8226-samsung-ms013g.dtb \
+>  	qcom-msm8226-samsung-s3ve3g.dtb \
+>  	qcom-msm8660-surf.dtb \
+>  	qcom-msm8916-samsung-e5.dtb \
+> diff --git a/arch/arm/boot/dts/qcom/qcom-msm8226-samsung-ms013g.dts b/arch/arm/boot/dts/qcom/qcom-msm8226-samsung-ms013g.dts
+> new file mode 100644
+> index 000000000000..190b52fda634
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/qcom/qcom-msm8226-samsung-ms013g.dts
+> @@ -0,0 +1,386 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +
+> +/dts-v1/;
+> +
+> +#include "qcom-msm8226.dtsi"
+> +#include "pm8226.dtsi"
+> +
+> +/delete-node/ &smem_region;
+> +
+> +/ {
+> +	model = "Samsung Galaxy Grand 2";
+> +	compatible = "samsung,ms013g", "qcom,msm8226";
+> +	chassis-type = "handset";
+> +
+> +	aliases {
+> +		mmc0 = &sdhc_1; /* SDC1 eMMC slot */
+> +		mmc1 = &sdhc_2; /* SDC2 SD card slot */
+> +		serial0 = &blsp1_uart3;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+> +	gpio-hall-sensor {
+> +		compatible = "gpio-keys";
+> +
+> +		pinctrl-0 = <&gpio_hall_sensor_default>;
+> +		pinctrl-names = "default";
+> +
+> +		label = "GPIO Hall Effect Sensor";
+> +
+> +		event-hall-sensor {
+> +			label = "Hall Effect Sensor";
+> +			gpios = <&tlmm 50 GPIO_ACTIVE_LOW>;
+> +			linux,input-type = <EV_SW>;
+> +			linux,code = <SW_LID>;
+> +			linux,can-disable;
+> +		};
+> +	};
+> +
+> +	gpio-keys {
+> +		compatible = "gpio-keys";
+> +
+> +		pinctrl-0 = <&gpio_keys_default>;
+> +		pinctrl-names = "default";
+> +
+> +		label = "GPIO Buttons";
+> +
+> +		button-volume-up {
+> +			label = "Volume Up";
+> +			gpios = <&tlmm 106 GPIO_ACTIVE_LOW>;
+> +			linux,code = <KEY_VOLUMEUP>;
+> +		};
+> +
+> +		button-volume-down {
+> +			label = "Volume Down";
+> +			gpios = <&tlmm 107 GPIO_ACTIVE_LOW>;
+> +			linux,code = <KEY_VOLUMEDOWN>;
+> +		};
+> +
+> +		button-home {
+> +			label = "Home Key";
+> +			gpios = <&tlmm 108 GPIO_ACTIVE_LOW>;
+> +			linux,code = <KEY_HOMEPAGE>;
+> +		};
+> +	};
+> +
+> +	haptic {
+> +		compatible = "regulator-haptic";
+> +		haptic-supply = <&reg_motor_vdd>;
+> +		min-microvolt = <3300000>;
+> +		max-microvolt = <3300000>;
+> +	};
 
-Thank you for your reply.
+This is the vibration motor? Use "vibrator" as node name then as per
+https://github.com/devicetree-org/devicetree-specification/blob/main/source/chapter2-devicetree-basics.rst?plain=1#L299
 
-On Sat, Jun 29, 2024 at 1:27=E2=80=AFAM Conor Dooley <conor@kernel.org> wro=
-te:
->
-> On Fri, Jun 28, 2024 at 02:10:15PM +0900, Hironori KIKUCHI wrote:
-> > The RG28XX panel is a display panel of the Anbernic RG28XX, a handheld
-> > gaming device from Anbernic. It is 2.8 inches in size (diagonally) with
-> > a resolution of 480x640.
-> >
-> > This panel is driven by a variant of the ST7701 driver IC internally,
-> > confirmed by dumping and analyzing its BSP initialization sequence
-> > by using a logic analyzer. It is very similar to the existing
-> > densitron,dmt028vghmcmi-1a panel, but differs in some unknown
-> > register values, so add a new entry for the panel to distinguish them.
-> >
-> > Additionally, the panel is connected via SPI instead of MIPI DSI.
-> > So add and modify for SPI as well.
-> >
-> > Signed-off-by: Hironori KIKUCHI <kikuchan98@gmail.com>
-> > ---
-> >  .../display/panel/sitronix,st7701.yaml        | 69 +++++++++++++++++--
-> >  1 file changed, 64 insertions(+), 5 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/display/panel/sitronix,s=
-t7701.yaml b/Documentation/devicetree/bindings/display/panel/sitronix,st770=
-1.yaml
-> > index b348f5bf0a9..835ea436531 100644
-> > --- a/Documentation/devicetree/bindings/display/panel/sitronix,st7701.y=
-aml
-> > +++ b/Documentation/devicetree/bindings/display/panel/sitronix,st7701.y=
-aml
-> > @@ -20,21 +20,19 @@ description: |
-> >    Densitron DMT028VGHMCMI-1A is 480x640, 2-lane MIPI DSI LCD panel
-> >    which has built-in ST7701 chip.
-> >
-> > -allOf:
-> > -  - $ref: panel-common.yaml#
-> > -
-> >  properties:
-> >    compatible:
-> >      items:
-> >        - enum:
-> >            - anbernic,rg-arc-panel
-> > +          - anbernic,rg28xx-panel
->
-> Please no wildcards in compatibles - what is the actual model of this
-> panel? I don't really want to see the model of the handheld here if
-> possible.
+Apart from this I don't see anything wrong.
 
-Well, the "RG28XX" is the actual product name of the device...
-Besides, there is no vendor name or model name on the panel; there is
-no information at all.
-Since the panel cannot be disassembled from the housing of the device,
-I named it like this.
+Reviewed-by: Luca Weiss <luca@lucaweiss.eu>
 
->
-> >            - densitron,dmt028vghmcmi-1a
-> >            - elida,kd50t048a
-> >            - techstar,ts8550b
-> >        - const: sitronix,st7701
-> >
-> >    reg:
-> > -    description: DSI virtual channel used by that screen
-> > +    description: DSI / SPI channel used by that screen
-> >      maxItems: 1
-> >
-> >    VCC-supply:
-> > @@ -43,6 +41,13 @@ properties:
-> >    IOVCC-supply:
-> >      description: I/O system regulator
-> >
-> > +  dc-gpios:
-> > +    maxItems: 1
-> > +    description:
-> > +      Controller data/command selection (D/CX) in 4-line SPI mode.
-> > +      If not set, the controller is in 3-line SPI mode.
-> > +      Disallowed for DSI.
-> > +
-> >    port: true
-> >    reset-gpios: true
-> >    rotation: true
-> > @@ -57,7 +62,38 @@ required:
-> >    - port
-> >    - reset-gpios
-> >
-> > -additionalProperties: false
-> > +allOf:
-> > +  - $ref: panel-common.yaml#
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            # SPI connected panels
-> > +            enum:
-> > +              - anbernic,rg28xx-panel
-> > +    then:
-> > +      $ref: /schemas/spi/spi-peripheral-props.yaml
->
-> I'm not really keen on this. I'd rather see a different binding for the
-> SPI version compared to the MIPI ones. Is doing things like this common
-> for panels? If it is, I'll turn a blind eye..
+> +
+> +	reg_motor_vdd: regulator-motor-vdd {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "motor_vdd";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +
+> +		gpio = <&tlmm 111 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +
+> +		pinctrl-0 = <&motor_en_default>;
+> +		pinctrl-names = "default";
+> +	};
+> +
+> +	reg_vdd_tsp_a: regulator-vdd-tsp-a {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "tsp_3p3v";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +
+> +		gpio = <&tlmm 31 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +
+> +		pinctrl-0 = <&tsp_en_default>;
+> +		pinctrl-names = "default";
+> +	};
+> +
+> +	reserved-memory {
+> +		smem_region: smem@fa00000 {
+> +			reg = <0x0fa00000 0x100000>;
+> +			no-map;
+> +		};
+> +	};
+> +};
+> +
+> +&blsp1_i2c2 {
+> +	status = "okay";
+> +
+> +	accelerometer@18 {
+> +		compatible = "bosch,bma255";
+> +		reg = <0x18>;
+> +		interrupts-extended = <&tlmm 64 IRQ_TYPE_EDGE_RISING>;
+> +
+> +		vdd-supply = <&pm8226_l19>;
+> +		vddio-supply = <&pm8226_lvs1>;
+> +
+> +		pinctrl-0 = <&accel_int_default>;
+> +		pinctrl-names = "default";
+> +
+> +		mount-matrix = "0", "1", "0",
+> +			       "-1", "0", "0",
+> +			       "0", "0", "-1";
+> +	};
+> +};
+> +
+> +&blsp1_i2c5 {
+> +	status = "okay";
+> +
+> +	touchscreen@20 {
+> +		compatible = "zinitix,bt541";
+> +
+> +		reg = <0x20>;
+> +		interrupts-extended = <&tlmm 17 IRQ_TYPE_EDGE_FALLING>;
+> +
+> +		touchscreen-size-x = <720>;
+> +		touchscreen-size-y = <1280>;
+> +
+> +		vcca-supply = <&reg_vdd_tsp_a>;
+> +		vdd-supply = <&pm8226_lvs1>;
+> +
+> +		pinctrl-0 = <&tsp_int_default>;
+> +		pinctrl-names = "default";
+> +	};
+> +};
+> +
+> +&blsp1_uart3 {
+> +	status = "okay";
+> +};
+> +
+> +&rpm_requests {
+> +	regulators {
+> +		compatible = "qcom,rpm-pm8226-regulators";
+> +
+> +		pm8226_s3: s3 {
+> +			regulator-min-microvolt = <1200000>;
+> +			regulator-max-microvolt = <1300000>;
+> +		};
+> +
+> +		pm8226_s4: s4 {
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <2200000>;
+> +		};
+> +
+> +		pm8226_s5: s5 {
+> +			regulator-min-microvolt = <1150000>;
+> +			regulator-max-microvolt = <1150000>;
+> +		};
+> +
+> +		pm8226_l1: l1 {
+> +			regulator-min-microvolt = <1225000>;
+> +			regulator-max-microvolt = <1225000>;
+> +		};
+> +
+> +		pm8226_l2: l2 {
+> +			regulator-min-microvolt = <1200000>;
+> +			regulator-max-microvolt = <1200000>;
+> +		};
+> +
+> +		pm8226_l3: l3 {
+> +			regulator-min-microvolt = <750000>;
+> +			regulator-max-microvolt = <1337500>;
+> +		};
+> +
+> +		pm8226_l4: l4 {
+> +			regulator-min-microvolt = <1200000>;
+> +			regulator-max-microvolt = <1200000>;
+> +		};
+> +
+> +		pm8226_l5: l5 {
+> +			regulator-min-microvolt = <1200000>;
+> +			regulator-max-microvolt = <1200000>;
+> +		};
+> +
+> +		pm8226_l6: l6 {
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <1800000>;
+> +			regulator-allow-set-load;
+> +			regulator-always-on;
+> +		};
+> +
+> +		pm8226_l7: l7 {
+> +			regulator-min-microvolt = <1850000>;
+> +			regulator-max-microvolt = <1850000>;
+> +		};
+> +
+> +		pm8226_l8: l8 {
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <1800000>;
+> +		};
+> +
+> +		pm8226_l9: l9 {
+> +			regulator-min-microvolt = <2050000>;
+> +			regulator-max-microvolt = <2050000>;
+> +		};
+> +
+> +		pm8226_l10: l10 {
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <1800000>;
+> +		};
+> +
+> +		pm8226_l12: l12 {
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <1800000>;
+> +		};
+> +
+> +		pm8226_l14: l14 {
+> +			regulator-min-microvolt = <2750000>;
+> +			regulator-max-microvolt = <2750000>;
+> +		};
+> +
+> +		pm8226_l15: l15 {
+> +			regulator-min-microvolt = <2800000>;
+> +			regulator-max-microvolt = <2800000>;
+> +		};
+> +
+> +		pm8226_l16: l16 {
+> +			regulator-min-microvolt = <3000000>;
+> +			regulator-max-microvolt = <3350000>;
+> +		};
+> +
+> +		pm8226_l17: l17 {
+> +			regulator-min-microvolt = <2950000>;
+> +			regulator-max-microvolt = <2950000>;
+> +
+> +			regulator-system-load = <200000>;
+> +			regulator-allow-set-load;
+> +			regulator-always-on;
+> +		};
+> +
+> +		pm8226_l18: l18 {
+> +			regulator-min-microvolt = <2950000>;
+> +			regulator-max-microvolt = <2950000>;
+> +		};
+> +
+> +		pm8226_l19: l19 {
+> +			regulator-min-microvolt = <2850000>;
+> +			regulator-max-microvolt = <3000000>;
+> +		};
+> +
+> +		pm8226_l20: l20 {
+> +			regulator-min-microvolt = <3075000>;
+> +			regulator-max-microvolt = <3075000>;
+> +		};
+> +
+> +		pm8226_l21: l21 {
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <2950000>;
+> +			regulator-allow-set-load;
+> +		};
+> +
+> +		pm8226_l22: l22 {
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <2950000>;
+> +		};
+> +
+> +		pm8226_l23: l23 {
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <3300000>;
+> +		};
+> +
+> +		pm8226_l24: l24 {
+> +			regulator-min-microvolt = <1300000>;
+> +			regulator-max-microvolt = <1350000>;
+> +		};
+> +
+> +		pm8226_l25: l25 {
+> +			regulator-min-microvolt = <1775000>;
+> +			regulator-max-microvolt = <2125000>;
+> +		};
+> +
+> +		pm8226_l26: l26 {
+> +			regulator-min-microvolt = <1225000>;
+> +			regulator-max-microvolt = <1300000>;
+> +		};
+> +
+> +		pm8226_l27: l27 {
+> +			regulator-min-microvolt = <2050000>;
+> +			regulator-max-microvolt = <2050000>;
+> +		};
+> +
+> +		pm8226_l28: l28 {
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <2950000>;
+> +		};
+> +
+> +		pm8226_lvs1: lvs1 {};
+> +	};
+> +};
+> +
+> +&sdhc_1 {
+> +	vmmc-supply = <&pm8226_l17>;
+> +	vqmmc-supply = <&pm8226_l6>;
+> +
+> +	bus-width = <8>;
+> +	non-removable;
+> +
+> +	status = "okay";
+> +};
+> +
+> +&sdhc_2 {
+> +	vmmc-supply = <&pm8226_l18>;
+> +	vqmmc-supply = <&pm8226_l21>;
+> +
+> +	bus-width = <4>;
+> +	cd-gpios = <&tlmm 38 GPIO_ACTIVE_LOW>;
+> +
+> +	pinctrl-0 = <&sdhc2_default_state &sdhc2_cd_default>;
+> +	pinctrl-names = "default";
+> +
+> +	status = "okay";
+> +};
+> +
+> +&tlmm {
+> +	accel_int_default: accel-int-default-state {
+> +		pins = "gpio64";
+> +		function = "gpio";
+> +		drive-strength = <2>;
+> +		bias-disable;
+> +	};
+> +
+> +	gpio_hall_sensor_default: gpio-hall-sensor-default-state {
+> +		pins = "gpio50";
+> +		function = "gpio";
+> +		drive-strength = <2>;
+> +		bias-pull-up;
+> +	};
+> +
+> +	gpio_keys_default: gpio-keys-default-state {
+> +		pins = "gpio106", "gpio107", "gpio108";
+> +		function = "gpio";
+> +		drive-strength = <2>;
+> +		bias-pull-up;
+> +	};
+> +
+> +	motor_en_default: motor-en-default-state {
+> +		pins = "gpio111";
+> +		function = "gpio";
+> +		drive-strength = <2>;
+> +		bias-disable;
+> +	};
+> +
+> +	sdhc2_cd_default: sdhc2-cd-default-state {
+> +		pins = "gpio38";
+> +		function = "gpio";
+> +		drive-strength = <2>;
+> +		bias-disable;
+> +	};
+> +
+> +	tsp_en_default: tsp-en-default-state {
+> +		pins = "gpio31";
+> +		function = "gpio";
+> +		drive-strength = <2>;
+> +		bias-disable;
+> +	};
+> +
+> +	tsp_int_default: tsp-int-default-state {
+> +		pins = "gpio17";
+> +		function = "gpio";
+> +		drive-strength = <2>;
+> +		bias-disable;
+> +	};
+> +};
+> 
 
-This might be the first case that a driver supports both DSI and SPI
-for a panel.
-The panel can be either a DSI device or an SPI device.
-I'm not sure if this is the right way to represent it in the documentation.=
-..
 
->
-> > +
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          not:
-> > +            contains:
-> > +              # DSI or SPI without D/CX pin
-> > +              enum:
-> > +                - anbernic,rg-arc-panel
-> > +                - anbernic,rg28xx-panel
-> > +                - densitron,dmt028vghmcmi-1a
-> > +                - elida,kd50t048a
-> > +                - techstar,ts8550b
->
-> This is all the compatibles in the file, so nothing is allowed to use
-> dc-gpios? Why bother adding it?
 
-There are 3 types of connections that the driver supports: DSI, SPI
-with D/CX pin, and SPI without D/CX pin.
-Although most SPI panels don't have a D/CX pin, theoretically "SPI
-with D/CX pin" exists.
-So, it's just prepared for that.
 
-IMHO, once it's found, the list should be negated. List panels for SPI
-with D/CX pin, instead.
-
->
-> Confused,
-> Conor.
->
-> > +    then:
-> > +      required:
-> > +        - dc-gpios
-> > +    else:
-> > +      properties:
-> > +        dc-gpios: false
-> > +
-> > +unevaluatedProperties: false
-> >
-> >  examples:
-> >    - |
-> > @@ -82,3 +118,26 @@ examples:
-> >              };
-> >          };
-> >      };
-> > +  - |
-> > +    #include <dt-bindings/gpio/gpio.h>
-> > +
-> > +    spi {
-> > +        #address-cells =3D <1>;
-> > +        #size-cells =3D <0>;
-> > +
-> > +        panel@0 {
-> > +            compatible =3D "anbernic,rg28xx-panel", "sitronix,st7701";
-> > +            reg =3D <0>;
-> > +            spi-max-frequency =3D <3125000>;
-> > +            VCC-supply =3D <&reg_lcd>;
-> > +            IOVCC-supply =3D <&reg_lcd>;
-> > +            reset-gpios =3D <&pio 8 14 GPIO_ACTIVE_HIGH>; /* LCD-RST: =
-PI14 */
-> > +            backlight =3D <&backlight>;
-> > +
-> > +            port {
-> > +                panel_in_rgb: endpoint {
-> > +                    remote-endpoint =3D <&tcon_lcd0_out_lcd>;
-> > +                };
-> > +            };
-> > +        };
-> > +    };
-> > --
-> > 2.45.2
-> >
-
-Best regards,
-kikuchan.
 
