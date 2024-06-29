@@ -1,195 +1,351 @@
-Return-Path: <devicetree+bounces-81571-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81572-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C823C91CC69
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 13:36:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 116B891CC8D
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 13:45:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E2A291C2109A
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 11:35:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2D8521C210A8
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 11:45:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 779E6481B7;
-	Sat, 29 Jun 2024 11:35:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1850B4D8C2;
+	Sat, 29 Jun 2024 11:45:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ESJ+/MGR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22F6F1CF8D;
-	Sat, 29 Jun 2024 11:35:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 082213BB47
+	for <devicetree@vger.kernel.org>; Sat, 29 Jun 2024 11:45:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719660956; cv=none; b=tfp2xG0/BIEgHk+S2J5KsHZ0xITj21MZ2qUEMHBEBsefTfzGGAcgJiuoHDTYREmdzJkatsBZ9esYOvYVL7PzTWPhakpWFsCx9xZ3gAwUWG3xixaSFIrWyYgamKIQHcuetAbzQZYIF2wGHaU7S/5736L1xc9fkFmxbIcTYq5ZRSo=
+	t=1719661535; cv=none; b=VF8gjTbM6EPwl5B+Fzwq/depi7s7yQTXtAmkfjR0h8RXAqMu+OztlDzh0/ZgY/BC4X68JUGJTFYpeCSannGfc3mUnBq9tlSasP6KBuYJZdD5V+pp0NwqcqMr/fiL1wcNU1JSymmB2mewrVG/J1lT/wWlpaARugCwkd34Id2D2as=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719660956; c=relaxed/simple;
-	bh=KHYsi4NzdHdqcK0JtApKxfLj2hbF4AXMBZAsTJbNacE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=g2xUs1+OkvE7B9iaBcR64E91EdWxDC4Ylozjk0N8N2Obs7tnNuqcV0IRiPTo85HeW3QJc9BViXleNvrmByzLYmp6G5QSNq1lhqXsdep9G3uwSn2FZ+UleUOoiwnQfQzuCKY/hLC3W9xKnzgG5uR7Fl7esFhGiVKaUhPlK/SlbNY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-64b5617ba47so11617137b3.3;
-        Sat, 29 Jun 2024 04:35:53 -0700 (PDT)
+	s=arc-20240116; t=1719661535; c=relaxed/simple;
+	bh=3Xq8rnisQSLAmTqc6RjNg11/JhKzQxz/KsieujBr3Ys=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=dWcf5U1/3bCb7EKE0w5aOvDrJ0k3I31LkD2Uzs2NoKqLSPgPtGCbigy5ObSmuPd6afxtPyf5py387o+KY0VIxkzIofORr7j+1sS909NztriBPJtG0F9u8K2pM7Lfdu5/31n8amCy/+JjPowvzjFwkphHw0j92lB7MTpOOXt2VqI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ESJ+/MGR; arc=none smtp.client-ip=209.85.167.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-52cdfb69724so1802093e87.1
+        for <devicetree@vger.kernel.org>; Sat, 29 Jun 2024 04:45:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1719661531; x=1720266331; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=HmaPGNyCork/mWTeQ6+u76IxjDJ/bM1kJIRFnNiILwc=;
+        b=ESJ+/MGRTn+8LAVqZBZN62RYAVSzQ/j01sLWavIJsrfs1dqJDVMoPKAyvFdx9nvyfh
+         myB0SBOQZ0//hz97baLmfwcuFVhdt+1po7W2Uq509M7DNKr3Ubw7EsEXKVxGiW9XucO8
+         ovlcaJzNOEMzmhV30Xv6qdho8CPIS20saGlfQ1HYn3ZYVn+Ht3yt6I6nx4lEo6gPz13H
+         ppCKPv7vXXBsvRP2Tu+BtXot0lSXLVMX8k50KJ5dy4860NVAkOBtUhqIB8/xfo+Ci6LU
+         dQloVVBIx7vG6b5KnEMOau3FYiri2cgRRz0OXop3kAJr7lmaBeri3DidSDMgErEWgRj1
+         vxfg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719660952; x=1720265752;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1S1yRV7C3FxWUhUHxRqIh6Hp71QQxiOPCiDvVMr4BEA=;
-        b=QO8cDSZhCQd/9ksx2LaA4FIqDJpcj9lKLR8fTB3QW0MCGZK8GVqOvu5Jm6RDFj8ruJ
-         LctctJ+nsZaQ25ZePrGMLLhsgCeg6sRrb5FTf/9BrLbuo3olp7WxD2jc1bGSX75s7n2l
-         l+Uz+vmad4sD97H2oAUurmEKXRleyCvmtOGcLuBdkTOzyezPnpxqHkU9dhYfd3USkDTW
-         PaMZ7Fbi5VmgNnS2ww3gjsblDtwAFTlhVtDPOmxg63XzXX4bH+jbUONZjfJQibO8xROB
-         WdTRP+20HhZpoAY0pEh6SjybXYjeNrL0CYrGD8vpIXYUFhHMiNUMKDirK7YDpE+AjWwh
-         6C0A==
-X-Forwarded-Encrypted: i=1; AJvYcCVPzJfaQHuEPxKOdMSaXoh1JJIMQbgAul+JxR8DQx0YoRJYVBrO+q3G43Sg6fYEyIDPk5wQq+S88NM+vyjK+gck4iWEQ6kYtGWa+wR1i5pffjZq51O8XmTm3zAZme6qyZM9O90ZrpFMfsAPn7wG834m22aqh9rdDSNOkz8si40lhtdyRwVL9Gy/d4ZukNm69hV/sgbC2eBybrsw5nJxuj+xlz99lapgdg==
-X-Gm-Message-State: AOJu0YwmSsTZh040Q4eWlpVtUopj+eJXmIjQmQvB/+wNv98wM1QiQwfs
-	6OpOpiyqlKmu2ScqXHklH2jBsgizS0M4eNKXalQFZdQXAtIxLTGoEBUNzPNA
-X-Google-Smtp-Source: AGHT+IGr4jG4lHbu9IjBZo6YNejiX7X18+BSleKOGoND+8h1/4MeKbOM50Mdc0RjsghZLgUnNOVnPQ==
-X-Received: by 2002:a05:690c:a9d:b0:647:7782:421a with SMTP id 00721157ae682-64c73ae898amr5641387b3.45.1719660952388;
-        Sat, 29 Jun 2024 04:35:52 -0700 (PDT)
-Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com. [209.85.128.178])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-64a9c405db0sm6520217b3.130.2024.06.29.04.35.51
+        d=1e100.net; s=20230601; t=1719661531; x=1720266331;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=HmaPGNyCork/mWTeQ6+u76IxjDJ/bM1kJIRFnNiILwc=;
+        b=rda75e+cB52+1H0WbdBtAfPXGfR5tlezv74FSWADl9gTVROxuZ1FHiPdB61fHPVqcH
+         8Kc1pkjOtbGrWvIPlUbFM3yOWnIJaIIForcHYC5SQEdtHOui82RNw/nc/AxAY6F6xzck
+         oJCKmNhNnMrubsombfhF4c1FwMtEOob3V/k2pdjb3+NWmsspUFYkrHvXYnnu5YD8qbrh
+         xhyBBb0aRDE0WWRA3xTrmPeElrv9zVV/SYFaY0/gCHbIClrD5vXVuYPPmlnOSLPuLn8L
+         88FB80h21zhcJMSMRdDh6FkoxbOYOR2MnEazyh/D2GFU3QKBG+5oSxbXb4cvGtAAyU6a
+         XYWw==
+X-Forwarded-Encrypted: i=1; AJvYcCUjh5oDHR3skbLkw08qYYwNMNpwo0Svgp374IOk3jFic5yD6oFmhKlNimEIjEm5h7iVng3ghiG7SCXu8kXwSI26/Gha5fJih2PRgQ==
+X-Gm-Message-State: AOJu0YykJQXzKo44BOrOMsfgi/oNhoVlzj6CAcUAtxaRQnwfWC9wUlwp
+	6b3kBPeDD7YI2hNcK8OB8LcwWGyqpMe8sN+1FOoc/1fmOtO9d8TT4ETNS/Hn5hc=
+X-Google-Smtp-Source: AGHT+IGGger/2MsLHZnNXAVj+qv69Uo7scLG+8Z6rIiwnVpAVLUZb+tl9kiZlXH014sVX2Njl1D2Rw==
+X-Received: by 2002:a05:6512:4010:b0:52e:7e77:275a with SMTP id 2adb3069b0e04-52e8268d15emr663898e87.36.1719661530939;
+        Sat, 29 Jun 2024 04:45:30 -0700 (PDT)
+Received: from [192.168.0.38] ([176.61.106.227])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4256b0c0fbesm69660185e9.43.2024.06.29.04.45.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 29 Jun 2024 04:35:51 -0700 (PDT)
-Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-64a6bf15db9so13936047b3.0;
-        Sat, 29 Jun 2024 04:35:51 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCV16s/rWF9eNg7VOH5iuoPGFCBano1zzZ1dHO2gkXUs96XwQ1+wzZCfKn29FX6EdkFnSaZvH868xSlh0HCCycyNNMcWXVnoKKeDPCj8/chkgnvqe/VRX6qZRUzEdRXTEwD7fWS/sa1G0BGNa1P/+Qe3Qgwefo/suLkQqr9wzYhep0GHmmi3SzsLl4IKe0rD4xBF+FOblGVBwXqNmpbKKlMytCaLJZasSA==
-X-Received: by 2002:a05:690c:24f:b0:647:e079:da73 with SMTP id
- 00721157ae682-64c7114570bmr6412747b3.10.1719660951106; Sat, 29 Jun 2024
- 04:35:51 -0700 (PDT)
+        Sat, 29 Jun 2024 04:45:30 -0700 (PDT)
+Message-ID: <bb2eb6ea-a209-4986-8415-ce14904dbda1@linaro.org>
+Date: Sat, 29 Jun 2024 12:45:28 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1716974502.git.geert+renesas@glider.be>
-In-Reply-To: <cover.1716974502.git.geert+renesas@glider.be>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Sat, 29 Jun 2024 13:35:38 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXtAPebwHkEcp+PcAxP-BfP8wqmX4BYOc1TC7mCex7Fsw@mail.gmail.com>
-Message-ID: <CAMuHMdXtAPebwHkEcp+PcAxP-BfP8wqmX4BYOc1TC7mCex7Fsw@mail.gmail.com>
-Subject: Re: [PATCH v2 0/8] Add R-Car fuse support
-To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
-	Linus Walleij <linus.walleij@linaro.org>, 
-	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 6/6] media: qcom: camss: support for camss driver for
+ sc7280
+To: Vikram Sharma <quic_vikramsa@quicinc.com>, Robert Foss
+ <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Kapatrala Syed <akapatra@quicinc.com>,
+ Hariram Purushothaman <hariramp@quicinc.com>,
+ cros-qcom-dts-watchers@chromium.org, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Loic Poulain <loic.poulain@linaro.org>, Andi Shyti <andi.shyti@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-i2c@vger.kernel.org, Suresh Vankadara <quic_svankada@quicinc.com>,
+ Trishansh Bhardwaj <quic_tbhardwa@quicinc.com>
+References: <20240629-camss_first_post_linux_next-v1-0-bc798edabc3a@quicinc.com>
+ <20240629-camss_first_post_linux_next-v1-6-bc798edabc3a@quicinc.com>
+Content-Language: en-US
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20240629-camss_first_post_linux_next-v1-6-bc798edabc3a@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Srinivas,
+On 28/06/2024 19:32, Vikram Sharma wrote:
+> From: Suresh Vankadara <quic_svankada@quicinc.com>
+> 
+> This change adds support for camss driver for sc7280 soc.
+> 
+> Signed-off-by: Suresh Vankadara <quic_svankada@quicinc.com>
+> Signed-off-by: Trishansh Bhardwaj <quic_tbhardwa@quicinc.com>
+> Signed-off-by: Vikram Sharma <quic_vikramsa@quicinc.com>
+> ---
+>   drivers/media/platform/qcom/camss/camss-csid.c     |  16 +-
+>   .../platform/qcom/camss/camss-csiphy-3ph-1-0.c     |   2 +
+>   drivers/media/platform/qcom/camss/camss-vfe.c      |   2 +
+>   drivers/media/platform/qcom/camss/camss.c          | 340 +++++++++++++++++++++
+>   drivers/media/platform/qcom/camss/camss.h          |   2 +
+>   5 files changed, 359 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/media/platform/qcom/camss/camss-csid.c b/drivers/media/platform/qcom/camss/camss-csid.c
+> index 858db5d4ca75..2c622233da6f 100644
+> --- a/drivers/media/platform/qcom/camss/camss-csid.c
+> +++ b/drivers/media/platform/qcom/camss/camss-csid.c
+> @@ -28,6 +28,7 @@
+>   /* offset of CSID registers in VFE region for VFE 480 */
+>   #define VFE_480_CSID_OFFSET 0x1200
+>   #define VFE_480_LITE_CSID_OFFSET 0x200
+> +#define VFE_165_CSID_OFFSET 0x4000
+>   
+>   #define MSM_CSID_NAME "msm_csid"
+>   
+> @@ -1028,8 +1029,8 @@ int msm_csid_subdev_init(struct camss *camss, struct csid_device *csid,
+>   	csid->res->hw_ops->subdev_init(csid);
+>   
+>   	/* Memory */
+> -
+> -	if (camss->res->version == CAMSS_8250) {
+> +	switch (camss->res->version) {
+> +	case CAMSS_8250:
+>   		/* for titan 480, CSID registers are inside the VFE region,
+>   		 * between the VFE "top" and "bus" registers. this requires
+>   		 * VFE to be initialized before CSID
+> @@ -1040,10 +1041,19 @@ int msm_csid_subdev_init(struct camss *camss, struct csid_device *csid,
+>   		else
+>   			csid->base = csid->res->parent_dev_ops->get_base_address(camss, id)
+>   				 + VFE_480_CSID_OFFSET;
+> -	} else {
+> +		break;
+> +	case CAMSS_7280:
+> +		/* for titan 165, CSID registers are inside the VFE region,
+> +		 * between the VFE "top" and "bus" registers. this requires
+> +		 * VFE to be initialized before CSID
+> +		 */
+> +		csid->base = camss->vfe[id].base + VFE_165_CSID_OFFSET;
 
-On Wed, May 29, 2024 at 11:29=E2=80=AFAM Geert Uytterhoeven
-<geert+renesas@glider.be> wrote:
-> R-Car Gen3/Gen4 SoCs contain fuses indicating hardware support or
-> hardware parameters.  Unfortunately the various SoCs require different
-> mechanisms to read the state of the fuses:
->   - On R-Car Gen3, the fuse monitor registers are in the middle of the
->     Pin Function Controller (PFC) register block,
->   - On R-Car V3U and S4-8, the E-FUSE non-volatile memory is accessible
->     through a separate register block in the PFC,
->   - On R-Car V4H and V4M, the E-FUSE non-volatile memory is accessible
->     through the second register block of OTP_MEM.
->
-> This patch series adds support for all 3 variants.  It provides an
-> in-kernel API to read the fuses' states, as well as userspace access
-> through the nvmem subsystem and sysfs:
->   - R-Car Gen3:    /sys/bus/platform/devices/rcar_fuse/fuse/nvmem
->   - R-Car V3U/S4:  /sys/bus/platform/devices/e6078800.fuse/fuse/nvmem
->   - R-Car V4H/V4M: /sys/bus/platform/devices/e61be000.otp/fuse/nvmem
->
-> This has been tested on R-Car H3 ES2.0, M3-W and M3-W+, M3-N, V3M, V3H
-> and V3H2, D3, E3, V3U, S4-8 ES1.0 and ES1.2, V4H, and V4M.
->
-> For SoCs where E-FUSE is accessed through the PFC, it is not clear from
-> the documentation if any PFC module clock needs to be enabled for fuse
-> access.  According to experiments on R-Car S4-8, the module clock and
-> reset only impact the GPIO functionality of the PFC, not the pinmux or
-> fuse monitor functionalities.  So perhaps the clock/power-domains/resets
-> properties should be dropped from the DT bindings and DTS, as well as
-> the Runtime PM handling from the driver?
->
-> Changes compared to v1[1]:
->   - Drop RFC state and broaden audience,
->   - Fix typo in one-line summary,
->   - Add Reviewed-by.
->
-> Thanks for your comments!
->
-> [1] https://lore.kernel.org/r/cover.1714642390.git.geert+renesas@glider.b=
-e
->
-> Geert Uytterhoeven (8):
->   dt-bindings: fuse: Document R-Car E-FUSE / PFC
->   dt-bindings: fuse: Document R-Car E-FUSE / OTP_MEM
->   soc: renesas: Add R-Car fuse driver
->   pinctrl: renesas: Add R-Car Gen3 fuse support
->   arm64: dts: renesas: r8a779a0: Add E-FUSE node
->   arm64: dts: renesas: r8a779f0: Add E-FUSE node
->   arm64: dts: renesas: r8a779g0: Add OTP_MEM node
->   arm64: dts: renesas: r8a779h0: Add OTP_MEM node
->
->  .../bindings/fuse/renesas,rcar-efuse.yaml     |  55 +++++
->  .../bindings/fuse/renesas,rcar-otp.yaml       |  38 ++++
->  arch/arm64/boot/dts/renesas/r8a779a0.dtsi     |   8 +
->  arch/arm64/boot/dts/renesas/r8a779f0.dtsi     |   8 +
->  arch/arm64/boot/dts/renesas/r8a779g0.dtsi     |   5 +
->  arch/arm64/boot/dts/renesas/r8a779h0.dtsi     |   5 +
->  drivers/pinctrl/renesas/core.c                |  18 ++
->  drivers/pinctrl/renesas/pfc-r8a77951.c        |   2 +
->  drivers/pinctrl/renesas/pfc-r8a7796.c         |   4 +
->  drivers/pinctrl/renesas/pfc-r8a77965.c        |   2 +
->  drivers/pinctrl/renesas/pfc-r8a77970.c        |   2 +
->  drivers/pinctrl/renesas/pfc-r8a77980.c        |  14 +-
->  drivers/pinctrl/renesas/pfc-r8a77990.c        |   2 +
->  drivers/pinctrl/renesas/pfc-r8a77995.c        |   2 +
->  drivers/pinctrl/renesas/sh_pfc.h              |   4 +-
->  drivers/soc/renesas/Kconfig                   |   8 +
->  drivers/soc/renesas/Makefile                  |   1 +
->  drivers/soc/renesas/rcar-fuse.c               | 201 ++++++++++++++++++
->  include/linux/platform_data/rcar_fuse.h       |  11 +
->  include/linux/soc/renesas/rcar-fuse.h         |  41 ++++
->  20 files changed, 429 insertions(+), 2 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/fuse/renesas,rcar-e=
-fuse.yaml
->  create mode 100644 Documentation/devicetree/bindings/fuse/renesas,rcar-o=
-tp.yaml
->  create mode 100644 drivers/soc/renesas/rcar-fuse.c
->  create mode 100644 include/linux/platform_data/rcar_fuse.h
->  create mode 100644 include/linux/soc/renesas/rcar-fuse.h
 
-Arnd pointed out on IRC this should probably be an nvmem driver instead
-of an soc driver.  I had mimicked this after the Tegra fuse driver,
-which is also an soc driver.  The in-kernel user would be its main
-user. The nvmem interface exists just because the tegra driver did
-the same.
+Right but you can just define "csid" registers in your yaml and dts per 
+standard definitions.
 
-After some investigation, it looks like this should use
-Documentation/devicetree/bindings/nvmem/nvmem-consumer.yaml
-instead, and handle it like e.g.
-Documentation/devicetree/bindings/nvmem/sprd-efuse.txt?
+Looking at what we did for 8250 here there's absolutely no good reason 
+to have C code derive offsets like this which can be described in dts.
 
-Thanks for your guidance!
+I'll send a patch to that effect - along with named power-domains for 8250.
 
-Link to this series:
-https://lore.kernel.org/all/cover.1716974502.git.geert+renesas@glider.be/
+Please just define your CSID registers in the yaml/dts - there's no need 
+to add executable code to the driver to find an offset.
 
-Gr{oetje,eeting}s,
+> +		break;
+> +	default:
+>   		csid->base = devm_platform_ioremap_resource_byname(pdev, res->reg[0]);
+>   		if (IS_ERR(csid->base))
+>   			return PTR_ERR(csid->base);
+> +		break;
+>   	}
+>   
+>   	/* Interrupt */
+> diff --git a/drivers/media/platform/qcom/camss/camss-csiphy-3ph-1-0.c b/drivers/media/platform/qcom/camss/camss-csiphy-3ph-1-0.c
+> index df7e93a5a4f6..c7e507420732 100644
+> --- a/drivers/media/platform/qcom/camss/camss-csiphy-3ph-1-0.c
+> +++ b/drivers/media/platform/qcom/camss/camss-csiphy-3ph-1-0.c
+> @@ -510,6 +510,7 @@ static void csiphy_gen2_config_lanes(struct csiphy_device *csiphy,
+>   		array_size = ARRAY_SIZE(lane_regs_sdm845[0]);
+>   		break;
+>   	case CAMSS_8250:
+> +	case CAMSS_7280:
+>   		r = &lane_regs_sm8250[0][0];
+>   		array_size = ARRAY_SIZE(lane_regs_sm8250[0]);
+>   		break;
+> @@ -560,6 +561,7 @@ static bool csiphy_is_gen2(u32 version)
+>   	case CAMSS_845:
+>   	case CAMSS_8250:
+>   	case CAMSS_8280XP:
+> +	case CAMSS_7280:
 
-                        Geert
+Sort alphanumerically please.
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+> +	/* CSIPHY0 */
+> +	{
+> +		.regulators = {},
+> +		.clock = { "csiphy0", "csiphy0_timer", "csiphy0_timer_src"},
+> +		.clock_rate = { { 300000000 },
+> +				{ 300000000 },
+> +				{ 300000000 }},
+
+I'll reiterate, I don't believe the _src clocks are required.
+
+
+> +
+> +static const struct resources_icc icc_res_sc7280[] = {
+> +	{
+> +		.name = "cam_ahb",
+> +		.icc_bw_tbl.avg = 38400,
+> +		.icc_bw_tbl.peak = 76800,
+> +	},
+> +	{
+> +		.name = "cam_hf_0",
+> +		.icc_bw_tbl.avg = 2097152,
+> +		.icc_bw_tbl.peak = 2097152,
+> +	},
+> +};
+
+Good to see this.
+
+> +
+>   /*
+>    * camss_add_clock_margin - Add margin to clock frequency rate
+>    * @rate: Clock frequency rate
+> @@ -1824,6 +2099,57 @@ static int camss_init_subdevices(struct camss *camss)
+>   	return 0;
+>   }
+>   
+> +/*
+> + * camss_link_entities_v2 - Register subdev nodes and create links
+> + * @camss: CAMSS device
+> + *
+> + * Return 0 on success or a negative error code on failure
+> + */
+> +static int camss_link_entities_v2(struct camss *camss)
+> +{
+> +	int i, j;
+> +	int ret;
+> +
+> +	for (i = 0; i < camss->res->csiphy_num; i++) {
+> +		for (j = 0; j < camss->res->csid_num; j++) {
+> +			ret = media_create_pad_link(&camss->csiphy[i].subdev.entity,
+> +						    MSM_CSIPHY_PAD_SRC,
+> +						    &camss->csid[j].subdev.entity,
+> +						    MSM_CSID_PAD_SINK,
+> +						    0);
+> +			if (ret < 0) {
+> +				dev_err(camss->dev,
+> +					"Failed to link %s->%s entities: %d\n",
+> +					camss->csiphy[i].subdev.entity.name,
+> +					camss->csid[j].subdev.entity.name,
+> +					ret);
+> +				return ret;
+> +			}
+> +		}
+> +	}
+> +
+> +	for (i = 0; i < camss->res->csid_num; i++)
+> +		for (j = 0; j < camss->vfe[i].res->line_num; j++) {
+> +			struct v4l2_subdev *csid = &camss->csid[i].subdev;
+> +			struct v4l2_subdev *vfe = &camss->vfe[i].line[j].subdev;
+> +
+> +			ret = media_create_pad_link(&csid->entity,
+> +						    MSM_CSID_PAD_FIRST_SRC + j,
+> +						    &vfe->entity,
+> +						    MSM_VFE_PAD_SINK,
+> +						    0);
+> +			if (ret < 0) {
+> +				dev_err(camss->dev,
+> +					"Failed to link %s->%s entities: %d\n",
+> +					csid->entity.name,
+> +					vfe->entity.name,
+> +					ret);
+> +				return ret;
+> +			}
+> +		}
+> +	return 0;
+> +}
+
+So I see what you're doing here and agree but, I think it should be made 
+into its own standalone patch.
+
+We can break up the link_entities function into something for ispif the 
+v1 and something for everybody else @ v2, not just 7280.
+
+Either way such a change deserves its own standalone patch.
+
+> +
+>   /*
+>    * camss_link_entities - Register subdev nodes and create links
+>    * @camss: CAMSS device
+> @@ -2440,12 +2766,26 @@ static const struct camss_resources sc8280xp_resources = {
+>   	.link_entities = camss_link_entities
+>   };
+>   
+> +static const struct camss_resources sc7280_resources = {
+> +	.version = CAMSS_7280,
+> +	.csiphy_res = csiphy_res_7280,
+> +	.csid_res = csid_res_7280,
+> +	.vfe_res = vfe_res_7280,
+> +	.icc_res = icc_res_sc7280,
+> +	.icc_path_num = ARRAY_SIZE(icc_res_sc7280),
+> +	.csiphy_num = ARRAY_SIZE(csiphy_res_7280),
+> +	.csid_num = ARRAY_SIZE(csid_res_7280),
+> +	.vfe_num = 3,
+> +	.link_entities = camss_link_entities_v2
+> +};
+> +
+>   static const struct of_device_id camss_dt_match[] = {
+>   	{ .compatible = "qcom,msm8916-camss", .data = &msm8916_resources },
+>   	{ .compatible = "qcom,msm8996-camss", .data = &msm8996_resources },
+>   	{ .compatible = "qcom,sdm660-camss", .data = &sdm660_resources },
+>   	{ .compatible = "qcom,sdm845-camss", .data = &sdm845_resources },
+>   	{ .compatible = "qcom,sm8250-camss", .data = &sm8250_resources },
+> +	{ .compatible = "qcom,sc7280-camss", .data = &sc7280_resources },
+>   	{ .compatible = "qcom,sc8280xp-camss", .data = &sc8280xp_resources },
+
+Its just occured to me, this list ought to be sorted alpanumerically too.
+
+I'd be obliged if you could add a patch to this series to sort this list 
+prior to adding in your new string - in the appropriate order.
+
+>   	{ }
+>   };
+> diff --git a/drivers/media/platform/qcom/camss/camss.h b/drivers/media/platform/qcom/camss/camss.h
+> index 73c47c07fc30..29dbf93ce9c5 100644
+> --- a/drivers/media/platform/qcom/camss/camss.h
+> +++ b/drivers/media/platform/qcom/camss/camss.h
+> @@ -79,11 +79,13 @@ enum camss_version {
+>   	CAMSS_845,
+>   	CAMSS_8250,
+>   	CAMSS_8280XP,
+> +	CAMSS_7280,
+>   };
+>   
+>   enum icc_count {
+>   	ICC_DEFAULT_COUNT = 0,
+>   	ICC_SM8250_COUNT = 4,
+> +	ICC_SM7280_COUNT = 4,
+>   };
+
+Do you even use the SM7280 specific enum ? I didn't see it, SoC name is 
+SC7280 anyway.
+
+I think you can drop that.
+
+---
+bod
 
