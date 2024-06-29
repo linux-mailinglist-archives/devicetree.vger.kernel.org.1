@@ -1,426 +1,192 @@
-Return-Path: <devicetree+bounces-81642-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81643-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2317891CE97
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 20:41:36 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5511591CEA8
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 21:05:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A1F271F21928
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 18:41:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C8E01B21921
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 19:04:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C33A13213C;
-	Sat, 29 Jun 2024 18:41:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C0BE86636;
+	Sat, 29 Jun 2024 19:04:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kuFBWLuS"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="NNMWX/Xy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A22C5660;
-	Sat, 29 Jun 2024 18:41:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99C8739ADD;
+	Sat, 29 Jun 2024 19:04:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719686491; cv=none; b=axxExUFfnfHFPDElEsHt4lyVO6RNaEGrGQ67j2JQb0KigEGagLJZwk+dSFLuhoqoavHvpbhKd0ZvRWfjze3qccNUwgqE+lWvq25dkaSfqkPai46GupJgeM4fA7Fzv3vYXmSJ5SMP1mpYwPRfha61+DTHxW/+j5UI/Ph/gOIik2w=
+	t=1719687892; cv=none; b=QHVrrMl2bVBMhH1C0g0etDInhWo4zUUJzTdTuhh+wfxZpMffqpuZrjtWiz/iBQCNB8XqYzpy5gWKbfpne0bxHXxo36QmkLw8bWOrgF9exwSWQjPu8T90os9mZ1kjVn272t6mETtFo5azPF7EYnVV/3dXe8Qb9wzgvVp/pKbsmdY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719686491; c=relaxed/simple;
-	bh=QvapwvFyxd9QiVdG4fzZ/mb3LdJr5rEx0NRw7tsH71c=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=bDriwlEzXWu9alPuryeng96pGbXYRBMNDZ3KVLNQ9rWxQU4oLJHR49OYQfOSGZEIiDD8S/iJtaDB8iA9QUStMcDwfcBUE/WWiePkNQF1AXuGLPEqPa38oqnEbdJuoIqOPpfJrsNTNY9oAuST149DswOWoLpasg+DmlgjczaQkNU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kuFBWLuS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B0D7C2BBFC;
-	Sat, 29 Jun 2024 18:41:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719686490;
-	bh=QvapwvFyxd9QiVdG4fzZ/mb3LdJr5rEx0NRw7tsH71c=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=kuFBWLuS430W9X4VWy0EakCHmQOIllvLPYbCpAf3lJvcnI1gPTZKk8eI6smAWKOoj
-	 0wBfRTOdfh0WiZL7oaSYIsyJnHZDdf99nJPdVc2H+An/nOVm2sZ72zlfNZ6K7FQ3Z+
-	 KD2pt8eiYlnupUvaFjjyx5PgSbN0SauL+wxuhanKi8RSZjQzNAebdslQi7oLcTGO2Y
-	 Mh755ua2nTPCoYB4xD131sGjVENSy04pf8uycWZR9PPu5GKyR3a3/4J6Dhu6JXuipS
-	 OCdMorKiARZRJRMcTh8m4b77OI4EG7+afS8NVvvGVfc5OL5lVxHMb9l4uV2th/rxNU
-	 nYZIOj87KI8CA==
-Date: Sat, 29 Jun 2024 19:41:22 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Yasin Lee <yasin.lee.x@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
- yasin.lee.x@outlook.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org
-Subject: Re: [PATCH v8 3/3] iio: proximity: Add driver support for TYHX's
- HX9023S capacitive proximity sensor
-Message-ID: <20240629194122.1f4b7b3b@jic23-huawei>
-In-Reply-To: <20240625-add-tyhx-hx9023s-sensor-driver-v8-3-0c224e3bddbc@gmail.com>
-References: <20240625-add-tyhx-hx9023s-sensor-driver-v8-0-0c224e3bddbc@gmail.com>
-	<20240625-add-tyhx-hx9023s-sensor-driver-v8-3-0c224e3bddbc@gmail.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1719687892; c=relaxed/simple;
+	bh=M7245ErFBTK3qum1BE1BUj/k6Xbrk55q6Nk2C3zvNuo=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=gisH1lYZxDQSTVXsC4ABHvmM9OUrOpkHeFKUQwbOkQMnMI+4MoLcvQUxn5kpbXq2VhVX4sllNrsLHwCO2TbnH9h/6nTYLfkZaI2UD0ajGp/t4oseNx3Cf8HfXMwz2LnBA2IQ4hRbQjqIoCBaWf9NCKvcqd4kBaty4QnSp5P+fpg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=NNMWX/Xy; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0375855.ppops.net [127.0.0.1])
+	by mx0b-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45T92kK9003733;
+	Sat, 29 Jun 2024 15:04:26 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=gamZLFnG9GA8frpgD48IAV4Glyb
+	BrXa18lHHkbZdurA=; b=NNMWX/XyktxeM+mQukB4MbucfS8gkyFVnxTU6Oyk2aA
+	e2ignlq+Tzvhm8M0l/8J5RKjLHoCN4liMhaPp1fnYC4euUy9rIz0pnsVBpRExCZs
+	U9fH4vFAod1WdJChIlAqS2ZjgrjzG6e7PZsrfHoc/+vW74jBxF0w/2U1ea2Zo/ah
+	Lq9moLhg4u6ekLpFXnGyY1WHlOtZj7Ev/TGDk2twTBozDXRcbbstOCpNxyn7mFT1
+	44whcR22tqFqJr3Zq7UOjNAW/LrVwF8iK0/UNuWJfX9KiZsnrN6z094BMiTBUzge
+	LDp2iSolss/BOif9DX++9CF9sjxGLovEvQhh/pV3JIw==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 402f9u0yj6-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 29 Jun 2024 15:04:26 -0400 (EDT)
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 45TJ4PLK046781
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Sat, 29 Jun 2024 15:04:25 -0400
+Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
+ ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Sat, 29 Jun 2024 15:04:24 -0400
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
+ ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Sat, 29 Jun 2024 15:04:24 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Sat, 29 Jun 2024 15:04:24 -0400
+Received: from work.ad.analog.com (HYB-hERzalRezfV.ad.analog.com [10.65.205.129])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 45TJ44sv001311;
+	Sat, 29 Jun 2024 15:04:06 -0400
+From: Marcelo Schmitt <marcelo.schmitt@analog.com>
+To: <broonie@kernel.org>, <lars@metafoo.de>, <Michael.Hennerich@analog.com>,
+        <jic23@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <nuno.sa@analog.com>, <dlechner@baylibre.com>, <corbet@lwn.net>,
+        <marcelo.schmitt1@gmail.com>
+CC: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-spi@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v6 0/7] Add support for AD4000 series of ADCs
+Date: Sat, 29 Jun 2024 16:04:00 -0300
+Message-ID: <cover.1719686465.git.marcelo.schmitt@analog.com>
+X-Mailer: git-send-email 2.30.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-ORIG-GUID: SwvAbGBDWYH4XCukG3yiExQUdF1xA1Zk
+X-Proofpoint-GUID: SwvAbGBDWYH4XCukG3yiExQUdF1xA1Zk
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-29_08,2024-06-28_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 phishscore=0
+ mlxlogscore=999 lowpriorityscore=0 mlxscore=0 clxscore=1015 spamscore=0
+ priorityscore=1501 adultscore=0 malwarescore=0 bulkscore=0 impostorscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2406140001
+ definitions=main-2406290138
 
-On Tue, 25 Jun 2024 23:58:54 +0800
-Yasin Lee <yasin.lee.x@gmail.com> wrote:
+This patch series extends the SPI bitbang, gpio, and spi-engine controllers to
+support configurable MOSI line idle states.
+It then introduces the ad4000 driver which uses the MOSI idle configuration to
+provide improved support for the AD4000 series of ADCs.
+Documentation is added describing the new extension to the SPI protocol.
+The currently supported wiring modes for AD4000 devices were documented under
+IIO documentation directory.
 
-> A SAR sensor from NanjingTianyihexin Electronics Ltd.
-> 
-> The device has the following entry points:
-> 
-> Usual frequency:
-> - sampling_frequency
-> 
-> Instant reading of current values for different sensors:
-> - in_proximity0_raw
-> - in_proximity1_raw
-> - in_proximity2_raw
-> - in_proximity3_raw
-> - in_proximity4_raw
-> and associated events in events/
-> 
-> Signed-off-by: Yasin Lee <yasin.lee.x@gmail.com>
-Hi Yasin
+To apply this series, it requires the patches for SPI-Engine SPI_CS_HIGH feature
+and the patches for devm_spi_optimize_message() helper.
 
-Definitely getting close to ready to merge.
-A few bits of review feedback inline to resolve.
+89c2657429c4822a2697077bbb3a8d126d826ced "spi: axi-spi-engine: remove platform_set_drvdata()"
+https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git/commit/?h=for-6.11&id=89c2657429c4822a2697077bbb3a8d126d826ced
 
-Jonathan
+7e74a45c7afdd8a9f82d14fd79ae0383bbaaed1e "spi: add EXPORT_SYMBOL_GPL(devm_spi_optimize_message)"
+https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git/commit/?h=for-6.11&id=7e74a45c7afdd8a9f82d14fd79ae0383bbaaed1e
 
-> diff --git a/drivers/iio/proximity/hx9023s.c b/drivers/iio/proximity/hx9023s.c
-> new file mode 100644
-> index 000000000000..c455f20d784f
-> --- /dev/null
-> +++ b/drivers/iio/proximity/hx9023s.c
-> @@ -0,0 +1,1131 @@
+d4a0055fdc22381fa256e345095e88d134e354c5 "spi: add devm_spi_optimize_message() helper"
+https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git/commit/?h=for-6.11&id=d4a0055fdc22381fa256e345095e88d134e354c5
 
-> +
-> +#define HX9023S_CHIP_ID 0x1D
-> +#define HX9023S_CH_NUM 5
-> +#define HX9023S_2BYTES 2
-> +#define HX9023S_3BYTES 3
+6ecdb0aa4dca62d236a659426e11e6cf302e8f18 "spi: axi-spi-engine: Add SPI_CS_HIGH support"
+https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git/commit/?h=for-6.11&id=6ecdb0aa4dca62d236a659426e11e6cf302e8f18
 
-Don't use defines where the number is actually more meaningful
-when seen in the code.
+Change log v5 -> v6:
+[SPI]
+spi.h: Removed unused SPI_CONTROLLER_MOSI_IDLE_LOW and SPI_CONTROLLER_MOSI_IDLE_HIGH
+spi-summay: Minor nit: inactive -> not asserted
+spi-engine: Moved MOSI idle support check to IP core version check section
+[IIO]
+ad4000: Fixed ad4000_read_reg(). *val = st->tx_buf[1]; -> *val = st->rx_buf[1];
+ad4000: Use devm_regulator_bulk_get_enable()
+ad4000: Use iio_device_claim_direct_scoped() and guard() to protect scale update
+ad4000: Fail probe if ad4000_config() fail
+ad4000: Moved ad4000_prepare_..._message() closer to probe to reduce scope
+ad4000: Added AD4000_SDI_GND and switch case for more accurate error msg
+ad4000: Removed unused st->turbo_mode
+ad4000: Removed old misleading comments in enum ad4000_sdi
+ad4000: A few minor readability and code style nits
 
-> +#define HX9023S_BYTES_MAX HX9023S_3BYTES
-This define is useful but just make it 3.
+Link to v5: https://lore.kernel.org/linux-iio/cover.1719351923.git.marcelo.schmitt@analog.com/
+Link to v4: https://lore.kernel.org/linux-iio/cover.1718749981.git.marcelo.schmitt@analog.com/
+Link to v3: https://lore.kernel.org/linux-iio/cover.1717539384.git.marcelo.schmitt@analog.com/
+Link to v2: https://lore.kernel.org/linux-iio/cover.1712585500.git.marcelo.schmitt@analog.com/
+Link to v1: https://lore.kernel.org/linux-iio/cover.1711131830.git.marcelo.schmitt@analog.com/
 
-> +struct hx9023s_ch_data {
-> +	int raw; /* Raw Data*/
-> +	int lp; /* Low Pass Filter Data*/
-> +	int bl; /* Base Line Data */
-> +	int diff; /* difference of Low Pass Data and Base Line Data */
-Difference
+Regard using spi_w8r8(), I tried it again and it doesn't work for ad4000.
+Looks like the smallest transfer size for these devices is 16-bit.
+From datasheets:
+"The AD4000/AD4004/AD4008 configuration register is read from and written to
+with a 16-bit SPI instruction."
 
-for consistency of capitalizaton.
+Regarding the sample buffer size, I'm keeping it 32-bits long following
+suggestion from Nuno and due to a bit of laziness from my side to re-test it.
+Will change if required.
 
+Thank you to everybody who reviewed these patches. I appreciate your support.
 
-> +static int hx9023s_ch_cfg(struct hx9023s_data *data)
-> +{
-> +	unsigned int i;
-> +	u16 reg;
-> +	u8 reg_list[HX9023S_CH_NUM * 2];
-> +	u8 ch_pos[HX9023S_CH_NUM];
-> +	u8 ch_neg[HX9023S_CH_NUM];
-> +	/* Bit positions corresponding to input pin connections */
-> +	u8 conn_cs[HX9023S_CH_NUM] = {0, 2, 4, 6, 8};
+Thanks,
+Marcelo
 
-Space after { and before }
+Marcelo Schmitt (7):
+  spi: Enable controllers to extend the SPI protocol with MOSI idle
+    configuration
+  spi: bitbang: Implement support for MOSI idle state configuration
+  spi: spi-gpio: Add support for MOSI idle state configuration
+  spi: spi-axi-spi-engine: Add support for MOSI idle configuration
+  dt-bindings: iio: adc: Add AD4000
+  iio: adc: Add support for AD4000
+  docs: iio: Add documentation for AD4000
 
-> +
-> +	for (i = 0; i < HX9023S_CH_NUM; i++) {
-> +		ch_pos[i] = data->ch_data[i].channel_positive == HX9023S_NOT_CONNECTED ?
-> +			HX9023S_NOT_CONNECTED : conn_cs[data->ch_data[i].channel_positive];
-> +		ch_neg[i] = data->ch_data[i].channel_negative == HX9023S_NOT_CONNECTED ?
-> +			HX9023S_NOT_CONNECTED : conn_cs[data->ch_data[i].channel_negative];
-> +
-> +		reg = (HX9023S_POS << ch_pos[i]) | (HX9023S_NEG << ch_neg[i]);
-> +		put_unaligned_le16(reg, &reg_list[i * 2]);
-> +	}
-> +
-> +	return regmap_bulk_write(data->regmap, HX9023S_CH0_CFG_7_0, reg_list, HX9023S_CH_NUM * 2);
-> +}
+ .../bindings/iio/adc/adi,ad4000.yaml          | 197 +++++
+ Documentation/iio/ad4000.rst                  | 131 ++++
+ Documentation/iio/index.rst                   |   1 +
+ Documentation/spi/spi-summary.rst             |  83 ++
+ MAINTAINERS                                   |   9 +
+ drivers/iio/adc/Kconfig                       |  12 +
+ drivers/iio/adc/Makefile                      |   1 +
+ drivers/iio/adc/ad4000.c                      | 708 ++++++++++++++++++
+ drivers/spi/spi-axi-spi-engine.c              |  15 +-
+ drivers/spi/spi-bitbang.c                     |  24 +
+ drivers/spi/spi-gpio.c                        |  12 +-
+ drivers/spi/spi.c                             |   7 +
+ include/linux/spi/spi_bitbang.h               |   1 +
+ include/uapi/linux/spi/spi.h                  |   5 +-
+ 14 files changed, 1200 insertions(+), 6 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad4000.yaml
+ create mode 100644 Documentation/iio/ad4000.rst
+ create mode 100644 drivers/iio/adc/ad4000.c
 
-> +
-> +static int hx9023s_sample(struct hx9023s_data *data)
-> +{
-> +	int ret, value;
-> +	unsigned int i;
-> +	u8 data_size, offset_data_size, *p, size, rx_buf[HX9023S_CH_NUM * HX9023S_BYTES_MAX];
-
-Long line combining different data types. Break them up to improve readability.
-
-	u8 rx_buf[HX9023S_CH_NUM * HX9023S_BYTES_MAX];
-	u8 data_size, offset_data_size, size;
-	u8 *p;
-
-> +
-> +	ret = hx9023s_data_lock(data, true);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = hx9023s_data_select(data);
-> +	if (ret)
-> +		goto err;
-> +
-> +	data_size = HX9023S_3BYTES;
-This local variable hurts readabilty.
-> +
-> +	/* ch0~ch3 */
-> +	p = rx_buf;
-Why local variable?
-> +	size = (HX9023S_CH_NUM - 1) * data_size;
-
-This is non obvious sizing.  Here a comment is appropriate.
-
-/* 3 bytes for each of channels 0 to 3 which have contiguous registers */
-
-> +	ret = regmap_bulk_read(data->regmap, HX9023S_RAW_BL_CH0_0, p, size);
-
-Combining above comments.
-
-	ret = regmap_bulk_read(data->regmap, HX9023S_RAW_BL_CH0_0, &rx_buf, size);
-
-> +	if (ret)
-> +		goto err;
-> +
-> +	/* ch4 */
-> +	p = rx_buf + size;
-> +	size = data_size;
-Here as well provide a comment on the fact the channel is 3 contiguous registers.
-
-
-> +	ret = regmap_bulk_read(data->regmap, HX9023S_RAW_BL_CH4_0, p, size);
-> +	if (ret)
-> +		goto err;
-> +
-> +	for (i = 0; i < HX9023S_CH_NUM; i++) {
-> +		value = get_unaligned_le16(&rx_buf[i * data_size + 1]);
-This seems odd.  From the datasheet I found seems there are some bits in
-the ch0_0 register as well. Why just pull out 16 bits?
-
-I would use a get_unaligned_le24() call to get the rest and then rely on
-shift for userspace to drop bits 3:0
-
-It it makes sense to just provide the top 16 bits thats fine.
-> +		value = sign_extend32(value, 15);
-
-Why use int to store an s16?  If you just use an s16 for value then no
-need to sign extend and then store that into an s16 .raw in the channel
-data structure.
-
-> +		data->ch_data[i].raw = 0;
-> +		data->ch_data[i].bl = 0;
-> +		if (data->ch_data[i].sel_raw)
-> +			data->ch_data[i].raw = value;
-> +		if (data->ch_data[i].sel_bl)
-> +			data->ch_data[i].bl = value;
-> +	}
-> +
-> +	/* ch0~ch3 */
-> +	p = rx_buf;
-> +	size = (HX9023S_CH_NUM - 1) * data_size;
-As above - use a comment to explain why this is 12 then just use 12.
-Current form is far form obvious.
-
-> +	ret = regmap_bulk_read(data->regmap, HX9023S_LP_DIFF_CH0_0, p, size);
-> +	if (ret)
-> +		goto err;
-> +
-> +	/* ch4 */
-> +	p = rx_buf + size;
-> +	size = data_size;
-> +	ret = regmap_bulk_read(data->regmap, HX9023S_LP_DIFF_CH4_0, p, size);
-> +	if (ret)
-> +		goto err;
-> +
-> +	for (i = 0; i < HX9023S_CH_NUM; i++) {
-> +		value = get_unaligned_le16(&rx_buf[i * data_size + 1]);
-> +		value = sign_extend32(value, 15);
-> +		data->ch_data[i].lp = 0;
-> +		data->ch_data[i].diff = 0;
-> +		if (data->ch_data[i].sel_lp)
-> +			data->ch_data[i].lp = value;
-> +		if (data->ch_data[i].sel_diff)
-> +			data->ch_data[i].diff = value;
-> +	}
-> +
-> +	for (i = 0; i < HX9023S_CH_NUM; i++) {
-> +		if (data->ch_data[i].sel_lp && data->ch_data[i].sel_bl)
-> +			data->ch_data[i].diff = data->ch_data[i].lp - data->ch_data[i].bl;
-> +	}
-> +
-> +	/* offset DAC */
-> +	offset_data_size = HX9023S_2BYTES;
-> +	p = rx_buf;
-> +	size = HX9023S_CH_NUM * offset_data_size;
-> +	ret = regmap_bulk_read(data->regmap, HX9023S_OFFSET_DAC0_7_0, p, size);
-> +	if (ret)
-> +		goto err;
-> +
-> +	for (i = 0; i < HX9023S_CH_NUM; i++) {
-> +		value = get_unaligned_le16(&rx_buf[i * offset_data_size]);
-> +		value = FIELD_GET(GENMASK(11, 0), value);
-> +		data->ch_data[i].dac = value;
-> +	}
-> +
-> +err:
-> +	return hx9023s_data_lock(data, false);
-> +}
-
-
-> +
-> +static int hx9023s_property_get(struct hx9023s_data *data)
-> +{
-> +	struct fwnode_handle *child;
-> +	struct device *dev = regmap_get_device(data->regmap);
-> +	int ret;
-> +	u32 i, reg, temp, array[2];
-> +
-> +	data->chan_in_use = 0;
-> +	for (i = 0; i < HX9023S_CH_NUM; i++) {
-> +		data->ch_data[i].channel_positive = HX9023S_NOT_CONNECTED;
-> +		data->ch_data[i].channel_negative = HX9023S_NOT_CONNECTED;
-> +	}
-> +
-> +	device_for_each_child_node(dev, child) {
-
-Use
-	device_for_each_child_node_scoped(dev, child) {
-As then no need to call fwnode_handle_put() in error paths.
-
-> +		ret = fwnode_property_read_u32(child, "reg", &reg);
-> +		if (ret || reg >= HX9023S_CH_NUM) {
-> +			fwnode_handle_put(child);
-> +			return dev_err_probe(dev, ret, "Failed to read reg\n");
-> +		}
-> +		__set_bit(reg, &data->chan_in_use);
-> +
-> +		if (fwnode_property_read_u32(child, "input-channel", &temp) == 0) {
-> +			data->ch_data[reg].channel_positive = temp;
-> +			data->ch_data[reg].channel_negative = HX9023S_NOT_CONNECTED;
-> +		} else if (fwnode_property_read_u32_array(child, "diff-channels",
-> +							array, sizeof(array)) == 0) {
-> +			data->ch_data[reg].channel_positive = array[0];
-> +			data->ch_data[reg].channel_negative = array[1];
-> +		} else {
-> +			fwnode_handle_put(child);
-> +			return dev_err_probe(dev, ret,
-> +				"Failed to read channel input for channel %d\n", reg);
-> +		}
-> +	}
-> +
-> +	return 0;
-> +}
-
-
-> +
-> +static void hx9023s_push_events(struct iio_dev *indio_dev)
-> +{
-> +	struct hx9023s_data *data = iio_priv(indio_dev);
-> +	s64 timestamp = iio_get_time_ns(indio_dev);
-> +	unsigned long prox_changed;
-> +	unsigned int chan;
-> +
-> +	hx9023s_sample(data);
-
-check the return codes for these calls that involve bus transactions.
-If they fail, just return form this function having not pushed an event.
-
-Otherwise we may push stale data.
-
-> +	hx9023s_get_prox_state(data);
-> +
-> +	prox_changed = (data->chan_prox_stat ^ data->prox_state_reg) & data->chan_event;
-> +	for_each_set_bit(chan, &prox_changed, HX9023S_CH_NUM) {
-> +		unsigned int dir;
-> +
-> +		dir = (data->prox_state_reg & BIT(chan)) ? IIO_EV_DIR_FALLING : IIO_EV_DIR_RISING;
-> +
-> +		iio_push_event(indio_dev,
-> +			       IIO_UNMOD_EVENT_CODE(IIO_PROXIMITY, chan, IIO_EV_TYPE_THRESH, dir),
-> +			       timestamp);
-> +	}
-> +	data->chan_prox_stat = data->prox_state_reg;
-> +}
-
-
-
-
-
-
-> +static int hx9023s_id_check(struct iio_dev *indio_dev)
-> +{
-> +	struct hx9023s_data *data = iio_priv(indio_dev);
-> +	int ret;
-> +	unsigned int id;
-> +
-> +	ret = regmap_read(data->regmap, HX9023S_DEVICE_ID, &id);
-> +	if (ret || id != HX9023S_CHIP_ID)
-> +		return -ENODEV;
-This breaks the use of callback compatible IDs in future. It is only
-appropriate to print a warning on an unknown ID .
-Also don't eat the error value returned - it may provide a useful hint
-of a problem.
-
-	if (ret)
-		return ret;
-
-	if (id != HX9023S_CHIP_ID)
-		dev_warn(&indio_dev->dev.parent,
-			 "Unexpected chip ID, assuming compatible\n");
-
-	return 0;
-
-there are lots of older drivers where we did this wrong. We tend to
-repair this when otherwise working on a driver, so it will take a
-while before they are all fixed.
-
-
-> +
-> +	return 0;
-> +}
-> +
-> +static int hx9023s_probe(struct i2c_client *client)
-> +{
-> +	struct device *dev = &client->dev;
-> +	struct iio_dev *indio_dev;
-> +	struct hx9023s_data *data;
-> +	int ret;
-> +
-> +	indio_dev = devm_iio_device_alloc(dev, sizeof(struct hx9023s_data));
-> +	if (!indio_dev)
-> +		return -ENOMEM;
-> +
-> +	data = iio_priv(indio_dev);
-> +	mutex_init(&data->mutex);
-> +
-> +	data->regmap = devm_regmap_init_i2c(client, &hx9023s_regmap_config);
-> +	if (IS_ERR(data->regmap))
-> +		return dev_err_probe(dev, PTR_ERR(data->regmap), "regmap init failed\n");
-> +
-> +	ret = hx9023s_property_get(data);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "dts phase failed\n");
-> +
-> +	ret = devm_regulator_get_enable(dev, "vdd");
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "regulator get failed\n");
-> +
-> +	ret = hx9023s_id_check(indio_dev);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "id check failed\n");
-
-As commented on above, this should not fail on a missmatch ont he ID, just
-on a failure to read it at all.  That enables future devices that haven't
-been made yet and happen to be compatible to be able to work with older
-linux kernels that predate them.
-
-
-> +}
+-- 
+2.43.0
 
 
