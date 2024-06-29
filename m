@@ -1,167 +1,106 @@
-Return-Path: <devicetree+bounces-81660-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81661-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A04191CF5F
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 00:02:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE7F491CFA2
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 01:07:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 58A3D1C20BBF
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 22:02:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6CE302820DA
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 23:07:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B71213BC3F;
-	Sat, 29 Jun 2024 22:02:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08B3A3B1AC;
+	Sat, 29 Jun 2024 23:07:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="GTCN+DWR"
+	dkim=pass (2048-bit key) header.d=bade.nz header.i=@bade.nz header.b="dMIcZFO6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-172.mta1.migadu.com (out-172.mta1.migadu.com [95.215.58.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com [209.85.160.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA0372594
-	for <devicetree@vger.kernel.org>; Sat, 29 Jun 2024 22:01:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4512381C6
+	for <devicetree@vger.kernel.org>; Sat, 29 Jun 2024 23:06:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719698521; cv=none; b=PKIKjYF1jVrAiKgxAD4OZV6vnal8wCFWKCRN48d2MqzrtsGO0+0rojZsmiS06MgcDHFXaqCnZVGTwr28sP1O74BQmN4a2UWtUXGN0PI4pDCC+6KtsZ4GuSKdeZoPHS5zYCSzZz1jo1191JmFf1x/Hr/lhGcTtZ4LcfEjtt53PdA=
+	t=1719702423; cv=none; b=Ileut9N6aA9vfql4tQ7MD19/n6YdBhaf/YTuITbztNdWBThb4pRTnReQC0EdVdNJAJMdDbHFY1xisBP5z8rc+s0B1U0wxpe9HCbOXTYHP/yh/Ow/8L2Ayw2tvOph6ailZYs011Ma1gvD1NTb+5/fn8ksK0ghM227bcOayKjvEqU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719698521; c=relaxed/simple;
-	bh=Q49OzQnfAYa/aLJQrn/hsoa776DUSHoaalMU757j7aU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=b8dI5xW/W8iFv73kwzs1uXdLqHz4Yj08HEfQSr1DccfBqAi2FfIVD2qDRZyjzIhYwiIeWigTbnRvTIKyK1yWvJDnQTmIaA27EUYKRR6sEIQthymg12a7RdENcC92HX+fw2qUKPXge1GNgHB/x64YC/MgQ/mcCtElE4OLU6N9f5k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=GTCN+DWR; arc=none smtp.client-ip=95.215.58.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
-X-Envelope-To: linux-rockchip@lists.infradead.org
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
-	t=1719698515;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=m1o1vsrZvTo7w5mqkqn99pIT4RNtcwpqiHGAg8MQ6WE=;
-	b=GTCN+DWRgIZo/u+pWipknXtRkLAjdyUrwU+HdUc7083DraYzcL9bw6yzLoQpnRJoGGnwNb
-	dc/nvykEyF4yotpKigjxNzlX4v84unJ0XqM+7wETRKKq/fQhSaLX3HxZv4G1aovakg2vL4
-	ROr86QVDV9xNhDLR3QN/3VcwRL4VHVWup3JTVvf7uBnKD1q4SBdGKJCHhqhbYGc1eok9cm
-	lbek1QJQP0HK0h25BHCwe5yEbpCoASQKeUK4s9wg2DYA4bjmrgsjMK3Ih3SgTRTOKI1TcJ
-	emelpSSQpjggUSZSQBMyOLfjLZ8D35lAEypdk7kULY/zr1HraN/P/zrO19XwwQ==
-X-Envelope-To: dsimic@manjaro.org
-X-Envelope-To: heiko@sntech.de
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-X-Envelope-To: devicetree@vger.kernel.org
-X-Envelope-To: robh@kernel.org
-X-Envelope-To: krzk+dt@kernel.org
-X-Envelope-To: conor+dt@kernel.org
-X-Envelope-To: linux-kernel@vger.kernel.org
-X-Envelope-To: jonas@kwiboo.se
-X-Envelope-To: didi.debian@cknow.org
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Diederik de Haas <didi.debian@cknow.org>
-To: linux-rockchip@lists.infradead.org, Dragan Simic <dsimic@manjaro.org>
-Cc: heiko@sntech.de, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux-kernel@vger.kernel.org,
- Jonas Karlman <jonas@kwiboo.se>, Diederik de Haas <didi.debian@cknow.org>
-Subject:
- Re: [PATCH v2] arm64: dts: rockchip: Add GPU OPP voltage ranges to RK356x SoC
- dtsi
-Date: Sun, 30 Jun 2024 00:01:41 +0200
-Message-ID: <2442162.AJoTavkB1d@bagend>
-Organization: Connecting Knowledge
-In-Reply-To:
- <bdb60f1f793166cd65f58ab7aea025347076019c.1719679068.git.dsimic@manjaro.org>
-References:
- <bdb60f1f793166cd65f58ab7aea025347076019c.1719679068.git.dsimic@manjaro.org>
+	s=arc-20240116; t=1719702423; c=relaxed/simple;
+	bh=XysCJedg6DXH/wRoLCjarBb7/kOAKIEykmdZaWglv/A=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=oJAvC2TKoDk8Uz6rX4cjVc7YcQRf5F/DpNUkdnbYJkazotZHXYEa5mlZtE+v/PugzJQI/vc2xI/ct7W0Xo9OXxKoOClU7faLSsVihb8z/dGcwexRaGwaBd0aNTMydXgBeC/Va4QwneDWjd/7eREEFTw6FdJBIsOkI8iGOgi8XhA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bade.nz; spf=pass smtp.mailfrom=leithalweapon.geek.nz; dkim=pass (2048-bit key) header.d=bade.nz header.i=@bade.nz header.b=dMIcZFO6; arc=none smtp.client-ip=209.85.160.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bade.nz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=leithalweapon.geek.nz
+Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-25d75ead52fso1574103fac.1
+        for <devicetree@vger.kernel.org>; Sat, 29 Jun 2024 16:06:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bade.nz; s=google; t=1719702418; x=1720307218; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=8IcJ/ZbhYzpVFbCD1VrAgxR/tGx2PdhO5WUBCb6gApE=;
+        b=dMIcZFO6/tSbhBqu3vwhTyjtFX0Vt3IPENEHYMTXYzNbDBBUoUtfCl/XbUPG2StqQg
+         BKykOm1nE9ZOTcrwBbU+3woj+SZ760maJQa42BcnyXIoj2ztHcGwlX5A6RZDXoa1tGgR
+         kzUBSdJSq77b1PsmN468RZUEY/ADN8UfJ/bSzGrfXIqqs5bIlHii2aL/8Go8x1sXjhRu
+         Ye4GFRrrNqixx3HQFqPBQO0lfRCZvPCGkjkB/ApmFW0DTZl5fgnz0947sMc3BeGhRuW6
+         rttSg0D+KglOICrVmg9fmR2V4oM7quhUQt92vHwdjyfZuPPICoz6cn0GWzcuPP41BwRV
+         NyFw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719702418; x=1720307218;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=8IcJ/ZbhYzpVFbCD1VrAgxR/tGx2PdhO5WUBCb6gApE=;
+        b=CtiVZc4rkW7q/OJJ6dnlMxCHZdhGf3KeU/01iT1fgafRvNnXxMxx+CNmishcvcxbH2
+         N7DAz658jTut5eLu2W8mnr0tTSxw+dsC2n+Xn2fT1rbgSIiAQnQ6wY3Vjridxv4D35qW
+         NPZtfMAAZEexDgNIbpKsDulDCzPAnRenTWlWDS0eHY9UsxTCGR+7+CqryWMLITwzNQyh
+         ZYT4U51kHimAVz/jtheE9lmCvEsBwnFewyux10mlY+P4PjoQbhSMzXJtgxwDevQqQus+
+         cHAPItPUl2GAV0vbbH1AFIRHzWjlZbtWEu6FBM4lYADxrkRri84BtliuTguwlPAFfGl3
+         mH6g==
+X-Forwarded-Encrypted: i=1; AJvYcCWUMxCORH+eYhwq0GdT0PxW4skdsc/1nlNTmm7653R9cx91MusfAyGQNvMlMEzJMk6SZPnrxOIXMSEhSt+ssxHA6JTClBXG+oNeOQ==
+X-Gm-Message-State: AOJu0Yxnofk4L8ezDvPexoB1L+/1mKz+vk22th80V5p1Fdo2+8M9ujRi
+	7c18bXbqCkvpZO1aCInZg8TN8vL1+XgCG9p4y8VdKFd/MLf4MsdbeCbdqEyTj98BOwZE3ebAiJ9
+	cqt+iCaJm5GcDmMzdIBcvUUGhaZx98w1NdjuA
+X-Google-Smtp-Source: AGHT+IG5uVtbAqL4k4yZuunPbE2NhqQtoe2pY4HKYNXClF/dthcc9ZEbX2cFqK5Cy/836ZpeEmFbGujWbqsPtUhx5oc=
+X-Received: by 2002:a05:6871:89:b0:255:43c:dd22 with SMTP id
+ 586e51a60fabf-25db266ce39mr919143fac.21.1719702418007; Sat, 29 Jun 2024
+ 16:06:58 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart1882325.2XYCnfxICR";
- micalg="pgp-sha256"; protocol="application/pgp-signature"
-X-Migadu-Flow: FLOW_OUT
+References: <20240627075856.2314804-1-leith@bade.nz> <171949936716.3312392.7734746271986363667.robh@kernel.org>
+In-Reply-To: <171949936716.3312392.7734746271986363667.robh@kernel.org>
+From: Leith Bade <leith@bade.nz>
+Date: Sun, 30 Jun 2024 09:06:47 +1000
+Message-ID: <CAPDEroV=4hW58u0+R3OxgPdeEqUoQkc24jUvsh5uE4sht9FXhg@mail.gmail.com>
+Subject: Re: [PATCH 0/4] fix up pin definitions for BPI-R3 board
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: frank-w@public-files.de, linux-mediatek@lists.infradead.org, 
+	matthias.bgg@gmail.com, krzk+dt@kernel.org, didi.debian@cknow.org, 
+	devicetree@vger.kernel.org, angelogioacchino.delregno@collabora.com, 
+	linux-arm-kernel@lists.infradead.org, conor+dt@kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
---nextPart1882325.2XYCnfxICR
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
-From: Diederik de Haas <didi.debian@cknow.org>
-Date: Sun, 30 Jun 2024 00:01:41 +0200
-Message-ID: <2442162.AJoTavkB1d@bagend>
-Organization: Connecting Knowledge
-MIME-Version: 1.0
+On Fri, 28 Jun 2024 at 00:48, Rob Herring (Arm) <robh@kernel.org> wrote:
+> New warnings running 'make CHECK_DTBS=y mediatek/mt7986a-bananapi-bpi-r3.dtb' for 20240627075856.2314804-1-leith@bade.nz:
+>
+> arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dtb: pinctrl@1001f000: 'boot-mode-hog' does not match any of the regexes: '-pins$', 'pinctrl-[0-9]+'
+>         from schema $id: http://devicetree.org/schemas/pinctrl/mediatek,mt7986-pinctrl.yaml#
 
-On Saturday, 29 June 2024 18:39:02 CEST Dragan Simic wrote:
-> Add support for voltage ranges to the GPU OPPs defined in the SoC dtsi for
-> RK356x.  These voltage ranges are useful for RK356x-based boards that are
-> designed to use the same power supply for the GPU and NPU portions of the
-> SoC, which is described further in the following documents:
-> 
->   - Rockchip RK3566 Hardware Design Guide, version 1.1.0, page 37
->   - Rockchip RK3568 Hardware Design Guide, version 1.2, page 78
+I saw this warning as well when I ran the DT schema check.
 
-That was interesting to read, thanks.
-Now I understand the difference between rk809(-5) and rk817(-5).
+However I think this is a false warning as the gpio-hog schema
+requires "*-hog" in the name, but the MT7986 pinctrl schema doesn't
+allow for this.
 
-But AFAIUI the above description described why there were separate tables for 
-rk809 and rk817 in v1. But that was dropped in v2. So it seems to me the 
-(commit) message should be updated accordingly?
-
-I also expected that (for v1) there would be a similar construct as was 
-recently added for rk3588. But I should interpret Heiko's comments as that 
-strategy should not be applied to rk356x?
-
-> The values for the exact GPU OPP voltages and the lower limits for the GPU
-> OPP voltage ranges differ from the values found in the vendor kernel source
-> (cf. downstream commit f8b9431ee38e ("arm64: dts: rockchip: rk3568: support
-> adjust opp-table by otp")). [1][2]  
-
-Why? In their latest update Rockchip changed it to the values as specified in 
-the links. My assumption is that based on extensive testing they did and/or 
-the feedback they got from the client/customers, they felt the need to change 
-it to the values they did.
-
-I think we should follow their values unless we have an explicit and very good 
-reason to deviate from that.
-
-> However, our values have served us well so far, so let's keep them for now,
-
-And I don't think that qualifies as a (very) good reason.
-I think it's reasonable to assume that far more (stress) testing has been done 
-with the downstream code, then has happened with the upstream code.
-Hopefully that'll change in the future, but I don't think we're there yet.
-
-When we/upstream adds npu support, I think we should also follow downstream's 
-OPP values, unless we have a very good reason to deviate from that.
-
-> until we actually start supporting the CPU and GPU binning, together with
-> the related voltage adjustments.
-
-I may not fully understand what you mean by that, but I think it's (again) 
-reasonable to assume that Rockchip has far more insight into this then we do.
-
-Cheers,
-  Diederik
-
-> [1]
-> https://github.com/rockchip-linux/kernel/commit/f8b9431ee38ed561650be7092ab
-> 93f564598daa9 [2]
-> https://raw.githubusercontent.com/rockchip-linux/kernel/f8b9431ee38ed561650
-> be7092ab93f564598daa9/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-
---nextPart1882325.2XYCnfxICR
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCZoCERQAKCRDXblvOeH7b
-bmLfAP0QPd2WlC4AazLxIQOIFkV2bx4wFpfRqdN+4AFpLEgYvAD5AQC+00IJVpXB
-cFuaeWYS5g5ZLUCOXWd2dGxRo/CDVg4=
-=tszs
------END PGP SIGNATURE-----
-
---nextPart1882325.2XYCnfxICR--
-
-
-
+Looking at other examples of gpio-hog I can see in
+arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi some hogs that are
+very similar to my new one with "*-hog" in the name under a node with
+"gpio-controller". Another example is
+arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts which has a
+hog ("asm_sel") under "pio" which is the same location as my new hog,
+but this one seems to violate the requirement for "hog" to be in the
+name.
 
