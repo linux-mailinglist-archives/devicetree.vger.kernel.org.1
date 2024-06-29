@@ -1,119 +1,158 @@
-Return-Path: <devicetree+bounces-81550-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81551-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A99191CB2D
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 07:05:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B86F91CB34
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 07:11:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7E12C1C20C1A
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 05:05:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6652C2850A8
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 05:11:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A89C81EF1D;
-	Sat, 29 Jun 2024 05:05:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E33AB200C1;
+	Sat, 29 Jun 2024 05:11:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="fF0zb4uv"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="LgVPg2P8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
 	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 352701878;
-	Sat, 29 Jun 2024 05:05:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86EA618EAB;
+	Sat, 29 Jun 2024 05:11:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719637553; cv=none; b=CqdVOu8/A8ANAjE2GYu63Ofhe9T0r26PYPBcHm57PFGAa/D2B9ZqKpPmjnUGtw93GDXOA6FNDTLqLdTYPTlYmpcy9NIwVPNAxsj3Gc7HZm8h8uWKLSOxinoArNWK1eN7DmiD4uY27bZ9H5pOkVfIIR9PzJxqn6cs9gmYGRIxgJY=
+	t=1719637895; cv=none; b=bwfVJ2T7ltoE3fBkzreWY5ZdLdT20qlf7Scjd1M/KEv5k+VvkUon9XfrX9q0q+b5tFe6icxpWtA4LOVjjmXvX0qPNVEq7nbbh6R1eCmAofYjiwpWVDDzPNASFUH3GNEBvnSFP4lKXo2v/L2zOXZRYjEYda3uXf7GytMJ06EeFrc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719637553; c=relaxed/simple;
-	bh=e8b6twANdQhhJnHGZLu7xXSZ3FEgLhooVfreBuvC2+I=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=MkB1n7ZGK8HIiNJjEDI/Jdbb9dZ3PvJOTw/EBadzTdTPX7ibRNJPkEyJco3Tk7fazLtI5hQ/9mrCeLKUhUUmhmNRJpsY5IyumXMecP/Aw61Dx33ZW4w5yX31Ta6IGJQAo60Jry5D5wRQRAS9L1Lyxx8v8JnBk+0/4NSBikK3ndY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=fF0zb4uv; arc=none smtp.client-ip=116.203.91.91
+	s=arc-20240116; t=1719637895; c=relaxed/simple;
+	bh=PepY8FutcEHTK64vBI/TVsIZxKttZLcTWh3fPowGdjk=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=GHhf0VgtxdzqQVldxthcLUg02HXH9w3rXZkTueX7IufvzEvCFWJylx6qZxiGN45dyMI6nIHb8105VGc1CQFTiwM62oeXmV1yybgWnPwzkICSex4OLpl29LFO/YJL/JkZB4nu3lmN5hUG3L4HTrsKFm/FmX6eYQA8swWIZgfW29k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=LgVPg2P8; arc=none smtp.client-ip=116.203.91.91
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+From: Dragan Simic <dsimic@manjaro.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1719637891;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=WHRekKF7eXGmvHSc7nEn4oAgdoP45m8Dm3JiZHGZGlQ=;
+	b=LgVPg2P8Cimn62bziz6ZB8CW9s1+VTQQJXA42TzQIFFRS4V4ITGeYdu9X/ieiA2QiCMQFH
+	lLQis3OSGFOVmXZEbQ7SperH7aNsutnxc8MEBIfCvg/OrOgKPN1nsF8rLTDo1AuB/OxXSJ
+	URIWXe8XmcuaOUWySy6g+yFHkTCE1Z1cmahP3/0QldcvIMtkYMiC+TjsE84U65f4JPUBfb
+	YQuKTpu8/EAOrFKeNrXsY4jwOZflwDyv56+rwKEwYIR1eGIYO6Q2tusJOo9NLZyVGO1Kx/
+	NI9p7YmA52lpt91NwkzaoRlE349sPGkyimTQER3eroiRvCwQxLrN2TnCwfVPmA==
+To: linux-rockchip@lists.infradead.org
+Cc: heiko@sntech.de,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-kernel@vger.kernel.org,
+	Diederik de Haas <didi.debian@cknow.org>,
+	Jonas Karlman <jonas@kwiboo.se>
+Subject: [PATCH] arm64: dts: rockchip: Add optional GPU OPP voltage ranges to RK356x SoC dtsi
+Date: Sat, 29 Jun 2024 07:11:24 +0200
+Message-Id: <446399362bd2dbeeaecd8351f68811165429749a.1719637113.git.dsimic@manjaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1719637542;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=gMwo9V8qLbkFXcqLqAUxMVPbvcdzo4YSJGNKNIvXkRc=;
-	b=fF0zb4uvEgnZtxW8uojfDKDdIlcN8DBHzIRDoYO1jEixWBcuP6f2OHqCaFf3Npx/oFkDY5
-	zKF/fIhbMJh1dx+Tbb8kw2YWXSGXEWcA14iSKGemkSa7mBxH69jyM4mQzBzvuySWBUw0ZG
-	AZaaHxI32lXUED5sBi2Nz2EiCE9Mw+yYYKEZSu5wwda8TfRJEajmxd5JUYFdVNvPCOCBgp
-	Ujf5hVauG4a9v6etZyISosh9mEPueww7a+mpUQAWEkcSlau8CYRv2s9OyjtJ/jSAJQo4cc
-	Y+FbS7bTDQN5L0RY3o/yCk870O0SB4gu44SWBfwim0FFDwoQUKnLw3EeDf4EUg==
-Date: Sat, 29 Jun 2024 07:05:41 +0200
-From: Dragan Simic <dsimic@manjaro.org>
-To: Diederik de Haas <didi.debian@cknow.org>
-Cc: Heiko Stuebner <heiko@sntech.de>, Jonas Karlman <jonas@kwiboo.se>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@debian.org>, Chen-Yu Tsai
- <wens@kernel.org>, linux-rockchip@lists.infradead.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: rockchip: Add dma-names to uart1 on
- quartz64-b
-In-Reply-To: <20240628120130.24076-1-didi.debian@cknow.org>
-References: <20240628120130.24076-1-didi.debian@cknow.org>
-Message-ID: <bd137fb5f44b247d843e0d218a495c62@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Authentication-Results: ORIGINATING;
 	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-On 2024-06-28 14:00, Diederik de Haas wrote:
-> There have been several attempts to set the dma-names property on the
-> SoC level (in rk356x.dtsi), but that appears to cause problems when set
-> on channels without flow control.
-> 
-> Quoting part of a previous attempt for clarification:
-> 
->> Nah, enabling it for bluetooth is fine because you have flow control.
->> My issues have been on channels without flow control. Without DMA it
->> simply drops messages or the channel hangs until you close and reopen
->> it. With DMA, when an overflow locks up the channel it is usually
->> unavailable until the board is rebooted.
-> 
-> Setting it on the board level for the bluetooth connection was deemed
-> safe, so do so for the Quartz64 Model B.
-> 
-> This fixes the following error/warning:
-> 
->   of_dma_request_slave_channel: dma-names property of node
->       '/serial@fe650000' missing or empty
->   dw-apb-uart fe650000.serial: failed to request DMA
-> 
-> Signed-off-by: Diederik de Haas <didi.debian@cknow.org>
-> Link: https://libera.irclog.whitequark.org/armlinux/2024-02-29
-> Link: https://lore.kernel.org/linux-rockchip/18284546.sWSEgdgrri@diego/
+Add optional support for voltage ranges to the GPU OPPs defined in the SoC
+dtsi for RK356x.  These voltage ranges are useful for RK356x-based boards that
+are designed to use the same power supply for the GPU and NPU portions of the
+SoC, which is described further in the following documents from Rockchip:
 
-Thanks for this patch, it's looking good to me.
+  - Rockchip RK3566 Hardware Design Guide, version 1.1.0, page 37
+  - Rockchip RK3568 Hardware Design Guide, version 1.2, page 78
 
-Reviewed-by: Dragan Simic <dsimic@manjaro.org>
+The values for the exact GPU OPP voltages and the lower limits for the GPU
+OPP voltage ranges differ from the values found in the vendor kernel source
+(cf. downstream commit f8b9431ee38e ("arm64: dts: rockchip: rk3568: support
+adjust opp-table by otp")). [1][2]  However, our values have served us well
+so far, so let's keep them for now, until we actually start supporting the
+CPU and GPU binning, together with the related voltage adjustments.
 
-> ---
->  arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
-> b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
-> index b908ce006c26..13e599a85eb8 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
-> @@ -652,6 +652,7 @@ &tsadc {
->  };
-> 
->  &uart1 {
-> +	dma-names = "tx", "rx";
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&uart1m0_xfer &uart1m0_ctsn &uart1m0_rtsn>;
->  	status = "okay";
+No functional changes are introduced, which was validated by decompiling and
+comparing all affected dtb files before and after these changes.
+
+[1] https://github.com/rockchip-linux/kernel/commit/f8b9431ee38ed561650be7092ab93f564598daa9
+[2] https://raw.githubusercontent.com/rockchip-linux/kernel/f8b9431ee38ed561650be7092ab93f564598daa9/arch/arm64/boot/dts/rockchip/rk3568.dtsi
+
+Suggested-by: Diederik de Haas <didi.debian@cknow.org>
+Helped-by: Jonas Karlman <jonas@kwiboo.se>
+Signed-off-by: Dragan Simic <dsimic@manjaro.org>
+---
+ arch/arm64/boot/dts/rockchip/rk356x.dtsi | 38 ++++++++++++++++++++++++
+ 1 file changed, 38 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+index d8543b5557ee..febda473dc38 100644
+--- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+@@ -1,5 +1,11 @@
+ // SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+ /*
++ * The defined GPU OPPs optionally support voltage ranges, which are useful
++ * for RK356x-based boards that are designed to use the same power supply for
++ * the GPU and NPU portions of the SoC.  To use GPU OPPs with voltage ranges
++ * on such boards, define the RK356X_GPU_NPU_SHARED_REGULATOR macro in the
++ * descendant board dts(i) file, before including this file.
++ *
+  * Copyright (c) 2021 Rockchip Electronics Co., Ltd.
+  */
+ 
+@@ -193,6 +199,7 @@ scmi_clk: protocol@14 {
+ 	gpu_opp_table: opp-table-1 {
+ 		compatible = "operating-points-v2";
+ 
++#ifndef RK356X_GPU_NPU_SHARED_REGULATOR
+ 		opp-200000000 {
+ 			opp-hz = /bits/ 64 <200000000>;
+ 			opp-microvolt = <825000>;
+@@ -222,6 +229,37 @@ opp-800000000 {
+ 			opp-hz = /bits/ 64 <800000000>;
+ 			opp-microvolt = <1000000>;
+ 		};
++#else
++		opp-200000000 {
++			opp-hz = /bits/ 64 <200000000>;
++			opp-microvolt = <825000 825000 1000000>;
++		};
++
++		opp-300000000 {
++			opp-hz = /bits/ 64 <300000000>;
++			opp-microvolt = <825000 825000 1000000>;
++		};
++
++		opp-400000000 {
++			opp-hz = /bits/ 64 <400000000>;
++			opp-microvolt = <825000 825000 1000000>;
++		};
++
++		opp-600000000 {
++			opp-hz = /bits/ 64 <600000000>;
++			opp-microvolt = <825000 825000 1000000>;
++		};
++
++		opp-700000000 {
++			opp-hz = /bits/ 64 <700000000>;
++			opp-microvolt = <900000 900000 1000000>;
++		};
++
++		opp-800000000 {
++			opp-hz = /bits/ 64 <800000000>;
++			opp-microvolt = <1000000 1000000 1000000>;
++		};
++#endif /* RK356X_GPU_NPU_SHARED_REGULATOR */
+ 	};
+ 
+ 	hdmi_sound: hdmi-sound {
 
