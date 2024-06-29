@@ -1,184 +1,218 @@
-Return-Path: <devicetree+bounces-81569-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81570-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B877B91CC54
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 13:16:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8561491CC5C
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 13:23:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4FD42B20AD9
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 11:16:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A23441C21261
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 11:23:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B46473BBDE;
-	Sat, 29 Jun 2024 11:16:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F2E94CDE0;
+	Sat, 29 Jun 2024 11:22:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tq9RP4v3"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HkCQSxq3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BC151CF8D;
-	Sat, 29 Jun 2024 11:16:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68B3C42AA8
+	for <devicetree@vger.kernel.org>; Sat, 29 Jun 2024 11:22:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719659803; cv=none; b=tudG+HoMUGk4epz94W+IrG8je87+NbkseCY3IBfnSXKDdogRnvuQi7l2Ksh7BnODjtGQH0EVINIQWvZhATLbN0o4o2zOCn1wxp2H3AF8AAd8lSXpMoCwOzHNMVp1c8Vwl6aVOYpC22af/2mdt9b0+Oa1HnnLgZ3QIv5+s7uYc90=
+	t=1719660171; cv=none; b=I9DF0uYXmMPty9j3uWBNA74Pf1EOtSNuiwoy+QMPt9thfiAj85xVcGGUfiG7ROLXLKW/CD8UkfW84dffIJ0A2PlNjOBK+V44ImpU4F61t1AKPtK7xPb424aFUSgT/F3MuzmUPvGLwZyHeUYIAPCb2iY5SSKBb61jeRjW0cqOt0w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719659803; c=relaxed/simple;
-	bh=IUthPw6q8Xxh7m+uFZiIAUjqhMqeAyzsdGSzigmphv4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ET2QeL1PcDs7X/Ni+vZw/4brkQD06k+aU/WUw7lJwHuVfYYr3vP+yhuMXq06vcyOmTnJLmKXZsXLr0vCiNTKY6kxEjH4h09TU5n1nuZxZOPeGBJQ92AuhIeLawSxCRDr0N6y6U5ESAfvIB65yFauH6oYNFiHYVfSZezIjSs3qXA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tq9RP4v3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5014C2BBFC;
-	Sat, 29 Jun 2024 11:16:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719659803;
-	bh=IUthPw6q8Xxh7m+uFZiIAUjqhMqeAyzsdGSzigmphv4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tq9RP4v3wOheZaeTkMoREvNu74nxkxyN2vHE1lEVOpqP5CAzyYguiOXp9hFL3AmLy
-	 eVFZTVEfhULQydrQ1CAxQOd3S51HwZY7FmDWpZy7EGea4s8EEtg8mFAZWNCsDIAkd/
-	 l6t4YxeJQkx9+B2R1Z8TtlbsBv3QikJmATPdBl7/vJPsFXNi95ZoGMS8ucc2f6BhYP
-	 FVhDNA1UeiXsNJYoi4OAgIM4Kk+RvxMo/a/0eNdNJtxT9e4VnF4q3lMGvzMCGIjmKb
-	 32OOyKjubihQksVJW8rvmQpcp/+rVGtkrB/zyR2NY1/FgiJNDH71t/wDrhN9PKBJ0y
-	 gS0SyFCAqeTzw==
-Date: Sat, 29 Jun 2024 13:16:39 +0200
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: linux-pci@vger.kernel.org, ryder.lee@mediatek.com,
-	jianjun.wang@mediatek.com, lpieralisi@kernel.org, kw@linux.com,
-	robh@kernel.org, bhelgaas@google.com,
-	linux-mediatek@lists.infradead.org, lorenzo.bianconi83@gmail.com,
-	linux-arm-kernel@lists.infradead.org,
-	krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-	nbd@nbd.name, dd@embedd.com, upstream@airoha.com,
-	angelogioacchino.delregno@collabora.com
-Subject: Re: [PATCH v2 1/4] dt-bindings: PCI: mediatek-gen3: add support for
- Airoha EN7581
-Message-ID: <Zn_tF4xNADB1Z2bE@lore-desk>
-References: <cover.1719475568.git.lorenzo@kernel.org>
- <c11a40dbe3e1d1e4847ceee8715c1f670fd1887b.1719475568.git.lorenzo@kernel.org>
- <20240627-evergreen-oppressor-21deb5c83412@spud>
+	s=arc-20240116; t=1719660171; c=relaxed/simple;
+	bh=Av93i/QyUh4OYcXyVOOSs9eI7fMpyKFObao+NmMCYUE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=HNHDM1au79SrRBemcSs0AHUOR0Sks1Xw7mHv1dL1SEtYsRPOIKaA9ngllhDqhSOv8C5/Xrul20yXKW0q9fS0CX8nznB0moijgvpWwIg0vg4Khx4aU9Z6GcRhOJtZKhDjBotfNOuQNmF1wuLJ03+IKMgR7d/95HrXfr3ynkLxjGU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HkCQSxq3; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-42565670e20so15154245e9.0
+        for <devicetree@vger.kernel.org>; Sat, 29 Jun 2024 04:22:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1719660167; x=1720264967; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=uDoFQoEVoTH0KyrppY3Q5bf7siRqAXS+wrJGNY8J5w0=;
+        b=HkCQSxq3QPv7O1BaSJ0FGj2cOYfo/oZr+TW5QXwqWBMCHgWeaplOs46pNlWqzxW5WB
+         g+hLfLkez9vMER1xBk5p2ShIczc2RwQHSm+OHwJP78PhKndTugVdq2ZBU5wXHzDK/o3M
+         XhBObMRkAWj14EW4ON+TCUoCVl1EEkjcOOB08MDNn0G/0DZfbl/BogWmVAPpP2qdY7dI
+         i3FHgS2vTA32q8g4gt/Woa/6YISOqLR9SbrSv0hogtcxorLb1uwquJ247QLLuQ2JIAUk
+         qvhHSW3AcLX7ZiyiqrPPaKOsNcz1kzU4owEkiESIk7AqfujyLpa+sciHGKr6W+ggdwmr
+         rn4A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719660167; x=1720264967;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=uDoFQoEVoTH0KyrppY3Q5bf7siRqAXS+wrJGNY8J5w0=;
+        b=m16Vwl1dfDqodqMOqdbqQjXjmZB1zSjT9e0wyJNVEQAyFkAo+Gugoz3w7jsUTPniT9
+         GPM+OIVkfGle3bkaGvu8Al+p7jBvaUuPoMKbMq6+i/B/NDEQlQGkygi66vOid++XEEWy
+         tmUNDjHJ1fq5yrBEK0uOm1v/tegrCdnEb/BBo2XwDzHputWjLGnD/x41VGi4RJIFfxNq
+         4gXgYNQuQvXfWEIA7mRkfMkEJIO3/ByeRkr1+vtDeQX9wt3f9T54q8RXifl9HYIGFAQE
+         3m7PtivvnkI5Gk+tZnfOM3pZKgThCkSgJiauuYDOmE/C+XDviDRvLyh+sb9qdHdzp4Bg
+         l7Og==
+X-Forwarded-Encrypted: i=1; AJvYcCVgaJyx2TGP/mY9ImMyNCcHgrBcy1pFNN69yE4sWNv0ejPwwR2tvvj3j4DzVcnOUK3SM3fsAxZsSl0RFrElDjnm5+biVHhIIj0njQ==
+X-Gm-Message-State: AOJu0YyKcUTvAU7JsUMPnjwXBpsJDqh8oE/yPclkSvdFfgPZ5Sn+IeEQ
+	9bVk54VQZPqkl+6gpTw3wTo8pockhOuTPEEzFr9la7cbsgth4+Hzt3V1NoU8Y5Q=
+X-Google-Smtp-Source: AGHT+IFnPf4gdtng1h81DxL6ov04hUIHNKlMLZdAa4y0dEXy3qbzBXoIaMxSrv7huJ7B6ferjV9jcA==
+X-Received: by 2002:a05:600c:1994:b0:424:ade3:c6b7 with SMTP id 5b1f17b1804b1-4256d4c1b1dmr39012145e9.2.1719660166761;
+        Sat, 29 Jun 2024 04:22:46 -0700 (PDT)
+Received: from [192.168.0.38] ([176.61.106.227])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4256b09a2bcsm71749135e9.36.2024.06.29.04.22.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 29 Jun 2024 04:22:46 -0700 (PDT)
+Message-ID: <90fa688a-8107-4c7e-8056-761f7432dff8@linaro.org>
+Date: Sat, 29 Jun 2024 12:22:44 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="Yc80wPPNW1Sai7R4"
-Content-Disposition: inline
-In-Reply-To: <20240627-evergreen-oppressor-21deb5c83412@spud>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/6] arm64: dts: qcom: qcs6490-rb3gen2: Enable IMX577
+ camera sensor
+To: Vikram Sharma <quic_vikramsa@quicinc.com>, Robert Foss
+ <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Kapatrala Syed <akapatra@quicinc.com>,
+ Hariram Purushothaman <hariramp@quicinc.com>,
+ cros-qcom-dts-watchers@chromium.org, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Loic Poulain <loic.poulain@linaro.org>, Andi Shyti <andi.shyti@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-i2c@vger.kernel.org, Hariram Purushothaman <quic_hariramp@quicinc.com>
+References: <20240629-camss_first_post_linux_next-v1-0-bc798edabc3a@quicinc.com>
+ <20240629-camss_first_post_linux_next-v1-4-bc798edabc3a@quicinc.com>
+Content-Language: en-US
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20240629-camss_first_post_linux_next-v1-4-bc798edabc3a@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+
+On 28/06/2024 19:32, Vikram Sharma wrote:
+> Enable IMX577 camera sensor for qcs6490-rb3gen2.
+> 
+> Signed-off-by: Hariram Purushothaman <quic_hariramp@quicinc.com>
+> Signed-off-by: Vikram Sharma <quic_vikramsa@quicinc.com>
+> ---
+>   arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 67 ++++++++++++++++++++++++++++
+>   1 file changed, 67 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+> index c4cde4328e3d..237231600dca 100644
+> --- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+> +++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+
+I believe the rb3gen2 can be sold with and without the camera mezzanine 
+[1], so the approach we have taken for a similar situation on rb5 was to 
+have a separate mezzanine dts which includes the baseboard and extends it.
 
 
---Yc80wPPNW1Sai7R4
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+arch/arm64/boot/dts/qcom/qrb5165-rb5-vision-mezzanine.dts
 
-> On Thu, Jun 27, 2024 at 10:12:11AM +0200, Lorenzo Bianconi wrote:
-> > Introduce Airoha EN7581 entry in mediatek-gen3 PCIe controller binding
-> >=20
-> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> > ---
-> >  .../bindings/pci/mediatek-pcie-gen3.yaml      | 68 +++++++++++++++++--
-> >  1 file changed, 63 insertions(+), 5 deletions(-)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.y=
-aml b/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
-> > index 76d742051f73..59112adc9ba1 100644
-> > --- a/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
-> > +++ b/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
-> > @@ -53,6 +53,7 @@ properties:
-> >                - mediatek,mt8195-pcie
-> >            - const: mediatek,mt8192-pcie
-> >        - const: mediatek,mt8192-pcie
-> > +      - const: airoha,en7581-pcie
-> > =20
-> >    reg:
-> >      maxItems: 1
-> > @@ -76,20 +77,20 @@ properties:
-> > =20
-> >    resets:
-> >      minItems: 1
-> > -    maxItems: 2
-> > +    maxItems: 3
-> > =20
-> >    reset-names:
-> >      minItems: 1
-> > -    maxItems: 2
-> > +    maxItems: 3
-> >      items:
-> > -      enum: [ phy, mac ]
-> > +      enum: [ phy, mac, phy-lane0, phy-lane1, phy-lane2 ]
-> > =20
-> >    clocks:
-> > -    minItems: 4
-> > +    minItems: 1
-> >      maxItems: 6
-> > =20
-> >    clock-names:
-> > -    minItems: 4
-> > +    minItems: 1
-> >      maxItems: 6
-> > =20
-> >    assigned-clocks:
-> > @@ -147,6 +148,9 @@ allOf:
-> >            const: mediatek,mt8192-pcie
-> >      then:
-> >        properties:
-> > +        clocks:
-> > +          maxItems: 6
-> > +
-> >          clock-names:
-> >            items:
-> >              - const: pl_250m
-> > @@ -155,6 +159,15 @@ allOf:
-> >              - const: tl_32k
-> >              - const: peri_26m
-> >              - const: top_133m
-> > +
-> > +        resets:
-> > +          minItems: 1
-> > +          maxItems: 2
-> > +
-> > +        reset-names:
-> > +          minItems: 1
-> > +          maxItems: 2
-> > +
-> >    - if:
-> >        properties:
-> >          compatible:
-> > @@ -164,6 +177,9 @@ allOf:
-> >                - mediatek,mt8195-pcie
-> >      then:
-> >        properties:
-> > +        clocks:
-> > +          maxItems: 6
->=20
-> How come this is maxItems and not minItems? The max is always 6, before
-> and after your patch.
+Please replicate that model here.
 
-ack, I will fix in v3
+[1] https://www.thundercomm.com/product/qualcomm-rb3-gen-2/#versions
 
-Regards,
-Lorenzo
+> @@ -513,6 +513,73 @@ vreg_bob_3p296: bob {
+>   	};
+>   };
+>   
+> +&camcc {
+> +	status = "okay";
+> +};
+> +
+> +&camss {
+> +	status = "disabled";
 
->=20
-> Cheers,
-> Conor.
+once you move this into its own dts the camera should be enabled by 
+default for that .dtb
+
+> +	ports {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		/* The port index denotes CSIPHY id i.e. csiphy2 */
+> +		port@3 {
+> +			reg = <3>;
+
+copy/past splat from the rb5
+
+port@3 means csiphy3
+
+> +			csiphy3_ep: endpoint {
+> +				clock-lanes = <7>;
+> +				data-lanes = <0 1 2 3>;
+> +				remote-endpoint = <&imx412_ep>;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&cci0 {
+> +	status = "okay";
+> +};
+
+You're enabling cci0 here but not the sensor for it - presumably a 
+monochrome sensor attached to one of the other CSIPHYs.
+
+Zap cci0 here until you add that other sensor.
+
+> +
+> +&cci1 {
+> +	status = "okay";
+> +};
+> +
+> +&cci1_i2c1 {
+> +	camera@1a {
+> +		/*
+> +		 * rb3gen2 ships with an imx577. qcom treats imx412
+> +		 * and imx577 the same way. Absent better data do the same here.
+> +		 */
+> +		compatible = "sony,imx412";
+> +		reg = <0x1a>;
+
+The commit log says imx577 but the comapt string says imx412.
+
+Choose which one and maintain the namespace. Its an imx577 right ? 
+Upstream kernel has the relevant compat string
+
+Commit: 1251663220d9 ("media: i2c: imx412: Add new compatible strings")
+
+You can just cherry-pick that commit to your kernel and then the 
+upstream dts and downstream dts will be compatible.
 
 
+> +
+> +		reset-gpios = <&tlmm 78 GPIO_ACTIVE_LOW>;
+> +		pinctrl-names = "default", "suspend";
+> +		pinctrl-0 = <&cam2_default>;
+> +		pinctrl-1 = <&cam2_suspend>;
+> +
+> +		clocks = <&camcc CAM_CC_MCLK3_CLK>,
+> +				 <&camcc CAM_CC_MCLK2_CLK>;
+> +		assigned-clocks = <&camcc CAM_CC_MCLK3_CLK>,
+> +				 <&camcc CAM_CC_MCLK2_CLK>;
 
---Yc80wPPNW1Sai7R4
-Content-Type: application/pgp-signature; name="signature.asc"
+This looks funny - why do you have MCLK2 ?
 
------BEGIN PGP SIGNATURE-----
+One final thing, you appear to be missing some power rails here no ?
 
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZn/tFwAKCRA6cBh0uS2t
-rPBkAPkByGAHSc9sSo+LyYsfPbigChxVRx3RRo8JU9/v060TNwD/UdFWihrwMXYc
-d/pzY8RPKCX5ZnsPem0Fwg0h4BBQwwk=
-=kx87
------END PGP SIGNATURE-----
+e.g. rb5
 
---Yc80wPPNW1Sai7R4--
+         vdda-phy-supply = <&vreg_l5a_0p88>;
+         vdda-pll-supply = <&vreg_l9a_1p2>;
+
+---
+bod
 
