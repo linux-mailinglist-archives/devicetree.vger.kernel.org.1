@@ -1,158 +1,197 @@
-Return-Path: <devicetree+bounces-81577-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81578-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D49791CCB3
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 14:23:34 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13F6891CCD4
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 14:56:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0F315B21F78
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 12:23:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5D533B21E5C
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 12:56:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E75DF7EEF5;
-	Sat, 29 Jun 2024 12:23:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CEE079B87;
+	Sat, 29 Jun 2024 12:56:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mYmf9NGz"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="glxRhO+R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 499707C6CE
-	for <devicetree@vger.kernel.org>; Sat, 29 Jun 2024 12:23:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DF1844C64
+	for <devicetree@vger.kernel.org>; Sat, 29 Jun 2024 12:56:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719663793; cv=none; b=n3X0LVPV4u/q/JRhMhzOSlT8kcy7ZQoSfEHcM6vAEBeUwkmWNNfP51mKYhMHeudiEiQAmqhLZPkU6umTzPtZodhr+fP99r/EmhEqSgZYPG8tPUZKVnY53Q9iX7mepKgxPZDLdUGeKmOYKXDY2fq96tUXbrdFgJmNG6/oW6xJxrY=
+	t=1719665808; cv=none; b=K5FNKuLAtYJd6s1urJh4LogDLl97eU0W/XAU7qrGi56bGgDA/zTB+nP29MLnReQ4A43yyHHJCJYKTxZHsaK9OWogI7dSLG05Cwc4mN9aph6mSvBrTR7GcurosFDh+vc25F/KtbW/4gzpgySDjBA330Wf4TSECs/+AAePLg0yJBI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719663793; c=relaxed/simple;
-	bh=0y5cSgtBlkamEEyslLX8DfwkBZ+qF4qV5H9+Ndn+Qw4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fee0vU5QoJEgsOJA7r23zeALEIKUKCnN5NJKvVSAcAUjRBBLgric1tq0GE0ld2YXO2+QDg4jKUF7MsWcIW43AqV+yKmZFk3zssR2N1scvNmHYcwZHrF5b0LAB2vUaz+DPJyMtRWCRKlIEfmBNGnwKX/Ui0UnqgJvkfr/KrzFSoY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mYmf9NGz; arc=none smtp.client-ip=209.85.210.179
+	s=arc-20240116; t=1719665808; c=relaxed/simple;
+	bh=aoX0AYKkE/8EHAJYrYxVzfMl8NYAv9cp+xERbNhnvDo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=UWcgxWLouQiljT0WpzI4FaUJNo7DWC/js71ihht5OM8y7NvhZHZ0ClCf/eOGfRcNwjMJTbobT9RBfEG115Pi/DwcciBPu+bxzDXXT9e1fQvueSV6/CPMHZcDhcHgTcatu493JDY3TgZi1AAFGpFvH4x6sP0EAqCOWMjTHrxoSbg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=glxRhO+R; arc=none smtp.client-ip=209.85.208.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-7065a2f4573so1106327b3a.2
-        for <devicetree@vger.kernel.org>; Sat, 29 Jun 2024 05:23:09 -0700 (PDT)
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-584ee8da49aso4601884a12.0
+        for <devicetree@vger.kernel.org>; Sat, 29 Jun 2024 05:56:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719663789; x=1720268589; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=hd/fN6JrXuuparzKe/1dgdm1z2pqZRQTyP5PJ9H207I=;
-        b=mYmf9NGz4AEE4ghG7AT/o31qdXDXd3KNh2La/mgNpSBZK+uhD1bBl0P2aRsNV7F5w8
-         V4EPYPUts6FTNdH1ccO/G+eY5aCL2N/yg3KGX+iACfSC3OSCcDavfVW7qlEvu85nBEM7
-         Kkmla1evBKZilJmj1c9+mTN17J/7rSHxXdezrl8piZ7t0R7gimvm/k1fIZvyrV0NL1Ik
-         rwqbBFB+G6WJaB26irForAuStY12KvhoXEXq0+4gMpsmyBR/bdHzmTZOnPwQ0iSjZLl3
-         gKOAHr6BxusrHlV1cevYW/YsYb0Ra35D8KbxHUsg2d/WFyAZxpWgJUGfCWOlOG/k+t8O
-         jYwQ==
+        d=linaro.org; s=google; t=1719665804; x=1720270604; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=VLCFevl+bnXSYKqYiNMt3y9w/Slf85G42xq1zxOL/VE=;
+        b=glxRhO+R6AL5j1h8kks/6nJumjoVu9jcssqSPMtn/SmHPldhmpQB7DIMGWLqkdiBJt
+         V1zzbNfoRVFTiOrq96gdEqyD9Tgzdu331O3my1Z8Iu5lHTpGh2Dc82G/xMJ4sq29hqua
+         BmwzQ4dVJJ5YlySIf0ugaFVFW8CJPiYGZhYa8YhEsAFX6VE4lShlMLP63R1wA2ep8nWC
+         tpUVSPQLZILU8/GPIakGvTw4cAfv4dsrY8owwJDUmeGcQEAh7gfCAunMrgg53IHKj2KE
+         0zydoMgg9fYmxYtDT2rp2wEqR4Xrj96Sp757ibGafKh2AugrNYyAHKZYF2jzStQExU3Y
+         wZAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719663789; x=1720268589;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hd/fN6JrXuuparzKe/1dgdm1z2pqZRQTyP5PJ9H207I=;
-        b=Aj2E5FpxQJtVs2k7T4U4escNk58sTwKpfJrBDk2Grib3Gmi2tzIe2StqPawtYi9c8H
-         dZmz4kzqsPzrJ3mVEv/49z+yDpdIgPMfC+7dUT1F9sdNhyxvFpHkbz0hpJrhFqefhkli
-         N/iCzLYo9Ukya7F50Qb7vhRCALgW54OEmyWTzVyfdTk60ZS/ELz/QKAM/rlGQ8XH3bQz
-         tNEaA3q5n/JGThGo+IZAa2W0+WClRkusHkqdESTJKawcpfq+poi/D/w2kxc5ow1hMMQa
-         g/huLH1pWTWYnwYXrmoGES6YbB+A3Kyywy3D+aoVUBw9cb5pasnpHPrYwnlgIkwYmqp9
-         RyjA==
-X-Forwarded-Encrypted: i=1; AJvYcCWSnBuJNgKtE3lCPuttglbyZKUlm8tw1m9HR+ZWcEpYhX3bIZna+HymHEwZXvpxNlrZOBpfNEkHTHfr9aDKKCJ7l8wPyl8cEx5wXA==
-X-Gm-Message-State: AOJu0YwKNpgWrSBfWPXIAonfV/AMRe7kvXynDF7q+nSsDrKtBd5uMQuz
-	FcUSD5iStY2ev4f4fdnMeTLWAoEe5fGSaXsUURkt1z+ZpQo2t1pNKOWAif6oVA==
-X-Google-Smtp-Source: AGHT+IEW0u5OjNVhFbntAWf/v7zidI2Sjsqla8PVFtRXPmZZ7xJh0N+dgrcQ2vSjwdtKDdMLAlmuaw==
-X-Received: by 2002:a05:6a00:2e18:b0:706:8066:5cd6 with SMTP id d2e1a72fcca58-70aaaf31a15mr736491b3a.32.1719663788507;
-        Sat, 29 Jun 2024 05:23:08 -0700 (PDT)
-Received: from thinkpad ([220.158.156.249])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-70803ecf70asm3179116b3a.102.2024.06.29.05.23.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 29 Jun 2024 05:23:08 -0700 (PDT)
-Date: Sat, 29 Jun 2024 17:53:01 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Richard Zhu <hongxing.zhu@nxp.com>,
-	Lucas Stach <l.stach@pengutronix.de>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-pci@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, bpf@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v6 01/10] PCI: imx6: Fix establish link failure in EP
- mode for iMX8MM and iMX8MP
-Message-ID: <20240629122301.GB5608@thinkpad>
-References: <20240617-pci2_upstream-v6-0-e0821238f997@nxp.com>
- <20240617-pci2_upstream-v6-1-e0821238f997@nxp.com>
+        d=1e100.net; s=20230601; t=1719665804; x=1720270604;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VLCFevl+bnXSYKqYiNMt3y9w/Slf85G42xq1zxOL/VE=;
+        b=Dl08Ei6ew7QqlOrYXUNNe6Qa5StKbE+Q9jT4bDF/5NDajl7l8uAXmdkj2jyrxUn77t
+         YmsxKs0xxZrSvs6OtlWAFYcDIuNXmtlXOzAPjjngfutmWOleXRGhChj74Tlu6MRs2biO
+         RdmE4DaPrE8TZDirM61RzpeVbuzPKfygqVGm/JbkmdhtlgYzccyxEyHO+5UFd5XBEveX
+         BVDSqKdXZaM03MkY1Sa8SguHt8RQ6kcQn3fHRB8LeZrcZ8vH4BBMxcjxkYI6T3YzMrpC
+         rK1GC6sS9J3FYhBAcYFvSJFe2w+VaKiDUSBznJEuXGrRMfEZSdOcpyA6bt+g5x4Z9Dc0
+         6/+A==
+X-Forwarded-Encrypted: i=1; AJvYcCWvLLZYad4mq4CanGaU039hPLpA4Kj5vqDU0R7566TXRnRCl4ieQdbMS2oa6B8mkxwFvG6U2zXhm42W7bHmzCqZDz7GBI0sLYZFfw==
+X-Gm-Message-State: AOJu0Ywmbc2w32sH1hqo3Wv3qJRq/erTwKna7BRXPzteLqaQIVZt8+IQ
+	a8XOarKfZp1MdC4JbFtoQt41H4rGY5U+eqKnQpfbGmDtqx+LjcfvoCTBsc5yfEA=
+X-Google-Smtp-Source: AGHT+IEFToXVictsFhLt27KEbw2INbGmxJOI/RnHLwEHzpz95mIpAqGiJvm+Lavqpk16FUMfxkb7Jg==
+X-Received: by 2002:a17:906:2709:b0:a6f:e699:a9f8 with SMTP id a640c23a62f3a-a72aeeb255fmr258839866b.18.1719665803243;
+        Sat, 29 Jun 2024 05:56:43 -0700 (PDT)
+Received: from [192.168.215.29] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a72ab06521esm161574466b.110.2024.06.29.05.56.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 29 Jun 2024 05:56:42 -0700 (PDT)
+Message-ID: <0c47c5fa-5fe2-4675-8eb9-9707f044ce90@linaro.org>
+Date: Sat, 29 Jun 2024 14:56:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240617-pci2_upstream-v6-1-e0821238f997@nxp.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: Add device tree for ASUS Vivobook S
+ 15
+To: wuxilin123@gmail.com, Bjorn Andersson <andersson@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>,
+ Johan Hovold <johan+linaro@kernel.org>
+References: <20240628-asus-vivobook-s15-v1-0-2a1e4571b8ab@gmail.com>
+ <20240628-asus-vivobook-s15-v1-2-2a1e4571b8ab@gmail.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20240628-asus-vivobook-s15-v1-2-2a1e4571b8ab@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, Jun 17, 2024 at 04:16:37PM -0400, Frank Li wrote:
-> From: Richard Zhu <hongxing.zhu@nxp.com>
+On 28.06.2024 1:30 PM, Xilin Wu via B4 Relay wrote:
+> From: Xilin Wu <wuxilin123@gmail.com>
 > 
-> Add IMX6_PCIE_FLAG_HAS_APP_RESET flag to IMX8MM_EP and IMX8MP_EP drvdata.
-> This flag was overlooked during code restructuring. It is crucial to
-> release the app-reset from the System Reset Controller before initiating
-> LTSSM to rectify the issue
+> ASUS Vivobook S 15 is a laptop based on the Qualcomm Snapdragon X Elite
+> SoC (X1E78100).
 > 
-> Fixes: 0c9651c21f2a ("PCI: imx6: Simplify reset handling by using *_FLAG_HAS_*_RESET")
-> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-
-- Mani
-
+> Add the device tree for the laptop with support for the following features:
+> 
+> - CPU frequency scaling up to 3.4GHz
+> - NVMe storage on PCIe 6a (capable of Gen4x4, currently limited to Gen4x2)
+> - Keyboard and touchpad
+> - WCN7850 Wi-Fi
+> - Two Type-C ports on the left side (USB3 only in one orientation)
+> - internal eDP display
+> - ADSP and CDSP remoteprocs
+> 
+> Further details could be found in the cover letter.
+> 
+> Signed-off-by: Xilin Wu <wuxilin123@gmail.com>
 > ---
->  drivers/pci/controller/dwc/pci-imx6.c | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controller/dwc/pci-imx6.c
-> index 917c69edee1d5..9a71b8aa09b3c 100644
-> --- a/drivers/pci/controller/dwc/pci-imx6.c
-> +++ b/drivers/pci/controller/dwc/pci-imx6.c
-> @@ -1578,7 +1578,8 @@ static const struct imx6_pcie_drvdata drvdata[] = {
->  	},
->  	[IMX8MM_EP] = {
->  		.variant = IMX8MM_EP,
-> -		.flags = IMX6_PCIE_FLAG_HAS_PHYDRV,
-> +		.flags = IMX6_PCIE_FLAG_HAS_APP_RESET |
-> +			 IMX6_PCIE_FLAG_HAS_PHYDRV,
->  		.mode = DW_PCIE_EP_TYPE,
->  		.gpr = "fsl,imx8mm-iomuxc-gpr",
->  		.clk_names = imx8mm_clks,
-> @@ -1589,7 +1590,8 @@ static const struct imx6_pcie_drvdata drvdata[] = {
->  	},
->  	[IMX8MP_EP] = {
->  		.variant = IMX8MP_EP,
-> -		.flags = IMX6_PCIE_FLAG_HAS_PHYDRV,
-> +		.flags = IMX6_PCIE_FLAG_HAS_APP_RESET |
-> +			 IMX6_PCIE_FLAG_HAS_PHYDRV,
->  		.mode = DW_PCIE_EP_TYPE,
->  		.gpr = "fsl,imx8mp-iomuxc-gpr",
->  		.clk_names = imx8mm_clks,
-> 
-> -- 
-> 2.34.1
-> 
 
--- 
-மணிவண்ணன் சதாசிவம்
+[...]
+
+> +	pmic-glink {
+> +		compatible = "qcom,x1e80100-pmic-glink",
+> +			     "qcom,sm8550-pmic-glink",
+> +			     "qcom,pmic-glink";
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		orientation-gpios = <&tlmm 121 GPIO_ACTIVE_HIGH>,
+> +				    <&tlmm 123 GPIO_ACTIVE_HIGH>;
+
+#address-/size-cells usually go at the end
+
+> +
+> +		connector@0 {
+
+Could you add a comment detailing which port is which (like in x1e80100-crd.dts)?
+
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&nvme_reg_en>;
+
+property-n
+property-names
+
+[...]
+
+> +
+> +	ports {
+> +		port@1 {
+> +			reg = <1>;
+
+Please separate properties with subnodes with a newline
+
+[...]
+
+> +
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pcie6a_default>;
+
+property-n
+property-names
+
+Looks good otherwise!
+
+Konrad
 
