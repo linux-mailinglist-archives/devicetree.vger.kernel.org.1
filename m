@@ -1,165 +1,175 @@
-Return-Path: <devicetree+bounces-81587-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81588-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2519D91CD01
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 15:09:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1755191CD05
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 15:10:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A41A21F22CBA
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 13:09:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 980F01F2351A
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 13:10:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 425A07EF09;
-	Sat, 29 Jun 2024 13:09:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CB5F7F48C;
+	Sat, 29 Jun 2024 13:10:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=jrtc27.com header.i=@jrtc27.com header.b="U9DMQV1c"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lUgoBi7P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C34577107
-	for <devicetree@vger.kernel.org>; Sat, 29 Jun 2024 13:09:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9595B7EF09
+	for <devicetree@vger.kernel.org>; Sat, 29 Jun 2024 13:10:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719666589; cv=none; b=P7akEX3bmgcd+Mp7l/Pwfr8XKQAaDa05CYGfgglstcSI+LqHm/wCjfftImwu9KQtNLrZgcZjpsIyzwdK0nr1zhES0YSjFH2a4et8VCvxzAuytuEIuKz5OPdU1ZIBB66nWz/yoVdCwVS/CxM4JKMJcrrqU9qa+UmD34gpcAoblM0=
+	t=1719666649; cv=none; b=dpwO3+zlYQJBSxEGC1eC6ybnz537qkURAttVXkt/3z2jUCwAtCATAKYDnoU+7u6oHIcuXh9YG4PtCpF/xgEP18PEQJFbncqK4vOHWfnZWBAsV74LtI/KPSRlua2vomvpGQChX6yW5fzxsYJ2cwiaRksX6vrSyZocvqjvilMUJpM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719666589; c=relaxed/simple;
-	bh=NvBk/VJxXOr5vFerYzQwfjs4hGoztKHZX8kVmrHJLPs=;
-	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
-	 Message-Id:References:To; b=WlMUG7+uz0rLxy++di5yeiKed8DdUGyVCTUfBRlXtFwzSY9lrHFYlVUY4c8/VuJbQ92NwY8FPMTi7UsH9owDBWk788VI8aCbms5LmifjdvmQI4YyxeGlpHS+E34nGaFwtAyk4TwQ5zGjdwEC5t5b8YUzTb4QJQfLBtggV1rFqLI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jrtc27.com; spf=pass smtp.mailfrom=jrtc27.com; dkim=pass (2048-bit key) header.d=jrtc27.com header.i=@jrtc27.com header.b=U9DMQV1c; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jrtc27.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jrtc27.com
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-425680b1d3aso10721345e9.2
-        for <devicetree@vger.kernel.org>; Sat, 29 Jun 2024 06:09:47 -0700 (PDT)
+	s=arc-20240116; t=1719666649; c=relaxed/simple;
+	bh=Zc9sO0I5Bw+ymeOBrEoIlWnptOfQfEsWBo61k8+NyvY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Fmzep8eGoTi1MezDLvK5YJKA4nZbupDCTHzPRu446wD31LBIBEB9yWPeoFkPNocJrfeJKo6yWR5gsmQJwhcFHY3dWoyHfM0UhyQvQMCOwZQaIOrmCa1V9/ztvsSD1ii9tk8t6YKn1POiXXG7wuo36HjDhCfKhRRkdbzTJJJ4wlE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lUgoBi7P; arc=none smtp.client-ip=209.85.218.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a689ad8d1f6so179268966b.2
+        for <devicetree@vger.kernel.org>; Sat, 29 Jun 2024 06:10:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jrtc27.com; s=gmail.jrtc27.user; t=1719666586; x=1720271386; darn=vger.kernel.org;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=pBPHRag8qAvETotyyrYSH4FuLSJO/hkfmF+D7/kiato=;
-        b=U9DMQV1cv7Q5XiWXPHIdMH0xoEM42GeRKK1SJsCblg8mtgC7sAksvlRS4K/EloCYGZ
-         OtR4rFs2cDjbjn4Fbmm66vNcdQm3YZJFiBXNVd1U80MjVz2wP+QGyWOobJVy57lrCqMQ
-         /ZKdkY+IB5cH3e3KllHwEFkvEHwEQfVxoPjDY3aHx+3XEs6+5iEMcHm79HlfG318XaCG
-         BzfjMT+ixbLWdyI4tQbGIGGF9shUo+tldwBJ589yJpXeMAH7nfqtQ/COinQG7ggwT3lH
-         t49j4cx7KWg1ra35L9vQfkl1pdW4W7eY8+HNi2KYAzYFvHLBJv6BJuuWnjVE4qlW+81Q
-         tYEQ==
+        d=linaro.org; s=google; t=1719666646; x=1720271446; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=NYxUnwUSohZuqH5Y3Oi4aiVD5zcwYSgn+PulSvwJzXQ=;
+        b=lUgoBi7PZyZazKChLZOIhAWtoTXHWBvK73zEYmwhjyKyO/agvUBakL8OP2/pvnA4dd
+         aa/xzcqwxt4nHtIkuYTBNBbJ7jhdOLJJy1c37EeyApPs9zEw1CJxgBgkDtBXWw9yNxAs
+         G6oBbxhi/HqWMnSqs4t2id9i/0ZCa7lrCFz4I/HYd32APBMnUTS7uYywk1B2NyXuFKVu
+         ONm6Fxbx6Wkx/8MitNmzYK2jD0CF1aXF6bmBs2RGBF6HV6IXWTgVSbToouFnJxWzAlHz
+         5RJLVz2FALnnz/4gjOc3lOotpgiHqt8N9675edo998KAfsthvl7PcqEfDFwHlL+EieFr
+         nzgw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719666586; x=1720271386;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=pBPHRag8qAvETotyyrYSH4FuLSJO/hkfmF+D7/kiato=;
-        b=RhweSHrC6fy2vGF6aBBtx6qcz7+bZTBPMl8XtJKQWqk8lExlXIODghqLoT1BHzi5ky
-         bskPA15YHjlW6vXckvRZXQ3ZOPv2qJ5AmWHkO3FdjylDyuEceoIE6hsIccGkHf9MFA5e
-         J1XL8zGKaBFW6OfofKE7Mvgm79W8VFVwR72LinIhQCwYNNsmdPehZGj9niT5YrSKqHq6
-         1y8xTgLLdhue9IjHaQ6WsN4nom1bTG656yNg1ES8nBFZ42f+7Y62TSlPjEdxTgPG6XHY
-         ZGVX2uwDym+vQOFLjuI/1IfJcFRWfWlr4RhkicWOfahW8MG49d8UlZ7DZrD+qTfFqa44
-         iO5A==
-X-Forwarded-Encrypted: i=1; AJvYcCUTx2Ycu4F80baNeSTncKRcM26DDcbmJUUiqmcnl2sClF5z0Dbc6zwgJ/9qBElZhqRrxuLHDSlAJWrzTtKb80GLXefSplELK3ZA2A==
-X-Gm-Message-State: AOJu0YzPrgjCNeuDL6Qp7/EjzZOPi5EL+ocUaYKuV0gZFUb6TPw6CnBq
-	sdGuMtr8TbAYKGAANw/pA568tBN6qows9ELrhaQC4UzQrenYWDbSCOGgHV8dCnY=
-X-Google-Smtp-Source: AGHT+IEKNKvTpdSb4CrQTKZ+nBdE/Hft6em8KkuURlNseRT5rthITeiMfEC+Py4YC1wcYfQMxgbr6w==
-X-Received: by 2002:a05:600c:3595:b0:425:5e8b:679f with SMTP id 5b1f17b1804b1-4257a02d4ddmr7277755e9.6.1719666585438;
-        Sat, 29 Jun 2024 06:09:45 -0700 (PDT)
-Received: from smtpclient.apple ([84.207.206.90])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4256b0cee27sm76231655e9.48.2024.06.29.06.09.44
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Sat, 29 Jun 2024 06:09:44 -0700 (PDT)
-Content-Type: text/plain;
-	charset=utf-8
+        d=1e100.net; s=20230601; t=1719666646; x=1720271446;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=NYxUnwUSohZuqH5Y3Oi4aiVD5zcwYSgn+PulSvwJzXQ=;
+        b=HArWRDlPopgJkg+BD7W54ipEVcsMNkR35TGYFXETRF8kiRDoyuT+hzrom3d7yMhiid
+         8NaaEJSG7ppCI71R9BK/2kWGewhx0+50w4GD8eW+ryppJadul94Qe7uiqZ8jdo1G3Tvr
+         JH7o2TYFPRPjsDzfS2lW7QVYDC7hsFKTN0TStrks3S6sDRaCk/xJrl7R1bsFCbjAPUSu
+         suCG0saMoJAE2yUVa/p6MaOBJWTkS3qHisFKv50AwxMcRv3zLWT09ySYtNKs2jjJhtK4
+         gtFiA4IAXEkhiclTfWevoM6nhWjgX+Fzao6acJmSKoy5yQxawokmfgaaExyhehjOQZod
+         uCBw==
+X-Forwarded-Encrypted: i=1; AJvYcCWEkBKkrafhyxWD57kcdcW4eHwTrfOj+oCUDll36fnQAppV5qWhqcXqbrGmwfh3vNMAN3XdjMTV87vapNL0cqSpQZ2SC5q6J8h6ig==
+X-Gm-Message-State: AOJu0Yzjm0+f55VRfxTB6P5GrQfW97ZpPXNVTgsMuFxBwgnyzkIdoVYk
+	6DttS+m3BnnqEbjnOCpDfhe1imiticZd4PGjc+ktvWPhHpWD1li7nsD6yyHY7SY=
+X-Google-Smtp-Source: AGHT+IF+d1chV2WaX+/TeZL5Zwzjo9i5T/U6DacLXmVqnZmlmiiqw31CXiOO6ryly0BzFkD1Mv1m5Q==
+X-Received: by 2002:a17:907:728e:b0:a6f:9b06:6b42 with SMTP id a640c23a62f3a-a75142d855bmr67725466b.5.1719666645529;
+        Sat, 29 Jun 2024 06:10:45 -0700 (PDT)
+Received: from [192.168.215.29] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a72ab0b56a0sm163117866b.199.2024.06.29.06.10.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 29 Jun 2024 06:10:45 -0700 (PDT)
+Message-ID: <a35aacc5-a9d6-4a8e-b016-c23236413871@linaro.org>
+Date: Sat, 29 Jun 2024 15:10:41 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3774.600.62\))
-Subject: Re: [PATCH v6 2/4] dt-bindings: riscv: Add Svade and Svadu Entries
-From: Jessica Clarke <jrtc27@jrtc27.com>
-In-Reply-To: <20240628-clamp-vineyard-c7cdd40a6d50@spud>
-Date: Sat, 29 Jun 2024 14:09:34 +0100
-Cc: Yong-Xuan Wang <yongxuan.wang@sifive.com>,
- LKML <linux-kernel@vger.kernel.org>,
- linux-riscv <linux-riscv@lists.infradead.org>,
- kvm-riscv@lists.infradead.org,
- kvm@vger.kernel.org,
- Greentime Hu <greentime.hu@sifive.com>,
- Vincent Chen <vincent.chen@sifive.com>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>,
- Albert Ou <aou@eecs.berkeley.edu>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <402C3422-0248-4C0F-991E-C0C4BBB0FA72@jrtc27.com>
-References: <20240628093711.11716-1-yongxuan.wang@sifive.com>
- <20240628093711.11716-3-yongxuan.wang@sifive.com>
- <20240628-clamp-vineyard-c7cdd40a6d50@spud>
-To: Conor Dooley <conor@kernel.org>
-X-Mailer: Apple Mail (2.3774.600.62)
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/6] arm64: dts: qcom: sc7280: Add IMX577 camera sensor
+To: Vikram Sharma <quic_vikramsa@quicinc.com>, Robert Foss
+ <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Kapatrala Syed <akapatra@quicinc.com>,
+ Hariram Purushothaman <hariramp@quicinc.com>,
+ cros-qcom-dts-watchers@chromium.org, Bjorn Andersson <andersson@kernel.org>,
+ Loic Poulain <loic.poulain@linaro.org>, Andi Shyti <andi.shyti@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-i2c@vger.kernel.org, Hariram Purushothaman
+ <quic_hariramp@quicinc.com>, Trishansh Bhardwaj <quic_tbhardwa@quicinc.com>
+References: <20240629-camss_first_post_linux_next-v1-0-bc798edabc3a@quicinc.com>
+ <20240629-camss_first_post_linux_next-v1-3-bc798edabc3a@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20240629-camss_first_post_linux_next-v1-3-bc798edabc3a@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 28 Jun 2024, at 17:19, Conor Dooley <conor@kernel.org> wrote:
->=20
-> On Fri, Jun 28, 2024 at 05:37:06PM +0800, Yong-Xuan Wang wrote:
->> Add entries for the Svade and Svadu extensions to the =
-riscv,isa-extensions
->> property.
->>=20
->> Signed-off-by: Yong-Xuan Wang <yongxuan.wang@sifive.com>
->> ---
->> .../devicetree/bindings/riscv/extensions.yaml | 28 =
-+++++++++++++++++++
->> 1 file changed, 28 insertions(+)
->>=20
->> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml =
-b/Documentation/devicetree/bindings/riscv/extensions.yaml
->> index 468c646247aa..c3d053ce7783 100644
->> --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
->> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
->> @@ -153,6 +153,34 @@ properties:
->>             ratified at commit 3f9ed34 ("Add ability to manually =
-trigger
->>             workflow. (#2)") of riscv-time-compare.
->>=20
->> +        - const: svade
->> +          description: |
->> +            The standard Svade supervisor-level extension for =
-SW-managed PTE A/D
->> +            bit updates as ratified in the 20240213 version of the =
-privileged
->> +            ISA specification.
->> +
->> +            Both Svade and Svadu extensions control the hardware =
-behavior when
->> +            the PTE A/D bits need to be set. The default behavior =
-for the four
->> +            possible combinations of these extensions in the device =
-tree are:
->> +            1) Neither Svade nor Svadu present in DT =3D>
->=20
->>                It is technically
->> +               unknown whether the platform uses Svade or Svadu. =
-Supervisor may
->> +               assume Svade to be present and enabled or it can =
-discover based
->> +               on mvendorid, marchid, and mimpid.
->=20
-> I would just write "for backwards compatibility, if neither Svade nor
-> Svadu appear in the devicetree the supervisor may assume Svade to be
-> present and enabled". If there are systems that this behaviour causes
-> problems for, we can deal with them iff they appear. I don't think
-> looking at m*id would be sufficient here anyway, since the firmware =
-can
-> have an impact. I'd just drop that part entirely.
+On 28.06.2024 8:32 PM, Vikram Sharma wrote:
+> Add support for IMX577 camera sensor for SC7280 SoC.
+> 
+> Signed-off-by: Hariram Purushothaman <quic_hariramp@quicinc.com>
+> Signed-off-by: Trishansh Bhardwaj <quic_tbhardwa@quicinc.com>
+> Signed-off-by: Vikram Sharma <quic_vikramsa@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/sc7280.dtsi | 33 +++++++++++++++++++++++++++++++++
+>  1 file changed, 33 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> index 9ac251fec262..1c99ee09a11a 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> @@ -5167,6 +5167,39 @@ cci3_sleep: cci3-sleep-state {
+>  				bias-pull-down;
+>  			};
+>  
+> +			cam2_default: cam2-default {
+> +				rst {
+> +					pins = "gpio78"; /*cam3*/
 
-Older QEMU falls into that category, as do Bluespec=E2=80=99s soft-cores =
-(which
-ours are derived from at Cambridge). I feel that, in reality, one
-should be prepared to handle both trapping and atomic updates if
-writing an OS that aims to support case 1.
+You can drop these comments.. the node name and label suggest this is
+cam*2* anyway
 
-Jess
+> +					function = "gpio";
+> +					drive-strength = <2>;
+> +					bias-disable;
+> +				};
+> +
+> +				mclk {
+> +					pins = "gpio67"; /*cam3*/
+> +					function = "cam_mclk";
+> +					drive-strength = <2>; /*RB5 was 16 and i changed to 2 here*/
 
+/* why? */
+
+Konrad
 
