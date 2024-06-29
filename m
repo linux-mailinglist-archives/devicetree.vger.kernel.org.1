@@ -1,504 +1,161 @@
-Return-Path: <devicetree+bounces-81557-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81558-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7810F91CBCE
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 11:01:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4D9391CBD4
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 11:10:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E74511F22B1F
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 09:01:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 33E491F22258
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jun 2024 09:10:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AE9036AEC;
-	Sat, 29 Jun 2024 09:01:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73D0839FC6;
+	Sat, 29 Jun 2024 09:10:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b="5cUUna29"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lRKm4VBm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ahti.lucaweiss.eu (ahti.lucaweiss.eu [128.199.32.197])
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 277FB14A85;
-	Sat, 29 Jun 2024 09:01:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=128.199.32.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF2181CF9B;
+	Sat, 29 Jun 2024 09:10:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719651699; cv=none; b=uzQ3+9feCApCjnwObL62H4+HuJbaPScemdDEXuyATG0TMDKs0fLa07H0M62sCa4JgUfoUK7MEu2gwMz1DzsC8nEALvseLyY/D6Ie6wOJgIAddEjUihTgU7bvN3B06GPVE1z22e9d97wd1iRfpVZkZrByxwYMccduMLifIJpQThU=
+	t=1719652230; cv=none; b=mk8X63USEThcjyzhzvoS4NJ8bn3j/FbeUz4OVYORZhS++iB6iFi6NrJTn7zh600f1S3AQjWzvGF+84XliY6Xxh3CtE/QWJxnqs/p5WW6NlUUcuvUVJqKfkIZge8NkneiyQ1ZMFGDby4TPFCgJVAZow9NEf4yWXcwr5yVqKuPz8A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719651699; c=relaxed/simple;
-	bh=W7NIudphB47cxV64suN18o18T+N2b7fBSp/JSfsbbkI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=mOzRYnVP3PkxnmHJLNUe33UwwYuoCZibwoSVgVjFPKOfH40Szdc4qHQPgYdoysscHzioEjw97C568f6MDtH544itVYJy1ayl1vEJsmbnICnAP94owhd/CYmXp66O23ltSXxAr8YeqBcaPA9ym/j5qHyAwHpTEEJ1O+HiFhHGbkA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=lucaweiss.eu; spf=pass smtp.mailfrom=lucaweiss.eu; dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b=5cUUna29; arc=none smtp.client-ip=128.199.32.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=lucaweiss.eu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lucaweiss.eu
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lucaweiss.eu; s=s1;
-	t=1719651695; bh=W7NIudphB47cxV64suN18o18T+N2b7fBSp/JSfsbbkI=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=5cUUna29N0H9y1eZHHLIms3UTC6ssxLU9u5hK4Ytv+NvJTNnIr6OMKEF7rmXEnGjs
-	 vHWTfYT1fqnkFdRS3XBpGkhuvRxSz4pDt0aHMXjPAGRBO0Yc2WOpiUSe8AM3O//9/P
-	 wwkSxlr0UPoX3jBufRHUsCCa+10ktMVuvSFxtjPs=
-From: Luca Weiss <luca@lucaweiss.eu>
-To: linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, phone-devel@vger.kernel.org,
- ~postmarketos/upstreaming@lists.sr.ht,
- Raymond Hackley <raymondhackley@protonmail.com>
-Subject:
- Re: [PATCH v2 2/2] ARM: dts: qcom-msm8226-samsung-ms013g: Add initial device
- tree
-Date: Sat, 29 Jun 2024 11:01:34 +0200
-Message-ID: <6223513.lOV4Wx5bFT@g550jk>
-In-Reply-To: <20240627193013.1800-3-raymondhackley@protonmail.com>
-References:
- <20240627193013.1800-1-raymondhackley@protonmail.com>
- <20240627193013.1800-3-raymondhackley@protonmail.com>
+	s=arc-20240116; t=1719652230; c=relaxed/simple;
+	bh=0qtBIVRF4tQXI/cSqAlbbskNESKysYkhxdb0PY/8yDw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=HQjdH869TgL9fToTeB7ZEQT4fLDdlX0PGxmwqnbGG8faGVfwcx4Aa6F8oMGxVdMKtUmju1lytGUd6SXknYiUa2HZ0dEd/8+o/laIuqMr8xM/TLpiusXdHO9HM/YmlPDifsWS6zRHFjk+nqDLeW8rPJ+1F2i0UFye7WHAjB/TQaQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lRKm4VBm; arc=none smtp.client-ip=209.85.208.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2ec10324791so14546401fa.1;
+        Sat, 29 Jun 2024 02:10:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1719652227; x=1720257027; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ZDwuIDgfSKVVddL+mBAVoNcFHRGflV4dK2Y+ujjCIXA=;
+        b=lRKm4VBmALZ1lwmWd9kl8s7BhpQ1bDq6VmvPazHGFUyGy7wpjG8Ujr7lFiuDMxHKdJ
+         vH6W6IAkAu4XGiFzm+oUefou3FN0Y/8EJUFoix9Z6BNjF9Uz0+x8j6bDrSiHGB3sl5Zf
+         l9oS36SAiMS3UtppSQWDCFK5zOvIj73BuvlYaeeCIvyq7vVKsca9mh9IWz6i193Z+op6
+         /gE55GCmSyCL1acnM1SVka3W5MM/QEzNb7z5g+Re9gfCFbSn3jXPDq+kKD2gO+/5edEh
+         rUT+7IQSesmPhuRk/VFMrzjdwJA+xLtciYr6Nu9rVGS8+8PRWQCU9nBv4waluvV6Kenu
+         pqxA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719652227; x=1720257027;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZDwuIDgfSKVVddL+mBAVoNcFHRGflV4dK2Y+ujjCIXA=;
+        b=cHUGZN3xL75Wmubc8q1LKtPj38clIDXjxTUuYdvNvLqPkONr/Xve+XfW/f1SYsTavA
+         hRjexSklBJifjkfmQKX43T7Qu7MIBVMTlpsidcMst5f8TuWvLUfUemTEZ+zK9pZ+8sZg
+         W0+FdLfx9dehTorf9a/2WJXyVw/u9TkxVFIwgeFq+TKCKp4fjcW91QkbGkhgBHkklvhN
+         JWvEjONu/0aOFe2r70M8tHz6s/aa2BJCmd5UU/XuICSSLbhyP6d/C1cNCnDcze2MY7Iw
+         BrMY0geoij2UMVaVObRisLUhWkkXs7R6Nc6Jiyo42XaBzr5xbZeF/dUm9NSARQBm26OI
+         gv9A==
+X-Forwarded-Encrypted: i=1; AJvYcCWOXJ6m/hTwGaO2xN8zPuit7xixLc4KQMJTpy09GlXZIpu5EFJaifnGKCOP5XghE7dr34t/Q5IXUsE5jIjjwbeHxURkdZBh/vn4yH6eGZiFZK5Qa3pio5aCv17i6cbQLWZAP6pmVat7RLIiTohDZhpFLSkGdXvBEsVPIJ5vpDZeFer8+w==
+X-Gm-Message-State: AOJu0Ywep5Ykz8ylqhtq6MwnaFgYOeGaRrqFbYZO4TNFYlq5zRGKBDiT
+	J1m7W+wZM89puix63boqslsbtf00y7/qFpm+dDhQkOk2ARXk7tsIQqpWT+pFY/Y=
+X-Google-Smtp-Source: AGHT+IHgFn5RNN+RjMV45lrt6DSLu8SQlEH3qlHL2mcett7FAmuELRstt4JWRiyH9fv8eU/uft1ACQ==
+X-Received: by 2002:a2e:7004:0:b0:2ec:556f:3474 with SMTP id 38308e7fff4ca-2ee5e6d76e9mr4611561fa.52.1719652226200;
+        Sat, 29 Jun 2024 02:10:26 -0700 (PDT)
+Received: from ?IPV6:2a01:4b00:ad19:5100:878e:1e97:29e2:65e0? ([2a01:4b00:ad19:5100:878e:1e97:29e2:65e0])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4256af3cf85sm67068815e9.4.2024.06.29.02.10.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 29 Jun 2024 02:10:25 -0700 (PDT)
+Message-ID: <66122c40-9c69-471c-8f59-cfb1c9b0b6ec@gmail.com>
+Date: Sat, 29 Jun 2024 10:10:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 2/2] iio: light: ROHM BH1745 colour sensor
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: lars@metafoo.de, krzk+dt@kernel.org, conor+dt@kernel.org,
+ robh@kernel.org, linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, Ivan Orlov <ivan.orlov0322@gmail.com>,
+ Javier Carrasco <javier.carrasco.cruz@gmail.com>
+References: <20240625220328.558809-1-muditsharma.info@gmail.com>
+ <20240625220328.558809-2-muditsharma.info@gmail.com>
+ <20240628203701.507c477c@jic23-huawei>
+Content-Language: en-US
+From: Mudit Sharma <muditsharma.info@gmail.com>
+In-Reply-To: <20240628203701.507c477c@jic23-huawei>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Donnerstag, 27. Juni 2024 21:30:52 MESZ Raymond Hackley wrote:
-> Samsung Galaxy Grand 2 is a phone based on MSM8226. It's similar to the
-> other Samsung devices based on MSM8226 with only a few minor differences.
+On 28/06/2024 20:37, Jonathan Cameron wrote:
+> Hi Mudit,
 > 
-> The device trees contain initial support with:
->  - GPIO keys
->  - Regulator haptic
->  - SDHCI (internal and external storage)
->  - UART (on USB connector via the TI TSU6721 MUIC)
->  - Regulators
->  - Touchscreen
->  - Accelerometer
+> I'd failed on previous reviews to notice the odd trigger in here.
+> What is it, because it doesn't seem to be a dataready trigger as the device
+> doesn't seem to provide such an interrupt?
+
+Hi Jonathan,
+
+Thank you for your review on this.
+
+I've incorrect called it as a dataready trigger, I missed this as part 
+of my initial cleanup - apologies for the confusion caused by this. I 
+should potentially call it 'threshold' or 'dev'. Please suggest what you 
+think would be appropriate here.
+
+The sensor has an active low interrupt pin which is connected to a GPIO 
+(input, pullup). When the sensor reading crosses value set in threshold 
+high or threshold low resisters, interrupt signal is generated and the 
+interrupt gets handled in 'bh1745_interrupt_handler()' (interrupt also 
+depends on number of consecutive judgements set in BH1745_PERSISTENCE 
+register)
+
 > 
-> Signed-off-by: Raymond Hackley <raymondhackley@protonmail.com>
-> ---
->  arch/arm/boot/dts/qcom/Makefile               |   1 +
->  .../dts/qcom/qcom-msm8226-samsung-ms013g.dts  | 386 ++++++++++++++++++
->  2 files changed, 387 insertions(+)
->  create mode 100644 arch/arm/boot/dts/qcom/qcom-msm8226-samsung-ms013g.dts
+> Various other comments inline.
+
+Will address all for v7
+>
+...
+>> +static irqreturn_t bh1745_interrupt_handler(int interrupt, void *p)
+>> +{
+>> +	struct iio_dev *indio_dev = p;
+>> +	struct bh1745_data *data = iio_priv(indio_dev);
+>> +	int ret;
+>> +	int value;
+>> +
+>> +	ret = regmap_read(data->regmap, BH1745_INTR, &value);
+>> +	if (ret)
+>> +		return IRQ_NONE;
+>> +
+>> +	if (value & BH1745_INTR_STATUS) {
+>> +		guard(mutex)(&data->lock);
+>> +		iio_push_event(indio_dev,
+>> +			       IIO_UNMOD_EVENT_CODE(IIO_INTENSITY, data->int_src,
+>> +						    IIO_EV_TYPE_THRESH,
+>> +						    IIO_EV_DIR_EITHER),
+>> +			       iio_get_time_ns(indio_dev));
 > 
-> diff --git a/arch/arm/boot/dts/qcom/Makefile b/arch/arm/boot/dts/qcom/Makefile
-> index ccd4ce6353df..f06c6d425e91 100644
-> --- a/arch/arm/boot/dts/qcom/Makefile
-> +++ b/arch/arm/boot/dts/qcom/Makefile
-> @@ -28,6 +28,7 @@ dtb-$(CONFIG_ARCH_QCOM) += \
->  	qcom-msm8226-microsoft-dempsey.dtb \
->  	qcom-msm8226-microsoft-makepeace.dtb \
->  	qcom-msm8226-microsoft-moneypenny.dtb \
-> +	qcom-msm8226-samsung-ms013g.dtb \
->  	qcom-msm8226-samsung-s3ve3g.dtb \
->  	qcom-msm8660-surf.dtb \
->  	qcom-msm8916-samsung-e5.dtb \
-> diff --git a/arch/arm/boot/dts/qcom/qcom-msm8226-samsung-ms013g.dts b/arch/arm/boot/dts/qcom/qcom-msm8226-samsung-ms013g.dts
-> new file mode 100644
-> index 000000000000..190b52fda634
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/qcom/qcom-msm8226-samsung-ms013g.dts
-> @@ -0,0 +1,386 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +
-> +/dts-v1/;
-> +
-> +#include "qcom-msm8226.dtsi"
-> +#include "pm8226.dtsi"
-> +
-> +/delete-node/ &smem_region;
-> +
-> +/ {
-> +	model = "Samsung Galaxy Grand 2";
-> +	compatible = "samsung,ms013g", "qcom,msm8226";
-> +	chassis-type = "handset";
-> +
-> +	aliases {
-> +		mmc0 = &sdhc_1; /* SDC1 eMMC slot */
-> +		mmc1 = &sdhc_2; /* SDC2 SD card slot */
-> +		serial0 = &blsp1_uart3;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +
-> +	gpio-hall-sensor {
-> +		compatible = "gpio-keys";
-> +
-> +		pinctrl-0 = <&gpio_hall_sensor_default>;
-> +		pinctrl-names = "default";
-> +
-> +		label = "GPIO Hall Effect Sensor";
-> +
-> +		event-hall-sensor {
-> +			label = "Hall Effect Sensor";
-> +			gpios = <&tlmm 50 GPIO_ACTIVE_LOW>;
-> +			linux,input-type = <EV_SW>;
-> +			linux,code = <SW_LID>;
-> +			linux,can-disable;
-> +		};
-> +	};
-> +
-> +	gpio-keys {
-> +		compatible = "gpio-keys";
-> +
-> +		pinctrl-0 = <&gpio_keys_default>;
-> +		pinctrl-names = "default";
-> +
-> +		label = "GPIO Buttons";
-> +
-> +		button-volume-up {
-> +			label = "Volume Up";
-> +			gpios = <&tlmm 106 GPIO_ACTIVE_LOW>;
-> +			linux,code = <KEY_VOLUMEUP>;
-> +		};
-> +
-> +		button-volume-down {
-> +			label = "Volume Down";
-> +			gpios = <&tlmm 107 GPIO_ACTIVE_LOW>;
-> +			linux,code = <KEY_VOLUMEDOWN>;
-> +		};
-> +
-> +		button-home {
-> +			label = "Home Key";
-> +			gpios = <&tlmm 108 GPIO_ACTIVE_LOW>;
-> +			linux,code = <KEY_HOMEPAGE>;
-> +		};
-> +	};
-> +
-> +	haptic {
-> +		compatible = "regulator-haptic";
-> +		haptic-supply = <&reg_motor_vdd>;
-> +		min-microvolt = <3300000>;
-> +		max-microvolt = <3300000>;
-> +	};
+> What is happening here.  You always push out the event and use that as
+> a trigger?  This is an unusual trigger if it's appropriate to use it for
+> one at all.  You've called it a dataready trigger but it is not obvious
+> that this device provides any such signal.
 
-This is the vibration motor? Use "vibrator" as node name then as per
-https://github.com/devicetree-org/devicetree-specification/blob/main/source/chapter2-devicetree-basics.rst?plain=1#L299
+When an interrupt occurs, BH1745_INTR_STATUS bit is set in the 
+BH1745_INTR register. Event is only pushed out when the 
+BH1745_INTR_STATUS bit is set.
+>> +
+>> +		iio_trigger_poll_nested(data->trig);
+>> +
+>> +		return IRQ_HANDLED;
+>> +	}
+>> +
+>> +	return IRQ_NONE;
+>> +}
 
-Apart from this I don't see anything wrong.
-
-Reviewed-by: Luca Weiss <luca@lucaweiss.eu>
-
-> +
-> +	reg_motor_vdd: regulator-motor-vdd {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "motor_vdd";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +
-> +		gpio = <&tlmm 111 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +
-> +		pinctrl-0 = <&motor_en_default>;
-> +		pinctrl-names = "default";
-> +	};
-> +
-> +	reg_vdd_tsp_a: regulator-vdd-tsp-a {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "tsp_3p3v";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +
-> +		gpio = <&tlmm 31 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +
-> +		pinctrl-0 = <&tsp_en_default>;
-> +		pinctrl-names = "default";
-> +	};
-> +
-> +	reserved-memory {
-> +		smem_region: smem@fa00000 {
-> +			reg = <0x0fa00000 0x100000>;
-> +			no-map;
-> +		};
-> +	};
-> +};
-> +
-> +&blsp1_i2c2 {
-> +	status = "okay";
-> +
-> +	accelerometer@18 {
-> +		compatible = "bosch,bma255";
-> +		reg = <0x18>;
-> +		interrupts-extended = <&tlmm 64 IRQ_TYPE_EDGE_RISING>;
-> +
-> +		vdd-supply = <&pm8226_l19>;
-> +		vddio-supply = <&pm8226_lvs1>;
-> +
-> +		pinctrl-0 = <&accel_int_default>;
-> +		pinctrl-names = "default";
-> +
-> +		mount-matrix = "0", "1", "0",
-> +			       "-1", "0", "0",
-> +			       "0", "0", "-1";
-> +	};
-> +};
-> +
-> +&blsp1_i2c5 {
-> +	status = "okay";
-> +
-> +	touchscreen@20 {
-> +		compatible = "zinitix,bt541";
-> +
-> +		reg = <0x20>;
-> +		interrupts-extended = <&tlmm 17 IRQ_TYPE_EDGE_FALLING>;
-> +
-> +		touchscreen-size-x = <720>;
-> +		touchscreen-size-y = <1280>;
-> +
-> +		vcca-supply = <&reg_vdd_tsp_a>;
-> +		vdd-supply = <&pm8226_lvs1>;
-> +
-> +		pinctrl-0 = <&tsp_int_default>;
-> +		pinctrl-names = "default";
-> +	};
-> +};
-> +
-> +&blsp1_uart3 {
-> +	status = "okay";
-> +};
-> +
-> +&rpm_requests {
-> +	regulators {
-> +		compatible = "qcom,rpm-pm8226-regulators";
-> +
-> +		pm8226_s3: s3 {
-> +			regulator-min-microvolt = <1200000>;
-> +			regulator-max-microvolt = <1300000>;
-> +		};
-> +
-> +		pm8226_s4: s4 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <2200000>;
-> +		};
-> +
-> +		pm8226_s5: s5 {
-> +			regulator-min-microvolt = <1150000>;
-> +			regulator-max-microvolt = <1150000>;
-> +		};
-> +
-> +		pm8226_l1: l1 {
-> +			regulator-min-microvolt = <1225000>;
-> +			regulator-max-microvolt = <1225000>;
-> +		};
-> +
-> +		pm8226_l2: l2 {
-> +			regulator-min-microvolt = <1200000>;
-> +			regulator-max-microvolt = <1200000>;
-> +		};
-> +
-> +		pm8226_l3: l3 {
-> +			regulator-min-microvolt = <750000>;
-> +			regulator-max-microvolt = <1337500>;
-> +		};
-> +
-> +		pm8226_l4: l4 {
-> +			regulator-min-microvolt = <1200000>;
-> +			regulator-max-microvolt = <1200000>;
-> +		};
-> +
-> +		pm8226_l5: l5 {
-> +			regulator-min-microvolt = <1200000>;
-> +			regulator-max-microvolt = <1200000>;
-> +		};
-> +
-> +		pm8226_l6: l6 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1800000>;
-> +			regulator-allow-set-load;
-> +			regulator-always-on;
-> +		};
-> +
-> +		pm8226_l7: l7 {
-> +			regulator-min-microvolt = <1850000>;
-> +			regulator-max-microvolt = <1850000>;
-> +		};
-> +
-> +		pm8226_l8: l8 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1800000>;
-> +		};
-> +
-> +		pm8226_l9: l9 {
-> +			regulator-min-microvolt = <2050000>;
-> +			regulator-max-microvolt = <2050000>;
-> +		};
-> +
-> +		pm8226_l10: l10 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1800000>;
-> +		};
-> +
-> +		pm8226_l12: l12 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1800000>;
-> +		};
-> +
-> +		pm8226_l14: l14 {
-> +			regulator-min-microvolt = <2750000>;
-> +			regulator-max-microvolt = <2750000>;
-> +		};
-> +
-> +		pm8226_l15: l15 {
-> +			regulator-min-microvolt = <2800000>;
-> +			regulator-max-microvolt = <2800000>;
-> +		};
-> +
-> +		pm8226_l16: l16 {
-> +			regulator-min-microvolt = <3000000>;
-> +			regulator-max-microvolt = <3350000>;
-> +		};
-> +
-> +		pm8226_l17: l17 {
-> +			regulator-min-microvolt = <2950000>;
-> +			regulator-max-microvolt = <2950000>;
-> +
-> +			regulator-system-load = <200000>;
-> +			regulator-allow-set-load;
-> +			regulator-always-on;
-> +		};
-> +
-> +		pm8226_l18: l18 {
-> +			regulator-min-microvolt = <2950000>;
-> +			regulator-max-microvolt = <2950000>;
-> +		};
-> +
-> +		pm8226_l19: l19 {
-> +			regulator-min-microvolt = <2850000>;
-> +			regulator-max-microvolt = <3000000>;
-> +		};
-> +
-> +		pm8226_l20: l20 {
-> +			regulator-min-microvolt = <3075000>;
-> +			regulator-max-microvolt = <3075000>;
-> +		};
-> +
-> +		pm8226_l21: l21 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <2950000>;
-> +			regulator-allow-set-load;
-> +		};
-> +
-> +		pm8226_l22: l22 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <2950000>;
-> +		};
-> +
-> +		pm8226_l23: l23 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <3300000>;
-> +		};
-> +
-> +		pm8226_l24: l24 {
-> +			regulator-min-microvolt = <1300000>;
-> +			regulator-max-microvolt = <1350000>;
-> +		};
-> +
-> +		pm8226_l25: l25 {
-> +			regulator-min-microvolt = <1775000>;
-> +			regulator-max-microvolt = <2125000>;
-> +		};
-> +
-> +		pm8226_l26: l26 {
-> +			regulator-min-microvolt = <1225000>;
-> +			regulator-max-microvolt = <1300000>;
-> +		};
-> +
-> +		pm8226_l27: l27 {
-> +			regulator-min-microvolt = <2050000>;
-> +			regulator-max-microvolt = <2050000>;
-> +		};
-> +
-> +		pm8226_l28: l28 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <2950000>;
-> +		};
-> +
-> +		pm8226_lvs1: lvs1 {};
-> +	};
-> +};
-> +
-> +&sdhc_1 {
-> +	vmmc-supply = <&pm8226_l17>;
-> +	vqmmc-supply = <&pm8226_l6>;
-> +
-> +	bus-width = <8>;
-> +	non-removable;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&sdhc_2 {
-> +	vmmc-supply = <&pm8226_l18>;
-> +	vqmmc-supply = <&pm8226_l21>;
-> +
-> +	bus-width = <4>;
-> +	cd-gpios = <&tlmm 38 GPIO_ACTIVE_LOW>;
-> +
-> +	pinctrl-0 = <&sdhc2_default_state &sdhc2_cd_default>;
-> +	pinctrl-names = "default";
-> +
-> +	status = "okay";
-> +};
-> +
-> +&tlmm {
-> +	accel_int_default: accel-int-default-state {
-> +		pins = "gpio64";
-> +		function = "gpio";
-> +		drive-strength = <2>;
-> +		bias-disable;
-> +	};
-> +
-> +	gpio_hall_sensor_default: gpio-hall-sensor-default-state {
-> +		pins = "gpio50";
-> +		function = "gpio";
-> +		drive-strength = <2>;
-> +		bias-pull-up;
-> +	};
-> +
-> +	gpio_keys_default: gpio-keys-default-state {
-> +		pins = "gpio106", "gpio107", "gpio108";
-> +		function = "gpio";
-> +		drive-strength = <2>;
-> +		bias-pull-up;
-> +	};
-> +
-> +	motor_en_default: motor-en-default-state {
-> +		pins = "gpio111";
-> +		function = "gpio";
-> +		drive-strength = <2>;
-> +		bias-disable;
-> +	};
-> +
-> +	sdhc2_cd_default: sdhc2-cd-default-state {
-> +		pins = "gpio38";
-> +		function = "gpio";
-> +		drive-strength = <2>;
-> +		bias-disable;
-> +	};
-> +
-> +	tsp_en_default: tsp-en-default-state {
-> +		pins = "gpio31";
-> +		function = "gpio";
-> +		drive-strength = <2>;
-> +		bias-disable;
-> +	};
-> +
-> +	tsp_int_default: tsp-int-default-state {
-> +		pins = "gpio17";
-> +		function = "gpio";
-> +		drive-strength = <2>;
-> +		bias-disable;
-> +	};
-> +};
-> 
-
-
-
-
+Best regards,
+Mudit Sharma
 
