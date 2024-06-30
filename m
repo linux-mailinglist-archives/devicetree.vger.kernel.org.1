@@ -1,67 +1,67 @@
-Return-Path: <devicetree+bounces-81719-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81720-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BECDC91D1E8
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 16:00:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BDA091D1F4
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 16:09:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F11791C20948
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 14:00:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9C62C1F21561
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 14:09:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0065A13E043;
-	Sun, 30 Jun 2024 14:00:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58568149C65;
+	Sun, 30 Jun 2024 14:09:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="deRF3w+6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hIpyXJeD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFCB113DBB3;
-	Sun, 30 Jun 2024 14:00:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 282897E572;
+	Sun, 30 Jun 2024 14:09:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719756014; cv=none; b=WJvf0E7ZLU5E90290TwoX2cmzeO6iHc7O6UzMy3oFyuZ4yrMC/sj/fBpUL7l9pWeX5b2vJerdl3GKm0vhUS6sWycFR4/5OxqcOKABEycIl17djQFrpXBIJRl3HXIeDCkSduzFcB4wfrG/jj2954MBygTrQ9yqMvBGW6oT1ZSSwM=
+	t=1719756579; cv=none; b=r2wYkIEbqxJsB8iWwaJP6jQHFC48/coFD2HDLwPHD9DC2q5Oq+0atxVuJZ7L1yWGDfsyhjeK7G/MnZu9zs+Ood6BexsvtBlFDFivRA9MpjUiD8p/Dvhqvgr8m+UdLs39jI0OWegCsKDCC/2zlBiBe50ppBlus1WpgNK0ewc6BDo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719756014; c=relaxed/simple;
-	bh=ih12JHTetNkTeksjpMCJOXUWcwVm9PgEUMFbcuLoU/8=;
+	s=arc-20240116; t=1719756579; c=relaxed/simple;
+	bh=/xCCulK2LDvM6T4DDK3IaPZekIJJ7Gq+2ykmVNaX2YM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=W2k3AkMlCefmFaoYMb81dDn3SguF2TAvWg+xJae3yoRmQiNYSUqeCHHERNTiFnYf1yabEO6vceRnXNIjHsJINyFM6xadHsd/m1+FWBVBzJxD31xHvAHooheruGDIWSrVMP2sGSNbXOE7AtQFO+WVI4LC+WeRK67bqsMUVtnbIEU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=deRF3w+6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D4F8C2BD10;
-	Sun, 30 Jun 2024 14:00:10 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=WMPAxB2gcmQYmSFun+UbT/Kwa7uZt9pYFPcEQIn2FZB2RFPgnowxTxP3WTHFgBp+6vlRtmkcIW8eV45m+wccWU3TUiEFeki38X5Kn6QqG5gJGDphJsnb5fE2u7T8qIo4lgAwX8pZag4uRSXPx8KYCcTsj6+KUxYJ5OtUW/Ze6Ws=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hIpyXJeD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB1F4C2BD10;
+	Sun, 30 Jun 2024 14:09:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719756014;
-	bh=ih12JHTetNkTeksjpMCJOXUWcwVm9PgEUMFbcuLoU/8=;
+	s=k20201202; t=1719756578;
+	bh=/xCCulK2LDvM6T4DDK3IaPZekIJJ7Gq+2ykmVNaX2YM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=deRF3w+6o/GL1cKMQ/2DJZ4IzzKBGmfvH1u3HoP9jgvptYbMijXhjrbJosjHVYgN+
-	 bbDZQFfk/jsMJA8dI+R1aXHRaYp9HR4cs84Gm75Xp/CHGDB3EWA+YGx0GSrUqCOX9r
-	 uNltKMWWm4DsM/GWTGtppo2HJixdTfsh+kDwNVGezEcbNAc0SmJqMqXQIZw1ryzku5
-	 LStHO9pEpZ04QNAi8snj1PuUrDhJDADEcqO9gYRuGvBxEfqf3zSa/VIxK8pn0vwwon
-	 W1Hz2wkB96yOZ/5+xz7Dx+LWe4+QFZCBYphWWCGRf1kO5VnZMfSdDS93+NAxGqk+1P
-	 JPzEFWjjEoh+w==
-Date: Sun, 30 Jun 2024 15:00:08 +0100
+	b=hIpyXJeDjyxKeeaNxtVJX644yi5CswNk4QOjMTn10ZTy8z1URm5QSFhuiPgNw2BhM
+	 3rkcWZCDMNXDAjRewXOwPJmp/XooFrSToztonDGy77Mh6n25fc2TmQ65BCxE8Miet/
+	 OcWwcQgbQMo263ZlWTOwuxWs5mIwksFrbnFxNiHzV88do6qwZzHOknD66IVKY3GNQe
+	 ragVgaD33bELePr9TIUPh/g7LMsGZ/8oEGcwGWCc1M5Mlep1ngwSknu6qtSFHxrJso
+	 p5JP0fHbVDZtLXOf5KI2fggU9uw8qIpOu1AmEgHLyvNZ2wnse79/850GDego4u9XZz
+	 tk/wLpivtFLTg==
+Date: Sun, 30 Jun 2024 15:09:33 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Guillaume Stols <gstols@baylibre.com>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
+To: Jessica Clarke <jrtc27@jrtc27.com>
+Cc: Yong-Xuan Wang <yongxuan.wang@sifive.com>,
+	LKML <linux-kernel@vger.kernel.org>,
+	linux-riscv <linux-riscv@lists.infradead.org>,
+	kvm-riscv@lists.infradead.org, kvm@vger.kernel.org,
+	Greentime Hu <greentime.hu@sifive.com>,
+	Vincent Chen <vincent.chen@sifive.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Beniamin Bia <beniamin.bia@analog.com>,
-	Stefan Popa <stefan.popa@analog.com>, linux-iio@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-fbdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-	jstephan@baylibre.com, dlechner@baylibre.com
-Subject: Re: [PATCH v2 02/10] dt-bindings: iio: adc: adi,ad7606: comment and
- sort the compatible names
-Message-ID: <20240630-darling-dairy-f161f784f45a@spud>
-References: <20240628-cleanup-ad7606-v2-0-96e02f90256d@baylibre.com>
- <20240628-cleanup-ad7606-v2-2-96e02f90256d@baylibre.com>
- <20240629162223.5b8d35b8@jic23-huawei>
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v6 2/4] dt-bindings: riscv: Add Svade and Svadu Entries
+Message-ID: <20240630-caboose-diameter-7e73bf86da49@spud>
+References: <20240628093711.11716-1-yongxuan.wang@sifive.com>
+ <20240628093711.11716-3-yongxuan.wang@sifive.com>
+ <20240628-clamp-vineyard-c7cdd40a6d50@spud>
+ <402C3422-0248-4C0F-991E-C0C4BBB0FA72@jrtc27.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,110 +69,92 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="gveNh7Lwv1kh1y0C"
+	protocol="application/pgp-signature"; boundary="VstelAVsSG0eBIgw"
 Content-Disposition: inline
-In-Reply-To: <20240629162223.5b8d35b8@jic23-huawei>
+In-Reply-To: <402C3422-0248-4C0F-991E-C0C4BBB0FA72@jrtc27.com>
 
 
---gveNh7Lwv1kh1y0C
+--VstelAVsSG0eBIgw
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Sat, Jun 29, 2024 at 04:22:23PM +0100, Jonathan Cameron wrote:
-> On Fri, 28 Jun 2024 14:48:20 +0000
-> Guillaume Stols <gstols@baylibre.com> wrote:
->=20
-> > AD7606-8 is referred to as AD7606 by Analog Devices. This comment aims
-> > to avoid confusion. Also the compatible names were not sorted by
-> > alphabetical order.
+On Sat, Jun 29, 2024 at 02:09:34PM +0100, Jessica Clarke wrote:
+> On 28 Jun 2024, at 17:19, Conor Dooley <conor@kernel.org> wrote:
 > >=20
-> > Signed-off-by: Guillaume Stols <gstols@baylibre.com>
+> > On Fri, Jun 28, 2024 at 05:37:06PM +0800, Yong-Xuan Wang wrote:
+> >> Add entries for the Svade and Svadu extensions to the riscv,isa-extens=
+ions
+> >> property.
+> >>=20
+> >> Signed-off-by: Yong-Xuan Wang <yongxuan.wang@sifive.com>
+> >> ---
+> >> .../devicetree/bindings/riscv/extensions.yaml | 28 +++++++++++++++++++
+> >> 1 file changed, 28 insertions(+)
+> >>=20
+> >> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b=
+/Documentation/devicetree/bindings/riscv/extensions.yaml
+> >> index 468c646247aa..c3d053ce7783 100644
+> >> --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
+> >> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
+> >> @@ -153,6 +153,34 @@ properties:
+> >>             ratified at commit 3f9ed34 ("Add ability to manually trigg=
+er
+> >>             workflow. (#2)") of riscv-time-compare.
+> >>=20
+> >> +        - const: svade
+> >> +          description: |
+> >> +            The standard Svade supervisor-level extension for SW-mana=
+ged PTE A/D
+> >> +            bit updates as ratified in the 20240213 version of the pr=
+ivileged
+> >> +            ISA specification.
+> >> +
+> >> +            Both Svade and Svadu extensions control the hardware beha=
+vior when
+> >> +            the PTE A/D bits need to be set. The default behavior for=
+ the four
+> >> +            possible combinations of these extensions in the device t=
+ree are:
+> >> +            1) Neither Svade nor Svadu present in DT =3D>
+> >=20
+> >>                It is technically
+> >> +               unknown whether the platform uses Svade or Svadu. Supe=
+rvisor may
+> >> +               assume Svade to be present and enabled or it can disco=
+ver based
+> >> +               on mvendorid, marchid, and mimpid.
+> >=20
+> > I would just write "for backwards compatibility, if neither Svade nor
+> > Svadu appear in the devicetree the supervisor may assume Svade to be
+> > present and enabled". If there are systems that this behaviour causes
+> > problems for, we can deal with them iff they appear. I don't think
+> > looking at m*id would be sufficient here anyway, since the firmware can
+> > have an impact. I'd just drop that part entirely.
 >=20
-> So b4 interestingly picked up both acks from Rob and Conor on this
-> one but I can't figure out where Conor's one came from so I've dropped
-> it.
+> Older QEMU falls into that category, as do Bluespec=E2=80=99s soft-cores =
+(which
+> ours are derived from at Cambridge). I feel that, in reality, one
+> should be prepared to handle both trapping and atomic updates if
+> writing an OS that aims to support case 1.
 
-My copy of b4 (0.14-dev-d4707) doesn't create one for me:
-/stuff/b4/b4.sh shazam -s -S -t shazam 20240628-cleanup-ad7606-v2-2-96e02f9=
-0256d@baylibre.com
-Grabbing thread from lore.kernel.org/all/20240628-cleanup-ad7606-v2-2-96e02=
-f90256d@baylibre.com/t.mbox.gz
-Checking for newer revisions
-Grabbing search results from lore.kernel.org
-Analyzing 20 messages in the thread
-Looking for additional code-review trailers on lore.kernel.org
-Checking attestation on all messages, may take a moment...
----
-  =E2=9C=93 [PATCH v2 1/10] dt-bindings: iio: adc: adi,ad7606: add missing =
-datasheet link
-    + Acked-by: Rob Herring (Arm) <robh@kernel.org> (=E2=9C=93 DKIM/kernel.=
-org)
-    + Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-  =E2=9C=93 [PATCH v2 2/10] dt-bindings: iio: adc: adi,ad7606: comment and =
-sort the compatible names
-    + Acked-by: Rob Herring (Arm) <robh@kernel.org> (=E2=9C=93 DKIM/kernel.=
-org)
-    + Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-  =E2=9C=93 [PATCH v2 3/10] dt-bindings: iio: adc: adi,ad7606: normalize te=
-xtwidth
-    + Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-  =E2=9C=93 [PATCH v2 4/10] dt-bindings: iio: adc: adi,ad7606: improve desc=
-riptions
-    + Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-  =E2=9C=93 [PATCH v2 5/10] dt-bindings: iio: adc: adi,ad7606: add supply p=
-roperties
-    + Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-  =E2=9C=93 [PATCH v2 6/10] dt-bindings: iio: adc: adi,ad7606: fix example
-    + Acked-by: Conor Dooley <conor.dooley@microchip.com> (=E2=9C=93 DKIM/k=
-ernel.org)
-    + Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-  =E2=9C=93 [PATCH v2 7/10] dt-bindings: iio: adc: adi,ad7606: add conditio=
-ns
-    + Reviewed-by: Conor Dooley <conor.dooley@microchip.com> (=E2=9C=93 DKI=
-M/kernel.org)
-    + Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-  =E2=9C=93 [PATCH v2 8/10] iio: adc: ad7606: fix oversampling gpio array
-    + Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-  =E2=9C=93 [PATCH v2 9/10] iio: adc: ad7606: fix standby gpio state to mat=
-ch the documentation
-    + Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-  =E2=9C=93 [PATCH v2 10/10] iio: adc: ad7606: switch mutexes to scoped_gua=
-rd
-    + Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-  ---
-  =E2=9C=93 Signed: DKIM/baylibre-com.20230601.gappssmtp.com (From: gstols@=
-baylibre.com)
----
-Total patches: 10
----
- Base: using specified base-commit 07d4d0bb4a8ddcc463ed599b22f510d5926c2495
-Applying: dt-bindings: iio: adc: adi,ad7606: add missing datasheet link
-Applying: dt-bindings: iio: adc: adi,ad7606: comment and sort the compatibl=
-e names
-Applying: dt-bindings: iio: adc: adi,ad7606: normalize textwidth
-Applying: dt-bindings: iio: adc: adi,ad7606: improve descriptions
-Applying: dt-bindings: iio: adc: adi,ad7606: add supply properties
-Applying: dt-bindings: iio: adc: adi,ad7606: fix example
-Applying: dt-bindings: iio: adc: adi,ad7606: add conditions
-Applying: iio: adc: ad7606: fix oversampling gpio array
-Applying: iio: adc: ad7606: fix standby gpio state to match the documentati=
-on
-Applying: iio: adc: ad7606: switch mutexes to scoped_guard
+I guess that is actually what we should put in then, to use an
+approximation of your wording, something like
+	Neither Svade nor Svadu present in DT =3D> Supervisor software should be
+	prepared to handle either hardware updating of the PTE A/D bits or page
+	faults when they need updated
+?
 
-tbh, I'm not actually sure why I didn't ack those patches on v1, they
-were all pretty trivial...
-
---gveNh7Lwv1kh1y0C
+--VstelAVsSG0eBIgw
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZoFk6AAKCRB4tDGHoIJi
-0iCnAP9zN8Iaxw1TB9IzX2VNxydUR9jq65UV0PytiU1hFDgMQQEApfnWKy+/gsil
-FNtAR3ceR9p8FnAxjYeK0lPqkRL+PAQ=
-=m4Qw
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZoFnHQAKCRB4tDGHoIJi
+0ndoAP93+tDDtA9REzbCkIEltVoxfZckvSQWizwwYg211bfpVwEAr32+ixQYgkK/
+rHueZ5hB231ndT82y+Y9rNscAzTMUwA=
+=tz48
 -----END PGP SIGNATURE-----
 
---gveNh7Lwv1kh1y0C--
+--VstelAVsSG0eBIgw--
 
