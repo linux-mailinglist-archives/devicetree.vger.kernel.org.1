@@ -1,84 +1,85 @@
-Return-Path: <devicetree+bounces-81680-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81681-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D592591D07D
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 10:16:53 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id F02C591D08A
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 10:26:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 84CD4281BFA
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 08:16:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 98B641F21860
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 08:26:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94BE63D388;
-	Sun, 30 Jun 2024 08:16:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19F4912C475;
+	Sun, 30 Jun 2024 08:25:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="hBAAlkwj";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="hCjwWtkc"
+	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="gVN/sQtx";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="vz/CQ8ja"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout8-smtp.messagingengine.com (fout8-smtp.messagingengine.com [103.168.172.151])
+Received: from fhigh4-smtp.messagingengine.com (fhigh4-smtp.messagingengine.com [103.168.172.155])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2E0E39FD8
-	for <devicetree@vger.kernel.org>; Sun, 30 Jun 2024 08:16:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.151
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F48512C473
+	for <devicetree@vger.kernel.org>; Sun, 30 Jun 2024 08:25:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.155
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719735409; cv=none; b=rz9oFDy2OD8TYflIXJyn2+lK3pSL9RebWyu/GNBMNrTlyNmhUsGHWX2mv3eCXDIm2LciF3g+xFINapaEBDEQCbJ36mrtXmdLCdNpGIHWyK3TipcVYU38dkF/DF0r4qvhEfrxh3p4Pwp5jAmaDau2WHb+1B5w3HDUNenHNSnvG/Q=
+	t=1719735959; cv=none; b=osbAjgnYf9xyX7Ugm60nQFvgL3GFtYP3LTVMOUFXXJBOwMSjWmA1IEkYOmvkrLt9YPwlClGjKaU1C8MkCC6O108LUWwzwLBFzDBO993Fn1AN24q2tVTGh9jZ+eihZCNQIMPKdMmkZk6WUOZP6+OCO0bHkTQc2iBk9JbC0+Z9lFE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719735409; c=relaxed/simple;
-	bh=3rks19BU69J660UUpP8UicwKVhl2DNmUnOUPCS2SooQ=;
+	s=arc-20240116; t=1719735959; c=relaxed/simple;
+	bh=qj9uKYkme4UoB2bIR2exjcUlA7O5YSX5QEXWNpW0gDU=;
 	h=MIME-Version:Message-Id:In-Reply-To:References:Date:From:To:Cc:
-	 Subject:Content-Type; b=q6e+UFqC+brQoxzI0Q2MPpdWIvZXPCb5t/LNwPUv2xqrTu2OlzhOfZzHv40pww27ro/Cif+w21ohbReRiXAhfGJfpjHn/krHZQqprqDxD3eKqSSFrmNjH+H1o3dXMf6ZgfO5ZpK1J81/BCHIMF/jUAnRtI+hNSrh/H3xY0Hu42A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=hBAAlkwj; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=hCjwWtkc; arc=none smtp.client-ip=103.168.172.151
+	 Subject:Content-Type; b=vEDypfSCWtyAhqNUzJLmyowBTrGcilk1ntuX9YpTGzppgqpDdrrRGE6Nb42yGy1gaJb5q2Nl+oArv114+LFTD3wcJX1DkNQlvRuT49YPLXFDUCquMDX8p2tQFUdZJs2p6krWD3oLcNXf9YIO52w1UU8YTiOIUkx3U661hPKdcS0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=gVN/sQtx; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=vz/CQ8ja; arc=none smtp.client-ip=103.168.172.155
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
 Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-	by mailfout.nyi.internal (Postfix) with ESMTP id B1027138029E;
-	Sun, 30 Jun 2024 04:16:46 -0400 (EDT)
+	by mailfhigh.nyi.internal (Postfix) with ESMTP id 715DB1140242;
+	Sun, 30 Jun 2024 04:25:56 -0400 (EDT)
 Received: from imap47 ([10.202.2.97])
-  by compute5.internal (MEProxy); Sun, 30 Jun 2024 04:16:46 -0400
+  by compute5.internal (MEProxy); Sun, 30 Jun 2024 04:25:56 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
 	 h=cc:cc:content-type:content-type:date:date:from:from
 	:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to; s=fm2; t=1719735406; x=
-	1719821806; bh=Zj5cTqAbQXZZPzHkl1b0qvz5sB+DToZiKbYJ/h2vOHg=; b=h
-	BAAlkwj14rJH+n2JlouQI1BNdEO0QNgS4rXrvz7Rx13BF6DWmndtuk5mtmQU7ULP
-	kkmmbWNqidlDVuUpczeLNEy0bQSytOjIwNNyi6quU6+byXX8MVEFmjMybRwlu9Jg
-	yCN/cvL2EiHK/qB5Ui/5Hi9chOGxGoziD9Jae3QESqHlk//Q3gqSzd1CO0YUk/Jl
-	5V4AB6rZv9cXT+lqIN3FQ1l+rGhbfEj9Fax0ZIJCnTSYFu37MU98r/mynkHecUg/
-	W7IR+JaZoVA+qMwege1B+ejSBOoK40y2CLFqn83lFdcAxnjhFPhd7X0Qw9t/HVrT
-	bnOuuZ+XrHS2JsalyxsMQ==
+	:reply-to:subject:subject:to:to; s=fm2; t=1719735956; x=
+	1719822356; bh=pW9Aa+3i2zPjyFu4FQQGq4TbYskCox/E7WIXJmfW14w=; b=g
+	VN/sQtxkabG/J+nJvwejiU5XFWveu4yr2MKixDkd+SHKu9jKV7wjtZL2mM0uzeY9
+	TSAPFohTTB2MF4EWtp6m2xy61669DL7XZr9FFhcbBnDfPYa4BVQPHFL0sWVToBrv
+	29vR/d2+3poZy4MpY71bCMpfyTP5SeDmPIIu7a8Qxy5y1evRAjcfRfC4q7BzYAxn
+	Ec2WWi19o7ljc+KltA1sJTEsaWwaXA2RJhaGBkm5UBQhd6/kQ3FGGAeGACadinNR
+	Uf1ukm0DhIE3Lv48u+HXCIO9F9rSGgejr8UXEBzYclGfhCf4ZZM8rYjOKQrbd7F5
+	Qnja72bHo7CLlrEC0Dfmg==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
 	messagingengine.com; h=cc:cc:content-type:content-type:date:date
 	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
 	:message-id:mime-version:references:reply-to:subject:subject:to
 	:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-	fm2; t=1719735406; x=1719821806; bh=Zj5cTqAbQXZZPzHkl1b0qvz5sB+D
-	ToZiKbYJ/h2vOHg=; b=hCjwWtkcYSmYkKwNxdU+KnA5EkV84adgDT+1IJp/YswI
-	OQd1gjIUBfQLI/bA3fhj9p6GYKnAjrC7UchhDZUbcGTNT3Mu9NvIaHXmXr6+N3tU
-	zTcU25+ViKCpwOYe6DBOfKJH7IsPcxZ1HzNzRHS/Dsx002fUiwEBKfAMMzKrmbC3
-	9PO/DVlMMpJmmvceQH0hXJLbSDa9rV9DcmtZC7+FkkNpNtPHsrWZjhEYBFjEHLvr
-	nX/ehpwOZx5Drk6BO0sVanFOtNKC/Mg6sVJeurqVQvfLNSZy+CWUxw6/3WHj6ZKR
-	Hkye0L1vcn66NE1HWHXAcNfAFAXOlnEuwoPQjM474g==
-X-ME-Sender: <xms:bRSBZghvsU3kQPPizHirhYDTw-P7s-K1_Y57jJv7w8g0IXxnrciybQ>
-    <xme:bRSBZpCSoxETrIuZk3w0HweNxBisfP_3DM2splNM25XuUIrwolfkgDAoGHRh4Ak_P
-    Ihqb-VvvJeLr6UA-Q>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddruddugddtudcutefuodetggdotefrodftvf
+	fm2; t=1719735956; x=1719822356; bh=pW9Aa+3i2zPjyFu4FQQGq4TbYskC
+	ox/E7WIXJmfW14w=; b=vz/CQ8jaSGmEQ1RRzZYc+sZJwzn2Eq/nhuBhV5IsMn67
+	JSC1XYeOS+IkrJrtjQL6E+Rez43DuXd5EZXxFn50B/ZjnnOXpANLebWHeZl3EjRD
+	6ZMenI3X4UIHd2hIMnLQm4IVVyW1iFY3qV3mu+Gi40MbUvAswSuVYiSs9zMLoj08
+	2vhu5sxGjV8LTwc3MZptEDHgCAr9wRmgvMT4MKJv4fJ+/IPlmiHG+2s/YagVaUSs
+	i+T0xDcj+nLr+3Fv2NwMTOfwJimoXLbEpnfDqFeSsbvD4WqwxT3CWmNrUaOz302M
+	bivfCQ5mWgTIeKIKE5Erpzf9sFfEWA+VmfUVHEAiDg==
+X-ME-Sender: <xms:lBaBZtndEik-5h1rt6LBZwIBWf36IZQMbyPfDcZHE7c1FCKgCxX-Dg>
+    <xme:lBaBZo2HW2rwpCVPtmZLcIC7Erpj5ghhatoCvEDgVFMjiqBK8IZ4J-v_EWw-STAqw
+    rKwoX1BZqoppuL9HQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddruddugddtfecutefuodetggdotefrodftvf
     curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
     uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
     fjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdfthigr
     nhcuhggrlhhklhhinhdfuceorhihrghnsehtvghsthhtohgrshhtrdgtohhmqeenucggtf
-    frrghtthgvrhhnpeehvdevieegudejueefgeffhefhffevudfhieejgfdtffetlefgteeu
-    veeiudeijeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhroh
-    hmpehrhigrnhesthgvshhtthhorghsthdrtghomh
-X-ME-Proxy: <xmx:bRSBZoEfc2xQutyxfMMvbnOaJE-1JRhNfyynYkvNTpjvf4nLsYlcJA>
-    <xmx:bRSBZhS8IcnyTpDdRxbLAu2Jga-wG9dn5_ChXqG6Z_nQ-YKZZQM3VQ>
-    <xmx:bRSBZtzQCukG2pYCJMp8PtxHkDeq86m-psvjlUCwbMmX6POXiYvzHg>
-    <xmx:bRSBZv4x98S6jnupxGZhunlY1A8KEFNQgWqS4EmqYh9h1VWfyPVfrw>
-    <xmx:bhSBZlC6K_fSil5Y6Ub-5GdwA5ytPTvpm1F5MmxFQoUS63I1BRBM4Sqn>
+    frrghtthgvrhhnpeekledvtdffudejfeefvdeuudeugeeitdejheevveehgeektdelteek
+    tddukeehveenucffohhmrghinhepuggvvhhitggvthhrvggvrdhorhhgnecuvehluhhsth
+    gvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprhihrghnsehtvghsthht
+    ohgrshhtrdgtohhm
+X-ME-Proxy: <xmx:lBaBZjq9HbiMQzQ2ry6-ByKPFQOp74hjAOQPcORtpVmuLohBe19s2A>
+    <xmx:lBaBZtkZBx8oFJ0-7TnTu_-F9TC_OsQ1UIg8Zcf_ej7cJy5dz8YfYA>
+    <xmx:lBaBZr27jtX3tPnLCUMlptxvTCCbT54y6oS6W4XdELt7sV6igQ5D2A>
+    <xmx:lBaBZstZlKPQWlRF-hh9gCkm8TUP-B_B97asI7tQ-E9ssVogOyoysw>
+    <xmx:lBaBZi2TXUTTvIY4-obFb6trojRQeI2JMyzCvIMLpMxSvqFgdNqcBuRN>
 Feedback-ID: idc0145fc:Fastmail
 Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id A81D2A60078; Sun, 30 Jun 2024 04:16:45 -0400 (EDT)
+	id EDD6CA60078; Sun, 30 Jun 2024 04:25:55 -0400 (EDT)
 X-Mailer: MessagingEngine.com Webmail Interface
 User-Agent: Cyrus-JMAP/3.11.0-alpha0-538-g1508afaa2-fm-20240616.001-g1508afaa
 Precedence: bulk
@@ -87,60 +88,58 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-Id: <8b4519fc-0fba-48fe-bfb4-318818b47a65@app.fastmail.com>
-In-Reply-To: <20240627-muskox-of-nonconcrete-art-e4bcfd@houat>
+Message-Id: <16c6f72a-fe41-4975-9c57-8c0953397171@app.fastmail.com>
+In-Reply-To: <20240626-duo-outage-1601a51239b9@spud>
 References: <20240626112005.248576-1-ryan@testtoast.com>
- <20240626112005.248576-2-ryan@testtoast.com>
- <a4d33da3-2a2a-48ce-874d-95a5889f2f1f@linaro.org>
- <20240626-loyal-squirrel-of-charisma-4e784f@houat>
- <20240626-procreate-goldmine-800179f909e9@spud>
- <20240627-muskox-of-nonconcrete-art-e4bcfd@houat>
-Date: Sun, 30 Jun 2024 20:16:24 +1200
+ <20240626112005.248576-4-ryan@testtoast.com>
+ <20240626-duo-outage-1601a51239b9@spud>
+Date: Sun, 30 Jun 2024 20:25:26 +1200
 From: "Ryan Walklin" <ryan@testtoast.com>
-To: "Maxime Ripard" <mripard@kernel.org>, "Conor Dooley" <conor@kernel.org>
-Cc: "Neil Armstrong" <neil.armstrong@linaro.org>,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+To: "Conor Dooley" <conor@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ "Neil Armstrong" <neil.armstrong@linaro.org>,
  "Jessica Zhang" <quic_jesszhan@quicinc.com>,
  "Sam Ravnborg" <sam@ravnborg.org>, "David Airlie" <airlied@gmail.com>,
  "Daniel Vetter" <daniel@ffwll.ch>,
  "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>,
+ "Maxime Ripard" <mripard@kernel.org>,
  "Thomas Zimmermann" <tzimmermann@suse.de>, "Rob Herring" <robh@kernel.org>,
  "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
  "Conor Dooley" <conor+dt@kernel.org>,
  "Hironori KIKUCHI" <kikuchan98@gmail.com>,
  "Chris Morgan" <macroalpha82@gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: display: panel: Rename WL-355608-A8 panel
+Subject: Re: [PATCH 3/3] dt-bindings: display: panel: correct Anbernic RG35XX panel
+ example
 Content-Type: text/plain
 
-On Fri, 28 Jun 2024, at 5:59 AM, Maxime Ripard wrote:
-> On Wed, Jun 26, 2024 at 04:34:11PM GMT, Conor Dooley wrote:
->> On Wed, Jun 26, 2024 at 05:04:19PM +0200, Maxime Ripard wrote:
->> > On Wed, Jun 26, 2024 at 02:25:54PM GMT, Neil Armstrong wrote:
->> > > Can it be more specific ? because there's a lot of rg35xx defined in bindings:
->> > >  anbernic,rg351m
->> > >  anbernic,rg351v
->> > >  anbernic,rg353p
->> > >  anbernic,rg353ps
->> > >  anbernic,rg353v
->> > >  anbernic,rg353vs
->> > >  anbernic,rg35xx-2024
->> > >  anbernic,rg35xx-plus
->> > >  anbernic,rg35xx-h
+Hi Conor,
 
-Just to note only the three rg35xx-* devices use this particular panel.
+On Thu, 27 Jun 2024, at 3:38 AM, Conor Dooley wrote:
+> On Wed, Jun 26, 2024 at 11:17:50PM +1200, Ryan Walklin wrote:
+>> make dt_bindings_check reports that sck-gpios and num-chipselects are
+>> required for spi nodes, therefore add these to the example.
 
->> > 
->> > Yeah, if we have an identified model name, we should probably use that,
->> > with a comment that we couldn't figure out what the vendor was and thus
->> > went for anbernic.
->> 
->> What's wrong with using the wl name that already exists as the model?
->> Using rg<whatever>-panel is total invention on our part, especially
->> seeing as the commit message says that multiple models can use it.
->
-> Yeah, that makes sense, sorry for the noise
->
-Thanks both for the further feedback, agreed logical to use the device vendor and panel serial number, ie "anbernic,wl-355608-a8". Will post a V2 with a comment to that effect.
+
+> huh, are you sure it does? It doesn't for me...
+
+With:
+make dt_binding_check -j32 -s -W 2
+
+I get the following output:
+
+/home/ryan/Projects/Develop/RG35XX+/kernel/linux/Documentation/devicetree/bindings/display/panel/anbernic,wl-355608-a8.example.dtb: spi: 'num-chipselects' is a required property
+	from schema $id: http://devicetree.org/schemas/spi/spi-gpio.yaml#
+/home/ryan/Projects/Develop/RG35XX+/kernel/linux/Documentation/devicetree/bindings/display/panel/anbernic,wl-355608-a8.example.dtb: spi: 'sck-gpios' is a required property
+	from schema $id: http://devicetree.org/schemas/spi/spi-gpio.yaml#
+
+The relevant section from spi-gpio.yaml seems to be:
+
+required:
+  - compatible
+  - num-chipselects
+  - sck-gpios
+
+I am happy to leave this out if a simpler example is desired, but alternately if the chipselects/sck-gpios should stay then I would suggest a better example would include the mosi/miso/cs GPIOs as well which would make the example functional.
 
 Regards,
 
