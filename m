@@ -1,147 +1,138 @@
-Return-Path: <devicetree+bounces-81681-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81682-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F02C591D08A
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 10:26:04 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A840791D08B
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 10:27:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 98B641F21860
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 08:26:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 806B11C20A4B
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 08:27:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19F4912C475;
-	Sun, 30 Jun 2024 08:25:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BE1312C486;
+	Sun, 30 Jun 2024 08:27:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="gVN/sQtx";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="vz/CQ8ja"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="GSCRgTX4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh4-smtp.messagingengine.com (fhigh4-smtp.messagingengine.com [103.168.172.155])
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F48512C473
-	for <devicetree@vger.kernel.org>; Sun, 30 Jun 2024 08:25:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.155
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E280E7B3FE;
+	Sun, 30 Jun 2024 08:27:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719735959; cv=none; b=osbAjgnYf9xyX7Ugm60nQFvgL3GFtYP3LTVMOUFXXJBOwMSjWmA1IEkYOmvkrLt9YPwlClGjKaU1C8MkCC6O108LUWwzwLBFzDBO993Fn1AN24q2tVTGh9jZ+eihZCNQIMPKdMmkZk6WUOZP6+OCO0bHkTQc2iBk9JbC0+Z9lFE=
+	t=1719736062; cv=none; b=CNo4MFirPY61jlzU4SE9P0kvQdIfwJ6hQZQZyVWeCTZ+i07lSzuS+q1T/gpKM+DUr22M+vs+EZl45R4Hz+DlMajVO0Ke7uxph7OZewQgx95R2psdibzF/Bg3qCnDdF7H/QfTe7tdDVjypLJk+gFNmuqwnMBVGoTXAEAnUYUSlh0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719735959; c=relaxed/simple;
-	bh=qj9uKYkme4UoB2bIR2exjcUlA7O5YSX5QEXWNpW0gDU=;
-	h=MIME-Version:Message-Id:In-Reply-To:References:Date:From:To:Cc:
-	 Subject:Content-Type; b=vEDypfSCWtyAhqNUzJLmyowBTrGcilk1ntuX9YpTGzppgqpDdrrRGE6Nb42yGy1gaJb5q2Nl+oArv114+LFTD3wcJX1DkNQlvRuT49YPLXFDUCquMDX8p2tQFUdZJs2p6krWD3oLcNXf9YIO52w1UU8YTiOIUkx3U661hPKdcS0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=gVN/sQtx; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=vz/CQ8ja; arc=none smtp.client-ip=103.168.172.155
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-	by mailfhigh.nyi.internal (Postfix) with ESMTP id 715DB1140242;
-	Sun, 30 Jun 2024 04:25:56 -0400 (EDT)
-Received: from imap47 ([10.202.2.97])
-  by compute5.internal (MEProxy); Sun, 30 Jun 2024 04:25:56 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
-	 h=cc:cc:content-type:content-type:date:date:from:from
-	:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to; s=fm2; t=1719735956; x=
-	1719822356; bh=pW9Aa+3i2zPjyFu4FQQGq4TbYskCox/E7WIXJmfW14w=; b=g
-	VN/sQtxkabG/J+nJvwejiU5XFWveu4yr2MKixDkd+SHKu9jKV7wjtZL2mM0uzeY9
-	TSAPFohTTB2MF4EWtp6m2xy61669DL7XZr9FFhcbBnDfPYa4BVQPHFL0sWVToBrv
-	29vR/d2+3poZy4MpY71bCMpfyTP5SeDmPIIu7a8Qxy5y1evRAjcfRfC4q7BzYAxn
-	Ec2WWi19o7ljc+KltA1sJTEsaWwaXA2RJhaGBkm5UBQhd6/kQ3FGGAeGACadinNR
-	Uf1ukm0DhIE3Lv48u+HXCIO9F9rSGgejr8UXEBzYclGfhCf4ZZM8rYjOKQrbd7F5
-	Qnja72bHo7CLlrEC0Dfmg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-type:content-type:date:date
-	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-	:message-id:mime-version:references:reply-to:subject:subject:to
-	:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-	fm2; t=1719735956; x=1719822356; bh=pW9Aa+3i2zPjyFu4FQQGq4TbYskC
-	ox/E7WIXJmfW14w=; b=vz/CQ8jaSGmEQ1RRzZYc+sZJwzn2Eq/nhuBhV5IsMn67
-	JSC1XYeOS+IkrJrtjQL6E+Rez43DuXd5EZXxFn50B/ZjnnOXpANLebWHeZl3EjRD
-	6ZMenI3X4UIHd2hIMnLQm4IVVyW1iFY3qV3mu+Gi40MbUvAswSuVYiSs9zMLoj08
-	2vhu5sxGjV8LTwc3MZptEDHgCAr9wRmgvMT4MKJv4fJ+/IPlmiHG+2s/YagVaUSs
-	i+T0xDcj+nLr+3Fv2NwMTOfwJimoXLbEpnfDqFeSsbvD4WqwxT3CWmNrUaOz302M
-	bivfCQ5mWgTIeKIKE5Erpzf9sFfEWA+VmfUVHEAiDg==
-X-ME-Sender: <xms:lBaBZtndEik-5h1rt6LBZwIBWf36IZQMbyPfDcZHE7c1FCKgCxX-Dg>
-    <xme:lBaBZo2HW2rwpCVPtmZLcIC7Erpj5ghhatoCvEDgVFMjiqBK8IZ4J-v_EWw-STAqw
-    rKwoX1BZqoppuL9HQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddruddugddtfecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdfthigr
-    nhcuhggrlhhklhhinhdfuceorhihrghnsehtvghsthhtohgrshhtrdgtohhmqeenucggtf
-    frrghtthgvrhhnpeekledvtdffudejfeefvdeuudeugeeitdejheevveehgeektdelteek
-    tddukeehveenucffohhmrghinhepuggvvhhitggvthhrvggvrdhorhhgnecuvehluhhsth
-    gvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprhihrghnsehtvghsthht
-    ohgrshhtrdgtohhm
-X-ME-Proxy: <xmx:lBaBZjq9HbiMQzQ2ry6-ByKPFQOp74hjAOQPcORtpVmuLohBe19s2A>
-    <xmx:lBaBZtkZBx8oFJ0-7TnTu_-F9TC_OsQ1UIg8Zcf_ej7cJy5dz8YfYA>
-    <xmx:lBaBZr27jtX3tPnLCUMlptxvTCCbT54y6oS6W4XdELt7sV6igQ5D2A>
-    <xmx:lBaBZstZlKPQWlRF-hh9gCkm8TUP-B_B97asI7tQ-E9ssVogOyoysw>
-    <xmx:lBaBZi2TXUTTvIY4-obFb6trojRQeI2JMyzCvIMLpMxSvqFgdNqcBuRN>
-Feedback-ID: idc0145fc:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id EDD6CA60078; Sun, 30 Jun 2024 04:25:55 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.11.0-alpha0-538-g1508afaa2-fm-20240616.001-g1508afaa
+	s=arc-20240116; t=1719736062; c=relaxed/simple;
+	bh=mEH+UpZfHB0izTrzQvX9YTRSwDv76x2qO7S3xISkzBU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=nkOsMSLSwRXE2ij0zvXUWb4tCFOBmDt+r4L4R2Kq4zdgVe4gsFwD6yc11vhYrIRqHTiTZd2ovZnqW/vJZ+XJy9qWywySJvOpRE1A6NPReCKajIn+iB8tX9eWTI2ZS4Unbhj/8Z0ha0vjpsYtMIKVuln7oxpL9haqGPs5S5uOE1g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=GSCRgTX4; arc=none smtp.client-ip=212.227.17.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
+	s=s31663417; t=1719736014; x=1720340814; i=wahrenst@gmx.net;
+	bh=nsatQbMwWazHWjCGtPZLKlMFGJm60bL4DCX/RYQYfww=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=GSCRgTX4Am+7nOm4ncdp9J/Y7GRlnUM6LXDeq2RU2gUd3caDn7gWMgXTWxb/+TD4
+	 eUkrjpC8L1ttI2AFHTIUUgvoBcfIYlJWfFJwu5Jj/4xlph3YT5iou9i5p6/8IRRpJ
+	 /3ct08Z0BKZz/nI7HIJoZZsQ/z+n1u/5T4JvMcaTourJFhO8jglwFhjGhqiNg/kaZ
+	 ma+gtHhwgcuTsxrqO+8he4W9MUaJmR1Znq+5SPOL3sRCWA0ta7dA7Dc5+ZwnuNVVf
+	 FOTR9pRkBnPaSu6+mxPHokRI1YXLLeq+dK/L/HHdg8UbLwTBTpGUrUtKwjsnT6BQ6
+	 GEq6/jBpaXlRggxh2w==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.1.127] ([37.4.248.43]) by mail.gmx.net (mrgmx104
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1MVeI8-1spQu947xU-00UhCM; Sun, 30
+ Jun 2024 10:26:54 +0200
+Message-ID: <c34d4c60-da28-40e9-b86e-41bf8cd71b24@gmx.net>
+Date: Sun, 30 Jun 2024 10:26:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-Id: <16c6f72a-fe41-4975-9c57-8c0953397171@app.fastmail.com>
-In-Reply-To: <20240626-duo-outage-1601a51239b9@spud>
-References: <20240626112005.248576-1-ryan@testtoast.com>
- <20240626112005.248576-4-ryan@testtoast.com>
- <20240626-duo-outage-1601a51239b9@spud>
-Date: Sun, 30 Jun 2024 20:25:26 +1200
-From: "Ryan Walklin" <ryan@testtoast.com>
-To: "Conor Dooley" <conor@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- "Neil Armstrong" <neil.armstrong@linaro.org>,
- "Jessica Zhang" <quic_jesszhan@quicinc.com>,
- "Sam Ravnborg" <sam@ravnborg.org>, "David Airlie" <airlied@gmail.com>,
- "Daniel Vetter" <daniel@ffwll.ch>,
- "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>,
- "Maxime Ripard" <mripard@kernel.org>,
- "Thomas Zimmermann" <tzimmermann@suse.de>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>,
- "Hironori KIKUCHI" <kikuchan98@gmail.com>,
- "Chris Morgan" <macroalpha82@gmail.com>
-Subject: Re: [PATCH 3/3] dt-bindings: display: panel: correct Anbernic RG35XX panel
- example
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/5] dt-bindings: net: wireless: brcm4329-fmac: add
+ clock description for AP6275P Wi-Fi device
+To: Jacobe Zang <jacobe.zang@wesion.com>, robh@kernel.org,
+ krzk+dt@kernel.org, heiko@sntech.de, kvalo@kernel.org, davem@davemloft.net,
+ edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, conor+dt@kernel.org
+Cc: efectn@protonmail.com, dsimic@manjaro.org, jagan@edgeble.ai,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ arend@broadcom.com, linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+ megi@xff.cz, duoming@zju.edu.cn, bhelgaas@google.com,
+ minipli@grsecurity.net, brcm80211@lists.linux.dev,
+ brcm80211-dev-list.pdl@broadcom.com, nick@khadas.com
+References: <20240630073605.2164346-1-jacobe.zang@wesion.com>
+ <20240630073605.2164346-3-jacobe.zang@wesion.com>
+Content-Language: en-US
+From: Stefan Wahren <wahrenst@gmx.net>
+In-Reply-To: <20240630073605.2164346-3-jacobe.zang@wesion.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:UsRdSvMT7LvqkBgf2MMlJCt+oUY1cPrdOCam4+DWocwBgRUGkOR
+ umY/KuFxXQuMBWvZsS5NdefexWZFw8/pt+cTQv67MH9xqR/BXA+SUnkmyjTihU3ZnaxAQIe
+ aCIskfUAQYpGN3YLc84ogq6vAiA5whIEv1r43hSsgZzzQPr7czy5M+Y79dJ7/nBr4MXtCuw
+ of0ETPM/bJYTY/pLEoljg==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:jLcFPFMzJLY=;HtTlBMAMOmLTFxw4iUjwe9NTF5C
+ pyl7n3ID/f82VtW1rUN6slUucWjkEp3ojdLF0Tl276NFePfzUUzXnkI+oPZdGXLBQQ7lmL7gM
+ ndLqvl15lozGNKqwHwcJKBU+9quLwf49NtLNKe01o/hnXOfyy8wtf7P+Eo7r/+4rdf5RCqMZL
+ Po55mXOZ2dvLzO+ibimw5RIG4faUhdjYPyty8dQsGBuzKWG9Usz+QHWkTlrBPD79cJl+GSpyp
+ 5WQpZ/9cHqJQxxjaDZnMUYR5ihbk9Nsec0J6PeEVWSzd+UM4CACmzMkr6gTfCPnLNbpaFtZCS
+ e6y8D6ahAahN12n7dyV5olua2EOuVsPEPpL0AmwvqXAxx/kb9T4ZWkjtE+IQHM0d5rYcbTvL+
+ 0mfd54YDYQafj7H+6EFdEDorGu9ESfLu6+Hyl/SerpmfGpLJIUl9hdmmOfLxInobmjSnpurEX
+ Nbj75UWBWW4uEJfQiL0IsEPjv99wnps4yFqfvvF0pfdO2KYOZ6fsqKP29hadr03UWE+THx3Um
+ /52APqAAxlJmzt07J/7tZ76xWMmXb7tasF7/1jvmKXtMAY0Afm8owjkw/do5qeHJI3IIX0BsY
+ SmTCSYH1W7ZrIe/UQNEorlc6VNzQMVvZkVreOaYazC7PaqHDZQtZdnaezAhaKBy/4d2ZMRFWR
+ x9OdcWCvFoPXGhIOI61Cft7K7eVMu7to5TMv1RA9nWWJyvAeUAFEOAF1moyqU6GFy/iWcszJx
+ MTyAzcm4PQaz3gtTE7LzWy5X7bQvBQu0Vme/Omani5jxD0Xi1ufS85Yt2wjJbmRyVHbW6l8KO
+ uduLZSY3/mOE8pffpLrVFdp2NOb9m1zPOmNnBBM/dLN+w=
 
-Hi Conor,
+Hi Jacobe,
 
-On Thu, 27 Jun 2024, at 3:38 AM, Conor Dooley wrote:
-> On Wed, Jun 26, 2024 at 11:17:50PM +1200, Ryan Walklin wrote:
->> make dt_bindings_check reports that sck-gpios and num-chipselects are
->> required for spi nodes, therefore add these to the example.
+Am 30.06.24 um 09:36 schrieb Jacobe Zang:
+> Add clocks and clock-names for brcm4329-fmac.
+thanks for taking care of this. According to CYW43455 datasheet which is
+also covered by this binding, there are more clocks in the hardware
+design, so i suggest to reword subject and commit message that this
+patch only adds the low power clock.
+>
+> Signed-off-by: Jacobe Zang <jacobe.zang@wesion.com>
+> ---
+>   .../bindings/net/wireless/brcm,bcm4329-fmac.yaml          | 8 ++++++++
+>   1 file changed, 8 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329=
+-fmac.yaml b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-f=
+mac.yaml
+> index 2c2093c77ec9a..f542b60e44dc4 100644
+> --- a/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.y=
+aml
+> +++ b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.y=
+aml
+> @@ -122,6 +122,14 @@ properties:
+>         NVRAM. This would normally be filled in by the bootloader from p=
+latform
+>         configuration data.
+>
+> +  clocks:
+> +    items:
+> +      - description: Wi-Fi RTC clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: lpo
+> +
+>   required:
+>     - compatible
+>     - reg
 
-
-> huh, are you sure it does? It doesn't for me...
-
-With:
-make dt_binding_check -j32 -s -W 2
-
-I get the following output:
-
-/home/ryan/Projects/Develop/RG35XX+/kernel/linux/Documentation/devicetree/bindings/display/panel/anbernic,wl-355608-a8.example.dtb: spi: 'num-chipselects' is a required property
-	from schema $id: http://devicetree.org/schemas/spi/spi-gpio.yaml#
-/home/ryan/Projects/Develop/RG35XX+/kernel/linux/Documentation/devicetree/bindings/display/panel/anbernic,wl-355608-a8.example.dtb: spi: 'sck-gpios' is a required property
-	from schema $id: http://devicetree.org/schemas/spi/spi-gpio.yaml#
-
-The relevant section from spi-gpio.yaml seems to be:
-
-required:
-  - compatible
-  - num-chipselects
-  - sck-gpios
-
-I am happy to leave this out if a simpler example is desired, but alternately if the chipselects/sck-gpios should stay then I would suggest a better example would include the mosi/miso/cs GPIOs as well which would make the example functional.
-
-Regards,
-
-Ryan
 
