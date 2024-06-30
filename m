@@ -1,67 +1,62 @@
-Return-Path: <devicetree+bounces-81720-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81721-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BDA091D1F4
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 16:09:46 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76FE791D1F8
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 16:10:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9C62C1F21561
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 14:09:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0662AB20CCB
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 14:10:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58568149C65;
-	Sun, 30 Jun 2024 14:09:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EBAB149DFC;
+	Sun, 30 Jun 2024 14:10:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hIpyXJeD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iEKfl5pv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 282897E572;
-	Sun, 30 Jun 2024 14:09:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0647A7E572;
+	Sun, 30 Jun 2024 14:10:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719756579; cv=none; b=r2wYkIEbqxJsB8iWwaJP6jQHFC48/coFD2HDLwPHD9DC2q5Oq+0atxVuJZ7L1yWGDfsyhjeK7G/MnZu9zs+Ood6BexsvtBlFDFivRA9MpjUiD8p/Dvhqvgr8m+UdLs39jI0OWegCsKDCC/2zlBiBe50ppBlus1WpgNK0ewc6BDo=
+	t=1719756635; cv=none; b=IkXy8itWn5NIVWxLpGGwXIH+Pd4NhpTo+RdOFrXzQ0wNusiMbpJf4+svAQcESS7on860SXhuCMQLTGZJgO7Mp8EkVZpkDE6Jt2o15XLlVVjCyyY4s/P7NLAChJt1DvH14danlbZbCan3HrUaYvPSx5Jv9Gn1xKEG8Z+9Bveso6A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719756579; c=relaxed/simple;
-	bh=/xCCulK2LDvM6T4DDK3IaPZekIJJ7Gq+2ykmVNaX2YM=;
+	s=arc-20240116; t=1719756635; c=relaxed/simple;
+	bh=dtspAwYzEx4DvtvrzpeF1w+TJrhq8dDK8mk/R4JZVV8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WMPAxB2gcmQYmSFun+UbT/Kwa7uZt9pYFPcEQIn2FZB2RFPgnowxTxP3WTHFgBp+6vlRtmkcIW8eV45m+wccWU3TUiEFeki38X5Kn6QqG5gJGDphJsnb5fE2u7T8qIo4lgAwX8pZag4uRSXPx8KYCcTsj6+KUxYJ5OtUW/Ze6Ws=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hIpyXJeD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB1F4C2BD10;
-	Sun, 30 Jun 2024 14:09:35 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Pi4QewpRRGn5KTBrMPPA4GBjuf3ynzS5V0btHUAqZRWVhCyK/750m2PWHis6BuAl1YmtItw1xh/GIh47BImOXyVums+s7fiqaE9oIIUItUFFdunBUOirpJdJduy+fw+eqOjH5/HSLavCQCUHcJyEXFV0dtUvVizZfkkKLsaIjho=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iEKfl5pv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C113C2BD10;
+	Sun, 30 Jun 2024 14:10:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719756578;
-	bh=/xCCulK2LDvM6T4DDK3IaPZekIJJ7Gq+2ykmVNaX2YM=;
+	s=k20201202; t=1719756634;
+	bh=dtspAwYzEx4DvtvrzpeF1w+TJrhq8dDK8mk/R4JZVV8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hIpyXJeDjyxKeeaNxtVJX644yi5CswNk4QOjMTn10ZTy8z1URm5QSFhuiPgNw2BhM
-	 3rkcWZCDMNXDAjRewXOwPJmp/XooFrSToztonDGy77Mh6n25fc2TmQ65BCxE8Miet/
-	 OcWwcQgbQMo263ZlWTOwuxWs5mIwksFrbnFxNiHzV88do6qwZzHOknD66IVKY3GNQe
-	 ragVgaD33bELePr9TIUPh/g7LMsGZ/8oEGcwGWCc1M5Mlep1ngwSknu6qtSFHxrJso
-	 p5JP0fHbVDZtLXOf5KI2fggU9uw8qIpOu1AmEgHLyvNZ2wnse79/850GDego4u9XZz
-	 tk/wLpivtFLTg==
-Date: Sun, 30 Jun 2024 15:09:33 +0100
+	b=iEKfl5pvor6XMB1i9mZLzeT5v9kSWnKQv5OfaNC1vRP0g6vzFKdRf48C3O7CMYi71
+	 3zg9nohBI0CBuSa2QWO9E/zjds0QtujQY7ZzQcZ9ttT+cpBuUE6cON1u1zmAmbP+VC
+	 LWVYIAsOcresETeez8sItNbWKsHMtLI6D0LgNQ5OCyR0xCZZRB3ZK4PaBCLhaxJVke
+	 HCWfQf3KKamdBMbd72yCM/UPHvQkKP+ADaQgFDM4lDIrIWNK66UThmnlab/M1uQ8Ph
+	 m/TkYPS86mJjYLPMii1gXnYZPzMT6RR1un3ozIZQja4F+Hle6EbedgmiEX6jXAGkLp
+	 oYGx216M7Y9jg==
+Date: Sun, 30 Jun 2024 15:10:29 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Jessica Clarke <jrtc27@jrtc27.com>
-Cc: Yong-Xuan Wang <yongxuan.wang@sifive.com>,
-	LKML <linux-kernel@vger.kernel.org>,
-	linux-riscv <linux-riscv@lists.infradead.org>,
-	kvm-riscv@lists.infradead.org, kvm@vger.kernel.org,
-	Greentime Hu <greentime.hu@sifive.com>,
-	Vincent Chen <vincent.chen@sifive.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v6 2/4] dt-bindings: riscv: Add Svade and Svadu Entries
-Message-ID: <20240630-caboose-diameter-7e73bf86da49@spud>
-References: <20240628093711.11716-1-yongxuan.wang@sifive.com>
- <20240628093711.11716-3-yongxuan.wang@sifive.com>
- <20240628-clamp-vineyard-c7cdd40a6d50@spud>
- <402C3422-0248-4C0F-991E-C0C4BBB0FA72@jrtc27.com>
+To: Lorenzo Bianconi <lorenzo@kernel.org>
+Cc: linux-pci@vger.kernel.org, ryder.lee@mediatek.com,
+	jianjun.wang@mediatek.com, lpieralisi@kernel.org, kw@linux.com,
+	robh@kernel.org, bhelgaas@google.com,
+	linux-mediatek@lists.infradead.org, lorenzo.bianconi83@gmail.com,
+	linux-arm-kernel@lists.infradead.org,
+	krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+	nbd@nbd.name, dd@embedd.com, upstream@airoha.com,
+	angelogioacchino.delregno@collabora.com
+Subject: Re: [PATCH v3 1/4] dt-bindings: PCI: mediatek-gen3: add support for
+ Airoha EN7581
+Message-ID: <20240630-regally-gluten-2e4dd445ba0e@spud>
+References: <cover.1719668763.git.lorenzo@kernel.org>
+ <7622715d622413d1b4d8752657f87ea81001deb9.1719668763.git.lorenzo@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,92 +64,33 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="VstelAVsSG0eBIgw"
+	protocol="application/pgp-signature"; boundary="P6aqo8yz8abeQ6PR"
 Content-Disposition: inline
-In-Reply-To: <402C3422-0248-4C0F-991E-C0C4BBB0FA72@jrtc27.com>
+In-Reply-To: <7622715d622413d1b4d8752657f87ea81001deb9.1719668763.git.lorenzo@kernel.org>
 
 
---VstelAVsSG0eBIgw
-Content-Type: text/plain; charset=utf-8
+--P6aqo8yz8abeQ6PR
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Sat, Jun 29, 2024 at 02:09:34PM +0100, Jessica Clarke wrote:
-> On 28 Jun 2024, at 17:19, Conor Dooley <conor@kernel.org> wrote:
-> >=20
-> > On Fri, Jun 28, 2024 at 05:37:06PM +0800, Yong-Xuan Wang wrote:
-> >> Add entries for the Svade and Svadu extensions to the riscv,isa-extens=
-ions
-> >> property.
-> >>=20
-> >> Signed-off-by: Yong-Xuan Wang <yongxuan.wang@sifive.com>
-> >> ---
-> >> .../devicetree/bindings/riscv/extensions.yaml | 28 +++++++++++++++++++
-> >> 1 file changed, 28 insertions(+)
-> >>=20
-> >> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b=
-/Documentation/devicetree/bindings/riscv/extensions.yaml
-> >> index 468c646247aa..c3d053ce7783 100644
-> >> --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
-> >> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
-> >> @@ -153,6 +153,34 @@ properties:
-> >>             ratified at commit 3f9ed34 ("Add ability to manually trigg=
-er
-> >>             workflow. (#2)") of riscv-time-compare.
-> >>=20
-> >> +        - const: svade
-> >> +          description: |
-> >> +            The standard Svade supervisor-level extension for SW-mana=
-ged PTE A/D
-> >> +            bit updates as ratified in the 20240213 version of the pr=
-ivileged
-> >> +            ISA specification.
-> >> +
-> >> +            Both Svade and Svadu extensions control the hardware beha=
-vior when
-> >> +            the PTE A/D bits need to be set. The default behavior for=
- the four
-> >> +            possible combinations of these extensions in the device t=
-ree are:
-> >> +            1) Neither Svade nor Svadu present in DT =3D>
-> >=20
-> >>                It is technically
-> >> +               unknown whether the platform uses Svade or Svadu. Supe=
-rvisor may
-> >> +               assume Svade to be present and enabled or it can disco=
-ver based
-> >> +               on mvendorid, marchid, and mimpid.
-> >=20
-> > I would just write "for backwards compatibility, if neither Svade nor
-> > Svadu appear in the devicetree the supervisor may assume Svade to be
-> > present and enabled". If there are systems that this behaviour causes
-> > problems for, we can deal with them iff they appear. I don't think
-> > looking at m*id would be sufficient here anyway, since the firmware can
-> > have an impact. I'd just drop that part entirely.
+On Sat, Jun 29, 2024 at 03:51:51PM +0200, Lorenzo Bianconi wrote:
+> Introduce Airoha EN7581 entry in mediatek-gen3 PCIe controller binding
 >=20
-> Older QEMU falls into that category, as do Bluespec=E2=80=99s soft-cores =
-(which
-> ours are derived from at Cambridge). I feel that, in reality, one
-> should be prepared to handle both trapping and atomic updates if
-> writing an OS that aims to support case 1.
+> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
 
-I guess that is actually what we should put in then, to use an
-approximation of your wording, something like
-	Neither Svade nor Svadu present in DT =3D> Supervisor software should be
-	prepared to handle either hardware updating of the PTE A/D bits or page
-	faults when they need updated
-?
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
---VstelAVsSG0eBIgw
+--P6aqo8yz8abeQ6PR
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZoFnHQAKCRB4tDGHoIJi
-0ndoAP93+tDDtA9REzbCkIEltVoxfZckvSQWizwwYg211bfpVwEAr32+ixQYgkK/
-rHueZ5hB231ndT82y+Y9rNscAzTMUwA=
-=tz48
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZoFnVQAKCRB4tDGHoIJi
+0unLAP44wkl3iYFSy4gS4GG6SCbKDB7YlCj4qhjCd70t3mjiEQEA48VH8ZuF1r9d
+6rhsNrd4APLPteFcKQ7vn0T8H/99nAQ=
+=mN15
 -----END PGP SIGNATURE-----
 
---VstelAVsSG0eBIgw--
+--P6aqo8yz8abeQ6PR--
 
