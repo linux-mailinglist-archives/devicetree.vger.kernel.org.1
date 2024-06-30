@@ -1,164 +1,207 @@
-Return-Path: <devicetree+bounces-81712-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81713-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEDE191D185
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 13:54:01 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D878491D18E
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 14:05:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A6D16B21318
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 11:53:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DDD95B20CF5
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 12:05:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 205F112C486;
-	Sun, 30 Jun 2024 11:53:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DED3113AA35;
+	Sun, 30 Jun 2024 12:05:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="hTn0AXCL"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="xijdSS3a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-187.mta0.migadu.com (out-187.mta0.migadu.com [91.218.175.187])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4A314084D
-	for <devicetree@vger.kernel.org>; Sun, 30 Jun 2024 11:53:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.187
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 893391E878;
+	Sun, 30 Jun 2024 12:04:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719748435; cv=none; b=MoiBWv982DzyZWrsMBFTc66YFea1RENt1wZKExuXb1aFlJRT9u7JqeVHXH6b5WJoFRAv8hHKA8C/TRSz2DdTWdsb14MC6e4lWfWtXCt8VbSyHBbG4qBONBZbtlHDlTGHb8T/2RcSxJNsKCCVib3IRx2czCgrQb6nBTCJHOuYURs=
+	t=1719749103; cv=none; b=D+kjd13S3dYMd00L6fRIJ/gfIdSdc80iV5hnRQxJA1/CW5Vzjgy3oR41qRAe6oqT4roj48FCGMwbWpQDj5qM+ut+16LaqM/KgTXuYSw4hEcv2IG/rokfuCWXrOIH0+7T+dZGLF9SBMSInah/xMTmkKMOOgz8+NKzCfHAZZusOwU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719748435; c=relaxed/simple;
-	bh=Rc/rkJP79Bg+yJWN98zeLCeIPPgSRC0sq2d22DX92g8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=B54kZxODBP6FI2P6xJKNYNG6GVTUAMcqBzX+P2Jzei6wecDf0YJDW7+MClw+19b82zdCj0PiDxBCizZB41QN1l5XjDwzU37YMwvJyQ2q9nTJvLycA1nt3VgHkhS8ZOTppG7JL84v6rGbFoIt+7SbLWz0z+5vTM4dAhXFaXWmr0k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=hTn0AXCL; arc=none smtp.client-ip=91.218.175.187
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
-X-Envelope-To: linux-rockchip@lists.infradead.org
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
-	t=1719748430;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=y+fDDJqQ+osPbRhFMpBP9B/lzHqe+hkb/V0i04petRE=;
-	b=hTn0AXCLVq+C4+llFVwC1ciz2avIme9mohkFaT7BpiOH20qYWq5jPWMIWO+P+hrMGga43i
-	D5+bxDlZusjXBmjapgf66E30wMwfg7nPxeWDJeqd1vgjI5OVVew/IPDimCOgL9Fl+rZAIk
-	KbHDOyJDw6JGiZeW55aLgnvztWzLvEC7zGSuPmpZ7n4TxD7QBfCJtLhGupkqRtY2r9LNq8
-	tZq6fsL7lT8eZZ5ZBBBCcLKaogIyiqboW4zSHiXiZeh+HyOejDc70sLIwlC5VNRJZakWQR
-	nVe6Kxb9XSmy7XPMAmV8qxkIv7725BvaobCaWE6sQTqmLk5ppvys7nGvj1nGMQ==
-X-Envelope-To: heiko@sntech.de
-X-Envelope-To: dsimic@manjaro.org
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-X-Envelope-To: devicetree@vger.kernel.org
-X-Envelope-To: robh@kernel.org
-X-Envelope-To: krzk+dt@kernel.org
-X-Envelope-To: conor+dt@kernel.org
-X-Envelope-To: linux-kernel@vger.kernel.org
-X-Envelope-To: jonas@kwiboo.se
-X-Envelope-To: didi.debian@cknow.org
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Diederik de Haas <didi.debian@cknow.org>
-To: linux-rockchip@lists.infradead.org,
- Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-Cc: Dragan Simic <dsimic@manjaro.org>, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux-kernel@vger.kernel.org,
- Jonas Karlman <jonas@kwiboo.se>, Diederik de Haas <didi.debian@cknow.org>
-Subject:
- Re: [PATCH v2] arm64: dts: rockchip: Add GPU OPP voltage ranges to RK356x SoC
- dtsi
-Date: Sun, 30 Jun 2024 13:53:36 +0200
-Message-ID: <2794811.2mGxvYehNa@bagend>
-Organization: Connecting Knowledge
-In-Reply-To: <1894199.CQOukoFCf9@diego>
-References:
- <bdb60f1f793166cd65f58ab7aea025347076019c.1719679068.git.dsimic@manjaro.org>
- <2442162.AJoTavkB1d@bagend> <1894199.CQOukoFCf9@diego>
+	s=arc-20240116; t=1719749103; c=relaxed/simple;
+	bh=ZGeCkR4eyTZzDu74/Z9/uMzS9VCgO3vqz79Y8FXSUw0=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=fAb2dmnA4EUw+EDUJ7qVAcwLuuWOw3sqxgbkQaCDqsmJll/F5vHbQ8DHlOE8kgVL8qS1Jq8rlc0iKso6dkPHX484wZp8xK5dnGUL+JaypswfaVnOG+xEcC5fylPux+FjAznSyKaLDa5t+P8hiFXgcoN8K9+uzWGBduEbKEGoDg8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=xijdSS3a; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart2147336.LgE2u5Xh1p";
- micalg="pgp-sha256"; protocol="application/pgp-signature"
-X-Migadu-Flow: FLOW_OUT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1719749090;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=DFDAT09nN49Spp46jcoBUcRUG83635qOZGI6QRXikpo=;
+	b=xijdSS3akntF2fpE3PdMZh3GNMO6DX61vCUYCAoN0tFC89r1D3dgt9kEdGGe9tFjf98yKq
+	7hnO+UNGmTIhU9ANjl14VBsd0uf6d8CjMQqIQksul6YiX89oX1LvnjrimgWEdGrfIKEDSf
+	yvwFRYyy+2OIA+FbxIrkMxKiB43i9WFn0U49sAUBbupGm3z4C5iVmbVUHCc2LHictkLJm5
+	VjPKeXK+yhZl7Ksg9TrXb0EKnSiXMexw0z1m+QJyKG9DqvoCOp9z6ui+1B0ZbWuy1vjpKn
+	5HqDVetACiLsE2pWWIlJmTt8flFvcQlQSrNVzqQYt7Wh3DXeqcUU9gSp0vxzEQ==
+Date: Sun, 30 Jun 2024 14:04:50 +0200
+From: Dragan Simic <dsimic@manjaro.org>
+To: Diederik de Haas <didi.debian@cknow.org>
+Cc: linux-rockchip@lists.infradead.org, heiko@sntech.de,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux-kernel@vger.kernel.org, Jonas Karlman <jonas@kwiboo.se>
+Subject: Re: [PATCH v2] arm64: dts: rockchip: Add GPU OPP voltage ranges to
+ RK356x SoC dtsi
+In-Reply-To: <2442162.AJoTavkB1d@bagend>
+References: <bdb60f1f793166cd65f58ab7aea025347076019c.1719679068.git.dsimic@manjaro.org>
+ <2442162.AJoTavkB1d@bagend>
+Message-ID: <b8951ac4e29184fa35919c6ab85b8f87@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
---nextPart2147336.LgE2u5Xh1p
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"; protected-headers="v1"
-From: Diederik de Haas <didi.debian@cknow.org>
-Date: Sun, 30 Jun 2024 13:53:36 +0200
-Message-ID: <2794811.2mGxvYehNa@bagend>
-Organization: Connecting Knowledge
-In-Reply-To: <1894199.CQOukoFCf9@diego>
-MIME-Version: 1.0
+Hello Diederik,
 
-On Sunday, 30 June 2024 11:07:47 CEST Heiko St=FCbner wrote:
-> Am Sonntag, 30. Juni 2024, 00:01:41 CEST schrieb Diederik de Haas:
-> > On Saturday, 29 June 2024 18:39:02 CEST Dragan Simic wrote:
-> > > Add support for voltage ranges to the GPU OPPs defined in the SoC
-> > > dtsi for RK356x.  These voltage ranges are useful for RK356x-based
-> > > boards that are designed to use the same power supply for the GPU
-> > > and NPU portions of the SoC, which is described further in the
-> > > following documents:
-> > >   - Rockchip RK3566 Hardware Design Guide, version 1.1.0, page 37
-> > >   - Rockchip RK3568 Hardware Design Guide, version 1.2, page 78
-> >=20
-> > That was interesting to read, thanks.
-> > Now I understand the difference between rk809(-5) and rk817(-5).
-> >=20
-> > But AFAIUI the above description described why there were separate tabl=
-es
-> > for rk809 and rk817 in v1. But that was dropped in v2. So it seems to me
-> > the (commit) message should be updated accordingly?
-> >=20
-> > I also expected that (for v1) there would be a similar construct as was
-> > recently added for rk3588. But I should interpret Heiko's comments as t=
-hat
-> > strategy should not be applied to rk356x?
->=20
-> The issue I had was more about the #ifdef'ery and then having a board def=
-ine
-> a constant to enable one or the other.
+On 2024-06-30 00:01, Diederik de Haas wrote:
+> On Saturday, 29 June 2024 18:39:02 CEST Dragan Simic wrote:
+>> Add support for voltage ranges to the GPU OPPs defined in the SoC dtsi 
+>> for
+>> RK356x.  These voltage ranges are useful for RK356x-based boards that 
+>> are
+>> designed to use the same power supply for the GPU and NPU portions of 
+>> the
+>> SoC, which is described further in the following documents:
+>> 
+>>   - Rockchip RK3566 Hardware Design Guide, version 1.1.0, page 37
+>>   - Rockchip RK3568 Hardware Design Guide, version 1.2, page 78
+> 
+> That was interesting to read, thanks.
+> Now I understand the difference between rk809(-5) and rk817(-5).
 
-Yeah, I had some thoughts about that too, but by the time I was ready to=20
-respond to that, there was v2, so that became irrelevant.
+I'm glad it was useful. :)
 
-> As far as I understood the description, the OPP itself is the same in
-> terms of frequency and voltage, just the regulator can't fully realize
-> that target voltage, so the solution is to allow a voltage range, to
-> also support the less-exact regulator.
->=20
-> On the rk3588 on the other hand the soc variants have different OPP
-> tables themselfs, because the soc itself only supports different
-> frequencies+voltages. So the solution here is the split of the OPPs so
-> that we don't mess around with /delete-node/ edits of one OPP table.
->=20
-> So TL;DR separate OPP tables are the way to go if the user needs different
-> freq+voltage values and voltage ranges allows boards to use less-adapted
-> regulators.
+> But AFAIUI the above description described why there were separate 
+> tables for
+> rk809 and rk817 in v1. But that was dropped in v2. So it seems to me 
+> the
+> (commit) message should be updated accordingly?
 
-Thanks for the explanation.
+I also thought about removing that description in the v2, but it 
+actually
+doesn't hurt to provide an example of what the GPU OPP voltage ranges 
+are
+useful for.
 
-One of the things I researched was whether there was a different OPP table
-in Rockchip's rk3566.dtsi (and then the assumption that RK817 =3D RK3566 and
-RK809 =3D RK3568, which would be flawed/incorrect). But there wasn't.
+> I also expected that (for v1) there would be a similar construct as was
+> recently added for rk3588. But I should interpret Heiko's comments as 
+> that
+> strategy should not be applied to rk356x?
 
-Cheers,
-  Diederik
---nextPart2147336.LgE2u5Xh1p
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
+The trouble with applying the same strategy, which was the initial plan
+for the v1, is that the need for voltage ranges depends on one of the 
+board
+features, i.e. the GPU and NPU voltage regulators.  As such, it still 
+has
+to affect the RK356x SoC dtsi, which may warrant separate 
+rk356x-gpu-range.dtsi,
+for example, but the troubles would arise later if we had another 
+similar
+dtsi variant, because we'd then have to split the SoC dtsi into four 
+variants,
+which would hardly be warranted or sustainable.
 
------BEGIN PGP SIGNATURE-----
+That's why the v1 went with a macro instead.  However, there are already
+numerous unresolved examples of what that macro tries to solve in the 
+RK3399
+SoC dtsi files, so the conclusion was that we need a more systemic 
+solution,
+which will be the upcoming debugging facilities in the OPP handling.  
+Those
+facilities will allow us to detect possible issues with the 
+misconfigured
+DT voltages on all SoCs and boards, which the v1 macro would have solved 
+in
+another way, but only for the RK356x.
 
-iHUEABYIAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCZoFHQAAKCRDXblvOeH7b
-bgjgAP9vzAu7MpfS69xyFFLPIIGggmPUGMKxwsGTISYyDo1sHAD9HLwFVtMo7sv9
-mQ/R7ZmppweghrcD2CYHYBSJEJVL1QI=
-=AB/w
------END PGP SIGNATURE-----
+>> The values for the exact GPU OPP voltages and the lower limits for the 
+>> GPU
+>> OPP voltage ranges differ from the values found in the vendor kernel 
+>> source
+>> (cf. downstream commit f8b9431ee38e ("arm64: dts: rockchip: rk3568: 
+>> support
+>> adjust opp-table by otp")). [1][2]
+> 
+> Why? In their latest update Rockchip changed it to the values as 
+> specified in
+> the links. My assumption is that based on extensive testing they did 
+> and/or
+> the feedback they got from the client/customers, they felt the need to 
+> change
+> it to the values they did.
+> 
+> I think we should follow their values unless we have an explicit and 
+> very good
+> reason to deviate from that.
 
---nextPart2147336.LgE2u5Xh1p--
+There's a rather good reason, which was provided in the patch 
+description
+right below, but I can see you've already disagreed with it. :)
 
+>> However, our values have served us well so far, so let's keep them for 
+>> now,
+> 
+> And I don't think that qualifies as a (very) good reason.
+> I think it's reasonable to assume that far more (stress) testing has 
+> been done
+> with the downstream code, then has happened with the upstream code.
+> Hopefully that'll change in the future, but I don't think we're there 
+> yet.
 
+They key in the patch description is "for now". :)  I'd much rather 
+leave
+the exact voltages unchanged for now, and get that covered a bit later, 
+either
+in a separate follow-up patch (or in the v3 that would be a two-patch 
+series,
+as the patch 2/2), which would be good for possibly doing any regression
+tracking later, or do it later as part of supporting the CPU and GPU 
+binning.
 
+> When we/upstream adds npu support, I think we should also follow 
+> downstream's
+> OPP values, unless we have a very good reason to deviate from that.
+
+That would make sense, especially because we haven't had the NPU 
+supported
+before in the mainline.
+
+>> until we actually start supporting the CPU and GPU binning, together 
+>> with
+>> the related voltage adjustments.
+> 
+> I may not fully understand what you mean by that, but I think it's 
+> (again)
+> reasonable to assume that Rockchip has far more insight into this then 
+> we do.
+
+Basically, I meant that (my) plan is to work on supporting the CPU and 
+GPU
+binning, at which point the voltages would also be adjusted according to
+the downstream.
+
+>> [1] 
+>> https://github.com/rockchip-linux/kernel/commit/f8b9431ee38ed561650be7092ab
+>> 93f564598daa9
+>> [2] 
+>> https://raw.githubusercontent.com/rockchip-linux/kernel/f8b9431ee38ed561650
+>> be7092ab93f564598daa9/arch/arm64/boot/dts/rockchip/rk3568.dtsi
 
