@@ -1,85 +1,149 @@
-Return-Path: <devicetree+bounces-81737-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81739-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4437D91D247
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 17:09:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 64C9E91D27E
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 17:43:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E15901F213AC
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 15:09:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0F6E81F2127F
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 15:43:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FA581534EF;
-	Sun, 30 Jun 2024 15:09:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D7631534FB;
+	Sun, 30 Jun 2024 15:43:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="N0x1hXEY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out-179.mta0.migadu.com (out-179.mta0.migadu.com [91.218.175.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4122014532C;
-	Sun, 30 Jun 2024 15:09:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 996E7282F1;
+	Sun, 30 Jun 2024 15:43:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719760177; cv=none; b=QeaZb18Iqu+xGtMyuK7Ub7SH52S/Uy8sVKNjmzsxxmIXE7GUZyAhHq5VXtTlVdXf08RL1zJc12CaZQiI0F0iieVxlKaeJ+0O69NNCuVBfmE/wPddy3z/KdLqOGO0IFQvMq38dVhfJSE5QW6vcYc5YtcVmNfC9XwGaxYZYoqDBIU=
+	t=1719762203; cv=none; b=WGT9MkeRCYjV1YcrmksOlDq7fbbUdsKylbGnfCMDWacLq4gZWy+pAOfng6eiTASt35a5+fdYkG590MykqhkJR62mpfvQ+jvBejO7G+Ar2ClIVL5ZyZ9sdfNUoH4Bd/gVYJ03MHKa59KCEcNjStMmcRYmUM1XB7hp+ub6ZU6tSEk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719760177; c=relaxed/simple;
-	bh=Ckmw76GXm2zzEq4ZCUoSaz/kUej8/dtuZVBSbiJRl1E=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=QttWOsq0GLzoTED1ETO+m2vj+oNghVW6BxwlFSDRbY682pqWSr98oTrg/JAoJyRk5SHhM8Z6q3fPq5wa3LU0DuvuUgbifMC6XtfELBM3uOmsxeSfmkY5Rk27730OXfLd2v9D/fBHOWkRUnkxZRSuaM3wnfuFH1GlEMlu59MWMVY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BEF39C2BD10;
-	Sun, 30 Jun 2024 15:09:36 +0000 (UTC)
-Received: from wens.tw (localhost [127.0.0.1])
-	by wens.tw (Postfix) with ESMTP id 840DD5FD47;
-	Sun, 30 Jun 2024 23:09:34 +0800 (CST)
-From: Chen-Yu Tsai <wens@csie.org>
-To: Jernej Skrabec <jernej.skrabec@gmail.com>, linux-sunxi@lists.linux.dev, 
- Samuel Holland <samuel@sholland.org>
-Cc: devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, 
- Jisheng Zhang <jszhang@kernel.org>, linux-riscv@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, 
- Andre Przywara <andre.przywara@arm.com>, 
- Palmer Dabbelt <palmer@dabbelt.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor@kernel.org>, linux-kernel@vger.kernel.org, 
- Heiko Stuebner <heiko@sntech.de>
-In-Reply-To: <20221231233851.24923-1-samuel@sholland.org>
-References: <20221231233851.24923-1-samuel@sholland.org>
-Subject: Re: (subset) [PATCH v4 00/12] riscv: Allwinner D1/D1s platform
- support
-Message-Id: <171976017453.1183261.1853381079950313116.b4-ty@csie.org>
-Date: Sun, 30 Jun 2024 23:09:34 +0800
+	s=arc-20240116; t=1719762203; c=relaxed/simple;
+	bh=AUtORzMDdCMyeiqRqRZoORUxo2N6tHdV8x1n9L+WDrM=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=pEr8YBlQWnm4tLUkj10F1VHgm99xgO4QfCrLdni0maAAjgj54M78Wrsrkeh0I9UTNqrcww8N1w3f7cXcu1bBks8XGbKQZzYcBdlSROnVK+D39aiZqQQNKGFsJUkNzE8SB/RjNSADiBYJB3ycNTywxdDmdllIasHl6NjVYsYrNyg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=N0x1hXEY; arc=none smtp.client-ip=91.218.175.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
+X-Envelope-To: dsimic@manjaro.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
+	t=1719762198;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=wJzZ3477L/XZ9+MboeTgz9sk1fFCg1tDlQJ3aVTYhSc=;
+	b=N0x1hXEYCl5UUvG0T2FsNMb8/KJ1nkk7nMOyENDU6LXly51iZCMAVCWNh9rLTbiHw/W319
+	/zDEg4l7UGyAD7IOcm7sX1l9ts0It1sIpS8+FSfZCur11KldCixQgICk56V7f4c2lL7+nz
+	1BcHOty8s1OiHvrfkwknrTuZl62JkjjXJqwN6VdrGvpuIsuxmLUIWBMt/rO0WXHyEv6q3b
+	+A0uN8mk5Etjwp62UgRcDUfjaNYcL6DhvQvI/0xpfX+664ySLcRcU3iD7pg7bZJDAdkNZC
+	I3VbUWjUg5ZKakvKgXBMSffK4+cPhKrD3Uhczx0lkpzwtsbgYR1TRgg9HppC7A==
+X-Envelope-To: linux-rockchip@lists.infradead.org
+X-Envelope-To: heiko@sntech.de
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+X-Envelope-To: devicetree@vger.kernel.org
+X-Envelope-To: robh@kernel.org
+X-Envelope-To: krzk+dt@kernel.org
+X-Envelope-To: conor+dt@kernel.org
+X-Envelope-To: linux-kernel@vger.kernel.org
+X-Envelope-To: jonas@kwiboo.se
+X-Envelope-To: didi.debian@cknow.org
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Diederik de Haas <didi.debian@cknow.org>
+To: Dragan Simic <dsimic@manjaro.org>
+Cc: linux-rockchip@lists.infradead.org, heiko@sntech.de,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux-kernel@vger.kernel.org, Jonas Karlman <jonas@kwiboo.se>,
+ Diederik de Haas <didi.debian@cknow.org>
+Subject:
+ Re: [PATCH v2] arm64: dts: rockchip: Add GPU OPP voltage ranges to RK356x SoC
+ dtsi
+Date: Sun, 30 Jun 2024 17:43:05 +0200
+Message-ID: <2573506.7YG5XaKc65@bagend>
+Organization: Connecting Knowledge
+In-Reply-To: <b8951ac4e29184fa35919c6ab85b8f87@manjaro.org>
+References:
+ <bdb60f1f793166cd65f58ab7aea025347076019c.1719679068.git.dsimic@manjaro.org>
+ <2442162.AJoTavkB1d@bagend> <b8951ac4e29184fa35919c6ab85b8f87@manjaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13.0
+Content-Type: multipart/signed; boundary="nextPart3294961.YX3dR29aPv";
+ micalg="pgp-sha256"; protocol="application/pgp-signature"
+X-Migadu-Flow: FLOW_OUT
 
-On Sat, 31 Dec 2022 17:38:39 -0600, Samuel Holland wrote:
-> This series adds the Kconfig/defconfig plumbing and devicetrees for a
-> range of Allwinner D1 and D1s-based boards. Many features are already
-> enabled, including USB, Ethernet, and WiFi.
+--nextPart3294961.YX3dR29aPv
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
+From: Diederik de Haas <didi.debian@cknow.org>
+To: Dragan Simic <dsimic@manjaro.org>
+Date: Sun, 30 Jun 2024 17:43:05 +0200
+Message-ID: <2573506.7YG5XaKc65@bagend>
+Organization: Connecting Knowledge
+In-Reply-To: <b8951ac4e29184fa35919c6ab85b8f87@manjaro.org>
+MIME-Version: 1.0
+
+Hi Dragan,
+
+On Sunday, 30 June 2024 14:04:50 CEST Dragan Simic wrote:
+> > I also expected that (for v1) there would be a similar construct as was
+> > recently added for rk3588. But I should interpret Heiko's comments as
+> > that strategy should not be applied to rk356x?
 > 
-> The devicetrees use bindings from the following series which have not
-> yet been merged to linux-next:
->  - In-package LDO regulators:
->    https://lore.kernel.org/lkml/20221208084127.17443-1-samuel@sholland.org/
->  - Ethernet MAC binding fix (not a new issue with D1):
->    https://lore.kernel.org/lkml/20221231220546.1188-1-samuel@sholland.org/
+> The trouble with applying the same strategy, ...
+
+One of the reasons I like/hoped for it is that I'm a 'sucker' for consistency.
+
+> ... the need for voltage ranges depends on one of the board features,
+> i.e. the GPU and NPU voltage regulators.  As such, it still has to
+> affect the RK356x SoC dtsi, which may warrant separate
+> rk356x-gpu-range.dtsi, for example, but the troubles would arise ...
+
+... but it's probably better if I (generally) abstain from taking part
+in the discussion about the correct/desired implementation as I don't
+understand the material in enough detail to meaningfully contribute.
+
+> That's why the v1 went with a macro instead.
+
+... which didn't seem to help with my consistency wish ;-)
+(AFAIC there's no need to discuss this further (publicly))
+
+> > When we/upstream adds npu support, I think we should also follow
+> > downstream's OPP values, unless we have a very good reason to
+> > deviate from that.
 > 
-> [...]
+> That would make sense, especially because we haven't had the NPU
+> supported before in the mainline.
 
-Applied to sunxi/dt-for-6.11 in sunxi/linux.git, thanks!
+I first wondered why you hadn't *updated* the npu OPP values ... 
+to later find out they haven't been specified at all in 'upstream'.
 
-[10/12] riscv: dts: allwinner: Add ClockworkPi and DevTerm devicetrees
-        https://git.kernel.org/sunxi/linux/c/0ce1d34678e5
+Cheers,
+  Diederik
+--nextPart3294961.YX3dR29aPv
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
 
-Best regards,
--- 
-Chen-Yu Tsai <wens@csie.org>
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCZoF9CQAKCRDXblvOeH7b
+bkBSAP0azzram50AgiLu7+7CoG5ibxdTLWfqWJXFnDz/NRklwQEA2F+7ZSC8Ny2q
+vSJyaTgsxoSxeIKiNdrNgVIRgBAx/w8=
+=NjR2
+-----END PGP SIGNATURE-----
+
+--nextPart3294961.YX3dR29aPv--
+
+
 
 
