@@ -1,119 +1,99 @@
-Return-Path: <devicetree+bounces-81692-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81694-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 768F591D0C4
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 11:15:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AAE691D0DE
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 11:41:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 36E35281670
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 09:15:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ED4B01F214D8
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 09:41:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05B2C12D209;
-	Sun, 30 Jun 2024 09:15:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EB8D12D20D;
+	Sun, 30 Jun 2024 09:41:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="en4uil1K"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bEmDaHhs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C62143BBC9;
-	Sun, 30 Jun 2024 09:15:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFE6825762;
+	Sun, 30 Jun 2024 09:41:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719738914; cv=none; b=EIkRrn0L6ench/hwgY/ELGdxMfrRl/DbW+lp8/OjeinPnXQZJiHKi+osFq4cvkaS5+j87XGalCnfBnz+SclZcOao9ms1xt9NXMo5LDkoaT77u3ORI8mE8tiJxP8t3aU/kYzAKGJ0JOX2wn4aZwgAItmjrm0Ac4uCveBwZpcCkP0=
+	t=1719740497; cv=none; b=pKf0x0Qph8vw2qqOgjZ3UJlpKRoqoFMHFBMPm9eQPE41TwcMlsa8CYNLE3cq9mjmDILHcrWhFcq+VDeAu1S1PUSU0+sfbaG+Ryw2ZNlTTUG3OurY/1h1tZixbqASBJ+OdSnJdAg+0VCZcWf8acyZq3lIRdX5rAP+k2n0J3EuAyk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719738914; c=relaxed/simple;
-	bh=tc+Ufg00udHbrhXlW8SdH881js1R768qk0khtQCwXfM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=jgnXa9UVacxspO0n9NWLqClYvJLkTJwugyPUfRIMo97jkFf9+xANkinwgm1kDugZc/eHUp8Olht2o3tymcvcImA0OLnBAfiPmp54vAsrTITiGAnl5U6lF8HJJrGoelpmNPk7e6axLEPyyld7qGu9vDhsGzMUfZ1Ot90y8F0ycRk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=en4uil1K; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9EE12C4AF17;
-	Sun, 30 Jun 2024 09:15:14 +0000 (UTC)
+	s=arc-20240116; t=1719740497; c=relaxed/simple;
+	bh=O3gWqPJUtetF7geXgxkBYsZR8N/ecSKbSVODvNQ/i50=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=d6O8vDnb2xfau4nnPWDfyakSEsX4cSYwI1NznZDqVjY7AHCsh9UDyaC6el/HOaK8vayVATlQwiVgaoJvhZlR7QRjVwXmvmITqXOvrgGJeOKZYIIOGNeu0xG/J1dEidlxYTvX9UPl+5KoVH1wWk/Hkn+Hal00b2GNoXNrscHuZTg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bEmDaHhs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41867C2BD10;
+	Sun, 30 Jun 2024 09:41:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719738914;
-	bh=tc+Ufg00udHbrhXlW8SdH881js1R768qk0khtQCwXfM=;
-	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
-	b=en4uil1KnZ/7MbdeOWy8vNN5qJWiUXY0l2SbZobfjZ8oplSyoWMu1lOkjeF8flaH3
-	 /HV9bJ7Vv9kKv17jPnFYwEukaevW6iRTUbbr5QDOdTbDZa3n6lDKP1nTClVwZpq8+J
-	 oLaPu6sLyqwDf8E5OWmtJo7s5wiOFHtSqV6PrOxjaurK1T+ap5dnqpfGVBAeURsbSe
-	 TFAgfJQljWDYaCUdX8gxQiYJybypsxpSCGjM1obpaU26PlmwrDoAjm1+7EE7AWAQTh
-	 jcCs2X75RvRjSA5W7N6I/D1JRGNwVEi8P24nBLFrROD6E/ZZHuaJSCEo8rj9dPsIHL
-	 Z81Vj7v43wiTQ==
-Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2ec0f3b9cfeso23743541fa.0;
-        Sun, 30 Jun 2024 02:15:14 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWakp4fEobeJm555EldJIGf93SwgK4DltWYxvEErGotj/jvDoK+D3wwIodLG65l+oThfZBKfhlltKdItd+DE3Fx76cLIgDWRYe4usgkx+9vTZDrFVcwzXZ3631WMAQGLmUHVwmpCU8JXfCMbwg2QzeUcQR0ntaGpntRLQcpRj8t/ZwlvI5n2mR9edoQ1qbffykCX5ervYnO2I8xyckHKYCp
-X-Gm-Message-State: AOJu0YyG6hh/+ijapfwEZc/3LoR/jwV7deq7lbgRrVap+nj+UWuJEiUe
-	hE7T6oBC2yCHHIGNV5HmW144Srt0wWVqIc+2visdmcUD1NzX+cx5tgicTcS4CXk+PeJvHVuW2an
-	i9QKKeL3qmmx0M1viOU7rTX9qfKA=
-X-Google-Smtp-Source: AGHT+IHYW4n5GnYJwHXqY+6mUXvauoz57bZueShtW/YuVL9pXD9MpL3q7Rr5kG0lABD6uVFGXFXO7kcRPrfoJTzNisI=
-X-Received: by 2002:a2e:a179:0:b0:2ec:4fec:8bda with SMTP id
- 38308e7fff4ca-2ee5e6cd6a7mr18022581fa.36.1719738912735; Sun, 30 Jun 2024
- 02:15:12 -0700 (PDT)
+	s=k20201202; t=1719740497;
+	bh=O3gWqPJUtetF7geXgxkBYsZR8N/ecSKbSVODvNQ/i50=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=bEmDaHhs9YXa++RPprItxDUKKO5XfTV0kewjxSWZtNlph3H1m1r/atOQ/kD5T+fYe
+	 oOs+pXx6S+fholee7K9e+9sExHsf8pSD0C2jWI+9lqhLnOdXvWVmNZj0IsAd92M9w4
+	 ACPFl4vjlVRdWgTIj1socgWWsEBua0oYFTXygSrkgOJgw7qlVaL3EWuYeLSqusJmHZ
+	 yRUBjU2ufPHI1TMiFYR8NyfXC+laLLdogdnL64ZCv/8RdTmUFZj2UCwjF/mgo6FRvY
+	 jBfqmgL1vXEBvAZSkcxvK4ij7WYRcXl6cNHz0lAE7Vys7thOvWXUe2ZvtgybwtyzEa
+	 GOV/pD7qPKYSw==
+Date: Sun, 30 Jun 2024 10:41:26 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Alisa-Dariana Roman <alisadariana@gmail.com>
+Cc: Alisa-Dariana Roman <alisa.roman@analog.com>, Jonathan Cameron
+ <Jonathan.Cameron@huawei.com>, Michael Hennerich
+ <michael.hennerich@analog.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Lars-Peter
+ Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Liam
+ Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, David
+ Lechner <dlechner@baylibre.com>
+Subject: Re: [PATCH v6 1/6] iio: adc: ad7192: use
+ devm_regulator_get_enable_read_voltage
+Message-ID: <20240630104126.05cb2d26@jic23-huawei>
+In-Reply-To: <20240624124941.113010-2-alisa.roman@analog.com>
+References: <20240624124941.113010-1-alisa.roman@analog.com>
+	<20240624124941.113010-2-alisa.roman@analog.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240630073605.2164346-1-jacobe.zang@wesion.com>
- <20240630073605.2164346-5-jacobe.zang@wesion.com> <bd661690-1de8-4030-a209-ef26d3559221@gmx.net>
- <TYZPR03MB7001AC28827A86338BF2B77380D22@TYZPR03MB7001.apcprd03.prod.outlook.com>
-In-Reply-To: <TYZPR03MB7001AC28827A86338BF2B77380D22@TYZPR03MB7001.apcprd03.prod.outlook.com>
-Reply-To: wens@kernel.org
-From: Chen-Yu Tsai <wens@kernel.org>
-Date: Sun, 30 Jun 2024 17:15:00 +0800
-X-Gmail-Original-Message-ID: <CAGb2v66Vk8SMs1TOs+80Jy5fXumuYqCx59Tzd_N7wJAfyysQcw@mail.gmail.com>
-Message-ID: <CAGb2v66Vk8SMs1TOs+80Jy5fXumuYqCx59Tzd_N7wJAfyysQcw@mail.gmail.com>
-Subject: Re: [PATCH v3 4/5] wifi: brcmfmac: Add optional lpo clock enable support
-To: Jacobe Zang <jacobe.zang@wesion.com>
-Cc: Stefan Wahren <wahrenst@gmx.net>, "robh@kernel.org" <robh@kernel.org>, 
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "heiko@sntech.de" <heiko@sntech.de>, 
-	"kvalo@kernel.org" <kvalo@kernel.org>, "davem@davemloft.net" <davem@davemloft.net>, 
-	"edumazet@google.com" <edumazet@google.com>, "kuba@kernel.org" <kuba@kernel.org>, 
-	"pabeni@redhat.com" <pabeni@redhat.com>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
-	"efectn@protonmail.com" <efectn@protonmail.com>, "dsimic@manjaro.org" <dsimic@manjaro.org>, 
-	"jagan@edgeble.ai" <jagan@edgeble.ai>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
-	"linux-rockchip@lists.infradead.org" <linux-rockchip@lists.infradead.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "arend@broadcom.com" <arend@broadcom.com>, 
-	"linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>, 
-	"netdev@vger.kernel.org" <netdev@vger.kernel.org>, "megi@xff.cz" <megi@xff.cz>, 
-	"duoming@zju.edu.cn" <duoming@zju.edu.cn>, "bhelgaas@google.com" <bhelgaas@google.com>, 
-	"minipli@grsecurity.net" <minipli@grsecurity.net>, 
-	"brcm80211@lists.linux.dev" <brcm80211@lists.linux.dev>, 
-	"brcm80211-dev-list.pdl@broadcom.com" <brcm80211-dev-list.pdl@broadcom.com>, Nick Xie <nick@khadas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Sun, Jun 30, 2024 at 5:10=E2=80=AFPM Jacobe Zang <jacobe.zang@wesion.com=
-> wrote:
->
-> Hi Stefan,
->
-> >> WiFi modules often require 32kHz clock to function. Add support to
-> >> enable the clock to PCIe driver.
-> > the low power clock is independent from the host interface like PCIe. S=
-o
-> > the clock handling should move to the common code. Sorry, not i cannot
-> > give a good suggestion, what's the best place for this.
->
-> I think the clock is used by the PCIe device so enable it in this file. A=
-lso I checked
-> use of clock which in spi[0] or sdio[0] device was enabled similarly to t=
-his.
->
-> [0] https://lore.kernel.org/all/20210806081229.721731-4-claudiu.beznea@mi=
-crochip.com/
+On Mon, 24 Jun 2024 15:49:36 +0300
+Alisa-Dariana Roman <alisadariana@gmail.com> wrote:
 
-You're looking at the wrong driver. For brcmfmac, the lpo clock is toggled
-by the MMC pwrseq code. And for the Bluetooth side (where it really matters=
-)
-for UARTs, it is in drivers/bluetooth/hci_bcm.c. and documented in the
-binding Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml
+> From: David Lechner <dlechner@baylibre.com>
+> 
+> This makes use of the new devm_regulator_get_enable_read_voltage()
+> function to reduce boilerplate code.
+> 
+> Error messages have changed slightly since there are now fewer places
+> where we print an error. The rest of the logic of selecting which
+> supply to use as the reference voltage remains the same.
+> 
+> Also 1000 is replaced by MILLI in a few places for consistency.
+> 
+> Signed-off-by: David Lechner <dlechner@baylibre.com>
+> Signed-off-by: Alisa-Dariana Roman <alisa.roman@analog.com>
 
+On basis of nibbling away at outstanding patch sets to reduce the size
+of v7 (assuming there is one) I'm going to pick up what I can now.
+Basically we have a lot in flight and it's coming to the end of this
+cycle so I want to be able to focus on the bits that need more eyes!
 
-ChenYu
+Applied this patch to the togreg branch of iio.git and pushed out as
+testing for 0-day to poke at it.
+
+Thanks,
+
+Jonathan
 
