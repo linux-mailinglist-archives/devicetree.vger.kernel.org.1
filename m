@@ -1,155 +1,147 @@
-Return-Path: <devicetree+bounces-81686-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81688-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9279A91D0A6
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 10:44:06 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36C1D91D0B2
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 10:59:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BBB511C20A86
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 08:44:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ABC48B20FEC
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 08:59:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F14512C54B;
-	Sun, 30 Jun 2024 08:44:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CA2912CDB6;
+	Sun, 30 Jun 2024 08:59:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="Gqtk2aL4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V9k9rd3a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B028039AF4;
-	Sun, 30 Jun 2024 08:43:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F80512CD96;
+	Sun, 30 Jun 2024 08:59:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719737041; cv=none; b=DFMwl4E2kL9zl2Up46oyu4qi7tdRvGlsSgL4eCkMglFapVeIwmHJqxsQTZ27mhbhtGVm3RN8Drl95pUIL0Y+BU6LQShKZtRr3kSUQeihJZAZlcFphy0OjWSJX2M8q4P3MFPfT3zcfVUZpyUxfGNm1M75QkL6CZ0eazX8wlmuRzw=
+	t=1719737969; cv=none; b=TzqrbEEhzXuoYHC5s6oFuM/0AY27OtJPdPxPnWzi/j81bDMDohyiuH3ftUmTUpKBarE63E6/kFd3+9l2X3R0gjmiU49ZHiFLQGoWvcnPfVS+xFOFBRUCc/m3OaqiuditT8x5/snDwd5Oh2oUo126OT2gEs7ICOcrGSfUCKlw1bo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719737041; c=relaxed/simple;
-	bh=LiuqvRSyYUEcIEYiEIohQUTYIE6wNbj3g07Nvpvw1dI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rvhcI4nIlopITygdzT8XYxGPyail5QzRS9oP5xppwyGRNFgs07qK5WS/meYe3FUo1UBef8bz1N+Z0kiMg5qx2EyO3xbyMF169Tfi5BMbG7ZLG0ZYqgJQ1YNbXTQYl0I13iwm0PLSWfcV3N8fCQauYABA288fb1oF4ph+aHr90Ps=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=Gqtk2aL4; arc=none smtp.client-ip=212.227.17.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
-	s=s31663417; t=1719736988; x=1720341788; i=wahrenst@gmx.net;
-	bh=DWHFm2E/o/V6Cw7bSZdgzS7ATWvaFTxO3EAYiMwnYQ0=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
-	 References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=Gqtk2aL46vidGporVc+8B4Wm0DTc4MDZqFfMQrhgYmocdhWOr97DwUJHWAkEnqI7
-	 dnlLZ9j2DLem/JiB0Rix3qBSGEnIX+7CcHOmC2dldSynU/9qwRKljVhwB4Q7Xkw+W
-	 1n2/or4A0pYXL8p5gZcvQihweDBtDZRFAbJcovJezYj+xbl8xV+f1WNOiPmoFZG1H
-	 momwphcUGCZQhC8zWsYBB44RjdEY9JYV4D/shWOJVeXVPtZ9h14N/McBhc4H9HUwW
-	 i6p9rWmIYpV4Voar2iGcPwHKG5D0CkhABcrBzioaCQ1wE0XfkcWvXVQTqffRMXu1a
-	 N1I/c5haTudE5F0bSQ==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [192.168.1.127] ([37.4.248.43]) by mail.gmx.net (mrgmx105
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1MtwYu-1s9k6i2nbY-014cGt; Sun, 30
- Jun 2024 10:43:08 +0200
-Message-ID: <bd661690-1de8-4030-a209-ef26d3559221@gmx.net>
-Date: Sun, 30 Jun 2024 10:43:06 +0200
+	s=arc-20240116; t=1719737969; c=relaxed/simple;
+	bh=ubd/LNdUMtaC79ActlqFB4RXyv5gk0dFugNatKOZ0lc=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ViSrkGLtK/4OR/oxH3pNPg2DnjHS29EruAC1xL/uTyXzn2BH0/2cqR0WMdBOTGG89xWUz+VPmqdM6/eWCV45Fmq18XgbY/yxltW4se6Bf9GE2UCe+NGb5O2n5xCZGU5nNHMAQjGICzGdK7pM+O5pPlJZ8cYV1DuHLsHuf/XJlrs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V9k9rd3a; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 9C963C2BD10;
+	Sun, 30 Jun 2024 08:59:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719737968;
+	bh=ubd/LNdUMtaC79ActlqFB4RXyv5gk0dFugNatKOZ0lc=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=V9k9rd3aMNBdiv2CeX+FLhPGMWRsQA26cAO9/Um4eSB+PDrMQFfeAHgAfu8RMjVuw
+	 akIb2r2rwBEkQR+x7K3zgzQMNs5laNrZ1hE2Vlsc5vwbWXKTj9PY/TowHvm+0MBpCV
+	 dZlWMeFNZRp4Yr4FJNP9C0FVS1C9aUXA9lZ2lznOTz/mtO/9jsdY9Dd5ZG5QAwhCyi
+	 3iqPwVI6j9XqFOa7hrGcOosm9lrQun/H5fUe44011qT0SApGE7RR9lPNV6R8VdNrG3
+	 Ztrnzt/migNBD7g2ruySS9QXshJI+R5/FM2rSVySJjfiGERNp1ArMCuLQqEeQ4BIwv
+	 MezATS5umDBlg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8C275C30653;
+	Sun, 30 Jun 2024 08:59:28 +0000 (UTC)
+From: Xilin Wu via B4 Relay <devnull+wuxilin123.gmail.com@kernel.org>
+Subject: [PATCH v3 0/2] Introduce ASUS Vivobook S 15
+Date: Sun, 30 Jun 2024 16:59:25 +0800
+Message-Id: <20240630-asus-vivobook-s15-v3-0-bce7ca4d9683@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 4/5] wifi: brcmfmac: Add optional lpo clock enable
- support
-To: Jacobe Zang <jacobe.zang@wesion.com>, robh@kernel.org,
- krzk+dt@kernel.org, heiko@sntech.de, kvalo@kernel.org, davem@davemloft.net,
- edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, conor+dt@kernel.org
-Cc: efectn@protonmail.com, dsimic@manjaro.org, jagan@edgeble.ai,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- arend@broadcom.com, linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
- megi@xff.cz, duoming@zju.edu.cn, bhelgaas@google.com,
- minipli@grsecurity.net, brcm80211@lists.linux.dev,
- brcm80211-dev-list.pdl@broadcom.com, nick@khadas.com
-References: <20240630073605.2164346-1-jacobe.zang@wesion.com>
- <20240630073605.2164346-5-jacobe.zang@wesion.com>
-Content-Language: en-US
-From: Stefan Wahren <wahrenst@gmx.net>
-In-Reply-To: <20240630073605.2164346-5-jacobe.zang@wesion.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:mgMXk3DXRcduwz95csSCv+CkqV380IX24h7ngin2weAe06nSBut
- XRhB1UiQp3lf2b0NYmvfVLy2/mO9OQ7MdSCGUF1luiS5UtcOzG+EOLW42qqlwMhlb4e54Ar
- Ks90Wb/EKJM5mT9LD5u6n2d4dyNSY7FQqhw8asreSyh5xF4QdxvbIl7Zz5Z0NDVEINqzLCH
- 2SlZtn7IAjSBasUem///w==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:mou2LmE+Pqw=;DPg1kwFi8AE287jvIuA+tl/khDX
- kuBJ9gbe+rII+gFJy8tELFBxwny1ffwYSQxDUeKCIWxVv7fO8o1kvYL9dFKhBnM4F26o2hgqC
- ngafc1iyAy51Dt5CPiFzUfhvVXOVOwLh10euaKGwfnZah7nzx6SDpfOEPgZYC03kzqxvt6QoX
- Z5uFSzARf5MExs3Ok3AXzRBBGfm3StKyeVa1D/Y2pm2MjkedX0p4U0CJWFxjQSOly5GChb/u3
- YRX/RtASHZGM/2fOG46JEwsO5hR1mpeSVsoErCprGVeyanNbrO+JhamoGOLFkseSjvavozcVm
- g3yhvrP+lp6YlfqKRAOb2ups6iQeeCIY+rSZUZWIldpBVWZgCXu81Y35kRu7iH75ji9Pw7jv4
- vWecdWERENJSTB0VP2EzumDKUWMA8r5unVHqfjikKygugc3sQHuSZFxSkIMPvuxx5p9QYYktr
- IS4lRAq1EokBMevuY6NDnns9AWp+5oMOXI6V5SYAgPcvmy0ICirTDWujoXRNFQXea+egNu5vJ
- NpSCFAQSAmLhsKL/mPDLh31XJSnZ69M6VYBO9tdQM7T2Yn+qCnc4FYHlve/ULcDS2gaZmvxN/
- NoRjgGDSwxud0ZlxL8r/VzbkR+ViB1wxnYW2h+KLKO1wx2oPkHNOH3vfTt353Z0xZjcTz0IDj
- isq9L2oZDGnq/CF8qTH+wg+UNsRjVx3WeTruimQskvC3KvVz/4zjTJ+5gjoRQImoNi9W0Ng3s
- gzu2uW8uflqzhpk38d5MT2mK3KkqFDm4HTxiEk4EcaAfwzJkuy6Q6frW97wHrGOsGXOoxfpXZ
- HlOq4pMqmz+NNykvuX2Lwl04GbG8TwYzNcgJmXi5srOxo=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAG0egWYC/4WNwQ6CMBAFf4X07BraQimc/A/DocUCG4WarjYaw
+ r9bOHnS47xk5i2MXEBHrMkWFlxEQj8nkIeMdaOZBwd4ScxELopcCQ2GngQRo7feX4F4CZUwRV1
+ pJbnSLHn34Hp87c1zm3hEevjw3i8i39ZftcghB2G4K8qKW23saZgM3o6dn7b4P7MWnZV1L3uu1
+ JfZruv6AXym0OXsAAAA
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>, 
+ Johan Hovold <johan+linaro@kernel.org>, 
+ Elliot Berman <quic_eberman@quicinc.com>, Xilin Wu <wuxilin123@gmail.com>
+X-Mailer: b4 0.14.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1719737967; l=2142;
+ i=wuxilin123@gmail.com; s=20240424; h=from:subject:message-id;
+ bh=ubd/LNdUMtaC79ActlqFB4RXyv5gk0dFugNatKOZ0lc=;
+ b=mjXYYhBhAvSnFdkC/xu3h2iXAxUt1jkkdnCu202fD7SdH7Ozr+FvOh+mE48htsyrq2cWVIW30
+ sc93YHtLs9CAVEOtrxx3mkcit7d+/iAI6CKXa9fFnOU6OoYlMxwPQkI
+X-Developer-Key: i=wuxilin123@gmail.com; a=ed25519;
+ pk=vPnxeJnlD/PfEbyQPZzaay5ezxI/lMrke7qXy31lSM8=
+X-Endpoint-Received: by B4 Relay for wuxilin123@gmail.com/20240424 with
+ auth_id=157
+X-Original-From: Xilin Wu <wuxilin123@gmail.com>
+Reply-To: wuxilin123@gmail.com
 
-Hi,
+ASUS Vivobook S 15 is a laptop based on the Qualcomm Snapdragon X Elite
+SoC (X1E78100). This series adds initial support for the device.
 
-Am 30.06.24 um 09:36 schrieb Jacobe Zang:
-> WiFi modules often require 32kHz clock to function. Add support to
-> enable the clock to PCIe driver.
-the low power clock is independent from the host interface like PCIe. So
-the clock handling should move to the common code. Sorry, not i cannot
-give a good suggestion, what's the best place for this.
->
-> Co-developed-by: Ondrej Jirman <megi@xff.cz>
-> Signed-off-by: Ondrej Jirman <megi@xff.cz>
-> Signed-off-by: Jacobe Zang <jacobe.zang@wesion.com>
-> ---
->   .../net/wireless/broadcom/brcm80211/brcmfmac/pcie.c    | 10 ++++++++++
->   1 file changed, 10 insertions(+)
->
-> diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/pcie.c b/d=
-rivers/net/wireless/broadcom/brcm80211/brcmfmac/pcie.c
-> index 06698a714b523..e84f562fc91b8 100644
-> --- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/pcie.c
-> +++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/pcie.c
-> @@ -3,6 +3,7 @@
->    * Copyright (c) 2014 Broadcom Corporation
->    */
->
-> +#include <linux/clk.h>
->   #include <linux/kernel.h>
->   #include <linux/module.h>
->   #include <linux/firmware.h>
-> @@ -2411,6 +2412,7 @@ brcmf_pcie_probe(struct pci_dev *pdev, const struc=
-t pci_device_id *id)
->   	struct brcmf_pciedev *pcie_bus_dev;
->   	struct brcmf_core *core;
->   	struct brcmf_bus *bus;
-> +	struct clk *clk;
->
->   	if (!id) {
->   		id =3D pci_match_id(brcmf_pcie_devid_table, pdev);
-> @@ -2422,6 +2424,14 @@ brcmf_pcie_probe(struct pci_dev *pdev, const stru=
-ct pci_device_id *id)
->
->   	brcmf_dbg(PCIE, "Enter %x:%x\n", pdev->vendor, pdev->device);
->
-> +	clk =3D devm_clk_get_optional_enabled(&pdev->dev, "lpo");
-> +	if (IS_ERR(clk))
-> +		return PTR_ERR(clk);
-> +	if (clk) {
-> +		brcmf_dbg(PCIE, "enabling 32kHz clock\n", pdev->vendor, pdev->device)=
-;
-> +		clk_set_rate(clk, 32768);
-> +	}
-> +
->   	ret =3D -ENOMEM;
->   	devinfo =3D kzalloc(sizeof(*devinfo), GFP_KERNEL);
->   	if (devinfo =3D=3D NULL)
+Currently working features:
+
+- CPU frequency scaling up to 3.4GHz
+- NVMe storage on PCIe 6a (capable of Gen4x4, currently limited to Gen4x2)
+- Keyboard and touchpad
+- WCN7850 Wi-Fi
+- Two Type-C ports on the left side
+- internal eDP display
+- ADSP and CDSP remoteprocs
+
+Some features which can get working with out of tree patches:
+
+- GPU [1]
+- Bluetooth [2]
+
+Notably not working features:
+
+- Battery monitoring via battmgr
+- Orientation switching and altmode on the Type-C ports (USB4 retimer driver needed?)
+- Two USB Type-A ports on the right side (dwc3 multiport controller)
+- Front camera
+- SD card slot
+- HDMI connector (using a Parade PS186 DP 1.4 to HDMI 2.0 converter) 
+- USB4 and the retimer (Parade PS8830?)
+- Anything using the EC
+
+Dump of the ACPI tables could be found here: [3]
+
+[1] https://lore.kernel.org/all/20240623110753.141400-1-quic_akhilpo@quicinc.com/
+[2] https://git.codelinaro.org/abel.vesa/linux/-/commits/topic/b4/x1e80100-bt
+[3] https://github.com/aarch64-laptops/build/pull/103
+
+Signed-off-by: Xilin Wu <wuxilin123@gmail.com>
+---
+Changes in v3:
+- Add comment detailing pmic-glink connector mapping (Konrad)
+- Minor changes in dts (Konrad)
+- Link to v2: https://lore.kernel.org/r/20240628-asus-vivobook-s15-v1-0-92cb39f3f166@gmail.com
+
+Changes in v2:
+- Fix accidentally changed Makefile
+- Link to v1: https://lore.kernel.org/r/20240628-asus-vivobook-s15-v1-0-2a1e4571b8ab@gmail.com
+
+---
+Xilin Wu (2):
+      dt-bindings: arm: qcom: Add ASUS Vivobook S 15
+      arm64: dts: qcom: Add device tree for ASUS Vivobook S 15
+
+ Documentation/devicetree/bindings/arm/qcom.yaml    |   1 +
+ arch/arm64/boot/dts/qcom/Makefile                  |   1 +
+ .../boot/dts/qcom/x1e80100-asus-vivobook-s15.dts   | 616 +++++++++++++++++++++
+ 3 files changed, 618 insertions(+)
+---
+base-commit: 642a16ca7994a50d7de85715996a8ce171a5bdfb
+change-id: 20240628-asus-vivobook-s15-72a497863168
+
+Best regards,
+-- 
+Xilin Wu <wuxilin123@gmail.com>
+
 
 
