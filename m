@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-81672-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81673-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4DC591D039
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 09:00:25 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C0DE91D03E
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 09:09:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4FC9D281E7E
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 07:00:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2B3041F21619
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 07:09:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D76C2C1BA;
-	Sun, 30 Jun 2024 07:00:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD1363717F;
+	Sun, 30 Jun 2024 07:09:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="LacBPdzE"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="YMKo3aCu"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21F6A2A8FE;
-	Sun, 30 Jun 2024 07:00:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5A774084C;
+	Sun, 30 Jun 2024 07:09:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719730820; cv=none; b=JA57LXf/y3/xnZ9GO7IdGFlCp88LJKGnlfESstMrz5yuDAzrB9RforLQiMDaClvZGa3AlvBD9GpAdFCwF8qVffmgnf+TIm3YMti2wYl+RbCy6tEJ/3T9crrGfvejyigrYp3W1UUD1AB1FX1T0bU2EWHGWZaUqMMfsoi9OYDhQGU=
+	t=1719731388; cv=none; b=fb1IkbsqUXpO5qwHNHY8x0lqy6fDIPqoLjgcDwmO0pTdZ8YBYEhzclARWMtohcRwXWDudrP4181CAHBSFzuwydCQy+l+QdZsps6Dv3+2Ik8Rysh0K9DIXK3QweCFl+RYkqQKT3jALyKNjZ6nmx48lpGYf5RVEVYMIKwbw0heA/U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719730820; c=relaxed/simple;
-	bh=O1HR4kHR/XCGKG4h+DwtnIPA7DGTVS7E3KxzwKw3um0=;
+	s=arc-20240116; t=1719731388; c=relaxed/simple;
+	bh=+sX6ULmlLv/0jScNyfAwutPCjz4FV6sRoYcqNTUuPcI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=EObMNJrljN4l83ujNNJgngqAseyTyhV7BcH2tZzDh55UgebhtJP+YWOJLnG2gv8HOq8kv7Y51FRUnYh/nCUYj6ChNmXZKnVa6QAxI5mDrtC1nOf8W0hh6HrenXRVt2xRhLmHZ8gKEyu+VzShPniceAAIb5tof04gaBp4ALsidO8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=LacBPdzE; arc=none smtp.client-ip=198.47.23.249
+	 In-Reply-To:Content-Type; b=IPr8SoSM6CmqrT77qrY4i/dWHWBHBF0rYVirdWXPo55qVzOYjUFAQSDe519EwLv1TRQihlf6gkHC/o0SOYc25aHcCHZZk1rEwLzJ5VYjHKe6YhPI+2+QYHH9fMzG1/8jZ15IHxjNKL/EEe6gNdTsI5FXBIqMccLxNeg89QoWkTA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=YMKo3aCu; arc=none smtp.client-ip=198.47.23.249
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 45U6xs4P082744;
-	Sun, 30 Jun 2024 01:59:54 -0500
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 45U79di2084201;
+	Sun, 30 Jun 2024 02:09:39 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1719730794;
-	bh=ntcPWOA37EUEY0RyxU96QTxE6TwwDzV08Y5dI/7aLHo=;
+	s=ti-com-17Q1; t=1719731379;
+	bh=EnLzB75c23YJnuba7kDcKU7PP1s2SR97VQiBuiWzAkM=;
 	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=LacBPdzEMaCqzUtyn695b65Hwdsv6bm4xRabWixiEppZkJYExkN/W99hJz9qTIsi5
-	 9t9BXY0kBHYpdv5JOLPAakRrZwZ1EoeeY+uuQ0sCIZNReF74ipXKKe3V70D0LgPQhr
-	 /BupM7GTVNnyDMpw/KshF/ABNlr6iZbvcXizezds=
-Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 45U6xsnx048361
+	b=YMKo3aCuU8h2ytQM1eQIjVgmFuFMbHm29ICxh6UdEM+TgB1HgLr1KCoHbZxMIVZLS
+	 DMCimp8YUBRqwUSY3JVgxDKjIbVNFck59RdZmxMovPgBzps7LKfODq2kHB/ZClHxq7
+	 4lJkT6CZBklm13N4gt+pGMiqqjDKeDHX0RB4MmuE=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 45U79dPQ068587
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Sun, 30 Jun 2024 01:59:54 -0500
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+	Sun, 30 Jun 2024 02:09:39 -0500
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sun, 30
- Jun 2024 01:59:53 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ Jun 2024 02:09:39 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Sun, 30 Jun 2024 01:59:53 -0500
+ Frontend Transport; Sun, 30 Jun 2024 02:09:39 -0500
 Received: from [172.24.227.94] (uda0132425.dhcp.ti.com [172.24.227.94])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 45U6xnDA113333;
-	Sun, 30 Jun 2024 01:59:50 -0500
-Message-ID: <8c32591a-ada0-4183-b4d1-68ac51c65d57@ti.com>
-Date: Sun, 30 Jun 2024 12:29:48 +0530
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 45U79Xkw001404;
+	Sun, 30 Jun 2024 02:09:34 -0500
+Message-ID: <0ca809d0-3d0f-47d1-b5e7-aa78d65d7917@ti.com>
+Date: Sun, 30 Jun 2024 12:39:33 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,95 +65,125 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/5] ti: fix dtbs_check for some syscon bindings and
- DTS node
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Roger
- Quadros <rogerq@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Tero Kristo
-	<kristo@kernel.org>, "Andrew F. Davis" <afd@ti.com>,
-        Bryan Brattlof
-	<bb@ti.com>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Conor Dooley
-	<conor.dooley@microchip.com>
-References: <20240626-dt-bindings-ti-soc-mfd-v2-0-ee4d69017326@linaro.org>
+Subject: Re: [PATCH 0/3] Add global CMA reserve area
+To: Randolph Sapp <rs@ti.com>, Devarsh Thakkar <devarsht@ti.com>,
+        Andrew Davis
+	<afd@ti.com>, <nm@ti.com>, <kristo@kernel.org>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC: <praneeth@ti.com>, <a-bhatia1@ti.com>, <j-luthra@ti.com>,
+        <b-brnich@ti.com>, <detheridge@ti.com>, <p-mantena@ti.com>,
+        <vijayp@ti.com>, "Khasim, Syed Mohammed" <khasim@ti.com>
+References: <20240613150902.2173582-1-devarsht@ti.com>
+ <D1ZXO8F3XN2I.3CTTE245I0TYY@ti.com>
+ <24c0ed06-3c32-4cc3-922c-4717d35a1112@ti.com>
+ <64b78ba2-776c-1de6-4c13-001d11000ff0@ti.com>
+ <D2BSORIL5C7T.3B8EAANVQ7TX5@ti.com>
 From: Vignesh Raghavendra <vigneshr@ti.com>
 Content-Language: en-US
-In-Reply-To: <20240626-dt-bindings-ti-soc-mfd-v2-0-ee4d69017326@linaro.org>
+In-Reply-To: <D2BSORIL5C7T.3B8EAANVQ7TX5@ti.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-+ Andrew and Bryan
 
-Hi Krzysztof
 
-On 26/06/24 16:53, Krzysztof Kozlowski wrote:
-> Hi,
+On 28/06/24 22:05, Randolph Sapp wrote:
+> On Fri Jun 28, 2024 at 10:57 AM CDT, Devarsh Thakkar wrote:
+>> Hi Andrew, Vignesh,
+>>
+>> On 24/06/24 22:03, Andrew Davis wrote:
+>>> On 6/14/24 12:58 PM, Randolph Sapp wrote:
+>>>> On Thu Jun 13, 2024 at 10:08 AM CDT, Devarsh Thakkar wrote:
+>>>>> Add global CMA reserve area for AM62x, AM62A and AM62P SoCs.
+>>>>> These SoCs do not have MMU and hence require contiguous memory pool to
+>>>>> support various multimedia use-cases.
+>>>>>
+>>>>> Brandon Brnich (1):
+>>>>>    arm64: dts: ti: k3-am62p5-sk: Reserve 576 MiB of global CMA
+>>>>>
+>>>>> Devarsh Thakkar (2):
+>>>>>    arm64: dts: ti: k3-am62x-sk-common: Reserve 128MiB of global CMA
+>>>>>    arm64: dts: ti: k3-am62a7-sk: Reserve 576MiB of global CMA
+>>>>>
+>>>>>   arch/arm64/boot/dts/ti/k3-am62a7-sk.dts        | 9 +++++++++
+>>>>>   arch/arm64/boot/dts/ti/k3-am62p5-sk.dts        | 7 +++++++
+>>>>>   arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi | 8 ++++++++
+>>>>>   3 files changed, 24 insertions(+)
+>>>>
+>>>> I'm still a little torn about putting this allocation into the device tree
+>>>> directly as the actual required allocation size depends on the task.
+>>>>
+>>>
+>>> That is the exact reason this does not belong in DT. For everyone *not*
+>>> using the most extreme case (12x decodes at the same time), this is
+>>> all wasted space. If one is running out of CMA, they can add more on
+>>> the kernel cmdline.
+>>>
+>>
+>> I disagree with this. The 12x decode for 480p is not an extreme use-case this
+>> is something VPU is capable to run at optimum frame-rate (12x 1080p it can't)
+>> and as the AM62A7 is meant to be AI + multimedia centric device, per the
+>> device definition we were given the requirements to support a list of
+>> multimedia use-cases which should work out of box and 12x decode for 480p was
+>> one of them as device is very much capable of doing that with optimum
+>> performance and I don't think it is right to change these requirements on the fly.
+>>
+>> The AM62A7 board has 4 GiB of DDR and we have been using this CMA value since
+>> more than a year, I have never heard anyone complain about out of memory or
+>> CMA starvation and it suffices to requirements of *most use-cases*, but if for
+>> some specific use-case it doesn't suffice, user can change it via kernel cmdline.
+>>
+>> The kernelcmdline suggestion doesn't suffice out of box experience required,
+>> we don't want to ask the user to reboot the board everytime they run out of CMA.
+>>
+>>
+>>>> If it's allowed though, this series is fine for introducing those changes. This
+>>>> uses the long-tested values we've been using on our tree for a bit now. The
+>>>> only
+>>>> thing that's a little worrying is the missing range definitions for devices
+>>>> with
+>>>> more than 32bits of addressable memory as Brandon has pointed out. Once that's
+>>>> addressed:
+>>>>
+>>>> Reviewed-by: Randolph Sapp <rs@ti.com>
+>>>>
+>>>> Specifying these regions using the kernel cmdline parameter via u-boot was
+>>>> brought up as a potential workaround. This is fine until you get into distro
+>>>> boot methods which will almost certainly attempt to override those. I don't
+>>>> know. Still a little odd. Curious how the community feels about it.
+>>>>
+>>>> Technically the user or distro can still override it with the cmdline parameter
+>>>> if necessary, so this may be the best way to have a useful default.
+>>>>
+>>>
+>>
+>> Unlike above, this solution is independent of distro as it should be as we
+>> want that all the supported multimedia use-cases should work out of box. This
+>> solution is nothing illegal as CMA region carveouts are not a kernel
+>> deprecated feature.
 > 
-> Changes in v2:
-> - Add acks/tags
-> - Correct Kishon Vijay Abraham email
-> - Drop R/W from title of bindings
-> - Link to v1: https://lore.kernel.org/r/20240518-dt-bindings-ti-soc-mfd-v1-0-b3952f104c9a@linaro.org
+> Right. I support this change for at least introducing a usable default. 32M of
+> CMA is barely enough to run glmark2 under Weston once everything's up and
+> running.
 > 
-> I am in the process of fixing syscon/simple-mfd bindings (to be posted
-> separately) and found set of issues in TI looking independent of my
-> series.  Please apply via TI SoC.
+> As I said before, the user or distro can still override the dt CMA block with
+> the cma kernel parameter if they aren't happy with the default block.
+> Unfortunately this is about the only way to have a usable default value to fall
+> back on.
 > 
-> Best regards,
-> Krzysztof
-> 
-> ---
-> Krzysztof Kozlowski (5):
->       dt-bindings: soc: ti: am62-system-controller: add AM62 syscon
->       dt-bindings: soc: ti: am645-system-controller: add AM654 syscon
->       arm64: dts: ti: k3-am62: add dedicated wakeup controller compatible
->       arm64: dts: ti: k3-am65-mcu: add dedicated wakeup controller compatible
->       arm64: dts: ti: k3-am62a: use a specific MCU controller compatible
 
 
-Thanks for the patches!
+Given the number of SoMs and non TI EVMs that are about to come out with
+AM62A/P and AM67s, we need to provide a consistent way of being able to
+support multimedia IPs out of the box. Modifying cmdline may not always
+be feasible given distro defaults don't always provide a way to do so.
 
-Andrew's patches [0] remove "syscon", "simple-mfd" from all the below
-files except for k3-am62-wakeup.dtsi. But I think k3-am62-wakeup.dtsi
-can be fixed up in the similar way and not really need a custom
-system-controller binding. Last user is "ti-cpufreq" driver which is
-being adapted over to use granular syscon nodes [1].
+So I am inclined to queue first 2 patches unless there is another way t
+achieve this.
 
-I believe add new compatible for system-controllers nodes is unneeded?
-
-AM62 may need one more merge window to be resolved owing to dependencies
-but I am queuing [0] to get rid of the warning for rest of the dts.
-
-Bryan,
-
-Could you repsin [1] with cleanups to am62-wakeup.dtsi as well?
-
-[0] lore.kernel.org/r/20240628151518.40100-1-afd@ti.com
-[1] lore.kernel.org/r/20240621-ti-opp-updates-v3-0-d857be6dac8b@ti.com
-
-
-> 
->  .../bindings/soc/ti/ti,am62-system-controller.yaml | 77 ++++++++++++++++++++++
->  .../soc/ti/ti,am654-system-controller.yaml         | 60 +++++++++++++++++
->  arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi         |  2 +-
->  arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi        |  2 +-
->  arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi            |  2 +-
->  5 files changed, 140 insertions(+), 3 deletions(-)
-> ---
-> base-commit: e032bb82c315d2317a80506195d16ce4308d8cf7
-> change-id: 20240518-dt-bindings-ti-soc-mfd-ac211578d7a5
-> 
-> Best regards,
+[...]
 
 -- 
 Regards
