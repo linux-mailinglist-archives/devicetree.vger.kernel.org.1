@@ -1,127 +1,256 @@
-Return-Path: <devicetree+bounces-81669-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81670-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 056C491D021
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 08:16:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3086691D02A
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 08:36:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A2EA91F216E3
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 06:16:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 68AD8281E2A
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 06:36:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59D792BAEF;
-	Sun, 30 Jun 2024 06:16:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D629439850;
+	Sun, 30 Jun 2024 06:36:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="FYCjnyYa"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Q6USyfI9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.web.de (mout.web.de [212.227.17.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCA402110F;
-	Sun, 30 Jun 2024 06:16:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 487CF38DD9;
+	Sun, 30 Jun 2024 06:36:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719728214; cv=none; b=gMH3nNgNAzWGmFZPtFMGzGk2/co8iQfY1IDIkYLcxjq5i1avIKob4Btgw26wHDmSMeyYKb3HE3kxerfxEd/aYa3mxyxF8/WsTyoScalud3rQuK0MVL9QXssFqlfn5bP1rwjlK2/lMG39BtUTL7JhE8cKofk4C6lZvLeEcBM3IDU=
+	t=1719729374; cv=none; b=LHOwD4u77ShX0STVvWKayYZkWZWPaZOthbM65t0V4M1OjDfaquKiNw7R4QbrzQhoRtJXF8fxOw4PudH6GcgWF0C6YTMS7GlZ615UEpDXyuXlOh61uVSLeE6wu3MmAbK7/2PP9C/pXwqEQBZoBCTN0/Msl3BCIpCgSyMuVLMDuqs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719728214; c=relaxed/simple;
-	bh=wI703h9blYfT73BZcvvlCXmTTlLsD7MEKLp+YVNzR88=;
-	h=Message-ID:Date:MIME-Version:To:Cc:References:Subject:From:
-	 In-Reply-To:Content-Type; b=BBoTP+ozXosX11V0iPnvF73jWJZN0wnImzSi7oyVrFBAfbr/fIFGxbY9LqHSd5YXLcZrlsXjPR38LTWceUU6E4vKAFb+UFnUpGcED6MG2Y5vGpd/3fB/qwLqUmDpzmoPgHfCLNpszfisVq52a2xdiTJTv7+2eG7+4gRoC717rIo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=FYCjnyYa; arc=none smtp.client-ip=212.227.17.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
-	s=s29768273; t=1719728177; x=1720332977; i=markus.elfring@web.de;
-	bh=yaPGlmSSlSwV2OA6Z5CKm5JEUoBuUODSJdv3TgTtAvE=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:References:
-	 Subject:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
-	 cc:content-transfer-encoding:content-type:date:from:message-id:
-	 mime-version:reply-to:subject:to;
-	b=FYCjnyYaOX6r3KW1Niv4fAHwzEhwOFFsyZGqZMB2d3ZM5q61hp1KXNWuOdAAM7Rl
-	 ZQPth0DV/+0suy1mgE8LovZgN5+eUwM/QRziKCXxOgH7wuRg/ZRV/kEdnqA6hQxhT
-	 nnxewl+/icjqDXrfg3s2Qn1FnIXDDX7LeVvRebectoz2QrJsOoGC7EO4V+uHE5lXH
-	 FsBU5iKZGAJTjZxc+q5yrcD7UgVoSz6droxKNgf1Uf2+vqaXT0bPT3xWo/euodklA
-	 Pwz+YLWYirkikY/gVgSzNvVV9W/mJw29BXGjgomTV4xh7TFAhAP/QpvCjURQGE6QR
-	 aItAV7Lz1olcpeGwHg==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from [192.168.178.21] ([94.31.82.95]) by smtp.web.de (mrweb106
- [213.165.67.124]) with ESMTPSA (Nemesis) id 1N62yY-1sLKzQ3eEC-00vYgL; Sun, 30
- Jun 2024 08:16:16 +0200
-Message-ID: <a805ace8-6777-4616-b3ef-b475d1b71114@web.de>
-Date: Sun, 30 Jun 2024 08:15:39 +0200
+	s=arc-20240116; t=1719729374; c=relaxed/simple;
+	bh=WbPqT2wpd4+ZeKcUAwbmkkoCmR6ML4SAFPLKfk61mbg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=JkoTmcP0tq6fIjff1dxzQS+ojMILsEUld+ORODZxQgiYDP4EumN9ZZpK+TyIanbCMCB/28+854OXgorZookM+uNQSCCxl2LTGW2bvCjJdKgdfR/kCiaPOQZZn3pX3prct8oqwouQ6K/Q86xLiP1ai7IddeYwd98ZkPwGvweFibU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Q6USyfI9; arc=none smtp.client-ip=209.85.214.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-1f9c6e59d34so15105015ad.2;
+        Sat, 29 Jun 2024 23:36:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1719729372; x=1720334172; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=QcY18BrD0/gIItoUlZh8XyBfrX5yv5R+UNZ4yG5hJ04=;
+        b=Q6USyfI9CL3qsNub2TuT24SbIA9cyh0gXSrTQD6nxVxvDpuLlwvMXyIi0QeQseAaEk
+         y38SLJUwUBbECYC4D3ZVI7vGboUtmTiOkJ6uRkDmc4TzXENgMGl91m9ksvWvjBlzfUYw
+         6HmXMrugcqWbi30J2JPYqiZpxPLBtzztjJZK0BWQW2KCgNGP8xKalFThoIDE75EUE1fa
+         7BrC/0Mm35DnjqDweXet8o/6ZpXmL32rVn4SPth98hkF/zu5bzSXeVAlDDF41yh/P/Qm
+         DY+dhhxkLDqzD9Pf1jn7FYzKBx7IX1A5EawdYi3FlPOrgJFVPexR9bti7zeUDQb1KatV
+         HxlQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719729372; x=1720334172;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=QcY18BrD0/gIItoUlZh8XyBfrX5yv5R+UNZ4yG5hJ04=;
+        b=lzX4zoLdFcRu5V+Yh2tXHEWbjdmD1KGxAGYExsIq5j5Jvch2X5qK5eKVafKD05qY/e
+         l1PPhNiyBog4W+8JSE5dToihtYIfzSu9+K9n3v40DTguHk0nyhljjBllx2RZh8SXQKqV
+         6E/25+5ffCKraan/8+9h57cuWY1z48G2hjtBBMJs7NhG89bjm5WZoQxxxEyoTbuVbwY8
+         I9bQdIlwIQbN4hALbtbggOUgSbIxO1vT/qSd8/YdL8Vmk51Mka66JpqWbS0M0++Wh6hI
+         +QZbokNt8WMozg+sgCFFrgpnLto9202M0Vt6e6X5HVtxQnScL5k1LagySxlIBTC8j1DW
+         CoWQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUsqaCBcO1rjpg1scfipqCWlN599TkaYYOXVNddBQUzELezCxphPFp8xB0uiXDgU4VsPEOrIhaEIZ72A7kAUEi2ZUcH2GV3LFh1h2bZ0drkBkVSwX5alLyTacYMe0gsX5r1oSkJi01TJDuHR+Ejh5DZRSAHtNYJrbbsIPj9iAqR2skgjQ==
+X-Gm-Message-State: AOJu0YyBel23mnFPLBIg7QOW5VEK45ijc2+ZRBShlcL54NQuO+IS+1Rn
+	U3WOVR2LBdINVAlayL+HyMaPZVepv2JtW0v2Kn0n2Pg5d4YzisXS
+X-Google-Smtp-Source: AGHT+IE8yebFjC0WOZuqWWT6VmnzC1kB3+fdYIoJd1m5PkeCFVi/btZzICJa9As2qUt+igNxcU/aNw==
+X-Received: by 2002:a17:902:aa85:b0:1f7:22bf:57f4 with SMTP id d9443c01a7336-1fadbcf338fmr20187525ad.55.1719729372416;
+        Sat, 29 Jun 2024 23:36:12 -0700 (PDT)
+Received: from ga401ii.. ([2401:4900:1cc9:59f2:a68f:8261:cbcf:3139])
+        by smtp.googlemail.com with ESMTPSA id d9443c01a7336-1fac1538a1asm41180575ad.150.2024.06.29.23.36.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 29 Jun 2024 23:36:11 -0700 (PDT)
+From: Kanak Shilledar <kanakshilledar@gmail.com>
+To: 
+Cc: kanakshilledar111@protonmail.com,
+	Kanak Shilledar <kanakshilledar@gmail.com>,
+	Serge Semin <fancer.lancer@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: [PATCH 1/2] arch: riscv: thead: implement basic spi
+Date: Sun, 30 Jun 2024 12:05:41 +0530
+Message-ID: <20240630063543.115754-2-kanakshilledar@gmail.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-To: Spencer Hill <shill@d3engineering.com>, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, imx@lists.linux.dev, kernel@pengutronix.de,
- linux-arm-kernel@lists.infradead.org,
- Alexander Stein <alexander.stein@ew.tq-group.com>,
- Conor Dooley <conor+dt@kernel.org>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>,
- Fabio Estevam <festevam@gmail.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Sakari Ailus <sakari.ailus@linux.intel.com>,
- Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>
-Cc: LKML <linux-kernel@vger.kernel.org>
-References: <20240628-imx728-driver-v2-2-80efa6774286@d3engineering.com>
-Subject: Re: [PATCH v2 2/2] media: i2c: Add driver for Sony IMX728
-Content-Language: en-GB
-From: Markus Elfring <Markus.Elfring@web.de>
-In-Reply-To: <20240628-imx728-driver-v2-2-80efa6774286@d3engineering.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:8ukpPKLP1qBUjh0XKXvid+M9uAstTi+O0j7VU3zQO3ZxDWkDbzY
- vlEs5hCjFuI0L71xhLjlEaMentoihEutCGhfzYZBezIvuqlGma+Xu6+S78r024dGgHd2d83
- 3dEtcFUk6PlMzUuWb1aloaKs1CwXE5BkiOMhGzjyElfF+w57D6cgyWmKCRaefsDhG9yKIpi
- xLo1H21lWY5Sqk6RTel3g==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:9oRHGze6iUs=;p1vkF1ut/d5zdOiymfoZh+KUREL
- 2nIPKEwhNRN3yothl+3JFjhE7k/mgB9Gzsk6wuH63nZE5Z8+ecYzFK4KE5h5J6PYL4c2mS7Nj
- RtvG+s57M3DGiKYIldF66AzY+lY6KnLhc2extYEyNmTqnjaPWnUSbN19bFc1CLB67PqnE70rG
- bGJ/XV950HK0xOilgqPSE66qWufN6zreu4pl+iSpdbrX7+UZirFa7DpQi7GbKUTS4n8imEYB/
- 7FsN3ZKXgfHD4Km+8adQ63hWWq3QEPlw5GPRSeBMDWVbbXcpdd44+7ZDsHlavXhAYli1PaSla
- MJuamf1ke+HWBf75Ck1YRytRLhhbACFklFI1O0wJ5brS1t+DzzmWj0gMq7w338NFW5kJcBPUR
- zvayhxQbOgkRABzvL9C/15tK7hkqAr/Q3I9lAAtfuDWfEo8PUs9poOa1dzN3Z6xMQrGIuWGPz
- Xlome4uj/yfO4QfHXGwQKeefKt3RqZuWj9QImYCAJwc3+XalOBUGbeIaf5ocWj3xekzViobMh
- Ln5d4dVhVftczpE+CSxYtSd435Iui8tVE+R38PqXaAuCWe7fSd5Q9+LF45jSz6yurpYQnJ9yp
- /fB2kbv4TbhZDW6GlCroS5bcJsh9w3L0JXjpTzYvnOioI2vFT9RxNJncE07l55cbAe4tkWHNp
- H3/6rpO/WsEU8j0tzZrgP/wq68sj8acWXTRmgORg+9OUfqYhdnDyELhEKIQodMaVRt/kTga/f
- I21W2MhiIpeIjZq63L52sWZVmbuDyoHNL6NokgCBn67/zRdYRokLLjTJBISYF3vydDdxgOdLQ
- qcIW3gaWpL+MBCE9YkHpALgWvgQrB5+P2o3ESm5dVzopA=
+Content-Transfer-Encoding: 8bit
 
-=E2=80=A6
-> +++ b/drivers/media/i2c/imx728.c
-> @@ -0,0 +1,4660 @@
-=E2=80=A6
-> +static int imx728_set_fmt(struct v4l2_subdev *sd,
-> +                         struct v4l2_subdev_state *state,
-> +                         struct v4l2_subdev_format *fmt)
-> +{
-=E2=80=A6
-> +       mutex_lock(&imx728->lock);
-> +
-> +       fmt->format.field =3D V4L2_FIELD_NONE;
-=E2=80=A6
-> +       *format =3D fmt->format;
-> +
-> +done:
-> +       mutex_unlock(&imx728->lock);
-> +
-> +       return ret;
-> +}
-=E2=80=A6
+implemented basic spi support for TH1520 SoC.
+created a fixed clock and a simple spi0 node.
+updated the matching binding to include thead,th1520-spi as compatible.
+added a spidev device in devicetree which will utilise the spi0 node.
+this is usually reserved for a SPI NOR flash which is left unpopulated
+underneath the carrier board. I performed a SPI self loop test using
+tools/spi/spidev_test.c and tried sending `\xDE\xAD\xBE\xEF` and verified
+it is being received correctly. i updated the of_device_id struct in
+drivers/spi/spi-dw-mmio.c to include "thead,th1520-spi" as the compatible.
+this patch also adds basic spi support on beaglev ahead which shares the
+same TH1520 SoC. i have only tested on LicheePi 4A.
 
-Under which circumstances would you become interested to apply a statement
-like =E2=80=9Cguard(mutex)(&imx728->lock);=E2=80=9D?
-https://elixir.bootlin.com/linux/v6.10-rc5/source/include/linux/mutex.h#L1=
-96
+Signed-off-by: Kanak Shilledar <kanakshilledar@gmail.com>
+---
+ .../devicetree/bindings/spi/snps,dw-apb-ssi.yaml |  4 ++++
+ .../boot/dts/thead/th1520-beaglev-ahead.dts      |  9 +++++++++
+ .../boot/dts/thead/th1520-lichee-module-4a.dtsi  |  4 ++++
+ .../riscv/boot/dts/thead/th1520-lichee-pi-4a.dts | 10 ++++++++++
+ arch/riscv/boot/dts/thead/th1520.dtsi            | 16 ++++++++++++++++
+ drivers/spi/spi-dw-mmio.c                        |  1 +
+ 6 files changed, 44 insertions(+)
 
-Regards,
-Markus
+diff --git a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
+index fde3776a558b..bccd00a1ddd0 100644
+--- a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
++++ b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
+@@ -88,6 +88,10 @@ properties:
+               - renesas,r9a06g032-spi # RZ/N1D
+               - renesas,r9a06g033-spi # RZ/N1S
+           - const: renesas,rzn1-spi   # RZ/N1
++      - description: T-HEAD TH1520 SoC SPI Controller
++        items:
++          - const: thead,th1520-spi
++          - const: snps,dw-apb-ssi
+ 
+   reg:
+     minItems: 1
+diff --git a/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts b/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
+index d9b4de9e4757..3103b74e0288 100644
+--- a/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
++++ b/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
+@@ -17,6 +17,7 @@ aliases {
+ 		gpio1 = &gpio1;
+ 		gpio2 = &gpio2;
+ 		gpio3 = &gpio3;
++		spi0 = &spi0;
+ 		serial0 = &uart0;
+ 		serial1 = &uart1;
+ 		serial2 = &uart2;
+@@ -52,6 +53,10 @@ &sdhci_clk {
+ 	clock-frequency = <198000000>;
+ };
+ 
++&spi_clk {
++	clock-frequency = <396000000>;
++};
++
+ &uart_sclk {
+ 	clock-frequency = <100000000>;
+ };
+@@ -79,3 +84,7 @@ &sdio0 {
+ &uart0 {
+ 	status = "okay";
+ };
++
++&spi0 {
++	status = "okay";
++};
+diff --git a/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi b/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi
+index 1365d3a512a3..6939bd36560c 100644
+--- a/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi
++++ b/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi
+@@ -33,6 +33,10 @@ &sdhci_clk {
+ 	clock-frequency = <198000000>;
+ };
+ 
++&spi_clk {
++	clock-frequency = <396000000>;
++};
++
+ &uart_sclk {
+ 	clock-frequency = <100000000>;
+ };
+diff --git a/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts b/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts
+index 9a3884a73e13..26f82fe91489 100644
+--- a/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts
++++ b/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts
+@@ -14,6 +14,7 @@ aliases {
+ 		gpio1 = &gpio1;
+ 		gpio2 = &gpio2;
+ 		gpio3 = &gpio3;
++		spi0 = &spi0;
+ 		serial0 = &uart0;
+ 		serial1 = &uart1;
+ 		serial2 = &uart2;
+@@ -30,3 +31,12 @@ chosen {
+ &uart0 {
+ 	status = "okay";
+ };
++
++&spi0 {
++	status = "okay";
++	spidev@0 {
++		compatible = "rohm,dh2228fv";
++		reg = <0>;
++		spi-max-frequency = <500000>;
++	};
++};
+diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
+index d2fa25839012..f962de663e7e 100644
+--- a/arch/riscv/boot/dts/thead/th1520.dtsi
++++ b/arch/riscv/boot/dts/thead/th1520.dtsi
+@@ -140,6 +140,12 @@ apb_clk: apb-clk-clock {
+ 		#clock-cells = <0>;
+ 	};
+ 
++	spi_clk: spi-clock {
++		compatible = "fixed-clock";
++		clock-output-names = "spi_clk";
++		#clock-cells = <0>;
++	};
++
+ 	uart_sclk: uart-sclk-clock {
+ 		compatible = "fixed-clock";
+ 		clock-output-names = "uart_sclk";
+@@ -183,6 +189,16 @@ clint: timer@ffdc000000 {
+ 					      <&cpu3_intc 3>, <&cpu3_intc 7>;
+ 		};
+ 
++		spi0: spi@ffe700c000 {
++			compatible = "thead,th1520-spi", "snps,dw-apb-ssi";
++			reg = <0xff 0xe700c000 0x0 0x1000>;
++			interrupts = <54 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&spi_clk>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++			status = "disabled";
++		};
++
+ 		uart0: serial@ffe7014000 {
+ 			compatible = "snps,dw-apb-uart";
+ 			reg = <0xff 0xe7014000 0x0 0x100>;
+diff --git a/drivers/spi/spi-dw-mmio.c b/drivers/spi/spi-dw-mmio.c
+index 819907e332c4..39e3d46ebf5d 100644
+--- a/drivers/spi/spi-dw-mmio.c
++++ b/drivers/spi/spi-dw-mmio.c
+@@ -419,6 +419,7 @@ static const struct of_device_id dw_spi_mmio_of_match[] = {
+ 	{ .compatible = "microchip,sparx5-spi", dw_spi_mscc_sparx5_init},
+ 	{ .compatible = "canaan,k210-spi", dw_spi_canaan_k210_init},
+ 	{ .compatible = "amd,pensando-elba-spi", .data = dw_spi_elba_init},
++	{ .compatible = "thead,th1520-spi", .data = dw_spi_pssi_init},
+ 	{ /* end of table */}
+ };
+ MODULE_DEVICE_TABLE(of, dw_spi_mmio_of_match);
+-- 
+2.45.2
+
 
