@@ -1,115 +1,84 @@
-Return-Path: <devicetree+bounces-81735-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81738-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 593A391D242
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 17:08:08 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 045C591D248
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 17:09:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9424D1C20B2E
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 15:08:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8E559B2090C
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 15:09:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA9DC152E1D;
-	Sun, 30 Jun 2024 15:08:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="zAlzrNw/"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65F081534E6;
+	Sun, 30 Jun 2024 15:09:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FD5214532C
-	for <devicetree@vger.kernel.org>; Sun, 30 Jun 2024 15:08:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4126E1527A5;
+	Sun, 30 Jun 2024 15:09:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719760083; cv=none; b=ZeP4oDsmC4kyn2h79edcrgzg+MDkArw9Oqx7H2KuktWe0PdZFxt2vEUs69mbNM931u7PaAAg2aMeZmy+GKw+miNKflqWiGGEl6eR+IOpzdmaYhvhyIiYQ6+JaBNxygXFn3tbYzEPTazvwJJZuOQWuBTWbTvhCNa69Hrx+vHdgb4=
+	t=1719760177; cv=none; b=DtiCI8Ltltns8j+O4Gdh8J2ucddej1E7kLnvN2lMVu5/DVQH60+jOYfMIB2xZ+tKTIkDmfMQ4N/D5CVJJG/oB66QtGPnZ+xxTL/jnO3UuBGphnYp+HGjf2t8IBMWUVDx6VrSObkFYKJM3VRnKjGh8PxnMoLyFPZ7wvnlf3h+hIE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719760083; c=relaxed/simple;
-	bh=BnG4+1E9hPYVvsAqxmqjcvQPfqxK88WLhyCCGGLrJ9k=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uCEUMW3k1HfvctFJqeoXwFByosKywXsTALf7enh4NC4gbCMnNjgpp0y8eAVU9ep324H/BGH1fxY7I2WhRp2oxs10dV0uYArHABk3OW5BdP++1aG49rl0ii3Oj6kihs3zTQfLHROPer5arSTtXEZPJrLPsKzG+Sg595gmUxXNJnI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=zAlzrNw/; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-425680b1d3aso14949535e9.2
-        for <devicetree@vger.kernel.org>; Sun, 30 Jun 2024 08:08:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1719760080; x=1720364880; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=BnG4+1E9hPYVvsAqxmqjcvQPfqxK88WLhyCCGGLrJ9k=;
-        b=zAlzrNw/l9YlFs7qZprS+pX/6l3CKx88ihZZXF756eHLF48l2jbReWFVuyEjfHqAqy
-         nCwbBNfzrxJu3VP98JmKv6UciI6Icho0QVkPdCwyVnriqAeY3smW8ZUNck16e0/Y/7qm
-         3sAgHeLCIGFsLKr3QF7Irffxn9/EKKDa5kLon2xphUMW1aAyv41axocBtWC2tKRkxER5
-         JgVE/OVTjfETmSCER2xRY0xl3t09B9BC9uWWHFLpMtRTW/YQDSexMnRs/q/0B99VbmhB
-         ZijvJL5MLDYwU8DZjwi9Un1QTeoYEn19Ut/ibcPBX/gTJbms+VSmYDNmpVUSrHzMY5wF
-         QzLw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719760080; x=1720364880;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BnG4+1E9hPYVvsAqxmqjcvQPfqxK88WLhyCCGGLrJ9k=;
-        b=UKmjyoktbj6bMvfntRAIDi+wpnUskhS64bFMzTTQKPTT0lHWIEZ/68vvTxP/KurZiC
-         TH+2UGeYWEGbe2EAAxf5AUCk4zpqHD44rvVmLanyy8LJ4UkVjqtKc4Sqe2Rkcx2FIVNw
-         ttqx1zyB56EEEwpk8Fv9aKDRRsUWs/pRV7knoJkMyvDdeU9Yt/gJprGos0ZeWYUnbI73
-         GdIr8p41LI7C5ebNywtT6p+bmRwRuGFZLnopH/2sTYqRpqCSfuQbYvFHH7Erwj37LU0e
-         7MylbKhUaApXko8dQVmowIspdU3wrIkJVRCsOcFvRL1WUPhNvRKhRzRMXNnOtIRFQ7Er
-         D/ew==
-X-Forwarded-Encrypted: i=1; AJvYcCXWBV0NJBSfLUROE/1HWxK1ytMdsbBWQM6fzHDmD5qlADcSN9OY91oCnNDmydXyv+6EOdwNQvir8ssI0aCPOG2HQth2TlA15hGaVw==
-X-Gm-Message-State: AOJu0YxUTi4b0DL6f6k9RGDKptZD9dvOA7FoQ8Wh+BBZTWQcW5FVrlWm
-	xyGFYbM47IYp41zSVsEyTsxR6vuMVOR5yVPPol1QzR+tzrnCQp48WzxGYkS0OVs=
-X-Google-Smtp-Source: AGHT+IGdOwRhOocmHbNjBzNVDujGZiKtTlIhS1EUT3ZACm53AuDJ5KRaWqDiD51zqCSuCqFrDXDt/A==
-X-Received: by 2002:a05:600c:46c9:b0:425:7aa0:9621 with SMTP id 5b1f17b1804b1-4257aa09ae0mr16326335e9.40.1719760079674;
-        Sun, 30 Jun 2024 08:07:59 -0700 (PDT)
-Received: from ?IPV6:2a01:e34:ec24:52e0:2597:4fed:351e:e974? ([2a01:e34:ec24:52e0:2597:4fed:351e:e974])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4256af59732sm114769045e9.11.2024.06.30.08.07.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 30 Jun 2024 08:07:59 -0700 (PDT)
-Message-ID: <bb5eabd6-b8f6-42fe-847d-04ea6dcdf418@freebox.fr>
-Date: Sun, 30 Jun 2024 17:07:58 +0200
+	s=arc-20240116; t=1719760177; c=relaxed/simple;
+	bh=xbFID+3ErU08rjSuOkfRzCMODIEU1e5ZIdOh0iUKZ48=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=Q+nDRriuzPrz9pR+Xx5Tp9gJz+qjVcBurT84ggYwPCw2WBlYI+P1IhewZ8/wZBZPsG2IhBbugkMdrMqNxY8OXzjPV+A4WFU4PFn24ovet5uys9Sd0ED4/ad8Cpt+VHrFIulnCWmuRac5FxUemgojxSK4Aiz20Pba9sZ2vczvRJk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1C6CC32786;
+	Sun, 30 Jun 2024 15:09:36 +0000 (UTC)
+Received: from wens.tw (localhost [127.0.0.1])
+	by wens.tw (Postfix) with ESMTP id 6D2055FADF;
+	Sun, 30 Jun 2024 23:09:34 +0800 (CST)
+From: Chen-Yu Tsai <wens@csie.org>
+To: Jernej Skrabec <jernej.skrabec@gmail.com>, linux-sunxi@lists.linux.dev, 
+ Samuel Holland <samuel@sholland.org>
+Cc: devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, 
+ Jisheng Zhang <jszhang@kernel.org>, linux-riscv@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, 
+ Andre Przywara <andre.przywara@arm.com>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor@kernel.org>, linux-kernel@vger.kernel.org, 
+ Heiko Stuebner <heiko@sntech.de>, Palmer Dabbelt <palmer@rivosinc.com>
+In-Reply-To: <20221231233851.24923-11-samuel@sholland.org>
+References: <20221231233851.24923-1-samuel@sholland.org>
+ <20221231233851.24923-11-samuel@sholland.org>
+Subject: Re: (subset) [PATCH v4 10/12] riscv: dts: allwinner: Add
+ ClockworkPi and DevTerm devicetrees
+Message-Id: <171976017441.1183261.11626776990169196800.b4-ty@csie.org>
+Date: Sun, 30 Jun 2024 23:09:34 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/3] media: venus: add msm8998 support
-To: Bjorn Andersson <andersson@kernel.org>
-Cc: MSM <linux-arm-msm@vger.kernel.org>,
- linux-media <linux-media@vger.kernel.org>, DT <devicetree@vger.kernel.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Pierre-Hugues Husson <phhusson@freebox.fr>, Arnaud Vrac <avrac@freebox.fr>,
- Jeffrey Hugo <quic_jhugo@quicinc.com>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Bryan O Donoghue <bryan.odonoghue@linaro.org>,
- Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
- Vikash Garodia <quic_vgarodia@quicinc.com>
-References: <8b2705b7-f33c-4ebe-a6a8-c5ef776fe9ad@freebox.fr>
- <eb15a48b-6185-42dd-92ca-8df33b0ea4b5@freebox.fr>
- <yhjdqnkmqht5bz355i4h3sljkyosql2wjz3bgraewjy6mowzoo@upfjvtcduz6z>
-Content-Language: en-US
-From: Marc Gonzalez <mgonzalez@freebox.fr>
-In-Reply-To: <yhjdqnkmqht5bz355i4h3sljkyosql2wjz3bgraewjy6mowzoo@upfjvtcduz6z>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13.0
 
-On 06/06/2024 05:05, Bjorn Andersson wrote:
+On Sat, 31 Dec 2022 17:38:49 -0600, Samuel Holland wrote:
+> Clockwork Tech manufactures several SoMs for their RasPi CM3-compatible
+> "ClockworkPi" mainboard. Their R-01 SoM features the Allwinner D1 SoC.
+> The R-01 contains only the CPU, DRAM, and always-on voltage regulation;
+> it does not merit a separate devicetree.
+> 
+> The ClockworkPi mainboard features analog audio, a MIPI-DSI panel, USB
+> host and peripheral ports, an Ampak AP6256 WiFi/Bluetooth module, and an
+> X-Powers AXP228 PMIC for managing a Li-ion battery.
+> 
+> [...]
 
-> Mauro, please merge the first two patches through your tree, and I can
-> merge the dts patch (patch 3/3) through the qcom-tree.
+Applied to sunxi/dt-for-6.11 in sunxi/linux.git, thanks!
 
-Hello Bjorn,
+[10/12] riscv: dts: allwinner: Add ClockworkPi and DevTerm devicetrees
+        https://git.kernel.org/sunxi/linux/c/0ce1d34678e5
 
-Hans has accepted patches 1 & 2:
-https://patchwork.linuxtv.org/project/linux-media/patch/2db42e45-c034-43be-be96-0e88511d1878@freebox.fr/
-https://patchwork.linuxtv.org/project/linux-media/patch/eb15a48b-6185-42dd-92ca-8df33b0ea4b5@freebox.fr/
-(Thanks Stanimir & Hans)
-
-It's probably safe to merge patch 3 now?
-
-Regards
+Best regards,
+-- 
+Chen-Yu Tsai <wens@csie.org>
 
 
