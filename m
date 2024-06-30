@@ -1,256 +1,161 @@
-Return-Path: <devicetree+bounces-81671-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81672-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B01891D030
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 08:39:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4DC591D039
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 09:00:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B8276B20EFF
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 06:39:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4FC9D281E7E
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 07:00:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DF3333FE;
-	Sun, 30 Jun 2024 06:38:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D76C2C1BA;
+	Sun, 30 Jun 2024 07:00:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IJgUA/s3"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="LacBPdzE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f43.google.com (mail-oa1-f43.google.com [209.85.160.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3CB539FD0;
-	Sun, 30 Jun 2024 06:38:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21F6A2A8FE;
+	Sun, 30 Jun 2024 07:00:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719729537; cv=none; b=q0IAaqYZsVxNVY2k3r06fuMFQH3D4r+DRfHhpeSdJhl/k42CtIhVLvOVTSYLFpelyj9e2nJCVbNnpbl4zIOyEPRFTryVkGS4K4HznuplbYTxsVnD7tWufszMERJlqW7cp1BxZu97Hx5vcruiBX9ok/1bB5JlU7r9PqIxD3LsVzo=
+	t=1719730820; cv=none; b=JA57LXf/y3/xnZ9GO7IdGFlCp88LJKGnlfESstMrz5yuDAzrB9RforLQiMDaClvZGa3AlvBD9GpAdFCwF8qVffmgnf+TIm3YMti2wYl+RbCy6tEJ/3T9crrGfvejyigrYp3W1UUD1AB1FX1T0bU2EWHGWZaUqMMfsoi9OYDhQGU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719729537; c=relaxed/simple;
-	bh=WbPqT2wpd4+ZeKcUAwbmkkoCmR6ML4SAFPLKfk61mbg=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=gn/JpZA0esyM4CUrjV8C42outy/Tk1rAY87Sufz00boqHaFQ/6AyRRs7FvAxh+C5nlXRldC2W73mC6H/d6qoU/pJPCzAMZ3gEHc0qjtLA8nvEkGuSgvWXyYm5UcMSK/1dbJRuXU+XZgMuHjbbedWhoARC/WomvoEr7OQRL5uAVk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IJgUA/s3; arc=none smtp.client-ip=209.85.160.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-24cbb884377so1189253fac.0;
-        Sat, 29 Jun 2024 23:38:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1719729535; x=1720334335; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=QcY18BrD0/gIItoUlZh8XyBfrX5yv5R+UNZ4yG5hJ04=;
-        b=IJgUA/s3NhU7hp8fpfn1W71leordKftmNUayhZGMaaynrH/uFDVJh3LWFZSbOet1Bd
-         Ed+TDQjsTwPkH6IAVBbbKxiDN6s3Qmpgff/kPm7n+id59a+XQKuJfFUMIoFMX6qxf2LO
-         bJSzE/7E5nfye1JwPKrY0hY9L0P4KtPb75CMWnE9fw7n+n+x1qTfrBNc1N7Kb9fjdpbk
-         pyJ08wib4xVfjMO7V93DDhTCZsyY9FKmFf/17pJahfituL0GNK6y5SZNLIM8T+oey5tQ
-         zigTcOgGxymmytTngypt7x7FQrZbBAX2snzM4YHlh/BHiZe0mUWDLiQ4UNtpwT4Tg4p2
-         bfnw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719729535; x=1720334335;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=QcY18BrD0/gIItoUlZh8XyBfrX5yv5R+UNZ4yG5hJ04=;
-        b=ahxTajR8d4ggZgJDm5a2csyEjndja+O3YGmJ9AWWKjwgKCzjA0X3hpqFVnv7LD41vg
-         cjgbbrODABdrjhgcFs9U9oiXpH7FarolpiG6WVTlsTKJMBGPSstb7q5xXoRQrwnIxrJk
-         QYwwatY/u8z75eAg9ZbNJaqUE7rdmW2Ighi3969i/KTNxhAdm6A2zRFGJF0/mV7iT7lX
-         i0Js2L8OMlUITv8YEbNjPVbHR6rUSuukSQHJwP7qIp4A4s372ojlJj7oq857H+8K4zLD
-         +UxHp9n8G5sCwpytHmMyMKBuENPfZO8STOUUO+VHhR10Cj1D1xDG1w24pORkb3Mjy3YS
-         UUhw==
-X-Forwarded-Encrypted: i=1; AJvYcCUCCdSCE6RRvB61pnR+zxf+4NYwNMWxEMv9rQuRdj+dsHMcBzZ/2rBZuTJQgmVMS/VBA0ByoOSuNdTxM175xtgDh17ma4v8yse6UDP/obXES/47ATBPiVT1hqL3S9oE5KEAKiWqrnhV1JVvX2gq6LEBUoGfmMoSf0SHRlLMm7D5XsyXcw==
-X-Gm-Message-State: AOJu0YwQu/r4k3+8UCHB5mTg1RCsHfAANFlnHJ1Ys+XXgQZD+P8LY4CM
-	JXe2bQyN3ZJmKsC+yPNmYUgmX+XyAiIvRZ8iANi4NvcwMUVc8nH8
-X-Google-Smtp-Source: AGHT+IHV1EFyJxWJPau3gYXlLOEE5X8O10yturZa5h2xV6cnNt8lNgwXIjAPH9L3av1Etv9r9X8Qcg==
-X-Received: by 2002:a05:6870:d6a5:b0:254:a217:f8b9 with SMTP id 586e51a60fabf-25db344283dmr2390728fac.31.1719729534620;
-        Sat, 29 Jun 2024 23:38:54 -0700 (PDT)
-Received: from ga401ii.. ([2401:4900:1cc9:59f2:a68f:8261:cbcf:3139])
-        by smtp.googlemail.com with ESMTPSA id d2e1a72fcca58-70804989399sm4164149b3a.193.2024.06.29.23.38.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 29 Jun 2024 23:38:54 -0700 (PDT)
-From: Kanak Shilledar <kanakshilledar@gmail.com>
-To: 
-Cc: kanakshilledar111@protonmail.com,
-	Kanak Shilledar <kanakshilledar@gmail.com>,
-	Serge Semin <fancer.lancer@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	Guo Ren <guoren@kernel.org>,
-	Fu Wei <wefu@redhat.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: [PATCH] arch: riscv: thead: implement basic spi
-Date: Sun, 30 Jun 2024 12:08:20 +0530
-Message-ID: <20240630063845.116307-1-kanakshilledar@gmail.com>
-X-Mailer: git-send-email 2.45.2
+	s=arc-20240116; t=1719730820; c=relaxed/simple;
+	bh=O1HR4kHR/XCGKG4h+DwtnIPA7DGTVS7E3KxzwKw3um0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=EObMNJrljN4l83ujNNJgngqAseyTyhV7BcH2tZzDh55UgebhtJP+YWOJLnG2gv8HOq8kv7Y51FRUnYh/nCUYj6ChNmXZKnVa6QAxI5mDrtC1nOf8W0hh6HrenXRVt2xRhLmHZ8gKEyu+VzShPniceAAIb5tof04gaBp4ALsidO8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=LacBPdzE; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 45U6xs4P082744;
+	Sun, 30 Jun 2024 01:59:54 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1719730794;
+	bh=ntcPWOA37EUEY0RyxU96QTxE6TwwDzV08Y5dI/7aLHo=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=LacBPdzEMaCqzUtyn695b65Hwdsv6bm4xRabWixiEppZkJYExkN/W99hJz9qTIsi5
+	 9t9BXY0kBHYpdv5JOLPAakRrZwZ1EoeeY+uuQ0sCIZNReF74ipXKKe3V70D0LgPQhr
+	 /BupM7GTVNnyDMpw/KshF/ABNlr6iZbvcXizezds=
+Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 45U6xsnx048361
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Sun, 30 Jun 2024 01:59:54 -0500
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sun, 30
+ Jun 2024 01:59:53 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Sun, 30 Jun 2024 01:59:53 -0500
+Received: from [172.24.227.94] (uda0132425.dhcp.ti.com [172.24.227.94])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 45U6xnDA113333;
+	Sun, 30 Jun 2024 01:59:50 -0500
+Message-ID: <8c32591a-ada0-4183-b4d1-68ac51c65d57@ti.com>
+Date: Sun, 30 Jun 2024 12:29:48 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/5] ti: fix dtbs_check for some syscon bindings and
+ DTS node
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Roger
+ Quadros <rogerq@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Tero Kristo
+	<kristo@kernel.org>, "Andrew F. Davis" <afd@ti.com>,
+        Bryan Brattlof
+	<bb@ti.com>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Conor Dooley
+	<conor.dooley@microchip.com>
+References: <20240626-dt-bindings-ti-soc-mfd-v2-0-ee4d69017326@linaro.org>
+From: Vignesh Raghavendra <vigneshr@ti.com>
+Content-Language: en-US
+In-Reply-To: <20240626-dt-bindings-ti-soc-mfd-v2-0-ee4d69017326@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-implemented basic spi support for TH1520 SoC.
-created a fixed clock and a simple spi0 node.
-updated the matching binding to include thead,th1520-spi as compatible.
-added a spidev device in devicetree which will utilise the spi0 node.
-this is usually reserved for a SPI NOR flash which is left unpopulated
-underneath the carrier board. I performed a SPI self loop test using
-tools/spi/spidev_test.c and tried sending `\xDE\xAD\xBE\xEF` and verified
-it is being received correctly. i updated the of_device_id struct in
-drivers/spi/spi-dw-mmio.c to include "thead,th1520-spi" as the compatible.
-this patch also adds basic spi support on beaglev ahead which shares the
-same TH1520 SoC. i have only tested on LicheePi 4A.
++ Andrew and Bryan
 
-Signed-off-by: Kanak Shilledar <kanakshilledar@gmail.com>
----
- .../devicetree/bindings/spi/snps,dw-apb-ssi.yaml |  4 ++++
- .../boot/dts/thead/th1520-beaglev-ahead.dts      |  9 +++++++++
- .../boot/dts/thead/th1520-lichee-module-4a.dtsi  |  4 ++++
- .../riscv/boot/dts/thead/th1520-lichee-pi-4a.dts | 10 ++++++++++
- arch/riscv/boot/dts/thead/th1520.dtsi            | 16 ++++++++++++++++
- drivers/spi/spi-dw-mmio.c                        |  1 +
- 6 files changed, 44 insertions(+)
+Hi Krzysztof
 
-diff --git a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-index fde3776a558b..bccd00a1ddd0 100644
---- a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-+++ b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-@@ -88,6 +88,10 @@ properties:
-               - renesas,r9a06g032-spi # RZ/N1D
-               - renesas,r9a06g033-spi # RZ/N1S
-           - const: renesas,rzn1-spi   # RZ/N1
-+      - description: T-HEAD TH1520 SoC SPI Controller
-+        items:
-+          - const: thead,th1520-spi
-+          - const: snps,dw-apb-ssi
- 
-   reg:
-     minItems: 1
-diff --git a/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts b/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
-index d9b4de9e4757..3103b74e0288 100644
---- a/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
-+++ b/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
-@@ -17,6 +17,7 @@ aliases {
- 		gpio1 = &gpio1;
- 		gpio2 = &gpio2;
- 		gpio3 = &gpio3;
-+		spi0 = &spi0;
- 		serial0 = &uart0;
- 		serial1 = &uart1;
- 		serial2 = &uart2;
-@@ -52,6 +53,10 @@ &sdhci_clk {
- 	clock-frequency = <198000000>;
- };
- 
-+&spi_clk {
-+	clock-frequency = <396000000>;
-+};
-+
- &uart_sclk {
- 	clock-frequency = <100000000>;
- };
-@@ -79,3 +84,7 @@ &sdio0 {
- &uart0 {
- 	status = "okay";
- };
-+
-+&spi0 {
-+	status = "okay";
-+};
-diff --git a/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi b/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi
-index 1365d3a512a3..6939bd36560c 100644
---- a/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi
-+++ b/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi
-@@ -33,6 +33,10 @@ &sdhci_clk {
- 	clock-frequency = <198000000>;
- };
- 
-+&spi_clk {
-+	clock-frequency = <396000000>;
-+};
-+
- &uart_sclk {
- 	clock-frequency = <100000000>;
- };
-diff --git a/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts b/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts
-index 9a3884a73e13..26f82fe91489 100644
---- a/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts
-+++ b/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts
-@@ -14,6 +14,7 @@ aliases {
- 		gpio1 = &gpio1;
- 		gpio2 = &gpio2;
- 		gpio3 = &gpio3;
-+		spi0 = &spi0;
- 		serial0 = &uart0;
- 		serial1 = &uart1;
- 		serial2 = &uart2;
-@@ -30,3 +31,12 @@ chosen {
- &uart0 {
- 	status = "okay";
- };
-+
-+&spi0 {
-+	status = "okay";
-+	spidev@0 {
-+		compatible = "rohm,dh2228fv";
-+		reg = <0>;
-+		spi-max-frequency = <500000>;
-+	};
-+};
-diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
-index d2fa25839012..f962de663e7e 100644
---- a/arch/riscv/boot/dts/thead/th1520.dtsi
-+++ b/arch/riscv/boot/dts/thead/th1520.dtsi
-@@ -140,6 +140,12 @@ apb_clk: apb-clk-clock {
- 		#clock-cells = <0>;
- 	};
- 
-+	spi_clk: spi-clock {
-+		compatible = "fixed-clock";
-+		clock-output-names = "spi_clk";
-+		#clock-cells = <0>;
-+	};
-+
- 	uart_sclk: uart-sclk-clock {
- 		compatible = "fixed-clock";
- 		clock-output-names = "uart_sclk";
-@@ -183,6 +189,16 @@ clint: timer@ffdc000000 {
- 					      <&cpu3_intc 3>, <&cpu3_intc 7>;
- 		};
- 
-+		spi0: spi@ffe700c000 {
-+			compatible = "thead,th1520-spi", "snps,dw-apb-ssi";
-+			reg = <0xff 0xe700c000 0x0 0x1000>;
-+			interrupts = <54 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&spi_clk>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+		};
-+
- 		uart0: serial@ffe7014000 {
- 			compatible = "snps,dw-apb-uart";
- 			reg = <0xff 0xe7014000 0x0 0x100>;
-diff --git a/drivers/spi/spi-dw-mmio.c b/drivers/spi/spi-dw-mmio.c
-index 819907e332c4..39e3d46ebf5d 100644
---- a/drivers/spi/spi-dw-mmio.c
-+++ b/drivers/spi/spi-dw-mmio.c
-@@ -419,6 +419,7 @@ static const struct of_device_id dw_spi_mmio_of_match[] = {
- 	{ .compatible = "microchip,sparx5-spi", dw_spi_mscc_sparx5_init},
- 	{ .compatible = "canaan,k210-spi", dw_spi_canaan_k210_init},
- 	{ .compatible = "amd,pensando-elba-spi", .data = dw_spi_elba_init},
-+	{ .compatible = "thead,th1520-spi", .data = dw_spi_pssi_init},
- 	{ /* end of table */}
- };
- MODULE_DEVICE_TABLE(of, dw_spi_mmio_of_match);
+On 26/06/24 16:53, Krzysztof Kozlowski wrote:
+> Hi,
+> 
+> Changes in v2:
+> - Add acks/tags
+> - Correct Kishon Vijay Abraham email
+> - Drop R/W from title of bindings
+> - Link to v1: https://lore.kernel.org/r/20240518-dt-bindings-ti-soc-mfd-v1-0-b3952f104c9a@linaro.org
+> 
+> I am in the process of fixing syscon/simple-mfd bindings (to be posted
+> separately) and found set of issues in TI looking independent of my
+> series.  Please apply via TI SoC.
+> 
+> Best regards,
+> Krzysztof
+> 
+> ---
+> Krzysztof Kozlowski (5):
+>       dt-bindings: soc: ti: am62-system-controller: add AM62 syscon
+>       dt-bindings: soc: ti: am645-system-controller: add AM654 syscon
+>       arm64: dts: ti: k3-am62: add dedicated wakeup controller compatible
+>       arm64: dts: ti: k3-am65-mcu: add dedicated wakeup controller compatible
+>       arm64: dts: ti: k3-am62a: use a specific MCU controller compatible
+
+
+Thanks for the patches!
+
+Andrew's patches [0] remove "syscon", "simple-mfd" from all the below
+files except for k3-am62-wakeup.dtsi. But I think k3-am62-wakeup.dtsi
+can be fixed up in the similar way and not really need a custom
+system-controller binding. Last user is "ti-cpufreq" driver which is
+being adapted over to use granular syscon nodes [1].
+
+I believe add new compatible for system-controllers nodes is unneeded?
+
+AM62 may need one more merge window to be resolved owing to dependencies
+but I am queuing [0] to get rid of the warning for rest of the dts.
+
+Bryan,
+
+Could you repsin [1] with cleanups to am62-wakeup.dtsi as well?
+
+[0] lore.kernel.org/r/20240628151518.40100-1-afd@ti.com
+[1] lore.kernel.org/r/20240621-ti-opp-updates-v3-0-d857be6dac8b@ti.com
+
+
+> 
+>  .../bindings/soc/ti/ti,am62-system-controller.yaml | 77 ++++++++++++++++++++++
+>  .../soc/ti/ti,am654-system-controller.yaml         | 60 +++++++++++++++++
+>  arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi         |  2 +-
+>  arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi        |  2 +-
+>  arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi            |  2 +-
+>  5 files changed, 140 insertions(+), 3 deletions(-)
+> ---
+> base-commit: e032bb82c315d2317a80506195d16ce4308d8cf7
+> change-id: 20240518-dt-bindings-ti-soc-mfd-ac211578d7a5
+> 
+> Best regards,
+
 -- 
-2.45.2
-
+Regards
+Vignesh
 
