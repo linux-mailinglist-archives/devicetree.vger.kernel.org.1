@@ -1,185 +1,247 @@
-Return-Path: <devicetree+bounces-81747-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81748-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB0C591D2A8
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 18:24:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 816C691D2CB
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 18:48:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2E82D1F21354
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 16:24:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9BE941C208D3
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 16:48:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F6DE155306;
-	Sun, 30 Jun 2024 16:23:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB866154444;
+	Sun, 30 Jun 2024 16:48:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nzbDSMnN"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mTjxmLdf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com [209.85.215.171])
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57C3614EC52
-	for <devicetree@vger.kernel.org>; Sun, 30 Jun 2024 16:23:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20C4C1534EF
+	for <devicetree@vger.kernel.org>; Sun, 30 Jun 2024 16:48:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719764628; cv=none; b=pyImJeSVxyZNCk5FEsLplCD8N8qcXQfbpAa75YSJkHPUEYEwzIkuAK06vVshr5yXcaB5+lRJnF6xksO+UiyZiyNMT8mGM3AhphhDK0+Yfg3tGHYqmgX329/i4x4Qe/hTdKpyHPn2Kjpv4U/mDWUzZyBCIQA5FmCnpA3bYG8THRc=
+	t=1719766125; cv=none; b=dO2Y6/6KKTnjdogP/mR8Z7h56dYNDTBKV92y5rdd1fskOgRTd8L+JiDgmLcihkv5n77v0safI7fprN/z3NpCt2u05zMJ41dbOByTjYoNocMUXFZ920q/xPuxcUcSPVshGHjIukCtztJ0NYhqOIPmh2/+DovkVX4IwG4QJ1iYOig=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719764628; c=relaxed/simple;
-	bh=9htU6WoutJrpUNff3Wz+szGkhLvVmq0dajsxQsJ361g=;
+	s=arc-20240116; t=1719766125; c=relaxed/simple;
+	bh=dQxOvyQctP51qAuDaFhd7Pyp06kI7BkC/OjsIIqnZE8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CxAjfvzPiYO/MBARvbM+VTEea0KZOCnOhE/piA4klMemxQthlDIGAhmrCvTCwTmsmOBHmYW+/5K28UdSi65499iFszT+1AOoQuXWQ4EfpufNGucLJP+YyHi304uCD89Q/3dfL6PJG6H5+7ks1y+GeVl5dvlzCKI8VXCdMVd3J6s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nzbDSMnN; arc=none smtp.client-ip=209.85.215.171
+	 Content-Type:Content-Disposition:In-Reply-To; b=f+YzScg8I+RzQJ0/upjtQbQeVcQfphKX0eilkClXjyVpuLB81OjgcyeAGPNUBtuP3yxm84jmZaUk5gMaad8Kq0CshnSu5RrT4Y6ZFfUnl43jMo3SVHANC9dlepUHB9Uv7p7FoPp7/t4xETUCdU6xkZUnp6ysfqCv0BXq5iilCOI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mTjxmLdf; arc=none smtp.client-ip=209.85.167.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pg1-f171.google.com with SMTP id 41be03b00d2f7-70df213542bso1054891a12.3
-        for <devicetree@vger.kernel.org>; Sun, 30 Jun 2024 09:23:46 -0700 (PDT)
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-52e7693c369so2857147e87.3
+        for <devicetree@vger.kernel.org>; Sun, 30 Jun 2024 09:48:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719764626; x=1720369426; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=meRrKUBJYAi063Ybn9ckzWyMWuNq5WiRKh+4W6KHvUo=;
-        b=nzbDSMnNik+uzqK89xn66O8/kqtzU+cs+lQtp3QU7gZX0dPPJyZsSIMimxqSna0txX
-         5Cv74H+m2cQfbEC2mNCRABSLgMklRx2Mag2y381EXQ+00UF2eSGZLdgW+Gj/sjH4cKx5
-         QISzNeXL8GBTX6XSB7bS6j8rsMxLmj2nZ3gRi1WHZ4kPwk3FADDMPs5rSA3MbsYuwJPa
-         bgEUf3zpn6zPAdb7zfPOLvnW9mUHAUlz02XvzFK/tax+kW4jceMDZB3OwkKgazQrQE6S
-         ulGD7Df2xWj2YWa3MH5KYN5Ij2z4fgjMzutJ9vuZssUo+Q5SPQXjq4LeSR8vVTGnVnRi
-         ovzQ==
+        d=linaro.org; s=google; t=1719766122; x=1720370922; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=HtpZiswc8Frh06Fro0Rn2Oot+7AiSiHCpH2d6ugWZiw=;
+        b=mTjxmLdfqSp4Dwa6I/7qiJjiV4HV5BFFcohPqPZm+pXhZP9BR1nUGFWVHfdGqBnGq0
+         G9pN5znfLBDzZcylfkTfYWcbBfiNXymU/rlTnS07a2SILlmqZYJH2fv49the4pjkZWUJ
+         at7CKVdhtzEC8RNXQeyhI2MukagdVokbcsiqieQGiWWrOHM77eWPYJoEZm6sIc1TBQSE
+         CLM4X8ErDaORMEG40dYKWdFS54ByDLikRciwAHLfmww9KHRvKvKNivAlNNShx3j+cqQW
+         8SjkECrqVjVBLOznPFdbtY5FYwoVec3Hs2k6MPQo1yVY4KrDe4ibqmaGBAwV9bCIO5yT
+         iQ9g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719764626; x=1720369426;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=meRrKUBJYAi063Ybn9ckzWyMWuNq5WiRKh+4W6KHvUo=;
-        b=CHCNKtji0o9TNJG9Cb6uEv0JjHWyWZfAqutWBqWsPadkQU+LsDof2xmP3dqcS/1o4x
-         4x5jKl9Pkaqy7fRhJfdr0eZvvvMXk7vs8F9jzPiC+QKG0Yt9/TXg08wmaXTBSPCAoWC/
-         WxDJ2rjRvbyRWSnNIdWiHhLHhmNyEmgHDR5mThbRdb471F15EYb3naD8LrOAy8WURUjf
-         A6UdI0x1VMuQHa4kedRLx9EcXO/jnMl4jJHDLZfR/LwlM66HSAkJ6blh8X7bbH4XeJVR
-         rauIOxVlWFdL/8DIBGheKJGakiJmSxyCLzBkyx2Ilw2GlNg1fxSWur8VdGjEj5p+wnsO
-         z2sw==
-X-Forwarded-Encrypted: i=1; AJvYcCVpsBXhKnv6skv++asmMsJUSNcRdvwq6H9Xiv0FMWQ9ZJX2vyf4LmPP3pJL74DCwNC9mzK0HvT8LFGGS6cefFjLjI6IQCwU1rR+9Q==
-X-Gm-Message-State: AOJu0Ywk1kdshB/nLnHneArWW5vSxwFWqUC+3O30i1KVEdtsLL/hHt0j
-	3IM0X8Uir5w+f/10l4BCIHzSIxr075mYdCcfsueAgvnb1qqjEzsO3JaR4Z2Jz1yUsK3OpI6Dcz4
-	=
-X-Google-Smtp-Source: AGHT+IFB5GWSyOiS5lFM4xMyeymwyJX3RWJBnJqEHBblq0QLaA5/nACE76UedKAKXnyWt2Xoaj7jKg==
-X-Received: by 2002:a05:6a20:b22a:b0:1bd:22fe:fcaa with SMTP id adf61e73a8af0-1bef6275a83mr1942482637.51.1719764625453;
-        Sun, 30 Jun 2024 09:23:45 -0700 (PDT)
-Received: from thinkpad ([220.158.156.215])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2c91ce73e34sm5028683a91.30.2024.06.30.09.23.39
+        d=1e100.net; s=20230601; t=1719766122; x=1720370922;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HtpZiswc8Frh06Fro0Rn2Oot+7AiSiHCpH2d6ugWZiw=;
+        b=a97WI73kjC3r4/oodhldvoo9RHm7gMCVz3E2B35nbFbMrnyXd5r/1uuAxhvo1LL5ZV
+         uykzovRRAFRKSAX74hbiUVZyuCdK+Y6kGKesPvv08Q+qGgRvkyejJQK8nZXcqAEANT3k
+         bn/s1hkLaWStX7NjCUc1jbsFqFO0TBNGomd3fRe57cs3ZqHtiXA4KuYsr3eBAeWIfMxN
+         COuyYLNscyLtsZC14llzP5zXxQGkv2JwewgyasLV39Q5xxQWRClLwJTK788MzbUyhDwb
+         5ruyIcCtpqXikENwpACsEp310KkROSQ1AgK0FBEMYYnBrbFXWorECubjMVQjP8+/v28q
+         KZSQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVjovpF44UTMwiZ4O8MBDfU54BleYVK6XPDtHlkgjc7MXk7NRs3WvYw508w/HBRjwJ5uVeV+idaFhn8vUPwwAjNIc23cK62y+9/Uw==
+X-Gm-Message-State: AOJu0YxhUDKhVkE9BOC99bubFNEse24Ksiz+Sa4/WPBRR8UZh0jLjIbg
+	m0S61FqKLl1hqAOBfxbGpzqvC1xumXKFzZYMVCfEfRS2Oshwhp5/uI5wgzFga9M=
+X-Google-Smtp-Source: AGHT+IFe8LtvSKfiScnj6cA+bXz58PKF6siHRWmnd1ywun5R1OuL/3z5Hp9esY9KcJBl6V83EXSZoA==
+X-Received: by 2002:a05:6512:1089:b0:52c:952a:67da with SMTP id 2adb3069b0e04-52e826f15b3mr2950955e87.55.1719766121955;
+        Sun, 30 Jun 2024 09:48:41 -0700 (PDT)
+Received: from linaro.org ([82.79.124.209])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4257c4e1112sm43926645e9.3.2024.06.30.09.48.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 30 Jun 2024 09:23:45 -0700 (PDT)
-Date: Sun, 30 Jun 2024 21:53:37 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Richard Zhu <hongxing.zhu@nxp.com>,
-	Lucas Stach <l.stach@pengutronix.de>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-pci@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, bpf@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v6 09/10] PCI: imx6: Call: Common PHY API to set mode,
- speed, and submode
-Message-ID: <20240630162337.GD5264@thinkpad>
-References: <20240617-pci2_upstream-v6-0-e0821238f997@nxp.com>
- <20240617-pci2_upstream-v6-9-e0821238f997@nxp.com>
+        Sun, 30 Jun 2024 09:48:41 -0700 (PDT)
+Date: Sun, 30 Jun 2024 19:48:40 +0300
+From: Abel Vesa <abel.vesa@linaro.org>
+To: wuxilin123@gmail.com
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Johan Hovold <johan+linaro@kernel.org>,
+	Elliot Berman <quic_eberman@quicinc.com>
+Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: Add device tree for ASUS
+ Vivobook S 15
+Message-ID: <ZoGMaOdyDFjoyqww@linaro.org>
+References: <20240630-asus-vivobook-s15-v3-0-bce7ca4d9683@gmail.com>
+ <20240630-asus-vivobook-s15-v3-2-bce7ca4d9683@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240617-pci2_upstream-v6-9-e0821238f997@nxp.com>
+In-Reply-To: <20240630-asus-vivobook-s15-v3-2-bce7ca4d9683@gmail.com>
 
-On Mon, Jun 17, 2024 at 04:16:45PM -0400, Frank Li wrote:
-
-You don't need the colon after 'Call' in subject.
-
-> Invoke the common PHY API to configure mode, speed, and submode. While
-> these functions are optional in the PHY interface, they are necessary for
-> certain PHY drivers. Lack of support for these functions in a PHY driver
-> does not cause harm.
+On 24-06-30 16:59:27, Xilin Wu via B4 Relay wrote:
+> From: Xilin Wu <wuxilin123@gmail.com>
 > 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ASUS Vivobook S 15 is a laptop based on the Qualcomm Snapdragon X Elite
+> SoC (X1E78100).
+> 
+> Add the device tree for the laptop with support for the following features:
+> 
+> - CPU frequency scaling up to 3.4GHz
+> - NVMe storage on PCIe 6a (capable of Gen4x4, currently limited to Gen4x2)
+> - Keyboard and touchpad
+> - WCN7850 Wi-Fi
+> - Two Type-C ports on the left side (USB3 only in one orientation)
+> - internal eDP display
+> - ADSP and CDSP remoteprocs
+> 
+> Further details could be found in the cover letter.
+> 
+> Signed-off-by: Xilin Wu <wuxilin123@gmail.com>
 > ---
->  drivers/pci/controller/dwc/pci-imx6.c | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
+>  arch/arm64/boot/dts/qcom/Makefile                  |   1 +
+>  .../boot/dts/qcom/x1e80100-asus-vivobook-s15.dts   | 616 +++++++++++++++++++++
+>  2 files changed, 617 insertions(+)
 > 
-> diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controller/dwc/pci-imx6.c
-> index ab0ed7ab3007a..18c133f5a56fc 100644
-> --- a/drivers/pci/controller/dwc/pci-imx6.c
-> +++ b/drivers/pci/controller/dwc/pci-imx6.c
-> @@ -30,6 +30,7 @@
->  #include <linux/interrupt.h>
->  #include <linux/reset.h>
->  #include <linux/phy/phy.h>
-> +#include <linux/phy/pcie.h>
-
-This should be moved one entry above.
-
->  #include <linux/pm_domain.h>
->  #include <linux/pm_runtime.h>
->  
-> @@ -229,6 +230,10 @@ static void imx_pcie_configure_type(struct imx_pcie *imx_pcie)
->  
->  	id = imx_pcie->controller_id;
->  
-> +	/* If mode_mask[0] is 0, means use phy driver to set mode */
-
-/* If mode_mask is 0, then generic PHY driver is used to set the mode */
-
-> +	if (!drvdata->mode_mask[0])
-> +		return;
+> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> index 5576c7d6ea06..fe08b6be565d 100644
+> --- a/arch/arm64/boot/dts/qcom/Makefile
+> +++ b/arch/arm64/boot/dts/qcom/Makefile
+> @@ -258,5 +258,6 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sm8650-hdk-display-card.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sm8650-hdk.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sm8650-mtp.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sm8650-qrd.dtb
+> +dtb-$(CONFIG_ARCH_QCOM)	+= x1e80100-asus-vivobook-s15.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= x1e80100-crd.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= x1e80100-qcp.dtb
+> diff --git a/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts b/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts
+> new file mode 100644
+> index 000000000000..34f90e45a5d7
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts
+> @@ -0,0 +1,616 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +/*
+> + * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+> + * Copyright (c) 2024, Xilin Wu <wuxilin123@gmail.com>
+> + */
 > +
->  	/* If mode_mask[id] is zero, means each controller have its individual gpr */
->  	if (!drvdata->mode_mask[id])
->  		id = 0;
-> @@ -808,6 +813,7 @@ static void imx_pcie_ltssm_enable(struct device *dev)
->  	struct imx_pcie *imx_pcie = dev_get_drvdata(dev);
->  	const struct imx_pcie_drvdata *drvdata = imx_pcie->drvdata;
->  
-> +	phy_set_speed(imx_pcie->phy, PCI_EXP_LNKCAP_SLS_2_5GB);
+> +/dts-v1/;
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+> +
+> +#include "x1e80100.dtsi"
+> +#include "x1e80100-pmics.dtsi"
+> +
+> +/ {
+> +	model = "ASUS Vivobook S 15";
+> +	compatible = "asus,vivobook-s15", "qcom,x1e80100";
+> +	chassis-type = "laptop";
+> +
 
-Is this setting really universal? This looks like applicable only to specific
-platforms supporting this link speed.
+[ ... ]
 
->  	if (drvdata->ltssm_mask)
->  		regmap_update_bits(imx_pcie->iomuxc_gpr, drvdata->ltssm_off, drvdata->ltssm_mask,
->  				   drvdata->ltssm_mask);
-> @@ -820,6 +826,7 @@ static void imx_pcie_ltssm_disable(struct device *dev)
->  	struct imx_pcie *imx_pcie = dev_get_drvdata(dev);
->  	const struct imx_pcie_drvdata *drvdata = imx_pcie->drvdata;
->  
-> +	phy_set_speed(imx_pcie->phy, 0);
->  	if (drvdata->ltssm_mask)
->  		regmap_update_bits(imx_pcie->iomuxc_gpr, drvdata->ltssm_off,
->  				   drvdata->ltssm_mask, 0);
-> @@ -955,6 +962,12 @@ static int imx_pcie_host_init(struct dw_pcie_rp *pp)
->  			goto err_clk_disable;
->  		}
->  
-> +		ret = phy_set_mode_ext(imx_pcie->phy, PHY_MODE_PCIE, PHY_MODE_PCIE_RC);
-> +		if (ret) {
-> +			dev_err(dev, "unable to set pcie PHY mode\n");
+> +
+> +	tpad_default: tpad-default-state {
+> +		pins = "gpio3";
+> +		function = "gpio";
+> +		bias-disable;
+> +	};
+> +};
+> +
+> +&usb_1_ss0_hsphy {
+> +	vdd-supply = <&vreg_l2e_0p8>;
 
-s/pcie/PCIe
+I think you will probably want to use vreg_l3j_0p8 here. See following
+fix for CRD and QCP:
 
-- Mani
+https://lore.kernel.org/linux-kernel/20240629-x1e80100-dts-fix-hsphy-0-8v-supplies-v1-1-de99ee030b27@linaro.org/T/
 
--- 
-மணிவண்ணன் சதாசிவம்
+> +	vdda12-supply = <&vreg_l2j_1p2>;
+> +
+> +	phys = <&smb2360_0_eusb2_repeater>;
+> +
+> +	status = "okay";
+> +};
+> +
+> +&usb_1_ss0_qmpphy {
+> +	vdda-phy-supply = <&vreg_l3e_1p2>;
+> +	vdda-pll-supply = <&vreg_l1j_0p8>;
+> +
+> +	orientation-switch;
+> +
+> +	status = "okay";
+> +};
+> +
+> +&usb_1_ss0 {
+> +	status = "okay";
+> +};
+> +
+> +&usb_1_ss0_dwc3 {
+> +	dr_mode = "host";
+> +};
+> +
+> +&usb_1_ss0_dwc3_hs {
+> +	remote-endpoint = <&pmic_glink_ss0_hs_in>;
+> +};
+> +
+> +&usb_1_ss0_qmpphy_out {
+> +	remote-endpoint = <&pmic_glink_ss0_ss_in>;
+> +};
+> +
+> +&usb_1_ss1_hsphy {
+> +	vdd-supply = <&vreg_l2e_0p8>;
+
+Same here.
+
+> +	vdda12-supply = <&vreg_l2j_1p2>;
+> +
+> +	phys = <&smb2360_1_eusb2_repeater>;
+> +
+> +	status = "okay";
+> +};
+> +
+> +&usb_1_ss1_qmpphy {
+> +	vdda-phy-supply = <&vreg_l3e_1p2>;
+> +	vdda-pll-supply = <&vreg_l2d_0p9>;
+> +
+> +	orientation-switch;
+> +
+> +	status = "okay";
+> +};
+> +
+> +&usb_1_ss1 {
+> +	status = "okay";
+> +};
+> +
+> +&usb_1_ss1_dwc3 {
+> +	dr_mode = "host";
+> +};
+> +
+> +&usb_1_ss1_dwc3_hs {
+> +	remote-endpoint = <&pmic_glink_ss1_hs_in>;
+> +};
+> +
+> +&usb_1_ss1_qmpphy_out {
+> +	remote-endpoint = <&pmic_glink_ss1_ss_in>;
+> +};
+> 
+> -- 
+> 2.45.2
+> 
+> 
 
