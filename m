@@ -1,160 +1,113 @@
-Return-Path: <devicetree+bounces-81776-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81790-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CFF991D5D3
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 03:40:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F0B691D6BD
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 05:57:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7D55E1F2171B
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 01:40:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4E27C1F21D44
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 03:57:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C18CC184D;
-	Mon,  1 Jul 2024 01:40:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jEtXO8td"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D168B1799B;
+	Mon,  1 Jul 2024 03:57:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-m1018.netease.com (mail-m1018.netease.com [154.81.10.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0462E847B;
-	Mon,  1 Jul 2024 01:40:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B456710A0E;
+	Mon,  1 Jul 2024 03:57:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=154.81.10.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719798031; cv=none; b=QHUrAb3Iw7f/hUIILp89NK0Cfj9jIGURMeZyGv5dxGKzWEdmbs7rnef5K8iui7ah7fNhlnOZl/jfactH8cBowUpghGI9PmoqZeD5wAHMNbk3iK9X1asOtCDYT2QtOpG47KOaWHut3iDKQl1nj7jESdjABC/z8uBsqN5JS7wNWMw=
+	t=1719806244; cv=none; b=t6OjWBZwgWGvA8AmRbe6N5b4WkRs//Z3wDAK0drZGWHBPzR/5+/UtjVgMx3P9PmoIblr5CuMJrwj1BfLi2qYNfZ9suqp29BNTVcaymByHFKzBJO95rR2AN3ko48+R2KtlAJrkdQNQp907afwQU2HXgVqPCJSTy+tkn7+4iGhiMY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719798031; c=relaxed/simple;
-	bh=8N1kTPTMUy3OyP8Thfs9SN31LDGnJJ5vniYo0Oy95II=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QBMBwELmacsfsWC93GS3l2Me8aarJHwdh5gmnj06PDOgW3fm9OXP7I2wW0ncc7RBk6MLj+rgUTHRVVVPK6FxU6e1lRxlZKI62nfjFJJh8iKrLRKikbJ4r4owCY5xkmHDx8yKH2aY+OXA8tsvYFwSB7IS7N3dX/hPd+Tv55iu9RE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jEtXO8td; arc=none smtp.client-ip=209.85.167.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-52cdfb69724so3041343e87.1;
-        Sun, 30 Jun 2024 18:40:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1719798028; x=1720402828; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=SwnfzGgZbXchQuvwIi7BwMqkkcPzYDSZ1lkWRl6NvOM=;
-        b=jEtXO8td6vultGKSKEtKfTEeiV3gFQhzZ2CGbBGrsHfPRTceyYnBrF44KCLpx26tyY
-         x4XswVgAaACK5NUptwc7siH15kAyI5MTEvRHgXCAjrz4zoyHFOOK9JjhILk2b7rTmPID
-         UFVLwgspOCtGtdjAhyxiCv50tEASZJPEV+hixeeZ3t4I3hPWEZsk9aA/H2D8eq/V/QPw
-         rt1N3pie2HafW6yVNJMBjocPHxILXmvFV2pv7UbvSLlgcNgbJC42XbkfkstZTWty+fZc
-         gDPhcHBd9fRe/+YrmWvIZk14K5eoLX9kv2D0pMXzPMJJ5ydCtJLmOUqg4WH2k4YN//Bx
-         422A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719798028; x=1720402828;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SwnfzGgZbXchQuvwIi7BwMqkkcPzYDSZ1lkWRl6NvOM=;
-        b=Olo8j6s+BlZ5QXOt4GRqnbEEn4j0erJN/2BUm7uIDWr4XKWF3HcRsEa1dbjv6Aw4Vs
-         Tp34MF1nTNYiJ7XYYeCqLYT7Er9gU8Lvd5Yt3GIUcseKx5DOjjwlLxpMBThOi+T1BHvH
-         TtP894VJ+TQUS2erSm7DzKOGXCYsYEfijZcc451prvSf1jHUiCjM7DhNvW5ihaAO/FzA
-         WNMHrmXm8vQTdIJhcjsaT/of+Wcx98Oy19nNspsPl1Ns4w90rcPy5z6KalhIDFdzOhO2
-         Eurc/bkToe3JSKNFBUPlPZCAgxideB1doKf7OJYcHKy70AiDLgRJlPMb760kh3DqLXcW
-         GCzg==
-X-Forwarded-Encrypted: i=1; AJvYcCVW+/TgaFKp0/o5iIyxLuB4veYPWYsXJCgfriEgsVM3E+WUwF2/uCnfd0ys85n92LTNcNrN+kVxQD1q28ppfffRBXavjqLv6VIYRIr3ADhv25h/187QzyYlzmpO7FbT/+YcAYXZ0p70huBqx8FkH1ozW9O4uCfzZC8lAJxsHkxDmg==
-X-Gm-Message-State: AOJu0YwLqsXDDReP9FnN9f43Xuzxl1hvH3lpTUVegHNQqDQnwhgxDrVT
-	DajdIMbuHQAuRzprGaComodAvbSzJgszn9F9KvUx+yohT2BocmOn
-X-Google-Smtp-Source: AGHT+IE7kAt6EsHOnTzUdCIGnBj2h9mmrLiQhrSexUxPRaRVqV6UHVmgj5fZQR2jnaMRamWK2GFoig==
-X-Received: by 2002:a05:6512:6c3:b0:52c:def3:44b with SMTP id 2adb3069b0e04-52e8268b40amr2615295e87.31.1719798027768;
-        Sun, 30 Jun 2024 18:40:27 -0700 (PDT)
-Received: from mobilestation ([176.213.1.81])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52e7ab0fff6sm1173823e87.81.2024.06.30.18.40.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 30 Jun 2024 18:40:27 -0700 (PDT)
-Date: Mon, 1 Jul 2024 04:40:24 +0300
-From: Serge Semin <fancer.lancer@gmail.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Conor Dooley <conor@kernel.org>, Andrew Lunn <andrew@lunn.ch>, 
-	Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, 
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, Jose Abreu <joabreu@synopsys.com>, 
-	Jose Abreu <Jose.Abreu@synopsys.com>, Vladimir Oltean <olteanv@gmail.com>, 
-	Florian Fainelli <f.fainelli@gmail.com>, Maxime Chevallier <maxime.chevallier@bootlin.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Sagar Cheluvegowda <quic_scheluve@quicinc.com>, 
-	Abhishek Chauhan <quic_abchauha@quicinc.com>, Andrew Halaney <ahalaney@redhat.com>, 
-	Jiawen Wu <jiawenwu@trustnetic.com>, Mengyuan Lou <mengyuanlou@net-swift.com>, 
-	Tomer Maimon <tmaimon77@gmail.com>, openbmc@lists.ozlabs.org, netdev@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v3 06/10] dt-bindings: net: Add Synopsys DW xPCS
- bindings
-Message-ID: <a2quritc5udbpebvymbbhez2e4g5qk774trpzvsmtzgd4bpc4y@ckaqnqyrkszx>
-References: <20240627004142.8106-1-fancer.lancer@gmail.com>
- <20240627004142.8106-7-fancer.lancer@gmail.com>
- <20240627-hurry-gills-19a2496797f3@spud>
- <e5mqaztxz62b7jktr47mojjrz7ht5m4ou4mqsxtozpp3xba7e4@uh7v5zn2pbn2>
- <20240628221246.GA296233-robh@kernel.org>
+	s=arc-20240116; t=1719806244; c=relaxed/simple;
+	bh=Kxlb8Q72bEcQSqLoPPdxbd/Pn5A5udv2bxWYhz66ISw=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=fUATo1COR6gd64PxZUFzxOzrOYDOtMf2DoT+a6WHRRDuOny/9uVWr8Tzxsdz+rO+4OO6ZI4Lz8Glshwi0VcUw7yWHnjlVHXjL+hG0zYf92tvKfmw30yMxH8dgnFG0NdXvYIzwrdkCx98v+FNutVCsFBIZxGfN0dk6va4YbnlGyc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=154.81.10.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
+Received: from amadeus-Vostro-3710.lan (unknown [IPV6:240e:3b3:2c01:1720:3110:52ea:d52a:84f0])
+	by smtp.qiye.163.com (Hmail) with ESMTPA id F1B2D7E017B;
+	Sun, 30 Jun 2024 23:00:14 +0800 (CST)
+From: Chukun Pan <amadeus@jmu.edu.cn>
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Chukun Pan <amadeus@jmu.edu.cn>
+Subject: [PATCH v2 1/9] arm64: dts: rockchip: fix regulator name for Lunzn Fastrhino R6xS
+Date: Sun, 30 Jun 2024 23:00:02 +0800
+Message-Id: <20240630150010.55729-2-amadeus@jmu.edu.cn>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20240630150010.55729-1-amadeus@jmu.edu.cn>
+References: <20240630150010.55729-1-amadeus@jmu.edu.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240628221246.GA296233-robh@kernel.org>
+Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlCSUhLVhoeS0lJGRpLSB5LGFYeHw5VEwETFhoSFy
+	QUDg9ZV1kYEgtZQVlJT0seQUgZSEFJGEtKQUpMSUtBSEpKS0FOSR4aQR9OSRpBQ08dS1lXWRYaDx
+	IVHRRZQVlPS0hVSktJT09PS1VKS0tVS1kG
+X-HM-Tid: 0a9069a934eb03a2kunmf1b2d7e017b
+X-HM-MType: 10
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6OU06Dxw6HjNCFRwVFzEXSD9W
+	QjkKCQpVSlVKTEpCTE5CTUpOTkhLVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUlP
+	Sx5BSBlIQUkYS0pBSkxJS0FISkpLQU5JHhpBH05JGkFDTx1LWVdZCAFZQUlDTkg3Bg++
 
-On Fri, Jun 28, 2024 at 04:12:46PM -0600, Rob Herring wrote:
-> On Thu, Jun 27, 2024 at 08:10:48PM +0300, Serge Semin wrote:
-> > On Thu, Jun 27, 2024 at 04:51:22PM +0100, Conor Dooley wrote:
-> > > On Thu, Jun 27, 2024 at 03:41:26AM +0300, Serge Semin wrote:
-> > > > +  clocks:
-> > > > +    description:
-> > > > +      Both MCI and APB3 interfaces are supposed to be equipped with a clock
-> > > > +      source connected via the clk_csr_i line.
-> > > > +
-> > > > +      PCS/PMA layer can be clocked by an internal reference clock source
-> > > > +      (phyN_core_refclk) or by an externally connected (phyN_pad_refclk) clock
-> > > > +      generator. Both clocks can be supplied at a time.
-> > > > +    minItems: 1
-> > > > +    maxItems: 3
-> > > > +
-> > > > +  clock-names:
-> > > > +    oneOf:
-> > > > +      - minItems: 1
-> > > > +        items:
-> > > > +          - enum: [core, pad]
-> > > > +          - const: pad
-> > > > +      - minItems: 1
-> > > > +        items:
-> > > > +          - const: pclk
-> > > > +          - enum: [core, pad]
-> > > > +          - const: pad
-> > > 
-> > 
-> > > While reading this, I'm kinda struggling to map "clk_csr_i" to a clock
-> > > name. Is that pclk? And why pclk if it is connected to "clk_csr_i"?
-> > 
-> > Right. It's "pclk". The reason of using the "pclk" name is that it has
-> > turned to be a de-facto standard name in the DT-bindings for the
-> > peripheral bus clock sources utilized for the CSR-space IO buses.
-> > Moreover the STMMAC driver responsible for the parental DW *MAC
-> > devices handling also has the "pclk" name utilized for the clk_csr_i
-> > signal. So using the "pclk" name in the tightly coupled devices (MAC
-> > and PCS) for the same signal seemed a good idea.
-> 
+Make the regulator name the same as those marked by schematics.
 
-> It is? That's really just the name of the bus clock for APB (Arm 
-> Peripheral Bus). If there's a name that matches the docs, use that. 
-> Though I'd drop 'clk_' part.
+Fixes: c79dab407afd ("arm64: dts: rockchip: Add Lunzn Fastrhino R66S")
+Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
+---
+ arch/arm64/boot/dts/rockchip/rk3568-fastrhino-r66s.dtsi | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-Yes, it's normally should have been utilized for APB, but as I see it
-the name utilization has gone wider than to just the ARM Peripheral
-bus clock. The DW MAC clock-names DT-property bindings is just one
-example of that.
+diff --git a/arch/arm64/boot/dts/rockchip/rk3568-fastrhino-r66s.dtsi b/arch/arm64/boot/dts/rockchip/rk3568-fastrhino-r66s.dtsi
+index 89e84e3a9262..93987c8740f7 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3568-fastrhino-r66s.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3568-fastrhino-r66s.dtsi
+@@ -39,9 +39,9 @@ status_led: led-status {
+ 		};
+ 	};
+ 
+-	dc_12v: dc-12v-regulator {
++	vcc12v_dcin: vcc12v-dcin-regulator {
+ 		compatible = "regulator-fixed";
+-		regulator-name = "dc_12v";
++		regulator-name = "vcc12v_dcin";
+ 		regulator-always-on;
+ 		regulator-boot-on;
+ 		regulator-min-microvolt = <12000000>;
+@@ -65,7 +65,7 @@ vcc3v3_sys: vcc3v3-sys-regulator {
+ 		regulator-boot-on;
+ 		regulator-min-microvolt = <3300000>;
+ 		regulator-max-microvolt = <3300000>;
+-		vin-supply = <&dc_12v>;
++		vin-supply = <&vcc12v_dcin>;
+ 	};
+ 
+ 	vcc5v0_sys: vcc5v0-sys-regulator {
+@@ -75,7 +75,7 @@ vcc5v0_sys: vcc5v0-sys-regulator {
+ 		regulator-boot-on;
+ 		regulator-min-microvolt = <5000000>;
+ 		regulator-max-microvolt = <5000000>;
+-		vin-supply = <&dc_12v>;
++		vin-supply = <&vcc12v_dcin>;
+ 	};
+ 
+ 	vcc5v0_usb_host: vcc5v0-usb-host-regulator {
+-- 
+2.25.1
 
-Anyway. Ok. I'll convert the name to "csr". (I'll drop the _i suffix
-too since it's obvious that the clock signal is the connected to the
-device input pin.)
-
--Serge(y)
-
-> 
-> Rob
 
