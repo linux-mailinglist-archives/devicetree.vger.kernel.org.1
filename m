@@ -1,103 +1,142 @@
-Return-Path: <devicetree+bounces-81699-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81700-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14CD491D100
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 11:59:43 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 621AA91D10F
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 12:22:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1E9951C20A76
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 09:59:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E8E7E1F2131B
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jun 2024 10:22:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30B6A13210D;
-	Sun, 30 Jun 2024 09:59:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD12212FF88;
+	Sun, 30 Jun 2024 10:22:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Rq41M4E6"
+	dkim=pass (2048-bit key) header.d=xenosoft.de header.i=@xenosoft.de header.b="rrNyYJtj";
+	dkim=permerror (0-bit key) header.d=xenosoft.de header.i=@xenosoft.de header.b="Fx7TSSIK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 054342AF04;
-	Sun, 30 Jun 2024 09:59:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719741578; cv=none; b=lshL4U/VVdi3kW9IKT+4PixfICX9M9QhfQiKLATyAIbJNKKYxEsf8gK6v07UD6RQii6w6C2u6VTtspjAr6Trrh+HicauYXkSf+KTDYsiYz/I6m/ssK9UtK4lxYzp4hy5/VAaZa9ZiKzafxy/OaJCTMMvvTDhYuqy0409P+K/res=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719741578; c=relaxed/simple;
-	bh=wjQ6UgVxjg9/waYG0NDm9wl5dx/o2lUYiGYyMHBQe3w=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=tlbCZG30i1IGkwKN29GQNdMGsZzus1mDQyxgJ1cYCQf6Y2XI9U2fYbrg5LOpzFxT13+EcYgBwhpIsHfnSotymY8sfs8uxzHqRkB7tpfX5H64ULB+QI/2JARjLhuAlqjwJUHjcdK5um7wvU2EODQ9nqwUvBt1O7hBlotiAzYFQQI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Rq41M4E6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8DE9CC2BD10;
-	Sun, 30 Jun 2024 09:59:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719741577;
-	bh=wjQ6UgVxjg9/waYG0NDm9wl5dx/o2lUYiGYyMHBQe3w=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=Rq41M4E6vrkD5CxsbnvLVc9VsYNoTV80uuhwFYVvYCmM5uu3a5aic/k57BMaJnXWZ
-	 RTuzGW1fjWDB/i9k9AiNmJzqhUHtgqLYud/pHtFcMGKlfqdeZZmzIsD7edSpAeNlRI
-	 Jb7gIOM7gRtKJrC9LgsIBlDedTRS6pWgpXhngTkkpLFaFqfiO2jCQ5d7BY+HHWPmoW
-	 GPpwmBtJXbhlbLN4Q75mBD5XkrrL0Vp2GQ15+6JrOuvgZ7+XEhfnRPD1k0IOWlnqN9
-	 Ur+OglYcXmjfgn1UppfpsypxI4MTNjJYFHqBXhM314NkeNzLra17x1zp51BY6XdeXN
-	 Iuq0Gmwn91Uow==
-Date: Sun, 30 Jun 2024 10:59:28 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Alisa-Dariana Roman <alisadariana@gmail.com>
-Cc: Alisa-Dariana Roman <alisa.roman@analog.com>, Jonathan Cameron
- <Jonathan.Cameron@huawei.com>, Michael Hennerich
- <michael.hennerich@analog.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Lars-Peter
- Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Liam
- Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
-Subject: Re: [PATCH v6 6/6] MAINTAINERS: Update AD7192 driver maintainer
-Message-ID: <20240630105928.1e3aa6bf@jic23-huawei>
-In-Reply-To: <20240624124941.113010-7-alisa.roman@analog.com>
-References: <20240624124941.113010-1-alisa.roman@analog.com>
-	<20240624124941.113010-7-alisa.roman@analog.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EBAE39AF4;
+	Sun, 30 Jun 2024 10:22:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=85.215.255.52
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1719742963; cv=pass; b=nlyhKZLsYSRxwV3oP0jBMYzfXqCwLHBJezK0wTJw498/mT8DdT88IsZOVgzSvf9cx92N7VaPuYTqIULl8wSdy3yNOLabLDHv/zE/MPByAlDwie6fwiKSz5qZvZjX8rozAHsX2Naklo+cpKI8pz/CMEguKiTvhL9zp5PvqwbAGyk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1719742963; c=relaxed/simple;
+	bh=R9fpC1UOjFrQKHRI6TgHz66Hbzvd1ayFN0DprYdtRq8=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Content-Type; b=VSsyqkztZec+q37ej1PJsyCBUKQAC5I3X5Eh+PJP+nE8zNm3hpNXEwTa8B4tU9UnqZWypRX761qcT/lkWTUYUlYd4pNZuRt157MYjMZpKT16LYjjaCigTfQkU31p0ptibcCRhZbIXTVLmEhZ65FeA3ImQAqeR3BFW7V80347H/Q=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=xenosoft.de; spf=none smtp.mailfrom=xenosoft.de; dkim=pass (2048-bit key) header.d=xenosoft.de header.i=@xenosoft.de header.b=rrNyYJtj; dkim=permerror (0-bit key) header.d=xenosoft.de header.i=@xenosoft.de header.b=Fx7TSSIK; arc=pass smtp.client-ip=85.215.255.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=xenosoft.de
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=xenosoft.de
+ARC-Seal: i=1; a=rsa-sha256; t=1719742917; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=DM7U0nYhlpqhcR7998gBwwIeNC4vzlyVQxbMCYAxIgLpE18CE7BOFt7dN5u64JPmuk
+    0da9wlnU3NtkQZSzDT/8OtKBo+mXyHQ8NCWrAWg7mHHvwr76AuU5WAekWaLq2A4sRopt
+    BRHuqy8zAXGxq6SqSTCeA9eEUguNFkkwmBLwtT0n716VehnHmpoI/3utoFHmr/wepAun
+    fUvjBYP9SHUNyX+HD2MT8h57vbYsxoFnsoLNinFB97z031a6qbe6Mk55fdNMxHU2ds0i
+    X6ymRjaHETIEZVzIF/jOXRaMkWGmI4Y5eYNSb6tTjKluNo7Df7GMAq6BQX9hAqi4fGon
+    Aobg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1719742917;
+    s=strato-dkim-0002; d=strato.com;
+    h=To:Subject:From:Date:Message-ID:Cc:Date:From:Subject:Sender;
+    bh=koImhGjb7REMlZ/XmgRbFgMfDWJDeMGzhBpOSppcQCg=;
+    b=Kyq5TvX6BUoJ+sS67S5L4oCBtwxb6qdAAlNGZDb3gNYWT0ScvEPStFU6Na+xZ5WBSc
+    RfRMlC6ALkkUZw1W2NGXe6uBhj/0Q80EJC8Fv/A5FpL3+rpUckiB2MzhlRg5FwZ07+7V
+    MocptiXQD9sngtWwVkMrFlR8ElsfIem/tyVLL3Ef97UAQ0nxaOobgAPPG+P1U9fdMGCe
+    hk3N6/BID/u+xXf6HKryCDZApEIjzFRT/jDtRlVbLLMp3oTv6Xa4ViZ4ZJqnWZ8QLexy
+    8WjV/delbr2TtGKtS0bWqKA1+NqgxM147ek1fuftuLIPpfmSFfBKuFbtAEtbK0lVzSBm
+    JatQ==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo01
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1719742917;
+    s=strato-dkim-0002; d=xenosoft.de;
+    h=To:Subject:From:Date:Message-ID:Cc:Date:From:Subject:Sender;
+    bh=koImhGjb7REMlZ/XmgRbFgMfDWJDeMGzhBpOSppcQCg=;
+    b=rrNyYJtjpkKmA0QcxDXpASOq7JUYgYpK8eqvuabSrMY/XKau9q0jf+L3f/to4GshVo
+    PWOFU9qtStMYJocl73DgMLrfJDeoYah/I47xyL83JIbZIRE0hPVr7j9hiiKiDedT7LpN
+    DV54Ozm0w+GtdsHZhVYwbZ2rfEUPn7DqvOgD4PAyRywdPnnqvXQRyt2hmzz1Xo9wMUO4
+    0pPT0nU8PpmIGwRgwUZii7y1bksB+l3Hn7RjWitQp5UBgOV9KUwYk/nTcECZAoc5udIW
+    FINdRvAm9wsQhvVi7HbhIUDhZp6zoP+Ge7mDFdFs05lg4HIfmpS4I60HEIAiLLq5Z1RG
+    NyUg==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1719742917;
+    s=strato-dkim-0003; d=xenosoft.de;
+    h=To:Subject:From:Date:Message-ID:Cc:Date:From:Subject:Sender;
+    bh=koImhGjb7REMlZ/XmgRbFgMfDWJDeMGzhBpOSppcQCg=;
+    b=Fx7TSSIKx2lKyTwirMmbPOP29OkpoRezklgZkMUFwV5mrLnJQRHNxIxnD5Ya6KyCyY
+    aSGF+2gGrFWywueMpqCw==
+X-RZG-AUTH: ":L2QefEenb+UdBJSdRCXu93KJ1bmSGnhMdmOod1DhGM4l4Hio94KKxRySfLxnHfJ+Dkjp5DdBfi4XXBswJY17nMJxMU7SicerhpVThcASu2X0Ag=="
+Received: from [IPV6:2a02:8109:8984:5d00:8535:f3a7:32a7:65f9]
+    by smtp.strato.de (RZmta 50.5.0 AUTH)
+    with ESMTPSA id e0838905UALuCbd
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+	(Client did not present a certificate);
+    Sun, 30 Jun 2024 12:21:56 +0200 (CEST)
+Message-ID: <3ab66fab-c3f2-4bed-a04d-a10c57dcdd9b@xenosoft.de>
+Date: Sun, 30 Jun 2024 12:21:55 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Content-Language: de-DE
+From: Christian Zigotzky <chzigotzky@xenosoft.de>
+Subject: [PowerPC] [PASEMI] Issue with the identification of ATA drives after
+ the of/irq updates 2024-05-29
+To: Rob Herring <robh@kernel.org>, Marc Zyngier <maz@kernel.org>,
+ apatel@ventanamicro.com, DTML <devicetree@vger.kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+ mad skateman <madskateman@gmail.com>, "R.T.Dickinson" <rtd2@xtra.co.nz>,
+ Matthew Leaman <matthew@a-eon.biz>, Darren Stevens
+ <darren@stevens-zone.net>, Christian Zigotzky <info@xenosoft.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On Mon, 24 Jun 2024 15:49:41 +0300
-Alisa-Dariana Roman <alisadariana@gmail.com> wrote:
+Hello,
 
-> Alexandru Tachici has not been active. Also the email address included
-> is not reachable anymore. I was assigned to work on the driver instead.
-> 
-> Remove Alexandru Tachici and add myself as maintainer of AD7192 driver.
-> 
-> Signed-off-by: Alisa-Dariana Roman <alisa.roman@analog.com>
-I'll pick this one up as well.
+There is an issue with the identification of ATA drives with our P.A. 
+Semi Nemo boards [1] after the
+commit "of/irq: Factor out parsing of interrupt-map parent phandle+args 
+from of_irq_parse_raw()" [2].
 
-Applied to the togreg branch of iio.git and pushed out as testing because
-other stuff on the tree needs build tests.  
+Error messages:
 
-Jonathan
+ata2.00: failed to IDENTIFY (I/O error, err_mask=0x4)
+ata2.00: qc timeout after 10000 mssecs (cmd 0xec)
 
-> ---
->  MAINTAINERS | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 9517093d889d..ab1e82fd3b76 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -1217,7 +1217,7 @@ F:	Documentation/devicetree/bindings/iio/adc/adi,ad7091r*
->  F:	drivers/iio/adc/ad7091r*
->  
->  ANALOG DEVICES INC AD7192 DRIVER
-> -M:	Alexandru Tachici <alexandru.tachici@analog.com>
-> +M:	Alisa-Dariana Roman <alisa.roman@analog.com>
->  L:	linux-iio@vger.kernel.org
->  S:	Supported
->  W:	https://ez.analog.com/linux-software-drivers
+Screenshots [3]
 
+I bisected yesterday [4] and "of/irq: Factor out parsing of 
+interrupt-map parent phandle+args from of_irq_parse_raw()" [2] is the 
+first bad commit.
+
+Then I created a patch for reverting this first bad commit. I also 
+reverted the changes in drivers/of/property.c. [5]
+
+The patched kernel boots with successful detection of the ATA devices.
+
+Please check the of/irq updates.
+
+Thanks,
+Christian
+
+
+[1] https://en.wikipedia.org/wiki/AmigaOne_X1000
+[2] 
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?h=v6.10-rc5&id=935df1bd40d43c4ee91838c42a20e9af751885cc
+[3]
+- https://i.ibb.co/WcH8g4K/20240626-095132.jpg
+- https://i.ibb.co/K7KnDxx/panic2.jpg
+- https://i.ibb.co/frnbJfb/panic3.jpg
+
+[4] https://forum.hyperion-entertainment.com/viewtopic.php?p=58585#p58585
+[5] 
+https://github.com/chzigotzky/kernels/blob/main/patches/X1000/of_irq_v2.patch
 
