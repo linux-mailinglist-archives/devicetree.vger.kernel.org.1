@@ -1,242 +1,219 @@
-Return-Path: <devicetree+bounces-82050-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82051-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4312B91E449
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 17:37:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E63C91E474
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 17:46:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EE50C2855C4
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 15:37:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0C33A285CC5
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 15:46:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB36216CD3B;
-	Mon,  1 Jul 2024 15:37:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F172A16D31E;
+	Mon,  1 Jul 2024 15:45:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SkJaksBE"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="QXA3d8eh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from EUR02-AM0-obe.outbound.protection.outlook.com (mail-am0eur02on2076.outbound.protection.outlook.com [40.107.247.76])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F68816CD2C;
-	Mon,  1 Jul 2024 15:37:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719848256; cv=none; b=ec4XR00+aVkGsMcS3LtjnAHBkg3XQGLckyLuYq/Am/pPdeXZnsgdgBDj/3gbvHIurWksDzvpaD8GtTq28tMNtJ2w3OVl2VHekg3VN9DINGFYel7iJEahnf+i8imglpmxZw5TfaC0hfpaOefrPuH6HbovLBWaPVqkit5cPcPROHk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719848256; c=relaxed/simple;
-	bh=6xLG9gejykXLJ01LV0GBV05fGjC37m1kgN/owrHxuZs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CRxYolFwyy9EoyCXipQPyi5FrzDModNlQA/JQxLnYVO6ktdjX7BvwKvtZxgOIa4RT5dDXLEtLc6Tp8RQJkpfduG7zXr+5VYgeu3qBGCQIc/fVUzdNRmzSleVVKB05eud1IgM+IsLkk3+meBIBSDN7pPhdKLbsHPr3TW+k7kjSrk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SkJaksBE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50E27C116B1;
-	Mon,  1 Jul 2024 15:37:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719848256;
-	bh=6xLG9gejykXLJ01LV0GBV05fGjC37m1kgN/owrHxuZs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=SkJaksBEx4Hz4oBkA8Le19qm36sNpHmyaRMTPPREUG0cenY5pUw6iQEjIk1ndnjbY
-	 YevL3J2kqkzbO4dg7l9T3DCC5Nnk8SFMD31ogvUrvrFuNnF/OctJ70f6OeJEA/hO51
-	 Sm/oqcyEfQd6JkIe9/ZOuOonA3BZXfK3DjOE6bGl0TPvtzkgknvZ6Agia3dTjDJGaX
-	 bkCk/hPMOWqpcBnKP787wPQ9YQmWmQroUYBSGaSjaFMFch6IXbk4wrGv6h5KS87W64
-	 7LZ4E4835Sy5lowLQHyr5HgMKFd1/tBoHZlp9WRv+jHrdH84RBQ+eypRYzt60ugdk9
-	 O4MUIDInOJPyA==
-Date: Mon, 1 Jul 2024 16:37:31 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Serge Semin <fancer.lancer@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDADA16CD2E;
+	Mon,  1 Jul 2024 15:45:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.247.76
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1719848755; cv=fail; b=CiEE8gfOqrNCy5Srs0si8bUwBEeLjGlnIv0DBByeFsznbEmGsg9lXdckOHuMichOLdgKBifr+llEsn1XWpYi4ncnWooTu04NPCPDoW489bUd7fs/nAENcWpUji8cGYZEAc2xVGkBd902ZMs8tVGiMgnOZ+tmPM61glQHD/61QMk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1719848755; c=relaxed/simple;
+	bh=AvsqKe3NAQdwNSP9t45LDirbg3NOe4/hB1HlzwcRjhQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=HXDzskpPq/rBm1kkdapKaC0z4SQ437Tksiz8XT7seUeue1g10I2zsTM0vJWVZJJMuhhL26/ImW7AHDO0c7fC27bIcPrXPpGt+CtpRiJLGVhrOw0uVhB4fQNzYNVpwvdoWklw7m+FGxmrkTqc78Nmf6XhPLaET3CB1l8gieAAHtE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=QXA3d8eh; arc=fail smtp.client-ip=40.107.247.76
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=f7l8KT7sUWs4JMMPa04Ssrhu9w2V4qfDWZaicmke4Sz08Jh3jJuMNNTtZDb+8u+7Zl16HoDhZ1Jlf0x7CYRPDMW8dMyb3cJnh+0yNt8jW3DWNcg2i7ymykjRcDIHWTP8XATWGHz9++JpSy/uu8oe0w4rx0uawaggU8jGnY0jehDT8KjMvu5c9L8tzODz4+ASdbzClYlfLeA4kRP2AhZSs4+yB08GUJt1btgmGWp3hmxPqH7osbl57cPBc4cm7Lxa2QNrv16Cqvuq+R2QiKGWPxF0T+WjmSYMH6TZ/I3S7B/EqId5bDDZmm7DNJfS4TfJ0H/oeDA1pz73uqhIjYCFGw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=okMDi51a/kMHt5pcLQ2qcX88lbSka+BBND8WDsdvqeM=;
+ b=hj3DwuLBNY5qd/DWL9rw5KvHZ0CCI8oU+M561zWf1XNgRiHQelV5rhG6VWk8EU/1JOQZZ4+RiOa4gHfF+6ZYjycT+ieZH6CkoLeLhTGseA0ilnx+jxLeZ47zstPftECa4CE50t42A8LCmVnFTKVUMUECXX7tVP4rJ+mALrToLnGa6pJN9MZU8g2cVF7NLFkaif+NpGJkowz9Gyz3rqgt/nxbVfW0WGQm53NZDT3B65CnhA0aNXZiMdwmp18fq5cGxPt9Kc1hgzLYT+CLWcRey/iRjwz7ec3C4upH5whV8yjPyeMYoS0fJgWg/oXkPGc2AEkprMiffgkcV8Hcr/rE5A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=okMDi51a/kMHt5pcLQ2qcX88lbSka+BBND8WDsdvqeM=;
+ b=QXA3d8ehBl102RCGjMZuc0rOp24Og3sZkLdUvZlp6vXmzHJsqAJWTcpBJMpR1lYgAgW3/x+vP0ng0NXxD3Y0OnUmWIo3qI7gllZfaut0C8oa7K2pg4pYEcIhjnTuLxa+/V0pyRFzjfJTy2i9W+8OLDA2BRQ0WPLPES98HlGBDbM=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by DB8PR04MB7115.eurprd04.prod.outlook.com (2603:10a6:10:128::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7719.32; Mon, 1 Jul
+ 2024 15:45:49 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%2]) with mapi id 15.20.7719.022; Mon, 1 Jul 2024
+ 15:45:49 +0000
+Date: Mon, 1 Jul 2024 11:45:40 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Peng Fan <peng.fan@nxp.com>
 Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next] dt-bindings: net: dwmac: Validate PBL for all
- IP-cores
-Message-ID: <20240701-concierge-goofy-dbed136abe4b@spud>
-References: <20240628154515.8783-1-fancer.lancer@gmail.com>
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	"open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <imx@lists.linux.dev>,
+	"moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
+	open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 3/7] arm64: dts: imx95-19x19-evk: Add audio related nodes
+Message-ID: <ZoLPJPR8r1+XaRAB@lizhi-Precision-Tower-5810>
+References: <20240627220001.692875-1-Frank.Li@nxp.com>
+ <20240627220001.692875-3-Frank.Li@nxp.com>
+ <AM6PR04MB5941C1138E4F33AA3FA49AA388D02@AM6PR04MB5941.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <AM6PR04MB5941C1138E4F33AA3FA49AA388D02@AM6PR04MB5941.eurprd04.prod.outlook.com>
+X-ClientProxiedBy: BYAPR21CA0021.namprd21.prod.outlook.com
+ (2603:10b6:a03:114::31) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="XLWvfM11bBx7ol4T"
-Content-Disposition: inline
-In-Reply-To: <20240628154515.8783-1-fancer.lancer@gmail.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DB8PR04MB7115:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9533c0ae-6cf6-447c-3614-08dc99e4e121
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|52116014|376014|7416014|1800799024|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?fmjqd8QviXdDefpKmLBjlqXwtfDZPDhJ0XXyIqUXUw8HG2daJxkb669uA/fZ?=
+ =?us-ascii?Q?NeDzDBJlYH2BWfAm6KurG/3IhA+seg35xZ4Bg6y5kd8sNEqRqvWEH/YEuQjR?=
+ =?us-ascii?Q?tRMcmD/v2LDhvpuaPV0BfKQEvKDeiGpO6JpG1RsovV9vlaasxvzUVAGaGDvs?=
+ =?us-ascii?Q?bBSu/DvUJvCDxAQd647BHzTyY6g/D6N7uV7NOtq5cSfIScUQKbC0Mk1hJC7S?=
+ =?us-ascii?Q?ccRWzudNocmxI/577huKhGckkmza3/NqPwZiihccQ7QGjrkivTmIZ/eQVkmj?=
+ =?us-ascii?Q?4Wee1pea0RsB1aXjd+nNqMpOJcXwbyc0DgsjYNjHuz8aMO19+bZcGWKWdfjp?=
+ =?us-ascii?Q?R+hjt1vxZlNH50c9q+ftDNTUNFsspzLxuzNrStHMa3SmJenYvEnVFhQSaWoR?=
+ =?us-ascii?Q?PmEKeZs/pe8EqzkLSzub46/GaInCcE+27FL3/QPfElX5rt/7IZPG8ZoKwLy9?=
+ =?us-ascii?Q?4Ir+rSxoKhLjdeQS+xMsH70fATh3n+iAAnPU2L5W+mC9DHJwKcLehhgKUmMz?=
+ =?us-ascii?Q?PPP0pZJiJ4KqCKkJVflri6OtGUcBzFrIODHqM2lmJLUrMtTfQFo7ectrhJIk?=
+ =?us-ascii?Q?alB0HFmUsr9FNbHpS/8yh2SCfiM0bplKi3tkpGvEAvj1bUItwu1JDVCxYxpL?=
+ =?us-ascii?Q?IWGHpIAABR6yhfA+IxqgarI4dwAf/FiuZIOEU+LcAXvt1/z9hv8w0mZqjJVn?=
+ =?us-ascii?Q?S8gtaUEHqPCeszzgfZtXFSL0sFuyv26Yo0qIUeV6WnKIZ/YTmacQvhaWOuhk?=
+ =?us-ascii?Q?J4UO/A7XS3bM71GUp02CoNF9FkR9CjT+O9wuBL+X67dLqph5Opz7J70xEkKe?=
+ =?us-ascii?Q?+A6phXKukmy0L+TxxtG6UQd+bxnwvvqm6qaYGx5ildPVXwLl1gsEZ1TLK79/?=
+ =?us-ascii?Q?iIMw2p0AyHC3TXpbfkX+Rqd887M/0Ubq8soPdDNQ42TYdyluDwdkx/IMwYBJ?=
+ =?us-ascii?Q?QGneO9rg0W7jqHPUUDfgRefYCKNUvxIZIysww3wHX4vLFPe4z/gldfFpp6eQ?=
+ =?us-ascii?Q?KZWbEXR1HaOY2483SVYjO/FC2sAmL8+FJeVX4XhtGtV71KlXiJYBkTUCVD7I?=
+ =?us-ascii?Q?ITACfZdG0IBmguMbE4KCTmixg8AcvmZuqirfOpKO1bJHyjslUwk70l7Oy3DC?=
+ =?us-ascii?Q?wIHj+F17bmFaNTRgvzOcuu2Qg42RxHbWb8MEl7Kl6XWp9XiB84BIcX3Zm7Q4?=
+ =?us-ascii?Q?fWJXrmrm1bP9HeC4JONB8XpUft5ZFH2Ud0esgz3lrc1kT4XGQS92WmQhyFUA?=
+ =?us-ascii?Q?rVcCTyW8so2umTF+YX4XS+2to3NnBEqsgcHZqCs5LRpbPaTBzcojjgTAqCPA?=
+ =?us-ascii?Q?9yqDpz57YKeySchLhER2YuKEVMzwE0lgeJrMijv4/H8wtt+gVuLv41HCi2/b?=
+ =?us-ascii?Q?2yKP+opwhd4UbJgY2jerJTA9zGcdPbE3LXmSS0+K8RKEmCcKWA=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(52116014)(376014)(7416014)(1800799024)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?Ma32rxEBRUC8MpEo5w3bAxiZBfRiLiZpC1JhWqoTAj7NJeqRmjzliESFa7Zp?=
+ =?us-ascii?Q?OEg8rBdBBRnA1Fnju9Fqc4NDMnSbg28lX3QRI6A4VaKYIH0jDBvAb6N0okNT?=
+ =?us-ascii?Q?0C9Xtrtn6oSIeYvG6nzI/OrHOI/udzqDuZPSTQCyhieimWv5YdbTwnlL94oB?=
+ =?us-ascii?Q?7lABe2a3P7VyIH850lNzVJ+Iqe5J2NFS77wcbUd9r3J54no3y8dcPBZ5uNxD?=
+ =?us-ascii?Q?aGrQdOlPaoF2kYGihZpkQRDB7flow7WJPV1ghQd+4LWvIFw2dIJ6SPpDe2tM?=
+ =?us-ascii?Q?duRp50ZqNjydRcKQ16mNxBW3bQhCbKAltANwdSn4nEgR70aLA9lXfOub/N8Y?=
+ =?us-ascii?Q?O8TVI6kvyDW358fvgPHRgqhb/rgazJJzu1rreECJLHLbDTt15XGe5A/rNGec?=
+ =?us-ascii?Q?rbHjott3WDze/Vdzx0FYo+Cw+AFg5nWWXzbj7qnUBTKcK/MNLl0CeHqvyBUp?=
+ =?us-ascii?Q?lfa43L59py6ct/O8qAmxHnHmqGoN73Rh+MH0XK3EuuxaPyF8N4CflNF4cWv+?=
+ =?us-ascii?Q?FyjABZtCwC6NQDKck+2oczdTcsMARNafIKBwqYUUOvkfi/ScbrIMDoK/Qat7?=
+ =?us-ascii?Q?DOgVD4BHfRB/DdikNKNpHKoaZaGyVsqQ1KU+PmaU+qSGZPDk+3uYKwwCvHpy?=
+ =?us-ascii?Q?6Y0Kz+k8qVsL/tk6BGu0z0yFesRv7JgisvwTEP7IyRPOlrJKO90wg+/TyCrw?=
+ =?us-ascii?Q?9ZSQRTvg54il1pDSLq4csfn7T4HwyAyCgMREg7/VsStbmlLjm/fzgZ+awqGW?=
+ =?us-ascii?Q?4shOsxHtLV6vQxqjNYNT4EdVQl7fOJxbZ6n/p4PT9yn/QSj+QTjJCf1RgUJk?=
+ =?us-ascii?Q?Q9wJCAbPEdYB7/U1ohIfpcHV6YjBHFeRR9O0CHYZdicv+v3J91Dx7pkgC4di?=
+ =?us-ascii?Q?Ot6L9z9rlhZwRKfnaQMRTGsqnpJo4oBEtXymHKlvprLHEyqKKOhh+OZY7LgF?=
+ =?us-ascii?Q?6B1drHy5ixc6e7clteFbGuQjbTslftK4Hmm7OvK4pkxc1LGdYhYrwWiTDCUd?=
+ =?us-ascii?Q?pU12iB5QFQtI/Uh1k+1UarDhkrlB1UEss/t87EMNFsrvL3p9rZ36HlrrL5xT?=
+ =?us-ascii?Q?rMvCDxhAlus7HTCCWjbueUwuJQSGxMMtCjk9zEaDNbp1/CandLjftRUJZXk0?=
+ =?us-ascii?Q?PbImLa+64nIrUVvfT+0Y5rNosxh0wxTjP0TL6mkbboyi9Hf7E2gH3xVUSFZ/?=
+ =?us-ascii?Q?adVc1RTkn35//l1DDNctGvAwmwnFl897SkY+zgzCBWeJVkePuEWCttGIRwMt?=
+ =?us-ascii?Q?YfE5SNFVQn9I0Q+uYjp6iKU2mNIVcGz57+n1Zj3wKrzAtp4jK1WB6kRhrtRE?=
+ =?us-ascii?Q?stB9QbXci2KmYsYIvPaXC47iH2S5YTFFFwvhZ5apKj655vqSmDM/S8GhkHUG?=
+ =?us-ascii?Q?xZfc1pZe65dv9/fyREk9MDrgUBxk8Yadt67fAC19yHXyZHkl3g7VV4GYGAbg?=
+ =?us-ascii?Q?LknALay7uYjcfhO+60HE7PyxgeetpKiTA5QEs/c/HUrW6BL0TJgflVNRwAro?=
+ =?us-ascii?Q?nRx8uLzB40Xeiy5dqfKycdsFkRicVTCx6MZOauW31KRwwZmfipC3Nqkfgs44?=
+ =?us-ascii?Q?bb4DEt3aQqBBBfaurSnMywL/jg6q6MI1EJtYkZJe?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9533c0ae-6cf6-447c-3614-08dc99e4e121
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Jul 2024 15:45:49.0508
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: PiyrjlEnLR80bx57Y7L31Ceed02JT/Ad3vi0IKG11t5Kukzr6JXbV/kazWrV8zkZy8sX/9XAmWqR61s6yQNXYg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB7115
 
+On Fri, Jun 28, 2024 at 12:03:27AM +0000, Peng Fan wrote:
+> > Subject: [PATCH 3/7] arm64: dts: imx95-19x19-evk: Add audio related
+> > nodes
+> > 
+> > Add sai1, sai2. Add i2c4 and wm8962 and other dependent nodes.
+> > 
+> > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > ---
+> >  .../boot/dts/freescale/imx95-19x19-evk.dts    | 238
+> > ++++++++++++++++++
+> >  1 file changed, 238 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
+> > b/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
+> > index d14a54ab4fd47..660e623f4f964 100644
+> > --- a/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
+> > +++ b/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
+> > @@ -17,6 +17,11 @@ aliases {
+> >  		serial0 = &lpuart1;
+> >  	};
+> > 
+...
+> > +			     0x0000 /* 4:FN_DMICCDAT */
+> > +			     0x0000 /* 5:Default */
+> > +			   >;
+> > +	};
+> > +
+> > +	i2c4_gpio_expander_21: gpio@21 {
+> 
+> Use gpio-expander@21?
+> It is easy to duplicate the node if other i2c bus also
+> has one.
 
---XLWvfM11bBx7ol4T
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+It should be fine, parent node is difference. gpio-expander@21 can't
+resolve your problem. 
 
-On Fri, Jun 28, 2024 at 06:45:12PM +0300, Serge Semin wrote:
-> Indeed the maximum DMA burst length can be programmed not only for DW
-> xGMACs, Allwinner EMACs and Spear SoC GMAC, but in accordance with
-> [1, 2, 3] for Generic DW *MAC IP-cores. Moreover the STMMAC driver parses
-> the property and then apply the configuration for all supported DW MAC
-> devices. All of that makes the property being available for all IP-cores
-> the bindings supports. Let's make sure the PBL-related properties are
-> validated for all of them by the common DW *MAC DT schema.
+i2c2
+{
+	gpio-expander@21 {};
+}
 
-I'd been leaving this one for Rob, given the earlier discussion - but I
-had one (minor) comment about the commit message here. I think it is fine
-for the kernel to unconditionally read a property if present, with no
-regard for the compatible in question, and to rely on the binding
-ensuring that the properties are not used where invalid. IOW, I don't
-think that that is a relevant justification for making the properties
-available on all hardware.
+i2c3
+{
+	gpio-expander@21 {};
+}
 
-However, as you say, it seems like all versions of the core actually do
-support the features the properties control and therefore the patch is
-perfectly fine. I just wanted to ~comment on~nitpick that portion of the
-commit message.
+It should be same situation as gpio@21.
 
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+DT should allow the same name under difference parent.
 
-Thanks,
-Conor.
+Frank
 
->=20
-> [1] DesignWare Cores Ethernet MAC Universal Databook, Revision 3.73a,
->     October 2013, p.378.
->=20
-> [2] DesignWare Cores Ethernet Quality-of-Service Databook, Revision 5.10a,
->     December 2017, p.1223.
->=20
-> [3] DesignWare Cores XGMAC - 10G Ethernet MAC Databook, Revision 2.11a,
->     September 2015, p.469-473.
->=20
-> Signed-off-by: Serge Semin <fancer.lancer@gmail.com>
->=20
-> ---
->=20
-> The discussion where we agreed to submit this change:
-> Link: https://lore.kernel.org/netdev/20240625215442.190557-2-robh@kernel.=
-org
->=20
-> ---
->  .../devicetree/bindings/net/snps,dwmac.yaml   | 80 ++++++-------------
->  1 file changed, 26 insertions(+), 54 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Docu=
-mentation/devicetree/bindings/net/snps,dwmac.yaml
-> index 5a39d931e429..509086b76211 100644
-> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> @@ -447,6 +447,32 @@ properties:
->      description:
->        Use Address-Aligned Beats
-> =20
-> +  snps,pbl:
-> +    description:
-> +      Programmable Burst Length (tx and rx)
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [1, 2, 4, 8, 16, 32]
-> +
-> +  snps,txpbl:
-> +    description:
-> +      Tx Programmable Burst Length. If set, DMA tx will use this
-> +      value rather than snps,pbl.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [1, 2, 4, 8, 16, 32]
-> +
-> +  snps,rxpbl:
-> +    description:
-> +      Rx Programmable Burst Length. If set, DMA rx will use this
-> +      value rather than snps,pbl.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [1, 2, 4, 8, 16, 32]
-> +
-> +  snps,no-pbl-x8:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description:
-> +      Don\'t multiply the pbl/txpbl/rxpbl values by 8. For core
-> +      rev < 3.50, don\'t multiply the values by 4.
-> +
->    snps,fixed-burst:
->      $ref: /schemas/types.yaml#/definitions/flag
->      description:
-> @@ -577,60 +603,6 @@ dependencies:
-> =20
->  allOf:
->    - $ref: ethernet-controller.yaml#
-> -  - if:
-> -      properties:
-> -        compatible:
-> -          contains:
-> -            enum:
-> -              - allwinner,sun7i-a20-gmac
-> -              - allwinner,sun8i-a83t-emac
-> -              - allwinner,sun8i-h3-emac
-> -              - allwinner,sun8i-r40-gmac
-> -              - allwinner,sun8i-v3s-emac
-> -              - allwinner,sun50i-a64-emac
-> -              - ingenic,jz4775-mac
-> -              - ingenic,x1000-mac
-> -              - ingenic,x1600-mac
-> -              - ingenic,x1830-mac
-> -              - ingenic,x2000-mac
-> -              - qcom,sa8775p-ethqos
-> -              - qcom,sc8280xp-ethqos
-> -              - snps,dwmac-3.50a
-> -              - snps,dwmac-4.10a
-> -              - snps,dwmac-4.20a
-> -              - snps,dwmac-5.20
-> -              - snps,dwxgmac
-> -              - snps,dwxgmac-2.10
-> -              - st,spear600-gmac
-> -
-> -    then:
-> -      properties:
-> -        snps,pbl:
-> -          description:
-> -            Programmable Burst Length (tx and rx)
-> -          $ref: /schemas/types.yaml#/definitions/uint32
-> -          enum: [1, 2, 4, 8, 16, 32]
-> -
-> -        snps,txpbl:
-> -          description:
-> -            Tx Programmable Burst Length. If set, DMA tx will use this
-> -            value rather than snps,pbl.
-> -          $ref: /schemas/types.yaml#/definitions/uint32
-> -          enum: [1, 2, 4, 8, 16, 32]
-> -
-> -        snps,rxpbl:
-> -          description:
-> -            Rx Programmable Burst Length. If set, DMA rx will use this
-> -            value rather than snps,pbl.
-> -          $ref: /schemas/types.yaml#/definitions/uint32
-> -          enum: [1, 2, 4, 8, 16, 32]
-> -
-> -        snps,no-pbl-x8:
-> -          $ref: /schemas/types.yaml#/definitions/flag
-> -          description:
-> -            Don\'t multiply the pbl/txpbl/rxpbl values by 8. For core
-> -            rev < 3.50, don\'t multiply the values by 4.
-> -
->    - if:
->        properties:
->          compatible:
-> --=20
-> 2.43.0
->=20
-
---XLWvfM11bBx7ol4T
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZoLNOwAKCRB4tDGHoIJi
-0qAoAQD5uIvD5Yo0jgNBbfMZUUoUe3osh0lslMQBRktekRB+5gD/ZeKGDTzVMx6q
-WuSXdcuPPsnwUY+MrnknFBDdwPiwiAE=
-=QoSx
------END PGP SIGNATURE-----
-
---XLWvfM11bBx7ol4T--
+> 
+> Regards,
+> Peng.
+> 
 
