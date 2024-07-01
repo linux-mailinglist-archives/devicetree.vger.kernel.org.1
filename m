@@ -1,175 +1,134 @@
-Return-Path: <devicetree+bounces-81955-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81956-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F15491E099
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 15:25:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59D6691E0A3
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 15:26:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 07269B24689
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 13:25:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8BDE81C21B15
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 13:26:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 218D415DBDD;
-	Mon,  1 Jul 2024 13:25:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A65515E5AB;
+	Mon,  1 Jul 2024 13:26:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="XGjrOiet"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W89qzUWp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 385E715532E
-	for <devicetree@vger.kernel.org>; Mon,  1 Jul 2024 13:25:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BFC313B597;
+	Mon,  1 Jul 2024 13:26:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719840341; cv=none; b=Dmzxg5QGBfLoMProHGD/HUu/2f/49QgU7h/SpCueta1dc9fIsQUsagmC8p9a2JWE0/ZsjpAXfeqtClfF+Yqk52bNyxRBD3DTtYjsxVMVxXvIApSnVq6I8puMy/4XC8Kj5LO1Fh8ZvH6mJc97zhmajUSj7bwH+kKvWCQfbwSgXj8=
+	t=1719840376; cv=none; b=Vd7yaHtjZ52wjbqBQfpXIOpwFuODs5fODaqzeaZKvh+Z9JtLhUw85p9rUE2CHZCj/vsS6Kgfg6+oftG4FKEPtOI32MT/XdXiKQwwSv8b4V33AwszMZneC6/B24ML8irlhAY3DbCYJiAt9cmp+cJ/DGSMlkF4HY5o3h/2eB8ecSU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719840341; c=relaxed/simple;
-	bh=2LrdI1mV/HEtxSz7JrgnE2pL91i+2JekehYN2Fcpad4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FuckZ2vsoesjo6ZZIc5yJGBjp2+JtEVbGrx5aEC6cuKZuq6hGdCpCErvfu1WeKT06oQIzr5VhxQVWyCZELkMnKjdW9iMqmg4u7vp+1k9szt56hViOQ7JARLT8WXRokpxCacDDSFJ7XhBS3NxysuKUOAc6EwVVJWDgcCI3xvXkE0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=XGjrOiet; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=fyWDWwFXNae/YtAbU0wf6ksLYEcJSZzo+3Jm36ZwlTg=; b=XGjrOietUDE5PZ1VwM1s7w5eMm
-	/XemAzoja1cdIi+uxE7zZgkYiEoDFGGotAUBpI5Nb5PaPE+8UHd1KEpa15pNqPaXtoh44JR2UXezU
-	92cXoAeWwHJsinnTOFMsFWCBwUvxTH5hA/P/DTkAFmCG0IeVS8W1WpOw1U9/v2S6EP3A=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1sOH2C-001XRQ-1D; Mon, 01 Jul 2024 15:25:32 +0200
-Date: Mon, 1 Jul 2024 15:25:32 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Zoltan HERPAI <wigyori@uid0.hu>, gregory.clement@bootlin.com,
-	sebastian.hesselbarth@gmail.com, krzk+dt@kernel.org,
-	conor+dt@kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 3/3] ARM: dts: marvell: add support for D-Link DNS-320L
-Message-ID: <8632249f-331b-4045-bfae-78f90907e666@lunn.ch>
-References: <20240629113450.127561-1-wigyori@uid0.hu>
- <20240629113450.127561-3-wigyori@uid0.hu>
- <b55a888d-9e64-40fb-9d78-26703835d1e6@kernel.org>
+	s=arc-20240116; t=1719840376; c=relaxed/simple;
+	bh=a9GWzihFY6Euz5YqTpah1S1NxIMQ5rMUtHwz3olWSnY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=t+GmmkSiTT58t90dvVL96WkPeMRGVtk8JmxhkBkkLwTa8fNIilxCo7pMVYxdxTG2WNI+QeCNg1WO6UajXVhf+QRX1P4qoagKNcr6x3iERfKqU3StxLEccSLIOJqJgmE2B8DOn1YpmnJHYC2fz3MaIKcmDRFtqlr+UB45MdXLrU0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W89qzUWp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0673FC116B1;
+	Mon,  1 Jul 2024 13:26:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719840375;
+	bh=a9GWzihFY6Euz5YqTpah1S1NxIMQ5rMUtHwz3olWSnY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=W89qzUWp+IT8p8lLK3tBTJJgWy9R5FSEqd741/TwjkvRlMNcaHS0c08qzOS1NNBZf
+	 NbflACFzNJgwh7Nblxr2fHLYnfKxQzDyyet4Wmuv2nI3ALYtIGBPXsLrfqT2w5T0o5
+	 WMnM1RiPatX2rY/Sqfox15Z+8WSFScCw0jbb7eC+tahMP8Vq1I7aoJPE8jujyRaPm9
+	 j1beBL4c5uQ92TQ+p1HwC8UKby6P1Ri5XCUEUrmcCAM93Cftst4bE5gTZfiT/dSJqS
+	 1WmVKLGPnCzoZbX5cVzjB0CPSWTEn+NhWG43WlTUOu/7/jCNRciiDhYTnHrDBxXbQE
+	 TUHtKqb6cxC/w==
+Message-ID: <a2a71be3-8f1a-44f5-a6e1-727ad78e76fb@kernel.org>
+Date: Mon, 1 Jul 2024 15:26:08 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <b55a888d-9e64-40fb-9d78-26703835d1e6@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC 1/7] dt: bindings: add qcom,qps615.yaml
+To: Krishna chaitanya chundru <quic_krichai@quicinc.com>,
+ Bartosz Golaszewski <brgl@bgdev.pl>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+ Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Jingoo Han <jingoohan1@gmail.com>
+Cc: quic_vbadigan@quicinc.com, quic_skananth@quicinc.com,
+ quic_nitegupt@quicinc.com, linux-arm-msm@vger.kernel.org,
+ linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240626-qps615-v1-0-2ade7bd91e02@quicinc.com>
+ <20240626-qps615-v1-1-2ade7bd91e02@quicinc.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240626-qps615-v1-1-2ade7bd91e02@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, Jul 01, 2024 at 08:01:46AM +0200, Krzysztof Kozlowski wrote:
-> On 29/06/2024 13:34, Zoltan HERPAI wrote:
-
-> > +++ b/arch/arm/boot/dts/marvell/kirkwood-dns320l.dts
-> > @@ -0,0 +1,197 @@
-> > +// SPDX-License-Identifier: GPL-2.0-or-later
-> > +/*
-> > + * Device Tree file for D-Link DNS-320L
-> > + *
-> > + * Copyright (C) 2024, Zoltan HERPAI <wigyori@uid0.hu>
-> > + * Copyright (C) 2015, Sunke Schluters <sunke-dev@schlueters.de>
-> > + *
-> > + * This file is based on the works of:
-> > + * - Sunke Schluters <sunke-dev@schlueters.de>
-> > + *   - https://github.com/scus1/dns320l/blob/master/kernel/dts/kirkwood-dns320l.dts
-> > + * - Andreas Bohler <dev@aboehler.at>:
-> > + *   - http://www.aboehler.at/doku/doku.php/projects:dns320l
-> > + *   - http://www.aboehler.at/hg/linux-dns320l/file/ba7a60ad7687/linux-3.12/kirkwood-dns320l.dts
-> > + */
-> > +
-> > +/dts-v1/;
-> > +
-> > +#include "kirkwood.dtsi"
-> > +#include "kirkwood-6281.dtsi"
-> > +
-> > +/ {
-> > +	model = "D-Link DNS-320L";
-> > +	compatible = "dlink,dns320l", "marvell,kirkwood-88f6702", "marvell,kirkwood";
-> > +
-> > +	memory {
-> > +		device_type = "memory";
-> > +		reg = <0x00000000 0x10000000>;
-> > +	};
-> > +
-> > +	chosen {
-> > +		bootargs = "console=ttyS0,115200n8 earlyprintk";
-> > +		stdout-path = &uart0;
-> > +	};
-> > +
-> > +	gpio-keys {
-> > +		compatible = "gpio-keys";
-> > +		#address-cells = <1>;
-> > +		#size-cells = <0>;
+On 26/06/2024 14:37, Krishna chaitanya chundru wrote:
+> qps615 is a driver for Qualcomm PCIe switch driver which controls
+> power & configuration of the hardware.
+> Add a bindings document for the driver.
 > 
-> Nope, these cannot be there.
+> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
 
-Depends. The kernel, which is what really matters, is happy with them
-there. Have a look at all the other kirkwood dts files.
+Please use subject prefixes matching the subsystem. You can get them for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching. For bindings, the preferred subjects are
+explained here:
+https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
 
-> It does not look like you tested the DTS against bindings. Please run
-> `make dtbs_check W=1` (see
-> Documentation/devicetree/bindings/writing-schema.rst or
-> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
-> for instructions).
-
-I suspect that is not going to be easy to interpret. kirkwood is very
-old, much older than the YAML descriptions. DT descriptions of this
-age were considered correct if the kernel understood them, and the
-kernel is much more flexible than the YAML bindings. As a result,
-there are going to be a huge number of warnings, and it will take a
-lot of skill to pick out real warning which can be fixed from the
-noise. Also, nobody really cares, because these devices have been out
-of production for a decade. Nobody is going to clean up the DT files.
-
-> > +		pinctrl-0 = <&pmx_buttons>;
-> > +		pinctrl-names = "default";
-> > +
-> > +		button@1 {
-> > +			label = "Reset push button";
-> > +			linux,code = <KEY_RESTART>;
-> > +			gpios = <&gpio0 28 1>;
-> > +		};
-> > +
-> > +		button@2 {
-> > +			label = "USB unmount button";
-> > +			linux,code = <KEY_EJECTCD>;
-> > +			gpios = <&gpio0 27 1>;
-> > +		};
-> > +	};
-> > +
-> > +	gpio-leds {
-> > +		compatible = "gpio-leds";
-> > +		pinctrl-0 = <&pmx_leds>;
-> > +		pinctrl-names = "default";
-> > +
-> > +		blue-usb {
-> 
-> It does not look like you tested the DTS against bindings. Please run
-> `make dtbs_check W=1` (see
-> Documentation/devicetree/bindings/writing-schema.rst or
-> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
-> for instructions).
-
-> > +	ocp@f1000000 {
-> 
-> Why you are not overriding by label/phandle?
-
-Look at the old .dts files. That is the way it was done 10 years
-ago. This is uniform with other kirkwood .dts files. There is
-something to be said for being uniform with other files of the same
-sort.
-
-I think we need to find a balance here. I agree with some of your
-comments, removing the regulator container, moving gpio-keys and
-gpio-leds. But i think ocp@f1000000 and not using labels can stay.
-
-	Andrew
+Best regards,
+Krzysztof
 
 
