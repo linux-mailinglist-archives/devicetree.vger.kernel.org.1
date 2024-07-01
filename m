@@ -1,116 +1,137 @@
-Return-Path: <devicetree+bounces-81818-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81819-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63A7F91D958
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 09:47:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39C2F91D966
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 09:50:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 185121F22379
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 07:47:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CB5471F22464
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 07:50:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE62E61674;
-	Mon,  1 Jul 2024 07:47:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16D8B7174F;
+	Mon,  1 Jul 2024 07:50:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="nOwrn1G/"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ZoJYrPVD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62716C144;
-	Mon,  1 Jul 2024 07:47:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C89E1C144;
+	Mon,  1 Jul 2024 07:50:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719820054; cv=none; b=LU9SfX34soFNaco4kZ6ccFqLtz0IRmwGFeevTpQMLyjcYfHgp2cMFWOYiXC6vY+FCtYMClFZmVXeSrJ+6SKkAUH33DQHdlh/1Dl8tTLJsI/Q9aH++oug68Sj+9QkmByTW4/BBd8cGMwfxVJdWJzTNyLf8s/AjEkb+nokJk5T1Yk=
+	t=1719820221; cv=none; b=TwML8fKDNrvQPWfZf/23a80XFjvA7flsP4fxkNQAjOKY6unfzOyVkL7Bfd3ofpqjlH+SklxqNYofTAWAJuwm8ZIaiarOT3mLpbk+hOsgcZqNUvbq7qCvqddnDMXcRepCEIixiLCjN6DUGjRWKFSodHW0yrPWlUm1rDDxPyVlNkY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719820054; c=relaxed/simple;
-	bh=62EtLx2rOQcXg46lhp8cb5zB/P0swEUokGwSyGI8wpE=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=uEuABL052L1RWgh/ItWep7hkE6oRFsSBbjZZp6Hmp03XrNwb2yK+OzSgYXtwuMLUUu8G2sGFAjk4b4VTp9PeNY7+L0678hiBEZbZAzg9JSINcKPCvJP5/s13MhSvd6F6rTobFYNee7JlXBRNts9hHXh/J5fqohrPjNXCOBoD0Fc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=nOwrn1G/; arc=none smtp.client-ip=217.70.183.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id BDF99C0009;
-	Mon,  1 Jul 2024 07:47:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1719820043;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=xSzCTTdVM/tcdktgKnj2I7uwAMajiojP6tk7tkVB+GU=;
-	b=nOwrn1G/VVmjuD7GQhpAhtIOYD4Tk851VLzUI1ZTims5TqG4tZlpA7uSctgxtqbkI2K0Xj
-	Nt7nlclZz9+hXabDud4SgSZrf1t0kwzdWf+0Of1xY8LXrf7cx4G4A3+uzneL3wK2ZwZS/z
-	G6fOkCA5hspB4XuvatPoJSSf6RUlWv7PbcrhNxpDANZ2+l4lbXcGIPOkOiBOypxLqIANp+
-	cR4r9RisDQab29H9k/zdkGFuwjlX9I6h4JU2gyDKM4IEyogbotiWf9VaNa0YGXMfuxBkSa
-	zlt0sXdai9zB1+kvOGYnBomUFCe57yzDpOCXQ2X0hYLWj6dslwC+Nj9kHyH5pg==
-Date: Mon, 1 Jul 2024 09:47:19 +0200
-From: Herve Codina <herve.codina@bootlin.com>
-To: Herve Codina <herve.codina@bootlin.com>, Liam Girdwood
- <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Qiang Zhao <qiang.zhao@nxp.com>, Shengjiu Wang
- <shengjiu.wang@gmail.com>, Xiubo Li <Xiubo.Lee@gmail.com>, Fabio Estevam
- <festevam@gmail.com>, Nicolin Chen <nicoleotsuka@gmail.com>, Jaroslav
- Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Christophe Leroy
- <christophe.leroy@csgroup.eu>
-Cc: alsa-devel@alsa-project.org, linuxppc-dev@lists.ozlabs.org,
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, Thomas
- Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 10/10] ASoC: fsl: fsl_qmc_audio: Add support for
- non-interleaved mode.
-Message-ID: <20240701094719.14f2eda3@bootlin.com>
-In-Reply-To: <20240620084300.397853-11-herve.codina@bootlin.com>
-References: <20240620084300.397853-1-herve.codina@bootlin.com>
-	<20240620084300.397853-11-herve.codina@bootlin.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1719820221; c=relaxed/simple;
+	bh=NI7kKOKAxIzXPc98JeIqYjrK5D/m1y4D12ZcB1Wqa0s=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MwmGYGqGWip+fyPsFfvDMYWXpzzapQlEfSv8iQ7ytzWCFOyZQeDIqXrEZp/j/UuhqyEPPQhEGumPsypeEk7YMOlJTafPIuND0I3W5O155JDvVBgocmlFnaUsO2EY5k+zEmt4QTe8MhUpaN03i2F9KDYU0oNZwKQEBWsVzP3OgGw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=ZoJYrPVD; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4617noxU092095;
+	Mon, 1 Jul 2024 02:49:50 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1719820190;
+	bh=vYIW1wdja3ERssve91wxwxFxBbrN1XnluQPmgD8VHlM=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=ZoJYrPVD1RGMCQFxmKFgdNN4YWao2NyEdILgF+AKAWts1zQVa8P+y+TUIXijg+8Pp
+	 0mjHnwfSJxHx2uR5hbx7zlxnO6khAP3HQ4u7hs/IPVZNKToH7Dv5+SytbbAYVASmMg
+	 2X2fKQIdAN5GVwoYoJEcZjk8H5W2kuA79N7eiNJQ=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4617noNd012371
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 1 Jul 2024 02:49:50 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 1
+ Jul 2024 02:49:49 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 1 Jul 2024 02:49:50 -0500
+Received: from localhost (jluthra.dhcp.ti.com [172.24.227.116])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4617nneu042482;
+	Mon, 1 Jul 2024 02:49:49 -0500
+Date: Mon, 1 Jul 2024 13:19:48 +0530
+From: Jai Luthra <j-luthra@ti.com>
+To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+CC: <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Vignesh
+ Raghavendra <vigneshr@ti.com>,
+        Aradhya Bhatia <a-bhatia1@ti.com>, Devarsh
+ Thakkar <devarsht@ti.com>,
+        Changhuang Liang
+	<changhuang.liang@starfivetech.com>,
+        Jack Zhu <jack.zhu@starfivetech.com>,
+        Julien Massot <julien.massot@collabora.com>,
+        Laurent Pinchart
+	<laurent.pinchart@ideasonboard.com>,
+        Mauro Carvalho Chehab
+	<mchehab@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans
+ Verkuil <hverkuil-cisco@xs4all.nl>,
+        Vaishnav Achath <vaishnav.a@ti.com>,
+        Maxime Ripard <mripard@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+Subject: Re: Re: [PATCH v2 02/13] dt-bindings: media: ti,j721e-csi2rx-shim:
+ Support 32 dma chans
+Message-ID: <4hel57zfigs6sxq5pdmahun3zyxhg56pl2hor5r4dgpwkv4if2@fo5rdfrlq45l>
+References: <20240627-multistream-v2-0-6ae96c54c1c3@ti.com>
+ <20240627-multistream-v2-2-6ae96c54c1c3@ti.com>
+ <e0269aab-1cea-453c-9bc7-305ebf446115@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: herve.codina@bootlin.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <e0269aab-1cea-453c-9bc7-305ebf446115@ideasonboard.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hi,
+Thanks for the review.
 
-On Thu, 20 Jun 2024 10:42:57 +0200
-Herve Codina <herve.codina@bootlin.com> wrote:
+On Jun 28, 2024 at 13:42:01 +0300, Tomi Valkeinen wrote:
+> On 27/06/2024 16:09, Jai Luthra wrote:
+> > The CSI2RX SHIM IP can support a maximum of 32x DMA channels.
+> > 
+> > These can be used to split incoming "streams" of data on the CSI-RX
+> > port, distinguished by MIPI Virtual Channel (or Data Type), into
+> > different locations in memory (/dev/videoX nodes).
+> 
+> Usually you shouldn't talk about Linux specifics in DT bindings. The DT
+> bindings are only about the HW, and the OS doesn't matter. It doesn't really
+> matter much, but I'd just leave out the mention to /dev/videoX.
 
-...
-> +static bool qmc_audio_access_is_interleaved(snd_pcm_access_t access)
-> +{
-> +	switch (access) {
-> +	case SNDRV_PCM_ACCESS_MMAP_INTERLEAVED:
-> +	case SNDRV_PCM_ACCESS_RW_INTERLEAVED:
-> +		return true;
-> +	default:
-> +		return false;
-> +	}
-> +};
-> +
+My bad, will drop the reference to /dev/videoX in next revision.
 
-The ';' at the end of the function should not be here and will be removed
-in the next iteration.
-Also, this function will be changed to
---- 8< ---
-static bool qmc_audio_access_is_interleaved(snd_pcm_access_t access)
-{
-	switch (access) {
-	case SNDRV_PCM_ACCESS_MMAP_INTERLEAVED:
-	case SNDRV_PCM_ACCESS_RW_INTERLEAVED:
-		return true;
-	default:
-		break;
-	}
-	return false;
-}
---- 8< ---
+> 
+> > Actual number of DMA channels reserved is different for each SoC
+> > integrating this IP, but a maximum of 32x channels are always available
+> > in this IP's register space, so set minimum as 1 and maximum as 32.
+> 
+> So in the SoC's dts file you will set the number of channels to the maximum
+> supported by that SoC? I guess that's fine.
+> 
+> Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+> 
+>  Tomi
+> 
+> [...] 
+> 
 
-Hervé
+-- 
+Thanks,
+Jai
+
+GPG Fingerprint: 4DE0 D818 E5D5 75E8 D45A AFC5 43DE 91F9 249A 7145
 
