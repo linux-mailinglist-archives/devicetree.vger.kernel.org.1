@@ -1,58 +1,69 @@
-Return-Path: <devicetree+bounces-81917-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81918-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3515A91DEEB
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 14:18:43 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2F4E91DEFD
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 14:22:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 661121C20E9B
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 12:18:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 60A84B223AE
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 12:22:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CAE314389C;
-	Mon,  1 Jul 2024 12:18:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C2A514B95A;
+	Mon,  1 Jul 2024 12:21:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MT4f8WEL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Hy/8gJxD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12F587404F;
-	Mon,  1 Jul 2024 12:18:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E37714A09D;
+	Mon,  1 Jul 2024 12:21:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719836319; cv=none; b=lHiRrpVvbiy/B4o8SRA2vRllcoBXRgD7aWSHXtjBPZ/30G/10T4HBU9G9O2RqaElpC2M1CMWP070vJbcouuh76ekBw+VpC22+9Qao/pppiVm2uxn94TpRBdFVxpsMmq9MRT5OXBhvfbXO9AAvqvJxkj5tK5XwdJ0PyMQ9sRrEtg=
+	t=1719836514; cv=none; b=Fr0YF5qZZBiBpx4LGhnw7MuWUUDWVMK01C/PmFQE4GTpVKZD9HmJc8STsLVq7tguuiN/ig+3y9D2My1z+wICMJqgXjPMGsZlc967oeNEk+EZt1NIf1xqVg21VoXUTBWAK2S3/w2rT7IDIP45hKP3v4hYlsM6BCY6KrdykSTj9wc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719836319; c=relaxed/simple;
-	bh=ngfLZvGV6uNktSmrI51yAbmgEtk/48MHEWS6ypeymyk=;
+	s=arc-20240116; t=1719836514; c=relaxed/simple;
+	bh=JE+ce2Bc6XEJf7VUJZSkFPrL8gf2uYh6gE14BffD4dY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hb5Bsj2n7/MQevw6WFpuqPnHIqMneAChBiRNpZzAJLODZy2IVqaSPPQAJKVSwoGJJ1neBybMEJymReIjlMns5mS1jh/6JOze1Ml9089JKkWcD11HN00dxYamWI3OhyRRlFQSIE4UdxmWqhdlpPPlSb7MNGhW5oxoijbC7vnezZs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MT4f8WEL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43F0AC116B1;
-	Mon,  1 Jul 2024 12:18:37 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=bwzATgLMe9QEOZ5zA+mxwD+RaD1VXFOfO+rVA5e2Zzj4ShPirMiGixkDZUQhmN6lRWZ72AaJ82RhOTiYgPnR3qjAfCSjS95iK4NgAZEKlbmdmKhrz4jMQGVeVFcE4EuVo91bVgUqMIG5QjXxRFsumAh64cdG8GoCmykcGZD+4n0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Hy/8gJxD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7517C2BD10;
+	Mon,  1 Jul 2024 12:21:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719836318;
-	bh=ngfLZvGV6uNktSmrI51yAbmgEtk/48MHEWS6ypeymyk=;
+	s=k20201202; t=1719836514;
+	bh=JE+ce2Bc6XEJf7VUJZSkFPrL8gf2uYh6gE14BffD4dY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MT4f8WELSRTQzhacSmF5U6XENMjFHm/V1ehqU/8RQFmoiEN3M63QkYwdNIWGpjjax
-	 50w04mD01aEgUvzPqhwE9/T2zPRk7wM+W5iKB5J/erAhOnGYleoUgb9HiJLqWE0hbC
-	 nmFwK9jcUAAntb0ckGzTNW9W3jCgXSn3MkAniGaWpnjQJ1sVvwICrz+oGmz5MX2Zav
-	 utyhyQzEuZ/Wxg8UjLI2d5IKmLKb7RWTy7YokMimNoOL7JKFR91JzTSIFmlLwKy80F
-	 ri8F2stJDEOBoLd06AjZeRBIv3wyFPFklCjBTYrfos0Z6KZZcRld7ffXfLJf5AbOwX
-	 ysxOybwj3We0Q==
-Date: Mon, 1 Jul 2024 13:18:35 +0100
+	b=Hy/8gJxDh10XMHIVf2L/WFukvLq9st//F2wTuXY1GNnedZ2pnJ9iRhYSHhIaqYmsV
+	 pzod3J5cLEbGR8r9GmALkRTMlcxSfY1jzi9YmRb5+8AJN3HDDFRWUoaYLeM0b8jvsI
+	 yBxl2SzeSSERFG7Laqu27v9GzL6fFncVeAqy/HzerJazbLOUsXUXYKBT8BS1KdxQc6
+	 aRbyH+Ppu/BgPYTh6ic8BSRmYN/QXiLrw06nMatGgh3Gcf/ksknugWmMFXmRXtSfK0
+	 Y6PYPqEKbr3lH80bmwVB3Tyh4ONx4pUuJ/gyrjtLpcQpdfQWu13sMH3G76kWLuEevv
+	 GW8Ah9pRD4sQQ==
+Date: Mon, 1 Jul 2024 13:21:47 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Minda Chen <minda.chen@starfivetech.com>
-Cc: "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] riscv: dts: starfive: add pcie1 on the star64
-Message-ID: <20240701-jaundice-enroll-1473aecce983@spud>
-References: <20240626-traverse-excitable-a1d9be38a9da@spud>
- <SHXPR01MB086332671CEBE2D0A21ED695E6D32@SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn>
+To: Yixun Lan <dlan@gentoo.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Anup Patel <anup@brainfault.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Palmer Dabbelt <palmer@sifive.com>, linux-riscv@lists.infradead.org,
+	linux-serial@vger.kernel.org, Inochi Amaoto <inochiama@outlook.com>,
+	Meng Zhang <zhangmeng.kevin@spacemit.com>,
+	Yangyu Chen <cyy@cyyself.name>
+Subject: Re: [PATCH v2 10/10] riscv: defconfig: enable SpacemiT SoC
+Message-ID: <20240701-tasty-haste-077c00f16517@spud>
+References: <20240627-k1-01-basic-dt-v2-0-cc06c7555f07@gentoo.org>
+ <20240627-k1-01-basic-dt-v2-10-cc06c7555f07@gentoo.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,92 +71,37 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="xupLm0cCcA85XjGZ"
+	protocol="application/pgp-signature"; boundary="X8NqZcBC5f6Zm1Wv"
 Content-Disposition: inline
-In-Reply-To: <SHXPR01MB086332671CEBE2D0A21ED695E6D32@SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn>
+In-Reply-To: <20240627-k1-01-basic-dt-v2-10-cc06c7555f07@gentoo.org>
 
 
---xupLm0cCcA85XjGZ
+--X8NqZcBC5f6Zm1Wv
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jul 01, 2024 at 10:45:15AM +0000, Minda Chen wrote:
+On Thu, Jun 27, 2024 at 03:31:24PM +0000, Yixun Lan wrote:
+> From: Yangyu Chen <cyy@cyyself.name>
 >=20
+> Enable SpacemiT SoC config in defconfig to allow the default upstream
+> kernel to boot on Banana Pi BPI-F3 board.
 >=20
-> >=20
-> > From: Conor Dooley <conor.dooley@microchip.com>
-> >=20
-> > It was reported to me that the star64 actually /does/ have an exposed P=
-CIe port,
-> > despite the commit message there. In my original conversation with Mind=
-a,
-> > they said that pcie1 was available there and pcie0 was not, but the v2 =
-patch
-> > didn't actually add pcie1 on the star64.
-> >=20
-> > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> > ---
-> > I think I'll just squash this in and fixup the commit message, since th=
-e patch is still
-> > at the top of my branch.
-> >=20
-> > CC: Minda Chen <minda.chen@starfivetech.com>
-> > CC: Conor Dooley <conor@kernel.org>
-> > CC: Rob Herring <robh+dt@kernel.org>,
-> > CC: Emil Renner Berthing <emil.renner.berthing@canonical.com
-> > CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org
-> > CC: devicetree@vger.kernel.org
-> > CC: linux-kernel@vger.kernel.org
-> > CC: linux-riscv@lists.infradead.org
-> > ---
-> >  arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts | 4 ++++
-> >  1 file changed, 4 insertions(+)
-> >=20
-> > diff --git a/arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts
-> > b/arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts
-> > index 2d41f18e0359..b720cdd15ed6 100644
-> > --- a/arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts
-> > +++ b/arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts
-> > @@ -39,6 +39,10 @@ phy1: ethernet-phy@1 {
-> >  	};
-> >  };
-> >=20
-> > +&pcie1 {
-> > +	status =3D "okay";
-> > +};
-> > +
-> >  &phy0 {
-> >  	rx-internal-delay-ps =3D <1900>;
-> >  	tx-internal-delay-ps =3D <1500>;
-> > --
-> > 2.43.0
->=20
-> Hi Conor
->=20
-> The jh7110-pine64-star64.dts is in linux-next tree. I have not noticed it=
- before.
-> Should I squash this to my patch? Can my dts patch be accepted in kernel =
-6.11? Thanks
-> (The same with Starfive PCIe patch set in linux-next, which will be merge=
- in 6.11, right?)
+> Signed-off-by: Yangyu Chen <cyy@cyyself.name>
+> Signed-off-by: Yixun Lan <dlan@gentoo.org>
 
-I already applied your patch, I'll squash this into your patch and queue
-the result for 6.11.
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
-Thanks,
-Conor.
-
---xupLm0cCcA85XjGZ
+--X8NqZcBC5f6Zm1Wv
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZoKemwAKCRB4tDGHoIJi
-0hl5AP4tq/0cGJ4J8cwlO45COR2B2WBVRKqZ2766zlqVGyzPxAD/UBj0CMvcQrG6
-TqLmV/Av2kgk7raSUv6G+/bKAKfz7gw=
-=OgkJ
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZoKfWwAKCRB4tDGHoIJi
+0nTFAP9sN0UVi6fNDmbNrKem4UC/W4WV0G+AduAgSpqYdf2OKgEAyY4CNEkClU32
+2u5Z24HDzzALjaBwylOnZLuOMuVWUws=
+=WJ5T
 -----END PGP SIGNATURE-----
 
---xupLm0cCcA85XjGZ--
+--X8NqZcBC5f6Zm1Wv--
 
