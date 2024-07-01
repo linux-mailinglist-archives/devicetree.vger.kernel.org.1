@@ -1,144 +1,268 @@
-Return-Path: <devicetree+bounces-82171-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82174-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EB9A91EA49
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 23:26:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5028791EA67
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 23:33:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CA7E51F23C93
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 21:26:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CE5461F20FD1
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 21:33:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D014A172773;
-	Mon,  1 Jul 2024 21:25:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9334143746;
+	Mon,  1 Jul 2024 21:33:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wdaH5i1n"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VJ1EAWN/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D47D8171E58
-	for <devicetree@vger.kernel.org>; Mon,  1 Jul 2024 21:25:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D40C6383A2;
+	Mon,  1 Jul 2024 21:32:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719869106; cv=none; b=iXccRi8nsVUYuaWEIQpIzN3qRnCVOd2Bu0PA1n2AJsXxyoXfYTzAauACp2SkUU7WGdWaiMa94OwyLy4M0cLyOTQRNKDcQ8SBpuBkfRXNbUbKpDhio8oLvfjHBNBEVPcuWbMu5j0gLPWl7qU9WegmMhSF76hnHzVCDe7639JTrrU=
+	t=1719869580; cv=none; b=RI5z7bvWSAV0RFUb1Ifki71aOvkJxhnjcU3AqV0gSV7yOQuj5OslTysZzZQuZSvoFQfOXPV/6v8tarYswLeAoNTIEU4J9nsHJHuEMLcs6ohQ4W6eoiliJBuWXBxKJsxpbRM5MU4eNSkd8ZA7amG2LKoMq5EgQl7QJFVNTZS7qck=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719869106; c=relaxed/simple;
-	bh=E+YOvaKlzqdaFLgIijZX77V+i9HowcxIorc6P65Of4U=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EdgDLGTPvIIwIDYUlg24TEZFYtY2vJJ4uiyY+JTfvU9dKNzIlEBvPLOpx3h/kXKHRZOCiUiwJAAXXJejFHEtzDQhsY/n62K7jYYqfgWCVnMEeceN8UdteEujraA3wz7mgc4lEgzeFhNfu/7q/pUh+hn1Q/m9w0d/xFt8x8aowSg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wdaH5i1n; arc=none smtp.client-ip=209.85.208.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2ebe40673e8so40779651fa.3
-        for <devicetree@vger.kernel.org>; Mon, 01 Jul 2024 14:25:04 -0700 (PDT)
+	s=arc-20240116; t=1719869580; c=relaxed/simple;
+	bh=30ll7tqXtKC8oZ4rgbOLXRJeaa/WCz+0NNsWVRq5X0U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Wv3HBo1k5dsLpXcZpC+kM70DID+gskEXUuI9YePM61Lw+M8/rZYa0/a1XeKJKMtf0dcAFvC91ksAmUM0VwFYP6JEQdZ0h90O5mp5VOcOiogut/iNWhMwQQJw+H9gFyq5J4dDmjfsgWe2NDAabx4uEZLvif/bL90Y9el8nMAry8Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VJ1EAWN/; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-4256f102e89so23631135e9.0;
+        Mon, 01 Jul 2024 14:32:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719869103; x=1720473903; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=1a8uL60fLg0Pow8Jq9FnHXjlODT5DmB/QbQpLLAEWCQ=;
-        b=wdaH5i1nZ1LB1A+4TPgXYGtVTACT8bIcAyz0gIISW+pKRqNl2fNHrmv2PufjpODpRn
-         wrybCwL0BULCjLYZ4tzZgaDonIyehKERpr9nHjydb5FSWL0LfO0A0CBHF9YD+jDCuIom
-         NywS4krV32ity88twVYoC0LKE8OK9JrwIDQWvl8zj+2rFrYKwnLVNxHK6YiJlDqsUL2c
-         huWIn3orRAYWOFqZhkbbPgrWxgG8KZSftwlZ5VyAWBBszivQLsLfxABGHbnTHurVfy8w
-         976EaZvq/6ETMjhoPkOaYfLWbmt4M/Pvat1FiIKXlGu7sLTHJ4bA09+CCQ907lf13ZOn
-         4YOg==
+        d=gmail.com; s=20230601; t=1719869577; x=1720474377; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=WaE7T2xExijUWC/YXmEs75U7t9rARciDYbj+FKSksYs=;
+        b=VJ1EAWN/ARhJfnJZKvXuJQ+V279EzHnzsZZpMfQKL4qxAbRNhszknc1XL1LhwjxauU
+         WpqcTbJgivWyOo06D4bjc/SLgLaYYCqpVNHLeA++9xJ2kpOTsGGZycCgVtQe9H9TvFT9
+         9zZECm7o/7V1sSHAYU7hXjSxHoDmBcfQxET6/vKGybTDLUvJMHqzWgof15GsTZVtBpVd
+         ErZtf5ZHAiIIpQl4mTiv4+U/NTG0/rK1vPYr1ZLUPgJa7l48D+uhJ6+Hy8c1amZ4bIG7
+         9XCDGUynuBgW/1aZBg38TpoJvx+/PUFIZCT/Q4zAvtmcmj7G4TvPO4De2oBk5lE3Rugf
+         1aJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719869103; x=1720473903;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1a8uL60fLg0Pow8Jq9FnHXjlODT5DmB/QbQpLLAEWCQ=;
-        b=Uw2WoMIuaiKtHl2SqJqu6n1kHL/7uHErl2gL8twbP2g4KBeMUFuPNxCp08+jiJo+3X
-         Zq6+YipuP2rttQSLS0QZFbhndMn8OVvqDJqxXXNwWN1AzzBJMzjZLt/mjQSe48iZO90J
-         41SrDAwL12ksDfXXEITYO+m0G1tJAyjriY8MaClDLxmUSBGtBxnlcNEeOYbxB751X1Do
-         28lNDN19tmUrW1HjLBG3SuSap9qypaxLP+Dg6G0Ocs7VzO9Dm8OXfJxBM/yArhNx4SSJ
-         5wqjFTTTcKQ0YD1opVmCZjmRkkH2+7zA/cevlD4+zHF2pUIakrvIokvoYJW/pozxBhne
-         tqdQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVoTSwZHX1Bt3YKp3BupkXZNd11ViKn8xa+EyqRkrtkUvOWMBJBJ6xUTP6UGSJbsLce1xlTMjYNIxp7JgUUXRI1V+oqlPITGg4puw==
-X-Gm-Message-State: AOJu0YylGHWS7o1oO0G+Y8+IVOgOikbQqTnqK7/yCVraMjk+W8nI91dq
-	5eK4J9xpt9rmbXtGXsgYFWjSfNUM/DA5Dxpyzjs1UzsJLlD9Neup3fN/7fPrgmk=
-X-Google-Smtp-Source: AGHT+IFVaSaBaiSYMfUIbk09sMC02hZroX1HE7a+9WIekEEhfFhrDc+eu7Swl1YpMravg/m5HgRh5w==
-X-Received: by 2002:a2e:bc84:0:b0:2ee:5b97:ebcb with SMTP id 38308e7fff4ca-2ee5e38005fmr53861971fa.22.1719869103018;
-        Mon, 01 Jul 2024 14:25:03 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2ee5160e072sm14798011fa.21.2024.07.01.14.25.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Jul 2024 14:25:02 -0700 (PDT)
-Date: Tue, 2 Jul 2024 00:25:01 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Dang Huynh <danct12@riseup.net>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Luca Weiss <luca.weiss@fairphone.com>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] arm64: dts: qcom: qrb4210-rb2: Correct PMI632 VBUS
- ampere
-Message-ID: <ivuhtt6krunnsimh5yqlxk6sn2doqg7oka2dcxbblwpe54vqxb@dgybzzixtf2i>
-References: <20240701-qrd4210rb2-vbus-volt-v2-1-b7bcd2a78c8b@riseup.net>
+        d=1e100.net; s=20230601; t=1719869577; x=1720474377;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=WaE7T2xExijUWC/YXmEs75U7t9rARciDYbj+FKSksYs=;
+        b=EiUG4AcnbOd1KPNnuNVVDyBMGgzbUQbP8wKVO5XDkiD3QHf5E/Vi+ybtE3Fd2hO3gB
+         l/wZYkbqgyD8L6FHuZXcTL6nAG73dOO9tzqQLIiaTeLZLOF/DZXKnANunXna9CUvWR/J
+         xdKzZSUeVGDvBxQzNLlDbG+dLcM5A9576xT6wVzXZ5fejjOXT4bI9zdH9Ut4pm1MSHDW
+         z2yJ7ZGYzk6uN5ElihQHZclt2PkHPKWeu+m8h2n/eQsvp2knUyRY8lFMOHzo2fZglY43
+         CPcn+Vp7pQ5LSiKV4j/pyU3v4uY4512fR+EWvud+v7djifXb9hszrW5kSvU/ogSF7Fj2
+         yNtw==
+X-Forwarded-Encrypted: i=1; AJvYcCWr0zQT894HMFSbWn4E5PtDJd3mC3f/IKmuJYxatGMfXvy43VCsYRC55+q3l5J6d4ZqVmy8woU3FNER/+bgpOZDrxpNfaZjStiJKKVLN7vSCx9JTgFX+3w0K+n5rGr/dN3BIGPjYg==
+X-Gm-Message-State: AOJu0Yw+toWV+4I7LZDku6Q076s+3sGpyPccnnBNPBYaAUbzV1DXVgm4
+	OyXnl+jJmWjmz7S4tYho2uV/kd/2gE4+IoEp37C2pICKokKPnZSA
+X-Google-Smtp-Source: AGHT+IEpsLzXFPEzmy4zrWIrvVUEqXohjQGdn+FCw8LyBsBeen4Oob7AQE+wX/+QDbambzv94QxKiw==
+X-Received: by 2002:a5d:55ce:0:b0:360:9223:b07 with SMTP id ffacd0b85a97d-367757299a0mr3602904f8f.66.1719869576706;
+        Mon, 01 Jul 2024 14:32:56 -0700 (PDT)
+Received: from ?IPV6:2a10:d582:37c5:0:a6cf:581a:1e41:3fd0? ([2a10:d582:37c5:0:a6cf:581a:1e41:3fd0])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4257d9c7f18sm82678655e9.40.2024.07.01.14.32.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 01 Jul 2024 14:32:56 -0700 (PDT)
+Message-ID: <3ececd1c-8331-4007-8e75-a000425ccd3c@gmail.com>
+Date: Mon, 1 Jul 2024 22:32:55 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240701-qrd4210rb2-vbus-volt-v2-1-b7bcd2a78c8b@riseup.net>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 2/2] iio: light: ROHM BH1745 colour sensor
+To: Matti Vaittinen <mazziesaccount@gmail.com>, jic23@kernel.org,
+ lars@metafoo.de, krzk+dt@kernel.org, conor+dt@kernel.org, robh@kernel.org
+Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, Ivan Orlov <ivan.orlov0322@gmail.com>,
+ Javier Carrasco <javier.carrasco.cruz@gmail.com>
+References: <20240625220328.558809-1-muditsharma.info@gmail.com>
+ <20240625220328.558809-2-muditsharma.info@gmail.com>
+ <98c87420-e88a-43ca-a8af-2fa751b85d4f@gmail.com>
+Content-Language: en-US
+From: Mudit Sharma <muditsharma.info@gmail.com>
+In-Reply-To: <98c87420-e88a-43ca-a8af-2fa751b85d4f@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Mon, Jul 01, 2024 at 05:24:39PM GMT, Dang Huynh wrote:
-> According to downstream sources, PMI632 maximum VBUS ampere is
-
-s/ampere/current/
-
-Also in the subject, please.
-
-> 1A.
+On 01/07/2024 12:32, Matti Vaittinen wrote:
+>> +
+>> +// From 16x max HW gain and 32x max integration time
+>> +#define BH1745_MAX_GAIN 512
+>> +
+>> +static const int bh1745_int_time[][2] = {
+>> +    { 0, 160000 }, /* 160 ms */
+>> +    { 0, 320000 }, /* 320 ms */
+>> +    { 0, 640000 }, /* 640 ms */
+>> +    { 1, 280000 }, /* 1280 ms */
+>> +    { 2, 560000 }, /* 2560 ms */
+>> +    { 5, 120000 }, /* 5120 ms */
+>> +};
+>> +
+>> +static const u8 bh1745_gain_factor[] = { 1, 2, 16 };
+>> +
+>> +static const int bh1745_int_time_us[] = { 160000,  320000,  640000,
+>> +                      1280000, 2560000, 5120000 };
 > 
-> Taken from msm-4.19 (631561973a034e46ccacd0e53ef65d13a40d87a4)
-> Line 685-687 in drivers/power/supply/qcom/qpnp-smb5.c
-> 
-> Signed-off-by: Dang Huynh <danct12@riseup.net>
-> ---
-> In previous patch series, there's a suggestion to correct
-> PMI632's VBUS ampere.
-> 
-> Unfortunately it didn't make it and probably forgotten.
-> 
-> ----
-> Changes in v2:
-> - Fixed typo (voltage -> ampere)
-> - Link to v1: https://lore.kernel.org/r/20240701-qrd4210rb2-vbus-volt-v1-1-5c06f8358436@riseup.net
-> ---
->  arch/arm64/boot/dts/qcom/qrb4210-rb2.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
-> index 1c7de7f2db79..1888d99d398b 100644
-> --- a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
-> +++ b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
-> @@ -305,7 +305,7 @@ pmi632_ss_in: endpoint {
->  
->  &pmi632_vbus {
->  	regulator-min-microamp = <500000>;
-> -	regulator-max-microamp = <3000000>;
-> +	regulator-max-microamp = <1000000>;
->  	status = "okay";
->  };
->  
-> 
-> ---
-> base-commit: 642a16ca7994a50d7de85715996a8ce171a5bdfb
-> change-id: 20240701-qrd4210rb2-vbus-volt-822764c7cfca
-> 
-> Best regards,
-> -- 
-> Dang Huynh <danct12@riseup.net>
+> I am not sure why you need these tables above? Can't the iio_gts do all 
+> the conversions from register-value to int time/gain and int-time/gain 
+> to register value, as well as the checks for supported values? Ideally, 
+> you would not need anything else but the bh1745_itimes and the 
+> bh1745_gain tables below - they should contain all the same information.
 > 
 
--- 
-With best wishes
-Dmitry
+Hi Matti,
+
+Thank you for reviewing this.
+
+Just had a look again at GTS helpers and found the appropriate 
+functions. Will drop these for v7.
+
+>> +};
+>> +
+>> +static const struct regmap_range bh1745_volatile_ranges[] = {
+>> +    regmap_reg_range(BH1745_MODE_CTRL_2, BH1745_MODE_CTRL_2), /* 
+>> VALID */
+>> +    regmap_reg_range(BH1745_RED_LSB, BH1745_CLEAR_MSB), /* Data */
+>> +    regmap_reg_range(BH1745_INTR, BH1745_INTR), /* Interrupt */
+>> +};
+>> +
+>> +static const struct regmap_access_table bh1745_volatile_regs = {
+>> +    .yes_ranges = bh1745_volatile_ranges,
+>> +    .n_yes_ranges = ARRAY_SIZE(bh1745_volatile_ranges),
+>> +};
+>> +
+>> +static const struct regmap_range bh1745_read_ranges[] = {
+>> +    regmap_reg_range(BH1745_SYS_CTRL, BH1745_MODE_CTRL_2),
+>> +    regmap_reg_range(BH1745_RED_LSB, BH1745_CLEAR_MSB),
+>> +    regmap_reg_range(BH1745_INTR, BH1745_INTR),
+>> +    regmap_reg_range(BH1745_PERSISTENCE, BH1745_TL_MSB),
+>> +    regmap_reg_range(BH1745_MANU_ID, BH1745_MANU_ID),
+>> +};
+>> +
+>> +static const struct regmap_access_table bh1745_ro_regs = {
+>> +    .yes_ranges = bh1745_read_ranges,
+>> +    .n_yes_ranges = ARRAY_SIZE(bh1745_read_ranges),
+>> +};
+>> +
+>> +static const struct regmap_range bh1745_writable_ranges[] = {
+>> +    regmap_reg_range(BH1745_SYS_CTRL, BH1745_MODE_CTRL_2),
+>> +    regmap_reg_range(BH1745_INTR, BH1745_INTR),
+>> +    regmap_reg_range(BH1745_PERSISTENCE, BH1745_TL_MSB),
+>> +};
+>> +
+>> +static const struct regmap_access_table bh1745_wr_regs = {
+>> +    .yes_ranges = bh1745_writable_ranges,
+>> +    .n_yes_ranges = ARRAY_SIZE(bh1745_writable_ranges),
+>> +};
+>> +
+>> +static const struct regmap_config bh1745_regmap = {
+>> +    .reg_bits = 8,
+>> +    .val_bits = 8,
+>> +    .max_register = BH1745_MANU_ID,
+>> +    .cache_type = REGCACHE_RBTREE,
+>> +    .volatile_table = &bh1745_volatile_regs,
+>> +    .wr_table = &bh1745_wr_regs,
+>> +    .rd_table = &bh1745_ro_regs,
+> 
+> I am not 100% sure what this does. (Let's say it is just my ignorance 
+> :)). Does the 'ro' in 'bh1745_ro_regs' stand for read-only?
+> 
+> If so, shouldn't the read-inly registers be marked as "not writable", 
+> which would be adding them in .wr_table in 'no_ranges'? Also, what is 
+> the idea of the 'wr_regs'?
+> 
+There are some read-only (Manufacturer ID and Data registers) and some 
+readable and writable registers. I will rename these to 
+'bh1745_readable_regs' and 'bh1745_writable_regs' in v7 to avoid confusion.
+
+>> +};
+>> +
+>> +static const struct iio_event_spec bh1745_event_spec[] = {
+>> +    {
+>> +        .type = IIO_EV_TYPE_THRESH,
+>> +        .dir = IIO_EV_DIR_RISING,
+>> +        .mask_shared_by_type = BIT(IIO_EV_INFO_VALUE),
+>> +    },
+>> +    {
+>> +        .type = IIO_EV_TYPE_THRESH,
+>> +        .dir = IIO_EV_DIR_FALLING,
+>> +        .mask_shared_by_type = BIT(IIO_EV_INFO_VALUE),
+>> +    },
+>> +    {
+>> +        .type = IIO_EV_TYPE_THRESH,
+>> +        .dir = IIO_EV_DIR_EITHER,
+>> +        .mask_shared_by_type = BIT(IIO_EV_INFO_PERIOD),
+>> +        .mask_separate = BIT(IIO_EV_INFO_ENABLE),
+>> +    },
+>> +};
+>> +
+>> +#define BH1745_CHANNEL(_colour, _si, 
+>> _addr)                             \
+>> +    {                                                               \
+>> +        .type = IIO_INTENSITY, .modified = 1,                   \
+>> +        .info_mask_separate = BIT(IIO_CHAN_INFO_RAW),           \
+>> +        .info_mask_shared_by_all = BIT(IIO_CHAN_INFO_SCALE) |   \
+>> +                       BIT(IIO_CHAN_INFO_INT_TIME), \
+>> +        .info_mask_shared_by_all_available =                    \
+>> +            BIT(IIO_CHAN_INFO_SCALE) |                      \
+>> +            BIT(IIO_CHAN_INFO_INT_TIME),                    \
+>> +        .event_spec = bh1745_event_spec,                        \
+>> +        .num_event_specs = ARRAY_SIZE(bh1745_event_spec),       \
+>> +        .channel2 = IIO_MOD_LIGHT_##_colour, .address = _addr,  \
+>> +        .scan_index = _si,                                      \
+>> +        .scan_type = {                                          \
+>> +            .sign = 'u',                                    \
+>> +            .realbits = 16,                                 \
+>> +            .storagebits = 16,                              \
+>> +            .endianness = IIO_CPU,                          \
+>> +        },                                                      \
+>> +    }
+>> +
+>> +static const struct iio_chan_spec bh1745_channels[] = {
+>> +    BH1745_CHANNEL(RED, 0, BH1745_RED_LSB),
+>> +    BH1745_CHANNEL(GREEN, 1, BH1745_GREEN_LSB),
+>> +    BH1745_CHANNEL(BLUE, 2, BH1745_BLUE_LSB),
+>> +    BH1745_CHANNEL(CLEAR, 3, BH1745_CLEAR_LSB),
+>> +    IIO_CHAN_SOFT_TIMESTAMP(4),
+>> +};
+>> +
+>> +static int bh1745_reset(struct bh1745_data *data)
+>> +{
+>> +    int ret;
+>> +    int value;
+>> +
+>> +    ret = regmap_read(data->regmap, BH1745_SYS_CTRL, &value);
+>> +    if (ret)
+>> +        return ret;
+>> +
+>> +    value |= (BH1745_SW_RESET | BH1745_INT_RESET);
+>> +
+>> +    return regmap_write(data->regmap, BH1745_SYS_CTRL, value);
+> 
+> Would it work if you used regmap_write_bits() instead?
+
+Yes, it should work. Jonathan suggested 'regmap_set_bits()' for this and 
+it looks like a good fit for this as well.
+
+I will look through the regmap API once again and update similar cases.
+
+> 
+> ... Sorry, my reviewing time is out :/ I may continue later but no need 
+> to wait for my comments if I am not responding. I've too much stuff 
+> piling on :(
+> 
+> 
+> Yours,
+>      -- Matti
+> 
+
+Best regards,
+Mudit Sharma
 
