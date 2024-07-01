@@ -1,62 +1,62 @@
-Return-Path: <devicetree+bounces-81987-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81988-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C080F91E2A8
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 16:42:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C18491E2B4
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 16:47:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E60501C20EBA
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 14:42:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5854B284D69
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 14:47:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FC3416B3B6;
-	Mon,  1 Jul 2024 14:42:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D27C16C69B;
+	Mon,  1 Jul 2024 14:47:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Es6ZvAts"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FVQ2Xn9k"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EF584696;
-	Mon,  1 Jul 2024 14:42:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 723241607BC;
+	Mon,  1 Jul 2024 14:47:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719844961; cv=none; b=Wv0lvCC11h8mD2kgsRvavWPyUbssqvskV/CTJRNfEq17z4Q2tc5GUNBiOq/phhVzFzZDj9txDS8oL2J3sqCV6TLV/HDGUueQc1vjXspD43v7Vhgs18qLXxKXGOxT9OyisHuKawqwN1U2koZ3z/NTw5OLki0tJHik+dEiGStxqlc=
+	t=1719845237; cv=none; b=gLTozdTWwZHQjMGl5XSF2h+MTo4vMdlGoC4bIvIhM800jGA8i0bc9WoVVC6cWARX0MKj8zKEhzUBwhp4YbmUrg3hA2zW5dFouBxqITeEAdyxJaOvyJ5/nhIFr9m9o4TCP/Idmiy12leIYQA6ZygVItDViYnxYolQUjnjQ61/OsY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719844961; c=relaxed/simple;
-	bh=oqreuN7Lmf3KZB06NiHnlq3XgvAne96Q0HZLnxU1cvA=;
+	s=arc-20240116; t=1719845237; c=relaxed/simple;
+	bh=j8XiGvWJ8XtpnCWRcFn+uOZrSEgcHJ4ERD16wxYfS5o=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cetDsoaMvwzi8W9hhDbN5E8LUWMYgDwpGNmwtbde3BHQwDWiyciQo7/zZfC+4qqu6SkXmsAvcsmUylFs89e6r+CqYTrT+awDdsa1mGXvYem/dLPbFnKC+KBPJsi1zL4baVpUIFcQzk4uhe1/tFsgxYxnHmRx5x2WITq/v//Yu7k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Es6ZvAts; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A929C116B1;
-	Mon,  1 Jul 2024 14:42:39 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=lbZ8InDVB4lZGZAhEgR+t7ifDUk2xzN03AnGcfmPA8+EkDb2QEdI4v4zc7K8uaQLi92pbRNZpDgcc9IIsWDcCMQd0r17LkAWS0Nnzae9AsB6vcu/ozLu0Y3buisbZ3T8h5TTp8g1vbnq2ZhWuLp6zI+uUETVhPhc1Iirb7JIIvo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FVQ2Xn9k; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19279C116B1;
+	Mon,  1 Jul 2024 14:47:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719844961;
-	bh=oqreuN7Lmf3KZB06NiHnlq3XgvAne96Q0HZLnxU1cvA=;
+	s=k20201202; t=1719845237;
+	bh=j8XiGvWJ8XtpnCWRcFn+uOZrSEgcHJ4ERD16wxYfS5o=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Es6ZvAtss93UUyTV0/C5Kq7xcHV2mMr7W2uHGzC8FpKbNdC+jdwp2ciIC5jj/WLlr
-	 FyJlaV6yEroIgDjOJcuzd9aP6IUmM5Sp6czY1Awasc8IPqdGjj19lmJ1PoKJQekKjF
-	 iO8Evf/hfcQCmvr2bAjQTBrWOLxgdGAf4UNc7gokAoLxG4XDH0ROZNiDmRHlstPjTK
-	 RYuYX45Ln2d79925pclof5E9V0BwvtKu0XXZGfSh1PNR9rQGijypIVTJJfg19nB3Ou
-	 eOYGsfaO+Ws94mFfXxKN7LCu/yzJU5xXxZNZxLrtd2oRTkk6rkoTKotFrck44To5RZ
-	 tLuvqQyHCPFuA==
-Date: Mon, 1 Jul 2024 15:42:37 +0100
+	b=FVQ2Xn9kH+d78Fm5CfMWf8q3qpIv2BGjxHUtI+unfUGoNgi5oahhz2O+ZLNwpsm3y
+	 7MpTgmNZBmUlogjGIBphXcbZmQB2ZSJjhRTYLQxfMMAy+oHPUtkZpL7iwOhdFfzmbK
+	 n1bCvfSRhwTMAPVusGkJ/8/kX5SjCMeUA3meUEjLau5rkkUNt30OwQ36dKpL3SYV3h
+	 26cwDjCIGZeEs6cV+8cTYJjnm4GL/LFvr0rYbiG0ncgxrfa5gok8llXvBIpXudV5dJ
+	 XVbYfrHZLx7RKIY5EHKx4ndZpCwMVfV/I1IV3z3yh0L0wkYT43a8oQMELa6i6doLuf
+	 pFngdlhYfuAtQ==
+Date: Mon, 1 Jul 2024 15:47:12 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Philipp Zabel <p.zabel@pengutronix.de>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	kernel@pengutronix.de
-Subject: Re: [PATCH v2 1/2] dt-bindings: input: touchscreen: exc3000: add
- EXC81W32
-Message-ID: <20240701-evolve-unbutton-ef7d913ad69f@spud>
-References: <20240628-input-exc3000-exc81w32-v2-0-c2b21a369c05@pengutronix.de>
- <20240628-input-exc3000-exc81w32-v2-1-c2b21a369c05@pengutronix.de>
- <20240628-agonizing-syrup-fcd55c441b3f@spud>
- <150055844b8af2017fa721ff08bbde473354b2da.camel@pengutronix.de>
+To: Andrei.Simion@microchip.com
+Cc: Conor.Dooley@microchip.com, brgl@bgdev.pl, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org,
+	Nicolas.Ferre@microchip.com, alexandre.belloni@bootlin.com,
+	claudiu.beznea@tuxon.dev, arnd@arndb.de, gregkh@linuxfoundation.org,
+	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 3/3] dt-bindings: eeprom: at24: Add Microchip
+ 24AA025E48/24AA025E64
+Message-ID: <20240701-majorette-briskness-696746f3fde1@spud>
+References: <20240628080146.49545-1-andrei.simion@microchip.com>
+ <20240628080146.49545-4-andrei.simion@microchip.com>
+ <20240628-plunder-wackiness-72b0acf3624b@wendy>
+ <04278bf9-fb5f-4592-8edd-a45332fed24a@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,82 +64,94 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="oXw+Hz09N3mxcR0V"
+	protocol="application/pgp-signature"; boundary="woyu5TzAIRUeYkBV"
 Content-Disposition: inline
-In-Reply-To: <150055844b8af2017fa721ff08bbde473354b2da.camel@pengutronix.de>
+In-Reply-To: <04278bf9-fb5f-4592-8edd-a45332fed24a@microchip.com>
 
 
---oXw+Hz09N3mxcR0V
+--woyu5TzAIRUeYkBV
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jul 01, 2024 at 02:47:50PM +0200, Philipp Zabel wrote:
-> Hi Conor,
->=20
-> On Fr, 2024-06-28 at 17:21 +0100, Conor Dooley wrote:
-> > On Fri, Jun 28, 2024 at 10:35:51AM +0200, Philipp Zabel wrote:
-> > > Add compatible for EXC81W32 touchscreen controllers.
+On Mon, Jul 01, 2024 at 02:37:57PM +0000, Andrei.Simion@microchip.com wrote:
+> On 28.06.2024 12:09, Conor Dooley wrote:
+> > Hey,
 > >=20
-> > Could you please mention in your commit messages what makes a fallback
-> > compatible inappropriate here?
+> > On Fri, Jun 28, 2024 at 11:01:46AM +0300, Andrei Simion wrote:
+> >> Add compatible for Microchip 24AA025E48/24AA025E64 EEPROMs.
+> >>
+> >> Reviewed-by: Connor Dooley <conor.dooley@microchip.com>
+> >                  ^^             ^
+> > There's no way that I provided a tag with my name spelt incorrectly
+> > given I use a macro to insert them. Please copy-paste tags or use b4
+> > to pick them up, rather than type them out yourself.
+> >=20
+> >> Signed-off-by: Andrei Simion <andrei.simion@microchip.com>
+> >> ---
+> >> v2 -> v3:
+> >> - commit subject changed to reference Microchip 24AA025E48/24AA025E64
+> >> - drop the pattern: mac02e4$ and mac02e6$ and a-z from regex
+> >> - add these two devices down at the bottom
+> >> - added Reviewed-by
+> >>
+> >> v1 -> v2:
+> >> - change pattern into "^atmel,(24(c|cs|mac)[a-z0-9]+|spd)$" to keep si=
+mpler
+> >> ---
+> >>  Documentation/devicetree/bindings/eeprom/at24.yaml | 4 ++++
+> >>  1 file changed, 4 insertions(+)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/eeprom/at24.yaml b/Docu=
+mentation/devicetree/bindings/eeprom/at24.yaml
+> >> index 3c36cd0510de..699c2bbc16f5 100644
+> >> --- a/Documentation/devicetree/bindings/eeprom/at24.yaml
+> >> +++ b/Documentation/devicetree/bindings/eeprom/at24.yaml
+> >> @@ -132,6 +132,10 @@ properties:
+> >>                - renesas,r1ex24128
+> >>                - samsung,s524ad0xd1
+> >>            - const: atmel,24c128
+> >> +      - items:
+> >> +          - const: microchip,24aa025e48
+> >> +      - items:
+> >> +          - const: microchip,24aa025e64
+> >=20
+> > I don't think this patch works, the schema has a select in it that only
+> > matches ^atmel,(24(c|cs|mac)[0-9]+|spd)$. You either need to have these
+> > fall back to an existing compatible (iff actually compatible) or else do
+> > something like:
+> > diff --git a/Documentation/devicetree/bindings/eeprom/at24.yaml b/Docum=
+entation/devicetree/bindings/eeprom/at24.yaml
+> > index 699c2bbc16f5..4d46b8c5439d 100644
+> > --- a/Documentation/devicetree/bindings/eeprom/at24.yaml
+> > +++ b/Documentation/devicetree/bindings/eeprom/at24.yaml
+> > @@ -18,7 +18,9 @@ select:
+> >    properties:
+> >      compatible:
+> >        contains:
+> > -        pattern: "^atmel,(24(c|cs|mac)[0-9]+|spd)$"
+> > +        anyOf:
+> > +          - pattern: "^atmel,(24(c|cs|mac)[0-9]+|spd)$"
+> > +          - enum: ["microchip,24aa025e48", "microchip,24aa025e64"]
 >=20
-> thank for pointing this out. Actually, I'm not sure a fallback
-> compatible is inappropriate at all. There just is none currently, even
-> though EXC80H60 and EXC80H84 already look compatible to me.
->=20
-> To my understanding, there's EXC80[WH]{32,46,60,84} models, that should
-> only differ in ball pitch (W or H) and targeted display size (the last
-> number).
-> I don't know if there are actual relevant differences between what I
-> assume are model generations, such as EXC80 to EXC81. At least the
-> limited currently implemented feature set in the exc3000 driver is
-> identical.
->=20
-> Given that EXC80H60, EXC80H84, and now EXC81W32 all share the same 16K
-> resolution and the same message format (possible differences in
-> capability to measure touch area nonwithstanding), should I prepend
-> this series with a patch:
+> If I use your solution (and drop both items: const) -> it is selected the=
+ compatible but does not match anything.
 
-If you're prepared to update the two users to avoid adding more
-dtbs_check warnings, sure.
+My intention was that you added my diff to your existing patch.
 
 Thanks,
 Conor.
 
->=20
-> @@ -14,10 +14,13 @@
-> =20
->  properties:
->    compatible:
-> -    enum:
-> -      - eeti,exc3000
-> -      - eeti,exc80h60
-> -      - eeti,exc80h84
-> +    oneOf:
-> +      - const: eeti,exc3000
-> +      - items:
-> +          - enum:
-> +              - eeti,exc80h60
-> +          - const: eeti,exc80h84
-> +      - const: eeti,exc80h84
->    reg:
->      const: 0x2a
->    interrupts:
->=20
-> regards
-> Philipp
-
---oXw+Hz09N3mxcR0V
+--woyu5TzAIRUeYkBV
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHQEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZoLAXQAKCRB4tDGHoIJi
-0kfdAPinlDksflI+CZ0V7RLLNE6TzTiZAcuSVA8xrHNj8sd+AP4/QgKGeSLOwa2n
-NxYwmgWXdF5eK9yJeua4gyd0PjUSBg==
-=eq1X
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZoLBbwAKCRB4tDGHoIJi
+0iuxAQD3nivIzehKWwsPswITcQpTaCzYeOEfQArdjN9Yfifw5AEArpZaFKJXjqW+
+8ceF7VlRJqpYqfhZKKfZxBwFc+fQcAQ=
+=A15X
 -----END PGP SIGNATURE-----
 
---oXw+Hz09N3mxcR0V--
+--woyu5TzAIRUeYkBV--
 
