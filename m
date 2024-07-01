@@ -1,160 +1,139 @@
-Return-Path: <devicetree+bounces-81993-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81994-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D041A91E2D7
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 16:53:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B33991E2E3
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 16:56:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0CE5F1C21808
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 14:53:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 35B6128529E
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 14:56:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C61A416B3A3;
-	Mon,  1 Jul 2024 14:53:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A08616C864;
+	Mon,  1 Jul 2024 14:56:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fjgTHRZS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66A5516C69B;
-	Mon,  1 Jul 2024 14:53:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86C9616C852;
+	Mon,  1 Jul 2024 14:56:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719845582; cv=none; b=O+YVrDDo5Fw/ezIrWsM0Bj4WMSHTWiIuLT5036hf/losv1Ped+GDhp9wxfpeuYX7FJS2+IldNHX2dSDWGr98GMIbQPOUYxCI/oWipzyF5mwDiJ37d91IjTJCEXv2kiCLIgH0st0NnPl/+VhEMIM1NiYG6YNn0arXT8ZbrywRUAI=
+	t=1719845770; cv=none; b=g3OZN/r+awOdbCO+O8tR2/y3blxlt315Tc4mifpxJFdrbVvZBmGFilKIcOGtuwhFqaKcoyW0bIcOUcNeVYWJWNTnbtQXUNRE8MSag72qzu+vTnrnN5ZBvffPxk8FMRx3vbQLq1rVr6AIZooIZVbxAxdrhEDNK0VJpeeX+EGYhSQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719845582; c=relaxed/simple;
-	bh=RaEIqBBBlZwZlnjhe9HMUAgwkqCYxlvq/qn3lRGk0AI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=DMj8G6ETcMRTnLFby2oAQFomsm0yzIc25xStZCZjHk5Em9X7Yl16yZezc1UDRfmh/u4H+4ddo7drxEO2ar/xrRj3iS3XXirt+y3B4ASYnZPJKW2oPvxq93l2fz/yb5Q357l2fftSPMoUsw7v2utF3cY3fDi1a7FsxXkmHmwfyms=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+	s=arc-20240116; t=1719845770; c=relaxed/simple;
+	bh=gDLaedp6ZCoeI1AHF945YerUsiKNo6bTTIpeE2TW5cQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=l8EyAEJYgAZG81Ru5jEWzk99/mxD4ZobyZvb21dHqOXbaX2CtaJuGVp3Ig7meJtmnB/Y9p9QryFkqBk9jTce6IYrpc3y6NNPUumo0Wgod5RX6MOXbX/qZAJARTdQ4DB9OjiMUriMIIu7bGJMRYLgfTfCdV+atocaGbsPc+1aOWU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fjgTHRZS; arc=none smtp.client-ip=209.85.167.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-64b3655297aso26164857b3.1;
-        Mon, 01 Jul 2024 07:53:00 -0700 (PDT)
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-52db11b1d31so4449883e87.0;
+        Mon, 01 Jul 2024 07:56:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1719845766; x=1720450566; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Yva08AFW2IklrXoeu93ZqdsrKdX8Rmdq+Tv1uD2A/sA=;
+        b=fjgTHRZSfZC8FYjUfQVCtTBt4qRWwhwdC2GbuxkpHG5okXiHEdKzSJE41hngjZJKgu
+         nqO5Tc/k6F1W2Y3yat1kKmy8U+qLm9y2+JQprpzKelKEImw+O0tpnHkRiYtoo6TjQt2/
+         hgRi2M4pa6W7/U4Rf68Rtc3Vfv7vMf5LLp/SHiAaVg3B/31a0pOD2ImHzyGIMM80GZFP
+         BWvUyBpCviv8sJFv0iI11riCkDcZw0eh0vaV3zfJSCRJjBWwTN8upAwjzoGpRIQhAHLW
+         n1fmYJtFaK0DKKsffsdtI6T7FMv5tt6BPuprgVAkcJQMiRJSgS0T9ChB2lLDWea8fwxN
+         sNjg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719845578; x=1720450378;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=SP79SDf92bXt2zdoUqVmmj1x8MHK+bQSYpGd6rxMW4U=;
-        b=FLlqBcGcsF3p9BflE1IcgxxurI/q/y9ocGLZj7+1vizZEz6j2I6CeiOVCavQtvLyqQ
-         JG1N2s2XemE5S+HaAwXY4JaxcQOhQIZLPS/Ks4qCAh8Il9ks0OX21al1txVXQfEsmO8x
-         hmM1SwTr9IpPFjglTTzLycJvUWlaSJMb3/xuqFiScbripzss4AH4y6JhtNdFF6DY9HuQ
-         0g+U3/u/jxF7KuRNHcsjvvopCwdqHROQ+yoog5Qqben/SNJj5ZrfsJIw1RstS6H1gV15
-         I9fJF2Oerp0ZaI98JcKhEFwB2UECj+yI7f9xQBybCLHGnAlc+753dSkscDQQmSPABzOk
-         Q2yg==
-X-Forwarded-Encrypted: i=1; AJvYcCXn4dhOfMBPWnC65gH42GNC1wVo8oUtGmFSwQPJh06Qz0VfD/IEPKGMPKQ+fdeSO/5rbVK2Z+FVO2Zuc8aClOs9TcDTEN/sqiC0elF/d1h6WOiPdTu0VxhkDJemAnKzE2VI3bJBqYjpA6WD7pYW
-X-Gm-Message-State: AOJu0YzsSBNCMZhR0y2b4z3t4XSz1P5RdE74Zl7m/67tEU+aEwLmMn+P
-	NxdzGKd8jjzKuUGJITSX/CEvKYP3WofmEyMg9h834xu+t//ZdAhXNMhSlOZ/
-X-Google-Smtp-Source: AGHT+IGpxS/ktwqHyYltRFPP9PO97iHGpYLFQ2YKbyFhdKSiP1eRUpfBd0nDOefdzZYma43POaKekw==
-X-Received: by 2002:a05:690c:a9e:b0:620:3c10:527a with SMTP id 00721157ae682-64c7268293fmr79021017b3.15.1719845578234;
-        Mon, 01 Jul 2024 07:52:58 -0700 (PDT)
-Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com. [209.85.128.173])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-64a99c71a76sm13983287b3.10.2024.07.01.07.52.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 01 Jul 2024 07:52:57 -0700 (PDT)
-Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-64b3655297aso26164447b3.1;
-        Mon, 01 Jul 2024 07:52:57 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVWlp2YCYQ3LH7EUS33VYC53XU93UvcvvfWbAGRsEF4PTjR92gOAilcMlCvOmgFsjhNg8EbXGpEl61VtLR5IUl2walW0WJhIi8/jCykjHEDGPsQj1kLUjutvYZI+rAN9bkdX1ZIgshvLJDuxRsx
-X-Received: by 2002:a05:690c:d82:b0:62f:2553:d3b3 with SMTP id
- 00721157ae682-64c72c4b3a3mr64194377b3.29.1719845577668; Mon, 01 Jul 2024
- 07:52:57 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1719845766; x=1720450566;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Yva08AFW2IklrXoeu93ZqdsrKdX8Rmdq+Tv1uD2A/sA=;
+        b=fKUQ0jHWHcuy4Bhh46gvTU6hT18G/QKolgNdbE/5fo3P3IUVoNc4JA/dEPkNfjsfEK
+         vb9SXTOqzUtWH58tRy2MoRUVf+LKDbhSzDrTKDGFrwJgn2ADj2Ba2kaFXnPEl0Pox55w
+         hoBVENaH2VUKvaJqXmIyzYP0IR+c4wS9bzYpVYXR1MxY7s8j/GUYg7yOuTRnn5buq1hX
+         PCht1ZoRk71249G35x7J4Ectf03QNhwodyAQKPDV3B0GpCg9xl128EqPzfoiceaPs3Fl
+         cFy9sea5kXslpFdmtW0Qw2K14jcJHeG23DNUGUYTRK8U2jjnX2D8IHUuyxSYdc2KL2wl
+         ueog==
+X-Forwarded-Encrypted: i=1; AJvYcCWMk8TqKpwidsjQG4UC+tDvmZlRUpcGBNHrBLrEXm/sVRrxYRayciYn4OBZqtikt7WRJH4kmetSAAMfhi9khxo+BvSkPJkR6s6bjry1AO1s0pecmNKHQosPwR1o/OCJhoO1sbJB/F2FYd7yCJbQPvUwYQGrixnCiXYcYxlOwR9ZLNL+unX2ypWb7IgWdbAZXQBA9Tji7bZRHd+ed1AS6mg=
+X-Gm-Message-State: AOJu0YwrwIov6/i0rVdF3r6m6yQA348hHpx9NbgkwnWkoQ6PLvxVNmZq
+	ctLCDO94jC7SEPLNWBzOUK3plT8kkI99If16lWoly4hQHrFfxTrX
+X-Google-Smtp-Source: AGHT+IHUxEcvuIhBXTzt3U/lTyf8QzTdIyl1Qx8o1/Cw58EOFGJNsZPb/8S2tKeR5IOj/IiJx7l6Sg==
+X-Received: by 2002:a05:6512:3497:b0:52e:764d:7409 with SMTP id 2adb3069b0e04-52e8266eac0mr3222713e87.19.1719845766289;
+        Mon, 01 Jul 2024 07:56:06 -0700 (PDT)
+Received: from localhost.localdomain ([195.239.203.83])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52e7ab3b1dbsm1450044e87.253.2024.07.01.07.56.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 01 Jul 2024 07:56:05 -0700 (PDT)
+From: Alex Vdovydchenko <keromvp@gmail.com>
+X-Google-Original-From: Alex Vdovydchenko <xzeol@yahoo.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sean Anderson <sean.anderson@linux.dev>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Jean Delvare <jdelvare@suse.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-hwmon@vger.kernel.org,
+	linux-doc@vger.kernel.org,
+	linux-i2c@vger.kernel.org,
+	Alex Vdovydchenko <xzeol@yahoo.com>
+Subject: [PATCH v3 0/2] Add MPS MP5920 Host-Swap controller
+Date: Mon,  1 Jul 2024 17:55:59 +0300
+Message-ID: <20240701145603.1507516-1-xzeol@yahoo.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240630034649.173229-1-marex@denx.de>
-In-Reply-To: <20240630034649.173229-1-marex@denx.de>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 1 Jul 2024 16:52:44 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUMFA-ESPfCbQiddc-Q5bLHaCpMk6fZAf48Aucdg79kGw@mail.gmail.com>
-Message-ID: <CAMuHMdUMFA-ESPfCbQiddc-Q5bLHaCpMk6fZAf48Aucdg79kGw@mail.gmail.com>
-Subject: Re: [PATCH 1/2] ARM: dts: renesas: Drop ethernet-phy-ieee802.3-c22
- from PHY compatible string on all RZ boards
-To: Marek Vasut <marex@denx.de>
-Cc: linux-arm-kernel@lists.infradead.org, andrew@lunn.ch, 
-	kernel@dh-electronics.com, kernel test robot <lkp@intel.com>, 
-	Conor Dooley <conor+dt@kernel.org>, Khuong Dinh <khuong@os.amperecomputing.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
-	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi Marek,
+This series of patches adds the MP5920 Host-swap controller, which is used
+as a protection and control IC for devices that are being inserted into a live
+backplane. MP5920 acts as a voltage regulator (MP5911 etc) supervisor. IC
+utilizes pmbus and provides monitoring, statistics and limits to electrical and
+thermal characteristics such as:
+- input and output voltage
+- output current
+- output power
+- IC temperature
 
-Thanks for your patch!
+One must take into account the nonlinear character of readings, so there will be
+a statistical error in the range 5–10 percents, depending on current passing
+through. In order to use the IC, make sure to specify a valid I2C address
+(consult to datasheet and dts-bindings)
+MP5920 datasheet: https://www.monolithicpower.com/en/mp5920.html
 
-On Sun, Jun 30, 2024 at 5:47=E2=80=AFAM Marek Vasut <marex@denx.de> wrote:
-> The rtl82xx DT bindings do not require ethernet-phy-ieee802.3-c22
-> as the fallback compatible string. There are fewer users of the
+Changes in v2:
+  -  fixed typos
+Changes in v3:
+  -  removed unnecessary license blob
+  -  removed unnecessary headers
+  -  edited device tables style
+  -  added chip name checking in probing
+  -  fixed typos in pmbus_driver_info struct initialization
 
-Why not?
+Alex Vdovydchenko (2):
+  dt-bindings: hwmon: Add MPS mp5920
+  hwmon: add MP5920 driver
 
-> Realtek PHY compatible string with fallback compatible string than
-> there are users without fallback compatible string, so drop the
-> fallback compatible string from the few remaining users:
+ .../devicetree/bindings/trivial-devices.yaml  |  2 +
+ Documentation/hwmon/index.rst                 |  1 +
+ Documentation/hwmon/mp5920.rst                | 91 ++++++++++++++++++
+ drivers/hwmon/pmbus/Kconfig                   |  9 ++
+ drivers/hwmon/pmbus/Makefile                  |  1 +
+ drivers/hwmon/pmbus/mp5920.c                  | 93 +++++++++++++++++++
+ 6 files changed, 197 insertions(+)
+ create mode 100644 Documentation/hwmon/mp5920.rst
+ create mode 100644 drivers/hwmon/pmbus/mp5920.c
 
-Ah, the self-fulfilling collection of patches ;-)
+-- 
+2.43.0
 
-Let's move the discussion to the actual patch that causes this
-https://lore.kernel.org/all/20240625184359.153423-1-marex@denx.de/
-
-> $ git grep -ho ethernet-phy-id001c....... | sort | uniq -c
->       1 ethernet-phy-id001c.c816",
->       2 ethernet-phy-id001c.c915",
->       2 ethernet-phy-id001c.c915";
->       5 ethernet-phy-id001c.c916",
->      13 ethernet-phy-id001c.c916";
->
-> Reported-by: kernel test robot <lkp@intel.com>
-> Closes: https://lore.kernel.org/oe-kbuild-all/202406290316.YvZdvLxu-lkp@i=
-ntel.com/
-
-Hmm, nothing about r7s9210-rza2mevb in that report.
-
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> ---
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Geert Uytterhoeven <geert+renesas@glider.be>
-> Cc: Khuong Dinh <khuong@os.amperecomputing.com>
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> Cc: Magnus Damm <magnus.damm@gmail.com>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-renesas-soc@vger.kernel.org
-> ---
-> Note: this closes only part of the report
-
-Please do not use the "Closes" tag if it does not fix everything in
-the report. "Link" (pointing to the correct report!) is fine, though.
-
-> --- a/arch/arm/boot/dts/renesas/r7s9210-rza2mevb.dts
-> +++ b/arch/arm/boot/dts/renesas/r7s9210-rza2mevb.dts
-> @@ -95,8 +95,7 @@ &ether1 {
->         renesas,no-ether-link;
->         phy-handle =3D <&phy1>;
->         phy1: ethernet-phy@1 {
-> -               compatible =3D "ethernet-phy-id001c.c816",
-> -                            "ethernet-phy-ieee802.3-c22";
-> +               compatible =3D "ethernet-phy-id001c.c816";
->                 reg =3D <0>;
->         };
->  };
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
