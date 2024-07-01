@@ -1,138 +1,188 @@
-Return-Path: <devicetree+bounces-81966-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81967-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61ACF91E12E
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 15:49:36 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F35D691E138
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 15:50:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 164EC1F22569
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 13:49:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 225061C22EE0
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 13:50:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C482715ECF9;
-	Mon,  1 Jul 2024 13:49:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8505815ECCF;
+	Mon,  1 Jul 2024 13:50:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zAbhBlpi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fpRAI4Hi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C15FF152E0A
-	for <devicetree@vger.kernel.org>; Mon,  1 Jul 2024 13:49:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BA9515B542;
+	Mon,  1 Jul 2024 13:50:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719841770; cv=none; b=raKoOAv2ZLhQknPxoziwQbP6K2UHcP8dEjCPL1pU8KHrU5rvA5t29pjVPSWaLj1YcULY2W93lteY6Ih4CiIA0LaiQCXrgCuiUIg8+LBJ/8nrqrLNBzAkiuEWqJBEEjP8A4plum05ZZndJk28jjgIX4mNJmadKvRK2Ye/pOtJH9U=
+	t=1719841819; cv=none; b=B2kBxqIIm0s6wguMjR+7D1oOUaQNmgbzAxjQ8dCqBd/whL8raIyJHXXWM6U8J1E5bO0RaSqqfmC04PiT9gfz0wCmZEP/FvMh216aTEo7elNINGJWNXd4MPaeuz/eYoBB4iNVWNipZQ8DqtszFNYrs4z6EBeYc1VsV3kbkVtQo14=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719841770; c=relaxed/simple;
-	bh=VNdxMse+Oe9mdLojU0mCGXeQ+DZJWA0+7HJj8kVIBnY=;
+	s=arc-20240116; t=1719841819; c=relaxed/simple;
+	bh=AI7XCMBHlAs+uHRLozdpytNX6tSgpWifdmWB2XL1pAA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=A2YXNzY3zxeoUe6nU+/N4kxEKEqFwhlwyPSd9aZXH+wCOwxPkUiEsSImvavPufqxEanV5FLu/Vwv9ynCToLNbSTco1PPaWceT75xjaUeEz+rKO+D4pooaWemvR9oudglK6JcbHLS/VOG/1WtC/NjTkSht2jjuBfz+fIsROmxm5M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zAbhBlpi; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-4257d5fc9b7so11453145e9.2
-        for <devicetree@vger.kernel.org>; Mon, 01 Jul 2024 06:49:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719841766; x=1720446566; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=cSHA3q4477yqFVwlHVRNBlCXfb85cUCdbiSbrNOhrjA=;
-        b=zAbhBlpioynIxwqGkBDCjKnFX+FDQypff34UQ/yVIqMkOTEeG6mJDKkPrQazpXnshy
-         6LpTOsqWeGXZgolmGxKCqfaT6xSM/9VAbHCuxLa1gdvRqgs6eDu99mPnldsgS/SszUoS
-         OS9srVQMUI03o9uUDii7E0Aqt7vSWmjJ65Yo8VvpuTzj0xO1uKD9fW2xjjrZuMMIYiKd
-         9LaOQ1WC5+GvYBN0SbSbxlOMTbEIxRzkvRodHfSc6zOIeVKFOqDIQbmmMbTumd5O98P5
-         sQU9q6qcjjof9sGQyjf15IwUtJWbJC1vUroAtIqbB9xRAVz9RX8yVVxgpwFZbMlGwmBI
-         XxBg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719841766; x=1720446566;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cSHA3q4477yqFVwlHVRNBlCXfb85cUCdbiSbrNOhrjA=;
-        b=shDDyHSuSgKKjH3DW0W93JMitOkZskCzZ+z0GuzsTm2BvPMI6UrDaQNDt7J6EDY118
-         ivxXU8TL6M0LtkLmIZRnQ4E93dHj3wqUxS2lqfg3YHhfb6l+D9pmzg8DhAN8bBhpCI3R
-         NUKNPY0fv0cU8gmJSb2T5c49qn9gi+BXLSioYKpvk7TZqKGe5TsLr8LWuc+uDWvLdgP0
-         1QUSKD5fVgOIfgh7n7OHiR2N74OQgIqQXhlNZqQEzQldyTJ66Yzz4Bor3mo2BvCB37Lz
-         RfZ13CB/UT96Npx3eBbh1tntoLgWeoD5UiFA1Qx0yH9r6gwUQQWqQWavh7A8vlLE+vI0
-         TlRQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW9Zrs8nMwTYz3D/l4oKJGSpriMMPaKLIQkDi6k+s5NiV4HcIXV3FzU29CIO1FBqfCkqYGbbyt4qh8cc7aOCMorNhnYx894u+xcTQ==
-X-Gm-Message-State: AOJu0Yz4yVsY7rqzSNzxZFc5nEoFTNG44bmtXjrYQAJTr6FHk4/DLRDw
-	NB0hya22vQZ8QHSxbcmextHhPoMLGdZ93ono1uoJlxLukotvRSAZiMfZJJQX/Ko=
-X-Google-Smtp-Source: AGHT+IEpUblqE9v0NeLJXlJ5ozpWe9TPxae1ZcK0gTo7GHEOOUFGF+Khzv2YHvZ8TnyhE/LhRgJFOA==
-X-Received: by 2002:a05:600c:47c7:b0:425:5f73:e2e1 with SMTP id 5b1f17b1804b1-4257a00c088mr49663315e9.22.1719841766025;
-        Mon, 01 Jul 2024 06:49:26 -0700 (PDT)
-Received: from myrica ([2.221.137.100])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4257fc934b2sm58300515e9.44.2024.07.01.06.49.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Jul 2024 06:49:25 -0700 (PDT)
-Date: Mon, 1 Jul 2024 14:49:42 +0100
-From: Jean-Philippe Brucker <jean-philippe@linaro.org>
-To: Robin Murphy <robin.murphy@arm.com>
-Cc: Will Deacon <will@kernel.org>, Joerg Roedel <joro@8bytes.org>,
-	linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, iommu@lists.linux.dev,
-	devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Hanjun Guo <guohanjun@huawei.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Len Brown <lenb@kernel.org>,
-	Andy Shevchenko <andy.shevchenko@gmail.com>
-Subject: Re: [PATCH v2 0/4] iommu: Remove iommu_fwspec ops
-Message-ID: <20240701134942.GC2414@myrica>
-References: <cover.1718994350.git.robin.murphy@arm.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=JzJiGVvopSA3DjRp1U88XMWkvEJiy1fAYUhN6XO5/b/M0xT/OXZTwTxBNZc2uO3qCScyEjNVunDVejKxH737YBPZKRiuiOfUvpMZ/gORNXuhNJOuZgkIVnPVK0XCsmYwFL1tvYfqcyR2lPjO51gMqFVuPpd12Wt8Q2S+xgN1Rqg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fpRAI4Hi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 085A4C116B1;
+	Mon,  1 Jul 2024 13:50:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719841818;
+	bh=AI7XCMBHlAs+uHRLozdpytNX6tSgpWifdmWB2XL1pAA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=fpRAI4HiyBs+3fWrGSovWnRMEEPFxscml8os9TLHv/K41wCzBjPrziWjr8SitAJRm
+	 WhC7nqyvfaNSivXKyaSSdYNjEcGSQyDA3ro/m1avt86SPLgtQj9opHTmpWOtxzVzhU
+	 Z9ashPmLUspz/YFjslefZ6HxgoUo6mdL9WPYNZ52XaMoSQ4Y95zoZONl5iUApEQ7j1
+	 LtkpX/spX5K0SITT6jjFiJNeVWeCClD8O52YtyIYuvRt1WnVMLrU8n1kGsR2PCtbJp
+	 PufAaSwwhTOHCkKe6sGAzOhEROqDn5AGiLasj3/mv6JpZ72Ow8bnt3JU3+o3/U4dn3
+	 +bd6s2BktjkgA==
+Date: Mon, 1 Jul 2024 15:50:15 +0200
+From: Maxime Ripard <mripard@kernel.org>
+To: Marc Gonzalez <mgonzalez@freebox.fr>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
+	Daniel Vetter <daniel@ffwll.ch>, Liam Girdwood <lgirdwood@gmail.com>, 
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	Arnaud Vrac <avrac@freebox.fr>, Pierre-Hugues Husson <phhusson@freebox.fr>, 
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Subject: Re: [PATCH v3 1/2] dt-bindings: display: bridge: add TI TDP158
+Message-ID: <20240701-bug-of-great-honeydew-cfb6ef@houat>
+References: <20240627-tdp158-v3-0-fb2fbc808346@freebox.fr>
+ <20240627-tdp158-v3-1-fb2fbc808346@freebox.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="lhkfrzu56kvv4h74"
+Content-Disposition: inline
+In-Reply-To: <20240627-tdp158-v3-1-fb2fbc808346@freebox.fr>
+
+
+--lhkfrzu56kvv4h74
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <cover.1718994350.git.robin.murphy@arm.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jun 21, 2024 at 07:46:35PM +0100, Robin Murphy wrote:
-> v1: https://lore.kernel.org/linux-iommu/cover.1713523251.git.robin.murphy@arm.com
-> 
-> Hi all,
-> 
-> Here's v2 of this little cleanup, with acks and the additional cosmetic
-> tweak suggested by Andy. There were some slightly non-trivial changes in
-> the rebase so I've left off Jean-Philippe's tested-by from v1, but I've
-> given it a quick spin on arm64 ACPI and DT and all seems well still.
+Hi,
 
-virtio-iommu arm64/x86 DT/ACPI still work as well
+On Thu, Jun 27, 2024 at 01:13:03PM GMT, Marc Gonzalez wrote:
+> TDP158 is an AC-coupled DVI / HDMI to TMDS level shifting Redriver.
+> It supports DVI 1.0, HDMI 1.4b and 2.0b.
+> It supports 4 TMDS channels, HPD, and a DDC interface.
+> It supports dual power supply rails (1.1V on VDD, 3.3V on VCC)
+> for power reduction. Several methods of power management are
+> implemented to reduce overall power consumption.
+> It supports fixed receiver EQ gain using I2C or pin strap to
+> compensate for different lengths input cable or board traces.
+>=20
+> Features
+>=20
+> - AC-coupled TMDS or DisplayPort dual-mode physical layer input
+> to HDMI 2.0b TMDS physical layer output supporting up to 6Gbps
+> data rate, compatible with HDMI 2.0b electrical parameters
+> - DisplayPort dual-mode standard version 1.1
+> - Programmable fixed receiver equalizer up to 15.5dB
+> - Global or independent high speed lane control, pre-emphasis
+> and transmit swing, and slew rate control
+> - I2C or pin strap programmable
+> - Configurable as a DisplayPort redriver through I2C
+> - Full lane swap on main lanes
+> - Low power consumption (200 mW at 6Gbps, 8 mW in shutdown)
+>=20
+> https://www.ti.com/lit/ds/symlink/tdp158.pdf
+>=20
+> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
+> ---
+>  .../bindings/display/bridge/ti,tdp158.yaml         | 51 ++++++++++++++++=
+++++++
+>  1 file changed, 51 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/display/bridge/ti,tdp158.y=
+aml b/Documentation/devicetree/bindings/display/bridge/ti,tdp158.yaml
+> new file mode 100644
+> index 0000000000000..21c8585c3bb2d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/bridge/ti,tdp158.yaml
+> @@ -0,0 +1,51 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/bridge/ti,tdp158.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: TI TDP158 HDMI to TMDS Redriver
+> +
+> +maintainers:
+> +  - Arnaud Vrac <avrac@freebox.fr>
+> +  - Pierre-Hugues Husson <phhusson@freebox.fr>
+> +
+> +properties:
+> +  compatible:
+> +    const: ti,tdp158
+> +
+> +  reg:
+> +    description: I2C address of the device
+> +
+> +  enable-gpios:
+> +    description: GPIO controlling bridge enable
+> +
+> +  vcc-supply:
+> +    description: Power supply 3.3V
+> +
+> +  vdd-supply:
+> +    description: Power supply 1.1V
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: Bridge input
+> +
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: Bridge output
+> +
+> +    required:
+> +      - port@0
+> +      - port@1
 
-Tested-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
+The device supports DVI, HDMI or DP input, with various requirements and
+capabilities depending on the input. Your binding doesn't address that.
 
-> 
-> Thanks,
-> Robin.
-> 
-> 
-> Robin Murphy (4):
->   iommu: Resolve fwspec ops automatically
->   ACPI: Retire acpi_iommu_fwspec_ops()
->   OF: Simplify of_iommu_configure()
->   iommu: Remove iommu_fwspec ops
-> 
->  drivers/acpi/arm64/iort.c             | 19 +++-------
->  drivers/acpi/scan.c                   | 36 +++++--------------
->  drivers/acpi/viot.c                   | 11 ++----
->  drivers/iommu/arm/arm-smmu/arm-smmu.c |  3 +-
->  drivers/iommu/iommu-priv.h            |  7 ++++
->  drivers/iommu/iommu.c                 | 20 +++++------
->  drivers/iommu/mtk_iommu_v1.c          |  2 +-
->  drivers/iommu/of_iommu.c              | 50 ++++++++++-----------------
->  drivers/iommu/tegra-smmu.c            |  2 +-
->  drivers/of/device.c                   | 30 ++++++----------
->  include/acpi/acpi_bus.h               |  3 +-
->  include/linux/iommu.h                 | 15 ++------
->  12 files changed, 65 insertions(+), 133 deletions(-)
-> 
-> -- 
-> 2.39.2.101.g768bb238c484.dirty
-> 
+Similarly, it can do lane-swapping, so we should probably have a
+property to describe what mapping we want to use.
+
+The i2c register access (and the whole behaviour of the device) is
+constrained on the I2C_EN pin status, and you can't read it from the
+device, so it's also something we need to have in the DT.
+
+Maxime
+
+--lhkfrzu56kvv4h74
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZoK0FwAKCRDj7w1vZxhR
+xb5SAQC7C1i3V14Bm9Ek2IIKLRXmtEYsKcUrZ4FlRIjZRzvKtAEAy0aBt+rbc0v4
+otC/OGrbBAmUt8Dp4qXiky4om9DL8ws=
+=RIJA
+-----END PGP SIGNATURE-----
+
+--lhkfrzu56kvv4h74--
 
