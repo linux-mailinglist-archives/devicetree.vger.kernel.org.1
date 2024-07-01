@@ -1,88 +1,56 @@
-Return-Path: <devicetree+bounces-82157-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82158-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4935691E961
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 22:16:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BDCD91E978
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 22:20:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D0A8428311C
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 20:16:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C3934283CE2
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 20:20:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A18EB171079;
-	Mon,  1 Jul 2024 20:16:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 438CE171079;
+	Mon,  1 Jul 2024 20:19:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="x0ahzrXC"
+	dkim=pass (1024-bit key) header.d=t-8ch.de header.i=@t-8ch.de header.b="HmhKNPOw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from todd.t-8ch.de (todd.t-8ch.de [159.69.126.157])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7924016F85A
-	for <devicetree@vger.kernel.org>; Mon,  1 Jul 2024 20:15:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C81D316DC09;
+	Mon,  1 Jul 2024 20:19:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.69.126.157
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719864960; cv=none; b=T6Y+/Rinjq9iPfe+LH+z4TBiYUScA7A8DsBsf+jaqk2tJ2vzOv78JfCuqiDxRIgMHZPs18nlZowqm5UdIu6FV1ag0TJCHnwK0Cj8lOCA8LUEjrX4phImerE1+FmEjENECowm/+3kdTFrzX2vZ9Xszp/Jr6BS1tmxUWU359RgN4Y=
+	t=1719865168; cv=none; b=bgghWvS8BbnyGKGoo2F6n2M2YRJCreQuYT6hrOwoRfPn4nbr3tD3+X5oUgbxOuSvyUD54TQvNRjycYoJPAxxOCi9OCy3JcLkDwRCN0oabC/FR10mwEW+lUGsxpYyH8lzfoW64B795nhaimze7iMdRa+2X1IGA/MukTz1r0gkkA4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719864960; c=relaxed/simple;
-	bh=VIwgCdYfo2EDVpDqpPnXe9fwfK490V75vA+cDr+FOwA=;
+	s=arc-20240116; t=1719865168; c=relaxed/simple;
+	bh=gsKQ77e1tlADzSbnSWiat/0iNCi3m7GzGXe9fFjYSxw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IsehewFMHf5ukZC6E6I8pSMdfAf558CLc5FcFT3+0zvM2RuXI3S9d/Z/X2r3mXc1bQ60Y9sSGa3Remso6mzEBgpXIis/Dd6N9SJqXQPW2lmcS+kP1NE4zBnkfWxoDpa8pXTItzqU2g+x18DbSYQAa3sL3F9WLlTw0ddgS5AtjDs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=x0ahzrXC; arc=none smtp.client-ip=209.85.167.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-52ce6c8db7bso5111218e87.1
-        for <devicetree@vger.kernel.org>; Mon, 01 Jul 2024 13:15:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719864957; x=1720469757; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=m9/8mIy2Soy1rT0VBZ0KovI3gB0F5GIqwuAKjma/NsQ=;
-        b=x0ahzrXCW3MiNMAyxszkU9qHj6PhkGMDRT/mg/YU3Erad1c7uDkn+iHzrLaNg1ZMnO
-         QRN4T3Ri1c1ZYFPY49twg7xstYvNkEwnEsxRmcIwY+5kVfWvziKtvUtghCp4DfoXclNd
-         X3gYJ2U7DaEhjkxnskjnnGenvM+4I10mj5O62dPqoczL//f/YSCVnFqseUlfHj7x/5J5
-         K3aB0rp+uH1jgD8EVX53JGZlZrdeu9PEMuB52GGryNyliPr2X9IvFfbpJuH97ITTIlDk
-         ci73QlCYpVWdZVlx7WYY4lhi47WSDYQ5ij2aPWRpBHesXbU3oj5OpdTgHxqem2Crbit/
-         DQRg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719864957; x=1720469757;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=m9/8mIy2Soy1rT0VBZ0KovI3gB0F5GIqwuAKjma/NsQ=;
-        b=Y5ZqES9ZjzSki58Ehb8/XCNs4gl6axaiovpqpAqlpFIeFZJAGsubGMQouj6QWIaoD9
-         OnZ6Tk6q/u3EkvJRxA8LiVXrLLIU8HNhjYLFvzjDGmZl8zSvt3qSaaXDVhrDxtOAY85n
-         a8rG7GI0rfXDUlEstTdNro/X8AcMIb5S2kQMpPSyAlCYg5X+S7Jp0EzEjve5+IA8ee2M
-         9nkfbUahFQBXlBXIr4aJtVTSsyNu/pgCf5BlY3zHoM52ZZs41mmzj5aLfbeKUmtIy8Vz
-         Naozt7Wvt1i5KKVdUeGMMr8ytUWjbPve/JPqeJiSNnCCb6KD0as8Gd/8ldyAAKjoRxnQ
-         MJGg==
-X-Forwarded-Encrypted: i=1; AJvYcCX8Gn75x03ltss+NfExZAKbYmH4w9T1ne002D7upj8UBqOd/GnxJcUye3ZD2keHApsqFX8r9f+m/NpXGInbF1IpHEdZs3y9Xzxnhw==
-X-Gm-Message-State: AOJu0YyJx2xkjHoZhkyutII84Ssc5YW7WpLm7GsBkKN2Ahn41AuOZ86c
-	1G0qy5+Y7tzGuTFh2OnHYyMDWC4VCXS2ZvYeLZrHsWXl1dfr8nGw5sL2K7hBKMw=
-X-Google-Smtp-Source: AGHT+IFxn3+GVHpCKWLFmtvjbAhKGJt1X+Qt6/RrWK3J3/PhaV4OJn52mux+6Y+DaNLf76MWaMizZQ==
-X-Received: by 2002:a05:6512:3da3:b0:52e:713e:697c with SMTP id 2adb3069b0e04-52e8267b8d0mr5580487e87.25.1719864954692;
-        Mon, 01 Jul 2024 13:15:54 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52e7ab100f2sm1522634e87.69.2024.07.01.13.15.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Jul 2024 13:15:54 -0700 (PDT)
-Date: Mon, 1 Jul 2024 23:15:52 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Caleb Connolly <caleb@postmarketos.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
-	Jessica Zhang <quic_jesszhan@quicinc.com>, David Airlie <airlied@gmail.com>, 
-	Daniel Vetter <daniel@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Henrik Rydberg <rydberg@bitmath.org>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-input@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH v2 4/8] drm: mipi: add mipi_dsi_generic_write_multi_type()
-Message-ID: <6bbvfyh3pgbx6cgzvgvxszrlm2eycpuqf2lzjppvlfnojwr4sk@koppspbhqins>
-References: <20240630-oneplus8-v2-0-c4a1f8da74f1@postmarketos.org>
- <20240630-oneplus8-v2-4-c4a1f8da74f1@postmarketos.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=D+0CbKPvGjUP2qnUm9+uu+eLrrO0sv53rB1O1V8LzP00yG81Rx8WaimPf0ExYPxCGnCY6gj9qiephR59CuhI/b0SWJRxtdBC9H+fkcLSqcdVY7rKaIBzqTNysiZpIpHUoUyiDztzoxik4H7zkd7OVS/UFw1dGGt9QtOJYhM/iTc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=t-8ch.de; spf=pass smtp.mailfrom=t-8ch.de; dkim=pass (1024-bit key) header.d=t-8ch.de header.i=@t-8ch.de header.b=HmhKNPOw; arc=none smtp.client-ip=159.69.126.157
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=t-8ch.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=t-8ch.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=t-8ch.de; s=mail;
+	t=1719865160; bh=gsKQ77e1tlADzSbnSWiat/0iNCi3m7GzGXe9fFjYSxw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=HmhKNPOw6kk47KVdSlUqCTWVHjPceoEI5XQ9sarwSj19N6N5/+0cl2WMaLyI79VKy
+	 5Z3GlA0BYk/uhO8L3pVZ44VUeACuM1eG/6o+Oy8NvtJBp5bM9tQAy4wFtT6NFZEj7t
+	 h1txDjOmR0xz40Xoe3JU76H+aBwe1OJlRGBbhyek=
+Date: Mon, 1 Jul 2024 22:19:19 +0200
+From: Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <thomas@t-8ch.de>
+To: Alex Vdovydchenko <keromvp@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Sean Anderson <sean.anderson@linux.dev>, Guenter Roeck <linux@roeck-us.net>, 
+	Jean Delvare <jdelvare@suse.com>, Jonathan Corbet <corbet@lwn.net>, 
+	Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org, linux-i2c@vger.kernel.org, 
+	Alex Vdovydchenko <xzeol@yahoo.com>
+Subject: Re: [PATCH v3 2/2] hwmon: add MP5920 driver
+Message-ID: <4fe460c7-4299-4e01-90f8-6720b7558ced@t-8ch.de>
+References: <20240701145603.1507516-1-xzeol@yahoo.com>
+ <20240701145603.1507516-3-xzeol@yahoo.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -91,27 +59,266 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240630-oneplus8-v2-4-c4a1f8da74f1@postmarketos.org>
+In-Reply-To: <20240701145603.1507516-3-xzeol@yahoo.com>
 
-On Sun, Jun 30, 2024 at 08:36:27PM GMT, Caleb Connolly wrote:
-> Some panels like the Samsung AMB655X use long write commands for all
-> non-standard messages and do not work when trying to use the appropriate
-> command type.
+On 2024-07-01 17:56:01+0000, Alex Vdovydchenko wrote:
+> Add support for MPS Hot-Swap controller mp5920. This driver exposes
+> telemetry and limit value readings and writings.
 > 
-> Support these panels by introducing a new helper to send commands of a
-> specific type, overriding the normal rules.
-> 
-> Signed-off-by: Caleb Connolly <caleb@postmarketos.org>
+> Signed-off-by: Alex Vdovydchenko <xzeol@yahoo.com>
 > ---
->  drivers/gpu/drm/drm_mipi_dsi.c | 40 ++++++++++++++++++++++++++++++++++++++++
->  include/drm/drm_mipi_dsi.h     | 16 ++++++++++++++++
->  2 files changed, 56 insertions(+)
+>  Documentation/hwmon/index.rst  |  1 +
+>  Documentation/hwmon/mp5920.rst | 91 +++++++++++++++++++++++++++++++++
+>  drivers/hwmon/pmbus/Kconfig    |  9 ++++
+>  drivers/hwmon/pmbus/Makefile   |  1 +
+>  drivers/hwmon/pmbus/mp5920.c   | 93 ++++++++++++++++++++++++++++++++++
+>  5 files changed, 195 insertions(+)
+>  create mode 100644 Documentation/hwmon/mp5920.rst
+>  create mode 100644 drivers/hwmon/pmbus/mp5920.c
 > 
+> diff --git a/Documentation/hwmon/index.rst b/Documentation/hwmon/index.rst
+> index e92a3d5c7..9eba7e402 100644
+> --- a/Documentation/hwmon/index.rst
+> +++ b/Documentation/hwmon/index.rst
+> @@ -168,6 +168,7 @@ Hardware Monitoring Kernel Drivers
+>     mp2975
+>     mp2993
+>     mp5023
+> +   mp5920
+>     mp5990
+>     mp9941
+>     mpq8785
+> --- /dev/null
+> +++ b/Documentation/hwmon/mp5920.rst
+> @@ -0,0 +1,91 @@
+> +.. SPDX-License-Identifier: GPL-2.0
+> +
+> +Kernel driver mp5920
+> +====================
+> +
+> +Supported chips:
+> +
+> +  * MPS MP5920
+> +
+> +    Prefix: 'mp5920'
+> +
+> +  * Datasheet
+> +
+> +    Publicly available at the MPS website : https://www.monolithicpower.com/en/mp5920.html
+> +
+> +Authors:
+> +
+> +	Tony Ao <tony_ao@wiwynn.com>
+> +	Alex Vdovydchenko <xzeol@yahoo.com>
+> +
+> +Description
+> +-----------
+> +
+> +This driver implements support for Monolithic Power Systems, Inc. (MPS)
+> +MP5920 Hot-Swap Controller.
+> +
+> +Device compliant with:
+> +
+> +- PMBus rev 1.3 interface.
+> +
+> +Device supports direct and linear format for reading input voltage,
+> +output voltage, output current, input power and temperature.
+> +
+> +The driver exports the following attributes via the 'sysfs' files
+> +for input voltage:
+> +
+> +**in1_input**
+> +
+> +**in1_label**
+> +
+> +**in1_rated_max**
+> +
+> +**in1_rated_min**
+> +
+> +**in1_crit**
+> +
+> +**in1_alarm**
+> +
+> +The driver provides the following attributes for output voltage:
+> +
+> +**in2_input**
+> +
+> +**in2_label**
+> +
+> +**in2_rated_max**
+> +
+> +**in2_rated_min**
+> +
+> +**in2_alarm**
+> +
+> +The driver provides the following attributes for output current:
+> +
+> +**curr1_input**
+> +
+> +**curr1_label**
+> +
+> +**curr1_crit**
+> +
+> +**curr1_alarm**
+> +
+> +**curr1_rated_max**
+> +
+> +The driver provides the following attributes for input power:
+> +
+> +**power1_input**
+> +
+> +**power1_label**
+> +
+> +**power1_max**
+> +
+> +**power1_rated_max**
+> +
+> +The driver provides the following attributes for temperature:
+> +
+> +**temp1_input**
+> +
+> +**temp1_max**
+> +
+> +**temp1_crit**
+> +
+> +**temp1_alarm**
+> --- a/drivers/hwmon/pmbus/Kconfig
+> +++ b/drivers/hwmon/pmbus/Kconfig
+> @@ -371,6 +371,15 @@ config SENSORS_MP5023
+>  	  This driver can also be built as a module. If so, the module will
+>  	  be called mp5023.
+>  
+> +config SENSORS_MP5920
+> +	tristate "MPS MP5920"
+> +	help
+> +	  If you say yes here you get hardware monitoring support for Monolithic
+> +	  MP5920.
+> +
+> +	  This driver can also be built as a module. If so, the module will
+> +	  be called mp5920.
+> +
+>  config SENSORS_MP5990
+>  	tristate "MPS MP5990"
+>  	help
+> --- a/drivers/hwmon/pmbus/Makefile
+> +++ b/drivers/hwmon/pmbus/Makefile
+> @@ -39,6 +39,7 @@ obj-$(CONFIG_SENSORS_MP2888)	+= mp2888.o
+>  obj-$(CONFIG_SENSORS_MP2975)	+= mp2975.o
+>  obj-$(CONFIG_SENSORS_MP2993)	+= mp2993.o
+>  obj-$(CONFIG_SENSORS_MP5023)	+= mp5023.o
+> +obj-$(CONFIG_SENSORS_MP5920)	+= mp5920.o
+>  obj-$(CONFIG_SENSORS_MP5990)	+= mp5990.o
+>  obj-$(CONFIG_SENSORS_MP9941)	+= mp9941.o
+>  obj-$(CONFIG_SENSORS_MPQ7932)	+= mpq7932.o
+> --- /dev/null
+> +++ b/drivers/hwmon/pmbus/mp5920.c
+> @@ -0,0 +1,82 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +#include <linux/i2c.h>
+> +#include <linux/module.h>
+> +#include <linux/of_device.h>
+> +#include "pmbus.h"
+> +
+> +static struct pmbus_driver_info mp5920_info = {
+> +	.pages = 1,
+> +	.format[PSC_VOLTAGE_IN] = direct,
+> +	.format[PSC_VOLTAGE_OUT] = direct,
+> +	.format[PSC_CURRENT_OUT] = direct,
+> +	.format[PSC_POWER] = direct,
+> +	.format[PSC_TEMPERATURE] = direct,
+> +	.m[PSC_VOLTAGE_IN] = 2266,
+> +	.b[PSC_VOLTAGE_IN] = 0,
+> +	.R[PSC_VOLTAGE_IN] = -1,
+> +	.m[PSC_VOLTAGE_OUT] = 2266,
+> +	.b[PSC_VOLTAGE_OUT] = 0,
+> +	.R[PSC_VOLTAGE_OUT] = -1,
+> +	.m[PSC_CURRENT_OUT] = 546,
+> +	.b[PSC_CURRENT_OUT] = 0,
+> +	.R[PSC_CURRENT_OUT] = -2,
+> +	.m[PSC_POWER] = 5840,
+> +	.b[PSC_POWER] = 0,
+> +	.R[PSC_POWER] = -3,
+> +	.m[PSC_TEMPERATURE] = 1067,
+> +	.b[PSC_TEMPERATURE] = 20500,
+> +	.R[PSC_TEMPERATURE] = -2,
+> +	.func[0] = PMBUS_HAVE_VIN  | PMBUS_HAVE_VOUT |
+> +		PMBUS_HAVE_IOUT | PMBUS_HAVE_POUT |
+> +		PMBUS_HAVE_TEMP,
+> +};
+> +
+> +static int mp5920_probe(struct i2c_client *client)
+> +{
+> +	struct device *dev =  &client->dev;
+> +	int ret;
+> +	u8 buf[I2C_SMBUS_BLOCK_MAX + 1];
+> +
+> +	ret = i2c_smbus_read_block_data(client, PMBUS_MFR_MODEL, buf);
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+If you do keep a custom call to i2c_smbus_read_block_data(),
+then you probably should also keep the call to i2c_check_functionality().
 
+> +	if (ret < 0) {
+> +		dev_err(dev, "Failed to read PMBUS_MFR_MODEL\n");
+> +		return ret;
+> +	}
 
--- 
-With best wishes
-Dmitry
+If you use dev_err_probe() that would be shorter:
+
+if (ret < 0)
+	return dev_err_probe(dev, ret, "Failed to read PMBUS_MFR_MODEL\n");
+
+> +	if (ret != 6 || strncmp(buf, "MP5920", 6)) {
+> +		buf[ret] = '\0';
+> +		dev_err(dev, "Model '%s' not supported\n", buf);
+
+The manual 0-byte termination and the size + 1 can be avoided by using
+
+dev_err_probe(dev, -ENODEV, "Model '%.*s' not supported\n", sizeof(buf), buf);
+
+> +		return -ENODEV;
+> +	}
+> +
+> +	return pmbus_do_probe(client, &mp5920_info);
+> +}
+> +
+> +static const struct of_device_id mp5920_of_match[] = {
+> +	{ .compatible = "mps,mp5920" },
+> +	{ }
+> +};
+> +
+> +MODULE_DEVICE_TABLE(of, mp5920_of_match);
+> +
+> +static const struct i2c_device_id mp5920_id[] = {
+> +	{ "mp5920" },
+> +	{ }
+> +};
+> +
+> +MODULE_DEVICE_TABLE(i2c, mp5920_id);
+> +
+> +static struct i2c_driver mp5920_driver = {
+> +	.driver = {
+> +			.name = "mp5920",
+> +			},
+
+Borked indentation.
+You can also use the shorter variant:
+	.driver.name = "mp5920",
+
+Where did the .driver.of_match_table go?
+
+> +	.probe = mp5920_probe,
+> +	.id_table = mp5920_id,
+> +};
+> +
+> +module_i2c_driver(mp5920_driver);
+> +
+> +MODULE_AUTHOR("Tony Ao <tony_ao@wiwynn.com>");
+> +MODULE_AUTHOR("Alex Vdovydchenko <xzeol@yahoo.com>");
+> +MODULE_DESCRIPTION("PMBus driver for MP5920 HSC");
+> +MODULE_LICENSE("GPL");
+> +MODULE_IMPORT_NS(PMBUS);
+> -- 
+> 2.43.0
+> 
+> 
 
