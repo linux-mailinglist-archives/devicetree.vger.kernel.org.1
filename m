@@ -1,137 +1,289 @@
-Return-Path: <devicetree+bounces-82108-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82109-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D8B591E734
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 20:11:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9E1C91E75C
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 20:21:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CB7AB1F26717
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 18:11:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1942A1C21462
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 18:21:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB40D16EBF6;
-	Mon,  1 Jul 2024 18:11:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A0A016EB6E;
+	Mon,  1 Jul 2024 18:21:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sug4zvn4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X01SANG/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A91716EB6E
-	for <devicetree@vger.kernel.org>; Mon,  1 Jul 2024 18:11:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F98D2BB04;
+	Mon,  1 Jul 2024 18:21:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719857482; cv=none; b=EKaft/nKhqof6xg3MoJQa7Zx+3o/sF4azv0tmY2i/hN/5UQh22+KS5zi+3fR7t4rCntd6kk7VKlJuKZfnBp+SxO1WoxIk3d/yKIoujcUxkA49Ur30dzpaDJgFMLxopEs2QJ98Dc6UJVBlgRv6+dX7UraiKKdneusE3YruIY+/rs=
+	t=1719858113; cv=none; b=l7orVeUzc9s8p6gvgY6iGkMBJxnpU2TRyMWbla3w8ts2fMo7FALuD61/g79B+2uM0P8aNXFKL2FsVdT2/TpG4ca81mKVvGrFypwYxAYYE6Tk/VSevM7XtjlfcIa1PLAcYpBdbRlXAg3zfeg//t+Ylv98GgpEfyZ0BWqH+ewlFSc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719857482; c=relaxed/simple;
-	bh=w7U7p//qg9/BOYI9iU60ZIGf+BbEbqV3HX/8OXO7k20=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=f5U31tog7r9PuVSHQlhAfIX9UHYJNsWse/zhPG9ddU7OgtoFpgeUrPx8s3htGgnIPt9BcD5f6yyf5+rRL71wVYvHCMPP9O7XJDsToUrgXvGkDv5HRpjvbr1S2XPrLOt3S4imdu1SFfa/g7L1OThHam4LzDGGi0kjHDScadkuEto=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=sug4zvn4; arc=none smtp.client-ip=209.85.208.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2ec1ac1aed2so38942231fa.3
-        for <devicetree@vger.kernel.org>; Mon, 01 Jul 2024 11:11:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719857479; x=1720462279; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=UXIjfifqoY2+USdxqsmMR1PZNjbJyEi4O/Dl39q5iAg=;
-        b=sug4zvn4JF2dCA43ZCLn+iwezXRDZucJI23Tq1wbktBunfHFAM5R1u+Cu/Xdx+EKhB
-         EDaa3a1KMUmXAcV2Yom46JWgx2cjneNwNdTP4LsG4RJxf979W6m59333EPhWwbT8BtVX
-         X+Q1XClsPe+uttN5/8khXNo5bTsjmvFFaS+ewftnDrzjNACqD1f95cazRBCCW20BbvoW
-         kEBbKuVayKwm+sc0s6nZTQ75ZE5DWo+2aOV5BQLU5hn2s2AoP5hyWX8QqgVFrf85ndAo
-         /ueUtK1uRq2fEPSK9eHbA1NQjRS+UYpEWZQdkWkhWToCPQs4hILCphLK5LBte0SvuojB
-         n6kA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719857479; x=1720462279;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=UXIjfifqoY2+USdxqsmMR1PZNjbJyEi4O/Dl39q5iAg=;
-        b=kjPBJhFye3O4gHFyAmAb53eHts6Jtrym9M5PE+5eZnIG+wfgGFyvbI5edt4MmD1bFv
-         29ix12YtoA+pTFQz85TjFcahPlGbsmK8eUAmYJ5e38XZw7w51yn71xTG+xi62/II/j6t
-         tpW/j9sdeVxcsgk/OZ+VkdX+u2iT3GY3GrY/a94uH9EbFIbZHLkwC/4yVX5IM39noEYw
-         3IhDWmol2oHbwu2zBMhr5BG9AvWf1GjCUXbngNQDgAS04t/Ujgj8caqaTuWJQWJM7xC8
-         mAR/fl5geqRk9+Gs+J8JZ4t6qhh16crfqO7TDQM7XVxFBb9zs3uH8D2j5v5TZnRmIpn4
-         awJw==
-X-Forwarded-Encrypted: i=1; AJvYcCV909odYyobvrSiRibvYpVTc+7j8ADJl1wQAJ/SXdQ1HcnmynhpXGJbz0cDh+LA0WD+3ul3ZOIBz6MsKrJmHUTWFZNy8zSLszFkyA==
-X-Gm-Message-State: AOJu0YzeROcHP+D8LFRh+l0RBA6FsxWGSzHGwDTgLH8sYL2aujKAzHdR
-	uyyuS82aR2vDYcNybXFeBWe3NhDAGHOzWTiyRpRhvqNpn7acgqy+HJq4xT0UaCc=
-X-Google-Smtp-Source: AGHT+IF3y0VQLedqFBWkM6U87xQcON7ggU7XAKTs5isP66PO2FZSXJSQqq/IyH9zOvUQm0t8b7EkCg==
-X-Received: by 2002:a05:6512:528:b0:52b:c1ad:1b56 with SMTP id 2adb3069b0e04-52e8266639bmr3495909e87.19.1719857479041;
-        Mon, 01 Jul 2024 11:11:19 -0700 (PDT)
-Received: from umbar.lan ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52e7e3bd707sm1274292e87.53.2024.07.01.11.11.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Jul 2024 11:11:18 -0700 (PDT)
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Mon, 01 Jul 2024 21:11:16 +0300
-Subject: [PATCH] arm64: dts: qcom: pm8916: correct thermal zone name
+	s=arc-20240116; t=1719858113; c=relaxed/simple;
+	bh=ZS1M09pR2e89i2/x0GjF/RUkGIJBxm9gVRdcxXpYdMY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iK9KOPhl34dYu7DZ7J8jppfOzbTuuznesXyCEhDCK0RVFyW0oMMrPY8gF1rg1hwKW3HDQhdnqebfdNRmsw2CCG9nj+VZ4sZtNOCvinlneTibWM78edFL8jS/s/HDn/6k9lT8BXtEGokW2NtNbN2ME4Xl0UxfVpZn9olzzKDhfpQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X01SANG/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 75DD1C116B1;
+	Mon,  1 Jul 2024 18:21:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719858112;
+	bh=ZS1M09pR2e89i2/x0GjF/RUkGIJBxm9gVRdcxXpYdMY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=X01SANG/MsX/TCJKLM73Ob4M+abTasVmecgoFTT0yOI9RGboFcJsf7Ak3InrgXlyk
+	 PLHYxcs8mBODuBG1+hIVBIa7QIW8v7v9KLD0omu48Pb13tk0uyKf2QraE6tdPiwmsl
+	 n/xr4TlzW2TTgzP5T74oa3Q+2I4hOSy/zJn7hhpvhuG4+Zxo9C3nMD6cA9e26fysxt
+	 Qi4MXITPKP+aZ4bcImNxXg9dO2fD1KqCvPTf/GhRJU0FQjAhOONHRBVy+wmcCE+Rw2
+	 AIvBsgOiB6V9n+EFnVf/iPUI1eBe/WJxu68ey9tzeyQJ3tLZ+qg+smyBYlPFIiLReN
+	 AwtEE4OQfvAEA==
+Date: Mon, 1 Jul 2024 12:21:51 -0600
+From: Rob Herring <robh@kernel.org>
+To: Lorenzo Bianconi <lorenzo@kernel.org>
+Cc: netdev@vger.kernel.org, nbd@nbd.name, lorenzo.bianconi83@gmail.com,
+	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, conor@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, catalin.marinas@arm.com,
+	will@kernel.org, upstream@airoha.com,
+	angelogioacchino.delregno@collabora.com,
+	benjamin.larsson@genexis.eu, rkannoth@marvell.com,
+	sgoutham@marvell.com, andrew@lunn.ch, arnd@arndb.de,
+	horms@kernel.org
+Subject: Re: [PATCH v4 1/2] dt-bindings: net: airoha: Add EN7581 ethernet
+ controller
+Message-ID: <20240701182151.GA320555-robh@kernel.org>
+References: <cover.1719672695.git.lorenzo@kernel.org>
+ <20d103799a20d9d61a1c378eb27e61748859e978.1719672695.git.lorenzo@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240701-fix-pm8916-tz-v1-1-02f8a713f577@linaro.org>
-X-B4-Tracking: v=1; b=H4sIAEPxgmYC/x2MSQqAMAwAvyI5G0hKcfuKeHCJmoNVWhGx+HeLx
- 4GZiRDEqwRosgheLg26uwScZzCuvVsEdUoMhoylkhhnvfHYqpoLPB9kIzyQkJ1kgNQcXpLw/9r
- ufT84GrIDXwAAAA==
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=998;
- i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=w7U7p//qg9/BOYI9iU60ZIGf+BbEbqV3HX/8OXO7k20=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBmgvFG5D7g4V+ZT1LWDVCXsEADQXnHuLk/v9cMz
- m2ca8/RU+SJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZoLxRgAKCRCLPIo+Aiko
- 1WVoB/9270bZd7hm1wP1rDCf0QLlVeu+merMMJdG4zLjiIvUAoGOnSQRjyIgCBwfwbjz0Pe79rd
- +K3Jn3w7jsJb420UkDb+OTsssL5yzZOjPt2e1gJkxraOgPm19/3qe0iCMJ+7T/tJGY4B01IXyjv
- v4vfGYnepgsTIE/dnNqCwmhzx0x05yE2gGbxBc3aIhwYI30gyArq3tUBsFokxsBYyX7xFOdrYJH
- v+/hcGftN+GHiHTECu1gXTWz5oQVTLuB5fwNDa8zovsrsAYNuKGS/ANaomcUfjOPO8oxJ8NnHSp
- Nne1ca5ZjTBBXrwRnMynrA3XHyfbS2fabhc7dx1ot1XNvfWe
-X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
- fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20d103799a20d9d61a1c378eb27e61748859e978.1719672695.git.lorenzo@kernel.org>
 
-Correct the name for the thermal zone on PM8916 PMIC. I ended up with
-c&p mistake, which wasn't noticed until the patch got merged.
+On Sat, Jun 29, 2024 at 05:01:37PM +0200, Lorenzo Bianconi wrote:
+> Introduce device-tree binding documentation for Airoha EN7581 ethernet
+> mac controller.
+> 
+> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> ---
+>  .../bindings/net/airoha,en7581-eth.yaml       | 171 ++++++++++++++++++
+>  1 file changed, 171 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/airoha,en7581-eth.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/net/airoha,en7581-eth.yaml b/Documentation/devicetree/bindings/net/airoha,en7581-eth.yaml
+> new file mode 100644
+> index 000000000000..e2c0da02ccf2
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/airoha,en7581-eth.yaml
+> @@ -0,0 +1,171 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/airoha,en7581-eth.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Airoha EN7581 Frame Engine Ethernet controller
+> +
+> +allOf:
+> +  - $ref: ethernet-controller.yaml#
+> +
+> +maintainers:
+> +  - Lorenzo Bianconi <lorenzo@kernel.org>
+> +
+> +description:
+> +  The frame engine ethernet controller can be found on Airoha SoCs.
+> +  These SoCs have dual GMAC ports.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - airoha,en7581-eth
+> +
+> +  reg:
+> +    items:
+> +      - description: Frame engine base address
+> +      - description: QDMA0 base address
+> +      - description: QDMA1 base address
+> +
+> +  reg-names:
+> +    items:
+> +      - const: fe
+> +      - const: qdma0
+> +      - const: qdma1
+> +
+> +  interrupts:
+> +    items:
+> +      - description: QDMA lan irq0
+> +      - description: QDMA lan irq1
+> +      - description: QDMA lan irq2
+> +      - description: QDMA lan irq3
+> +      - description: QDMA wan irq0
+> +      - description: QDMA wan irq1
+> +      - description: QDMA wan irq2
+> +      - description: QDMA wan irq3
+> +      - description: FE error irq
+> +      - description: PDMA irq
+> +
+> +  resets:
+> +    maxItems: 8
+> +
+> +  reset-names:
+> +    items:
+> +      - const: fe
+> +      - const: pdma
+> +      - const: qdma
+> +      - const: xsi-mac
+> +      - const: hsi0-mac
+> +      - const: hsi1-mac
+> +      - const: hsi-mac
+> +      - const: xfp-mac
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+> +patternProperties:
+> +  "^mac@[1-4]$":
 
-Reported-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-Fixes: b7a28d8a7b80 ("arm64: dts: qcom: pm8916: add temp-alarm thermal zone")
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/pm8916.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ethernet@
 
-diff --git a/arch/arm64/boot/dts/qcom/pm8916.dtsi b/arch/arm64/boot/dts/qcom/pm8916.dtsi
-index 2def48f2d101..f8e4829ff7f7 100644
---- a/arch/arm64/boot/dts/qcom/pm8916.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pm8916.dtsi
-@@ -6,7 +6,7 @@
- 
- / {
- 	thermal-zones {
--		pm8150-thermal {
-+		pm8916-thermal {
- 			polling-delay-passive = <100>;
- 
- 			thermal-sensors = <&pm8916_temp>;
+> +    type: object
+> +    unevaluatedProperties: false
+> +    allOf:
 
----
-base-commit: 43f9f53b46c63cbfc02af073a84c72c64b10767b
-change-id: 20240701-fix-pm8916-tz-12e1b0e04deb
+Can drop 'allOf'
 
-Best regards,
--- 
-Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> +      - $ref: ethernet-controller.yaml#
 
+Which node represents an ethernet controller? This one or the parent? 
+Most likely it is not both.
+
+> +    description:
+> +      Ethernet MAC node
+> +    properties:
+> +      compatible:
+> +        const: airoha,eth-mac
+> +
+> +      reg:
+> +        maxItems: 1
+
+Based on the unit-address, you need instead:
+
+minimum: 1
+maximum: 4
+
+But what does 1-4 represent? There are no MMIO registers associated with 
+the MACs? Please describe.
+
+> +
+> +    required:
+> +      - reg
+> +      - compatible
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - resets
+> +  - reset-names
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/clock/en7523-clk.h>
+> +
+> +    soc {
+> +      #address-cells = <2>;
+> +      #size-cells = <2>;
+> +
+> +      eth0: ethernet@1fb50000 {
+> +        compatible = "airoha,en7581-eth";
+> +        reg = <0 0x1fb50000 0 0x2600>,
+> +              <0 0x1fb54000 0 0x2000>,
+> +              <0 0x1fb56000 0 0x2000>;
+> +        reg-names = "fe", "qdma0", "qdma1";
+> +
+> +        resets = <&scuclk 44>,
+> +                 <&scuclk 30>,
+> +                 <&scuclk 31>,
+> +                 <&scuclk 6>,
+> +                 <&scuclk 15>,
+> +                 <&scuclk 16>,
+> +                 <&scuclk 17>,
+> +                 <&scuclk 26>;
+> +        reset-names = "fe", "pdma", "qdma", "xsi-mac",
+> +                      "hsi0-mac", "hsi1-mac", "hsi-mac",
+> +                      "xfp-mac";
+> +
+> +        interrupts = <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 55 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 56 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 38 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 58 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 59 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 60 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 49 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 64 IRQ_TYPE_LEVEL_HIGH>;
+> +
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        mac1: mac@1 {
+> +          compatible = "airoha,eth-mac";
+> +          reg = <1>;
+> +          phy-mode = "2500base-x";
+> +          phy-handle = <&phy0>;
+> +        };
+> +
+> +        mac2: mac@2 {
+> +          compatible = "airoha,eth-mac";
+> +          reg = <2>;
+> +          phy-mode = "2500base-x";
+> +          phy-handle = <&phy1>;
+> +        };
+> +      };
+> +
+> +      mdio: mdio-bus {
+
+mdio {
+
+But really, drop this if it is not part of this device (binding). What 
+is the control interface for this MDIO bus? If it is part of this 
+device, then the mdio node needs to be within the device's node.
+
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        phy0: ethernet-phy@0 {
+> +            compatible = "ethernet-phy-id67c9.de0a";
+> +            reg = <0>;
+> +            phy-mode = "2500base-x";
+> +        };
+> +
+> +        phy1: ethernet-phy@1 {
+> +            compatible = "ethernet-phy-id67c9.de0a";
+> +            reg = <1>;
+> +            phy-mode = "2500base-x";
+> +        };
+> +      };
+> +    };
+> -- 
+> 2.45.2
+> 
 
