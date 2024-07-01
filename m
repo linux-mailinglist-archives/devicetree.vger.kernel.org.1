@@ -1,52 +1,63 @@
-Return-Path: <devicetree+bounces-81824-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81825-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FE2A91D9C5
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 10:16:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 773F791D9E9
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 10:27:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CAA111F22476
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 08:16:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2AD5E1F2106B
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 08:27:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10EBB6E2BE;
-	Mon,  1 Jul 2024 08:16:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 124A6824AF;
+	Mon,  1 Jul 2024 08:27:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=arinc9.com header.i=@arinc9.com header.b="p1OdbpAW"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="EDBJAGpq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D926E383AB;
-	Mon,  1 Jul 2024 08:16:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39A9882498;
+	Mon,  1 Jul 2024 08:27:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719821768; cv=none; b=JZkkQQ4fkVo+3LmmN8MkuWI5Apkdc+tqk/hkanV/R/M08140T7NU60JTvP5a9QeXwimuVejhsCY+moAgkhvps5h/Ymr+MomNs3gAmoB9iviJ4FTKH/EAJ6DCVSjnG6yGp1XuaWF8wFcWPVdbhml1oSR/JE6cbOvBlX9WjzSPjPQ=
+	t=1719822431; cv=none; b=Xm0K44g1bFICnapdkJ8OZOdU2uexR73ZfhxFO3NdJhiIJaxrA/8ix1HxKJFOVlVXiqQaaRwOO9kdsRPuA0Mt93TMsSlRiEYe5xNromH13ijOf0F5mXqNs3EqrKe394bwaeSOVpgBC0CR4byU/cjEzBeqoFh3XvYBhu1NmGh7eTE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719821768; c=relaxed/simple;
-	bh=3+Oc77rWabR7TDJw9wxWEoPyVi2WK625Uc5pLr0UM3M=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Im58wU8kNogiSGNjCsp/iZ3liZlSH0sw/AJONa1u0443+H1nJomMiKJkPpGJt7hSesVFn4iqcFMRI+qkFCYjPIMaiuuJU97aFjUiJd33SvBJZxRbLfd5EiAI5+a4Rh6N4Xb0i6yNJ3F/FSZhNiCqQhS18szJSpwYv5UcCNaHpNQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arinc9.com; spf=pass smtp.mailfrom=arinc9.com; dkim=pass (2048-bit key) header.d=arinc9.com header.i=@arinc9.com header.b=p1OdbpAW; arc=none smtp.client-ip=217.70.183.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arinc9.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arinc9.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 81A171C0005;
-	Mon,  1 Jul 2024 08:15:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arinc9.com; s=gm1;
-	t=1719821757;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Cb3ioG46MVMhJrZ+bnRLqzojpFTF/kcuuAOnVgBs574=;
-	b=p1OdbpAWa55TrDe7itSf8E4cr/iKBsUNY3rqFxY+IFGRyCdwWsaCMtQJrgm0JlBhqN1aKZ
-	jnCsJRgcY0n2Fuzsg7Z+Inbwu5BolhaMKGk4U4IDL89uJ8T+qzp3TKY99vmHthy+BvMaBa
-	LxDSLHq56Ei+K2/FuU1lhYS9ve5V8ShmyuL3OLNwKfW56DV0KSgCaAgplBrKM+lo6WfWq6
-	MsJ5sKrs5ukMRpFMY2KYScoXbFhGOag6G7pcW3MqznWx78+371vX6Ek47spvyUeBxfv2AB
-	dxIEzGGcW78tiWAxdskUOI71OhGuPVqnWyCfu29tSchrBEsp1cuY0TpdmvX2PA==
-Message-ID: <aeb255ff-3755-4f76-a8f8-cda27a67f818@arinc9.com>
-Date: Mon, 1 Jul 2024 11:15:45 +0300
+	s=arc-20240116; t=1719822431; c=relaxed/simple;
+	bh=xd/U9dyUy2ulluTXx0L+6mSovqdM0nN4dV3wEoXcDZw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=uOcSMC82ctfgyTy4K9HGwHxlbdPYyIwbxJgcBwa3Fq/T9hUswdpyqj08XJGQxbRnLXn9/JfdG1H4yAoTFT+U1eG4bkpBckcmGCt4PtTCZjw35suyvxEHvYpOmX99y5JAfs9ieKW5wavlSJ9odpCO54oh6TgKBV8mQlHKnML4SNI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=EDBJAGpq; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4618QwSb061709;
+	Mon, 1 Jul 2024 03:26:58 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1719822418;
+	bh=dx5fKViDD8JtZlIf9rrAs7DN7RjC9vagC2aDKjhaS8k=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=EDBJAGpqEWuazqRsVqXrcWMS+3vlkLnrfKrFvuXpbnXKULs8J2y480q0sKHy1z+5A
+	 WCJfxaM0MqoWxgDXy9kOgmqJhnisTxM7USVMJbOFH/NTKz/Mi0rUoGE1dDS0IhX8Jq
+	 E/AgxCU9tEUqm7W34UdUS2Dy5IP8N4iogDCsfcn0=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4618Qvn6037759
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 1 Jul 2024 03:26:58 -0500
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 1
+ Jul 2024 03:26:57 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 1 Jul 2024 03:26:57 -0500
+Received: from [172.24.29.211] (lt5cd2489kgj.dhcp.ti.com [172.24.29.211])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4618Qr8G105771;
+	Mon, 1 Jul 2024 03:26:54 -0500
+Message-ID: <7bde6ad9-11c6-46ca-af92-9860dfbbbe3c@ti.com>
+Date: Mon, 1 Jul 2024 13:56:53 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -54,92 +65,73 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: mt7622: fix switch probe on bananapi-r64
-To: Linux regressions mailing list <regressions@lists.linux.dev>,
- Paolo Abeni <pabeni@redhat.com>, "David S. Miller" <davem@davemloft.net>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Jakub Kicinski <kuba@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- Daniel Golle <daniel@makrotopia.org>, frank-w@public-files.de,
- Frank Wunderlich <linux@fw-web.de>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>
-References: <20240516204847.171029-1-linux@fw-web.de>
- <698cf562-1ca9-4aa3-be7e-a1474b612c5b@leemhuis.info>
- <0cba095c-3d55-416a-a7ad-b359129731cf@arinc9.com>
- <714da201-654b-4183-8e5e-8ff0b64fe621@leemhuis.info>
- <2cac4cf68304e81abffbd9ff0387ee100323c2b7.camel@redhat.com>
- <b49c801c-6628-40a6-8294-0876d8871ba7@leemhuis.info>
- <e92c3ca0-c9be-44ac-a4fc-57ca5ebedbc5@leemhuis.info>
- <1807a142-1534-4fa4-ad4b-d1c03af014c2@arinc9.com>
- <58d8ddea-71cc-427a-94cc-a95f6bce61d2@collabora.com>
- <16e9c06e-9908-455d-a387-614fefe5bcf8@arinc9.com>
- <5e87d31c-b059-4f9a-93f7-dc87465ed14a@collabora.com>
- <4416ef22-78cc-4ce5-b61d-69ff0903811e@arinc9.com>
- <bd6b6929-d34d-4bd5-9cb0-bc8fe850ee46@leemhuis.info>
- <af561268-9793-4b5d-aa0f-d09698fd6fb0@arinc9.com>
- <750a60a6-4585-4bd2-97be-cf944e51fbdb@leemhuis.info>
- <9c498e37-df8b-469e-818a-9b1c9f2b1a3c@collabora.com>
- <cebb10b8-b0bf-4cb7-bba4-c3f941ba2b82@leemhuis.info>
- <1aedb1d4-8dc3-4e17-aff1-7cc417465967@arinc9.com>
- <130518e2-d6dd-49ed-9cc2-ca9cdec93b98@leemhuis.info>
+Subject: Re: [PATCH] arm64: dts: ti: k3-j7xx: Change timer nodes status to
+ reserved
+To: Beleswar Padhi <b-padhi@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
+        Jayesh
+ Choudhary <j-choudhary@ti.com>
+CC: <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <tony@atomide.com>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20240607105559.771080-1-b-padhi@ti.com>
 Content-Language: en-US
-From: =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-In-Reply-To: <130518e2-d6dd-49ed-9cc2-ca9cdec93b98@leemhuis.info>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: arinc.unal@arinc9.com
+From: "Kumar, Udit" <u-kumar1@ti.com>
+In-Reply-To: <20240607105559.771080-1-b-padhi@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On 01/07/2024 11:04, Linux regression tracking (Thorsten Leemhuis) wrote:
-> On 01.07.24 09:44, Arınç ÜNAL wrote:
->> On 01/07/2024 09:16, Linux regression tracking (Thorsten Leemhuis) wrote:
->>> [CCing the other net maintainers]
->>>
->>> On 25.06.24 10:51, AngeloGioacchino Del Regno wrote:
->>>> Il 25/06/24 07:56, Linux regression tracking (Thorsten Leemhuis) ha
->>>> scritto:
->>>>> On 17.06.24 13:08, Arınç ÜNAL wrote:
->>>>>> On 17/06/2024 11:33, Linux regression tracking (Thorsten Leemhuis)
->>>>>> wrote:
->>>>>> [...]
->>>>> It looks more and more like we are stuck here (or was there progress
->>>>> and
->>>>> I just missed it?) while the 6.10 final is slowly getting closer.
->>>>> Hence:
->>>>>
->>>>> AngeloGioacchino, should we ask the net maintainers to revert
->>>>> 868ff5f4944aa9 ("net: dsa: mt7530-mdio: read PHY address of switch from
->>>>> device tree") for now to resolve this regression? Reminder, there is
->>>>> nothing wrong with that commit per se afaik, it just exposes a problem
->>>>> that needs to be fixed first before it can be reapplied.
->>>>
->>>> To be clear on this: I asked for the commit to be fixed such that it
->>>> guarantees
->>>> backwards compatibility with older device trees.
->>>>
->>>> If no fix comes,
->>>
->>> I haven't see any since that mail, did you? If not, I think...
->>>
->>>> then I guess that we should ask them to revert this commit
->>>> until a fix is available.
->>>
->>> ...it's time to ask them for the revert to resolve this for -rc7 (and
->>> avoid a last minute revert), or what do you think?
->>
->> This is quite frustrating. I absolutely won't consent to a revert. [...]
-> 
-> Reminder: try to not see a revert as a bad thing. It's just means "not
-> ready yet, revert and we'll try again later" -- that's actually
-> something Linus wrote just a few hours ago:
-> https://lore.kernel.org/lkml/CAHk-=wgQMOscLeeA3QXOs97xOz_CTxdqJjpC20tJ-7bUdHWtSA@mail.gmail.com/
 
-Except it is ready and trying again is my responsibility, which means
-unnecessary work for me to do. I've already got a ton of things to do.
-Applying the device tree patch resolves this regression; no reverts needed.
-And then there's the patch in the works by Daniel that will address all the
-remaining cases outside of the reported regression.
+On 6/7/2024 4:25 PM, Beleswar Padhi wrote:
+> The remoteproc firmware like of R5F and DSPs in the MAIN voltage domain
+> use timers. Therefore, change the status of the timer nodes to
+> "reserved" to avoid any clash.
+>
+> This change is already incorporated for timer nodes in the MCU voltage
+> domain.
+>
+> Fixes: 835d04422f9d ("arm64: dts: ti: k3-j721s2: Add general purpose timers")
+>
+> Signed-off-by: Beleswar Padhi <b-padhi@ti.com>
+> ---
+>   arch/arm64/boot/dts/ti/k3-j7200-main.dtsi  |  2 ++
+>   arch/arm64/boot/dts/ti/k3-j721e-main.dtsi  |  7 +++++++
+>   arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi |  6 ++++++
+>   arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi | 10 ++++++++++
+>   4 files changed, 25 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+> index 9386bf3ef9f68..22351a4f3da6e 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+> @@ -1254,6 +1254,7 @@ main_timer0: timer@2400000 {
+>   		assigned-clock-parents = <&k3_clks 49 2>;
+>   		power-domains = <&k3_pds 49 TI_SCI_PD_EXCLUSIVE>;
+>   		ti,timer-pwm;
+> +		status = "reserved";
+>   	};
+>   
+>   	main_timer1: timer@2410000 {
+> @@ -1266,6 +1267,7 @@ main_timer1: timer@2410000 {
+>   		assigned-clock-parents = <&k3_clks 50 2>, <&k3_clks 313 1>;
+>   		power-domains = <&k3_pds 50 TI_SCI_PD_EXCLUSIVE>;
+>   		ti,timer-pwm;
+> +		status = "reserved";
+>   	};
+>   
+>   	main_timer2: timer@2420000 {
 
-Arınç
+checked only on J7200, for Main MCU 1-0, Looks you need main_timer2 as 
+well to get it working
+
+Please verify on other SOCs as well for all firmwares, if some extra 
+nodes needs to be added
+
+
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> index 0da785be80ff4..944bdbb98e910 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> [..]
 
