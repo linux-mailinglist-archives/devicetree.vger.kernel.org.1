@@ -1,87 +1,108 @@
-Return-Path: <devicetree+bounces-81908-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81909-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA22291DE7F
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 13:57:48 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67F9191DEA0
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 14:01:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 60FF31F22BF7
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 11:57:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D928FB20EA5
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 12:01:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C55D214AD36;
-	Mon,  1 Jul 2024 11:57:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21F4415217E;
+	Mon,  1 Jul 2024 12:00:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G56Y/Su9"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="i+eE3Tot"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 962E61422A6;
-	Mon,  1 Jul 2024 11:57:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E5C314B943;
+	Mon,  1 Jul 2024 12:00:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719835050; cv=none; b=QAJkYmR7ziBWb5qZK3Uxv5cYz105jNx+VhFwG1T27VqkMzQCmP7u7rd1/k5MmfjSXHAGgNhPKRAQ/TbdcEA9PpyAtJfZQF7c9hFRteEKN1KEAtGHV8yQXFpwCE9lReDfADIdZjqHdyD6aB8kqLq1fKg+TPh20WuzNNjyyL6SUY8=
+	t=1719835226; cv=none; b=bSKEfNhe6t4t7A9gt2LSJD/6VZ5WS4BfyyMsRwvzkzr6O9DJ4SXmMyqczrW+QFby3cKXGlgsuR6RK/+Q4J1WxUdsBdzfKVv8/0Ua4soqsS9rHKCwADupUdfvk5unxJA03N4tRD149/BNjiShf6P0osL59DTAacd1Iy8muCsbceo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719835050; c=relaxed/simple;
-	bh=hzmzErIa14odgkFiGOmGNMUeyolu8zX2etABDTkla90=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oqmAH+YzmQtlm5+q+szrCoYmxHw4DHRCrGx1T3F8JJMsmxwyBcVMvTQRmjU4h0EuBMfMiqY6thGCySgTVsb0V9RgH4wb+1Su1mgxJ2Ddxk38cThphurAMKJaevHCdnwrfqYcSm2xzSJ50x5MRgWqIYunEJvQB3Qe608pCpfQ840=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G56Y/Su9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F873C116B1;
-	Mon,  1 Jul 2024 11:57:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719835050;
-	bh=hzmzErIa14odgkFiGOmGNMUeyolu8zX2etABDTkla90=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=G56Y/Su9chR8vStNUMCKGsKq5ePJtlZMhhpmqlWbeUKuCdMezGkSAOL4jSl7YA/QL
-	 BzMU38h/Vrvdzs2VzOKYtvX3E1Tnxzi4KzFRIOpJprR+S4R9A8GCMi7TlJQ4WpF0+O
-	 Ldwkd4eNZelD9OF/h+XsnYXqqTbF8DlwOsI507GJThGgy/GeT6pB0N0Z359w/YY+TW
-	 INT+nuTow3N94NRCEx4hPHqbaVJDx0tyI39Ic0bkqavKJmG7ThRO9haz0UYUO4dAot
-	 tf1B97UsuPagnlL4mAiTJXOhGXN7Wajm1Itm8P3QpLtXVF2oJ8kMo+sevRAVYAciwO
-	 oH/sSRSmOsOYQ==
-Date: Mon, 1 Jul 2024 12:57:23 +0100
-From: Will Deacon <will@kernel.org>
-To: Jean-Philippe Brucker <jean-philippe@linaro.org>
-Cc: lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
-	bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org,
-	liviu.dudau@arm.com, sudeep.holla@arm.com, joro@8bytes.org,
-	robin.murphy@arm.com, nicolinc@nvidia.com, ketanp@nvidia.com,
-	linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	iommu@lists.linux.dev, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 0/3] Enable PCIe ATS for devicetree boot
-Message-ID: <20240701115723.GA1732@willie-the-truck>
-References: <20240607105415.2501934-2-jean-philippe@linaro.org>
- <20240701102400.GA2414@myrica>
+	s=arc-20240116; t=1719835226; c=relaxed/simple;
+	bh=CiIv7Xj0hDAY54eJzG5mpM4iH06Y/H97qfByMIGFJcs=;
+	h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=EpemLti4qcfeXr34UroRbD6BYvX0itjZV4O6rY21HQZRg25Fnp2lVAtAA+8Rs3/mbXpJF8J8qXV5PJTZyZUQ4Mu5iBaUKfYDfRQhcwUpr96nFNDCumGuGpNc7sfRVCe2diM5AwhVewIE8P41ipjiC6YVxq0qYnpx5c7Ghu5mKcY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=i+eE3Tot; arc=none smtp.client-ip=217.70.183.201
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 6BDE91BF203;
+	Mon,  1 Jul 2024 12:00:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1719835220;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=MHfqL50fDUx9zIlzHn0VY8tLg/2DFwYEENXwOfaE3OU=;
+	b=i+eE3TotMR50bBfes4DsOLwnZGegNdfTcIvHQBmZ5Rq/F4dbq1iJM4I8N3+qZvav2ahVsH
+	Ivkiy2JPqAepgZOJEOwoWvBMZa1jDTyKQPG4V5P7B6i23O09ZK+fbe9NSVnWi1+ikIlyI5
+	oDDv9pqa/Db7BdZkQmTjpWudVhECQjy9LKF7FGvH67I8eeqv2rmM+ZKNn/2vr/kT+8don4
+	qjXAo2Adz8qJLdOEhTcijmZM3pE3j5msYJFq5od6l7wCrCQIbhM+iCYnqXtb9qWBfuOAcm
+	37q3q0E4zOctVZ1eWimxXHOzwfxcN4VknS52xMHooKk2wjYTtAUs5jR9k/q1sQ==
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"J.M.B. Downing" <jonathan.downing@nautel.com>,
+	Vladimir Zapolskiy <vz@mleia.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Russell King <linux@armlinux.org.uk>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Yangtao Li <frank.li@vivo.com>,
+	Li Zetao <lizetao1@huawei.com>,
+	Michael Ellerman <mpe@ellerman.id.au>,
+	Chancel Liu <chancel.liu@nxp.com>,
+	Corentin Labbe <clabbe@baylibre.com>,
+	dmaengine@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	alsa-devel@alsa-project.org,
+	linuxppc-dev@lists.ozlabs.org,
+	linux-sound@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	linux-i2c@vger.kernel.org,
+	linux-mtd@lists.infradead.org
+Subject: Re: [Patch v5 10/12] mtd: rawnand: lpx32xx: Request DMA channels using DT entries
+Date: Mon,  1 Jul 2024 14:00:16 +0200
+Message-Id: <20240701120016.525443-1-miquel.raynal@bootlin.com>
+X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20240627150046.258795-11-piotr.wojtaszczyk@timesys.com>
+References: 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240701102400.GA2414@myrica>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+X-linux-mtd-patch-notification: thanks
+X-linux-mtd-patch-commit: b'7326d3fb1ee39f02ef1f49d1e14ac3896caf85e2'
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: miquel.raynal@bootlin.com
 
-On Mon, Jul 01, 2024 at 11:24:00AM +0100, Jean-Philippe Brucker wrote:
-> On Fri, Jun 07, 2024 at 11:54:13AM +0100, Jean-Philippe Brucker wrote:
-> > Before enabling Address Translation Support (ATS) in endpoints, the OS
-> > needs to confirm that the Root Complex supports it. Obtain this
-> > information from the firmware description since there is no architected
-> > method. ACPI provides a bit via IORT tables, so add the devicetree
-> > equivalent.
-> > 
-> > Since v1 [1] I added the review and ack tags, thanks all. This should be
-> > ready to go via the IOMMU tree.
+On Thu, 2024-06-27 at 15:00:28 UTC, Piotr Wojtaszczyk wrote:
+> Move away from pl08x platform data towards device tree.
 > 
-> This series enables ATS for devicetree boot, and is needed on an Nvidia
-> system: https://lore.kernel.org/linux-arm-kernel/ZeJP6CwrZ2FSbTYm@Asurada-Nvidia/
-> 
-> Would you mind picking it up for v6.11?
+> Signed-off-by: Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>
 
-I'll take a look.
+Applied to https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git nand/next, thanks.
 
-Will
+Miquel
 
