@@ -1,169 +1,207 @@
-Return-Path: <devicetree+bounces-82062-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82063-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2461E91E4EF
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 18:12:12 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1B5491E502
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 18:13:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 47F381C21646
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 16:12:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 01E72B237F2
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 16:13:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF17516D9A2;
-	Mon,  1 Jul 2024 16:12:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B13616D334;
+	Mon,  1 Jul 2024 16:13:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="jO0vKBMF"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Zf71lCm7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBE6116D328
-	for <devicetree@vger.kernel.org>; Mon,  1 Jul 2024 16:11:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B073C16B750;
+	Mon,  1 Jul 2024 16:13:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719850322; cv=none; b=TKFEwd5Ln21O26p6oBKhmKpTDwixDQ6OcgN054KmVMAWAp6oMabVX/ubtpRUv+oxjx+5qBc8L9JrXllccn+ECv2+iI72j29viQ2e20WomNRH2j8SaRCHwWWsFBJbdmf4n4yjCm/hT3oWXUpIa3FD+3Yl/znBwa/tsAV3jOkYh+w=
+	t=1719850404; cv=none; b=kQvTM1gLNpckakuT5PbU6CWLDxXNA2J0CWd7L+QEHTVfaHfpEp9vO0WDlL2t1XWrGyeVg2DfyWD5vuwjN/Osd6joPb1pCtW8XHLks93M+YpEaS4cNYalXNKylsHMKsIIX8j4SqF7Ssiyl21rml67NVOA9hqQ+HMkEbzRv2iUcPU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719850322; c=relaxed/simple;
-	bh=qYf/mW8GGKN3S8wALYWRK3HzT9T7phHBWlVg81HJQ/M=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QdmkQlL5O9Sr1/fZPpcuznBYNLRgZmhOt1LoH7SGmwLCQFr08xNnmJGQHHNxxGmMRJKPsVLOQmaWD2BvEC7XaSCnDEr/KcIgDGe5q5xtmgArWfMFACQtd+NeZcRcN6VMjY5PbEfU20v7DKdtBCOAUHsuHL6BIzvT+wzhdjBkrUI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=jO0vKBMF; arc=none smtp.client-ip=209.85.167.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-oi1-f180.google.com with SMTP id 5614622812f47-3d841a56e1dso466062b6e.2
-        for <devicetree@vger.kernel.org>; Mon, 01 Jul 2024 09:11:59 -0700 (PDT)
+	s=arc-20240116; t=1719850404; c=relaxed/simple;
+	bh=h63ASooyLFfbDlZsGzT129A1uG/AXvxQbsFrU615LaE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=SQg2dQaPSI8+OKNVX0/+53c8QrEzM/ZkmoxLFFx9KzEvxgsJYxyxBI21MhBYGesT+ZDFgJYP+u1RxNjTTxjyiWe1E3deAIKFOVM0WYWrza96jS6z4pGMbq4f0X26y+UOOlg0wtlyCmpDEfcDioHtQ63Bre3mjXt+B+gJ+z4t9P4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Zf71lCm7; arc=none smtp.client-ip=209.85.208.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-58b0beaf703so110934a12.2;
+        Mon, 01 Jul 2024 09:13:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1719850319; x=1720455119; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Gf3a5Pnrja8AHiv3n1YZ7CSp9kh7PHpbQf65ENC5dlQ=;
-        b=jO0vKBMF+2eV8p/oeVk0qY5HQmOPf2VAclbZDfo1675Yyh56BMHoK4RuPQ2GLSBu8N
-         d4TY6LYmFtb74yz3FeCX7acFeBMP2887ultwrfJTY1N05y9slHnjjgMEYeDWPhowRG7e
-         qKKBbocg+iomeIYspc05Pbaw/xv+ZNgnKCFcskDaSse+GD1xGqH7ikw+WhVGPD0zUkyT
-         1mEoK4IkY6pw+8BX6b3GIbB7umde4ZZlSmzzLaSfF4n4ptVxKj/6oN9I2bbyNpnccVlB
-         FHRqWEwxUF2k9kIby8Lc1tczzkpB7LNRCtPIgkhugqcE5awhCtJxgwajDE2noVcgAC4L
-         CHeg==
+        d=gmail.com; s=20230601; t=1719850401; x=1720455201; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=tJORc4y41njo2myTxYBaIZoGdagWJX2FVE52D6Y2Z1U=;
+        b=Zf71lCm7xwUi0HP3suy38jHWX8f1EqgI9bRQa6x4ckgRBOHKxX5kfm/rvFyFmAkE5P
+         aM3NICNJaScP5Ne8Nafj59xMDfpMP8VzcqxxIT0X/laWGBzcsvnNYE1/W20wQS5nnX/A
+         wpnRB8lQO6WMlAy50MjldsQytIB2PhINCZ7cZjnPbxLUAfXtsbmKtgn5GtRtfhVfONLm
+         F+10qWYirISjRuOsQJkFKdRK8XMaU/myXB+0kVnM5IwvddLWoC2E9j3Vt6vdC5lrkDmW
+         CDXy3NxEYGi2UtfO6T7q9Vi7U5XA+Jm0Ow+p0QsCI0OtRa4Df+20ggQ1W+7pvUy18kTL
+         /IZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719850319; x=1720455119;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Gf3a5Pnrja8AHiv3n1YZ7CSp9kh7PHpbQf65ENC5dlQ=;
-        b=Lh7MP6SEvjzu9lA1+eLur7U0JWTc3sZ/gRwEJgqM35Zhx5rgLAWpAVAiqykXg+NX63
-         2PVX52SHhrv+n1z4aNUZWT5MvfuZknlzADOuImUjtmZ+W6TsUCZ/zpvuOULoSy7SQnXr
-         OF2hZO8ZcvN+ldZFvlceNzLlXf6mID6dAQNfaH2ZBF+G+cKych5hR/5WfLIgLpagYjf8
-         czcbg7jrVJjYNLy++rqe69Pnbw1G4HstZfX7zE3kI938US1YHzXraOy+1kwdYeIc+QRN
-         IEa5TkdHFjeFEavhy6Ywu9pgcvgKM2Ty2tnC0V06vQjm3BWAaEDfnX9svxCKI74OZklw
-         wg+Q==
-X-Forwarded-Encrypted: i=1; AJvYcCX28JkQ4b9oD4FsIgvqjMXUIaSVezYHobqt2fdVWLw45mB2v9G1kt853uNswJnqMIWD9XqrTZVVs8qI2CKpVYiptgX0iixFR8evug==
-X-Gm-Message-State: AOJu0Yzd2BLPv05erqn8W/S3Y2X9slXndvkT0cAezYRT2hoTWqpVZHGm
-	BMKs9nJVDYT2mhnPJdFLIVK2Gjo5AHidpWvaOG5c5KHJksFFhxrLwW2LW8Azd8c=
-X-Google-Smtp-Source: AGHT+IEwPAYueYsYBU7iXqBEMRFmuAd1MLK051xLXmuVq1c5N6cvZaOPH+qJWxXVW1W7c7sUfLOy2Q==
-X-Received: by 2002:a05:6808:211b:b0:3d2:16c6:651a with SMTP id 5614622812f47-3d6b568709cmr9465278b6e.53.1719850318992;
-        Mon, 01 Jul 2024 09:11:58 -0700 (PDT)
-Received: from [100.64.0.1] ([147.124.94.167])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-79d692945b4sm357969185a.57.2024.07.01.09.11.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 01 Jul 2024 09:11:58 -0700 (PDT)
-Message-ID: <7ab7d629-6993-4cad-b5b7-62bddfc74a49@sifive.com>
-Date: Mon, 1 Jul 2024 11:11:55 -0500
+        d=1e100.net; s=20230601; t=1719850401; x=1720455201;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=tJORc4y41njo2myTxYBaIZoGdagWJX2FVE52D6Y2Z1U=;
+        b=ZcSbck2AizStD7nxnjQ6J3l+JdprAROYEyoNEwNghK7tni+UbS5h4JM1HgnB2bf/Pb
+         GCZz1km5DHx/DENZCMy9SGLizRmOyQq4NrCPCzJbYVbuMxz8J0vhWjHtl8V7NkhFhXvP
+         CtEpGYg4vTlnI/33IQX28OgbKxFP4riOUEks8Z7cwR+YupNZmguZYTXpI1g3w6hiypNU
+         qQBVXqzlwklOnkmjPtodvamlvQffGKqYXbMQk3Y4kLpnhFTKj/avRG0kdLFoGhgBHhzD
+         YbD53eKCENLeKYM8aRTz6Iv2Ct9aNIrrWj9YJIu2//dPoFERLZ29681Pk+xNcCDLyIV3
+         ysUw==
+X-Forwarded-Encrypted: i=1; AJvYcCWEkM14h4TfD9Scjm8NapXqhVFI+qqwNaQl4WKo/gYzqPyRCY6m0U4KQbg3BcgADq2R+ak3w6PmKzf1Qbagj3ITDI3/Djx5s1rKWQHqJq/gFd4qnp89Pbj0p+Sa9SiZg01xqU2kNKEVkA==
+X-Gm-Message-State: AOJu0YwZMKSEGoniy7hqjXxLxIJD/pYS0o0Kj6TBqT2HnG1wT7N5KyZ+
+	NLVoEk0A0K6xcgWr6O1pK7Y1qg5JhyzNV6uWgGL8SweKbR5kfaUAHtglZkjWUMURpII8gjWxCBZ
+	ApYB67nQ7nTzt90LLZCDZg1MY1w==
+X-Google-Smtp-Source: AGHT+IGhN32U3cLFjDcl/ZaK+BN5oNiVFeatcJG7osJjACBaeXKS643lckiY3fxmVC9Kln5Tlpu49ktmbd8AO6QKvjs=
+X-Received: by 2002:a17:906:a091:b0:a6f:49eb:31a5 with SMTP id
+ a640c23a62f3a-a75144b67a4mr312328166b.77.1719850400469; Mon, 01 Jul 2024
+ 09:13:20 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 03/13] riscv: dts: allwinner: Add xtheadvector to the
- D1/D1s devicetree
-To: Conor Dooley <conor@kernel.org>, Charlie Jenkins <charlie@rivosinc.com>
-Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev,
- linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org,
- Conor Dooley <conor.dooley@microchip.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Jisheng Zhang <jszhang@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>, Jonathan Corbet <corbet@lwn.net>,
- Shuah Khan <shuah@kernel.org>, Guo Ren <guoren@kernel.org>,
- Evan Green <evan@rivosinc.com>, Andy Chiu <andy.chiu@sifive.com>,
- Jessica Clarke <jrtc27@jrtc27.com>, peterlin@andestech.com
-References: <20240619-xtheadvector-v3-0-bff39eb9668e@rivosinc.com>
- <20240619-xtheadvector-v3-3-bff39eb9668e@rivosinc.com>
- <0cc13581-5cc4-4a25-a943-7a896f42da4c@sifive.com>
- <20240701-prancing-outpost-3cbce791c554@spud>
-Content-Language: en-US
-From: Samuel Holland <samuel.holland@sifive.com>
-In-Reply-To: <20240701-prancing-outpost-3cbce791c554@spud>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20240629103914.161530-1-erezgeva@nwtime.org> <20240629103914.161530-4-erezgeva@nwtime.org>
+ <1c457520-07b7-4bde-b040-e8bca959a4f5@linaro.org> <CANeKEMOODBNZA6efh0E0Ga_KaVs5Y3WLcUftRhNwYHhnXO=GNw@mail.gmail.com>
+ <CANeKEMO42rJt5Ob4_HDcZ3eEMvuMOPvRaFaLwL8SA65NtxSV7A@mail.gmail.com>
+ <1d56c3b2-7adf-45b9-a509-956340f3f17b@linaro.org> <04f5162d-8a95-45ce-a891-3f711b27a469@linaro.org>
+ <CANeKEMPAng8K1Gbab-MXP0KodS=r1Bzstsvg4zadWdu1O7wqWg@mail.gmail.com> <be8daf89-14a9-41ad-9403-8e550e5ae284@linaro.org>
+In-Reply-To: <be8daf89-14a9-41ad-9403-8e550e5ae284@linaro.org>
+From: Erez <erezgeva2@gmail.com>
+Date: Mon, 1 Jul 2024 18:12:42 +0200
+Message-ID: <CANeKEMMA5L4pu7Vyyv0wU7VcEYK6q2Tk8p4BKPe5E5qXdHzWZQ@mail.gmail.com>
+Subject: Re: [PATCH v2 3/4] dt-bindings: mtd: macronix,mx25l12833f: add
+ SPI-NOR chip
+To: Tudor Ambarus <tudor.ambarus@linaro.org>
+Cc: Esben Haabendal <esben@geanix.com>, Erez Geva <erezgeva@nwtime.org>, linux-mtd@lists.infradead.org, 
+	Pratyush Yadav <pratyush@kernel.org>, Michael Walle <mwalle@kernel.org>, linux-kernel@vger.kernel.org, 
+	Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, 
+	Vignesh Raghavendra <vigneshr@ti.com>, devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 
-Hi Conor, Charlie,
+On Mon, 1 Jul 2024 at 14:53, Tudor Ambarus <tudor.ambarus@linaro.org> wrote:
+>
+>
+>
+> On 7/1/24 12:03 PM, Erez wrote:
+> > On Mon, 1 Jul 2024 at 12:23, Tudor Ambarus <tudor.ambarus@linaro.org> wrote:
+> >>
+> >>
+> >>
+> >> On 7/1/24 11:15 AM, Tudor Ambarus wrote:
+> >>>
+> >>>
+> >>> On 7/1/24 10:46 AM, Erez wrote:
+> >>>> When using mx25l12805d, we do not read SFDP.
+> >>>> As it uses the no-SFDP flags.
+> >>>> When using mx25l12833f hardware with mx25l12805d driver, it did not
+> >>>> try to read the SFDP.
+> >>>> Yet mx25l12833f does have SFDP, when I remove the no-SFDP flags, the
+> >>>> driver fetch the SFDP.
+> >>>>
+> >>>> Secondly SFDP does not contain OTP information.
+> >>>>
+> >>>> mx25l12805d has two OTP regions of 128 KiB and 384 KiB (yes asymmetric).
+> >>>> While mx25l12833f has two OTP regions of 512 KiB.
+> >>>>
+> >>>> How do we handle it?
+> >>>
+> >>> You would first try to parse SFDP and initialize the flash based on
+> >>> SFDP. If there's no SFDP then you fallback to the flags declared at
+> >>> flash declaration. Esben had a try recently, see [1]. I don't know if
+> >>> there's any progress in that direction.
+> >>>
+> >>
+> >> And you can then decide which OTP org to use based on whether SFDP is
+> >> present or not.
+> >
+> > That can work, but sound like a hack.
+>
+> It's not a hack, we're just doing our best to dynamically identify the
+> flash.
 
-On 2024-07-01 11:07 AM, Conor Dooley wrote:
-> On Mon, Jul 01, 2024 at 10:27:01AM -0500, Samuel Holland wrote:
->> On 2024-06-19 6:57 PM, Charlie Jenkins wrote:
->>> The D1/D1s SoCs support xtheadvector so it can be included in the
->>> devicetree. Also include vlenb for the cpu.
->>>
->>> Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
->>> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
->>> ---
->>>  arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi | 3 ++-
->>
->> The other C906/C910/C920-based SoCs need devicetree updates as well, although
->> they don't necessarily need to be part of this series:
->>
->>  - sophgo/cv18xx.dtsi
->>  - sophgo/sg2042-cpus.dtsi
->>  - thead/th1520.dtsi
-> 
-> Yeah, I think I pointed that out before with the same "escape hatch" of
-> it not needing to be in the same series.
-> 
->>
->>>  1 file changed, 2 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi b/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
->>> index 64c3c2e6cbe0..6367112e614a 100644
->>> --- a/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
->>> +++ b/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
->>> @@ -27,7 +27,8 @@ cpu0: cpu@0 {
->>>  			riscv,isa = "rv64imafdc";
->>
->> The ISA string should be updated to keep it in sync with riscv,isa-extensions.
-> 
-> This probably looks like this cos I said that the kernel shouldn't parse
-> vendor extensions from "riscv,isa". My rationale was that we have
-> basically no control of what a vendor extension means in riscv,isa so 
-> we shouldn't parse them from it (so marginally worse than standard
-> extensions, where it means what the spec says except when it doesn't).
-> 
-> Given how we implement the parsing, it also meant we weren't implying
-> meanings for vendor extensions ACPI-land, where we also can't ensure the
-> meanings or that they remain stable. That change is in a different
-> series:
-> https://patchwork.kernel.org/project/linux-riscv/patch/20240609-support_vendor_extensions-v2-1-9a43f1fdcbb9@rivosinc.com/
-> 
-> Although now that I think about it, this might break xandespmu... I
-> dunno if the Andes guys switched over to using the new property outside
-> of the single dts in the kernel tree using their SoC. We could
-> potentially special-case that extension if they haven't - but my
-> position on this mostly is that if you want to use vendor extensions you
-> should not be using riscv,isa (even if the regex doesn't complain if you
-> add them). I'd like to leave the code in the other patch as-is if we can
-> help it.
-> 
-> I added Yu Chien Peter Lin here, maybe they can let us know what they're
-> doing.
+Call it whatever you want.
 
-OK, that makes sense to me. Then please ignore my original comment.
+>
+> > Is that really that important to hack?
+>
+> we push really hard against new compatibles. Users shouldn't care about
+> what SPI NOR flash is there.
 
-Regards,
-Samuel
+I am in. I do not like compatibility.
+I do not like to see them in the device tree.
+I did not create the mess.
+It seems like Macronix likes to reuse JEDEC IDs.
+As most new chips have SPDF, the mess is with OTP mainly.
+We can think about a different model.
+Perhaps allow the user to define the OTP size and number of regions
+using a 'flash_otp_set' tool?
+I am open to ideas.
 
+>
+> > Just for OTP, that very few use?
+> > And if in the future Macronix adds a newer one with the same JEDEC ID,
+> > but a different OTP size?
+>
+> we'll compare SFDP data and choose based on the differences. This is not
+> encouraged. Instead ask for unique IDs or choose other flash.
+
+That requires additional callback in the SFDP, not a big challenge.
+Yet most SFDP tables are not sufficient to determine OTP.
+Found only one table with OTP support flag.
+No size, offset  and number of regions to work with.
+The only hint is do we have SFDP or not.
+
+>
+> > Macronix does not consult with the Linux Kernel on these matters.
+> >
+>
+> I'm complaining about unique flash IDs for years now. Hopefully vendors
+> have learnt their lesson. I didn't see new flash designs reusing old IDs.
+
+I can not speak in Macronix's name.
+I know they did that, not sure if they stop.
+
+>
+> > Anyhow as I do not have the hardware anymore, I can not do more
+> > changes and test them.
+> >
+>
+> Be aware that we're not queuing patches without some minimal tests. If
+> you don't have the hardware, contact mchp and see if they care,
+> otherwise we're wasting our time. Here are the minimum testing requirements:
+> https://docs.kernel.org/driver-api/mtd/spi-nor.html#minimum-testing-requirements
+> For OTP we'll also need some OTP tests.
+
+OTP as its name can be written once.
+So a simple OTP test would be nice.
+
+Anyhow I ordered 3 Macronix's MX25L3233F that have OTP.
+The OTP works the same as the other Macronix chips.
+The MX25L3233F ID is 0xc22016 same as "mx25l3205d".
+Seems Macronix are persistent on reusing IDs.
+First revision of MX25L3233F was in 2015,
+
+I will connect to my old BeagleBone-black.
+I think I can perform the test with it.
+
+As I say, I am more interested in testing the code.
+Less on which Macronix chip we use.
+
+Thanks for your time
+ Erez
+
+>
+> Cheers,
+> ta
 
