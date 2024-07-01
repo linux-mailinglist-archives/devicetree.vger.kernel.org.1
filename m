@@ -1,215 +1,501 @@
-Return-Path: <devicetree+bounces-81893-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81905-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 661B491DDEC
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 13:31:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4CCD91DE1A
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 13:35:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BDF2FB20F92
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 11:31:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 14C7D1C226DB
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 11:35:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB54913DBB3;
-	Mon,  1 Jul 2024 11:31:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81B02146017;
+	Mon,  1 Jul 2024 11:33:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IzaC3ius"
 X-Original-To: devicetree@vger.kernel.org
-Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01on2124.outbound.protection.outlook.com [40.107.255.124])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEF652B9C6;
-	Mon,  1 Jul 2024 11:31:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.255.124
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719833496; cv=fail; b=fyYOaS+JCSm/NQRiTVGRZsL5mxirTytTJLP0ZxJeYYGic58LT98p6/nvsudri6myqmypuqEP+KJRYGvWIhcSnp57MyjNebn79L3lvwy+VV1yorGOcihuah5VIHUs4RsqZZtza/+/t+4Xo4UsayFaVanPr3wMNMFbFRrPobbwWds=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719833496; c=relaxed/simple;
-	bh=MNB/oj6E3ATgeAv7Spql3aeZL5BH2gwnTsO1OnjoiK0=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=bp9UIXPQaKa8b1L/a/Rdy4QuApXGYMfG+iF8h45ugt2AZnU9CzEoZoDG3y1ZecCF1N3KmW9xh8w6sB+oIXHmfF6NdnhbYk3HUSRVpCubc7e0IjR2dHCWj6pbwKnITKD9SQnqMVq3dHO69Q/urN8GvnrQC4ls2XzcL6aEkqX+cA8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wesion.com; spf=pass smtp.mailfrom=wesion.com; arc=fail smtp.client-ip=40.107.255.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wesion.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wesion.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=LXajuF6pX2/OFyVLgOypYlvXYKh3rFlEsCvpczr6qrkQBVzWDd6mqkav0LF3lQvxOZgZkAVJbiwHQBbqklJdL8us4wDlygaVEJxE8O1okC36ifxT8mIeljEzO5cJZkqSmQt6vpGDeHHwQ+JQcNPVoxoGrrd9YJBd9KUl9A/E05z237rpklTdCQ3wiJEvKHdbrZsAVr5MQSXtOL62AJh837m4x32TkNbiZcQErt7/g7HZSNZBedAtCKWaecTKNSo5zM6P8bH4DXRlcUvk7cO4MzXMu3WWesTgBQDv4wnLmA9qglsxtReUaUwiwY/SSjnrum62qCwU0E2BFSvt+UUtVw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=MNB/oj6E3ATgeAv7Spql3aeZL5BH2gwnTsO1OnjoiK0=;
- b=jWZaylRsVz//0vn1d6J6UMP8pAHfW0dGDbfAhwl89tY2DIvXh13rhdpwt3ap/mxjAFU9E5LVAwFkHNiykSX/zq52JQ048lVWNLen1h46ON4sPGGPMjkCtkXRCVIcU37EXcWMd2bjbcRXxug845AoUjc5Io8EOglFYq9FGdFlHSzzQp5eCAJmyQBu7WeprA0oPfoZZYSuUAgfRM9kk1sPj7RvRmFUi1r4yI5cj6wZTwhYZYxKiqhBUtTB2Ds2DQQyACWAS/M4zNw+So2AFs0BtGPeAM5/yhV0gVCqxSkJBL+X4v1NC8HMmMwQEGN1X/xtxPTNkwfNZeRZMK3f/Hp8aQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=wesion.com; dmarc=pass action=none header.from=wesion.com;
- dkim=pass header.d=wesion.com; arc=none
-Received: from TYZPR03MB7001.apcprd03.prod.outlook.com (2603:1096:400:26a::14)
- by JH0PR03MB7653.apcprd03.prod.outlook.com (2603:1096:990:10::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7719.32; Mon, 1 Jul
- 2024 11:31:30 +0000
-Received: from TYZPR03MB7001.apcprd03.prod.outlook.com
- ([fe80::78dd:5e68:1a9c:36c0]) by TYZPR03MB7001.apcprd03.prod.outlook.com
- ([fe80::78dd:5e68:1a9c:36c0%6]) with mapi id 15.20.7719.028; Mon, 1 Jul 2024
- 11:31:30 +0000
-From: Jacobe Zang <jacobe.zang@wesion.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>, "robh@kernel.org"
-	<robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"heiko@sntech.de" <heiko@sntech.de>, "kvalo@kernel.org" <kvalo@kernel.org>,
-	"davem@davemloft.net" <davem@davemloft.net>, "edumazet@google.com"
-	<edumazet@google.com>, "kuba@kernel.org" <kuba@kernel.org>,
-	"pabeni@redhat.com" <pabeni@redhat.com>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>
-CC: "efectn@protonmail.com" <efectn@protonmail.com>, "dsimic@manjaro.org"
-	<dsimic@manjaro.org>, "jagan@edgeble.ai" <jagan@edgeble.ai>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-rockchip@lists.infradead.org"
-	<linux-rockchip@lists.infradead.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "arend@broadcom.com" <arend@broadcom.com>,
-	"linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>,
-	"netdev@vger.kernel.org" <netdev@vger.kernel.org>, "megi@xff.cz"
-	<megi@xff.cz>, "duoming@zju.edu.cn" <duoming@zju.edu.cn>,
-	"bhelgaas@google.com" <bhelgaas@google.com>, "minipli@grsecurity.net"
-	<minipli@grsecurity.net>, "brcm80211@lists.linux.dev"
-	<brcm80211@lists.linux.dev>, "brcm80211-dev-list.pdl@broadcom.com"
-	<brcm80211-dev-list.pdl@broadcom.com>, Nick Xie <nick@khadas.com>
-Subject: Re: [PATCH v3 3/5] arm64: dts: rockchip: Add AP6275P wireless support
- to Khadas Edge 2
-Thread-Topic: [PATCH v3 3/5] arm64: dts: rockchip: Add AP6275P wireless
- support to Khadas Edge 2
-Thread-Index: AQHaysA5gqQ7qqo00E6aPButxU3qdLHhkO8AgAAdHZeAAAytAIAAAH9G
-Date: Mon, 1 Jul 2024 11:31:30 +0000
-Message-ID:
- <TYZPR03MB7001C414251A2A844D121A0E80D32@TYZPR03MB7001.apcprd03.prod.outlook.com>
-References: <20240630073605.2164346-1-jacobe.zang@wesion.com>
- <20240630073605.2164346-4-jacobe.zang@wesion.com>
- <eeeb3f1f-5c77-4ca5-b996-17b968b7c2f0@kernel.org>
- <TYZPR03MB7001FFD5180C6248F14EE48E80D32@TYZPR03MB7001.apcprd03.prod.outlook.com>
- <c2febca9-59e4-4505-bbec-6e61f7d8b944@kernel.org>
-In-Reply-To: <c2febca9-59e4-4505-bbec-6e61f7d8b944@kernel.org>
-Accept-Language: en-US, zh-CN
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-msip_labels:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=wesion.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TYZPR03MB7001:EE_|JH0PR03MB7653:EE_
-x-ms-office365-filtering-correlation-id: 1edf8738-9d49-4c05-718c-08dc99c15a58
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|1800799024|366016|7416014|376014|38070700018|921020;
-x-microsoft-antispam-message-info:
- =?iso-8859-1?Q?6SM48O8Zt7BSKYEmtgd/577nzeNvNArf7PiEBUAbrBniHrAwzlLA2Uka1K?=
- =?iso-8859-1?Q?vv8TxZesAOqwTph5KiN4luM+R9RT/lzXw2zXJMhApf8k6MAYdFMhfW4i1E?=
- =?iso-8859-1?Q?AixdZizhbC09KCfCTy4/ZKq2HuzcEV3qccKOInxzuh6a6V4si11W84r3l1?=
- =?iso-8859-1?Q?imreTs3BsiyApao+SfiEZZvRu8D2VbRhxOyu6croAZ2r1rJOg0qwTNxYEq?=
- =?iso-8859-1?Q?499e2d87kAeMD+uNyfyBx6+AEve7qWaPgd1yJM8CpIAgCYHd2Ge1GCmW6n?=
- =?iso-8859-1?Q?Ekbo/5slgVPdw7k6Tstb62iyIoVBBk9IltccVUYxyDN+1ADYNf9EJle2zg?=
- =?iso-8859-1?Q?Wxs31w7ezcy1InCb0JdlAGAstfLhQ+620D+9LK8/CMf+I8FGaeEgo2711q?=
- =?iso-8859-1?Q?pB+kqwUBjrw9n+zqiyuaLNg9CA8cm0CxxkEtmkRezFEprpln4+4W2i9z/i?=
- =?iso-8859-1?Q?JRtSKufodWC4G9ZSwjHyX7gPB8ttdhLZ2ICsbx2zl0S4d8gMawKTph5kD8?=
- =?iso-8859-1?Q?evZEuZGxmiuksu6jomSUR3Pc8DdNELnCnl4lWz2syp0CDoiyB4fVtvcIKz?=
- =?iso-8859-1?Q?CGjAhQDaTkg6Fi3CtXmRoi+ZtpFT28rjk/4qCgpfsUx83G6Y3ZMCdHrHKE?=
- =?iso-8859-1?Q?cPHFPIH8XFvAlP9WuqJUN+/9BdCicvMjyV/XaA645bA6ODSAohG6DIR1x+?=
- =?iso-8859-1?Q?HPv0zr7qr+qedsUuz5t8rrxKGTqaVffgw2nc5qxVteD8WntNlsuTbAg7fF?=
- =?iso-8859-1?Q?FQaNQ/mDD3ub6LwHNPuJvU2W0is2DjxwaGedyYtKfrWXS+eWlrGUEeNbwI?=
- =?iso-8859-1?Q?gnnsubvFtTJvq5CSbSoufw2MpSdnLm8wngIGNI+KSUxCg0TlABJXLX40e0?=
- =?iso-8859-1?Q?DnO3ShxjKLQE/4oL4mMmFSvnrrLWc7Lwq7sLgl5uuPaTtlySnCdYcJ4IFi?=
- =?iso-8859-1?Q?6gMyTGoPHjqLjW2lPueMKLvWviY1wlHAiD7Iv/5YMpV4TsjMkKSokuks8u?=
- =?iso-8859-1?Q?TzJgPxgw+XHIJqDpNv5BaGLnvGj6Bex9IlWpiXmZmVGVRNQSZbCFd4Sgn6?=
- =?iso-8859-1?Q?8m4hJY2ZfJB0tjGhD8D7BZ5RNhuVJ3+fSUKxdtt8I/hLsStAa6r5A57ct7?=
- =?iso-8859-1?Q?l7lcND89ebaMTiAQjlzV9nn+GNXvZqIPy8y0zUWoAcGXDFkoaSQ68tdqGV?=
- =?iso-8859-1?Q?CF5zALyqMAm+M3zYWfIkbatV+DtpksN3GCzfvz6BxeDbXwutcr9kmgzMot?=
- =?iso-8859-1?Q?f10BweI4vBSGDGMUVO6JPLPvnKzBIocjut1imRoH2nB5KHUbkIQbFQBTKQ?=
- =?iso-8859-1?Q?I4vZdN1U/ztXkrsWN6R0M6h/65OM50xZSVIRGPjTzY3Kaqi6m3YI/cXjbL?=
- =?iso-8859-1?Q?mWl78B//BExjaLSMqmvmF5fkJu1oZ0ziycPi2d3KVKin7kYOf5whwVUJ3n?=
- =?iso-8859-1?Q?06tNKjTt0NLRpPjhYl7E54qYlat+PM/q8YdiE1EcC2ccyeuaaPmWD1stxD?=
- =?iso-8859-1?Q?I=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB7001.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(7416014)(376014)(38070700018)(921020);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?iso-8859-1?Q?JDO5TU9k0Aiyh5obS+D8TJ0xn0HfMFJpHVI0633Og//IrDoeH2ZgdgislU?=
- =?iso-8859-1?Q?Pf8uSG4ef/vPVZV5WtSWtHvq4ts+Xch19DCFWYxp9OVJ7fmGpF0U3bx7gl?=
- =?iso-8859-1?Q?KN2Y7cL/cN7Rl+y0EUzjW0yr4dC+1UyYBaMnV4a5cY41vQaoSiGgK2QIxm?=
- =?iso-8859-1?Q?PoiN2sA6FtGHc3BOEx6pAevLm4wPe6nPxkaUI7PRnAuKVfJ90ZaXGTha6F?=
- =?iso-8859-1?Q?pwwubLl5WFOlDD5uCZlz/Mc0QGGoSOMINxb/nrhITmiBsJPpEHZ2S/Y9eN?=
- =?iso-8859-1?Q?9nICMNDhNZPeTN6XyHKNu8UVl5cX8z12Xxq7au0vjJf3H3RQiiPvBAPaGX?=
- =?iso-8859-1?Q?3OxFYydC4+L9aLwNra4eKanRixCRwwUrOPidls4ED1ll9USn4cKVO9w/sn?=
- =?iso-8859-1?Q?8RpKql6snx0jW9+7/x8dENk1oN/kBXhLL0Sgea6o/uxA1Ze5/1x5B1bcUQ?=
- =?iso-8859-1?Q?82D4WyRbgKQaWIuzhWSZygKJFe2Mwrvj8QF6EeGyboPez9FLCTQt8FItC2?=
- =?iso-8859-1?Q?yZKDsSJDKL+MCuzzwG7YxrJ3IMN1eSG3iRB3zrbXlAIo3wm0F1VgbCH5ZL?=
- =?iso-8859-1?Q?ACVSMiKW0Ape/JlwB/91OuzjvdJlTQGm7HCWyylyzJMrHdW2qL1NMEtIss?=
- =?iso-8859-1?Q?bRsxiDe0ehwQRinB/aGiqSD+PdfN4+hPHZtiD0u1FKA3H399DxbF4fSxKK?=
- =?iso-8859-1?Q?vgkRteq6Wja3jCCU2FikZKeAlqkB+TFcjhy0p83Hraa2uk/ty+hqGEEmG0?=
- =?iso-8859-1?Q?eK3yWKwP8Ba9SS98tiPKEfRN7muurDI72EekfhlT3acWNWN5P/c/QtJTuF?=
- =?iso-8859-1?Q?KQIhwXFBXPi8XaGc84870VVUyQQRjPWTcFI5zV6HNZUUOYQx9ZX9VqQLWJ?=
- =?iso-8859-1?Q?23fYrvZFE7lMg8icYSWtrBBRgm6tFBm+bA/H1IlTmUiwSHD1KKs5yKSEJe?=
- =?iso-8859-1?Q?W7PwyrVqzUsOy4L1N7x9gj5ZBiQOukpVQMAkFNkxhsc/hyeddnM6UDnZh8?=
- =?iso-8859-1?Q?KPwqT2exfH2863fYVwgf58rkKE+GGRon7GVxO0c5dhgWMJwQN2vgzI4UV7?=
- =?iso-8859-1?Q?isbHHFkZamFXpTQhbTbFhtBVi67iet4wE3ScubOP+qnb2JPsVAAoHLf358?=
- =?iso-8859-1?Q?sTzBRfMt1UmnTbCOJVspd/jVmPoz5ZXShUq0y98hSPCEwBn2Ubd0mHTwPC?=
- =?iso-8859-1?Q?5f0WWyAc54AgP6yi8vf0yrIrewJwioPbJc3dSHekrsi2f/uAhW6oJtR6IJ?=
- =?iso-8859-1?Q?fovhx0KjpQ9vx/r+SRIF5jZRtZ7XNYwgUVWS/iN5U7lm78vIfNETGW3nrY?=
- =?iso-8859-1?Q?U4xhEnrMQnVGHRRrSgxZNzXDeav3kj30YZwJ3493u2r4CwJ+OogT11dTji?=
- =?iso-8859-1?Q?PVTgoUD2y2YrQ23gVO7M9Iho7fQ3coNXk8WArymBF3g639YMvh65qM9WMI?=
- =?iso-8859-1?Q?GVBXmc2uHJnvi9f6+pS342HI1kqxtwziusNNoZofwLEHWVSaWBe0A9UP3r?=
- =?iso-8859-1?Q?zkqdyBDTpiWG9tMZlD+EM/bx5Q6A+rC9zEGYXOdHcTY4QIVRls/auzJyYw?=
- =?iso-8859-1?Q?rM74TEwPM4mP7AjR6NvYi6Cbi0xNig727xiB/MUzLNRb5XzpyXH8negJpU?=
- =?iso-8859-1?Q?7w9b4TVsAYMVFwPh5KeoVhFC5v+wKqqGXf?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A05E13F439;
+	Mon,  1 Jul 2024 11:32:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1719833581; cv=none; b=W+GAu12gTk7qgheeWSFx2xsf7ujKerDdfou9FNG73Luv+v88SdN/sngKLj4zYWuouvfVu7/IkwZJ8Q0Swb7UdnzjizazXJQzmLcLky9RRQN06ySvWwMw9V7Wb4DLDlBCA40Ci9j7g2tgUHQ1vRqTdd+5msdtnrpTyHt3MXNT7ow=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1719833581; c=relaxed/simple;
+	bh=+Q1FOXO3hTsfJ/g99tUcpIIOX54l8r0ijKj8Lj15uFA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CCCNlyJl2cT24CkTnvTF0DqW4TPsMvpGZHkyqaUUiG3asTy8pmZC8ULpf8RAP6oIsk9+R7nKBscGqZ2EM4Lu5pMB8SNeXge61qok3r++DZlJqZPzjURkavdvj+P2+mlrFWCIvDCGrt3Rpd3GKPUaaoZrtbcsSzFwrvKm3CtpQVo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IzaC3ius; arc=none smtp.client-ip=209.85.167.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-52e7145c63cso3376080e87.0;
+        Mon, 01 Jul 2024 04:32:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1719833577; x=1720438377; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=P1q7o4QZFWbpnE6v0v0RClVEwphM17CeKnmBdm0hvAY=;
+        b=IzaC3iusGLj7+1oSQ9d2LyOFbhghtxmJw1wfO9JjYYnnUEWUox7B9IOEidOXTVU2k6
+         KyNQBx20HfEl4pcpaBqd2FkhFOwvRMpulrYGLa3Las7UHhKRDcLHnjBjvL9SH7lrWiA1
+         2H2z4OM0oIhynF7LaddCAm839qMep4/yhO7ytRoO91dI6Fxq7w5tu80B3NKOzWHwIqs7
+         PpTwg/O4aiBo9Z5NSlxsYVa/Xplzwz9IKvMwWKPvZhMwlRp1JjSbr8mG1KpIZlAsojDg
+         mOGNQ8JSI4neG9GQqoR9ILoT6drAGQnHjTTOMiwtil7R6RmH7aGHX1MX9K81xptWJx+t
+         n1ag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719833577; x=1720438377;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=P1q7o4QZFWbpnE6v0v0RClVEwphM17CeKnmBdm0hvAY=;
+        b=hZde3iA5KG23ecrWKiq+HfIlwFdDAPOj6ybPfoTXyxRkXWg2touQPWjFbvnicBdsds
+         ablSvej6MZh5Hw05TQj7dDnf+5E/9K2DlPpyKEyKv50MJdsIa7D4s2stP8YcbvzzG+ub
+         qotS2qV0U7oPb1tBsFWZ/oW1BsQSTOKYk9RWoLIbTaiIUqYwcZSIEsBhf5839ZjkQt3h
+         auG71AEJbniwQbjzxEiyp8lWK2avJi2vGecuK958QqkmziYLeHZnAn1NKCBu+5hrvf0K
+         eqtPiHSTxm5P1vmHI4V9x5l8flZkyejaAETzbsKNBfiM79dbvkU3LZ7Vo6QyYIYJMBLz
+         bc3w==
+X-Forwarded-Encrypted: i=1; AJvYcCWjL9Qum0auQ3C0v6bnWsSq4+nAcGAvO8Iack1KZKqcBZdf59179PcU6YgWnKA8AK91KgfFkiqWudJun01E4u8pXpwKIdwr8Yd4e/noydJlBtFhF7c5ZZc6AloM1WeJshhN1orocg==
+X-Gm-Message-State: AOJu0Yw9fOTVk71cW7dquBdxaU2J14JDPUdQMP07PDOsWBjNsBsnhtwY
+	OHWdykT62dP1vyVwzy0CwQK7BUHGq18SVZ8LA8tbHjokY2AWiJOm
+X-Google-Smtp-Source: AGHT+IGEfuYeKgtv0UI0nNTTXGx7f22daVjv42uCNCKLYHqPiUoPEeZtHWACm5Uo0Daxlu85nUgVYQ==
+X-Received: by 2002:a19:9153:0:b0:52c:e1dd:fc22 with SMTP id 2adb3069b0e04-52e7b92f852mr2072164e87.32.1719833574342;
+        Mon, 01 Jul 2024 04:32:54 -0700 (PDT)
+Received: from [172.16.183.82] ([213.255.186.46])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52e7ab1025esm1361410e87.88.2024.07.01.04.32.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 01 Jul 2024 04:32:53 -0700 (PDT)
+Message-ID: <98c87420-e88a-43ca-a8af-2fa751b85d4f@gmail.com>
+Date: Mon, 1 Jul 2024 14:32:52 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: wesion.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB7001.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1edf8738-9d49-4c05-718c-08dc99c15a58
-X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Jul 2024 11:31:30.2653
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 2dc3bd76-7ac2-4780-a5b7-6c6cc6b5af9b
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: PfJmK39fcO3woJvrFbau2IdYynMs4MhRPHD+ALR4u8OXzoLmDF6o0i4YJtMZi4vnG1tpH+Zq6VRTshZBQL82Gw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: JH0PR03MB7653
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 2/2] iio: light: ROHM BH1745 colour sensor
+To: Mudit Sharma <muditsharma.info@gmail.com>, jic23@kernel.org,
+ lars@metafoo.de, krzk+dt@kernel.org, conor+dt@kernel.org, robh@kernel.org
+Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, Ivan Orlov <ivan.orlov0322@gmail.com>,
+ Javier Carrasco <javier.carrasco.cruz@gmail.com>
+References: <20240625220328.558809-1-muditsharma.info@gmail.com>
+ <20240625220328.558809-2-muditsharma.info@gmail.com>
+Content-Language: en-US, en-GB
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <20240625220328.558809-2-muditsharma.info@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
->>> +=A0=A0=A0=A0 pcie@0,0 {=0A=
->>> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 reg =3D <0x400000 0 0 0 0>;=0A=
->>> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 #address-cells =3D <3>;=0A=
->>> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 #size-cells =3D <2>;=0A=
->>> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 ranges;=0A=
->>> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 device_type =3D "pci";=0A=
->>> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 bus-range =3D <0x40 0x4f>;=0A=
->>> +=0A=
->>> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 wifi: wifi@0,0 {=0A=
->> Where is the compatible (again!)? Test your code - you will see your=0A=
->> binding is a no-op.=0A=
->=0A=
-> I tried to build kernel with CHECK_DTBS=3D1. And didn't get any message=
-=0A=
-> like 'compatible' is a required property in wifi node. But when I check=
-=0A=
-> the bindings that do required the compatible... So I will add it next tim=
-e.=0A=
-=0A=
-> Yep, use different clock name and then test. You should see errors,=0A=
-> right? But there are not, because schema is not applied to this node at a=
-ll.=0A=
-> =0A=
-> Look how Apple is doing this.=0A=
-> =0A=
-> I have doubts that your code works at all in the first place. If there=0A=
-> is no compatible, how your platform device gets of_node?=0A=
-=0A=
-In file brcm_hw_ids.h and pcie.c has added Device ID and Vendor ID=0A=
-for bus to enumerate the device when board bootup, so I didn't add=0A=
-specific compatible in DTS. And by doing so, it can probe successfully.=0A=
-=0A=
----=0A=
-Best Regards=0A=
-Jacobe=
+On 6/26/24 01:03, Mudit Sharma wrote:
+> Add support for BH1745, which is an I2C colour sensor with red, green,
+> blue and clear channels. It has a programmable active low interrupt
+> pin. Interrupt occurs when the signal from the selected interrupt
+> source channel crosses set interrupt threshold high or low level.
+> 
+> Interrupt source for the device can be configured by enabling the
+> corresponding event. Interrupt latch is always enabled when setting
+> up interrupt.
+> 
+> Add myself as the maintainer for this driver in MAINTAINERS.
+> 
+> Signed-off-by: Mudit Sharma <muditsharma.info@gmail.com>
+> Reviewed-by: Ivan Orlov <ivan.orlov0322@gmail.com>
+> Reviewed-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+> ---
+> v5->v6:
+> - Fix typo
+> - Fix Indentation
+> - Drop read in bh1745_set_trigger_state() as configuring all the value
+> v4->v5:
+> - Provide scale instead of HW gain
+>    - Use GTS helpers
+> - Code style fixes
+> - Add check for part ID during probe
+> - Always enable latch when enabling interrupt
+> - Use devm_add_action_or_reset() and drop bh1745_remove() function
+> - Drop custom DEVICE_ATTR and provide related read_avail and setup
+>    interrupt source with event_config
+> - Make buffer support independent of IRQ
+> - Add power regulator handing with devm_regulator_get_enable()
+> - Drop read and write wrappers and use regmap functions directly
+> - Add MODULE_DEVICE_TABLE for of_device_id
+> v3->v4:
+> - Fix formatting:
+>    - Remove redundant new line
+>    - Use '0x' rather than '0X'
+> v2->v3:
+> - Squash commit for addition to MAINTAINERS
+> - Fix code style for consistency:
+>    - New line before last 'return'
+>    - Use variable name 'value' instead of 'val' in
+>      'bh1745_set_trigger_state()'
+>    - Align function parameters to match parenthesis
+>    - Avoid use of magic number
+> - Use named enum instead of anonymous enum
+> - Use 'guard(mutex)(&data->lock)' instead of 'mutex_lock()'
+>    'mutex_unlock()'
+> - Only initialize 'ret' and 'value' when necessary
+> - Fix and optimize logic for `in_interrupt_latch_store()`
+> - Fix error handling in irq , trigger handlers and dev attribute for
+>    latch
+> v1->v2:
+> - No changes
+> 
+>   MAINTAINERS                |   6 +
+>   drivers/iio/light/Kconfig  |  13 +
+>   drivers/iio/light/Makefile |   1 +
+>   drivers/iio/light/bh1745.c | 931 +++++++++++++++++++++++++++++++++++++
+>   4 files changed, 951 insertions(+)
+>   create mode 100644 drivers/iio/light/bh1745.c
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 2ca8f35dfe03..e9ff6f465e7f 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -19404,6 +19404,12 @@ S:	Supported
+>   F:	drivers/power/supply/bd99954-charger.c
+>   F:	drivers/power/supply/bd99954-charger.h
+>   
+> +ROHM BH1745 COLOUR SENSOR
+> +M:	Mudit Sharma <muditsharma.info@gmail.com>
+> +L:	linux-iio@vger.kernel.org
+> +S:	Maintained
+> +F:	drivers/iio/light/bh1745.c
+> +
+>   ROHM BH1750 AMBIENT LIGHT SENSOR DRIVER
+>   M:	Tomasz Duszynski <tduszyns@gmail.com>
+>   S:	Maintained
+> diff --git a/drivers/iio/light/Kconfig b/drivers/iio/light/Kconfig
+> index 9a587d403118..6cde702fa78d 100644
+> --- a/drivers/iio/light/Kconfig
+> +++ b/drivers/iio/light/Kconfig
+> @@ -114,6 +114,19 @@ config AS73211
+>   	 This driver can also be built as a module.  If so, the module
+>   	 will be called as73211.
+>   
+> +config BH1745
+> +	tristate "ROHM BH1745 colour sensor"
+> +	depends on I2C
+> +	select REGMAP_I2C
+> +	select IIO_BUFFER
+> +	select IIO_TRIGGERED_BUFFER
+> +	select IIO_GTS_HELPER
+> +	help
+> +	  Say Y here to build support for the ROHM bh1745 colour sensor.
+> +
+> +	  To compile this driver as a module, choose M here: the module will
+> +	  be called bh1745.
+> +
+>   config BH1750
+>   	tristate "ROHM BH1750 ambient light sensor"
+>   	depends on I2C
+> diff --git a/drivers/iio/light/Makefile b/drivers/iio/light/Makefile
+> index a30f906e91ba..939a701a06ac 100644
+> --- a/drivers/iio/light/Makefile
+> +++ b/drivers/iio/light/Makefile
+> @@ -13,6 +13,7 @@ obj-$(CONFIG_APDS9300)		+= apds9300.o
+>   obj-$(CONFIG_APDS9306)		+= apds9306.o
+>   obj-$(CONFIG_APDS9960)		+= apds9960.o
+>   obj-$(CONFIG_AS73211)		+= as73211.o
+> +obj-$(CONFIG_BH1745)		+= bh1745.o
+>   obj-$(CONFIG_BH1750)		+= bh1750.o
+>   obj-$(CONFIG_BH1780)		+= bh1780.o
+>   obj-$(CONFIG_CM32181)		+= cm32181.o
+> diff --git a/drivers/iio/light/bh1745.c b/drivers/iio/light/bh1745.c
+> new file mode 100644
+> index 000000000000..8412d5da3019
+> --- /dev/null
+> +++ b/drivers/iio/light/bh1745.c
+> @@ -0,0 +1,931 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * ROHM BH1745 digital colour sensor driver
+> + *
+> + * Copyright (C) Mudit Sharma <muditsharma.info@gmail.com>
+> + *
+> + * 7-bit I2C slave addresses:
+> + *  0x38 (ADDR pin low)
+> + *  0x39 (ADDR pin high)
+> + */
+> +
+> +#include <linux/i2c.h>
+> +#include <linux/mutex.h>
+> +#include <linux/util_macros.h>
+> +#include <linux/iio/events.h>
+> +#include <linux/regmap.h>
+> +#include <linux/bits.h>
+> +#include <linux/bitfield.h>
+> +
+> +#include <linux/iio/iio.h>
+> +#include <linux/iio/sysfs.h>
+> +#include <linux/iio/trigger.h>
+> +#include <linux/iio/trigger_consumer.h>
+> +#include <linux/iio/triggered_buffer.h>
+> +#include <linux/iio/iio-gts-helper.h>
+> +
+> +/* BH1745 config regs */
+> +#define BH1745_SYS_CTRL 0x40
+> +
+> +#define BH1745_MODE_CTRL_1 0x41
+> +#define BH1745_MODE_CTRL_2 0x42
+> +#define BH1745_MODE_CTRL_3 0x44
+> +
+> +#define BH1745_INTR 0x60
+> +#define BH1745_INTR_STATUS BIT(7)
+> +
+> +#define BH1745_PERSISTENCE 0x61
+> +
+> +#define BH1745_TH_LSB 0x62
+> +#define BH1745_TH_MSB 0x63
+> +
+> +#define BH1745_TL_LSB 0x64
+> +#define BH1745_TL_MSB 0x65
+> +
+> +#define BH1745_MANU_ID 0x92
+> +
+> +/* BH1745 output regs */
+> +#define BH1745_RED_LSB 0x50
+> +#define BH1745_RED_MSB 0x51
+> +#define BH1745_GREEN_LSB 0x52
+> +#define BH1745_GREEN_MSB 0x53
+> +#define BH1745_BLUE_LSB 0x54
+> +#define BH1745_BLUE_MSB 0x55
+> +#define BH1745_CLEAR_LSB 0x56
+> +#define BH1745_CLEAR_MSB 0x57
+> +
+> +#define BH1745_SW_RESET BIT(7)
+> +#define BH1745_INT_RESET BIT(6)
+> +
+> +#define BH1745_MEASUREMENT_TIME_MASK GENMASK(2, 0)
+> +
+> +#define BH1745_RGBC_EN BIT(4)
+> +
+> +#define BH1745_ADC_GAIN_MASK GENMASK(1, 0)
+> +
+> +#define BH1745_INT_ENABLE BIT(0)
+> +#define BH1745_INT_SIGNAL_ACTIVE BIT(7)
+> +
+> +#define BH1745_INT_SIGNAL_LATCHED BIT(4)
+> +
+> +#define BH1745_INT_SOURCE_MASK GENMASK(3, 2)
+> +
+> +#define BH1745_PART_ID 0x0B
+> +#define BH1745_PART_ID_MASK GENMASK(5, 0)
+> +
+> +// From 16x max HW gain and 32x max integration time
+> +#define BH1745_MAX_GAIN 512
+> +
+> +static const int bh1745_int_time[][2] = {
+> +	{ 0, 160000 }, /* 160 ms */
+> +	{ 0, 320000 }, /* 320 ms */
+> +	{ 0, 640000 }, /* 640 ms */
+> +	{ 1, 280000 }, /* 1280 ms */
+> +	{ 2, 560000 }, /* 2560 ms */
+> +	{ 5, 120000 }, /* 5120 ms */
+> +};
+> +
+> +static const u8 bh1745_gain_factor[] = { 1, 2, 16 };
+> +
+> +static const int bh1745_int_time_us[] = { 160000,  320000,  640000,
+> +					  1280000, 2560000, 5120000 };
+
+I am not sure why you need these tables above? Can't the iio_gts do all 
+the conversions from register-value to int time/gain and int-time/gain 
+to register value, as well as the checks for supported values? Ideally, 
+you would not need anything else but the bh1745_itimes and the 
+bh1745_gain tables below - they should contain all the same information.
+
+> +
+> +enum bh1745_int_source {
+> +	BH1745_INT_SOURCE_RED,
+> +	BH1745_INT_SOURCE_GREEN,
+> +	BH1745_INT_SOURCE_BLUE,
+> +	BH1745_INT_SOURCE_CLEAR,
+> +};
+> +
+> +enum bh1745_gain {
+> +	BH1745_ADC_GAIN_1X,
+> +	BH1745_ADC_GAIN_2X,
+> +	BH1745_ADC_GAIN_16X,
+> +};
+> +
+> +enum bh1745_measurement_time {
+> +	BH1745_MEASUREMENT_TIME_160MS,
+> +	BH1745_MEASUREMENT_TIME_320MS,
+> +	BH1745_MEASUREMENT_TIME_640MS,
+> +	BH1745_MEASUREMENT_TIME_1280MS,
+> +	BH1745_MEASUREMENT_TIME_2560MS,
+> +	BH1745_MEASUREMENT_TIME_5120MS,
+> +};
+> +
+> +enum bh1745_presistence_value {
+> +	BH1745_PRESISTENCE_UPDATE_TOGGLE,
+> +	BH1745_PRESISTENCE_UPDATE_EACH_MEASUREMENT,
+> +	BH1745_PRESISTENCE_UPDATE_FOUR_MEASUREMENT,
+> +	BH1745_PRESISTENCE_UPDATE_EIGHT_MEASUREMENT,
+> +};
+> +
+> +static const struct iio_gain_sel_pair bh1745_gain[] = {
+> +	GAIN_SCALE_GAIN(1, BH1745_ADC_GAIN_1X),
+> +	GAIN_SCALE_GAIN(2, BH1745_ADC_GAIN_2X),
+> +	GAIN_SCALE_GAIN(16, BH1745_ADC_GAIN_16X),
+> +};
+> +
+> +static const struct iio_itime_sel_mul bh1745_itimes[] = {
+> +	GAIN_SCALE_ITIME_US(5120000, BH1745_MEASUREMENT_TIME_5120MS, 32),
+> +	GAIN_SCALE_ITIME_US(2560000, BH1745_MEASUREMENT_TIME_2560MS, 16),
+> +	GAIN_SCALE_ITIME_US(1280000, BH1745_MEASUREMENT_TIME_1280MS, 8),
+> +	GAIN_SCALE_ITIME_US(640000, BH1745_MEASUREMENT_TIME_640MS, 4),
+> +	GAIN_SCALE_ITIME_US(320000, BH1745_MEASUREMENT_TIME_320MS, 2),
+> +	GAIN_SCALE_ITIME_US(160000, BH1745_MEASUREMENT_TIME_160MS, 1),
+> +};
+> +
+> +struct bh1745_data {
+> +	/*
+> +	 * Lock to prevent device setting update or read before related
+> +	 * calculations or event push are completed
+> +	 */
+> +	struct mutex lock;
+> +	struct regmap *regmap;
+> +	struct i2c_client *client;
+> +	struct iio_trigger *trig;
+> +	struct iio_gts gts;
+> +	u8 int_src;
+> +};
+> +
+> +static const struct regmap_range bh1745_volatile_ranges[] = {
+> +	regmap_reg_range(BH1745_MODE_CTRL_2, BH1745_MODE_CTRL_2), /* VALID */
+> +	regmap_reg_range(BH1745_RED_LSB, BH1745_CLEAR_MSB), /* Data */
+> +	regmap_reg_range(BH1745_INTR, BH1745_INTR), /* Interrupt */
+> +};
+> +
+> +static const struct regmap_access_table bh1745_volatile_regs = {
+> +	.yes_ranges = bh1745_volatile_ranges,
+> +	.n_yes_ranges = ARRAY_SIZE(bh1745_volatile_ranges),
+> +};
+> +
+> +static const struct regmap_range bh1745_read_ranges[] = {
+> +	regmap_reg_range(BH1745_SYS_CTRL, BH1745_MODE_CTRL_2),
+> +	regmap_reg_range(BH1745_RED_LSB, BH1745_CLEAR_MSB),
+> +	regmap_reg_range(BH1745_INTR, BH1745_INTR),
+> +	regmap_reg_range(BH1745_PERSISTENCE, BH1745_TL_MSB),
+> +	regmap_reg_range(BH1745_MANU_ID, BH1745_MANU_ID),
+> +};
+> +
+> +static const struct regmap_access_table bh1745_ro_regs = {
+> +	.yes_ranges = bh1745_read_ranges,
+> +	.n_yes_ranges = ARRAY_SIZE(bh1745_read_ranges),
+> +};
+> +
+> +static const struct regmap_range bh1745_writable_ranges[] = {
+> +	regmap_reg_range(BH1745_SYS_CTRL, BH1745_MODE_CTRL_2),
+> +	regmap_reg_range(BH1745_INTR, BH1745_INTR),
+> +	regmap_reg_range(BH1745_PERSISTENCE, BH1745_TL_MSB),
+> +};
+> +
+> +static const struct regmap_access_table bh1745_wr_regs = {
+> +	.yes_ranges = bh1745_writable_ranges,
+> +	.n_yes_ranges = ARRAY_SIZE(bh1745_writable_ranges),
+> +};
+> +
+> +static const struct regmap_config bh1745_regmap = {
+> +	.reg_bits = 8,
+> +	.val_bits = 8,
+> +	.max_register = BH1745_MANU_ID,
+> +	.cache_type = REGCACHE_RBTREE,
+> +	.volatile_table = &bh1745_volatile_regs,
+> +	.wr_table = &bh1745_wr_regs,
+> +	.rd_table = &bh1745_ro_regs,
+
+I am not 100% sure what this does. (Let's say it is just my ignorance 
+:)). Does the 'ro' in 'bh1745_ro_regs' stand for read-only?
+
+If so, shouldn't the read-inly registers be marked as "not writable", 
+which would be adding them in .wr_table in 'no_ranges'? Also, what is 
+the idea of the 'wr_regs'?
+
+> +};
+> +
+> +static const struct iio_event_spec bh1745_event_spec[] = {
+> +	{
+> +		.type = IIO_EV_TYPE_THRESH,
+> +		.dir = IIO_EV_DIR_RISING,
+> +		.mask_shared_by_type = BIT(IIO_EV_INFO_VALUE),
+> +	},
+> +	{
+> +		.type = IIO_EV_TYPE_THRESH,
+> +		.dir = IIO_EV_DIR_FALLING,
+> +		.mask_shared_by_type = BIT(IIO_EV_INFO_VALUE),
+> +	},
+> +	{
+> +		.type = IIO_EV_TYPE_THRESH,
+> +		.dir = IIO_EV_DIR_EITHER,
+> +		.mask_shared_by_type = BIT(IIO_EV_INFO_PERIOD),
+> +		.mask_separate = BIT(IIO_EV_INFO_ENABLE),
+> +	},
+> +};
+> +
+> +#define BH1745_CHANNEL(_colour, _si, _addr)                             \
+> +	{                                                               \
+> +		.type = IIO_INTENSITY, .modified = 1,                   \
+> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),           \
+> +		.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_SCALE) |   \
+> +					   BIT(IIO_CHAN_INFO_INT_TIME), \
+> +		.info_mask_shared_by_all_available =                    \
+> +			BIT(IIO_CHAN_INFO_SCALE) |                      \
+> +			BIT(IIO_CHAN_INFO_INT_TIME),                    \
+> +		.event_spec = bh1745_event_spec,                        \
+> +		.num_event_specs = ARRAY_SIZE(bh1745_event_spec),       \
+> +		.channel2 = IIO_MOD_LIGHT_##_colour, .address = _addr,  \
+> +		.scan_index = _si,                                      \
+> +		.scan_type = {                                          \
+> +			.sign = 'u',                                    \
+> +			.realbits = 16,                                 \
+> +			.storagebits = 16,                              \
+> +			.endianness = IIO_CPU,                          \
+> +		},                                                      \
+> +	}
+> +
+> +static const struct iio_chan_spec bh1745_channels[] = {
+> +	BH1745_CHANNEL(RED, 0, BH1745_RED_LSB),
+> +	BH1745_CHANNEL(GREEN, 1, BH1745_GREEN_LSB),
+> +	BH1745_CHANNEL(BLUE, 2, BH1745_BLUE_LSB),
+> +	BH1745_CHANNEL(CLEAR, 3, BH1745_CLEAR_LSB),
+> +	IIO_CHAN_SOFT_TIMESTAMP(4),
+> +};
+> +
+> +static int bh1745_reset(struct bh1745_data *data)
+> +{
+> +	int ret;
+> +	int value;
+> +
+> +	ret = regmap_read(data->regmap, BH1745_SYS_CTRL, &value);
+> +	if (ret)
+> +		return ret;
+> +
+> +	value |= (BH1745_SW_RESET | BH1745_INT_RESET);
+> +
+> +	return regmap_write(data->regmap, BH1745_SYS_CTRL, value);
+
+Would it work if you used regmap_write_bits() instead?
+
+... Sorry, my reviewing time is out :/ I may continue later but no need 
+to wait for my comments if I am not responding. I've too much stuff 
+piling on :(
+
+
+Yours,
+	-- Matti
+
+-- 
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
+
+~~ When things go utterly wrong vim users can always type :help! ~~
+
 
