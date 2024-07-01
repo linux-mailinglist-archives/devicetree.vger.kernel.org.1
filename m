@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-81799-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81800-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E48F891D7CC
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 07:58:18 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69E3F91D7D3
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 08:00:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 227D61C22684
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 05:58:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 22A0E280D39
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 06:00:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCA0C41C85;
-	Mon,  1 Jul 2024 05:58:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4E3C2AD16;
+	Mon,  1 Jul 2024 06:00:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jg1q0Pws"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GOneBBdL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF78F383AC;
-	Mon,  1 Jul 2024 05:58:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACC5728F5;
+	Mon,  1 Jul 2024 06:00:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719813493; cv=none; b=U/BWJgP1IPdPIGUNYypgbhCddVrqn8OHKUqvIStDRUlWoRFNV8uiqZ7K3QEw0iJg24ikrZu3hUCfbLWaEL2Fs0FyDnfHBO7bj65Xs4g+Kg8nxHOlv8r3VdkHBJYAwem5G6dvBgGzKJbZkFvYIxFx6ZJQJcrr5DQqkgmWr2U8wj8=
+	t=1719813629; cv=none; b=PF8pYzOXCsdd7pkr6cDb0B0YGfBUUr07UEJ5/8/CPWsQku2/VRLjlfhi/fKWmMcMun9ZJqsJIrtSoADImX6A3l/PaSWGTXfj4yHDHuKzpiwMswDCgfwBjWh4nUZ9+E+puOZXyZjtFZaEjc93eip3hI5oweRyrF1JQcxKj/jtF2o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719813493; c=relaxed/simple;
-	bh=EMwKRh9X5KAXNT4DR4ZK94kP0BMWhG9ZT78wnS0b3WM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fNSmavznChfCJe9KEH/Eiop9DSMAg9k5GlFM2mfi6egtq+vZWEJOqUkNHEmxvGL8sBeGYDAkaPljGMzREXjbX1RiOLidJeWZ/e4eyNTDEY9TJE4Wy70hwSmciwWIYO2itj0mqqvBOYeMupKHMgu+M3YikKEGRvWw21Ttyl3HLls=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jg1q0Pws; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4B4FC116B1;
-	Mon,  1 Jul 2024 05:58:06 +0000 (UTC)
+	s=arc-20240116; t=1719813629; c=relaxed/simple;
+	bh=V374CvmODMG9q8qZNeYgDNZLB/vi0eKCHGWX9StgBKg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=K4AUQNdLJFqsYCtlP8jHPxc7KiqHk12AewypAkL/Vld6YYLQ9NXIXgQaiWp3xt9uYD05343yYQ2eBetIFqwAxPJpynscGtyZigin7x9ELlJXKgn3MotvBF6jAgAbaiFtljLkUMUhyHylxN7jLQ5nYoaEBeQOCJenKi/jo794Di0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GOneBBdL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE9B6C116B1;
+	Mon,  1 Jul 2024 06:00:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719813493;
-	bh=EMwKRh9X5KAXNT4DR4ZK94kP0BMWhG9ZT78wnS0b3WM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=jg1q0Pws46FsdAG6N8d2VrcHT1r6y9Zt+Y3ZysXhBaID5Hd9uyK+tfDyFG0l56dY9
-	 g+qDLiNNc0Tq0oZYIJjAWcciU7sJjFK/bgU+4qo3IXjkyEgL9ZoJW8EoNUl6T80YXA
-	 R7yfegItaMuiS9Pox/+LDgEqEwhSChXr7jTGOVsBkbGOcEsrOWpEKZGs8tjefy4jP3
-	 Nie7D4yoUrJyJNcswLvx0oYFn7mvWTYwOXzuc2Rx9Dt3oxRiX4VZcU2qrkwSFwhyCM
-	 ErjbdR2Ea71Mu+MsQBYhhb+h4p+5OBDl3HMcRyMxducd6RwjlGGJivplTasA7Q2gLo
-	 5i7dOESQKx9RQ==
-Message-ID: <e02dc084-1e69-4231-b191-3605c68b53f4@kernel.org>
-Date: Mon, 1 Jul 2024 07:58:04 +0200
+	s=k20201202; t=1719813629;
+	bh=V374CvmODMG9q8qZNeYgDNZLB/vi0eKCHGWX9StgBKg=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=GOneBBdLq3X/yx8Vgp7hfdu8D7UTvO7+PNAOrANGE54OQSEb7W7N0X5rAFnWzdQ6j
+	 IzrRcpKGK4raYSg5R1NziiLDtX9lTs5ngIp1s10CY4oGy3qoLlcu7OVVcP3MLGQJ10
+	 drsIFpS0MKVB5O+S48WaXOFrWjH/dexfTpHeVuteoxCFA1j7iW9ZNBfP2eLQxipMyg
+	 jypE3i4MmNJ3WGYOreG0Oy+R/FBcPrAHFHzqy+tIoR+D5vptIhiozf1dAwRdbSqI7h
+	 Tr2YJOmTTAc2CobEOYA70LyF/tgnLsSV2NA1yxBDNdWcnP+dcTMSu8Yna67Msgp8Lw
+	 ex+uQiys3NEnQ==
+Message-ID: <ac8d5e77-3ad5-4405-a276-8e684ba55126@kernel.org>
+Date: Mon, 1 Jul 2024 08:00:22 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: mmc: nuvoton,ma35d1-sdhci: Document
- MA35D1 SDHCI controller
-To: Shan-Chun Hung <shanchun1218@gmail.com>, ulf.hansson@linaro.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- adrian.hunter@intel.com, p.zabel@pengutronix.de, pbrobinson@gmail.com,
- serghox@gmail.com, mcgrof@kernel.org,
- prabhakar.mahadev-lad.rj@bp.renesas.com, forbidden405@outlook.com,
- tmaimon77@gmail.com, andy.shevchenko@gmail.com,
- linux-arm-kernel@lists.infradead.org, linux-mmc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: ychuang3@nuvoton.com, schung@nuvoton.com
-References: <20240701003913.729428-1-shanchun1218@gmail.com>
- <20240701003913.729428-2-shanchun1218@gmail.com>
-Content-Language: en-US
+Subject: Re: [PATCH v5 2/2] ASoC: dt-bindings: simple-audio-mux: add
+ state-labels property
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+ Alexandre Belloni <aleandre.belloni@bootlin.com>,
+ Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Takashi Iwai <tiwai@suse.com>,
+ devicetree@vger.kernel.org, linux-sound@vger.kernel.org
+References: <87o77i7xq6.wl-kuninori.morimoto.gx@renesas.com>
+ <87le2m7xp8.wl-kuninori.morimoto.gx@renesas.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -108,30 +107,21 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240701003913.729428-2-shanchun1218@gmail.com>
+In-Reply-To: <87le2m7xp8.wl-kuninori.morimoto.gx@renesas.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 01/07/2024 02:39, Shan-Chun Hung wrote:
-> Add binding for Nuvoton MA35D1 SDHCI controller.
+On 01/07/2024 02:38, Kuninori Morimoto wrote:
+> simple-audio-mux is designed to be used generally, thus "Input 1" or
+> "Input 2" are used to selecting MUX input. This numbered inputs would
+> work, but might be not user friendly in some case, for example in case
+> of system hardware design has some clear labels.
+> Adds new "state-labels" property and enable to select MUX by own state
+> names.
 > 
-> Signed-off-by: Shan-Chun Hung <shanchun1218@gmail.com>
+> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
 
-You ignored comment third time.
-
-NAK.
-
-<form letter>
-This is a friendly reminder during the review process.
-
-It seems my or other reviewer's previous comments were not fully
-addressed. Maybe the feedback got lost between the quotes, maybe you
-just forgot to apply it. Please go back to the previous discussion and
-either implement all requested changes or keep discussing them.
-
-Thank you.
-</form letter>
-
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
