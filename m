@@ -1,188 +1,78 @@
-Return-Path: <devicetree+bounces-81967-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81968-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F35D691E138
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 15:50:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93A0991E140
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 15:51:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 225061C22EE0
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 13:50:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4DB26286A1A
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 13:51:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8505815ECCF;
-	Mon,  1 Jul 2024 13:50:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7037115ECCF;
+	Mon,  1 Jul 2024 13:51:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fpRAI4Hi"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="h8H927CS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BA9515B542;
-	Mon,  1 Jul 2024 13:50:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.16])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4544315ECFA;
+	Mon,  1 Jul 2024 13:51:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719841819; cv=none; b=B2kBxqIIm0s6wguMjR+7D1oOUaQNmgbzAxjQ8dCqBd/whL8raIyJHXXWM6U8J1E5bO0RaSqqfmC04PiT9gfz0wCmZEP/FvMh216aTEo7elNINGJWNXd4MPaeuz/eYoBB4iNVWNipZQ8DqtszFNYrs4z6EBeYc1VsV3kbkVtQo14=
+	t=1719841885; cv=none; b=Y+8pUdD/dgmLlqdzfJA0nnSeXlifBSCblJHXqHlMsZ7HBiOmWda2ni4IoimmnBTr/wMNVncBBV4cEhpPzf9gmEwuovQnBWfjBdXicG970NJznmhZDzYTpbCOu1YFYTC9VrIlCGJGuQBPpA+j5y8d8tyXi7rHa55smZguSx95Kqk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719841819; c=relaxed/simple;
-	bh=AI7XCMBHlAs+uHRLozdpytNX6tSgpWifdmWB2XL1pAA=;
+	s=arc-20240116; t=1719841885; c=relaxed/simple;
+	bh=XevS6dafRcblIePf7yCmfBcE6d8CNAo8N6tWO6UP+OM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JzJiGVvopSA3DjRp1U88XMWkvEJiy1fAYUhN6XO5/b/M0xT/OXZTwTxBNZc2uO3qCScyEjNVunDVejKxH737YBPZKRiuiOfUvpMZ/gORNXuhNJOuZgkIVnPVK0XCsmYwFL1tvYfqcyR2lPjO51gMqFVuPpd12Wt8Q2S+xgN1Rqg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fpRAI4Hi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 085A4C116B1;
-	Mon,  1 Jul 2024 13:50:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719841818;
-	bh=AI7XCMBHlAs+uHRLozdpytNX6tSgpWifdmWB2XL1pAA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fpRAI4HiyBs+3fWrGSovWnRMEEPFxscml8os9TLHv/K41wCzBjPrziWjr8SitAJRm
-	 WhC7nqyvfaNSivXKyaSSdYNjEcGSQyDA3ro/m1avt86SPLgtQj9opHTmpWOtxzVzhU
-	 Z9ashPmLUspz/YFjslefZ6HxgoUo6mdL9WPYNZ52XaMoSQ4Y95zoZONl5iUApEQ7j1
-	 LtkpX/spX5K0SITT6jjFiJNeVWeCClD8O52YtyIYuvRt1WnVMLrU8n1kGsR2PCtbJp
-	 PufAaSwwhTOHCkKe6sGAzOhEROqDn5AGiLasj3/mv6JpZ72Ow8bnt3JU3+o3/U4dn3
-	 +bd6s2BktjkgA==
-Date: Mon, 1 Jul 2024 15:50:15 +0200
-From: Maxime Ripard <mripard@kernel.org>
-To: Marc Gonzalez <mgonzalez@freebox.fr>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
-	Daniel Vetter <daniel@ffwll.ch>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	Arnaud Vrac <avrac@freebox.fr>, Pierre-Hugues Husson <phhusson@freebox.fr>, 
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Subject: Re: [PATCH v3 1/2] dt-bindings: display: bridge: add TI TDP158
-Message-ID: <20240701-bug-of-great-honeydew-cfb6ef@houat>
-References: <20240627-tdp158-v3-0-fb2fbc808346@freebox.fr>
- <20240627-tdp158-v3-1-fb2fbc808346@freebox.fr>
+	 Content-Type:Content-Disposition:In-Reply-To; b=iH8PeJ5VbHyBj0W7QRxqcH7KS7fSqUheIF3xWXGg0hJ/K/9HrObcSfJsnXm2o5/aYFNEuAXcaTw++9GXd6PT4kB7fwCxTOZ6Bjw1GpssbNNUE/iIFo9eknoZ8SZbJI4Q+dvlrmKf8/v16MOQ+aBAQamR45her/sfUP0+jYfIcd8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=h8H927CS; arc=none smtp.client-ip=1.95.21.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=OoMfDQ+2vpm2pUt9NA6K+haGB4CecvBmtCCyIx8I+wQ=;
+	b=h8H927CSl/yRCOQwrJRa+KobppNogTk+OX6sbvulR8sPkNeM6L96LRIelpA4sz
+	mIN0NTDxQ7zg1gA2ELnIK1r7iuQBAcZiSM+xM4XAJ7hwMBj8lCi1Kxs2Kc0N1Uim
+	51jvlt+smXNPoGVOqG0+EZCoxlUJcNRf1T0M+wVwltBQI=
+Received: from dragon (unknown [114.218.218.47])
+	by gzsmtp2 (Coremail) with SMTP id Ms8vCgBHDpAotIJmm2I6AA--.6518S3;
+	Mon, 01 Jul 2024 21:50:34 +0800 (CST)
+Date: Mon, 1 Jul 2024 21:50:32 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Shengjiu Wang <shengjiu.wang@nxp.com>
+Cc: lgirdwood@gmail.com, broonie@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, shengjiu.wang@gmail.com,
+	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, shawnguo@kernel.org,
+	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 2/3] arm64: dts: imx8mp: Add audio XCVR device node
+Message-ID: <ZoK0KOGYbF89XmCm@dragon>
+References: <1719481981-4069-1-git-send-email-shengjiu.wang@nxp.com>
+ <1719481981-4069-3-git-send-email-shengjiu.wang@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="lhkfrzu56kvv4h74"
-Content-Disposition: inline
-In-Reply-To: <20240627-tdp158-v3-1-fb2fbc808346@freebox.fr>
-
-
---lhkfrzu56kvv4h74
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <1719481981-4069-3-git-send-email-shengjiu.wang@nxp.com>
+X-CM-TRANSID:Ms8vCgBHDpAotIJmm2I6AA--.6518S3
+X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUIzB-DUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiCw4PZWZv-dp2SwABs9
 
-Hi,
+On Thu, Jun 27, 2024 at 05:53:00PM +0800, Shengjiu Wang wrote:
+> XCVR (Audio Transceiver) is a on-chip functional module found
+> on i.MX8MP. It supports HDMI2.1 eARC, HDMI1.4 ARC and SPDIF.
+> 
+> The reset controller is provided by the audio block control driver.
+> 
+> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
 
-On Thu, Jun 27, 2024 at 01:13:03PM GMT, Marc Gonzalez wrote:
-> TDP158 is an AC-coupled DVI / HDMI to TMDS level shifting Redriver.
-> It supports DVI 1.0, HDMI 1.4b and 2.0b.
-> It supports 4 TMDS channels, HPD, and a DDC interface.
-> It supports dual power supply rails (1.1V on VDD, 3.3V on VCC)
-> for power reduction. Several methods of power management are
-> implemented to reduce overall power consumption.
-> It supports fixed receiver EQ gain using I2C or pin strap to
-> compensate for different lengths input cable or board traces.
->=20
-> Features
->=20
-> - AC-coupled TMDS or DisplayPort dual-mode physical layer input
-> to HDMI 2.0b TMDS physical layer output supporting up to 6Gbps
-> data rate, compatible with HDMI 2.0b electrical parameters
-> - DisplayPort dual-mode standard version 1.1
-> - Programmable fixed receiver equalizer up to 15.5dB
-> - Global or independent high speed lane control, pre-emphasis
-> and transmit swing, and slew rate control
-> - I2C or pin strap programmable
-> - Configurable as a DisplayPort redriver through I2C
-> - Full lane swap on main lanes
-> - Low power consumption (200 mW at 6Gbps, 8 mW in shutdown)
->=20
-> https://www.ti.com/lit/ds/symlink/tdp158.pdf
->=20
-> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
-> ---
->  .../bindings/display/bridge/ti,tdp158.yaml         | 51 ++++++++++++++++=
-++++++
->  1 file changed, 51 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/display/bridge/ti,tdp158.y=
-aml b/Documentation/devicetree/bindings/display/bridge/ti,tdp158.yaml
-> new file mode 100644
-> index 0000000000000..21c8585c3bb2d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/bridge/ti,tdp158.yaml
-> @@ -0,0 +1,51 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/bridge/ti,tdp158.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: TI TDP158 HDMI to TMDS Redriver
-> +
-> +maintainers:
-> +  - Arnaud Vrac <avrac@freebox.fr>
-> +  - Pierre-Hugues Husson <phhusson@freebox.fr>
-> +
-> +properties:
-> +  compatible:
-> +    const: ti,tdp158
-> +
-> +  reg:
-> +    description: I2C address of the device
-> +
-> +  enable-gpios:
-> +    description: GPIO controlling bridge enable
-> +
-> +  vcc-supply:
-> +    description: Power supply 3.3V
-> +
-> +  vdd-supply:
-> +    description: Power supply 1.1V
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: Bridge input
-> +
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: Bridge output
-> +
-> +    required:
-> +      - port@0
-> +      - port@1
+Applied, thanks!
 
-The device supports DVI, HDMI or DP input, with various requirements and
-capabilities depending on the input. Your binding doesn't address that.
-
-Similarly, it can do lane-swapping, so we should probably have a
-property to describe what mapping we want to use.
-
-The i2c register access (and the whole behaviour of the device) is
-constrained on the I2C_EN pin status, and you can't read it from the
-device, so it's also something we need to have in the DT.
-
-Maxime
-
---lhkfrzu56kvv4h74
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZoK0FwAKCRDj7w1vZxhR
-xb5SAQC7C1i3V14Bm9Ek2IIKLRXmtEYsKcUrZ4FlRIjZRzvKtAEAy0aBt+rbc0v4
-otC/OGrbBAmUt8Dp4qXiky4om9DL8ws=
-=RIJA
------END PGP SIGNATURE-----
-
---lhkfrzu56kvv4h74--
 
