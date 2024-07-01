@@ -1,186 +1,153 @@
-Return-Path: <devicetree+bounces-81852-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81853-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98C0491DB2A
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 11:12:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64A3B91DB32
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 11:14:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9FC681C217E7
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 09:12:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 185BC1F2224F
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 09:14:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD68582D9A;
-	Mon,  1 Jul 2024 09:12:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2B2B84A5E;
+	Mon,  1 Jul 2024 09:14:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I5UIGNgT"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="J0tU8KzQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CB073FB30;
-	Mon,  1 Jul 2024 09:12:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E3EE5C614;
+	Mon,  1 Jul 2024 09:14:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719825142; cv=none; b=GMiuMSLpPCrfPYcJ26b0MarPjfnmPPuoySZXI9UJl5C2uzyWL4uzpc0vy06TXSZnAYLrkoRXZLue04rzwjH52foFLgsp9Gqp35hJujvPKxQ1QdKQ+F/O7t5Cw5KmSv2Je7GhVS/UtSCF3VTuavfOeispe6TTNv62WYc6OLagqgo=
+	t=1719825241; cv=none; b=W2aK8ml/p4azJzkpVmRyUI2YVms5Yv7bISy71Ce0cIrDxR9uL7QjZ61Kp5oTnciNBUzkXfcaSa9LIoM0rE9KXn1Bw07yXdG7gDFxzwtXUmyCzBy5CnIDC/4OiYkp95W6x/iKY+puoxrqGm4Kv2rl1d3e12JLR9oxiSL33qai+hY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719825142; c=relaxed/simple;
-	bh=RzQpp0xJj9M3KOAIbSgzAZIizL3V4r1DjTm2rLJHwsM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dEPJO9mMtQwhNEuvyvEbA4bijm44Wls1ewgeZ1w5jitmB0E6ONykgA7l3N9Urtmg22KVGVibV8V41Xjjs7CX9qXbh94jtnDw171tz2YxoaY4NujybhB4VQiEeVLeFZXubbs03772ei4zwfAUG6RPlVtXS6QN7qwbOqfCR/OdYsI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I5UIGNgT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25B24C116B1;
-	Mon,  1 Jul 2024 09:12:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719825142;
-	bh=RzQpp0xJj9M3KOAIbSgzAZIizL3V4r1DjTm2rLJHwsM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=I5UIGNgTp6cjWh4RX8u5mP4D4dE2414rz2bsO6xLMxyLrhcZr68+3hlGnbMjTrV2T
-	 2YhevkPTE4j89xOAdbgW5XTox6V6RxW3OeWh00Ho8gxG5HoWfn8hVg1nTHbh0sRFao
-	 ws7XvzPi7xQjpBtZc3fFqOHjVBlbfdNQeIir14vKu3mCE0C3Mse4Yi7CexhIaZPAt/
-	 /SQAjDOh970C7GSQFWretbVJX+7w7LQMt0tELEjYr155UwVq58EEx406v9KQOt0Of8
-	 fvsLlixcQdyIR19p5/TQ3vIZzar4+JE/o1r0WhCuE3HNeQczyCHKzEcSLjNJBljUmW
-	 m+tSA9s12PedQ==
-Message-ID: <5d0950fd-dcd2-4996-aab0-0030f1911960@kernel.org>
-Date: Mon, 1 Jul 2024 11:12:13 +0200
+	s=arc-20240116; t=1719825241; c=relaxed/simple;
+	bh=5M05sXLCyxfg8FrspN+JZIvtVy+y3Gx64WOQcMp5378=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=AGCnnGEnwoPurbZ4IpobiEKwAlav0sVNNCX4s3gmyeIXKvGfvR6irqrPXS1fPZj+FsP5XAPz8fSeIRQqU93DTDq7+b6ntA+csxt31wcC/w8/VyT7siXjU83xqyy4VwHaSyu1mVrb5Jzknv9AduPobVSof1YTzAbXYpGievDsE2A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=J0tU8KzQ; arc=none smtp.client-ip=209.85.208.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-57d20d89748so3012825a12.0;
+        Mon, 01 Jul 2024 02:14:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1719825239; x=1720430039; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=DxlECmQDcJb37f5C6V8ZGBnHo3bHH3o9P+OxX8YRfxo=;
+        b=J0tU8KzQS54QrnHX83Agqazn8w2xrF/vh6LXdJwXaMSrztSMlnLIBozLhMbzQeU6Fp
+         +mLdQziR/CWvnUUDEMISN5e27qS0a9G+O8mRxAPsrT0y/0e5RWGyby1HE+mqc3iJPNJ0
+         0MV4qVX8VyhV+OA/JS4PtRSKtyek8eKfVW5TE7eDj2nFXe/W+hZ+7vJj8TwW99wo7Sxs
+         MuRsCX8R8775qn5NkBhCLZ1o6kZ8cL6dxgpx6ntlIEgAm+MU6UldTKFlHDs+RIURiyag
+         /0UGr+l39zsAEuBsE8740XX8MqA00R2NxjdSdKVcewgsGVBjWqu5FgRTJTlG3N/FPwlI
+         epJw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719825239; x=1720430039;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=DxlECmQDcJb37f5C6V8ZGBnHo3bHH3o9P+OxX8YRfxo=;
+        b=pL4nj9+uf2DiGH5/TLVEN7qpFvNGzDMNdnnSAtn4GyNvGwfZxit0WlSAt5QV4ovR4y
+         WrHUmm5UgUdl/A04Bv9D0FL7QVWh1wrJAz+5CZ5T3xEPazw37HYcVMTbHDPuStaqPRM6
+         xPJZrpJDOAFqplBG+auiZxIuqZTpha41DFnvNXnSU0xsGNxbThkK04WNKPG/hmHNiics
+         wvh3W/JtbOEvlFwsMt/4/rvLHl4XYii5p8rGP4xMEpm5OjDitTfQJOI48wqVBWb6OvSb
+         FEHIRQ/zRiSyLRWK1IB+pw/6A01q6vurux7KdP6BClaDFcD9zBoJXHwv1gniBcBQmQsm
+         4u7g==
+X-Forwarded-Encrypted: i=1; AJvYcCWiYgcluNeoNj9eL6O9K2bNtxux6JJ2be89arHIt6YoGDCGIvduQ/3RS0mQ6jx5YWlrigGnE8n4RszB1rPF3sDHZuPHVnJCmH/CirTchXTWmtq4I6hVCa0XpGDuQvAmaUqFqQixzs59DwZJJ6l5W/XBDwFTobGRslN73uU1z1AXRQQn4w==
+X-Gm-Message-State: AOJu0Yx/vjFGf/jhBOyN55xkSJLPXz0Fy1746MkCXMs4BgpoEK0pKAQn
+	v87bBXYxCE+Yl61SlEmOxDi+L48ToXfLvgs2qMBIR53JVh4MgSjEdgN1wUwv3Dpm+dEwJzl3I0Q
+	2WXuSWokmwkQjl54ANw+n+3SPooc=
+X-Google-Smtp-Source: AGHT+IG4BaSbK+P09EoyYL8rR1buS3SjQd+OPB1e8j9B6v/dLubPk8we/fGolu3MGxMZLsJbPDat8V6n12a54ElCSvI=
+X-Received: by 2002:a05:6402:440a:b0:57c:b7c3:99f1 with SMTP id
+ 4fb4d7f45d1cf-5879f59a549mr3114841a12.11.1719825238336; Mon, 01 Jul 2024
+ 02:13:58 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/8] dt-bindings: PCI: Add Broadcom STB 7712 SOC,
- update maintainter
-To: Jim Quinlan <james.quinlan@broadcom.com>, linux-pci@vger.kernel.org,
- Nicolas Saenz Julienne <nsaenz@kernel.org>,
- Bjorn Helgaas <bhelgaas@google.com>,
- Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
- Cyril Brulebois <kibi@debian.org>, Stanimir Varbanov <svarbanov@suse.de>,
- bcm-kernel-feedback-list@broadcom.com, jim2101024@gmail.com
-Cc: Florian Fainelli <florian.fainelli@broadcom.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE"
- <linux-rpi-kernel@lists.infradead.org>,
- "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE"
- <linux-arm-kernel@lists.infradead.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
-References: <20240628205430.24775-1-james.quinlan@broadcom.com>
- <20240628205430.24775-2-james.quinlan@broadcom.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240628205430.24775-2-james.quinlan@broadcom.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20240630063845.116307-1-kanakshilledar@gmail.com> <20240630-generous-carnation-c534f5d84a8a@spud>
+In-Reply-To: <20240630-generous-carnation-c534f5d84a8a@spud>
+From: Kanak Shilledar <kanakshilledar@gmail.com>
+Date: Mon, 1 Jul 2024 14:43:46 +0530
+Message-ID: <CAGLn_=vG09C49goRkbygZdYch8H1c_kw3p7ar9NGOrgpd0_MiA@mail.gmail.com>
+Subject: Re: [PATCH] arch: riscv: thead: implement basic spi
+To: Conor Dooley <conor@kernel.org>
+Cc: kanakshilledar111@protonmail.com, Serge Semin <fancer.lancer@gmail.com>, 
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, linux-spi@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-riscv@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 28/06/2024 22:54, Jim Quinlan wrote:
-> - Update maintainer.
+On Sun, Jun 30, 2024 at 7:22=E2=80=AFPM Conor Dooley <conor@kernel.org> wro=
+te:
+>
+> On Sun, Jun 30, 2024 at 12:08:20PM +0530, Kanak Shilledar wrote:
+> > implemented basic spi support for TH1520 SoC.
+> > created a fixed clock and a simple spi0 node.
+> > updated the matching binding to include thead,th1520-spi as compatible.
+> > added a spidev device in devicetree which will utilise the spi0 node.
+> > this is usually reserved for a SPI NOR flash which is left unpopulated
+> > underneath the carrier board. I performed a SPI self loop test using
+> > tools/spi/spidev_test.c and tried sending `\xDE\xAD\xBE\xEF` and verifi=
+ed
+> > it is being received correctly. i updated the of_device_id struct in
+> > drivers/spi/spi-dw-mmio.c to include "thead,th1520-spi" as the compatib=
+le.
+> > this patch also adds basic spi support on beaglev ahead which shares th=
+e
+> > same TH1520 SoC. i have only tested on LicheePi 4A.
+> >
+> > Signed-off-by: Kanak Shilledar <kanakshilledar@gmail.com>
+> > ---
+> >  .../devicetree/bindings/spi/snps,dw-apb-ssi.yaml |  4 ++++
+> >  .../boot/dts/thead/th1520-beaglev-ahead.dts      |  9 +++++++++
+> >  .../boot/dts/thead/th1520-lichee-module-4a.dtsi  |  4 ++++
+> >  .../riscv/boot/dts/thead/th1520-lichee-pi-4a.dts | 10 ++++++++++
+> >  arch/riscv/boot/dts/thead/th1520.dtsi            | 16 ++++++++++++++++
+> >  drivers/spi/spi-dw-mmio.c                        |  1 +
+>
+> This needs to be 3 different patches - one for the binding, one for the
+> driver and a final one for the dts files.
 
-Why?
+I will convert this into a patch set of 3 patch as you suggested.
 
-> - Adds a driver compatible string for the new STB SOC 7712
-> - Adds two new resets for the 7712: "bridge", for the
->   the bridge between the PCIe core and the memory bus;
->   and "swinit", the PCIe core reset.
-> 
-> Signed-off-by: Jim Quinlan <james.quinlan@broadcom.com>
-> ---
->  .../bindings/pci/brcm,stb-pcie.yaml           | 24 ++++++++++++++++++-
->  1 file changed, 23 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> index 11f8ea33240c..f594fef343a1 100644
-> --- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> @@ -7,12 +7,13 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
->  title: Brcmstb PCIe Host Controller
->  
->  maintainers:
-> -  - Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-> +  - Jim Quinlan <james.quinlan@broadcom.com>
->  
->  properties:
->    compatible:
->      items:
->        - enum:
-> +          - brcm,bcm7712-pcie # STB sibling SOC of Raspberry Pi 5
+> > +
+> > +&spi0 {
+> > +     status =3D "okay";
+> > +     spidev@0 {
+>
+> "spidev" is not a type of device, the nodename should match the type.
+>
+> > +             compatible =3D "rohm,dh2228fv";
+> > +             reg =3D <0>;
+> > +             spi-max-frequency =3D <500000>;
+> > +     };
+> > +};
+>
+> I'll put money on you not having a dh2228fv on this board. Document what
+> you actually have on it please, not what allows you to probe the spidev
+> driver in linux.
 
-Why did you place it here? Isn't the list ordered?
+Yes, you are right! Actually as per the vendor's kernel it should be a
+"spi-nor" device from winbond.
+I changed it to spidev for testing purposes. Shall I just leave it
+with status =3D "okay" or add the node for
+that spi-nor flash?
 
->            - brcm,bcm2711-pcie # The Raspberry Pi 4
->            - brcm,bcm4908-pcie
->            - brcm,bcm7211-pcie # Broadcom STB version of RPi4
-> @@ -146,6 +147,27 @@ allOf:
->        required:
->          - resets
->          - reset-names
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: brcm,bcm7712-pcie
-> +    then:
-> +      properties:
-> +        resets:
+> Thanks,
+> Conor.
 
-Fix the binding first - properties should be defined in top level
-"properties:" and then customized. Where are "resets"?
-
-> +          items:
-> +            - description: phandle pointing to the RESCAL reset controller
-
-Drop redundant text. There is no point in saying that phandle is a
-phandle. It's obvious. Say something which is not obvious.
-
-
-Best regards,
-Krzysztof
-
+Thanks and Regards,
+Kanak Shilledar
 
