@@ -1,129 +1,680 @@
-Return-Path: <devicetree+bounces-82070-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82071-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A97F91E562
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 18:31:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA75991E592
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 18:43:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8E7E61C216F7
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 16:31:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8730F281F9C
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 16:42:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EF8916D9DF;
-	Mon,  1 Jul 2024 16:31:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B257216DC20;
+	Mon,  1 Jul 2024 16:42:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="JT/7HuBB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AIwTfQmQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03D8B14D2AC;
-	Mon,  1 Jul 2024 16:31:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BAFC16D9D4;
+	Mon,  1 Jul 2024 16:42:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719851468; cv=none; b=kXDUotvwWLYc0BZGC9CXWhbu939XC9s9YCPaMXmwiydeJdwQ3nOCyav8t+Xulg2BnoNp+armnN9ADqzA+sa8g0oaseMRh3alrUuP++W+nCFJrSmDOqMncXBjzbPO4uk9SRrNv0qBr2EkIhbPTHJ/kLADrDUZbzjJjoFddveZfYg=
+	t=1719852171; cv=none; b=Z0JgSoyAXAU+u/QgI6LC5P1Y7HbuIdJym/y/37Rwrys9yspu4lAIRVjPoOr9zJcCS9FnIp44DPrlUIzBSGRgBcQQl/lmF4/9NUSKV9VZ6xTlcma9UCLYq6+IgLKKyymfk9k3VlIwo9Xaev/KDvLWnK7bB/4EszXiO5swNCN+RX0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719851468; c=relaxed/simple;
-	bh=9pyJvPtweb1UHSGE+8KU62A6fqLPa5bzsQ1lE0/LcU0=;
-	h=Mime-Version:Content-Type:Date:Message-Id:To:From:Subject:Cc:
-	 References:In-Reply-To; b=Oe+p993rJwVqp6DES6psMLXPU0By+Ozu7y4NzBH+g/1Lmy6DbYSJa39a32kM8f9O132Cvci6WrtbHozhd5qmlSunlfbi26kR+Fk4nBBPzUhZcz8ouxGDLEFr7v02Tnq4YQmncby86pgcflIn4XB5ZbOvztLhSP85phYGSm6aKmA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=JT/7HuBB; arc=none smtp.client-ip=217.70.183.200
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id A44F320005;
-	Mon,  1 Jul 2024 16:31:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1719851464;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=9pyJvPtweb1UHSGE+8KU62A6fqLPa5bzsQ1lE0/LcU0=;
-	b=JT/7HuBBhBruZABWwdrYHaof3kr2CIBvYXpPf4wr1GJpwr2XbNjvzVtkA6rQqclFs+npbl
-	gc2aOIoAkc955HAVqHq3PVlT0wg1C2ifdZGqjfHAoitjZMFJz10P2mBcg7RvWo1mCAFNyO
-	8LvIvXHKMX0eJjHO2LpjkYtucxYBT0QLwjkAHVcgqVtB2zV4/MXLF592ysxzQny76lp2/F
-	T8GSDcl8cpKS+LT0L2xvE/P3Jyvqea0MhnNDDHh8cr5rDudb+el41fKz91s2JZ0FmValVS
-	pVYZJxGsaxTBTKy/qU3eXje4bitHxfHGONcwuL4T2EaDCarZ6QM9kTUJMLPS3g==
+	s=arc-20240116; t=1719852171; c=relaxed/simple;
+	bh=crpOrx+AhVJ633iBSGG9K4u7w7lUT/UKN4loqWQu8oc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Rf838AKWwNifjd90NLkEYhZvif2AfQ1nLGkRtFCgGJ60Xf52ReSbC51cKCUJ0LMM6Pu1C1HU2URT8k1N2Osy1Ev+jV3ujoZrDmtxXrfsP1OBacwDlI+bzJS3EffzZkHyaKS8mpJ3tgEs7Ne8fH6+o1zV0FFMnNFTGu3/HeIDqpc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AIwTfQmQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26282C116B1;
+	Mon,  1 Jul 2024 16:42:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719852171;
+	bh=crpOrx+AhVJ633iBSGG9K4u7w7lUT/UKN4loqWQu8oc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=AIwTfQmQ3Dy1kZ7C0RJbKjk5gpGUQ7Oro35XTe+MG8UtO3w4LOjUdRHOGylUlurf3
+	 snB8hsul40DK5L6oTJTwlI5N6Qgl2oaE3tutntKZURfrT5ZplfJsOQxw+M+mK/UODk
+	 a9dQTWc34hGQlGShyjV2G+6Jbp1C836UjdHh27jbXG96l9+dKiZ4IHU+Fs5hrFwAed
+	 GlODUEAXL2qMn5nAGBWKOhk5/IE3kjZ1Geh4EH9ZfpVJclAeni4/lVzekcuQe882wb
+	 VWOwnkSXi0xGiI2zFZjcTP6/jnWBdwMF4PPCIQ/HsvZqDGp8joMT6FFl7JZyTPlTe4
+	 rZF019YP9aK1w==
+Date: Mon, 1 Jul 2024 11:42:48 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: Odelu Kukatla <quic_okukatla@quicinc.com>
+Cc: Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Kees Cook <keescook@chromium.org>, cros-qcom-dts-watchers@chromium.org, 
+	"Gustavo A . R . Silva" <gustavoars@kernel.org>, linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org, 
+	quic_rlaggysh@quicinc.com, quic_mdtipton@quicinc.com
+Subject: Re: [PATCH v5 2/4] interconnect: qcom: sc7280: enable QoS
+ configuration
+Message-ID: <ciji6nlxn752ina4tmh6kwvek52nxpnguomqek6plwvwgvoqef@yrtexkpmn5br>
+References: <20240607173927.26321-1-quic_okukatla@quicinc.com>
+ <20240607173927.26321-3-quic_okukatla@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 01 Jul 2024 18:31:03 +0200
-Message-Id: <D2ECGMYXJWZ9.GNRJ1NAG4MF8@bootlin.com>
-To: "Krzysztof Kozlowski" <krzk@kernel.org>, "Michael Turquette"
- <mturquette@baylibre.com>, "Stephen Boyd" <sboyd@kernel.org>, "Rob Herring"
- <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Subject: Re: [PATCH 1/4] Revert "dt-bindings: clock: mobileye,eyeq5-clk: add
- bindings"
-Cc: <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, "Vladimir Kondratiev"
- <vladimir.kondratiev@mobileye.com>, =?utf-8?q?Gr=C3=A9gory_Clement?=
- <gregory.clement@bootlin.com>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
- <tawfik.bayouk@mobileye.com>
-X-Mailer: aerc 0.17.0
-References: <20240628-mbly-clk-v1-0-edb1e29ea4c1@bootlin.com>
- <20240628-mbly-clk-v1-1-edb1e29ea4c1@bootlin.com>
- <2846186f-a0e1-4cd3-85bf-f029053bf98c@kernel.org>
-In-Reply-To: <2846186f-a0e1-4cd3-85bf-f029053bf98c@kernel.org>
-X-GND-Sasl: theo.lebrun@bootlin.com
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240607173927.26321-3-quic_okukatla@quicinc.com>
 
-Hello Krzysztof,
+On Fri, Jun 07, 2024 at 11:09:25PM GMT, Odelu Kukatla wrote:
+> Enable QoS configuration for master ports with predefined values
+> for priority and urgency forawrding.
+> 
 
-On Mon Jul 1, 2024 at 11:14 AM CEST, Krzysztof Kozlowski wrote:
-> On 28/06/2024 18:10, Th=C3=A9o Lebrun wrote:
-> > Switch from one sub-node per functionality in the system-controller to =
-a
-> > single node representing the entire OLB instance. This is the
-> > recommended approach for controllers handling many different
-> > functionalities; it is a single controller and should be represented by
-> > a single devicetree node.
-> >=20
-> > The clock bindings is removed and all properties will be described by:
-> > soc/mobileye/mobileye,eyeq5-olb.yaml
-> >=20
-> > Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
->
-> This is v1, so where did this happen?
+This patch causes QCS6490 RB3Gen2 to hit a bus timeout and crash during
+boot, unless the associated DeviceTree change (adding clocks) is
+present.
 
-This is a split of the previous Mobileye EyeQ5 system-controller series.
+The two patches are reaching linux-next, and hence mainline, through
+different code paths we now have periods where rb3gen2 is not bootable.
+But more importantly, devices with current .dtbs installed can not boot
+the new kernel.
 
-I started my cover letter [4] by mentioning it. I should most probably
-have kept incrementing on the previous version number, sorry about
-that.
 
-Relevant extract from this series' cover letter:
-
-On Fri Jun 28, 2024 at 6:10 PM CEST, Th=C3=A9o Lebrun wrote:
-> This is a new iteration on the Mobileye system-controller series [0].
-> It has been split into separate series to facilitate merging.
-[...]
-> Related series are targeted at reset [1], pinctrl [2] and MIPS [3].
-[...]
-> [0]: https://lore.kernel.org/lkml/20240620-mbly-olb-v3-0-5f29f8ca289c@boo=
-tlin.com/
-> [1]: https://lore.kernel.org/lkml/20240628-mbly-reset-v1-0-2a8294fd4392@b=
-ootlin.com/
-> [2]: https://lore.kernel.org/lkml/20240628-mbly-pinctrl-v1-0-c878192d6b0a=
-@bootlin.com/
-> [3]: https://lore.kernel.org/lkml/20240628-mbly-mips-v1-0-f53f5e4c422b@bo=
-otlin.com/
+It is not acceptable to introduce non-backwards compatible changes in
+drivers (unless there's extraordinary reasons to do so).
 
 Regards,
+Bjorn
 
-[4]: https://lore.kernel.org/lkml/20240628-mbly-clk-v1-0-edb1e29ea4c1@bootl=
-in.com/
-
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
+> Signed-off-by: Odelu Kukatla <quic_okukatla@quicinc.com>
+> ---
+>  drivers/interconnect/qcom/sc7280.c | 274 +++++++++++++++++++++++++++++
+>  1 file changed, 274 insertions(+)
+> 
+> diff --git a/drivers/interconnect/qcom/sc7280.c b/drivers/interconnect/qcom/sc7280.c
+> index 7d33694368e8..759c609a20bf 100644
+> --- a/drivers/interconnect/qcom/sc7280.c
+> +++ b/drivers/interconnect/qcom/sc7280.c
+> @@ -1,6 +1,7 @@
+>  // SPDX-License-Identifier: GPL-2.0
+>  /*
+>   * Copyright (c) 2021, The Linux Foundation. All rights reserved.
+> + * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+>   *
+>   */
+>  
+> @@ -21,6 +22,12 @@ static struct qcom_icc_node qhm_qspi = {
+>  	.id = SC7280_MASTER_QSPI_0,
+>  	.channels = 1,
+>  	.buswidth = 4,
+> +	.qosbox = &(const struct qcom_icc_qosbox) {
+> +		.num_ports = 1,
+> +		.port_offsets = { 0x7000 },
+> +		.prio = 2,
+> +		.urg_fwd = 0,
+> +	},
+>  	.num_links = 1,
+>  	.links = { SC7280_SLAVE_A1NOC_SNOC },
+>  };
+> @@ -30,6 +37,12 @@ static struct qcom_icc_node qhm_qup0 = {
+>  	.id = SC7280_MASTER_QUP_0,
+>  	.channels = 1,
+>  	.buswidth = 4,
+> +	.qosbox = &(const struct qcom_icc_qosbox) {
+> +		.num_ports = 1,
+> +		.port_offsets = { 0x11000 },
+> +		.prio = 2,
+> +		.urg_fwd = 0,
+> +	},
+>  	.num_links = 1,
+>  	.links = { SC7280_SLAVE_A1NOC_SNOC },
+>  };
+> @@ -39,6 +52,12 @@ static struct qcom_icc_node qhm_qup1 = {
+>  	.id = SC7280_MASTER_QUP_1,
+>  	.channels = 1,
+>  	.buswidth = 4,
+> +	.qosbox = &(const struct qcom_icc_qosbox) {
+> +		.num_ports = 1,
+> +		.port_offsets = { 0x8000 },
+> +		.prio = 2,
+> +		.urg_fwd = 0,
+> +	},
+>  	.num_links = 1,
+>  	.links = { SC7280_SLAVE_A1NOC_SNOC },
+>  };
+> @@ -57,6 +76,12 @@ static struct qcom_icc_node xm_sdc1 = {
+>  	.id = SC7280_MASTER_SDCC_1,
+>  	.channels = 1,
+>  	.buswidth = 8,
+> +	.qosbox = &(const struct qcom_icc_qosbox) {
+> +		.num_ports = 1,
+> +		.port_offsets = { 0xc000 },
+> +		.prio = 2,
+> +		.urg_fwd = 0,
+> +	},
+>  	.num_links = 1,
+>  	.links = { SC7280_SLAVE_A1NOC_SNOC },
+>  };
+> @@ -66,6 +91,12 @@ static struct qcom_icc_node xm_sdc2 = {
+>  	.id = SC7280_MASTER_SDCC_2,
+>  	.channels = 1,
+>  	.buswidth = 8,
+> +	.qosbox = &(const struct qcom_icc_qosbox) {
+> +		.num_ports = 1,
+> +		.port_offsets = { 0xe000 },
+> +		.prio = 2,
+> +		.urg_fwd = 0,
+> +	},
+>  	.num_links = 1,
+>  	.links = { SC7280_SLAVE_A1NOC_SNOC },
+>  };
+> @@ -75,6 +106,12 @@ static struct qcom_icc_node xm_sdc4 = {
+>  	.id = SC7280_MASTER_SDCC_4,
+>  	.channels = 1,
+>  	.buswidth = 8,
+> +	.qosbox = &(const struct qcom_icc_qosbox) {
+> +		.num_ports = 1,
+> +		.port_offsets = { 0x9000 },
+> +		.prio = 2,
+> +		.urg_fwd = 0,
+> +	},
+>  	.num_links = 1,
+>  	.links = { SC7280_SLAVE_A1NOC_SNOC },
+>  };
+> @@ -84,6 +121,12 @@ static struct qcom_icc_node xm_ufs_mem = {
+>  	.id = SC7280_MASTER_UFS_MEM,
+>  	.channels = 1,
+>  	.buswidth = 8,
+> +	.qosbox = &(const struct qcom_icc_qosbox) {
+> +		.num_ports = 1,
+> +		.port_offsets = { 0xa000 },
+> +		.prio = 2,
+> +		.urg_fwd = 0,
+> +	},
+>  	.num_links = 1,
+>  	.links = { SC7280_SLAVE_A1NOC_SNOC },
+>  };
+> @@ -102,6 +145,12 @@ static struct qcom_icc_node xm_usb3_0 = {
+>  	.id = SC7280_MASTER_USB3_0,
+>  	.channels = 1,
+>  	.buswidth = 8,
+> +	.qosbox = &(const struct qcom_icc_qosbox) {
+> +		.num_ports = 1,
+> +		.port_offsets = { 0xb000 },
+> +		.prio = 2,
+> +		.urg_fwd = 0,
+> +	},
+>  	.num_links = 1,
+>  	.links = { SC7280_SLAVE_A1NOC_SNOC },
+>  };
+> @@ -111,6 +160,12 @@ static struct qcom_icc_node qhm_qdss_bam = {
+>  	.id = SC7280_MASTER_QDSS_BAM,
+>  	.channels = 1,
+>  	.buswidth = 4,
+> +	.qosbox = &(const struct qcom_icc_qosbox) {
+> +		.num_ports = 1,
+> +		.port_offsets = { 0x18000 },
+> +		.prio = 2,
+> +		.urg_fwd = 0,
+> +	},
+>  	.num_links = 1,
+>  	.links = { SC7280_SLAVE_A2NOC_SNOC },
+>  };
+> @@ -129,6 +184,12 @@ static struct qcom_icc_node qnm_cnoc_datapath = {
+>  	.id = SC7280_MASTER_CNOC_A2NOC,
+>  	.channels = 1,
+>  	.buswidth = 8,
+> +	.qosbox = &(const struct qcom_icc_qosbox) {
+> +		.num_ports = 1,
+> +		.port_offsets = { 0x1c000 },
+> +		.prio = 2,
+> +		.urg_fwd = 0,
+> +	},
+>  	.num_links = 1,
+>  	.links = { SC7280_SLAVE_A2NOC_SNOC },
+>  };
+> @@ -138,6 +199,12 @@ static struct qcom_icc_node qxm_crypto = {
+>  	.id = SC7280_MASTER_CRYPTO,
+>  	.channels = 1,
+>  	.buswidth = 8,
+> +	.qosbox = &(const struct qcom_icc_qosbox) {
+> +		.num_ports = 1,
+> +		.port_offsets = { 0x1d000 },
+> +		.prio = 2,
+> +		.urg_fwd = 0,
+> +	},
+>  	.num_links = 1,
+>  	.links = { SC7280_SLAVE_A2NOC_SNOC },
+>  };
+> @@ -147,6 +214,12 @@ static struct qcom_icc_node qxm_ipa = {
+>  	.id = SC7280_MASTER_IPA,
+>  	.channels = 1,
+>  	.buswidth = 8,
+> +	.qosbox = &(const struct qcom_icc_qosbox) {
+> +		.num_ports = 1,
+> +		.port_offsets = { 0x10000 },
+> +		.prio = 2,
+> +		.urg_fwd = 0,
+> +	},
+>  	.num_links = 1,
+>  	.links = { SC7280_SLAVE_A2NOC_SNOC },
+>  };
+> @@ -173,6 +246,12 @@ static struct qcom_icc_node xm_qdss_etr = {
+>  	.id = SC7280_MASTER_QDSS_ETR,
+>  	.channels = 1,
+>  	.buswidth = 8,
+> +	.qosbox = &(const struct qcom_icc_qosbox) {
+> +		.num_ports = 1,
+> +		.port_offsets = { 0x15000 },
+> +		.prio = 2,
+> +		.urg_fwd = 0,
+> +	},
+>  	.num_links = 1,
+>  	.links = { SC7280_SLAVE_A2NOC_SNOC },
+>  };
+> @@ -305,6 +384,12 @@ static struct qcom_icc_node alm_gpu_tcu = {
+>  	.id = SC7280_MASTER_GPU_TCU,
+>  	.channels = 1,
+>  	.buswidth = 8,
+> +	.qosbox = &(const struct qcom_icc_qosbox) {
+> +		.num_ports = 1,
+> +		.port_offsets = { 0xd7000 },
+> +		.prio = 2,
+> +		.urg_fwd = 0,
+> +	},
+>  	.num_links = 2,
+>  	.links = { SC7280_SLAVE_GEM_NOC_CNOC, SC7280_SLAVE_LLCC },
+>  };
+> @@ -314,6 +399,12 @@ static struct qcom_icc_node alm_sys_tcu = {
+>  	.id = SC7280_MASTER_SYS_TCU,
+>  	.channels = 1,
+>  	.buswidth = 8,
+> +	.qosbox = &(const struct qcom_icc_qosbox) {
+> +		.num_ports = 1,
+> +		.port_offsets = { 0xd6000 },
+> +		.prio = 6,
+> +		.urg_fwd = 0,
+> +	},
+>  	.num_links = 2,
+>  	.links = { SC7280_SLAVE_GEM_NOC_CNOC, SC7280_SLAVE_LLCC },
+>  };
+> @@ -333,6 +424,12 @@ static struct qcom_icc_node qnm_cmpnoc = {
+>  	.id = SC7280_MASTER_COMPUTE_NOC,
+>  	.channels = 2,
+>  	.buswidth = 32,
+> +	.qosbox = &(const struct qcom_icc_qosbox) {
+> +		.num_ports = 2,
+> +		.port_offsets = { 0x21000, 0x61000 },
+> +		.prio = 0,
+> +		.urg_fwd = 1,
+> +	},
+>  	.num_links = 2,
+>  	.links = { SC7280_SLAVE_GEM_NOC_CNOC, SC7280_SLAVE_LLCC },
+>  };
+> @@ -353,6 +450,12 @@ static struct qcom_icc_node qnm_gpu = {
+>  	.id = SC7280_MASTER_GFX3D,
+>  	.channels = 2,
+>  	.buswidth = 32,
+> +	.qosbox = &(const struct qcom_icc_qosbox) {
+> +		.num_ports = 2,
+> +		.port_offsets = { 0x22000, 0x62000 },
+> +		.prio = 0,
+> +		.urg_fwd = 0,
+> +	},
+>  	.num_links = 2,
+>  	.links = { SC7280_SLAVE_GEM_NOC_CNOC, SC7280_SLAVE_LLCC },
+>  };
+> @@ -362,6 +465,12 @@ static struct qcom_icc_node qnm_mnoc_hf = {
+>  	.id = SC7280_MASTER_MNOC_HF_MEM_NOC,
+>  	.channels = 2,
+>  	.buswidth = 32,
+> +	.qosbox = &(const struct qcom_icc_qosbox) {
+> +		.num_ports = 2,
+> +		.port_offsets = { 0x23000, 0x63000 },
+> +		.prio = 0,
+> +		.urg_fwd = 1,
+> +	},
+>  	.num_links = 1,
+>  	.links = { SC7280_SLAVE_LLCC },
+>  };
+> @@ -371,6 +480,12 @@ static struct qcom_icc_node qnm_mnoc_sf = {
+>  	.id = SC7280_MASTER_MNOC_SF_MEM_NOC,
+>  	.channels = 1,
+>  	.buswidth = 32,
+> +	.qosbox = &(const struct qcom_icc_qosbox) {
+> +		.num_ports = 1,
+> +		.port_offsets = { 0xcf000 },
+> +		.prio = 0,
+> +		.urg_fwd = 1,
+> +	},
+>  	.num_links = 2,
+>  	.links = { SC7280_SLAVE_GEM_NOC_CNOC, SC7280_SLAVE_LLCC },
+>  };
+> @@ -389,6 +504,12 @@ static struct qcom_icc_node qnm_snoc_gc = {
+>  	.id = SC7280_MASTER_SNOC_GC_MEM_NOC,
+>  	.channels = 1,
+>  	.buswidth = 8,
+> +	.qosbox = &(const struct qcom_icc_qosbox) {
+> +		.num_ports = 1,
+> +		.port_offsets = { 0xd3000 },
+> +		.prio = 0,
+> +		.urg_fwd = 1,
+> +	},
+>  	.num_links = 1,
+>  	.links = { SC7280_SLAVE_LLCC },
+>  };
+> @@ -398,6 +519,12 @@ static struct qcom_icc_node qnm_snoc_sf = {
+>  	.id = SC7280_MASTER_SNOC_SF_MEM_NOC,
+>  	.channels = 1,
+>  	.buswidth = 16,
+> +	.qosbox = &(const struct qcom_icc_qosbox) {
+> +		.num_ports = 1,
+> +		.port_offsets = { 0xd4000 },
+> +		.prio = 0,
+> +		.urg_fwd = 1,
+> +	},
+>  	.num_links = 3,
+>  	.links = { SC7280_SLAVE_GEM_NOC_CNOC, SC7280_SLAVE_LLCC,
+>  		   SC7280_SLAVE_MEM_NOC_PCIE_SNOC },
+> @@ -437,6 +564,12 @@ static struct qcom_icc_node qnm_video0 = {
+>  	.id = SC7280_MASTER_VIDEO_P0,
+>  	.channels = 1,
+>  	.buswidth = 32,
+> +	.qosbox = &(const struct qcom_icc_qosbox) {
+> +		.num_ports = 1,
+> +		.port_offsets = { 0x14000 },
+> +		.prio = 0,
+> +		.urg_fwd = 1,
+> +	},
+>  	.num_links = 1,
+>  	.links = { SC7280_SLAVE_MNOC_SF_MEM_NOC },
+>  };
+> @@ -446,6 +579,12 @@ static struct qcom_icc_node qnm_video_cpu = {
+>  	.id = SC7280_MASTER_VIDEO_PROC,
+>  	.channels = 1,
+>  	.buswidth = 8,
+> +	.qosbox = &(const struct qcom_icc_qosbox) {
+> +		.num_ports = 1,
+> +		.port_offsets = { 0x15000 },
+> +		.prio = 0,
+> +		.urg_fwd = 1,
+> +	},
+>  	.num_links = 1,
+>  	.links = { SC7280_SLAVE_MNOC_SF_MEM_NOC },
+>  };
+> @@ -455,6 +594,12 @@ static struct qcom_icc_node qxm_camnoc_hf = {
+>  	.id = SC7280_MASTER_CAMNOC_HF,
+>  	.channels = 2,
+>  	.buswidth = 32,
+> +	.qosbox = &(const struct qcom_icc_qosbox) {
+> +		.num_ports = 2,
+> +		.port_offsets = { 0x10000, 0x10180 },
+> +		.prio = 0,
+> +		.urg_fwd = 1,
+> +	},
+>  	.num_links = 1,
+>  	.links = { SC7280_SLAVE_MNOC_HF_MEM_NOC },
+>  };
+> @@ -464,6 +609,12 @@ static struct qcom_icc_node qxm_camnoc_icp = {
+>  	.id = SC7280_MASTER_CAMNOC_ICP,
+>  	.channels = 1,
+>  	.buswidth = 8,
+> +	.qosbox = &(const struct qcom_icc_qosbox) {
+> +		.num_ports = 1,
+> +		.port_offsets = { 0x11000 },
+> +		.prio = 0,
+> +		.urg_fwd = 1,
+> +	},
+>  	.num_links = 1,
+>  	.links = { SC7280_SLAVE_MNOC_SF_MEM_NOC },
+>  };
+> @@ -473,6 +624,12 @@ static struct qcom_icc_node qxm_camnoc_sf = {
+>  	.id = SC7280_MASTER_CAMNOC_SF,
+>  	.channels = 1,
+>  	.buswidth = 32,
+> +	.qosbox = &(const struct qcom_icc_qosbox) {
+> +		.num_ports = 1,
+> +		.port_offsets = { 0x12000 },
+> +		.prio = 0,
+> +		.urg_fwd = 1,
+> +	},
+>  	.num_links = 1,
+>  	.links = { SC7280_SLAVE_MNOC_SF_MEM_NOC },
+>  };
+> @@ -482,6 +639,12 @@ static struct qcom_icc_node qxm_mdp0 = {
+>  	.id = SC7280_MASTER_MDP0,
+>  	.channels = 1,
+>  	.buswidth = 32,
+> +	.qosbox = &(const struct qcom_icc_qosbox) {
+> +		.num_ports = 1,
+> +		.port_offsets = { 0x16000 },
+> +		.prio = 0,
+> +		.urg_fwd = 1,
+> +	},
+>  	.num_links = 1,
+>  	.links = { SC7280_SLAVE_MNOC_HF_MEM_NOC },
+>  };
+> @@ -536,6 +699,12 @@ static struct qcom_icc_node qxm_pimem = {
+>  	.id = SC7280_MASTER_PIMEM,
+>  	.channels = 1,
+>  	.buswidth = 8,
+> +	.qosbox = &(const struct qcom_icc_qosbox) {
+> +		.num_ports = 1,
+> +		.port_offsets = { 0x8000 },
+> +		.prio = 2,
+> +		.urg_fwd = 0,
+> +	},
+>  	.num_links = 1,
+>  	.links = { SC7280_SLAVE_SNOC_GEM_NOC_GC },
+>  };
+> @@ -545,6 +714,12 @@ static struct qcom_icc_node xm_gic = {
+>  	.id = SC7280_MASTER_GIC,
+>  	.channels = 1,
+>  	.buswidth = 8,
+> +	.qosbox = &(const struct qcom_icc_qosbox) {
+> +		.num_ports = 1,
+> +		.port_offsets = { 0xa000 },
+> +		.prio = 2,
+> +		.urg_fwd = 0,
+> +	},
+>  	.num_links = 1,
+>  	.links = { SC7280_SLAVE_SNOC_GEM_NOC_GC },
+>  };
+> @@ -1502,7 +1677,16 @@ static struct qcom_icc_node * const aggre1_noc_nodes[] = {
+>  	[SLAVE_SERVICE_A1NOC] = &srvc_aggre1_noc,
+>  };
+>  
+> +static const struct regmap_config sc7280_aggre1_noc_regmap_config = {
+> +	.reg_bits = 32,
+> +	.reg_stride = 4,
+> +	.val_bits = 32,
+> +	.max_register = 0x1c080,
+> +	.fast_io = true,
+> +};
+> +
+>  static const struct qcom_icc_desc sc7280_aggre1_noc = {
+> +	.config = &sc7280_aggre1_noc_regmap_config,
+>  	.nodes = aggre1_noc_nodes,
+>  	.num_nodes = ARRAY_SIZE(aggre1_noc_nodes),
+>  	.bcms = aggre1_noc_bcms,
+> @@ -1513,6 +1697,14 @@ static struct qcom_icc_bcm * const aggre2_noc_bcms[] = {
+>  	&bcm_ce0,
+>  };
+>  
+> +static const struct regmap_config sc7280_aggre2_noc_regmap_config = {
+> +	.reg_bits = 32,
+> +	.reg_stride = 4,
+> +	.val_bits = 32,
+> +	.max_register = 0x2b080,
+> +	.fast_io = true,
+> +};
+> +
+>  static struct qcom_icc_node * const aggre2_noc_nodes[] = {
+>  	[MASTER_QDSS_BAM] = &qhm_qdss_bam,
+>  	[MASTER_A2NOC_CFG] = &qnm_a2noc_cfg,
+> @@ -1525,6 +1717,7 @@ static struct qcom_icc_node * const aggre2_noc_nodes[] = {
+>  };
+>  
+>  static const struct qcom_icc_desc sc7280_aggre2_noc = {
+> +	.config = &sc7280_aggre2_noc_regmap_config,
+>  	.nodes = aggre2_noc_nodes,
+>  	.num_nodes = ARRAY_SIZE(aggre2_noc_nodes),
+>  	.bcms = aggre2_noc_bcms,
+> @@ -1605,7 +1798,16 @@ static struct qcom_icc_node * const cnoc2_nodes[] = {
+>  	[SLAVE_SNOC_CFG] = &qns_snoc_cfg,
+>  };
+>  
+> +static const struct regmap_config sc7280_cnoc2_regmap_config = {
+> +	.reg_bits = 32,
+> +	.reg_stride = 4,
+> +	.val_bits = 32,
+> +	.max_register = 0x1000,
+> +	.fast_io = true,
+> +};
+> +
+>  static const struct qcom_icc_desc sc7280_cnoc2 = {
+> +	.config = &sc7280_cnoc2_regmap_config,
+>  	.nodes = cnoc2_nodes,
+>  	.num_nodes = ARRAY_SIZE(cnoc2_nodes),
+>  	.bcms = cnoc2_bcms,
+> @@ -1637,7 +1839,16 @@ static struct qcom_icc_node * const cnoc3_nodes[] = {
+>  	[SLAVE_TCU] = &xs_sys_tcu_cfg,
+>  };
+>  
+> +static const struct regmap_config sc7280_cnoc3_regmap_config = {
+> +	.reg_bits = 32,
+> +	.reg_stride = 4,
+> +	.val_bits = 32,
+> +	.max_register = 0x1000,
+> +	.fast_io = true,
+> +};
+> +
+>  static const struct qcom_icc_desc sc7280_cnoc3 = {
+> +	.config = &sc7280_cnoc3_regmap_config,
+>  	.nodes = cnoc3_nodes,
+>  	.num_nodes = ARRAY_SIZE(cnoc3_nodes),
+>  	.bcms = cnoc3_bcms,
+> @@ -1653,7 +1864,16 @@ static struct qcom_icc_node * const dc_noc_nodes[] = {
+>  	[SLAVE_GEM_NOC_CFG] = &qns_gemnoc,
+>  };
+>  
+> +static const struct regmap_config sc7280_dc_noc_regmap_config = {
+> +	.reg_bits = 32,
+> +	.reg_stride = 4,
+> +	.val_bits = 32,
+> +	.max_register = 0x5080,
+> +	.fast_io = true,
+> +};
+> +
+>  static const struct qcom_icc_desc sc7280_dc_noc = {
+> +	.config = &sc7280_dc_noc_regmap_config,
+>  	.nodes = dc_noc_nodes,
+>  	.num_nodes = ARRAY_SIZE(dc_noc_nodes),
+>  	.bcms = dc_noc_bcms,
+> @@ -1689,7 +1909,16 @@ static struct qcom_icc_node * const gem_noc_nodes[] = {
+>  	[SLAVE_SERVICE_GEM_NOC] = &srvc_sys_gemnoc,
+>  };
+>  
+> +static const struct regmap_config sc7280_gem_noc_regmap_config = {
+> +	.reg_bits = 32,
+> +	.reg_stride = 4,
+> +	.val_bits = 32,
+> +	.max_register = 0xe2200,
+> +	.fast_io = true,
+> +};
+> +
+>  static const struct qcom_icc_desc sc7280_gem_noc = {
+> +	.config = &sc7280_gem_noc_regmap_config,
+>  	.nodes = gem_noc_nodes,
+>  	.num_nodes = ARRAY_SIZE(gem_noc_nodes),
+>  	.bcms = gem_noc_bcms,
+> @@ -1709,7 +1938,16 @@ static struct qcom_icc_node * const lpass_ag_noc_nodes[] = {
+>  	[SLAVE_SERVICE_LPASS_AG_NOC] = &srvc_niu_lpass_agnoc,
+>  };
+>  
+> +static const struct regmap_config sc7280_lpass_ag_noc_regmap_config = {
+> +	.reg_bits = 32,
+> +	.reg_stride = 4,
+> +	.val_bits = 32,
+> +	.max_register = 0xf080,
+> +	.fast_io = true,
+> +};
+> +
+>  static const struct qcom_icc_desc sc7280_lpass_ag_noc = {
+> +	.config = &sc7280_lpass_ag_noc_regmap_config,
+>  	.nodes = lpass_ag_noc_nodes,
+>  	.num_nodes = ARRAY_SIZE(lpass_ag_noc_nodes),
+>  	.bcms = lpass_ag_noc_bcms,
+> @@ -1726,7 +1964,16 @@ static struct qcom_icc_node * const mc_virt_nodes[] = {
+>  	[SLAVE_EBI1] = &ebi,
+>  };
+>  
+> +static const struct regmap_config sc7280_mc_virt_regmap_config = {
+> +	.reg_bits = 32,
+> +	.reg_stride = 4,
+> +	.val_bits = 32,
+> +	.max_register = 0x4,
+> +	.fast_io = true,
+> +};
+> +
+>  static const struct qcom_icc_desc sc7280_mc_virt = {
+> +	.config = &sc7280_mc_virt_regmap_config,
+>  	.nodes = mc_virt_nodes,
+>  	.num_nodes = ARRAY_SIZE(mc_virt_nodes),
+>  	.bcms = mc_virt_bcms,
+> @@ -1753,7 +2000,16 @@ static struct qcom_icc_node * const mmss_noc_nodes[] = {
+>  	[SLAVE_SERVICE_MNOC] = &srvc_mnoc,
+>  };
+>  
+> +static const struct regmap_config sc7280_mmss_noc_regmap_config = {
+> +	.reg_bits = 32,
+> +	.reg_stride = 4,
+> +	.val_bits = 32,
+> +	.max_register = 0x1e080,
+> +	.fast_io = true,
+> +};
+> +
+>  static const struct qcom_icc_desc sc7280_mmss_noc = {
+> +	.config = &sc7280_mmss_noc_regmap_config,
+>  	.nodes = mmss_noc_nodes,
+>  	.num_nodes = ARRAY_SIZE(mmss_noc_nodes),
+>  	.bcms = mmss_noc_bcms,
+> @@ -1772,7 +2028,16 @@ static struct qcom_icc_node * const nsp_noc_nodes[] = {
+>  	[SLAVE_SERVICE_NSP_NOC] = &service_nsp_noc,
+>  };
+>  
+> +static const struct regmap_config sc7280_nsp_noc_regmap_config = {
+> +	.reg_bits = 32,
+> +	.reg_stride = 4,
+> +	.val_bits = 32,
+> +	.max_register = 0x10000,
+> +	.fast_io = true,
+> +};
+> +
+>  static const struct qcom_icc_desc sc7280_nsp_noc = {
+> +	.config = &sc7280_nsp_noc_regmap_config,
+>  	.nodes = nsp_noc_nodes,
+>  	.num_nodes = ARRAY_SIZE(nsp_noc_nodes),
+>  	.bcms = nsp_noc_bcms,
+> @@ -1797,7 +2062,16 @@ static struct qcom_icc_node * const system_noc_nodes[] = {
+>  	[SLAVE_SERVICE_SNOC] = &srvc_snoc,
+>  };
+>  
+> +static const struct regmap_config sc7280_system_noc_regmap_config = {
+> +	.reg_bits = 32,
+> +	.reg_stride = 4,
+> +	.val_bits = 32,
+> +	.max_register = 0x15480,
+> +	.fast_io = true,
+> +};
+> +
+>  static const struct qcom_icc_desc sc7280_system_noc = {
+> +	.config = &sc7280_system_noc_regmap_config,
+>  	.nodes = system_noc_nodes,
+>  	.num_nodes = ARRAY_SIZE(system_noc_nodes),
+>  	.bcms = system_noc_bcms,
+> -- 
+> 2.17.1
+> 
 
