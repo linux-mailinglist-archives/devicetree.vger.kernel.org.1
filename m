@@ -1,195 +1,214 @@
-Return-Path: <devicetree+bounces-81812-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81813-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2904891D874
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 09:02:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 912F291D8B5
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 09:15:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A65BD281188
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 07:02:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 155FB281A39
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 07:15:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DEB4374CB;
-	Mon,  1 Jul 2024 07:02:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A2D861FC4;
+	Mon,  1 Jul 2024 07:15:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="A1U6ZGQ/"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="C3r0A2co"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8585729AB;
-	Mon,  1 Jul 2024 07:02:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.22
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 449177174F
+	for <devicetree@vger.kernel.org>; Mon,  1 Jul 2024 07:15:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719817344; cv=none; b=KzYTGOTEUVRGFBClxJFlcTUmbhrKQ7WL1TjTlt8e4F033SZfniHZUo+31z8Zkgw9J6+bjOJxTC+vJ7PlGu7X96AgP9yOMh2U7o2lgGH6trBzM6mjywEk3DFUdWIQOkrrclJ4cw9LlNhFnNde6jWpJ4BxARWNSI5pdUV8jebGlNc=
+	t=1719818117; cv=none; b=MVp5bb47seFwbN7+ZLNGgdZk331oV5w7kRjtXCvquo1TnXC/YUrh1rpjzLTNul8uNwWFjCG/oIyXDF7+suLrKEsZU2fXm9GfCBeN8jLweVYWBTNiuem+a4HH0/t9smYayZ+7jj5DU1x8P8VAMvg0zcVMv4mB3PRUoRiwBPak6kY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719817344; c=relaxed/simple;
-	bh=7yktUN/gStqRPZN7+y3ofWazn0UWTgeoET7Zwx12TTg=;
-	h=MIME-Version:Message-ID:From:To:Cc:Subject:Content-Type:Date:
-	 In-Reply-To:References; b=DZ6MOEQt1VMVjWz64i2RQ4bpq1qzhjPxv60wIKZOyTCV96szIkZHFSesh656R+5ZvMdeUF2RrjcG2n0ozST58DKhJOxs4hRWUByMbXZrEpd7pFSpNbUeW/MC7wAiC123Na8R7vS44aHPoeFjqf3neM7VcubBDZRaIm5clygUDkA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de; spf=pass smtp.mailfrom=public-files.de; dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b=A1U6ZGQ/; arc=none smtp.client-ip=212.227.17.22
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=public-files.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=public-files.de;
-	s=s31663417; t=1719817320; x=1720422120; i=frank-w@public-files.de;
-	bh=7yktUN/gStqRPZN7+y3ofWazn0UWTgeoET7Zwx12TTg=;
-	h=X-UI-Sender-Class:MIME-Version:Message-ID:From:To:Cc:Subject:
-	 Content-Type:Date:In-Reply-To:References:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=A1U6ZGQ//VDcVnLCnj99gRSn1/RH0ykxvaX4PgnWzoAQJ9TUXeFCTMPtEREF3cpC
-	 l2IUXgVxGDUuEFo4XO763sQXZKAEBlrolIM+JbSl2vk/HWDawRJaGwqT2BcaW4tvB
-	 chbOTy4f8kppxOR04f+EfAHh283jRbzl0ktT6gTU7TCP4uTY3lk7XhzketFFdbcmb
-	 VLhgRWGi1J0P2dzvJgubyMEaYQ2tHsGXAlLywlUFSiZUPrNvDKhDDQzWDPRDGqqNN
-	 UWFi8jVqGpEuaIP+p2Gj1oqps4sv5kC6cHf6K0ysJf5+v0d/dNxy1pRbX8O0YXAhE
-	 F6yc13/VTRfl7y1MSQ==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [217.61.148.41] ([217.61.148.41]) by web-mail.gmx.net
- (3c-app-gmx-bap25.server.lan [172.19.172.95]) (via HTTP); Mon, 1 Jul 2024
- 09:02:00 +0200
+	s=arc-20240116; t=1719818117; c=relaxed/simple;
+	bh=pUGnbmgT8PSO39DrhXDvbHFaLHIT4ZI9N9UeF4l3k6o=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=LvY7j9FiPnAf2rwjnchrb5yGDDwz2R3md+zo7fiqzUa76iY0WQ1OPJuqGCgqKgxweaZ6iqrU4q2OsG5mwIaQt4e5Unug4cL8+9qY2v4guuAAwHE8hGIGDzp2sUAy/qOkSlPOpo8bihwMPncESpVA9VhgItYnD326HDtp9a0qfe4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=C3r0A2co; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-4257480ee5aso2098135e9.1
+        for <devicetree@vger.kernel.org>; Mon, 01 Jul 2024 00:15:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1719818113; x=1720422913; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8VeQ0WXLl07NKq9f5p8mUnjZiEvy2m2C1+1ufISTpL0=;
+        b=C3r0A2coBPyvhH7ENXy1EUNIBR/wXdj7xvpLwDZYCONZ2STXVgsipjL0KX/+GZL5x5
+         tm6LUhc5lp+j0Q12rEKtqM78T/wJxsnz6sdu3CJeun+ifD990mWoS1HDWV+ukM/+gNyp
+         03Z4Fg2wbNRkfFJv67Cquw0GJ8wZh7HkqQW4wHGOdEOZAZVGdvIi4DeTWrOwFvvvMRWZ
+         zQFR5HWVOi8pH0LQL0g7LfqHsSUAuPRdJCSqDP8jkQi5ywHlXKRNOUcpkZZVazEcA9Do
+         pRV4T9JD3SX74H0Mj8Wy4puYFt9E3ZBp7PbQgzU8wDjZf1iCeiuOFZiT+ovCZ8ZXJvjH
+         AZNw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719818113; x=1720422913;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8VeQ0WXLl07NKq9f5p8mUnjZiEvy2m2C1+1ufISTpL0=;
+        b=jl5Etb/zCtMwP1CukksFA6dgKnE9V9dJZHmgJVuCquo0CPp85b1BeSled1mmGHGCGT
+         v56X5Jfkqg92V47JPBg2i5Ka3XtPL2gq7L97VqMXPY44FYLKMVEavtbOrPoeByFVlJMc
+         M1x9WmgOw2LSAPhDBSd+FGr8lm4WmBBKf8tngE+GlCqXLsOvU9bQnfTmf/pxa2IB13Ns
+         cOoMmxv0omV0rJdPIzlsdHguAjzQyTwXMrnhauqr1Hia/+4oqEGMgb3D/utmwjTgl2IW
+         1YieCG8TJxu2yCjjbMbW752JUZVk01FPpt1Nqi/7zgUpY7sdS/Nv7G5toRHmNyQex85c
+         gFCg==
+X-Forwarded-Encrypted: i=1; AJvYcCXH+qgU1CxZZeLBhJ7MdSBkpeIyhjqUBPo5D3wNDwNn7fgrccOoUoQAadXotCK9zoLYo/0d2GnA9vjYBcGnQkyq4P8TupYu8TIzUA==
+X-Gm-Message-State: AOJu0Yyu2NhUdjB/2zV/mflXr3qWrNqh2Q2hpMnusCLtcHEc6otAZYgP
+	wP/jEnoiMZIeq1KnhTuBIwngNwvPFQQfCJ7/pm0SzVQxvLu/nOTCq5rNyIrAApw=
+X-Google-Smtp-Source: AGHT+IHZQaXlqpMGgKtZhm65KqVJc9Mgo9OwA0jLJuAG0EVNKbRgsOyXl69tB7SHa+Zq4VyZ50I3kQ==
+X-Received: by 2002:a05:600c:3ba6:b0:425:6742:9942 with SMTP id 5b1f17b1804b1-4257a0405c5mr34411435e9.2.1719818113559;
+        Mon, 01 Jul 2024 00:15:13 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:e17:9700:16d2:7456:6634:9626? ([2a01:e0a:e17:9700:16d2:7456:6634:9626])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4256af55e61sm138652275e9.20.2024.07.01.00.15.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 01 Jul 2024 00:15:12 -0700 (PDT)
+Message-ID: <43941f48-9905-4b25-89ef-6ad75bf1a123@rivosinc.com>
+Date: Mon, 1 Jul 2024 09:15:09 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <trinity-4bc16904-d2f8-4932-8ec9-2973560f1dde-1719817320042@3c-app-gmx-bap25>
-From: Frank Wunderlich <frank-w@public-files.de>
-To: regressions@lists.linux.dev
-Cc: Paolo Abeni <pabeni@redhat.com>, "David S. Miller"
- <davem@davemloft.net>, AngeloGioacchino Del Regno
- <angelogioacchino.delregno@collabora.com>, Jakub Kicinski
- <kuba@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, Daniel Golle <daniel@makrotopia.org>,
- Frank Wunderlich <linux@fw-web.de>, =?UTF-8?Q?Ar=C4=B1n=C3=A7_=C3=9CNAL?=
- <arinc.unal@arinc9.com>, Rob Herring <robh@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Matthias
- Brugger <matthias.bgg@gmail.com>, Linux regressions mailing list
- <regressions@lists.linux.dev>
-Subject: Aw: Re: [PATCH] arm64: dts: mt7622: fix switch probe on
- bananapi-r64
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 4/8] RISC-V: Check Zicclsm to set unaligned access
+ speed
+To: Charlie Jenkins <charlie@rivosinc.com>, Conor Dooley <conor@kernel.org>
+Cc: Jesse Taube <jesse@rivosinc.com>, linux-riscv@lists.infradead.org,
+ Jonathan Corbet <corbet@lwn.net>, Paul Walmsley <paul.walmsley@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Evan Green <evan@rivosinc.com>, Andrew Jones <ajones@ventanamicro.com>,
+ Xiao Wang <xiao.w.wang@intel.com>, Andy Chiu <andy.chiu@sifive.com>,
+ Eric Biggers <ebiggers@google.com>, Greentime Hu <greentime.hu@sifive.com>,
+ =?UTF-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@rivosinc.com>,
+ Heiko Stuebner <heiko@sntech.de>, Costa Shulyupin <costa.shul@redhat.com>,
+ Andrew Morton <akpm@linux-foundation.org>, Baoquan He <bhe@redhat.com>,
+ Anup Patel <apatel@ventanamicro.com>, Zong Li <zong.li@sifive.com>,
+ Sami Tolvanen <samitolvanen@google.com>,
+ Ben Dooks <ben.dooks@codethink.co.uk>,
+ Alexandre Ghiti <alexghiti@rivosinc.com>,
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+ Erick Archer <erick.archer@gmx.com>, Joel Granados <j.granados@samsung.com>,
+ linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20240625005001.37901-1-jesse@rivosinc.com>
+ <20240625005001.37901-5-jesse@rivosinc.com>
+ <20240626-march-abreast-83414e844250@spud> <Zn3XrLRl/yazsoZe@ghost>
+Content-Language: en-US
+From: =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <cleger@rivosinc.com>
+In-Reply-To: <Zn3XrLRl/yazsoZe@ghost>
 Content-Type: text/plain; charset=UTF-8
-Date: Mon, 1 Jul 2024 09:02:00 +0200
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <cebb10b8-b0bf-4cb7-bba4-c3f941ba2b82@leemhuis.info>
-References: <20240516204847.171029-1-linux@fw-web.de>
- <714da201-654b-4183-8e5e-8ff0b64fe621@leemhuis.info>
- <2cac4cf68304e81abffbd9ff0387ee100323c2b7.camel@redhat.com>
- <b49c801c-6628-40a6-8294-0876d8871ba7@leemhuis.info>
- <e92c3ca0-c9be-44ac-a4fc-57ca5ebedbc5@leemhuis.info>
- <1807a142-1534-4fa4-ad4b-d1c03af014c2@arinc9.com>
- <58d8ddea-71cc-427a-94cc-a95f6bce61d2@collabora.com>
- <16e9c06e-9908-455d-a387-614fefe5bcf8@arinc9.com>
- <5e87d31c-b059-4f9a-93f7-dc87465ed14a@collabora.com>
- <4416ef22-78cc-4ce5-b61d-69ff0903811e@arinc9.com>
- <bd6b6929-d34d-4bd5-9cb0-bc8fe850ee46@leemhuis.info>
- <af561268-9793-4b5d-aa0f-d09698fd6fb0@arinc9.com>
- <750a60a6-4585-4bd2-97be-cf944e51fbdb@leemhuis.info>
- <9c498e37-df8b-469e-818a-9b1c9f2b1a3c@collabora.com>
- <cebb10b8-b0bf-4cb7-bba4-c3f941ba2b82@leemhuis.info>
-Content-Transfer-Encoding: quoted-printable
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:iSzNiwwEGm+X9Sk/waPaMhv+3missYA8VAXRSbGHCV+HKBSTSrTEZxICirIavHnwicFi9
- 2srm4ZrjCYSwJ1GlRhIvaheYakXtMAyZRQ2H7TXkUrFo2gDZ1vGImR9OQUSUqjTrzHaZpfFtlcyX
- qCFHGcVuA9dNudxieUc08D5y02DNqdADfpT2+y0BqeascmO1QbZSDhed5WvfIMYguEvqwW3rxCys
- wsKoON+aZlWXBRR926oMZQT7S9jj6ti+qsgQU+wrxYSPGL4lSymwuT4Hsr5cGnXQT8kyse1wY6kh
- W0=
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:TFqw0JB/3K4=;HFFRgvoA1Z6/Iqd3nHpxa9dft/I
- JzIG7BujbzaBNJHe6yIPS+fOp1Tf6fBi5hrwRM+ldiLXXK6NpOnWxMUsxzm/Vn4TL/4d9NrPN
- Li62NNQz3UYCSmsDwN6apWd7AROrSW3KOcqNwFcXqbZgrfqLnoSPADq6ha7PnsNfjnHbyD8ef
- D9qSlIzE4GKDTqJzQCsTwRxACO0FX1O5NMrTQ1NYlGEpYODBr/Ah2o/UGQGn1IXV+IObXJ6Ru
- h+mpqfBRH0O/RUEdMGukKfst435YgjuR2OkwgGuf6FX+ABCXtsmUQEju4wEHUCEnNxvv617ei
- qdR3WCdcJHrvCRUte02QMiOip0563rfBUR6VmTq5LVB8mr2Krhrd5j3qA1NJ7M6ToSDTxgrCJ
- Fwqfp+/nckb2HfyJXc1ajs2xOdfn4GvXsomUd24z7o9iT7AjcBOW34zx8r+8uwU7NzCkRDfXr
- Y976xfry+f24JhklN/mvDwElK3QgfHx3r6q7zoRK1VV6ggbFdYiDDLzyS/IJDbWFyg6itVnui
- U3o3KjF5oWi0TSGICHtMil/jixrS6/2qMcM0T4eXm/kb1qNwMbjQfP4+yc5cyiICiBWRk5trt
- NFcWrTc1aL9M+i8ycJe+sONMDaUGFMS8r1fDBZIhltL5z8joBDF+3iPGSa18hTK1tQ0mXK/b2
- +8kp9jb3a+hnmiYkinzBsCB53g3OEjbwuu2saeIwO2xCOh9ny/qhK6HnnZNa028=
-
-Hi,
-
-i can confirm that daniels patch pointed by arinc fixes driver for the wro=
-ng devicetree on BPI-R64=2E
-
-but there are concerns from the netdev/dsa maintainers in its current stat=
-e
-
-https://patchwork=2Ekernel=2Eorg/project/linux-mediatek/patch/11f5f127d035=
-0e72569c36f9060b6e642dfaddbb=2E1714514208=2Egit=2Edaniel@makrotopia=2Eorg/
-
-regards Frank
+Content-Transfer-Encoding: 8bit
 
 
-> Gesendet: Montag, 01=2E Juli 2024 um 08:16 Uhr
-> Von: "Linux regression tracking (Thorsten Leemhuis)" <regressions@leemhu=
-is=2Einfo>
-> An: "Paolo Abeni" <pabeni@redhat=2Ecom>, "David S=2E Miller" <davem@dave=
-mloft=2Enet>, "AngeloGioacchino Del Regno" <angelogioacchino=2Edelregno@col=
-labora=2Ecom>, "Jakub Kicinski" <kuba@kernel=2Eorg>
-> Cc: devicetree@vger=2Ekernel=2Eorg, linux-kernel@vger=2Ekernel=2Eorg, li=
-nux-arm-kernel@lists=2Einfradead=2Eorg, linux-mediatek@lists=2Einfradead=2E=
-org, "Daniel Golle" <daniel@makrotopia=2Eorg>, frank-w@public-files=2Ede, "=
-Frank Wunderlich" <linux@fw-web=2Ede>, "Ar=C4=B1n=C3=A7 =C3=9CNAL" <arinc=
-=2Eunal@arinc9=2Ecom>, "Rob Herring" <robh@kernel=2Eorg>, "Conor Dooley" <c=
-onor+dt@kernel=2Eorg>, "Krzysztof Kozlowski" <krzk+dt@kernel=2Eorg>, "Matth=
-ias Brugger" <matthias=2Ebgg@gmail=2Ecom>, "Linux regressions mailing list"=
- <regressions@lists=2Elinux=2Edev>
-> Betreff: Re: [PATCH] arm64: dts: mt7622: fix switch probe on bananapi-r6=
-4
->
-> [CCing the other net maintainers]
->=20
-> On 25=2E06=2E24 10:51, AngeloGioacchino Del Regno wrote:
-> > Il 25/06/24 07:56, Linux regression tracking (Thorsten Leemhuis) ha
-> > scritto:
-> >> On 17=2E06=2E24 13:08, Ar=C4=B1n=C3=A7 =C3=9CNAL wrote:
-> >>> On 17/06/2024 11:33, Linux regression tracking (Thorsten Leemhuis)
-> >>> wrote:
-> >>> [=2E=2E=2E]
-> >> It looks more and more like we are stuck here (or was there progress =
-and
-> >> I just missed it?) while the 6=2E10 final is slowly getting closer=2E=
- Hence:
-> >>
-> >> AngeloGioacchino, should we ask the net maintainers to revert
-> >> 868ff5f4944aa9 ("net: dsa: mt7530-mdio: read PHY address of switch fr=
-om
-> >> device tree") for now to resolve this regression? Reminder, there is
-> >> nothing wrong with that commit per se afaik, it just exposes a proble=
-m
-> >> that needs to be fixed first before it can be reapplied=2E
-> >=20
-> > To be clear on this: I asked for the commit to be fixed such that it
-> > guarantees
-> > backwards compatibility with older device trees=2E
-> >=20
-> > If no fix comes,
->=20
-> I haven't see any since that mail, did you? If not, I think=2E=2E=2E
->=20
-> > then I guess that we should ask them to revert this commit
-> > until a fix is available=2E
->=20
-> =2E=2E=2Eit's time to ask them for the revert to resolve this for -rc7 (=
-and
-> avoid a last minute revert), or what do you think?
->=20
-> > I don't like this situation, either, btw=2E
->=20
-> I guess none of us does=2E :-/
->=20
-> Ciao, Thorsten (wearing his 'the Linux kernel's regression tracker' hat)
-> --
-> Everything you wanna know about Linux kernel regression tracking:
-> https://linux-regtracking=2Eleemhuis=2Einfo/about/#tldr
-> If I did something stupid, please tell me, as explained on that page=2E
->=20
-> #regzbot poke
->
+
+On 27/06/2024 23:20, Charlie Jenkins wrote:
+> On Wed, Jun 26, 2024 at 03:39:14PM +0100, Conor Dooley wrote:
+>> On Mon, Jun 24, 2024 at 08:49:57PM -0400, Jesse Taube wrote:
+>>> Check for Zicclsm before checking for unaligned access speed. This will
+>>> greatly reduce the boot up time as finding the access speed is no longer
+>>> necessary.
+>>>
+>>> Signed-off-by: Jesse Taube <jesse@rivosinc.com>
+>>> ---
+>>> V2 -> V3:
+>>>  - New patch split from previous patch
+>>> ---
+>>>  arch/riscv/kernel/unaligned_access_speed.c | 26 ++++++++++++++--------
+>>>  1 file changed, 17 insertions(+), 9 deletions(-)
+>>>
+>>> diff --git a/arch/riscv/kernel/unaligned_access_speed.c b/arch/riscv/kernel/unaligned_access_speed.c
+>>> index a9a6bcb02acf..329fd289b5c8 100644
+>>> --- a/arch/riscv/kernel/unaligned_access_speed.c
+>>> +++ b/arch/riscv/kernel/unaligned_access_speed.c
+>>> @@ -259,23 +259,31 @@ static int check_unaligned_access_speed_all_cpus(void)
+>>>  	kfree(bufs);
+>>>  	return 0;
+>>>  }
+>>> +#else /* CONFIG_RISCV_PROBE_UNALIGNED_ACCESS */
+>>> +static int check_unaligned_access_speed_all_cpus(void)
+>>> +{
+>>> +	return 0;
+>>> +}
+>>> +#endif
+>>>  
+>>>  static int check_unaligned_access_all_cpus(void)
+>>>  {
+>>> -	bool all_cpus_emulated = check_unaligned_access_emulated_all_cpus();
+>>> +	bool all_cpus_emulated;
+>>> +	int cpu;
+>>> +
+>>> +	if (riscv_has_extension_unlikely(RISCV_ISA_EXT_ZICCLSM)) {
+>>> +		for_each_online_cpu(cpu) {
+>>> +			per_cpu(misaligned_access_speed, cpu) = RISCV_HWPROBE_MISALIGNED_FAST;
+>>
+>> - const: zicclsm
+>>   description:
+>>     The standard Zicclsm extension for misaligned support for all regular
+>>     load and store instructions (including scalar and vector) but not AMOs
+>>     or other specialized forms of memory access. Defined in the
+>>     RISC-V RVA Profiles Specification. 
+>>
+>> Doesn't, unfortunately, say anywhere there that they're actually fast :(
+> 
+> Oh no! That is unfortunate that the ISA does not explicitly call that
+> out, but I think that acceptable.
+> 
+> If a vendor puts Zicclsm in their isa string, they should expect
+> software to take advantage of misaligned accesses. FAST is our signal to
+> tell software that they should emit misaligned accesses.
+
+AFAIK, Zicclsm is not even an ISA extension, simply a profile
+specification which means that only the execution environment which
+provides the profile support misaligned accesses (cf
+https://lists.riscv.org/g/tech-profiles/message/56). I don't think we
+can extrapolate that the misaligned accesses will be fast at all.
+
+Thanks,
+
+Clément
+
+> 
+> This allows for a generic kernel, like the one a distro would compile, to
+> skip the probing when booting on a system that explicitly called out
+> that the hardware supports misaligned accesses.
+> 
+> - Charlie
+> 
+>>
+>> Thanks,
+>> Conor.
+>>
+>>> +		}
+>>> +		return 0;
+>>> +	}
+>>> +
+>>> +	all_cpus_emulated = check_unaligned_access_emulated_all_cpus();
+>>>  
+>>>  	if (!all_cpus_emulated)
+>>>  		return check_unaligned_access_speed_all_cpus();
+>>>  
+>>>  	return 0;
+>>>  }
+>>> -#else /* CONFIG_RISCV_PROBE_UNALIGNED_ACCESS */
+>>> -static int check_unaligned_access_all_cpus(void)
+>>> -{
+>>> -	check_unaligned_access_emulated_all_cpus();
+>>> -
+>>> -	return 0;
+>>> -}
+>>> -#endif
+>>>  
+>>>  arch_initcall(check_unaligned_access_all_cpus);
+>>> -- 
+>>> 2.45.2
+>>>
+> 
+> 
 
