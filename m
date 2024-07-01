@@ -1,140 +1,127 @@
-Return-Path: <devicetree+bounces-81867-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81868-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6A1591DC21
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 12:13:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11D0691DC2A
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 12:16:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8BCFA281D46
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 10:13:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A2A1E1F21D42
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 10:16:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39E3B12A16D;
-	Mon,  1 Jul 2024 10:13:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88B74381D9;
+	Mon,  1 Jul 2024 10:15:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="OjB4fFmy"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="u2v27683"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C01612A14C
-	for <devicetree@vger.kernel.org>; Mon,  1 Jul 2024 10:13:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D19EA4F1E2
+	for <devicetree@vger.kernel.org>; Mon,  1 Jul 2024 10:15:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719828812; cv=none; b=g0E3a1LbiBK/4hyF7ZEkwDnNsj+0EW0XLxtmHtdqRZRzYPsLYz/tVVtl6NjzIdvihbpI6gHy2z8oy/N15SGmTFSWV8Fmqzvun8MyV/J6zpMuYcE2aeh0CJ7WEARp6msA9H05gvU/gNlqiVuY+Kt/1nv0FqYyJAyw78z3I5617Wc=
+	t=1719828955; cv=none; b=Q75th3RtFBLxbvXzxE3EYSHziNKA1hJJgN4LYaRTxKXRSfqEVwH9PKSzkC7NKi8kyFxhKxzFtdk0qZonw2hLp7oJNIz+pmT6UycoKv/zz+iyADkTayd77w7ldNFMq6x261sQHz2+X0qTGEwwBpwNKprnp9QlK61e3JHPl1yPN20=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719828812; c=relaxed/simple;
-	bh=wbQXOeAsXHy4G+RPUD1L4HvHY3UjpcFzd4LWh5TzHPk=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=XhBGKDj/iZEsGNFtma4rNs6Bd2TSTj2G8Sy1IvBAAvNPwdeFh31r3jrzONMlCRXUyV+VSbBFYTEEpy9EbASyFBZEMcIMRrnUxhLW8xrxBZvoNbYi+zuN3ygGqkYBtrIghZ9BHlfYMMWRQz31hsmJe9OVNYAQAafhWxuRmcQlsAY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=OjB4fFmy; arc=none smtp.client-ip=209.85.208.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-57d1012e52fso35097a12.3
-        for <devicetree@vger.kernel.org>; Mon, 01 Jul 2024 03:13:30 -0700 (PDT)
+	s=arc-20240116; t=1719828955; c=relaxed/simple;
+	bh=p9IZykpzzwL8zuxYVmTUY8tOOxsh+H4SkI/bv64/8wg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pO5UFphAMx0ED1aab7RDAOYVx2NPIKWxUIsi4UPnXY7/u/VolYWRCPY53g3Cpd9NDEZfpDScv+KQ7Cj/cLMxojSeqjvDVVruWxYyn3DxsjJxcTfWryAe2soyBeTBBYd5XL1+D77k8vGlLY66YBfdpVGByynU/EHX7KdQ4WfVP2E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=u2v27683; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-42573d3f7e4so17874535e9.0
+        for <devicetree@vger.kernel.org>; Mon, 01 Jul 2024 03:15:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1719828809; x=1720433609; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=27HxPtMT+Pe7iuNMl9/1XfWreBshEKC9NaTAcn2bpUE=;
-        b=OjB4fFmyDjkRaDVzRkat9MstEfgZVDsLnCVzQASOpbiTMuaNuFg6CrwPsMJNIrR//Z
-         lw29irsO8swaHOXwBhYOKsWl348MvZ+w4mN4s+zYitJU3bNjeO3bCWS2EoiHIK2uzMJu
-         AYIcOMaIz3xOtojdvrpWKjZmShs2P/sROipsVeaHJz0f5zvafNktFbctxPA6DSECVvHO
-         WHfrBFW/IYrceBT42LaDDkAGYZvti1p/as78ABTUzJhW++kLAvTrjdMr9lZbea+MQKG+
-         K7i/PuXHoLN85weWB1NDsz3jSJ/BuyGXqcER8nRs8JKekAb3CbjAffUARUNIbqLN66UW
-         U8TQ==
+        d=linaro.org; s=google; t=1719828952; x=1720433752; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=P7ERjJOyUzEMj0FpXGqXf5xmcTSrmBtKih96OlIC8Hg=;
+        b=u2v276833Pg6Ck1TDl0YKnxcJRsQH6ksy6RrBFU83uIBNaCpzAE7DN12Lwu5ATJJYb
+         xlAoNtQBvZKcUKjA8H1q3RrnaoLR0G3qfuf4JY7yeANh1O28Dz7yHH/N4Dkv+eGe6HQT
+         uHLA9u5g6ZB4FN2KMmSQhFLMzFOmHDl7zvs/azpHLXrdfwj+uH2T7tq3r2+OI9n/m8aa
+         YDCkZ1kD3IbKANS2qZlK3068pg3c/aw5L9rQRmR7xcYYPr4dmnrwYxpUhwVy4KGPe/80
+         lbNbcAndR9vwlLtKN+jBgp6KYzGvJB3J+cCV3+HDZnZLZjZZpO2onykDlDqTc9RSshvj
+         ZopQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719828809; x=1720433609;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=27HxPtMT+Pe7iuNMl9/1XfWreBshEKC9NaTAcn2bpUE=;
-        b=ouSK2JNtuS4LRUPp7SsQDajYKAzbKhU0eM234V9AK6t2OAGeC/c8rXmkh4KpPkHWW/
-         wvb8997Umm/FaMnF1QA+NH2aKI/T5kbgKIZ8rX1EB7GMvUBDC44nlmAzkm40wHh0NK/M
-         Zx9jRhxOa6Fj0zVh5hlpufvHDDtEbGDBisWZ0pW3PhVDPB8htsV8yjB0aOcX//EQ6T1k
-         2D321HKt/9bUgEJl8UgD3bKy5J9bw1/M2ShH3YqjW7T7Bpd8R0JKsmMv4DbFbqhKD8To
-         jzfeGBhTf8e8KUB6ObeTWSovNdhUuOjjGqng7aPg6dJRSEG5yxYDiW7mjGhOYiEsNvlc
-         80BQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVC4O/3Kqa4tpcpZ3X2XY+xszuOAJW4glgDD0ujdbC65HbWOkP89EQoCu4+Wgw+Mnv4locWNqPVyu9/6oqXtCsWP1u/7C5/Xuu8Kw==
-X-Gm-Message-State: AOJu0YxoRdvP21nWPaP/G17gfTMYR0vB0B4ikJ/NlDN0OoRnpBTz0xXs
-	GX4XxoiJ40f6vMjm7zHFzpo/nc6ojzxfZndmNKa36UYc1TuGkmYfvCQKX5i8Pmw=
-X-Google-Smtp-Source: AGHT+IHj+BcVm87b41Z+G83EUAjJgrmIUWRa5gN38WLv/Sf6cUjrQOUekcEFjk4rw0lBU4DrEAitPg==
-X-Received: by 2002:a05:6402:1941:b0:57d:456:e838 with SMTP id 4fb4d7f45d1cf-587a0b037ebmr3541191a12.31.1719828808730;
-        Mon, 01 Jul 2024 03:13:28 -0700 (PDT)
-Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5861324feb7sm4244777a12.37.2024.07.01.03.13.28
+        d=1e100.net; s=20230601; t=1719828952; x=1720433752;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=P7ERjJOyUzEMj0FpXGqXf5xmcTSrmBtKih96OlIC8Hg=;
+        b=oAvOu5xgnINNc0cG0U54q/DoaDMbgvpEeqilvPkmHLbljEUEIxaMs5G17NEo/1fP65
+         70mPQYOy3OfXtI6LiR+5mULHdkJBngqBf00pVLc01r9iGJxtfNxPs6upf3FO3kdn0hRr
+         6s0xDRiTNCrpzz/F32z6GbL9/QXWLxsKEgklg8kb93QpqL/z/pjfuvJ+9ToWWlHT5epr
+         sBnjl3HwUQNTLhKEmgbm54b3HVTHuxMBMviodRUFcKOoZPm/IUwL/I5JDfPFla4hHH4g
+         ATmO0ghTgnxe8kp1vcwsVO+fu7406C8OcGx9vmBPc+mXs77c/IJAUGyX/4zwAB5460eX
+         WsCg==
+X-Forwarded-Encrypted: i=1; AJvYcCV1zjulUXvk+sPPxpDC8WoO8zQSWluFXUxSdnNlRIXCxKoSYSx2QwigWr1JRD8zSnZ289M/cvezOZ/UtMEsQ5iFLslQGHHcH0EywQ==
+X-Gm-Message-State: AOJu0YwysolHwA4bLnJK7LH47+VTn2Vza5naF3ma8nVlNqVh7QnQwYTK
+	tBWwdiCFwGLnL7/gpSam5lbg5536eSqejqfjyj6pTSM6a3oeJDmK+wPppma0kQJ4vc0MsbNGudJ
+	/
+X-Google-Smtp-Source: AGHT+IFs0W4UETdvUKHjNDT0jsOLwENUOC2FNNISouAi43UfaMazl23H6AZNzwRfQJHVRLXNsxZQzw==
+X-Received: by 2002:a05:600c:6c8f:b0:424:9c01:a0d3 with SMTP id 5b1f17b1804b1-4257a02f7fbmr36087385e9.12.1719828952192;
+        Mon, 01 Jul 2024 03:15:52 -0700 (PDT)
+Received: from [192.168.2.107] ([79.115.63.178])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4256af5b626sm144627895e9.15.2024.07.01.03.15.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 01 Jul 2024 03:13:28 -0700 (PDT)
+        Mon, 01 Jul 2024 03:15:51 -0700 (PDT)
+Message-ID: <1d56c3b2-7adf-45b9-a509-956340f3f17b@linaro.org>
+Date: Mon, 1 Jul 2024 11:15:50 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/4] dt-bindings: mtd: macronix,mx25l12833f: add
+ SPI-NOR chip
+To: Erez <erezgeva2@gmail.com>, Esben Haabendal <esben@geanix.com>
+Cc: Erez Geva <erezgeva@nwtime.org>, linux-mtd@lists.infradead.org,
+ Pratyush Yadav <pratyush@kernel.org>, Michael Walle <mwalle@kernel.org>,
+ linux-kernel@vger.kernel.org, Miquel Raynal <miquel.raynal@bootlin.com>,
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
+ devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+References: <20240629103914.161530-1-erezgeva@nwtime.org>
+ <20240629103914.161530-4-erezgeva@nwtime.org>
+ <1c457520-07b7-4bde-b040-e8bca959a4f5@linaro.org>
+ <CANeKEMOODBNZA6efh0E0Ga_KaVs5Y3WLcUftRhNwYHhnXO=GNw@mail.gmail.com>
+ <CANeKEMO42rJt5Ob4_HDcZ3eEMvuMOPvRaFaLwL8SA65NtxSV7A@mail.gmail.com>
+Content-Language: en-US
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+In-Reply-To: <CANeKEMO42rJt5Ob4_HDcZ3eEMvuMOPvRaFaLwL8SA65NtxSV7A@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Date: Mon, 01 Jul 2024 12:13:28 +0200
-Message-Id: <D2E4FJAD0UZ7.ZDYOYNZ8QOJA@fairphone.com>
-Cc: "Dmitry Baryshkov" <dmitry.baryshkov@linaro.org>,
- <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] arm64: dts: qcom: qrb4210-rb2: Correct PMI632 VBUS
- voltage
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-To: "Dang Huynh" <danct12@riseup.net>, "Bjorn Andersson"
- <andersson@kernel.org>, "Konrad Dybcio" <konrad.dybcio@linaro.org>, "Rob
- Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>
-X-Mailer: aerc 0.17.0-0-g6ea74eb30457
-References: <20240701-qrd4210rb2-vbus-volt-v1-1-5c06f8358436@riseup.net>
-In-Reply-To: <20240701-qrd4210rb2-vbus-volt-v1-1-5c06f8358436@riseup.net>
+Content-Transfer-Encoding: 7bit
 
-On Mon Jul 1, 2024 at 12:09 PM CEST, Dang Huynh wrote:
-> According to downstream sources, PMI632 maximum VBUS voltage is
-> 1 volt.
 
-Everywhere (also subject): s/volt/ampere/
 
-Voltage for USB is 5V
+On 7/1/24 10:46 AM, Erez wrote:
+> When using mx25l12805d, we do not read SFDP.
+> As it uses the no-SFDP flags.
+> When using mx25l12833f hardware with mx25l12805d driver, it did not
+> try to read the SFDP.
+> Yet mx25l12833f does have SFDP, when I remove the no-SFDP flags, the
+> driver fetch the SFDP.
+> 
+> Secondly SFDP does not contain OTP information.
+> 
+> mx25l12805d has two OTP regions of 128 KiB and 384 KiB (yes asymmetric).
+> While mx25l12833f has two OTP regions of 512 KiB.
+> 
+> How do we handle it?
 
-Regards
-Luca
+You would first try to parse SFDP and initialize the flash based on
+SFDP. If there's no SFDP then you fallback to the flags declared at
+flash declaration. Esben had a try recently, see [1]. I don't know if
+there's any progress in that direction.
 
->
-> Taken from msm-4.19 (631561973a034e46ccacd0e53ef65d13a40d87a4)
-> Line 685-687 in drivers/power/supply/qcom/qpnp-smb5.c
->
-> Signed-off-by: Dang Huynh <danct12@riseup.net>
-> ---
-> In previous patch series, there's a suggestion to correct
-> PMI632's VBUS voltage.
->
-> Unfortunately it didn't make it and probably forgotten.
-> ---
->  arch/arm64/boot/dts/qcom/qrb4210-rb2.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts b/arch/arm64/boot/d=
-ts/qcom/qrb4210-rb2.dts
-> index 1c7de7f2db79..1888d99d398b 100644
-> --- a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
-> +++ b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
-> @@ -305,7 +305,7 @@ pmi632_ss_in: endpoint {
-> =20
->  &pmi632_vbus {
->  	regulator-min-microamp =3D <500000>;
-> -	regulator-max-microamp =3D <3000000>;
-> +	regulator-max-microamp =3D <1000000>;
->  	status =3D "okay";
->  };
-> =20
->
-> ---
-> base-commit: 642a16ca7994a50d7de85715996a8ce171a5bdfb
-> change-id: 20240701-qrd4210rb2-vbus-volt-822764c7cfca
->
-> Best regards,
+Also, you haven't mentioned anything about the testing. Do you have the
+flash?
 
+[1]
+https://lore.kernel.org/linux-mtd/20240603-macronix-mx25l3205d-fixups-v2-0-ff98da26835c@geanix.com/
 
