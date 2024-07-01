@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-81800-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81801-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69E3F91D7D3
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 08:00:35 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B90291D7D4
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 08:01:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 22A0E280D39
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 06:00:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8F04DB203CF
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 06:01:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4E3C2AD16;
-	Mon,  1 Jul 2024 06:00:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE37E28F5;
+	Mon,  1 Jul 2024 06:01:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GOneBBdL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sYlydvdN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACC5728F5;
-	Mon,  1 Jul 2024 06:00:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9FC8288DF
+	for <devicetree@vger.kernel.org>; Mon,  1 Jul 2024 06:01:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719813629; cv=none; b=PF8pYzOXCsdd7pkr6cDb0B0YGfBUUr07UEJ5/8/CPWsQku2/VRLjlfhi/fKWmMcMun9ZJqsJIrtSoADImX6A3l/PaSWGTXfj4yHDHuKzpiwMswDCgfwBjWh4nUZ9+E+puOZXyZjtFZaEjc93eip3hI5oweRyrF1JQcxKj/jtF2o=
+	t=1719813711; cv=none; b=TnQooc/98lg2wzneKfw1//Bb+Y4o6+QrI7NNksNcqjSGI+1k8/hldrUizCqH38/ROg7BGs6OMuIqzAnQ6We86ZNMnzOgsxCjTDVSW+xvhrVZ6MM/F1nTMnTvsLYmZWUzTzlizhBFDUKVDNsOA38UXauhzkz6sRCdVZ5oZrRm4cc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719813629; c=relaxed/simple;
-	bh=V374CvmODMG9q8qZNeYgDNZLB/vi0eKCHGWX9StgBKg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=K4AUQNdLJFqsYCtlP8jHPxc7KiqHk12AewypAkL/Vld6YYLQ9NXIXgQaiWp3xt9uYD05343yYQ2eBetIFqwAxPJpynscGtyZigin7x9ELlJXKgn3MotvBF6jAgAbaiFtljLkUMUhyHylxN7jLQ5nYoaEBeQOCJenKi/jo794Di0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GOneBBdL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE9B6C116B1;
-	Mon,  1 Jul 2024 06:00:24 +0000 (UTC)
+	s=arc-20240116; t=1719813711; c=relaxed/simple;
+	bh=LYf1JY1drMJvaZBrYQuPsIY8cWtA4iP/QNizNXwN8xE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YAy/0f7duZacqu4yefXKyM3F+sPeRxvKkNTh3sO1cLAsJFFWMss1ov9GhKAjOUhHOacZPobRSQIyo1yBgOIFumQQ6B1qq4eUBbdVFKK+fEsaDpqQjBH2dffchUREcARMWuBQCvJDcMi1CGXVQ6gGkSPyC5XWL5cjbwp6hWFNhm4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sYlydvdN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37035C116B1;
+	Mon,  1 Jul 2024 06:01:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719813629;
-	bh=V374CvmODMG9q8qZNeYgDNZLB/vi0eKCHGWX9StgBKg=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=GOneBBdLq3X/yx8Vgp7hfdu8D7UTvO7+PNAOrANGE54OQSEb7W7N0X5rAFnWzdQ6j
-	 IzrRcpKGK4raYSg5R1NziiLDtX9lTs5ngIp1s10CY4oGy3qoLlcu7OVVcP3MLGQJ10
-	 drsIFpS0MKVB5O+S48WaXOFrWjH/dexfTpHeVuteoxCFA1j7iW9ZNBfP2eLQxipMyg
-	 jypE3i4MmNJ3WGYOreG0Oy+R/FBcPrAHFHzqy+tIoR+D5vptIhiozf1dAwRdbSqI7h
-	 Tr2YJOmTTAc2CobEOYA70LyF/tgnLsSV2NA1yxBDNdWcnP+dcTMSu8Yna67Msgp8Lw
-	 ex+uQiys3NEnQ==
-Message-ID: <ac8d5e77-3ad5-4405-a276-8e684ba55126@kernel.org>
-Date: Mon, 1 Jul 2024 08:00:22 +0200
+	s=k20201202; t=1719813711;
+	bh=LYf1JY1drMJvaZBrYQuPsIY8cWtA4iP/QNizNXwN8xE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=sYlydvdNZuwhPc1LEKZel8BRkjrDdWc2c/pnm7Ljf44NlLtIKcPdiN31g1JD9gUl6
+	 S3qMchYTbSPS0BH41X7WxhIZbIqp3cYQI5rDHblKIgDv7byS4N66d2KG+TeQislqQm
+	 0QpKVxIxSY9f3aQEboF+UeYW/P06fK9abkZyzMCzvfBksx+I3PYvZUHtxeSSwd1FW2
+	 2eG6sKhfOlqk4EnvrRNE/7Savpb0YPzHlgvW+5pL+p2PfRQcW9FGxCKveuHNErEhfs
+	 ozxyh+O6zUtEUhehGN0R1lZAJB/q52tpM1HegY+paeiS3bJGuQKOk43x+2qDbF6iwL
+	 /8L2Pvypp8sZQ==
+Message-ID: <b55a888d-9e64-40fb-9d78-26703835d1e6@kernel.org>
+Date: Mon, 1 Jul 2024 08:01:46 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,13 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/2] ASoC: dt-bindings: simple-audio-mux: add
- state-labels property
-To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
- Alexandre Belloni <aleandre.belloni@bootlin.com>,
- Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Takashi Iwai <tiwai@suse.com>,
- devicetree@vger.kernel.org, linux-sound@vger.kernel.org
-References: <87o77i7xq6.wl-kuninori.morimoto.gx@renesas.com>
- <87le2m7xp8.wl-kuninori.morimoto.gx@renesas.com>
+Subject: Re: [PATCH 3/3] ARM: dts: marvell: add support for D-Link DNS-320L
+To: Zoltan HERPAI <wigyori@uid0.hu>, andrew@lunn.ch,
+ gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com,
+ krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20240629113450.127561-1-wigyori@uid0.hu>
+ <20240629113450.127561-3-wigyori@uid0.hu>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,21 +102,191 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <87le2m7xp8.wl-kuninori.morimoto.gx@renesas.com>
+In-Reply-To: <20240629113450.127561-3-wigyori@uid0.hu>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 01/07/2024 02:38, Kuninori Morimoto wrote:
-> simple-audio-mux is designed to be used generally, thus "Input 1" or
-> "Input 2" are used to selecting MUX input. This numbered inputs would
-> work, but might be not user friendly in some case, for example in case
-> of system hardware design has some clear labels.
-> Adds new "state-labels" property and enable to select MUX by own state
-> names.
+On 29/06/2024 13:34, Zoltan HERPAI wrote:
+> Dual-slot NAS based on Marvell Kirkwood.
 > 
-> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> Specifications:
+>  - Marvell 88F6702 @1GHz
+>  - 256Mb RAM
+>  - 128Mb NAND
+>  - 1x GbE LAN (Marvell 88E1318R)
+>  - 1x USB 2.0
+>  - 2x SATA
+>  - Weltrend WT69P3 ("supervisor" MCU chip)
+>  - Serial on J2 (115200,8n1)
+>  - Newer bootROM so kwboot-ing via serial is possible
+> 
+> Signed-off-by: Zoltan HERPAI <wigyori@uid0.hu>
+> ---
+>  arch/arm/boot/dts/marvell/Makefile            |   1 +
+>  .../arm/boot/dts/marvell/kirkwood-dns320l.dts | 197 ++++++++++++++++++
+>  2 files changed, 198 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/marvell/kirkwood-dns320l.dts
+> 
+> diff --git a/arch/arm/boot/dts/marvell/Makefile b/arch/arm/boot/dts/marvell/Makefile
+> index 1e0f5ff492f7..cadd4039b783 100644
+> --- a/arch/arm/boot/dts/marvell/Makefile
+> +++ b/arch/arm/boot/dts/marvell/Makefile
+> @@ -92,6 +92,7 @@ dtb-$(CONFIG_MACH_KIRKWOOD) += \
+>  	kirkwood-db-88f6282.dtb \
+>  	kirkwood-dir665.dtb \
+>  	kirkwood-dns320.dtb \
+> +	kirkwood-dns320l.dtb \
+>  	kirkwood-dns325.dtb \
+>  	kirkwood-dockstar.dtb \
+>  	kirkwood-dreamplug.dtb \
+> diff --git a/arch/arm/boot/dts/marvell/kirkwood-dns320l.dts b/arch/arm/boot/dts/marvell/kirkwood-dns320l.dts
+> new file mode 100644
+> index 000000000000..82a2d60376f7
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/marvell/kirkwood-dns320l.dts
+> @@ -0,0 +1,197 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/*
+> + * Device Tree file for D-Link DNS-320L
+> + *
+> + * Copyright (C) 2024, Zoltan HERPAI <wigyori@uid0.hu>
+> + * Copyright (C) 2015, Sunke Schluters <sunke-dev@schlueters.de>
+> + *
+> + * This file is based on the works of:
+> + * - Sunke Schluters <sunke-dev@schlueters.de>
+> + *   - https://github.com/scus1/dns320l/blob/master/kernel/dts/kirkwood-dns320l.dts
+> + * - Andreas Bohler <dev@aboehler.at>:
+> + *   - http://www.aboehler.at/doku/doku.php/projects:dns320l
+> + *   - http://www.aboehler.at/hg/linux-dns320l/file/ba7a60ad7687/linux-3.12/kirkwood-dns320l.dts
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "kirkwood.dtsi"
+> +#include "kirkwood-6281.dtsi"
+> +
+> +/ {
+> +	model = "D-Link DNS-320L";
+> +	compatible = "dlink,dns320l", "marvell,kirkwood-88f6702", "marvell,kirkwood";
+> +
+> +	memory {
+> +		device_type = "memory";
+> +		reg = <0x00000000 0x10000000>;
+> +	};
+> +
+> +	chosen {
+> +		bootargs = "console=ttyS0,115200n8 earlyprintk";
+> +		stdout-path = &uart0;
+> +	};
+> +
+> +	gpio-keys {
+> +		compatible = "gpio-keys";
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Nope, these cannot be there.
+
+It does not look like you tested the DTS against bindings. Please run
+`make dtbs_check W=1` (see
+Documentation/devicetree/bindings/writing-schema.rst or
+https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+for instructions).
+
+> +		pinctrl-0 = <&pmx_buttons>;
+> +		pinctrl-names = "default";
+> +
+> +		button@1 {
+> +			label = "Reset push button";
+> +			linux,code = <KEY_RESTART>;
+> +			gpios = <&gpio0 28 1>;
+> +		};
+> +
+> +		button@2 {
+> +			label = "USB unmount button";
+> +			linux,code = <KEY_EJECTCD>;
+> +			gpios = <&gpio0 27 1>;
+> +		};
+> +	};
+> +
+> +	gpio-leds {
+> +		compatible = "gpio-leds";
+> +		pinctrl-0 = <&pmx_leds>;
+> +		pinctrl-names = "default";
+> +
+> +		blue-usb {
+
+It does not look like you tested the DTS against bindings. Please run
+`make dtbs_check W=1` (see
+Documentation/devicetree/bindings/writing-schema.rst or
+https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+for instructions).
+
+> +			label = "dns320l:usb:blue";
+> +			gpios = <&gpio0 25 GPIO_ACTIVE_HIGH>;
+> +			linux,default-trigger = "usbport";
+> +		};
+> +
+> +		orange-usb {
+> +			label = "dns320l:usb:orange";
+> +			gpios = <&gpio0 26 GPIO_ACTIVE_HIGH>;
+> +		};
+> +
+> +		orange-l-hdd {
+> +			label = "dns320l:orange:l_hdd";
+> +			gpios = <&gpio0 23 GPIO_ACTIVE_HIGH>;
+> +		};
+> +
+> +		orange-r-hdd {
+> +			label = "dns320l:orange:r_hdd";
+> +			gpios = <&gpio0 22 GPIO_ACTIVE_HIGH>;
+> +		};
+> +	};
+> +
+> +	ocp@f1000000 {
+
+Why you are not overriding by label/phandle?
+
+> +		sata@80000 {
+> +			status = "okay";
+> +			nr-ports = <2>;
+> +		};
+> +
+> +		serial@12000 {
+> +			status = "okay";
+> +		};
+> +
+> +		serial@12100 {
+> +			pinctrl-0 = <&pmx_uart1>;
+> +			pinctrl-names = "default";
+> +			status = "okay";
+> +		};
+> +	};
+> +
+> +	regulators {
+
+No, there is no such node/bus. Drop
+
+> +		compatible = "simple-bus";
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		pinctrl-0 = <&pmx_power_sata>;
+> +		pinctrl-names = "default";
+> +
+> +		sata_power: regulator@1 {
+> +			compatible = "regulator-fixed";
+> +			reg = <1>;
+> +			regulator-name = "SATA Power";
+> +			regulator-min-microvolt = <5000000>;
+> +			regulator-max-microvolt = <5000000>;
+> +			enable-active-high;
+> +			regulator-always-on;
+> +			regulator-boot-on;
+> +			gpio = <&gpio0 24 0>;
+> +		};
+> +	};
+> +};
+> +
+
 
 Best regards,
 Krzysztof
