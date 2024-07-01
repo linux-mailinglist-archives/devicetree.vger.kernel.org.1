@@ -1,154 +1,123 @@
-Return-Path: <devicetree+bounces-81935-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81936-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2B7991DFAF
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 14:45:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DA00C91DFD4
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 14:48:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 764E41F234C9
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 12:45:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 907351F22744
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 12:48:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02771158DBA;
-	Mon,  1 Jul 2024 12:44:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YOdNf6Je"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7179215A863;
+	Mon,  1 Jul 2024 12:48:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C5EA1865;
-	Mon,  1 Jul 2024 12:44:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24D5915A84A
+	for <devicetree@vger.kernel.org>; Mon,  1 Jul 2024 12:48:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719837866; cv=none; b=N4yj7Mp5GgZp6w3F+cIbjmLLZJ3Znh+iKFoG+niQ7hYUdtQj+2gylN3ixZwqNV/i7P0f3M1t6QkT+XvI1oO7/zCpxjZbmw3g6AcJ5FUS/bwxEYuq+7CdDuKdqSF+5Or7pPCoJvDUnQzrDrIp+cSczZLKWmWLKBTFZ4EI4qL/b4c=
+	t=1719838087; cv=none; b=RShigm+8YzJbqIyaL4Z1ljEQiaN755AH58K2+/9VLR1D7cBBKvJAy57/kI+5FsGkHvgbnt8/aOWXlAfq2JxOzwq+bF8Q+xw4FE8aocAMPrEiQgPKuNsYJlIs0+ZZucftkEwEq8YJt+zyG+W9KF5+uv0utRjNLwgHruBhg3+bu5I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719837866; c=relaxed/simple;
-	bh=O8BXXu90uaFR1Jb/1zZyV9jZStuqATmFhCnlzHlMlVg=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=TLqBa0dssM4+hq8gmezyXEnPXJvs6Fbb9Kt3w6+r3CR2lkmPxnEHTiogdo44RnGxZLDTccgSKDMre82FtfGKQJiIJ+XxdUJchDsayPmd5VHeOROy5WP37JT+J4Fpg50Mg4UYaHMo1UCo+z3+1Aohf2SeHPuEOeQx4sIkR5yWvOc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YOdNf6Je; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-424acf3226fso23224825e9.1;
-        Mon, 01 Jul 2024 05:44:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1719837863; x=1720442663; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=X9oUdv7urUmTInH8QMPbAXnIwXW+SLweFqKTOXeU2hk=;
-        b=YOdNf6JeQ6TMWlOEfp6hONbEsyyrUz5X1JOfsw7gEUohbpyGlKD6SKsl8fmDYPLT1/
-         iJosjALKCnYP4VF+TARc6IeSVupU76SCazgGeTbTyaDIDTXrl76levlut+zXgloxMciS
-         s4IX/D2pnk9ie1hB4PMJxN/T4HBEgR0ytBSYflt6rNZri4Tbbu/ZTUxz0zh6WGbyX3AD
-         7du5ytHsL2jw4zLgdPo/4QOM0Wi6hTVxY8wjMFUYynaRI0rYr87qJ7BuVz9lNEtW26uv
-         hIwFKCqSUTIi6KEAV6bdWNeBFNWNrR5pk5pS38UTNFaPl1qgezCxIvAzjLv1QWKJcD7o
-         nmkw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719837863; x=1720442663;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=X9oUdv7urUmTInH8QMPbAXnIwXW+SLweFqKTOXeU2hk=;
-        b=udSmaxXg/IC7UipoNMWizyIihUJrqr39AzGWO/QwKLHDKIP11pq9NwmlMtEerALcY1
-         FVsZhnX9hvO+G3i6tMcHcE5N2LoazHPAkixmv01KsEPQy3zSdtQxO4sp68sC3mSIs4/K
-         4bCuWHhwjgI2zK+Uaf1PbohGqxMkKmA8J0DTUMh14NOl6EmcLNxeRLJuhaELw0DEDfeT
-         tOJRAkaIkY4xg9/SX8U6Nsk3LvbmnpAXtiKuqX+nbW7704Le7Hpo47ea1AYcmbnQP6Kw
-         vYdUm08WmsD6j+PQPQOd7ywnEUjkQA2NJzZ55knweO+P3KhiKWpjRVCRribFdf4HJGMH
-         9Zpw==
-X-Forwarded-Encrypted: i=1; AJvYcCU7acRP2LOSS2/ryI54suebwoS//v6B9yKSCzngC6zlqRACou2coZaUsJm4klAyLoBCD+CqHUtJytXR3BA0UtvUlfTnbgDTKgTIFNLW14jJCl9jo4XNdK8xrW86+Lq1dwYyLSbYIADWTPpvkBDUOni1wsQ0q3xPjGOmkJ0Qnl6584g/3ArqLsyyC1vnnNGF8A28ltkUk84OU8WM
-X-Gm-Message-State: AOJu0Yy55c3BcJHjc6dB3CbLcMDAFxFyrkfALGseTj2MqLU5GKj8GDvR
-	omd7rwrSd03G9K/jU54ynuAOL1oeRgjEzVmbYpmutRpJdKWB/rWo/s0YsVrZ
-X-Google-Smtp-Source: AGHT+IG/m5dh7OIdKUq1Jt30kdZeI3XnThzntipad3x9UGAxTUw1PaxNZ2+WOT85Dz5soydlYmB7ow==
-X-Received: by 2002:a05:600c:4c14:b0:424:f2b9:81f5 with SMTP id 5b1f17b1804b1-4257a028321mr36950435e9.9.1719837862346;
-        Mon, 01 Jul 2024 05:44:22 -0700 (PDT)
-Received: from vitor-nb.. ([2001:8a0:e622:f700:f55c:ea59:1259:5240])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3675a0e16b3sm9921005f8f.61.2024.07.01.05.44.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Jul 2024 05:44:21 -0700 (PDT)
-From: Vitor Soares <ivitro@gmail.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Peng Fan <peng.fan@nxp.com>,
-	Ulf Hansson <ulf.hansson@linaro.org>
-Cc: Vitor Soares <vitor.soares@toradex.com>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	ivitro@gmail.com,
-	stable@vger.kernel.org,
-	Lucas Stach <l.stach@pengutronix.de>
-Subject: [PATCH v1] arm64: dts: imx8mp: Fix VPU PGC power-domain parents
-Date: Mon,  1 Jul 2024 13:43:02 +0100
-Message-Id: <20240701124302.16520-1-ivitro@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1719838087; c=relaxed/simple;
+	bh=Pt1ou4Zca/Wj4epFL7dL1mbnEt3BYprXaD0ZHvhVv+o=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=Z4E81ko4zBTmRCfXJ2OPE8ih6OYkDbk/ogHIfdy/FyshZIrqjZ9oN5RNZaQLmJrC5tFbZo9K6biPMuiQH3Vh482x3eqxMj3UvKUDzt6oXUnO0ebbzkL5rLLJRBU3hxYx7I++bvP9bWs+LWmswrCYf1CezJlovzmreHfF/rluO+I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1sOGRi-000460-T4; Mon, 01 Jul 2024 14:47:50 +0200
+Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1sOGRi-006NK5-G9; Mon, 01 Jul 2024 14:47:50 +0200
+Received: from pza by lupine with local (Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1sOGRi-000UeT-1P;
+	Mon, 01 Jul 2024 14:47:50 +0200
+Message-ID: <150055844b8af2017fa721ff08bbde473354b2da.camel@pengutronix.de>
+Subject: Re: [PATCH v2 1/2] dt-bindings: input: touchscreen: exc3000: add
+ EXC81W32
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Conor Dooley <conor@kernel.org>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring
+ <robh@kernel.org>,  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>,  linux-input@vger.kernel.org,
+ devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org,
+ kernel@pengutronix.de
+Date: Mon, 01 Jul 2024 14:47:50 +0200
+In-Reply-To: <20240628-agonizing-syrup-fcd55c441b3f@spud>
+References: 
+	<20240628-input-exc3000-exc81w32-v2-0-c2b21a369c05@pengutronix.de>
+	 <20240628-input-exc3000-exc81w32-v2-1-c2b21a369c05@pengutronix.de>
+	 <20240628-agonizing-syrup-fcd55c441b3f@spud>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-From: Vitor Soares <vitor.soares@toradex.com>
+Hi Conor,
 
-On iMX8M Plus QuadLite (VPU-less SoC), the dependency between VPU power
-domains lead to a deferred probe error during boot:
-[   17.140195] imx-pgc imx-pgc-domain.8: failed to command PGC
-[   17.147183] platform imx-pgc-domain.11: deferred probe pending: (reason unknown)
-[   17.147200] platform imx-pgc-domain.12: deferred probe pending: (reason unknown)
-[   17.147207] platform imx-pgc-domain.13: deferred probe pending: (reason unknown)
+On Fr, 2024-06-28 at 17:21 +0100, Conor Dooley wrote:
+> On Fri, Jun 28, 2024 at 10:35:51AM +0200, Philipp Zabel wrote:
+> > Add compatible for EXC81W32 touchscreen controllers.
+>=20
+> Could you please mention in your commit messages what makes a fallback
+> compatible inappropriate here?
 
-This is incorrect and should be the VPU blk-ctrl controlling these power
-domains, which is already doing it.
+thank for pointing this out. Actually, I'm not sure a fallback
+compatible is inappropriate at all. There just is none currently, even
+though EXC80H60 and EXC80H84 already look compatible to me.
 
-After removing the `power-domain` property from the VPU PGC nodes, both
-iMX8M Plus w/ and w/out VPU boot correctly. However, it breaks the
-suspend/resume functionality. A fix for this is pending, see Links.
+To my understanding, there's EXC80[WH]{32,46,60,84} models, that should
+only differ in ball pitch (W or H) and targeted display size (the last
+number).
+I don't know if there are actual relevant differences between what I
+assume are model generations, such as EXC80 to EXC81. At least the
+limited currently implemented feature set in the exc3000 driver is
+identical.
 
-Cc: <stable@vger.kernel.org>
-Fixes: df680992dd62 ("arm64: dts: imx8mp: add vpu pgc nodes")
-Link: https://lore.kernel.org/all/fcd6acc268b8642371cf289149b2b1c3e90c7f45.camel@pengutronix.de/
-Link: https://lore.kernel.org/all/20240418155151.355133-1-ivitro@gmail.com/
-Suggested-by: Lucas Stach <l.stach@pengutronix.de>
-Signed-off-by: Vitor Soares <vitor.soares@toradex.com>
----
- arch/arm64/boot/dts/freescale/imx8mp.dtsi | 3 ---
- 1 file changed, 3 deletions(-)
+Given that EXC80H60, EXC80H84, and now EXC81W32 all share the same 16K
+resolution and the same message format (possible differences in
+capability to measure touch area nonwithstanding), should I prepend
+this series with a patch:
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-index b92abb5a5c53..12548336b736 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-@@ -882,21 +882,18 @@ pgc_vpumix: power-domain@19 {
- 
- 					pgc_vpu_g1: power-domain@20 {
- 						#power-domain-cells = <0>;
--						power-domains = <&pgc_vpumix>;
- 						reg = <IMX8MP_POWER_DOMAIN_VPU_G1>;
- 						clocks = <&clk IMX8MP_CLK_VPU_G1_ROOT>;
- 					};
- 
- 					pgc_vpu_g2: power-domain@21 {
- 						#power-domain-cells = <0>;
--						power-domains = <&pgc_vpumix>;
- 						reg = <IMX8MP_POWER_DOMAIN_VPU_G2>;
- 						clocks = <&clk IMX8MP_CLK_VPU_G2_ROOT>;
- 					};
- 
- 					pgc_vpu_vc8000e: power-domain@22 {
- 						#power-domain-cells = <0>;
--						power-domains = <&pgc_vpumix>;
- 						reg = <IMX8MP_POWER_DOMAIN_VPU_VC8000E>;
- 						clocks = <&clk IMX8MP_CLK_VPU_VC8KE_ROOT>;
- 					};
--- 
-2.34.1
+@@ -14,10 +14,13 @@
+=20
+ properties:
+   compatible:
+-    enum:
+-      - eeti,exc3000
+-      - eeti,exc80h60
+-      - eeti,exc80h84
++    oneOf:
++      - const: eeti,exc3000
++      - items:
++          - enum:
++              - eeti,exc80h60
++          - const: eeti,exc80h84
++      - const: eeti,exc80h84
+   reg:
+     const: 0x2a
+   interrupts:
 
+regards
+Philipp
 
