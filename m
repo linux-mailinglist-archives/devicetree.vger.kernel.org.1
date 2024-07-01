@@ -1,92 +1,219 @@
-Return-Path: <devicetree+bounces-81978-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81977-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B17791E25D
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 16:26:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C451F91E25B
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 16:26:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4532A1F267C2
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 14:26:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7DC35288713
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 14:26:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A84F1649C2;
-	Mon,  1 Jul 2024 14:26:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D28EE16132E;
+	Mon,  1 Jul 2024 14:26:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="OGuAEcFE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o0V5ujIl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.16])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDDD53D3BC;
-	Mon,  1 Jul 2024 14:26:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.16
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA2198C1D;
+	Mon,  1 Jul 2024 14:26:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719843975; cv=none; b=L/EzaYf75hE1ub+V1ptg7Ho3WhEHJIQkAMp59jJpMyEsun3NbONoyPAT+6wYDPmJT7T6or48WbMHQvudQoRUj4WLvhMK6Y9XIBvpSPHn6wbTSm/PwDZ2REhuM7IyQavW9tpgjng+ki3Z6w5ADKnMBy6ZDgUWV4yjGqPtDqy0zbE=
+	t=1719843974; cv=none; b=gdw98QHieSPBLHwlXVNDaMsG1wRNoJN1aI771z9Lg69mCgBO6h1u4xVbf7dGRCeAKRBtOv4ZcgPOo5uKwG4FDJ3uUWTE00HhhBaFDdSyR5Ojl6H3cjboF/e64Xpr8l1Ny24xKV5WFoNEuwFsJUxUM9BghYsecitb9EzHoXU9JTo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719843975; c=relaxed/simple;
-	bh=tyXUokv7xNpsIGSP5ELpRgNWICH7u18dUF/zNyymBmI=;
+	s=arc-20240116; t=1719843974; c=relaxed/simple;
+	bh=fmwZXCjuj0NA9DjirjyOyzJHTKDit436XbZ/klfs5Ao=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CdSNGO7qGuAPZTeqUpADbFLlgjR1KieDZrJitiRKOwDpyOG8ZWF2cILB6jAlECKQHVfvjPeSx6QViL1e2/FiQ5wOXezgWzCwPce7WX42U0JvG6a6xV0+XPFZZU+QWHU2D5krdAylaoxyaKeAu185h4U+5bu4WWt2p+e4yL2IV80=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=OGuAEcFE; arc=none smtp.client-ip=1.95.21.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=dEno6mHhFR5G5j7SXntEr/1pWDtwK/8nwORwa7dpaH0=;
-	b=OGuAEcFE6XaT95TB6J5r9c+FrJnA68Ii+Guzble791M+e0Pa2/5cHuhus/rNwb
-	BP5kMVNDNdCO7JFJOrgp7QigMfOZrhnfG8IkBKpbAyckwVsImjrJ3bTVzOAtdL8y
-	5BOvg5WgTbd3BPf197hD8PmPhaiYBo5G6nHRLWF5cw5MA=
-Received: from dragon (unknown [114.218.218.47])
-	by gzsmtp3 (Coremail) with SMTP id M88vCgD3vwxavIJmPmcCAA--.6190S3;
-	Mon, 01 Jul 2024 22:25:32 +0800 (CST)
-Date: Mon, 1 Jul 2024 22:25:30 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Dong Aisheng <aisheng.dong@nxp.com>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>,
-	stable@vger.kernel.org
-Subject: Re: [PATCH v3 0/9] arm64: dts: imx8qm: add subsystem lvds and mipi
-Message-ID: <ZoK8WsnqxfIo6tAp@dragon>
-References: <20240614-imx8qm-dts-usb-v3-0-8ecc30678e1c@nxp.com>
- <Zn0R2/lcgcSG03CM@dragon>
+	 Content-Type:Content-Disposition:In-Reply-To; b=mOXDDNbnGv0O0olvizSBJ7r2djpE+BTFmprNkftlJE4rEZaqYaQeeM3r503yrlcUyWMyz+q+QZLrKbAn5i9MSQvLEPMNM65bihYs9N0pgLa6mqu1a2rgLTVP2B8mp936DQtvg7sLIaCw+HW8qaA9MhlDjtlfoqSjzhoi88OvSRg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o0V5ujIl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA2F4C116B1;
+	Mon,  1 Jul 2024 14:26:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719843974;
+	bh=fmwZXCjuj0NA9DjirjyOyzJHTKDit436XbZ/klfs5Ao=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=o0V5ujIl+UMTHnRS1kJvkxxqL0rD8NWDHljKyif1AUcIwSWRI/MqGHgmXTJ1t/DKN
+	 Q/SeUBn0/RaCHwSRTfaB40Jen7lERYj0HblLXB5jCLeelpabsZhz5UMshA7VKl5uqo
+	 LOsFTgmMiPAqhAkkE/Zm6kyMvHMhmxjUEz0sgi7lcEN3jeetfx69pOKAuHkzMTuiWq
+	 MNF70XIbh6hhKvojZX0IX9ziSAFYrtY/TPa6j2r9mSetaA88gMR1a8Nl1yriS5HVcU
+	 VihZW4auNsWJHVCfyFRUcUmkM7Pp8KqADO93+M8fQOI3AGOs5CqtWebDIlw9JpPBEF
+	 UGMjJOSvNGifg==
+Date: Mon, 1 Jul 2024 16:26:10 +0200
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: Simon Horman <horms@kernel.org>
+Cc: netdev@vger.kernel.org, nbd@nbd.name, lorenzo.bianconi83@gmail.com,
+	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, conor@kernel.org,
+	linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, catalin.marinas@arm.com,
+	will@kernel.org, upstream@airoha.com,
+	angelogioacchino.delregno@collabora.com,
+	benjamin.larsson@genexis.eu, rkannoth@marvell.com,
+	sgoutham@marvell.com, andrew@lunn.ch, arnd@arndb.de
+Subject: Re: [PATCH v4 2/2] net: airoha: Introduce ethernet support for
+ EN7581 SoC
+Message-ID: <ZoK8glSv-mtNPOLX@lore-desk>
+References: <cover.1719672695.git.lorenzo@kernel.org>
+ <56f57f37b80796e9706555503e5b4cf194f69479.1719672695.git.lorenzo@kernel.org>
+ <20240701135319.GE17134@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="yfGzRyLDChOcgYkO"
+Content-Disposition: inline
+In-Reply-To: <20240701135319.GE17134@kernel.org>
+
+
+--yfGzRyLDChOcgYkO
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <Zn0R2/lcgcSG03CM@dragon>
-X-CM-TRANSID:M88vCgD3vwxavIJmPmcCAA--.6190S3
-X-Coremail-Antispam: 1Uf129KBjvdXoWrur4DWFykKr4fKF4DuryxGrg_yoW3GFb_uw
-	4aqF1kCw1UJw4fG3sYy3ZF9rWUKr92yr98Wry7Ww1qqr17Z3W0yF9Yqr4ruryktFWSvF4D
-	JF4Yqw4xJr45GjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IU0zT5JUUUUU==
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiCRwPZWZv-dtTeAAAs7
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jun 27, 2024 at 03:16:43PM +0800, Shawn Guo wrote:
-> On Fri, Jun 14, 2024 at 11:06:24AM -0400, Frank Li wrote:
-> > Frank Li (9):
-> >       arm64: dts: imx8: add basic lvds0 and lvds1 subsystem
-> >       arm64: dts: imx8qm: add lvds subsystem
-> >       arm64: dts: imx8: add basic mipi subsystem
-> >       arm64: dts: imx8qm: add mipi subsystem
-> >       arm64: dts: imx8qm-mek: add cm4 remote-proc and related memory region
-> >       arm64: dts: imx8qm-mek: add pwm and i2c in lvds subsystem
-> >       arm64: dts: imx8qm-mek: add i2c in mipi[0,1] subsystem
-> >       arm64: dts: imx8qm-mek: fix gpio number for reg_usdhc2_vmmc
-> >       arm64: dts: imx8qm-mek: add usb 3.0 and related type C nodes
-> 
-> Applied all, thanks!
+> On Sat, Jun 29, 2024 at 05:01:38PM +0200, Lorenzo Bianconi wrote:
+> > Add airoha_eth driver in order to introduce ethernet support for
+> > Airoha EN7581 SoC available on EN7581 development board (en7581-evb).
+> > en7581-evb networking architecture is composed by airoha_eth as mac
+> > controller (cpu port) and a mt7530 dsa based switch.
+> > EN7581 mac controller is mainly composed by Frame Engine (FE) and
+> > QoS-DMA (QDMA) modules. FE is used for traffic offloading (just basic
+> > functionalities are supported now) while QDMA is used for DMA operation
+> > and QOS functionalities between mac layer and the dsa switch (hw QoS is
+> > not available yet and it will be added in the future).
+> > Currently only hw lan features are available, hw wan will be added with
+> > subsequent patches.
+> >=20
+> > Tested-by: Benjamin Larsson <benjamin.larsson@genexis.eu>
+> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+>=20
+> Hi Lorenzo,
+>=20
+> Some minor feedback from my side.
 
-Dropped the series due to the warnings reported by kernel test robot.
+Hi Simon,
 
-Shawn
+>=20
+> > +static void airoha_qdma_set_irqmask(struct airoha_eth *eth, int index,
+> > +				    u32 clear, u32 set)
+> > +{
+> > +	unsigned long flags;
+> > +
+> > +	if (WARN_ON_ONCE(index >=3D ARRAY_SIZE(eth->irqmask)))
+> > +		return;
+> > +
+> > +	spin_lock_irqsave(&eth->irq_lock, flags);
+> > +
+> > +	eth->irqmask[index] &=3D ~clear;
+> > +	eth->irqmask[index] |=3D set;
+> > +	airoha_qdma_wr(eth, REG_INT_ENABLE(index), eth->irqmask[index]);
+> > +	/* Read irq_enable register in order to guarantee the update above
+> > +	 * completes in the spinlock critical section.
+> > +	 */
+> > +	airoha_rr(eth, REG_INT_ENABLE(index));
+>=20
+> airoha_rr() expects an __iomem pointer as it's first argument,
+> but the type of eth is struct airoha_eth *eth.
+>=20
+> Should this be using airoha_qdma_rr() instead?
 
+ack, right. Thx for pointing this out. I will fix it in v5.
+
+>=20
+> Flagged by Sparse.
+>=20
+> > +
+> > +	spin_unlock_irqrestore(&eth->irq_lock, flags);
+> > +}
+>=20
+> ...
+>=20
+> > +static void airoha_ethtool_get_strings(struct net_device *dev, u32 sse=
+t,
+> > +				       u8 *data)
+> > +{
+> > +	int i;
+> > +
+> > +	if (sset !=3D ETH_SS_STATS)
+> > +		return;
+> > +
+> > +	for (i =3D 0; i < ARRAY_SIZE(airoha_ethtool_stats_name); i++) {
+> > +		memcpy(data + i * ETH_GSTRING_LEN,
+> > +		       airoha_ethtool_stats_name[i], ETH_GSTRING_LEN);
+> > +	}
+> > +
+> > +	data +=3D ETH_GSTRING_LEN * ARRAY_SIZE(airoha_ethtool_stats_name);
+> > +	page_pool_ethtool_stats_get_strings(data);
+> > +}
+>=20
+> W=3D1 allmodconfig builds on x86_64 with gcc-13 complain about the use
+> of memcpy above because the source is (often?) less than ETH_GSTRING_LEN
+> bytes long.
+>=20
+> I think the preferred solution is to use ethtool_puts(),
+> something like this (compile tested only!):
+>=20
+> @@ -2291,12 +2291,9 @@ static void airoha_ethtool_get_strings(struct net_=
+device *dev, u32 sset,
+>  	if (sset !=3D ETH_SS_STATS)
+>  		return;
+> =20
+> -	for (i =3D 0; i < ARRAY_SIZE(airoha_ethtool_stats_name); i++) {
+> -		memcpy(data + i * ETH_GSTRING_LEN,
+> -		       airoha_ethtool_stats_name[i], ETH_GSTRING_LEN);
+> -	}
+> +	for (i =3D 0; i < ARRAY_SIZE(airoha_ethtool_stats_name); i++)
+> +		ethtool_puts(&data, airoha_ethtool_stats_name[i]);
+> =20
+> -	data +=3D ETH_GSTRING_LEN * ARRAY_SIZE(airoha_ethtool_stats_name);
+>  	page_pool_ethtool_stats_get_strings(data);
+>  }
+> =20
+
+ack, I will fix it in v5.
+
+>=20
+> ...
+>=20
+> > +static int airoha_alloc_gdm_port(struct airoha_eth *eth, struct device=
+_node *np)
+> > +{
+> > +	const __be32 *id_ptr =3D of_get_property(np, "reg", NULL);
+> > +	struct net_device *dev;
+> > +	struct airoha_gdm_port *port;
+>=20
+> nit: reverse xmas tree
+
+ack, I will fix it in v5.
+
+Regards,
+Lorenzo
+
+>=20
+> > +	int err, index;
+> > +	u32 id;
+>=20
+> ...
+>=20
+> --=20
+> pw-bot: changes-requested
+
+--yfGzRyLDChOcgYkO
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZoK8ggAKCRA6cBh0uS2t
+rDBPAQDur3zFnkAytxa5yij4hb3hCBJQ819Y+tMsR1PMD6423gEAlutApyx/5x3N
+LWRCKbrEtI16dofZ1jDxo7xNHCU21Ac=
+=HRGl
+-----END PGP SIGNATURE-----
+
+--yfGzRyLDChOcgYkO--
 
