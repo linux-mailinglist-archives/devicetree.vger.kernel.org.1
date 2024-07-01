@@ -1,207 +1,426 @@
-Return-Path: <devicetree+bounces-82063-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82064-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1B5491E502
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 18:13:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED8F591E51D
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 18:19:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 01E72B237F2
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 16:13:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1D1391C21DD7
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 16:19:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B13616D334;
-	Mon,  1 Jul 2024 16:13:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B882A16631C;
+	Mon,  1 Jul 2024 16:19:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Zf71lCm7"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="OafQCLIr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B073C16B750;
-	Mon,  1 Jul 2024 16:13:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9664D2562E;
+	Mon,  1 Jul 2024 16:19:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719850404; cv=none; b=kQvTM1gLNpckakuT5PbU6CWLDxXNA2J0CWd7L+QEHTVfaHfpEp9vO0WDlL2t1XWrGyeVg2DfyWD5vuwjN/Osd6joPb1pCtW8XHLks93M+YpEaS4cNYalXNKylsHMKsIIX8j4SqF7Ssiyl21rml67NVOA9hqQ+HMkEbzRv2iUcPU=
+	t=1719850764; cv=none; b=RmDLHRIVvAFpU7B8OtPGzugMmtvBCijrWSriGz6WgZf5r/jSuy9FGD7DQvfawptPDjz5CfxR0Leov+pImmw7oZY+zsPy9rrYo2lN/IFHSIrBFSdi0NbbaZR752SfpKMEijvhC72/2Gkz1Phdeu9+qeurXh6DN86iKzS+t2Mkbk4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719850404; c=relaxed/simple;
-	bh=h63ASooyLFfbDlZsGzT129A1uG/AXvxQbsFrU615LaE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=SQg2dQaPSI8+OKNVX0/+53c8QrEzM/ZkmoxLFFx9KzEvxgsJYxyxBI21MhBYGesT+ZDFgJYP+u1RxNjTTxjyiWe1E3deAIKFOVM0WYWrza96jS6z4pGMbq4f0X26y+UOOlg0wtlyCmpDEfcDioHtQ63Bre3mjXt+B+gJ+z4t9P4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Zf71lCm7; arc=none smtp.client-ip=209.85.208.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-58b0beaf703so110934a12.2;
-        Mon, 01 Jul 2024 09:13:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1719850401; x=1720455201; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=tJORc4y41njo2myTxYBaIZoGdagWJX2FVE52D6Y2Z1U=;
-        b=Zf71lCm7xwUi0HP3suy38jHWX8f1EqgI9bRQa6x4ckgRBOHKxX5kfm/rvFyFmAkE5P
-         aM3NICNJaScP5Ne8Nafj59xMDfpMP8VzcqxxIT0X/laWGBzcsvnNYE1/W20wQS5nnX/A
-         wpnRB8lQO6WMlAy50MjldsQytIB2PhINCZ7cZjnPbxLUAfXtsbmKtgn5GtRtfhVfONLm
-         F+10qWYirISjRuOsQJkFKdRK8XMaU/myXB+0kVnM5IwvddLWoC2E9j3Vt6vdC5lrkDmW
-         CDXy3NxEYGi2UtfO6T7q9Vi7U5XA+Jm0Ow+p0QsCI0OtRa4Df+20ggQ1W+7pvUy18kTL
-         /IZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719850401; x=1720455201;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=tJORc4y41njo2myTxYBaIZoGdagWJX2FVE52D6Y2Z1U=;
-        b=ZcSbck2AizStD7nxnjQ6J3l+JdprAROYEyoNEwNghK7tni+UbS5h4JM1HgnB2bf/Pb
-         GCZz1km5DHx/DENZCMy9SGLizRmOyQq4NrCPCzJbYVbuMxz8J0vhWjHtl8V7NkhFhXvP
-         CtEpGYg4vTlnI/33IQX28OgbKxFP4riOUEks8Z7cwR+YupNZmguZYTXpI1g3w6hiypNU
-         qQBVXqzlwklOnkmjPtodvamlvQffGKqYXbMQk3Y4kLpnhFTKj/avRG0kdLFoGhgBHhzD
-         YbD53eKCENLeKYM8aRTz6Iv2Ct9aNIrrWj9YJIu2//dPoFERLZ29681Pk+xNcCDLyIV3
-         ysUw==
-X-Forwarded-Encrypted: i=1; AJvYcCWEkM14h4TfD9Scjm8NapXqhVFI+qqwNaQl4WKo/gYzqPyRCY6m0U4KQbg3BcgADq2R+ak3w6PmKzf1Qbagj3ITDI3/Djx5s1rKWQHqJq/gFd4qnp89Pbj0p+Sa9SiZg01xqU2kNKEVkA==
-X-Gm-Message-State: AOJu0YwZMKSEGoniy7hqjXxLxIJD/pYS0o0Kj6TBqT2HnG1wT7N5KyZ+
-	NLVoEk0A0K6xcgWr6O1pK7Y1qg5JhyzNV6uWgGL8SweKbR5kfaUAHtglZkjWUMURpII8gjWxCBZ
-	ApYB67nQ7nTzt90LLZCDZg1MY1w==
-X-Google-Smtp-Source: AGHT+IGhN32U3cLFjDcl/ZaK+BN5oNiVFeatcJG7osJjACBaeXKS643lckiY3fxmVC9Kln5Tlpu49ktmbd8AO6QKvjs=
-X-Received: by 2002:a17:906:a091:b0:a6f:49eb:31a5 with SMTP id
- a640c23a62f3a-a75144b67a4mr312328166b.77.1719850400469; Mon, 01 Jul 2024
- 09:13:20 -0700 (PDT)
+	s=arc-20240116; t=1719850764; c=relaxed/simple;
+	bh=aMTWXiPMO9wpqluQw4BQ3jLgh9RS0IDjpur4E9XvBV8=;
+	h=Mime-Version:Content-Type:Date:Message-Id:From:Subject:Cc:To:
+	 References:In-Reply-To; b=Vo9/b8nnLoercAu32sEyOfbpk+Nc7AvIIBGFIHL4eXchZLUK2aQxnQVPYDk4tDtr2oeu1vingjM/2jSR8lk338DU/Ej8FsUCNsFL2yDHlLB2tktkPWYNcsexrqMC2/1CUDoH7XyaTdfVkgJBJJQ02YQV5ECjttKemi1QohuJn1g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=OafQCLIr; arc=none smtp.client-ip=217.70.183.196
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 4A87EE0006;
+	Mon,  1 Jul 2024 16:19:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1719850753;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=ntIHPlC3pWsKyjKU0b/gbUXd4RhIrGuyI18/MLYaFzQ=;
+	b=OafQCLIr2NVKZ9bDnbmUCUft8QmJMyF+d7+VHJaAWM9U5h92Svu3Sc1O9d0TeZmkNDvd/W
+	bb9HQClXSW9H9vzJlq1sqrQsnDS72W9WlHkiUixQ5HIlLviC10mQLWXKmKkYnvilqAdC06
+	fSBo5yLjcUIKmT5IwU7wOxY11T5GjVTqc7g2SG3Hi3riuY3/ekbB7LwfsLdGfINMB83+Kb
+	vr9pDiBlqh+POhMwL6i+uLU6YJ5v6eOhW7ezj3qMMBd88Cp/YDLS5Vd5W18XCLfrQUSY2I
+	KyG92Af9NgepLOSxcwXd+Gh/D/qGZGe24W512qbFoGfhrCeYpWsSj+Yp+3E4pA==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20240629103914.161530-1-erezgeva@nwtime.org> <20240629103914.161530-4-erezgeva@nwtime.org>
- <1c457520-07b7-4bde-b040-e8bca959a4f5@linaro.org> <CANeKEMOODBNZA6efh0E0Ga_KaVs5Y3WLcUftRhNwYHhnXO=GNw@mail.gmail.com>
- <CANeKEMO42rJt5Ob4_HDcZ3eEMvuMOPvRaFaLwL8SA65NtxSV7A@mail.gmail.com>
- <1d56c3b2-7adf-45b9-a509-956340f3f17b@linaro.org> <04f5162d-8a95-45ce-a891-3f711b27a469@linaro.org>
- <CANeKEMPAng8K1Gbab-MXP0KodS=r1Bzstsvg4zadWdu1O7wqWg@mail.gmail.com> <be8daf89-14a9-41ad-9403-8e550e5ae284@linaro.org>
-In-Reply-To: <be8daf89-14a9-41ad-9403-8e550e5ae284@linaro.org>
-From: Erez <erezgeva2@gmail.com>
-Date: Mon, 1 Jul 2024 18:12:42 +0200
-Message-ID: <CANeKEMMA5L4pu7Vyyv0wU7VcEYK6q2Tk8p4BKPe5E5qXdHzWZQ@mail.gmail.com>
-Subject: Re: [PATCH v2 3/4] dt-bindings: mtd: macronix,mx25l12833f: add
- SPI-NOR chip
-To: Tudor Ambarus <tudor.ambarus@linaro.org>
-Cc: Esben Haabendal <esben@geanix.com>, Erez Geva <erezgeva@nwtime.org>, linux-mtd@lists.infradead.org, 
-	Pratyush Yadav <pratyush@kernel.org>, Michael Walle <mwalle@kernel.org>, linux-kernel@vger.kernel.org, 
-	Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Mon, 01 Jul 2024 18:19:12 +0200
+Message-Id: <D2EC7KK40YX5.C3G1SM3FEDJO@bootlin.com>
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+Subject: Re: [PATCH 2/2] reset: eyeq: add platform driver
+Cc: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, "Vladimir
+ Kondratiev" <vladimir.kondratiev@mobileye.com>,
+ =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, "Thomas
+ Petazzoni" <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
+ <tawfik.bayouk@mobileye.com>
+To: "Philipp Zabel" <p.zabel@pengutronix.de>, "Rob Herring"
+ <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>
+X-Mailer: aerc 0.17.0
+References: <20240628-mbly-reset-v1-0-2a8294fd4392@bootlin.com>
+ <20240628-mbly-reset-v1-2-2a8294fd4392@bootlin.com>
+ <e9bfd8087ddef3d66f437719530df54a1f6529a4.camel@pengutronix.de>
+In-Reply-To: <e9bfd8087ddef3d66f437719530df54a1f6529a4.camel@pengutronix.de>
+X-GND-Sasl: theo.lebrun@bootlin.com
 
-On Mon, 1 Jul 2024 at 14:53, Tudor Ambarus <tudor.ambarus@linaro.org> wrote:
+Hello Philipp,
+
+On Mon Jul 1, 2024 at 10:59 AM CEST, Philipp Zabel wrote:
+> On Fr, 2024-06-28 at 18:11 +0200, Th=C3=A9o Lebrun wrote:
+> > Add Mobileye EyeQ reset controller driver, for EyeQ5, EyeQ6L and EyeQ6H
+> > SoCs. Instances belong to a shared register region called OLB and gets
+> > spawned as auxiliary device to the platform driver for clock.
+> >=20
+> > There is one OLB instance for EyeQ5 and EyeQ6L. There are seven OLB
+> > instances on EyeQ6H; three have a reset controller embedded:
+> >  - West and east get handled by the same compatible.
+> >  - Acc (accelerator) is another one.
+> >=20
+> > Each instance vary in the number and types of reset domains.
+> > Instances with single domain expect a single cell, others two.
+> >=20
+> > Signed-off-by: Th=C3=A9o Lebrun <theo.lebrun@bootlin.com>
+> > ---
+> >  drivers/reset/Kconfig      |  13 ++
+> >  drivers/reset/Makefile     |   1 +
+> >  drivers/reset/reset-eyeq.c | 562 +++++++++++++++++++++++++++++++++++++=
+++++++++
+> >  3 files changed, 576 insertions(+)
+> >=20
+> > diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
+> > index 7112f5932609..14f3f4af0b10 100644
+> > --- a/drivers/reset/Kconfig
+> > +++ b/drivers/reset/Kconfig
+> > @@ -66,6 +66,19 @@ config RESET_BRCMSTB_RESCAL
+> >  	  This enables the RESCAL reset controller for SATA, PCIe0, or PCIe1 =
+on
+> >  	  BCM7216.
+> > =20
+> > +config RESET_EYEQ
+> > +	bool "Mobileye EyeQ reset controller"
+> > +	depends on AUXILIARY_BUS
 >
+> This should
 >
+> 	select AUXILIARY_BUS
 >
-> On 7/1/24 12:03 PM, Erez wrote:
-> > On Mon, 1 Jul 2024 at 12:23, Tudor Ambarus <tudor.ambarus@linaro.org> wrote:
-> >>
-> >>
-> >>
-> >> On 7/1/24 11:15 AM, Tudor Ambarus wrote:
-> >>>
-> >>>
-> >>> On 7/1/24 10:46 AM, Erez wrote:
-> >>>> When using mx25l12805d, we do not read SFDP.
-> >>>> As it uses the no-SFDP flags.
-> >>>> When using mx25l12833f hardware with mx25l12805d driver, it did not
-> >>>> try to read the SFDP.
-> >>>> Yet mx25l12833f does have SFDP, when I remove the no-SFDP flags, the
-> >>>> driver fetch the SFDP.
-> >>>>
-> >>>> Secondly SFDP does not contain OTP information.
-> >>>>
-> >>>> mx25l12805d has two OTP regions of 128 KiB and 384 KiB (yes asymmetric).
-> >>>> While mx25l12833f has two OTP regions of 512 KiB.
-> >>>>
-> >>>> How do we handle it?
-> >>>
-> >>> You would first try to parse SFDP and initialize the flash based on
-> >>> SFDP. If there's no SFDP then you fallback to the flags declared at
-> >>> flash declaration. Esben had a try recently, see [1]. I don't know if
-> >>> there's any progress in that direction.
-> >>>
-> >>
-> >> And you can then decide which OTP org to use based on whether SFDP is
-> >> present or not.
-> >
-> > That can work, but sound like a hack.
+> instead.
+
+Done, looking like this now:
+
+config RESET_EYEQ
+	bool "Mobileye EyeQ reset controller"
+	depends on MACH_EYEQ5 || MACH_EYEQ6H || COMPILE_TEST
+	select AUXILIARY_BUS
+	default MACH_EYEQ5 || MACH_EYEQ6H
+	help
+	  ...
+
+[...]
+
+> > +#define EQR_MAX_DOMAIN_COUNT 3
+> > +
+> > +struct eqr_domain_descriptor {
+> > +	enum eqr_domain_type	type;
+> > +	u32			valid_mask;
+> > +	unsigned int		offset;
+> > +};
+> > +
+> > +struct eqr_match_data {
+> > +	unsigned int				domain_count;
+> > +	const struct eqr_domain_descriptor	*domains;
+> > +};
+> > +
+> > +struct eqr_private {
+> > +	struct mutex			mutexes[EQR_MAX_DOMAIN_COUNT];
 >
-> It's not a hack, we're just doing our best to dynamically identify the
-> flash.
+> Is there any benefit from per-domain mutexes over just a single mutex?
 
-Call it whatever you want.
+Some domains can stay locked for pretty long in theory because of Logic
+built-in self-test (LBIST). This is the reasoning behind
+eqr_busy_wait_locked().
 
->
-> > Is that really that important to hack?
->
-> we push really hard against new compatibles. Users shouldn't care about
-> what SPI NOR flash is there.
+Other domains are not concerned by this behavior.
 
-I am in. I do not like compatibility.
-I do not like to see them in the device tree.
-I did not create the mess.
-It seems like Macronix likes to reuse JEDEC IDs.
-As most new chips have SPDF, the mess is with OTP mainly.
-We can think about a different model.
-Perhaps allow the user to define the OTP size and number of regions
-using a 'flash_otp_set' tool?
-I am open to ideas.
-
->
-> > Just for OTP, that very few use?
-> > And if in the future Macronix adds a newer one with the same JEDEC ID,
-> > but a different OTP size?
->
-> we'll compare SFDP data and choose based on the differences. This is not
-> encouraged. Instead ask for unique IDs or choose other flash.
-
-That requires additional callback in the SFDP, not a big challenge.
-Yet most SFDP tables are not sufficient to determine OTP.
-Found only one table with OTP support flag.
-No size, offset  and number of regions to work with.
-The only hint is do we have SFDP or not.
-
->
-> > Macronix does not consult with the Linux Kernel on these matters.
-> >
->
-> I'm complaining about unique flash IDs for years now. Hopefully vendors
-> have learnt their lesson. I didn't see new flash designs reusing old IDs.
-
-I can not speak in Macronix's name.
-I know they did that, not sure if they stop.
-
->
-> > Anyhow as I do not have the hardware anymore, I can not do more
-> > changes and test them.
-> >
->
-> Be aware that we're not queuing patches without some minimal tests. If
-> you don't have the hardware, contact mchp and see if they care,
-> otherwise we're wasting our time. Here are the minimum testing requirements:
-> https://docs.kernel.org/driver-api/mtd/spi-nor.html#minimum-testing-requirements
-> For OTP we'll also need some OTP tests.
-
-OTP as its name can be written once.
-So a simple OTP test would be nice.
-
-Anyhow I ordered 3 Macronix's MX25L3233F that have OTP.
-The OTP works the same as the other Macronix chips.
-The MX25L3233F ID is 0xc22016 same as "mx25l3205d".
-Seems Macronix are persistent on reusing IDs.
-First revision of MX25L3233F was in 2015,
-
-I will connect to my old BeagleBone-black.
-I think I can perform the test with it.
-
-As I say, I am more interested in testing the code.
-Less on which Macronix chip we use.
-
-Thanks for your time
- Erez
+More concretely, on EyeQ5, SARCR and ACRP domains can lock their mutexes
+for a relatively long time, and for good reasons. We wouldn't want the
+PCIE domain  to suffer from that if it happens to (de)assert a reset at
+the same time.
 
 >
-> Cheers,
-> ta
+> > +	void __iomem			*base;
+> > +	const struct eqr_match_data	*data;
+> > +	struct reset_controller_dev	rcdev;
+> > +};
+> > +
+> > +#define rcdev_to_priv(rcdev) container_of(rcdev, struct eqr_private, r=
+cdev)
+>
+> Please use checkpatch --strict, and ideally mention when you ignore a
+> warning on purpose. In this case, the macro parameter should named
+> something else, because the last parameter to container_of must be
+> "rcdev" verbatim. This only works by accident because the passed
+> parameter also happens to be called called "rcdev" at all call sites.
+
+I have let this CHECK from `checkpatch --strict` slip through indeed.
+Other remaining messages, with explanations, are:
+
+ - WARNING: added, moved or deleted file(s), does MAINTAINERS need
+   updating?
+
+   This is done in a single patch [0] in the MIPS series to avoid
+   conflicts in between series.
+
+ - CHECK: struct mutex definition without comment
+
+   This is about the above mutexes field. Do you want a code comment
+   about the reasoning for one mutex per domain?
+
+ - WARNING: DT compatible string "[...]" appears un-documented
+
+   Bindings are added in a single commit in the MIPS series [1],
+   to avoid conflicts.
+
+>
+> > +static u32 eqr_double_readl(void __iomem *addr_a, void __iomem *addr_b=
+,
+> > +			    u32 *dest_a, u32 *dest_b)
+> > +{
+> > +	*dest_a =3D readl(addr_a);
+> > +	*dest_b =3D readl(addr_b);
+> > +	return 0; /* read_poll_timeout() op argument must return something. *=
+/
+> > +}
+> > +
+> > +static int eqr_busy_wait_locked(struct eqr_private *priv, struct devic=
+e *dev,
+> > +				u32 domain, u32 offset, bool assert)
+> > +{
+> > +	enum eqr_domain_type domain_type =3D priv->data->domains[domain].type=
+;
+> > +	unsigned long sleep_us, timeout_us;
+> > +	u32 val, mask, val0, val1;
+> > +	void __iomem *base, *reg;
+> > +	int ret;
+> > +
+> > +	lockdep_assert_held(&priv->mutexes[domain]);
+> > +
+> > +	base =3D priv->base + priv->data->domains[domain].offset;
+> > +	sleep_us =3D eqr_timings[domain_type].sleep_us;
+> > +	timeout_us =3D eqr_timings[domain_type].timeout_us;
+>
+> You can initialize these at the declaration.
+
+Done, declarations will look like:
+
+static int eqr_busy_wait_locked(struct eqr_private *priv, struct device *de=
+v,
+				u32 domain, u32 offset, bool assert)
+{
+	void __iomem *base =3D priv->base + priv->data->domains[domain].offset;
+	enum eqr_domain_type domain_type =3D priv->data->domains[domain].type;
+	unsigned long timeout_us =3D eqr_timings[domain_type].timeout_us;
+	unsigned long sleep_us =3D eqr_timings[domain_type].sleep_us;
+	u32 val, mask, val0, val1;
+	void __iomem *reg;
+	int ret;
+
+	// ...
+}
+
+>
+> > +
+> > +	switch (domain_type) {
+> > +	case EQR_EYEQ5_SARCR:
+> > +		reg =3D base + EQR_EYEQ5_SARCR_STATUS;
+> > +		mask =3D BIT(offset);
+> > +
+> > +		ret =3D readl_poll_timeout(reg, val, !(val & mask) =3D=3D assert,
+> > +					 sleep_us, timeout_us);
+> > +		break;
+> > +
+> > +	case EQR_EYEQ5_ACRP:
+> > +		reg =3D base + 4 * offset;
+> > +		if (assert)
+> > +			mask =3D EQR_EYEQ5_ACRP_ST_POWER_DOWN;
+> > +		else
+> > +			mask =3D EQR_EYEQ5_ACRP_ST_ACTIVE;
+> > +
+> > +		ret =3D readl_poll_timeout(reg, val, !!(val & mask),
+> > +					 sleep_us, timeout_us);
+> > +		break;
+> > +
+> > +	case EQR_EYEQ5_PCIE:
+> > +		ret =3D 0; /* No busy waiting. */
+> > +		break;
+> > +
+> > +	case EQR_EYEQ6H_SARCR:
+> > +		/*
+> > +		 * Wait until both bits change:
+> > +		 *	readl(base + EQR_EYEQ6H_SARCR_RST_STATUS) & BIT(offset)
+> > +		 *	readl(base + EQR_EYEQ6H_SARCR_CLK_STATUS) & BIT(offset)
+> > +		 */
+> > +		mask =3D BIT(offset);
+> > +		ret =3D read_poll_timeout(eqr_double_readl, val,
+> > +					(!(val0 & mask) =3D=3D assert) &&
+> > +						(!(val1 & mask) =3D=3D assert),
+>
+> I'd remove a level of indentation here.
+
+Indeed!
+
+> > +					sleep_us, timeout_us, false,
+> > +					base + EQR_EYEQ6H_SARCR_RST_STATUS,
+> > +					base + EQR_EYEQ6H_SARCR_CLK_STATUS,
+> > +					&val0, &val1);
+>
+> Calling these variables something like rst_status and clk_status, would
+> make this a bit easier to parse.
+
+It now looks like:
+
+static int eqr_busy_wait_locked(struct eqr_private *priv, struct device *de=
+v,
+				u32 domain, u32 offset, bool assert)
+{
+	// ...
+
+	switch (domain_type) {
+
+	// ...
+
+	case EQR_EYEQ6H_SARCR:
+		/*
+		 * Wait until both bits change:
+		 *	readl(base + EQR_EYEQ6H_SARCR_RST_STATUS) & BIT(offset)
+		 *	readl(base + EQR_EYEQ6H_SARCR_CLK_STATUS) & BIT(offset)
+		 */
+		mask =3D BIT(offset);
+		ret =3D read_poll_timeout(eqr_double_readl, val,
+					(!(rst_status & mask) =3D=3D assert) &&
+					(!(clk_status & mask) =3D=3D assert),
+					sleep_us, timeout_us, false,
+					base + EQR_EYEQ6H_SARCR_RST_STATUS,
+					base + EQR_EYEQ6H_SARCR_CLK_STATUS,
+					&rst_status, &clk_status);
+		break;
+
+	// ...
+
+	}
+
+	// ...
+}
+
+>
+> > +		break;
+> > +
+> > +	default:
+> > +		WARN_ON(1);
+> > +		ret =3D -EINVAL;
+> > +		break;
+> > +	}
+> > +
+> > +	if (ret =3D=3D -ETIMEDOUT)
+> > +		dev_dbg(dev, "%u-%u: timeout\n", domain, offset);
+> > +	return ret;
+> > +}
+> > +
+> > +static void eqr_assert_locked(struct eqr_private *priv, u32 domain, u3=
+2 offset)
+> > +{
+> > +	enum eqr_domain_type domain_type =3D priv->data->domains[domain].type=
+;
+> > +	void __iomem *base, *reg;
+> > +	u32 val;
+> > +
+> > +	lockdep_assert_held(&priv->mutexes[domain]);
+> > +
+> > +	base =3D priv->base + priv->data->domains[domain].offset;
+> > +
+> > +	switch (domain_type) {
+> > +	case EQR_EYEQ5_SARCR:
+> > +		reg =3D base + EQR_EYEQ5_SARCR_REQUEST;
+> > +		writel(readl(reg) & ~BIT(offset), reg);
+> > +		break;
+> > +
+> > +	case EQR_EYEQ5_ACRP:
+> > +		reg =3D base + 4 * offset;
+> > +		writel(readl(reg) | EQR_EYEQ5_ACRP_PD_REQ, reg);
+> > +		break;
+> > +
+> > +	case EQR_EYEQ5_PCIE:
+> > +		writel(readl(base) & ~BIT(offset), base);
+> > +		break;
+> > +
+> > +	case EQR_EYEQ6H_SARCR:
+> > +		val =3D readl(base + EQR_EYEQ6H_SARCR_RST_REQUEST);
+> > +		val &=3D ~BIT(offset);
+> > +		writel(val, base + EQR_EYEQ6H_SARCR_RST_REQUEST);
+> > +		writel(val, base + EQR_EYEQ6H_SARCR_CLK_REQUEST);
+>
+> This looks peculiar. Why is it ok to write the value read from
+> RST_REQUEST into CLK_REQUEST?
+
+What is abstracted away by the hardware on EyeQ5 is not anymore on
+EyeQ6H. Previously a single register was used for requests and a single
+register for status. Now there are two request registers and two status
+registers.
+
+Those registers *must be kept in sync*. The register name referencing
+clock is not to be confused with the clock driver of the
+system-controller. It is describing a register within the reset
+controller.
+
+This hardware interface is odd, I might add a comment?
+
+[...]
+
+> > +static int eqr_status(struct reset_controller_dev *rcdev, unsigned lon=
+g id)
+> > +{
+> > +	u32 domain =3D FIELD_GET(ID_DOMAIN_MASK, id);
+> > +	struct eqr_private *priv =3D rcdev_to_priv(rcdev);
+> > +	enum eqr_domain_type domain_type =3D priv->data->domains[domain].type=
+;
+> > +	u32 offset =3D FIELD_GET(ID_OFFSET_MASK, id);
+>
+> I'd put domain and offset declaration next to each other.
+
+Done:
+
+static int eqr_status(struct reset_controller_dev *rcdev, unsigned long id)
+{
+	u32 domain =3D FIELD_GET(ID_DOMAIN_MASK, id);
+	u32 offset =3D FIELD_GET(ID_OFFSET_MASK, id);
+	struct eqr_private *priv =3D rcdev_to_priv(rcdev);
+	enum eqr_domain_type domain_type =3D priv->data->domains[domain].type;
+	void __iomem *base, *reg;
+
+	// ...
+}
+
+I'll be sending a new revision in the week with those fixes.
+
+Thanks Philipp,
+
+[0]: https://lore.kernel.org/lkml/20240628-mbly-mips-v1-3-f53f5e4c422b@boot=
+lin.com/
+[1]: https://lore.kernel.org/lkml/20240628-mbly-mips-v1-1-f53f5e4c422b@boot=
+lin.com/
+
+--
+Th=C3=A9o Lebrun, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
 
