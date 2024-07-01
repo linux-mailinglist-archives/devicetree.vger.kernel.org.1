@@ -1,129 +1,351 @@
-Return-Path: <devicetree+bounces-81850-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81851-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD12491DB09
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 11:06:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E69591DB27
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 11:11:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 70411B2099A
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 09:06:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A8FDF1F210CD
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 09:11:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1C8584A39;
-	Mon,  1 Jul 2024 09:06:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 874A584D3F;
+	Mon,  1 Jul 2024 09:11:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="h4ctP++n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EF445C614;
-	Mon,  1 Jul 2024 09:06:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8574A78291
+	for <devicetree@vger.kernel.org>; Mon,  1 Jul 2024 09:11:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719824769; cv=none; b=fbu6zEErh/mhtFL0ezM7IDwz6KtGIDnb+xb50v7//OjKaswAEF4O1mXOk6TH8beSbbFQkKW7CrXN9vbN0q/R5UhLN/OOP2nrUP8njrIEpuKCwrPf3e5cEOB9n6PCmi26CEUGNx5ci8xwBiOO8fvJibqBGySF4nn/O4E8xcBjzow=
+	t=1719825082; cv=none; b=NHi1TyiVX6YtuVwqlJUYdHWDewjS1oYCfxoMStRVQgurU8TfvBHH/9y4Xwu+SNB1hMO0DxWkt167fc4Ens5O4YZz6r+JoPGhVAnBWiC1wM6vMrt4tEVdk7lH6q9SBVuLXMwroTdSr1W+2iJGQ3+UYqNVL9SH64wUJuxlwu8uYE8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719824769; c=relaxed/simple;
-	bh=Fi10tkzUGz0fvpYCWE6tHxTsJkVRF2+Ox7u6M/6vt4E=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RmVzVezZ2o7npokWxfGU/8ktDeQoaqaVX6cTQxFaJ60KjyUEj3AbPq7pQ5GLgIMnpfTsG7goItcsI75rAkxa/8Ph30PphEtq/aIoE1iS6d8i8dyzzQNFbhN8BJAUjf8CmGrQsQR36lK0Ohx4An+Rlq8zEdUIBasRH2hgj+U8IVE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8627C339;
-	Mon,  1 Jul 2024 02:06:31 -0700 (PDT)
-Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D25783F766;
-	Mon,  1 Jul 2024 02:06:04 -0700 (PDT)
-Date: Mon, 1 Jul 2024 10:06:00 +0100
-From: Sudeep Holla <sudeep.holla@arm.com>
-To: Peng Fan <peng.fan@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Cristian Marussi <cristian.marussi@arm.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"arm-scmi@vger.kernel.org" <arm-scmi@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: firmware: arm,scmi: introduce property
- mbox-rx-timeout-ms
-Message-ID: <ZoJxeFxErmM8Gec3@bogus>
-References: <20240621-scmi-mailbox-v1-v1-0-8ed450735f46@nxp.com>
- <20240621-scmi-mailbox-v1-v1-1-8ed450735f46@nxp.com>
- <20240627214645.GA614300-robh@kernel.org>
- <AM6PR04MB59415F7793F4D15CCCB7388B88D72@AM6PR04MB5941.eurprd04.prod.outlook.com>
+	s=arc-20240116; t=1719825082; c=relaxed/simple;
+	bh=ZZDuefkVybRKv7eLniy7SDH1/QwWLvpRP8veMGQDDDk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=X6H7cZ0i6p2XIJwS4B5kXu8ag9MFYDS5IyxSuvbF9GkNIkdtsVVqPZc8eCzyD3i27wNVU3GDOeQr6/8637KuSDKVxmnM4XDry84XKwM7VHYM/iNHMxZV644X5JSS1nQ/iIZOkYcNzBUgd68hNfRhaoZGDnQuFpGmaAQNcCaHvoM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=h4ctP++n; arc=none smtp.client-ip=209.85.128.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-64ad8d7b804so21167797b3.0
+        for <devicetree@vger.kernel.org>; Mon, 01 Jul 2024 02:11:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1719825078; x=1720429878; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=279s14TPu3NAq9grtIdz6lApvIxsHo2tIujxIiLRJtk=;
+        b=h4ctP++nx3tXoOCGqUEPThF/0zOq8M1EfpcGyU2rprSf9Sb88bP6I4E0vTTM28k5Mm
+         nRceZQhH5A322QyTZAQjoq55dkISJLVMwbITP7n87t1dIe73z7CPhIG/v9/yb9g++kiN
+         WjFdiZ8ctypXHyMAX8TFamer+TwNhfTAT4HjOQzWhRQEnqcELTMeHVHoP8Ibugerul+x
+         vLGq3EKQgZ69+llF0z5YvGi8PQFVOmy8/b4kldiQygR7Ih1+PhLxhup+G/+nz6saxl+R
+         j0yI+vug9eq2qt+4wpyOBcr1zaE3zc2IIqqHOpNX6VBJLYwSiqfXKhJA48NpsMJumYL2
+         /IDQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719825078; x=1720429878;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=279s14TPu3NAq9grtIdz6lApvIxsHo2tIujxIiLRJtk=;
+        b=wGAXonyBqxTkVXP9V1cuRRbInvnVIBrUW2YRO2BAE72DTgYBHWrIy1PENuib0dC5EO
+         P7YRkruJf8ESuMvQKg1ngpb9Hs6DA4mJ9/l3xX0vFE1o9RGezFbiVZY88/lv1L/2BzWH
+         5XHBwL0ruobR/3hQoUOdWvnsrHy9oJBnz6z5cC6EfaG25qai3dwVYKj87eQxaTlATwcC
+         PPlpLBQ8JjIFH1X4tWc14F+T25sFcYi/7wVlWTevklcWp8ElWQ9j0ecM+Uug6Rmt6Xk0
+         cLaT4YxzPSW+FT9LMHy479Ggw5IxDm8tkI6oSSCdTkyRmpbizYzd62sK/eufI4mXOgId
+         CJ5w==
+X-Forwarded-Encrypted: i=1; AJvYcCUeJKF6U4ZxCvjn4lfoXt1/OEgN1FFndhisng8dvSisPmHKXasXU06gjJpZv1/cxSWeLDvYKPDrqPGJT72Sk5fwzjymfX04mWlekw==
+X-Gm-Message-State: AOJu0Yx6wce0Q8BxVEU/4s1SP7fcivt6g53gC5JSb/ehVLsJFRJZ8Kpl
+	NI29cA94SbVvosatzfBMEsEwxiFuVE8iP61ofIPlA/4OFtMQ/sRXN/zHPW2eCepRZ0ITXcVphUa
+	hk1/p4P9tgbTGnRUaOQCDt6CMfJ5XACG9/Y/eYw==
+X-Google-Smtp-Source: AGHT+IEnkyIn8A8Q7D/dqG51zS65A3m2K6WhBC9Ohf/ZxxAQQg/JJmdkDQU6wzrdArQnROoMt2dP3o28EdVqFmRyS04=
+X-Received: by 2002:a05:690c:319:b0:618:90cc:bc4a with SMTP id
+ 00721157ae682-64af5a1ca8cmr46087537b3.26.1719825078412; Mon, 01 Jul 2024
+ 02:11:18 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <AM6PR04MB59415F7793F4D15CCCB7388B88D72@AM6PR04MB5941.eurprd04.prod.outlook.com>
+References: <20240620115245.31540-1-lvzhaoxiong@huaqin.corp-partner.google.com>
+ <20240620115245.31540-3-lvzhaoxiong@huaqin.corp-partner.google.com>
+ <bmmng663zqsc4xolkh6jdbu6yj637f3k6qbclxgi6fcmm4hv7z@i7ycd36flcha>
+ <CA+6=WdT80hcAW4f=UDcO2d3e+ODcRjAQBOUug7M6vgmtAEY1SA@mail.gmail.com> <CA+6=WdRSkQnx5qDn5rCzebEyjx-6Pz5ze0kE0oqvQ3uf5digMQ@mail.gmail.com>
+In-Reply-To: <CA+6=WdRSkQnx5qDn5rCzebEyjx-6Pz5ze0kE0oqvQ3uf5digMQ@mail.gmail.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Mon, 1 Jul 2024 12:11:05 +0300
+Message-ID: <CAA8EJposWO_ZXDp0rTSbAPfR0U+C35VjuigR+tZVd+80md+k=w@mail.gmail.com>
+Subject: Re: [PATCH v4 2/2] drm/panel: starry-er88577: add new panel driver
+To: zhaoxiong lv <lvzhaoxiong@huaqin.corp-partner.google.com>
+Cc: dmitry.torokhov@gmail.com, robh@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, jikos@kernel.org, 
+	benjamin.tissoires@redhat.co, dianders@google.com, hsinyi@google.com, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jun 27, 2024 at 11:17:49PM +0000, Peng Fan wrote:
-> > Subject: Re: [PATCH 1/2] dt-bindings: firmware: arm,scmi: introduce
-> > property mbox-rx-timeout-ms
-> >
-> > On Fri, Jun 21, 2024 at 08:46:57PM +0800, Peng Fan (OSS) wrote:
-> > > From: Peng Fan <peng.fan@nxp.com>
-> > >
-> > > System Controller Management Interface(SCMI) firmwares might
-> > have
-> > > different designs by SCMI firmware developers. So the maximum
-> > receive
-> > > channel timeout value might also varies in the various designs.
-> > >
-> > > So introduce property mbox-rx-timeout-ms to let each platform could
-> > > set its own timeout value in device tree.
-> > >
-> > > Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> > > ---
-> > >  Documentation/devicetree/bindings/firmware/arm,scmi.yaml | 6
-> > ++++++
-> > >  1 file changed, 6 insertions(+)
-> > >
-> > > diff --git
-> > a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> > > b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> > > index 4d823f3b1f0e..d6cc2bf4c819 100644
-> > > --- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> > > +++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> > > @@ -121,6 +121,12 @@ properties:
-> > >        atomic mode of operation, even if requested.
-> > >      default: 0
-> > >
-> > > +  max-rx-timeout-ms:
-> > > +    description:
-> > > +      An optional time value, expressed in milliseconds, representing,
-> > on this
-> > > +      platform, the mailbox maximum timeout value for receive
-> > channel.
-> >
-> > "on this platform"? Doesn't every property apply to the given platform?
+On Mon, 1 Jul 2024 at 09:26, zhaoxiong lv
+<lvzhaoxiong@huaqin.corp-partner.google.com> wrote:
 >
-> Yeah, apply to all the use mailbox.
->
+> On Fri, Jun 21, 2024 at 9:43=E2=80=AFAM zhaoxiong lv
+> <lvzhaoxiong@huaqin.corp-partner.google.com> wrote:
 > >
-> > > +    default: 0
+> > On Fri, Jun 21, 2024 at 3:56=E2=80=AFAM Dmitry Baryshkov
+> > <dmitry.baryshkov@linaro.org> wrote:
+> > >
+> > > On Thu, Jun 20, 2024 at 07:52:45PM GMT, Zhaoxiong Lv wrote:
+> > > > The bias IC of this starry-er88577 panel is placed
+> > > > on the panel side, so when the panel is powered on,
+> > > > there is no need to control AVDD and AVEE in the driver,
+> > > > only 3.3v and reset are needed.
+> > > >
+> > > > Signed-off-by: Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google=
+.com>
+> > > > ---
+> > > > Chage since V3:
+> > > > -  1. Adjust the ".clock" assignment format.
+> > > >
+> > > > v3: https://lore.kernel.org/all/20240614145609.25432-3-lvzhaoxiong@=
+huaqin.corp-partner.google.com/
+> > > >
+> > > > Chage since V3:
+> > > > -  Separate Starry-er88577 from the panel-kingdisplay-kd101ne3 driv=
+er.
+> > > > -  Use mipi_dsi_dcs_set_display_on_multi().
+> > > > -  Use mipi_dsi_dcs_exit_sleep_mode_multi() and mipi_dsi_msleep().
+> > > >
+> > > > v2: https://lore.kernel.org/all/20240601084528.22502-5-lvzhaoxiong@=
+huaqin.corp-partner.google.com/
+> > > >
+> > > > Chage since V2:
+> > > > -  Add compatible for Starry er88577 in panel-kingdisplay-kd101ne3 =
+drivers.
+> > > >
+> > > > ---
+> > > >  drivers/gpu/drm/panel/Kconfig                |   9 +
+> > > >  drivers/gpu/drm/panel/Makefile               |   1 +
+> > > >  drivers/gpu/drm/panel/panel-starry-er88577.c | 343 +++++++++++++++=
+++++
+> > > >  3 files changed, 353 insertions(+)
+> > > >  create mode 100644 drivers/gpu/drm/panel/panel-starry-er88577.c
+> > > >
+> > > > diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/=
+Kconfig
+> > > > index e54f6f5604ed..a52aa2552ab8 100644
+> > > > --- a/drivers/gpu/drm/panel/Kconfig
+> > > > +++ b/drivers/gpu/drm/panel/Kconfig
+> > > > @@ -781,6 +781,15 @@ config DRM_PANEL_SITRONIX_ST7789V
+> > > >         Say Y here if you want to enable support for the Sitronix
+> > > >         ST7789V controller for 240x320 LCD panels
+> > > >
+> > > > +config DRM_PANEL_STARRY_ER88577
+> > > > +     tristate "Starry er88577 panel"
+> > > > +     depends on OF
+> > > > +     depends on DRM_MIPI_DSI
+> > > > +     depends on BACKLIGHT_CLASS_DEVICE
+> > > > +     help
+> > > > +       Say Y if you want to enable support for panels based on the
+> > > > +       Starry er88577 controller.
+> > > > +
+> > > >  config DRM_PANEL_SONY_ACX565AKM
+> > > >       tristate "Sony ACX565AKM panel"
+> > > >       depends on GPIOLIB && OF && SPI
+> > > > diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel=
+/Makefile
+> > > > index f0203f6e02f4..ecd843a6dc6e 100644
+> > > > --- a/drivers/gpu/drm/panel/Makefile
+> > > > +++ b/drivers/gpu/drm/panel/Makefile
+> > > > @@ -81,6 +81,7 @@ obj-$(CONFIG_DRM_PANEL_SHARP_LS060T1SX01) +=3D pa=
+nel-sharp-ls060t1sx01.o
+> > > >  obj-$(CONFIG_DRM_PANEL_SITRONIX_ST7701) +=3D panel-sitronix-st7701=
+.o
+> > > >  obj-$(CONFIG_DRM_PANEL_SITRONIX_ST7703) +=3D panel-sitronix-st7703=
+.o
+> > > >  obj-$(CONFIG_DRM_PANEL_SITRONIX_ST7789V) +=3D panel-sitronix-st778=
+9v.o
+> > > > +obj-$(CONFIG_DRM_PANEL_STARRY_ER88577) +=3D panel-starry-er88577.o
+> > > >  obj-$(CONFIG_DRM_PANEL_SYNAPTICS_R63353) +=3D panel-synaptics-r633=
+53.o
+> > > >  obj-$(CONFIG_DRM_PANEL_SONY_ACX565AKM) +=3D panel-sony-acx565akm.o
+> > > >  obj-$(CONFIG_DRM_PANEL_SONY_TD4353_JDI) +=3D panel-sony-td4353-jdi=
+.o
+> > > > diff --git a/drivers/gpu/drm/panel/panel-starry-er88577.c b/drivers=
+/gpu/drm/panel/panel-starry-er88577.c
+> > > > new file mode 100644
+> > > > index 000000000000..e6088262ee69
+> > > > --- /dev/null
+> > > > +++ b/drivers/gpu/drm/panel/panel-starry-er88577.c
+> > > > @@ -0,0 +1,343 @@
+> > > > +// SPDX-License-Identifier: GPL-2.0
+> > > > +/* Panels based on the ER88577 display controller.
+> > > > + * Author: Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.co=
+m>
+> > > > + */
+> > > > +
+> > > > +#include <linux/delay.h>
+> > > > +#include <linux/gpio/consumer.h>
+> > > > +#include <linux/module.h>
+> > > > +#include <linux/of.h>
+> > > > +#include <linux/regulator/consumer.h>
+> > > > +
+> > > > +#include <drm/drm_connector.h>
+> > > > +#include <drm/drm_crtc.h>
+> > > > +#include <drm/drm_mipi_dsi.h>
+> > > > +#include <drm/drm_panel.h>
+> > > > +
+> > > > +#include <video/mipi_display.h>
+> > > > +#include <drm/drm_probe_helper.h>
+> > > > +
+> > > > +struct starry_panel;
+> > > > +
+> > > > +struct panel_desc {
+> > > > +     const struct drm_display_mode *modes;
+> > > > +     unsigned int bpc;
+> > > > +     unsigned long mode_flags;
+> > > > +     enum mipi_dsi_pixel_format format;
+> > > > +     const struct panel_init_cmd *init_cmds;
+> > > > +     int (*init)(struct starry_panel *starry);
+> > > > +     unsigned int lanes;
+> > > > +     bool discharge_on_disable;
+> > > > +     bool lp11_before_reset;
+> > > > +     unsigned int power_off_delay_ms;
+> > > > +};
+> > > > +
+> > > > +struct starry_panel {
+> > > > +     struct drm_panel base;
+> > > > +     struct mipi_dsi_device *dsi;
+> > > > +
+> > > > +     const struct panel_desc *desc;
+> > > > +
+> > > > +     enum drm_panel_orientation orientation;
+> > > > +     struct regulator *vccio;
+> > > > +     struct gpio_desc *reset;
+> > > > +};
+> > > > +
+> > > > +static int starry_er88577_init(struct starry_panel *starry)
+> > > > +{
+> > > > +     struct mipi_dsi_multi_context dsi_ctx =3D { .dsi =3D starry->=
+dsi };
+> > > > +
+> > > > +     /* T5:HWreset to init_code >=3D 120ms */
+> > > > +     mipi_dsi_msleep(dsi_ctx, 120);
+> > > > +
+> > > > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xe0, 0xab, 0xba);
+> > > > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xe1, 0xba, 0xab);
+> > > > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb1, 0x10, 0x01, 0x47=
+, 0xff);
+> > > > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb2, 0x0c, 0x14, 0x04=
+, 0x50, 0x50, 0x14);
+> > > > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb3, 0x56, 0x53, 0x00=
+);
+> > > > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb4, 0x33, 0x30, 0x04=
+);
+> > > > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb6, 0xb0, 0x00, 0x00=
+, 0x10, 0x00, 0x10, 0x00);
+> > > > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb8, 0x05, 0x12, 0x29=
+, 0x49, 0x40);
+> > > > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb9, 0x7c, 0x61, 0x4f=
+, 0x42, 0x3e, 0x2d, 0x31,
+> > > > +                                  0x1a, 0x33, 0x33, 0x33, 0x52, 0x=
+40, 0x47, 0x38, 0x34, 0x26,
+> > > > +                                  0x0e, 0x06, 0x7c, 0x61, 0x4f, 0x=
+42, 0x3e, 0x2d, 0x31, 0x1a,
+> > > > +                                  0x33, 0x33, 0x33, 0x52, 0x40, 0x=
+47, 0x38, 0x34, 0x26, 0x0e,
+> > > > +                                  0x06);
+> > > > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xc0, 0xcc, 0x76, 0x12=
+, 0x34, 0x44, 0x44, 0x44,
+> > > > +                                  0x44, 0x98, 0x04, 0x98, 0x04, 0x=
+0f, 0x00, 0x00, 0xc1);
+> > > > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xc1, 0x54, 0x94, 0x02=
+, 0x85, 0x9f, 0x00, 0x6f,
+> > > > +                                  0x00, 0x54, 0x00);
+> > > > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xc2, 0x17, 0x09, 0x08=
+, 0x89, 0x08, 0x11, 0x22,
+> > > > +                                  0x20, 0x44, 0xff, 0x18, 0x00);
+> > > > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xc3, 0x87, 0x47, 0x05=
+, 0x05, 0x1c, 0x1c, 0x1d,
+> > > > +                                  0x1d, 0x02, 0x1e, 0x1e, 0x1f, 0x=
+1f, 0x0f, 0x0f, 0x0d, 0x0d,
+> > > > +                                  0x13, 0x13, 0x11, 0x11, 0x24);
+> > > > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xc4, 0x06, 0x06, 0x04=
+, 0x04, 0x1c, 0x1c, 0x1d,
+> > > > +                                  0x1d, 0x02, 0x1e, 0x1e, 0x1f, 0x=
+1f, 0x0e, 0x0e, 0x0c, 0x0c,
+> > > > +                                  0x12, 0x12, 0x10, 0x10, 0x24);
+> > > > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xc8, 0x21, 0x00, 0x31=
+, 0x42, 0x34, 0x16);
+> > > > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xca, 0xcb, 0x43);
+> > > > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xcd, 0x0e, 0x4b, 0x4b=
+, 0x20, 0x19, 0x6b, 0x06,
+> > > > +                                  0xb3);
+> > > > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xd2, 0xe3, 0x2b, 0x38=
+, 0x08);
+> > > > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xd4, 0x00, 0x01, 0x00=
+, 0x0e, 0x04, 0x44, 0x08,
+> > > > +                                  0x10, 0x00, 0x00, 0x00);
+> > > > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xe6, 0x80, 0x09, 0xff=
+, 0xff, 0xff, 0xff, 0xff,
+> > > > +                                  0xff);
+> > > > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf0, 0x12, 0x03, 0x20=
+, 0x00, 0xff);
+> > > > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf3, 0x00);
+> > >
+> > > NAK.
+> > >
+> > > This sequence looks _exactly_ like the sequence in
+> > > panel-boe-th101mb31ig002-28a.c.
+> > >
+> > Hi Dmity
 > >
-> > 0 means no timeout or response is instant?
+> > We checked the panel-boe-th101mb31ig002-28a.c driver. The init_code is
+> > indeed very similar, but the ICs seem to be different from the names,
+> > and our panels and timings are also different. Do you want us to add
+> > compatibility with Starry in this driver
+> > panel-boe-th101mb31ig002-28a.c?
+> >
+> > thanks
+> >
+> hi dmitry.baryshkov
 >
-> I should use 30ms same as what the driver currently use.
->
+> We tried to make modifications based on the
+> panel-boe-th101mb31ig002-28a.c driver, but we encountered some
+> problems.
+> For example, the panel-boe-th101mb31ig002-28a.c driver will get
+> "enable/reset" gpio in the probe() function, but our hardware design
+> only has "enable". This will cause an error to be returned in the
+> devm_gpiod_get function when we use this driver and the probe()
+> function will be interrupted.
+> How should we modify this? Can we re-judge the return value of the
+> devm_gpiod_get function?
 
-That sounds very wrong to me. The binding is independent of current driver
-behaviour. How the driver handles the case of default 0 value is different
-from what the default value in the DT means IMO. You can't just set a default
-value in the DT binding based on the current driver setting.
+If it is optional, then it should be devm_gpiod_get_optional().
 
-We can always say since it is optional, absence of it is what driver handles
-as 30ms. 0ms is impossible or incorrect value as transport involves some
-delay even if it is in terms of uS. So I prefer to set a value of > 0 in DT
-and make that a requirement.
+>
+> thanks
+>
+> > > > +
+> > > > +     mipi_dsi_dcs_exit_sleep_mode_multi(&dsi_ctx);
+> > > > +
+> > > > +     mipi_dsi_msleep(dsi_ctx, 120);
+> > > > +
+> > > > +     mipi_dsi_dcs_set_display_on_multi(&dsi_ctx);
+> > > > +     mipi_dsi_msleep(dsi_ctx, 20);
+> > > > +
+> > > > +     return dsi_ctx.accum_err;
+> > >
+> > > --
+> > > With best wishes
+> > > Dmitry
 
---
-Regards,
-Sudeep
+
+
+--=20
+With best wishes
+Dmitry
 
