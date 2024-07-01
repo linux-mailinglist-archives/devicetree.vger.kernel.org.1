@@ -1,219 +1,117 @@
-Return-Path: <devicetree+bounces-81977-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81986-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C451F91E25B
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 16:26:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A965A91E2A5
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 16:39:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7DC35288713
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 14:26:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DAC501C216D9
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 14:39:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D28EE16132E;
-	Mon,  1 Jul 2024 14:26:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5977616B3B1;
+	Mon,  1 Jul 2024 14:39:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o0V5ujIl"
+	dkim=pass (1024-bit key) header.d=tecnico.ulisboa.pt header.i=@tecnico.ulisboa.pt header.b="UYp5EScF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtp1.tecnico.ulisboa.pt (smtp1.tecnico.ulisboa.pt [193.136.128.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA2198C1D;
-	Mon,  1 Jul 2024 14:26:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 359182A1A4;
+	Mon,  1 Jul 2024 14:39:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.136.128.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719843974; cv=none; b=gdw98QHieSPBLHwlXVNDaMsG1wRNoJN1aI771z9Lg69mCgBO6h1u4xVbf7dGRCeAKRBtOv4ZcgPOo5uKwG4FDJ3uUWTE00HhhBaFDdSyR5Ojl6H3cjboF/e64Xpr8l1Ny24xKV5WFoNEuwFsJUxUM9BghYsecitb9EzHoXU9JTo=
+	t=1719844775; cv=none; b=P9Kqocyu2eKiLSiBfbc7Y6SW7K3S1YAF0l1JSaMMozaCVMC5+s573FLBdf6kfIeZ7vmo8G+QD2nRKDcBfxaioqtmiXkNeuIJh7AKZ4VQBkofoL73NPmmo4GN/WJ1fjiri3o/lHUwUOBR5HEt5luhB3upNvjGw7WscyYucgYvfFE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719843974; c=relaxed/simple;
-	bh=fmwZXCjuj0NA9DjirjyOyzJHTKDit436XbZ/klfs5Ao=;
+	s=arc-20240116; t=1719844775; c=relaxed/simple;
+	bh=/6qke6RUXta77pvxyFGlQ7jb5LbK70lHz1fXlCciVSQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mOXDDNbnGv0O0olvizSBJ7r2djpE+BTFmprNkftlJE4rEZaqYaQeeM3r503yrlcUyWMyz+q+QZLrKbAn5i9MSQvLEPMNM65bihYs9N0pgLa6mqu1a2rgLTVP2B8mp936DQtvg7sLIaCw+HW8qaA9MhlDjtlfoqSjzhoi88OvSRg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o0V5ujIl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA2F4C116B1;
-	Mon,  1 Jul 2024 14:26:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719843974;
-	bh=fmwZXCjuj0NA9DjirjyOyzJHTKDit436XbZ/klfs5Ao=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=o0V5ujIl+UMTHnRS1kJvkxxqL0rD8NWDHljKyif1AUcIwSWRI/MqGHgmXTJ1t/DKN
-	 Q/SeUBn0/RaCHwSRTfaB40Jen7lERYj0HblLXB5jCLeelpabsZhz5UMshA7VKl5uqo
-	 LOsFTgmMiPAqhAkkE/Zm6kyMvHMhmxjUEz0sgi7lcEN3jeetfx69pOKAuHkzMTuiWq
-	 MNF70XIbh6hhKvojZX0IX9ziSAFYrtY/TPa6j2r9mSetaA88gMR1a8Nl1yriS5HVcU
-	 VihZW4auNsWJHVCfyFRUcUmkM7Pp8KqADO93+M8fQOI3AGOs5CqtWebDIlw9JpPBEF
-	 UGMjJOSvNGifg==
-Date: Mon, 1 Jul 2024 16:26:10 +0200
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: Simon Horman <horms@kernel.org>
-Cc: netdev@vger.kernel.org, nbd@nbd.name, lorenzo.bianconi83@gmail.com,
-	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, conor@kernel.org,
-	linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, catalin.marinas@arm.com,
-	will@kernel.org, upstream@airoha.com,
-	angelogioacchino.delregno@collabora.com,
-	benjamin.larsson@genexis.eu, rkannoth@marvell.com,
-	sgoutham@marvell.com, andrew@lunn.ch, arnd@arndb.de
-Subject: Re: [PATCH v4 2/2] net: airoha: Introduce ethernet support for
- EN7581 SoC
-Message-ID: <ZoK8glSv-mtNPOLX@lore-desk>
-References: <cover.1719672695.git.lorenzo@kernel.org>
- <56f57f37b80796e9706555503e5b4cf194f69479.1719672695.git.lorenzo@kernel.org>
- <20240701135319.GE17134@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=fC7X1sC5/TCGMA2HK2XwwarKZMkE19v29IDL1VJqv3KB2R3DR1SKkyL2D2DrD1v7F0cJUVzcVzw27iWQfixtMR39S+8m5qXB5eLYfAzuAatIUxWuMR17ooNSyR7m44XSLOXfjBe70vUKenamjpFTBWUtdfUIiTrPjECpYsBhXJI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tecnico.ulisboa.pt; spf=pass smtp.mailfrom=tecnico.ulisboa.pt; dkim=pass (1024-bit key) header.d=tecnico.ulisboa.pt header.i=@tecnico.ulisboa.pt header.b=UYp5EScF; arc=none smtp.client-ip=193.136.128.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tecnico.ulisboa.pt
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tecnico.ulisboa.pt
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTP id 122A26002414;
+	Mon,  1 Jul 2024 15:30:39 +0100 (WEST)
+X-Virus-Scanned: by amavis-2.13.0 (20230106) (Debian) at tecnico.ulisboa.pt
+Received: from smtp1.tecnico.ulisboa.pt ([127.0.0.1])
+ by localhost (smtp1.tecnico.ulisboa.pt [127.0.0.1]) (amavis, port 10025)
+ with LMTP id vtWJFCvQ7Ifm; Mon,  1 Jul 2024 15:30:09 +0100 (WEST)
+Received: from mail1.tecnico.ulisboa.pt (mail1.ist.utl.pt [IPv6:2001:690:2100:1::b3dd:b9ac])
+	by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTPS id 5B1E2600140D;
+	Mon,  1 Jul 2024 15:30:09 +0100 (WEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tecnico.ulisboa.pt;
+	s=mail; t=1719844209;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=R1hlZfJgLOxh6K5sBaTW/U1/Z3z8nnKAghRXP3SUY+M=;
+	b=UYp5EScF7V+KxA4yERMIUFmVwF4ik5RZZrXsTQ+JOmRz7TDUNzk8F9oeDbcNRDUt/YyzgC
+	uecnkyP5cSBhMWq0WLp8KzX+X4Qk4z0wx3v4TxtzPnKQdCBDq5J4ajqGNTlhKdaKAdEQ1L
+	5w//eWiLtm2vsLdM5RcLGhDQpcD8T2Q=
+Received: from diogo-gram (unknown [46.6.168.43])
+	(Authenticated sender: ist187313)
+	by mail1.tecnico.ulisboa.pt (Postfix) with ESMTPSA id 11CD83600B9;
+	Mon,  1 Jul 2024 15:30:03 +0100 (WEST)
+Date: Mon, 1 Jul 2024 15:29:55 +0100
+From: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+To: Thierry Reding <thierry.reding@gmail.com>
+Cc: "Rob Herring (Arm)" <robh@kernel.org>, soc@kernel.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-tegra@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: Add/fix /memory node unit-addresses
+Message-ID: <otqwrgux76jfnj3zqdmybivu23k7os4gthxlvwn6xh3wv5g4lk@niz3kwwmcizr>
+References: <20240430191856.874600-2-robh@kernel.org>
+ <lbv5dlpvjfolp3tidna6ft7o3c3xswu6udp6savazegbfovygp@uzf2yyrocfuj>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="yfGzRyLDChOcgYkO"
-Content-Disposition: inline
-In-Reply-To: <20240701135319.GE17134@kernel.org>
-
-
---yfGzRyLDChOcgYkO
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <lbv5dlpvjfolp3tidna6ft7o3c3xswu6udp6savazegbfovygp@uzf2yyrocfuj>
 
-> On Sat, Jun 29, 2024 at 05:01:38PM +0200, Lorenzo Bianconi wrote:
-> > Add airoha_eth driver in order to introduce ethernet support for
-> > Airoha EN7581 SoC available on EN7581 development board (en7581-evb).
-> > en7581-evb networking architecture is composed by airoha_eth as mac
-> > controller (cpu port) and a mt7530 dsa based switch.
-> > EN7581 mac controller is mainly composed by Frame Engine (FE) and
-> > QoS-DMA (QDMA) modules. FE is used for traffic offloading (just basic
-> > functionalities are supported now) while QDMA is used for DMA operation
-> > and QOS functionalities between mac layer and the dsa switch (hw QoS is
-> > not available yet and it will be added in the future).
-> > Currently only hw lan features are available, hw wan will be added with
-> > subsequent patches.
-> >=20
-> > Tested-by: Benjamin Larsson <benjamin.larsson@genexis.eu>
-> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
->=20
-> Hi Lorenzo,
->=20
-> Some minor feedback from my side.
+Hi Thierry,
 
-Hi Simon,
+On Fri, Jun 28, 2024 at 05:06:10PM GMT, Thierry Reding wrote:
+> On Tue, Apr 30, 2024 at 02:18:54PM GMT, Rob Herring (Arm) wrote:
+> [...]
+> > diff --git a/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts b/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts
+> > index 9ebb7369256e..2e5b6b2c1f56 100644
+> > --- a/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts
+> > +++ b/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts
+> > @@ -25,7 +25,7 @@ chosen {
+> >  		stdout-path = "serial0:115200n8";
+> >  	};
+> >  
+> > -	memory {
+> > +	memory@80000000 {
+> >  		device_type = "memory";
+> >  		reg = <0x0 0x80000000 0x0 0xc0000000>;
+> >  	};
+> 
+> [trimming the recipient list and adding Diogo]
+> 
+> Sorry I just noticed this as I was doing a cleanup path of patchwork.
+> 
+> For tegra210-smaug, unfortunately we can't do this. The problem is that
+> the firmware for this device looks for a hard-coded /memory device when
+> updating with the proper memory size and this firmware can't always be
+> updated.
+> 
+> Diogo, you're one of the few remaining people that I know of that still
+> use this device (with an upstream kernel). Do you have any more details
+> about this? Is there any way the firmware can be safely updated on these
+> devices?
 
->=20
-> > +static void airoha_qdma_set_irqmask(struct airoha_eth *eth, int index,
-> > +				    u32 clear, u32 set)
-> > +{
-> > +	unsigned long flags;
-> > +
-> > +	if (WARN_ON_ONCE(index >=3D ARRAY_SIZE(eth->irqmask)))
-> > +		return;
-> > +
-> > +	spin_lock_irqsave(&eth->irq_lock, flags);
-> > +
-> > +	eth->irqmask[index] &=3D ~clear;
-> > +	eth->irqmask[index] |=3D set;
-> > +	airoha_qdma_wr(eth, REG_INT_ENABLE(index), eth->irqmask[index]);
-> > +	/* Read irq_enable register in order to guarantee the update above
-> > +	 * completes in the spinlock critical section.
-> > +	 */
-> > +	airoha_rr(eth, REG_INT_ENABLE(index));
->=20
-> airoha_rr() expects an __iomem pointer as it's first argument,
-> but the type of eth is struct airoha_eth *eth.
->=20
-> Should this be using airoha_qdma_rr() instead?
+To be honest I am not quite sure. I do know that at least there is a part
+of the firmware that is locked down and cannot be updated easily, as you
+have to disconnect a ribbon cable inside of the device. Do you know of
+any firmware updates for this device? Currently I am not aware of any.
 
-ack, right. Thx for pointing this out. I will fix it in v5.
-
->=20
-> Flagged by Sparse.
->=20
-> > +
-> > +	spin_unlock_irqrestore(&eth->irq_lock, flags);
-> > +}
->=20
-> ...
->=20
-> > +static void airoha_ethtool_get_strings(struct net_device *dev, u32 sse=
-t,
-> > +				       u8 *data)
-> > +{
-> > +	int i;
-> > +
-> > +	if (sset !=3D ETH_SS_STATS)
-> > +		return;
-> > +
-> > +	for (i =3D 0; i < ARRAY_SIZE(airoha_ethtool_stats_name); i++) {
-> > +		memcpy(data + i * ETH_GSTRING_LEN,
-> > +		       airoha_ethtool_stats_name[i], ETH_GSTRING_LEN);
-> > +	}
-> > +
-> > +	data +=3D ETH_GSTRING_LEN * ARRAY_SIZE(airoha_ethtool_stats_name);
-> > +	page_pool_ethtool_stats_get_strings(data);
-> > +}
->=20
-> W=3D1 allmodconfig builds on x86_64 with gcc-13 complain about the use
-> of memcpy above because the source is (often?) less than ETH_GSTRING_LEN
-> bytes long.
->=20
-> I think the preferred solution is to use ethtool_puts(),
-> something like this (compile tested only!):
->=20
-> @@ -2291,12 +2291,9 @@ static void airoha_ethtool_get_strings(struct net_=
-device *dev, u32 sset,
->  	if (sset !=3D ETH_SS_STATS)
->  		return;
-> =20
-> -	for (i =3D 0; i < ARRAY_SIZE(airoha_ethtool_stats_name); i++) {
-> -		memcpy(data + i * ETH_GSTRING_LEN,
-> -		       airoha_ethtool_stats_name[i], ETH_GSTRING_LEN);
-> -	}
-> +	for (i =3D 0; i < ARRAY_SIZE(airoha_ethtool_stats_name); i++)
-> +		ethtool_puts(&data, airoha_ethtool_stats_name[i]);
-> =20
-> -	data +=3D ETH_GSTRING_LEN * ARRAY_SIZE(airoha_ethtool_stats_name);
->  	page_pool_ethtool_stats_get_strings(data);
->  }
-> =20
-
-ack, I will fix it in v5.
-
->=20
-> ...
->=20
-> > +static int airoha_alloc_gdm_port(struct airoha_eth *eth, struct device=
-_node *np)
-> > +{
-> > +	const __be32 *id_ptr =3D of_get_property(np, "reg", NULL);
-> > +	struct net_device *dev;
-> > +	struct airoha_gdm_port *port;
->=20
-> nit: reverse xmas tree
-
-ack, I will fix it in v5.
-
-Regards,
-Lorenzo
-
->=20
-> > +	int err, index;
-> > +	u32 id;
->=20
-> ...
->=20
-> --=20
-> pw-bot: changes-requested
-
---yfGzRyLDChOcgYkO
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZoK8ggAKCRA6cBh0uS2t
-rDBPAQDur3zFnkAytxa5yij4hb3hCBJQ819Y+tMsR1PMD6423gEAlutApyx/5x3N
-LWRCKbrEtI16dofZ1jDxo7xNHCU21Ac=
-=HRGl
------END PGP SIGNATURE-----
-
---yfGzRyLDChOcgYkO--
+Diogo
 
