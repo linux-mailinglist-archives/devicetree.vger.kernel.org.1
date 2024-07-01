@@ -1,235 +1,139 @@
-Return-Path: <devicetree+bounces-81806-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81807-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3751691D81D
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 08:36:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 542BC91D841
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 08:51:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6A4E3282379
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 06:36:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0C1F01F226AA
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 06:51:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 878C72AEE4;
-	Mon,  1 Jul 2024 06:36:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E1E53FE55;
+	Mon,  1 Jul 2024 06:50:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="NY2w/azr"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="UIJMjsDj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34D504A0F;
-	Mon,  1 Jul 2024 06:36:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75DA844384;
+	Mon,  1 Jul 2024 06:50:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719815775; cv=none; b=TjI9ZXSlIc+fM0X34u1k2yb4Id3yIF/LFDGkR2vjEWa7O8XkMr0UQXcNYJgcgrqJiQBg/kkwu5qX6nSt/D0feLkY+32E/ZFHraeHLlfM3m+kf590LMAXdyyv3qWClZABq7nVO0X0EFN3w5FnlMOZDjlvNxMe9NiVA7/aTzRes+o=
+	t=1719816654; cv=none; b=XJEYQvAjiCRCEI3vafJ2pXWssvlQzV+RlLnh9EwWjS3BWbLw7LRynYPtMS7fdpnu0qN2SxAsFlNk4PcdXAamU8ZvFFOmwbNoDG9Tuuky8pSHkaDgijJcKaMy1FHX2tXGk0bL4bah74vQHAoeKyEURN7HLAf8gE8C54wPzQNXfTU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719815775; c=relaxed/simple;
-	bh=97QFdb5S2q9ySCY8i3DFvMeRmnRbHMoD70uZaZkMrXk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=SMyNWemAnNY0g0rrgCn1bd+bY3IKpO1qMeuxTNrF/w6drFL0aRpoACIbDj5HyyLiYYQHzXNfmzcI7qhijGRsrydIkVSaXwp0t5pSk041o9mc/JmGOZZUWed1tOPRfxs07u7ZihjFhh2JjfoFoRc/MQbID70gV5G+9IP/WmzSs8k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=NY2w/azr; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4616ZnjJ017990;
-	Mon, 1 Jul 2024 01:35:49 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1719815749;
-	bh=CvwQmo24v5IMWKakGQ8zYt5PJMRRdaNL04SdAamtOx8=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=NY2w/azrxuhgD+z59JdZtxz4ePX0jg4MwzrPs/WpjOjxShncmV6RQvoqrPhQCc+fE
-	 ViZ+78UXq2bM2bbrvFGzQZ2oiUOuqroDMsB/GUC0hwRM92Ft91eFudERz2gr+vJK2Z
-	 QqVUo3r3qqZvfr0vFm9LU1yZPmiDuQVN5Qi604KQ=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4616ZnUK120070
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 1 Jul 2024 01:35:49 -0500
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 1
- Jul 2024 01:35:49 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 1 Jul 2024 01:35:49 -0500
-Received: from [10.24.69.25] (danish-tpc.dhcp.ti.com [10.24.69.25])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4616ZiXX047728;
-	Mon, 1 Jul 2024 01:35:45 -0500
-Message-ID: <2badb65a-f56f-459a-b060-a3a5b624cfee@ti.com>
-Date: Mon, 1 Jul 2024 12:05:44 +0530
+	s=arc-20240116; t=1719816654; c=relaxed/simple;
+	bh=AZi7uHA23J0AutKfzo4p0SPt3fNTDJpKBbFbPfCzMhk=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Uq4mDN3+FtNFRwd3fstEeK5FQCQ+BybDlV8fGahXuDP1e6cxSUD4oHUMBUQZktRjDi3H4Dp5YG/z0XlefpvYbbdU3xUsdMSEQbe4xqZAyQMeclDZWmef1ZG+m7CKebZ4nFi+0bzvHJx/O37vhJuFynbmiC37ZRDj9h5oyMFCnWo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=UIJMjsDj; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45ULXMP3007786;
+	Mon, 1 Jul 2024 08:50:08 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=selector1; bh=nIXaCbx5fzZINYW6u5h5gd
+	T7P1fyQU9dEhX1xxpILlA=; b=UIJMjsDjLsSzjnw3Kq2GAg0Mx2v4FxLjfoAOHy
+	x2Lfs4QH9enNIf8hAmHESqWTUpuOggGfv4gJsx4hw5fjaHB68Mj+EqixtD+AoecC
+	BSh2ce970y/nq3qIDXAn3hE2gLOPSPO0wvhfNMcI1av1g031kow7TW/thKT9BAuU
+	JiyyF2eEvY7tWwddshmSD6nOv6BAappoZz93A9A23UAkfIhPwJrBMoPkxzBNYn+P
+	E1IHaIvZVSWszh3s75gLd6lsDlDjNhk6kNaKJEPL4jys6k5yJMSeV2J+2bMZNh4k
+	pLZDMLmMp2Zp3EqTz7GM/pjLY+C5A/bkfntcmvtlmkJSZbsA==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 402w7hu3xu-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 01 Jul 2024 08:50:08 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 0BF4740048;
+	Mon,  1 Jul 2024 08:50:01 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 51E19214D04;
+	Mon,  1 Jul 2024 08:48:45 +0200 (CEST)
+Received: from localhost (10.48.86.164) by SHFDAG1NODE2.st.com (10.75.129.70)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Mon, 1 Jul
+ 2024 08:48:45 +0200
+From: Christophe Roullier <christophe.roullier@foss.st.com>
+To: "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet
+	<edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni
+	<pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Jose Abreu <joabreu@synopsys.com>, Liam Girdwood <lgirdwood@gmail.com>,
+        Mark
+ Brown <broonie@kernel.org>,
+        Christophe Roullier
+	<christophe.roullier@foss.st.com>,
+        Marek Vasut <marex@denx.de>
+CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: [net-next,PATCH v2 0/2] Fixes for stm32-dwmac driver fails to probe
+Date: Mon, 1 Jul 2024 08:48:36 +0200
+Message-ID: <20240701064838.425521-1-christophe.roullier@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] dt-bindings: soc: ti: pruss: Add documentation for
- PA_STATS support
-To: Nishanth Menon <nm@ti.com>
-CC: Suman Anna <s-anna@ti.com>, Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Santosh
- Shilimkar <ssantosh@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <srk@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Roger Quadros
-	<rogerq@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20240625153319.795665-1-danishanwar@ti.com>
- <20240625153319.795665-3-danishanwar@ti.com>
- <20240627144538.mp7n2l7kupi7gt4l@straddle>
- <cca91f88-d7cd-42e3-a4f3-065d536e623b@ti.com>
- <20240628063423.cprgwhatogc2dapo@stuffing>
-Content-Language: en-US
-From: MD Danish Anwar <danishanwar@ti.com>
-In-Reply-To: <20240628063423.cprgwhatogc2dapo@stuffing>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-01_05,2024-06-28_01,2024-05-17_01
+
+Mark Brown found issue during stm32-dwmac probe:
+
+For the past few days networking has been broken on the Avenger 96, a
+stm32mp157a based platform.  The stm32-dwmac driver fails to probe:
+
+<6>[    1.894271] stm32-dwmac 5800a000.ethernet: IRQ eth_wake_irq not found
+<6>[    1.899694] stm32-dwmac 5800a000.ethernet: IRQ eth_lpi not found
+<6>[    1.905849] stm32-dwmac 5800a000.ethernet: IRQ sfty not found
+<3>[    1.912304] stm32-dwmac 5800a000.ethernet: Unable to parse OF data
+<3>[    1.918393] stm32-dwmac 5800a000.ethernet: probe with driver stm32-dwmac failed with error -75
+
+which looks a bit odd given the commit contents but I didn't look at the
+driver code at all.
+
+Full boot log here:
+
+   https://lava.sirena.org.uk/scheduler/job/467150
+
+A working equivalent is here:
+
+   https://lava.sirena.org.uk/scheduler/job/466518
+
+I delivered 2 fixes to solve issue.
+
+V2: - remark from Marek (commit msgs)
+
+Christophe Roullier (2):
+  net: stmmac: dwmac-stm32: Add test to verify if ETHCK is used before
+    checking clk rate
+  net: stmmac: dwmac-stm32: update err status in case different of
+    stm32mp13
+
+ drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c | 9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
 
 
-
-On 28/06/24 12:04 pm, Nishanth Menon wrote:
-> On 10:56-20240628, MD Danish Anwar wrote:
->>
->>
->> On 27/06/24 8:15 pm, Nishanth Menon wrote:
->>> On 21:03-20240625, MD Danish Anwar wrote:
->>>> Add documentation for pa-stats node which is syscon regmap for
->>>> PA_STATS registers. This will be used to dump statistics maintained by
->>>> ICSSG firmware.
->>>>
->>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
->>>> ---
->>>>  .../devicetree/bindings/soc/ti/ti,pruss.yaml  | 20 +++++++++++++++++++
->>>>  1 file changed, 20 insertions(+)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml b/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
->>>> index c402cb2928e8..3cb1471cc6b6 100644
->>>> --- a/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
->>>> +++ b/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
->>>> @@ -278,6 +278,26 @@ patternProperties:
->>>>  
->>>>      additionalProperties: false
->>>>  
->>>> +  ^pa-stats@[a-f0-9]+$:
->>>> +    description: |
->>>> +      PA-STATS sub-module represented as a SysCon. PA_STATS is a set of
->>>> +      registers where different statistics related to ICSSG, are dumped by
->>>> +      ICSSG firmware. This syscon sub-module will help the device to
->>>> +      access/read/write those statistics.
->>>> +
->>>> +    type: object
->>>> +
->>>> +    additionalProperties: false
->>>> +
->>>> +    properties:
->>>> +      compatible:
->>>> +        items:
->>>> +          - const: ti,pruss-pa-st
->>>> +          - const: syscon
->>>> +
->>>> +      reg:
->>>> +        maxItems: 1
->>>> +
->>>
->>> Is this a patch in a driver series? I do not see the driver part..
->>
->> No Nishant, this is not a part of driver series. This binding patch is
->> related to [1] which is merged to net-next. The regmap will not be used
->> by drivers/soc/ti driver instead once both binding are in, the driver
->> changes will be needed in drivers/net/ethernet/ti/icssg/icssg_prueth.c
->> as there is no driver changes needed in drivers/soc/ti, I posted this
->> patch as stand alone. Considering this binding and [1] they both go to
->> different tree, I decided to get the bindings in first and in next
->> kernel cycle when they both are part of mainline linux, I can post the
->> driver changes.
-> 
-> This is indicating some strong coupling that is sounding a bit
-> suspicious. Please add in the full series so that folks can see the
-> inter dependencies.
-> 
-
-The driver changes will be needed at later point. The PA-STATS registers
-dump stats related to TSN / Frame Preemption features for ICSSG drivers.
-The TSN support itself is still in progress for ICSSG driver and as a
-result I have not added the driver change that uses this register maps
-to read / write statistics.
-
-For your reference, I will try to explain the dependency.
-
-The pruss node (named icssg1 in k3-am64-main.dtsi) will have below,
-
-icssg1_pa_stats: pa-stats@2c000 {
-	compatible = "ti,pruss-pa-st", "syscon";
-	reg = <0x2c000 0x1000>;
-};
-
-The icssg1-eth node in k3-am642-evm will have,
-
-icssg1_eth: icssg1-eth {
-
-	...
-	...
-
-	ti,pa-stats = <&icssg1_pa_stats>;
-
-	...
-	...
-}
-
-Now the driver icssg_prueth.c will have the below code in it's probe,
-
-prueth->pa_stats = syscon_regmap_lookup_by_phandle(np, "ti,pa-stats");
-if (IS_ERR(prueth->pa_stats)) {
-	dev_err(dev, "couldn't get ti,pa-stats syscon regmap\n");
-	return -ENODEV;
-}
-
-The driver can then use regmap_read / write on prueth->pa_stats regmap
-do access those registers.
-
-This approach is similar to 'mii-rt' and 'mii-g-rt' reg maps. They have
-been implemented and currently used by the icssg_prueth.c driver. You
-can have a look on them for your reference.
-
->>
->>> if this is a memory map, why doesn't bus model work?
->>>
->>
->> I am just trying to maintain consistency here. pa-stats sub-module is
->> similar to mii-g-rt and mii-rt. I am adding pa-stats in the same way as
->> mii-g-rt and mii-rt.
->>
->> All these three modules are eventually mapping a memory region so that
->> the icssg driver can use them and read / configure registers.
-> 
-> Sounds like mapping a bus is more appropriate? I dont seem to see it
-> though.
-> 
->>
->>>
->>>>    interrupt-controller@[a-f0-9]+$:
->>>>      description: |
->>>>        PRUSS INTC Node. Each PRUSS has a single interrupt controller instance
->>>> -- 
->>>> 2.34.1
->>>>
->>>
->>
->> [1] https://lore.kernel.org/all/20240529115225.630535-1-danishanwar@ti.com/
->>
->> -- 
->> Thanks and Regards,
->> Danish
-> 
-
+base-commit: 30972a4ea092bacb9784fe251327571be6a99f9c
 -- 
-Thanks and Regards,
-Danish
+2.25.1
+
 
