@@ -1,138 +1,111 @@
-Return-Path: <devicetree+bounces-81923-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81924-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE48291DF1C
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 14:25:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA0A791DF2A
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 14:27:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F044E1C20CA7
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 12:25:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 88721281A99
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 12:27:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC0CB14B08E;
-	Mon,  1 Jul 2024 12:25:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAD8414B947;
+	Mon,  1 Jul 2024 12:27:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZGzDkZkY"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Hb26X+hW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C068714A0A0;
-	Mon,  1 Jul 2024 12:25:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4779814AD35
+	for <devicetree@vger.kernel.org>; Mon,  1 Jul 2024 12:27:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719836747; cv=none; b=Z9F/yPPZY+u7C4ohisn0V0+rksTEMIh7zsi1LWHY0D4dtdXLYyp0ykdunq1/kuj6yeBRjisW07nyNpgO47Wg4PvlRMxe4vqbW+7zLHHgOEZkuWyN/WywI7Yuxapcn28A6OJkzsIyhDgbH4W8AQicl5gyIt91R6ApVjq4wLcHg+8=
+	t=1719836863; cv=none; b=rzibmXSC+KkOqHIBQFCcitfjDVvY4+2ZL0MZaaMiXHTyrkkpLfZ3CIACM2DDfpLRFr17JXg8sWG0Rb6Q/cxZO0irS4H0QYbrlIQZ24O4nyIe4PU3hjHzVJKyWQZ1SDPelf0aPHaSjSuzY/Gk5hdRQzDbkJFSPbMBNz7iZtLUU0o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719836747; c=relaxed/simple;
-	bh=qde1oJVpemXAs9VLKdKSyfrUTKpxHHBTcoNVyrzgcFs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jTO+0OqFHnZsm1YcKczeOlEgv2yNFlamk+1+80C4u49Lgh4LiC6P9yUbbdu8Jb7CTZHPpoL9ipMF84OxzC/VvNyxcE7LKrZn8uEhqB/EmFp/lCyT2YNmbasdoUP8Bn1bD973KJ41TJYldI/3ub628DJBhA5yrw6RxQdzlmgq8s4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZGzDkZkY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F02EC2BD10;
-	Mon,  1 Jul 2024 12:25:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719836747;
-	bh=qde1oJVpemXAs9VLKdKSyfrUTKpxHHBTcoNVyrzgcFs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ZGzDkZkYkMctQkF16w4/cFgGieXThI1XLKOeF8wrtDw/vdborkn5Od7PGrbPXP9MQ
-	 8dorpJLPaSHD2FbdkGEUHZvRfKKLw44E/nZYdVunGu2+XyQdyeOP+kN80mzwni8c0Q
-	 XY3/O/qBq1fnVRngWTGHfISUUUKgXy6l8kg+S0MknDYFj3FDPtztVMSNGfnaphXEs7
-	 ZDDqgQVw+V+3LdGxYVvyKyYNEoo73iQGtMhLUV5yz2UgHYEWYjQHNqDIOlWWOPMv61
-	 tDs8SQEUbb1H2x3BjKSR97RiyNdPqRI3Yv7/kCJC+7bujOjjebCUc46QPQ+5Piv5jy
-	 5zY9I3NYcdlvQ==
-Date: Mon, 1 Jul 2024 13:25:41 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Yixun Lan <dlan@gentoo.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Anup Patel <anup@brainfault.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Palmer Dabbelt <palmer@sifive.com>, linux-riscv@lists.infradead.org,
-	linux-serial@vger.kernel.org, Inochi Amaoto <inochiama@outlook.com>,
-	Meng Zhang <zhangmeng.kevin@spacemit.com>,
-	Yangyu Chen <cyy@cyyself.name>
-Subject: Re: [PATCH v2 07/10] riscv: add SpacemiT SOC family Kconfig support
-Message-ID: <20240701-brilliant-accuracy-9bc4effff9e1@spud>
-References: <20240627-k1-01-basic-dt-v2-0-cc06c7555f07@gentoo.org>
- <20240627-k1-01-basic-dt-v2-7-cc06c7555f07@gentoo.org>
+	s=arc-20240116; t=1719836863; c=relaxed/simple;
+	bh=DKtxpPgVNtsn7K3hHeygsIzw1BFxEqTpvfTeM+AQT+s=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=hn6UfWNAUMB4zFe84Pcd3Wph2rwYA+tlaE67HZXroHXTdoB69LD2OsGxqCyTi7p7+j9pNuQPzK44j/eh6RQ0vXUz/x4d6Dm41wSODfY+QUaXrK3gy1rEq+LuTMDnDHXVuOiEA/efdInDSJcZiJRBC5nxdz5qGPXaTQxRaro03P0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Hb26X+hW; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-42567ddf099so21281735e9.3
+        for <devicetree@vger.kernel.org>; Mon, 01 Jul 2024 05:27:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1719836861; x=1720441661; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=IbKJ1+fHrcfsxoNPssv5ufXQjSB4NnSOZ79R2VobUDs=;
+        b=Hb26X+hWtdxku4kNvWXx2QTDnVXqfsxei5cJwNrLYvRB8BZ2vid8FHRGW1/UnU27Wn
+         xe2aq0si6KQ8yIUcNgEjjh5rzdVDR6IYF96DmAPlgqLQmQBUMvX4TObcGPOu6GDpTXlN
+         oOW5mq81QcpjRsP1Qo+Jg0xXqhSwcjw/uRZyAnridOfHTyifQzJIEQjIJUUesdsleCxS
+         gS85qnhb6qErGTozxsyGFvGWCKuZ87UXCRvzp7CVnI+hhARkLLHSQP5/+ViLCr3PedNR
+         MoxMmgkpqTs0ZWawGcL8g3j2ioyAh8atXsCfki+ZrFBNAPau9Fai1b/s8I+fsR8sajDj
+         kRBQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719836861; x=1720441661;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=IbKJ1+fHrcfsxoNPssv5ufXQjSB4NnSOZ79R2VobUDs=;
+        b=HGNfauytOzlaUXnhSMmLoDuP/yBCEgisL/WncxCgGlaJlIcKVNnAYcITkPvfDPRW+A
+         RtWlwrERTjWoDXf5NgKGEokZdIkpByyl5TqM2yY0gzMOsgLdMD8fH/PisBWNiHZaO8hQ
+         C217tWaaOXW9aO6MfvDB9Y3vMzqsOj9u72zkxuEjEjopek9aSN1ieqP2gsMNbGXeZXOA
+         jKj6/D69MIWEoP+Q2O3Q7MzBDjHHKr7M4vY/xpzKkTdrSTvSnwUxI9qptjCC8g5LQrdt
+         BOurXbjt09NYerTn1MWIdWHFuifBpy2jqWraSpMDTkBK4kFljLG9Bo4e51yA2yGSI9W5
+         r+UQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXexSOmMWx4pfqBOQttLx4i+cdKp/pKmANXEU5wkQWGAWBT3u7plwj3V3qj0in3KDHwHTpjTsgHmQQcERo52KNRvyP39QWfV9Yg8A==
+X-Gm-Message-State: AOJu0YwFlUwh4wnPfUakxN09GIO6zPGNdlxrHK9j+Stbgxl5gYL7QdPZ
+	hJz3PMWkYzKB3Jf0jmSwbNop1OmZJ/U0NwmjvePjmN0Khd22X/G7r/yXyiTxa4E=
+X-Google-Smtp-Source: AGHT+IFH35xxvg5N4AtgQdVncudDweLagl90Mb/QWe2ODsQ64shBW9nGUOgVWRgqPVDQN+ts6wv3Yw==
+X-Received: by 2002:adf:ab17:0:b0:364:a733:74de with SMTP id ffacd0b85a97d-367756a9394mr3104569f8f.28.1719836860636;
+        Mon, 01 Jul 2024 05:27:40 -0700 (PDT)
+Received: from [127.0.1.1] ([178.197.219.137])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3675a0d90d5sm9961414f8f.31.2024.07.01.05.27.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 01 Jul 2024 05:27:39 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: =?utf-8?q?=C5=81ukasz_Stelmach?= <l.stelmach@samsung.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Sam Protsenko <semen.protsenko@linaro.org>
+Cc: Anand Moon <linux.amoon@gmail.com>, Olivia Mackall <olivia@selenic.com>, 
+ Herbert Xu <herbert@gondor.apana.org.au>, 
+ Alim Akhtar <alim.akhtar@samsung.com>, linux-samsung-soc@vger.kernel.org, 
+ linux-crypto@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20240618204523.9563-8-semen.protsenko@linaro.org>
+References: <20240618204523.9563-1-semen.protsenko@linaro.org>
+ <20240618204523.9563-8-semen.protsenko@linaro.org>
+Subject: Re: (subset) [PATCH v2 7/7] arm64: dts: exynos850: Enable TRNG
+Message-Id: <171983685912.414640.3760379043384228947.b4-ty@linaro.org>
+Date: Mon, 01 Jul 2024 14:27:39 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="12R8+aDawiuRLv5y"
-Content-Disposition: inline
-In-Reply-To: <20240627-k1-01-basic-dt-v2-7-cc06c7555f07@gentoo.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.0
 
 
---12R8+aDawiuRLv5y
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Tue, 18 Jun 2024 15:45:23 -0500, Sam Protsenko wrote:
+> Add True Random Number Generator (TRNG) node to Exynos850 SoC dtsi.
+> 
+> 
 
-On Thu, Jun 27, 2024 at 03:31:21PM +0000, Yixun Lan wrote:
-> From: Yangyu Chen <cyy@cyyself.name>
->=20
-> The first SoC in the SpacemiT series is K1, which contains 8 RISC-V
-> cores with RISC-V Vector v1.0 support.
->=20
-> Link: https://www.spacemit.com/en/spacemit-key-stone-2/
->=20
+Applied, thanks!
 
-Remove the blank line please.
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+[7/7] arm64: dts: exynos850: Enable TRNG
+      https://git.kernel.org/krzk/linux/c/64c7ea42fcc2b972fc8d108642f4b8fabf0999c3
 
-Thanks,
-Conor.
+Best regards,
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-> Signed-off-by: Yangyu Chen <cyy@cyyself.name>
-> Signed-off-by: Yixun Lan <dlan@gentoo.org>
-> ---
->  arch/riscv/Kconfig.socs | 5 +++++
->  1 file changed, 5 insertions(+)
->=20
-> diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
-> index f51bb24bc84c6..1916cf7ba450e 100644
-> --- a/arch/riscv/Kconfig.socs
-> +++ b/arch/riscv/Kconfig.socs
-> @@ -24,6 +24,11 @@ config ARCH_SOPHGO
->  	help
->  	  This enables support for Sophgo SoC platform hardware.
-> =20
-> +config ARCH_SPACEMIT
-> +	bool "SpacemiT SoCs"
-> +	help
-> +	  This enables support for SpacemiT SoC platform hardware.
-> +
->  config ARCH_STARFIVE
->  	def_bool SOC_STARFIVE
-> =20
->=20
-> --=20
-> 2.45.2
->=20
-
---12R8+aDawiuRLv5y
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZoKgRQAKCRB4tDGHoIJi
-0p9iAQC6whE/bHeDyJ/S98q/OVqAyxeKWcEecg7ABkELD8ToKQD+Ocn7yyKVtHz5
-poXOBPvWSuMmvDEKjND0F5EvN8pviwA=
-=bdgu
------END PGP SIGNATURE-----
-
---12R8+aDawiuRLv5y--
 
