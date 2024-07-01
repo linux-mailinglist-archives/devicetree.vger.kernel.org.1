@@ -1,48 +1,74 @@
-Return-Path: <devicetree+bounces-81810-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81811-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41AF591D84C
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 08:52:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E84191D85F
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 08:57:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 739AD1C21C9A
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 06:52:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 81A4A1C2205A
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 06:56:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 906234EB45;
-	Mon,  1 Jul 2024 06:52:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 599B156742;
+	Mon,  1 Jul 2024 06:56:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gRD7lXQM"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="h87V073D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E42410A0E;
-	Mon,  1 Jul 2024 06:52:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E594B4EB45;
+	Mon,  1 Jul 2024 06:56:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719816763; cv=none; b=Sm3a2/oZRHgzAtk9CFQZC9b1b4HcP+fQLxDHNIyvlE5ZBpPUfpO/FOff2EtIkQMypeHLkzWRaAi/J7WNkpmGHQn1MiP0ADEKjF0dZQpwMBohTDsy9yM1ft97wac4OOyRuRmLnnsUb4x3VbT6wHGJ6tFZXA92imT1iaggJtpV1Qk=
+	t=1719817015; cv=none; b=emcwZfNxd9wtVrEiD7R5MH1Rkem1i2XPG2d75ppSOglmGv7ksMU248Fy+3Xe4hUT5QX8KNK3rmMMFyyGGVzFanf0GDCIx2Mq0XSaMJa9R5AgY1DMCLk4b74Ku9jAFknao59/MHrciW0FAocvvH0+URgoxgeabGwDbK0hDChJCts=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719816763; c=relaxed/simple;
-	bh=E9TFWo9WdevrDFVoWL1TYS3FtsXZKCPU5LV1g0UiW3M=;
+	s=arc-20240116; t=1719817015; c=relaxed/simple;
+	bh=+ntPJT+r5ArrobOCjTljPY5X1luO0LW3vJ9fSfFxWI8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GdBsyTfZ2RzgfGxfKBlHwv6rOFWE6PhWE1z1Gp9BhvkqusEkNLVnPZqNsMFmZuHTBXj92O6r2kmRGMnJi0GpJ8C8GLTcYefAnYWtXJXf5cuMWp5/pl16OTewcyCqiQxkLhvmGA0brFnHJM86WkXaU5TDwNCyzT/4DXvu2enpO1Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gRD7lXQM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1761CC116B1;
-	Mon,  1 Jul 2024 06:52:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719816762;
-	bh=E9TFWo9WdevrDFVoWL1TYS3FtsXZKCPU5LV1g0UiW3M=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=gRD7lXQMnyWnfIw4ySq7WC1Jyz2mQfR/Ss8soD9e4WlOEBsvlBVlgLtUwnFvvXyH3
-	 nPaHpgtc1VHVzgksvo7jhS9lBR6AP2Uhb3sRv8fXqrxzFOW2HgR7GNlbOeElrhimj0
-	 WgSs32zo1YhakujIr0nnoGlYR0lusMCauPKNjRM9EE2RNczmYmUDQcV6vgueocMmj3
-	 PvAbjIAFq//VktjEopZSabhiJTR7bLwYuRDVxJPCxKTQjqV3WuwzpZPN7U8jQQz8ro
-	 LMUVphrWnDTgVyCgLwj8RHHzvVmHPm+YH0zDm47rkUkotObWyov9DaVOc5GwxQ6BMu
-	 V2DFfrB9Wo8ow==
-Message-ID: <aea7fa07-b1c9-4386-891f-5e23fb6baf32@kernel.org>
-Date: Mon, 1 Jul 2024 08:52:33 +0200
+	 In-Reply-To:Content-Type; b=giGNBuUNkHGvoE61BDSrahcjMsybYcZnbeOkjiSsmQCMpK+UKxY2n4pTGgy7v76phfEx2IkWrEhnIhVtE9BX0a2xKAWp9uZIL488eWHFgeeyatkfl6IJJw/YK4fLga98UXr5mRoCQMpra+OkBD3JiyCbzkpsc+0SFj675BdbJbs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=h87V073D; arc=none smtp.client-ip=209.85.167.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oi1-f182.google.com with SMTP id 5614622812f47-3c9cc681ee4so1825102b6e.0;
+        Sun, 30 Jun 2024 23:56:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1719817013; x=1720421813; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=+ntPJT+r5ArrobOCjTljPY5X1luO0LW3vJ9fSfFxWI8=;
+        b=h87V073DHZRX2oFduFxZYCFGk7+mB8WXTR6EMqgiVXed0oZKwY7NV9n12f4PcTZjTt
+         1qUiLnoEKMyHGU7c87xivHK8qfZHFlitZV82mZU88kADdg0+ninBJX7xx/jUautog4uM
+         LrAO4cC25E8bjW7tvTAdkuJFB/s2SJLH0LEuVDUJEx+Ar741ciX9f8mikvWX9h3LpXG8
+         PodP5K232B74RRk6YJyNryCxVsDGXMF6406PoRyj9BtEtIbdlZ4z/w48+bZfTX8PUMKM
+         8D33in+zJXtyNUWWor10WGa49bdmpOk3lqCu3lBVWFEnufqksNhX5dbpGBodqFv0tTqV
+         jhLQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719817013; x=1720421813;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=+ntPJT+r5ArrobOCjTljPY5X1luO0LW3vJ9fSfFxWI8=;
+        b=iSeiJGVe/g7BpSeldaO9IfCKoOPmz3EN124grAiSGwqlaJuhpkinazU2OUdM2tG4nR
+         lrdhungC9C5QWPkXqcEoMS3T8haBiq3wtp19vFdyuHPdlfUQo3dHd2uon9snka1XGeNw
+         a4/V4qHOp2X5n0z4Rl4e+sinDzXKYnbAnhdzGuIrHsMiC5hUy2kqRzeNR7IxEnGZXCvs
+         dGnxywk14L9+m9pVIjkWhnV+4vruDqSwRT7E8W2Tc6ibiz96uFJAaLGgNgnPlvevX5dd
+         u8wLeg+10vlvpufgRfpuoH+cHaNxwC/dz6m/uVAlNviPBIJL78gmkUSohrewFpdv6Tv9
+         nb3w==
+X-Forwarded-Encrypted: i=1; AJvYcCW/a6FhpDOITszcWlOrIG0RvMxSybkF41+KLSzn4HuwKCUSiZJZmMbSOxA86eSBkDRkugYHGtO5bMrAEJX+qFzeO9skno6ud9auzM9cXifqq3+bbSCY/DeAI3cvP3wpXTEPmMPnza7lQ3OUWpr3NqURU2x06nOiKeH9WBkE0V22Txjwxw==
+X-Gm-Message-State: AOJu0YymkSzx8Vz8i6N/pcnSX2S9aDRMsDCy7u9nJuIHqTR9sh9LLTsv
+	cQEMMgFT9TmE7ScqIQ0qcOuUIMWp/jXcYhK4VZDktxhikaRRAgeY
+X-Google-Smtp-Source: AGHT+IEpqIOCW/jccTj/xYWZV3r4E+LFfyzOwkCVx0hHDZpgZCno30MYJoir9PNX4x8DmW0+NjCHRg==
+X-Received: by 2002:a05:6808:f15:b0:3d6:2d45:a791 with SMTP id 5614622812f47-3d6b3c86bbbmr8659230b6e.32.1719817012691;
+        Sun, 30 Jun 2024 23:56:52 -0700 (PDT)
+Received: from [172.19.1.51] (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-708044b1112sm5715670b3a.182.2024.06.30.23.56.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 30 Jun 2024 23:56:52 -0700 (PDT)
+Message-ID: <747c568b-6934-40dc-90d6-386fd1e0e795@gmail.com>
+Date: Mon, 1 Jul 2024 14:56:47 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,164 +76,59 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/8] dt-bindings: input: touchscreen: document
- synaptics TCM oncell
-To: Caleb Connolly <caleb@postmarketos.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Jessica Zhang <quic_jesszhan@quicinc.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Henrik Rydberg <rydberg@bitmath.org>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-input@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- ~postmarketos/upstreaming@lists.sr.ht
-References: <20240630-oneplus8-v2-0-c4a1f8da74f1@postmarketos.org>
- <20240630-oneplus8-v2-2-c4a1f8da74f1@postmarketos.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v3 1/2] dt-bindings: mmc: nuvoton,ma35d1-sdhci: Document
+ MA35D1 SDHCI controller
+To: Krzysztof Kozlowski <krzk@kernel.org>, ulf.hansson@linaro.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ adrian.hunter@intel.com, p.zabel@pengutronix.de, pbrobinson@gmail.com,
+ serghox@gmail.com, mcgrof@kernel.org,
+ prabhakar.mahadev-lad.rj@bp.renesas.com, forbidden405@outlook.com,
+ tmaimon77@gmail.com, andy.shevchenko@gmail.com,
+ linux-arm-kernel@lists.infradead.org, linux-mmc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: ychuang3@nuvoton.com, schung@nuvoton.com
+References: <20240701003913.729428-1-shanchun1218@gmail.com>
+ <20240701003913.729428-2-shanchun1218@gmail.com>
+ <e02dc084-1e69-4231-b191-3605c68b53f4@kernel.org>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240630-oneplus8-v2-2-c4a1f8da74f1@postmarketos.org>
-Content-Type: text/plain; charset=UTF-8
+From: Shan-Chun Hung <shanchun1218@gmail.com>
+In-Reply-To: <e02dc084-1e69-4231-b191-3605c68b53f4@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 30/06/2024 20:36, Caleb Connolly wrote:
-> 
-> diff --git a/Documentation/devicetree/bindings/input/touchscreen/syna,tcm-oncell.yaml b/Documentation/devicetree/bindings/input/touchscreen/syna,tcm-oncell.yaml
-> new file mode 100644
-> index 000000000000..6e366c9446f8
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/input/touchscreen/syna,tcm-oncell.yaml
+Dear Krzysztof,
 
-Filename like compatible, so syna,s3908.yaml
+Thanks for your review.
 
-> @@ -0,0 +1,68 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/input/touchscreen/syna,tcm-oncell.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Synaptics TCM Oncell i2c touchscreen
-> +
-> +maintainers:
-> +  - Caleb Connolly <caleb@postmarketos.org>
-> +
-> +allOf:
-> +  - $ref: touchscreen.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - syna,s3908
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts-extended:
+I'm sorry, I just realized I missed an important letter.
 
-Instead, just interrupts:
+I will drop status = "disabled" in the next version.
 
-> +    maxItems: 1
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +    description: Reset GPIO the chip is connected to.
-> +
-> +  vdd-supply:
-> +    description: a phandle for the regulator supplying 3V power.
-> +
-> +  vcc-supply:
-> +    description: a phandle for the regulator supplying IO power.
-> +
-> +additionalProperties: false
+> On 01/07/2024 02:39, Shan-Chun Hung wrote:
+>> Add binding for Nuvoton MA35D1 SDHCI controller.
+>>
+>> Signed-off-by: Shan-Chun Hung <shanchun1218@gmail.com>
+> You ignored comment third time.
+>
+> NAK.
+>
+> <form letter>
+> This is a friendly reminder during the review process.
+>
+> It seems my or other reviewer's previous comments were not fully
+> addressed. Maybe the feedback got lost between the quotes, maybe you
+> just forgot to apply it. Please go back to the previous discussion and
+> either implement all requested changes or keep discussing them.
+>
+> Thank you.
+> </form letter>
+>
+>
+> Best regards,
+> Krzysztof
 
-This goes after "required:" block.
+Best Regards,
 
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts-extended
-> +  - reset-gpios
-> +  - vdd-supply
-> +  - vcc-supply
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    i2c {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +      clock-frequency = <400000>;
-
-Drop
-
-> +      status = "okay";
-
-Drop
-
-> +
-> +      touchscreen@4b {
-> +        compatible = "syna,s3908";
-> +        reg = <0x4B>;
-> +
-> +        interrupts-extended = <&tlmm 39 0x2008>;
-
-Not a correct interrupt flag, I think.
-
-Best regards,
-Krzysztof
-
+Shan-Chun
 
 
