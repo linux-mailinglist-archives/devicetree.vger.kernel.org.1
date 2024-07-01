@@ -1,180 +1,204 @@
-Return-Path: <devicetree+bounces-81971-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81972-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6026691E152
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 15:54:04 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D704891E1B8
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 16:00:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9077C1C22FE4
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 13:54:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 90FE028754F
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 14:00:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E76E815F322;
-	Mon,  1 Jul 2024 13:53:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38CF715F30F;
+	Mon,  1 Jul 2024 13:58:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rXVSrgwX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sCa34a/q"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFE2415EFB2;
-	Mon,  1 Jul 2024 13:53:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1061E15EFD7;
+	Mon,  1 Jul 2024 13:58:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719842007; cv=none; b=EXLtY2uIw0vCyPLmprPdYGK8AD+66vw3Ar64hhG8qb4ORKnMSwJTl2a47+RSBstsQcDeRbIyxUSguZrz8xfkc4EjeWZRsXn88GZUc3kHHeAQs3DXtbVRbevPjkFOFgJjfj8l4LnTn+IEkbWUwIykkPYf0JW8gh0a3GXR4Y76as4=
+	t=1719842326; cv=none; b=kz1Qsa/zMEI1dMtJGeIXPLOzmNMgdnuP1JOtrP3I4bSaFIffEW/rH0Zvpx6K/BldytdvFLUCQBNTVU88+JiKse6188LnKN+R3F2R33yyOUHAxwQBphI/Yj/cZsF54CwkaHOJxhkhOglnjSQffZpLP2YnBXWE5uzPlaeS/X0QzDA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719842007; c=relaxed/simple;
-	bh=r8TwQcnCucjLf3kM3DNF0A1LB9UEN+OlT5l5Gu1zqZ8=;
+	s=arc-20240116; t=1719842326; c=relaxed/simple;
+	bh=VlYW+BVRr/2wR3yn9dKsp1GvB5pZ/gJsdlh3v7mNgNQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=a4J76cGh9g3mSRACs7M9qbM4pZoHjE+VqL72y/Vo/qiGoVV6VxlmZ+VccZkWpaEydk9nIm8E6dj1bSYjLSCaQY3wdq807mT9rlut6rC4ZYNDoTsjVmupC+rtuYJd4BEvow4RNMmX+sDEOAc7NvbrBHhEpw0c9e76c1TinSpZKf8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rXVSrgwX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3DE0C116B1;
-	Mon,  1 Jul 2024 13:53:21 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=GKIA658+wK1909pT1/H9oweotXwKac2mVHkE65cH0B7j2Ig0As4jk9GmsStq+96IrmRgTfn2wF8OaFQqrI72QsHMULGrcJVYlhfOf8OcQ4biddPszvTtLbbR0/AQe2JDIEPdJqEufl3jjqiA/rAMsGWpdw3IFl4wNulQ1ZH22+4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sCa34a/q; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2C0FC4AF0A;
+	Mon,  1 Jul 2024 13:58:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719842006;
-	bh=r8TwQcnCucjLf3kM3DNF0A1LB9UEN+OlT5l5Gu1zqZ8=;
+	s=k20201202; t=1719842325;
+	bh=VlYW+BVRr/2wR3yn9dKsp1GvB5pZ/gJsdlh3v7mNgNQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rXVSrgwX6xGnNVw8bHLm1pEJOdWLG9BWhabv/PL/EfTjTIvdzWelbL2/GpdRkr4CA
-	 tCNVaajyzy1L6IHs0PPpeab4t1oeOhQVPCDUHo58+az4k2YoYGp64UvDaOufgzRGoX
-	 5+HnfF6ZDnwQHw07UqOS1gZ2xyIYvtgGemJfk0dGHOiEorbD2vTYhlCrpEwJ5GbJID
-	 kkLss+ukrXm22I/2RhVmZdCWShVt7xlMtm3KaQT3g7BSN6RirZ9O9i3PJ1viGFBn29
-	 H2q+fUX4AN+DNiptlO+VYIib/Th4w1d+vrzyTVeGXxm5cZoGdvf0ftRGlyETZBn428
-	 5lid3z318HhYg==
-Date: Mon, 1 Jul 2024 14:53:19 +0100
-From: Simon Horman <horms@kernel.org>
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: netdev@vger.kernel.org, nbd@nbd.name, lorenzo.bianconi83@gmail.com,
-	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, conor@kernel.org,
-	linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, catalin.marinas@arm.com,
-	will@kernel.org, upstream@airoha.com,
-	angelogioacchino.delregno@collabora.com,
-	benjamin.larsson@genexis.eu, rkannoth@marvell.com,
-	sgoutham@marvell.com, andrew@lunn.ch, arnd@arndb.de
-Subject: Re: [PATCH v4 2/2] net: airoha: Introduce ethernet support for
- EN7581 SoC
-Message-ID: <20240701135319.GE17134@kernel.org>
-References: <cover.1719672695.git.lorenzo@kernel.org>
- <56f57f37b80796e9706555503e5b4cf194f69479.1719672695.git.lorenzo@kernel.org>
+	b=sCa34a/qdJvYWcajMBbpHf1rUBXPV8M31Y/m6W6pDSxBp/BQN1u40rg0iq5bk/Le8
+	 orPJ3ALUY0f4N3TIb7UhKwLSN+GJq2QDHkKh5ru85nk36b+YAjW82s2IGIArx0NngQ
+	 SBxfkb2Jd1yeNPdlIX3MhwVWTDEEUT454n18TPjNlrOtrNNlT+M81WKU6UOHAHIQ7S
+	 obF/PBNv+P2tskoAm5FKNTDGx7keMpSS4k+n5M+vAdg+WVcsWhlyXnINg6SrHWdp+l
+	 jvoDBNvt1mCHjJTN3LMLcu+1RVz3vB140YbeTiVL9//yqfcHVKsn3a6Zk1TSCwS5A6
+	 jMRAmmFScPTWA==
+Date: Mon, 1 Jul 2024 14:58:36 +0100
+From: Conor Dooley <conor@kernel.org>
+To: =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>
+Cc: Charlie Jenkins <charlie@rivosinc.com>,
+	Jesse Taube <jesse@rivosinc.com>, linux-riscv@lists.infradead.org,
+	Jonathan Corbet <corbet@lwn.net>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Evan Green <evan@rivosinc.com>,
+	Andrew Jones <ajones@ventanamicro.com>,
+	Xiao Wang <xiao.w.wang@intel.com>, Andy Chiu <andy.chiu@sifive.com>,
+	Eric Biggers <ebiggers@google.com>,
+	Greentime Hu <greentime.hu@sifive.com>,
+	=?iso-8859-1?Q?Bj=F6rn_T=F6pel?= <bjorn@rivosinc.com>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Costa Shulyupin <costa.shul@redhat.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Baoquan He <bhe@redhat.com>, Anup Patel <apatel@ventanamicro.com>,
+	Zong Li <zong.li@sifive.com>,
+	Sami Tolvanen <samitolvanen@google.com>,
+	Ben Dooks <ben.dooks@codethink.co.uk>,
+	Alexandre Ghiti <alexghiti@rivosinc.com>,
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>,
+	Erick Archer <erick.archer@gmx.com>,
+	Joel Granados <j.granados@samsung.com>, linux-doc@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 4/8] RISC-V: Check Zicclsm to set unaligned access
+ speed
+Message-ID: <20240701-ajar-italicize-9e3d9b8a0264@spud>
+References: <20240625005001.37901-1-jesse@rivosinc.com>
+ <20240625005001.37901-5-jesse@rivosinc.com>
+ <20240626-march-abreast-83414e844250@spud>
+ <Zn3XrLRl/yazsoZe@ghost>
+ <43941f48-9905-4b25-89ef-6ad75bf1a123@rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="EnTioEvMPr9HA3hF"
 Content-Disposition: inline
-In-Reply-To: <56f57f37b80796e9706555503e5b4cf194f69479.1719672695.git.lorenzo@kernel.org>
+In-Reply-To: <43941f48-9905-4b25-89ef-6ad75bf1a123@rivosinc.com>
 
-On Sat, Jun 29, 2024 at 05:01:38PM +0200, Lorenzo Bianconi wrote:
-> Add airoha_eth driver in order to introduce ethernet support for
-> Airoha EN7581 SoC available on EN7581 development board (en7581-evb).
-> en7581-evb networking architecture is composed by airoha_eth as mac
-> controller (cpu port) and a mt7530 dsa based switch.
-> EN7581 mac controller is mainly composed by Frame Engine (FE) and
-> QoS-DMA (QDMA) modules. FE is used for traffic offloading (just basic
-> functionalities are supported now) while QDMA is used for DMA operation
-> and QOS functionalities between mac layer and the dsa switch (hw QoS is
-> not available yet and it will be added in the future).
-> Currently only hw lan features are available, hw wan will be added with
-> subsequent patches.
-> 
-> Tested-by: Benjamin Larsson <benjamin.larsson@genexis.eu>
-> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
 
-Hi Lorenzo,
+--EnTioEvMPr9HA3hF
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Some minor feedback from my side.
+On Mon, Jul 01, 2024 at 09:15:09AM +0200, Cl=E9ment L=E9ger wrote:
+>=20
+>=20
+> On 27/06/2024 23:20, Charlie Jenkins wrote:
+> > On Wed, Jun 26, 2024 at 03:39:14PM +0100, Conor Dooley wrote:
+> >> On Mon, Jun 24, 2024 at 08:49:57PM -0400, Jesse Taube wrote:
+> >>> Check for Zicclsm before checking for unaligned access speed. This wi=
+ll
+> >>> greatly reduce the boot up time as finding the access speed is no lon=
+ger
+> >>> necessary.
+> >>>
+> >>> Signed-off-by: Jesse Taube <jesse@rivosinc.com>
+> >>> ---
+> >>> V2 -> V3:
+> >>>  - New patch split from previous patch
+> >>> ---
+> >>>  arch/riscv/kernel/unaligned_access_speed.c | 26 ++++++++++++++------=
+--
+> >>>  1 file changed, 17 insertions(+), 9 deletions(-)
+> >>>
+> >>> diff --git a/arch/riscv/kernel/unaligned_access_speed.c b/arch/riscv/=
+kernel/unaligned_access_speed.c
+> >>> index a9a6bcb02acf..329fd289b5c8 100644
+> >>> --- a/arch/riscv/kernel/unaligned_access_speed.c
+> >>> +++ b/arch/riscv/kernel/unaligned_access_speed.c
+> >>> @@ -259,23 +259,31 @@ static int check_unaligned_access_speed_all_cpu=
+s(void)
+> >>>  	kfree(bufs);
+> >>>  	return 0;
+> >>>  }
+> >>> +#else /* CONFIG_RISCV_PROBE_UNALIGNED_ACCESS */
+> >>> +static int check_unaligned_access_speed_all_cpus(void)
+> >>> +{
+> >>> +	return 0;
+> >>> +}
+> >>> +#endif
+> >>> =20
+> >>>  static int check_unaligned_access_all_cpus(void)
+> >>>  {
+> >>> -	bool all_cpus_emulated =3D check_unaligned_access_emulated_all_cpus=
+();
+> >>> +	bool all_cpus_emulated;
+> >>> +	int cpu;
+> >>> +
+> >>> +	if (riscv_has_extension_unlikely(RISCV_ISA_EXT_ZICCLSM)) {
+> >>> +		for_each_online_cpu(cpu) {
+> >>> +			per_cpu(misaligned_access_speed, cpu) =3D RISCV_HWPROBE_MISALIGNE=
+D_FAST;
+> >>
+> >> - const: zicclsm
+> >>   description:
+> >>     The standard Zicclsm extension for misaligned support for all regu=
+lar
+> >>     load and store instructions (including scalar and vector) but not =
+AMOs
+> >>     or other specialized forms of memory access. Defined in the
+> >>     RISC-V RVA Profiles Specification.=20
+> >>
+> >> Doesn't, unfortunately, say anywhere there that they're actually fast =
+:(
+> >=20
+> > Oh no! That is unfortunate that the ISA does not explicitly call that
+> > out, but I think that acceptable.
+> >=20
+> > If a vendor puts Zicclsm in their isa string, they should expect
+> > software to take advantage of misaligned accesses. FAST is our signal to
+> > tell software that they should emit misaligned accesses.
+>=20
+> AFAIK, Zicclsm is not even an ISA extension, simply a profile
+> specification which means that only the execution environment which
+> provides the profile support misaligned accesses (cf
+> https://lists.riscv.org/g/tech-profiles/message/56).
 
-> +static void airoha_qdma_set_irqmask(struct airoha_eth *eth, int index,
-> +				    u32 clear, u32 set)
-> +{
-> +	unsigned long flags;
-> +
-> +	if (WARN_ON_ONCE(index >= ARRAY_SIZE(eth->irqmask)))
-> +		return;
-> +
-> +	spin_lock_irqsave(&eth->irq_lock, flags);
-> +
-> +	eth->irqmask[index] &= ~clear;
-> +	eth->irqmask[index] |= set;
-> +	airoha_qdma_wr(eth, REG_INT_ENABLE(index), eth->irqmask[index]);
-> +	/* Read irq_enable register in order to guarantee the update above
-> +	 * completes in the spinlock critical section.
-> +	 */
-> +	airoha_rr(eth, REG_INT_ENABLE(index));
+I dunno, the specification status page used to describe it as an
+extension:
+https://wiki.riscv.org/display/HOME/Specification+Status+-+Historical
+My understanding was that these could be considered extensions, just
+like we are considering svade to be one.
 
-airoha_rr() expects an __iomem pointer as it's first argument,
-but the type of eth is struct airoha_eth *eth.
+> . I don't think we
+> can extrapolate that the misaligned accesses will be fast at all.
 
-Should this be using airoha_qdma_rr() instead?
+That is my opinion on it too. If it doesn't say "fast" and give a
+definition for what that means in the binding, then we can't assume that
+it is fast. I'm also wary of extending definitions of extensions in the
+binding, because a) I am 90% sure that people writing devicetrees don't
+care and b) it'd be a potential difference between DT and ACPI without a
+real justification (unlike the zkr or svade/svadu situations).
 
-Flagged by Sparse.
+> > This allows for a generic kernel, like the one a distro would compile, =
+to
+> > skip the probing when booting on a system that explicitly called out
+> > that the hardware supports misaligned accesses.
 
-> +
-> +	spin_unlock_irqrestore(&eth->irq_lock, flags);
-> +}
+--EnTioEvMPr9HA3hF
+Content-Type: application/pgp-signature; name="signature.asc"
 
-...
+-----BEGIN PGP SIGNATURE-----
 
-> +static void airoha_ethtool_get_strings(struct net_device *dev, u32 sset,
-> +				       u8 *data)
-> +{
-> +	int i;
-> +
-> +	if (sset != ETH_SS_STATS)
-> +		return;
-> +
-> +	for (i = 0; i < ARRAY_SIZE(airoha_ethtool_stats_name); i++) {
-> +		memcpy(data + i * ETH_GSTRING_LEN,
-> +		       airoha_ethtool_stats_name[i], ETH_GSTRING_LEN);
-> +	}
-> +
-> +	data += ETH_GSTRING_LEN * ARRAY_SIZE(airoha_ethtool_stats_name);
-> +	page_pool_ethtool_stats_get_strings(data);
-> +}
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZoK2DAAKCRB4tDGHoIJi
+0jMlAQDXSIyO1eIrZ/BuGBKJHLB7xCoNnG0MF/2pC2M8BmRSFgD/Z0rIDWJaRF7z
+bgl9+NyRjblrbywgRXV4IPYh3mhDEww=
+=/nDm
+-----END PGP SIGNATURE-----
 
-W=1 allmodconfig builds on x86_64 with gcc-13 complain about the use
-of memcpy above because the source is (often?) less than ETH_GSTRING_LEN
-bytes long.
-
-I think the preferred solution is to use ethtool_puts(),
-something like this (compile tested only!):
-
-@@ -2291,12 +2291,9 @@ static void airoha_ethtool_get_strings(struct net_device *dev, u32 sset,
- 	if (sset != ETH_SS_STATS)
- 		return;
- 
--	for (i = 0; i < ARRAY_SIZE(airoha_ethtool_stats_name); i++) {
--		memcpy(data + i * ETH_GSTRING_LEN,
--		       airoha_ethtool_stats_name[i], ETH_GSTRING_LEN);
--	}
-+	for (i = 0; i < ARRAY_SIZE(airoha_ethtool_stats_name); i++)
-+		ethtool_puts(&data, airoha_ethtool_stats_name[i]);
- 
--	data += ETH_GSTRING_LEN * ARRAY_SIZE(airoha_ethtool_stats_name);
- 	page_pool_ethtool_stats_get_strings(data);
- }
- 
-
-...
-
-> +static int airoha_alloc_gdm_port(struct airoha_eth *eth, struct device_node *np)
-> +{
-> +	const __be32 *id_ptr = of_get_property(np, "reg", NULL);
-> +	struct net_device *dev;
-> +	struct airoha_gdm_port *port;
-
-nit: reverse xmas tree
-
-> +	int err, index;
-> +	u32 id;
-
-...
-
--- 
-pw-bot: changes-requested
+--EnTioEvMPr9HA3hF--
 
