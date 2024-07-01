@@ -1,117 +1,164 @@
-Return-Path: <devicetree+bounces-82059-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82060-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FA9391E4BA
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 18:02:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0822F91E4C8
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 18:07:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 513A21C21909
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 16:02:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3936C1C217EF
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 16:07:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DF4529CE5;
-	Mon,  1 Jul 2024 16:01:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D088516D326;
+	Mon,  1 Jul 2024 16:07:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Lq1jIc6+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uXK3nvxm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92703142624;
-	Mon,  1 Jul 2024 16:01:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A9151EB2A;
+	Mon,  1 Jul 2024 16:07:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719849717; cv=none; b=Src3Vg0h1Uk49m7LdXkp28+9rY+oJ8er5G/hNb/TvBL5cCgbYUQRoky9dYp/RTHArcxSq+PM3YgpeT6N/qz3MBhv3dt/7mL4SHa1vs/pUmTqnw8xwVUivJ2iyeZNFPPTPSsKLSRq4EjSOIMByTVDjjSiPw6wI4137LJgUHn8Njk=
+	t=1719850052; cv=none; b=YPk/+cqorzs7t5de7bGSxLCu6WAFE7KfK0xwfQ5e/0rrHpimkCJWl2181vYn3PNT//41S9FDcsDt9dQpQKQEsbw+3ly9JOWKVoU+k/uXYeHLE+Acwd8ZiuwKyblFyeATi2iVpOrCuZmxooP1mDydcvbezJ+tRNchgLWtOu9UZOQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719849717; c=relaxed/simple;
-	bh=hOVgztX5aRZUelBLzXKsUa1jcr3sRcfH4cpgfhepbB8=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=TufXD4W5gFn5Vum4jvv4bX0Y7XSE7xWIISkpMbAhA4HVcO31LAU3pFhvzEfhx6FJbQGZ3ycJiAuHojJrYHbGgSdPj4OMYNE8rwE8SyrGYVVjA6KtnbYRyQ6mKItHa9sv8JbAB5oJz9wr9n4lnlXuK9pu5k0cFMeN009uSZMcf54=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Lq1jIc6+; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 461G1i5e099906;
-	Mon, 1 Jul 2024 11:01:44 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1719849704;
-	bh=EPp252fPRm63KzgIuXGKRMLf5I8ys+FPMN5TgPmJFpY=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=Lq1jIc6+sKfDvZJMC/JGtw+OfcYutbejuFiybFcEbuw7XlkxfWF+wmfkXvw0w5XGm
-	 zsyObdbpLnGfYmfAIdS3FYlOs2caFfB6yT1nlC+zFEhcENjXzYwnG2j73mmEVzuCAY
-	 tvAvptvNVeeMeL7dmN9M3fdkrBzjUafewtRn7pbo=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 461G1iKT075898
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 1 Jul 2024 11:01:44 -0500
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 1
- Jul 2024 11:01:44 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 1 Jul 2024 11:01:44 -0500
-Received: from uda0132425.dhcp.ti.com (uda0132425.dhcp.ti.com [172.24.227.94])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 461G1eQT061733;
-	Mon, 1 Jul 2024 11:01:41 -0500
-From: Vignesh Raghavendra <vigneshr@ti.com>
-To: Nishanth Menon <nm@ti.com>, Kamlesh Gurudasani <kamlesh@ti.com>
-CC: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Jayesh
- Choudhary <j-choudhary@ti.com>
-Subject: Re: [PATCH v2] arm64: dts: ti: k3-am62a-main: Enable crypto accelerator
-Date: Mon, 1 Jul 2024 21:31:39 +0530
-Message-ID: <171984950176.3152309.8066747674925594460.b4-ty@ti.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240617-crytpo-am62a-v2-1-dc7a14f2635b@ti.com>
-References: <20240617-crytpo-am62a-v2-1-dc7a14f2635b@ti.com>
+	s=arc-20240116; t=1719850052; c=relaxed/simple;
+	bh=QmDYLMDzbFAVik/DkbW1mPXPNZZJPZCYP+cxE0Noy/E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WLfqKyluoLqGV4241lpPQ9PMRP5E5iYKeOB3X1Ik9j7DR8rfVEnsEGxK4ZFcsr0hTm40CPFX1pWzI8aYAUVeyDRVJ8VsjK+zNilJijZIWAoUu3M6cDxL+w7QQjRhmEBCM9ZSK5KGXzpiTFQKcVPipxizVDMaCqLdAJjVx0tjkXQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uXK3nvxm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 741AAC116B1;
+	Mon,  1 Jul 2024 16:07:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719850050;
+	bh=QmDYLMDzbFAVik/DkbW1mPXPNZZJPZCYP+cxE0Noy/E=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=uXK3nvxmKjdsvXXxrtAWaSHnZkAUlaUuJBPDy40HGmKXOTYz9qvAPCJ/VWkKuXzeC
+	 9BK4oHFzZm7/Iv3j7kqGx0hxYpqDFXLLi0Kc71J2emXTqu+ldPODcayLA7sI6t8Wys
+	 t27pi7dbWc11aw0WhjACbSc85SAa0kOKjo676X82j+pPaju7yudbTHQabykdScnMhW
+	 stGPYShnDpxTDnTs9/jSJtnlVZm9x899zHEPNhoiox8yfQudEwc05S++FtV+fVaf9W
+	 P+wYvJY+KEXuHltHCHrAA2srbDje5YHXtLXj/6FkqBgIKMRlBujmZ9YeuNBu1K8TAa
+	 vJx2aVCLZ4YDw==
+Date: Mon, 1 Jul 2024 17:07:23 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Samuel Holland <samuel.holland@sifive.com>
+Cc: Charlie Jenkins <charlie@rivosinc.com>, linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-sunxi@lists.linux.dev, linux-doc@vger.kernel.org,
+	linux-kselftest@vger.kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Jisheng Zhang <jszhang@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
+	Guo Ren <guoren@kernel.org>, Evan Green <evan@rivosinc.com>,
+	Andy Chiu <andy.chiu@sifive.com>,
+	Jessica Clarke <jrtc27@jrtc27.com>, peterlin@andestech.com
+Subject: Re: [PATCH v3 03/13] riscv: dts: allwinner: Add xtheadvector to the
+ D1/D1s devicetree
+Message-ID: <20240701-prancing-outpost-3cbce791c554@spud>
+References: <20240619-xtheadvector-v3-0-bff39eb9668e@rivosinc.com>
+ <20240619-xtheadvector-v3-3-bff39eb9668e@rivosinc.com>
+ <0cc13581-5cc4-4a25-a943-7a896f42da4c@sifive.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="2wEs3Y52yP3HfYxY"
+Content-Disposition: inline
+In-Reply-To: <0cc13581-5cc4-4a25-a943-7a896f42da4c@sifive.com>
 
-Hi Kamlesh Gurudasani,
 
-On Tue, 18 Jun 2024 18:11:13 +0530, Kamlesh Gurudasani wrote:
-> Add the node for sa3ul crypto accelerator.
-> 
-> 
+--2wEs3Y52yP3HfYxY
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I have applied the following to branch ti-k3-dts-next on [1].
-Thank you!
+On Mon, Jul 01, 2024 at 10:27:01AM -0500, Samuel Holland wrote:
+> Hi Charlie,
+>=20
+> On 2024-06-19 6:57 PM, Charlie Jenkins wrote:
+> > The D1/D1s SoCs support xtheadvector so it can be included in the
+> > devicetree. Also include vlenb for the cpu.
+> >=20
+> > Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
+> > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> > ---
+> >  arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi | 3 ++-
+>=20
+> The other C906/C910/C920-based SoCs need devicetree updates as well, alth=
+ough
+> they don't necessarily need to be part of this series:
+>=20
+>  - sophgo/cv18xx.dtsi
+>  - sophgo/sg2042-cpus.dtsi
+>  - thead/th1520.dtsi
 
-[1/1] arm64: dts: ti: k3-am62a-main: Enable crypto accelerator
-      commit: 11926848eb550ea3018ad9e14761785a6f7f25df
+Yeah, I think I pointed that out before with the same "escape hatch" of
+it not needing to be in the same series.
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+>=20
+> >  1 file changed, 2 insertions(+), 1 deletion(-)
+> >=20
+> > diff --git a/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi b/arch/riscv=
+/boot/dts/allwinner/sun20i-d1s.dtsi
+> > index 64c3c2e6cbe0..6367112e614a 100644
+> > --- a/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
+> > +++ b/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
+> > @@ -27,7 +27,8 @@ cpu0: cpu@0 {
+> >  			riscv,isa =3D "rv64imafdc";
+>=20
+> The ISA string should be updated to keep it in sync with riscv,isa-extens=
+ions.
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+This probably looks like this cos I said that the kernel shouldn't parse
+vendor extensions from "riscv,isa". My rationale was that we have
+basically no control of what a vendor extension means in riscv,isa so=20
+we shouldn't parse them from it (so marginally worse than standard
+extensions, where it means what the spec says except when it doesn't).
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+Given how we implement the parsing, it also meant we weren't implying
+meanings for vendor extensions ACPI-land, where we also can't ensure the
+meanings or that they remain stable. That change is in a different
+series:
+https://patchwork.kernel.org/project/linux-riscv/patch/20240609-support_ven=
+dor_extensions-v2-1-9a43f1fdcbb9@rivosinc.com/
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+Although now that I think about it, this might break xandespmu... I
+dunno if the Andes guys switched over to using the new property outside
+of the single dts in the kernel tree using their SoC. We could
+potentially special-case that extension if they haven't - but my
+position on this mostly is that if you want to use vendor extensions you
+should not be using riscv,isa (even if the regex doesn't complain if you
+add them). I'd like to leave the code in the other patch as-is if we can
+help it.
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
---
-Vignesh
+I added Yu Chien Peter Lin here, maybe they can let us know what they're
+doing.
 
+Thanks,
+Conor.
+
+--2wEs3Y52yP3HfYxY
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZoLUOwAKCRB4tDGHoIJi
+0rw0AQCnXybJz50BMTgjwNiigJMGvS3LXS+gpH8vsiDf6bY5nQEA8gffrOCUKPqX
+QYl/5hn3gmXORavNMM6uYbvMldYgpA8=
+=cmG6
+-----END PGP SIGNATURE-----
+
+--2wEs3Y52yP3HfYxY--
 
