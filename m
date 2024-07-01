@@ -1,149 +1,167 @@
-Return-Path: <devicetree+bounces-81827-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81828-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11D2991DA25
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 10:40:55 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11C4891DA31
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 10:41:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8460B1F223CE
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 08:40:52 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4172EB20A4C
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 08:41:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94E9983CDA;
-	Mon,  1 Jul 2024 08:40:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A771884A35;
+	Mon,  1 Jul 2024 08:41:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="d+4eF9Pm"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FATPpAIu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9005839F4;
-	Mon,  1 Jul 2024 08:40:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3EDE82D89;
+	Mon,  1 Jul 2024 08:41:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719823234; cv=none; b=rD8k06mDFxncuNLhRvhk/Agz8dbJfJFIWZa1NmzbQNCx0gCRobqb4OBjH5GRX29jZllAG7XjRiYYkX0Xw2R08ZqxCvVQypOFln86CPspi7dmPUWozpJj1Z1EzCaHgKmuiOHD1jIbvKy1HebsKuGFZvYDQLilQnzsHejGmCzRF0I=
+	t=1719823272; cv=none; b=HIyGUmz+TVbR8dkG15aXRmI7hDKTT1dDMJWzbDtg7+jgwFA1pDcikenxTqoYvYqUp7VZ9Y4hMXVmUCJjALr7ZUzAEj35scwzQYExTqp7sZYrmQ1BABVk+aaRoLBuJXC8oHyNWEq0rqJf37Z6Jk03GD3w9Bo/RpbYwUDwnOvdOu4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719823234; c=relaxed/simple;
-	bh=lQDakvkuTP95XC9nGbLvBkMLIuh0XUah0cZPHLuoKsE=;
-	h=From:Subject:To:CC:References:Message-ID:Date:MIME-Version:
-	 In-Reply-To:Content-Type; b=aFlIIBZlKUAQylQH5xpS1T6D7BD82WQS1Hn2OvUTP/I+9LBfmvdY/lb/Y/13tF7FGZ/A47tFobpns8tELYZ1DfrkXSyw7LWu+JhcVXdNxfdmdfAr9aX43HO22+U2Z6a+ckilieITyQRpKlPbWqe/HSBsrm7XZcBpeIEkAaKcme8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=d+4eF9Pm; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45ULuuvT006937;
-	Mon, 1 Jul 2024 08:40:28 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ILgMAm3EqPPh0KqXEOvCXs48fV2I2eMWHuby+dIR9PY=; b=d+4eF9PmHd5p3WEU
-	0raCfLW2iM/UaunLmOj/TPp9ymzWT+XPW94xCgam/rhbE3gJUB10Z9S1kX6POIG0
-	c37+Z1KJjVBfTDX0V9L/rNTEBFlv8rZ4xrLk9pghRkljBnbH5OX/dOVaiw+350nW
-	tXa+oy8RBSADea6SVlFM+/YaZGTvr6rLwIKVYTtqXd8CUK6eE7rTiB5VOaIk+kt+
-	ktPbmiyAhGvdqMVbw/G0wdShoAu0e4hXVPiQkU2TcKZa8xKDBcNeHxsE/fneOLEJ
-	muZich7gjc8IZ85XLetkfrsFveOU7DMRBu+bTN4VI+Q7UMkOs8D+yH+WciMqNIXB
-	I1Gbcw==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 402bejk8vj-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 01 Jul 2024 08:40:28 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA04.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 4618eRqi007170
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 1 Jul 2024 08:40:27 GMT
-Received: from [10.214.66.219] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 1 Jul 2024
- 01:40:23 -0700
-From: Naina Mehta <quic_nainmeht@quicinc.com>
-Subject: Re: [PATCH v3 3/5] arm64: dts: qcom: sdx75: update reserved memory
- regions for mpss
-To: Konrad Dybcio <konrad.dybcio@linaro.org>, <andersson@kernel.org>,
-        <mathieu.poirier@linaro.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <manivannan.sadhasivam@linaro.org>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-remoteproc@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20240618131342.103995-1-quic_nainmeht@quicinc.com>
- <20240618131342.103995-4-quic_nainmeht@quicinc.com>
- <e5b7a888-8ca3-463a-a2de-cf719e58d7a0@linaro.org>
- <c186bd2e-a132-fbe6-2212-dcdb93a6c14a@quicinc.com>
- <45c95955-51a7-489f-993e-252e8bd63dbd@linaro.org>
-Message-ID: <fc7e3c93-1a79-6911-04c2-19ddc7e298cb@quicinc.com>
-Date: Mon, 1 Jul 2024 14:10:20 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+	s=arc-20240116; t=1719823272; c=relaxed/simple;
+	bh=iOIsNftd+AUOPQ+Acsg6REjaYC+90eaaV8L3VB0Yp1M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WQ74Ga8snxOQuq88xfPGoudQCTWPS2N/ZTtJdQMFfo+Tbd4fL5CF39QfiWTddW1TXy2OTp0QPuUYCbmHMd+lhFErLoTi+bo8PRFMhi6vBCVVI88qKYudyMMAZinpoxyD4oBzYAJqoknCIu5/fEN4HaQm0DPkYPkz0TNCf0oUlr0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FATPpAIu; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-424a3ccd0c0so20086135e9.1;
+        Mon, 01 Jul 2024 01:41:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1719823268; x=1720428068; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=AMt7mTb63MOoRef5KMAR+OLG9LjGQCs3Iv9eQzbOgVY=;
+        b=FATPpAIuS8kQHdSUKSMeEgjfl3nX18w3aK8SqE/cFFCzfryepebTqzrE5Rgv3/cuad
+         Rako7lr7T5MrMptiYetareEX0Q44gPabOdHIoReOXCn5vkq1ibf3j0z7Wd+Us9edg6Ux
+         2mXC/gfPzQWR8P4e0wfIv5EpHIGU7oGirGrqAuFP2TCxdFjVU0Bjh8rQ2/I+0SLkI+iJ
+         3GhxdMvCztUopMjB8oxzJ3PUzoqh5QO4FlOrfmgKkYOCLk6wyLDU4Kv7nBpXsaDjnXCu
+         58XCwqS9EaWiqlyh9ABBaMe06JCYCrT5Qv2n7vCPme1FXuywIfvVLE6mGm+i8rHD7A/v
+         Bn4w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719823268; x=1720428068;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=AMt7mTb63MOoRef5KMAR+OLG9LjGQCs3Iv9eQzbOgVY=;
+        b=w6eOZ2v6yWZZunq1cWhzcweWFrEE9gP5NwRrefsAQDD2WhoxW+uQNrsnqgl5ZmMLLt
+         /vMIj+QkM+n9HR2FRGsIJSQCrKqpDaJnbzsWZrPhIr0VwPdpT4ZAVIzTjqYWJgktxUq4
+         +LGVFtyjk8wpzBPMeNGsu7788OFjDCYyoShXGroFBSwiFFl839QcqYCAjdV93tJ8W3c/
+         f0S0oh0UPdvunXNrAe7cYG0vWgQmE309YVLjhvMvitWv/Km/GgnsA0qNWHEH916kUFGo
+         6RD2v+t7KczX0wohs7adPrYnqGh+/icDRyH4TVTNlzkc68eI1Fu6RbJvEfoKV/o63ryu
+         /rVA==
+X-Forwarded-Encrypted: i=1; AJvYcCVPXMvzP5xE9VA24KOQNYiKS8u4T2flkmgOqlyD7L47oLux63qaTFm4LzwrYECRTv2rF26gj81zH+LBfJb5v1gM7JTqRElQxpCQomoPqKAJfmWjX4qoOk//4SLc8GAhmdwSuYVIxsXAxEM/QmSvd77A3c/WyV1u8LgWqsYOI19RHGmarrVs
+X-Gm-Message-State: AOJu0YzwehtFt0x54C023w6iLcHi3euHHH52a8HEE4peksPVkwIqodCL
+	y59BIHAVL2swm3XOTFX9fyJyPBvQ5K0BteU4plEb9GHDaJSw1HFZ
+X-Google-Smtp-Source: AGHT+IFVkP4vxt28218+k2V48TYQocy8Fz5i69HcPxCmln5LU4tWH1iaovbS/2p5BgnSrenoOSY/NQ==
+X-Received: by 2002:a05:600c:6a8d:b0:425:77b4:366d with SMTP id 5b1f17b1804b1-4257a02f3f6mr32722375e9.11.1719823267873;
+        Mon, 01 Jul 2024 01:41:07 -0700 (PDT)
+Received: from [10.254.108.81] (munvpn.amd.com. [165.204.72.6])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4256b09a94csm141988335e9.33.2024.07.01.01.41.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 01 Jul 2024 01:41:07 -0700 (PDT)
+Message-ID: <dbcd9a16-4e4b-42c8-ba7f-d6c1dfd9dccb@gmail.com>
+Date: Mon, 1 Jul 2024 10:41:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <45c95955-51a7-489f-993e-252e8bd63dbd@linaro.org>
-Content-Type: text/plain; charset="utf-8"; format=flowed
+User-Agent: Mozilla Thunderbird
+Subject: Re: [Linaro-mm-sig] Re: [PATCH v5 2/9] scatterlist: Add a flag for
+ the restricted memory
+To: Nicolas Dufresne <nicolas@ndufresne.ca>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ =?UTF-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= <Jason-JH.Lin@mediatek.com>,
+ "daniel@ffwll.ch" <daniel@ffwll.ch>
+Cc: "quic_vjitta@quicinc.com" <quic_vjitta@quicinc.com>,
+ "angelogioacchino.delregno@collabora.com"
+ <angelogioacchino.delregno@collabora.com>,
+ "sumit.semwal@linaro.org" <sumit.semwal@linaro.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "jkardatzke@google.com" <jkardatzke@google.com>,
+ "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+ "joakim.bech@linaro.org" <joakim.bech@linaro.org>,
+ =?UTF-8?B?WW91bGluIFBlaSAo6KO05Y+L5p6XKQ==?= <youlin.pei@mediatek.com>,
+ "logang@deltatee.com" <logang@deltatee.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ =?UTF-8?B?S3VvaG9uZyBXYW5nICjnjovlnIvptLsp?= <kuohong.wang@mediatek.com>,
+ =?UTF-8?B?SmlhbmppYW8gWmVuZyAo5pu+5YGl5aejKQ==?=
+ <Jianjiao.Zeng@mediatek.com>, "contact@emersion.fr" <contact@emersion.fr>,
+ "benjamin.gaignard@collabora.com" <benjamin.gaignard@collabora.com>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+ "linaro-mm-sig@lists.linaro.org" <linaro-mm-sig@lists.linaro.org>,
+ "willy@infradead.org" <willy@infradead.org>, "pavel@ucw.cz" <pavel@ucw.cz>,
+ "akpm@linux-foundation.org" <akpm@linux-foundation.org>,
+ "Brian.Starkey@arm.com" <Brian.Starkey@arm.com>,
+ "robh+dt@kernel.org" <robh+dt@kernel.org>,
+ "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "tjmercier@google.com" <tjmercier@google.com>,
+ "jstultz@google.com" <jstultz@google.com>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "mripard@kernel.org" <mripard@kernel.org>,
+ "robin.murphy@arm.com" <robin.murphy@arm.com>,
+ =?UTF-8?B?WW9uZyBXdSAo5ZC05YuHKQ==?= <Yong.Wu@mediatek.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "ppaalanen@gmail.com" <ppaalanen@gmail.com>
+References: <20240515112308.10171-1-yong.wu@mediatek.com>
+ <20240515112308.10171-3-yong.wu@mediatek.com>
+ <98721904-003d-4d0d-8cfe-1cecdd59ce01@amd.com>
+ <779ce30a657754ff945ebd32b66e1c644635e84d.camel@mediatek.com>
+ <cef8f87d-edab-41d8-8b95-f3fc39ad7f74@amd.com>
+ <1050c44512374031d1349b5dced228d0efc3fbde.camel@mediatek.com>
+ <3104b765-5666-44e4-8788-f1b1b296fe17@amd.com>
+ <98c11bad7f40bcc79ed7a2039ddb3a46f99908f5.camel@mediatek.com>
+ <75dc1136-7751-4772-9fa7-dd9124684cd2@amd.com>
+ <ZnxWWtdShekGSUif@phenom.ffwll.local>
+ <ae73a0203d6acf2878c9e3ae2d7554816b9c66ad.camel@mediatek.com>
+ <5739abdb-0234-412a-9f25-49219411bbc6@amd.com>
+ <183f2ae09c2dbcf687e69cd13a9d258fd24fd80c.camel@ndufresne.ca>
 Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
+In-Reply-To: <183f2ae09c2dbcf687e69cd13a9d258fd24fd80c.camel@ndufresne.ca>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: rAgPgtuWnVBKcgr4r2NkUCMxJbSIA-Le
-X-Proofpoint-ORIG-GUID: rAgPgtuWnVBKcgr4r2NkUCMxJbSIA-Le
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-07-01_07,2024-06-28_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxlogscore=999
- impostorscore=0 spamscore=0 clxscore=1015 mlxscore=0 suspectscore=0
- bulkscore=0 adultscore=0 lowpriorityscore=0 malwarescore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2406140001 definitions=main-2407010066
 
-
-
-On 6/26/2024 9:12 PM, Konrad Dybcio wrote:
-> On 24.06.2024 1:21 PM, Naina Mehta wrote:
->>
->>
->> On 6/18/2024 7:08 PM, Konrad Dybcio wrote:
->>>
->>>
->>> On 6/18/24 15:13, Naina Mehta wrote:
->>>> Rename qdss@88800000 memory region as qlink_logging memory region
->>>> and add qdss_mem memory region at address of 0x88500000.
->>>> Split mpss_dsmharq_mem region into 2 separate regions and
->>>> reduce the size of mpssadsp_mem region.
+Am 28.06.24 um 22:16 schrieb Nicolas Dufresne:
+> [SNIP]
+>>>>> Why can't you get this information from userspace?
+>>>> Same reason amd and i915/xe also pass this around internally in the
+>>>> kernel, it's just that for those gpus the render and kms node are the
+>>>> same
+>>>> driver so this is easy.
 >>>>
->>>> Signed-off-by: Naina Mehta <quic_nainmeht@quicinc.com>
->>>> ---
->>>
->>> Alright, we're getting somewhere. The commit message should however motivate
->>> why such changes are necessary. For all we know, the splitting in two is
->>> currently done for no reason, as qdss_mem and qlink_logging_mem are contiguous
->>> - does the firmware have some expectations about them being separate?
->>>
->>
->> Since different DSM region size is required for different modem firmware, mpss_dsmharq_mem region being split into 2 separate regions.
->> This would provide the flexibility to remove the region which is
->> not required for a particular platform.
->> qlink_logging is being added at the memory region at the address of
->> 0x88800000 as the region is being used by modem firmware.
-> 
-> Ok, now put that in the commit message :)
-> 
-> And I suppose:
-> 
-> "This would provide the flexibility to remove the region which is not
-> required for a particular platform." - but you still pass both to the
-> remoteproc in patch 4. Are these regions mutually exclusive?
-> 
+>> The reason I ask is that encryption here looks just like another
+>> parameter for the buffer, e.g. like format, stride, tilling etc..
+> I'm mostly a reader of the thread here, but I'd like to avoid basic mistakes.
+> The buffer in question are "protected", meaning that the CPU HW does not have
+> access to the underlying pages (or zone in the case of Meditatek).
+>
+> This is different from encrypted buffers, which don't need this level of
+> protection, as without the security key to decrypt them, their content is close
+> to random data.
 
-Yes, for IDP platform, we are using both the DSM regions.
-Based on the modem firmware either both the regions have to be used or 
-only mpss_dsm_mem has to be used.
+Thanks for that clarification, this difference was absolutely not obvious.
 
-Regards,
-Naina
+In that case having a separate heap for this memory is indeed the 
+easiest approach.
 
-> Konrad
-> 
+My question is still what would happen if the CPU tries to access this 
+protected buffer? Or does the CPU not even have an address to do that?
+
+Just out of curiosity, I mean the exporting heap should then somehow 
+reject any attempt to mmap() or vmap() the buffer content.
+
+Thanks,
+Christian.
 
