@@ -1,64 +1,81 @@
-Return-Path: <devicetree+bounces-82047-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82048-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9E8A91E43D
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 17:35:52 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1E7991E447
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 17:37:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 274211C21EE9
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 15:35:52 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A8025B29BAE
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 15:36:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00C2A16C86D;
-	Mon,  1 Jul 2024 15:35:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A21216CD28;
+	Mon,  1 Jul 2024 15:35:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PhzJ8MBX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="adEJLY5R"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0E2528F4
-	for <devicetree@vger.kernel.org>; Mon,  1 Jul 2024 15:35:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18A1928F4;
+	Mon,  1 Jul 2024 15:35:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719848148; cv=none; b=o60g+9p7lA+7vsPd6lY0seJtUkhTcISetSqdm6ZT7UFYurFWGb24pfjQ5ciw1BY0G4jRGiKip0OZWWvvJJKPuAkGaoTqT+O/AnyUzgZVioh7XVu9mCSAQd4ZRk41vD5haPYWfAFojlBvStt/uRg+7RjSbjQ9NItXAp1gvHkPnTA=
+	t=1719848156; cv=none; b=RTNRPyZfh8sNVN9L17G6Q95bVLiUnRod9Qg54qpf7fKhVsfOArYEAxVRW9rJaOXgJc8u+9TgXa6wkA5Oa4x8BW6uYcDyRkxqc4xPycPgV5uRKaraTU4UlcwaI2Pqoy3PrilJTklsmENmoE32F17SUZP+MwcJ3ULgHguCQrKIxBs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719848148; c=relaxed/simple;
-	bh=lisezb6JJCRk82ha3ip6EwROc03myP2TuX2YVNftM5Y=;
+	s=arc-20240116; t=1719848156; c=relaxed/simple;
+	bh=0NfcJ7gYnWszBYiuRk/o3+NWZLSNA+vHBD+/yPg6aHU=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=asDzxY5J7Vjda0H1QsslUl5wfTte8KVOv0dNAkvJ6hcBqsoYVwnZ0qrCGUOcqgGxzWF55GoWj3+qCag7wTbIGMX941W+8YReHPjaT/NbDarvstSPuQjLAuHPu+jgfa24Kj/1uB1HP8SiRMF68VC28bxzMR4/LlIkzn2CKoYFL60=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PhzJ8MBX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43645C116B1;
-	Mon,  1 Jul 2024 15:35:46 +0000 (UTC)
+	 MIME-Version:Content-Type; b=uxo4TeBnptgKdBWxK4OjGj3kJXW2VSZL4fkQh3TR+Er60983oAafmmQdzj76ao5oRyZfUmuvNpouLxQbcZ+ZvTs4emgWtZlKCWY8zgoUeuY/ugegERRlCCIoxizsPhuqSb6aTHm8ewsn0AhZjePnGAmwRjEE7HPv5xb39G6DDYk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=adEJLY5R; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 039DFC32781;
+	Mon,  1 Jul 2024 15:35:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719848148;
-	bh=lisezb6JJCRk82ha3ip6EwROc03myP2TuX2YVNftM5Y=;
+	s=k20201202; t=1719848155;
+	bh=0NfcJ7gYnWszBYiuRk/o3+NWZLSNA+vHBD+/yPg6aHU=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=PhzJ8MBXSid9Ww2syujuWmqoLhJe0b9eML3fzkm3fW5ENmDRMMR0yJNiVMw5IQ1oN
-	 Oh/Ts5QIfMsuNgOI7GdeULoktbn+P35DY2n8aT58UkErXreStxvTJeM/NMmYiYFWRE
-	 ZewKz/HUut7whYnOqvEfusy60zfTTpaezFV91IxUB2VTxScOts5mWExnLfuxfXhSu5
-	 ZHxKEpyVabGTCbCI6VBOomDR8fO9gDke9WGoLa7w7dcJMGnIEuk/XaDOgRNOkEBJKl
-	 Cr2np7sEGysz5clsCrAiYkAp5zA1AyILTl3HLD/V1qq5pXCC5ARMG5vsDEQP8VmFgn
-	 IW3eFLccIPhrw==
+	b=adEJLY5RjB7i1a+ss7/WhOQVPyqd/27E9tfDpQO4qGHsuVLyQMegZkJ/CrsIGC/eY
+	 mV2PATMpJgqnNGnfQwbFv/eg94xJX46RWkNi2xWNLOF0cRktyHYT5VNbmAKfkhUodV
+	 wch04o5GmxKGupYUTAplE1/fdWDGq6QIwUP/z6CiqrYpEvzU6x+zyH4RJa+yne7fLp
+	 /xAsVaNUB9Y1BPQ4rYXcGwp1L2TlHxMOVJazcpN2hHR++l2cEl2KhF6UEzxdH5EPKp
+	 1go793xIkl8j1Gm/d064OvowLuNGVblH1ckAa9Gf2C10SO13hg2HMBJJMNIc0YwnrQ
+	 hEYeNXIM3L0Rw==
 From: Will Deacon <will@kernel.org>
-To: Mark Rutland <mark.rutland@arm.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Andre Przywara <andre.przywara@arm.com>
+To: frank.li@nxp.com,
+	mark.rutland@arm.com,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de,
+	kernel@pengutronix.de,
+	festevam@gmail.com,
+	john.g.garry@oracle.com,
+	jolsa@kernel.org,
+	namhyung@kernel.org,
+	irogers@google.com,
+	Xu Yang <xu.yang_2@nxp.com>
 Cc: catalin.marinas@arm.com,
 	kernel-team@android.com,
 	Will Deacon <will@kernel.org>,
+	mike.leach@linaro.org,
+	peterz@infradead.org,
+	mingo@redhat.com,
+	acme@kernel.org,
+	alexander.shishkin@linux.intel.com,
+	adrian.hunter@intel.com,
 	linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org,
-	Jun Wu <Jun.Wu@arm.com>
-Subject: Re: [PATCH 0/2] arm64: perf: add new CPU core names
-Date: Mon,  1 Jul 2024 16:35:41 +0100
-Message-Id: <171984240520.916538.18262459828732414082.b4-ty@kernel.org>
+	linux-kernel@vger.kernel.org,
+	linux-perf-users@vger.kernel.org,
+	imx@lists.linux.dev
+Subject: Re: [PATCH v12 1/8] dt-bindings: perf: fsl-imx-ddr: Add i.MX95 compatible
+Date: Mon,  1 Jul 2024 16:35:43 +0100
+Message-Id: <171984498139.920238.1487474748064154257.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20240628145612.1291329-1-andre.przywara@arm.com>
-References: <20240628145612.1291329-1-andre.przywara@arm.com>
+In-Reply-To: <20240529080358.703784-1-xu.yang_2@nxp.com>
+References: <20240529080358.703784-1-xu.yang_2@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,24 +85,25 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
-On Fri, 28 Jun 2024 15:56:10 +0100, Andre Przywara wrote:
-> This adds the names for new Arm Ltd. CPU cores to the list of supported
-> CPU PMUs.
-> Patch 1 adds the names to the DT schema bindings documents, patch 2 adds
-> the name and compatible string pair to the PMUv3 driver, mostly to provide
-> the right PMU name to userland.
+On Wed, 29 May 2024 16:03:51 +0800, Xu Yang wrote:
+> i.MX95 has a DDR pmu. This will add a compatible for it.
 > 
-> Cheers,
-> Andre
 > 
-> [...]
 
-Applied to will (for-next/perf), thanks!
+Applied drivers changes to will (for-next/perf), thanks!
 
-[1/2] dt-bindings: arm: pmu: Add new Cortex and Neoverse cores
-      https://git.kernel.org/will/c/695b1fd08510
-[2/2] perf: pmuv3: Add new Cortex and Neoverse PMUs
-      https://git.kernel.org/will/c/c99d00ef9e73
+[1/8] dt-bindings: perf: fsl-imx-ddr: Add i.MX95 compatible
+      https://git.kernel.org/will/c/f26f37482457
+[2/8] perf: imx_perf: add macro definitions for parsing config attr
+      https://git.kernel.org/will/c/4773dd10fda0
+[3/8] perf: imx_perf: let the driver manage the counter usage rather the user
+      https://git.kernel.org/will/c/27e4a6523edd
+[4/8] perf: imx_perf: refactor driver for imx93
+      https://git.kernel.org/will/c/fab5e5a866e8
+[5/8] perf: imx_perf: fix counter start and config sequence
+      https://git.kernel.org/will/c/ac9aa295f7a8
+[6/8] perf: imx_perf: add support for i.MX95 platform
+      https://git.kernel.org/will/c/d0d7c66c537d
 
 Cheers,
 -- 
