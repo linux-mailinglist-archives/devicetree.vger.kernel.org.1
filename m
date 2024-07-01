@@ -1,137 +1,246 @@
-Return-Path: <devicetree+bounces-81825-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81832-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 773F791D9E9
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 10:27:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 334A091DA54
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 10:46:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2AD5E1F2106B
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 08:27:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DB980280E5C
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 08:46:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 124A6824AF;
-	Mon,  1 Jul 2024 08:27:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83FB37E0F0;
+	Mon,  1 Jul 2024 08:46:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="EDBJAGpq"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="ewDwjb33"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39A9882498;
-	Mon,  1 Jul 2024 08:27:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B72BE82D69;
+	Mon,  1 Jul 2024 08:46:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719822431; cv=none; b=Xm0K44g1bFICnapdkJ8OZOdU2uexR73ZfhxFO3NdJhiIJaxrA/8ix1HxKJFOVlVXiqQaaRwOO9kdsRPuA0Mt93TMsSlRiEYe5xNromH13ijOf0F5mXqNs3EqrKe394bwaeSOVpgBC0CR4byU/cjEzBeqoFh3XvYBhu1NmGh7eTE=
+	t=1719823610; cv=none; b=HUlV1PLz9LzHqJPEEliz5NpAZ7oFjdMGAursqwga6U3cSIKWReLon0pdfsM6DbuPWurqE72uUmdywvR7tKBEKkb0tgisjSD7NYSZfK2Od3IqZKARpudV5ofDcse6/OSxS6jDYk2qE92U9Oug4jf6Io83Qfz2PM9HzPEBeFUL0iM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719822431; c=relaxed/simple;
-	bh=xd/U9dyUy2ulluTXx0L+6mSovqdM0nN4dV3wEoXcDZw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=uOcSMC82ctfgyTy4K9HGwHxlbdPYyIwbxJgcBwa3Fq/T9hUswdpyqj08XJGQxbRnLXn9/JfdG1H4yAoTFT+U1eG4bkpBckcmGCt4PtTCZjw35suyvxEHvYpOmX99y5JAfs9ieKW5wavlSJ9odpCO54oh6TgKBV8mQlHKnML4SNI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=EDBJAGpq; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4618QwSb061709;
-	Mon, 1 Jul 2024 03:26:58 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1719822418;
-	bh=dx5fKViDD8JtZlIf9rrAs7DN7RjC9vagC2aDKjhaS8k=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=EDBJAGpqEWuazqRsVqXrcWMS+3vlkLnrfKrFvuXpbnXKULs8J2y480q0sKHy1z+5A
-	 WCJfxaM0MqoWxgDXy9kOgmqJhnisTxM7USVMJbOFH/NTKz/Mi0rUoGE1dDS0IhX8Jq
-	 E/AgxCU9tEUqm7W34UdUS2Dy5IP8N4iogDCsfcn0=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4618Qvn6037759
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 1 Jul 2024 03:26:58 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 1
- Jul 2024 03:26:57 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 1 Jul 2024 03:26:57 -0500
-Received: from [172.24.29.211] (lt5cd2489kgj.dhcp.ti.com [172.24.29.211])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4618Qr8G105771;
-	Mon, 1 Jul 2024 03:26:54 -0500
-Message-ID: <7bde6ad9-11c6-46ca-af92-9860dfbbbe3c@ti.com>
-Date: Mon, 1 Jul 2024 13:56:53 +0530
+	s=arc-20240116; t=1719823610; c=relaxed/simple;
+	bh=ccuBcuwhx7ikJOxIjJGxDBPbz8W9hAPA7qvWrMla4f4=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=exvJ3XwxAh70Da3xDulU4XrY2SrKEpdU3a84gUlm7aw2OZ49BzES1MCJ6Xq92S7USdDvMsttAZcjBVSFcXIHLxPQyxIELp5xBS+4HgD8zeKDFP2tf1HG+R26Co7FPYLqewnJgHJs5b+5fZeu1YKiluxw1CfI+3MxkOc2a3hkSL8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=ewDwjb33; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4615jS3l024945;
+	Mon, 1 Jul 2024 04:46:19 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=uCdLKw4CDp7CCZCSGHD2siartWD
+	U88/GGTxkeUKosAg=; b=ewDwjb33/0k1NkZKP5ci26eUrCvK710B5JsJyJQZ9Co
+	oLIdpa/SrynK5IOjwB7NFhrmzqNPXdswdJSAWh10tSSbFzA486xV3Rzy2ZeuY3wY
+	VyD76CCerdgaNXfA36eVZpShxabNWjMCry23xEATlnmTDAZvoBeBpnuHFqvN+yaq
+	KVNTuIbfJTLadXlo4SFE9XCAmjcfNznurrb48aE43nguYGz5AjhpXJNC2PXJD0rz
+	5jxBlT2ISkFa7PwQc2sxp+0AIkqNQxERy1eovxeXyRTzV140rvkPVZfAWRLzm+pY
+	YyXJKnY0DuJ/GiS7bBLsLvlem9DrcRmWdYuX7Je2umw==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 402f6358uq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 01 Jul 2024 04:46:19 -0400 (EDT)
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 4618kHLW037330
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 1 Jul 2024 04:46:17 -0400
+Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
+ ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Mon, 1 Jul 2024 04:46:16 -0400
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
+ ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Mon, 1 Jul 2024 04:46:16 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Mon, 1 Jul 2024 04:46:16 -0400
+Received: from amiclaus-VirtualBox.ad.analog.com (AMICLAUS-L02.ad.analog.com [10.48.65.159])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 4618k0L9004394;
+	Mon, 1 Jul 2024 04:46:02 -0400
+From: Antoniu Miclaus <antoniu.miclaus@analog.com>
+To: Ramona Gradinariu <ramona.gradinariu@analog.com>,
+        Antoniu Miclaus
+	<antoniu.miclaus@analog.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        "Michael
+ Hennerich" <Michael.Hennerich@analog.com>,
+        Jonathan Cameron
+	<jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet
+	<corbet@lwn.net>,
+        Jun Yan <jerrysteve1101@gmail.com>,
+        Matti Vaittinen
+	<mazziesaccount@gmail.com>,
+        Mehdi Djait <mehdi.djait.k@gmail.com>,
+        "Mario
+ Limonciello" <mario.limonciello@amd.com>,
+        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>
+CC: Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH v4 1/3] dt-bindings: iio: accel: add ADXL380
+Date: Mon, 1 Jul 2024 11:30:42 +0300
+Message-ID: <20240701083138.15891-1-antoniu.miclaus@analog.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: ti: k3-j7xx: Change timer nodes status to
- reserved
-To: Beleswar Padhi <b-padhi@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
-        Jayesh
- Choudhary <j-choudhary@ti.com>
-CC: <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <tony@atomide.com>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20240607105559.771080-1-b-padhi@ti.com>
-Content-Language: en-US
-From: "Kumar, Udit" <u-kumar1@ti.com>
-In-Reply-To: <20240607105559.771080-1-b-padhi@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: fSl5XYzB1wS4PxDTreLn3hX1Ynf6RYpB
+X-Proofpoint-ORIG-GUID: fSl5XYzB1wS4PxDTreLn3hX1Ynf6RYpB
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-01_07,2024-06-28_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxlogscore=999
+ adultscore=0 suspectscore=0 impostorscore=0 priorityscore=1501
+ malwarescore=0 phishscore=0 bulkscore=0 mlxscore=0 spamscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2406140001 definitions=main-2407010067
 
+Add dt-bindings for ADXL380/ADLX382 low noise density, low
+power, 3-axis accelerometer with selectable measurement ranges.
 
-On 6/7/2024 4:25 PM, Beleswar Padhi wrote:
-> The remoteproc firmware like of R5F and DSPs in the MAIN voltage domain
-> use timers. Therefore, change the status of the timer nodes to
-> "reserved" to avoid any clash.
->
-> This change is already incorporated for timer nodes in the MCU voltage
-> domain.
->
-> Fixes: 835d04422f9d ("arm64: dts: ti: k3-j721s2: Add general purpose timers")
->
-> Signed-off-by: Beleswar Padhi <b-padhi@ti.com>
-> ---
->   arch/arm64/boot/dts/ti/k3-j7200-main.dtsi  |  2 ++
->   arch/arm64/boot/dts/ti/k3-j721e-main.dtsi  |  7 +++++++
->   arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi |  6 ++++++
->   arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi | 10 ++++++++++
->   4 files changed, 25 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-> index 9386bf3ef9f68..22351a4f3da6e 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-> @@ -1254,6 +1254,7 @@ main_timer0: timer@2400000 {
->   		assigned-clock-parents = <&k3_clks 49 2>;
->   		power-domains = <&k3_pds 49 TI_SCI_PD_EXCLUSIVE>;
->   		ti,timer-pwm;
-> +		status = "reserved";
->   	};
->   
->   	main_timer1: timer@2410000 {
-> @@ -1266,6 +1267,7 @@ main_timer1: timer@2410000 {
->   		assigned-clock-parents = <&k3_clks 50 2>, <&k3_clks 313 1>;
->   		power-domains = <&k3_pds 50 TI_SCI_PD_EXCLUSIVE>;
->   		ti,timer-pwm;
-> +		status = "reserved";
->   	};
->   
->   	main_timer2: timer@2420000 {
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+Signed-off-by: Ramona Gradinariu <ramona.gradinariu@analog.com>
+Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+---
+changes in v4:
+ - drop marketing from description.
+ .../bindings/iio/accel/adi,adxl380.yaml       | 92 +++++++++++++++++++
+ MAINTAINERS                                   |  7 ++
+ 2 files changed, 99 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/accel/adi,adxl380.yaml
 
-checked only on J7200, for Main MCU 1-0, Looks you need main_timer2 as 
-well to get it working
+diff --git a/Documentation/devicetree/bindings/iio/accel/adi,adxl380.yaml b/Documentation/devicetree/bindings/iio/accel/adi,adxl380.yaml
+new file mode 100644
+index 000000000000..f1ff5ff4f478
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/accel/adi,adxl380.yaml
+@@ -0,0 +1,92 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/accel/adi,adxl380.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Analog Devices ADXL380/382 3-Axis Digital Accelerometer
++
++maintainers:
++  - Ramona Gradinariu <ramona.gradinariu@analog.com>
++  - Antoniu Miclaus <antoniu.miclaus@analog.com>
++
++description: |
++  The ADXL380/ADXL382 is a low noise density, low power, 3-axis
++  accelerometer with selectable measurement ranges. The ADXL380
++  supports the ±4 g, ±8 g, and ±16 g ranges, and the ADXL382 supports
++  ±15 g, ±30 g, and ±60 g ranges.
++
++  https://www.analog.com/en/products/adxl380.html
++
++properties:
++  compatible:
++    enum:
++      - adi,adxl380
++      - adi,adxl382
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    minItems: 1
++    maxItems: 2
++
++  interrupt-names:
++    minItems: 1
++    items:
++      - enum: [INT0, INT1]
++      - const: INT1
++
++  vddio-supply: true
++
++  vsupply-supply: true
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - interrupt-names
++  - vddio-supply
++  - vsupply-supply
++
++allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      accelerometer@54 {
++        compatible = "adi,adxl380";
++        reg = <0x54>;
++        vddio-supply = <&vddio>;
++        vsupply-supply = <&vsupply>;
++        interrupt-parent = <&gpio>;
++        interrupts = <25 IRQ_TYPE_LEVEL_HIGH>;
++        interrupt-names = "INT0";
++      };
++    };
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    spi {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      accelerometer@0 {
++        compatible = "adi,adxl380";
++        reg = <0>;
++        spi-max-frequency = <8000000>;
++        vddio-supply = <&vddio>;
++        vsupply-supply = <&vsupply>;
++        interrupt-parent = <&gpio>;
++        interrupts = <25 IRQ_TYPE_LEVEL_HIGH>;
++        interrupt-names = "INT0";
++      };
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index be590c462d91..1425182c85e2 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -618,6 +618,13 @@ F:	drivers/iio/accel/adxl372.c
+ F:	drivers/iio/accel/adxl372_i2c.c
+ F:	drivers/iio/accel/adxl372_spi.c
+ 
++ADXL380 THREE-AXIS DIGITAL ACCELEROMETER DRIVER
++M:	Ramona Gradinariu <ramona.gradinariu@analog.com>
++M:	Antoniu Miclaus <antoniu.miclaus@analog.com>
++S:	Supported
++W:	https://ez.analog.com/linux-software-drivers
++F:	Documentation/devicetree/bindings/iio/accel/adi,adxl380.yaml
++
+ AF8133J THREE-AXIS MAGNETOMETER DRIVER
+ M:	Ondřej Jirman <megi@xff.cz>
+ S:	Maintained
+-- 
+2.45.2
 
-Please verify on other SOCs as well for all firmwares, if some extra 
-nodes needs to be added
-
-
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-> index 0da785be80ff4..944bdbb98e910 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-> [..]
 
