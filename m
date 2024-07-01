@@ -1,162 +1,179 @@
-Return-Path: <devicetree+bounces-81864-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81865-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABE9B91DBB4
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 11:47:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F0D691DBFE
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 12:03:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E119A1C214EC
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 09:47:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 18D742810C5
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 10:03:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B974E12CD88;
-	Mon,  1 Jul 2024 09:46:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 084A386252;
+	Mon,  1 Jul 2024 10:03:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ldTD3weu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FwpS5InK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11BDE12A14C;
-	Mon,  1 Jul 2024 09:46:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D25FA84D13;
+	Mon,  1 Jul 2024 10:03:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719827218; cv=none; b=YdgMzyEQEhV5rY8EHEP2bnIIHyTM3/kkOghA5qEPn9BsUKsaKa4xM61R8lmUmpBufPrjl8Dru0zFRp2RkXaWE37rHDViJQaMBzeGj7YGalWVhpbNHsy+6v3yo5wwRR8TE8M0aY4HWy3AScattsnIdvp8lfLboUYZHWT5GhTHvIM=
+	t=1719828188; cv=none; b=Nm5J5SVSifs07X77a4zhAWaXqYE/dF5js778Xeag57z8THH7OPqpgYKX6MUZ5vTkiWZ9PiekhOcwXq9VhuVNZaKuLg+4xXFg6g8Z2WxgszS02rSPNQVGzLgcxCXqy3BTM+2vUmO+bnu0l9c1VyR3m96wXmXaXgf264z++dQpRl0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719827218; c=relaxed/simple;
-	bh=1mdbcvOKare6fTE6pXiojzL/q9PAeyXp0dtBoiv77Ho=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=fi02L9mxzueLk0+8R0Nixlg6fDIMh6ZNJB2IYI1QytUSPW7f2JIG56V2X+Dliy64DUhtzgynzCN9RGB4rpe8JDC/+0BFTUYyXSft4RrrzA0oky958p5qGaIBekuSt8n4++D2xcAgpMtl252DZAD01ALi+8fXw94x7fEJRJjsUBg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ldTD3weu; arc=none smtp.client-ip=209.85.218.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a7527afa23cso82690266b.2;
-        Mon, 01 Jul 2024 02:46:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1719827215; x=1720432015; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=QJ8hznQdBSpW/pK4jDinmZ2F4dwUUNDMvQFJh/2PnF8=;
-        b=ldTD3weuvLRSVhT5KFsSa5RBDf/KzvCXcZMJHkEaPOZvzasU45SRIAXiGAEK5Vxci2
-         ft8YAYIDLFYxx2co/pk96ve0IP7VNJm3qiDanz3z7KEQNBTUvK4EgyXGDvz6ATqtTp1H
-         FWUKUK1o8ePZCbqpOoewldqi7Q22S3sdrVCzUs4qG7rLLIfHYrLYoBZD7d1u0e5/UI4V
-         7okpmYz6N0iB68MYTOUWRIO4XTDB3twtU1TayI7MW2RvvQc5bXL+1B/57g0giJqI0qIT
-         98JPTHlRYLSOLQNuls2HB0/ZJ+C9IElr5IQ8slaL2jEDDPfdZhoWl6GYZE2sDN+XpTJO
-         wKUw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719827215; x=1720432015;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=QJ8hznQdBSpW/pK4jDinmZ2F4dwUUNDMvQFJh/2PnF8=;
-        b=RqSrsFkOMXbT9mGAXf67yPdLUGqoDahsya/m19qvxgE+Ka5eLmRU6mi/5lPbX1S8Af
-         SSSJGXLe4+SqvaJoiLFAgGPQF+KJz7GyR9EPnPkn914zj7IC5yTr5/JQ/ESvKr4HC2iP
-         7glcCKNvR/vBd2HKkjlhQQNuAMOwGfxqsNM0LDRMJMHq1+aHLDsWntoSZG/T7QWhPEa4
-         KuXf1VQHkQsNiPgrxXc1f88Hly8JZDpQM0sAaHC4Z2soo+KKobAuZjxIwvzUvXM1ugBv
-         k0ad+n2C3eZRTbc549sbrfQeqLYa2uov3fEOae1lnLsdf3Xt7j7AFDZf+e2ww3PyohQD
-         gtew==
-X-Forwarded-Encrypted: i=1; AJvYcCUmpLU8RA743Szu9RzzzDgsJn3V7rBME7pLbZYxilZy7TLqpfFZgu7ENE0LTLBLvRcq4ZkI8o45uBrp/nQVHEODoIktXdLky+oslbmAm1bBOddI9IiX5JM3jQaTQtXP7PozdyB3F/NqiQ==
-X-Gm-Message-State: AOJu0YwsTnSQwGlWqelN4yv4ZzIBup8jlW6Fuqinh5L4NvFqPDFpjQlj
-	1TiVbj97YZDsxwEhEzdvlVRWwVTNLw+5XE8wVFBecOzNIWA2CbemL2p+KBrS0AUVxhW5yysVztu
-	ABRYFXUtjH03OviUwDYjRHtdYOg==
-X-Google-Smtp-Source: AGHT+IHDggheRf09W9QEoK9AQzFlLZt2A//Iiql249o+YW7xCeGM2QIwLllRZevmRIDL1Bw4ZPjbtWr2EPs32Qz1SSA=
-X-Received: by 2002:a17:907:7207:b0:a72:7ffc:f54a with SMTP id
- a640c23a62f3a-a7514467505mr469201466b.5.1719827215242; Mon, 01 Jul 2024
- 02:46:55 -0700 (PDT)
+	s=arc-20240116; t=1719828188; c=relaxed/simple;
+	bh=rj2CuGZSuorKkqrmqjXwI7PvtbVRpe9ajyOq8suI5Co=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GUpvNP8dpSKo2SM0yoI2Rde3p6gp97vj0p0EmrEbVhCjhNwSndjBUs9aq7E1bpnCtP+ttsH9SGHeHX/c1/6r0PZpQHdMtVMki2rHWhBbkd6LuyrCYuJxoevNOhgfJhUZA5TkYAHDb/fgBgXd3qoEQpJE2MzI+bR1irVwAzO2224=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FwpS5InK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26FB5C116B1;
+	Mon,  1 Jul 2024 10:03:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719828188;
+	bh=rj2CuGZSuorKkqrmqjXwI7PvtbVRpe9ajyOq8suI5Co=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=FwpS5InKB0WHeJvDl00B4mDyVpgtWRPch13ta7HsTvTyk2qU9CAm4ahmD+wsEctHc
+	 MYCrGVTnrBjo6jvt5GBxaYTB8FxHv2menHZexYacTgYMG0C30VswIdbnWpOZXlztTt
+	 OjJMVYyPKMojWhQ9TYdzm6UgIXkrrfyfGqTtDugOOatUeh4SBaU8qxzDDxX4L42Pnt
+	 98wTdukcSrqmbqnb6HUV5DX3aayTslixUC5ntsCv8Zos0pLeELIO1eytxsJakjk/Zs
+	 E4C/MMklfw5skb2y++k8fvOSz/31hK7nhwNQK6IAM8iTnJREQpK3R8arWmCXukuPdC
+	 4l53aEE/qNQBg==
+Date: Mon, 1 Jul 2024 11:03:03 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Manikandan Muralidharan <manikandan.m@microchip.com>
+Cc: megi@xff.cz, javierm@redhat.com, neil.armstrong@linaro.org,
+	quic_jesszhan@quicinc.com, sam@ravnborg.org, airlied@gmail.com,
+	daniel@ffwll.ch, maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org, tzimmermann@suse.de, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org,
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: display: himax-hx8394: Add Microchip
+ AC40T08A MIPI Display panel
+Message-ID: <20240701-preset-shredding-409ef0d80ca4@spud>
+References: <20240701085837.50855-1-manikandan.m@microchip.com>
+ <20240701085837.50855-2-manikandan.m@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240629103914.161530-1-erezgeva@nwtime.org> <20240629103914.161530-4-erezgeva@nwtime.org>
- <1c457520-07b7-4bde-b040-e8bca959a4f5@linaro.org> <CANeKEMOODBNZA6efh0E0Ga_KaVs5Y3WLcUftRhNwYHhnXO=GNw@mail.gmail.com>
-In-Reply-To: <CANeKEMOODBNZA6efh0E0Ga_KaVs5Y3WLcUftRhNwYHhnXO=GNw@mail.gmail.com>
-From: Erez <erezgeva2@gmail.com>
-Date: Mon, 1 Jul 2024 11:46:18 +0200
-Message-ID: <CANeKEMO42rJt5Ob4_HDcZ3eEMvuMOPvRaFaLwL8SA65NtxSV7A@mail.gmail.com>
-Subject: Re: [PATCH v2 3/4] dt-bindings: mtd: macronix,mx25l12833f: add
- SPI-NOR chip
-To: Tudor Ambarus <tudor.ambarus@linaro.org>
-Cc: Erez Geva <erezgeva@nwtime.org>, linux-mtd@lists.infradead.org, 
-	Pratyush Yadav <pratyush@kernel.org>, Michael Walle <mwalle@kernel.org>, linux-kernel@vger.kernel.org, 
-	Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-
-Sorry, I resend the same mail, as I send it again as HTML.
-
-How?
-
-When using mx25l12805d, we do not read SFDP.
-As it uses the no-SFDP flags.
-When using mx25l12833f hardware with mx25l12805d driver, it did not
-try to read the SFDP.
-Yet mx25l12833f does have SFDP, when I remove the no-SFDP flags, the
-driver fetch the SFDP.
-
-Secondly SFDP does not contain OTP information.
-
-mx25l12805d has two OTP regions of 128 KiB and 384 KiB (yes asymmetric).
-While mx25l12833f has two OTP regions of 512 KiB.
-
-How do we handle it?
-I would gladly remove the obsolete mx25l12805d.
-And skp compatibles all together.
-
-Thanks
-    Erez Geva
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="zEW7h/lfGlnSjTL0"
+Content-Disposition: inline
+In-Reply-To: <20240701085837.50855-2-manikandan.m@microchip.com>
 
 
+--zEW7h/lfGlnSjTL0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Mon, Jul 01, 2024 at 02:28:35PM +0530, Manikandan Muralidharan wrote:
+> Add compatible string for the Microchip's AC40T08A MIPI Display
+> panel.This panel uses a Himax HX8394 display controller.
+> The reset line is not populated and leads to driver probe issues,
+> thus add conditional block to narrow reset-gpio property per variant.
 
-On Mon, 1 Jul 2024 at 11:40, Erez <erezgeva2@gmail.com> wrote:
->
-> How?
->
-> When using mx25l12805d, we do not read SFDP.
-> As it uses the no-SFDP flags.
-> When using mx25l12833f hardware with mx25l12805d driver, it did not try to read the SFDP.
-> Yet mx25l12833f does have SFDP, when I remove the no-SFDP flags, the driver fetch the SFDP.
->
-> Secondly SFDP does not contain OTP information.
->
-> mx25l12805d has two OTP regions of 128 KiB and 384 KiB (yes asymmetric).
-> While mx25l12833f has two OTP regions of 512 KiB.
->
-> How do we handle it?
-> I would gladly remove the obsolete mx25l12805d.
-> And skp compatibles all together.
->
-> Thanks
->     Erez Geva
->
->
->
->
->
-> On Mon, 1 Jul 2024 at 07:23, Tudor Ambarus <tudor.ambarus@linaro.org> wrote:
->>
->> Hi,
->>
->> On 6/29/24 11:39 AM, Erez Geva wrote:
->> > From: Erez Geva <ErezGeva2@gmail.com>
->> >
->> > Add Macronix SPI-NOR mx25l12833f.
->> >
->> > mx25l12833f uses the same JEDEC ID as mx25l12805d.
->> >
->> > Although mx25l12833f is a new chip that support read ID and SFDP,
->> >  users might want to specify it in the device tree,
->> >  to differ it from the old mx25l12805d chip.
->>
->> As Michael said in a reply in v1, we try really hard to don't introduce
->> new compatibles and instead rely on the generic "jedec,spi-nor". In your
->> case you can differentiate between the two flavors of flashes based on
->> the SFDP presence. We won't apply this.
->>
->> Cheers,
->> ta
+I really should have asked on v1, but I wasn't sure whether or not the
+optional nature of the reset-gpios was specific to your new panel so I
+held off: Is it ever the case that a reset-gpio can be provided for this
+microchip panel, or just not in the configuration you tested? If it is
+never possible, then I'd probably do...
+
+>=20
+> Signed-off-by: Manikandan Muralidharan <manikandan.m@microchip.com>
+> ---
+> changes in v2:
+> - re-order compatible string alphabetically.
+> - Add conditional block to narrow reset-gpio property from required
+> list based on compatible string check
+> ---
+>  .../bindings/display/panel/himax,hx8394.yaml    | 17 +++++++++++++----
+>  1 file changed, 13 insertions(+), 4 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/display/panel/himax,hx8394=
+=2Eyaml b/Documentation/devicetree/bindings/display/panel/himax,hx8394.yaml
+> index 644387e4fb6f..75ccabff308b 100644
+> --- a/Documentation/devicetree/bindings/display/panel/himax,hx8394.yaml
+> +++ b/Documentation/devicetree/bindings/display/panel/himax,hx8394.yaml
+> @@ -15,14 +15,12 @@ description:
+>    such as the HannStar HSD060BHW4 720x1440 TFT LCD panel connected with
+>    a MIPI-DSI video interface.
+> =20
+> -allOf:
+> -  - $ref: panel-common.yaml#
+> -
+>  properties:
+>    compatible:
+>      items:
+>        - enum:
+>            - hannstar,hsd060bhw4
+> +          - microchip,ac40t08a-mipi-panel
+>            - powkiddy,x55-panel
+>        - const: himax,hx8394
+> =20
+> @@ -46,7 +44,6 @@ properties:
+>  required:
+>    - compatible
+>    - reg
+> -  - reset-gpios
+>    - backlight
+>    - port
+>    - vcc-supply
+> @@ -54,6 +51,18 @@ required:
+> =20
+>  additionalProperties: false
+> =20
+> +allOf:
+> +  - $ref: panel-common.yaml#
+> +  - if:
+> +      not:
+> +        properties:
+> +          compatible:
+> +            enum:
+> +              - microchip,ac40t08a-mipi-panel
+> +    then:
+> +      required:
+> +        - reset-gpios
+
+  - if:
+      properties:
+        compatible:
+          const: microchip,ac40t08a-mipi-panel
+    then:
+      properties:
+        reset-gpios: false
+    else:
+      required:
+        - reset-gpios
+
+Otherwise, what you have is fine.
+
+Cheers,
+Conor.
+
+>  examples:
+>    - |
+>      #include <dt-bindings/gpio/gpio.h>
+> --=20
+> 2.25.1
+>=20
+
+--zEW7h/lfGlnSjTL0
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZoJ+1gAKCRB4tDGHoIJi
+0tMwAP0RreznrdGTlsp+/TMrTBH1CLFSfccb6TiXVFKsF//otwD+L5S9KraEH2JJ
+IwJ5jYCHglQ2NnWI9qvTDAwHlg3zYgw=
+=TrUD
+-----END PGP SIGNATURE-----
+
+--zEW7h/lfGlnSjTL0--
 
