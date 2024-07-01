@@ -1,98 +1,80 @@
-Return-Path: <devicetree+bounces-82096-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82097-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDB9391E6A8
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 19:30:42 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2178A91E6CC
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 19:42:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 844791F224CB
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 17:30:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7CD13B20DE3
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 17:42:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBDFD16EB7E;
-	Mon,  1 Jul 2024 17:30:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F387316EB5E;
+	Mon,  1 Jul 2024 17:42:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gqYrYuRz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uFFaeB79"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFA3446434;
-	Mon,  1 Jul 2024 17:30:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B47E42A1D3;
+	Mon,  1 Jul 2024 17:42:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719855028; cv=none; b=YNalxIcsFoBkUEtdlOe3PL1I6XWxOIflvyY+TSp69y2JJtuCTGwoEG56/YOfFvn6yI02+nEJdyJbQvOYPTk/RVtYyXZm4D+4BfUVRAlTuyWr15AZxb7YlsJLlCQuYIwCkfkKcRMfpnbBwZiAbxCr37Oj7fS+qwDZh/oOwPW6kTw=
+	t=1719855749; cv=none; b=mn/EA+J2WkkOPbaFQXO2oixrIo08jRtaJi5vqfqaNjp/JGdUcsoVSLQb3OHMlBZYwX3+wM0RkSzJ8YZC93pBVLMEGlmjHzTHxuB/b6tHXYeOwVfmuvj1x/wIYnvOfVeh/JCiJpMR+sKXYql4FN5TYTz9sRQG6IpvtoSCBld6R7k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719855028; c=relaxed/simple;
-	bh=/40oz/s8RXfS81mQyn18qyWYU+aDlAPyeqR/p4JT5tA=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=lkCm5jkmX3rddJPhJkSL7pEyzT1IXgf0mi3LBR7MvScmzYmepqdcPAkkfXretn0CrzBHCNhXlELB6BNfTPFYCeAVrA0nxBv6ZDF0wSmtusJPmhtTf5bUtIBM39IY5o8xLPlenppzs8OB6MuBXX/h+1LjolevrhJPGIemkGfotxI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gqYrYuRz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 5A042C2BD10;
-	Mon,  1 Jul 2024 17:30:28 +0000 (UTC)
+	s=arc-20240116; t=1719855749; c=relaxed/simple;
+	bh=kGobKE6YPSAtDU0yZCkJD4Zf1Y01NAAOF9patzKGseU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=thZNyhgR5MZwIHZ2RZVEK5Vym2USUhKLMvfJI89F+Bq4+jYsE0W7Mekie6bVvb6yVNzYdZpE0bOzF5nl+HOTWWUvYQ0XIKXw6t09lTyEzvldDw0QYosTDvCoxQma0wHRF0ND8CI3i8iFPgWk3L8kxsWlalGSJtb9zgRPmiId34Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uFFaeB79; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23CAAC116B1;
+	Mon,  1 Jul 2024 17:42:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719855028;
-	bh=/40oz/s8RXfS81mQyn18qyWYU+aDlAPyeqR/p4JT5tA=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=gqYrYuRzf3NTkTOhhAV4lwmrklGgFS2fdxAoSTBNzjCwicWeIvVvNqiPYR6vIx+x2
-	 T3679jsW4MacnvnNlqZQRGiCI4EpeBbmP87c+cSMak7Pt9pHoOSKZkVXUaHR3/9C7E
-	 q2UVT56Yu8KG8vZjJdQ9xXxQXX6tiHrue5w3egCyixEoUtStHP8yi8X+0S1Kh+BiDn
-	 Y9U3cTrdyv4r3i6c85NZfog+bPqOkoFFSCyF4FnY/P2sxUcFdgBuB1fcfIXwW57COt
-	 RClLO8zIwpw585IT3HFgt5fELKOk2KUkpXSN1q+U08/EDIwTHsmHTcVh2f3X0GPLOb
-	 +uTAjeSBeH0Yw==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 42775C43468;
-	Mon,  1 Jul 2024 17:30:28 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=k20201202; t=1719855749;
+	bh=kGobKE6YPSAtDU0yZCkJD4Zf1Y01NAAOF9patzKGseU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=uFFaeB79x4Q5Q6wP8OEQ2Rhg9iZ1DipWUjM31+Yj65NCxeB9wAVT2uicuJWmyrzLQ
+	 LzQsDHTX63fzuRnmEqLNe/IsiSE2fR+tJTb1P4H5WM/x74eEf/QkXcDDGK4zL+LwTp
+	 +7HHZyW7CKY+xVBX83r/9j4rVGQOgNRHguEQB8IHKA3u8K+eLPGRZ0Dwd8gV5WI8nn
+	 BXBSUC6W3ajSXick61nAnMFpnFNxZYkA2Q7F9KBnZFNdFhI9ubGYN7SE1cvctNn5tb
+	 lY4rWyOM0OIqTK6OxWbhkt4HUm0ZbK2ioTpU9SQ8gHMrVCauI5CphSFdmDv0+ihJWJ
+	 CYUYOL116LLxg==
+Date: Mon, 1 Jul 2024 11:42:27 -0600
+From: Rob Herring <robh@kernel.org>
+To: Krishna Yarlagadda <kyarlagadda@nvidia.com>
+Cc: linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org, linux-i2c@vger.kernel.org,
+	linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
+	thierry.reding@gmail.com, jonathanh@nvidia.com, krzk+dt@kernel.org,
+	conor+dt@kernel.org, corbet@lwn.net, andi.shyti@kernel.org,
+	wsa+renesas@sang-engineering.com, ulf.hansson@linaro.org,
+	adrian.hunter@intel.com, digetx@gmail.com, ldewangan@nvidia.com,
+	mkumard@nvidia.com
+Subject: Re: [RFC PATCH V2 04/12] dt-bindings: misc: tegra-i2c: config
+ settings
+Message-ID: <20240701174227.GA148633-robh@kernel.org>
+References: <20240701151231.29425-1-kyarlagadda@nvidia.com>
+ <20240701151231.29425-5-kyarlagadda@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH V2] dt-bindings: net: bluetooth: convert MT7622 Bluetooth to
- the json-schema
-From: patchwork-bot+bluetooth@kernel.org
-Message-Id: 
- <171985502826.17789.16520261156550841642.git-patchwork-notify@kernel.org>
-Date: Mon, 01 Jul 2024 17:30:28 +0000
-References: <20240628054635.3154-1-zajec5@gmail.com>
-In-Reply-To: <20240628054635.3154-1-zajec5@gmail.com>
-To: =?utf-8?b?UmFmYcWCIE1pxYJlY2tpIDx6YWplYzVAZ21haWwuY29tPg==?=@codeaurora.org
-Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
- pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- marcel@holtmann.org, luiz.dentz@gmail.com, matthias.bgg@gmail.com,
- angelogioacchino.delregno@collabora.com, sean.wang@mediatek.com,
- linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, rafal@milecki.pl
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240701151231.29425-5-kyarlagadda@nvidia.com>
 
-Hello:
+On Mon, Jul 01, 2024 at 08:42:22PM +0530, Krishna Yarlagadda wrote:
+> I2C interface timing registers are configured using config setting
+> framework. List available field properties for Tegra I2C controllers.
 
-This patch was applied to bluetooth/bluetooth-next.git (master)
-by Luiz Augusto von Dentz <luiz.von.dentz@intel.com>:
+How is I2C bus timing parameters specific to NVIDIA? Just because you 
+have more controls? No. That's no reason to invent a whole new way to 
+specify parameters. Extend what's already there and make it work for 
+anyone.
 
-On Fri, 28 Jun 2024 07:46:35 +0200 you wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
-> 
-> This helps validating DTS files. Introduced changes:
-> 1. Dropped serial details from example
-> 2. Added required example include
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-> 
-> [...]
-
-Here is the summary with links:
-  - [V2] dt-bindings: net: bluetooth: convert MT7622 Bluetooth to the json-schema
-    https://git.kernel.org/bluetooth/bluetooth-next/c/31cdab2ae178
-
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
-
+Rob
 
