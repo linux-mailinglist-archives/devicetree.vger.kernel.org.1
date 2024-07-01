@@ -1,81 +1,67 @@
-Return-Path: <devicetree+bounces-81889-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81890-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD6CB91DDDB
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 13:30:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E75A291DDE0
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 13:30:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 78C06281050
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 11:30:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A29D2281005
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 11:30:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2FFF84E16;
-	Mon,  1 Jul 2024 11:30:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42B7E13DDA7;
+	Mon,  1 Jul 2024 11:30:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nng7Ietv"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rOlbWRpK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC75D4AEF2;
-	Mon,  1 Jul 2024 11:30:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E9742B9C6
+	for <devicetree@vger.kernel.org>; Mon,  1 Jul 2024 11:30:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719833424; cv=none; b=NBaEBMvHVrYshYlhg2xcbjdrx+VVW7I3aIjEXYz5LKwuflVvficaTmN+xqra4Oh9CQOWvMexequehAoHj0ziIrTixw1Qpt1qR0Ce0iqW5v8undvKbt+pTGyD8hbRqAJdL3Od+YKX2N0ISTCd5uvvhPlHLD0VWf55zLXXyQ1uhwA=
+	t=1719833429; cv=none; b=bM9Yy/YEd95F8f6drBlB2hHulbst/HBYieERmDeQkW1av3Az5F2YcY/U6f2OtbfCpWyLMh7767sHSfjMMr70a5AInVhIoZjfLSAhU90VObvboYwU7n8TqJyMKaUj1Mv1XIzebrFgUq8+5E6+0LKpgLMyMuMGcAJzj8PKzsG7nc0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719833424; c=relaxed/simple;
-	bh=+OWOpDrJZchPfmLK+I6MmT9xsjGXnDm/PgEQ5i8jc7g=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=I5HpTyKv9HQagvfVJoI6LhTzaND7dvDd9pZN1Z7w7wMUorf/vAQSHBQIob4AzfqPdBO2S7lJyp9YRIe2JsNNlvoomqubDXG9ZSwTbLWQ4CYyXEH9CXiILFRf5wpowtqJAjmZ6NULpb1SQ5rfYyRkcX0HnxBY6iafDuFU0Tr0zC0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nng7Ietv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A73DC116B1;
-	Mon,  1 Jul 2024 11:30:17 +0000 (UTC)
+	s=arc-20240116; t=1719833429; c=relaxed/simple;
+	bh=q2YjRmUir1aiAl/k4LwkYLq9quRlecYb+uj2zNUnYKE=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=aWl90NEF3Zxkxzl3Pgz4J/JMycsC8RU6tAqVN1v2VbnNEbeezHfX4GBv9N7+4mnKq/F37CatUAd4Zbm2/9my6DEDU0hcCAYJw3nOoAhyUzbK/qvqgoOauvsKKbrabR1rZStZzFtxT3RlQiVov+KjgK7fOz7lQrA67vpqzPucEyU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rOlbWRpK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4D9CC116B1;
+	Mon,  1 Jul 2024 11:30:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719833424;
-	bh=+OWOpDrJZchPfmLK+I6MmT9xsjGXnDm/PgEQ5i8jc7g=;
-	h=From:List-Id:To:Cc:Subject:Date:From;
-	b=nng7Ietv8746Qmyk72eF6HkQfwN868Cn+LOeGd0kofGmb1dcmN/o+kvc/ZdzQ0hpE
-	 MmWEAGGTemyge+t/O5M6+0zCngJIZ2T0uv3fIcvIjPf5qLdV+AUCupt1BnCRLA0v7O
-	 gP2zGelCxlD6fgIu+7PuJIVjULtjb1RXsX8OOGub3s/lSVZI6GHI28dy9RxST6Yo/B
-	 7fcMQ6uFKdJtsylPzgT8cl/skkyQf7/9+di6Kx+xNM7RixDT7Ke76Z2vU5ABBZ/bnj
-	 o4TRg53Qoug1INfKWRYsDfdj+oa1rljDzxF5AZlRHXwT25MJRzZCFp3tE2eiEExb8l
-	 tLB6rvtF/JJBA==
+	s=k20201202; t=1719833428;
+	bh=q2YjRmUir1aiAl/k4LwkYLq9quRlecYb+uj2zNUnYKE=;
+	h=From:List-Id:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=rOlbWRpKDN49oHJknz5nZDcp7Pwgr9X+B3AD7OG3gM7nl8qgNTRqeWJ7zSNQInE2d
+	 F0gpl3qk1UezStjdek4MGeWzMaiNw7Szs1ntkbMLH6ynpPvBlkYuqnb15BKRvjoTDQ
+	 Ro+l0uwhS7m6MmFLztv5RuKQp6EyC3dXBj316fjReNS+2PkvsSM62OdSEaUUtGy2ms
+	 5ddC0va7XU2nyQ6NosTcnbEB+blb4ron44IbjE+W5eu9UoBqPwuEErx5HEXJW5QNX3
+	 Kl0++48dflBxCOcRUdlQO48YiMD18KBCyMdD/tvfVGAUh7uWgBtXDgNAHpTVZA3xlE
+	 qJrVng4idE50g==
 From: =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>
 To: Arnd Bergmann <arnd@arndb.de>,
-	soc@kernel.org,
-	Alessandro Zummo <a.zummo@towertech.it>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Andy Shevchenko <andy@kernel.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
-	Dan Carpenter <dan.carpenter@linaro.org>,
-	devicetree@vger.kernel.org,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Hans de Goede <hdegoede@redhat.com>,
-	=?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	linux-crypto@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	linux-rtc@vger.kernel.org,
-	linux-watchdog@vger.kernel.org,
-	Olivia Mackall <olivia@selenic.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>
+	soc@kernel.org
 Cc: Gregory CLEMENT <gregory.clement@bootlin.com>,
 	arm@kernel.org,
+	Andy Shevchenko <andy@kernel.org>,
+	Hans de Goede <hdegoede@redhat.com>,
+	=?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
 	=?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Rob Herring <robh@kernel.org>,
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <uwe@kleine-koenig.org>
-Subject: [PATCH v13 0/8] Turris Omnia MCU driver
-Date: Mon,  1 Jul 2024 13:30:02 +0200
-Message-ID: <20240701113010.16447-1-kabel@kernel.org>
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH v13 1/8] dt-bindings: firmware: add cznic,turris-omnia-mcu binding
+Date: Mon,  1 Jul 2024 13:30:03 +0200
+Message-ID: <20240701113010.16447-2-kabel@kernel.org>
 X-Mailer: git-send-email 2.44.2
+In-Reply-To: <20240701113010.16447-1-kabel@kernel.org>
+References: <20240701113010.16447-1-kabel@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,66 +71,123 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Hello Arnd et al.
+Add binding for cznic,turris-omnia-mcu, the device-tree node
+representing the system-controller features provided by the MCU on the
+Turris Omnia router.
 
-this is v13 of the series adding Turris Omnia MCU driver.
-
-Changes since v12:
-- added blank lines between _DEF_GPIO macro definitions in patch 3,
-  requested by Bart
-
-Links to previous cover letters (v1 to v12):
-  https://patchwork.kernel.org/project/linux-soc/cover/20230823161012.6986-1-kabel@kernel.org/
-  https://patchwork.kernel.org/project/linux-soc/cover/20230919103815.16818-1-kabel@kernel.org/
-  https://patchwork.kernel.org/project/linux-soc/cover/20231023143130.11602-1-kabel@kernel.org/
-  https://patchwork.kernel.org/project/linux-soc/cover/20231026161803.16750-1-kabel@kernel.org/
-  https://patchwork.kernel.org/project/linux-soc/cover/20240323164359.21642-1-kabel@kernel.org/
-  https://patchwork.kernel.org/project/linux-soc/cover/20240418121116.22184-1-kabel@kernel.org/
-  https://patchwork.kernel.org/project/linux-soc/cover/20240424173809.7214-1-kabel@kernel.org/
-  https://patchwork.kernel.org/project/linux-soc/cover/20240430115111.3453-1-kabel@kernel.org/
-  https://patchwork.kernel.org/project/linux-soc/cover/20240508103118.23345-1-kabel@kernel.org/
-  https://patchwork.kernel.org/project/linux-soc/cover/20240510101819.13551-1-kabel@kernel.org/
-  https://patchwork.kernel.org/project/linux-soc/cover/20240605161851.13911-1-kabel@kernel.org/
-  https://patchwork.kernel.org/project/linux-soc/cover/20240617152606.26191-1-kabel@kernel.org/
-
-Marek Behún (8):
-  dt-bindings: firmware: add cznic,turris-omnia-mcu binding
-  platform: cznic: Add preliminary support for Turris Omnia MCU
-  platform: cznic: turris-omnia-mcu: Add support for MCU connected GPIOs
-  platform: cznic: turris-omnia-mcu: Add support for poweroff and wakeup
-  platform: cznic: turris-omnia-mcu: Add support for MCU watchdog
-  platform: cznic: turris-omnia-mcu: Add support for MCU provided TRNG
-  ARM: dts: turris-omnia: Add MCU system-controller node
-  ARM: dts: turris-omnia: Add GPIO key node for front button
-
- .../sysfs-bus-i2c-devices-turris-omnia-mcu    |  113 ++
- .../firmware/cznic,turris-omnia-mcu.yaml      |   86 ++
- MAINTAINERS                                   |    4 +
- .../dts/marvell/armada-385-turris-omnia.dts   |   35 +-
- drivers/platform/Kconfig                      |    2 +
- drivers/platform/Makefile                     |    1 +
- drivers/platform/cznic/Kconfig                |   48 +
- drivers/platform/cznic/Makefile               |    8 +
- .../platform/cznic/turris-omnia-mcu-base.c    |  408 ++++++
- .../platform/cznic/turris-omnia-mcu-gpio.c    | 1095 +++++++++++++++++
- .../cznic/turris-omnia-mcu-sys-off-wakeup.c   |  260 ++++
- .../platform/cznic/turris-omnia-mcu-trng.c    |  103 ++
- .../cznic/turris-omnia-mcu-watchdog.c         |  130 ++
- drivers/platform/cznic/turris-omnia-mcu.h     |  194 +++
- include/linux/turris-omnia-mcu-interface.h    |  249 ++++
- 15 files changed, 2735 insertions(+), 1 deletion(-)
- create mode 100644 Documentation/ABI/testing/sysfs-bus-i2c-devices-turris-omnia-mcu
+Signed-off-by: Marek Behún <kabel@kernel.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+---
+ .../firmware/cznic,turris-omnia-mcu.yaml      | 86 +++++++++++++++++++
+ MAINTAINERS                                   |  1 +
+ 2 files changed, 87 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/firmware/cznic,turris-omnia-mcu.yaml
- create mode 100644 drivers/platform/cznic/Kconfig
- create mode 100644 drivers/platform/cznic/Makefile
- create mode 100644 drivers/platform/cznic/turris-omnia-mcu-base.c
- create mode 100644 drivers/platform/cznic/turris-omnia-mcu-gpio.c
- create mode 100644 drivers/platform/cznic/turris-omnia-mcu-sys-off-wakeup.c
- create mode 100644 drivers/platform/cznic/turris-omnia-mcu-trng.c
- create mode 100644 drivers/platform/cznic/turris-omnia-mcu-watchdog.c
- create mode 100644 drivers/platform/cznic/turris-omnia-mcu.h
- create mode 100644 include/linux/turris-omnia-mcu-interface.h
 
+diff --git a/Documentation/devicetree/bindings/firmware/cznic,turris-omnia-mcu.yaml b/Documentation/devicetree/bindings/firmware/cznic,turris-omnia-mcu.yaml
+new file mode 100644
+index 000000000000..af9249695ef5
+--- /dev/null
++++ b/Documentation/devicetree/bindings/firmware/cznic,turris-omnia-mcu.yaml
+@@ -0,0 +1,86 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/firmware/cznic,turris-omnia-mcu.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: CZ.NIC's Turris Omnia MCU
++
++maintainers:
++  - Marek Behún <kabel@kernel.org>
++
++description:
++  The MCU on Turris Omnia acts as a system controller providing additional
++  GPIOs, interrupts, watchdog, system power off and wakeup configuration.
++
++properties:
++  compatible:
++    const: cznic,turris-omnia-mcu
++
++  reg:
++    description: MCU I2C slave address
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  interrupt-controller: true
++
++  '#interrupt-cells':
++    const: 2
++    description: |
++      The first cell specifies the interrupt number (0 to 63), the second cell
++      specifies interrupt type (which can be one of IRQ_TYPE_EDGE_RISING,
++      IRQ_TYPE_EDGE_FALLING or IRQ_TYPE_EDGE_BOTH).
++      The interrupt numbers correspond sequentially to GPIO numbers, taking the
++      GPIO banks into account:
++        IRQ number   GPIO bank   GPIO pin within bank
++           0 - 15      0           0 - 15
++          16 - 47      1           0 - 31
++          48 - 63      2           0 - 15
++      There are several exceptions:
++        IRQ number   meaning
++          11           LED panel brightness changed by button press
++          13           TRNG entropy ready
++          14           ECDSA message signature computation done
++
++  gpio-controller: true
++
++  '#gpio-cells':
++    const: 3
++    description:
++      The first cell is bank number (0, 1 or 2), the second cell is pin number
++      within the bank (0 to 15 for banks 0 and 2, 0 to 31 for bank 1), and the
++      third cell specifies consumer flags.
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - interrupt-controller
++  - gpio-controller
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        system-controller@2a {
++            compatible = "cznic,turris-omnia-mcu";
++            reg = <0x2a>;
++
++            interrupt-parent = <&gpio1>;
++            interrupts = <11 IRQ_TYPE_NONE>;
++
++            gpio-controller;
++            #gpio-cells = <3>;
++
++            interrupt-controller;
++            #interrupt-cells = <2>;
++        };
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 3c4fdf74a3f9..37da14d4fb4f 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -2210,6 +2210,7 @@ F:	Documentation/ABI/testing/sysfs-bus-moxtet-devices
+ F:	Documentation/ABI/testing/sysfs-firmware-turris-mox-rwtm
+ F:	Documentation/devicetree/bindings/bus/moxtet.txt
+ F:	Documentation/devicetree/bindings/firmware/cznic,turris-mox-rwtm.txt
++F:	Documentation/devicetree/bindings/firmware/cznic,turris-omnia-mcu.yaml
+ F:	Documentation/devicetree/bindings/gpio/gpio-moxtet.txt
+ F:	Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml
+ F:	Documentation/devicetree/bindings/watchdog/armada-37xx-wdt.txt
 -- 
 2.44.2
 
