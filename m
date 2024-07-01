@@ -1,68 +1,74 @@
-Return-Path: <devicetree+bounces-81892-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81894-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA00991DDEB
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 13:30:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CA0A91DDF3
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 13:32:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EB5681C2245A
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 11:30:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4EFED1F2227C
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 11:32:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E246813DBB3;
-	Mon,  1 Jul 2024 11:30:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9646414A4F1;
+	Mon,  1 Jul 2024 11:32:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aYjixNMV"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ANN/2Ckk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD07613D53D
-	for <devicetree@vger.kernel.org>; Mon,  1 Jul 2024 11:30:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98B7E14373A;
+	Mon,  1 Jul 2024 11:31:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719833452; cv=none; b=BPj5kb7LS8ysu9vGC4b4Ar5+MObnYp0J4EHnMRIgHlLkzTgJ6rnOcOQtY/iPYYK2XQiHZQVw0N0SbruPOJanD/ptacu9r24I1+AHzfBKxpmVGc9GN50JSI9EkBZcZei+N3TgK4dLovG1EGYn99v3HrhmjFya3S8Ej/2OkBChung=
+	t=1719833520; cv=none; b=fEgUVS85iK0WdTo/5/W+nYtA/pyxLyCIP1w7ViB+8CMzlYs57BjdIPjR7KaqmB/+4J/yqlczlYQt48QMEWnm9OKDUlAGosi38540UvdqKh8Q6AMhe2YS3rLOJ50JMiqRFWTp8yvXOK29KahgbLkc5vMuTsXdr05a1D7WyJn1v8I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719833452; c=relaxed/simple;
-	bh=fe0hAV7ALNaaXPDURyyV5f+mGCPo+4ZJTjNHFkb4faY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=VQUkWupCOC0fuws6oAMsaBCuG/qltxhRQcswWR5cGltis9mniR2WXqdfbrIHe4o5SmLV0c4j1+R3S4Jf/97KCN7JiAMxtlKNBi8OG7g9P++TD6fTry7Vgp7HP57aS49DdPltoER9CMr8L2KUMKio2b0jWGbofcMsi+hHSHHCofE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aYjixNMV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29FF9C32786;
-	Mon,  1 Jul 2024 11:30:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719833452;
-	bh=fe0hAV7ALNaaXPDURyyV5f+mGCPo+4ZJTjNHFkb4faY=;
-	h=From:List-Id:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=aYjixNMVCXEdCyd5ttXVvy6wambd51K4Ee4r7Cse1TcxJE37qLslx5SkAxmNXSzY6
-	 8m06QJeC8j3G2gISnZIverCU3ExG8K+CmFyB2LEM2p1MV7gm/Kurk2BJfco/3KU7gE
-	 7Dc+MWcYfq17xaR96muZgEOn/nNjCg5kkhpBN2qLUV8tzZ1mAvS0aVGUcR73n7ISGZ
-	 4mKL1E40HQRB3pi0VjZzRae2Du+aISwTD7gdmgCDAffACj0d/sKUI99DnMXU4gL7J6
-	 Ne0fvbvkjBRL2R4rjyWPENAxDq1IDSRkMeEOUi1KmFVa+Zgakw9OTnHJqoa61JnvMo
-	 e30HfyMksXhtQ==
-From: =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>
-To: Arnd Bergmann <arnd@arndb.de>,
-	soc@kernel.org
-Cc: Gregory CLEMENT <gregory.clement@bootlin.com>,
-	arm@kernel.org,
-	Andy Shevchenko <andy@kernel.org>,
-	Hans de Goede <hdegoede@redhat.com>,
-	=?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-	=?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+	s=arc-20240116; t=1719833520; c=relaxed/simple;
+	bh=E6TNcKdKGZybpLJCWJk4/T0HIwQaKp+8+Rfc5TaJEHk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=hZ1sjFdEWy+Ak3cyEoVctLnvx/sgLOyAX1DUizdp4bKf71ts+hIqtvOTL/XK5PsYgYYn8PuwfoiP07dmxdhN8ue5wQrai0fFauUcCJQCRG8eidjC/Zy3j45Ul6SJOsDacD9HMnqtKQzzgW4PZMrnbudDeBACIp4mVenZ4gMHuFI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=ANN/2Ckk; arc=none smtp.client-ip=217.70.183.193
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPA id 4AADC240004;
+	Mon,  1 Jul 2024 11:31:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1719833510;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=TqveFrD/1PHIy0E8P+KaxTJIcmaej9qy4xJZ6jJ5cN0=;
+	b=ANN/2CkkQrqrO4xZK9u8ClRYRFb5eKoKlcj7yRDCdnZ/9TiyxlLkJjTAve49Nx3kQf8MlB
+	/62guWb9ZBsXWoJY5WY6cvBiMU/RMfTxashgUO/JCcF6lKlMXUKqHNLnIPLCz/zvoi9NiW
+	Wx8tSqaZruOasBKpnyaIlbzxju3oXeHITfVLQtYvuHbYv2A4PqJ9UEj2mJfsNBahZfkzTK
+	I2qMiWLpTIz38BkgEm/l1sA5aLZonUm4pkA0sf73hW6ZCyt5wYZZ3moV+wC0dCxB1WlzF3
+	DkDaRYEBbd7h6mjSQOw6HY5ZL9nbJC5Q1a8vjoirhzMFJVi8gCKB9GwOZDc8uA==
+From: Herve Codina <herve.codina@bootlin.com>
+To: Herve Codina <herve.codina@bootlin.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <uwe@kleine-koenig.org>,
-	devicetree@vger.kernel.org
-Subject: [PATCH v13 8/8] ARM: dts: turris-omnia: Add GPIO key node for front button
-Date: Mon,  1 Jul 2024 13:30:10 +0200
-Message-ID: <20240701113010.16447-9-kabel@kernel.org>
-X-Mailer: git-send-email 2.44.2
-In-Reply-To: <20240701113010.16447-1-kabel@kernel.org>
-References: <20240701113010.16447-1-kabel@kernel.org>
+	Qiang Zhao <qiang.zhao@nxp.com>,
+	Shengjiu Wang <shengjiu.wang@gmail.com>,
+	Xiubo Li <Xiubo.Lee@gmail.com>,
+	Fabio Estevam <festevam@gmail.com>,
+	Nicolin Chen <nicoleotsuka@gmail.com>,
+	Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>,
+	Christophe Leroy <christophe.leroy@csgroup.eu>
+Cc: alsa-devel@alsa-project.org,
+	linuxppc-dev@lists.ozlabs.org,
+	linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: [PATCH v2 00/10] Add support for non-interleaved mode in qmc_audio
+Date: Mon,  1 Jul 2024 13:30:27 +0200
+Message-ID: <20240701113038.55144-1-herve.codina@bootlin.com>
+X-Mailer: git-send-email 2.45.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,40 +77,78 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-GND-Sasl: herve.codina@bootlin.com
 
-Now that we have the MCU device-tree node, which acts as a GPIO
-controller, add GPIO key node for the front button.
+The qmc_audio driver supports only audio in interleaved mode.
+Non-interleaved mode can be easily supported using several QMC channel
+per DAI. In that case, data related to ch0 are sent to (received from)
+the first QMC channel, data related to ch1 use the next QMC channel and
+so on up to the last channel.
 
-Signed-off-by: Marek Behún <kabel@kernel.org>
----
- .../boot/dts/marvell/armada-385-turris-omnia.dts    | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+In terms of constraints and settings, the interleaved and
+non-interleaved modes are slightly different.
 
-diff --git a/arch/arm/boot/dts/marvell/armada-385-turris-omnia.dts b/arch/arm/boot/dts/marvell/armada-385-turris-omnia.dts
-index 59079d63fe27..43202890c959 100644
---- a/arch/arm/boot/dts/marvell/armada-385-turris-omnia.dts
-+++ b/arch/arm/boot/dts/marvell/armada-385-turris-omnia.dts
-@@ -112,6 +112,19 @@ sfp: sfp {
- 		status = "disabled";
- 	};
- 
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		front-button {
-+			label = "Front Button";
-+			linux,code = <KEY_VENDOR>;
-+			linux,can-disable;
-+			gpios = <&mcu 0 12 GPIO_ACTIVE_HIGH>;
-+			/* debouncing is done by the microcontroller */
-+			debounce-interval = <0>;
-+		};
-+	};
-+
- 	sound {
- 		compatible = "simple-audio-card";
- 		simple-audio-card,name = "SPDIF";
+In interleaved mode:
+  - The sample size should fit in the number of time-slots available for
+    the QMC channel.
+  - The number of audio channels should fit in the number of time-slots
+    (taking into account the sample size) available for the QMC channel.
+
+In non-interleaved mode:
+  - The number of audio channels is the number of available QMC
+    channels.
+  - Each QMC channel should have the same number of time-slots.
+  - The sample size equals the number of time-slots of one QMC channel.
+
+This series add support for the non-interleaved mode in the qmc_audio
+driver and is composed of the following parts:
+  - Patches 1 and 2: Fix some issues in the qmc_audio
+  - Patches 3 to 6: Prepare qmc_audio for the non-interleaved mode
+  - Patches 7 and 8: Extend the QMC driver API
+  - Patches 9 and 10: The support for non-interleaved mode itself
+
+Compared to the previous iteration, this v2 series mainly improves
+qmc_audio_access_is_interleaved().
+
+Best regards,
+Hervé
+
+Link to v1: https://lore.kernel.org/lkml/20240620084300.397853-1-herve.codina@bootlin.com/
+Changes v1 -> v2
+  - Patches 1 to 8
+    No changes
+
+  - Patch 9
+    Add 'Reviewed-by: Rob Herring (Arm) <robh@kernel.org>'
+
+  - Patch 10
+    Remove unneeded ';'
+    Modify qmc_audio_access_is_interleaved()
+
+Herve Codina (10):
+  ASoC: fsl: fsl_qmc_audio: Check devm_kasprintf() returned value
+  ASoC: fsl: fsl_qmc_audio: Fix issues detected by checkpatch
+  ASoC: fsl: fsl_qmc_audio: Split channel buffer and PCM pointer
+    handling
+  ASoC: fsl: fsl_qmc_audio: Identify the QMC channel involved in
+    completion routines
+  ASoC: fsl: fsl_qmc_audio: Introduce
+    qmc_audio_pcm_{read,write}_submit()
+  ASoC: fsl: fsl_qmc_audio: Introduce qmc_dai_constraints_interleaved()
+  soc: fsl: cpm1: qmc: Introduce functions to get a channel from a
+    phandle list
+  soc: fsl: cpm1: qmc: Introduce qmc_chan_count_phandles()
+  dt-bindings: sound: fsl,qmc-audio: Add support for multiple QMC
+    channels per DAI
+  ASoC: fsl: fsl_qmc_audio: Add support for non-interleaved mode.
+
+ .../bindings/sound/fsl,qmc-audio.yaml         |  41 +-
+ drivers/soc/fsl/qe/qmc.c                      |  32 +-
+ include/soc/fsl/qe/qmc.h                      |  27 +-
+ sound/soc/fsl/fsl_qmc_audio.c                 | 591 +++++++++++++-----
+ 4 files changed, 506 insertions(+), 185 deletions(-)
+
 -- 
-2.44.2
+2.45.0
 
 
