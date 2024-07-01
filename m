@@ -1,747 +1,234 @@
-Return-Path: <devicetree+bounces-82026-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82027-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 415C891E37D
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 17:12:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 671AB91E383
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 17:13:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B05611F216E3
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 15:12:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1EF302814BA
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 15:13:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61BA316C857;
-	Mon,  1 Jul 2024 15:12:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB58816C86C;
+	Mon,  1 Jul 2024 15:13:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="W08jRvtP"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="qmmaXEjP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2058.outbound.protection.outlook.com [40.107.243.58])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFE8528F1;
-	Mon,  1 Jul 2024 15:12:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719846747; cv=none; b=hCmYDCf4qBiFtWrfAjz16AGY3YACl6qBqaKYxojCQFxJJgnz8jdjX7XSPeEf+PPMYzwZR+TWbgEL4NyVBonmOBxDdHWcEUhwkcOseyKAnU23UhcVcB/6Ug2DVWCc3Nn02aD8k50gtExlrmHBugs627T/G1tdbxvP+1QrznMa0iY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719846747; c=relaxed/simple;
-	bh=1ZIGOmC8lG5hTPZRDfcPjGuwtIGFS+qwD+pN7NGKaRU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=eP3d3bw8vTauh8H9A3ZQsYKn1xPMx/IfdOEKJHBdr7be7Nn1qWhKsqSX5aWPqbtbRGqGtl8/RNWd21DHIRRzwS4n37vfafJ2LHOoMKreO9l/cVjyQCAQ4S7/qDc6j3+RTr92l1wCU0DlQnTY6TnjkI3FUT48MiuH5kZgUeVxBbg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=W08jRvtP; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [192.168.0.43] (cpc141996-chfd3-2-0-cust928.12-3.cable.virginm.net [86.13.91.161])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 8F0B563D;
-	Mon,  1 Jul 2024 17:11:49 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1719846710;
-	bh=1ZIGOmC8lG5hTPZRDfcPjGuwtIGFS+qwD+pN7NGKaRU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=W08jRvtPKSORktaJeBeyc4KFoKl0ufCuL5KtXK+VD9GHrHYx9PJVxGvKtEIeIseQh
-	 PKzBgqdhRzjBUsQPaUikhDumn4nMtAIACHYYGLWUJddrAyAzGhPzhS5500Qemg96Qk
-	 O/SqvU4GfMszLpHLGZZZ12PlUNkBWnIJsyiPRvy4=
-Message-ID: <8554a3aa-59c3-4ad8-8443-7ad38794afd7@ideasonboard.com>
-Date: Mon, 1 Jul 2024 16:12:12 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1055828F1;
+	Mon,  1 Jul 2024 15:13:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.243.58
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1719846787; cv=fail; b=k8/t79suV4legF9d2dW5KrbHMzuVV5iEPH788xc5Jqj8tZYXRkR3AkuCfWT5sMYR15YNh1Uh2dOIxGYp36s5Cz/C/xCtdr2KEMH6hEmVCHvYPXAi+nisCR71ORZZuRHt2RA6tULgiLwb1LVKRCVhq7DIvhaVlcDYN/CB0wXXxr0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1719846787; c=relaxed/simple;
+	bh=VzsrYVXigtjIrSguaul1Jv0jA7NwtHHUT5gVwhXmW74=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=eSDhAcISg7Urv7gWD91etE0mXZM8ettSeHpJKns22kfyf6JTCGFsmRGeRCskW49WHrdh83pX3Qne3xSuhUvzmNM7xC4L0BZQKPoeUqdUdePyaVH22gvv+1KIGLR/6tFQH0HIRGLoNQWyiODuqGBs8ubh1Rh1BVsyH8oR0Ox0eAk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=qmmaXEjP; arc=fail smtp.client-ip=40.107.243.58
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Vgj0cTAwSCfY55ip56KhyIXyeX8rA/Rony2YKFxp8grHPyCAi31w0rnczTWuXob35BQhbyoolAtQSLMbYRLGcLBBgcPbfEhwfNYRGqN4PUEqlz3Yx+AZWfr82u1M7IAk99tBlAB5t7BQFwe+JtKMniibPUXX2HXgix2le2xhUu0CIot9YQtU8MZRRXn+sHg1TKsrpdQayMmvKPl9hkubvnpQSFOTSSFEA8EVoMvd3rgKoOzdMl/pfqA93+xx8CZtnzvxk9Oxs2FmPW16OSp7LVj/qxoDNRFkp17gCkaH1YApBj3vIxRkEBBpaxuwnGNCRdv5B0krYieBKO7arSHjXw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Z8vSOII11PeDEwyafZW00PUFtAiuMLKXJbl28oxROgE=;
+ b=cqxnjXIN7AMdk1Xeg7Tqel7bLzH6CKleexc73oG3D27mMvm8wg/etWX9qz01gSKDY3gxjtukaBPWRxDN3d7a/FL7WpvBCf8vaNJpXrUwHMYIg4uL8it+QdF3yCj7G+OWsLdIL5mD8NG+xpuUA2dxZMd1Iw2Qi0Sn6gUk240M79trfG3NIBW+AQZK39OoLRO4USgire/c4b7Ye1ZKbjyk9f47XvdpTaYfIuBVDgOCG5b6Wl8heY/GkQs78QqXCUzgTlU5ncHmNk4u/Z3DObRgvH3i+l/U47jvzOxZ4j8mMtEY3b7Dt/Y4+qskV6xA683wHtf+OzKtRfUxlK7ff/zdlA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.118.232) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Z8vSOII11PeDEwyafZW00PUFtAiuMLKXJbl28oxROgE=;
+ b=qmmaXEjPrrTx2ffeRTtWFInS2ODYtxf2z4DKOK03sL5fGEO1nu/z09nz4T9kKm8j0rwtp6rElsBfxD+WrpSNEn5soI0uv89nECZ/4XDeeMgpfrBVSbGPWV6IdWUBaetV7sBfDb+3PC0StRBshR2HxA9NR8Wb154x3k+bjtEjWLLC60sJnK/BwS0Ptrhpw49IKSeYAhod3eZXk7FePPmENFgFqaTNmpylRiPC+I29SIl08dO6vm7cjcw5FIYeGqhf4JAaJ0ee8iAN/tGqSvrgOYkNpvhgXMhTQJTxT6xDOdmY/HB/dvoX6F853xrtXHrpzKDbhKkJDsFRSQaouzrgXA==
+Received: from MN0P220CA0001.NAMP220.PROD.OUTLOOK.COM (2603:10b6:208:52e::29)
+ by DM6PR12MB4217.namprd12.prod.outlook.com (2603:10b6:5:219::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7719.33; Mon, 1 Jul
+ 2024 15:13:03 +0000
+Received: from BL6PEPF0001AB75.namprd02.prod.outlook.com
+ (2603:10b6:208:52e:cafe::60) by MN0P220CA0001.outlook.office365.com
+ (2603:10b6:208:52e::29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7719.33 via Frontend
+ Transport; Mon, 1 Jul 2024 15:13:02 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.118.232)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.118.232 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.118.232; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.118.232) by
+ BL6PEPF0001AB75.mail.protection.outlook.com (10.167.242.168) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7741.18 via Frontend Transport; Mon, 1 Jul 2024 15:13:02 +0000
+Received: from drhqmail201.nvidia.com (10.126.190.180) by mail.nvidia.com
+ (10.127.129.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Mon, 1 Jul 2024
+ 08:12:44 -0700
+Received: from drhqmail203.nvidia.com (10.126.190.182) by
+ drhqmail201.nvidia.com (10.126.190.180) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.4; Mon, 1 Jul 2024 08:12:43 -0700
+Received: from BUILDSERVER-IO-L4T.nvidia.com (10.127.8.13) by mail.nvidia.com
+ (10.126.190.182) with Microsoft SMTP Server id 15.2.1544.4 via Frontend
+ Transport; Mon, 1 Jul 2024 08:12:38 -0700
+From: Krishna Yarlagadda <kyarlagadda@nvidia.com>
+To: <linux-tegra@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-doc@vger.kernel.org>, <linux-i2c@vger.kernel.org>,
+	<linux-mmc@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC: <thierry.reding@gmail.com>, <jonathanh@nvidia.com>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <corbet@lwn.net>,
+	<andi.shyti@kernel.org>, <wsa+renesas@sang-engineering.com>,
+	<ulf.hansson@linaro.org>, <adrian.hunter@intel.com>, <digetx@gmail.com>,
+	<ldewangan@nvidia.com>, <kyarlagadda@nvidia.com>, <mkumard@nvidia.com>
+Subject: [RFC PATCH V2 00/12] Introduce Tegra register config settings
+Date: Mon, 1 Jul 2024 20:42:18 +0530
+Message-ID: <20240701151231.29425-1-kyarlagadda@nvidia.com>
+X-Mailer: git-send-email 2.43.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 10/16] media: platform: Add mali-c55 3a stats devnode
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, jacopo.mondi@ideasonboard.com,
- nayden.kanchev@arm.com, robh+dt@kernel.org, mchehab@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- jerome.forissier@linaro.org, kieran.bingham@ideasonboard.com,
- sakari.ailus@iki.fi
-References: <20240529152858.183799-1-dan.scally@ideasonboard.com>
- <20240529152858.183799-11-dan.scally@ideasonboard.com>
- <20240616211946.GD7378@pendragon.ideasonboard.com>
- <655c2e5e-c56a-45d1-ab51-498ef9c26a19@ideasonboard.com>
- <20240629150415.GI30900@pendragon.ideasonboard.com>
-Content-Language: en-US
-From: Dan Scally <dan.scally@ideasonboard.com>
-Autocrypt: addr=dan.scally@ideasonboard.com; keydata=
- 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
-In-Reply-To: <20240629150415.GI30900@pendragon.ideasonboard.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-NV-OnPremToCloud: ExternallySecured
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB75:EE_|DM6PR12MB4217:EE_
+X-MS-Office365-Filtering-Correlation-Id: cd69193a-a603-461c-52d8-08dc99e04d4d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|82310400026|376014|7416014|36860700013;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?ThGk3DPzK4fsYBRST2UB52I67/dOYFKS7TTYVNMahwYNmy/vw9/EH+x6LOIn?=
+ =?us-ascii?Q?YKy2aNKuWQ87wqRezrj1R7vKWnKa7/dl+WAB+nhjexlf66h6yLRyrKjr2jFd?=
+ =?us-ascii?Q?73T1GR44mcNoxs2Vzj8iBfBPYSyyyTENuuaWA4pOShvOVUyAExdkPx+DUWAl?=
+ =?us-ascii?Q?Cff8sXx7sZbKJKN5uMIY+S9EJBw8KlTCQ2LUgYMv1vNtywjG5iT1r+fmmMBR?=
+ =?us-ascii?Q?uq4mwGAL2f679ECkdobYNb62mvzvXFe5SueDrAOoFcUyUnF61C7F1Gf3UlSb?=
+ =?us-ascii?Q?WxVeGoMNPWr0c5f4Tr0/vs6sRsM7xFofanZvDOWuQVk7WN0M5Ib1cM6uypVT?=
+ =?us-ascii?Q?hYhCoMSXzCWJ6w7e7TP1fW9a16iNLLfcixrJ7Rl8uU4PraHOYFImptmikdWE?=
+ =?us-ascii?Q?2zG6Ulddf4It/KzIY/2fsnBxWr3ZJXSYJOW9R+YCs+euHaHHvO6EjlcQD3wY?=
+ =?us-ascii?Q?X8dJ3VuSgvRpcwJT132cTGp1QbmTA0GCSJjun69DrH+YSeahOiSrJ5lo098U?=
+ =?us-ascii?Q?viXVWauTYmZfH9jBPUkkwHrgb9HnIuo706JqxtqlMAANkOGkCHTvOYFojGK9?=
+ =?us-ascii?Q?bt07LxtbOWVby2p6wztGc1eAzgpKXv/j5pjz2ZWOcdNtkI4Ne3jhq114FwSW?=
+ =?us-ascii?Q?zWt3OV318kbX9KICh5NGRDlS/l75M+Dv9U9lFYZqJo4ioTjfD4Jv1p75Yutq?=
+ =?us-ascii?Q?Ni9P1tWyjxcjRA6NZu72N5OSd4t/uRuJNd/UD+sPClg59WwEgdXLDWRfLSUb?=
+ =?us-ascii?Q?kvedYo4sNK1XMRebMxx/LTda0r+meVEiFGli0C5fZDlbbcSSTP2utktB/0QZ?=
+ =?us-ascii?Q?2GaT6cEdU3LEUBcMUISkwFu6rzfjx9/rp39kVM8WYbjf7taUVKpluQCM+5rK?=
+ =?us-ascii?Q?KsC3oPd3EdvSra9Yc+IhWFQM4nHMKFpzkN+XNp5ZdXQTyLTUbvPo/hz5saMM?=
+ =?us-ascii?Q?2hPxQLnz73aGDObYscxRKmu3iccV7rGqk3NfK+OK6nXCfq8nVsFnABuK0jjs?=
+ =?us-ascii?Q?IcbWnAQwdwlejlStjaKCAApkewU+vc/ZZeiTDL/eIvhZyoilI3GabMwB5Pci?=
+ =?us-ascii?Q?j2g++3V7PTxfsrJxFmU50FxfDJg5qHElGyeTo6fO1cRfOlBfRyAVS1C/Nw2Z?=
+ =?us-ascii?Q?WWkrURfiTgXVXzGKhJZVCNAvUWxbsMpScfunpU6jBQ9K/UG9I0eudPayDrBO?=
+ =?us-ascii?Q?TI0Ij4QPe2k5z/AzmG8pdHIrbPMEWIVjkv47K09kTlklxz/75b7JI+1XA+5J?=
+ =?us-ascii?Q?NdGgwsvJ3QFs6YGSt8PDuy3JcnG26kHkkov0DMhDXE+1SNl/NMskn9sDMfDE?=
+ =?us-ascii?Q?eaS6yraPswWuGScithmTBbFsriv5gxEhQeA9DMWPw9h/NJlRQ/btrxgNnrW6?=
+ =?us-ascii?Q?ixLWEg1UCy7ns1Nb9JoNLE3avLtV8MpGvBSOAJGkLTjARzRXcw4/Lq8oxd4u?=
+ =?us-ascii?Q?kFaSQG+kCESFKpXkNxkuxQBxTsxX5TIn?=
+X-Forefront-Antispam-Report:
+	CIP:216.228.118.232;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc7edge1.nvidia.com;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(376014)(7416014)(36860700013);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Jul 2024 15:13:02.6373
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: cd69193a-a603-461c-52d8-08dc99e04d4d
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.118.232];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	BL6PEPF0001AB75.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4217
 
-Hi Laurent
+This is a request for comments on high level design of Tegra config
+settings.
 
-On 29/06/2024 16:04, Laurent Pinchart wrote:
-> Hi Dan,
->
-> On Thu, Jun 20, 2024 at 04:10:01PM +0100, Daniel Scally wrote:
->> On 16/06/2024 22:19, Laurent Pinchart wrote:
->>> On Wed, May 29, 2024 at 04:28:52PM +0100, Daniel Scally wrote:
->>>> Add a new code file to govern the 3a statistics capture node.
->>>>
->>>> Acked-by: Nayden Kanchev  <nayden.kanchev@arm.com>
->>>> Co-developed-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
->>>> Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
->>>> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
->>>> ---
->>>> Changes in v5:
->>>>
->>>> 	- New patch
->>>>
->>>>    drivers/media/platform/arm/mali-c55/Makefile  |   3 +-
->>>>    .../platform/arm/mali-c55/mali-c55-common.h   |  28 ++
->>>>    .../platform/arm/mali-c55/mali-c55-core.c     |  15 +
->>>>    .../platform/arm/mali-c55/mali-c55-isp.c      |   1 +
->>>>    .../arm/mali-c55/mali-c55-registers.h         |   3 +
->>>>    .../platform/arm/mali-c55/mali-c55-stats.c    | 350 ++++++++++++++++++
->>>>    6 files changed, 399 insertions(+), 1 deletion(-)
->>>>    create mode 100644 drivers/media/platform/arm/mali-c55/mali-c55-stats.c
->>>>
->>>> diff --git a/drivers/media/platform/arm/mali-c55/Makefile b/drivers/media/platform/arm/mali-c55/Makefile
->>>> index 77dcb2fbf0f4..cd5a64bf0c62 100644
->>>> --- a/drivers/media/platform/arm/mali-c55/Makefile
->>>> +++ b/drivers/media/platform/arm/mali-c55/Makefile
->>>> @@ -4,6 +4,7 @@ mali-c55-y := mali-c55-capture.o \
->>>>    	      mali-c55-core.o \
->>>>    	      mali-c55-isp.o \
->>>>    	      mali-c55-tpg.o \
->>>> -	      mali-c55-resizer.o
->>>> +	      mali-c55-resizer.o \
->>>> +	      mali-c55-stats.o
->>>>    
->>>>    obj-$(CONFIG_VIDEO_MALI_C55) += mali-c55.o
->>>> diff --git a/drivers/media/platform/arm/mali-c55/mali-c55-common.h b/drivers/media/platform/arm/mali-c55/mali-c55-common.h
->>>> index 2d0c4d152beb..44119e04009b 100644
->>>> --- a/drivers/media/platform/arm/mali-c55/mali-c55-common.h
->>>> +++ b/drivers/media/platform/arm/mali-c55/mali-c55-common.h
->>>> @@ -79,6 +79,7 @@ enum mali_c55_isp_pads {
->>>>    	MALI_C55_ISP_PAD_SINK_VIDEO,
->>>>    	MALI_C55_ISP_PAD_SOURCE,
->>>>    	MALI_C55_ISP_PAD_SOURCE_BYPASS,
->>>> +	MALI_C55_ISP_PAD_SOURCE_3A,
->>> Functions and structures are named with a "stats" suffix, let's call
->>> this MALI_C55_ISP_PAD_SOURCE_STATS.
->>>
->>>>    	MALI_C55_ISP_NUM_PADS,
->>>>    };
->>>>    
->>>> @@ -194,6 +195,28 @@ struct mali_c55_cap_dev {
->>>>    	bool streaming;
->>>>    };
->>>>    
->>>> +struct mali_c55_stats_buf {
->>>> +	struct vb2_v4l2_buffer vb;
->>>> +	spinlock_t lock;
->>> All locks require a comment to document what they protect. Same below.
->>>
->>>> +	unsigned int segments_remaining;
->>>> +	struct list_head queue;
->>>> +	bool failed;
->>>> +};
->>>> +
->>>> +struct mali_c55_stats {
->>>> +	struct mali_c55 *mali_c55;
->>>> +	struct video_device vdev;
->>>> +	struct dma_chan *channel;
->>>> +	struct vb2_queue queue;
->>>> +	struct media_pad pad;
->>>> +	struct mutex lock;
->>>> +
->>>> +	struct {
->>>> +		spinlock_t lock;
->>>> +		struct list_head queue;
->>>> +	} buffers;
->>>> +};
->>>> +
->>>>    enum mali_c55_config_spaces {
->>>>    	MALI_C55_CONFIG_PING,
->>>>    	MALI_C55_CONFIG_PONG,
->>>> @@ -224,6 +247,7 @@ struct mali_c55 {
->>>>    	struct mali_c55_isp isp;
->>>>    	struct mali_c55_resizer resizers[MALI_C55_NUM_RZRS];
->>>>    	struct mali_c55_cap_dev cap_devs[MALI_C55_NUM_CAP_DEVS];
->>>> +	struct mali_c55_stats stats;
->>>>    
->>>>    	struct list_head contexts;
->>>>    	enum mali_c55_config_spaces next_config;
->>>> @@ -245,6 +269,8 @@ int mali_c55_register_resizers(struct mali_c55 *mali_c55);
->>>>    void mali_c55_unregister_resizers(struct mali_c55 *mali_c55);
->>>>    int mali_c55_register_capture_devs(struct mali_c55 *mali_c55);
->>>>    void mali_c55_unregister_capture_devs(struct mali_c55 *mali_c55);
->>>> +int mali_c55_register_stats(struct mali_c55 *mali_c55);
->>>> +void mali_c55_unregister_stats(struct mali_c55 *mali_c55);
->>>>    struct mali_c55_ctx *mali_c55_get_active_context(struct mali_c55 *mali_c55);
->>>>    void mali_c55_set_plane_done(struct mali_c55_cap_dev *cap_dev,
->>>>    			     enum mali_c55_planes plane);
->>>> @@ -262,5 +288,7 @@ mali_c55_isp_fmt_next(const struct mali_c55_isp_fmt *fmt);
->>>>    bool mali_c55_isp_is_format_supported(unsigned int mbus_code);
->>>>    #define for_each_mali_isp_fmt(fmt)\
->>>>    	for ((fmt) = NULL; ((fmt) = mali_c55_isp_fmt_next((fmt)));)
->>>> +void mali_c55_stats_fill_buffer(struct mali_c55 *mali_c55,
->>>> +				enum mali_c55_config_spaces cfg_space);
->>>>    
->>>>    #endif /* _MALI_C55_COMMON_H */
->>>> diff --git a/drivers/media/platform/arm/mali-c55/mali-c55-core.c b/drivers/media/platform/arm/mali-c55/mali-c55-core.c
->>>> index 50caf5ee7474..9ea70010876c 100644
->>>> --- a/drivers/media/platform/arm/mali-c55/mali-c55-core.c
->>>> +++ b/drivers/media/platform/arm/mali-c55/mali-c55-core.c
->>>> @@ -337,6 +337,16 @@ static int mali_c55_create_links(struct mali_c55 *mali_c55)
->>>>    		}
->>>>    	}
->>>>    
->>>> +	ret = media_create_pad_link(&mali_c55->isp.sd.entity,
->>>> +			MALI_C55_ISP_PAD_SOURCE_3A,
->>>> +			&mali_c55->stats.vdev.entity, 0,
->>>> +			MEDIA_LNK_FL_ENABLED | MEDIA_LNK_FL_IMMUTABLE);
->>>> +	if (ret) {
->>>> +		dev_err(mali_c55->dev,
->>>> +			"failed to link ISP and 3a stats node\n");
->>> s/3a stats/stats/
->>>
->>>> +		goto err_remove_links;
->>>> +	}
->>>> +
->>>>    	return 0;
->>>>    
->>>>    err_remove_links:
->>>> @@ -350,6 +360,7 @@ static void mali_c55_unregister_entities(struct mali_c55 *mali_c55)
->>>>    	mali_c55_unregister_isp(mali_c55);
->>>>    	mali_c55_unregister_resizers(mali_c55);
->>>>    	mali_c55_unregister_capture_devs(mali_c55);
->>>> +	mali_c55_unregister_stats(mali_c55);
->>>>    }
->>>>    
->>>>    static int mali_c55_register_entities(struct mali_c55 *mali_c55)
->>>> @@ -372,6 +383,10 @@ static int mali_c55_register_entities(struct mali_c55 *mali_c55)
->>>>    	if (ret)
->>>>    		goto err_unregister_entities;
->>>>    
->>>> +	ret = mali_c55_register_stats(mali_c55);
->>>> +	if (ret)
->>>> +		goto err_unregister_entities;
->>>> +
->>>>    	ret = mali_c55_create_links(mali_c55);
->>>>    	if (ret)
->>>>    		goto err_unregister_entities;
->>>> diff --git a/drivers/media/platform/arm/mali-c55/mali-c55-isp.c b/drivers/media/platform/arm/mali-c55/mali-c55-isp.c
->>>> index ea8b7b866e7a..94876fba3353 100644
->>>> --- a/drivers/media/platform/arm/mali-c55/mali-c55-isp.c
->>>> +++ b/drivers/media/platform/arm/mali-c55/mali-c55-isp.c
->>>> @@ -564,6 +564,7 @@ int mali_c55_register_isp(struct mali_c55 *mali_c55)
->>>>    	isp->pads[MALI_C55_ISP_PAD_SINK_VIDEO].flags = MEDIA_PAD_FL_SINK;
->>>>    	isp->pads[MALI_C55_ISP_PAD_SOURCE].flags = MEDIA_PAD_FL_SOURCE;
->>>>    	isp->pads[MALI_C55_ISP_PAD_SOURCE_BYPASS].flags = MEDIA_PAD_FL_SOURCE;
->>>> +	isp->pads[MALI_C55_ISP_PAD_SOURCE_3A].flags = MEDIA_PAD_FL_SOURCE;
->>>>    
->>>>    	ret = media_entity_pads_init(&sd->entity, MALI_C55_ISP_NUM_PADS,
->>>>    				     isp->pads);
->>>> diff --git a/drivers/media/platform/arm/mali-c55/mali-c55-registers.h b/drivers/media/platform/arm/mali-c55/mali-c55-registers.h
->>>> index cb27abde2aa5..eb3719245ec3 100644
->>>> --- a/drivers/media/platform/arm/mali-c55/mali-c55-registers.h
->>>> +++ b/drivers/media/platform/arm/mali-c55/mali-c55-registers.h
->>>> @@ -68,6 +68,9 @@
->>>>    #define MALI_C55_VC_START(v)				((v) & 0xffff)
->>>>    #define MALI_C55_VC_SIZE(v)				(((v) & 0xffff) << 16)
->>>>    
->>>> +#define MALI_C55_REG_1024BIN_HIST			0x054a8
->>>> +#define MALI_C55_1024BIN_HIST_SIZE			4096
->>>> +
->>>>    /* Ping/Pong Configuration Space */
->>>>    #define MALI_C55_REG_BASE_ADDR				0x18e88
->>>>    #define MALI_C55_REG_BYPASS_0				0x18eac
->>>> diff --git a/drivers/media/platform/arm/mali-c55/mali-c55-stats.c b/drivers/media/platform/arm/mali-c55/mali-c55-stats.c
->>>> new file mode 100644
->>>> index 000000000000..aa40480ed814
->>>> --- /dev/null
->>>> +++ b/drivers/media/platform/arm/mali-c55/mali-c55-stats.c
->>>> @@ -0,0 +1,350 @@
->>>> +// SPDX-License-Identifier: GPL-2.0
->>>> +/*
->>>> + * ARM Mali-C55 ISP Driver - 3A Statistics capture device
->>>> + *
->>>> + * Copyright (C) 2023 Ideas on Board Oy
->>>> + */
->>>> +
->>>> +#include <linux/dmaengine.h>
->>>> +#include <linux/media/arm/mali-c55-config.h>
->>>> +#include <linux/spinlock.h>
->>> You're missing some headers here, for
->>>
->>> container_of()
->>> dev_err()
->>> list_*()
->>> mutex_init()
->>> strscpy()
->>> strscpy()
->>>
->>>> +
->>>> +#include <media/media-entity.h>
->>>> +#include <media/v4l2-dev.h>
->>>> +#include <media/v4l2-event.h>
->>>> +#include <media/v4l2-fh.h>
->>>> +#include <media/v4l2-ioctl.h>
->>>> +#include <media/videobuf2-core.h>
->>>> +#include <media/videobuf2-dma-contig.h>
->>>> +
->>>> +#include "mali-c55-common.h"
->>>> +#include "mali-c55-registers.h"
->>>> +
->>>> +static unsigned int metering_space_addrs[] = {
->>> const
->>>
->>>> +	[MALI_C55_CONFIG_PING] = 0x095AC,
->>>> +	[MALI_C55_CONFIG_PONG] = 0x2156C,
->>> Lower-case hex constants.
->>>
->>>> +};
->>>> +
->>>> +static int mali_c55_stats_enum_fmt_meta_cap(struct file *file, void *fh,
->>>> +					    struct v4l2_fmtdesc *f)
->>>> +{
->>>> +	if (f->index || f->type != V4L2_BUF_TYPE_META_CAPTURE)
->>>> +		return -EINVAL;
->>>> +
->>>> +	f->pixelformat = V4L2_META_FMT_MALI_C55_3A_STATS;
->>> The format could be called V4L2_META_FMT_MALI_C55_STATS. While most
->>> statistics are related to one of the 3A algorithms, I think it would be
->>> better to name this generically. It's name bikeshedding only of course.
->>>
->>>> +
->>>> +	return 0;
->>>> +}
->>>> +
->>>> +static int mali_c55_stats_g_fmt_meta_cap(struct file *file, void *fh,
->>>> +					 struct v4l2_format *f)
->>>> +{
->>>> +	static const struct v4l2_meta_format mfmt = {
->>>> +		.dataformat = V4L2_META_FMT_MALI_C55_3A_STATS,
->>>> +		.buffersize = sizeof(struct mali_c55_stats_buffer)
->>>> +	};
->>>> +
->>>> +	if (f->type != V4L2_BUF_TYPE_META_CAPTURE)
->>>> +		return -EINVAL;
->>>> +
->>>> +	f->fmt.meta = mfmt;
->>>> +
->>>> +	return 0;
->>>> +}
->>>> +
->>>> +static int mali_c55_stats_querycap(struct file *file,
->>>> +				   void *priv, struct v4l2_capability *cap)
->>>> +{
->>>> +	strscpy(cap->driver, MALI_C55_DRIVER_NAME, sizeof(cap->driver));
->>>> +	strscpy(cap->card, "ARM Mali-C55 ISP", sizeof(cap->card));
->>>> +
->>>> +	return 0;
->>>> +}
->>>> +
->>>> +static const struct v4l2_ioctl_ops mali_c55_stats_v4l2_ioctl_ops = {
->>>> +	.vidioc_reqbufs = vb2_ioctl_reqbufs,
->>>> +	.vidioc_querybuf = vb2_ioctl_querybuf,
->>>> +	.vidioc_create_bufs = vb2_ioctl_create_bufs,
->>>> +	.vidioc_qbuf = vb2_ioctl_qbuf,
->>>> +	.vidioc_expbuf = vb2_ioctl_expbuf,
->>>> +	.vidioc_dqbuf = vb2_ioctl_dqbuf,
->>>> +	.vidioc_prepare_buf = vb2_ioctl_prepare_buf,
->>>> +	.vidioc_streamon = vb2_ioctl_streamon,
->>>> +	.vidioc_streamoff = vb2_ioctl_streamoff,
->>>> +	.vidioc_enum_fmt_meta_cap = mali_c55_stats_enum_fmt_meta_cap,
->>>> +	.vidioc_g_fmt_meta_cap = mali_c55_stats_g_fmt_meta_cap,
->>>> +	.vidioc_s_fmt_meta_cap = mali_c55_stats_g_fmt_meta_cap,
->>>> +	.vidioc_try_fmt_meta_cap = mali_c55_stats_g_fmt_meta_cap,
->>>> +	.vidioc_querycap = mali_c55_stats_querycap,
->>>> +	.vidioc_subscribe_event = v4l2_ctrl_subscribe_event,
->>>> +	.vidioc_unsubscribe_event = v4l2_event_unsubscribe,
->>>> +};
->>>> +
->>>> +static const struct v4l2_file_operations mali_c55_stats_v4l2_fops = {
->>>> +	.owner = THIS_MODULE,
->>>> +	.unlocked_ioctl = video_ioctl2,
->>>> +	.open = v4l2_fh_open,
->>>> +	.release = vb2_fop_release,
->>>> +	.poll = vb2_fop_poll,
->>>> +	.mmap = vb2_fop_mmap,
->>>> +};
->>>> +
->>>> +static int
->>>> +mali_c55_stats_queue_setup(struct vb2_queue *q, unsigned int *num_buffers,
->>>> +			   unsigned int *num_planes, unsigned int sizes[],
->>>> +			   struct device *alloc_devs[])
->>>> +{
->>>> +	struct mali_c55_stats *stats = vb2_get_drv_priv(q);
->>>> +
->>>> +	if (*num_planes && *num_planes > 1)
->>>> +		return -EINVAL;
->>>> +
->>>> +	if (sizes[0] && sizes[0] != sizeof(struct mali_c55_stats_buffer))
->>>> +		return -EINVAL;
->>>> +
->>>> +	*num_planes = 1;
->>>> +	sizes[0] = sizeof(struct mali_c55_stats_buffer);
->>>> +
->>>> +	if (stats->channel)
->>>> +		alloc_devs[0] = stats->channel->device->dev;
->>>> +
->>>> +	return 0;
->>>> +}
->>>> +
->>>> +static void mali_c55_stats_buf_queue(struct vb2_buffer *vb)
->>>> +{
->>>> +	struct mali_c55_stats *stats = vb2_get_drv_priv(vb->vb2_queue);
->>>> +	struct vb2_v4l2_buffer *vbuf = to_vb2_v4l2_buffer(vb);
->>>> +	struct mali_c55_stats_buf *buf = container_of(vbuf,
->>>> +						struct mali_c55_stats_buf, vb);
->>>> +
->>>> +	vb2_set_plane_payload(vb, 0, sizeof(struct mali_c55_stats_buffer));
->>>> +	buf->segments_remaining = 2;
->>>> +	buf->failed = false;
->>>> +
->>>> +	spin_lock(&stats->buffers.lock);
->>> Isn't the DMA completion handler run from IRQ context ? If so you'll
->>> need to use spin_lock_irq() here and in the other function that are
->>> not called with interrupts disabled.
->> They're run in the bottom half of the interrupt handler; I'm under the
->> impression that that means the interrupts aren't disabled, and it's
->> safe to do...is that mistaken?
-> I'm talking about the DMA completion handler, called by the DMA engine
-> subsystem, not the IRQs of the C55 itself.
+NVIDIA Tegra SoCs have various I/O controllers and these controllers require
+specific register configurations based on:
+ - Functional mode (eg. speed)
+ - Interface properties (eg. signal timings)
+ - Manufacturing characteristics (eg. process/package)
+ - Thermal characteristics
+ - Board characteristics
 
+Some of the configurations can be provided by device specific standard DT
+properties like speed of interface in I2C, rising/falling timing etc. However,
+there are more device specific configurations required to tune the interface
+based on execution mode or other runtime parameters. All such configurations are
+defined as 'config' settings of the device. This configures a device to operate
+with the optimal settings for a particular mode to improve performance,
+stability or reduce power.
 
-Ah! I follow you now sorry. Hm, that's an interesting thought...I think for the PL330 the answer is 
-no; the interrupt handler wakes a thread that runs the callbacks for any DMA transfers that are 
-completed...I don't know that that's a design rule we can rely on though so possibly it's better to 
-be safe. Is there a disadvantage to using spin_lock_irq() outside of IRQ context?
+Add the mechanism to provide the configuration parameters from the device tree
+called "config setting via Device Tree".
+This series capture the device tree details, common parser code for Tegra SOC
+and the usage in I/O controllers I2C, SPI.
 
->
->>>> +	list_add_tail(&buf->queue, &stats->buffers.queue);
->>>> +	spin_unlock(&stats->buffers.lock);
->>>> +}
->>>> +
->>>> +static void mali_c55_stats_stop_streaming(struct vb2_queue *q)
->>>> +{
->>>> +	struct mali_c55_stats *stats = vb2_get_drv_priv(q);
->>>> +	struct mali_c55_stats_buf *buf, *tmp;
->>>> +
->>>> +	spin_lock(&stats->buffers.lock);
->>>> +
->>>> +	list_for_each_entry_safe(buf, tmp, &stats->buffers.queue, queue) {
->>>> +		list_del(&buf->queue);
->>>> +		vb2_buffer_done(&buf->vb.vb2_buf, VB2_BUF_STATE_ERROR);
->>>> +	}
->>>> +
->>>> +	spin_unlock(&stats->buffers.lock);
->>>> +}
->>>> +
->>>> +static const struct vb2_ops mali_c55_stats_vb2_ops = {
->>>> +	.queue_setup = mali_c55_stats_queue_setup,
->>>> +	.buf_queue = mali_c55_stats_buf_queue,
->>>> +	.wait_prepare = vb2_ops_wait_prepare,
->>>> +	.wait_finish = vb2_ops_wait_finish,
->>>> +	.stop_streaming = mali_c55_stats_stop_streaming,
->>>> +};
->>>> +
->>>> +static void
->>>> +mali_c55_stats_metering_complete(void *param,
->>>> +				 const struct dmaengine_result *result)
->>>> +{
->>>> +	struct mali_c55_stats_buf *buf = param;
->>>> +
->>>> +	spin_lock(&buf->lock);
->>> I wonder if this is needed. Can the DMA engine call the completion
->>> handlers of two sequential DMA transfers in parallel ?
->> The DMA engine that's on the system we have can't...I wasn't sure
->> whether that was generically true.
-> I think it is, but please double-check.
->
->>>> +
->>>> +	if (buf->failed)
->>>> +		goto out_unlock;
->>>> +
->>>> +	buf->vb.vb2_buf.timestamp = ktime_get_boottime_ns();
->>>> +
->>>> +	if (result->result != DMA_TRANS_NOERROR) {
->>>> +		buf->failed = true;
->>>> +		vb2_buffer_done(&buf->vb.vb2_buf, VB2_BUF_STATE_ERROR);
->>> This will possibly return the buffer to userspace after the first DMA
->>> transfer. Userspace could then requeue the buffer to the kernel before
->>> the completion of the second DMA transfer. That will cause trouble. I
->>> think you should instead do something like
->>>
->>> 	spin_lock(&buf->lock);
->>>
->>> 	if (result->result != DMA_TRANS_NOERROR)
->>> 		buf->failed = true;
->>>
->>> 	if (!--buf->segments_remaining) {
->>> 		buf->vb.vb2_buf.timestamp = ktime_get_boottime_ns();
->>> 		vb2_buffer_done(&buf->vb.vb2_buf, buf->failed ?
->>> 				VB2_BUF_STATE_ERROR : VB2_BUF_STATE_DONE);
->>> 	}
->>>
->>> 	spin_unlock(&buf->lock);
->>>
->>> The
->>>
->>> 	buf->vb.vb2_buf.timestamp = ktime_get_boottime_ns();
->>>
->>> line could also be moved to mali_c55_stats_fill_buffer(), which would
->>> make sure the timestamp is filled in case of DMA submission failures.
->> Okedokey
->>
->>>> +		goto out_unlock;
->>>> +	}
->>>> +
->>>> +	if (!--buf->segments_remaining)
->>>> +		vb2_buffer_done(&buf->vb.vb2_buf, VB2_BUF_STATE_DONE);
->>>> +
->>>> +out_unlock:
->>>> +	spin_unlock(&buf->lock);
->>>> +}
->>>> +
->>>> +static int mali_c55_stats_dma_xfer(struct mali_c55_stats *stats, dma_addr_t src,
->>>> +				   dma_addr_t dst,
->>>> +				   struct mali_c55_stats_buf *buf,
->>>> +				   size_t length,
->>>> +				   void (*callback)(void *, const struct dmaengine_result *result))
->>> The same callback is used for both invocations of this function, you can
->>> drop the parameter and hardcode it below.
->> Yeah, not even sure now why I had a parameter.
->>
->>>> +{
->>>> +	struct dma_async_tx_descriptor *tx;
->>>> +	dma_cookie_t cookie;
->>>> +
->>>> +	tx = dmaengine_prep_dma_memcpy(stats->channel, dst, src, length, 0);
->>>> +	if (!tx) {
->>>> +		dev_err(stats->mali_c55->dev, "failed to prep stats DMA\n");
->>>> +		return -EIO;
->>>> +	}
->>>> +
->>>> +	tx->callback_result = callback;
->>>> +	tx->callback_param = buf;
->>>> +
->>>> +	cookie = dmaengine_submit(tx);
->>>> +	if (dma_submit_error(cookie)) {
->>>> +		dev_err(stats->mali_c55->dev, "failed to submit stats DMA\n");
->>>> +		return -EIO;
->>>> +	}
->>>> +
->>>> +	dma_async_issue_pending(stats->channel);
->>>> +	return 0;
->>>> +}
->>>> +
->>>> +void mali_c55_stats_fill_buffer(struct mali_c55 *mali_c55,
->>>> +				enum mali_c55_config_spaces cfg_space)
->>>> +{
->>>> +	struct mali_c55_ctx *ctx = mali_c55_get_active_context(mali_c55);
->>>> +	struct mali_c55_stats *stats = &mali_c55->stats;
->>>> +	struct mali_c55_stats_buf *buf = NULL;
->>>> +	dma_addr_t src, dst;
->>>> +	int ret;
->>>> +
->>>> +	spin_lock(&stats->buffers.lock);
->>>> +	if (!list_empty(&stats->buffers.queue)) {
->>>> +		buf = list_first_entry(&stats->buffers.queue,
->>>> +				       struct mali_c55_stats_buf, queue);
->>>> +		list_del(&buf->queue);
->>>> +	}
->>>> +	spin_unlock(&stats->buffers.lock);
->>>> +
->>>> +	if (!buf)
->>>> +		return;
->>>> +
->>>> +	buf->vb.sequence = mali_c55->isp.frame_sequence;
->>>> +
->>>> +	/*
->>>> +	 * There are infact two noncontiguous sections of the ISP's
->>> s/infact/in fact/
->>>
->>>> +	 * memory space that hold statistics for 3a algorithms to use. A
->>> s/use. A/use: a/
->>>
->>>> +	 * section in each config space and a global section holding
->>>> +	 * histograms which is double buffered and so holds data for the
->>>> +	 * last frame. We need to read both.
->>>> +	 */
->>>> +	src = ctx->base + MALI_C55_REG_1024BIN_HIST;
->>>> +	dst = vb2_dma_contig_plane_dma_addr(&buf->vb.vb2_buf, 0);
->>>> +
->>>> +	ret = mali_c55_stats_dma_xfer(stats, src, dst, buf,
->>>> +				      MALI_C55_1024BIN_HIST_SIZE,
->>>> +				      mali_c55_stats_metering_complete);
->>>> +	if (ret)
->>>> +		goto err_fail_buffer;
->>>> +
->>>> +	src = ctx->base + metering_space_addrs[cfg_space];
->>>> +	dst += MALI_C55_1024BIN_HIST_SIZE;
->>>> +
->>>> +	ret = mali_c55_stats_dma_xfer(
->>>> +		stats, src, dst, buf,
->>>> +		sizeof(struct mali_c55_stats_buffer) - MALI_C55_1024BIN_HIST_SIZE,
->>>> +		mali_c55_stats_metering_complete);
->>>> +	if (ret) {
->>>> +		dmaengine_terminate_sync(stats->channel);
->>>> +		goto err_fail_buffer;
->>>> +	}
->>> I think you will need to terminate DMA transfers at stream off time.
->>>
->>>> +
->>>> +	return;
->>>> +
->>>> +err_fail_buffer:
->>>> +	vb2_buffer_done(&buf->vb.vb2_buf, VB2_BUF_STATE_ERROR);
->>>> +}
->>>> +
->>>> +void mali_c55_unregister_stats(struct mali_c55 *mali_c55)
->>>> +{
->>>> +	struct mali_c55_stats *stats = &mali_c55->stats;
->>>> +
->>>> +	if (!video_is_registered(&stats->vdev))
->>>> +		return;
->>>> +
->>>> +	vb2_video_unregister_device(&stats->vdev);
->>>> +	media_entity_cleanup(&stats->vdev.entity);
->>>> +	dma_release_channel(stats->channel);
->>>> +	mutex_destroy(&stats->lock);
->>>> +}
->>>> +
->>>> +int mali_c55_register_stats(struct mali_c55 *mali_c55)
->>>> +{
->>>> +	struct mali_c55_stats *stats = &mali_c55->stats;
->>>> +	struct video_device *vdev = &stats->vdev;
->>>> +	struct vb2_queue *vb2q = &stats->queue;
->>>> +	dma_cap_mask_t mask;
->>>> +	int ret;
->>>> +
->>>> +	mutex_init(&stats->lock);
->>>> +	INIT_LIST_HEAD(&stats->buffers.queue);
->>>> +
->>>> +	dma_cap_zero(mask);
->>>> +	dma_cap_set(DMA_MEMCPY, mask);
->>>> +
->>>> +	stats->channel = dma_request_channel(mask, 0, NULL);
->>> Do we need a CPU fallback in case no DMA is available ?
->> Yes, actually.
->>
->>> I'm still very curious to know how long it takes to perform the DMA
->>> transfer, compared to copying the data with the CPU, and especially
->>> compared to the frame duration.
->> On my list of things to test and report :)
-> Looking forward to it :-)
->
->>>> +	if (!stats->channel) {
->>>> +		ret = -ENODEV;
->>>> +		goto err_destroy_mutex;
->>>> +	}
->>>> +
->>>> +	stats->pad.flags = MEDIA_PAD_FL_SINK;
->>>> +	ret = media_entity_pads_init(&stats->vdev.entity, 1, &stats->pad);
->>>> +	if (ret)
->>>> +		goto err_release_dma_channel;
->>>> +
->>>> +	vb2q->type = V4L2_BUF_TYPE_META_CAPTURE;
->>>> +	vb2q->io_modes = VB2_MMAP | VB2_DMABUF;
->>>> +	vb2q->drv_priv = stats;
->>>> +	vb2q->mem_ops = &vb2_dma_contig_memops;
->>>> +	vb2q->ops = &mali_c55_stats_vb2_ops;
->>>> +	vb2q->buf_struct_size = sizeof(struct mali_c55_stats_buf);
->>>> +	vb2q->min_queued_buffers = 1;
->>>> +	vb2q->timestamp_flags = V4L2_BUF_FLAG_TIMESTAMP_MONOTONIC;
->>>> +	vb2q->lock = &stats->lock;
->>>> +	vb2q->dev = mali_c55->dev;
->>> That's not the right device. The device that performs the DMA operation
->>> is the DMA engine, and that's what you need to pass to vb2. Otherwise
->>> the DMA address returned by vb2_dma_contig_plane_dma_addr() will be
->>> mapped to the ISP device, not the DMA engine. In practice, if neither
->>> are behind an IOMMU, things will likely work, but when that's not the
->>> case, run into problems.
->>>
->>>> +
->>>> +	ret = vb2_queue_init(vb2q);
->>>> +	if (ret) {
->>>> +		dev_err(mali_c55->dev, "stats vb2 queue init failed\n");
->>>> +		goto err_cleanup_entity;
->>>> +	}
->>>> +
->>>> +	strscpy(stats->vdev.name, "mali-c55 3a stats", sizeof(stats->vdev.name));
->>> s/3a //
->>>
->>>> +	vdev->release = video_device_release_empty;
->>> That's never right. You should refcount the data structures to ensure
->>> proper lifetime management.
->>>
->>>> +	vdev->fops = &mali_c55_stats_v4l2_fops;
->>>> +	vdev->ioctl_ops = &mali_c55_stats_v4l2_ioctl_ops;
->>>> +	vdev->lock = &stats->lock;
->>>> +	vdev->v4l2_dev = &mali_c55->v4l2_dev;
->>>> +	vdev->queue = &stats->queue;
->>>> +	vdev->device_caps = V4L2_CAP_META_CAPTURE | V4L2_CAP_STREAMING;
->>>> +	vdev->vfl_dir = VFL_DIR_RX;
->>>> +	video_set_drvdata(vdev, stats);
->>>> +
->>>> +	ret = video_register_device(vdev, VFL_TYPE_VIDEO, -1);
->>>> +	if (ret) {
->>>> +		dev_err(mali_c55->dev,
->>>> +			"failed to register stats video device\n");
->>>> +		goto err_release_vb2q;
->>>> +	}
->>>> +
->>>> +	stats->mali_c55 = mali_c55;
->>>> +
->>>> +	return 0;
->>>> +
->>>> +err_release_vb2q:
->>>> +	vb2_queue_release(vb2q);
->>>> +err_cleanup_entity:
->>>> +	media_entity_cleanup(&stats->vdev.entity);
->>>> +err_release_dma_channel:
->>>> +	dma_release_channel(stats->channel);
->>>> +err_destroy_mutex:
->>>> +	mutex_destroy(&stats->lock);
->>>> +
->>>> +	return ret;
->>>> +}
+ Patch 01: Documentation about the device tree binding for common config framework.
+ Patch 02: Device tree binding documentation for config setting.
+ Patch 03: Common parser of the device tree config setting node for Tegra SoC.
+ Patch 04: Device tree binding documentation for the I2C config setting.
+ Patch 05: Add phandle reference for the I2C config setting.
+ Patch 06: Move clock initialization code into new methods
+ Patch 07: Using config settings in Tegra I2C driver for interface timing registers.
+ Patch 08: Add Tegra234 I2C config settings in DT.
+ Patch 09: Device tree binding documentation for the SDHCI config setting.
+ Patch 10: Add phandle reference for the SDHCI config setting.
+ Patch 11: Using config settings in Tegra SDHCI driver for tuning iteration.
+ Patch 12: Add Tegra234 SDHCI config settings in DT.
+
+Changes in V2:
+- Move config settings to a new node
+- Use phandles to refer config settings in device node
+- Update subject of dt patches
+
+Open to review:
+- All config settings are field (bits) entries and input in hex format.
+  This would allow parsing and updating registers easier.
+
+Krishna Yarlagadda (12):
+  Documentation: Introduce config settings framework
+  dt-bindings: misc: Tegra configuration settings
+  soc: tegra: Add config setting framework
+  dt-bindings: misc: tegra-i2c: config settings
+  dt-bindings: i2c: tegra-i2c: reference to config
+  i2c: tegra: split clock initialization code
+  i2c: tegra: config settings for interface timings
+  arm64: tegra: I2C interface timings
+  dt-bindings: misc: tegra-sdhci: config settings
+  dt-bindings: mmc: tegra-sdhci: reference to config
+  mmc: host: tegra: config settings for timing
+  arm64: tegra: SDHCI timing settings
+
+ .../bindings/i2c/nvidia,tegra20-i2c.yaml      |   5 +
+ .../misc/nvidia,tegra-config-settings.yaml    | 158 ++++++
+ .../bindings/mmc/nvidia,tegra20-sdhci.yaml    |   4 +
+ Documentation/misc-devices/tegra-cfg.rst      | 133 +++++
+ MAINTAINERS                                   |  10 +
+ arch/arm64/boot/dts/nvidia/tegra234-cfg.dtsi  | 501 ++++++++++++++++++
+ .../dts/nvidia/tegra234-p3701-0000-cfg.dtsi   | 107 ++++
+ .../boot/dts/nvidia/tegra234-p3701-0000.dtsi  |   1 +
+ drivers/i2c/busses/i2c-tegra.c                | 257 +++++++--
+ drivers/mmc/host/sdhci-tegra.c                |  84 +++
+ drivers/soc/tegra/Makefile                    |   1 +
+ drivers/soc/tegra/tegra-cfg.c                 | 147 +++++
+ include/soc/tegra/tegra-cfg.h                 |  87 +++
+ 13 files changed, 1442 insertions(+), 53 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/misc/nvidia,tegra-config-settings.yaml
+ create mode 100644 Documentation/misc-devices/tegra-cfg.rst
+ create mode 100644 arch/arm64/boot/dts/nvidia/tegra234-cfg.dtsi
+ create mode 100644 arch/arm64/boot/dts/nvidia/tegra234-p3701-0000-cfg.dtsi
+ create mode 100644 drivers/soc/tegra/tegra-cfg.c
+ create mode 100644 include/soc/tegra/tegra-cfg.h
+
+-- 
+2.43.2
+
 
