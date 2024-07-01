@@ -1,137 +1,167 @@
-Return-Path: <devicetree+bounces-81819-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81820-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39C2F91D966
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 09:50:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1369391D982
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 09:57:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CB5471F22464
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 07:50:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 28EDB1C215E2
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 07:57:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16D8B7174F;
-	Mon,  1 Jul 2024 07:50:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A27247710E;
+	Mon,  1 Jul 2024 07:57:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ZoJYrPVD"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gdn8ECoS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C89E1C144;
-	Mon,  1 Jul 2024 07:50:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD63137142;
+	Mon,  1 Jul 2024 07:57:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719820221; cv=none; b=TwML8fKDNrvQPWfZf/23a80XFjvA7flsP4fxkNQAjOKY6unfzOyVkL7Bfd3ofpqjlH+SklxqNYofTAWAJuwm8ZIaiarOT3mLpbk+hOsgcZqNUvbq7qCvqddnDMXcRepCEIixiLCjN6DUGjRWKFSodHW0yrPWlUm1rDDxPyVlNkY=
+	t=1719820626; cv=none; b=iQqyAwaCXeCl3WNHrt6L1tksXU8syZHhEjjlqoGuw0JK8ocUOstj5mrncz+aQ+lAs2Djd1nJeBfU9kZEN+YyeaWOofUX2a79ZldUNb2EwCJCAfFXMyOvxtjjLQxQ/lU7G+NdBFPSw/BNpskvXL7MHHduYmNKELN31MFSJDTCal8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719820221; c=relaxed/simple;
-	bh=NI7kKOKAxIzXPc98JeIqYjrK5D/m1y4D12ZcB1Wqa0s=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MwmGYGqGWip+fyPsFfvDMYWXpzzapQlEfSv8iQ7ytzWCFOyZQeDIqXrEZp/j/UuhqyEPPQhEGumPsypeEk7YMOlJTafPIuND0I3W5O155JDvVBgocmlFnaUsO2EY5k+zEmt4QTe8MhUpaN03i2F9KDYU0oNZwKQEBWsVzP3OgGw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=ZoJYrPVD; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4617noxU092095;
-	Mon, 1 Jul 2024 02:49:50 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1719820190;
-	bh=vYIW1wdja3ERssve91wxwxFxBbrN1XnluQPmgD8VHlM=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=ZoJYrPVD1RGMCQFxmKFgdNN4YWao2NyEdILgF+AKAWts1zQVa8P+y+TUIXijg+8Pp
-	 0mjHnwfSJxHx2uR5hbx7zlxnO6khAP3HQ4u7hs/IPVZNKToH7Dv5+SytbbAYVASmMg
-	 2X2fKQIdAN5GVwoYoJEcZjk8H5W2kuA79N7eiNJQ=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4617noNd012371
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 1 Jul 2024 02:49:50 -0500
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 1
- Jul 2024 02:49:49 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 1 Jul 2024 02:49:50 -0500
-Received: from localhost (jluthra.dhcp.ti.com [172.24.227.116])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4617nneu042482;
-	Mon, 1 Jul 2024 02:49:49 -0500
-Date: Mon, 1 Jul 2024 13:19:48 +0530
-From: Jai Luthra <j-luthra@ti.com>
-To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-CC: <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Vignesh
- Raghavendra <vigneshr@ti.com>,
-        Aradhya Bhatia <a-bhatia1@ti.com>, Devarsh
- Thakkar <devarsht@ti.com>,
-        Changhuang Liang
-	<changhuang.liang@starfivetech.com>,
-        Jack Zhu <jack.zhu@starfivetech.com>,
-        Julien Massot <julien.massot@collabora.com>,
-        Laurent Pinchart
-	<laurent.pinchart@ideasonboard.com>,
-        Mauro Carvalho Chehab
-	<mchehab@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans
- Verkuil <hverkuil-cisco@xs4all.nl>,
-        Vaishnav Achath <vaishnav.a@ti.com>,
-        Maxime Ripard <mripard@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-Subject: Re: Re: [PATCH v2 02/13] dt-bindings: media: ti,j721e-csi2rx-shim:
- Support 32 dma chans
-Message-ID: <4hel57zfigs6sxq5pdmahun3zyxhg56pl2hor5r4dgpwkv4if2@fo5rdfrlq45l>
-References: <20240627-multistream-v2-0-6ae96c54c1c3@ti.com>
- <20240627-multistream-v2-2-6ae96c54c1c3@ti.com>
- <e0269aab-1cea-453c-9bc7-305ebf446115@ideasonboard.com>
+	s=arc-20240116; t=1719820626; c=relaxed/simple;
+	bh=SgRYTTInf8ZvtLqlwSdFXZS4xKvDrT2mPrGB2EWF33M=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=KTAsJNrl0GVTH/MbzwiDHG1p7J7BIkKdJouH5HYqRB9RwTMoONDOxI3NzGlhMeOnYKT7vpRe+JFHOt+V8dp6KGNykNuJbCDrhXvsUncxsbAicIJUBAtf/fyEqrx9fGtbjY8XNURU8dRaGKqw7n3Ffca6cvNgHqQUsoVh3yWwuyc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gdn8ECoS; arc=none smtp.client-ip=209.85.167.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-52cdc4d221eso2890453e87.3;
+        Mon, 01 Jul 2024 00:57:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1719820623; x=1720425423; darn=vger.kernel.org;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=+05MK1kXai4oMRlN0UFzQqyVHePDjZHTYYHi6/JPEWk=;
+        b=gdn8ECoSEi42rbmkeMdT6qbIZ/2GH6Y4qnb6NePySE9t8GHh9FpLXE32ewQDAvrCjI
+         B1+l8TvEhfnrbsdgTqEHm0o361hAimpZf4GimlNJhiTAm/rHYdKg6NsLacJFRuhmNAX9
+         ByjUb79yv7UVwT2RDGb9rF/l1UcJGVu1XIn3hQQMRZP1iELUGOTx/YVMa7yLCxsi+GNP
+         jIpRlT47+FROq8uDjCyMIL1//3BOs4oFaGheDfvtTNjeb4LzjFbtcR1YLtonSSddXpMF
+         oP+5jPhrg2ZH+zzyomrGeY/TMYyAqWp9RxETBWNEpdYihP3rWVO7guBhxZgfcMGTjlEJ
+         H4Sw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719820623; x=1720425423;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=+05MK1kXai4oMRlN0UFzQqyVHePDjZHTYYHi6/JPEWk=;
+        b=tl6ULhuekGGM+7ju2P4VZZlqbdDO6FkAUBPDJyo7jJhOMpdkxw8qGcs+bJwgVx1I8g
+         /XPYGAiMo2Hvwwf31RorGJNjlUFQIWmOERiAi4EXQIAA6kDcLPZHPVy7BpXweu5TZwIc
+         98qZIP8dR6m+Ugxxmxr/7m/QrKgYOjstgvuvgctqbZrtveW17ptYi0zSHo7IDsz/HkRB
+         POPucA0fnGMolY+HUCMBT3JC/IPe4aTAACKUZfxMhkvRxUuYiFhM+60XvKLZWvnDQ9bu
+         Nqnd2+yQizz5d3RrPh+7I14pL4LUGzR+vst1fCYos1T65C/tGlP5YJbIW8QrhS3S/6h2
+         dZpw==
+X-Forwarded-Encrypted: i=1; AJvYcCUVtqzybTrudCSDs9L9oHZTihEfskWHLq/LUw/gkIemJBjMyQoz/uSaQSpR/LltjsP/fgGoUBELfSoVZM71mQV5NXs1rlkkTyNMlN9GawFAb4cV+8tPwQacKQq2VSBdBX5Rvd4LolmSeoArBzXGQ4pJGvop5uqDFTN8FnTVv6IVE0UtxRZDj904
+X-Gm-Message-State: AOJu0YxbJkdxGXRkPd65booDZIEqJCGLSdRwmE5m2kbHvpB5vCd0u5hv
+	p/tpVlwa76SQMqB323yZeoHbO4un89d2TrXhbIx990+A+w74JSqy
+X-Google-Smtp-Source: AGHT+IGCVIArH6otjWMlTKGGmfEh/kav/BXrAKZti4HR6dcditB1AIJw9P/0E6YGqWLyw+7l8hOhWQ==
+X-Received: by 2002:a05:6512:480c:b0:52d:b182:9664 with SMTP id 2adb3069b0e04-52e827398c7mr2293393e87.69.1719820620280;
+        Mon, 01 Jul 2024 00:57:00 -0700 (PDT)
+Received: from fedora ([213.255.186.46])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52e7ab0ba53sm1236119e87.50.2024.07.01.00.56.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 01 Jul 2024 00:56:59 -0700 (PDT)
+Date: Mon, 1 Jul 2024 10:56:49 +0300
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+To: Matti Vaittinen <mazziesaccount@gmail.com>,
+	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org
+Subject: [PATCH] watchdog: Add missing include for FIELD_*()
+Message-ID: <ZoJhQVF-U6sSJ_Sg@fedora>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="w8fIcGOUVCvHByY0"
 Content-Disposition: inline
-In-Reply-To: <e0269aab-1cea-453c-9bc7-305ebf446115@ideasonboard.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Thanks for the review.
 
-On Jun 28, 2024 at 13:42:01 +0300, Tomi Valkeinen wrote:
-> On 27/06/2024 16:09, Jai Luthra wrote:
-> > The CSI2RX SHIM IP can support a maximum of 32x DMA channels.
-> > 
-> > These can be used to split incoming "streams" of data on the CSI-RX
-> > port, distinguished by MIPI Virtual Channel (or Data Type), into
-> > different locations in memory (/dev/videoX nodes).
-> 
-> Usually you shouldn't talk about Linux specifics in DT bindings. The DT
-> bindings are only about the HW, and the OS doesn't matter. It doesn't really
-> matter much, but I'd just leave out the mention to /dev/videoX.
+--w8fIcGOUVCvHByY0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-My bad, will drop the reference to /dev/videoX in next revision.
+The FIELD_PREP() and FIELD_GET() macros are defined in the
+linux/bitfield.h. Include this header to avoid missing the macro
+definitions.
 
-> 
-> > Actual number of DMA channels reserved is different for each SoC
-> > integrating this IP, but a maximum of 32x channels are always available
-> > in this IP's register space, so set minimum as 1 and maximum as 32.
-> 
-> So in the SoC's dts file you will set the number of channels to the maximum
-> supported by that SoC? I guess that's fine.
-> 
-> Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-> 
->  Tomi
-> 
-> [...] 
-> 
+Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+Reported-by: kernel test robot <lkp@intel.com>
+Closes: https://lore.kernel.org/oe-kbuild-all/202406300817.hcJ9VtLf-lkp@int=
+el.com/
 
--- 
-Thanks,
-Jai
+---
+This patch is built on the ib-mfd-regulator-watchdog-v6.11 tag.
+These macros got included via some indirect route in my build
+config on v6.10-rc1 - but the lkp reported problem on some config.
 
-GPG Fingerprint: 4DE0 D818 E5D5 75E8 D45A AFC5 43DE 91F9 249A 7145
+Please, let me know if this follow-up fix is Ok or if I should rather
+respin the:
+https://lore.kernel.org/all/20240627082555.GH2532839@google.com/
+with this fix. (I don't see much of potential bisecting problems if this
+fix still gets in the next release, as the watchdog code is behind a new
+Kconfig flag - but please let me know if I should re-spin whole series).
+---
+ drivers/watchdog/bd96801_wdt.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/drivers/watchdog/bd96801_wdt.c b/drivers/watchdog/bd96801_wdt.c
+index ff51f42ced2a..12b74fd2bc05 100644
+--- a/drivers/watchdog/bd96801_wdt.c
++++ b/drivers/watchdog/bd96801_wdt.c
+@@ -5,6 +5,7 @@
+  * ROHM BD96801 watchdog driver
+  */
+=20
++#include <linux/bitfield.h>
+ #include <linux/interrupt.h>
+ #include <linux/kernel.h>
+ #include <linux/mfd/rohm-bd96801.h>
+
+base-commit: fcf1f960a6aa45a22efd4d49114c672ed305b85f
+--=20
+2.45.1
+
+
+--=20
+Matti Vaittinen, Linux device drivers
+ROHM Semiconductors, Finland SWDC
+Kiviharjunlenkki 1E
+90220 OULU
+FINLAND
+
+~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
+Simon says - in Latin please.
+~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
+Thanks to Simon Glass for the translation =3D]=20
+
+--w8fIcGOUVCvHByY0
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmaCYT0ACgkQeFA3/03a
+ocU7Vwf+PTfgWjQlll+7y+IpErsbcIFKJ3tTFZjAoq2QK6d7WuQnmRSQfGTfQZDl
+SQ3hq/io3RicjVha+JC5TrBsv0HGJqfdcfYQ/iS3dzSSrUSnRa+oDfGNyREm1haM
+8adxdGYw3vGJFI6uvhZyIki6XH+E43CYaKeRKBe1TKoQmA5TIRT9Xyvve9qErMq/
+AmPD6p0yWMHoNTlA6WBcIFjq1hLuexR37mbOVS0mn44r4O+nG4ZZwX/4XbK+JKby
+ya3sWG6Ou/IyO/gwszvnq7IyMY+J1dnbMQvFAJARCyr2QWnktL9NZyMjoYcxI/rq
+F9d86MJB1Ga/ik0UHTl6nifiZ48krQ==
+=Buqp
+-----END PGP SIGNATURE-----
+
+--w8fIcGOUVCvHByY0--
 
