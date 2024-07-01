@@ -1,135 +1,85 @@
-Return-Path: <devicetree+bounces-82083-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82084-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF97891E63E
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 19:09:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 074AE91E64C
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 19:13:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 14DB4B20947
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 17:09:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1CF271C22063
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 17:13:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9524616DED2;
-	Mon,  1 Jul 2024 17:09:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE9D716E861;
+	Mon,  1 Jul 2024 17:13:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZC7OWLYS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b4hTqg5f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D529E16C697;
-	Mon,  1 Jul 2024 17:09:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BFF416B75B;
+	Mon,  1 Jul 2024 17:13:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719853779; cv=none; b=utccVIDYc3AXgMwGFZPigx7SMvd7Hobfp7SycOV+kahnQeqdGeOW8vGmLdWsOtnQflZmGWhum4S1mU58FHGOcgWF4F9Z/egMZU0tRj317rkAVI8vWfr+T9C1kjpaeYxNmvDAptAWKXsDiXVCttLMAgOKA4tw/Zqkufv28V5tUKQ=
+	t=1719854015; cv=none; b=lp04a6eN5ucHWIkpSFg3dzv+8JcrWEEzTw2YnmLvXhCLBz9pUt6NcydZP4+Ls1ZKDtqgJyXCGwo+7a2YqEPLqhbdFk5osjrq/rICFRFhGsymw5/Fqwyqluyj7FpmMEQpuGH9vR9Ke1jQg9pfCcnqxLYe3ly/iVXlqXCMz+LXyDw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719853779; c=relaxed/simple;
-	bh=gVhmfdnxbOOPgeFRaCg9Ymh4Zpg0f7AXBtcggt+t08M=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=FdMWfm3u5Eey55a/8fhEY2bNuNNFT3AEF/ytekaZK808gY8oXJduRjwIbC5O7exR3/k769DftVUFzUXTzIp9vIh6mm2I5Wtky0XdEzh1ogYIthIJSuOGOBGFA4MrXi41z6zaWYkLTSxMSHeB2xYAJYbLT0U1OLopbQlWJAhwOYI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZC7OWLYS; arc=none smtp.client-ip=209.85.167.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-52cdbc20faeso4696941e87.1;
-        Mon, 01 Jul 2024 10:09:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1719853776; x=1720458576; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=x2AvaZ/UqlvKRYfAtV7P9vybf13O6HOVkfDtPt1cvUk=;
-        b=ZC7OWLYS4TtFg73E4SuJ5mjHxOlo8/FFhf8FcgIqXFZyMVvufjpCT2zhyYLHF/fHoq
-         4Mz7hI+NioDVC4Bvnrl7/2aTloAHrkLwQnb3oHFIeiuDjYy9Gi5pjaXFJcZmcmsmXaeV
-         UxwHchAsSCdeNRzH2dRTgH3Umcv9ylH0cf+2Obs8YZC6bNc2al4S5qngi4sL870Lym0w
-         EEe8JiSY+47fagUZaTxXwd0cd3fLWriRTeySE7DJMcEWMC5lPXArTZEnZpJ8QnTdbJWu
-         eZf04YiNw8MRHinqo1/rY6+Se3Z0gZbmseoNqEk2MuYj7WE9kF3C6dpq5PcxSWI00aXa
-         JWKA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719853776; x=1720458576;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=x2AvaZ/UqlvKRYfAtV7P9vybf13O6HOVkfDtPt1cvUk=;
-        b=oAaoHDid+9zVzjQSZjLrGi4w+tIyC2/f0FFBxaRBgceiKXFivVDojEs8PznnAjOcq+
-         r+KkGxlY8grwCNsqTyzBuDqeZp2kBgIsBk04z5to8CcU1JzZk7vVBWYb6Fv9775xyXdH
-         tfYN07F57ChcvxTr7c6/themttXanDAn04nB9IxD+JN1Do/ouJbRegPiEubBbHD3HGq3
-         p2HwhQBm6OL+3aZpguOEBvvtLhOfaGxpXUpJgWqbOaCX9Mxh82Ok/XExTGa2EDaFiLx0
-         +5Rjqs+s0o65Ne3C8s1Xe94amid8TwxdPRupDJeUtyVOhQyWsKWJMAZg2RKxGvMLIyFj
-         b+Ww==
-X-Forwarded-Encrypted: i=1; AJvYcCUnm2Gc5jgU8oeQRFIA8og1zI3EY/lh6ktKTRuMipW20ATbULFcFsW9NgA/UwK7Y1YAsPatgucLsMzQ3O/38OP7+CQV+ha8D1kGaBKW6QFHpsIFGkEl2IcDLkTijdeRb5USBVFYG+XnPQ==
-X-Gm-Message-State: AOJu0YzSVcsiXl5uTmaiN3FgqTidAEGfexpnVgtV7DuKcbFiNxLFrMhZ
-	EboFItOI5+2u25zsXjT12YloI6GmJ7q09cE020IP8mM2ZXkzH+Kl9QpqP1VRgBODA/1zJlyF+/F
-	kizHSf/qUee0Him+02aeIFkjhHQ==
-X-Google-Smtp-Source: AGHT+IGYYNCj47g6ucYfUx88jylfxwmzthcbBunBR6FSqs2Zy9xB27gXOmjZv5e2f+ERX7Yl2NsAnugoE22lg1LI1Pg=
-X-Received: by 2002:a05:6512:3b12:b0:52c:e17c:3753 with SMTP id
- 2adb3069b0e04-52e82647353mr4096272e87.5.1719853775769; Mon, 01 Jul 2024
- 10:09:35 -0700 (PDT)
+	s=arc-20240116; t=1719854015; c=relaxed/simple;
+	bh=p3I+LsJZzotiH0m3SrVtCk1M0xHZDS/wWyLhpk61IH0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nFrkc1OPm1oNt/2TBbdp/ug1WfLsEXw6tuthPBJa0gkS2RIHquBXPm63OcL5gbikt5Z/h8GfUMisteEK7QHC/FRARh4KfHAyWpnvKQx+M3SoIfbNz2qN2WaEB9hC2Fg/2NeflCPTBD9KmA2qEmcXCOGSkXMx4rMI6jM4uFiExRg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b4hTqg5f; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EAF86C116B1;
+	Mon,  1 Jul 2024 17:13:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719854015;
+	bh=p3I+LsJZzotiH0m3SrVtCk1M0xHZDS/wWyLhpk61IH0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=b4hTqg5f9whwQiSdWbmVY6pq9LpgPZARjTya8v1UCuT4+U8pPJ06iKVN3HbRDzYhZ
+	 Kc3DpyQ3gvuylxnRVMRWKdKWcixp/DA21vBY6/NLTheIae3YuvJpP7UzA5lR94mKTB
+	 mn3sk4EDD4IpcDrF5MQ3P+UB00gf3ysPN/YU1bioYBjQGgBKhuUoYEWfhJ15p0XLom
+	 An0Es9BZl0m0pikCWKsAKtN0xo+3k2gbwWR5mERi7G7cQ9nnncppGZrgM5BYJ8WDQH
+	 YOIReRX3WHh+1wBhMj/Lqni/99xydb/qQw/+oPAZK3AdPQNsuV6pb6AbOeeRq+WgT9
+	 vf+mishl2PA3w==
+Date: Mon, 1 Jul 2024 11:13:33 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Guillaume Stols <gstols@baylibre.com>
+Cc: Stefan Popa <stefan.popa@analog.com>, linux-fbdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Michael Hennerich <michael.hennerich@analog.com>,
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+	Beniamin Bia <beniamin.bia@analog.com>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	dlechner@baylibre.com, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Conor Dooley <conor+dt@kernel.org>, jstephan@baylibre.com,
+	Jonathan Cameron <jic23@kernel.org>
+Subject: Re: [PATCH v2 03/10] dt-bindings: iio: adc: adi,ad7606: normalize
+ textwidth
+Message-ID: <171985401324.129711.10327596818735583111.robh@kernel.org>
+References: <20240628-cleanup-ad7606-v2-0-96e02f90256d@baylibre.com>
+ <20240628-cleanup-ad7606-v2-3-96e02f90256d@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240629103914.161530-1-erezgeva@nwtime.org> <20240629103914.161530-4-erezgeva@nwtime.org>
- <1c457520-07b7-4bde-b040-e8bca959a4f5@linaro.org> <CANeKEMOODBNZA6efh0E0Ga_KaVs5Y3WLcUftRhNwYHhnXO=GNw@mail.gmail.com>
- <CANeKEMO42rJt5Ob4_HDcZ3eEMvuMOPvRaFaLwL8SA65NtxSV7A@mail.gmail.com> <1d56c3b2-7adf-45b9-a509-956340f3f17b@linaro.org>
-In-Reply-To: <1d56c3b2-7adf-45b9-a509-956340f3f17b@linaro.org>
-From: Erez <erezgeva2@gmail.com>
-Date: Mon, 1 Jul 2024 19:08:57 +0200
-Message-ID: <CANeKEMMe-Onpn7xWQHgWz1Ps_uQPEMa7HrKA00HpoKjG+DCJNQ@mail.gmail.com>
-Subject: Re: [PATCH v2 3/4] dt-bindings: mtd: macronix,mx25l12833f: add
- SPI-NOR chip
-To: Tudor Ambarus <tudor.ambarus@linaro.org>
-Cc: Esben Haabendal <esben@geanix.com>, Erez Geva <erezgeva@nwtime.org>, linux-mtd@lists.infradead.org, 
-	Pratyush Yadav <pratyush@kernel.org>, Michael Walle <mwalle@kernel.org>, linux-kernel@vger.kernel.org, 
-	Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240628-cleanup-ad7606-v2-3-96e02f90256d@baylibre.com>
 
-On Mon, 1 Jul 2024 at 12:15, Tudor Ambarus <tudor.ambarus@linaro.org> wrote:
->
->
->
-> On 7/1/24 10:46 AM, Erez wrote:
-> > When using mx25l12805d, we do not read SFDP.
-> > As it uses the no-SFDP flags.
-> > When using mx25l12833f hardware with mx25l12805d driver, it did not
-> > try to read the SFDP.
-> > Yet mx25l12833f does have SFDP, when I remove the no-SFDP flags, the
-> > driver fetch the SFDP.
-> >
-> > Secondly SFDP does not contain OTP information.
-> >
-> > mx25l12805d has two OTP regions of 128 KiB and 384 KiB (yes asymmetric).
-> > While mx25l12833f has two OTP regions of 512 KiB.
-> >
-> > How do we handle it?
->
-> You would first try to parse SFDP and initialize the flash based on
-> SFDP. If there's no SFDP then you fallback to the flags declared at
-> flash declaration. Esben had a try recently, see [1]. I don't know if
-> there's any progress in that direction.
->
-> Also, you haven't mentioned anything about the testing. Do you have the
-> flash?
->
-> [1]
-> https://lore.kernel.org/linux-mtd/20240603-macronix-mx25l3205d-fixups-v2-0-ff98da26835c@geanix.com/
 
-Looking at "mtd: spi-nor: macronix: workaround for device id re-use"
-I guess it can be applied to all Macronix devices.
-Adding something like the following in macronix_nor_default_init():
+On Fri, 28 Jun 2024 14:48:21 +0000, Guillaume Stols wrote:
+> Normalize textwidth to 80 columns on the descriptions.
+> 
+> Signed-off-by: Guillaume Stols <gstols@baylibre.com>
+> ---
+>  .../devicetree/bindings/iio/adc/adi,ad7606.yaml    | 50 +++++++++++-----------
+>  1 file changed, 24 insertions(+), 26 deletions(-)
+> 
 
-if (info>no_sfdp_flags)
-    info>no_sfdp_flags |= SPI_NOR_TRY_SFDP
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-It seems Macronix did many reuse of IDs.
-I saw it with "mx25l12833f" reusing "mx25l12805d".
-And Esben saw it with MX25L3233F reusing "MX25L3205D".
-
-The only thing I notice is the flash using the same size.
-A sort of "backward" compatible.
-
-Erez
 
