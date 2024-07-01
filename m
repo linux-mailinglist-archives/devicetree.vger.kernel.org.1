@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-82105-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82106-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0815491E728
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 20:10:28 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0B7A91E72A
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 20:10:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A6C821F25C45
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 18:10:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E223D1C2120A
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 18:10:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2694416EB60;
-	Mon,  1 Jul 2024 18:10:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95F0D16EBE6;
+	Mon,  1 Jul 2024 18:10:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="smt5AEH8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g2Uvp8Dp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0229A14BF8F
-	for <devicetree@vger.kernel.org>; Mon,  1 Jul 2024 18:10:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68D1F14BF8F;
+	Mon,  1 Jul 2024 18:10:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719857422; cv=none; b=GRu6KGOC5CNIhND+usaDh/8SfCuq6jvzqRTiWGAVNtMgyBm/cse5RxzurUrUsAjs8JReNTxqik0pBbX2t2x80lK2BDGSQZzGMFMDgoknqesF7Js7kEROlEq7VIO7zXiBtn3v3V4j85frVbAot/11MMeFTMTdc+BGH21mqGXIXh0=
+	t=1719857423; cv=none; b=ZUW9rIaYiOwJ9VrdQuHpq4ac7momoU6UmXXxFUl2eHPS8fmrA9AR3B3nHP5JbNt9xWppYittP3vCn8OWi8E2P6J9Sz3ifDcGp76/xHEHYi0katiquDDyLxCTeYp2tgEQ/8KjjN/N8Mz8da9iZq5htVkTH90UeE1UnC+jDuK+cLM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719857422; c=relaxed/simple;
-	bh=42+iNoMF14DtqzqhxbInBjWKbLDDhJxeyWwx2WLtC1o=;
+	s=arc-20240116; t=1719857423; c=relaxed/simple;
+	bh=SDo+3jYb5vZJ9zha/uL4/VA0jn8ZgGJdTYL0xPwTQPQ=;
 	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=PKNSDt8J/b5jaP7ZXcZb+ng0f20tHsfZd5hI683RpW9pLkwbeKLbQ38o1JmBXqShC7L6Tz+IIxyxoWxOC3PPpZMsWok+u3cuLqo4Zo0idKzXosWCbZFC0x8EvHfNc37Ne+ybcq4KWp8v5tAB5/HCRtfov9jPrxRUkEyVkW42dZk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=smt5AEH8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A5E4C32781;
-	Mon,  1 Jul 2024 18:10:21 +0000 (UTC)
+	 Message-Id:Subject; b=d9KrWWkr5Gg3gGBsgl5gcw2TiQiKXz8JJiG/aTPQoFelUyh9jeAeutRoIJYt2yqhKuiMrhS6rj77Q78KLi1rPW2kWUP+9e/SmKxuiijthgOcveoUJ3Kvu9cnK4qhynbDdDrIPDtz5wvYNTWuX+kZXPgacMuc8GuTzIsGl+JA2io=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g2Uvp8Dp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6BBAC116B1;
+	Mon,  1 Jul 2024 18:10:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719857421;
-	bh=42+iNoMF14DtqzqhxbInBjWKbLDDhJxeyWwx2WLtC1o=;
+	s=k20201202; t=1719857423;
+	bh=SDo+3jYb5vZJ9zha/uL4/VA0jn8ZgGJdTYL0xPwTQPQ=;
 	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=smt5AEH8QL5nagLdczW5xMrkVGISw2IBh0c6PMgnUaJFpJtJ9nELunnWviupwHh1v
-	 whceka3Z8h2hiceGdHhtDN3Xl+AFbqc5f2DT0v2vsQuAqWPEC85Ll8wNdxZLvnSOsJ
-	 JXuFqv3FJgrhmm2TgghkEthsEpolns2TaIfYSEIMIyIA8O7aSsX1pTLPUTzTwv3owr
-	 kp9iRnJemtkRFQse66czG+FzFf7oSO7MwD2s0jXi8kSdSelNedGjT3xYPphi9BQ+WR
-	 sgB+3i1KCxg0R25yW2f/m2LZRLaFOIB0KwfmmP3aXEZ8xwfLa5ULgPkDR4NEq0vBu7
-	 CRbtWgQNPUjCA==
-Date: Mon, 01 Jul 2024 12:10:20 -0600
+	b=g2Uvp8DpqIBCINVxyR9wcpodhBVP5uu2ryqkvkoPr2LywNSnMoAbzM6sN8tWIbSlU
+	 6CDBKQpE0nTwJPJzRzOocGnw7zJeWJpddH3uayw63UxNh94XBGvHe40tCFNmu/zECd
+	 oxMZKrlKQDM2032yb8eEwVP7+QJ9qfx75hV461JdxEYPTSg9HYWrDaAf6k6rjlZtvZ
+	 IvY/WKklfSsCP2ahfAyYIK2vaR/9SaCAZun72G/u4SI7C/tozly9N1SJXa0cucviVc
+	 f9omSLER4ZIkeTdYbxACXAqSCOX4njCkoRPrQLZp7k1CVKPi11uFeOdAsMTFm2KV1F
+	 bEBdmzQuc4bEQ==
+Date: Mon, 01 Jul 2024 12:10:21 -0600
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -51,41 +51,40 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Marek Vasut <marex@denx.de>
-Cc: kernel@dh-electronics.com, 
- Alexandre Torgue <alexandre.torgue@foss.st.com>, 
- Christophe Roullier <christophe.roullier@foss.st.com>, 
- devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
- Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>
-In-Reply-To: <20240629171100.20285-1-marex@denx.de>
-References: <20240629171100.20285-1-marex@denx.de>
-Message-Id: <171985715690.313627.4404278514791505125.robh@kernel.org>
-Subject: Re: [PATCH] ARM: dts: stm32: Add ethernet MAC nvmem cells to DH
- STM32MP13xx DHCOR DHSBC board
+To: Raymond Hackley <raymondhackley@protonmail.com>
+Cc: linux-arm-msm@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, 
+ Bjorn Andersson <andersson@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+ phone-devel@vger.kernel.org, devicetree@vger.kernel.org, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, 
+ ~postmarketos/upstreaming@lists.sr.ht
+In-Reply-To: <20240630132859.2885-1-raymondhackley@protonmail.com>
+References: <20240630132859.2885-1-raymondhackley@protonmail.com>
+Message-Id: <171985715734.313644.1089702604125173934.robh@kernel.org>
+Subject: Re: [PATCH v3 0/2] ARM: dts: qcom-msm8226-samsung-ms013g: Add
+ initial device tree
 
 
-On Sat, 29 Jun 2024 19:10:30 +0200, Marek Vasut wrote:
-> Describe ethernet MAC address nvmem cells in DH STM32MP13xx DHCOR DHSBC
-> board DT. The MAC address can be fused in BSEC OTP fuses and used to set
-> up MAC address for both ethernet MACs on this board.
+On Sun, 30 Jun 2024 13:29:13 +0000, Raymond Hackley wrote:
+> Samsung Galaxy Grand 2 is a phone based on MSM8226. It's similar to the
+> other Samsung devices based on MSM8226 with only a few minor differences.
 > 
-> Signed-off-by: Marek Vasut <marex@denx.de>
+> The device trees contain initial support with:
+>  - GPIO keys
+>  - Regulator haptic
+>  - SDHCI (internal and external storage)
+>  - UART (on USB connector via the TI TSU6721 MUIC)
+>  - Regulators
+>  - Touchscreen
+>  - Accelerometer
+> 
 > ---
-> Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
-> Cc: Christophe Roullier <christophe.roullier@foss.st.com>
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: kernel@dh-electronics.com
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-stm32@st-md-mailman.stormreply.com
-> ---
->  arch/arm/boot/dts/st/stm32mp135f-dhcor-dhsbc.dts | 4 ++++
->  1 file changed, 4 insertions(+)
+> v2: Adjust l3, l15, l22 and l27 regulator voltages. Sort nodes.
+>     Set regulator-allow-set-load for vqmmc supplies.
+> v3: Rename node haptic to vibrator.
+> 
+> 
 > 
 
 
@@ -103,12 +102,10 @@ make sure dt-schema is up to date:
   pip3 install dtschema --upgrade
 
 
-New warnings running 'make CHECK_DTBS=y st/stm32mp135f-dhcor-dhsbc.dtb' for 20240629171100.20285-1-marex@denx.de:
+New warnings running 'make CHECK_DTBS=y qcom/qcom-msm8226-samsung-ms013g.dtb' for 20240630132859.2885-1-raymondhackley@protonmail.com:
 
-arch/arm/boot/dts/st/stm32mp135f-dhcor-dhsbc.dtb: ethernet@5800a000: Unevaluated properties are not allowed ('interrupt-names', 'interrupts-extended', 'mdio', 'nvmem-cell-names', 'nvmem-cells', 'phy-handle', 'phy-mode', 'snps,axi-config', 'snps,mixed-burst', 'snps,pbl', 'snps,tso', 'stmmac-axi-config' were unexpected)
-	from schema $id: http://devicetree.org/schemas/net/stm32-dwmac.yaml#
-arch/arm/boot/dts/st/stm32mp135f-dhcor-dhsbc.dtb: ethernet@5800e000: Unevaluated properties are not allowed ('interrupt-names', 'interrupts-extended', 'mdio', 'nvmem-cell-names', 'nvmem-cells', 'phy-handle', 'phy-mode', 'snps,axi-config', 'snps,mixed-burst', 'snps,pbl', 'snps,tso', 'stmmac-axi-config' were unexpected)
-	from schema $id: http://devicetree.org/schemas/net/stm32-dwmac.yaml#
+arch/arm/boot/dts/qcom/qcom-msm8226-samsung-ms013g.dtb: syscon@f9011000: compatible: ['syscon'] is too short
+	from schema $id: http://devicetree.org/schemas/mfd/syscon-common.yaml#
 
 
 
