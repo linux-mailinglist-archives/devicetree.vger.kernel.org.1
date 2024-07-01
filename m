@@ -1,74 +1,75 @@
-Return-Path: <devicetree+bounces-81794-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81795-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 771D591D770
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 07:28:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F5E691D795
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 07:42:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 079861F223CF
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 05:28:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DF6BB285894
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 05:42:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2107436AF5;
-	Mon,  1 Jul 2024 05:28:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F5163D0C5;
+	Mon,  1 Jul 2024 05:42:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DyVrE9jK"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SdnCP3L6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 737672BB0D
-	for <devicetree@vger.kernel.org>; Mon,  1 Jul 2024 05:28:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9482C39863
+	for <devicetree@vger.kernel.org>; Mon,  1 Jul 2024 05:42:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719811703; cv=none; b=W9vEURx6NY649NyETrPolXawdF+PvwQsfPoyZbm+0S66Mt4vbu8/zOAzBti33Jn/w7yy8HA93ucxRmyNhWmDwy0WvwAeYjADpmMtIaLcZebdk8ePSaVbvMjlzxN+Zv4ACYCYv+vfaFJilExazqkVcvpTQc4m32uFI0NCR9Z+AU4=
+	t=1719812526; cv=none; b=By+HzvknF/Rs8Qt8n1RgFNykxihMinzlL9YytXch6CluHFdz2jSw2cKUQJiCdKgqzfWpVf1RD+ASUQ+J0OEpvIO+uLqP1+t9gK6FeXOi2o1t6Hjnsj1pjBtjWDjJGS1b63pnEi2YvGPAcwCradgDSoYOABI8tO9bglHvWOsjLNA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719811703; c=relaxed/simple;
-	bh=YZWSzpNEaDa+eXDQ28HrPkHrPJlHNHw3DS1+bUPdeA8=;
+	s=arc-20240116; t=1719812526; c=relaxed/simple;
+	bh=URBql0tdkG8weo7qslMgXtQqS7z1an3iLJvVeKwFk6E=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AHHIHL72Z+J0ulESeuDSr4GPpRgQvXlzlMw2MQjKSjE+yi19cUY0AHmDYzFfvQ8LQNU/OCWuVoJ39v2mW9lWFCq2Cug14XgLHESauIfxoienzcUhkMSsD1SiHq3ffAAEmAaKtjgYrBnl8EHjBCbPp6VW+2C5Ua5tieOwY5/3PFg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DyVrE9jK; arc=none smtp.client-ip=209.85.128.45
+	 In-Reply-To:Content-Type; b=SSF7yk9jUIgow5eHg0Vibb6duWAiHIOj7F3rdKuZtZ9Nw360aZMoOy+KMO/JwGH0iOm/AZMthwgIYaR54S2T8QnvX3bvBbjO4NeHvtQZwHSApSBKYJiP96jDTQfYWMqO6qKrlS8t+QaaGCMg4h1Lka9yjx/wDlTj4dUV5+XP2+o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=SdnCP3L6; arc=none smtp.client-ip=209.85.221.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-42564316479so16264465e9.2
-        for <devicetree@vger.kernel.org>; Sun, 30 Jun 2024 22:28:21 -0700 (PDT)
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-364ff42999eso663368f8f.3
+        for <devicetree@vger.kernel.org>; Sun, 30 Jun 2024 22:42:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719811700; x=1720416500; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=fkdA8KN8A8I2bA11uvZt9695FtnthrYQMH+V0MW6YEE=;
-        b=DyVrE9jKDwWXYYBx1F7ArOxreZprCXIr81b6YSddmouJbhDbjMFizewJ8nuINfsSqP
-         8Ur10ajNxQsz2m587YvmtBlT10uoV80L0IfiDUoeYvJwQMC54i6yVcsl89DvZbMu23t4
-         GQFWo1htajrGRtXUJlSwgfWpFRfRS6hsSQqh0Qvhu4r6m3s20Q69x+SCS7b31nrFNggL
-         El7TIV8JWUwDg4IVApQWZ6EG7MvGShIVB43WAT/psN/Unezo9Iy3WVtGDNiIde7QElsO
-         e2oRKoeIGGr9s/L5p7HiiAVonp+wWgUpb+iN/49I5V1nw3wlZsKctGgWoJhD1NN/4oHl
-         3U0A==
+        d=linaro.org; s=google; t=1719812523; x=1720417323; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=K1RP7Fpk8x/fLqAOvJCm2fvlERvfv14/xhETHMn8PzY=;
+        b=SdnCP3L6fLRyDuWCSl2PrHaSybYB1c8hyciiYFPAn3OBIyVs77uVYSo/gsc18XJvn0
+         1GVs3lgubddxKwegjInCCOwumPOU8GZI3lEuRRhLBYCEx7hoPnBznkhyb78UIv5ae1/8
+         ekY7LSt/cQRiIsE0cMmL1wT8irmB+6LhkQwiTeTy6CRjiGvQRqnTS5mhy5RMquzvr6kN
+         7dfAbFIW5Xm2bephIUEnfSTcaHQQNlH5dnBRwBDjzzuqypem4zDU6yQKzrGAn6UMXwH2
+         RP1dad90jW+xBi5DjgkL2GsT2UbDKZnl+POnhFRaZciGEtH5bX78kMn8CV1n+Uxx2gc/
+         g4tA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719811700; x=1720416500;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fkdA8KN8A8I2bA11uvZt9695FtnthrYQMH+V0MW6YEE=;
-        b=FEtYeBHpHwAjyegOYRP6V3gndmkjRwjGuuDWD4A/zF/7OpV6qrv9ZgIPKWjoA6Fkhq
-         8u2sHFSlxRTIBUk+P2plgtdZxi0C/MJFAT1nL5X2wz4eSXs3Jjr4+XkVATJieCE7CcVn
-         VwAps1dR1H4Yt0mYc1orAbd0HxQWxo5aH8g4PKOyMTHChhEjCX4/545EJ+En4gyKWlBM
-         F99ZEQ6Hy7bQC3BEg2dCrG+GNzYBtRJhuPQwg4IcjnYksGg3eEuqhcdW8Fr8/ll3W+l6
-         yxvl2B3UL0UtmBO7P8MSQb2OdHamUAvNmqbdEBQZmCdkzyna1EmF1CNaHA9PMo2xSPy4
-         ynMQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVlk6ZbIVC+jDVsSYDXOasfoN78bJplo2xPQBqHn4+rn+xkC0DDCBMwBBelPvAgK/aw/fEdBh+DJikgrGZfw43lRc3E+Mh7q7zgbA==
-X-Gm-Message-State: AOJu0YxfFDPdsSJpy0YdLKaGX9zg6AcLLDQw1i14gzWz3l89giYhOoBc
-	TGIveu80nhrimSnUL6D4OhKs7ePnxaKYQlC8J7d+cPjrsVUDzO7QPrZxNLrdUM0=
-X-Google-Smtp-Source: AGHT+IGz4rqWrl3DoLsQ45HTpFY0wCleTeXmKARmX6Tlg1QN5PVLZXxtG1F706x/BHg79dLe19Q0Zw==
-X-Received: by 2002:a05:600c:4ed3:b0:424:7992:c21f with SMTP id 5b1f17b1804b1-4257a021800mr32315315e9.3.1719811699661;
-        Sun, 30 Jun 2024 22:28:19 -0700 (PDT)
-Received: from [192.168.2.107] ([79.115.63.178])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3675a0e16a8sm8962338f8f.64.2024.06.30.22.28.18
+        d=1e100.net; s=20230601; t=1719812523; x=1720417323;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=K1RP7Fpk8x/fLqAOvJCm2fvlERvfv14/xhETHMn8PzY=;
+        b=mxLkv5SPhRuObAhb0eXztaxF/5oHNgGC5tYZb5Ec4YAg4/BN99Lge5ZI38jQLAjS9G
+         gjaL4bKmuoU1PfL7NetAiA2N5FepBMFAm33QzDBCt9p7N/KejD62MmfsWr0Dr3U5ozPa
+         keI8DaFTgYzBRkWhQFMko8hExf1wWUbkz9wnSW2jri4gwesIwpPtFV7MsXN/3dqRwh8b
+         TeklOOaQlJCpsJNzQ7B3hFof2ypDqJ0mmCdGDYCfoWhPL3AzvrFxe4QyWJELiJJc8Xn9
+         xN+CAoyVLQZS0vQXD8Oob9l2BTOS8VGqvl9M2lh5xOjNkYMncGLNdEy9glbMky5WDQwj
+         /RoA==
+X-Forwarded-Encrypted: i=1; AJvYcCUKORSYsSXPdywxFcmaEsW0hBE7FDyn+nMRqVUno8bsov/EtkZ87vFUcrE8++UvlHfGuanXm0v7537NzOs7R9KYIhL7TBUxRvR6YA==
+X-Gm-Message-State: AOJu0Yxwkh8664xAJeOdWpFwfjoUMBSz/Bojcm+MhS6J7DjCT/oujqPG
+	m96O/ekKCtAvEUNcit7UsyWwBzSyh43PY+mGN+3OkCWDmBq49BVnl6/2XHFtcQQ=
+X-Google-Smtp-Source: AGHT+IHSKBmHrhw/AYhWM82y6sx7nEDDCK+Cj+oGMZFjhX97MXohzQV+8dJGlqZohNNB2+Ja+HNgaA==
+X-Received: by 2002:a5d:47c6:0:b0:367:2d2f:e634 with SMTP id ffacd0b85a97d-367757249a4mr5411546f8f.55.1719812522948;
+        Sun, 30 Jun 2024 22:42:02 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.137])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3675a0cd687sm9063218f8f.14.2024.06.30.22.42.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 30 Jun 2024 22:28:19 -0700 (PDT)
-Message-ID: <93a088d6-8092-43d7-953a-5374a22ac6eb@linaro.org>
-Date: Mon, 1 Jul 2024 06:28:17 +0100
+        Sun, 30 Jun 2024 22:42:02 -0700 (PDT)
+Message-ID: <9f1fa742-28c1-428a-9f85-2d3b352abb44@linaro.org>
+Date: Mon, 1 Jul 2024 07:42:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,41 +77,99 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/4] Add generic functions for accessing the SPI-NOR
- chip.
-To: Erez Geva <erezgeva@nwtime.org>, linux-mtd@lists.infradead.org,
- Pratyush Yadav <pratyush@kernel.org>, Michael Walle <mwalle@kernel.org>
-Cc: linux-kernel@vger.kernel.org, Miquel Raynal <miquel.raynal@bootlin.com>,
+Subject: Re: [PATCH] dt-bindings: intel,lgm: drop inactive maintainers from
+ intel
+To: Rob Herring <robh@kernel.org>, Chuanhua Lei <lchuanhua@maxlinear.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+ Miquel Raynal <miquel.raynal@bootlin.com>,
  Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
- devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Erez Geva <ErezGeva2@gmail.com>
-References: <20240629103914.161530-1-erezgeva@nwtime.org>
- <20240629103914.161530-2-erezgeva@nwtime.org>
+ Kishon Vijay Abraham I <kishon@kernel.org>,
+ Linus Walleij <linus.walleij@linaro.org>,
+ Rahul Tanwar <rtanwar@maxlinear.com>, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ dmaengine@vger.kernel.org, linux-leds@vger.kernel.org,
+ linux-mtd@lists.infradead.org, linux-phy@lists.infradead.org,
+ linux-gpio@vger.kernel.org
+References: <20240626101809.25227-1-krzysztof.kozlowski@linaro.org>
+ <20240628215350.GA267712-robh@kernel.org>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-In-Reply-To: <20240629103914.161530-2-erezgeva@nwtime.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240628215350.GA267712-robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-
-
-On 6/29/24 11:39 AM, Erez Geva wrote:
-> From: Erez Geva <ErezGeva2@gmail.com>
+On 28/06/2024 23:53, Rob Herring wrote:
+> On Wed, Jun 26, 2024 at 12:18:09PM +0200, Krzysztof Kozlowski wrote:
+>> Emails to chuanhua.lei@intel.com, mallikarjunax.reddy@intel.com,
+>> yixin.zhu@intel.com and vadivel.muruganx.ramuthevar@linux.intel.com
+>> bounce with the same message:
+>>
+>>   Your message wasn't delivered to Yixin.zhu@intel.com because the
+>>   address couldn't be found or is unable to receive email.
+>>
+>> The Intel LGM SoC was apparently part of Home Gateway division which was
+>> acquired by Maxlinear, so switch maintenance of affected bindings to the
+>> only known non-bouncing Maxlinear address: Rahul Tanwar.
+>>
+>> I do not know if Rahul Tanwar or Maxlinear want to maintain the
+>> bindings, so regardless of this change we should consider bindings
+>> abandoned and probably drop soon.
 > 
-> Functions:
-> 
->  - Send an opcode
-> 
->  - Read a register
-> 
->  - Write a register
+> No bounces on this? According to this[1], Rahul is not with Maxlinear 
+> any more. Maybe an address in that thread will work. But seems like it 
+> is abandoned.
 
+I did not get any bounces, maybe there is some sort of redirection
+within Maxlinear. I can change the maintainer to Chuanhua Lei.
 
-Don't use the commit message as a continuation of the subject. Describe
-your changes. Convince the reviewer why you need to change core methods
-and that it makes sense for them to read past the first paragraph.
+Best regards,
+Krzysztof
 
-You ignored the feedback from v1, I'm marking this as changes requested
-and ignore the rest.
 
