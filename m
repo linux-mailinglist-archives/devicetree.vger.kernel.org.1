@@ -1,179 +1,117 @@
-Return-Path: <devicetree+bounces-81865-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81866-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F0D691DBFE
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 12:03:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D759A91DC1A
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 12:10:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 18D742810C5
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 10:03:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 138A51C20F68
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 10:10:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 084A386252;
-	Mon,  1 Jul 2024 10:03:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE893127B62;
+	Mon,  1 Jul 2024 10:10:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FwpS5InK"
+	dkim=pass (1024-bit key) header.d=riseup.net header.i=@riseup.net header.b="AdzFlVXn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx1.riseup.net (mx1.riseup.net [198.252.153.129])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D25FA84D13;
-	Mon,  1 Jul 2024 10:03:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0453E38397;
+	Mon,  1 Jul 2024 10:10:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.252.153.129
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719828188; cv=none; b=Nm5J5SVSifs07X77a4zhAWaXqYE/dF5js778Xeag57z8THH7OPqpgYKX6MUZ5vTkiWZ9PiekhOcwXq9VhuVNZaKuLg+4xXFg6g8Z2WxgszS02rSPNQVGzLgcxCXqy3BTM+2vUmO+bnu0l9c1VyR3m96wXmXaXgf264z++dQpRl0=
+	t=1719828623; cv=none; b=PBZVR5Nf7JCWPgfaD0pYmRhnCKojxcMKMlc3Gv4nEQGbA/E7OUwDNMPJBwfxq7NKGG1622Fv/Pe+6JJU6HMsWl+EZOESNuZCjb/f2W+jU+KS85MDpREnpSf5R1zbcX1sFwXxbT4fqFfY8Ej/fFP3mWTU2nwdGIDfAQv3lSr6zbc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719828188; c=relaxed/simple;
-	bh=rj2CuGZSuorKkqrmqjXwI7PvtbVRpe9ajyOq8suI5Co=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GUpvNP8dpSKo2SM0yoI2Rde3p6gp97vj0p0EmrEbVhCjhNwSndjBUs9aq7E1bpnCtP+ttsH9SGHeHX/c1/6r0PZpQHdMtVMki2rHWhBbkd6LuyrCYuJxoevNOhgfJhUZA5TkYAHDb/fgBgXd3qoEQpJE2MzI+bR1irVwAzO2224=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FwpS5InK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26FB5C116B1;
-	Mon,  1 Jul 2024 10:03:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719828188;
-	bh=rj2CuGZSuorKkqrmqjXwI7PvtbVRpe9ajyOq8suI5Co=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FwpS5InKB0WHeJvDl00B4mDyVpgtWRPch13ta7HsTvTyk2qU9CAm4ahmD+wsEctHc
-	 MYCrGVTnrBjo6jvt5GBxaYTB8FxHv2menHZexYacTgYMG0C30VswIdbnWpOZXlztTt
-	 OjJMVYyPKMojWhQ9TYdzm6UgIXkrrfyfGqTtDugOOatUeh4SBaU8qxzDDxX4L42Pnt
-	 98wTdukcSrqmbqnb6HUV5DX3aayTslixUC5ntsCv8Zos0pLeELIO1eytxsJakjk/Zs
-	 E4C/MMklfw5skb2y++k8fvOSz/31hK7nhwNQK6IAM8iTnJREQpK3R8arWmCXukuPdC
-	 4l53aEE/qNQBg==
-Date: Mon, 1 Jul 2024 11:03:03 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Manikandan Muralidharan <manikandan.m@microchip.com>
-Cc: megi@xff.cz, javierm@redhat.com, neil.armstrong@linaro.org,
-	quic_jesszhan@quicinc.com, sam@ravnborg.org, airlied@gmail.com,
-	daniel@ffwll.ch, maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org, tzimmermann@suse.de, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: display: himax-hx8394: Add Microchip
- AC40T08A MIPI Display panel
-Message-ID: <20240701-preset-shredding-409ef0d80ca4@spud>
-References: <20240701085837.50855-1-manikandan.m@microchip.com>
- <20240701085837.50855-2-manikandan.m@microchip.com>
+	s=arc-20240116; t=1719828623; c=relaxed/simple;
+	bh=3RsDpfCoTAZ3q1FNMCir3GnLeMMkBWdgV78aDzg85+A=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=bB/5Ool42tUYVeRICnAf/6MM6gTrMuEsrxGlvAXmYZLLfvD2F2MWmnfFZDTYJGkUyoQ1Ed0boYCCrtnIyOLHrICVUQu3a4qoYJephnmFhlotXGiL61xQI8e0MmmVqm0kT2RK1DSea17FXtF9xNY2aiYanYfoNVjV8uQrLxwT4PA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riseup.net; spf=pass smtp.mailfrom=riseup.net; dkim=pass (1024-bit key) header.d=riseup.net header.i=@riseup.net header.b=AdzFlVXn; arc=none smtp.client-ip=198.252.153.129
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riseup.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riseup.net
+Received: from mx0.riseup.net (mx0-pn.riseup.net [10.0.1.42])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx1.riseup.net (Postfix) with ESMTPS id 4WCMHC0fCCzDqh4;
+	Mon,  1 Jul 2024 10:10:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=riseup.net; s=squak;
+	t=1719828615; bh=3RsDpfCoTAZ3q1FNMCir3GnLeMMkBWdgV78aDzg85+A=;
+	h=From:Date:Subject:To:Cc:From;
+	b=AdzFlVXnCppvzWVbrzh//iVrRDRZSf40pXrYiwxVDwzhCAxHtWvldkLicD1ixBpV+
+	 Eta5GCfLmvF2ZqO60c6WNwnu2ZYNmaSkBR5ATIAAX6/3W9QqXG+UANPG9QJs2Qh4jS
+	 Pg1NsCmOqNVkhISHTzem7/LCtNO4XJ6lxnrdGsXY=
+Received: from fews01-sea.riseup.net (fews01-sea-pn.riseup.net [10.0.1.109])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx0.riseup.net (Postfix) with ESMTPS id 4WCMH35p0Jz9vXW;
+	Mon,  1 Jul 2024 10:10:07 +0000 (UTC)
+X-Riseup-User-ID: 1D35BC222651F46F43E4F43BC3D5A4A6C635349B67A1625C0F0EC58AC523AE47
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	 by fews01-sea.riseup.net (Postfix) with ESMTPSA id 4WCMGn5hsDzJrqG;
+	Mon,  1 Jul 2024 10:09:53 +0000 (UTC)
+From: Dang Huynh <danct12@riseup.net>
+Date: Mon, 01 Jul 2024 17:09:42 +0700
+Subject: [PATCH] arm64: dts: qcom: qrb4210-rb2: Correct PMI632 VBUS voltage
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="zEW7h/lfGlnSjTL0"
-Content-Disposition: inline
-In-Reply-To: <20240701085837.50855-2-manikandan.m@microchip.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20240701-qrd4210rb2-vbus-volt-v1-1-5c06f8358436@riseup.net>
+X-B4-Tracking: v=1; b=H4sIAGWAgmYC/x3MQQqEMAxA0atI1gbaUKx4lcGFrVEDomPqlAHx7
+ haXb/H/BYlVOEFXXaCcJcm+Fdi6grgM28woYzGQIWe8sXjo6MgaDYQ5/BLmfT2xJfKNiz5OcYC
+ SfpUn+b/bT3/fD7xOmVpmAAAA
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+ Luca Weiss <luca.weiss@fairphone.com>, linux-arm-msm@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Dang Huynh <danct12@riseup.net>
 
+According to downstream sources, PMI632 maximum VBUS voltage is
+1 volt.
 
---zEW7h/lfGlnSjTL0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Taken from msm-4.19 (631561973a034e46ccacd0e53ef65d13a40d87a4)
+Line 685-687 in drivers/power/supply/qcom/qpnp-smb5.c
 
-On Mon, Jul 01, 2024 at 02:28:35PM +0530, Manikandan Muralidharan wrote:
-> Add compatible string for the Microchip's AC40T08A MIPI Display
-> panel.This panel uses a Himax HX8394 display controller.
-> The reset line is not populated and leads to driver probe issues,
-> thus add conditional block to narrow reset-gpio property per variant.
+Signed-off-by: Dang Huynh <danct12@riseup.net>
+---
+In previous patch series, there's a suggestion to correct
+PMI632's VBUS voltage.
 
-I really should have asked on v1, but I wasn't sure whether or not the
-optional nature of the reset-gpios was specific to your new panel so I
-held off: Is it ever the case that a reset-gpio can be provided for this
-microchip panel, or just not in the configuration you tested? If it is
-never possible, then I'd probably do...
+Unfortunately it didn't make it and probably forgotten.
+---
+ arch/arm64/boot/dts/qcom/qrb4210-rb2.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
->=20
-> Signed-off-by: Manikandan Muralidharan <manikandan.m@microchip.com>
-> ---
-> changes in v2:
-> - re-order compatible string alphabetically.
-> - Add conditional block to narrow reset-gpio property from required
-> list based on compatible string check
-> ---
->  .../bindings/display/panel/himax,hx8394.yaml    | 17 +++++++++++++----
->  1 file changed, 13 insertions(+), 4 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/display/panel/himax,hx8394=
-=2Eyaml b/Documentation/devicetree/bindings/display/panel/himax,hx8394.yaml
-> index 644387e4fb6f..75ccabff308b 100644
-> --- a/Documentation/devicetree/bindings/display/panel/himax,hx8394.yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/himax,hx8394.yaml
-> @@ -15,14 +15,12 @@ description:
->    such as the HannStar HSD060BHW4 720x1440 TFT LCD panel connected with
->    a MIPI-DSI video interface.
-> =20
-> -allOf:
-> -  - $ref: panel-common.yaml#
-> -
->  properties:
->    compatible:
->      items:
->        - enum:
->            - hannstar,hsd060bhw4
-> +          - microchip,ac40t08a-mipi-panel
->            - powkiddy,x55-panel
->        - const: himax,hx8394
-> =20
-> @@ -46,7 +44,6 @@ properties:
->  required:
->    - compatible
->    - reg
-> -  - reset-gpios
->    - backlight
->    - port
->    - vcc-supply
-> @@ -54,6 +51,18 @@ required:
-> =20
->  additionalProperties: false
-> =20
-> +allOf:
-> +  - $ref: panel-common.yaml#
-> +  - if:
-> +      not:
-> +        properties:
-> +          compatible:
-> +            enum:
-> +              - microchip,ac40t08a-mipi-panel
-> +    then:
-> +      required:
-> +        - reset-gpios
+diff --git a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
+index 1c7de7f2db79..1888d99d398b 100644
+--- a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
++++ b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
+@@ -305,7 +305,7 @@ pmi632_ss_in: endpoint {
+ 
+ &pmi632_vbus {
+ 	regulator-min-microamp = <500000>;
+-	regulator-max-microamp = <3000000>;
++	regulator-max-microamp = <1000000>;
+ 	status = "okay";
+ };
+ 
 
-  - if:
-      properties:
-        compatible:
-          const: microchip,ac40t08a-mipi-panel
-    then:
-      properties:
-        reset-gpios: false
-    else:
-      required:
-        - reset-gpios
+---
+base-commit: 642a16ca7994a50d7de85715996a8ce171a5bdfb
+change-id: 20240701-qrd4210rb2-vbus-volt-822764c7cfca
 
-Otherwise, what you have is fine.
+Best regards,
+-- 
+Dang Huynh <danct12@riseup.net>
 
-Cheers,
-Conor.
-
->  examples:
->    - |
->      #include <dt-bindings/gpio/gpio.h>
-> --=20
-> 2.25.1
->=20
-
---zEW7h/lfGlnSjTL0
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZoJ+1gAKCRB4tDGHoIJi
-0tMwAP0RreznrdGTlsp+/TMrTBH1CLFSfccb6TiXVFKsF//otwD+L5S9KraEH2JJ
-IwJ5jYCHglQ2NnWI9qvTDAwHlg3zYgw=
-=TrUD
------END PGP SIGNATURE-----
-
---zEW7h/lfGlnSjTL0--
 
