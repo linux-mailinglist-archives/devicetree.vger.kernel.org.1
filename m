@@ -1,157 +1,127 @@
-Return-Path: <devicetree+bounces-81988-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81989-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C18491E2B4
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 16:47:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38E6991E2CC
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 16:51:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5854B284D69
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 14:47:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 69EF91C21FB8
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 14:51:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D27C16C69B;
-	Mon,  1 Jul 2024 14:47:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28B5416C869;
+	Mon,  1 Jul 2024 14:50:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FVQ2Xn9k"
+	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="c+HRf1kX";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="Sptzq4Yt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fout3-smtp.messagingengine.com (fout3-smtp.messagingengine.com [103.168.172.146])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 723241607BC;
-	Mon,  1 Jul 2024 14:47:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCAC816C862;
+	Mon,  1 Jul 2024 14:50:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.146
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719845237; cv=none; b=gLTozdTWwZHQjMGl5XSF2h+MTo4vMdlGoC4bIvIhM800jGA8i0bc9WoVVC6cWARX0MKj8zKEhzUBwhp4YbmUrg3hA2zW5dFouBxqITeEAdyxJaOvyJ5/nhIFr9m9o4TCP/Idmiy12leIYQA6ZygVItDViYnxYolQUjnjQ61/OsY=
+	t=1719845441; cv=none; b=rwMVtYUkLYLn0KhhI4JTOVwZe38BsjA0LwUqVNJJnZroEZ84gpPu70siwucwq8lTN27m3+nT3Aw+iPsV08JjobArTViLyaVoKhBr18e7zJCnQEakZoOgl6bEU4jPlK4u9nXHw1wWZeX17ZXOIotNZPwb/+n3YrUQIMWqHZIOFVQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719845237; c=relaxed/simple;
-	bh=j8XiGvWJ8XtpnCWRcFn+uOZrSEgcHJ4ERD16wxYfS5o=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lbZ8InDVB4lZGZAhEgR+t7ifDUk2xzN03AnGcfmPA8+EkDb2QEdI4v4zc7K8uaQLi92pbRNZpDgcc9IIsWDcCMQd0r17LkAWS0Nnzae9AsB6vcu/ozLu0Y3buisbZ3T8h5TTp8g1vbnq2ZhWuLp6zI+uUETVhPhc1Iirb7JIIvo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FVQ2Xn9k; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19279C116B1;
-	Mon,  1 Jul 2024 14:47:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719845237;
-	bh=j8XiGvWJ8XtpnCWRcFn+uOZrSEgcHJ4ERD16wxYfS5o=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FVQ2Xn9kH+d78Fm5CfMWf8q3qpIv2BGjxHUtI+unfUGoNgi5oahhz2O+ZLNwpsm3y
-	 7MpTgmNZBmUlogjGIBphXcbZmQB2ZSJjhRTYLQxfMMAy+oHPUtkZpL7iwOhdFfzmbK
-	 n1bCvfSRhwTMAPVusGkJ/8/kX5SjCMeUA3meUEjLau5rkkUNt30OwQ36dKpL3SYV3h
-	 26cwDjCIGZeEs6cV+8cTYJjnm4GL/LFvr0rYbiG0ncgxrfa5gok8llXvBIpXudV5dJ
-	 XVbYfrHZLx7RKIY5EHKx4ndZpCwMVfV/I1IV3z3yh0L0wkYT43a8oQMELa6i6doLuf
-	 pFngdlhYfuAtQ==
-Date: Mon, 1 Jul 2024 15:47:12 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Andrei.Simion@microchip.com
-Cc: Conor.Dooley@microchip.com, brgl@bgdev.pl, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org,
-	Nicolas.Ferre@microchip.com, alexandre.belloni@bootlin.com,
-	claudiu.beznea@tuxon.dev, arnd@arndb.de, gregkh@linuxfoundation.org,
-	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 3/3] dt-bindings: eeprom: at24: Add Microchip
- 24AA025E48/24AA025E64
-Message-ID: <20240701-majorette-briskness-696746f3fde1@spud>
-References: <20240628080146.49545-1-andrei.simion@microchip.com>
- <20240628080146.49545-4-andrei.simion@microchip.com>
- <20240628-plunder-wackiness-72b0acf3624b@wendy>
- <04278bf9-fb5f-4592-8edd-a45332fed24a@microchip.com>
+	s=arc-20240116; t=1719845441; c=relaxed/simple;
+	bh=lqNJgRZVCqett9Zk9kqGYRpCqBaUkNvDORVqzyTkXSM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Y/47a3HGSsf+mPakZn8tMPa4dG0ieTv9IzsbEJoQa2KfOb+PUJcXx2nBrD3MZoV09i5CC7fD+CRAJZ+mWhLJHNgt8ILyRzacbzWOJWkY3a8jFUQQ1FkWJjcw74Srg62gQDA/eaZa/sQ5/7X/mE/lVEGq1FWQsTPrbsC/jKIUjF4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=c+HRf1kX; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=Sptzq4Yt; arc=none smtp.client-ip=103.168.172.146
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+	by mailfout.nyi.internal (Postfix) with ESMTP id A480413801A4;
+	Mon,  1 Jul 2024 10:50:36 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute1.internal (MEProxy); Mon, 01 Jul 2024 10:50:36 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:message-id:mime-version:reply-to
+	:subject:subject:to:to; s=fm1; t=1719845436; x=1719931836; bh=4g
+	yw0bRmGJFMnwEIgYIFb+WOUbWqP8R90VEDOz0OpZQ=; b=c+HRf1kXEhNyh/R9M4
+	EgX/alPrkyAWJPIWF67Vme8j3AJTBGVv1Jw9v4TCAO0DWK3sP7U1z6LOIafuRqNH
+	FSAhRE2uKuwX/f1OGZc5zS1R8nv30PDFEkXqz5jJryFlLHawtsE2Eu5GObOK6/dY
+	TvuH8ZC9GQCVxcVwQy0i5IYz81CX0kvVHhg1ZUGTxpEGdq/rMu1XJolc7og5Jbay
+	5OxFGz5IQRxp9lNqRHd2lKOkpTKlBhL78a0PZp3YSRldMqUYB12jNuYwe0Lcz1Rd
+	MAsslSWJGcEn75Rkb4vg3pks6/VxtCpuZ4/+Pru+h9/3MB4f2P/Gs3tzkQnwUinz
+	ft6w==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:message-id:mime-version:reply-to:subject
+	:subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+	:x-sasl-enc; s=fm2; t=1719845436; x=1719931836; bh=4gyw0bRmGJFMn
+	wEIgYIFb+WOUbWqP8R90VEDOz0OpZQ=; b=Sptzq4YtojJFwybd9LqFk6iHP4oo8
+	Du2MLPJMOe4WuChT6ElUqCkt89DHNlrBxKCr/HoSJTTzxDTFdx1C1HPWN51iHvOr
+	8hfifkMuel/rC5AWxEcvPNLt6ANRJZ21AO6HVn2gy5ShR41RnJd1ogcZUmSTb7m1
+	PEUJUzAD3+8DOkF3iiAnm9eb8jm66QwFmnDu9sPNnAhir3neRHd01Zm8at2hpmtp
+	NuqidoYmfM7i8EJo3S1nfkZfelLcacfeekNY3mXBo8OSEsa6frVNoAR8JkN/uatd
+	2Qg0/4ncgggMBfb5SG0V1F7hvSK2EGnG2rqKDPI9T9ayV1wC2JD7VAEng==
+X-ME-Sender: <xms:O8KCZgNnEAMdSwjzeBjNt50RNYrdDtIKZVoJbFIwygtp-3lQmvIIlA>
+    <xme:O8KCZm-qQuOqnaaQrH5IkxxTMYvkXtlsEVRwtmDTGui0mpl4O23NeV2q612Z298r4
+    gX396AWpM0inMlQMoU>
+X-ME-Received: <xmr:O8KCZnSjNgCO9Bl55EUbyx1P5SfXiytZR9SHrB_GHD0MPBHePkW7E-0fiw4KF5R94VIojsGgSWth6PNeHVw_DmSyQQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrudefgdejlecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefhvfevufffkffogggtgfesthekredtredtjeenucfhrhhomheppfhikhhlrghs
+    ucfunpguvghrlhhunhguuceonhhikhhlrghsrdhsohguvghrlhhunhguodhrvghnvghsrg
+    hssehrrghgnhgrthgvtghhrdhsvgeqnecuggftrfgrthhtvghrnhepheduleetteekgfff
+    fedufeeuvdejiedvkefhveeifeegffehledtvdevhfefteegnecuvehluhhsthgvrhfuih
+    iivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepnhhikhhlrghsrdhsohguvghrlhhu
+    nhgusehrrghgnhgrthgvtghhrdhsvg
+X-ME-Proxy: <xmx:O8KCZos88bkW7DGJd3PkTNjYfuNqUSO2ZPFNeBZn92HfK2p1pE1bSA>
+    <xmx:O8KCZodtg37l3QQuoPhv605mv6NvVT2HWzYgEFvEeJjVeqw0gy5CVA>
+    <xmx:O8KCZs2It319L1EyD_mxWd2C3SaT3OyEeIAN8fWlu540gCBpEzZE1w>
+    <xmx:O8KCZs_-psFVXX_CkNq7BAkSddUpFpA2bNy3Hs6DNSm_gBrijFpOlQ>
+    <xmx:PMKCZmuu9wXknBBl6JfJHec7cqzyEUAoQBF3w0nY-42drUDgzJyjQv8Y>
+Feedback-ID: i80c9496c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 1 Jul 2024 10:50:35 -0400 (EDT)
+From: =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Subject: [PATCH v2 0/2] arm64: dts: renesas: Add TSN support for V4H
+Date: Mon,  1 Jul 2024 16:50:10 +0200
+Message-ID: <20240701145012.2342868-1-niklas.soderlund+renesas@ragnatech.se>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="woyu5TzAIRUeYkBV"
-Content-Disposition: inline
-In-Reply-To: <04278bf9-fb5f-4592-8edd-a45332fed24a@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
+Hello Geert,
 
---woyu5TzAIRUeYkBV
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This series describes the Ethernet TSN on V4H. The first patch adds the 
+device to the base DTSI, while the second wires it up for the White Hawk 
+Single board.
 
-On Mon, Jul 01, 2024 at 02:37:57PM +0000, Andrei.Simion@microchip.com wrote:
-> On 28.06.2024 12:09, Conor Dooley wrote:
-> > Hey,
-> >=20
-> > On Fri, Jun 28, 2024 at 11:01:46AM +0300, Andrei Simion wrote:
-> >> Add compatible for Microchip 24AA025E48/24AA025E64 EEPROMs.
-> >>
-> >> Reviewed-by: Connor Dooley <conor.dooley@microchip.com>
-> >                  ^^             ^
-> > There's no way that I provided a tag with my name spelt incorrectly
-> > given I use a macro to insert them. Please copy-paste tags or use b4
-> > to pick them up, rather than type them out yourself.
-> >=20
-> >> Signed-off-by: Andrei Simion <andrei.simion@microchip.com>
-> >> ---
-> >> v2 -> v3:
-> >> - commit subject changed to reference Microchip 24AA025E48/24AA025E64
-> >> - drop the pattern: mac02e4$ and mac02e6$ and a-z from regex
-> >> - add these two devices down at the bottom
-> >> - added Reviewed-by
-> >>
-> >> v1 -> v2:
-> >> - change pattern into "^atmel,(24(c|cs|mac)[a-z0-9]+|spd)$" to keep si=
-mpler
-> >> ---
-> >>  Documentation/devicetree/bindings/eeprom/at24.yaml | 4 ++++
-> >>  1 file changed, 4 insertions(+)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/eeprom/at24.yaml b/Docu=
-mentation/devicetree/bindings/eeprom/at24.yaml
-> >> index 3c36cd0510de..699c2bbc16f5 100644
-> >> --- a/Documentation/devicetree/bindings/eeprom/at24.yaml
-> >> +++ b/Documentation/devicetree/bindings/eeprom/at24.yaml
-> >> @@ -132,6 +132,10 @@ properties:
-> >>                - renesas,r1ex24128
-> >>                - samsung,s524ad0xd1
-> >>            - const: atmel,24c128
-> >> +      - items:
-> >> +          - const: microchip,24aa025e48
-> >> +      - items:
-> >> +          - const: microchip,24aa025e64
-> >=20
-> > I don't think this patch works, the schema has a select in it that only
-> > matches ^atmel,(24(c|cs|mac)[0-9]+|spd)$. You either need to have these
-> > fall back to an existing compatible (iff actually compatible) or else do
-> > something like:
-> > diff --git a/Documentation/devicetree/bindings/eeprom/at24.yaml b/Docum=
-entation/devicetree/bindings/eeprom/at24.yaml
-> > index 699c2bbc16f5..4d46b8c5439d 100644
-> > --- a/Documentation/devicetree/bindings/eeprom/at24.yaml
-> > +++ b/Documentation/devicetree/bindings/eeprom/at24.yaml
-> > @@ -18,7 +18,9 @@ select:
-> >    properties:
-> >      compatible:
-> >        contains:
-> > -        pattern: "^atmel,(24(c|cs|mac)[0-9]+|spd)$"
-> > +        anyOf:
-> > +          - pattern: "^atmel,(24(c|cs|mac)[0-9]+|spd)$"
-> > +          - enum: ["microchip,24aa025e48", "microchip,24aa025e64"]
->=20
-> If I use your solution (and drop both items: const) -> it is selected the=
- compatible but does not match anything.
+In v1 of this series patch 2 added an DT overlay for the White Hawk 
+Ethernet sub-board. As this is hard to test and I now have access to 
+Single board where testing is easier v2 targets the Single board. I 
+still plan to follow up with the overlay for the Ethernet sub-board in 
+the future.
 
-My intention was that you added my diff to your existing patch.
+Niklas Söderlund (2):
+  arm64: dts: renesas: r8a779g0: R-Car Ethernet TSN support
+  arm64: dts: renesas: white-hawk-single: Wire-up Ethernet TSN
 
-Thanks,
-Conor.
+ arch/arm64/boot/dts/renesas/r8a779g0.dtsi     | 14 +++++
+ .../renesas/r8a779g2-white-hawk-single.dts    | 51 +++++++++++++++++++
+ 2 files changed, 65 insertions(+)
 
---woyu5TzAIRUeYkBV
-Content-Type: application/pgp-signature; name="signature.asc"
+-- 
+2.45.2
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZoLBbwAKCRB4tDGHoIJi
-0iuxAQD3nivIzehKWwsPswITcQpTaCzYeOEfQArdjN9Yfifw5AEArpZaFKJXjqW+
-8ceF7VlRJqpYqfhZKKfZxBwFc+fQcAQ=
-=A15X
------END PGP SIGNATURE-----
-
---woyu5TzAIRUeYkBV--
 
