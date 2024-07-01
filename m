@@ -1,167 +1,142 @@
-Return-Path: <devicetree+bounces-81820-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81821-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1369391D982
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 09:57:11 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1F3E91D99E
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 10:04:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 28EDB1C215E2
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 07:57:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7EABAB234D1
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 08:04:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A27247710E;
-	Mon,  1 Jul 2024 07:57:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D6277D095;
+	Mon,  1 Jul 2024 08:04:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gdn8ECoS"
+	dkim=pass (2048-bit key) header.d=leemhuis.info header.i=@leemhuis.info header.b="gjc2k6zc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from wp530.webpack.hosteurope.de (wp530.webpack.hosteurope.de [80.237.130.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD63137142;
-	Mon,  1 Jul 2024 07:57:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF6EA61674;
+	Mon,  1 Jul 2024 08:04:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.237.130.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719820626; cv=none; b=iQqyAwaCXeCl3WNHrt6L1tksXU8syZHhEjjlqoGuw0JK8ocUOstj5mrncz+aQ+lAs2Djd1nJeBfU9kZEN+YyeaWOofUX2a79ZldUNb2EwCJCAfFXMyOvxtjjLQxQ/lU7G+NdBFPSw/BNpskvXL7MHHduYmNKELN31MFSJDTCal8=
+	t=1719821072; cv=none; b=UzokREN6i2RkNMq0xFu7MOk11hBJd8FRThKR75dr3WCmUnroRL90KojBS7TwjFbhI5R8C0VRSsdT3hF4lZzCEKVUBvG3KVziM2BKIMrWwljhABi+UtfLkJCU8NI3BUnz+nT+0fR/HQhXr2RkPrAl3SA7rJdUVNQkwpg2jo17rTA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719820626; c=relaxed/simple;
-	bh=SgRYTTInf8ZvtLqlwSdFXZS4xKvDrT2mPrGB2EWF33M=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition; b=KTAsJNrl0GVTH/MbzwiDHG1p7J7BIkKdJouH5HYqRB9RwTMoONDOxI3NzGlhMeOnYKT7vpRe+JFHOt+V8dp6KGNykNuJbCDrhXvsUncxsbAicIJUBAtf/fyEqrx9fGtbjY8XNURU8dRaGKqw7n3Ffca6cvNgHqQUsoVh3yWwuyc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gdn8ECoS; arc=none smtp.client-ip=209.85.167.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-52cdc4d221eso2890453e87.3;
-        Mon, 01 Jul 2024 00:57:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1719820623; x=1720425423; darn=vger.kernel.org;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=+05MK1kXai4oMRlN0UFzQqyVHePDjZHTYYHi6/JPEWk=;
-        b=gdn8ECoSEi42rbmkeMdT6qbIZ/2GH6Y4qnb6NePySE9t8GHh9FpLXE32ewQDAvrCjI
-         B1+l8TvEhfnrbsdgTqEHm0o361hAimpZf4GimlNJhiTAm/rHYdKg6NsLacJFRuhmNAX9
-         ByjUb79yv7UVwT2RDGb9rF/l1UcJGVu1XIn3hQQMRZP1iELUGOTx/YVMa7yLCxsi+GNP
-         jIpRlT47+FROq8uDjCyMIL1//3BOs4oFaGheDfvtTNjeb4LzjFbtcR1YLtonSSddXpMF
-         oP+5jPhrg2ZH+zzyomrGeY/TMYyAqWp9RxETBWNEpdYihP3rWVO7guBhxZgfcMGTjlEJ
-         H4Sw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719820623; x=1720425423;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+05MK1kXai4oMRlN0UFzQqyVHePDjZHTYYHi6/JPEWk=;
-        b=tl6ULhuekGGM+7ju2P4VZZlqbdDO6FkAUBPDJyo7jJhOMpdkxw8qGcs+bJwgVx1I8g
-         /XPYGAiMo2Hvwwf31RorGJNjlUFQIWmOERiAi4EXQIAA6kDcLPZHPVy7BpXweu5TZwIc
-         98qZIP8dR6m+Ugxxmxr/7m/QrKgYOjstgvuvgctqbZrtveW17ptYi0zSHo7IDsz/HkRB
-         POPucA0fnGMolY+HUCMBT3JC/IPe4aTAACKUZfxMhkvRxUuYiFhM+60XvKLZWvnDQ9bu
-         Nqnd2+yQizz5d3RrPh+7I14pL4LUGzR+vst1fCYos1T65C/tGlP5YJbIW8QrhS3S/6h2
-         dZpw==
-X-Forwarded-Encrypted: i=1; AJvYcCUVtqzybTrudCSDs9L9oHZTihEfskWHLq/LUw/gkIemJBjMyQoz/uSaQSpR/LltjsP/fgGoUBELfSoVZM71mQV5NXs1rlkkTyNMlN9GawFAb4cV+8tPwQacKQq2VSBdBX5Rvd4LolmSeoArBzXGQ4pJGvop5uqDFTN8FnTVv6IVE0UtxRZDj904
-X-Gm-Message-State: AOJu0YxbJkdxGXRkPd65booDZIEqJCGLSdRwmE5m2kbHvpB5vCd0u5hv
-	p/tpVlwa76SQMqB323yZeoHbO4un89d2TrXhbIx990+A+w74JSqy
-X-Google-Smtp-Source: AGHT+IGCVIArH6otjWMlTKGGmfEh/kav/BXrAKZti4HR6dcditB1AIJw9P/0E6YGqWLyw+7l8hOhWQ==
-X-Received: by 2002:a05:6512:480c:b0:52d:b182:9664 with SMTP id 2adb3069b0e04-52e827398c7mr2293393e87.69.1719820620280;
-        Mon, 01 Jul 2024 00:57:00 -0700 (PDT)
-Received: from fedora ([213.255.186.46])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52e7ab0ba53sm1236119e87.50.2024.07.01.00.56.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Jul 2024 00:56:59 -0700 (PDT)
-Date: Mon, 1 Jul 2024 10:56:49 +0300
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-To: Matti Vaittinen <mazziesaccount@gmail.com>,
-	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org
-Subject: [PATCH] watchdog: Add missing include for FIELD_*()
-Message-ID: <ZoJhQVF-U6sSJ_Sg@fedora>
+	s=arc-20240116; t=1719821072; c=relaxed/simple;
+	bh=Sm87+MqQP6spLgCMYnAlIdJb/hFhBSlOaGQ6P6PPV9A=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Q39CVJst5KD3VfxAm8HrKhPHpR7JEqqGuo66vOThqfiE1rmOcIDSEqA0coSDNWKYSc7TgJ1kygONGnsb0YrizcZILjK+iW66PEIpTXCHILRmn3/6cV9yttpV4+JzVdHpPm70rcO23nN1NM65XeYOECgN8fjF4Wz7CwRT/dxsLRQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=leemhuis.info; spf=pass smtp.mailfrom=leemhuis.info; dkim=pass (2048-bit key) header.d=leemhuis.info header.i=@leemhuis.info header.b=gjc2k6zc; arc=none smtp.client-ip=80.237.130.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=leemhuis.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=leemhuis.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=leemhuis.info; s=he214686; h=Content-Transfer-Encoding:Content-Type:
+	In-Reply-To:Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:From:Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:
+	Content-Type:Content-Transfer-Encoding:Content-ID:Content-Description:
+	In-Reply-To:References; bh=9/YONfSef0lT8ancw7u9V6qp8JgxuwwsqGvaUVaveMI=;
+	t=1719821070; x=1720253070; b=gjc2k6zclXmv8/lNrDLRWp0f6QV+NBUpeVrgYFlz2Ry+DmL
+	ktCVEBFUSG+HKFXj/azTX1JVtB9MbEhlvl4iibahxjm55u04OYcxOR0yT2ZU4kelbgiiD9IraMF15
+	pfB9oxYjiEMuJNv/lNNZBqTqFtJpOUCEzmq8SaT2ynsBGvanmfiYJm6BD548SSE5hidzKuBMGfFVm
+	83LBImVx2c4wi22gPm2WUp1DZHEU8Vx/aNXvwIbcZ4RLnMAqkF7YCEC3+dI+pn/S9yrPFqHYHOfGT
+	gZjt1s3rMaVpt2jK7sXyPQQiWcdMnGLYksGisXTRvBc0V3yok8pAxv85Q31wPRhw==;
+Received: from [2a02:8108:8980:2478:8cde:aa2c:f324:937e]; authenticated
+	by wp530.webpack.hosteurope.de running ExIM with esmtpsa (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
+	id 1sOC1O-0000IS-6b; Mon, 01 Jul 2024 10:04:22 +0200
+Message-ID: <130518e2-d6dd-49ed-9cc2-ca9cdec93b98@leemhuis.info>
+Date: Mon, 1 Jul 2024 10:04:21 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="w8fIcGOUVCvHByY0"
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: mt7622: fix switch probe on bananapi-r64
+To: =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+ Linux regressions mailing list <regressions@lists.linux.dev>,
+ Paolo Abeni <pabeni@redhat.com>, "David S. Miller" <davem@davemloft.net>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Jakub Kicinski <kuba@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ Daniel Golle <daniel@makrotopia.org>, frank-w@public-files.de,
+ Frank Wunderlich <linux@fw-web.de>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>
+References: <20240516204847.171029-1-linux@fw-web.de>
+ <43aacd9d-b851-4100-8ccc-878ac6ae10f8@leemhuis.info>
+ <698cf562-1ca9-4aa3-be7e-a1474b612c5b@leemhuis.info>
+ <0cba095c-3d55-416a-a7ad-b359129731cf@arinc9.com>
+ <714da201-654b-4183-8e5e-8ff0b64fe621@leemhuis.info>
+ <2cac4cf68304e81abffbd9ff0387ee100323c2b7.camel@redhat.com>
+ <b49c801c-6628-40a6-8294-0876d8871ba7@leemhuis.info>
+ <e92c3ca0-c9be-44ac-a4fc-57ca5ebedbc5@leemhuis.info>
+ <1807a142-1534-4fa4-ad4b-d1c03af014c2@arinc9.com>
+ <58d8ddea-71cc-427a-94cc-a95f6bce61d2@collabora.com>
+ <16e9c06e-9908-455d-a387-614fefe5bcf8@arinc9.com>
+ <5e87d31c-b059-4f9a-93f7-dc87465ed14a@collabora.com>
+ <4416ef22-78cc-4ce5-b61d-69ff0903811e@arinc9.com>
+ <bd6b6929-d34d-4bd5-9cb0-bc8fe850ee46@leemhuis.info>
+ <af561268-9793-4b5d-aa0f-d09698fd6fb0@arinc9.com>
+ <750a60a6-4585-4bd2-97be-cf944e51fbdb@leemhuis.info>
+ <9c498e37-df8b-469e-818a-9b1c9f2b1a3c@collabora.com>
+ <cebb10b8-b0bf-4cb7-bba4-c3f941ba2b82@leemhuis.info>
+ <1aedb1d4-8dc3-4e17-aff1-7cc417465967@arinc9.com>
+From: "Linux regression tracking (Thorsten Leemhuis)"
+ <regressions@leemhuis.info>
+Content-Language: en-US, de-DE
+Reply-To: Linux regressions mailing list <regressions@lists.linux.dev>
+In-Reply-To: <1aedb1d4-8dc3-4e17-aff1-7cc417465967@arinc9.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-bounce-key: webpack.hosteurope.de;regressions@leemhuis.info;1719821070;5ecf728d;
+X-HE-SMSGID: 1sOC1O-0000IS-6b
 
+On 01.07.24 09:44, Arınç ÜNAL wrote:
+> On 01/07/2024 09:16, Linux regression tracking (Thorsten Leemhuis) wrote:
+>> [CCing the other net maintainers]
+>>
+>> On 25.06.24 10:51, AngeloGioacchino Del Regno wrote:
+>>> Il 25/06/24 07:56, Linux regression tracking (Thorsten Leemhuis) ha
+>>> scritto:
+>>>> On 17.06.24 13:08, Arınç ÜNAL wrote:
+>>>>> On 17/06/2024 11:33, Linux regression tracking (Thorsten Leemhuis)
+>>>>> wrote:
+>>>>> [...]
+>>>> It looks more and more like we are stuck here (or was there progress
+>>>> and
+>>>> I just missed it?) while the 6.10 final is slowly getting closer.
+>>>> Hence:
+>>>>
+>>>> AngeloGioacchino, should we ask the net maintainers to revert
+>>>> 868ff5f4944aa9 ("net: dsa: mt7530-mdio: read PHY address of switch from
+>>>> device tree") for now to resolve this regression? Reminder, there is
+>>>> nothing wrong with that commit per se afaik, it just exposes a problem
+>>>> that needs to be fixed first before it can be reapplied.
+>>>
+>>> To be clear on this: I asked for the commit to be fixed such that it
+>>> guarantees
+>>> backwards compatibility with older device trees.
+>>>
+>>> If no fix comes,
+>>
+>> I haven't see any since that mail, did you? If not, I think...
+>>
+>>> then I guess that we should ask them to revert this commit
+>>> until a fix is available.
+>>
+>> ...it's time to ask them for the revert to resolve this for -rc7 (and
+>> avoid a last minute revert), or what do you think?
+> 
+> This is quite frustrating. I absolutely won't consent to a revert. [...]
 
---w8fIcGOUVCvHByY0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Reminder: try to not see a revert as a bad thing. It's just means "not
+ready yet, revert and we'll try again later" -- that's actually
+something Linus wrote just a few hours ago:
+https://lore.kernel.org/lkml/CAHk-=wgQMOscLeeA3QXOs97xOz_CTxdqJjpC20tJ-7bUdHWtSA@mail.gmail.com/
 
-The FIELD_PREP() and FIELD_GET() macros are defined in the
-linux/bitfield.h. Include this header to avoid missing the macro
-definitions.
-
-Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
-Reported-by: kernel test robot <lkp@intel.com>
-Closes: https://lore.kernel.org/oe-kbuild-all/202406300817.hcJ9VtLf-lkp@int=
-el.com/
-
----
-This patch is built on the ib-mfd-regulator-watchdog-v6.11 tag.
-These macros got included via some indirect route in my build
-config on v6.10-rc1 - but the lkp reported problem on some config.
-
-Please, let me know if this follow-up fix is Ok or if I should rather
-respin the:
-https://lore.kernel.org/all/20240627082555.GH2532839@google.com/
-with this fix. (I don't see much of potential bisecting problems if this
-fix still gets in the next release, as the watchdog code is behind a new
-Kconfig flag - but please let me know if I should re-spin whole series).
----
- drivers/watchdog/bd96801_wdt.c | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/drivers/watchdog/bd96801_wdt.c b/drivers/watchdog/bd96801_wdt.c
-index ff51f42ced2a..12b74fd2bc05 100644
---- a/drivers/watchdog/bd96801_wdt.c
-+++ b/drivers/watchdog/bd96801_wdt.c
-@@ -5,6 +5,7 @@
-  * ROHM BD96801 watchdog driver
-  */
-=20
-+#include <linux/bitfield.h>
- #include <linux/interrupt.h>
- #include <linux/kernel.h>
- #include <linux/mfd/rohm-bd96801.h>
-
-base-commit: fcf1f960a6aa45a22efd4d49114c672ed305b85f
---=20
-2.45.1
-
-
---=20
-Matti Vaittinen, Linux device drivers
-ROHM Semiconductors, Finland SWDC
-Kiviharjunlenkki 1E
-90220 OULU
-FINLAND
-
-~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
-Simon says - in Latin please.
-~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
-Thanks to Simon Glass for the translation =3D]=20
-
---w8fIcGOUVCvHByY0
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmaCYT0ACgkQeFA3/03a
-ocU7Vwf+PTfgWjQlll+7y+IpErsbcIFKJ3tTFZjAoq2QK6d7WuQnmRSQfGTfQZDl
-SQ3hq/io3RicjVha+JC5TrBsv0HGJqfdcfYQ/iS3dzSSrUSnRa+oDfGNyREm1haM
-8adxdGYw3vGJFI6uvhZyIki6XH+E43CYaKeRKBe1TKoQmA5TIRT9Xyvve9qErMq/
-AmPD6p0yWMHoNTlA6WBcIFjq1hLuexR37mbOVS0mn44r4O+nG4ZZwX/4XbK+JKby
-ya3sWG6Ou/IyO/gwszvnq7IyMY+J1dnbMQvFAJARCyr2QWnktL9NZyMjoYcxI/rq
-F9d86MJB1Ga/ik0UHTl6nifiZ48krQ==
-=Buqp
------END PGP SIGNATURE-----
-
---w8fIcGOUVCvHByY0--
+Ciao, Thorsten
 
