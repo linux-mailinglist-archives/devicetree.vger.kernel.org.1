@@ -1,157 +1,176 @@
-Return-Path: <devicetree+bounces-81859-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81860-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC30791DB82
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 11:33:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B6C891DB8F
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 11:35:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E42F61C2301D
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 09:33:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 66E2A1C2120A
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 09:35:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6947382899;
-	Mon,  1 Jul 2024 09:33:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E00282899;
+	Mon,  1 Jul 2024 09:35:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t+QxtkZR"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NC8ySdEb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A12CA35;
-	Mon,  1 Jul 2024 09:33:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EB58524C9;
+	Mon,  1 Jul 2024 09:35:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719826411; cv=none; b=DLaOHTHlqQA0JkBWwJgVEeH/tUMhY0Pvjw05tRCuJx89i5p6ZQlMob0O+LO9wCvNMXTc6SGxBgzt8zXMon3YM8vMgouMp8p4pMpHb7CGBw+H/2nPSIcVriXBFR0OA6FEO1PABrVdrgvZNTYCYkGc9ryoeJdDMFV1vJOtza2g0XE=
+	t=1719826547; cv=none; b=HIadCvsIIL93cRYXd18PCYTHYmDVIFfelOAO/oyMNhlGwdhVvmg3cG1vZshvktoqXbQSXDjIWnQn1e+5zcLcWFbA/O7oOabxcknICYnKndNIYOKDE2WJlf+o4/A+99aC/+hvEVHQnMbiZgZ9wmZViBTXB4KMyF641l/j6zpL1wA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719826411; c=relaxed/simple;
-	bh=T7OwNpTVJdPd4FTNMLYtYpQmz6nnOJiH4DAvs8geivc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hxmN2icWl6Fwk5+Mip1MTNNA1wFFRbO+Nq8qFp0NVOrk7/rZY4/fGQtBkVybed6BG1PTaqBRRNMETiGzygArmfhhhyLR6wUDSUbS6NOTHJgfvbKYfcx+/1nK0uxND2Bgav1X+8eK/n9ZZrPtH+Tl3Og4oXyxOscoAdxw/1QPLEU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t+QxtkZR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88DBDC116B1;
-	Mon,  1 Jul 2024 09:33:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719826410;
-	bh=T7OwNpTVJdPd4FTNMLYtYpQmz6nnOJiH4DAvs8geivc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=t+QxtkZRPVCQxmQJ11CacOMN/RX4fdzwnaM+PQube9n2Hb7RsEtQeYlXarbdv69Ws
-	 y8fiY0KPrf9i3CLJKPhOXXiwsrwc77JoVmZCo5KgZcgtPhqqVupOQG9lrALar27XUh
-	 WSEybY5EVZIvYj/i1GNLDCTy3oEQEHWhr7RWeITNOUP/JV39JI8muWlFiWwvPFrVQy
-	 hJctoRxVY8F6Jfn9u+GM3E7xEyvajYwHtZ31p3T3d+f7SGXnuPpGfzmoGSbJ2zw1lR
-	 D2rkn9f4360dP+F4OTlrN/4C5JDjMK0zyvH2u/OFCVfhYR8tRWaaXv1/fNXkB8lhm6
-	 u4Vimnk+1w4oA==
-Date: Mon, 1 Jul 2024 10:33:25 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Kanak Shilledar <kanakshilledar@gmail.com>
-Cc: kanakshilledar111@protonmail.com, Serge Semin <fancer.lancer@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>,
-	Fu Wei <wefu@redhat.com>, Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH] arch: riscv: thead: implement basic spi
-Message-ID: <20240701-unsnap-unhitched-a84476a719cd@spud>
-References: <20240630063845.116307-1-kanakshilledar@gmail.com>
- <20240630-generous-carnation-c534f5d84a8a@spud>
- <CAGLn_=vG09C49goRkbygZdYch8H1c_kw3p7ar9NGOrgpd0_MiA@mail.gmail.com>
+	s=arc-20240116; t=1719826547; c=relaxed/simple;
+	bh=59nWDz5KyWpQYxZk1EUqpoOhyJdMTuiAo37okGxi7JQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=r8xdIO1j6r0VeV2aoLNl0QGV72VK9/noJDuirDLyhPfKibEY5ewy+xVDi/K4OFX9XxuWWKT3+t9fXzciQd+G+tXCCCOTz9L93vRzJ0/jDwpsCFUq9WAK8Wk8t9TMeYEM1UPhbsUazximeuNcNzk3YLK9nBi8xQAejM5wB3b4U/0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NC8ySdEb; arc=none smtp.client-ip=209.85.167.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-52e8b27f493so640506e87.2;
+        Mon, 01 Jul 2024 02:35:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1719826543; x=1720431343; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=jNtVDXlUBrpuhb54W707Pwv7hKueeWy4QSQTipfsCuo=;
+        b=NC8ySdEbINopdim8LCsHMC+6sZuSZcEiJsIvxMsYxaA48jb8cX6C2OrKpwgaDCgTiw
+         /O8LB1SSHG+zXfOmd7/ku4d6wC4OFIWZp0V6HPTXC09/VdGEngT2CQgr6QUDAFwkvEsR
+         anwx4fxFJAaWAXUMGhyTEo98M/dKf6o0ALZdC/sSsIPirhA99BR/DJxyGXzV8IgCZWtq
+         Mpwv1e6odbeYrMEVGJFIY/3M/Q4RMkcQj4YN01PcvcMb+GR4EGIPlhs6gJ4H04jL8wTa
+         zCGDMl2MPms7Jdl1phQcIUzkIOc9FaQ+pxM/5RyBvpFmyeWjN84TCDn1tOdlI7cN+J3Y
+         tlmQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719826543; x=1720431343;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=jNtVDXlUBrpuhb54W707Pwv7hKueeWy4QSQTipfsCuo=;
+        b=R2goiGMfMAA6sQhAm/teST/6ICjHWlZk6zFkdPi0HHO22OEYJX87SIGnRba5F0bJAM
+         KUeDMlYM4dz8+gRRT+0AHSSqM58Nns5tnNLXG9Cwk2l+76g/1hulE2eYmkYAsdv4AngH
+         BF3P71FOJkEhcdPUUbMf5Wc4Ky69r4SjvD0ir8hjcf+Ta5Fh8kK9of4vghOkv20i4Ilk
+         4fF8zJJxtTTFIxbaTWsZs+xWX4G/ONBxUwINIhuQBEL2n2u9jjRCIQ4+T92OrphxEQkt
+         9vy+XJn+GuKgTD5PWKbxsp4uIjTTYk2WAaMRsyltvLK8zSk9OE+F9fYhG0cvsTFPYe30
+         tIKw==
+X-Forwarded-Encrypted: i=1; AJvYcCW2+GKET32uuUnU0p0BheqXwtxYb1PAJW0TJ6PNHPU1YqcmhxQxTnJknVi4/N6x9zzKYdvguHgdBQDHPaH6wItcmh2ndLQILleaUddd6UOYdus4Q0f5/HCvMPld44NiZzasItrssWjMyuj+ZS14nJTCyHwN0UR2K83fGvuDoSrTTf6085WnDCNMpjXi2V8Evqvt2DEe3CXRP4uz7KWDIRljKQ==
+X-Gm-Message-State: AOJu0YxQwAQ9frmG6WP7gt4+c/UA7o0E4qr8Gdsyo70qno211bF3ayBv
+	HZAw8m7ySBMlYv9Jr6Y3tbc6NkoIg95a2VenfC5ApohpYzFDmIuS
+X-Google-Smtp-Source: AGHT+IGTWlXt5GwVSpONKN18jUPqOio2BQyzMNx8kLyn1xpM2UpBf6ISd9dLJbwj/YGEYvPKtguBoQ==
+X-Received: by 2002:a05:6512:e93:b0:52e:7f3c:6b81 with SMTP id 2adb3069b0e04-52e82687479mr4007321e87.32.1719826543231;
+        Mon, 01 Jul 2024 02:35:43 -0700 (PDT)
+Received: from [10.10.12.27] (91-118-163-37.static.upcbusiness.at. [91.118.163.37])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a72aaf18c99sm314224466b.2.2024.07.01.02.35.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 01 Jul 2024 02:35:42 -0700 (PDT)
+Message-ID: <cffb5885-3cbc-480c-ab6d-4a442d1afb8a@gmail.com>
+Date: Mon, 1 Jul 2024 11:35:41 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="J2qMr9rpUpN31Eec"
-Content-Disposition: inline
-In-Reply-To: <CAGLn_=vG09C49goRkbygZdYch8H1c_kw3p7ar9NGOrgpd0_MiA@mail.gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/3] hwmon: (ltc2992) Use
+ fwnode_for_each_available_child_node_scoped()
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Daniel Scally <djrscally@gmail.com>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>, Jean Delvare
+ <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
+ Antoniu Miclaus <antoniu.miclaus@analog.com>, linux-acpi@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
+ Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
+References: <20240523-fwnode_for_each_available_child_node_scoped-v2-0-701f3a03f2fb@gmail.com>
+ <20240523-fwnode_for_each_available_child_node_scoped-v2-3-701f3a03f2fb@gmail.com>
+ <20240526144851.493dd3f2@jic23-huawei>
+ <3a16dc06-81df-4493-bac6-216e9c6ea16e@gmail.com>
+ <20240630124157.07bf97d9@jic23-huawei>
+Content-Language: en-US, de-AT
+From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+In-Reply-To: <20240630124157.07bf97d9@jic23-huawei>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
+On 30/06/2024 13:41, Jonathan Cameron wrote:
+> On Mon, 24 Jun 2024 23:45:42 +0200
+> Javier Carrasco <javier.carrasco.cruz@gmail.com> wrote:
+> 
+>> On 26/05/2024 15:48, Jonathan Cameron wrote:
+>>> On Thu, 23 May 2024 17:47:16 +0200
+>>> Javier Carrasco <javier.carrasco.cruz@gmail.com> wrote:
+>>>   
+>>>> The scoped version of the fwnode_for_each_available_child_node() macro
+>>>> automates object recfount decrement, avoiding possible memory leaks
+>>>> in new error paths inside the loop like it happened when
+>>>> commit '10b029020487 ("hwmon: (ltc2992) Avoid division by zero")'
+>>>> was added.
+>>>>
+>>>> The new macro removes the need to manually call fwnode_handle_put() in
+>>>> the existing error paths and in any future addition. It also removes the
+>>>> need for the current child node declaration as well, as it is internally
+>>>> declared.
+>>>>
+>>>> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+>>>> Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>  
 
---J2qMr9rpUpN31Eec
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+...
 
-On Mon, Jul 01, 2024 at 02:43:46PM +0530, Kanak Shilledar wrote:
-> On Sun, Jun 30, 2024 at 7:22=E2=80=AFPM Conor Dooley <conor@kernel.org> w=
-rote:
-> >
-> > On Sun, Jun 30, 2024 at 12:08:20PM +0530, Kanak Shilledar wrote:
-> > > implemented basic spi support for TH1520 SoC.
-> > > created a fixed clock and a simple spi0 node.
-> > > updated the matching binding to include thead,th1520-spi as compatibl=
-e.
-> > > added a spidev device in devicetree which will utilise the spi0 node.
-> > > this is usually reserved for a SPI NOR flash which is left unpopulated
-> > > underneath the carrier board. I performed a SPI self loop test using
-> > > tools/spi/spidev_test.c and tried sending `\xDE\xAD\xBE\xEF` and veri=
-fied
-> > > it is being received correctly. i updated the of_device_id struct in
-> > > drivers/spi/spi-dw-mmio.c to include "thead,th1520-spi" as the compat=
-ible.
-> > > this patch also adds basic spi support on beaglev ahead which shares =
-the
-> > > same TH1520 SoC. i have only tested on LicheePi 4A.
-> > >
-> > > Signed-off-by: Kanak Shilledar <kanakshilledar@gmail.com>
-> > > ---
-> > >  .../devicetree/bindings/spi/snps,dw-apb-ssi.yaml |  4 ++++
-> > >  .../boot/dts/thead/th1520-beaglev-ahead.dts      |  9 +++++++++
-> > >  .../boot/dts/thead/th1520-lichee-module-4a.dtsi  |  4 ++++
-> > >  .../riscv/boot/dts/thead/th1520-lichee-pi-4a.dts | 10 ++++++++++
-> > >  arch/riscv/boot/dts/thead/th1520.dtsi            | 16 ++++++++++++++=
-++
-> > >  drivers/spi/spi-dw-mmio.c                        |  1 +
-> >
-> > This needs to be 3 different patches - one for the binding, one for the
-> > driver and a final one for the dts files.
->=20
-> I will convert this into a patch set of 3 patch as you suggested.
->=20
-> > > +
-> > > +&spi0 {
-> > > +     status =3D "okay";
-> > > +     spidev@0 {
-> >
-> > "spidev" is not a type of device, the nodename should match the type.
-> >
-> > > +             compatible =3D "rohm,dh2228fv";
-> > > +             reg =3D <0>;
-> > > +             spi-max-frequency =3D <500000>;
-> > > +     };
-> > > +};
-> >
-> > I'll put money on you not having a dh2228fv on this board. Document what
-> > you actually have on it please, not what allows you to probe the spidev
-> > driver in linux.
->=20
-> Yes, you are right! Actually as per the vendor's kernel it should be a
-> "spi-nor" device from winbond.
-> I changed it to spidev for testing purposes. Shall I just leave it
-> with status =3D "okay" or add the node for
-> that spi-nor flash?
+> 
+> Straw man for people to shoot at:
+> 
+> I think where possible rely on device_for_each_child_node[_scoped]()
+> actually meaning the available nodes.  In cases where it applies that
+> is normally cleaner anyway.
+> 
+> If you find cases where there is no relevant device (I'm sure there are some)
+> just provide fwnode_for_each_available_child_node() and not the non-available
+> one.  If that means switching some drivers to use the available form as
+> part of cleanups, at that point we consider if there is a special reason
+> it actually wants the non available modes.
+> 
+> Ideally we also add documentation to say the device_for_each_child_node()
+> will (at least mostly) not consider non available nodes.  It might
+> be always, I'm still personally not sure on that!
+> 
+> Jonathan
 
-If it isn't on the board, it shouldn't be in the devicetree. Please add
-the actual device that is here instead. If there's a board with nothing
-connected, then please don't add anything.
+There are multiple cases where fwnode_for_each_available_child_node()
+seems to be used just to get a macro that explicitly guarantees node
+availability i.e. they retrieve ’fwnode’ out of ’device' by means of
+dev_fwnode() to pass it to the loop.
 
-Thanks,
-Conor.
+In those cases, device_for_each_child_node[_scoped]() could be used if
+it guarantees availability, which no one could refute so far.
 
---J2qMr9rpUpN31Eec
-Content-Type: application/pgp-signature; name="signature.asc"
+On the other hand, there are other uses that do need the fwnode_*
+variants because they iterate over nodes inside another node which is
+usually retrieved via device_get_named_child_node().
 
------BEGIN PGP SIGNATURE-----
+If there are no objections or better proposals, I will proceed as follows:
 
-iHQEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZoJ35QAKCRB4tDGHoIJi
-0j8KAP9LwCJp3Y34VPmBSkqu5OK4PNlV/u7zd7GesQ6X3g9IfAD4vxPkDRFgIr0I
-//mB3acpuMdI2ele2BVcXagmZcbKCg==
-=EgMk
------END PGP SIGNATURE-----
+1. Document that device_for_each_child_node() means availability.
+2. Use device_for_each_child_node[_scoped]() instead of the fwnode_*
+variant where it makes sense.
+3. Provide fwnode_*_scoped() macros.
+4. Use the new macros where needed.
+5. Use fwnode_for_each_available_child_node() as the default where
+unavailable nodes are not explicitly required.
 
---J2qMr9rpUpN31Eec--
+Any additional feedback, especially to clarify _availability_ in the
+device_for_each_child_node macros, or to provide a case where
+unavailable nodes must be considered (Nuno mentioned CPUs, but just as a
+vague idea) is more than welcome.
+
+Best regards,
+Javier Carrasco
+
 
