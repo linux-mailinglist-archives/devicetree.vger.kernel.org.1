@@ -1,141 +1,167 @@
-Return-Path: <devicetree+bounces-81885-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81886-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F8FF91DD67
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 13:03:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBA4591DDA5
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 13:16:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D11D5B2284E
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 11:03:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F2E2C1C2154A
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 11:16:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F6A07BB06;
-	Mon,  1 Jul 2024 11:03:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71FA1126F0A;
+	Mon,  1 Jul 2024 11:16:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NwGzwM+5"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="dFretxN3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D36652F29;
-	Mon,  1 Jul 2024 11:03:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A77651F937
+	for <devicetree@vger.kernel.org>; Mon,  1 Jul 2024 11:16:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719831822; cv=none; b=F7G7WzmlBWbPgdTr5lmFWa9s4XYnLGHKbKQTBrPfC+H0tOG/WiaA8Djo7S7uGykCS3NSwM7dtHaKlYSq5PzhfMikxMxTg03dRXb4+pjjtpFHOp5K8KY7ttino8y2hUigGYXISwAYqTUcbpgmKZnUMjds1W+EnOPk2gfKzeuZlSc=
+	t=1719832580; cv=none; b=YkdhwyOmbZw/NXjZYHM8Em7ouVHoEmXzTQig/U1VY9a0oAb/lBijLv5AimTc1VHZiE9vOJbPkugD8p9FGxlkuJh9sQQD1FYOW05Sn9GRUR1HSM6KZOUyBOY98eSfaSdF7BnjaPHJUtyjOX3EqnZpJdfGQ116W52mdybPObs0ffA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719831822; c=relaxed/simple;
-	bh=qqZmjCpo5232y3o5lsDCc1JbC2eeUqONBtr6F00VKRk=;
+	s=arc-20240116; t=1719832580; c=relaxed/simple;
+	bh=aUmHFmCj00nbSQPlvA2WR19eWFxTbT4x0o2bCJLAsMI=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=UPR57p81af7koIXK+XSKNYF8PyKTSjtDyXyriwXtMgVhmgMYqJX5dKl+M6RKUDzV7ACRfbzoaH1STj1g2K3gixkyHPbeZT1Sj1JrItokBfMnyzFv9vv0CnuXET/XZJOAcy/5Kh96U4eKaz61XouhFfRHXebneYYv7ao3Aqoe5Iw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NwGzwM+5; arc=none smtp.client-ip=209.85.218.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a732cb4ea31so327096266b.0;
-        Mon, 01 Jul 2024 04:03:40 -0700 (PDT)
+	 To:Cc:Content-Type; b=m7MVdMTgXHleInKG/r4uddQdgWWIrSE1qRPp0kg5+mbETUv0BReyeVBrc9Ly+HJe6PP0kIEVKoJ1D20UHwDN/Msh6o3W1wNBcgTK1U66n6p1kLd5Zd0QUo+qrFBCAEX1JQTaj+iXEPHc24V7+I0ODnB58YFjMbG0PVzo81vv8sg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=dFretxN3; arc=none smtp.client-ip=209.85.208.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2e72224c395so31870071fa.3
+        for <devicetree@vger.kernel.org>; Mon, 01 Jul 2024 04:16:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1719831819; x=1720436619; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=qqZmjCpo5232y3o5lsDCc1JbC2eeUqONBtr6F00VKRk=;
-        b=NwGzwM+5SPXk1gVgR1j0AT04BKexUsEtOehqoPgu7YCF6z6gDipoYMZH/2bU0mw9nE
-         uRGCMvGt0H4aEKpFrtR9b1ONFFphOh4zKenVEDBLq/JzxUcHja0nfWgG4QWYoE4PGVYB
-         Riy8c2O4i9ze7jmbzWXk62oGY/zigaIDvJBhOcQjrFogp+tZjZOq2FY8bsLyPE0x816b
-         vUNpL17xp35nU28Mvg5zSY5Y0he8NgMGe2yiHP+EOs2VqKPGgpL5/2Hck+kLH43ipL+p
-         Knkcu1tvhcctzuajySv9pyXPA88NPDWZmNYNxKBiH/ZaVl63WZKS1DoKzQo2RYsbYmKD
-         IVXQ==
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1719832577; x=1720437377; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=OiTqHtixONqyEPfUYaZyZ5XwiBvCrwsHRC/9NwSSQuk=;
+        b=dFretxN31ooV7u5zrBSu9x1RXrlgxfQqiLM+RCixX/cHpSoAPigzhQx4JM6YfXQcN7
+         RVNoCQscjLfTa2X8czESI3roBtkiX2eTSaSQg4mfhAfKBDtw98nnoJ0ix1OUF0k018q0
+         3Zhjj2RAcvozGh8FBjr2sIyPYId8xZgL5QaospRNIR5T+vMRZAwfxEIIDpNaOmdjIDgs
+         ljJ7sFWSUbEy76iRPgMpbMr+cu6XjlQdzzRaQlS9+O9fQ9F/t22CdQziBX1i4zicc/fS
+         g6IIpKcnNiJwzMY8clXNUZzY0qPUbKtwv32Is2XOYKuRcish6f+gSoYOfRME44l94Z+f
+         aWqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719831819; x=1720436619;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=qqZmjCpo5232y3o5lsDCc1JbC2eeUqONBtr6F00VKRk=;
-        b=jHrU+WgpEDq6WvecPV+RT3rPJ4OC3ZJTiqgO9YOyVkaLm9tcUW4YxVUoROeoeOIyW+
-         5fTHfS9AZdOFE5x/o1alQeUYhi8B7r8y0RxdVpujKLiNuYybCuujFcMK+TU5/zNUr84/
-         ThKPa/3Sb5Ojq3b5TeL0FUEDjb57q7+mqkpSNxceX2ympotDC72RsdD2C1uJl/0w/4gJ
-         V8RbkqQ69osUdqEdkRLDOcUeg3DbNHvyvs4inzMS/teN5PAgGoIqWWLKzydiKAvGmlOt
-         67GmK+Jl/FbWxCnrHEi0eys2dPgkwVdW1/NSVed9ubERvo7vUJvcZpvOMjPuhf96MtO3
-         5LSQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXSKhM8MNCwh8Ka/BfHpRHatHodkdlghuI6EjAdqcYHOkFHx1k/qXBgVnIiFgNjPXS7O8aPOyScb8oZrziU1hD2hVqtCP5/m1xV8k5DQtItFtF1I9bN/nylENZWhQwHlOp/hCfM+CaGHw==
-X-Gm-Message-State: AOJu0YyQqEAj1norUeyHbBGVxqSt0dp7IY3sOdLT0EEk8Q3koKSE83bn
-	HeUuoiHwJC/3paIRX5nbU5azrnvac43JRjTEjCwwmZxvTn3AAsLYUCpwyogDNVP/Ps4bDTvFI05
-	WPgeEnklSYndwWMWsJkC4fZqZlg==
-X-Google-Smtp-Source: AGHT+IHOLmypry9Z0LFXcuZ6zHoIhxdWJqXsqXi74RhD63ls/P3HArXrSTuTghZhvH07hjRgqQc9cqnm0cTt631Q4fs=
-X-Received: by 2002:a17:906:154c:b0:a72:7bc0:efed with SMTP id
- a640c23a62f3a-a751388f6dbmr448175066b.13.1719831819095; Mon, 01 Jul 2024
- 04:03:39 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1719832577; x=1720437377;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=OiTqHtixONqyEPfUYaZyZ5XwiBvCrwsHRC/9NwSSQuk=;
+        b=SCLUYTmEcSSA212HRVjKD/DUuGbBOy/LQb/PUmZGDpMJAqLCJ455o0HlQdp47KBXeG
+         K+KUO5sFBftz2z278G6udwePLNUxY2eOLP/ObzViFsTCQyueXzgvUdb+AdL0XJX4k+U9
+         +nbCp6aIu/O0nTt8Y7Dq/OI/VfFaRywsIgVoabOdZZwZtRIj7OpRgRF+OMHmGp3DrXrj
+         N0FZzzJCexn5mgOoTnzZg7s1COi7ezi3Ee3HEaKkXBphva/ZTkQwUX12MEbWGLlfO3il
+         JTeQNPIdJKnwn9TT6h7cylZKMwoUFPn4mcjmOhXvac7tPgl/wo3XdBh/hRZvp92sZi14
+         V/EQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUOWNM/INytIkR7399Uhq/CaDY9chYXGso23etJ9W2r8KWDl+HHSqO8iXEALBLIbbllke8/GEAg3jVFBmDISJuZz5WFuljwSG9AoQ==
+X-Gm-Message-State: AOJu0YxW21jH/MDj+oj1S/i9jSPHOdb1ywWoZJuS8oqDlY5osF5oV+4k
+	7rzy9NI/W0YV5M4hUYTHGuu9EjfWtpr389FfGzD2KKOOmyw5DbZa5FiACEiULCjanUobE6upYvm
+	d7mSVSEJm4GwfJ6Eqdp5iogiqqKutAd9nRAP86p2XQHjNOwFWphc=
+X-Google-Smtp-Source: AGHT+IFZQjK7geifJ09MRCpbq8brbTyrKcPuKgZAiXAm/M2ljIsoMT+3i7x1VgQPpeH0MNSsnPaG1VF6VOFIScHpZIQ=
+X-Received: by 2002:a05:651c:1033:b0:2ec:5488:ccaf with SMTP id
+ 38308e7fff4ca-2ee5e6bc337mr36386171fa.35.1719832576733; Mon, 01 Jul 2024
+ 04:16:16 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240629103914.161530-1-erezgeva@nwtime.org> <20240629103914.161530-4-erezgeva@nwtime.org>
- <1c457520-07b7-4bde-b040-e8bca959a4f5@linaro.org> <CANeKEMOODBNZA6efh0E0Ga_KaVs5Y3WLcUftRhNwYHhnXO=GNw@mail.gmail.com>
- <CANeKEMO42rJt5Ob4_HDcZ3eEMvuMOPvRaFaLwL8SA65NtxSV7A@mail.gmail.com>
- <1d56c3b2-7adf-45b9-a509-956340f3f17b@linaro.org> <04f5162d-8a95-45ce-a891-3f711b27a469@linaro.org>
-In-Reply-To: <04f5162d-8a95-45ce-a891-3f711b27a469@linaro.org>
-From: Erez <erezgeva2@gmail.com>
-Date: Mon, 1 Jul 2024 13:03:01 +0200
-Message-ID: <CANeKEMPAng8K1Gbab-MXP0KodS=r1Bzstsvg4zadWdu1O7wqWg@mail.gmail.com>
-Subject: Re: [PATCH v2 3/4] dt-bindings: mtd: macronix,mx25l12833f: add
- SPI-NOR chip
-To: Tudor Ambarus <tudor.ambarus@linaro.org>
-Cc: Esben Haabendal <esben@geanix.com>, Erez Geva <erezgeva@nwtime.org>, linux-mtd@lists.infradead.org, 
-	Pratyush Yadav <pratyush@kernel.org>, Michael Walle <mwalle@kernel.org>, linux-kernel@vger.kernel.org, 
-	Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+References: <20240628080146.49545-1-andrei.simion@microchip.com>
+ <20240628080146.49545-2-andrei.simion@microchip.com> <CAMRc=MeJyByMvcFT2aJDK87bz4=+UXEuMtQ4G4MZUAUt39SS1Q@mail.gmail.com>
+ <67d3646f-1b84-4d2d-9e36-be898f13be90@microchip.com> <CAMRc=MeJM4LmczCbZ8bKytLZKY_mP=Q8eaUprLMmO8BYHecStw@mail.gmail.com>
+ <c1b53308-d1d5-412b-9558-9f40dd237397@microchip.com> <CAMRc=Mewx0NAdFBX6hpes_oa62M_Jp=LtzAPK73tZv+tKxnScA@mail.gmail.com>
+ <dbba7a80-dc91-4685-bb62-34503eed1a02@microchip.com>
+In-Reply-To: <dbba7a80-dc91-4685-bb62-34503eed1a02@microchip.com>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Mon, 1 Jul 2024 13:16:04 +0200
+Message-ID: <CAMRc=MfiYZOzA+T6+_jZgz-=UsHxGO5vhS8zhjX2ckUf2YxG_w@mail.gmail.com>
+Subject: Re: [PATCH v3 1/3] eeprom: at24: avoid adjusting offset for
+ 24AA025E{48, 64}
+To: Andrei.Simion@microchip.com
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	Nicolas.Ferre@microchip.com, alexandre.belloni@bootlin.com, 
+	claudiu.beznea@tuxon.dev, arnd@arndb.de, gregkh@linuxfoundation.org, 
+	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	claudiu.beznea@microchip.com
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, 1 Jul 2024 at 12:23, Tudor Ambarus <tudor.ambarus@linaro.org> wrote:
+On Mon, Jul 1, 2024 at 12:20=E2=80=AFPM <Andrei.Simion@microchip.com> wrote=
+:
 >
->
->
-> On 7/1/24 11:15 AM, Tudor Ambarus wrote:
+> On 01.07.2024 11:46, Bartosz Golaszewski wrote:
+> > EXTERNAL EMAIL: Do not click links or open attachments unless you know =
+the content is safe
 > >
-> >
-> > On 7/1/24 10:46 AM, Erez wrote:
-> >> When using mx25l12805d, we do not read SFDP.
-> >> As it uses the no-SFDP flags.
-> >> When using mx25l12833f hardware with mx25l12805d driver, it did not
-> >> try to read the SFDP.
-> >> Yet mx25l12833f does have SFDP, when I remove the no-SFDP flags, the
-> >> driver fetch the SFDP.
+> > On Mon, Jul 1, 2024 at 9:23=E2=80=AFAM <Andrei.Simion@microchip.com> wr=
+ote:
 > >>
-> >> Secondly SFDP does not contain OTP information.
+> >>>>
+> >>>> For those types of eeprom 24AA025E{48, 64} adjusting offset is not r=
+equired (at24_get_offset_adj()).
+> >>>> So, indeed, it is an entanglement in logic.
+> >>>> To keep the implementation as it is:
+> >>>> adjoff (which is a flag that indicates when to use the adjusting off=
+set) needs to be 1 for old compatibles but for these new ones needs to be 0=
+.
+> >>>>
+> >>>> I think that is enough not to break the existing users. What are you=
+r thoughts?
+> >>>>
+> >>>
+> >>> Wait... is the adjoff field effectively a boolean? Why u8?
+> >>>
 > >>
-> >> mx25l12805d has two OTP regions of 128 KiB and 384 KiB (yes asymmetric).
-> >> While mx25l12833f has two OTP regions of 512 KiB.
+> >> struct at24_data contains offset_adj which will get value calling at24=
+_get_offset_adj()) if adjoff is true (1).
+> >> Yes, adjoff needs to be treated as a boolean. I will change it in the =
+next version.
 > >>
-> >> How do we handle it?
 > >
-> > You would first try to parse SFDP and initialize the flash based on
-> > SFDP. If there's no SFDP then you fallback to the flags declared at
-> > flash declaration. Esben had a try recently, see [1]. I don't know if
-> > there's any progress in that direction.
+> > No, wait. Why can't you just do:
+> >
+> > AT24_CHIP_DATA(at24_data_24aa025e48, 48 / 8, AT24_FLAG_READONLY);
+> >
+> > and avoid this whole new macro variant entirely?
 > >
 >
-> And you can then decide which OTP org to use based on whether SFDP is
-> present or not.
-
-That can work, but sound like a hack.
-Is that really that important to hack?
-Just for OTP, that very few use?
-And if in the future Macronix adds a newer one with the same JEDEC ID,
-but a different OTP size?
-Macronix does not consult with the Linux Kernel on these matters.
-
-Anyhow as I do not have the hardware anymore, I can not do more
-changes and test them.
-
-Erez
-
-
+> just AT24_CHIP_DATA(at24_data_24aa025e48, 48 / 8, AT24_FLAG_READONLY):
+> # hexdump -C /sys/bus/nvmem/devices/1-00532/cells/eui48@fa\,0
+> 00000000  ff ff ff ff ff ff                                 |......|
+> 00000006
+> # hexdump -C /sys/bus/nvmem/devices/1-00521/cells/eui48@fa\,0
+> 00000000  ff ff ff ff ff ff                                 |......|
+> 00000006
 >
-> > Also, you haven't mentioned anything about the testing. Do you have the
-> > flash?
-> >
-> > [1]
-> > https://lore.kernel.org/linux-mtd/20240603-macronix-mx25l3205d-fixups-v2-0-ff98da26835c@geanix.com/
+> with this patch (adjoff false and new macro)
+> # hexdump -C /sys/bus/nvmem/devices/1-00521/cells/eui48@fa\,0
+> 00000000  04 91 62 [the rest bytes]                                 |..b.=
+..|
+> 00000006
+> # hexdump -C /sys/bus/nvmem/devices/1-00532/cells/eui48@fa\,0
+> 00000000  04 91 62 [the rest bytes]                                 |..b.=
+.m|
+> 00000006
+> #
+>
+
+Ok, but your goal is for at24_get_offset_adj() to return 0, isn't it?
+This is what line
+
+at24->offset_adj =3D cdata->adjoff ? at24_get_offset_adj(flags, byte_len) :=
+ 0;
+
+is effectively achieving. What's the difference between this patch and
+the solution I'm proposing? Isn't the offset_adj field 0 in both
+cases? Is there any other difference I'm not seeing?
+
+Because I still think we can avoid all this churn.
+
+Bart
 
