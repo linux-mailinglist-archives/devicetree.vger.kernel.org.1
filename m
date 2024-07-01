@@ -1,202 +1,148 @@
-Return-Path: <devicetree+bounces-81770-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81771-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CE3491D584
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 02:39:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0858F91D585
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 02:39:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 30F181C204F6
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 00:39:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CB03F2811B5
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 00:39:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1240F184D;
-	Mon,  1 Jul 2024 00:39:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D8B9184D;
+	Mon,  1 Jul 2024 00:39:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="BgLGOawl"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MpEFm5ea"
 X-Original-To: devicetree@vger.kernel.org
-Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2048.outbound.protection.outlook.com [40.107.114.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com [209.85.210.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC19A20ED;
-	Mon,  1 Jul 2024 00:39:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.114.48
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719794345; cv=fail; b=AKnC1ZLyWM/yr5a0saVEeVy3iIoTbDzId9KnPAGA9RVmOAxuJ2M67TM6rRtMwmHWKdeJRLnoaVRa/hSpoyP5o0yloWV0VuxSAeifFmhJA4aHgXhaJzqYzYhNwi3EAJPlrZaDXawb5sFuPc9qRZ8WMklyQ2w3+H/OYsi6W0rhGgI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719794345; c=relaxed/simple;
-	bh=clE0PwHFfoUcMRI1Hgl6b2hwemaC25mDPCx88la+05g=;
-	h=Message-ID:From:Subject:To:In-Reply-To:References:Content-Type:
-	 Date:MIME-Version; b=k9K/QmW0I6f7wrvzo8jM6H6TuWc0fWHHcxkJw7arbFP2I8WWyFegoCP+bjuUE77GRqPoHNcrHPcLDbPfQEX04R0F6yzCI9SgDK5xnL2ObgcX3Hdf4+JT+CX6Ui4SfzOQlCe7b1Z4S8T5MuW26BFXZd47llk3vOTmqmZjVtWvBRk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b=BgLGOawl; arc=fail smtp.client-ip=40.107.114.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FcIBGiGI2gNgwb57NSg+hJkEKcuM6v20fRGu/5dmNwVnCnR4Ov7KIzv9E0RsZ8R4IgfT529lVL22DG066mo7VXR9wPsUeRDIkXBtPBZMBHpT1EJ87ovhm/LV/eQalGJQguJZHBuc/umoP1RwAxn5EShkQMazIrZfUkrN6lte2GjxUwVtLU53nrTGhKykESHg7NsCFr5lXh5n0qCULUF3X3he11XeB/6cMY6RXNNE3jzeTJ1+eFqkiiiP0ehWTyJKFj0sswuTjwFMjcREClHGs5rnAS6yLufGVKBgYEJzSq4XMpe/Vzrmnr2Dgh35ac5KQL5CJpSlVnS3a2NGCBY3pw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=AlJaWxl5sojReKBVPV/Q5RUYixCBJ/4QSDNTj7yNAkQ=;
- b=RzHSEHaGHvVmG6SuFvEy5sov3wdyPtth753LOPqGMAJNgDBovIDAjkEjPOdl6vyqADSFyXhiG6ScnPO2OogW8zjwxtAEbCG2aR7XzUbJgTt7sdWRTlCRShD8PwMmrhlQRwjSSnLtch/sQdJZkgdGMYnvU2HqptjrXmAysyZnL+tbkO2eb3dq500+mHpLqKf+e1E8OfDnWnrOVdMxtGk6zeDwRu/F/DtXWmZq0FQFX2pz4Sclo3XFOGXYnBF7DbGVS/XydDG2lUf3jTPQZ762UI1YqbmKPubkSX0ZUqhBC0KzH12IOE38X7oTZGZ46u/R5ARLQEFCPtJ/F10391qdjw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=AlJaWxl5sojReKBVPV/Q5RUYixCBJ/4QSDNTj7yNAkQ=;
- b=BgLGOawlcm8KDWuHfKB36ak3UPkF7Weg4heKm7c0WlIJlwpnUYgwbaiLS6J8R96v/knQC3ErfZrc8LSKdM/ttnXnq/dQiZn6G650i4ywT5QgSfiuiyvbvncRxujOXeMZVGO5QqVofuaQFymPmyW+ccG9nfxdE5yRg1Po8GJqYmE=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
- (2603:1096:400:3a9::11) by TYWPR01MB10788.jpnprd01.prod.outlook.com
- (2603:1096:400:2a4::5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7719.32; Mon, 1 Jul
- 2024 00:39:00 +0000
-Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
- ([fe80::c568:1028:2fd1:6e11]) by TYCPR01MB10914.jpnprd01.prod.outlook.com
- ([fe80::c568:1028:2fd1:6e11%5]) with mapi id 15.20.7719.029; Mon, 1 Jul 2024
- 00:38:59 +0000
-Message-ID: <87le2m7xp8.wl-kuninori.morimoto.gx@renesas.com>
-From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Subject: [PATCH v5 2/2] ASoC: dt-bindings: simple-audio-mux: add state-labels property
-User-Agent: Wanderlust/2.15.9 Emacs/29.3 Mule/6.0
-To: Alexandre Belloni <aleandre.belloni@bootlin.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jaroslav Kysela <perex@perex.cz>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Takashi Iwai <tiwai@suse.com>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0353A3D7A;
+	Mon,  1 Jul 2024 00:39:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.43
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1719794386; cv=none; b=QI+Vm07xYKwgE2CDURLrFeCtqig/irujEVkL2FWAg6y9LBA99QBNwKTwNSn4CIscnuM2YYKccWB2jVbtTR+iLB0TirrjCfi30aKG1nILKoTuyFk94OlAahIxKVIcFcBOF1IBNbeuPHKzH9u2on7Ug5EyTxSywNsJsJUcxFWO+uM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1719794386; c=relaxed/simple;
+	bh=hO4sfUS3CwkHNECDhfCyBYKBZxgPFN1/diebXm/FPAk=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=cwzf4updn8dMXIdBQjnC6n3CAENsDU8vKrvWuXYMzW3tHQkiyvkxXhabhNzLK4wk73G6mpM+btK228PAhAKbT/bBdk4+vRnhb0EzB+8POYLWM1tEQ5xTbCOAiNX1kuCKjoceYW6ZTT69sJvCItkH+04mvk+ODTOy0OzEJ022nh8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MpEFm5ea; arc=none smtp.client-ip=209.85.210.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ot1-f43.google.com with SMTP id 46e09a7af769-702041ba5aaso1146448a34.1;
+        Sun, 30 Jun 2024 17:39:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1719794384; x=1720399184; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=S3dntM8QcCQKAFsfsjnIQTFcpVozkZ1R9I8XEKBnf0Q=;
+        b=MpEFm5eaDWYtrjnFDlRU7fg1HuW8fOgRmyXrdMTe95Lvx7JATzCdE6rVPIun0GqF7s
+         L3//42+DCMMMLgzjooJOQHIZ1EJSrE7PskjcrE6gbnkiO8oBfSYamMLGJFULGg02hggc
+         L8+JGJDZsl2mLO/eGrIp+dUCxl+riOzt9eFJUe5Q2+FFBXQ7mMhnboqAj7EcKylayYEd
+         nmwN86gAWiAH18jV66KmZEjIJzKMF2TQyfEu3qianEqmq+kuGDP2eHEcPxORZW5kN+4u
+         B7aoAizW3mS0lnPE2RDTr4TcW6RVhGrizaYh9KsEwPtIxXR3fv/A5HF9MQ602dCm/Kks
+         PlfA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719794384; x=1720399184;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=S3dntM8QcCQKAFsfsjnIQTFcpVozkZ1R9I8XEKBnf0Q=;
+        b=L6PSd3SK9JvNeALPtml6SNdVOCBkRrXNyFuwdka/3J/dSrMYNGw1TPVT7Rdy2sVJok
+         gz5mRKmbrOtTZXpDLgECxdmoWNlt9iLatAXauWdD4SZ5vs3wRsJi1n3drSZYvvsXBF+c
+         CyXdhSFgukCMbwlkzeYGomPgyegpAJQ9dzw1zTBDzlmwVPASQo+oDwPSJnyyjqL+1toa
+         A4QeBGrxAhkY3ue8GevYpWvpF/6eJtQMQS+31IcVdvThBQSrlEFz95tEkcQUS/OsSrrl
+         tQ06sl20ykLd1Gb1Sc+npBCXAr4o2u+wHt0/y2HaT9bXqbXj+nKzG77inP+tFqvXJ1dG
+         hi0g==
+X-Forwarded-Encrypted: i=1; AJvYcCVmzSq7+6RUlc/ICqMqxYmZcfOLNzV7u7S3toTRXBl2WYLBojUJwXz80HrbQVruV0fFZGJAtJN6zcsneplbQ2FzTDwCRQbGQQ8EOuWwbk0dXFHRTua7bTJ2bsVZLLAK7NHyGy4d/xl4R7puqYQ2X7wr8ccVFIAqf0KnRFloY9QFjbzO7Q==
+X-Gm-Message-State: AOJu0YyT4rtNgGFjFZDS2oSq/iSLdZ7EkHUy+lLSt/ffS+rHEUbwZMwX
+	j3cOueHLiOULYhQK2ezR6zc6IjAHcpMAd03vXSsI2VGHAoEJaKY1
+X-Google-Smtp-Source: AGHT+IFyXgvceWGtOVGB1Z3t87Q/Y6iMoNOtb9HBnheZHY0WfpsGEL6Gf5mj/XgFOgoX9/PK+9BQIA==
+X-Received: by 2002:a05:6870:d290:b0:254:c842:46f0 with SMTP id 586e51a60fabf-25db3624640mr3987580fac.59.1719794383883;
+        Sun, 30 Jun 2024 17:39:43 -0700 (PDT)
+Received: from localhost.localdomain (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-70801e53b47sm5232022b3a.37.2024.06.30.17.39.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 30 Jun 2024 17:39:43 -0700 (PDT)
+From: Shan-Chun Hung <shanchun1218@gmail.com>
+To: ulf.hansson@linaro.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	adrian.hunter@intel.com,
+	p.zabel@pengutronix.de,
+	pbrobinson@gmail.com,
+	serghox@gmail.com,
+	mcgrof@kernel.org,
+	prabhakar.mahadev-lad.rj@bp.renesas.com,
+	forbidden405@outlook.com,
+	tmaimon77@gmail.com,
+	andy.shevchenko@gmail.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mmc@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-sound@vger.kernel.org
-In-Reply-To: <87o77i7xq6.wl-kuninori.morimoto.gx@renesas.com>
-References: <87o77i7xq6.wl-kuninori.morimoto.gx@renesas.com>
-Content-Type: text/plain; charset=US-ASCII
-Date: Mon, 1 Jul 2024 00:38:59 +0000
-X-ClientProxiedBy: TY2PR0101CA0020.apcprd01.prod.exchangelabs.com
- (2603:1096:404:92::32) To TYCPR01MB10914.jpnprd01.prod.outlook.com
- (2603:1096:400:3a9::11)
+	linux-kernel@vger.kernel.org
+Cc: ychuang3@nuvoton.com,
+	schung@nuvoton.com,
+	Shan-Chun Hung <shanchun1218@gmail.com>
+Subject: [PATCH v3 0/2] Add support for Nuvoton MA35D1 SDHCI
+Date: Mon,  1 Jul 2024 08:39:11 +0800
+Message-Id: <20240701003913.729428-1-shanchun1218@gmail.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYCPR01MB10914:EE_|TYWPR01MB10788:EE_
-X-MS-Office365-Filtering-Correlation-Id: fe7ba5b7-eb8c-49a5-41de-08dc996632c9
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|366016|376014|7416014|52116014|38350700014|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?+JEz/onquIB7V8YmFqtmuMGVT8Vm3zcQiHdfzgAbE7ghakuJR3TmydTMFevl?=
- =?us-ascii?Q?EU1sh0kLzdmvwm97/tPCK7yzstzGZErgFnlqJ8MBzW9K+iJO+/bv2LiJtFAA?=
- =?us-ascii?Q?h4viUT1o42J7ATDFd7ieHXdIBxqZnFQ6k1kYXguRAyDiDCPIptrLvVu0UbxT?=
- =?us-ascii?Q?M8x2BEL4MyIKxtas1D3auVw6QdTcUsE2pbEnL91HoXA3fo8rk9+hk5i9JOiC?=
- =?us-ascii?Q?vY7/BbGrE/DkfJYWPKB/WVYDf/75I19FkM69ah84Bu3aSacrDgtS+gQUxUrL?=
- =?us-ascii?Q?ztlIilUceZVXTTkJwRGxHOPYiHiwib8XvMQdwpLPegImB68kaE7/pzykqL0b?=
- =?us-ascii?Q?kku4aJjA5vnYUZ+q10fgKNzcQ8WX5+0CxY59bGJlBlfZKd+ws/hdyD3zOzIq?=
- =?us-ascii?Q?V3sutaj+xV0SqyZnGsS01nrd5uRHjDbmeseWwMVfQPWCgFkLqMpfhBIVIa/F?=
- =?us-ascii?Q?eABCacyI0tkMq95ZMUV95pdEX9mrAplNbnVnfZChv3g6wy97RJwhn7ccADrh?=
- =?us-ascii?Q?KoF4Esx7EntqvNPPgfsA8tDoipJX8Zn7j+YaeR71VQKzxuHw9XTAl3csQg2L?=
- =?us-ascii?Q?K2cuS5coUyvHe1u5ViIOZgBbNPfPMBGnZUgs9/+EQV2ffDixhFm2OgJ8KbSt?=
- =?us-ascii?Q?bVDwqUyWnZAfN4qkgANBkTrSb6OKsh7PP+CrNbYlP6zcdzGkzUW4KcjWdEJN?=
- =?us-ascii?Q?8erTF+b2acOE9XR3H51CGeRqgj83BPhUewkSWkx5jjMO9gMMAqixX/Cy4oTH?=
- =?us-ascii?Q?kUceqzhF3IRnwGW5vBak8GuhE4nfsCrvmFrhv3xnbqeXJLwlR+v9+m+TQ5Ju?=
- =?us-ascii?Q?mEiabHx+P24HYL3MJGiKCgpRNj9Joj+hvNzV96j2jzPSqAc70cyl100D0byw?=
- =?us-ascii?Q?DqKeVsXUBH3NKhWAv5TdIBMsw1WVb+3B86WUX3tc92XLlqs9CrNXk8RXWuVT?=
- =?us-ascii?Q?Z969rNozayCcmRNrbTTvt50UvToxYdeg4dJtZGVx1wesiyDaJG28K+ZaDAjB?=
- =?us-ascii?Q?pz6exYL9MrsctYsT83cNwirtbZMDyqXONW8UIWOak7qCTq92CH4EJfaUqkYY?=
- =?us-ascii?Q?a0G209j58WcBHLL/8HAR6IZfiG2anWTN3Lgd7gj1axDVkCiJlEVQYHcoEtFe?=
- =?us-ascii?Q?+TE9iqyFYHWnlilW6jH287fcTAKt2RlAQ/C/LduCmy4orQAuidHMKiaA/MB2?=
- =?us-ascii?Q?X1LLRhuVkv9IRavY/bsBHOmbTeKVm0hr19pPQWsufqpfwlrZJq8hNG8Z74LX?=
- =?us-ascii?Q?6/Ih9XxhaIJJI3w1+6hGZeCCnyBzWTUZ8BbYMfEtHnW/f3cX4iNMWlwL9IK5?=
- =?us-ascii?Q?KlRIFBNfkmF4YSRRT0zzoE2dCp1VaS/U3UWQzrxlhQ3+8348+/hEU6tBEYwL?=
- =?us-ascii?Q?KwMKzYKlGOyqGjERr/dVzAHSZUnSTMRqPDTChokLuJDYGKx7VPxZaOZqS2wE?=
- =?us-ascii?Q?olrD22fptLc=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB10914.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014)(52116014)(38350700014)(921020);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?94cn3TLEFLJ6whkwPWKTRB8fyWWkcJxePtOsk/9SNarslqA4BPFDV/EM9n8K?=
- =?us-ascii?Q?svocgo+kPafTaorKOMFFu/ElG4EPaaDv9kluPtdu2Sxrc2QUcD8k0EdAHkcr?=
- =?us-ascii?Q?ihW6nkE5KdpaUU7Af8G3WZOcUkv0YqxEheOnqma4l8+eM2w18ZVbtTiYd/gt?=
- =?us-ascii?Q?C7hhM2gYuPtRfyK0vPHx5pwj6naQNk0VCY7DmYPcyOzOQyS5bQAu6DMyWNby?=
- =?us-ascii?Q?BarOlh+DcL1N8wGW3I7Vwmvv09ZaB8XIp7Hebw5b4SGQgYz/WsGviph8fdLd?=
- =?us-ascii?Q?ruNecQvkio0IqD8vbksBtYjYJYCYa5XdZjXYfq1cweUi0UVcmusPN6G8OSOF?=
- =?us-ascii?Q?MoE4A0mYOvSdFoMPoujf+tj1A9Vz+R9ye/iL1IyBqOFMPJYxFKmh4RpAmNs0?=
- =?us-ascii?Q?xWyLHg4LsuRgaYR0d8ijLvUVkXGDETNWut8WmAPUFBksCMDZdn2G7x4KPP+F?=
- =?us-ascii?Q?iBBaguz4fLtyMoXf0rsM+mesa1IoasyBnsOD4jvoCqR7BK3QJZWhJU7EUCk+?=
- =?us-ascii?Q?gGNqdcaWPuzvlrpubXlDX2iBPZ602158IsF2Nhs6rwGkl+vHUL/VUKA3tCVa?=
- =?us-ascii?Q?71G1FEe+6fBAdOuwFpFfk3IVlianwMdB9o2khBxdJqmkQIMNc8MI2wpN+tbe?=
- =?us-ascii?Q?MKbEKvFrz0A5Jm8hNAx4p9Iuxlet38dVIJxqoBFX72K40h0ik8sXqUbBr07B?=
- =?us-ascii?Q?/o/rRDB5Dcwa5lpy1XonfI9ciVNjqgCJG6Uo+bX/MIzU79bI1y1QBtVBtfmn?=
- =?us-ascii?Q?/QwzGLutBOCLTih1oiGPMsGFE4e6223neiJKqsaW8cu7Sz/73f8H2iUz675o?=
- =?us-ascii?Q?Mcu4lWPMPa3HvCeOG3cCmTlQsnO5NSDYQ5tbQ7GbtPsdXicsh8vPbVHU28WL?=
- =?us-ascii?Q?NkWVI3etmqPDK0y7VtqJ6OrW3zServfvA/jqyYAj9ramBWvcruOWzHRwE+WD?=
- =?us-ascii?Q?Cwz0Ct0ZTljLPBruC2QCiZgRZtF1rpsXarRZ6IFGUUj4wftf0XDAReAv006k?=
- =?us-ascii?Q?+4QrD1PO5nMEn11/xSgnqYym4PC1M6c2McRjq/fjwLvY70hkcMOUv4QwEp9n?=
- =?us-ascii?Q?NST1QctZ9SKwvIYaaewLTBlTuaVYdXDdUnadJ0/3TIzkI/bBLQhJjBrtN2sx?=
- =?us-ascii?Q?FIfVgtLMdSp3xfrrUl0CEUSuEzKW2t2EvXabSw3PnHUBybnLjrPBP9gGuV0y?=
- =?us-ascii?Q?Mac5F/3DQzTj5YBxN73sZqVlXDJeQ3DXyGrTwxQxf5gb00RgcZm33mSiN3XH?=
- =?us-ascii?Q?OhM1lvqBk7p0WtX62EPLxpTc03ECd+jQT0PXvE19j/7qgPG1MqNnZkVOYeG4?=
- =?us-ascii?Q?wTDUonr5uLGBe/UWjQSpTSAwdPm3f/XwZngIxT6CyNP7vy3Cw2nArJevDRVu?=
- =?us-ascii?Q?9kZS80cSs0tS19TYir3kVbja+LKWmUNkxv1ii6+3jX8vkIopJ23ZBGBdOLno?=
- =?us-ascii?Q?OAIciftfX1sFKfIHim9HimcqSVeS+sRlWayZ8hcc/Ie1e9qcl1tD75DzMcLm?=
- =?us-ascii?Q?xjKshQgb7IxTLz7plJmcgUPjEit5SJixp8CtVzci3OuU49RMAYgZm8nzv5T3?=
- =?us-ascii?Q?wTxQ5OsaOWR1JcpqkL8iOQ+RlL4T9t2r73rkixKCgliKWoGCSdKczQFV6CNZ?=
- =?us-ascii?Q?uUOw/T5FUR3LEXf+NssFxQY=3D?=
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fe7ba5b7-eb8c-49a5-41de-08dc996632c9
-X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB10914.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Jul 2024 00:38:59.8918
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 7pD6CdB7tpHjEU6uoVytMCgCAruszDcJcOH28bEN0VI/BlNqrjCJRq8Y94zKQmzF5FBTyC33Y1k5D9FQ4hlTKW01ueDOBtsn82gajLLD2fov5TvINgqWrzMOQ81SoV8+
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYWPR01MB10788
+Content-Transfer-Encoding: 8bit
 
-simple-audio-mux is designed to be used generally, thus "Input 1" or
-"Input 2" are used to selecting MUX input. This numbered inputs would
-work, but might be not user friendly in some case, for example in case
-of system hardware design has some clear labels.
-Adds new "state-labels" property and enable to select MUX by own state
-names.
+This patch adds the SDHCI driver and DT binding documentation
+for the Nuvoton MA35D1 platform.
 
-Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
----
- .../devicetree/bindings/sound/simple-audio-mux.yaml         | 6 ++++++
- 1 file changed, 6 insertions(+)
+This MA35D1 SDHCI driver has been tested on the MA35D1 SOM board with
+Linux 6.10
 
-diff --git a/Documentation/devicetree/bindings/sound/simple-audio-mux.yaml b/Documentation/devicetree/bindings/sound/simple-audio-mux.yaml
-index 9f319caf3db7..194ac1d4f4f5 100644
---- a/Documentation/devicetree/bindings/sound/simple-audio-mux.yaml
-+++ b/Documentation/devicetree/bindings/sound/simple-audio-mux.yaml
-@@ -24,6 +24,11 @@ properties:
-     description: |
-       GPIOs used to select the input line.
- 
-+  state-labels:
-+    description: State of input line. default is "Input 1", "Input 2"
-+    $ref: /schemas/types.yaml#/definitions/string-array
-+    maxItems: 2
-+
-   sound-name-prefix: true
- 
- required:
-@@ -37,4 +42,5 @@ examples:
-     mux {
-         compatible = "simple-audio-mux";
-         mux-gpios = <&gpio 3 0>;
-+        state-labels = "Label_A", "Label_B";
-     };
--- 
-2.43.0
+v3:
+  - Update ma35d1 sdhci driver
+    - Fixing "Alignment" and "spaces preferred around"
+    - Fixing style for multi-line comments
+    - Fixing double call to sdhci_pltfm_free()
+
+v2:
+  - Update to nuvoton,ma35d1-sdhci.yaml
+    - Remove some redundant descriptions.
+    - Replace 'minitem' with 'maxitem' in the clock settings.
+    - Make corrections to nuvoton,sys description.
+    - Add sdhci-common.yaml.
+    - Remove '|' except where necessary to be preserved.
+    - Keeping one example is sufficient.
+    - Add regulators in the example.
+  - Update ma35d1 sdhci driver
+    - Refer to 'include what you use' to modify included header files.
+    - Replace the number 8 with sizeof(u8), and similarly for others.
+    - Use "dev" instead of "&pdev->dev".
+    - Use the min() macro to improve the code.
+    - Use dev_err_probe() instead of dev_err().
+    - Implement an error reset check mechanism.
+    - Add devm_add_action_or_reset() to help with sdhci_pltfm_free().
+    - Use devm_reset_control_get_exclusive() instead of devm_reset_control_get().
+
+Shan-Chun Hung (2):
+  dt-bindings: mmc: nuvoton,ma35d1-sdhci: Document MA35D1 SDHCI
+    controller
+  mmc: sdhci-of-ma35d1: Add Nuvoton MA35D1 SDHCI driver
+
+ .../bindings/mmc/nuvoton,ma35d1-sdhci.yaml    |  88 ++++++
+ drivers/mmc/host/Kconfig                      |  12 +
+ drivers/mmc/host/Makefile                     |   1 +
+ drivers/mmc/host/sdhci-of-ma35d1.c            | 297 ++++++++++++++++++
+ 4 files changed, 398 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mmc/nuvoton,ma35d1-sdhci.yaml
+ create mode 100644 drivers/mmc/host/sdhci-of-ma35d1.c
+
+--
+2.25.1
 
 
