@@ -1,153 +1,135 @@
-Return-Path: <devicetree+bounces-81853-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81854-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64A3B91DB32
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 11:14:08 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD5B891DB3D
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 11:15:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 185BC1F2224F
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 09:14:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 79AC5B26914
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 09:15:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2B2B84A5E;
-	Mon,  1 Jul 2024 09:14:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C1828528F;
+	Mon,  1 Jul 2024 09:14:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="J0tU8KzQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ONYCqlEh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E3EE5C614;
-	Mon,  1 Jul 2024 09:14:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 695D084FAC;
+	Mon,  1 Jul 2024 09:14:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719825241; cv=none; b=W2aK8ml/p4azJzkpVmRyUI2YVms5Yv7bISy71Ce0cIrDxR9uL7QjZ61Kp5oTnciNBUzkXfcaSa9LIoM0rE9KXn1Bw07yXdG7gDFxzwtXUmyCzBy5CnIDC/4OiYkp95W6x/iKY+puoxrqGm4Kv2rl1d3e12JLR9oxiSL33qai+hY=
+	t=1719825299; cv=none; b=nDr3LtaKNPiEFRJyTL5WDvnWrphvzXJyq6udA3A77PufQFp6v6J6fLImd0oosLWTD6kZcH7ftZQXLTqeGZd8fgvKUFhYms07b29UPArgGTuk0G2fFY7qt2ZjsNOYNiE1tvwbYd1mOPQiyPD3L6MSxA+EtIFv2s22PEUp6D696qI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719825241; c=relaxed/simple;
-	bh=5M05sXLCyxfg8FrspN+JZIvtVy+y3Gx64WOQcMp5378=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=AGCnnGEnwoPurbZ4IpobiEKwAlav0sVNNCX4s3gmyeIXKvGfvR6irqrPXS1fPZj+FsP5XAPz8fSeIRQqU93DTDq7+b6ntA+csxt31wcC/w8/VyT7siXjU83xqyy4VwHaSyu1mVrb5Jzknv9AduPobVSof1YTzAbXYpGievDsE2A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=J0tU8KzQ; arc=none smtp.client-ip=209.85.208.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-57d20d89748so3012825a12.0;
-        Mon, 01 Jul 2024 02:14:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1719825239; x=1720430039; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DxlECmQDcJb37f5C6V8ZGBnHo3bHH3o9P+OxX8YRfxo=;
-        b=J0tU8KzQS54QrnHX83Agqazn8w2xrF/vh6LXdJwXaMSrztSMlnLIBozLhMbzQeU6Fp
-         +mLdQziR/CWvnUUDEMISN5e27qS0a9G+O8mRxAPsrT0y/0e5RWGyby1HE+mqc3iJPNJ0
-         0MV4qVX8VyhV+OA/JS4PtRSKtyek8eKfVW5TE7eDj2nFXe/W+hZ+7vJj8TwW99wo7Sxs
-         MuRsCX8R8775qn5NkBhCLZ1o6kZ8cL6dxgpx6ntlIEgAm+MU6UldTKFlHDs+RIURiyag
-         /0UGr+l39zsAEuBsE8740XX8MqA00R2NxjdSdKVcewgsGVBjWqu5FgRTJTlG3N/FPwlI
-         epJw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719825239; x=1720430039;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=DxlECmQDcJb37f5C6V8ZGBnHo3bHH3o9P+OxX8YRfxo=;
-        b=pL4nj9+uf2DiGH5/TLVEN7qpFvNGzDMNdnnSAtn4GyNvGwfZxit0WlSAt5QV4ovR4y
-         WrHUmm5UgUdl/A04Bv9D0FL7QVWh1wrJAz+5CZ5T3xEPazw37HYcVMTbHDPuStaqPRM6
-         xPJZrpJDOAFqplBG+auiZxIuqZTpha41DFnvNXnSU0xsGNxbThkK04WNKPG/hmHNiics
-         wvh3W/JtbOEvlFwsMt/4/rvLHl4XYii5p8rGP4xMEpm5OjDitTfQJOI48wqVBWb6OvSb
-         FEHIRQ/zRiSyLRWK1IB+pw/6A01q6vurux7KdP6BClaDFcD9zBoJXHwv1gniBcBQmQsm
-         4u7g==
-X-Forwarded-Encrypted: i=1; AJvYcCWiYgcluNeoNj9eL6O9K2bNtxux6JJ2be89arHIt6YoGDCGIvduQ/3RS0mQ6jx5YWlrigGnE8n4RszB1rPF3sDHZuPHVnJCmH/CirTchXTWmtq4I6hVCa0XpGDuQvAmaUqFqQixzs59DwZJJ6l5W/XBDwFTobGRslN73uU1z1AXRQQn4w==
-X-Gm-Message-State: AOJu0Yx/vjFGf/jhBOyN55xkSJLPXz0Fy1746MkCXMs4BgpoEK0pKAQn
-	v87bBXYxCE+Yl61SlEmOxDi+L48ToXfLvgs2qMBIR53JVh4MgSjEdgN1wUwv3Dpm+dEwJzl3I0Q
-	2WXuSWokmwkQjl54ANw+n+3SPooc=
-X-Google-Smtp-Source: AGHT+IG4BaSbK+P09EoyYL8rR1buS3SjQd+OPB1e8j9B6v/dLubPk8we/fGolu3MGxMZLsJbPDat8V6n12a54ElCSvI=
-X-Received: by 2002:a05:6402:440a:b0:57c:b7c3:99f1 with SMTP id
- 4fb4d7f45d1cf-5879f59a549mr3114841a12.11.1719825238336; Mon, 01 Jul 2024
- 02:13:58 -0700 (PDT)
+	s=arc-20240116; t=1719825299; c=relaxed/simple;
+	bh=PgjyUSjOCZMPiGj083/oRWZ0LENV4KyCnDvRUHUEh8Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=U+Acdue6A7vvoJBE0dMGiDnDCKsSknCl8c+6HYKweVi50hHKweVyu6mlqizUW3GAaNTMwYLmYIxt2eok8WdvlDoVCLXvyG8ZaOW16SkzAhe2+nVhzEg9WJmYXql+2f91t1+ANc1Vfz4jntYPt4BydRczK1AHgAQNDmsW+G+B1zg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ONYCqlEh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F8ADC116B1;
+	Mon,  1 Jul 2024 09:14:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719825299;
+	bh=PgjyUSjOCZMPiGj083/oRWZ0LENV4KyCnDvRUHUEh8Y=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ONYCqlEhD0ZYF069dTKt02GLWB1cNqp+nORwE9TNiemhE6ThQplvk1WJE9dhIdE3r
+	 bCKtuXqMSCj501Y93cXHcRJsMp//LbIlvoGlXcSUqSHKL1mI8v9uIsLec4GphktmP4
+	 FwtHUAReKnwKCiHNA3Ykx+vwUQ0GnmXuCiIjfCPnSQEuXTHQkyY3ZojrWh0p4QVyuk
+	 55q4UDfQH8UDQdqWk1PDjxomkKzY8ASAOJLPa7Z5rAB6a7Ir9kpANjMdeB9D2Fc9Fo
+	 NZmIj7APPaXmoqrKjnWZ6buAYJab8+O7gnoUl+VvrdTR+868bzEJf6NZlrwr6ZMzMO
+	 VrvxRrgPjPuzA==
+Message-ID: <2846186f-a0e1-4cd3-85bf-f029053bf98c@kernel.org>
+Date: Mon, 1 Jul 2024 11:14:51 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240630063845.116307-1-kanakshilledar@gmail.com> <20240630-generous-carnation-c534f5d84a8a@spud>
-In-Reply-To: <20240630-generous-carnation-c534f5d84a8a@spud>
-From: Kanak Shilledar <kanakshilledar@gmail.com>
-Date: Mon, 1 Jul 2024 14:43:46 +0530
-Message-ID: <CAGLn_=vG09C49goRkbygZdYch8H1c_kw3p7ar9NGOrgpd0_MiA@mail.gmail.com>
-Subject: Re: [PATCH] arch: riscv: thead: implement basic spi
-To: Conor Dooley <conor@kernel.org>
-Cc: kanakshilledar111@protonmail.com, Serge Semin <fancer.lancer@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, linux-spi@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-riscv@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/4] Revert "dt-bindings: clock: mobileye,eyeq5-clk: add
+ bindings"
+To: =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+ =?UTF-8?Q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ Tawfik Bayouk <tawfik.bayouk@mobileye.com>
+References: <20240628-mbly-clk-v1-0-edb1e29ea4c1@bootlin.com>
+ <20240628-mbly-clk-v1-1-edb1e29ea4c1@bootlin.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240628-mbly-clk-v1-1-edb1e29ea4c1@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Sun, Jun 30, 2024 at 7:22=E2=80=AFPM Conor Dooley <conor@kernel.org> wro=
-te:
->
-> On Sun, Jun 30, 2024 at 12:08:20PM +0530, Kanak Shilledar wrote:
-> > implemented basic spi support for TH1520 SoC.
-> > created a fixed clock and a simple spi0 node.
-> > updated the matching binding to include thead,th1520-spi as compatible.
-> > added a spidev device in devicetree which will utilise the spi0 node.
-> > this is usually reserved for a SPI NOR flash which is left unpopulated
-> > underneath the carrier board. I performed a SPI self loop test using
-> > tools/spi/spidev_test.c and tried sending `\xDE\xAD\xBE\xEF` and verifi=
-ed
-> > it is being received correctly. i updated the of_device_id struct in
-> > drivers/spi/spi-dw-mmio.c to include "thead,th1520-spi" as the compatib=
-le.
-> > this patch also adds basic spi support on beaglev ahead which shares th=
-e
-> > same TH1520 SoC. i have only tested on LicheePi 4A.
-> >
-> > Signed-off-by: Kanak Shilledar <kanakshilledar@gmail.com>
-> > ---
-> >  .../devicetree/bindings/spi/snps,dw-apb-ssi.yaml |  4 ++++
-> >  .../boot/dts/thead/th1520-beaglev-ahead.dts      |  9 +++++++++
-> >  .../boot/dts/thead/th1520-lichee-module-4a.dtsi  |  4 ++++
-> >  .../riscv/boot/dts/thead/th1520-lichee-pi-4a.dts | 10 ++++++++++
-> >  arch/riscv/boot/dts/thead/th1520.dtsi            | 16 ++++++++++++++++
-> >  drivers/spi/spi-dw-mmio.c                        |  1 +
->
-> This needs to be 3 different patches - one for the binding, one for the
-> driver and a final one for the dts files.
+On 28/06/2024 18:10, Théo Lebrun wrote:
+> Switch from one sub-node per functionality in the system-controller to a
+> single node representing the entire OLB instance. This is the
+> recommended approach for controllers handling many different
+> functionalities; it is a single controller and should be represented by
+> a single devicetree node.
+> 
+> The clock bindings is removed and all properties will be described by:
+> soc/mobileye/mobileye,eyeq5-olb.yaml
+> 
+> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-I will convert this into a patch set of 3 patch as you suggested.
+This is v1, so where did this happen?
 
-> > +
-> > +&spi0 {
-> > +     status =3D "okay";
-> > +     spidev@0 {
->
-> "spidev" is not a type of device, the nodename should match the type.
->
-> > +             compatible =3D "rohm,dh2228fv";
-> > +             reg =3D <0>;
-> > +             spi-max-frequency =3D <500000>;
-> > +     };
-> > +};
->
-> I'll put money on you not having a dh2228fv on this board. Document what
-> you actually have on it please, not what allows you to probe the spidev
-> driver in linux.
 
-Yes, you are right! Actually as per the vendor's kernel it should be a
-"spi-nor" device from winbond.
-I changed it to spidev for testing purposes. Shall I just leave it
-with status =3D "okay" or add the node for
-that spi-nor flash?
 
-> Thanks,
-> Conor.
+Best regards,
+Krzysztof
 
-Thanks and Regards,
-Kanak Shilledar
 
