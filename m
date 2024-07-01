@@ -1,134 +1,126 @@
-Return-Path: <devicetree+bounces-81873-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81874-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8155091DC58
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 12:23:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7186091DC5A
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 12:24:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1370BB24FB1
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 10:23:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 24CB71F20F4D
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 10:24:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D06B12D773;
-	Mon,  1 Jul 2024 10:23:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 146E984D29;
+	Mon,  1 Jul 2024 10:23:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nKMVrknX"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="b5xSfoli"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C960812CDA8
-	for <devicetree@vger.kernel.org>; Mon,  1 Jul 2024 10:23:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6226682D9A
+	for <devicetree@vger.kernel.org>; Mon,  1 Jul 2024 10:23:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719829394; cv=none; b=H/+xgq2d79LNcORzvQLfXGwmJR1TijvVexqxhQnOdtae4LyhIOfKDigdf31bB5Gk17OGIRaFp8KDLrtVrz6jzfD1A8SGjkwFH7PQ4frKu3pviYe7eOPBNLLRaBWm+O+8AooxWxUSym+jgwIJ5F/aL4JFcab+TkMKKBpIQpapMFA=
+	t=1719829427; cv=none; b=j2ZNLlodQ7trpWhs2FNLfUlclfJ88DGc9fJrp8QkbLZl/LHWGvuxc3OQ5JaLFS16W27PHiLQqr5oo9QL6dyxsd/Ffpu40OxGFsnWWHpGbtXnA0jnAb+HWrkM9AhMK2MmaiNku/o3MmNSbTyMx8MrNZXgQE13ZCovXLMMnUlYCFQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719829394; c=relaxed/simple;
-	bh=oehHj9FkeJZ5B3gLsstjBGUSPx9PQYiE1Ctx3x47C3A=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=Q2gU2Z0A6i+92xlaSvJmvag8Si02eftkk0K5LJ0OBT2s43i1Rc4TlcCzW6WMu4ntGbJ8Ea53ODLAzrOVXJ6HlvqiU98L0/Kr0jxaj7GLNRfK7iPSCFMk2oMtHAAYVLtDGJ/9A26+ZrABGLwl1A/CuBA3f53ODRBQbMm6qb7QNwY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nKMVrknX; arc=none smtp.client-ip=209.85.128.46
+	s=arc-20240116; t=1719829427; c=relaxed/simple;
+	bh=n94gVyy849dz93qJ6lalONV+LGkG+4MFl8sfuXXQrW4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qqH7A2dw//EasD4c43ITlkSj34FDPyytrx60wNe8LVARXZZYk69y7Q6AXzlXmPri0cPiR8YPDLvTva+CVIfBZZ82CU46ZbVOToXD3Oz7ANIoXnC20E12c2o9SwH5xbKH4GvHIb/JE6fY4raqw3Gf6iisOLoau+oMwLa4K0yBtrk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=b5xSfoli; arc=none smtp.client-ip=209.85.208.182
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-4257d5fc9b7so9408115e9.2
-        for <devicetree@vger.kernel.org>; Mon, 01 Jul 2024 03:23:12 -0700 (PDT)
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2ed5ac077f5so32785981fa.1
+        for <devicetree@vger.kernel.org>; Mon, 01 Jul 2024 03:23:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719829391; x=1720434191; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=es72ued27T4MScFVaYol2Tr8ps+FK1gW8G/gs4qGvrk=;
-        b=nKMVrknXl/Fby6bCuw8EhGEeRp2wdWB6w6SHbCvl44VuPB1yLUZCTIMENS9Yg1Wq50
-         dqnBcI4OR65xyFjzL4Bzz0FG+Q0cHAYgn/lnVkPaZr7gZshCdYVdmeEMiRG9Uvsay/JE
-         p7mBGwuTOQCCFr1oSCcFyhmA09pE8iGUOfuRdphBVj32SXvjD83YQR75LsPl+IGDYrJB
-         ZG0hVhPsYRV5xb9EYavQSXMr7cs8PUTe5ysDgY5coedZutvbHbQG9wftnN0cvpSqicDK
-         BTFXGXp92vR9bg6b6j/eGJB6TLfo8WQNa6FyHCof4jsOmGl4i/+uqMXXGdto9dq6h6Ya
-         4yUQ==
+        d=linaro.org; s=google; t=1719829423; x=1720434223; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=xY8d+HAkWfCBetfPMhE7Q4IYxdRfyfvsMH6WlImrlIc=;
+        b=b5xSfoli/t4FkxfWk+Ovun11PecytVZWAraFUpc5ggY2udeexqe6f20AilnRdSSCVH
+         zRN7ol2WBLGcqiloHWtFbppnNxO4HpFcp9qX6Ugr8/BmqR7R/GYCfT8UZtKJYBz+3dMy
+         LS93EBziPZhGRQFBnSwcfnt5n+UlkubDWF53gDi4laox13P0CranUy1Bicy1GtFwlXjU
+         jLPrzB539OgFh95o3puYE9sTICk8z4SJowo1FAlCDdvreEtG0c35m/g3zZ1jX682PZB7
+         4Y+VW5PQFwGlr5pP3lJGtVNmZy/Bo+42D1ctoR32CTJolNuwXpyx2Su0jPm7KMOFUmXB
+         /ODg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719829391; x=1720434191;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=es72ued27T4MScFVaYol2Tr8ps+FK1gW8G/gs4qGvrk=;
-        b=vZWB7H/n5H1qcrgrpswoEJ9HIS/+F+YjRO/f1PvY6g/6LJuSDdH2PcFdYggcnRdQUo
-         AOAKZ0efQP4/cVBIs4tLnpC+GlXzm/6xfAdLAHljR9NiAZ9/sZOnnTJxZQkkXBZebIi9
-         z5tDMyrrhP0cKdAA1TSIVmRmFpNmu7BKHZFEvpJO6hE2DcPe1WVps8U3mKbmFfbjE9om
-         oq8A4Xdyhkh3T8YKyCB6mrLIElm/Eybv8TdrgLdJeu0fhOWZW6WaviaDij4aCx7BvQlD
-         ITaIyR6FccLwWKeGHepPOoK6zOnfk2GBh2delVKKPaay3yUuedHay3ZliIbTC+NrqqGT
-         NhbA==
-X-Forwarded-Encrypted: i=1; AJvYcCXONa9fOAA51bnPxaqzhQ7DKpls2vqPRRTv4fWH4UrD3uCrJgsshdSk8CtVja99VfKN8PibutXkW/HxaZ5cEj8UxmT2/WNq3CSTBQ==
-X-Gm-Message-State: AOJu0YzjktDvlvB/M8FCXQ5GIJ0v1Nv8VxcMtrIPVblAliIwcG8Q3/O0
-	xDulXdNIN8hHjRPn4Up7hZ+f+TGqmBHPBZqCc7Qr72kbBwJP8JruikBcZD1rAm8=
-X-Google-Smtp-Source: AGHT+IFwf8NGDtaFlS7TXsmaKZFBedPeQ9EYRZFjtGYPSpWoAoCiJI6iD0t3kI8k4Et64t0vGIvb7Q==
-X-Received: by 2002:a05:600c:4804:b0:425:7784:56e6 with SMTP id 5b1f17b1804b1-4257a007729mr43982445e9.11.1719829391130;
-        Mon, 01 Jul 2024 03:23:11 -0700 (PDT)
-Received: from [192.168.2.107] ([79.115.63.178])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4256af557fesm148418925e9.11.2024.07.01.03.23.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 01 Jul 2024 03:23:10 -0700 (PDT)
-Message-ID: <04f5162d-8a95-45ce-a891-3f711b27a469@linaro.org>
-Date: Mon, 1 Jul 2024 11:23:08 +0100
+        d=1e100.net; s=20230601; t=1719829423; x=1720434223;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=xY8d+HAkWfCBetfPMhE7Q4IYxdRfyfvsMH6WlImrlIc=;
+        b=IY/ArGoP3nUKBwq7CyDTV0H0I4goL3yIPtBFvuNSjRli6oZioaUbDEFB1P9d+OfPLW
+         H3uUK0ZzqIAPp8UgMa2ud3XdWb5HT0JE3A6BMOOmw6gRr+/vMrlMKwr4fDzA/FXWfyIQ
+         JvqCN0F+z9vITn3hWYE8ZX+ZxVbZwMvJAxz0fFDoNq3ReQ9lApmKAG31LnAlCdjwimfS
+         fXaPkcqGJ9Ej8XUC6HYS7X+cziSgGNvzr+Ezm/j0YYB/IrVZoTvF1LXsIMAKzLIDLFqs
+         XXxpwdRb3R2/LStYDLYbNyd1XvzYY4cb6qLEtYSUStzadvTVgMgSEimQRZrgDM0Y2kZs
+         VB+Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVIr5YJH/RCJ4IfgirLjxPY4mlCLbSLaFN1jKETPUq6HnY6Bb01v5GdcsVuESrK+c+Gucova437EmBlvLDzdrMTYT/3dcIJBoYBBg==
+X-Gm-Message-State: AOJu0Yw4siz75kwqmWO29tSdGBvMgYod+DbgXC+IhNJn0LcZdM5T4DYe
+	umHaSu+a7v0ClKB1EFEhQ+zSv68K3IlfZKvDfqHu3tdBCTaIO/nNeq2BiQbEVeA=
+X-Google-Smtp-Source: AGHT+IHn1x4/AXOS/KKlqIEGbYUZOI8dBCLD27ZLb+p6WIUGXcMNUx34kmR1UcblCSl1Pa/mlV2OGg==
+X-Received: by 2002:a2e:a912:0:b0:2ec:4d8d:375f with SMTP id 38308e7fff4ca-2ee5e3767fdmr37486211fa.16.1719829423583;
+        Mon, 01 Jul 2024 03:23:43 -0700 (PDT)
+Received: from myrica ([2.221.137.100])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4256b0621fesm146262315e9.24.2024.07.01.03.23.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 01 Jul 2024 03:23:42 -0700 (PDT)
+Date: Mon, 1 Jul 2024 11:24:00 +0100
+From: Jean-Philippe Brucker <jean-philippe@linaro.org>
+To: will@kernel.org, lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
+	bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org,
+	liviu.dudau@arm.com, sudeep.holla@arm.com, joro@8bytes.org
+Cc: robin.murphy@arm.com, nicolinc@nvidia.com, ketanp@nvidia.com,
+	linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	iommu@lists.linux.dev, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 0/3] Enable PCIe ATS for devicetree boot
+Message-ID: <20240701102400.GA2414@myrica>
+References: <20240607105415.2501934-2-jean-philippe@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/4] dt-bindings: mtd: macronix,mx25l12833f: add
- SPI-NOR chip
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-To: Erez <erezgeva2@gmail.com>, Esben Haabendal <esben@geanix.com>
-Cc: Erez Geva <erezgeva@nwtime.org>, linux-mtd@lists.infradead.org,
- Pratyush Yadav <pratyush@kernel.org>, Michael Walle <mwalle@kernel.org>,
- linux-kernel@vger.kernel.org, Miquel Raynal <miquel.raynal@bootlin.com>,
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
- devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-References: <20240629103914.161530-1-erezgeva@nwtime.org>
- <20240629103914.161530-4-erezgeva@nwtime.org>
- <1c457520-07b7-4bde-b040-e8bca959a4f5@linaro.org>
- <CANeKEMOODBNZA6efh0E0Ga_KaVs5Y3WLcUftRhNwYHhnXO=GNw@mail.gmail.com>
- <CANeKEMO42rJt5Ob4_HDcZ3eEMvuMOPvRaFaLwL8SA65NtxSV7A@mail.gmail.com>
- <1d56c3b2-7adf-45b9-a509-956340f3f17b@linaro.org>
-Content-Language: en-US
-In-Reply-To: <1d56c3b2-7adf-45b9-a509-956340f3f17b@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240607105415.2501934-2-jean-philippe@linaro.org>
 
+Hi Joerg,
 
+On Fri, Jun 07, 2024 at 11:54:13AM +0100, Jean-Philippe Brucker wrote:
+> Before enabling Address Translation Support (ATS) in endpoints, the OS
+> needs to confirm that the Root Complex supports it. Obtain this
+> information from the firmware description since there is no architected
+> method. ACPI provides a bit via IORT tables, so add the devicetree
+> equivalent.
+> 
+> Since v1 [1] I added the review and ack tags, thanks all. This should be
+> ready to go via the IOMMU tree.
 
-On 7/1/24 11:15 AM, Tudor Ambarus wrote:
-> 
-> 
-> On 7/1/24 10:46 AM, Erez wrote:
->> When using mx25l12805d, we do not read SFDP.
->> As it uses the no-SFDP flags.
->> When using mx25l12833f hardware with mx25l12805d driver, it did not
->> try to read the SFDP.
->> Yet mx25l12833f does have SFDP, when I remove the no-SFDP flags, the
->> driver fetch the SFDP.
->>
->> Secondly SFDP does not contain OTP information.
->>
->> mx25l12805d has two OTP regions of 128 KiB and 384 KiB (yes asymmetric).
->> While mx25l12833f has two OTP regions of 512 KiB.
->>
->> How do we handle it?
-> 
-> You would first try to parse SFDP and initialize the flash based on
-> SFDP. If there's no SFDP then you fallback to the flags declared at
-> flash declaration. Esben had a try recently, see [1]. I don't know if
-> there's any progress in that direction.
-> 
+This series enables ATS for devicetree boot, and is needed on an Nvidia
+system: https://lore.kernel.org/linux-arm-kernel/ZeJP6CwrZ2FSbTYm@Asurada-Nvidia/
 
-And you can then decide which OTP org to use based on whether SFDP is
-present or not.
+Would you mind picking it up for v6.11?
 
-> Also, you haven't mentioned anything about the testing. Do you have the
-> flash?
+Thanks,
+Jean
+
 > 
-> [1]
-> https://lore.kernel.org/linux-mtd/20240603-macronix-mx25l3205d-fixups-v2-0-ff98da26835c@geanix.com/
+> [1] https://lore.kernel.org/all/20240429113938.192706-2-jean-philippe@linaro.org/
+> 
+> Jean-Philippe Brucker (3):
+>   dt-bindings: PCI: generic: Add ats-supported property
+>   iommu/of: Support ats-supported device-tree property
+>   arm64: dts: fvp: Enable PCIe ATS for Base RevC FVP
+> 
+>  .../devicetree/bindings/pci/host-generic-pci.yaml        | 6 ++++++
+>  drivers/iommu/of_iommu.c                                 | 9 +++++++++
+>  arch/arm64/boot/dts/arm/fvp-base-revc.dts                | 1 +
+>  3 files changed, 16 insertions(+)
+> 
+> -- 
+> 2.45.2
+> 
 
