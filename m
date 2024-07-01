@@ -1,40 +1,52 @@
-Return-Path: <devicetree+bounces-81823-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81824-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1740891D9C4
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 10:15:56 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FE2A91D9C5
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 10:16:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 46A4E1C2170C
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 08:15:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CAA111F22476
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 08:16:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51412383AB;
-	Mon,  1 Jul 2024 08:15:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10EBB6E2BE;
+	Mon,  1 Jul 2024 08:16:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=arinc9.com header.i=@arinc9.com header.b="p1OdbpAW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from trabant.uid0.hu (trabant.uid0.hu [81.0.124.200])
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4DA2F9E6
-	for <devicetree@vger.kernel.org>; Mon,  1 Jul 2024 08:15:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=81.0.124.200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D926E383AB;
+	Mon,  1 Jul 2024 08:16:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719821752; cv=none; b=jqRr5jPIr2ixMo6yOq31Rht4Wu7IGEykgQhswGrRDr4Khva7W5o8HcQZulx32plOL/nZuV+8oeUha9M0XKgF9yWL1+TRJFWLs+vFLxR1x+6LmPAdNBctffgjZpe57YdXDTcx/nblS71DvMdj8rvt2eKwVgKgUks/jYvN2ay6hw4=
+	t=1719821768; cv=none; b=JZkkQQ4fkVo+3LmmN8MkuWI5Apkdc+tqk/hkanV/R/M08140T7NU60JTvP5a9QeXwimuVejhsCY+moAgkhvps5h/Ymr+MomNs3gAmoB9iviJ4FTKH/EAJ6DCVSjnG6yGp1XuaWF8wFcWPVdbhml1oSR/JE6cbOvBlX9WjzSPjPQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719821752; c=relaxed/simple;
-	bh=OsPWm1S6HB2sz+JzB9xSwr+fjB/oBfQNZ+BhqWyyqDA=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=KBVTAdIUEhlkF1cn/u3UQyH9jiNaSDo6hvh1wr5jszX5qUJ0UpAZKeiuC1PhcDSpbS582s18eZEd3eAS0X2yh17hEUOIEA7+AVcXVM0xvv6Qhv5K2kdAfVe+FsoyXl48sb0Ro7vgzGSmhxzqB85KDGoJzpDU3lK4KnUT+8qB4N8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=uid0.hu; spf=pass smtp.mailfrom=uid0.hu; arc=none smtp.client-ip=81.0.124.200
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=uid0.hu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=uid0.hu
-Received: from catv-178-48-128-215.catv.fixed.vodafone.hu ([178.48.128.215]:60170 helo=[10.1.1.1])
-	by trabant.uid0.hu with esmtpsa (Exim 4.92 #3 (Debian))
-	id 1sOCCK-0003Q4-E5
-	from <wigyori@uid0.hu>; Mon, 01 Jul 2024 10:15:42 +0200
-Message-ID: <de10d5e3-9160-4966-bba9-5893a68f0c00@uid0.hu>
-Date: Mon, 1 Jul 2024 10:15:40 +0200
+	s=arc-20240116; t=1719821768; c=relaxed/simple;
+	bh=3+Oc77rWabR7TDJw9wxWEoPyVi2WK625Uc5pLr0UM3M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Im58wU8kNogiSGNjCsp/iZ3liZlSH0sw/AJONa1u0443+H1nJomMiKJkPpGJt7hSesVFn4iqcFMRI+qkFCYjPIMaiuuJU97aFjUiJd33SvBJZxRbLfd5EiAI5+a4Rh6N4Xb0i6yNJ3F/FSZhNiCqQhS18szJSpwYv5UcCNaHpNQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arinc9.com; spf=pass smtp.mailfrom=arinc9.com; dkim=pass (2048-bit key) header.d=arinc9.com header.i=@arinc9.com header.b=p1OdbpAW; arc=none smtp.client-ip=217.70.183.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arinc9.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arinc9.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 81A171C0005;
+	Mon,  1 Jul 2024 08:15:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arinc9.com; s=gm1;
+	t=1719821757;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Cb3ioG46MVMhJrZ+bnRLqzojpFTF/kcuuAOnVgBs574=;
+	b=p1OdbpAWa55TrDe7itSf8E4cr/iKBsUNY3rqFxY+IFGRyCdwWsaCMtQJrgm0JlBhqN1aKZ
+	jnCsJRgcY0n2Fuzsg7Z+Inbwu5BolhaMKGk4U4IDL89uJ8T+qzp3TKY99vmHthy+BvMaBa
+	LxDSLHq56Ei+K2/FuU1lhYS9ve5V8ShmyuL3OLNwKfW56DV0KSgCaAgplBrKM+lo6WfWq6
+	MsJ5sKrs5ukMRpFMY2KYScoXbFhGOag6G7pcW3MqznWx78+371vX6Ek47spvyUeBxfv2AB
+	dxIEzGGcW78tiWAxdskUOI71OhGuPVqnWyCfu29tSchrBEsp1cuY0TpdmvX2PA==
+Message-ID: <aeb255ff-3755-4f76-a8f8-cda27a67f818@arinc9.com>
+Date: Mon, 1 Jul 2024 11:15:45 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -42,96 +54,92 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: Zoltan Herpai <wigyori@uid0.hu>
-Subject: Re: [PATCH 3/3] ARM: dts: marvell: add support for D-Link DNS-320L
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com,
- krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20240629113450.127561-1-wigyori@uid0.hu>
- <20240629113450.127561-3-wigyori@uid0.hu>
- <b8c1ffed-8d91-48cf-8b8c-bea4021c272b@lunn.ch>
+Subject: Re: [PATCH] arm64: dts: mt7622: fix switch probe on bananapi-r64
+To: Linux regressions mailing list <regressions@lists.linux.dev>,
+ Paolo Abeni <pabeni@redhat.com>, "David S. Miller" <davem@davemloft.net>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Jakub Kicinski <kuba@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ Daniel Golle <daniel@makrotopia.org>, frank-w@public-files.de,
+ Frank Wunderlich <linux@fw-web.de>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>
+References: <20240516204847.171029-1-linux@fw-web.de>
+ <698cf562-1ca9-4aa3-be7e-a1474b612c5b@leemhuis.info>
+ <0cba095c-3d55-416a-a7ad-b359129731cf@arinc9.com>
+ <714da201-654b-4183-8e5e-8ff0b64fe621@leemhuis.info>
+ <2cac4cf68304e81abffbd9ff0387ee100323c2b7.camel@redhat.com>
+ <b49c801c-6628-40a6-8294-0876d8871ba7@leemhuis.info>
+ <e92c3ca0-c9be-44ac-a4fc-57ca5ebedbc5@leemhuis.info>
+ <1807a142-1534-4fa4-ad4b-d1c03af014c2@arinc9.com>
+ <58d8ddea-71cc-427a-94cc-a95f6bce61d2@collabora.com>
+ <16e9c06e-9908-455d-a387-614fefe5bcf8@arinc9.com>
+ <5e87d31c-b059-4f9a-93f7-dc87465ed14a@collabora.com>
+ <4416ef22-78cc-4ce5-b61d-69ff0903811e@arinc9.com>
+ <bd6b6929-d34d-4bd5-9cb0-bc8fe850ee46@leemhuis.info>
+ <af561268-9793-4b5d-aa0f-d09698fd6fb0@arinc9.com>
+ <750a60a6-4585-4bd2-97be-cf944e51fbdb@leemhuis.info>
+ <9c498e37-df8b-469e-818a-9b1c9f2b1a3c@collabora.com>
+ <cebb10b8-b0bf-4cb7-bba4-c3f941ba2b82@leemhuis.info>
+ <1aedb1d4-8dc3-4e17-aff1-7cc417465967@arinc9.com>
+ <130518e2-d6dd-49ed-9cc2-ca9cdec93b98@leemhuis.info>
 Content-Language: en-US
-In-Reply-To: <b8c1ffed-8d91-48cf-8b8c-bea4021c272b@lunn.ch>
+From: =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+In-Reply-To: <130518e2-d6dd-49ed-9cc2-ca9cdec93b98@leemhuis.info>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: arinc.unal@arinc9.com
 
-Hi Andrew,
+On 01/07/2024 11:04, Linux regression tracking (Thorsten Leemhuis) wrote:
+> On 01.07.24 09:44, Arınç ÜNAL wrote:
+>> On 01/07/2024 09:16, Linux regression tracking (Thorsten Leemhuis) wrote:
+>>> [CCing the other net maintainers]
+>>>
+>>> On 25.06.24 10:51, AngeloGioacchino Del Regno wrote:
+>>>> Il 25/06/24 07:56, Linux regression tracking (Thorsten Leemhuis) ha
+>>>> scritto:
+>>>>> On 17.06.24 13:08, Arınç ÜNAL wrote:
+>>>>>> On 17/06/2024 11:33, Linux regression tracking (Thorsten Leemhuis)
+>>>>>> wrote:
+>>>>>> [...]
+>>>>> It looks more and more like we are stuck here (or was there progress
+>>>>> and
+>>>>> I just missed it?) while the 6.10 final is slowly getting closer.
+>>>>> Hence:
+>>>>>
+>>>>> AngeloGioacchino, should we ask the net maintainers to revert
+>>>>> 868ff5f4944aa9 ("net: dsa: mt7530-mdio: read PHY address of switch from
+>>>>> device tree") for now to resolve this regression? Reminder, there is
+>>>>> nothing wrong with that commit per se afaik, it just exposes a problem
+>>>>> that needs to be fixed first before it can be reapplied.
+>>>>
+>>>> To be clear on this: I asked for the commit to be fixed such that it
+>>>> guarantees
+>>>> backwards compatibility with older device trees.
+>>>>
+>>>> If no fix comes,
+>>>
+>>> I haven't see any since that mail, did you? If not, I think...
+>>>
+>>>> then I guess that we should ask them to revert this commit
+>>>> until a fix is available.
+>>>
+>>> ...it's time to ask them for the revert to resolve this for -rc7 (and
+>>> avoid a last minute revert), or what do you think?
+>>
+>> This is quite frustrating. I absolutely won't consent to a revert. [...]
+> 
+> Reminder: try to not see a revert as a bad thing. It's just means "not
+> ready yet, revert and we'll try again later" -- that's actually
+> something Linus wrote just a few hours ago:
+> https://lore.kernel.org/lkml/CAHk-=wgQMOscLeeA3QXOs97xOz_CTxdqJjpC20tJ-7bUdHWtSA@mail.gmail.com/
 
-On 06/29/2024 16:34, Andrew Lunn wrote:
-> It has been a long time since i reviewed a kirkwood DT
-> description. Also, best practices have changed, so the example you
-> copied is probably doing things which today would be classed as wrong.
->
->> +// SPDX-License-Identifier: GPL-2.0-or-later
-> It is typical to use a dual license now:
->
-> // SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->
-> However, if this is mostly Sunke Schluters work, you probably cannot
-> change the license without his agreement.
-That's correct, a significant portion of the DTS was taken from Sunke, 
-and there is at least one other DTS with this license, so I didn't want 
-to change this.
+Except it is ready and trying again is my responsibility, which means
+unnecessary work for me to do. I've already got a ton of things to do.
+Applying the device tree patch resolves this regression; no reverts needed.
+And then there's the patch in the works by Daniel that will address all the
+remaining cases outside of the reported regression.
 
->> +/*
->> + * Device Tree file for D-Link DNS-320L
->> + *
->> + * Copyright (C) 2024, Zoltan HERPAI<wigyori@uid0.hu>
->> + * Copyright (C) 2015, Sunke Schluters<sunke-dev@schlueters.de>
->> + *
->> + * This file is based on the works of:
->> + * - Sunke Schluters<sunke-dev@schlueters.de>
->> + *   -https://github.com/scus1/dns320l/blob/master/kernel/dts/kirkwood-dns320l.dts
->> + * - Andreas Bohler<dev@aboehler.at>:
->> + *   -http://www.aboehler.at/doku/doku.php/projects:dns320l
->> + *   -http://www.aboehler.at/hg/linux-dns320l/file/ba7a60ad7687/linux-3.12/kirkwood-dns320l.dts
->> + */
->> +
->> +/dts-v1/;
->> +
->> +#include "kirkwood.dtsi"
->> +#include "kirkwood-6281.dtsi"
->> +
->> +/ {
->> +	model = "D-Link DNS-320L";
->> +	compatible = "dlink,dns320l", "marvell,kirkwood-88f6702", "marvell,kirkwood";
->> +
->> +	memory {
->> +		device_type = "memory";
->> +		reg = <0x00000000 0x10000000>;
->> +	};
->> +
->> +	chosen {
->> +		bootargs = "console=ttyS0,115200n8 earlyprintk";
->> +		stdout-path = &uart0;
-> I _think_ current best practice is to make the serial port speed part
-> of the stdout-path
->
-> 	stdout-path = &uart0:115200n8;
->
-> Also, earlyprintk is a debug flag, it should not be needed for a
-> production DT file.
-Indeed, I'll update these.
-
->> +	};
->> +
->> +	gpio-keys {
->> +		compatible = "gpio-keys";
->> +		#address-cells = <1>;
->> +		#size-cells = <0>;
->> +		pinctrl-0 = <&pmx_buttons>;
->> +		pinctrl-names = "default";
->> +
->> +		button@1 {
->> +			label = "Reset push button";
->> +			linux,code = <KEY_RESTART>;
->> +			gpios = <&gpio0 28 1>;
-> Please use GPIO_ACTIVE_LOW rather than 1. Also for other places gpios
-> are used.
-Ack, will send a v2 with these updates - thanks for reviewing.
-
-Regards,
-Zoltan Herpai
-
+Arınç
 
