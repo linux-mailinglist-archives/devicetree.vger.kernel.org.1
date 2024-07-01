@@ -1,74 +1,63 @@
-Return-Path: <devicetree+bounces-81983-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81984-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26DA091E298
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 16:36:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA78091E28D
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 16:33:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CC6ECB28528
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 14:32:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CD8B11C21920
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 14:33:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 541B9167DA9;
-	Mon,  1 Jul 2024 14:31:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5CFA1684B8;
+	Mon,  1 Jul 2024 14:33:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="ccpl/lYg"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="KZfXrnzs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ABCF16C436
-	for <devicetree@vger.kernel.org>; Mon,  1 Jul 2024 14:31:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81A9646436;
+	Mon,  1 Jul 2024 14:33:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719844277; cv=none; b=RwkBIwJU3gMfFa5r4D14wimzwIg+8UUJaQPWLwectzKNHKvrDJhww438Jr76FJNR3JZKy1ZYztTyYcUhwT75MLsMW5KMJ67VBWXPgthry7NAKhQS9jWMGSC+17CswDli1L7PFFUOz7uYN+yMK223EXI8kH79uLr96JhaMWgxjDY=
+	t=1719844432; cv=none; b=gVrJjisCCnDiS8qmu8wIDRhQcGFXYkHUiANmH+QZfo3bVTVjrvvS1ZHs7QfrZ3f45G0+MflIiqaKRm5Ydy1wkB4fKKiKZJ3QECwMksFxTjCj1S6Ub2coZbZRr6yTP3GAOldT7uzOAMaClSLdSvQ5byyTbqN+7d0pfbSlRs5hYnw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719844277; c=relaxed/simple;
-	bh=JUSy6Ghvbyp8YbYmisUT1IMp4/UZFkRmvqybzhe2L48=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OYIF8WgZQah/jwfuJ5qbxisbDhJtniYmc6AqLSYYyyRTK8zMJcY/W6JaYwiI3Oc5/AE1HVrHz286hn1T/pAM213I07gpznUYMtegSGWeeCn+20GmUq0qOEI7c/pKgQtnPLAemchN/rS0rrPFHajPOY8bB20aY6d92YSGwwrA8hk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=ccpl/lYg; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-42138eadf64so22562295e9.3
-        for <devicetree@vger.kernel.org>; Mon, 01 Jul 2024 07:31:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1719844273; x=1720449073; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Id6HIAkhEJzVf6hGweWJ8Eidp8Rqbm4Blp5Z2wNFya4=;
-        b=ccpl/lYglxo4miHkDBCEWcZ05GHSdf+i1QhEogi4bshhAOp1+MhRSMNqXt1YwG+ogK
-         tYOyFa8oaF28c82zcayKR/Czu3jzPquFGc4vTuBGVI4SisvwCfAzQxRWixKCyETNEDTs
-         j6M3v78jl9Jx8VvB/3Bqt2QSYNz7nkjBAKZCnSGNn8HLm3zkeIWhNB3n9gBIvGvsZa8H
-         34k6CGMyMWsIP1Y3SmEdmXXDc0OD16/MK4ZNgsEjsrNIwvwjOIu60BFbfD4wMJiW51gV
-         zKmYzz591i5Xmeasyk/PU8wUrM2RY30hh4+6CBzMF6I9XJs+JyWWbxLpXuzOh3Y8vdNk
-         ICSw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719844273; x=1720449073;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Id6HIAkhEJzVf6hGweWJ8Eidp8Rqbm4Blp5Z2wNFya4=;
-        b=K7EcUPMR3TXeX7MJZ6f+i0Zej1uelyRG3or4WYDs/9fsHOLuI/zBwySQ6eTur71LXL
-         M+eLABFPFH5vMPlaL9m5UF7tmJ4c6Sug67IZrFBRxH0j9n0/cjDIVBIoQUcxUDhuSqJ4
-         BwHhkMwWGz1DsdUcw4349H5uJNbrbq7hKqBjAFD4t5I7/wUwuyzsR012JAFdip7hD9WA
-         xy495oRKAWzuQc3VmN2GS12j/ue0CWX3Koh1kNnMt84+7mGMTKlfV7Mtv0zJhEcjrAQx
-         0qi9yFWIhhVxt56O7uJBS2P3kU0/QG/4NDKdgBBDJAsAthT2u1hUMIHfDW/Hg3fsURVC
-         0aJA==
-X-Forwarded-Encrypted: i=1; AJvYcCUAVCnCj0gGtGn8hQ6D0Vf4va++hWaf9BBmWrpd1Fq7RX7hJ5MDGwTDJFO4xD3hPedLe7QBjhvjCkX4UFBO5A9txeaMWNRP0+7Uug==
-X-Gm-Message-State: AOJu0YxQ2s4HQ35ClDWfTauWgVX8YJtnzyD4Be/nkJtWB62Srk3dHmHC
-	hbHwDDnpLShD1vrjY5lhNGL+sM1qPpNwJgcjm/y7s5hOoCV+Je9bdgQ8XJYfEkA=
-X-Google-Smtp-Source: AGHT+IEwysNTKVXojrsAp0MycW5SXYQ6LKem1wRsjQx63ku/RzCh0wT8flIX/YdnkMJuNXYL2gqroQ==
-X-Received: by 2002:a05:600c:4589:b0:424:abef:e952 with SMTP id 5b1f17b1804b1-4257a05fa08mr38100285e9.29.1719844272832;
-        Mon, 01 Jul 2024 07:31:12 -0700 (PDT)
-Received: from [192.168.108.81] (freebox.vlq16.iliad.fr. [213.36.7.13])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3675a0d8ed0sm10223141f8f.28.2024.07.01.07.31.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 01 Jul 2024 07:31:12 -0700 (PDT)
-Message-ID: <0028683d-efaf-478c-b226-cc60daaacda9@freebox.fr>
-Date: Mon, 1 Jul 2024 16:31:11 +0200
+	s=arc-20240116; t=1719844432; c=relaxed/simple;
+	bh=+iCXElHKsakjBNZHRBYyd/uKF1oKtn8yvJ3Z3RbdYU8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=ABoFviHZsUrq7RTPonC61FLpvS/sFBrTF2mx8GPbyzWF5Ra69j71+FQCIrfok26PNxaUUKgJNHAt8dc/vrFFQOIDdT53Y7UfiPHd4HOoCtpGUDZDQqtffDwgRSwFiQzCa345GsdqeAX8f803F4B+jQGG+bxD5rtX5DfJHJ/K/zM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=KZfXrnzs; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 461EXgp9045694;
+	Mon, 1 Jul 2024 09:33:42 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1719844422;
+	bh=OZ7ubyk2G9Zgv9GAmOmXmRknkb4fsGFEUSJJeKTTT+A=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=KZfXrnzsPhvp748NcJC5WdG61puQIGarlKFzEM9i2vJduUyaDmJ9f7yOxOUZQrglL
+	 RVif5uCCkpaa/60V4nI2LeOygJePgfSZUlXBDnViGO7FGOe0pVieFAioben+Dk7/ZE
+	 54ZVuOuWqX/gYvOKx9gDF6NrAJT7Q1yk99tDZGxI=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 461EXgHJ126900
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 1 Jul 2024 09:33:42 -0500
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 1
+ Jul 2024 09:33:41 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 1 Jul 2024 09:33:41 -0500
+Received: from [10.249.42.149] ([10.249.42.149])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 461EXfst032070;
+	Mon, 1 Jul 2024 09:33:41 -0500
+Message-ID: <2f1f25b5-86c1-4a60-8f71-519658d5f88a@ti.com>
+Date: Mon, 1 Jul 2024 09:33:40 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,130 +65,157 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: display: bridge: add TI TDP158
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Krzysztof Kozlowski <krzk@kernel.org>, Conor Dooley <conor@kernel.org>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- Arnaud Vrac <avrac@freebox.fr>, Pierre-Hugues Husson <phhusson@freebox.fr>
-References: <20240627-tdp158-v3-0-fb2fbc808346@freebox.fr>
- <20240627-tdp158-v3-1-fb2fbc808346@freebox.fr>
- <20240627-display-quantum-48c2fa48ed1a@spud>
- <2fe0c2c0-2f67-4549-b62f-3b9db005d3f7@freebox.fr>
- <46d7c95f-20b0-4526-8583-1d8878afaa2f@kernel.org>
- <3wwp34miu2pibsylv3v2sjzyeso2ugslutm2zqnddlx4ipily2@bcrfetrjngft>
+Subject: Re: [PATCH 0/3] Add global CMA reserve area
+To: Vignesh Raghavendra <vigneshr@ti.com>, Randolph Sapp <rs@ti.com>,
+        Devarsh
+ Thakkar <devarsht@ti.com>, <nm@ti.com>, <kristo@kernel.org>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC: <praneeth@ti.com>, <a-bhatia1@ti.com>, <j-luthra@ti.com>,
+        <b-brnich@ti.com>, <detheridge@ti.com>, <p-mantena@ti.com>,
+        <vijayp@ti.com>, "Khasim, Syed Mohammed" <khasim@ti.com>
+References: <20240613150902.2173582-1-devarsht@ti.com>
+ <D1ZXO8F3XN2I.3CTTE245I0TYY@ti.com>
+ <24c0ed06-3c32-4cc3-922c-4717d35a1112@ti.com>
+ <64b78ba2-776c-1de6-4c13-001d11000ff0@ti.com>
+ <D2BSORIL5C7T.3B8EAANVQ7TX5@ti.com>
+ <0ca809d0-3d0f-47d1-b5e7-aa78d65d7917@ti.com>
 Content-Language: en-US
-From: Marc Gonzalez <mgonzalez@freebox.fr>
-In-Reply-To: <3wwp34miu2pibsylv3v2sjzyeso2ugslutm2zqnddlx4ipily2@bcrfetrjngft>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+From: Andrew Davis <afd@ti.com>
+In-Reply-To: <0ca809d0-3d0f-47d1-b5e7-aa78d65d7917@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On 28/06/2024 09:49, Dmitry Baryshkov wrote:
-> On Fri, Jun 28, 2024 at 09:36:57AM GMT, Krzysztof Kozlowski wrote:
->> On 27/06/2024 18:45, Marc Gonzalez wrote:
->>> On 27/06/2024 18:25, Conor Dooley wrote:
->>>> On Thu, Jun 27, 2024 at 01:13:03PM +0200, Marc Gonzalez wrote:
->>>>
->>>>> TDP158 is an AC-coupled DVI / HDMI to TMDS level shifting Redriver.
->>>>> It supports DVI 1.0, HDMI 1.4b and 2.0b.
->>>>> It supports 4 TMDS channels, HPD, and a DDC interface.
->>>>> It supports dual power supply rails (1.1V on VDD, 3.3V on VCC)
->>>>> for power reduction. Several methods of power management are
->>>>> implemented to reduce overall power consumption.
->>>>> It supports fixed receiver EQ gain using I2C or pin strap to
->>>>> compensate for different lengths input cable or board traces.
->>>>>
->>>>> Features
->>>>>
->>>>> - AC-coupled TMDS or DisplayPort dual-mode physical layer input
->>>>> to HDMI 2.0b TMDS physical layer output supporting up to 6Gbps
->>>>> data rate, compatible with HDMI 2.0b electrical parameters
->>>>> - DisplayPort dual-mode standard version 1.1
->>>>> - Programmable fixed receiver equalizer up to 15.5dB
->>>>> - Global or independent high speed lane control, pre-emphasis
->>>>> and transmit swing, and slew rate control
->>>>> - I2C or pin strap programmable
->>>>> - Configurable as a DisplayPort redriver through I2C
->>>>> - Full lane swap on main lanes
->>>>> - Low power consumption (200 mW at 6Gbps, 8 mW in shutdown)
->>>>>
->>>>> https://www.ti.com/lit/ds/symlink/tdp158.pdf
->>>>>
->>>>> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
->>>>> ---
->>>>>  .../bindings/display/bridge/ti,tdp158.yaml         | 51 ++++++++++++++++++++++
->>>>>  1 file changed, 51 insertions(+)
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/display/bridge/ti,tdp158.yaml b/Documentation/devicetree/bindings/display/bridge/ti,tdp158.yaml
->>>>> new file mode 100644
->>>>> index 0000000000000..21c8585c3bb2d
->>>>> --- /dev/null
->>>>> +++ b/Documentation/devicetree/bindings/display/bridge/ti,tdp158.yaml
->>>>> @@ -0,0 +1,51 @@
->>>>> +# SPDX-License-Identifier: GPL-2.0-only
->>>>> +%YAML 1.2
->>>>> +---
->>>>> +$id: http://devicetree.org/schemas/display/bridge/ti,tdp158.yaml#
->>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>> +
->>>>> +title: TI TDP158 HDMI to TMDS Redriver
->>>>> +
->>>>> +maintainers:
->>>>> +  - Arnaud Vrac <avrac@freebox.fr>
->>>>> +  - Pierre-Hugues Husson <phhusson@freebox.fr>
->>>>> +
->>>>> +properties:
->>>>> +  compatible:
->>>>> +    const: ti,tdp158
->>>>> +
->>>>> +  reg:
->>>>> +    description: I2C address of the device
->>>>
->>>> Is reg not required? How do you communicate with the device if the i2c
->>>> bus is not connected? Is the enable GPIO enough to operate it in some
->>>> situations?
->>>>
->>>> Otherwise this looks good to me, but given Maxime commented about the
->>>> complexity of the device, I'm probably out of my depth!
->>>
->>> Valid question.
->>>
->>> As discussed in my brilliantly expanded commit message (:p)
->>> the device can be configured in various ways, either through I2C registers
->>> or by pin strap. We use the device in its default settings, so we don't
->>> touch any I2C registers, thus I'm not sure the reg property is required.
->>
->> But then how would it be represented in the DT? Where / under which parent?
->>
->> If this is supposed to be always in I2C bus in DT, then you always need
->> reg. If you could place it in other place, then your reasoning is valid
->> - reg is optional.
+On 6/30/24 2:09 AM, Vignesh Raghavendra wrote:
 > 
-> As far as I understood, the device is connected to I2C bus, it just
-> doesn't need to be programmed. So I'd conclude that reg is required.
+> 
+> On 28/06/24 22:05, Randolph Sapp wrote:
+>> On Fri Jun 28, 2024 at 10:57 AM CDT, Devarsh Thakkar wrote:
+>>> Hi Andrew, Vignesh,
+>>>
+>>> On 24/06/24 22:03, Andrew Davis wrote:
+>>>> On 6/14/24 12:58 PM, Randolph Sapp wrote:
+>>>>> On Thu Jun 13, 2024 at 10:08 AM CDT, Devarsh Thakkar wrote:
+>>>>>> Add global CMA reserve area for AM62x, AM62A and AM62P SoCs.
+>>>>>> These SoCs do not have MMU and hence require contiguous memory pool to
+>>>>>> support various multimedia use-cases.
+>>>>>>
+>>>>>> Brandon Brnich (1):
+>>>>>>     arm64: dts: ti: k3-am62p5-sk: Reserve 576 MiB of global CMA
+>>>>>>
+>>>>>> Devarsh Thakkar (2):
+>>>>>>     arm64: dts: ti: k3-am62x-sk-common: Reserve 128MiB of global CMA
+>>>>>>     arm64: dts: ti: k3-am62a7-sk: Reserve 576MiB of global CMA
+>>>>>>
+>>>>>>    arch/arm64/boot/dts/ti/k3-am62a7-sk.dts        | 9 +++++++++
+>>>>>>    arch/arm64/boot/dts/ti/k3-am62p5-sk.dts        | 7 +++++++
+>>>>>>    arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi | 8 ++++++++
+>>>>>>    3 files changed, 24 insertions(+)
+>>>>>
+>>>>> I'm still a little torn about putting this allocation into the device tree
+>>>>> directly as the actual required allocation size depends on the task.
+>>>>>
+>>>>
+>>>> That is the exact reason this does not belong in DT. For everyone *not*
+>>>> using the most extreme case (12x decodes at the same time), this is
+>>>> all wasted space. If one is running out of CMA, they can add more on
+>>>> the kernel cmdline.
+>>>>
+>>>
+>>> I disagree with this. The 12x decode for 480p is not an extreme use-case this
+>>> is something VPU is capable to run at optimum frame-rate (12x 1080p it can't)
+>>> and as the AM62A7 is meant to be AI + multimedia centric device, per the
+>>> device definition we were given the requirements to support a list of
+>>> multimedia use-cases which should work out of box and 12x decode for 480p was
+>>> one of them as device is very much capable of doing that with optimum
+>>> performance and I don't think it is right to change these requirements on the fly.
+>>>
+>>> The AM62A7 board has 4 GiB of DDR and we have been using this CMA value since
+>>> more than a year, I have never heard anyone complain about out of memory or
+>>> CMA starvation and it suffices to requirements of *most use-cases*, but if for
+>>> some specific use-case it doesn't suffice, user can change it via kernel cmdline.
+>>>
+>>> The kernelcmdline suggestion doesn't suffice out of box experience required,
+>>> we don't want to ask the user to reboot the board everytime they run out of CMA.
+>>>
+>>>
+>>>>> If it's allowed though, this series is fine for introducing those changes. This
+>>>>> uses the long-tested values we've been using on our tree for a bit now. The
+>>>>> only
+>>>>> thing that's a little worrying is the missing range definitions for devices
+>>>>> with
+>>>>> more than 32bits of addressable memory as Brandon has pointed out. Once that's
+>>>>> addressed:
+>>>>>
+>>>>> Reviewed-by: Randolph Sapp <rs@ti.com>
+>>>>>
+>>>>> Specifying these regions using the kernel cmdline parameter via u-boot was
+>>>>> brought up as a potential workaround. This is fine until you get into distro
+>>>>> boot methods which will almost certainly attempt to override those. I don't
+>>>>> know. Still a little odd. Curious how the community feels about it.
+>>>>>
+>>>>> Technically the user or distro can still override it with the cmdline parameter
+>>>>> if necessary, so this may be the best way to have a useful default.
+>>>>>
+>>>>
+>>>
+>>> Unlike above, this solution is independent of distro as it should be as we
+>>> want that all the supported multimedia use-cases should work out of box. This
+>>> solution is nothing illegal as CMA region carveouts are not a kernel
+>>> deprecated feature.
+>>
+>> Right. I support this change for at least introducing a usable default. 32M of
+>> CMA is barely enough to run glmark2 under Weston once everything's up and
+>> running.
+>>
+>> As I said before, the user or distro can still override the dt CMA block with
+>> the cma kernel parameter if they aren't happy with the default block.
+>> Unfortunately this is about the only way to have a usable default value to fall
+>> back on.
+>>
+> 
+> 
+> Given the number of SoMs and non TI EVMs that are about to come out with
+> AM62A/P and AM67s, we need to provide a consistent way of being able to
+> support multimedia IPs out of the box. Modifying cmdline may not always
+> be feasible given distro defaults don't always provide a way to do so.
+> 
 
-Just to be clear (and as far as I understand),
-the TDP158 can be configured via 2 different methods:
-- dynamically at run-time, through I2C registers (requires an I2C bus)
-- statically at layout-time through pin straps (no I2C bus required)
+We need to keep thinking then. I empathize with desire to put
+configuration in Device Tree. DT feels like a great spot for it,
+it is ubiquitous on these boards and has a good bit of tooling around
+it. We are already describing the hardware, why not configure it here
+too? But the reason we do not want to go down that road is simple:
+DT takes away use-case flexibility. A lack of flexibility is fine for
+hardware which is unchanging, but not for configuration.
 
-On our board, the TDP158 is connected to blsp2_i2c1.
+Device policy and configuration must be left to userspace.
 
-So, in my understanding, the "reg" property would be required
-for the first method, but is not applicable for the second method.
+It is not for us to decide how folks should use our hardware, and
+that is what we are doing when we configure it in DT.
 
-I don't feel strongly about the issue, so I can mark the "reg"
-property as required if it makes more sense.
+For configuration that must happen in early boot before userspace is
+available (such as kernel stdout and memory carveouts) we have the
+kernel cmdline. If we find something that cannot be done today though
+the cmdline, then we should add that support to the cmdline, not
+give up and just hide the configuration in DT.
 
-Regards
+What this series does is already available on the kernel cmdline.
+Our bootloader can provide sane defaults on the cmdline today.
+If the worry is that distros will override this default then
+go fix those distros.
 
+> So I am inclined to queue first 2 patches unless there is another way t
+> achieve this.
+> 
+
+Our lack of creativity in finding better solutions to this issue is
+not an excuse to add more junk to DT..
+
+Andrew
+
+> [...]
+> 
 
