@@ -1,150 +1,258 @@
-Return-Path: <devicetree+bounces-82024-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82025-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74DE691E37C
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 17:12:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31DFA91E36E
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 17:10:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 41FB1B27E81
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 15:08:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B1EF41F205A8
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 15:10:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D190316C853;
-	Mon,  1 Jul 2024 15:06:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AC9716C857;
+	Mon,  1 Jul 2024 15:10:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rnNRA/vU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com [209.85.219.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 288D316C874;
-	Mon,  1 Jul 2024 15:06:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B56084DE9;
+	Mon,  1 Jul 2024 15:10:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719846386; cv=none; b=YQvyS70rEtsAvfP+xFpmxwqak9bYBdK3eKtW81sXh7w1Cddp8e/C977YuMaBN8CPl+755O3eUe9teBKssFEcc3RtYYLsf79M2Cycn5V6rrDaY1F75E/qu1YBWElqhYso6sF7BaYzTdCJU86v8QU3+Mj8jgKBzhPlN41uBHnuXoA=
+	t=1719846625; cv=none; b=Et2gwmZk4+ELeaZWM7lzm7STRhHIgA8O6o+UkXMqRSxGL84jk+5nKIdsimPDHSqs4mG1sA/6mMqHapu5qhQDJTssTglfUgOPtikGqJXKWXjESIZxVbApsNJYIksMuKivRGGKmkihZLrM/oNvfYddc2f9a4g7+w5qaC5osPFufG4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719846386; c=relaxed/simple;
-	bh=0Nif9q7hfz76NQxhnSKV6YnAV079PXlI5gtqsrIOlCw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ujGnM9mNj/KSh9yYFNgRaGNG2MIOSi6ZVGHt16jD8mKOPJ0eHpC9bTdc9p5NHZc8Qtv2lyKtcH2IaVVHYurS5uR93V7gNAcjZMndi7lVL8yFwZ7GQ4E9rVT4ocVwi8E7tJLSrr+4MpKuZBoPgoYG2yVYt/fmar1JdsHHAH1E4ek=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-e03609bd52dso2936231276.1;
-        Mon, 01 Jul 2024 08:06:24 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719846384; x=1720451184;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=FWaohw8PG+1tErtmwgjMHrDH9yLlzp5VM7eJLmI1QaQ=;
-        b=QBdSs3ILefZAPdTF2flNohpmc52+zljX+1HajHQnSDH8IF/dSBsHRW0C2Cw+Bsw4b9
-         cWGF+juMbfCPESHElSh9Ao2eHqtrUFhjdJ9/CR30wZte/nim+QIIWLBWMnesLhNTDUN5
-         lzDvzHCs2LrmfER9/erX5dJsx2DuhNBaDbwRSmwyLOEUq7hKSUE0ECWls937TGkX6GOF
-         jveomq8cKdFjdRWV8H3Php1Zsn1HjnifQq36kxB2gwEPEhlxm4rVa2pfM8p2/PvFuMTK
-         f9kfTW2VeprpC/o9OJPJNet4gibGiKvHFDiHn9lZVgHcKm7/iF0SxlfGb4C+gGdQmkqd
-         u+8g==
-X-Forwarded-Encrypted: i=1; AJvYcCWmUTkAhDeDKwV93cMxJyiDAVUG94Wv/7buR64QYCxMrvePs2ENaDKWAVKG5DO/e9GVPmKryeUShEyyVtdbKAcmgLzP+w/LCWmIsA==
-X-Gm-Message-State: AOJu0Ywdy8Gx0RX2YdnjbPCNT9VBtIaY/OmSpR5RR5bBJlU4UXUymDse
-	/yx5VBGE4VvzQvAT+mvaBs3/zvq888qczTc7ScXBF94XDDOhAc9R4bmau8Gw
-X-Google-Smtp-Source: AGHT+IEEmh+HXS09Q+ckaARwyxU9ZqAhmpDAjcFjJunyZZTEkk64baYcD1Fh8KJaFAXs9Ijr4cz4OQ==
-X-Received: by 2002:a81:738a:0:b0:646:628d:32ae with SMTP id 00721157ae682-64c718f83e5mr66775297b3.20.1719846383753;
-        Mon, 01 Jul 2024 08:06:23 -0700 (PDT)
-Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com. [209.85.128.172])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-64a9a8037b9sm13787877b3.63.2024.07.01.08.06.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 01 Jul 2024 08:06:23 -0700 (PDT)
-Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-64f4fd64773so5748137b3.0;
-        Mon, 01 Jul 2024 08:06:23 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCU7CYIDjBNTPg4eQxXl+MTZe+5HvCDMjOGlc1t0hP2v3K9m2YRnfAuf++HRmkOgIxzpiT+kYq3v6IcKwikZpFP96gDcZEEZjk6MgQ==
-X-Received: by 2002:a81:8645:0:b0:64a:5b5b:d48b with SMTP id
- 00721157ae682-64c73229ed1mr64857507b3.47.1719846382942; Mon, 01 Jul 2024
- 08:06:22 -0700 (PDT)
+	s=arc-20240116; t=1719846625; c=relaxed/simple;
+	bh=uMGStMbzxwlJZO4KySBthDgc/kAaIkSsDWQ43zyVXvE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HflY6+pbT1MArJriAYejqK2bIWVDudUvO9KL/1vWGyhJFFynCpAhxZxaQo2nTZfQrJc7syQHoN54y9kpCbWjOtu/fhJovqqNRv25QDtcaSiIjH7JHseoamZOcAbxvCWwQudacdbdYxT2OIc/nwyfzsN/jvZzNmm+ABQOGrdy7tA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rnNRA/vU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF78CC116B1;
+	Mon,  1 Jul 2024 15:10:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719846624;
+	bh=uMGStMbzxwlJZO4KySBthDgc/kAaIkSsDWQ43zyVXvE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=rnNRA/vUezZDc2dvDCS12djRt+Ufgy/hN/TPbWGKXbefQciN2pya4YPpjH/nR74H3
+	 xrMNiCk009GXNlACvg3AOMZ9aCY9Kr8Et4gUyWtcDuIeERud4D6pZaoSHyO0rkYGOd
+	 fIc5N2fkdenKFHJEp2jXSRMbg+jhnGHW0KNlXtnqkeOJZMWSvftZpX+9diK27Id3/w
+	 2NcQZKnZgRXSW5qds31CSehJsloYGdEyaFWMSE8x6hZcLrBAGX20GcpHOEOEvLTP6j
+	 jmX0fBoIgElPs66AsPTM0adpCuPwfyr6378LKnjyLD04oDwnLEmu5UsRO6hQDPn9s8
+	 KHb1OMiHPSNLQ==
+Date: Mon, 1 Jul 2024 16:10:20 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Lucca fachinetti <luccafachinetti@gmail.com>
+Cc: pavel@ucw.cz, dmurphy@ti.com, robh+dt@kernel.org, lee@kernel.org,
+	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, g.luiztrevisan@gmail.com
+Subject: Re: [PATCH 1/1] dt-bindings: leds: max77650: convert the binding
+ document to yaml
+Message-ID: <20240701-overview-video-34f025ede104@spud>
+References: <20240628225551.107833-1-luccafachinetti@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240625184359.153423-1-marex@denx.de>
-In-Reply-To: <20240625184359.153423-1-marex@denx.de>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 1 Jul 2024 17:06:10 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWJmQ-Jhko-0SO6_dKceXPNu8nx++wgWxxLn=6xPcBMPg@mail.gmail.com>
-Message-ID: <CAMuHMdWJmQ-Jhko-0SO6_dKceXPNu8nx++wgWxxLn=6xPcBMPg@mail.gmail.com>
-Subject: Re: [net-next,PATCH v2] dt-bindings: net: realtek,rtl82xx: Document
- known PHY IDs as compatible strings
-To: Marek Vasut <marex@denx.de>
-Cc: netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>, 
-	Conor Dooley <conor+dt@kernel.org>, "David S . Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Florian Fainelli <f.fainelli@gmail.com>, 
-	Heiner Kallweit <hkallweit1@gmail.com>, Jakub Kicinski <kuba@kernel.org>, 
-	Joakim Zhang <qiangqing.zhang@nxp.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
-	kernel@dh-electronics.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="l11dlNPa9t6leBoq"
+Content-Disposition: inline
+In-Reply-To: <20240628225551.107833-1-luccafachinetti@gmail.com>
+
+
+--l11dlNPa9t6leBoq
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi Marek,
+On Fri, Jun 28, 2024 at 07:55:51PM -0300, Lucca fachinetti wrote:
+> From: Lucca Fachinetti <luccafachinetti@gmail.com>
+>=20
+> Convert the binding document for max77650 LED module to yaml.
+>=20
+> Signed-off-by: Lucca Fachinetti <luccafachinetti@gmail.com>
+> ---
+>  .../bindings/leds/leds-is31fl32xx.txt         | 52 --------------
+>  .../bindings/leds/leds-is31fl32xx.yaml        | 67 +++++++++++++++++++
+>  2 files changed, 67 insertions(+), 52 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/leds/leds-is31fl32x=
+x.txt
+>  create mode 100644 Documentation/devicetree/bindings/leds/leds-is31fl32x=
+x.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/leds/leds-is31fl32xx.txt b=
+/Documentation/devicetree/bindings/leds/leds-is31fl32xx.txt
+> deleted file mode 100644
+> index 926c2117942c..000000000000
+> --- a/Documentation/devicetree/bindings/leds/leds-is31fl32xx.txt
+> +++ /dev/null
+> @@ -1,52 +0,0 @@
+> -Binding for ISSI IS31FL32xx and Si-En SN32xx LED Drivers
+> -
+> -The IS31FL32xx/SN32xx family of LED drivers are I2C devices with multiple
+> -constant-current channels, each with independent 256-level PWM control.
+> -Each LED is represented as a sub-node of the device.
+> -
+> -Required properties:
+> -- compatible: one of
+> -	issi,is31fl3236
+> -	issi,is31fl3235
+> -	issi,is31fl3218
+> -	issi,is31fl3216
+> -	si-en,sn3218
+> -	si-en,sn3216
+> -- reg: I2C slave address
+> -- address-cells : must be 1
+> -- size-cells : must be 0
+> -
+> -LED sub-node properties:
+> -- reg : LED channel number (1..N)
+> -- label :  (optional)
+> -  see Documentation/devicetree/bindings/leds/common.txt
+> -- linux,default-trigger :  (optional)
+> -  see Documentation/devicetree/bindings/leds/common.txt
+> -
+> -
+> -Example:
+> -
+> -is31fl3236: led-controller@3c {
+> -	compatible =3D "issi,is31fl3236";
+> -	reg =3D <0x3c>;
+> -	#address-cells =3D <1>;
+> -	#size-cells =3D <0>;
+> -
+> -	led@1 {
+> -		reg =3D <1>;
+> -		label =3D "EB:blue:usr0";
+> -	};
+> -	led@2 {
+> -		reg =3D <2>;
+> -		label =3D "EB:blue:usr1";
+> -	};
+> -	...
+> -	led@36 {
+> -		reg =3D <36>;
+> -		label =3D "EB:blue:usr35";
+> -	};
+> -};
+> -
+> -For more product information please see the links below:
+> -http://www.issi.com/US/product-analog-fxled-driver.shtml
+> -http://www.si-en.com/product.asp?parentid=3D890
+> diff --git a/Documentation/devicetree/bindings/leds/leds-is31fl32xx.yaml =
+b/Documentation/devicetree/bindings/leds/leds-is31fl32xx.yaml
+> new file mode 100644
+> index 000000000000..0f4c7c3440c6
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/leds/leds-is31fl32xx.yaml
 
-On Tue, Jun 25, 2024 at 8:46=E2=80=AFPM Marek Vasut <marex@denx.de> wrote:
-> Extract known PHY IDs from Linux kernel realtek PHY driver
-> and convert them into supported compatible string list for
-> this DT binding document.
->
-> Signed-off-by: Marek Vasut <marex@denx.de>
+Can you call the binding after one of the compatible strings please?
 
-Thanks for your patch, which is now commit 8fda53719a596fa2
-("dt-bindings: net: realtek,rtl82xx: Document known PHY IDs as
-compatible strings") in net-next/main (next-20240628 and later).
+> @@ -0,0 +1,67 @@
+> + # SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/leds/leds-is31fl32xx.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: LED driver for is31fl32xx and Si-En SN32xx.
+> +
+> +maintainers:
+> +  - Pavel Machek <pavel@ucw.cz>
+> +  - Lee Jones <lee@kernel.org>
+> +
+> +description: |
 
-> --- a/Documentation/devicetree/bindings/net/realtek,rtl82xx.yaml
-> +++ b/Documentation/devicetree/bindings/net/realtek,rtl82xx.yaml
-> @@ -18,6 +18,29 @@ allOf:
->    - $ref: ethernet-phy.yaml#
->
->  properties:
-> +  compatible:
-> +    enum:
-> +      - ethernet-phy-id001c.c800
-> +      - ethernet-phy-id001c.c816
-> +      - ethernet-phy-id001c.c838
-> +      - ethernet-phy-id001c.c840
-> +      - ethernet-phy-id001c.c848
-> +      - ethernet-phy-id001c.c849
-> +      - ethernet-phy-id001c.c84a
-> +      - ethernet-phy-id001c.c862
-> +      - ethernet-phy-id001c.c878
-> +      - ethernet-phy-id001c.c880
-> +      - ethernet-phy-id001c.c910
-> +      - ethernet-phy-id001c.c912
-> +      - ethernet-phy-id001c.c913
-> +      - ethernet-phy-id001c.c914
-> +      - ethernet-phy-id001c.c915
-> +      - ethernet-phy-id001c.c916
-> +      - ethernet-phy-id001c.c942
-> +      - ethernet-phy-id001c.c961
-> +      - ethernet-phy-id001c.cad0
-> +      - ethernet-phy-id001c.cb00
+The | here likely isn't needed, the formatting isn't really worth
+preserving....
 
-Can you please elaborate why you didn't add an
-"ethernet-phy-ieee802.3-c22" fallback?
+> +  Binding for ISSI is31fl32xx and Si-En SN32xx LED Drivers
+
+Especially as this line is just duplicating the title.
 
 > +
->    realtek,clkout-disable:
->      type: boolean
->      description:
+> +  The is31fl32xx/SN32xx family of LED drivers are I2C devices with multi=
+ple
+> +  constant-current channels, each with independent 256-level PWM control.
+> +  Each LED is represented as a sub-node of the device.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - issi,is31fl3236
+> +      - issi,is31fl3235
+> +      - issi,is31fl3218
+> +      - issi,is31fl3216
+> +      - si-en,sn3218
+> +      - si-en,sn3216
+> +
+> +  reg:
+> +    maxItems: 1
+> +    description:
+> +      I2C slave address
+> +
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+> +patternProperties:
+> +  "^led@[1-9][0-9]*$":
+> +    type: object
 
-Gr{oetje,eeting}s,
+You're missing a ref to leds/common.yaml here, where the label and
+trigger properties are described.
 
-                        Geert
+> +    description: |
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+And this | isn't needed either.
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+
+> +      Properties for a single subnode LED.
+> +    additionalProperties: false
+> +
+> +    properties:
+> +      reg:
+> +        minItems: 1
+> +        description:
+> +          LED channel number (1..N)
+> +
+> +      label: true
+> +
+> +      linux,default-trigger: true
+> +
+> +    required:
+> +      - reg
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - "#size-cells"
+> +  - "#address-cells"
+> +
+> +additionalProperties: false
+
+You should add the example from the text binding to the yaml one too, so
+that dt_binding_check can be used to validate the binding versus the
+example.
+
+Thanks,
+Conor.
+
+--l11dlNPa9t6leBoq
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZoLG3AAKCRB4tDGHoIJi
+0oveAQDrEkT8y+mekejUR5G6oMeeh21OrH/t1S893yr/b29rmgD9H6wTfUdNZr8f
+IgsYiMnsWJbgnOofEUxW3dQ+rOo5kgk=
+=oMtZ
+-----END PGP SIGNATURE-----
+
+--l11dlNPa9t6leBoq--
 
