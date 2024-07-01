@@ -1,128 +1,205 @@
-Return-Path: <devicetree+bounces-81982-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81983-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17B4E91E284
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 16:32:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 26DA091E298
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 16:36:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6C85AB27F5E
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 14:31:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CC6ECB28528
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 14:32:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 646E2169AC6;
-	Mon,  1 Jul 2024 14:31:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 541B9167DA9;
+	Mon,  1 Jul 2024 14:31:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="ccpl/lYg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49197.qiye.163.com (mail-m49197.qiye.163.com [45.254.49.197])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A4A0167DA0;
-	Mon,  1 Jul 2024 14:31:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ABCF16C436
+	for <devicetree@vger.kernel.org>; Mon,  1 Jul 2024 14:31:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719844272; cv=none; b=IPNt1r9p1tS7EvWCGlOGu61A/ioMUGdFeTQZJYF6eHF4WPBuKMLfQmnMNP84rBn4Bg24SCDF3tlk3ZBL7RBRcPDuJMxOpJ1+zed8RBHh0JIiuiYks3kl2v6+mx5/oK4+HweqXGubK8+nXaNWUKzxu3iFAc3KEU5+K2R5jUYFxxA=
+	t=1719844277; cv=none; b=RwkBIwJU3gMfFa5r4D14wimzwIg+8UUJaQPWLwectzKNHKvrDJhww438Jr76FJNR3JZKy1ZYztTyYcUhwT75MLsMW5KMJ67VBWXPgthry7NAKhQS9jWMGSC+17CswDli1L7PFFUOz7uYN+yMK223EXI8kH79uLr96JhaMWgxjDY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719844272; c=relaxed/simple;
-	bh=Ydo6IeCAYm/Htl+UqVy30jaJhyLZJozPLceq8yBsyKg=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=mUwLdtQQBOsHKMuZ6F2HwHyRVHiPSKQJp7yB3R9Oc7cHjvZFGhiBdilQxWf0VOFPdsruBybwJE6fd6FhUVWb8GxSzsHD73kAYVnk8NlTEpMiVtaAdL5BpdrKCdADucGZ9cjvpaFuUh/gnrh5Jk0zG2cfa27vbloq/9cp1Tef5v0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
-Received: from amadeus-Vostro-3710.lan (unknown [IPV6:240e:3b3:2c00:7a80:98d3:5fc8:a2a:615f])
-	by smtp.qiye.163.com (Hmail) with ESMTPA id 9C9757E0193;
-	Mon,  1 Jul 2024 22:30:35 +0800 (CST)
-From: Chukun Pan <amadeus@jmu.edu.cn>
-To: amadeus@jmu.edu.cn
-Cc: conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	heiko@sntech.de,
-	krzk+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	robh@kernel.org
-Subject: [PATCH v2 7/9] arm64: dts: rockchip: use generic Ethernet PHY reset bindings for Lunzn Fastrhino R68S
-Date: Mon,  1 Jul 2024 22:30:28 +0800
-Message-Id: <20240701143028.1203997-4-amadeus@jmu.edu.cn>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240701143028.1203997-1-amadeus@jmu.edu.cn>
-References: <20240630150010.55729-1-amadeus@jmu.edu.cn>
- <20240701143028.1203997-1-amadeus@jmu.edu.cn>
+	s=arc-20240116; t=1719844277; c=relaxed/simple;
+	bh=JUSy6Ghvbyp8YbYmisUT1IMp4/UZFkRmvqybzhe2L48=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=OYIF8WgZQah/jwfuJ5qbxisbDhJtniYmc6AqLSYYyyRTK8zMJcY/W6JaYwiI3Oc5/AE1HVrHz286hn1T/pAM213I07gpznUYMtegSGWeeCn+20GmUq0qOEI7c/pKgQtnPLAemchN/rS0rrPFHajPOY8bB20aY6d92YSGwwrA8hk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=ccpl/lYg; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-42138eadf64so22562295e9.3
+        for <devicetree@vger.kernel.org>; Mon, 01 Jul 2024 07:31:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1719844273; x=1720449073; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Id6HIAkhEJzVf6hGweWJ8Eidp8Rqbm4Blp5Z2wNFya4=;
+        b=ccpl/lYglxo4miHkDBCEWcZ05GHSdf+i1QhEogi4bshhAOp1+MhRSMNqXt1YwG+ogK
+         tYOyFa8oaF28c82zcayKR/Czu3jzPquFGc4vTuBGVI4SisvwCfAzQxRWixKCyETNEDTs
+         j6M3v78jl9Jx8VvB/3Bqt2QSYNz7nkjBAKZCnSGNn8HLm3zkeIWhNB3n9gBIvGvsZa8H
+         34k6CGMyMWsIP1Y3SmEdmXXDc0OD16/MK4ZNgsEjsrNIwvwjOIu60BFbfD4wMJiW51gV
+         zKmYzz591i5Xmeasyk/PU8wUrM2RY30hh4+6CBzMF6I9XJs+JyWWbxLpXuzOh3Y8vdNk
+         ICSw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719844273; x=1720449073;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Id6HIAkhEJzVf6hGweWJ8Eidp8Rqbm4Blp5Z2wNFya4=;
+        b=K7EcUPMR3TXeX7MJZ6f+i0Zej1uelyRG3or4WYDs/9fsHOLuI/zBwySQ6eTur71LXL
+         M+eLABFPFH5vMPlaL9m5UF7tmJ4c6Sug67IZrFBRxH0j9n0/cjDIVBIoQUcxUDhuSqJ4
+         BwHhkMwWGz1DsdUcw4349H5uJNbrbq7hKqBjAFD4t5I7/wUwuyzsR012JAFdip7hD9WA
+         xy495oRKAWzuQc3VmN2GS12j/ue0CWX3Koh1kNnMt84+7mGMTKlfV7Mtv0zJhEcjrAQx
+         0qi9yFWIhhVxt56O7uJBS2P3kU0/QG/4NDKdgBBDJAsAthT2u1hUMIHfDW/Hg3fsURVC
+         0aJA==
+X-Forwarded-Encrypted: i=1; AJvYcCUAVCnCj0gGtGn8hQ6D0Vf4va++hWaf9BBmWrpd1Fq7RX7hJ5MDGwTDJFO4xD3hPedLe7QBjhvjCkX4UFBO5A9txeaMWNRP0+7Uug==
+X-Gm-Message-State: AOJu0YxQ2s4HQ35ClDWfTauWgVX8YJtnzyD4Be/nkJtWB62Srk3dHmHC
+	hbHwDDnpLShD1vrjY5lhNGL+sM1qPpNwJgcjm/y7s5hOoCV+Je9bdgQ8XJYfEkA=
+X-Google-Smtp-Source: AGHT+IEwysNTKVXojrsAp0MycW5SXYQ6LKem1wRsjQx63ku/RzCh0wT8flIX/YdnkMJuNXYL2gqroQ==
+X-Received: by 2002:a05:600c:4589:b0:424:abef:e952 with SMTP id 5b1f17b1804b1-4257a05fa08mr38100285e9.29.1719844272832;
+        Mon, 01 Jul 2024 07:31:12 -0700 (PDT)
+Received: from [192.168.108.81] (freebox.vlq16.iliad.fr. [213.36.7.13])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3675a0d8ed0sm10223141f8f.28.2024.07.01.07.31.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 01 Jul 2024 07:31:12 -0700 (PDT)
+Message-ID: <0028683d-efaf-478c-b226-cc60daaacda9@freebox.fr>
+Date: Mon, 1 Jul 2024 16:31:11 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlDQkMYVh4eGB1CGhhPQkpMSlYeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlJT0seQUgZSEFJGEtLQUwaQ0tBQkMfSEFOHRhDQRpJGkFNSk4dWVdZFhoPEh
-	UdFFlBWU9LSFVKS0lPT09LVUpLS1VLWQY+
-X-HM-Tid: 0a906eb46a4703a2kunm9c9757e0193
-X-HM-MType: 10
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6PzY6CTo5OjNRFRcwM00hT0gY
-	PUkaFB5VSlVKTEpCQ09PSUhNSkxIVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUlP
-	Sx5BSBlIQUkYS0tBTBpDS0FCQx9IQU4dGENBGkkaQU1KTh1ZV1kIAVlBSElCSDcG
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/2] dt-bindings: display: bridge: add TI TDP158
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Krzysztof Kozlowski <krzk@kernel.org>, Conor Dooley <conor@kernel.org>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ Arnaud Vrac <avrac@freebox.fr>, Pierre-Hugues Husson <phhusson@freebox.fr>
+References: <20240627-tdp158-v3-0-fb2fbc808346@freebox.fr>
+ <20240627-tdp158-v3-1-fb2fbc808346@freebox.fr>
+ <20240627-display-quantum-48c2fa48ed1a@spud>
+ <2fe0c2c0-2f67-4549-b62f-3b9db005d3f7@freebox.fr>
+ <46d7c95f-20b0-4526-8583-1d8878afaa2f@kernel.org>
+ <3wwp34miu2pibsylv3v2sjzyeso2ugslutm2zqnddlx4ipily2@bcrfetrjngft>
+Content-Language: en-US
+From: Marc Gonzalez <mgonzalez@freebox.fr>
+In-Reply-To: <3wwp34miu2pibsylv3v2sjzyeso2ugslutm2zqnddlx4ipily2@bcrfetrjngft>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Replace the deprecated snps,reset-xxx bindings to the generic Ethernet
-PHY reset GPIO bindings. Also updates the delays based on the vendor
-recommendations.
+On 28/06/2024 09:49, Dmitry Baryshkov wrote:
+> On Fri, Jun 28, 2024 at 09:36:57AM GMT, Krzysztof Kozlowski wrote:
+>> On 27/06/2024 18:45, Marc Gonzalez wrote:
+>>> On 27/06/2024 18:25, Conor Dooley wrote:
+>>>> On Thu, Jun 27, 2024 at 01:13:03PM +0200, Marc Gonzalez wrote:
+>>>>
+>>>>> TDP158 is an AC-coupled DVI / HDMI to TMDS level shifting Redriver.
+>>>>> It supports DVI 1.0, HDMI 1.4b and 2.0b.
+>>>>> It supports 4 TMDS channels, HPD, and a DDC interface.
+>>>>> It supports dual power supply rails (1.1V on VDD, 3.3V on VCC)
+>>>>> for power reduction. Several methods of power management are
+>>>>> implemented to reduce overall power consumption.
+>>>>> It supports fixed receiver EQ gain using I2C or pin strap to
+>>>>> compensate for different lengths input cable or board traces.
+>>>>>
+>>>>> Features
+>>>>>
+>>>>> - AC-coupled TMDS or DisplayPort dual-mode physical layer input
+>>>>> to HDMI 2.0b TMDS physical layer output supporting up to 6Gbps
+>>>>> data rate, compatible with HDMI 2.0b electrical parameters
+>>>>> - DisplayPort dual-mode standard version 1.1
+>>>>> - Programmable fixed receiver equalizer up to 15.5dB
+>>>>> - Global or independent high speed lane control, pre-emphasis
+>>>>> and transmit swing, and slew rate control
+>>>>> - I2C or pin strap programmable
+>>>>> - Configurable as a DisplayPort redriver through I2C
+>>>>> - Full lane swap on main lanes
+>>>>> - Low power consumption (200 mW at 6Gbps, 8 mW in shutdown)
+>>>>>
+>>>>> https://www.ti.com/lit/ds/symlink/tdp158.pdf
+>>>>>
+>>>>> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
+>>>>> ---
+>>>>>  .../bindings/display/bridge/ti,tdp158.yaml         | 51 ++++++++++++++++++++++
+>>>>>  1 file changed, 51 insertions(+)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/display/bridge/ti,tdp158.yaml b/Documentation/devicetree/bindings/display/bridge/ti,tdp158.yaml
+>>>>> new file mode 100644
+>>>>> index 0000000000000..21c8585c3bb2d
+>>>>> --- /dev/null
+>>>>> +++ b/Documentation/devicetree/bindings/display/bridge/ti,tdp158.yaml
+>>>>> @@ -0,0 +1,51 @@
+>>>>> +# SPDX-License-Identifier: GPL-2.0-only
+>>>>> +%YAML 1.2
+>>>>> +---
+>>>>> +$id: http://devicetree.org/schemas/display/bridge/ti,tdp158.yaml#
+>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>>> +
+>>>>> +title: TI TDP158 HDMI to TMDS Redriver
+>>>>> +
+>>>>> +maintainers:
+>>>>> +  - Arnaud Vrac <avrac@freebox.fr>
+>>>>> +  - Pierre-Hugues Husson <phhusson@freebox.fr>
+>>>>> +
+>>>>> +properties:
+>>>>> +  compatible:
+>>>>> +    const: ti,tdp158
+>>>>> +
+>>>>> +  reg:
+>>>>> +    description: I2C address of the device
+>>>>
+>>>> Is reg not required? How do you communicate with the device if the i2c
+>>>> bus is not connected? Is the enable GPIO enough to operate it in some
+>>>> situations?
+>>>>
+>>>> Otherwise this looks good to me, but given Maxime commented about the
+>>>> complexity of the device, I'm probably out of my depth!
+>>>
+>>> Valid question.
+>>>
+>>> As discussed in my brilliantly expanded commit message (:p)
+>>> the device can be configured in various ways, either through I2C registers
+>>> or by pin strap. We use the device in its default settings, so we don't
+>>> touch any I2C registers, thus I'm not sure the reg property is required.
+>>
+>> But then how would it be represented in the DT? Where / under which parent?
+>>
+>> If this is supposed to be always in I2C bus in DT, then you always need
+>> reg. If you could place it in other place, then your reasoning is valid
+>> - reg is optional.
+> 
+> As far as I understood, the device is connected to I2C bus, it just
+> doesn't need to be programmed. So I'd conclude that reg is required.
 
-Fixes: b9f8ca655d80 ("arm64: dts: rockchip: Add Lunzn Fastrhino R68S")
-Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
----
- .../boot/dts/rockchip/rk3568-fastrhino-r68s.dts    | 14 ++++++--------
- 1 file changed, 6 insertions(+), 8 deletions(-)
+Just to be clear (and as far as I understand),
+the TDP158 can be configured via 2 different methods:
+- dynamically at run-time, through I2C registers (requires an I2C bus)
+- statically at layout-time through pin straps (no I2C bus required)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568-fastrhino-r68s.dts b/arch/arm64/boot/dts/rockchip/rk3568-fastrhino-r68s.dts
-index ce2a5e1ccefc..02d966d218fd 100644
---- a/arch/arm64/boot/dts/rockchip/rk3568-fastrhino-r68s.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3568-fastrhino-r68s.dts
-@@ -39,10 +39,6 @@ &gmac0_tx_bus2
- 		     &gmac0_rx_bus2
- 		     &gmac0_rgmii_clk
- 		     &gmac0_rgmii_bus>;
--	snps,reset-gpio = <&gpio1 RK_PB0 GPIO_ACTIVE_LOW>;
--	snps,reset-active-low;
--	/* Reset time is 15ms, 50ms for rtl8211f */
--	snps,reset-delays-us = <0 15000 50000>;
- 	tx_delay = <0x3c>;
- 	rx_delay = <0x2f>;
- 	status = "okay";
-@@ -61,10 +57,6 @@ &gmac1m1_tx_bus2
- 		     &gmac1m1_rx_bus2
- 		     &gmac1m1_rgmii_clk
- 		     &gmac1m1_rgmii_bus>;
--	snps,reset-gpio = <&gpio1 RK_PB1 GPIO_ACTIVE_LOW>;
--	snps,reset-active-low;
--	/* Reset time is 15ms, 50ms for rtl8211f */
--	snps,reset-delays-us = <0 15000 50000>;
- 	tx_delay = <0x4f>;
- 	rx_delay = <0x26>;
- 	status = "okay";
-@@ -76,6 +68,9 @@ rgmii_phy0: ethernet-phy@1 {
- 		reg = <0x1>;
- 		pinctrl-0 = <&eth_phy0_reset_pin>;
- 		pinctrl-names = "default";
-+		reset-assert-us = <20000>;
-+		reset-deassert-us = <100000>;
-+		reset-gpios = <&gpio1 RK_PB0 GPIO_ACTIVE_LOW>;
- 	};
- };
- 
-@@ -85,6 +80,9 @@ rgmii_phy1: ethernet-phy@1 {
- 		reg = <0x1>;
- 		pinctrl-0 = <&eth_phy1_reset_pin>;
- 		pinctrl-names = "default";
-+		reset-assert-us = <20000>;
-+		reset-deassert-us = <100000>;
-+		reset-gpios = <&gpio1 RK_PB1 GPIO_ACTIVE_LOW>;
- 	};
- };
- 
--- 
-2.25.1
+On our board, the TDP158 is connected to blsp2_i2c1.
+
+So, in my understanding, the "reg" property would be required
+for the first method, but is not applicable for the second method.
+
+I don't feel strongly about the issue, so I can mark the "reg"
+property as required if it makes more sense.
+
+Regards
 
 
