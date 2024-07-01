@@ -1,74 +1,48 @@
-Return-Path: <devicetree+bounces-81952-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81953-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB31591E05F
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 15:17:36 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16F9F91E08C
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 15:23:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 75C651F23E23
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 13:17:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 44A421C215C7
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 13:23:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB3DB15DBC7;
-	Mon,  1 Jul 2024 13:17:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22B7315E5D1;
+	Mon,  1 Jul 2024 13:23:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="UWKDH2AZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OTP9AWns"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f44.google.com (mail-io1-f44.google.com [209.85.166.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A40C15AAD5
-	for <devicetree@vger.kernel.org>; Mon,  1 Jul 2024 13:17:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6C3A15E5AB;
+	Mon,  1 Jul 2024 13:23:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719839854; cv=none; b=oazXgqm+ldJz+wOmIfWc/HOa7/mVEp61NeH/oS5gLdXd6ybihAK642q9vNZ932wgBxteRJ6CbiVWE0V4OLygHB8DQkN9AUte7Wt9WVrpgUrD5grGlVEhPOMJ9bLmnzpMorhAGIW75FnDmLVtPApwXGSpqp6Nyfbl32vSqZ3lo+o=
+	t=1719840225; cv=none; b=SwwruxWsY4+8owTGn7SBVQSgaG12EWPJcdm6vddjQ9uZio7vVcSQ4trbPSEwgHEKJtLh2SWup7dxLdeo0yuPc3S1O5VVMEt2WSrc3WEpCe2HqCpFrsQrXoE42MRR4M/OtoOlJPGtGJASkFIa+bsw0BxjPCair236cNZxIxYEn+Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719839854; c=relaxed/simple;
-	bh=B3NQ8HCyj1ZTe5E7TLaeqHT43qtQdDbfhF0WcJB5/l4=;
+	s=arc-20240116; t=1719840225; c=relaxed/simple;
+	bh=1aDaBVjQlCEBlWuUJhgLbck7PlekJKlGmM5Vo/RRkLA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HL4bJXoHwND6caThTcWRY2U8O63XFKZXfLRzj+GCfSF+0dWYw19WKO/W98xgNK3rDOTc8NrpyTcE0a1ui1FPQN5SlxuF4k6ydx1G+HZJxREceEjn1L6pZ6hiQrprytPKN3/hhXhphMiDA176baDLxL71dI/Tl/e2uqh66S8V6uo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=UWKDH2AZ; arc=none smtp.client-ip=209.85.166.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-io1-f44.google.com with SMTP id ca18e2360f4ac-7f3c5af0a04so156509039f.0
-        for <devicetree@vger.kernel.org>; Mon, 01 Jul 2024 06:17:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1719839852; x=1720444652; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Tv7hLmqJSP26fMN3IiNsBgVJSAix2nuXmhfSvybhYBQ=;
-        b=UWKDH2AZl3qh51IaJ844eBRRwwGSLeuh5xk19tkKla8v4ZrIpy+m4k4BIjSl2eidlO
-         9dpgHw1aDoQTUYXzk2xHzA1WjfNAqwDxOhcVJvogiMigtxJPkvRvw3MOZKwPFJbwWEhT
-         zIaq7NxLSNGncfzWmKb8S8pMnM6RrVAeGQxB8AfeuKf6+1Zfd4P8i8ltFBAmKy87qBOY
-         6LyYZJ9Nn4F9y+6OY61UcTXywKuFonw9UDJnhm50AJX7YciMtwUHU/o3g0ORLYyO0zw5
-         zCBRHbDi09OHjwyPvJCF4bQ8/vwj+anBMK6m8MEgw6AEArmlsU9G9jPYgGViBUqDUW14
-         Y8xg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719839852; x=1720444652;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Tv7hLmqJSP26fMN3IiNsBgVJSAix2nuXmhfSvybhYBQ=;
-        b=tnZIdFXEIu45yAIqih2DJbtgZWDJWocBgas2478I0pj5svY3vnvA0YJSkMZJuwoRBO
-         CyJN1DUjhxPXFzaTwLGt06bv5SIdkbaNyAYHqbMBmpA3b/JRffSzhSsVQtbdTCE4hLUp
-         wACLQxwZmvss6VNCJH7FoF+PnCXPIKOuoHbjZmtht3gQLMVjxXEvMjcclNTAjtC0cDtc
-         zGonsd8hyt71DwpoILDsoUZhI5nT3RGE8JFSz88d9i6xFmLaxc4MtaREjYdtLEQU0UnP
-         AnYYrwB3kIWa6WqFZ8ukcooqPMSCVjOgj+qH1jw9F9kYZd0GQgiSZ/62rjFCyg2i23RU
-         JSMg==
-X-Forwarded-Encrypted: i=1; AJvYcCVOB11MbQ1Di4YmxmPiq+pFpfLhJvn7wdV4OrvD4HzBigaQsr4TwhZtZFz2CsLTso9l/8tYUZT+8lIXPVofhLU2MiYjfKvD09imNQ==
-X-Gm-Message-State: AOJu0Yzng8o9yLh/x9+WiLANX+aelfVWCfYwMA2QWJ1qEemsKpysvlP5
-	0G2icC0i+1AsSIVKbKVTxMjWQ8LNphad+8rkjb0HIqsnAWP9sGZALVjYLjRAyzY=
-X-Google-Smtp-Source: AGHT+IEZw7OPZRtqEEfxj8LpOcD4ss2+Aeo4eVMjfKvEB8LYKyAWd6+8RBlnjTcAOf4l/FP8eMO8Kg==
-X-Received: by 2002:a05:6602:584:b0:7eb:776f:d970 with SMTP id ca18e2360f4ac-7f62ee74896mr592724639f.14.1719839852334;
-        Mon, 01 Jul 2024 06:17:32 -0700 (PDT)
-Received: from [100.64.0.1] ([147.124.94.167])
-        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-4bb73e08bc2sm2165340173.83.2024.07.01.06.17.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 01 Jul 2024 06:17:32 -0700 (PDT)
-Message-ID: <f8604c68-8866-447b-a874-562bdad1df79@sifive.com>
-Date: Mon, 1 Jul 2024 08:17:29 -0500
+	 In-Reply-To:Content-Type; b=MmF88+l/h56wAKtAsdAsYJevM97EgFQCElrkYQQ2LGRjnicQR6asM1leXbTDImfmqUPRL5XUmgjbuujHq3aMbQm1QPdoUwP8IhxK1YV/jOUV+JMmO6rbtJu4Q6TjR9HEu47kIeLvn8qxNMOkHomGSjM6wTmz0u3C8m8adMwYlTE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OTP9AWns; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02C87C32786;
+	Mon,  1 Jul 2024 13:23:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719840224;
+	bh=1aDaBVjQlCEBlWuUJhgLbck7PlekJKlGmM5Vo/RRkLA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=OTP9AWnsbw+FYOmLilmi1W/Advl202Jn8f3VzWILGydklJwijQaWqMbP804x69P9L
+	 E/jFB7y4SC208Zsf500vRD90J6YoXq8v6AKyc3rNTz0OUlVNBU/qr/MeqOuhvP3k6z
+	 zWLOS764nxQcwcUwDqCOolJSkS61bywTgFMkxV1tVqqWFuq89zWlW0cbrSmQwf3LU0
+	 jMIAhaYswH3HjStheYJOBTPYhyxlv5O//SOJRTBfI/dVHVikcvHMoiIXOQTk/Sz62E
+	 N2fGnbEMw05QLL2vJZT0DMFKLL3aePtoCaCYDlckvluEBBURf8kX32EwyeGZFRjlQt
+	 MtIWSraqaU/LQ==
+Message-ID: <9a6b0589-b401-49f2-aac1-ad00a90c4791@kernel.org>
+Date: Mon, 1 Jul 2024 15:23:37 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,59 +50,91 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] spi: dw-mmio: update dw_spi_mmio_of_match struct
- with thead
-To: Kanak Shilledar <kanakshilledar@gmail.com>
-Cc: Serge Semin <fancer.lancer@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jisheng Zhang <jszhang@kernel.org>,
- Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-References: <20240701121355.262259-2-kanakshilledar@gmail.com>
- <20240701121355.262259-4-kanakshilledar@gmail.com>
-From: Samuel Holland <samuel.holland@sifive.com>
+Subject: Re: [PATCH v3 1/3] dt-bindings: clock: renesas: Document RZ/V2H(P)
+ SoC CPG
+To: Prabhakar <prabhakar.csengg@gmail.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Magnus Damm <magnus.damm@gmail.com>, linux-clk@vger.kernel.org
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>,
+ Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+ Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20240627161315.98143-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20240627161315.98143-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-In-Reply-To: <20240701121355.262259-4-kanakshilledar@gmail.com>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240627161315.98143-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-Hi Kanak,
-
-On 2024-07-01 7:13 AM, Kanak Shilledar wrote:
-> updated the struct of_device_id dw_spi_mmio_of_match to include
-> the updated compatible value for TH1520 SoC ("thead,th1520-spi")
-> to initialize with dw_spi_pssi_init().
+On 27/06/2024 18:13, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > 
-> Signed-off-by: Kanak Shilledar <kanakshilledar@gmail.com>
-> ---
-> Changes in v2:
-> - Separated from a single patch file.
-> ---
->  drivers/spi/spi-dw-mmio.c | 1 +
->  1 file changed, 1 insertion(+)
+> Document the device tree bindings for the Renesas RZ/V2H(P) SoC
+> Clock Pulse Generator (CPG).
 > 
-> diff --git a/drivers/spi/spi-dw-mmio.c b/drivers/spi/spi-dw-mmio.c
-> index 819907e332c4..39e3d46ebf5d 100644
-> --- a/drivers/spi/spi-dw-mmio.c
-> +++ b/drivers/spi/spi-dw-mmio.c
-> @@ -419,6 +419,7 @@ static const struct of_device_id dw_spi_mmio_of_match[] = {
->  	{ .compatible = "microchip,sparx5-spi", dw_spi_mscc_sparx5_init},
->  	{ .compatible = "canaan,k210-spi", dw_spi_canaan_k210_init},
->  	{ .compatible = "amd,pensando-elba-spi", .data = dw_spi_elba_init},
-> +	{ .compatible = "thead,th1520-spi", .data = dw_spi_pssi_init},
+> CPG block handles the below operations:
+> - Generation and control of clock signals for the IP modules
+> - Generation and control of resets
+> - Control over booting
+> - Low power consumption and power supply domains
+> 
+> Also define constants for the core clocks of the RZ/V2H(P) SoC. Note the
+> core clocks are a subset of the ones which are listed as part of section
+> 4.4.2 of HW manual Rev.1.01 which cannot be controlled by CLKON register.
+> 
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Your binding requires snps,dw-apb-ssi as a fallback compatible string, which is
-already supported by this driver and uses the same match data. So you don't need
-this patch; its only effect is to make the kernel larger.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Regards,
-Samuel
-
->  	{ /* end of table */}
->  };
->  MODULE_DEVICE_TABLE(of, dw_spi_mmio_of_match);
+Best regards,
+Krzysztof
 
 
