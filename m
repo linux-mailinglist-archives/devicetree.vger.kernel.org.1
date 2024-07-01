@@ -1,276 +1,259 @@
-Return-Path: <devicetree+bounces-82110-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82112-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF78F91E765
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 20:26:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2330D91E772
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 20:29:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 53759B20C15
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 18:26:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C34D32839D2
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 18:29:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 562EE16EBF6;
-	Mon,  1 Jul 2024 18:26:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B54716EC14;
+	Mon,  1 Jul 2024 18:29:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Uc5hw9TL"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Bjs0Z/bj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 282A84206C;
-	Mon,  1 Jul 2024 18:26:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60483BA34;
+	Mon,  1 Jul 2024 18:29:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719858389; cv=none; b=qY4a3TomwZbLHuCgF34B9r5wTXfS2vggHvKXaevbVKjnHXYgv5Gx3OyJjrj+IQXH2I83aGaqSVpTlXwcigDdjhFBpZj4zkOKVPq+7za2b243oAO1GSWRgcjDZuFyJQXIDvaFhnpcERLpjYQ3yUJ/HhxC5QLdxUPwwlJG3HGxXnw=
+	t=1719858559; cv=none; b=nQ84sUG8O/iVXU1PXeDqGUiW4dhGV+nXB12pr4L2vqTR8cP7aPewdDrzaqwybqhiEMtdFFzUMQfknIrV99IPIqzEQTjMR8um33QU8pki1XSHU737PdrXovTkGMl7jCmRryF1Zg8XnpDm5hXZhlAowTsU7dBxr8XNJMGsLHgcmcc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719858389; c=relaxed/simple;
-	bh=eJuTrf0oLJxZyj0FJqRF/6p6IZeg+srqP1FrZsdO7Q8=;
-	h=MIME-Version:Content-Type:Date:Message-ID:CC:Subject:From:To:
-	 References:In-Reply-To; b=BE9Aj03HosIM31RW+tvkH9CExX0lde5S1om91+NGoyvCfiHZ3PFV6SZNToCyqWyPiTdFo09IMPn1ZdbmL4FkUsXR8BcQpfQiupL62qDqhrUEXnOIlRnssvtdpt+BB1ivdaEQMYY45oXq5dWBZpo7e03zSCqAI1KVxzU6F8EFYKY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Uc5hw9TL; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 461IQG9b033443;
-	Mon, 1 Jul 2024 13:26:16 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1719858376;
-	bh=OTJBK/eXTcbCUlw13jrhouc45oqruLOebA3Tdbxp8MU=;
-	h=Date:CC:Subject:From:To:References:In-Reply-To;
-	b=Uc5hw9TL2yMsW1KDXtOSuNJcTMz6fjJwhzB+cQieBsVQniGiVXovoHeYlQukomA9Q
-	 QEl5X14IQWj/0Z87a6ikTlc4RraEtTN9PTAIAoT/MGSnOzKx40XKTRhMxTCul+wkjU
-	 EYm1yTUUpuN613GEVhfG5CZTM+VpYKdaGPu0P80s=
-Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 461IQG8E056592
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 1 Jul 2024 13:26:16 -0500
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 1
- Jul 2024 13:26:16 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 1 Jul 2024 13:26:16 -0500
-Received: from localhost (rs-desk.dhcp.ti.com [128.247.81.144])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 461IQG2Q073831;
-	Mon, 1 Jul 2024 13:26:16 -0500
+	s=arc-20240116; t=1719858559; c=relaxed/simple;
+	bh=YdSBTKoud5HTTCEcvzEun4Dix6xLngYJO/Z7QgHW8yE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=OnT64DUGPcSVPS9q8t1rH9oZbdtT1h8DcAD7qUiYOI8LPp5O093Xssb7Bs3Vk/WKUrQPM/bY5Nh6BJzBcp2xwSCJjSgyVcEKaJUWseKyn9VKYN6iakOkMNXZLmmFN+gfAwm7k5z7iyychhaqM7oqe5ceK+MV8uEdjxXgsdhaRpI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Bjs0Z/bj; arc=none smtp.client-ip=209.85.167.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-52ce6c8db7bso4975813e87.1;
+        Mon, 01 Jul 2024 11:29:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1719858555; x=1720463355; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=fWVLiIeLfu9VxxvmoDSR42nCkv8Kp3qYClEoexCNKyM=;
+        b=Bjs0Z/bjNH9nmig1n5OLfMZ9S4GKUC3SQjdrYZ8VBKSLst+DiWgbPIiWZ/8xf2LUKo
+         7RtRhRGBRrbbqeEf4aq4bXd/9Yflvl7EMY1jthg2+CYwEAB9aJhCg6tHrwblKRgQSSif
+         Qj1z7OepjzUsfWe7L4kK4Af6NHkXCmZZaHXPAd5L6UfVy5h7ynDYaV2Ino8p/bZquMg5
+         yNBsc4Z1mt1kpgrXV3pOkADvpR/4EyAy5CI1xEWvDomvG5yl/FDGjpCemeRqShz+pqQ6
+         fB4MAZ5DFo5IFhiom0tAJZGl/Qokt/p4kweBZTzWqX/IqqJKIP/LIJHMDrH5vD7sguPU
+         90sg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719858555; x=1720463355;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=fWVLiIeLfu9VxxvmoDSR42nCkv8Kp3qYClEoexCNKyM=;
+        b=gtX4zohgz6RdMjbIbfqmV9/pJPwLy+BXjooxShEPNIOJKSL5aVCUCmYlivez3oyEKs
+         mHV14Tx9LOf/xpS4Syv2W0NdYaoEj53dcI63Aa5DiYtaHDggWoWzACCscJPjfmsD6tuy
+         /3n+jrrKKjTObisuyPz5/k+v3PAWc8u5amhjM16nSrca7XXL/eTrcQ8giUUjKxCLNzzf
+         VD7ugZtOrYRfOn+Jzbpyq4c/N1jbgdSnTVgE/c9hIYIGg5rrZIXJEMCjoBYvC5Jr/FeS
+         3LTlCZT5Ny3sQ/k0G30icoiZIq5F0lLCQ/syI/RAU1UvctnQ2SGsfmooTotD5O6VN1mF
+         KC4A==
+X-Forwarded-Encrypted: i=1; AJvYcCWp5tsGZ+iELVK6iBIpmVXFE1+uFKKpat4XhTwtldvy7roP7QEFOb3/rrJPw/Fw76awABS9b4pMryhg9XXGmZG13Mm9q2WclKe2vR0w5PbWPtUdXzuvAySkEQX0b0HhWrlY0J4v/uWgOjFUmprwZsWd+ru0rrQwcLy5aOi4rbFYpg==
+X-Gm-Message-State: AOJu0Yy1rlo2J63anYiFPr5Oty+mdnaFHi/+DepGxFb96VaVgF+9bhR4
+	nSPkhJERSgRncfsXgOEVuJp9SDnGK8LPd1tYVqhC9upO5pUbJKKF
+X-Google-Smtp-Source: AGHT+IH5NomShbunjQY08CL9VTshtdRejDVasRBQIKlR1Z+vValI0nwISz8hsAwkpEXlRfpYNR+kqQ==
+X-Received: by 2002:a05:6512:2397:b0:52e:813f:ab60 with SMTP id 2adb3069b0e04-52e8274a125mr5104043e87.56.1719858555025;
+        Mon, 01 Jul 2024 11:29:15 -0700 (PDT)
+Received: from localhost ([178.176.56.174])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52e7ab10027sm1532527e87.73.2024.07.01.11.29.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 01 Jul 2024 11:29:13 -0700 (PDT)
+From: Serge Semin <fancer.lancer@gmail.com>
+To: Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Jose Abreu <Jose.Abreu@synopsys.com>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Serge Semin <fancer.lancer@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Sagar Cheluvegowda <quic_scheluve@quicinc.com>,
+	Abhishek Chauhan <quic_abchauha@quicinc.com>,
+	Andrew Halaney <ahalaney@redhat.com>,
+	Jiawen Wu <jiawenwu@trustnetic.com>,
+	Mengyuan Lou <mengyuanlou@net-swift.com>,
+	Tomer Maimon <tmaimon77@gmail.com>,
+	openbmc@lists.ozlabs.org,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH net-next v4 00/10] net: pcs: xpcs: Add memory-mapped device support
+Date: Mon,  1 Jul 2024 21:28:31 +0300
+Message-ID: <20240701182900.13402-1-fancer.lancer@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="UTF-8"
-Date: Mon, 1 Jul 2024 13:26:16 -0500
-Message-ID: <D2EEWUPE9RAG.26DDBH0DK0OP7@ti.com>
-CC: <praneeth@ti.com>, <a-bhatia1@ti.com>, <j-luthra@ti.com>,
-        <b-brnich@ti.com>, <detheridge@ti.com>, <p-mantena@ti.com>,
-        <vijayp@ti.com>, "Khasim, Syed Mohammed" <khasim@ti.com>
-Subject: Re: [PATCH 0/3] Add global CMA reserve area
-From: Randolph Sapp <rs@ti.com>
-To: Andrew Davis <afd@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Devarsh
- Thakkar <devarsht@ti.com>, <nm@ti.com>, <kristo@kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-X-Mailer: aerc 0.17.0-0-g6ea74eb30457
-References: <20240613150902.2173582-1-devarsht@ti.com>
- <D1ZXO8F3XN2I.3CTTE245I0TYY@ti.com>
- <24c0ed06-3c32-4cc3-922c-4717d35a1112@ti.com>
- <64b78ba2-776c-1de6-4c13-001d11000ff0@ti.com>
- <D2BSORIL5C7T.3B8EAANVQ7TX5@ti.com>
- <0ca809d0-3d0f-47d1-b5e7-aa78d65d7917@ti.com>
- <2f1f25b5-86c1-4a60-8f71-519658d5f88a@ti.com>
-In-Reply-To: <2f1f25b5-86c1-4a60-8f71-519658d5f88a@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 
-On Mon Jul 1, 2024 at 9:33 AM CDT, Andrew Davis wrote:
-> On 6/30/24 2:09 AM, Vignesh Raghavendra wrote:
-> >=20
-> >=20
-> > On 28/06/24 22:05, Randolph Sapp wrote:
-> >> On Fri Jun 28, 2024 at 10:57 AM CDT, Devarsh Thakkar wrote:
-> >>> Hi Andrew, Vignesh,
-> >>>
-> >>> On 24/06/24 22:03, Andrew Davis wrote:
-> >>>> On 6/14/24 12:58 PM, Randolph Sapp wrote:
-> >>>>> On Thu Jun 13, 2024 at 10:08 AM CDT, Devarsh Thakkar wrote:
-> >>>>>> Add global CMA reserve area for AM62x, AM62A and AM62P SoCs.
-> >>>>>> These SoCs do not have MMU and hence require contiguous memory poo=
-l to
-> >>>>>> support various multimedia use-cases.
-> >>>>>>
-> >>>>>> Brandon Brnich (1):
-> >>>>>>  =C2=A0=C2=A0 arm64: dts: ti: k3-am62p5-sk: Reserve 576 MiB of glo=
-bal CMA
-> >>>>>>
-> >>>>>> Devarsh Thakkar (2):
-> >>>>>>  =C2=A0=C2=A0 arm64: dts: ti: k3-am62x-sk-common: Reserve 128MiB o=
-f global CMA
-> >>>>>>  =C2=A0=C2=A0 arm64: dts: ti: k3-am62a7-sk: Reserve 576MiB of glob=
-al CMA
-> >>>>>>
-> >>>>>>  =C2=A0 arch/arm64/boot/dts/ti/k3-am62a7-sk.dts=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 | 9 +++++++++
-> >>>>>>  =C2=A0 arch/arm64/boot/dts/ti/k3-am62p5-sk.dts=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 | 7 +++++++
-> >>>>>>  =C2=A0 arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi | 8 +++++++=
-+
-> >>>>>>  =C2=A0 3 files changed, 24 insertions(+)
-> >>>>>
-> >>>>> I'm still a little torn about putting this allocation into the devi=
-ce tree
-> >>>>> directly as the actual required allocation size depends on the task=
-.
-> >>>>>
-> >>>>
-> >>>> That is the exact reason this does not belong in DT. For everyone *n=
-ot*
-> >>>> using the most extreme case (12x decodes at the same time), this is
-> >>>> all wasted space. If one is running out of CMA, they can add more on
-> >>>> the kernel cmdline.
-> >>>>
-> >>>
-> >>> I disagree with this. The 12x decode for 480p is not an extreme use-c=
-ase this
-> >>> is something VPU is capable to run at optimum frame-rate (12x 1080p i=
-t can't)
-> >>> and as the AM62A7 is meant to be AI + multimedia centric device, per =
-the
-> >>> device definition we were given the requirements to support a list of
-> >>> multimedia use-cases which should work out of box and 12x decode for =
-480p was
-> >>> one of them as device is very much capable of doing that with optimum
-> >>> performance and I don't think it is right to change these requirement=
-s on the fly.
-> >>>
-> >>> The AM62A7 board has 4 GiB of DDR and we have been using this CMA val=
-ue since
-> >>> more than a year, I have never heard anyone complain about out of mem=
-ory or
-> >>> CMA starvation and it suffices to requirements of *most use-cases*, b=
-ut if for
-> >>> some specific use-case it doesn't suffice, user can change it via ker=
-nel cmdline.
-> >>>
-> >>> The kernelcmdline suggestion doesn't suffice out of box experience re=
-quired,
-> >>> we don't want to ask the user to reboot the board everytime they run =
-out of CMA.
-> >>>
-> >>>
-> >>>>> If it's allowed though, this series is fine for introducing those c=
-hanges. This
-> >>>>> uses the long-tested values we've been using on our tree for a bit =
-now. The
-> >>>>> only
-> >>>>> thing that's a little worrying is the missing range definitions for=
- devices
-> >>>>> with
-> >>>>> more than 32bits of addressable memory as Brandon has pointed out. =
-Once that's
-> >>>>> addressed:
-> >>>>>
-> >>>>> Reviewed-by: Randolph Sapp <rs@ti.com>
-> >>>>>
-> >>>>> Specifying these regions using the kernel cmdline parameter via u-b=
-oot was
-> >>>>> brought up as a potential workaround. This is fine until you get in=
-to distro
-> >>>>> boot methods which will almost certainly attempt to override those.=
- I don't
-> >>>>> know. Still a little odd. Curious how the community feels about it.
-> >>>>>
-> >>>>> Technically the user or distro can still override it with the cmdli=
-ne parameter
-> >>>>> if necessary, so this may be the best way to have a useful default.
-> >>>>>
-> >>>>
-> >>>
-> >>> Unlike above, this solution is independent of distro as it should be =
-as we
-> >>> want that all the supported multimedia use-cases should work out of b=
-ox. This
-> >>> solution is nothing illegal as CMA region carveouts are not a kernel
-> >>> deprecated feature.
-> >>
-> >> Right. I support this change for at least introducing a usable default=
-. 32M of
-> >> CMA is barely enough to run glmark2 under Weston once everything's up =
-and
-> >> running.
-> >>
-> >> As I said before, the user or distro can still override the dt CMA blo=
-ck with
-> >> the cma kernel parameter if they aren't happy with the default block.
-> >> Unfortunately this is about the only way to have a usable default valu=
-e to fall
-> >> back on.
-> >>
-> >=20
-> >=20
-> > Given the number of SoMs and non TI EVMs that are about to come out wit=
-h
-> > AM62A/P and AM67s, we need to provide a consistent way of being able to
-> > support multimedia IPs out of the box. Modifying cmdline may not always
-> > be feasible given distro defaults don't always provide a way to do so.
-> >=20
->
-> We need to keep thinking then. I empathize with desire to put
-> configuration in Device Tree. DT feels like a great spot for it,
-> it is ubiquitous on these boards and has a good bit of tooling around
-> it. We are already describing the hardware, why not configure it here
-> too? But the reason we do not want to go down that road is simple:
-> DT takes away use-case flexibility. A lack of flexibility is fine for
-> hardware which is unchanging, but not for configuration.
+The main goal of this series is to extend the DW XPCS device support in
+the kernel. Particularly the patchset adds a support of the DW XPCS
+device with the MCI/APB3 IO interface registered as a platform device. In
+order to have them utilized by the DW XPCS core the fwnode-based DW XPCS
+descriptor creation procedure has been introduced. Finally the STMMAC
+driver has been altered to support the DW XPCS passed via the 'pcs-handle'
+property.
 
-I agree with the sentiment here, but this explicit case is an exception. Th=
-is is
-no more than a default value. Userspace can still change this allocation wi=
-th
-the kernel cma parameter. That still takes precedence.
+Note the series has been significantly re-developed since v1. So I even
+had to change the subject. Anyway I've done my best to take all the noted
+into account.
 
-> Device policy and configuration must be left to userspace.
->
-> It is not for us to decide how folks should use our hardware, and
-> that is what we are doing when we configure it in DT.
->
-> For configuration that must happen in early boot before userspace is
-> available (such as kernel stdout and memory carveouts) we have the
-> kernel cmdline. If we find something that cannot be done today though
-> the cmdline, then we should add that support to the cmdline, not
-> give up and just hide the configuration in DT.
->
-> What this series does is already available on the kernel cmdline.
-> Our bootloader can provide sane defaults on the cmdline today.
-> If the worry is that distros will override this default then
-> go fix those distros.
+The series traditionally starts with a set of the preparation patches.
+First one just moves the generic DW XPCS IDs macros from the internal
+header file to the external one where some other IDs also reside. Second
+patch splits up the xpcs_create() method to a set of the coherent
+sub-functions for the sake of the further easier updates and to have it
+looking less complicated. The goal of the next three patches is to extend
+the DW XPCS ID management code by defining a new dw_xpcs_info structure
+with both PCS and PMA IDs.
 
-Our bootloaders doing anything to kernel cmdline parameters is inherently
-non-standard. You just brought up userspace control. They clobber cmdline
-parameters all the time. Unsetting this bootloader value will be the first =
-thing
-they do. This will be done passively, since they normally inject a new
-intermediary boot stage that they can actually control between u-boot and t=
-heir
-kernel.
+The next two patches provide the DW XPCS device DT-bindings and the
+respective platform-device driver for the memory-mapped DW XPCS devices.
+Besides the later patch makes use of the introduced dw_xpcs_info structure
+to pre-define the DW XPCS IDs based on the platform-device compatible
+string. Thus if there is no way to auto-identify the XPCS device
+capabilities it can be done based on the custom device IDs passed via the
+MDIO-device platform data.
 
-- Randolph
+Final DW XPCS driver change is about adding a new method of the DW XPCS
+descriptor creation. The xpcs_create_fwnode() function has been introduced
+with the same semantics as a similar method recently added to the Lynx PCS
+driver. It's supposed to be called with the fwnode pointing to the DW XPCS
+device node, for which the XPCS descriptor will be created.
 
-> > So I am inclined to queue first 2 patches unless there is another way t
-> > achieve this.
-> >=20
->
-> Our lack of creativity in finding better solutions to this issue is
-> not an excuse to add more junk to DT..
->
-> Andrew
->
-> > [...]
-> >=20
+The series is terminated with two STMMAC driver patches. The former one
+simplifies the DW XPCS descriptor registration procedure by dropping the
+MDIO-bus scanning and creating the descriptor for the particular device
+address. The later patch alters the STMMAC PCS setup method so one would
+support the DW XPCS specified via the "pcs-handle" property.
+
+That's it for now. Thanks for review in advance. Any tests are very
+welcome. After this series is merged in, I'll submit another one which
+adds the generic 10GBase-R and 10GBase-X interfaces support to the STMMAC
+and DW XPCS driver with the proper CSRs re-initialization, PMA
+initialization and reference clock selection as it's described in the
+Synopsys DW XPCS HW manual.
+
+Link: https://lore.kernel.org/netdev/20231205103559.9605-1-fancer.lancer@gmail.com
+Changelog v2:
+- Drop the patches:
+  [PATCH net-next 01/16] net: pcs: xpcs: Drop sentinel entry from 2500basex ifaces list
+  [PATCH net-next 02/16] net: pcs: xpcs: Drop redundant workqueue.h include directive
+  [PATCH net-next 03/16] net: pcs: xpcs: Return EINVAL in the internal methods
+  [PATCH net-next 04/16] net: pcs: xpcs: Explicitly return error on caps validation
+  as ones have already been merged into the kernel repo:
+Link: https://lore.kernel.org/netdev/20240222175843.26919-1-fancer.lancer@gmail.com/
+- Drop the patches:
+  [PATCH net-next 14/16] net: stmmac: Pass netdev to XPCS setup function
+  [PATCH net-next 15/16] net: stmmac: Add dedicated XPCS cleanup method
+  as ones have already been merged into the kernel repo:
+Link: https://lore.kernel.org/netdev/20240513-rzn1-gmac1-v7-0-6acf58b5440d@bootlin.com/
+- Drop the patch:
+  [PATCH net-next 06/16] net: pcs: xpcs: Avoid creating dummy XPCS MDIO device
+  [PATCH net-next 09/16] net: mdio: Add Synopsys DW XPCS management interface support
+  [PATCH net-next 11/16] net: pcs: xpcs: Change xpcs_create_mdiodev() suffix to "byaddr"
+  [PATCH net-next 13/16] net: stmmac: intel: Register generic MDIO device
+  as no longer relevant.
+- Add new patches:
+  [PATCH net-next v2 03/10] net: pcs: xpcs: Convert xpcs_id to dw_xpcs_desc
+  [PATCH net-next v2 04/10] net: pcs: xpcs: Convert xpcs_compat to dw_xpcs_compat
+  [PATCH net-next v2 05/10] net: pcs: xpcs: Introduce DW XPCS info structure
+  [PATCH net-next v2 09/10] net: stmmac: Create DW XPCS device with particular address
+- Use the xpcs_create_fwnode() function name and semantics similar to the
+  Lynx PCS driver.
+- Add kdoc describing the DW XPCS registration functions.
+- Convert the memory-mapped DW XPCS device driver to being the
+  platform-device driver.
+- Convert the DW XPCS DT-bindings to defining both memory-mapped and MDIO
+  devices.
+- Drop inline'es from the methods statically defined in *.c. (@Maxime)
+- Preserve the strict refcount-ing pattern. (@Russell)
+
+Link: https://lore.kernel.org/netdev/20240602143636.5839-1-fancer.lancer@gmail.com/
+Changelov v3:
+- Implement the ordered clocks constraint. (@Rob)
+- Convert xpcs_plat_pm_ops to being defined as static. (@Simon)
+- Add the "@interface" argument kdoc to the xpcs_create_mdiodev()
+  function. (@Simon)
+- Fix the "@fwnode" argument name in the xpcs_create_fwnode() method kdoc.
+  (@Simon)
+- Move the return value descriptions to the "Return:" section of the
+  xpcs_create_mdiodev() and xpcs_create_fwnode() kdoc. (@Simon)
+- Drop stmmac_mdio_bus_data::has_xpcs flag and define the PCS-address
+  mask with particular XPCS address instead.
+
+Link: https://lore.kernel.org/netdev/20240627004142.8106-1-fancer.lancer@gmail.com/
+Changelog v4:
+- Make sure the series is applicable to the net-next tree. (@Vladimir)
+- Rename entry to desc in the xpcs_init_id() method. (@Andrew)
+- Add a comment to the clock-names property constraint about the
+  oneOf-subschemas applicability. (@Conor)
+- Convert "pclk" clock name to "csr" to match the DW XPCS IP-core
+  input signal name. (@Rob)
+
+base-commit: 74d6529b78f7a440a10aa7f4904ca9f27d1d2f3c
+Signed-off-by: Serge Semin <fancer.lancer@gmail.com>
+Cc: "David S. Miller" <davem@davemloft.net>
+Cc: Eric Dumazet <edumazet@google.com>
+Cc: Jakub Kicinski <kuba@kernel.org>
+Cc: Paolo Abeni <pabeni@redhat.com>
+Cc: Sagar Cheluvegowda <quic_scheluve@quicinc.com>
+Cc: Abhishek Chauhan <quic_abchauha@quicinc.com>
+Cc: Andrew Halaney <ahalaney@redhat.com>
+Cc: Jiawen Wu <jiawenwu@trustnetic.com>
+Cc: Mengyuan Lou <mengyuanlou@net-swift.com>
+Cc: Tomer Maimon <tmaimon77@gmail.com>
+Cc: openbmc@lists.ozlabs.org
+Cc: netdev@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+
+Serge Semin (10):
+  net: pcs: xpcs: Move native device ID macro to linux/pcs/pcs-xpcs.h
+  net: pcs: xpcs: Split up xpcs_create() body to sub-functions
+  net: pcs: xpcs: Convert xpcs_id to dw_xpcs_desc
+  net: pcs: xpcs: Convert xpcs_compat to dw_xpcs_compat
+  net: pcs: xpcs: Introduce DW XPCS info structure
+  dt-bindings: net: Add Synopsys DW xPCS bindings
+  net: pcs: xpcs: Add Synopsys DW xPCS platform device driver
+  net: pcs: xpcs: Add fwnode-based descriptor creation method
+  net: stmmac: Create DW XPCS device with particular address
+  net: stmmac: Add DW XPCS specified via "pcs-handle" support
+
+ .../bindings/net/pcs/snps,dw-xpcs.yaml        | 136 ++++++
+ .../net/ethernet/stmicro/stmmac/dwmac-intel.c |   2 +-
+ .../net/ethernet/stmicro/stmmac/stmmac_mdio.c |  32 +-
+ drivers/net/pcs/Kconfig                       |   6 +-
+ drivers/net/pcs/Makefile                      |   3 +-
+ drivers/net/pcs/pcs-xpcs-plat.c               | 460 ++++++++++++++++++
+ drivers/net/pcs/pcs-xpcs.c                    | 361 +++++++++-----
+ drivers/net/pcs/pcs-xpcs.h                    |   7 +-
+ include/linux/pcs/pcs-xpcs.h                  |  49 +-
+ include/linux/stmmac.h                        |   2 +-
+ 10 files changed, 910 insertions(+), 148 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/pcs/snps,dw-xpcs.yaml
+ create mode 100644 drivers/net/pcs/pcs-xpcs-plat.c
+
+-- 
+2.43.0
 
 
