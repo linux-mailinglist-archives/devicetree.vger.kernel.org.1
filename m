@@ -1,104 +1,79 @@
-Return-Path: <devicetree+bounces-82080-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82081-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE89891E610
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 18:58:45 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F24B91E62A
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 19:05:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 93C261F24A82
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 16:58:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 75DC8B28B8A
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2024 17:04:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A16916EB67;
-	Mon,  1 Jul 2024 16:58:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29EC816DEA7;
+	Mon,  1 Jul 2024 17:04:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o40lU3+q"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kb38BPDg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6337216EB5B;
-	Mon,  1 Jul 2024 16:58:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE92614AD25;
+	Mon,  1 Jul 2024 17:04:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719853090; cv=none; b=ghktExruRs94YHokEAvFJYm6U6+DWcgS7PiaPVfPI+wNH+5N+piR/SgzkudnMTeVc+b0qwrCwBV27+8fYz1g01IOjXUhJyiC9fRsVvfNITtN/rtc6ujtA8t9KLbnNiZWBX3TXWVddbQCSHT2KhcFLVAkyjC9qMR2TM8gJYyzQzo=
+	t=1719853473; cv=none; b=cqI59mlmR/DkmCM9ezN13l+jfuW1ng38DSMo4IysjJZdqWuJpQzHAYVZflrMFq3QbOJn4kGiGZ7vv/6uMYV3huRUX/GrTVn67c06/hCz4O78i92er2vFWSKLRyU4u0U75nL1xPbTivDFYdXUloQQ7j1fNhl/q1pDwjKRqx1pf2s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719853090; c=relaxed/simple;
-	bh=TgmAawkvwnXSaXC3mxIRK84/4eKNm+uRnN4qvy+cKlI=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=bJMyBIIaeo6Uo+jJISqsk5YDq+cILFozjVin5sNVIFlvqlWsjs36xFjwyh5vaDeTmvxp/jyvpN55TF63dzZnZd6z0r3fQw3RAhVboNZ8IVy5cmdJMfMln+pXgvrYX/qytErXuzipj3saONA5ovgN6MLQM2K02CPIrbPUkiLe02o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o40lU3+q; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6C74C4AF17;
-	Mon,  1 Jul 2024 16:58:09 +0000 (UTC)
+	s=arc-20240116; t=1719853473; c=relaxed/simple;
+	bh=1ozzb/852acdo8maf7CK3uWvvUYvjaMR99Rgi2L1nMk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MfL9D1kRlzuJGLtXX17j5ANJziImrG1jpUJPuCFwlD0N8WdqjyTt0EeVbXn8UhzFpDkV5hR05I4iuHNmRIVVGJuQ+ddSi3A/rYoocMWPZBCG6hSTai5Uh/zkvbZm1rCh9XF8UP9g4ORga2ZtY1cBt8VPlgv2yX3NXg2lx8Tqxjo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kb38BPDg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D7C0C2BD10;
+	Mon,  1 Jul 2024 17:04:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719853090;
-	bh=TgmAawkvwnXSaXC3mxIRK84/4eKNm+uRnN4qvy+cKlI=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=o40lU3+quYwLTPcZr5Op6ZbcFXx5yUk+bUVd6zcwa4O3TrQ0I+DJQ1dID4dr+f2HM
-	 E0AywnRbTLZqkV86bmlbKZDSlVAyVNIrnkwuI1UYKfHbO6CKkheWvEgNbTdARkhM93
-	 PMZxaeHvXoqt1eOEBcksQwMIBHuoVGbRCwyJuHYDt0FwCJhY+Ag3JJoppTAmg/KqPE
-	 xScpOljMwBJIbDAMlJiFtWNluw3/Qjt31p1ZwokgNQaysa0bZGlA5aplVMz9WOhioR
-	 BVUlhWMTJZjmLvj5kMRPOe0F4hPCsI/WWVJhaB79d0hHGnyiHcWLy0lbw2v+YsbaUT
-	 6KQpjByW83Cmg==
-Date: Mon, 01 Jul 2024 10:58:09 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1719853472;
+	bh=1ozzb/852acdo8maf7CK3uWvvUYvjaMR99Rgi2L1nMk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=kb38BPDg98IEiiykLogYdQog24ja1Ju1ivfXoaYRgwQ8XuDS81vqR3U+82FiqRQAC
+	 314iwm2tUYzDDTsl+3LfuNVWtDBtORtzUpitm121ABb4bfIFmB8BPYxtiZBCTjerCQ
+	 Tp3h0FXW1boa+NW5bSaxA+6faNxF2xNSaPDULORc/ULKlQwRLYuMQg8ggtC7tFPqyl
+	 yG9A8d6mNfXazVLxvrnaEVQTeK1WYLmgJNuU3uY973oiidVV2RZcM3Q+luV/dsVj9f
+	 xIslnBtOdmOFZ42JdhXIx5SHbnppLSuR6GFwU4wXVMysZx/OE5oW/PNSCJYpWhHFCH
+	 nz3RAQVfWFxRw==
+Date: Mon, 1 Jul 2024 11:04:31 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc: sudeep.holla@arm.com, linux-kernel@vger.kernel.org, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, cristian.marussi@arm.com,
+	krzk+dt@kernel.org, Peng Fan <peng.fan@nxp.com>,
+	arm-scmi@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH RESEND] dt-bindings: firmware: arm,scmi: support system
+ power protocol
+Message-ID: <171985347002.119709.17589124239067617690.robh@kernel.org>
+References: <20240628030309.1162012-1-peng.fan@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Krishna Yarlagadda <kyarlagadda@nvidia.com>
-Cc: ldewangan@nvidia.com, digetx@gmail.com, adrian.hunter@intel.com, 
- mkumard@nvidia.com, thierry.reding@gmail.com, jonathanh@nvidia.com, 
- conor+dt@kernel.org, andi.shyti@kernel.org, ulf.hansson@linaro.org, 
- wsa+renesas@sang-engineering.com, krzk+dt@kernel.org, 
- linux-tegra@vger.kernel.org, corbet@lwn.net, devicetree@vger.kernel.org, 
- linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-mmc@vger.kernel.org, linux-i2c@vger.kernel.org
-In-Reply-To: <20240701151231.29425-6-kyarlagadda@nvidia.com>
-References: <20240701151231.29425-1-kyarlagadda@nvidia.com>
- <20240701151231.29425-6-kyarlagadda@nvidia.com>
-Message-Id: <171985308638.97930.5431807770986392243.robh@kernel.org>
-Subject: Re: [RFC PATCH V2 05/12] dt-bindings: i2c: tegra-i2c: reference to
- config
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240628030309.1162012-1-peng.fan@oss.nxp.com>
 
 
-On Mon, 01 Jul 2024 20:42:23 +0530, Krishna Yarlagadda wrote:
-> I2C interface timing registers are configured using config setting
-> framework. Add reference to I2C config settings.
+On Fri, 28 Jun 2024 11:03:09 +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
 > 
-> Signed-off-by: Krishna Yarlagadda <kyarlagadda@nvidia.com>
+> Add SCMI System Power Protocol bindings, and the protocol id is 0x12.
+> 
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
 > ---
->  .../devicetree/bindings/i2c/nvidia,tegra20-i2c.yaml          | 5 +++++
->  1 file changed, 5 insertions(+)
+>  Documentation/devicetree/bindings/firmware/arm,scmi.yaml | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 > 
 
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i2c/nvidia,tegra20-i2c.yaml: config-settings: missing type definition
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240701151231.29425-6-kyarlagadda@nvidia.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
