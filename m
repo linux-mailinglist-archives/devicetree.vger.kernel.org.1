@@ -1,134 +1,155 @@
-Return-Path: <devicetree+bounces-82501-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82502-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64D41924994
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 22:48:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D34F09249B6
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 23:06:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1F2BA282950
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 20:48:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7D0A61F22582
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 21:06:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DD301BF30B;
-	Tue,  2 Jul 2024 20:48:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB6D320125D;
+	Tue,  2 Jul 2024 21:06:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SH4Zj0MO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T0jF5n0X"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 160A11E531;
-	Tue,  2 Jul 2024 20:48:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 868501CE084
+	for <devicetree@vger.kernel.org>; Tue,  2 Jul 2024 21:06:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719953320; cv=none; b=VQBhTTxLQw44mIBfPclzvqf4ThQQ9AtFS7S59n9TER+AO5CqUSw0URfjzP8DWAuMFKhGaPO3lX/JT8P3gGfDThM+ozisvuQeNV9hZuURMheodLbthPlTvTWUiw8EzRseo9tdsF/5uc8NfgmP++CXB/uLlr3jNvvpGaEFGV00k+M=
+	t=1719954379; cv=none; b=MwmH9nv23HQ/LK9AJm0thBnjD46KoxNXFgGOoc66PSIzMopwdqq61zshFZy8b5H1nf3f43PrOxm6MWCTBBwwPnQ7Nbr/U6KoclfH4EyqWvQE7G7U4V2aP9RI5KBCkwQ2gNSM4Sy4lKT1wK5AewWA0wmK5oyr8k7xU+1cTlvfFc4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719953320; c=relaxed/simple;
-	bh=XSP7UcJ2D5LrCSQQ6xjlc13J4cCPY/UwXaVdyrjho+I=;
+	s=arc-20240116; t=1719954379; c=relaxed/simple;
+	bh=NyzwM0fsXKf4dXOAJKkuMhvtpscp3UAXzQ88ePFkdHg=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=MGC/f3O7Si37kaTGcgahpwKrxip19D1EtErIrb/g2fk4ktdusbccQ7liPyrv8pOEavwrgcs06f2D5AMU8ToZ+CcccHMFn0k8IF9iZFkkhgZ7tE4oHkuqMR2bW4q5zOp18zrrJoc00Vb2PptDPGI7FAGjbLezDF5kJNjckQBEhxI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SH4Zj0MO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD7A8C4AF0E;
-	Tue,  2 Jul 2024 20:48:39 +0000 (UTC)
+	 To:Cc:Content-Type; b=RPZUaclQOuW3AMGfDU7QXBUqyIyiL6ewUw2vJe+/ZaF/ojwTOMKK3DetYhHatL3fWgns/B0irHo+V4guqReAOyhUbTFqa48FyVBwsFkaU5NwFOXzgQvKlO55gmdSenflI/Ziu1uBb53InBP3uhupM44e5gJoNt13Wv11ge75QAU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T0jF5n0X; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D637C116B1
+	for <devicetree@vger.kernel.org>; Tue,  2 Jul 2024 21:06:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719953319;
-	bh=XSP7UcJ2D5LrCSQQ6xjlc13J4cCPY/UwXaVdyrjho+I=;
+	s=k20201202; t=1719954379;
+	bh=NyzwM0fsXKf4dXOAJKkuMhvtpscp3UAXzQ88ePFkdHg=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=SH4Zj0MO6dwU6JylDy31rRaLEqDce+H018fT6jImpUKeGTaYI+cAwrvCpQv7jNukU
-	 DIOiRTwdKru2xYPSjKYdKhHB7rZKt8vUXY6G1c70s+QEGIxlmK6DCU6FjIOIvog/SB
-	 wOzNDcjfAJljOYDKUjavpmfTfoYpt9tGbfl7Pjlvtu2z5ZM+MCNJ//4eDHBfQHgtRO
-	 pG4GKxCd/fjeC1PKAJQ33c9YugXGP4u3RsLbZ1cqgl0nErK9C0O7HdcLVccJUcsmco
-	 MWD1NUjYBVWF+oy6M4surPdcGYtyuBITfy5h/+oya/8VaZqYEUg6xs9mr7KPZrk33u
-	 Bc42wZOp/CcMQ==
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-52e96d4986bso791e87.3;
-        Tue, 02 Jul 2024 13:48:39 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCXEOS0E9gh0KbnJgkWUzUHkjbGoOjCGPpkCm3Xle1NVEgp34Xqmph9Xv+ognxVEy9eVbaMa9a5wfpUfcTl4YHDmX6//Hr8FYMll+8qYfidJahi3EgcjDmBlu2GSLmcM1VOQGx1CJieU0w==
-X-Gm-Message-State: AOJu0YwORVhQ05WwRHVmA8Y6oErUJi+kC/z8dayPEmePjm77NaTaDQHh
-	DBI3JTWX8LdIr7kr0VtyzTTaUiM+VTr/Qvm8jM6YXOuFTw/71C1x31/bCHDTYuz7+DpycTxgd3P
-	r0oBuhVspuseSOefegJfyGxbFzA==
-X-Google-Smtp-Source: AGHT+IF5h+XH9Vo4eaNorGEHLOkNM/85fqjWjFjU4KS8+4jdTSMWo0Xm7m4AuM80pi3ahYssXlzXXvKAi8m1a2Z04X8=
-X-Received: by 2002:a05:6512:158b:b0:52c:df8c:72cc with SMTP id
- 2adb3069b0e04-52e82703ecbmr6879482e87.43.1719953317947; Tue, 02 Jul 2024
- 13:48:37 -0700 (PDT)
+	b=T0jF5n0XmYOBWCFsIhEiFwCW709AF2iNAJBXPHQDhZ3ouUIflhHJtwIPSeAQkemwl
+	 uvh5nDRj8MsScENuyxikrGs7trBmvGpceQ90A9jThyM6OwHTK1hSB47GteIED0mkfp
+	 yIXfQgx1XVTTfS14P6B441+5oNJT53fpMKqRINxMzkGSKAywbiMtggfLmF/5MhXRyE
+	 MR2OEIi2KWdc0w+AofhLDxqqtYNvgWMUcCMzmTV90XllmcI+M2rs3uGRjmGpiIo+bY
+	 S7E4wTeW1JLVmvZdlftDTuGLXlMEsznlapdBUQq2P/lZic0fAeIbHo/yvEPyuqkLW8
+	 0fIXzDl9OJV+g==
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-52cecba8d11so5683376e87.1
+        for <devicetree@vger.kernel.org>; Tue, 02 Jul 2024 14:06:19 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVCU08rbHZf2dm59pWWFSF6n7lgU3MZhC1n4QiJVwEeweJO+jjRhBPyhW4oj47o7jE34kwK8RWZ31tJETuY0uiOkLcctZoUFQjwlQ==
+X-Gm-Message-State: AOJu0YxhjmdnTUdRxA4ZLIyod909SdwV6z7u+5plSrXDtdRSKJPEBR3m
+	YCkpxe4fpE0EOjzQmSyb5PcjBVy66YJm6vegZOzZY+9wSPyMs3xykLt6HxxVj4V4ERUoTA3y6Uz
+	z07qQcC8uxf3Jnw/wVKZRja3qLljEpNn48ltZUg==
+X-Google-Smtp-Source: AGHT+IGUxDpnfmOI+j4i7sET5B6iGTwPCxoZxCFPXJYFFkWMGwCKQTKuc3id2P0lUND+5DiDyxhNNJ4MNomLGxiA7Lo=
+X-Received: by 2002:a17:906:f185:b0:a72:b1b1:eb3a with SMTP id
+ a640c23a62f3a-a751447b093mr634755766b.19.1719954357446; Tue, 02 Jul 2024
+ 14:05:57 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <3ab66fab-c3f2-4bed-a04d-a10c57dcdd9b@xenosoft.de> <86zfqzhgys.wl-maz@kernel.org>
-In-Reply-To: <86zfqzhgys.wl-maz@kernel.org>
-From: Rob Herring <robh@kernel.org>
-Date: Tue, 2 Jul 2024 14:48:23 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+_QZHMJGHqw8vFA5CspuouvY_U=+NobYQ52DcwPQx-2w@mail.gmail.com>
-Message-ID: <CAL_Jsq+_QZHMJGHqw8vFA5CspuouvY_U=+NobYQ52DcwPQx-2w@mail.gmail.com>
-Subject: Re: [PowerPC] [PASEMI] Issue with the identification of ATA drives
- after the of/irq updates 2024-05-29
-To: Marc Zyngier <maz@kernel.org>, Christian Zigotzky <chzigotzky@xenosoft.de>
-Cc: apatel@ventanamicro.com, DTML <devicetree@vger.kernel.org>, 
-	Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, linuxppc-dev <linuxppc-dev@lists.ozlabs.org>, 
-	mad skateman <madskateman@gmail.com>, "R.T.Dickinson" <rtd2@xtra.co.nz>, 
-	Matthew Leaman <matthew@a-eon.biz>, Darren Stevens <darren@stevens-zone.net>, 
-	Christian Zigotzky <info@xenosoft.de>
+References: <20240614-dt-bindings-thermal-allof-v1-0-30b25a6ae24e@linaro.org> <20240614-dt-bindings-thermal-allof-v1-11-30b25a6ae24e@linaro.org>
+In-Reply-To: <20240614-dt-bindings-thermal-allof-v1-11-30b25a6ae24e@linaro.org>
+From: Amit Kucheria <amitk@kernel.org>
+Date: Wed, 3 Jul 2024 02:35:45 +0530
+X-Gmail-Original-Message-ID: <CAHLCerMuG92Sf8+BdqPLqh+x3YxBjD6YdYF2k+AxQcwCqerxzw@mail.gmail.com>
+Message-ID: <CAHLCerMuG92Sf8+BdqPLqh+x3YxBjD6YdYF2k+AxQcwCqerxzw@mail.gmail.com>
+Subject: Re: [PATCH 11/22] dt-bindings: thermal: qcom-tsens: reference
+ thermal-sensor schema
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
+	Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+	Guillaume La Roque <glaroque@baylibre.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Vasily Khoruzhick <anarsoul@gmail.com>, Chen-Yu Tsai <wens@csie.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	Anson Huang <Anson.Huang@nxp.com>, Thierry Reding <thierry.reding@gmail.com>, 
+	Jonathan Hunter <jonathanh@nvidia.com>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+	=?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>, 
+	Heiko Stuebner <heiko@sntech.de>, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Orson Zhai <orsonzhai@gmail.com>, Baolin Wang <baolin.wang@linux.alibaba.com>, 
+	Chunyan Zhang <zhang.lyra@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	Pascal Paillet <p.paillet@foss.st.com>, Keerthy <j-keerthy@ti.com>, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+	Florian Fainelli <florian.fainelli@broadcom.com>, Scott Branden <sbranden@broadcom.com>, 
+	zhanghongchen <zhanghongchen@loongson.cn>, Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Bjorn Andersson <andersson@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, linux-pm@vger.kernel.org, 
+	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-amlogic@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+	imx@lists.linux.dev, linux-tegra@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	linux-rockchip@lists.infradead.org, linux-stm32@st-md-mailman.stormreply.com, 
+	Florian Fainelli <f.fainelli@gmail.com>, linux-rpi-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jul 2, 2024 at 10:54=E2=80=AFAM Marc Zyngier <maz@kernel.org> wrote=
-:
+On Fri, Jun 14, 2024 at 3:17=E2=80=AFPM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
 >
-> On Sun, 30 Jun 2024 11:21:55 +0100,
-> Christian Zigotzky <chzigotzky@xenosoft.de> wrote:
-> >
-> > Hello,
-> >
-> > There is an issue with the identification of ATA drives with our
-> > P.A. Semi Nemo boards [1] after the
-> > commit "of/irq: Factor out parsing of interrupt-map parent
-> > phandle+args from of_irq_parse_raw()" [2].
+> Device is a thermal sensor and it requires '#thermal-sensor-cells', so
+> reference the thermal-sensor.yaml to simplify it and bring the
+> common definition of '#thermal-sensor-cells' property.
 >
-> [snip]
->
-> My earlier request for valuable debug information still stands. But
-> while you're at it, can you please give the following hack a go?
->
->         M.
->
-> --- a/drivers/of/irq.c
-> +++ b/drivers/of/irq.c
-> @@ -282,8 +282,10 @@ int of_irq_parse_raw(const __be32 *addr, struct of_p=
-handle_args *out_irq)
->
->                         oldimap =3D imap;
->                         imap =3D of_irq_parse_imap_parent(oldimap, imaple=
-n, out_irq);
-> -                       if (!imap)
-> -                               goto fail;
-> +                       if (!imap) {
-> +                               match =3D 0;
-> +                               break;
-> +                       }
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-AFAICT reading the DT, I don't think this would fix it. imap should
-only be null if malformed. This case to me looks like interrupt-map
-has the correct cell sizes, but just never matches to do the mapping.
-So maybe imaplen is off and that causes us to end up here, but if
-there's an error I don't see it. A boot with DEBUG enabled in
-drivers/of/irq.c would help.
+Reviewed-by: Amit Kucheria <amitk@kernel.org>
 
+> ---
+>  Documentation/devicetree/bindings/thermal/qcom-tsens.yaml | 8 +++-----
+>  1 file changed, 3 insertions(+), 5 deletions(-)
 >
->                         match &=3D of_device_is_available(out_irq->np);
->                         if (match)
+> diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml b/=
+Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+> index 99d9c526c0b6..cce6624228c7 100644
+> --- a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+> +++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+> @@ -217,18 +217,16 @@ properties:
 >
-> This may not be the final workaround even if it solves your boot
-> problem, but will at least give us a hint at what is going wrong.
+>    "#thermal-sensor-cells":
+>      const: 1
+> -    description:
+> -      Number of cells required to uniquely identify the thermal sensors.=
+ Since
+> -      we have multiple sensors this is set to 1
 >
-> I have the fuzzy feeling that we may be able to lob this broken system
-> as part of the of_irq_imap_abusers[] array, which would solve things
-> pretty "neatly".
-
-I think this would work and would consolidate the work-arounds. It
-would need either "pasemi,rootbus" or "pa-pxp" added to the list.
-
-Rob
+>  required:
+>    - compatible
+>    - interrupts
+>    - interrupt-names
+> -  - "#thermal-sensor-cells"
+>    - "#qcom,sensors"
+>
+>  allOf:
+> +  - $ref: thermal-sensor.yaml#
+> +
+>    - if:
+>        properties:
+>          compatible:
+> @@ -292,7 +290,7 @@ allOf:
+>        required:
+>          - reg
+>
+> -additionalProperties: false
+> +unevaluatedProperties: false
+>
+>  examples:
+>    - |
+>
+> --
+> 2.43.0
+>
 
