@@ -1,116 +1,160 @@
-Return-Path: <devicetree+bounces-82459-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82460-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABACE9246D1
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 20:01:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49F749246DA
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 20:02:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DD2DF1C243E0
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 18:01:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0CA45286FDF
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 18:02:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 073021C0DE3;
-	Tue,  2 Jul 2024 18:01:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A5921C0DD4;
+	Tue,  2 Jul 2024 18:02:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="hHi3r7rE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7A7316B394;
-	Tue,  2 Jul 2024 18:01:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 438C316B394;
+	Tue,  2 Jul 2024 18:01:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719943263; cv=none; b=fmcuMu3ZNUKBhpw9hYss2Xsys8fgvkRntROVIfIbY2AfqwQZ1DaJ0d+ApNXkQXmaR/el4uCrxHg2/tS3e3hUTBhLD+7dKJueWxaPbdaWg3iJHHGyLobfVR9+BT6T00ms9WIfhNlupOB3m/dvuZ8DYFgYdKcGFmGcs5N5LZr4Syo=
+	t=1719943320; cv=none; b=tbioN6LzackZ313NZtR640xd8OqV0uJXec+W9Y1p7ZZUYwZRdiSycLcBGEyyRUtL52XOj3YPeYBG9q3Zn3/PNXkR99Whcv72sEdBphn2rdJRZRI6qymhbLu6n2BGPXc9KLRWQpNj0MjLWJf440DIIiAqpnOqP7JMj0oWxScvOk0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719943263; c=relaxed/simple;
-	bh=cwnUj1Rrf9QlWYQbSWU9ejYfNB3GYZ4Z3EDjb6O6o2A=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=aO9iNz8gsB4Id0hckNkbQ+VhtrH/BExw+RE1pCWxcUGZZwMDf6JTtbhjUgHJ5k9VogOBnFc1+DLRS82FSp7PH4H+6TIMiG/mzQ808Ioeo5GJR/RLD+itoKrbc1bBNE63kop/579OmO+is9P/Vdj4Wz0bxKtqmq6Ahu/ZO3cjVEw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-X-IronPort-AV: E=Sophos;i="6.09,178,1716217200"; 
-   d="scan'208";a="214008663"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 03 Jul 2024 03:01:01 +0900
-Received: from localhost.localdomain (unknown [10.226.93.72])
-	by relmlir5.idc.renesas.com (Postfix) with ESMTP id E2EEE4006CD0;
-	Wed,  3 Jul 2024 03:00:56 +0900 (JST)
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	devicetree@vger.kernel.org,
-	linux-phy@lists.infradead.org,
-	linux-renesas-soc@vger.kernel.org,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH v5 4/4] arm64: dts: renesas: rz-smarc: Replace fixed regulator for USB VBUS
-Date: Tue,  2 Jul 2024 19:00:18 +0100
-Message-ID: <20240702180032.207275-5-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240702180032.207275-1-biju.das.jz@bp.renesas.com>
-References: <20240702180032.207275-1-biju.das.jz@bp.renesas.com>
+	s=arc-20240116; t=1719943320; c=relaxed/simple;
+	bh=lP+nGGPwNE1RQTO6K8Nb1MPdV0ZDMIU2K4L1RrDfDgE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Gt0STjtQ0FeW5ceJjKUWtufWMin6d+8bF93GeiYuzGbRZb+nz1XF9ltJlZrDFKCd+zb8eMfCrfg/mrIZOez6nFR13HmwXW+rly3gmg2QMo3+SBeipydJCZaUwNEubmEc2P94zKRmXjI4CuQSwU/D7CUTL3vrUF07aaCfhl8g7YA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=hHi3r7rE; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 462HE9d5026185;
+	Tue, 2 Jul 2024 18:01:54 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	3WAkOOmx+EV/jeAG/Z7JRQqqLw7VidhBmcMNbDg3RJk=; b=hHi3r7rE6Uf5pdkx
+	BP+FKu8dns4sMYzEjp7/OW3O7N2OiV2cxoYoPABSwfGzoWoCr1+Vx/dcqc5SI8Px
+	FhRZfglIIBdd3Yb07pGpIGY/OnAjC45wv8TcpsUOT63ee8gRq14ExqyvbBGVgHRK
+	QTFZ5o2baLPnVH038GDC70m0w/KWbFmV5qb7Ka4UHsEyecDmrvxwSrQBP4qaRAAI
+	DxU0+iqIVB8dWdoCmXjQK7Nytl31ankn/XPC7AFS9uufkdhUg1BE9XiaJd1d/0h6
+	ODGkSdItKwptPSHJVaTDln+dfHm+Rr56zfqmm4KBXCyy3Ie1fLE04LEXQPwH5mQt
+	q4GxLg==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4027mnpxvk-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 02 Jul 2024 18:01:53 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA02.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 462I1pxE022434
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 2 Jul 2024 18:01:51 GMT
+Received: from [10.50.20.191] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 2 Jul 2024
+ 11:01:45 -0700
+Message-ID: <0a2d2bea-b043-443d-a898-c5e4c24b2b8d@quicinc.com>
+Date: Tue, 2 Jul 2024 23:31:42 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/4] interconnect: qcom: sc7280: enable QoS
+ configuration
+To: Georgi Djakov <djakov@kernel.org>, Bjorn Andersson <andersson@kernel.org>
+CC: Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, Kees Cook <keescook@chromium.org>,
+        <cros-qcom-dts-watchers@chromium.org>,
+        "Gustavo A . R . Silva"
+	<gustavoars@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-hardening@vger.kernel.org>, <quic_rlaggysh@quicinc.com>,
+        <quic_mdtipton@quicinc.com>
+References: <20240607173927.26321-1-quic_okukatla@quicinc.com>
+ <20240607173927.26321-3-quic_okukatla@quicinc.com>
+ <ciji6nlxn752ina4tmh6kwvek52nxpnguomqek6plwvwgvoqef@yrtexkpmn5br>
+ <a7b959ff-a041-4380-86dd-05cdbc11fab4@kernel.org>
+Content-Language: en-US
+From: Odelu Kukatla <quic_okukatla@quicinc.com>
+In-Reply-To: <a7b959ff-a041-4380-86dd-05cdbc11fab4@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: GjBYqGc1vZkj_4zU9iuCMsASOoElOJ5y
+X-Proofpoint-GUID: GjBYqGc1vZkj_4zU9iuCMsASOoElOJ5y
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-02_13,2024-07-02_02,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 bulkscore=0
+ spamscore=0 malwarescore=0 adultscore=0 priorityscore=1501
+ lowpriorityscore=0 phishscore=0 mlxscore=0 suspectscore=0 clxscore=1011
+ mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2406140001 definitions=main-2407020132
 
-Replace the fixed regulator for USB VBUS and use the proper one that
-controls regulator based on VBUS detection.
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-v4->v5:
- * Updated commit description.
-v3->v4:
- * Dropped regulator-{min,max}-microvolt
-v2->v3:
- * Upated label name
- * Updated node and regulator name that matches with the bindings.
-v1->v2:
- * New patch.
----
- arch/arm64/boot/dts/renesas/rz-smarc-common.dtsi | 11 +++--------
- 1 file changed, 3 insertions(+), 8 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/renesas/rz-smarc-common.dtsi b/arch/arm64/boot/dts/renesas/rz-smarc-common.dtsi
-index b7a3e6caa386..b34855956ae0 100644
---- a/arch/arm64/boot/dts/renesas/rz-smarc-common.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rz-smarc-common.dtsi
-@@ -54,14 +54,6 @@ codec_dai: simple-audio-card,codec {
- 		};
- 	};
- 
--	usb0_vbus_otg: regulator-usb0-vbus-otg {
--		compatible = "regulator-fixed";
--
--		regulator-name = "USB0_VBUS_OTG";
--		regulator-min-microvolt = <5000000>;
--		regulator-max-microvolt = <5000000>;
--	};
--
- 	vccq_sdhi1: regulator-vccq-sdhi1 {
- 		compatible = "regulator-gpio";
- 		regulator-name = "SDHI1 VccQ";
-@@ -139,6 +131,9 @@ &ohci1 {
- 
- &phyrst {
- 	status = "okay";
-+	usb0_vbus_otg: regulator-vbus {
-+		regulator-name = "vbus";
-+	};
- };
- 
- &scif0 {
--- 
-2.43.0
+On 7/2/2024 5:02 AM, Georgi Djakov wrote:
+> On 1.07.24 19:42, Bjorn Andersson wrote:
+>> On Fri, Jun 07, 2024 at 11:09:25PM GMT, Odelu Kukatla wrote:
+>>> Enable QoS configuration for master ports with predefined values
+>>> for priority and urgency forawrding.
+>>>
+>>
+>> This patch causes QCS6490 RB3Gen2 to hit a bus timeout and crash during
+>> boot, unless the associated DeviceTree change (adding clocks) is
+>> present.
+>>
+>> The two patches are reaching linux-next, and hence mainline, through
+>> different code paths we now have periods where rb3gen2 is not bootable.
+>> But more importantly, devices with current .dtbs installed can not boot
+>> the new kernel.
+>>
+>>
+>> It is not acceptable to introduce non-backwards compatible changes in
+>> drivers (unless there's extraordinary reasons to do so).
+>>
+> 
+> Thanks for the report, Bjorn! The intent of the patches is to keep it
+> backwards compatible. I think that the patch below should fix it.
+> I'll try to validate it and get it merged.
+> 
+> BR,
+> Georgi
+> 
 
+Thanks Bjorn and Georgi!
+I will send a patch to address the boot up issue on old devices and keep it backwards compatible.
+
+> -->8--
+> diff --git a/drivers/interconnect/qcom/icc-rpmh.c b/drivers/interconnect/qcom/icc-rpmh.c
+> index 93047defd5e2..487e562dbd22 100644
+> --- a/drivers/interconnect/qcom/icc-rpmh.c
+> +++ b/drivers/interconnect/qcom/icc-rpmh.c
+> @@ -311,7 +311,7 @@ int qcom_icc_rpmh_probe(struct platform_device *pdev)
+>   		}
+> 
+>   		qp->num_clks = devm_clk_bulk_get_all(qp->dev, &qp->clks);
+> -		if (qp->num_clks < 0) {
+> +		if (qp->num_clks <= 0) {
+>   			dev_info(dev, "Skipping QoS, failed to get clk: %d\n", qp->num_clks);
+>   			goto skip_qos_config;
+>   		}
+This will skip the QOS configuration for the providers which don't need any clock to be enabled.
+we may have to add a flag at provider level to check if it is associated with qos clocks.
+
+
+Thanks,
+Odelu
 
