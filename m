@@ -1,86 +1,94 @@
-Return-Path: <devicetree+bounces-82304-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82310-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D200C923D15
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 14:01:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 94915923D6B
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 14:15:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8890A28735F
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 12:01:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5158B28655F
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 12:15:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BA4A15B130;
-	Tue,  2 Jul 2024 12:01:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 970AD16D9DC;
+	Tue,  2 Jul 2024 12:15:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Eb6O7c3I"
+	dkim=pass (2048-bit key) header.d=yahoo.com header.i=@yahoo.com header.b="Qni9g4qd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com [209.85.216.49])
+Received: from sonic307-32.consmr.mail.ir2.yahoo.com (sonic307-32.consmr.mail.ir2.yahoo.com [87.248.110.57])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01983146A68;
-	Tue,  2 Jul 2024 12:01:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFA7516D4F5
+	for <devicetree@vger.kernel.org>; Tue,  2 Jul 2024 12:15:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=87.248.110.57
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719921715; cv=none; b=XS0gfqJmYD3EmFhD7yr6ZEhCn3YNqVUYZneDboWANEUfOCkPoBHcX8BrEW52idA/Cu0M+0DRarFL52WpoYmw9633NlnXkL72JLKqZwNdUevA5GeEjaz0Hp4yn1irLXTNPEwnsjsnNg+Yf/uRqLzc7na3DpfteaBFlUVmltKroIM=
+	t=1719922518; cv=none; b=KZwZZzmtdhPlAgZR7GKeVzou9yxtBpi1GctPONzfdffpiW7R6ttMC7BSLWnUL8hBN+dFJ5TpRYapdMJB92TZFov4Eori1otOKb2vrGgBpE8brk6dI1fCgrCopc3SqFAUBmhqHs8oJ1ZpENyxF0Ks4IC07+n97QVgw+LEEnexG/k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719921715; c=relaxed/simple;
-	bh=rJCAcM3C1JUaxUdTOIuMUvG0MunkfYjmkeJ84V5gn9E=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Xn4UQXLkw1GxV7n5qVue6B2VkATbhymwfN+Zc9X4yVj7cgZqUB1G0FBHUOR/zjJtnWPqvuE5h+jb251Gk4ep/vKC69PMfgmAY7fl0lu6zZYMTsanr0VH2Bcy120qYjDnxDFVbBJNwJiIFLcPr6QrZWM81ulDpiyTISdZ8SREKL0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Eb6O7c3I; arc=none smtp.client-ip=209.85.216.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f49.google.com with SMTP id 98e67ed59e1d1-2bfdae7997aso2568376a91.2;
-        Tue, 02 Jul 2024 05:01:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1719921713; x=1720526513; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=immZ7dYtz8mcNyvIOY7EMVgS8PS/MPa1M5Ott53bgFU=;
-        b=Eb6O7c3I1aMjr2729uoc217ecXouK0HRyc6Pi9oEw2yoUw0rD7c4PFURPxXmyuv6Ky
-         RZYUw3nfuoJ3Vj7TYO4j0WcxbPndxhgILPGPapoPc5nPYV6Hd2qj2Svi4ecHdqppini0
-         9sUp7L6cCyY8XGtsLjtCPOQLT/HqcJXVdPpvB4dhLGay0G1Dj731eWmhyXXfS4k2s06b
-         smuClSiGuGRo6NNMclYZRlNw+SOn4DXsO1dyaIBmDyqE6scMQjQvWqqpNVF/z8gziQaO
-         irWeU8R5CHtkJEEx5vsfLJp7a2rdGml29Y3FoforOmtrzQryR9fOajuiwc1GvKjHv53v
-         GsmQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719921713; x=1720526513;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=immZ7dYtz8mcNyvIOY7EMVgS8PS/MPa1M5Ott53bgFU=;
-        b=PTLGdgGvvP5JlFhSGEX4MkYB+Sdf/ZsaiAGesMGOVEtPeObicnioBg7F0OE8wCWY2H
-         HTTcaW0KjM1eK1Zysbdx9o52b+KsFlOXlIgpYEZK7XIaVhJyNZKBwK6Qahh7f7+VGrph
-         yDZqKH+Zgfx822Lo8VvjDlOwYh/1xR3qFQy8hgcXlb2boJca8FtDGaHfVmf5cW9lmS3o
-         ztP6S36GotrbhN6rmrabHw128xQYmaJS/+UdVnKh8EwJU3b6U4H2PrfjZE4xGPMonKkY
-         AGwCag349QE4RwLiPuThqyNkrDWnLL/Z2PS7kPiu6Zn5ShbSGTI1r/5GjJU8n4hxG9+8
-         TJCQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUi5EczYn2+xccNR2hiroxTludQufew4wtNdUkkr47FlBXz/4oeqIelT3qMekoQCyx4qxxIVbJJizpCsnjyrHluJ+1grtqRCu2t2+lWE44GHrYbvm5eoVhAga+iAnh5nY8DbBJMixZGEj6782TUlKGCqNCdnwpOdYqEaVCvwHrbzZ6AABBR
-X-Gm-Message-State: AOJu0Yz4xpbyCU47JzeDeJljzwrOkv+NTD6HC6W2PeO8s2vJExqNGPW9
-	AhOONuAVvFnCDJtGtDZE3KySuOyS4ijDoVsXy/qSLyfj1J7c8mjA
-X-Google-Smtp-Source: AGHT+IECRhON6Sr/wc0mzrJG+6RAoWBQYYpFGVBpBNFAPCWPML6GKN/WcMkdtYb6pxxmPI37+d1a+w==
-X-Received: by 2002:a17:90b:180d:b0:2c3:1234:8bbb with SMTP id 98e67ed59e1d1-2c93d771f59mr4883164a91.38.1719921711643;
-        Tue, 02 Jul 2024 05:01:51 -0700 (PDT)
-Received: from fedora.. ([2409:40e3:4029:df67:d5dc:7d86:b31:319d])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2c91ce5490esm8725123a91.24.2024.07.02.05.01.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Jul 2024 05:01:51 -0700 (PDT)
-From: Animesh Agarwal <animeshagarwal28@gmail.com>
-To: 
-Cc: animeshagarwal28@gmail.com,
-	Rob Herring <robh@kernel.org>,
-	Daniel Baluta <daniel.baluta@nxp.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
+	s=arc-20240116; t=1719922518; c=relaxed/simple;
+	bh=5A/LPrJoCxitojeJt7eBlNk3snz2b7ebrhihpRcHwVk=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=A6r+BbgFaNWQMAWFMlntPnmn9P7kHLNg+IH0PotLgTcnYz+H9ebNmcLH4fqmBeIkOYr2YGScVeAuyEj6f9Ut82IhVJyid0clm0hpMu8WDzVfOHMDg0Rtgf4RpScWGZdvh0OyexysZAGTuktMeJLXz+UU/uEjzCb5BsWGX3y1R6Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=yahoo.com; spf=pass smtp.mailfrom=yahoo.com; dkim=pass (2048-bit key) header.d=yahoo.com header.i=@yahoo.com header.b=Qni9g4qd; arc=none smtp.client-ip=87.248.110.57
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=yahoo.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1719922515; bh=SI7tOorPKK3iwm2YfS1Q/1Qsuj151Q4jTdztaPUQtFQ=; h=From:To:Cc:Subject:Date:In-Reply-To:References:From:Subject:Reply-To; b=Qni9g4qdWuTSqhUz4/n20GTBJCasv0VnBWIB1JUCWqLPO+drC+pN44XjGjdY+mfuL9ItFzqTKm05jYK0qUEiCCw2w52sYwIPVXpKtj09aCy5UEFbYB5pojR3m7EIgs21gUy6pvvFKIvAq909eqPPX0rfMSa0OpWmi7qY+H6kHUcjDKIP6DZde8u8Olcc4khDQCe54yBV7T0o2OGNNL0WUd0QREllQr1enwWzoSgSgOZPjwwAuaEbWtzgZ+2L530FSdKkC9PeEi1KOlsKdjhh4WKKwgW+Jvpdl20q3vhh4fz/mD37mC0pwybb7j8piBm9tTpyc/cGuzM3/jmva08C4A==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1719922515; bh=D101O7/j2vxd4umOtZt66hNlKYd6xgDWoKZbCgGdNqE=; h=X-Sonic-MF:From:To:Subject:Date:From:Subject; b=nx84nNyDAQ+LXzLA/Ezbz8sRoDpP/VWcPIs/9ZLmafiGYke75tOXYcPxPy4A0WF7wmAGr4VlNxHsNH//ME8Jjlvf4LSw1hKE34Y1inuW1OKlJqGwppQXwNpc37st8HfFyWV2XANs/7hPAnr0MKe9jsBL8YpuufclwIINEGI+3XtsEUgNfWCyRnMMAQKsy9RWNcrZlM5PKkXH29Jn2aM0VNgLhHGqM2v10/ZDFW9pkY7pOIWb1iIUA8ZtQt7JTCGw/1C7VdhkpmQxKs5/5G8a3YpQw/PisdTVAgrSIIB3cOodNajc3EKH3YRq/EUbX7rsB489TAq9ihhljoua2tdXug==
+X-YMail-OSG: ElClSJoVM1kUkOe6xQFoHRNY54mPJP6B7tC6uj_3Brw__zqhVQ2DoPACgCDwrrF
+ R9lmIY.b1BomJ4A1apc6Emx1ZzQZYGvJDVLjjzqEZB3UTiq00K9.Eq3aRazKiLR2bzh5Qe2qAbNh
+ ML.cT4e9F1lx8Un25yjgtwnjTlt1aJEGoDoTgOTww0xG.eL3SE7JaV0V7oKs6EVm2FutJV4ZGoLK
+ H1OHbFoVcbH1J68X30f8ZVNVqZO6UxEnkUZwJSZ1WQ81n5q0sG56Nq045setkuAsQB5PqcKZ.nQ2
+ hNzygx_DMUXqU62DvFAwMm9d8B7qzUdHiINV1RaS_m6zrIJVRXkrMLcX1_hrIX2VtozztwpDcA7K
+ gI1B.ey6HqFlWvaBpqvsVYOzIvB9bim6toaORiAmcEH.0EgeHFfmam0MR7pP9EmWkQ2Kdvupi3vZ
+ 6Fefeq3sxWCHuFd6VIiUuyUAth4zziIzKWIBaYhTQFjKuNdJUNwH.y2ImvrCIHWivlKQBZQafq2G
+ bUzQiIJeQrGZbkgq__9cP4pCbVMe0ctO.5UCjdSMQszPbBCEW57HfhhTg..9q_L4ySQFAS_xSC7Q
+ UsIGeRXcyH1TvqLblSNC3Bafip.vtsLbJg.UBYHvPyh7cJ4fyvi6uLkYsUyU4WkZYXTkzKKb0EvY
+ 6I1ef.MSS6dp5NvdKu2ZrOaFLxlFVdSFgTl4d0fyHZxYKexouC4W_ldHKO6n14d2oKdjZ2xbH3CI
+ jsoVBPCL4cSfwiZVk1p.kp_TJ5OnbNOfaqybVjHpxGaH8A7Xp.WsSMubPE7JxhMJhpGvlI75wdlA
+ 0.PwF3bX6huSzp2Hg4pekj4z0cwEH2faIabZWV8EH72uzECwlptGhAVUg9r4JqC1DjoV9e_uOMr5
+ eOU02LjaaXqCZiBJapRiWKlAFYFuJbn9L.ORfZk2kqylr7yxSoG3pZE2KE03.7eeSWRk40MCofBE
+ 5S2wKvhcyMxKhXZq7fJhUUhoeWpeJ4ZLV5w2wPiuwNM9CjPqvla7oIk1uQ9P7Al7_0wW3_NWXVmK
+ NkhOTrY9dryUROMiUSMy7QAyYWR8Hk7y7JTPSJi5B3Vv67HbPTRuKOyCfObw0PIqjymaKIN8tEFd
+ 8oce3gH1FF4PhYjZ61J9Xu9lJOA3hH9kVVWy5Hl_6dGvw6rgxKFKGhIX.vcDAVNMn5e7Dx368Mgl
+ 5mSJ_zE44I84OkHpL2v9Wsr2pvlSZUX3KJyZ7IuNJNgn0RMmughcpBXHouv4kBVivzk1Q9zRR4W7
+ 96UHq8JRVSeSsjPyoZcK50krIuYt3RebgtNEw3TUoplkdCgXejz9_SqM4B26AiytJih1PR5O0wNF
+ CQhfYOkAx7y5Z07UTZMzcCIxXbkY.1FtKKAbo6E8ncgQUZmzsau67KklsB88SrNXdSxDfS00WTxb
+ BZYP9hjNEoCj7xEPpMnMEsz61kc.hI2GAb4faQtP7R3UIbRl6AMD8XGsH1ZbU1T9q8Spl.mPiLBf
+ guiyIx5g.e2I2y6sqf6lCaGcDIGyO7HC5zp5gSN08chtLloOH3Yc8C5uGnMyJKsIBkWcFxuZ.mO7
+ OiZOn33tHUrsoHIcvrJFSr.WTvzADM8ap1x5RaqH1W2FDaLuNouy9T4FO.MoUGXMgx7OLuDqtcgw
+ jFnRpKGe9je.Z.rdrzS8p6Thh2WtnRHRxt8kx3pYrdHgnnjv_akDZrhKy2BS7JncP.T85S257Rnl
+ mXuAgXX61OuhhUnnV1uX8H25QzeDA6pCWC2mjEtrp57TjgDMuBSOiDYYXduCZyRcvPQr778.bX.W
+ UP9cuWSt.sO6VU1DorbXJfC2dSOEVRKRTnFe6xcEApnqE15NZ5qIIWkVO..l7HdvAjhoAUDFiR5R
+ AU.TGmWIqud8womiJYuD.I9k48dzgTjSZImSvD0Cv_NI52s5Gz1H4u7g1OLWcCHl4mnbIPyHcpa3
+ DCL0TS3I8KlSI1CUcfF9O.Lxx8uHqG5MfMrKPO.1QT7_w.RZgtER72mGBO.4FC3WsmrG5Q8XL_jX
+ Ey4kHZ0sJbiWRtS4JFzVgEEd8.0Vfcudj3kANixtHpOO4bVWh16aAaC1goGPmxBP7cW9mZmUrFmD
+ .gQlY8Sq5UgUER2jkAzE0DAGUL.aQTlnl1eMYijON7ZMYP7FJuZym.w5dmkU3sAcTJdW3LUC8PZl
+ Ko2vzwYHrndjNvkhdi9y5GVs.1fCkPAEEEggy40pUfpY1rDzooZF_qjI1xw--
+X-Sonic-MF: <xzeol@yahoo.com>
+X-Sonic-ID: 5be21093-340e-4cd2-8dfd-5895edaad512
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic307.consmr.mail.ir2.yahoo.com with HTTP; Tue, 2 Jul 2024 12:15:15 +0000
+Received: by hermes--production-ir2-85cf877599-mvt7h (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID 0dd9cec1d13f3a8113ebc66190b2d374;
+          Tue, 02 Jul 2024 11:52:58 +0000 (UTC)
+From: Alex Vdovydchenko <xzeol@yahoo.com>
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2] ASoC: dt-bindings: realtek,rt5645: Convert to dtschema
-Date: Tue,  2 Jul 2024 17:30:58 +0530
-Message-ID: <20240702120106.17100-1-animeshagarwal28@gmail.com>
+	Sean Anderson <sean.anderson@linux.dev>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Jean Delvare <jdelvare@suse.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-hwmon@vger.kernel.org,
+	linux-doc@vger.kernel.org,
+	linux-i2c@vger.kernel.org,
+	Alex Vdovydchenko <xzeol@yahoo.com>
+Subject: [PATCH v4 1/2] dt-bindings: hwmon: Add MPS mp5920
+Date: Tue,  2 Jul 2024 14:52:50 +0300
+Message-ID: <20240702115252.981416-2-xzeol@yahoo.com>
 X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20240702115252.981416-1-xzeol@yahoo.com>
+References: <20240702115252.981416-1-xzeol@yahoo.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,248 +97,27 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Convert the RT5650/RT5645 audio CODEC bindings to DT schema.
+Add support for MPS mp5920 controller
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
-Cc: Daniel Baluta <daniel.baluta@nxp.com>
-
+Signed-off-by: Alex Vdovydchenko <xzeol@yahoo.com>
 ---
-Changes in v2:
-  - Added maxItems: 1 for cbj-sleeve-gpios and hp-detect-gpios.
----
- .../bindings/sound/realtek,rt5645.yaml        | 131 ++++++++++++++++++
- .../devicetree/bindings/sound/rt5645.txt      |  82 -----------
- 2 files changed, 131 insertions(+), 82 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/sound/realtek,rt5645.yaml
- delete mode 100644 Documentation/devicetree/bindings/sound/rt5645.txt
+ Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/sound/realtek,rt5645.yaml b/Documentation/devicetree/bindings/sound/realtek,rt5645.yaml
-new file mode 100644
-index 000000000000..13f09f1bc800
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/realtek,rt5645.yaml
-@@ -0,0 +1,131 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/realtek,rt5645.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: RT5650/RT5645 audio CODEC
-+
-+maintainers:
-+  - Animesh Agarwal <animeshagarwal28@gmail.com>
-+
-+description: |
-+  This device supports I2C only.
-+
-+  Pins on the device (for linking into audio routes) for RT5645/RT5650:
-+    * DMIC L1
-+    * DMIC R1
-+    * DMIC L2
-+    * DMIC R2
-+    * IN1P
-+    * IN1N
-+    * IN2P
-+    * IN2N
-+    * Haptic Generator
-+    * HPOL
-+    * HPOR
-+    * LOUTL
-+    * LOUTR
-+    * PDM1L
-+    * PDM1R
-+    * SPOL
-+    * SPOR
-+
-+allOf:
-+  - $ref: dai-common.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - realtek,rt5645
-+      - realtek,rt5650
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+    description: The CODEC's interrupt output.
-+
-+  avdd-supply:
-+    description: Power supply for AVDD, providing 1.8V.
-+
-+  cpvdd-supply:
-+    description: Power supply for CPVDD, providing 3.5V.
-+
-+  hp-detect-gpios:
-+    description: 
-+      A GPIO spec for the external headphone detect pin. If jd-mode = 0, we
-+      will get the JD status by getting the value of hp-detect-gpios.
-+    maxItems: 1
-+
-+  cbj-sleeve-gpios:
-+    description:
-+      A GPIO spec to control the external combo jack circuit to tie the
-+      sleeve/ring2 contacts to the ground or floating. It could avoid some
-+      electric noise from the active speaker jacks.
-+    maxItems: 1
-+
-+  realtek,in2-differential:
-+    description:
-+      Indicate MIC2 input are differential, rather than single-ended.
-+    type: boolean
-+
-+  realtek,dmic1-data-pin:
-+    description: Specify which pin to be used as DMIC1 data pin.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum:
-+      - 0 # dmic1 is not used
-+      - 1 # using IN2P pin as dmic1 data pin
-+      - 2 # using GPIO6 pin as dmic1 data pin
-+      - 3 # using GPIO10 pin as dmic1 data pin
-+      - 4 # using GPIO12 pin as dmic1 data pin
-+
-+  realtek,dmic2-data-pin:
-+    description: Specify which pin to be used as DMIC2 data pin.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum:
-+      - 0 # dmic2 is not used
-+      - 1 # using IN2N pin as dmic2 data pin
-+      - 2 # using GPIO5 pin as dmic2 data pin
-+      - 3 # using GPIO11 pin as dmic2 data pin
-+
-+  realtek,jd-mode:
-+    description: The JD mode of rt5645/rt5650.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum:
-+      - 0 # rt5645/rt5650 JD function is not used
-+      - 1 # Mode-0 (VDD=3.3V), two port jack detection
-+      - 2 # Mode-1 (VDD=3.3V), one port jack detection
-+      - 3 # Mode-2 (VDD=1.8V), one port jack detection
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - avdd-supply
-+  - cpvdd-supply
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        codec@1a {
-+            compatible = "realtek,rt5650";
-+            reg = <0x1a>;
-+            hp-detect-gpios = <&gpio 19 0>;
-+            cbj-sleeve-gpios = <&gpio 20 0>;
-+            interrupt-parent = <&gpio>;
-+            interrupts = <7 IRQ_TYPE_EDGE_FALLING>;
-+            avdd-supply = <&avdd_reg>;
-+            cpvdd-supply = <&cpvdd_supply>;
-+            realtek,jd-mode = <3>;
-+        };
-+    };
-diff --git a/Documentation/devicetree/bindings/sound/rt5645.txt b/Documentation/devicetree/bindings/sound/rt5645.txt
-deleted file mode 100644
-index c1fa379f5f3e..000000000000
---- a/Documentation/devicetree/bindings/sound/rt5645.txt
-+++ /dev/null
-@@ -1,82 +0,0 @@
--RT5650/RT5645 audio CODEC
--
--This device supports I2C only.
--
--Required properties:
--
--- compatible : One of "realtek,rt5645" or "realtek,rt5650".
--
--- reg : The I2C address of the device.
--
--- interrupts : The CODEC's interrupt output.
--
--- avdd-supply: Power supply for AVDD, providing 1.8V.
--
--- cpvdd-supply: Power supply for CPVDD, providing 3.5V.
--
--Optional properties:
--
--- hp-detect-gpios:
--  a GPIO spec for the external headphone detect pin. If jd-mode = 0,
--  we will get the JD status by getting the value of hp-detect-gpios.
--
--- cbj-sleeve-gpios:
--  a GPIO spec to control the external combo jack circuit to tie the sleeve/ring2
--  contacts to the ground or floating. It could avoid some electric noise from the
--  active speaker jacks.
--
--- realtek,in2-differential
--  Boolean. Indicate MIC2 input are differential, rather than single-ended.
--
--- realtek,dmic1-data-pin
--  0: dmic1 is not used
--  1: using IN2P pin as dmic1 data pin
--  2: using GPIO6 pin as dmic1 data pin
--  3: using GPIO10 pin as dmic1 data pin
--  4: using GPIO12 pin as dmic1 data pin
--
--- realtek,dmic2-data-pin
--  0: dmic2 is not used
--  1: using IN2N pin as dmic2 data pin
--  2: using GPIO5 pin as dmic2 data pin
--  3: using GPIO11 pin as dmic2 data pin
--
---- realtek,jd-mode : The JD mode of rt5645/rt5650
--   0 : rt5645/rt5650 JD function is not used
--   1 : Mode-0 (VDD=3.3V), two port jack detection
--   2 : Mode-1 (VDD=3.3V), one port jack detection
--   3 : Mode-2 (VDD=1.8V), one port jack detection
--
--Pins on the device (for linking into audio routes) for RT5645/RT5650:
--
--  * DMIC L1
--  * DMIC R1
--  * DMIC L2
--  * DMIC R2
--  * IN1P
--  * IN1N
--  * IN2P
--  * IN2N
--  * Haptic Generator
--  * HPOL
--  * HPOR
--  * LOUTL
--  * LOUTR
--  * PDM1L
--  * PDM1R
--  * SPOL
--  * SPOR
--
--Example:
--
--codec: rt5650@1a {
--	compatible = "realtek,rt5650";
--	reg = <0x1a>;
--	hp-detect-gpios = <&gpio 19 0>;
--	cbj-sleeve-gpios = <&gpio 20 0>;
--	interrupt-parent = <&gpio>;
--	interrupts = <7 IRQ_TYPE_EDGE_FALLING>;
--	realtek,dmic-en = "true";
--	realtek,en-jd-func = "true";
--	realtek,jd-mode = <3>;
--};
+diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+index ff70f0926..cb2fc26d9 100644
+--- a/Documentation/devicetree/bindings/trivial-devices.yaml
++++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+@@ -296,6 +296,8 @@ properties:
+           - mps,mp2975
+             # Monolithic Power Systems Inc. multi-phase controller mp2993
+           - mps,mp2993
++            # Monolithic Power Systems Inc. multi-phase hot-swap controller mp5920
++          - mps,mp5920
+             # Monolithic Power Systems Inc. multi-phase hot-swap controller mp5990
+           - mps,mp5990
+             # Monolithic Power Systems Inc. digital step-down converter mp9941
 -- 
-2.45.2
+2.43.0
 
 
