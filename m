@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-82358-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82359-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3887592408D
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 16:23:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 686959240B2
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 16:26:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6AF8D1C2215E
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 14:23:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8C3DB1C22F2E
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 14:25:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34EEA1B583E;
-	Tue,  2 Jul 2024 14:23:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C49C1BA095;
+	Tue,  2 Jul 2024 14:25:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WZF42urV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nsU3FUlp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07411C2F2;
-	Tue,  2 Jul 2024 14:23:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 445B61BA06B;
+	Tue,  2 Jul 2024 14:25:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719930227; cv=none; b=XeqXJmCvIecG8K3cnmxbKT0OIGatIE0SD2SaSVBvxcSYE25On9y5/UaSWp0q86D8HsU9qdpt2LVDJi9II1t05s/1Xi2flTcG1HeQFOZwTTLYAOng5ZOi2wEash53LKeMn7R8/wWoU46k+X5D/yTG6NRvt5oMw0sGFoTTRhtxeAc=
+	t=1719930304; cv=none; b=GIVDSQsBxHpKjGwDsGhN8p/C0HJYjNOHmL5kLSwpzrsfz9jjQNAWzw01RMOVUmv7zN/rAHZyXQODOjFp9OwwPxAorZEgQjc6YeNsclcS9aKzwvhehkZOjCqnN/ufLSBcOvY7SSqWEF4N0F10MZkPgm/94aryOqCZ7w+4ux67DpI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719930227; c=relaxed/simple;
-	bh=i0ACXZEU9v2nO7krTChYuJUFdkYuMP1aVBi/1z08pF8=;
+	s=arc-20240116; t=1719930304; c=relaxed/simple;
+	bh=YxMjFqoZFypceo4E8GRL6bTbLSFyPrQuJNG4Kk8w9+A=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YUuAW7GRmCDVJykih4OseO1wCEfClXbSxxoZP1P2VbnEZ/iDvX0r6m3zHQQSvrXyBcd3x4AIl6rXPJqWf7e29stDm6nXd03R2LRSZywbpE+OWFGGK4X0IXDFOR3JdlcLG2YG6KyPh4axYXsmh4ba0RfQx5CC9gey0fgcB8HV6JE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WZF42urV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0CF6C116B1;
-	Tue,  2 Jul 2024 14:23:42 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Peb7AvTPfNen3i9DEJPZekJp2beXsFhnD9aB/bkZaBABVgjtKuU9UjBgALE3cabCO62sdhQzhHQOD3o2rO5uZnOY3LS2X21gr458lINZNY4h5AHzGVWpkXuYOZLGFENnFnkPchEy6P0Y0Sc+1lABl+0eSmyvekTzXjzHAH6wyC4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nsU3FUlp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B76AC4AF0C;
+	Tue,  2 Jul 2024 14:25:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719930226;
-	bh=i0ACXZEU9v2nO7krTChYuJUFdkYuMP1aVBi/1z08pF8=;
+	s=k20201202; t=1719930303;
+	bh=YxMjFqoZFypceo4E8GRL6bTbLSFyPrQuJNG4Kk8w9+A=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=WZF42urVfppLKS4WyhSfWQ8i5+Cqd2GpJWLRhHHdTOdST5EtgCV+XcYs3vLI4rcI3
-	 bJNTDdQgnyQZ0dnJ0bdAiku9EdaPvSVyY4xb+5d1egVbtU/RniVxNWoFcCFytup8DP
-	 /0kCgiUk2DuaVgCtagg/GaleqNfZrnhDnjLNPfLmk18chAaPsmMCvSls/U+djNWkyT
-	 uctJRA9PnPKooB60pQnJnFa79E1dy5bQthNoECPolVDtuTmpsK+n9YQlHcIKO4IaNQ
-	 qoOQ63mZqKVCP69TpAEJ8WBOCllTcRozSqAoPnbo8XhSpfAsu1bx3Lky6eQTzhHG+8
-	 WyNUl4xKRGFyg==
-Message-ID: <26ad845a-3fde-47f0-8541-fa8c751530b2@kernel.org>
-Date: Tue, 2 Jul 2024 16:23:40 +0200
+	b=nsU3FUlpR6xTUh4FSwMJr68m4RjzZAsaUURYkCLFlg5asFrHVhRtXHUux/2tbroy5
+	 EBS81ffbfwTz8C6C+6wNdqJuzNRBTn5oDFBmn11ecgfIJJA0L30Z3ezj56VpBpZBvu
+	 XYl0qqTdHNtbfPzcmpYEjKWaa6pqKaFHb71rxagY3g2d8cPFVF/3/Bhw7gb9BLfHQv
+	 u1iV28E/nLX58thJPry+Ozaz7c+xEU/O2pLJ4Nlis2feOp7UnRV8OyP0UiWDZzJ8l3
+	 r4eRNWxAncJcJzetNlUvCp2tH07DFXzq/3Aq3xetF5AKgorKtw0Z9wmbhLRW+hFVp5
+	 KjHj1Pr/fqRXg==
+Message-ID: <897f588f-019e-4519-9106-bc18ef22f5cb@kernel.org>
+Date: Tue, 2 Jul 2024 16:24:58 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,22 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/7] dt-bindings: gpio: vf610: Allow gpio-line-names to be
- set
-To: Frieder Schrempf <frieder@fris.de>, Bartosz Golaszewski <brgl@bgdev.pl>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Linus Walleij <linus.walleij@linaro.org>, linux-gpio@vger.kernel.org,
- linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
- Stefan Agner <stefan@agner.ch>
-Cc: Frieder Schrempf <frieder.schrempf@kontron.de>,
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH 4/7] dt-bindings: regulator: pca9450: Make interrupt
+ optional
+To: Frieder Schrempf <frieder@fris.de>, Conor Dooley <conor+dt@kernel.org>,
+ devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Liam Girdwood <lgirdwood@gmail.com>, linux-kernel@vger.kernel.org,
+ Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+ Robin Gong <yibin.gong@nxp.com>
+Cc: Frieder Schrempf <frieder.schrempf@kontron.de>, Joy Zou
+ <joy.zou@nxp.com>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 References: <20240702103155.321855-1-frieder@fris.de>
- <20240702103155.321855-4-frieder@fris.de>
-Content-Language: en-US
+ <20240702103155.321855-5-frieder@fris.de>
 From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -109,42 +106,23 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240702103155.321855-4-frieder@fris.de>
+In-Reply-To: <20240702103155.321855-5-frieder@fris.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 02/07/2024 12:31, Frieder Schrempf wrote:
 > From: Frieder Schrempf <frieder.schrempf@kontron.de>
 > 
-> Describe common "gpio-line-names" property to fix dtbs_check warnings
-> like:
+> The interrupt line is currently only used for printing warnings and
+> the PMIC works just fine without it.
 > 
->   arch/arm64/boot/dts/freescale/imx93-kontron-bl-osm-s.dtb: gpio@43810000:
-
-There is no such file. You cannot use future work as reason for a
-warning. Simply such warning does not exist at this point and
-introducing warnings knowingly is also not correct.
-
->     'gpio-line-names' does not match any of the regexes: '^.+-hog(-[0-9]+)?$', 'pinctrl-[0-9]+'
+> Allow boards to not use the interrupt line and therefore make it
+> optional.
 > 
-> Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
-> ---
->  Documentation/devicetree/bindings/gpio/gpio-vf610.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/gpio/gpio-vf610.yaml b/Documentation/devicetree/bindings/gpio/gpio-vf610.yaml
-> index a27f929502575..7230ba1a386ae 100644
-> --- a/Documentation/devicetree/bindings/gpio/gpio-vf610.yaml
-> +++ b/Documentation/devicetree/bindings/gpio/gpio-vf610.yaml
-> @@ -50,6 +50,7 @@ properties:
->      const: 2
->  
->    gpio-controller: true
-> +  gpio-line-names: true
 
-maxItems are not known?
-
-
+Do you want to say that interrupt is optional in the hardware and not
+connected in your board? Sorry, but that's quite long statement without
+actually stating the main point why this should be optional in the binding.
 
 Best regards,
 Krzysztof
