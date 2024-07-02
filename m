@@ -1,122 +1,128 @@
-Return-Path: <devicetree+bounces-82341-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82342-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C4EC923EFE
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 15:30:25 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E4AC923F03
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 15:30:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D9D6AB286F5
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 13:30:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D75891F23541
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 13:30:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06317157E93;
-	Tue,  2 Jul 2024 13:30:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDF51158868;
+	Tue,  2 Jul 2024 13:30:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BBZ6E/Hb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DWHD15Fx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDE5B26AEC;
-	Tue,  2 Jul 2024 13:30:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A26A3D266;
+	Tue,  2 Jul 2024 13:30:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719927017; cv=none; b=B3RKGI/JaMEopF/p7TSbteEb0mHLSCklRoo9hANYaIYfMo+CF07J4UM5DuVGjIO1NryJ0VnLibpMhSU+9dPmXbvX+CX2R8P2IbTlAqSA3+U8WrLJzgEetiG4iXuKBjlBODkIKynUOUvHilXDEsoNRFWYd7h/EW5W3Nn3gcYexyw=
+	t=1719927031; cv=none; b=okOOeoDnM0JrdhXQIG6ZZeAjJ3kqLegEdf25quY30lRyfNJQ71VYEra6Xs5ktOOI7N+8ymTBC3yFg5MTvGD2myU33cMg/X3GEj3g9X7Qy9XgnnhU86G5xbnz4TjaKgOgbIR8NB/5J9MHlo2m/2KkOCLgCS92QnT8IAIBLVFSo3g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719927017; c=relaxed/simple;
-	bh=8RJtG0gGC00rT2GsXuQEaindF1W2r+IuO/BdBiyjJLM=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=hKeiMOewYVbx9vckV9r4ar9H5tHjovThhuTuzIiwYQm0Pl3a3lhba8If22gl2/HfBAcaFTS6t2QCWQf3laU52RGB+M2rLye9XFVdy0/aicXdVZfpXUUZdc7mhBlL5EPfGjpn9sKCZ6J6Pdci2YCK52hiOu2Pvnn2kLhwr92jcLw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BBZ6E/Hb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23B8CC4AF07;
-	Tue,  2 Jul 2024 13:30:17 +0000 (UTC)
+	s=arc-20240116; t=1719927031; c=relaxed/simple;
+	bh=t2KXCJRTucXLmExvaxj+W9qhzMExTacZzdR6CL7asoc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=oCvi5zDCQb82VRrc2mUs5M7YPhBNSAcoomsz87yZdkPRefXrDRD+6IiNnj6x+zHb6qKzPGMhV+RS01sMKUZXeFZ14ew+e+iXMMVzih3fLX9lZ2C+Fzvhab2oPySVJv5s6IsfhpKsM4v8zseoeToh3mSkNmD1LFEAK+pw1X6qfi0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DWHD15Fx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21209C116B1;
+	Tue,  2 Jul 2024 13:30:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719927017;
-	bh=8RJtG0gGC00rT2GsXuQEaindF1W2r+IuO/BdBiyjJLM=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=BBZ6E/HbkuhYaAn15zmd4Nk0PEd9guaspQwFVcD0y6e80jVg/7PGdlUIVTD5PVn3k
-	 NsPx7S9Szi1KiWBb73d4X17sSicGlTJrbJcJsBN3X6cDIZPzmJzp62FJuvN8zLsJBe
-	 Hh+zOGX6O7abgbci9xYpqh3fBnCUdw4W0S1LVHdMZuQ5ckD/TLMcDm3qFus0R/DkLk
-	 yYiJDpxEGqXsUCXBDddiayVBjuIbuZlOsDUy53i7Uc+UWRp2YydUwvASFOadEtiwO/
-	 1us5/GPrfCaWreY3ar8CL+Wj25deHBGbYcweqdZJp8SeE89PG2PMgQbnygxZ/RZXEe
-	 K6Q1ba13n7p5w==
-Date: Tue, 02 Jul 2024 07:30:16 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1719927030;
+	bh=t2KXCJRTucXLmExvaxj+W9qhzMExTacZzdR6CL7asoc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=DWHD15FxDSR37FAIvCPTapgLRvz6bUhIdTvjSuyRN2Lwuco9tByxg4HBd9cYO5r9g
+	 dGQd+ymEgZCkOb/efvSggkuP6FgFqVlCHC5vXAnyqXh/GxQNPEgstKshIXKGGFwupn
+	 Av+KztcHfPdx5823XrMnw0GyyiS+Qgx2KGQgFr5/7JJuzYfd66tLO3G8YXsg4VWSQh
+	 AsGznf4fX9iT4+2xPohAj+y+/Z7beta6/MxOJXpmKuKdYMO+xD619ehPhaKdZ0Wuui
+	 2gQBsPPtvLKyEHO+vrxfFteYhPqAV+9XSvRPBJlWSslyyUDWAsH+XuZmdR5RWqkdRt
+	 eR9ZwSfLAtlPA==
+Date: Tue, 2 Jul 2024 14:30:24 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Len Brown <len.brown@intel.com>, Pavel Machek <pavel@ucw.cz>,
+	linux-pm@vger.kernel.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.au@gmail.com>, devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v4 3/6] regulator: core: Add helper for allow HW access
+ to enable/disable regulator
+Message-ID: <988df019-00d4-4209-8716-39e82c565bf1@sirena.org.uk>
+References: <20240616105402.45211-1-biju.das.jz@bp.renesas.com>
+ <20240616105402.45211-4-biju.das.jz@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-Cc: devicetree@vger.kernel.org, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Albert Ou <aou@eecs.berkeley.edu>, linux-kernel@vger.kernel.org, 
- linux-riscv@lists.infradead.org, linux-iio@vger.kernel.org, 
- Conor Dooley <conor+dt@kernel.org>, Inochi Amaoto <inochiama@outlook.com>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Lars-Peter Clausen <lars@metafoo.de>, 
- Chen Wang <unicorn_wang@outlook.com>, 
- Paul Walmsley <paul.walmsley@sifive.com>, 
- =?utf-8?q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Jonathan Cameron <jic23@kernel.org>
-In-Reply-To: <20240702-sg2002-adc-v1-1-ac66e076a756@bootlin.com>
-References: <20240702-sg2002-adc-v1-0-ac66e076a756@bootlin.com>
- <20240702-sg2002-adc-v1-1-ac66e076a756@bootlin.com>
-Message-Id: <171992701607.3218867.8675024539411863214.robh@kernel.org>
-Subject: Re: [PATCH 1/3] dt-bindings: iio: adc: sophgo,cv18xx-saradc.yaml:
- Add Sophgo SARADC binding documentation
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="IlacYp8TanbdEVDM"
+Content-Disposition: inline
+In-Reply-To: <20240616105402.45211-4-biju.das.jz@bp.renesas.com>
+X-Cookie: Phasers locked on target, Captain.
 
 
-On Tue, 02 Jul 2024 13:52:21 +0200, Thomas Bonnefille wrote:
-> The Sophgo SARADC is a Successive Approximation ADC that can be found in
-> the Sophgo SoC.
-> 
-> Signed-off-by: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-> ---
->  .../bindings/iio/adc/sophgo,cv18xx-saradc.yaml     | 51 ++++++++++++++++++++++
->  MAINTAINERS                                        |  5 +++
->  2 files changed, 56 insertions(+)
-> 
+--IlacYp8TanbdEVDM
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-My bot found errors running 'make dt_binding_check' on your patch:
+On Sun, Jun 16, 2024 at 11:53:55AM +0100, Biju Das wrote:
+> Add a helper function that allow regulator consumers to allow low-level
+> HW access, in order to enable/disable regulator in atomic context.
 
-yamllint warnings/errors:
+The following changes since commit f2661062f16b2de5d7b6a5c42a9a5c96326b8454:
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/adc/sophgo,cv18xx-saradc.yaml: 'oneOf' conditional failed, one must be fixed:
-	'unevaluatedProperties' is a required property
-	'additionalProperties' is a required property
-	hint: Either unevaluatedProperties or additionalProperties must be present
-	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/adc/sophgo,cv18xx-saradc.yaml: $id: Cannot determine base path from $id, relative path/filename doesn't match actual path or filename
- 	 $id: http://devicetree.org/schemas/iio/adc/sophgo,cv18xx-adc.yaml
- 	file: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/adc/sophgo,cv18xx-saradc.yaml
-Error: Documentation/devicetree/bindings/iio/adc/sophgo,cv18xx-saradc.example.dts:24.11-12 syntax error
-FATAL ERROR: Unable to parse input tree
-make[2]: *** [scripts/Makefile.lib:427: Documentation/devicetree/bindings/iio/adc/sophgo,cv18xx-saradc.example.dtb] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1430: dt_binding_check] Error 2
-make: *** [Makefile:240: __sub-make] Error 2
+  Linux 6.10-rc5 (2024-06-23 17:08:54 -0400)
 
-doc reference errors (make refcheckdocs):
+are available in the Git repository at:
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240702-sg2002-adc-v1-1-ac66e076a756@bootlin.com
+  https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git tags/regulator-hw-enable-helper
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+for you to fetch changes up to 1cb7d29157603561af4c38535e936850ceb99f0f:
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+  regulator: core: Add helper for allow HW access to enable/disable regulator (2024-06-26 18:17:05 +0100)
 
-pip3 install dtschema --upgrade
+----------------------------------------------------------------
+regulator: Add helper to allow enable/disable in interrupt context
 
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Add a helper function that enables exclusive consumers to bypass locking
+and do an enable/disable from within interrupt context.
 
+----------------------------------------------------------------
+Biju Das (1):
+      regulator: core: Add helper for allow HW access to enable/disable regulator
+
+ Documentation/power/regulator/consumer.rst |  6 ++++++
+ drivers/regulator/core.c                   | 28 ++++++++++++++++++++++++++++
+ include/linux/regulator/consumer.h         |  7 +++++++
+ 3 files changed, 41 insertions(+)
+
+--IlacYp8TanbdEVDM
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmaEAO8ACgkQJNaLcl1U
+h9Bewgf+OWjnlHCrOEnp2tHnOwAfOZV2h87DgiM2wyj09j/nTuAG5n4pRqMcHzn5
+cZ1xW5LilEcD6P/MceRyFQ691SazgItdhjPMuonnESk3EfQekcU+gqhEkXdj33TH
+UN0qvwEc/gg4gW6BYSOOa6YK85x0NnaWeYsGTR7rrFA5sE+bnLv0u8/Qt5GIYUn+
+dXw53pKra6VlK3LvQKsDW62mJzjNNLlvGWcZ6bxcwZDA1b4hUGY6oC6etk5Z44HQ
+/RKZpTNgEXAxp24fikixTcFy79swpdBahJrcbRWtO/rlJ06OywlxaKU1RuiqkBfC
+1YTlpGYI8Rzwx7+EMAMczXSpVP7lxQ==
+=uFPQ
+-----END PGP SIGNATURE-----
+
+--IlacYp8TanbdEVDM--
 
