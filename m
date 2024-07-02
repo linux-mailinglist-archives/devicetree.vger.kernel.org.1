@@ -1,187 +1,97 @@
-Return-Path: <devicetree+bounces-82364-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82365-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 690E6924112
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 16:42:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B93F924114
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 16:42:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E2BD91F241C1
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 14:42:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 07920284A86
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 14:42:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F376E1BA087;
-	Tue,  2 Jul 2024 14:42:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E85F1B583A;
+	Tue,  2 Jul 2024 14:42:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="XSVSruWV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P7uH0Kax"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A579BE7F
-	for <devicetree@vger.kernel.org>; Tue,  2 Jul 2024 14:41:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9FDFBE7F;
+	Tue,  2 Jul 2024 14:42:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719931321; cv=none; b=Db0HQQNS17ue12mjvqKrDpVuWG/FXCf88s/NIY6iaTMyV5pujjT2avqxZXlE1eaENLLle+XCwt7Eh6WYYHSaW851YDKtJ55WROgdKhokvP8swSEfyyxTEs20KnMiYgunergKuYWa8efCSA/XjrXxHllzFJ3BJD7neoXTbZqK1PI=
+	t=1719931372; cv=none; b=BwV4GbGg90Nr2VPnqRbL0jtKgwIpvt6qF0J8ZDxqPSloHWSb6aLJg35OHyJQFQkonW45XVcf/aGiip0LlXUBu5JBTgDd8qBMZSU5wyzsGqpOl9BxseKH8Apstw5ghCWVWAAbTGE0H6EQCriGnNcKzH/ImHaPBvaa3+EWexlBZGo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719931321; c=relaxed/simple;
-	bh=OIZoXJPce03pzKnxQkZeElASULo2S3QSA12DT9JEOoE=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=VlbTxbo9d8LGgSfDKuLryYFq2WQO5Bro57HiBQAaq9U1VoLiKGoFaIe9m3i2/loTs7jdobKUlhnQ4f0btBUOs7C0AvtRgaaa2bJiCTY2d2bDw7xxN15Xi5dDWvaXg52NFuT+JnLz/aNVnv4VOj8FjsiaBAJE+jL3H/tlqBMhMJc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=XSVSruWV; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1719931372; c=relaxed/simple;
+	bh=V0uekJLLnO8HH1U4kVAv/bV1cAEF38ni3DMFNyDOaPg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GhBYfPfUbMX5MZmFM1nuLIVNcxsjj74f0Ih1BCC64zEtqonQXq05rAlDvxz04CkoelaeiR6Nlxped97mrpS/p8OL4O/MkmyqsqWQdRO00qT1rQuJt14dtfl4HvUV3D3JaKpmIZfF2Pgwl4B7zU7WGzs+YRhbK854IyKxMIQL6r0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P7uH0Kax; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F544C116B1;
+	Tue,  2 Jul 2024 14:42:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719931371;
+	bh=V0uekJLLnO8HH1U4kVAv/bV1cAEF38ni3DMFNyDOaPg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=P7uH0KaxSF/k9vKRkI88LOipINDeNnpeDsRw2riJqFWEdjsJlqjPdmhj7OTigUjyt
+	 XF5cIQPDeaPw+JiwmRzIdhIsLE21xNfbfn/x/gzM5CYGlpJMo921XfbHkaqAH77sti
+	 yQiS1QgDRvj1a+vfhxSIPyuHd0axFp9xEMpAFOLdkc0IjpwvkFXN0g7dodkOQ1NJGI
+	 3pqQvD4ybnm31VrW9Msm9tEHliqwBng5lt4qzT/KM7hsa8ma2KH31gBoAUYfyEhVTn
+	 +qkaWprfYELD0BwYBM3ON5zVG6VFw8Cqfg9SnF7DEeagPTIAXQnOda3j5dB+OTv5H5
+	 FlF2Z+7/KR5lw==
+Date: Tue, 2 Jul 2024 15:42:46 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
+Cc: sam@ravnborg.org, neil.armstrong@linaro.org, daniel@ffwll.ch,
+	dianders@chromium.org, linus.walleij@linaro.org,
+	swboyd@chromium.org, airlied@gmail.com, dmitry.baryshkov@linaro.org,
+	krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+	conor+dt@kernel.org, lvzhaoxiong@huaqin.corp-partner.google.com,
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 1/2] dt-bindings: display: panel: Add compatible for
+ melfas lmfbx101117480
+Message-ID: <20240702-unplanned-oat-b4757f618539@spud>
+References: <20240702130138.2543711-1-yangcong5@huaqin.corp-partner.google.com>
+ <20240702130138.2543711-2-yangcong5@huaqin.corp-partner.google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1719931316;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=hU0obt6AAONyTNaVYnfsX3NTbxYTBxrwgOD99hgDO2g=;
-	b=XSVSruWV7+qSmuL7LQdNAEPPVrE2Wy5knsf/Lp/+av/F9hxpXt53VDp5dhmR9mGLczqc5o
-	D2s/WwZJPdD/8PMNtI+I72DnlCXFviusnjh3Q7ItIOKNYCO2WN1vHRn+1EktOF7JZSn4Hw
-	QebP6dPIBN5GTpy8tP/PR2WaiUxtGkDC9rTMNurYnpGy3qTYI7m/Zs1z552SbMk9cQ4ZI6
-	834A8psRvfN9y45LKtzaIar2qmTs7k6xwautn9OqFtAM5UHu5r2TRqsZi8GRxywYNS4RBh
-	iVfoRWmnnU++923dOSHdsPE7H4QcMyg3RRBcu18IUsRXogxWEKLQWibyKiEOnQ==
-Date: Tue, 02 Jul 2024 16:41:54 +0200
-From: Dragan Simic <dsimic@manjaro.org>
-To: Philipp Puschmann <p.puschmann@pironex.com>
-Cc: linux-rockchip@lists.infradead.org, robh@kernel.org, krzk+dt@kernel.org,
- heiko@sntech.de, devicetree@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: rockchip: rk356x: add ethernet aliases
-In-Reply-To: <f2c7cdb2-b27d-40cc-b103-68043714f13c@pironex.com>
-References: <20240702124626.116290-1-p.puschmann@pironex.com>
- <6bb12ab4cd12357dfd69db35107d8b88@manjaro.org>
- <f2c7cdb2-b27d-40cc-b103-68043714f13c@pironex.com>
-Message-ID: <14db27e78c9e1183568b4c99ec487092@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="oHUFRZu9Gcv6C1ca"
+Content-Disposition: inline
+In-Reply-To: <20240702130138.2543711-2-yangcong5@huaqin.corp-partner.google.com>
 
-On 2024-07-02 16:25, Philipp Puschmann wrote:
->> On 2024-07-02 14:46, Philipp Puschmann wrote:
->>> Providing ethernet aliases solves a subtle problem for the rk3568. 
->>> The
->>> bus_id used for the sysfs directory name of the mdio. Without 
->>> ethernet
->>> alias the bus_id is always 0 and so creating the sysfs directory for 
->>> the
->>> second mdio fails with a duplicate filename error and by this the 
->>> setup
->>> of the second ethernet port fails too.
->>> 
->>> Note: The alias numbering is inverted as gmac1 comes from more 
->>> generic
->>> rk356x.dtsi but gmac0 comes from specialised rk3568.
->> 
->> Please see the following commits and the discussions on the 
->> rockchip-linux
->> mailing list that are linked in them:
->> 
->> - b0140a1b3b1d ("arm64: dts: rockchip: Add ethernet0 alias to the dts
->>   for RK3588(S) boards")
->> - 36d9b3ae708e ("arm64: dts: rockchip: Add ethernet0 alias to the dts
->>   for RK3566 boards")
->> - 5d90cb1edcf7 ("arm64: dts: rockchip: Remove ethernet0 alias from the
->>   SoC dtsi for RK3399")
->> - c900fef5deff ("arm64: dts: rockchip: Remove ethernet0 alias from the
->>   SoC dtsi for RK3368")
->>> To sum it up, ethernetX aliases are considered board-level features,
->> because not all boards/devices actually expose the Ethernet interfaces
->> built into the SoCs.  Thus, adding ethernetX aliases to the SoC dtsi
->> files, unfortunately, isn't an acceptable option.
-> 
-> Are ethernet aliases are handled differently than i2c, serial and spi 
-> aliases?
-> There are aliases for each of them, without doing any harm. And even if 
-> the gmac
-> nodes are disabled with status property?
 
-In a word, yes; they are handled a bit differently, which I already 
-tried
-to sum up.  As Krzysztof already noted, please read the discussions 
-linked
-in the patches listed above.
+--oHUFRZu9Gcv6C1ca
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> On my rk3568-based custom board i had no ethernet aliases and 
-> networking was
-> enabled normally with the status properties of the gmac nodes. Either 
-> one or
-> the other or both network devices were initialized. Would be strange if 
-> an
-> alias would be used without regard to initializing a device driver.
+On Tue, Jul 02, 2024 at 09:01:37PM +0800, Cong Yang wrote:
+> The Melfas lmfbx101117480 is a 10.1" WXGA TFT LCD panel with jadard-jd936=
+5da
+> controller. Hence, we add a new compatible with panel specific config.
+>=20
+> Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
 
-It's also about following the TRMs and the aliases (or common names) 
-defined
-in them, as described in the above-mentioned discussions.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
->> The sysfs issue that you've discovered should be instead solved in 
->> some
->> other, more systemic way.
-> 
-> The bus_id value comes from stmmac_platform.c and of_alias_get_id() 
-> with
-> "ethernet" as parameter is used, what is a common way in the kernel. It
-> delivers unique ints starting with 0. stmmac_mdio then uses the bus_id 
-> to
-> create a mdio bus id string stmmac-${bus_id} to register a mdio_bus.
-> From my understanding this kind of bus id is commonly used to name 
-> devices
-> and paths in the sysfs. Viewed only this problem it would be possible
-> to use other information like the node address or some unique
-> information to use it as unique part of the mdio bus id. But doesn't 
-> break
-> things too, at least some kind of convention?
-> 
-> Another hack i tried first, was to use a static increasing int to get
-> the bus_id. This would keep the resulting sysfs tree probably unchanged
-> but would drop the connection between dts and bus numbering in sysfs.
+--oHUFRZu9Gcv6C1ca
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Wouldn't those issues be solved by simply defining the needed ethernetX
-aliases in the dts file for your board?
+-----BEGIN PGP SIGNATURE-----
 
->>> Signed-off-by: Philipp Puschmann <p.puschmann@pironex.com>
->>> ---
->>>  arch/arm64/boot/dts/rockchip/rk3568.dtsi | 4 ++++
->>>  arch/arm64/boot/dts/rockchip/rk356x.dtsi | 1 +
->>>  2 files changed, 5 insertions(+)
->>> 
->>> diff --git a/arch/arm64/boot/dts/rockchip/rk3568.dtsi
->>> b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
->>> index f1be76a54ceb..42018c8666e0 100644
->>> --- a/arch/arm64/boot/dts/rockchip/rk3568.dtsi
->>> +++ b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
->>> @@ -8,6 +8,10 @@
->>>  / {
->>>      compatible = "rockchip,rk3568";
->>> 
->>> +    aliases {
->>> +        ethernet1 = &gmac0;
->>> +    };
->>> +
->>>      sata0: sata@fc000000 {
->>>          compatible = "rockchip,rk3568-dwc-ahci", "snps,dwc-ahci";
->>>          reg = <0 0xfc000000 0 0x1000>;
->>> diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
->>> b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
->>> index d8543b5557ee..e13bd7b24752 100644
->>> --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
->>> +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
->>> @@ -43,6 +43,7 @@ aliases {
->>>          spi1 = &spi1;
->>>          spi2 = &spi2;
->>>          spi3 = &spi3;
->>> +        ethernet0 = &gmac1;
->>>      };
->>> 
->>>      cpus {
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZoQR5gAKCRB4tDGHoIJi
+0lP/AP9hjJ3cSdPG0aEpu2VcKOIuGrQ1XIWAreUik6m9rgLemwEApSrqFpUqtJ23
+JH+naFm1JeFIQn25OcRek7vQecXFLwg=
+=MFC5
+-----END PGP SIGNATURE-----
+
+--oHUFRZu9Gcv6C1ca--
 
