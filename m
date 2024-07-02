@@ -1,172 +1,116 @@
-Return-Path: <devicetree+bounces-82488-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82489-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47EB0924879
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 21:39:47 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 419EB924898
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 21:49:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F21F528B69A
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 19:39:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 00F931F23A60
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 19:49:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E76AB1CD5DB;
-	Tue,  2 Jul 2024 19:39:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FB241BBBF3;
+	Tue,  2 Jul 2024 19:49:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RDsG/4K4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JJp1yF3Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com [209.85.216.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F5786E5ED;
-	Tue,  2 Jul 2024 19:39:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 467EE129E93;
+	Tue,  2 Jul 2024 19:49:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719949182; cv=none; b=ZVZqhIV4xBVPEtu4U7Z3cIUTx3iwsso3vgvzL7n6i1FRzWblM5XXHUncrjFnzhcDtLEGzjdNVax3sLJCIC0IhptuWhbDcQHYjuKf8Prejw+uoOsKbXnkGDYt6Dde/Kaz6kGlmf1EoC5+spJFNN2lEemKD1p9cstYYTaCBoy7jKg=
+	t=1719949762; cv=none; b=T0SkqXi7D9kz6mqAkzrUcSWe3gMdWiS7ymg67pjcpzDnEcPOAXshTABK19NIkQOZN1Dr91UJe4cynYmKzl/Y/Q2+mkg+eZqinGsQ4sGSe0u224ZUjEh8nbNBY4Jxrb3UHb2yXcOprC1m4tD1dYy9YHXu8i8zG1KOIs9xZGx2KoA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719949182; c=relaxed/simple;
-	bh=oRlSI9t2p3jGFJ880LK9WDLLsE0d6mzD6XkeeFAK5Pw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=otPNzx5Nr7SOGPT9imMFRn4xXS/t5tcAKcBovIxnf+99o/8Uy+4QtVxEnaA/2DniHKhHdM3T6S/3rZjMOMgsAEHTNmM4+VimT0JeO4J3vfK6aZ/eB+5iCe561WG3RskYpdquUai6Wtb0i77sYnOhRxhYvnDPYA5BhbDGlyztSkY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RDsG/4K4; arc=none smtp.client-ip=209.85.216.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f48.google.com with SMTP id 98e67ed59e1d1-2c2d25b5432so2750536a91.2;
-        Tue, 02 Jul 2024 12:39:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1719949181; x=1720553981; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=S8RmM/nQ903jD1e784juDC9He5+yPgPg+HlP+Yxh+mY=;
-        b=RDsG/4K4Hen4/TkA9to5zweFgNQiZHKqThyNSZkq6m+zAaI/dh7DahX9VvskSmTjd0
-         b5gZgabHvN/7/vGAWGrgqm99srKzbyO+z+VbsC6sMG2UUJEspbx1FRCxjHbw/ZbNXPNA
-         JR1Q+nv41hZLPJnpr1MgMUXnZ7hwCURD5RUi3drag/u9Cc8jMHpbekNJAOmqp1byt959
-         gZ4Q4oHQbXUGZYKtFnlswqGpdpS6rkYt7D8qHjeACyGO2i9i1lwTTBgb3MdWHvtXR6fe
-         bvvuq82WY8oGzZATnDewXXloTuXJlXvAHvKdr0tbshjQBxSf2Hl6PQ7mAdkBRqjXJGTw
-         XtHA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719949181; x=1720553981;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=S8RmM/nQ903jD1e784juDC9He5+yPgPg+HlP+Yxh+mY=;
-        b=ET5VNSiQoR5bFskL1wo+mqm6Oy3D72VzJ91J+U6kU8OcEvoffMhT89MOEReWm3lVTT
-         YFlC9VbfFb2ot025fAoCEl9vPeHBthcr//Rr1+Vmdb/7RI/jhARnedkX8jqCSiklDwsj
-         Kx0bZ9TB62OvXlVeWR16W042rF/ofvMKGcUfbyBm78Hr/5E24etAL23PY1DJRJLUm8TC
-         81wtVEXjrPIfTAOWyjD2rITxAPHZSm3mcs9Rq88m9k9ZHjskJ6I4onBt97/u07dND/66
-         jg+ZI/SrI/K1ibYfUHUlNYsG6xX5JFNXpj6PBAQBLtn4TbbAcv4XjsxAiPDvRpfWwldK
-         uJsw==
-X-Forwarded-Encrypted: i=1; AJvYcCWSMlnwQ2vqCT7jNAMqWtCj4He3GnHV+feP0mNsQQG0DNLc6Fnf4K9BmsrcFMcAEXxNeUYUnQ2bVV8kSwDSSqXa9FlX+Qk0ahHpe1pok+5sSAtaTSkNiwBTPMAImxun7ZRl5RqO2uWfIWrh5K01o+tBkCwlzo3+rs560OV0G+xUZIC3a335Tp/pkuoGRfv59kVMqN8tinP/ELLlzHF6d1t8DXuiUlg3YdQytQbMNPG1ELveHs1ADD1u3PIR
-X-Gm-Message-State: AOJu0Yy/aEA4M8b0ufnWsDk68jGY4QzDsCLdepsiHSzIvKPYMKcSlnc7
-	5tBU40Ji4F5qZbIfRjnq8lLSyK1btKFiu5I+c11iuQt0ufjrqAz1
-X-Google-Smtp-Source: AGHT+IERdVtlgKLMdAMQSFOlOPmsLrxNuImG3ycfTmId0OWD4i32DoVyGKXhjOqTzMWyCCtp4yaYmw==
-X-Received: by 2002:a17:90b:2287:b0:2c7:70ba:3efe with SMTP id 98e67ed59e1d1-2c93d7097c6mr5833019a91.17.1719949180632;
-        Tue, 02 Jul 2024 12:39:40 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2c91ce4668esm9297079a91.21.2024.07.02.12.39.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Jul 2024 12:39:40 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <da649c17-2237-430f-80c9-253cef47deb6@roeck-us.net>
-Date: Tue, 2 Jul 2024 12:39:38 -0700
+	s=arc-20240116; t=1719949762; c=relaxed/simple;
+	bh=IzPBlqQ/4Tj0Uk881o0FtB2r6D4ok3HgHe3q8VdKMYQ=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=IgzoEwf7HnJTr5NVW/94QuFZYXR0KxKarsWiBMkLy6S4wiOkgbZUZAP50icdQJSM6poQJAUoQZnYL7Rn0bZa+NDpWHAN0d1sGUndydCC91B3gMciXYZwmrrWreW5kG1To3W+M2Hs8qnblTIx5MzSiqN2lBNoQ5aGHdkQ8A182aQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JJp1yF3Z; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB711C116B1;
+	Tue,  2 Jul 2024 19:49:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719949761;
+	bh=IzPBlqQ/4Tj0Uk881o0FtB2r6D4ok3HgHe3q8VdKMYQ=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=JJp1yF3ZqPfcjcf1fQipSRB97E8twMHSKw2qvDcIkGsQufK9CbZMjG1tHNofyntZw
+	 zVLxQ3TvW2Ex7gPj0v+r7PopNZNh11BDv28j1KD/MzCpH3dP+esWC2JBepOdhde7QT
+	 jcWu6vEGnDo3CO6iej+4BBhjQRnNoTX6MC5XAusQjb2eJS9XtyATJ9kpUmCKxigaHW
+	 mczEY797vfO1L6B6nON6QiRZoLtiRpGhKiOGDt9wxA7cEzomDz9km1AZxfavq6bgbI
+	 i2f2iulHL+yX3lqJ8PHGi9lgiyhb4vaS9FcIaMpD0s51BFvR6+ZvcyFNBohWH9zBok
+	 OLk6cHB/FRYAA==
+Received: from disco-boy.misterjones.org ([217.182.43.188] helo=www.loen.fr)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.95)
+	(envelope-from <maz@kernel.org>)
+	id 1sOjV9-009CvD-B4;
+	Tue, 02 Jul 2024 20:49:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/2] hwmon: add MP5920 driver
-To: =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?= <thomas@t-8ch.de>,
- Alex Vdovydchenko <xzeol@yahoo.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Sean Anderson <sean.anderson@linux.dev>,
- Jean Delvare <jdelvare@suse.com>, Jonathan Corbet <corbet@lwn.net>,
- Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
- linux-doc@vger.kernel.org, linux-i2c@vger.kernel.org
-References: <20240702115252.981416-1-xzeol@yahoo.com>
- <20240702115252.981416-3-xzeol@yahoo.com>
- <956582ec-0205-46c3-b4dd-820aa150c03d@t-8ch.de>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <956582ec-0205-46c3-b4dd-820aa150c03d@t-8ch.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Date: Tue, 02 Jul 2024 20:49:18 +0100
+From: Marc Zyngier <maz@kernel.org>
+To: Christian Zigotzky <chzigotzky@xenosoft.de>
+Cc: Rob Herring <robh@kernel.org>, apatel@ventanamicro.com, DTML
+ <devicetree@vger.kernel.org>, Linux Kernel Mailing List
+ <linux-kernel@vger.kernel.org>, linuxppc-dev
+ <linuxppc-dev@lists.ozlabs.org>, mad skateman <madskateman@gmail.com>,
+ "R.T.Dickinson" <rtd2@xtra.co.nz>, Matthew Leaman <matthew@a-eon.biz>,
+ Darren Stevens <darren@stevens-zone.net>, Christian Zigotzky
+ <info@xenosoft.de>
+Subject: Re: [PowerPC] [PASEMI] Issue with the identification of ATA drives
+ after the of/irq updates 2024-05-29
+In-Reply-To: <68b7988d-eaaa-4713-99c3-525a34c5b322@xenosoft.de>
+References: <3ab66fab-c3f2-4bed-a04d-a10c57dcdd9b@xenosoft.de>
+ <861q4bizxc.wl-maz@kernel.org>
+ <68b7988d-eaaa-4713-99c3-525a34c5b322@xenosoft.de>
+User-Agent: Roundcube Webmail/1.4.15
+Message-ID: <5a6166f107ae31536665d42f410d314d@kernel.org>
+X-Sender: maz@kernel.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 217.182.43.188
+X-SA-Exim-Rcpt-To: chzigotzky@xenosoft.de, robh@kernel.org, apatel@ventanamicro.com, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, madskateman@gmail.com, rtd2@xtra.co.nz, matthew@a-eon.biz, darren@stevens-zone.net, info@xenosoft.de
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 
-On 7/2/24 12:00, Thomas Weißschuh wrote:
-> On 2024-07-02 14:52:51+0000, Alex Vdovydchenko wrote:
->> Add support for MPS Hot-Swap controller mp5920. This driver exposes
->> telemetry and limit value readings and writings.
->>
->> Signed-off-by: Alex Vdovydchenko <xzeol@yahoo.com>
->> ---
->>   Documentation/hwmon/index.rst  |  1 +
->>   Documentation/hwmon/mp5920.rst | 91 +++++++++++++++++++++++++++++++++
->>   drivers/hwmon/pmbus/Kconfig    |  9 ++++
->>   drivers/hwmon/pmbus/Makefile   |  1 +
->>   drivers/hwmon/pmbus/mp5920.c   | 93 ++++++++++++++++++++++++++++++++++
->>   5 files changed, 195 insertions(+)
->>   create mode 100644 Documentation/hwmon/mp5920.rst
->>   create mode 100644 drivers/hwmon/pmbus/mp5920.c
+On 2024-07-02 18:55, Christian Zigotzky wrote:
+> Hello Marc,
 > 
-> The entry in MAINTAINERS seems to be missing.
+> Thank you for your reply.
 > 
+> On 02.07.24 17:19, Marc Zyngier wrote:
+>> Please provide the device tree for your platform. It isn't possible to
+>> debug this without it, no matter how many pictures you provide. If it
+>> doesn't exist in source form, you can dump it using:
+>> 
+>> # dtc -I dtb /sys/firmware/fdt
+>> 
+>> and posting the full output.
+>> 
+>> Additionally, a full dmesg of both working and non working boots would
+>> be useful.
+>> 
+>> Thanks,
+>> 
+>> 	M.
+>> 
+> The device tree of the Nemo board and further information:
+> https://forum.hyperion-entertainment.com/viewtopic.php?p=54406#p54406
 
-That isn't mandatory; checkpatch asks for it, but I prefer not to have it
-in the first place if the submitter doesn't really plan to maintain it.
-
-> Otherwise:
-> 
-> Reviewed-by: Thomas Weißschuh <linux@weissschuh.net>
-> 
+Please post these things on the list. I have no interest in
+fishing things on a random forum, and this information is
+useful for everyone.
 
 Thanks,
-Guenter
 
+          M.
+-- 
+Jazz is not dead. It just smells funny...
 
