@@ -1,114 +1,132 @@
-Return-Path: <devicetree+bounces-82390-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82391-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AE97924226
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 17:18:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE01A924234
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 17:20:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2544628171D
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 15:18:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DCDF61C22ECA
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 15:20:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D046F1BBBE1;
-	Tue,  2 Jul 2024 15:18:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09DA51BB6BD;
+	Tue,  2 Jul 2024 15:20:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y6snYiGe"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K6i1SNuY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2CE51BB69C;
-	Tue,  2 Jul 2024 15:18:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D62EB1BA868;
+	Tue,  2 Jul 2024 15:20:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719933483; cv=none; b=A8w+BVcTB7V1BopZbLct4UY+39JjekaGypxz/S+rHH61DjKv+RidDWsuSc6iLb0OXVjXB0MnE0wcqLKS8aGCKXoY+12RRqTzfOib9BMU0lbkee1duVW+rKPb2cb9C7j1gvja5iMwMZ/C8q6uP1vVAqrZk5TDnnRg6lqRRXO8cp4=
+	t=1719933602; cv=none; b=KA/XDdicJ/S1VdP6mTwtXDNaCitDXCnWpeNYGXj/2nc/ux8eGU7S+FY8IdpGUV9sTTq9eBhKiWeDa0HSPvUwPNfBHT2IA4TetG3c3C7qgoXW9VLzSDPtuOjMrigML10od+vacm+369rL7PC7z1JKh8g/z0dx0W7WM6pPJpoQ1uA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719933483; c=relaxed/simple;
-	bh=0TTPDgoTlftH5Xx9Yej6Fvq0f2C1Wrvm/WNEckwSl1A=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=K5N5p7V+/Qvt8c4CSwOyw6iq4oYitcEDNxd6NAVbzMQLDoJB5lRirmam24Cc4BRCTSTtcLYMrgorjpmMRrd/qTxsSiWAPM/hAWM5MApOUATof4s/aPUfF9C52faHeKB1e4MZcziQRrentOd+uFE8DdXwAmMj//vM2fro+abm8lY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y6snYiGe; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7741CC4AF07;
-	Tue,  2 Jul 2024 15:18:03 +0000 (UTC)
+	s=arc-20240116; t=1719933602; c=relaxed/simple;
+	bh=vDRfgq1khjg3V3GqZTi2bS11LujWGqPMZ8TLlczYvnA=;
+	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=EKyaXxq2oPIiBcLTNkRJAJRqjHdB1By/w31rd6nAWNZIeIszBQ4eLYMFi3NNiQ4OtDWtslSVuDKdq1wl1wyBGOphlYIiryi2xuMFURczLxzUG7kDUxZZ+cO500xcILwTJaUf6Es34B8doMHaBct33zmD7Z87e/nOXjPaG+UhF8s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K6i1SNuY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7421BC116B1;
+	Tue,  2 Jul 2024 15:20:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719933483;
-	bh=0TTPDgoTlftH5Xx9Yej6Fvq0f2C1Wrvm/WNEckwSl1A=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=Y6snYiGeve5Jm3Ob/2+M+oOqaX3AR+gwf56AjTnwH3ADblqkTJ+TuP/Ta95UmHPK3
-	 VZp3WIrCT3z3EhVQjPhbEJuBnXgL5Sfcf+78UwIClyiBViIByTWi+5r/K/5HBXgfxr
-	 pR6quB7zBXTQuhVuYVmg91/L9CyWbMoJLwb9afE7YiLpR8iq6zCNbC2q9V1CnJLFsP
-	 yVsmX+1UJZ0tB0wmE9Fm2/vUze3O/FvnjxfzB8Dpltupw7OR4FyArjHKgWzfzBp6My
-	 DbI9UiKHc+z1c52nsE8+Tqwb48qBoy5Mwza0YCAd41//DOaHe+Ywom55dOXe8jzNoM
-	 XL/hePPaz03ew==
-Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-2ee7a1ad286so4391141fa.2;
-        Tue, 02 Jul 2024 08:18:03 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVyrmnVQ5cYHUHgLSwesVDFcug/ilBskPzzPc49CnjlY014qYETK4ko9mmNx2OeYtpdd55KPJzcgSOlPzvH9/B+TF9UOHPrTrvoir3lqg0Jspr0DLtjOdgtoh9WObuHueeWzuht0XorBNWgAMj2v59/DgQyDn0fqNVBMdDYWdOiErVzIQ==
-X-Gm-Message-State: AOJu0YyJcnxsQhmtzp+Y6Ob0G8uMJtJm0Rrv69PTPpmrMVFGo8CbnuzZ
-	6SXCgVuuuGXCUz7Vw+us5TF+WwWHmrV25s41hmjzOxMwIuU5rzE4M0IwkZNUMCXM4JrKH14cVBg
-	WN3crlP8ZbosxTHnwOp8vnoe8pA==
-X-Google-Smtp-Source: AGHT+IH0Yy1gkO6ZKfqNqogCDjZRVek+6RMQmG2JeWbBttUSQOmDTm3VP16BG9r2eRHRNTZ0qjfbPTNWdPI6mLcA83k=
-X-Received: by 2002:a05:6512:ad2:b0:52c:df4e:3343 with SMTP id
- 2adb3069b0e04-52e8266ee75mr5683563e87.16.1719933481802; Tue, 02 Jul 2024
- 08:18:01 -0700 (PDT)
+	s=k20201202; t=1719933602;
+	bh=vDRfgq1khjg3V3GqZTi2bS11LujWGqPMZ8TLlczYvnA=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=K6i1SNuYGTNT6OO7pKaDxagvIFhwMk/t6uNJ9i46XtUxP4y5uzmIZICtKnJoLWvyi
+	 bAfF4fZTOJbdEWSWfisAINCU7oOyYbWkmSmscs7ke8iVrcTAVPvRYirHnCllSmU1I2
+	 uCIvzfnu8OIIbanoZCrinKiyQfZ9LIt+3iY0PpQcmuHg9Q0/bvX722/lqmk9bOVsci
+	 zjgN3S/rCZalTlcvt6P9xAIlOvoCeI5Nl6cr9j20FoC4Dyhq5hiS90LMMXlljEWo3s
+	 6jHC3aA9BNmSbcRduDOZcYCOAE0ZvZxXmoFvCPj394sPQzvzSQwmN3PXaToy6F5OYa
+	 2/uBd1pdHcWyg==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.95)
+	(envelope-from <maz@kernel.org>)
+	id 1sOfIV-0099Nu-US;
+	Tue, 02 Jul 2024 16:20:00 +0100
+Date: Tue, 02 Jul 2024 16:19:59 +0100
+Message-ID: <861q4bizxc.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Christian Zigotzky <chzigotzky@xenosoft.de>
+Cc: Rob Herring <robh@kernel.org>,
+	apatel@ventanamicro.com,
+	DTML <devicetree@vger.kernel.org>,
+	Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+	linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+	mad skateman <madskateman@gmail.com>,
+	"R.T.Dickinson" <rtd2@xtra.co.nz>,
+	Matthew Leaman <matthew@a-eon.biz>,
+	Darren Stevens
+ <darren@stevens-zone.net>,
+	Christian Zigotzky <info@xenosoft.de>
+Subject: Re: [PowerPC] [PASEMI] Issue with the identification of ATA drives after the of/irq updates 2024-05-29
+In-Reply-To: <3ab66fab-c3f2-4bed-a04d-a10c57dcdd9b@xenosoft.de>
+References: <3ab66fab-c3f2-4bed-a04d-a10c57dcdd9b@xenosoft.de>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/29.2
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20240627-mikrobus-scratch-spi-v5-0-9e6c148bf5f0@beagleboard.org>
- <20240627-mikrobus-scratch-spi-v5-1-9e6c148bf5f0@beagleboard.org>
- <20240628162847.GB3143032-robh@kernel.org> <61649bee-f7dc-452c-beb5-cc8ee2179b99@beagleboard.org>
-In-Reply-To: <61649bee-f7dc-452c-beb5-cc8ee2179b99@beagleboard.org>
-From: Rob Herring <robh@kernel.org>
-Date: Tue, 2 Jul 2024 09:17:48 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+mxxStZLwUbk9An2pA+Uce+QFjDnnNTMb24m1iMg7B+A@mail.gmail.com>
-Message-ID: <CAL_Jsq+mxxStZLwUbk9An2pA+Uce+QFjDnnNTMb24m1iMg7B+A@mail.gmail.com>
-Subject: Re: [PATCH v5 1/7] dt-bindings: connector: Add mikrobus-connector
-To: Ayush Singh <ayush@beagleboard.org>
-Cc: Mark Brown <broonie@kernel.org>, Vaishnav M A <vaishnav@beagleboard.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Derek Kiernan <derek.kiernan@amd.com>, Dragan Cvetic <dragan.cvetic@amd.com>, 
-	Arnd Bergmann <arnd@arndb.de>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Nishanth Menon <nm@ti.com>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, Michael Walle <mwalle@kernel.org>, 
-	Andrew Lunn <andrew@lunn.ch>, jkridner@beagleboard.org, robertcnelson@beagleboard.org, 
-	linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: chzigotzky@xenosoft.de, robh@kernel.org, apatel@ventanamicro.com, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, madskateman@gmail.com, rtd2@xtra.co.nz, matthew@a-eon.biz, darren@stevens-zone.net, info@xenosoft.de
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 
-On Tue, Jul 2, 2024 at 9:14=E2=80=AFAM Ayush Singh <ayush@beagleboard.org> =
-wrote:
->
-> On 6/28/24 21:58, Rob Herring wrote:
->
-> > On Thu, Jun 27, 2024 at 09:56:11PM +0530, Ayush Singh wrote:
-> >> Add DT bindings for mikroBUS interface. MikroBUS is an open standard
-> >> developed by MikroElektronika for connecting add-on boards to
-> >> microcontrollers or microprocessors.
+Christian,
 
-[...]
+On Sun, 30 Jun 2024 11:21:55 +0100,
+Christian Zigotzky <chzigotzky@xenosoft.de> wrote:
+> 
+> Hello,
+> 
+> There is an issue with the identification of ATA drives with our
+> P.A. Semi Nemo boards [1] after the
+> commit "of/irq: Factor out parsing of interrupt-map parent
+> phandle+args from of_irq_parse_raw()" [2].
+> 
+> Error messages:
+> 
+> ata2.00: failed to IDENTIFY (I/O error, err_mask=0x4)
+> ata2.00: qc timeout after 10000 mssecs (cmd 0xec)
+> 
+> Screenshots [3]
+> 
+> I bisected yesterday [4] and "of/irq: Factor out parsing of
+> interrupt-map parent phandle+args from of_irq_parse_raw()" [2] is the
+> first bad commit.
+> 
+> Then I created a patch for reverting this first bad commit. I also
+> reverted the changes in drivers/of/property.c. [5]
+> 
+> The patched kernel boots with successful detection of the ATA devices.
+> 
+> Please check the of/irq updates.
 
-> >> +  mikrobus-gpios:
-> >> +    minItems: 1
-> >> +    maxItems: 12
-> >> +
-> >> +  mikrobus-gpio-names:
-> > The GPIO binding does not work this way as the name is in the property.
-> > Either drop if you want to keep the array or you have to do something
-> > like this:
-> >
-> > pwm-gpios
-> > int-gpios
-> > rx-gpios
-> >
-> > Really, the intention was for connectors to use gpio-map property to
-> > renumber GPIOs relative to the connector.
->
-> Can you point me to what you mean by gpio-map property?
+It is hard to understand what is going on with so little information.
 
-It is defined in the DT specification.
+Please provide the device tree for your platform. It isn't possible to
+debug this without it, no matter how many pictures you provide. If it
+doesn't exist in source form, you can dump it using:
 
-Rob
+# dtc -I dtb /sys/firmware/fdt
+
+and posting the full output.
+
+Additionally, a full dmesg of both working and non working boots would
+be useful.
+
+Thanks,
+
+	M.
+
+-- 
+Without deviation from the norm, progress is not possible.
 
