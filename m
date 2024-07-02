@@ -1,165 +1,132 @@
-Return-Path: <devicetree+bounces-82454-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82455-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E83919246C2
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 19:58:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 171AD9246CA
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 20:00:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7586AB20CB4
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 17:58:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 43E2C1C23EEE
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 18:00:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 375161C0076;
-	Tue,  2 Jul 2024 17:58:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=xenosoft.de header.i=@xenosoft.de header.b="mvSgJCG5";
-	dkim=permerror (0-bit key) header.d=xenosoft.de header.i=@xenosoft.de header.b="2L5SkDMM"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3C821BC083;
+	Tue,  2 Jul 2024 18:00:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D22173D978;
-	Tue,  2 Jul 2024 17:58:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=85.215.255.53
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719943097; cv=pass; b=aRF1ScxhQuu+mrjdjYKLpCtFpdctRohzTkSy2AyVBJ5t5sHRolxFbJHGxY4OzxkE928FoUGhYKVsm2QrBUVoUiX6myjHBFatUkiCqmsDplLxkZB2EYAjCLf+6OsNnze4cDh7xyK0DKN4ozV8RIBkWDWxKN4l8S+QJrkIqpg7rjQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719943097; c=relaxed/simple;
-	bh=VgXk2zt+QB/efFlmObn3xHqoyoyWSNvmihof4cPuzzA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nx6CdOPDdyn0WuLxFmkrqCCndlcSGo02WBrweMP8mHCXW6nuR2kpoUUoahMDBSElJP0xgw9UcsA+9nCUgcH6xq0+PsVfKvFFQIwS+lL+ohNJDcUD+v+h2zexARsUoFDQrI1NDg6OPxtfyv88B0+4QGmqn7qSVLA6YGmHb8QAGZU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=xenosoft.de; spf=none smtp.mailfrom=xenosoft.de; dkim=pass (2048-bit key) header.d=xenosoft.de header.i=@xenosoft.de header.b=mvSgJCG5; dkim=permerror (0-bit key) header.d=xenosoft.de header.i=@xenosoft.de header.b=2L5SkDMM; arc=pass smtp.client-ip=85.215.255.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=xenosoft.de
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=xenosoft.de
-ARC-Seal: i=1; a=rsa-sha256; t=1719942903; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=DWGnEPQ9ll4FHGnZdCzyUt/27cf3QCHSLL2H6N7j1y9I8/5t/QSLfLhciIdaMGC42Y
-    ZGbsO4EyECz9Xn5dMA71o8YI7a5GqseVXqZVop6T/IzVSQWEAYfqkJRUhOAG4Y6lLE5q
-    oo/HTc5mRaEMlpT0auXnXLco6/rcwQyRI8Ifl0zecAArrKEf5BuPVP7EMqBZObEY2pjz
-    8O4EcY7onRtxeJyX5gVtjPSiQNsZlG+AwF4kFtyIl52PEB0d0m/oR6ddqLAzV/mW3awJ
-    1k3p9lH+TC68Jurp6Pqj6cK+sHN8mKox01s7A6P3yGk4Wgx6l/tXAEpUeGIjdC5HpggJ
-    H+eQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1719942903;
-    s=strato-dkim-0002; d=strato.com;
-    h=In-Reply-To:From:References:Cc:To:Subject:Date:Message-ID:Cc:Date:
-    From:Subject:Sender;
-    bh=E673tN2YQj+8YdDOgypEUonLvv3SNH0/z/xJh5Re/DY=;
-    b=TUH8DlAnzXLMbDaA3ihEWSXBi0VQHbeMnvhQgaiEWRjHbluLzIqYjTG0W1Fc+vMAzW
-    6qrH5pNpyrNE4iz1yucvS/iJCFZkatQacxjOdufZQQ7T1QBkcVjRcQmUZ5hTJCRqNEnV
-    7kVnJvar/aWp9C3+WYz5sS38Q41UQJYMq4iJkZvEqeJ1WO9G4BbUkcNDvMLI1Z0+E52R
-    p16OMXLEglADqukqNzFp8bUTRVoNov8rrP6TUJHsoX8wdqBCvCAR1QJEVGUFBSJJf12z
-    rUS8/WX4tAL/fMg8SGFPeTNZiAG/yRSmob8qoS0421Z3348yOOQzy4tvqGURq3jSJvUb
-    V0aA==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo01
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1719942903;
-    s=strato-dkim-0002; d=xenosoft.de;
-    h=In-Reply-To:From:References:Cc:To:Subject:Date:Message-ID:Cc:Date:
-    From:Subject:Sender;
-    bh=E673tN2YQj+8YdDOgypEUonLvv3SNH0/z/xJh5Re/DY=;
-    b=mvSgJCG5rSIq5dPPNijVjlXgWwhiola37MFtb1m9skjSHrEwcRhKFw/ZcTO6ifc2/j
-    pc4T1yNBPdQzycn+0ygstbXGz2axwqCpcExcrz8XrXX9eswR++lMGY93b9M1Ae6cF8HC
-    petAvBZi2jHzkmgwOGjA14GAKa/hTw4eywvEf05JrKNd680jgimHJ7tT//YlvzjC0Uy5
-    rcW/gQJgAf2lCgz7ut9YKi4HsoGOJmKU2sI5ZBJtXd9VMK1VTAlDkYbRULcr5DfqH6OO
-    aeNMdV2zsMVVFzpYCyxMTqcR4wnyuxFuJi8IwHjGNolp9q61vUNOO1qSpKiMo7H3r2e0
-    FMyg==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1719942903;
-    s=strato-dkim-0003; d=xenosoft.de;
-    h=In-Reply-To:From:References:Cc:To:Subject:Date:Message-ID:Cc:Date:
-    From:Subject:Sender;
-    bh=E673tN2YQj+8YdDOgypEUonLvv3SNH0/z/xJh5Re/DY=;
-    b=2L5SkDMMJPrUnN6/0MOrNysN60u+4JYcWSxBecqkr/iZwN1FF+8LF70umCGJRvJDoJ
-    2NmsXx+urSXr+XIM6BAg==
-X-RZG-AUTH: ":L2QefEenb+UdBJSdRCXu93KJ1bmSGnhMdmOod1DhGM4l4Hio94KKxRySfLxnHvJzedR43JwibS68C57Gui33iwqCo/HyxjBt/hV5IkL4zA=="
-Received: from [IPV6:2a01:599:803:d861:d64a:638:126b:586e]
-    by smtp.strato.de (RZmta 50.5.0 AUTH)
-    with ESMTPSA id e08389062Ht2M9R
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-	(Client did not present a certificate);
-    Tue, 2 Jul 2024 19:55:02 +0200 (CEST)
-Message-ID: <68b7988d-eaaa-4713-99c3-525a34c5b322@xenosoft.de>
-Date: Tue, 2 Jul 2024 19:55:38 +0200
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC7651448E1;
+	Tue,  2 Jul 2024 18:00:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1719943244; cv=none; b=hljtWunf9HPHet9QiHsbpW9NUqY7R3UYW6LO8/3Qfi6z109eViNthFn069paq3xhysGgAoBjSd07qq8fq4bR+Lu5B/JXYobIJDf3Bx0x+U4Ir5Z9urw1isWViDzdpT9mDKF7PCShen/n9weCIC5e69JZItta6DucVLZwOxDNefA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1719943244; c=relaxed/simple;
+	bh=U5fdK5vP7fM0lxDPtIHxzDFZIIXYkzmNkbI+gHHkurE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=PCR9oKcZ2Of/WG3VBnjyI2pp1uz9OWN2WCTbZ8xJazI1SpJEXQCcsANMw4VElHh23IUkw7At4LyfEYsLTc9v5GGhtHt5pxB8a5V9ZglACv2ubJpfvlq24PoB9S7rljHFIihDV/ZlRM5Fu0eAGJdHIxHkAZt3pykEueHtFZi5b98=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+X-IronPort-AV: E=Sophos;i="6.09,178,1716217200"; 
+   d="scan'208";a="210052532"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie5.idc.renesas.com with ESMTP; 03 Jul 2024 03:00:40 +0900
+Received: from localhost.localdomain (unknown [10.226.93.72])
+	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 9B4F84006CD0;
+	Wed,  3 Jul 2024 03:00:35 +0900 (JST)
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: Philipp Zabel <p.zabel@pengutronix.de>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.au@gmail.com>,
+	devicetree@vger.kernel.org,
+	linux-phy@lists.infradead.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: [PATCH v5 0/4] Add USB VBUS regulator for RZ/G2L
+Date: Tue,  2 Jul 2024 19:00:14 +0100
+Message-ID: <20240702180032.207275-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PowerPC] [PASEMI] Issue with the identification of ATA drives
- after the of/irq updates 2024-05-29
-To: Marc Zyngier <maz@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, apatel@ventanamicro.com,
- DTML <devicetree@vger.kernel.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
- mad skateman <madskateman@gmail.com>, "R.T.Dickinson" <rtd2@xtra.co.nz>,
- Matthew Leaman <matthew@a-eon.biz>, Darren Stevens
- <darren@stevens-zone.net>, Christian Zigotzky <info@xenosoft.de>
-References: <3ab66fab-c3f2-4bed-a04d-a10c57dcdd9b@xenosoft.de>
- <861q4bizxc.wl-maz@kernel.org>
-Content-Language: en-US
-From: Christian Zigotzky <chzigotzky@xenosoft.de>
-In-Reply-To: <861q4bizxc.wl-maz@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-Hello Marc,
+As per RZ/G2L HW manual, VBUS enable can be controlled by the VBOUT bit of
+the VBUS Control Register(VBENCTL) register in the USBPHY Control. But
+this IP is in the Reset block.
 
-Thank you for your reply.
+Reset driver exposes this register as regmap and instantiate the USB VBUS
+regulator device. Consumers(phy device) can use regulator APIs to control
+VBUS as controlling is done in the atomic context.
 
-On 02.07.24 17:19, Marc Zyngier wrote:
-> Christian,
->
-> On Sun, 30 Jun 2024 11:21:55 +0100,
-> Christian Zigotzky <chzigotzky@xenosoft.de> wrote:
->> Hello,
->>
->> There is an issue with the identification of ATA drives with our
->> P.A. Semi Nemo boards [1] after the
->> commit "of/irq: Factor out parsing of interrupt-map parent
->> phandle+args from of_irq_parse_raw()" [2].
->>
->> Error messages:
->>
->> ata2.00: failed to IDENTIFY (I/O error, err_mask=0x4)
->> ata2.00: qc timeout after 10000 mssecs (cmd 0xec)
->>
->> Screenshots [3]
->>
->> I bisected yesterday [4] and "of/irq: Factor out parsing of
->> interrupt-map parent phandle+args from of_irq_parse_raw()" [2] is the
->> first bad commit.
->>
->> Then I created a patch for reverting this first bad commit. I also
->> reverted the changes in drivers/of/property.c. [5]
->>
->> The patched kernel boots with successful detection of the ATA devices.
->>
->> Please check the of/irq updates.
-> It is hard to understand what is going on with so little information.
->
-> Please provide the device tree for your platform. It isn't possible to
-> debug this without it, no matter how many pictures you provide. If it
-> doesn't exist in source form, you can dump it using:
->
-> # dtc -I dtb /sys/firmware/fdt
->
-> and posting the full output.
->
-> Additionally, a full dmesg of both working and non working boots would
-> be useful.
->
-> Thanks,
->
-> 	M.
->
-The device tree of the Nemo board and further information: 
-https://forum.hyperion-entertainment.com/viewtopic.php?p=54406#p54406
+Looks like this patch series can be taken via reset tree, once Geeert
+provides Ack for board dtsi patch??
 
-Cheers,
-Christian
+v4->v5:
+ * Dropped regulator Patches #3 and #4 as patch#3 is going to be
+   applied in Linux 6.10-rc5 and patch#4 is already in regulator/next
+   tree.
+ * Added Rb tag from Krzysztof for the binding patch.
+ * Rebased and fixed the merge conflicts for patch#2(rzg2l-usbphy-ctrl).
+ * Added Ack from Vinod for phy driver patch#5.
+ * Updated commit description for board dtsi patch.
+v3->v4:
+ * Fixed example indentation to 4 char spaces in patch#1
+ * Dropped regulator-{min,max}-microvolt from example.
+ * Updated commit header and description in patch#3
+ * Replaced regulator_set_hardware_enable_register()->regulator_hardware_enable()
+ * Updated documentation to "must use of regulator_get_exclusive() for consumers"
+ * Enforced exclusive access in regulator_hardware_enable().
+ * Added generic support regulator_hardware_enable().
+ * Added check for of_get_child_by_name().
+ * Released the resource by of_node_put()
+ * Updated commit description with regulator_hardware_enable()
+ * Used devm_regulator_get_exclusive() to get regulator handle.
+ * Dropped regulator-{min,max}-microvolt.
+v2->v3:
+ * Documented regulator-vbus in the binding file.
+ * Updated commit description and header for patch#2
+ * Moved regulator device creation and instantiation at the end of probe().
+ * Introduced new API regulator_set_hardware_enable_register() to enable/disable
+   regulator in atomic context.
+ * Dropped vbus_voltages table from patch#4
+ * Added support for enabling/disabling regulator through regmap API's
+ * Updated rzg2l_usb_vbus_rdesc with enable_{reg,mask}, fixed_uV and
+   n_voltages
+ * Updated of_node with child node of the parent device.
+ * Replaced regulator's regmap API with newly introduced
+   regulator_set_hardware_enable_register to enable/disable regulator
+   in interrupt context in patch#5
+ * Dropped using "usb_vbus-supply" in patch#5.
+ * Upated vbus regulator label name in dts file.
+ * Updated node and regulator name that matches with the binding documentation.
+v1->v2:
+ * Introduced a regulator driver to control VBUS
+
+Biju Das (4):
+  dt-bindings: reset: renesas,rzg2l-usbphy-ctrl: Document USB VBUS
+    regulator
+  reset: renesas: Add USB VBUS regulator device as child
+  phy: renesas: phy-rcar-gen3-usb2: Control VBUS for RZ/G2L SoCs
+  arm64: dts: renesas: rz-smarc: Replace fixed regulator for USB VBUS
+
+ .../reset/renesas,rzg2l-usbphy-ctrl.yaml      | 10 ++++++
+ .../boot/dts/renesas/rz-smarc-common.dtsi     | 11 ++-----
+ drivers/phy/renesas/phy-rcar-gen3-usb2.c      |  8 ++++-
+ drivers/reset/reset-rzg2l-usbphy-ctrl.c       | 31 +++++++++++++++++++
+ 4 files changed, 51 insertions(+), 9 deletions(-)
+
+-- 
+2.43.0
+
 
