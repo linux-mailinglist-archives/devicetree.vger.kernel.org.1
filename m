@@ -1,155 +1,170 @@
-Return-Path: <devicetree+bounces-82502-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82503-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D34F09249B6
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 23:06:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C98609249EC
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 23:27:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7D0A61F22582
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 21:06:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EDE681C22AAA
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 21:27:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB6D320125D;
-	Tue,  2 Jul 2024 21:06:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BF62205E06;
+	Tue,  2 Jul 2024 21:27:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T0jF5n0X"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="A90aQDSm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f49.google.com (mail-oo1-f49.google.com [209.85.161.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 868501CE084
-	for <devicetree@vger.kernel.org>; Tue,  2 Jul 2024 21:06:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05B7A20127D
+	for <devicetree@vger.kernel.org>; Tue,  2 Jul 2024 21:27:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719954379; cv=none; b=MwmH9nv23HQ/LK9AJm0thBnjD46KoxNXFgGOoc66PSIzMopwdqq61zshFZy8b5H1nf3f43PrOxm6MWCTBBwwPnQ7Nbr/U6KoclfH4EyqWvQE7G7U4V2aP9RI5KBCkwQ2gNSM4Sy4lKT1wK5AewWA0wmK5oyr8k7xU+1cTlvfFc4=
+	t=1719955638; cv=none; b=Opm0q9j9j3fNwW5szJ8+T7mkMAjG+IUnm51uyvTFDy8oAB+UZf7RooP+z1pk9rmNMR/cu+HuMOeRuPNuLJ6+AWXOyw7OqN3JeMp7g06Uqiw40IImVJTMb+3muxhgL7yBQ/3MWJGL7XrRZ+pcEQOxB2MdBJiQIeLCjRskon6tw0Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719954379; c=relaxed/simple;
-	bh=NyzwM0fsXKf4dXOAJKkuMhvtpscp3UAXzQ88ePFkdHg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=RPZUaclQOuW3AMGfDU7QXBUqyIyiL6ewUw2vJe+/ZaF/ojwTOMKK3DetYhHatL3fWgns/B0irHo+V4guqReAOyhUbTFqa48FyVBwsFkaU5NwFOXzgQvKlO55gmdSenflI/Ziu1uBb53InBP3uhupM44e5gJoNt13Wv11ge75QAU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T0jF5n0X; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D637C116B1
-	for <devicetree@vger.kernel.org>; Tue,  2 Jul 2024 21:06:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719954379;
-	bh=NyzwM0fsXKf4dXOAJKkuMhvtpscp3UAXzQ88ePFkdHg=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=T0jF5n0XmYOBWCFsIhEiFwCW709AF2iNAJBXPHQDhZ3ouUIflhHJtwIPSeAQkemwl
-	 uvh5nDRj8MsScENuyxikrGs7trBmvGpceQ90A9jThyM6OwHTK1hSB47GteIED0mkfp
-	 yIXfQgx1XVTTfS14P6B441+5oNJT53fpMKqRINxMzkGSKAywbiMtggfLmF/5MhXRyE
-	 MR2OEIi2KWdc0w+AofhLDxqqtYNvgWMUcCMzmTV90XllmcI+M2rs3uGRjmGpiIo+bY
-	 S7E4wTeW1JLVmvZdlftDTuGLXlMEsznlapdBUQq2P/lZic0fAeIbHo/yvEPyuqkLW8
-	 0fIXzDl9OJV+g==
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-52cecba8d11so5683376e87.1
-        for <devicetree@vger.kernel.org>; Tue, 02 Jul 2024 14:06:19 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVCU08rbHZf2dm59pWWFSF6n7lgU3MZhC1n4QiJVwEeweJO+jjRhBPyhW4oj47o7jE34kwK8RWZ31tJETuY0uiOkLcctZoUFQjwlQ==
-X-Gm-Message-State: AOJu0YxhjmdnTUdRxA4ZLIyod909SdwV6z7u+5plSrXDtdRSKJPEBR3m
-	YCkpxe4fpE0EOjzQmSyb5PcjBVy66YJm6vegZOzZY+9wSPyMs3xykLt6HxxVj4V4ERUoTA3y6Uz
-	z07qQcC8uxf3Jnw/wVKZRja3qLljEpNn48ltZUg==
-X-Google-Smtp-Source: AGHT+IGUxDpnfmOI+j4i7sET5B6iGTwPCxoZxCFPXJYFFkWMGwCKQTKuc3id2P0lUND+5DiDyxhNNJ4MNomLGxiA7Lo=
-X-Received: by 2002:a17:906:f185:b0:a72:b1b1:eb3a with SMTP id
- a640c23a62f3a-a751447b093mr634755766b.19.1719954357446; Tue, 02 Jul 2024
- 14:05:57 -0700 (PDT)
+	s=arc-20240116; t=1719955638; c=relaxed/simple;
+	bh=O+o3Ib11ciLZU7Bvqliq2+mbTCErwHIwUfXdIcVPsOM=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=Ok7F42JRqHkKR8zezlt9OY+Q9U3LdLihulTdm1w3ITN2hTf6XHMsqkgHRZce2zeL+RrJWitnXgid3UIdzNsvs6NVCpUDFsbPBtb4+Su63W9ma+IdXYf2AHAbqwjVYCqqwKfv0yfN4W2+4SA3EdfsMb4+jXxQsOVS8sJnv5LW7/c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=A90aQDSm; arc=none smtp.client-ip=209.85.161.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-oo1-f49.google.com with SMTP id 006d021491bc7-5c427f3695cso2403236eaf.3
+        for <devicetree@vger.kernel.org>; Tue, 02 Jul 2024 14:27:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1719955635; x=1720560435; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=nTzF53NuroztRgrbHB394lFrc7XZKur8WQZSwEHeFpA=;
+        b=A90aQDSmTJicxO9zOPubi5b/wVe/V5iGXzga7b9RCrWjWwEIphBUvM8nWbtJvAnqP3
+         kI9HedBa9Tsb1iCXovKQWNXgdl55FwkVlO4fDuxzpXFBaW4UVZ+FRyGJxKjp+yRTBeLN
+         nFUjoCGc8pjU112JTADeQbj3YbtnskfJDQVmzkaKQnYE2BMv5wo+5Ei0ncVuHYmuA+5C
+         jDA6x3nOmOZy33qLfvKLPGVaUOOYkC62WDq2TA+9G4pk/+RzZcJ4DVDUJ9HDflGFlR5Y
+         vBdqqV9GYN8RZ+KGW28JlssECsmBKZsYJja8UKmYh6fXqGKN5W9tf5EaFwLXSwS4hfem
+         1h4A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719955635; x=1720560435;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=nTzF53NuroztRgrbHB394lFrc7XZKur8WQZSwEHeFpA=;
+        b=DV9OXEr2yq87OWIHQ9Cbp2S/xC8Ost46cVH9MziLg2RHcLrpzgXxPs5dOR+SFcK0xb
+         CxeG5XS1H0U+WTPazvEwevTczY8cxE/wVO8RrCZ380AW8clo57t3BiuAHZ4MrGc8KaYL
+         5RunuQQPjP460SGYH9wwlfUeNZ00k9yf4RdRCC2JAWp8jUBlmCVmF5jEfytGEbcfPjBe
+         m9cVoELxAsP22/ylDJR1SGHeYQMEf/ze25ZQgRWwU7sp8KGDLJ/o5sO7vRUJuwW545of
+         553vlGxMy3fb7ymvixc/zvjUjGypkevep9ktJj3UQXQn78Pzc4cJKdvcReKi9nDv7Cj7
+         KNlg==
+X-Forwarded-Encrypted: i=1; AJvYcCVqqxk4pa+O8KMJ3mgJ6uG0ixwd4FVsp1biRtHb8MNrCy/SILoSwXOGqsk6vfQX7yR+9tsgtsTWE270YqdLEDpB6Clpq/Pm2ed7ew==
+X-Gm-Message-State: AOJu0YwICjWG8gEevf50l7oytknS1dukXMQdQQMAELyez+3DzUNHJiit
+	L/A4lmX/Ls3szc9JAH++0f6IvlOys5wsuvKBgWjsJ9ULWZBTIZZ7gAxUHDX8P10=
+X-Google-Smtp-Source: AGHT+IEXkSehpzi4dO+e44Mjuzyc/L9KJG1nFcAOno11tON/+OnVJMgXU857jRLULOgie6mk2dtQcQ==
+X-Received: by 2002:a05:6871:b09:b0:254:c41a:2b34 with SMTP id 586e51a60fabf-25db33f824emr8393430fac.22.1719955635025;
+        Tue, 02 Jul 2024 14:27:15 -0700 (PDT)
+Received: from localhost ([2603:8080:b800:f700:a6f1:b7be:4c8c:bf62])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-25d8e37ee64sm2386570fac.47.2024.07.02.14.27.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Jul 2024 14:27:14 -0700 (PDT)
+Date: Tue, 2 Jul 2024 23:27:12 +0200
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: oe-kbuild@lists.linux.dev, iansdannapel@gmail.com,
+	Moritz Fischer <mdf@kernel.org>, Wu Hao <hao.wu@intel.com>,
+	Xu Yilun <yilun.xu@intel.com>, Tom Rix <trix@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko.stuebner@cherry.de>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Sebastian Reichel <sre@kernel.org>,
+	Chris Morgan <macromorgan@hotmail.com>,
+	Michael Riesch <michael.riesch@wolfvision.net>,
+	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+	Andre Przywara <andre.przywara@arm.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	linux-fpga@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev,
+	Ian Dannapel <iansdannapel@gmail.com>
+Subject: Re: [PATCH v2 1/3] fpga: Add Efinix Trion & Titanium serial SPI
+ programming driver
+Message-ID: <6286e61c-6822-40d4-a43e-617a4ce257ca@suswa.mountain>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240614-dt-bindings-thermal-allof-v1-0-30b25a6ae24e@linaro.org> <20240614-dt-bindings-thermal-allof-v1-11-30b25a6ae24e@linaro.org>
-In-Reply-To: <20240614-dt-bindings-thermal-allof-v1-11-30b25a6ae24e@linaro.org>
-From: Amit Kucheria <amitk@kernel.org>
-Date: Wed, 3 Jul 2024 02:35:45 +0530
-X-Gmail-Original-Message-ID: <CAHLCerMuG92Sf8+BdqPLqh+x3YxBjD6YdYF2k+AxQcwCqerxzw@mail.gmail.com>
-Message-ID: <CAHLCerMuG92Sf8+BdqPLqh+x3YxBjD6YdYF2k+AxQcwCqerxzw@mail.gmail.com>
-Subject: Re: [PATCH 11/22] dt-bindings: thermal: qcom-tsens: reference
- thermal-sensor schema
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
-	Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
-	Guillaume La Roque <glaroque@baylibre.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Vasily Khoruzhick <anarsoul@gmail.com>, Chen-Yu Tsai <wens@csie.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
-	Anson Huang <Anson.Huang@nxp.com>, Thierry Reding <thierry.reding@gmail.com>, 
-	Jonathan Hunter <jonathanh@nvidia.com>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
-	=?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>, 
-	Heiko Stuebner <heiko@sntech.de>, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Orson Zhai <orsonzhai@gmail.com>, Baolin Wang <baolin.wang@linux.alibaba.com>, 
-	Chunyan Zhang <zhang.lyra@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-	Pascal Paillet <p.paillet@foss.st.com>, Keerthy <j-keerthy@ti.com>, 
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
-	Florian Fainelli <florian.fainelli@broadcom.com>, Scott Branden <sbranden@broadcom.com>, 
-	zhanghongchen <zhanghongchen@loongson.cn>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Bjorn Andersson <andersson@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, linux-pm@vger.kernel.org, 
-	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-amlogic@lists.infradead.org, linux-sunxi@lists.linux.dev, 
-	imx@lists.linux.dev, linux-tegra@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	linux-rockchip@lists.infradead.org, linux-stm32@st-md-mailman.stormreply.com, 
-	Florian Fainelli <f.fainelli@gmail.com>, linux-rpi-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240628152348.61133-2-iansdannapel@gmail.com>
 
-On Fri, Jun 14, 2024 at 3:17=E2=80=AFPM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> Device is a thermal sensor and it requires '#thermal-sensor-cells', so
-> reference the thermal-sensor.yaml to simplify it and bring the
-> common definition of '#thermal-sensor-cells' property.
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Hi,
 
-Reviewed-by: Amit Kucheria <amitk@kernel.org>
+kernel test robot noticed the following build warnings:
 
-> ---
->  Documentation/devicetree/bindings/thermal/qcom-tsens.yaml | 8 +++-----
->  1 file changed, 3 insertions(+), 5 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml b/=
-Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-> index 99d9c526c0b6..cce6624228c7 100644
-> --- a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-> +++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-> @@ -217,18 +217,16 @@ properties:
->
->    "#thermal-sensor-cells":
->      const: 1
-> -    description:
-> -      Number of cells required to uniquely identify the thermal sensors.=
- Since
-> -      we have multiple sensors this is set to 1
->
->  required:
->    - compatible
->    - interrupts
->    - interrupt-names
-> -  - "#thermal-sensor-cells"
->    - "#qcom,sensors"
->
->  allOf:
-> +  - $ref: thermal-sensor.yaml#
-> +
->    - if:
->        properties:
->          compatible:
-> @@ -292,7 +290,7 @@ allOf:
->        required:
->          - reg
->
-> -additionalProperties: false
-> +unevaluatedProperties: false
->
->  examples:
->    - |
->
-> --
-> 2.43.0
->
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/iansdannapel-gmail-com/fpga-Add-Efinix-Trion-Titanium-serial-SPI-programming-driver/20240630-044745
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20240628152348.61133-2-iansdannapel%40gmail.com
+patch subject: [PATCH v2 1/3] fpga: Add Efinix Trion & Titanium serial SPI programming driver
+config: powerpc-randconfig-r081-20240701 (https://download.01.org/0day-ci/archive/20240703/202407030525.VHF3He6K-lkp@intel.com/config)
+compiler: clang version 14.0.6 (https://github.com/llvm/llvm-project f28c006a5895fc0e329fe15fead81e37457cb1d1)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
+| Closes: https://lore.kernel.org/r/202407030525.VHF3He6K-lkp@intel.com/
+
+smatch warnings:
+drivers/fpga/efinix-trion-spi-passive.c:174 efinix_spi_probe() warn: passing zero to 'PTR_ERR'
+
+vim +/PTR_ERR +174 drivers/fpga/efinix-trion-spi-passive.c
+
+4c272ecc14b70f Ian Dannapel 2024-06-28  152  static int efinix_spi_probe(struct spi_device *spi)
+4c272ecc14b70f Ian Dannapel 2024-06-28  153  {
+4c272ecc14b70f Ian Dannapel 2024-06-28  154  	struct efinix_spi_conf *conf;
+4c272ecc14b70f Ian Dannapel 2024-06-28  155  	struct fpga_manager *mgr;
+4c272ecc14b70f Ian Dannapel 2024-06-28  156  
+4c272ecc14b70f Ian Dannapel 2024-06-28  157  	conf = devm_kzalloc(&spi->dev, sizeof(*conf), GFP_KERNEL);
+4c272ecc14b70f Ian Dannapel 2024-06-28  158  	if (!conf)
+4c272ecc14b70f Ian Dannapel 2024-06-28  159  		return -ENOMEM;
+4c272ecc14b70f Ian Dannapel 2024-06-28  160  
+4c272ecc14b70f Ian Dannapel 2024-06-28  161  	conf->spi = spi;
+4c272ecc14b70f Ian Dannapel 2024-06-28  162  
+4c272ecc14b70f Ian Dannapel 2024-06-28  163  	conf->creset = devm_gpiod_get(&spi->dev, "creset", GPIOD_OUT_HIGH);
+4c272ecc14b70f Ian Dannapel 2024-06-28  164  	if (IS_ERR(conf->creset))
+4c272ecc14b70f Ian Dannapel 2024-06-28  165  		return dev_err_probe(&spi->dev, PTR_ERR(conf->creset),
+4c272ecc14b70f Ian Dannapel 2024-06-28  166  				"Failed to get RESET gpio\n");
+4c272ecc14b70f Ian Dannapel 2024-06-28  167  
+4c272ecc14b70f Ian Dannapel 2024-06-28  168  	conf->cs = devm_gpiod_get(&spi->dev, "cs", GPIOD_OUT_HIGH);
+4c272ecc14b70f Ian Dannapel 2024-06-28  169  	if (IS_ERR(conf->cs))
+4c272ecc14b70f Ian Dannapel 2024-06-28  170  		return dev_err_probe(&spi->dev, PTR_ERR(conf->cs),
+4c272ecc14b70f Ian Dannapel 2024-06-28  171  				"Failed to get CHIP_SELECT gpio\n");
+4c272ecc14b70f Ian Dannapel 2024-06-28  172  
+4c272ecc14b70f Ian Dannapel 2024-06-28  173  	if (!(spi->mode & SPI_CPHA) || !(spi->mode & SPI_CPOL))
+4c272ecc14b70f Ian Dannapel 2024-06-28 @174  		return dev_err_probe(&spi->dev, PTR_ERR(conf->cs),
+
+s/conf->cs/-EINVAL/
+
+4c272ecc14b70f Ian Dannapel 2024-06-28  175  				"Unsupported SPI mode, set CPHA and CPOL\n");
+4c272ecc14b70f Ian Dannapel 2024-06-28  176  
+4c272ecc14b70f Ian Dannapel 2024-06-28  177  	conf->cdone = devm_gpiod_get_optional(&spi->dev, "cdone", GPIOD_IN);
+4c272ecc14b70f Ian Dannapel 2024-06-28  178  	if (IS_ERR(conf->cdone))
+4c272ecc14b70f Ian Dannapel 2024-06-28  179  		return dev_err_probe(&spi->dev, PTR_ERR(conf->cdone),
+4c272ecc14b70f Ian Dannapel 2024-06-28  180  				"Failed to get CDONE gpio\n");
+4c272ecc14b70f Ian Dannapel 2024-06-28  181  
+4c272ecc14b70f Ian Dannapel 2024-06-28  182  	mgr = devm_fpga_mgr_register(&spi->dev,
+4c272ecc14b70f Ian Dannapel 2024-06-28  183  				"Efinix SPI Passive Programming FPGA Manager",
+4c272ecc14b70f Ian Dannapel 2024-06-28  184  					&efinix_spi_ops, conf);
+4c272ecc14b70f Ian Dannapel 2024-06-28  185  
+4c272ecc14b70f Ian Dannapel 2024-06-28  186  	return PTR_ERR_OR_ZERO(mgr);
+4c272ecc14b70f Ian Dannapel 2024-06-28  187  }
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
+
 
