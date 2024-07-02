@@ -1,60 +1,83 @@
-Return-Path: <devicetree+bounces-82211-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82212-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD85C91EED5
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 08:19:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5261D91EEE3
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 08:24:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CE17C1C21A2E
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 06:19:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 855741C21A23
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 06:24:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D8DA78C67;
-	Tue,  2 Jul 2024 06:19:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFCA77B3FD;
+	Tue,  2 Jul 2024 06:24:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="CoUYIKQ6"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="b2N1lwNs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.14])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3893F5CDE9;
-	Tue,  2 Jul 2024 06:18:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.14
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F04195A7A0
+	for <devicetree@vger.kernel.org>; Tue,  2 Jul 2024 06:24:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719901143; cv=none; b=JzEP158lKBZP/GLJVatMXrciiKO1UMimU4+TWc3sQ1y9g62pMkI+2T3MBaVaTf6wc0atkAgwNo7k5ThGc42SG2AwZ2xwZx9QXdMvbYgAD0Jt/e/sCMyB9DBX9Ye0wvtATvCUV4uhhE7438G3PKRV2stMSLi5Nj1PW0Cit4Ff5SQ=
+	t=1719901468; cv=none; b=eRc//gFVVWDbrvtnOOIuogCbHJucP8fAx07GC0sClOkjs6kEnyc/BenNdWAu+vADPrtzgLurQhCfYHtfB/kzoZaI9c6L+Rq4qeYJjtlrRy+dV/5gVcfuw6rrH8fRNIDzrGG72XGQZb1q5aje5zhipwhCtwLMzpTZB7jjvXga8UA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719901143; c=relaxed/simple;
-	bh=O0w7oKR0burBEOSpg+U3UFChgxP0OfT3G9l1MZDodiE=;
+	s=arc-20240116; t=1719901468; c=relaxed/simple;
+	bh=InAhoUN8tcseJPMHm9g66x74qz1q4L1w7tnrp4q2JsE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=P7txL0vhEhmWloTQ+y5vX/ECoYRboDVwExS9ICbiLJ4Xh4FjlPcOVDZQ7zp/ihnnfqnRrOgRxVt+mkh+iqd0IMSn5oNvA4trtV6BnezIwrmc3zlMAGxJ85D+JCA+HSQQeiqybEOrCKsj2LPJwV+cI2wcEu8DkKDHv3ZAQTcXvhQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=CoUYIKQ6; arc=none smtp.client-ip=1.95.21.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=Ak5QZwwkUOt94pN1EzjhG1GszUbTrlXG7hmPV7Sskx0=;
-	b=CoUYIKQ6GYEzZp3TKUEtEfKy7wrlsPkaps7HvlVQ/V9uREkeuMJ635kHQogJ9x
-	arN06v5fF/Z0eeB0+viRPlkHb8obnpRQ9BO1Rm5l6l0lUhcY65yPviTUrxqF2kW6
-	UX2WPl6oLD4VW7dQMxd/KjAFdaUJOPUoGSUNcw3OlGyOE=
-Received: from dragon (unknown [114.218.218.47])
-	by gzsmtp3 (Coremail) with SMTP id M88vCgD3Pwedm4Nm4zIHAA--.18405S3;
-	Tue, 02 Jul 2024 14:18:06 +0800 (CST)
-Date: Tue, 2 Jul 2024 14:18:04 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Dong Aisheng <aisheng.dong@nxp.com>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	 Content-Type:Content-Disposition:In-Reply-To; b=pjQxrud9paPccUgjO2dddjyiP7T/Au7pgH6vDbxCDAlC4JiIyTQ4IQdPLm3XUeaC8B3FLl9kqky2ODWR0N+q5SmAD/VMTo69O+kbFl8qHXzpLmyAWx26nmeNYlmm5AVfxLRUt9V9FV8DPjFKWZcly2o8pzVG5rvLiIQug982E7w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=b2N1lwNs; arc=none smtp.client-ip=209.85.167.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-52cf4ca8904so6147631e87.3
+        for <devicetree@vger.kernel.org>; Mon, 01 Jul 2024 23:24:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1719901465; x=1720506265; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=bDo5IygLtEAB+cPD4fX0+9qX3XWf/HFh9CkZqeTvO3k=;
+        b=b2N1lwNsdAc6F2kYGz5Kme/belkl+xxHosId+dCCZfnbeqzjBc5HNCZUelmLQMT/hS
+         Ni40G36hsDBEQsn14C6iT/HJeEgbDM9YwVzNQpiQQAAEtHTSsXw4xjPc+SnU4QhSWk+q
+         O1N6oWY3pQy9dTzCJxNNhzQccafc9BnvMncJHc8RYVDWRRG+qJS9FuWEqft1AvRSIuJ9
+         2Eqp6iYm3b60mwYZn+rqnGPE3jPP2b9nkZqYNOwJrwgXBJpazOj1PobvOCtpL5h4dgii
+         /ouHcvqwcpwc6WCZk/WOATRb/QhvblBirL75SrLr1uylXOj5tG1toDo/VkyGmofKnaGn
+         ER6w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719901465; x=1720506265;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=bDo5IygLtEAB+cPD4fX0+9qX3XWf/HFh9CkZqeTvO3k=;
+        b=rz87gswyMAdutt+2tZpPiWNb8b2VpxmdUYXnD5/Al47/L0dbSpsFtZHcqvqYy4bIsr
+         6HQP4H6DZ3feXavBYfRQerCSnf0T4487TwYRBSWjnnCFYgsa2kAyskXfiOvWqFMW762t
+         nLA/4u1PxFVypmFme7mOQuRwUAYI4UvLrwAkb4M12c0uD2c+RsPeptTQIugiWSnvmGhu
+         jpXwar24jVlsDE6Q+4q+1FX3YH+OOy2P03EMiC61RjlvcIEuYUuKeGVNM/U4/IMEnh4M
+         b2K1jlNtHQjyT8Hg+jiMaPUEGnxo9Wn9WpAjr81Xsb+AUubC0SCRawW1QWNn7svhuNBt
+         UQGA==
+X-Forwarded-Encrypted: i=1; AJvYcCVRpWidU3ir0g7T20MBnR4z3UAUA5kBkxFnmQH2Ql3nIctOQ/CK/Vr71UkchwYh2Yx220CFIw7LosMW6rQAH67qd+vbDcxwD0OPRA==
+X-Gm-Message-State: AOJu0YztEq4lgfbyIJd+YMwPLytbLvNxm9MDgso9Hi41NuplZswbq8ck
+	qhjZ3E+0edPCa7syehSDFKyTx+XG2SbUbN4DTR1tgUvacOUyPeZVSDnbAZXj7lM=
+X-Google-Smtp-Source: AGHT+IF75P/sOWPMtLxALLKSe++8Cf/2bVEGI3L9gmOs0TCyDPgWQ2uHOuklB9AeLyumfAx+WoRHcQ==
+X-Received: by 2002:a05:6512:10d0:b0:52c:ab83:d783 with SMTP id 2adb3069b0e04-52e8264c68emr4508470e87.6.1719901465067;
+        Mon, 01 Jul 2024 23:24:25 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52e7ab0b840sm1665664e87.11.2024.07.01.23.24.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 01 Jul 2024 23:24:24 -0700 (PDT)
+Date: Tue, 2 Jul 2024 09:24:22 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Dang Huynh <danct12@riseup.net>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Luca Weiss <luca.weiss@fairphone.com>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/8] arm64: dts: imx8qm: add lvds subsystem
-Message-ID: <ZoObnDqMd2EL4W6F@dragon>
-References: <20240701-imx8qm-dts-usb-v4-0-03cdbc8c44b6@nxp.com>
- <20240701-imx8qm-dts-usb-v4-2-03cdbc8c44b6@nxp.com>
- <ZoN90rHfpK7niqEr@dragon>
- <ZoOAjSUp29DBhY+/@lizhi-Precision-Tower-5810>
+Subject: Re: [PATCH v3] arm64: dts: qcom: qrb4210-rb2: Correct max current
+ draw for VBUS
+Message-ID: <ql24nvbdqfzhtogocmsh2xm2wkjfddfcvoxnzbzvjgcucy7gyz@hqgvr4oul7pb>
+References: <20240702-qrd4210rb2-vbus-volt-v3-1-fbd24661eec4@riseup.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,78 +86,44 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ZoOAjSUp29DBhY+/@lizhi-Precision-Tower-5810>
-X-CM-TRANSID:M88vCgD3Pwedm4Nm4zIHAA--.18405S3
-X-Coremail-Antispam: 1Uf129KBjvJXoW7uF15GFWDXrW8uw13CrW8tFb_yoW8uw48p3
-	48CF1aqr18tFW7ur9Ig3W8KFn5Kwn5tF1Uur17G34jyrnIyrnrtr1rCr45ury8Xr4Ik3yS
-	9Fn0qr4fKrn8ZaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07j6_M3UUUUU=
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiCRsQZWZv-d19HwABst
+In-Reply-To: <20240702-qrd4210rb2-vbus-volt-v3-1-fbd24661eec4@riseup.net>
 
-On Tue, Jul 02, 2024 at 12:22:37AM -0400, Frank Li wrote:
-> On Tue, Jul 02, 2024 at 12:10:58PM +0800, Shawn Guo wrote:
-> > On Mon, Jul 01, 2024 at 11:03:28AM -0400, Frank Li wrote:
-> > > Add irqsteer, pwm and i2c in lvds subsystem.
-> > > 
-> > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> > > ---
-> > >  arch/arm64/boot/dts/freescale/imx8qm-ss-lvds.dtsi | 77 +++++++++++++++++++++++
-> > >  arch/arm64/boot/dts/freescale/imx8qm.dtsi         | 10 +++
-> > >  2 files changed, 87 insertions(+)
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/freescale/imx8qm-ss-lvds.dtsi b/arch/arm64/boot/dts/freescale/imx8qm-ss-lvds.dtsi
-> > > new file mode 100644
-> > > index 0000000000000..1da3934847057
-> > > --- /dev/null
-> > > +++ b/arch/arm64/boot/dts/freescale/imx8qm-ss-lvds.dtsi
-> > > @@ -0,0 +1,77 @@
-> > > +// SPDX-License-Identifier: GPL-2.0+
-> > > +
-> > > +/*
-> > > + * Copyright 2024 NXP
-> > > + */
-> > > +
-> > > +&qm_lvds0_lis_lpcg {
-> > > +	clocks = <&lvds_ipg_clk>;
-> > > +	clock-indices = <IMX_LPCG_CLK_4>;
-> > > +};
-> > > +
-> > > +&qm_lvds0_pwm_lpcg {
-> > > +	clocks = <&clk IMX_SC_R_LVDS_0_PWM_0 IMX_SC_PM_CLK_PER>,
-> > > +		 <&lvds_ipg_clk>;
-> > > +	clock-indices = <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_4>;
-> > > +};
-> > > +
-> > > +&qm_lvds0_i2c0_lpcg {
-> > > +	clocks = <&clk IMX_SC_R_LVDS_0_I2C_0 IMX_SC_PM_CLK_PER>,
-> > > +		 <&lvds_ipg_clk>;
-> > > +	clock-indices = <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_4>;
-> > > +};
-> > > +
-> > > +&qm_pwm_lvds0 {
-> > > +	clocks = <&qm_lvds0_pwm_lpcg IMX_LPCG_CLK_4>,
-> > > +		 <&qm_lvds0_pwm_lpcg IMX_LPCG_CLK_0>;
-> > > +};
-> > > +
-> > > +&qm_i2c0_lvds0 {
-> > > +	clocks = <&qm_lvds0_i2c0_lpcg IMX_LPCG_CLK_0>,
-> > > +		 <&qm_lvds0_i2c0_lpcg IMX_LPCG_CLK_4>;
-> > > +};
-> > > +
-> > > +&lvds0_subsys {
-> > > +	interrupt-parent = <&irqsteer_lvds0>;
-> > > +
-> > > +	irqsteer_lvds0: interrupt-controller@56240000 {
-> > > +		compatible = "fsl,imx8qm-irqsteer", "fsl,imx-irqsteer";
-> > 
-> > Is compatible "fsl,imx8qm-irqsteer" documented in bindings?
+On Tue, Jul 02, 2024 at 01:01:19PM GMT, Dang Huynh wrote:
+> According to downstream sources, maximum current for PMI632 VBUS
+> is 1A.
 > 
-> In rob' tree
+> Taken from msm-4.19 (631561973a034e46ccacd0e53ef65d13a40d87a4)
+> Line 685-687 in drivers/power/supply/qcom/qpnp-smb5.c
 > 
-> https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git/commit/?h=dt/next&id=285c645d842c5a15d3be2d653faaa5f68d81be1f
+> Fixes: a06a2f12f9e2 ("arm64: dts: qcom: qrb4210-rb2: enable USB-C port handling")
+> Reviewed-by: Luca Weiss <luca.weiss@fairphone.com>
+> Signed-off-by: Dang Huynh <danct12@riseup.net>
+> ---
+> In previous patch series, there's a suggestion to correct maximum
+> current for PMI632 VBUS.
+> 
+> Unfortunately it didn't make it and probably forgotten.
+> 
+> Link to the suggestion mentioned:
+> https://lore.kernel.org/linux-arm-msm/CYMDEAJZ0TJK.K31XZB3E9QOG@fairphone.com/
+> 
+> Signed-off-by: Dang Huynh <danct12@riseup.net>
+> ----
+> Changes in v3:
+> - Fixed wrong usage of electrical units.
+> - Link to v2: https://lore.kernel.org/r/20240701-qrd4210rb2-vbus-volt-v2-1-b7bcd2a78c8b@riseup.net
+> 
+> Changes in v2:
+> - Fixed typo (voltage -> ampere)
+> - Link to v1: https://lore.kernel.org/r/20240701-qrd4210rb2-vbus-volt-v1-1-5c06f8358436@riseup.net
+> ---
+>  arch/arm64/boot/dts/qcom/qrb4210-rb2.dts | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
 
-I do not see "fsl,imx8qm-irqsteer" in the patch.
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-Shawn
-
+-- 
+With best wishes
+Dmitry
 
