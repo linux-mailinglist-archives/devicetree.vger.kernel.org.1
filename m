@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-82337-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82338-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72967923E74
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 15:10:59 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E9CB923E9E
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 15:15:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 26F4F1F23767
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 13:10:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 019EDB26FA3
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 13:15:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D918919DF6C;
-	Tue,  2 Jul 2024 13:10:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B93E19E83C;
+	Tue,  2 Jul 2024 13:14:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KX1DvoVI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b88BRPvU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A61C785C74;
-	Tue,  2 Jul 2024 13:10:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC05319D085;
+	Tue,  2 Jul 2024 13:14:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719925844; cv=none; b=B5/RiMnHMB2xsVQTsOmnWtxsoYDhI2w7YHalOz1m5353Gtk8P3/qbqDh470jnnIYv6/Ap6cxgXeu6qhy8vPSTepGPE2VWI0P+uPfNGvfJep5P6TcbFFF/f+9J0O1/RbJv78+msOPysStTmDYbGnvyM2sNhI1oUJVLE3xIKh6JTk=
+	t=1719926092; cv=none; b=HZHO1nnVxXqo2K65udSCtRztu0C+SnCgBj5/av2TsKoIUWIp6t+11QJyBBx+x1Q9cx/9Esj8raXrDfddnmkPGRP07wXb45GOV7UxxCeN9Rcg8sd4Mw+b9dfsnR7L8/UsZvCYo968GyWDttNvf3/xfa6h/yey8XkOB2h+Ar1gZN0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719925844; c=relaxed/simple;
-	bh=gTUvzjDM37z27yYoTrtM5Z4GIXEMOln7R9yBe19BcUc=;
+	s=arc-20240116; t=1719926092; c=relaxed/simple;
+	bh=0qpxZPhCEx3EMAmnhgP6pEgufhEKOr/B4RtgvPeZFzA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tIUE5N+aczMXBKC8eqZ38qHArT//Y8Fam+mb2Qy7yCENBq9/8dTt+DPTRJ/QV/VkIXcCsmw3acURaUGbc2RYHG8WS4McFPC8oTNaXTRfWlKOYIFtLRXlaUewcpjFqVe00oNde1jiPbc1aXhTaXS9WqY+jiTPeKs1RQdAqrt0hnk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KX1DvoVI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE5B6C116B1;
-	Tue,  2 Jul 2024 13:10:40 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=MDIbZfidP3k+K4pzHu2aihubLP/LIp2qBlwap8XuEmbewxafRGELZLTcVqoXfKjbH2a7iOjqd39uIAuN7Rd7CM8AXlBuF80jUeIPhRl1HE76JaiaHd95Qm/7nuHFg6NwFO3zSmzsF/6jt89wpwyi7YZ9Z1uaY1VpX8gh3xKEct4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b88BRPvU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F915C116B1;
+	Tue,  2 Jul 2024 13:14:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719925844;
-	bh=gTUvzjDM37z27yYoTrtM5Z4GIXEMOln7R9yBe19BcUc=;
+	s=k20201202; t=1719926091;
+	bh=0qpxZPhCEx3EMAmnhgP6pEgufhEKOr/B4RtgvPeZFzA=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=KX1DvoVIFjA5s5UUU7JkyxMT0elBAp3eZlvV46bSXunOkxGbagzOZ6DHIdDIlCCWO
-	 Ul93piDGNWJPE3cpaX1Oo8zHI68xAmCu9kJB5oeexuuuQZn0hJJ+O2mITmZ9pUyLn6
-	 BQn9NhR4cTi4uefLIZZCDa5qw8SW8HCaBBQKQZfNkMVJK3VpXdMVNNRXGv6GcVNETK
-	 pXVxT5XEb8EKdB4OeuUDTpqAYJcqsj9SyGY6/DeUPkgrB8zJ7ar/ywDcARXQ2IodZh
-	 CQbdotgE5irUQdvvbrRj1c7lS8O55fWZBImAeVPnjmnRqvwv0wxSg1wuQmy0xppmKy
-	 3CHxwSW28PUSA==
-Message-ID: <fcd91462-f8bb-4713-afc1-ba9473405396@kernel.org>
-Date: Tue, 2 Jul 2024 15:10:38 +0200
+	b=b88BRPvUSeSZlCyR1wASdvO/X3IDL0cPk+khldSHjDvsEDZT7A1mAFXbwdfamnlbn
+	 nmAe/RPFzJT8nQr5VOgqB8Fq8M0Y23tlH7BdPlY8HAjzG+xg7mLCHidZ4MlDsYsTzp
+	 89j4ayyCjh5i6JXmjfUTH+xHd0nbYcBvc/Ip/a9BlLWF2H0yHgSumdgRdebLWkYEVv
+	 risPV6pElQuHetsdBFxJ7cgvrfgrAA/s9FD0fpeNHuANJOrd+tWahEeltxr3wfupOb
+	 GG3xznq2R7jK7VEbepK/YLEilvO6IzqXH5GVM7YJKATiUTf1SwjDsMCwQGMqazZcnU
+	 Wsh7Rnd9RpOZQ==
+Message-ID: <f0f08f0d-3bc6-4649-ad31-b46f0748c6ef@kernel.org>
+Date: Tue, 2 Jul 2024 15:14:44 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +50,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: hwmon: Add MPS mp5920
-To: Conor Dooley <conor@kernel.org>, Alex Vdovydchenko <keromvp@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Sean Anderson <sean.anderson@linux.dev>,
- Guenter Roeck <linux@roeck-us.net>, Jean Delvare <jdelvare@suse.com>,
- Jonathan Corbet <corbet@lwn.net>,
- Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
- linux-doc@vger.kernel.org, linux-i2c@vger.kernel.org,
- Alex Vdovydchenko <xzeol@yahoo.com>
-References: <20240701145603.1507516-1-xzeol@yahoo.com>
- <20240701145603.1507516-2-xzeol@yahoo.com>
- <20240701-mug-scuttle-dfe4c84b4e0b@spud>
+Subject: Re: [PATCH V5 4/7] dt-bindings: clock: Add ipq9574 NSSCC clock and
+ reset definitions
+To: Devi Priya <quic_devipriy@quicinc.com>,
+ "Rob Herring (Arm)" <robh@kernel.org>
+Cc: catalin.marinas@arm.com, u-kumar1@ti.com,
+ linux-arm-kernel@lists.infradead.org, krzk+dt@kernel.org,
+ geert+renesas@glider.be, neil.armstrong@linaro.org, nfraprado@collabora.com,
+ mturquette@baylibre.com, linux-kernel@vger.kernel.org,
+ dmitry.baryshkov@linaro.org, netdev@vger.kernel.org,
+ konrad.dybcio@linaro.org, m.szyprowski@samsung.com, arnd@arndb.de,
+ richardcochran@gmail.com, will@kernel.org, sboyd@kernel.org,
+ andersson@kernel.org, p.zabel@pengutronix.de, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, conor+dt@kernel.org,
+ linux-arm-msm@vger.kernel.org
+References: <20240626143302.810632-1-quic_devipriy@quicinc.com>
+ <20240626143302.810632-5-quic_devipriy@quicinc.com>
+ <171941612020.3280624.794530163562164163.robh@kernel.org>
+ <5ccbfde6-f26a-4796-abac-e8d6a18c74e7@quicinc.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,21 +113,91 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240701-mug-scuttle-dfe4c84b4e0b@spud>
+In-Reply-To: <5ccbfde6-f26a-4796-abac-e8d6a18c74e7@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 01/07/2024 17:47, Conor Dooley wrote:
-> On Mon, Jul 01, 2024 at 05:56:00PM +0300, Alex Vdovydchenko wrote:
->> Add support for MPS mp5920 controller
->>
->> Signed-off-by: Alex Vdovydchenko <xzeol@yahoo.com>
+On 02/07/2024 14:13, Devi Priya wrote:
 > 
-> Missing an ack from v2:
-> https://lore.kernel.org/all/20240627-swivel-grower-002af077b654@spud/
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> 
+> On 6/26/2024 9:05 PM, Rob Herring (Arm) wrote:
+>>
+>> On Wed, 26 Jun 2024 20:02:59 +0530, Devi Priya wrote:
+>>> Add NSSCC clock and reset definitions for ipq9574.
+>>>
+>>> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
+>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>> ---
+>>>   Changes in V5:
+>>> 	- Dropped interconnects and added interconnect-cells to NSS
+>>> 	  clock provider so that it can be  used as icc provider.
+>>>
+>>>   .../bindings/clock/qcom,ipq9574-nsscc.yaml    |  74 +++++++++
+>>>   .../dt-bindings/clock/qcom,ipq9574-nsscc.h    | 152 ++++++++++++++++++
+>>>   .../dt-bindings/reset/qcom,ipq9574-nsscc.h    | 134 +++++++++++++++
+>>>   3 files changed, 360 insertions(+)
+>>>   create mode 100644 Documentation/devicetree/bindings/clock/qcom,ipq9574-nsscc.yaml
+>>>   create mode 100644 include/dt-bindings/clock/qcom,ipq9574-nsscc.h
+>>>   create mode 100644 include/dt-bindings/reset/qcom,ipq9574-nsscc.h
+>>>
+>>
+>> My bot found errors running 'make dt_binding_check' on your patch:
+>>
+>> yamllint warnings/errors:
+>>
+>> dtschema/dtc warnings/errors:
+>> Error: Documentation/devicetree/bindings/clock/qcom,ipq9574-nsscc.example.dts:26.26-27 syntax error
+>> FATAL ERROR: Unable to parse input tree
+>> make[2]: *** [scripts/Makefile.lib:427: Documentation/devicetree/bindings/clock/qcom,ipq9574-nsscc.example.dtb] Error 1
+>> make[2]: *** Waiting for unfinished jobs....
+>> make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1430: dt_binding_check] Error 2
+>> make: *** [Makefile:240: __sub-make] Error 2
+>>
+>> doc reference errors (make refcheckdocs):
+>>
+>> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240626143302.810632-5-quic_devipriy@quicinc.com
+>>
+>> The base for the series is generally the latest rc1. A different dependency
+>> should be noted in *this* patch.
+>>
+>> If you already ran 'make dt_binding_check' and didn't see the above
+>> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+>> date:
+>>
+>> pip3 install dtschema --upgrade
+>>
+>> Please check and re-submit after running the above command yourself. Note
+>> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+>> your schema. However, it must be unset to test all examples with your schema.
+>> Hi Rob,
+> 
+> We tried running dt_binding_check on linux-next and we do not face any
+> sort of errors.
+> 
+> However in case of v6.10-rc1, patch[1] failed to apply as the dependent
+> patch[2] is not available on rc1.
+> 
+> [1] 
+> https://patchwork.kernel.org/project/linux-arm-msm/patch/20240626143302.810632-3-quic_devipriy@quicinc.com/
+> 
+> [2] 
+> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?h=next-20240531&id=475beea0b9f631656b5cc39429a39696876af613
+> 
+> Patch [2] does not hold any functional dependency on this series but has 
+> a patch rebase dependency.
+> 
+> The Bot has went ahead and tried running the dt_binding_check on patch 
+> https://patchwork.kernel.org/project/linux-arm-msm/patch/20240626143302.810632-5-quic_devipriy@quicinc.com/
+> which is dependent on patch [1] and hence the issue was reported.
+> 
+> Is this the expected behaviour?
 
-That's third time you give the same ack. I suggest give up...
+If you expect your patch not to be ignored after such feedback, explain
+briefly missing dependency in changelog. I think Rob told it many times
+already.
+
+Otherwise you will get this message *every time* and maintainers might
+ignore your patch, due to unresolved reports from automation.
 
 Best regards,
 Krzysztof
