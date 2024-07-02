@@ -1,205 +1,170 @@
-Return-Path: <devicetree+bounces-82338-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82339-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E9CB923E9E
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 15:15:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A84C7923EC2
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 15:20:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 019EDB26FA3
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 13:15:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6428D2875BB
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 13:20:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B93E19E83C;
-	Tue,  2 Jul 2024 13:14:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A6061B3F1E;
+	Tue,  2 Jul 2024 13:20:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b88BRPvU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UoaspPxJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC05319D085;
-	Tue,  2 Jul 2024 13:14:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5038E1AD9E7;
+	Tue,  2 Jul 2024 13:20:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719926092; cv=none; b=HZHO1nnVxXqo2K65udSCtRztu0C+SnCgBj5/av2TsKoIUWIp6t+11QJyBBx+x1Q9cx/9Esj8raXrDfddnmkPGRP07wXb45GOV7UxxCeN9Rcg8sd4Mw+b9dfsnR7L8/UsZvCYo968GyWDttNvf3/xfa6h/yey8XkOB2h+Ar1gZN0=
+	t=1719926450; cv=none; b=cZpnGZoaGWsSoRBfDAEiZINL2OoHKnA/TFZt4H5m6k8I+aduNsX06R7bBS1boEt/mJGKXFjkWMapu39plW5b7z7q4BYCyhBqhO0xYDE5pdxPL5MZWwnVtoA5o3RQoWCVt5nrvPmYu6U+7n8biWkL5Mu0JpXr2nT/XeV3ML1rLo4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719926092; c=relaxed/simple;
-	bh=0qpxZPhCEx3EMAmnhgP6pEgufhEKOr/B4RtgvPeZFzA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MDIbZfidP3k+K4pzHu2aihubLP/LIp2qBlwap8XuEmbewxafRGELZLTcVqoXfKjbH2a7iOjqd39uIAuN7Rd7CM8AXlBuF80jUeIPhRl1HE76JaiaHd95Qm/7nuHFg6NwFO3zSmzsF/6jt89wpwyi7YZ9Z1uaY1VpX8gh3xKEct4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b88BRPvU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F915C116B1;
-	Tue,  2 Jul 2024 13:14:46 +0000 (UTC)
+	s=arc-20240116; t=1719926450; c=relaxed/simple;
+	bh=YzMgt8NPVbiKvdfIVs9fw6Z/6jwp6e5dkQwwcuxR/8Q=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=b2YRFrXZAmH6JbhYwRc2OZooyzsFzXsZpU3IuS0+KcWJJcwW9KhtNj+0gVJAqFb0RsxzhqxirKlSTrpGpTlvv9gcKtnk0S8Gw5HICGK6tjyXaqZ5gg6/vw8qhq23/X16QV2c1tqHP1eqMO3OSnToxmvmoXDiY9EqWuY/650uvqU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UoaspPxJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4AEA7C4AF0F;
+	Tue,  2 Jul 2024 13:20:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719926091;
-	bh=0qpxZPhCEx3EMAmnhgP6pEgufhEKOr/B4RtgvPeZFzA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=b88BRPvUSeSZlCyR1wASdvO/X3IDL0cPk+khldSHjDvsEDZT7A1mAFXbwdfamnlbn
-	 nmAe/RPFzJT8nQr5VOgqB8Fq8M0Y23tlH7BdPlY8HAjzG+xg7mLCHidZ4MlDsYsTzp
-	 89j4ayyCjh5i6JXmjfUTH+xHd0nbYcBvc/Ip/a9BlLWF2H0yHgSumdgRdebLWkYEVv
-	 risPV6pElQuHetsdBFxJ7cgvrfgrAA/s9FD0fpeNHuANJOrd+tWahEeltxr3wfupOb
-	 GG3xznq2R7jK7VEbepK/YLEilvO6IzqXH5GVM7YJKATiUTf1SwjDsMCwQGMqazZcnU
-	 Wsh7Rnd9RpOZQ==
-Message-ID: <f0f08f0d-3bc6-4649-ad31-b46f0748c6ef@kernel.org>
-Date: Tue, 2 Jul 2024 15:14:44 +0200
+	s=k20201202; t=1719926449;
+	bh=YzMgt8NPVbiKvdfIVs9fw6Z/6jwp6e5dkQwwcuxR/8Q=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=UoaspPxJLCtu0LeiMfVbFVCsUYc/tJW4q8C/k3mSfU/LkdFURAMJbUg5dklJme7uR
+	 CvltNQJfiW3TcOky1rr9VgKNUymiIFXFJUgaCcX/SaMYkdO4SCCks94bGqKSiAioey
+	 FnTCktpMEoEW48FGKnRltWieiLYAdw9aTWmIXh440uFESxW4yprvLMajh9CY8HqbyL
+	 EAVhMR12j65EpsIWd5pYaWryTho/5bdIE6BU7/RL/dKulripMIcnVeSkVgtsLw7SdY
+	 jjhq1iRviXxVWrYFKLGJbqIpyF0MbfkyZVN1/bX4+ArzYcdEM8nPXCrNomndkyjnvk
+	 wWC/6/JCw5dAw==
+Date: Tue, 2 Jul 2024 14:20:44 +0100
+From: Simon Horman <horms@kernel.org>
+To: Peter Yin <peteryin.openbmc@gmail.com>
+Cc: patrick@stwcx.xyz, amithash@meta.com,
+	Samuel Mendoza-Jonas <sam@mendozajonas.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	Cosmo Chou <cosmo.chou@quantatw.com>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org, netdev@vger.kernel.org
+Subject: Re: [PATCH v1 1/1] net/ncsi: specify maximum package to probe
+Message-ID: <20240702132044.GA615643@kernel.org>
+References: <20240701154336.3536924-1-peteryin.openbmc@gmail.com>
+ <20240702130024.GJ598357@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V5 4/7] dt-bindings: clock: Add ipq9574 NSSCC clock and
- reset definitions
-To: Devi Priya <quic_devipriy@quicinc.com>,
- "Rob Herring (Arm)" <robh@kernel.org>
-Cc: catalin.marinas@arm.com, u-kumar1@ti.com,
- linux-arm-kernel@lists.infradead.org, krzk+dt@kernel.org,
- geert+renesas@glider.be, neil.armstrong@linaro.org, nfraprado@collabora.com,
- mturquette@baylibre.com, linux-kernel@vger.kernel.org,
- dmitry.baryshkov@linaro.org, netdev@vger.kernel.org,
- konrad.dybcio@linaro.org, m.szyprowski@samsung.com, arnd@arndb.de,
- richardcochran@gmail.com, will@kernel.org, sboyd@kernel.org,
- andersson@kernel.org, p.zabel@pengutronix.de, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, conor+dt@kernel.org,
- linux-arm-msm@vger.kernel.org
-References: <20240626143302.810632-1-quic_devipriy@quicinc.com>
- <20240626143302.810632-5-quic_devipriy@quicinc.com>
- <171941612020.3280624.794530163562164163.robh@kernel.org>
- <5ccbfde6-f26a-4796-abac-e8d6a18c74e7@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <5ccbfde6-f26a-4796-abac-e8d6a18c74e7@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240702130024.GJ598357@kernel.org>
 
-On 02/07/2024 14:13, Devi Priya wrote:
-> 
-> 
-> On 6/26/2024 9:05 PM, Rob Herring (Arm) wrote:
->>
->> On Wed, 26 Jun 2024 20:02:59 +0530, Devi Priya wrote:
->>> Add NSSCC clock and reset definitions for ipq9574.
->>>
->>> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
->>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>> ---
->>>   Changes in V5:
->>> 	- Dropped interconnects and added interconnect-cells to NSS
->>> 	  clock provider so that it can be  used as icc provider.
->>>
->>>   .../bindings/clock/qcom,ipq9574-nsscc.yaml    |  74 +++++++++
->>>   .../dt-bindings/clock/qcom,ipq9574-nsscc.h    | 152 ++++++++++++++++++
->>>   .../dt-bindings/reset/qcom,ipq9574-nsscc.h    | 134 +++++++++++++++
->>>   3 files changed, 360 insertions(+)
->>>   create mode 100644 Documentation/devicetree/bindings/clock/qcom,ipq9574-nsscc.yaml
->>>   create mode 100644 include/dt-bindings/clock/qcom,ipq9574-nsscc.h
->>>   create mode 100644 include/dt-bindings/reset/qcom,ipq9574-nsscc.h
->>>
->>
->> My bot found errors running 'make dt_binding_check' on your patch:
->>
->> yamllint warnings/errors:
->>
->> dtschema/dtc warnings/errors:
->> Error: Documentation/devicetree/bindings/clock/qcom,ipq9574-nsscc.example.dts:26.26-27 syntax error
->> FATAL ERROR: Unable to parse input tree
->> make[2]: *** [scripts/Makefile.lib:427: Documentation/devicetree/bindings/clock/qcom,ipq9574-nsscc.example.dtb] Error 1
->> make[2]: *** Waiting for unfinished jobs....
->> make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1430: dt_binding_check] Error 2
->> make: *** [Makefile:240: __sub-make] Error 2
->>
->> doc reference errors (make refcheckdocs):
->>
->> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240626143302.810632-5-quic_devipriy@quicinc.com
->>
->> The base for the series is generally the latest rc1. A different dependency
->> should be noted in *this* patch.
->>
->> If you already ran 'make dt_binding_check' and didn't see the above
->> error(s), then make sure 'yamllint' is installed and dt-schema is up to
->> date:
->>
->> pip3 install dtschema --upgrade
->>
->> Please check and re-submit after running the above command yourself. Note
->> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
->> your schema. However, it must be unset to test all examples with your schema.
->> Hi Rob,
-> 
-> We tried running dt_binding_check on linux-next and we do not face any
-> sort of errors.
-> 
-> However in case of v6.10-rc1, patch[1] failed to apply as the dependent
-> patch[2] is not available on rc1.
-> 
-> [1] 
-> https://patchwork.kernel.org/project/linux-arm-msm/patch/20240626143302.810632-3-quic_devipriy@quicinc.com/
-> 
-> [2] 
-> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?h=next-20240531&id=475beea0b9f631656b5cc39429a39696876af613
-> 
-> Patch [2] does not hold any functional dependency on this series but has 
-> a patch rebase dependency.
-> 
-> The Bot has went ahead and tried running the dt_binding_check on patch 
-> https://patchwork.kernel.org/project/linux-arm-msm/patch/20240626143302.810632-5-quic_devipriy@quicinc.com/
-> which is dependent on patch [1] and hence the issue was reported.
-> 
-> Is this the expected behaviour?
+[ + netdev, which I accidently dropped from the CC list ]
 
-If you expect your patch not to be ignored after such feedback, explain
-briefly missing dependency in changelog. I think Rob told it many times
-already.
-
-Otherwise you will get this message *every time* and maintainers might
-ignore your patch, due to unresolved reports from automation.
-
-Best regards,
-Krzysztof
-
+On Tue, Jul 02, 2024 at 02:00:30PM +0100, Simon Horman wrote:
+> [ As this seems to relate to: DT, ASPEED and ARM, CC:
+>   Rob Herring, Krzysztof Kozlowski, Conor Dooley, Joel Stanley, Andrew Jeffery,
+>   devicetree, linux-arm-kernel, linux-aspeed. ]
+> 
+> On Mon, Jul 01, 2024 at 11:43:36PM +0800, Peter Yin wrote:
+> > Most NICs have a single package. For OCP3.0 NICs, the package ID is
+> > determined by the slot ID. Probing all 8 package IDs is usually
+> > unnecessary. To reduce probe time, add properties to specify the
+> > maximum number of packages.
+> > 
+> > Signed-off-by: Cosmo Chou <cosmo.chou@quantatw.com>
+> > Signed-off-by: Peter Yin <peteryin.openbmc@gmail.com>
+> > ---
+> >  net/ncsi/internal.h    |  1 +
+> >  net/ncsi/ncsi-manage.c | 16 ++++++++++++----
+> >  2 files changed, 13 insertions(+), 4 deletions(-)
+> > 
+> > diff --git a/net/ncsi/internal.h b/net/ncsi/internal.h
+> > index ef0f8f73826f..bd7ad0bf803f 100644
+> > --- a/net/ncsi/internal.h
+> > +++ b/net/ncsi/internal.h
+> > @@ -341,6 +341,7 @@ struct ncsi_dev_priv {
+> >  #define NCSI_MAX_VLAN_VIDS	15
+> >  	struct list_head    vlan_vids;       /* List of active VLAN IDs */
+> >  
+> > +	unsigned int        max_package;     /* Num of packages to probe   */
+> >  	bool                multi_package;   /* Enable multiple packages   */
+> >  	bool                mlx_multi_host;  /* Enable multi host Mellanox */
+> >  	u32                 package_whitelist; /* Packages to configure    */
+> > diff --git a/net/ncsi/ncsi-manage.c b/net/ncsi/ncsi-manage.c
+> > index 5ecf611c8820..159943ee1317 100644
+> > --- a/net/ncsi/ncsi-manage.c
+> > +++ b/net/ncsi/ncsi-manage.c
+> > @@ -1358,12 +1358,12 @@ static void ncsi_probe_channel(struct ncsi_dev_priv *ndp)
+> >  		nd->state = ncsi_dev_state_probe_deselect;
+> >  		fallthrough;
+> >  	case ncsi_dev_state_probe_deselect:
+> > -		ndp->pending_req_num = 8;
+> > +		ndp->pending_req_num = ndp->max_package;
+> >  
+> >  		/* Deselect all possible packages */
+> >  		nca.type = NCSI_PKT_CMD_DP;
+> >  		nca.channel = NCSI_RESERVED_CHANNEL;
+> > -		for (index = 0; index < 8; index++) {
+> > +		for (index = 0; index < ndp->max_package; index++) {
+> >  			nca.package = index;
+> >  			ret = ncsi_xmit_cmd(&nca);
+> >  			if (ret)
+> > @@ -1491,7 +1491,7 @@ static void ncsi_probe_channel(struct ncsi_dev_priv *ndp)
+> >  
+> >  		/* Probe next package */
+> >  		ndp->package_probe_id++;
+> > -		if (ndp->package_probe_id >= 8) {
+> > +		if (ndp->package_probe_id >= ndp->max_package) {
+> >  			/* Probe finished */
+> >  			ndp->flags |= NCSI_DEV_PROBED;
+> >  			break;
+> > @@ -1746,7 +1746,7 @@ struct ncsi_dev *ncsi_register_dev(struct net_device *dev,
+> >  	struct platform_device *pdev;
+> >  	struct device_node *np;
+> >  	unsigned long flags;
+> > -	int i;
+> > +	int i, ret;
+> >  
+> >  	/* Check if the device has been registered or not */
+> >  	nd = ncsi_find_dev(dev);
+> > @@ -1795,6 +1795,14 @@ struct ncsi_dev *ncsi_register_dev(struct net_device *dev,
+> >  		if (np && (of_property_read_bool(np, "mellanox,multi-host") ||
+> >  			   of_property_read_bool(np, "mlx,multi-host")))
+> >  			ndp->mlx_multi_host = true;
+> > +
+> 
+> Should the "ncsi-package" (and above multi-host properties) be
+> documented in DT bindings somewhere? I was unable to locate such
+> documentation.
+> 
+> > +		if (np) {
+> > +			ret = of_property_read_u32(np, "ncsi-package",
+> > +						   &ndp->max_package);
+> > +			if (ret || !ndp->max_package ||
+> > +			    ndp->max_package > NCSI_MAX_PACKAGE)
+> > +				ndp->max_package = NCSI_MAX_PACKAGE;
+> > +		}
+> >  	}
+> 
+> It seems that ndp->max_package will be 0 unless pdev != NULL and np != NULL.
+> Would it be better set to NCSI_MAX_PACKAGE in such cases?
+> 
+> >  
+> >  	return nd;
+> > -- 
+> > 2.25.1
+> > 
+> > 
 
