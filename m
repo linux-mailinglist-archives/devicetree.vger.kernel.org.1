@@ -1,107 +1,138 @@
-Return-Path: <devicetree+bounces-82188-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82189-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A423B91EC70
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 03:13:15 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9391491ECAC
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 03:29:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5C70B281A7E
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 01:13:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EE141B21829
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 01:28:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 901DD3C38;
-	Tue,  2 Jul 2024 01:13:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="hMWNKsGk"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E38D3D6D;
+	Tue,  2 Jul 2024 01:28:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3AA1883D;
-	Tue,  2 Jul 2024 01:13:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 175D88830;
+	Tue,  2 Jul 2024 01:28:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719882791; cv=none; b=BH4PmCWro2dLx9hx9l4RxZzJPtsH0e/IvsSDrn+h6NFG7Fxd07oW3xFLkZpqLMaVE4WpDlCELm1oAnihgQ0pE2qf0Edm5lPsnZQzylqf/ozbPeNMdXdbrhLs9zkacciw3CYIhwNkO9qh253N4lVYe1fZ+0a9uocFwpH66ffPgK0=
+	t=1719883735; cv=none; b=GkGEkchaArgpKogbiVlWCQ0n72MomVj3Ryq6amo2NXMf8OwIorA3zLG8TZqapRqPJtkwn4VfjNsVxnLpMrQwsVH++ZVzGDq7+kBVYH5/eW/WPBLei3XBoUlblgQUgCgN2Jv6rDR+9yzhoC0n4XkfAUPOgS+r5xubwmgj+/sPD7U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719882791; c=relaxed/simple;
-	bh=LEpS0prWNwTg637CGji58I1O4rLSQPuHkPWQ3gbelhg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=FJY59saePcRVyTHjuTYZ4UzJz1K3CUh2P/ZuMecJXCJI83m5xmmAxyCOLb265L3BH1BSLMR+zme7Uqd4QtICSMJ+d5lZtBcjLKPwo1ROQnN2NU1weoSERzrAcYb0kM67+JAwm1752+oZhH9+0LXWpUlp2tUEC1dHUIW+fuTJuZo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=hMWNKsGk; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1719882788;
-	bh=LEpS0prWNwTg637CGji58I1O4rLSQPuHkPWQ3gbelhg=;
-	h=From:Date:Subject:To:Cc:From;
-	b=hMWNKsGkfexOjlTg+YJbWEj460nsPq0oadciGY1Okr8c72pPUmivorKnU1x14Yvyj
-	 P92dvrCKUD8Lpy9gVtY8RqOTxj0HpjXIvoapuYawW4jAxP4iJTwIbvxjgCRtLwQU2E
-	 kQU8+M6TwuXAOku6XEj5wrhxKFff48cyLNx3Wva7Fh+kAlefWa0CM7i3oZwkf8b6Oc
-	 pihOrZen1Eme+X5NjdkRCskxe8yJKxEafCgCjYGvBeT2Ttfxp+7uxvj3Sot4m85ngK
-	 NKXz9nnlJIICw64Oq3iREMArmWBo+dAFHmw4FTCTH6/SklxkDl4JAqngvH4lUGJ1DO
-	 RFLj2x7YxG7kw==
-Received: from localhost (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: cristicc)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id E1FF537820DE;
-	Tue,  2 Jul 2024 01:13:07 +0000 (UTC)
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Date: Tue, 02 Jul 2024 04:12:52 +0300
-Subject: [PATCH] arm64: dts: rockchip: Add missing power-domains for rk356x
- vop_mmu
+	s=arc-20240116; t=1719883735; c=relaxed/simple;
+	bh=CnHqwkeS90MMNuM2cK3PUfFffxA7KW+C+qvrwEke0jg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rz8+etkwkXDfzrbfmXtl1WJbwcV4DGmGCVUeNFRNfeVNHVDpd+WpVl+xCGwys4S660BUbILKHXOb5OIyg71CMqsOQlhSCfejY87cdMOhyMSSd/vh0nRipyEp+r/KXhlbVU6UmbGJJy/mFngRC/3TTjR78YtDRyYTPemy5HNGZJk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Date: Tue, 2 Jul 2024 01:28:47 +0000
+From: Yixun Lan <dlan@gentoo.org>
+To: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Conor Dooley <conor@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Anup Patel <anup@brainfault.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Palmer Dabbelt <palmer@sifive.com>, linux-riscv@lists.infradead.org,
+	linux-serial@vger.kernel.org, Inochi Amaoto <inochiama@outlook.com>,
+	Meng Zhang <zhangmeng.kevin@spacemit.com>,
+	Yangyu Chen <cyy@cyyself.name>
+Subject: Re: [PATCH v2 08/10] riscv: dts: add initial SpacemiT K1 SoC device
+ tree
+Message-ID: <20240702012847.GA2447193@ofsar>
+References: <20240627-k1-01-basic-dt-v2-0-cc06c7555f07@gentoo.org>
+ <20240627-k1-01-basic-dt-v2-8-cc06c7555f07@gentoo.org>
+ <CAJM55Z9jeAQTsVjRiLeofDm1RyMWCuHXC0a-pdKtpUiTkSjJCA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240702-rk356x-fix-vop-mmu-v1-1-a66d1a0c45ea@collabora.com>
-X-B4-Tracking: v=1; b=H4sIABNUg2YC/x2MQQqAIBAAvxJ7bsE0NfpKdJDaaolSlCII/550H
- IaZFxJFpgR99UKkmxP7s0BTVzBt7lwJeS4MUshWWCEx7kqbBxd+8PYBj+NCJ5WeTeesah2UMEQ
- q+p8OY84fliuXp2QAAAA=
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Sascha Hauer <s.hauer@pengutronix.de>
-Cc: kernel@collabora.com, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- linux-kernel@vger.kernel.org
-X-Mailer: b4 0.14.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAJM55Z9jeAQTsVjRiLeofDm1RyMWCuHXC0a-pdKtpUiTkSjJCA@mail.gmail.com>
 
-The iommu@fe043e00 on RK356x SoC shares the VOP power domain, but the
-power-domains property was not provided when the node has been added.
+On 12:49 Mon 01 Jul     , Emil Renner Berthing wrote:
+> Yixun Lan wrote:
+> > From: Yangyu Chen <cyy@cyyself.name>
+> >
+> > Banana Pi BPI-F3 motherboard is powered by SpacemiT K1[1].
+> >
+> > Key features:
+> > - 4 cores per cluster, 2 clusters on chip
+> > - UART IP is Intel XScale UART
+> >
+> > Some key considerations:
+> > - ISA string is inferred from vendor documentation[2]
+> > - Cluster topology is inferred from datasheet[1] and L2 in vendor dts[3]
+> > - No coherent DMA on this board
+> >     Inferred by taking vendor ethernet and MMC drivers to the mainline
+> >     kernel. Without dma-noncoherent in soc node, the driver fails.
+> > - No cache nodes now
+> >     The parameters from vendor dts are likely to be wrong. It has 512
+> >     sets for a 32KiB L1 Cache. In this case, each set is 64B in size.
+> >     When the size of the cache line is 64B, it is a directly mapped
+> >     cache rather than a set-associative cache, the latter is commonly
+> >     used. Thus, I didn't use the parameters from vendor dts.
+> >
+> > Currently only support booting into console with only uart, other
+> > features will be added soon later.
+> >
+...
 
-The consequence is that an attempt to reload the rockchipdrm module will
-freeze the entire system.  That is because on probe time,
-pm_runtime_get_suppliers() gets called for vop@fe040000, which blocks
-when pm_runtime_get_sync() is being invoked for iommu@fe043e00.
+> > +		clint: timer@e4000000 {
+> > +			compatible = "spacemit,k1-clint", "sifive,clint0";
+> > +			reg = <0x0 0xe4000000 0x0 0x10000>;
+> > +			interrupts-extended = <&cpu0_intc 3>, <&cpu0_intc 7>,
+> > +					      <&cpu1_intc 3>, <&cpu1_intc 7>,
+> > +					      <&cpu2_intc 3>, <&cpu2_intc 7>,
+> > +					      <&cpu3_intc 3>, <&cpu3_intc 7>,
+> > +					      <&cpu4_intc 3>, <&cpu4_intc 7>,
+> > +					      <&cpu5_intc 3>, <&cpu5_intc 7>,
+> > +					      <&cpu6_intc 3>, <&cpu6_intc 7>,
+> > +					      <&cpu7_intc 3>, <&cpu7_intc 7>;
+> > +		};
+> > +
+> > +		uart0: serial@d4017000 {
+> > +			compatible = "spacemit,k1-uart", "intel,xscale-uart";
+> > +			reg = <0x0 0xd4017000 0x0 0x100>;
+> > +			interrupts = <42>;
+> > +			clock-frequency = <14857000>;
+> > +			reg-shift = <2>;
+> > +			reg-io-width = <4>;
+> > +			status = "disabled";
+> > +		};
+> > +
+> > +		/* note: uart1 skipped */
+> 
+> The datasheet page you link to above says "-UART (×10)", but here you're
+> skipping one of them. Why? I can see the vendor tree does the same, but it
+> would be nice with an explanation of what's going on.
+> 
+/* note: uart1 in 0xf0612000, reserved for TEE usage */
+I would put something like this, does this sound ok to you?
 
-Fix the issue by adding the missing property.
+more detail, iomem range from 0xf000,0000 - 0xf080,0000 are dedicated for TEE purpose,
+It won't be exposed to Linux once TEE feature is enabled..
 
-Fixes: 9d6c6d978f97 ("arm64: dts: rockchip: rk356x: Add VOP2 nodes")
-Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
----
- arch/arm64/boot/dts/rockchip/rk356x.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+skipping uart1 may make people confused but we are trying to follow datasheet..
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-index d8543b5557ee..3e2a8bfcafea 100644
---- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-@@ -790,6 +790,7 @@ vop_mmu: iommu@fe043e00 {
- 		clocks = <&cru ACLK_VOP>, <&cru HCLK_VOP>;
- 		clock-names = "aclk", "iface";
- 		#iommu-cells = <0>;
-+		power-domains = <&power RK3568_PD_VO>;
- 		status = "disabled";
- 	};
- 
 
----
-base-commit: 1eb586a9782cde8e5091b9de74603e0a8386b09e
-change-id: 20240702-rk356x-fix-vop-mmu-a235d68a734a
-
+-- 
+Yixun Lan (dlan)
+Gentoo Linux Developer
+GPG Key ID AABEFD55
 
