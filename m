@@ -1,132 +1,190 @@
-Return-Path: <devicetree+bounces-82391-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82392-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE01A924234
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 17:20:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A42B9924241
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 17:25:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DCDF61C22ECA
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 15:20:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CEB181C22ECA
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 15:25:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09DA51BB6BD;
-	Tue,  2 Jul 2024 15:20:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 356B51BB69D;
+	Tue,  2 Jul 2024 15:25:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K6i1SNuY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OhK+QYhE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D62EB1BA868;
-	Tue,  2 Jul 2024 15:20:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AAB01AD9E7;
+	Tue,  2 Jul 2024 15:25:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719933602; cv=none; b=KA/XDdicJ/S1VdP6mTwtXDNaCitDXCnWpeNYGXj/2nc/ux8eGU7S+FY8IdpGUV9sTTq9eBhKiWeDa0HSPvUwPNfBHT2IA4TetG3c3C7qgoXW9VLzSDPtuOjMrigML10od+vacm+369rL7PC7z1JKh8g/z0dx0W7WM6pPJpoQ1uA=
+	t=1719933913; cv=none; b=CJjlJDP3drjdIPSaaKCZT3hbHTAIe/+rAAZJ3guTZARc6dJDzakIEDHi9PAU2tAZGCJxXbzZ5WEK6b8SRvXfH7MTFj7QnJnxhS6GV8zKktzRnrllrr590lRaPMsVabzejhHIEkR4at09nYahgvaO2jKXBHPYroGxPjBsMcrzBWI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719933602; c=relaxed/simple;
-	bh=vDRfgq1khjg3V3GqZTi2bS11LujWGqPMZ8TLlczYvnA=;
-	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=EKyaXxq2oPIiBcLTNkRJAJRqjHdB1By/w31rd6nAWNZIeIszBQ4eLYMFi3NNiQ4OtDWtslSVuDKdq1wl1wyBGOphlYIiryi2xuMFURczLxzUG7kDUxZZ+cO500xcILwTJaUf6Es34B8doMHaBct33zmD7Z87e/nOXjPaG+UhF8s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K6i1SNuY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7421BC116B1;
-	Tue,  2 Jul 2024 15:20:02 +0000 (UTC)
+	s=arc-20240116; t=1719933913; c=relaxed/simple;
+	bh=cc7nvHqqj6c3V+LFIi1X86+pPFAUbngIvHertngi76w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=owLpjFFqf1zVWErpSN1v122a+7JsIWh4gMF9asaEXwVypnjcwLB5rK32DQhgsFLY06yf+gEO+QFc/1XAilGBVaaG1H+jmaiyMdZCvFXiWRyHItqe7gr5hQOiQ1tFHPFNfD0o9Aw+azNbk3dwkGvz8QKgS19LxJ9qXHh+7arOaJ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OhK+QYhE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 523A0C116B1;
+	Tue,  2 Jul 2024 15:25:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719933602;
-	bh=vDRfgq1khjg3V3GqZTi2bS11LujWGqPMZ8TLlczYvnA=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=K6i1SNuYGTNT6OO7pKaDxagvIFhwMk/t6uNJ9i46XtUxP4y5uzmIZICtKnJoLWvyi
-	 bAfF4fZTOJbdEWSWfisAINCU7oOyYbWkmSmscs7ke8iVrcTAVPvRYirHnCllSmU1I2
-	 uCIvzfnu8OIIbanoZCrinKiyQfZ9LIt+3iY0PpQcmuHg9Q0/bvX722/lqmk9bOVsci
-	 zjgN3S/rCZalTlcvt6P9xAIlOvoCeI5Nl6cr9j20FoC4Dyhq5hiS90LMMXlljEWo3s
-	 6jHC3aA9BNmSbcRduDOZcYCOAE0ZvZxXmoFvCPj394sPQzvzSQwmN3PXaToy6F5OYa
-	 2/uBd1pdHcWyg==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.95)
-	(envelope-from <maz@kernel.org>)
-	id 1sOfIV-0099Nu-US;
-	Tue, 02 Jul 2024 16:20:00 +0100
-Date: Tue, 02 Jul 2024 16:19:59 +0100
-Message-ID: <861q4bizxc.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Christian Zigotzky <chzigotzky@xenosoft.de>
-Cc: Rob Herring <robh@kernel.org>,
-	apatel@ventanamicro.com,
-	DTML <devicetree@vger.kernel.org>,
-	Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-	linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
-	mad skateman <madskateman@gmail.com>,
-	"R.T.Dickinson" <rtd2@xtra.co.nz>,
-	Matthew Leaman <matthew@a-eon.biz>,
-	Darren Stevens
- <darren@stevens-zone.net>,
-	Christian Zigotzky <info@xenosoft.de>
-Subject: Re: [PowerPC] [PASEMI] Issue with the identification of ATA drives after the of/irq updates 2024-05-29
-In-Reply-To: <3ab66fab-c3f2-4bed-a04d-a10c57dcdd9b@xenosoft.de>
-References: <3ab66fab-c3f2-4bed-a04d-a10c57dcdd9b@xenosoft.de>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/29.2
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	s=k20201202; t=1719933912;
+	bh=cc7nvHqqj6c3V+LFIi1X86+pPFAUbngIvHertngi76w=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=OhK+QYhE7XaL488ISYDfSItk/bnFEpOvq9q6T8ma2uPOF1C2yzK2VHrRMvApxk+yi
+	 l9CfI7GmUe2VQKzm/CJbV7E+Drx5kPrTL+YH5sNAbp/CgVgHrf5naOTT11Dj8fgy5m
+	 3HJ6rwcgKb+swO0wtLyfIVWndxnTo287pRy7YYlRVh6kiZ1NDkEMe4bnah5/teQwsL
+	 PexfjxVWll9z7nCb06g6s4wZ77uCimP5ayt2mmwxDLMxMyxaCrkQyx6rA0FbOncQKB
+	 lGhQQJu22xAdPvM9YPx9cDG1LZejEOIulj0QmT15yu71eH9GOEtLqTMpK2KFlLSUkc
+	 0YUj40EpeB3Pw==
+Date: Tue, 2 Jul 2024 16:25:06 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Inochi Amaoto <inochiama@outlook.com>
+Cc: Yixun Lan <dlan@gentoo.org>,
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Anup Patel <anup@brainfault.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Palmer Dabbelt <palmer@sifive.com>, linux-riscv@lists.infradead.org,
+	linux-serial@vger.kernel.org,
+	Meng Zhang <zhangmeng.kevin@spacemit.com>,
+	Yangyu Chen <cyy@cyyself.name>
+Subject: Re: [PATCH v2 08/10] riscv: dts: add initial SpacemiT K1 SoC device
+ tree
+Message-ID: <20240702-appease-attire-6afbe758bf0f@spud>
+References: <20240627-k1-01-basic-dt-v2-0-cc06c7555f07@gentoo.org>
+ <20240627-k1-01-basic-dt-v2-8-cc06c7555f07@gentoo.org>
+ <CAJM55Z9jeAQTsVjRiLeofDm1RyMWCuHXC0a-pdKtpUiTkSjJCA@mail.gmail.com>
+ <20240702012847.GA2447193@ofsar>
+ <IA1PR20MB4953C031CB453AA0E51657B3BBDC2@IA1PR20MB4953.namprd20.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: chzigotzky@xenosoft.de, robh@kernel.org, apatel@ventanamicro.com, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, madskateman@gmail.com, rtd2@xtra.co.nz, matthew@a-eon.biz, darren@stevens-zone.net, info@xenosoft.de
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="8t7ClsDF1V/WRNDh"
+Content-Disposition: inline
+In-Reply-To: <IA1PR20MB4953C031CB453AA0E51657B3BBDC2@IA1PR20MB4953.namprd20.prod.outlook.com>
 
-Christian,
 
-On Sun, 30 Jun 2024 11:21:55 +0100,
-Christian Zigotzky <chzigotzky@xenosoft.de> wrote:
-> 
-> Hello,
-> 
-> There is an issue with the identification of ATA drives with our
-> P.A. Semi Nemo boards [1] after the
-> commit "of/irq: Factor out parsing of interrupt-map parent
-> phandle+args from of_irq_parse_raw()" [2].
-> 
-> Error messages:
-> 
-> ata2.00: failed to IDENTIFY (I/O error, err_mask=0x4)
-> ata2.00: qc timeout after 10000 mssecs (cmd 0xec)
-> 
-> Screenshots [3]
-> 
-> I bisected yesterday [4] and "of/irq: Factor out parsing of
-> interrupt-map parent phandle+args from of_irq_parse_raw()" [2] is the
-> first bad commit.
-> 
-> Then I created a patch for reverting this first bad commit. I also
-> reverted the changes in drivers/of/property.c. [5]
-> 
-> The patched kernel boots with successful detection of the ATA devices.
-> 
-> Please check the of/irq updates.
+--8t7ClsDF1V/WRNDh
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-It is hard to understand what is going on with so little information.
+On Tue, Jul 02, 2024 at 09:35:45AM +0800, Inochi Amaoto wrote:
+> On Tue, Jul 02, 2024 at 01:28:47AM GMT, Yixun Lan wrote:
+> > On 12:49 Mon 01 Jul     , Emil Renner Berthing wrote:
+> > > Yixun Lan wrote:
+> > > > From: Yangyu Chen <cyy@cyyself.name>
+> > > >
+> > > > Banana Pi BPI-F3 motherboard is powered by SpacemiT K1[1].
+> > > >
+> > > > Key features:
+> > > > - 4 cores per cluster, 2 clusters on chip
+> > > > - UART IP is Intel XScale UART
+> > > >
+> > > > Some key considerations:
+> > > > - ISA string is inferred from vendor documentation[2]
+> > > > - Cluster topology is inferred from datasheet[1] and L2 in vendor d=
+ts[3]
+> > > > - No coherent DMA on this board
+> > > >     Inferred by taking vendor ethernet and MMC drivers to the mainl=
+ine
+> > > >     kernel. Without dma-noncoherent in soc node, the driver fails.
+> > > > - No cache nodes now
+> > > >     The parameters from vendor dts are likely to be wrong. It has 5=
+12
+> > > >     sets for a 32KiB L1 Cache. In this case, each set is 64B in siz=
+e.
+> > > >     When the size of the cache line is 64B, it is a directly mapped
+> > > >     cache rather than a set-associative cache, the latter is common=
+ly
+> > > >     used. Thus, I didn't use the parameters from vendor dts.
+> > > >
+> > > > Currently only support booting into console with only uart, other
+> > > > features will be added soon later.
+> > > >
+> > ...
+> >=20
+> > > > +		clint: timer@e4000000 {
+> > > > +			compatible =3D "spacemit,k1-clint", "sifive,clint0";
+> > > > +			reg =3D <0x0 0xe4000000 0x0 0x10000>;
+> > > > +			interrupts-extended =3D <&cpu0_intc 3>, <&cpu0_intc 7>,
+> > > > +					      <&cpu1_intc 3>, <&cpu1_intc 7>,
+> > > > +					      <&cpu2_intc 3>, <&cpu2_intc 7>,
+> > > > +					      <&cpu3_intc 3>, <&cpu3_intc 7>,
+> > > > +					      <&cpu4_intc 3>, <&cpu4_intc 7>,
+> > > > +					      <&cpu5_intc 3>, <&cpu5_intc 7>,
+> > > > +					      <&cpu6_intc 3>, <&cpu6_intc 7>,
+> > > > +					      <&cpu7_intc 3>, <&cpu7_intc 7>;
+> > > > +		};
+> > > > +
+> > > > +		uart0: serial@d4017000 {
+> > > > +			compatible =3D "spacemit,k1-uart", "intel,xscale-uart";
+> > > > +			reg =3D <0x0 0xd4017000 0x0 0x100>;
+> > > > +			interrupts =3D <42>;
+> > > > +			clock-frequency =3D <14857000>;
+> > > > +			reg-shift =3D <2>;
+> > > > +			reg-io-width =3D <4>;
+> > > > +			status =3D "disabled";
+> > > > +		};
+> > > > +
+> > > > +		/* note: uart1 skipped */
+> > >=20
+> > > The datasheet page you link to above says "-UART (=D710)", but here y=
+ou're
+> > > skipping one of them. Why? I can see the vendor tree does the same, b=
+ut it
+> > > would be nice with an explanation of what's going on.
+> > >=20
+> > /* note: uart1 in 0xf0612000, reserved for TEE usage */
+> > I would put something like this, does this sound ok to you?
+> >=20
+> > more detail, iomem range from 0xf000,0000 - 0xf080,0000 are dedicated f=
+or TEE purpose,
+> > It won't be exposed to Linux once TEE feature is enabled..
+> >=20
+> > skipping uart1 may make people confused but we are trying to follow dat=
+asheet..
+>=20
+> Instead of skipping it, I suggest adding this to reserved-memory area,=20
+> which make all node visible and avoid uart1 being touched by mistake.
 
-Please provide the device tree for your platform. It isn't possible to
-debug this without it, no matter how many pictures you provide. If it
-doesn't exist in source form, you can dump it using:
-
-# dtc -I dtb /sys/firmware/fdt
-
-and posting the full output.
-
-Additionally, a full dmesg of both working and non working boots would
-be useful.
+No, don't make it reserved-memory - instead add it as
+status =3D "reserved"; /* explanation for why */
+Also, I'd appreciate if the nodes were sorted by unit address in the
+dtsi.
 
 Thanks,
+Conor.
 
-	M.
+--8t7ClsDF1V/WRNDh
+Content-Type: application/pgp-signature; name="signature.asc"
 
--- 
-Without deviation from the norm, progress is not possible.
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZoQb0gAKCRB4tDGHoIJi
+0tEwAQDbZqSQrUgTmMpfdmDuQPr0P0SBOkFpJs0/aPbXIvDa3AEAltJ5Hgikal1T
+3Be6wU3wIZBpw+4BQ/NmiOt4fe2a7AA=
+=zeit
+-----END PGP SIGNATURE-----
+
+--8t7ClsDF1V/WRNDh--
 
