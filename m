@@ -1,112 +1,213 @@
-Return-Path: <devicetree+bounces-82373-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82377-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 499CB92419A
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 16:59:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E67A99241B9
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 17:02:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EEEC11F24F65
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 14:59:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 24DCE1C21ED5
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 15:02:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85A281BA88E;
-	Tue,  2 Jul 2024 14:59:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB50D1BB691;
+	Tue,  2 Jul 2024 15:00:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TRnxmyJi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fIh4HYNR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55DC51DFE3;
-	Tue,  2 Jul 2024 14:59:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F5E61BA080;
+	Tue,  2 Jul 2024 15:00:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719932378; cv=none; b=irTuSQvStKOSgq67nC9AYFTnr7CwAZ4PyAaWugWG9mYi2i2BaC+MBoRU4iUemNqEnricdfgvG963/Hp3LQy7uOOmpYvUbFpsIIV3wihlYaQnOEGvrxFVOEMqKkvfULLGHMlsI0JfSLk4rFiwVdFngW7mGE/3mw5ypYJ6Ao+s/hM=
+	t=1719932447; cv=none; b=qqM99SoLu/utYNa86pz8WIRgefNDtKhd+hQBEVzqKB2Cux1H69qHM108hii3VfQPz9bZyDpcQwjiulNVA++xsrxhKqVnt8rrVlvTH+sR9fyn1Wkp9TRHWM4rw3dX/vVdv7lFw2VFe5SpmSO9epV13WXaGbBzagwPqUZEy37XZX4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719932378; c=relaxed/simple;
-	bh=fHanAlQ1ds3bzkFzGm19phfLkfN24UYAsJwf9d7Tc0c=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=PQafiyGfjcPFUbiBzL9ifkDDgyqA2cwNJtRERzsoyZ0zCwBUh9ZUFfc34K88ofXkV82zgpunj4yYQQRI9uEWZKLStvjgaIo52YyNc1tp5odk3YSssCJfU+FG8ocKX/+N9+rKFCGdtP2EzAuSo88uqpG7spK+ZpIZUt7On3zl+dA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TRnxmyJi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 13696C4AF12;
-	Tue,  2 Jul 2024 14:59:38 +0000 (UTC)
+	s=arc-20240116; t=1719932447; c=relaxed/simple;
+	bh=HAu5MXagusH8Y8IO8gLkVN9AN4GtavJDI9q++gRfbt0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ObW0D15gkrViB9knw/N0A7/wZw4a+dywVY2yLe1aLsGeGq1JS0pZ/Xr0Dy+7wWUrvzuwGnkdpeJy9ozXKvotweQzZBxko/MYOz0X7rfHA6W2SLbekXuC1HRAAJVexKakylB2vMe02RsYIkTRs2e8SAkFk3eZbl2cBKF8b2CQFWs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fIh4HYNR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B42BCC2BD10;
+	Tue,  2 Jul 2024 15:00:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719932378;
-	bh=fHanAlQ1ds3bzkFzGm19phfLkfN24UYAsJwf9d7Tc0c=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=TRnxmyJigBl42EE34ctQu1w6kd6pCyUPELSvR5o46l9x4ZT2d/+OLeBYY372vQDtl
-	 mt/955g6sn+shTL01yZgPj9QsK+C6xa4EtXZUpz3HMjfkfj92H/5E9M5bDioF8zuxm
-	 BZefSrrScI4DgnQwUzBegbbs+SY4tpEG/PEcTGR1Uj+C4/3zeBZyvasrOcnRRCPRnq
-	 8iXn4YgaP/ajyvzj7rMlLay7EOTRuDo8+GH9fu3pqhmY8ZNFv6Zwt296U4TkxF4JjX
-	 hqIGe/1vyAlcQMcCh4KwHgF2T7YK0xxXGd7rvmO2B/fksXI9C4JOsrAxwes3Eljb/C
-	 ev7i8lkXfJzQg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id F1DDDC3065E;
-	Tue,  2 Jul 2024 14:59:37 +0000 (UTC)
-From: Petar Stoykov via B4 Relay <devnull+pd.pstoykov.gmail.com@kernel.org>
-Date: Tue, 02 Jul 2024 16:59:10 +0200
-Subject: [PATCH v3 3/3] MAINTAINERS: Add Sensirion SDP500
+	s=k20201202; t=1719932447;
+	bh=HAu5MXagusH8Y8IO8gLkVN9AN4GtavJDI9q++gRfbt0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=fIh4HYNRke/G3/IhSdtY+p9k6djkA5WRhd4A/8lWN7WdJviYJ/8AHiNQmPKyOp2/Z
+	 828nx8bmngWCeIyy26cq5e4t8t7KFiZefldBLDhl2m0xC4glpbJCl5j+DaZtjoLGy8
+	 2WSkzNRGz2z/Y3VAoaMXTuenYUqLOIFovdF5cUgA2s/Z2ejNXTQH/Ju2XNLK6WNfrF
+	 RGgmtfLy0U7LF9V4ImaFlSOrvPNOk/5p1TJvD8ANGV7aTjdMO3MM2MdcYnE4DMm7lB
+	 thioDrLH+PourfWA4Gmzz4b0UBXEDqB/NHtaFi11pbcupF2Q+mbu3AALOCRbrK7zdM
+	 qH0luSwjxEx/Q==
+Date: Tue, 2 Jul 2024 16:00:41 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Haylen Chu <heylenay@outlook.com>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Inochi Amaoto <inochiama@outlook.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Jisheng Zhang <jszhang@kernel.org>, linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v3 1/3] dt-bindings: thermal: sophgo,cv1800-thermal: Add
+ Sophgo CV1800 thermal
+Message-ID: <20240702-aptitude-overripe-8ac9aa3c6b90@spud>
+References: <SEYPR01MB42213F3A032C60C6AF5EB677D7DC2@SEYPR01MB4221.apcprd01.prod.exchangelabs.com>
+ <SEYPR01MB42217228213F5F2C739088DED7DC2@SEYPR01MB4221.apcprd01.prod.exchangelabs.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240702-mainline_sdp500-v3-3-0902047b3eee@gmail.com>
-References: <20240702-mainline_sdp500-v3-0-0902047b3eee@gmail.com>
-In-Reply-To: <20240702-mainline_sdp500-v3-0-0902047b3eee@gmail.com>
-To: linux-iio@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>, 
- Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Petar Stoykov <pd.pstoykov@gmail.com>, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1719932376; l=804;
- i=pd.pstoykov@gmail.com; s=20240702; h=from:subject:message-id;
- bh=++KMBJJdkAu/mRC0gJaUp/zFLhaTtFAt27IBrDli1ZM=;
- b=NSO1Rjq0Zm5akuTrH+ez/GsVoiUzK0DPfANPoSj2ZB/R4e8LZWMF3Wnrtd35y6onxYIxR+E30
- 7QnG0lpDk6tAz9weSIbDYuYHtZs6RF2fFk8C9bKWg8CyRr8WCf4wAUW
-X-Developer-Key: i=pd.pstoykov@gmail.com; a=ed25519;
- pk=oxcGqcVV5O6wqlTh+39SbOwfbpD763i5x4TavUAHiCg=
-X-Endpoint-Received: by B4 Relay for pd.pstoykov@gmail.com/20240702 with
- auth_id=179
-X-Original-From: Petar Stoykov <pd.pstoykov@gmail.com>
-Reply-To: pd.pstoykov@gmail.com
-
-From: Petar Stoykov <pd.pstoykov@gmail.com>
-
-Add myself as a maintainer for Sensirion SDP500 pressure sensor driver
-
-Signed-off-by: Petar Stoykov <pd.pstoykov@gmail.com>
----
- MAINTAINERS | 6 ++++++
- 1 file changed, 6 insertions(+)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 40c754b4c39c..65f9479ac343 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -19533,6 +19533,12 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/iio/chemical/sensirion,scd4x.yaml
- F:	drivers/iio/chemical/scd4x.c
- 
-+SENSIRION SDP500 DIFFERENTIAL PRESSURE SENSOR DRIVER
-+M:	Petar Stoykov <petar.stoykov@prodrive-technologies.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/iio/pressure/sdp500.yaml
-+F:	drivers/iio/pressure/sdp500.c
-+
- SENSIRION SGP40 GAS SENSOR DRIVER
- M:	Andreas Klinger <ak@it-klinger.de>
- S:	Maintained
-
--- 
-2.39.2
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="Cj+2FTDLsk6UdrLf"
+Content-Disposition: inline
+In-Reply-To: <SEYPR01MB42217228213F5F2C739088DED7DC2@SEYPR01MB4221.apcprd01.prod.exchangelabs.com>
 
 
+--Cj+2FTDLsk6UdrLf
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Rob/Krzysztof, Haylen,
+
+On Tue, Jul 02, 2024 at 09:30:24AM +0000, Haylen Chu wrote:
+> Add devicetree binding documentation for thermal sensors integrated in
+> Sophgo CV180X SoCs.
+>=20
+> Signed-off-by: Haylen Chu <heylenay@outlook.com>
+> ---
+>  .../thermal/sophgo,cv1800-thermal.yaml        | 74 +++++++++++++++++++
+>  1 file changed, 74 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/thermal/sophgo,cv18=
+00-thermal.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/thermal/sophgo,cv1800-ther=
+mal.yaml b/Documentation/devicetree/bindings/thermal/sophgo,cv1800-thermal.=
+yaml
+> new file mode 100644
+> index 000000000000..016299822c16
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/thermal/sophgo,cv1800-thermal.yaml
+> @@ -0,0 +1,74 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/thermal/sophgo,cv1800-thermal.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Sophgo CV1800 on-SoC Thermal Sensor
+> +
+> +maintainers:
+> +  - Haylen Chu <heylenay@outlook.com>
+> +
+> +description: Binding for Sophgo CV1800 on-SoC thermal sensor
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - sophgo,cv1800-thermal
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    description: The thermal sensor clock
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  accumulation-period:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: Accumulation period for a sample
+> +    enum:
+> +      - 512
+> +      - 1024
+> +      - 2048
+> +      - 4096
+> +    default: 2048
+> +
+> +  chop-period:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: ADC chop period
+> +    enum:
+> +      - 128
+> +      - 256
+> +      - 512
+> +      - 1024
+> +    default: 1024
+> +
+> +  sample-cycle-us:
+
+the more common term btw would be "sample-rate" rather than
+"sample-cycle".
+
+> +    description: Period between samples. Should be greater than 524us.
+
+The constraint here should be "minimum: 524". What's the upper limit?
+
+> +    default: 1000000
+
+Rob/Krzysztof, could you comment on the suitability of the three custom
+properties here? I know if this was an IIO device, these kinds of things
+would be controllable from userspace, and not in the binding. I
+mentioned this on the previous version, but I'm not really sure if
+thermal devices are somehow different:
+https://lore.kernel.org/all/SEYPR01MB4221A739D0645EF0255336EBD7CE2@SEYPR01M=
+B4221.apcprd01.prod.exchangelabs.com/
+
+Cheers,
+Conor.
+
+> +
+> +  '#thermal-sensor-cells':
+> +    const: 0
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - interrupts
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +        #include <dt-bindings/clock/sophgo,cv1800.h>
+> +        #include <dt-bindings/interrupt-controller/irq.h>
+> +        thermal-sensor@30e0000 {
+> +            compatible =3D "sophgo,cv1800-thermal";
+> +            reg =3D <0x30e0000 0x100>;
+> +            clocks =3D <&clk CLK_TEMPSEN>;
+> +            interrupts =3D <16 IRQ_TYPE_LEVEL_HIGH>;
+> +            #thermal-sensor-cells =3D <0>;
+> +        };
+> +...
+> --=20
+> 2.45.2
+>=20
+
+--Cj+2FTDLsk6UdrLf
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZoQWGQAKCRB4tDGHoIJi
+0uEgAP47Q2cX9PmFKJkFJalVe/Rw7yugRnC+FfIH24aHmHktbgEA+/MGeF1RqXj6
+om07QLglXEVagK/oyR9xgJNcjokVnwA=
+=zVtS
+-----END PGP SIGNATURE-----
+
+--Cj+2FTDLsk6UdrLf--
 
