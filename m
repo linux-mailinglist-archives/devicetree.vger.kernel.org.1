@@ -1,165 +1,152 @@
-Return-Path: <devicetree+bounces-82247-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82222-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48E48923A42
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 11:39:28 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87E13923158
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 10:38:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B59F42832A3
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 09:39:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AC46FB23683
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 08:38:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34B38154449;
-	Tue,  2 Jul 2024 09:39:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="XeO/0M3A"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94432148303;
+	Tue,  2 Jul 2024 08:38:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com [209.85.128.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68D0015217F;
-	Tue,  2 Jul 2024 09:39:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A41184D39;
+	Tue,  2 Jul 2024 08:38:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719913163; cv=none; b=DEXjC9lvl5jOI1O82069SW0FMRz4+sUyF3LeBFalvlQgH3g9ttupqdPm57d8J/NAwoxXV0nJ9ynLmmgHcyjO3pNgdgFZPlweXbe/PZTxWWhXO6urWnHo8g7hNXt4E6YDO8ecM1XpE28+u65Ot9Gb9us+9BGEHIpUcpLOdxNChLc=
+	t=1719909512; cv=none; b=OmmP7UM+UhSyXojkD28BEjQ4ScBSFihdSNSCX5C5odawyIN2Psr/bORW3+WJHJWjhHWApDZLd5TzYSi2kyNNBXUWQqyemIp8y8TnquSTvvLgfEXUAyPSOkHc2GwCSD3bQi3h6bffKOJGyOzHbVFThkeYyvcypqIOhAdy4yK4L1Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719913163; c=relaxed/simple;
-	bh=cKKhmZWA8i3/t0YPKgOkIBJTFu7C+J1VqMks8j/9hs0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FAQwfJTeITuEmt9Psz8aLiNEcJEkHu87vfJb9QC+E73EpdaVk1ekgPgZANJAP//ESsXAyIITa1noCYyr/PDRYrOBCjj5wY279EAFuN8h667LtBedymCtjISSEJ8CGun46SNR/w47b3s7e+1l/blrusfWa1sOHVeOc5mwc0NrnVQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=XeO/0M3A; arc=none smtp.client-ip=192.198.163.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1719913162; x=1751449162;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=cKKhmZWA8i3/t0YPKgOkIBJTFu7C+J1VqMks8j/9hs0=;
-  b=XeO/0M3A4KnIe3oLFSTo31cb8QzG9N6I6vNvkHVY/Tv3O7n0pOrqGFU/
-   C+/AtxZ+zlk9JMBoXxZrLNpuzV+S8EIE5w2RQGUF5DdpxhXlj2JSy7cGK
-   2nlOowfU0jbZCcmiL3sw6T14lw9xeNgk7Ef9MSj3SQwduyNAUV4GWFb9N
-   Ydx1tN84KqQEBuoJIpWXb2ZmuKoEqda2OJjOwjnY2ju9WqpX3U0TdotO1
-   qBOwttUrkuyUMyRzuVs3zQ9T/NdazZY53T75VwomKtIYevHu2LhtuTE5R
-   ieEzGiFfwrz2SDVuC4OzqJvfuuE7VjJR+iBgnS9h/u/j3tDX3/2pUos4z
-   Q==;
-X-CSE-ConnectionGUID: UW+Vl1+oTESyocJmh+htsA==
-X-CSE-MsgGUID: n7Rbw1buR+uEb7+OJJZsCw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11120"; a="17289670"
-X-IronPort-AV: E=Sophos;i="6.09,178,1716274800"; 
-   d="scan'208";a="17289670"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jul 2024 02:39:21 -0700
-X-CSE-ConnectionGUID: 3z6E88XVSzSZZvVdIsg49w==
-X-CSE-MsgGUID: tPms4iSOTy2At6x47qeQuQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,178,1716274800"; 
-   d="scan'208";a="45637566"
-Received: from ncintean-mobl1.ger.corp.intel.com (HELO [10.245.246.174]) ([10.245.246.174])
-  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jul 2024 02:39:14 -0700
-Message-ID: <f982842a-1804-420b-a539-a609ecf8fb8a@linux.intel.com>
-Date: Tue, 2 Jul 2024 10:30:15 +0200
+	s=arc-20240116; t=1719909512; c=relaxed/simple;
+	bh=vQ9vLXsfwASIoBg2fxWzWGeiniYjEW7nyL0C9c6NUMs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=HevontxGVBrRVGblk0TrwW/pKC9uvZTSMP+76F6BUNHzxL7p4gvawaAuV0VEIrTgnb6jF2B8isTcAiHnGF5eFzCU8TmdTkgm8FlpXBgE5avev8p+9lxRj0cKsurTfRM6wdcCsfD2/Ts6qP5FYJENW2B8ylBkynRrxzb1owfED/s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-63bca6db118so33955067b3.3;
+        Tue, 02 Jul 2024 01:38:30 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719909508; x=1720514308;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=MJs76TMyqu/aCK2/4OBJFyZhYlLSVaD5cm918jLLMMI=;
+        b=GiGfOjyMCiJPw5uBvD4Vqu2mZMXwOACQDSbovGVIK0USkVnfa2XxyTTfhs5CP6YJQs
+         MJ9dSw/LSLLI8a2sNC2+9RATdNnOO6v7M9ELK4ZFdCZFk53eZHJ0RvyBa9+DAaPV776q
+         jgk7BP7aCxRsoKhP4EZXQz/fhwycNvEz92PIm4ZIaMjK/LFfdaJXx9Ugq705LGBpl020
+         CeTf4iMHFMwyu2ezCq3D1FyEOS0lvhkYLi6FbKiTf5oAlaoGwTXCP9td5Cb+qS+aCGDz
+         9Gi00U4FODgNlXbZItOY1U+vyVUM2I4umRwwZsk3yVrApsS7K2uquiVguLT/hiNe3p7w
+         P+ew==
+X-Forwarded-Encrypted: i=1; AJvYcCWjy0D6++tj63KwW/tAGHLnvdQ+PFN4hglwXXweeHTQFWAVp3iom/Ox7r4E1YOA3kRyq8Dk4g0BQUkA/IS9F/9QP4AgYlTBcAp/0HQ3QvSJy7n9Snn3jNlTL3wPN2NU9QJeOzLGBU0tAlQJt+bt
+X-Gm-Message-State: AOJu0Yxb5QIt6mhq+PxR/M5GGO2vaEcyef6KktbyKH1lKDwUHE/7Yctu
+	/xdHHQM8IJoNAzwz64o9TL+vdJeyde5T3S2K9uVVmRBUl67ZbEj11aoGA6fV
+X-Google-Smtp-Source: AGHT+IFXxWcW0C2ZfL+1Nf7mlIxiJYCvTnMh943f0+x74uNF10/v5e5LS0HqF6gyYEUOkoyvtTGxyQ==
+X-Received: by 2002:a81:9154:0:b0:64a:5443:7cbd with SMTP id 00721157ae682-64c71cd9d5amr79892027b3.25.1719909507805;
+        Tue, 02 Jul 2024 01:38:27 -0700 (PDT)
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com. [209.85.128.181])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-64a9ba5a289sm17292877b3.79.2024.07.02.01.38.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 02 Jul 2024 01:38:27 -0700 (PDT)
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-63bca6db118so33954457b3.3;
+        Tue, 02 Jul 2024 01:38:26 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCW4tHhhc3GaLMCvCkx/q87+zBTguRjXRZgMFVYyKiMjTZ2c6rB6J0SH9LOONXNjgXyimJy2s8Pkn5vqK9oqXcri439iOENugpoAtv0E/p+tszNgO+8Q/PamWmArOQphdg6q0lsnhhfgnKUW2EZO
+X-Received: by 2002:a0d:e942:0:b0:63c:486a:289e with SMTP id
+ 00721157ae682-64c72f39767mr78961877b3.32.1719909506702; Tue, 02 Jul 2024
+ 01:38:26 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v23 32/32] ASoC: doc: Add documentation for SOC USB
-To: Wesley Cheng <quic_wcheng@quicinc.com>,
- =?UTF-8?Q?Amadeusz_S=C5=82awi=C5=84ski?=
- <amadeuszx.slawinski@linux.intel.com>, srinivas.kandagatla@linaro.org,
- mathias.nyman@intel.com, perex@perex.cz, conor+dt@kernel.org,
- corbet@lwn.net, broonie@kernel.org, lgirdwood@gmail.com, krzk+dt@kernel.org,
- Thinh.Nguyen@synopsys.com, bgoswami@quicinc.com, tiwai@suse.com,
- robh@kernel.org, gregkh@linuxfoundation.org
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-sound@vger.kernel.org, linux-usb@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, linux-doc@vger.kernel.org,
- alsa-devel@alsa-project.org
-References: <20240610235808.22173-1-quic_wcheng@quicinc.com>
- <20240610235808.22173-33-quic_wcheng@quicinc.com>
- <5be51e1f-70c9-4bbc-96fa-1e50e441bd35@linux.intel.com>
- <408d9e8e-0f40-7e66-54be-2f8d2c0783a3@quicinc.com>
- <ca1e1063-e1bd-4e03-a7cd-91985e9954e9@linux.intel.com>
- <096d59a0-5e18-092c-c9ae-d98130226f06@quicinc.com>
- <368d9019-2c96-468e-b472-7e1127f76213@linux.intel.com>
- <eb6370ea-47a0-3659-3c10-cb7f95e3e520@quicinc.com>
- <510468c7-b181-48d0-bf2d-3e478b2f2aca@linux.intel.com>
- <c7a95157-1b71-1489-3657-8fe67f9acb4e@quicinc.com>
- <90463a4e-c2e7-4b59-9a79-23533b4acd1e@linux.intel.com>
- <fd8f1eb0-4b21-4697-8175-a61bc3858852@quicinc.com>
-Content-Language: en-US
-From: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-In-Reply-To: <fd8f1eb0-4b21-4697-8175-a61bc3858852@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20240630034649.173229-1-marex@denx.de> <20240630034649.173229-2-marex@denx.de>
+In-Reply-To: <20240630034649.173229-2-marex@denx.de>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 2 Jul 2024 10:38:14 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXb6nBHLeK1c4CwEUBE8osDyAC_+ohA+10W_mZdGtQufQ@mail.gmail.com>
+Message-ID: <CAMuHMdXb6nBHLeK1c4CwEUBE8osDyAC_+ohA+10W_mZdGtQufQ@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: renesas: Drop ethernet-phy-ieee802.3-c22
+ from PHY compatible string on all RZ boards
+To: Marek Vasut <marex@denx.de>
+Cc: linux-arm-kernel@lists.infradead.org, andrew@lunn.ch, 
+	kernel@dh-electronics.com, kernel test robot <lkp@intel.com>, 
+	Conor Dooley <conor+dt@kernel.org>, Khuong Dinh <khuong@os.amperecomputing.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
+	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi Marek,
 
->> There are really multiple layers to deal with
->>
->> a) is the controller able to support the offload path? IIRC this is
->> embedded in an obscure XHCI property, it would make sense to expose it
->> as a control, or component string, of the USB card.
-> 
-> If a component string/tag is desired, I already have some way of doing that.  I can add it to the USB card.
-> 
->>
->> b) is there a companion card capable of dealing with the offload path?
->> Since the presence of this card may depend on driver probe, there should
->> be a control on the USB card. userspace could detect changes to this
->> control and detect if that path is or is no longer enabled.
-> 
-> So currently, the "USB Offload Playback Capable Card" kcontrol (on the USB card) will determine if there is an offload path.  However, this differs than what Amadeusz is suggesting, in that he wants a single kcontrol created for EACH USB card identified (per USB audio device), and a simple enable/disable control to determine if the offload path is enabled for that card/pcm stream.
-> 
-> It would be a simpler approach for the userspace, and if the card that handles the offload card isn't present, then these enable/disable control will be set to "disabled," and even if users attempt to set the control, it won't go through.
+On Sun, Jun 30, 2024 at 5:47=E2=80=AFAM Marek Vasut <marex@denx.de> wrote:
+> The rtl82xx DT bindings do not require ethernet-phy-ieee802.3-c22
+> as the fallback compatible string. There are fewer users of the
+> Realtek PHY compatible string with fallback compatible string than
+> there are users without fallback compatible string, so drop the
+> fallback compatible string from the few remaining users:
+>
+> $ git grep -ho ethernet-phy-id001c....... | sort | uniq -c
+>       1 ethernet-phy-id001c.c816",
+>       2 ethernet-phy-id001c.c915",
+>       2 ethernet-phy-id001c.c915";
+>       5 ethernet-phy-id001c.c916",
+>      13 ethernet-phy-id001c.c916";
+>
+> Reported-by: kernel test robot <lkp@intel.com>
+> Closes: https://lore.kernel.org/oe-kbuild-all/202406290316.YvZdvLxu-lkp@i=
+ntel.com/
+> Signed-off-by: Marek Vasut <marex@denx.de>
 
-Not following. Are you suggesting userspace would modify the
-enable/disable status?
+Thanks for your patch!
 
-I would just have a read-only control that reports what the hardware can
-do and which other card can deal with offload. It's up to userspace to
-select the offloaded PCM device or not.
+> Note: this closes only part of the report
 
+In that case you should use a Link: instead of a Closes: tag?
 
+> --- a/arch/arm64/boot/dts/renesas/cat875.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/cat875.dtsi
+> @@ -22,8 +22,7 @@ &avb {
+>         status =3D "okay";
+>
+>         phy0: ethernet-phy@0 {
+> -               compatible =3D "ethernet-phy-id001c.c915",
+> -                            "ethernet-phy-ieee802.3-c22";
+> +               compatible =3D "ethernet-phy-id001c.c915";
+>                 reg =3D <0>;
+>                 interrupt-parent =3D <&gpio2>;
+>                 interrupts =3D <21 IRQ_TYPE_LEVEL_LOW>;
 
->> c) which PCM device is actually offloaded? This could be plural for some
->> implementations. The mapping between PCM devices exposed by the USB
->> card, and those exposed by the companion card, should be known to
->> userspace. I am not sure how this would be done though, a variable
->> number of controls is a sure way to confuse userspace.
-> 
-> Expanding on Amadeusz's suggestion, my idea is to have an enable/disable kcontrol per USB stream.  For example, one USB card could have multiple PCM devices (USB streams).  So we would have something like:
-> 
-> PCM Offload Playback Enable Stream#0  enable/disable
-> 
-> PCM Offload Playback Enable Stream#1  enable/disable
-> 
-> ....
+What about moving the PHYs inside an mdio subnode, and removing the
+compatible properties instead? That would protect against different
+board revisions using different PHYs or PHY revisions.
 
-are those read-only or not?
+According to Niklas[1], using an mdio subnode cancels the original
+reason (failure to identify the PHY in reset state after unbind/rebind
+or kexec) for adding the compatible values[2].
 
-> So we'd know which USB card and PCM device is selected for USB SND.  However, I see what you're getting at in case there are multiple supported streams, because userspace needs to know which ASoC card/pcm combination corresponds to which USB device/combination.
+[1] https://lore.kernel.org/linux-renesas-soc/20240625171445.GF3655345@ragn=
+atech.se
+[2] commit d45ba2a5f718346e ("arm64: dts: renesas: Add compatible
+     properties to RTL8211E Ethernet PHYs").
 
-I don't understand how this would help map the two parts? There's got to
-be an additional mapping...
+Gr{oetje,eeting}s,
 
-> What do you think about having a USB card kcontrol to display the mapped ASoC card and PCM indexes?
-> 
-> PCM Offload Playback Enable Stream Mapping#0  0, 1 (ASoC card#0, PCM device#1)
-> 
-> To summarize, if we did this, I'd plan to remove all the kcontrols in ASoC card, and have the following in the USB card for an USB audio device that supports one USB stream:
-> 
-> PCM Offload Playback Enable Stream#0  enable/disable
-> 
-> PCM Offload Playback Enable Stream Mapping#0  0, 1 (ASoC card#0, PCM device#1)
+                        Geert
 
-... which is suggested here.
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-Assuming these are read-only controls, we would need to know which PCM
-device on the USB card can be optimized with the use of which PCM device
-on the ASoC card. That means a set of three values. You would also want
-a number of streams to make the guesswork on controls less painful.
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
