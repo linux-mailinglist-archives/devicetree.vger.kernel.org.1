@@ -1,164 +1,107 @@
-Return-Path: <devicetree+bounces-82487-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82482-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CD2A924870
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 21:36:49 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65436924867
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 21:36:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1688EB2195D
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 19:36:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1C50D289E15
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 19:36:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C0691CE081;
-	Tue,  2 Jul 2024 19:36:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9283C1CCCD7;
+	Tue,  2 Jul 2024 19:36:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kFmjHdOa"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nEuv8T5I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
+Received: from mail-pg1-f182.google.com (mail-pg1-f182.google.com [209.85.215.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCE9E1CD5AE
-	for <devicetree@vger.kernel.org>; Tue,  2 Jul 2024 19:36:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1913F6E5ED;
+	Tue,  2 Jul 2024 19:36:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719949005; cv=none; b=Bbitdw/d4Bi52Km24fMrNIUP185X7s05GJdU7uPnIznKx8cFqChd9IlFrCyMU4FO/KNgalF7qXBj3c+2f9m8KUdOEuZX8CelpetvbMIXqVft3f95RIrIOW7TkiGfc9EtQ7+LXPPKkSc04DLllN6f+A54rUgiaVSMOD1nuHTnYsQ=
+	t=1719948982; cv=none; b=kdCQde/t2shUzuSoB9C4L1QscsWREX25GQHatPhedEVTDDGDOz8/5ENH4RkzZ+gAPIb9/xJtgel0AD4Tpjel9JwPeUQuVJj16GhnV5hpaZUIHihPdwuQ21qACxih5mbQD6qNjcvbimfGvjdDNwvSH5nEqMH6pVvjwhzxC4Xn734=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719949005; c=relaxed/simple;
-	bh=iQfsNDwxQuKmM1LvRmrJ5KrF/yqZ29FfGhovA+NFxD4=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=imD2JsYqjHIHTDhMqWn+W9Dw3AiHczMdAWMk01VvVbKTn5nUMJgLeZOifvVzHRPnKhrI2nYGvZH/RGjPvBj7ORW91kDxIFPc3D/lSgzv8OAloVpYJh6LYKVCOpaOLLOLkiVw4wact5CUoxRnYkt/eD5jcCLdUNldHZ2RKxM6bZ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kFmjHdOa; arc=none smtp.client-ip=209.85.167.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1719948982; c=relaxed/simple;
+	bh=4gNcptxj/2rGixSFWTcb684lRGhblEvRPK3Wk9h2sus=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rxELzXL6/cOobAWUTr1T5fNWQz5k/9vkpeLkj35zNINBCO1fvt9Pu6E/ppmeu7Y5WEnH9NH3Cnoz6SUFFNDHkyFsAWTjslhJPHfCEPBu0J2u6lPIFDBykrwduGG87+WJxf4sKi7XNyCV87cqfJicLzIiL+D6CDHHm6b2S6H4yoM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nEuv8T5I; arc=none smtp.client-ip=209.85.215.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f172.google.com with SMTP id 5614622812f47-3d562b35fb6so2735576b6e.3
-        for <devicetree@vger.kernel.org>; Tue, 02 Jul 2024 12:36:41 -0700 (PDT)
+Received: by mail-pg1-f182.google.com with SMTP id 41be03b00d2f7-713fa1aea36so1934979a12.1;
+        Tue, 02 Jul 2024 12:36:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1719949001; x=1720553801; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=iIkm02pH4tYGv9UK3P4L+KwMHHNwtAihXpO73Co81yw=;
-        b=kFmjHdOapqViZ8OuHqYPtYknZMBYzh+dhmwDJ6iLHT40flgXmZuyeDIYjRxf+EYpp4
-         t0SUwOfbC85X2PfKeyHwRhotAZTRk1ExZO+fTj48dVsUzvxDcPsTsPjzwNaVR4X/Ta0/
-         jF9tKt3tYALsVR0LJM9F4M0iAQmsKR28cyl5Fzgqiid+KXCPw2RVdPTxUU8IGmIwjuCl
-         kM5wUsfyV5RvQk63I1lYuYcXTyncvQuKIWhG4LyAde4E8OURhguHBAqLpYxbtzd30MAB
-         bKDBMmVDi7LC1PtJ3b9imQZXmAowYuuA1xkF7DtNecvGYUdD15e2S0mFpEfj5Hxb1DN1
-         3KHw==
+        d=gmail.com; s=20230601; t=1719948980; x=1720553780; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:sender
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=1waVsGt32JK2Dm41Zb3NYQ/x719kWK5aWnQ191Xp6QY=;
+        b=nEuv8T5Ipll4lfOxMcanwOdRxwNm0rRX9XYXxW6lW6KgfH5pWqQZDd6FYdT/gKik9G
+         DKSRmRLoUr5q6PJq8eAWX3r938YzkJsKVWvi0KU8w51Vxos7UI4Q+khgPQ2MHltPrV21
+         PsvaL1VVzu59WtM5lVo6Pl89O2sMkNbz3XeJFOE5+dia7veiBgatNsVCofWPRGZtcu+c
+         0AhkUSqJNGpAVaefP8UeZcoyKQBfgaf0vtD10Seae1xSpSvUGYEqIqIg6lTiJGS63ykx
+         cKjKytVxPAV/zsByxaugU9xxGFpuJSYbe9DTyqQY5S5GNShA7cG/p35+cvVuaJlIMYkH
+         J6iw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719949001; x=1720553801;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=iIkm02pH4tYGv9UK3P4L+KwMHHNwtAihXpO73Co81yw=;
-        b=dprW9UXIUF+y0diJyPRW9ukGui2TXO48R3vqvc22P4Ygx/qthXVk+pkd4R1PiPw7/T
-         PXOXMZBz4h9R7zGkjCOOjAnDW1jG+Rh5TPuRmiHNwFW52739oRbiJtgJ2cc50mkabShz
-         1iRULqam0hdqBLstFBavQKPbtu74Wo3JJJYfpwbID4PSvSu8o38PGfWm4vHd7uJt4WKt
-         KwnO9gpYud9aiEqDQc7WGTsdlwFzVNxrG8gZl0s8fl/Dw1LFiCqYSdwpIJB4tXKw0R/2
-         Jd/eY5kj6MNrepo49w4mQ/ERawvd/VqAGQZUbpnVzZWH4WqZSPBzthnpC25beGMPLU0O
-         K5xQ==
-X-Gm-Message-State: AOJu0YxhoCFYWGlN2Y6s+KFxyRfp2XQo2bg/oAH6fXZtb2z08pltX1mB
-	TynPK0HwzXqHf1Kh8UAMMbIna6L/JVODijTHlDf+75RImZ6NXmBp
-X-Google-Smtp-Source: AGHT+IHMNkVy2icivHQQ3ufaLkkXzGxFxtxYottOBg7ZAoK4buq0b1eW1wEk9z0uK0gO4r+1REzYhA==
-X-Received: by 2002:a05:6808:159c:b0:3c7:3106:e2e1 with SMTP id 5614622812f47-3d6b2b24231mr14046094b6e.8.1719949000751;
-        Tue, 02 Jul 2024 12:36:40 -0700 (PDT)
-Received: from localhost.localdomain ([2600:1700:fb0:1bcf::54])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-3d62f83c92dsm1831335b6e.0.2024.07.02.12.36.40
+        d=1e100.net; s=20230601; t=1719948980; x=1720553780;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:sender
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1waVsGt32JK2Dm41Zb3NYQ/x719kWK5aWnQ191Xp6QY=;
+        b=HMkgInG7I0fOsp/R46ERlBwbbbiw7/U5GHtpXY5zkOj14ot2ZBfMIk93bNg7TeM+LN
+         rsMtkDZBbZEw3ISXAZtZobIV/8pNVFNgXk9mwLRtnErZi+VwVajEE9Nn+A3/jtwOQFPb
+         XEBuUNrCnFUhLhQcAmuVn/bG5E9pkdA/spz642sctlRrvq90aT9AFmd2b+UER5qwTjY0
+         BFvRRbaeGJYTkCunmcazjazVjPReKrRLYj+5wEgTg7qyus2DxU5lHyGYTUKMICvcchRm
+         DIPk8wubWDn1nqrPf1RwjpMAwhUDihqiDR+gaQOhZCOOO1Vn/kfC0gkrZ5aicgeNvPkQ
+         rhlw==
+X-Forwarded-Encrypted: i=1; AJvYcCXriioAYbI7bGOwjZ6LJXnKedKlGJBcM2pn+/uEjzQqgq0pJABpYkpIzfyvTv1FnlQd/gCaSvN6JrkuqviTbNlbWgFBkWxXN0o06Y3ARcRdCsEcWSdeuYuclQflrXqlc74kc27usAAL/05gpkTxvbZe6oserk1CSl97exfzOrxiy0tJH+eyBx9vXpPftjsaUbFieg5XbHGXWYMUMUEutO+1TAuofkSYfIJdf+FqEuYkGUqO1xffJY/Qn8mC
+X-Gm-Message-State: AOJu0Yzwz9Ex65LyS4Ti9U4eSukEmAl6ItLk+Lu+NPwNSG5ToWphaNhj
+	IOodUrhr77o47aJyJM6t3aWOPhLPr+XY1C6sWLizr1i9wLzAfHzr
+X-Google-Smtp-Source: AGHT+IEdfIeRLn7+PxwkGKVzfoUuvnPU6jw/fcQYursCU+Ex2woxO0j+QhFNDPJnHHfemcVSfTBHZw==
+X-Received: by 2002:a05:6a20:a10d:b0:1be:ce69:ca5f with SMTP id adf61e73a8af0-1bef611b7f4mr9586475637.1.1719948980233;
+        Tue, 02 Jul 2024 12:36:20 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2c91ce740c2sm9239300a91.33.2024.07.02.12.36.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Jul 2024 12:36:40 -0700 (PDT)
-From: Chris Morgan <macroalpha82@gmail.com>
-To: linux-sunxi@lists.linux.dev
-Cc: devicetree@vger.kernel.org,
-	mripard@kernel.org,
-	ryan@testtoast.com,
-	andre.przywara@arm.com,
-	samuel@sholland.org,
-	jernej.skrabec@gmail.com,
-	wens@csie.org,
-	conor+dt@kernel.org,
-	krzk+dt@kernel.org,
-	robh@kernel.org,
-	Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH V2 4/4] arm64: dts: allwinner: h700: Add Anbernic RG35XX-SP
-Date: Tue,  2 Jul 2024 14:34:14 -0500
-Message-Id: <20240702193414.57461-5-macroalpha82@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240702193414.57461-1-macroalpha82@gmail.com>
-References: <20240702193414.57461-1-macroalpha82@gmail.com>
+        Tue, 02 Jul 2024 12:36:19 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Tue, 2 Jul 2024 12:36:18 -0700
+From: Guenter Roeck <linux@roeck-us.net>
+To: Alex Vdovydchenko <xzeol@yahoo.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sean Anderson <sean.anderson@linux.dev>,
+	Jean Delvare <jdelvare@suse.com>, Jonathan Corbet <corbet@lwn.net>,
+	Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org,
+	linux-i2c@vger.kernel.org
+Subject: Re: [PATCH v4 2/2] hwmon: add MP5920 driver
+Message-ID: <7f573771-82fb-4351-b954-4a41ee0b3cd7@roeck-us.net>
+References: <20240702115252.981416-1-xzeol@yahoo.com>
+ <20240702115252.981416-3-xzeol@yahoo.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240702115252.981416-3-xzeol@yahoo.com>
 
-From: Chris Morgan <macromorgan@hotmail.com>
+On Tue, Jul 02, 2024 at 02:52:51PM +0300, Alex Vdovydchenko wrote:
+> Add support for MPS Hot-Swap controller mp5920. This driver exposes
+> telemetry and limit value readings and writings.
+> 
+> Signed-off-by: Alex Vdovydchenko <xzeol@yahoo.com>
+> Reviewed-by: Thomas Weiﬂschuh <linux@weissschuh.net>
 
-The Anbernic RG35XXSP is almost identical to the RG35XX-Plus, but in a
-clamshell form-factor. The key differences between the SP and the Plus
-is a lid switch and an RTC on the same i2c bus as the PMIC.
+Applied.
 
-Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
----
- arch/arm64/boot/dts/allwinner/Makefile        |  3 +-
- .../sun50i-h700-anbernic-rg35xx-sp.dts        | 34 +++++++++++++++++++
- 2 files changed, 36 insertions(+), 1 deletion(-)
- create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-sp.dts
-
-diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
-index 0db7b60b49a1..00bed412ee31 100644
---- a/arch/arm64/boot/dts/allwinner/Makefile
-+++ b/arch/arm64/boot/dts/allwinner/Makefile
-@@ -49,5 +49,6 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h618-orangepi-zero2w.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h618-orangepi-zero3.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h618-transpeed-8k618-t.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h700-anbernic-rg35xx-2024.dtb
--dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h700-anbernic-rg35xx-plus.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h700-anbernic-rg35xx-h.dtb
-+dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h700-anbernic-rg35xx-plus.dtb
-+dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h700-anbernic-rg35xx-sp.dtb
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-sp.dts b/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-sp.dts
-new file mode 100644
-index 000000000000..0cf16dc903cd
---- /dev/null
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-sp.dts
-@@ -0,0 +1,34 @@
-+// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+/*
-+ * Copyright (C) 2024 Ryan Walklin <ryan@testtoast.com>.
-+ * Copyright (C) 2024 Chris Morgan <macroalpha82@gmail.com>.
-+ */
-+
-+#include <dt-bindings/input/gpio-keys.h>
-+#include "sun50i-h700-anbernic-rg35xx-plus.dts"
-+
-+/ {
-+	model = "Anbernic RG35XX SP";
-+	compatible = "anbernic,rg35xx-sp", "allwinner,sun50i-h700";
-+
-+	gpio-keys-lid {
-+		compatible = "gpio-keys";
-+
-+		lid-switch {
-+			label = "Lid Switch";
-+			gpios = <&pio 4 7 GPIO_ACTIVE_LOW>; /* PE7 */
-+			linux,can-disable;
-+			linux,code = <SW_LID>;
-+			linux,input-type = <EV_SW>;
-+			wakeup-event-action = <EV_ACT_DEASSERTED>;
-+			wakeup-source;
-+		};
-+	};
-+};
-+
-+&r_i2c {
-+	rtc_ext: rtc@51 {
-+		compatible = "nxp,pcf8563";
-+		reg = <0x51>;
-+	};
-+};
--- 
-2.34.1
-
+Guenter
 
