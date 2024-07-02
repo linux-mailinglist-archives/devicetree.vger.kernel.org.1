@@ -1,198 +1,109 @@
-Return-Path: <devicetree+bounces-82235-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82236-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CD5D92391D
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 11:06:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A9DF92398E
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 11:18:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8A3501F254D0
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 09:06:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D1BDE2824CC
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 09:18:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A99AF1509A6;
-	Tue,  2 Jul 2024 09:06:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAD9F15250D;
+	Tue,  2 Jul 2024 09:12:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="NpHIw/vI";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="Bjx6ImGF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fZ52Eem6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout6-smtp.messagingengine.com (fout6-smtp.messagingengine.com [103.168.172.149])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F97A14F111;
-	Tue,  2 Jul 2024 09:06:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.149
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4A1115216E;
+	Tue,  2 Jul 2024 09:12:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719911179; cv=none; b=l5HTY7UdnhYRGkzhG6QhJN9ljlcTbWTQ+6bDxEKM9Cg9s4APg8mjk0JzIXxXiNk52mXE2QeAXMx9frWIvv4AcjnMgeRC4dpSBj2QJqRVG0B1gD9lbAV6XQ62wE1ItdF5PN0+DhVc8ag6QUU26Q+73yTa5keLnWDBxUrdIwR7QAA=
+	t=1719911546; cv=none; b=HgCBIPuOYIbmQQp/2m+oP5k5p24eEx1+QTU3LeO/yPz++enLW0HrS0FDxiTvBCiHsFJIImQKstrhwd7czw9PfD2GH9lRMzoVhSEhz//GF3Xi+XS9rFitJCTKZP26ibtwKVHYCAUv3KKCGVkmxigars1azAYE/2U3Dzg/CQMKxJU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719911179; c=relaxed/simple;
-	bh=yT2dU406UigV/1rd2Qpji/wju03N3iYdlfmnLKqMHCw=;
+	s=arc-20240116; t=1719911546; c=relaxed/simple;
+	bh=QfDqM+46RuWvbEKiE81isawn+VstMt3edIuywum410E=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ssKznDyu+c5seVylqEy0x8TPEL10pojvTKORmbBH0GUllrzib+GHfglrk4qhjdiPzm0ocHfZeKsXjMTH3jpJX1Wr3j2xSzkyi3lwZFcsuHG8msVWsLld/lZ8apsiqRjUpnKrI4+Q8kZhOykoies+ZSiKfNzRDWGMqmLUl9TGEE0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=NpHIw/vI; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=Bjx6ImGF; arc=none smtp.client-ip=103.168.172.149
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-	by mailfout.nyi.internal (Postfix) with ESMTP id 4E1BD138053D;
-	Tue,  2 Jul 2024 05:06:14 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute4.internal (MEProxy); Tue, 02 Jul 2024 05:06:14 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm1; t=1719911174;
-	 x=1719997574; bh=3YWozVWx8MlebHOnbd6VGG/h5yBrUd/5xxmH3DK6qxg=; b=
-	NpHIw/vIfYD0/psaKVqJEHpoE3BBf6r5Ln9m8A+3mZfGEVfmsnKF+zQtT5yU4wE3
-	9qAQ0OM4adID7dNLKArhgiypPBNTduU82vOvDP7Ri3FXDm5USOC54799GBC2dzxk
-	IEo098b667dQp6WxF52QcwdMsXTgxanU3u0rKH04rTAMbxxeLpd8uugckKtDeom8
-	w8IoyTLaffdHZtVzoIacBDOM17aRLmgtwT74o3dlI917KWNMGVEXkeFdswmbwD57
-	gcbIFO06yqglhq02gy0XhuN3moZj5yToAEDZ5CAwzrXUlEpnQbT9wfpux/cZ3npa
-	gR69Oz+Acd2OVJnuBjmY8w==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1719911174; x=
-	1719997574; bh=3YWozVWx8MlebHOnbd6VGG/h5yBrUd/5xxmH3DK6qxg=; b=B
-	jx6ImGFFucudZg5EeazFsFAlN5v4A88LqSi8hH9Fd/bPUxPvh33L+L6N56WCTWBj
-	Vey8p0D0b8x/yZ4GuOH6Lp0IYeMaO5VMWZowF2gavRbHOEU7tj9n1TcO2bljrHur
-	1lG3hqdXJudhQf37UZdJ/2g58ioUj+1Zd77xRvoFkKjbPrBSXGoe7B4EhJ8s4fIP
-	M9uNTPvVxfY8phXvuXWDtZEGuXszmIuXBIpkrDyTDtEjZGwJx0XZqbuBFYhijSFt
-	zcSdoq7y4tulGYJ/ZNdDay6yGtmXAytU0cwe/77PV7AedPAISonya20Ss6XztK/P
-	YFSQZzP39kNkIi2c8+08A==
-X-ME-Sender: <xms:BcODZh8OiKAeLYhUZUvuz8KDvfz3yQdj_DL5I1SLikwBRKf5USCaZg>
-    <xme:BcODZlv5J8Vs1r_Ag4tZnx7NvGc7WDKfRqcQ1MVbRbv_gTsZSpFzvKs5jtM3KURc8
-    -k4eJ9qfp4wn4NSiQQ>
-X-ME-Received: <xmr:BcODZvBFUZ3J2h9W8svSQJHCWHBQkacDaAa9iAjddg5K-yF8WckEn5qQshcvEzygw0xs7cJoXl20d6dQoMzCYRY_jniAq74>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrudehgddutdcutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpeffhffvvefukfhfgggtugfgjgesthekredttddtjeenucfhrhhomheppfhikhhl
-    rghsucfunpguvghrlhhunhguuceonhhikhhlrghsrdhsohguvghrlhhunhguodhrvghnvg
-    hsrghssehrrghgnhgrthgvtghhrdhsvgeqnecuggftrfgrthhtvghrnhepfefhleelhfff
-    jefgfedugfegjeelhfevheeikefhueelgfdtfeeuhefftddvleeinecuvehluhhsthgvrh
-    fuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepnhhikhhlrghsrdhsohguvghr
-    lhhunhguodhrvghnvghsrghssehrrghgnhgrthgvtghhrdhsvg
-X-ME-Proxy: <xmx:BcODZlfTk96t2ZKElvqmRMf-8IF20gwpjBw_25Xj1iXrgrYrZS-J_A>
-    <xmx:BcODZmPqSBctXOd5_j89vNyGeExlWAcY6zrHxHFxpPCnMSrxi0f2ZA>
-    <xmx:BcODZnlay9pAZ-nnDkAoN3QWt52kDupEZMJq0BUdbpfpUvJxzuCT9w>
-    <xmx:BcODZgvNB6Rx0O9MzOar4y0WcRqDGZPwQibMAe15tRxmcWsQuiXE_A>
-    <xmx:BsODZnHbmmDhI7J4vJoYETIonWdE74MIC1sh-e3Ka4s87STcnmBkCTEl>
-Feedback-ID: i80c9496c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 2 Jul 2024 05:06:13 -0400 (EDT)
-Date: Tue, 2 Jul 2024 11:06:10 +0200
-From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v4 1/5] dt-bindings: media: renesas,vin: Add Gen4 family
- fallback
-Message-ID: <20240702090610.GA2984619@ragnatech.se>
-References: <20240624144108.1771189-1-niklas.soderlund+renesas@ragnatech.se>
- <20240624144108.1771189-2-niklas.soderlund+renesas@ragnatech.se>
- <CAMuHMdUrEf9KFKCawY_XPu0WuJwaE+Se21jx-d4X_Ef+f2S36Q@mail.gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZUBee6l/Zry0886DRwQJU7CE85AgEacgIIMWAB+DKaMoqB5F9+D23bI4L8zMhiaou4zhMa1p1g2SnPu+1R/0GpRnO6RGWf/Fo2Kf+BfVUH/2eWirkMNJtmIVqQhRTpMz8jib8/K0UI/GS37i46Y1XTL0KijQJZe48msSDS36Xg0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fZ52Eem6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4443AC116B1;
+	Tue,  2 Jul 2024 09:12:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719911545;
+	bh=QfDqM+46RuWvbEKiE81isawn+VstMt3edIuywum410E=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=fZ52Eem6mvS159XLg0r9UR2KRx/n++dhirNQSlh8sJD74YmiG/PtmB1XQzqZZb9Qi
+	 PKBMWn5qo2Na1F5LZrrYvg9+by9VnWVH/4Vs2sAgIHXADVognnbpX8egw4z3VirDiZ
+	 VPpkrdh4ktFXruFAYMdjJXC+SW7wmhDKK/Rn1EXIkF8efrNEu7ZKw3cAWwcetPxem9
+	 He4Y2cKFlKff4qqTYs5bWv9HtRD7AvZX21F3HcrMWI3OxOsdgmq8nuz08OMpRwI5QE
+	 cNtgztlvlq4IypiWB3lxRsdWZTY0mFXpFDHhH2i4R/fUMBvb3j5idVz7w3OOcOOzlz
+	 f26vy5hZSJMMg==
+Date: Tue, 2 Jul 2024 11:12:21 +0200
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: linux-pci@vger.kernel.org, ryder.lee@mediatek.com,
+	jianjun.wang@mediatek.com, lpieralisi@kernel.org, kw@linux.com,
+	robh@kernel.org, bhelgaas@google.com,
+	linux-mediatek@lists.infradead.org, lorenzo.bianconi83@gmail.com,
+	linux-arm-kernel@lists.infradead.org,
+	krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+	nbd@nbd.name, dd@embedd.com, upstream@airoha.com,
+	angelogioacchino.delregno@collabora.com
+Subject: Re: [PATCH v3 4/4] PCI: mediatek-gen3: Add Airoha EN7581 support
+Message-ID: <ZoPEdU0Eg-f-mbgC@lore-rh-laptop>
+References: <27d28fabbf761e7a38bc6c8371234bf6a6462473.1719668763.git.lorenzo@kernel.org>
+ <20240701202156.GA15356@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="HIQev7ftCHv4QrpC"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMuHMdUrEf9KFKCawY_XPu0WuJwaE+Se21jx-d4X_Ef+f2S36Q@mail.gmail.com>
+In-Reply-To: <20240701202156.GA15356@bhelgaas>
 
-Hi Geert,
 
-Thanks for your review.
+--HIQev7ftCHv4QrpC
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 2024-07-02 09:52:08 +0200, Geert Uytterhoeven wrote:
-> Hi Niklas,
-> 
-> On Mon, Jun 24, 2024 at 4:43 PM Niklas Söderlund
-> <niklas.soderlund+renesas@ragnatech.se> wrote:
-> > The two Gen4 SoCs released (V4H and V4M) that have a video capture
-> > pipeline the VIN IP are very similar.
-> >
-> > The datasheet for the two SoCs have small nuances around the Pre-Clip
-> > registers ELPrC and EPPrC in three use-cases, interlaced images,
-> > embedded data and RAW8 input. On V4H the values written to the registers
-> > are based on odd numbers while on V4M they are even numbers, values are
-> > based on the input image size. No board that uses these SoCs which also
-> > have the external peripherals to test these nuances exists. Most likely
-> > this is an issue in the datasheet.
-> >
-> > Before adding bindings for V4M add a family compatible fallback for
-> > Gen4. That way the driver only needs to be updated once for Gen4, and we
-> > still have the option to fix any problems in the driver if any testable
-> > differences between the two SoCs is found.
-> >
-> > There are already DTS files using the renesas,vin-r8a779g0 compatible
-> > which needs to be updated to not produce a warning for DTS checks. And
-> > the driver will need to kept compatible with renesas,vin-r8a779g0, but
-> > for new Gen4 SoCs such as V4M we can avoid this.
-> >
-> > Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-> > ---
-> > * Changes since v3
-> > - New in v4.
-> 
-> Thanks for your patch!
-> 
-> > --- a/Documentation/devicetree/bindings/media/renesas,vin.yaml
-> > +++ b/Documentation/devicetree/bindings/media/renesas,vin.yaml
-> > @@ -53,7 +53,10 @@ properties:
-> >                - renesas,vin-r8a77990 # R-Car E3
-> >                - renesas,vin-r8a77995 # R-Car D3
-> >                - renesas,vin-r8a779a0 # R-Car V3U
-> 
-> I think R-Car V3U should be moved below, too, as it's the first
-> member of the R-Car Gen4 family, despite the name.
+> On Sat, Jun 29, 2024 at 03:51:54PM +0200, Lorenzo Bianconi wrote:
+> > Introduce support for Airoha EN7581 PCIe controller to mediatek-gen3
+> > PCIe controller driver.
+>=20
+> > +/* PCIe reset line delay in ms */
+> > +#define PCIE_RESET_TIME_MS		100
+>=20
+> Is this something required by the PCIe base spec, or is it specific to
+> EN7581?  Either way it would be nice to have a citation to the spec
+> (revision and section number).  If it's generic to PCIe, it should be
+> in drivers/pci/pci.h so other drivers can use the same thing.
 
-I was a bit conflicted about if I should do this and opted to for the 
-least intrusive change. But the change seems to have landed on a good 
-note, I will do a new version that covers V3U as well.
+It is just the time needed by the EN7581 reset controller to complete the o=
+peration,
+it is not something PCIe generic (it is something just related to EN7581 So=
+C).
+Do you think we should move it in EN7581 reset controller codebase?
 
-> 
-> > +      - items:
-> > +          - enum:
-> >                - renesas,vin-r8a779g0 # R-Car V4H
-> > +          - const: renesas,rcar-gen4-vin # Generic R-Car Gen4
-> 
-> If all differences in the pipeline can be devised from the topology
-> in DT:
+Regards,
+Lorenzo
 
-It can.
+--HIQev7ftCHv4QrpC
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+-----BEGIN PGP SIGNATURE-----
 
-Thanks!
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZoPEcgAKCRA6cBh0uS2t
+rN35AP9EfUH7hNs7C3dKX0KvkFnD1J8wnkXNrAJzJw0HtLwpmAEAn6bO3foyRPn3
+JK+WBsXC8supqVXB8FsdyzUHrHGzTgw=
+=p+m8
+-----END PGP SIGNATURE-----
 
-> 
-> >
-> >    reg:
-> >      maxItems: 1
-> 
-> Gr{oetje,eeting}s,
-> 
->                         Geert
-> 
-> -- 
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-> 
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                 -- Linus Torvalds
-
--- 
-Kind Regards,
-Niklas Söderlund
+--HIQev7ftCHv4QrpC--
 
