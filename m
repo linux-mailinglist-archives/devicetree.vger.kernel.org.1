@@ -1,392 +1,200 @@
-Return-Path: <devicetree+bounces-82439-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82440-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BBE8924409
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 19:01:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0473C92447E
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 19:11:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4F7831C24348
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 17:01:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 28C631C209B1
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 17:11:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7323D1BE224;
-	Tue,  2 Jul 2024 17:01:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A94491BE22A;
+	Tue,  2 Jul 2024 17:11:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="oPzsjD2H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBD97846D;
-	Tue,  2 Jul 2024 17:01:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59E6F15B0FE
+	for <devicetree@vger.kernel.org>; Tue,  2 Jul 2024 17:11:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719939668; cv=none; b=ZCUakdlYRMRQ1jxyxqcCpBiq8xW/NJC702+T+YNLJ1mEyEhH/auCKq3gKwLAkeU3UYQdV1vdaRiUutzcAow9jdtVHxGJc3KVomiU0d+nzMGz14b4qPsfWWQjMB4u17e9fIrnKJ5idCnL7ki9i3+fc6v9rqSRSMvJcGFb4VcyYyY=
+	t=1719940273; cv=none; b=miVWP+q+7NL7Ohmz6oy/1yCFG90TGDmOQREUKKLuj9mC0A+vHINy8Kc1UJKEKDDMax8Z4ur9j41OIIbP9oolqwDw+SY1YK1DQoHTbpqTJHl/eC+odUizN3gbYryckel8hb6K2kgclu53WA2gj/YzGL2wn63ho5rXQZ1Ji96jCkM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719939668; c=relaxed/simple;
-	bh=x6hoXqZu+BosSGk5H6p2sJSp9PRIANrlzXxvUPWGeAE=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=I4Bm8b4lk/on4E0HItHuZRo1XndtamAzhtUFFl61+QPN/AUaI6+FkZ5mdmwuQvt/2MZrysNnuDEtv7QsAiXzCMl/VmzjIJodek2SlaFKi11HaZuJjX0ixRBNcogpqWaS9fZV6GLo7+vUuMT9KvpcpIAliVzcJyU6jS0hiewBxKU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.231])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4WD8L16KJDz6JBcC;
-	Wed,  3 Jul 2024 01:00:25 +0800 (CST)
-Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
-	by mail.maildlp.com (Postfix) with ESMTPS id 148D8140A08;
-	Wed,  3 Jul 2024 01:01:02 +0800 (CST)
-Received: from localhost (10.203.174.77) by lhrpeml500005.china.huawei.com
- (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Tue, 2 Jul
- 2024 18:01:01 +0100
-Date: Tue, 2 Jul 2024 18:01:00 +0100
-From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-CC: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@outlook.com>, "Paul Walmsley"
-	<paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
-	<aou@eecs.berkeley.edu>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	=?ISO-8859-1?Q?Miqu=E8l?= Raynal <miquel.raynal@bootlin.com>,
-	<linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
-Subject: Re: [PATCH 2/3] iio: adc: sophgo-saradc: Add driver for Sophgo
- SARADC
-Message-ID: <20240702180100.00000096@Huawei.com>
-In-Reply-To: <20240702-sg2002-adc-v1-2-ac66e076a756@bootlin.com>
-References: <20240702-sg2002-adc-v1-0-ac66e076a756@bootlin.com>
-	<20240702-sg2002-adc-v1-2-ac66e076a756@bootlin.com>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
+	s=arc-20240116; t=1719940273; c=relaxed/simple;
+	bh=YsymPZFgWBI9YBT5s8fBx3jdP9ha1a4aPtV4QMjjHzA=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=VZd9+R8Bg146Tx7xHLCDpoK3zYnhEiAJqTWoexKZSErG8GApte6xW4qN5lca3D1CQPRYA6i3o91nL/48aFSApmXSm2XLu4xvZHwW131b6QjmBUg+Xf0Z7K1y+gkyIOzBpi+eK/Y9yYspYUoQBcAmI4HllV1lQsBqtCrUh8edTt8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=oPzsjD2H; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: lhrpeml100001.china.huawei.com (7.191.160.183) To
- lhrpeml500005.china.huawei.com (7.191.163.240)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1719940268;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=u7/5ojEr2xShOQ3viJR1gwG7GLdlm6yhxk9GFSld4v4=;
+	b=oPzsjD2Hp2M1+9OqWtAs5JeF64TnYfvR6e20RjVDDhWoWwAcK/k+UTKwRDYDfZ5FHKn213
+	L33GBeHlkijvk/VY55js0v36fPzAnWbLTfZ0SA2vN2P4Rz3G1SlEEa0zk5sKykBQ4Jxdth
+	JOXluFQSW3wowPrRs/azUMvTWeTPxvr6WBU5ZspQdWXBPiLM0/7zo4qZyn5ggHmdaqV4Po
+	GERpvJJNhFG0fXcCF75/YoUAechIITqVVZmVp0H7RsZWaw8E3eEwdwtfqXNWpU/aKFo6Jl
+	0yyhf5fiyYak7oQqmfMFdyxtpaZ7irPyHz8U2XCJhlh3XQVceW4AYph3gWkVbg==
+Date: Tue, 02 Jul 2024 19:11:07 +0200
+From: Dragan Simic <dsimic@manjaro.org>
+To: Philipp Puschmann <p.puschmann@pironex.com>
+Cc: linux-rockchip@lists.infradead.org, robh@kernel.org, krzk+dt@kernel.org,
+ heiko@sntech.de, devicetree@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: rockchip: rk356x: add ethernet aliases
+In-Reply-To: <43fa9511-fe25-4326-b398-0361cf75094c@pironex.com>
+References: <20240702124626.116290-1-p.puschmann@pironex.com>
+ <6bb12ab4cd12357dfd69db35107d8b88@manjaro.org>
+ <f2c7cdb2-b27d-40cc-b103-68043714f13c@pironex.com>
+ <14db27e78c9e1183568b4c99ec487092@manjaro.org>
+ <43fa9511-fe25-4326-b398-0361cf75094c@pironex.com>
+Message-ID: <17737db596331761ff1937c10b32c26a@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-On Tue, 02 Jul 2024 13:52:22 +0200
-Thomas Bonnefille <thomas.bonnefille@bootlin.com> wrote:
-
-> This adds a driver for the common Sophgo SARADC.
+On 2024-07-02 17:14, Philipp Puschmann wrote:
+> Am 02.07.24 um 16:41 schrieb Dragan Simic:
+>> On 2024-07-02 16:25, Philipp Puschmann wrote:
+>>>> On 2024-07-02 14:46, Philipp Puschmann wrote:
+>>>>> Providing ethernet aliases solves a subtle problem for the rk3568. 
+>>>>> The
+>>>>> bus_id used for the sysfs directory name of the mdio. Without 
+>>>>> ethernet
+>>>>> alias the bus_id is always 0 and so creating the sysfs directory 
+>>>>> for the
+>>>>> second mdio fails with a duplicate filename error and by this the 
+>>>>> setup
+>>>>> of the second ethernet port fails too.
+>>>>> 
+>>>>> Note: The alias numbering is inverted as gmac1 comes from more 
+>>>>> generic
+>>>>> rk356x.dtsi but gmac0 comes from specialised rk3568.
+>>>> 
+>>>> Please see the following commits and the discussions on the 
+>>>> rockchip-linux
+>>>> mailing list that are linked in them:
+>>>> 
+>>>> - b0140a1b3b1d ("arm64: dts: rockchip: Add ethernet0 alias to the 
+>>>> dts
+>>>>   for RK3588(S) boards")
+>>>> - 36d9b3ae708e ("arm64: dts: rockchip: Add ethernet0 alias to the 
+>>>> dts
+>>>>   for RK3566 boards")
+>>>> - 5d90cb1edcf7 ("arm64: dts: rockchip: Remove ethernet0 alias from 
+>>>> the
+>>>>   SoC dtsi for RK3399")
+>>>> - c900fef5deff ("arm64: dts: rockchip: Remove ethernet0 alias from 
+>>>> the
+>>>>   SoC dtsi for RK3368")
+>>>>> To sum it up, ethernetX aliases are considered board-level 
+>>>>> features,
+>>>> because not all boards/devices actually expose the Ethernet 
+>>>> interfaces
+>>>> built into the SoCs.  Thus, adding ethernetX aliases to the SoC dtsi
+>>>> files, unfortunately, isn't an acceptable option.
+>>> 
+>>> Are ethernet aliases are handled differently than i2c, serial and spi 
+>>> aliases?
+>>> There are aliases for each of them, without doing any harm. And even 
+>>> if the gmac
+>>> nodes are disabled with status property?
+>> 
+>> In a word, yes; they are handled a bit differently, which I already 
+>> tried
+>> to sum up.  As Krzysztof already noted, please read the discussions 
+>> linked
+>> in the patches listed above.
+>> 
+>>> On my rk3568-based custom board i had no ethernet aliases and 
+>>> networking was
+>>> enabled normally with the status properties of the gmac nodes. Either 
+>>> one or
+>>> the other or both network devices were initialized. Would be strange 
+>>> if an
+>>> alias would be used without regard to initializing a device driver.
+>> 
+>> It's also about following the TRMs and the aliases (or common names) 
+>> defined
+>> in them, as described in the above-mentioned discussions.
 > 
-> Signed-off-by: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+> Ok. I understand the point why the ethernet alias belongs to the board
+> dts instead of the SoC dtis.
+> But on the quick i found no reference in Documentation/ or in 
+> drivers/net or the
+> mentioned
+> that and why ethernet aliases aren't optional (and it appears in many 
+> cases they
+> are). From my years of board bring-up my understanding of aliases was, 
+> that they
+> are in general are optional and for some subsystems they are used to 
+> hard-code
+> sysfs paths and device names in /dev to solve the problem of randomness 
+> in
+> initialization order.
 
-Hi Thomas,
+Sure, ethernetX aliases are optional.  Basically, if a board exposes 
+none of
+the Ethernet interfaces built into the SoC, there should be no ethernetX 
+aliases
+and, of course, no GMACs enabled in the board dts file.
 
-Welcome to IIO.
-
-Various comments inline
-
-Thanks,
-
-Jonathan
-> diff --git a/drivers/iio/adc/sophgo-adc.c b/drivers/iio/adc/sophgo-adc.c
-> new file mode 100644
-> index 000000000000..a94d839d40ec
-> --- /dev/null
-> +++ b/drivers/iio/adc/sophgo-adc.c
-> @@ -0,0 +1,223 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
-> +/*
-> + *  Sophgo SARADC Driver
-> + *
-> + *  Copyright (C) Bootlin 2024
-> + *  Author: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-> + */
-> +
-> +#include <linux/clk.h>
-> +#include <linux/completion.h>
-> +#include <linux/dev_printk.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/iio/iio.h>
-> +#include <linux/iopoll.h>
-> +#include <linux/module.h>
-> +#include <linux/mutex.h>
-> +#include <linux/of.h>
-probably want mod_devicetable.h instead.
-
-> +#include <linux/platform_device.h>
-> +
-> +#define SOPHGO_SARADC_CTRL_REG			0x04
-> +#define		SOPHGO_SARADC_EN		BIT(0)
-> +#define		SOPHGO_SARADC_SEL(x)		BIT((x)+4)
-> +#define SOPHGO_SARADC_STATUS_REG		0x08
-> +#define		SOPHGO_SARADC_BUSY		BIT(0)
-> +#define SOPHGO_SARADC_CYC_SET_REG		0x0C
-> +#define		SOPHGO_SARADC_DEF_CYC_SETTINGS	0xF1F0F
-> +#define SOPHGO_SARADC_CH_RESULT_REG(x)		(0x10+4*(x))
-> +#define		SARADC_CH_RESULT(x)		((x) & 0xfff)
-> +#define		SARADC_CH_VALID(x)		((x) & BIT(15))
-
-Prefer defined masks and FIELD_GET() to actually get the values.
-Also use consistent prefix for defines.
-
-
-> +#define SOPHGO_SARADC_INTR_EN_REG		0x20
-> +#define SOPHGO_SARADC_INTR_CLR_REG		0x24
-> +
-> +#define SOPHGO_SARADC_CHANNEL(index)					\
-> +	{								\
-> +		.type = IIO_VOLTAGE,					\
-> +		.indexed = 1,						\
-> +		.channel = index,					\
-> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),		\
-> +		.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE),	\
-> +		.scan_index = index,					\
-> +		.scan_type = {						\
-> +			.sign = 'u',					\
-> +			.realbits = 12,					\
-
-No need to define these if not providing buffered capture.
-
-
-> +		},							\
-> +	}
-> +
-> +struct sophgo_saradc {
-> +	struct completion completion;
-> +	struct iio_info info;
-> +	void __iomem *regs;
-> +	struct mutex lock;
-
-Add a comment on what data this lock protects.  
-
-> +	struct clk *clk;
-After changes below, probably don't need to hang on to the clk.
-> +	int irq;
-Rarely need to keep hold of the irq after probe. Use a local variable for
-it in instead.
-
-> +};
-> +
-> +static const struct iio_chan_spec sophgo_channels[] = {
-> +	SOPHGO_SARADC_CHANNEL(1),
-> +	SOPHGO_SARADC_CHANNEL(2),
-> +	SOPHGO_SARADC_CHANNEL(3),
-> +};
-> +
-> +static void sophgo_saradc_start_measurement(struct sophgo_saradc *saradc,
-> +					    int channel)
-> +{
-> +	writel(0, saradc->regs + SOPHGO_SARADC_CTRL_REG);
-> +	writel(SOPHGO_SARADC_SEL(channel) | SOPHGO_SARADC_EN,
-> +	       saradc->regs + SOPHGO_SARADC_CTRL_REG);
-> +}
-> +
-> +static int sophgo_saradc_wait(struct sophgo_saradc *saradc)
-> +{
-> +	if (saradc->irq < 0) {
-> +		u32 reg;
-> +
-> +		return readl_poll_timeout(saradc->regs + SOPHGO_SARADC_STATUS_REG,
-> +					  reg, !(reg & SOPHGO_SARADC_BUSY),
-> +					  500, 1000000);
-> +	} else {
-
-Returned above, so no need for else which helps with indent.
-
-
-> +		int ret;
-> +
-> +		ret = wait_for_completion_timeout(&saradc->completion,
-> +						  msecs_to_jiffies(1000)) > 0
-> +						  ? 0 : -ETIMEDOUT;
-> +		return ret;
-return wait_for_completion.
-> +	}
-> +}
-> +
-> +static int sophgo_saradc_read_raw(struct iio_dev *indio_dev,
-> +				  struct iio_chan_spec const *chan,
-> +				  int *val, int *val2, long mask)
-> +{
-> +	switch (mask) {
-> +	case IIO_CHAN_INFO_RAW:
-> +		struct sophgo_saradc *saradc = iio_priv(indio_dev);
-> +		u32 sample;
-> +		int ret;
-> +
-> +		mutex_lock(&saradc->lock);
-
-Use scoped_guard() here so you can return directly on error.
-
-> +		sophgo_saradc_start_measurement(saradc, chan->scan_index);
-> +		ret = sophgo_saradc_wait(saradc);
-> +		if (ret < 0) {
-> +			mutex_unlock(&saradc->lock);
-> +			return ret;
-> +		}
-> +
-> +		sample = readl(saradc->regs + SOPHGO_SARADC_CH_RESULT_REG(chan->scan_index));
-> +		mutex_unlock(&saradc->lock);
-> +
-> +		if (SARADC_CH_VALID(sample)) {
-> +			*val = SARADC_CH_RESULT(sample);
-> +			return IIO_VAL_INT;
-> +		}
-errors out of line preferred.
-		if (!SARADC_CH_VALID(sample))
-			return -ENODATA;
-
-		*val...
-
-> +		return -ENODATA;
-> +	case IIO_CHAN_INFO_SCALE:
-> +		*val = 3300;
-> +		*val2 = 12;
-> +		return IIO_VAL_FRACTIONAL_LOG2;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-> +
-> +static irqreturn_t sophgo_saradc_interrupt_handler(int irq, void *dev_id)
-> +{
-> +	struct sophgo_saradc *saradc = dev_id;
-
-dev_id is an odd name for something that isn't an id.
-
-No register to confirm the interupt status?  Fine if not, but relatively
-unusual.
-
-> +
-> +	writel(1, saradc->regs + SOPHGO_SARADC_INTR_CLR_REG);
-> +	complete(&saradc->completion);
-> +	return IRQ_HANDLED;
-> +}
-> +
-
-Single blank line
-
-> +
-> +static const struct of_device_id sophgo_saradc_match[] = {
-> +	{ .compatible = "sophgo,cv18xx-saradc", },
-> +	{ },
-No comma needed on 'null' terminators like this as we won't
-ever add anything after them.
-
-> +};
-> +MODULE_DEVICE_TABLE(of, sophgo_saradc_match);
-> +
-> +static int sophgo_saradc_probe(struct platform_device *pdev)
-> +{
-> +	struct sophgo_saradc *saradc;
-> +	struct iio_dev *indio_dev;
-> +	int ret;
-> +
-> +	indio_dev = devm_iio_device_alloc(&pdev->dev, sizeof(*saradc));
-> +	if (!indio_dev)
-> +		return -ENOMEM;
-> +
-> +	saradc = iio_priv(indio_dev);
-> +	indio_dev->name = "Sophgo SARADC";
-
-Hmm. Whilst the ABI docs don't say it, I don't think we have names with
-either capitals or spaces.  sophgo-saradc or similar preferred.
-
-> +	indio_dev->info = &saradc->info;
-
-This is making some static const data dynamic. I can't see why you'd do this
-
-> +	indio_dev->modes = INDIO_DIRECT_MODE;
-> +	indio_dev->num_channels = 3;
-
-ARRAY_SIZE(sophgo_channels)
-
-> +	indio_dev->channels = sophgo_channels;
-> +
-> +	saradc->clk = devm_clk_get(&pdev->dev, NULL);
-
-If it's optional, then use dev_clk_get_optional()
-
-> +	if (IS_ERR(saradc->clk)) {
-> +		dev_dbg(&pdev->dev, "Can't get clock from device tree, using No-Die domain");
-> +	} else {
-> +		ret = clk_prepare_enable(saradc->clk);
-
-Perhaps devm_clk_get_optional_enabled() is appropriate, then
-you can use null return to detect that it wasn't present - vs an ERR_PTR() for
-it was but didn't enable.
-
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	saradc->regs = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(saradc->regs)) {
-> +		ret = PTR_ERR(saradc->regs);
-> +		goto error_disable_clock;
-> +	}
-> +
-> +	saradc->irq = platform_get_irq_optional(pdev, 0);
-> +	if (saradc->irq >= 0) {
-> +		ret = devm_request_irq(&pdev->dev, saradc->irq,
-> +				sophgo_saradc_interrupt_handler, 0,
-> +				dev_name(&pdev->dev), saradc);
-> +		if (ret)
-> +			goto error_disable_clock;
-> +
-> +		writel(1, saradc->regs + SOPHGO_SARADC_INTR_EN_REG);
-> +
-> +		init_completion(&saradc->completion);
-Usually best to init a completion that is irq related before requesting
-the irq. Avoids any possible races.
-
-> +	}
-> +
-> +	saradc->info.read_raw = &sophgo_saradc_read_raw;
-Why?  
-> +
-> +	mutex_init(&saradc->lock);
-> +	platform_set_drvdata(pdev, indio_dev);
-> +	writel(SOPHGO_SARADC_DEF_CYC_SETTINGS, saradc->regs + SOPHGO_SARADC_CYC_SET_REG);
-> +	ret = devm_iio_device_register(&pdev->dev, indio_dev);
-> +	if (ret)
-> +		goto error_disable_clock;
-> +
-> +	return 0;
-> +
-> +error_disable_clock:
-> +	if (!IS_ERR(saradc->clk))
-Don't mix and match devm and non devm management.
-As above, I think you can just use devm_clk_get_optional_enabled()
-
-> +		clk_disable_unprepare(saradc->clk);
-> +	return ret;
-> +}
-> +
-> +static void sophgo_saradc_remove(struct platform_device *pdev)
-> +{
-> +	struct iio_dev *indio_dev = platform_get_drvdata(pdev);
-> +	struct sophgo_saradc *saradc = iio_priv(indio_dev);
-> +
-> +	if (!IS_ERR(saradc->clk))
-> +		clk_disable_unprepare(saradc->clk);
-> +}
-> +
-
-Single blank line is enough.
-
-> +
-> +static struct platform_driver sophgo_saradc_driver = {
-> +	.driver	= {
-> +		.name		= "sophgo-saradc",
-> +		.of_match_table	= sophgo_saradc_match,
-> +	},
-> +	.probe = sophgo_saradc_probe,
-> +	.remove_new = sophgo_saradc_remove,
-> +};
-> +module_platform_driver(sophgo_saradc_driver);
-> +
-> +MODULE_AUTHOR("Thomas Bonnefille <thomas.bonnefille@bootlin.com>");
-> +MODULE_DESCRIPTION("Sophgo SARADC driver");
-> +MODULE_LICENSE("GPL");
+>>>> The sysfs issue that you've discovered should be instead solved in 
+>>>> some
+>>>> other, more systemic way.
+>>> 
+>>> The bus_id value comes from stmmac_platform.c and of_alias_get_id() 
+>>> with
+>>> "ethernet" as parameter is used, what is a common way in the kernel. 
+>>> It
+>>> delivers unique ints starting with 0. stmmac_mdio then uses the 
+>>> bus_id to
+>>> create a mdio bus id string stmmac-${bus_id} to register a mdio_bus.
+>>> From my understanding this kind of bus id is commonly used to name 
+>>> devices
+>>> and paths in the sysfs. Viewed only this problem it would be possible
+>>> to use other information like the node address or some unique
+>>> information to use it as unique part of the mdio bus id. But doesn't 
+>>> break
+>>> things too, at least some kind of convention?
+>>> 
+>>> Another hack i tried first, was to use a static increasing int to get
+>>> the bus_id. This would keep the resulting sysfs tree probably 
+>>> unchanged
+>>> but would drop the connection between dts and bus numbering in sysfs.
+>> 
+>> Wouldn't those issues be solved by simply defining the needed 
+>> ethernetX
+>> aliases in the dts file for your board?
 > 
+> Yes. But for me it wasn't obviously that and why i would need that 
+> aliases
+> to make a mdio work that is not even mentioned in the dts file (in my 
+> case).
+> So in a perfect would would like to have a solution that comes without 
+> some
+> hidden magic or the need to dig through the code.
 
+Frankly, I'm not sure that defining aliases is some hidden magic, :) but
+I think that I understand your point.  Thus, I'd still suggest that you 
+try
+to improve the code in the areas you found troublesome, making it more 
+robust
+in a systemic way.
 
