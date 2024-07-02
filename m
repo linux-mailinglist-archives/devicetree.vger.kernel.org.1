@@ -1,68 +1,62 @@
-Return-Path: <devicetree+bounces-82427-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82428-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A3749243B5
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 18:39:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 739869243C8
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 18:43:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 27482B25482
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 16:39:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A26101C23415
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 16:43:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC4571BD4F1;
-	Tue,  2 Jul 2024 16:39:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0535C1BD505;
+	Tue,  2 Jul 2024 16:43:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Eg5+VRGs"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YLGyJEH1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CDA42AD21;
-	Tue,  2 Jul 2024 16:39:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C357C14293;
+	Tue,  2 Jul 2024 16:43:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719938356; cv=none; b=ZZNSQX84Ozr2SV0bfIHEqDTdeRzL+v03bVhglzPppS4Xx3c3NLj4NgzVRPPKKHTqgs5sJAFij1VXwklkgH9OUyq7Q0bAvFgpZzF9pflxGwHEv+Djv5m/RKytoDJaa+OYVe+gXZOn4xHxhZaEIzyZU3Edf/0O0gULciFNuOBNWXk=
+	t=1719938633; cv=none; b=HrpXX9gKjjjKNEb9UwbZFXTgaP0jsKPt9INFwD5zmvHg0T47KDB6VaU/wJHBPcztHwg9nY0+t5Q/Evsp7BnrV7hipVzJ8epgwBG/zCqWE641POBlSER2wiDXFaJX5i1tCE1081I8kpOSBfkiaOHJuKoypcPnzGIiRXMM3hSmEnw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719938356; c=relaxed/simple;
-	bh=g14jA8QXl5fdAefIcpJfPYFXboQyZ2ZKpm4/Ay9puQU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=O+Qe1IRuakRtAkAgc7pdRnqi8nIzOyPF88C7OsUSQpj68kF2PRksbStKxC7nJyg98IfaxxRZHn68ySKJxYCn5Wqkl1iIQtrZGz4MU+0F9DvkKSev/ZAtyI2YutOryiChNfBszTFCESLbFSTd0W9LAPORBQBZTe2qTFKSm8t8loI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Eg5+VRGs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC898C116B1;
-	Tue,  2 Jul 2024 16:39:12 +0000 (UTC)
+	s=arc-20240116; t=1719938633; c=relaxed/simple;
+	bh=//GomSYzOrge1gnmNadrT9G0k2ZttW4yn36f5CsKAvw=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=qTnN1S13T7L4bkqtf8QyGD2shc6Y4Emczet/FQPscH10HLvlf1hZ18uey1PxrXgvy6Yeax8XVilLTy4D52WsOmGwFCRGBpeO+uBfemYNwZec9arOdBB3CYi8hgYpWFZSln7uRb3U0qj6CeIvbWr9NM9DEbmaJT2owOSpKBQOQ88=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YLGyJEH1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D00DDC116B1;
+	Tue,  2 Jul 2024 16:43:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719938356;
-	bh=g14jA8QXl5fdAefIcpJfPYFXboQyZ2ZKpm4/Ay9puQU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Eg5+VRGsPZ5YNKRWUaL254EhB7j/rKgTDH8DoOvH47JH6lpLPHI8R+oumOj7hphXb
-	 VlPJsPVmiGTJquiX7gWzGNMi6UZ6SWR0n63pppOQDPrrVRLN0WYH79Tw08clcwhJGw
-	 Ovd8nuKU7ARnTIqiarc7FONrrqFOkj1e5KNQpd7/hxmy1MDO8Ybbk2jnDaT6JU8CB4
-	 CIWrMCfmkRCRNuMwUkYLW1AQRvBBH5ioD7KlRaqSOLCtczk8Ug9VBtcsYOU/z91aYD
-	 YX6D74Fji91jOZz5YMBTxQUlBdu/BgFO4JDjLMArlwaTJRVZ63fYzTlGd0k/mqRdYq
-	 TYmG08Ql2R83w==
-Date: Tue, 2 Jul 2024 17:39:09 +0100
-From: Will Deacon <will@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Georgi Djakov <djakov@kernel.org>,
-	Georgi Djakov <quic_c_gdjako@quicinc.com>, robin.murphy@arm.com,
-	joro@8bytes.org, iommu@lists.linux.dev, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, andersson@kernel.org,
-	konrad.dybcio@linaro.org, robdclark@gmail.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, quic_cgoldswo@quicinc.com,
-	quic_sukadev@quicinc.com, quic_pdaly@quicinc.com,
-	quic_sudaraja@quicinc.com
-Subject: Re: [PATCH v8 5/7] arm64: dts: qcom: sdm845: Add DT nodes for the
- TBUs
-Message-ID: <20240702163908.GA4635@willie-the-truck>
-References: <20240417133731.2055383-1-quic_c_gdjako@quicinc.com>
- <20240417133731.2055383-6-quic_c_gdjako@quicinc.com>
- <CAA8EJppcXVu72OSo+OiYEiC1HQjP3qCwKMumOsUhcn6Czj0URg@mail.gmail.com>
- <CAA8EJpr3GYimirDz39f4n-3hDAxFWzo+9fdY6MAuxaNguouVFg@mail.gmail.com>
- <3e816509-a12b-4658-85f4-c0d0037c6a64@kernel.org>
- <CAA8EJpr1G4eq5xJn0z2JQmpXY89UK13uk2BWJCgROsFP_-NkQw@mail.gmail.com>
+	s=k20201202; t=1719938633;
+	bh=//GomSYzOrge1gnmNadrT9G0k2ZttW4yn36f5CsKAvw=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=YLGyJEH1LgNy6sNeJsd97YWjI/5MyhTsyhwh7HT/hiY7+q82ntuMSUg7ofh7T2hCJ
+	 Xb/N/k3HzlS4jPEqFx2O93JfRBPUcirTia52XvGg68hzysVwr2EnofpHKRPnjzpXYk
+	 4o96rBgNY/Sdo6wKBEcSKaiXU3hPSSuc74ziVWRSqTz4k7tcrJeZxs3uZ89YE3n5Ot
+	 f4leie9vwnk3dY779JyP6401FZF+cVsVwLRei1teTvidDRPZGZKE6bQ3qsfEHG/FyH
+	 Gfzf+7s9xYItiXql3UjuQcI6quBu5Y+lnD+iNK0OrbKOMJJxhwUsRklz6xZ2uPh91m
+	 185xgwU+0TMxw==
+Date: Tue, 2 Jul 2024 11:43:50 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Will Deacon <will@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"open list:PCI DRIVER FOR GENERIC OF HOSTS" <linux-pci@vger.kernel.org>,
+	"moderated list:PCI DRIVER FOR GENERIC OF HOSTS" <linux-arm-kernel@lists.infradead.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
+Subject: Re: [PATCH 1/1] dt-bindings: PCI: host-generic-pci: Increase
+ maxItems to 8 of ranges
+Message-ID: <20240702164350.GA24498@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,45 +65,49 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAA8EJpr1G4eq5xJn0z2JQmpXY89UK13uk2BWJCgROsFP_-NkQw@mail.gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20240702153702.3827386-1-Frank.Li@nxp.com>
 
-On Tue, Jun 25, 2024 at 03:59:27PM +0300, Dmitry Baryshkov wrote:
-> On Tue, 25 Jun 2024 at 15:57, Georgi Djakov <djakov@kernel.org> wrote:
-> >
-> > On 25.06.24 10:50, Dmitry Baryshkov wrote:
-> > > On Fri, 14 Jun 2024 at 21:05, Dmitry Baryshkov
-> > > <dmitry.baryshkov@linaro.org> wrote:
-> > >>
-> > >> On Wed, 17 Apr 2024 at 16:39, Georgi Djakov <quic_c_gdjako@quicinc.com> wrote:
-> > >>>
-> > >>> Add the device-tree nodes for the TBUs (translation buffer units) that
-> > >>> are present on the sdm845 platforms. The TBUs can be used debug the
-> > >>> kernel and provide additional information when a context faults occur.
-> > >>>
-> > >>> Describe the all registers, clocks, interconnects and power-domain
-> > >>> resources that are needed for each of the TBUs.
-> > >>>
-> > >>> Signed-off-by: Georgi Djakov <quic_c_gdjako@quicinc.com>
-> > >>
-> > >> This patch now prevents interconnect drivers from hitting the sync
-> > >> state on SDM845.
-> > >> The TBU driver is enabled only when the ARM_SMMU_QCOM_DEBUG is
-> > >> enabled, which is not a typical case on a normal system:
-> > >
-> > > Georgi, before I start acting like a bull in a china shop and sending
-> > > reverts, any update from your side?
-> >
-> > Hi Dmitry!
-> > Thanks for the report! We can easily add status = "disabled" to the DT
-> > nodes, but please give me some time to take a look what would be the best
-> > way to handle this, as i was out last week and now i am still catching up.
+On Tue, Jul 02, 2024 at 11:37:02AM -0400, Frank Li wrote:
+> IEEE Std 1275-1994 is Inactive-Withdrawn Standard according to
+> https://standards.ieee.org/ieee/1275/1932/.
+
+I'm not quite sure what the connection is?  Is the sentence below a
+quote from the spec above?  Perhaps include the section number it came
+from?
+
+> "require at least one non-prefetchable memory and One or both of
+> prefetchable Memory and IO Space may also be provided". But it does not
+> limit maximum ranges number is 3.
+
+"But IEEE Std 1275-1994 does not limit maximum ranges to 3"?
+
+> Inscrease maximum to 8 because freescale ls1028 and iMX95 use more than
+> 3 ranges.
+
+s/Inscrease/Increase/
+
+> Fix below CHECK_DTBS warning.
+> arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dtb: pcie@1f0000000: ranges: [[2181038080, 1, 4160749568, 1, 4160749568, 0, 1441792], [3254779904, 1, 4162191360, 1, 4162191360, 0, 458752], [2181038080, 1, 4162650112, 1, 4162650112, 0, 131072], [3254779904, 1, 4162781184, 1, 4162781184, 0, 131072], [2181038080, 1, 4162912256, 1, 4162912256, 0, 131072], [3254779904, 1, 4163043328, 1, 4163043328, 0, 131072], [2181038080, 1, 4227858432, 1, 4227858432, 0, 4194304]] is too long
 > 
-> I think the simplest thing would be to move the TBU driver to the
-> arm-qcom-smmu.c instead of having it in the -debug.c
-
-The TBUs aren't used for anything other than debugging, so I'd really
-rather they live with the debug code.
-
-Will
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+>  Documentation/devicetree/bindings/pci/host-generic-pci.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/host-generic-pci.yaml b/Documentation/devicetree/bindings/pci/host-generic-pci.yaml
+> index 3484e0b4b412e..506eed7f6c63d 100644
+> --- a/Documentation/devicetree/bindings/pci/host-generic-pci.yaml
+> +++ b/Documentation/devicetree/bindings/pci/host-generic-pci.yaml
+> @@ -103,7 +103,7 @@ properties:
+>        definition of non-prefetchable memory. One or both of prefetchable Memory
+>        and IO Space may also be provided.
+>      minItems: 1
+> -    maxItems: 3
+> +    maxItems: 8
+>  
+>    dma-coherent: true
+>    iommu-map: true
+> -- 
+> 2.34.1
+> 
 
