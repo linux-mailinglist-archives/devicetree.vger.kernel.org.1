@@ -1,59 +1,68 @@
-Return-Path: <devicetree+bounces-82426-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82427-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 198F89243A5
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 18:34:48 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A3749243B5
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 18:39:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9F8572822F2
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 16:34:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 27482B25482
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 16:39:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 172011BD01E;
-	Tue,  2 Jul 2024 16:34:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC4571BD4F1;
+	Tue,  2 Jul 2024 16:39:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FC26Fg4G"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Eg5+VRGs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E353414293;
-	Tue,  2 Jul 2024 16:34:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CDA42AD21;
+	Tue,  2 Jul 2024 16:39:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719938083; cv=none; b=JQVut5UyDNtrrUEIoAz17oAy1vkahCmG24KQtzy/JdwUb/3p7oXTeTTd/O5cizPfaKjyiDPfMoGnh94RPlvLyyfpp0dRqyYO+woamrMQVc2MlcqvhC6zpuvYPNJPnjBWtqxZkTvuRuZSUV/jbUEM769TRdb+Z/uxlURdSQO+WZA=
+	t=1719938356; cv=none; b=ZZNSQX84Ozr2SV0bfIHEqDTdeRzL+v03bVhglzPppS4Xx3c3NLj4NgzVRPPKKHTqgs5sJAFij1VXwklkgH9OUyq7Q0bAvFgpZzF9pflxGwHEv+Djv5m/RKytoDJaa+OYVe+gXZOn4xHxhZaEIzyZU3Edf/0O0gULciFNuOBNWXk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719938083; c=relaxed/simple;
-	bh=khiZR101rp5P36Em7z0sEdIWe+tz1ChCcX6aGVTw7R8=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=OYcxkMeG/wO8Zj4nx0FgJDm4TcgA2t0DcoNRZEaQugi/wRh/FoL/YkRW32rS/6yoKdBWzGy1d5fa9iJ841esMDYaMKPgIKQphC6UByPWUImfqT7/osGzziwwsa8dQ1XirGh/erYJDhM/U63tqjW3uLOjCWTxjnvLymkf/kgxM48=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FC26Fg4G; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00A5DC116B1;
-	Tue,  2 Jul 2024 16:34:41 +0000 (UTC)
+	s=arc-20240116; t=1719938356; c=relaxed/simple;
+	bh=g14jA8QXl5fdAefIcpJfPYFXboQyZ2ZKpm4/Ay9puQU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=O+Qe1IRuakRtAkAgc7pdRnqi8nIzOyPF88C7OsUSQpj68kF2PRksbStKxC7nJyg98IfaxxRZHn68ySKJxYCn5Wqkl1iIQtrZGz4MU+0F9DvkKSev/ZAtyI2YutOryiChNfBszTFCESLbFSTd0W9LAPORBQBZTe2qTFKSm8t8loI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Eg5+VRGs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC898C116B1;
+	Tue,  2 Jul 2024 16:39:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719938082;
-	bh=khiZR101rp5P36Em7z0sEdIWe+tz1ChCcX6aGVTw7R8=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=FC26Fg4Gd9lQlTIDmJQO798iX3AYRLV1N3K+ubVnJUNOnyiMRgamzwaviQih2uMar
-	 2eqA7yr6mEPkDQlTrC1gC4buih5/fNvkxdcsF8mVQRaLwMcmLjvggJx40ehgTvt8NZ
-	 kAwOeVPjqvK1+IHsKBTYaAUhgI4Xn5zOR7OYBzwmbztl1AbshcIK5glMCU1Wrct7SN
-	 z/cUg/GPjp46Y204PlCk7RdylWDvknYjyx0P9fQJbigEsEu1bz5e6oDHaPutmh3oFz
-	 KsXv99kGH+I+pAb6t5BDEifiP1VJ6igQ/mQLOJMIYdtxRLPSAMcUIRQL8iyZ5mzF4+
-	 3r20PudmQeWWQ==
-Date: Tue, 2 Jul 2024 11:34:39 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: linux-pci@vger.kernel.org, ryder.lee@mediatek.com,
-	jianjun.wang@mediatek.com, lpieralisi@kernel.org, kw@linux.com,
-	robh@kernel.org, bhelgaas@google.com,
-	linux-mediatek@lists.infradead.org, lorenzo.bianconi83@gmail.com,
-	linux-arm-kernel@lists.infradead.org,
-	krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-	nbd@nbd.name, dd@embedd.com, upstream@airoha.com,
-	angelogioacchino.delregno@collabora.com
-Subject: Re: [PATCH v3 4/4] PCI: mediatek-gen3: Add Airoha EN7581 support
-Message-ID: <20240702163439.GA24344@bhelgaas>
+	s=k20201202; t=1719938356;
+	bh=g14jA8QXl5fdAefIcpJfPYFXboQyZ2ZKpm4/Ay9puQU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Eg5+VRGsPZ5YNKRWUaL254EhB7j/rKgTDH8DoOvH47JH6lpLPHI8R+oumOj7hphXb
+	 VlPJsPVmiGTJquiX7gWzGNMi6UZ6SWR0n63pppOQDPrrVRLN0WYH79Tw08clcwhJGw
+	 Ovd8nuKU7ARnTIqiarc7FONrrqFOkj1e5KNQpd7/hxmy1MDO8Ybbk2jnDaT6JU8CB4
+	 CIWrMCfmkRCRNuMwUkYLW1AQRvBBH5ioD7KlRaqSOLCtczk8Ug9VBtcsYOU/z91aYD
+	 YX6D74Fji91jOZz5YMBTxQUlBdu/BgFO4JDjLMArlwaTJRVZ63fYzTlGd0k/mqRdYq
+	 TYmG08Ql2R83w==
+Date: Tue, 2 Jul 2024 17:39:09 +0100
+From: Will Deacon <will@kernel.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Georgi Djakov <djakov@kernel.org>,
+	Georgi Djakov <quic_c_gdjako@quicinc.com>, robin.murphy@arm.com,
+	joro@8bytes.org, iommu@lists.linux.dev, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, andersson@kernel.org,
+	konrad.dybcio@linaro.org, robdclark@gmail.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, quic_cgoldswo@quicinc.com,
+	quic_sukadev@quicinc.com, quic_pdaly@quicinc.com,
+	quic_sudaraja@quicinc.com
+Subject: Re: [PATCH v8 5/7] arm64: dts: qcom: sdm845: Add DT nodes for the
+ TBUs
+Message-ID: <20240702163908.GA4635@willie-the-truck>
+References: <20240417133731.2055383-1-quic_c_gdjako@quicinc.com>
+ <20240417133731.2055383-6-quic_c_gdjako@quicinc.com>
+ <CAA8EJppcXVu72OSo+OiYEiC1HQjP3qCwKMumOsUhcn6Czj0URg@mail.gmail.com>
+ <CAA8EJpr3GYimirDz39f4n-3hDAxFWzo+9fdY6MAuxaNguouVFg@mail.gmail.com>
+ <3e816509-a12b-4658-85f4-c0d0037c6a64@kernel.org>
+ <CAA8EJpr1G4eq5xJn0z2JQmpXY89UK13uk2BWJCgROsFP_-NkQw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,27 +71,45 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ZoPEdU0Eg-f-mbgC@lore-rh-laptop>
+In-Reply-To: <CAA8EJpr1G4eq5xJn0z2JQmpXY89UK13uk2BWJCgROsFP_-NkQw@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 
-On Tue, Jul 02, 2024 at 11:12:21AM +0200, Lorenzo Bianconi wrote:
-> > On Sat, Jun 29, 2024 at 03:51:54PM +0200, Lorenzo Bianconi wrote:
-> > > Introduce support for Airoha EN7581 PCIe controller to mediatek-gen3
-> > > PCIe controller driver.
-> > 
-> > > +/* PCIe reset line delay in ms */
-> > > +#define PCIE_RESET_TIME_MS		100
-> > 
-> > Is this something required by the PCIe base spec, or is it specific to
-> > EN7581?  Either way it would be nice to have a citation to the spec
-> > (revision and section number).  If it's generic to PCIe, it should be
-> > in drivers/pci/pci.h so other drivers can use the same thing.
+On Tue, Jun 25, 2024 at 03:59:27PM +0300, Dmitry Baryshkov wrote:
+> On Tue, 25 Jun 2024 at 15:57, Georgi Djakov <djakov@kernel.org> wrote:
+> >
+> > On 25.06.24 10:50, Dmitry Baryshkov wrote:
+> > > On Fri, 14 Jun 2024 at 21:05, Dmitry Baryshkov
+> > > <dmitry.baryshkov@linaro.org> wrote:
+> > >>
+> > >> On Wed, 17 Apr 2024 at 16:39, Georgi Djakov <quic_c_gdjako@quicinc.com> wrote:
+> > >>>
+> > >>> Add the device-tree nodes for the TBUs (translation buffer units) that
+> > >>> are present on the sdm845 platforms. The TBUs can be used debug the
+> > >>> kernel and provide additional information when a context faults occur.
+> > >>>
+> > >>> Describe the all registers, clocks, interconnects and power-domain
+> > >>> resources that are needed for each of the TBUs.
+> > >>>
+> > >>> Signed-off-by: Georgi Djakov <quic_c_gdjako@quicinc.com>
+> > >>
+> > >> This patch now prevents interconnect drivers from hitting the sync
+> > >> state on SDM845.
+> > >> The TBU driver is enabled only when the ARM_SMMU_QCOM_DEBUG is
+> > >> enabled, which is not a typical case on a normal system:
+> > >
+> > > Georgi, before I start acting like a bull in a china shop and sending
+> > > reverts, any update from your side?
+> >
+> > Hi Dmitry!
+> > Thanks for the report! We can easily add status = "disabled" to the DT
+> > nodes, but please give me some time to take a look what would be the best
+> > way to handle this, as i was out last week and now i am still catching up.
 > 
-> It is just the time needed by the EN7581 reset controller to
-> complete the operation, it is not something PCIe generic (it is
-> something just related to EN7581 SoC).  Do you think we should move
-> it in EN7581 reset controller codebase?
+> I think the simplest thing would be to move the TBU driver to the
+> arm-qcom-smmu.c instead of having it in the -debug.c
 
-I have no opinion about moving it.  But it sounds like maybe it should
-have a less generic name so it doesn't look like a generic PCIe thing.
-And also a spec citation would be helpful for future maintenance.
+The TBUs aren't used for anything other than debugging, so I'd really
+rather they live with the debug code.
+
+Will
 
