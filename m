@@ -1,170 +1,338 @@
-Return-Path: <devicetree+bounces-82339-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82340-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A84C7923EC2
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 15:20:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87E47923ED9
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 15:25:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6428D2875BB
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 13:20:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B3F7D1C21F5B
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 13:25:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A6061B3F1E;
-	Tue,  2 Jul 2024 13:20:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 793F71B372F;
+	Tue,  2 Jul 2024 13:25:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UoaspPxJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EM2vpMSV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5038E1AD9E7;
-	Tue,  2 Jul 2024 13:20:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50FAF19AD86;
+	Tue,  2 Jul 2024 13:25:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719926450; cv=none; b=cZpnGZoaGWsSoRBfDAEiZINL2OoHKnA/TFZt4H5m6k8I+aduNsX06R7bBS1boEt/mJGKXFjkWMapu39plW5b7z7q4BYCyhBqhO0xYDE5pdxPL5MZWwnVtoA5o3RQoWCVt5nrvPmYu6U+7n8biWkL5Mu0JpXr2nT/XeV3ML1rLo4=
+	t=1719926708; cv=none; b=c24TMXyLEEDNxFE8UaJoTM/CpC9zip6PyiQ7E96xzu6yOSXoT6ux1TAzXEI6pwBv1CLwWbDqxeTEe6dD04Ge+MZySEcz5iiFNy2yEAUHDCajt7RRa3wJzCmPfsjJR9MRNvvf8RRCzU8FQNRpz62ww2dkfRfiGxwpDC5qtMMe0l8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719926450; c=relaxed/simple;
-	bh=YzMgt8NPVbiKvdfIVs9fw6Z/6jwp6e5dkQwwcuxR/8Q=;
+	s=arc-20240116; t=1719926708; c=relaxed/simple;
+	bh=XjTXfbCIQa36KxnEEDVA+79Iy+FVRaew9MxgzaZrNtk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=b2YRFrXZAmH6JbhYwRc2OZooyzsFzXsZpU3IuS0+KcWJJcwW9KhtNj+0gVJAqFb0RsxzhqxirKlSTrpGpTlvv9gcKtnk0S8Gw5HICGK6tjyXaqZ5gg6/vw8qhq23/X16QV2c1tqHP1eqMO3OSnToxmvmoXDiY9EqWuY/650uvqU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UoaspPxJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4AEA7C4AF0F;
-	Tue,  2 Jul 2024 13:20:46 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=BKBp5F2UMcH7rpSQzgmEus5OQEWlDUDtzqo1njLJVb/S/ZGU3mmJaGlzkNiGQ3LeggcLv2HCN6bkD8WZOz/ojdKSQSMZf/uwJORAWZiB5YKjTpq5IKt/gpXPDzMhLzGrNM7yniqdJeCu99O7H1eUgdashY8bF2Ou0cIy7J0agcg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EM2vpMSV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48C92C116B1;
+	Tue,  2 Jul 2024 13:25:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719926449;
-	bh=YzMgt8NPVbiKvdfIVs9fw6Z/6jwp6e5dkQwwcuxR/8Q=;
+	s=k20201202; t=1719926707;
+	bh=XjTXfbCIQa36KxnEEDVA+79Iy+FVRaew9MxgzaZrNtk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UoaspPxJLCtu0LeiMfVbFVCsUYc/tJW4q8C/k3mSfU/LkdFURAMJbUg5dklJme7uR
-	 CvltNQJfiW3TcOky1rr9VgKNUymiIFXFJUgaCcX/SaMYkdO4SCCks94bGqKSiAioey
-	 FnTCktpMEoEW48FGKnRltWieiLYAdw9aTWmIXh440uFESxW4yprvLMajh9CY8HqbyL
-	 EAVhMR12j65EpsIWd5pYaWryTho/5bdIE6BU7/RL/dKulripMIcnVeSkVgtsLw7SdY
-	 jjhq1iRviXxVWrYFKLGJbqIpyF0MbfkyZVN1/bX4+ArzYcdEM8nPXCrNomndkyjnvk
-	 wWC/6/JCw5dAw==
-Date: Tue, 2 Jul 2024 14:20:44 +0100
-From: Simon Horman <horms@kernel.org>
-To: Peter Yin <peteryin.openbmc@gmail.com>
-Cc: patrick@stwcx.xyz, amithash@meta.com,
-	Samuel Mendoza-Jonas <sam@mendozajonas.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	Cosmo Chou <cosmo.chou@quantatw.com>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org, netdev@vger.kernel.org
-Subject: Re: [PATCH v1 1/1] net/ncsi: specify maximum package to probe
-Message-ID: <20240702132044.GA615643@kernel.org>
-References: <20240701154336.3536924-1-peteryin.openbmc@gmail.com>
- <20240702130024.GJ598357@kernel.org>
+	b=EM2vpMSV2xc/Ui/s6I2JoLMw6Ds1fRhwJIKAyvESfSAY39QHKIP3oQ1FBMDZVBgaY
+	 A3ZxoBQUvrdPT+cAmx4KpgUyagAFmm6NZVKie4xtDvTnnTHU+vkCgHUpWFlfQH428X
+	 GMjTYM6yGERdRrDRxz0nkjX8kPLWvU7+RIpvu9NDrssP34XTVJ0r5CLG3AfK+4fgY/
+	 1R5oDTcLB6zpgeutF+iOsp+yLYY2wxgPo8iRW0YYeuDwMNPEHngQ49nO+AzBphHaS6
+	 k49poiv9D33hvuCpMEecqEogN+rGxjUJyqE3CUpev+NJMUl5g8IXtgpVyUKr5h3xPj
+	 g3APSbpiQKoug==
+Date: Tue, 2 Jul 2024 15:25:04 +0200
+From: Maxime Ripard <mripard@kernel.org>
+To: Sandor Yu <Sandor.yu@nxp.com>
+Cc: dmitry.baryshkov@linaro.org, andrzej.hajda@intel.com, 
+	neil.armstrong@linaro.org, Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, 
+	jernej.skrabec@gmail.com, airlied@gmail.com, daniel@ffwll.ch, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com, 
+	vkoul@kernel.org, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org, 
+	kernel@pengutronix.de, linux-imx@nxp.com, oliver.brown@nxp.com, 
+	alexander.stein@ew.tq-group.com, sam@ravnborg.org
+Subject: Re: [PATCH v16 4/8] drm: bridge: Cadence: Add MHDP8501 DP/HDMI driver
+Message-ID: <20240702-quartz-salamander-of-culture-eec264@houat>
+References: <cover.1719903904.git.Sandor.yu@nxp.com>
+ <359914108b879e995d4a39de32a33310009f0fab.1719903904.git.Sandor.yu@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="lqdlqrw2llhccm2m"
+Content-Disposition: inline
+In-Reply-To: <359914108b879e995d4a39de32a33310009f0fab.1719903904.git.Sandor.yu@nxp.com>
+
+
+--lqdlqrw2llhccm2m
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240702130024.GJ598357@kernel.org>
 
-[ + netdev, which I accidently dropped from the CC list ]
+Hi,
 
-On Tue, Jul 02, 2024 at 02:00:30PM +0100, Simon Horman wrote:
-> [ As this seems to relate to: DT, ASPEED and ARM, CC:
->   Rob Herring, Krzysztof Kozlowski, Conor Dooley, Joel Stanley, Andrew Jeffery,
->   devicetree, linux-arm-kernel, linux-aspeed. ]
-> 
-> On Mon, Jul 01, 2024 at 11:43:36PM +0800, Peter Yin wrote:
-> > Most NICs have a single package. For OCP3.0 NICs, the package ID is
-> > determined by the slot ID. Probing all 8 package IDs is usually
-> > unnecessary. To reduce probe time, add properties to specify the
-> > maximum number of packages.
-> > 
-> > Signed-off-by: Cosmo Chou <cosmo.chou@quantatw.com>
-> > Signed-off-by: Peter Yin <peteryin.openbmc@gmail.com>
-> > ---
-> >  net/ncsi/internal.h    |  1 +
-> >  net/ncsi/ncsi-manage.c | 16 ++++++++++++----
-> >  2 files changed, 13 insertions(+), 4 deletions(-)
-> > 
-> > diff --git a/net/ncsi/internal.h b/net/ncsi/internal.h
-> > index ef0f8f73826f..bd7ad0bf803f 100644
-> > --- a/net/ncsi/internal.h
-> > +++ b/net/ncsi/internal.h
-> > @@ -341,6 +341,7 @@ struct ncsi_dev_priv {
-> >  #define NCSI_MAX_VLAN_VIDS	15
-> >  	struct list_head    vlan_vids;       /* List of active VLAN IDs */
-> >  
-> > +	unsigned int        max_package;     /* Num of packages to probe   */
-> >  	bool                multi_package;   /* Enable multiple packages   */
-> >  	bool                mlx_multi_host;  /* Enable multi host Mellanox */
-> >  	u32                 package_whitelist; /* Packages to configure    */
-> > diff --git a/net/ncsi/ncsi-manage.c b/net/ncsi/ncsi-manage.c
-> > index 5ecf611c8820..159943ee1317 100644
-> > --- a/net/ncsi/ncsi-manage.c
-> > +++ b/net/ncsi/ncsi-manage.c
-> > @@ -1358,12 +1358,12 @@ static void ncsi_probe_channel(struct ncsi_dev_priv *ndp)
-> >  		nd->state = ncsi_dev_state_probe_deselect;
-> >  		fallthrough;
-> >  	case ncsi_dev_state_probe_deselect:
-> > -		ndp->pending_req_num = 8;
-> > +		ndp->pending_req_num = ndp->max_package;
-> >  
-> >  		/* Deselect all possible packages */
-> >  		nca.type = NCSI_PKT_CMD_DP;
-> >  		nca.channel = NCSI_RESERVED_CHANNEL;
-> > -		for (index = 0; index < 8; index++) {
-> > +		for (index = 0; index < ndp->max_package; index++) {
-> >  			nca.package = index;
-> >  			ret = ncsi_xmit_cmd(&nca);
-> >  			if (ret)
-> > @@ -1491,7 +1491,7 @@ static void ncsi_probe_channel(struct ncsi_dev_priv *ndp)
-> >  
-> >  		/* Probe next package */
-> >  		ndp->package_probe_id++;
-> > -		if (ndp->package_probe_id >= 8) {
-> > +		if (ndp->package_probe_id >= ndp->max_package) {
-> >  			/* Probe finished */
-> >  			ndp->flags |= NCSI_DEV_PROBED;
-> >  			break;
-> > @@ -1746,7 +1746,7 @@ struct ncsi_dev *ncsi_register_dev(struct net_device *dev,
-> >  	struct platform_device *pdev;
-> >  	struct device_node *np;
-> >  	unsigned long flags;
-> > -	int i;
-> > +	int i, ret;
-> >  
-> >  	/* Check if the device has been registered or not */
-> >  	nd = ncsi_find_dev(dev);
-> > @@ -1795,6 +1795,14 @@ struct ncsi_dev *ncsi_register_dev(struct net_device *dev,
-> >  		if (np && (of_property_read_bool(np, "mellanox,multi-host") ||
-> >  			   of_property_read_bool(np, "mlx,multi-host")))
-> >  			ndp->mlx_multi_host = true;
-> > +
-> 
-> Should the "ncsi-package" (and above multi-host properties) be
-> documented in DT bindings somewhere? I was unable to locate such
-> documentation.
-> 
-> > +		if (np) {
-> > +			ret = of_property_read_u32(np, "ncsi-package",
-> > +						   &ndp->max_package);
-> > +			if (ret || !ndp->max_package ||
-> > +			    ndp->max_package > NCSI_MAX_PACKAGE)
-> > +				ndp->max_package = NCSI_MAX_PACKAGE;
-> > +		}
-> >  	}
-> 
-> It seems that ndp->max_package will be 0 unless pdev != NULL and np != NULL.
-> Would it be better set to NCSI_MAX_PACKAGE in such cases?
-> 
-> >  
-> >  	return nd;
-> > -- 
-> > 2.25.1
-> > 
-> > 
+There's still the scrambler issue we discussed on v15, but I have some
+more comments.
+
+On Tue, Jul 02, 2024 at 08:22:36PM GMT, Sandor Yu wrote:
+> +enum drm_connector_status cdns_mhdp8501_detect(struct cdns_mhdp8501_device *mhdp)
+> +{
+> +	u8 hpd = 0xf;
+> +
+> +	hpd = cdns_mhdp8501_read_hpd(mhdp);
+> +	if (hpd == 1)
+> +		return connector_status_connected;
+> +	else if (hpd == 0)
+> +		return connector_status_disconnected;
+> +
+> +	dev_warn(mhdp->dev, "Unknown cable status, hdp=%u\n", hpd);
+> +	return connector_status_unknown;
+> +}
+> +
+> +static void hotplug_work_func(struct work_struct *work)
+> +{
+> +	struct cdns_mhdp8501_device *mhdp = container_of(work,
+> +						     struct cdns_mhdp8501_device,
+> +						     hotplug_work.work);
+> +	enum drm_connector_status status = cdns_mhdp8501_detect(mhdp);
+> +
+> +	drm_bridge_hpd_notify(&mhdp->bridge, status);
+> +
+> +	if (status == connector_status_connected) {
+> +		/* Cable connected  */
+> +		DRM_INFO("HDMI/DP Cable Plug In\n");
+> +		enable_irq(mhdp->irq[IRQ_OUT]);
+> +	} else if (status == connector_status_disconnected) {
+> +		/* Cable Disconnected  */
+> +		DRM_INFO("HDMI/DP Cable Plug Out\n");
+> +		enable_irq(mhdp->irq[IRQ_IN]);
+> +	}
+> +}
+
+You shouldn't play with the interrupt being enabled here: hotplug
+interrupts should always enabled.
+
+If you can't for some reason, the reason should be documented in your
+driver.
+
+> +	/* Mailbox protect for HDMI PHY access */
+> +	mutex_lock(&mhdp->mbox_mutex);
+> +	ret = phy_init(mhdp->phy);
+> +	mutex_unlock(&mhdp->mbox_mutex);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to initialize PHY: %d\n", ret);
+> +		goto clk_disable;
+> +	}
+> +
+> +	/* Mailbox protect for HDMI PHY access */
+> +	mutex_lock(&mhdp->mbox_mutex);
+> +	ret = phy_set_mode(mhdp->phy, phy_mode);
+> +	mutex_unlock(&mhdp->mbox_mutex);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to configure PHY: %d\n", ret);
+> +		goto clk_disable;
+> +	}
+
+Why do you need a shared mutex between the phy and HDMI controller?
+
+> +static enum drm_mode_status
+> +cdns_hdmi_tmds_char_rate_valid(const struct drm_bridge *bridge,
+> +			       const struct drm_display_mode *mode,
+> +			       unsigned long long tmds_rate)
+> +{
+> +	struct cdns_mhdp8501_device *mhdp = bridge->driver_private;
+> +	union phy_configure_opts phy_cfg;
+> +	int ret;
+> +
+> +	phy_cfg.hdmi.tmds_char_rate = tmds_rate;
+> +
+> +	/* Mailbox protect for HDMI PHY access */
+> +	mutex_lock(&mhdp->mbox_mutex);
+> +	ret = phy_validate(mhdp->phy, PHY_MODE_HDMI, 0, &phy_cfg);
+> +	mutex_unlock(&mhdp->mbox_mutex);
+> +	if (ret < 0)
+> +		return MODE_CLOCK_RANGE;
+> +
+> +	return MODE_OK;
+> +}
+> +
+> +static enum drm_mode_status
+> +cdns_hdmi_bridge_mode_valid(struct drm_bridge *bridge,
+> +			    const struct drm_display_info *info,
+> +			    const struct drm_display_mode *mode)
+> +{
+> +	unsigned long long tmds_rate;
+> +
+> +	/* We don't support double-clocked and Interlaced modes */
+> +	if (mode->flags & DRM_MODE_FLAG_DBLCLK ||
+> +	    mode->flags & DRM_MODE_FLAG_INTERLACE)
+> +		return MODE_BAD;
+> +
+> +	/* MAX support pixel clock rate 594MHz */
+> +	if (mode->clock > 594000)
+> +		return MODE_CLOCK_HIGH;
+
+This needs to be in the tmds_char_rate_valid function
+
+> +	if (mode->hdisplay > 3840)
+> +		return MODE_BAD_HVALUE;
+> +
+> +	if (mode->vdisplay > 2160)
+> +		return MODE_BAD_VVALUE;
+> +
+> +	tmds_rate = mode->clock * 1000ULL;
+> +	return cdns_hdmi_tmds_char_rate_valid(bridge, mode, tmds_rate);
+
+It will already be called by the core so this is redundant.
+
+> +static void cdns_hdmi_bridge_atomic_enable(struct drm_bridge *bridge,
+> +					   struct drm_bridge_state *old_state)
+> +{
+> +	struct cdns_mhdp8501_device *mhdp = bridge->driver_private;
+> +	struct drm_atomic_state *state = old_state->base.state;
+> +	struct drm_connector *connector;
+> +	struct video_info *video = &mhdp->video_info;
+> +	struct drm_crtc_state *crtc_state;
+> +	struct drm_connector_state *conn_state;
+> +	struct drm_display_mode *mode = &mhdp->mode;
+> +	union phy_configure_opts phy_cfg;
+> +	int ret;
+> +
+> +	connector = drm_atomic_get_new_connector_for_encoder(state,
+> +							     bridge->encoder);
+> +	if (WARN_ON(!connector))
+> +		return;
+> +
+> +	mhdp->curr_conn = connector;
+> +
+> +	conn_state = drm_atomic_get_new_connector_state(state, connector);
+> +	if (WARN_ON(!conn_state))
+> +		return;
+> +
+> +	crtc_state = drm_atomic_get_new_crtc_state(state, conn_state->crtc);
+> +	if (WARN_ON(!crtc_state))
+> +		return;
+> +
+> +	video->color_fmt = conn_state->hdmi.output_format;
+> +	video->bpc = conn_state->hdmi.output_bpc;
+> +
+> +	drm_mode_copy(&mhdp->mode, &crtc_state->adjusted_mode);
+
+Why do you need a copy of all these fields? You should pass the
+connector / bridge state around and not copy these fields.
+
+> +	/* video mode check */
+> +	if (mode->clock == 0 || mode->hdisplay == 0 || mode->vdisplay == 0)
+> +		return;
+
+This should be checked in atomic_check, but I'm pretty sure it's redundant.
+
+> +	dev_dbg(mhdp->dev, "Mode: %dx%dp%d\n",
+> +		mode->hdisplay, mode->vdisplay, mode->clock);
+> +
+> +	drm_atomic_helper_connector_hdmi_update_infoframes(connector, state);
+> +
+> +	/* Line swapping */
+> +	cdns_mhdp_reg_write(&mhdp->base, LANES_CONFIG, 0x00400000 | mhdp->lane_mapping);
+> +
+> +	mhdp->hdmi.char_rate = drm_hdmi_compute_mode_clock(mode,
+> +							   mhdp->video_info.bpc,
+> +							   mhdp->video_info.color_fmt);
+
+The TMDS char rate is already available in the connector_state so there
+no need to recompute it.
+
+> +	phy_cfg.hdmi.tmds_char_rate = mhdp->hdmi.char_rate;
+
+And you shouldn't store a copy either.
+
+> +	/* Mailbox protect for HDMI PHY access */
+> +	mutex_lock(&mhdp->mbox_mutex);
+> +	ret = phy_configure(mhdp->phy, &phy_cfg);
+> +	mutex_unlock(&mhdp->mbox_mutex);
+> +	if (ret) {
+> +		dev_err(mhdp->dev, "%s: phy_configure() failed: %d\n",
+> +			__func__, ret);
+> +		return;
+> +	}
+> +
+> +	cdns_hdmi_sink_config(mhdp);
+> +
+> +	ret = cdns_hdmi_ctrl_init(mhdp);
+> +	if (ret < 0) {
+> +		dev_err(mhdp->dev, "%s, ret = %d\n", __func__, ret);
+> +		return;
+> +	}
+> +
+> +	/* Config GCP */
+> +	if (mhdp->video_info.bpc == 8)
+> +		cdns_hdmi_disable_gcp(mhdp);
+> +	else
+> +		cdns_hdmi_enable_gcp(mhdp);
+> +
+> +	ret = cdns_hdmi_mode_config(mhdp, mode, &mhdp->video_info);
+> +	if (ret < 0) {
+> +		dev_err(mhdp->dev, "CDN_API_HDMITX_SetVic_blocking ret = %d\n", ret);
+> +		return;
+> +	}
+> +}
+> +
+> +static int cdns_hdmi_bridge_clear_infoframe(struct drm_bridge *bridge,
+> +					    enum hdmi_infoframe_type type)
+> +{
+> +	return 0;
+> +}
+
+Either implement it or don't, but an empty function is dead code.
+
+> +static int cdns_hdmi_bridge_write_infoframe(struct drm_bridge *bridge,
+> +					    enum hdmi_infoframe_type type,
+> +					    const u8 *buffer, size_t len)
+> +{
+> +	struct cdns_mhdp8501_device *mhdp = bridge->driver_private;
+> +
+> +	switch (type) {
+> +	case HDMI_INFOFRAME_TYPE_AVI:
+> +		cdns_hdmi_config_infoframe(mhdp, 0, len, buffer, HDMI_INFOFRAME_TYPE_AVI);
+> +		break;
+> +	case HDMI_INFOFRAME_TYPE_SPD:
+> +		cdns_hdmi_config_infoframe(mhdp, 1, len, buffer, HDMI_INFOFRAME_TYPE_SPD);
+> +		break;
+> +	case HDMI_INFOFRAME_TYPE_VENDOR:
+> +		cdns_hdmi_config_infoframe(mhdp, 2, len, buffer, HDMI_INFOFRAME_TYPE_VENDOR);
+> +		break;
+> +	default:
+> +		dev_dbg(mhdp->dev, "Unsupported infoframe type %x\n", type);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int cdns_hdmi_bridge_atomic_check(struct drm_bridge *bridge,
+> +					 struct drm_bridge_state *bridge_state,
+> +					 struct drm_crtc_state *crtc_state,
+> +					 struct drm_connector_state *conn_state)
+> +{
+> +	return drm_atomic_helper_connector_hdmi_check(conn_state->connector, conn_state->state);
+> +}
+
+You should also call your mode_valid function here.
+
+Maxime
+
+--lqdlqrw2llhccm2m
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZoP/rwAKCRDj7w1vZxhR
+xbtMAPwOIZGKcI/rVzpcMiT2neBt5WGvMKV0jq/zloFZ/N14pwD/eob5WPgjeYWd
+oweE8ti1ed438LG/cKON29OerGxdGw0=
+=INSe
+-----END PGP SIGNATURE-----
+
+--lqdlqrw2llhccm2m--
 
