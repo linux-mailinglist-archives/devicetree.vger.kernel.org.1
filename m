@@ -1,203 +1,347 @@
-Return-Path: <devicetree+bounces-82258-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82259-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4D23923A85
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 11:47:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C31B923A8A
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 11:48:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A98B4281E27
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 09:47:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 987F71F21AE4
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 09:48:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0223F156230;
-	Tue,  2 Jul 2024 09:47:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9048B156230;
+	Tue,  2 Jul 2024 09:48:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bytedance.com header.i=@bytedance.com header.b="dpw+rOSr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCD2513D8BA;
-	Tue,  2 Jul 2024 09:47:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
+Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com [209.85.160.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92835155C90
+	for <devicetree@vger.kernel.org>; Tue,  2 Jul 2024 09:48:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719913657; cv=none; b=Wk9pODF8eonUhhNx/3KEMdDjrOCZppkslYf8kjx9gvXMYKnfLS7+jzDimZcQWU3QIElvKtM3OpYeBKATshtjcblXJADeyJhdMy3S5VVv0iC3MwMIoC7Rxo2rul8jOwL37cRmevBylBC7ABh97ClXA2jPzvpWsop/DnyQCtYhvfc=
+	t=1719913701; cv=none; b=beVnU7E06NkfNQ0RZiuE6VXW9zkaEX0GlgbwWS9ivKhZJFoNsgy3c5xFig2XV2sxi9WQAY/0mCpR6JjLpGfMvy9L933jf5qioufHphxD7u1Lx5m2Xo3Af/gBZ77yYJd2C1lRU+T5M16He87HMiKmj9WfwEl7X7Rr/yzVdqr2gkg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719913657; c=relaxed/simple;
-	bh=U0kd/5cQuS9v7tslaaRyOJbZvEk2TvS+cpTPjNEAPt4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=l60t6gNWiBcRYgSH7xhsz+ri0eJu9VIzqJ/GQ8pJH/kHvFuGgtRBs7JyVSy1mnp0HtPD5EZBIjQS2KkKsMT5R0cMTnEL6x2uQXsdpBCTTe/7dJyBqFYVMFzmwaV21k+ReuoGzNyodWv2uR+CgcKlbgsUx47fKc88Kdp1eLhkVQc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-X-IronPort-AV: E=Sophos;i="6.09,178,1716217200"; 
-   d="scan'208";a="213970994"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 02 Jul 2024 18:47:35 +0900
-Received: from localhost.localdomain (unknown [10.226.93.72])
-	by relmlir5.idc.renesas.com (Postfix) with ESMTP id DB42D400C75F;
-	Tue,  2 Jul 2024 18:47:28 +0900 (JST)
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	linux-media@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH 9/9] arm64: dts: renesas: r9a07g043u11-smarc: Enable DU
-Date: Tue,  2 Jul 2024 10:46:19 +0100
-Message-ID: <20240702094630.41485-10-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240702094630.41485-1-biju.das.jz@bp.renesas.com>
-References: <20240702094630.41485-1-biju.das.jz@bp.renesas.com>
+	s=arc-20240116; t=1719913701; c=relaxed/simple;
+	bh=us3L0Hn9gdRrrP3eLVyCFt+JTrBZQUuK9cwCO+Rvlgw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=WGrYG+mCRZF8tAQmdTE/Slcl/PeWlj+wihvu9vOut6D/p8gjNE/fmRHX7dFgUxoZKvvXmBTeROshxyaIGpFcUEN/D/X6eHfOFwDvFncVTuN4Gta0QyFUORtU/+Ah14P1WfzB1TIKPTDLImo804LibHdOqJ2QXliupEZMJjynouM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=bytedance.com; spf=pass smtp.mailfrom=bytedance.com; dkim=pass (2048-bit key) header.d=bytedance.com header.i=@bytedance.com header.b=dpw+rOSr; arc=none smtp.client-ip=209.85.160.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=bytedance.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bytedance.com
+Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-25cc31f3716so1885650fac.3
+        for <devicetree@vger.kernel.org>; Tue, 02 Jul 2024 02:48:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bytedance.com; s=google; t=1719913698; x=1720518498; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=cgjTYztQF+lkm21+SoAtUw0LB3SZvPXk8Y+NeUr3Seg=;
+        b=dpw+rOSrrJQPvpoFVx0ZlJl18n3eju3cPCmO0hS7DG9OMKel1taesC03PH0M6jTEEx
+         sqHBXYIKPOwbMlodA3u9gpf6rLCs/Xzz+ZK4JKeq6ds8Gf7CJUm8Bn8E4M+kRmPy9kDf
+         XgSbjohobMUFqDgzDl4t9zufXnuxhzMtQBhAPpJuUbWw+EfrngHms07oe1gmz2sqLxp5
+         vuUosjJkZYYAR5xZIdYN7q4l9bYEosZc88o2rYalS3ZKrogJOSpPOmod15MdwL7RPCwj
+         DZJDQ3/8Pla3b/tjz0ewkAkqSAvHC6MrAwBZhhoxZc1r97emdGCa1EA1mHO1L/tipSmS
+         ETWQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719913698; x=1720518498;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=cgjTYztQF+lkm21+SoAtUw0LB3SZvPXk8Y+NeUr3Seg=;
+        b=LwqXVR9wKBJFnqIuS68cuwx+kUyTq52u0QK9Fs8WXEn/Jkt29qNCgURjWLZVIE+t1h
+         j0ydeqsj94Zdcdk3vygwVA9Dq1cHeGHDVw9wYT/RIT4ltd9zjJzOB20xPInSVdI9rgJb
+         E4BNe37BLTOTGYCj+IR1mgGjQR6lhZ5lQjkMlLzt1tw+SXtHEc9jjv0rnVLU3eid/XKd
+         u0xH+anL04AcDLD7IhhRKY2KJN7J14xcgALpzP0dcdw9WiBB5XI9qG4EgXlFMgDbzZTI
+         NZ6o0xZb0SVjbSMZ37Cl+PsU/7FpMsQ6MDVn4fatrv4Z7L44nSrHqQmAu5VjTbY3s0Rv
+         sdhw==
+X-Forwarded-Encrypted: i=1; AJvYcCWcoRK+hnRnjT5AX9zxZq6uJchkNfOnY152pdxzLxLxehw9qfjYq17Cc50KOpkaEzoVoQiAqBmmfRtplDWZPaWjqT5s0ZTWcWIbtw==
+X-Gm-Message-State: AOJu0Yx8VSRZUP0jNNZjgddWKEoIS5GEzXbdpSBOPH5NaHCI2P23hcBH
+	/mbTx8fpomFTG5PLUX3/XqcZ7TG2AQNGVG0rdRlpphKY85SSfw04idfX02nqs/p91uaxe4LEe+6
+	uRyx3EM5WTl7u5Iu9E9xl44TXitPbFOac4NxFFw==
+X-Google-Smtp-Source: AGHT+IE+hwvcI4rPV5fEyMAe5ajx33FbIOKjumywSKTu9fNWODlJZdO8iiM1gDSOozd/mXR/kCQVWaNqqndJx3aaiXY=
+X-Received: by 2002:a05:6871:522a:b0:250:7465:d221 with SMTP id
+ 586e51a60fabf-25db3447b45mr7876010fac.28.1719913698401; Tue, 02 Jul 2024
+ 02:48:18 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20240702085034.48395-1-alexghiti@rivosinc.com> <20240702085034.48395-4-alexghiti@rivosinc.com>
+In-Reply-To: <20240702085034.48395-4-alexghiti@rivosinc.com>
+From: yunhui cui <cuiyunhui@bytedance.com>
+Date: Tue, 2 Jul 2024 17:48:06 +0800
+Message-ID: <CAEEQ3wnxBOTvzwswahP6ciOXKMuCbec_Ns+-H0tj9UK-WNow_A@mail.gmail.com>
+Subject: Re: [External] [PATCH v3 3/4] riscv: Stop emitting preventive
+ sfence.vma for new vmalloc mappings
+To: Alexandre Ghiti <alexghiti@rivosinc.com>
+Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Ved Shanbhogue <ved@rivosinc.com>, Matt Evans <mev@rivosinc.com>, linux-kernel@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Enable DU and link with the HDMI add-on board connected with
-the parallel connector on RZ/G2UL SMARC EVK.
+Hi Alexandre,
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
- .../boot/dts/renesas/r9a07g043u11-smarc.dts   | 111 ++++++++++++++++++
- 1 file changed, 111 insertions(+)
+On Tue, Jul 2, 2024 at 4:54=E2=80=AFPM Alexandre Ghiti <alexghiti@rivosinc.=
+com> wrote:
+>
+> In 6.5, we removed the vmalloc fault path because that can't work (see
+> [1] [2]). Then in order to make sure that new page table entries were
+> seen by the page table walker, we had to preventively emit a sfence.vma
+> on all harts [3] but this solution is very costly since it relies on IPI.
+>
+> And even there, we could end up in a loop of vmalloc faults if a vmalloc
+> allocation is done in the IPI path (for example if it is traced, see
+> [4]), which could result in a kernel stack overflow.
+>
+> Those preventive sfence.vma needed to be emitted because:
+>
+> - if the uarch caches invalid entries, the new mapping may not be
+>   observed by the page table walker and an invalidation may be needed.
+> - if the uarch does not cache invalid entries, a reordered access
+>   could "miss" the new mapping and traps: in that case, we would actually
+>   only need to retry the access, no sfence.vma is required.
+>
+> So this patch removes those preventive sfence.vma and actually handles
+> the possible (and unlikely) exceptions. And since the kernel stacks
+> mappings lie in the vmalloc area, this handling must be done very early
+> when the trap is taken, at the very beginning of handle_exception: this
+> also rules out the vmalloc allocations in the fault path.
+>
+> Link: https://lore.kernel.org/linux-riscv/20230531093817.665799-1-bjorn@k=
+ernel.org/ [1]
+> Link: https://lore.kernel.org/linux-riscv/20230801090927.2018653-1-dylan@=
+andestech.com [2]
+> Link: https://lore.kernel.org/linux-riscv/20230725132246.817726-1-alexghi=
+ti@rivosinc.com/ [3]
+> Link: https://lore.kernel.org/lkml/20200508144043.13893-1-joro@8bytes.org=
+/ [4]
+> Signed-off-by: Alexandre Ghiti <alexghiti@rivosinc.com>
+> ---
+>  arch/riscv/include/asm/cacheflush.h  | 18 +++++-
+>  arch/riscv/include/asm/thread_info.h |  5 ++
+>  arch/riscv/kernel/asm-offsets.c      |  5 ++
+>  arch/riscv/kernel/entry.S            | 84 ++++++++++++++++++++++++++++
+>  arch/riscv/mm/init.c                 |  2 +
+>  5 files changed, 113 insertions(+), 1 deletion(-)
+>
+> diff --git a/arch/riscv/include/asm/cacheflush.h b/arch/riscv/include/asm=
+/cacheflush.h
+> index ce79c558a4c8..8de73f91bfa3 100644
+> --- a/arch/riscv/include/asm/cacheflush.h
+> +++ b/arch/riscv/include/asm/cacheflush.h
+> @@ -46,7 +46,23 @@ do {                                                 \
+>  } while (0)
+>
+>  #ifdef CONFIG_64BIT
+> -#define flush_cache_vmap(start, end)           flush_tlb_kernel_range(st=
+art, end)
+> +extern u64 new_vmalloc[NR_CPUS / sizeof(u64) + 1];
+> +extern char _end[];
+> +#define flush_cache_vmap flush_cache_vmap
+> +static inline void flush_cache_vmap(unsigned long start, unsigned long e=
+nd)
+> +{
+> +       if (is_vmalloc_or_module_addr((void *)start)) {
+> +               int i;
+> +
+> +               /*
+> +                * We don't care if concurrently a cpu resets this value =
+since
+> +                * the only place this can happen is in handle_exception(=
+) where
+> +                * an sfence.vma is emitted.
+> +                */
+> +               for (i =3D 0; i < ARRAY_SIZE(new_vmalloc); ++i)
+> +                       new_vmalloc[i] =3D -1ULL;
+> +       }
+> +}
+>  #define flush_cache_vmap_early(start, end)     local_flush_tlb_kernel_ra=
+nge(start, end)
+>  #endif
+>
+> diff --git a/arch/riscv/include/asm/thread_info.h b/arch/riscv/include/as=
+m/thread_info.h
+> index 5d473343634b..32631acdcdd4 100644
+> --- a/arch/riscv/include/asm/thread_info.h
+> +++ b/arch/riscv/include/asm/thread_info.h
+> @@ -60,6 +60,11 @@ struct thread_info {
+>         void                    *scs_base;
+>         void                    *scs_sp;
+>  #endif
+> +       /*
+> +        * Used in handle_exception() to save a0, a1 and a2 before knowin=
+g if we
+> +        * can access the kernel stack.
+> +        */
+> +       unsigned long           a0, a1, a2;
+>  };
+>
+>  #ifdef CONFIG_SHADOW_CALL_STACK
+> diff --git a/arch/riscv/kernel/asm-offsets.c b/arch/riscv/kernel/asm-offs=
+ets.c
+> index b09ca5f944f7..29c0734f2972 100644
+> --- a/arch/riscv/kernel/asm-offsets.c
+> +++ b/arch/riscv/kernel/asm-offsets.c
+> @@ -36,6 +36,8 @@ void asm_offsets(void)
+>         OFFSET(TASK_THREAD_S9, task_struct, thread.s[9]);
+>         OFFSET(TASK_THREAD_S10, task_struct, thread.s[10]);
+>         OFFSET(TASK_THREAD_S11, task_struct, thread.s[11]);
+> +
+> +       OFFSET(TASK_TI_CPU, task_struct, thread_info.cpu);
+>         OFFSET(TASK_TI_FLAGS, task_struct, thread_info.flags);
+>         OFFSET(TASK_TI_PREEMPT_COUNT, task_struct, thread_info.preempt_co=
+unt);
+>         OFFSET(TASK_TI_KERNEL_SP, task_struct, thread_info.kernel_sp);
+> @@ -43,6 +45,9 @@ void asm_offsets(void)
+>  #ifdef CONFIG_SHADOW_CALL_STACK
+>         OFFSET(TASK_TI_SCS_SP, task_struct, thread_info.scs_sp);
+>  #endif
+> +       OFFSET(TASK_TI_A0, task_struct, thread_info.a0);
+> +       OFFSET(TASK_TI_A1, task_struct, thread_info.a1);
+> +       OFFSET(TASK_TI_A2, task_struct, thread_info.a2);
+>
+>         OFFSET(TASK_TI_CPU_NUM, task_struct, thread_info.cpu);
+>         OFFSET(TASK_THREAD_F0,  task_struct, thread.fstate.f[0]);
+> diff --git a/arch/riscv/kernel/entry.S b/arch/riscv/kernel/entry.S
+> index 68a24cf9481a..822311266a12 100644
+> --- a/arch/riscv/kernel/entry.S
+> +++ b/arch/riscv/kernel/entry.S
+> @@ -19,6 +19,78 @@
+>
+>         .section .irqentry.text, "ax"
+>
+> +.macro new_vmalloc_check
+> +       REG_S   a0, TASK_TI_A0(tp)
+> +       REG_S   a1, TASK_TI_A1(tp)
+> +       REG_S   a2, TASK_TI_A2(tp)
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a07g043u11-smarc.dts b/arch/arm64/boot/dts/renesas/r9a07g043u11-smarc.dts
-index 8e0107df2d46..dda37cf4d3fd 100644
---- a/arch/arm64/boot/dts/renesas/r9a07g043u11-smarc.dts
-+++ b/arch/arm64/boot/dts/renesas/r9a07g043u11-smarc.dts
-@@ -35,4 +35,115 @@
- / {
- 	model = "Renesas SMARC EVK based on r9a07g043u11";
- 	compatible = "renesas,smarc-evk", "renesas,r9a07g043u11", "renesas,r9a07g043";
-+
-+	hdmi-out {
-+		compatible = "hdmi-connector";
-+		type = "d";
-+
-+		port {
-+			hdmi_con_out: endpoint {
-+				remote-endpoint = <&adv7513_out>;
-+			};
-+		};
-+	};
-+};
-+
-+&du {
-+	pinctrl-0 = <&du_pins>;
-+	pinctrl-names = "default";
-+
-+	status = "okay";
-+
-+	ports {
-+		port@1 {
-+			du_out_rgb: endpoint {
-+				remote-endpoint = <&adv7513_in>;
-+			};
-+		};
-+	};
-+};
-+
-+&i2c1 {
-+	adv7513: adv7513@39 {
-+		compatible = "adi,adv7513";
-+		reg = <0x39>;
-+
-+		adi,input-depth = <8>;
-+		adi,input-colorspace = "rgb";
-+		adi,input-clock = "1x";
-+
-+		avdd-supply = <&reg_1p8v>;
-+		dvdd-supply = <&reg_1p8v>;
-+		pvdd-supply = <&reg_1p8v>;
-+		dvdd-3v-supply = <&reg_3p3v>;
-+		bgvdd-supply = <&reg_1p8v>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+
-+				adv7513_in: endpoint {
-+					remote-endpoint = <&du_out_rgb>;
-+				};
-+			};
-+
-+			port@1 {
-+				reg = <1>;
-+
-+				adv7513_out: endpoint {
-+					remote-endpoint = <&hdmi_con_out>;
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+&pinctrl {
-+	du_pins: du {
-+		data {
-+			pinmux = <RZG2L_PORT_PINMUX(11, 2, 6)>,
-+				 <RZG2L_PORT_PINMUX(13, 1, 6)>,
-+				 <RZG2L_PORT_PINMUX(13, 0, 6)>,
-+				 <RZG2L_PORT_PINMUX(13, 4, 6)>,
-+				 <RZG2L_PORT_PINMUX(13, 3, 6)>,
-+				 <RZG2L_PORT_PINMUX(12, 1, 6)>,
-+				 <RZG2L_PORT_PINMUX(13, 2, 6)>,
-+				 <RZG2L_PORT_PINMUX(14, 0, 6)>,
-+				 <RZG2L_PORT_PINMUX(14, 2, 6)>,
-+				 <RZG2L_PORT_PINMUX(14, 1, 6)>,
-+				 <RZG2L_PORT_PINMUX(16, 0, 6)>,
-+				 <RZG2L_PORT_PINMUX(15, 0, 6)>,
-+				 <RZG2L_PORT_PINMUX(16, 1, 6)>,
-+				 <RZG2L_PORT_PINMUX(15, 1, 6)>,
-+				 <RZG2L_PORT_PINMUX(15, 3, 6)>,
-+				 <RZG2L_PORT_PINMUX(18, 0, 6)>,
-+				 <RZG2L_PORT_PINMUX(15, 2, 6)>,
-+				 <RZG2L_PORT_PINMUX(17, 0, 6)>,
-+				 <RZG2L_PORT_PINMUX(17, 2, 6)>,
-+				 <RZG2L_PORT_PINMUX(17, 1, 6)>,
-+				 <RZG2L_PORT_PINMUX(18, 1, 6)>,
-+				 <RZG2L_PORT_PINMUX(18, 2, 6)>,
-+				 <RZG2L_PORT_PINMUX(17, 3, 6)>,
-+				 <RZG2L_PORT_PINMUX(18, 3, 6)>;
-+			drive-strength = <2>;
-+		};
-+
-+		sync {
-+			pinmux = <RZG2L_PORT_PINMUX(11, 0, 6)>, /* HSYNC */
-+				 <RZG2L_PORT_PINMUX(12, 0, 6)>; /* VSYNC */
-+			drive-strength = <2>;
-+		};
-+
-+		de {
-+			pinmux = <RZG2L_PORT_PINMUX(11, 1, 6)>; /* DE */
-+			drive-strength = <2>;
-+		};
-+
-+		clk {
-+			pinmux = <RZG2L_PORT_PINMUX(11, 3, 6)>; /* CLK */
-+		};
-+	};
- };
--- 
-2.43.0
+We discussed in the previous version that when executing blt a0, zero,
+_new_vmalloc_restore_context, there is no need to save a1, a2 first,
+right?
 
+> +
+> +       csrr    a0, CSR_CAUSE
+> +       /* Exclude IRQs */
+> +       blt     a0, zero, _new_vmalloc_restore_context
+> +       /* Only check new_vmalloc if we are in page/protection fault */
+> +       li      a1, EXC_LOAD_PAGE_FAULT
+> +       beq     a0, a1, _new_vmalloc_kernel_address
+> +       li      a1, EXC_STORE_PAGE_FAULT
+> +       beq     a0, a1, _new_vmalloc_kernel_address
+> +       li      a1, EXC_INST_PAGE_FAULT
+> +       bne     a0, a1, _new_vmalloc_restore_context
+> +
+> +_new_vmalloc_kernel_address:
+> +       /* Is it a kernel address? */
+> +       csrr    a0, CSR_TVAL
+> +       bge     a0, zero, _new_vmalloc_restore_context
+> +
+> +       /* Check if a new vmalloc mapping appeared that could explain the=
+ trap */
+> +
+> +       /*
+> +        * Computes:
+> +        * a0 =3D &new_vmalloc[BIT_WORD(cpu)]
+> +        * a1 =3D BIT_MASK(cpu)
+> +        */
+> +       REG_L   a2, TASK_TI_CPU(tp)
+> +       /*
+> +        * Compute the new_vmalloc element position:
+> +        * (cpu / 64) * 8 =3D (cpu >> 6) << 3
+> +        */
+> +       srli    a1, a2, 6
+> +       slli    a1, a1, 3
+> +       la      a0, new_vmalloc
+> +       add     a0, a0, a1
+> +       /*
+> +        * Compute the bit position in the new_vmalloc element:
+> +        * bit_pos =3D cpu % 64 =3D cpu - (cpu / 64) * 64 =3D cpu - (cpu =
+>> 6) << 6
+> +        *         =3D cpu - ((cpu >> 6) << 3) << 3
+> +        */
+> +       slli    a1, a1, 3
+> +       sub     a1, a2, a1
+> +       /* Compute the "get mask": 1 << bit_pos */
+> +       li      a2, 1
+> +       sll     a1, a2, a1
+> +
+> +       /* Check the value of new_vmalloc for this cpu */
+> +       REG_L   a2, 0(a0)
+> +       and     a2, a2, a1
+> +       beq     a2, zero, _new_vmalloc_restore_context
+> +
+> +       /* Atomically reset the current cpu bit in new_vmalloc */
+> +       amoxor.w        a0, a1, (a0)
+> +
+> +       /* Only emit a sfence.vma if the uarch caches invalid entries */
+> +       ALTERNATIVE("sfence.vma", "nop", 0, RISCV_ISA_EXT_SVVPTC, 1)
+> +
+> +       REG_L   a0, TASK_TI_A0(tp)
+> +       REG_L   a1, TASK_TI_A1(tp)
+> +       REG_L   a2, TASK_TI_A2(tp)
+> +       csrw    CSR_SCRATCH, x0
+> +       sret
+> +
+> +_new_vmalloc_restore_context:
+> +       REG_L   a0, TASK_TI_A0(tp)
+> +       REG_L   a1, TASK_TI_A1(tp)
+> +       REG_L   a2, TASK_TI_A2(tp)
+> +.endm
+> +
+> +
+>  SYM_CODE_START(handle_exception)
+>         /*
+>          * If coming from userspace, preserve the user thread pointer and=
+ load
+> @@ -30,6 +102,18 @@ SYM_CODE_START(handle_exception)
+>
+>  .Lrestore_kernel_tpsp:
+>         csrr tp, CSR_SCRATCH
+> +
+> +       /*
+> +        * The RISC-V kernel does not eagerly emit a sfence.vma after eac=
+h
+> +        * new vmalloc mapping, which may result in exceptions:
+> +        * - if the uarch caches invalid entries, the new mapping would n=
+ot be
+> +        *   observed by the page table walker and an invalidation is nee=
+ded.
+> +        * - if the uarch does not cache invalid entries, a reordered acc=
+ess
+> +        *   could "miss" the new mapping and traps: in that case, we onl=
+y need
+> +        *   to retry the access, no sfence.vma is required.
+> +        */
+> +       new_vmalloc_check
+> +
+>         REG_S sp, TASK_TI_KERNEL_SP(tp)
+>
+>  #ifdef CONFIG_VMAP_STACK
+> diff --git a/arch/riscv/mm/init.c b/arch/riscv/mm/init.c
+> index e3405e4b99af..2367a156c33b 100644
+> --- a/arch/riscv/mm/init.c
+> +++ b/arch/riscv/mm/init.c
+> @@ -36,6 +36,8 @@
+>
+>  #include "../kernel/head.h"
+>
+> +u64 new_vmalloc[NR_CPUS / sizeof(u64) + 1];
+> +
+>  struct kernel_mapping kernel_map __ro_after_init;
+>  EXPORT_SYMBOL(kernel_map);
+>  #ifdef CONFIG_XIP_KERNEL
+> --
+> 2.39.2
+>
+
+Thanks=EF=BC=8C
+Yunhui
 
