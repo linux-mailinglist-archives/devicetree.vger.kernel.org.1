@@ -1,110 +1,246 @@
-Return-Path: <devicetree+bounces-82192-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82193-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3303D91ECE2
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 04:02:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37AF491ED2D
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 05:01:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C3DB3B222A0
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 02:02:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C87EC284CBA
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 03:01:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91BD94436;
-	Tue,  2 Jul 2024 02:02:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2370A17597;
+	Tue,  2 Jul 2024 03:01:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=milkv.io header.i=@milkv.io header.b="KQNPgMJM"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="MkwGWEdv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbg156.qq.com (smtpbg156.qq.com [15.184.82.18])
+Received: from mx0b-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0386B3C38
-	for <devicetree@vger.kernel.org>; Tue,  2 Jul 2024 02:02:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=15.184.82.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69E4110A0C;
+	Tue,  2 Jul 2024 03:01:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719885764; cv=none; b=r48+wNbDt1JVONSFt0k7PfPx1Mt85KUFMKWXzqrNWpRCtaw5/L0JzNAatu943+Ecf2q49EKPfDtvWVUpe8VTkp03yiVXx5XfC2gZF9sI7TI/ILxEoAOHsiPre/5Lu5blC3KNGAdfqD5FjWshb8UC0Bsmfv47Y4sToho/ruqD680=
+	t=1719889273; cv=none; b=nFT+piA57x5KrAP2+OOu6zID77RX3WhuyEUvi5nB/uaQYwwMRrXqPtuaEzKf96zhInuNfUh+U0pLRugj8HVNHCmirTNx5texjNuuxm0S2E7adK+XqjBiYfk0usJbn2Z2Is/IWYMiEdF0KnCBBYlIu0QKeG3JQCkK2FKxJAwV/mM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719885764; c=relaxed/simple;
-	bh=HOWPjCjq9v6LohAFPCOkOj7uIKZvQrNYuLq5rrh4QtM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NZJ9xAuBctrRUaxDkmsTpLNhMnEo55ZN75KZUra0sbZ9Foabyd98aSMpPJvlb2/YeuYzu+tSsdPpNSyTHhqm2iuxG8mTUBFUVqc9GKv6XDXptT2MZ5lv90JA5YCfRZsOD2e/wfAmjNQ8kH7olSqdvWOztK1l9x4oEzq1IpvJcJ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=milkv.io; spf=none smtp.mailfrom=milkv.io; dkim=pass (1024-bit key) header.d=milkv.io header.i=@milkv.io header.b=KQNPgMJM; arc=none smtp.client-ip=15.184.82.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=milkv.io
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=milkv.io
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=milkv.io;
-	s=pmbt2212; t=1719885686;
-	bh=+ldizvF9YSD27PIyYZfFpk4CAQwaf/+/iVcCjRts9Mg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From;
-	b=KQNPgMJMPZb8efgo7dvlsschYUUT/QkyrcfMF6J2KJVu1EoxzJmrPYi/ejuhKKZyZ
-	 g4dazPRnzV+UepnxhO+o/Av/i6GGMpD4qWgNFPZYsGTb0IiHRF6tWx4DPGxQArixEd
-	 /8pSOT5KGqvDyKOS88cyyp5OmSbyNltLx9/UPqlA=
-X-QQ-mid: bizesmtp91t1719885684tw3ogjgs
-X-QQ-Originating-IP: E6SzRYR6PU3puRvXZ7Hqec3cV+kso3CiffS6Xe0I0HQ=
-Received: from [192.168.159.131] ( [106.150.157.243])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Tue, 02 Jul 2024 10:01:21 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 2448114111142640459
-Message-ID: <86A69C6CEBC812CF+32fec2e6-0bee-46da-83a2-336838b6339d@milkv.io>
-Date: Tue, 2 Jul 2024 11:01:21 +0900
+	s=arc-20240116; t=1719889273; c=relaxed/simple;
+	bh=ovL+Ia/Bm/fPmOhqWgFuW1Wh/9Q/auFV3N/BCa98UfY=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=iougUESHbge3ba/rpTkCzfQycQQIX5pxEW2raR77GcmYTgs9xq8C3sr3xjhxetMiVVm5KXiewU4WNniyqqpIH811rNWBF0CYMdFv0boxHJKdJStfGtY34Xf/bbJePmPLIOmklOI+lknI6ZzJu75nhho4fEWiSVW5lre86qbmy58=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=MkwGWEdv; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0375855.ppops.net [127.0.0.1])
+	by mx0b-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 461NoXJ9002311;
+	Mon, 1 Jul 2024 23:00:54 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=2v12Qee/feYPEHcKk9+LHcTEkTj
+	f3647wxZW/EkxQh4=; b=MkwGWEdv5lwyi7fjUK/wam/pOjutsIw0lUh5nq8Ibh3
+	shGRFtfk+70uI8jluYTaNMDkaqfoTdgRhpKIwfYB9Km/9146EQVl4ukclTOOyPVd
+	9dl4UYNPXyEOat4fvG/b97epxYGXIceIk1N3A3w1V2wtz8NEIm6ZTmopdASHzrRx
+	oSgtH/TeL7FM+Z0ulSM0JlKD+5nExBkRAqjZulFmritcOjxZTtGxJFs9aK10TKmU
+	Tw4yr0xq1eyajmVM/huCUcR4vHnQFIi5RJ6HTsNzYhS2RhrYYYcigV3xi0HHae24
+	Nog9BWhWTBh0iEBEVPnsawh5FN5LzL81KCJ7qe+/8/Q==
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 4046g1gkfr-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 01 Jul 2024 23:00:54 -0400 (EDT)
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 46230qSM041137
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 1 Jul 2024 23:00:52 -0400
+Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
+ ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Mon, 1 Jul 2024 23:00:51 -0400
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
+ ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Mon, 1 Jul 2024 23:00:51 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Mon, 1 Jul 2024 23:00:51 -0400
+Received: from kim-VirtualBox.ad.analog.com (KPALLER2-L03.ad.analog.com [10.117.220.28])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 46230WbL032046;
+	Mon, 1 Jul 2024 23:00:35 -0400
+From: Kim Seer Paller <kimseer.paller@analog.com>
+To: <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+CC: Jonathan Cameron <jic23@kernel.org>,
+        David Lechner
+	<dlechner@baylibre.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Liam Girdwood
+	<lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+        Dimitri Fedrau
+	<dima.fedrau@gmail.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        "Rob
+ Herring" <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+        "Michael
+ Hennerich" <michael.hennerich@analog.com>,
+        =?UTF-8?q?Nuno=20S=C3=A1?=
+	<noname.nuno@gmail.com>,
+        Kim Seer Paller <kimseer.paller@analog.com>
+Subject: [PATCH v5 0/6] Add driver for LTC2664 and LTC2672
+Date: Tue, 2 Jul 2024 11:00:19 +0800
+Message-ID: <20240702030025.57078-1-kimseer.paller@analog.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/4] riscv: dts: starfive: enable heartbeat LED for
- Milk-V Mars
-To: Emil Renner Berthing <emil.renner.berthing@canonical.com>, kernel@esmil.dk
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org
-References: <20240627115236.618-1-naoki@milkv.io>
- <20240627115236.618-2-naoki@milkv.io>
- <CAJM55Z_NaimQJkoykU1+THY_WqNMVsvENpJHJYFPTD3YuXOMnw@mail.gmail.com>
-Content-Language: en-US
-From: FUKAUMI Naoki <naoki@milkv.io>
-In-Reply-To: <CAJM55Z_NaimQJkoykU1+THY_WqNMVsvENpJHJYFPTD3YuXOMnw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: bizesmtp:milkv.io:qybglogicsvrgz:qybglogicsvrgz8a-1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-ORIG-GUID: fSYSYUapmuLhq6ZQWR32VnlpZAsaYAHu
+X-Proofpoint-GUID: fSYSYUapmuLhq6ZQWR32VnlpZAsaYAHu
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-01_23,2024-07-01_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 adultscore=0
+ priorityscore=1501 bulkscore=0 mlxscore=0 mlxlogscore=999
+ lowpriorityscore=0 impostorscore=0 phishscore=0 suspectscore=0
+ clxscore=1015 spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2406140001 definitions=main-2407020020
 
-Hi
+Generalize the ABI documentation for DAC. The ABI defined for toggle mode
+channels:
 
-On 7/1/24 21:28, Emil Renner Berthing wrote:
-(snip)
-> Hi Naoki
-> 
-> Thanks for adding the other boards too. As mentioned previously [1] boards
-> should not add functions to LEDs unless the hardware clearly defines a function
-> for them, and nothing on these boards mention that it should be a heartbeeat.
-> As you said on IRC userland can easily add whatever function they want.
+LTC2664:
+  * out_voltageY_toggle_en
+  * out_voltageY_raw0
+  * out_voltageY_raw1
+  * out_voltageY_symbol
 
-on behalf of MilkV Technology, what should we do to add function to LED?
+LTC2672:
+  * out_currentY_toggle_en
+  * out_currentY_raw0
+  * out_currentY_raw1
+  * out_currentY_symbol
 
-I think even if hardware clearly defines a function, you'll say userland 
-can easily do it. any objections?
+Default channels won't have any of the above ABIs. A channel is toggle capable
+if the devicetree 'adi,toggle-mode' flag is set.
 
---
-FUKAUMI Naoki
-Shenzhen MilkV Technology Co., Ltd.
+changes in v5:
 
-> 
-> Also please add a cover letter when you're sending multiple patches.
-> Eg. use git format-patch --cover-letter
-> 
-> /Emil
-> 
-> [1]: https://lore.kernel.org/linux-riscv/CAJM55Z_j8gWFyKvsiu-oGDV7Hacr4Amt5FdkHdjKnhZwZgxncA@mail.gmail.com/
-> 
->>   };
->>
->>   &gmac0 {
->> --
->> 2.43.0
->>
-> 
+ltc2664:
+  * Removed return statement for error code in ltc2664_dac_code_read making it a
+    void function.
+  * Refactored voltage regulator error handling and logic setting for vref_mv.
+  * Added Reviewed-by tag.
+
+Bindings:
+  * Added dac.yaml and generalized DAC common properties.
+  * Modified ltc2664 binding adding constraints for the adi,manual-span-operation-config
+    and output-range-microvolt properties.
+
+changes in v4:
+
+ltc2664:
+  * Added comments for each field in the ltc2664_chan struct.
+  * Changed global_toggle data type to bool and updated vref and rfsadj variables
+    to include units.
+  * Added 0,0 entry in ltc2672_span_helper to removed the id field from the
+    ltc2664_chip_info struct.
+  * Used mul_u64_u32_div helper function from linux/math64.h to avoid integer
+    overflow during scale calculation.
+  * Refactored code to use a single template for channel instead of separate
+    channel arrays.
+  * Used the devm_regulator_get_enable_read_voltage API for simplifying voltage
+    retrieval.
+
+ABI:
+  sysfs-bus-iio:
+    * Added commit message for the ABI changes.
+  sysfs-bus-iio-dac:
+    * Updated the description of toggle_en to clarify autonomous toggling.
+    * Fixed inconsistent use of spacing and tabs.
+
+Bindings:
+  * Dropped Reviewed-by tag.
+  * Updated the description for both bindings to include both 12-bit and 16-bit
+    versions.
+
+changes in v3:
+
+ltc2664:
+  * Added span sanity check for no match.
+  * Initialized the variable 'span' to fix build warning.
+  * Added Reported-by and Closes by tag.
+
+ABI:
+  * Modified descriptions to make it more generalize.
+  * Removed MAINTAINERS file entry.
+
+Bindings:
+  * Changed clr-gpios to reset-gpios.
+  * Added output range and reset code description for 'adi,manual-span-operation-config'
+    property in ltc2664 binding.
+  * Removed the $ref for 'adi,output-range-microamp' due to dt-schema warning
+    in ltc2672 binding. Added Reported-by and Closes by tag.
+  * Modified io-channels description and added maxItems constraint.
+
+changes in v2:
+
+ltc2664:
+  * Updated struct ltc2664_chip_info to include device-specific data for scale,
+    offset, measurement type, internal vref, manual span support, and rfsadj
+    support.
+  * Added a read-only extended info attribute powerdown_mode to indicate the
+    state that the DAC output enters when the device is powered down.
+  * Refactored code for setting the span into separate function and directly
+    returning the span.
+  * Adjusted memory allocation for st->iio_channels to include null terminator.
+  * Spaces have been added after { and before }. Each pair of values is now
+    placed on a separate line.
+
+ABI:
+  * Generalized the ABI documentation for DAC.
+  * Added DAC 42kohm_to_gnd powerdown mode.
+
+Bindings:
+  * Created separate bindings for ltc2664 and ltc2672.
+  * Added v-pos-supply and v-neg-supply regulator properties.
+  * Renamed vref-supply to ref-supply based on the datasheet.
+  * Added io-channels property and specifying the pin for multiplexer output.
+  * Added vdd0-vdd4 supply properties for ltc2672, although they are not
+    currently supported in the driver.
+  * Changed clr-gpios description based on the datasheet.
+  * Used 4 spaces for example indentation.
+
+
+Kim Seer Paller (6):
+  iio: ABI: Generalize ABI documentation for DAC
+  iio: ABI: add DAC 42kohm_to_gnd powerdown mode
+  dt-bindings: iio: dac: Generalize DAC common properties
+  dt-bindings: iio: dac: Add adi,ltc2664.yaml
+  dt-bindings: iio: dac: Add adi,ltc2672.yaml
+  iio: dac: ltc2664: Add driver for LTC2664 and LTC2672
+
+ Documentation/ABI/testing/sysfs-bus-iio       |   1 +
+ Documentation/ABI/testing/sysfs-bus-iio-dac   |  61 ++
+ .../ABI/testing/sysfs-bus-iio-dac-ltc2688     |  31 -
+ .../bindings/iio/dac/adi,ltc2664.yaml         | 176 +++++
+ .../bindings/iio/dac/adi,ltc2672.yaml         | 160 ++++
+ .../devicetree/bindings/iio/dac/dac.yaml      |  50 ++
+ MAINTAINERS                                   |  10 +
+ drivers/iio/dac/Kconfig                       |  11 +
+ drivers/iio/dac/Makefile                      |   1 +
+ drivers/iio/dac/ltc2664.c                     | 736 ++++++++++++++++++
+ 10 files changed, 1206 insertions(+), 31 deletions(-)
+ create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-dac
+ create mode 100644 Documentation/devicetree/bindings/iio/dac/adi,ltc2664.yaml
+ create mode 100644 Documentation/devicetree/bindings/iio/dac/adi,ltc2672.yaml
+ create mode 100644 Documentation/devicetree/bindings/iio/dac/dac.yaml
+ create mode 100644 drivers/iio/dac/ltc2664.c
+
+
+base-commit: 3587914bf61df7924933530353d840378cdc4973
+-- 
+2.34.1
+
 
