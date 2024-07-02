@@ -1,155 +1,233 @@
-Return-Path: <devicetree+bounces-82238-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82239-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCD1E92399A
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 11:19:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6339C9239A4
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 11:19:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9943F282205
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 09:19:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2014B286508
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 09:19:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26479155A59;
-	Tue,  2 Jul 2024 09:15:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C41F1591ED;
+	Tue,  2 Jul 2024 09:17:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SvaTpcwd"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lwDYBVZU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA5C71509BA;
-	Tue,  2 Jul 2024 09:15:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71CFA158DC8
+	for <devicetree@vger.kernel.org>; Tue,  2 Jul 2024 09:17:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719911759; cv=none; b=G1VzIL+VB7LOyPBGhPszZwg5XvhFqE50/7oesOR5KjjXOhgoiWOeqldt6592MTtZ+reS2hT6F4YG9PM2kV8jyrReOmFj5ftmBiGJkpOz5/EE0KciPvHZZxe1dTJdHs7n8avCVaEXoU0h2v6rdaCvpOe6jdXez6/qlbLjSsj4qts=
+	t=1719911823; cv=none; b=UIdZqw1IxabC33NCDVttW+rlehIZ01/9KCAc68jRcBgpN4TzKcBfqLkjHlt7Ba4/anY5LdVwTcYXZi0vCSHT9wtF53xfqnKHJwpL/YFKCb1buOUjdwiprXYoRfFgdFR1cS8jLBDX6uz72q815e7ZMDlbmlx2sF+DYOXle8fXJ8s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719911759; c=relaxed/simple;
-	bh=MRAyKK0fVdVJwWvA6JVDZsXJD/sJbapIKeDiht7fGso=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=BbRtFXso+/R16atni4MxQJK7KgWhC+rKm0cRWE+D/DVeikCK+U9Ap+UVIHKgJGBXR9j7uk7NxM6FQTBxHWeR7ctzgAyTW8zO0hWio4ylsDWew1Er/Ou7/6MZBEdsdDxefHGVpc9lx2sMjg2qsMMsXyT89dtKfOYuX5MwTdfvMkY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SvaTpcwd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C126C4AF0C;
-	Tue,  2 Jul 2024 09:15:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719911758;
-	bh=MRAyKK0fVdVJwWvA6JVDZsXJD/sJbapIKeDiht7fGso=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=SvaTpcwd92zGVXxnkMxaFkRDqNvZSb7ipiQGdnO0Va1V7f8GM/VW28dsLpX/YlAl7
-	 mW4kvxVRwOn8Hp//L/HJQiibGZCTjo4/loArRKGcW8hUqtUi7Ky8zZPfANO0ULRuZE
-	 dORlT+MNNs2eKIhg7T0w8KaXFE8IGGM8N2cL24eltpUDeTtui3XmgZPPDUQP3BmJXU
-	 MgMCZKAqM+a5PG4WOoWy5lgNKiKOed+fA317ShMY2ByuCB2FiANWITSi5wz4vl2Jy+
-	 SG+MEFTAEFXbWfOrqI5uL9jdcDJ6q+96KX9BRZsEA7jUNzIrcZe5c6xoPzXp3U2xcc
-	 Rdcvpu5+t8Lfw==
-Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2ec52fbb50aso46571561fa.3;
-        Tue, 02 Jul 2024 02:15:58 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVYCWa1PzSOmODUiOlyuqYL9WzZNcZf/Hl4/CuFparnh1l0WLZdsS0AEoUm+feAGdy4+t+yEKWf0jMylFJSO77CDSF+0bDhkaT4Z8TW8FHgIhxHo97PFtxw0KJ92qpn3+DwB6d6MITvBaoaO0tm6LVB1pjimckU11IeFrJJVsvjdaamUEie1Q==
-X-Gm-Message-State: AOJu0Yz27TSPscKPbQHW6lGvMgtqvCjjpWk62PYlg/HHZyu13OxmR9Vo
-	faMH68jeGNqiX1doaH1eL5KEfKgfDR93hgZpoml5SSPtqKWThzckukAdhOlgkiYb5HjLmbxmOOe
-	PmbD0g1hhfwCs2ZQshAKeSVJWA6o=
-X-Google-Smtp-Source: AGHT+IE4GHDcQXiZ5qOndjTEyoCt4LL+YrGb1SRx7bLn4ugUXHEOWryM5hy1HMDniW1HFtWRzZrIHHez4npdaavw/Sw=
-X-Received: by 2002:a2e:9dd4:0:b0:2ec:403e:6314 with SMTP id
- 38308e7fff4ca-2ee5e3809b5mr55808121fa.3.1719911757135; Tue, 02 Jul 2024
- 02:15:57 -0700 (PDT)
+	s=arc-20240116; t=1719911823; c=relaxed/simple;
+	bh=MmCHrblA17iBOZcaUxF0rlX2dqqdSVwFaRXmp9j7aFc=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Hrg69XkItI3uO/YHHbNlJGYD9gWGQ3N33oC/6q/gIG6W4Cxn9kHw5P/v2/lx8sdBDbZwEbLZ2lOFjRuOk409IRvw0u5dX8J6+FtzlNOYkSnhhV84NdwjjcX5DGP5NDxn61H4Lx5zwlI8x/enUyAARof0wGCh3Y52g5GH+/kSVGY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lwDYBVZU; arc=none smtp.client-ip=209.85.214.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-1f9de13d6baso23862465ad.2
+        for <devicetree@vger.kernel.org>; Tue, 02 Jul 2024 02:17:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1719911821; x=1720516621; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=im7X66Ftq9hh3pjMAHs9Kh1cZ/MUVXZiYxPN2eGhMlI=;
+        b=lwDYBVZUMwSPx6x/zZ1ajUouibWswnFRVoTUxZHN4U8dHE4CNeAClg244vwmJL2FBH
+         nMzB41RlNAzfTy4+zFEEYfK7iQ2Bwnk0904sJ3BZTfPrPTAelne1lRR3PfNh6YBHm9SZ
+         h5+TrhqsGdLyFlmvoai1eifV657FT+JYxyI9j0pS0pTs5eY99G527Sa+8DshV9+LREuR
+         81x4JUQrM/yisvI5k0PGqyuwzESVuWKf5Sp0m8F5dVb8drCeOMFqprqTWa/mxPFwwRi2
+         ilN1uxtwDyCdc3PBUixkd5Y4iXYi0JKJMmvPUzqHFsd5XzhLDkKo1JRkc9joC2CxVgdE
+         BcNw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719911821; x=1720516621;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=im7X66Ftq9hh3pjMAHs9Kh1cZ/MUVXZiYxPN2eGhMlI=;
+        b=Ns8qsSsPELv6UhWmi7P65/KgJrZRkLWu74qIYhnVoL2/88NjN4Ogdf1GFOmFGyrYAD
+         EL8xNADUArT7lWWKghGWst38LjrwEhVILNjpFRiczSgO1e1x+dFG1bnldvaCYWTaDoEh
+         6jf/P4ThFNsxceQaM0F9g+FPToCcJmMoNvH+VqRfWKzwEmzE9Fu9lGKzvk8+rPIOmbQg
+         u9f4y0ClSGYHYqLABB4E7zoKLbcTMy3AqMwnp50+eMLb766VbVH9DxRZDCyPUuA2upsQ
+         zfJ+ASCnQR31JVBop7kS+wxyb8SpELJMlXWcxW/1n2eWMEG7Mj84MUp6YPmGC+Dp95Uy
+         jUqw==
+X-Forwarded-Encrypted: i=1; AJvYcCVGzQ06nyoZKt13G0ip9eXWn4fzveTL4Mtl4YZhS6KyVpFDaKXSfrs+KUc3r3wpm1lpbiYkoydVlIZGWSPanr0tJvJZMePqlzpIDw==
+X-Gm-Message-State: AOJu0YzskyAD1elGNQ1QPX/8rEHlvgNIbEANAEgnpaMpBBUja+pQEzxA
+	fT0TYy1v3kGyre36eFfrbDxDaiV5yLGCoIpBKQK5h0KobjPNapLOYobrxifB75g=
+X-Google-Smtp-Source: AGHT+IFoLL5kK93Tt9eDt6tcLEBD5AjNAtjEjyQFNm7zDU8m2s47MtCFW3t9xsc30wpZf1p8ytb1hA==
+X-Received: by 2002:a17:902:e841:b0:1f7:42ba:5b1e with SMTP id d9443c01a7336-1fadbc7504amr36177085ad.17.1719911820696;
+        Tue, 02 Jul 2024 02:17:00 -0700 (PDT)
+Received: from x-wing.lan ([106.51.163.238])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1fac15bd0edsm79120375ad.306.2024.07.02.02.16.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Jul 2024 02:17:00 -0700 (PDT)
+From: Amit Pundir <amit.pundir@linaro.org>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+	dt <devicetree@vger.kernel.org>,
+	lkml <linux-kernel@vger.kernel.org>
+Subject: [PATCH] arm64: dts: qcom: sm8550-hdk: add the Wifi node
+Date: Tue,  2 Jul 2024 14:46:55 +0530
+Message-Id: <20240702091655.278974-1-amit.pundir@linaro.org>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240427145502.2804311-1-masahiroy@kernel.org>
- <20240427145502.2804311-5-masahiroy@kernel.org> <ea24aa9b-291d-47bc-98cf-5893926ff8da@kernel.org>
- <CAK7LNAT5_pDn1ZOfm8TzubH-s2HR4DQu9eEx0RgdJ3s4Cmxqow@mail.gmail.com>
- <9771d50d95e508bf8971a36b6475c782c42b46a1.camel@intel.com>
- <CAK7LNATGGibmjZzYX_A2SkJthmOPbKw2K3R7JYuHTWzgGL2Zjg@mail.gmail.com>
- <803eabc8e2fa5dec950d149f83027fd204d5ef69.camel@intel.com> <2ada559c1a4517ed879bb662689815b4357674ac.camel@intel.com>
-In-Reply-To: <2ada559c1a4517ed879bb662689815b4357674ac.camel@intel.com>
-From: Masahiro Yamada <masahiroy@kernel.org>
-Date: Tue, 2 Jul 2024 18:15:20 +0900
-X-Gmail-Original-Message-ID: <CAK7LNAQ47bZpE6c6Yoz-jQS78uU611oZwU8bH+7e=p5zSyADJw@mail.gmail.com>
-Message-ID: <CAK7LNAQ47bZpE6c6Yoz-jQS78uU611oZwU8bH+7e=p5zSyADJw@mail.gmail.com>
-Subject: Re: [PATCH v2 4/4] kbuild: use $(src) instead of $(srctree)/$(src)
- for source directory
-To: "Edgecombe, Rick P" <rick.p.edgecombe@intel.com>
-Cc: "nicolas@fjasle.eu" <nicolas@fjasle.eu>, "conor@kernel.org" <conor@kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "robh@kernel.org" <robh@kernel.org>, 
-	"linux-kbuild@vger.kernel.org" <linux-kbuild@vger.kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "krzk@kernel.org" <krzk@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Sat, Jun 29, 2024 at 7:54=E2=80=AFAM Edgecombe, Rick P
-<rick.p.edgecombe@intel.com> wrote:
->
-> On Fri, 2024-06-28 at 14:23 -0700, Rick Edgecombe wrote:
-> > On Fri, 2024-06-28 at 11:13 +0900, Masahiro Yamada wrote:
-> > > There are two solutions, depending on what you want to achieve.
-> > >
-> > > The official way is to pass the absolute path to M=3D
-> > > (or relative path to ../linux-tdm-kvm-out)
-> > >
-> > > The other unofficial way is to pass VPATH.
-> > > The external module build does not officially support
-> > > the separate output directory, but you can still
-> > > do it in this case.
-> > >
-> > > [1] will work like before.
-> >
-> > The absolute path worked, but why not make it use the relative path by =
-default
-> > in this case? "arch/x86/kvm/" shouldn't be confused with an absolute pa=
-th...
->
-> Argh, I missed that make ARCH=3Dx86_64 O=3D../linux-tdx-kvm-out/ -j36 M=
-=3D$(realpath
-> arch/x86/kvm) will output the the source tree instead of the output direc=
-tory.
->
-> So there is no official way to build just a module to the output director=
-y?
+Describe the ath12k WLAN on-board the WCN7850 module present on the
+board.
 
+Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
+---
+Kanged verbatim from 490812872449 ("arm64: dts: qcom: sm8550-qrd: add the Wifi node").
 
-You already know how to do it:
+ arch/arm64/boot/dts/qcom/sm8550-hdk.dts | 97 +++++++++++++++++++++++++
+ 1 file changed, 97 insertions(+)
 
-#I'm guess it has something to do with the "M=3D" option because:
-#make ARCH=3Dx86_64 O=3D../linux-tdx-kvm-out/ -j36 arch/x86/kvm/kvm.ko
-#arch/x86/kvm/kvm-intel.ko
-#
-#...works.
+diff --git a/arch/arm64/boot/dts/qcom/sm8550-hdk.dts b/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
+index 12d60a0ee095..c453d081a2df 100644
+--- a/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
++++ b/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
+@@ -279,6 +279,68 @@ platform {
+ 			};
+ 		};
+ 	};
++
++	wcn7850-pmu {
++		compatible = "qcom,wcn7850-pmu";
++
++		pinctrl-names = "default";
++		pinctrl-0 = <&wlan_en>, <&pmk8550_sleep_clk>;
++
++		wlan-enable-gpios = <&tlmm 80 GPIO_ACTIVE_HIGH>;
++		/*
++		 * TODO Add bt-enable-gpios once the Bluetooth driver is
++		 * converted to using the power sequencer.
++		 */
++
++		vdd-supply = <&vreg_s5g_0p85>;
++		vddio-supply = <&vreg_l15b_1p8>;
++		vddaon-supply = <&vreg_s2g_0p85>;
++		vdddig-supply = <&vreg_s4e_0p95>;
++		vddrfa1p2-supply = <&vreg_s4g_1p25>;
++		vddrfa1p8-supply = <&vreg_s6g_1p86>;
++
++		regulators {
++			vreg_pmu_rfa_cmn: ldo0 {
++				regulator-name = "vreg_pmu_rfa_cmn";
++			};
++
++			vreg_pmu_aon_0p59: ldo1 {
++				regulator-name = "vreg_pmu_aon_0p59";
++			};
++
++			vreg_pmu_wlcx_0p8: ldo2 {
++				regulator-name = "vreg_pmu_wlcx_0p8";
++			};
++
++			vreg_pmu_wlmx_0p85: ldo3 {
++				regulator-name = "vreg_pmu_wlmx_0p85";
++			};
++
++			vreg_pmu_btcmx_0p85: ldo4 {
++				regulator-name = "vreg_pmu_btcmx_0p85";
++			};
++
++			vreg_pmu_rfa_0p8: ldo5 {
++				regulator-name = "vreg_pmu_rfa_0p8";
++			};
++
++			vreg_pmu_rfa_1p2: ldo6 {
++				regulator-name = "vreg_pmu_rfa_1p2";
++			};
++
++			vreg_pmu_rfa_1p8: ldo7 {
++				regulator-name = "vreg_pmu_rfa_1p8";
++			};
++
++			vreg_pmu_pcie_0p9: ldo8 {
++				regulator-name = "vreg_pmu_pcie_0p9";
++			};
++
++			vreg_pmu_pcie_1p8: ldo9 {
++				regulator-name = "vreg_pmu_pcie_1p8";
++			};
++		};
++	};
+ };
+ 
+ &apps_rsc {
+@@ -954,6 +1016,23 @@ &pcie0 {
+ 	status = "okay";
+ };
+ 
++&pcieport0 {
++	wifi@0 {
++		compatible = "pci17cb,1107";
++		reg = <0x10000 0x0 0x0 0x0 0x0>;
++
++		vddrfacmn-supply = <&vreg_pmu_rfa_cmn>;
++		vddaon-supply = <&vreg_pmu_aon_0p59>;
++		vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
++		vddwlmx-supply = <&vreg_pmu_wlmx_0p85>;
++		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
++		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
++		vddrfa1p8-supply = <&vreg_pmu_rfa_1p8>;
++		vddpcie0p9-supply = <&vreg_pmu_pcie_0p9>;
++		vddpcie1p8-supply = <&vreg_pmu_pcie_1p8>;
++	};
++};
++
+ &pcie0_phy {
+ 	vdda-phy-supply = <&vreg_l1e_0p88>;
+ 	vdda-pll-supply = <&vreg_l3e_1p2>;
+@@ -1046,6 +1125,17 @@ &pon_resin {
+ 	status = "okay";
+ };
+ 
++&pmk8550_gpios {
++	pmk8550_sleep_clk: sleep-clk-state {
++		pins = "gpio3";
++		function = "func1";
++		input-disable;
++		output-enable;
++		bias-disable;
++		power-source = <0>;
++	};
++};
++
+ &qupv3_id_0 {
+ 	status = "okay";
+ };
+@@ -1206,6 +1296,13 @@ wcd_default: wcd-reset-n-active-state {
+ 		bias-disable;
+ 		output-low;
+ 	};
++
++	wlan_en: wlan-en-state {
++		pins = "gpio80";
++		function = "gpio";
++		drive-strength = <8>;
++		bias-pull-down;
++	};
+ };
+ 
+ &uart7 {
+-- 
+2.25.1
 
-
-
-
-> And
-> it just accidentally worked all these years? IMO it's a nice feature to h=
-ave.
-> I've especially found it useful when doing virtualization development whe=
-re you
-> need to build/test guest and host kernels as the same time.
->
-> Or was it just now delegated to unofficial support after this patch?
-
-
-No.
-The M=3D option is intended for building external modules.
-You just abused it to build the upstream modules.
-
-Kbuild has never supported building external modules in a separate
-output directory.
-
-
-"delegated to unofficial support" is a wrong statement,
-as it has never officially supported in the past.
-
-
-Your way is a workaround that people found happened to work.
-
-
-
-
-
-
---=20
-Best Regards
-Masahiro Yamada
 
