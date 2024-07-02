@@ -1,203 +1,82 @@
-Return-Path: <devicetree+bounces-82288-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82289-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43D7F923C3D
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 13:18:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5110923C5A
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 13:27:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B76421F2118C
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 11:18:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D632F1C21F76
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 11:27:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEE1415B0FF;
-	Tue,  2 Jul 2024 11:18:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AFA515B10A;
+	Tue,  2 Jul 2024 11:27:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UWX4TTDZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="czqfXp6T"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F240157469;
-	Tue,  2 Jul 2024 11:18:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 703C015218A;
+	Tue,  2 Jul 2024 11:27:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719919086; cv=none; b=t3sLIKuMP1HUHh0lg3tReT9YbqMN6r1+3hxf7hCJ55R/ODvYQl84Up6NmaqONbgkZWmJSHxju90gZ+H+OIDgSo7YkXAcCsdJxfU/5yOvZ4EUBKjzER6JfVB4223x6zHjRpWuTNzmwjtdrjPvOBeV3Ozychogq6Szm/9L3bM/ZAY=
+	t=1719919648; cv=none; b=pbXeTVQwvuN8oXl2jJgXTrPcJt/0vAAkutiSYCVsCOKDzfPEwSmrT015h+3w//9nCYJO4d7pmEArksOWEK2e+zW/OgZk7qnqTZKOtBX7RWfIn+UNLhX9POhstjdHgzSV5oqBFHYlOLwf7g853neXQkWscoOPEunNQpfkOKWz+h4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719919086; c=relaxed/simple;
-	bh=FoMJEf11Lf66dhLhMVRO8nkinE1cWndTb/sbrx0+H3w=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ntzxp2+wTnITQIczwyYO3wpo/0wuzLW6TI4I1Od5Wj+Ni2IwQ6hGqg9jS4YXkvLLxv1dhDVZl+JFWnQ8XorCCDaojSYWKhO/geD9gX052iSG9hU6/VK1CF/SLHtGNXBqls7kCX8F0KMt9NlGVloHxYUmYjvhehDN2LZQEjIZB3s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UWX4TTDZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10F70C4AF0E;
-	Tue,  2 Jul 2024 11:18:06 +0000 (UTC)
+	s=arc-20240116; t=1719919648; c=relaxed/simple;
+	bh=J1aGWYIK3dI8RIBmHO1WHSAht7+unjWyxWImHlH5rhM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=G/EKFp/a38fqnptq+963a852TtH1INcZGmLgFBVTC+XjCfTGabjVszei2FM36BrKz0t8OKL+aXUAKhQsHW8ilALPGZSqtC6FH1lOc7h95aLXc7xDjcISKbuvmV17hQgxbGzPLVKEvi98WxqWKgR1RKHkK6R3cJhQrohZeKmms6E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=czqfXp6T; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 683F5C116B1;
+	Tue,  2 Jul 2024 11:27:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719919086;
-	bh=FoMJEf11Lf66dhLhMVRO8nkinE1cWndTb/sbrx0+H3w=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=UWX4TTDZflWPasT7VEjcnWzmqTvL4hpDJewnnk61hH3mx54u63K8u68IQ7ql8SDJW
-	 rGIFs9GI5vI3b7bwRjDx0gcQckkRa2ILsnZHAGQgwkiw5/PAwHDWJQftEE7BLo+Mna
-	 ZjeDDOJBY1NnZPcIjrrWRFU2dAiaYalAxRjcb0iM6aPPp0zRhoNYf1r+uGU+fYF5DJ
-	 hCPzLF9mSyeoAnb7wTb9qwtqVmBQAiGGWMUqfZ7yOG+0g3x1HfJbTy5vxgKoLK50RG
-	 Mb0oXqlHiS1ibslI8br81uJFi1zb5lRuskH+0NbJLMIwoGJkXMDlit71RUf918+Hl8
-	 DOZ4OdiqCCI/Q==
-Received: by mail-oa1-f42.google.com with SMTP id 586e51a60fabf-25d0f8d79ebso609417fac.0;
-        Tue, 02 Jul 2024 04:18:06 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCXBBOKJkPSi1RPt3L/6lfqT7kAV97l65Q3lLKlEAEpKnVtiyLWWnwcTatCIqvTzb/9k95Tjpx+zK2+Lo0sxsTfPbJ1Bg8sVVZcYV+i9PGnCIda8Rv5Vg8O5lHlBICpeDYvxKxGGlDDUF0fWuhnKVx5hFDlnTVbG6bwlRotFfXUoIxN0
-X-Gm-Message-State: AOJu0YyDEGUfXeskovj9dhBS7ap0UwmfBA7T/Y523g2zDGUTbqG3l5ZJ
-	Pm0HW6swn0p53XZWkR/9gdP/UfVl2rFJY/WBXEEBAuqNwn8kaS1Du8uJEpVBKw0t7H/rsb6GQg1
-	JGmeckI4Y3Uv9hnuWxpBIaoJ5TO0=
-X-Google-Smtp-Source: AGHT+IFSROubL/WzUl2sx2objLG8DvmvKWe6cA/P6eX8rr89hODSqXxMCvpxDjHg0YZehdNgAgdbkFSnDnT5+aJSjD0=
-X-Received: by 2002:a05:6870:2892:b0:255:1fea:340d with SMTP id
- 586e51a60fabf-25db3049d93mr8496774fac.0.1719919085156; Tue, 02 Jul 2024
- 04:18:05 -0700 (PDT)
+	s=k20201202; t=1719919647;
+	bh=J1aGWYIK3dI8RIBmHO1WHSAht7+unjWyxWImHlH5rhM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=czqfXp6TB2fdguQW+IH+1cQjsVqxPhoqAVL4U0+xdcNSlfxqLcHjb3MAqNTr+NnNB
+	 o6aADD0U6DupD+pvX8G8IhdoWNkF9c/2SRhJDCn2wdmB0Qt6+gyTEjrnWvbwYmjK1x
+	 bGxFt/RRjlr9WYuigGZYKkzLcW8Y4KuKTDYYD+iRVXEei3XPGrGCfVzbgOT1JvMXly
+	 TJPM7KrH5wrRI3YtgtmUcnjqlykDZlAhDltqtW8BdMEpuJhIUf9lVjrQbPf9at+yFv
+	 bNhUlxGX3dycZRBYiQWGJVZsOr5CkmelPidTfSH/nCTQnqqbglX57j+SHuiusiF7sw
+	 Il8/T2DsCa9XA==
+Date: Tue, 2 Jul 2024 16:57:24 +0530
+From: Vinod Koul <vkoul@kernel.org>
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org,
+	linux-phy@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.au@gmail.com>
+Subject: Re: [PATCH v4 5/6] phy: renesas: phy-rcar-gen3-usb2: Control VBUS
+ for RZ/G2L SoCs
+Message-ID: <ZoPkHNYyy2E_ONRB@matsya>
+References: <20240616105402.45211-1-biju.das.jz@bp.renesas.com>
+ <20240616105402.45211-6-biju.das.jz@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240627085451.3813989-1-daniel.lezcano@linaro.org>
- <20240701162600.GA4119789-robh@kernel.org> <98fe3146-07ae-4095-b372-6aed6e080d94@linaro.org>
- <CAJZ5v0ix+RDtrR+r3jd=A_W7D5U7JodMiirJ519-wwLrHeBbSw@mail.gmail.com>
- <1eb7eb88-4230-4803-83fe-415ce0745951@linaro.org> <CAJZ5v0jV+0bWqpCR1Q2rYLJvx0J6hgExzRks6YDPL9gX_HK0rA@mail.gmail.com>
-In-Reply-To: <CAJZ5v0jV+0bWqpCR1Q2rYLJvx0J6hgExzRks6YDPL9gX_HK0rA@mail.gmail.com>
-From: "Rafael J. Wysocki" <rafael@kernel.org>
-Date: Tue, 2 Jul 2024 13:17:54 +0200
-X-Gmail-Original-Message-ID: <CAJZ5v0iFR8v=Kwj=aW84NTfqZGvTbXrL=dsLsaMt=okFTAftDQ@mail.gmail.com>
-Message-ID: <CAJZ5v0iFR8v=Kwj=aW84NTfqZGvTbXrL=dsLsaMt=okFTAftDQ@mail.gmail.com>
-Subject: Re: [PATCH] thermal/core: Introduce user trip points
-To: Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, linux-pm@vger.kernel.org, 
-	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240616105402.45211-6-biju.das.jz@bp.renesas.com>
 
-On Tue, Jul 2, 2024 at 1:03=E2=80=AFPM Rafael J. Wysocki <rafael@kernel.org=
-> wrote:
->
-> On Tue, Jul 2, 2024 at 12:56=E2=80=AFPM Daniel Lezcano
-> <daniel.lezcano@linaro.org> wrote:
-> >
-> > On 02/07/2024 12:22, Rafael J. Wysocki wrote:
-> > > On Tue, Jul 2, 2024 at 11:29=E2=80=AFAM Daniel Lezcano
-> > > <daniel.lezcano@linaro.org> wrote:
-> > >>
-> > >> On 01/07/2024 18:26, Rob Herring wrote:
-> > >>> On Thu, Jun 27, 2024 at 10:54:50AM +0200, Daniel Lezcano wrote:
-> > >>>> Currently the thermal framework has 4 trip point types:
-> > >>>>
-> > >>>> - active : basically for fans (or anything requiring energy to coo=
-l
-> > >>>>     down)
-> > >>>>
-> > >>>> - passive : a performance limiter
-> > >>>>
-> > >>>> - hot : for a last action before reaching critical
-> > >>>>
-> > >>>> - critical : a without return threshold leading to a system shutdo=
-wn
-> > >>>>
-> > >>>> A thermal zone monitors the temperature regarding these trip
-> > >>>> points. The old way to do that is actively polling the temperature
-> > >>>> which is very bad for embedded systems, especially mobile and it i=
-s
-> > >>>> even worse today as we can have more than fifty thermal zones. The
-> > >>>> modern way is to rely on the driver to send an interrupt when the =
-trip
-> > >>>> points are crossed, so the system can sleep while the temperature
-> > >>>> monitoring is offloaded to a dedicated hardware.
-> > >>>>
-> > >>>> However, the thermal aspect is also managed from userspace to prot=
-ect
-> > >>>> the user, especially tracking down the skin temperature sensor. Th=
-e
-> > >>>> logic is more complex than what we found in the kernel because it
-> > >>>> needs multiple sources indicating the thermal situation of the ent=
-ire
-> > >>>> system.
-> > >>>>
-> > >>>> For this reason it needs to setup trip points at different levels =
-in
-> > >>>> order to get informed about what is going on with some thermal zon=
-es
-> > >>>> when running some specific application.
-> > >>>>
-> > >>>> For instance, the skin temperature must be limited to 43=C2=B0C on=
- a long
-> > >>>> run but can go to 48=C2=B0C for 10 minutes, or 60=C2=B0C for 1 min=
-ute.
-> > >>>>
-> > >>>> The thermal engine must then rely on trip points to monitor those
-> > >>>> temperatures. Unfortunately, today there is only 'active' and
-> > >>>> 'passive' trip points which has a specific meaning for the kernel,=
- not
-> > >>>> the userspace. That leads to hacks in different platforms for mobi=
-le
-> > >>>> and embedded systems where 'active' trip points are used to send
-> > >>>> notification to the userspace. This is obviously not right because
-> > >>>> these trip are handled by the kernel.
-> > >>>>
-> > >>>> This patch introduces the 'user' trip point type where its semanti=
-c is
-> > >>>> simple: do nothing at the kernel level, just send a notification t=
-o
-> > >>>> the user space.
-> > >>>
-> > >>> Sounds like OS behavior/policy though I guess the existing ones kin=
-d are
-> > >>> too. Maybe we should have defined *what* action to take and then th=
-e OS
-> > >>> could decide whether what actions to handle vs. pass it up a level.
-> > >>
-> > >> Right
-> > >>
-> > >>> Why can't userspace just ask to be notified at a trip point it
-> > >>> defines?
-> > >>
-> > >> Yes I think it is possible to create a netlink message to create a t=
-rip
-> > >> point which will return a trip id.
-> > >>
-> > >> Rafael what do you think ?
-> > >
-> > > Trips cannot be created on the fly ATM.
-> > >
-> > > What can be done is to create trips that are invalid to start with an=
-d
-> > > then set their temperature via sysfs.  This has been done already for
-> > > quite a while AFAICS.
-> >
-> > Yes, I remember that.
-> >
-> > I would like to avoid introducing more weirdness in the thermal
-> > framework which deserve a clear ABI.
-> >
-> > What is missing to create new trip points on the fly ?
->
-> A different data structure to store them (essentially, a list instead
-> of an array).
->
-> I doubt it's worth the hassle.
->
-> What's wrong with the current approach mentioned above?  It will need
-> to be supported going forward anyway.
+On 16-06-24, 11:53, Biju Das wrote:
+> Use regulator_hardware_enable() for controlling VBUS enable for
+> RZ/G2L alike SoCs in interrupt context.
 
-BTW, there are two different concepts that seem to be mixed here.
+Acked-by: Vinod Koul <vkoul@kernel.org>
 
-One of them is a "trigger" that will cause a netlink message to be
-sent to user space when a given temperature level is crossed (either
-way) and nothing more.  This in principle can be added to any thermal
-zone (even tripless) and should be possible to implement as a separate
-mechanism independent of trip points.
-
-The other one is a pair of trip points that can be set "around" the
-current zone temperature so that the .set_trips() callback uses them
-to program interrupts to trigger when one of them is crossed.  This at
-least requires the thermal zone to provide a .set_trips() callback, so
-it depends on the driver registering the thermal zone.  Arguably, the
-driver in question can reserve a pair of "trip slots" in the trip
-table passed to the zone registration function.
+-- 
+~Vinod
 
