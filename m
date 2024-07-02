@@ -1,115 +1,339 @@
-Return-Path: <devicetree+bounces-82382-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82383-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F7D49241E3
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 17:08:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2763B9241ED
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 17:09:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E5101286CD5
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 15:08:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D1D23282856
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 15:09:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FCA71BB69C;
-	Tue,  2 Jul 2024 15:08:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67E131BBBFC;
+	Tue,  2 Jul 2024 15:08:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oYR4p705"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QdB5vvsR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 331DC1BB68D;
-	Tue,  2 Jul 2024 15:08:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B69411BB6AD;
+	Tue,  2 Jul 2024 15:08:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719932890; cv=none; b=PyYSHxeFvFJl8SLEHHeH0a5gSUdZDC/3PZ6SjBO8olyB7xGNQZp1kT7HQ0hIQnNsoM7N+Ysh3LHimwV/VmSKcWBRyoEwpgPM26gy/YsZKiJ7wRaOv3dQgiWwM7Bijug78MN+WiTV2CurHQ/AMLQdv1Q/2AoH0YBhFKR8JudyV+4=
+	t=1719932926; cv=none; b=LW/dHE5rOADjcQd0Y7Jvk2TgFt49MFmjF7z8VvTc7S0P/JZVjpX/Afv8XQR4NPZzWu4jiIwryIYFmHjOT/avsvFhkv6LhKuITh8kAAj5dY2Jw4qRrkup0qf36Asw361qoaUYzb+MBXAiCgpCZY/bdwTlFNu669yD19tnlyYMb2w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719932890; c=relaxed/simple;
-	bh=2BEp/xQFjVsQI+IPcKnwBwcUgI78+VSrXnR8I30AQRk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=X2TWKuGW15hE7l34TspJ/AoCZkpktn6Ojyx19+eYwzBgjl6X+juL2XGhYQ3RKQvGJM/CTLotULDJMhrdxnIRJYA0uBQCn5JnMik1YsPvLe3Kh1N3KBZ+d+fgomMzSqqSXaZtzAoosGrWtmPxDC2/8O6JrmjBPp8PM1iZ5LjO4h8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oYR4p705; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E29BC116B1;
-	Tue,  2 Jul 2024 15:08:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719932890;
-	bh=2BEp/xQFjVsQI+IPcKnwBwcUgI78+VSrXnR8I30AQRk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oYR4p705kYM2wGDu+juLlWEn74qpeY2oekLMWvilK/+/xXNCrJxLm27UUcEBv3l4S
-	 LLRX/iQNiOA5HPft4IL71kjrRJqUAVyT+unzf+3sjaulrkWLgiicjtomh4daqmQJjG
-	 qSX5123JDAMEXaV6fUXaaa628HpzqxLepPL3EGTIfljErvGR7Mzxbtgd0RQ9m2NkVl
-	 GqtyembOpx6F6zAwFoNTU6ks5Mry+xXCND0LWx+19E0psMCpZyqefq27JCckeRjw8o
-	 SfNMlah9tM4hWeAldbTfwnR5Zt5o25/jN4jE3E4WMkHAAYlkWTvhuR/cCfkRN03+K8
-	 XrMgSmAmlhadw==
-Date: Tue, 2 Jul 2024 16:08:05 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Kim Seer Paller <kimseer.paller@analog.com>
-Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Dimitri Fedrau <dima.fedrau@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Michael Hennerich <michael.hennerich@analog.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-Subject: Re: [PATCH v5 4/6] dt-bindings: iio: dac: Add adi,ltc2664.yaml
-Message-ID: <20240702-septic-cake-f839ff7048a9@spud>
-References: <20240702030025.57078-1-kimseer.paller@analog.com>
- <20240702030025.57078-5-kimseer.paller@analog.com>
+	s=arc-20240116; t=1719932926; c=relaxed/simple;
+	bh=jQWkuFaUrIXWFQJfEgCNzBBpR41YwACdk7IdlYSYbd8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Wl51BRDQnZfRKxRVZ+9//suw18LDuhkqsoMUuyirEQeLQugtLSO9JeOIIxDqxCmGKeeZ1qUUnSoIOvovdoUZSJnsunp0ctKbDj+sn9CZ0jGvF+vrY/KXv2/SFBUTlNdYcWzqO9k7LXJCx2T5sYBe9QCEELEoZvv3yigzoBENw/g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QdB5vvsR; arc=none smtp.client-ip=209.85.215.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f176.google.com with SMTP id 41be03b00d2f7-7182a634815so2590912a12.3;
+        Tue, 02 Jul 2024 08:08:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1719932924; x=1720537724; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ctXZQ3OEJ+XlGufIJb9yNX6233ubUXWM36kc4cCWQME=;
+        b=QdB5vvsRfYOIvnI1ORN5niT6WGfg3XAVCiw2vxhn7gwj1nsFK5THS68hcmb8kei90U
+         vXINJD6r9n6pdJp9Bz0ijimT8FtpYERBGAPgsGUUdmBhiBbTEazHDC+0qjJ4dQtdx1JF
+         0BRxTGowJzpd0azlLWc8b4/IdMJndgs+hCHku5SXtl4WGkPus6fil7+EOfAaX8NDld1e
+         9tveOZYGSp/2CvtYKHl0+tgdApso33XBleXvBpxMzD8zSbvY8LthYJrqnQmOjn9/kYbA
+         VLbMr1ziEcQ8xKNG/w92Kh2nvynAz7dPTyEW4urJmYb+dkKN/IbHGcFLonIzRN9m/mjA
+         XDtw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719932924; x=1720537724;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ctXZQ3OEJ+XlGufIJb9yNX6233ubUXWM36kc4cCWQME=;
+        b=BnivpqSoRDMLON1yAhVw8jP1/nR2ENaFzt3ofhQkrXb7ojb2Sb50n0fmVnNe9b/8ad
+         B6eiB1q7my+28KtDOVKZki3uhWoMq2tHksJ9L9ZWNVbq1IMsmKL7vgx8k+yrk2y+qzTS
+         6IALRkSTHf+Em6Hqcf7baxr69RTp0tGJ19OpTgCc3jLEAXzi/pYYgos8OFJm09L9iqvC
+         bv5tKNCgUdB1/L3Din9MEhyvEgNLhLErSIwHtoGxCgtN88tugTJh8AgvFwuLRdMmt4PQ
+         NJEsE5Bnxqs/8QXf0GviORmp68Wld1Gbr2upiIpoUxO62lBKapodjB9YV2W7MIpkaHd5
+         pe9A==
+X-Forwarded-Encrypted: i=1; AJvYcCWAhZtObJsS+i4A8VdCmpG7/YK9E+eHcMVfMcuhmsSU2++T7lzhv+A2DmiuaJk1ydY6kBbsrq0FmHE1ZHyHxg4qmSnvjD+QkyIpkx0G4jNS66BNAWyY/9fPig8H1UIJPSA9TGVPB74Vjg==
+X-Gm-Message-State: AOJu0Yws8/0H0rNMSLGdFWvb6ToASVb5Fi3sEoSDlUWY0tUeldUEL6Gy
+	u/cKOmF4ZVbxz7z7hcs6zpeZ9fsVcY4SqleesPh+DhT0eCr8ygCC
+X-Google-Smtp-Source: AGHT+IGmiKmNF8ljuzN+S5KQnG0L2B3akXVzUTZ3G1U2BN5D/wkDQk4K8Bey1qCtYvVJLYpF+DwgvQ==
+X-Received: by 2002:a05:6a20:258a:b0:1be:cd15:aeeb with SMTP id adf61e73a8af0-1bef60e3f2dmr9232326637.6.1719932922165;
+        Tue, 02 Jul 2024 08:08:42 -0700 (PDT)
+Received: from [127.0.0.1] ([104.224.80.8])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1fac10e3a1dsm85302535ad.68.2024.07.02.08.08.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 02 Jul 2024 08:08:41 -0700 (PDT)
+Message-ID: <cf4a9281-a28b-48f6-a53b-27df01980af6@gmail.com>
+Date: Tue, 2 Jul 2024 23:08:37 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="yPz5+S6+ASY1g/ES"
-Content-Disposition: inline
-In-Reply-To: <20240702030025.57078-5-kimseer.paller@analog.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] mailbox: sophgo: add mailbox driver for cv18x SoCs
+To: d1581209858@live.com
+Cc: aou@eecs.berkeley.edu, conor+dt@kernel.org, devicetree@vger.kernel.org,
+ inochiama@outlook.com, jassisinghbrar@gmail.com, krzk+dt@kernel.org,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+ palmer@dabbelt.com, paul.walmsley@sifive.com, robh@kernel.org,
+ unicorn_wang@outlook.com
+References: <SYBP282MB2238DE0DA19C6EF411B2356CC4CE2@SYBP282MB2238.AUSP282.PROD.OUTLOOK.COM>
+ <SYBP282MB2238F93AB57A398E322644C3C4CE2@SYBP282MB2238.AUSP282.PROD.OUTLOOK.COM>
+Content-Language: en-US
+From: Junhui Liu <liujh2818@gmail.com>
+In-Reply-To: <SYBP282MB2238F93AB57A398E322644C3C4CE2@SYBP282MB2238.AUSP282.PROD.OUTLOOK.COM>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
+Hi Yuntao,
 
---yPz5+S6+ASY1g/ES
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On 2024/6/18 23:12, Yuntao Dai wrote:
+> Add mailbox controller driver for cv18x SoCs, tested on mailbox-test
+> client.
+>
+> Signed-off-by: Yuntao Dai <d1581209858@live.com>
+> ---
+>   drivers/mailbox/Kconfig           |  11 ++
+>   drivers/mailbox/Makefile          |   2 +
+>   drivers/mailbox/cv1800b-mailbox.c | 181 ++++++++++++++++++++++++++++++
+>   3 files changed, 194 insertions(+)
+>   create mode 100644 drivers/mailbox/cv1800b-mailbox.c
+>
+> diff --git a/drivers/mailbox/Kconfig b/drivers/mailbox/Kconfig
+> index 3b8842c4a..4e5593861 100644
+> --- a/drivers/mailbox/Kconfig
+> +++ b/drivers/mailbox/Kconfig
+> @@ -286,4 +286,15 @@ config QCOM_IPCC
+>   	  acts as an interrupt controller for receiving interrupts from clients.
+>   	  Say Y here if you want to build this driver.
+>   
+> +config CV1800B_MBOX
+> +	tristate "cv1800b mailbox"
+> +	depends on OF
+> +	depends on ARCH_SOPHGO || COMPILE_TEST
+> +	help
+> +	  Mailbox driver implementation for Sophgo cv180x SoCs. This driver
+> +	  can be used to send message between different processors in SoC. Any
+> +	  processer can write data in a channel, and set co-responding register
+> +	  to raise interrupt to notice another processor, and it is allowed to
+> +	  send data to itself.
+> +
+>   endif
+> diff --git a/drivers/mailbox/Makefile b/drivers/mailbox/Makefile
+> index 5cf2f54de..71f0f746e 100644
+> --- a/drivers/mailbox/Makefile
+> +++ b/drivers/mailbox/Makefile
+> @@ -62,3 +62,5 @@ obj-$(CONFIG_SUN6I_MSGBOX)	+= sun6i-msgbox.o
+>   obj-$(CONFIG_SPRD_MBOX)		+= sprd-mailbox.o
+>   better
+>   obj-$(CONFIG_QCOM_IPCC)		+= qcom-ipcc.o
+> +
+> +obj-$(CONFIG_CV1800B_MBOX)	+= cv1800b-mailbox.o
+> \ No newline at end of file
+> diff --git a/drivers/mailbox/cv1800b-mailbox.c b/drivers/mailbox/cv1800b-mailbox.c
+> new file mode 100644
+> index 000000000..8ef2a5492
+> --- /dev/null
+> +++ b/drivers/mailbox/cv1800b-mailbox.c
+> @@ -0,0 +1,181 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +
+> +#include <linux/device.h>
+> +#include <linux/err.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/io.h>
+> +#include <linux/kfifo.h>
+> +#include <linux/mailbox_controller.h>
+> +#include <linux/mailbox_client.h>
+> +#include <linux/module.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/slab.h>
+> +
+> +#define MAILBOX_MAX_CHAN 0x0008
+> +#define MAILBOX_DONE_OFFSET 0x0002
+> +#define MAILBOX_CONTEXT_SIZE 0x0040
+> +#define MAILBOX_CONTEXT_OFFSET 0x0400
+> +
+> +#define MBOX_EN_REG(cpu) (cpu << 2)
+> +#define MBOX_DONE_REG(cpu) ((cpu << 2) + MAILBOX_DONE_OFFSET)
+> +
+> +#define MBOX_SET_CLR_REG(cpu) (0x10 + (cpu << 4))
+> +#define MBOX_SET_INT_REG(cpu) (0x18 + (cpu << 4))
+> +
+> +#define MBOX_SET_REG 0x60
+> +
+> +struct cv1800b_mbox {
+> +	struct mbox_controller mbox;
+> +	struct mbox_chan chans[MAILBOX_MAX_CHAN];
+> +	u64 *content[MAILBOX_MAX_CHAN];
+> +	void __iomem *mbox_base;
+> +	int sendto;
+> +	int recvid;
+> +};
+> +
+> +static irqreturn_t cv1800b_mbox_isr(int irq, void *dev_id)
+> +{
+> +	struct cv1800b_mbox *mbox = (struct cv1800b_mbox *)dev_id;
+> +	size_t i;
+> +
+> +	for (i = 0; i < MAILBOX_MAX_CHAN; i++) {
+> +		if (mbox->content[i]) {
+> +			mbox_chan_received_data(&mbox->chans[i],
+> +						mbox->content[i]);
+I tested this driver but met "NULL pointer dereference" Oops here
+when I sent message from the c906l core without binding clients.
 
-On Tue, Jul 02, 2024 at 11:00:23AM +0800, Kim Seer Paller wrote:
-> +  adi,manual-span-operation-config:
-> +    description:
-> +      This property must mimic the MSPAN pin configurations. By tying the MSPAN
-> +      pins (MSP2, MSP1 and MSP0) to GND and/or VCC, any output range can be
-> +      hardware-configured with different mid-scale or zero-scale reset options.
-> +      The hardware configuration is latched during power on reset for proper
-> +      operation.
-> +        0 - MPS2=GND, MPS1=GND, MSP0=GND (+-10V, reset to 0V)
-> +        1 - MPS2=GND, MPS1=GND, MSP0=VCC (+-5V, reset to 0V)
-> +        2 - MPS2=GND, MPS1=VCC, MSP0=GND (+-2.5V, reset to 0V)
-> +        3 - MPS2=GND, MPS1=VCC, MSP0=VCC (0V to 10, reset to 0V)
-> +        4 - MPS2=VCC, MPS1=GND, MSP0=GND (0V to 10V, reset to 5V)
-> +        5 - MPS2=VCC, MPS1=GND, MSP0=VCC (0V to 5V, reset to 0V)
-> +        6 - MPS2=VCC, MPS1=VCC, MSP0=GND (0V to 5V, reset to 2.5V)
-> +        7 - MPS2=VCC, MPS1=VCC, MSP0=VCC (0V to 5V, reset to 0V, enables SoftSpan)
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [0, 1, 2, 3, 4, 5, 6, 7]
-> +    default: 7
+I think maybe it's better to add a check here, like:
 
-I still don't like this property, but I still don't really understand
-some of the iteraction between it and the output ranges and cannot
-suggest anything better, so
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+struct mbox_chan *chan = &mbox->chans[i];
+if (chan->cl) {
+     mbox_chan_received_data(chan, mbox->content[i]);
+}
 
---yPz5+S6+ASY1g/ES
-Content-Type: application/pgp-signature; name="signature.asc"
+Best,
+Junhui Liu
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZoQX1AAKCRB4tDGHoIJi
-0nWUAP9UyDAtocaLuOOrPmRL9kXLexDGODjjOxKb3odePf5Q5wD/fZFn5DoyuHvg
-s8cbkMbQfoyl0EOoxt5wVh5DaKqTcg0=
-=ZhuX
------END PGP SIGNATURE-----
-
---yPz5+S6+ASY1g/ES--
+> +			mbox->content[i] = NULL;
+> +			return IRQ_HANDLED;
+> +		}
+> +	}
+> +	return IRQ_NONE;
+> +}
+> +
+> +static irqreturn_t cv1800b_mbox_irq(int irq, void *dev_id)
+> +{
+> +	struct cv1800b_mbox *mbox = (struct cv1800b_mbox *)dev_id;
+> +	u8 set, valid;
+> +	u64 *addr;
+> +	size_t i;
+> +
+> +	set = readb(mbox->mbox_base + MBOX_SET_INT_REG(mbox->recvid));
+> +
+> +	if (!set)
+> +		return IRQ_NONE;
+> +
+> +	for (i = 0; i < MAILBOX_MAX_CHAN; i++) {
+> +		valid = set & (1 << i);
+> +		addr = (u64 *)(mbox->mbox_base + MAILBOX_CONTEXT_OFFSET) + i;
+> +		if (valid) {
+> +			mbox->content[i] = addr;
+> +			writeb(valid, mbox->mbox_base +
+> +					      MBOX_SET_CLR_REG(mbox->recvid));
+> +			writeb(~valid,
+> +			       mbox->mbox_base + MBOX_EN_REG(mbox->recvid));
+> +			return IRQ_WAKE_THREAD;
+> +		}
+> +	}
+> +
+> +	return IRQ_NONE;
+> +}
+> +
+> +static int cv1800b_mbox_send_data(struct mbox_chan *chan, void *data)
+> +{
+> +	struct cv1800b_mbox *mbox = dev_get_drvdata(chan->mbox->dev);
+> +	int idx = (int)chan->con_priv;
+> +	u8 en, valid;
+> +	u64 *addr = (u64 *)(mbox->mbox_base + MAILBOX_CONTEXT_OFFSET) + idx;
+> +
+> +	memcpy_toio(addr, data, 8);
+> +
+> +	valid = 1 << idx;
+> +	writeb(valid, mbox->mbox_base + MBOX_SET_CLR_REG(mbox->sendto));
+> +	en = readb(mbox->mbox_base + MBOX_EN_REG(mbox->sendto));
+> +	writeb(en | valid, mbox->mbox_base + MBOX_EN_REG(mbox->sendto));
+> +	writeb(valid, mbox->mbox_base + MBOX_SET_REG);
+> +
+> +	return 0;
+> +}
+> +
+> +static bool cv1800b_last_tx_done(struct mbox_chan *chan)
+> +{
+> +	return true;
+> +}
+> +
+> +static const struct mbox_chan_ops cv1800b_mbox_chan_ops = {
+> +	.send_data = cv1800b_mbox_send_data,
+> +	.last_tx_done = cv1800b_last_tx_done,
+> +};
+> +
+> +static const struct of_device_id cv1800b_mbox_of_match[] = {
+> +	{ .compatible = "sophgo,cv1800b-mailbox", },
+> +	{},
+> +};
+> +MODULE_DEVICE_TABLE(of, cv1800b_mbox_of_match);
+> +
+> +static int cv1800b_mbox_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct cv1800b_mbox *mb;
+> +	int irq, idx, err, cpu;
+> +
+> +	if (!dev->of_node)
+> +		return -ENODEV;
+> +
+> +	mb = devm_kzalloc(dev, sizeof(*mb), GFP_KERNEL);
+> +	if (!mb)
+> +		return -ENOMEM;
+> +
+> +	mb->mbox_base = devm_of_iomap(dev, dev->of_node, 0, NULL);
+> +	if (IS_ERR(mb->mbox_base))
+> +		return dev_err_probe(dev, PTR_ERR(mb->mbox_base),
+> +				     "Failed to map resource\n");
+> +
+> +	err = of_property_read_s32(dev->of_node, "sendto", &cpu);
+> +	if (err)
+> +		return dev_err_probe(dev, err,
+> +				     "Failed to find <sendto> in of_node\n");
+> +
+> +	mb->sendto = cpu;
+> +
+> +	err = of_property_read_s32(dev->of_node, "recvid", &cpu);
+> +	if (err) {
+> +		return dev_err_probe(dev, err,
+> +				     "Failed to find <recvid> in of_node\n");
+> +	}
+> +	mb->recvid = cpu;
+> +
+> +	mb->mbox.dev = dev;
+> +	mb->mbox.num_chans = MAILBOX_MAX_CHAN;
+> +	mb->mbox.chans = mb->chans;
+> +	mb->mbox.ops = &cv1800b_mbox_chan_ops;
+> +	mb->mbox.txdone_poll = true;
+> +
+> +	irq = platform_get_irq_byname(pdev, "mailbox");
+> +	err = devm_request_threaded_irq(dev, irq, cv1800b_mbox_irq,
+> +					cv1800b_mbox_isr, IRQF_ONESHOT,
+> +					dev_name(&pdev->dev), mb);
+> +	if (err < 0)
+> +		return dev_err_probe(dev, err, "Failed to register irq\n");
+> +
+> +	for (idx = 0; idx < MAILBOX_MAX_CHAN; idx++)
+> +		mb->mbox.chans[idx].con_priv = (void *)idx;
+> +
+> +	err = devm_mbox_controller_register(dev, &mb->mbox);
+> +	if (err)
+> +		return dev_err_probe(dev, err, "Failed to register mailbox\n");
+> +
+> +	platform_set_drvdata(pdev, mb);
+> +	return 0;
+> +}
+> +
+> +static struct platform_driver cv1800b_mbox_driver = {
+> +	.driver = {
+> +		.name = "cv1800b-mbox",
+> +		.of_match_table = cv1800b_mbox_of_match,
+> +	},
+> +	.probe	= cv1800b_mbox_probe,
+> +};
+> +
+> +module_platform_driver(cv1800b_mbox_driver);
+> +
+> +MODULE_DESCRIPTION("cv1800b mailbox driver");
+> +MODULE_LICENSE("GPL");
 
