@@ -1,174 +1,134 @@
-Return-Path: <devicetree+bounces-82284-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82285-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B2F3923C00
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 13:03:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DC8A923C1D
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 13:10:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9D3A11F2157F
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 11:03:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2A0A728774B
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 11:10:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95FF6157487;
-	Tue,  2 Jul 2024 11:03:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBCA515A849;
+	Tue,  2 Jul 2024 11:10:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nloQ00Fr"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PX+uurSk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 651C04CDF9;
-	Tue,  2 Jul 2024 11:03:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E9BD155735
+	for <devicetree@vger.kernel.org>; Tue,  2 Jul 2024 11:10:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719918195; cv=none; b=PZZ5RMdrBG06EiUsiMOIK4JtutDG0OdRbbihKULbMPDB7ckO7jnuhoBJsuI+emanvycIZyXH2V2UgPvWTA2eZiuUCarAopx0FUL+9cW7KTdBsK8Y7b/AIIbpE3dTd/90B/ZU9cu2qtTcpDuR9r5B3rfeCxxioRwIZntT/Nb+LKY=
+	t=1719918627; cv=none; b=F0XdLdJB19PTazJu9s09Rkw3m2qClZA5TdBeNOHIqoWyCuVcfyl4f3vG6XJsxGzF9UloghJzZ6TvzLqE/QuvxmhUckcjmTBDbewQBPy8MxJR56gzjh1q4wqRiHmX2mqgcXvm5iMtcTa8wW6CpGJ8vxZjxWAlweOjsnQQE3pdxbQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719918195; c=relaxed/simple;
-	bh=AWJ7xszLeoqDT15imOWh8jL48v86HGoe71kVesSev2Y=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=bKYOribQNDAXfUQQPNKZVdhsOHzcDLC3QsFOIot9LQpGXb54rzhNSkMs1vi5DtH9v5MWni+pD8dKKpWn2jL7lHCwXUC5IjIopVtsqFIcR/Yrfc5V4YKkY6TLyBmz6T8LhGnQmAuI8TuIxIU6gCIrG9HiJegM1dkhzaDmgw1DeyU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nloQ00Fr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0577AC4AF0D;
-	Tue,  2 Jul 2024 11:03:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719918195;
-	bh=AWJ7xszLeoqDT15imOWh8jL48v86HGoe71kVesSev2Y=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=nloQ00FrGs5yRp2htAVMQ5wlXulDQ+GQGpKbi+II5pGjQglZNoLIfWALa+inG9oAP
-	 9JJVUCsuD0PRjh04heiPsE3GC3bl4NN0iRIyi349Hx3Jc37TxFoVWvzQbY+7v9jBlO
-	 MaZF9rdrMt0xMrDFPbKaqU1xdHHPL25/kphUSXqd204VvWPnWc8TCKUw3ojhODjOgL
-	 adeR4wfKfIakQmeQCcLQi1Vm5pdouWaIevyIRsrmlhn7H7Ti2VlA/4CtGfUsHPZlFF
-	 z/fLutm+fsgRXXgMX1mqciYoVXok8+XlhMCyMi+SVUg8E4Vj3mEsIC3RSv6G5XMS4E
-	 MFy66D/y41wfA==
-Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-25cc44857a1so452902fac.3;
-        Tue, 02 Jul 2024 04:03:14 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWsvtypddUiwi7mw/hQvMq9fQRhagStiQfmOPHDNBc8OnIhoja9flww8mM7nWdaLtl80fGEV9SHhG8d6njzv1vBXQIgDnN/Z+xJDPu+b5sb9mSN81q0JsLaIfa6PfyTB12K5l5dhCZdnsy1lyKpF6IUBG6VDllb2b9gK2koO2eclkJa
-X-Gm-Message-State: AOJu0YyxY6OZZce0D8E+mc4wNqFVCWIpz2pO6hbLMwB57VnBQFDthiBd
-	OUIm7GxwpzAz//51Kp9VFikb9kYEofXEdpeuL465hGP0i1UBz758LFbmWeFMod9HQgr54mVOvJw
-	mX8E1azDVyoFK6Sr50Gjd+7PhzpM=
-X-Google-Smtp-Source: AGHT+IFJRX03/JEbSVJzCZO+bUHjteNIdrZcxkJ8NOnrcNwVXlurM2vSMm1Uv6MUqN+OCYR90OciaoR2UF5Ey8zCLCI=
-X-Received: by 2002:a05:6870:b155:b0:254:d417:351f with SMTP id
- 586e51a60fabf-25db338f8f9mr8955572fac.1.1719918194273; Tue, 02 Jul 2024
- 04:03:14 -0700 (PDT)
+	s=arc-20240116; t=1719918627; c=relaxed/simple;
+	bh=SfEjw4cFfxixrvq6qtIfO/ZWv+HyMAbCOPeV0PYn3fw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fwwnlZksatofxTbpqKRxO3vfGU/1swvZAtILkkFJD3UeScfE5WfbfKcNCBypKZuLPmKbG57bzJRR6ihC4XVTpdIxiw6gfqlKtcHtCt3jnmj9mDQ5nuLSPtU8viLd6e40t7DbAks+7CRo41Lj/UkH5R1XjAw9b//Bh0fszhyyknU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PX+uurSk; arc=none smtp.client-ip=209.85.167.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-52e8cdc6a89so1897974e87.3
+        for <devicetree@vger.kernel.org>; Tue, 02 Jul 2024 04:10:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1719918624; x=1720523424; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=GUL6InU1s2oamDAjQ14QR1sgjo5CD0g2L+SSERlRdFs=;
+        b=PX+uurSkYHA1OXCMSJiiocGz/VMb6MGfNCpF9I17uoPpoPG6CXxgi5NMmn02ea5UiC
+         UmGyUuKbwePN7euLN7YLoRTG0ZJ43SIhKLyMnzZnG93mXMzM0zrkZkZTK84//LLAYrOn
+         fKn3OUHgPByZjw6vrwr73varjOKs4lBK83v9l/KkWgraRvLgw/brJz/+DBetzxe/v33n
+         JC4MXeaSJ7XU0+aYgLx8626K4HXBi/k89ZBlSTlSXlcLaujLorWpUvGmnkCjNP4Wxt3i
+         waayR4dzXvH2SB0kyEggRy1eH9QccRjngkEIsKwxU6E1U5E7O2GYr9DxVbbRpqeS1BMq
+         i05Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719918624; x=1720523424;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GUL6InU1s2oamDAjQ14QR1sgjo5CD0g2L+SSERlRdFs=;
+        b=JBbbTKYcMb2J7RPbqgrr019AeCSTVv10jgJblbr1bvD03b/OiJ0A9F7YUyuEgFN80K
+         LaOW9UEX/NC8k1yFgV9kOIbiq4AEjDzO3GtYKvTlWvyFbEfVkZ0PTWdl3hdg94O/ZLxi
+         ySuoevmP5Yk8ix6XPpl0K3ZdVef4HEJrqYNY4ggsv9SbUd62Q7f1312R4X1EN9Q9pqnn
+         eZjMyuNXACdKOfmmWh/UvtZJiuLsOWlhrLGb1w/h7iff12Xmt7IBbaLDuUdH5oKmA455
+         oCnJxpFBffCtGEeXNpKEPLgyNvTxcXuGMyIaAvqdLlhI4+NvSQSjiKsonit9LMW03rSy
+         pEnA==
+X-Forwarded-Encrypted: i=1; AJvYcCUwEFQS2EaRdkxteAQJaBwSfiWmcILoqWTxDMz/Ki3otj52Zk2W5hAOEbyXnpVJw5CONzWXWNnEBARkkZcHtAZD60h1L0tAocDUsg==
+X-Gm-Message-State: AOJu0Yx8MSxGgmztvo4rY5Y8XTcbuGfXwXA0WRCRmUlZ9ReDhy5DUptf
+	vAP9TFl9Oh0Bn4cS42JO0NpHA+PFz40GnNdoYuG1kve5nm/I1ayMembZNp91AjQ=
+X-Google-Smtp-Source: AGHT+IHsgF9I8uZJmqTmWCz+zNt8GwFkL2X6pxZhrZeGft31aGGDWcnY7hGJ7WQ7OHecVueU0YVRJA==
+X-Received: by 2002:a05:6512:3996:b0:52c:a1ad:18bd with SMTP id 2adb3069b0e04-52e82651a88mr6252854e87.6.1719918623990;
+        Tue, 02 Jul 2024 04:10:23 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52e7ab30a68sm1775997e87.242.2024.07.02.04.10.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Jul 2024 04:10:23 -0700 (PDT)
+Date: Tue, 2 Jul 2024 14:10:22 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Amit Pundir <amit.pundir@linaro.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, linux-arm-msm <linux-arm-msm@vger.kernel.org>, 
+	dt <devicetree@vger.kernel.org>, lkml <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: qcom: sm8550-hdk: add the Wifi node
+Message-ID: <he7q4mzj7u7t3c4pndu565m727e6hqpf2srrqgbdltjdffugdl@x3xrwteqpki3>
+References: <20240702091655.278974-1-amit.pundir@linaro.org>
+ <8ba07bbf-e8b1-4244-882b-ff2575368b20@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240627085451.3813989-1-daniel.lezcano@linaro.org>
- <20240701162600.GA4119789-robh@kernel.org> <98fe3146-07ae-4095-b372-6aed6e080d94@linaro.org>
- <CAJZ5v0ix+RDtrR+r3jd=A_W7D5U7JodMiirJ519-wwLrHeBbSw@mail.gmail.com> <1eb7eb88-4230-4803-83fe-415ce0745951@linaro.org>
-In-Reply-To: <1eb7eb88-4230-4803-83fe-415ce0745951@linaro.org>
-From: "Rafael J. Wysocki" <rafael@kernel.org>
-Date: Tue, 2 Jul 2024 13:03:03 +0200
-X-Gmail-Original-Message-ID: <CAJZ5v0jV+0bWqpCR1Q2rYLJvx0J6hgExzRks6YDPL9gX_HK0rA@mail.gmail.com>
-Message-ID: <CAJZ5v0jV+0bWqpCR1Q2rYLJvx0J6hgExzRks6YDPL9gX_HK0rA@mail.gmail.com>
-Subject: Re: [PATCH] thermal/core: Introduce user trip points
-To: Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Rob Herring <robh@kernel.org>, linux-pm@vger.kernel.org, 
-	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8ba07bbf-e8b1-4244-882b-ff2575368b20@kernel.org>
 
-On Tue, Jul 2, 2024 at 12:56=E2=80=AFPM Daniel Lezcano
-<daniel.lezcano@linaro.org> wrote:
->
-> On 02/07/2024 12:22, Rafael J. Wysocki wrote:
-> > On Tue, Jul 2, 2024 at 11:29=E2=80=AFAM Daniel Lezcano
-> > <daniel.lezcano@linaro.org> wrote:
-> >>
-> >> On 01/07/2024 18:26, Rob Herring wrote:
-> >>> On Thu, Jun 27, 2024 at 10:54:50AM +0200, Daniel Lezcano wrote:
-> >>>> Currently the thermal framework has 4 trip point types:
-> >>>>
-> >>>> - active : basically for fans (or anything requiring energy to cool
-> >>>>     down)
-> >>>>
-> >>>> - passive : a performance limiter
-> >>>>
-> >>>> - hot : for a last action before reaching critical
-> >>>>
-> >>>> - critical : a without return threshold leading to a system shutdown
-> >>>>
-> >>>> A thermal zone monitors the temperature regarding these trip
-> >>>> points. The old way to do that is actively polling the temperature
-> >>>> which is very bad for embedded systems, especially mobile and it is
-> >>>> even worse today as we can have more than fifty thermal zones. The
-> >>>> modern way is to rely on the driver to send an interrupt when the tr=
-ip
-> >>>> points are crossed, so the system can sleep while the temperature
-> >>>> monitoring is offloaded to a dedicated hardware.
-> >>>>
-> >>>> However, the thermal aspect is also managed from userspace to protec=
-t
-> >>>> the user, especially tracking down the skin temperature sensor. The
-> >>>> logic is more complex than what we found in the kernel because it
-> >>>> needs multiple sources indicating the thermal situation of the entir=
-e
-> >>>> system.
-> >>>>
-> >>>> For this reason it needs to setup trip points at different levels in
-> >>>> order to get informed about what is going on with some thermal zones
-> >>>> when running some specific application.
-> >>>>
-> >>>> For instance, the skin temperature must be limited to 43=C2=B0C on a=
- long
-> >>>> run but can go to 48=C2=B0C for 10 minutes, or 60=C2=B0C for 1 minut=
-e.
-> >>>>
-> >>>> The thermal engine must then rely on trip points to monitor those
-> >>>> temperatures. Unfortunately, today there is only 'active' and
-> >>>> 'passive' trip points which has a specific meaning for the kernel, n=
-ot
-> >>>> the userspace. That leads to hacks in different platforms for mobile
-> >>>> and embedded systems where 'active' trip points are used to send
-> >>>> notification to the userspace. This is obviously not right because
-> >>>> these trip are handled by the kernel.
-> >>>>
-> >>>> This patch introduces the 'user' trip point type where its semantic =
-is
-> >>>> simple: do nothing at the kernel level, just send a notification to
-> >>>> the user space.
-> >>>
-> >>> Sounds like OS behavior/policy though I guess the existing ones kind =
-are
-> >>> too. Maybe we should have defined *what* action to take and then the =
-OS
-> >>> could decide whether what actions to handle vs. pass it up a level.
-> >>
-> >> Right
-> >>
-> >>> Why can't userspace just ask to be notified at a trip point it
-> >>> defines?
-> >>
-> >> Yes I think it is possible to create a netlink message to create a tri=
-p
-> >> point which will return a trip id.
-> >>
-> >> Rafael what do you think ?
-> >
-> > Trips cannot be created on the fly ATM.
-> >
-> > What can be done is to create trips that are invalid to start with and
-> > then set their temperature via sysfs.  This has been done already for
-> > quite a while AFAICS.
->
-> Yes, I remember that.
->
-> I would like to avoid introducing more weirdness in the thermal
-> framework which deserve a clear ABI.
->
-> What is missing to create new trip points on the fly ?
+On Tue, Jul 02, 2024 at 12:42:02PM GMT, Krzysztof Kozlowski wrote:
+> On 02/07/2024 11:16, Amit Pundir wrote:
+> > Describe the ath12k WLAN on-board the WCN7850 module present on the
+> > board.
+> > 
+> > Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
+> > ---
+> > Kanged verbatim from 490812872449 ("arm64: dts: qcom: sm8550-qrd: add the Wifi node").
+> > 
+> >  arch/arm64/boot/dts/qcom/sm8550-hdk.dts | 97 +++++++++++++++++++++++++
+> >  1 file changed, 97 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/qcom/sm8550-hdk.dts b/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
+> > index 12d60a0ee095..c453d081a2df 100644
+> > --- a/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
+> > +++ b/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
+> > @@ -279,6 +279,68 @@ platform {
+> >  			};
+> >  		};
+> >  	};
+> > +
+> > +	wcn7850-pmu {
+> > +		compatible = "qcom,wcn7850-pmu";
+> > +
+> > +		pinctrl-names = "default";
+> > +		pinctrl-0 = <&wlan_en>, <&pmk8550_sleep_clk>;
+> > +
+> > +		wlan-enable-gpios = <&tlmm 80 GPIO_ACTIVE_HIGH>;
+> > +		/*
+> > +		 * TODO Add bt-enable-gpios once the Bluetooth driver is
+> > +		 * converted to using the power sequencer.
+> 
+> I don't understand why hardware description should depend on the driver.
+> Either you have this GPIO or not. If you have it, what does it matter if
+> there is no driver who can play with it?
 
-A different data structure to store them (essentially, a list instead
-of an array).
+Then there is a conflict between BT and PMU, which both will try to
+access the gpio (or at least the pinctrl).
 
-I doubt it's worth the hassle.
-
-What's wrong with the current approach mentioned above?  It will need
-to be supported going forward anyway.
+-- 
+With best wishes
+Dmitry
 
