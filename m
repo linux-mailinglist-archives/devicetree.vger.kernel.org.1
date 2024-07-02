@@ -1,133 +1,204 @@
-Return-Path: <devicetree+bounces-82200-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82201-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5EB691ED99
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 06:04:40 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 059DD91EDA1
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 06:11:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 54EE1B21D85
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 04:04:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5052AB2220B
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 04:11:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DC38125CC;
-	Tue,  2 Jul 2024 04:04:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7BE12030B;
+	Tue,  2 Jul 2024 04:11:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="gdYjL0u3"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="HJNsOiXH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 295CB2770E
-	for <devicetree@vger.kernel.org>; Tue,  2 Jul 2024 04:04:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.19])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 731DC179AF;
+	Tue,  2 Jul 2024 04:11:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719893074; cv=none; b=snP8/x+HsjO9zg6j2D6flIIX3X/545R8/hlYE05FqJ47MXPKDdH4BJf3DNEZ4C1XgEgPRqK5F5Q6uELHtmmcQpXYc9d6tNVsPivTJts/sH1bY5gIrW2BWqRInLAP57RxOiAJNEXhC8HQnBDXVy5MJ1LQjUEQtOV5uSWG2MSVz5A=
+	t=1719893506; cv=none; b=hAbewWlEPyGgU3yEf0McH02BlanbLGhiGuDGWqbCltkVYsSyFOEmns6UNPb3ARuIfGNPiY2h2bSOjx3jJgVH25lMnV85sdOdZPc/cGJcNygC5LOnzzifdcloXOW/K97nKpkS+S6IgQlUZRd4i3kEUTFabjAkS82JJ5+LmMHbBWU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719893074; c=relaxed/simple;
-	bh=ZSIETUmzp4yVZ72ggmPVegrufKFO06LgkA+xhy9TGrU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BcSb/t88TyoKv02IofQspTpoPiAJCaKoJUUVs4lDTGq2zpKGojgkc8xYM3SQ6N002x8iuDpJED0e20oiEaPlX+cNoEb4iOYAyuYAkWIXwK8VRoMk7bWpct2MwieVoZP3Nj2zRcFWFEeDpSRT+YVpOP4dpQInDpTKwUxy5f0mZ1Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=gdYjL0u3; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 106C688709;
-	Tue,  2 Jul 2024 06:04:28 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1719893069;
-	bh=5l+txb3Dnuz4QsOchPdwezW23KBAkdyYaoeSLye0aI8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=gdYjL0u37lbWodeIcSL9Fgh43Tb+lsDHX4N4aoEplueyCP3MM1S8sMgW7I9E0RjM8
-	 wvU84e5tdfgOobgXVdSWfVlltkzXePtL3MkqLpdpYL78nlhAMLPLv1Sr2OzR2pvV7g
-	 JRPs+VOdfBwufRYjMPdPZZi6m5gSEdyMiVzhkmUrIr1iZYlRx+Z/Mw66tLWFwpn/PZ
-	 tsPp+TzQN5v+usSIowW2QL21fQiBQsIGlmhb4zNEgEPCeRAOkN+IvMF5ZrgAFxgev3
-	 bdz6/dSBSJaDqwmXe7MrdWPKlbEMyAfZODtu8unYw0tBlRvZQtpzX3M1PXq2q+MfBd
-	 T4y/TBkVZ6pMQ==
-Message-ID: <cc492f1a-c2f5-438e-a28a-7900cde6f073@denx.de>
-Date: Tue, 2 Jul 2024 04:43:06 +0200
+	s=arc-20240116; t=1719893506; c=relaxed/simple;
+	bh=WNIW031Xge/X5WvEvR0amu3sR8nBLxBVhMO5x3XuHjw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PIQFpiJMPbRrYb2y2HjtE63++X3C0IoYPjJSbNj8UWHmYFO9KKgafXKJEZXcfLz2qrI7v8BjcJKfBBUNTBpttkRzKIKx+bKeFTWLwpy0O1wbsn6rThjlTzOhK7poYRhFLP8TeF6vYkpwoVabZ5U1kiqIsftIlRMqIuU0xX3l9BU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=HJNsOiXH; arc=none smtp.client-ip=220.197.32.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=BTf0yHthWHICtLSK/4rntYV8tS0Sys4XbAF0SFXsaC0=;
+	b=HJNsOiXHTnRtwPG9Yg2kDVOz0ZaPKpUOwUKh9QdsOwWcJfN2PswQTkaJv5FUNf
+	RB19sXXFqakH8VNhlfWjYirz298MUUMwISDVVYsUIaQdtlKFIXzf42kLnapoHENC
+	JfTd3ZTmLJBKjEgo8WPmxAkBNqmTYQlHc4Ug2Y/FffJ4c=
+Received: from dragon (unknown [114.218.218.47])
+	by gzsmtp2 (Coremail) with SMTP id Ms8vCgC3H4nSfYNmasI+AA--.7783S3;
+	Tue, 02 Jul 2024 12:11:00 +0800 (CST)
+Date: Tue, 2 Jul 2024 12:10:58 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Dong Aisheng <aisheng.dong@nxp.com>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 2/8] arm64: dts: imx8qm: add lvds subsystem
+Message-ID: <ZoN90rHfpK7niqEr@dragon>
+References: <20240701-imx8qm-dts-usb-v4-0-03cdbc8c44b6@nxp.com>
+ <20240701-imx8qm-dts-usb-v4-2-03cdbc8c44b6@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ARM: dts: stm32: Add ethernet MAC nvmem cells to DH
- STM32MP13xx DHCOR DHSBC board
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: kernel@dh-electronics.com, Alexandre Torgue
- <alexandre.torgue@foss.st.com>,
- Christophe Roullier <christophe.roullier@foss.st.com>,
- devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
- Krzysztof Kozlowski <krzk+dt@kernel.org>
-References: <20240629171100.20285-1-marex@denx.de>
- <171985715690.313627.4404278514791505125.robh@kernel.org>
-Content-Language: en-US
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <171985715690.313627.4404278514791505125.robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240701-imx8qm-dts-usb-v4-2-03cdbc8c44b6@nxp.com>
+X-CM-TRANSID:Ms8vCgC3H4nSfYNmasI+AA--.7783S3
+X-Coremail-Antispam: 1Uf129KBjvJXoWxWr4DKF4kJw48Cw4DAr4fKrg_yoWrWw1rpF
+	9rCa12qF1IyFyI9r9xKF18Krn5G3s8tF4j9ry3GrWjyrsxJry7tan3Cr1kury8XF42v3y0
+	gFn0qr1FkrnIvaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jO8nOUUUUU=
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiAhUQZWZv-d3PvwAAs7
 
-On 7/1/24 8:10 PM, Rob Herring (Arm) wrote:
+On Mon, Jul 01, 2024 at 11:03:28AM -0400, Frank Li wrote:
+> Add irqsteer, pwm and i2c in lvds subsystem.
 > 
-> On Sat, 29 Jun 2024 19:10:30 +0200, Marek Vasut wrote:
->> Describe ethernet MAC address nvmem cells in DH STM32MP13xx DHCOR DHSBC
->> board DT. The MAC address can be fused in BSEC OTP fuses and used to set
->> up MAC address for both ethernet MACs on this board.
->>
->> Signed-off-by: Marek Vasut <marex@denx.de>
->> ---
->> Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
->> Cc: Christophe Roullier <christophe.roullier@foss.st.com>
->> Cc: Conor Dooley <conor+dt@kernel.org>
->> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
->> Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
->> Cc: Rob Herring <robh@kernel.org>
->> Cc: devicetree@vger.kernel.org
->> Cc: kernel@dh-electronics.com
->> Cc: linux-arm-kernel@lists.infradead.org
->> Cc: linux-stm32@st-md-mailman.stormreply.com
->> ---
->>   arch/arm/boot/dts/st/stm32mp135f-dhcor-dhsbc.dts | 4 ++++
->>   1 file changed, 4 insertions(+)
->>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+>  arch/arm64/boot/dts/freescale/imx8qm-ss-lvds.dtsi | 77 +++++++++++++++++++++++
+>  arch/arm64/boot/dts/freescale/imx8qm.dtsi         | 10 +++
+>  2 files changed, 87 insertions(+)
 > 
-> 
-> My bot found new DTB warnings on the .dts files added or changed in this
-> series.
-> 
-> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-> are fixed by another series. Ultimately, it is up to the platform
-> maintainer whether these warnings are acceptable or not. No need to reply
-> unless the platform maintainer has comments.
-> 
-> If you already ran DT checks and didn't see these error(s), then
-> make sure dt-schema is up to date:
-> 
->    pip3 install dtschema --upgrade
-> 
-> 
-> New warnings running 'make CHECK_DTBS=y st/stm32mp135f-dhcor-dhsbc.dtb' for 20240629171100.20285-1-marex@denx.de:
-> 
-> arch/arm/boot/dts/st/stm32mp135f-dhcor-dhsbc.dtb: ethernet@5800a000: Unevaluated properties are not allowed ('interrupt-names', 'interrupts-extended', 'mdio', 'nvmem-cell-names', 'nvmem-cells', 'phy-handle', 'phy-mode', 'snps,axi-config', 'snps,mixed-burst', 'snps,pbl', 'snps,tso', 'stmmac-axi-config' were unexpected)
-> 	from schema $id: http://devicetree.org/schemas/net/stm32-dwmac.yaml#
-> arch/arm/boot/dts/st/stm32mp135f-dhcor-dhsbc.dtb: ethernet@5800e000: Unevaluated properties are not allowed ('interrupt-names', 'interrupts-extended', 'mdio', 'nvmem-cell-names', 'nvmem-cells', 'phy-handle', 'phy-mode', 'snps,axi-config', 'snps,mixed-burst', 'snps,pbl', 'snps,tso', 'stmmac-axi-config' were unexpected)
-> 	from schema $id: http://devicetree.org/schemas/net/stm32-dwmac.yaml#
+> diff --git a/arch/arm64/boot/dts/freescale/imx8qm-ss-lvds.dtsi b/arch/arm64/boot/dts/freescale/imx8qm-ss-lvds.dtsi
+> new file mode 100644
+> index 0000000000000..1da3934847057
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/freescale/imx8qm-ss-lvds.dtsi
+> @@ -0,0 +1,77 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +
+> +/*
+> + * Copyright 2024 NXP
+> + */
+> +
+> +&qm_lvds0_lis_lpcg {
+> +	clocks = <&lvds_ipg_clk>;
+> +	clock-indices = <IMX_LPCG_CLK_4>;
+> +};
+> +
+> +&qm_lvds0_pwm_lpcg {
+> +	clocks = <&clk IMX_SC_R_LVDS_0_PWM_0 IMX_SC_PM_CLK_PER>,
+> +		 <&lvds_ipg_clk>;
+> +	clock-indices = <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_4>;
+> +};
+> +
+> +&qm_lvds0_i2c0_lpcg {
+> +	clocks = <&clk IMX_SC_R_LVDS_0_I2C_0 IMX_SC_PM_CLK_PER>,
+> +		 <&lvds_ipg_clk>;
+> +	clock-indices = <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_4>;
+> +};
+> +
+> +&qm_pwm_lvds0 {
+> +	clocks = <&qm_lvds0_pwm_lpcg IMX_LPCG_CLK_4>,
+> +		 <&qm_lvds0_pwm_lpcg IMX_LPCG_CLK_0>;
+> +};
+> +
+> +&qm_i2c0_lvds0 {
+> +	clocks = <&qm_lvds0_i2c0_lpcg IMX_LPCG_CLK_0>,
+> +		 <&qm_lvds0_i2c0_lpcg IMX_LPCG_CLK_4>;
+> +};
+> +
+> +&lvds0_subsys {
+> +	interrupt-parent = <&irqsteer_lvds0>;
+> +
+> +	irqsteer_lvds0: interrupt-controller@56240000 {
+> +		compatible = "fsl,imx8qm-irqsteer", "fsl,imx-irqsteer";
 
-I can't seem to be able to reproduce it locally , even with 
-dtschema/master updated right now .
+Is compatible "fsl,imx8qm-irqsteer" documented in bindings?
 
-Looking at the bindings, net/stm32-dwmac.yaml does have allof-ref to 
-snps,dwmac.yaml which has allof-ref to ethernet-controller.yaml , which 
-does list the nvmem-cells/nvmem-cell-names properties .
+Shawn
 
-What am I missing here ?
+> +		reg = <0x56240000 0x1000>;
+> +		interrupts = <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>;
+> +		interrupt-controller;
+> +		interrupt-parent = <&gic>;
+> +		#interrupt-cells = <1>;
+> +		clocks = <&qm_lvds0_lis_lpcg IMX_LPCG_CLK_4>;
+> +		clock-names = "ipg";
+> +		power-domains = <&pd IMX_SC_R_LVDS_0>;
+> +
+> +		fsl,channel = <0>;
+> +		fsl,num-irqs = <32>;
+> +	};
+> +
+> +	lvds0_i2c1_lpcg: clock-controller@56243014 {
+> +		compatible = "fsl,imx8qxp-lpcg";
+> +		reg = <0x56243014 0x4>;
+> +		#clock-cells = <1>;
+> +		clocks = <&clk IMX_SC_R_LVDS_0_I2C_0 IMX_SC_PM_CLK_PER>,
+> +			 <&lvds_ipg_clk>;
+> +		clock-indices = <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_4>;
+> +		clock-output-names = "lvds0_i2c1_lpcg_clk",
+> +				     "lvds0_i2c1_lpcg_ipg_clk";
+> +		power-domains = <&pd IMX_SC_R_LVDS_0_I2C_0>;
+> +	};
+> +
+> +	i2c1_lvds0: i2c@56247000 {
+> +		compatible = "fsl,imx8qm-lpi2c", "fsl,imx7ulp-lpi2c";
+> +		reg = <0x56247000 0x1000>;
+> +		interrupts = <9>;
+> +		clocks = <&lvds0_i2c1_lpcg IMX_LPCG_CLK_0>,
+> +			 <&lvds0_i2c1_lpcg IMX_LPCG_CLK_4>;
+> +		clock-names = "per", "ipg";
+> +		assigned-clocks = <&clk IMX_SC_R_LVDS_0_I2C_0 IMX_SC_PM_CLK_PER>;
+> +		assigned-clock-rates = <24000000>;
+> +		power-domains = <&pd IMX_SC_R_LVDS_0_I2C_0>;
+> +		status = "disabled";
+> +	};
+> +};
+> +
+> diff --git a/arch/arm64/boot/dts/freescale/imx8qm.dtsi b/arch/arm64/boot/dts/freescale/imx8qm.dtsi
+> index 61986e0639e53..1e8511e8d8577 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8qm.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8qm.dtsi
+> @@ -560,11 +560,20 @@ clk_spdif1_rx: clock-spdif1-rx {
+>  		clock-output-names = "spdif1_rx";
+>  	};
+>  
+> +	lvds_ipg_clk: clock-controller-lvds-ipg {
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+> +		clock-frequency = <24000000>;
+> +		clock-output-names = "lvds0_ipg_clk";
+> +	};
+> +
+>  	/* sorted in register address */
+>  	#include "imx8-ss-cm41.dtsi"
+>  	#include "imx8-ss-audio.dtsi"
+>  	#include "imx8-ss-vpu.dtsi"
+>  	#include "imx8-ss-gpu0.dtsi"
+> +	#include "imx8-ss-lvds0.dtsi"
+> +	#include "imx8-ss-lvds1.dtsi"
+>  	#include "imx8-ss-img.dtsi"
+>  	#include "imx8-ss-dma.dtsi"
+>  	#include "imx8-ss-conn.dtsi"
+> @@ -576,3 +585,4 @@ clk_spdif1_rx: clock-spdif1-rx {
+>  #include "imx8qm-ss-conn.dtsi"
+>  #include "imx8qm-ss-lsio.dtsi"
+>  #include "imx8qm-ss-audio.dtsi"
+> +#include "imx8qm-ss-lvds.dtsi"
+> 
+> -- 
+> 2.34.1
+> 
+
 
