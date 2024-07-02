@@ -1,119 +1,180 @@
-Return-Path: <devicetree+bounces-82420-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82421-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C42492432A
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 18:05:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C70DC924333
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 18:06:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 48E8E28C37F
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 16:05:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0553F1C23A72
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 16:06:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB2111BD4E8;
-	Tue,  2 Jul 2024 16:05:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C03211BD01E;
+	Tue,  2 Jul 2024 16:06:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jR6N/eyn"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="lyXAp1ML"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C74B81BD01F
-	for <devicetree@vger.kernel.org>; Tue,  2 Jul 2024 16:05:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03E6915218A;
+	Tue,  2 Jul 2024 16:06:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719936321; cv=none; b=mIGnPc3f3IFhI14hEjgXthZjoQ1Mq+KnOnC9AjCdADbUrLJiLyNFiV5tyshvtMx1N/HmozES6D8bJvg2AvCQMsVbcj7FaWQXfqcKKuwZANg+T6ATkmEIn/9lmiKO7TdQeIPm83w9rdhuRUuy2UsERaEcTfzMi+6DAlzk/m4U6k0=
+	t=1719936410; cv=none; b=XKky3jWgRIZN4KThAp5h2+Ue5QihALLVFdfq5tTU8l7Gs+3FC10rJmCjIY+W8qM1iEW0noXWT221L2CtNweoBDxmyGWWgsyt0WyOE4g9rLdbCPQ3AJn6yMEYQik6NEwLkxJQvwezPtWOhbCOEzkPMcFVN/IYfqmEZjmefyFRedw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719936321; c=relaxed/simple;
-	bh=syIp2eAtSwSV1hJbA1lDFrbWh4wHMuVpkhgYugmdvnU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=MaEEPlnqnp0tazAY2eyNSWrX1a1kIQJ3+hKtrvjXOaUm6LJotHM9y4AN5MIIyCthdAPL2LewZ/8CP/oaZM1eCkZYM5IxAs9AG7svSGfkcAMn5FcEvQhgWTzrBhJ+ggJYaE/inf8UeGfYqltuyz80l5esEGIRCq8mzwE7g72tUHU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jR6N/eyn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B86FC4AF1A
-	for <devicetree@vger.kernel.org>; Tue,  2 Jul 2024 16:05:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719936321;
-	bh=syIp2eAtSwSV1hJbA1lDFrbWh4wHMuVpkhgYugmdvnU=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=jR6N/eyng+xqAZrCwVB3AkqP86jCFo5ENmDSyMnINnqWe25QcmAL+WZOSaTgJPQTe
-	 LXNmiGW4wga9uSrf16qwxrQPI6qPuzitGCXUMGOspvgPjlJMenJS9aCUnYaEC2NWnV
-	 Mn6x84PO9Ew+3i3L8pdNyTzWQ9rVd9hXLjbfEt5B9b9FVlM1vd88uOiNXWZgY95QYO
-	 FvqggpPLcebX+0471D0bZmkLxYTA8qK19g/7OC+dOyiFpZO+df0y+zDJi54i/WKc2L
-	 XeJTvxGZxwjJSPPboNrhHSnqE0Lh7F552JG2WGPgG4BM97ACCzni4fiS1mkylmTT5v
-	 DUrY/jFvcuczw==
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a72510ebc3fso653381566b.2
-        for <devicetree@vger.kernel.org>; Tue, 02 Jul 2024 09:05:21 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWyVk6OPm3eU5B+xLjKBR4ciFD/Gz5Ya3lwXCFAFIlf2FxZ6wX/Jcoky46UphSQQ2nwolxR8iZr+1Hns5P/Tg8miOMV3WkbcMpUPA==
-X-Gm-Message-State: AOJu0YxXTCx0dbW4Ct46SX70nwNh3b+Fhr5LsEZOf2cg65nmpmioPWar
-	4iwVFvP49ZvFgcSDNi0sJBNVmHnWUYJeYKjOGljXKM58Ql4hSbClqfmKDHKfkbAaDed0ZQLhPo5
-	4Y2dCc/fe/5crE+VQf2UBueBmR3jx+IdtZrKRRA==
-X-Google-Smtp-Source: AGHT+IEBp4AdEUbTVgkYnrR4l+M9u5QRL7lxuLE7wPVki6HJriUGGhJlS+z/qX598S3G9T3Nof1fz6H2Rp80Ffza6Tk=
-X-Received: by 2002:a17:907:6e9f:b0:a6f:668b:3442 with SMTP id
- a640c23a62f3a-a75144de9c7mr601088966b.77.1719936319707; Tue, 02 Jul 2024
- 09:05:19 -0700 (PDT)
+	s=arc-20240116; t=1719936410; c=relaxed/simple;
+	bh=2COgCSUa3zORMm0SV/qu+bVvJrlj3rEJdBLczCkYGCs=;
+	h=Mime-Version:Content-Type:Date:Message-Id:To:From:Subject:Cc:
+	 References:In-Reply-To; b=P2Ms86xfCC4sUpUIIAPySOhOCmeQPLGeIgKtRwgkSP2z7fGYEGmbi5rJPjKDV41RApsE3HxNWrUGu3JN+kf8KUG4mxiAB/KiH1ruNc/OjDDOkMofS+KrO/N5KVjMeLwVXeHiN9YQfmJ/zL7Z/IYf6FKAylOPSuLfnp9Wb6O1l2s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=lyXAp1ML; arc=none smtp.client-ip=217.70.183.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id E08DC1C000C;
+	Tue,  2 Jul 2024 16:06:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1719936406;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=K3M1Jm/V1rIBa+qIxaSYsQiMZl7q8DuReOIHyHzdUtY=;
+	b=lyXAp1MLIyjUWsGHxISJyf4VUTkZ0G4vuBxhaFEfCApEv3dgNriMMNW1JCPMCTsfyH9v/Q
+	uiMjOp8qSPNr0BOMAOnYs90eSvVuNqFqUuxGwCFCMrxT+7GcO+HRdQ5LdUvTvIw5EgVCau
+	Q7PRXYFB2+SHZm3xXjeqEJRvrAdAcumDSqz6baeNWsJMC7eM/Xjq2BWnDTzQS+rEY1LLUy
+	mfv/FBGJnOVnAuDKZWbPELn3s87/lL6lxMN6W0Osf8dr6NGcw+fD0OhniI4GmxHpvV6dKG
+	ZdR+YZGo4r4YMNfMsxxh52mGw9pkelj1zEmukn5TqHmXTan4O7ZfZgA79W7DuQ==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20240628-x1e80100-bindings-thermal-qcom-tsens-v2-1-4843d4c2ba24@linaro.org>
-In-Reply-To: <20240628-x1e80100-bindings-thermal-qcom-tsens-v2-1-4843d4c2ba24@linaro.org>
-From: Amit Kucheria <amitk@kernel.org>
-Date: Tue, 2 Jul 2024 21:35:07 +0530
-X-Gmail-Original-Message-ID: <CAHLCerNKcHf3e71jTSihbd+Mp1W9ndZ+ULbn-B-iJ734Cj8OEQ@mail.gmail.com>
-Message-ID: <CAHLCerNKcHf3e71jTSihbd+Mp1W9ndZ+ULbn-B-iJ734Cj8OEQ@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: thermal: qcom-tsens: Document the
- X1E80100 Temperature Sensor
-To: Abel Vesa <abel.vesa@linaro.org>
-Cc: Thara Gopinath <thara.gopinath@gmail.com>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
-	Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Tue, 02 Jul 2024 18:06:45 +0200
+Message-Id: <D2F6KKV208I2.GMP386BWZ9QE@bootlin.com>
+To: "Philipp Zabel" <p.zabel@pengutronix.de>, "Rob Herring"
+ <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+Subject: Re: [PATCH 2/2] reset: eyeq: add platform driver
+Cc: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, "Vladimir
+ Kondratiev" <vladimir.kondratiev@mobileye.com>,
+ =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, "Thomas
+ Petazzoni" <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
+ <tawfik.bayouk@mobileye.com>
+X-Mailer: aerc 0.17.0
+References: <20240628-mbly-reset-v1-0-2a8294fd4392@bootlin.com>
+ <20240628-mbly-reset-v1-2-2a8294fd4392@bootlin.com>
+ <e9bfd8087ddef3d66f437719530df54a1f6529a4.camel@pengutronix.de>
+ <D2EC7KK40YX5.C3G1SM3FEDJO@bootlin.com>
+ <3fe74a3fc2747c8f9a3f433352720cfed76918ba.camel@pengutronix.de>
+In-Reply-To: <3fe74a3fc2747c8f9a3f433352720cfed76918ba.camel@pengutronix.de>
+X-GND-Sasl: theo.lebrun@bootlin.com
 
-On Fri, Jun 28, 2024 at 2:01=E2=80=AFPM Abel Vesa <abel.vesa@linaro.org> wr=
-ote:
->
-> Document the Temperature Sensor (TSENS) on the X1E80100 Platform.
->
-> Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+Hello Philipp,
 
-Reviewed-by: Amit Kucheria <amitk@kernel.org>
+On Tue Jul 2, 2024 at 11:19 AM CEST, Philipp Zabel wrote:
+> On Mo, 2024-07-01 at 18:19 +0200, Th=C3=A9o Lebrun wrote:
+[...]
+> > > > +#define rcdev_to_priv(rcdev) container_of(rcdev, struct eqr_privat=
+e, rcdev)
+> > >=20
+> > > Please use checkpatch --strict, and ideally mention when you ignore a
+> > > warning on purpose. In this case, the macro parameter should named
+> > > something else, because the last parameter to container_of must be
+> > > "rcdev" verbatim. This only works by accident because the passed
+> > > parameter also happens to be called called "rcdev" at all call sites.
+>
+> Thinking about this again, it would be even better to turn this into a
+> static inline function instead.
 
-> ---
-> Changes in v2:
-> - Just picked up Krzysztof's R-b tag
-> - Link to v1: https://lore.kernel.org/r/20240527-x1e80100-bindings-therma=
-l-qcom-tsens-v1-1-0f50f58253e1@linaro.org
-> ---
->  Documentation/devicetree/bindings/thermal/qcom-tsens.yaml | 1 +
->  1 file changed, 1 insertion(+)
+I thought about it but checking drivers/pinctrl/ it looked like macros
+were more common for container_of() encapsulation. I'll go the static
+inline function. Plain, simple:
+
+static inline struct eqr_private *eqr_rcdev_to_priv(struct reset_controller=
+_dev *x)
+{
+	return container_of(x, struct eqr_private, rcdev);
+}
+
 >
-> diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml b/=
-Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-> index 99d9c526c0b6..ac54ed604b74 100644
-> --- a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-> +++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-> @@ -67,6 +67,7 @@ properties:
->                - qcom,sm8450-tsens
->                - qcom,sm8550-tsens
->                - qcom,sm8650-tsens
-> +              - qcom,x1e80100-tsens
->            - const: qcom,tsens-v2
+> > I have let this CHECK from `checkpatch --strict` slip through indeed.
+> > Other remaining messages, with explanations, are:
+> >=20
+> >  - WARNING: added, moved or deleted file(s), does MAINTAINERS need
+> >    updating?
+> >=20
+> >    This is done in a single patch [0] in the MIPS series to avoid
+> >    conflicts in between series.
+> >
+> >  - CHECK: struct mutex definition without comment
+> >=20
+> >    This is about the above mutexes field. Do you want a code comment
+> >    about the reasoning for one mutex per domain?
 >
->        - description: v2 of TSENS with combined interrupt
+> Yes, that would be nice. I'm not pedantic about the lock comments
+> because in reset drivers it's usually pretty obvious what the lock is
+> used for, but mentioning that the mutexes cover register read-modify-
+> write plus waiting for LBIST on some domains seems like a good idea.
+
+Sure:
+
+struct eqr_private {
+	/*
+	 * One mutex per domain for read-modify-write operations on registers.
+	 * Some domains can be involved in LBIST which implies long critical
+	 * sections; we wouldn't want other domains to be impacted by that.
+	 */
+	struct mutex			mutexes[EQR_MAX_DOMAIN_COUNT];
+	void __iomem			*base;
+	const struct eqr_match_data	*data;
+	struct reset_controller_dev	rcdev;
+};
+
 >
-> ---
-> base-commit: 0fc4bfab2cd45f9acb86c4f04b5191e114e901ed
-> change-id: 20240522-x1e80100-bindings-thermal-qcom-tsens-aa2db90c4a74
+> [...]
+> > >=20
+> > > > +static void eqr_assert_locked(struct eqr_private *priv, u32 domain=
+, u32 offset)
+> > > > +{
+> [...]
+> > > > +	case EQR_EYEQ6H_SARCR:
+> > > > +		val =3D readl(base + EQR_EYEQ6H_SARCR_RST_REQUEST);
+> > > > +		val &=3D ~BIT(offset);
+> > > > +		writel(val, base + EQR_EYEQ6H_SARCR_RST_REQUEST);
+> > > > +		writel(val, base + EQR_EYEQ6H_SARCR_CLK_REQUEST);
+> > >=20
+> > > This looks peculiar. Why is it ok to write the value read from
+> > > RST_REQUEST into CLK_REQUEST?
+> >=20
+> > What is abstracted away by the hardware on EyeQ5 is not anymore on
+> > EyeQ6H. Previously a single register was used for requests and a single
+> > register for status. Now there are two request registers and two status
+> > registers.
+> >=20
+> > Those registers *must be kept in sync*. The register name referencing
+> > clock is not to be confused with the clock driver of the
+> > system-controller. It is describing a register within the reset
+> > controller.
+> >=20
+> > This hardware interface is odd, I might add a comment?
 >
-> Best regards,
-> --
-> Abel Vesa <abel.vesa@linaro.org>
->
+> Yes, please. With the knowledge that those registers must be kept in
+> sync, this goes from strange to obvious.
+
+Done, I added a plain comment on both assert and deassert:
+
+	/* RST_REQUEST and CLK_REQUEST must be kept in sync. */
+
+Thanks Philipp,
+
+--
+Th=C3=A9o Lebrun, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
 
