@@ -1,349 +1,326 @@
-Return-Path: <devicetree+bounces-82263-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82265-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 549E8923B1C
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 12:13:14 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B9C7923B48
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 12:21:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 777881C21281
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 10:13:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BF884B217E1
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 10:21:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68909156C6C;
-	Tue,  2 Jul 2024 10:13:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74FFA157A61;
+	Tue,  2 Jul 2024 10:21:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=brainfault-org.20230601.gappssmtp.com header.i=@brainfault-org.20230601.gappssmtp.com header.b="AB091qlD"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="uUOZQ2U/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f171.google.com (mail-il1-f171.google.com [209.85.166.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2B84153823
-	for <devicetree@vger.kernel.org>; Tue,  2 Jul 2024 10:13:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.171
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719915190; cv=none; b=reEKbjOPW3HAbBSoNV1EckKqBkGhdnV8CgN/Bx3ksz+vdAb2tTkSOkWIpD+5Di0vStqrkFZmVy4AKl4QEGnX45qlksa0Pb0QLOIWuCrVlT53ijzGRPxVkuatSzDHhMu6uBRAfGNkN//C5hPDlyyFA5d9l/sbssoHNgYPvEhwbkY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719915190; c=relaxed/simple;
-	bh=SPbHJYsiPJjsmyvySqe/VP1Q7pmCunLfCkECUEwNfLk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=G6dK8H5jRkuDmYFs8ZAxPoOSyHtJsU21vcBquqzsLFVnAl6Llgds6DQUWJNqLK6dqaXgPmlZXWACYyYPS6JqVmMr2vJeM6XGPi9vBgOEXA1nJJlrZ9w3CeUXcEHrpR6IiaEhQg89miyXN8RXgjJFxKrauJNN4pH5dbok4B3hkuk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=brainfault.org; spf=none smtp.mailfrom=brainfault.org; dkim=pass (2048-bit key) header.d=brainfault-org.20230601.gappssmtp.com header.i=@brainfault-org.20230601.gappssmtp.com header.b=AB091qlD; arc=none smtp.client-ip=209.85.166.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=brainfault.org
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=brainfault.org
-Received: by mail-il1-f171.google.com with SMTP id e9e14a558f8ab-36da84df7adso11447445ab.1
-        for <devicetree@vger.kernel.org>; Tue, 02 Jul 2024 03:13:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=brainfault-org.20230601.gappssmtp.com; s=20230601; t=1719915188; x=1720519988; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=a/sfLp11hmW8XmCatXqx8ssHvyyK3qsyCd37VaEVAL8=;
-        b=AB091qlDVzepmqK5XJtE6C4P/8dBzKmKo7AmtrVPxOKA7K5xMvQT1nrpAfutL8Vhey
-         dURjEOnQKaCYykKgIH6KZ5Ere3bsv0HvxVn8T2fHXyJlTWxSO6FF/D0v4GClByVCRodc
-         nl8VqaMPbiLUi1CJowWQ2PIi8WdGkGxSt9oDmyM6d4K0IofsNTWuQhpl84e8vRP/8DO1
-         Voh3o0HhhzsfmlH/7ee7knftyx11SSTCAcUWDZhXIFuTPk+aFLFlYWRbqnuXBAqTdzc6
-         UnaPS2qC4foSNws/5i9a4hibLX0uGTkP8XZXZSauABRjcD6AKU6xzRdwoAfFHV6nY5gk
-         Li8g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719915188; x=1720519988;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=a/sfLp11hmW8XmCatXqx8ssHvyyK3qsyCd37VaEVAL8=;
-        b=ufp4PsXDoEGWS22MoCLktgs3JFaoFVu0jQ9vUmM4pfUaoLAmrnGkiyhma0/KbS1Vc5
-         fYOKuVoziRHOzdcS2AwpIFYmL6vdym4eC3bRVdJi64/jVvKGVYSaAOaGei9oB1zRI2VC
-         RBC2y8KUUhPFhf/WJ4nta85T/J4PgR9GQ6J2oNRbEmUAAIfbzzppmGf9Z+LxBgZkDEka
-         tG15PHxqoXmz3eOBfxScDbRNO0YdaijRgDs4AhmWiuYntLYZ/eWWlzZyfx2yL0RyvCh/
-         wgX7NCyv82OOqwyob1Ln7IQk5i53jEy/xZJzzwYODJOEQnSHj6+e9CcdFwFc6t0PF37i
-         19bg==
-X-Forwarded-Encrypted: i=1; AJvYcCV+AZhdulBMvbqG9TNXo2HsRiLWKm6nc/h90bZeJxlg6OBM9WP6OdnE0zQ/BOyWa4xveG9zWrszXZabjI7bpkAZENehX203Z+ozqg==
-X-Gm-Message-State: AOJu0YzUS9X9dweJHDjqSiynQVn5Ile6M7IJo8cNMromjtzzT4+e6BOO
-	U6bcM22Zlx5vB/YYcEdjZ1r7H5ihcRq6RqKlf04RE1VKQPN58pOb3i0ZumR/OEj4QtylijmnGvI
-	2ay8BmXsuL/QiJQk2LNjLWXMM3eRRqZXVHOrm3g==
-X-Google-Smtp-Source: AGHT+IGoEgVDZjPWAam4RvZu0N/hvH3TdQfOxT1+hDZWpA6VO+SGZ99U6V5aJh8q7Z9zzeuPqfSR+JhreaWsEEhEJpU=
-X-Received: by 2002:a05:6e02:164c:b0:381:17b4:763 with SMTP id
- e9e14a558f8ab-38117b40a2fmr2935795ab.9.1719915187606; Tue, 02 Jul 2024
- 03:13:07 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 940BC15535A;
+	Tue,  2 Jul 2024 10:21:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=148.163.135.77
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1719915664; cv=fail; b=XmEbhhrBKptjI5xMz12kqc9dP8apL+GfBGKxWzLGkVd9J9FxETTry4xxUuRkk1vYUpOCu2CQRwRlqBoiSP8iRlssiYiSATheNdtqxMbxRRkzuhdxu3/2nWAECOimCP+iBr09Vh4d9wo1u7ZWIzPLbvAWfeK47TvqFODby7Dw4Lc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1719915664; c=relaxed/simple;
+	bh=04LZaSJYsrlmZVYAq0sYRG/aNZge7oAejCSUoW/1Du4=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=G5B5IRNH4/O4SDKh4IC9YJs3zv700KN9BuO4t9Wp2kyOqFxGoZoUkpE7Ms+/IiEXhwPkdVdQfIU8y6KD5ONIlZRTRvUq7CvmnYfvApKt76TbTyQjxARjKaPfR0899MQaeOn25+OlOwMc3IlL+WC2Q9b2RFI5ayjkl5gDN9qi7TY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=uUOZQ2U/; arc=fail smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0375855.ppops.net [127.0.0.1])
+	by mx0b-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4629Pjr8023290;
+	Tue, 2 Jul 2024 06:20:47 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=DKIM; bh=uOJhs
+	VhX3gh0+JJ5vfmMDHdH4upwzs9fzZrtYtkF2Jk=; b=uUOZQ2U/daQ67aSm960CH
+	wey4wlQ2/QIetxPjr3LeuM4ZB5wKTfCJ5xD+Vw6jGDL48SUKJmhnbk0QteDvpkxq
+	QPx4vHMX+cDbVJHzaJkP0deKSkatSQ4vobcEqDjZvq4Uyc5ePexFXSVkVPbm7EOJ
+	5lOrRR84dentspy9A/+Bn60wx1wK3bjGr37c6j8jsWS4eSVn2hqaK+LnjbN80FdP
+	bw+IEHQH/StK5n1oI0TGHQ9OaeDkoOqw2exWydywyNnYGb+V1s6wVrqTbkh0Q8Uh
+	38xEyAj6A2xbnCuO9ICmLDkY6k1hcKRAsDGEYAbR99u545c3A3wavSzmCiKVguHi
+	A==
+Received: from nam10-bn7-obe.outbound.protection.outlook.com (mail-bn7nam10lp2049.outbound.protection.outlook.com [104.47.70.49])
+	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 404ewm0apy-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 02 Jul 2024 06:20:47 -0400 (EDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=cJekiFiUEO5cyOM0tJ7ghxRLrxBLZHNLitf00Ivg6wy876ul+cDiaVwBmj7fElmN/y0w7KkSDgwFIasULnB04NxN0dP9CWi+z9WwvCJKgucRR1DTXlMERjsLk+8GJ3CmW16EvXxbC/avIfLqNQ3S6P2GD1bWG9BxxohJ1ztHrAyE7beLamPRcXsL06K1K+OCB5z9IkpIxGtHmwoP4OcJL1rDN2DSvsJb/vZMFGFcy2e4EWfW8MEhxGETZx10x9w0Fr24EGcoltohJQnUOe8hnaEw8am2MATuCgDIzt6VlbF0FDwIJBZ3tDgtq13eJOYgADDBqfA24MZ6ccxWdpIJFg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=uOJhsVhX3gh0+JJ5vfmMDHdH4upwzs9fzZrtYtkF2Jk=;
+ b=oPWRuqtUULTRb5CSJj6BXjqrS52LUEHOqrhPP9lOC5KS9G7inNdkjvHPCLjVG5mJc+F7c2SsA6Farnc9wgTQSeJzbIUpfVni+HYKbtu4VwUiLhfqxWyp8djDBZiAYjGNIsdakwLqdD5r2wdc5XiEMfBgkOJ9YsZyrGReeVztu+u8tLVp81+zCA8/w42HHkB09CCG9yX8akJf4J6SlNhHeCWU/GFbMh7pcIWi26l2DrQ7fj+JelXOkATvu7jmxM/E27KIl95fX8/oMpNqr2sO1DxzBiEtRuOxDWUBXwrW8XRpVGV0ZAGapnLAVNt2qfkRzBW+17h8KJBNNZClq95+CQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=analog.com; dmarc=pass action=none header.from=analog.com;
+ dkim=pass header.d=analog.com; arc=none
+Received: from SJ0PR03MB6343.namprd03.prod.outlook.com (2603:10b6:a03:399::11)
+ by DM6PR03MB5050.namprd03.prod.outlook.com (2603:10b6:5:1e8::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7719.36; Tue, 2 Jul
+ 2024 10:20:43 +0000
+Received: from SJ0PR03MB6343.namprd03.prod.outlook.com
+ ([fe80::6744:a83a:ab:7e23]) by SJ0PR03MB6343.namprd03.prod.outlook.com
+ ([fe80::6744:a83a:ab:7e23%2]) with mapi id 15.20.7719.029; Tue, 2 Jul 2024
+ 10:20:43 +0000
+From: "Agarwal, Utsav" <Utsav.Agarwal@analog.com>
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Conor Dooley
+	<conor@kernel.org>
+CC: "Hennerich, Michael" <Michael.Hennerich@analog.com>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, "Sa, Nuno" <Nuno.Sa@analog.com>,
+        "linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "Artamonovs,
+ Arturs" <Arturs.Artamonovs@analog.com>,
+        "Bimpikas, Vasileios"
+	<Vasileios.Bimpikas@analog.com>,
+        "Gaskell, Oliver"
+	<Oliver.Gaskell@analog.com>
+Subject: RE: [PATCH v4 2/2] dt-bindings: input: Update dtbinding for adp5588
+Thread-Topic: [PATCH v4 2/2] dt-bindings: input: Update dtbinding for adp5588
+Thread-Index: AQHay8gTYwwWs3CKE0S2GySCAYj43bHiBAgAgAAhhICAAQ+sQA==
+Date: Tue, 2 Jul 2024 10:20:43 +0000
+Message-ID: 
+ <SJ0PR03MB63431578A395E4DA9552EC2C9BDC2@SJ0PR03MB6343.namprd03.prod.outlook.com>
+References: <20240701-adp5588_gpio_support-v4-0-44bba0445e90@analog.com>
+ <20240701-adp5588_gpio_support-v4-2-44bba0445e90@analog.com>
+ <20240701-battalion-tacky-c52566b37a97@spud> <ZoLrYTp2IUKFBvzq@google.com>
+In-Reply-To: <ZoLrYTp2IUKFBvzq@google.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-dg-rorf: true
+x-dg-ref: 
+ =?us-ascii?Q?PG1ldGE+PGF0IG5tPSJib2R5LnR4dCIgcD0iYzpcdXNlcnNcdWFnYXJ3YTJc?=
+ =?us-ascii?Q?YXBwZGF0YVxyb2FtaW5nXDA5ZDg0OWI2LTMyZDMtNGE0MC04NWVlLTZiODRi?=
+ =?us-ascii?Q?YTI5ZTM1Ylxtc2dzXG1zZy1iYjU1MjdhYy0zODVjLTExZWYtODRmMi02NDQ5?=
+ =?us-ascii?Q?N2RjZTVmODVcYW1lLXRlc3RcYmI1NTI3YWUtMzg1Yy0xMWVmLTg0ZjItNjQ0?=
+ =?us-ascii?Q?OTdkY2U1Zjg1Ym9keS50eHQiIHN6PSI3MjEyIiB0PSIxMzM2NDM4OTI0MTMw?=
+ =?us-ascii?Q?MzQyNzkiIGg9Ijl2RzU2RDRERlVxWkJSTEZVenZESUFZWnpmRT0iIGlkPSIi?=
+ =?us-ascii?Q?IGJsPSIwIiBibz0iMSIgY2k9ImNBQUFBRVJIVTFSU1JVRk5DZ1VBQUVvQ0FB?=
+ =?us-ascii?Q?QW43NjE5YWN6YUFlNEFCVGlrRzVGVDdnQUZPS1Fia1ZNREFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFIQUFBQURhQVFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFFQUFRQUJBQUFBM0xoU2ZnQUFBQUFBQUFBQUFBQUFBSjRBQUFCaEFHUUFh?=
+ =?us-ascii?Q?UUJmQUhNQVpRQmpBSFVBY2dCbEFGOEFjQUJ5QUc4QWFnQmxBR01BZEFCekFG?=
+ =?us-ascii?Q?OEFaZ0JoQUd3QWN3QmxBRjhBWmdCdkFITUFhUUIwQUdrQWRnQmxBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUVBQUFBQUFBQUFBZ0FBQUFBQW5nQUFBR0VBWkFCcEFGOEFjd0JsQUdNQWRR?=
+ =?us-ascii?Q?QnlBR1VBWHdCd0FISUFid0JxQUdVQVl3QjBBSE1BWHdCMEFHa0FaUUJ5QURF?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFRQUFBQUFBQUFBQ0FB?=
+ =?us-ascii?Q?QUFBQUNlQUFBQVlRQmtBR2tBWHdCekFHVUFZd0IxQUhJQVpRQmZBSEFBY2dC?=
+ =?us-ascii?Q?dkFHb0FaUUJqQUhRQWN3QmZBSFFBYVFCbEFISUFNZ0FBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFCQUFBQUFBQUFBQUlBQUFBQUFBPT0iLz48L21l?=
+ =?us-ascii?Q?dGE+?=
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SJ0PR03MB6343:EE_|DM6PR03MB5050:EE_
+x-ms-office365-filtering-correlation-id: abaf1f18-3ef2-476f-f6ad-08dc9a80a13b
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|376014|366016|1800799024|38070700018;
+x-microsoft-antispam-message-info: 
+ =?us-ascii?Q?Cyg94FVYLj5R9nSN3Uc3xGeAPqx3z23FHBraGy0yZuLfYQ+xOX+vdhFJ4DWM?=
+ =?us-ascii?Q?R0GQXd9lqlJhObtUqyRFI5Aou6MURV8m+PC7Z//pTbSCSI/mIR4h9cFjVX2Z?=
+ =?us-ascii?Q?KtK8A5ti1AFr/yEgqUraq6T/IqHC8mFUDPzdz7TAZO0LFSnOXuEIMqgPBnhM?=
+ =?us-ascii?Q?dcQoGbh8XgJPn1MtXpK9i6KzGRsOKCkYNjrYfcETJ/xnqyG+TkJrykWwfAdk?=
+ =?us-ascii?Q?hX9gIC5TUpVyVyJ5bXVHO7rmpkFTOPgaQRsG6bZUMyoT0mGo7Z7l75rvJ+vg?=
+ =?us-ascii?Q?Qz1Z6vLgLFgiTfCeO/tpQeROF/uzGvSFEAJREGJsqpfwxCiYwxKtfuX8iZXI?=
+ =?us-ascii?Q?uHlvcOV9dvR/8nKPiRAwEpx2vbQFzuvK1yAZXUZGIslSWvqYEN3tdav3gYPs?=
+ =?us-ascii?Q?+RfLZlt3TV683acOuPpcJ700ifMV1B/NtMB7jXTyIeQQ5pR4FqupOtAVuIIp?=
+ =?us-ascii?Q?Aek/zcBNLPjdc7RV+391An4bTnxu2XeCnRdZEoMW1KVyTbPQuKT9garw6Qrb?=
+ =?us-ascii?Q?toHYb1TZ1YKXaWdAGUJ6HM2pxad13YII1O21w4ts0JDPhLafyS+XhmTvgrvA?=
+ =?us-ascii?Q?6h5zkSBDiy90eq82ariYOIHrwCQr7dW+b45uYmQCz7CdKnug/lgcRxm82TC+?=
+ =?us-ascii?Q?GnVj7WrHC4FtNRkofJiNk2invHYS4SR6V8RwJbX/krbnE++tXqg2tcdZiSBJ?=
+ =?us-ascii?Q?kkigJJ4EwBD2YoImbEXFRG62onEy8ZNQFvOLZDUvsOCD7tNXJ4Rb+6s5kqyD?=
+ =?us-ascii?Q?+4yGLC6DwSDffUkDjvv/pYPaiUD6sYLTutgr/AdBkYK0ZQWnaCDDM2N3Sa2D?=
+ =?us-ascii?Q?nxqaFKO5gi03ygl3ePlqTx4B3IaVqKqTqyQQbtINqGgJLeIQ1cnSQYmaFCUy?=
+ =?us-ascii?Q?zg8SX26KBCLwKezILAkKbI7oV9uv+FfdGNnpi92k7IqQ6HmljRb0rKDT1Huy?=
+ =?us-ascii?Q?0S+1qe7CCwpYfhgnypSgX5kuKBzP1bxUecfVqzGvBdS1wSB+Kpr1Yqx/kCuU?=
+ =?us-ascii?Q?UP7b+0LaZCz+Vyr9U2DGqDj7NUG3pUjD2BSTXZc8mOXuscqMiyUxT5ojg2So?=
+ =?us-ascii?Q?Rrq7kM74VWP3smFr+2JmijY8TEK4DsUlA3Of5rK8o+Mq4TuWnR2w6L4pKS12?=
+ =?us-ascii?Q?ODB5APvDEwVgdmfx35uVAOlF6YDNsW7hsTVKtWPWRU2Nn318gfxUJT0Vfsq3?=
+ =?us-ascii?Q?tf5I1VUK5NEYyvQvQPt4TyMEIU/rrHej3vXHAoASK6e7inWj8Vxue9I3vtTG?=
+ =?us-ascii?Q?st7OHGs56gZSPV4Z5hFC4ImQ+XVlqNMhegD2XfxujjYkGcjpyJKwsEvl4KSP?=
+ =?us-ascii?Q?5aI422PNG6KICe7S+JMPgWfGmkNpaPhvrxAODjDQJm5iipiUUnUOF9LjlVB9?=
+ =?us-ascii?Q?NAhRi2uKRQPQG0LnT8fIU6P96ubmaANyHffJ3LE54kzbpD6rDA=3D=3D?=
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR03MB6343.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(1800799024)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?us-ascii?Q?tTwHbFWm+Qhz4C6j0XFAKKBc7YgtY3Gjl6jfzMaBzrtttjx/n93U0cok77P3?=
+ =?us-ascii?Q?uesRWbSVCf9vqE0paJFPrXgVG359F5CBKx8VbVC+wue/T1kYMALDWI6a1PEC?=
+ =?us-ascii?Q?9q7x0p96yeGhuEFs1haxmcssu2ieePpZ/cb/wpknvitEGM69xtmJWrjafu2y?=
+ =?us-ascii?Q?khRoA74s5Nb1oGj75wDGNBWgtMJT9OfG9mweW5rZGh4ywXNRSgiJsYLi+d1H?=
+ =?us-ascii?Q?ThG+mpSAH5+eHiIuPfg9LtGNBuPNnP63GxwgxtyR2ZVYoA0dbiL5PlqGk85o?=
+ =?us-ascii?Q?o9yh6pTEHBZKjbHpkjbWNj3AnJSAm3c0VjieKj4q3SBJ+o84owScX1IUsx0B?=
+ =?us-ascii?Q?C9QKeZ3KPqa1fZ6+5551RyrQxGke0gNd7MqZKczZ8fqRFPXf4QPfX0a2XJER?=
+ =?us-ascii?Q?lDmoQ/FdUzNwYTFhEvrsyJ8XhR3AKSmxL0R8ZRPQzBFsnvzoRYTeXq9tLXsL?=
+ =?us-ascii?Q?a7SAjB9XivXZB31KVflQGTZK4SRacQn03JhX9DiWVzvBuSfQAuR/Tp3LwKGT?=
+ =?us-ascii?Q?jYqCiUjCxAY3TbBONHT5kx4xf7XvlZa7jXLcOMFEhEvDMmih81GhXZ4WToXg?=
+ =?us-ascii?Q?I7DZfzgnfIx1ThnQKGxLNF408TpIuvKseXdTDfXtKMwwWFUtFJtIJcNmZQcC?=
+ =?us-ascii?Q?kLf2mH0+1+Q/vVi6ooEF6HEKkOmqhPXpVUKaIu0b5QHBfKgw8920swxb/qjj?=
+ =?us-ascii?Q?6v+YX+By3+85Ooz8gtc9Ch+UQ94KhPyP/DomKSnZ11O3OVj4eg+Qsh4czxS/?=
+ =?us-ascii?Q?AHTg9ykRwj/JUD03NkvZImbTFglg3r/UZLquAyLXOfIH3G2+1p7elkx3IPpN?=
+ =?us-ascii?Q?efZRdY9SAsL5nLDW45GQzcLkwCGpOYndBktrxtwQRdReRlYMHF58muInINYC?=
+ =?us-ascii?Q?Y5qTjmL+8Ep2KggYMkaEZF1WD7UqjZj8O1as2hJzLnrb5XiUPFpGkzwNtWJ1?=
+ =?us-ascii?Q?HvigNMOHorihPOgm57aqFzhuu0hkLJC4047DWdFXjfZ2Ya6s03ajJAUUnUC+?=
+ =?us-ascii?Q?GIvKo7bK/8wzmJRHF17a0VfAgDGsoFHnlXP2H6DnnRpGhbSzYfo1JgjZVNw0?=
+ =?us-ascii?Q?dLAsR4IM3Oi6Iah2+6xYQhaQaxXacsh1a4KVoP0lezrYs/lABHJI0JGCy9FX?=
+ =?us-ascii?Q?fkF0JYRwBJbBfojG7lOetcnNiAHX/uZ2gjbMxzB0lmi4zyNrBaWlonfib4l5?=
+ =?us-ascii?Q?jFHyrV0NglyBY5oLus6+wtvh628Q3PRnBl4yOMJnDe5YySA9TFrW6ZCWP6au?=
+ =?us-ascii?Q?X20qZL6q5u8ANCwoV49WITrPUOuQUWOdxwuzMrFwK+v7aVnsGorlkRZoJENw?=
+ =?us-ascii?Q?rCDII1n17c+MkCYxPiKt24LJJvoPhMSC9vlACoFknpt3wq0qEgkNKjam3mCL?=
+ =?us-ascii?Q?lJ9q5pDOQtje5NSCh9+fg8sHKhue0xpYh8H4OAhs9GBd4ysw5Jv7BE8ss+AR?=
+ =?us-ascii?Q?geT85aC85nSoHQAEnor/Gp9lDSNqmj/ZtRHL+DX44caATgqJvWqIlmImevH8?=
+ =?us-ascii?Q?p1fp9vPIfMze40Mvl7KC9tc7R/qdjMsNssuTn/vmj+lKnE4OSZ3cHCleO6AF?=
+ =?us-ascii?Q?BAzvCtUCskBrX4zsQpMA0YQLbu3L0T+oNOEzKK8z?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240702085034.48395-1-alexghiti@rivosinc.com> <20240702085034.48395-4-alexghiti@rivosinc.com>
-In-Reply-To: <20240702085034.48395-4-alexghiti@rivosinc.com>
-From: Anup Patel <anup@brainfault.org>
-Date: Tue, 2 Jul 2024 15:42:55 +0530
-Message-ID: <CAAhSdy3_N7nubTwaR15WNeiysDDQ5BkB5qCq-6Fh2ZwDbV-6qw@mail.gmail.com>
-Subject: Re: [PATCH v3 3/4] riscv: Stop emitting preventive sfence.vma for new
- vmalloc mappings
-To: Alexandre Ghiti <alexghiti@rivosinc.com>
-Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Ved Shanbhogue <ved@rivosinc.com>, Matt Evans <mev@rivosinc.com>, linux-kernel@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-OriginatorOrg: analog.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR03MB6343.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: abaf1f18-3ef2-476f-f6ad-08dc9a80a13b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Jul 2024 10:20:43.0942
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: eaa689b4-8f87-40e0-9c6f-7228de4d754a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: JFxjo9ykgcZC7C/wvHDqV2VcQSkKI0H3Uqw7LIstjC8rzH6CbfHmEGZYBTtzBUfl64d+BMfUvQLC79N17pQHYlVCtNsCup53fhWfHQEiOao=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR03MB5050
+X-Proofpoint-ORIG-GUID: QPuOZWQhQKSxmTFx6HVyIHHlpNk115du
+X-Proofpoint-GUID: QPuOZWQhQKSxmTFx6HVyIHHlpNk115du
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-02_06,2024-07-02_02,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ adultscore=0 mlxscore=0 phishscore=0 priorityscore=1501 mlxlogscore=999
+ clxscore=1011 malwarescore=0 impostorscore=0 bulkscore=0 spamscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2406140001 definitions=main-2407020077
 
-On Tue, Jul 2, 2024 at 2:24=E2=80=AFPM Alexandre Ghiti <alexghiti@rivosinc.=
-com> wrote:
->
-> In 6.5, we removed the vmalloc fault path because that can't work (see
-> [1] [2]). Then in order to make sure that new page table entries were
-> seen by the page table walker, we had to preventively emit a sfence.vma
-> on all harts [3] but this solution is very costly since it relies on IPI.
->
-> And even there, we could end up in a loop of vmalloc faults if a vmalloc
-> allocation is done in the IPI path (for example if it is traced, see
-> [4]), which could result in a kernel stack overflow.
->
-> Those preventive sfence.vma needed to be emitted because:
->
-> - if the uarch caches invalid entries, the new mapping may not be
->   observed by the page table walker and an invalidation may be needed.
-> - if the uarch does not cache invalid entries, a reordered access
->   could "miss" the new mapping and traps: in that case, we would actually
->   only need to retry the access, no sfence.vma is required.
->
-> So this patch removes those preventive sfence.vma and actually handles
-> the possible (and unlikely) exceptions. And since the kernel stacks
-> mappings lie in the vmalloc area, this handling must be done very early
-> when the trap is taken, at the very beginning of handle_exception: this
-> also rules out the vmalloc allocations in the fault path.
->
-> Link: https://lore.kernel.org/linux-riscv/20230531093817.665799-1-bjorn@k=
-ernel.org/ [1]
-> Link: https://lore.kernel.org/linux-riscv/20230801090927.2018653-1-dylan@=
-andestech.com [2]
-> Link: https://lore.kernel.org/linux-riscv/20230725132246.817726-1-alexghi=
-ti@rivosinc.com/ [3]
-> Link: https://lore.kernel.org/lkml/20200508144043.13893-1-joro@8bytes.org=
-/ [4]
-> Signed-off-by: Alexandre Ghiti <alexghiti@rivosinc.com>
-> ---
->  arch/riscv/include/asm/cacheflush.h  | 18 +++++-
->  arch/riscv/include/asm/thread_info.h |  5 ++
->  arch/riscv/kernel/asm-offsets.c      |  5 ++
->  arch/riscv/kernel/entry.S            | 84 ++++++++++++++++++++++++++++
->  arch/riscv/mm/init.c                 |  2 +
->  5 files changed, 113 insertions(+), 1 deletion(-)
->
-> diff --git a/arch/riscv/include/asm/cacheflush.h b/arch/riscv/include/asm=
-/cacheflush.h
-> index ce79c558a4c8..8de73f91bfa3 100644
-> --- a/arch/riscv/include/asm/cacheflush.h
-> +++ b/arch/riscv/include/asm/cacheflush.h
-> @@ -46,7 +46,23 @@ do {                                                 \
->  } while (0)
->
->  #ifdef CONFIG_64BIT
-> -#define flush_cache_vmap(start, end)           flush_tlb_kernel_range(st=
-art, end)
-> +extern u64 new_vmalloc[NR_CPUS / sizeof(u64) + 1];
+Hi Connor,
 
-Why is this u64 and not "unsigned long" ?
+> -----Original Message-----
+> From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+> Sent: Monday, July 1, 2024 6:46 PM
+> To: Conor Dooley <conor@kernel.org>
+> Cc: Agarwal, Utsav <Utsav.Agarwal@analog.com>; Hennerich, Michael
+> <Michael.Hennerich@analog.com>; Rob Herring <robh@kernel.org>;
+> Krzysztof Kozlowski <krzk+dt@kernel.org>; Conor Dooley
+> <conor+dt@kernel.org>; Sa, Nuno <Nuno.Sa@analog.com>; linux-
+> input@vger.kernel.org; devicetree@vger.kernel.org; linux-
+> kernel@vger.kernel.org; Artamonovs, Arturs
+> <Arturs.Artamonovs@analog.com>; Bimpikas, Vasileios
+> <Vasileios.Bimpikas@analog.com>; Gaskell, Oliver
+> <Oliver.Gaskell@analog.com>
+> Subject: Re: [PATCH v4 2/2] dt-bindings: input: Update dtbinding for adp5=
+588
+>=20
+> [External]
+>=20
+> On Mon, Jul 01, 2024 at 04:46:12PM +0100, Conor Dooley wrote:
+> > On Mon, Jul 01, 2024 at 04:04:51PM +0100, Utsav Agarwal via B4 Relay
+> wrote:
+> > > From: Utsav Agarwal <utsav.agarwal@analog.com>
+> > >
+> > > Updating dt bindings for adp5588. Following properties are now made
+> > > optional:
+> > > 	- interrupts
+> > > 	- keypad,num-rows
+> > > 	- keypad,num-columns
+> > > 	- linux,keymap
+> > > The proposed new property "gpio-only" has been added as an optional
+> > > property with an additional example.
+> >
+> > I can see that as it is clear in the diff, but this doesn't explain why=
+,
+> > which is what you need to do in your commit message.
+> >
 
-Was this tested on rv32 ?
+I will add more description to this commit message for context.
 
-> +extern char _end[];
-> +#define flush_cache_vmap flush_cache_vmap
-> +static inline void flush_cache_vmap(unsigned long start, unsigned long e=
-nd)
-> +{
-> +       if (is_vmalloc_or_module_addr((void *)start)) {
-> +               int i;
-> +
-> +               /*
-> +                * We don't care if concurrently a cpu resets this value =
-since
-> +                * the only place this can happen is in handle_exception(=
-) where
-> +                * an sfence.vma is emitted.
-> +                */
-> +               for (i =3D 0; i < ARRAY_SIZE(new_vmalloc); ++i)
-> +                       new_vmalloc[i] =3D -1ULL;
-> +       }
-> +}
->  #define flush_cache_vmap_early(start, end)     local_flush_tlb_kernel_ra=
-nge(start, end)
->  #endif
->
-> diff --git a/arch/riscv/include/asm/thread_info.h b/arch/riscv/include/as=
-m/thread_info.h
-> index 5d473343634b..32631acdcdd4 100644
-> --- a/arch/riscv/include/asm/thread_info.h
-> +++ b/arch/riscv/include/asm/thread_info.h
-> @@ -60,6 +60,11 @@ struct thread_info {
->         void                    *scs_base;
->         void                    *scs_sp;
->  #endif
-> +       /*
-> +        * Used in handle_exception() to save a0, a1 and a2 before knowin=
-g if we
-> +        * can access the kernel stack.
-> +        */
-> +       unsigned long           a0, a1, a2;
->  };
->
->  #ifdef CONFIG_SHADOW_CALL_STACK
-> diff --git a/arch/riscv/kernel/asm-offsets.c b/arch/riscv/kernel/asm-offs=
-ets.c
-> index b09ca5f944f7..29c0734f2972 100644
-> --- a/arch/riscv/kernel/asm-offsets.c
-> +++ b/arch/riscv/kernel/asm-offsets.c
-> @@ -36,6 +36,8 @@ void asm_offsets(void)
->         OFFSET(TASK_THREAD_S9, task_struct, thread.s[9]);
->         OFFSET(TASK_THREAD_S10, task_struct, thread.s[10]);
->         OFFSET(TASK_THREAD_S11, task_struct, thread.s[11]);
-> +
-> +       OFFSET(TASK_TI_CPU, task_struct, thread_info.cpu);
->         OFFSET(TASK_TI_FLAGS, task_struct, thread_info.flags);
->         OFFSET(TASK_TI_PREEMPT_COUNT, task_struct, thread_info.preempt_co=
-unt);
->         OFFSET(TASK_TI_KERNEL_SP, task_struct, thread_info.kernel_sp);
-> @@ -43,6 +45,9 @@ void asm_offsets(void)
->  #ifdef CONFIG_SHADOW_CALL_STACK
->         OFFSET(TASK_TI_SCS_SP, task_struct, thread_info.scs_sp);
->  #endif
-> +       OFFSET(TASK_TI_A0, task_struct, thread_info.a0);
-> +       OFFSET(TASK_TI_A1, task_struct, thread_info.a1);
-> +       OFFSET(TASK_TI_A2, task_struct, thread_info.a2);
->
->         OFFSET(TASK_TI_CPU_NUM, task_struct, thread_info.cpu);
->         OFFSET(TASK_THREAD_F0,  task_struct, thread.fstate.f[0]);
-> diff --git a/arch/riscv/kernel/entry.S b/arch/riscv/kernel/entry.S
-> index 68a24cf9481a..822311266a12 100644
-> --- a/arch/riscv/kernel/entry.S
-> +++ b/arch/riscv/kernel/entry.S
-> @@ -19,6 +19,78 @@
->
->         .section .irqentry.text, "ax"
->
-> +.macro new_vmalloc_check
-> +       REG_S   a0, TASK_TI_A0(tp)
-> +       REG_S   a1, TASK_TI_A1(tp)
-> +       REG_S   a2, TASK_TI_A2(tp)
-> +
-> +       csrr    a0, CSR_CAUSE
-> +       /* Exclude IRQs */
-> +       blt     a0, zero, _new_vmalloc_restore_context
-> +       /* Only check new_vmalloc if we are in page/protection fault */
-> +       li      a1, EXC_LOAD_PAGE_FAULT
-> +       beq     a0, a1, _new_vmalloc_kernel_address
-> +       li      a1, EXC_STORE_PAGE_FAULT
-> +       beq     a0, a1, _new_vmalloc_kernel_address
-> +       li      a1, EXC_INST_PAGE_FAULT
-> +       bne     a0, a1, _new_vmalloc_restore_context
-> +
-> +_new_vmalloc_kernel_address:
-> +       /* Is it a kernel address? */
-> +       csrr    a0, CSR_TVAL
-> +       bge     a0, zero, _new_vmalloc_restore_context
-> +
-> +       /* Check if a new vmalloc mapping appeared that could explain the=
- trap */
-> +
-> +       /*
-> +        * Computes:
-> +        * a0 =3D &new_vmalloc[BIT_WORD(cpu)]
-> +        * a1 =3D BIT_MASK(cpu)
-> +        */
-> +       REG_L   a2, TASK_TI_CPU(tp)
-> +       /*
-> +        * Compute the new_vmalloc element position:
-> +        * (cpu / 64) * 8 =3D (cpu >> 6) << 3
-> +        */
-> +       srli    a1, a2, 6
-> +       slli    a1, a1, 3
-> +       la      a0, new_vmalloc
-> +       add     a0, a0, a1
-> +       /*
-> +        * Compute the bit position in the new_vmalloc element:
-> +        * bit_pos =3D cpu % 64 =3D cpu - (cpu / 64) * 64 =3D cpu - (cpu =
->> 6) << 6
-> +        *         =3D cpu - ((cpu >> 6) << 3) << 3
-> +        */
-> +       slli    a1, a1, 3
-> +       sub     a1, a2, a1
-> +       /* Compute the "get mask": 1 << bit_pos */
-> +       li      a2, 1
-> +       sll     a1, a2, a1
-> +
-> +       /* Check the value of new_vmalloc for this cpu */
-> +       REG_L   a2, 0(a0)
-> +       and     a2, a2, a1
-> +       beq     a2, zero, _new_vmalloc_restore_context
-> +
-> +       /* Atomically reset the current cpu bit in new_vmalloc */
-> +       amoxor.w        a0, a1, (a0)
+> > >
+> > > Signed-off-by: Utsav Agarwal <utsav.agarwal@analog.com>
+> > > ---
+> > >  .../devicetree/bindings/input/adi,adp5588.yaml     | 28
+> ++++++++++++++++++----
+> > >  1 file changed, 24 insertions(+), 4 deletions(-)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/input/adi,adp5588.yaml
+> b/Documentation/devicetree/bindings/input/adi,adp5588.yaml
+> > > index 26ea66834ae2..158fbf02cc16 100644
+> > > --- a/Documentation/devicetree/bindings/input/adi,adp5588.yaml
+> > > +++ b/Documentation/devicetree/bindings/input/adi,adp5588.yaml
+> > > @@ -46,6 +46,11 @@ properties:
+> > >    '#gpio-cells':
+> > >      const: 2
+> > >
+> > > +  gpio-only:
+> > > +    description:
+> > > +      This property applies if keypad,num-rows, keypad,num-columns a=
+nd
+> > > +      linux,keypad are not specified. All keys will be marked as gpi=
+o.
+> >
+> > Why is a property required for this? Is the absence of the 3 keypad
+> > properties not sufficient to determine that you're in this mode?
+>=20
+> Yes, I think it should be enough.
 
-Doing only 32bit atomic here, is this intentional ?
+The idea behind introducing a new property was to simplify the usage in add=
+ition to making it easier to document a pure gpio mode being supported. Wou=
+ld it still be better to remove this?
 
-> +
-> +       /* Only emit a sfence.vma if the uarch caches invalid entries */
-> +       ALTERNATIVE("sfence.vma", "nop", 0, RISCV_ISA_EXT_SVVPTC, 1)
-> +
-> +       REG_L   a0, TASK_TI_A0(tp)
-> +       REG_L   a1, TASK_TI_A1(tp)
-> +       REG_L   a2, TASK_TI_A2(tp)
-> +       csrw    CSR_SCRATCH, x0
-> +       sret
-> +
-> +_new_vmalloc_restore_context:
-> +       REG_L   a0, TASK_TI_A0(tp)
-> +       REG_L   a1, TASK_TI_A1(tp)
-> +       REG_L   a2, TASK_TI_A2(tp)
-> +.endm
-> +
-> +
->  SYM_CODE_START(handle_exception)
->         /*
->          * If coming from userspace, preserve the user thread pointer and=
- load
-> @@ -30,6 +102,18 @@ SYM_CODE_START(handle_exception)
->
->  .Lrestore_kernel_tpsp:
->         csrr tp, CSR_SCRATCH
-> +
-> +       /*
-> +        * The RISC-V kernel does not eagerly emit a sfence.vma after eac=
-h
-> +        * new vmalloc mapping, which may result in exceptions:
-> +        * - if the uarch caches invalid entries, the new mapping would n=
-ot be
-> +        *   observed by the page table walker and an invalidation is nee=
-ded.
-> +        * - if the uarch does not cache invalid entries, a reordered acc=
-ess
-> +        *   could "miss" the new mapping and traps: in that case, we onl=
-y need
-> +        *   to retry the access, no sfence.vma is required.
-> +        */
-> +       new_vmalloc_check
-> +
->         REG_S sp, TASK_TI_KERNEL_SP(tp)
->
->  #ifdef CONFIG_VMAP_STACK
-> diff --git a/arch/riscv/mm/init.c b/arch/riscv/mm/init.c
-> index e3405e4b99af..2367a156c33b 100644
-> --- a/arch/riscv/mm/init.c
-> +++ b/arch/riscv/mm/init.c
-> @@ -36,6 +36,8 @@
->
->  #include "../kernel/head.h"
->
-> +u64 new_vmalloc[NR_CPUS / sizeof(u64) + 1];
-> +
->  struct kernel_mapping kernel_map __ro_after_init;
->  EXPORT_SYMBOL(kernel_map);
->  #ifdef CONFIG_XIP_KERNEL
+>=20
+> >
+> >
+> > >    interrupt-controller:
+> > >      description:
+> > >        This property applies if either keypad,num-rows lower than 8 o=
+r
+> > > @@ -68,10 +73,6 @@ properties:
+> > >  required:
+> > >    - compatible
+> > >    - reg
+> > > -  - interrupts
+> >
+> > I don't understand why interrupts is no longer required.
+>=20
+> I think it should be possible to use this chip as a GPIO controller but
+> not an interrupt controller, in which case one does not have to wire up
+> the interrupt line from it. However this requires much more elaborate
+> binding description (i.e. no keys and no "interrupt-controller"
+> property).
+
+I will add a more detailed description in the binding.
+
+>=20
+> Thanks.
+>=20
 > --
-> 2.39.2
->
->
+> Dmitry
 
-Regards,
-Anup
+Thanks,
+Utsav
 
