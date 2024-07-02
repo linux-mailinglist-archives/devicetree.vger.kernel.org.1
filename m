@@ -1,148 +1,203 @@
-Return-Path: <devicetree+bounces-82287-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82288-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B2D5923C2B
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 13:13:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43D7F923C3D
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 13:18:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DB955282D08
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 11:13:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B76421F2118C
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 11:18:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB6D615B10E;
-	Tue,  2 Jul 2024 11:13:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEE1415B0FF;
+	Tue,  2 Jul 2024 11:18:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="BHvmyow5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UWX4TTDZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8088A15956C
-	for <devicetree@vger.kernel.org>; Tue,  2 Jul 2024 11:13:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F240157469;
+	Tue,  2 Jul 2024 11:18:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719918804; cv=none; b=ngAZBxryFbb/mX1cM1gZVU1S5h+IjlhCrrVTYoFPNwZYiLkr4ER+xNai5U0OZuY3dR7qdW6Kij+Pa+NPxc2adeV/YVM5lk5akzAXEZ3YknjnKPhSXdwaZKSXSgUts5taR0DKEyeE1CjPqP1K3fWgJ2Qao4OHsKy9zxtFLPlxfhU=
+	t=1719919086; cv=none; b=t3sLIKuMP1HUHh0lg3tReT9YbqMN6r1+3hxf7hCJ55R/ODvYQl84Up6NmaqONbgkZWmJSHxju90gZ+H+OIDgSo7YkXAcCsdJxfU/5yOvZ4EUBKjzER6JfVB4223x6zHjRpWuTNzmwjtdrjPvOBeV3Ozychogq6Szm/9L3bM/ZAY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719918804; c=relaxed/simple;
-	bh=FEzAZrinYSgKqWj7/IxtBzwbjFB433v1SrOlmQnoOoc=;
+	s=arc-20240116; t=1719919086; c=relaxed/simple;
+	bh=FoMJEf11Lf66dhLhMVRO8nkinE1cWndTb/sbrx0+H3w=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=iKkO4qEtPTSe589p8qNM+vscfFKNJYPP7lSlotJXGvHFyIggtzDQ9epZo+t3ln4Vq0Wwko59Jc7mOJn5tuV57LYpPYVs1QGtphxsKl9uN75FzvZFIE36T5QyCphyaLXS9dtT+PU8xybkT0OHscgvLUanJHVEU9ZTePvzgRCrAEs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=BHvmyow5; arc=none smtp.client-ip=209.85.208.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2ee4ab5958dso43330031fa.1
-        for <devicetree@vger.kernel.org>; Tue, 02 Jul 2024 04:13:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1719918801; x=1720523601; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=mXVf53dMq+GkSsb1wJOBeHG07AED2HZbgsgsqvcOurk=;
-        b=BHvmyow5VSDCWyaG/E8V2S/FSAr+5B5KYQvEn15kepsagWycTwV4RoY80PMa/ZBCd8
-         usItgf1tLQNMRJ0KG6722Sj97+MbQyp+EEBUBMqShfPe3Xgns3MOdB+6wiJWsbx1AnOV
-         12IUwXWJvO1hYExajfW+shSWJqknd2uJpi5EAWqgO0qKbqPQ6SCCPpV/x0AeZpfcf1mB
-         b7thrV3CnSlPFiAB6pdCykN3OvL8kggXsrwiLKL3bo/ZdIlA5OAih0UpI4c+iUARpnU/
-         G0Te4exf0zwF0Z1441/ouSkyN+8Yqcb6H2w1/r73JgHT5iNjXtWH7Bi4T1FT5wJu67ZM
-         kwNA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719918801; x=1720523601;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=mXVf53dMq+GkSsb1wJOBeHG07AED2HZbgsgsqvcOurk=;
-        b=exTmWdSbwOKH+ABea9aCxXW84uMEyR67vWE6yHaqQoZsRV4iECsXSyJnEO4ZN56Fl2
-         naFZgP/hcXEijdAVHYdV5QvipHuL45yQDonOseGy6zccdLPaEjEF57yg67l9LzW2WVl7
-         1cNMqleHTpq60xjP6U0amiF2U3EcZ+zoRfe8rTHCAvidoTJFRS0pS6U4WVlOeD8/t4QM
-         kkwqs8mMCbbQFHfZCCsrtRMMgE5p1hqfRrVCmOYjwfNLEROcScf9tk1gOL32YJUn7mHg
-         QyJ/yDhgHkYcO8RESbAc7VfuCJoLqLid3HN+XGGqOvZHcATpk/edG6R9PAI3QfV72Dqd
-         Vb6A==
-X-Forwarded-Encrypted: i=1; AJvYcCU0X2tnC/gGj2IRNZoPnr68DIrKTv1SdjFIqmiVmcCXcMh75kbF656l8UZ139CJt4l3F6zNtVgOa/vUeJq3kwXdmT2ljtfzgkiIuA==
-X-Gm-Message-State: AOJu0Yzb837MdJlF25B16/2xdrxPfXbMI1/VLzu7tfNMSd2mUFHhSwBs
-	kYTCTOlar581+KOwzPNrkMt89eMpwzfSTxG8iutWmNNKa5wwBBi2YgAOF4DQ3FkZhb4hxcgyvX5
-	Ggpayjkpld9FvsUkkgBQbMpo74RSimpS3yVmcEg==
-X-Google-Smtp-Source: AGHT+IHvjCTeQ1yMSQAKmkjAiUyEGF3PJGfRktiAFT6n+uk73noO/r6tMhHeUlrkzOcuFyqs9Y2EcNw/jRZUcS44wLE=
-X-Received: by 2002:a2e:8e89:0:b0:2ea:ab3b:fd89 with SMTP id
- 38308e7fff4ca-2ee53bfa81amr35042901fa.10.1719918800733; Tue, 02 Jul 2024
- 04:13:20 -0700 (PDT)
+	 To:Cc:Content-Type; b=ntzxp2+wTnITQIczwyYO3wpo/0wuzLW6TI4I1Od5Wj+Ni2IwQ6hGqg9jS4YXkvLLxv1dhDVZl+JFWnQ8XorCCDaojSYWKhO/geD9gX052iSG9hU6/VK1CF/SLHtGNXBqls7kCX8F0KMt9NlGVloHxYUmYjvhehDN2LZQEjIZB3s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UWX4TTDZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10F70C4AF0E;
+	Tue,  2 Jul 2024 11:18:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719919086;
+	bh=FoMJEf11Lf66dhLhMVRO8nkinE1cWndTb/sbrx0+H3w=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=UWX4TTDZflWPasT7VEjcnWzmqTvL4hpDJewnnk61hH3mx54u63K8u68IQ7ql8SDJW
+	 rGIFs9GI5vI3b7bwRjDx0gcQckkRa2ILsnZHAGQgwkiw5/PAwHDWJQftEE7BLo+Mna
+	 ZjeDDOJBY1NnZPcIjrrWRFU2dAiaYalAxRjcb0iM6aPPp0zRhoNYf1r+uGU+fYF5DJ
+	 hCPzLF9mSyeoAnb7wTb9qwtqVmBQAiGGWMUqfZ7yOG+0g3x1HfJbTy5vxgKoLK50RG
+	 Mb0oXqlHiS1ibslI8br81uJFi1zb5lRuskH+0NbJLMIwoGJkXMDlit71RUf918+Hl8
+	 DOZ4OdiqCCI/Q==
+Received: by mail-oa1-f42.google.com with SMTP id 586e51a60fabf-25d0f8d79ebso609417fac.0;
+        Tue, 02 Jul 2024 04:18:06 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXBBOKJkPSi1RPt3L/6lfqT7kAV97l65Q3lLKlEAEpKnVtiyLWWnwcTatCIqvTzb/9k95Tjpx+zK2+Lo0sxsTfPbJ1Bg8sVVZcYV+i9PGnCIda8Rv5Vg8O5lHlBICpeDYvxKxGGlDDUF0fWuhnKVx5hFDlnTVbG6bwlRotFfXUoIxN0
+X-Gm-Message-State: AOJu0YyDEGUfXeskovj9dhBS7ap0UwmfBA7T/Y523g2zDGUTbqG3l5ZJ
+	Pm0HW6swn0p53XZWkR/9gdP/UfVl2rFJY/WBXEEBAuqNwn8kaS1Du8uJEpVBKw0t7H/rsb6GQg1
+	JGmeckI4Y3Uv9hnuWxpBIaoJ5TO0=
+X-Google-Smtp-Source: AGHT+IFSROubL/WzUl2sx2objLG8DvmvKWe6cA/P6eX8rr89hODSqXxMCvpxDjHg0YZehdNgAgdbkFSnDnT5+aJSjD0=
+X-Received: by 2002:a05:6870:2892:b0:255:1fea:340d with SMTP id
+ 586e51a60fabf-25db3049d93mr8496774fac.0.1719919085156; Tue, 02 Jul 2024
+ 04:18:05 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240702091655.278974-1-amit.pundir@linaro.org>
- <8ba07bbf-e8b1-4244-882b-ff2575368b20@kernel.org> <he7q4mzj7u7t3c4pndu565m727e6hqpf2srrqgbdltjdffugdl@x3xrwteqpki3>
-In-Reply-To: <he7q4mzj7u7t3c4pndu565m727e6hqpf2srrqgbdltjdffugdl@x3xrwteqpki3>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Tue, 2 Jul 2024 13:13:09 +0200
-Message-ID: <CAMRc=Mepx86sQmPYLq2TkvhxtwUtsQGeYTVUc585oiuvOzLc-A@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: sm8550-hdk: add the Wifi node
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Amit Pundir <amit.pundir@linaro.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	linux-arm-msm <linux-arm-msm@vger.kernel.org>, dt <devicetree@vger.kernel.org>, 
-	lkml <linux-kernel@vger.kernel.org>
+References: <20240627085451.3813989-1-daniel.lezcano@linaro.org>
+ <20240701162600.GA4119789-robh@kernel.org> <98fe3146-07ae-4095-b372-6aed6e080d94@linaro.org>
+ <CAJZ5v0ix+RDtrR+r3jd=A_W7D5U7JodMiirJ519-wwLrHeBbSw@mail.gmail.com>
+ <1eb7eb88-4230-4803-83fe-415ce0745951@linaro.org> <CAJZ5v0jV+0bWqpCR1Q2rYLJvx0J6hgExzRks6YDPL9gX_HK0rA@mail.gmail.com>
+In-Reply-To: <CAJZ5v0jV+0bWqpCR1Q2rYLJvx0J6hgExzRks6YDPL9gX_HK0rA@mail.gmail.com>
+From: "Rafael J. Wysocki" <rafael@kernel.org>
+Date: Tue, 2 Jul 2024 13:17:54 +0200
+X-Gmail-Original-Message-ID: <CAJZ5v0iFR8v=Kwj=aW84NTfqZGvTbXrL=dsLsaMt=okFTAftDQ@mail.gmail.com>
+Message-ID: <CAJZ5v0iFR8v=Kwj=aW84NTfqZGvTbXrL=dsLsaMt=okFTAftDQ@mail.gmail.com>
+Subject: Re: [PATCH] thermal/core: Introduce user trip points
+To: Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, linux-pm@vger.kernel.org, 
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jul 2, 2024 at 1:10=E2=80=AFPM Dmitry Baryshkov
-<dmitry.baryshkov@linaro.org> wrote:
+On Tue, Jul 2, 2024 at 1:03=E2=80=AFPM Rafael J. Wysocki <rafael@kernel.org=
+> wrote:
 >
-> On Tue, Jul 02, 2024 at 12:42:02PM GMT, Krzysztof Kozlowski wrote:
-> > On 02/07/2024 11:16, Amit Pundir wrote:
-> > > Describe the ath12k WLAN on-board the WCN7850 module present on the
-> > > board.
-> > >
-> > > Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
-> > > ---
-> > > Kanged verbatim from 490812872449 ("arm64: dts: qcom: sm8550-qrd: add=
- the Wifi node").
-> > >
-> > >  arch/arm64/boot/dts/qcom/sm8550-hdk.dts | 97 +++++++++++++++++++++++=
-++
-> > >  1 file changed, 97 insertions(+)
-> > >
-> > > diff --git a/arch/arm64/boot/dts/qcom/sm8550-hdk.dts b/arch/arm64/boo=
-t/dts/qcom/sm8550-hdk.dts
-> > > index 12d60a0ee095..c453d081a2df 100644
-> > > --- a/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
-> > > +++ b/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
-> > > @@ -279,6 +279,68 @@ platform {
-> > >                     };
-> > >             };
-> > >     };
-> > > +
-> > > +   wcn7850-pmu {
-> > > +           compatible =3D "qcom,wcn7850-pmu";
-> > > +
-> > > +           pinctrl-names =3D "default";
-> > > +           pinctrl-0 =3D <&wlan_en>, <&pmk8550_sleep_clk>;
-> > > +
-> > > +           wlan-enable-gpios =3D <&tlmm 80 GPIO_ACTIVE_HIGH>;
-> > > +           /*
-> > > +            * TODO Add bt-enable-gpios once the Bluetooth driver is
-> > > +            * converted to using the power sequencer.
+> On Tue, Jul 2, 2024 at 12:56=E2=80=AFPM Daniel Lezcano
+> <daniel.lezcano@linaro.org> wrote:
 > >
-> > I don't understand why hardware description should depend on the driver=
-.
-> > Either you have this GPIO or not. If you have it, what does it matter i=
-f
-> > there is no driver who can play with it?
+> > On 02/07/2024 12:22, Rafael J. Wysocki wrote:
+> > > On Tue, Jul 2, 2024 at 11:29=E2=80=AFAM Daniel Lezcano
+> > > <daniel.lezcano@linaro.org> wrote:
+> > >>
+> > >> On 01/07/2024 18:26, Rob Herring wrote:
+> > >>> On Thu, Jun 27, 2024 at 10:54:50AM +0200, Daniel Lezcano wrote:
+> > >>>> Currently the thermal framework has 4 trip point types:
+> > >>>>
+> > >>>> - active : basically for fans (or anything requiring energy to coo=
+l
+> > >>>>     down)
+> > >>>>
+> > >>>> - passive : a performance limiter
+> > >>>>
+> > >>>> - hot : for a last action before reaching critical
+> > >>>>
+> > >>>> - critical : a without return threshold leading to a system shutdo=
+wn
+> > >>>>
+> > >>>> A thermal zone monitors the temperature regarding these trip
+> > >>>> points. The old way to do that is actively polling the temperature
+> > >>>> which is very bad for embedded systems, especially mobile and it i=
+s
+> > >>>> even worse today as we can have more than fifty thermal zones. The
+> > >>>> modern way is to rely on the driver to send an interrupt when the =
+trip
+> > >>>> points are crossed, so the system can sleep while the temperature
+> > >>>> monitoring is offloaded to a dedicated hardware.
+> > >>>>
+> > >>>> However, the thermal aspect is also managed from userspace to prot=
+ect
+> > >>>> the user, especially tracking down the skin temperature sensor. Th=
+e
+> > >>>> logic is more complex than what we found in the kernel because it
+> > >>>> needs multiple sources indicating the thermal situation of the ent=
+ire
+> > >>>> system.
+> > >>>>
+> > >>>> For this reason it needs to setup trip points at different levels =
+in
+> > >>>> order to get informed about what is going on with some thermal zon=
+es
+> > >>>> when running some specific application.
+> > >>>>
+> > >>>> For instance, the skin temperature must be limited to 43=C2=B0C on=
+ a long
+> > >>>> run but can go to 48=C2=B0C for 10 minutes, or 60=C2=B0C for 1 min=
+ute.
+> > >>>>
+> > >>>> The thermal engine must then rely on trip points to monitor those
+> > >>>> temperatures. Unfortunately, today there is only 'active' and
+> > >>>> 'passive' trip points which has a specific meaning for the kernel,=
+ not
+> > >>>> the userspace. That leads to hacks in different platforms for mobi=
+le
+> > >>>> and embedded systems where 'active' trip points are used to send
+> > >>>> notification to the userspace. This is obviously not right because
+> > >>>> these trip are handled by the kernel.
+> > >>>>
+> > >>>> This patch introduces the 'user' trip point type where its semanti=
+c is
+> > >>>> simple: do nothing at the kernel level, just send a notification t=
+o
+> > >>>> the user space.
+> > >>>
+> > >>> Sounds like OS behavior/policy though I guess the existing ones kin=
+d are
+> > >>> too. Maybe we should have defined *what* action to take and then th=
+e OS
+> > >>> could decide whether what actions to handle vs. pass it up a level.
+> > >>
+> > >> Right
+> > >>
+> > >>> Why can't userspace just ask to be notified at a trip point it
+> > >>> defines?
+> > >>
+> > >> Yes I think it is possible to create a netlink message to create a t=
+rip
+> > >> point which will return a trip id.
+> > >>
+> > >> Rafael what do you think ?
+> > >
+> > > Trips cannot be created on the fly ATM.
+> > >
+> > > What can be done is to create trips that are invalid to start with an=
+d
+> > > then set their temperature via sysfs.  This has been done already for
+> > > quite a while AFAICS.
+> >
+> > Yes, I remember that.
+> >
+> > I would like to avoid introducing more weirdness in the thermal
+> > framework which deserve a clear ABI.
+> >
+> > What is missing to create new trip points on the fly ?
 >
-> Then there is a conflict between BT and PMU, which both will try to
-> access the gpio (or at least the pinctrl).
+> A different data structure to store them (essentially, a list instead
+> of an array).
+>
+> I doubt it's worth the hassle.
+>
+> What's wrong with the current approach mentioned above?  It will need
+> to be supported going forward anyway.
 
-Ah, so this slipped through the cracks. Amit merely copied it from existing=
- dts.
+BTW, there are two different concepts that seem to be mixed here.
 
-Yes, there's a conflict but Krzysztof is right - we should handle this
-in the driver, not in dts.
+One of them is a "trigger" that will cause a netlink message to be
+sent to user space when a given temperature level is crossed (either
+way) and nothing more.  This in principle can be added to any thermal
+zone (even tripless) and should be possible to implement as a separate
+mechanism independent of trip points.
 
-However for that we need a patch for the PMU pwrseq driver first. Let
-me cook something up.
-
-Bart
+The other one is a pair of trip points that can be set "around" the
+current zone temperature so that the .set_trips() callback uses them
+to program interrupts to trigger when one of them is crossed.  This at
+least requires the thermal zone to provide a .set_trips() callback, so
+it depends on the driver registering the thermal zone.  Arguably, the
+driver in question can reserve a pair of "trip slots" in the trip
+table passed to the zone registration function.
 
