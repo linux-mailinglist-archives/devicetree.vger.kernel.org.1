@@ -1,356 +1,367 @@
-Return-Path: <devicetree+bounces-82325-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82327-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96B17923DF7
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 14:35:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D6546923E03
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 14:36:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4CEBB288F0D
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 12:35:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E219F28CE76
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 12:36:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9F0916F0E0;
-	Tue,  2 Jul 2024 12:34:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0031715B14C;
+	Tue,  2 Jul 2024 12:36:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="CIlyuU3a"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="eCsreGsS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.sberdevices.ru (mx1.sberdevices.ru [37.18.73.165])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D66DD16D4F5;
-	Tue,  2 Jul 2024 12:34:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=37.18.73.165
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C03BA823DE
+	for <devicetree@vger.kernel.org>; Tue,  2 Jul 2024 12:36:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719923683; cv=none; b=a5RO5C4WyZgh7X6Lurihb29q3bTTEi/Z5kHE1JDq4O80JeaGfLPsbguAHicRzkHpZAuV6Y10esfeNr7NcEvL/WT+ab/00D7MiixR1I1fMVoIhNUhZItaBgnb6aBvrcFscHgS7vHD8v/iYS+CQ4NVsRmt7njLSsZr3lKB8Alo6rI=
+	t=1719923793; cv=none; b=S3nWQqVTHFRRDlGQtntJwH+LLRBVn46Stu9wLfbY0AvTu7Cpd+8TQlvpjVEkY9fpNrhHa6tnu2bkCIMU01wdG8UlhS1hbcgFrt++Dgkd+aSlDzFJS7Rx5D1ONk69SSTpSOQMDYN+pCET8vc3NDOsG9lbSDI5jJ9jmroNVIi4ESc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719923683; c=relaxed/simple;
-	bh=SUIaTV81srnXVIJNxC+R4Sh2XmDPYaahO1P68G9vz40=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=UiSenjrjjOh4UeC9bt70+9MV13NoQic3H+wIcRnr0t+i2cdegEr/y5NOWdppvKhbjy4SVtW4mlN3pTtF1BcNTCdIgkUVnkW13cvwhBREtdbRQsIqgt7rEmleX/dvoNbJDuzeest0Smq7BjO3oN5LUg+Rd0xB1fI2105i3LxHNdg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=CIlyuU3a; arc=none smtp.client-ip=37.18.73.165
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
-Received: from p-infra-ksmg-sc-msk01.sberdevices.ru (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id E3346100016;
-	Tue,  2 Jul 2024 15:34:38 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru E3346100016
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1719923678;
-	bh=WDvsjnCOMqIp/cCpUuumCAjvp9d7iYIJ13Aq9BVxTOE=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=CIlyuU3avIrPaBtgfqsoVY4zElzeV12uVj2ODC9fRvsHl0UVgBNESr1gZXy/joLGf
-	 Lo9yS8AwoHh4kg3qwlN3j8lFTfv1ZephBV/dHfBWXPE4S0XlQTq+p6yOJLNQ/cvWD9
-	 9vsL4DPHGsRJaoU6LrtafGr9qSwM5O8xtfKLwYbMi6BevojrtmeBevlA6KZTMoNq1A
-	 DcoMU9uQ7e+V3zFClPAWU1sltIrAfWKvgSflz3OO8k0jsv56hlcB4ZpsxGWyRhCgFW
-	 WTQbsw1A0cSV6Q/nJk0Ems3P60s9F0sq68P+77RZhZsVYhyDSbreOsPNEIcQk2i4Ue
-	 YuYvQq4b0AQJw==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Tue,  2 Jul 2024 15:34:38 +0300 (MSK)
-Received: from work.sberdevices.ru (100.64.160.123) by
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Tue, 2 Jul 2024 15:34:38 +0300
-From: George Stark <gnstark@salutedevices.com>
-To: <ukleinek@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <neil.armstrong@linaro.org>, <khilman@baylibre.com>,
-	<jbrunet@baylibre.com>, <martin.blumenstingl@googlemail.com>,
-	<hkallweit1@gmail.com>
-CC: <linux-pwm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-amlogic@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <kernel@salutedevices.com>, George Stark
-	<GNStark@sberdevices.ru>, Dmitry Rokosov <ddrokosov@salutedevices.com>
-Subject: [PATCH v3 2/2] arm64: dts: meson: a1: add definitions for meson PWM
-Date: Tue, 2 Jul 2024 15:34:25 +0300
-Message-ID: <20240702123425.584610-3-gnstark@salutedevices.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240702123425.584610-1-gnstark@salutedevices.com>
-References: <20240702123425.584610-1-gnstark@salutedevices.com>
+	s=arc-20240116; t=1719923793; c=relaxed/simple;
+	bh=s7X2XzL63Zh8SembAIIuePO+vn3GV6K/LvE+qrH93P0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=HTVmfV/uHLgIJXnP5n3/7nBcEBOSfDcCfRMje4UdnaiIkyESCpFaLBi8WlVBDXYT0KuvJxzGmWe3VQXwv4t2k/iRjsjlYDJehCR/igyhtQI+J/qjNvsP/SzEYqrqFjLDnjtyOFdd8MdOVHmTHn36aDxf1k9yyqsZIZQoUI0s5GA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=eCsreGsS; arc=none smtp.client-ip=209.85.208.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-2ec5779b423so37852731fa.0
+        for <devicetree@vger.kernel.org>; Tue, 02 Jul 2024 05:36:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1719923789; x=1720528589; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lxDWDzMjkSQ1+z1fxFvWUUsssZakdc6jbkoEFUl/wE8=;
+        b=eCsreGsSIcLyqjBm2Br2Wm1C9Dpc+D721P28KfT1WP8ycqqXtU6ubfCcE/oAKuuHey
+         hivTO56GY8/qE6/3Puu6Nd3DIFFPd4xI4fiZmYDfMh2+XYN4iRZX2UqmSd2ukx1LLGvr
+         EOjE72wpfgY1tZlESyCtYMpyBgmQP+ZlN9OKxtDiuCMOJ7b0GwATCdGkqwINDyxIX1kP
+         eAtElOkXs+DvvRD/vaUEI1fGRFrL4yPC3XzWlVLED3Fx4mVrW3WIvHgBtRtqUZIj4Vo5
+         nrbvMwSHgxH2FJaRJEkvBgoPd3sfpLHH/iuCw9+KA7NvOMxx+mdFXt17QNeZMrNamXzr
+         7sEA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719923789; x=1720528589;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=lxDWDzMjkSQ1+z1fxFvWUUsssZakdc6jbkoEFUl/wE8=;
+        b=sFZ76CAvtt8exA1ecEtm1WvBRSol/bKi8kX0Wm81VKykkPnP1GMTVhHEwMNpGUc5Tk
+         bA3PoiYg8u42LlpIUjlSgcz0sUm+MpFei+4AojVcVkcILe1t+U1fi0wmcoR3yZ9cyCqs
+         Sgv0/iXJ+d3Vd4Aft3o0pocLVJDyHE7f90EyK6ptegdel2kYx13q3DUlRdcQ4pJuvQg2
+         GABOGDdHS/eScKwLm5oBQouzLsMQjILwhRRLMqIEiuNzqTh2WOX9etyPLp7jyCTcfaVI
+         mtzgLaKQIXhXQq7XlMgzJhEafocHe6VgMy7t/OoYPFjU/ZSE6AwGAwzyvwT4fqOahMal
+         gVFQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUGOLr35++tfQFQQs7e6IdUnseX6U+KUcZy7qhHhpT/zNknQBh4rriDvRPgK81/9cXzp9vtfO9SEunUyR0R+5oE6AvfKbOiyvGcLw==
+X-Gm-Message-State: AOJu0Yz8Edrr31WSe5PdgU5j5ClCpoXVJTKmwL+VR1ZmvlujiSS+6+T0
+	aa3wlzZXi0OyoIOZfIVn37sgpJ/W4c+VnF+CAC2SzWZJlpK886sscC1eAjP/ds1OAY17Q+KCa9S
+	41aXACJCdEIh85CIjqoCzULO76DNl20D8cLtHJQ==
+X-Google-Smtp-Source: AGHT+IFfifkktKCLd/IFCj6auUZ1QdEK4Ad8o5BvZR/PuWatkBgZcs94H1L9sajP3bNjn7X6Gc6g2ju0lEMCOKwnBjA=
+X-Received: by 2002:a2e:b888:0:b0:2ee:4f93:ae25 with SMTP id
+ 38308e7fff4ca-2ee5e4c3ae4mr62837151fa.29.1719923789085; Tue, 02 Jul 2024
+ 05:36:29 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 186278 [Jul 02 2024]
-X-KSMG-AntiSpam-Version: 6.1.0.4
-X-KSMG-AntiSpam-Envelope-From: gnstark@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 21 0.3.21 ebee5449fc125b2da45f1a6a6bc2c5c0c3ad0e05, {Tracking_from_domain_doesnt_match_to}, salutedevices.com:7.1.1;smtp.sberdevices.ru:5.0.1,7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;100.64.160.123:7.1.2, FromAlignment: s, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/07/02 07:59:00 #25796134
-X-KSMG-AntiVirus-Status: Clean, skipped
+References: <20240702085034.48395-1-alexghiti@rivosinc.com>
+ <20240702085034.48395-4-alexghiti@rivosinc.com> <CAEEQ3wnxBOTvzwswahP6ciOXKMuCbec_Ns+-H0tj9UK-WNow_A@mail.gmail.com>
+In-Reply-To: <CAEEQ3wnxBOTvzwswahP6ciOXKMuCbec_Ns+-H0tj9UK-WNow_A@mail.gmail.com>
+From: Alexandre Ghiti <alexghiti@rivosinc.com>
+Date: Tue, 2 Jul 2024 14:36:11 +0200
+Message-ID: <CAHVXubjEWdGxKqSUJX+oEoe+Yars8L5xdV3-18Mj_GPu9p-3zQ@mail.gmail.com>
+Subject: Re: [External] [PATCH v3 3/4] riscv: Stop emitting preventive
+ sfence.vma for new vmalloc mappings
+To: yunhui cui <cuiyunhui@bytedance.com>
+Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Ved Shanbhogue <ved@rivosinc.com>, Matt Evans <mev@rivosinc.com>, linux-kernel@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: George Stark <GNStark@sberdevices.ru>
+Hi Yunhui,
 
-The chip has 3 dual-channel PWM modules PWM_AB, PWM_CD, PWM_EF those
-can be connected to various digital I/O pins.
+On Tue, Jul 2, 2024 at 11:48=E2=80=AFAM yunhui cui <cuiyunhui@bytedance.com=
+> wrote:
+>
+> Hi Alexandre,
+>
+> On Tue, Jul 2, 2024 at 4:54=E2=80=AFPM Alexandre Ghiti <alexghiti@rivosin=
+c.com> wrote:
+> >
+> > In 6.5, we removed the vmalloc fault path because that can't work (see
+> > [1] [2]). Then in order to make sure that new page table entries were
+> > seen by the page table walker, we had to preventively emit a sfence.vma
+> > on all harts [3] but this solution is very costly since it relies on IP=
+I.
+> >
+> > And even there, we could end up in a loop of vmalloc faults if a vmallo=
+c
+> > allocation is done in the IPI path (for example if it is traced, see
+> > [4]), which could result in a kernel stack overflow.
+> >
+> > Those preventive sfence.vma needed to be emitted because:
+> >
+> > - if the uarch caches invalid entries, the new mapping may not be
+> >   observed by the page table walker and an invalidation may be needed.
+> > - if the uarch does not cache invalid entries, a reordered access
+> >   could "miss" the new mapping and traps: in that case, we would actual=
+ly
+> >   only need to retry the access, no sfence.vma is required.
+> >
+> > So this patch removes those preventive sfence.vma and actually handles
+> > the possible (and unlikely) exceptions. And since the kernel stacks
+> > mappings lie in the vmalloc area, this handling must be done very early
+> > when the trap is taken, at the very beginning of handle_exception: this
+> > also rules out the vmalloc allocations in the fault path.
+> >
+> > Link: https://lore.kernel.org/linux-riscv/20230531093817.665799-1-bjorn=
+@kernel.org/ [1]
+> > Link: https://lore.kernel.org/linux-riscv/20230801090927.2018653-1-dyla=
+n@andestech.com [2]
+> > Link: https://lore.kernel.org/linux-riscv/20230725132246.817726-1-alexg=
+hiti@rivosinc.com/ [3]
+> > Link: https://lore.kernel.org/lkml/20200508144043.13893-1-joro@8bytes.o=
+rg/ [4]
+> > Signed-off-by: Alexandre Ghiti <alexghiti@rivosinc.com>
+> > ---
+> >  arch/riscv/include/asm/cacheflush.h  | 18 +++++-
+> >  arch/riscv/include/asm/thread_info.h |  5 ++
+> >  arch/riscv/kernel/asm-offsets.c      |  5 ++
+> >  arch/riscv/kernel/entry.S            | 84 ++++++++++++++++++++++++++++
+> >  arch/riscv/mm/init.c                 |  2 +
+> >  5 files changed, 113 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/arch/riscv/include/asm/cacheflush.h b/arch/riscv/include/a=
+sm/cacheflush.h
+> > index ce79c558a4c8..8de73f91bfa3 100644
+> > --- a/arch/riscv/include/asm/cacheflush.h
+> > +++ b/arch/riscv/include/asm/cacheflush.h
+> > @@ -46,7 +46,23 @@ do {                                                =
+ \
+> >  } while (0)
+> >
+> >  #ifdef CONFIG_64BIT
+> > -#define flush_cache_vmap(start, end)           flush_tlb_kernel_range(=
+start, end)
+> > +extern u64 new_vmalloc[NR_CPUS / sizeof(u64) + 1];
+> > +extern char _end[];
+> > +#define flush_cache_vmap flush_cache_vmap
+> > +static inline void flush_cache_vmap(unsigned long start, unsigned long=
+ end)
+> > +{
+> > +       if (is_vmalloc_or_module_addr((void *)start)) {
+> > +               int i;
+> > +
+> > +               /*
+> > +                * We don't care if concurrently a cpu resets this valu=
+e since
+> > +                * the only place this can happen is in handle_exceptio=
+n() where
+> > +                * an sfence.vma is emitted.
+> > +                */
+> > +               for (i =3D 0; i < ARRAY_SIZE(new_vmalloc); ++i)
+> > +                       new_vmalloc[i] =3D -1ULL;
+> > +       }
+> > +}
+> >  #define flush_cache_vmap_early(start, end)     local_flush_tlb_kernel_=
+range(start, end)
+> >  #endif
+> >
+> > diff --git a/arch/riscv/include/asm/thread_info.h b/arch/riscv/include/=
+asm/thread_info.h
+> > index 5d473343634b..32631acdcdd4 100644
+> > --- a/arch/riscv/include/asm/thread_info.h
+> > +++ b/arch/riscv/include/asm/thread_info.h
+> > @@ -60,6 +60,11 @@ struct thread_info {
+> >         void                    *scs_base;
+> >         void                    *scs_sp;
+> >  #endif
+> > +       /*
+> > +        * Used in handle_exception() to save a0, a1 and a2 before know=
+ing if we
+> > +        * can access the kernel stack.
+> > +        */
+> > +       unsigned long           a0, a1, a2;
+> >  };
+> >
+> >  #ifdef CONFIG_SHADOW_CALL_STACK
+> > diff --git a/arch/riscv/kernel/asm-offsets.c b/arch/riscv/kernel/asm-of=
+fsets.c
+> > index b09ca5f944f7..29c0734f2972 100644
+> > --- a/arch/riscv/kernel/asm-offsets.c
+> > +++ b/arch/riscv/kernel/asm-offsets.c
+> > @@ -36,6 +36,8 @@ void asm_offsets(void)
+> >         OFFSET(TASK_THREAD_S9, task_struct, thread.s[9]);
+> >         OFFSET(TASK_THREAD_S10, task_struct, thread.s[10]);
+> >         OFFSET(TASK_THREAD_S11, task_struct, thread.s[11]);
+> > +
+> > +       OFFSET(TASK_TI_CPU, task_struct, thread_info.cpu);
+> >         OFFSET(TASK_TI_FLAGS, task_struct, thread_info.flags);
+> >         OFFSET(TASK_TI_PREEMPT_COUNT, task_struct, thread_info.preempt_=
+count);
+> >         OFFSET(TASK_TI_KERNEL_SP, task_struct, thread_info.kernel_sp);
+> > @@ -43,6 +45,9 @@ void asm_offsets(void)
+> >  #ifdef CONFIG_SHADOW_CALL_STACK
+> >         OFFSET(TASK_TI_SCS_SP, task_struct, thread_info.scs_sp);
+> >  #endif
+> > +       OFFSET(TASK_TI_A0, task_struct, thread_info.a0);
+> > +       OFFSET(TASK_TI_A1, task_struct, thread_info.a1);
+> > +       OFFSET(TASK_TI_A2, task_struct, thread_info.a2);
+> >
+> >         OFFSET(TASK_TI_CPU_NUM, task_struct, thread_info.cpu);
+> >         OFFSET(TASK_THREAD_F0,  task_struct, thread.fstate.f[0]);
+> > diff --git a/arch/riscv/kernel/entry.S b/arch/riscv/kernel/entry.S
+> > index 68a24cf9481a..822311266a12 100644
+> > --- a/arch/riscv/kernel/entry.S
+> > +++ b/arch/riscv/kernel/entry.S
+> > @@ -19,6 +19,78 @@
+> >
+> >         .section .irqentry.text, "ax"
+> >
+> > +.macro new_vmalloc_check
+> > +       REG_S   a0, TASK_TI_A0(tp)
+> > +       REG_S   a1, TASK_TI_A1(tp)
+> > +       REG_S   a2, TASK_TI_A2(tp)
+>
+> We discussed in the previous version that when executing blt a0, zero,
+> _new_vmalloc_restore_context, there is no need to save a1, a2 first,
+> right?
 
-Each of 6 PWM is driven by individually selected clock parent and
-8-bit divider. The PWM signal is generated using two 16-bit counters.
+And you're totally right, I forgot to do so...Thanks for bringing that
+up again, as it's important we do the minimum amount of work here. I
+respin a new version, I should send this in a couple of days.
 
-Signed-off-by: George Stark <GNStark@sberdevices.ru>
-Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
----
- arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 215 ++++++++++++++++++++++
- 1 file changed, 215 insertions(+)
+Thanks,
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-index 2a69e1e41bdc..d93b10bd156b 100644
---- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-@@ -307,6 +307,188 @@ mux {
- 					};
- 				};
- 
-+				pwm_a_pins1: pwm-a-pins1 {
-+					mux {
-+						groups = "pwm_a_x6";
-+						function = "pwm_a";
-+					};
-+				};
-+
-+				pwm_a_pins2: pwm-a-pins2 {
-+					mux {
-+						groups = "pwm_a_x7";
-+						function = "pwm_a";
-+					};
-+				};
-+
-+				pwm_a_pins3: pwm-a-pins3 {
-+					mux {
-+						groups = "pwm_a_f10";
-+						function = "pwm_a";
-+					};
-+				};
-+
-+				pwm_a_pins4: pwm-a-pins4 {
-+					mux {
-+						groups = "pwm_a_f6";
-+						function = "pwm_a";
-+					};
-+				};
-+
-+				pwm_a_pins5: pwm-a-pins5 {
-+					mux {
-+						groups = "pwm_a_a";
-+						function = "pwm_a";
-+					};
-+				};
-+
-+				pwm_b_pins1: pwm-b-pins1 {
-+					mux {
-+						groups = "pwm_b_x";
-+						function = "pwm_b";
-+					};
-+				};
-+
-+				pwm_b_pins2: pwm-b-pins2 {
-+					mux {
-+						groups = "pwm_b_f";
-+						function = "pwm_b";
-+					};
-+				};
-+
-+				pwm_b_pins3: pwm-b-pins3 {
-+					mux {
-+						groups = "pwm_b_a";
-+						function = "pwm_b";
-+					};
-+				};
-+
-+				pwm_c_pins1: pwm-c-pins1 {
-+					mux {
-+						groups = "pwm_c_x";
-+						function = "pwm_c";
-+					};
-+				};
-+
-+				pwm_c_pins2: pwm-c-pins2 {
-+					mux {
-+						groups = "pwm_c_f3";
-+						function = "pwm_c";
-+					};
-+				};
-+
-+				pwm_c_pins3: pwm-c-pins3 {
-+					mux {
-+						groups = "pwm_c_f8";
-+						function = "pwm_c";
-+					};
-+				};
-+
-+				pwm_c_pins4: pwm-c-pins4 {
-+					mux {
-+						groups = "pwm_c_a";
-+						function = "pwm_c";
-+					};
-+				};
-+
-+				pwm_d_pins1: pwm-d-pins1 {
-+					mux {
-+						groups = "pwm_d_x15";
-+						function = "pwm_d";
-+					};
-+				};
-+
-+				pwm_d_pins2: pwm-d-pins2 {
-+					mux {
-+						groups = "pwm_d_x13";
-+						function = "pwm_d";
-+					};
-+				};
-+
-+				pwm_d_pins3: pwm-d-pins3 {
-+					mux {
-+						groups = "pwm_d_x10";
-+						function = "pwm_d";
-+					};
-+				};
-+
-+				pwm_d_pins4: pwm-d-pins4 {
-+					mux {
-+						groups = "pwm_d_f";
-+						function = "pwm_d";
-+					};
-+				};
-+
-+				pwm_e_pins1: pwm-e-pins1 {
-+					mux {
-+						groups = "pwm_e_p";
-+						function = "pwm_e";
-+					};
-+				};
-+
-+				pwm_e_pins2: pwm-e-pins2 {
-+					mux {
-+						groups = "pwm_e_x16";
-+						function = "pwm_e";
-+					};
-+				};
-+
-+				pwm_e_pins3: pwm-e-pins3 {
-+					mux {
-+						groups = "pwm_e_x14";
-+						function = "pwm_e";
-+					};
-+				};
-+
-+				pwm_e_pins4: pwm-e-pins4 {
-+					mux {
-+						groups = "pwm_e_x2";
-+						function = "pwm_e";
-+					};
-+				};
-+
-+				pwm_e_pins5: pwm-e-pins5 {
-+					mux {
-+						groups = "pwm_e_f";
-+						function = "pwm_e";
-+					};
-+				};
-+
-+				pwm_e_pins6: pwm-e-pins6 {
-+					mux {
-+						groups = "pwm_e_a";
-+						function = "pwm_e";
-+					};
-+				};
-+
-+				pwm_f_pins1: pwm-f-pins1 {
-+					mux {
-+						groups = "pwm_f_b";
-+						function = "pwm_f";
-+					};
-+				};
-+
-+				pwm_f_pins2: pwm-f-pins2 {
-+					mux {
-+						groups = "pwm_f_x";
-+						function = "pwm_f";
-+					};
-+				};
-+
-+				pwm_f_pins3: pwm-f-pins3 {
-+					mux {
-+						groups = "pwm_f_f4";
-+						function = "pwm_f";
-+					};
-+				};
-+
-+				pwm_f_pins4: pwm-f-pins4 {
-+					mux {
-+						groups = "pwm_f_f12";
-+						function = "pwm_f";
-+					};
-+				};
-+
- 				sdio_pins: sdio {
- 					mux0 {
- 						groups = "sdcard_d0_x",
-@@ -648,6 +830,28 @@ uart_AO_B: serial@2000 {
- 				status = "disabled";
- 			};
- 
-+			pwm_ab: pwm@2400 {
-+				compatible = "amlogic,meson-a1-pwm",
-+					     "amlogic,meson-s4-pwm";
-+				reg = <0x0 0x2400 0x0 0x24>;
-+				#pwm-cells = <3>;
-+				clocks = <&clkc_periphs CLKID_PWM_A>,
-+					 <&clkc_periphs CLKID_PWM_B>;
-+				power-domains = <&pwrc PWRC_I2C_ID>;
-+				status = "disabled";
-+			};
-+
-+			pwm_cd: pwm@2800 {
-+				compatible = "amlogic,meson-a1-pwm",
-+					     "amlogic,meson-s4-pwm";
-+				reg = <0x0 0x2800 0x0 0x24>;
-+				#pwm-cells = <3>;
-+				clocks = <&clkc_periphs CLKID_PWM_C>,
-+					 <&clkc_periphs CLKID_PWM_D>;
-+				power-domains = <&pwrc PWRC_I2C_ID>;
-+				status = "disabled";
-+			};
-+
- 			saradc: adc@2c00 {
- 				compatible = "amlogic,meson-g12a-saradc",
- 					"amlogic,meson-saradc";
-@@ -731,6 +935,17 @@ sec_AO: ao-secure@5a20 {
- 				amlogic,has-chip-id;
- 			};
- 
-+			pwm_ef: pwm@5400 {
-+				compatible = "amlogic,meson-a1-pwm",
-+					     "amlogic,meson-s4-pwm";
-+				reg = <0x0 0x5400 0x0 0x24>;
-+				#pwm-cells = <3>;
-+				clocks = <&clkc_periphs CLKID_PWM_E>,
-+					 <&clkc_periphs CLKID_PWM_F>;
-+				power-domains = <&pwrc PWRC_I2C_ID>;
-+				status = "disabled";
-+			};
-+
- 			clkc_pll: pll-clock-controller@7c80 {
- 				compatible = "amlogic,a1-pll-clkc";
- 				reg = <0 0x7c80 0 0x18c>;
--- 
-2.25.1
+Alex
 
+>
+> > +
+> > +       csrr    a0, CSR_CAUSE
+> > +       /* Exclude IRQs */
+> > +       blt     a0, zero, _new_vmalloc_restore_context
+> > +       /* Only check new_vmalloc if we are in page/protection fault */
+> > +       li      a1, EXC_LOAD_PAGE_FAULT
+> > +       beq     a0, a1, _new_vmalloc_kernel_address
+> > +       li      a1, EXC_STORE_PAGE_FAULT
+> > +       beq     a0, a1, _new_vmalloc_kernel_address
+> > +       li      a1, EXC_INST_PAGE_FAULT
+> > +       bne     a0, a1, _new_vmalloc_restore_context
+> > +
+> > +_new_vmalloc_kernel_address:
+> > +       /* Is it a kernel address? */
+> > +       csrr    a0, CSR_TVAL
+> > +       bge     a0, zero, _new_vmalloc_restore_context
+> > +
+> > +       /* Check if a new vmalloc mapping appeared that could explain t=
+he trap */
+> > +
+> > +       /*
+> > +        * Computes:
+> > +        * a0 =3D &new_vmalloc[BIT_WORD(cpu)]
+> > +        * a1 =3D BIT_MASK(cpu)
+> > +        */
+> > +       REG_L   a2, TASK_TI_CPU(tp)
+> > +       /*
+> > +        * Compute the new_vmalloc element position:
+> > +        * (cpu / 64) * 8 =3D (cpu >> 6) << 3
+> > +        */
+> > +       srli    a1, a2, 6
+> > +       slli    a1, a1, 3
+> > +       la      a0, new_vmalloc
+> > +       add     a0, a0, a1
+> > +       /*
+> > +        * Compute the bit position in the new_vmalloc element:
+> > +        * bit_pos =3D cpu % 64 =3D cpu - (cpu / 64) * 64 =3D cpu - (cp=
+u >> 6) << 6
+> > +        *         =3D cpu - ((cpu >> 6) << 3) << 3
+> > +        */
+> > +       slli    a1, a1, 3
+> > +       sub     a1, a2, a1
+> > +       /* Compute the "get mask": 1 << bit_pos */
+> > +       li      a2, 1
+> > +       sll     a1, a2, a1
+> > +
+> > +       /* Check the value of new_vmalloc for this cpu */
+> > +       REG_L   a2, 0(a0)
+> > +       and     a2, a2, a1
+> > +       beq     a2, zero, _new_vmalloc_restore_context
+> > +
+> > +       /* Atomically reset the current cpu bit in new_vmalloc */
+> > +       amoxor.w        a0, a1, (a0)
+> > +
+> > +       /* Only emit a sfence.vma if the uarch caches invalid entries *=
+/
+> > +       ALTERNATIVE("sfence.vma", "nop", 0, RISCV_ISA_EXT_SVVPTC, 1)
+> > +
+> > +       REG_L   a0, TASK_TI_A0(tp)
+> > +       REG_L   a1, TASK_TI_A1(tp)
+> > +       REG_L   a2, TASK_TI_A2(tp)
+> > +       csrw    CSR_SCRATCH, x0
+> > +       sret
+> > +
+> > +_new_vmalloc_restore_context:
+> > +       REG_L   a0, TASK_TI_A0(tp)
+> > +       REG_L   a1, TASK_TI_A1(tp)
+> > +       REG_L   a2, TASK_TI_A2(tp)
+> > +.endm
+> > +
+> > +
+> >  SYM_CODE_START(handle_exception)
+> >         /*
+> >          * If coming from userspace, preserve the user thread pointer a=
+nd load
+> > @@ -30,6 +102,18 @@ SYM_CODE_START(handle_exception)
+> >
+> >  .Lrestore_kernel_tpsp:
+> >         csrr tp, CSR_SCRATCH
+> > +
+> > +       /*
+> > +        * The RISC-V kernel does not eagerly emit a sfence.vma after e=
+ach
+> > +        * new vmalloc mapping, which may result in exceptions:
+> > +        * - if the uarch caches invalid entries, the new mapping would=
+ not be
+> > +        *   observed by the page table walker and an invalidation is n=
+eeded.
+> > +        * - if the uarch does not cache invalid entries, a reordered a=
+ccess
+> > +        *   could "miss" the new mapping and traps: in that case, we o=
+nly need
+> > +        *   to retry the access, no sfence.vma is required.
+> > +        */
+> > +       new_vmalloc_check
+> > +
+> >         REG_S sp, TASK_TI_KERNEL_SP(tp)
+> >
+> >  #ifdef CONFIG_VMAP_STACK
+> > diff --git a/arch/riscv/mm/init.c b/arch/riscv/mm/init.c
+> > index e3405e4b99af..2367a156c33b 100644
+> > --- a/arch/riscv/mm/init.c
+> > +++ b/arch/riscv/mm/init.c
+> > @@ -36,6 +36,8 @@
+> >
+> >  #include "../kernel/head.h"
+> >
+> > +u64 new_vmalloc[NR_CPUS / sizeof(u64) + 1];
+> > +
+> >  struct kernel_mapping kernel_map __ro_after_init;
+> >  EXPORT_SYMBOL(kernel_map);
+> >  #ifdef CONFIG_XIP_KERNEL
+> > --
+> > 2.39.2
+> >
+>
+> Thanks=EF=BC=8C
+> Yunhui
 
