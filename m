@@ -1,101 +1,176 @@
-Return-Path: <devicetree+bounces-82278-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82269-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B49F0923BAB
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 12:42:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65C64923B72
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 12:31:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6CD8D1F24199
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 10:42:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9986F1C213B0
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 10:31:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80B5415B0ED;
-	Tue,  2 Jul 2024 10:41:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 734B4154449;
+	Tue,  2 Jul 2024 10:31:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b="BcC99NIC"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linumiz.com header.i=@linumiz.com header.b="Pb3KRwfx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.fris.de (mail.fris.de [116.203.77.234])
+Received: from omta34.uswest2.a.cloudfilter.net (omta34.uswest2.a.cloudfilter.net [35.89.44.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9E4C158D61;
-	Tue,  2 Jul 2024 10:41:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.77.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91F7A82D7F
+	for <devicetree@vger.kernel.org>; Tue,  2 Jul 2024 10:31:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=35.89.44.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719916917; cv=none; b=NbriPm5/a1t+59SLYbkwIbD32B1Ynqi+KYQjED/ytJKK9NVweJedQBkRjHknn6WmZWgXOQj08snmnn1DTGlHHXaID0I7e5uoJjrCSg+afRa7kTkjtLgzqpwrTnJlZXpJ6x6Wmj7HtoOWe+3CtxO/QnJWbrNPUR8EYpFtPmQF8Mw=
+	t=1719916301; cv=none; b=YUoCi0WzpOAUklqi9t9CHpeCFpOKJ2o8LsAZ0mNU7507Du/bO+zhr+jf0A7Q7g7qO73MVjFFb5Oivts21JoeLMJ2CAq2CB46qCBdLss2xqCDSn0aaFkCjaRBGVaKQedVgphfU8dACXIddHqfgKYun9gUgA1+bdd3yNnC7iNglKw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719916917; c=relaxed/simple;
-	bh=sPCgBGmaEIjGdzBuX+ZiLW5g5QxenEh/PLa2ZraUm7g=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=XOttiKnWKrJep5lLQ8xsD7LoAQ229BfRY/y33cqoFYHTdf5GHQV59y6JJZfkCaZyXJiQfqhPzB/I8bjuyqjoSH1ZCsN0DSE5wUrK1MLbzWpaWDn4A81+6wkTtTz398eSqfiAhpr5aX/6d8bHIkXKxLrALZef5iVDW5Z2VBPH69E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fris.de; spf=fail smtp.mailfrom=fris.de; dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b=BcC99NIC; arc=none smtp.client-ip=116.203.77.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fris.de
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=fris.de
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 97049BFC0E;
-	Tue,  2 Jul 2024 12:32:57 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fris.de; s=dkim;
-	t=1719916378; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=VKYV733Fjpk+GAdBZI7izuRi4FBRnkYy/52IFjD1Dd8=;
-	b=BcC99NICrst6VxTOtUzFX5RFrJiaxlX2/yPwMUOXY+vSRS/UIB+YkXeB94vzRUFA6rP/03
-	RIif0ZrhMkTv7yoy9NAONNr/22kDEl8l+paquwhBz694Yx6OwzYFFL4d+vsozQ6CMVwY0U
-	c24ZnVpwy3M/5Pyb/lOdvnz4xq68qwpnEm2B1CktbiHD7GtlVmj062BowxQmpAXCKLGvyL
-	Vj7viGP4SYP46mimgUUEc7VaA7Yr0sC8Oz6mGNXol/MoExvk4CKojfU/SHrAWALwDL3cFZ
-	K9JozOqbKmXspUNIfkTpeBwMupDmM5rwNc/ynCphMr4zoURGeDCxv50qUQGcYw==
-From: Frieder Schrempf <frieder@fris.de>
-To: Bartosz Golaszewski <brgl@bgdev.pl>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	linux-gpio@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Stefan Agner <stefan@agner.ch>
-Cc: Frieder Schrempf <frieder.schrempf@kontron.de>,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Peng Fan <peng.fan@nxp.com>
-Subject: [PATCH 3/7] dt-bindings: gpio: vf610: Allow gpio-line-names to be set
-Date: Tue,  2 Jul 2024 12:31:15 +0200
-Message-ID: <20240702103155.321855-4-frieder@fris.de>
-In-Reply-To: <20240702103155.321855-1-frieder@fris.de>
-References: <20240702103155.321855-1-frieder@fris.de>
+	s=arc-20240116; t=1719916301; c=relaxed/simple;
+	bh=0nUuaSJC0wos59bsTCAjg2ZKtMH3I2DJEL+CYXxMKqY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=OsSV+F23Jhcp9WAqOhmSTR8nvHvh5o3yogq53gccwLgAxJtrEnXX+ejF3ZlAjXBy5DCiQoSB7u7lMvnu619eV1hNT95AIj5aCcqG6Y5Cuh23lCZHY0koC//s59SDJdgrtUf9T+3cxE+ouTeKuZMMDoqCAaG7CDcELeZwpHpf0dM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linumiz.com; spf=pass smtp.mailfrom=linumiz.com; dkim=pass (2048-bit key) header.d=linumiz.com header.i=@linumiz.com header.b=Pb3KRwfx; arc=none smtp.client-ip=35.89.44.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linumiz.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linumiz.com
+Received: from eig-obgw-5009a.ext.cloudfilter.net ([10.0.29.176])
+	by cmsmtp with ESMTPS
+	id OTahsbykejZAYOanKsT6hO; Tue, 02 Jul 2024 10:31:30 +0000
+Received: from md-in-79.webhostbox.net ([43.225.55.182])
+	by cmsmtp with ESMTPS
+	id OanGsSxiJwj3FOanHs8VT7; Tue, 02 Jul 2024 10:31:28 +0000
+X-Authority-Analysis: v=2.4 cv=UbRXSrSN c=1 sm=1 tr=0 ts=6683d700
+ a=LfuyaZh/8e9VOkaVZk0aRw==:117 a=kofhyyBXuK/oEhdxNjf66Q==:17
+ a=IkcTkHD0fZMA:10 a=4kmOji7k6h8A:10 a=oz0wMknONp8A:10 a=vU9dKmh3AAAA:8
+ a=5PsIE_XvEH0fwoVFwt4A:9 a=QEXdDO2ut3YA:10 a=rsP06fVo5MYu2ilr0aT5:22
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=linumiz.com
+	; s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+	References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=B1Jjc+lEjY0Uw7nBJ3Zl64MagjypTEwjQImG0F/LFGQ=; b=Pb3KRwfxTE2+ZVvDrzZvX+GXVR
+	zv+B5D5z+QzsFSYAWl/5QzHHQFw257mpEeC8KkqMCCyRW2w8/pxJL6ExJECpvMG4xENr6IH2WwyM6
+	yf4ia17QQMdo96OKIqDAtCfXabrfzE4+GcgpvJigVDirLb8j463tPOic8j6vz1RWqjZ7QlyHmytYJ
+	ib29V2lUVOMi/xFqbDxLR1bfH184VF70wHFRMLEO6vhm+jAZIuXjC61Y2mqE/PqacOft2j15K8V35
+	0nf64q7KM7t+XDRV4/AvXpPvo0ZipEbiVmGAVL723GRIKB2hiQjjqg6/aBa0wo57RSMeO4XsJ4dLn
+	FAwB/D5g==;
+Received: from [122.165.245.213] (port=58716 helo=[192.168.1.5])
+	by md-in-79.webhostbox.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96.2)
+	(envelope-from <parthiban@linumiz.com>)
+	id 1sOanC-000xXQ-2K;
+	Tue, 02 Jul 2024 16:01:22 +0530
+Message-ID: <33ac3505-0f86-48e3-8cc8-ad949b04a074@linumiz.com>
+Date: Tue, 2 Jul 2024 16:01:15 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] arm64: dts: imx8mm-venice-gw72xx-0x: Remove
+ compatible from dtso
+To: Fabio Estevam <festevam@gmail.com>, shawnguo@kernel.org
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ tharvey@gateworks.com, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, Fabio Estevam <festevam@denx.de>,
+ Parthiban <parthiban@linumiz.com>
+References: <20240701231229.197614-1-festevam@gmail.com>
+ <20240701231229.197614-2-festevam@gmail.com>
+Content-Language: en-US
+From: Parthiban <parthiban@linumiz.com>
+Organization: Linumiz
+In-Reply-To: <20240701231229.197614-2-festevam@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - md-in-79.webhostbox.net
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - linumiz.com
+X-BWhitelist: no
+X-Source-IP: 122.165.245.213
+X-Source-L: No
+X-Exim-ID: 1sOanC-000xXQ-2K
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: ([192.168.1.5]) [122.165.245.213]:58716
+X-Source-Auth: parthiban@linumiz.com
+X-Email-Count: 3
+X-Org: HG=dishared_whb_net_legacy;ORG=directi;
+X-Source-Cap: bGludW1jbWM7aG9zdGdhdG9yO21kLWluLTc5LndlYmhvc3Rib3gubmV0
+X-Local-Domain: yes
+X-CMAE-Envelope: MS4xfAzaNkMgoF15OTQ/4uoVDYfwyNOfrrV+vZjMPInYJhNKnIUMoUKwfmjhMpzzvdlLwYhQT0IhgbbapBFGA7doLkcx7FYCErJq8GttVI76PO395tRfGB/y
+ RFi43MNYbIW3dLStEKJ/X+zcREu0Pn+opTogXhlnH9CoqFxBwP80E+PQrKkgVYFKmYOSmE3/pubOA4zlFV4apCJHjyYBeymExPY=
 
-From: Frieder Schrempf <frieder.schrempf@kontron.de>
+Hi,
 
-Describe common "gpio-line-names" property to fix dtbs_check warnings
-like:
+I missed it, thanks for fixing it.
 
-  arch/arm64/boot/dts/freescale/imx93-kontron-bl-osm-s.dtb: gpio@43810000:
-    'gpio-line-names' does not match any of the regexes: '^.+-hog(-[0-9]+)?$', 'pinctrl-[0-9]+'
+On 7/2/24 4:42 AM, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@denx.de>
+> 
+> There is no need to describe the compatible string inside
+> a dtso file.
+> 
+> dt-schema produces super verbose warnings about that.
+> 
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
+Acked-by: Parthiban Nallathambi <parthiban@linumiz.com>
 
-Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
----
- Documentation/devicetree/bindings/gpio/gpio-vf610.yaml | 1 +
- 1 file changed, 1 insertion(+)
+Thanks,
+Parthiban N
 
-diff --git a/Documentation/devicetree/bindings/gpio/gpio-vf610.yaml b/Documentation/devicetree/bindings/gpio/gpio-vf610.yaml
-index a27f929502575..7230ba1a386ae 100644
---- a/Documentation/devicetree/bindings/gpio/gpio-vf610.yaml
-+++ b/Documentation/devicetree/bindings/gpio/gpio-vf610.yaml
-@@ -50,6 +50,7 @@ properties:
-     const: 2
- 
-   gpio-controller: true
-+  gpio-line-names: true
- 
-   clocks:
-     items:
--- 
-2.45.2
-
+> ---
+>  .../boot/dts/freescale/imx8mm-venice-gw72xx-0x-rs232-rts.dtso | 4 ----
+>  .../boot/dts/freescale/imx8mm-venice-gw72xx-0x-rs422.dtso     | 4 ----
+>  .../boot/dts/freescale/imx8mm-venice-gw72xx-0x-rs485.dtso     | 4 ----
+>  3 files changed, 12 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx-0x-rs232-rts.dtso b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx-0x-rs232-rts.dtso
+> index f6ad1a4b8b66..47d3c0c49e8a 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx-0x-rs232-rts.dtso
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx-0x-rs232-rts.dtso
+> @@ -15,10 +15,6 @@
+>  /dts-v1/;
+>  /plugin/;
+>  
+> -&{/} {
+> -	compatible = "gw,imx8mm-gw72xx-0x";
+> -};
+> -
+>  &gpio4 {
+>  	rs485_en {
+>  		gpio-hog;
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx-0x-rs422.dtso b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx-0x-rs422.dtso
+> index c3cd9f2b0db3..7fcd8c851159 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx-0x-rs422.dtso
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx-0x-rs422.dtso
+> @@ -18,10 +18,6 @@
+>  /dts-v1/;
+>  /plugin/;
+>  
+> -&{/} {
+> -	compatible = "gw,imx8mm-gw72xx-0x";
+> -};
+> -
+>  &gpio4 {
+>  	rs485_en {
+>  		gpio-hog;
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx-0x-rs485.dtso b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx-0x-rs485.dtso
+> index cc0a287226ab..b19e38fc27ba 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx-0x-rs485.dtso
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx-0x-rs485.dtso
+> @@ -18,10 +18,6 @@
+>  /dts-v1/;
+>  /plugin/;
+>  
+> -&{/} {
+> -	compatible = "gw,imx8mm-gw72xx-0x";
+> -};
+> -
+>  &gpio4 {
+>  	rs485_en {
+>  		gpio-hog;
 
