@@ -1,148 +1,131 @@
-Return-Path: <devicetree+bounces-82348-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82349-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01647923F46
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 15:44:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9A6F923F5E
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 15:46:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A985B1F22B63
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 13:44:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CD3971C22113
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 13:46:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D35C1B4C38;
-	Tue,  2 Jul 2024 13:44:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBB0E1B583B;
+	Tue,  2 Jul 2024 13:46:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="iO47arJZ"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="Zh8vjjRj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC0511B47DC
-	for <devicetree@vger.kernel.org>; Tue,  2 Jul 2024 13:44:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C5D219F49D
+	for <devicetree@vger.kernel.org>; Tue,  2 Jul 2024 13:46:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719927886; cv=none; b=bvTHZgvgnZXgy0g1GCVsWKHs2diIEvZoPDnOJ/dOMVy3Fo4xNwUzUsa/nKub6XdJdss1txxNXOjLioKA0mwiT1YkZCDjZPaJxg3DuqAVgnrfgL+wBK91DzsKdKge08X3A/tfcH15kTviaCuifqIfBN43NM5+0Kh+iTfTLzkWp/Q=
+	t=1719927965; cv=none; b=dz37yUV1vVGwj/JftsdzC1jcL2JlzTMmddLoNYuvcrHUN6c57XS0JjYHXdsQ9GcH4qDdNC8GUCzY1g/SKlo/y6ieBINdyKeoMbca9568kiLWN9DAdbPwd34HVxcn02alF1iFGSEzyYiS83PN+TdDE7RtlYQvlOr99SYG5L3ziqA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719927886; c=relaxed/simple;
-	bh=zS9XCvdP1o0PSlfWs4fqjR/02ZVlnvObzYJCICybb6Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CKnLhcBSfh2AsShgca9IakWrQjcVqwPGb0/sjrAxaPwgSYoNAHUs7WD7C4erFKh09XLz0bK0/+cTmW5QX64nT6/iZumMpCP8KVooafVgtAOB16ckmBK4oZ5RXG6+BYQ/xK8BewijqcnNpLZ+xXqySzHa32t7iQBOScSwLjteIlo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=iO47arJZ; arc=none smtp.client-ip=209.85.218.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a725282b926so474223466b.0
-        for <devicetree@vger.kernel.org>; Tue, 02 Jul 2024 06:44:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1719927882; x=1720532682; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=zS9XCvdP1o0PSlfWs4fqjR/02ZVlnvObzYJCICybb6Y=;
-        b=iO47arJZyKELnXouRi5azeeedp2mIItdcMxn2BpSI7nKH9qR4zssbkCCGypeZpVRYt
-         2mTLpAtCaqHjRf3+tMjdcB9YkLs41mqCFR9EUIdJEhDk0NK+eNkSLzSneIcUm8XgvsF/
-         KFly+jb97bYx51K8GB14S11XrdPpzA9oZcR4AJoQWOdwaPw38JgkwuNA/oReDk9k3BgA
-         G+QnWNRIQoFtmnqk3tb6JStcDFnoh9QeJ0YzNktSpGIVeMT9JPuNlHE52zyl39VqXPMy
-         pifEpAJ5Owk74is15Zqxz0z3XMPHrxhxyCLujQ9GYc1odoAbf151z0eHRlhk5cGBokb4
-         wWfg==
+	s=arc-20240116; t=1719927965; c=relaxed/simple;
+	bh=bgNxm9SETuFLnJPGDZUgPkVw2fzndE14aiGORTSGCzc=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=mFuKxRHxv/bcm1GH2pYWpWPvK0S4c0mQB07flhjMaDVLUE7CV+qHYhu/4jsLOvN7Hy1Z5j1Jg3gz6lrF9ZZk9NiuL/JAc8zr1PhPMj4jSl1tTyyLk+Vv9GTLL45KFZb+XgJfqSUytrwrScWTZd4DkmA2y+6rClwmsamcH7Ep6wg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=Zh8vjjRj; arc=none smtp.client-ip=170.10.129.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1719927962;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=bgNxm9SETuFLnJPGDZUgPkVw2fzndE14aiGORTSGCzc=;
+	b=Zh8vjjRjOodMHBSxEAUq/5NBbwAkFmfgPr70wlxplP5yx+VZoV895/kV7eEOokWrojeY1G
+	LqxrQilpsnd3As4oKYC5wy5zqTqQ3qX+0lnrSH3fLentYVkf7zNLtDiAKkywP54EmNQ/+I
+	65tUUX2SpJMFmQYOOL9lfkAv4D8an/U=
+Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
+ [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-101-uUEAb2qjPtOXHg4F03G_Xg-1; Tue, 02 Jul 2024 09:46:01 -0400
+X-MC-Unique: uUEAb2qjPtOXHg4F03G_Xg-1
+Received: by mail-wm1-f70.google.com with SMTP id 5b1f17b1804b1-42566fb83c5so7152285e9.2
+        for <devicetree@vger.kernel.org>; Tue, 02 Jul 2024 06:45:59 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719927882; x=1720532682;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zS9XCvdP1o0PSlfWs4fqjR/02ZVlnvObzYJCICybb6Y=;
-        b=bLaq/oAB1NkJiswKBBWETiS3eiA7rTdi3xXDIf/RqW89Xv6RcjpQ1Oh4M6NgfiSIxm
-         ry5kcdIcNJMjhWw4lBZHIPJykDSl8VMT51y8na82ihskwmU4O/ge/BDKNvqgGvwMg9na
-         JuWOekN1nzVY3AUB9tUJ3ld1RkJKgMxiI62RRshPeDvSyqvE7h/DA67D56Igy94WtZdz
-         qJ6NAjIi85RF1v1xgiwAQQe37Zox9VSy7DJFkQZkJLnASrxfG34m7ZaRCOgduF0+3RIy
-         AIx+lVcxC+nW3vqXtre7kENrER6fphAdGqqBhWxaWF6AEnhnyCdMstchVprWoTwUzxaZ
-         BAWQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUJ3fUVn7YP3wSlfrTxEFLMK0fMXRT8zP4DByAr6qZFDdz1sQe3tuIrU6NFltsHbMGTUQx40s7f/oOYtgP+h4hJZ0xDSUayCq7QkQ==
-X-Gm-Message-State: AOJu0YxiY02XMWn4E54DEynASwjfetEZ7Kx4DhAn5g8vzMi/Tvkxxjzx
-	loRNtpn0l1UN+hoP9S9mcNx3iyTn/kR3Nm9tirNx2Xyrx8KvVU5xRyoa3xVBkpY=
-X-Google-Smtp-Source: AGHT+IFV6uq/mxPcGfN5aH4a/OFa1sbDPk/m8vabkvNXag5OPZpCY7tWDQyniafAg8pECIQM+VnRsQ==
-X-Received: by 2002:a17:906:4f05:b0:a6f:b5cc:9190 with SMTP id a640c23a62f3a-a75143e7166mr494336866b.28.1719927881662;
-        Tue, 02 Jul 2024 06:44:41 -0700 (PDT)
-Received: from localhost ([2a02:8071:b783:6940:281e:e880:6485:fc37])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a72aaf63981sm413799466b.82.2024.07.02.06.44.40
+        d=1e100.net; s=20230601; t=1719927959; x=1720532759;
+        h=mime-version:user-agent:content-transfer-encoding:autocrypt
+         :references:in-reply-to:date:cc:to:from:subject:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=bgNxm9SETuFLnJPGDZUgPkVw2fzndE14aiGORTSGCzc=;
+        b=fzqA4RgDLyS6FLJfn9j692ytQbyA7EP0V84KSaGetAe6WdSCnzx3a6gx1dZHZHtyzr
+         G6G7mWm9fSvDH+cOHX34+MFlmj1EzxC0DNVN2j6uC1pBpDeSi3xP+azDE4in/3eZu667
+         RihAYQzs+8f62MMx5NobpxVr1BPyiyiAIpwAQ9t50uTbB+Q2TiMd0PORseFZwlXZguFK
+         00N+r6oPRSqkqo0fzByIcHhks/syuGGfLNMrp7sBf8Fd+jBJiYPv4j8VqVEgsoDCl5Yk
+         Yrv3GA4PYi9bhl2cBl7V7CqkPCb+rGyqakbRAVSORrNzwqntluQhxtzHhLb/m1okuk8E
+         CdUA==
+X-Forwarded-Encrypted: i=1; AJvYcCWCuXc84Jw1q+Z6lFTMH3CGl56/nGTXiH542NTZt6hje+/fe5f0ougWyWaUaaGXkmqkG7T82oBAK4y5kA2MHbqPy02veIxIiy3ZNA==
+X-Gm-Message-State: AOJu0YwbQLDyXMAdkNvAUoNMHsjScR9+dW10/aCH3yvkNG549LQH5ZAG
+	vl3pnAvWGiG5vUaLJ6HZV2pbkCCgu+JrX75Wikd0tSVZXyFXSap2sR70eJb2h/MaASvYMSHTMkF
+	r9zq43alGkg+j9wgsgGlIuWhzOc/xrqo5gWrGDlectLdiHr5rnGgMXIw2S1s=
+X-Received: by 2002:a05:600c:1c17:b0:425:69cb:5495 with SMTP id 5b1f17b1804b1-4257a0a8687mr59023625e9.4.1719927958877;
+        Tue, 02 Jul 2024 06:45:58 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGdwgNh38INBT6VUB9Lk3lWbXXGZ9zOZlC3CC60W6SLKJy3R/ujz2lxQoP7yjXRT9VVfds5tw==
+X-Received: by 2002:a05:600c:1c17:b0:425:69cb:5495 with SMTP id 5b1f17b1804b1-4257a0a8687mr59023335e9.4.1719927958454;
+        Tue, 02 Jul 2024 06:45:58 -0700 (PDT)
+Received: from gerbillo.redhat.com ([2a0d:3341:b0a6:6710::f71])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4256af3d004sm200291865e9.4.2024.07.02.06.45.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Jul 2024 06:44:41 -0700 (PDT)
-Date: Tue, 2 Jul 2024 15:44:38 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-To: David Gibson <david@gibson.dropbear.id.au>
-Cc: devicetree-compiler@vger.kernel.org, Rob Herring <robh@kernel.org>, 
-	Geert Uytterhoeven <geert@linux-m68k.org>, Saravana Kannan <saravanak@google.com>, 
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH] libfdt: overlay: Fix phandle overwrite check for new
- subtrees
-Message-ID: <bxyscvary2ozzvdnszl3rtfqy3oo5bxnpn6avvaexhtnd47tck@qa44v5zxqhps>
-References: <20240626075551.2493048-2-u.kleine-koenig@baylibre.com>
+        Tue, 02 Jul 2024 06:45:57 -0700 (PDT)
+Message-ID: <7cbc7f017bf4e62ba9a3e67144e009ac755b5642.camel@redhat.com>
+Subject: Re: [net-next,PATCH v2 1/2] net: stmmac: dwmac-stm32: Add test to
+ verify if ETHCK is used before checking clk rate
+From: Paolo Abeni <pabeni@redhat.com>
+To: Christophe Roullier <christophe.roullier@foss.st.com>, "David S .
+ Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub
+ Kicinski <kuba@kernel.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>,  Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, Richard Cochran
+ <richardcochran@gmail.com>, Jose Abreu <joabreu@synopsys.com>, Liam
+ Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Marek
+ Vasut <marex@denx.de>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org,  linux-kernel@vger.kernel.org
+Date: Tue, 02 Jul 2024 15:45:55 +0200
+In-Reply-To: <20240701064838.425521-2-christophe.roullier@foss.st.com>
+References: <20240701064838.425521-1-christophe.roullier@foss.st.com>
+	 <20240701064838.425521-2-christophe.roullier@foss.st.com>
+Autocrypt: addr=pabeni@redhat.com; prefer-encrypt=mutual; keydata=mQINBGISiDUBEAC5uMdJicjm3ZlWQJG4u2EU1EhWUSx8IZLUTmEE8zmjPJFSYDcjtfGcbzLPb63BvX7FADmTOkO7gwtDgm501XnQaZgBUnCOUT8qv5MkKsFH20h1XJyqjPeGM55YFAXc+a4WD0YyO5M0+KhDeRLoildeRna1ey944VlZ6Inf67zMYw9vfE5XozBtytFIrRyGEWkQwkjaYhr1cGM8ia24QQVQid3P7SPkR78kJmrT32sGk+TdR4YnZzBvVaojX4AroZrrAQVdOLQWR+w4w1mONfJvahNdjq73tKv51nIpu4SAC1Zmnm3x4u9r22mbMDr0uWqDqwhsvkanYmn4umDKc1ZkBnDIbbumd40x9CKgG6ogVlLYeJa9WyfVMOHDF6f0wRjFjxVoPO6p/ZDkuEa67KCpJnXNYipLJ3MYhdKWBZw0xc3LKiKc+nMfQlo76T/qHMDfRMaMhk+L8gWc3ZlRQFG0/Pd1pdQEiRuvfM5DUXDo/YOZLV0NfRFU9SmtIPhbdm9cV8Hf8mUwubihiJB/9zPvVq8xfiVbdT0sPzBtxW0fXwrbFxYAOFvT0UC2MjlIsukjmXOUJtdZqBE3v3Jf7VnjNVj9P58+MOx9iYo8jl3fNd7biyQWdPDfYk9ncK8km4skfZQIoUVqrWqGDJjHO1W9CQLAxkfOeHrmG29PK9tHIwARAQABtB9QYW9sbyBBYmVuaSA8cGFiZW5pQHJlZGhhdC5jb20+iQJSBBMBCAA8FiEEg1AjqC77wbdLX2LbKSR5jcyPE6QFAmISiDUCGwMFCwkIBwIDIgIBBhUKCQgLAgQWAgMBAh4HAheAAAoJECkkeY3MjxOkJSYQAJcc6MTsuFxYdYZkeWjW//zbD3ApRHzpNlHLVSuJqHr9/aDS+tyszgS8jj9MiqALzgq4iZbg
+ 7ZxN9ZsDL38qVIuFkSpgMZCiUHdxBC11J8nbBSLlpnc924UAyr5XrGA99 6Wl5I4Km3128GY6iAkH54pZpOmpoUyBjcxbJWHstzmvyiXrjA2sMzYjt3Xkqp0cJfIEekOi75wnNPofEEJg28XPcFrpkMUFFvB4Aqrdc2yyR8Y36rbw18sIX3dJdomIP3dL7LoJi9mfUKOnr86Z0xltgcLPGYoCiUZMlXyWgB2IPmmcMP2jLJrusICjZxLYJJLofEjznAJSUEwB/3rlvFrSYvkKkVmfnfro5XEr5nStVTECxfy7RTtltwih85LlZEHP8eJWMUDj3P4Q9CWNgz2pWr1t68QuPHWaA+PrXyasDlcRpRXHZCOcvsKhAaCOG8TzCrutOZ5NxdfXTe3f1jVIEab7lNgr+7HiNVS+UPRzmvBc73DAyToKQBn9kC4jh9HoWyYTepjdcxnio0crmara+/HEyRZDQeOzSexf85I4dwxcdPKXv0fmLtxrN57Ae82bHuRlfeTuDG3x3vl/Bjx4O7Lb+oN2BLTmgpYq7V1WJPUwikZg8M+nvDNcsOoWGbU417PbHHn3N7yS0lLGoCCWyrK1OY0QM4EVsL3TjOfUtCNQYW9sbyBBYmVuaSA8cGFvbG8uYWJlbmlAZ21haWwuY29tPokCUgQTAQgAPBYhBINQI6gu+8G3S19i2ykkeY3MjxOkBQJiEoitAhsDBQsJCAcCAyICAQYVCgkICwIEFgIDAQIeBwIXgAAKCRApJHmNzI8TpBzHD/45pUctaCnhee1vkQnmStAYvHmwrWwIEH1lzDMDCpJQHTUQOOJWDAZOFnE/67bxSS81Wie0OKW2jvg1ylmpBA0gPpnzIExQmfP72cQ1TBoeVColVT6Io35BINn+ymM7c0Bn8RvngSEpr3jBtqvvWXjvtnJ5/HbOVQCg62NC6ewosoKJPWpGXMJ9SKsVIOUHsmoWK60spzeiJoSmAwm3zTJQnM5kRh2q
+ iWjoCy8L35zPqR5TV+f5WR5hTVCqmLHSgm1jxwKhPg9L+GfuE4d0SWd84y GeOB3sSxlhWsuTj1K6K3MO9srD9hr0puqjO9sAizd0BJP8ucf/AACfrgmzIqZXCfVS7jJ/M+0ic+j1Si3yY8wYPEi3dvbVC0zsoGj9n1R7B7L9c3g1pZ4L9ui428vnPiMnDN3jh9OsdaXeWLvSvTylYvw9q0DEXVQTv4/OkcoMrfEkfbXbtZ3PRlAiddSZA5BDEkkm6P9KA2YAuooi1OD9d4MW8LFAeEicvHG+TPO6jtKTacdXDRe611EfRwTjBs19HmabSUfFcumL6BlVyceIoSqXFe5jOfGpbBevTZtg4kTSHqymGb6ra6sKs+/9aJiONs5NXY7iacZ55qG3Ib1cpQTps9bQILnqpwL2VTaH9TPGWwMY3Nc2VEc08zsLrXnA/yZKqZ1YzSY9MGXWYLkCDQRiEog1ARAAyXMKL+x1lDvLZVQjSUIVlaWswc0nV5y2EzBdbdZZCP3ysGC+s+n7xtq0o1wOvSvaG9h5q7sYZs+AKbuUbeZPu0bPWKoO02i00yVoSgWnEqDbyNeiSW+vI+VdiXITV83lG6pS+pAoTZlRROkpb5xo0gQ5ZeYok8MrkEmJbsPjdoKUJDBFTwrRnaDOfb+Qx1D22PlAZpdKiNtwbNZWiwEQFm6mHkIVSTUe2zSemoqYX4QQRvbmuMyPIbwbdNWlItukjHsffuPivLF/XsI1gDV67S1cVnQbBgrpFDxN62USwewXkNl+ndwa+15wgJFyq4Sd+RSMTPDzDQPFovyDfA/jxN2SK1Lizam6o+LBmvhIxwZOfdYH8bdYCoSpqcKLJVG3qVcTwbhGJr3kpRcBRz39Ml6iZhJyI3pEoX3bJTlR5Pr1Kjpx13qGydSMos94CIYWAKhegI06aTdvvuiigBwjngo/Rk5S+iEGR5KmTqGyp27o6YxZy6D4NIc6PKUzhIUxfvuHNvfu
+ sD2W1U7eyLdm/jCgticGDsRtweytsgCSYfbz0gdgUuL3EBYN3JLbAU+UZpy v/fyD4cHDWaizNy/KmOI6FFjvVh4LRCpGTGDVPHsQXaqvzUybaMb7HSfmBBzZqqfVbq9n5FqPjAgD2lJ0rkzb9XnVXHgr6bmMRlaTlBMAEQEAAYkCNgQYAQgAIBYhBINQI6gu+8G3S19i2ykkeY3MjxOkBQJiEog1AhsMAAoJECkkeY3MjxOkY1YQAKdGjHyIdOWSjM8DPLdGJaPgJdugHZowaoyCxffilMGXqc8axBtmYjUIoXurpl+f+a7S0tQhXjGUt09zKlNXxGcebL5TEPFqgJTHN/77ayLslMTtZVYHE2FiIxkvW48yDjZUlefmphGpfpoXe4nRBNto1mMB9Pb9vR47EjNBZCtWWbwJTIEUwHP2Z5fV9nMx9Zw2BhwrfnODnzI8xRWVqk7/5R+FJvl7s3nY4F+svKGD9QHYmxfd8Gx42PZc/qkeCjUORaOf1fsYyChTtJI4iNm6iWbD9HK5LTMzwl0n0lL7CEsBsCJ97i2swm1DQiY1ZJ95G2Nz5PjNRSiymIw9/neTvUT8VJJhzRl3Nb/EmO/qeahfiG7zTpqSn2dEl+AwbcwQrbAhTPzuHIcoLZYV0xDWzAibUnn7pSrQKja+b8kHD9WF+m7dPlRVY7soqEYXylyCOXr5516upH8vVBmqweCIxXSWqPAhQq8d3hB/Ww2A0H0PBTN1REVw8pRLNApEA7C2nX6RW0XmA53PIQvAP0EAakWsqHoKZ5WdpeOcH9iVlUQhRgemQSkhfNaP9LqR1XKujlTuUTpoyT3xwAzkmSxN1nABoutHEO/N87fpIbpbZaIdinF7b9srwUvDOKsywfs5HMiUZhLKoZzCcU/AEFjQsPTATACGsWf3JYPnWxL9
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="y4wirvo74doowopy"
-Content-Disposition: inline
-In-Reply-To: <20240626075551.2493048-2-u.kleine-koenig@baylibre.com>
 
-
---y4wirvo74doowopy
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hello David,
-
-On Wed, Jun 26, 2024 at 09:55:52AM +0200, Uwe Kleine-K=F6nig wrote:
-> If the overlay's target is only created in a previous fragment, it
-> doesn't exist in the unmodified base device tree. For the phandle
-> overwrite check this can be ignored because in this case the base tree
-> doesn't contain a phandle that could be overwritten.
+On Mon, 2024-07-01 at 08:48 +0200, Christophe Roullier wrote:
+> When we want to use clock from RCC to clock Ethernet PHY (with ETHCK)
+> we need to check if value of clock rate is authorized.
+> If ETHCK is unused, the ETHCK frequency is 0Hz and validation fails.
+> It makes no sense to validate unused ETHCK, so skip the validation.
 >=20
-> Adapt the corresponding check to not error out if that happens but just
-> continue with the next fragment.
+> Fixes: 582ac134963e ("net: stmmac: dwmac-stm32: Separate out external clo=
+ck rate validation")
 >=20
-> This is currently triggered by
-> arch/arm64/boot/dts/renesas/salvator-panel-aa104xd12.dtso in the kernel
-> repository which creates /panel in its first fragment and modifies it in
-> its second.
->=20
-> Reported-by: Rob Herring <robh@kernel.org>
-> Link: https://lore.kernel.org/all/CAL_JsqL9MPycDjqQfPNAuGfC6EMrdzUivr+fuO=
-S7YgU3biGd4A@mail.gmail.com/
-> Fixes: 1fad065080e6 ("libfdt: overlay: ensure that existing phandles are =
-not overwritten")
-> Signed-off-by: Uwe Kleine-K=F6nig <u.kleine-koenig@baylibre.com>
+> Signed-off-by: Christophe Roullier <christophe.roullier@foss.st.com>
 
-I wonder about this patch's state. Does David wait for feedback by Rob
-as he reported the issue? Does Rob expect Geert to comment as
-salvator-panel-aa104xd12.dtso is in his maintainer area? Are the
-responsible people just busy; or is this fix already hidden in their
-backlog?
+Note that you must avoid any empty line in the tag area between the
+fixes and the SoB tag.
 
-Otherwise I think the patch is fine to go in. It passes the test suite
-and adds a new test that fails without the code change (but passes when
-the patch is applied completely).
+I'll exceptionally fix the above while applying the patch, but please
+run checkpatch before your next submission.
 
-Best regards
-Uwe
+Thanks!
 
---y4wirvo74doowopy
-Content-Type: application/pgp-signature; name="signature.asc"
+Paolo
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmaEBDIACgkQj4D7WH0S
-/k7f8wf/dhhF2NOboCquMSh7Bp8FVLF/VF6i4EonH4PO+Vtupj0TpBwrJ5/jORSZ
-0x6x50LEuDKgJtpxrTTgbO0NGEEm1Gyw75n+9PwrIJAFt/wC7nOQwbk5WqSrotyJ
-EkHPa9eazX8THU/Y9wwwi193YmycMyo2uX5QetcEFkeWFF554mp2tJJi/+rwnp0h
-pVPdmF2JSKeRgRf5LS7dSY1QCcI/f7szkSDx0p281Z5HGV6k2rPbEjKtgtIaBfvW
-hhUJ2+h8UVYgTD8RjSqOEjTi7aAVwJxQM90weuszHhlr0pRm2FDm07e6XO2CoJRS
-X7Czgv+Yg3TCTVT6l4g/f4JSg7UlEg==
-=LHkh
------END PGP SIGNATURE-----
-
---y4wirvo74doowopy--
 
