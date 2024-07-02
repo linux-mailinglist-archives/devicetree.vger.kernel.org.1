@@ -1,115 +1,146 @@
-Return-Path: <devicetree+bounces-82302-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82305-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA47E923CE8
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 13:53:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AB0F923D29
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 14:05:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 58C111F23DF7
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 11:53:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8C7D21C22D81
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 12:05:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B07415ECE1;
-	Tue,  2 Jul 2024 11:53:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15B6815B972;
+	Tue,  2 Jul 2024 12:05:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="g0vqKHeG"
+	dkim=pass (2048-bit key) header.d=yahoo.com header.i=@yahoo.com header.b="CMhBJVMQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sonic301-47.consmr.mail.ir2.yahoo.com (sonic301-47.consmr.mail.ir2.yahoo.com [77.238.176.124])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CB5A145B09;
-	Tue,  2 Jul 2024 11:53:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D0DB14D703
+	for <devicetree@vger.kernel.org>; Tue,  2 Jul 2024 12:05:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=77.238.176.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719921200; cv=none; b=ssjVzMeOiu/SPcrLj5JzEhZ5LaP0r2xnUs9p0IZ+xcGxKme9mKI5ZVMC+y5h/lFW2rHYFDkhV0YOFcULGh8jxAiB2bCBWKUjIXyCWsGo6Ypic7vf/todYAL3pIhqB5s30wtTp3dHuBLJkOd1gIgKE7wGdhkfmYOGFIuYQoT1GTE=
+	t=1719921909; cv=none; b=iHEygpzEclBGI6PRdVo+jTUEDuQe9U3+RDF/3HlFTNrxgFBH9KSVoQPYV51m/ZXnBntAkvO4u2ec9qxG5n+YW79co0mTjfYW7h9XimEn4sHld3HPyH8ldF6n8ZGQFzkCz9sn7C3eIm/0uQNlPDMnNnaKPcqukq0EFopnbU4tkH8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719921200; c=relaxed/simple;
-	bh=4ktnlb7yvW4ussBIReyJtLp9KZJ51hpL56o2nKPHpuY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=OILcGnEuwEV71zfg0fKHgCRMYtWphBRLVKJCHsdUZfdGi3WMeQSdxjM953+F1UrsXWed8+/dteOsl1+lqJww8GDrMMXhPLUK93CpnC7dbCUt3Zg8IRKSHhIsvvl6bb/Ri/f9TmYy4peMluuwvsT0/djXiFuJ0jeEvKGKkgd9IQM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=g0vqKHeG; arc=none smtp.client-ip=217.70.183.201
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id B7D1E1BF20C;
-	Tue,  2 Jul 2024 11:53:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1719921196;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=2HvfbFLoLElmyEB196KhuxtSYeLMdyA9ytyFqCVntKA=;
-	b=g0vqKHeGUFZHTGvhJ5s1w9/pEwrBqpADrH/Kz2VFtD3suvNGRgGQNUQgXcteSVxFJL3Dtp
-	nPJVcmeGHyikdyPGe74xSw29JGyCYK05/QjZc+Hw6J9CgW9c0FzgGOrlMSgNqKz/HfmnEx
-	jMR16g+Q6vXvZnd0PJGoiUaSoLWzKiAvOB+ylzIUxJ2nJCHncINM3TLaAmrmCr8lwllF6O
-	mIoxAimPNIA5qvwzJXe74tEUeTt+CrxyPYHy/HpaW/QCf1hl0v4iCVK5r4w4autQsUKJvB
-	vR+i3/382LkbhYT4cRqWZtOk1lFzmqPGP4C/FVKE81M3mu0V9MJQ8/onJvFcuw==
-From: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-Date: Tue, 02 Jul 2024 13:52:23 +0200
-Subject: [PATCH 3/3] riscv: dts: sophgo: Add SARADC configuration
+	s=arc-20240116; t=1719921909; c=relaxed/simple;
+	bh=czYlFkR7gACaffEBBYkZYMloku7B869PLgAxG+uGO7Q=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type:
+	 References; b=VW1W+yZyAxHmjMR4wHVKuxP/65jHljyJ9Wo/p8rXHLz3KLCG7O10zz+yeqPqIaLq+yWEC0UD6NGFgDN3NAvsV3aeG+jjIWkJQyoTMpxLvDMDuhW24GRKsgaZkYzYXYw/D9MtXo4LVETYPi7Tp9BiYGj/ECCl9jtP52qCH9/ODj4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=yahoo.com; spf=pass smtp.mailfrom=yahoo.com; dkim=pass (2048-bit key) header.d=yahoo.com header.i=@yahoo.com header.b=CMhBJVMQ; arc=none smtp.client-ip=77.238.176.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=yahoo.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1719921905; bh=J8LVgZXsBn/SKy0ON6Xyfp/jRyWWH2Gsbog4fAcslz4=; h=From:To:Cc:Subject:Date:References:From:Subject:Reply-To; b=CMhBJVMQLrj9AjA64VI6zof3iAIW6xpvYggdr/Xn8SFUl2PqkwI4Wqe64nWXaJDIEPS8yvRJpU6+AJY60H90VCteh/tT1T289UrEVUlyC/vB9ivPm0vzesHte0VeBj4ySPd9B0LYn4acyZAACTzAziqdAjE2ygpIO9MCkzz4Azm+HnKmm4zn43+Zq1eun8t+YJIxh9DjwjXjhc44rK/HAC3YE59DvNft7ICautBYNISIExBWEZrPdjm68yjYWA9v91nPLY8GVIDPv8l/p/FVfag+ZynyGT2OwO56WkXwZ4CE88mN2hKeNgXci47Jam/HtFt3LcoTU/7z41fSboF4EA==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1719921905; bh=WM7KXLEi8vxVqP+NKxiBEPDK/u5WC1viPyRq4Cc5mjZ=; h=X-Sonic-MF:From:To:Subject:Date:From:Subject; b=UMqpyBhEuMdgHqnqJem49aCct1G5vq44ZLK3Ec/ZRbPFUjvzbTGmGgYj2OFzWTDGs8+SHm0Dhx5DT+Mqnto6tqJ8HSuIYDOV2vNjb+D6jrKqV0YkYgbq9mmcRWeX2W++NCDrsz965SuPnKywxfp+TrSdYOzJBe0v/hjnbN5mv1AN+0VbcpCNVmb6JqyLDF9E5ZolOnZkcByDJ0Wyu6mA32sdn0JHo+UK/PLXFOmdQL0eXKjoHlpCkHmVJAt7M9Qltf2AmcFMvKXHAnBEgqu8kMzDDd/df5Pt8+7xr0GTe1eZO5SdvXQ7V/85FwH34y0LxV+MgciC+g7oHktfk8khPA==
+X-YMail-OSG: INJqqsoVM1nUAl02a13QJLORw6oGZokgB9tm0D_u0t7.L.3_e8rDkhW0asv59PQ
+ wUB7ez8C6hw2C66ImTssx46a7xqfLZpGmx.b9PxJWj6kMkbk64d5wPuFePSRhmRcdNyCR1FYP5EV
+ HPwhTSavDu9zWK73CFsTIJ76uI_LLg1EaSbwpwyGLYzIgOM5O.o_MIXcgvPiIhrYSw6mBe3lNrIF
+ jgHTL6oGsYRrG2D7FPo2FJbsuP2dCxBIX8l3hRK4nry77Gx9Cpi8eApdfhHc5Jgot9uzDbvjykd8
+ ySZnsdbxn6lXbl4uOmZEQBpslc7CVG1GbH8NXZj_PRXBf.WbA0XKOugzTRGPRKLYuH4F8W7EIf76
+ vZuukz7ZQofO9EugcmV2HV2qCcV_GRAqahcjlPhP5aNzgE4c39JwdeBD5FLnLUS5lfhhCSFiF4kX
+ Qdfp4Rwx_V3ygH.1g.xRcwtMO4HP7c253DxO8Y3FwdrS37n9AYS.B3ogqPOy94PCXTfSsrRmNsBw
+ TDno83H0N_p37.mARmrXa5qZvxnLd8JobcTS9yViaetHuSpq0y6Rcrvv1xPOrPDSpAJnHrLXEJuM
+ xiB35FeIU4WwsZ2RpttSmIkZxbfS2OdBkC3zcOkEhPh6c_EsjilB5uF4EPo0QRjjgclx4BEoSG2G
+ RTomCdub9A2Kl5fXW3Iyb3JwTLzUuWcOAzIZiRCVb9wmbt.XPpwMNJVFm1WCH5tIg7mMY2ul5msE
+ Y0cv0S2XxxVJ.raBl1mPpPlsr2tANCk5SoSzsfo0Ydc31xE_Mz6yk0rahRsWYlKm6iAP1FLq1_XN
+ Gpbm_sXubjjeg4bvX1TUMCi6rUSBLa.DhK6TGHz9uAhOaEjFh8OMWTL4DwsRsg62nNPtgSCCOOZe
+ O7PJHKPLTGt37sH21x0csJy6Oa20jG.gQeoRg_g9EranMPJDfS59anwWW7UzrDQOqOCsd6BRTVqr
+ oejA9rlIXRU1awHyrz4ICGNPfb.6IpUeyAkz70QXHeV54M_asDv3Mr3vQR4xXWjokvgJnHZKPrAD
+ vcYV_9rtdjJPgQBpVw79wTw.tr5FzF1jhyuiUiGfGeNCVg4DbOnoatnxnDxw3gtVgnCfR6HP_LEZ
+ O_nOnTJ4z_58kWOuoNMRoanxUUk_a2mm2Ntyj4DIEVTnj9GKO6ndWlkxQO.kUEpUbWHvlFxKrjiT
+ q1o6Lv5ZxlifJ3hRwcx_D2DdTs_1bQnDw6qvuAT4uOdIS.jLKi9DoabPle203FeAx_KQmUdOR8L0
+ 5lWF8Lzwg23ZDW1Hpxoxx.TNG74ZUD_t4AspQXJHWizYo0poqnlJ5zeaQZDelLEcrLvgNHGRe6Nr
+ wpUHPQ9f2yQJDsQ3ADVppsNcRZME951iXAWtPRzry.Mtw.9T9zFWIHhA5pRnpIz174IvXawZnFRZ
+ 0QQDJ9F9nb_EUfzn6hVlslQ8hngLGtFw4VStOBn4e0l_BLdkRVNPLXAZdglMs.8lWSCOxyq5XNot
+ T7uzchyjW7FpQm9NrgYIyrb22lSGN91uX9ujSf7D.BM4kv5_gt1plXDcEaVy.A0r7NsDgXofBZB6
+ EnOk1gpi7SbbBRqv1.7sigXnuzeiJTsIN0oBSl62Y_lvcoXe9VAUni8IxulWDnYqdZjw.JoO80p_
+ rWBlfnY3qLL3b_V_Iav0oYgVVx74zkvTHWY0tG3ytP8x0CqwROaETxlE8l0Wwz.MyeWCZwO3zyKk
+ szoeKme69weeGHYsKK5klMTM98WrvkQNRxgGfL4WPfJob0q1ORg94cY0nEoRRfDydfq6YY7jlj17
+ 6pXXd9GpBoeTENmft6HgwEC4mlxBmTB7EwEU4xUYlJNa0oEr9Xu4IRCsTG_WP8_Z2DkWUDfb5Crs
+ rRhr2isIezCmRjRJPjuFar.eAvUupu1ljHnjmeY_oMHAifaXy.Op1KhAEHRS4riDxqZZleB4HqZO
+ S7w2nfRaXNrw.BTFuw_kRrFKfD9NGYerZ9rFIRRHox1cky96VzGe3aDFBUHJQ5sPtIXuvx08G5.j
+ LfaBCHbFQnjWtjvgSI45zi1kt58OLLxOoH0s9wjdHRCWx3Zd6GMrpBE3z5zwYV08YN.UgdNk6UPg
+ E3Ik49m7izLziYezWdonBe4OJf3z8yuPGwy3uED77zpFK4fr.PDwDg_xtZURZoRpfDkW.edw-
+X-Sonic-MF: <xzeol@yahoo.com>
+X-Sonic-ID: 22345d43-bb8b-4137-a272-4ea238d35601
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic301.consmr.mail.ir2.yahoo.com with HTTP; Tue, 2 Jul 2024 12:05:05 +0000
+Received: by hermes--production-ir2-85cf877599-mvt7h (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID 0dd9cec1d13f3a8113ebc66190b2d374;
+          Tue, 02 Jul 2024 11:52:55 +0000 (UTC)
+From: Alex Vdovydchenko <xzeol@yahoo.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sean Anderson <sean.anderson@linux.dev>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Jean Delvare <jdelvare@suse.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-hwmon@vger.kernel.org,
+	linux-doc@vger.kernel.org,
+	linux-i2c@vger.kernel.org,
+	Alex Vdovydchenko <xzeol@yahoo.com>
+Subject: [PATCH v4 0/2] Add MPS MP5920 Host-Swap controller
+Date: Tue,  2 Jul 2024 14:52:49 +0300
+Message-ID: <20240702115252.981416-1-xzeol@yahoo.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240702-sg2002-adc-v1-3-ac66e076a756@bootlin.com>
-References: <20240702-sg2002-adc-v1-0-ac66e076a756@bootlin.com>
-In-Reply-To: <20240702-sg2002-adc-v1-0-ac66e076a756@bootlin.com>
-To: Jonathan Cameron <jic23@kernel.org>, 
- Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Chen Wang <unicorn_wang@outlook.com>, 
- Inochi Amaoto <inochiama@outlook.com>, 
- Paul Walmsley <paul.walmsley@sifive.com>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- =?utf-8?q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>, 
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
- Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-X-Mailer: b4 0.14.0
-X-GND-Sasl: thomas.bonnefille@bootlin.com
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+References: <20240702115252.981416-1-xzeol.ref@yahoo.com>
 
-Adds SARADC nodes for the common Successive Approximation Analog to
-Digital Converter used in Sophgo SoC.
-This patch adds nodes for the two SARADCs presents on the board, one in
-the Active domain and the other in the No-Die domain.
+This series of patches adds the MP5920 Host-swap controller, which is used
+as a protection and control IC for devices that are being inserted into a live
+backplane. MP5920 acts as a voltage regulator (MP5911 etc) supervisor. IC
+utilizes pmbus and provides monitoring, statistics and limits to electrical and
+thermal characteristics such as:
+- input and output voltage
+- output current
+- output power
+- IC temperature
 
-Signed-off-by: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
----
- arch/riscv/boot/dts/sophgo/cv18xx.dtsi | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+One must take into account the nonlinear character of readings, so there will be
+a statistical error in the range 5–10 percents, depending on current passing
+through. In order to use the IC, make sure to specify a valid I2C address
+(consult to datasheet and dts-bindings)
+MP5920 datasheet: https://www.monolithicpower.com/en/mp5920.html
 
-diff --git a/arch/riscv/boot/dts/sophgo/cv18xx.dtsi b/arch/riscv/boot/dts/sophgo/cv18xx.dtsi
-index 7247c7c3013c..0b996aa7fa31 100644
---- a/arch/riscv/boot/dts/sophgo/cv18xx.dtsi
-+++ b/arch/riscv/boot/dts/sophgo/cv18xx.dtsi
-@@ -309,5 +309,19 @@ clint: timer@74000000 {
- 			reg = <0x74000000 0x10000>;
- 			interrupts-extended = <&cpu0_intc 3>, <&cpu0_intc 7>;
- 		};
-+
-+		saradc_active: adc@30f0000 {
-+			compatible = "sophgo,cv18xx-saradc";
-+			clocks = <&clk CLK_SARADC>;
-+			interrupts = <100 IRQ_TYPE_LEVEL_HIGH>;
-+			reg = <0x030F0000 0x1000>;
-+			status = "disabled";
-+		};
-+
-+		saradc_nodie: adc@502c000 {
-+			compatible = "sophgo,cv18xx-saradc";
-+			reg = <0x0502C000 0x1000>;
-+			status = "disabled";
-+		};
- 	};
- };
+Changes in v2:
+  -  fixed typos
+Changes in v3:
+  -  removed unnecessary license blob
+  -  removed unnecessary headers
+  -  edited device tables style
+  -  added chip name checking in probing
+  -  fixed typos in pmbus_driver_info struct initialization
+Changes in v4:
+  -  added i2c_check_functionality in probing
+  -  refactored usage of dev_err_probe insted of dev_err
+  -  edited chip name string handling while printing
+  -  restored .driver.of_match_table, keeping i2c_driver "old" style
+
+Alex Vdovydchenko (2):
+  dt-bindings: hwmon: Add MPS mp5920
+  hwmon: add MP5920 driver
+
+ .../devicetree/bindings/trivial-devices.yaml  |  2 +
+ Documentation/hwmon/index.rst                 |  1 +
+ Documentation/hwmon/mp5920.rst                | 91 ++++++++++++++++++
+ drivers/hwmon/pmbus/Kconfig                   |  9 ++
+ drivers/hwmon/pmbus/Makefile                  |  1 +
+ drivers/hwmon/pmbus/mp5920.c                  | 93 +++++++++++++++++++
+ 6 files changed, 197 insertions(+)
+ create mode 100644 Documentation/hwmon/mp5920.rst
+ create mode 100644 drivers/hwmon/pmbus/mp5920.c
 
 -- 
-2.45.2
+2.43.0
 
 
