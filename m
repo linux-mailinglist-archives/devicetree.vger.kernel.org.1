@@ -1,118 +1,127 @@
-Return-Path: <devicetree+bounces-82436-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82437-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C2E09243F5
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 18:52:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CD879243FC
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 18:55:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0DE71285E09
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 16:52:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 43FF91C220F6
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 16:54:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E19451BD50F;
-	Tue,  2 Jul 2024 16:52:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F0201BD50A;
+	Tue,  2 Jul 2024 16:54:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NJ8JYCrs"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HNgkDJ8Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 270CB1BD4FD
-	for <devicetree@vger.kernel.org>; Tue,  2 Jul 2024 16:52:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EE9F1BC06B;
+	Tue,  2 Jul 2024 16:54:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719939135; cv=none; b=AzbWu4SZCcpidnxoyEaTQFleu79FwglQeks9DlSO7O2fSr6r/3mFYzCEu4CTGL2uiEQ8bTzgT5V92IVLJxmTp9ogPGVJPeFF7aCqohhvYGXEu5d+XQFqi5+lDtHUp8bkQY7UojlPKw6qSlSNFcqzeXVrwDN0Qj/KTWnsyPzbiBQ=
+	t=1719939294; cv=none; b=WExlY9vdKTcWKUb4Xt9V0Bbs68jQRDb5ERs7olHopfmqdDmNBLRBj2z9lxA2FYysLsWOpiJrecIDnAObnwOjJfb9PcG35LOiGdVe9H4ht8gQR2sZ7sSL3xzxtx5XR9kL5siXSOTPdYvtlp4tZYjL3gDeOw0EvauVz3pn+wg6jIc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719939135; c=relaxed/simple;
-	bh=67wdZHMGthQ9tYMWUTf83nlNhKOnjz2Zui5kHHhZWVc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=r0JM8iCWMrUV4kgjhZHnTtGdYaJb0JSaHA7r2k6+ZWZIKiMBqCyjYv1DCE27k0SrjnwT0+4N99L6efd7s0cE4VdO7aeVxDz1CpbIv8kHS3YtaAofNm/n2Sajm6sE+TVS6/V3LCE7zqwu19gsiHQ9+x9XEzWHa8vAPwGxYdfEKak=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=NJ8JYCrs; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-4256aee6e4dso32357395e9.1
-        for <devicetree@vger.kernel.org>; Tue, 02 Jul 2024 09:52:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719939132; x=1720543932; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=eehroHY6jsxRCXVO0ZlO8N+9Mr345Lhd3RIOJPZlnAY=;
-        b=NJ8JYCrsx8afLy1T6M8bA1WiodCFtQsH7vLP2kB8q0/4ekAdOY4bDeeV0fYcQO+0ZV
-         lXzr4Z+/+ywQE7L7I61ti/ffc+4Zd3qEiK0r8gbon2TwEQE1QOzf1hj28vdHnSsDCmpc
-         CYQjrA1HqfmGVlCclWUzBFkcl9C2NUGUSm2b+CsErmgydE77Y/hdnC6Qlp6GPWLreaPN
-         FKMwdw622kW6dD4cNu0wo3Bil4Gv6sDvCnfjeSjUNiNsT/BlOmpFwB+59G7u8aw2Cemk
-         593TjzNi4/EKxnbwA5vIvKc0A5uCgstfqKPpGiyver7mwmIOA6Hj/U3+qtWR0IeAPacl
-         UvwQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719939132; x=1720543932;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=eehroHY6jsxRCXVO0ZlO8N+9Mr345Lhd3RIOJPZlnAY=;
-        b=rm/u8HMh2xwS9XmYmdrrjJo5pvqEkrgLv9iF6+MHNfSCFXwVAhkp5u5d/gEW2dW2a/
-         VXlVQSEmKLf/MRpQI6bUPDloyCwjtYc7iZBvbfWjTp/6cnJ06YBbe/lNOKxQnk597Woo
-         Q7r4IGd124O001Rlss4q/TjpMaW4D2P7+sZGGeTtIru3/MLxWYrk/88ZZ8ZGdvxMy1LS
-         P39/Rby597wioduu2demMg8KRQVVW37YJOEMofXYM/yAGxJrVORh9fpprG10T6XNy0g0
-         CSALhzsfgMU5VfNUg6WbQYDyy3gDbeGWuIhONv8vh99w2ZiqdqH8VCzBK56vpv736ipf
-         YpAw==
-X-Forwarded-Encrypted: i=1; AJvYcCUNkuQBDTZYZk/sKum1DjOBzeLNado48vUsIrUnO0Tr2GO4KbYKOKaE3Xl5xrFP70OY1lIgncmcAXzTyTJqVxWwCNVj7NFgKd55Tg==
-X-Gm-Message-State: AOJu0Yz6xBl61b/AMpZEBRpr8d/FqMCxb5tLOUIehOSmjYa8iqxCFd5F
-	W6/7EyxVVUHUNwCByVWrNkzG6X0U/yxx/3dtqT9g83zu/C7q5VgW48lU17KhcuQ=
-X-Google-Smtp-Source: AGHT+IF3V1HC4chVUPw7FP944I/P3u9IFqa0gz5TuDk7AOj8IDGj87TQ830i2eIZSX6jeLFY+OsoJw==
-X-Received: by 2002:a05:600c:2d8c:b0:425:7833:db91 with SMTP id 5b1f17b1804b1-4257a00cd97mr64098005e9.20.1719939132436;
-        Tue, 02 Jul 2024 09:52:12 -0700 (PDT)
-Received: from ?IPV6:2a05:6e02:1041:c10:c49e:e1a5:3210:b8c0? ([2a05:6e02:1041:c10:c49e:e1a5:3210:b8c0])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-4256af5a3b0sm206096705e9.13.2024.07.02.09.52.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Jul 2024 09:52:11 -0700 (PDT)
-Message-ID: <eee20abf-6bb2-48f5-a0c1-a8c023a2b7b4@linaro.org>
-Date: Tue, 2 Jul 2024 18:52:11 +0200
+	s=arc-20240116; t=1719939294; c=relaxed/simple;
+	bh=7cP9c/D+q/wwGCs5nQnAntLQJsixlKhlsJONo87tLoY=;
+	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=pgYX5H0fjFU5PQ3vZ54ALb8vTHlYB6+oVOG5rqYWkfbvXmeJ1SsLvj+e0/O8HJronyw5ZBRPQlw2NYY2dteeGXh8nOFK/F3nffMt9MfN0fGgW/6rnhDzH5VnKMVDs9TiTrRJaMHwppW6XZLKQvuZlGoCScNsHfLiXUlRn1LV8VI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HNgkDJ8Q; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0DC98C116B1;
+	Tue,  2 Jul 2024 16:54:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719939294;
+	bh=7cP9c/D+q/wwGCs5nQnAntLQJsixlKhlsJONo87tLoY=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=HNgkDJ8Q/P40NY9TZxmDmG4C9x5ZfwJNAio6ABrveLE4/VxBMWsk+7qsErG6I3vrs
+	 yWoswVVemNDliIVNA6OOW2JLYX/U+YVTORNFZb3yzKbTeHa9gA3JG9hk+U4tcNjJMY
+	 XL6Qf2PuZ7w6OJsprQrTxc8bz3tSZjkK1OpmP4UDLcVU3YwTACM3/ENnCAJGBU340J
+	 K+cfY9fOTRMZUOCJD9dLobZE8RXgJDRHUaHnki4DMFfk1M17DeWPgk0I8PEvG3YBn1
+	 wg7dNbiesOY0SbNP6tageljV9oROiJny8oyIUPgNg8G6aDAe/lj0PNc4qk3NGIHEsP
+	 yjnvmE3t7n8FQ==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.95)
+	(envelope-from <maz@kernel.org>)
+	id 1sOgmJ-009Ao2-My;
+	Tue, 02 Jul 2024 17:54:51 +0100
+Date: Tue, 02 Jul 2024 17:54:51 +0100
+Message-ID: <86zfqzhgys.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Christian Zigotzky <chzigotzky@xenosoft.de>
+Cc: Rob Herring <robh@kernel.org>,
+	apatel@ventanamicro.com,
+	DTML <devicetree@vger.kernel.org>,
+	Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+	linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+	mad skateman <madskateman@gmail.com>,
+	"R.T.Dickinson" <rtd2@xtra.co.nz>,
+	Matthew Leaman <matthew@a-eon.biz>,
+	Darren Stevens
+ <darren@stevens-zone.net>,
+	Christian Zigotzky <info@xenosoft.de>
+Subject: Re: [PowerPC] [PASEMI] Issue with the identification of ATA drives after the of/irq updates 2024-05-29
+In-Reply-To: <3ab66fab-c3f2-4bed-a04d-a10c57dcdd9b@xenosoft.de>
+References: <3ab66fab-c3f2-4bed-a04d-a10c57dcdd9b@xenosoft.de>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/29.2
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] dt-bindings: thermal: correct thermal zone node name
- limit
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
- Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Amit Kucheria <amit.kucheria@linaro.org>,
- linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Cc: stable@vger.kernel.org
-References: <20240702145248.47184-1-krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <20240702145248.47184-1-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: chzigotzky@xenosoft.de, robh@kernel.org, apatel@ventanamicro.com, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, madskateman@gmail.com, rtd2@xtra.co.nz, matthew@a-eon.biz, darren@stevens-zone.net, info@xenosoft.de
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 
-On 02/07/2024 16:52, Krzysztof Kozlowski wrote:
-> Linux kernel uses thermal zone node name during registering thermal
-> zones and has a hard-coded limit of 20 characters, including terminating
-> NUL byte.  The bindings expect node names to finish with '-thermal'
-> which is eight bytes long, thus we have only 11 characters for the reset
-> of the node name (thus 10 for the pattern after leading fixed character).
+On Sun, 30 Jun 2024 11:21:55 +0100,
+Christian Zigotzky <chzigotzky@xenosoft.de> wrote:
 > 
-> Reported-by: Rob Herring <robh@kernel.org>
-> Closes: https://lore.kernel.org/all/CAL_JsqKogbT_4DPd1n94xqeHaU_J8ve5K09WOyVsRX3jxxUW3w@mail.gmail.com/
-> Fixes: 1202a442a31f ("dt-bindings: thermal: Add yaml bindings for thermal zones")
-> Cc: <stable@vger.kernel.org>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Hello,
+> 
+> There is an issue with the identification of ATA drives with our
+> P.A. Semi Nemo boards [1] after the
+> commit "of/irq: Factor out parsing of interrupt-map parent
+> phandle+args from of_irq_parse_raw()" [2].
 
-Applied, thanks
+[snip]
+
+My earlier request for valuable debug information still stands. But
+while you're at it, can you please give the following hack a go?
+
+	M.
+
+--- a/drivers/of/irq.c
++++ b/drivers/of/irq.c
+@@ -282,8 +282,10 @@ int of_irq_parse_raw(const __be32 *addr, struct of_phandle_args *out_irq)
+ 
+ 			oldimap = imap;
+ 			imap = of_irq_parse_imap_parent(oldimap, imaplen, out_irq);
+-			if (!imap)
+-				goto fail;
++			if (!imap) {
++				match = 0;
++				break;
++			}
+ 
+ 			match &= of_device_is_available(out_irq->np);
+ 			if (match)
+
+This may not be the final workaround even if it solves your boot
+problem, but will at least give us a hint at what is going wrong.
+
+I have the fuzzy feeling that we may be able to lob this broken system
+as part of the of_irq_imap_abusers[] array, which would solve things
+pretty "neatly".
+
+	M.
 
 -- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
-
+Without deviation from the norm, progress is not possible.
 
