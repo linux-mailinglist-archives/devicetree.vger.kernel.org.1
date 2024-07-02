@@ -1,76 +1,65 @@
-Return-Path: <devicetree+bounces-82392-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82393-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A42B9924241
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 17:25:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B042924267
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 17:30:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CEB181C22ECA
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 15:25:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7C8911C2498F
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 15:30:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 356B51BB69D;
-	Tue,  2 Jul 2024 15:25:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF84F1BBBE5;
+	Tue,  2 Jul 2024 15:29:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OhK+QYhE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e8n+dS+o"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AAB01AD9E7;
-	Tue,  2 Jul 2024 15:25:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4BF81BB6B4;
+	Tue,  2 Jul 2024 15:29:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719933913; cv=none; b=CJjlJDP3drjdIPSaaKCZT3hbHTAIe/+rAAZJ3guTZARc6dJDzakIEDHi9PAU2tAZGCJxXbzZ5WEK6b8SRvXfH7MTFj7QnJnxhS6GV8zKktzRnrllrr590lRaPMsVabzejhHIEkR4at09nYahgvaO2jKXBHPYroGxPjBsMcrzBWI=
+	t=1719934176; cv=none; b=iBHQlhKuXuE1fQghCP7XP3h24UYa0yShByzU5jIo5t+Fm2sy6bcbgmhAyORGRPzikbrkOz88yiXsHayyO6rPFTSdFmdGltNIuis2P6eMyuetuUcQB3zKigwVgeGnG5ulIgoXcwc4a0zrLNOPDbMDlWfvPPGI3AM/w4uv3HUxf+I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719933913; c=relaxed/simple;
-	bh=cc7nvHqqj6c3V+LFIi1X86+pPFAUbngIvHertngi76w=;
+	s=arc-20240116; t=1719934176; c=relaxed/simple;
+	bh=tB3pc/GAEvExlW3al+soe/qOIG4PU/9soU281deCYgE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=owLpjFFqf1zVWErpSN1v122a+7JsIWh4gMF9asaEXwVypnjcwLB5rK32DQhgsFLY06yf+gEO+QFc/1XAilGBVaaG1H+jmaiyMdZCvFXiWRyHItqe7gr5hQOiQ1tFHPFNfD0o9Aw+azNbk3dwkGvz8QKgS19LxJ9qXHh+7arOaJ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OhK+QYhE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 523A0C116B1;
-	Tue,  2 Jul 2024 15:25:08 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=QW/VP0swEQLK5eBno0lQdqlgNg5/ScrIggMBaKpSr9K2aZiuSsYx/qpbh+Yoi3v9eZi4FWLh/oUjW2JWu1haaiJRzF9YgwNT3/DTkctIHeOVxDa+sPpbEWXAU5IIcZjR9mhI38sp9Qdvp4AK6rtv4/xZHb7mE8dJtUo3noqjHpo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e8n+dS+o; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67091C116B1;
+	Tue,  2 Jul 2024 15:29:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719933912;
-	bh=cc7nvHqqj6c3V+LFIi1X86+pPFAUbngIvHertngi76w=;
+	s=k20201202; t=1719934176;
+	bh=tB3pc/GAEvExlW3al+soe/qOIG4PU/9soU281deCYgE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OhK+QYhE7XaL488ISYDfSItk/bnFEpOvq9q6T8ma2uPOF1C2yzK2VHrRMvApxk+yi
-	 l9CfI7GmUe2VQKzm/CJbV7E+Drx5kPrTL+YH5sNAbp/CgVgHrf5naOTT11Dj8fgy5m
-	 3HJ6rwcgKb+swO0wtLyfIVWndxnTo287pRy7YYlRVh6kiZ1NDkEMe4bnah5/teQwsL
-	 PexfjxVWll9z7nCb06g6s4wZ77uCimP5ayt2mmwxDLMxMyxaCrkQyx6rA0FbOncQKB
-	 lGhQQJu22xAdPvM9YPx9cDG1LZejEOIulj0QmT15yu71eH9GOEtLqTMpK2KFlLSUkc
-	 0YUj40EpeB3Pw==
-Date: Tue, 2 Jul 2024 16:25:06 +0100
+	b=e8n+dS+oHa2z7pxgVBzNhdKTkPa5wrUvYMtvSGiaaQbvpz0McLvy7mnvbF7TYToo5
+	 GYDF0sb9ksSQLEJhV7d5oylcM3+MxXOlUQoD5IOPCRzZFCqTHcJz8a/UMl8Dbpbwz/
+	 szUQWxkis/TVAHS2DBEcbW4XAGIJ9dKJ8E0R3JacpCL9ciQrKm7WCRLCySUtwQa0kx
+	 Vir18XosmWJWf/Y1d/t3Pb7Nr8lV5i95LWXYfXLp35pSdS4pTFXiBbz+dKZ/uPLxzA
+	 cEdw/7x5d1ex3tS0DS7tEChHw5xpd3Y0O+e3hR0eQXUpdwGIwJAmbvAl8DXpsbjBLg
+	 9VYeRDPaWXrug==
+Date: Tue, 2 Jul 2024 16:29:31 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Inochi Amaoto <inochiama@outlook.com>
-Cc: Yixun Lan <dlan@gentoo.org>,
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-	Rob Herring <robh@kernel.org>,
+To: Kim Seer Paller <kimseer.paller@analog.com>
+Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Dimitri Fedrau <dima.fedrau@gmail.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Anup Patel <anup@brainfault.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Palmer Dabbelt <palmer@sifive.com>, linux-riscv@lists.infradead.org,
-	linux-serial@vger.kernel.org,
-	Meng Zhang <zhangmeng.kevin@spacemit.com>,
-	Yangyu Chen <cyy@cyyself.name>
-Subject: Re: [PATCH v2 08/10] riscv: dts: add initial SpacemiT K1 SoC device
- tree
-Message-ID: <20240702-appease-attire-6afbe758bf0f@spud>
-References: <20240627-k1-01-basic-dt-v2-0-cc06c7555f07@gentoo.org>
- <20240627-k1-01-basic-dt-v2-8-cc06c7555f07@gentoo.org>
- <CAJM55Z9jeAQTsVjRiLeofDm1RyMWCuHXC0a-pdKtpUiTkSjJCA@mail.gmail.com>
- <20240702012847.GA2447193@ofsar>
- <IA1PR20MB4953C031CB453AA0E51657B3BBDC2@IA1PR20MB4953.namprd20.prod.outlook.com>
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Michael Hennerich <michael.hennerich@analog.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+Subject: Re: [PATCH v5 3/6] dt-bindings: iio: dac: Generalize DAC common
+ properties
+Message-ID: <20240702-candied-heroism-beb1d66ca352@spud>
+References: <20240702030025.57078-1-kimseer.paller@analog.com>
+ <20240702030025.57078-4-kimseer.paller@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,113 +67,87 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="8t7ClsDF1V/WRNDh"
+	protocol="application/pgp-signature"; boundary="0XHM1JO8Q9wH9n7D"
 Content-Disposition: inline
-In-Reply-To: <IA1PR20MB4953C031CB453AA0E51657B3BBDC2@IA1PR20MB4953.namprd20.prod.outlook.com>
+In-Reply-To: <20240702030025.57078-4-kimseer.paller@analog.com>
 
 
---8t7ClsDF1V/WRNDh
-Content-Type: text/plain; charset=iso-8859-1
+--0XHM1JO8Q9wH9n7D
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jul 02, 2024 at 09:35:45AM +0800, Inochi Amaoto wrote:
-> On Tue, Jul 02, 2024 at 01:28:47AM GMT, Yixun Lan wrote:
-> > On 12:49 Mon 01 Jul     , Emil Renner Berthing wrote:
-> > > Yixun Lan wrote:
-> > > > From: Yangyu Chen <cyy@cyyself.name>
-> > > >
-> > > > Banana Pi BPI-F3 motherboard is powered by SpacemiT K1[1].
-> > > >
-> > > > Key features:
-> > > > - 4 cores per cluster, 2 clusters on chip
-> > > > - UART IP is Intel XScale UART
-> > > >
-> > > > Some key considerations:
-> > > > - ISA string is inferred from vendor documentation[2]
-> > > > - Cluster topology is inferred from datasheet[1] and L2 in vendor d=
-ts[3]
-> > > > - No coherent DMA on this board
-> > > >     Inferred by taking vendor ethernet and MMC drivers to the mainl=
-ine
-> > > >     kernel. Without dma-noncoherent in soc node, the driver fails.
-> > > > - No cache nodes now
-> > > >     The parameters from vendor dts are likely to be wrong. It has 5=
-12
-> > > >     sets for a 32KiB L1 Cache. In this case, each set is 64B in siz=
-e.
-> > > >     When the size of the cache line is 64B, it is a directly mapped
-> > > >     cache rather than a set-associative cache, the latter is common=
-ly
-> > > >     used. Thus, I didn't use the parameters from vendor dts.
-> > > >
-> > > > Currently only support booting into console with only uart, other
-> > > > features will be added soon later.
-> > > >
-> > ...
-> >=20
-> > > > +		clint: timer@e4000000 {
-> > > > +			compatible =3D "spacemit,k1-clint", "sifive,clint0";
-> > > > +			reg =3D <0x0 0xe4000000 0x0 0x10000>;
-> > > > +			interrupts-extended =3D <&cpu0_intc 3>, <&cpu0_intc 7>,
-> > > > +					      <&cpu1_intc 3>, <&cpu1_intc 7>,
-> > > > +					      <&cpu2_intc 3>, <&cpu2_intc 7>,
-> > > > +					      <&cpu3_intc 3>, <&cpu3_intc 7>,
-> > > > +					      <&cpu4_intc 3>, <&cpu4_intc 7>,
-> > > > +					      <&cpu5_intc 3>, <&cpu5_intc 7>,
-> > > > +					      <&cpu6_intc 3>, <&cpu6_intc 7>,
-> > > > +					      <&cpu7_intc 3>, <&cpu7_intc 7>;
-> > > > +		};
-> > > > +
-> > > > +		uart0: serial@d4017000 {
-> > > > +			compatible =3D "spacemit,k1-uart", "intel,xscale-uart";
-> > > > +			reg =3D <0x0 0xd4017000 0x0 0x100>;
-> > > > +			interrupts =3D <42>;
-> > > > +			clock-frequency =3D <14857000>;
-> > > > +			reg-shift =3D <2>;
-> > > > +			reg-io-width =3D <4>;
-> > > > +			status =3D "disabled";
-> > > > +		};
-> > > > +
-> > > > +		/* note: uart1 skipped */
-> > >=20
-> > > The datasheet page you link to above says "-UART (=D710)", but here y=
-ou're
-> > > skipping one of them. Why? I can see the vendor tree does the same, b=
-ut it
-> > > would be nice with an explanation of what's going on.
-> > >=20
-> > /* note: uart1 in 0xf0612000, reserved for TEE usage */
-> > I would put something like this, does this sound ok to you?
-> >=20
-> > more detail, iomem range from 0xf000,0000 - 0xf080,0000 are dedicated f=
-or TEE purpose,
-> > It won't be exposed to Linux once TEE feature is enabled..
-> >=20
-> > skipping uart1 may make people confused but we are trying to follow dat=
-asheet..
+On Tue, Jul 02, 2024 at 11:00:22AM +0800, Kim Seer Paller wrote:
+> Introduce a generalized DAC binding that can be used by DACs that have
+> similar properties adding output-range-microamp and output-range-microvol=
+t.
 >=20
-> Instead of skipping it, I suggest adding this to reserved-memory area,=20
-> which make all node visible and avoid uart1 being touched by mistake.
+> Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
+> ---
+>  .../devicetree/bindings/iio/dac/dac.yaml      | 50 +++++++++++++++++++
+>  1 file changed, 50 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/dac/dac.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/iio/dac/dac.yaml b/Documen=
+tation/devicetree/bindings/iio/dac/dac.yaml
+> new file mode 100644
+> index 000000000000..579f52ea6eb1
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/dac/dac.yaml
+> @@ -0,0 +1,50 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/dac/dac.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: IIO Common Properties for DAC Channels
+> +
+> +maintainers:
+> +  - Jonathan Cameron <jic23@kernel.org>
+> +
+> +description:
+> +  A few properties are defined in a common way DAC channels.
 
-No, don't make it reserved-memory - instead add it as
-status =3D "reserved"; /* explanation for why */
-Also, I'd appreciate if the nodes were sorted by unit address in the
-dtsi.
+"for DAC channels"
 
-Thanks,
-Conor.
+> +anyOf:
+> +  - oneOf:
+> +      - required:
+> +          - reg
+> +          - output-range-microamp
+> +      - required:
+> +          - reg
+> +          - output-range-microvolt
+> +  - required:
+> +      - reg
 
---8t7ClsDF1V/WRNDh
+Can't this be more simply written as
+
+oneOf:
+  - required:
+      - output-range-microamp
+  - required:
+      - output-range-microvolt
+
+required:
+ - reg
+
+ ?
+
+ Cheers,
+ Conor.
+
+--0XHM1JO8Q9wH9n7D
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZoQb0gAKCRB4tDGHoIJi
-0tEwAQDbZqSQrUgTmMpfdmDuQPr0P0SBOkFpJs0/aPbXIvDa3AEAltJ5Hgikal1T
-3Be6wU3wIZBpw+4BQ/NmiOt4fe2a7AA=
-=zeit
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZoQc2wAKCRB4tDGHoIJi
+0gfHAQCLkMry3ePbCRVKB11k/ubc1q67WUShFIzn4Iu8YdBEjQD+KPITnMek9oRM
+wwGqlBL2irq2mCFiq+x0CFHNs4kcrQ8=
+=TEFP
 -----END PGP SIGNATURE-----
 
---8t7ClsDF1V/WRNDh--
+--0XHM1JO8Q9wH9n7D--
 
