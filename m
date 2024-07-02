@@ -1,55 +1,63 @@
-Return-Path: <devicetree+bounces-82307-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82309-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42D81923D56
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 14:12:47 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FB07923D60
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 14:14:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C5627B2214E
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 12:12:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 48516B254FF
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 12:14:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0431615CD75;
-	Tue,  2 Jul 2024 12:12:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3A311607B2;
+	Tue,  2 Jul 2024 12:14:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="TAv7+JpL"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="LxwkcBQV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46DED15D5AB
-	for <devicetree@vger.kernel.org>; Tue,  2 Jul 2024 12:12:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5DF915D5AB;
+	Tue,  2 Jul 2024 12:14:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719922360; cv=none; b=kAObQoVHb+eWJOUrnIZhL5qGkFFf1O+qg0m8isoHVsm0zUXJFEP2gv0LbbN2yRfWLE0Ts4allRjJtzlXnTxTEI7BEre8Fds1aLFhsOfriV2yJogotAwTypEYTVqhZ6OihJGYoTSTqatq1b2rleIufciu+76G5+0ACEQwFZfruh4=
+	t=1719922446; cv=none; b=EHcD2YqLWLFKl8Kt53kjdI/xy4iML3U2AH8wP38a/SIQtJtIERRvaWNxV7DhfXFYjHDSM7/21lupqUvbKOAX7K0XLqUHS3tBiZ7pYNwREJisURSgCtLhri7gGb2sZbPjS2qF7b6F4PZVRB5J+L+S/tHT9clUr4g/BrLkG6thRI0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719922360; c=relaxed/simple;
-	bh=qecD3oTzye18Eqo4/G5hS4HY/xXuOOD8C5cYy7HghNA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=nbwcirRNFu8HEcxRlWY8uCOvRC2O/SwjXU74wxpnIdjWRkMQA+xjmiIyYKCN2lRMYdvrlfCeWeafTnez8HEzR+hJlvbpByOwbo7TZeGBNNxL0sgG++is1LueNiV3oLthNX2D1NdygYTmZLuu3Wm8RW5b/wY7CqR8DKkU+rxLry8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=TAv7+JpL; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1719922357;
-	bh=qecD3oTzye18Eqo4/G5hS4HY/xXuOOD8C5cYy7HghNA=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=TAv7+JpLRE7MMNaDnPSmHii+WoswkDSLhkBMlxDh7Uqx56u8cycBkDYOI9aq3UqxW
-	 nGfDHHWKzjywaZzOvVvjUhfijzb+pqqEHV8bvNdaty05ORG7gocih8UW8Sp75wZ/0o
-	 xbZ7fpRhMVXmiilQHP3n2pIqeH3bKhDezVTIDdaecmSE7Ck91N9iOTSN15Nrdsvi1V
-	 Eed2dpEqQqkIc22ramtqJMk7lLx53Eyd1FTPT+dE6lW1NUw8SX6AMlLYucBwrkE3iS
-	 KwFPGpMPUv1nzzJs9kOSZqPYj3XiyrWJslAHyaYKIiHqFTZLdwK1/WC2wiyLZy81Rg
-	 YAP860Njs5HdQ==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id DA23B37820A7;
-	Tue,  2 Jul 2024 12:12:36 +0000 (UTC)
-Message-ID: <ae8f3014-0260-4e22-91e1-77d61e2c2d09@collabora.com>
-Date: Tue, 2 Jul 2024 14:12:36 +0200
+	s=arc-20240116; t=1719922446; c=relaxed/simple;
+	bh=+s6jgiAJELxreoow36uUgrgozKOOjkSRma04ypAOOY0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=i2CECPgR7vanVt3qnUaATEWkV9DTLW8+zpE1LL/6MkqYysRYh1ijh/zlUWtbEpKrWogqavOzKppLxbfa3n8X5RKkZDw+LZfomXpgOFU3ImoB1eNYzuffLhTmprNdQC5u886Z56REOau3i1IZOFBm9u2pAX2lokiSmW4Z0qyMuZk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=LxwkcBQV; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4628FSIe006162;
+	Tue, 2 Jul 2024 12:13:23 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	WAc+27O8bp3KbN84Q0eAMJawfTO1NX5ZOKDBTeZA1oQ=; b=LxwkcBQVgolmjPWK
+	Uas18qBtOu04XZDaSHgpyE5C9Cg21ukIWiiNLzxqUx+MsxbQpaSFuicy5TQ8k+xs
+	OIoS1VBRzxbtC8CbLst03UWR8BRTRSZKtBZ9MFCYeT9UCV4qr2zF0N3Hb4LEv0fd
+	Nsx/92Z0ezvnRQwbpN3A5u2rCbutpShj98y633QSI5U1O0BAItQQDuQMNy9sTgfa
+	S27VV8GjNZ4UMMB3HRTsUjZv6TnKA2dK0EJ4d4yAdFzU8rk39iTYJ0vYik6S2Z4W
+	bNOcTgtBm60jhLdOd3GIkPc1CyJ9L40GlniIkWcw7Xl5Aeipo9ta36i7dCncSD+j
+	6siugQ==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 402bj87n5v-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 02 Jul 2024 12:13:23 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 462CDM4C026821
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 2 Jul 2024 12:13:22 GMT
+Received: from [10.50.55.70] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 2 Jul 2024
+ 05:13:12 -0700
+Message-ID: <5ccbfde6-f26a-4796-abac-e8d6a18c74e7@quicinc.com>
+Date: Tue, 2 Jul 2024 17:43:08 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,82 +65,118 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: Duplicated bindings for mediatek,mt8173-scpsys
-To: =?UTF-8?B?VGluZ0hhbiBTaGVuICjmsojlu7fnv7Ap?= <TingHan.Shen@mediatek.com>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- Sean Wang <Sean.Wang@mediatek.com>, "zajec5@gmail.com" <zajec5@gmail.com>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- =?UTF-8?B?WXUtY2hhbmcgTGVlICjmnY7nprnnkosp?= <Yu-chang.Lee@mediatek.com>,
- =?UTF-8?B?RmFuIENoZW4gKOmZs+WHoSk=?= <fan.chen@mediatek.com>,
- "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
-References: <7614ed44-7613-4912-9b4b-62c92abbc9bd@gmail.com>
- <faa4a9a8a3f0416f3e2ebe5ecf3b3afff5f490d1.camel@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH V5 4/7] dt-bindings: clock: Add ipq9574 NSSCC clock and
+ reset definitions
+To: "Rob Herring (Arm)" <robh@kernel.org>
+CC: <catalin.marinas@arm.com>, <u-kumar1@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>, <krzk+dt@kernel.org>,
+        <geert+renesas@glider.be>, <neil.armstrong@linaro.org>,
+        <nfraprado@collabora.com>, <mturquette@baylibre.com>,
+        <linux-kernel@vger.kernel.org>, <dmitry.baryshkov@linaro.org>,
+        <netdev@vger.kernel.org>, <konrad.dybcio@linaro.org>,
+        <m.szyprowski@samsung.com>, <arnd@arndb.de>,
+        <richardcochran@gmail.com>, <will@kernel.org>, <sboyd@kernel.org>,
+        <andersson@kernel.org>, <p.zabel@pengutronix.de>,
+        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>
+References: <20240626143302.810632-1-quic_devipriy@quicinc.com>
+ <20240626143302.810632-5-quic_devipriy@quicinc.com>
+ <171941612020.3280624.794530163562164163.robh@kernel.org>
 Content-Language: en-US
-In-Reply-To: <faa4a9a8a3f0416f3e2ebe5ecf3b3afff5f490d1.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+From: Devi Priya <quic_devipriy@quicinc.com>
+In-Reply-To: <171941612020.3280624.794530163562164163.robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 6shE0fNeo2vFEYGKXPuqETHTSuM8sMwR
+X-Proofpoint-GUID: 6shE0fNeo2vFEYGKXPuqETHTSuM8sMwR
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-02_08,2024-07-02_02,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 impostorscore=0
+ spamscore=0 suspectscore=0 mlxlogscore=999 mlxscore=0 priorityscore=1501
+ malwarescore=0 adultscore=0 bulkscore=0 phishscore=0 lowpriorityscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2406140001
+ definitions=main-2407020090
 
-Il 02/07/24 03:58, TingHan Shen (沈廷翰) ha scritto:
-> On Fri, 2024-06-28 at 09:57 +0200, Rafał Miłecki wrote:
->> I noticed that "mediatek,mt8173-scpsys" compatible is specified in two
->> places:
->> Documentation/devicetree/bindings/soc/mediatek/scpsys.txt
->> Documentation/devicetree/bindings/mfd/mediatek,mt8195-scpsys.yaml
->>
->> The first one seems to be "real" hardware block. It also has a Linux
->> driver at drivers/pmdomain/mediatek/mtk-scpsys.c . It also seems that
->> scpsys.txt was first added explicitly for MT8173.
->>
->> The later one seems to be "just" an MFD with no real driver but it
->> seems to be actually used in arch/arm64/boot/dts/mediatek/mt8173.dtsi .
->>
->> Can I ask for some assistance sorting this out?
->>
->> Relevant kernel commits:
->>
->> commit 26331d261f49949bff6477fc9c844b17076fa245
->> Author: Tinghan Shen <tinghan.shen@mediatek.com>
->> Date:   Thu Aug 11 10:57:59 2022 +0800
->>
->>       dt-bindings: mfd: mt8195: Add bindings for MediaTek SCPSYS
->>
->> commit c84e358718a66f76ac0de1681d15d8d0c68fcdab
->> Author: Sascha Hauer <s.hauer@pengutronix.de>
->> Date:   Wed Jun 24 08:17:04 2015 +0200
->>
->>       soc: Mediatek: Add SCPSYS power domain driver
->>
->> commit 859e42800bcfc4db9cefaa2c24d6e3a203fe961d
->> Author: Sascha Hauer <s.hauer@pengutronix.de>
->> Date:   Wed Jun 24 08:17:03 2015 +0200
->>
->>       dt-bindings: soc: Add documentation for the MediaTek SCPSYS unit
+
+
+On 6/26/2024 9:05 PM, Rob Herring (Arm) wrote:
 > 
-> Loop MTK members.
+> On Wed, 26 Jun 2024 20:02:59 +0530, Devi Priya wrote:
+>> Add NSSCC clock and reset definitions for ipq9574.
+>>
+>> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
+>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> ---
+>>   Changes in V5:
+>> 	- Dropped interconnects and added interconnect-cells to NSS
+>> 	  clock provider so that it can be  used as icc provider.
+>>
+>>   .../bindings/clock/qcom,ipq9574-nsscc.yaml    |  74 +++++++++
+>>   .../dt-bindings/clock/qcom,ipq9574-nsscc.h    | 152 ++++++++++++++++++
+>>   .../dt-bindings/reset/qcom,ipq9574-nsscc.h    | 134 +++++++++++++++
+>>   3 files changed, 360 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/clock/qcom,ipq9574-nsscc.yaml
+>>   create mode 100644 include/dt-bindings/clock/qcom,ipq9574-nsscc.h
+>>   create mode 100644 include/dt-bindings/reset/qcom,ipq9574-nsscc.h
+>>
 > 
+> My bot found errors running 'make dt_binding_check' on your patch:
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> Error: Documentation/devicetree/bindings/clock/qcom,ipq9574-nsscc.example.dts:26.26-27 syntax error
+> FATAL ERROR: Unable to parse input tree
+> make[2]: *** [scripts/Makefile.lib:427: Documentation/devicetree/bindings/clock/qcom,ipq9574-nsscc.example.dtb] Error 1
+> make[2]: *** Waiting for unfinished jobs....
+> make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1430: dt_binding_check] Error 2
+> make: *** [Makefile:240: __sub-make] Error 2
+> 
+> doc reference errors (make refcheckdocs):
+> 
+> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240626143302.810632-5-quic_devipriy@quicinc.com
+> 
+> The base for the series is generally the latest rc1. A different dependency
+> should be noted in *this* patch.
+> 
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+> 
+> pip3 install dtschema --upgrade
+> 
+> Please check and re-submit after running the above command yourself. Note
+> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+> your schema. However, it must be unset to test all examples with your schema.
+> Hi Rob,
 
-Rafał, I suggest "out with the old, in with the new".
+We tried running dt_binding_check on linux-next and we do not face any
+sort of errors.
 
-The old binding was referring to the mtk-scpsys power domain driver, which MT8173
-has been migrated away from (years ago), as it now uses mtk-pm-domains instead.
+However in case of v6.10-rc1, patch[1] failed to apply as the dependent
+patch[2] is not available on rc1.
 
-I'd be happy if you could also actually remove the MT8173 support from the
-mtk-scpsys.c driver too, as that has been, again, unused for more than 2 years now.
+[1] 
+https://patchwork.kernel.org/project/linux-arm-msm/patch/20240626143302.810632-3-quic_devipriy@quicinc.com/
 
-Honestly, I'd be even happier if we could even move MT27xx, 6797, 7622/23a from
-mtk-scpsys to mtk-pm-domains, but I don't have any HW with any of these, I don't
-expect you to have any either, so there's no way we can remove the old driver
-entirely.
+[2] 
+https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?h=next-20240531&id=475beea0b9f631656b5cc39429a39696876af613
 
-So....
+Patch [2] does not hold any functional dependency on this series but has 
+a patch rebase dependency.
 
-Please go on and remove MT8173 from mtk-scpsys.c; you'll be able to resolve the
-duplicated bindings accordingly to that change.
+The Bot has went ahead and tried running the dt_binding_check on patch 
+https://patchwork.kernel.org/project/linux-arm-msm/patch/20240626143302.810632-5-quic_devipriy@quicinc.com/
+which is dependent on patch [1] and hence the issue was reported.
 
-Cheers,
-Angelo
+Is this the expected behaviour?
+
+Thanks & Regards,
+Devi Priya
+> 
 
