@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-82386-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82387-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1296192420F
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 17:15:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C94BF924214
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 17:15:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C8C21B281DA
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 15:14:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4B9601F25BE8
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 15:15:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBFAD1BBBD2;
-	Tue,  2 Jul 2024 15:14:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35E631BBBC4;
+	Tue,  2 Jul 2024 15:15:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b="z8n7hzcd"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="R09ChgcJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEEAE1BBBD4
-	for <devicetree@vger.kernel.org>; Tue,  2 Jul 2024 15:14:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CEE51BB6A9
+	for <devicetree@vger.kernel.org>; Tue,  2 Jul 2024 15:15:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719933277; cv=none; b=aRdgj7wRWgv2RtnmgTHLeg7SWCujxTp20TJbMlutCbpkDzSR51VnS1loDaGwYKFYEAoMD0zg7vmB6LqiB5oDJRDhj6UqEnAhfzCJDrCfHKezor73l/g4lmoJHFJsAkhhuSdzUGMeOiQtlA5Zrjz07gBrGDdCgIlc9vlyjoflBRE=
+	t=1719933321; cv=none; b=gc0L+LNllgYiJRlBb4KOlY9E0VTDIgv1rEerRWnoydVeEf0H+whsTIwPXJgi4AisXugtGwZ05F5lURCppDxmDVj+rzRZ8V0MdxoqlDkUJiTOhCyDnn+bIP9MjhH6yC+P5UM02kVCCcRgO8ew92TrWJsgB1FuV0//SeD01A0bNPA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719933277; c=relaxed/simple;
-	bh=lAKxpi+yfnASAw2FOzTRlbGNS3WZuUFb3JJr/dxhgX0=;
+	s=arc-20240116; t=1719933321; c=relaxed/simple;
+	bh=dfgxu8CztIybeYkjP8V7vicGbqX/y8LgEeAcHkbRee4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=q7ivLGaA29m2f66cXBVJJQR9DK8ddmqEymSuwseyRGk6Z61Y3GsT5Tc2Od5y5BRufPAeoBaS7z3ZnPG7xOC+pmbUe50KfGpwBo2L/WnuVXbgyfmF9yQ4h9HcWPSI3k+dZq1rPXmOhznPQi97FDE6+UmYMJw0S5Tjn/+mUMsfWQU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org; spf=fail smtp.mailfrom=beagleboard.org; dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b=z8n7hzcd; arc=none smtp.client-ip=209.85.210.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=beagleboard.org
-Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-7066bb06c70so197620b3a.3
-        for <devicetree@vger.kernel.org>; Tue, 02 Jul 2024 08:14:35 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=ApiBe7LSgujkCxYgGNYu1QNn9cxOUqmfm84mHZ6NvI7patGuW2rsCp67ff7FdpLQTaris6+DfaU15Lw0w3N/RBwwR4UfrM8OKchgdxVdL1doXm71jY3shy1HFzNnAR1L0QgZ4UjDEc0LJHjtVoNuJkS5zmYU9OBFTGRvpl4idIc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=R09ChgcJ; arc=none smtp.client-ip=209.85.208.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2ec5fad1984so60440541fa.0
+        for <devicetree@vger.kernel.org>; Tue, 02 Jul 2024 08:15:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=beagleboard-org.20230601.gappssmtp.com; s=20230601; t=1719933275; x=1720538075; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=40y+5BRfzL+FmyMl+NaBXpaqof6Uf0lBwHh7rgKeu84=;
-        b=z8n7hzcdgRewvWCmfvyySqBrO59Sp2/tKJgMZ8HaRvsxpfGnqrBx/YRC5CmAhjEsei
-         ACKdb6YSgn0aY90bBb870ijFDrlt4Sl/ENN327Z9oKTkOOU6RgA2Qu8+BgYG44TTVQ7J
-         VfGl3QbqD1oW0Fl27Gx8/Tp3rJ9NoGOllSAQ4ocWUdLjQZpgqgZ6AfpG2kO45HrxZGJP
-         PBUSWJ7RsWhCxf7kMe11WI7Adnd4ae+GE0W2klpMouUSfgUrIe+AhPS0mRg/vr/Vtmpm
-         DASSB0F4RLVfudsRRijVrDlLGMSJARfEl/S63X5XJGWTGPvFpn9SFgj2jLHcloBt1irc
-         yS5A==
+        d=linaro.org; s=google; t=1719933318; x=1720538118; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=h1Tsp0ZnZxpOvO8YyphVLQGKhC3XBCd2t7FXxyR6Jds=;
+        b=R09ChgcJH7mnuOChqNp7PKEEiui6GWJnI0Gf1pB7VG6DD/6DwJbsvn+WDdYBHvePjI
+         POsQb/TTmRSstGpmV1Nu6rO9U4ZrXz1IeSEeryr50gqfPi6hAgr3tRmKAmXOPwVG/qv1
+         T5KsHHt0ZC68t2dmUbe2S3Wov020JDGwSReljU8zG2RKXpOeCgaXZFOLtIAel68VGARD
+         NLHBdUiewphuxhqQ42NexAyX79pQqltoiE6bldVk4StUWVJpVuJIlsGk6a28KgNbyPgs
+         CkB9OdG0NgvGnn2qChQn9VwOKiJUoPKlbO7GmXCCdohdoghaoNVebpsoddkB+V84A0cl
+         mpjw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719933275; x=1720538075;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=40y+5BRfzL+FmyMl+NaBXpaqof6Uf0lBwHh7rgKeu84=;
-        b=Z/2sM/fHopumiOJba0hsH6k7wBe0gJqHSGWSah+wyWIY09dsgSLdRWMyZl8PNdbXbC
-         hFP392ftV5Pu1s1g8dA2WF7DJnZqiqot53dV3VsD9W9TGsmmo1TOI1pTGUV1v7qLfsTq
-         QrIdYkVlN6sbrb6H1H06UbphDF+TAPykcyefnFpNPpGqH7xYQtSTeWLT9ndwoWEwi8Ol
-         XXP2YbRmUI/DDSe5wv3H1T7eWfR6Q+D5IPCw3lH+eb0dDTwlXhujEyIgKJwjHNaEi/zc
-         snbCLaNUC7vhbePYKLxAVFej5NiYzIFWSFU2gVXU7XexLFX0JSTRhIf0BOVPepVGwn6W
-         YhNg==
-X-Forwarded-Encrypted: i=1; AJvYcCXvw+ohHYH+TayRYTvCCI2g7Z5GSeHAo3zuPXgvI7A00Y2afcAFIBblCCdZbohMxOnGIpFJOIZo+LZacniekvPlNA/uvDV+RoQidg==
-X-Gm-Message-State: AOJu0YxO+RMDDcQtiHyypWxMaQjdtnIb0iFo1gp9Kb9YMaLlYHAlMbeL
-	6VAREc9gonk+IwP7QY5UKOo6PA600ZwFVZYiOTmYTM7jwRCQxFxYq5fNh6YiSw==
-X-Google-Smtp-Source: AGHT+IGfkdugJ7YGFtiPng9vy9soC8SqEosCYrLRvR+3ezTFRsZrIFvas0chO/NoRq0eP50UvRjOeQ==
-X-Received: by 2002:a05:6a20:748e:b0:1be:dfe8:1311 with SMTP id adf61e73a8af0-1bef62987demr11534315637.6.1719933273589;
-        Tue, 02 Jul 2024 08:14:33 -0700 (PDT)
-Received: from ?IPV6:2401:4900:1f3e:250a:7d55:4ad6:87a3:5c5c? ([2401:4900:1f3e:250a:7d55:4ad6:87a3:5c5c])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7080256916dsm8620152b3a.57.2024.07.02.08.14.27
+        d=1e100.net; s=20230601; t=1719933318; x=1720538118;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=h1Tsp0ZnZxpOvO8YyphVLQGKhC3XBCd2t7FXxyR6Jds=;
+        b=E32ZYHEeA3ugVsw1ozX8F8EbIFh5unsr8cS3i/IeIPB34X1UmdKXIzKg357BSoyzsi
+         I+FrLVdP9Zt71swW06nn/5qfh9JqNkQWlgnTIXO7H8m+yDe0tqbferfJsCrArzD+a9Id
+         BUCRnKeCQF3IGXXSYPzCrmGl4EyJLYJIRncwUqGZwIhUBJDLFbRZyhP1GS97jIPwZ6YJ
+         S9hq4vNiu3KBdYuydrH+emGzklL26ZhXS35ZYcuD6UQV+f2PdyYFiNS2apZ/IBPJSTQd
+         9RC9pognefw03R4FIS1EoJxfoycU97t9J9S/Uekjwoe0nLMhVCOOeyx9+Ak7+/b6hj5o
+         vZeA==
+X-Gm-Message-State: AOJu0YzveVfC6FS39U8kuUtRSOaJIrVumbkVuPAZJXTPEiqpOsC9nlMM
+	UejAELlBKENUiTe+xPfTWZSrqzYeuH1Pdqju7dXABEe5mb5UASeZsrZlRG0XoY4=
+X-Google-Smtp-Source: AGHT+IHo7KHCv2IqHg8TtrxyCGWqlnGQ+AUtfKSQ238lbtyT4oV+opbELD1scjdR6FavClJHtBrH+Q==
+X-Received: by 2002:a05:651c:c9:b0:2ee:5ed1:a0b7 with SMTP id 38308e7fff4ca-2ee5ed1b5ffmr61202551fa.35.1719933317613;
+        Tue, 02 Jul 2024 08:15:17 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.137])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3675a0d8ed0sm13545984f8f.28.2024.07.02.08.15.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Jul 2024 08:14:33 -0700 (PDT)
-Message-ID: <61649bee-f7dc-452c-beb5-cc8ee2179b99@beagleboard.org>
-Date: Tue, 2 Jul 2024 20:44:26 +0530
+        Tue, 02 Jul 2024 08:15:17 -0700 (PDT)
+Message-ID: <51563155-c53f-47ce-bf68-5a6da72f8655@linaro.org>
+Date: Tue, 2 Jul 2024 17:15:15 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,288 +76,85 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/7] dt-bindings: connector: Add mikrobus-connector
-To: Rob Herring <robh@kernel.org>
-Cc: Mark Brown <broonie@kernel.org>, Vaishnav M A <vaishnav@beagleboard.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Derek Kiernan <derek.kiernan@amd.com>,
- Dragan Cvetic <dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Nishanth Menon <nm@ti.com>,
- Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
- Michael Walle <mwalle@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
- jkridner@beagleboard.org, robertcnelson@beagleboard.org,
- linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20240627-mikrobus-scratch-spi-v5-0-9e6c148bf5f0@beagleboard.org>
- <20240627-mikrobus-scratch-spi-v5-1-9e6c148bf5f0@beagleboard.org>
- <20240628162847.GB3143032-robh@kernel.org>
+Subject: Re: [PATCH v3 1/3] dt-bindings: iio: pressure: Add Sensirion SDP500
+To: pd.pstoykov@gmail.com, linux-iio@vger.kernel.org,
+ Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240702-mainline_sdp500-v3-0-0902047b3eee@gmail.com>
+ <20240702-mainline_sdp500-v3-1-0902047b3eee@gmail.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
-From: Ayush Singh <ayush@beagleboard.org>
-In-Reply-To: <20240628162847.GB3143032-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240702-mainline_sdp500-v3-1-0902047b3eee@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 6/28/24 21:58, Rob Herring wrote:
+On 02/07/2024 16:59, Petar Stoykov via B4 Relay wrote:
+> From: Petar Stoykov <pd.pstoykov@gmail.com>
+> 
+> Sensirion SDP500 is a digital differential pressure sensor. It provides
+> a digital I2C output. Add devicetree bindings requiring the compatible
+> string and I2C slave address (reg).
+> 
 
-> On Thu, Jun 27, 2024 at 09:56:11PM +0530, Ayush Singh wrote:
->> Add DT bindings for mikroBUS interface. MikroBUS is an open standard
->> developed by MikroElektronika for connecting add-on boards to
->> microcontrollers or microprocessors.
->>
->> mikroBUS is a connector and does not have a controller. Instead the
->> software is responsible for identification of board and setting up uart,
->> spi, i2c, pwm and other buses. Additionally, some new mikroBUS boards
->> contain 1-wire EEPROM that contains a manifest to describe the addon
->> board to provide plug and play capabilities.
->>
->> A mikroBUS addon board is free to leave some of the pins unused which
->> are marked as NC or Not Connected.
->>
->> Some of the pins might need to be configured as GPIOs deviating from their
->> reserved purposes Eg: SHT15 Click where the SCL and SDA Pins need to be
->> configured as GPIOs for the driver (drivers/hwmon/sht15.c) to work.
->>
->> For some add-on boards the driver may not take care of some additional
->> signals like reset/wake-up/other. Eg: ENC28J60 click where the reset line
->> (RST pin on the mikrobus port) needs to be pulled high.
->>
->> Some SPI addon boards use other pins like RST, AN etc as chipselect (eg.
->> SPI Extend Click). Thus, `spi-cs` and `spi-cs-names` property is added
->> to allow mikroBUS addon board to specify chipselect by name.
->>
->> Here's the list of pins in mikroBUS connector:
->> AN - Analog
->> RST - Reset
->> CS - SPI Chip Select
->> SCK - SPI Clock
->> MISO - SPI Master Input Slave Output
->> MOSI - SPI Master Output Slave Input
->> +3.3V - VCC-3.3V power
->> GND - Reference Ground
->> PWM - PWM output
->> INT - Hardware Interrupt
->> RX - UART Receive
->> TX - UART Transmit
->> SCL - I2C Clock
->> SDA - I2C Data
->> +5V - VCC-5V power
->> GND - Reference Ground
->>
->> Link: https://www.mikroe.com/mikrobus
->> Link:
->> https://download.mikroe.com/documents/standards/mikrobus/mikrobus-standard-specification-v200.pdf
->> mikroBUS specification
->> Link: https://www.mikroe.com/sht1x-click SHT15 Click
->> Link: https://www.mikroe.com/eth-click ENC28J60 Click
->> Link: https://www.mikroe.com/spi-extend-click SPI Extend Click
->>
->> Co-developed-by: Vaishnav M A <vaishnav@beagleboard.org>
->> Signed-off-by: Vaishnav M A <vaishnav@beagleboard.org>
->> Signed-off-by: Ayush Singh <ayush@beagleboard.org>
->> ---
->>   .../bindings/connector/mikrobus-connector.yaml     | 107 +++++++++++++++++++++
->>   MAINTAINERS                                        |   6 ++
->>   2 files changed, 113 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/connector/mikrobus-connector.yaml b/Documentation/devicetree/bindings/connector/mikrobus-connector.yaml
->> new file mode 100644
->> index 000000000000..033479f8604f
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/connector/mikrobus-connector.yaml
->> @@ -0,0 +1,107 @@
->> +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/connector/mikrobus-connector.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: mikroBUS add-on board connector
->> +
->> +maintainers:
->> +  - Ayush Singh <ayush@beagleboard.org>
->> +
->> +properties:
->> +  compatible:
->> +    const: mikrobus-connector
->> +
->> +  pinctrl-0: true
->> +  pinctrl-1: true
->> +  pinctrl-2: true
->> +  pinctrl-3: true
->> +  pinctrl-4: true
->> +  pinctrl-5: true
->> +  pinctrl-6: true
->> +  pinctrl-7: true
->> +  pinctrl-8: true
->> +
->> +  pinctrl-names:
->> +    minItems: 1
->> +    maxItems: 9
->> +    items:
->> +      enum: [default, pwm_default, pwm_gpio, uart_default, uart_gpio, i2c_default, i2c_gpio, spi_default,
->> +             spi_gpio]
-> Generally, each pinctrl-N is mutually exclusive. It looks like here you
-> want multiple states active at one time. Does this work?
+You did not test your code before sending.
 
-I see. In mikrobus case, these pinctrl are not mutually exclusive. The 
-ones that are mutually exclusive are as follows:
+Please respond to existing feedback from v1 and v2, thus confirm that
+you understood it and you are or are not going to implement it.
 
-- pwm_default and pwm_gpio
+It does not look like you tested the bindings, at least after quick
+look. Please run `make dt_binding_check` (see
+Documentation/devicetree/bindings/writing-schema.rst for instructions).
+Maybe you need to update your dtschema and yamllint.
 
-- uart_default and uart_gpio
-
-- i2c_default and i2c_gpio
-
-- spi_default and spi_gpio
-
-
-It still does lead to 16 combinations so not sure if it is the best 
-approach.
-
->> +
->> +  spi-controller:
->> +    description: spi-controller of mikroBUS SPI pins along with cs pins.
->> +    $ref: /schemas/types.yaml#/definitions/phandle
->> +
->> +  spi-cs:
->> +    description: spi chip-select corresponding to the chip-selects on the mikrobus socket.
-> Wrap lines at 80 char.
->
-> The array index is the chip-select number on the connector and the
-> value is the host SPI controller CS numbers? Or the other way around?
-> This needs a better description.
->
->> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> Maximum number of entries?
->
->> +
->> +  spi-cs-names:
->> +    minItems: 1
->> +    maxItems: 12
->> +    items:
->> +      enum: [default, pwm, int, rx, tx, scl, sda, an, rst, sck, cipo, copi]
->> +
->> +  i2c-controller:
->> +    description: i2c controller attached to the mikrobus socket.
->> +    $ref: /schemas/types.yaml#/definitions/phandle
-> i2c-bus is the somewhat standard property for this.
->
-> Really, I'd expect connectors to look something like this:
->
-> connector {
->    i2c-0 {
->      i2c-bus = <&i2c3>;
->      #address-cells = <1>;
->      #size-cells = <0>;
->      device@12 {
->        compatible = "some-i2c-device";
->      };
->    };
-> };
->
-> That form allows for multiple buses (of the same type or different) on
-> the connector.
->
->> +
->> +  uart-controller:
->> +    description: uart controller attached to the mikrobus socket
->> +    $ref: /schemas/types.yaml#/definitions/phandle
->> +
->> +  pwms:
->> +    description: the pwm-controller corresponding to the mikroBUS PWM pin.
->> +    maxItems: 1
->> +
->> +  mikrobus-gpios:
->> +    minItems: 1
->> +    maxItems: 12
->> +
->> +  mikrobus-gpio-names:
-> The GPIO binding does not work this way as the name is in the property.
-> Either drop if you want to keep the array or you have to do something
-> like this:
->
-> pwm-gpios
-> int-gpios
-> rx-gpios
->
-> Really, the intention was for connectors to use gpio-map property to
-> renumber GPIOs relative to the connector.
-
-Can you point me to what you mean by gpio-map property?
-
->> +    minItems: 1
->> +    maxItems: 12
->> +    items:
->> +      enum: [pwm, int, rx, tx, scl, sda, an, rst, cs, sck, cipo, copi]
->> +
->> +  board:
->> +    description: board attached to mikrobus connector
->> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> What is this for?
->
->> +
->> +required:
->> +  - compatible
->> +  - pinctrl-0
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/gpio/gpio.h>
->> +    mikrobus {
->> +      compatible = "mikrobus-connector";
->> +      pinctrl-names = "default", "pwm_default", "pwm_gpio","uart_default", "uart_gpio", "i2c_default",
->> +                      "i2c_gpio", "spi_default", "spi_gpio";
->> +      pinctrl-0 = <&P2_03_gpio_input_pin &P1_04_gpio_pin &P1_02_gpio_pin>;
->> +      pinctrl-1 = <&P2_01_pwm_pin>;
->> +      pinctrl-2 = <&P2_01_gpio_pin>;
->> +      pinctrl-3 = <&P2_05_uart_pin &P2_07_uart_pin>;
->> +      pinctrl-4 = <&P2_05_gpio_pin &P2_07_gpio_pin>;
->> +      pinctrl-5 = <&P2_09_i2c_pin &P2_11_i2c_pin>;
->> +      pinctrl-6 = <&P2_09_gpio_pin &P2_11_gpio_pin>;
->> +      pinctrl-7 = <&P1_12_spi_pin &P1_10_spi_pin &P1_08_spi_sclk_pin &P1_06_spi_cs_pin>;
->> +      pinctrl-8 = <&P1_12_gpio_pin &P1_10_gpio_pin &P1_08_gpio_pin &P1_06_gpio_pin>;
->> +      pwms = <&ehrpwm1 0 500000 0>;
->> +      i2c-controller = <&i2c1>;
->> +      uart-controller = <&uart1>;
->> +      spi-controller = <&spi1>;
->> +      spi-cs = <0 1>;
->> +      spi-cs-names = "default", "rst";
->> +      mikrobus-gpios = <&gpio1 18 GPIO_ACTIVE_HIGH>, <&gpio0 23 GPIO_ACTIVE_HIGH>,
->> +                       <&gpio0 30 GPIO_ACTIVE_HIGH>, <&gpio0 31 GPIO_ACTIVE_HIGH>,
->> +                       <&gpio0 15 GPIO_ACTIVE_HIGH>, <&gpio0 14 GPIO_ACTIVE_HIGH>,
->> +                       <&gpio0 4 GPIO_ACTIVE_HIGH>, <&gpio0 3 GPIO_ACTIVE_HIGH>,
->> +                       <&gpio0 2 GPIO_ACTIVE_HIGH>, <&gpio0 5 GPIO_ACTIVE_HIGH>,
->> +                       <&gpio2 25 GPIO_ACTIVE_HIGH>, <&gpio2 3 GPIO_ACTIVE_HIGH>;
->> +    };
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index 807feae089c4..8e4115e93aeb 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -15108,6 +15108,12 @@ M:	Oliver Neukum <oliver@neukum.org>
->>   S:	Maintained
->>   F:	drivers/usb/image/microtek.*
->>   
->> +MIKROBUS
->> +M:	Ayush Singh <ayush@beagleboard.org>
->> +M:	Vaishnav M A <vaishnav@beagleboard.org>
->> +S:	Maintained
->> +F:	Documentation/devicetree/bindings/connector/mikrobus-connector.yaml
->> +
->>   MIKROTIK CRS3XX 98DX3236 BOARD SUPPORT
->>   M:	Luka Kovacic <luka.kovacic@sartura.hr>
->>   M:	Luka Perkov <luka.perkov@sartura.hr>
->>
->> -- 
->> 2.45.2
->>
-
-I am switching to child-node based structure from the next patch since I 
-was able to replicate applying board overlay on a generic connector with 
-child node.
-
-
-Ayush Singh
+Best regards,
+Krzysztof
 
 
