@@ -1,203 +1,162 @@
-Return-Path: <devicetree+bounces-82451-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82452-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8161292467A
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 19:35:17 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D340B9246A3
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 19:47:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0413B1F236A3
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 17:35:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2E2B1B212F1
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 17:47:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C72AC1CD5CB;
-	Tue,  2 Jul 2024 17:34:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CDEB1BE23E;
+	Tue,  2 Jul 2024 17:47:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="wjgEClSK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PpFLNnrP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DE041C8FB2
-	for <devicetree@vger.kernel.org>; Tue,  2 Jul 2024 17:34:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E78D43152;
+	Tue,  2 Jul 2024 17:47:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719941655; cv=none; b=UpFjdkzHqDdFQ+A+IA2OfLoMIGjGhNfkH8tBOQVPzRR96yFm08MXx7fiUXhNvS+faK1E74wD4J+H2KACirrhHyf6RKm6SNgIlNFP3BQoTyNbeKYPWjV+uv+2K99qKgLCZkaSpNjCEFujLrV9xqtuQusaJA3kP4r/soDazNPAiyw=
+	t=1719942451; cv=none; b=Abhs4Ylx4oWBIR6nkGRLxcAqqDeZ7yyPC0XrmWNj0h6HCYBM1AbxsHF1p5a71yG9+t7UsHHHW6PyVygO/TABoIa0wV9eVJOJdoGas76oBoKvk5YqgfVNtQjODk3bq79pp9I9Jlp2gg0Q/ESN3auCPx4hUVXbQwSthSahvc74nF0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719941655; c=relaxed/simple;
-	bh=jsNkkIXGs4/h3lv8BZLIzqEnp8c8kmrQBKCwKtjidUg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Vamd4u8qx1CxBR93yASbR/p5Nqfrn6f8TPu0UZbd4k6qO5G1bjF9KjxYnH59x7ln4iSKhjbjY8Vp0ps3NYUc3kqbB2slAlx2bnB/uZrB5F366L1S9IqNB1rOklFVWqgsNbyx9ghg+hHn1YleiEW/t75sjjC8AwEC9Nyc00gNMbk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=wjgEClSK; arc=none smtp.client-ip=209.85.167.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-52e93fd8abeso252675e87.2
-        for <devicetree@vger.kernel.org>; Tue, 02 Jul 2024 10:34:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1719941651; x=1720546451; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=E8NfF8jZGHkcRRoEHwh26DQAMmLR92lEfTyFLVBd7mk=;
-        b=wjgEClSKZUgLm+5X2uffIcPZ8XKSVrPa9StW/UaOK5HuR6isRw6VJz5Abx/rf50QAK
-         kXoyWi3gZXDLrOqoXcGEVlQADzT5gdleupF0ljteP8kq3rDZuTH8zQphgZd1z3BvunqE
-         amG4Najj73fS73XTLLMMnVCA0nDi+RXZ82kYZDtzRelT5ljnj9cVx3pC2d5/EhEm5N4n
-         saRx1qzD+F0MB2TwYFKRfia3C618gHwpIsLwWzJW41EjofybfJNFG1TYpFzI8yr9LsC2
-         oPGOhUyASfS+bYAyBzQ1P38qh+ni12suKkDrOHDSdrZ+kJ/0UNmx2bBUMiQ16vnxJ97j
-         FiPA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719941651; x=1720546451;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=E8NfF8jZGHkcRRoEHwh26DQAMmLR92lEfTyFLVBd7mk=;
-        b=cYKnRlByoPToRuiB/pHc8Dw+KnyVpGWkBpDP6XIzQ5OeNQ9+MK43F9bZcgbfD5R39Y
-         Ia9UIVGKSg/rowfnNhfeSJcXEYYCoeM8fR+0L0BUPku/3fltlusrot+Py0HmFL9BHymV
-         QyTxAako5BZKkwSp0e+rnNaOTqN1SpUrc7ILYpQS9E8EfXuYEghNbVgn7dYtKmsOzaDv
-         XtvzfjejNa8rwEGVxzg22n461SFowYFELz3erq1C4ohmLDCoIAQ1+XV/qbaJcDVMTUI+
-         iUP770mLrMr72A2RxllwpNAQsKrDsrtAyWKPxtmSEknvEqVYFBT2ZZUrDyP9QJP6wksA
-         Nc3Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWWKPifhAZ7eBiU0gqbbvNKmqSYREmDhDeJ+ziJ1mChZnlUbPaWBJfrCGXPYK/OoDdrEcjMCS6gEee1n56DN83RDtorSq3y6HElOQ==
-X-Gm-Message-State: AOJu0YxmWYxbZPAkPB3nMHME5pT3NPf5x3cLNX4WF2M2yFQsQT28QqC9
-	WkNxYQ6Af9h2KsloVFWWa7suuN3iFYJtEgWQYFKO0Pp8PiVjWCc4zx+u4nF9ChI=
-X-Google-Smtp-Source: AGHT+IGCaZQAPHw7/TMvFuKvssrA/aWcSDKW1tDQD+mxtwBkbk6h746EqKnqbXVQs/kfXAIlS+JTcQ==
-X-Received: by 2002:a05:6512:2355:b0:52c:b09e:136d with SMTP id 2adb3069b0e04-52e8268b415mr7979931e87.32.1719941650887;
-        Tue, 02 Jul 2024 10:34:10 -0700 (PDT)
-Received: from [127.0.1.1] (frhb82016ds.ikexpress.com. [185.246.87.17])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4256af59732sm207594485e9.11.2024.07.02.10.34.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Jul 2024 10:34:10 -0700 (PDT)
-From: Guillaume Stols <gstols@baylibre.com>
-Date: Tue, 02 Jul 2024 17:34:12 +0000
-Subject: [PATCH v3 8/8] iio: adc: ad7606: switch mutexes to scoped_guard
+	s=arc-20240116; t=1719942451; c=relaxed/simple;
+	bh=qt4AzaK5oby9zJku1UXdICN0uxekYnZDCq8pxYuHAiM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=SJB7wQo7dQXUM+khd4VFrnyN5CTmwaE3lbbN809ozz3lQrALTFks2rF697FgusQNlJjuyougZCq+s0YyiWGTRj9SFXwQTFFRgaQrigGnqbcIGlevzyE9kZFPNqceL/QWZAq60Bol/e6grqguqONi0wEcr8gY72ejbv4caRnsjbc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PpFLNnrP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CBCF1C4AF0D;
+	Tue,  2 Jul 2024 17:47:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719942450;
+	bh=qt4AzaK5oby9zJku1UXdICN0uxekYnZDCq8pxYuHAiM=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=PpFLNnrPXwo/Ykrcaof6LP0Ow35K31LODP8RDDWfl/m7kUR/r9ui7sKgdkOQgBgdV
+	 eWjQmMxLmxGFBWrcMQ68NxHqphQSXZNYZqwtioh7PL7WcYPMv6rfLNRkIyzEeLpmI+
+	 e/nAo8Tbk7hTQ/h3JWJsPVWS9tQ9e/tcRGEtKm7cAF3PoG06zT0vGN6dsxGOkcR1hc
+	 mQ4epTGiLNwDFfO6kMg3o1NN+PNkCLG+E0mbhzlfbJiT4fh9SG+w9FmsOY1WtrxFZu
+	 2VXOk4rhCDD0/HndPkNXhU1ezklJfzH9QYUZ3psIQR3mCn3zvtVRpYSaCPTbdOjWec
+	 1nmLoIXjfPAAA==
+Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-2ee7a1ad286so6196071fa.2;
+        Tue, 02 Jul 2024 10:47:30 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCU4Sq8cK0WI1DHRUIVAJrm18H9i6t+AtXSuvfeNwu9Y3zLhIYqi/9ItyYVwc8aZLB2KymtPzDo8HkBaAsIUliR4SfBPFcHXevQtwOC04BSe8dRksWBJ+YfeO0dZ8DMbizHE+32H+UWeyT5htuz/uaU9uPS91AcUWfJ+eJlc7hndacVuyEo1gA==
+X-Gm-Message-State: AOJu0YwAVuZ9MdiHshSKJ+gHoPIzdaOF0ilKXDGzgNFW8azsSQi96vFm
+	uSrBbrm/6/hS4fJoTdAlSvdKpUVDsP0a9JGToKwyzpzbMdOMAZCxS5BPx9QYx0r5+AuMv9E3y1M
+	dapSUqK9YXTljpockzAeTLBt+VLY=
+X-Google-Smtp-Source: AGHT+IFnUJnTDoIeeCSIUQmv/eFWntHd+k3NXx+eIF9lTWWy0tfaXYyN065HlY0BZhz+lJZIuICANZsE/koaXSuNl1s=
+X-Received: by 2002:a05:651c:c9:b0:2ee:5ed1:a0b7 with SMTP id
+ 38308e7fff4ca-2ee5ed1b5ffmr63263901fa.35.1719942449467; Tue, 02 Jul 2024
+ 10:47:29 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240702-cleanup-ad7606-v3-8-57fd02a4e2aa@baylibre.com>
-References: <20240702-cleanup-ad7606-v3-0-57fd02a4e2aa@baylibre.com>
-In-Reply-To: <20240702-cleanup-ad7606-v3-0-57fd02a4e2aa@baylibre.com>
-To: Lars-Peter Clausen <lars@metafoo.de>, 
- Michael Hennerich <Michael.Hennerich@analog.com>, 
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Michael Hennerich <michael.hennerich@analog.com>, 
- linux-fbdev@vger.kernel.org, devicetree@vger.kernel.org, 
- Jonathan Cameron <Jonathan.Cameron@huawei.com>, 
- Guillaume Stols <gstols@baylibre.com>, jstephan@baylibre.com, 
- dlechner@baylibre.com
-X-Mailer: b4 0.14.0
+References: <20240427145502.2804311-1-masahiroy@kernel.org>
+ <20240427145502.2804311-5-masahiroy@kernel.org> <ea24aa9b-291d-47bc-98cf-5893926ff8da@kernel.org>
+ <CAK7LNAT5_pDn1ZOfm8TzubH-s2HR4DQu9eEx0RgdJ3s4Cmxqow@mail.gmail.com>
+ <9771d50d95e508bf8971a36b6475c782c42b46a1.camel@intel.com>
+ <CAK7LNATGGibmjZzYX_A2SkJthmOPbKw2K3R7JYuHTWzgGL2Zjg@mail.gmail.com>
+ <803eabc8e2fa5dec950d149f83027fd204d5ef69.camel@intel.com>
+ <2ada559c1a4517ed879bb662689815b4357674ac.camel@intel.com>
+ <CAK7LNAQ47bZpE6c6Yoz-jQS78uU611oZwU8bH+7e=p5zSyADJw@mail.gmail.com> <c485326b640ae6f79582155c31ecaf4a1230b1ee.camel@intel.com>
+In-Reply-To: <c485326b640ae6f79582155c31ecaf4a1230b1ee.camel@intel.com>
+From: Masahiro Yamada <masahiroy@kernel.org>
+Date: Wed, 3 Jul 2024 02:46:53 +0900
+X-Gmail-Original-Message-ID: <CAK7LNASgxeOQmjXecd4Y3=Ne6Bd48WT4Un-z4M78noe+qYQ7_w@mail.gmail.com>
+Message-ID: <CAK7LNASgxeOQmjXecd4Y3=Ne6Bd48WT4Un-z4M78noe+qYQ7_w@mail.gmail.com>
+Subject: Re: [PATCH v2 4/4] kbuild: use $(src) instead of $(srctree)/$(src)
+ for source directory
+To: "Edgecombe, Rick P" <rick.p.edgecombe@intel.com>
+Cc: "nicolas@fjasle.eu" <nicolas@fjasle.eu>, "conor@kernel.org" <conor@kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-kbuild@vger.kernel.org" <linux-kbuild@vger.kernel.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "robh@kernel.org" <robh@kernel.org>, 
+	"krzk@kernel.org" <krzk@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Switching to scoped_guard simplifies the code and avoids to take care to
-unlock the mutex in case of premature return.
+On Wed, Jul 3, 2024 at 1:15=E2=80=AFAM Edgecombe, Rick P
+<rick.p.edgecombe@intel.com> wrote:
+>
+> On Tue, 2024-07-02 at 18:15 +0900, Masahiro Yamada wrote:
+> > > So there is no official way to build just a module to the output dire=
+ctory?
+> >
+> >
+> > You already know how to do it:
+> >
+> > #I'm guess it has something to do with the "M=3D" option because:
+> > #make ARCH=3Dx86_64 O=3D../linux-tdx-kvm-out/ -j36 arch/x86/kvm/kvm.ko
+> > #arch/x86/kvm/kvm-intel.ko
+> > #
+> > #...works.
+>
+> This can build just the module, but not clean just the module.
+>
+> >
+> >
+> >
+> >
+> > > And
+> > > it just accidentally worked all these years? IMO it's a nice feature =
+to
+> > > have.
+> > > I've especially found it useful when doing virtualization development=
+ where
+> > > you
+> > > need to build/test guest and host kernels as the same time.
+> > >
+> > > Or was it just now delegated to unofficial support after this patch?
+> >
+> >
+> > No.
+> > The M=3D option is intended for building external modules.
+> > You just abused it to build the upstream modules.
+> >
+> > Kbuild has never supported building external modules in a separate
+> > output directory.
+> >
+> >
+> > "delegated to unofficial support" is a wrong statement,
+> > as it has never officially supported in the past.
+> >
+> >
+> > Your way is a workaround that people found happened to work.
+>
+> The main point is that the old behavior was useful. It seems the change t=
+hat
+> broke my workflow was intended to make it easier to maintain out-of-tree
+> modules? If so then aren't we taking away useful behavior for in-tree mod=
+ule
+> development to help out-of-tree modules?
 
-Signed-off-by: Guillaume Stols <gstols@baylibre.com>
----
- drivers/iio/adc/ad7606.c | 39 +++++++++++++++------------------------
- 1 file changed, 15 insertions(+), 24 deletions(-)
 
-diff --git a/drivers/iio/adc/ad7606.c b/drivers/iio/adc/ad7606.c
-index 50ccc245e314..539e4a8621fe 100644
---- a/drivers/iio/adc/ad7606.c
-+++ b/drivers/iio/adc/ad7606.c
-@@ -69,19 +69,17 @@ static int ad7606_reg_access(struct iio_dev *indio_dev,
- 	struct ad7606_state *st = iio_priv(indio_dev);
- 	int ret;
- 
--	mutex_lock(&st->lock);
-+	guard(mutex)(&st->lock);
-+
- 	if (readval) {
- 		ret = st->bops->reg_read(st, reg);
- 		if (ret < 0)
--			goto err_unlock;
-+			return ret;
- 		*readval = ret;
--		ret = 0;
-+		return 0;
- 	} else {
--		ret = st->bops->reg_write(st, reg, writeval);
-+		return st->bops->reg_write(st, reg, writeval);
- 	}
--err_unlock:
--	mutex_unlock(&st->lock);
--	return ret;
- }
- 
- static int ad7606_read_samples(struct ad7606_state *st)
-@@ -124,19 +122,19 @@ static irqreturn_t ad7606_trigger_handler(int irq, void *p)
- 	struct ad7606_state *st = iio_priv(indio_dev);
- 	int ret;
- 
--	mutex_lock(&st->lock);
-+	guard(mutex)(&st->lock);
- 
- 	ret = ad7606_read_samples(st);
--	if (ret == 0)
--		iio_push_to_buffers_with_timestamp(indio_dev, st->data,
--						   iio_get_time_ns(indio_dev));
-+	if (ret)
-+		goto error_ret;
- 
-+	iio_push_to_buffers_with_timestamp(indio_dev, st->data,
-+					   iio_get_time_ns(indio_dev));
-+error_ret:
- 	iio_trigger_notify_done(indio_dev->trig);
- 	/* The rising edge of the CONVST signal starts a new conversion. */
- 	gpiod_set_value(st->gpio_convst, 1);
- 
--	mutex_unlock(&st->lock);
--
- 	return IRQ_HANDLED;
- }
- 
-@@ -257,19 +255,17 @@ static int ad7606_write_raw(struct iio_dev *indio_dev,
- 	struct ad7606_state *st = iio_priv(indio_dev);
- 	int i, ret, ch = 0;
- 
-+	guard(mutex)(&st->lock);
-+
- 	switch (mask) {
- 	case IIO_CHAN_INFO_SCALE:
--		mutex_lock(&st->lock);
- 		i = find_closest(val2, st->scale_avail, st->num_scales);
- 		if (st->sw_mode_en)
- 			ch = chan->address;
- 		ret = st->write_scale(indio_dev, ch, i);
--		if (ret < 0) {
--			mutex_unlock(&st->lock);
-+		if (ret < 0)
- 			return ret;
--		}
- 		st->range[ch] = i;
--		mutex_unlock(&st->lock);
- 
- 		return 0;
- 	case IIO_CHAN_INFO_OVERSAMPLING_RATIO:
-@@ -277,14 +273,9 @@ static int ad7606_write_raw(struct iio_dev *indio_dev,
- 			return -EINVAL;
- 		i = find_closest(val, st->oversampling_avail,
- 				 st->num_os_ratios);
--		mutex_lock(&st->lock);
- 		ret = st->write_os(indio_dev, i);
--		if (ret < 0) {
--			mutex_unlock(&st->lock);
-+		if (ret < 0)
- 			return ret;
--		}
--		st->oversampling = st->oversampling_avail[i];
--		mutex_unlock(&st->lock);
- 
- 		return 0;
- 	default:
+No.  I never meant to prioritize the external module builds.
 
--- 
-2.34.1
+I believe b1992c3772e69a6fd0e3fc81cd4d2820c8b6eca0 is the
+right thing to do. That's all.
 
+
+
+> Can you at least support VPATH method going forward? Although I am surpri=
+sed I'm
+> the only one that hit this. I assumed this was a common usage.
+
+
+VPATH will be broken when a big change happens again
+for external module builds.
+That is what "unsupported" and "unofficial" mean.
+
+
+
+
+--=20
+Best Regards
+Masahiro Yamada
 
