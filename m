@@ -1,132 +1,179 @@
-Return-Path: <devicetree+bounces-82275-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82268-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14E68923BA1
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 12:42:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1243923B70
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 12:31:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B524D1F23565
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 10:42:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9B022281894
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 10:31:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51E5E158DC8;
-	Tue,  2 Jul 2024 10:41:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A405115887D;
+	Tue,  2 Jul 2024 10:31:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b="SQsI/dWY"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Kfali7qx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.fris.de (mail.fris.de [116.203.77.234])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9E0B158A3D;
-	Tue,  2 Jul 2024 10:41:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.77.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2CB8158878
+	for <devicetree@vger.kernel.org>; Tue,  2 Jul 2024 10:31:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719916916; cv=none; b=HAM0iiLp6foTyxcfBWSw4KGRX7Bdd6cedgrwcwAUJxYE5vveKmH8CrsKGux3Y6QAmKcczkAfFuV9VC72VMJSeJ2pERWLoFlFBQWf/ZclflSJcD15xKk06rNf9ErUnA9RRMjLC/P/pQ6aYGUHv0X2JfiuFWnCpNUKunNXkQeN8Og=
+	t=1719916279; cv=none; b=gvgApctJ3xOHLMtGxSazqL5z26LD94soNKmRHti28nCAIqcBbnwDr9IpwRRV102rFUbfkRbaOqSMs4KslB1RbbvabN2c/oFKXHpPDJIkLTrLs95Qdd/kuRc5jUyzZqwS1VATT8Bj4RbMLji6UZcigZ2ki6V4yljhNVf3ILHn3bo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719916916; c=relaxed/simple;
-	bh=elBbal48p86/kZHBof/VjLRnd3BGmbEnAawFg4N0H8w=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=VA3Y9Rqjf9+CUeBvyIGrtfa3npZ/Wu0SQBSaVqpHCvzV2/MrGi+PPPCUPe9k0fmVdRpQjP88rhA6CPxQR14tCymAODE7POCmlvv78LSm/sJMp/iI6r6dHMNuNRo4IvFZNJKgQ/ibpIDHg88zSMp1nkRkUMsA+GYQilocWDEWnf4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fris.de; spf=fail smtp.mailfrom=fris.de; dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b=SQsI/dWY; arc=none smtp.client-ip=116.203.77.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fris.de
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=fris.de
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 53BA8BFB39;
-	Tue,  2 Jul 2024 12:32:41 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fris.de; s=dkim;
-	t=1719916373; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding; bh=FWOSDRgRrfQHpSWqoIecrwtJ3fiVFmkYNSiqz7G5o8M=;
-	b=SQsI/dWY01BypXms4ywHrv4INPF+88zC/OaWHajNQCirUa9e0QpaAbGAB3d4y1nb2GjFzf
-	K/XudMZ8tjFSQGBNXPX5tf8XqBG5Ph3zTq7aoEXcf6fBxkWdKlL+ZnyBm4hSj+ttGTZb1J
-	GUlUaYxfRvvrFmcxIZn+w7fjANMx8QPVLIgoRXNTm9AR5n4RIDtc4ahyOdrb3w+wsmm9Pw
-	etRHKn4yMcsDJs2TbXCPEeGAZLHqOMVngL2eUkvyq89LjElWkFizmMFmCBpyeuwQ/M2fN3
-	zYushx/mevT0+mUd1s7aYEPrMFNSV4qRI4n2dnBdPjLK3eNzc8xUNV4zGQJ/Eg==
-From: Frieder Schrempf <frieder@fris.de>
-To: Bartosz Golaszewski <brgl@bgdev.pl>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	imx@lists.linux.dev,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-gpio@vger.kernel.org,
-	linux-i2c@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Li Yang <leoyang.li@nxp.com>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Robin Gong <yibin.gong@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Stefan Agner <stefan@agner.ch>
-Cc: Frieder Schrempf <frieder.schrempf@kontron.de>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Bo Liu <liubo03@inspur.com>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Fabio Estevam <festevam@gmail.com>,
-	Gregor Herburger <gregor.herburger@ew.tq-group.com>,
-	Hiago De Franco <hiago.franco@toradex.com>,
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-	Joao Paulo Goncalves <joao.goncalves@toradex.com>,
-	Joy Zou <joy.zou@nxp.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Marco Felsch <m.felsch@pengutronix.de>,
-	Marek Vasut <marex@denx.de>,
-	Markus Niebel <Markus.Niebel@ew.tq-group.com>,
-	Mathieu Othacehe <m.othacehe@gmail.com>,
-	Peng Fan <peng.fan@nxp.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Tim Harvey <tharvey@gateworks.com>
-Subject: [PATCH 0/7] Add support for Kontron OSM-S i.MX93 SoM and carrier board
-Date: Tue,  2 Jul 2024 12:31:12 +0200
-Message-ID: <20240702103155.321855-1-frieder@fris.de>
+	s=arc-20240116; t=1719916279; c=relaxed/simple;
+	bh=4XkWRxS8gQzIhSxHYHXVO0KvUZqxEsIcpzs4WUYWWuM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=gTaxwHy7Suz+dQqstsU1RQ4Ka9hspVrQ2fLdtbBKoCu5qvk1ywq5qcbinKdnJPPZh6EUvK/pM9gdrrvj7gtUv+tu0bVtFEc7QzA06QDa49cBLaQHVJsJhgzR38bdR6SG5IVA2p1tfdUaVq1DkEX2Wf0mNnCUCaxOJ4Eqa6NJ/30=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Kfali7qx; arc=none smtp.client-ip=209.85.221.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-36785e72a48so282772f8f.3
+        for <devicetree@vger.kernel.org>; Tue, 02 Jul 2024 03:31:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1719916276; x=1720521076; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=KX/CV+BafaZtGxH5Mjsgnh3IcFAlgk53kLYncqSGovM=;
+        b=Kfali7qxenf+G8R+dQdheiZ+QuyUOPKDTtiOklpG/B8q6HEhzlgkOtLO7RSAh+T7zP
+         Y5+lypXnPuXOaOGwdet716Hg7Qp8odRoQa+tEezhwp+x7jFtsZSni+vxnEtCHLAfFusR
+         7I84GCCnrwgQ6HP1ESsp9K3SQHLoozSX6dU8hGCi6/yHz5Rgk7YXcXKA9RjiHg3TG0EV
+         MoxAbjBFuw966sZCtz3D0ifvqwtvRMo+k7pq9wGO1sAIlSpVByyCZY0Gp5gSEzc6bG1s
+         Guh41ZGhl7vj5icgHoXkTxCWTxkyP6R27qBV9leLGY7DFSbUCDRoQnayVHpLjdR+2RsL
+         hoLw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719916276; x=1720521076;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=KX/CV+BafaZtGxH5Mjsgnh3IcFAlgk53kLYncqSGovM=;
+        b=uXh+q4NDurG4TWsZVG53gipXYrzylw6bZCN9wughXIapbQ9N7D8Pp4NDetAL1E6Mme
+         4CWanHNKc35gkvzfnKTDAa8/RCz2GW5tXsqH6QUzzY8m9IX0iJ3avHzjJ4Ml62h8q+v/
+         ppQ9aqBqqgfoTJacX8oNN0gwC+2L4NNOYsyYPRXLKFX77Ub0Fu4F0zuoq5maF+1EAVGM
+         ns18+gG9m6q3qk0JIlPtWD4/ItKGPios0q7yQkQQQH8sdOT7pdRJRsr1qx269gzq1aPQ
+         UvKMY8Wqoqo92Z5+n564DXy5p1KKoptxencK/4lLNWxdC0bDT2iCqvq54ke3BGKOl8sF
+         WX3A==
+X-Forwarded-Encrypted: i=1; AJvYcCX1BI2pUUpH6KsnvfbJ7vJJuHFsDNYQIX+Ra1WsHJhfn+pDb2FDrCLjspzVy5imIoX0izwvf3MwvZuio1G7av6KtO+R/3rv1xw+IA==
+X-Gm-Message-State: AOJu0YzU+WHNpt1yEYsLE5DyljqQ+pJGPQoKLwJ4EfBkc5oiDtJbPG8u
+	C4wZrOp/HVE1BErQzfim+eUn19EF5b0LrHMid4mZlu5VYxVnbt+kxe/XqTZfzyKQWcANBm4KgKf
+	O
+X-Google-Smtp-Source: AGHT+IGWTlTgSoMaweNJKgDsmD65dpxbQY20CmLW0uDd3FKwBaGVW+Oo6wW8VSa9QA65v5aDz8GrUw==
+X-Received: by 2002:adf:e749:0:b0:364:b779:9484 with SMTP id ffacd0b85a97d-36775728d05mr4934373f8f.60.1719916276242;
+        Tue, 02 Jul 2024 03:31:16 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.137])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3675a0fb9c1sm12909978f8f.74.2024.07.02.03.31.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 02 Jul 2024 03:31:15 -0700 (PDT)
+Message-ID: <b7cc46dc-8ce6-45d5-a320-63fdce4967f9@linaro.org>
+Date: Tue, 2 Jul 2024 12:31:13 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] ARM: dts: microchip: at91: align LED node name with
+ bindings
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20240701164952.577277-1-krzysztof.kozlowski@linaro.org>
+ <20240702-expel-unflawed-b174e82e27c7@thorsis.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240702-expel-unflawed-b174e82e27c7@thorsis.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Frieder Schrempf <frieder.schrempf@kontron.de>
+On 02/07/2024 10:51, Alexander Dahl wrote:
+>> diff --git a/arch/arm/boot/dts/microchip/at91sam9x5cm.dtsi b/arch/arm/boot/dts/microchip/at91sam9x5cm.dtsi
+>> index cdd37f67280b..fb3c19bdfcb6 100644
+>> --- a/arch/arm/boot/dts/microchip/at91sam9x5cm.dtsi
+>> +++ b/arch/arm/boot/dts/microchip/at91sam9x5cm.dtsi
+>> @@ -120,13 +120,13 @@ rootfs@800000 {
+>>  	leds {
+>>  		compatible = "gpio-leds";
+>>  
+>> -		pb18 {
+>> +		led-pb18 {
+>>  			label = "pb18";
+>>  			gpios = <&pioB 18 GPIO_ACTIVE_LOW>;
+>>  			linux,default-trigger = "heartbeat";
+>>  		};
+>>  
+>> -		pd21 {
+>> +		led-pd21 {
+>>  			label = "pd21";
+>>  			gpios = <&pioD 21 GPIO_ACTIVE_HIGH>;
+>>  		};
+> 
+> In this case these are all gpio-leds and the pattern is in the
+> leds-gpio gpio binding.  I'm wondering however why you chose the very
+> generic 'led' match over the more strict one requiring the names to
 
-Patch 1-4: small DT binding fixups
-Patch 5: board DT bindings
-Patch 6: support PMIC driver without IRQ
-Patch 7: add devicetrees
+match? Which match? I did not write the match pattern in the binding, did I?
 
-Frieder Schrempf (7):
-  dt-bindings: eeprom: at24: Move compatible for Belling BL24C16A to
-    proper place
-  dt-bindings: eeprom: at24: Add compatible for ONSemi N24S64B
-  dt-bindings: gpio: vf610: Allow gpio-line-names to be set
-  dt-bindings: regulator: pca9450: Make interrupt optional
-  dt-bindings: arm: fsl: Add Kontron i.MX93 OSM-S based boards
-  regulator: pca9450: Make IRQ optional
-  arm64: dts: Add support for Kontron i.MX93 OSM-S SoM and BL carrier
-    board
+> look like 'led-0', 'led-1' an so forth?  The generic match would also
 
- .../devicetree/bindings/arm/fsl.yaml          |   6 +
- .../devicetree/bindings/eeprom/at24.yaml      |  10 +-
- .../devicetree/bindings/gpio/gpio-vf610.yaml  |   1 +
- .../regulator/nxp,pca9450-regulator.yaml      |   1 -
- .../dts/freescale/imx93-kontron-bl-osm-s.dts  | 165 ++++++
- .../dts/freescale/imx93-kontron-osm-s.dtsi    | 547 ++++++++++++++++++
- drivers/regulator/pca9450-regulator.c         |  41 +-
- 7 files changed, 744 insertions(+), 27 deletions(-)
- create mode 100644 arch/arm64/boot/dts/freescale/imx93-kontron-bl-osm-s.dts
- create mode 100644 arch/arm64/boot/dts/freescale/imx93-kontron-osm-s.dtsi
+Works for me too. The easiest was to add led prefix. I am not the
+maintainer of this platform, so I am doing just some random cleanups and
+prefix is the easiest cleanup.
 
--- 
-2.45.2
+> match names like 'knowledge' or 'controlled'.  But besides that:
+
+Best regards,
+Krzysztof
 
 
