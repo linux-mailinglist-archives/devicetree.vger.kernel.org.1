@@ -1,128 +1,140 @@
-Return-Path: <devicetree+bounces-82210-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82211-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3551B91EEB3
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 08:02:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD85C91EED5
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 08:19:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2F9F5284770
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 06:02:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CE17C1C21A2E
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 06:19:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C77264CB23;
-	Tue,  2 Jul 2024 06:01:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D8DA78C67;
+	Tue,  2 Jul 2024 06:19:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=riseup.net header.i=@riseup.net header.b="L7vC1fK5"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="CoUYIKQ6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0.riseup.net (mx0.riseup.net [198.252.153.6])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF4AF747F;
-	Tue,  2 Jul 2024 06:01:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.252.153.6
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.14])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3893F5CDE9;
+	Tue,  2 Jul 2024 06:18:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719900114; cv=none; b=gW3UKREedViabUV/sWKWY+Vf448TWWijtwW2KtTUHvfZJJBC8fltG7lquc+jst2USBiV3yMnGHuuLKseCkcpP65m4wrMjzeE8ohN3eZ0Zt4wsaBRY+BoytfKdldykg2lcfdc0m7HvvVKrjZl35ewqCEeVf+NVdOs27AqDmeuIoY=
+	t=1719901143; cv=none; b=JzEP158lKBZP/GLJVatMXrciiKO1UMimU4+TWc3sQ1y9g62pMkI+2T3MBaVaTf6wc0atkAgwNo7k5ThGc42SG2AwZ2xwZx9QXdMvbYgAD0Jt/e/sCMyB9DBX9Ye0wvtATvCUV4uhhE7438G3PKRV2stMSLi5Nj1PW0Cit4Ff5SQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719900114; c=relaxed/simple;
-	bh=xcSQiVNOMATEXEpewV4rKAkfpC7Es+uQVI1OXvCfdSs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=lmcHoAesSpgHqH4HcCvRAuWpwC2ooDf653LiGmxc2usL27pFngnb3YCfBROY4sHYKVubDQpB1c+xIVxS1dBH1lLgQ6EDYgx81zlzhBM+kAv6PS+ouhqyi/742jfUUfoAql2f01oJnDuDyeO3bm5i07yldtSiw0P6IYFyLtrNdAs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riseup.net; spf=pass smtp.mailfrom=riseup.net; dkim=pass (1024-bit key) header.d=riseup.net header.i=@riseup.net header.b=L7vC1fK5; arc=none smtp.client-ip=198.252.153.6
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riseup.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riseup.net
-Received: from fews01-sea.riseup.net (fews01-sea-pn.riseup.net [10.0.1.109])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx0.riseup.net (Postfix) with ESMTPS id 4WCsk800Mwz9tCm;
-	Tue,  2 Jul 2024 06:01:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=riseup.net; s=squak;
-	t=1719900112; bh=xcSQiVNOMATEXEpewV4rKAkfpC7Es+uQVI1OXvCfdSs=;
-	h=From:Date:Subject:To:Cc:From;
-	b=L7vC1fK5z/bNPFDADUtNi/2HsHiRSXQ5l/nCXi1INv5MxJQTTwIvOmtCwCGG/s74L
-	 CtLAmzcX2U2xtn59L4Y263H0uececU0eG+9MeJljSXZ2z+OmoqDkuz9cZGb3NGVewD
-	 HdWbuC9XbBRtNW/+GS7qySGh5lUzUzDttL1EfdQA=
-X-Riseup-User-ID: 03BF26FFB56FD71EFBC1F986A0C6E788064EFC6FD312FAC9CB199716DF497863
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-	 by fews01-sea.riseup.net (Postfix) with ESMTPSA id 4WCsjt025dzJrSk;
-	Tue,  2 Jul 2024 06:01:37 +0000 (UTC)
-From: Dang Huynh <danct12@riseup.net>
-Date: Tue, 02 Jul 2024 13:01:19 +0700
-Subject: [PATCH v3] arm64: dts: qcom: qrb4210-rb2: Correct max current draw
- for VBUS
+	s=arc-20240116; t=1719901143; c=relaxed/simple;
+	bh=O0w7oKR0burBEOSpg+U3UFChgxP0OfT3G9l1MZDodiE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=P7txL0vhEhmWloTQ+y5vX/ECoYRboDVwExS9ICbiLJ4Xh4FjlPcOVDZQ7zp/ihnnfqnRrOgRxVt+mkh+iqd0IMSn5oNvA4trtV6BnezIwrmc3zlMAGxJ85D+JCA+HSQQeiqybEOrCKsj2LPJwV+cI2wcEu8DkKDHv3ZAQTcXvhQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=CoUYIKQ6; arc=none smtp.client-ip=1.95.21.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=Ak5QZwwkUOt94pN1EzjhG1GszUbTrlXG7hmPV7Sskx0=;
+	b=CoUYIKQ6GYEzZp3TKUEtEfKy7wrlsPkaps7HvlVQ/V9uREkeuMJ635kHQogJ9x
+	arN06v5fF/Z0eeB0+viRPlkHb8obnpRQ9BO1Rm5l6l0lUhcY65yPviTUrxqF2kW6
+	UX2WPl6oLD4VW7dQMxd/KjAFdaUJOPUoGSUNcw3OlGyOE=
+Received: from dragon (unknown [114.218.218.47])
+	by gzsmtp3 (Coremail) with SMTP id M88vCgD3Pwedm4Nm4zIHAA--.18405S3;
+	Tue, 02 Jul 2024 14:18:06 +0800 (CST)
+Date: Tue, 2 Jul 2024 14:18:04 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Dong Aisheng <aisheng.dong@nxp.com>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 2/8] arm64: dts: imx8qm: add lvds subsystem
+Message-ID: <ZoObnDqMd2EL4W6F@dragon>
+References: <20240701-imx8qm-dts-usb-v4-0-03cdbc8c44b6@nxp.com>
+ <20240701-imx8qm-dts-usb-v4-2-03cdbc8c44b6@nxp.com>
+ <ZoN90rHfpK7niqEr@dragon>
+ <ZoOAjSUp29DBhY+/@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240702-qrd4210rb2-vbus-volt-v3-1-fbd24661eec4@riseup.net>
-X-B4-Tracking: v=1; b=H4sIAK6Xg2YC/43NQQ6CMBCF4auQrh3TDoU2rryHcUFLkUkM6BQaD
- eHuFnaudPm/ZL5ZRAxMIYpTsQgOiSKNQ47yUAjfN8MtALW5BUrU0kgFT241KskOIbk5QhrvE1h
- EU2tvfOcbkU8fHDp67ezlmrunOI383r8kta0/wKRAQeVl3dmysrqsz0wxzI/jECaxiQn/UTArz
- jjfYmOst+5LWdf1A1oRinX/AAAA
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Luca Weiss <luca.weiss@fairphone.com>, linux-arm-msm@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Dang Huynh <danct12@riseup.net>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZoOAjSUp29DBhY+/@lizhi-Precision-Tower-5810>
+X-CM-TRANSID:M88vCgD3Pwedm4Nm4zIHAA--.18405S3
+X-Coremail-Antispam: 1Uf129KBjvJXoW7uF15GFWDXrW8uw13CrW8tFb_yoW8uw48p3
+	48CF1aqr18tFW7ur9Ig3W8KFn5Kwn5tF1Uur17G34jyrnIyrnrtr1rCr45ury8Xr4Ik3yS
+	9Fn0qr4fKrn8ZaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07j6_M3UUUUU=
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiCRsQZWZv-d19HwABst
 
-According to downstream sources, maximum current for PMI632 VBUS
-is 1A.
+On Tue, Jul 02, 2024 at 12:22:37AM -0400, Frank Li wrote:
+> On Tue, Jul 02, 2024 at 12:10:58PM +0800, Shawn Guo wrote:
+> > On Mon, Jul 01, 2024 at 11:03:28AM -0400, Frank Li wrote:
+> > > Add irqsteer, pwm and i2c in lvds subsystem.
+> > > 
+> > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > > ---
+> > >  arch/arm64/boot/dts/freescale/imx8qm-ss-lvds.dtsi | 77 +++++++++++++++++++++++
+> > >  arch/arm64/boot/dts/freescale/imx8qm.dtsi         | 10 +++
+> > >  2 files changed, 87 insertions(+)
+> > > 
+> > > diff --git a/arch/arm64/boot/dts/freescale/imx8qm-ss-lvds.dtsi b/arch/arm64/boot/dts/freescale/imx8qm-ss-lvds.dtsi
+> > > new file mode 100644
+> > > index 0000000000000..1da3934847057
+> > > --- /dev/null
+> > > +++ b/arch/arm64/boot/dts/freescale/imx8qm-ss-lvds.dtsi
+> > > @@ -0,0 +1,77 @@
+> > > +// SPDX-License-Identifier: GPL-2.0+
+> > > +
+> > > +/*
+> > > + * Copyright 2024 NXP
+> > > + */
+> > > +
+> > > +&qm_lvds0_lis_lpcg {
+> > > +	clocks = <&lvds_ipg_clk>;
+> > > +	clock-indices = <IMX_LPCG_CLK_4>;
+> > > +};
+> > > +
+> > > +&qm_lvds0_pwm_lpcg {
+> > > +	clocks = <&clk IMX_SC_R_LVDS_0_PWM_0 IMX_SC_PM_CLK_PER>,
+> > > +		 <&lvds_ipg_clk>;
+> > > +	clock-indices = <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_4>;
+> > > +};
+> > > +
+> > > +&qm_lvds0_i2c0_lpcg {
+> > > +	clocks = <&clk IMX_SC_R_LVDS_0_I2C_0 IMX_SC_PM_CLK_PER>,
+> > > +		 <&lvds_ipg_clk>;
+> > > +	clock-indices = <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_4>;
+> > > +};
+> > > +
+> > > +&qm_pwm_lvds0 {
+> > > +	clocks = <&qm_lvds0_pwm_lpcg IMX_LPCG_CLK_4>,
+> > > +		 <&qm_lvds0_pwm_lpcg IMX_LPCG_CLK_0>;
+> > > +};
+> > > +
+> > > +&qm_i2c0_lvds0 {
+> > > +	clocks = <&qm_lvds0_i2c0_lpcg IMX_LPCG_CLK_0>,
+> > > +		 <&qm_lvds0_i2c0_lpcg IMX_LPCG_CLK_4>;
+> > > +};
+> > > +
+> > > +&lvds0_subsys {
+> > > +	interrupt-parent = <&irqsteer_lvds0>;
+> > > +
+> > > +	irqsteer_lvds0: interrupt-controller@56240000 {
+> > > +		compatible = "fsl,imx8qm-irqsteer", "fsl,imx-irqsteer";
+> > 
+> > Is compatible "fsl,imx8qm-irqsteer" documented in bindings?
+> 
+> In rob' tree
+> 
+> https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git/commit/?h=dt/next&id=285c645d842c5a15d3be2d653faaa5f68d81be1f
 
-Taken from msm-4.19 (631561973a034e46ccacd0e53ef65d13a40d87a4)
-Line 685-687 in drivers/power/supply/qcom/qpnp-smb5.c
+I do not see "fsl,imx8qm-irqsteer" in the patch.
 
-Fixes: a06a2f12f9e2 ("arm64: dts: qcom: qrb4210-rb2: enable USB-C port handling")
-Reviewed-by: Luca Weiss <luca.weiss@fairphone.com>
-Signed-off-by: Dang Huynh <danct12@riseup.net>
----
-In previous patch series, there's a suggestion to correct maximum
-current for PMI632 VBUS.
-
-Unfortunately it didn't make it and probably forgotten.
-
-Link to the suggestion mentioned:
-https://lore.kernel.org/linux-arm-msm/CYMDEAJZ0TJK.K31XZB3E9QOG@fairphone.com/
-
-Signed-off-by: Dang Huynh <danct12@riseup.net>
-----
-Changes in v3:
-- Fixed wrong usage of electrical units.
-- Link to v2: https://lore.kernel.org/r/20240701-qrd4210rb2-vbus-volt-v2-1-b7bcd2a78c8b@riseup.net
-
-Changes in v2:
-- Fixed typo (voltage -> ampere)
-- Link to v1: https://lore.kernel.org/r/20240701-qrd4210rb2-vbus-volt-v1-1-5c06f8358436@riseup.net
----
- arch/arm64/boot/dts/qcom/qrb4210-rb2.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
-index 1c7de7f2db79..1888d99d398b 100644
---- a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
-+++ b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
-@@ -305,7 +305,7 @@ pmi632_ss_in: endpoint {
- 
- &pmi632_vbus {
- 	regulator-min-microamp = <500000>;
--	regulator-max-microamp = <3000000>;
-+	regulator-max-microamp = <1000000>;
- 	status = "okay";
- };
- 
-
----
-base-commit: 642a16ca7994a50d7de85715996a8ce171a5bdfb
-change-id: 20240701-qrd4210rb2-vbus-volt-822764c7cfca
-
-Best regards,
--- 
-Dang Huynh <danct12@riseup.net>
+Shawn
 
 
