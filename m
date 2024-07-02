@@ -1,218 +1,349 @@
-Return-Path: <devicetree+bounces-82264-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82263-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E13F9923B44
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 12:19:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 549E8923B1C
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 12:13:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0E1DB1C22363
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 10:19:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 777881C21281
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 10:13:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76301158848;
-	Tue,  2 Jul 2024 10:19:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68909156C6C;
+	Tue,  2 Jul 2024 10:13:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=brainfault-org.20230601.gappssmtp.com header.i=@brainfault-org.20230601.gappssmtp.com header.b="AB091qlD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from Atcsqr.andestech.com (60-248-80-70.hinet-ip.hinet.net [60.248.80.70])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-il1-f171.google.com (mail-il1-f171.google.com [209.85.166.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F83A1586D5;
-	Tue,  2 Jul 2024 10:19:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.248.80.70
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2B84153823
+	for <devicetree@vger.kernel.org>; Tue,  2 Jul 2024 10:13:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719915575; cv=none; b=ZHsCw2kHaqI9nBFuzRFpC25sbY2UDBsFRzZfnJOgZeKQ6JyfDeM8rX9Slevsal7u2ftYbJPK9xdaubgWtjZ1OcmJ/vlZsTyvhNYZ5YOXgqqdQDV1r68LFAEs8isj89T3UNensb1+W2oF/M/pTT85upcjqFYnRTRs2NOBADysYHQ=
+	t=1719915190; cv=none; b=reEKbjOPW3HAbBSoNV1EckKqBkGhdnV8CgN/Bx3ksz+vdAb2tTkSOkWIpD+5Di0vStqrkFZmVy4AKl4QEGnX45qlksa0Pb0QLOIWuCrVlT53ijzGRPxVkuatSzDHhMu6uBRAfGNkN//C5hPDlyyFA5d9l/sbssoHNgYPvEhwbkY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719915575; c=relaxed/simple;
-	bh=0ajCnf3SAOP6eQuHMw4tQTjVDmgvoTdZApQsPOmIy/8=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fadEMSV94xSd2sD7lNbGAuWTP+ddghjaeSEzGEewsoeyNrt1cPGlpXT1rHe7zF1ZDFlNa5YRpEVh/CYNW19xW2S28JxGuaTsU44+IOhM1UwMur8OT4VfOtCrI7iJXX5wajbKrwovAUsIez2NErTEqGsQhgq5TkNlO0YUw66F1ZU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=andestech.com; spf=pass smtp.mailfrom=andestech.com; arc=none smtp.client-ip=60.248.80.70
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=andestech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=andestech.com
-Received: from Atcsqr.andestech.com (localhost [127.0.0.2] (may be forged))
-	by Atcsqr.andestech.com with ESMTP id 4629lobI053789;
-	Tue, 2 Jul 2024 17:47:50 +0800 (+08)
-	(envelope-from peterlin@andestech.com)
-Received: from mail.andestech.com (ATCPCS34.andestech.com [10.0.1.134])
-	by Atcsqr.andestech.com with ESMTPS id 4629kkj0053530
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=OK);
-	Tue, 2 Jul 2024 17:46:46 +0800 (+08)
-	(envelope-from peterlin@andestech.com)
-Received: from APC323 (10.0.12.98) by ATCPCS34.andestech.com (10.0.1.134) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 2 Jul
- 2024 17:46:46 +0800
-Date: Tue, 2 Jul 2024 17:46:42 +0800
-From: Yu-Chien Peter Lin <peterlin@andestech.com>
-To: Conor Dooley <conor@kernel.org>
-CC: Samuel Holland <samuel.holland@sifive.com>,
-        Charlie Jenkins
-	<charlie@rivosinc.com>,
-        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-sunxi@lists.linux.dev>,
-        <linux-doc@vger.kernel.org>, <linux-kselftest@vger.kernel.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        "Paul Walmsley" <paul.walmsley@sifive.com>,
-        Palmer Dabbelt
-	<palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>, Jisheng Zhang
-	<jszhang@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec
-	<jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Jonathan
- Corbet <corbet@lwn.net>, "Shuah Khan" <shuah@kernel.org>,
-        Guo Ren
-	<guoren@kernel.org>, Evan Green <evan@rivosinc.com>,
-        Andy Chiu
-	<andy.chiu@sifive.com>, Jessica Clarke <jrtc27@jrtc27.com>,
-        <tim609@andestech.com>, <dminus@andestech.com>,
-        <ycliang@andestech.com>
-Subject: Re: [PATCH v3 03/13] riscv: dts: allwinner: Add xtheadvector to the
- D1/D1s devicetree
-Message-ID: <ZoPMEaq8wKzXhFuA@APC323>
-References: <20240619-xtheadvector-v3-0-bff39eb9668e@rivosinc.com>
- <20240619-xtheadvector-v3-3-bff39eb9668e@rivosinc.com>
- <0cc13581-5cc4-4a25-a943-7a896f42da4c@sifive.com>
- <20240701-prancing-outpost-3cbce791c554@spud>
- <7ab7d629-6993-4cad-b5b7-62bddfc74a49@sifive.com>
- <20240701-pyromania-spinster-709a6c8cc460@spud>
+	s=arc-20240116; t=1719915190; c=relaxed/simple;
+	bh=SPbHJYsiPJjsmyvySqe/VP1Q7pmCunLfCkECUEwNfLk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=G6dK8H5jRkuDmYFs8ZAxPoOSyHtJsU21vcBquqzsLFVnAl6Llgds6DQUWJNqLK6dqaXgPmlZXWACYyYPS6JqVmMr2vJeM6XGPi9vBgOEXA1nJJlrZ9w3CeUXcEHrpR6IiaEhQg89miyXN8RXgjJFxKrauJNN4pH5dbok4B3hkuk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=brainfault.org; spf=none smtp.mailfrom=brainfault.org; dkim=pass (2048-bit key) header.d=brainfault-org.20230601.gappssmtp.com header.i=@brainfault-org.20230601.gappssmtp.com header.b=AB091qlD; arc=none smtp.client-ip=209.85.166.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=brainfault.org
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=brainfault.org
+Received: by mail-il1-f171.google.com with SMTP id e9e14a558f8ab-36da84df7adso11447445ab.1
+        for <devicetree@vger.kernel.org>; Tue, 02 Jul 2024 03:13:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=brainfault-org.20230601.gappssmtp.com; s=20230601; t=1719915188; x=1720519988; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=a/sfLp11hmW8XmCatXqx8ssHvyyK3qsyCd37VaEVAL8=;
+        b=AB091qlDVzepmqK5XJtE6C4P/8dBzKmKo7AmtrVPxOKA7K5xMvQT1nrpAfutL8Vhey
+         dURjEOnQKaCYykKgIH6KZ5Ere3bsv0HvxVn8T2fHXyJlTWxSO6FF/D0v4GClByVCRodc
+         nl8VqaMPbiLUi1CJowWQ2PIi8WdGkGxSt9oDmyM6d4K0IofsNTWuQhpl84e8vRP/8DO1
+         Voh3o0HhhzsfmlH/7ee7knftyx11SSTCAcUWDZhXIFuTPk+aFLFlYWRbqnuXBAqTdzc6
+         UnaPS2qC4foSNws/5i9a4hibLX0uGTkP8XZXZSauABRjcD6AKU6xzRdwoAfFHV6nY5gk
+         Li8g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719915188; x=1720519988;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=a/sfLp11hmW8XmCatXqx8ssHvyyK3qsyCd37VaEVAL8=;
+        b=ufp4PsXDoEGWS22MoCLktgs3JFaoFVu0jQ9vUmM4pfUaoLAmrnGkiyhma0/KbS1Vc5
+         fYOKuVoziRHOzdcS2AwpIFYmL6vdym4eC3bRVdJi64/jVvKGVYSaAOaGei9oB1zRI2VC
+         RBC2y8KUUhPFhf/WJ4nta85T/J4PgR9GQ6J2oNRbEmUAAIfbzzppmGf9Z+LxBgZkDEka
+         tG15PHxqoXmz3eOBfxScDbRNO0YdaijRgDs4AhmWiuYntLYZ/eWWlzZyfx2yL0RyvCh/
+         wgX7NCyv82OOqwyob1Ln7IQk5i53jEy/xZJzzwYODJOEQnSHj6+e9CcdFwFc6t0PF37i
+         19bg==
+X-Forwarded-Encrypted: i=1; AJvYcCV+AZhdulBMvbqG9TNXo2HsRiLWKm6nc/h90bZeJxlg6OBM9WP6OdnE0zQ/BOyWa4xveG9zWrszXZabjI7bpkAZENehX203Z+ozqg==
+X-Gm-Message-State: AOJu0YzUS9X9dweJHDjqSiynQVn5Ile6M7IJo8cNMromjtzzT4+e6BOO
+	U6bcM22Zlx5vB/YYcEdjZ1r7H5ihcRq6RqKlf04RE1VKQPN58pOb3i0ZumR/OEj4QtylijmnGvI
+	2ay8BmXsuL/QiJQk2LNjLWXMM3eRRqZXVHOrm3g==
+X-Google-Smtp-Source: AGHT+IGoEgVDZjPWAam4RvZu0N/hvH3TdQfOxT1+hDZWpA6VO+SGZ99U6V5aJh8q7Z9zzeuPqfSR+JhreaWsEEhEJpU=
+X-Received: by 2002:a05:6e02:164c:b0:381:17b4:763 with SMTP id
+ e9e14a558f8ab-38117b40a2fmr2935795ab.9.1719915187606; Tue, 02 Jul 2024
+ 03:13:07 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20240701-pyromania-spinster-709a6c8cc460@spud>
-User-Agent: Mutt/2.2.12 (2023-09-09)
-X-ClientProxiedBy: ATCPCS33.andestech.com (10.0.1.100) To
- ATCPCS34.andestech.com (10.0.1.134)
-X-DNSRBL: 
-X-SPAM-SOURCE-CHECK: pass
-X-MAIL:Atcsqr.andestech.com 4629lobI053789
+References: <20240702085034.48395-1-alexghiti@rivosinc.com> <20240702085034.48395-4-alexghiti@rivosinc.com>
+In-Reply-To: <20240702085034.48395-4-alexghiti@rivosinc.com>
+From: Anup Patel <anup@brainfault.org>
+Date: Tue, 2 Jul 2024 15:42:55 +0530
+Message-ID: <CAAhSdy3_N7nubTwaR15WNeiysDDQ5BkB5qCq-6Fh2ZwDbV-6qw@mail.gmail.com>
+Subject: Re: [PATCH v3 3/4] riscv: Stop emitting preventive sfence.vma for new
+ vmalloc mappings
+To: Alexandre Ghiti <alexghiti@rivosinc.com>
+Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Ved Shanbhogue <ved@rivosinc.com>, Matt Evans <mev@rivosinc.com>, linux-kernel@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Conor,
+On Tue, Jul 2, 2024 at 2:24=E2=80=AFPM Alexandre Ghiti <alexghiti@rivosinc.=
+com> wrote:
+>
+> In 6.5, we removed the vmalloc fault path because that can't work (see
+> [1] [2]). Then in order to make sure that new page table entries were
+> seen by the page table walker, we had to preventively emit a sfence.vma
+> on all harts [3] but this solution is very costly since it relies on IPI.
+>
+> And even there, we could end up in a loop of vmalloc faults if a vmalloc
+> allocation is done in the IPI path (for example if it is traced, see
+> [4]), which could result in a kernel stack overflow.
+>
+> Those preventive sfence.vma needed to be emitted because:
+>
+> - if the uarch caches invalid entries, the new mapping may not be
+>   observed by the page table walker and an invalidation may be needed.
+> - if the uarch does not cache invalid entries, a reordered access
+>   could "miss" the new mapping and traps: in that case, we would actually
+>   only need to retry the access, no sfence.vma is required.
+>
+> So this patch removes those preventive sfence.vma and actually handles
+> the possible (and unlikely) exceptions. And since the kernel stacks
+> mappings lie in the vmalloc area, this handling must be done very early
+> when the trap is taken, at the very beginning of handle_exception: this
+> also rules out the vmalloc allocations in the fault path.
+>
+> Link: https://lore.kernel.org/linux-riscv/20230531093817.665799-1-bjorn@k=
+ernel.org/ [1]
+> Link: https://lore.kernel.org/linux-riscv/20230801090927.2018653-1-dylan@=
+andestech.com [2]
+> Link: https://lore.kernel.org/linux-riscv/20230725132246.817726-1-alexghi=
+ti@rivosinc.com/ [3]
+> Link: https://lore.kernel.org/lkml/20200508144043.13893-1-joro@8bytes.org=
+/ [4]
+> Signed-off-by: Alexandre Ghiti <alexghiti@rivosinc.com>
+> ---
+>  arch/riscv/include/asm/cacheflush.h  | 18 +++++-
+>  arch/riscv/include/asm/thread_info.h |  5 ++
+>  arch/riscv/kernel/asm-offsets.c      |  5 ++
+>  arch/riscv/kernel/entry.S            | 84 ++++++++++++++++++++++++++++
+>  arch/riscv/mm/init.c                 |  2 +
+>  5 files changed, 113 insertions(+), 1 deletion(-)
+>
+> diff --git a/arch/riscv/include/asm/cacheflush.h b/arch/riscv/include/asm=
+/cacheflush.h
+> index ce79c558a4c8..8de73f91bfa3 100644
+> --- a/arch/riscv/include/asm/cacheflush.h
+> +++ b/arch/riscv/include/asm/cacheflush.h
+> @@ -46,7 +46,23 @@ do {                                                 \
+>  } while (0)
+>
+>  #ifdef CONFIG_64BIT
+> -#define flush_cache_vmap(start, end)           flush_tlb_kernel_range(st=
+art, end)
+> +extern u64 new_vmalloc[NR_CPUS / sizeof(u64) + 1];
 
-On Mon, Jul 01, 2024 at 05:31:01PM +0100, Conor Dooley wrote:
-> [EXTERNAL MAIL]
+Why is this u64 and not "unsigned long" ?
 
-> Date: Mon, 1 Jul 2024 17:31:01 +0100
-> From: Conor Dooley <conor@kernel.org>
-> To: Samuel Holland <samuel.holland@sifive.com>
-> Cc: Charlie Jenkins <charlie@rivosinc.com>,
->  linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
->  linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev,
->  linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org, Conor Dooley
->  <conor.dooley@microchip.com>, Rob Herring <robh@kernel.org>, Krzysztof
->  Kozlowski <krzk+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
->  Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
->  Jisheng Zhang <jszhang@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej
->  Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>,
->  Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>, Guo Ren
->  <guoren@kernel.org>, Evan Green <evan@rivosinc.com>, Andy Chiu
->  <andy.chiu@sifive.com>, Jessica Clarke <jrtc27@jrtc27.com>,
->  peterlin@andestech.com
-> Subject: Re: [PATCH v3 03/13] riscv: dts: allwinner: Add xtheadvector to
->  the D1/D1s devicetree
-> 
-> On Mon, Jul 01, 2024 at 11:11:55AM -0500, Samuel Holland wrote:
-> > Hi Conor, Charlie,
-> > 
-> > On 2024-07-01 11:07 AM, Conor Dooley wrote:
-> > > On Mon, Jul 01, 2024 at 10:27:01AM -0500, Samuel Holland wrote:
-> > >> On 2024-06-19 6:57 PM, Charlie Jenkins wrote:
-> > >>> The D1/D1s SoCs support xtheadvector so it can be included in the
-> > >>> devicetree. Also include vlenb for the cpu.
-> > >>>
-> > >>> Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
-> > >>> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> > >>> ---
-> > >>>  arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi | 3 ++-
-> > >>
-> > >> The other C906/C910/C920-based SoCs need devicetree updates as well, although
-> > >> they don't necessarily need to be part of this series:
-> > >>
-> > >>  - sophgo/cv18xx.dtsi
-> > >>  - sophgo/sg2042-cpus.dtsi
-> > >>  - thead/th1520.dtsi
-> > > 
-> > > Yeah, I think I pointed that out before with the same "escape hatch" of
-> > > it not needing to be in the same series.
-> > > 
-> > >>
-> > >>>  1 file changed, 2 insertions(+), 1 deletion(-)
-> > >>>
-> > >>> diff --git a/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi b/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
-> > >>> index 64c3c2e6cbe0..6367112e614a 100644
-> > >>> --- a/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
-> > >>> +++ b/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
-> > >>> @@ -27,7 +27,8 @@ cpu0: cpu@0 {
-> > >>>  			riscv,isa = "rv64imafdc";
-> > >>
-> > >> The ISA string should be updated to keep it in sync with riscv,isa-extensions.
-> > > 
-> > > This probably looks like this cos I said that the kernel shouldn't parse
-> > > vendor extensions from "riscv,isa". My rationale was that we have
-> > > basically no control of what a vendor extension means in riscv,isa so 
-> > > we shouldn't parse them from it (so marginally worse than standard
-> > > extensions, where it means what the spec says except when it doesn't).
-> > > 
-> > > Given how we implement the parsing, it also meant we weren't implying
-> > > meanings for vendor extensions ACPI-land, where we also can't ensure the
-> > > meanings or that they remain stable. That change is in a different
-> > > series:
-> > > https://patchwork.kernel.org/project/linux-riscv/patch/20240609-support_vendor_extensions-v2-1-9a43f1fdcbb9@rivosinc.com/
-> > > 
-> > > Although now that I think about it, this might break xandespmu... I
-> > > dunno if the Andes guys switched over to using the new property outside
-> > > of the single dts in the kernel tree using their SoC. We could
-> > > potentially special-case that extension if they haven't - but my
-> > > position on this mostly is that if you want to use vendor extensions you
-> > > should not be using riscv,isa (even if the regex doesn't complain if you
-> > > add them). I'd like to leave the code in the other patch as-is if we can
-> > > help it.
-> > > 
-> > > I added Yu Chien Peter Lin here, maybe they can let us know what they're
-> > > doing.
-> > 
-> > OK, that makes sense to me. Then please ignore my original comment.
-> 
-> Should the xandespmu thing be an issue, I'd suggest we just do something
-> like the following, in place of the new switch arm added by Charlie:
-> 
-> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
-> index ec4bff7a827c..bb99b4055ec2 100644
-> --- a/arch/riscv/kernel/cpufeature.c
-> +++ b/arch/riscv/kernel/cpufeature.c
-> @@ -628,6 +628,17 @@ static void __init riscv_parse_isa_string(const char *isa, unsigned long *bitmap
->  		if (unlikely(ext_err))
->  			continue;
->  
-> +		if (*ext == 'x' && acpi_disabled) {
-> +			/*
-> +			 * xandespmu predates this "rule", so special case it for
-> +			 * hysterical raisins
-> +			 */
-> +			if (strncasecmp(ext, "xandespmu", ext_end - ext)) {
-> +				pr_warn_once("Vendor extensions are ignored in riscv,isa. Use riscv,isa-extensions instead.");
-> +				break;
-> +			}
-> +		}
+Was this tested on rv32 ?
+
+> +extern char _end[];
+> +#define flush_cache_vmap flush_cache_vmap
+> +static inline void flush_cache_vmap(unsigned long start, unsigned long e=
+nd)
+> +{
+> +       if (is_vmalloc_or_module_addr((void *)start)) {
+> +               int i;
 > +
->  		match_isa_ext(ext, ext_end, bitmap);
->  	}
->  }
-> 
+> +               /*
+> +                * We don't care if concurrently a cpu resets this value =
+since
+> +                * the only place this can happen is in handle_exception(=
+) where
+> +                * an sfence.vma is emitted.
+> +                */
+> +               for (i =3D 0; i < ARRAY_SIZE(new_vmalloc); ++i)
+> +                       new_vmalloc[i] =3D -1ULL;
+> +       }
+> +}
+>  #define flush_cache_vmap_early(start, end)     local_flush_tlb_kernel_ra=
+nge(start, end)
+>  #endif
+>
+> diff --git a/arch/riscv/include/asm/thread_info.h b/arch/riscv/include/as=
+m/thread_info.h
+> index 5d473343634b..32631acdcdd4 100644
+> --- a/arch/riscv/include/asm/thread_info.h
+> +++ b/arch/riscv/include/asm/thread_info.h
+> @@ -60,6 +60,11 @@ struct thread_info {
+>         void                    *scs_base;
+>         void                    *scs_sp;
+>  #endif
+> +       /*
+> +        * Used in handle_exception() to save a0, a1 and a2 before knowin=
+g if we
+> +        * can access the kernel stack.
+> +        */
+> +       unsigned long           a0, a1, a2;
+>  };
+>
+>  #ifdef CONFIG_SHADOW_CALL_STACK
+> diff --git a/arch/riscv/kernel/asm-offsets.c b/arch/riscv/kernel/asm-offs=
+ets.c
+> index b09ca5f944f7..29c0734f2972 100644
+> --- a/arch/riscv/kernel/asm-offsets.c
+> +++ b/arch/riscv/kernel/asm-offsets.c
+> @@ -36,6 +36,8 @@ void asm_offsets(void)
+>         OFFSET(TASK_THREAD_S9, task_struct, thread.s[9]);
+>         OFFSET(TASK_THREAD_S10, task_struct, thread.s[10]);
+>         OFFSET(TASK_THREAD_S11, task_struct, thread.s[11]);
+> +
+> +       OFFSET(TASK_TI_CPU, task_struct, thread_info.cpu);
+>         OFFSET(TASK_TI_FLAGS, task_struct, thread_info.flags);
+>         OFFSET(TASK_TI_PREEMPT_COUNT, task_struct, thread_info.preempt_co=
+unt);
+>         OFFSET(TASK_TI_KERNEL_SP, task_struct, thread_info.kernel_sp);
+> @@ -43,6 +45,9 @@ void asm_offsets(void)
+>  #ifdef CONFIG_SHADOW_CALL_STACK
+>         OFFSET(TASK_TI_SCS_SP, task_struct, thread_info.scs_sp);
+>  #endif
+> +       OFFSET(TASK_TI_A0, task_struct, thread_info.a0);
+> +       OFFSET(TASK_TI_A1, task_struct, thread_info.a1);
+> +       OFFSET(TASK_TI_A2, task_struct, thread_info.a2);
+>
+>         OFFSET(TASK_TI_CPU_NUM, task_struct, thread_info.cpu);
+>         OFFSET(TASK_THREAD_F0,  task_struct, thread.fstate.f[0]);
+> diff --git a/arch/riscv/kernel/entry.S b/arch/riscv/kernel/entry.S
+> index 68a24cf9481a..822311266a12 100644
+> --- a/arch/riscv/kernel/entry.S
+> +++ b/arch/riscv/kernel/entry.S
+> @@ -19,6 +19,78 @@
+>
+>         .section .irqentry.text, "ax"
+>
+> +.macro new_vmalloc_check
+> +       REG_S   a0, TASK_TI_A0(tp)
+> +       REG_S   a1, TASK_TI_A1(tp)
+> +       REG_S   a2, TASK_TI_A2(tp)
+> +
+> +       csrr    a0, CSR_CAUSE
+> +       /* Exclude IRQs */
+> +       blt     a0, zero, _new_vmalloc_restore_context
+> +       /* Only check new_vmalloc if we are in page/protection fault */
+> +       li      a1, EXC_LOAD_PAGE_FAULT
+> +       beq     a0, a1, _new_vmalloc_kernel_address
+> +       li      a1, EXC_STORE_PAGE_FAULT
+> +       beq     a0, a1, _new_vmalloc_kernel_address
+> +       li      a1, EXC_INST_PAGE_FAULT
+> +       bne     a0, a1, _new_vmalloc_restore_context
+> +
+> +_new_vmalloc_kernel_address:
+> +       /* Is it a kernel address? */
+> +       csrr    a0, CSR_TVAL
+> +       bge     a0, zero, _new_vmalloc_restore_context
+> +
+> +       /* Check if a new vmalloc mapping appeared that could explain the=
+ trap */
+> +
+> +       /*
+> +        * Computes:
+> +        * a0 =3D &new_vmalloc[BIT_WORD(cpu)]
+> +        * a1 =3D BIT_MASK(cpu)
+> +        */
+> +       REG_L   a2, TASK_TI_CPU(tp)
+> +       /*
+> +        * Compute the new_vmalloc element position:
+> +        * (cpu / 64) * 8 =3D (cpu >> 6) << 3
+> +        */
+> +       srli    a1, a2, 6
+> +       slli    a1, a1, 3
+> +       la      a0, new_vmalloc
+> +       add     a0, a0, a1
+> +       /*
+> +        * Compute the bit position in the new_vmalloc element:
+> +        * bit_pos =3D cpu % 64 =3D cpu - (cpu / 64) * 64 =3D cpu - (cpu =
+>> 6) << 6
+> +        *         =3D cpu - ((cpu >> 6) << 3) << 3
+> +        */
+> +       slli    a1, a1, 3
+> +       sub     a1, a2, a1
+> +       /* Compute the "get mask": 1 << bit_pos */
+> +       li      a2, 1
+> +       sll     a1, a2, a1
+> +
+> +       /* Check the value of new_vmalloc for this cpu */
+> +       REG_L   a2, 0(a0)
+> +       and     a2, a2, a1
+> +       beq     a2, zero, _new_vmalloc_restore_context
+> +
+> +       /* Atomically reset the current cpu bit in new_vmalloc */
+> +       amoxor.w        a0, a1, (a0)
 
-Thanks for the hands-up!
-We don't use the deprecated riscv,isa to specify xandespmu, so no
-need to address this special case.
+Doing only 32bit atomic here, is this intentional ?
+
+> +
+> +       /* Only emit a sfence.vma if the uarch caches invalid entries */
+> +       ALTERNATIVE("sfence.vma", "nop", 0, RISCV_ISA_EXT_SVVPTC, 1)
+> +
+> +       REG_L   a0, TASK_TI_A0(tp)
+> +       REG_L   a1, TASK_TI_A1(tp)
+> +       REG_L   a2, TASK_TI_A2(tp)
+> +       csrw    CSR_SCRATCH, x0
+> +       sret
+> +
+> +_new_vmalloc_restore_context:
+> +       REG_L   a0, TASK_TI_A0(tp)
+> +       REG_L   a1, TASK_TI_A1(tp)
+> +       REG_L   a2, TASK_TI_A2(tp)
+> +.endm
+> +
+> +
+>  SYM_CODE_START(handle_exception)
+>         /*
+>          * If coming from userspace, preserve the user thread pointer and=
+ load
+> @@ -30,6 +102,18 @@ SYM_CODE_START(handle_exception)
+>
+>  .Lrestore_kernel_tpsp:
+>         csrr tp, CSR_SCRATCH
+> +
+> +       /*
+> +        * The RISC-V kernel does not eagerly emit a sfence.vma after eac=
+h
+> +        * new vmalloc mapping, which may result in exceptions:
+> +        * - if the uarch caches invalid entries, the new mapping would n=
+ot be
+> +        *   observed by the page table walker and an invalidation is nee=
+ded.
+> +        * - if the uarch does not cache invalid entries, a reordered acc=
+ess
+> +        *   could "miss" the new mapping and traps: in that case, we onl=
+y need
+> +        *   to retry the access, no sfence.vma is required.
+> +        */
+> +       new_vmalloc_check
+> +
+>         REG_S sp, TASK_TI_KERNEL_SP(tp)
+>
+>  #ifdef CONFIG_VMAP_STACK
+> diff --git a/arch/riscv/mm/init.c b/arch/riscv/mm/init.c
+> index e3405e4b99af..2367a156c33b 100644
+> --- a/arch/riscv/mm/init.c
+> +++ b/arch/riscv/mm/init.c
+> @@ -36,6 +36,8 @@
+>
+>  #include "../kernel/head.h"
+>
+> +u64 new_vmalloc[NR_CPUS / sizeof(u64) + 1];
+> +
+>  struct kernel_mapping kernel_map __ro_after_init;
+>  EXPORT_SYMBOL(kernel_map);
+>  #ifdef CONFIG_XIP_KERNEL
+> --
+> 2.39.2
+>
+>
 
 Regards,
-Peter Lin
+Anup
 
