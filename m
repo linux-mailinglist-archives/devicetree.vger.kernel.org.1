@@ -1,71 +1,71 @@
-Return-Path: <devicetree+bounces-82484-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82486-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B18492486D
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 21:36:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BD7392486F
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 21:36:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E48D81F23555
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 19:36:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4FB721C21C67
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 19:36:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A8B71CE089;
-	Tue,  2 Jul 2024 19:36:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87E261CD5C3;
+	Tue,  2 Jul 2024 19:36:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="W4akL+WK"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VgC6SSHs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
+Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD65512C477
-	for <devicetree@vger.kernel.org>; Tue,  2 Jul 2024 19:36:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03AC56E5ED
+	for <devicetree@vger.kernel.org>; Tue,  2 Jul 2024 19:36:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719949001; cv=none; b=Y1Um5B+ULA5cEdjLvFwgJbntNbDSrEpgwQblUr+BygYigwzLFmaFu5nRQBkdwmZ0EvjVaxqiMvK8DerBKAS5PsujnVDq6JN9eVf43Dg658vrFxcsYtoSykrYcFYcTlOBwzYUnYGaBEG6CdSmmd7tL89KXjt1vQBS27M9DE2XH5o=
+	t=1719949002; cv=none; b=RLf/SvR9YRjF+6+WAzsUDsU73LZASYs03KU9e6OvlD5lbmbgE15OdQtb7CcMKYPJk7U4vB+mv76u89tDHGBaQ9nkRgbU55S+zMpUW10g95D7C3Rm6rcm14aZKNQ2G3RinVHiEoS/YeMXiL3oDXM3i3tswtoFthpQ0fRoiO8Socc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719949001; c=relaxed/simple;
-	bh=63TtL8nRXaRCbUED+7bVm5uoPVZ6BzcC2EVycbQphU4=;
+	s=arc-20240116; t=1719949002; c=relaxed/simple;
+	bh=Xyb2fLgPsza2K7BMn+tG+wn/o9+i8Vr40jgbJbktye0=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=QJuQ1sTapOEIAiY6xQO1Z3IBDco2xwp7vXh/qcc5WH6c2xf/Sq8WSvlZRxZjbZ2ModS7cKvlDAhgR7Om7EthyH5QzWbz68e1mf02lIj8a5UkQkUR57Iw9Nn9i/jX8w8aYZLHoGDrv8I3JXqXiso65MzAueCs/JeCEPh+74Atmnw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=W4akL+WK; arc=none smtp.client-ip=209.85.167.178
+	 MIME-Version; b=tUm6iRyWombS51byRCQG6kOJrDM6cpjImCb5DJfwMgYLBtDeChGSuGdQFg7oGQdiqiKkTM3X0lyxkHFsUVOrfks3YXbuqbnb2oUwYaHhZoT03OlY6uXJO7sZ90I2I8lnCijbUxubE7D9RKbssIMvjpBFBY6p1teAUNt1Tp5Jrlc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VgC6SSHs; arc=none smtp.client-ip=209.85.167.173
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f178.google.com with SMTP id 5614622812f47-3c9cc681ee0so2569863b6e.0
-        for <devicetree@vger.kernel.org>; Tue, 02 Jul 2024 12:36:39 -0700 (PDT)
+Received: by mail-oi1-f173.google.com with SMTP id 5614622812f47-3d6301e7279so2852282b6e.3
+        for <devicetree@vger.kernel.org>; Tue, 02 Jul 2024 12:36:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1719948999; x=1720553799; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1719949000; x=1720553800; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=iEkTrmrQHtrxef4UKwZhbXgIZTKdX9XoI2Y3fzoSjz0=;
-        b=W4akL+WKMvjX5zRkaY4RvVisQGH9ZO9qJRNmphe19DKjynLJENslF3xAaASV9HssXy
-         Rpuk+GnxSUvB642IXfXz+5SYAD2VTQbeGUl4WF6eHe91ggKycHm6UseZowmhZghbVa/p
-         AAS1ejRFDg5VMWZrfogQXPIBHJrF83yaGRLjMLgNzDTc8TVFtZYVO7ald5cgDTqOxveG
-         07Cn/nBf+RH6UbEKzCQbosNMMif2/0KNOOnT3kxkecSmOHCagnU3YNurh1PtKQO+8nEv
-         M60DIj033AaF4WPgt05kPGqM5dqs+MYIGJ7R3LWBYWoh6wpCs1cuEZpfrQybYapTnFOx
-         wqiA==
+        bh=neIlzvRvkxSKYB/J8QToRUr0yEHjCHDcQDRoSdkPwWU=;
+        b=VgC6SSHsO8X7UQ0/VOB8wxCakW3tdbqikEnMzSxZF61bt9i9yrEZVt09zIZF5ByXMm
+         ymAGGDki8ERc1/m0oZpTFLVrPWD5kDpTsEPz2tEVb/YhZsxNVakKqHHpNPZfF9u5LTku
+         9DCjhx6IcntIRR5uMuxokE81FU2HPf7nwmaXWWBAMsgv6tq+hJNoU+jgjfq5R9RykQmd
+         ylaaIG+T1eb9bQNBoy6XXrR/aMRBzpDUwbBNeuLFbFJniflqxsp2R4xX6iU5xGCtvYWB
+         2rXO+x2/WhKqD8h3V3ci98C30n11t2wx7s3s0YXi5jzcKj77zTJHmenPrHDPrOCXwAM6
+         CD6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719948999; x=1720553799;
+        d=1e100.net; s=20230601; t=1719949000; x=1720553800;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=iEkTrmrQHtrxef4UKwZhbXgIZTKdX9XoI2Y3fzoSjz0=;
-        b=SFzxPMwnMLlcpq/pRxCuC8vAh5Z+S0YIm3SBTmGF8bp7xJuY1RERhJGBM0eXt5ghWy
-         jjtUMMlMix10cjkH5FSn6Q4sYd3gTF3fOuQiQbJBkMY+eSKb/KOEiI5qXeWM9TOFeG6e
-         cyr9CyYMOasKq+LmFtT9eRJ9qlUMkMlhdH1PN+b/8DayhpBIjb3wSaiAaq9AJ88Q7nTs
-         Mr4cRikYqoR0n3smbbRqsCBMNu7HuU8wMQoEGW5YyMRHaWhbHUMglIscIGpcv1ES2xuf
-         Tgyk3nOzDh6zQ/tB4XVtaI2fsSsO2UJB5O7AU2W6g6j4Kk4TrJ/ja1fbKKV9qMdqHgSs
-         me1w==
-X-Gm-Message-State: AOJu0YxRi+FPgwZh0YlxjLg+/h3cHamvLbe3uNORVTvdPIhKmXPLXEpq
-	VI2ptyaqmC7NIIMR5GJMAG8S66UOC3meQ6ElgJTzrZFI1JJrDsPB
-X-Google-Smtp-Source: AGHT+IFO629pYbLvXnkPLGjw7RgR+qhtRcxcv5sftgwI+IHKlieJYmLVyI5Lj8bkJDxiCn519Atv+w==
-X-Received: by 2002:a05:6808:f07:b0:3d6:36ec:5c3e with SMTP id 5614622812f47-3d6b5689ee3mr13412382b6e.48.1719948998820;
-        Tue, 02 Jul 2024 12:36:38 -0700 (PDT)
+        bh=neIlzvRvkxSKYB/J8QToRUr0yEHjCHDcQDRoSdkPwWU=;
+        b=SSE36j0883TnLET19t8b+RPTG+vv0vplhNvWm2IQDaEmnJ4yKfvtG8lUIyD8dtft43
+         mhlvROF3fDQEMtMfDiiTvbz1fScU6+g+PBC220MfHd7MnfuGgOVFCUqoDkXfyxS0s+td
+         Q11JAXsMv9sTq8vmz/8CQ9PlVWjT4e4rwn4rBYetLG3SweOjiMq0zHOstssoFuP98FrF
+         lC5yQjLAiF1aGAzZBaN9Mm3V6TgGETejZyBfEp5+cD6pah/HM85HchLqDwJqJwQcm5Do
+         qtB2cXBed604IZoDsIyjR55TtZKr0RpTxO2aQGmb70FENh3vWQCDhx85UunRe4WDrTby
+         eSXw==
+X-Gm-Message-State: AOJu0YxZ9Ch8QSOlm4Nu/0YYi6eirIrMk55FDlHfwQWmuz4jQAmGEpPe
+	f0V9RTjH8Dgm/r+0dLOKuQDfgWM7eLIgm33Fc0VdxtKkuc6C2B9wkQBtwA==
+X-Google-Smtp-Source: AGHT+IG/XWpcyxijEAflhpO8sCqvA5qvxs/E7B4kFOZsE6+IGb5Cyo7xwhiF07DabC/QOSxKD1Xe0w==
+X-Received: by 2002:a05:6808:13c8:b0:3d6:332a:df9 with SMTP id 5614622812f47-3d6b30f4bdamr14246442b6e.15.1719948999929;
+        Tue, 02 Jul 2024 12:36:39 -0700 (PDT)
 Received: from localhost.localdomain ([2600:1700:fb0:1bcf::54])
         by smtp.gmail.com with ESMTPSA id 5614622812f47-3d62f83c92dsm1831335b6e.0.2024.07.02.12.36.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Jul 2024 12:36:38 -0700 (PDT)
+        Tue, 02 Jul 2024 12:36:39 -0700 (PDT)
 From: Chris Morgan <macroalpha82@gmail.com>
 To: linux-sunxi@lists.linux.dev
 Cc: devicetree@vger.kernel.org,
@@ -79,9 +79,9 @@ Cc: devicetree@vger.kernel.org,
 	krzk+dt@kernel.org,
 	robh@kernel.org,
 	Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH V2 2/4] arm64: dts: allwinner: h616: Add r_i2c pinctrl nodes
-Date: Tue,  2 Jul 2024 14:34:12 -0500
-Message-Id: <20240702193414.57461-3-macroalpha82@gmail.com>
+Subject: [PATCH V2 3/4] arm64: dts: allwinner: h616: Change RG35XX Series from r_rsb to r_i2c
+Date: Tue,  2 Jul 2024 14:34:13 -0500
+Message-Id: <20240702193414.57461-4-macroalpha82@gmail.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240702193414.57461-1-macroalpha82@gmail.com>
 References: <20240702193414.57461-1-macroalpha82@gmail.com>
@@ -95,28 +95,36 @@ Content-Transfer-Encoding: 8bit
 
 From: Chris Morgan <macromorgan@hotmail.com>
 
-Add pinctrl nodes for the r_i2c node. Without the pinmux defined the
-r_i2c bus may fail to work, possibly if the bootloader uses rsb mode
-for the PMIC.
+Change the Anbernic RG35XX series to use the r_i2c bus for the PMIC
+instead of the r_rsb bus. This is to keep the device tree consistent
+as there are at least 2 devices (the RG35XX-SP and RG28XX) that have
+an external RTC on the r_i2c bus.
 
 Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
 ---
- arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+ .../boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dts | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-index 921d5f61d8d6..e31945c3895e 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-@@ -837,6 +837,8 @@ r_i2c: i2c@7081400 {
- 			dmas = <&dma 48>, <&dma 48>;
- 			dma-names = "rx", "tx";
- 			resets = <&r_ccu RST_R_APB2_I2C>;
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&r_i2c_pins>;
- 			status = "disabled";
- 			#address-cells = <1>;
- 			#size-cells = <0>;
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dts b/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dts
+index ee30584b6ad7..e2bbd22bd80a 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dts
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dts
+@@ -201,12 +201,12 @@ &pio {
+ 	vcc-pi-supply = <&reg_cldo3>;
+ };
+ 
+-&r_rsb {
++&r_i2c {
+ 	status = "okay";
+ 
+-	axp717: pmic@3a3 {
++	axp717: pmic@34 {
+ 		compatible = "x-powers,axp717";
+-		reg = <0x3a3>;
++		reg = <0x34>;
+ 		interrupt-controller;
+ 		#interrupt-cells = <1>;
+ 		interrupt-parent = <&nmi_intc>;
 -- 
 2.34.1
 
