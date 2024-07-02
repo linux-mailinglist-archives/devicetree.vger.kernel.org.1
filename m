@@ -1,166 +1,111 @@
-Return-Path: <devicetree+bounces-82402-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82405-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 509C292429B
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 17:42:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A72A9242B3
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 17:44:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0540A1F236EB
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 15:42:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 27441286F64
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2024 15:44:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07E681BC073;
-	Tue,  2 Jul 2024 15:42:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 762361BC088;
+	Tue,  2 Jul 2024 15:44:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UcHIAOHQ"
+	dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b="VHYqLSid"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.fris.de (mail.fris.de [116.203.77.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D15AF14D42C;
-	Tue,  2 Jul 2024 15:42:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77F201BC07D;
+	Tue,  2 Jul 2024 15:44:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.77.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719934931; cv=none; b=O1g2soxJNp7+cUv2tDQQZuUsmy7raTN5F9T98ATWIf9Dsn5Nq1zsVrIZTDVr1+nP+l2I4/BI3dCzIuaTn8UwEybsdxaT/uxB2PtV+v2y5CEoYfhgd9YQsqxBG+3o6q8dEGwI26iW02bVoTaETUJolDVmZoUSyj6pgHryuKL8OzY=
+	t=1719935092; cv=none; b=cPltKYntjBEm67o6Xu5YsDwhzlE7ZB+voCm5zAYhSbA5JMHJ0DqnuKlcMDl/eyvuUk04NwB6bkAvkYDoN1kHyd/MeOvrAQghbjTjqoNlQsJ11t0GmeOhQ91kD/LIVK0yPMcxLXCGdRcjNSw1lQlLxpYQU4NkWPcl7M+npDLBCx8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719934931; c=relaxed/simple;
-	bh=D+AzAWjxfUjC9KFtkLpFRJsjafrnXXkauvIj9N7Pm6Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JazidG2WXYA8c/wJJQUxQ+k9dtFEtiFsCBGGIie0jQfYf1v7Dfs8EEN2I2lKclNXG0z/N4taH4JtPzfkHzLHzdayuLRw14RD5MBzWi/bDRMsK8eVJwl5gaSHpV0jeJn4o3gdlPtfLuD5XZxueqdZF+iPcOyy6ZAl45M/nnoWyNE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UcHIAOHQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF85FC116B1;
-	Tue,  2 Jul 2024 15:42:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719934931;
-	bh=D+AzAWjxfUjC9KFtkLpFRJsjafrnXXkauvIj9N7Pm6Y=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UcHIAOHQ5t9qxQbVe1cefKCNU5kkD/MlJCKI214oiLJVdrvit0ZDsYFOZY0kRZfF9
-	 yHYzhKBMdIR38unM5YHk+lF5OgMD/bESyrB6knNPcFt3o02bf3HBKkawK+1I88MBFQ
-	 kHY4HbCBJWLEoAkUmsDtMuthBp82AGexJAZP2iF0E7XTSAgxtDmzg560TS8RpcsLTi
-	 6huyXugXgbAr/zmF0SWNBitC/z0gw4XANjVCdiP18KofnL7Qpdwf2wWnEsyvC11k6r
-	 nqooI2Pwi9Ivw6gV+KG6xUIUGksTEyw5gX3fMZ2sVzInDwM1J0WgZ9fY+xEseQFZ90
-	 FTIVi45QDBHqA==
-Date: Tue, 2 Jul 2024 16:42:06 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc: utsav.agarwal@analog.com,
-	Michael Hennerich <michael.hennerich@analog.com>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1719935092; c=relaxed/simple;
+	bh=+B5HFZZzPNn2JmY4lkyPmQPkOj2DqJDKtWdUCztVPkw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=rkEoeuHo2FP2Ju3dYrJELLvWEr7v2CF981RCOB6KDhOAP2AjqguZVikIjFk+zBhsHM3HpZpIw2hTd+ffXD1hakoiaNv+T1tBx+H3BfONcuHHZi5p0gifQbpGwDOvY36ohBcVJOa2ecm9FhKdA/I5AH/OXBm8JJp187yyCajvgsU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fris.de; spf=fail smtp.mailfrom=fris.de; dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b=VHYqLSid; arc=none smtp.client-ip=116.203.77.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fris.de
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=fris.de
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 19E50BFB06;
+	Tue,  2 Jul 2024 17:44:43 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fris.de; s=dkim;
+	t=1719935087; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=CBORLJR9aM7cMwsJ5VoFFFTmCJUb5MCP6fApLxgN76E=;
+	b=VHYqLSidx9XZxGm0XQ8WvkbUTiDGFWnj8DPr6Ygt5KJU9rQQism1V9bbZYou0uIExwjypV
+	XYRvwpsWZZ5WXgxStFicF6lB2KpgtjXodBDbW2xDlj3A0vYv9WXaqhsS+y0H/mEl53rgas
+	fM5T9sJttWYT7JvKnhlhsaWvMKFjKYZSsgvb+R8ydv7hjwtz2xG3FABt4dTh3zLocB0+GM
+	6Ry5u6DQYZ/qQsRZ6KdwpuceGkBgn+JRxtXfdlk23Khnt0MFdR9g87tAiYZwUppjyVvF7W
+	s6OxCqcH2dfst2wqeyHENhZkDSrLuM9fB6Kvfqn6zWizSCIbZllyiRbCv21HXg==
+From: Frieder Schrempf <frieder@fris.de>
+To: Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
-	Arturs Artamonovs <arturs.artamonovs@analog.com>,
-	Vasileios Bimpikas <vasileios.bimpikas@analog.com>,
-	Oliver Gaskell <oliver.gaskell@analog.com>
-Subject: Re: [PATCH v4 2/2] dt-bindings: input: Update dtbinding for adp5588
-Message-ID: <20240702-comic-tannery-792d461e0ab7@spud>
-References: <20240701-adp5588_gpio_support-v4-0-44bba0445e90@analog.com>
- <20240701-adp5588_gpio_support-v4-2-44bba0445e90@analog.com>
- <20240701-battalion-tacky-c52566b37a97@spud>
- <ZoLrYTp2IUKFBvzq@google.com>
+	Li Yang <leoyang.li@nxp.com>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>
+Cc: Frieder Schrempf <frieder.schrempf@kontron.de>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Fabio Estevam <festevam@gmail.com>,
+	Francesco Dolcini <francesco.dolcini@toradex.com>,
+	Gregor Herburger <gregor.herburger@ew.tq-group.com>,
+	Hiago De Franco <hiago.franco@toradex.com>,
+	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+	Joao Paulo Goncalves <joao.goncalves@toradex.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Marco Felsch <m.felsch@pengutronix.de>,
+	Markus Niebel <Markus.Niebel@ew.tq-group.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Tim Harvey <tharvey@gateworks.com>
+Subject: [PATCH 0/3] Add support for Kontron OSM-S i.MX8MP SoM and carrier boards
+Date: Tue,  2 Jul 2024 17:43:18 +0200
+Message-ID: <20240702154413.968044-1-frieder@fris.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="DW1LKY6BicGgV+zw"
-Content-Disposition: inline
-In-Reply-To: <ZoLrYTp2IUKFBvzq@google.com>
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
+From: Frieder Schrempf <frieder.schrempf@kontron.de>
 
---DW1LKY6BicGgV+zw
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Patch 1: board DT bindings
+Patch 2: OSM-S i.MX8MP SoM and BL carrier board devicetrees
+Patch 3: i.MX8MP SMARC module and eval carrier board devicetrees
 
-On Mon, Jul 01, 2024 at 10:46:09AM -0700, Dmitry Torokhov wrote:
-> On Mon, Jul 01, 2024 at 04:46:12PM +0100, Conor Dooley wrote:
-> > On Mon, Jul 01, 2024 at 04:04:51PM +0100, Utsav Agarwal via B4 Relay wr=
-ote:
-> > > From: Utsav Agarwal <utsav.agarwal@analog.com>
-> > >=20
-> > > Updating dt bindings for adp5588. Following properties are now made
-> > > optional:
-> > > 	- interrupts
-> > > 	- keypad,num-rows
-> > > 	- keypad,num-columns
-> > > 	- linux,keymap
-> > > The proposed new property "gpio-only" has been added as an optional
-> > > property with an additional example.
-> >=20
-> > I can see that as it is clear in the diff, but this doesn't explain why,
-> > which is what you need to do in your commit message.
-> >=20
-> > >=20
-> > > Signed-off-by: Utsav Agarwal <utsav.agarwal@analog.com>
-> > > ---
-> > >  .../devicetree/bindings/input/adi,adp5588.yaml     | 28 ++++++++++++=
-++++++----
-> > >  1 file changed, 24 insertions(+), 4 deletions(-)
-> > >=20
-> > > diff --git a/Documentation/devicetree/bindings/input/adi,adp5588.yaml=
- b/Documentation/devicetree/bindings/input/adi,adp5588.yaml
-> > > index 26ea66834ae2..158fbf02cc16 100644
-> > > --- a/Documentation/devicetree/bindings/input/adi,adp5588.yaml
-> > > +++ b/Documentation/devicetree/bindings/input/adi,adp5588.yaml
-> > > @@ -46,6 +46,11 @@ properties:
-> > >    '#gpio-cells':
-> > >      const: 2
-> > > =20
-> > > +  gpio-only:
-> > > +    description:
-> > > +      This property applies if keypad,num-rows, keypad,num-columns a=
-nd
-> > > +      linux,keypad are not specified. All keys will be marked as gpi=
-o.
-> >=20
-> > Why is a property required for this? Is the absence of the 3 keypad
-> > properties not sufficient to determine that you're in this mode?
->=20
-> Yes, I think it should be enough.
->=20
-> >=20
-> >=20
-> > >    interrupt-controller:
-> > >      description:
-> > >        This property applies if either keypad,num-rows lower than 8 or
-> > > @@ -68,10 +73,6 @@ properties:
-> > >  required:
-> > >    - compatible
-> > >    - reg
-> > > -  - interrupts
-> >=20
-> > I don't understand why interrupts is no longer required.
->=20
-> I think it should be possible to use this chip as a GPIO controller but
-> not an interrupt controller, in which case one does not have to wire up
-> the interrupt line from it. However this requires much more elaborate
-> binding description (i.e. no keys and no "interrupt-controller"
-> property).
+Frieder Schrempf (3):
+  dt-bindings: arm: fsl: Add Kontron i.MX8MP OSM-S based boards
+  arm64: dts: Add support for Kontron OSM-S i.MX8MP SoM and BL carrier
+    board
+  arm64: dts: Add support for Kontron i.MX8MP SMARC module and eval
+    carrier
 
-Aye. I can totally understand why you might want to make the interrupt
-portion optional - but it seems unrelated to the rest of the changes in
-the patch (use as a keypad without interrupts could be possible, right?)
-and is unexplained.
+ .../devicetree/bindings/arm/fsl.yaml          |  13 +
+ arch/arm64/boot/dts/freescale/Makefile        |   6 +
+ .../dts/freescale/imx8mp-kontron-bl-osm-s.dts | 307 ++++++
+ .../boot/dts/freescale/imx8mp-kontron-dl.dtso | 112 +++
+ .../dts/freescale/imx8mp-kontron-osm-s.dtsi   | 908 ++++++++++++++++++
+ .../imx8mp-kontron-smarc-eval-carrier.dts     | 224 +++++
+ .../dts/freescale/imx8mp-kontron-smarc.dtsi   | 271 ++++++
+ 7 files changed, 1841 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-kontron-bl-osm-s.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-kontron-dl.dtso
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-kontron-osm-s.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-kontron-smarc-eval-carrier.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-kontron-smarc.dtsi
 
-Cheers,
-Conor.
+-- 
+2.45.2
 
---DW1LKY6BicGgV+zw
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZoQfzgAKCRB4tDGHoIJi
-0lquAP9bna7cBICOAimP3OFaEcfDauwaXWxk5OuMVv35e9Ab4wD+MHVU1fOj/6D+
-hn0FQ1J1b8m2EWgcYtxuU8GbRsJQQg8=
-=1pa+
------END PGP SIGNATURE-----
-
---DW1LKY6BicGgV+zw--
 
