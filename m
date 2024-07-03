@@ -1,200 +1,118 @@
-Return-Path: <devicetree+bounces-82901-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82903-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 694449264B9
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 17:20:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D7759264CA
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 17:27:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9B0521C20A13
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 15:20:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8F1FA1C214EF
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 15:27:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63C4117DA02;
-	Wed,  3 Jul 2024 15:20:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D8F217B42D;
+	Wed,  3 Jul 2024 15:27:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qb3wrzoZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KVEzViEm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32A951DFD1;
-	Wed,  3 Jul 2024 15:20:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E839D1607A3;
+	Wed,  3 Jul 2024 15:27:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720020026; cv=none; b=iGKoZB3wTD5B6BmfoQHesmJalFQkurKUzAmW0VK8YoQ0327BWYrVNsWYJ62Ex5DE1ZWemVlJyScBwr30DHi17X0d0QuqJx3iBp+JNHBLFT/4e6If9L90EGY6MhBDVRmlAdr8sE/5Ad0ReDPzdf8ob3vtZlf1gv7ljq2tD5cgAWU=
+	t=1720020421; cv=none; b=idB80JzCfS4XK/zsEobT43mgtLuIjhB6gS3RkIu48mUZ25k2YH35n3ac6N6WDDceAYTm404NjTZwFhwpasbFHaRE84Wv/1a2k8egJMyKvusiIINV7378/g5oqLh9Ne/rnL/7X2D4vGwISGOfntkJSlhO2/gJHooOxn7aXfy4OYQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720020026; c=relaxed/simple;
-	bh=rRgZmzWkq1RNfqzPXVEsRA4y3AQD9TvNW/JDpsjuBvY=;
+	s=arc-20240116; t=1720020421; c=relaxed/simple;
+	bh=N4vxMVbN/1wWaojq7NWBk9zI796CImfymRagg0g64Wc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QcQcTjlvDY56PCeaHnZRi2Y6txuZLzIbd3cibFg7Qdf6m2oXbO071Vs587u6jj1aaIimG0RFwm0ruHX/WwkgcdDwK28uWjrUcWTGsqcJOViB29gl7Ljge3113h3ek4ZZwSdkBuSowZPMyUijnSRn8b+cUwGtjm0GS4RISjiW7Tc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qb3wrzoZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3887CC2BD10;
-	Wed,  3 Jul 2024 15:20:23 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=jjMSrMiDsnv9gxetZEEIt+yQm3wA5KNM94r058y4O/2XY1GLKShT2PrJfVWiAwb8jAgqybmBx+pdLJLZWTib2R/c+z9pPQ8IUNYNBPYvd/iG2wWWv0P8AoKVxwvE20QjvrGBqAS9Zun3MnDG7rr2fFf/rQxgwubMWfKFkHjVwIY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KVEzViEm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05F5EC3277B;
+	Wed,  3 Jul 2024 15:26:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720020025;
-	bh=rRgZmzWkq1RNfqzPXVEsRA4y3AQD9TvNW/JDpsjuBvY=;
+	s=k20201202; t=1720020420;
+	bh=N4vxMVbN/1wWaojq7NWBk9zI796CImfymRagg0g64Wc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qb3wrzoZ684EOWe4U72NdJKqewE7FfZIPbGzwqTgVY0uE9PJqtmB4FAPAWEwfoS+B
-	 S7pdvYDJujZFb79nVPifQVYifpGU4qlSgykhhEAimfHP8fUp2Wp/Kx6uBoo82ITB/j
-	 gSrsS9+kKoXjP4DrG5wfWkNjm6DPFyVPYjKJTBB1eq8sGFTtQ+knbHjL4iF0w8X53q
-	 ZlO5CZA4UPETFDUaQ9by21HOA3IcupbAR/8TstTAFfEWxhC+7quXTROq6MGJFNFzVO
-	 B1sQ9wPDIIetiX40oSC70SeLJlrTMD4iugM0CoetpTmVPgW2hpR15clArhBfp6FlgH
-	 CFlT/qsgHlaAw==
-Date: Wed, 3 Jul 2024 16:20:21 +0100
-From: Conor Dooley <conor@kernel.org>
-To: utsav.agarwal@analog.com
-Cc: Michael Hennerich <michael.hennerich@analog.com>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Arturs Artamonovs <arturs.artamonovs@analog.com>,
-	Vasileios Bimpikas <vasileios.bimpikas@analog.com>,
-	Oliver Gaskell <oliver.gaskell@analog.com>
-Subject: Re: [PATCH v5 3/3] dt-bindings: input: Update dtbinding for adp5588
-Message-ID: <20240703-safehouse-flame-0b751b853623@spud>
-References: <20240703-adp5588_gpio_support-v5-0-49fcead0d390@analog.com>
- <20240703-adp5588_gpio_support-v5-3-49fcead0d390@analog.com>
+	b=KVEzViEmgTryvbo67ejqXputtnUtDQlLex3jcnTX6xdGCWISGhmyzC+ih0oDfpIZr
+	 /epx8HHobf4nkLCTm8ypSxyNUkSSKWkxBi6s2axbegKM3uRWmqLXf4ULzWGwVfl82T
+	 NBu9mIva+Hv8/67wsNpn07XitQe51XE7unH2n4/z1vP8FstR8fKTVy9y9aPZki4G06
+	 eEo9qUJQu76mpbKd0HOKXTGS4+IWchtJ+qC70prlFh58dWHnuLiXqbdgrB6QhPDxNk
+	 0+7x1DKFipZbUb9865pzc4ObczGt4kiKeau/CbSAiHGvyQZuUg46/fyVrA2V2hBo1N
+	 vUicNMdh7rYYw==
+Date: Wed, 3 Jul 2024 17:26:56 +0200
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: linux-pci@vger.kernel.org, ryder.lee@mediatek.com,
+	jianjun.wang@mediatek.com, lpieralisi@kernel.org, kw@linux.com,
+	robh@kernel.org, bhelgaas@google.com,
+	linux-mediatek@lists.infradead.org, lorenzo.bianconi83@gmail.com,
+	linux-arm-kernel@lists.infradead.org,
+	krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+	nbd@nbd.name, dd@embedd.com, upstream@airoha.com,
+	angelogioacchino.delregno@collabora.com
+Subject: Re: [PATCH v3 4/4] PCI: mediatek-gen3: Add Airoha EN7581 support
+Message-ID: <ZoVtwLI5nIRpS2al@lore-desk>
+References: <ZoPEdU0Eg-f-mbgC@lore-rh-laptop>
+ <20240702163439.GA24344@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="I265JjUt3ALiy5BD"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="MWCaVI3Z1esYwRTI"
 Content-Disposition: inline
-In-Reply-To: <20240703-adp5588_gpio_support-v5-3-49fcead0d390@analog.com>
+In-Reply-To: <20240702163439.GA24344@bhelgaas>
 
 
---I265JjUt3ALiy5BD
+--MWCaVI3Z1esYwRTI
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jul 03, 2024 at 11:58:16AM +0100, Utsav Agarwal via B4 Relay wrote:
-> From: Utsav Agarwal <utsav.agarwal@analog.com>
+> On Tue, Jul 02, 2024 at 11:12:21AM +0200, Lorenzo Bianconi wrote:
+> > > On Sat, Jun 29, 2024 at 03:51:54PM +0200, Lorenzo Bianconi wrote:
+> > > > Introduce support for Airoha EN7581 PCIe controller to mediatek-gen3
+> > > > PCIe controller driver.
+> > >=20
+> > > > +/* PCIe reset line delay in ms */
+> > > > +#define PCIE_RESET_TIME_MS		100
+> > >=20
+> > > Is this something required by the PCIe base spec, or is it specific to
+> > > EN7581?  Either way it would be nice to have a citation to the spec
+> > > (revision and section number).  If it's generic to PCIe, it should be
+> > > in drivers/pci/pci.h so other drivers can use the same thing.
+> >=20
+> > It is just the time needed by the EN7581 reset controller to
+> > complete the operation, it is not something PCIe generic (it is
+> > something just related to EN7581 SoC).  Do you think we should move
+> > it in EN7581 reset controller codebase?
 >=20
-> Updating dt bindings for adp5588. Since the device can now function in a
-> purely gpio mode, the following keypad specific properties are now made
-> optional:
-> 	- interrupts
-> 	- keypad,num-rows
-> 	- keypad,num-columns
-> 	- linux,keymap
->=20
-> However since the above properties are required to be specified when
-> configuring the device as a keypad, dependencies have been added
-> such that specifying either one would require the remaining as well.
->=20
-> Signed-off-by: Utsav Agarwal <utsav.agarwal@analog.com>
-> ---
->  .../devicetree/bindings/input/adi,adp5588.yaml     | 33 ++++++++++++++++=
-++----
->  1 file changed, 28 insertions(+), 5 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/input/adi,adp5588.yaml b/D=
-ocumentation/devicetree/bindings/input/adi,adp5588.yaml
-> index 26ea66834ae2..6c06464f822b 100644
-> --- a/Documentation/devicetree/bindings/input/adi,adp5588.yaml
-> +++ b/Documentation/devicetree/bindings/input/adi,adp5588.yaml
-> @@ -49,7 +49,10 @@ properties:
->    interrupt-controller:
->      description:
->        This property applies if either keypad,num-rows lower than 8 or
-> -      keypad,num-columns lower than 10.
-> +      keypad,num-columns lower than 10. This property does not apply if
-> +      keypad,num-rows or keypad,num-columns are not specified since the
-> +      device then acts as gpio only, during which interrupts are not
-> +      utilized.
-> =20
->    '#interrupt-cells':
->      const: 2
-> @@ -65,13 +68,15 @@ properties:
->      minItems: 1
->      maxItems: 2
-> =20
-> +dependencies:
-> +  keypad,num-rows: ["keypad,num-columns"]
-> +  keypad,num-cols: ["keypad,num-rows"]
-> +  linux,keymap: ["keypad,num-rows"]
+> I have no opinion about moving it.  But it sounds like maybe it should
+> have a less generic name so it doesn't look like a generic PCIe thing.
+> And also a spec citation would be helpful for future maintenance.
 
-Is what you've got here sufficient? Adding "keypad,num-rows" won't
-mandate "linux,keymap" which I think is wrong. I think all 3 entries
-here need to contain both of the other two.
+ack, naming is always hard :)
+I do not have any specific spec for it. It is in the vendor sdk and the Air=
+oha
+folks confirmed just this time is needed to complete PCIe reset.
 
-> +  interrupts: ["linux,keymap"]
+Regards,
+Lorenzo
 
-I still don't understand why interrupts are only allowed when the keymap
-is present. I'd cover the interrupts with something like
-
-if:
-  required:
-    - linux,keymap
-  then:
-    required:
-      - interrupts
-
-so that interrupts can be used while not in keypad mode. Unless of
-course there's something (unmentioned in this patch) that prevents that.
-
-Thanks,
-Conor.
-
-> +
->  required:
->    - compatible
->    - reg
-> -  - interrupts
-> -  - keypad,num-rows
-> -  - keypad,num-columns
-> -  - linux,keymap
-> =20
->  unevaluatedProperties: false
-> =20
-> @@ -108,4 +113,22 @@ examples:
->              >;
->          };
->      };
-> +
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/input/input.h>
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    i2c {
-> +      #address-cells =3D <1>;
-> +      #size-cells =3D <0>;
-> +        gpio@34 {
-> +            compatible =3D "adi,adp5588";
-> +            reg =3D <0x34>;
-> +
-> +            #gpio-cells =3D <2>;
-> +            gpio-controller;
-> +            };
-> +        };
-> +
->  ...
->=20
-> --=20
-> 2.34.1
->=20
->=20
-
---I265JjUt3ALiy5BD
+--MWCaVI3Z1esYwRTI
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZoVsNQAKCRB4tDGHoIJi
-0qIjAP9FGMpejmxLN4Q2htHtCSRLXqXsNGQOcfGQBKOdfwL57QEAonj/PljB6JDy
-SZFCvkBKNqPyyxLazAzjnuzX+3V2lAk=
-=Eqf2
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZoVtwAAKCRA6cBh0uS2t
+rEk6AP4+COe1VSjWr8FduLJECkrFJKAoJNbnCfjXkiRge8ZcKwEAtw0c8lHSfIsU
+alNV8Cygnmt3ypUilONOyRTXJe2tPAM=
+=uH7b
 -----END PGP SIGNATURE-----
 
---I265JjUt3ALiy5BD--
+--MWCaVI3Z1esYwRTI--
 
