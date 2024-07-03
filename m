@@ -1,73 +1,73 @@
-Return-Path: <devicetree+bounces-82742-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82743-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68B4A925893
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 12:29:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC2B39258AC
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 12:32:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1CCEA1F224D8
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 10:29:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DC28E28F0F0
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 10:30:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2DB11741F3;
-	Wed,  3 Jul 2024 10:28:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D47116DC2C;
+	Wed,  3 Jul 2024 10:28:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="Z+jLPCfU"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="ubmXMT7B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B0E0143C6B;
-	Wed,  3 Jul 2024 10:28:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C022C15B984;
+	Wed,  3 Jul 2024 10:28:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720002490; cv=none; b=BS4+RVtUxYM6UlfTq9b1BDKIoyuJezF5K+pNf/a4JgZYXgMrhIJPHmw1emMrJqBO55aei2wry7VWSZjG0SqRUf4aJB+7rwmofBrRWRuqb3cP7h6yMMH/ekqYItbxoNxH+QvgSDJsqVq+FWxdnglm7SY4Co1qlAUqQJ2+Gip2cxM=
+	t=1720002526; cv=none; b=ayKRvT+1HWz1jpgGM2wptDExjPfVLGKk4UVrq0X1e3EGYAt2DrdicYPxjTS+6FavKEqeepaOAWX9WWB5E3c21TO35108S6qWSWmn1XEaszvh/nY3I1uIQXIVuHUm8rYdtac/0H8wXBXGOojzbLzDbRkzNiAtL4+8mM/ocSM0mmM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720002490; c=relaxed/simple;
-	bh=d+NaFbiFI1ORWu1Rz4SBsOdh7lHDtqOtupPY4l7As28=;
+	s=arc-20240116; t=1720002526; c=relaxed/simple;
+	bh=CmJesmNxIPY2fznL1g2fgRBGnbSimFBYGTSZFAcUZo0=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=QrZNBjt8QEFXcpuI8GPnAhkXo1t5mCs9X7hibVGmZd0rJwHT3Vo2NEC/zcB0EttKFLiUQ+GAx7fwJFQgYPLTqMHOsChWzog+/jCntYZPX0NB2DEWYqL/DYGW0AA0u1ut2v20OqfLQYNAzDqaR4PaYfK2Cp+TeHh+bo/w9lEDjzk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=fail smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=Z+jLPCfU; arc=none smtp.client-ip=68.232.154.123
+	 MIME-Version:Content-Type; b=i3adS5tXgX75FetBLwd0/O7gZ7y2Ot4xxM+SZfKBGbVf651XXIrLNcRqS7EcQgR/s8ahSK1a6NDB+EdKEyZc9ZMTv7iDaJDU2/fo1wezcnGXKOY+bb20NFxfpAHYbQnR1fHqCwziOh80uItKeFBq/1Auq5ER/PoFoQmqzL3yWxY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=fail smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=ubmXMT7B; arc=none smtp.client-ip=68.232.153.233
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
 Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=microchip.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1720002489; x=1751538489;
+  t=1720002525; x=1751538525;
   h=from:to:cc:subject:date:message-id:in-reply-to:
    references:mime-version:content-transfer-encoding;
-  bh=d+NaFbiFI1ORWu1Rz4SBsOdh7lHDtqOtupPY4l7As28=;
-  b=Z+jLPCfUvSL0/kAR+CKGB+no0hlBjsP3P9ZxIdcUHSw1wTZw/EkRC3xe
-   sRtAZkyZbeB8NOTLH9ihaMXMvqpI/gGdaAuTT0JqSWd2FCPNZl9VFAyJZ
-   9yx3eQL58lXfuOQRNY3lyoxk2by/xZLRB1HuHrcZX/D3d1OkqhOk+aaHc
-   Hd+qnidB7c+YPa8ML/F5r7tr2yBrmH6qTYQk96rO4iyoKDZBXiO/Vk2sM
-   qnVpF/GRGj+TRhxblKeU6rdF61tbWaisk3WVGVLCMWpE/7c9Xr907adLp
-   3QmO0PeMlydBLxU92WWcytdFQn/WZU5nclHBJHAr7rFWcLh1MnIyFYTae
-   w==;
-X-CSE-ConnectionGUID: C1sswkSrQy+pa1d+oVi69g==
-X-CSE-MsgGUID: 7GR4o5dbRZOp2O0MfqxJVw==
+  bh=CmJesmNxIPY2fznL1g2fgRBGnbSimFBYGTSZFAcUZo0=;
+  b=ubmXMT7BifY0adHoC884usACQDVGp+dHWzMeRY8OssbCXoEdc2AXNpoS
+   tYUZhlaEWsa8QnQJZDmPzLjJ3YCr+1W86Tx1P4rca7oe5rMWidr8b6Bzk
+   oRfKFd3j8adW87AoGtR2306hrlnOENks/hlljIpS/3BnC6jB7ANa+uuYF
+   U3SVLqInLPeePmDyRWd1tFc7R883a+3Xb9A4yeFoC5rnE9Iji2J6FhmWC
+   RB2tlnE8+qsZfD7UOybbcq+/wsrd5Qr+A+WVWSUlvi84fwgs4fM0zW/RA
+   uXDTexOisT8C+Gp8jh21tb8UT0wkwTXMRVohX0JPES25EX7VyZPtKt9QM
+   A==;
+X-CSE-ConnectionGUID: ywlN1IFORca1IOesWlMguw==
+X-CSE-MsgGUID: jnuJLQ9cSDe1Ka2QVXOd1A==
 X-IronPort-AV: E=Sophos;i="6.09,181,1716274800"; 
-   d="scan'208";a="29441491"
+   d="scan'208";a="28804765"
 X-Amp-Result: SKIPPED(no attachment in message)
 Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 03 Jul 2024 03:28:05 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 03 Jul 2024 03:28:44 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 3 Jul 2024 03:28:00 -0700
+ 15.1.2507.35; Wed, 3 Jul 2024 03:28:14 -0700
 Received: from che-lt-i67070.microchip.com (10.10.85.11) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.2507.35 via Frontend Transport; Wed, 3 Jul 2024 03:27:55 -0700
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
+ 15.1.2507.35 via Frontend Transport; Wed, 3 Jul 2024 03:28:09 -0700
 From: Varshini Rajendran <varshini.rajendran@microchip.com>
-To: <mturquette@baylibre.com>, <sboyd@kernel.org>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <nicolas.ferre@microchip.com>,
+To: <tglx@linutronix.de>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <nicolas.ferre@microchip.com>,
 	<alexandre.belloni@bootlin.com>, <claudiu.beznea@tuxon.dev>,
-	<linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+	<dharma.b@microchip.com>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
 CC: <varshini.rajendran@microchip.com>
-Subject: [PATCH v5 12/27] dt-bindings: clock: at91: Allow PLLs to be exported and referenced in DT
-Date: Wed, 3 Jul 2024 15:57:49 +0530
-Message-ID: <20240703102749.195907-1-varshini.rajendran@microchip.com>
+Subject: [PATCH v5 14/27] dt-bindings: interrupt-controller: Add support for sam9x7 aic
+Date: Wed, 3 Jul 2024 15:58:06 +0530
+Message-ID: <20240703102806.196014-1-varshini.rajendran@microchip.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20240703102011.193343-1-varshini.rajendran@microchip.com>
 References: <20240703102011.193343-1-varshini.rajendran@microchip.com>
@@ -80,33 +80,45 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 
-Allow PLLADIV2 and LVDSPLL to be referenced as a PMC_TYPE_CORE
-clock from phandle in DT for sam9x7 SoC family.
+Document the support added for the Advanced interrupt controller(AIC)
+chip in the sam9x7 SoC family.
 
 Signed-off-by: Varshini Rajendran <varshini.rajendran@microchip.com>
-Acked-by: Rob Herring <robh@kernel.org>
 ---
 Changes in v5:
-- Updated Acked-by tag.
+- Adapted the patch to the new yaml file.
+- Removed the Acked-by tag due to the TXT to schema change.
 ---
- include/dt-bindings/clock/at91.h | 4 ++++
- 1 file changed, 4 insertions(+)
+ .../bindings/interrupt-controller/atmel,aic.yaml | 16 ++++++++++------
+ 1 file changed, 10 insertions(+), 6 deletions(-)
 
-diff --git a/include/dt-bindings/clock/at91.h b/include/dt-bindings/clock/at91.h
-index 3e3972a814c1..6ede88c3992d 100644
---- a/include/dt-bindings/clock/at91.h
-+++ b/include/dt-bindings/clock/at91.h
-@@ -38,6 +38,10 @@
- #define PMC_CPU			(PMC_MAIN + 9)
- #define PMC_MCK1		(PMC_MAIN + 10)
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/atmel,aic.yaml b/Documentation/devicetree/bindings/interrupt-controller/atmel,aic.yaml
+index d4658fe3867c..9c5af9dbcb6e 100644
+--- a/Documentation/devicetree/bindings/interrupt-controller/atmel,aic.yaml
++++ b/Documentation/devicetree/bindings/interrupt-controller/atmel,aic.yaml
+@@ -17,12 +17,16 @@ description:
  
-+/* SAM9X7 */
-+#define PMC_PLLADIV2		(PMC_MAIN + 11)
-+#define PMC_LVDSPLL		(PMC_MAIN + 12)
-+
- #ifndef AT91_PMC_MOSCS
- #define AT91_PMC_MOSCS		0		/* MOSCS Flag */
- #define AT91_PMC_LOCKA		1		/* PLLA Lock */
+ properties:
+   compatible:
+-    enum:
+-      - atmel,at91rm9200-aic
+-      - atmel,sama5d2-aic
+-      - atmel,sama5d3-aic
+-      - atmel,sama5d4-aic
+-      - microchip,sam9x60-aic
++    oneOf:
++      - enum:
++          - atmel,at91rm9200-aic
++          - atmel,sama5d2-aic
++          - atmel,sama5d3-aic
++          - atmel,sama5d4-aic
++          - microchip,sam9x60-aic
++      - items:
++          - const: microchip,sam9x7-aic
++          - const: microchip,sam9x60-aic
+ 
+   reg:
+     maxItems: 1
 -- 
 2.25.1
 
