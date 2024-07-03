@@ -1,207 +1,142 @@
-Return-Path: <devicetree+bounces-82957-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82958-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FD8F9268F0
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 21:20:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA5DD9268FD
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 21:31:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 71CA5B23A30
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 19:19:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 17A081C221A7
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 19:31:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F379518A95E;
-	Wed,  3 Jul 2024 19:19:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4D1E1353FF;
+	Wed,  3 Jul 2024 19:31:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="RPoRTLfc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JBodifq/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A29BE183099
-	for <devicetree@vger.kernel.org>; Wed,  3 Jul 2024 19:19:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.122
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B5741DA316;
+	Wed,  3 Jul 2024 19:31:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720034393; cv=none; b=Hp3oTHcXtXwV6Env4Bedj42D7A0MIRWBLbvv6WPOGi/cP/RmiattgvKD99hLTA1FHeGnM2yjwcYJhyx+6+kOS5dsHWOzwg13+FutBoaXYFCKwR3jV9avdLBjtnNyydFqQY/mGFDKcBpxwR07ZyWSTMbz4b7yZOSZYr1eNGX9nKI=
+	t=1720035060; cv=none; b=LDNrhw8+8jpoCQtXdbc6cdXHmQF7JEF038biC70Pq2yCpHXmc+MohksY9BZCAW5rL7MO5llSKWL4OtyrbNtS+ySEx0zbVrEawC9jcu+5v6VCnyoT6nI5FlW4HMwPWw8dY4ygK1B8flQUkNHklPrmy84XuYzzHzb190QGyZRN4TY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720034393; c=relaxed/simple;
-	bh=BJ6RC6onlGGX/XDQEkORvB1LJgrzC5L7WRNwulU/o9o=;
-	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=IeRDgRNLf4iM/t9JqXqKq8B2r1Ifk0VYekNc4gY8ZiSB6QXPr5MA2BAGGT/LN4WpnqPpUX2ngqwIixsFxb1fIntB+KKC5X5bSOb0mzqZ2sWNcxKz242erx474YdQhiEiFpk0rIJw3mExxnlUl3sxAeLrFJYV3FE6EEKf7/QhZmQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=RPoRTLfc; arc=none smtp.client-ip=185.125.188.122
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 80A9D3FD8B
-	for <devicetree@vger.kernel.org>; Wed,  3 Jul 2024 19:19:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20210705; t=1720034384;
-	bh=4AL8Q8t5GvaSDcDlTv2xvRzLk0BHc20eWebGxrnXzHw=;
-	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
-	 To:Cc:Content-Type;
-	b=RPoRTLfcfq+jMTLG2h1dXkBX7EkZr/zBB9s0Wx7ItaVrUSzDGfjsoPk9tIErmTrpf
-	 dBm5nyYhLD1rXf9gQ/ob0at+cgEacw/C0gI4/aQqrhLhHHY5zG5GygvCagZXOjs0Ic
-	 C2C5MrIMPbIFWsWciFn+aPiMpRfFjwcQJnd2v4agOFMdRi9YpOVHDCcaoZx/om/Nla
-	 druJi5bYPGfSKL3LzI4LBd8W2Zogw1z/OaaIihiqC/c7D4zcBtoJWeVY93GJZWf6W9
-	 DmkrCFAq1uxR+Qutq5SGHgAEv8Ijwsjmm+JXtH4Z4nQns+68MjKF7d/Yp17U8YdTyb
-	 yOUZaHpRBNJWA==
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-44505dd2221so70655131cf.0
-        for <devicetree@vger.kernel.org>; Wed, 03 Jul 2024 12:19:44 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720034383; x=1720639183;
-        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4AL8Q8t5GvaSDcDlTv2xvRzLk0BHc20eWebGxrnXzHw=;
-        b=tm9HnH/KkTcGyj6dPHbKOpHVW5Sr35mn3nZ29lX3AVTgTZvWbyAw4fkQxh/8K6yxQ9
-         e5sZu/mGb+XUK1S1edMK3vhZn9Llg9c+EfXis+o9ET1q/LUX+YSfOAxAXx6vNyqX6kdq
-         Oa7feIuycReTsWzQqjNYgeX69Th/GAXj9R0rEzJFuj5yD8feBUEgVX54IdJLSmaK7lK8
-         OAad/Z81ojzEp5tivqnzAJtcpdW8sE462BtIvXXeyHUTaU0xIXpR8B3fBXpHQBRNnhGn
-         kjvSN8dFdTqpZjXC6ZHlVVVlEk86lI35uDkuWh5EJ9YbiChCJfQABSBFYCB2WvJUpyD3
-         SUjA==
-X-Forwarded-Encrypted: i=1; AJvYcCV3vq2oy3EsPE3SEvS2qs5fbQlj3u3H9S7mxFVq3SzgjO/9NZtmaZUXlQRnnN6IQxRjBA4L18dnGZSSuxmf6eiuSE25meKYh+yfAw==
-X-Gm-Message-State: AOJu0YyBi/DCzysSgsW8mhgqPcClm+VMXiXHscw44M3Z74JhkbhyWY05
-	Z7t6h/Ul5Ckk3I7qMFkM8bMs43zuRf3uaU4ko1JA7pB5xilQsnHu8sxXPoYogGHow7flLZu02bJ
-	dJbLzyv+qw7j8bv0hSAQKD0a40sKEGW5RrLPmw0Koq59UY2oca4fpKunIo4pFUaGG23EPPSQLRA
-	fZ9AKSTRpQ+/GIKEbOLn/jJse6KsGnytsZzXbyAotsAewc+i7Mhg==
-X-Received: by 2002:a05:622a:4c6:b0:441:58c7:92fb with SMTP id d75a77b69052e-44662e48d9fmr131261101cf.47.1720034382933;
-        Wed, 03 Jul 2024 12:19:42 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGac9ZwuaiHgni0ADiKooLH8mMTml1Wkk3i3pPQYN7kaucLcuApVxgidfFEb5Qy7OVYNbEL6OKn20MHspRgJho=
-X-Received: by 2002:a05:622a:4c6:b0:441:58c7:92fb with SMTP id
- d75a77b69052e-44662e48d9fmr131260881cf.47.1720034382502; Wed, 03 Jul 2024
- 12:19:42 -0700 (PDT)
-Received: from 348282803490 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 3 Jul 2024 12:19:41 -0700
-From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-In-Reply-To: <20240703135303.GA56155-robh@kernel.org>
-References: <20240103132852.298964-1-emil.renner.berthing@canonical.com>
- <20240103132852.298964-2-emil.renner.berthing@canonical.com>
- <20240115173657.GA999912-robh@kernel.org> <CAJM55Z9xF6_WCcg02xJJfu=UCOj=4m64BXvJTaV4vX09WLhc0w@mail.gmail.com>
- <20240703135303.GA56155-robh@kernel.org>
+	s=arc-20240116; t=1720035060; c=relaxed/simple;
+	bh=rjSNY4RzMSTu2IXIMmyahTWYDKALhy9Ek5em1QaT9qE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=B7BNa52hMuuSkrSrl7/tohMfixq6mi87eKg0FWJ9fHkZeJzfZbDBFN+RgqNYWIZrBg6RJR+gUbXD98dCVNkJK8iUTViSkgMGj116fMdPUuqHAFdQwfp9WUmJlE1+b3o22H7Lmljpgnqug8jLf83NeX0G+025BHodSz/VNMszK0g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JBodifq/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0EA4CC2BD10;
+	Wed,  3 Jul 2024 19:30:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720035060;
+	bh=rjSNY4RzMSTu2IXIMmyahTWYDKALhy9Ek5em1QaT9qE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=JBodifq/72I9fjll1WZ9sCereaY1jK1EC4FhyvG11yiufCD36FboXhBWhgBgQS+Sg
+	 O+dEFokelHN48jfsn3iEzdO5JC8DtnP6Eo77JFM1anC8JiBYKGZUeH2FS+WdRhHPgA
+	 YoaOtjIo5EakccA5QvUA6dj+e2rmN4rAfnFRxbJ1JBLG374L1ikfW7dbvFSXaVKeHX
+	 iyRDi7kJ3vk9ht0rNkBx3jhb93NSYRlackc4AV/OuHQ3VslRLgxZWZXD07amve8Od/
+	 RsxEeP7ATSfsrw0YLmPnOSorie7o2EJ1QtwjoY9WQDUdnGeUIQc0/n1JF29YBBbgxw
+	 q4Tt+KrdOd6/g==
+Date: Wed, 3 Jul 2024 20:30:56 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Kaustabh Chakraborty <kauschluss@disroot.org>
+Cc: linux-iio@vger.kernel.org, jic23@kernel.org, devicetree@vger.kernel.org,
+	conor+dt@kernel.org
+Subject: Re: [PATCH 2/2] dt-bindings: iio: light: stk33xx: add compatible for
+ stk3013
+Message-ID: <20240703-velvet-badly-904e7afc7cf8@spud>
+References: <20240625165122.231182-1-kauschluss@disroot.org>
+ <20240625165122.231182-2-kauschluss@disroot.org>
+ <20240626-junior-tag-cd3e27c4b140@spud>
+ <7f99d77c65bc347bf8b7935220520fdb@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Date: Wed, 3 Jul 2024 12:19:41 -0700
-Message-ID: <CAJM55Z-ntP55uaTQob_=P-8ud43YNh7Gy0XgUfQ7-O8zPpuGxg@mail.gmail.com>
-Subject: Re: [PATCH v2 1/8] dt-bindings: pinctrl: Add thead,th1520-pinctrl bindings
-To: Rob Herring <robh@kernel.org>, 
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Cc: linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	Linus Walleij <linus.walleij@linaro.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Drew Fustini <dfustini@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="F/qmWKmvLM9G6g+N"
+Content-Disposition: inline
+In-Reply-To: <7f99d77c65bc347bf8b7935220520fdb@disroot.org>
 
-Rob Herring wrote:
-> On Fri, May 17, 2024 at 07:48:17AM -0500, Emil Renner Berthing wrote:
-> > Rob Herring wrote:
-> > > On Wed, Jan 03, 2024 at 02:28:38PM +0100, Emil Renner Berthing wrote:
-> > > > Add bindings for the pin controllers on the T-Head TH1520 RISC-V SoC.
-> > > >
-> > > > Signed-off-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-> > > > ---
-> > > >  .../pinctrl/thead,th1520-pinctrl.yaml         | 372 ++++++++++++++++++
-> > > >  1 file changed, 372 insertions(+)
-> > > >  create mode 100644 Documentation/devicetree/bindings/pinctrl/thead,th1520-pinctrl.yaml
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/pinctrl/thead,th1520-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/thead,th1520-pinctrl.yaml
-> > > > new file mode 100644
-> > > > index 000000000000..d3ad7a7cfdd1
-> > > > --- /dev/null
-> > > > +++ b/Documentation/devicetree/bindings/pinctrl/thead,th1520-pinctrl.yaml
-> > > > @@ -0,0 +1,372 @@
-> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > > +%YAML 1.2
-> > > > +---
-> > > > +$id: http://devicetree.org/schemas/pinctrl/thead,th1520-pinctrl.yaml#
-> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > +
-> > > > +title: T-Head TH1520 SoC pin controller
-> > > > +
-> > > > +maintainers:
-> > > > +  - Emil Renner Berthing <emil.renner.berthing@canonical.com>
-> > > > +
-> > > > +description: |
-> > > > +  Pinmux and pinconf controller in the T-Head TH1520 RISC-V SoC.
-> > > > +
-> > > > +  The TH1520 has 3 groups of pads each controlled from different memory ranges.
-> > > > +  Confusingly the memory ranges are named
-> > > > +    PADCTRL_AOSYS  -> PAD Group 1
-> > > > +    PADCTRL1_APSYS -> PAD Group 2
-> > > > +    PADCTRL0_APSYS -> PAD Group 3
-> > > > +
-> > > > +  Each pad can be muxed individually to up to 6 different functions. For most
-> > > > +  pads only a few of those 6 configurations are valid though, and a few pads in
-> > > > +  group 1 does not support muxing at all.
-> > > > +
-> > > > +  Pinconf is fairly regular except for a few pads in group 1 that either can't
-> > > > +  be configured or has some special functions. The rest have configurable drive
-> > > > +  strength, input enable, schmitt trigger, slew rate, pull-up and pull-down in
-> > > > +  addition to a special strong pull up.
-> > > > +
-> > > > +  Certain pads in group 1 can be muxed to AUDIO_PA0 - AUDIO_PA30 functions and
-> > > > +  are then meant to be used by the audio co-processor. Each such pad can then
-> > > > +  be further muxed to either audio GPIO or one of 4 functions such as UART, I2C
-> > > > +  and I2S. If the audio pad is muxed to one of the 4 functions then pinconf is
-> > > > +  also configured in different registers. All of this is done from a different
-> > > > +  AUDIO_IOCTRL memory range and is left to the audio co-processor for now.
-> > >
-> > > It is still not clear to me if each instance is a different programming
-> > > model or the same with just different connections. The latter should
-> > > be the same compatible string. That needs to be answered in *this*
-> > > patch, not a reply.
-> >
-> > Hi Rob,
-> >
-> > Sorry for the late response. I honestly don't know exactly what you mean by
-> > differenty programming models and what the difference is, so I'll need a bit of
-> > help with what you want me to write here.
->
-> Is the register interface of each instance the same? Looks like it is
-> from the driver. So normally that's 3 instances of the same compatible.
->
-> > Any driver for the TH1520 SoC (not just Linux) would need some way to discern
-> > between the 3 pin controllers so they know how many pins to control and what
-> > pinmux settings are valid. Basically they'd need the data in the three
-> > th1520_group{1,2,3}_pins arrays in the driver and a way to know which of them
-> > to use.
-> >
-> > https://lore.kernel.org/linux-riscv/20240103132852.298964-3-emil.renner.berthing@canonical.com/
->
-> Why do you need to know how many pins? The DT says configure a pin and
-> you just configure it. It's not the kernel's job to validate that the DT
-> is correct.
->
-> Aren't the pin names globally unique? So you just look up the pin name
-> across all the arrays. Or you can just look up one pin from each
-> instance to find which th1520_groupN_pins array goes with the instance.
-> Or just have 1 array.
 
-Just to be clear, do you mean to add just one node for all 3 instances like
-this?
+--F/qmWKmvLM9G6g+N
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-padctrl: pinctrl@ffe7f3c000 {
-    compatible = "thead,th1520-pinctrl";
-    reg = <0xff 0xe7f3c000 0x0 0x1000>,
-          <0xff 0xec007000 0x0 0x1000>,
-          <0xff 0xfff4a000 0x0 0x2000>;
-    reg-names = "group2", "group3", "group1";
-    clocks = <&apb_clk>, <&apb_clk>, <&aonsys_clk>;
-    clock-names = "group2", "group3", "group1";
-};
+On Wed, Jul 03, 2024 at 06:31:13PM +0000, Kaustabh Chakraborty wrote:
+> On 2024-06-26 16:06, Conor Dooley wrote:
+> > On Tue, Jun 25, 2024 at 10:21:06PM +0530, Kaustabh Chakraborty wrote:
+> >> Add the compatible string of stk3013 to the existing list.
+> >>=20
+> >> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+> >> ---
+> >>  Documentation/devicetree/bindings/iio/light/stk33xx.yaml | 1 +
+> >>  1 file changed, 1 insertion(+)
+> >>=20
+> >> diff --git a/Documentation/devicetree/bindings/iio/light/stk33xx.yaml =
+b/Documentation/devicetree/bindings/iio/light/stk33xx.yaml
+> >> index f6e22dc9814a..6003da66a7e6 100644
+> >> --- a/Documentation/devicetree/bindings/iio/light/stk33xx.yaml
+> >> +++ b/Documentation/devicetree/bindings/iio/light/stk33xx.yaml
+> >> @@ -19,6 +19,7 @@ allOf:
+> >>  properties:
+> >>    compatible:
+> >>      enum:
+> >> +      - sensortek,stk3013
+> >=20
+> > The driver change suggests that this device is compatible with the
+> > existing sensors.
+> > Jonathan, could we relax the warning during init
+>=20
+> What does 'relax' mean here? Earlier there used to be a probing error,
+> and now it's just a warning. Is that not relaxed enough?
 
-That will work since we can then register all pins at the same time. But I
-can't see how it will work when keeping the 3 different nodes since each
-instance needs to register the pins they control at probe time. So there will
-need to be some way to tell the 3 different nodes apart.
+If it is something intentionally, I don't think a warning is suitable.
+It makes the user thing something is wrong.
 
-/Emil
+>=20
+> > 	ret =3D stk3310_check_chip_id(chipid);
+> > 	if (ret < 0)
+> > 		dev_warn(&client->dev, "unknown chip id: 0x%x\n", chipid);
+> > and allow fallback compatibles here please?
+>=20
+> So, you mean something like this in devicetree?
+>=20
+>   compatible =3D "sensortek,stk3013", "sensortek,stk3310";
+>=20
+> I mean that's fine, but we also need to change devicetree sources for
+> other devices. If that's what we're doing, please let me know how do
+> I frame the commits.
+
+Why would you need to change the dts for other devices to add a fallback
+for this new compatible that is being added?
+
+> >>        - sensortek,stk3310
+> >>        - sensortek,stk3311
+> >>        - sensortek,stk3335
+> >> --=20
+> >> 2.45.2
+> >>
+>=20
+> Thank you.
+
+--F/qmWKmvLM9G6g+N
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZoWm8AAKCRB4tDGHoIJi
+0hgCAP44DZOsGakqPXYNYBKQh+pKzx3/pNO8U7HF4HNASYw3nAEAzrY9FfTakUaK
+tQY1E6ASe+UeCzFYNqI3eG/cTQzVmwo=
+=7SuH
+-----END PGP SIGNATURE-----
+
+--F/qmWKmvLM9G6g+N--
 
