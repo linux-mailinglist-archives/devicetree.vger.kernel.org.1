@@ -1,155 +1,162 @@
-Return-Path: <devicetree+bounces-82679-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82681-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD82092557A
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 10:36:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C4049255A4
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 10:44:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DF0491C21D4A
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 08:36:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BCBC2285339
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 08:44:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29A6A13A402;
-	Wed,  3 Jul 2024 08:36:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 558FC13B297;
+	Wed,  3 Jul 2024 08:43:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="jGqlSTsH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout.web.de (mout.web.de [212.227.15.14])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43ABD4D584;
-	Wed,  3 Jul 2024 08:36:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A86B285624;
+	Wed,  3 Jul 2024 08:43:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719995800; cv=none; b=LHep7Tl2/gXBW7DC7Wp0fpr4JJ1tBeWb9+uSliH2g2mT7CAbOfsSSZtPuqnQx7V04fOveKdp/Lup0soyO4FTQrQ7TGoI3keQBTZD96NfikmtKjANspnb2jPwdOFiiBrEpb7ujc+tE7jNVb54+Xko310C80rcSqoy6RCS+EHdZZI=
+	t=1719996238; cv=none; b=YgNDpt1Tu8QkK1dR3zKuhg0mtYA2Mk74Pemm9/fqszs/5ctvOaC0vMniMPKExbb++RP6bNTRjLxnhJOTvY///iTRziKGeTzusoYqfhb2FFIHad+BdGFgTuHQ0/RL89d6ODKPD+pg8VY9vFS2FASJbjRx/4Gq5vFjDb3nIDwv6wA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719995800; c=relaxed/simple;
-	bh=yxxrwJseAuushSEziKMefvZ7jrdU8YxyJrKEd0CjvnA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=QiARfBs0mdWs8kz+zSD6AbqijeDtweThg8jSWpGTb8kyl213udml8yd6SIzSMGnwgBsVjUMd7vIT5QSYrM5xQA+fjvG4ugII8CzFoaWkCYiVeoQy7oC81MQexg7koD44Nbe/4KuJqH1tg56AP8HQtHUw+CbrESCWkRA+5h5oeDc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-650cef35de3so10762267b3.1;
-        Wed, 03 Jul 2024 01:36:37 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719995796; x=1720600596;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=BT6Tv6N+pnktl0oz4QdEbXnwBPXb90Am/ZyrrKG3Cy4=;
-        b=D8YFkJHnE5ooFBKl2SxNP3b+zuHhbFdqFy1G2b9J9NAE5rK35obL3rO0O1SoLGoRFv
-         /NyiSN9OMGqlwVj7NvWmja2ls5WD7yNzN/Yvnrtv61WjtRE6F/tk4QjeJAL7VpUn5Z63
-         qauoO24hze/TGQxLw1qxJ5X2tZ6mNpx/0jl6BueoAxJpTvVs207LFvOBCKxqQxH7CK87
-         5d3FnjiC8KnX4dj/ozobfhWJn2s8CCly5kJoHXuWO3CQMTelHbgBbqyQVWjBedl1v7oA
-         IlgYhsEkrJBwCBbCrO/AKJhmRyPoLWRpeTWLTfvaZe0V2wHaKU9JrXPkXZJTD2G4s5o1
-         D9Lw==
-X-Forwarded-Encrypted: i=1; AJvYcCWv6LgJ9RWZKcIxxblbCsd4jt3/M4w8Ogoq0wwAGJI7YyCgZiRTMCdiwLEIEVyfdDm+k0hT8liZd54S1GvI1sfC9rrZe656NfkiydPn+toE8MwgshbmE9oqNtJYkMDjhF+dKFKQwkqLFu7dEQfR
-X-Gm-Message-State: AOJu0YwpGDzDiuR1uOsI2ZeoiXVwSVkdZj3hL5hAVzWs2oc1sw0nev7K
-	k6mkhHWMStUl546rNpCHtyedW+gK6QzQMR41NHSC+8gRcWOy4GUXHGQRYLfw
-X-Google-Smtp-Source: AGHT+IHgDEapnCLwPgCzhVsWBD+dZBqedypq8paQw3MwsIYPwkZhRykJ6DQedbdxooW9RQHMokyegA==
-X-Received: by 2002:a81:84d0:0:b0:61a:d846:9858 with SMTP id 00721157ae682-64c71aec0b5mr114884187b3.20.1719995796106;
-        Wed, 03 Jul 2024 01:36:36 -0700 (PDT)
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com. [209.85.128.180])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-650fca11ff8sm3075157b3.40.2024.07.03.01.36.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Jul 2024 01:36:35 -0700 (PDT)
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-650cef35de3so10761997b3.1;
-        Wed, 03 Jul 2024 01:36:35 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVEMJUf5yqMAggnv/xsqTvEoMzqdkiYp+AJ7ZrlxQAcasJFND0qH9iKTp/uEUs0WdeKwc2x0IDMgSDQQS1fQc0OWCwJwnolimV5YGxIvFQUAqT6/70Ce36Opr+VKlnbRAkiFU2AqF0ZOEFsmoD0
-X-Received: by 2002:a81:ae17:0:b0:650:9799:41d2 with SMTP id
- 00721157ae682-6509799460cmr31241117b3.30.1719995795398; Wed, 03 Jul 2024
- 01:36:35 -0700 (PDT)
+	s=arc-20240116; t=1719996238; c=relaxed/simple;
+	bh=lptLyrtomP510MDSTWJ1xyCDrn5Oh0FzBQfkqNjbmS8=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=Mh1VeXKSI8pWUTTpAzuLkanA9VyLaow5ElKXJIBfMAyNDArYqujZRz+VwBaoP/BM4k1+GOfkKDzMHP4KjaFaTONWH9E4iUhdB9FHaG2dXGHjGbnpqGpx1Egzly0NMSCPhG4WM4/ZEzL9EsBZ6jpJ+AMuRqIWCx3S1lljOv6hqMk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=jGqlSTsH; arc=none smtp.client-ip=212.227.15.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+	s=s29768273; t=1719996223; x=1720601023; i=markus.elfring@web.de;
+	bh=lptLyrtomP510MDSTWJ1xyCDrn5Oh0FzBQfkqNjbmS8=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:From:Subject:To:
+	 Cc:References:In-Reply-To:Content-Type:Content-Transfer-Encoding:
+	 cc:content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=jGqlSTsHwTwtnWX//MppUHEXvabftsGca6m/4IKclXqVfuhSgDjQOger9aJmZ0M8
+	 lUGbbpxyYFKXRfRNzrioP8snBn1DgGcTJLW2BCfkszr1h5EDK66qoWGSCOykiQxzA
+	 +T1UHNaKT83wbaCKwvDJy23zSzFtw+4X3OFC2pWYNiorAzo+3l7WhwHQ8aYIg0sL/
+	 wD1PrtVxK5sEGncZMInsLlGXX+UB/bk5EFnMUHP+IormV43B8lh020tFgxKe7Qnka
+	 so1L6/bMr0va3zDIIrGZC7pLRG2XecJT695coTNvv1htBKAQ9zUv9I64tBtW+PX3D
+	 1ZCaCctyM5gfMADN9Q==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from [192.168.178.21] ([94.31.91.95]) by smtp.web.de (mrweb006
+ [213.165.67.108]) with ESMTPSA (Nemesis) id 1MOlwp-1smN5E14UJ-00VtyI; Wed, 03
+ Jul 2024 10:43:43 +0200
+Message-ID: <8c69a0dc-8178-44fc-86c1-da67109ddd39@web.de>
+Date: Wed, 3 Jul 2024 10:43:31 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240702180032.207275-1-biju.das.jz@bp.renesas.com> <20240702180032.207275-5-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20240702180032.207275-5-biju.das.jz@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 3 Jul 2024 10:36:22 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUmvWPPBVqhtpu2dovwQg7YA7TVZBRnATUiY+1QRy0B1w@mail.gmail.com>
-Message-ID: <CAMuHMdUmvWPPBVqhtpu2dovwQg7YA7TVZBRnATUiY+1QRy0B1w@mail.gmail.com>
-Subject: Re: [PATCH v5 4/4] arm64: dts: renesas: rz-smarc: Replace fixed
- regulator for USB VBUS
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	devicetree@vger.kernel.org, linux-phy@lists.infradead.org, 
-	linux-renesas-soc@vger.kernel.org, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Biju Das <biju.das.au@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+From: Markus Elfring <Markus.Elfring@web.de>
+Subject: Re: libfdt: check return value of fdt_num_mem_rsv() in fdt_pack()
+To: Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
+ devicetree@vger.kernel.org
+Cc: LKML <linux-kernel@vger.kernel.org>, David Gibson <dgibson@redhat.com>,
+ Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>
+References: <20240701215441.54353-1-heinrich.schuchardt@canonical.com>
+ <8b083a48-5e56-493a-b235-60afaf794fd7@web.de>
+ <530a2dcf-82ad-4e59-a162-5d3080766e6c@canonical.com>
+Content-Language: en-GB
+In-Reply-To: <530a2dcf-82ad-4e59-a162-5d3080766e6c@canonical.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:trxH/ooywfNEfiZjB42Chz5zq7Z08mVhiBmMoxtxWU8Xw6QjQho
+ gRd5Ugnc5dqJzXq3W8cHAgcbrD7TJLnjm6usCNWxyJGyK+6kng69oaOvQqB7N/IFFJZsEqg
+ t4AHvpB2XUP0Dn7Ag6oSZBZNB8DGO1FEKmAhap+lYq4aUqT2Gb1jws/uq0S8L2cOc7K9pK9
+ oo9HrS+7L48flbb5rQAkw==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:uK+DYHt/GOU=;S0s7pwr8tzqwOQ2zE+xMW4qaNMX
+ WIy//oKgW6cIr3msWPKex8mNjDGuCLWpXJbOx0yUWtsDtrus92a95uj+GlEL7lYv9+Qgsc+Rm
+ ReLERiFrYWQ1ApM4IdLESJLAZEmBz5h3ZsFd8wdScemjxprnNUb2YpcRP7xerzF6II8IVzYkZ
+ L5X9oVX2MRJC1TC52m4zJqY5jsVrL5kr8ZwIQdRBwVjXqxG0Ndx9+vff3g13fctsh5avAnEYU
+ r6ahEoEhMnO3YbHBPrzsVi900UT3FOBI7uVGV0lO+pRDfF8z1zWlt8GRDuDjGxhYul5YXK4l8
+ 4Pdt5oUOarrWrrIOFdo0MjjINksP7WIiWjLzVJDFj7RbY3d7b2bHDVaq2YHPAKfRjw3KCVhWB
+ 6CwnDpS3Y7F5RAavZVKQjvY1DxWFbLdvPnK9AyRBW4i+CoeVd+on0LdjoC8q2ugoDPVfja2NX
+ WUPBFXKaup79/lg8kdsos4ALNy4HRj/nRghGdaPaekTsoWa//yKBXgBDsJWYNX9MD2AIgDMRR
+ T7nHZc4UfyR7UpAKATj0sKzQ9qnLP3RhKxgYupWUJOJThxNi9tWF5K9yyVmlmEZBpVX6vkJvG
+ 9Y/7poDt8DUs56bM+vfCJVdbuvxPYJajW7klrxqFJf05ZjhFBb7CcP5SGtwa5d40CnVTkuUPa
+ qZg25KPjTcs/YgilqG3v7/xot5uDj8pBZizR9w+E27cCmcGALNRu7tNjmhLXN3/VBqkFiLsPz
+ kLrCX9JJyaz4X60GoyAlld5vJw9bLUe7sDlUHpdUM633UxGfDeCX8FQdGYwxzJ1JWm0bAay54
+ uUI0lPLpaaJzeUYkP1j/VjHSwS/4YsX4UGhDB43DLrYN4=
 
-Hi Biju,
-
-On Tue, Jul 2, 2024 at 8:01=E2=80=AFPM Biju Das <biju.das.jz@bp.renesas.com=
-> wrote:
-> Replace the fixed regulator for USB VBUS and use the proper one that
-> controls regulator based on VBUS detection.
+>>> fdt_num_mem_rsv() may return -FDT_ERR_TRUNCATED.
+>>> In this case fdt_pack() should propagate the error code.
+>>
+>> 1. Please choose imperative wordings for an improved change description=
+.
+>> =C2=A0=C2=A0=C2=A0https://git.kernel.org/pub/scm/linux/kernel/git/torva=
+lds/linux.git/tree/Documentation/process/submitting-patches.rst?h=3Dv6.10-=
+rc6#n94
 >
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> ---
-> v4->v5:
->  * Updated commit description.
+> The current subject is an imperative?
 
-Thanks for the update!
+Yes.
 
-> --- a/arch/arm64/boot/dts/renesas/rz-smarc-common.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/rz-smarc-common.dtsi
-> @@ -54,14 +54,6 @@ codec_dai: simple-audio-card,codec {
->                 };
->         };
+The requirement for =E2=80=9Cimperative mood=E2=80=9D affects mostly the c=
+ommit message (or =E2=80=9Cchangelog=E2=80=9D),
+doesn't it?
+
+
+>> 2. Would you like to add any tags (like =E2=80=9CFixes=E2=80=9D and =E2=
+=80=9CCc=E2=80=9D)?
 >
-> -       usb0_vbus_otg: regulator-usb0-vbus-otg {
-> -               compatible =3D "regulator-fixed";
-> -
-> -               regulator-name =3D "USB0_VBUS_OTG";
-> -               regulator-min-microvolt =3D <5000000>;
-> -               regulator-max-microvolt =3D <5000000>;
-> -       };
-> -
->         vccq_sdhi1: regulator-vccq-sdhi1 {
->                 compatible =3D "regulator-gpio";
->                 regulator-name =3D "SDHI1 VccQ";
-> @@ -139,6 +131,9 @@ &ohci1 {
+> d5db5382c5e5 ("libfdt: Safer access to memory reservations") introduced =
+the check that returns the error code. But before that we could simply ove=
+rrun the buffer.
+
+Would an other commit be a more appropriate reference?
+
+
+> I would not know which patch to blame.
+
+Please take another look at a corresponding information source:
+https://github.com/dgibson/dtc/blame/main/libfdt/fdt_rw.c#L487-L500
+
+Update candidate:
+libfdt: Handle v16 and re-ordered trees for r/w
+2007-11-01
+https://github.com/dgibson/dtc/commit/a041dcdc48453f26b76bccdb5e2a1ebb3a0e=
+a987#diff-1a98f2be127ff35ab7183bdae1e010189c9992b3bd6e6779fa7b7e451bf72ac4=
+R382
+
+
+> Whom do you want to Cc?
+
+I suggest to take another look at corresponding information sources.
+
+* https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/=
+Documentation/process/stable-kernel-rules.rst?h=3Dv6.10-rc6#n34
+
+* https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/=
+Documentation/process/submitting-patches.rst?h=3Dv6.10-rc6#n458
+
+
+>> 3. How do you think about to use a summary phrase like =E2=80=9CComplet=
+e error handling
+>> =C2=A0=C2=A0=C2=A0in fdt_pack()=E2=80=9D?
 >
->  &phyrst {
->         status =3D "okay";
-> +       usb0_vbus_otg: regulator-vbus {
+> Why should I choose a less specific subject?
 
-The label is not really needed, is it?
+You would like to improve the error detection and corresponding exception =
+handling another bit,
+wouldn't you?
 
-> +               regulator-name =3D "vbus";
-> +       };
+* https://cwe.mitre.org/data/definitions/252.html
 
-Also, as the regulator-vbus subnode is required, perhaps it should
-be moved to the SoC-specific .dtsi? Or do you keep it here for
-board-specific control of the regulator name, i.e. to avoid conflicts?
-
->  };
->
->  &scif0 {
-
-Anyway, this adheres to the DT bindings, so
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Acked-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Gr{oetje,eeting}s,
-
-                        Geert
+* https://wiki.sei.cmu.edu/confluence/display/c/EXP12-C.+Do+not+ignore+val=
+ues+returned+by+functions
 
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Regards,
+Markus
 
