@@ -1,274 +1,150 @@
-Return-Path: <devicetree+bounces-82807-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82808-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83F0D925BA5
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 13:10:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C40B925BB6
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 13:10:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 119EF1F25B42
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 11:10:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3EE631C217DA
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 11:10:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1421419D8A0;
-	Wed,  3 Jul 2024 10:57:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08C8719D8AE;
+	Wed,  3 Jul 2024 10:58:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="brIQeKnv";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="uQrks9X7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I+cyatzg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout6-smtp.messagingengine.com (fout6-smtp.messagingengine.com [103.168.172.149])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 700E3194083;
-	Wed,  3 Jul 2024 10:57:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.149
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C960E1891B6;
+	Wed,  3 Jul 2024 10:58:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720004261; cv=none; b=fpTmNNCqAMYI5s2g471jMTF/WVNpPhgU9ZzFpSRTPvq3lYNMGAVoUkggHQBEis/fgGUXBlhVVRShBsq5EQxZrZY4O9vBsK7u97I8JFn2SVqiT/QETitRGs3sDjpOiaVK1HjwxDp/dCD0tdkhym8vQoC8VSe01RQZMy4rFBYHrdI=
+	t=1720004302; cv=none; b=uv/6DfvW6elaP3vRfbR9RrvfHFTFyxHt03lkQaxml08GBLrHSFykGvntjUYf70Jp856b9XiC7AQa6T0DlkQggnDbxd4UA7JnE4QNpAYBq63VYSfYXadJibuuXZF38HyVGAkV0SK5M1mZSJ96+pdjMj29/tbry/cc3VBzxag1SqE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720004261; c=relaxed/simple;
-	bh=6YFtYoYSnHJuAOHlWCH6SB6++OxwuIqRQRXJu2woyvw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=TAOnTHEX+8LPF3nNN6/Pb1ZJS2NT+aDxCp991Y4Hy1OIqwtDBXS8pqInkoM6GS7p6665xUyqF/BYiV7f8JEr1J7ev2OWsExecEdi1nM+/6+4GSuthl0FWJu8zCUeYeh8iqWZELS5c/rMai9XDD3cv/D7REgT64lKgqlUQh/oNUc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=brIQeKnv; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=uQrks9X7; arc=none smtp.client-ip=103.168.172.149
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-	by mailfout.nyi.internal (Postfix) with ESMTP id C5C4813805FA;
-	Wed,  3 Jul 2024 06:57:38 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute1.internal (MEProxy); Wed, 03 Jul 2024 06:57:38 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
-	 h=cc:cc:content-transfer-encoding:content-type:date:date:from
-	:from:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to; s=fm2; t=1720004258; x=
-	1720090658; bh=dh4jgHU7dqTQKxlK6pguYFC4g/IfdITeRgccK+k+z4w=; b=b
-	rIQeKnvni8DerlYTxW4jyui+epUYXIcJPPed2TjDJiwTjc9kgyI9AatnCAyXPRsd
-	kJAtxQkzvfJFVmoASuwDSTVdM0Tok/qCSoVFAsfny0ShnFRdQHTd1VqUyXMbAUK9
-	6Er9M9A+59RXVhXGoZGKNJ2JPWzUUNVh7IPPg/AP0LF0vqoUziMt5o/8aMAW91La
-	b6E9RxtTC2G+Y2fWB3wbpANnautngPqa5t2DPZE46lvS17v6A3zMScCN6A5ZLYRr
-	eeRD0DlOVP2LuMHeXzs6DUeyeoNHnOJF4Eszuph7988ZnkhzidS4MSWyaMTtVXL0
-	OHojyHDOgf82BII25hbVA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:date:date:feedback-id:feedback-id:from:from
-	:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1720004258; x=
-	1720090658; bh=dh4jgHU7dqTQKxlK6pguYFC4g/IfdITeRgccK+k+z4w=; b=u
-	Qrks9X7M6WVJ+sZn//jqJ/H4GFPThEt539pb4//yTiMBL1MyZCiRrf9QbmjGHcdc
-	l7PIh/CKr74hPRh4dBx3FHhxWqlEljdADJNn+9Jtc810K+0otx/HnMmcsgyGiH1z
-	lecihxSFmxXc48OEHFj6Ag0pNW0P7krt63jqURlGHl9mvu65j8kgdm6rCPA7cNaX
-	AeLrV+8iHf/HkJpfJH1diCNvdTWhcH8maFIXYpL+A7xtVNelwqosNngtv9Rx8Fl7
-	D5Suo8lSh6MUX/bcoEJP+qeXMLPAlingyvKWRPda2SQshn/buXd1np0FVQqn8w1w
-	nSuR5GhABuBg5AwQagMZA==
-X-ME-Sender: <xms:oi6FZt7Af9472MQDofuUxHyPjTR2L7_C8cW0JzHg8PEW3QbyPGrplQ>
-    <xme:oi6FZq6uShyBaqUjVPk33u78g-pgZnAzB8Ll9y8i_mbvqdP_TV_yGQ0Wxj0bU_kgO
-    Hh3pb9v8Y_GLW0CtA>
-X-ME-Received: <xmr:oi6FZkcMhQgrWKdaM6LxVZPVUYDThD3b7VjYWX5suOBYqUj4rDWBAGFpiDB_4MegzKPUoTAoKqAPplB3DdMfPVuInmwPjIOG3Xd_XCAJJEvW-w6H>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrudejgdefgecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefhvfevufffkffojghfggfgsedtkeertdertddtnecuhfhrohhmpefthigrnhcu
-    hggrlhhklhhinhcuoehrhigrnhesthgvshhtthhorghsthdrtghomheqnecuggftrfgrth
-    htvghrnhepffehieffgedtgfffjeetveegfeekleeileekveeuteffteetudffveegieei
-    heetnecuvehluhhsthgvrhfuihiivgepudenucfrrghrrghmpehmrghilhhfrhhomheprh
-    ihrghnsehtvghsthhtohgrshhtrdgtohhm
-X-ME-Proxy: <xmx:oi6FZmJwBVICf6pp00IglTauZ2BOAnUTBsKBPTy-Xm9NP8Vl-r-FXQ>
-    <xmx:oi6FZhKq5KHUEC3NlEM_5V5dqq4LBVIUZ_p_u7s84VoLw8v5i1-Ifg>
-    <xmx:oi6FZvwxp0ROgKnEAk6g1pf8Hi3-p5yF4GLNkx04Vrcd3FoVhHjCAg>
-    <xmx:oi6FZtJBBoGd_lE0mlIDxpD9axZs1yrtE09fmicl_fBmcHoipFbA8g>
-    <xmx:oi6FZh6i7F42k3NlrXT-wgOWnUIzRYLdzZPZCdzWMQYAjSX7dBrlZBT->
-Feedback-ID: idc0145fc:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 3 Jul 2024 06:57:32 -0400 (EDT)
-From: Ryan Walklin <ryan@testtoast.com>
-To: Maxime Ripard <mripard@kernel.org>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>
-Cc: Andre Przywara <andre.przywara@arm.com>,
-	Chris Morgan <macroalpha82@gmail.com>,
-	John Watts <contact@jookia.org>,
-	dri-devel@lists.freedesktop.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	Ryan Walklin <ryan@testtoast.com>
-Subject: [PATCH v2 23/23] drm: sun4i: de33: csc: add Display Engine 3.3 (DE33) support
-Date: Wed,  3 Jul 2024 22:51:13 +1200
-Message-ID: <20240703105454.41254-24-ryan@testtoast.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240703105454.41254-1-ryan@testtoast.com>
-References: <20240703105454.41254-1-ryan@testtoast.com>
+	s=arc-20240116; t=1720004302; c=relaxed/simple;
+	bh=ZKBZXqTb3GYcej9sBFGWNtjDUyV0Rn3CMeoWjdQoMDA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=HDZztUYC2Lya2+G0UwdxpltO2/TVuSRCl7XuxGTWBX0sh4jK5cskLLvBtYJsa67xIymxz7nJtkGGKCXLAz4ZG4mORW42/eqL05YYRuWD+N5iRWz2w6ZwNFpNIbvUxlmPLafbkYinn61akp3E5qQf1dbmR6uF2TDKjBnCcc0xaJk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I+cyatzg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 907E1C32781;
+	Wed,  3 Jul 2024 10:58:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720004302;
+	bh=ZKBZXqTb3GYcej9sBFGWNtjDUyV0Rn3CMeoWjdQoMDA=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=I+cyatzgwZSzFZqgft1lCda9R3boMN5wwvPMQl0eLu0p0JyFqixrZ2wRNjopEmK0k
+	 lMA1bTcgG0eoiR5QQMHOlWN3oykSPpCHKujOIMWWwgDCrD1K5nTIRBnkQO9gd0OJsx
+	 0d7jxY/7ToA6rHZdoGHqn0iVMxDmuoTqTOV7ddfwHmXhYw6KTULh54Uj43np3GN8IL
+	 hnAtcIA5efKhKhRUGnkpCqihGX9X3jhptYk7IAACPNLPAYuiNXNx1DObUwVnw6JHZC
+	 XPago3eB5gQBYHb+hr/UIwLhrJRUlWQQELxFjzH07/TdEptwGXlzQWa2X8HYIwRHmU
+	 Tjl46bQeytIMA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 73FBBC31D97;
+	Wed,  3 Jul 2024 10:58:22 +0000 (UTC)
+From: Utsav Agarwal via B4 Relay <devnull+utsav.agarwal.analog.com@kernel.org>
+Subject: [PATCH v5 0/3] adp5588-keys: Support for dedicated gpio operation
+Date: Wed, 03 Jul 2024 11:58:13 +0100
+Message-Id: <20240703-adp5588_gpio_support-v5-0-49fcead0d390@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMUuhWYC/4WNQQ6DIBBFr2JmXRokQ6tdeY/GGBDUSVogYEkb4
+ 91LvUCX7yX//Q2SjWQT3KoNos2UyLsC8lTBuCg3W0amMAgukF95zZQJUjbNMAfyQ3qF4OPKLtJ
+ ooY2oVTtBmYZoJ3of2XtfeKG0+vg5XjL+7J9gRsYZotaKI0rb8k459fDzefRP6Pd9/wJQTla4u
+ QAAAA==
+To: Utsav Agarwal <utsav.agarwal@analog.com>, 
+ Michael Hennerich <michael.hennerich@analog.com>, 
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>
+Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Arturs Artamonovs <arturs.artamonovs@analog.com>, 
+ Vasileios Bimpikas <vasileios.bimpikas@analog.com>, 
+ Oliver Gaskell <oliver.gaskell@analog.com>
+X-Mailer: b4 0.14.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1720004298; l=2339;
+ i=utsav.agarwal@analog.com; s=20240701; h=from:subject:message-id;
+ bh=ZKBZXqTb3GYcej9sBFGWNtjDUyV0Rn3CMeoWjdQoMDA=;
+ b=F5tQpXuKWFwC+womE91xcSEaMlAf2+LITtvgdoV2FfCwSH+UNmP1DrAbVZZpGx9lHkr8+ioKN
+ HZ+kRE5RfHnAIUoFTjct16dDojVUrrAb5whPZduEy9pRdP1N7DJe+M2
+X-Developer-Key: i=utsav.agarwal@analog.com; a=ed25519;
+ pk=mIG5Dmd3TO5rcICwTsixl2MoUcf/i2u+jYqifd7+fmI=
+X-Endpoint-Received: by B4 Relay for utsav.agarwal@analog.com/20240701 with
+ auth_id=178
+X-Original-From: Utsav Agarwal <utsav.agarwal@analog.com>
+Reply-To: utsav.agarwal@analog.com
 
-From: Jernej Skrabec <jernej.skrabec@gmail.com>
+Current state of the driver for the ADP5588/87 only allows partial
+I/O to be used as GPIO. This support was previously present as a
+separate gpio driver, which was dropped with the commit
+5ddc896088b0 ("gpio: gpio-adp5588: drop the driver") since the
+functionality was deemed to have been merged with adp5588-keys.
 
-Like earlier DE versions, the DE33 has a CSC (Color Space Correction)
-module. which provides color space conversion between BT2020/BT709, and
-dynamic range conversion between SDR/ST2084/HLG.
+This series of patches re-enables this support by allowing the driver to 
+relax the requirement for registering a keymap and enable pure GPIO 
+operation. 
 
-Add support for the DE33.
+Changelog
+==========
 
-Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
-Signed-off-by: Ryan Walklin <ryan@testtoast.com>
+V2: 
+	-  Changed gpio_only from a local variable to a member of struct
+	adp5588_kpad
+	-  Removed condition from adp5588_probe() to skip adp5588_fw_parse() if 
+	gpio-only specified. adp558_fw_parse() now handles and returns
+	0 if gpio-only has been specified.
+	-  Added a check in adp5588_fw_parse() to make sure keypad 
+	properties(keypad,num-columns and keypad,num-rows) were not defined when 
+	gpio-only specified
+
+V3:
+	-  Moved device_property_present() for reading "gpio-only" into 
+	adp558_fw_parse()
+	-  Added print statements in case of error
+
+V4:
+	- Added dt-bindings patch
+
+Signed-off-by: Utsav Agarwal <utsav.agarwal@analog.com>
 ---
- drivers/gpu/drm/sun4i/sun8i_csc.c | 96 +++++++++++++++++++++++++++++++
- drivers/gpu/drm/sun4i/sun8i_csc.h |  3 +
- 2 files changed, 99 insertions(+)
+V5:
+	- Removed extra property "gpio-only", now pure gpio mode is
+	  detected via the adbsence of keypad specific properties.
+	- Added dependencies for keypad properties to preserve
+	  the original requirements in case a pure gpio mode is not
+	  being used.
+	- Added additional description for why the "interrupts" property
+	  was made optional
+	- Rebased current work based on https://lore.kernel.org/linux-input/ZoLt_qBCQS-tG8Ar@google.com/
+- Link to v4: https://lore.kernel.org/r/20240701-adp5588_gpio_support-v4-0-44bba0445e90@analog.com
 
-diff --git a/drivers/gpu/drm/sun4i/sun8i_csc.c b/drivers/gpu/drm/sun4i/sun8i_csc.c
-index 2d5a2cf7cba24..45bd1ca06400e 100644
---- a/drivers/gpu/drm/sun4i/sun8i_csc.c
-+++ b/drivers/gpu/drm/sun4i/sun8i_csc.c
-@@ -238,6 +238,14 @@ static const u32 yuv2yuv_de3[2][3][3][12] = {
- 	},
- };
- 
-+static u32 sun8i_csc_base(struct sun8i_mixer *mixer, int layer)
-+{
-+	if (mixer->cfg->de_type == sun8i_mixer_de33)
-+		return sun8i_channel_base(mixer, layer) - 0x800;
-+	else
-+		return ccsc_base[mixer->cfg->ccsc][layer];
-+}
-+
- static void sun8i_csc_setup(struct regmap *map, u32 base,
- 			    enum format_type fmt_type,
- 			    enum drm_color_encoding encoding,
-@@ -358,6 +366,90 @@ static void sun8i_de3_ccsc_setup(struct sunxi_engine *engine, int layer,
- 			   mask, val);
- }
- 
-+/* extract constant from high word and invert sign if necessary */
-+static u32 sun8i_de33_ccsc_get_constant(u32 value)
-+{
-+	value >>= 16;
-+
-+	if (value & BIT(15))
-+		return 0x400 - (value & 0x3ff);
-+
-+	return value;
-+}
-+
-+static void sun8i_de33_convert_table(const u32 *src, u32 *dst)
-+{
-+	dst[0] = sun8i_de33_ccsc_get_constant(src[3]);
-+	dst[1] = sun8i_de33_ccsc_get_constant(src[7]);
-+	dst[2] = sun8i_de33_ccsc_get_constant(src[11]);
-+	memcpy(&dst[3], src, sizeof(u32) * 12);
-+	dst[6] &= 0xffff;
-+	dst[10] &= 0xffff;
-+	dst[14] &= 0xffff;
-+}
-+
-+static void sun8i_de33_ccsc_setup(struct sun8i_mixer *mixer, int layer,
-+				  enum format_type fmt_type,
-+				  enum drm_color_encoding encoding,
-+				  enum drm_color_range range)
-+{
-+	u32 addr, val = 0, base, csc[15];
-+	struct sunxi_engine *engine;
-+	struct regmap *map;
-+	const u32 *table;
-+	int i;
-+
-+	table = yuv2rgb_de3[range][encoding];
-+	base = sun8i_csc_base(mixer, layer);
-+	engine = &mixer->engine;
-+	map = engine->regs;
-+
-+	switch (fmt_type) {
-+	case FORMAT_TYPE_RGB:
-+		if (engine->format == MEDIA_BUS_FMT_RGB888_1X24)
-+			break;
-+		val = SUN8I_CSC_CTRL_EN;
-+		sun8i_de33_convert_table(rgb2yuv_de3[engine->encoding], csc);
-+		regmap_bulk_write(map, SUN50I_CSC_COEFF(base, 0), csc, 15);
-+		break;
-+	case FORMAT_TYPE_YUV:
-+		table = sun8i_csc_get_de3_yuv_table(encoding, range,
-+						    engine->format,
-+						    engine->encoding);
-+		if (!table)
-+			break;
-+		val = SUN8I_CSC_CTRL_EN;
-+		sun8i_de33_convert_table(table, csc);
-+		regmap_bulk_write(map, SUN50I_CSC_COEFF(base, 0), csc, 15);
-+		break;
-+	case FORMAT_TYPE_YVU:
-+		table = sun8i_csc_get_de3_yuv_table(encoding, range,
-+						    engine->format,
-+						    engine->encoding);
-+		if (!table)
-+			table = yuv2yuv_de3[range][encoding][encoding];
-+		val = SUN8I_CSC_CTRL_EN;
-+		sun8i_de33_convert_table(table, csc);
-+		for (i = 0; i < 15; i++) {
-+			addr = SUN50I_CSC_COEFF(base, i);
-+			if (i > 3) {
-+				if (((i - 3) & 3) == 1)
-+					addr = SUN50I_CSC_COEFF(base, i + 1);
-+				else if (((i - 3) & 3) == 2)
-+					addr = SUN50I_CSC_COEFF(base, i - 1);
-+			}
-+			regmap_write(map, addr, csc[i]);
-+		}
-+		break;
-+	default:
-+		val = 0;
-+		DRM_WARN("Wrong CSC mode specified.\n");
-+		return;
-+	}
-+
-+	regmap_write(map, SUN8I_CSC_CTRL(base), val);
-+}
-+
- void sun8i_csc_set_ccsc(struct sun8i_mixer *mixer, int layer,
- 			enum format_type fmt_type,
- 			enum drm_color_encoding encoding,
-@@ -369,6 +461,10 @@ void sun8i_csc_set_ccsc(struct sun8i_mixer *mixer, int layer,
- 		sun8i_de3_ccsc_setup(&mixer->engine, layer,
- 				     fmt_type, encoding, range);
- 		return;
-+	} else if (mixer->cfg->de_type == sun8i_mixer_de33) {
-+		sun8i_de33_ccsc_setup(mixer, layer, fmt_type,
-+				      encoding, range);
-+		return;
- 	}
- 
- 	if (layer < mixer->cfg->vi_num) {
-diff --git a/drivers/gpu/drm/sun4i/sun8i_csc.h b/drivers/gpu/drm/sun4i/sun8i_csc.h
-index b7546e06e315c..2b762cb79f02c 100644
---- a/drivers/gpu/drm/sun4i/sun8i_csc.h
-+++ b/drivers/gpu/drm/sun4i/sun8i_csc.h
-@@ -20,6 +20,9 @@ struct sun8i_mixer;
- #define SUN8I_CSC_CTRL(base)		((base) + 0x0)
- #define SUN8I_CSC_COEFF(base, i)	((base) + 0x10 + 4 * (i))
- 
-+#define SUN50I_CSC_COEFF(base, i)	((base) + 0x04 + 4 * (i))
-+#define SUN50I_CSC_ALPHA(base)		((base) + 0x40)
-+
- #define SUN8I_CSC_CTRL_EN		BIT(0)
- 
- enum format_type {
+---
+Dmitry Torokhov (1):
+      iInput: adp5588-keys - use guard notation when acquiring mutexes
+
+Utsav Agarwal (2):
+      Input: adp5588-keys - add support for pure gpio
+      dt-bindings: input: Update dtbinding for adp5588
+
+ .../devicetree/bindings/input/adi,adp5588.yaml     | 33 ++++++++--
+ drivers/input/keyboard/adp5588-keys.c              | 70 ++++++++++++----------
+ 2 files changed, 66 insertions(+), 37 deletions(-)
+---
+base-commit: 1c52cf5e79d30ac996f34b64284f2c317004d641
+change-id: 20240701-adp5588_gpio_support-65db2bd21a9f
+
+Best regards,
 -- 
-2.45.2
+Utsav Agarwal <utsav.agarwal@analog.com>
+
 
 
