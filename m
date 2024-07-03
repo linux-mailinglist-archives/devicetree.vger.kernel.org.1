@@ -1,147 +1,238 @@
-Return-Path: <devicetree+bounces-82638-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82639-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70BF392530F
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 07:36:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BDB3B925334
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 07:57:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F2B6B1F23A12
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 05:36:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4AAF71F25062
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 05:57:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B06AC61FD4;
-	Wed,  3 Jul 2024 05:36:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1D0779B9C;
+	Wed,  3 Jul 2024 05:56:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="hXNe8PhP"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="kLTY/YIu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 169DB17996;
-	Wed,  3 Jul 2024 05:36:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDEEA4DA0F
+	for <devicetree@vger.kernel.org>; Wed,  3 Jul 2024 05:56:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719984991; cv=none; b=bzweTVID9dbpCfmUsKoyhC7tXAkHjrhMFulf+mcAqS9I08/9tnWuAVfi5gShkWa/eT7/Fn2wx8EOpnrFm5mV3gsIX4aTe/CVwcHN+PhV1h4rocmprlXTKhOKFS+4Flzr2Rdw9eKTeP9t8WaX8KgS6Wxu0xOEzQMJCyMhqoqIFig=
+	t=1719986218; cv=none; b=Q2bcSwwd1Q599gb74uyNq3HY0Y3oWRoZeo8lgZBmYqD6x0hK5KRqihOEyzHmulGf111CRcyzTtA9VWE1NRujrYQ380QQHjXpRafHA8o1K7B9E/UJBAb7fl4aQbuO4Kv+UhQ/JgXXyn1bzED4Howe8EqFSUE2NKGhX50TUgo7gc4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719984991; c=relaxed/simple;
-	bh=IqYMDHXTd5RtQdMHI3rY7t86+H3DAox5dASetNL6o9o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=g5CUu61vWf9cENcnycDyQ7FcT/JGcnKhexl0UVxNgrpeanxQgQSJ/CDpuI8dA2PA+Spn8WFmtO+avHUdcNXlznjJu4DQEwc/4MhkIT9F8SIpsDTfCy+O9KgxOdWGCDLlJcoPQymeOO39iG/inS1tiIGZcCrVTn+TLlxr7FzUAV8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=hXNe8PhP; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 462HEImb032039;
-	Wed, 3 Jul 2024 05:35:49 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	vEVq87AQcLxqSzjd33YFwLExMjs188eHyfneCEj+UDE=; b=hXNe8PhPrrp+FVGZ
-	NuvieG1pC+wgJ/vaAb8nNIOGTPYIE6nC7NWHuwTTaP/4vNbrCfJcn4onPCNcJoTS
-	4z9Zkcp5xUW2sOiR61zuqiFenqwkEdBl1NhEM/JPcR6FQQ0GzdgVPHs2nKZg6hL6
-	+1/SdraCW7DZkyvkQH0Dj2v4jWj/LxFlDzWYwNEeNb5KJvcNJ8/0/Ir2+UR4rlXA
-	AhV2OfKxdxIkqlH+3/1z2lCbbC7COlwG/TjrLarefFnJnCsj3q3uyTnkp5PepMmc
-	/X/zzwRJG6StBE7K9Ybpv4FdNEGs/8AEM2r3Wgjwz1mwaEoTa6rDIM/KMQA8uP0/
-	UzYa4g==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 402abtqsjh-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 03 Jul 2024 05:35:48 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 4635ZlZg021927
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 3 Jul 2024 05:35:47 GMT
-Received: from [10.218.0.85] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 2 Jul 2024
- 22:35:16 -0700
-Message-ID: <23303bc2-4fa2-4b28-af5d-2cadf6795b94@quicinc.com>
-Date: Wed, 3 Jul 2024 11:05:12 +0530
+	s=arc-20240116; t=1719986218; c=relaxed/simple;
+	bh=Hl6QvPONN+05yHcIyDxD/TivlmLaEDWo+M0nr36Aqpo=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=MjuAsNpv3vrGliWdhziA8TugbxaOGjCTd+CzARPGgEv1lDn+cSGZgM80rGxPBr/oS+9Sh+pf9KkwgmwaolkYtGNLkcSeuycAoKFwjQNwd3Og5WWcJz6bzHlljiS31K3718mDgE1H9Xzh+RQMrQjBmPSyV0v68ciSUc7pJCgaw0A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=kLTY/YIu; arc=none smtp.client-ip=209.85.210.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-701b0b0be38so4031991b3a.0
+        for <devicetree@vger.kernel.org>; Tue, 02 Jul 2024 22:56:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1719986216; x=1720591016; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3t4UWZIXNmwlleeYAQCp+9zxVS/7gI08QvUREUzgO84=;
+        b=kLTY/YIuRXQFX1uoBSRxqyuB4PPODqP8Et2sykihrLa62djkpvNuSqWT5KvUCR7GE3
+         ofRvuBCBEAnhaAXOQeJpZbpuqci6bhyM0Zz+73tyqiry+HU97NdXTcvweC8uFeVQTCU4
+         a5vaZrUMBLlxYz+KfyxOSJz13zlhis6wRMPtmsZ/eLvkYRzUwJcqbQBr7hAyW629bVgG
+         3QGeumDCQBiGkWf2NtZ4gGy3KgkCcH5KJKPlekXrBJkWPpJYdr4ZU9dynmdztoCw7F21
+         HPB7+tL63K5jKIDir9sOOkQw/0NKyMrx11phaPhr2eOvU0PDvydAN1UCYiVAvCYVAm+B
+         085g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719986216; x=1720591016;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3t4UWZIXNmwlleeYAQCp+9zxVS/7gI08QvUREUzgO84=;
+        b=ZF8H2Hvs1UmKwG2g4oEc7NYLmtrjAYACAKYoJT1GHRHLIcOg/7n+FyZHJ7OtTQro8I
+         eMgUS4rwJMQpWHDZ3scrTcBD44xi5DR9A6e1wfhR/oLNBD7PeADaW49jkIZi9+7b7ak8
+         YMXojzQwoQ3SfJlaQ7ydEMdv8UsYjaYUVjdUPSHFPC87PmGrCpLWsbm8fmsxBwAmhtaa
+         oaExJqViEwITTX8Z4zUdbwgN8mJ/jEkyyCx/taycZyvn10q4TlHOQMUuTrxl6of7Obao
+         q/QURZ0uilxyXFzHbivrL17CO6cNaWC6u6BIzW1ie8nU3H8l2onoLyiR4U2BBm876ekX
+         fkkg==
+X-Forwarded-Encrypted: i=1; AJvYcCXSn4BbulRqxTvXNt08tDVnX8CAkEdL82rrS7GRpOpGnaoFGw/wdsmy29Xyi1hoYEozX3hj0s04BU7jIPpqn2lP0ROrr7XPA8ZP8Q==
+X-Gm-Message-State: AOJu0Yz/GGRfFIbcEQke61XwLXJVnXOy/mUNzShCcfaEZ2zAcDJGvJpx
+	jyYPhNTKxLjofktmzoB/+kbobKBz7lqCj5XUz6xRu8Q0JrOvOfj65cuhu5LiwyI=
+X-Google-Smtp-Source: AGHT+IHqMBjzzJYPaU1uYNXIsZtlyNsCzcnND9ARf2tTr/ndhy027f8LF0O61LoiggvB5CHkWjfqsw==
+X-Received: by 2002:a05:6a00:ccf:b0:706:6cb5:9720 with SMTP id d2e1a72fcca58-70aaaf3a9a0mr14350967b3a.34.1719986216101;
+        Tue, 02 Jul 2024 22:56:56 -0700 (PDT)
+Received: from charlie.ba.rivosinc.com ([64.71.180.162])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-70804a89fc9sm9514103b3a.212.2024.07.02.22.56.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Jul 2024 22:56:55 -0700 (PDT)
+From: Charlie Jenkins <charlie@rivosinc.com>
+Subject: [PATCH v4 00/13] riscv: Add support for xtheadvector
+Date: Tue, 02 Jul 2024 22:56:20 -0700
+Message-Id: <20240702-xtheadvector-v4-0-2bad6820db11@rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 27/47] dt-bindings: cpufreq: cpufreq-qcom-hw: Add QCS9100
- compatibles
-To: Tengfei Fan <quic_tengfan@quicinc.com>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <djakov@kernel.org>, <mturquette@baylibre.com>,
-        <sboyd@kernel.org>, <jassisinghbrar@gmail.com>,
-        <herbert@gondor.apana.org.au>, <davem@davemloft.net>,
-        <manivannan.sadhasivam@linaro.org>, <will@kernel.org>,
-        <joro@8bytes.org>, <conor@kernel.org>, <tglx@linutronix.de>,
-        <amitk@kernel.org>, <thara.gopinath@gmail.com>,
-        <linus.walleij@linaro.org>, <wim@linux-watchdog.org>,
-        <linux@roeck-us.net>, <rafael@kernel.org>, <viresh.kumar@linaro.org>,
-        <vkoul@kernel.org>, <edumazet@google.com>, <kuba@kernel.org>,
-        <pabeni@redhat.com>, <mcoquelin.stm32@gmail.com>
-CC: <robimarko@gmail.com>, <quic_gurus@quicinc.com>,
-        <bartosz.golaszewski@linaro.org>, <kishon@kernel.org>,
-        <quic_wcheng@quicinc.com>, <alim.akhtar@samsung.com>,
-        <avri.altman@wdc.com>, <bvanassche@acm.org>, <agross@kernel.org>,
-        <gregkh@linuxfoundation.org>, <robin.murphy@arm.com>,
-        <daniel.lezcano@linaro.org>, <rui.zhang@intel.com>,
-        <lukasz.luba@arm.com>, <quic_rjendra@quicinc.com>,
-        <ulf.hansson@linaro.org>, <quic_sibis@quicinc.com>,
-        <otto.pflueger@abscue.de>, <quic_rohiagar@quicinc.com>,
-        <luca@z3ntu.xyz>, <neil.armstrong@linaro.org>, <abel.vesa@linaro.org>,
-        <bhupesh.sharma@linaro.org>, <alexandre.torgue@foss.st.com>,
-        <peppe.cavallaro@st.com>, <joabreu@synopsys.com>,
-        <netdev@vger.kernel.org>, <lpieralisi@kernel.org>, <kw@linux.com>,
-        <bhelgaas@google.com>, <ahalaney@redhat.com>,
-        <krzysztof.kozlowski@linaro.org>, <u.kleine-koenig@pengutronix.de>,
-        <dmitry.baryshkov@linaro.org>, <quic_cang@quicinc.com>,
-        <danila@jiaxyga.com>, <quic_nitirawa@quicinc.com>,
-        <mantas@8devices.com>, <athierry@redhat.com>,
-        <quic_kbajaj@quicinc.com>, <quic_bjorande@quicinc.com>,
-        <quic_msarkar@quicinc.com>, <quic_devipriy@quicinc.com>,
-        <quic_tsoni@quicinc.com>, <quic_rgottimu@quicinc.com>,
-        <quic_shashim@quicinc.com>, <quic_kaushalk@quicinc.com>,
-        <quic_tingweiz@quicinc.com>, <quic_aiquny@quicinc.com>,
-        <srinivas.kandagatla@linaro.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>, <linux-crypto@vger.kernel.org>,
-        <linux-scsi@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <iommu@lists.linux.dev>,
-        <linux-riscv@lists.infradead.org>, <linux-gpio@vger.kernel.org>,
-        <linux-watchdog@vger.kernel.org>, <linux-pci@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>, <kernel@quicinc.com>
-References: <20240703025850.2172008-1-quic_tengfan@quicinc.com>
- <20240703035735.2182165-1-quic_tengfan@quicinc.com>
- <20240703035735.2182165-28-quic_tengfan@quicinc.com>
-Content-Language: en-US
-From: Taniya Das <quic_tdas@quicinc.com>
-In-Reply-To: <20240703035735.2182165-28-quic_tengfan@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 8lJLEVbQuwd3L6rNbNczrDg_BxIJ7MEN
-X-Proofpoint-ORIG-GUID: 8lJLEVbQuwd3L6rNbNczrDg_BxIJ7MEN
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-07-03_02,2024-07-02_02,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0
- priorityscore=1501 mlxscore=0 clxscore=1015 suspectscore=0 malwarescore=0
- lowpriorityscore=0 phishscore=0 adultscore=0 spamscore=0 impostorscore=0
- mlxlogscore=772 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2406140001 definitions=main-2407030039
+X-B4-Tracking: v=1; b=H4sIAATohGYC/22OQQ6DIBAAv2I4lwZYROmp/2h6UFgqh2oDhtgY/
+ 160F2t6nM3O7M4kYvAYyaWYScDkox/6DPJUENM1/QOpt5mJYEKyEhidxg4bm9CMQ6A1gAXLq1Y
+ KIFl5BXR+2nK3e+bOx7z23uqJr9NvSDH9G0qcMgoOS81t5TjT1+DTEH1vzmZ4krWVxM7nh0eSy
+ L6uGlkrDo1V8o8Pe/94H7LfOgcaW61UjQd/WZYPHIMzeysBAAA=
+To: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Paul Walmsley <paul.walmsley@sifive.com>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Jisheng Zhang <jszhang@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Samuel Holland <samuel@sholland.org>, 
+ Samuel Holland <samuel.holland@sifive.com>, 
+ Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>, 
+ Guo Ren <guoren@kernel.org>, Evan Green <evan@rivosinc.com>, 
+ Andy Chiu <andy.chiu@sifive.com>, Jessica Clarke <jrtc27@jrtc27.com>
+Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev, 
+ linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org, 
+ Charlie Jenkins <charlie@rivosinc.com>, 
+ Conor Dooley <conor.dooley@microchip.com>, Heiko Stuebner <heiko@sntech.de>, 
+ Heiko Stuebner <heiko@sntech.de>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1719986213; l=6557;
+ i=charlie@rivosinc.com; s=20231120; h=from:subject:message-id;
+ bh=Hl6QvPONN+05yHcIyDxD/TivlmLaEDWo+M0nr36Aqpo=;
+ b=0vRKAtP4oa7aLnXi13AE21uwWQVt69/hB4BymscXb4nZYxw5in4ZUBxCMHjyddBzXtxgpMVVs
+ x85UG530i7mAeng/cgJrtkk7msbK0rDDWOqHGiJst/OxYB5NyQPgwIM
+X-Developer-Key: i=charlie@rivosinc.com; a=ed25519;
+ pk=t4RSWpMV1q5lf/NWIeR9z58bcje60/dbtxxmoSfBEcs=
 
+xtheadvector is a custom extension that is based upon riscv vector
+version 0.7.1 [1]. All of the vector routines have been modified to
+support this alternative vector version based upon whether xtheadvector
+was determined to be supported at boot.
 
+vlenb is not supported on the existing xtheadvector hardware, so a
+devicetree property thead,vlenb is added to provide the vlenb to Linux.
 
-On 7/3/2024 9:27 AM, Tengfei Fan wrote:
-> +              - qcom,qcs9100-cpufreq-epss
+There is a new hwprobe key RISCV_HWPROBE_KEY_VENDOR_EXT_THEAD_0 that is
+used to request which thead vendor extensions are supported on the
+current platform. This allows future vendors to allocate hwprobe keys
+for their vendor.
 
-This is not required as we already have sa8775p bindings.
+Support for xtheadvector is also added to the vector kselftests.
 
+Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
+
+[1] https://github.com/T-head-Semi/thead-extension-spec/blob/95358cb2cca9489361c61d335e03d3134b14133f/xtheadvector.adoc
+
+---
+This series is a continuation of a different series that was fragmented
+into two other series in an attempt to get part of it merged in the 6.10
+merge window. The split-off series did not get merged due to a NAK on
+the series that added the generic riscv,vlenb devicetree entry. This
+series has converted riscv,vlenb to thead,vlenb to remedy this issue.
+
+The original series is titled "riscv: Support vendor extensions and
+xtheadvector" [3].
+
+The series titled "riscv: Extend cpufeature.c to detect vendor
+extensions" is still under development and this series is based on that
+series! [4]
+
+I have tested this with an Allwinner Nezha board. I ran into issues
+booting the board after 6.9-rc1 so I applied these patches to 6.8. There
+are a couple of minor merge conflicts that do arrise when doing that, so
+please let me know if you have been able to boot this board with a 6.9
+kernel. I used SkiffOS [1] to manage building the image, but upgraded
+the U-Boot version to Samuel Holland's more up-to-date version [2] and
+changed out the device tree used by U-Boot with the device trees that
+are present in upstream linux and this series. Thank you Samuel for all
+of the work you did to make this task possible.
+
+[1] https://github.com/skiffos/SkiffOS/tree/master/configs/allwinner/nezha
+[2] https://github.com/smaeul/u-boot/commit/2e89b706f5c956a70c989cd31665f1429e9a0b48
+[3] https://lore.kernel.org/all/20240503-dev-charlie-support_thead_vector_6_9-v6-0-cb7624e65d82@rivosinc.com/
+[4] https://lore.kernel.org/linux-riscv/20240609-support_vendor_extensions-v2-0-9a43f1fdcbb9@rivosinc.com/
+
+---
+Changes in v4:
+- Replace inline asm with C (Samuel)
+- Rename VCSRs to CSRs (Samuel)
+- Replace .insn directives with .4byte directives
+- Link to v3: https://lore.kernel.org/r/20240619-xtheadvector-v3-0-bff39eb9668e@rivosinc.com
+
+Changes in v3:
+- Add back Heiko's signed-off-by (Conor)
+- Mark RISCV_HWPROBE_KEY_VENDOR_EXT_THEAD_0 as a bitmask
+- Link to v2: https://lore.kernel.org/r/20240610-xtheadvector-v2-0-97a48613ad64@rivosinc.com
+
+Changes in v2:
+- Removed extraneous references to "riscv,vlenb" (Jess)
+- Moved declaration of "thead,vlenb" into cpus.yaml and added
+  restriction that it's only applicable to thead cores (Conor)
+- Check CONFIG_RISCV_ISA_XTHEADVECTOR instead of CONFIG_RISCV_ISA_V for
+  thead,vlenb (Jess)
+- Fix naming of hwprobe variables (Evan)
+- Link to v1: https://lore.kernel.org/r/20240609-xtheadvector-v1-0-3fe591d7f109@rivosinc.com
+
+---
+Charlie Jenkins (12):
+      dt-bindings: riscv: Add xtheadvector ISA extension description
+      dt-bindings: cpus: add a thead vlen register length property
+      riscv: dts: allwinner: Add xtheadvector to the D1/D1s devicetree
+      riscv: Add thead and xtheadvector as a vendor extension
+      riscv: vector: Use vlenb from DT for thead
+      riscv: csr: Add CSR encodings for CSR_VXRM/CSR_VXSAT
+      riscv: Add xtheadvector instruction definitions
+      riscv: vector: Support xtheadvector save/restore
+      riscv: hwprobe: Add thead vendor extension probing
+      riscv: hwprobe: Document thead vendor extensions and xtheadvector extension
+      selftests: riscv: Fix vector tests
+      selftests: riscv: Support xtheadvector in vector tests
+
+Heiko Stuebner (1):
+      RISC-V: define the elements of the VCSR vector CSR
+
+ Documentation/arch/riscv/hwprobe.rst               |  10 +
+ Documentation/devicetree/bindings/riscv/cpus.yaml  |  19 ++
+ .../devicetree/bindings/riscv/extensions.yaml      |  10 +
+ arch/riscv/Kconfig.vendor                          |  26 ++
+ arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi      |   3 +-
+ arch/riscv/include/asm/cpufeature.h                |   2 +
+ arch/riscv/include/asm/csr.h                       |  15 ++
+ arch/riscv/include/asm/hwprobe.h                   |   5 +-
+ arch/riscv/include/asm/switch_to.h                 |   2 +-
+ arch/riscv/include/asm/vector.h                    | 224 ++++++++++++----
+ arch/riscv/include/asm/vendor_extensions/thead.h   |  42 +++
+ .../include/asm/vendor_extensions/thead_hwprobe.h  |  18 ++
+ .../include/asm/vendor_extensions/vendor_hwprobe.h |  37 +++
+ arch/riscv/include/uapi/asm/hwprobe.h              |   3 +-
+ arch/riscv/include/uapi/asm/vendor/thead.h         |   3 +
+ arch/riscv/kernel/cpufeature.c                     |  51 +++-
+ arch/riscv/kernel/kernel_mode_vector.c             |   8 +-
+ arch/riscv/kernel/process.c                        |   4 +-
+ arch/riscv/kernel/signal.c                         |   6 +-
+ arch/riscv/kernel/sys_hwprobe.c                    |   5 +
+ arch/riscv/kernel/vector.c                         |  25 +-
+ arch/riscv/kernel/vendor_extensions.c              |  10 +
+ arch/riscv/kernel/vendor_extensions/Makefile       |   2 +
+ arch/riscv/kernel/vendor_extensions/thead.c        |  18 ++
+ .../riscv/kernel/vendor_extensions/thead_hwprobe.c |  19 ++
+ tools/testing/selftests/riscv/vector/.gitignore    |   3 +-
+ tools/testing/selftests/riscv/vector/Makefile      |  17 +-
+ .../selftests/riscv/vector/v_exec_initval_nolibc.c |  93 +++++++
+ tools/testing/selftests/riscv/vector/v_helpers.c   |  67 +++++
+ tools/testing/selftests/riscv/vector/v_helpers.h   |   7 +
+ tools/testing/selftests/riscv/vector/v_initval.c   |  22 ++
+ .../selftests/riscv/vector/v_initval_nolibc.c      |  68 -----
+ .../selftests/riscv/vector/vstate_exec_nolibc.c    |  20 +-
+ .../testing/selftests/riscv/vector/vstate_prctl.c  | 295 ++++++++++++---------
+ 34 files changed, 888 insertions(+), 271 deletions(-)
+---
+base-commit: 11cc01d4d2af304b7288251aad7e03315db8dffc
+change-id: 20240530-xtheadvector-833d3d17b423
 -- 
-Thanks & Regards,
-Taniya Das.
+- Charlie
+
 
