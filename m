@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-82634-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82635-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCDFB9252CB
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 07:10:19 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7A649252CF
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 07:11:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0B23B1C2308B
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 05:10:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 88183B2504E
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 05:11:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80FB0482C3;
-	Wed,  3 Jul 2024 05:10:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0FC949652;
+	Wed,  3 Jul 2024 05:11:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Vk0p8w2a"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u+30EclT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FEE43AC2B;
-	Wed,  3 Jul 2024 05:10:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5D53282FA;
+	Wed,  3 Jul 2024 05:11:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719983414; cv=none; b=qUmI5F8pQE65uBvGLxk75gnlrenHFq8ipefs1+pAsxKmZdjySBTYLW8BknrKBHZtmLSPidfXRMzfU0EQDh6JnKuka9i0EJPjvUgPmXbYJOgBuoEQxXAeuz8x8oWHDXOwM8onhBflvHlGnfMmpu8lLnZy42eYgNJ4/G4aynd0syQ=
+	t=1719983476; cv=none; b=OcqsOp04b59O/cOW5lYhF37AWqlsggfa54yGYkNJ4O1mVRfBJ37jMC6k9hgL4LXFrVEtCg8RqtoQxr1utFhe/et+wEAfq0/EcdimiDDK23A/Q/5M1GDFyPTr6SAeSdYkd5Y47/ceVSUrRBrWONtXX0Onw8vikawLTB7xeGC7dsU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719983414; c=relaxed/simple;
-	bh=ZKID8yQjJeutkGffhz+1E1HSYpHQ7cWND4WzW5u3Lfc=;
+	s=arc-20240116; t=1719983476; c=relaxed/simple;
+	bh=xsp0EMrwjbgEAaBKMHY0U0d81QyG/dqoN1JIXlmNJoY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DAer76uivMlsQfvyJDU8mLsfU8BUB6wx607Gtj2vXnE0DEm9Pul8seQcRJPtHG1Key8tMUiLTlQ/rLRMzrkb1zoyDmrqvLtuqMy+kjIhSqFUvsETl2oTLHIT/dy5YDfZaYosEnYUQFZuIF64AR0tjlgiuoJA7I35F5onFoJkSJI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Vk0p8w2a; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86CB9C32781;
-	Wed,  3 Jul 2024 05:10:10 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=QaJgjdEbt2ebBqfN/6PaIVLGZ/7lPVDl2m/d2pdZOiklmcNn6O3Dc2v8wZCj5ZO9Qj+jyz9sca0RgCyA5jvHiHYQ93NYKVoWfr1M1cZjKlyzc0/nK6t9cP4hVKzx35ndomtI/7PwfzdgosFtmaSMcf9mrBSWTgBieEJAlq9zRvI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=u+30EclT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4302AC32781;
+	Wed,  3 Jul 2024 05:11:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719983413;
-	bh=ZKID8yQjJeutkGffhz+1E1HSYpHQ7cWND4WzW5u3Lfc=;
+	s=k20201202; t=1719983476;
+	bh=xsp0EMrwjbgEAaBKMHY0U0d81QyG/dqoN1JIXlmNJoY=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Vk0p8w2a5FU/xaoBf0vyMNFrfou7vl7Fh+wUR8Fk64qT76MHjEjVglqcBq8w6q9cX
-	 bzUJBrqMzMLbOZfXhp0nRcVltgWw9135Als2Zkily73YGMz22nJERYff7/SRjxDEbJ
-	 UExHPxUDDRVIQgzikI9CepBd+WjJZ619G/oR9zNHzvfRG6UY1PNfHHZqOTspg11OMB
-	 fOpXmtuJ8S8YyDVFNBkyaVih2yBMgrr72ztP2zbGAAZ9uDg/U+iWWn8d6YVoGM+YBn
-	 gsX5Bpx9/clnE57AN0+Gx51wJN73Ni40+uFd/afUWB8qYIEOMcvWib/NOj2Mmehty4
-	 qr/B1uK21Hhmw==
-Message-ID: <bd84c34b-259f-404c-82ac-bf82e0e17d20@kernel.org>
-Date: Wed, 3 Jul 2024 07:10:07 +0200
+	b=u+30EclTdiHztNloMqaYxaidDHhki/SLffhzno45Faw5wH3zDGjJ7A0gUW9w7T7Ny
+	 M8BvHk9+lh/vnN6X9dX5YpNCBF84///UagJUx88so832lPi6V5XJUY+E5uPK2t1iVF
+	 HQn8SQmPj50sE20Cpo0Zxw4b3sqcRC4ySPMiIslT9RoTBp9AqZ6v4Y4qJBXbs80wh2
+	 i8y0A7iiaCVVS6bprWHC9rTHUY2dWaW9z3/UjurpDbUViflGDFSEgGVW8AYmU/TxBf
+	 hr1jXCixNHeunVeR2KXeqjp1ZpMXXaQHpfUU6wMQxi8gSvmhyM94wSRC3RJjkZtVsn
+	 eT3C1lItuNHLA==
+Message-ID: <29c95f4e-f075-405f-935f-6fd5c616595f@kernel.org>
+Date: Wed, 3 Jul 2024 07:11:10 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/1] dt-bindings: gpio: fsl,qoriq-gpio: Add compatible
- string fsl,ls1046a-gpio
-To: Frank Li <Frank.Li@nxp.com>, Linus Walleij <linus.walleij@linaro.org>,
- Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, "open list:GPIO SUBSYSTEM"
- <linux-gpio@vger.kernel.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
-Cc: imx@lists.linux.dev
-References: <20240702201724.96681-1-Frank.Li@nxp.com>
+Subject: Re: [PATCH V2 1/4] dt-bindings: arm: sunxi: Add Anbernic RG35XXSP
+To: Chris Morgan <macroalpha82@gmail.com>, linux-sunxi@lists.linux.dev
+Cc: devicetree@vger.kernel.org, mripard@kernel.org, ryan@testtoast.com,
+ andre.przywara@arm.com, samuel@sholland.org, jernej.skrabec@gmail.com,
+ wens@csie.org, conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
+ Chris Morgan <macromorgan@hotmail.com>
+References: <20240702193414.57461-1-macroalpha82@gmail.com>
+ <20240702193414.57461-2-macroalpha82@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,18 +103,51 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240702201724.96681-1-Frank.Li@nxp.com>
+In-Reply-To: <20240702193414.57461-2-macroalpha82@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 02/07/2024 22:17, Frank Li wrote:
-> Add compatible string for chip ls1046 to fix below warning.
-> arch/arm64/boot/dts/freescale/fsl-ls1046a-frwy.dtb: /soc/gpio@2300000: failed to match any schema with compatible: ['fsl,ls1046a-gpio', 'fsl,qoriq-gpio']
+On 02/07/2024 21:34, Chris Morgan wrote:
+> From: Chris Morgan <macromorgan@hotmail.com>
 > 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> Add the Anbernic RG35XXSP variant device and consolidate the Anbernic
+> H700 devices.
+> 
+> The Anbernic RG35XXSP is almost identical to the RG35XX-Plus, but in a
+> clamshell form-factor with an external RTC and a lid switch.
+> 
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
 > ---
+>  Documentation/devicetree/bindings/arm/sunxi.yaml | 9 +++++++--
+>  1 file changed, 7 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documentation/devicetree/bindings/arm/sunxi.yaml
+> index c2a158b75e49..60b11b289535 100644
+> --- a/Documentation/devicetree/bindings/arm/sunxi.yaml
+> +++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
+> @@ -61,14 +61,19 @@ properties:
+>            - const: anbernic,rg35xx-2024
+>            - const: allwinner,sun50i-h700
+>  
+> +      - description: Anbernic RG35XX H
+> +        items:
+> +          - const: anbernic,rg35xx-h
+> +          - const: allwinner,sun50i-h700
+> +
+>        - description: Anbernic RG35XX Plus
+>          items:
+>            - const: anbernic,rg35xx-plus
+>            - const: allwinner,sun50i-h700
+>  
+> -      - description: Anbernic RG35XX H
+> +      - description: Anbernic RG35XX SP
+>          items:
+> -          - const: anbernic,rg35xx-h
+> +          - const: anbernic,rg35xx-sp
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Where is the consolidation? All this is supposed to be in an enum...
+
+
 
 Best regards,
 Krzysztof
