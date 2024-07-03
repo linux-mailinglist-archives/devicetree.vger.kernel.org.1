@@ -1,109 +1,77 @@
-Return-Path: <devicetree+bounces-82979-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82980-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65B7F9269D0
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 23:02:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B1399269F4
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 23:07:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8A6F61C211BB
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 21:02:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E711D28150E
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 21:07:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06A6917DA30;
-	Wed,  3 Jul 2024 21:02:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gGWRsB9H"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC06A191F62;
+	Wed,  3 Jul 2024 21:05:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA08710A1F;
-	Wed,  3 Jul 2024 21:02:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 407C5186E2D;
+	Wed,  3 Jul 2024 21:05:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720040551; cv=none; b=kIPAOuHghWMwI+YrEw1DfRRb8Wq/AQfsZvOXWRFF2u6EcBydAicY9yU4+C08EOLOiUuY8MMFbMvImKKf4Eq7YgyCf5f3I1+MM6G8IhLW0oNRhHyudpAnm4liypK+dLyksvMgjg+s0j+6DPwTbZFZs84bEgRVKvcmdi3Zo3hPbck=
+	t=1720040745; cv=none; b=m2CPGTJ54mI2roh/AY6XbkbzocLhKXXlgrCSLJiCPefxvA6v3x8lFpIv3P5ENGTUJwqyLHiBSkXO/HHKYdC6RwfplM+ssLpXCAWNqgPjdLi1Hi8x/61uq0TZfMU2ne3B0Cf4/tCk1DhZhbSronaccjh0GfeqJ3mPb6TOKq6oIWg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720040551; c=relaxed/simple;
-	bh=dmmPN7PbNyCuDzjw4nX616fO/kyvAhA6uaaJgw/vC5g=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ixgEIa2kQbYVGFewE/mjh/DGC5QLVF8yjWsQKVF9v5ixQZkJ94Tyj5/IQUlUm7c5TVMhRxzjES6CyZirazNlF7eifYorawlPurW6QtHKz8uIZt9GK1XC85vBMJ8oRg+0mgaSqIPm0xquSpuT83S9FqUtsOqMryXLK6/L9dGg234=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gGWRsB9H; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57B3BC2BD10;
-	Wed,  3 Jul 2024 21:02:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720040550;
-	bh=dmmPN7PbNyCuDzjw4nX616fO/kyvAhA6uaaJgw/vC5g=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gGWRsB9H5MXgtDn7xBNW3x8qyw8sNfFGFcrNRO8O/yIwf4qqlSgoIJAMpNG+t7BZX
-	 +AKaNMZnSTW4BhxsEDiixqYQXjKtfclgZgjhydQxZMm5TBdoAjiLfsPmtiPKpGEVBH
-	 aA0+F2GTdsgouJCp7SjzpViThXocsy3WXNw/Y+KaMkXP+XplJoFUdxgaEfzWOQixUZ
-	 bsQZkCrJg+4nGLJsbgVE8NmRAiwVdIjZxxi/tYhpzwa3F6oVqpx356zsR7lFetlzpJ
-	 X49nafffoCvVToREvd67r+CMnyPu62/lizDqCqlBh2Z56O17YJk6yCzqZkFQ0dmnAM
-	 o0nxREnHvwoVQ==
-Date: Wed, 3 Jul 2024 22:02:23 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Qiang Zhao <qiang.zhao@nxp.com>,
-	Shengjiu Wang <shengjiu.wang@gmail.com>,
-	Xiubo Li <Xiubo.Lee@gmail.com>, Fabio Estevam <festevam@gmail.com>,
-	Nicolin Chen <nicoleotsuka@gmail.com>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	Christophe Leroy <christophe.leroy@csgroup.eu>,
-	alsa-devel@alsa-project.org, linuxppc-dev@lists.ozlabs.org,
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v2 07/10] soc: fsl: cpm1: qmc: Introduce functions to get
- a channel from a phandle list
-Message-ID: <a8c44188-d5d8-445d-9d64-bbfce6b1b628@sirena.org.uk>
-References: <20240701113038.55144-1-herve.codina@bootlin.com>
- <20240701113038.55144-8-herve.codina@bootlin.com>
+	s=arc-20240116; t=1720040745; c=relaxed/simple;
+	bh=Fe0xTZ/pZqs1np4QSRWoVH/JdV6Q5jUGKxLlMaKAnc4=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=JrKaNF+QZWlxKKmIydlCrFNwcAYzvyLRSxRuoUf9VRhrDsls7jw0XgGr7q4wkBuVFO1tlvQuGL+9EIHBqcoJ8JBtMUBCMk/j4F7F3ochKPE/2vz4vxkVB3t+lJpkvIBq36wikmM17rqsSeKlMrjXvzU6zIWXJktm715JrUSVcv4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+Received: from i53875ac2.versanet.de ([83.135.90.194] helo=phil.lan)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1sP7AR-0000bE-HV; Wed, 03 Jul 2024 23:05:31 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: heiko@sntech.de
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 0/2] Rock 5 ITX devicetree
+Date: Wed,  3 Jul 2024 23:05:22 +0200
+Message-Id: <20240703210524.776455-1-heiko@sntech.de>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="IXiemNHl5uycVqbr"
-Content-Disposition: inline
-In-Reply-To: <20240701113038.55144-8-herve.codina@bootlin.com>
-X-Cookie: There is a fly on your nose.
+Content-Transfer-Encoding: 8bit
+
+Add a basic support for the Rock 5 ITX board.
+
+After struggling a bit with the pcie3 ports, thankfully they seem to run
+pretty nice now thanks to me finding the property for the shared-rx-clk
+for the pcie3 phy.
 
 
---IXiemNHl5uycVqbr
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Heiko Stuebner (2):
+  dt-bindings: arm: rockchip: Add Rock 5 ITX board
+  arm64: dts: rockchip: add rock5 itx board
 
-On Mon, Jul 01, 2024 at 01:30:34PM +0200, Herve Codina wrote:
-> qmc_chan_get_byphandle() and the resource managed version retrieve a
-> channel from a simple phandle.
->=20
-> Extend the API and introduce qmc_chan_get_byphandles_index() and the
-> resource managed version in order to retrieve a channel from a phandle
-> list using the provided index to identify the phandle in the list.
+ .../devicetree/bindings/arm/rockchip.yaml     |    5 +
+ arch/arm64/boot/dts/rockchip/Makefile         |    1 +
+ .../boot/dts/rockchip/rk3588-rock-5itx.dts    | 1188 +++++++++++++++++
+ 3 files changed, 1194 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-rock-5itx.dts
 
-These two PowerPC patches seem trivial enough and have got no response,
-unless someone objects I'll go ahead and apply them.
+-- 
+2.39.2
 
---IXiemNHl5uycVqbr
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmaFvF4ACgkQJNaLcl1U
-h9BZVQf/UimpDsgz78MuXcxLPQ7UIFnEeDuapV1kWGaWCmCLoHhTHXeG8B/9AQqI
-ttiEWJdBKBzc1NRr0xmsh4BpKIVlCe3zZ3tndxE0umFnliWOKBeo7ZqroZb47asH
-lcjxXenwNC733si1/zHRv3cxK8z0zprPshVonONBP4iaKppNz0Kmifj77IglG/h2
-C6j9RiJ9CNkG7KTc5XU376/q5G4PXStk+KRrVL0F+x+c93QywoqXinxhXovc/j69
-CNNc/7NjfF/7Rs+Y+F4QA+6VA9WjwjEO+WNaI3VtZad+beJ6ERyJBnh6G0tCrWl7
-PYG5NWe9uOZQxqsuESvUUBEGB2nJzg==
-=qAFL
------END PGP SIGNATURE-----
-
---IXiemNHl5uycVqbr--
 
