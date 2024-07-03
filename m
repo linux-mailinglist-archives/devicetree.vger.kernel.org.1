@@ -1,192 +1,114 @@
-Return-Path: <devicetree+bounces-82519-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82520-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C848F924CB0
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 02:18:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0983F924CE7
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 02:53:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 355E028369E
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 00:18:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C09AD281CCA
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 00:53:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5CE8637;
-	Wed,  3 Jul 2024 00:18:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CEFF138E;
+	Wed,  3 Jul 2024 00:53:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="gPNxC/Wp"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ep8+u2kW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from IND01-MAX-obe.outbound.protection.outlook.com (mail-maxind01olkn2096.outbound.protection.outlook.com [40.92.102.96])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DED2621;
-	Wed,  3 Jul 2024 00:18:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.102.96
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719965920; cv=fail; b=CXM1zm7CtPah6hRC65ERcygUHS3ebUlD7+eJxxWXmEcjhWoGn6E6v5bMkIUAElsPInZ787wxqEXJPB082UlULJoUOZUCMJv9yVzhS7ddCidtoZ9GN1vQ65Hy/Lxb+9C0OASlxhY89HawsZttNgcU0g/AQnTp+xuQ5oWoJSG/aJY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719965920; c=relaxed/simple;
-	bh=tELbtsTPF3ZujpVIHo5w1q6EfTBF1FPIeLNIp4BHWs0=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=pOCde8WrND2AHWekXMmSsIAWm3iSgcf2oZ4eHApUrha3W+et7EDKlHgkwGJ0VRnG01W4nkvhUusYc2A5GbYkW3TI1vVoW98tsyUhLhxwCFy84x5P0exp/yfDYfCW/CIyQNV/bPSpioVhTuNLfpcnu/Kj1EIUoMIwTOGlafWq5nA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=gPNxC/Wp; arc=fail smtp.client-ip=40.92.102.96
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=aAB8wnig5zbxtFhaXJoPKGwas2F8/ZovERkSiKhSW2wz2PVtnCgsxWPqd2Wi6vaDO8voZSWqxf51SS4VmcQCfPbhClL/WttGiCZoqlpVayl7qn5wsUArOIJexePSCD/3v+4i9mNGZwiQ3K98Jm1E8jVAMfs0Z03/DCMuNbf245Y+4vZOwIdTnxqsPH3Kvt0/mwvZuKdHv786/fuiEYPyQBKIR/36YyGkX07gbMvNFmj6yIQHauI/ev4vF1FPZh6o2QTK2+IQNcuVzSVgtSRzbbgGkBYIExZeXZ4/2lHQn8KMfT5xHejBqWPFeGuhNTZ8j+IXOANlnWvj7GNOgTpEng==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=coZ61vzd69LhhCu9qdITtdW5+b4E6lfGCWU9drL0pNM=;
- b=fXjacyHk5C/CVioyQ8xwTmArwQH2Siiauvwr2Qp5o4CDPp60bzPwRwTKkykAwfDMqkbNQc/Mf1WHNDKj7/VX+al+sKNUVx5ZpQqp2A7K+Oz4vwZCJpDuqRyvphswhbvyVEBaXzAbUFuoM8DeSN3l4Ag7fxAwMsBVFUu8alQS+b84N2H2hu3HSjLl3PnXauD2qVqxkST8cgbihh3HKutnbI/ioxhPpQVo5c/gjvd4HIvP1J2Wtt/bgBCak2t6/E/MHlcPDC+evpwR8zFYM9fm5nXv7syXLDMFhkYJzvf6QjQfbylR7vzrwwm/T1MWVIJ77Q4cGbaztFAjTy7Mr9RjKA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=coZ61vzd69LhhCu9qdITtdW5+b4E6lfGCWU9drL0pNM=;
- b=gPNxC/WpuOHsSt6PVjXoDNYshBUeGhvAIIW/dD+g9EsXwzXjtv/vV2TEg4txNp4s1DkH6crXlg01oZoq+ekjEeYuvzkbuYY5dBUIjeI2xx+xTPdJWJtCJgnRTSSeBe9Sp9G+CQv1uMwgdvAYS32BJGd57NNrGGdngXPVvH9oc2SFvJxTWzDSfD9qZT7HcN+D3Pi5b2OHHMUcJemb40Z8nzZwp3ti/wZS/ypxG4YMhs+jCSHleOGL/iAp/bTtUG6Tql4f4U4NoeQeP5NkxYTf1rukPchBC04hxgKDCZoyHRkSG3uoBG0tGEyGFqb6cxHvJkSgL9F6ORSXfhgvZNmnLQ==
-Received: from MA0P287MB2822.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:138::5)
- by PN2P287MB2064.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:1c7::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7741.25; Wed, 3 Jul
- 2024 00:18:31 +0000
-Received: from MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
- ([fe80::a94:ad0a:9071:806c]) by MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
- ([fe80::a94:ad0a:9071:806c%3]) with mapi id 15.20.7741.017; Wed, 3 Jul 2024
- 00:18:30 +0000
-Message-ID:
- <MA0P287MB282240D38A2D9B0F2D1ED186FEDD2@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
-Date: Wed, 3 Jul 2024 08:18:27 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] iio: adc: sophgo-saradc: Add driver for Sophgo SARADC
-To: Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
- Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Inochi Amaoto <inochiama@outlook.com>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- =?UTF-8?Q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-References: <20240702-sg2002-adc-v1-0-ac66e076a756@bootlin.com>
- <20240702-sg2002-adc-v1-2-ac66e076a756@bootlin.com>
-From: Chen Wang <unicorn_wang@outlook.com>
-In-Reply-To: <20240702-sg2002-adc-v1-2-ac66e076a756@bootlin.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-TMN: [9YuLmH2OZDwm4w62j6QQ09I14yfT6nEM]
-X-ClientProxiedBy: SI1PR02CA0042.apcprd02.prod.outlook.com
- (2603:1096:4:1f6::17) To MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:138::5)
-X-Microsoft-Original-Message-ID:
- <0d1dbf4c-e3d1-4577-b9a1-b299da80ca68@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A802F39B;
+	Wed,  3 Jul 2024 00:53:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.170
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1719967996; cv=none; b=btX/91yEzg57e/CS7Mla4z0czezFjxHxDDPIgy5qUc19ZPPGSMtfX0BztY12hRNLaUfgU+yEuLq5UIZQTq7gdTzcP92nK8DxtL1KiD120y/VUk8m4XtTtU1DFIlCZxAZCQZKCS5EloT9+VKFz3mJacse9RefMX6sxoQ4Ipee0To=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1719967996; c=relaxed/simple;
+	bh=aBf6kYW43wmtYKnp4/vtMVB2VMSMGvp39uDJh4OR09A=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=q972NSyCrRYPk1UDdsGivc2xqfl9zTnO9+9pLrWUW6hSZ65qranlyQhEzrEm/Jm1Ud1t3kFvz6Rt9FkZe0fgcRLE01uCtpRSd6sfXJ0hrfwHPOwW/tV2Nxy66giOslI1bCVQ4krDPFNUm7Ip8ee/SBXBodXLOr6exooQ3XOTdyI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ep8+u2kW; arc=none smtp.client-ip=209.85.222.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f170.google.com with SMTP id af79cd13be357-79d5e61704eso293003185a.3;
+        Tue, 02 Jul 2024 17:53:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1719967994; x=1720572794; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=aBf6kYW43wmtYKnp4/vtMVB2VMSMGvp39uDJh4OR09A=;
+        b=ep8+u2kWzNLhzc5fmCC3Q/ItRmIuZ72k9aCFs3e/um1sOHk8NCrVzETvWaIXMCBoo9
+         LAQvNYVz4s4m64osgn8q1DKvRnnvAtee+GEO3vH6uHtlR1qchNP/JAZXZ/XBw5wzqhpt
+         plJ7nbsGuSUa99tG698bVkqcQbIAYp82P4ML+1hMdc9772yj6rHLLDxgU1EDBJERNkKF
+         t07Cb3MiSR17aCTpSDMPkwM00s2ILVLVHZgaSDZc7UTglWkdKfVfnB/ngyWf1qwsf+M3
+         WDwCUeIv2P7bMg5ac6zxJEb+pETUk2/z9CARrqZtwZQy3v7FIxdbjlljRLgFRZfdut67
+         ykFg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719967994; x=1720572794;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=aBf6kYW43wmtYKnp4/vtMVB2VMSMGvp39uDJh4OR09A=;
+        b=b+KEVQOhJPVXtB6FyQURVB/dC88GpkWhohivfgja0zpmpEBDbFSavwPc0gaNo6UxSm
+         tQoWOlve3mupEtLyZadQVKFAzjX0gdbhJ3KgDDla5OHIJvUjYqpOpgLauSnmRrGP2ILu
+         SDcGAeZGcN0qNEOU7ZVdc3zv6BKCNfJhpdHIROv6EhTW+Lj/fRHDMneg0UqvQXKQE03t
+         j/nCNIllu//GX0XtxFyzFsk+zva6vsSFPJtjqapU37tpdGJlhEG3Wbp2/qLtLNyddZ/E
+         Rqv1m5BfvGuD2k8VbMsYCdRO3gdoOMZn0UrcHpIoRVQkUl/BsrGbG96xi/LT/PTZ1ywC
+         aAFg==
+X-Forwarded-Encrypted: i=1; AJvYcCVNuylQIAaiF5YYYcnSAkLX81grac923Yh79T4qMMcoh5jbfGg2d0d/s67IZemdaly5HqCaC0Wj1BU1NJ+9LE0wawdxc4ecrkuwwV5dZiSUalamNQh2yqUbmGkKfDEYUi0xObj7hX1/Sg==
+X-Gm-Message-State: AOJu0YyK++wu7XBJr4SY/68ptGnJ/pMXWyD9MWdOAJ07bo6MA3CmcsLL
+	sQMqq50AiK2PumRmNX2j/DAtv176wyKnpYjk4emZLA33rzclpchgQzG6qqVXRBqwNiL1Fw5IVWP
+	+3AVGdj1aAqbiqbVrgz57GqiRtW4=
+X-Google-Smtp-Source: AGHT+IGKB0TLT+t0w5QSBMZabpd2h/895P0ReYUirZgWMt68DyeN1EUL3/SR4Kp8gQ6Dq2SCe4lpf6y5S8nghoDBQrk=
+X-Received: by 2002:a05:620a:468c:b0:79e:e3b0:436d with SMTP id
+ af79cd13be357-79ee3b04ad2mr6046185a.52.1719967993653; Tue, 02 Jul 2024
+ 17:53:13 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MA0P287MB2822:EE_|PN2P287MB2064:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0d4ba0e6-fb3c-4526-dff4-08dc9af5aaf4
-X-Microsoft-Antispam:
-	BCL:0;ARA:14566002|461199028|8060799006|3412199025|440099028;
-X-Microsoft-Antispam-Message-Info:
-	UdyozPnMFko5MOMu/43eobMwPJnDIqlCY9grhvGEvg5G7PIwjT7YdjHxM/Mc01mIZJUJFQnEPKpDKJzvnYEo30kI7Cl1VKpWvgXVowkwCYYCkHs4CfnYFWQPHiYDf5jpQ/SpI+kZan+4w/7yAqfRhmfLvH+1BWp+tnsjmNfurXsGkoADjafjT2JAPVnubdFC1fVpQkwcYCw7hcgVkrW6ioCw6AYCC5/9FcQHN026QgKzgtaNxqIVlfKX/fGLXjr25lAY1/2xLJBs4HcGbottIBLPt77iY39ZaCaOLokX4tnVeBM/0noWcIq6ht2fzGdFBxsIJEAwRcDe5UrZyil9c0V3i3+heoko+wLcjO6ZkU1TJhQeyo8YhDDNAjHRGBoHJCvMs6OSfW/fadieZnAa0fhyegOsDt2WcZbPRNl8mykYy6C5aIb1opW/SaGpRtJLzHF6lpunPMGOWTPPdMXcHOVj8BWD1KPG902bzRc/5fsFa+/SVbREnSKAmFTIgC2jVkEyq5UbX/wyZe9w3GLIDK6/ZT3vVUGDt8KkP7XRcydnBVqSZ55ejGW3BrMiOTJPDmov6m2/OgEOI6R3ZSmTmPqH0Ce5zcDZauWAIZ0atZI=
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?N0pqZm9FZXA0SERmaDNrRDc1WU1LakNBSGlIQ3BwQ1ZjK1IyZmg5SjJLT2hm?=
- =?utf-8?B?V0VqL05WU0FxM0g0endPZUhJUUJmRWl6TkVMbEhDVS90UG4vdE9tSEU5by9N?=
- =?utf-8?B?VkJORWtidDVTbEtHUERHb0c4S3c4Rm42NDdzNXgvZ0I4VDA5azRNV1N3cU9X?=
- =?utf-8?B?UHlPNk5QVE55MmlmMUlubU5OSU9uV0FkNnNWZW82azB1WkMwenN6M2pKU3pS?=
- =?utf-8?B?aXNKLyt6WkV5WDBnRWhibk0yNkZyUXJrdEtvaFk5VHphbVp1d21RbndBTkR4?=
- =?utf-8?B?VVZOOS9nTEtUNTRVdVIrajgwV2czeHlubmNFL0JYc290SzRWVUlGN0pwVDMw?=
- =?utf-8?B?b2JUMFcxMFlscXg4cTUzRDhUTVpRT1lQb3cwaGtuRHJBTFljTEFkZXBqQWJW?=
- =?utf-8?B?dEczVDZwdFVSWE5RWXFnWjRoOXlBSW9tTGxQWjZMbVRlTUNwTHcwNytVd3kx?=
- =?utf-8?B?RkMvM3Zxd09QTkFoV056VVg4WnRZRXFKZzFWSkcvRzhNMVFkSldHRXhDMHBk?=
- =?utf-8?B?bzEwTERza3J5WExzeVQ4WkppTThsYURlemRtckdrUnMxNU5XSnl4cmxZcUFO?=
- =?utf-8?B?d1JKV010UDFDSnRWU2dJU3dvZzBNdEdBL0pYVkJZSTBRaWNWeFlzWVFGMzha?=
- =?utf-8?B?WWx2Q2VTU3lDNlRVenpxTEpHTVJ6ZDZlWExJQTE2MDRvNDRrMjdJUzhia3h5?=
- =?utf-8?B?VlJGSHh2bWxUbkFMQXdhZ1FRUXV0NFVNUThGU1cydFdDVDhhTnlJT2NZU09m?=
- =?utf-8?B?YzVBRno1dG92Y0ZnOTRLUjRaaU9mV1VZS0F4cGJYUjBsYVFlV2VwT3BoZWJm?=
- =?utf-8?B?NUIwRWk3VTUzb1B3NUQ1eTBYczUyMCtUM1k0RWJ6dWcxenplZ0xLWmVmUmg1?=
- =?utf-8?B?aEJwZEsrdmxpeFlLc0phUzJPZHVkUTJSL3dVQ2dkOC9xNWZaV1BQK1VrcWRP?=
- =?utf-8?B?Y2NmbzdCbTE3MUJIZkhkZVN6Q3V2QUZvRXVyYWpyQWRZZHlyOHdhZzI4Nm1l?=
- =?utf-8?B?YUREdmJrbFNSSmtFc0RSb21hWFJST0hQSGhVdUZzQTlsVDQrUHcwWGdqTTdW?=
- =?utf-8?B?QzhoY0hYZXB6S2ZXWWRSVkxsek0rWUU3Z0NqcGN1RnFSSDZZbm1RbFBSYUcv?=
- =?utf-8?B?dTZ6endqcDJzV3ZyQXU5N0ZDVE5uMHR4NXBVN0JqNnNwcTZxT0llRlhiSHJo?=
- =?utf-8?B?N0FpRVRFWmFlZWwrSXdMUHhMeEVNSnk3eTR6UWtGT3pKZFJGVVkxRXNER2dk?=
- =?utf-8?B?QXVYeEE0UldRVDhOWXhjY01VR0hmR2JIWVNyUTRzNEFWOUcwWDNxeGM4cHdP?=
- =?utf-8?B?ZjVIVHF0enp5VkpMZTNQVnF4cFpNWTlRbkZYTDBjem9VdlA1MEpSYzFOYS92?=
- =?utf-8?B?TVJETUFJNlpzbkRuM1FwKytBajBiVjhFTENIRGxocmtac2JVSFdibm9IOHhz?=
- =?utf-8?B?TmhXSkYwbDNkYjlKUTZRUFhNR0ZaR3VWMkJTK1FIRXczaEwyMkgzVkQxczU4?=
- =?utf-8?B?OWFwY3QzNUViaDN0NVVLUFF5aUR5OUlORVJoTXFYaXFzYUFvM1N6VlRjTDdK?=
- =?utf-8?B?Uk5KeGNXQjBITjNyK1RSajdLYmx1QTFmU0NTeFoyc1hMUjlEYTFXN0lPOGtM?=
- =?utf-8?B?SGZoajJ4OUFlcGNTdE5KNmxRNURDVmhFSEVkcWVlM1VaQnM2OHNhQUErMWNL?=
- =?utf-8?Q?y9ZPnyXngc63417PLrlP?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0d4ba0e6-fb3c-4526-dff4-08dc9af5aaf4
-X-MS-Exchange-CrossTenant-AuthSource: MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jul 2024 00:18:30.7790
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN2P287MB2064
+References: <20240702164403.29067-1-afd@ti.com>
+In-Reply-To: <20240702164403.29067-1-afd@ti.com>
+From: Robert Nelson <robertcnelson@gmail.com>
+Date: Tue, 2 Jul 2024 19:52:47 -0500
+Message-ID: <CAOCHtYhX8if3c8=qOz+qx=ss+Yya9Ta5xFbW+NmG-tOQco2s-g@mail.gmail.com>
+Subject: Re: [PATCH RFC 0/3] Add generic Overlay for Grove Sunlight Sensor
+To: Andrew Davis <afd@ti.com>
+Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Andrew Lunn <andrew@lunn.ch>, Vaishnav M A <vaishnav@beagleboard.org>, 
+	Derek Kiernan <derek.kiernan@amd.com>, Dragan Cvetic <dragan.cvetic@amd.com>, 
+	Arnd Bergmann <arnd@arndb.de>, Michael Walle <mwalle@kernel.org>, 
+	Jason Kridner <jkridner@beagleboard.org>, Ayush Singh <ayush@beagleboard.org>, 
+	Ayush Singh <ayushdevel1325@gmail.com>, linux-arm-kernel@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Tue, Jul 2, 2024 at 11:44=E2=80=AFAM Andrew Davis <afd@ti.com> wrote:
+>
+> Hello all,
+>
+> A new attempt at solving the long standing "add-on board" problem was
+> recently posted[0]. The current out-of-tree solutions usually involve
+> Device Tree Overlays. Recently, Overlays have started being accepted into
+> the kernel repo, this makes now the perfect time to solve this issue.
+> Here is my attempt at a generic solution.
 
-On 2024/7/2 19:52, Thomas Bonnefille wrote:
+Thanks Andrew for taking some time to look into this. I really like
+the individual modules and how you can connect each overlay for
+multiple combinations.
 
-[......]
+I will play with/commit this in our current 6.6.x branches.
 
->   SOUND
->   M:	Jaroslav Kysela <perex@perex.cz>
-> diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
-> index 8db68b80b391..826871a2e61a 100644
-> --- a/drivers/iio/adc/Kconfig
-> +++ b/drivers/iio/adc/Kconfig
-> @@ -1122,6 +1122,15 @@ config SC27XX_ADC
->   	  This driver can also be built as a module. If so, the module
->   	  will be called sc27xx_adc.
->   
-> +config SOPHGO_ADC
-> +	tristate "Sophgo ADC"
-> +	depends on ARCH_SOPHGO || COMPILE_TEST
-> +	help
-> +	  Say yes here to build support for the ADC integrated in Sophgo SoCs.
-> +
-> +	  This driver can also be built as a module. If so, the module
-> +	  will be called sophgo_adc.
-> +
+Regards,
 
-I believe this adc driver is only for sophgo cv18xx, sophgo has other 
-soc chipset, such as sg2024 etc., so it's better use add more limitation 
-for this.
-
->   config SPEAR_ADC
->   	tristate "ST SPEAr ADC"
->   	depends on PLAT_SPEAR || COMPILE_TEST
-> diff --git a/drivers/iio/adc/Makefile b/drivers/iio/adc/Makefile
-> index edb32ce2af02..106a83d50d01 100644
-> --- a/drivers/iio/adc/Makefile
-> +++ b/drivers/iio/adc/Makefile
-> @@ -102,6 +102,7 @@ obj-$(CONFIG_ROCKCHIP_SARADC) += rockchip_saradc.o
->   obj-$(CONFIG_RICHTEK_RTQ6056) += rtq6056.o
->   obj-$(CONFIG_RZG2L_ADC) += rzg2l_adc.o
->   obj-$(CONFIG_SC27XX_ADC) += sc27xx_adc.o
-> +obj-$(CONFIG_SOPHGO_ADC) += sophgo-adc.o
->   obj-$(CONFIG_SPEAR_ADC) += spear_adc.o
->   obj-$(CONFIG_SUN4I_GPADC) += sun4i-gpadc-iio.o
->   obj-$(CONFIG_SUN20I_GPADC) += sun20i-gpadc-iio.o
-> diff --git a/drivers/iio/adc/sophgo-adc.c b/drivers/iio/adc/sophgo-adc.c
-
-As I mentioned upon, soghgo has many other product code, and 
-"sophgo-cv18xx-adc.c" should be more accurate.
-
-[......]
-
+--=20
+Robert Nelson
+https://rcn-ee.com/
 
