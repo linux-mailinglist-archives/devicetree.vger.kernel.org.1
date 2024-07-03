@@ -1,201 +1,166 @@
-Return-Path: <devicetree+bounces-82657-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82653-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2EE69253BA
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 08:32:19 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B4789253A8
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 08:30:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 106291C24C30
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 06:32:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7AEF3B21C42
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 06:30:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB32D1386C0;
-	Wed,  3 Jul 2024 06:31:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50DF4130A7C;
+	Wed,  3 Jul 2024 06:29:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="Gxsoe0HD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-sh.amlogic.com (unknown [58.32.228.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0325B13775B;
-	Wed,  3 Jul 2024 06:31:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=58.32.228.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1089130A58;
+	Wed,  3 Jul 2024 06:29:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719988294; cv=none; b=n2VUEOQroedXws5owOn+gtUw4Ruoj99PC/biwFXOcvGOoupncusXIvHPJCdnUdTzFM9HL51n4gEdxDzS+opy8ZE+rX9IkzDm8rg821WN3lKKcWnknDc1qMdXkuq9IbqLy79k1AApoY9wB0ANC+QSDCDtXBegrrvO1CTYnwbc1xI=
+	t=1719988198; cv=none; b=omRZKaquo2Kz9bBV2DqflrGLN3tgBbogx///6V4BcRcdTILSPMcAbBauVQVLLJvsgZ4UPJ3jR+RESEfMcVm9fvnKQ5iLSIUyqc+nUokubyCDlHun5Begpqxw0mnMLY3TkRhyJeilftAKYqY84w+uYPB9vy07R0vbUAl5YQOm40U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719988294; c=relaxed/simple;
-	bh=kA6LIOc3Alw0ut6784da65cwBnGH6NQ7007My63rbS8=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=TJSeJdM3ovJ30QOmkPJWW/6yLut3oy6an/zIgevGplnm9n80bW+/151k4V4QZWoouVk6s+QUYoHAtbDULU2AhDnNnLOnP7+YUso7s3xQasVfBGmDULoDiKFiUgQSjDXAgJVzGqc2BPp+rzz23sjelt6z4M0lg3HNi+/W2DCafDE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amlogic.com; spf=pass smtp.mailfrom=amlogic.com; arc=none smtp.client-ip=58.32.228.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amlogic.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amlogic.com
-Received: from droid10-sz.amlogic.com (10.28.11.69) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.6; Wed, 3 Jul 2024
- 14:16:19 +0800
-From: zelong dong <zelong.dong@amlogic.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>, Philipp Zabel
-	<p.zabel@pengutronix.de>, Kevin Hilman <khilman@baylibre.com>, Rob Herring
-	<robh@kernel.org>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Jerome Brunet <jbrunet@baylibre.com>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>
-CC: <linux-kernel@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
-	<linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<kelvin.zhang@amlogic.com>, Zelong Dong <zelong.dong@amlogic.com>
-Subject: [PATCH 3/3] arm64: dts: amlogic: Add Amlogic A5 reset controller
-Date: Wed, 3 Jul 2024 14:16:10 +0800
-Message-ID: <20240703061610.37217-4-zelong.dong@amlogic.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20240703061610.37217-1-zelong.dong@amlogic.com>
-References: <20240703061610.37217-1-zelong.dong@amlogic.com>
+	s=arc-20240116; t=1719988198; c=relaxed/simple;
+	bh=uNhuDjLWZorDbXDOWnVhHDPlY99NnQewwMxhnvVsgtQ=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=vD6t/EB7OPjc/Trou7EnbIBEWXKpVaQ6h9UuGIXbKHeaxa5y7iaQPb9fYzKFzNu2PDYjFuigoRx9HByJg8XkQgbBVKPOLfTJ/wmcf0D/Xv3UdGbdAONbbPn1R5xFVlvSpjqcwMGS1a8pUWZBskeCnRNt/ouoXZOINL7zWRXX0Io=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=fail smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=Gxsoe0HD; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1719988196; x=1751524196;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=uNhuDjLWZorDbXDOWnVhHDPlY99NnQewwMxhnvVsgtQ=;
+  b=Gxsoe0HDr1vqSeikiipVO5TI/gFLTolVGrIn0jHuD0KYVjfCBy1UEBSZ
+   BpRYiUfnCkff/9qnCQ/66s7om2eDgQhzRramGfsq0ofYBKt6ovGOuxD4p
+   L3rqkMjoVJq1x3N9qU7Ad23WyCHMDsySnLd7M+kdKfVHRgXYZ55Lrbkvt
+   bWW+7NYk6yDaSSaPabbtDt/H1D3dqxqPp2abyJm0KRvzmRlmtXOSMW9v1
+   Gj6syKdrKT8gsFo5Q3dlaBpwOUYypWKzlaa+f3iV4/Im69c5JdnNLkZ4d
+   04MEJkypyA8ZfmuQN9+0piLgjC2U7qdhCBpqQm0e+oXr9xYQ9mm5UaUTh
+   A==;
+X-CSE-ConnectionGUID: uIiTarkbQoeuHwrRiGsmdg==
+X-CSE-MsgGUID: 7MEjGxCjQO6357/Nmml1zg==
+X-IronPort-AV: E=Sophos;i="6.09,181,1716274800"; 
+   d="asc'?scan'208";a="31406626"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 02 Jul 2024 23:29:52 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Tue, 2 Jul 2024 23:29:26 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex04.mchp-main.com (10.10.85.152)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
+ Transport; Tue, 2 Jul 2024 23:29:12 -0700
+Date: Wed, 3 Jul 2024 07:28:53 +0100
+From: Conor Dooley <conor.dooley@microchip.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: Tengfei Fan <quic_tengfan@quicinc.com>, <andersson@kernel.org>,
+	<konrad.dybcio@linaro.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <djakov@kernel.org>, <mturquette@baylibre.com>,
+	<sboyd@kernel.org>, <jassisinghbrar@gmail.com>,
+	<herbert@gondor.apana.org.au>, <davem@davemloft.net>,
+	<manivannan.sadhasivam@linaro.org>, <will@kernel.org>, <joro@8bytes.org>,
+	<conor@kernel.org>, <tglx@linutronix.de>, <amitk@kernel.org>,
+	<thara.gopinath@gmail.com>, <linus.walleij@linaro.org>,
+	<wim@linux-watchdog.org>, <linux@roeck-us.net>, <rafael@kernel.org>,
+	<viresh.kumar@linaro.org>, <vkoul@kernel.org>, <edumazet@google.com>,
+	<kuba@kernel.org>, <pabeni@redhat.com>, <mcoquelin.stm32@gmail.com>,
+	<robimarko@gmail.com>, <quic_gurus@quicinc.com>,
+	<bartosz.golaszewski@linaro.org>, <kishon@kernel.org>,
+	<quic_wcheng@quicinc.com>, <alim.akhtar@samsung.com>, <avri.altman@wdc.com>,
+	<bvanassche@acm.org>, <agross@kernel.org>, <gregkh@linuxfoundation.org>,
+	<quic_tdas@quicinc.com>, <robin.murphy@arm.com>, <daniel.lezcano@linaro.org>,
+	<rui.zhang@intel.com>, <lukasz.luba@arm.com>, <quic_rjendra@quicinc.com>,
+	<ulf.hansson@linaro.org>, <quic_sibis@quicinc.com>,
+	<otto.pflueger@abscue.de>, <quic_rohiagar@quicinc.com>, <luca@z3ntu.xyz>,
+	<neil.armstrong@linaro.org>, <abel.vesa@linaro.org>,
+	<bhupesh.sharma@linaro.org>, <alexandre.torgue@foss.st.com>,
+	<peppe.cavallaro@st.com>, <joabreu@synopsys.com>, <netdev@vger.kernel.org>,
+	<lpieralisi@kernel.org>, <kw@linux.com>, <bhelgaas@google.com>,
+	<ahalaney@redhat.com>, <krzysztof.kozlowski@linaro.org>,
+	<u.kleine-koenig@pengutronix.de>, <dmitry.baryshkov@linaro.org>,
+	<quic_cang@quicinc.com>, <danila@jiaxyga.com>, <quic_nitirawa@quicinc.com>,
+	<mantas@8devices.com>, <athierry@redhat.com>, <quic_kbajaj@quicinc.com>,
+	<quic_bjorande@quicinc.com>, <quic_msarkar@quicinc.com>,
+	<quic_devipriy@quicinc.com>, <quic_tsoni@quicinc.com>,
+	<quic_rgottimu@quicinc.com>, <quic_shashim@quicinc.com>,
+	<quic_kaushalk@quicinc.com>, <quic_tingweiz@quicinc.com>,
+	<quic_aiquny@quicinc.com>, <srinivas.kandagatla@linaro.org>,
+	<linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+	<linux-clk@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+	<linux-crypto@vger.kernel.org>, <linux-scsi@vger.kernel.org>,
+	<linux-usb@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<iommu@lists.linux.dev>, <linux-riscv@lists.infradead.org>,
+	<linux-gpio@vger.kernel.org>, <linux-watchdog@vger.kernel.org>,
+	<linux-pci@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
+	<kernel@quicinc.com>
+Subject: Re: [PATCH 00/47] arm64: qcom: dts: add QCS9100 support
+Message-ID: <20240703-manager-armless-b13b18c79192@wendy>
+References: <20240703025850.2172008-1-quic_tengfan@quicinc.com>
+ <20240703035735.2182165-1-quic_tengfan@quicinc.com>
+ <7417fd8c-e852-45ee-bac9-d92921036e2f@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="5oSvLfaqEVebv1DP"
+Content-Disposition: inline
+In-Reply-To: <7417fd8c-e852-45ee-bac9-d92921036e2f@kernel.org>
 
-From: Zelong Dong <zelong.dong@amlogic.com>
+--5oSvLfaqEVebv1DP
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Add the device node and related header file for Amlogic
-A5 reset controller. The count and offset for A5 Soc
-RESET registers are same as S4 Soc.
+On Wed, Jul 03, 2024 at 06:45:00AM +0200, Krzysztof Kozlowski wrote:
+> On 03/07/2024 05:56, Tengfei Fan wrote:
+> > Introduce support for the QCS9100 SoC device tree (DTSI) and the
+> > QCS9100 RIDE board DTS. The QCS9100 is a variant of the SA8775p.
+> > While the QCS9100 platform is still in the early design stage, the
+> > QCS9100 RIDE board is identical to the SA8775p RIDE board, except it
+> > mounts the QCS9100 SoC instead of the SA8775p SoC.
+>=20
+> The same huge patchset, to huge number of recipients was sent twice.
+> First, sorry, this is way too big. Second, it has way too many
+> recipients, but this is partially a result of first point. Only
+> partially because you put here dozen of totally unrelated emails. Sorry,
+> that does not make even sense. See form letter at the end how this
+> works. Third, sending it to everyone twice is a way to annoy them off
+> twice... Fourth,
+>=20
+> Please split your work and do not cc dozen of unrelated folks.
 
-Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
----
- .../boot/dts/amlogic/amlogic-a4-common.dtsi   |  1 +
- .../arm64/boot/dts/amlogic/amlogic-a5-reset.h | 95 +++++++++++++++++++
- arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi   |  1 +
- 3 files changed, 97 insertions(+)
- create mode 100644 arch/arm64/boot/dts/amlogic/amlogic-a5-reset.h
+One of the extra recipients is cos that of that patch I sent adding the
+cache bindings to the cache entry, forgetting that that would CC the
+riscv list on all cache bindings. I modified that patch to drop the riscv
+list from the entry.
 
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a4-common.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-a4-common.dtsi
-index c527dfce65ab..f11fe3ee83b2 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-a4-common.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-a4-common.dtsi
-@@ -54,6 +54,7 @@ apb: bus@fe000000 {
- 
- 			reset: reset-controller@2000 {
- 				compatible = "amlogic,a4-reset",
-+					     "amlogic,a5-reset",
- 					     "amlogic,meson-s4-reset";
- 				reg = <0x0 0x2000 0x0 0x98>;
- 				#reset-cells = <1>;
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a5-reset.h b/arch/arm64/boot/dts/amlogic/amlogic-a5-reset.h
-new file mode 100644
-index 000000000000..cdf0f5159620
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-a5-reset.h
-@@ -0,0 +1,95 @@
-+/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
-+/*
-+ * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
-+ */
-+
-+#ifndef __DTS_AMLOGIC_A5_RESET_H
-+#define __DTS_AMLOGIC_A5_RESET_H
-+
-+/* RESET0 */
-+/*						0-3 */
-+#define RESET_USB				4
-+/*						5-7 */
-+#define RESET_USBPHY20				8
-+/*						9 */
-+#define RESET_USB2DRD				10
-+/*						11-31 */
-+
-+/* RESET1 */
-+#define RESET_AUDIO				32
-+#define RESET_AUDIO_VAD				33
-+/*                                              34 */
-+#define RESET_DDR_APB				35
-+#define RESET_DDR				36
-+/*						37-40 */
-+#define RESET_DSPA_DEBUG			41
-+/*                                              42 */
-+#define RESET_DSPA				43
-+/*						44-46 */
-+#define RESET_NNA				47
-+#define RESET_ETHERNET				48
-+/*						49-63 */
-+
-+/* RESET2 */
-+#define RESET_ABUS_ARB				64
-+#define RESET_IRCTRL				65
-+/*						66 */
-+#define RESET_TS_PLL				67
-+/*						68-72 */
-+#define RESET_SPICC_0				73
-+#define RESET_SPICC_1				74
-+#define RESET_RSA				75
-+
-+/*						76-79 */
-+#define RESET_MSR_CLK				80
-+#define RESET_SPIFC				81
-+#define RESET_SAR_ADC				82
-+/*						83-90 */
-+#define RESET_WATCHDOG				91
-+/*						92-95 */
-+
-+/* RESET3 */
-+/*						96-127 */
-+
-+/* RESET4 */
-+#define RESET_RTC				128
-+/*						129-131 */
-+#define RESET_PWM_AB				132
-+#define RESET_PWM_CD				133
-+#define RESET_PWM_EF				134
-+#define RESET_PWM_GH				135
-+/*						104-105 */
-+#define RESET_UART_A				138
-+#define RESET_UART_B				139
-+#define RESET_UART_C				140
-+#define RESET_UART_D				141
-+#define RESET_UART_E				142
-+/*						143*/
-+#define RESET_I2C_S_A				144
-+#define RESET_I2C_M_A				145
-+#define RESET_I2C_M_B				146
-+#define RESET_I2C_M_C				147
-+#define RESET_I2C_M_D				148
-+/*						149-151 */
-+#define RESET_SDEMMC_A				152
-+/*						153 */
-+#define RESET_SDEMMC_C				154
-+/*						155-159*/
-+
-+/* RESET5 */
-+/*						160-175 */
-+#define RESET_BRG_AO_NIC_SYS			176
-+#define RESET_BRG_AO_NIC_DSPA			177
-+#define RESET_BRG_AO_NIC_MAIN			178
-+#define RESET_BRG_AO_NIC_AUDIO			179
-+/*						180-183 */
-+#define RESET_BRG_AO_NIC_ALL			184
-+#define RESET_BRG_NIC_NNA			185
-+#define RESET_BRG_NIC_SDIO			186
-+#define RESET_BRG_NIC_EMMC			187
-+#define RESET_BRG_NIC_DSU			188
-+#define RESET_BRG_NIC_SYSCLK			189
-+#define RESET_BRG_NIC_MAIN			190
-+#define RESET_BRG_NIC_ALL			191
-+
-+#endif
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi
-index 43f68a7da2f7..ea9d4f2ce42b 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi
-@@ -4,6 +4,7 @@
-  */
- 
- #include "amlogic-a4-common.dtsi"
-+#include "amlogic-a5-reset.h"
- / {
- 	cpus {
- 		#address-cells = <2>;
--- 
-2.35.1
+Cheers,
+Conor.
 
+--5oSvLfaqEVebv1DP
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZoTvpQAKCRB4tDGHoIJi
+0iuiAP9Wgtx8LiFpImc+BXo3h8CTF/4nY5kHoihO91fC51FsogEAnEhd56PAeLdE
+Uxg8sGMCKh5qjR+u3kQIZlblyU1rmwA=
+=Khim
+-----END PGP SIGNATURE-----
+
+--5oSvLfaqEVebv1DP--
 
