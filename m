@@ -1,121 +1,179 @@
-Return-Path: <devicetree+bounces-82630-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82631-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9DC9925298
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 06:41:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59F799252A0
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 06:45:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 49935290631
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 04:41:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C41151F25066
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 04:45:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 582F03A1B5;
-	Wed,  3 Jul 2024 04:41:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3125A3C062;
+	Wed,  3 Jul 2024 04:45:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="VsqgfUeh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lGCvU4O7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC74938FA3;
-	Wed,  3 Jul 2024 04:41:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF32A17BCE;
+	Wed,  3 Jul 2024 04:45:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719981679; cv=none; b=ElvUssBLS0pTPpJDuHw8yl5Hzu3XWxIfB8pjR2NaYnUeLujrQ0ewJB3JvIGiaOuR1EXzsp2wx7eHAyqbm/PrBbPUzKZcdxgl3vHjSjvMh+xXZyB9eIx6TSBVn/N5NI+nhZVJK4w8UIRcMiMMxYDdF5AGrVIoxGmuYJaauvOIfKg=
+	t=1719981934; cv=none; b=hbLkvVlcax+ngdEH2AUGAKh4EonDjTw/CFo2MoK0TcNNBnY9u56mLgSF7wL/Y06Sscx9s0G9oQVGL/zO9UEI3E570JZ4TlL6nNBgO0GftoWRmuJ933jkESxaRI3chFkzwzXfhBV6+Ao77ot7H9SEO4oqO7DKvi6O6ECKsH0d4MA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719981679; c=relaxed/simple;
-	bh=oki8liKn5k0U22KlItiWsAt4L8gNr6FiUWluvbFXBQY=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=qMRIieciC+u6pbdyBp+UweqVX+f6n0CkIx/Es9nx5JeK0pZFeJqOBWN4XLvss4h7WWaQMaHiM+T3PQOlGA+GeTxB/ugdmJC7JBipFXAo8SLcXmIQJY5h2eNkMnGRAoyN3gY1ASD3mpV168RNw7I9i6U6AVnwOrL7B/JElMMxJp0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=VsqgfUeh; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4634fCH8090508;
-	Tue, 2 Jul 2024 23:41:12 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1719981672;
-	bh=M1L/X3uXJ7DcW2oB14EvasFdDWQd6cfIR9J/Id0i6YA=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=VsqgfUehVOFvVGQnvXcRMTOVH61hweVIlKhNWZ0gEQ2RZFzXpZz5FTGvu7en7HNto
-	 LTApj8XEpQqQ9+1RFXdqNdW+eBUIekH3VoWtWxvlREsIHXwB7jOurkAFOJEUhwIaY7
-	 k4neZBeCsKjxxMvd+ZvRoUBMaHrn53DtgiOxuPXY=
-Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4634fCk0029849
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 2 Jul 2024 23:41:12 -0500
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 2
- Jul 2024 23:41:12 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 2 Jul 2024 23:41:12 -0500
-Received: from uda0132425.dhcp.ti.com (uda0132425.dhcp.ti.com [172.24.227.94])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4634f8Jb016725;
-	Tue, 2 Jul 2024 23:41:08 -0500
-From: Vignesh Raghavendra <vigneshr@ti.com>
-To: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, Roger Quadros <rogerq@kernel.org>
-CC: Vignesh Raghavendra <vigneshr@ti.com>, <srk@ti.com>, <praneeth@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Nitin Yadav <n-yadav@ti.com>
-Subject: Re: [PATCH 0/2] arm: dts: ti: k3-am62-lp-sk: Add NAND controller and overlay
-Date: Wed, 3 Jul 2024 10:11:04 +0530
-Message-ID: <171984950182.3152309.13685651099901318581.b4-ty@ti.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240622-am62lp-sk-nand-v1-0-caee496eaf42@kernel.org>
-References: <20240622-am62lp-sk-nand-v1-0-caee496eaf42@kernel.org>
+	s=arc-20240116; t=1719981934; c=relaxed/simple;
+	bh=ivVCeA51TNNPsWY2k1Ev7Ipke2mr3itsaOxAPyIsJRE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Pyas6SVPRlvXgcWxITJcxUSbkN4RC84oFIZsSRN/Dv2EkAWS8D9cuyumvf3YnC+tVl8fh4FuNrI9w8xyAfuIOuWFyjlOxp/l4DE/x0EMAZfQ1pFwh3hqStAWEZ0BFpPsbLil7lEoFoyuF/2dhX6k1fAAw/S1SIVYDMgGYyVN/G4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lGCvU4O7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7995AC32781;
+	Wed,  3 Jul 2024 04:45:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719981933;
+	bh=ivVCeA51TNNPsWY2k1Ev7Ipke2mr3itsaOxAPyIsJRE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=lGCvU4O78jSX5Z/RvG6MGLCGu3VOiw/KJ2zd+NsxhJmZchr9MD2NOK9ST1AXns3zX
+	 rFdrprQoXklrYc5cA1+pUDI9IvxmL/IQ2hB09EahjNP5/wgwVSdJra3s8dNHsqRC1B
+	 hoMZicWiuJEvPMM+AwB8EfChaaHBfGYrgIRbEbI/xEy4w74/FddnT6Hf23grJEmXGz
+	 ErXgLMKa0MbGdZPh7ia42T9Ig9ISFxM60Ok45BRjDoq59SjS2WzP4Xn8qeFMPOt6bX
+	 cM40OSOiTGUo3wxiCxPkfxfNqzHVkXWWf9RT6A7oicjlQ0rIXXSj8b8Af6YEdf71dQ
+	 qiRerIFmh0gtg==
+Message-ID: <7417fd8c-e852-45ee-bac9-d92921036e2f@kernel.org>
+Date: Wed, 3 Jul 2024 06:45:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 00/47] arm64: qcom: dts: add QCS9100 support
+To: Tengfei Fan <quic_tengfan@quicinc.com>, andersson@kernel.org,
+ konrad.dybcio@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, djakov@kernel.org, mturquette@baylibre.com,
+ sboyd@kernel.org, jassisinghbrar@gmail.com, herbert@gondor.apana.org.au,
+ davem@davemloft.net, manivannan.sadhasivam@linaro.org, will@kernel.org,
+ joro@8bytes.org, conor@kernel.org, tglx@linutronix.de, amitk@kernel.org,
+ thara.gopinath@gmail.com, linus.walleij@linaro.org, wim@linux-watchdog.org,
+ linux@roeck-us.net, rafael@kernel.org, viresh.kumar@linaro.org,
+ vkoul@kernel.org, edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+ mcoquelin.stm32@gmail.com
+Cc: robimarko@gmail.com, quic_gurus@quicinc.com,
+ bartosz.golaszewski@linaro.org, kishon@kernel.org, quic_wcheng@quicinc.com,
+ alim.akhtar@samsung.com, avri.altman@wdc.com, bvanassche@acm.org,
+ agross@kernel.org, gregkh@linuxfoundation.org, quic_tdas@quicinc.com,
+ robin.murphy@arm.com, daniel.lezcano@linaro.org, rui.zhang@intel.com,
+ lukasz.luba@arm.com, quic_rjendra@quicinc.com, ulf.hansson@linaro.org,
+ quic_sibis@quicinc.com, otto.pflueger@abscue.de, quic_rohiagar@quicinc.com,
+ luca@z3ntu.xyz, neil.armstrong@linaro.org, abel.vesa@linaro.org,
+ bhupesh.sharma@linaro.org, alexandre.torgue@foss.st.com,
+ peppe.cavallaro@st.com, joabreu@synopsys.com, netdev@vger.kernel.org,
+ lpieralisi@kernel.org, kw@linux.com, bhelgaas@google.com,
+ ahalaney@redhat.com, krzysztof.kozlowski@linaro.org,
+ u.kleine-koenig@pengutronix.de, dmitry.baryshkov@linaro.org,
+ quic_cang@quicinc.com, danila@jiaxyga.com, quic_nitirawa@quicinc.com,
+ mantas@8devices.com, athierry@redhat.com, quic_kbajaj@quicinc.com,
+ quic_bjorande@quicinc.com, quic_msarkar@quicinc.com,
+ quic_devipriy@quicinc.com, quic_tsoni@quicinc.com,
+ quic_rgottimu@quicinc.com, quic_shashim@quicinc.com,
+ quic_kaushalk@quicinc.com, quic_tingweiz@quicinc.com,
+ quic_aiquny@quicinc.com, srinivas.kandagatla@linaro.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-phy@lists.infradead.org,
+ linux-crypto@vger.kernel.org, linux-scsi@vger.kernel.org,
+ linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ iommu@lists.linux.dev, linux-riscv@lists.infradead.org,
+ linux-gpio@vger.kernel.org, linux-watchdog@vger.kernel.org,
+ linux-pci@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ kernel@quicinc.com
+References: <20240703025850.2172008-1-quic_tengfan@quicinc.com>
+ <20240703035735.2182165-1-quic_tengfan@quicinc.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240703035735.2182165-1-quic_tengfan@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Roger Quadros,
+On 03/07/2024 05:56, Tengfei Fan wrote:
+> Introduce support for the QCS9100 SoC device tree (DTSI) and the
+> QCS9100 RIDE board DTS. The QCS9100 is a variant of the SA8775p.
+> While the QCS9100 platform is still in the early design stage, the
+> QCS9100 RIDE board is identical to the SA8775p RIDE board, except it
+> mounts the QCS9100 SoC instead of the SA8775p SoC.
 
-On Sat, 22 Jun 2024 14:59:55 +0300, Roger Quadros wrote:
-> This series adds GPMC and ELM controller nodes to AM62 SoC.
-> It also adds NAND overlay file for AM62-LP-SK EVM.
-> 
-> 
+The same huge patchset, to huge number of recipients was sent twice.
+First, sorry, this is way too big. Second, it has way too many
+recipients, but this is partially a result of first point. Only
+partially because you put here dozen of totally unrelated emails. Sorry,
+that does not make even sense. See form letter at the end how this
+works. Third, sending it to everyone twice is a way to annoy them off
+twice... Fourth,
 
-I have applied the following to branch ti-k3-dts-next on [1].
-Thank you!
+Please split your work and do not cc dozen of unrelated folks.
 
-[1/2] arm: dts: ti: k3-am62: Add GPMC and ELM nodes
-      commit: a0286c7bf091ac6bf542a00a305b3ae510242127
-[2/2] arm64: dts: ti: am62-lp-sk: Add overlay for NAND expansion card
-      commit: e569152274fec9ffdd3cf40d865d2b21ce46f75b
+<form letter>
+Please use scripts/get_maintainers.pl to get a list of necessary people
+and lists to CC (and consider --no-git-fallback argument). It might
+happen, that command when run on an older kernel, gives you outdated
+entries. Therefore please be sure you base your patches on recent Linux
+kernel.
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+Tools like b4 or scripts/get_maintainer.pl provide you proper list of
+people, so fix your workflow. Tools might also fail if you work on some
+ancient tree (don't, instead use mainline), work on fork of kernel
+(don't, instead use mainline) or you ignore some maintainers (really
+don't). Just use b4 and everything should be fine, although remember
+about `b4 prep --auto-to-cc` if you added new patches to the patchset.
+</form letter>
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
---
-Vignesh
+Best regards,
+Krzysztof
 
 
