@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-82897-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82898-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2080B92648D
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 17:12:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 163F892649B
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 17:14:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C92DA28E0E7
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 15:12:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 47EC51C21C2A
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 15:14:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3181E17E8FD;
-	Wed,  3 Jul 2024 15:12:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DB5D180A99;
+	Wed,  3 Jul 2024 15:13:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EW+JWy47"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SAydLkCH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05E721DA318;
-	Wed,  3 Jul 2024 15:12:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46E45180A92;
+	Wed,  3 Jul 2024 15:13:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720019547; cv=none; b=uCCId0EI0hZ4AJsgSjXAlWdNnh7ycvOl7V1fmwJABA+q7dwRN8JzbsZgpEouUclL92G1iMkj+WKTmBNc2UULEYqRHEgc9HI5TBe0Eau7POP67sXOQAjLADIoPivzJS6GMINURQG+KxS+c3oxUwXuAO/bWkHAOlLH0cdPOiVDj0w=
+	t=1720019613; cv=none; b=Sd/wx4z2l5BW/38MgmIFJngrc1KNag0NRBIPD3kuhGnCiAG/PVNBcW6Ad08jjNCJc3tYM3x4HSr3ZJCGXtr+XTZjxDwCsDUT8OaIXXIcZXtzqwegvZqJI8EEhlk/yCsUg5c+T3ztj33HhgZCknsA9zwm/9ESNEyx0AvXe7hwZdg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720019547; c=relaxed/simple;
-	bh=bZW21jBK4bJEw2Fkn/wNBZ23fNCVJapRR3j2cdfhGXc=;
+	s=arc-20240116; t=1720019613; c=relaxed/simple;
+	bh=Q5QXeckq+uzJ3iLBFgmqaQoU67PR7ujYRkejbXOVseI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bgZRjTukb7CE2Qd2swz0bBT1yCqRaVmiSM8w/F8iLE3YnY2hFAPMKkD4X7SBqRSqj2OlmCKMuK214h7281kux90RnCjWhaz3EjiuENsHff1FjkIE3tNUR28eCz0C4nCFpxfS/B+azh3O3EiZv0w9x55LSs1FSCdKMLxUTWm0YE0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EW+JWy47; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 432FCC32781;
-	Wed,  3 Jul 2024 15:12:24 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Rbvv0hEEMbCxhLYtSIqkfKphOpwCKomctFOCjOjLIU6pF3J0qeaBsPQS+J/RTqITZDF2gBTcZYBQVEjJvQamKUsCcyrrd6Ptihz7a9QGK//R3VoBFLdCgcW0PM4RldYFqlca4UmT1+px62IGf1wm5C2F5RRwB5p5rFM7IGDGuoc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SAydLkCH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6BE1FC2BD10;
+	Wed,  3 Jul 2024 15:13:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720019546;
-	bh=bZW21jBK4bJEw2Fkn/wNBZ23fNCVJapRR3j2cdfhGXc=;
+	s=k20201202; t=1720019612;
+	bh=Q5QXeckq+uzJ3iLBFgmqaQoU67PR7ujYRkejbXOVseI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EW+JWy47/PNUrBhyimitRESb08Tu0gmfg/JsQvSkFdBpCXrOFOQoPv7mrex1zEHQn
-	 fHw+7OwWob78p44o2kc3ktZ6AI4ZvEJJDjSheACEQyt1OcfVHB3YvzC89i5Bc8ui5v
-	 Y2QHxQp1oJi8DzjpMc8PbhCoA8HXCTdtm/wvn8RAnicv2xIwR5ql6cjjCCHD0Sd7Ci
-	 RkbgCxt0inAZT189lomnTiFlYNKOLFyk3DRfWPp4HkxiGk/1dz7rDiq9AILZkGYXnl
-	 KCy11+TrU/GSG7f3De2fynmwZ2uIhZ32PESwQyyajU89XFVRx9cFLr76pRny+x6c64
-	 4aPR84sKe/Aog==
-Date: Wed, 3 Jul 2024 16:12:22 +0100
+	b=SAydLkCH7NrYcx7tFvUrYpuTzMcsfxFcNISyOv+2XofNGe2yNefXoRYIqJ8wGFOsF
+	 TicYHRmZUvr0renf29m/uEhpOR93NZxaaroVR0vfH5Dz/TaWJ04l9DBvCZaTEwKYtZ
+	 /W2BQ3pCdOrN+rglgAg1nN1bVBdO9X7pBkxkLsC8X7KtfXMjld+mD2+UM6odySF8gY
+	 ZYLE/TMxtu+8Uk4fi/NhEKrnfAxY8RECBx4s6GlUiM/GefgZQqKPhkE1mDIxyrrD6F
+	 p+y01eh8ppyE8VacHvta5AxWAEwO6XQSGIqzvtof9w3Od9CxZlGV/THnnXhYw8gjmz
+	 u7qq3+cd/dDkg==
+Date: Wed, 3 Jul 2024 16:13:28 +0100
 From: Conor Dooley <conor@kernel.org>
 To: Stanislav Jakubek <stano.jakubek@gmail.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Baolin Wang <baolin.wang@linux.alibaba.com>, baolin.wang7@gmail.com,
-	Rob Herring <robh@kernel.org>,
+Cc: Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	Orson Zhai <orsonzhai@gmail.com>,
-	Chunyan Zhang <zhang.lyra@gmail.com>,
-	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: hwlock: sprd-hwspinlock: convert to YAML
-Message-ID: <20240703-cartoon-blimp-aa9640ae8c29@spud>
-References: <ZoVDeHCUCTZu7AT/@standask-GA-A55M-S2HP>
+	Baolin Wang <baolin.wang@linux.alibaba.com>,
+	Baolin Wang <baolin.wang7@gmail.com>,
+	Chunyan Zhang <zhang.lyra@gmail.com>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: timer: sprd-timer: convert to YAML
+Message-ID: <20240703-slogan-reawake-413f7db2d065@spud>
+References: <ZoU95lBgoyF/8Md3@standask-GA-A55M-S2HP>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,48 +63,38 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="7fsRCS5eThH/Ab5L"
+	protocol="application/pgp-signature"; boundary="Gv8gm/4CVXynuw1q"
 Content-Disposition: inline
-In-Reply-To: <ZoVDeHCUCTZu7AT/@standask-GA-A55M-S2HP>
+In-Reply-To: <ZoU95lBgoyF/8Md3@standask-GA-A55M-S2HP>
 
 
---7fsRCS5eThH/Ab5L
+--Gv8gm/4CVXynuw1q
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jul 03, 2024 at 02:26:32PM +0200, Stanislav Jakubek wrote:
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/sprd,sc9860-clk.h>
-> +
-> +    soc {
-> +      #address-cells = <2>;
-> +      #size-cells = <2>;
-> +
-> +      hwlock@40500000 {
-> +        compatible  = "sprd,hwspinlock-r3p0";
-
-nit: double space here before the =
-
-> +        reg = <0 0x40500000 0 0x1000>;
-
-nit: if there's a respin, drop the 0s and use size/address cells of 1.
+On Wed, Jul 03, 2024 at 02:02:46PM +0200, Stanislav Jakubek wrote:
+> Convert the Spreadtrum SC9860 timer bindings to DT schema.
+>=20
+> Changes during conversion:
+>   - rename file to match compatible
+>   - add sprd,sc9860-suspend-timer which was previously undocumented
+>   - minor grammar fix in description
+>=20
+> Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
 
 Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
-Cheers,
-Conor.
-
---7fsRCS5eThH/Ab5L
+--Gv8gm/4CVXynuw1q
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZoVqVgAKCRB4tDGHoIJi
-0uneAQCRdlQ7TihmxLlRjcZB5P9mcGoSZdiL3XYesILSRC55NAD8DDRxKW0LBom6
-iTXDfsIQ2HzsjvV6XtkOW2B+yjFMuAI=
-=f2DQ
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZoVqmAAKCRB4tDGHoIJi
+0kSWAP0ZO7U4OqQw/vPrqmpiEs+BI1Cu4br9uvcpBJMvdGtZywEAvBvbrvTkSB7s
+6qble3XTWwW/zR2cchpH+LC6Dz515Q4=
+=v6j4
 -----END PGP SIGNATURE-----
 
---7fsRCS5eThH/Ab5L--
+--Gv8gm/4CVXynuw1q--
 
