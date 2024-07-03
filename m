@@ -1,116 +1,147 @@
-Return-Path: <devicetree+bounces-82891-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82892-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCC0F92641E
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 16:59:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 918D3926427
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 17:00:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 92B2E1F25550
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 14:59:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 07F4F1F25E0E
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 15:00:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7A4F180A73;
-	Wed,  3 Jul 2024 14:57:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 147A718131E;
+	Wed,  3 Jul 2024 14:59:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB2BD17D8A6;
-	Wed,  3 Jul 2024 14:57:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0FAE17DA1A;
+	Wed,  3 Jul 2024 14:59:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720018679; cv=none; b=aIIv2XjFnQwRwl04xOiTJ05MMjURqOCx5zRpa9TpeEv8Cqy1gSrpCm/DsWj9kt6C8H/Ad9ua7RQbJqM5IptHulGfOU/dEyBh20+ezOgSmQf6MjcJHNRBs22TyCDKe1q/zTGWGnNw31eLQjFfaxO0XvkQNT7RiinLDBCVMSbBzrY=
+	t=1720018746; cv=none; b=P3SwhafZtu8jhp6H+q1FwTJ1cDiODEz5uLTccxVsnTPH3z7IWALDAip5QQ5pxHmBi4V05L1yZJPhmKXOEorRp8/2UmXmlaaaVLk789S1HRvdCOFdfwp4R/Ug7lpAwWSVw2sm4MRcPZSYNRW7HBr2eyvGUIqYIAoeAuIpeiVFAd4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720018679; c=relaxed/simple;
-	bh=FYb/IeaNJbgi8XBjYSx6fcoQBA5pfVX2DSvIBY85iWY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=by8dCl+Wmqe7WbxwvjieGxnpJcGPXrVRHd9jAsjcdAX57GQ05XM0tPmp9S0P+baKKOpegRpYbKJrlSJ0Xxf8e6U5vtzp/B1m/aZ4Fa6eB0ogHHZhwLUmDz9Syaf6mq92Jjiblw3uP0amCUQYgGKFBKhSj8Z7yOlFIRQbrlou+u0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-From: Yixun Lan <dlan@gentoo.org>
-Date: Wed, 03 Jul 2024 14:55:14 +0000
-Subject: [PATCH v3 11/11] riscv: dts: spacemit: add uart1 node for K1 SoC
+	s=arc-20240116; t=1720018746; c=relaxed/simple;
+	bh=32YNlq8d3tFHTi0yLSizyetEShioEHHtzIwkcTJ7jXQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=qKBZfbeV/+Noc05EbNvb19r59PTcAGgFENm9EeuI5z3MZQ6S7gt17+O1XZlYQphTPWubSEMjVT/D5satfEm48BjgUOdCpx9cupeVm1KZArk03pJjAsvlM13zBc6cu6m287++ZUALVlcVk0mrtx47tbvDMCi/nkTfdS5qelbKDEI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+X-IronPort-AV: E=Sophos;i="6.09,182,1716217200"; 
+   d="scan'208";a="214125777"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie6.idc.renesas.com with ESMTP; 03 Jul 2024 23:59:03 +0900
+Received: from localhost.localdomain (unknown [10.226.92.104])
+	by relmlir6.idc.renesas.com (Postfix) with ESMTP id 4FB5B4561784;
+	Wed,  3 Jul 2024 23:59:00 +0900 (JST)
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.au@gmail.com>
+Subject: [PATCH v2 2/3] arm64: dts: renesas: rzg2ul-smarc-som: Enable serial NOR flash
+Date: Wed,  3 Jul 2024 15:58:47 +0100
+Message-ID: <20240703145851.204306-3-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240703145851.204306-1-biju.das.jz@bp.renesas.com>
+References: <20240703145851.204306-1-biju.das.jz@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240703-k1-01-basic-dt-v3-11-12f73b47461e@gentoo.org>
-References: <20240703-k1-01-basic-dt-v3-0-12f73b47461e@gentoo.org>
-In-Reply-To: <20240703-k1-01-basic-dt-v3-0-12f73b47461e@gentoo.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Conor Dooley <conor@kernel.org>, 
- Paul Walmsley <paul.walmsley@sifive.com>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Daniel Lezcano <daniel.lezcano@linaro.org>, 
- Thomas Gleixner <tglx@linutronix.de>, 
- Samuel Holland <samuel.holland@sifive.com>, 
- Anup Patel <anup@brainfault.org>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Jiri Slaby <jirislaby@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-riscv@lists.infradead.org, linux-serial@vger.kernel.org, 
- Inochi Amaoto <inochiama@outlook.com>, Icenowy Zheng <uwu@icenowy.me>, 
- Meng Zhang <zhangmeng.kevin@spacemit.com>, Yangyu Chen <cyy@cyyself.name>, 
- Yixun Lan <dlan@gentoo.org>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1108; i=dlan@gentoo.org;
- h=from:subject:message-id; bh=FYb/IeaNJbgi8XBjYSx6fcoQBA5pfVX2DSvIBY85iWY=;
- b=owEBzQIy/ZANAwAKATGq6kdZTbvtAcsmYgBmhWaYVMojX7yGUCMGenZ/G6Y12xM+vfgob0zGX
- oDH4tIc8fyJApMEAAEKAH0WIQS1urjJwxtxFWcCI9wxqupHWU277QUCZoVmmF8UgAAAAAAuAChp
- c3N1ZXItZnByQG5vdGF0aW9ucy5vcGVucGdwLmZpZnRoaG9yc2VtYW4ubmV0QjVCQUI4QzlDMzF
- CNzExNTY3MDIyM0RDMzFBQUVBNDc1OTREQkJFRAAKCRAxqupHWU277RQ0D/9YAmhX6GyKQ4NyWq
- w20Cus8MEtiGSC59i2CPEuPyRHQJwZAbJs5Sk+bGc0jFd2Qv6Ag0N9lhypO+7iljgKLU2xvasO3
- HlePbBJXSNVziW92BkVPYhRgXGK7nZtSX0cO4y4wfy3100sWL8Z/DkRqemcCB+36PMsJ8novdex
- He+lVXSjMNnwG+LxaO/r+PLABcxM0EZR1VZM1D8AXQPgxASkcryBkQV6mZ+RLf0s0Im0HXiOIDK
- Jisdxq2uQ4gQpjimV71Tijj2T6xqE/iTMXfshPAKAIMKDsqAtPmwN+dOHalMRXdmfhvHQL4OJ5b
- /t/A5UuvO5VJnAPOn9sFDLoonhCw/RZswNfMAN5M4/BXZXB9/+xyZkqAogbdqfCpYSI9j8U+qqf
- OzH4x9U12KA7ty//rUhOk67rMWclum5lvhfDRwSlSaOEKTi8Awde6yb1azaDQK0Ig5rmVpZoxOC
- qhla1d6lByRDxb1MdSiY3JxJ187RAOuqrryjqKwj8o0qZ8vl62gRHXymRD3uLTtWnQAr7rl4w9n
- Zq10wH039wIbCoXdMy8qQhzYMLKiMApHpK4b1h2KUo2lrJFUYB+mBiPm/cJ3KmKpwx//htBgbF9
- 73tkA8O799TBR0S8L49RppoScBvnV0qRfTygcVZFJ8G2P5s/PY7BiE/y8zfIbPZmA1xw==
-X-Developer-Key: i=dlan@gentoo.org; a=openpgp;
- fpr=50B03A1A5CBCD33576EF8CD7920C0DBCAABEFD55
+Content-Transfer-Encoding: 8bit
 
-Devices in 0xf000,0000 - 0xf080,0000 are reserved for TEE purpose,
-so add uart1 here but mark its status as reserved.
+Enable Renesas at25ql128a flash connected to QSPI0.
 
-Signed-off-by: Yixun Lan <dlan@gentoo.org>
+Tested the flash by flashing bootloaders:
+flash_erase /dev/mtd0  0 0
+flash_erase /dev/mtd1  0 0
+mtd_debug write /dev/mtd0 0 ${BL2_FILE_SIZE} ${BL2_IMAGE}
+mtd_debug write /dev/mtd1 512 ${FIP_FILE_SIZE} ${FIP_IMAGE}
 
+Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 ---
-This patch can be folded into "riscv: dts: add initial SpacemiT K1 SoC device tree",
-if maintainer finds it's too trivial to have an independent patch..
+v2:
+ * New patch.
 ---
- arch/riscv/boot/dts/spacemit/k1.dtsi | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ .../boot/dts/renesas/rzg2ul-smarc-som.dtsi    | 48 +++++++++++++++++++
+ 1 file changed, 48 insertions(+)
 
-diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dts/spacemit/k1.dtsi
-index a076e35855a2e..fee8921513c1f 100644
---- a/arch/riscv/boot/dts/spacemit/k1.dtsi
-+++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
-@@ -372,5 +372,15 @@ clint: timer@e4000000 {
- 					      <&cpu6_intc 3>, <&cpu6_intc 7>,
- 					      <&cpu7_intc 3>, <&cpu7_intc 7>;
- 		};
-+
-+		sec_uart1: serial@f0612000 {
-+			compatible = "spacemit,k1-uart", "intel,xscale-uart";
-+			reg = <0x0 0xf0612000 0x0 0x100>;
-+			interrupts = <43>;
-+			clock-frequency = <14857000>;
-+			reg-shift = <2>;
-+			reg-io-width = <4>;
-+			status = "reserved"; /* for TEE usage */
+diff --git a/arch/arm64/boot/dts/renesas/rzg2ul-smarc-som.dtsi b/arch/arm64/boot/dts/renesas/rzg2ul-smarc-som.dtsi
+index 97cdad2a12e2..db41970ac9a0 100644
+--- a/arch/arm64/boot/dts/renesas/rzg2ul-smarc-som.dtsi
++++ b/arch/arm64/boot/dts/renesas/rzg2ul-smarc-som.dtsi
+@@ -179,6 +179,18 @@ eth1_pins: eth1 {
+ 			 <RZG2L_PORT_PINMUX(18, 5, 1)>; /* IRQ7 */
+ 	};
+ 
++	qspi0_pins: qspi0 {
++		qspi0-data {
++			pins = "QSPI0_IO0", "QSPI0_IO1", "QSPI0_IO2", "QSPI0_IO3";
++			power-source = <1800>;
 +		};
++
++		qspi0-ctrl {
++			pins = "QSPI0_SPCLK", "QSPI0_SSL";
++			power-source = <1800>;
++		};
++	};
++
+ 	sdhi0_emmc_pins: sd0emmc {
+ 		sd0_emmc_data {
+ 			pins = "SD0_DATA0", "SD0_DATA1", "SD0_DATA2", "SD0_DATA3",
+@@ -230,6 +242,42 @@ sd0_mux_uhs {
  	};
  };
-
+ 
++&sbc {
++	pinctrl-0 = <&qspi0_pins>;
++	pinctrl-names = "default";
++	status = "okay";
++
++	flash@0 {
++		compatible = "jedec,spi-nor";
++		reg = <0>;
++		m25p,fast-read;
++		spi-max-frequency = <50000000>;
++		spi-rx-bus-width = <4>;
++		spi-tx-bus-width = <4>;
++
++		partitions {
++			compatible = "fixed-partitions";
++			#address-cells = <1>;
++			#size-cells = <1>;
++
++			partition@0 {
++				label = "bl2";
++				reg = <0x00000000 0x0001c000>;
++			};
++
++			partition@1d000 { /* fip is at offset 0x200 */
++				label = "fip";
++				reg = <0x0001d000 0x7e3000>;
++			};
++
++			partition@800000 {
++				label = "user";
++				reg = <0x800000 0x800000>;
++			};
++		};
++	};
++};
++
+ #if (SW_SW0_DEV_SEL)
+ &sdhi0 {
+ 	pinctrl-0 = <&sdhi0_emmc_pins>;
 -- 
-2.45.2
+2.43.0
 
 
