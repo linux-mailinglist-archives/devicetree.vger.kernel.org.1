@@ -1,160 +1,113 @@
-Return-Path: <devicetree+bounces-82812-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82813-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04557925C54
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 13:17:27 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id F23C2925EEF
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 13:44:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D2A1929A824
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 11:14:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E8F81B380E8
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 11:15:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CCA617A593;
-	Wed,  3 Jul 2024 11:03:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3ECBA17BB0E;
+	Wed,  3 Jul 2024 11:04:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oFAdw+/f"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bW3vkDvw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0B5217995E
-	for <devicetree@vger.kernel.org>; Wed,  3 Jul 2024 11:03:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F0DD13B280;
+	Wed,  3 Jul 2024 11:04:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720004582; cv=none; b=IpSqwqZBn2f69Tsz3qKPqoCLY0L4CKdskMIx7yeayM+l+07VsQt4qKrMhgW13ynpG4m7SpKoLrzM9hH1SayBomyLH/5WMCaA7XhHKQ9osCCOvL0J/r7JPshTetQfNYupVrSZ7dBRB98nSdc4PtrN7C9zl/jLLuws92oHLbHDBZw=
+	t=1720004665; cv=none; b=d5RVe1ZNU8NB7E0n2UbjdgnPZ/J2BH1GlBSCfPpP4eWUUpfD87x/WsFdf5ihY1QfzDmJwbB1eUy+VstzA/pwXfPIvaQ89Sk1qY6zpNb1J6jGZ9OtaqwxtK9Fvx9xx36oCGsrA7vyiheFnZ/2fqmV/E4whHvqZJLJ3NNAR/f4+eo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720004582; c=relaxed/simple;
-	bh=LvSBtxEWxuVYS7CxvKWKkwY51EhpTRzSAwu7h7K0Wqs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QgGr/K4mKRkXwVAlG0DtiTgjIMZ2Dzrt4d7kO6fgL5gUjLfkq7ljY5++5wAeiSzpqWAVqZ80j4yEk9PD+1UKc+Ou/WQaiLgrbjrP9mhy9je9+sZUbKnly2J+WADTw1qx2dMZ3NFYC+g8U/7zbif9c+HOwsz4iE6OHQ11pUZhtB8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=oFAdw+/f; arc=none smtp.client-ip=209.85.167.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-52e9944764fso458658e87.3
-        for <devicetree@vger.kernel.org>; Wed, 03 Jul 2024 04:03:00 -0700 (PDT)
+	s=arc-20240116; t=1720004665; c=relaxed/simple;
+	bh=dPv8j3AZknsIxl1gBk2gsmjRakfxu2z29E0D3n2D7+c=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=PDlAsRDkkAG8x04TbgXWb+Txv9bvKV0KGmU5OEUjV81/8eHnv1pCJbhafsPk/0c7GKfSog+aOVdNzs5XzD9chLraTTUoWSl2EUUl8kkh8GfYQ8NvWdoiMSdG00tsCQZ6HQOBTsHmEYjLRUl5zfwuiz6q603i2/ZByA17RTi8ge4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bW3vkDvw; arc=none smtp.client-ip=209.85.208.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-58b966b4166so2222948a12.1;
+        Wed, 03 Jul 2024 04:04:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1720004579; x=1720609379; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=im1b/RxdrHSt8wujFjtbUuQ9aPQyW+sjarxKVIwXx4I=;
-        b=oFAdw+/f1idHUvfxWukDmGGg4gwyh24US0VfGO7j+l48Wsciwtpcyl9gfIT+oY4XZi
-         bNfuqTtLMMklH42qRUkw175u8tCjZ+qv0WN4m2iGcg+fx2Af8B/WxryD4WlgBV8S5KN1
-         lWR5YPfAFYpWaFJCbnkXERJsdyB+aIVNjqYbi3NM0F7vy0XfYm1V6mYIYemiI6Ib8Apw
-         GGoTCGXt02+6bwwZ/kivtH/GbK1dPnvpSfHD/OssU33PPb0eUMjkD2moPb2rxBUV/s6M
-         /GnyGww6hSz87qNLZ8dogFRUMUYEpl43XbYUvIstrpUEclVB+/VkrC1WOaOwmxvK8imX
-         RM9g==
+        d=gmail.com; s=20230601; t=1720004662; x=1720609462; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=dPv8j3AZknsIxl1gBk2gsmjRakfxu2z29E0D3n2D7+c=;
+        b=bW3vkDvwt+mId4w1fXZW58Fk03YjcIrPGZvakKj5n3poKCBNccXPssrxg8jwbSRXbU
+         17rG8dSrtiHKhAZV6PSxAkRFhb598FM/Q7A1rhlzKkXMQDya5R0hvmcotn9uYeGzDaj/
+         NdXsP5jT4Co6BC7H4or2HYFYjUKU06c/opupBC1yKMyI+oLo+0cBaWx3u/Bif7v6YMOo
+         ce9nsvz4kmywuKltGC+7Zh0DRbnfTrn+u6pfqc5ifmrZd1epVhJYuECxO6dHNdaRuV3Y
+         J96h6h8kVYMq5GWQ83xppmQa2x9AWgZE1yM10ipVB/ryXWOaSoj5H4UwBmLk5D785WHD
+         6hoA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720004579; x=1720609379;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=im1b/RxdrHSt8wujFjtbUuQ9aPQyW+sjarxKVIwXx4I=;
-        b=XJ80MBkG+e+SdlvjR9YABPgselD9luV/v8t6sTDTp06oJBQaT3QSlQok4XbHzSN63V
-         2UJ801IXqbozdn1NJvoJHuP0g1+x2KoD4HEVRaVoOwI+PwPOJO1yEQmBvcsQPesiTcOz
-         zxCOkxNt8jQIigZEz4u99zv0G2bhUk6Xf+q8LNsdg3SZtuakxCNxQy+uI/BNwiv9jx8B
-         QWTGJl7/UJ3REMjrUUSTAadCFSxLDLaqXK5Q6qHJO2Us9WiUGB4Voq7T0JlnjXZg0vfC
-         fjTH9K7q+ZlkvYyo/xAt5LGq1bQf3jYU8R9KKaeuy2hN7j08lMrnHdyUUGQHoFb9a56v
-         QLSg==
-X-Forwarded-Encrypted: i=1; AJvYcCWo3WKSNhxK50GLH5anY1MEEVp+ktTL2ZibWYp020KRC2Ckr6oa7vD/sXz5czcsEyYB0EtHzkMgrnx+0ouKGXAL6aSFeWpT/GDN4g==
-X-Gm-Message-State: AOJu0YzxLsuLbKl32lHGhgmFm5SnWaQyKVBLaSCHdHjv0yM/nqSXix5I
-	mVdQz1nrYB+DD7PVNRXWdZfFOdN1GiNZrn5wkhPYrxKK3T95mEQ4zuRyOcTW3xQ=
-X-Google-Smtp-Source: AGHT+IEDg1CPm96hk7pBzbU18xhMMyXjzJowHnqih7mx71cOA9L6GtsgW5xU8ZTdE5oORxO75UsBvw==
-X-Received: by 2002:a05:6512:b14:b0:52c:db80:d694 with SMTP id 2adb3069b0e04-52e82679565mr7964235e87.20.1720004578743;
-        Wed, 03 Jul 2024 04:02:58 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52e7ab101c5sm2110487e87.79.2024.07.03.04.02.58
+        d=1e100.net; s=20230601; t=1720004662; x=1720609462;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=dPv8j3AZknsIxl1gBk2gsmjRakfxu2z29E0D3n2D7+c=;
+        b=r2lvP0jCATOq8hoImaNlSm/TxrL7Eh5zBI9uk8kgvBANG5c6lEG3ysjMbJ9v+Q+GnK
+         QQsNxCnCaL9WgnjLBj2OYGvE/okNUdXUUW1BV3Vmkb8ZAYgox48N/nLEUSkeiybIcPWb
+         ufEfqexgjpqesWTublrIN/z9ftzE9HtIn2ziDVYctVgU/Q3IKDwDvGkflGGRz063i4kc
+         mPLE3zo8PUVPd+WLfYKf52MSizzbxBcm6WCodxQ8c5jyWMROcijvY4Z2Tqgk+VNpwM9S
+         bkzWLt2ClLr0OHLhSrohcPNl+n0ikgJFKBB0wHTgpiNRNq9HXcegtCsn/hUhMtXG8gfK
+         ENzQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVcDQFKVMdLJAF50e+4bSUzGWjHGEc2oo5nyhH2BMPzF5c3Lp+BHwxUmYEEktNxWlP2eNiHixRwaBx/auVTOMlebI1TRuictTb9LLYeNemQu3CnNcIPahYXMiSunrhUBNB8X65vju69p64cOc3h/WmwZp3u8O464e4iCWG9H9kzb9BjhLTz
+X-Gm-Message-State: AOJu0Yzgb/Suf2KAgvYxMouGCruZwjpyNQCmMMpvsUl6SIY3Tu/qFRZH
+	XgzLGE3Dsw6FatTZgAi+n0S8kSbsjt3ylciHKweGiHchmYzMgCN1
+X-Google-Smtp-Source: AGHT+IHU2KLPLGWXDB7x828X+uRMpbDtGnbMvtpnuP8OB+XLaqjCWlOJygChOdkQDtrN6m7qwBFSAg==
+X-Received: by 2002:a17:907:868e:b0:a72:7245:ec0a with SMTP id a640c23a62f3a-a751447b348mr881307466b.58.1720004661443;
+        Wed, 03 Jul 2024 04:04:21 -0700 (PDT)
+Received: from ?IPv6:2003:f6:ef1c:c500:ee59:d953:f148:40ba? (p200300f6ef1cc500ee59d953f14840ba.dip0.t-ipconnect.de. [2003:f6:ef1c:c500:ee59:d953:f148:40ba])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a7478d33ee7sm404063666b.143.2024.07.03.04.04.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Jul 2024 04:02:58 -0700 (PDT)
-Date: Wed, 3 Jul 2024 14:02:56 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Varadarajan Narayanan <quic_varada@quicinc.com>
-Cc: vireshk@kernel.org, nm@ti.com, sboyd@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, angelogioacchino.delregno@collabora.com, 
-	andersson@kernel.org, konrad.dybcio@linaro.org, mturquette@baylibre.com, 
-	ilia.lin@kernel.org, rafael@kernel.org, ulf.hansson@linaro.org, 
-	quic_sibis@quicinc.com, quic_rjendra@quicinc.com, quic_rohiagar@quicinc.com, 
-	abel.vesa@linaro.org, otto.pflueger@abscue.de, danila@jiaxyga.com, 
-	quic_ipkumar@quicinc.com, luca@z3ntu.xyz, stephan.gerhold@kernkonzept.com, nks@flawful.org, 
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org
-Subject: Re: [PATCH v4 02/10] cpufreq: qcom-nvmem: Add support for IPQ9574
-Message-ID: <lhpdxlbmjsfgmsr5edjg4io3bwb6rkp7xz6ztvphdb4cme264e@j7mr6wp7bmnq>
-References: <20240703091651.2820236-1-quic_varada@quicinc.com>
- <20240703091651.2820236-3-quic_varada@quicinc.com>
+        Wed, 03 Jul 2024 04:04:21 -0700 (PDT)
+Message-ID: <17e484a2c07c0a521120a6a3cab7dfcf5f3c2fee.camel@gmail.com>
+Subject: Re: [PATCH v3 6/8] iio: adc: ad7606: fix oversampling gpio array
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Guillaume Stols <gstols@baylibre.com>, Lars-Peter Clausen
+ <lars@metafoo.de>,  Michael Hennerich <Michael.Hennerich@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-fbdev@vger.kernel.org, devicetree@vger.kernel.org, Jonathan Cameron
+ <Jonathan.Cameron@huawei.com>, jstephan@baylibre.com, dlechner@baylibre.com
+Date: Wed, 03 Jul 2024 13:08:13 +0200
+In-Reply-To: <20240702-cleanup-ad7606-v3-6-57fd02a4e2aa@baylibre.com>
+References: <20240702-cleanup-ad7606-v3-0-57fd02a4e2aa@baylibre.com>
+	 <20240702-cleanup-ad7606-v3-6-57fd02a4e2aa@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240703091651.2820236-3-quic_varada@quicinc.com>
 
-On Wed, Jul 03, 2024 at 02:46:43PM GMT, Varadarajan Narayanan wrote:
-> Add qcom_cpufreq_match_data for IPQ9574. This is used for tying
-> up the cpu@N nodes with the power domains. match_data_kryo is not
-> used since it doesn't set genpd_names. If genpd_names is not set,
-> 'cat /sys/kernel/debug/qcom_cpr3/thread0' causes cpr3_debug_info_show()
-> to crash while trying to read thread->corner->last_uV as
-> thread->corner is NULL.
-> 
-> 	Call trace:
-> 		cpr3_debug_info_show
-> 		seq_read_iter
-> 		seq_read
-
-I'd say, the commit message might be simpler:
-
-IPQ9574 uses CPR4 power domain to manage core supplies. Use
-device-specific match data for this platform that includes genpd_names
-configuration.
-
-Anyway:
-
-Acked-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-
-
-> 
-> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+On Tue, 2024-07-02 at 17:34 +0000, Guillaume Stols wrote:
+> gpiod_set_array_value was misused here: the implementation relied on the
+> assumption that an unsigned long was required for each gpio, while the
+> function expects a bit array stored in "as much unsigned long as needed
+> for storing one bit per GPIO", i.e it is using a bit field.
+>=20
+> This leaded to incorrect parameter passed to gpiod_set_array_value, that
+> would set 1 value instead of 3.
+> It also prevents to select the software mode correctly for the AD7606B.
+>=20
+> Fixes: d2a415c86c6b ("iio: adc: ad7606: Add support for AD7606B ADC")
+> Fixes: 41f71e5e7daf ("staging: iio: adc: ad7606: Use find_closest() macro=
+")
+> Signed-off-by: Guillaume Stols <gstols@baylibre.com>
 > ---
-> v4: Update commit log to include stack trace
->     Introduce qcom_cpufreq_match_data for IPQ9574
-> ---
->  drivers/cpufreq/qcom-cpufreq-nvmem.c | 7 ++++++-
->  1 file changed, 6 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/cpufreq/qcom-cpufreq-nvmem.c b/drivers/cpufreq/qcom-cpufreq-nvmem.c
-> index 939702dfa73f..95558586c2e6 100644
-> --- a/drivers/cpufreq/qcom-cpufreq-nvmem.c
-> +++ b/drivers/cpufreq/qcom-cpufreq-nvmem.c
-> @@ -428,6 +428,11 @@ static const struct qcom_cpufreq_match_data match_data_ipq8074 = {
->  	.get_version = qcom_cpufreq_ipq8074_name_version,
->  };
->  
-> +static const struct qcom_cpufreq_match_data match_data_ipq9574 = {
-> +	.get_version = qcom_cpufreq_kryo_name_version,
-> +	.genpd_names = generic_genpd_names,
-> +};
-> +
->  static void qcom_cpufreq_suspend_virt_devs(struct qcom_cpufreq_drv *drv, unsigned int cpu)
->  {
->  	const char * const *name = drv->data->genpd_names;
-> @@ -621,7 +626,7 @@ static const struct of_device_id qcom_cpufreq_match_list[] __initconst = {
->  	{ .compatible = "qcom,ipq8064", .data = &match_data_ipq8064 },
->  	{ .compatible = "qcom,ipq8074", .data = &match_data_ipq8074 },
->  	{ .compatible = "qcom,apq8064", .data = &match_data_krait },
-> -	{ .compatible = "qcom,ipq9574", .data = &match_data_kryo },
-> +	{ .compatible = "qcom,ipq9574", .data = &match_data_ipq9574 },
->  	{ .compatible = "qcom,msm8974", .data = &match_data_krait },
->  	{ .compatible = "qcom,msm8960", .data = &match_data_krait },
->  	{},
-> -- 
-> 2.34.1
-> 
 
--- 
-With best wishes
-Dmitry
+Reviewed-by: Nuno Sa <nuno.sa@analog.com>
+
+
 
