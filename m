@@ -1,176 +1,175 @@
-Return-Path: <devicetree+bounces-82668-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82669-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E431A92549A
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 09:29:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 77BE99254D8
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 09:42:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 700401F23C3E
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 07:29:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F1D301F233D7
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 07:42:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFBCB136678;
-	Wed,  3 Jul 2024 07:29:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85F77137763;
+	Wed,  3 Jul 2024 07:42:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="e3rcjBZ6"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="K46qRXMY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93CD6131BDD;
-	Wed,  3 Jul 2024 07:29:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A22FD32C8E
+	for <devicetree@vger.kernel.org>; Wed,  3 Jul 2024 07:42:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719991766; cv=none; b=mcuKVhRF/Hfhr0f/AGTD3Vxq7PIrTd97BQCtBXG3RSrtceeZ7UyukX7KN4pRGqt8xxgIq/hV2i8D18i24atbGAdkvKKpJLSaxMC0AoKpsorrfIoZoR/jLHED/HF0QlSwV5GZSO3md+WOH7y+M/mN+wvnO5yENIg03jB4doidavk=
+	t=1719992536; cv=none; b=d2DR+JqlVUOfGYn5B89VhQoGKUpsQmsoF53OqTGGSCHklNN/tS0YvVgxTEtIXsw0qb4dqILX3A87GmIesjB+vZlNQQqOAk/GP/P4sv30w3wc3hqOwqd4DXDCPP+IKGoD9Ko1fFRFq0EY3mrkxriBl5ncQ8jNfsXsXr8zeTnVCEI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719991766; c=relaxed/simple;
-	bh=XH8pzdAoHuWv8DznMXqsk1aeuJ++vg5q3W+27mPM9vo=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rhYLq2IJZ+rw7F0CscT801yiUHMBG8kaVLBCHH2znS7bhu4vkutT5YCUh0yz0vrgPiGNfV/KFsL4HmYNsWSHpzG3ZY0WYbLg2rGgX+Ne9G7ng4hARMxioteilNk69k5PEgm9LFYjGT2v+U/qArjMBTKixm+Xk/fQpS+YjOaFvUw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=fail smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=e3rcjBZ6; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1719991764; x=1751527764;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=XH8pzdAoHuWv8DznMXqsk1aeuJ++vg5q3W+27mPM9vo=;
-  b=e3rcjBZ6w1YCQadfPHuEgtKs9dThgtIuBbIMQEcRE7c57rwkAhQXJ0fT
-   ZqI5igh+PVw0FzZGL9MvCRXuplnbdwbp9jf1PMh3ntc2f5dauAB/gg0wi
-   jEP1SITvoBIxu6TJXYe9BOtHfQDC2TPXtu5rJIhLEltBMLlqbGwMXyzBD
-   A+MUZEdW3WDsNJ1jEk+MgdLBQTd8myE4ZIUQNDHJajXLq5EtIo6lVkNV/
-   ig0llmZw2jOM6Bqjv8FCUb7pKOQeWHlCTCywHQwYAbXjRDaVT5P0A14OR
-   p1GuQyR4/dfksh1oyWx32c4sQa90SKOmrxst0Gvuy8MTcUAlf+6Oji3x0
-   A==;
-X-CSE-ConnectionGUID: feGJv0yDT+igZZ1QI9ykeA==
-X-CSE-MsgGUID: ChZ+M0e1TT+Kc9XQeYII1A==
-X-IronPort-AV: E=Sophos;i="6.09,181,1716274800"; 
-   d="asc'?scan'208";a="28765840"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 03 Jul 2024 00:29:16 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 3 Jul 2024 00:29:00 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex01.mchp-main.com (10.10.85.143)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
- Transport; Wed, 3 Jul 2024 00:28:57 -0700
-Date: Wed, 3 Jul 2024 08:28:36 +0100
-From: Conor Dooley <conor.dooley@microchip.com>
-To: Serge Semin <fancer.lancer@gmail.com>
-CC: Samuel Holland <samuel.holland@sifive.com>, Kanak Shilledar
-	<kanakshilledar@gmail.com>, Conor Dooley <conor+dt@kernel.org>, Rob Herring
-	<robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Mark Brown
-	<broonie@kernel.org>, Rob Herring <robh@kernel.org>, Jisheng Zhang
-	<jszhang@kernel.org>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
-	<palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
-	<linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
-Subject: Re: [PATCH v2 2/3] spi: dw-mmio: update dw_spi_mmio_of_match struct
- with thead
-Message-ID: <20240703-garbage-explicit-bd95f8deb716@wendy>
-References: <20240701121355.262259-2-kanakshilledar@gmail.com>
- <20240701121355.262259-4-kanakshilledar@gmail.com>
- <f8604c68-8866-447b-a874-562bdad1df79@sifive.com>
- <23gvjkszxvf6zehiqetjfmtf67nlpnnfmhgx234jnxwrtmbdpr@4yv64sz2kpcs>
+	s=arc-20240116; t=1719992536; c=relaxed/simple;
+	bh=JjpR/zi9Yb1mSVMWaZ74RpK0MTrr1DdxMiOgX0twqnU=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=kIaPa+MaRBOJiGmh02ORgVVF/eyQskC9uT9CaMlkX8Tatq4c4wTX7AzCWKfT6WUKkscjKvA6SL8LlN0lZuIzz16fywMTulFeRxgyamU5ezwV4hpZrXosm7pinA+ejals1w6fyOWGevYsegB7EWg2XlNrhprshnSRykQ7ssiTET4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=K46qRXMY; arc=none smtp.client-ip=209.85.208.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-57cbc66a0a6so604846a12.1
+        for <devicetree@vger.kernel.org>; Wed, 03 Jul 2024 00:42:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1719992533; x=1720597333; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=tckfhFsEzLxO/FzhYuzYJZ7ZTtG1l9RlDBa9ctPpP/I=;
+        b=K46qRXMYXSJUz4U4NaEQYd4GDPftBpLZOng0t5HO9l1WAaVKqiD2kTysGbhZpKX9YR
+         d8+Fue58ovLn9zmR72iH0Patcbc2C+gewhD3f5rWEhcGDiAveQKfyhUiXcgGy7vb3Wbg
+         5yAIZd/mUza7rkI9uyYZf8AcUKm/h6/bY3lNbNE0mOLng1n5AZpOFpMlZ7R7R7080tsk
+         B7RCyf/9t1OW+KeheHephEyaRMKuoqlktua2ccp7GMHZ+DbimxXKs1V58HjZkuPtsVVX
+         LjZUBdv25pGk4uF2UYADltCuocVo2J0XptwHGw5eiJHUKt4sx8JKk4xj9Tq2g0pZNGPc
+         Fulw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719992533; x=1720597333;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=tckfhFsEzLxO/FzhYuzYJZ7ZTtG1l9RlDBa9ctPpP/I=;
+        b=dSe0BehUGW/xWuhsKxiFIQcZvzOQQSh9yT3bq9i8MNNi2l6MSlJsgNxh3/4o6akzPO
+         xE9uQR1lzAaGhKPejekDEmizZ0GxN6+6q7juzlgulRhodcktpRBSZieNQDiHlVlBi8ED
+         8LErnUiBUSbO4Kwjm/yHnwMQ7ZKmDKiU5Xs11EVZCyt/2DCkVAvbvUixNvcgilLB3FOl
+         aDjxudrr0dptFe3z4irQmL6jG2LHqpMm90TnBUOy63/HPuhnubl6ddlo/esEJzBl2UaW
+         9t9e6xrzHnLbWXEjrbnAZFZUIyXvpboVvHpnavW3M908Ud54G/Z9r8YSX8ra63M91ccG
+         /8pw==
+X-Forwarded-Encrypted: i=1; AJvYcCVHJAx55O4ts6V7vGctZzg/62QNAbiZ/wUXd7FJKDUqbxb0ZMSWI3r/GTT7UBzfvR3jCaJ0Ngj6ddkWJWQtIPbAfG64XK2/nHHQmA==
+X-Gm-Message-State: AOJu0Yw+PEzZqHmKmNDvxX0zJbqRjb9CrVnB67TCN76zAhRZfFbrb7nL
+	oMWzbR5fcVFE2+EQvWtu0XOMrLTwIb7SAJ/vJ8ElGaNVbYOXSHq6LbuJe29MpRM=
+X-Google-Smtp-Source: AGHT+IHBUXWvsQ+ZR0ipa89q0bV9qFwUW3amlH2ftgxHpU+HMJ25ZuKckN072GiRs/lu6I378XGvWQ==
+X-Received: by 2002:a05:6402:13d2:b0:57c:bec1:ff4b with SMTP id 4fb4d7f45d1cf-58ce525f4e4mr773812a12.10.1719992532776;
+        Wed, 03 Jul 2024 00:42:12 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:ef03:73b5:7503:ee71? ([2a01:e0a:982:cbb0:ef03:73b5:7503:ee71])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-58614f3d4c4sm6697063a12.87.2024.07.03.00.42.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 03 Jul 2024 00:42:12 -0700 (PDT)
+Message-ID: <eea2d957-fb4d-4ede-9789-d1e24ef1663a@linaro.org>
+Date: Wed, 3 Jul 2024 09:42:11 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="wONVh+6L225rrd86"
-Content-Disposition: inline
-In-Reply-To: <23gvjkszxvf6zehiqetjfmtf67nlpnnfmhgx234jnxwrtmbdpr@4yv64sz2kpcs>
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 1/3] dt-bindings: reset: Add compatible and DT bindings
+ for Amlogic A4/A5 Reset Controller
+To: zelong dong <zelong.dong@amlogic.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Kevin Hilman <khilman@baylibre.com>,
+ Rob Herring <robh@kernel.org>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ kelvin.zhang@amlogic.com
+References: <20240703061610.37217-1-zelong.dong@amlogic.com>
+ <20240703061610.37217-2-zelong.dong@amlogic.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20240703061610.37217-2-zelong.dong@amlogic.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
---wONVh+6L225rrd86
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 03/07/2024 08:16, zelong dong wrote:
+> From: Zelong Dong <zelong.dong@amlogic.com>
+> 
+> Add new compatible and DT bindings for Amlogic A4/A5 Reset Controller
+> 
+> Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
+> ---
+>   .../bindings/reset/amlogic,meson-reset.yaml   | 22 +++++++++++++------
+>   1 file changed, 15 insertions(+), 7 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
+> index f0c6c0df0ce3..80345af81d5a 100644
+> --- a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
+> +++ b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
+> @@ -12,13 +12,21 @@ maintainers:
+>   
+>   properties:
+>     compatible:
+> -    enum:
+> -      - amlogic,meson8b-reset # Reset Controller on Meson8b and compatible SoCs
+> -      - amlogic,meson-gxbb-reset # Reset Controller on GXBB and compatible SoCs
+> -      - amlogic,meson-axg-reset # Reset Controller on AXG and compatible SoCs
+> -      - amlogic,meson-a1-reset # Reset Controller on A1 and compatible SoCs
+> -      - amlogic,meson-s4-reset # Reset Controller on S4 and compatible SoCs
+> -      - amlogic,c3-reset # Reset Controller on C3 and compatible SoCs
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - amlogic,meson8b-reset # Reset Controller on Meson8b and compatible SoCs
+> +              - amlogic,meson-gxbb-reset # Reset Controller on GXBB and compatible SoCs
+> +              - amlogic,meson-axg-reset # Reset Controller on AXG and compatible SoCs
+> +              - amlogic,meson-a1-reset # Reset Controller on A1 and compatible SoCs
+> +              - amlogic,meson-s4-reset # Reset Controller on S4 and compatible SoCs
+> +              - amlogic,t7-reset
+> +      - items:
+> +          - enum:
+> +              - amlogic,a4-reset
+> +              - amlogic,a5-reset
+> +              - amlogic,c3-reset
+> +          - const: amlogic,meson-s4-reset
 
-On Mon, Jul 01, 2024 at 09:57:20PM +0300, Serge Semin wrote:
-> Hi folks
->=20
-> On Mon, Jul 01, 2024 at 08:17:29AM -0500, Samuel Holland wrote:
-> > Hi Kanak,
-> >=20
-> > On 2024-07-01 7:13 AM, Kanak Shilledar wrote:
-> > > updated the struct of_device_id dw_spi_mmio_of_match to include
-> > > the updated compatible value for TH1520 SoC ("thead,th1520-spi")
-> > > to initialize with dw_spi_pssi_init().
-> > >=20
-> > > Signed-off-by: Kanak Shilledar <kanakshilledar@gmail.com>
-> > > ---
-> > > Changes in v2:
-> > > - Separated from a single patch file.
-> > > ---
-> > >  drivers/spi/spi-dw-mmio.c | 1 +
-> > >  1 file changed, 1 insertion(+)
-> > >=20
-> > > diff --git a/drivers/spi/spi-dw-mmio.c b/drivers/spi/spi-dw-mmio.c
-> > > index 819907e332c4..39e3d46ebf5d 100644
-> > > --- a/drivers/spi/spi-dw-mmio.c
-> > > +++ b/drivers/spi/spi-dw-mmio.c
-> > > @@ -419,6 +419,7 @@ static const struct of_device_id dw_spi_mmio_of_m=
-atch[] =3D {
-> > >  	{ .compatible =3D "microchip,sparx5-spi", dw_spi_mscc_sparx5_init},
-> > >  	{ .compatible =3D "canaan,k210-spi", dw_spi_canaan_k210_init},
-> > >  	{ .compatible =3D "amd,pensando-elba-spi", .data =3D dw_spi_elba_in=
-it},
-> > > +	{ .compatible =3D "thead,th1520-spi", .data =3D dw_spi_pssi_init},
-> >=20
-> > Your binding requires snps,dw-apb-ssi as a fallback compatible string, =
-which is
-> > already supported by this driver and uses the same match data. So you d=
-on't need
-> > this patch; its only effect is to make the kernel larger.
->=20
-> Agree with Samuel comment. Indeed there is no point in adding the
-> vendor-specific device-name supported in the driver if the fallback
-> compatible works as-is.
+Here you're changing bindings for amlogic,c3-reset, move it in the other enum list.
 
-FWIW, Mark picked up the binding alone so I think there's nothing for
-Kanak to do here & the driver patch should just be forgotten about :)
+Neil
 
-> >From that perspective we shouldn't have merged in the patch adding the
-> Renesas RZN1 SPI device name support, since the generic fallback
-> compatible works for it. On the contrary the Microsemi Ocelot/Jaguar2
-> SoC SPI DT-bindings shouldn't have been defined with the generic
-> fallback compatible since should the device be bound via the generic
-> name it won't work as expected.
->=20
-> Although, it's better to hear out what Rob, Conor or Krzysztof think
-> about this.
+>   
+>     reg:
+>       maxItems: 1
 
-I agree with what you've written. If the fallback works identically, then
-the specific compatible shouldn't be added here. And if the fallback
-will cause the device to misbehave (or not behave at all), then it
-should not have been added.
-I'm not sure if the Microsemi stuff is in the "won't work {,properly}"
-camp or in the "will work in a limited fashion" camp. The latter would
-be suitable for a fallback, the former not.
-
-Cheers,
-Conor.
-
-
---wONVh+6L225rrd86
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZoT9owAKCRB4tDGHoIJi
-0jYGAP9sjC9GgGM9qE1ZoqzHHiaERajD3hAFoKB9OYEHsOFtxQEAl1g8BT7QyaMo
-nMrjiPXoOmUwVmAt6fFAiWSAim+W7ws=
-=Z2Ad
------END PGP SIGNATURE-----
-
---wONVh+6L225rrd86--
 
