@@ -1,1291 +1,632 @@
-Return-Path: <devicetree+bounces-82982-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82983-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A7089269F8
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 23:07:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1CB79269FF
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 23:08:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2634A1F26C8B
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 21:07:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C71AA1C21785
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 21:08:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECADE198E9E;
-	Wed,  3 Jul 2024 21:05:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9DD0186E2D;
+	Wed,  3 Jul 2024 21:08:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o7n3VSsG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B897194138;
-	Wed,  3 Jul 2024 21:05:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C096010A1F;
+	Wed,  3 Jul 2024 21:08:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720040748; cv=none; b=Z2kwLymtrtzAEGciLvStjicuyGzzFGonPOPCIUwGE7qdXwxy2hala7v/FydbhT/gsti9GCAQrQIgxQlW22qbcoeO1kvBZdxUhPVYm+fuP5JgSRlTrrNs8XIfb1xK/5/g9akAid4gcMFG9RYnRlIUaNsIQv4AiB1J1wIjOQMVttg=
+	t=1720040906; cv=none; b=Bz6lKt7dPzw/I2GejJI6kpvNhhEJMMM3V1G3t2giA7SjD94FQun4Tu6MOIuLVkqbO2TDpee9WNg7mXuciCsegPfTMWSw7ZD18CCcDuAIghGylTEDAZLbeeBJvz0yaV7IvHn+XVoeuvZJfpFEsE3kImjsglyW1t3XAJL8X2X+2sk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720040748; c=relaxed/simple;
-	bh=n/Esf3jM2oh1TS5UHiMDsBJmBuE3ujnqFSqwxOS2aek=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=JkKfulHEPwYy8J2JtC8OUZ1Gqm1s568IpQ+0jkmXGdCMjMriv9G7UtsjOfx/6eY1I2Z8iaOwuIN1a/lf55B1In9lNqJcFLOcnTCk3lr8Z+T4SVa2mU/Ncwkf2gGkrUcNgjWRP8TlMMG2QkdPEb4pb/thVDGADurPT8ZWN4vnqMs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-Received: from i53875ac2.versanet.de ([83.135.90.194] helo=phil.lan)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1sP7AS-0000bE-Bo; Wed, 03 Jul 2024 23:05:32 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: heiko@sntech.de
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] arm64: dts: rockchip: add rock5 itx board
-Date: Wed,  3 Jul 2024 23:05:24 +0200
-Message-Id: <20240703210524.776455-3-heiko@sntech.de>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240703210524.776455-1-heiko@sntech.de>
-References: <20240703210524.776455-1-heiko@sntech.de>
+	s=arc-20240116; t=1720040906; c=relaxed/simple;
+	bh=h2y6D4xg7fOTYEO/GYeowuoGr3vvuikNSm8roWYbhyQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=C19XXi/W5sGhPHZIvWsyXcxef0Lx0/hfjuFni3+eV+vNIIQsqlts+1tXQiu7iTODoaqh00QvdAe8X80A77r7+58ljOPcI1jQsGKwFSb4lNRvbRAm5xp1c4TAwsEq8SxhxKoJmdAF2fwrcPpWs/Gi8garQvNqxAbzW3RSvMPJjjA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o7n3VSsG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E865C2BD10;
+	Wed,  3 Jul 2024 21:08:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720040906;
+	bh=h2y6D4xg7fOTYEO/GYeowuoGr3vvuikNSm8roWYbhyQ=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=o7n3VSsGj4VskKHjZhW3hkM1pX5NUYea1iyIRejW8MOBI5kscO5DAEKXW0qHKbjJ4
+	 Lu0rJi5OLJ9e3Ghs7Sy2i/zmaHKdrmwaOUPrYGkd/T/g4mBQADFZEHWyNvSIohkNcE
+	 zwrl1tIlJGd+fgrqEkyXOuqirq8Jnp2HTIoasHcTuESGgSag7/tSOU+yHrjQRNM4D7
+	 QNH4EQjUICrKS1h96+h4EleO2vGGTspAwSVa1V1x8GYMYtOIalCfo34U+mLPVP+vPL
+	 S2q/ydeT8oqyJGC73RR9hArhcST85kTQRHd6dHi0hhFjz86Tek19f1hRqU/HZICm48
+	 Zs4lWqxlHxeuA==
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-52cdfb69724so7094099e87.1;
+        Wed, 03 Jul 2024 14:08:26 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVETTbEQYXN7IZodFrN6V7OEATVjpXlZX/7ROHHYj+pdQUmRLsCvXAEyGg09/131nz/GQDuz7e1/hCnrSPW7dIaO08z7jiPdG3COjN/v1GOwsgwDG40j31An8iIlpfpyJDWdNaSNoRa+w==
+X-Gm-Message-State: AOJu0YxrFoyLPJFUnd5owTVQ3jxALAz+6JBB/t/tGXkI2v2igf7MCYzT
+	6ABYhfTnzlYTV36WbbdH2F16esYQKaEm+WoGP1enLs3hXh00osw6zsw1bc2schTg7xYPVz/EsqL
+	FnYaujdsymZZ0ot8V4RbiE+KOJQ==
+X-Google-Smtp-Source: AGHT+IGZGu0eLh0zGN8Vy3mUQHEMmQ0CIQ+xyDAOJUoaTNju5f4e930Vi/V/6TBYmA+X0cvmO1Tg1lhDum5uhrMR2dY=
+X-Received: by 2002:a05:6512:3b12:b0:52c:df6f:a66 with SMTP id
+ 2adb3069b0e04-52e8273f716mr8306199e87.58.1720040904267; Wed, 03 Jul 2024
+ 14:08:24 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20240624232122.3cfe03f8@booty> <CAL_Jsq+=mGEJXsjq1UZFMJtHko_z+doiFMXnx9K7exDuznymSA@mail.gmail.com>
+ <20240627145741.77ddccbf@booty>
+In-Reply-To: <20240627145741.77ddccbf@booty>
+From: Rob Herring <robh@kernel.org>
+Date: Wed, 3 Jul 2024 15:08:11 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJ1aKP=9VdAxjWvjZdyD0tYPhKSZKa1kAnQwPv4sBpbtA@mail.gmail.com>
+Message-ID: <CAL_JsqJ1aKP=9VdAxjWvjZdyD0tYPhKSZKa1kAnQwPv4sBpbtA@mail.gmail.com>
+Subject: Re: Fixing property memory leaks on device tree overlay removal
+To: Luca Ceresoli <luca.ceresoli@bootlin.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Conor Dooley <conor@kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+	Saravana Kannan <saravanak@google.com>, linux-kernel@vger.kernel.org, 
+	=?UTF-8?Q?Herv=C3=A9_Codina?= <herve.codina@bootlin.com>, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The Rock 5 ITX as the name suggests is made in the ITX form factor and
-actually build in a form to be used in a regular case even providing
-connectors for regular front-panel io.
+On Thu, Jun 27, 2024 at 6:57=E2=80=AFAM Luca Ceresoli <luca.ceresoli@bootli=
+n.com> wrote:
+>
+> Hello Rob,
+>
+> thanks for you detailed answer. See below my comments.
+>
+> On Tue, 25 Jun 2024 11:02:12 -0600
+> Rob Herring <robh@kernel.org> wrote:
+>
+> > On Mon, Jun 24, 2024 at 3:21=E2=80=AFPM Luca Ceresoli <luca.ceresoli@bo=
+otlin.com> wrote:
+> > >
+> > > Hello,
+> > >
+> >
+> > This is a great summary of the issues with further overlay support.
+>
+> Thanks. And thanks to my colleague Herv=C3=A9 as well, who worked togethe=
+r
+> with me on this analysis, giving invaluable help, apologies for not
+> having mentioned him initially!
+>
+> > > device tree overlays are implemented in the kernel since a long time,
+> > > but there is currently no code using them, except unittest. The
+> > > largest (in terms of code lines involved) blocker for enabling it is =
+the
+> > > memory leak of properties that happen on overlay removal [0]. The
+> > > kernel warns about it on overlay insertion:
+> > >
+> > >   OF: overlay: WARNING: memory leak will occur if overlay removed, pr=
+operty: /...
+> >
+> > Maybe this needs to just be finer-grained ansmarter. For example, we
+> > know when we've leaked pointers (because you found the cases below).
+> > We could set a flag in the node when that happens and then warn when
+> > removing the overlay.
+>
+> Fun, this is one of the options we considered. This leads to asking what
+> exactly we want, and which problem we want to fix.
+>
+> As I understand it, full removal of any struct property pointer outside
+> of the OF core is a requirement for the configfs overlay interface.
+> However what is required for having specific drivers to load/unload
+> overlays is not entirely clear to me after your reply. Our plan aims at
+> removing all the property-leaking APIs, which would give the best safety
+> guarantee, but from your comments (here and below) I infer it's not all
+> required, so I need to understand exactly what is required.
+>
+> > > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> > > Problem description
+> > > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> > >
+> > > In the kernel every 'struct device_node' is refcounted so the OF core
+> > > knows when to free it. There are of course get/put imbalance bugs
+> > > around, but these are "just" bugs that need to be fixed as they are
+> > > found.
+> > >
+> > > On the other hand, there is no refcounting for 'struct property'. Yet
+> > > some of the internal kernel APIs to access properties, e.g.
+> > > of_property_read_string(), return either a 'struct property' pointer =
+or
+> > > a copy of the 'char *value' field. This is not a bug, it is an API
+> > > design flaw: any user (e.g. any OF driver) can take a pointer to
+> > > property data that was allocated and should be deallocated by the OF
+> > > core, but the OF core has no idea of when that pointer will stop bein=
+g
+> > > used.
+> > >
+> > > Now, when loading a DT overlay there are three possible cases:
+> > >
+> > >  1. both the property and the containing node are in the base tree
+> > >  2. both the property and the containing node are in the same overlay
+> > >  3. the property is in an overlay and the containing node is either
+> > >     in the base tree or in a previously-loaded overlay
+> > >
+> > > Cases 1 and 2 are not problematic. In case 1 the data allocated for t=
+he
+> > > properties is never removed. In case 2 the properties are removed whe=
+n
+> > > removing the parent node, which gets removed when removing the overla=
+y
+> > > thanks to 'struct device_node' refcounting, based on the assumption
+> > > that the property lifetime is a subset of the parent node lifetime. T=
+he
+> > > problem exists in case 3. Properties in case 3 are usually a small pa=
+rt
+> > > of all the properties but there can be some (and there are some in th=
+e
+> > > product we are working on), and that's what needs to be addressed.
+> >
+> > I'd like to better understand what are the cases where you need to
+> > change/add properties in a node (other than "status"). I'm not
+> > entirely convinced we should even allow that.
+>
+> Glad to provide details! There are 3 cases, all from the hotplug
+> connector work we have been discussing [0]:
+>
+>  1. NVMEM cell
+>  2. Display pipeline remote-endpoint
+>  3. Labels in the overlay
+>
+> 1) NVMEM cells: the removable add-on has a model ID in an EEPROM, so
+> the overlay adds nvmem-cells and nvmem-cell-names properties under the
+> connector node (which is in the base DT). From the  I got your
+> skepticism in [0] but not exactly how differently you would address
+> this.
+>
+> This generates warnings for:
+>   /addon-connector/nvmem-cells
+>   /addon-connector/nvmem-cell-names
+>
+> How to avoid this: I see no obvious/easy clean solution given the NVMEM
+> cell bindings. I can only think about workarounds bypassing the NVMEM
+> APIs and open-coded device tree parsing in the connector driver,
+> reinventing what the NVMEM subsystem does.
+>
+> 2) We have a video bridge on the removable add-on, which on hotplug
+> will attach to the bridge on the fixed side. So we have:
+>
+> Fixed side (excerpt):
+>
+> / {
+>   addon-connector {
+>     ports {
+>       port@0 {...} // connected to previous bridge, on fixed side
+>       port@1 {
+>         hotplug_bridge_source: endpoint {               <--- node
+>           // remote-endpoint to be added by overlay
+>         };
+>       };
+>     };
+>   };
+> };
+>
+> Removable add-on side (excerpt):
+>
+> &hotplug_bridge_source {
+>   // Fill in the missing link from the fixed side to us
+>   remote-endpoint =3D <&sn65dsi84_from_bridge>;           <--- property
+> };
+>
+> &i2c5 {
+>   // Bridge on the removable add-on
+>   dsi-lvds-bridge@2c {
+>     compatible =3D "ti,sn65dsi84";
+>     reg =3D <0x2c>;
+>     ports {
+>       port@0 {
+>         sn65dsi84_from_bridge: endpoint {
+>           // Link to the DRM device on the fixed side
+>           remote-endpoint =3D <&hotplug_bridge_source>;
+>           data-lanes =3D <1 2 3 4>;
+>         };
+>       };
+>     };
+>   };
+> };
+>
+> This generates a warning for:
+>   /addon-connector/ports/port@1/endpoint/remote-endpoint
+>
+> How to avoid this: as I was writing this e-mail I realized we might
+> be able to move the entire /addon-connector/ports/port@1 node to the
+> overlay. I did a quick test, seems to be working, but I have to ensure
+> about the consequences on the DRM side.
+>
+> 3) There are labels in overlays, even ones that are only used
+> internally within the same overlay.
+>
+> Example:
+>
+> &{/} {
+>         addon_sys_pwr: addon-sys-pwr {            <--- label
+>                 compatible =3D "regulator-fixed";
+>         };
+>
+>         addon-3v3-sys {
+>                 compatible =3D "regulator-fixed";
+>                 vin-supply =3D <&addon_sys_pwr>;    <--- phandle
+>         };
+> };
+>
+> Note the label is only used "internally" to the overlay in this example,
+> but dtc doesn't know so it will add a property in /__symbols__ for each
+> label.
+>
+> Each label results in warnings for properties:
+>   /__symbols__/addon_sys_pwr
+>   /__symbols__/addon_3v3_sys
+>
+> This applies to any other labels, not only regulators.
+>
+> How to avoid this?
+>
+> If cases 1 and 2 can be solved, it should be possible to build the
+> overlays without -@, so no properties added to //__symbols__. Would be
+> great!
+>
+> Otherwise: these are really DT core internals, no code outside
+> drivers/of/ is supposed to fiddle with them, and we can assume the DT
+> core to be safe. So we may not add these properties to the deadprops
+> list, and thus avoid warning about them.
+>
+> I look forward to reading your thoughts about these 3 cases, especially
+> the NVMEM one.
+>
+> [0]
+> https://lore.kernel.org/all/20240510-hotplug-drm-bridge-v2-1-ec32f2c66d56=
+@bootlin.com/
+>
+> > > ~~~~~~~~~~~~~~~~~~~~~~~
+> > > Accessor classification
+> > > ~~~~~~~~~~~~~~~~~~~~~~~
+> > >
+> > > We examined and classified the various APIs that allow accessing the =
+OF
+> > > properties, which we called accessors, and counted their call sites.
+> > >
+> > > There are three kinds of property accessor functions in the OF APIs
+> > > that need to be fixed:
+> > >
+> > >  1. classic accessors
+> > >  2. for_each loop macros and supporting functions
+> > >  3. OF reconfig notifiers
+> > >
+> > > -----------------
+> > > Classic accessors
+> > > -----------------
+> > >
+> > > Classic accessors are those that return some property value. Examples
+> > > include:
+> > >
+> > >   of_find_property()
+> > >   of_property_read_string()
+> > >   of_get_property()
+> > >   of_property_read_string_index()
+> >
+> > Eliminating/limiting of_(find|get)_property() has been on my list for
+> > some time. I've been chipping away at it slowly.
+> >
+> > of_property_read_string() is the "new" typed API, but yes, that's a pro=
+blem.
+> >
+> >
+> > > Classic accessors have lots of call sites: we counted about 1900. Man=
+y
+> > > are in drivers and will need to be addressed individually, one by one=
+.
+> > > So the plan is to add new "safe" accessors and progressively convert
+> > > drivers and other call sites to use them, to eventually remove the
+> > > current unsafe accessors.
+> >
+> > 1200 of these are of_(get|find)_property. Of that 500 are in arch and
+> > almost all powerpc and sparc which we can probably exclude from all
+> > this. That leaves drivers/ and sound/ mostly. A good percentage of
+> > those looks like powerpc and sparc drivers. 70 are internal to
+> > drivers/of/.
+> >
+> > Of the remaining ones, which ones could ever be in an overlay? I don't
+> > really see much: gpio-fan, pwm backlight, a USB hub, etc.
+>
+> As I read it, looks like having zero "leak" warnings would be enough for
+> having a driver such as the connector driver [0] merged. Is it the case?
+>
+> As above, we thought about a plan to entirely eliminate all APIs
+> returning property pointers, but reducing the effort would not be
+> unwelcome.
+>
+> > > One supporting strategy in that direction is making 'struct property'
+> > > opaque, which would ensure its fields just cannot be accessed directl=
+y.
+> > > I attempted it and the amount of code that gets broken and needs to b=
+e
+> > > fixed is "manageable".
+> > >
+> > > An even stronger strategy is to move struct property completely outsi=
+de
+> > > in-kernel public include files (i.e. from include/linux/of.h to
+> > > drivers/of/of_private.h) so even struct property pointer cannot exist
+> > > anymore outside of the OF core. However this is quite extreme and ver=
+y
+> > > hard to apply (see the section about for_each loops).
+> >
+> > Making that and device_node opaque have also been on my todo. I
+> > started some work on device_node, but didn't get too far.
+>
+> I agree it would be good, at least in principle, but device_node is
+> definitely out of the scope of our plans.
+>
+> > > ---------------------------------------------
+> > > for_each loop macros and supporting functions
+> > > ---------------------------------------------
+> > >
+> > > Fixing the for_each iterators (about 140 call sites) is hard because
+> > > they use 'struct property' pointers "internally", but being macros th=
+e
+> > > iterarot is exposed to code using those macros. So we propose a
+> > > mitigation strategy that is more approachable and a removal strategy.
+> > >
+> > > The mitigation strategy is based on the declaring variables in the fo=
+r
+> > > loop init clause, as allowed since the kernel has moved to C gnu11.
+> > > This would allow replacing typical code like:
+> > >
+> > >   struct device_node *node =3D <...>;
+> > >   struct property *prop;
+> > >   const __be32 *cur;
+> > >   u32 rate;
+> > >
+> > >   of_property_for_each_u32(node, "my-property", prop, cur, rate) {
+> > >
+> > > with code like:
+> > >
+> > >   struct device_node *node =3D <...>;
+> > >   u32 rate;
+> > >
+> > >   of_property_for_each_u32(node, "my-property", rate) {
+> > >
+> > > This is only a mitigation strategy because it would not strictly forb=
+id
+> > > access to the struct property and the __be32 variables. But it would
+> > > make it less easy and much more visible to code reviewers and possibl=
+y
+> > > checkpatch, and as such it would make it hard to add my mistake. It
+> > > also makes code simpler and more readable so it is an overall
+> > > improvement as well.
+> >
+> > That would be a nice clean-up.
+> >
+> > For for_each_property_of_node(), I think we can eliminate it. There's
+> > only a few cases, and most are looking for property names with a
+> > specific prefix or suffix. There's several copies just for
+> > regulators...
+> >
+> > >
+> > > This is simple to implement and at first glance about half of the cal=
+l
+> > > sites can benefit. For those which cannot, an ad-hoc solution must be
+> > > devised, possibly based on a full array copy as a last resort.
+> > >
+> > > The removal strategy involves a total removal of these looping macros=
+,
+> > > in lack of a way to implement them without giving access to the
+> > > property and iterator pointers. Removal of these APIs would involve
+> > > replacing them with specific accessors that internally loop and do wh=
+at
+> > > is needed (for common cases) or return a full copy for other cases.
+> > > Passing a callback for the looping function to operate on members is
+> > > also potentially doable but cumbersome for callers.
+> > >
+> > > Instead of the removal strategy I think there might be better tools,
+> > > but I still haven't done a real evaluations so far.
+> > >
+> > > Note that if struct property were made internal, the removal strategy
+> > > would become unavoidable.
+> > >
+> > > ---------------------
+> > > OF reconfig notifiers
+> > > ---------------------
+> > >
+> > > Reconfig notifiers are callbacks that can be enabled in order to be
+> > > notified of changes to the device tree. The APIs themselves are not
+> > > leaking internal pointers, but the notifier callbacks are passed a
+> > > 'struct of_reconfig_data *' parameter which contains pointers to the
+> > > old and new struct property pointers.
+> > >
+> > > If struct property were opaque this would not expose pointers to
+> > > property name/len/value. Still the struct property pointer would be
+> > > exposed. So we propose to make the entire struct of_reconfig_data
+> > > opaque.
+> > >
+> > > The drawback is that several new (trivial) accessors would be needed =
+to
+> > > get the data from such an opaque structure. However call sites of
+> > > notifiers are limited (about 10), some don=E2=80=99t even access prop=
+erties at
+> > > all and others appear to use them carefully, so a fix would be
+> > > relatively simple to do.
+> >
+> > I need to study this more, but a notifier is never a great design so
+> > maybe we can come up with something better.
+>
+> Do you have specific ideas in mind? I'm very interested in knowing
+> alternative options.
 
-It can be powered either bei 12V, ATX power-supply or PoE.
+Like I said, need to study it more... Perhaps just remove notifying on
+properties. I think properties changing at any point in time is
+difficult to support and we just shouldn't support that other than a
+few exceptions like "status". Or we could have a "node changed"
+notifier and then it's the client's problem to figure out what
+property changed.
 
-Notable peripherals are the 4 SATA ports, M.2 M-Key slot, M.2 E-key slot,
-2*2.5Gb pcie-connected ethernet nics.
+> > > ~~~~~~~~~~~~~~~
+> > > Transition plan
+> > > ~~~~~~~~~~~~~~~
+> > >
+> > > Transitioning to the new accessors is not going to happen quickly giv=
+en
+> > > the amount of call sites, so we devised a strategy to incrementally
+> > > approach it while avoiding introducing new calls to the old APIs.
+> > >
+> > > The transition plan is based on adding a Kconfig symbol (a tentative
+> > > name is CONFIG_EXPORT_UNSAFE_OF_ACCESSORS) meaning =E2=80=9Cexport ol=
+d OF
+> > > accessor functions returning pointers to firmware data=E2=80=9D and d=
+efaulting
+> > > to =E2=80=98y=E2=80=99 to avoid breaking current usages. When this is=
+ set to =E2=80=98n=E2=80=99:
+> > >
+> > >  - The old accessors returning pointers to struct property values are
+> > >    not built, or at least not exported outside the OF core
+> > >  - So any defconfig with at least one driver using the old accessors
+> > >    would just not build, which allows to easily find out what needs t=
+o
+> > >    be updated if one wants to remove overlays in their specific
+> > >    configuration, or to disable unneeded drivers that are not yet
+> > >    updated
+> > >  - The property leaks under discussion are not possible anymore
+> > >  - The deadprops list and the warning are not built
+> > >  - Note: we need to ensure automated test bots won=E2=80=99t set this=
+ setting
+> > >    to =E2=80=98n=E2=80=99 or they will fail
+> > >
+> > > Any code using DT overlays, including the connector driver proposed i=
+n
+> > > [2], can depend on CONFIG_EXPORT_UNSAFE_OF_ACCESSORS=3Dn, to ensure t=
+he
+> > > leaking APIs are never called when runtime-loadable overlays are in u=
+se.
+> > >
+> > > Preventing new usages of old accessors will be important. Tools to
+> > > achieve that:
+> > >
+> > >  * Extend checkpatch to report an error on their usage
+> > >  * Add a 'K:' entry to MAINTAINERS so that patches trying to use them
+> > >    will be reported (to me at least)
+> >
+> > That would be good, but I have doubts on it preventing new users. Not
+> > that we shouldn't do it, but if I had a dollar for everytime I said
+> > run get_maintainers.pl or checkpatch.pl... I have wanted to document
+> > various functions which are "don't add new users unless you really
+> > have to". Things like of_iomap() or of_irq_*.
+>
+> I think doing our best is the best we can do in this respect. :)
+>
+> > > Once all call sites are updated to the new API, the old API can be
+> > > removed entirely along with the deadprops list and the
+> > > CONFIG_EXPORT_UNSAFE_OF_ACCESSORS Kconfig symbol.
+> >
+> > I don't like the kconfig symbol even if it is temporary. How does it
+> > get configured for a multi-platform kernel?
+>
+> First of all: this kconfig symbol is useful only if the goal is to
+> remove all property-leaking APIs.
+>
+> The idea is to use it as a guard: if a defconfig builds with it set to
+> 'n', then all the code enabled in that defconfig is not using any
+> "unsafe" accessor. Meaning: we haven't removed all accessors from the
+> whole kernel, but from the subset of the kernel that this defconfig is
+> building.
+>
+> For multi-platform kernels it is not much relevant in the short term.
+> If/when at some point we will be able to set it to 'n' in one of them
+> (e.g. arch/arm64/configs/defconfig) that would mean a large percentage
+> of call sites have been removed, and (even more important) _no_ call
+> sites will be added anymore or the defconfiig will fail immediately.
+>
+> And I think it should be a requirement for any driver loading/unloading
+> overlays, so that one cannot even load an overlay without fixing all
+> the call sites. I think this is the most relevant usefulness in the
+> short term: either you call unsafe accessors or you load overlays, not
+> both.
 
-As of yet unsupported display options consist of 2*hdmi, DP via type-c,
-eDP + 2*DSI via pcb connectors.
+Sure, but that can be runtime. If you load overlays, then you'll get
+warnings for calling unsafe accessors on the nodes associated with the
+overlay.
 
-USB ports are 4*USB3 + 2*USB2 on the back panel and 2-port front-panel
-connector.
+Now if we want a debug kconfig option to warn on all cases, that would be f=
+ine.
 
-Signed-off-by: Heiko Stuebner <heiko@sntech.de>
----
- arch/arm64/boot/dts/rockchip/Makefile         |    1 +
- .../boot/dts/rockchip/rk3588-rock-5itx.dts    | 1188 +++++++++++++++++
- 2 files changed, 1189 insertions(+)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-rock-5itx.dts
+> > > =3D=3D=3D=3D=3D=3D=3D
+> > > Roadmap
+> > > =3D=3D=3D=3D=3D=3D=3D
+> > >
+> > > We plan to address this in various steps, in order to allow an easier
+> > > review process and to have the various changes tested progressively.
+> > >
+> > > The main steps in our roadmap are:
+> > >
+> > >  1. Make struct property opaque and fix code that gets broken
+> > >  2. Main API transition (class 1):
+> > >     - Add new safe accessors
+> > >     - Implement CONFIG_EXPORT_UNSAFE_OF_ACCESSORS to hide leaking
+> > >       accessors
+> > >     - Document the above
+> > >     - OF implementation
+> > >     - fwnode wrapper (for ACPI+SWNODE)
+> > >     - rwsem/RCU synchronisation mechanism
+> > >     - convert a few drivers
+> > >  3. Prevent new patches using old accessors from being merged
+> > >     (checkpatch, MAINTAINERS...)
+> > >  4. Convert a significant number of drivers (enough to support a
+> > >     complex SoC)
+> >
+> > But why? Pretty much all of the SoC support is fixed. We only need to
+> > avoid leaking pointers for the parts which can be dynamic. We know
+> > which nodes and properties are dynamic already. Of course there's the
+> > LAN96xx the SoC is the PCI device case, but that's a bit special in
+> > that we would be removing everything.
+> >
+> > Can't we just WARN on using the old accessors on nodes or properties
+> > which are dynamic?
+>
+> As above, that's because the plan is (was?) to eventually remove all
+> the leaking accessors.
+>
+> > >  5. for_each loops (class 2) mitigation strategy
+> > >  6. Make struct of_reconfig_data opaque (class 3)
+> > >  7. for_each loops (class 2) full removal strategy
+> > >
+> > > We think the necessity of the last two step is subject to discussion,
+> > > while all the previous ones are required.
+> > >
+> > > Note there is no "convert all call sites" in the plan. The amount of
+> > > drivers alone is huge, and converting all of them would not be doable
+> > > entirely by us both in terms of amount of work and for lack of hardwa=
+re
+> > > to test the changes.
+> >
+> > That would only be necessary if we allow any change everywhere in a DT
+> > on every system. IOW, if we accepted the userspace configfs overlay
+> > applying patchset. If things are constrained to specific systems and
+> > specific parts of a DT (e.g. under a connector node), then it is a lot
+> > fewer pieces to fix. If powerpc is excluded for example, that alone
+> > eliminates a bunch of code and drivers to worry about.
+>
+> Bottom line, I think the takeaway is that in your opinion removing the
+> unsafe property accessors is not a requirement for accepting a driver
+> that loads/unloads an overlay. Only having zero warnings for the
+> specific overlay is a requirement. Correct?
 
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index e8eba631da23e..0380768586436 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -132,6 +132,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-quartzpro64.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b-pcie-ep.dtbo
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b-pcie-srns.dtbo
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5itx.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-tiger-haikou.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-toybrick-x0.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-turing-rk1.dtb
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5itx.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5itx.dts
-new file mode 100644
-index 0000000000000..41d92ceeeb09c
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5itx.dts
-@@ -0,0 +1,1188 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2022 Rockchip Electronics Co., Ltd.
-+ * Copyright (c) 2022 Radxa Limited
-+ *
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/pinctrl/rockchip.h>
-+#include <dt-bindings/pwm/pwm.h>
-+#include "dt-bindings/usb/pd.h"
-+#include "rk3588.dtsi"
-+
-+/ {
-+	model = "Radxa ROCK 5 ITX";
-+	compatible = "radxa,rock-5itx", "rockchip,rk3588";
-+
-+	aliases {
-+		mmc0 = &sdhci;
-+		mmc1 = &sdmmc;
-+		mmc2 = &sdio;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial2:1500000n8";
-+	};
-+
-+	adc_keys: adc-keys {
-+		compatible = "adc-keys";
-+		io-channels = <&saradc 0>;
-+		io-channel-names = "buttons";
-+		keyup-threshold-microvolt = <1800000>;
-+		poll-interval = <100>;
-+		status = "okay";
-+
-+		button-maskrom {
-+			label = "Mask Rom";
-+			linux,code = <KEY_SETUP>;
-+			press-threshold-microvolt = <1750>;
-+		};
-+	};
-+
-+	analog-sound {
-+		compatible = "audio-graph-card";
-+		label = "rk3588-es8316";
-+
-+		widgets = "Microphone", "Mic Jack",
-+			  "Headphone", "Headphones";
-+
-+		routing = "MIC2", "Mic Jack",
-+			  "Headphones", "HPOL",
-+			  "Headphones", "HPOR";
-+
-+		dais = <&i2s0_8ch_p0>;
-+		hp-det-gpio = <&gpio1 RK_PD5 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&hp_detect>;
-+	};
-+
-+	gpio-leds {
-+		compatible = "gpio-leds";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&led_pins>;
-+
-+		power-led1 {
-+			gpios = <&gpio0 RK_PB7 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "default-on";
-+		};
-+
-+		hdd-led2 {
-+			gpios = <&gpio0 RK_PC0 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "disk-activity";
-+		};
-+	};
-+
-+	fan0: pwm-fan {
-+		compatible = "pwm-fan";
-+		#cooling-cells = <2>;
-+		cooling-levels = <0 64 128 192 255>;
-+		fan-supply = <&vcc12v_dcin>;
-+		pwms = <&pwm14 0 10000 0>;
-+	};
-+
-+	/* M.2 E-KEY */
-+	sdio_pwrseq: sdio-pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		clocks = <&hym8563>;
-+		clock-names = "ext_clock";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&wifi_enable_h>;
-+		reset-gpios = <&gpio0 RK_PC4 GPIO_ACTIVE_LOW>;
-+	};
-+
-+	typec_vin: regulator-typec-vin {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		gpio = <&gpio1 RK_PB6 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&vbus5v0_typec_en>;
-+		regulator-name = "typec_vin";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+
-+	vcc12v_dcin: regulator-vcc12v-dcin {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc12v_dcin";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <12000000>;
-+		regulator-max-microvolt = <12000000>;
-+	};
-+
-+	vcc33_io64: regulator-vcc33-io64 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc33_io64";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vcc12v_dcin>;
-+	};
-+
-+	vcc3v3_ekey: regulator-vcc3v3-ekey {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		gpios = <&gpio1 RK_PD2 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&ekey_en>;
-+		regulator-name = "vcc3v3_ekey";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		startup-delay-us = <50000>;
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+
-+	vcc3v3_lan: vcc3v3_lan_phy2: regulator-vcc3v3-lan {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc3v3_lan";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vcc_3v3_s3>;
-+	};
-+
-+	vcc3v3_mkey: regulator-vcc3v3-mkey {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		gpios = <&gpio1 RK_PA4 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pcie30x4_pwren_h>;
-+		regulator-name = "vcc3v3_mkey";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		startup-delay-us = <5000>;
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+
-+	vcc3v3_sys: regulator-vcc3v3-sys {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc3v3_sys";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vcc12v_dcin>;
-+	};
-+
-+	vcc5v0_sys: regulator-vcc5v0-sys {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc5v0_sys";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&vcc12v_dcin>;
-+	};
-+
-+	vcc5v0_usb20: vcc5v0_usb12: vcc5v0_usb34: regulator-vcc5v0-usb {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		gpio = <&gpio3 RK_PB7 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&usb_host_pwren_h>;
-+		regulator-name = "vcc5v0_usb";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+
-+	vcc_1v1_nldo_s3: regulator-vcc-1v1-nldo-s3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_1v1_nldo_s3";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <1100000>;
-+		regulator-max-microvolt = <1100000>;
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+};
-+
-+&combphy0_ps {
-+	status = "okay";
-+};
-+
-+&combphy1_ps {
-+	status = "okay";
-+};
-+
-+&combphy2_psu {
-+	status = "okay";
-+};
-+
-+&cpu_b0 {
-+	cpu-supply = <&vdd_cpu_big0_s0>;
-+};
-+
-+&cpu_b1 {
-+	cpu-supply = <&vdd_cpu_big0_s0>;
-+};
-+
-+&cpu_b2 {
-+	cpu-supply = <&vdd_cpu_big1_s0>;
-+};
-+
-+&cpu_b3 {
-+	cpu-supply = <&vdd_cpu_big1_s0>;
-+};
-+
-+&cpu_l0 {
-+	cpu-supply = <&vdd_cpu_lit_s0>;
-+};
-+
-+&cpu_l1 {
-+	cpu-supply = <&vdd_cpu_lit_s0>;
-+};
-+
-+&cpu_l2 {
-+	cpu-supply = <&vdd_cpu_lit_s0>;
-+};
-+
-+&cpu_l3 {
-+	cpu-supply = <&vdd_cpu_lit_s0>;
-+};
-+
-+&gpu {
-+	mali-supply = <&vdd_gpu_s0>;
-+	status = "okay";
-+};
-+
-+&i2c0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c0m2_xfer>;
-+	status = "okay";
-+
-+	vdd_cpu_big0_s0: regulator@42 {
-+		compatible = "rockchip,rk8602";
-+		reg = <0x42>;
-+		fcs,suspend-voltage-selector = <1>;
-+		regulator-name = "vdd_cpu_big0_s0";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <550000>;
-+		regulator-max-microvolt = <1050000>;
-+		regulator-ramp-delay = <2300>;
-+		vin-supply = <&vcc5v0_sys>;
-+
-+		regulator-state-mem {
-+			regulator-off-in-suspend;
-+		};
-+	};
-+
-+	vdd_cpu_big1_s0: regulator@43 {
-+		compatible = "rockchip,rk8603", "rockchip,rk8602";
-+		reg = <0x43>;
-+		fcs,suspend-voltage-selector = <1>;
-+		regulator-name = "vdd_cpu_big1_s0";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <550000>;
-+		regulator-max-microvolt = <1050000>;
-+		regulator-ramp-delay = <2300>;
-+		vin-supply = <&vcc5v0_sys>;
-+
-+		regulator-state-mem {
-+			regulator-off-in-suspend;
-+		};
-+	};
-+};
-+
-+&i2c1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c1m2_xfer>;
-+	status = "okay";
-+
-+	vdd_npu_s0: regulator@42 {
-+		compatible = "rockchip,rk8602";
-+		reg = <0x42>;
-+		fcs,suspend-voltage-selector = <1>;
-+		regulator-name = "vdd_npu_s0";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <550000>;
-+		regulator-max-microvolt = <950000>;
-+		regulator-ramp-delay = <2300>;
-+		vin-supply = <&vcc5v0_sys>;
-+
-+		regulator-state-mem {
-+			regulator-off-in-suspend;
-+		};
-+	};
-+};
-+
-+/* CAM0 connector */
-+&i2c3 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c3m0_xfer>;
-+};
-+
-+/* M.2 E-key */
-+&i2c4 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c4m1_xfer>;
-+};
-+
-+/* RTC and LCD0 connector */
-+&i2c6 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c6m0_xfer>;
-+	status = "okay";
-+
-+	hym8563: rtc@51 {
-+		compatible = "haoyu,hym8563";
-+		reg = <0x51>;
-+		#clock-cells = <0>;
-+		clock-output-names = "wifi_32kout";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&rtc_int>;
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <RK_PB0 IRQ_TYPE_LEVEL_LOW>;
-+	};
-+};
-+
-+/* Audio codec and CAM1 connector */
-+&i2c7 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c7m0_xfer>;
-+	status = "okay";
-+
-+	es8316: audio-codec@11 {
-+		compatible = "everest,es8316";
-+		reg = <0x11>;
-+		clocks = <&cru I2S0_8CH_MCLKOUT>;
-+		clock-names = "mclk";
-+		assigned-clocks = <&cru I2S0_8CH_MCLKOUT>;
-+		assigned-clock-rates = <12288000>;
-+		#sound-dai-cells = <0>;
-+
-+		port {
-+			es8316_p0_0: endpoint {
-+				remote-endpoint = <&i2s0_8ch_p0_0>;
-+			};
-+		};
-+	};
-+};
-+
-+/* FUSB302 and LCD1 connector */
-+&i2c8 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c8m4_xfer>;
-+	status = "okay";
-+
-+	usbc0: usb-typec@22 {
-+		compatible = "fcs,fusb302";
-+		reg = <0x22>;
-+		interrupt-parent = <&gpio3>;
-+		interrupts = <RK_PB4 IRQ_TYPE_LEVEL_LOW>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&usbc0_int>;
-+		vbus-supply = <&typec_vin>;
-+
-+		usb_con: connector {
-+			compatible = "usb-c-connector";
-+			label = "USB-C";
-+			data-role = "dual";
-+			power-role = "dual";
-+			try-power-role = "sink";
-+			op-sink-microwatt = <1000000>;
-+			sink-pdos =
-+				<PDO_FIXED(5000, 1000, PDO_FIXED_USB_COMM)>;
-+			source-pdos =
-+				<PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+					usbc0_orien_sw: endpoint {
-+						remote-endpoint = <&usbdp_phy0_orientation_switch>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+					usbc0_role_sw: endpoint {
-+						remote-endpoint = <&dwc3_0_role_switch>;
-+					};
-+				};
-+
-+				port@2 {
-+					reg = <2>;
-+					dp_altmode_mux: endpoint {
-+						remote-endpoint = <&usbdp_phy0_dp_altmode_mux>;
-+					};
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+&i2c8m4_xfer {
-+	rockchip,pins =
-+		/* i2c8_scl_m4 */
-+		<3 RK_PC2 9 &pcfg_pull_up_drv_level_6>,
-+		/* i2c8_sda_m4 */
-+		<3 RK_PC3 9 &pcfg_pull_up_drv_level_6>;
-+};
-+
-+&i2s0_8ch {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2s0_lrck
-+		     &i2s0_mclk
-+		     &i2s0_sclk
-+		     &i2s0_sdi0
-+		     &i2s0_sdo0>;
-+	status = "okay";
-+
-+	i2s0_8ch_p0: port {
-+		i2s0_8ch_p0_0: endpoint {
-+			dai-format = "i2s";
-+			mclk-fs = <256>;
-+			remote-endpoint = <&es8316_p0_0>;
-+		};
-+	};
-+};
-+
-+&package_thermal {
-+	polling-delay = <1000>;
-+
-+	trips {
-+		package_fan0: package-fan0 {
-+			hysteresis = <2000>;
-+			temperature = <50000>;
-+			type = "active";
-+		};
-+
-+		package_fan1: package-fan1 {
-+			hysteresis = <2000>;
-+			temperature = <65000>;
-+			type = "active";
-+		};
-+	};
-+
-+	cooling-maps {
-+		map0 {
-+			cooling-device = <&fan0 THERMAL_NO_LIMIT 1>;
-+			trip = <&package_fan0>;
-+		};
-+		map1 {
-+			cooling-device = <&fan0 2 THERMAL_NO_LIMIT>;
-+			trip = <&package_fan1>;
-+		};
-+	};
-+};
-+
-+/* M.2 E-key */
-+&pcie2x1l0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie30x1_0_perstn_m1_l>;
-+	reset-gpios = <&gpio4 RK_PA5 GPIO_ACTIVE_HIGH>;
-+	vpcie3v3-supply = <&vcc3v3_ekey>;
-+	status = "okay";
-+};
-+
-+/* RTL8125B_1 */
-+&pcie2x1l1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie30x1_1_perstn>;
-+	reset-gpios = <&gpio4 RK_PA2 GPIO_ACTIVE_HIGH>;
-+	vpcie3v3-supply = <&vcc3v3_lan>;
-+	status = "okay";
-+};
-+
-+/* RTL8125B_2 */
-+&pcie2x1l2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie20x1_2_perstn>;
-+	reset-gpios = <&gpio3 RK_PB0 GPIO_ACTIVE_HIGH>;
-+	vpcie3v3-supply = <&vcc3v3_lan_phy2>;
-+	status = "okay";
-+};
-+
-+&pcie30phy {
-+	data-lanes = <1 1 2 2>;
-+	/* separate clock lines from the clock generator to phy and devices */
-+	rockchip,rx-common-refclk-mode = <0 0 0 0>;
-+	status = "okay";
-+};
-+
-+/* ASMedia ASM1164 Sata controller */
-+&pcie3x2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie30x2_perstn_m1_l>;
-+	reset-gpios = <&gpio4 RK_PB0 GPIO_ACTIVE_HIGH>;
-+	vpcie3v3-supply = <&vcc33_io64>;
-+	status = "okay";
-+};
-+
-+/* M.2 M.key */
-+&pcie3x4 {
-+	num-lanes = <2>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie30x4_perstn_m1_l>;
-+	reset-gpios = <&gpio4 RK_PB6 GPIO_ACTIVE_HIGH>;
-+	vpcie3v3-supply = <&vcc3v3_mkey>;
-+	status = "okay";
-+};
-+
-+&pwm14 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pwm14m1_pins>;
-+	status = "okay";
-+};
-+
-+&saradc {
-+	vref-supply = <&avcc_1v8_s0>;
-+	status = "okay";
-+};
-+
-+&sdhci {
-+	bus-width = <8>;
-+	no-sdio;
-+	no-sd;
-+	non-removable;
-+	max-frequency = <200000000>;
-+	mmc-hs400-1_8v;
-+	mmc-hs400-enhanced-strobe;
-+	mmc-hs200-1_8v;
-+	status = "okay";
-+};
-+
-+&sdmmc {
-+	max-frequency = <200000000>;
-+	no-sdio;
-+	no-mmc;
-+	bus-width = <4>;
-+	cap-mmc-highspeed;
-+	cap-sd-highspeed;
-+	disable-wp;
-+	sd-uhs-sdr104;
-+	vmmc-supply = <&vcc_3v3_s3>;
-+	vqmmc-supply = <&vccio_sd_s0>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&sdmmc_bus4 &sdmmc_clk &sdmmc_cmd &sdmmc_det>;
-+	status = "okay";
-+};
-+
-+/* M.2 E-KEY */
-+&sdio {
-+	broken-cd;
-+	bus-width = <4>;
-+	cap-sdio-irq;
-+	disable-wp;
-+	keep-power-in-suspend;
-+	max-frequency = <150000000>;
-+	mmc-pwrseq = <&sdio_pwrseq>;
-+	no-sd;
-+	no-mmc;
-+	non-removable;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&sdiom0_pins>;
-+	sd-uhs-sdr104;
-+	vmmc-supply = <&vcc3v3_ekey>;
-+	status = "okay";
-+};
-+
-+&sfc {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&fspim2_pins>;
-+	status = "okay";
-+
-+	spi_flash: flash@0 {
-+		compatible = "jedec,spi-nor";
-+		reg = <0x0>;
-+		spi-max-frequency = <50000000>;
-+		spi-rx-bus-width = <4>;
-+		spi-tx-bus-width = <1>;
-+	};
-+};
-+
-+&spi2 {
-+	status = "okay";
-+	assigned-clocks = <&cru CLK_SPI2>;
-+	assigned-clock-rates = <200000000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&spi2m2_cs0 &spi2m2_pins>;
-+	num-cs = <1>;
-+
-+	pmic@0 {
-+		compatible = "rockchip,rk806";
-+		spi-max-frequency = <1000000>;
-+		reg = <0x0>;
-+
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <7 IRQ_TYPE_LEVEL_LOW>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pmic_pins>, <&rk806_dvs1_null>,
-+			    <&rk806_dvs2_null>, <&rk806_dvs3_null>;
-+
-+		system-power-controller;
-+
-+		vcc1-supply = <&vcc5v0_sys>;
-+		vcc2-supply = <&vcc5v0_sys>;
-+		vcc3-supply = <&vcc5v0_sys>;
-+		vcc4-supply = <&vcc5v0_sys>;
-+		vcc5-supply = <&vcc5v0_sys>;
-+		vcc6-supply = <&vcc5v0_sys>;
-+		vcc7-supply = <&vcc5v0_sys>;
-+		vcc8-supply = <&vcc5v0_sys>;
-+		vcc9-supply = <&vcc5v0_sys>;
-+		vcc10-supply = <&vcc5v0_sys>;
-+		vcc11-supply = <&vcc_2v0_pldo_s3>;
-+		vcc12-supply = <&vcc5v0_sys>;
-+		vcc13-supply = <&vcc_1v1_nldo_s3>;
-+		vcc14-supply = <&vcc_1v1_nldo_s3>;
-+		vcca-supply = <&vcc5v0_sys>;
-+
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		rk806_dvs1_null: dvs1-null-pins {
-+			pins = "gpio_pwrctrl1";
-+			function = "pin_fun0";
-+		};
-+
-+		rk806_dvs2_null: dvs2-null-pins {
-+			pins = "gpio_pwrctrl2";
-+			function = "pin_fun0";
-+		};
-+
-+		rk806_dvs3_null: dvs3-null-pins {
-+			pins = "gpio_pwrctrl3";
-+			function = "pin_fun0";
-+		};
-+
-+		regulators {
-+			vdd_gpu_s0: vdd_gpu_mem_s0: dcdc-reg1 {
-+				regulator-boot-on;
-+				regulator-min-microvolt = <550000>;
-+				regulator-max-microvolt = <950000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-name = "vdd_gpu_s0";
-+				regulator-enable-ramp-delay = <400>;
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vdd_cpu_lit_s0: vdd_cpu_lit_mem_s0: dcdc-reg2 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <550000>;
-+				regulator-max-microvolt = <950000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-name = "vdd_cpu_lit_s0";
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vdd_log_s0: dcdc-reg3 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <675000>;
-+				regulator-max-microvolt = <750000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-name = "vdd_log_s0";
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <750000>;
-+				};
-+			};
-+
-+			vdd_vdenc_s0: vdd_vdenc_mem_s0: dcdc-reg4 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <550000>;
-+				regulator-max-microvolt = <950000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-name = "vdd_vdenc_s0";
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vdd_ddr_s0: dcdc-reg5 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <675000>;
-+				regulator-max-microvolt = <900000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-name = "vdd_ddr_s0";
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+					regulator-suspend-microvolt = <850000>;
-+				};
-+			};
-+
-+			vdd2_ddr_s3: dcdc-reg6 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-name = "vdd2_ddr_s3";
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+				};
-+			};
-+
-+			vcc_2v0_pldo_s3: dcdc-reg7 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <2000000>;
-+				regulator-max-microvolt = <2000000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-name = "vdd_2v0_pldo_s3";
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <2000000>;
-+				};
-+			};
-+
-+			vcc_3v3_s3: dcdc-reg8 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-name = "vcc_3v3_s3";
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <3300000>;
-+				};
-+			};
-+
-+			vddq_ddr_s0: dcdc-reg9 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-name = "vddq_ddr_s0";
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vcc_1v8_s3: dcdc-reg10 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-name = "vcc_1v8_s3";
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <1800000>;
-+				};
-+			};
-+
-+			avcc_1v8_s0: pldo-reg1 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-name = "avcc_1v8_s0";
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <1800000>;
-+				};
-+			};
-+
-+			vcc_1v8_s0: pldo-reg2 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-name = "vcc_1v8_s0";
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <1800000>;
-+				};
-+			};
-+
-+			avdd_1v2_s0: pldo-reg3 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1200000>;
-+				regulator-max-microvolt = <1200000>;
-+				regulator-name = "avdd_1v2_s0";
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vcc_3v3_s0: pldo-reg4 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-name = "vcc_3v3_s0";
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <3300000>;
-+				};
-+			};
-+
-+			vccio_sd_s0: pldo-reg5 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-name = "vccio_sd_s0";
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			pldo6_s3: pldo-reg6 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-name = "pldo6_s3";
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <1800000>;
-+				};
-+			};
-+
-+			vdd_0v75_s3: nldo-reg1 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <750000>;
-+				regulator-max-microvolt = <750000>;
-+				regulator-name = "vdd_0v75_s3";
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <750000>;
-+				};
-+			};
-+
-+			vdd_ddr_pll_s0: nldo-reg2 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <850000>;
-+				regulator-max-microvolt = <850000>;
-+				regulator-name = "vdd_ddr_pll_s0";
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <850000>;
-+				};
-+			};
-+
-+			avdd_0v75_s0: nldo-reg3 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <750000>;
-+				regulator-max-microvolt = <750000>;
-+				regulator-name = "avdd_0v75_s0";
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vdd_0v85_s0: nldo-reg4 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <850000>;
-+				regulator-max-microvolt = <850000>;
-+				regulator-name = "vdd_0v85_s0";
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <837500>;
-+				};
-+			};
-+
-+			vdd_0v75_s0: nldo-reg5 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <750000>;
-+				regulator-max-microvolt = <750000>;
-+				regulator-name = "vdd_0v75_s0";
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <750000>;
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+&tsadc {
-+	status = "okay";
-+};
-+
-+&uart2 {
-+	pinctrl-0 = <&uart2m0_xfer>;
-+	status = "okay";
-+};
-+
-+/* Connected to M.2 E-key */
-+&uart6 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart6m1_xfer &uart6m1_ctsn &uart6m1_rtsn>;
-+	status = "okay";
-+};
-+
-+&u2phy0 {
-+	status = "okay";
-+};
-+
-+&u2phy0_otg {
-+	status = "okay";
-+};
-+
-+&u2phy1 {
-+	status = "okay";
-+};
-+
-+&u2phy1_otg {
-+	/* connected to USB3 hub, which is powered by vcc5v0_usb12 */
-+	phy-supply = <&vcc5v0_usb12>;
-+	status = "okay";
-+};
-+
-+&u2phy2 {
-+	status = "okay";
-+};
-+
-+&u2phy2_host {
-+	/* connected to USB2 hub, which is powered by vcc5v0_usb20 */
-+	phy-supply = <&vcc5v0_usb20>;
-+	status = "okay";
-+};
-+
-+&u2phy3 {
-+	status = "okay";
-+};
-+
-+&u2phy3_host {
-+	phy-supply = <&vcc5v0_usb20>;
-+	status = "okay";
-+};
-+
-+&usb_host0_ehci {
-+	status = "okay";
-+};
-+
-+&usb_host0_ohci {
-+	status = "okay";
-+};
-+
-+&usb_host1_ehci {
-+	status = "okay";
-+};
-+
-+&usb_host1_ohci {
-+	status = "okay";
-+};
-+
-+&usb_host0_xhci {
-+	usb-role-switch;
-+	status = "okay";
-+
-+	port {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		dwc3_0_role_switch: endpoint@0 {
-+			reg = <0>;
-+			remote-endpoint = <&usbc0_role_sw>;
-+		};
-+	};
-+};
-+
-+&usb_host1_xhci {
-+	dr_mode = "host";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
-+
-+	/* 2.0 hub on port 1 */
-+	hub_2_0: hub@1 {
-+		compatible = "usb5e3,610";
-+		reg = <1>;
-+		peer-hub = <&hub_3_0>;
-+		vdd-supply = <&vcc5v0_usb12>;
-+	};
-+
-+	/* 3.0 hub on port 4 */
-+	hub_3_0: hub@2 {
-+		compatible = "usb5e3,620";
-+		reg = <2>;
-+		peer-hub = <&hub_2_0>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&gl3523_reset>;
-+		reset-gpios = <&gpio3 RK_PB1 GPIO_ACTIVE_LOW>;
-+		vdd-supply = <&vcc5v0_usb12>;
-+	};
-+};
-+
-+&usbdp_phy0 {
-+	mode-switch;
-+	orientation-switch;
-+	sbu1-dc-gpios = <&gpio4 RK_PB7 GPIO_ACTIVE_HIGH>;
-+	sbu2-dc-gpios = <&gpio4 RK_PC0 GPIO_ACTIVE_HIGH>;
-+	status = "okay";
-+
-+	port {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		usbdp_phy0_orientation_switch: endpoint@0 {
-+			reg = <0>;
-+			remote-endpoint = <&usbc0_orien_sw>;
-+		};
-+
-+		usbdp_phy0_dp_altmode_mux: endpoint@1 {
-+			reg = <1>;
-+			remote-endpoint = <&dp_altmode_mux>;
-+		};
-+	};
-+};
-+
-+&usbdp_phy1 {
-+	rockchip,dp-lane-mux = <2 3>;
-+	status = "okay";
-+};
-+
-+&pinctrl {
-+	hym8563 {
-+		rtc_int: rtc-int {
-+			rockchip,pins = <0 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+	leds {
-+		led_pins: led-pins {
-+			rockchip,pins = <0 RK_PB7 RK_FUNC_GPIO &pcfg_pull_none>,
-+					<0 RK_PC0 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+	pcie {
-+		pcie20x1_2_perstn: pcie20x1-2-perstn {
-+			rockchip,pins = <3 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
-+		pcie30x1_0_perstn_m1_l: pcie30x1-0-perstn-m1-l {
-+			rockchip,pins = <4 RK_PA4 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
-+		pcie30x1_1_perstn: pcie30x1-1-perstn {
-+			rockchip,pins = <4 RK_PA2 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
-+		pcie30x2_perstn_m1_l: pcie30x2-perstn-m1-l {
-+			rockchip,pins = <4 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
-+		pcie30x4_perstn_m1_l: pcie30x4-perstn-m1-l {
-+			rockchip,pins = <4 RK_PB6 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
-+		ekey_en: ekey-en {
-+			rockchip,pins = <1 RK_PD2 RK_FUNC_GPIO &pcfg_pull_down>;
-+		};
-+
-+		pcie30x4_pwren_h: pcie30x4-pwren-h {
-+			rockchip,pins = <1 RK_PA4 RK_FUNC_GPIO &pcfg_pull_down>;
-+		};
-+	};
-+
-+	sound {
-+		hp_detect: hp-detect {
-+			rockchip,pins = <1 RK_PD5 RK_FUNC_GPIO &pcfg_pull_down>;
-+		};
-+	};
-+
-+	usb {
-+		usb_host_pwren_h: usb-host-pwren-h {
-+			rockchip,pins = <3 RK_PB7 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
-+		vcc5v0_otg_en: vcc5v0-otg-en {
-+			rockchip,pins = <2 RK_PC5 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
-+		gl3523_reset: rl3523-reset {
-+			rockchip,pins = <3 RK_PB1 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+	usb-typec {
-+		usbc0_int: usbc0-int {
-+			rockchip,pins = <3 RK_PB4 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
-+
-+		vbus5v0_typec_en: vbus5v0-typec-en {
-+			rockchip,pins = <1 RK_PB6 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+	hdmirx {
-+		hdmirx_det: hdmirx-det {
-+			rockchip,pins = <1 RK_PC6 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+	sdio-pwrseq {
-+		wifi_enable_h: wifi-enable-h {
-+			rockchip,pins = <0 RK_PC4 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+	wireless-wlan {
-+		wifi_host_wake_irq: wifi-host-wake-irq {
-+			rockchip,pins = <0 RK_PB2 RK_FUNC_GPIO &pcfg_pull_down>;
-+		};
-+	};
-+
-+	bt {
-+		bt_enable_h: bt-enable-h {
-+			rockchip,pins = <2 RK_PC5 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
-+		bt_host_wake_l: bt-host-wake-l {
-+			rockchip,pins = <0 RK_PC5 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
-+		bt_wake_l: bt-wake-l {
-+			rockchip,pins = <4 RK_PC5 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+	dp {
-+		dp1_hpd: dp1-hpd {
-+			rockchip,pins = <3 RK_PD5 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+};
--- 
-2.39.2
+Right, assuming unsafe property accessors warn or we can deem it safe
+in some other way. For example, we've had fixup overlays which fixed
+old bindings to new ones in tree. Those were safe as they are never
+removed and are applied before the affected driver probed.
 
+> For the connector we are planning to load the overlays from the
+> filesystem (not built into the kernel). Would the above still be
+> correct in this case?
+
+Yes. The FPGA mgr stuff was supposed to do exactly this. Load the
+overlay with the firmware API. I'm not sure what happened there.
+
+Rob
 
