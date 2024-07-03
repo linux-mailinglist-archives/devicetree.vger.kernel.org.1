@@ -1,845 +1,414 @@
-Return-Path: <devicetree+bounces-82525-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82526-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D847B924DD9
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 04:31:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D91A3924E09
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 05:00:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 56E1D1F24D3A
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 02:31:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5AA6E1F26C1E
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 03:00:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7252CA6B;
-	Wed,  3 Jul 2024 02:31:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACE8F9454;
+	Wed,  3 Jul 2024 03:00:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="RnOz68jd"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="HfM1dZTm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12olkn2026.outbound.protection.outlook.com [40.92.22.26])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 853F99479;
-	Wed,  3 Jul 2024 02:31:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.22.26
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719973884; cv=fail; b=Fkke88NL6pnIW+4NjlEo8HlN3DOcewhj+zpRGxG6vWbqOmOpl+ZhQMpGkq7x8IC9EKdt2S90K73oTIJ3UHy9/zvDm7KHh7pOCRbDVhoONZzIuHS3hZBrRtsI6Ifp/s5Gcqr1wbfkVY3ZGI9rWPdVdsgX5GM8OJGNInjCnshf26k=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719973884; c=relaxed/simple;
-	bh=8i6345wT1HkmtoQTReSZA8KJE5b9Hgt2vQ6ej1HwIjc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=MHGpoj5equLxcnOC5jJ+jbiTStOJOdq05n8CT8YQIbegpyBGB7+6722DWcE8I6yaFARyHmYQIFl+S0dzwCJtKxX2c8O6PIQVY5jlKiPsdcqTECpBpt4lhx3Bq5PbStjYYj0RLCYd7syqmq9JYiek6YMEQzygCDqepJRRYTURe0A=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=RnOz68jd; arc=fail smtp.client-ip=40.92.22.26
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=O+Or0qZm00z2EjZ2RCQgiYr55YMgTjwBtzY/Inwy15jBHZXjBxeGlyUoYcORRD/OIT2Hk0hT5V7Yhflnr6+1SbieW26WdhxAbadVPw5dZVxYY7h2Gf2N5uX8saWZXh9VjxERaZhA2jZ1XXR9ec85Pg2XbFTRjiJfvQd+2Eu4J14c8J1e18Nte+0zd6z+1NqjfKPkm+4eaPQRmFMhw8xVZMOAtwPzeJo+zJ3OKdrmIEpIERwHa//S6elgpXHmkZLHqCW8qytX9mMcxItZ7tp7VYW/esfZg47OtLXqHjJ13yc50R1wT3fEt0fMQ1imLkhM/xni6R5WKlke0bf1e6iSPw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nLjGvo/32zR8CVerQOeeFaC2hAi+BM2tszg+x5LJ860=;
- b=D1fJE+U1gdBru3NxXSQ8acHjpI1g2jaB9dO37QUTln2RQnMG03gyWSQCd6v1O46jrFsovWCJZiD9q4DxN1KcUaZAwubo50+AI7gcc7LdiBDSdJrxYtrhuMEdVy3ElkoxAo5o2iCF/krp/5CJiQgS0+qt70OqZasl3lQGz1O+KhNufk2BDoqvBncuLueopeKtsKGbQw0juSNuUjmT4+e+CHT17iCBgbfQsnESpZJKqDMUPCIaPbTKHhs9VEvnuaoWCkl+/A/W3EkvR0S4O95w0eEzSRLbLjgcjk+rsumD4bYDMeJK/TA5oyjkjTEZBxsGzrZ3ec+OS39drfjRQdDLKA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nLjGvo/32zR8CVerQOeeFaC2hAi+BM2tszg+x5LJ860=;
- b=RnOz68jd0Q9RnftbMJCx8wP5LDHuIcp+hjWLQaogxv2P90awxMmWOjpTGrITQ1WNL9z9zIttPzQbytx5P5wIs6Hs4zCW4Kj/hrUWOKGMLuID6+2bs5BDvXrw914OIcK+KRDxFLfBWZz7uRzPCfuH6a5X/P/szx+zE94EqZP2P37QlR2CLvG5SHqf8okspBKp8pPAjSOi0h3xIrFS3hJODgr7KD4ZNQnvfZ/CbERt9Cz5HIf+ExBDfCTWJKoylRnZBs0d1s0uIHtUr2bRqLcw5rOcon1mTwmwQcpe8AATKk4JKnQLxFRapqD9LLGnelK5EuLWbZ4I0dRndlV+4pPXfg==
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
- by SN7PR20MB5580.namprd20.prod.outlook.com (2603:10b6:806:29b::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7719.28; Wed, 3 Jul
- 2024 02:31:20 +0000
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::ab0b:c0d3:1f91:d149]) by IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::ab0b:c0d3:1f91:d149%6]) with mapi id 15.20.7719.028; Wed, 3 Jul 2024
- 02:31:20 +0000
-From: Inochi Amaoto <inochiama@outlook.com>
-To: Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@outlook.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>
-Cc: linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: [PATCH v6 2/2] drivers: hwmon: sophgo: Add SG2042 external hardware monitor support
-Date: Wed,  3 Jul 2024 10:30:44 +0800
-Message-ID:
- <IA1PR20MB4953EC4C486B8D4B186BB848BBDD2@IA1PR20MB4953.namprd20.prod.outlook.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <IA1PR20MB4953967EA6AF3A6EFAE6AB10BBDD2@IA1PR20MB4953.namprd20.prod.outlook.com>
-References: <IA1PR20MB4953967EA6AF3A6EFAE6AB10BBDD2@IA1PR20MB4953.namprd20.prod.outlook.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-TMN: [+Yz/mSkqmkT4atH5y40PDw5vqt1NoYvtpgLFtUMXn1Q=]
-X-ClientProxiedBy: TYAPR01CA0086.jpnprd01.prod.outlook.com
- (2603:1096:404:2c::26) To IA1PR20MB4953.namprd20.prod.outlook.com
- (2603:10b6:208:3af::19)
-X-Microsoft-Original-Message-ID:
- <20240703023045.272744-2-inochiama@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9849D4A3D;
+	Wed,  3 Jul 2024 03:00:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1719975644; cv=none; b=PTwTVoVK7/bdQupsH1jfE4zRaZQS4Z5zPPbsM6L1DElPMrtEU6knFeT1rmx/ewDxmXa/Jr8R1U8ifz1oV/x5yIMCnoOXHPJ+mzruEbH9+nnhLtFM/Hza3y2D3jO4+Oyr9LbwchRG5K5OXVoBm75nOiyDzHS0am83ijbc7I0x4V8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1719975644; c=relaxed/simple;
+	bh=KSSlOH0xqUSEcdk3D5AAbABk7tJOOY5aXvwPP4l6PUg=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=lj9IE+ogRovqjXBWdNz4OyFPyovcZrhMSDhZgmc16qVreBCxSU5KP04XXX6tWA7/NRMZJTb6uVy/zEHVWbA2ux25aXFeRzA5oYt0jc59S/J+/Al8WAIWO0iaQ41BmD3+efEOCrhFaBdepJYEIVWNmqHLUSqyu33Vb5qBAptZIw4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=HfM1dZTm; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 462NWM6Z005551;
+	Wed, 3 Jul 2024 02:59:36 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=O92o6x8MI3tbjaQRL6XDQc
+	qlyifVOQWVm1bVLaysjDA=; b=HfM1dZTmf7tb9EZO24dvevJ/BlvIGhoMHHst1h
+	1yEBtWLq8P4Ww3YBdpS9Uml6IFGuW6kz98HkOT+BgKpyTqLUJf3ESgGSbx4lZ5Di
+	4VNoRSMPOnYpfHH5K+/7N4K+FoKZYD+GlEW5VPB9DhmXGaKwSBdgXG2Qd+Qhwqj7
+	pcmSnDPQAQp5RgFYHCIe1vEKniI6L2BfGRc+Hbws4Yo1qCGwLp5T57sOUx5cmZ2N
+	7oHTktQbjiop6It20JR29smXpRnstNNGMs5c5HE1WmN965sxt1URjIK6+j5mVdhb
+	QIh2C/387pO1P2G9SjvQ09uk2nS3SAixOHGseeHlyDvz3YZA==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4027yfah86-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 03 Jul 2024 02:59:35 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 4632xYXk013518
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 3 Jul 2024 02:59:34 GMT
+Received: from tengfan-gv.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Tue, 2 Jul 2024 19:59:11 -0700
+From: Tengfei Fan <quic_tengfan@quicinc.com>
+To: <andersson@kernel.org>, <konrad.dybcio@linaro.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <djakov@kernel.org>,
+        <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <jassisinghbrar@gmail.com>, <herbert@gondor.apana.org.au>,
+        <davem@davemloft.net>, <manivannan.sadhasivam@linaro.org>,
+        <will@kernel.org>, <joro@8bytes.org>, <conor@kernel.org>,
+        <tglx@linutronix.de>, <amitk@kernel.org>, <thara.gopinath@gmail.com>,
+        <linus.walleij@linaro.org>, <wim@linux-watchdog.org>,
+        <linux@roeck-us.net>, <rafael@kernel.org>, <viresh.kumar@linaro.org>,
+        <vkoul@kernel.org>, <edumazet@google.com>, <kuba@kernel.org>,
+        <pabeni@redhat.com>, <mcoquelin.stm32@gmail.com>
+CC: <robimarko@gmail.com>, <quic_gurus@quicinc.com>,
+        <bartosz.golaszewski@linaro.org>, <kishon@kernel.org>,
+        <quic_wcheng@quicinc.com>, <alim.akhtar@samsung.com>,
+        <avri.altman@wdc.com>, <bvanassche@acm.org>, <agross@kernel.org>,
+        <gregkh@linuxfoundation.org>, <quic_tdas@quicinc.com>,
+        <robin.murphy@arm.com>, <daniel.lezcano@linaro.org>,
+        <rui.zhang@intel.com>, <lukasz.luba@arm.com>,
+        <quic_rjendra@quicinc.com>, <ulf.hansson@linaro.org>,
+        <quic_sibis@quicinc.com>, <otto.pflueger@abscue.de>,
+        <quic_rohiagar@quicinc.com>, <luca@z3ntu.xyz>,
+        <neil.armstrong@linaro.org>, <abel.vesa@linaro.org>,
+        <bhupesh.sharma@linaro.org>, <alexandre.torgue@foss.st.com>,
+        <peppe.cavallaro@st.com>, <joabreu@synopsys.com>,
+        <netdev@vger.kernel.org>, <lpieralisi@kernel.org>, <kw@linux.com>,
+        <bhelgaas@google.com>, <ahalaney@redhat.com>,
+        <krzysztof.kozlowski@linaro.org>, <u.kleine-koenig@pengutronix.de>,
+        <dmitry.baryshkov@linaro.org>, <quic_cang@quicinc.com>,
+        <danila@jiaxyga.com>, <quic_nitirawa@quicinc.com>,
+        <mantas@8devices.com>, <athierry@redhat.com>,
+        <quic_kbajaj@quicinc.com>, <quic_bjorande@quicinc.com>,
+        <quic_msarkar@quicinc.com>, <quic_devipriy@quicinc.com>,
+        <quic_tsoni@quicinc.com>, <quic_rgottimu@quicinc.com>,
+        <quic_shashim@quicinc.com>, <quic_kaushalk@quicinc.com>,
+        <quic_tingweiz@quicinc.com>, <quic_aiquny@quicinc.com>,
+        <srinivas.kandagatla@linaro.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>, <linux-crypto@vger.kernel.org>,
+        <linux-scsi@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <iommu@lists.linux.dev>,
+        <linux-riscv@lists.infradead.org>, <linux-gpio@vger.kernel.org>,
+        <linux-watchdog@vger.kernel.org>, <linux-pci@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>, <kernel@quicinc.com>,
+        Tengfei Fan <quic_tengfan@quicinc.com>
+Subject: [PATCH 00/47] arm64: qcom: dts: add QCS9100 support
+Date: Wed, 3 Jul 2024 10:58:03 +0800
+Message-ID: <20240703025850.2172008-1-quic_tengfan@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|SN7PR20MB5580:EE_
-X-MS-Office365-Filtering-Correlation-Id: c5f5a23d-224a-4ee7-fc50-08dc9b0838f1
-X-Microsoft-Antispam:
-	BCL:0;ARA:14566002|8060799006|461199028|3412199025|440099028|1710799026;
-X-Microsoft-Antispam-Message-Info:
-	G/SLnqF5czCmFGD4ygNC6IwdOKv+taKQ+7/os/8Y/PYEhCgdMgYgpvxu9X2qRR4U2jPPBFnFuGcoXXLHlc99nPRLN7lb8iL3/2Kpgc+di/Tk+V6E4Av4A65a2HOMHSGDMFh368G8uYseCC9nvio5QpP7oQB1HD+Ua2kjZAYLXOKJe6assZoFzSEqsuUCjYQRrq9yO4PE/NRgEOkZGfHYq6ylzhFVVU8vJSlp1SdgZq4T29eFB9IRtFdPcwJKIJ+MKCiTjx/Vypq4nG7toCB355j0btT8BwdM7TstUXpRU6Nj5O90S7VmXyGl+KqFtpQn/iJc84CA+DdGkRGpaE1ZQU7NHvqAxMykVWAWinIKbuW+GKkQHRn0aHXjpzxb6m5Jt/7r2SHQF0t5K8G160LRtbDuZ49chcXIo4FEg5H7hb2IF34JlMu6ErNZH4VaPCPHLpUmUOZ6BzeIQRJj9+PpEu9eakGsFN9Lbp//iXgTx+mSDbIFABT8d/rKjuYweF4jWzBXfdQWLGGS2D40kxeuxwbv+NssBRrHBREE4iDZi6a2E2IDa4YvwaZajR96roDfuHVCjTjWJZgWeL1lOa7cdhseOHx4pk/5362RU6273l3tzZVos4BOAQSXbJncGapK2SopX2eXQ0Oo2350iNONWA==
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?2L/tZfQBnQbu/r7xHwVdNDh+PqS6gdCbqZtQG7494N14/nBh1Rd/vRSWSs8n?=
- =?us-ascii?Q?+UmJJDxH0EB8zX6Z2oDvDSj341pzoAhPqGAJ9Cuc7NzK8gELIeXf2EcL+qbW?=
- =?us-ascii?Q?zZdj0veaR9paLGMmoWgzipP/UfEuEfLtPEyMDmaWjQfrei8UwmtN91HZw3X0?=
- =?us-ascii?Q?M0Is8u7H9IRtVcfQyGvT61wOuoM83weTgSdDLxUwhZKX5QD+VYZbRM95NZJm?=
- =?us-ascii?Q?QK8ulBvyFRvr+nhOiZND6PUzjKg/+GHZoTPXO/G3f8dG1+/E+YT5XDEzwg1Q?=
- =?us-ascii?Q?rNbdBaJur4CI3M4fRnx/dWZ4QKx5449n8DjKnGMZw6FUn/3IGcqHpbUUc8Qm?=
- =?us-ascii?Q?GLaO2xmOLD/ltmtSAAdN5XwoMR18qqqynLdU2nfV1r9N3npBtiYw/jvzdYJF?=
- =?us-ascii?Q?wF978AmeajY4wHV3wEb+WJxCrWu9bsVKhytGAVOUAU6+ekDN5VLCeE+xRJ43?=
- =?us-ascii?Q?Py/qClPDzUaWhMHQfOPIismp8i/av+du9WjOa2TgPffNAzRB/BASQBA59ari?=
- =?us-ascii?Q?foAVOs5DBFOje6WTYmKwydfj72tLQBXnoX8U48JVvZczOWGdIqBaMpp/IWrj?=
- =?us-ascii?Q?Wbza/r95LEcXLswD/D8VJkVz7oT6t5NPrQHWExofKEEcsEKenTVrdpdHDU2Q?=
- =?us-ascii?Q?rjR/kYi/lk1zKyJraBwfIw7pnmaiznkvxWIchkT7XNJ5FuwTL4/qhfP5gRTm?=
- =?us-ascii?Q?C9lq9ox3javPihoC1Lfs3zQe+aYtpMMXyUDJdI3GqB1qfBimfWE1TiBZy1bs?=
- =?us-ascii?Q?FfipKIe48EWmXz3LNEMDdSgXySlB8ymVjbR1EriColRUkmzOhQ0pWFc7dQ/W?=
- =?us-ascii?Q?zQO+A+1C2RNcgxoebh4+GNmJs6+Sqoz47F/OeEcTEOnUQmaCl6sXa8y/AbwN?=
- =?us-ascii?Q?a+I5f/n9QbfMbrBRNc1bVok4o+7+d6R7G8214uuLCGttxW7PsgWGygF7wruE?=
- =?us-ascii?Q?lyAXGb3aRN0SpT1iLbmA2uVfdOohCyRu9YHpBOWpRwP1OlJR4VxanooBfR5I?=
- =?us-ascii?Q?4cfUseaPlsLCHwwLzZf8+XvmYZasXETxs0f3ApmleNlYOyY3Yw20UMpsU4CW?=
- =?us-ascii?Q?CWaUn6g1Qd5iWWWRKsSx2AkswqlHvH9Ei++Ea7tpuYYsVDNwtW2OuMYqWmc7?=
- =?us-ascii?Q?hkp007lHJFLaxk0FQk4Q9Sa6bcblh96w3L3RUjV1cTwe1JOHW8u7CimmLEQL?=
- =?us-ascii?Q?NgVrLm2lvvwI1ZHY2xHFGM0v//N790BiUXYOOfCcIjkFWLAcQvIIy6DiIEAm?=
- =?us-ascii?Q?51BGchCfeYPG+aMzXV9G?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c5f5a23d-224a-4ee7-fc50-08dc9b0838f1
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jul 2024 02:31:20.0691
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR20MB5580
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: vlpWLipQCruqIxkQ0Vv5rOzN-wZRA5Do
+X-Proofpoint-ORIG-GUID: vlpWLipQCruqIxkQ0Vv5rOzN-wZRA5Do
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-02_18,2024-07-02_02,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 spamscore=0
+ mlxscore=0 lowpriorityscore=0 mlxlogscore=999 phishscore=0 impostorscore=0
+ clxscore=1011 malwarescore=0 suspectscore=0 adultscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2406140001 definitions=main-2407030021
 
-SG2042 use an external MCU to provide basic hardware information
-and thermal sensors.
+Introduce support for the QCS9100 SoC device tree (DTSI) and the
+QCS9100 RIDE board DTS. The QCS9100 is a variant of the SA8775p.
+While the QCS9100 platform is still in the early design stage, the
+QCS9100 RIDE board is identical to the SA8775p RIDE board, except it
+mounts the QCS9100 SoC instead of the SA8775p SoC.
 
-Add driver support for the onboard MCU of SG2042.
+The QCS9100 SoC DTSI was directly renamed from the SA8775p SoC DTSI. In
+the upcoming weeks, Nikunj Kela will develop a new device tree related
+to SA8775p, specifically supporting the SCMI resource firmware solution
+for the SA8775p platform. If you're already familiar with the
+background, feel free to skip part[2], which provides a detailed
+explanation.
 
-Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
+All compatible strings have been updated from “SA8775P” to “QCS9100.”
+If you’re already aware of the context, feel free to skip part[3], which
+provides a detailed explanation of various other options.
+
+Here’s the reason and background: Bjorn Andersson, Nikunj Kela,
+Srinivas Kandagatla, and other Qualcomm engineers contributed to the
+current design, and we’ve finalized this series for broader audience
+review.
+
+*This patch series aligns with upstream efforts toward a new design
+solution: “Using logical performance and power domains to achieve
+resource abstraction over SCMI.” For more details, refer to [1]:
+[1]https://resources.linaro.org/en/resource/wfnfEwBhRjLV1PEAJoDDte
+
+*The SA8775p-RIDE will transition to using SCMI resources. This involves
+migrating to SCMI power and performance protocols for requesting and
+configuring peripheral resources such as clocks, regulators,
+interconnects, and PHYs. Consequently, most devices in the SA8775p-RIDE
+will require updates to drivers, bindings, and device trees.
+
+*The QCS9100-RIDE project will continue using the existing resources.
+It will rely on the current kernel infrastructure for clocks, regulators,
+interconnects, PHYs, and APIs.
+
+[2] The reason of qcs9100.dtsi renamed from sa8775.dtsi:
+The proposal is to maintain two separate platform.dtsi files.
+qcs9100.dtsi for non-scmi resources and sa8775p.dtsi for SCMI resources.
+Currently, the upstream sa8775p.dtsi contains 176 nodes with specified
+“compatible” strings. Among these, 142 nodes require distinct properties
+for SCMI and non-SCMI. As the IoT target is being upstreamed, both node
+counts are expected to increase for the IoT/QCS platform.
+
+If we do not implement platform separation, any modifications to the
+base sa8775p.dtsi-whether for automotive or IoT purposes-must consider
+the other platform. Each node(e.g., remoteproc, multimedia) added should
+be countered with an overlay that disables it in the automotive context.
+Care must be taken to avoid introducing changes that inferfere with the
+automotive system design, This structure poses challenges for human
+reasioning, leading to issues during development, code review, and
+maintenance.
+
+Furthermore, we are addressing the complexity of resuing marketing names
+accross both the IoT(QCS9100) and automotive(SA8775p) platforms. This
+decision has significations throughout DeviceTree and the kernel.
+Consequently, renameing the QCS9100 device tree files from the SA8775p
+device files is our definitive choice.
+
+[3] The reason of All Compatible Strings Changed from “SA8775P” to
+“QCS9100”:
+During discussions, three options were considered. Ultimately, Option
+B was chosen as the best approach for separating QCS projects from SA
+projects. This decision simplifies the reviewer’s task by focusing on
+each platform independently. Developers only need to verify the
+affected platform.
+
+*Option A: “And” (qcs9100+sa8775):
+
+Add all qcs9100-compatible strings alongside the current
+sa8775p-compatible strings in each binding file. For example:
+aggre1_noc: interconnect-aggre1-noc {
+-    compatible = "qcom,sa8775p-aggre1-noc";
++    compatible = "qcom,qcs9100-aggre1-noc", "qcom,sa8775p-aggre1-noc";
+    #interconnect-cells = <2>;
+    qcom,bcm-voters = <&apps_bcm_voter>; };
+
+Some device tree (DT) nodes may share common compatibles. For instance:
+firmware {
+    scm {
+-        compatible = "qcom,scm-sa8775p", "qcom,scm";
++        compatible = "qcom,scm-qcs9100", "qcom,scm";
+    };
+};
+
+Approximately 50+ sa8775p-related compatible names need to be changed
+to qcs9100-compatible names in the binding files and DT nodes.
+When the SCMI resource driver owner adds SCMI support, they need to
+update both the qcs9100 DT (non-SCMI resource) and the sa8775 DT (SCMI
+resource) simultaneously.
+For this option:
+
+DT and binding changes are needed.
+No driver C file changes are required at this time.
+Technical driver owners must handle both the qcs DT and sa DT.
+
+*Option B: “Or” (qcs9100 or sa8775):
+
+Replace all qcs9100-compatible strings with the current
+sa8775p-compatible strings in the qcs9100 DT. For example:
+aggre1_noc: interconnect-aggre1-noc {
+-    compatible = "qcom,sa8775p-aggre1-noc";
++    compatible = "qcom,qcs9100-aggre1-noc";
+    #interconnect-cells = <2>;
+    qcom,bcm-voters = <&apps_bcm_voter>; };
+
+Add the necessary “qcs9100” compatible strings to the C driver. In
+drivers/interconnect/qcom/sa8775p.c:
+static const struct of_device_id qnoc_of_match[] = {
+    { .compatible = "qcom,sa8775p-aggre1-noc", .data = &sa8775p_aggre1_noc },
++   { .compatible = "qcom,qcs9100-aggre1-noc", .data =
+&sa8775p_aggre1_noc },
+    { .compatible = "qcom,sa8775p-aggre2-noc", .data = &sa8775p_aggre2_noc },
++   { .compatible = "qcom,qcs9100-aggre2-noc", .data =
+&sa8775p_aggre2_noc },
+    // ...
+};
+
+Some DT nodes may share common compatibles, similar to the example above.
+Approximately 50+ sa8775p-related compatible names need to be changed to
+qcs9100-compatible names in the binding files and DT nodes.
+When the SCMI resource driver owner adds SCMI support, they only need to
+update the sa8775 DT (SCMI resource).
+For this option:
+DT, binding, and C driver changes are needed.
+Technical driver owners only need to handle the sa DT.
+
+*Option C: “Depends” (sa8775 in qcs9100, depends on driver to change
+necessary driver + DT later):
+This option depends on the SCMI resource solution and requires minimal
+driver changes.
+
+Change common compatibles to “qcs9100,” as shown in the example:
+firmware {
+    scm {
+-        compatible = "qcom,scm-sa8775p", "qcom,scm";
++        compatible = "qcom,scm-qcs9100", "qcom,scm";
+    };
+};
+
+Approximately 30+ sa8775p-related compatible names need to be changed
+to qcs9100-compatible names in the binding files and DT nodes.
+When the SCMI resource driver owner adds SCMI support, they must
+update both the qcs9100 DT and the sa8775 DT (SCMI resource)
+simultaneously.
+For example:
+
+{ .compatible = "qcom,sa8775p-aggre1-noc", .data = &sa8775p_aggre1_noc },
++ { .compatible = "qcom,qcs9100-aggre1-noc", .data = &qcs9100_aggre1_noc
++ },
+{ .compatible = "qcom,sa8775p-aggre2-noc", .data = &sa8775p_aggre2_noc },
++ { .compatible = "qcom,qcs9100-aggre2-noc", .data = &qcs9100_aggre2_noc
++ },
+// ...
+
+For this option:
+DT changes are needed.
+Technical driver owners are responsible for making the final different
+driver changes and ensuring the exact binding of qcs9100 and sa8775
+with different compatibles.
+
+In summary, the current solution primarily targets SCMI-based resource
+transactions. However, both the qcs project and the SA project, which
+are in the development stage, require independent development processes.
+
+Co-developed-by: Maria Yu <quic_aiquny@quicinc.com>
+Signed-off-by: Maria Yu <quic_aiquny@quicinc.com>
+Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
 ---
- Documentation/hwmon/index.rst |   1 +
- Documentation/hwmon/sgmcu.rst |  44 +++
- drivers/hwmon/Kconfig         |  11 +
- drivers/hwmon/Makefile        |   1 +
- drivers/hwmon/sgmcu.c         | 585 ++++++++++++++++++++++++++++++++++
- 5 files changed, 642 insertions(+)
- create mode 100644 Documentation/hwmon/sgmcu.rst
- create mode 100644 drivers/hwmon/sgmcu.c
 
-diff --git a/Documentation/hwmon/index.rst b/Documentation/hwmon/index.rst
-index 03d313af469a..189626b3a055 100644
---- a/Documentation/hwmon/index.rst
-+++ b/Documentation/hwmon/index.rst
-@@ -203,6 +203,7 @@ Hardware Monitoring Kernel Drivers
-    sch5636
-    scpi-hwmon
-    sfctemp
-+   sgmcu
-    sht15
-    sht21
-    sht3x
-diff --git a/Documentation/hwmon/sgmcu.rst b/Documentation/hwmon/sgmcu.rst
-new file mode 100644
-index 000000000000..5669dcfb2a33
---- /dev/null
-+++ b/Documentation/hwmon/sgmcu.rst
-@@ -0,0 +1,44 @@
-+.. SPDX-License-Identifier: GPL-2.0
-+
-+Kernel driver sgmcu
-+=====================
-+
-+Supported chips:
-+
-+  * Onboard MCU for sg2042
-+
-+    Addresses scanned: -
-+
-+    Prefix: 'sgmcu'
-+
-+Authors:
-+
-+  - Inochi Amaoto <inochiama@outlook.com>
-+
-+Description
-+-----------
-+
-+This driver supprts hardware monitoring for onboard MCU with
-+PMBus interface.
-+
-+Usage Notes
-+-----------
-+
-+This driver does not auto-detect devices. You will have to instantiate
-+the devices explicitly.
-+Please see Documentation/i2c/instantiating-devices.rst for details.
-+
-+Platform data support
-+---------------------
-+
-+The driver supports standard PMBus driver platform data.
-+
-+Sysfs Attributes
-+----------------
-+
-+================= =============================================
-+temp1_input       Measured temperature of SoC
-+temp1_crit        Critical high temperature
-+temp1_crit_hyst   hysteresis temperature restore from Critical
-+temp2_input       Measured temperature of the base board
-+================= =============================================
-diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
-index e14ae18a973b..1100dd11f7f5 100644
---- a/drivers/hwmon/Kconfig
-+++ b/drivers/hwmon/Kconfig
-@@ -2079,6 +2079,17 @@ config SENSORS_SFCTEMP
- 	  This driver can also be built as a module.  If so, the module
- 	  will be called sfctemp.
+Tengfei Fan (47):
+  dt-bindings: arm: qcom: Document QCS9100 SoC and RIDE board
+  arm64: dts: qcom: qcs9100: Introduce QCS9100 SoC dtsi
+  arm64: dts: qcom: qcs9100: Introduce QCS9100 PMIC dtsi
+  arm64: dts: qcom: qcs9100: Add QCS9100 RIDE board dts
+  dt-bindings: firmware: qcom,scm: document SCM on QCS9100 SoC
+  dt-bindings: interconnect: qcom: document the interconnect compatibles
+    for QCS9100
+  dt-bindings: clock: document QCS9100 GCC compatible
+  dt-bindings: mailbox: qcom-ipcc: Document the QCS9100 IPCC
+  dt-bindings: phy: Add QMP UFS PHY comptible for QCS9100
+  dt-bindings: crypto: ice: Document QCS9100 inline crypto engine
+  dt-bindings: crypto: qcom,prng: document QCS9100
+  dt-bindings: phy: qcom,usb-snps-femto-v2: Add bindings for QCS9100
+  dt-bindings: ufs: qcom: document QCS9100 UFS
+  dt-bindings: phy: qcom,qmp-usb: Add QCS9100 USB3 PHY
+  dt-bindings: usb: dwc3: Add QCS9100 compatible
+  dt-bindings: clock: qcom: describe the GPUCC clock for QCS9100
+  dt-bindings: arm-smmu: Document QCS9100 GPU SMMU
+  dt-bindings: phy: describe the Qualcomm SGMII PHY for QCS9100
+  dt-bindings: cache: qcom,llcc: Add QCS9100 description
+  dt-bindings: interrupt-controller: qcom,pdc: document pdc on QCS9100
+  dt-bindings: thermal: qcom-tsens: document the QCS9100 Temperature
+    Sensor
+  dt-bindings: soc: qcom,aoss-qmp: Document the QCS9100 AOSS channel
+  dt-bindings: pinctrl: add qcs9100-tlmm compatible
+  dt-bindings: soc: qcom: add qcom,qcs9100-imem compatible
+  dt-bindings: watchdog: qcom-wdt: document QCS9100
+  dt-bindings: clock: qcom-rpmhcc: Add RPMHCC bindings for QCS9100
+  dt-bindings: cpufreq: cpufreq-qcom-hw: Add QCS9100 compatibles
+  dt-bindings: power: qcom,rpmpd: document the QCS9100 RPMh Power
+    Domains
+  dt-bindings: net: qcom,ethqos: add description for qcs9100
+  dt-bindings: PCI: Document compatible for QCS9100
+  dt-bindings: PCI: qcom-ep: Add support for QCS9100 SoC
+  dt-bindings: phy: qcom,qmp: Add qcs9100 QMP PCIe PHY
+  interconnect: qcom: add driver support for qcs9100
+  clk: qcom: add the GCC driver support for QCS9100
+  phy: qcom-qmp-ufs: Add QCS9100 support
+  phy: qcpm-qmp-usb: Add support for QCS9100
+  clk: qcom: add the GPUCC driver support for QCS9100
+  phy: qcom: add the SGMII SerDes PHY driver support
+  soc: qcom: llcc: Add llcc configuration support for the QCS9100
+    platform
+  pinctrl: qcom: add the tlmm driver support for qcs9100 platform
+  clk: qcom: rpmh: Add support for QCS9100 rpmh clocks
+  soc: qcom: rmphpd: add power domains for QCS9100
+  net: stmmac: dwmac-qcom-ethqos: add support for emac4 on qcs9100
+    platforms
+  PCI: qcom: Add support for QCS9100 SoC
+  PCI: qcom-ep: Add HDMA support for QCS9100 SoC
+  cpufreq: qcom-nvmem: add support for QCS9100
+  phy: qcom-qmp-pcie: add x4 lane EP support for QCS9100
 
-+config SENSORS_SGMCU
-+	tristate "Sophgo onboard MCU support"
-+	depends on I2C
-+	depends on ARCH_SOPHGO || COMPILE_TEST
-+	help
-+	  Support for onboard MCU of Sophgo SoCs. This mcu provides power
-+	  control and some basic information.
-+
-+	  This driver can be built as a module. If so, the module
-+	  will be called sgmcu.
-+
- config SENSORS_SURFACE_FAN
- 	tristate "Surface Fan Driver"
- 	depends on SURFACE_AGGREGATOR
-diff --git a/drivers/hwmon/Makefile b/drivers/hwmon/Makefile
-index e3f25475d1f0..e9b78ff8338e 100644
---- a/drivers/hwmon/Makefile
-+++ b/drivers/hwmon/Makefile
-@@ -195,6 +195,7 @@ obj-$(CONFIG_SENSORS_SCH56XX_COMMON)+= sch56xx-common.o
- obj-$(CONFIG_SENSORS_SCH5627)	+= sch5627.o
- obj-$(CONFIG_SENSORS_SCH5636)	+= sch5636.o
- obj-$(CONFIG_SENSORS_SFCTEMP)	+= sfctemp.o
-+obj-$(CONFIG_SENSORS_SGMCU)	+= sgmcu.o
- obj-$(CONFIG_SENSORS_SL28CPLD)	+= sl28cpld-hwmon.o
- obj-$(CONFIG_SENSORS_SHT15)	+= sht15.o
- obj-$(CONFIG_SENSORS_SHT21)	+= sht21.o
-diff --git a/drivers/hwmon/sgmcu.c b/drivers/hwmon/sgmcu.c
-new file mode 100644
-index 000000000000..d941d6fe741f
---- /dev/null
-+++ b/drivers/hwmon/sgmcu.c
-@@ -0,0 +1,585 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (c) 2024 Inochi Amaoto <inochiama@outlook.com>
-+ *
-+ * Sophgo power control mcu for SG2042
-+ */
-+
-+#include <linux/debugfs.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/i2c.h>
-+#include <linux/err.h>
-+#include <linux/hwmon.h>
-+
-+/* fixed MCU registers */
-+#define REG_BOARD_TYPE				0x00
-+#define REG_MCU_FIRMWARE_VERSION		0x01
-+#define REG_PCB_VERSION				0x02
-+#define REG_PWR_CTRL				0x03
-+#define REG_SOC_TEMP				0x04
-+#define REG_BOARD_TEMP				0x05
-+#define REG_RST_COUNT				0x0a
-+#define REG_UPTIME				0x0b
-+#define REG_RESET_REASON			0x0d
-+#define REG_MCU_TYPE				0x18
-+#define REG_CRITICAL_ACTIONS			0x65
-+#define REG_CRITICAL_TEMP			0x66
-+#define REG_REPOWER_TEMP			0x67
-+
-+#define CRITICAL_ACTION_REBOOT			0x1
-+#define CRITICAL_ACTION_POWEROFF		0x2
-+
-+#define DEFAULT_REPOWER_TEMP			60
-+#define MAX_REPOWER_TEMP			100
-+
-+#define sg2042_mcu_read_byte(client, reg)			\
-+	i2c_smbus_read_byte_data(client, reg)
-+#define sg2042_mcu_write_byte(client, reg, value)		\
-+	i2c_smbus_write_byte_data(client, reg, value)
-+#define sg2042_mcu_read_block(client, reg, array)		\
-+	i2c_smbus_read_i2c_block_data(client, reg, sizeof(array), array)
-+
-+#define DEFINE_MCU_ATTR_READ_FUNC(_name, _type, _format)		\
-+	static ssize_t _name##_show(struct device *dev,			\
-+				    struct device_attribute *attr,	\
-+				    char *buf)				\
-+	{								\
-+		struct sg2042_mcu_data *mcu = dev_get_drvdata(dev);	\
-+		_type ret;						\
-+		ret = sg2042_mcu_get_##_name(mcu->client);		\
-+		if (ret < 0)						\
-+			return ret;					\
-+		return sprintf(buf, _format "\n", ret);			\
-+	}
-+
-+#define DEFINE_MCU_DEBUG_ATTR_READ_FUNC(_name, _type, _format)		\
-+	static int _name##_show(struct seq_file *seqf,			\
-+				    void *unused)			\
-+	{								\
-+		struct sg2042_mcu_data *mcu = seqf->private;		\
-+		_type ret;						\
-+		ret = sg2042_mcu_get_##_name(mcu->client);		\
-+		if (ret < 0)						\
-+			return ret;					\
-+		seq_printf(seqf, _format "\n", ret);			\
-+		return 0;						\
-+	}
-+
-+#define _CREATE_DEBUG_ENTRY(name, perm, d, data)			\
-+	debugfs_create_file(#name, perm, d, data, &name##_fops)
-+
-+struct sg2042_mcu_board_data {
-+	u8		id;
-+	const char	*name;
-+};
-+
-+struct sg2042_mcu_data {
-+	struct i2c_client			*client;
-+	const struct sg2042_mcu_board_data	*board_info;
-+	struct dentry				*debugfs;
-+};
-+
-+static const struct sg2042_mcu_board_data sg2042_boards_data[] = {
-+	{
-+		.id = 0x80,
-+		.name = "SG2042 evb x8",
-+	},
-+	{
-+		.id = 0x81,
-+		.name = "SG2042R evb",
-+	},
-+	{
-+		.id = 0x83,
-+		.name = "SG2042 evb x4",
-+	},
-+	{
-+		.id = 0x90,
-+		.name = "Milk-V Pioneer",
-+	},
-+};
-+
-+static const char *sg2042_mcu_reset_reason[8] = {
-+	"Power supply overheat",
-+	"Power supply failure",
-+	"12V power supply failure",
-+	"Reset commant",
-+	"Unknown",
-+	"Unknown",
-+	"Unknown",
-+	"SoC overheat",
-+};
-+
-+static struct dentry *sgmcu_debugfs;
-+
-+static int sg2042_mcu_get_board_type(struct i2c_client *client)
-+{
-+	return sg2042_mcu_read_byte(client, REG_BOARD_TYPE);
-+}
-+
-+static int sg2042_mcu_get_firmware_version(struct i2c_client *client)
-+{
-+	return sg2042_mcu_read_byte(client, REG_MCU_FIRMWARE_VERSION);
-+}
-+
-+static int sg2042_mcu_get_pcb_version(struct i2c_client *client)
-+{
-+	return sg2042_mcu_read_byte(client, REG_PCB_VERSION);
-+}
-+
-+static int sg2042_mcu_get_soc_temp(struct i2c_client *client)
-+{
-+	return sg2042_mcu_read_byte(client, REG_SOC_TEMP);
-+}
-+
-+static int sg2042_mcu_get_board_temp(struct i2c_client *client)
-+{
-+	return sg2042_mcu_read_byte(client, REG_BOARD_TEMP);
-+}
-+
-+static int sg2042_mcu_get_reset_count(struct i2c_client *client)
-+{
-+	return sg2042_mcu_read_byte(client, REG_RST_COUNT);
-+}
-+
-+static s32 sg2042_mcu_get_uptime(struct i2c_client *client)
-+{
-+	int ret;
-+	u8 time_val[2];
-+
-+	ret = sg2042_mcu_read_block(client, REG_UPTIME, time_val);
-+	if (ret < 0)
-+		return ret;
-+
-+	return (s32)(time_val[0]) + ((s32)(time_val[1]) << 8);
-+}
-+
-+static int sg2042_mcu_get_reset_reason(struct i2c_client *client)
-+{
-+	return sg2042_mcu_read_byte(client, REG_RESET_REASON);
-+}
-+
-+static int sg2042_mcu_get_mcu_type(struct i2c_client *client)
-+{
-+	return sg2042_mcu_read_byte(client, REG_MCU_TYPE);
-+}
-+
-+static int sg2042_mcu_get_soc_crit_action(struct i2c_client *client)
-+{
-+	return sg2042_mcu_read_byte(client, REG_CRITICAL_ACTIONS);
-+}
-+
-+static int sg2042_mcu_get_soc_crit_temp(struct i2c_client *client)
-+{
-+	return sg2042_mcu_read_byte(client, REG_CRITICAL_TEMP);
-+}
-+
-+static int sg2042_mcu_get_soc_hyst_temp(struct i2c_client *client)
-+{
-+	return sg2042_mcu_read_byte(client, REG_REPOWER_TEMP);
-+}
-+
-+static int sg2042_mcu_set_soc_crit_action(struct i2c_client *client,
-+					  u8 value)
-+{
-+	return sg2042_mcu_write_byte(client, REG_CRITICAL_ACTIONS, value);
-+}
-+
-+static int sg2042_mcu_set_soc_crit_temp(struct i2c_client *client,
-+					u8 value)
-+{
-+	return sg2042_mcu_write_byte(client, REG_CRITICAL_TEMP, value);
-+}
-+
-+static int sg2042_mcu_set_soc_hyst_temp(struct i2c_client *client,
-+					u8 value)
-+{
-+	return sg2042_mcu_write_byte(client, REG_REPOWER_TEMP, value);
-+}
-+
-+DEFINE_MCU_ATTR_READ_FUNC(reset_count, int, "%d");
-+DEFINE_MCU_ATTR_READ_FUNC(uptime, s32, "%d");
-+
-+static ssize_t reset_reason_show(struct device *dev,
-+				 struct device_attribute *attr,
-+				 char *buf)
-+{
-+	struct sg2042_mcu_data *mcu = dev_get_drvdata(dev);
-+	int ret, val, i;
-+
-+	val = sg2042_mcu_get_reset_reason(mcu->client);
-+	if (val < 0)
-+		return val;
-+
-+	ret = sprintf(buf, "Reason: 0x%02x\n", val);
-+
-+	for (i = 0; i < ARRAY_SIZE(sg2042_mcu_reset_reason); i++) {
-+		if (val & BIT(i))
-+			ret += sprintf(buf + ret, "bit %d: %s\n", i,
-+						  sg2042_mcu_reset_reason[i]);
-+	}
-+
-+	return ret;
-+}
-+
-+static ssize_t critical_action_show(struct device *dev,
-+				    struct device_attribute *attr,
-+				    char *buf)
-+{
-+	struct sg2042_mcu_data *mcu = dev_get_drvdata(dev);
-+	int ret;
-+	const char *action;
-+
-+	ret = sg2042_mcu_get_soc_crit_action(mcu->client);
-+	if (ret < 0)
-+		return ret;
-+
-+	if (ret == CRITICAL_ACTION_REBOOT)
-+		action = "reboot";
-+	else if (ret == CRITICAL_ACTION_POWEROFF)
-+		action = "poweroff";
-+	else
-+		action = "unknown";
-+
-+	return sprintf(buf, "%s\n", action);
-+}
-+
-+static ssize_t critical_action_store(struct device *dev,
-+				     struct device_attribute *attr,
-+				     const char *buf, size_t count)
-+{
-+	struct sg2042_mcu_data *mcu = dev_get_drvdata(dev);
-+	int value;
-+
-+	if (sysfs_streq("reboot", buf))
-+		value = CRITICAL_ACTION_REBOOT;
-+	else if (sysfs_streq("poweroff", buf))
-+		value = CRITICAL_ACTION_POWEROFF;
-+	else
-+		return -EINVAL;
-+
-+	return sg2042_mcu_set_soc_crit_action(mcu->client, value);
-+}
-+
-+static DEVICE_ATTR_RO(reset_count);
-+static DEVICE_ATTR_RO(uptime);
-+static DEVICE_ATTR_RO(reset_reason);
-+static DEVICE_ATTR_RW(critical_action);
-+
-+DEFINE_MCU_DEBUG_ATTR_READ_FUNC(firmware_version, int, "0x%02x");
-+DEFINE_MCU_DEBUG_ATTR_READ_FUNC(pcb_version, int, "0x%02x");
-+
-+static int board_type_show(struct seq_file *seqf, void *unused)
-+{
-+	struct sg2042_mcu_data *mcu = seqf->private;
-+
-+	seq_printf(seqf, "%s\n", mcu->board_info->name ?: "Unknown");
-+
-+	return 0;
-+}
-+
-+static int mcu_type_show(struct seq_file *seqf, void *unused)
-+{
-+	struct sg2042_mcu_data *mcu = seqf->private;
-+	int ret;
-+
-+	ret = sg2042_mcu_get_mcu_type(mcu->client);
-+	if (ret < 0)
-+		return ret;
-+
-+	seq_puts(seqf, ret ? "GD32\n" : "STM32\n");
-+
-+	return 0;
-+}
-+
-+DEFINE_SHOW_ATTRIBUTE(firmware_version);
-+DEFINE_SHOW_ATTRIBUTE(pcb_version);
-+DEFINE_SHOW_ATTRIBUTE(mcu_type);
-+DEFINE_SHOW_ATTRIBUTE(board_type);
-+
-+// TODO: to debugfs
-+
-+static struct attribute *sg2042_mcu_attrs[] = {
-+	&dev_attr_reset_count.attr,
-+	&dev_attr_uptime.attr,
-+	&dev_attr_reset_reason.attr,
-+	&dev_attr_critical_action.attr,
-+	NULL
-+};
-+
-+static const struct attribute_group sg2042_mcu_attr_group = {
-+	.attrs	= sg2042_mcu_attrs,
-+};
-+
-+static const struct hwmon_channel_info * const sg2042_mcu_info[] = {
-+	HWMON_CHANNEL_INFO(chip, HWMON_C_REGISTER_TZ | HWMON_C_UPDATE_INTERVAL),
-+	HWMON_CHANNEL_INFO(temp, HWMON_T_INPUT | HWMON_T_CRIT |
-+					HWMON_T_CRIT_HYST,
-+				 HWMON_T_INPUT),
-+	NULL
-+};
-+
-+static int sg2042_mcu_read_temp(struct device *dev,
-+				u32 attr, int channel,
-+				long *val)
-+{
-+	struct sg2042_mcu_data *mcu = dev_get_drvdata(dev);
-+	long tmp;
-+
-+	switch (attr) {
-+	case hwmon_temp_input:
-+		switch (channel) {
-+		case 0:
-+			tmp = sg2042_mcu_get_soc_temp(mcu->client);
-+			if (tmp < 0)
-+				return tmp;
-+			*val = tmp * 1000;
-+			break;
-+		case 1:
-+			tmp = sg2042_mcu_get_board_temp(mcu->client);
-+			if (tmp < 0)
-+				return tmp;
-+			*val = tmp * 1000;
-+			break;
-+		default:
-+			return -EOPNOTSUPP;
-+		}
-+		break;
-+	case hwmon_temp_crit:
-+		if (channel)
-+			return -EOPNOTSUPP;
-+
-+		tmp = sg2042_mcu_get_soc_crit_temp(mcu->client);
-+		if (tmp < 0)
-+			return tmp;
-+		*val = tmp * 1000;
-+		break;
-+	case hwmon_temp_crit_hyst:
-+		if (channel)
-+			return -EOPNOTSUPP;
-+
-+		tmp = sg2042_mcu_get_soc_hyst_temp(mcu->client);
-+		if (tmp < 0)
-+			return tmp;
-+		*val = tmp * 1000;
-+		break;
-+	default:
-+		return -EOPNOTSUPP;
-+	}
-+	return 0;
-+}
-+
-+static int sg2042_mcu_read(struct device *dev,
-+			   enum hwmon_sensor_types type,
-+			   u32 attr, int channel, long *val)
-+{
-+	switch (type) {
-+	case hwmon_chip:
-+		if (attr != hwmon_chip_update_interval)
-+			return -EOPNOTSUPP;
-+		*val = 1000;
-+		break;
-+	case hwmon_temp:
-+		return sg2042_mcu_read_temp(dev, attr, channel, val);
-+	default:
-+		return -EOPNOTSUPP;
-+	}
-+	return 0;
-+}
-+
-+static int sg2042_mcu_write(struct device *dev,
-+			    enum hwmon_sensor_types type,
-+			    u32 attr, int channel, long val)
-+{
-+	struct sg2042_mcu_data *mcu = dev_get_drvdata(dev);
-+	u8 down_temp, repower_temp;
-+	int ret;
-+
-+	if (type != hwmon_temp || attr != hwmon_temp_crit || !channel)
-+		return -EOPNOTSUPP;
-+
-+	switch (attr) {
-+	case hwmon_temp_crit:
-+		ret = sg2042_mcu_get_soc_hyst_temp(mcu->client);
-+		if (ret < 0)
-+			repower_temp = DEFAULT_REPOWER_TEMP;
-+		else
-+			repower_temp = ret;
-+
-+		down_temp = val / 1000;
-+		if (down_temp < repower_temp)
-+			return -EINVAL;
-+
-+		return sg2042_mcu_set_soc_crit_temp(mcu->client,
-+						    (u8)(val / 1000));
-+	case hwmon_temp_crit_hyst:
-+		ret = sg2042_mcu_get_soc_crit_temp(mcu->client);
-+		if (ret < 0)
-+			return -ENODEV;
-+
-+		down_temp = ret;
-+		repower_temp = val / 1000;
-+		if (down_temp < repower_temp)
-+			return -EINVAL;
-+
-+		return sg2042_mcu_set_soc_hyst_temp(mcu->client,
-+						    (u8)(val / 1000));
-+	default:
-+		return -EOPNOTSUPP;
-+	}
-+}
-+
-+static umode_t sg2042_mcu_is_visible(const void *_data,
-+				     enum hwmon_sensor_types type,
-+				     u32 attr, int channel)
-+{
-+	switch (type) {
-+	case hwmon_chip:
-+		if (attr == hwmon_chip_update_interval)
-+			return 0444;
-+		break;
-+	case hwmon_temp:
-+		switch (attr) {
-+		case hwmon_temp_input:
-+			if (channel < 2)
-+				return 0444;
-+			break;
-+		case hwmon_temp_crit:
-+		case hwmon_temp_crit_hyst:
-+			if (channel == 0)
-+				return 0664;
-+			break;
-+		default:
-+			return 0;
-+		}
-+		break;
-+	default:
-+		return 0;
-+	}
-+	return 0;
-+}
-+
-+static const struct hwmon_ops sg2042_mcu_ops = {
-+	.is_visible = sg2042_mcu_is_visible,
-+	.read = sg2042_mcu_read,
-+	.write = sg2042_mcu_write,
-+};
-+
-+static const struct hwmon_chip_info sg2042_mcu_chip_info = {
-+	.ops = &sg2042_mcu_ops,
-+	.info = sg2042_mcu_info,
-+};
-+
-+static void sg2042_mcu_debugfs_init(struct sg2042_mcu_data *mcu,
-+				    struct device *dev)
-+{
-+	mcu->debugfs = debugfs_create_dir(dev_name(dev), sgmcu_debugfs);
-+	if (mcu->debugfs) {
-+		_CREATE_DEBUG_ENTRY(firmware_version, 0444, mcu->debugfs, mcu);
-+		_CREATE_DEBUG_ENTRY(pcb_version, 0444, mcu->debugfs, mcu);
-+		_CREATE_DEBUG_ENTRY(mcu_type, 0444, mcu->debugfs, mcu);
-+		_CREATE_DEBUG_ENTRY(board_type, 0444, mcu->debugfs, mcu);
-+	}
-+}
-+
-+static int sg2042_mcu_check_board(u8 id)
-+{
-+	int i;
-+
-+	for (i = 0; i < ARRAY_SIZE(sg2042_boards_data); i++) {
-+		if (sg2042_boards_data[i].id == id)
-+			return i;
-+	}
-+
-+	return -ENODEV;
-+}
-+
-+static int sg2042_mcu_i2c_probe(struct i2c_client *client)
-+{
-+	int ret;
-+	struct device *dev = &client->dev;
-+	struct sg2042_mcu_data *mcu;
-+	struct device *hwmon_dev;
-+
-+	if (!i2c_check_functionality(client->adapter, I2C_FUNC_SMBUS_BYTE_DATA |
-+						I2C_FUNC_SMBUS_BLOCK_DATA))
-+		return -EIO;
-+
-+	ret = sg2042_mcu_get_board_type(client);
-+	if (ret < 0)
-+		return ret;
-+
-+	ret = sg2042_mcu_check_board(ret);
-+	if (ret < 0)
-+		return ret;
-+
-+	mcu = devm_kmalloc(dev, sizeof(*mcu), GFP_KERNEL);
-+	if (!mcu)
-+		return -ENOMEM;
-+
-+	mcu->client = client;
-+	mcu->board_info = &sg2042_boards_data[ret];
-+
-+	ret = sysfs_create_group(&dev->kobj, &sg2042_mcu_attr_group);
-+	if (ret < 0)
-+		return ret;
-+
-+	i2c_set_clientdata(client, mcu);
-+
-+	hwmon_dev = devm_hwmon_device_register_with_info(dev, client->name,
-+							 mcu,
-+							 &sg2042_mcu_chip_info,
-+							 NULL);
-+
-+	sg2042_mcu_debugfs_init(mcu, dev);
-+
-+	return PTR_ERR_OR_ZERO(hwmon_dev);
-+}
-+
-+static void sg2042_mcu_i2c_remove(struct i2c_client *client)
-+{
-+	struct device *dev = &client->dev;
-+
-+	sysfs_remove_group(&dev->kobj, &sg2042_mcu_attr_group);
-+}
-+
-+static const struct i2c_device_id sg2042_mcu_id[] = {
-+	{ "sg2042_hwmon_mcu", 0 },
-+	{},
-+};
-+MODULE_DEVICE_TABLE(i2c, sg2042_mcu_id);
-+
-+static const struct of_device_id sg2042_mcu_of_id[] = {
-+	{ .compatible = "sophgo,sg2042-hwmon-mcu" },
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, sg2042_mcu_of_id);
-+
-+static struct i2c_driver sg2042_mcu_driver = {
-+	.driver = {
-+		.name = "sg2042-mcu",
-+		.of_match_table = sg2042_mcu_of_id,
-+	},
-+	.probe = sg2042_mcu_i2c_probe,
-+	.remove = sg2042_mcu_i2c_remove,
-+	.id_table = sg2042_mcu_id,
-+};
-+
-+static int __init sg2042_mcu_init(void)
-+{
-+	sgmcu_debugfs = debugfs_create_dir("sgmcu", NULL);
-+	return i2c_add_driver(&sg2042_mcu_driver);
-+}
-+
-+static void __exit sg2042_mcu_exit(void)
-+{
-+	debugfs_remove_recursive(sgmcu_debugfs);
-+	i2c_del_driver(&sg2042_mcu_driver);
-+}
-+
-+module_init(sg2042_mcu_init);
-+module_exit(sg2042_mcu_exit);
-+
-+MODULE_AUTHOR("Inochi Amaoto <inochiama@outlook.com>");
-+MODULE_DESCRIPTION("MCU I2C driver for SG2042 soc platform");
-+MODULE_LICENSE("GPL");
---
-2.45.2
+ .../devicetree/bindings/arm/qcom.yaml         |   3 +
+ .../devicetree/bindings/cache/qcom,llcc.yaml  |   2 +
+ .../devicetree/bindings/clock/qcom,gpucc.yaml |   1 +
+ .../bindings/clock/qcom,rpmhcc.yaml           |   1 +
+ .../bindings/clock/qcom,sa8775p-gcc.yaml      |   5 +-
+ .../bindings/cpufreq/cpufreq-qcom-hw.yaml     |   1 +
+ .../crypto/qcom,inline-crypto-engine.yaml     |   1 +
+ .../devicetree/bindings/crypto/qcom,prng.yaml |   1 +
+ .../bindings/firmware/qcom,scm.yaml           |   1 +
+ .../interconnect/qcom,sa8775p-rpmh.yaml       |  14 +++
+ .../interrupt-controller/qcom,pdc.yaml        |   1 +
+ .../devicetree/bindings/iommu/arm,smmu.yaml   |   3 +
+ .../bindings/mailbox/qcom-ipcc.yaml           |   1 +
+ .../devicetree/bindings/net/qcom,ethqos.yaml  |   1 +
+ .../devicetree/bindings/net/snps,dwmac.yaml   |   3 +
+ .../devicetree/bindings/pci/qcom,pcie-ep.yaml |   2 +
+ .../bindings/pci/qcom,pcie-sa8775p.yaml       |   5 +-
+ .../phy/qcom,sa8775p-dwmac-sgmii-phy.yaml     |   5 +-
+ .../phy/qcom,sc8280xp-qmp-pcie-phy.yaml       |   4 +
+ .../phy/qcom,sc8280xp-qmp-ufs-phy.yaml        |   2 +
+ .../phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml   |   3 +
+ .../bindings/phy/qcom,usb-snps-femto-v2.yaml  |   1 +
+ .../bindings/pinctrl/qcom,sa8775p-tlmm.yaml   |   5 +-
+ .../devicetree/bindings/power/qcom,rpmpd.yaml |   1 +
+ .../bindings/soc/qcom/qcom,aoss-qmp.yaml      |   1 +
+ .../devicetree/bindings/sram/qcom,imem.yaml   |   1 +
+ .../bindings/thermal/qcom-tsens.yaml          |   1 +
+ .../devicetree/bindings/ufs/qcom,ufs.yaml     |   2 +
+ .../devicetree/bindings/usb/qcom,dwc3.yaml    |   3 +
+ .../bindings/watchdog/qcom-wdt.yaml           |   1 +
+ arch/arm64/boot/dts/qcom/Makefile             |   2 +-
+ ...{sa8775p-pmics.dtsi => qcs9100-pmics.dtsi} |   0
+ .../{sa8775p-ride.dts => qcs9100-ride.dts}    |   8 +-
+ .../dts/qcom/{sa8775p.dtsi => qcs9100.dtsi}   | 112 +++++++++---------
+ drivers/clk/qcom/clk-rpmh.c                   |   1 +
+ drivers/clk/qcom/gcc-sa8775p.c                |   1 +
+ drivers/clk/qcom/gpucc-sa8775p.c              |   1 +
+ drivers/cpufreq/cpufreq-dt-platdev.c          |   1 +
+ drivers/interconnect/qcom/sa8775p.c           |  14 +++
+ .../stmicro/stmmac/dwmac-qcom-ethqos.c        |   1 +
+ drivers/pci/controller/dwc/pcie-qcom-ep.c     |   1 +
+ drivers/pci/controller/dwc/pcie-qcom.c        |   1 +
+ drivers/phy/qualcomm/phy-qcom-qmp-pcie.c      |   6 +
+ drivers/phy/qualcomm/phy-qcom-qmp-ufs.c       |   3 +
+ drivers/phy/qualcomm/phy-qcom-qmp-usb.c       |   3 +
+ drivers/phy/qualcomm/phy-qcom-sgmii-eth.c     |   1 +
+ drivers/pinctrl/qcom/pinctrl-sa8775p.c        |   1 +
+ drivers/pmdomain/qcom/rpmhpd.c                |   1 +
+ drivers/soc/qcom/llcc-qcom.c                  |   1 +
+ 49 files changed, 170 insertions(+), 65 deletions(-)
+ rename arch/arm64/boot/dts/qcom/{sa8775p-pmics.dtsi => qcs9100-pmics.dtsi} (100%)
+ rename arch/arm64/boot/dts/qcom/{sa8775p-ride.dts => qcs9100-ride.dts} (99%)
+ rename arch/arm64/boot/dts/qcom/{sa8775p.dtsi => qcs9100.dtsi} (97%)
+
+
+base-commit: 82e4255305c554b0bb18b7ccf2db86041b4c8b6e
+-- 
+2.25.1
 
 
