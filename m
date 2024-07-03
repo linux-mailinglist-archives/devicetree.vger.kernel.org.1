@@ -1,208 +1,181 @@
-Return-Path: <devicetree+bounces-82827-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82828-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F37B925F95
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 14:04:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 745D2925FBC
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 14:09:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B6EBC283F93
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 12:02:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1FEA91F23557
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 12:09:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C31B16DEAC;
-	Wed,  3 Jul 2024 12:02:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 647AE171E5A;
+	Wed,  3 Jul 2024 12:09:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eTBDNWGq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V+9gmcB1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBF3F142904;
-	Wed,  3 Jul 2024 12:02:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39D4413EFFB;
+	Wed,  3 Jul 2024 12:09:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720008172; cv=none; b=h3epuh/X+6Ke/amD89mp8+GyV6HNSjfAsVWE0PDrZeEHl4bU021pD9fVmqWiPMkNL+fcTxXIvFd7DH6Oby+kKBpPdtK7ob2/uE8Va7KY1YmH8VjvosMXZaePQJRKRikchbBKjdUP3pZE6VcwI+/oZ695UAhXlmw5MHGOO6S9Qqc=
+	t=1720008544; cv=none; b=PMvTbNOy29GlpW2QE4I/+hI7AW5vNsQfmNioJ8AUqDsEgGo++2xJ+o6E7SU4ouPTIFgEA8gE8jC5DOhv3YcKtpAwZp8DUgjVXdGTRQ3KNQ1TaxpVo0gVT7Ttw+CwwlpFiIzUREL6MC2z8nN59TWL/1nBAmPNXfkYh7DuUQS3vyg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720008172; c=relaxed/simple;
-	bh=wbp3WxxKIZhpmswTUsyAwmPrBB5XKkn66nqq+Oj6lRM=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition; b=JeVMBIKdP3ACibZcZOEkzYcGBbTus7e0y5UwlsztkgfsJttOdrmgwrgiEytLfuNecEP4JJyaYw4/uGkgr2jwHMuiK/hhH4KdsekZFglkd8A58SBw/4Bn20w/Cjo1AWybdTnF/E9SpuFO+0be0m71A9jdGcK3UT54+wu8esh7MF8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eTBDNWGq; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-42579b60af1so30929615e9.2;
-        Wed, 03 Jul 2024 05:02:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1720008169; x=1720612969; darn=vger.kernel.org;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=lHjbPIsTssPtEI+wx/kexPsqSteEWIwv7X4Mb6vwKlE=;
-        b=eTBDNWGqL3wOElG2GypU8drMhrccoejs2Wc13BB76tx0VltJZcGhidlbgSPM4vbl8i
-         +q5B29FgqbxOrklLHzF4A63WoZl8UdmHG5sIRvy8SRfrpl2b6TSfExl0etUEoNjUKs0t
-         ZZI1KtOIIsbLKKdG2OnNE7HN6mCBNg/CCp2ddbLdoVgul0ASSvUkAG/xI6SziNOEVlNN
-         Uv1fs/3oogWduvtOfbtm4D/bMQD4TXVAYdhgNjP3UBHeD5qlMgDAVj7yXkyqvkMVnxn4
-         RFRka9xVFiayeJXFUVCptUBUomN/uCJ9VmreiSmg7HettOgIsZoYgqj/LUzgPNv3W3Kd
-         Cj7w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720008169; x=1720612969;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lHjbPIsTssPtEI+wx/kexPsqSteEWIwv7X4Mb6vwKlE=;
-        b=tmsNb1rqDBmU1jnh08KjD0uMvRkOAJOsyUB6QJ8E0WUWeNwJ3CwbvIHcMyWkr648pm
-         8tx7o1iO0XB0wYLSCGx3J3F1VJ+zUyl0ryTUc/HvyyeuGSj2KwTTvyTyfSsITHRS2Es8
-         bzqFhTgwnZ+RRiqwwRhjlnV2MQJaJqrQ48OcSgh9aLwDizQCBvRTDzLU848VYFOBzz0w
-         FN+7wo4g7pjh75zHjk5AXJnL6RRiW0ONr6dnK3+JVwEYJGYpk4rSUyEMthROzHXAjngc
-         X/FuW2Z/1ZwTQwH7qocZy0PERPzHzVwxHmw31cRj0Q8JNSdo3pR1HgVIOYtQauVQzHNW
-         Ao9Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWEVBXecbUl1TZwLzQgmJusPINuL+T8EYscKYIhf2UFQFmCWbq8wn+sTSkqBnYa52d5mJE7oAN6yitJpHd+beY2f2k8bAa/doIuuw==
-X-Gm-Message-State: AOJu0YwjLvA1+TMikvoFvHzJG+dR4L+KmgVoYliJ3bLvIElNSgefSRFl
-	Kf060Cs9hR3jRsUqoECLfi2qCSkFtNgZhPi/aVa+oyyrr9rMh/hq
-X-Google-Smtp-Source: AGHT+IGsosvirTGJ/8ctAZiH25yTViMcfCBtbiveJvRTABfbUmQO0QA6b4COqpDoAchCbDMJxsxSKQ==
-X-Received: by 2002:a05:600c:1c88:b0:424:aa64:e9af with SMTP id 5b1f17b1804b1-4257a05c0c4mr77165875e9.32.1720008168844;
-        Wed, 03 Jul 2024 05:02:48 -0700 (PDT)
-Received: from standask-GA-A55M-S2HP (lu-nat-113-247.ehs.sk. [188.123.113.247])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4257880104csm74819155e9.1.2024.07.03.05.02.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Jul 2024 05:02:48 -0700 (PDT)
-Date: Wed, 3 Jul 2024 14:02:46 +0200
-From: Stanislav Jakubek <stano.jakubek@gmail.com>
-To: Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Orson Zhai <orsonzhai@gmail.com>,
-	Baolin Wang <baolin.wang@linux.alibaba.com>,
-	Baolin Wang <baolin.wang7@gmail.com>,
-	Chunyan Zhang <zhang.lyra@gmail.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH] dt-bindings: timer: sprd-timer: convert to YAML
-Message-ID: <ZoU95lBgoyF/8Md3@standask-GA-A55M-S2HP>
+	s=arc-20240116; t=1720008544; c=relaxed/simple;
+	bh=eZ1R07sklVIHLJ7jAUSapT6sVA3yE63F67K5SBVmNPw=;
+	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=gckcPJB6jLyuqkLKRUmdffLgIp8k/qFbkhkvbowcGZwQdC3/cmuUN4KhIGddhDB3sJW0TKcq8TAnshvQXJHTyBsFVmy1xnq8d/XPPx12KZtnDE5Pncm7Js/VYnf/Zw5eFVYWwDK/sOlV3o5L69ec8Ogf6AiXQ89+0NCjUjbLvbs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V+9gmcB1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F11D2C2BD10;
+	Wed,  3 Jul 2024 12:09:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720008544;
+	bh=eZ1R07sklVIHLJ7jAUSapT6sVA3yE63F67K5SBVmNPw=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=V+9gmcB1mPATTVawV18eL0+TPkJMuC5vtAT4YI/v6KwgOz0T0QzheugM7sgG4qbNz
+	 BUYdv3Xtc5rBa9T5iK2rFuKrvcdAmCK1gDWPV9YvURzM09Y8MUdNiUrjcxiEGpANtV
+	 ypNy2DLgdEA5Zgdftf9G2G6rhK9+vIppBgv84D+CcYc4ShIowLJDdlMxQz2b4LLf/X
+	 qnZXr5PA3z8t68QfJMaIvV4dW2Nv2N508pU/cYhRpKW3Hzi1OqGSxdH8I81tfwHgz8
+	 YLHz+adRC41GFVXvA8g8qkWzNJtbM1vozmk4jPETSCXZH/yKnz/C6QiyNIUu1irYFA
+	 iPJb03yhosfXA==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.95)
+	(envelope-from <maz@kernel.org>)
+	id 1sOynF-009RDQ-JT;
+	Wed, 03 Jul 2024 13:09:01 +0100
+Date: Wed, 03 Jul 2024 13:09:00 +0100
+Message-ID: <868qyiad9f.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Michael Ellerman <mpe@ellerman.id.au>
+Cc: Rob Herring <robh@kernel.org>,
+	Christian
+ Zigotzky <chzigotzky@xenosoft.de>,
+	apatel@ventanamicro.com,
+	DTML <devicetree@vger.kernel.org>,
+	Linux Kernel
+ Mailing List <linux-kernel@vger.kernel.org>,
+	linuxppc-dev
+ <linuxppc-dev@lists.ozlabs.org>,
+	mad skateman <madskateman@gmail.com>,
+	"R.T.Dickinson" <rtd2@xtra.co.nz>,
+	Matthew Leaman <matthew@a-eon.biz>,
+	Darren Stevens <darren@stevens-zone.net>,
+	Christian Zigotzky
+ <info@xenosoft.de>
+Subject: Re: [PowerPC] [PASEMI] Issue with the identification of ATA drives after the of/irq updates 2024-05-29
+In-Reply-To: <87le2ik90h.fsf@mail.lhotse>
+References: <3ab66fab-c3f2-4bed-a04d-a10c57dcdd9b@xenosoft.de>
+	<86zfqzhgys.wl-maz@kernel.org>
+	<CAL_Jsq+_QZHMJGHqw8vFA5CspuouvY_U=+NobYQ52DcwPQx-2w@mail.gmail.com>
+	<87le2ik90h.fsf@mail.lhotse>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/29.3
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: mpe@ellerman.id.au, robh@kernel.org, chzigotzky@xenosoft.de, apatel@ventanamicro.com, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, madskateman@gmail.com, rtd2@xtra.co.nz, matthew@a-eon.biz, darren@stevens-zone.net, info@xenosoft.de
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 
-Convert the Spreadtrum SC9860 timer bindings to DT schema.
+Hi Michael,
 
-Changes during conversion:
-  - rename file to match compatible
-  - add sprd,sc9860-suspend-timer which was previously undocumented
-  - minor grammar fix in description
+On Wed, 03 Jul 2024 12:30:38 +0100,
+Michael Ellerman <mpe@ellerman.id.au> wrote:
+>=20
+> Rob Herring <robh@kernel.org> writes:
+> > On Tue, Jul 2, 2024 at 10:54=E2=80=AFAM Marc Zyngier <maz@kernel.org> w=
+rote:
+> >>
+> >> On Sun, 30 Jun 2024 11:21:55 +0100,
+> >> Christian Zigotzky <chzigotzky@xenosoft.de> wrote:
+> >> >
+> >> > Hello,
+> >> >
+> >> > There is an issue with the identification of ATA drives with our
+> >> > P.A. Semi Nemo boards [1] after the
+> >> > commit "of/irq: Factor out parsing of interrupt-map parent
+> >> > phandle+args from of_irq_parse_raw()" [2].
+> >>
+> >> [snip]
+> >>
+> >> My earlier request for valuable debug information still stands. But
+> >> while you're at it, can you please give the following hack a go?
+> >>
+> >>         M.
+> >>
+> >> --- a/drivers/of/irq.c
+> >> +++ b/drivers/of/irq.c
+> >> @@ -282,8 +282,10 @@ int of_irq_parse_raw(const __be32 *addr, struct o=
+f_phandle_args *out_irq)
+> >>
+> >>                         oldimap =3D imap;
+> >>                         imap =3D of_irq_parse_imap_parent(oldimap, ima=
+plen, out_irq);
+> >> -                       if (!imap)
+> >> -                               goto fail;
+> >> +                       if (!imap) {
+> >> +                               match =3D 0;
+> >> +                               break;
+> >> +                       }
+> >
+> > AFAICT reading the DT, I don't think this would fix it. imap should
+> > only be null if malformed. This case to me looks like interrupt-map
+> > has the correct cell sizes, but just never matches to do the mapping.
+> > So maybe imaplen is off and that causes us to end up here, but if
+> > there's an error I don't see it. A boot with DEBUG enabled in
+> > drivers/of/irq.c would help.
+> >
+> >>
+> >>                         match &=3D of_device_is_available(out_irq->np);
+> >>                         if (match)
+> >>
+> >> This may not be the final workaround even if it solves your boot
+> >> problem, but will at least give us a hint at what is going wrong.
+> >>
+> >> I have the fuzzy feeling that we may be able to lob this broken system
+> >> as part of the of_irq_imap_abusers[] array, which would solve things
+> >> pretty "neatly".
+> >
+> > I think this would work and would consolidate the work-arounds. It
+> > would need either "pasemi,rootbus" or "pa-pxp" added to the list.
+>=20
+> Not sure if it helps, but there's already some code in arch/powerpc to
+> "fixup" the nemo device tree at boot.
+>=20
+> I'm not sure if it's actually the problem here, but it might be, it does
+> renumber some interrupts. Or possibly it could be tweaked to fix
+> whatever the issue is.
+>=20
+> The code is in fixup_device_tree_pasemi():
+>=20
+>   https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree=
+/arch/powerpc/kernel/prom_init.c?h=3Dv6.10-rc5#n3114
 
-Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
----
- .../bindings/timer/sprd,sc9860-timer.yaml     | 68 +++++++++++++++++++
- .../bindings/timer/spreadtrum,sprd-timer.txt  | 20 ------
- 2 files changed, 68 insertions(+), 20 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/timer/sprd,sc9860-timer.yaml
- delete mode 100644 Documentation/devicetree/bindings/timer/spreadtrum,sprd-timer.txt
+Ah, that's quite interesting, thanks for the pointer.
 
-diff --git a/Documentation/devicetree/bindings/timer/sprd,sc9860-timer.yaml b/Documentation/devicetree/bindings/timer/sprd,sc9860-timer.yaml
-new file mode 100644
-index 000000000000..62c6da8bab5a
---- /dev/null
-+++ b/Documentation/devicetree/bindings/timer/sprd,sc9860-timer.yaml
-@@ -0,0 +1,68 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/timer/sprd,sc9860-timer.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Spreadtrum SC9860 timer
-+
-+maintainers:
-+  - Orson Zhai <orsonzhai@gmail.com>
-+  - Baolin Wang <baolin.wang7@gmail.com>
-+  - Chunyan Zhang <zhang.lyra@gmail.com>
-+
-+description:
-+  The Spreadtrum SC9860 platform provides 3 general-purpose timers.
-+  These timers can support 32bit or 64bit counter, as well as supporting
-+  period mode or one-shot mode, and they can be a wakeup source
-+  during deep sleep.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - sprd,sc9860-timer
-+      - sprd,sc9860-suspend-timer
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: sprd,sc9860-timer
-+    then:
-+      required:
-+        - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    soc {
-+      #address-cells = <2>;
-+      #size-cells = <2>;
-+
-+      timer@40050000 {
-+        compatible = "sprd,sc9860-timer";
-+        reg = <0 0x40050000 0 0x20>;
-+        interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
-+        clocks = <&ext_32k>;
-+      };
-+    };
-+...
-diff --git a/Documentation/devicetree/bindings/timer/spreadtrum,sprd-timer.txt b/Documentation/devicetree/bindings/timer/spreadtrum,sprd-timer.txt
-deleted file mode 100644
-index 6d97e7d0f6e8..000000000000
---- a/Documentation/devicetree/bindings/timer/spreadtrum,sprd-timer.txt
-+++ /dev/null
-@@ -1,20 +0,0 @@
--Spreadtrum timers
--
--The Spreadtrum SC9860 platform provides 3 general-purpose timers.
--These timers can support 32bit or 64bit counter, as well as supporting
--period mode or one-shot mode, and they are can be wakeup source
--during deep sleep.
--
--Required properties:
--- compatible: should be "sprd,sc9860-timer" for SC9860 platform.
--- reg: The register address of the timer device.
--- interrupts: Should contain the interrupt for the timer device.
--- clocks: The phandle to the source clock (usually a 32.768 KHz fixed clock).
--
--Example:
--	timer@40050000 {
--		compatible = "sprd,sc9860-timer";
--		reg = <0 0x40050000 0 0x20>;
--		interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
--		clocks = <&ext_32k>;
--	};
--- 
-2.34.1
+I can see two possibilities here:
 
+- either we remove the interrupt-map from the DT (no idea if that is
+  possible)
+
+- or we patch the interrupt-map to be slightly more useful and
+  actually match its input
+
+Thanks,
+
+	M.
+
+--=20
+Without deviation from the norm, progress is not possible.
 
