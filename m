@@ -1,196 +1,338 @@
-Return-Path: <devicetree+bounces-82677-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82678-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDE04925553
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 10:24:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7395925559
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 10:29:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 74622285C25
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 08:24:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 171221C21532
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 08:29:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 626EA13049E;
-	Wed,  3 Jul 2024 08:24:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6796E13A24A;
+	Wed,  3 Jul 2024 08:29:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="4CV489sG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com [209.85.219.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6A7613666D;
-	Wed,  3 Jul 2024 08:24:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F1EB13049E;
+	Wed,  3 Jul 2024 08:29:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719995085; cv=none; b=iW1q+TFJSq9TyjI/sCkB7Pf78iPl53pXk/EUzNCO3+BUfLfYWKWrj7fUfdX5KbJ8znZAWU9U0JiHumE4IkBuATnqWzwzguuJOsgwnAlTsKLDRAVDAKxX9YAU8FBV5677AYHWJAxLZ5LZLh/5A50BTx8dw9Admd1XpIA9K0Z0x3o=
+	t=1719995372; cv=none; b=erM/a9x+QdIdG9hrm/7gvfPkr6IwUqH9J/bP1oFZMYk5syfzxl9A0LNCprmYQ7hnVcrLvUONXdYjLpozE167B1XV9bA1en2keOqEHjooYxwpb2jvibmNaZJmNNePwnwPE38dPlnzeBWiVPaESpXSTDn079+EYz345eWSYdOHG38=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719995085; c=relaxed/simple;
-	bh=wOJLpOFO7Q96uSx06Rr/Kkt5lhJ+pr8zcr3vCUu53Cg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=UJKBBWg8fPtF9VK7X3YUm9AU0kqQzmf32tWjvO+6bC+Ex6JvN11eFzjtcoGzMlpowXYPWMEj1nfPDT6Cd0YaXwC7XDsa2yr4Qjad4Bhq16NQ4jIcjzPk54pS8zo22N2iWBOMNJ3AZ8ooD+MtIbaRghyR74D/uBTl5uhHB+2NVPI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-dff17fd97b3so5221044276.2;
-        Wed, 03 Jul 2024 01:24:42 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719995080; x=1720599880;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=RcGb58PPpWL7B266ofJCciLtYTWYOedPP0lxxfPOm/4=;
-        b=K1MSkBMTwwObhgmW5VHQOZq4fRraNSnb/jjRweexde0CYnWvIKbuusP/okZLvO45yI
-         BgfDf7Ag2dWW5xNpTxf2VjhpCtt+XUOgSpWo5O/80F16QA51Ecynv21um9+VKWBg/JV0
-         0A0Cm+qBooCE0DBYtXd0nwvutbGYoUAkNcdk8cw1riuN+kMyWXsh+eB9QSK+/61t8xGD
-         y9Z1VbX6t4Syd+2LTZHxXqP7IwEg82QUcq+KzPL4Wzpr3Bu8jidFkxczBb2aH7tbPDHz
-         lI5TyZVbJtrfYlGv/HMPnA5t9M99ZJYJScATt1g3RB4AFYP+OD7PDqTj1Wv3It5aCbhY
-         1vyg==
-X-Forwarded-Encrypted: i=1; AJvYcCXJLaCjvKDnr2+JXTVcefzkIi1nlyXBXfwRPLE8Ywu8qA8VDihe4N3+bq5U1mHx1xE/E07UcdBbkvpBrTOZULIkC38jvZVZzpIUp4mF9lee/yqNP4ywHQuhDU38aoE+xmrnCfnJFOpkZWVDKwTF
-X-Gm-Message-State: AOJu0Yxvr4cQqvnfu0aHxtkXix6+OTgN1o2SoROHpDdg4NNeDEMwOosp
-	CuJZr6h4fiM9qj9wqw+P3ZCh0G9nFxEwga0xaCMWHkHa+Osw1EJ4uT2ynAW9
-X-Google-Smtp-Source: AGHT+IF42FGryyoJB1FAlAZ5gHCHr1IKDFizBslZUWNyYez02MH0A3l35r7hyCwVFlVIqXTONfHexQ==
-X-Received: by 2002:a5b:44e:0:b0:e03:46ae:f277 with SMTP id 3f1490d57ef6-e036eaf3ef8mr13190677276.3.1719995080035;
-        Wed, 03 Jul 2024 01:24:40 -0700 (PDT)
-Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com. [209.85.128.177])
-        by smtp.gmail.com with ESMTPSA id 3f1490d57ef6-e03b3ea5dddsm14489276.18.2024.07.03.01.24.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Jul 2024 01:24:39 -0700 (PDT)
-Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-64b9f11b92aso43474337b3.1;
-        Wed, 03 Jul 2024 01:24:39 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCXWyb8JZOuyWQWckxRD3rGZh1CrnHQQRPgDRMvZVKGsfNZgzg+gpyaxdh4uIKWLMtsSD3DTIXSe1kZGTag/G2hGAbw7DVCBjMSC4bGt/RuEqhfMdbPZyxkWmSlCg0x7aT0RTmI5XhsTDAARHHNN
-X-Received: by 2002:a81:4320:0:b0:651:a724:dcf9 with SMTP id
- 00721157ae682-651a724deadmr7137427b3.1.1719995078999; Wed, 03 Jul 2024
- 01:24:38 -0700 (PDT)
+	s=arc-20240116; t=1719995372; c=relaxed/simple;
+	bh=Jm93qYQgbl0FMRbmqpJUQ22vd/e4flRf03TyEJU75ks=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=lZT9HH9nvNDGB48ZaU/YX7PCvAUZwBOxAFZST1P7+NnoifPVekz79pVvFvEOkzYm+TMbcKyrMN7FSdrUXYuEFAEnnhthanz6DbKu2UeKIKQde19piulzsVKbxgBAOUk7zbiYCTkrU1DAsivgpdZgh1pi0eCovJY0xcww8Fm7I5I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=4CV489sG; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4637YLfS001949;
+	Wed, 3 Jul 2024 10:28:58 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	6Rh2LslZMMANq25IkC1tGRBe0DiLGeoOd/wRbMxgBrk=; b=4CV489sGvTWQM9NP
+	ZGgolq1vdNLKVVshdskB5IXydpfRbKETXV88CbllItmX5f0ifEJR/zx19JQrq6Yi
+	s3rZdz49gs+Dof5XEN2fEu4L2i8kWcfzITe3HYviDq1Aiy2SFOHGfLV4uv1LstTK
+	4QuFw41HQJFQ2x9uN+K391Rwj5YiD7PcLJwVxG7cQtttCj3CfGyAdLTCy8IX3HZg
+	XVjO1P1epRuXMBU7zZSs0vbjq+fCTDoxHL0PIdwUeaAzdouj1McP5cLALgONdbR9
+	RI8Z6zRolov9PiKk/f65Zq6rGabaSeZbUbEuoiFLmCJMxK7L2Us9CUUXECcRwNME
+	R7x+KA==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 402w7j524p-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 03 Jul 2024 10:28:57 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 8FEF540048;
+	Wed,  3 Jul 2024 10:28:52 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id AC62A215BFA;
+	Wed,  3 Jul 2024 10:28:02 +0200 (CEST)
+Received: from [10.252.27.110] (10.252.27.110) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Wed, 3 Jul
+ 2024 10:28:01 +0200
+Message-ID: <da75ec86-a701-45cc-b573-fde79bcfc104@foss.st.com>
+Date: Wed, 3 Jul 2024 10:28:01 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240630034649.173229-1-marex@denx.de> <20240630034649.173229-2-marex@denx.de>
- <CAMuHMdXb6nBHLeK1c4CwEUBE8osDyAC_+ohA+10W_mZdGtQufQ@mail.gmail.com> <9f1ae430-4cc4-4e2e-a52c-ca17f499bbba@denx.de>
-In-Reply-To: <9f1ae430-4cc4-4e2e-a52c-ca17f499bbba@denx.de>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 3 Jul 2024 10:24:26 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWLLAff5_ndAvH9PofTpibJdOau65wK+QekcwR26H2YoA@mail.gmail.com>
-Message-ID: <CAMuHMdWLLAff5_ndAvH9PofTpibJdOau65wK+QekcwR26H2YoA@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: renesas: Drop ethernet-phy-ieee802.3-c22
- from PHY compatible string on all RZ boards
-To: Marek Vasut <marex@denx.de>, 
-	=?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-Cc: linux-arm-kernel@lists.infradead.org, andrew@lunn.ch, 
-	kernel@dh-electronics.com, kernel test robot <lkp@intel.com>, 
-	Conor Dooley <conor+dt@kernel.org>, Khuong Dinh <khuong@os.amperecomputing.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
-	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 4/8] dt-bindings: iio: dfsdm: move to backend framework
+To: Rob Herring <robh@kernel.org>
+CC: <fabrice.gasnier@foss.st.com>,
+        Arnaud Pouliquen
+	<arnaud.pouliquen@foss.st.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        <alsa-devel@alsa-project.org>, <linux-iio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20240625150717.1038212-1-olivier.moysan@foss.st.com>
+ <20240625150717.1038212-5-olivier.moysan@foss.st.com>
+ <20240628213517.GA225013-robh@kernel.org>
+Content-Language: en-US
+From: Olivier MOYSAN <olivier.moysan@foss.st.com>
+In-Reply-To: <20240628213517.GA225013-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-03_04,2024-07-02_02,2024-05-17_01
 
-Hi Marek,
+Hi Rob,
 
-On Tue, Jul 2, 2024 at 10:45=E2=80=AFPM Marek Vasut <marex@denx.de> wrote:
-> On 7/2/24 10:38 AM, Geert Uytterhoeven wrote:
-> > On Sun, Jun 30, 2024 at 5:47=E2=80=AFAM Marek Vasut <marex@denx.de> wro=
-te:
-> >> The rtl82xx DT bindings do not require ethernet-phy-ieee802.3-c22
-> >> as the fallback compatible string. There are fewer users of the
-> >> Realtek PHY compatible string with fallback compatible string than
-> >> there are users without fallback compatible string, so drop the
-> >> fallback compatible string from the few remaining users:
-> >>
-> >> $ git grep -ho ethernet-phy-id001c....... | sort | uniq -c
-> >>        1 ethernet-phy-id001c.c816",
-> >>        2 ethernet-phy-id001c.c915",
-> >>        2 ethernet-phy-id001c.c915";
-> >>        5 ethernet-phy-id001c.c916",
-> >>       13 ethernet-phy-id001c.c916";
-> >>
-> >> Reported-by: kernel test robot <lkp@intel.com>
-> >> Closes: https://lore.kernel.org/oe-kbuild-all/202406290316.YvZdvLxu-lk=
-p@intel.com/
-> >> Signed-off-by: Marek Vasut <marex@denx.de>
-> >
-> > Thanks for your patch!
-> >
-> >> Note: this closes only part of the report
-> >
-> > In that case you should use a Link: instead of a Closes: tag?
->
-> But which patch would be the one that Closes that report then ?
+On 6/28/24 23:35, Rob Herring wrote:
+> On Tue, Jun 25, 2024 at 05:07:12PM +0200, Olivier Moysan wrote:
+>> Change the DFSDM binding to use the new IIO backend framework,
+>> along with the adoption of IIO generic channels.
+>> This binding change allows to add scaling support to the DFSDM.
+>>
+>> Keep the legacy binding as deprecated for backward compatibility.
+>>
+>> The io-backends property is supported only in generic IIO channel
+>> binding.
+>>
+>> - Channel description with the generic binding (Audio and Analog):
+>>
+>>    Properties superseded by generic properties:
+>>      st,adc-channels: becomes "reg" property in channel node
+>>      st,adc-channel-names: becomes "label" property in channel node
+>>    Properties moved to channel child node:
+>>      st,adc-channel-types: becomes st,adc-channel-type
+>>      st,adc-channel-clk-src, st,adc-alt-channel
+>>
+>> - Analog binding:
+>>
+>>    DFSDM filter channel is configured as an IIO backend consumer.
+>>    Add io-backends property in channel child nodes.
+>>
+>>    DFSDM is no more configured as a channel consumer from SD modulator.
+>>    Use of io-channels in DFSDM node is deprecated.
+>>
+>> - Audio binding:
+>>
+>>    DFSDM audio DAI is configured as a channel consumer from DFSDM filter.
+>>    No change compare to legacy.
+>>
+>> Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
+>> ---
+>>   .../bindings/iio/adc/st,stm32-dfsdm-adc.yaml  | 157 +++++++++++++++++-
+>>   1 file changed, 151 insertions(+), 6 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/iio/adc/st,stm32-dfsdm-adc.yaml b/Documentation/devicetree/bindings/iio/adc/st,stm32-dfsdm-adc.yaml
+>> index c1b1324fa132..1802120b16b0 100644
+>> --- a/Documentation/devicetree/bindings/iio/adc/st,stm32-dfsdm-adc.yaml
+>> +++ b/Documentation/devicetree/bindings/iio/adc/st,stm32-dfsdm-adc.yaml
+>> @@ -102,9 +102,11 @@ patternProperties:
+>>           items:
+>>             minimum: 0
+>>             maximum: 7
+>> +        deprecated: true
+>>   
+>>         st,adc-channel-names:
+>>           description: List of single-ended channel names.
+>> +        deprecated: true
+>>   
+>>         st,filter-order:
+>>           description: |
+>> @@ -118,6 +120,12 @@ patternProperties:
+>>         "#io-channel-cells":
+>>           const: 1
+>>   
+>> +      '#address-cells':
+>> +        const: 1
+>> +
+>> +      '#size-cells':
+>> +        const: 0
+>> +
+>>         st,adc-channel-types:
+>>           description: |
+>>             Single-ended channel input type.
+>> @@ -128,6 +136,7 @@ patternProperties:
+>>           items:
+>>             enum: [ SPI_R, SPI_F, MANCH_R, MANCH_F ]
+>>           $ref: /schemas/types.yaml#/definitions/non-unique-string-array
+>> +        deprecated: true
+>>   
+>>         st,adc-channel-clk-src:
+>>           description: |
+>> @@ -139,6 +148,7 @@ patternProperties:
+>>           items:
+>>             enum: [ CLKIN, CLKOUT, CLKOUT_F, CLKOUT_R ]
+>>           $ref: /schemas/types.yaml#/definitions/non-unique-string-array
+>> +        deprecated: true
+>>   
+>>         st,adc-alt-channel:
+>>           description:
+>> @@ -147,6 +157,7 @@ patternProperties:
+>>             If not set, channel n is connected to SPI input n.
+>>             If set, channel n is connected to SPI input n + 1.
+>>           type: boolean
+>> +        deprecated: true
+>>   
+>>         st,filter0-sync:
+>>           description:
+>> @@ -165,11 +176,64 @@ patternProperties:
+>>         - compatible
+>>         - reg
+>>         - interrupts
+>> -      - st,adc-channels
+>> -      - st,adc-channel-names
+>>         - st,filter-order
+>>         - "#io-channel-cells"
+>>   
+>> +    patternProperties:
+>> +      "^channel@([0-9]|1[0-9])$":
+> 
+> Unit-addresses are normally hex. And according to reg below, the max
+> value is 8.
+> 
 
-The "last" one that goes in (in parallel with the others)?
-Yes, this is not easy to automate...
+Right. The maximum number of serial interfaces is 8.
+So, the pattern can be reduced to "^channel@([0-7])$":
 
-> >> --- a/arch/arm64/boot/dts/renesas/cat875.dtsi
-> >> +++ b/arch/arm64/boot/dts/renesas/cat875.dtsi
-> >> @@ -22,8 +22,7 @@ &avb {
-> >>          status =3D "okay";
-> >>
-> >>          phy0: ethernet-phy@0 {
-> >> -               compatible =3D "ethernet-phy-id001c.c915",
-> >> -                            "ethernet-phy-ieee802.3-c22";
-> >> +               compatible =3D "ethernet-phy-id001c.c915";
-> >>                  reg =3D <0>;
-> >>                  interrupt-parent =3D <&gpio2>;
-> >>                  interrupts =3D <21 IRQ_TYPE_LEVEL_LOW>;
-> >
-> > What about moving the PHYs inside an mdio subnode, and removing the
-> > compatible properties instead? That would protect against different
-> > board revisions using different PHYs or PHY revisions.
-> >
-> > According to Niklas[1], using an mdio subnode cancels the original
-> > reason (failure to identify the PHY in reset state after unbind/rebind
-> > or kexec) for adding the compatible values[2].
->
-> My understanding is that the compatible string is necessary if the PHY
-> needs clock/reset sequencing of any kind. Without the compatible string,
-> it is not possible to select the correct PHY driver which would handle
-> that sequencing according to the PHY requirements. This board here does
-> use reset-gpio property in the PHY node (it is not visible in this diff
-> context), so I believe a compatible string should be present here.
+>> +        type: object
+>> +        $ref: adc.yaml
+>> +        description: Represents the external channels which are connected to the DFSDM.
+>> +
+>> +        properties:
+>> +          reg:
+>> +            items:
+>> +              minimum: 0
+>> +              maximum: 8
+> 
+> More than 1 reg entry valid? Either way, you need maxItems. Or you can
+> just drop 'items'
+> 
 
-With the introduction of an mdio subnode, the reset-gpios would move
-from the PHY node to the mio subnode, cfr. commit b4944dc7b7935a02
-("arm64: dts: renesas: white-hawk: ethernet: Describe AVB1 and AVB2")
-in linux-next.
+Added "maxItems: 1" and dropped items.
 
-Niklas: commit 54bf0c27380b95a2 ("arm64: dts: renesas: r8a779g0: Use
-MDIO node for all AVB devices") did keep the reset-gpios property in
-the PHY node. I guess it should be moved one level up?
+>> +
+>> +          label:
+>> +            description:
+>> +              Unique name to identify which channel this is.
+>> +
+>> +          st,adc-channel-type:
+>> +            description: |
+>> +              Single-ended channel input type.
+>> +              - "SPI_R": SPI with data on rising edge (default)
+>> +              - "SPI_F": SPI with data on falling edge
+>> +              - "MANCH_R": manchester codec, rising edge = logic 0, falling edge = logic 1
+>> +              - "MANCH_F": manchester codec, rising edge = logic 1, falling edge = logic 0
+>> +            items:
+> 
+> 'items' is for arrays, but...
+> 
 
-Does the rtl82xx PHY have special reset sequencing requirements?
+Removed items
 
-> What would happen if this board got a revision with another PHY with
-> different PHY reset sequencing requirements ? The MDIO node level reset
-> handling might no longer be viable.
+>> +              enum: [ SPI_R, SPI_F, MANCH_R, MANCH_F ]
+>> +            $ref: /schemas/types.yaml#/definitions/string
+> 
+> not an array.
+> 
+>> +
+>> +          st,adc-channel-clk-src:
+>> +            description: |
+>> +              Conversion clock source.
+>> +              - "CLKIN": external SPI clock (CLKIN x)
+>> +              - "CLKOUT": internal SPI clock (CLKOUT) (default)
+>> +              - "CLKOUT_F": internal SPI clock divided by 2 (falling edge).
+>> +              - "CLKOUT_R": internal SPI clock divided by 2 (rising edge).
+>> +            items:
+> 
+> ditto
+> 
 
-True. However, please consider these two cases, both assuming
-reset-gpios is in the MDIO node:
+Done
 
-  1. The PHY node has a compatible value, and a different PHY is
-     mounted: the new PHY will not work, as the wrong PHY driver
-     is used.
+>> +              enum: [ CLKIN, CLKOUT, CLKOUT_F, CLKOUT_R ]
+>> +            $ref: /schemas/types.yaml#/definitions/string
+>> +
+>> +          st,adc-alt-channel:
+>> +            description:
+>> +              Must be defined if two sigma delta modulators are
+>> +              connected on same SPI input.
+>> +              If not set, channel n is connected to SPI input n.
+>> +              If set, channel n is connected to SPI input n + 1.
+>> +            type: boolean
+>> +
+>> +          io-backends:
+>> +            description:
+>> +              Used to pipe external sigma delta modulator or internal ADC backend to DFSDM channel.
+> 
+> How many entries (maxItems)?
+> 
+>> +
+>> +        required:
+>> +          - reg
+>> +
+>> +        additionalProperties: false
+> 
+> Put this next to the $ref for the node. And switch to
+> unevaluatedProperties and drop 'label' from here.
+> 
 
-  2. The PHY node does not have a compatible value, and a different
-     PHY is mounted:
-       a. The new PHY does not need specific reset sequencing,
-          and the existing reset-gpios is fine: the new PHY will just
-          work, as it is auto-detected.
-       b. The new PHY does need specific reset sequencing: the
-          new PHY will not work.
+Done
 
-Which case is preferable? Case 1 or 2?
+>> +
+>>       allOf:
+>>         - if:
+>>             properties:
+>> @@ -199,9 +263,19 @@ patternProperties:
+>>                 description:
+>>                   From common IIO binding. Used to pipe external sigma delta
+>>                   modulator or internal ADC output to DFSDM channel.
+>> +              deprecated: true
+>>   
+>> -          required:
+>> -            - io-channels
+>> +          if:
+>> +            required:
+>> +              - st,adc-channels
+>> +          then:
+>> +            required:
+>> +              - io-channels
+>> +
+>> +          patternProperties:
+>> +            "^channel@([0-9]|1[0-9])$":
+>> +              required:
+>> +                - io-backends
+> 
+> Don't think this is needed here. If channel node is present, the
+> io-backends should always be required, right? Then this can go under the
+> node schema.
+> 
 
-Gr{oetje,eeting}s,
+The io-backends property is required only when we use st,stm32-dfsdm-adc 
+compatible. In other words, when we are in an analog use case. In this 
+case the channel is a consumer of a backend (typically a sd modulator)
+In an audio use case (compatible st,stm32-dfsdm-dmic) the backend is not 
+required.
 
-                        Geert
+BRs
+Olivier
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+> Rob
+> 
+> 
 
