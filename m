@@ -1,112 +1,103 @@
-Return-Path: <devicetree+bounces-82939-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82940-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 130859266BC
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 19:07:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE64A92670F
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 19:26:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8DF41B258F0
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 17:07:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1BDCC1C21E5E
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 17:26:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D82BF185084;
-	Wed,  3 Jul 2024 17:06:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C03E1849EB;
+	Wed,  3 Jul 2024 17:26:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KSZ2sJpL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sP3CTbrf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADDDD1849FF;
-	Wed,  3 Jul 2024 17:06:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F43E17A920;
+	Wed,  3 Jul 2024 17:26:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720026407; cv=none; b=jdk20kNrZG1OGsWipTXmR38bZKeS61V/RMW9Jtv3vg6Ggcs8G4srB3KYa2hJLxcNdr0WFsnB8C2Pd5Qc+3BKv68H9NzFPvjxF+DBpIOZumvBzgY8awB4v6gTWNbs48OTPYn0RJlAvkID9DVm+TVgJeFn2h180j7wF/eI/JYdQ20=
+	t=1720027589; cv=none; b=MQ0qJ7gmgw0zNfyvDqzVI6B9sQF/bX4CKs22pazZ2YBxful8uaGICo/MsnaOwr/gzVB71cIpwbqwuLvIIQee1Vo2ljK1WWZ9luyU0go/A1DX/ZGFZa+xxQf7StYCX3jCbRrsyjB4+5ET6uIBDxSdGuiuw1aQetRXz85PwXDiPEY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720026407; c=relaxed/simple;
-	bh=ONL5j3JoEl6RzlzdKX0SzNktxbiFGSIIyhgQiTiZqos=;
+	s=arc-20240116; t=1720027589; c=relaxed/simple;
+	bh=lG5QlmOYzaCiZ3VzgHUMnRXWLjeAxrYdEL+D1zQh7fs=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=OrU4AYrCqkksOgOUzXl8O9xMpPb03owzXJf2Chixx2E7LMd1qOfZXuKdiB0x30I86eQgEq48ZoGLuaqrHXd84zqrZrRNbHsasa1fMmKy3DZBi8C2a35dZNE8Kqpe1XMsUpOh4dPLQlwItvOstauHGR/y1GZQ+6dQpLksRvV79LY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KSZ2sJpL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47595C4AF0C;
-	Wed,  3 Jul 2024 17:06:47 +0000 (UTC)
+	 To:Cc:Content-Type; b=bS8u+YkI+tDRggEar1Bz5IKHajw3z96EuLaXZDDEIk5UUrIAg9mgmpI1fh4a4s3jnN4HFTUUEkKVclRNaIfl0mYliXDtlLoDKAfMgrOQj1iNuwpXIeQoOklt2QZtEgBfAnPVjrWSgs7GogfPtxZxmf4i8+MjPmtthLv1CH0Oy8M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sP3CTbrf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30A70C2BD10;
+	Wed,  3 Jul 2024 17:26:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720026407;
-	bh=ONL5j3JoEl6RzlzdKX0SzNktxbiFGSIIyhgQiTiZqos=;
+	s=k20201202; t=1720027589;
+	bh=lG5QlmOYzaCiZ3VzgHUMnRXWLjeAxrYdEL+D1zQh7fs=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=KSZ2sJpLUWAGW2IqYss8pgreeDap3K2gHHd9uZFcOnXMU2yqfMfsxs8jNqDFgqUPP
-	 L1xA6Wn4g0A8ZJt/vg7a4yQj2hESSMdyqLA8YB3X8jLijKYKeq4NrhBl58Lu6eRzeR
-	 BnVS5P/JU1r8CY6pYhfQlrQaRPbQ10AhdJB38zP2SzzipnuPmIBfI0/zGyHHIZht5X
-	 VZ2WOugOhdr+opm0uWSEu+oFcfbmxBFtsMpe3spYXo493EYRu9f3DNL7RuY4JMrICE
-	 UFtRTLMZsygaxPSYRcT7IKckogZPf9SMMXvUPVa9Spc2GysMAuzXTBpKCA2hqTtldy
-	 YsIrPU+3QNgPA==
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-52e8037f8a5so5675739e87.1;
-        Wed, 03 Jul 2024 10:06:47 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCXMBw1BSTeLk4KNp8IuUq1VKdVF0w+doqIOCgGX3hee/znkBETKCe+K/JzCzJdksR7hBNkVDah9ddpSYuGSWSJ/yRb+0H6JVut6Vdw5Gnr1T3+JlS7XlFNa6XPTPYOgEvw48SyIZAgC7oj6/xnPRuM=
-X-Gm-Message-State: AOJu0Yy7iE9BUUYeT59oN/qy4QfZTlnG4imqK+x73Xus/3GyCABhY6We
-	fSGtzVSvnVReB//FBw9toncIEZ88HgjwdwyYhUp5pvCh6iXCA4rdSnl0r+ktOnm9n1nqotF/pKx
-	kcW35H2NndonuV6MPf7688Ehe4Q==
-X-Google-Smtp-Source: AGHT+IH1fv3bWoCslorZutqxVVL1O3S5aVZmqcEmlHWLxyiHvtPK1a2NmO3yu3oPWRo6b2zJ7j2MhMl2U+6ypMGVDrw=
-X-Received: by 2002:a19:8c14:0:b0:52c:dd3d:85af with SMTP id
- 2adb3069b0e04-52e82671e7bmr7045178e87.25.1720026405597; Wed, 03 Jul 2024
- 10:06:45 -0700 (PDT)
+	b=sP3CTbrfWHZH+78Ia9vI8K1sS6Z/38xAHsSBKvQ3WPdm385XgOkySkDfZpprayszs
+	 DLY4JwWPVTlCcZurIpzeCRGAMa/vtXlifnkTZ1quQI8gia7m4DbjGtwlxSMGsu/DlN
+	 eu5vO5fZMnVr/wt33Z2l+B4NbWMpVtDClta34Q7fhC1DzpgYuNuRSAzdAR+7EiMkcg
+	 pFqpC/zcQ5jkrkjgzso/KySuoetO+bt8CdtOaOVI0jjgzdW6G4WBAK5uoYMuKy9vkn
+	 lFOVv81hpMpoMOS9P6I7nWuZ3YH8kKd1S+k9hBOVGT0g8/nJL//YFM29liZtfBMp/X
+	 xpahJAhNhnjDA==
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-52e992a24a1so973613e87.0;
+        Wed, 03 Jul 2024 10:26:29 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXVb/rSJuspaOS2gayjjxZTnClfrGnXwkmt/BnmfYeGaVKlkPhlQF2fa7TOIYa5X9X/SKSobJy4D0uO0uGljILIAjkNesI6QV4AlGzMBM1EhFFRGRGf4tZUfuyY/f1x1uRxoLgiAfuZTiIl1lJ+iB8QInjcBi1G1Rmo9sn59tf/coWnjA==
+X-Gm-Message-State: AOJu0YznU0Kt5LxAmK8RW7U31M0XWMQzMweV8UUl5X3o0G1gxQ7YeHMJ
+	cjKdAiF1vdAWa04ZE+vwGrQGjxUneYUcv+iELQZErKgt7tcOoF5W+9ffBYqiUPjwzzfMRXNzMrk
+	kBl7xtgBREgHwX3ONRfM8nzxI8A==
+X-Google-Smtp-Source: AGHT+IGgsfT5BY8AL2ujsw0fXIRG3p1+MPA78RYjJwdUQsIYF3NygJ5dA7fiIYEZmWR4BrxaYTEn1g/FIBjrUo5y8yY=
+X-Received: by 2002:a05:6512:12c4:b0:52e:9acf:b698 with SMTP id
+ 2adb3069b0e04-52e9acfb908mr1150424e87.36.1720027587540; Wed, 03 Jul 2024
+ 10:26:27 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240626075551.2493048-2-u.kleine-koenig@baylibre.com> <bxyscvary2ozzvdnszl3rtfqy3oo5bxnpn6avvaexhtnd47tck@qa44v5zxqhps>
-In-Reply-To: <bxyscvary2ozzvdnszl3rtfqy3oo5bxnpn6avvaexhtnd47tck@qa44v5zxqhps>
+References: <20240702153702.3827386-1-Frank.Li@nxp.com>
+In-Reply-To: <20240702153702.3827386-1-Frank.Li@nxp.com>
 From: Rob Herring <robh@kernel.org>
-Date: Wed, 3 Jul 2024 11:06:32 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKj4w92Ym7KTmQo3D+iNszB5u6-kceMCrNCztM0LJaQkA@mail.gmail.com>
-Message-ID: <CAL_JsqKj4w92Ym7KTmQo3D+iNszB5u6-kceMCrNCztM0LJaQkA@mail.gmail.com>
-Subject: Re: [PATCH] libfdt: overlay: Fix phandle overwrite check for new subtrees
-To: =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-Cc: David Gibson <david@gibson.dropbear.id.au>, devicetree-compiler@vger.kernel.org, 
-	Geert Uytterhoeven <geert@linux-m68k.org>, Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org
+Date: Wed, 3 Jul 2024 11:26:14 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJAKXfdSVGrOvZFn7_asmgv_g6a7-A7wq87xXKpJJnC8Q@mail.gmail.com>
+Message-ID: <CAL_JsqJAKXfdSVGrOvZFn7_asmgv_g6a7-A7wq87xXKpJJnC8Q@mail.gmail.com>
+Subject: Re: [PATCH 1/1] dt-bindings: PCI: host-generic-pci: Increase maxItems
+ to 8 of ranges
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Will Deacon <will@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	"open list:PCI DRIVER FOR GENERIC OF HOSTS" <linux-pci@vger.kernel.org>, 
+	"moderated list:PCI DRIVER FOR GENERIC OF HOSTS" <linux-arm-kernel@lists.infradead.org>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>, 
+	imx@lists.linux.dev
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jul 2, 2024 at 7:44=E2=80=AFAM Uwe Kleine-K=C3=B6nig
-<u.kleine-koenig@baylibre.com> wrote:
+On Tue, Jul 2, 2024 at 9:37=E2=80=AFAM Frank Li <Frank.Li@nxp.com> wrote:
 >
-> Hello David,
->
-> On Wed, Jun 26, 2024 at 09:55:52AM +0200, Uwe Kleine-K=C3=B6nig wrote:
-> > If the overlay's target is only created in a previous fragment, it
-> > doesn't exist in the unmodified base device tree. For the phandle
-> > overwrite check this can be ignored because in this case the base tree
-> > doesn't contain a phandle that could be overwritten.
-> >
-> > Adapt the corresponding check to not error out if that happens but just
-> > continue with the next fragment.
-> >
-> > This is currently triggered by
-> > arch/arm64/boot/dts/renesas/salvator-panel-aa104xd12.dtso in the kernel
-> > repository which creates /panel in its first fragment and modifies it i=
-n
-> > its second.
-> >
-> > Reported-by: Rob Herring <robh@kernel.org>
-> > Link: https://lore.kernel.org/all/CAL_JsqL9MPycDjqQfPNAuGfC6EMrdzUivr+f=
-uOS7YgU3biGd4A@mail.gmail.com/
-> > Fixes: 1fad065080e6 ("libfdt: overlay: ensure that existing phandles ar=
-e not overwritten")
-> > Signed-off-by: Uwe Kleine-K=C3=B6nig <u.kleine-koenig@baylibre.com>
->
-> I wonder about this patch's state. Does David wait for feedback by Rob
-> as he reported the issue? Does Rob expect Geert to comment as
-> salvator-panel-aa104xd12.dtso is in his maintainer area? Are the
-> responsible people just busy; or is this fix already hidden in their
-> backlog?
+> IEEE Std 1275-1994 is Inactive-Withdrawn Standard according to
+> https://standards.ieee.org/ieee/1275/1932/.
 
-I think it's just waiting on David.
+That has nothing to do with this.
 
-The patch looks good to me, but I haven't tested it nor am I that
-familiar with this particular code.
+> "require at least one non-prefetchable memory and One or both of
+> prefetchable Memory and IO Space may also be provided". But it does not
+> limit maximum ranges number is 3.
+
+3 was just my poor assumption that a non-prefetch, prefetchable and IO
+region would be enough. Not sure why you'd want multiple fragmented
+regions though. I guess for device assignment based on the comments.
+
+> Inscrease maximum to 8 because freescale ls1028 and iMX95 use more than
+> 3 ranges.
+
+Unless there is some actual limit, I would just drop the minItems and
+maxItems here. Then it will be limited to 32 entries in
+pci-bus-common.yaml (in dtschema) which is also a 'should be enough'
+value.
 
 Rob
 
