@@ -1,65 +1,74 @@
-Return-Path: <devicetree+bounces-82662-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82663-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43072925466
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 09:07:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D147A92546B
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 09:12:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 05401281FBF
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 07:07:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8C3FF282713
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 07:12:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DDE713541F;
-	Wed,  3 Jul 2024 07:07:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E7C9135A6F;
+	Wed,  3 Jul 2024 07:12:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="7VyqvS9x"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PvfoMB/H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8266A4DA14;
-	Wed,  3 Jul 2024 07:07:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F7284DA14
+	for <devicetree@vger.kernel.org>; Wed,  3 Jul 2024 07:12:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719990448; cv=none; b=IGKbijCnzw8chZMq9cj7/yHT86P1RLmG26t7am/0l5jNvpTa27f8EKts7bwq5u+TnaJp18KXBTn01+Ofsuhw/X6CwTzdkS7hXSAEK4EkKwOZPtwKBzct5qvRXb+JUtDzINkZPBkIxNyWc+YxEY2IxORYEiY0t6cVVl+3pEA2FP4=
+	t=1719990753; cv=none; b=YinpFLjggycD9vQ7RoOVRDFKMvd0A6csQozaHKrbOGEfQqwJ5GL30iK/BObDQQJnQuKivyUHzy8CWPW1m7sUe5BwqPg9p2+nieCmNVJ8APPwl9yIabQNspJIRFkZEgV+hBW49PdCrDy7jQjKjBSv+NPUO/5tIfNlqpDaS1xjj1U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719990448; c=relaxed/simple;
-	bh=q6WaU5swXT/s4hwLs9k+rXpFx+zCEPifl9xBeOoFdoE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=FdpsrGCI72BJ27K4pis8aiMhdERGEjxpQCUO2SCj04WiPqvU7H1D6WqXQsAy4J+rYJa4iR9C4s/eEECE1rBwcxkRpG8qbWsKHecurKDqRsWhhVE/3kBBJvIw1iopu+FNm2Zc2wJaLZRiNlzD2gleZjnYxhGsF32b9t26imm20P8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=7VyqvS9x; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4631MRxA013828;
-	Wed, 3 Jul 2024 09:07:03 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	bEgx7nB8T2pqb3/KDfGtk/eDJ9IIHrnsYSSf09kvHwU=; b=7VyqvS9xkwb6+zFb
-	qD9D14xjLBgVCuNd76qNw0stYiOdddwByABSAShLbYwzGCMqmgVpotYaInpQikuS
-	Y0nuzLcY5xASxBdZQzhOI6K+intoenQmQqPS+nbh5A3grEWdm61VAP8qUzSO8zzj
-	GhUhumPdyLCdi0nc+CEcS1PhjN7koaNAJBxdqXp9ztWgc2RsMbWs4wlWwwhjypAy
-	KFX5xSQ2ZcAwNwNLi16ECrOeH+hLgUkrYifQAdDMu+8g/C3fu5MNZFrrjiCjlGTL
-	waTOi5CqnsjbafaMTfFa2PUOc/HLG0fUL8c/N/BNiG1y37lNmdCVgrhK3PF3x+4a
-	cMFaYA==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 40295de98n-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 03 Jul 2024 09:07:02 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 8DFE040048;
-	Wed,  3 Jul 2024 09:06:56 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id A2247212FB2;
-	Wed,  3 Jul 2024 09:06:20 +0200 (CEST)
-Received: from [10.252.27.110] (10.252.27.110) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Wed, 3 Jul
- 2024 09:06:20 +0200
-Message-ID: <a41e9b9c-5657-4499-ab93-9df1ad80082f@foss.st.com>
-Date: Wed, 3 Jul 2024 09:06:19 +0200
+	s=arc-20240116; t=1719990753; c=relaxed/simple;
+	bh=Am2Zj/XbygcHJL6hbzAQW9hpTqGyzduNdAbYwSyiygc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bbPpxqSOM2gQ2Cl8nWLznGT9t0XLjGtf1fUJuFu3nDxvRSWY9Crb72/Z24L83IaHkqJKjZLyISGB82yM83hzaqt7vjsPuz7fMi53IPcRdeYNpyc4HdhDxJjnjY38cX4wDPkgAcFosc79XYR5N++hPVGkKeofjFeJ89VCyO2OOsw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PvfoMB/H; arc=none smtp.client-ip=209.85.128.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-4256aee6d4fso30711925e9.3
+        for <devicetree@vger.kernel.org>; Wed, 03 Jul 2024 00:12:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1719990749; x=1720595549; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=cWFXhnc8BcIFYpGOuy3wR7zVOKjADb3HoA8bSX4OUFg=;
+        b=PvfoMB/HlJ07HPiHIxBvbOSNFMhxzGLTLozYJJM9WvZM/tuWX4qqemrLFS51oQ9QA0
+         emqQ8KgM7UMORndQ07qy1gOtBFAWz+Je3cpu/EHLGc0jVFj1Xyn8lNR+ZG2tchwysNay
+         cqLPes80i91tiLbfHdWbWLRotqp+mBcHpJqKOe6dIxwe8k36dHgSSAoRkNrsbMRpKYhF
+         Syj9+Or/KkQqq/KufW5jhhJwJf17iUQK5gkFYQ28cwZmmQ1cTcFG6ae+xWhoRjzInWlI
+         eFy3uNwJ8bnin7M3qYSMCArrO/yKxLUUhJ7S30j4wHTRXHqGAdfsJaZ5HMB7jFk5/tpx
+         m/qQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719990749; x=1720595549;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=cWFXhnc8BcIFYpGOuy3wR7zVOKjADb3HoA8bSX4OUFg=;
+        b=T4oxQi73xO1K6PJyjApPgx167u+FUDaEZ+OX2DKdZ2WgOifakPQXq11Athf7PWvo3S
+         iU7PKFdQTdXEAZNAHHbCpOp24a0t/lwzQAyflo521XPNmSy1ofoUxmo/FuI5s4rUV87Q
+         GGo5CJJtvuLVPeoZ0Ms1qawHe5REVR15xwNMEvITuWsPq3MOHtGUljRh4D1K/biUS9Vf
+         Enw4OHQwyItCZQ+CS7ZDkqEX1cQIB3r/G/gy/CcRMraa0BeXja7fN9eafnPQf6EfnaLJ
+         FpoSLcg2JFYk4RqoCJCkHPwySbNAYR0UbtWMnTe9H6iIVchWs9VxVkDxSTezhxM9wSNf
+         w/RA==
+X-Forwarded-Encrypted: i=1; AJvYcCUpFCmymw0tJTwhzDsuCU8UDn1r27+sHxtWPTW+9iIsbRuNM8R93KpChosNj6Y8MACZRqFA7sOkG9D+dStlRLLWY20MGnwixHPCxQ==
+X-Gm-Message-State: AOJu0YxpscP5F1nr4BQ0fVyi3tAizlkzvgqf0TQTqy8ek0cqwPs/7Smb
+	lkGG39shMdFuEwisP250sK1TRLmJN3FiQ1sOY4XFP0Uo+ygh5crpY+mr6XrGKuI=
+X-Google-Smtp-Source: AGHT+IG9f45pPmVIrZS9vDFdht9aYCNia3Hfpo5hnorRWBlA6hyQsUb2I/AfJKRIbrngILxY1miQzQ==
+X-Received: by 2002:a7b:cc96:0:b0:424:8ef1:816a with SMTP id 5b1f17b1804b1-4257a0257c1mr68440145e9.5.1719990749099;
+        Wed, 03 Jul 2024 00:12:29 -0700 (PDT)
+Received: from [192.168.2.107] ([79.115.63.106])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4256b068d1fsm225431835e9.23.2024.07.03.00.12.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 03 Jul 2024 00:12:28 -0700 (PDT)
+Message-ID: <9b45cc73-2251-4085-af95-7ccd00dd6d3b@linaro.org>
+Date: Wed, 3 Jul 2024 08:12:26 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,93 +76,159 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/8] dt-bindings: iio: add sigma delta modulator
- backend
-To: Conor Dooley <conor@kernel.org>
-CC: <fabrice.gasnier@foss.st.com>, Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, <linux-iio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20240625150717.1038212-1-olivier.moysan@foss.st.com>
- <20240625150717.1038212-6-olivier.moysan@foss.st.com>
- <20240625-babied-skies-0722dbdfc524@spud>
- <eefc746a-2181-41da-b777-b077a4c19b77@foss.st.com>
- <20240627-identity-enviable-4fda0b3a09c0@spud>
+Subject: Re: [PATCH v2 3/4] dt-bindings: mtd: macronix,mx25l12833f: add
+ SPI-NOR chip
+To: Erez <erezgeva2@gmail.com>, Jaime Liao <jaimeliao@mxic.com.tw>,
+ leoyu@mxic.com.tw, Alvin Zhou <alvinzhou@mxic.com.tw>,
+ Julien Su <juliensu@mxic.com.tw>
+Cc: Esben Haabendal <esben@geanix.com>, Erez Geva <erezgeva@nwtime.org>,
+ linux-mtd@lists.infradead.org, Pratyush Yadav <pratyush@kernel.org>,
+ Michael Walle <mwalle@kernel.org>, linux-kernel@vger.kernel.org,
+ Miquel Raynal <miquel.raynal@bootlin.com>,
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
+ devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+References: <20240629103914.161530-1-erezgeva@nwtime.org>
+ <20240629103914.161530-4-erezgeva@nwtime.org>
+ <1c457520-07b7-4bde-b040-e8bca959a4f5@linaro.org>
+ <CANeKEMOODBNZA6efh0E0Ga_KaVs5Y3WLcUftRhNwYHhnXO=GNw@mail.gmail.com>
+ <CANeKEMO42rJt5Ob4_HDcZ3eEMvuMOPvRaFaLwL8SA65NtxSV7A@mail.gmail.com>
+ <1d56c3b2-7adf-45b9-a509-956340f3f17b@linaro.org>
+ <CANeKEMMe-Onpn7xWQHgWz1Ps_uQPEMa7HrKA00HpoKjG+DCJNQ@mail.gmail.com>
+ <3bafcbea-6aa5-43ca-9d12-3916be3fe03d@linaro.org>
+ <CANeKEMM02-Jvb8Pd0fZJFnRg-hsAW+hckYWm11tZZXNMPSPJ=w@mail.gmail.com>
 Content-Language: en-US
-From: Olivier MOYSAN <olivier.moysan@foss.st.com>
-In-Reply-To: <20240627-identity-enviable-4fda0b3a09c0@spud>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+In-Reply-To: <CANeKEMM02-Jvb8Pd0fZJFnRg-hsAW+hckYWm11tZZXNMPSPJ=w@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-07-03_03,2024-07-02_02,2024-05-17_01
 
-Hi Conor,
 
-On 6/27/24 18:13, Conor Dooley wrote:
-> On Wed, Jun 26, 2024 at 06:40:58PM +0200, Olivier MOYSAN wrote:
->> Hi Conor,
+
+On 7/3/24 12:16 AM, Erez wrote:
+> On Tue, 2 Jul 2024 at 07:00, Tudor Ambarus <tudor.ambarus@linaro.org> wrote:
 >>
->> On 6/25/24 17:34, Conor Dooley wrote:
->>> On Tue, Jun 25, 2024 at 05:07:13PM +0200, Olivier Moysan wrote:
->>>> Add documentation of device tree bindings to support
->>>> sigma delta modulator backend in IIO framework.
+>>
+>>
+>> On 7/1/24 6:08 PM, Erez wrote:
+>>> On Mon, 1 Jul 2024 at 12:15, Tudor Ambarus <tudor.ambarus@linaro.org> wrote:
 >>>>
->>>> Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
+>>>>
+>>>>
+>>>> On 7/1/24 10:46 AM, Erez wrote:
+>>>>> When using mx25l12805d, we do not read SFDP.
+>>>>> As it uses the no-SFDP flags.
+>>>>> When using mx25l12833f hardware with mx25l12805d driver, it did not
+>>>>> try to read the SFDP.
+>>>>> Yet mx25l12833f does have SFDP, when I remove the no-SFDP flags, the
+>>>>> driver fetch the SFDP.
+>>>>>
+>>>>> Secondly SFDP does not contain OTP information.
+>>>>>
+>>>>> mx25l12805d has two OTP regions of 128 KiB and 384 KiB (yes asymmetric).
+>>>>> While mx25l12833f has two OTP regions of 512 KiB.
+>>>>>
+>>>>> How do we handle it?
+>>>>
+>>>> You would first try to parse SFDP and initialize the flash based on
+>>>> SFDP. If there's no SFDP then you fallback to the flags declared at
+>>>> flash declaration. Esben had a try recently, see [1]. I don't know if
+>>>> there's any progress in that direction.
+>>>>
+>>>> Also, you haven't mentioned anything about the testing. Do you have the
+>>>> flash?
+>>>>
+>>>> [1]
+>>>> https://lore.kernel.org/linux-mtd/20240603-macronix-mx25l3205d-fixups-v2-0-ff98da26835c@geanix.com/
 >>>
->>> I don't review bindings for a job, I can only reliably get to look at
->>> my mail queue in the evenings, please give me a chance to reply to you
->>> before you submit a new version.
->>>
+>>> Looking at "mtd: spi-nor: macronix: workaround for device id re-use"
+>>> I guess it can be applied to all Macronix devices.
 >>
->> Sorry, the short review delay.
->>
->>>> +$id: http://devicetree.org/schemas/iio/adc/sd-modulator-backend.yaml#
->>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>> +
->>>> +title: Sigma delta modulator backend
->>>
->>> Same comments about filename and title apply here as the previous
->>> version. "TI $foo Sigma Delta Modulator" and drop the reference to back
->>> ends or the pretence of being generic.
->>>
->>
->> The logic here is the same as for the former sigma delta modulator driver.
->> (see discussion [1])
->> I mean introducing a generic and minimalist driver to support sd modulators,
->> but not dedicated to a specific modulator. The ads1201 is chosen as a basic
->> modulator here. But it is rather an arbitrary choice.
->>
->> I agree "backend" reference is not really relevant here. I have to think
->> about a way to manage the coexistence of this sigma delta modulator driver
->> with its former version.
+>> No, no, we're going to do it individually just where it's needed.
+>> Issuing unsupported commands is not that great.
 > 
-> To be blunt, I don't care about drivers! Well I do, but not in this
-> particular context. You can absolutely have a driver that supports
-> multiple backends or sigma delta modulators, but right now we are
-> talking about a binding and this binding supports exactly one sigma
-> delta modulator - and with an explicit compatible. In that context,
-> presenting the binding as generic makes little sense.
+> Would be nice if we could ask Macronix directly.
+
+we did. They said it's not ideal, but it's okay.
 > 
->> [1] https://lore.kernel.org/all/6943aaf5-b580-0fd1-7a2e-b99f7a266388@st.com/
+> Looking on their web site and reading some spec. and status reports.
+> Using the IDs with  'no_sfdp_flags' in drivers/mtd/spi-nor/macronix.c
+> I did not search for new chips reusing IDs of chips at end of life.
+> But we found 3 already:
+> MX25U51245G appears in the table with the same ID as MX66U51235F.
+
+is there an extension ID that differentiate the two?
+
+> Esben Haabendal found MX25L3233F which reuses  MX25L3205D ID.
+> And I found MX25L12833F reuses MX25L12805D ID.
+
+Yes. And we already have a plan for these. We need someone that cares
+about them to implement it.
+
+> Chips that are not in end of life do support SFDP, at least the new
+> versions of the chips according to their spec.
+> It seems quite systematic.
 > 
-> Looking at this though, I question the binding more... The programming
-> model of the device is identical as a backend or otherwise, so it
-> shouldn't be getting a new compatible. Isn't this actually as simple as
-> adding #io-backend-cells to the existing binding and using that to
-> determine whether the device is being used as a backend or in isolation?
->
 
-For sure. I came to the same conclusion. My first idea was to isolate 
-the deprecated binding. But I agree that the best approach is to adapt 
-the existing binding. I prepared a v3 like this.
+maybe
 
-BRs
-Olivier
+> By the way, the chip MX25L2005A part number is 'MX25L2005' without the 'A'.
 
-> Thanks,
-> Conor.
+feel free to propose a patch
+
+> 
+> We can support Macronix chips that are not in the table, just by
+> reading the SFDP.
+> In that case we can name them like "mx-szNN".
+
+We don't care about the flash name.
+
+If all the flash settings that we care about can be discovered by SFDP
+then one won't need to declare a flash entry at all, and instead rely on
+the driver to setup the flash settings solely based on the SFDP tables.
+See spi-nor-generic handling.
+
+> 
+> The table below uses fixed width characters.
+> 
+> ID      Part.         Size              Status          SFDP status
+> according to spec.
+>                                                         New chip with
+> SFDP for EOL
+> c22012  MX25L2005(A)  SZ_256K =  2Mb    EOL             MX25L2006E
+> c22532  MX25U2033E    SZ_256K =  2Mb    EOL
+> c22013  MX25L4005A    SZ_512K =  4Mb    EOL
+> c22533  MX25U4035     SZ_512K =  4Mb    EOL
+> c22534  MX25U8035     SZ_1M   =  8Mb    EOL
+> c22016  MX25L3205D    SZ_4M   =  32Mb   EOL             MX25L3233F
+> c29e16  MX25L3255E    SZ_4M   =  32Mb   EOL
+> c22017  MX25L6405D    SZ_8M   =  64Mb   EOL
+> c22018  MX25L12805D   SZ_16M  =  128Mb  EOL             MX25L12833F
+> c22538  MX25U12835F   SZ_16M  =  128Mb  EOL
+> c2253a  MX66U51235F   SZ_64M  =  512Mb  EOL             MX25U51245G
+> c22010  MX25L512E     SZ_64K  =  512Kb  NO_REC          Have-SFDP!
+> c22015  MX25L1606E    SZ_2M   =  16Mb   NO_REC          Have-SFDP!
+> c22536  MX25U3235F    SZ_4M   =  32Mb   NO_REC          Have-SFDP!
+> c22816  MX25R3235F    SZ_4M   =  32Mb   NO_REC          Have-SFDP!
+> c22537  MX25U6435F    SZ_8M   =  64Mb   NO_REC          Have-SFDP!
+> c22019  MX25L25635E   SZ_32M  =  256Mb  NO_REC          Have-SFDP!
+> c22539  MX25U25635F   SZ_32M  =  256Mb  NO_REC          Have-SFDP!
+> c2201a  MX66L51235F   SZ_64M  =  512Mb  NO_REC          Have-SFDP!
+> c2261b  MX66L1G55G    SZ_128M =  1Gb    NO_REC          Spec. is not public
+> c22314  MX25V8035F    SZ_1M   =  8Mb    PROD            Have-SFDP!
+> c22815  MX25R1635F    SZ_2M   =  16Mb   PROD            Have-SFDP!
+> c2201b  MX66L1G45G    SZ_128M =  1Gb    PROD            Have-SFDP!
+> c2253c  MX66U2G45G    SZ_256M =  2Gb    PROD            Have-SFDP!
+> c2253a  MX25U51245G   SZ_64M  =  512Mb  PROD            Have-SFDP!
+> 
+> EOL     End of Life
+> PROD    Normal Production
+> NO_REC  Not recommend for new design
+> 
+> 
+
+not sure what you want me to do with these.
+
+Cheers,
+ta
 
