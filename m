@@ -1,68 +1,62 @@
-Return-Path: <devicetree+bounces-82963-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82964-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8959E926934
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 21:58:54 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1DE6926951
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 22:09:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AC88A1C220B4
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 19:58:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4D026B2609B
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 20:09:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35B4118E746;
-	Wed,  3 Jul 2024 19:58:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41B3E1836D0;
+	Wed,  3 Jul 2024 20:09:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DeeUZ5Hf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uanslunZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B23E18F2CC;
-	Wed,  3 Jul 2024 19:58:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12BB013DBB1;
+	Wed,  3 Jul 2024 20:09:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720036731; cv=none; b=O8n5+Fg1sYSPlvX9BrkzQw7/DZGKg+uv7SX0NyDKsRuR194n7yOOegc2qs/9hsxraO3MhokjboHrOd6aj9SeT6nffjgV8yckzIC4/tlUDUzDTWcRCBmlTrKvgALLvRmPevyjRxCKpFY65asVBRDwGnejBUvcznuyHMailn6VURA=
+	t=1720037343; cv=none; b=pjhP4o9lzB1l5tw+FNeGyojDgp6JUR0Ehdw3ba59Ybg1cZ04kE0q87pEymxZSbD0ZUb4JrQuOEt/UsdX5K08N0Ig/BBEOzsQzQBhpAPkr4jUnEtdsvYCOmC81ZaJJrZfDMlFyvQkFs8TwivLRhatgLsu8QdrCI7C5Mkj08+NxjU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720036731; c=relaxed/simple;
-	bh=jMJnkRb4oAbcEF6UDuF481F0b14sL/CeDqqFPHZQpbc=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=r9Et/VJjNJ8CUxYZDmXfX5PPq+UKcbhnf/8P3vt35rBsJx8vbS04xlL5k2Vj838LP5nd7lj70DRwBJURWrfCWMrvLLYIbU8/WD5eCOLDqvX8M6cnehW+MM05aVEJq6jVytXYfRQ7J6CEXL11U0jfm8yQZ6M58hzotWA01k++W38=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DeeUZ5Hf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E276C4AF07;
-	Wed,  3 Jul 2024 19:58:50 +0000 (UTC)
+	s=arc-20240116; t=1720037343; c=relaxed/simple;
+	bh=aYbHslMbo5658qwdT3gkCNxpaGZS1ogTj90k1s36n8M=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=H18Olbz8VO4W5D6xbhPDjD7UBcJPAs5EYETYxr2VwtKK1jOcwn0rILvn2t+iwGe0yZrsHFp02gVbO+naS0z7suK4qLjTEu8rkMxvpdNFbYFVfG59IRmcEE8CeoMU3UpcoLhVhY5M0TS8GyB6OkHcmWJL61KfUOWP3I8KfABYQ7k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uanslunZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 094EEC2BD10;
+	Wed,  3 Jul 2024 20:08:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720036730;
-	bh=jMJnkRb4oAbcEF6UDuF481F0b14sL/CeDqqFPHZQpbc=;
+	s=k20201202; t=1720037342;
+	bh=aYbHslMbo5658qwdT3gkCNxpaGZS1ogTj90k1s36n8M=;
 	h=From:To:Cc:Subject:Date:From;
-	b=DeeUZ5Hf/ZZFOToqGRzWhPdPj/tTYlbd89HA98bdDtjDzCSawRfPqf1WdWIJ4/CFQ
-	 3nEMSjFYZFaDmoPZZgY15DNz3MY1fjnPz6095XmlRKXTvrwIg+NOC1ggl6eKEW/yzB
-	 gPiUH220sseRUHucISNSrUhSz7OiV4wrDJi6lGAWeD618sGs0jDJU3+7oM0UJN5XK/
-	 /jttjlYYB3xbOsMB7QtW42DcgHgHZbM86ecH9Ul/nxGJLIRvFGVckd5XO8E/TMKfUF
-	 P3xg4O300+Ks7/M7NeHfMq2Rb9O2+0UkKQa/LU8qXyvyThOenBQXw4zEF/vjP2ZDvi
-	 uEzk/iKYlPqAQ==
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Serge Semin <fancer.lancer@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
+	b=uanslunZzMpUHeaPZtIAM39fLDSvTd1CwE9fVzu8B5nqpbjKgU/SQ6b4DISEy0yZb
+	 HVsZ6IZqzBzpihZE6wCzy66hurceQj89cdo2PwEnzzIi6e81l3wD3jBOTbTEWWbtFW
+	 x73RPVSKxoZAQ5zuJ/RYb2hXnPQ/Zawg73DdTJ/IGrkJKk6BfkCQ7ZtnhA2sDgWXHK
+	 b2uF/7ZT9VU1EjQBv6zVkvTjoHuHLkHO1fmjZMmEjgU3FeUokuJzkbhFc+o3W/Ma1M
+	 phQOwB5xuCdI8w1NdngTACZWbgrimvWNgToTe2IDDWybFRRGgDJnPPPGi59YvZD+wz
+	 MbJDpsWIJZ4HA==
+From: Conor Dooley <conor@kernel.org>
+To: linux-pci@vger.kernel.org
+Cc: conor@kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Lorenzo Bianconi <lorenzo@kernel.org>,
-	Felix Fietkau <nbd@nbd.name>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-	Jose Abreu <joabreu@synopsys.com>
-Cc: netdev@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: [PATCH v2] dt-bindings: net: Define properties at top-level
-Date: Wed,  3 Jul 2024 13:58:27 -0600
-Message-ID: <20240703195827.1670594-2-robh@kernel.org>
+	linux-riscv@lists.infradead.org
+Subject: [PATCH v4 0/2] PCI: microchip: support using either instance 1 or 2
+Date: Wed,  3 Jul 2024 21:08:44 +0100
+Message-ID: <20240703-stand-ferocity-bac033ac70b1@spud>
 X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -70,166 +64,59 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1728; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=nUAy4lu9tNjB0mh9nOJJDmgdT1HtV+a+iNjY3WPTG04=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDGmt66/+UGL/e0tL6N9S2cu/zXy/nQg/95Eh/U36NvX85 NjPT06zd5SyMIhxMMiKKbIk3u5rkVr/x2WHc89bmDmsTCBDGLg4BWAiMxcwMjxI2bTLN+DissjL GY3fwsR/2cj7hPZJz53Udn/2xj8v9aYzMjxtEBFIXfByd+4iR5XPHKxrrVOmLDO0yZq97CH3Aa+ HfzkB
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Convention is DT schemas should define all properties at the top-level
-and not inside of if/then schemas. That minimizes the if/then schemas
-and is more future proof.
+From: Conor Dooley <conor.dooley@microchip.com>
 
-Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
----
+The current driver and binding for PolarFire SoC's PCI controller assume
+that the root port instance in use is instance 1. The second reg
+property constitutes the region encompassing both "control" and "bridge"
+registers for both instances. In the driver, a fixed offset is applied to
+find the base addresses for instance 1's "control" and "bridge"
+registers. The BeagleV Fire uses root port instance 2, so something must
+be done so that software can differentiate. This series splits the
+second reg property in two, with dedicated "control" and "bridge"
+entries so that either instance can be used.
+
+Cheers,
+Conor.
+
+v4:
+- fix a cocci warning reported off list about an inconsistent variable
+  used between IS_ERR() and PTR_ERR() calls.
+
+v3:
+- rename a variable in probe s/axi/apb/
+
 v2:
- - Drop the parts already applied from Serge
----
- .../devicetree/bindings/net/mediatek,net.yaml | 28 +++++---
- .../devicetree/bindings/net/snps,dwmac.yaml   | 67 ++++++++++---------
- 2 files changed, 52 insertions(+), 43 deletions(-)
+- try the new reg format before the old one to avoid warnings in the
+  good case
+- reword $subject for 2/2
 
-diff --git a/Documentation/devicetree/bindings/net/mediatek,net.yaml b/Documentation/devicetree/bindings/net/mediatek,net.yaml
-index 3202dc7967c5..686b5c2fae40 100644
---- a/Documentation/devicetree/bindings/net/mediatek,net.yaml
-+++ b/Documentation/devicetree/bindings/net/mediatek,net.yaml
-@@ -68,6 +68,17 @@ properties:
-       Phandle to the syscon node that handles the path from GMAC to
-       PHY variants.
- 
-+  mediatek,pcie-mirror:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description:
-+      Phandle to the mediatek pcie-mirror controller.
-+
-+  mediatek,pctl:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description:
-+      Phandle to the syscon node that handles the ports slew rate and
-+      driver current.
-+
-   mediatek,sgmiisys:
-     $ref: /schemas/types.yaml#/definitions/phandle-array
-     minItems: 1
-@@ -131,15 +142,12 @@ allOf:
- 
-         mediatek,infracfg: false
- 
--        mediatek,pctl:
--          $ref: /schemas/types.yaml#/definitions/phandle
--          description:
--            Phandle to the syscon node that handles the ports slew rate and
--            driver current.
--
-         mediatek,wed: false
- 
-         mediatek,wed-pcie: false
-+    else:
-+      properties:
-+        mediatek,pctl: false
- 
-   - if:
-       properties:
-@@ -201,12 +209,10 @@ allOf:
-           minItems: 1
-           maxItems: 1
- 
--        mediatek,pcie-mirror:
--          $ref: /schemas/types.yaml#/definitions/phandle
--          description:
--            Phandle to the mediatek pcie-mirror controller.
--
-         mediatek,wed-pcie: false
-+    else:
-+      properties:
-+        mediatek,pcie-mirror: false
- 
-   - if:
-       properties:
-diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-index 0ab124324eec..3eb65e63fdae 100644
---- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-+++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-@@ -512,6 +512,12 @@ properties:
-     description:
-       Frequency division factor for MDC clock.
- 
-+  snps,tso:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description:
-+      Enables the TSO feature otherwise it will be managed by MAC HW capability
-+      register.
-+
-   mdio:
-     $ref: mdio.yaml#
-     unevaluatedProperties: false
-@@ -595,41 +601,38 @@ allOf:
-   - if:
-       properties:
-         compatible:
--          contains:
--            enum:
--              - allwinner,sun7i-a20-gmac
--              - allwinner,sun8i-a83t-emac
--              - allwinner,sun8i-h3-emac
--              - allwinner,sun8i-r40-gmac
--              - allwinner,sun8i-v3s-emac
--              - allwinner,sun50i-a64-emac
--              - loongson,ls2k-dwmac
--              - loongson,ls7a-dwmac
--              - ingenic,jz4775-mac
--              - ingenic,x1000-mac
--              - ingenic,x1600-mac
--              - ingenic,x1830-mac
--              - ingenic,x2000-mac
--              - qcom,qcs404-ethqos
--              - qcom,sa8775p-ethqos
--              - qcom,sc8280xp-ethqos
--              - qcom,sm8150-ethqos
--              - snps,dwmac-4.00
--              - snps,dwmac-4.10a
--              - snps,dwmac-4.20a
--              - snps,dwmac-5.10a
--              - snps,dwmac-5.20
--              - snps,dwxgmac
--              - snps,dwxgmac-2.10
--              - st,spear600-gmac
-+          not:
-+            contains:
-+              enum:
-+                - allwinner,sun7i-a20-gmac
-+                - allwinner,sun8i-a83t-emac
-+                - allwinner,sun8i-h3-emac
-+                - allwinner,sun8i-r40-gmac
-+                - allwinner,sun8i-v3s-emac
-+                - allwinner,sun50i-a64-emac
-+                - loongson,ls2k-dwmac
-+                - loongson,ls7a-dwmac
-+                - ingenic,jz4775-mac
-+                - ingenic,x1000-mac
-+                - ingenic,x1600-mac
-+                - ingenic,x1830-mac
-+                - ingenic,x2000-mac
-+                - qcom,qcs404-ethqos
-+                - qcom,sa8775p-ethqos
-+                - qcom,sc8280xp-ethqos
-+                - qcom,sm8150-ethqos
-+                - snps,dwmac-4.00
-+                - snps,dwmac-4.10a
-+                - snps,dwmac-4.20a
-+                - snps,dwmac-5.10a
-+                - snps,dwmac-5.20
-+                - snps,dwxgmac
-+                - snps,dwxgmac-2.10
-+                - st,spear600-gmac
- 
-     then:
-       properties:
--        snps,tso:
--          $ref: /schemas/types.yaml#/definitions/flag
--          description:
--            Enables the TSO feature otherwise it will be managed by
--            MAC HW capability register.
-+        snps,tso: false
- 
- additionalProperties: true
- 
+CC: Daire McNamara <daire.mcnamara@microchip.com>
+CC: Lorenzo Pieralisi <lpieralisi@kernel.org>
+CC: Krzysztof Wilczyński <kw@linux.com>
+CC: Rob Herring <robh@kernel.org>
+CC: Bjorn Helgaas <bhelgaas@google.com>
+CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
+CC: Conor Dooley <conor+dt@kernel.org>
+CC: linux-pci@vger.kernel.org
+CC: devicetree@vger.kernel.org
+CC: linux-kernel@vger.kernel.org
+CC: linux-riscv@lists.infradead.org
+
+Conor Dooley (2):
+  dt-bindings: PCI: microchip,pcie-host: fix reg properties
+  PCI: microchip: rework reg region handing to support using either
+    instance 1 or 2
+
+ .../bindings/pci/microchip,pcie-host.yaml     |  10 +-
+ drivers/pci/controller/pcie-microchip-host.c  | 155 +++++++++---------
+ 2 files changed, 79 insertions(+), 86 deletions(-)
+
 -- 
 2.43.0
 
