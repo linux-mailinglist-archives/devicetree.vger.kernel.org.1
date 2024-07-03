@@ -1,94 +1,205 @@
-Return-Path: <devicetree+bounces-82911-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82912-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D0F192651B
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 17:40:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A96E92651D
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 17:41:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 554762873D5
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 15:40:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2833A1F20F50
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 15:41:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5B18181BA6;
-	Wed,  3 Jul 2024 15:39:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAA4417BB3E;
+	Wed,  3 Jul 2024 15:41:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F877FsCW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CilsAVSC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D76017C204;
-	Wed,  3 Jul 2024 15:39:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3617177980;
+	Wed,  3 Jul 2024 15:41:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720021185; cv=none; b=ZBmYbQYJkyg47dhfdMCvbED/HEIDebXZZeel/g5SaOSPkn4hRweSiZVxHOXyCMgmPmA8M5P3Y0vLK88bzueqbfNBW5ak6EF9nEjxdbF//FebP7YqsYARcdC9j6DTFDCFyBXisp9j3+CcdlmUme5Oenz1pS+FyVloIaNkuE24FAg=
+	t=1720021266; cv=none; b=JnM/bGI249/6uLIQH4tO9f9/ZYWflfaMV/iRSiclPgKkhkO1czmTVAR14kra2PaFngnxf99805pEiS1a4GT+waKe1nKfSIS20vFvE8BWHkVKmX9nA5XqypCcKw0qcK5gzc1/fp9GwsEOADmXspKfqboC9vb5wUFE3pZeRc+aBzM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720021185; c=relaxed/simple;
-	bh=wAyGisIX9CCv+TG3OfxzHu8vRzrUKCmaIRCO11WqeAs=;
+	s=arc-20240116; t=1720021266; c=relaxed/simple;
+	bh=qNF4mrVfx5AQWFS7p9pT6gLM7OgpbW8ynfjACZWYQr4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hv5ti7+21QJIkDgpXKXhl7ky9YaYygF6bFU/18FT5Sk8fKGCG0FbHJ0qqFGam20IiQndmR7rYjjCCZtbvsztDH1N/d2Q4vo62PtjLQM/JvQEKhZdxhf2rtBWw0R5QSjlW6amyn8W9KGkTBPAujn6+KSKZB7J/nA9BS1QPxCzK3w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F877FsCW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B25F5C2BD10;
-	Wed,  3 Jul 2024 15:39:42 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=iL2yxeuEuC4KkSfPPijNxrLr35uov2d38XbhbGOU8U9xahAutHXobZXAgHrzosaHiGqU+gKO3+WgwRUT17Vga2zR0TvDI+YtedUR3KArD7qiX/XkjhNgHYBEtnQWZ+TmQWOzzkUv/HDgWtpfhdtxJgCHSAU+xgfkK9vS3EfUaKA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CilsAVSC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03F73C2BD10;
+	Wed,  3 Jul 2024 15:41:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720021185;
-	bh=wAyGisIX9CCv+TG3OfxzHu8vRzrUKCmaIRCO11WqeAs=;
+	s=k20201202; t=1720021266;
+	bh=qNF4mrVfx5AQWFS7p9pT6gLM7OgpbW8ynfjACZWYQr4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=F877FsCW/h44wdPUNsiSFXpG0mwv+zN199Lpf0BMqAeX66WfLHA5QpYSNBhpIZMvZ
-	 5vVbISnpe3AtsCKlSO/xL5r9TjFxgPza63pvdvFWJvGN9+7lFF9d5avqJQGaywyJ6u
-	 VAGFCP9CxwIttlzJMy3UkqKHLargnpAtXEBS7rL6UY8lYnwoBh43rdJSmvsRNF/2qx
-	 Zvhm/jGNMehGK14nhT3DjXZbdDizNRrExNKoqi5EjYa3CjVBjUQck9TxXXqG4qp0AT
-	 SEit1X86aA0V6oN2f8T3XAZW0/K9dBcoK+1vvIgdxvRETuCM+7UskPVvWCH3ZrE+si
-	 BuwGzrHR52BKQ==
-Date: Wed, 3 Jul 2024 16:39:40 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Varshini Rajendran <varshini.rajendran@microchip.com>
-Cc: tglx@linutronix.de, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, nicolas.ferre@microchip.com,
-	alexandre.belloni@bootlin.com, claudiu.beznea@tuxon.dev,
-	dharma.b@microchip.com, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v5 14/27] dt-bindings: interrupt-controller: Add support
- for sam9x7 aic
-Message-ID: <20240703-float-residency-778542d36224@spud>
-References: <20240703102011.193343-1-varshini.rajendran@microchip.com>
- <20240703102806.196014-1-varshini.rajendran@microchip.com>
+	b=CilsAVSCce0+7YMR2aIY6rC2xwsqNYF0VhQFcC4NQGmMt1G1d8L6njuKzrBU/STal
+	 YAvgoT7PgSmtiuqka5F6BM/64fYA6SKSVbBIRkzbQNHKD6S9BRCyXyXkA4+dPaN9ud
+	 AP0SiCCI6/ck4dOJJCU3j2wyh91lSveVAUV8UxLGcYlVu+0U/MQpnAAcTiqxdpJR5G
+	 g0f4U8JzqMcXdZDFULUO6mYNMHklGEGvnDqZYZ0FvQLl+RzS3Wb1ihy33NcxRSac46
+	 TxqgoISLpJ+hH/YSrU4/HMvwmiSNwFr421RQ9D1Pul+c6bSdbmLR+gA909gP7GcRM7
+	 8SfRkqFn1RGXw==
+Date: Wed, 3 Jul 2024 17:41:02 +0200
+From: "lorenzo@kernel.org" <lorenzo@kernel.org>
+To: Jianjun Wang =?utf-8?B?KOeOi+W7uuWGmyk=?= <Jianjun.Wang@mediatek.com>
+Cc: "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+	"angelogioacchino.delregno@collabora.com" <angelogioacchino.delregno@collabora.com>,
+	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"nbd@nbd.name" <nbd@nbd.name>, "dd@embedd.com" <dd@embedd.com>,
+	"robh@kernel.org" <robh@kernel.org>, "kw@linux.com" <kw@linux.com>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"bhelgaas@google.com" <bhelgaas@google.com>,
+	"lpieralisi@kernel.org" <lpieralisi@kernel.org>,
+	Ryder Lee <Ryder.Lee@mediatek.com>,
+	"lorenzo.bianconi83@gmail.com" <lorenzo.bianconi83@gmail.com>,
+	upstream <upstream@airoha.com>
+Subject: Re: [PATCH v3 4/4] PCI: mediatek-gen3: Add Airoha EN7581 support
+Message-ID: <ZoVxDgxqH9pxlcjN@lore-desk>
+References: <cover.1719668763.git.lorenzo@kernel.org>
+ <27d28fabbf761e7a38bc6c8371234bf6a6462473.1719668763.git.lorenzo@kernel.org>
+ <d04c396556612307b690c07a9b3fda7f0d4238ee.camel@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="DWarSnxkZBAIdBVg"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="/ROTeEc7ctHaENRg"
 Content-Disposition: inline
-In-Reply-To: <20240703102806.196014-1-varshini.rajendran@microchip.com>
+In-Reply-To: <d04c396556612307b690c07a9b3fda7f0d4238ee.camel@mediatek.com>
 
 
---DWarSnxkZBAIdBVg
+--/ROTeEc7ctHaENRg
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jul 03, 2024 at 03:58:06PM +0530, Varshini Rajendran wrote:
-> Document the support added for the Advanced interrupt controller(AIC)
-> chip in the sam9x7 SoC family.
+> On Sat, 2024-06-29 at 15:51 +0200, Lorenzo Bianconi wrote:
+> >  	=20
+> > External email : Please do not click links or open attachments until
+> > you have verified the sender or the content.
+> >  Introduce support for Airoha EN7581 PCIe controller to mediatek-gen3
+> > PCIe controller driver.
+> >=20
+> > Reviewed-by: AngeloGioacchino Del Regno <
+> > angelogioacchino.delregno@collabora.com>
+> > Tested-by: Zhengping Zhang <zhengping.zhang@airoha.com>
+> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> > ---
+> >  drivers/pci/controller/Kconfig              |   2 +-
+> >  drivers/pci/controller/pcie-mediatek-gen3.c | 108
+> > +++++++++++++++++++-
+> >  2 files changed, 108 insertions(+), 2 deletions(-)
+> >=20
+> > diff --git a/drivers/pci/controller/Kconfig
+> > b/drivers/pci/controller/Kconfig
+> > index e534c02ee34f..3bd6c9430010 100644
+> > --- a/drivers/pci/controller/Kconfig
+> > +++ b/drivers/pci/controller/Kconfig
+> > @@ -196,7 +196,7 @@ config PCIE_MEDIATEK
+> > =20
+> >  config PCIE_MEDIATEK_GEN3
+> >  	tristate "MediaTek Gen3 PCIe controller"
+> > -	depends on ARCH_MEDIATEK || COMPILE_TEST
+> > +	depends on ARCH_AIROHA || ARCH_MEDIATEK || COMPILE_TEST
+> >  	depends on PCI_MSI
+> >  	help
+> >  	  Adds support for PCIe Gen3 MAC controller for MediaTek SoCs.
+> > diff --git a/drivers/pci/controller/pcie-mediatek-gen3.c
+> > b/drivers/pci/controller/pcie-mediatek-gen3.c
+> > index 438a5222d986..f3f76d1bfd4c 100644
+> > --- a/drivers/pci/controller/pcie-mediatek-gen3.c
+> > +++ b/drivers/pci/controller/pcie-mediatek-gen3.c
+> > @@ -7,6 +7,7 @@
+> >   */
+> > =20
+> >  #include <linux/clk.h>
+> > +#include <linux/clk-provider.h>
+> >  #include <linux/delay.h>
+> >  #include <linux/iopoll.h>
+> >  #include <linux/irq.h>
+> > @@ -15,6 +16,8 @@
+> >  #include <linux/kernel.h>
+> >  #include <linux/module.h>
+> >  #include <linux/msi.h>
+> > +#include <linux/of_device.h>
+> > +#include <linux/of_pci.h>
+> >  #include <linux/pci.h>
+> >  #include <linux/phy/phy.h>
+> >  #include <linux/platform_device.h>
+> > @@ -29,6 +32,12 @@
+> >  #define PCI_CLASS(class)		(class << 8)
+> >  #define PCIE_RC_MODE			BIT(0)
+> > =20
+> > +#define PCIE_EQ_PRESET_01_REG		0x100
+> > +#define PCIE_VAL_LN0_DOWNSTREAM		GENMASK(6, 0)
+> > +#define PCIE_VAL_LN0_UPSTREAM		GENMASK(14, 8)
+> > +#define PCIE_VAL_LN1_DOWNSTREAM		GENMASK(22, 16)
+> > +#define PCIE_VAL_LN1_UPSTREAM		GENMASK(30, 24)
+> > +
+> >  #define PCIE_CFGNUM_REG			0x140
+> >  #define PCIE_CFG_DEVFN(devfn)		((devfn) & GENMASK(7,
+> > 0))
+> >  #define PCIE_CFG_BUS(bus)		(((bus) << 8) & GENMASK(15, 8))
+> > @@ -68,6 +77,14 @@
+> >  #define PCIE_MSI_SET_ENABLE_REG		0x190
+> >  #define PCIE_MSI_SET_ENABLE		GENMASK(PCIE_MSI_SET_NUM - 1,
+> > 0)
+> > =20
+> > +#define PCIE_PIPE4_PIE8_REG		0x338
+> > +#define PCIE_K_FINETUNE_MAX		GENMASK(5, 0)
+> > +#define PCIE_K_FINETUNE_ERR		GENMASK(7, 6)
+> > +#define PCIE_K_PRESET_TO_USE		GENMASK(18, 8)
+> > +#define PCIE_K_PHYPARAM_QUERY		BIT(19)
+> > +#define PCIE_K_QUERY_TIMEOUT		BIT(20)
+> > +#define PCIE_K_PRESET_TO_USE_16G	GENMASK(31, 21)
+> > +
+> >  #define PCIE_MSI_SET_BASE_REG		0xc00
+> >  #define PCIE_MSI_SET_OFFSET		0x10
+> >  #define PCIE_MSI_SET_STATUS_OFFSET	0x04
+> > @@ -100,7 +117,13 @@
+> >  #define PCIE_ATR_TLP_TYPE_MEM		PCIE_ATR_TLP_TYPE(0)
+> >  #define PCIE_ATR_TLP_TYPE_IO		PCIE_ATR_TLP_TYPE(2)
+> > =20
+> > -#define MAX_NUM_PHY_RESETS		1
+> > +#define MAX_NUM_PHY_RESETS		3
+> > +
+> > +/* EN7581 */
+> > +/* PCIe-PHY initialization delay in ms */
+> > +#define PHY_INIT_TIME_MS		30
 >=20
-> Signed-off-by: Varshini Rajendran <varshini.rajendran@microchip.com>
+> Since we have already moved the PHY related settings to the PHY driver,
+> can we also move this init time to the PHY driver?
+>=20
+> Thanks.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+ack, I will do in the next revision.
 
---DWarSnxkZBAIdBVg
+Regards,
+Lorenzo
+
+>=20
+> > +/* PCIe reset line delay in ms */
+> > +#define PCIE_RESET_TIME_MS		100
+> > =20
+> >  struct mtk_gen3_pcie;
+> >=20
+
+--/ROTeEc7ctHaENRg
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZoVwvAAKCRB4tDGHoIJi
-0g+jAPsFReX4wE5oHOugI9Md+cQa2gCTgHi0weB/jlYsdHxYmgD/QKKdYnI5lpb0
-+IhwxdcRExKR7QAI4SX+2Bim1m5XMgc=
-=ibkS
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZoVxDgAKCRA6cBh0uS2t
+rGfGAQDIriAbkLJknBu1tBTxYNqinQr+iUOxkoVRaXkkrIA5gQD/XIXKIQ7grira
+ndUBnqqJrxPYzzTP0aN8DGTR2EaRFwk=
+=E8/M
 -----END PGP SIGNATURE-----
 
---DWarSnxkZBAIdBVg--
+--/ROTeEc7ctHaENRg--
 
