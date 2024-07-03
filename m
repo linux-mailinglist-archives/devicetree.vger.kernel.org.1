@@ -1,158 +1,152 @@
-Return-Path: <devicetree+bounces-82857-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82862-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09794926251
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 15:54:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2B41926323
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 16:16:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2EA351C2231D
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 13:54:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 104C81C22594
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 14:16:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B85A717A5BF;
-	Wed,  3 Jul 2024 13:53:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93FF5181BA6;
+	Wed,  3 Jul 2024 14:13:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZrqbGcY3"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="VwLRCtq5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mslow1.mail.gandi.net (mslow1.mail.gandi.net [217.70.178.240])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CD8217A59A;
-	Wed,  3 Jul 2024 13:53:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AA0D17DA2E;
+	Wed,  3 Jul 2024 14:13:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.178.240
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720014784; cv=none; b=aNU/nJ0Hg8cEqeOn7iKYIYXtldFClqQmu5GV+jR6onquK52yajkLtVtL5W/H9SgDIJg8ZhqiRUpbnGoSK4WGZcCsJXxlZobfGcnvoUzYAas4TOO1Dkf51CO4xbry/pWQqZu/+1I2TfD0PAgY+8ZBKonM0CWuNCiv5S11Zos2OR0=
+	t=1720016007; cv=none; b=KmEuXAA+hn2qsWDcoQqXL/1gFfWAI3E3qmvirAiGAs5N91wANxEodR8QNc4SHovzcHOgiKzm6SKC+GcTyeUiqm2XcLmtd5SEslJiy1Y30S6emaTYu1d8kQ1AIIPGarWyWLSY0h+yPflAnbS8PIgsWQfcF3vOrtOabU5w1Ggmc/I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720014784; c=relaxed/simple;
-	bh=9N8yVPzno2N9d24Snv1GHc+eDBmXHT41IhW0UTd1FJY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=o/l/nbY/fqO3iEFm6y8cwyVHuKWEmpF+2zy+d48R4rXgXiS3nSvMNqhdZA4T5EWbrELzV/Zhv4Qs6vTWk6up3QzotAG1tWZH8fDTOm4aQoWYc4qqdptYwdPQzqCIygWKBTZCtwqZhTNuCLxcaloS/pPcYdxRvEIdjCBPIY9Vg9w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZrqbGcY3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C281C2BD10;
-	Wed,  3 Jul 2024 13:53:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720014784;
-	bh=9N8yVPzno2N9d24Snv1GHc+eDBmXHT41IhW0UTd1FJY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ZrqbGcY3PeLUqWFqLP2gHFfZQA13YUIpyeXzzFEC527S9yHYTXpj7UrJ03Qr6BOVj
-	 VBobvRhHTBQIKsICEEbwdFeW6uAjLdXE0Joi+VMxUsgIO0nKeU1oi6uEd3vaJfHdzq
-	 G2EaD/EVYqXIuTJDbnvdZLNJ/39FmVAUpPoYy9zWM637U6qgZsEFiWCUlEF5DmLU1+
-	 zPbP6jgYhL8mXfAlW4v7ysfqpNYDQHDcKb+s0aQ8otboVeJ3esWgKULvFi3Ak2dVuQ
-	 /lhsTRxvFHKDePcBeE9Cb2HFwDm4amrtJ5+iimlQNSIgenNmvc9DiJkZrTot1g/izx
-	 M7x41TvzJ60dg==
-Date: Wed, 3 Jul 2024 07:53:03 -0600
-From: Rob Herring <robh@kernel.org>
-To: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Cc: linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>,
-	Fu Wei <wefu@redhat.com>, Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Drew Fustini <dfustini@baylibre.com>
-Subject: Re: [PATCH v2 1/8] dt-bindings: pinctrl: Add thead,th1520-pinctrl
- bindings
-Message-ID: <20240703135303.GA56155-robh@kernel.org>
-References: <20240103132852.298964-1-emil.renner.berthing@canonical.com>
- <20240103132852.298964-2-emil.renner.berthing@canonical.com>
- <20240115173657.GA999912-robh@kernel.org>
- <CAJM55Z9xF6_WCcg02xJJfu=UCOj=4m64BXvJTaV4vX09WLhc0w@mail.gmail.com>
+	s=arc-20240116; t=1720016007; c=relaxed/simple;
+	bh=U6DEP19ygCkPXuQKLLxorLJXfz+rnBG5Pwv8YMdO/Bw=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=KT3XYjJcEwu2gwCJNewsixCxaW1CrOKy/628S5vEHbupXoYJSJKrHGoDu4leJ3ds24FTGXAsE2G4VTdgMmljjszNHVzeBODPTnD1L6Aofb+ZL6p0lscCKlVOtVJoqe5S22Q+P/i6auu9B4z4XzyaVQ0+weDJkBvUXyaWYZEyzzE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=VwLRCtq5; arc=none smtp.client-ip=217.70.178.240
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from relay1-d.mail.gandi.net (unknown [IPv6:2001:4b98:dc4:8::221])
+	by mslow1.mail.gandi.net (Postfix) with ESMTP id E2503C6D04;
+	Wed,  3 Jul 2024 13:46:13 +0000 (UTC)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 3BFDC240002;
+	Wed,  3 Jul 2024 13:46:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1720014371;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=SAmBKY6TaaS5jkk7Ij5yPeOvb0Ktt8dFf3y/RyTt1Mk=;
+	b=VwLRCtq57OxU0fIL81TJ2PS+HkQ3vz3Pu7v0mgKdcxXoI+DE6kjBn47ygcKfAwVFZ4xuI3
+	nNC5KFsuvTGXWqSlj6AEvADdDRprmppH6Wp+bd1V8AV/hLdcJyHT41pJMt0ykaAdyDD+vT
+	8n7Wk7a77SKzhMxRjebnhDFGfB26V9fKSdeEsw2ovgOXizY6RFv2xvZpRv4fxxKdKnD8cG
+	RQjTQY1GEdNd6DN9wIMLybhhFfv06OsTF5YvFDmb8B+bA8RGuw8GHjR8fmB2FrpEg3xdym
+	R2mIQ728UiuCltmAdEGnXs/GEiXKZrW0drmDnrFWzkm6F109ASXNfgGjoJxFNw==
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+Subject: [PATCH v2 0/4] Add Mobileye EyeQ clock support
+Date: Wed, 03 Jul 2024 15:46:04 +0200
+Message-Id: <20240703-mbly-clk-v2-0-fe8c6199a579@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAJM55Z9xF6_WCcg02xJJfu=UCOj=4m64BXvJTaV4vX09WLhc0w@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIABxWhWYC/23MQQ7CIBCF4as0s3YMIKHqynuYLgod7URaDDTEp
+ uHuYtcu/5eXb4NEkSnBtdkgUubEYa6hDg24sZ+fhDzUBiWUFkadcbJ+RedfqJ0h61ppTrqFen9
+ HevBnp+5d7ZHTEuK6y1n+1j9IliiQBitJXajXTt5sCIvn+ejCBF0p5Qt39+ZvogAAAA==
+To: Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
+ =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ Tawfik Bayouk <tawfik.bayouk@mobileye.com>, 
+ =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.15-dev-13183
+X-GND-Sasl: theo.lebrun@bootlin.com
 
-On Fri, May 17, 2024 at 07:48:17AM -0500, Emil Renner Berthing wrote:
-> Rob Herring wrote:
-> > On Wed, Jan 03, 2024 at 02:28:38PM +0100, Emil Renner Berthing wrote:
-> > > Add bindings for the pin controllers on the T-Head TH1520 RISC-V SoC.
-> > >
-> > > Signed-off-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-> > > ---
-> > >  .../pinctrl/thead,th1520-pinctrl.yaml         | 372 ++++++++++++++++++
-> > >  1 file changed, 372 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/pinctrl/thead,th1520-pinctrl.yaml
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/pinctrl/thead,th1520-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/thead,th1520-pinctrl.yaml
-> > > new file mode 100644
-> > > index 000000000000..d3ad7a7cfdd1
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/pinctrl/thead,th1520-pinctrl.yaml
-> > > @@ -0,0 +1,372 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/pinctrl/thead,th1520-pinctrl.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: T-Head TH1520 SoC pin controller
-> > > +
-> > > +maintainers:
-> > > +  - Emil Renner Berthing <emil.renner.berthing@canonical.com>
-> > > +
-> > > +description: |
-> > > +  Pinmux and pinconf controller in the T-Head TH1520 RISC-V SoC.
-> > > +
-> > > +  The TH1520 has 3 groups of pads each controlled from different memory ranges.
-> > > +  Confusingly the memory ranges are named
-> > > +    PADCTRL_AOSYS  -> PAD Group 1
-> > > +    PADCTRL1_APSYS -> PAD Group 2
-> > > +    PADCTRL0_APSYS -> PAD Group 3
-> > > +
-> > > +  Each pad can be muxed individually to up to 6 different functions. For most
-> > > +  pads only a few of those 6 configurations are valid though, and a few pads in
-> > > +  group 1 does not support muxing at all.
-> > > +
-> > > +  Pinconf is fairly regular except for a few pads in group 1 that either can't
-> > > +  be configured or has some special functions. The rest have configurable drive
-> > > +  strength, input enable, schmitt trigger, slew rate, pull-up and pull-down in
-> > > +  addition to a special strong pull up.
-> > > +
-> > > +  Certain pads in group 1 can be muxed to AUDIO_PA0 - AUDIO_PA30 functions and
-> > > +  are then meant to be used by the audio co-processor. Each such pad can then
-> > > +  be further muxed to either audio GPIO or one of 4 functions such as UART, I2C
-> > > +  and I2S. If the audio pad is muxed to one of the 4 functions then pinconf is
-> > > +  also configured in different registers. All of this is done from a different
-> > > +  AUDIO_IOCTRL memory range and is left to the audio co-processor for now.
-> >
-> > It is still not clear to me if each instance is a different programming
-> > model or the same with just different connections. The latter should
-> > be the same compatible string. That needs to be answered in *this*
-> > patch, not a reply.
-> 
-> Hi Rob,
-> 
-> Sorry for the late response. I honestly don't know exactly what you mean by
-> differenty programming models and what the difference is, so I'll need a bit of
-> help with what you want me to write here.
+This is a new iteration on the Mobileye system-controller series. It
+used to be sent as a single series [0], but has been split in the
+previous revision (see [1], [2], [3], [4]) to faciliate merging.
 
-Is the register interface of each instance the same? Looks like it is 
-from the driver. So normally that's 3 instances of the same compatible.
+This series adds a platform driver dealing with read-only PLLs derived
+from the main crystal, and some divider clocks based on those PLLs. It
+also acts at the one instantiating reset and pinctrl auxiliary devices.
 
-> Any driver for the TH1520 SoC (not just Linux) would need some way to discern
-> between the 3 pin controllers so they know how many pins to control and what
-> pinmux settings are valid. Basically they'd need the data in the three
-> th1520_group{1,2,3}_pins arrays in the driver and a way to know which of them
-> to use.
-> 
-> https://lore.kernel.org/linux-riscv/20240103132852.298964-3-emil.renner.berthing@canonical.com/
+One special feature is that some clocks are required before platform
+bus infrastructure is available; we therefore register some clocks at
+the of_clk_init() stage.
 
-Why do you need to know how many pins? The DT says configure a pin and 
-you just configure it. It's not the kernel's job to validate that the DT 
-is correct.
+We support EyeQ5, EyeQ6L and EyeQ6H SoCs. The last one is special in
+that there are seven instances of this system-controller. All of those
+handle clocks.
 
-Aren't the pin names globally unique? So you just look up the pin name 
-across all the arrays. Or you can just look up one pin from each 
-instance to find which th1520_groupN_pins array goes with the instance. 
-Or just have 1 array.
+Related series are targeted at reset [5], pinctrl [6] and MIPS [4]. The
+first two are receiving a second version. The last one has no change
+and stays at its V1.
 
-Rob
+Have a nice day,
+Théo
+
+[0]: https://lore.kernel.org/lkml/20240620-mbly-olb-v3-0-5f29f8ca289c@bootlin.com/
+
+[1]: https://lore.kernel.org/lkml/20240628-mbly-clk-v1-0-edb1e29ea4c1@bootlin.com/
+[2]: https://lore.kernel.org/lkml/20240628-mbly-reset-v1-0-2a8294fd4392@bootlin.com/
+[3]: https://lore.kernel.org/lkml/20240628-mbly-pinctrl-v1-0-c878192d6b0a@bootlin.com/
+[4]: https://lore.kernel.org/lkml/20240628-mbly-mips-v1-0-f53f5e4c422b@bootlin.com/
+
+[5]: https://lore.kernel.org/lkml/20240703-mbly-reset-v2-0-3fe853d78139@bootlin.com/
+[6]: https://lore.kernel.org/lkml/20240703-mbly-pinctrl-v2-0-eab5f69f1b01@bootlin.com/
+
+Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
+---
+Changes in v2:
+- bindings: take Acked-by: Krzysztof Kozlowski.
+- driver: eqc_auxdev_create(): cast the `void __iomem *base` variable to
+  (void __force *) before putting it in platform_data, to avoid sparse
+  warning.
+- Link to v1: see [1]
+
+Changes since OLB v3 [0]:
+ - MAINTAINERS: Move changes into a separate commit to avoid merge
+   conflicts. This commit is in the MIPS series [3].
+ - dt-bindings: split include/dt-bindings/ changes into its own commit.
+   It is part of this clk series.
+ - dt-bindings: Take Reviewed-by: Rob Herring. The include/dt-bindings/
+   new commit has NOT inherited from it, just to make sure.
+
+---
+Théo Lebrun (4):
+      Revert "dt-bindings: clock: mobileye,eyeq5-clk: add bindings"
+      dt-bindings: clock: add Mobileye EyeQ6L/EyeQ6H clock indexes
+      clk: divider: Introduce CLK_DIVIDER_EVEN_INTEGERS flag
+      clk: eyeq: add driver
+
+ .../bindings/clock/mobileye,eyeq5-clk.yaml         |  51 --
+ drivers/clk/Kconfig                                |  12 +
+ drivers/clk/Makefile                               |   1 +
+ drivers/clk/clk-divider.c                          |  12 +-
+ drivers/clk/clk-eyeq.c                             | 789 +++++++++++++++++++++
+ include/dt-bindings/clock/mobileye,eyeq5-clk.h     |  21 +
+ include/linux/clk-provider.h                       |  11 +-
+ 7 files changed, 839 insertions(+), 58 deletions(-)
+---
+base-commit: f2661062f16b2de5d7b6a5c42a9a5c96326b8454
+change-id: 20240628-mbly-clk-4c6ebc716347
+
+Best regards,
+-- 
+Théo Lebrun <theo.lebrun@bootlin.com>
+
 
