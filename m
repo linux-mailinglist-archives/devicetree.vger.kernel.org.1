@@ -1,118 +1,113 @@
-Return-Path: <devicetree+bounces-82969-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82970-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63FC192696F
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 22:16:40 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6604E926979
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 22:21:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 20280289931
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 20:16:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C40AEB26000
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 20:21:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDC83184116;
-	Wed,  3 Jul 2024 20:16:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 227F918C333;
+	Wed,  3 Jul 2024 20:21:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="X6BogCfs"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sk3J19kL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 477D14C6C;
-	Wed,  3 Jul 2024 20:16:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC9A4185095;
+	Wed,  3 Jul 2024 20:21:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720037794; cv=none; b=i2Df6GzSgXES5CsrfP0V+RAGLu4KlnfYbnX4g1Wf3dLNBsWcjtA5+hgsrQPZOL9XnRfBaEqu1XiAd1zMmbKLeFYf91L+MzZ4+jmJc/3twR2NnkYpP210dl9oIO/jkMK86Klh+cbjVVtK030OJOlYwWqXKmeTAct4cpowWRG3P04=
+	t=1720038079; cv=none; b=mmT5c3l9oVCDVv6I/Tqxvnt9zEfELJzkL7SIC3h5KIxFhiQ7r0oCqSzSKcQpRXimFE+mT0ua4yryc4WO9wkNHdCuspk//zhwcuPt3z3c+3hR1SwglhTbLZmyRP6Q8tmQcKfnyAVmQ9Djom0dNgRpc8D6dpl5TLmQUOZmo8PIWMs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720037794; c=relaxed/simple;
-	bh=u8ogO3DLpXKLPeX5tVXlur1d4bHjjIwzEkvdano2uRY=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition; b=urYW3+Cbj1bzCtpAK4I4+F23cNdkBo90mx27v3ZitamqBAOfQO2PESMyNyym9aGjJu2LqLve5YDKMO43TFpqPwbN1gwsj2CUOr+q0fGpqd30dgZcRbFJHj8oePfC4sxeovMji3F24RdlORWhaQNBVTokgEJN4SUAXR4S9WPNkbE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=X6BogCfs; arc=none smtp.client-ip=209.85.208.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2ee4ae13aabso61389181fa.2;
-        Wed, 03 Jul 2024 13:16:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1720037791; x=1720642591; darn=vger.kernel.org;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=5FMCE9UbgpOVCC9FJkSc1QmMTWN5DEOwOg2bxxVzL/o=;
-        b=X6BogCfs1NW12abqWMFdwzonaarQCC9ESzOixJC58TOC9Jk7C3Z2AIcLAKhq2CN1t0
-         RdhYowgWT7RoehsB66Yr4u6QWYlTvcoxn/XKIw2iaD0ga9aG/iQN/tmTgNAcLmQtTffk
-         YZHN6vrrgnMswIqLlb//f/Tj91Ql1ExEMADY4sk1avAud6U++vykmi0xsTbMkD4l5emY
-         QXITGEhKe4sGMTx0FNVg7KYxFXA9yfIsIwEImlU+YUbCV2hVQseP4zHykqzo8H918r/X
-         Ol0ZeNFck8K9XwROaxnITOYZfOcvQHLh3GMMUM+SJH2y0zwr89aham7rW/rfaomo8Wga
-         MR7g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720037791; x=1720642591;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5FMCE9UbgpOVCC9FJkSc1QmMTWN5DEOwOg2bxxVzL/o=;
-        b=wQTwz8K9+MwxLB7uwqLp6Lv7cNIpHik2FJRM20Kz1kyMKEROVm1ZvCcKpZ5QSDF7J7
-         comkD9oCh/r8pHC9Na1BcvmfIXQ4EKPAH+0lhu69xhUHnAMcozHq9fWHox1gMgT460Uf
-         EnJcq8UrzmDl2+XEyMIc2g3ruk4IB2jHBp0rQ1s4OSKKNpz48fHowNO0Af/5cG5ZP5MQ
-         jZOsKBUqAYGqmlf68CrB/P5+BlYyD0a0ClKjdW//QjePU9jZj0rt8L6ld7glEKX6GQgV
-         Sfkgkl/teCUYaAbETxQPScov4psglj3zn0x05O1ump7OwhIooDQvBz9UIpLoVlqaHIF1
-         UeUQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUE82VhWlISqPKsEVyMMrUud7+lxumdYWeGc4b78rcgtetbcxNgOtWJUtI8M9poUQy/KbicjQ6O1a1uTxBxFXdOVkCapBEOOy48BkDl
-X-Gm-Message-State: AOJu0YzV+Gqjn/uXZ8llPY71DZ8ar1v9gxLHtkCK8eGVRTO1AoZMWhwa
-	Nrbq05AFf79zwKMzKw5jZ9TopZwmtEUz1PN+Iy5VXVXe4B61nqZn
-X-Google-Smtp-Source: AGHT+IGu33G8HzwFix2em+R5fqlgoTOpVBnaWG3OHM+DIQ3+gqQ6LjvhUKMiDwiUUaUNY6tINmoNbw==
-X-Received: by 2002:a2e:a98b:0:b0:2ee:4f22:33f9 with SMTP id 38308e7fff4ca-2ee5e38096fmr99568081fa.24.1720037790117;
-        Wed, 03 Jul 2024 13:16:30 -0700 (PDT)
-Received: from standask-GA-A55M-S2HP (lu-nat-113-247.ehs.sk. [188.123.113.247])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3675a0fc434sm16714752f8f.76.2024.07.03.13.16.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Jul 2024 13:16:29 -0700 (PDT)
-Date: Wed, 3 Jul 2024 22:16:28 +0200
-From: Stanislav Jakubek <stano.jakubek@gmail.com>
-To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	=?iso-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>
-Subject: [PATCH] dt-bindings: regulator: ti,tps65132: document VIN supply
-Message-ID: <ZoWxnEY944ht2EWf@standask-GA-A55M-S2HP>
+	s=arc-20240116; t=1720038079; c=relaxed/simple;
+	bh=rPvIWW2IUaIr2Cw4CK82UCHdJ+i1JMw6S82PykL7SKg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=CCT/cBt1U4So/EJh42o7zjEfk9zP/MJf7ills+3HRacJfSZ1YLOvgrYMp739ZQAm2wb21f1gl4Hn2E6qtpTX7iY2kI0IgEqt5XCcbeK9M8mLIQHZlP64eh+SBFmKywWujgsIUpxaPRGd5/+qKDtWNPtNMBnrXYrMtFLVx65GXR0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sk3J19kL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 75E06C4AF0A;
+	Wed,  3 Jul 2024 20:21:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720038078;
+	bh=rPvIWW2IUaIr2Cw4CK82UCHdJ+i1JMw6S82PykL7SKg=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=sk3J19kLZOWas8QOHSZltgbRvBLXaonPTXwU1DEW39b1yG0gY34KfKMbtMI3bHEU1
+	 yeDKp6QnUxPm3/Z9GWCo7kB4Ri/cTf3ZhDN4eiV4giODeRAp/WrziyOI/mWGY5WEUH
+	 QPjPFjd9PBsruzq9WOnYZhAcj7D3yCuS8PMYP3+ImqxuFGFW+36Kx2K7/KLav44qGO
+	 CXnQH/lPtIwJa6I/5yccS8fWOgCtWTs1JAQx0zta7B/V8BeBAFKpl3gTLTjkaJkUT+
+	 2GyaYA2LOPbL/ggBA3dEyBsFePpVS89NsBo3P6q3vgvCssmhucVEaxI3esqUJh9Oxd
+	 xSy/8kohjfzJw==
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-52e764bb3fbso7754719e87.3;
+        Wed, 03 Jul 2024 13:21:18 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXUKo5xSAu/tkT4Yx5S+tBlEE6b+5vreVeSxcFDPSL8sCuGbStRQS4AYGsyH9S5L+5XlquOKBuIfWyBmAF6oytEemNtP5yu32XNry93swzxOr44mS7B8WoIUVYKIu6QMvHrV2nAetqzDCsPfgTbdoLmDqn6frh4NgquA6Cyf/h8d+c4PgWqBJMOO96vVTqJUaUXxTYxvtsaP9o/VqGNkYtoywtnX+E22M4u2GkK63NEvbB+/a2kNjSFnuvvvUgDyTxkobsZFgjfTEmD1/Ew+rbefH2LTVW2
+X-Gm-Message-State: AOJu0Yy3ATx1at4QujPJmsFbVBsO1Jf3oIMZTDJfBbOWcZSgyRm2CAgD
+	agkFdkQFxkPepklK4q3lBXBCBGy/u0fwOrmiNHIhWnePNUflNokNtPpzSFsAWGGDwm29flbWl0g
+	Mf6j1g0mZ/MksRe8w2Ok/tYUObQ==
+X-Google-Smtp-Source: AGHT+IHkJyLufysSPAp6OLlmdgVCxJhhtA7jCjroJG4RfWGCFjmvlqKevKnTA5kF72TY71LMsM29/tv7IaZgzL2wT8U=
+X-Received: by 2002:a05:6512:33d1:b0:52c:e3af:7c5c with SMTP id
+ 2adb3069b0e04-52e82686b63mr8472949e87.34.1720038076812; Wed, 03 Jul 2024
+ 13:21:16 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <20240701151231.29425-1-kyarlagadda@nvidia.com>
+ <20240701151231.29425-5-kyarlagadda@nvidia.com> <20240701174227.GA148633-robh@kernel.org>
+ <hqlckp6hxvxwkkbiagdb5pm4eo5efu55hwuupdal6lojxj2xu5@5zibskqdbdju>
+In-Reply-To: <hqlckp6hxvxwkkbiagdb5pm4eo5efu55hwuupdal6lojxj2xu5@5zibskqdbdju>
+From: Rob Herring <robh@kernel.org>
+Date: Wed, 3 Jul 2024 14:21:04 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+hzbHKeKM9UnJ=VK8_rKs5HJpZRGH2YYWAvjtf9SbPRw@mail.gmail.com>
+Message-ID: <CAL_Jsq+hzbHKeKM9UnJ=VK8_rKs5HJpZRGH2YYWAvjtf9SbPRw@mail.gmail.com>
+Subject: Re: [RFC PATCH V2 04/12] dt-bindings: misc: tegra-i2c: config settings
+To: Thierry Reding <thierry.reding@gmail.com>
+Cc: Krishna Yarlagadda <kyarlagadda@nvidia.com>, linux-tegra@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-doc@vger.kernel.org, 
+	linux-i2c@vger.kernel.org, linux-mmc@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, jonathanh@nvidia.com, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, corbet@lwn.net, andi.shyti@kernel.org, 
+	wsa+renesas@sang-engineering.com, ulf.hansson@linaro.org, 
+	adrian.hunter@intel.com, digetx@gmail.com, ldewangan@nvidia.com, 
+	mkumard@nvidia.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-TPS65132 is powered by its VIN supply, document it.
+On Tue, Jul 2, 2024 at 4:29=E2=80=AFAM Thierry Reding <thierry.reding@gmail=
+.com> wrote:
+>
+> On Mon, Jul 01, 2024 at 11:42:27AM GMT, Rob Herring wrote:
+> > On Mon, Jul 01, 2024 at 08:42:22PM +0530, Krishna Yarlagadda wrote:
+> > > I2C interface timing registers are configured using config setting
+> > > framework. List available field properties for Tegra I2C controllers.
+> >
+> > How is I2C bus timing parameters specific to NVIDIA? Just because you
+> > have more controls? No. That's no reason to invent a whole new way to
+> > specify parameters. Extend what's already there and make it work for
+> > anyone.
+>
+> This may be applicable to a subset of this, and yes, maybe we can find
+> generalizations for some of these parameters.
+>
+> However, we're also looking for feedback specifically on these config
+> nodes that go beyond individual timing parameters. For example in the
+> case of I2C, how should parameters for different operating modes be
+> described?
 
-Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
----
- Documentation/devicetree/bindings/regulator/ti,tps65132.yaml | 3 +++
- 1 file changed, 3 insertions(+)
+Like what? It all looks like timing to me.
 
-diff --git a/Documentation/devicetree/bindings/regulator/ti,tps65132.yaml b/Documentation/devicetree/bindings/regulator/ti,tps65132.yaml
-index 6a6d1a3d6fa7..873d92738eb0 100644
---- a/Documentation/devicetree/bindings/regulator/ti,tps65132.yaml
-+++ b/Documentation/devicetree/bindings/regulator/ti,tps65132.yaml
-@@ -23,6 +23,8 @@ properties:
-   reg:
-     maxItems: 1
- 
-+  vin-supply: true
-+
- patternProperties:
-   "^out[pn]$":
-     type: object
-@@ -65,6 +67,7 @@ examples:
-         regulator@3e {
-             compatible = "ti,tps65132";
-             reg = <0x3e>;
-+            vin-supply = <&supply>;
- 
-             outp {
-                 regulator-name = "outp";
--- 
-2.34.1
+> Would you agree with something along the lines provided in this series?
 
+When there are multiple users/vendors of it, maybe.
+
+In general, it goes against the DT design of properties for foo go in
+foo's node. This looks more like how ACPI does things where it's add
+another table for this new thing we need.
+
+Rob
 
