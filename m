@@ -1,158 +1,87 @@
-Return-Path: <devicetree+bounces-82559-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82560-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 874B1924F83
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 05:27:40 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D53C5924FC2
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 05:39:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3D1901F21210
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 03:27:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B895EB29266
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 03:38:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D5B71078F;
-	Wed,  3 Jul 2024 03:27:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5106117BA2;
+	Wed,  3 Jul 2024 03:37:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=xenosoft.de header.i=@xenosoft.de header.b="ZmBgDEjr";
-	dkim=permerror (0-bit key) header.d=xenosoft.de header.i=@xenosoft.de header.b="Dc/RA1aj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bJaV9SuR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.50])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2ED6F749A;
-	Wed,  3 Jul 2024 03:27:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=85.215.255.50
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719977255; cv=pass; b=Tbu6LKvZEDgIirdUnS6kakv7+C4aw26h0ZsnixVT9qedWSwawJ3j1zT2bZTsTG34LwCmSGuDsZc9gTHNRCozLf/LTiLF0THjy9I5exy6B5MEJXu2KXtB2AsbbGk01unu8ZTP+T0d2XxKSgp5xZIA5scIrXqMPuy6557UgRYYa2s=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719977255; c=relaxed/simple;
-	bh=RQNQaZZqQWhhS3Urnra1y+ytGxYJhWhtuy+j7yUoQ74=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=szoftb5wknKHETUA2GA2VvMWGEOdqPzJeuVOKf1QaVHIrtuaf/HP4SvsmLca3zYyYaslUGUCVjfw8UPNV2lfhU0sqnagDWBOlfoksYKK1widrmsog4jstRLOZxIEUptha2H06ZcQ9wHcXf4aBXUDtT3S/iIODzjm9EaRQ1MrcaY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=xenosoft.de; spf=none smtp.mailfrom=xenosoft.de; dkim=pass (2048-bit key) header.d=xenosoft.de header.i=@xenosoft.de header.b=ZmBgDEjr; dkim=permerror (0-bit key) header.d=xenosoft.de header.i=@xenosoft.de header.b=Dc/RA1aj; arc=pass smtp.client-ip=85.215.255.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=xenosoft.de
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=xenosoft.de
-ARC-Seal: i=1; a=rsa-sha256; t=1719977222; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=rpAoQxXRn6t9vOdO0wp4FpxkDyY6ZEl5vrtBSHEeiQSQeAHNZyo0jwFjTB2gEfX0Va
-    ljAWHUsjqBqf2PvfeB5JXqgnprYpmWeAYjrTJrXIaKK5QExwCFBuFis1jrB5uTCvkIVg
-    FgG/Nx4V9jxkf7wBepmNLV/5Sniz5uDNu+QouwtGwOMQHc7sOBPWxyR9WcjVAivNFxPM
-    ZG715mfEHTq1mPrXzqXw/ifd0HslqEqWb4UyjeaBtaxYrnctsIiTqDGlHtrQcnUIsPGS
-    Ut18ezHvkuINRWnNlrVCLaxcoW9egXyS5ldEP7xGx5lj3K1ABjjO+sywhR7NRVjgEo7e
-    zNlg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1719977222;
-    s=strato-dkim-0002; d=strato.com;
-    h=In-Reply-To:From:References:Cc:To:Subject:Date:Message-ID:Cc:Date:
-    From:Subject:Sender;
-    bh=4SP5h5Do7JPIQ+0cy5j+pVKxqlNOrxXKcSxL9POMDto=;
-    b=Ke9J2fL2PntphxYJSJw70i/Y8AdJ4RZqGhVBZZPDG55vo6UDbdzS+oe8gKw+VgS0MS
-    zTNqAT+XON52EA0Z8+Noe3JLnM7J0R70gVF8rjAG/W6dRj8N+935sUCBdlz6RrHNAgEy
-    Bo5Hd7uKy4qUl5JadWrydCqx/6iJF4PEbj/DuxLZaSI+YxnM8W1bY5F60c2IXgjoYbny
-    Zaac7Y7YxVRVGyyTqysMeNlMJAJ+gX26d9A6sFIWI3naHkFmf+a7vGXvQs8lpFIh/dw3
-    K6cZXR166/pGRSrwW6pMUx/jWfgQjrIS/gPKvj+CjIyUqORg9yeDP55RCJNF0YO9xoky
-    kTzA==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo01
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1719977222;
-    s=strato-dkim-0002; d=xenosoft.de;
-    h=In-Reply-To:From:References:Cc:To:Subject:Date:Message-ID:Cc:Date:
-    From:Subject:Sender;
-    bh=4SP5h5Do7JPIQ+0cy5j+pVKxqlNOrxXKcSxL9POMDto=;
-    b=ZmBgDEjroGl5Thkv00h9sjj2HTUFCjpAIEUeiiaV3ViNLohCGnDfW5FsyFzuTlIE5l
-    oaJWo7K2fyTr/FbGQohlK4jxnsbE+J3zhb8cFRZFMWC73QE+lyK+iogpqLUNgNesdNay
-    aI1PdBSazld3vVqyg4EVazBhcvq80RDuYbBXoGADsUVDmMT1VyymKJD41JblYT0cEOQ9
-    Mw/EmQCRJlNq92oI0INJeo52speN+Pg3scdwiYn5OLeV1oJEIWB89GxpnO5xa8FRdtMZ
-    KrXU25A6E7sd7MhvcAng8TKWErGSg0uqvUs+2u+Dn2B/AHb8drv1TO5HRyuALeFFLqSa
-    t0wA==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1719977222;
-    s=strato-dkim-0003; d=xenosoft.de;
-    h=In-Reply-To:From:References:Cc:To:Subject:Date:Message-ID:Cc:Date:
-    From:Subject:Sender;
-    bh=4SP5h5Do7JPIQ+0cy5j+pVKxqlNOrxXKcSxL9POMDto=;
-    b=Dc/RA1ajfn2nhMk1LNDqqP3Ye6P9115kx3TGG5pF5FN29MvIG3uASqsoyC0Idz2fRA
-    qpnHI+PLR2lB4IU3j3AA==
-X-RZG-AUTH: ":L2QefEenb+UdBJSdRCXu93KJ1bmSGnhMdmOod1DhGM4l4Hio94KKxRySfLxnHvJzedR43JwnbX6uY2qFStl/aCni1Nc81TAvUiF9uCdWDcE="
-Received: from [IPV6:2a01:599:806:4825:5b9f:b248:3889:7da0]
-    by smtp.strato.de (RZmta 50.5.0 AUTH)
-    with ESMTPSA id e083890633R1MpB
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-	(Client did not present a certificate);
-    Wed, 3 Jul 2024 05:27:01 +0200 (CEST)
-Message-ID: <5e44f1be-f626-4bcb-b1b0-583462c1a930@xenosoft.de>
-Date: Wed, 3 Jul 2024 05:27:37 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24AA3179A7;
+	Wed,  3 Jul 2024 03:37:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1719977859; cv=none; b=Xr6sROEgTDDkRdQPhQpHIK/oxZ4WG24vZtVB2NDfXChqZ44IwIx5MmaobSUZLfIpmQcnJcoudN/qAXmizOUTpWOYOF3GEmLkLxw56s7tJPAOnp5PRuqNcgeSRJmk3zN/Y5exKxgtK6tHYuUaSHkhT8EFvosBm8dddBeGVzTfxSk=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1719977859; c=relaxed/simple;
+	bh=TKNuj3s5hgjlAKUYrhAtrnYowCoo5S2rLYMKN/O8nP0=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=l6BrdeG8Ff3Leh2KpmtwRsleTpnTqVi2w1VJvzZ4PtYqHOOGGpHO75E15kfBgQKj/zCf6PH7U9m1O2rQIeE+8VMBIyVz9t6me288QoZvoYaBa9BrjAMLhTRdJ/DogUaVh9cfMeG7N1ytAdc5wfM2BZFypO86YpBGagBP926IVdM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bJaV9SuR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A353BC116B1;
+	Wed,  3 Jul 2024 03:37:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719977858;
+	bh=TKNuj3s5hgjlAKUYrhAtrnYowCoo5S2rLYMKN/O8nP0=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=bJaV9SuRgeNpiehsAnxoLXyxfug+GqhmmUlIqarCyv72LiY5YdjhQK40rwIvtNpUA
+	 /f/M1RD9I9PRaEnmTz/yk2KJfmHIcB2AYekIyVUFh6PKqfEdvxeDUrtiO5iLa+h06g
+	 adjhV5HJrQ2NzVnjHEFKKPGya2JpfEi44vTc9x9jEpotrNQEFSlD4JILqY/Ny5s0KW
+	 fjWaL6aCPcN4I8bx8rQakSK12292lUSl+3SUsT5AgmIn3UdsPRauRyR1MVbv/OmzFv
+	 B5PXPqQC9IBV01Qnqv2O6eC5pfd+1W41tusnimkHDX/BZMnnie6103Y1ElX1k5Lecu
+	 ASmWMbxYbcMSg==
+From: Bjorn Andersson <andersson@kernel.org>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Rajendra Nayak <quic_rjendra@quicinc.com>,
+	Sibi Sankar <quic_sibis@quicinc.com>,
+	Abel Vesa <abel.vesa@linaro.org>
+Cc: Johan Hovold <johan@kernel.org>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: x1e80100: Fix USB HS PHY 0.8V supply
+Date: Tue,  2 Jul 2024 22:37:21 -0500
+Message-ID: <171997785349.348959.8911660847944738029.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20240629-x1e80100-dts-fix-hsphy-0-8v-supplies-v1-1-de99ee030b27@linaro.org>
+References: <20240629-x1e80100-dts-fix-hsphy-0-8v-supplies-v1-1-de99ee030b27@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PowerPC] [PASEMI] Issue with the identification of ATA drives
- after the of/irq updates 2024-05-29
-Content-Language: en-US
-To: Marc Zyngier <maz@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, apatel@ventanamicro.com,
- DTML <devicetree@vger.kernel.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
- mad skateman <madskateman@gmail.com>, "R.T.Dickinson" <rtd2@xtra.co.nz>,
- Matthew Leaman <matthew@a-eon.biz>, Darren Stevens
- <darren@stevens-zone.net>, Christian Zigotzky <info@xenosoft.de>
-References: <3ab66fab-c3f2-4bed-a04d-a10c57dcdd9b@xenosoft.de>
- <86zfqzhgys.wl-maz@kernel.org>
-From: Christian Zigotzky <chzigotzky@xenosoft.de>
-In-Reply-To: <86zfqzhgys.wl-maz@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-Hello Marc,
 
-On 02.07.24 18:54, Marc Zyngier wrote:
-> On Sun, 30 Jun 2024 11:21:55 +0100,
-> Christian Zigotzky <chzigotzky@xenosoft.de> wrote:
->> Hello,
->>
->> There is an issue with the identification of ATA drives with our
->> P.A. Semi Nemo boards [1] after the
->> commit "of/irq: Factor out parsing of interrupt-map parent
->> phandle+args from of_irq_parse_raw()" [2].
-> [snip]
->
-> My earlier request for valuable debug information still stands. But
-> while you're at it, can you please give the following hack a go?
->
-> 	M.
->
-> --- a/drivers/of/irq.c
-> +++ b/drivers/of/irq.c
-> @@ -282,8 +282,10 @@ int of_irq_parse_raw(const __be32 *addr, struct of_phandle_args *out_irq)
->   
->   			oldimap = imap;
->   			imap = of_irq_parse_imap_parent(oldimap, imaplen, out_irq);
-> -			if (!imap)
-> -				goto fail;
-> +			if (!imap) {
-> +				match = 0;
-> +				break;
-> +			}
->   
->   			match &= of_device_is_available(out_irq->np);
->   			if (match)
->
-> This may not be the final workaround even if it solves your boot
-> problem, but will at least give us a hint at what is going wrong.
->
-> I have the fuzzy feeling that we may be able to lob this broken system
-> as part of the of_irq_imap_abusers[] array, which would solve things
-> pretty "neatly".
->
-> 	M.
->
-I saw that you may already have a solution. Do you still need the test 
-with this patch?
+On Sat, 29 Jun 2024 09:29:43 +0300, Abel Vesa wrote:
+> According to the power grid documentation, the 0.8v HS PHY shared
+> regulator is actually LDO3 from PM8550ve id J. Fix both CRD and QCP
+> boards.
+> 
+> 
 
-Cheers,
-Christian
+Applied, thanks!
+
+[1/1] arm64: dts: qcom: x1e80100: Fix USB HS PHY 0.8V supply
+      commit: 9c99c33a904c86d95ecf4e2690de6a826b88671c
+
+Best regards,
+-- 
+Bjorn Andersson <andersson@kernel.org>
 
