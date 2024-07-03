@@ -1,162 +1,188 @@
-Return-Path: <devicetree+bounces-82681-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82680-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C4049255A4
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 10:44:04 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC75C925591
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 10:41:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BCBC2285339
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 08:44:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0B4DF1C22C6D
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 08:41:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 558FC13B297;
-	Wed,  3 Jul 2024 08:43:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2912E13AD16;
+	Wed,  3 Jul 2024 08:41:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="jGqlSTsH"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NInGt7P7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.web.de (mout.web.de [212.227.15.14])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A86B285624;
-	Wed,  3 Jul 2024 08:43:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AFF085624;
+	Wed,  3 Jul 2024 08:41:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719996238; cv=none; b=YgNDpt1Tu8QkK1dR3zKuhg0mtYA2Mk74Pemm9/fqszs/5ctvOaC0vMniMPKExbb++RP6bNTRjLxnhJOTvY///iTRziKGeTzusoYqfhb2FFIHad+BdGFgTuHQ0/RL89d6ODKPD+pg8VY9vFS2FASJbjRx/4Gq5vFjDb3nIDwv6wA=
+	t=1719996063; cv=none; b=GKwF3zSUVwcfykDjt/CJ0SAtE5t0rvhdRc3pCsRe5kBSuWuv4ZwhOyDSxz9uB5llydfeROYDi2/Kh2I5TMa70yBgfOSJfSLcSjmi4ZJ9TXyZaoOOPHAvOoDHUBG/MirzpY3jW/xUCYeE40MWO6yJO4q61I9zo6/uXvdFimQ31ok=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719996238; c=relaxed/simple;
-	bh=lptLyrtomP510MDSTWJ1xyCDrn5Oh0FzBQfkqNjbmS8=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=Mh1VeXKSI8pWUTTpAzuLkanA9VyLaow5ElKXJIBfMAyNDArYqujZRz+VwBaoP/BM4k1+GOfkKDzMHP4KjaFaTONWH9E4iUhdB9FHaG2dXGHjGbnpqGpx1Egzly0NMSCPhG4WM4/ZEzL9EsBZ6jpJ+AMuRqIWCx3S1lljOv6hqMk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=jGqlSTsH; arc=none smtp.client-ip=212.227.15.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
-	s=s29768273; t=1719996223; x=1720601023; i=markus.elfring@web.de;
-	bh=lptLyrtomP510MDSTWJ1xyCDrn5Oh0FzBQfkqNjbmS8=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:From:Subject:To:
-	 Cc:References:In-Reply-To:Content-Type:Content-Transfer-Encoding:
-	 cc:content-transfer-encoding:content-type:date:from:message-id:
-	 mime-version:reply-to:subject:to;
-	b=jGqlSTsHwTwtnWX//MppUHEXvabftsGca6m/4IKclXqVfuhSgDjQOger9aJmZ0M8
-	 lUGbbpxyYFKXRfRNzrioP8snBn1DgGcTJLW2BCfkszr1h5EDK66qoWGSCOykiQxzA
-	 +T1UHNaKT83wbaCKwvDJy23zSzFtw+4X3OFC2pWYNiorAzo+3l7WhwHQ8aYIg0sL/
-	 wD1PrtVxK5sEGncZMInsLlGXX+UB/bk5EFnMUHP+IormV43B8lh020tFgxKe7Qnka
-	 so1L6/bMr0va3zDIIrGZC7pLRG2XecJT695coTNvv1htBKAQ9zUv9I64tBtW+PX3D
-	 1ZCaCctyM5gfMADN9Q==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from [192.168.178.21] ([94.31.91.95]) by smtp.web.de (mrweb006
- [213.165.67.108]) with ESMTPSA (Nemesis) id 1MOlwp-1smN5E14UJ-00VtyI; Wed, 03
- Jul 2024 10:43:43 +0200
-Message-ID: <8c69a0dc-8178-44fc-86c1-da67109ddd39@web.de>
-Date: Wed, 3 Jul 2024 10:43:31 +0200
+	s=arc-20240116; t=1719996063; c=relaxed/simple;
+	bh=yJU1wKiYfVQN60B/LGgNq09BR1L3TvyH8cxkqqPfbTU=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=fY9jSk121eKWB7jWtTmwmQdF/vqiOl6M+4ObMkeiQqI1pnoXdZrgCSxYHEOZ7/XtHM8DaXLMdM/nnR4rFlv7725ga7H5xkscMpBchjVq1rBvC7pBHXuBJsLUjS+4UiuQuCdj6y8GPNe7880CxcG6PcO1JT19AzMjcqL6bk8NGYA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NInGt7P7; arc=none smtp.client-ip=209.85.167.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-52e94eaf5efso922670e87.2;
+        Wed, 03 Jul 2024 01:41:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1719996059; x=1720600859; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=hcDX4RWcsum+eXhQAgrLlcrCCaZ40hfPE47AKnYbyu8=;
+        b=NInGt7P7aIQyuOwQF76UtGXe1hrQt1gype6J4U+6kEbH1m0yiCyROtTf3hFiqbNzZR
+         prRKAyk3c+MSJ0zQLaat/+YIcDB55bl/0/VjKXcv/UXxksxmKWJxaCCwbSGdSSuqoqd3
+         XZ3amNX8zrh+W+2RegCtX8rwOaQUWn7SOD6FLcjhSBZujgOYHWhFZvgzYDeVjWwM7i0K
+         VzLOiomPPVCZlUsOjE8Lo899kycCVGxgqp4QWk6KF2u0jYS6LeWPe7ATy4ANUm3jWZzC
+         ax2juBCb9N9CiPe9BXwgEcZ4BMplV43gZ11t2aZjSJaOswGpFD7MfP7UTjLb0AEj31Xj
+         YdnQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719996059; x=1720600859;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=hcDX4RWcsum+eXhQAgrLlcrCCaZ40hfPE47AKnYbyu8=;
+        b=NJwKxshBU2rcGuthhPwp7Pz0y44IvRv81ohkwYA8L+ZL7TqbNKBNAlgAQRhbE2W5w8
+         leH+kxrSnpW+/8bXKpf85XQsqda1tv32GpaXrlljsxnL2SsM6p8XmePlPv7Lfv+fSu+R
+         W46/xG3BoJx44pWRrZurefdXOgjIPFD4rz29mY8ptPwZN2+LZCV5D71sycP4vdL3HR0q
+         y03Xog/agqfSAefC8nueZX/CddnBhLhi1Y1FnOHPeUhrpEbJVbgrcY7z9zYu4Oqp+MJh
+         Zz55FbcKgIWe4t76JEDEn97kFVLWB4BrpbJAa3yJk/T5hgHGcQRTlj3r1VGBV5W62Aqo
+         Xieg==
+X-Forwarded-Encrypted: i=1; AJvYcCVbFZlAb0XpEw1J8uJjrGnJ8VFp8nDVuqd73cFCQR1c8amjdDICZoBfv0tqGLpAphdA+TYI+yAn4i763b/bqPqs74FhoQupiSP90pnhN+SWL90umuSV58dIpF11rIg1XW0pW6qYRm1bFQPzqCOPIc/XJ5Wa9BMxYZSYPhJPZwTA6aoFOkgz
+X-Gm-Message-State: AOJu0Yzy7QoEgzk5eWcj7hZ+ZLc+PU+k6n0Coou5jvqXpimfPtEOAdxg
+	6UXnmtCcIxq21w2vIMxWzLvVwwoV64gb6SMgXECeeasOJdeqnys4
+X-Google-Smtp-Source: AGHT+IFSQYWG1FAyrVIClew9rBrV6znrwdovQR7cFevwtOLk1QDL2ZjIcue9ubeWtWJBpADt5E3uNw==
+X-Received: by 2002:a05:6512:3094:b0:52c:de76:109a with SMTP id 2adb3069b0e04-52e82740e56mr6256924e87.67.1719996059114;
+        Wed, 03 Jul 2024 01:40:59 -0700 (PDT)
+Received: from ?IPv6:2003:f6:ef1c:c500:ee59:d953:f148:40ba? (p200300f6ef1cc500ee59d953f14840ba.dip0.t-ipconnect.de. [2003:f6:ef1c:c500:ee59:d953:f148:40ba])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4256b0642acsm238812445e9.25.2024.07.03.01.40.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 03 Jul 2024 01:40:58 -0700 (PDT)
+Message-ID: <d4661ddc1d253678fd62be4c7e19eb0cff4174f6.camel@gmail.com>
+Subject: Re: [PATCH v4 2/2] dt-bindings: input: Update dtbinding for adp5588
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Conor Dooley <conor@kernel.org>, Dmitry Torokhov
+ <dmitry.torokhov@gmail.com>
+Cc: utsav.agarwal@analog.com, Michael Hennerich
+ <michael.hennerich@analog.com>,  Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,  Nuno
+ =?ISO-8859-1?Q?S=E1?= <nuno.sa@analog.com>, linux-input@vger.kernel.org,
+ devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org, Arturs
+ Artamonovs <arturs.artamonovs@analog.com>,  Vasileios Bimpikas
+ <vasileios.bimpikas@analog.com>, Oliver Gaskell <oliver.gaskell@analog.com>
+Date: Wed, 03 Jul 2024 10:44:51 +0200
+In-Reply-To: <20240702-comic-tannery-792d461e0ab7@spud>
+References: <20240701-adp5588_gpio_support-v4-0-44bba0445e90@analog.com>
+	 <20240701-adp5588_gpio_support-v4-2-44bba0445e90@analog.com>
+	 <20240701-battalion-tacky-c52566b37a97@spud> <ZoLrYTp2IUKFBvzq@google.com>
+	 <20240702-comic-tannery-792d461e0ab7@spud>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Markus Elfring <Markus.Elfring@web.de>
-Subject: Re: libfdt: check return value of fdt_num_mem_rsv() in fdt_pack()
-To: Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
- devicetree@vger.kernel.org
-Cc: LKML <linux-kernel@vger.kernel.org>, David Gibson <dgibson@redhat.com>,
- Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>
-References: <20240701215441.54353-1-heinrich.schuchardt@canonical.com>
- <8b083a48-5e56-493a-b235-60afaf794fd7@web.de>
- <530a2dcf-82ad-4e59-a162-5d3080766e6c@canonical.com>
-Content-Language: en-GB
-In-Reply-To: <530a2dcf-82ad-4e59-a162-5d3080766e6c@canonical.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:trxH/ooywfNEfiZjB42Chz5zq7Z08mVhiBmMoxtxWU8Xw6QjQho
- gRd5Ugnc5dqJzXq3W8cHAgcbrD7TJLnjm6usCNWxyJGyK+6kng69oaOvQqB7N/IFFJZsEqg
- t4AHvpB2XUP0Dn7Ag6oSZBZNB8DGO1FEKmAhap+lYq4aUqT2Gb1jws/uq0S8L2cOc7K9pK9
- oo9HrS+7L48flbb5rQAkw==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:uK+DYHt/GOU=;S0s7pwr8tzqwOQ2zE+xMW4qaNMX
- WIy//oKgW6cIr3msWPKex8mNjDGuCLWpXJbOx0yUWtsDtrus92a95uj+GlEL7lYv9+Qgsc+Rm
- ReLERiFrYWQ1ApM4IdLESJLAZEmBz5h3ZsFd8wdScemjxprnNUb2YpcRP7xerzF6II8IVzYkZ
- L5X9oVX2MRJC1TC52m4zJqY5jsVrL5kr8ZwIQdRBwVjXqxG0Ndx9+vff3g13fctsh5avAnEYU
- r6ahEoEhMnO3YbHBPrzsVi900UT3FOBI7uVGV0lO+pRDfF8z1zWlt8GRDuDjGxhYul5YXK4l8
- 4Pdt5oUOarrWrrIOFdo0MjjINksP7WIiWjLzVJDFj7RbY3d7b2bHDVaq2YHPAKfRjw3KCVhWB
- 6CwnDpS3Y7F5RAavZVKQjvY1DxWFbLdvPnK9AyRBW4i+CoeVd+on0LdjoC8q2ugoDPVfja2NX
- WUPBFXKaup79/lg8kdsos4ALNy4HRj/nRghGdaPaekTsoWa//yKBXgBDsJWYNX9MD2AIgDMRR
- T7nHZc4UfyR7UpAKATj0sKzQ9qnLP3RhKxgYupWUJOJThxNi9tWF5K9yyVmlmEZBpVX6vkJvG
- 9Y/7poDt8DUs56bM+vfCJVdbuvxPYJajW7klrxqFJf05ZjhFBb7CcP5SGtwa5d40CnVTkuUPa
- qZg25KPjTcs/YgilqG3v7/xot5uDj8pBZizR9w+E27cCmcGALNRu7tNjmhLXN3/VBqkFiLsPz
- kLrCX9JJyaz4X60GoyAlld5vJw9bLUe7sDlUHpdUM633UxGfDeCX8FQdGYwxzJ1JWm0bAay54
- uUI0lPLpaaJzeUYkP1j/VjHSwS/4YsX4UGhDB43DLrYN4=
 
->>> fdt_num_mem_rsv() may return -FDT_ERR_TRUNCATED.
->>> In this case fdt_pack() should propagate the error code.
->>
->> 1. Please choose imperative wordings for an improved change description=
-.
->> =C2=A0=C2=A0=C2=A0https://git.kernel.org/pub/scm/linux/kernel/git/torva=
-lds/linux.git/tree/Documentation/process/submitting-patches.rst?h=3Dv6.10-=
-rc6#n94
->
-> The current subject is an imperative?
+On Tue, 2024-07-02 at 16:42 +0100, Conor Dooley wrote:
+> On Mon, Jul 01, 2024 at 10:46:09AM -0700, Dmitry Torokhov wrote:
+> > On Mon, Jul 01, 2024 at 04:46:12PM +0100, Conor Dooley wrote:
+> > > On Mon, Jul 01, 2024 at 04:04:51PM +0100, Utsav Agarwal via B4 Relay
+> > > wrote:
+> > > > From: Utsav Agarwal <utsav.agarwal@analog.com>
+> > > >=20
+> > > > Updating dt bindings for adp5588. Following properties are now made
+> > > > optional:
+> > > > 	- interrupts
+> > > > 	- keypad,num-rows
+> > > > 	- keypad,num-columns
+> > > > 	- linux,keymap
+> > > > The proposed new property "gpio-only" has been added as an optional
+> > > > property with an additional example.
+> > >=20
+> > > I can see that as it is clear in the diff, but this doesn't explain w=
+hy,
+> > > which is what you need to do in your commit message.
+> > >=20
+> > > >=20
+> > > > Signed-off-by: Utsav Agarwal <utsav.agarwal@analog.com>
+> > > > ---
+> > > > =C2=A0.../devicetree/bindings/input/adi,adp5588.yaml=C2=A0=C2=A0=C2=
+=A0=C2=A0 | 28
+> > > > ++++++++++++++++++----
+> > > > =C2=A01 file changed, 24 insertions(+), 4 deletions(-)
+> > > >=20
+> > > > diff --git a/Documentation/devicetree/bindings/input/adi,adp5588.ya=
+ml
+> > > > b/Documentation/devicetree/bindings/input/adi,adp5588.yaml
+> > > > index 26ea66834ae2..158fbf02cc16 100644
+> > > > --- a/Documentation/devicetree/bindings/input/adi,adp5588.yaml
+> > > > +++ b/Documentation/devicetree/bindings/input/adi,adp5588.yaml
+> > > > @@ -46,6 +46,11 @@ properties:
+> > > > =C2=A0=C2=A0 '#gpio-cells':
+> > > > =C2=A0=C2=A0=C2=A0=C2=A0 const: 2
+> > > > =C2=A0
+> > > > +=C2=A0 gpio-only:
+> > > > +=C2=A0=C2=A0=C2=A0 description:
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 This property applies if keypad,num=
+-rows, keypad,num-columns and
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 linux,keypad are not specified. All=
+ keys will be marked as gpio.
+> > >=20
+> > > Why is a property required for this? Is the absence of the 3 keypad
+> > > properties not sufficient to determine that you're in this mode?
+> >=20
+> > Yes, I think it should be enough.
+> >=20
+> > >=20
+> > >=20
+> > > > =C2=A0=C2=A0 interrupt-controller:
+> > > > =C2=A0=C2=A0=C2=A0=C2=A0 description:
+> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 This property applies if eithe=
+r keypad,num-rows lower than 8 or
+> > > > @@ -68,10 +73,6 @@ properties:
+> > > > =C2=A0required:
+> > > > =C2=A0=C2=A0 - compatible
+> > > > =C2=A0=C2=A0 - reg
+> > > > -=C2=A0 - interrupts
+> > >=20
+> > > I don't understand why interrupts is no longer required.
+> >=20
+> > I think it should be possible to use this chip as a GPIO controller but
+> > not an interrupt controller, in which case one does not have to wire up
+> > the interrupt line from it. However this requires much more elaborate
+> > binding description (i.e. no keys and no "interrupt-controller"
+> > property).
+>=20
+> Aye. I can totally understand why you might want to make the interrupt
+> portion optional - but it seems unrelated to the rest of the changes in
+> the patch (use as a keypad without interrupts could be possible, right?)
+> and is unexplained.
+>=20
 
-Yes.
+IMO, it is related as it's the new usecase (of only using the gpios) that
+trigger the interrupt not being required anymore. No, I don't think we can =
+use
+the keypad without the interrupt line.
 
-The requirement for =E2=80=9Cimperative mood=E2=80=9D affects mostly the c=
-ommit message (or =E2=80=9Cchangelog=E2=80=9D),
-doesn't it?
+I guess (as you suggested before) we should check if one of the rows/column=
+s
+property is present and in that case still make 'interrupts' required.
 
+Agree it should be better explained.
 
->> 2. Would you like to add any tags (like =E2=80=9CFixes=E2=80=9D and =E2=
-=80=9CCc=E2=80=9D)?
->
-> d5db5382c5e5 ("libfdt: Safer access to memory reservations") introduced =
-the check that returns the error code. But before that we could simply ove=
-rrun the buffer.
+- Nuno S=C3=A1
+>=20
 
-Would an other commit be a more appropriate reference?
-
-
-> I would not know which patch to blame.
-
-Please take another look at a corresponding information source:
-https://github.com/dgibson/dtc/blame/main/libfdt/fdt_rw.c#L487-L500
-
-Update candidate:
-libfdt: Handle v16 and re-ordered trees for r/w
-2007-11-01
-https://github.com/dgibson/dtc/commit/a041dcdc48453f26b76bccdb5e2a1ebb3a0e=
-a987#diff-1a98f2be127ff35ab7183bdae1e010189c9992b3bd6e6779fa7b7e451bf72ac4=
-R382
-
-
-> Whom do you want to Cc?
-
-I suggest to take another look at corresponding information sources.
-
-* https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/=
-Documentation/process/stable-kernel-rules.rst?h=3Dv6.10-rc6#n34
-
-* https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/=
-Documentation/process/submitting-patches.rst?h=3Dv6.10-rc6#n458
-
-
->> 3. How do you think about to use a summary phrase like =E2=80=9CComplet=
-e error handling
->> =C2=A0=C2=A0=C2=A0in fdt_pack()=E2=80=9D?
->
-> Why should I choose a less specific subject?
-
-You would like to improve the error detection and corresponding exception =
-handling another bit,
-wouldn't you?
-
-* https://cwe.mitre.org/data/definitions/252.html
-
-* https://wiki.sei.cmu.edu/confluence/display/c/EXP12-C.+Do+not+ignore+val=
-ues+returned+by+functions
-
-
-Regards,
-Markus
 
