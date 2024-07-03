@@ -1,79 +1,63 @@
-Return-Path: <devicetree+bounces-82569-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82570-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CACBF924FD1
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 05:41:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A60D924FD7
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 05:41:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 064221C21827
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 03:41:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8AAC11C229A1
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 03:41:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 165511369A0;
-	Wed,  3 Jul 2024 03:37:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E61A13775C;
+	Wed,  3 Jul 2024 03:37:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uW2P6mGi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tpTBoIgQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD41713698F;
-	Wed,  3 Jul 2024 03:37:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0044E13774D;
+	Wed,  3 Jul 2024 03:37:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719977872; cv=none; b=PzAVICLiXR/9AwWcoYol2vOgl/pUDPIlSpFRtgOxHPf02sCRZ8POzZEjOHAx83LthlNttAdx40KO+xEDCE0Jz45ORZ6XRtkIcW7qYpoAiZZMb9QjXIc0clIMCHp0A+KTXdASWc0j+f0zvDBCPv+lhvm0EJn3LXwOeUKh0khRjAg=
+	t=1719977874; cv=none; b=k6bg9C8Gm3QxZpuMPjnNieSJE+aYZ5ARXqCNIl/VDnFzCLWYedaEmfkDNgTs2CmCHKGCHpGloEKoN6Rd9wkNI6HRKTy39vnWh3MV6kW+6xQUWL2K9Zs5NsVwJoV5eTGHffSNFfyda35R1JzekMPkgLcadtabvlBkLaK4OpfTvu0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719977872; c=relaxed/simple;
-	bh=832WPZNjC2cU1NTJdZRlTwMLNqACMwDQnZTUfdgZRQI=;
+	s=arc-20240116; t=1719977874; c=relaxed/simple;
+	bh=9LOG+Iz8twR7rHxeQYQr8OSRQaJ7m/kpUczuRzyqIIs=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=n4UcQlgIOgw25kupUtlMETn201Bce4DjnQdAdxXEYdEi59ZD4Hv6ZGxHv5lUBE/BIktyJYcF42g8sABr2LitpJ+96U5WGFiQelrjIurtOVw56HnfstC+9sXfnuuruyyVwEC/AXT+ToYCemeOI9WxScyZdHKCu177+5tm9wRGK1k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uW2P6mGi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DFD04C116B1;
-	Wed,  3 Jul 2024 03:37:49 +0000 (UTC)
+	 MIME-Version:Content-Type; b=LJyfpSovydMqJaa0D+5vJ3cMDxVN20+Zm9SQ0mbziH0raE8w6Ga/+zNUtoWugRxOAdalN10OKcHASLlvfRzTCT3ypn2kJlI3VNS8La43aPBTmTkAfXF+cpd0EgXOGk39uKICC1Sf31hSWJlzoxXRLrLZy0vGqovnD3M+XuZmNCo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tpTBoIgQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13EA5C116B1;
+	Wed,  3 Jul 2024 03:37:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719977871;
-	bh=832WPZNjC2cU1NTJdZRlTwMLNqACMwDQnZTUfdgZRQI=;
+	s=k20201202; t=1719977873;
+	bh=9LOG+Iz8twR7rHxeQYQr8OSRQaJ7m/kpUczuRzyqIIs=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=uW2P6mGinY+vgnxllheTht2kHIOnVn6AF8LR817cLCQSSl26lQNsBQZC3P0483kEu
-	 aYkb+XU2AAsOSzpLt4lIPndZI8f7dq65Uxy3f0k0ZakxH0tcyv+mjhU84ZY0cWMyRj
-	 RUuErauTxXB+ljtzCTI0hDQJZIoGhEwtFwCfRK7YSqp35TaQI/BZbJEcGX9ispTSvd
-	 1cQV+jsmB9HFeYWDlxjHmi0GzJhhjKSnEx7JFUFOCQdZtxXKteSmzx+9aVdeaN8a2O
-	 j4h5qpJwPivQd6F46ZQMg3mLdkojEghuODdJmB1/sT/IDTL3TxywQ6SxZVwD3hAeOJ
-	 X5tGXypFY9FVw==
+	b=tpTBoIgQnZ20aIszmZXh3ZSV6CyQiqIM/M4nMi408ma+p4JmpU7FjZw/HX0tgyFd1
+	 Il09SUk/v8u9hvdUYVCfrkdI6NlWkYywThvtI13U2ADO0k7jGA2b9Tsuz/vF71kCwv
+	 erL+b7NFnQ+6xDsQODusJXkQinwWLPpzg2fsdJFriN0l7xrRGP9fJ+F/pOZA3KahjD
+	 eLwhEPemhx9SRdgWWnZt9UKbSA2KqYLBU5+i1p8wEYnUJ0jy4nYgKlopfTF9soEgZT
+	 ZuBwGv6nD9MNR12j/oEYaXRYUfpbHkURp/GV5z2ZDJ3V5XJXBpxcjIuNjJlRIiT13R
+	 CdDKw0cze0QwQ==
 From: Bjorn Andersson <andersson@kernel.org>
-To: freedreno <freedreno@lists.freedesktop.org>,
-	dri-devel@lists.freedesktop.org,
-	linux-arm-msm@vger.kernel.org,
-	OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS <devicetree@vger.kernel.org>,
-	Rob Clark <robdclark@gmail.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Will Deacon <will@kernel.org>,
-	Akhil P Oommen <quic_akhilpo@quicinc.com>
-Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>,
+To: linux-kernel@vger.kernel.org,
+	Raymond Hackley <raymondhackley@protonmail.com>
+Cc: Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Daniel Vetter <daniel@ffwll.ch>,
-	David Airlie <airlied@gmail.com>,
-	Joerg Roedel <joro@8bytes.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	Maxime Ripard <mripard@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Robin Murphy <robin.murphy@arm.com>,
-	Sean Paul <sean@poorly.run>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	iommu@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: (subset) [PATCH v2 0/5] Support for Adreno X1-85 GPU
-Date: Tue,  2 Jul 2024 22:37:33 -0500
-Message-ID: <171997785354.348959.17891390714770433970.b4-ty@kernel.org>
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	phone-devel@vger.kernel.org,
+	~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: (subset) [PATCH v3 0/2] ARM: dts: qcom-msm8226-samsung-ms013g: Add initial device tree
+Date: Tue,  2 Jul 2024 22:37:35 -0500
+Message-ID: <171997785372.348959.15845091614741529157.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240629015111.264564-1-quic_akhilpo@quicinc.com>
-References: <20240629015111.264564-1-quic_akhilpo@quicinc.com>
+In-Reply-To: <20240630132859.2885-1-raymondhackley@protonmail.com>
+References: <20240630132859.2885-1-raymondhackley@protonmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,24 +68,25 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Sat, 29 Jun 2024 07:19:33 +0530, Akhil P Oommen wrote:
-> This series adds support for the Adreno X1-85 GPU found in Qualcomm's
-> compute series chipset, Snapdragon X1 Elite (x1e80100). In this new
-> naming scheme for Adreno GPU, 'X' stands for compute series, '1' denotes
-> 1st generation and '8' & '5' denotes the tier and the SKU which it
-> belongs.
+On Sun, 30 Jun 2024 13:29:13 +0000, Raymond Hackley wrote:
+> Samsung Galaxy Grand 2 is a phone based on MSM8226. It's similar to the
+> other Samsung devices based on MSM8226 with only a few minor differences.
 > 
-> X1-85 has major focus on doubling core clock frequency and bandwidth
-> throughput. It has a dedicated collapsible Graphics MX rail (gmxc) to
-> power the memories and double the number of data channels to improve
-> bandwidth to DDR.
+> The device trees contain initial support with:
+>  - GPIO keys
+>  - Regulator haptic
+>  - SDHCI (internal and external storage)
+>  - UART (on USB connector via the TI TSU6721 MUIC)
+>  - Regulators
+>  - Touchscreen
+>  - Accelerometer
 > 
 > [...]
 
 Applied, thanks!
 
-[5/5] arm64: dts: qcom: x1e80100: Add gpu support
-      commit: 721e38301b79a6ee8375cb0ebd586699a7f353e3
+[2/2] ARM: dts: qcom-msm8226-samsung-ms013g: Add initial device tree
+      commit: 2a5454d0fe5684855581f8ad958afbcdc476fd64
 
 Best regards,
 -- 
