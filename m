@@ -1,78 +1,66 @@
-Return-Path: <devicetree+bounces-82922-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82924-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E255926599
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 18:09:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 67F939265C4
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 18:13:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D206F1F21554
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 16:08:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 129381F23428
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 16:13:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87E4E1836CA;
-	Wed,  3 Jul 2024 16:08:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56727181B9D;
+	Wed,  3 Jul 2024 16:13:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="WuZEpSdb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Jz28Cjov"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6B62181CF6;
-	Wed,  3 Jul 2024 16:08:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E0F6442C;
+	Wed,  3 Jul 2024 16:13:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720022906; cv=none; b=KEGPhuq1In/TUkXdVVVdIGl0RnJzsi4F99z1A+Y4VGYGxYlaQDBMizZXXiY+FryFjLObAcd+Q1UuUnp6D7/Si/94iuNn2xjW5UJlyhHxNKrcHd8psJsIY7s9yytBu/Pl/qnC79W7/EDN2OElrpiStVS3ZtoCIZztrDsSDfxVZvA=
+	t=1720023190; cv=none; b=n3uYXMc+4Ir6GnMNe7b0WoNMU3k9xioYGPB/frQKobm9ZyLAUaE3ab1hKCtg3IWk1NNUZn96K34M7sLox5KrcEE4KzyNxL+8CEF1GGT3xmQsJd/DbYSUyCSAH7xp2DNar3oLoAHoMndfIYllVaRQLZmLuSgFZEUP27i92jrvWbs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720022906; c=relaxed/simple;
-	bh=7BaNISH55n/A/MVA9c++n/zTtTouz5E5BL82HUun+bU=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=mb/Z6a123ES30A6oTsstbCRVPRZtvp/JEya6HKuX6l+9c/KCGaRKQpcYX5m363vvRkpvbD2o6FvvVKpjMsMckEbKzqFdq1dUBdfPzkO5dFQ9KOpIi5MfSBLD4PkX7KuXQITOb0mGcpEBQLzgTRwjmxLJ+0dQi1TvJBvLzFFof9M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=WuZEpSdb; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 463FtSDj024015;
-	Wed, 3 Jul 2024 18:08:10 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	P+kNXBwzIwoxxa4OyxqdIx5+Zo644vt/ZB+ntrLN0Ns=; b=WuZEpSdbcUXBU1Ff
-	HPXQfgAl3nQSUnwv55nc8rHvADFKNtYeApr+aOCwXlu01xEROOu+a5V6l/pX01Ej
-	/Y2hyTe/dUxKv3haIzTHfoCwHAG2jQxLQ+ODads6n+/qK14dxBJtossQ2n+wLjH3
-	q2KTi8cLHW9mDNt3ERzIohzpNUSxpXHuu1gtCVd4H+MJUIhDWSZ0AFy2NVx2aoee
-	adIePkC0yny6Xjik+ne2359vk4plTvnCwqgN+DfOImUyBKvV+dWhTmJ5U/vQB5Ne
-	Z7yG5rU2z1wiVAnNBDYmCNmSfQki3b2WX/P5rC4DHLfIqpwwp403FPAFVrmCt02I
-	/b+Gtw==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 4029kx1ggf-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 03 Jul 2024 18:08:10 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 0095D40046;
-	Wed,  3 Jul 2024 18:08:04 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id A28E02291B2;
-	Wed,  3 Jul 2024 18:07:31 +0200 (CEST)
-Received: from localhost (10.252.27.110) by SHFDAG1NODE1.st.com (10.75.129.69)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Wed, 3 Jul
- 2024 18:07:31 +0200
-From: Olivier Moysan <olivier.moysan@foss.st.com>
-To: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Arnaud Pouliquen
-	<arnaud.pouliquen@foss.st.com>
-CC: Olivier Moysan <olivier.moysan@foss.st.com>, <linux-iio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v3 5/8] dt-bindings: iio: add backend support to sd modulator
-Date: Wed, 3 Jul 2024 18:05:30 +0200
-Message-ID: <20240703160535.2277871-6-olivier.moysan@foss.st.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240703160535.2277871-1-olivier.moysan@foss.st.com>
-References: <20240703160535.2277871-1-olivier.moysan@foss.st.com>
+	s=arc-20240116; t=1720023190; c=relaxed/simple;
+	bh=Neb1+LB5kKM5TcMku4Gly5fFzuTkl9jDF4ySZTpJyGg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Rodp+OehjkDYQNn3/hfq72T2G8ubKTUQ3il3Np88036pgVWe1JLxhDQ0yAFxs6vYMkVj868DIhGum/HvWHbJMxwSfegiJ/TzZJW2Ei3+eyqfqLPUo/eRozvBZY6BBIFStrUiTkFg0rHOTjikZkQ1TRymW6vKexkVPgkjIqjzweU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Jz28Cjov; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19C41C2BD10;
+	Wed,  3 Jul 2024 16:13:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720023188;
+	bh=Neb1+LB5kKM5TcMku4Gly5fFzuTkl9jDF4ySZTpJyGg=;
+	h=From:To:Cc:Subject:Date:From;
+	b=Jz28CjovdwpnYTsy06MiZQAsMdek36QR+T93huuEQ0T6T1MGKIOdWF7gccz4ehhNL
+	 rHsYWgk9J4JIjdU3jPo+jcHB+m0AZL3YbAn3GIyun5ACp8UY7fJAk2oztbqUDkCPrh
+	 KhTvnqk80Q4Kl04qE9CbPbUJiSXg5hapKqZMA3T7l4BJDyvgLFuBKqQ4Tp/WmRIzFx
+	 MtiGcNhLP30mGdAswGCpKCDVvwi3e4NEisRnWnZBCFmV+jY9I9422YYWgBJBATBB+b
+	 bPXbTQO6xzliykSu+taPZWWs7HQ6u3F6nNogFbqNUXSIN8DKdKU8Qk8Py1LFpVceaf
+	 HxBjBe1/Le+7g==
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: linux-pci@vger.kernel.org
+Cc: ryder.lee@mediatek.com,
+	jianjun.wang@mediatek.com,
+	lpieralisi@kernel.org,
+	kw@linux.com,
+	robh@kernel.org,
+	bhelgaas@google.com,
+	linux-mediatek@lists.infradead.org,
+	lorenzo.bianconi83@gmail.com,
+	linux-arm-kernel@lists.infradead.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	devicetree@vger.kernel.org,
+	nbd@nbd.name,
+	dd@embedd.com,
+	upstream@airoha.com,
+	angelogioacchino.delregno@collabora.com
+Subject: [PATCH v4 0/4] Add Airoha EN7581 PCIe support
+Date: Wed,  3 Jul 2024 18:12:40 +0200
+Message-ID: <cover.1720022580.git.lorenzo@kernel.org>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,75 +68,36 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-07-03_11,2024-07-03_01,2024-05-17_01
 
-The legacy sd modulator driver registers the sigma delta modulator as
-an IIO channel provider. This implementation is not convenient when the
-SD modulator has to be cascaded with another IIO device. The scaling
-information is distributed across devices, which makes it difficult to
-report consistent scaling data on IIO devices.
+Introduce support for EN7581 SoC to mediatek-gen3 PCIe driver
 
-The solution is to expose these cascaded IIO devices as an aggregate
-device, which report global scaling information.
-Add IIO backend support to SD modulator to allow scaling information
-management.
+Changes since v3:
+- move phy initialization delay in pcie-phy driver
+- rename en7581 PCIe reset delay
+- fix compilation warning
+Changes since v2:
+- fix dt-bindings clock definitions
+- fix mtk_pcie_of_match ordering
+- add register definitions
+- move pcie-phy registers configuration in pcie-phy driver
+Changes since v1:
+- remove register magic values
+- remove delay magic values
+- cosmetics
+- fix dts binding for clock/reset
 
-Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
----
- .../iio/adc/sigma-delta-modulator.yaml        | 24 +++++++++++++++++--
- 1 file changed, 22 insertions(+), 2 deletions(-)
+Lorenzo Bianconi (4):
+  dt-bindings: PCI: mediatek-gen3: add support for Airoha EN7581
+  PCI: mediatek-gen3: Add mtk_gen3_pcie_pdata data structure
+  PCI: mediatek-gen3: Rely on reset_bulk APIs for PHY reset lines
+  PCI: mediatek-gen3: Add Airoha EN7581 support
 
-diff --git a/Documentation/devicetree/bindings/iio/adc/sigma-delta-modulator.yaml b/Documentation/devicetree/bindings/iio/adc/sigma-delta-modulator.yaml
-index cab0d425eaa4..e34aa560da63 100644
---- a/Documentation/devicetree/bindings/iio/adc/sigma-delta-modulator.yaml
-+++ b/Documentation/devicetree/bindings/iio/adc/sigma-delta-modulator.yaml
-@@ -18,18 +18,38 @@ properties:
-       - sd-modulator
-       - ads1201
- 
-+  '#io-backend-cells':
-+    const: 0
-+
-   '#io-channel-cells':
-     const: 0
- 
-+  reg:
-+    maxItems: 1
-+
-+  vref-supply:
-+    description: Phandle to the vref input analog reference voltage.
-+
- required:
-   - compatible
--  - '#io-channel-cells'
-+
-+allOf:
-+  - anyOf:
-+    - required: ['#io-backend-cells']
-+    - required: ['#io-channel-cells']
- 
- additionalProperties: false
- 
- examples:
-   - |
--    ads1202: adc {
-+    // Exemple1: SD modulator is an IIO backend device
-+    ads1201_0 {
-+      compatible = "ti,ads1201";
-+      #io-backend-cells = <0>;
-+    };
-+
-+    //Example2: SD modulator is an IIO channel provider
-+    ads1201_1 {
-       compatible = "sd-modulator";
-       #io-channel-cells = <0>;
-     };
+ .../bindings/pci/mediatek-pcie-gen3.yaml      |  68 ++++++-
+ drivers/pci/controller/Kconfig                |   2 +-
+ drivers/pci/controller/pcie-mediatek-gen3.c   | 180 ++++++++++++++++--
+ 3 files changed, 229 insertions(+), 21 deletions(-)
+
 -- 
-2.25.1
+2.45.2
 
 
