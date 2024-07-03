@@ -1,183 +1,178 @@
-Return-Path: <devicetree+bounces-82863-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82864-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3195092632D
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 16:17:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 832AA926347
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 16:22:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5500E1C22CAE
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 14:17:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3184A281B17
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 14:22:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37F6017965E;
-	Wed,  3 Jul 2024 14:15:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b="YX7yZ3yu"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B38E179970;
+	Wed,  3 Jul 2024 14:22:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A420173348
-	for <devicetree@vger.kernel.org>; Wed,  3 Jul 2024 14:15:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 597C21EA90;
+	Wed,  3 Jul 2024 14:22:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720016137; cv=none; b=OzprtR8o6VrirBaRXpItg7z+j5jkGYeoXcsYBiuxHtj4BjQaG1Y2OOnMPZhXuO8d8iFYsHaoFO1Rk9lOiHkG57ZErPYOUBSHcr6OLSfte2pR7i40ioeXWIq1NPoI+K3MpHGRbm2ByQY7gA/FCbOLCg8y/hXqW7XsWJymtlioJ4o=
+	t=1720016539; cv=none; b=BuBdtig0WIc3TBPLB8CknGRtuKWmWLJEfnGUz/Smj1BltBGxWP3PS3gqySHBVdkPHD8cv/Vwq6Ft/mb/G8i+A7IFHJEdC2ZNO+KQjpA+ssZPU2exDukGmsOXBrCkpoUK1Sp4GXN8HFezmOYOv6KloXxSadwn7PrjvzpJlvCoBzM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720016137; c=relaxed/simple;
-	bh=k7Uh6TiIwijhGvQ5X8qOkdHrkUfVv5I9WX7RRyk0FyU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=eSiPpvJu76TA+5ldRxOa5KpxfcrMuxj88XDu6RCz33YWnqgw231tmO/Nx/myZYwqxp5ev3yBDMeTwSvlkyJjhTDY3U9U1M0YyMem0zM0zUxVrnUiIM2+vzx+kw2iHvawizU1IQ3eDlRi4QpVrUiQMoeHsbT6S3+uJaLhms/ApAY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org; spf=fail smtp.mailfrom=beagleboard.org; dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b=YX7yZ3yu; arc=none smtp.client-ip=209.85.214.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=beagleboard.org
-Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-1fb2348d593so386115ad.2
-        for <devicetree@vger.kernel.org>; Wed, 03 Jul 2024 07:15:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=beagleboard-org.20230601.gappssmtp.com; s=20230601; t=1720016135; x=1720620935; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=CU2G2QPdVJo7NFVCvoDy5kVuUs8JHX+8IiCe10N61ds=;
-        b=YX7yZ3yu79oG3rgaAUrCEOgalttL+WTXkz49/ZwWhdEm1Y9kjysM/G+3PZbwPoMIa5
-         2vuSNeUfB2H9OFB/sNMLDU5K0Z69mXQOZSaN/vXXmRHQSgLy2eUBaWCjGT2482uOQilf
-         /82miU/fR+6CQqGCxFa6r4u2Nq1mxYOJI57VhmX39b4POE9f37977zuPgmDkqTUB7oDb
-         eyoqAiKbpiXtFwqOK2Qxku630S/86PaCcwsYvYTICVBP+a8YKB2VDqFQkJrjS86fqFx/
-         0N7IA7n5poF0HTVXlyARr1/ns7qx9moD2snEaDmBfgGduhCf7WI1jYbOKxk9igQ8z6GG
-         YJqw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720016135; x=1720620935;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CU2G2QPdVJo7NFVCvoDy5kVuUs8JHX+8IiCe10N61ds=;
-        b=k4NtEAGzuD/v4vBC8QVdiIVVI9m8UV2oZuawiU8dY9m4heaCtqM+FweW5Y9NBu8rXF
-         1wdCyz5w1Z0vz6QCnlooQBdkUhnC+4PrBV0oR9Kk4I7U8nGQDcEfAvpSozQe4fNcDJxG
-         M3G9p/SsuiLZrtSNWgS8yu1X1Sw0D1YMjPZT82rQGpEW6qMz9bE7BDrqGoRL+ePn3Tlh
-         o5jEJMUa0hx+qYeyk08O/zSqdaMv8EenbCFbuDFbqnCNx09cf0GmJja08VBBFesX6VJH
-         fJFe/axo2z1aOXaE6BtXGMkYXDDVTjzwfzYsBiUCy9lG5N80OigWqX+Py5vQ3qAZ65dr
-         3f6w==
-X-Forwarded-Encrypted: i=1; AJvYcCXQVueXPCUs6aTtF8mutwLv1F33PkbRyg1M3Wm0IGwxS8+Ex6pLsgX/FYbC8/auhj8P5c5dv8N9Y7ahP2bJ47/fAcq4oNWCMcTIRQ==
-X-Gm-Message-State: AOJu0YxQ1cs6E0b4aF47tInENEP1yjc10aMU+Gs3Md9lq8Tnc76VAapY
-	9fwBaaUMhWV+8hilI4PV5Y6JSv5mBaoMPvf8v1C9wWeNBj4wxOR/WwrOUKE1ZA==
-X-Google-Smtp-Source: AGHT+IGo869GVlsk/l4JHWjfBYDiVEDQKhSinOIfUneVdHSCReXfSXBs/FkDvw5QRRJ4R9m6Yk4XaQ==
-X-Received: by 2002:a17:902:e54e:b0:1f7:2b3:3331 with SMTP id d9443c01a7336-1fadbd2b877mr134228095ad.4.1720016133284;
-        Wed, 03 Jul 2024 07:15:33 -0700 (PDT)
-Received: from ?IPV6:2401:4900:1f3e:250a:7d55:4ad6:87a3:5c5c? ([2401:4900:1f3e:250a:7d55:4ad6:87a3:5c5c])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1fac1569046sm103869395ad.210.2024.07.03.07.15.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Jul 2024 07:15:33 -0700 (PDT)
-Message-ID: <df0f9705-b1e9-4dce-b110-09be540d5e25@beagleboard.org>
-Date: Wed, 3 Jul 2024 19:45:26 +0530
+	s=arc-20240116; t=1720016539; c=relaxed/simple;
+	bh=f4NbyDhmUMSoMc3JreD102aM4vkKTbicMQZs0rsnIK8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=okgw7DhXql/selLDY7rI35IFLm7IQXyRs5Y/DXY+ASa2uah/cp+qQVaLRMxEsI2sfi+4CakE5ISlg2jT/omZrRh/zRnejlWQMUxtOzwRNwrwESbwqGDZbBhSkJ8nQ6XEORlDaI8LmTwM1qKd6r0EckRMUUsg8Eb3z7sEyZcS044=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Date: Wed, 3 Jul 2024 14:22:13 +0000
+From: Yixun Lan <dlan@gentoo.org>
+To: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Cc: Conor Dooley <conor@kernel.org>, Inochi Amaoto <inochiama@outlook.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Anup Patel <anup@brainfault.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-serial@vger.kernel.org,
+	Meng Zhang <zhangmeng.kevin@spacemit.com>,
+	Yangyu Chen <cyy@cyyself.name>
+Subject: Re: [PATCH v2 08/10] riscv: dts: add initial SpacemiT K1 SoC device
+ tree
+Message-ID: <20240703142213.GA2734247@ofsar>
+References: <20240627-k1-01-basic-dt-v2-0-cc06c7555f07@gentoo.org>
+ <20240627-k1-01-basic-dt-v2-8-cc06c7555f07@gentoo.org>
+ <CAJM55Z9jeAQTsVjRiLeofDm1RyMWCuHXC0a-pdKtpUiTkSjJCA@mail.gmail.com>
+ <20240702012847.GA2447193@ofsar>
+ <IA1PR20MB4953C031CB453AA0E51657B3BBDC2@IA1PR20MB4953.namprd20.prod.outlook.com>
+ <20240702-appease-attire-6afbe758bf0f@spud>
+ <20240703094049.GB2676251@ofsar>
+ <CAJM55Z9AdOq_yd7sK_VhkutokK+-QKscdq9i759H3N1UKVwJkQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC 3/3] arm64: dts: ti: grove: Add Grove Sunlight Sensor
- overlay
-To: Andrew Davis <afd@ti.com>, Nishanth Menon <nm@ti.com>,
- Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
- Vaishnav M A <vaishnav@beagleboard.org>,
- Derek Kiernan <derek.kiernan@amd.com>, Dragan Cvetic
- <dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>,
- Michael Walle <mwalle@kernel.org>, Jason Kridner <jkridner@beagleboard.org>,
- Robert Nelson <robertcnelson@beagleboard.org>,
- Robert Nelson <robertcnelson@gmail.com>,
- Ayush Singh <ayushdevel1325@gmail.com>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240702164403.29067-1-afd@ti.com>
- <20240702164403.29067-4-afd@ti.com>
-Content-Language: en-US
-From: Ayush Singh <ayush@beagleboard.org>
-In-Reply-To: <20240702164403.29067-4-afd@ti.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAJM55Z9AdOq_yd7sK_VhkutokK+-QKscdq9i759H3N1UKVwJkQ@mail.gmail.com>
 
-On 7/2/24 22:14, Andrew Davis wrote:
+On 04:22 Wed 03 Jul     , Emil Renner Berthing wrote:
+> Yixun Lan wrote:
+> > Hi Conor:
+> >
+> > On 16:25 Tue 02 Jul     , Conor Dooley wrote:
+> > > On Tue, Jul 02, 2024 at 09:35:45AM +0800, Inochi Amaoto wrote:
+> > > > On Tue, Jul 02, 2024 at 01:28:47AM GMT, Yixun Lan wrote:
+> > > > > On 12:49 Mon 01 Jul     , Emil Renner Berthing wrote:
+> > > > > > Yixun Lan wrote:
+> > > > > > > From: Yangyu Chen <cyy@cyyself.name>
+> > > > > > >
+> > > > > > > Banana Pi BPI-F3 motherboard is powered by SpacemiT K1[1].
+> > > > > > >
+> > > > > > > Key features:
+> > > > > > > - 4 cores per cluster, 2 clusters on chip
+> > > > > > > - UART IP is Intel XScale UART
+> > > > > > >
+> > > > > > > Some key considerations:
+> > > > > > > - ISA string is inferred from vendor documentation[2]
+> > > > > > > - Cluster topology is inferred from datasheet[1] and L2 in vendor dts[3]
+> > > > > > > - No coherent DMA on this board
+> > > > > > >     Inferred by taking vendor ethernet and MMC drivers to the mainline
+> > > > > > >     kernel. Without dma-noncoherent in soc node, the driver fails.
+> > > > > > > - No cache nodes now
+> > > > > > >     The parameters from vendor dts are likely to be wrong. It has 512
+> > > > > > >     sets for a 32KiB L1 Cache. In this case, each set is 64B in size.
+> > > > > > >     When the size of the cache line is 64B, it is a directly mapped
+> > > > > > >     cache rather than a set-associative cache, the latter is commonly
+> > > > > > >     used. Thus, I didn't use the parameters from vendor dts.
+> > > > > > >
+> > > > > > > Currently only support booting into console with only uart, other
+> > > > > > > features will be added soon later.
+> > > > > > >
+> > > > > ...
+> > > > >
+> > > > > > > +		clint: timer@e4000000 {
+> > > > > > > +			compatible = "spacemit,k1-clint", "sifive,clint0";
+> > > > > > > +			reg = <0x0 0xe4000000 0x0 0x10000>;
+> > > > > > > +			interrupts-extended = <&cpu0_intc 3>, <&cpu0_intc 7>,
+> > > > > > > +					      <&cpu1_intc 3>, <&cpu1_intc 7>,
+> > > > > > > +					      <&cpu2_intc 3>, <&cpu2_intc 7>,
+> > > > > > > +					      <&cpu3_intc 3>, <&cpu3_intc 7>,
+> > > > > > > +					      <&cpu4_intc 3>, <&cpu4_intc 7>,
+> > > > > > > +					      <&cpu5_intc 3>, <&cpu5_intc 7>,
+> > > > > > > +					      <&cpu6_intc 3>, <&cpu6_intc 7>,
+> > > > > > > +					      <&cpu7_intc 3>, <&cpu7_intc 7>;
+> > > > > > > +		};
+> > > > > > > +
+> > > > > > > +		uart0: serial@d4017000 {
+> > > > > > > +			compatible = "spacemit,k1-uart", "intel,xscale-uart";
+> > > > > > > +			reg = <0x0 0xd4017000 0x0 0x100>;
+> > > > > > > +			interrupts = <42>;
+> > > > > > > +			clock-frequency = <14857000>;
+> > > > > > > +			reg-shift = <2>;
+> > > > > > > +			reg-io-width = <4>;
+> > > > > > > +			status = "disabled";
+> > > > > > > +		};
+> > > > > > > +
+> > > > > > > +		/* note: uart1 skipped */
+> > > > > >
+> > > > > > The datasheet page you link to above says "-UART (×10)", but here you're
+> > > > > > skipping one of them. Why? I can see the vendor tree does the same, but it
+> > > > > > would be nice with an explanation of what's going on.
+> > > > > >
+> > > > > /* note: uart1 in 0xf0612000, reserved for TEE usage */
+> > > > > I would put something like this, does this sound ok to you?
+> > > > >
+> > > > > more detail, iomem range from 0xf000,0000 - 0xf080,0000 are dedicated for TEE purpose,
+> > > > > It won't be exposed to Linux once TEE feature is enabled..
+> > > > >
+> > > > > skipping uart1 may make people confused but we are trying to follow datasheet..
+> > > >
+> > > > Instead of skipping it, I suggest adding this to reserved-memory area,
+> > > > which make all node visible and avoid uart1 being touched by mistake.
+> > >
+> > > No, don't make it reserved-memory - instead add it as
+> > > status = "reserved"; /* explanation for why */
+> > Ok, got
+> >
+> > > Also, I'd appreciate if the nodes were sorted by unit address in the
+> > > dtsi.
+> > so I would move "plic, clint" after node of uart9 as this suggestion
+> >
+> > for uart1, its unit-address is 0xf0610000, it should be moved to after clint
+> > (once unit-address sorted), if we follow this rule strictly.
+> > but it occur to me this is not very intuitive, if no objection, I would put
+> > it between uart0 and uart2 (thus slightly break the rule..)
+> 
+> No, please order nodes by their address as Conor said. It actually says so in
+> the DTS coding style:
+> 
+> https://docs.kernel.org/devicetree/bindings/dts-coding-style.html
+> 
+I was thinking about grouping all same type devices (uart here) together
+according to "1. Order of Nodes", but after reconsideration, I'd just follow
+yours and Conor's suggestion, thus it will be more straightforward, also match
+more well with datasheet[1] if we have to add more "reserved" nodes in the future.
 
-> Add DT overlay for the Grove Sunlight Sensor[0].
->
-> [0] https://wiki.seeedstudio.com/Grove-Sunlight_Sensor/
->
-> Signed-off-by: Andrew Davis <afd@ti.com>
-> ---
->   arch/arm64/boot/dts/ti/Makefile               |  3 ++
->   .../boot/dts/ti/grove-sunlight-sensor.dtso    | 31 +++++++++++++++++++
->   2 files changed, 34 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/ti/grove-sunlight-sensor.dtso
->
-> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-> index a859629a6072c..7d1ce7a5d97bc 100644
-> --- a/arch/arm64/boot/dts/ti/Makefile
-> +++ b/arch/arm64/boot/dts/ti/Makefile
-> @@ -8,6 +8,9 @@
->   # Entries are grouped as per SoC present on the board. Groups are sorted
->   # alphabetically.
->   
-> +# This needs a better directory location
-> +dtb-$(CONFIG_OF_OVERLAY) += grove-sunlight-sensor.dtbo
-> +
->   # Boards with AM62x SoC
->   dtb-$(CONFIG_ARCH_K3) += k3-am625-beagleplay.dtb
->   dtb-$(CONFIG_ARCH_K3) += k3-am625-beagleplay-csi2-ov5640.dtbo
-> diff --git a/arch/arm64/boot/dts/ti/grove-sunlight-sensor.dtso b/arch/arm64/boot/dts/ti/grove-sunlight-sensor.dtso
-> new file mode 100644
-> index 0000000000000..ab2f102e1f8ab
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/ti/grove-sunlight-sensor.dtso
-> @@ -0,0 +1,31 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-> +/**
-> + * Grove - Sunlight Sensor v1.0
-> + *
-> + * https://wiki.seeedstudio.com/Grove-Sunlight_Sensor/
-> + *
-> + * Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
-> + */
-> +
-> +/dts-v1/;
-> +/plugin/;
-> +
-> +&GROVE_CONNECTOR {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&GROVE_PIN1_MUX_I2C_SCL>,
-> +	            <&GROVE_PIN2_MUX_I2C_SDA>;
-> +};
+Link: https://developer.spacemit.com/#/documentation?token=LzJyw97BCipK1dkUygrcbT0NnMg [1]
 
-On setting pinctrl in the mikrobus connector, I seem to encounter 
-problem with the SPI driver trying to use the device before the pins are 
-ready. So I think, the pinctrl should probably be defined in the 
-respective i2c, spi, etc nodes instead of connector.
-
-> +
-> +&GROVE_PIN1_I2C {
-> +	status = "okay";
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-> +
-> +	clock-frequency = <100000>;
-> +
-> +	si1145@60 {
-> +		compatible = "si,si1145";
-> +		reg = <0x60>;
-> +	};
-> +};
-
-
-I also have question regarding how to define reg property in SPI 
-(chipselect). Ideally, we want to define it relative to the connector 
-pins, but since the SPI device(s) is a child of SPI controller, I am not 
-sure how I can do remapping.
-
-
-Ayush Singh
-
+-- 
+Yixun Lan (dlan)
+Gentoo Linux Developer
+GPG Key ID AABEFD55
 
