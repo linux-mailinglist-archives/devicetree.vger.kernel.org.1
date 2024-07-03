@@ -1,260 +1,193 @@
-Return-Path: <devicetree+bounces-82835-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82836-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7603C926037
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 14:24:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA09D926045
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 14:26:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9A8CD1C22DDA
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 12:24:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AD5581C20C5B
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 12:26:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09B7F176FD3;
-	Wed,  3 Jul 2024 12:24:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24AD9174EF7;
+	Wed,  3 Jul 2024 12:26:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="dnsrn2Rv"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iKhx1sjR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FF7713DBB1;
-	Wed,  3 Jul 2024 12:24:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63EAD85298;
+	Wed,  3 Jul 2024 12:26:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720009449; cv=none; b=Qwo5NDxFzet2cfMA8GjCGX+oyOF020S5nCZD/a68zMBENOzhvSz3VVQxmHZA+zNuEUk+nU/AY+lpzeNuHnmeQsPNel8t7220SJ5w9xIVVnpBqv5J5SR3SW/26vHZS66lEU/UhV7IvRvZOqilO5YROITr8Z9UWozAC6AvxlS+B5Y=
+	t=1720009598; cv=none; b=YDsLg8N/8dffCOeErj6i8bCEm69OZSgNvDNJcQgX4dxb6Z7xV4vhLfy4ePyBJ2wY/vM13R2yZpdum4vQLH6loKIQT4zxBjmwJRHqDXelOC4yvVY+vCDkQGqUzsMmybRVabF7Q0Rtk47mvn3bpuvl4KVRsoz0UbqK0m/QxWMc4Vo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720009449; c=relaxed/simple;
-	bh=UknA50AULAPPPRbaoGSnb7Tm0jPybyLdJvg6iHUfNow=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=VA9XeZlrhpFgAR6ZnwgpynxryTerbEUBhJ1oHSBhBQq82+7ndFoB6HlVpDpVXXz4hd1C74/QjERGRIuGpaKnQRXLNAUrourrthI0Q6OMwVsKuUbQ6IKtT8pjtsPBVFTuhji8m8l1qjiXMo+PgHvun4MZzzKiy6f8l4fdjMadgPA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=dnsrn2Rv; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 463AMw07025449;
-	Wed, 3 Jul 2024 12:23:56 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	NnitEIjYFBOWgWWk5P/dDl4/1kTXF1buECwX65+Udrc=; b=dnsrn2RvtrkUsW3/
-	EOrrg8/x9BuYtMI3YdZ4cH7KHdumI3FKZK7cUu0dLakRn7oUJNiguYy25oQD00gv
-	PP1bE5XT/gKg5aC21Xsx9wM+7ot62h4wC4/6piWxtAaf0jcFkjBm5hzDequy9d1J
-	yTUNSqbMgK64YbsJLgE1DCOKuCbSl3n70jXNPt7SfPKpGce32sM/LWEbzK4RpmV8
-	Hcox7QJu4pYKgS7tcOWjx8WjK3TqjpKKVDWZydp8ojnNkM4PBkGwKt1NjTPinJL9
-	1lZoGgTdVyRX8H/N0H2YF5ndrOZQtFaPTuri9pd1QbsafUze+R0XkFmPT4uf3t34
-	/6J3aQ==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 402an78sxy-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 03 Jul 2024 12:23:56 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 463CNtnL005947
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 3 Jul 2024 12:23:55 GMT
-Received: from hu-jinlmao-lv.qualcomm.com (10.49.16.6) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 3 Jul 2024 05:23:54 -0700
-From: Mao Jinlong <quic_jinlmao@quicinc.com>
-To: Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Mike Leach
-	<mike.leach@linaro.org>, James Clark <james.clark@arm.com>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Mao Jinlong <quic_jinlmao@quicinc.com>,
-        "Alexander
- Shishkin" <alexander.shishkin@linux.intel.com>
-CC: <coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Tao Zhang
-	<quic_taozha@quicinc.com>,
-        songchai <quic_songchai@quicinc.com>,
-        Jie Gan
-	<quic_jiegan@quicinc.com>
-Subject: [PATCH v4 2/2] coresight: core: Add device name support
-Date: Wed, 3 Jul 2024 05:23:38 -0700
-Message-ID: <20240703122340.26864-3-quic_jinlmao@quicinc.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20240703122340.26864-1-quic_jinlmao@quicinc.com>
-References: <20240703122340.26864-1-quic_jinlmao@quicinc.com>
+	s=arc-20240116; t=1720009598; c=relaxed/simple;
+	bh=h2LjxXC0OzDiJd2LZJkR6AgXeDFIt2ME+WnIdf3EMAk=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=oWByK92Wr0PTl9gDWJK6mbTO95yQ3gsrJUdt5IKwPRDTF6MfEmeI8wA2wodQYdUZ3tX+MoroPxp/jE0iPl7rjFMAflHpJLqPxX9CdQs6PHZC7Zcx95stcNijVNtv3M5ydMs/ED4NMU5LDLIeMHKnQl0tq86rPWAPuSxGV1vh+Ag=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iKhx1sjR; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-4256f102e89so36167535e9.0;
+        Wed, 03 Jul 2024 05:26:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1720009595; x=1720614395; darn=vger.kernel.org;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=b7FAFQKiJKwdtByQPY9Z255c9YVtWF2910FResQyaq4=;
+        b=iKhx1sjR9CXgGTeerYy4JmNE/rD3ZgW+EN4OkEDuVf1r32WWaJtHEFpSbSeWrq2TcF
+         J0H2uQQDgYPOrV58G7XGXj1DQnvQyIFzrpKf/w2QN/5swnZabL5ovcWFpZihOAzvXldW
+         guRSi3fRoxYFzfH4teaDbBCh9OJvcoYFjb88tv+Wb/BbFQ8dqO1uJdCRhB1t3XA+BAn3
+         kdSTdMRsY3LIUU++58YcIl9lPX2F7KqU2oR/lFZ6EEEhY3aJGEoDHYUWaZszCArhuRv1
+         NPF6UEYsjQhGWyAXY4lx3IWFZFCUfFBq1cIjkGvJoNt4cWne0AteOYcMTrmqWsD1udZ6
+         a2mw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720009595; x=1720614395;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=b7FAFQKiJKwdtByQPY9Z255c9YVtWF2910FResQyaq4=;
+        b=xDOUj3kmYZGVrQwurJ3s6J/8U0lbnXqHx1AMWSFbz6d8rv1Ooq/YRQpMZJVPVY30DG
+         6neSS1D5plVB5bbeBS0yBlsUv0x+ZiJlXqjiJu2uNcjXT8IiU4hg0ujeLVLovHaiNth1
+         VDBOqInRIRBFNFBii3uNBYDX5dxc8NcoQLdW6Hj9j3XerEKGZgDBhEkMN6qFDOv2tXeF
+         VxSvqOUv0ZpVRR6KfFWNo+ZCA+qFTrTtqlGZ5mWsUJ9/+jtTYy+gUlvMP/Wffo6KVbGK
+         XHztK8bAezh3sJnKyg5jL78WlHUbKQiDJpqY+8bKS+nQiVlFePLNxo908rINULMRs096
+         9zMQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWoiTsMC/YfCQNoYZCtfQt1/G4aOGeaFiVlxRD7IklgUCiIij+aCj6WQt83SNTXpU5gQzjvBL7CG91LU3HQzumqO4ebyg+mAzMso1BkZBYySvpdUeWnKVPOPmMoopuIMfavCEx37F+pcA==
+X-Gm-Message-State: AOJu0YwWWqRhnBYrsE16VR68IKQjGUC1F05mHrzb8N8z6fSp45BN3hAM
+	7rwBUZFsbida6Jj+piW8/WXGXlAxJH8V+KpiHWCr8nd9r0nG53Z6z/bKxg==
+X-Google-Smtp-Source: AGHT+IEbC62WyVRYSYk89Jxzx2m+kO+O2DjKrDtUHxJi5KUMHCWNCu5CY/nLJuBq8xo7BP1Ckx/HeQ==
+X-Received: by 2002:a5d:64c5:0:b0:360:89a3:5293 with SMTP id ffacd0b85a97d-3677561fce9mr8359135f8f.0.1720009594435;
+        Wed, 03 Jul 2024 05:26:34 -0700 (PDT)
+Received: from standask-GA-A55M-S2HP (lu-nat-113-247.ehs.sk. [188.123.113.247])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3675a0e143csm15727240f8f.59.2024.07.03.05.26.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 03 Jul 2024 05:26:33 -0700 (PDT)
+Date: Wed, 3 Jul 2024 14:26:32 +0200
+From: Stanislav Jakubek <stano.jakubek@gmail.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Baolin Wang <baolin.wang@linux.alibaba.com>, baolin.wang7@gmail.com,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Orson Zhai <orsonzhai@gmail.com>,
+	Chunyan Zhang <zhang.lyra@gmail.com>
+Cc: linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: hwlock: sprd-hwspinlock: convert to YAML
+Message-ID: <ZoVDeHCUCTZu7AT/@standask-GA-A55M-S2HP>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: O4CplGfsGGw_X__9FY1jMNdWPnlcxurc
-X-Proofpoint-ORIG-GUID: O4CplGfsGGw_X__9FY1jMNdWPnlcxurc
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-07-03_08,2024-07-03_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501 mlxscore=0
- clxscore=1015 adultscore=0 malwarescore=0 mlxlogscore=999 suspectscore=0
- phishscore=0 bulkscore=0 spamscore=0 impostorscore=0 lowpriorityscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2406140001
- definitions=main-2407030090
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-For some coresight components like CTI and TPDM, there could be
-numerous of them. From the node name, we can only get the type and
-register address of the component. We can't identify the HW or the
-system the component belongs to. Add the device-name support for
-adding the intuitive name of the device.
+Convert the Spreadtrum hardware spinlock bindings to DT schema.
 
-Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
+Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
 ---
- drivers/hwtracing/coresight/coresight-core.c  | 37 ++++++++++---------
- .../hwtracing/coresight/coresight-platform.c  | 30 +++++++++++++++
- include/linux/coresight.h                     |  3 +-
- 3 files changed, 52 insertions(+), 18 deletions(-)
+ .../bindings/hwlock/sprd,hwspinlock-r3p0.yaml | 55 +++++++++++++++++++
+ .../bindings/hwlock/sprd-hwspinlock.txt       | 23 --------
+ 2 files changed, 55 insertions(+), 23 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/hwlock/sprd,hwspinlock-r3p0.yaml
+ delete mode 100644 Documentation/devicetree/bindings/hwlock/sprd-hwspinlock.txt
 
-diff --git a/drivers/hwtracing/coresight/coresight-core.c b/drivers/hwtracing/coresight/coresight-core.c
-index 9fc6f6b863e0..1d43333bbeb0 100644
---- a/drivers/hwtracing/coresight/coresight-core.c
-+++ b/drivers/hwtracing/coresight/coresight-core.c
-@@ -1328,33 +1328,36 @@ EXPORT_SYMBOL_GPL(coresight_loses_context_with_cpu);
-  * duplicate indices for the same device (e.g, if we defer probing of
-  * a device due to dependencies), in case the index is requested again.
-  */
--char *coresight_alloc_device_name(struct coresight_dev_list *dict,
-+const char *coresight_alloc_device_name(struct coresight_dev_list *dict,
- 				  struct device *dev)
- {
- 	int idx;
--	char *name = NULL;
-+	const char *name = NULL;
- 	struct fwnode_handle **list;
- 
- 	mutex_lock(&coresight_mutex);
- 
--	idx = coresight_search_device_idx(dict, dev_fwnode(dev));
--	if (idx < 0) {
--		/* Make space for the new entry */
--		idx = dict->nr_idx;
--		list = krealloc_array(dict->fwnode_list,
--				      idx + 1, sizeof(*dict->fwnode_list),
--				      GFP_KERNEL);
--		if (ZERO_OR_NULL_PTR(list)) {
--			idx = -ENOMEM;
--			goto done;
-+	name = coresight_get_device_name(dev);
-+	if (!name) {
-+		idx = coresight_search_device_idx(dict, dev_fwnode(dev));
-+		if (idx < 0) {
-+			/* Make space for the new entry */
-+			idx = dict->nr_idx;
-+			list = krealloc_array(dict->fwnode_list,
-+					      idx + 1, sizeof(*dict->fwnode_list),
-+					      GFP_KERNEL);
-+			if (ZERO_OR_NULL_PTR(list)) {
-+				idx = -ENOMEM;
-+				goto done;
-+			}
+diff --git a/Documentation/devicetree/bindings/hwlock/sprd,hwspinlock-r3p0.yaml b/Documentation/devicetree/bindings/hwlock/sprd,hwspinlock-r3p0.yaml
+new file mode 100644
+index 000000000000..b146b1c20edb
+--- /dev/null
++++ b/Documentation/devicetree/bindings/hwlock/sprd,hwspinlock-r3p0.yaml
+@@ -0,0 +1,55 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/hwlock/sprd,hwspinlock-r3p0.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+			list[idx] = dev_fwnode(dev);
-+			dict->fwnode_list = list;
-+			dict->nr_idx = idx + 1;
- 		}
- 
--		list[idx] = dev_fwnode(dev);
--		dict->fwnode_list = list;
--		dict->nr_idx = idx + 1;
-+		name = devm_kasprintf(dev, GFP_KERNEL, "%s%d", dict->pfx, idx);
- 	}
++title: Spreadtrum hardware spinlock
++
++maintainers:
++  - Orson Zhai <orsonzhai@gmail.com>
++  - Baolin Wang <baolin.wang7@gmail.com>
++  - Chunyan Zhang <zhang.lyra@gmail.com>
++
++properties:
++  compatible:
++    const: sprd,hwspinlock-r3p0
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    const: enable
++
++  '#hwlock-cells':
++    const: 1
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - '#hwlock-cells'
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/sprd,sc9860-clk.h>
++
++    soc {
++      #address-cells = <2>;
++      #size-cells = <2>;
++
++      hwlock@40500000 {
++        compatible  = "sprd,hwspinlock-r3p0";
++        reg = <0 0x40500000 0 0x1000>;
++        clocks = <&aon_gate CLK_SPLK_EB>;
++        clock-names = "enable";
++        #hwlock-cells = <1>;
++      };
++    };
++...
+diff --git a/Documentation/devicetree/bindings/hwlock/sprd-hwspinlock.txt b/Documentation/devicetree/bindings/hwlock/sprd-hwspinlock.txt
+deleted file mode 100644
+index 581db9d941ba..000000000000
+--- a/Documentation/devicetree/bindings/hwlock/sprd-hwspinlock.txt
++++ /dev/null
+@@ -1,23 +0,0 @@
+-SPRD Hardware Spinlock Device Binding
+--------------------------------------
 -
--	name = devm_kasprintf(dev, GFP_KERNEL, "%s%d", dict->pfx, idx);
- done:
- 	mutex_unlock(&coresight_mutex);
- 	return name;
-diff --git a/drivers/hwtracing/coresight/coresight-platform.c b/drivers/hwtracing/coresight/coresight-platform.c
-index 64e171eaad82..66de52bd6c5e 100644
---- a/drivers/hwtracing/coresight/coresight-platform.c
-+++ b/drivers/hwtracing/coresight/coresight-platform.c
-@@ -183,6 +183,22 @@ static int of_coresight_get_cpu(struct device *dev)
- 	return cpu;
- }
- 
-+static const char *of_coresight_get_device_name(struct device *dev)
-+{
-+	const char *name = NULL;
-+
-+	if (!dev->of_node)
-+		return NULL;
-+
-+	/*
-+	 * Get the device name from DT. The name describes the HW or
-+	 * system the device is for.
-+	 */
-+	of_property_read_string(dev->of_node, "arm,cs-dev-name", &name);
-+
-+	return name;
-+}
-+
- /*
-  * of_coresight_parse_endpoint : Parse the given output endpoint @ep
-  * and fill the connection information in @pdata->out_conns
-@@ -317,6 +333,11 @@ static inline int of_coresight_get_cpu(struct device *dev)
- {
- 	return -ENODEV;
- }
-+
-+static inline const char *of_coresight_get_device_name(struct device *dev)
-+{
-+	return NULL;
-+}
- #endif
- 
- #ifdef CONFIG_ACPI
-@@ -796,6 +817,15 @@ int coresight_get_cpu(struct device *dev)
- }
- EXPORT_SYMBOL_GPL(coresight_get_cpu);
- 
-+const char *coresight_get_device_name(struct device *dev)
-+{
-+	if (is_of_node(dev->fwnode))
-+		return of_coresight_get_device_name(dev);
-+	else
-+		return NULL;
-+}
-+EXPORT_SYMBOL_GPL(coresight_get_device_name);
-+
- struct coresight_platform_data *
- coresight_get_platform_data(struct device *dev)
- {
-diff --git a/include/linux/coresight.h b/include/linux/coresight.h
-index f09ace92176e..f021f3e93978 100644
---- a/include/linux/coresight.h
-+++ b/include/linux/coresight.h
-@@ -626,7 +626,7 @@ extern int coresight_claim_device_unlocked(struct coresight_device *csdev);
- 
- extern void coresight_disclaim_device(struct coresight_device *csdev);
- extern void coresight_disclaim_device_unlocked(struct coresight_device *csdev);
--extern char *coresight_alloc_device_name(struct coresight_dev_list *devs,
-+extern const char *coresight_alloc_device_name(struct coresight_dev_list *devs,
- 					 struct device *dev);
- 
- extern bool coresight_loses_context_with_cpu(struct device *dev);
-@@ -643,6 +643,7 @@ void coresight_relaxed_write64(struct coresight_device *csdev,
- void coresight_write64(struct coresight_device *csdev, u64 val, u32 offset);
- 
- extern int coresight_get_cpu(struct device *dev);
-+extern const char *coresight_get_device_name(struct device *dev);
- 
- struct coresight_platform_data *coresight_get_platform_data(struct device *dev);
- struct coresight_connection *
+-Required properties :
+-- compatible : should be "sprd,hwspinlock-r3p0".
+-- reg : the register address of hwspinlock.
+-- #hwlock-cells : hwlock users only use the hwlock id to represent a specific
+-	hwlock, so the number of cells should be <1> here.
+-- clock-names : Must contain "enable".
+-- clocks : Must contain a phandle entry for the clock in clock-names, see the
+-	common clock bindings.
+-
+-Please look at the generic hwlock binding for usage information for consumers,
+-"Documentation/devicetree/bindings/hwlock/hwlock.txt"
+-
+-Example of hwlock provider:
+-	hwspinlock@40500000 {
+-		compatible  = "sprd,hwspinlock-r3p0";
+-		reg = <0 0x40500000 0 0x1000>;
+-		#hwlock-cells = <1>;
+-		clock-names = "enable";
+-		clocks = <&clk_aon_apb_gates0 22>;
+-	};
 -- 
-2.41.0
+2.34.1
 
 
