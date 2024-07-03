@@ -1,435 +1,165 @@
-Return-Path: <devicetree+bounces-82714-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82715-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18EF99256FD
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 11:40:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9BC8925702
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 11:40:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 81326B215DF
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 09:40:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8558B281029
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 09:40:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FAC813B5A5;
-	Wed,  3 Jul 2024 09:39:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 729AB13D60F;
+	Wed,  3 Jul 2024 09:40:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADCC342A80;
-	Wed,  3 Jul 2024 09:39:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D65C113C9B9;
+	Wed,  3 Jul 2024 09:40:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719999598; cv=none; b=nlp4f9Ws3Waz+oqmyB9NZ7GgcGgcO5ybd37bigPjpOjU+H8dFKMjkeQGkQDTNWXhyZTL89AOc90uDprVYBn9vajgITquS+r72nUn+uBSTJygcvwaaUlx73F9GPHmXNlBD8tbqY5rb+zpAkhLeLDbJwxNp4PJleCvan/ODQYW2e0=
+	t=1719999656; cv=none; b=QTJkp6uWDrvQmvhr0irtRl9H8WEXwGbcoR9fc6HLDonNmsnCQlQr+rBrXmy33d82DO47N8I0T3jAz4lentwNXcwGkuFF398Kv7Ut/Wk64TZJ/f6DJTgqW7YagQpFZh2LQqvNRgwGYwI8OfigagDttYQsXYF0EoUmShMt8JebqtQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719999598; c=relaxed/simple;
-	bh=qvGX/Rkj145//3zq3L4wSy6A5IyR7NvdVRRkzXoDf3E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DRP7gt4LvjCogFG2GPlz9FF9h32Wb0XgFE9pEDHTV7Ht0ohx3PzX6Kev1YGvFjiX2LLo5N+1Aa1gp2sFoAzaQlHr6cy5ufWqn+jMY7/lPQZ2WdOQRSTBmrl3eQUqnliNHOkW8nlNvl9ovQJx5ajArSZ3UHiptBvcvTVEJAZhEHw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id EDAAF367;
-	Wed,  3 Jul 2024 02:40:13 -0700 (PDT)
-Received: from [10.1.197.1] (ewhatever.cambridge.arm.com [10.1.197.1])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 6D5693F762;
-	Wed,  3 Jul 2024 02:39:44 -0700 (PDT)
-Message-ID: <dc97b56e-e40f-42e0-953d-b216400cbbb8@arm.com>
-Date: Wed, 3 Jul 2024 10:39:42 +0100
+	s=arc-20240116; t=1719999656; c=relaxed/simple;
+	bh=Dzj7c/tM7TZu0j0NpI+S/5IQqQYH5umY4V08HZXaVu8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Jn16BCX61dPdwm76dvBVeyC2Fjo74T9KDyRXpRDi6P9MwhPUtRUgKVjO5rXAa0rziBzogdaoDonpwX4YDfS8m5MnsRW1mvujpJRk+XIizlFLwbOmu/uYl1owO/o64CzYmRgjc955KYzfDBWmBR7dAYSNdWPtj0HC7ChM9C2TpFk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Date: Wed, 3 Jul 2024 09:40:49 +0000
+From: Yixun Lan <dlan@gentoo.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: Inochi Amaoto <inochiama@outlook.com>,
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Anup Patel <anup@brainfault.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-serial@vger.kernel.org,
+	Meng Zhang <zhangmeng.kevin@spacemit.com>,
+	Yangyu Chen <cyy@cyyself.name>
+Subject: Re: [PATCH v2 08/10] riscv: dts: add initial SpacemiT K1 SoC device
+ tree
+Message-ID: <20240703094049.GB2676251@ofsar>
+References: <20240627-k1-01-basic-dt-v2-0-cc06c7555f07@gentoo.org>
+ <20240627-k1-01-basic-dt-v2-8-cc06c7555f07@gentoo.org>
+ <CAJM55Z9jeAQTsVjRiLeofDm1RyMWCuHXC0a-pdKtpUiTkSjJCA@mail.gmail.com>
+ <20240702012847.GA2447193@ofsar>
+ <IA1PR20MB4953C031CB453AA0E51657B3BBDC2@IA1PR20MB4953.namprd20.prod.outlook.com>
+ <20240702-appease-attire-6afbe758bf0f@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 5/7] coresight: tmc: Add support for reading crash data
-To: Linu Cherian <lcherian@marvell.com>
-Cc: mike.leach@linaro.org, james.clark@arm.com,
- linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org,
- linux-kernel@vger.kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, sgoutham@marvell.com, gcherian@marvell.com,
- Anil Kumar Reddy <areddy3@marvell.com>, Tanmay Jagdale <tanmay@marvell.com>
-References: <20240605081725.622953-1-lcherian@marvell.com>
- <20240605081725.622953-6-lcherian@marvell.com>
- <df91af49-383b-4686-8b5c-3e9b0b9b2a18@arm.com>
- <20240620014827.GA125816@hyd1403.caveonetworks.com>
- <6476fa2e-b7db-4bc2-a7a6-26b32af6c9f3@arm.com>
- <20240703042952.GA256716@hyd1403.caveonetworks.com>
-Content-Language: en-US
-From: Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <20240703042952.GA256716@hyd1403.caveonetworks.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240702-appease-attire-6afbe758bf0f@spud>
 
-On 03/07/2024 05:29, Linu Cherian wrote:
-> 
-> Hi Suzuki,
-> 
-> Sorry for the late reply.
-> 
-> On 2024-06-21 at 16:24:45, Suzuki K Poulose (suzuki.poulose@arm.com) wrote:
->> On 20/06/2024 02:48, Linu Cherian wrote:
->>> On 2024-06-10 at 22:04:16, Suzuki K Poulose (suzuki.poulose@arm.com) wrote:
->>>> On 05/06/2024 09:17, Linu Cherian wrote:
->>>>> * Introduce a new mode CS_MODE_READ_CRASHDATA for reading trace
->>>>>      captured in previous crash/watchdog reset.
->>>>>
->>>>
->>>> I am still not convinced if we really need this new mode. We should :
->>>>
->>>> 1) Register the new misc device to expose the "reserved" saved trace
->>>> data, only when the metadata is crc checked and it indicates "valid"
->>>> trace data.
->>>
->>> Ack.
->>>
->>>>
->>>> 2) Always allow reading from the "reserved" buffer when the above file
->>>> is opened. At open(), once again check if the mdata.valid is true (see
->>>> below), if not, return -EIO.
->>>>
->>>> 3) Whenever we use the buffer in "RESERVE" for a session, also set the
->>>> mdata.valid == false. This would prevent any further read from the
->>>> /dev/crash_xxx device. Which makes sense, as the data is lost.
->>>>
->>>
->>> Well, how about the below changes
->>> a. Clear the valid bit only upon user request so that, user is free to do
->>> multiple reads of crashdata buffer.
->>
->> I don't see the need for it. With the proposed changes as long as we
->> don't overwrite the trace using RESERVE mode, the user can read it and
->> they don't need to explicitly clear the field.
->>
->> The current changes do not prevent the user from overwriting the buffer
->> any way using the RESERVE mode. And we can get rid of the "READ CRASH"
->> mode.
-> 
-> Okay Agree. I misunderstood your previous comment.
-> 
-> 
->>
->>> Clearing the mdata.valid can be triggered using a write to the file like
->>> echo 0 > /dev/crash_tmc_etxx.
->>>
->>> b. In order to prevent the buffer overwrite, when mdata.valid = true
->>>      * ETR sink mode: dont allow the user to change the buffer mode to "RESERVE"
->>>      * ETB sink mode: dont copy panic trace data to reserve buffer during
->>>        kernel panic.
->>
->> Why ? It is the users responsibility (I would add inittab job to capture the
->> trace) to collect the trace, before you start using the "reserve"
->> mode.
->>
->> You may additionally prevent the mode change to "RESERVE" if someone has
->> opened the /dev/crashxxx.
-> 
-> Agree.
-> 
->>
->>>
->>>> This way, you don't need to dance with a new mode always provide the
->>>> reserve buffer contents, if it is valid (with an ongoing RESERVE mode)
->>>> invalidating the buffer and the change is much much simpler.
->>>>
->>>
->>> In general, we tried to reuse the existing normal trace buffer read operations
->>> for the crash data reads as well. Hence we need a way to special case the crash data
->>> reads in few places like for eg. tmc_etr/etb_get_sysfs_trace.
->>
->> I understand, but that is unnecessarily complicating the existing
->> framework.
->>
->>>
->>> Its not clear to me if you are suggesting to write parallel independent
->>> functions to manage the crash device reads OR its just about relying on
->>> drvdata->crash_mdata.valid to special case the common read functions insead
->>> of csdev->mode ? Please clarify.
->>
->> Use parallel independent functions to read from crash device. No new
->> mode. All we need to do when someone opens the /dev/crash--:
->>
->> 1) See if the metdata.valid == true
->> 2) Block further "mode" changes to RESERV_BUF. Hold a refcount
->> 3) Provide the buffer from crash buffer.
->> 4) Upon close()=> drop the refcount from (2)
->>
->> Related question, does anyone need the "metdata" ? e.g. flush status ?
->> Or do we think that only the trace data is required ?
->>
-> 
-> Only trace data would be required similar to how the sysfs reads are
-> done. Currently metadata is consumed only by the driver at the time of
-> buffer read for calculating offsets etc.
+Hi Conor:
 
-How about, other info: e.g., was there a flush failure ? The trace data 
-may not be reliable if there was flush failure. We could leave it to the
-user to figure out from the trace read ?
-
+On 16:25 Tue 02 Jul     , Conor Dooley wrote:
+> On Tue, Jul 02, 2024 at 09:35:45AM +0800, Inochi Amaoto wrote:
+> > On Tue, Jul 02, 2024 at 01:28:47AM GMT, Yixun Lan wrote:
+> > > On 12:49 Mon 01 Jul     , Emil Renner Berthing wrote:
+> > > > Yixun Lan wrote:
+> > > > > From: Yangyu Chen <cyy@cyyself.name>
+> > > > >
+> > > > > Banana Pi BPI-F3 motherboard is powered by SpacemiT K1[1].
+> > > > >
+> > > > > Key features:
+> > > > > - 4 cores per cluster, 2 clusters on chip
+> > > > > - UART IP is Intel XScale UART
+> > > > >
+> > > > > Some key considerations:
+> > > > > - ISA string is inferred from vendor documentation[2]
+> > > > > - Cluster topology is inferred from datasheet[1] and L2 in vendor dts[3]
+> > > > > - No coherent DMA on this board
+> > > > >     Inferred by taking vendor ethernet and MMC drivers to the mainline
+> > > > >     kernel. Without dma-noncoherent in soc node, the driver fails.
+> > > > > - No cache nodes now
+> > > > >     The parameters from vendor dts are likely to be wrong. It has 512
+> > > > >     sets for a 32KiB L1 Cache. In this case, each set is 64B in size.
+> > > > >     When the size of the cache line is 64B, it is a directly mapped
+> > > > >     cache rather than a set-associative cache, the latter is commonly
+> > > > >     used. Thus, I didn't use the parameters from vendor dts.
+> > > > >
+> > > > > Currently only support booting into console with only uart, other
+> > > > > features will be added soon later.
+> > > > >
+> > > ...
+> > > 
+> > > > > +		clint: timer@e4000000 {
+> > > > > +			compatible = "spacemit,k1-clint", "sifive,clint0";
+> > > > > +			reg = <0x0 0xe4000000 0x0 0x10000>;
+> > > > > +			interrupts-extended = <&cpu0_intc 3>, <&cpu0_intc 7>,
+> > > > > +					      <&cpu1_intc 3>, <&cpu1_intc 7>,
+> > > > > +					      <&cpu2_intc 3>, <&cpu2_intc 7>,
+> > > > > +					      <&cpu3_intc 3>, <&cpu3_intc 7>,
+> > > > > +					      <&cpu4_intc 3>, <&cpu4_intc 7>,
+> > > > > +					      <&cpu5_intc 3>, <&cpu5_intc 7>,
+> > > > > +					      <&cpu6_intc 3>, <&cpu6_intc 7>,
+> > > > > +					      <&cpu7_intc 3>, <&cpu7_intc 7>;
+> > > > > +		};
+> > > > > +
+> > > > > +		uart0: serial@d4017000 {
+> > > > > +			compatible = "spacemit,k1-uart", "intel,xscale-uart";
+> > > > > +			reg = <0x0 0xd4017000 0x0 0x100>;
+> > > > > +			interrupts = <42>;
+> > > > > +			clock-frequency = <14857000>;
+> > > > > +			reg-shift = <2>;
+> > > > > +			reg-io-width = <4>;
+> > > > > +			status = "disabled";
+> > > > > +		};
+> > > > > +
+> > > > > +		/* note: uart1 skipped */
+> > > > 
+> > > > The datasheet page you link to above says "-UART (×10)", but here you're
+> > > > skipping one of them. Why? I can see the vendor tree does the same, but it
+> > > > would be nice with an explanation of what's going on.
+> > > > 
+> > > /* note: uart1 in 0xf0612000, reserved for TEE usage */
+> > > I would put something like this, does this sound ok to you?
+> > > 
+> > > more detail, iomem range from 0xf000,0000 - 0xf080,0000 are dedicated for TEE purpose,
+> > > It won't be exposed to Linux once TEE feature is enabled..
+> > > 
+> > > skipping uart1 may make people confused but we are trying to follow datasheet..
+> > 
+> > Instead of skipping it, I suggest adding this to reserved-memory area, 
+> > which make all node visible and avoid uart1 being touched by mistake.
 > 
->>
->>
->>>
->>>
->>>>
->>>>> * Add special device files for reading ETR/ETF crash data.
->>>>>
->>>>> * User can read the crash data as below
->>>>>
->>>>>      For example, for reading crash data from tmc_etf sink
->>>>>
->>>>>      #dd if=/dev/crash_tmc_etfXX of=~/cstrace.bin
->>>>>
->>>>> Signed-off-by: Anil Kumar Reddy <areddy3@marvell.com>
->>>>> Signed-off-by: Tanmay Jagdale <tanmay@marvell.com>
->>>>> Signed-off-by: Linu Cherian <lcherian@marvell.com>
->>>>> ---
->>>>> Changelog from v8:
->>>>> * Added missing exit path in __tmc_probe
->>>>> * Few whitespace fixes and a checkpatch fix.
->>>>>
->>>>>     .../coresight/coresight-etm4x-core.c          |   1 +
->>>>>     .../hwtracing/coresight/coresight-tmc-core.c  | 150 ++++++++++++++++-
->>>>>     .../hwtracing/coresight/coresight-tmc-etf.c   |  72 +++++++++
->>>>>     .../hwtracing/coresight/coresight-tmc-etr.c   | 151 +++++++++++++++++-
->>>>>     drivers/hwtracing/coresight/coresight-tmc.h   |  11 +-
->>>>>     include/linux/coresight.h                     |  13 ++
->>>>>     6 files changed, 390 insertions(+), 8 deletions(-)
->>>>>
->>>>> diff --git a/drivers/hwtracing/coresight/coresight-etm4x-core.c b/drivers/hwtracing/coresight/coresight-etm4x-core.c
->>>>> index a0bdfabddbc6..7924883476c6 100644
->>>>> --- a/drivers/hwtracing/coresight/coresight-etm4x-core.c
->>>>> +++ b/drivers/hwtracing/coresight/coresight-etm4x-core.c
->>>>> @@ -1011,6 +1011,7 @@ static void etm4_disable(struct coresight_device *csdev,
->>>>>     	switch (mode) {
->>>>>     	case CS_MODE_DISABLED:
->>>>> +	case CS_MODE_READ_CRASHDATA:
->>>>>     		break;
->>>>>     	case CS_MODE_SYSFS:
->>>>>     		etm4_disable_sysfs(csdev);
->>>>> diff --git a/drivers/hwtracing/coresight/coresight-tmc-core.c b/drivers/hwtracing/coresight/coresight-tmc-core.c
->>>>> index daad08bc693d..0c145477ba66 100644
->>>>> --- a/drivers/hwtracing/coresight/coresight-tmc-core.c
->>>>> +++ b/drivers/hwtracing/coresight/coresight-tmc-core.c
->>>>> @@ -106,6 +106,60 @@ u32 tmc_get_memwidth_mask(struct tmc_drvdata *drvdata)
->>>>>     	return mask;
->>>>>     }
->>>>> +int tmc_read_prepare_crashdata(struct tmc_drvdata *drvdata)
->>>>> +{
->>>>> +	int ret = 0;
->>>>> +	struct tmc_crash_metadata *mdata;
->>>>> +	struct coresight_device *csdev = drvdata->csdev;
->>>>> +
->>>>> +	if (!drvdata->crash_mdata.vaddr) {
->>>>> +		ret = -ENOMEM;
->>>>> +		goto out;
->>>>> +	}
->>>>> +
->>>>> +	mdata = drvdata->crash_mdata.vaddr;
->>>>> +	/* Check data integrity of metadata */
->>>>> +	if (mdata->crc32_mdata != find_crash_metadata_crc(mdata)) {
->>>>> +		dev_dbg(&drvdata->csdev->dev,
->>>>> +			"CRC mismatch in tmc crash metadata\n");
->>>>> +		ret = -EINVAL;
->>>>
->>>> After the comments above, if at all we retain this, please use -EIO
->>>
->>>
->>> Ack.
->>>
->>>>
->>>>> +		goto out;
->>>>> +	}
->>>>> +	/* Check data integrity of tracedata */
->>>>> +	if (mdata->crc32_tdata != find_crash_tracedata_crc(drvdata, mdata)) {
->>>>> +		dev_dbg(&drvdata->csdev->dev,
->>>>> +			"CRC mismatch in tmc crash tracedata\n");
->>>>> +		ret = -EINVAL;
->>>>
->>>> Same here, -EIO
->>>
->>> Ack.
->>>
->>>>
->>>>> +		goto out;
->>>>> +	}
->>>>> +	/* Check for valid metadata */
->>>>> +	if (!mdata->valid) {
->>>>> +		dev_dbg(&drvdata->csdev->dev,
->>>>> +			"Data invalid in tmc crash metadata\n");
->>>>> +		ret = -EINVAL;
->>>>> +		goto out;
->>>>> +	}
->>>>
->>>> -ENXIO
->>>
->>> Ack.
->>>
->>>>
->>>>
->>>>> +	/* Sink specific crashdata mode preparation */
->>>>> +	ret = crashdata_ops(csdev)->prepare(csdev);
->>>>> +	if (ret)
->>>>> +		goto out;
->>>>> +
->>>>> +	if (mdata->sts & 0x1)
->>>>
->>>> If at all we need this, please use TMC_STS_FULL instead of hard coding
->>>> numbers.
->>>
->>>
->>> Ack.
->>>
->>>
->>>>
->>>>> +		coresight_insert_barrier_packet(drvdata->buf);
->>>>> +
->>>>> +out:
->>>>> +	return ret;
->>>>> +}
->>>>> +
->>>>> +int tmc_read_unprepare_crashdata(struct tmc_drvdata *drvdata)
->>>>> +{
->>>>> +	struct coresight_device *csdev = drvdata->csdev;
->>>>> +
->>>>> +	/* Sink specific crashdata mode preparation */
->>>>> +	return crashdata_ops(csdev)->unprepare(csdev);
->>>>> +}
->>>>> +
->>>>>     static int tmc_read_prepare(struct tmc_drvdata *drvdata)
->>>>>     {
->>>>>     	int ret = 0;
->>>>> @@ -156,6 +210,9 @@ static int tmc_open(struct inode *inode, struct file *file)
->>>>>     	struct tmc_drvdata *drvdata = container_of(file->private_data,
->>>>>     						   struct tmc_drvdata, miscdev);
->>>>> +	if (coresight_get_mode(drvdata->csdev) == CS_MODE_READ_CRASHDATA)
->>>>> +		return -EBUSY;
->>>>> +
->>>>>     	ret = tmc_read_prepare(drvdata);
->>>>>     	if (ret)
->>>>>     		return ret;
->>>>> @@ -180,13 +237,12 @@ static inline ssize_t tmc_get_sysfs_trace(struct tmc_drvdata *drvdata,
->>>>>     	return -EINVAL;
->>>>>     }
->>>>> -static ssize_t tmc_read(struct file *file, char __user *data, size_t len,
->>>>> -			loff_t *ppos)
->>>>> +static ssize_t tmc_read_common(struct tmc_drvdata *drvdata, char __user *data,
->>>>> +			       size_t len, loff_t *ppos)
->>>>>     {
->>>>>     	char *bufp;
->>>>>     	ssize_t actual;
->>>>> -	struct tmc_drvdata *drvdata = container_of(file->private_data,
->>>>> -						   struct tmc_drvdata, miscdev);
->>>>> +
->>>>>     	actual = tmc_get_sysfs_trace(drvdata, *ppos, len, &bufp);
->>>>>     	if (actual <= 0)
->>>>>     		return 0;
->>>>> @@ -203,6 +259,15 @@ static ssize_t tmc_read(struct file *file, char __user *data, size_t len,
->>>>>     	return actual;
->>>>>     }
->>>>> +static ssize_t tmc_read(struct file *file, char __user *data, size_t len,
->>>>> +			loff_t *ppos)
->>>>> +{
->>>>> +	struct tmc_drvdata *drvdata = container_of(file->private_data,
->>>>> +						   struct tmc_drvdata, miscdev);
->>>>> +
->>>>> +	return tmc_read_common(drvdata, data, len, ppos);
->>>>> +}
->>>>> +
->>>>>     static int tmc_release(struct inode *inode, struct file *file)
->>>>>     {
->>>>>     	int ret;
->>>>> @@ -225,6 +290,61 @@ static const struct file_operations tmc_fops = {
->>>>>     	.llseek		= no_llseek,
->>>>>     };
->>>>> +static int tmc_crashdata_open(struct inode *inode, struct file *file)
->>>>> +{
->>>>> +	int ret;
->>>>> +	struct tmc_drvdata *drvdata = container_of(file->private_data,
->>>>> +						   struct tmc_drvdata,
->>>>> +						   crashdev);
->>>>> +
->>>>> +	if (!coresight_take_mode(drvdata->csdev, CS_MODE_READ_CRASHDATA))
->>>>> +		return -EBUSY;
->>>>> +
->>>>> +	ret = tmc_read_prepare(drvdata);
->>>>> +	if (ret) {
->>>>> +		coresight_set_mode(drvdata->csdev, CS_MODE_DISABLED);
->>>>> +		return ret;
->>>>> +	}
->>>>> +
->>>>> +	nonseekable_open(inode, file);
->>>>
->>>>
->>>> As mentioned in the beginning, please use "mdata.valid" to deny any open
->>>> requests and that way you could simplify most of the code and make a single
->>>> function to handle all of the crash device handling.
->>>
->>> Did you meant using drvdata->crash_mdata.valid to special case common
->>> functions instead of relying on csdev->mode ? Please clarify.
->>
->> You may reuse "code" for reading from a buffer. But please do not use a
->> mode to switch buffer. Instead, you could refactor common "code" to a
->> function and pass appropriate buffer to the function.
-> 
-> Okay. Got it. Will rework accordingly.
-> 
->>
->>>
->>>>
->>>>
->>>>> +
->>>>> +	dev_dbg(&drvdata->csdev->dev, "%s: successfully opened\n", __func__);
->>>>> +	return 0;
->>>>> +}
->>>>> +
->>>>> +static ssize_t tmc_crashdata_read(struct file *file, char __user *data,
->>>>> +				  size_t len, loff_t *ppos)
->>>>> +{
->>>>> +	struct tmc_drvdata *drvdata = container_of(file->private_data,
->>>>> +						   struct tmc_drvdata,
->>>>> +						   crashdev);
->>>>> +
->>>>> +	return tmc_read_common(drvdata, data, len, ppos);
->>>>
->>>> Simply provide the reserve buffer data, instead of creating ETB / ETR
->>>> specific handling.
->>>
->>> The differences between tmc_etb/etr_get_sysfs_trace applies to crash
->>> data reads as well. So its not clear to me why we dont need ETB/ETR specific handling.
->>
->> My point is they all read from the "drvdata->crashbuf" isn't ? If you have a
->> crash_buf_fops, that would apply to ETB/ETR/ETFs as they all have
->> the data stored in the reserved buffer area. It doesn't matter for crash
->> buf. For sysfs trace it is different, because the trace data is at different
->> places. ETB has in internal SRAM, ETR has in RAM etc.
->>
-> 
-> The difference that i was trying to point out was on the offset part.
-> For ETB sink mode, the start offset is always 0 and for ETR its based on RWP
-> and hence the changes. So my understanding is that we still need to have
-> seperate functions for tmc_etb/etr_get_sysfs_trace while reading from
-> the reserved buffer area. CMIIWH.
+> No, don't make it reserved-memory - instead add it as
+> status = "reserved"; /* explanation for why */
+Ok, got
 
-We don't. We simply use a single function:
+> Also, I'd appreciate if the nodes were sorted by unit address in the
+> dtsi.
+so I would move "plic, clint" after node of uart9 as this suggestion
 
-/*
-  * Read from crash_buf @size bytes from @offset and copy to @target_buf
-  * @mdata describes the metadata for the crash buffer.
-  *
-  */
-tmc_read_crash_buf(crash_buf, mdata, offset, size, target_buf)
-{
-	real_offset = mdata.first_byte; // RRP for ETR. 0 for ETB
-	real_size = mdata.size; // Size for the total buffer.
+for uart1, its unit-address is 0xf0610000, it should be moved to after clint
+(once unit-address sorted), if we follow this rule strictly.
+but it occur to me this is not very intuitive, if no objection, I would put
+it between uart0 and uart2 (thus slightly break the rule..)
 
-	to_read = min(size, real_size - real_offset);
+P.S: I can cook a separated patch for adding uart1 node, should better for review
 
-	copy_from(crash_buf + real_offset), to_read bytes => target_buf
-}
-
-Suzuki
-
-
+-- 
+Yixun Lan (dlan)
+Gentoo Linux Developer
+GPG Key ID AABEFD55
 
