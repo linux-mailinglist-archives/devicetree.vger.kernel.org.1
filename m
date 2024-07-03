@@ -1,84 +1,74 @@
-Return-Path: <devicetree+bounces-82873-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82876-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9244926378
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 16:34:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 421A29263AD
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 16:43:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4A5831F22DC3
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 14:34:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 73FDC1C21C71
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 14:43:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14418177980;
-	Wed,  3 Jul 2024 14:34:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="OOlfFPNn"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E5D417B4F8;
+	Wed,  3 Jul 2024 14:43:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D79CA170854;
-	Wed,  3 Jul 2024 14:34:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from elvis.franken.de (elvis.franken.de [193.175.24.41])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 757FE17C9E8;
+	Wed,  3 Jul 2024 14:43:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.175.24.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720017252; cv=none; b=T20Z98tJebTVYTYSqjQmplgAv0Iil8veDK5qzYqbkm0++s02pABmnnrTwRBCQkPsRkEX4H+nGfjWNjhQjhnZn4fMJKJK+OppxKEfIUdMjdXRepPXlfVL2HM/BaB7t6qx8M9PctYm78nA39x9ldpCLMxsMoSv96auN6/mFTC3RsE=
+	t=1720017823; cv=none; b=h1VYPEsM5tn5ipc8FUhCaQm+IU34EGM3rkb6HsbqsvLgmbCftT/1dbUPbSDtr9+e5LfZvCAqxS+PJejzTtsd1s1wFw1C+/NVryug13aD9OxdPy+oOewqj4DhLzI9kvIrnhqnfOjf+yhe4bwA7UJEOpqJ0VJBzCjIH5o19DsTImk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720017252; c=relaxed/simple;
-	bh=LLMX3jjXZxqGijzK4Yb8leC6X2Okra+Heoqx62+HtPI=;
+	s=arc-20240116; t=1720017823; c=relaxed/simple;
+	bh=6i1GPb5W4C4z6CIP+KMnQBlUCdjbW33+ABJqX7Spv0M=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SlV1TcsJny9QehpOQsF6aMUxl0cYeHMhepkypLC0uhBX7KrnlbQLt9r1ff6cbKciBVGtc8sfxuUZpTQJXwP7aQo76bGQyqK+8juYj5tm+IUR3hoW8scwAufaYr5fQ1Zb0Jio36FjOLzxUEnBUYpEo0qauomI0dKEB/FTjntz3vg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=OOlfFPNn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DA2D8C2BD10;
-	Wed,  3 Jul 2024 14:34:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1720017251;
-	bh=LLMX3jjXZxqGijzK4Yb8leC6X2Okra+Heoqx62+HtPI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OOlfFPNnLzV7nWg3ygWFBK5cCsOyGCdWEAXodxWJJQLsXTTOY5m3IVT8Cd7TKJMlh
-	 IbX08KnYyJVnwu2KuoQXLREiSOfvvgYAmPmqvk1CDJOQwvZcV47t+sSQYvLz5W8inC
-	 OlYtc60ni6tQ7OavBtI6ATzVwohfTIdpLMbR7a0Y=
-Date: Wed, 3 Jul 2024 16:34:08 +0200
-From: Greg KH <gregkh@linuxfoundation.org>
-To: Sebastian Ene <sebastianene@google.com>
-Cc: Marc Zyngier <maz@kernel.org>, arnd@arndb.de, will@kernel.org,
-	Rob Herring <robh+dt@kernel.org>,
-	Dragan Cvetic <dragan.cvetic@xilinx.com>,
-	Guenter Roeck <linux@roeck-us.net>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, kernel-team@android.com
-Subject: Re: [PATCH v2 0/2] misc: vcpu_stall_detector: Add a PPI interrupt
-Message-ID: <2024070357-henna-dubiously-bc1f@gregkh>
-References: <20240613141335.1134341-1-sebastianene@google.com>
- <86tthwki93.wl-maz@kernel.org>
- <Zmsh53PnONKG23MC@google.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=mPdVrvRBIvbYsxzursj+C/+7I4wZtiNZD46FIv5jCDnWCUhgeYReYas/7Bde78ZTGOIpFqUBQ6V/zw/X+VuXUKLMxThAUBkHg/GcmKUW7ZMtWN+QgNOSbec5QGnxztQEAZ9DjY+N08iyaXo/holgc/4PGYbJvUVXlJ/Q/MbiyJI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alpha.franken.de; spf=pass smtp.mailfrom=alpha.franken.de; arc=none smtp.client-ip=193.175.24.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alpha.franken.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alpha.franken.de
+Received: from uucp by elvis.franken.de with local-rmail (Exim 3.36 #1)
+	id 1sP1Cc-0008NK-00; Wed, 03 Jul 2024 16:43:22 +0200
+Received: by alpha.franken.de (Postfix, from userid 1000)
+	id 3FE70C0120; Wed,  3 Jul 2024 16:35:27 +0200 (CEST)
+Date: Wed, 3 Jul 2024 16:35:27 +0200
+From: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+To: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-mips@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Tawfik Bayouk <tawfik.bayouk@mobileye.com>
+Subject: Re: [PATCH 0/3] MIPS: Add Mobileye EyeQ OLB system-controller
+Message-ID: <ZoVhry8VFRx8x3w/@alpha.franken.de>
+References: <20240628-mbly-mips-v1-0-f53f5e4c422b@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <Zmsh53PnONKG23MC@google.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240628-mbly-mips-v1-0-f53f5e4c422b@bootlin.com>
 
-On Thu, Jun 13, 2024 at 04:44:23PM +0000, Sebastian Ene wrote:
-> On Thu, Jun 13, 2024 at 03:52:08PM +0100, Marc Zyngier wrote:
-> > On Thu, 13 Jun 2024 15:13:33 +0100,
-> > Sebastian Ene <sebastianene@google.com> wrote:
-> > > 
-> > > Hello,
-> > > 
-> > > I respined the v2 version to address an issue previously found here:
-> > > https://lore.kernel.org/all/202406132132.FBKSWFav-lkp@intel.com/
-> > 
-> > So is this v2 or v3? Having two v2s on the list is... confusing.
-> > 
-> > 	M.
-> > 
+On Fri, Jun 28, 2024 at 06:11:49PM +0200, Théo Lebrun wrote:
+> This is a new iteration on the Mobileye system-controller series [0].
+> It has been split into separate series to facilitate merging.
 > 
-> There is a small change in the patch 2/2 so you are right it should be v3,
-> sorry for the confusion.
+> This series contains a dt-bindings defining the system-controller
+> (called OLB) used on EyeQ5, EyeQ6L and EyeQ6H. It then modifies the
+> EyeQ5 devicetree to exploit that system-controller.
 
-Please send a new version, nothing we can do with duplicate series on
-the lists...
+just to be sure, this replaces the v3 series ? And it's the only
+series, which should go through the MIPS tree ?
+
+Thomas.
+
+-- 
+Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
+good idea.                                                [ RFC1925, 2.3 ]
 
