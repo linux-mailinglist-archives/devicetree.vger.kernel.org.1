@@ -1,175 +1,158 @@
-Return-Path: <devicetree+bounces-82669-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82670-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77BE99254D8
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 09:42:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50F7A9254DB
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 09:42:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F1D301F233D7
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 07:42:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 802B41C20C81
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 07:42:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85F77137763;
-	Wed,  3 Jul 2024 07:42:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DD41137777;
+	Wed,  3 Jul 2024 07:42:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="K46qRXMY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sn787ysy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A22FD32C8E
-	for <devicetree@vger.kernel.org>; Wed,  3 Jul 2024 07:42:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48CA132C8E;
+	Wed,  3 Jul 2024 07:42:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719992536; cv=none; b=d2DR+JqlVUOfGYn5B89VhQoGKUpsQmsoF53OqTGGSCHklNN/tS0YvVgxTEtIXsw0qb4dqILX3A87GmIesjB+vZlNQQqOAk/GP/P4sv30w3wc3hqOwqd4DXDCPP+IKGoD9Ko1fFRFq0EY3mrkxriBl5ncQ8jNfsXsXr8zeTnVCEI=
+	t=1719992568; cv=none; b=aPBH/hSKbZJQuyec+HYnkh5F2oTwXvXzL73lYhj8UE3ekb8XmKqWblWXqVNC2iTCWSL22aDZswn0+q7nRh3/2ZWpQO7ou/OdeNqDcxlrXXyobdNlCj9sd+P/ASE+g98Ty2VdYw05Swg2TgWti9hUCzqftiHJhQ4dyi2KLw43bmc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719992536; c=relaxed/simple;
-	bh=JjpR/zi9Yb1mSVMWaZ74RpK0MTrr1DdxMiOgX0twqnU=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=kIaPa+MaRBOJiGmh02ORgVVF/eyQskC9uT9CaMlkX8Tatq4c4wTX7AzCWKfT6WUKkscjKvA6SL8LlN0lZuIzz16fywMTulFeRxgyamU5ezwV4hpZrXosm7pinA+ejals1w6fyOWGevYsegB7EWg2XlNrhprshnSRykQ7ssiTET4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=K46qRXMY; arc=none smtp.client-ip=209.85.208.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-57cbc66a0a6so604846a12.1
-        for <devicetree@vger.kernel.org>; Wed, 03 Jul 2024 00:42:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719992533; x=1720597333; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=tckfhFsEzLxO/FzhYuzYJZ7ZTtG1l9RlDBa9ctPpP/I=;
-        b=K46qRXMYXSJUz4U4NaEQYd4GDPftBpLZOng0t5HO9l1WAaVKqiD2kTysGbhZpKX9YR
-         d8+Fue58ovLn9zmR72iH0Patcbc2C+gewhD3f5rWEhcGDiAveQKfyhUiXcgGy7vb3Wbg
-         5yAIZd/mUza7rkI9uyYZf8AcUKm/h6/bY3lNbNE0mOLng1n5AZpOFpMlZ7R7R7080tsk
-         B7RCyf/9t1OW+KeheHephEyaRMKuoqlktua2ccp7GMHZ+DbimxXKs1V58HjZkuPtsVVX
-         LjZUBdv25pGk4uF2UYADltCuocVo2J0XptwHGw5eiJHUKt4sx8JKk4xj9Tq2g0pZNGPc
-         Fulw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719992533; x=1720597333;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=tckfhFsEzLxO/FzhYuzYJZ7ZTtG1l9RlDBa9ctPpP/I=;
-        b=dSe0BehUGW/xWuhsKxiFIQcZvzOQQSh9yT3bq9i8MNNi2l6MSlJsgNxh3/4o6akzPO
-         xE9uQR1lzAaGhKPejekDEmizZ0GxN6+6q7juzlgulRhodcktpRBSZieNQDiHlVlBi8ED
-         8LErnUiBUSbO4Kwjm/yHnwMQ7ZKmDKiU5Xs11EVZCyt/2DCkVAvbvUixNvcgilLB3FOl
-         aDjxudrr0dptFe3z4irQmL6jG2LHqpMm90TnBUOy63/HPuhnubl6ddlo/esEJzBl2UaW
-         9t9e6xrzHnLbWXEjrbnAZFZUIyXvpboVvHpnavW3M908Ud54G/Z9r8YSX8ra63M91ccG
-         /8pw==
-X-Forwarded-Encrypted: i=1; AJvYcCVHJAx55O4ts6V7vGctZzg/62QNAbiZ/wUXd7FJKDUqbxb0ZMSWI3r/GTT7UBzfvR3jCaJ0Ngj6ddkWJWQtIPbAfG64XK2/nHHQmA==
-X-Gm-Message-State: AOJu0Yw+PEzZqHmKmNDvxX0zJbqRjb9CrVnB67TCN76zAhRZfFbrb7nL
-	oMWzbR5fcVFE2+EQvWtu0XOMrLTwIb7SAJ/vJ8ElGaNVbYOXSHq6LbuJe29MpRM=
-X-Google-Smtp-Source: AGHT+IHBUXWvsQ+ZR0ipa89q0bV9qFwUW3amlH2ftgxHpU+HMJ25ZuKckN072GiRs/lu6I378XGvWQ==
-X-Received: by 2002:a05:6402:13d2:b0:57c:bec1:ff4b with SMTP id 4fb4d7f45d1cf-58ce525f4e4mr773812a12.10.1719992532776;
-        Wed, 03 Jul 2024 00:42:12 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:ef03:73b5:7503:ee71? ([2a01:e0a:982:cbb0:ef03:73b5:7503:ee71])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-58614f3d4c4sm6697063a12.87.2024.07.03.00.42.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Jul 2024 00:42:12 -0700 (PDT)
-Message-ID: <eea2d957-fb4d-4ede-9789-d1e24ef1663a@linaro.org>
-Date: Wed, 3 Jul 2024 09:42:11 +0200
+	s=arc-20240116; t=1719992568; c=relaxed/simple;
+	bh=d7wO73FMzmNUnkXQK7veItmN8OK22DyDbCyHBBaKR9E=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=RrxKZzwXzY1xijrzjvcY8k2GQE2U9Bu8CoCWKFbVBAhvDCs04kdILk8Hzo9TvFJ+IiunFzoRcOc9MYjhcj6Gb0InW4f9yWbtV54uEfPZMYS1vHpvqUrv5CiUePgflfUrUp4O6dg8E3hQTGfVzfg84e/YH2nQZRA0p9ardcPdgW4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sn787ysy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4460C4AF0C;
+	Wed,  3 Jul 2024 07:42:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719992567;
+	bh=d7wO73FMzmNUnkXQK7veItmN8OK22DyDbCyHBBaKR9E=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=sn787ysyg+fy2gk9vd38gSTE9XZoiXdcUQ83uSUyBjhO+qJk+vUNsuIlTtRpdhuj6
+	 cegwjX51eh3bpf6QFlsgIlLMcedl6y/udnkY971NlqJbLmVNOEAmQqx8BkdUtYsQ/n
+	 DbYDBuoX5n/xxKbXm7PnNx1QohiHQDdXZX0zOcL1Oc+RBIvj30LfTXgGlaCzIP9tcT
+	 KJGGKTmX9A4ESxexzS7JE5mnWSH4zUyQxQPpkz6QoSyJ+HtncXQ4p0HK4mRfRu38cT
+	 fPPl6JrAxUGr6rn594HI/2sXbFiqmMRjJe2SNg+D8YKKHiqV0Zc1kN2m+cpnAJAtpR
+	 aSEZWKV2Y4xKA==
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-58bac81f39bso2048328a12.2;
+        Wed, 03 Jul 2024 00:42:47 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWubQoEwI3PtfNAtXeXga0zWWV4riYnODUuYNVIvKGSJN4r2gbuqzma/VdT3oGfzkAYKDQDR7eRaFTLsXrbsUeXot5PZEwZSyKUrjEYc03anMKdAjY9aA0S8fn3zi2e88aGzWkEXw==
+X-Gm-Message-State: AOJu0YzwjIXcoVtSyCYiPriPIMu9h8RAkxi2/CARbTROsUj8fNS2VKWw
+	1JDi22EKQ/uo3GF/+OhPeBapXsKQUmSQDnJSyJhVfrGBEV06DudLcQGATi3qW7yXaTolcyj3F/m
+	kGTa9rM3I2w47+0xd4SEvFQrVWyc=
+X-Google-Smtp-Source: AGHT+IG7z1ijrDHEG8xdMvbUQ+K+sy3FSfHCIPsQRvUgfxkc+1nRLMzeAYnpn0+NqfyMLJBfczDO5uruzkeQ0HbD4hE=
+X-Received: by 2002:a17:907:970e:b0:a72:6ff6:b91a with SMTP id
+ a640c23a62f3a-a751447b21dmr821270266b.51.1719992566477; Wed, 03 Jul 2024
+ 00:42:46 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 1/3] dt-bindings: reset: Add compatible and DT bindings
- for Amlogic A4/A5 Reset Controller
-To: zelong dong <zelong.dong@amlogic.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, Kevin Hilman <khilman@baylibre.com>,
- Rob Herring <robh@kernel.org>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- kelvin.zhang@amlogic.com
-References: <20240703061610.37217-1-zelong.dong@amlogic.com>
- <20240703061610.37217-2-zelong.dong@amlogic.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20240703061610.37217-2-zelong.dong@amlogic.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <cover.1716795485.git.zhoubinbin@loongson.cn>
+In-Reply-To: <cover.1716795485.git.zhoubinbin@loongson.cn>
+From: Huacai Chen <chenhuacai@kernel.org>
+Date: Wed, 3 Jul 2024 15:42:32 +0800
+X-Gmail-Original-Message-ID: <CAAhV-H793mKPRyng6VFxS5=sXofvTAFX3t-h2MPCVs+9boe_NA@mail.gmail.com>
+Message-ID: <CAAhV-H793mKPRyng6VFxS5=sXofvTAFX3t-h2MPCVs+9boe_NA@mail.gmail.com>
+Subject: Re: [PATCH v4 0/2] pwm: Introduce pwm driver for the Loongson family chips
+To: Binbin Zhou <zhoubinbin@loongson.cn>
+Cc: Binbin Zhou <zhoubb.aaron@gmail.com>, Huacai Chen <chenhuacai@loongson.cn>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Juxin Gao <gaojuxin@loongson.cn>, loongson-kernel@lists.loongnix.cn, 
+	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
+	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 03/07/2024 08:16, zelong dong wrote:
-> From: Zelong Dong <zelong.dong@amlogic.com>
-> 
-> Add new compatible and DT bindings for Amlogic A4/A5 Reset Controller
-> 
-> Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
-> ---
->   .../bindings/reset/amlogic,meson-reset.yaml   | 22 +++++++++++++------
->   1 file changed, 15 insertions(+), 7 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
-> index f0c6c0df0ce3..80345af81d5a 100644
-> --- a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
-> +++ b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
-> @@ -12,13 +12,21 @@ maintainers:
->   
->   properties:
->     compatible:
-> -    enum:
-> -      - amlogic,meson8b-reset # Reset Controller on Meson8b and compatible SoCs
-> -      - amlogic,meson-gxbb-reset # Reset Controller on GXBB and compatible SoCs
-> -      - amlogic,meson-axg-reset # Reset Controller on AXG and compatible SoCs
-> -      - amlogic,meson-a1-reset # Reset Controller on A1 and compatible SoCs
-> -      - amlogic,meson-s4-reset # Reset Controller on S4 and compatible SoCs
-> -      - amlogic,c3-reset # Reset Controller on C3 and compatible SoCs
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - amlogic,meson8b-reset # Reset Controller on Meson8b and compatible SoCs
-> +              - amlogic,meson-gxbb-reset # Reset Controller on GXBB and compatible SoCs
-> +              - amlogic,meson-axg-reset # Reset Controller on AXG and compatible SoCs
-> +              - amlogic,meson-a1-reset # Reset Controller on A1 and compatible SoCs
-> +              - amlogic,meson-s4-reset # Reset Controller on S4 and compatible SoCs
-> +              - amlogic,t7-reset
-> +      - items:
-> +          - enum:
-> +              - amlogic,a4-reset
-> +              - amlogic,a5-reset
-> +              - amlogic,c3-reset
-> +          - const: amlogic,meson-s4-reset
+For the whole series,
 
-Here you're changing bindings for amlogic,c3-reset, move it in the other enum list.
+Acked-by: Huacai Chen <chenhuacai@loongson.cn>
 
-Neil
-
->   
->     reg:
->       maxItems: 1
-
+On Mon, May 27, 2024 at 3:51=E2=80=AFPM Binbin Zhou <zhoubinbin@loongson.cn=
+> wrote:
+>
+> Hi all:
+>
+> This patchset introduce a generic PWM framework driver for Loongson famil=
+y.
+> Each PWM has one pulse width output signal and one pulse input signal to =
+be measured.
+>
+> It can be found on Loongson-2K series cpus and Loongson LS7A bridge chips=
+.
+>
+> Thanks.
+>
+> -------
+> V4:
+> patch (2/2):
+>  - Rebase on pwm/for-next;
+>  - Addressed Uwe's review comments, thanks.
+>    - Make use of devm_pwmchip_alloc() function;
+>    - Add Limitations description;
+>    - Add LOONGSON_ prefix for Loongson pwm register defines;
+>    - Keep regs written only once;
+>    - Rewrite duty/period calculation;
+>    - Add dev_err_probe() in .probe();
+>    - Put the parameters used by PM into a separate
+>      structure(pwm_loongson_suspend_store);
+>    - Fix some code style.
+>
+> Link to V3:
+> https://lore.kernel.org/linux-pwm/cover.1713164810.git.zhoubinbin@loongso=
+n.cn/
+>
+> V3:
+> patch (1/2):
+>  - Add Reviewed-by tag from Krzysztof, thanks.
+> patch (2/2):
+>  - Several code stlye adjustments, such as line breaks.
+>
+> Link to V2:
+> https://lore.kernel.org/all/cover.1712732719.git.zhoubinbin@loongson.cn/
+>
+> v2:
+> - Remove the dts-related patches and update dts at once after all
+> relevant drivers are complete.
+> patch (1/2):
+>  - The dt-binding filename should match compatible, rename it as
+>    loongson,ls7a-pwm.yaml;
+>  - Update binding description;
+>  - Add description for each pwm cell;
+>  - Drop '#pwm-cells' from required, for pwm.yaml makes it required alread=
+y.
+>
+> Link to v1:
+> https://lore.kernel.org/linux-pwm/cover.1711953223.git.zhoubinbin@loongso=
+n.cn/
+>
+> Binbin Zhou (2):
+>   dt-bindings: pwm: Add Loongson PWM controller
+>   pwm: Add Loongson PWM controller support
+>
+>  .../bindings/pwm/loongson,ls7a-pwm.yaml       |  66 ++++
+>  MAINTAINERS                                   |   7 +
+>  drivers/pwm/Kconfig                           |  12 +
+>  drivers/pwm/Makefile                          |   1 +
+>  drivers/pwm/pwm-loongson.c                    | 295 ++++++++++++++++++
+>  5 files changed, 381 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pwm/loongson,ls7a-p=
+wm.yaml
+>  create mode 100644 drivers/pwm/pwm-loongson.c
+>
+> --
+> 2.43.0
+>
+>
 
