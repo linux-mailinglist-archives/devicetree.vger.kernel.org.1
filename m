@@ -1,71 +1,74 @@
-Return-Path: <devicetree+bounces-82745-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82750-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E1FE9258AF
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 12:32:50 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2A869258F2
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 12:38:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1D62D28F79E
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 10:31:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 37F20B238AD
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 10:34:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3987D17839D;
-	Wed,  3 Jul 2024 10:28:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE37A17BB2D;
+	Wed,  3 Jul 2024 10:30:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="LlNmUIWB"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="Wldcbtw6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C854D172BCE;
-	Wed,  3 Jul 2024 10:28:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E151176FA0;
+	Wed,  3 Jul 2024 10:30:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720002529; cv=none; b=Yg0KgV96shtLxXXYegdDgaXmMu7vnePJz0yK/jmH0J3J7mvtMgYGD7DW9DxlT/+9KtANZdqdbFFB4Oy/biayg2zM4QhyojmYjtx2Yl1M5I2/SvyMzBBQ2sReY0u3rSWj7hmfMNwApJzS7O5iFVgrE7tBxYWKKlH49BGMD/YaJ+g=
+	t=1720002614; cv=none; b=BSXXbrUvlfi4mMgQBYvXUiLeqVMAjrLkz6wRl90iCe9clVXIpOL/hRUehwiuN+cuwCYx0w5xf0yp+cRKahgBU+NxfZeRvy0SfCtVf1rBozJQSRrNBJ21dyyGSEvhQ6MMIE9Q/QgwBwti97bXQuORqlKT04bMkY9/FR9NbnU6oew=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720002529; c=relaxed/simple;
-	bh=iW4nEYVeIC+sXQd4/K8zgIRVxXurmIFqKqfAT9zN62o=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=V0RVvLaZ7vgP04PhZJg0GxDA/NuO9ydKMl7U3LCfaxVZF3Px6jjqJf0HS9l5/AcibNsPpQ1UNi0wOkJ5kK0xk3CN98HnXJAky4fz+sYW1e+RqrCKvNxPR0OKl8O5UMP0M5wnKJ1gBD2eQHF/qx/+1+RYu3+Ru5Teyru1QkrQMAE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=fail smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=LlNmUIWB; arc=none smtp.client-ip=68.232.153.233
+	s=arc-20240116; t=1720002614; c=relaxed/simple;
+	bh=8i5Z2KfBYTZAJwGXyHoxcKMWI4cBoFSSa/Wp6ippfD0=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=D1qJ9gJwQDqhyzWBP+ezFaax9+FeSVUrcf4ZFCBKOmesnjErgxg0jO3evbEgY78VKbv3Bh5rR6UfU6pHioU/dFnlJjbeR6F2Bjm1+nyAjxElGuwREfxDDzXj0qjpdSd3/Z/2SCeG6yoUx3PWgUhErs59RTuBEkWP2gBRv5nNi1M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=fail smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=Wldcbtw6; arc=none smtp.client-ip=68.232.154.123
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
 Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=microchip.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1720002528; x=1751538528;
-  h=from:to:subject:date:message-id:in-reply-to:references:
-   mime-version:content-transfer-encoding;
-  bh=iW4nEYVeIC+sXQd4/K8zgIRVxXurmIFqKqfAT9zN62o=;
-  b=LlNmUIWB+TLtecwUUGb1SQXnZ3/fTKiz+ROWTZ6NUdpUqZOwSxj4Fz9D
-   Z74FbL2f7bWfft+YLs6K0rv+DWKxODzrKomYxD7JhtAzb54haECXl+UqC
-   dOMkbUl5lrxEFjtAPHwGW6EJnXICToV0v8212+VVQIJbR1ad6G+r0dk+p
-   7OG3Ke+w+DqZs8P6RMJVc5JXB3atGytS28FfwkJvxn68WwQb5vZp9VtQU
-   sDRzPK0FLH0yDTbRM7HKAGPdEj2H+C+LbHLddC696xGDzE+3IerTW9ST6
-   K6DrYvD/L+//TVMQRnl+TpVkGkRAfKx/u+4AnkYkfGNc2aVHBm/UrVoVE
-   Q==;
-X-CSE-ConnectionGUID: ywlN1IFORca1IOesWlMguw==
-X-CSE-MsgGUID: 7KTdyXrOTBuQuZ1ZGgEHHA==
+  t=1720002613; x=1751538613;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=8i5Z2KfBYTZAJwGXyHoxcKMWI4cBoFSSa/Wp6ippfD0=;
+  b=Wldcbtw6Iec00tl8VArPbQgqOkfbLgXcCFJlnxKxTO3EFEriO42rZols
+   voecWQASntRhv0udOIMhXqw/JBDwH7KuXxE34G6h3LNMeqGt0EVXBZMwL
+   LnDjdOBzCLqAv2gWZAcU5sBFAi/Gmkg3HX7EgD9YXcGuON28UXWnJCNwQ
+   TfwSu0dLAZx5rRZDDSFQ6Wm0Rkd/p+krbn/KU7IcJ3HjFiuUkDyMYSrlH
+   QJTJQINdVfeb3iOeZbps1eoUxLmC1udJcDDBrawEh8QtR2kOVMO0yVRtQ
+   06H06smCbRayqbKLoNaVJyliL2HwTG3uRUKzqXBNkU28EG5XRveKdXiQJ
+   w==;
+X-CSE-ConnectionGUID: hLLhwY7cQcOyno5TMnxZqQ==
+X-CSE-MsgGUID: vS98msG8QLSgNJkd/SwUsQ==
 X-IronPort-AV: E=Sophos;i="6.09,181,1716274800"; 
-   d="scan'208";a="28804769"
+   d="scan'208";a="29441574"
 X-Amp-Result: SKIPPED(no attachment in message)
 Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 03 Jul 2024 03:28:45 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 03 Jul 2024 03:30:12 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 3 Jul 2024 03:28:34 -0700
+ 15.1.2507.35; Wed, 3 Jul 2024 03:29:02 -0700
 Received: from che-lt-i67070.microchip.com (10.10.85.11) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.2507.35 via Frontend Transport; Wed, 3 Jul 2024 03:28:31 -0700
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
+ 15.1.2507.35 via Frontend Transport; Wed, 3 Jul 2024 03:28:57 -0700
 From: Varshini Rajendran <varshini.rajendran@microchip.com>
-To: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-	<varshini.rajendran@microchip.com>, <claudiu.beznea@tuxon.dev>,
-	<durai.manickamkr@microchip.com>, <arnd@arndb.de>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v5 17/27] ARM: dts: at91: sam9x60: Add nirqs property in the dt node
-Date: Wed, 3 Jul 2024 15:58:28 +0530
-Message-ID: <20240703102828.196160-1-varshini.rajendran@microchip.com>
+To: <p.zabel@pengutronix.de>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <nicolas.ferre@microchip.com>,
+	<alexandre.belloni@bootlin.com>, <claudiu.beznea@tuxon.dev>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>
+CC: <varshini.rajendran@microchip.com>, Krzysztof Kozlowski
+	<krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v5 21/27] dt-bindings: reset: atmel,at91sam9260-reset: add sam9x7
+Date: Wed, 3 Jul 2024 15:58:54 +0530
+Message-ID: <20240703102854.196354-1-varshini.rajendran@microchip.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20240703102011.193343-1-varshini.rajendran@microchip.com>
 References: <20240703102011.193343-1-varshini.rajendran@microchip.com>
@@ -78,29 +81,30 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 
-Add the microchip,nr-irqs property in the DT node and set the value
-for the driver to get the value from the DT instead of a hardcoded macro.
+Add documentation for SAM9X7 reset controller.
 
 Signed-off-by: Varshini Rajendran <varshini.rajendran@microchip.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Philipp Zabel <p.zabel@pengutronix.de>
 ---
-Changes in v5:
-- Separated the patch from the DT bindings.
----
- arch/arm/boot/dts/microchip/sam9x60.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+ .../devicetree/bindings/reset/atmel,at91sam9260-reset.yaml    | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/arch/arm/boot/dts/microchip/sam9x60.dtsi b/arch/arm/boot/dts/microchip/sam9x60.dtsi
-index 291540e5d81e..7dbe34b7587a 100644
---- a/arch/arm/boot/dts/microchip/sam9x60.dtsi
-+++ b/arch/arm/boot/dts/microchip/sam9x60.dtsi
-@@ -1201,6 +1201,7 @@ aic: interrupt-controller@fffff100 {
- 				interrupt-controller;
- 				reg = <0xfffff100 0x100>;
- 				atmel,external-irqs = <31>;
-+				microchip,nr-irqs = <50>;
- 			};
+diff --git a/Documentation/devicetree/bindings/reset/atmel,at91sam9260-reset.yaml b/Documentation/devicetree/bindings/reset/atmel,at91sam9260-reset.yaml
+index 98465d26949e..c3b33bbc7319 100644
+--- a/Documentation/devicetree/bindings/reset/atmel,at91sam9260-reset.yaml
++++ b/Documentation/devicetree/bindings/reset/atmel,at91sam9260-reset.yaml
+@@ -26,6 +26,10 @@ properties:
+       - items:
+           - const: atmel,sama5d3-rstc
+           - const: atmel,at91sam9g45-rstc
++      - items:
++          - enum:
++              - microchip,sam9x7-rstc
++          - const: microchip,sam9x60-rstc
  
- 			dbgu: serial@fffff200 {
+   reg:
+     minItems: 1
 -- 
 2.25.1
 
