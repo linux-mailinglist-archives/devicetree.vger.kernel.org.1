@@ -1,231 +1,118 @@
-Return-Path: <devicetree+bounces-82777-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82778-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6602B9259AE
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 12:48:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D1309259C5
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 12:50:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E80691F22013
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 10:48:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9F3751C22F63
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 10:50:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FEE6190042;
-	Wed,  3 Jul 2024 10:38:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA56416DECF;
+	Wed,  3 Jul 2024 10:41:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="aLctC95x"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ijdbt7xg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACA7D174EFC;
-	Wed,  3 Jul 2024 10:38:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C07DE15B984;
+	Wed,  3 Jul 2024 10:41:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720003131; cv=none; b=r4/INWpD/I9EOj9UDIXdTMaNMby767ttIzrf3cMjwucmSYapYJCK2Z4Vnutd55U36A0crQEhWw8N9ZTKm1KYqR7JMVQWG1Wcxk3pqjGn4xdmsUCAYTZ75j41+OlV9XKKsxM00/KngC4Qd9VsLoNGB+ETHr7KD+YjWbC4+EEluuI=
+	t=1720003290; cv=none; b=Jhpue0IbqoGkbw4PvI9dPBPmjh04ZaaOYOJV6lK3AIXffeY42wbGdVoU5DhMzl/5CtRrAEFRl1xTZUQuABgKEQ3iE4YB/uM11glXcRoWzSPwPGZUBK92ZB3GWswqWdwgYtCutR9x9K93Jt6iEZW48f3NftXjlummp8s6HvVlJhY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720003131; c=relaxed/simple;
-	bh=imYEkBXowZEctWnX7RSJaxD8kZRYLJFmccuWAyTSK7w=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=hZ2gaGvWk4rLmnrliowh1iqj/3YZRPWUPmgcwqPFC7lNG/mQQtdUsPGiuur27Hhc8aJ2r1dE+Xh6ZTLqLibDuCYJTJFyOHCEKTEgesAWowM80FjkFiBoOvYGof5d9pIObXqkAEDjr3S4V0luWQ8L6V0ayVrIpMfdKmZAGcrFrMo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=aLctC95x; arc=none smtp.client-ip=217.70.183.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 42E2C40006;
-	Wed,  3 Jul 2024 10:38:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1720003126;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=1Bx2CQCZLnvl2mGaHzoLhHeTCe30chHxVgbi6fu5d+s=;
-	b=aLctC95xt2Q6rMLnoKMX3FJ/PPaRdMHQEBg8Yh4ab3FSY9cbwu/dUFTyd2apLZ20deWbHL
-	p+IzkHN10jVZ1AG9Zn60wT53j8GY4YjZh45RcrSYSRiZO/UmHE3QPIVv0XvnhM2mXl2hWz
-	VOJOVdL5ZPhpZJKh1jWQ96KV9qbUgn5W/5TTMt7H+C2eSDixGWwEKYYBbQX1xXqSkyGHz5
-	91ju+rAKcnrwNcrolgluBFlh3QFO+/DQF5Wl+7Xbh+KtpnaGIUDYbYcsxewuu+9dpHQeok
-	x6ehLSPvrF/uwBxNqrMB68JqQwCZNKNJ8SkpeUBfTvTBYcpghA0kpCr+80jVbg==
-From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Date: Wed, 03 Jul 2024 12:37:04 +0200
-Subject: [PATCH 20/20] of: deprecate and rename of_property_for_each_u32()
+	s=arc-20240116; t=1720003290; c=relaxed/simple;
+	bh=vgXfThRtXrQ3WeSSg7JY98NnV/Woiv8luRBEyLCeIYc=;
+	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=RJPXcguJ6gP/zdYnGV25e1OZo6fQ2W//gglcKuZWSYgUXpS+EMAK4WGvg+yl4eoYfMhnNuhfPdv4E+ly2qAQolpauh1BTNHu04RFbI3OpXr6v2RZnUhxbLnuUoR8jwhoiYBOd+WSjo4BPASyOhWgAhDVO1gK7ZEaCCxQ5WZTNDw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ijdbt7xg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50F42C2BD10;
+	Wed,  3 Jul 2024 10:41:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720003290;
+	bh=vgXfThRtXrQ3WeSSg7JY98NnV/Woiv8luRBEyLCeIYc=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=Ijdbt7xgZsywBooEPssKc8vdPrXC/WPfsDeiQymGFLNpNdQwBK/lojF5MXypNztMv
+	 xdK++V+p8+WGokw3nt/AS65Y1mcY4yTt4SUno4HwICxLoV0Ln95D+vwz/xeEv9TCSU
+	 HzQUDCsSXT/LvN/kWUnPjLBwBCvmfP3nX1C9pJ1uBFP7jwp2bD/YgJzXFFufgA2PLd
+	 5yQQhy/P5hVdn724ENuNLbrzCKa6P9k6tckNhKdLmMe7FW+WGvUi/M2tqdT8ae8oNO
+	 mic4NQ/4WNbAZLX0Tw3h2Z3JI3ExSLVDkP50rUE3IzDYsfONM9Rmwxmv1BmNUkUcQM
+	 CERkSeQZFfAAg==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.95)
+	(envelope-from <maz@kernel.org>)
+	id 1sOxQV-009PLh-Uj;
+	Wed, 03 Jul 2024 11:41:28 +0100
+Date: Wed, 03 Jul 2024 11:41:27 +0100
+Message-ID: <86a5iyahbc.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Christian Zigotzky <chzigotzky@xenosoft.de>
+Cc: Rob Herring <robh@kernel.org>,
+	apatel@ventanamicro.com,
+	DTML <devicetree@vger.kernel.org>,
+	Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+	linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+	mad skateman <madskateman@gmail.com>,
+	"R.T.Dickinson" <rtd2@xtra.co.nz>,
+	Matthew Leaman <matthew@a-eon.biz>,
+	Darren Stevens <darren@stevens-zone.net>,
+	Christian Zigotzky <info@xenosoft.de>
+Subject: Re: [PowerPC] [PASEMI] Issue with the identification of ATA drives after the of/irq updates 2024-05-29
+In-Reply-To: <B550D4C4-6F82-409E-B5A8-E7D123ACB93D@xenosoft.de>
+References: <86cynv9dx7.wl-maz@kernel.org>
+	<B550D4C4-6F82-409E-B5A8-E7D123ACB93D@xenosoft.de>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/29.3
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240703-of_property_for_each_u32-v1-20-42c1fc0b82aa@bootlin.com>
-References: <20240703-of_property_for_each_u32-v1-0-42c1fc0b82aa@bootlin.com>
-In-Reply-To: <20240703-of_property_for_each_u32-v1-0-42c1fc0b82aa@bootlin.com>
-To: Miguel Ojeda <ojeda@kernel.org>, Rob Herring <robh@kernel.org>, 
- Saravana Kannan <saravanak@google.com>, 
- Nathan Chancellor <nathan@kernel.org>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Tony Lindgren <tony@atomide.com>, 
- Bjorn Andersson <andersson@kernel.org>, 
- =?utf-8?q?Emilio_L=C3=B3pez?= <emilio@elopez.com.ar>, 
- Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
- Daniel Lezcano <daniel.lezcano@linaro.org>, 
- Thomas Gleixner <tglx@linutronix.de>, 
- Florian Fainelli <florian.fainelli@broadcom.com>, 
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
- Linus Walleij <linus.walleij@linaro.org>, 
- Bartosz Golaszewski <brgl@bgdev.pl>, Jonathan Cameron <jic23@kernel.org>, 
- Lee Jones <lee@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Jiri Slaby <jirislaby@kernel.org>, 
- Richard Leitner <richard.leitner@linux.dev>, 
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Nicolas Ferre <nicolas.ferre@microchip.com>, 
- Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>, 
- Christophe Leroy <christophe.leroy@csgroup.eu>, 
- "Naveen N. Rao" <naveen.n.rao@linux.ibm.com>, 
- Damien Le Moal <dlemoal@kernel.org>
-Cc: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- llvm@lists.linux.dev, linux-clk@vger.kernel.org, linux-omap@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-sunxi@lists.linux.dev, linux-samsung-soc@vger.kernel.org, 
- linux-gpio@vger.kernel.org, linux-iio@vger.kernel.org, 
- linux-pwm@vger.kernel.org, linux-serial@vger.kernel.org, 
- linux-usb@vger.kernel.org, patches@opensource.cirrus.com, 
- linux-sound@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, 
- linux-riscv@lists.infradead.org, Luca Ceresoli <luca.ceresoli@bootlin.com>
-X-Mailer: b4 0.14.0
-X-GND-Sasl: luca.ceresoli@bootlin.com
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: chzigotzky@xenosoft.de, robh@kernel.org, apatel@ventanamicro.com, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, madskateman@gmail.com, rtd2@xtra.co.nz, matthew@a-eon.biz, darren@stevens-zone.net, info@xenosoft.de
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 
-of_property_for_each_u32() is meant to disappear. All the call sites not
-using the 3rd and 4th arguments have already been replaced by
-of_property_for_each_u32_new().
+On Wed, 03 Jul 2024 11:26:17 +0100,
+Christian Zigotzky <chzigotzky@xenosoft.de> wrote:
+>=20
+> On 3. Jul 2024, at 08:40, Marc Zyngier <maz@kernel.org> wrote:
+>=20
+> This isn't a DTS. This is a listing of all the nodes, not something I
+> can use to feed the kernel. I explained how to generate it.
+>=20
+> Download the compiled device tree for the Nemo board:
+> http://www.xenosoft.de/fdt-nemo-board.zip
+>=20
+> No, thank you.
+>=20
+> =E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94
+>=20
+> You know already the device tree: https://lists.ozlabs.org/pipermail/linu=
+xppc-dev/2021-November/236587.html
 
-Deprecate the old macro. Also rename it to minimize the number of new
-usages and encourage conversion to the of_property_for_each_u32_new() macro
-in not(-yet)-upstream code.
+Do you think I keep this sort of things from almost three years ago? I
+have better things to do.
 
-Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+Now, either you provide the required information in the required form
+or you don't. Either you test the proposed patches or you don't.
 
----
+If you do, great, and I'll do my best to help you. If you don't, also
+great, because I can go back to the stuff I'm actually interested in
+(i.e. not your machine).
 
-Notes:
+This is your call, and only yours.
 
- * The following files have not been build-tested simply because I haven't
-   managed to have a config that enables them so far:
+	M.
 
-     drivers/irqchip/irq-pic32-evic.c
-     drivers/pinctrl/pinctrl-k210.c
-
- * These have not been converted yet as they are not trivial, and they will
-   need to use a more specific function that does the lookup they need and
-   returns the result:
-
-     drivers/clk/clk-si5351.c
-     drivers/clk/clk.c
----
- .clang-format                    | 2 +-
- drivers/clk/clk-si5351.c         | 4 ++--
- drivers/clk/clk.c                | 2 +-
- drivers/irqchip/irq-pic32-evic.c | 2 +-
- drivers/pinctrl/pinctrl-k210.c   | 2 +-
- include/linux/of.h               | 3 ++-
- 6 files changed, 8 insertions(+), 7 deletions(-)
-
-diff --git a/.clang-format b/.clang-format
-index db25cde2651a..a91b9bb39d9b 100644
---- a/.clang-format
-+++ b/.clang-format
-@@ -569,8 +569,8 @@ ForEachMacros:
-   - 'nr_node_for_each_safe'
-   - 'of_for_each_phandle'
-   - 'of_property_for_each_string'
--  - 'of_property_for_each_u32'
-   - 'of_property_for_each_u32_new'
-+  - 'of_property_for_each_u32_old'
-   - 'pci_bus_for_each_resource'
-   - 'pci_dev_for_each_resource'
-   - 'pcl_for_each_chunk'
-diff --git a/drivers/clk/clk-si5351.c b/drivers/clk/clk-si5351.c
-index 4ce83c5265b8..ff990b15d616 100644
---- a/drivers/clk/clk-si5351.c
-+++ b/drivers/clk/clk-si5351.c
-@@ -1191,7 +1191,7 @@ static int si5351_dt_parse(struct i2c_client *client,
- 	 * property silabs,pll-source : <num src>, [<..>]
- 	 * allow to selectively set pll source
- 	 */
--	of_property_for_each_u32(np, "silabs,pll-source", prop, p, num) {
-+	of_property_for_each_u32_old(np, "silabs,pll-source", prop, p, num) {
- 		if (num >= 2) {
- 			dev_err(&client->dev,
- 				"invalid pll %d on pll-source prop\n", num);
-@@ -1232,7 +1232,7 @@ static int si5351_dt_parse(struct i2c_client *client,
- 	pdata->pll_reset[0] = true;
- 	pdata->pll_reset[1] = true;
- 
--	of_property_for_each_u32(np, "silabs,pll-reset-mode", prop, p, num) {
-+	of_property_for_each_u32_old(np, "silabs,pll-reset-mode", prop, p, num) {
- 		if (num >= 2) {
- 			dev_err(&client->dev,
- 				"invalid pll %d on pll-reset-mode prop\n", num);
-diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
-index 8ea168c00997..aae940c18459 100644
---- a/drivers/clk/clk.c
-+++ b/drivers/clk/clk.c
-@@ -5383,7 +5383,7 @@ const char *of_clk_get_parent_name(const struct device_node *np, int index)
- 	/* if there is an indices property, use it to transfer the index
- 	 * specified into an array offset for the clock-output-names property.
- 	 */
--	of_property_for_each_u32(clkspec.np, "clock-indices", prop, vp, pv) {
-+	of_property_for_each_u32_old(clkspec.np, "clock-indices", prop, vp, pv) {
- 		if (index == pv) {
- 			index = count;
- 			break;
-diff --git a/drivers/irqchip/irq-pic32-evic.c b/drivers/irqchip/irq-pic32-evic.c
-index 1d9bb28d13e5..d9aec87f8b59 100644
---- a/drivers/irqchip/irq-pic32-evic.c
-+++ b/drivers/irqchip/irq-pic32-evic.c
-@@ -196,7 +196,7 @@ static void __init pic32_ext_irq_of_init(struct irq_domain *domain)
- 	int i = 0;
- 	const char *pname = "microchip,external-irqs";
- 
--	of_property_for_each_u32(node, pname, prop, p, hwirq) {
-+	of_property_for_each_u32_old(node, pname, prop, p, hwirq) {
- 		if (i >= ARRAY_SIZE(priv->ext_irqs)) {
- 			pr_warn("More than %d external irq, skip rest\n",
- 				ARRAY_SIZE(priv->ext_irqs));
-diff --git a/drivers/pinctrl/pinctrl-k210.c b/drivers/pinctrl/pinctrl-k210.c
-index b6d1ed9ec9a3..03acca8b01ef 100644
---- a/drivers/pinctrl/pinctrl-k210.c
-+++ b/drivers/pinctrl/pinctrl-k210.c
-@@ -797,7 +797,7 @@ static int k210_pinctrl_dt_subnode_to_map(struct pinctrl_dev *pctldev,
- 	if (ret < 0)
- 		goto exit;
- 
--	of_property_for_each_u32(np, "pinmux", prop, p, pinmux_group) {
-+	of_property_for_each_u32_old(np, "pinmux", prop, p, pinmux_group) {
- 		const char *group_name, *func_name;
- 		u32 pin = FIELD_GET(K210_PG_PIN, pinmux_group);
- 		u32 func = FIELD_GET(K210_PG_FUNC, pinmux_group);
-diff --git a/include/linux/of.h b/include/linux/of.h
-index 756847539384..15c291ab6e71 100644
---- a/include/linux/of.h
-+++ b/include/linux/of.h
-@@ -1429,7 +1429,8 @@ static inline int of_property_read_s32(const struct device_node *np,
- 	     err == 0;							\
- 	     err = of_phandle_iterator_next(it))
- 
--#define of_property_for_each_u32(np, propname, prop, p, u)	\
-+/* deprecated - will be removed */
-+#define of_property_for_each_u32_old(np, propname, prop, p, u)	\
- 	for (prop = of_find_property(np, propname, NULL),	\
- 		p = of_prop_next_u32(prop, NULL, &u);		\
- 		p;						\
-
--- 
-2.34.1
-
+--=20
+Without deviation from the norm, progress is not possible.
 
