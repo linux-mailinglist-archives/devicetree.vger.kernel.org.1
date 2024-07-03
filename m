@@ -1,104 +1,175 @@
-Return-Path: <devicetree+bounces-82815-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82817-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4B15925F3E
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 13:54:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E67B925F2A
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 13:52:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 82BB3B3A9CB
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 11:19:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E5CD1B39A60
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 11:27:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1248F1849DF;
-	Wed,  3 Jul 2024 11:08:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B86B61802CD;
+	Wed,  3 Jul 2024 11:18:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="POT+OZvP"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ArzpZTEI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CB101741D8;
-	Wed,  3 Jul 2024 11:08:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1880617FAB8;
+	Wed,  3 Jul 2024 11:18:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720004907; cv=none; b=d6ubwfGEhtmqWOueRtN1FpBx5ipI3vEzAugwi1BfU5EOPcdlAauZZumxB5YRqBKQZPRui1s5CTrjgDyApHogVj7RRN1ANAj4kUyPF3S7G+gfzYsMMn7lnFTqpGJES5JGBIAaLCHJJi0XT0Bp28nluvlYAY6YjgMjLsri/6nRn5I=
+	t=1720005493; cv=none; b=kXumtmBtu/52Nz/6fW4CAsPaDm2YaA5U8903agG7PbrNXhbaSyVmI5AINq34qqjCIOz7ItpQTHo2DE5jE2d79ZPHn3wJe16g3tM+vmWucSBsx+6/lq+ceJENv/J5CscN2Q14loRRdbPrs6nswgh13s7EtVdapwOvB5VPQh4e8CE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720004907; c=relaxed/simple;
-	bh=RGfWciQkHzZq7C05OxQDAd8nHDJ/nb20nhb3H7x/P88=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=jn0hNQ9btSj54hIf5LJshuKHYBvE23r4v8+p0Omg2X9tIhR1X/jvEfYNh8fAfQwABft/MglcquaPHvhipGeeKBTq8IWNZuBoaaqI6OEg9OUojIxhfWE1m+uRw2+GQxsKzX2NNLZPROkcT2kIC+eStnv8eZGEUMJU9PbAvqP+G0M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=POT+OZvP; arc=none smtp.client-ip=209.85.208.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-58ba3e37feeso2346463a12.3;
-        Wed, 03 Jul 2024 04:08:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1720004904; x=1720609704; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=RGfWciQkHzZq7C05OxQDAd8nHDJ/nb20nhb3H7x/P88=;
-        b=POT+OZvP+iuEvMCz9gpDRvkymCisD5PP1sntp840d2AtyVFsHOQt+jsY8Wy7D+nEFw
-         oMnKhotPLmRjub7FF1owveZrOkcGhW2QIlqwlBPiUQkG/fZH7yzD7kKXTjZS/nmyY1tn
-         OfyVYwbc5XTBIxGDF4ye5zjFd/F79yzZbCoTXxirZE9CffPQsRGMUzN2NyzwmxYokiRz
-         b3pMMzuMWV/KS7hqnba3NTzd+P+uKPOSHlICYn+oDy5TxOhJhlL7G4lkManStW9zfLH8
-         UJwsWz0aoDZiRx/3NhDk0p0H7pxY9NaYzqhN+N4ODKobnh9cp77QB+oTiH67Edi1u4jK
-         H6BQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720004904; x=1720609704;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=RGfWciQkHzZq7C05OxQDAd8nHDJ/nb20nhb3H7x/P88=;
-        b=iIBtx6Az7gY8xRcJVQB1V7wNqx2g/0RjGPFJu0n8ZR4IvL5gYWUnEiUEnumKbLjOy5
-         aQqLee4mscOZvifMtO0uQ69dtiTym2woyvAbSEPi6VvbRKp6ER+MH5QZpM0YhNAaAnRo
-         5bPcbxbRSzw1hH0k6w5xM7Xxd6OQBFQjyWCpwd3cD+qtc7YiwR6PaqkwL66etElBwqGH
-         qJakl5pOSJldtFzKFGMoYr6JHK7A+09L3LZptgXdTRNpwHAQ9gMAO7LtZ4qgwvPTq3uY
-         2QzTG+LbVB752by2PyVNbCwL4FMBVVHOwlmljtfTf58HyOlgAE2FMQg11svM6rB3XN+U
-         6eRg==
-X-Forwarded-Encrypted: i=1; AJvYcCVx9Tgso7O14FUvxVKMkH+cGXyTjJnogzL5JymFyb7uhBVbdjBabxMzkzJXV8QoPoS/mDfUMzMOF+O1LYGUixqmlirhYI+Zs1odoEd6B/32OqovarVzvcHVHBx04v0w1P8tJ6HOI8KORWr7LpuHjdy+tk0ow4VxSQYPP/BUpvAq2Zg45Z+6
-X-Gm-Message-State: AOJu0YzUGWlf5YF+XE8jLbfY8x8NopcUrcBSvYt3sx+bqBHxCbL229oq
-	INrax0b/udaVl2t36JY1dypBn7G5zKLZ8P9sV1JGbrRhIGyYnuRh
-X-Google-Smtp-Source: AGHT+IEKrnywZf4/o21me6pqT1Qouo23xRlPrFEmiNPXTCykCCNHVCiQ1YMGa43eM3RTFIW2cBAovA==
-X-Received: by 2002:a17:906:a0d9:b0:a72:8066:c76f with SMTP id a640c23a62f3a-a751445f161mr643058166b.63.1720004903583;
-        Wed, 03 Jul 2024 04:08:23 -0700 (PDT)
-Received: from ?IPv6:2003:f6:ef1c:c500:ee59:d953:f148:40ba? (p200300f6ef1cc500ee59d953f14840ba.dip0.t-ipconnect.de. [2003:f6:ef1c:c500:ee59:d953:f148:40ba])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-36789fd7a0esm3795483f8f.104.2024.07.03.04.08.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Jul 2024 04:08:23 -0700 (PDT)
-Message-ID: <8010eaf5300d2dcf928812693379b649b77f0e0f.camel@gmail.com>
-Subject: Re: [PATCH v3 8/8] iio: adc: ad7606: switch mutexes to scoped_guard
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Guillaume Stols <gstols@baylibre.com>, Lars-Peter Clausen
- <lars@metafoo.de>,  Michael Hennerich <Michael.Hennerich@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-fbdev@vger.kernel.org, devicetree@vger.kernel.org, Jonathan Cameron
- <Jonathan.Cameron@huawei.com>, jstephan@baylibre.com, dlechner@baylibre.com
-Date: Wed, 03 Jul 2024 13:12:16 +0200
-In-Reply-To: <20240702-cleanup-ad7606-v3-8-57fd02a4e2aa@baylibre.com>
-References: <20240702-cleanup-ad7606-v3-0-57fd02a4e2aa@baylibre.com>
-	 <20240702-cleanup-ad7606-v3-8-57fd02a4e2aa@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.2 
+	s=arc-20240116; t=1720005493; c=relaxed/simple;
+	bh=sZu3WEtVwQ9fs2ISGrtXyLLe+vIoesZ01sKD9VWZu5o=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Hozqe0nsfKMW/sNeBT/FW6XdsOWrgYCgWslycoyAymX3bwYP0G549L65wrbwoRAzzpZlKz5kan1qRafr86xRf1JCJenN0CBv2pS4uN8GXamYqYB4j7yZnEkVxoaYbZMCl2M7mtBbCaMp6D0M3sdoQQuBjY7DvqPVA4XwnjOWY+s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ArzpZTEI; arc=none smtp.client-ip=198.175.65.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1720005492; x=1751541492;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=sZu3WEtVwQ9fs2ISGrtXyLLe+vIoesZ01sKD9VWZu5o=;
+  b=ArzpZTEI9kNo43GuhEun31bSzHsIt56FZAcUYbSTuPVr4bYZhkgt1UuI
+   c5x+C5sh7OR7ocpe2lNeO826lzGGQ8Npql4bJ5NOaXgc62La7oIIjN2B/
+   MHv0pGI7RHYNWFsHailYIAyFiYe3YyctWKzj9yJA5IjS4wkNyqxMl2JHO
+   deq9a8HLd6CkNvhxKxgKn5AHG/DqmUnqI/OsyZ5mgvbmVF+qYlENnxHOH
+   Qf6c7rfLa6S+iDL4uaWTJ8U31xQp0WtVvKmjy6pwlQ93dodzuKMdehFuj
+   8B+XH42Ah9WzxWSkzA9G1ZEpfqHxF2XF75Ik2box8+1lCeVq/Bk0B4tVk
+   Q==;
+X-CSE-ConnectionGUID: upSXtZFYT5i2iBr4f8oE5w==
+X-CSE-MsgGUID: Jinl/rb5RgeN6EjsLktJAw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11121"; a="34677381"
+X-IronPort-AV: E=Sophos;i="6.09,181,1716274800"; 
+   d="scan'208";a="34677381"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Jul 2024 04:18:12 -0700
+X-CSE-ConnectionGUID: XrOeSyk8TZy62vYVf9OUPw==
+X-CSE-MsgGUID: fltt//wxQBiTuWRISZn2XA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,181,1716274800"; 
+   d="scan'208";a="51411818"
+Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
+  by orviesa004.jf.intel.com with ESMTP; 03 Jul 2024 04:18:06 -0700
+Received: from kbuild by 68891e0c336b with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sOxzv-000PeM-1b;
+	Wed, 03 Jul 2024 11:18:03 +0000
+Date: Wed, 3 Jul 2024 19:17:25 +0800
+From: kernel test robot <lkp@intel.com>
+To: Lorenzo Bianconi <lorenzo@kernel.org>, netdev@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, nbd@nbd.name,
+	lorenzo.bianconi83@gmail.com, davem@davemloft.net,
+	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+	conor@kernel.org, linux-arm-kernel@lists.infradead.org,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, devicetree@vger.kernel.org,
+	catalin.marinas@arm.com, will@kernel.org, upstream@airoha.com,
+	angelogioacchino.delregno@collabora.com,
+	benjamin.larsson@genexis.eu, rkannoth@marvell.com,
+	sgoutham@marvell.com, andrew@lunn.ch, arnd@arndb.de,
+	horms@kernel.org
+Subject: Re: [PATCH v4 2/2] net: airoha: Introduce ethernet support for
+ EN7581 SoC
+Message-ID: <202407031841.Ww5ZFVKk-lkp@intel.com>
+References: <56f57f37b80796e9706555503e5b4cf194f69479.1719672695.git.lorenzo@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <56f57f37b80796e9706555503e5b4cf194f69479.1719672695.git.lorenzo@kernel.org>
 
-On Tue, 2024-07-02 at 17:34 +0000, Guillaume Stols wrote:
-> Switching to scoped_guard simplifies the code and avoids to take care to
-> unlock the mutex in case of premature return.
->=20
-> Signed-off-by: Guillaume Stols <gstols@baylibre.com>
-> ---
+Hi Lorenzo,
 
-Reviewed-by: Nuno Sa <nuno.sa@analog.com>
+kernel test robot noticed the following build warnings:
 
+[auto build test WARNING on net/main]
+[also build test WARNING on net-next/main linus/master v6.10-rc6]
+[cannot apply to horms-ipvs/master next-20240703]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
+url:    https://github.com/intel-lab-lkp/linux/commits/Lorenzo-Bianconi/dt-bindings-net-airoha-Add-EN7581-ethernet-controller/20240630-185836
+base:   net/main
+patch link:    https://lore.kernel.org/r/56f57f37b80796e9706555503e5b4cf194f69479.1719672695.git.lorenzo%40kernel.org
+patch subject: [PATCH v4 2/2] net: airoha: Introduce ethernet support for EN7581 SoC
+config: arm-randconfig-r123-20240703 (https://download.01.org/0day-ci/archive/20240703/202407031841.Ww5ZFVKk-lkp@intel.com/config)
+compiler: arm-linux-gnueabi-gcc (GCC) 13.2.0
+reproduce: (https://download.01.org/0day-ci/archive/20240703/202407031841.Ww5ZFVKk-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202407031841.Ww5ZFVKk-lkp@intel.com/
+
+sparse warnings: (new ones prefixed by >>)
+>> drivers/net/ethernet/mediatek/airoha_eth.c:848:19: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void [noderef] __iomem *base @@     got struct airoha_eth *eth @@
+   drivers/net/ethernet/mediatek/airoha_eth.c:848:19: sparse:     expected void [noderef] __iomem *base
+   drivers/net/ethernet/mediatek/airoha_eth.c:848:19: sparse:     got struct airoha_eth *eth
+   drivers/net/ethernet/mediatek/airoha_eth.c: note: in included file (through include/linux/mmzone.h, include/linux/gfp.h, include/linux/xarray.h, ...):
+   include/linux/page-flags.h:240:46: sparse: sparse: self-comparison always evaluates to false
+   include/linux/page-flags.h:240:46: sparse: sparse: self-comparison always evaluates to false
+
+vim +848 drivers/net/ethernet/mediatek/airoha_eth.c
+
+   809	
+   810	#define airoha_fe_rr(eth, offset)				\
+   811		airoha_rr((eth)->fe_regs, (offset))
+   812	#define airoha_fe_wr(eth, offset, val)				\
+   813		airoha_wr((eth)->fe_regs, (offset), (val))
+   814	#define airoha_fe_rmw(eth, offset, mask, val)			\
+   815		airoha_rmw((eth)->fe_regs, (offset), (mask), (val))
+   816	#define airoha_fe_set(eth, offset, val)				\
+   817		airoha_rmw((eth)->fe_regs, (offset), 0, (val))
+   818	#define airoha_fe_clear(eth, offset, val)			\
+   819		airoha_rmw((eth)->fe_regs, (offset), (val), 0)
+   820	
+   821	#define airoha_qdma_rr(eth, offset)				\
+   822		airoha_rr((eth)->qdma_regs, (offset))
+   823	#define airoha_qdma_wr(eth, offset, val)			\
+   824		airoha_wr((eth)->qdma_regs, (offset), (val))
+   825	#define airoha_qdma_rmw(eth, offset, mask, val)			\
+   826		airoha_rmw((eth)->qdma_regs, (offset), (mask), (val))
+   827	#define airoha_qdma_set(eth, offset, val)			\
+   828		airoha_rmw((eth)->qdma_regs, (offset), 0, (val))
+   829	#define airoha_qdma_clear(eth, offset, val)			\
+   830		airoha_rmw((eth)->qdma_regs, (offset), (val), 0)
+   831	
+   832	static void airoha_qdma_set_irqmask(struct airoha_eth *eth, int index,
+   833					    u32 clear, u32 set)
+   834	{
+   835		unsigned long flags;
+   836	
+   837		if (WARN_ON_ONCE(index >= ARRAY_SIZE(eth->irqmask)))
+   838			return;
+   839	
+   840		spin_lock_irqsave(&eth->irq_lock, flags);
+   841	
+   842		eth->irqmask[index] &= ~clear;
+   843		eth->irqmask[index] |= set;
+   844		airoha_qdma_wr(eth, REG_INT_ENABLE(index), eth->irqmask[index]);
+   845		/* Read irq_enable register in order to guarantee the update above
+   846		 * completes in the spinlock critical section.
+   847		 */
+ > 848		airoha_rr(eth, REG_INT_ENABLE(index));
+   849	
+   850		spin_unlock_irqrestore(&eth->irq_lock, flags);
+   851	}
+   852	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
