@@ -1,139 +1,114 @@
-Return-Path: <devicetree+bounces-82712-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82713-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39CFC9256FA
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 11:38:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F4739256FB
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 11:39:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E534D1F2599A
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 09:38:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 798D41C22D22
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 09:39:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C341D13D636;
-	Wed,  3 Jul 2024 09:38:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="gvDd2HZ/"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEABB42A80;
+	Wed,  3 Jul 2024 09:39:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-sh.amlogic.com (unknown [58.32.228.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCEBC1369AD
-	for <devicetree@vger.kernel.org>; Wed,  3 Jul 2024 09:38:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7DAC1369AD;
+	Wed,  3 Jul 2024 09:39:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=58.32.228.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719999491; cv=none; b=en6XPO+ye/QfcSNVVKDmhb1bANzyvbQph/rqc3BcMgrVKgKyPcymS0FXXXYWaentbRTjCCqJyzszo1AKnWM8ZyTMthtuLTOGpnDzxRcqSVbiZylt+RdyIv/3BDDXsVYaxyNN/ocIOgFt4DGOAqcLbCvRCxLB4d4tZMjUPrGHmNA=
+	t=1719999547; cv=none; b=XNRhb/fTAHO/lDPuw6/SPE6PXMFwsanA3d+17nd3u1U4CNfKpiPKBrzB9leFltVpdVaa0WgOV9wUkKpE19ulFCy5nsFtZfUnxVXQJF2OJPcd3606VNTNn1tFAEGDiw4d1Fs3EEn9hM5DT+A/k1TxSJnn6YgtyBL8xYexUMbrEnI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719999491; c=relaxed/simple;
-	bh=WqW5N5vhce1BJCwQssaorgX8o1WWx0esUvxlticDErY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XO9/aK+SrGTCZeuLir1mlK8l4XD5Zw5Z3trH4sMCQH/4s6qCiwEa39Se1sJzoIMQxq/znjeV9mgBNPY4GZzc58QvBsKO8kpEyk8A0f2t3pXdjOy/W/PFTIfuov/XDvKWros242UA9ohFNFB7WUUV9uKOdhSSpO7QWZIC/giUrYA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=gvDd2HZ/; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=WqW5
-	N5vhce1BJCwQssaorgX8o1WWx0esUvxlticDErY=; b=gvDd2HZ/2SeBygE6JOH1
-	nRQc3sMwzm+XfHiMArZEIRNmCV9U2icBeHkTYKcMs1P2va+IB1zKnLojExgV4jUm
-	e6J1iUSOYo5Z9hpg59o3M5FOd/xOUZlOSXC8fHYkSfvrVB++HZkIxJSSKVA8loch
-	OXXDyfVmUgc3fYQyxKzKf4Cr9tkkp2Mh0ucNJcMEkVQr3RmArevrM1Iadv6emjbs
-	IK3gDBoWWKm6k+i+6U8q4/nQF08MQOEoVQzjQr70Lmzdj5ppi60wPZ+RnzunAT//
-	YJfhFVe3nYg4dA0yIjvNwkaIYi+oVBKZCr5dWX1In11S4jRRdvuEcbs7iQJh5bz8
-	GQ==
-Received: (qmail 2757245 invoked from network); 3 Jul 2024 11:38:06 +0200
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 3 Jul 2024 11:38:06 +0200
-X-UD-Smtp-Session: l3s3148p1@NstlllQcishehhrb
-Date: Wed, 3 Jul 2024 11:38:06 +0200
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>, linux-mmc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v4 1/3] dt-bindings: mmc: renesas,sdhi: Document
- RZ/V2H(P) support
-Message-ID: <ZoUb_olfaVapoYBi@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>, linux-mmc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20240626132341.342963-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20240626132341.342963-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	s=arc-20240116; t=1719999547; c=relaxed/simple;
+	bh=o3d/OdEP4D4DDZPtnB5R7j0B3c85BtRfkViu9ZiJipw=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=W6qpcDLhHmqOi32CC10/PyHEf5XMfau5hc+PUPdU/7WCFLxZkp30ztvsbF4LQeNeIVTHk/4Il1s1KJiNdGCPuFdOkQW963OFmMje3FoHKCOA6Tm5urON3EFgDkxzVn/oBV1QFGfao8BHoh1nUkEyy7eauprwbKb2e3Nc0MVMx7s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amlogic.com; spf=pass smtp.mailfrom=amlogic.com; arc=none smtp.client-ip=58.32.228.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amlogic.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amlogic.com
+Received: from droid10-sz.amlogic.com (10.28.11.69) by mail-sh.amlogic.com
+ (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.6; Wed, 3 Jul 2024
+ 17:39:00 +0800
+From: zelong dong <zelong.dong@amlogic.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>, Sean Young <sean@mess.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Jerome Brunet
+	<jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, "Martin
+ Blumenstingl" <martin.blumenstingl@googlemail.com>
+CC: <linux-media@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<kelvin.zhang@amlogic.com>, Zelong Dong <zelong.dong@amlogic.com>
+Subject: [PATCH] media: rc: meson-ir: support PM suspend/resume
+Date: Wed, 3 Jul 2024 17:38:58 +0800
+Message-ID: <20240703093858.12655-1-zelong.dong@amlogic.com>
+X-Mailer: git-send-email 2.35.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="iPwmJwlsopKq/aKH"
-Content-Disposition: inline
-In-Reply-To: <20240626132341.342963-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
+From: Zelong Dong <zelong.dong@amlogic.com>
 
---iPwmJwlsopKq/aKH
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+IR Controller could be used and updated by other processor
+while kernel has been suspended.
+Reinitialize IR Controller just in case while kernel is resuming.
 
-On Wed, Jun 26, 2024 at 02:23:39PM +0100, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->=20
-> The SD/MMC block on the RZ/V2H(P) ("R9A09G057") SoC is similar to that
-> of the R-Car Gen3, but it has some differences:
-> - HS400 is not supported.
-> - It supports the SD_IOVS bit to control the IO voltage level.
-> - It supports fixed address mode.
->=20
-> To accommodate these differences, a SoC-specific 'renesas,sdhi-r9a09g057'
-> compatible string is added.
->=20
-> A 'vqmmc-regulator' object is introduced to handle the power enable (PWEN)
-> and voltage level switching for the SD/MMC.
->=20
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
+---
+ drivers/media/rc/meson-ir.c | 27 +++++++++++++++++++++++++++
+ 1 file changed, 27 insertions(+)
 
-Can we have an example here? I can read DTS snippets better than YAML
-code :/ Also wondering about the "regulator-compatible" property but
-maybe the example makes the problem clear?
+diff --git a/drivers/media/rc/meson-ir.c b/drivers/media/rc/meson-ir.c
+index 5303e6da5809..9cdb45821ecc 100644
+--- a/drivers/media/rc/meson-ir.c
++++ b/drivers/media/rc/meson-ir.c
+@@ -567,6 +567,32 @@ static void meson_ir_shutdown(struct platform_device *pdev)
+ 	spin_unlock_irqrestore(&ir->lock, flags);
+ }
+ 
++static __maybe_unused int meson_ir_resume(struct device *dev)
++{
++	struct meson_ir *ir = dev_get_drvdata(dev);
++
++	if (ir->param->support_hw_decoder)
++		meson_ir_hw_decoder_init(ir->rc, &ir->rc->enabled_protocols);
++	else
++		meson_ir_sw_decoder_init(ir->rc);
++
++	return 0;
++}
++
++static __maybe_unused int meson_ir_suspend(struct device *dev)
++{
++	struct meson_ir *ir = dev_get_drvdata(dev);
++	unsigned long flags;
++
++	spin_lock_irqsave(&ir->lock, flags);
++	regmap_update_bits(ir->reg, IR_DEC_REG1, IR_DEC_REG1_ENABLE, 0);
++	spin_unlock_irqrestore(&ir->lock, flags);
++
++	return 0;
++}
++
++static SIMPLE_DEV_PM_OPS(meson_ir_pm_ops, meson_ir_suspend, meson_ir_resume);
++
+ static const struct meson_ir_param meson6_ir_param = {
+ 	.support_hw_decoder = false,
+ 	.max_register = IR_DEC_REG1,
+@@ -607,6 +633,7 @@ static struct platform_driver meson_ir_driver = {
+ 	.driver = {
+ 		.name		= DRIVER_NAME,
+ 		.of_match_table	= meson_ir_match,
++		.pm = pm_ptr(&meson_ir_pm_ops),
+ 	},
+ };
+ 
+-- 
+2.35.1
 
-
---iPwmJwlsopKq/aKH
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmaFG/4ACgkQFA3kzBSg
-KbYbLA//c2KrKF77eSjgTiTSPmk4F2q+Y96EIf24uY4NzA1O6sHvuXDAIiHS9IkN
-V6kgK8UpUG4nhaW1dv5CTOV0jQZlqI1nrKgS5nwWppDv2JqrPtt3+nfJ6gXLnIts
-ote7Bldb0ahFEwZnnQ78Z1WV6cjCBi0ixGM6IXPcNldzU/gtRC/GbisQgZRXiYUV
-G0li7NnOmXkIkBujEQxH5yv2ejDgs9JokjpTqa0XGold9ICZ1ZxJ8/nhfM4Tqq0h
-zcjaZVECGVI+tYp53UgzRWtqpYW24J4AtLe2Gm3X3sppqq5Eeu9c9wxGQdkgLxCl
-n/tve9stOv0VxKughkb9dsglJ87EFi1IKYmvw4FG3v115AM3G8MnZVWmKGs9pLpN
-mdp1Ob4PcnUsnfa6zyVKQFBIxnhksooEv8pMn4VI4xMp/e7Yk0ij+VdEiuIbD8xh
-6dufK++JzEHs1auGh3JTSduB0HgHT3WaxK80uvBGG/zwDKOooMAKOEloqqIg+Lhq
-EBXoKh5laiZCiVjB1DJDVVAUszOzCGQgrZrLZ3eFu64uXQiAnxjpFjwW+J/WpWdL
-iB/lPSMwsok+v3cBK3s4cFAnMQIHqsgADskIHxUZixpnkyspnDCkDb/kQW17od/x
-/TzgbIkhG0B3FTDyfP37BloYqTidaExNJBXVpk3sn04WqI7x9Ak=
-=yYhE
------END PGP SIGNATURE-----
-
---iPwmJwlsopKq/aKH--
 
