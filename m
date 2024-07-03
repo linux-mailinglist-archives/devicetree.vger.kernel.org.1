@@ -1,181 +1,133 @@
-Return-Path: <devicetree+bounces-82828-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82830-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 745D2925FBC
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 14:09:10 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A34E926024
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 14:21:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1FEA91F23557
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 12:09:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E44DEB24FEC
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 12:18:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 647AE171E5A;
-	Wed,  3 Jul 2024 12:09:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 648EE16DEC3;
+	Wed,  3 Jul 2024 12:18:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V+9gmcB1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KCbVUmnt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39D4413EFFB;
-	Wed,  3 Jul 2024 12:09:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DB9313B5B2;
+	Wed,  3 Jul 2024 12:18:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720008544; cv=none; b=PMvTbNOy29GlpW2QE4I/+hI7AW5vNsQfmNioJ8AUqDsEgGo++2xJ+o6E7SU4ouPTIFgEA8gE8jC5DOhv3YcKtpAwZp8DUgjVXdGTRQ3KNQ1TaxpVo0gVT7Ttw+CwwlpFiIzUREL6MC2z8nN59TWL/1nBAmPNXfkYh7DuUQS3vyg=
+	t=1720009105; cv=none; b=kaYdWvJLFZH0hyFWDmZKPoaWcfFFxnpFkt0S3wJiR4AKJZf1vOeNZfZc2S5AX4UQGwr6vnZrSXDgqgJ3hO6swwQGseKoh5U7nr8VjD/p8GHSucMRsUUh6Flew54XvhoSPATcJ7lxKF5KgO7FsvkX+wt0ccRSbvv9k3p1j4y/HS8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720008544; c=relaxed/simple;
-	bh=eZ1R07sklVIHLJ7jAUSapT6sVA3yE63F67K5SBVmNPw=;
-	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=gckcPJB6jLyuqkLKRUmdffLgIp8k/qFbkhkvbowcGZwQdC3/cmuUN4KhIGddhDB3sJW0TKcq8TAnshvQXJHTyBsFVmy1xnq8d/XPPx12KZtnDE5Pncm7Js/VYnf/Zw5eFVYWwDK/sOlV3o5L69ec8Ogf6AiXQ89+0NCjUjbLvbs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V+9gmcB1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F11D2C2BD10;
-	Wed,  3 Jul 2024 12:09:03 +0000 (UTC)
+	s=arc-20240116; t=1720009105; c=relaxed/simple;
+	bh=Xz7XmnRcHbAH6WxQfIQCBQ5wwm0Koi8PJNYau32jfTs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RNNMDOBvdjiHMhZLj66w5UNwRWceYeu+8bzgXnjNTMTIflhwOGZANT49CYmnPn1GPtNUY6MWP/wRz08i/0F8+1FSA8gWYUxm7PlPjMqGQHI6EUQrmEeQYKgzQVEk+B/QLKhfVElueJraSzCTmKtWQTUPj78jtnd7oS1OvB1ZDO4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KCbVUmnt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36F95C32781;
+	Wed,  3 Jul 2024 12:18:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720008544;
-	bh=eZ1R07sklVIHLJ7jAUSapT6sVA3yE63F67K5SBVmNPw=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=V+9gmcB1mPATTVawV18eL0+TPkJMuC5vtAT4YI/v6KwgOz0T0QzheugM7sgG4qbNz
-	 BUYdv3Xtc5rBa9T5iK2rFuKrvcdAmCK1gDWPV9YvURzM09Y8MUdNiUrjcxiEGpANtV
-	 ypNy2DLgdEA5Zgdftf9G2G6rhK9+vIppBgv84D+CcYc4ShIowLJDdlMxQz2b4LLf/X
-	 qnZXr5PA3z8t68QfJMaIvV4dW2Nv2N508pU/cYhRpKW3Hzi1OqGSxdH8I81tfwHgz8
-	 YLHz+adRC41GFVXvA8g8qkWzNJtbM1vozmk4jPETSCXZH/yKnz/C6QiyNIUu1irYFA
-	 iPJb03yhosfXA==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.95)
-	(envelope-from <maz@kernel.org>)
-	id 1sOynF-009RDQ-JT;
-	Wed, 03 Jul 2024 13:09:01 +0100
-Date: Wed, 03 Jul 2024 13:09:00 +0100
-Message-ID: <868qyiad9f.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Michael Ellerman <mpe@ellerman.id.au>
-Cc: Rob Herring <robh@kernel.org>,
-	Christian
- Zigotzky <chzigotzky@xenosoft.de>,
-	apatel@ventanamicro.com,
-	DTML <devicetree@vger.kernel.org>,
-	Linux Kernel
- Mailing List <linux-kernel@vger.kernel.org>,
-	linuxppc-dev
- <linuxppc-dev@lists.ozlabs.org>,
-	mad skateman <madskateman@gmail.com>,
-	"R.T.Dickinson" <rtd2@xtra.co.nz>,
-	Matthew Leaman <matthew@a-eon.biz>,
-	Darren Stevens <darren@stevens-zone.net>,
-	Christian Zigotzky
- <info@xenosoft.de>
-Subject: Re: [PowerPC] [PASEMI] Issue with the identification of ATA drives after the of/irq updates 2024-05-29
-In-Reply-To: <87le2ik90h.fsf@mail.lhotse>
-References: <3ab66fab-c3f2-4bed-a04d-a10c57dcdd9b@xenosoft.de>
-	<86zfqzhgys.wl-maz@kernel.org>
-	<CAL_Jsq+_QZHMJGHqw8vFA5CspuouvY_U=+NobYQ52DcwPQx-2w@mail.gmail.com>
-	<87le2ik90h.fsf@mail.lhotse>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/29.3
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	s=k20201202; t=1720009104;
+	bh=Xz7XmnRcHbAH6WxQfIQCBQ5wwm0Koi8PJNYau32jfTs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=KCbVUmnt6oKYedEVrXZokdmKNt/p56purKTjCPdu0I8notvhvSyIsFOxSIKsFqou5
+	 15hwrXirnYeswH2fOKq4ePLXX/YqLrncJb+P2lL+FSGeV+lT+Ugb7jGGB8N/GemJUs
+	 +s6AUvm4uXUiUubO2m8SRwgfVqiVI3bvHoZti8n9IfR1YWhDri+qAhR2D7CazE1WSi
+	 DYXxisSjZuUy2EQgUJ11OqsC/jJ7WgMnwY5ys4wyKQgby7dbRQmA+Q6M3Sd7ECpY3T
+	 6Yqt2c9ssuH177wbJ9Lx55K8mWXoPJt5OCcSCJr0+WBF71zu9mH49RClhXFAnHdpSc
+	 2Pv2Acp8/4HDQ==
+Date: Wed, 3 Jul 2024 13:18:08 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Luca Ceresoli <luca.ceresoli@bootlin.com>
+Cc: Miguel Ojeda <ojeda@kernel.org>, Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Nathan Chancellor <nathan@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Tony Lindgren <tony@atomide.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Emilio =?iso-8859-1?Q?L=F3pez?= <emilio@elopez.com.ar>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Jonathan Cameron <jic23@kernel.org>, Lee Jones <lee@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Richard Leitner <richard.leitner@linux.dev>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Michael Ellerman <mpe@ellerman.id.au>,
+	Nicholas Piggin <npiggin@gmail.com>,
+	Christophe Leroy <christophe.leroy@csgroup.eu>,
+	"Naveen N. Rao" <naveen.n.rao@linux.ibm.com>,
+	Damien Le Moal <dlemoal@kernel.org>,
+	"Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	llvm@lists.linux.dev, linux-clk@vger.kernel.org,
+	linux-omap@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	linux-samsung-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-iio@vger.kernel.org, linux-pwm@vger.kernel.org,
+	linux-serial@vger.kernel.org, linux-usb@vger.kernel.org,
+	patches@opensource.cirrus.com, linux-sound@vger.kernel.org,
+	linuxppc-dev@lists.ozlabs.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH 17/20] ASoC: arizona: convert to
+ of_property_for_each_u32_new()
+Message-ID: <7f057c8b-9b76-4e31-a3cf-b82e52618529@sirena.org.uk>
+References: <20240703-of_property_for_each_u32-v1-0-42c1fc0b82aa@bootlin.com>
+ <20240703-of_property_for_each_u32-v1-17-42c1fc0b82aa@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: mpe@ellerman.id.au, robh@kernel.org, chzigotzky@xenosoft.de, apatel@ventanamicro.com, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, madskateman@gmail.com, rtd2@xtra.co.nz, matthew@a-eon.biz, darren@stevens-zone.net, info@xenosoft.de
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="NvGtanZygkHeLcw1"
+Content-Disposition: inline
+In-Reply-To: <20240703-of_property_for_each_u32-v1-17-42c1fc0b82aa@bootlin.com>
+X-Cookie: There is a fly on your nose.
 
-Hi Michael,
 
-On Wed, 03 Jul 2024 12:30:38 +0100,
-Michael Ellerman <mpe@ellerman.id.au> wrote:
->=20
-> Rob Herring <robh@kernel.org> writes:
-> > On Tue, Jul 2, 2024 at 10:54=E2=80=AFAM Marc Zyngier <maz@kernel.org> w=
-rote:
-> >>
-> >> On Sun, 30 Jun 2024 11:21:55 +0100,
-> >> Christian Zigotzky <chzigotzky@xenosoft.de> wrote:
-> >> >
-> >> > Hello,
-> >> >
-> >> > There is an issue with the identification of ATA drives with our
-> >> > P.A. Semi Nemo boards [1] after the
-> >> > commit "of/irq: Factor out parsing of interrupt-map parent
-> >> > phandle+args from of_irq_parse_raw()" [2].
-> >>
-> >> [snip]
-> >>
-> >> My earlier request for valuable debug information still stands. But
-> >> while you're at it, can you please give the following hack a go?
-> >>
-> >>         M.
-> >>
-> >> --- a/drivers/of/irq.c
-> >> +++ b/drivers/of/irq.c
-> >> @@ -282,8 +282,10 @@ int of_irq_parse_raw(const __be32 *addr, struct o=
-f_phandle_args *out_irq)
-> >>
-> >>                         oldimap =3D imap;
-> >>                         imap =3D of_irq_parse_imap_parent(oldimap, ima=
-plen, out_irq);
-> >> -                       if (!imap)
-> >> -                               goto fail;
-> >> +                       if (!imap) {
-> >> +                               match =3D 0;
-> >> +                               break;
-> >> +                       }
-> >
-> > AFAICT reading the DT, I don't think this would fix it. imap should
-> > only be null if malformed. This case to me looks like interrupt-map
-> > has the correct cell sizes, but just never matches to do the mapping.
-> > So maybe imaplen is off and that causes us to end up here, but if
-> > there's an error I don't see it. A boot with DEBUG enabled in
-> > drivers/of/irq.c would help.
-> >
-> >>
-> >>                         match &=3D of_device_is_available(out_irq->np);
-> >>                         if (match)
-> >>
-> >> This may not be the final workaround even if it solves your boot
-> >> problem, but will at least give us a hint at what is going wrong.
-> >>
-> >> I have the fuzzy feeling that we may be able to lob this broken system
-> >> as part of the of_irq_imap_abusers[] array, which would solve things
-> >> pretty "neatly".
-> >
-> > I think this would work and would consolidate the work-arounds. It
-> > would need either "pasemi,rootbus" or "pa-pxp" added to the list.
->=20
-> Not sure if it helps, but there's already some code in arch/powerpc to
-> "fixup" the nemo device tree at boot.
->=20
-> I'm not sure if it's actually the problem here, but it might be, it does
-> renumber some interrupts. Or possibly it could be tweaked to fix
-> whatever the issue is.
->=20
-> The code is in fixup_device_tree_pasemi():
->=20
->   https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree=
-/arch/powerpc/kernel/prom_init.c?h=3Dv6.10-rc5#n3114
+--NvGtanZygkHeLcw1
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Ah, that's quite interesting, thanks for the pointer.
+On Wed, Jul 03, 2024 at 12:37:01PM +0200, Luca Ceresoli wrote:
+> Simplify code using of_property_for_each_u32_new() as the two additional
+> parameters in of_property_for_each_u32() are not used here.
 
-I can see two possibilities here:
+Acked-by: Mark Brown <broonie@kernel.org>
 
-- either we remove the interrupt-map from the DT (no idea if that is
-  possible)
+--NvGtanZygkHeLcw1
+Content-Type: application/pgp-signature; name="signature.asc"
 
-- or we patch the interrupt-map to be slightly more useful and
-  actually match its input
+-----BEGIN PGP SIGNATURE-----
 
-Thanks,
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmaFQYAACgkQJNaLcl1U
+h9AylQf9G8/SGzOMtUK0KB/AFXzHYIfp3WpSO5hnxcx+E5C7ZK4bjWCUH/uunXlj
+F4Jf8unGlljKf05YliMJQdU+V6rteVrAjhbODBpOyO3KgNcahTjDSsdel5a8kNxy
+xs3TjgeAoSA6aWSldnG9epfMTrso4U2krM6J7EpllETpHMhVEr19Tk/DczdltAFA
+mqPoVSFfTNlYtiXK1/0dRLf9DiwVXVKh0Pg13G8lYTkxUb51nVwvoBAxCQ0kLhYc
+whKK5upczFTpJCDEyHz17yMu3fWXyZaYCDCzPbqLkycwsy6u21KKM5tAvMr8o2Xd
+zlsu2XFciX4F1nPtsj9mR7UcMVjyRw==
+=W6f6
+-----END PGP SIGNATURE-----
 
-	M.
-
---=20
-Without deviation from the norm, progress is not possible.
+--NvGtanZygkHeLcw1--
 
