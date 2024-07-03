@@ -1,214 +1,173 @@
-Return-Path: <devicetree+bounces-82717-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82718-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18FD6925722
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 11:44:30 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 518B9925739
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 11:50:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3D4EC1C25A5E
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 09:44:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 99653B20F1F
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 09:50:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D645D13D891;
-	Wed,  3 Jul 2024 09:43:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB2E61386B3;
+	Wed,  3 Jul 2024 09:50:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="BQwRYxZ1"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="fgOb2eyl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C645513E8A5
-	for <devicetree@vger.kernel.org>; Wed,  3 Jul 2024 09:43:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33D3C13DDA3;
+	Wed,  3 Jul 2024 09:50:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719999831; cv=none; b=JqMCS2+tTKODxeWq3ISswRg/eIbyFNakeAkWAiwNRLGLimb2Y3OoqxoKJyDG1+x62Mh0+J28RBgki801EahvFcu2DPKQOBTuhb/G85kcrA936uc/H7385l1H+hr79UrpXOtlTAEFHDzRIIW7FS8hF11wWqXcXIaQNM7aFLzRfbQ=
+	t=1720000213; cv=none; b=Nyn4XIsjvW+XQbX/zPVSAwb+sar0zqG80iBx52pWu1I14LJE5XRz/vsW8KO4H7NmQghPWyoGSHeK6sGGe9/1Npu4VJJypKXuEleJZ8nhfE0NeSWXdCzzCdFAagR/xnJi4S4wDkeEw1l1KeO4yxOVdYeMWpoB881rjPX0MBna5gk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719999831; c=relaxed/simple;
-	bh=Zki+hpjUZsWZjna36rff0M5qh30FEImaAGONn3NaeWI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=W87PjRe6jiZczke/mdT7lEA90jkopIp4yUYa+CmnKHofPYOIiCcNcOQGLeSu4a0XIOwohUmMqLt+UE43HK7YlJI2HaqRlFUxs8nYtliqIYoI4BO47o92dzIGah8yNB3OtaNNNs3F3gjeDU6cuVDKYBdfO5YzaBapcQtzo4HIeLw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=BQwRYxZ1; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=Kmmn
-	bAYL/eV1eyI324YSJygW4NEGkw6vs1mqy0L27a0=; b=BQwRYxZ1FquDTzIXmqEu
-	Pvk6NvxxP6/BZHXQAnkFmuE7ZDFizTLia/stfwIvf3oVju13PL20WAIMzQ8hHZZ5
-	xzcwkzdmoOXeSNy8PSnv5JEfGDHQKT4eeS+rdPmHFJWvDQhp9yXdY5U02AtUz5Ef
-	VwFbdJrVO4u1OS5QC/wg1h/2KlVZ+Om32LzIs3jdeYFjbDoecPlVAJUxKQf/cd8j
-	y3vjEfp2q8EuFsGw1gdoq8KV6JZjH3rsJMDcPEImlyaeIL51z6GgN8SMVYQJzZBV
-	mpPY1vtYUo7R+9XWLH2s+msI3dNsPcobhXp3k2uhwRdYUU5piPNihsi2pMBDtx9s
-	iw==
-Received: (qmail 2759060 invoked from network); 3 Jul 2024 11:43:47 +0200
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 3 Jul 2024 11:43:47 +0200
-X-UD-Smtp-Session: l3s3148p1@lAG5qlQc+KFehhrb
-Date: Wed, 3 Jul 2024 11:43:47 +0200
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>, linux-mmc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Subject: Re: [PATCH v4 3/3] mmc: renesas_sdhi: Add support for RZ/V2H(P) SoC
-Message-ID: <ZoUdUyrld2kZorvU@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>, linux-mmc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-References: <20240626132341.342963-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20240626132341.342963-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	s=arc-20240116; t=1720000213; c=relaxed/simple;
+	bh=acghGTS4hAklAZ2imwEsU8Dr1XC4qbENVq+v8SXSkhQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Ia8bafeTbzJNe0UbNIP4d/ReUae/VTS3H0bbiSpc+epnvedDCWFTXjIiB0mBH/aROdUDz4LMTE+55HOio9F1jIURN2nysTDNdZUbUklhPcWiDJPOQFzv61U7wvayS6zuX9xHQbD5NnFpUPvu59TKp3dW6AGvQOmGAKd1yu6U4Oc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=fgOb2eyl; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4637uuPo026176;
+	Wed, 3 Jul 2024 09:48:30 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	r6PDo3ZmiND29AWr6xwATv2xdbzZhoXvEb3979p8hvo=; b=fgOb2eylbajis5N8
+	ilInFJsChuMPbqsDA/wN7LFmAn5tS+jCd49TPxAQklol/D7qgTGt0Y1EZeZjsxuY
+	EgALPNsEoSpujmS1DMKVxI7BJ/iK9yyKw3DROVe/RAPYMthBoNT07ja1G9QJybJ1
+	3ijh0MmK4g5PkY5yjhqjVCeT9QtxVwDh2KBfC0Rq3X33uHZeJdTluSYNSyHr/DUh
+	d+SuPBMD7VYAPUN80xDPa45ckZvYduMHTxgOH++tG6zHEW4U6qJrupzkB8Q1zzd/
+	cRHhAiktD1GpLNCL7l7cLRyhcIWKrcCoNeSx2d/n35tuRSbwR/rcEQQJk+BLdxYk
+	qB58XA==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4027mnrqvf-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 03 Jul 2024 09:48:30 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 4639mSdZ005772
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 3 Jul 2024 09:48:28 GMT
+Received: from [10.239.132.204] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 3 Jul 2024
+ 02:48:06 -0700
+Message-ID: <d60e0658-b670-44eb-bf6a-60a58c1742be@quicinc.com>
+Date: Wed, 3 Jul 2024 17:48:04 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="6vYa3c1o+yL1L4tm"
-Content-Disposition: inline
-In-Reply-To: <20240626132341.342963-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 01/47] dt-bindings: arm: qcom: Document QCS9100 SoC and
+ RIDE board
+To: Krzysztof Kozlowski <krzk@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <djakov@kernel.org>, <mturquette@baylibre.com>,
+        <sboyd@kernel.org>, <jassisinghbrar@gmail.com>,
+        <herbert@gondor.apana.org.au>, <davem@davemloft.net>,
+        <manivannan.sadhasivam@linaro.org>, <will@kernel.org>,
+        <joro@8bytes.org>, <conor@kernel.org>, <tglx@linutronix.de>,
+        <amitk@kernel.org>, <thara.gopinath@gmail.com>,
+        <linus.walleij@linaro.org>, <wim@linux-watchdog.org>,
+        <linux@roeck-us.net>, <rafael@kernel.org>, <viresh.kumar@linaro.org>,
+        <vkoul@kernel.org>, <edumazet@google.com>, <kuba@kernel.org>,
+        <pabeni@redhat.com>, <mcoquelin.stm32@gmail.com>
+CC: <robimarko@gmail.com>, <bartosz.golaszewski@linaro.org>,
+        <kishon@kernel.org>, <quic_wcheng@quicinc.com>,
+        <alim.akhtar@samsung.com>, <avri.altman@wdc.com>, <bvanassche@acm.org>,
+        <agross@kernel.org>, <gregkh@linuxfoundation.org>,
+        <quic_tdas@quicinc.com>, <robin.murphy@arm.com>,
+        <daniel.lezcano@linaro.org>, <rui.zhang@intel.com>,
+        <lukasz.luba@arm.com>, <quic_rjendra@quicinc.com>,
+        <ulf.hansson@linaro.org>, <quic_sibis@quicinc.com>,
+        <otto.pflueger@abscue.de>, <luca@z3ntu.xyz>,
+        <neil.armstrong@linaro.org>, <abel.vesa@linaro.org>,
+        <bhupesh.sharma@linaro.org>, <alexandre.torgue@foss.st.com>,
+        <peppe.cavallaro@st.com>, <joabreu@synopsys.com>,
+        <netdev@vger.kernel.org>, <lpieralisi@kernel.org>, <kw@linux.com>,
+        <bhelgaas@google.com>, <ahalaney@redhat.com>,
+        <krzysztof.kozlowski@linaro.org>, <u.kleine-koenig@pengutronix.de>,
+        <dmitry.baryshkov@linaro.org>, <quic_cang@quicinc.com>,
+        <danila@jiaxyga.com>, <quic_nitirawa@quicinc.com>,
+        <mantas@8devices.com>, <athierry@redhat.com>,
+        <quic_kbajaj@quicinc.com>, <quic_bjorande@quicinc.com>,
+        <quic_msarkar@quicinc.com>, <quic_devipriy@quicinc.com>,
+        <quic_tsoni@quicinc.com>, <quic_rgottimu@quicinc.com>,
+        <quic_shashim@quicinc.com>, <quic_kaushalk@quicinc.com>,
+        <quic_tingweiz@quicinc.com>, <quic_aiquny@quicinc.com>,
+        <srinivas.kandagatla@linaro.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>, <linux-crypto@vger.kernel.org>,
+        <linux-scsi@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <iommu@lists.linux.dev>,
+        <linux-gpio@vger.kernel.org>, <linux-watchdog@vger.kernel.org>,
+        <linux-pci@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>, <kernel@quicinc.com>
+References: <20240703025850.2172008-1-quic_tengfan@quicinc.com>
+ <20240703025850.2172008-2-quic_tengfan@quicinc.com>
+ <665f6c8c-4f43-4d20-90e9-9e037a942066@kernel.org>
+ <fbeb5969-0b3a-455e-88eb-b83734bf2c50@quicinc.com>
+ <97c9484b-e257-4163-a104-3457d59bc69b@kernel.org>
+From: Tengfei Fan <quic_tengfan@quicinc.com>
+In-Reply-To: <97c9484b-e257-4163-a104-3457d59bc69b@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 4iQ3c_4SVvTyiCWE8YBXnnMoC_qGpXdF
+X-Proofpoint-GUID: 4iQ3c_4SVvTyiCWE8YBXnnMoC_qGpXdF
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-03_06,2024-07-02_02,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 bulkscore=0
+ spamscore=0 malwarescore=0 adultscore=0 priorityscore=1501
+ lowpriorityscore=0 phishscore=0 mlxscore=0 suspectscore=0 clxscore=1015
+ mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2406140001 definitions=main-2407030072
 
 
---6vYa3c1o+yL1L4tm
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-Hi Prabhakar,
+On 7/3/2024 5:33 PM, Krzysztof Kozlowski wrote:
+> On 03/07/2024 11:21, Tengfei Fan wrote:
+>>>>          - items:
+>>>>              - enum:
+>>>> +              - qcom,qcs9100-ride
+>>>>                  - qcom,sa8775p-ride
+>>>> +          - const: qcom,qcs9100
+>>>
+>>> This changes existing compatible for sa8775p without any explanation in
+>>> commit msg.
+>>>
+>>> Best regards,
+>>> Krzysztof
+>>>
+>>
+>> In the next verion patch series, I will provide relevant explanatory
+>> information in this patch commit message.
+> 
+> TBH, I cannot think of any reasonable explanation for this, especially
+> considering rest of the patchset which does not fix resulting dtbs_check
+> warning.
+> 
+> Best regards,
+> Krzysztof
+> 
 
-On Wed, Jun 26, 2024 at 02:23:41PM +0100, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->=20
-> The SDHI/eMMC IPs found in the RZ/V2H(P) (a.k.a. r9a09g057) are very
-> similar to those found in R-Car Gen3. However, they are not identical,
-> necessitating an SoC-specific compatible string for fine-tuning driver
-> support.
->=20
-> Key features of the RZ/V2H(P) SDHI/eMMC IPs include:
-> - Voltage level control via the IOVS bit.
-> - PWEN pin support via SD_STATUS register.
-> - Lack of HS400 support.
-> - Fixed address mode operation.
->=20
-> internal regulator support is added to control the voltage levels of SD
-> pins via sd_iovs/sd_pwen bits in SD_STATUS register.
->=20
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Tested-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com> # on RZ/G3S
-> ---
-> v3->v4
-> - Dropped using 'renesas,sdhi-use-internal-regulator' property
-> - Now using of_device_is_available() to check if regulator is available a=
-nd enabled
-> - Dropped extra spaces during operations=20
-> - Included tested by tag from Claudiu
-> - Rebased patch on top of https://patchwork.kernel.org/project/linux-rene=
-sas-soc/patch/20240626085015.32171-2-wsa+renesas@sang-engineering.com/
->=20
-> v2->v3
-> - Moved regulator info to renesas_sdhi_of_data instead of quirks
-> - Added support to configure the init state of regulator
-> - Added function pointers to configure regulator
-> - Added REGULATOR_CHANGE_VOLTAGE mask
->=20
-> v1->v2
-> - Now controlling PWEN bit get/set_voltage
-> ---
->  drivers/mmc/host/renesas_sdhi.h               |  13 ++
->  drivers/mmc/host/renesas_sdhi_core.c          |  98 ++++++++++++
->  drivers/mmc/host/renesas_sdhi_internal_dmac.c | 147 ++++++++++++++++++
->  drivers/mmc/host/tmio_mmc.h                   |   5 +
->  4 files changed, 263 insertions(+)
->=20
-> diff --git a/drivers/mmc/host/renesas_sdhi.h b/drivers/mmc/host/renesas_s=
-dhi.h
-> index f12a87442338..cd509e7142ba 100644
-> --- a/drivers/mmc/host/renesas_sdhi.h
-> +++ b/drivers/mmc/host/renesas_sdhi.h
-> @@ -11,6 +11,8 @@
-> =20
->  #include <linux/dmaengine.h>
->  #include <linux/platform_device.h>
-> +#include <linux/regulator/driver.h>
-> +#include <linux/regulator/machine.h>
->  #include <linux/workqueue.h>
->  #include "tmio_mmc.h"
-> =20
-> @@ -36,6 +38,12 @@ struct renesas_sdhi_of_data {
->  	unsigned int max_blk_count;
->  	unsigned short max_segs;
->  	unsigned long sdhi_flags;
-> +	struct regulator_desc *rdesc;
-> +	struct regulator_init_data *reg_init_data;
-> +	bool regulator_init_state;
-> +	unsigned int regulator_init_voltage;
-> +	int (*regulator_force_endis)(struct regulator_dev *rdev, bool enable);
-> +	int (*regulator_force_voltage)(struct regulator_dev *rdev, unsigned int=
- voltage);
+This patch may need to be updated based on the results of dtbs_check. In 
+the new version patch series, I will revise the commit message according 
+to the patch updates made.
 
-I am open for discussing this but maybe here only
-
-+	struct renesas_sdhi_regulator *internal_regulator
-
-or something and create the new struct with the additions above?
-
-> +	int (*regulator_force_endis)(struct regulator_dev *rdev, bool enable);
-> +	int (*regulator_force_voltage)(struct regulator_dev *rdev, unsigned int=
- voltage);
-
-Do we need these functions because the regulator framework cannot force
-these actions because it caches the old state? I wonder if we can avoid
-these functions...
-
-And the questions from the other threads need further discussions as
-well.
-
-But in general, I still like this approach.
-
-Thank you,
-
-   Wolfram
-
-
---6vYa3c1o+yL1L4tm
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmaFHVMACgkQFA3kzBSg
-KbZKeg//RuvAaOY52J9b2ypJshdLJ8hsiM7BAg2MgeoSEzJo1LzLopyAvUmSNglR
-+whLrRNfg9/52+7CXEyvmCCpbBWLgPL5lAEECIsaDqnVsYCcMWX+XWhMG37YFTOE
-EUJy9XPg/6aBfXzYIHkDRAfskjorGX5hdU7sLStI3qazGKBIu16fkDxCN84oPuqe
-twnAKh+BaH5Dd1Dzwj7M1hSN//t/rCTuyLhfhfAiGJr+6UG5uTbOq5VKTbe8bEy8
-RqkjdixdrcuX4G8uapT02RTQKkV6+BlDT9Ei/+jK6Y3ue0FqkqmhyGP5YcFkMZOB
-AluYNbeVMOko+6/Tj71NMBAIpJ/oTDWK3zS9eg3HdZfD7z1WgKEH2tof3TSgGUjw
-9dx+2bAoL28dFW8vrtkE3IyaV9B+bppf+WU+1kdYBmRjeEh91pOT+0HYZiSk0s+F
-qv2yIOXbH4Bo7Z9q33LTTwq76AezNCiHNaHXHI7PhxWY44w3ZZnY11BUbTJmfZBT
-6onjaKJhQtbnwlyFFc+XIvHKlXyUR2Q0YxHNbSvi/nJNoku/L0+vSvX6bJmO4HnS
-DXgv9TSvxrTAfGmTx9yCmqLjYuBnZ099PsicibmIYIWF1Ff7vvw4jePxg48/EDPs
-F8+82SHYmQ/np1Yz8g/ltt01/FeeTmXORMIQKZbCqIYSFV0FbHU=
-=Z1FG
------END PGP SIGNATURE-----
-
---6vYa3c1o+yL1L4tm--
+-- 
+Thx and BRs,
+Tengfei Fan
 
