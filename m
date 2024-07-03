@@ -1,154 +1,108 @@
-Return-Path: <devicetree+bounces-82838-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82839-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C7B8926077
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 14:36:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F7779260C6
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 14:46:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6E48B1C222B2
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 12:36:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 663B1284AEB
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 12:46:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09CE517966D;
-	Wed,  3 Jul 2024 12:36:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31412173359;
+	Wed,  3 Jul 2024 12:46:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b="lPEiOMpa"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xS+NbOsK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com [209.85.219.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4101176AA4
-	for <devicetree@vger.kernel.org>; Wed,  3 Jul 2024 12:36:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.26.50.163
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3DFC16EBEA
+	for <devicetree@vger.kernel.org>; Wed,  3 Jul 2024 12:46:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720010162; cv=none; b=UUiNoUCrjLhRpPlZlFXRWOvrRVYZEK4uQJKo74q4wtbG3+V6A8KB3YxVwfbEOx+dUhs/+qTQIYjZR4XSkvK9wFJs/3Cim+O4f5fMDLKW7EEJM52T7dJxFNf/Fo/4AkcoCAuV45KoC0kbCz4aJcVSzuiza0YjPdFkpkTdeSrNeao=
+	t=1720010783; cv=none; b=acshSalqgpPHMHQhlDFDnUFwvlWxebbV/1Xx+l50C5UVXR08HL6q0tOnoR7bui/QGnBhyxYAyY26Zl44cYqYdjJOoFT91umLF/7rKKFFaKGVPYm26RIrJUDFGdr8xl8rFzw/jFfOFjZ5uCqk6nga7p17pkDg2BQofwOqgR9ft5A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720010162; c=relaxed/simple;
-	bh=SgVEUNRWJOk07fURUytX7s42U4rwXhqHvehG/BsupB4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=j1CSamRuYlBpweKLsyF0fSFnkLLQUbyhBahXH8ypKKitmyBE8Yia1LKXM7m1AjP0peZ4iw5xECdieabUp1+XRZEZ+6bl8qQO7GagwTj+GwiheNvH4h3LKbRbn48FUHgqq7PeD3gwnOgV7T5YbJ4TSHOaLKzBDUezelse1LHwPDk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b=lPEiOMpa; arc=none smtp.client-ip=91.26.50.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
-DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
-	q=dns/txt; i=@phytec.de; t=1720010148; x=1722602148;
-	h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=SgVEUNRWJOk07fURUytX7s42U4rwXhqHvehG/BsupB4=;
-	b=lPEiOMpa3Rqsx0uC/vJbKcVzmgoPtzgmNvr8L0WGQTwrWVQZyU86xEJlIPHj6IqH
-	4ClRHCex6pYZeHn/wOLplZMKd1me6+1Aq8tM7hV1LIfK7D89XskT/O6Eq43mgKre
-	nQ5pFensofdR9TkI9XHOhOw4oY3hnOah8wAS3gpGdhg=;
-X-AuditID: ac14000a-03251700000021bc-39-668545a493bb
-Received: from berlix.phytec.de (Unknown_Domain [172.25.0.12])
-	(using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(Client did not present a certificate)
-	by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 9D.F0.08636.4A545866; Wed,  3 Jul 2024 14:35:48 +0200 (CEST)
-Received: from llp-hahn.phytec.de (172.25.0.11) by Berlix.phytec.de
- (172.25.0.12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Wed, 3 Jul 2024
- 14:35:48 +0200
-From: Benjamin Hahn <B.Hahn@phytec.de>
-Date: Wed, 3 Jul 2024 14:35:38 +0200
-Subject: [PATCH] arm64: dts: freescale: imx8mp-phycore: Add no-eth overlay
+	s=arc-20240116; t=1720010783; c=relaxed/simple;
+	bh=Ut68rqDrN1TwpAu4QkfYXs+IX6JiITiQUrIaV3hssN4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=J4dja+A7122MXyc64NyWjEv6avviKqlvZnjErTNqTHCb1e6NlhKgY4vnEhPZ35Zc0c3ZBd7IECYUz8dDiBGoAOpfJ8pVh06hK0ALAkMNLpYKiCBCFQ5QgglHqU/VoMfkzRbV8NBXnVA7VSKWhhO54tv62kiLPMlqwGVuGPC3zNg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xS+NbOsK; arc=none smtp.client-ip=209.85.219.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-dff1ccdc17bso5578464276.0
+        for <devicetree@vger.kernel.org>; Wed, 03 Jul 2024 05:46:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1720010781; x=1720615581; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Ut68rqDrN1TwpAu4QkfYXs+IX6JiITiQUrIaV3hssN4=;
+        b=xS+NbOsK1LrdxBZz+P4dkUeZWg73cc3q8EQrnykGnmaFz1Db9fOf9J2SWq3SQSQblW
+         uUvC9rKZf3EcHJT3ghE5RKTSDjGG8ZNSVEiNRTDN2kvH02CLZ/EJ7K9oFs044ajXUhJC
+         BxxgbR1tnhKKvgNJ7nD4NoGYYb46CaE1LcmEWwG4hJkLlqxb3hSFbIe40O3sZu9WHGjW
+         soChqzGtfiMdsHeeX43pYgnRMPQwmAZxs060bX2JSXekCIyRUwLe3rw5pn2lOspt225Q
+         VWvkwLa5lpjYBTnPcba9bUbNFgh1/S0rxiA1Qn4KruOI5r5yLJwLNdpvB2cDWlMPiZrw
+         VyZg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720010781; x=1720615581;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Ut68rqDrN1TwpAu4QkfYXs+IX6JiITiQUrIaV3hssN4=;
+        b=Q0/sIwKiCPRO4q3y0ilCQaTZlf6p4v8kriInE6CylrEJOxQAphyh9xokpevCOxuYAv
+         EPQEYZTP+sbY7uD8dpCWns4XwWUSuLaqeiDuGEkE/KZK9OUpIL+LkOK+OBj427Z4z7+x
+         HXeEorNTdNvUbkq2ccb0GHAUzoqbsp2R8U6nkuKd/r4SZJTv0lP5NFBVUoA77ZB2WoEy
+         FMnsm9tkhte13QU0ZIc9VB+UbAv7ekCNVNLzwojJrbB5m4kvnoyPe4owgCxP7AlD9KMf
+         +Thid2NpDJiJlj+q3299TCGfK/yZPNbZqCaTt6RI3bcyDGjQZP/yyE/zfWYcc7LNf07y
+         3h6w==
+X-Forwarded-Encrypted: i=1; AJvYcCVnF3BC5woErwlv27UrF6uWiTc58Xjy3YHEF17OFcv2rvv6dvNtnIkiOCJGbNNPzssFfiuSd9lZWEFCcCR5ILkQ7dS63Pus6aioyg==
+X-Gm-Message-State: AOJu0YzfLjytIcOpUrlnw3lMgRWVhexNdEEmqI29td9JOljZyIs2W7y1
+	xkAlYQ9ax/r/B8/XA/oGDmq+5+MnW2Fz5YKtrPzFn0/lacD+sLiF4LJ7WLdVCXp0f2SqDDblutl
+	DTs2IEuKZALIDyKJv3wIZO4Mx24k+d93co19P1Q==
+X-Google-Smtp-Source: AGHT+IGx0EtqF24mwZRqfU+d7OwAJMjAo8uBkj9IVIYdq7kjT6pCMEr0hMuMUufGQFu/0P086qoqyzdlDDqlq5KxMEs=
+X-Received: by 2002:a25:c5c7:0:b0:dfe:73d8:4593 with SMTP id
+ 3f1490d57ef6-e036ec454b4mr11736791276.48.1720010780692; Wed, 03 Jul 2024
+ 05:46:20 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20240703-bspimx8m-3180-v1-1-e43e035a9b2a@phytec.de>
-X-B4-Tracking: v=1; b=H4sIAJlFhWYC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDIxMDM0Nz3aTigszcCotcXWNDCwNdE/Ok1BRDC5NEC1MTJaCegqLUtMwKsHn
- RsbW1AAuaVj1fAAAA
-To: Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam
-	<festevam@gmail.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
-CC: <upstream@lists.phytec.de>, <imx@lists.linux.dev>,
-	<linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, Benjamin Hahn <B.Hahn@phytec.de>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1720010148; l=1888;
- i=B.Hahn@phytec.de; s=20240126; h=from:subject:message-id;
- bh=SgVEUNRWJOk07fURUytX7s42U4rwXhqHvehG/BsupB4=;
- b=GGNUbTtygcGXN+Gk85yx3NjyvbyhF7/u2ej26fEsUZsbxqe9IAdu4K47r54cOuZsWdVhxJ3hN
- gtWAB4auXQVAQt9Ki5h7zpkWZDM+xD6S5nunMs9/Zys9c8r0SzF9zHf
-X-Developer-Key: i=B.Hahn@phytec.de; a=ed25519;
- pk=r04clMulHz6S6js6elPBA+U+zVdDAqJyEyoNd8I3pSw=
-X-ClientProxiedBy: Berlix.phytec.de (172.25.0.12) To Berlix.phytec.de
- (172.25.0.12)
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprIIsWRmVeSWpSXmKPExsWyRpKBR3eJa2uawZ5T8hZr9p5jsph/5Byr
-	xcOr/hYz77WyWayaupPFou/FQ2aLTY+vsVpc3jWHzaJ17xF2i7/bN7FYvNgibtH9Tt2Bx2Pn
-	rLvsHptWdbJ53Lm2h81j85J6jxebZzJ69He3sHr0/zXw+LxJLoAjissmJTUnsyy1SN8ugStj
-	5eQbTAWP+Coe9f5kamD8yNPFyMEhIWAisftYRBcjF4eQwBImievb9rFBOA8YJRasv8vYxcjJ
-	wSagJrHrzWtWEJtFQEXiX9NtNhBbWMBLYv7LhWA1vAKCEidnPmEBGcosoCmxfpc+SJhZQF5i
-	+9s5zBAlDhJ9V3pYQOZLCKxhlHi0agUziCMCsrn94AkmEIdZ4CCjxIdPv9ggzhOW2LRTC6Jj
-	N5PEh49dLBDxRImdr+VApgoJyErcPL8F7CAJoG3Tzr1mhrBDJbZ+2c40gVF4FpL7ZiHcNwvJ
-	fQsYmVcxCuVmJmenFmVm6xVkVJakJuulpG5iBEWbCAPXDsa+OR6HGJk4GA8xSnAwK4nwSr1v
-	ThPiTUmsrEotyo8vKs1JLT7EKM3BoiTOu7ojOFVIID2xJDU7NbUgtQgmy8TBKdXAmGPfNPV3
-	/pqupzv/7nxfUDr7U8XFk8c61GoqWBdJTKw4cbHmqleddDVf+1nDy0/za7V5avaJFH167fE3
-	/9Mdrt7GFfJfTieW3zyikNLHN+tCnMK1BVKFjGX7owPeJhZ7SnBtFJ/1JnPu90/xD6cvruYu
-	nam5hJ3XfW1zqqHF1x2rn+8uMH+0QYmlOCPRUIu5qDgRAK2grm2kAgAA
+References: <IA1PR20MB4953D5E7D7D68DDCE31C0031BBCF2@IA1PR20MB4953.namprd20.prod.outlook.com>
+In-Reply-To: <IA1PR20MB4953D5E7D7D68DDCE31C0031BBCF2@IA1PR20MB4953.namprd20.prod.outlook.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Wed, 3 Jul 2024 14:46:08 +0200
+Message-ID: <CACRpkdYJCnTXHMwUi1-uhdrBjt=dukyJNGCZM2pLfN+tbw8bmw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: pinctrl: pinctrl-single: fix schmitt related properties
+To: Inochi Amaoto <inochiama@outlook.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Tony Lindgren <tony@atomide.com>, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add a devicetree overlay to disable ethernet for boards where it is not
-populated.
+On Thu, Jun 20, 2024 at 1:15=E2=80=AFAM Inochi Amaoto <inochiama@outlook.co=
+m> wrote:
 
-Signed-off-by: Benjamin Hahn <B.Hahn@phytec.de>
----
- arch/arm64/boot/dts/freescale/Makefile               |  2 ++
- .../boot/dts/freescale/imx8mp-phycore-no-eth.dtso    | 20 ++++++++++++++++++++
- 2 files changed, 22 insertions(+)
+> The "pinctrl-single,input-schmitt" have four arguments in the bindings
+> but the driver needs two. According to the meaning of other properties
+> and driver, it should have "enable" suffix. Fortunately, there is no
+> dts using this property, so it is safe to correct this property with the
+> right name.
+>
+> Rename existed property "pinctrl-single,input-schmitt" to
+> "pinctrl-single,input-schmitt-enable" and add the right description for
+> property "pinctrl-single,input-schmitt" used by the driver.
+>
+> Fixes: 677a62482bd6 ("dt-bindings: pinctrl: Update pinctrl-single to use =
+yaml")
+> Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index 2cb0212b63c6..16e06e6f055c 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -164,6 +164,8 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mp-evk.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-icore-mx8mp-edimm2.2.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-msc-sm2s-ep1.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-phyboard-pollux-rdk.dtb
-+imx8mp-phyboard-pollux-rdk-no-eth-dtbs += imx8mp-phyboard-pollux-rdk.dtb imx8mp-phycore-no-eth.dtbo
-+dtb-$(CONFIG_ARCH_MXC) += imx8mp-phyboard-pollux-rdk-no-eth.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-skov-revb-hdmi.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-skov-revb-lt6.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-skov-revb-mi1010ait-1cp1.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-phycore-no-eth.dtso b/arch/arm64/boot/dts/freescale/imx8mp-phycore-no-eth.dtso
-new file mode 100644
-index 000000000000..2a9fe1d6db9d
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-phycore-no-eth.dtso
-@@ -0,0 +1,20 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2024 PHYTEC Messtechnik GmbH
-+ * Author: Cem Tenruh <c.tenruh@phytec.de>
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+&{/} {
-+	compatible = "phytec,imx8mp-phycore-som";
-+};
-+
-+&ethphy1 {
-+	status = "disabled";
-+};
-+
-+&fec {
-+	status = "disabled";
-+};
+Patch applied!
 
----
-base-commit: e8f897f4afef0031fe618a8e94127a0934896aba
-change-id: 20240617-bspimx8m-3180-47bed184a854
-
-Best regards,
--- 
-Benjamin Hahn <B.Hahn@phytec.de>
-
+Yours,
+Linus Walleij
 
