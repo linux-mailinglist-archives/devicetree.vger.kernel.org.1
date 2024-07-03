@@ -1,103 +1,128 @@
-Return-Path: <devicetree+bounces-82905-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82906-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10F6C9264E9
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 17:34:54 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D72189264FC
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 17:37:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 43F251C20DBC
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 15:34:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1E0F41C20BC3
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 15:37:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B45C181B8C;
-	Wed,  3 Jul 2024 15:34:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65D41180A73;
+	Wed,  3 Jul 2024 15:37:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="onk8DFpu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f73.google.com (mail-wm1-f73.google.com [209.85.128.73])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9D2617C218;
-	Wed,  3 Jul 2024 15:34:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C095C177980
+	for <devicetree@vger.kernel.org>; Wed,  3 Jul 2024 15:37:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.73
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720020885; cv=none; b=RwNiOvL4CLpxUv8Mr/sCNqCiINAZkm6dF5KgE5dbJd36NZwIQ79g75vCiKnfEGmE1b7ecA/i+qQKBXA+ToV+D/E5tbdbTrX9G4WBCW/0uszp9ezM2mQmvpVgABPNIpkPeLKLD08GUJDHU0WkIg9xTWW4N98fvOjnLWeW5ReDLv0=
+	t=1720021063; cv=none; b=ZRsYKO40dbUz3In6z5D2r/dA1bZDd/hTZWTzj3168jYKKHzC1GaJHOqziGrlWr9eRVPrxMtEEh147Mm7IuUXPuA8WYHG/sdRWNO7mODJkl1N+N1UA/22B5YH5l34C5wdDzNQNWsZgPeZxtIrRBzN3JKpTYVXCa5seQs5pFjR9mU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720020885; c=relaxed/simple;
-	bh=bfaw19uuK8TQlCj0Vgpd7pA788Xds97aFClcqdNEz8I=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=tdoaSnkF6wr4OfABT437IixwWVioFcvV5ypAVLyC59UItQKcZHaxZwBjcCYH2dbSP8ylkfhmsfinMDc12wYc2p2HAv3USuYBTFVrVBgm968pA4HUhXOOR0zg1N97YLP1aahmQ9VmPFZQ3/6s9eUR+lGzny1VkLWntATO+5LUXNY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.31])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4WDkLJ3vy7z6K8y3;
-	Wed,  3 Jul 2024 23:32:40 +0800 (CST)
-Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
-	by mail.maildlp.com (Postfix) with ESMTPS id 6253A140A87;
-	Wed,  3 Jul 2024 23:34:33 +0800 (CST)
-Received: from localhost (10.203.174.77) by lhrpeml500005.china.huawei.com
- (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Wed, 3 Jul
- 2024 16:34:32 +0100
-Date: Wed, 3 Jul 2024 16:34:31 +0100
-From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To: Luca Ceresoli <luca.ceresoli@bootlin.com>
-CC: Miguel Ojeda <ojeda@kernel.org>, Rob Herring <robh@kernel.org>, "Saravana
- Kannan" <saravanak@google.com>, Nathan Chancellor <nathan@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
-	Tony Lindgren <tony@atomide.com>, Bjorn Andersson <andersson@kernel.org>,
-	Emilio =?ISO-8859-1?Q?L=F3pez?= <emilio@elopez.com.ar>, Chen-Yu Tsai
-	<wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland
-	<samuel@sholland.org>, "Krzysztof Kozlowski" <krzk@kernel.org>, Daniel
- Lezcano <daniel.lezcano@linaro.org>, Thomas Gleixner <tglx@linutronix.de>,
-	Florian Fainelli <florian.fainelli@broadcom.com>, Broadcom internal kernel
- review list <bcm-kernel-feedback-list@broadcom.com>, Linus Walleij
-	<linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, "Jonathan
- Cameron" <jic23@kernel.org>, Lee Jones <lee@kernel.org>, Shawn Guo
-	<shawnguo@kernel.org>, Pengutronix Kernel Team <kernel@pengutronix.de>, Uwe
- =?ISO-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>, Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, "Richard
- Leitner" <richard.leitner@linux.dev>, Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>,
-	Christophe Leroy <christophe.leroy@csgroup.eu>, "Naveen N. Rao"
-	<naveen.n.rao@linux.ibm.com>, Damien Le Moal <dlemoal@kernel.org>, "Peng Fan
- (OSS)" <peng.fan@oss.nxp.com>, Thomas Petazzoni
-	<thomas.petazzoni@bootlin.com>, <linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <llvm@lists.linux.dev>,
-	<linux-clk@vger.kernel.org>, <linux-omap@vger.kernel.org>,
-	<linux-arm-msm@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-sunxi@lists.linux.dev>, <linux-samsung-soc@vger.kernel.org>,
-	<linux-gpio@vger.kernel.org>, <linux-iio@vger.kernel.org>,
-	<linux-pwm@vger.kernel.org>, <linux-serial@vger.kernel.org>,
-	<linux-usb@vger.kernel.org>, <patches@opensource.cirrus.com>,
-	<linux-sound@vger.kernel.org>, <linuxppc-dev@lists.ozlabs.org>,
-	<linux-riscv@lists.infradead.org>
-Subject: Re: [PATCH 12/20] iio: adc: ti_am335x_adc: convert to
- of_property_for_each_u32_new()
-Message-ID: <20240703163431.0000268f@Huawei.com>
-In-Reply-To: <20240703-of_property_for_each_u32-v1-12-42c1fc0b82aa@bootlin.com>
-References: <20240703-of_property_for_each_u32-v1-0-42c1fc0b82aa@bootlin.com>
-	<20240703-of_property_for_each_u32-v1-12-42c1fc0b82aa@bootlin.com>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
+	s=arc-20240116; t=1720021063; c=relaxed/simple;
+	bh=UuuWaa0tC3y7wOOJIpWxBS3gznzmQGKFf0mmHMtUpgQ=;
+	h=Date:Mime-Version:Message-ID:Subject:From:To:Cc:Content-Type; b=Ui35J0r1ERktCzPI3px8Dr7sh+DJETk58MXx60ka1WCSAbInPXJAxFbKnpv4m2dmowaNCFSVexOhlCCMz/feWqJa9Zr4/sD/cOgACeK7V2fje2ueUa2oKAc7WzY0yfVDdjIz0n9Q/u0VTj6YRJOixeKo/EE6/i/uM5SN2MCdewY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=flex--sebastianene.bounces.google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=onk8DFpu; arc=none smtp.client-ip=209.85.128.73
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flex--sebastianene.bounces.google.com
+Received: by mail-wm1-f73.google.com with SMTP id 5b1f17b1804b1-4257c42f035so29130435e9.3
+        for <devicetree@vger.kernel.org>; Wed, 03 Jul 2024 08:37:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1720021060; x=1720625860; darn=vger.kernel.org;
+        h=cc:to:from:subject:message-id:mime-version:date:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=sXHeYBx1feIyYBvodN+uyHwwuOXvCzbpoETmGReNpnA=;
+        b=onk8DFpuxdpJCUTbcDyJLQ+/+EmgXGSU3ufTfhqv0porDu7dZgV6wlwbT+MqeMGhnB
+         6v9YztyRSbn4feCJQYKfHcmtXiXNjBHkxsr5w/LdYJ6apiVWe+Mcp56sd5VZt/uy8/zL
+         EzbmKlbYf3IoaTKSEXvEQWqXMUs0tE2FCSLonA1x0iLwsZ8JPGFTZxiLmfkH1GZBwSqr
+         M0jzEsAVHkPir3BiqlFiUjl6b2g6ICZEOn8mmEbrAew0f9C5F9b+BUWL02sd2avW9hUw
+         ZlgaojMSutc8k1v1R4HtpTSnYom9vWxdf5t0IL3S0H81/AgcORiEKFd5yaGYx/tPPTNM
+         rLIg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720021060; x=1720625860;
+        h=cc:to:from:subject:message-id:mime-version:date:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=sXHeYBx1feIyYBvodN+uyHwwuOXvCzbpoETmGReNpnA=;
+        b=CIQOl7yHXtY94FYiWlWEeDFwQg2HGra/OdKsZ/+wp5tITJXMW8m/EmvemLaW+ioEgv
+         KdF5dPMyBdjdm+JE/u9LQjQMGGJFtuP5E0sxKeQjqetDGANImEz8aFJOwPeQDjXSxprf
+         w0Fwt0/JsWsrappfwW6FDrE9cUovyXj/C9PJ7sY0/0qkZ64pRyOSYaq4G2ipM1U3EU3z
+         zPtQxOMgSS16FN5YfC2C78DTmRQEFQEVTpaoM+rRt6CjzasFMyWZiS5gj+YdH51xq7/g
+         iJqO+Q5HwrL1A6TqIsFM3qiLsgjUxKhQ15nCY8BaRYGD+j2ZouSkBOMxpXifaS/gO/bc
+         9+gg==
+X-Forwarded-Encrypted: i=1; AJvYcCUwjRwQO8LgFdMDr6OXvZUzMnP2V708tqODdqahI47hlS32oz0WzMEh+UuU2HEUhLi3B7MvROlDXv8WERLGCWKl1RYlZcoHQgwI/A==
+X-Gm-Message-State: AOJu0Yyvfu+Pa07Wa3sD87aTXLK9dA6RzdKgymF0SItWjHqmFaEtwhw7
+	MwE9g+IHoj3F8JyDcK6CU9IXC/W8gnrkyysB7+CH+V21KiNySJv6f0QmP3xeNvgdvgTjXtU4+dB
+	SCdPojyHjuEfklunNoIkefWzOKQ==
+X-Google-Smtp-Source: AGHT+IGSiEEFTCajMYHomHUZhVpXcTcBj4lQBmYUjRjnpTt9U/W1MKTV3Bdokpkt0CdvJgVhHM+9bzWcmGA7t0/TMvg=
+X-Received: from sebkvm.c.googlers.com ([fda3:e722:ac3:cc00:28:9cb1:c0a8:cd5])
+ (user=sebastianene job=sendgmr) by 2002:a5d:6d8a:0:b0:367:4e17:3ec6 with SMTP
+ id ffacd0b85a97d-3677569d1e4mr17528f8f.2.1720021060119; Wed, 03 Jul 2024
+ 08:37:40 -0700 (PDT)
+Date: Wed,  3 Jul 2024 15:37:30 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: lhrpeml100006.china.huawei.com (7.191.160.224) To
- lhrpeml500005.china.huawei.com (7.191.163.240)
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.45.2.803.g4e1b14247a-goog
+Message-ID: <20240703153732.3214238-1-sebastianene@google.com>
+Subject: [PATCH v3 0/2] misc: vcpu_stall_detector: Add a PPI interrupt
+From: Sebastian Ene <sebastianene@google.com>
+To: arnd@arndb.de, gregkh@linuxfoundation.org, will@kernel.org, maz@kernel.org, 
+	Rob Herring <robh+dt@kernel.org>, Dragan Cvetic <dragan.cvetic@xilinx.com>, 
+	Guenter Roeck <linux@roeck-us.net>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	kernel-team@android.com, Sebastian Ene <sebastianene@google.com>
+Content-Type: text/plain; charset="UTF-8"
 
-On Wed, 03 Jul 2024 12:36:56 +0200
-Luca Ceresoli <luca.ceresoli@bootlin.com> wrote:
+Hello,
 
-> Simplify code using of_property_for_each_u32_new() as the two additional
-> parameters in of_property_for_each_u32() are not used here.
-> 
-> Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Acked-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+I am re-spinning the patches as last time I accidentally sent v2 twice
+without bumping the version.
+
+This is a small update of the previously introduced vcpu stall detector
+which adds an interrupt to the virtual device to notify the guest VM in
+case it stalls. This lets the guest VM to handle the reboot and to
+panic in case it expires. 
+
+Changelog:
+
+v2 -> current:
+* fixed the build error reported by the Intel robot
+  (https://lore.kernel.org/all/202406132132.FBKSWFav-lkp@intel.com/)
+* v2 was sent mistakenly on the list without bumping the version to v3. v3
+  should be the correct version of this patch.
+
+v1 -> v2:
+* 1/2 : collected the Ack from Conor Dooley, thank you Conor !
+* 2/2 : applied the feedback received from Conor and used
+	platform_get_irq_optional. Removed the error messages during
+	probe
+
+Link to v2:
+https://lore.kernel.org/all/20240611110136.2003137-2-sebastianene@google.com/
+
+Link to v1:
+https://lore.kernel.org/all/20240523160413.868830-1-sebastianene@google.com/
+
+Thanks, 
+
+Sebastian Ene (2):
+  dt-bindings: vcpu_stall_detector: Add a PPI interrupt to the virtual
+    device
+  misc: Register a PPI for the vcpu stall detection virtual device
+
+ .../misc/qemu,vcpu-stall-detector.yaml        |  6 ++++
+ drivers/misc/vcpu_stall_detector.c            | 31 +++++++++++++++++--
+ 2 files changed, 35 insertions(+), 2 deletions(-)
+
+-- 
+2.45.2.803.g4e1b14247a-goog
+
 
