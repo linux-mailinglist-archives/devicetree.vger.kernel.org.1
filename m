@@ -1,193 +1,110 @@
-Return-Path: <devicetree+bounces-82836-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82837-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA09D926045
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 14:26:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C41D2926064
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 14:33:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AD5581C20C5B
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 12:26:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 01C821C22BD6
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 12:33:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24AD9174EF7;
-	Wed,  3 Jul 2024 12:26:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6682C177981;
+	Wed,  3 Jul 2024 12:33:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iKhx1sjR"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="T2JZjCn7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63EAD85298;
-	Wed,  3 Jul 2024 12:26:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADDAA176AAF
+	for <devicetree@vger.kernel.org>; Wed,  3 Jul 2024 12:33:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720009598; cv=none; b=YDsLg8N/8dffCOeErj6i8bCEm69OZSgNvDNJcQgX4dxb6Z7xV4vhLfy4ePyBJ2wY/vM13R2yZpdum4vQLH6loKIQT4zxBjmwJRHqDXelOC4yvVY+vCDkQGqUzsMmybRVabF7Q0Rtk47mvn3bpuvl4KVRsoz0UbqK0m/QxWMc4Vo=
+	t=1720009989; cv=none; b=bmYuKqy9WotZgrd86aYGOZ5Ar0fxMjbBaBaKZAPJxP2Yq/PTxTeUpOTCcMTOBS2e0PTYE6Y64AdZemIjwJzPIaKB9k3PGlvT4OAPkeFsMIL4+3SE2eeOp4pfPD5gb5KQqklu5/ud8MAOrMeyBZUsuj4Su0EwebI4/oFvpHznErM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720009598; c=relaxed/simple;
-	bh=h2LjxXC0OzDiJd2LZJkR6AgXeDFIt2ME+WnIdf3EMAk=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition; b=oWByK92Wr0PTl9gDWJK6mbTO95yQ3gsrJUdt5IKwPRDTF6MfEmeI8wA2wodQYdUZ3tX+MoroPxp/jE0iPl7rjFMAflHpJLqPxX9CdQs6PHZC7Zcx95stcNijVNtv3M5ydMs/ED4NMU5LDLIeMHKnQl0tq86rPWAPuSxGV1vh+Ag=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iKhx1sjR; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-4256f102e89so36167535e9.0;
-        Wed, 03 Jul 2024 05:26:36 -0700 (PDT)
+	s=arc-20240116; t=1720009989; c=relaxed/simple;
+	bh=vSqtvzn0M3C5j7Jfg2sByI7qK17/t+Y4ps+yPOtX6zM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=EtHA0JSS5ID0WZMmGi3YQaSz8lYbj97cM4hCzi8zThcZQkNqls1J3Vv4Kw67ptK5LL7gZmND3tXOLDG1828wJnfQIxOAAgfq0CB7Wp/fWONm/oAwJ/3+gVY7EgPRCG2FjpK1b8dossx3NOoQBJIOdaL1keWla0aOM7FfUFNSP2U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=T2JZjCn7; arc=none smtp.client-ip=209.85.208.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2ec6635aa43so52986801fa.1
+        for <devicetree@vger.kernel.org>; Wed, 03 Jul 2024 05:33:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1720009595; x=1720614395; darn=vger.kernel.org;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=b7FAFQKiJKwdtByQPY9Z255c9YVtWF2910FResQyaq4=;
-        b=iKhx1sjR9CXgGTeerYy4JmNE/rD3ZgW+EN4OkEDuVf1r32WWaJtHEFpSbSeWrq2TcF
-         J0H2uQQDgYPOrV58G7XGXj1DQnvQyIFzrpKf/w2QN/5swnZabL5ovcWFpZihOAzvXldW
-         guRSi3fRoxYFzfH4teaDbBCh9OJvcoYFjb88tv+Wb/BbFQ8dqO1uJdCRhB1t3XA+BAn3
-         kdSTdMRsY3LIUU++58YcIl9lPX2F7KqU2oR/lFZ6EEEhY3aJGEoDHYUWaZszCArhuRv1
-         NPF6UEYsjQhGWyAXY4lx3IWFZFCUfFBq1cIjkGvJoNt4cWne0AteOYcMTrmqWsD1udZ6
-         a2mw==
+        d=linaro.org; s=google; t=1720009985; x=1720614785; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=vSqtvzn0M3C5j7Jfg2sByI7qK17/t+Y4ps+yPOtX6zM=;
+        b=T2JZjCn74zERrn3toAtkV5skfQEMISGuyIkNd99xJrCaIvnYpMDE6AArqlXQGe5x8g
+         Mo3Q84DQs3x3pXLH/4pzSVdRgeLtkD8Fu1aQ8brqRN+WskSRqGN9CmducP7s7I+/dRZb
+         O3dMbLgfN1n8PWewOBS48B/eoA9EAL1Eg3c0lxJrIN/hX5hR0gT++4RiCaBVv/lv5+JP
+         g0xboyF5AgZzkOhTrX8Dus88WHkqubi54/HANpZoTsfDjANrLgs4B51qECC1OLqiek0k
+         qy0anD/xtdWM0FSUaLEYOZlDUHAF1epXVEeJmkfvjho8lYE8zGXT9csI1Mf7C3p5y6tI
+         AAuA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720009595; x=1720614395;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=b7FAFQKiJKwdtByQPY9Z255c9YVtWF2910FResQyaq4=;
-        b=xDOUj3kmYZGVrQwurJ3s6J/8U0lbnXqHx1AMWSFbz6d8rv1Ooq/YRQpMZJVPVY30DG
-         6neSS1D5plVB5bbeBS0yBlsUv0x+ZiJlXqjiJu2uNcjXT8IiU4hg0ujeLVLovHaiNth1
-         VDBOqInRIRBFNFBii3uNBYDX5dxc8NcoQLdW6Hj9j3XerEKGZgDBhEkMN6qFDOv2tXeF
-         VxSvqOUv0ZpVRR6KfFWNo+ZCA+qFTrTtqlGZ5mWsUJ9/+jtTYy+gUlvMP/Wffo6KVbGK
-         XHztK8bAezh3sJnKyg5jL78WlHUbKQiDJpqY+8bKS+nQiVlFePLNxo908rINULMRs096
-         9zMQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWoiTsMC/YfCQNoYZCtfQt1/G4aOGeaFiVlxRD7IklgUCiIij+aCj6WQt83SNTXpU5gQzjvBL7CG91LU3HQzumqO4ebyg+mAzMso1BkZBYySvpdUeWnKVPOPmMoopuIMfavCEx37F+pcA==
-X-Gm-Message-State: AOJu0YwWWqRhnBYrsE16VR68IKQjGUC1F05mHrzb8N8z6fSp45BN3hAM
-	7rwBUZFsbida6Jj+piW8/WXGXlAxJH8V+KpiHWCr8nd9r0nG53Z6z/bKxg==
-X-Google-Smtp-Source: AGHT+IEbC62WyVRYSYk89Jxzx2m+kO+O2DjKrDtUHxJi5KUMHCWNCu5CY/nLJuBq8xo7BP1Ckx/HeQ==
-X-Received: by 2002:a5d:64c5:0:b0:360:89a3:5293 with SMTP id ffacd0b85a97d-3677561fce9mr8359135f8f.0.1720009594435;
-        Wed, 03 Jul 2024 05:26:34 -0700 (PDT)
-Received: from standask-GA-A55M-S2HP (lu-nat-113-247.ehs.sk. [188.123.113.247])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3675a0e143csm15727240f8f.59.2024.07.03.05.26.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Jul 2024 05:26:33 -0700 (PDT)
-Date: Wed, 3 Jul 2024 14:26:32 +0200
-From: Stanislav Jakubek <stano.jakubek@gmail.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Baolin Wang <baolin.wang@linux.alibaba.com>, baolin.wang7@gmail.com,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Orson Zhai <orsonzhai@gmail.com>,
-	Chunyan Zhang <zhang.lyra@gmail.com>
-Cc: linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: hwlock: sprd-hwspinlock: convert to YAML
-Message-ID: <ZoVDeHCUCTZu7AT/@standask-GA-A55M-S2HP>
+        d=1e100.net; s=20230601; t=1720009985; x=1720614785;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=vSqtvzn0M3C5j7Jfg2sByI7qK17/t+Y4ps+yPOtX6zM=;
+        b=vHSDhiX/T2aR2BIDg/REKb7fXbLBBSav7mY5MpFagmcwwKhTCmNyMw5RResgpefL5W
+         tLkvS4QkUG+G1cEJGxWPWg38iKLe3aCR3aeb/pt1tWCVlPgYeJ7CyTW21sczi3RJM81C
+         UlTwqw0wNE/QZgtgjPVxJDXlMGG0HzEzEOTHP1evEJ5Ujflmvcr/vQ77VGp9iF0brvYQ
+         fTyKq2mo+QMz/Fxt6LGnBThLoqKP5ixAu4vHKDGcIedAQ0bucQdB1X7s57ZbjyCtBpzR
+         1F/lbEBrYuIoCBEjR7dOOBDh2mRcP821Zwl0R5ZAgoH2J3fWASMWAMgfshNiUySvQx1E
+         uIrg==
+X-Forwarded-Encrypted: i=1; AJvYcCWqD9CBNo2b58BlzV5zg+wDordjDFVenxNDTnIgSw1ruKnfyCASrjWHYWvIeTx8VVj3LYOeKu3HKrY6QauzLFukOSq3M+HTPjO0IA==
+X-Gm-Message-State: AOJu0YwEAnh9KrITKYewgRoram87D1Q8u+3LdVPfoXmDQ+hs2Xxyv8CJ
+	lYOv/ncFA5QKy73Kh6aXDRu5smqFuF/AhyFVD9v7cGcxCA373wlcMQjG0fO1FprMmFWjLu5K9Eh
+	dm8dGtXE4RqoF59Nm0n9Gu0Oh/BOeGuZ398/czw==
+X-Google-Smtp-Source: AGHT+IGbnlRShz/3hXmtetfc+0EghD2fIMBX7fxnDCTNRN+4rKt0LgTOhBhEx8FxkTdV4WjFp2QkGDn2ZSiYPJqUaMY=
+X-Received: by 2002:a2e:a58a:0:b0:2eb:ef78:29c8 with SMTP id
+ 38308e7fff4ca-2ee5e39400cmr79485811fa.14.1720009983878; Wed, 03 Jul 2024
+ 05:33:03 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <20240612-sm4250-lpi-v4-0-a0342e47e21b@linaro.org>
+ <CACRpkdZyupZmV+e=L0KR8ospH9P=wdUrMFvBnGXyfhLhW3-=PQ@mail.gmail.com> <4106f2be-be0b-4263-9e61-c3a29e837a7c@linaro.org>
+In-Reply-To: <4106f2be-be0b-4263-9e61-c3a29e837a7c@linaro.org>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Wed, 3 Jul 2024 14:32:52 +0200
+Message-ID: <CACRpkdYAXGfAdrDeDArB=fqNGt44GyY1Xq3PAToExcP1vuBP2A@mail.gmail.com>
+Subject: Re: [PATCH v4 0/2] pinctrl: qcom: add sm4250 lpi pinctrl
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	alexey.klimov@linaro.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Convert the Spreadtrum hardware spinlock bindings to DT schema.
+On Wed, Jun 26, 2024 at 3:42=E2=80=AFPM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+> On 26/06/2024 12:04, Linus Walleij wrote:
+> > On Sat, Jun 22, 2024 at 6:49=E2=80=AFPM Srinivas Kandagatla
+> > <srinivas.kandagatla@linaro.org> wrote:
+> >
+> >> Add support for sm4250 lpi pinctrl.
+> >>
+> >> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> >
+> > No major protests against v4 so patches applied!
+>
+> There was a protest from Alexey, that driver does not probe correctly.
+> Can you still drop it? Not sure if worth revert, though, better to fix
+> incrementally.
 
-Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
----
- .../bindings/hwlock/sprd,hwspinlock-r3p0.yaml | 55 +++++++++++++++++++
- .../bindings/hwlock/sprd-hwspinlock.txt       | 23 --------
- 2 files changed, 55 insertions(+), 23 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/hwlock/sprd,hwspinlock-r3p0.yaml
- delete mode 100644 Documentation/devicetree/bindings/hwlock/sprd-hwspinlock.txt
+Alexey sent a patch so I just applied that.
 
-diff --git a/Documentation/devicetree/bindings/hwlock/sprd,hwspinlock-r3p0.yaml b/Documentation/devicetree/bindings/hwlock/sprd,hwspinlock-r3p0.yaml
-new file mode 100644
-index 000000000000..b146b1c20edb
---- /dev/null
-+++ b/Documentation/devicetree/bindings/hwlock/sprd,hwspinlock-r3p0.yaml
-@@ -0,0 +1,55 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/hwlock/sprd,hwspinlock-r3p0.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Spreadtrum hardware spinlock
-+
-+maintainers:
-+  - Orson Zhai <orsonzhai@gmail.com>
-+  - Baolin Wang <baolin.wang7@gmail.com>
-+  - Chunyan Zhang <zhang.lyra@gmail.com>
-+
-+properties:
-+  compatible:
-+    const: sprd,hwspinlock-r3p0
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    const: enable
-+
-+  '#hwlock-cells':
-+    const: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - '#hwlock-cells'
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/sprd,sc9860-clk.h>
-+
-+    soc {
-+      #address-cells = <2>;
-+      #size-cells = <2>;
-+
-+      hwlock@40500000 {
-+        compatible  = "sprd,hwspinlock-r3p0";
-+        reg = <0 0x40500000 0 0x1000>;
-+        clocks = <&aon_gate CLK_SPLK_EB>;
-+        clock-names = "enable";
-+        #hwlock-cells = <1>;
-+      };
-+    };
-+...
-diff --git a/Documentation/devicetree/bindings/hwlock/sprd-hwspinlock.txt b/Documentation/devicetree/bindings/hwlock/sprd-hwspinlock.txt
-deleted file mode 100644
-index 581db9d941ba..000000000000
---- a/Documentation/devicetree/bindings/hwlock/sprd-hwspinlock.txt
-+++ /dev/null
-@@ -1,23 +0,0 @@
--SPRD Hardware Spinlock Device Binding
---------------------------------------
--
--Required properties :
--- compatible : should be "sprd,hwspinlock-r3p0".
--- reg : the register address of hwspinlock.
--- #hwlock-cells : hwlock users only use the hwlock id to represent a specific
--	hwlock, so the number of cells should be <1> here.
--- clock-names : Must contain "enable".
--- clocks : Must contain a phandle entry for the clock in clock-names, see the
--	common clock bindings.
--
--Please look at the generic hwlock binding for usage information for consumers,
--"Documentation/devicetree/bindings/hwlock/hwlock.txt"
--
--Example of hwlock provider:
--	hwspinlock@40500000 {
--		compatible  = "sprd,hwspinlock-r3p0";
--		reg = <0 0x40500000 0 0x1000>;
--		#hwlock-cells = <1>;
--		clock-names = "enable";
--		clocks = <&clk_aon_apb_gates0 22>;
--	};
--- 
-2.34.1
-
+Yours,
+Linus Walleij
 
