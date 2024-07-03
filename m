@@ -1,235 +1,805 @@
-Return-Path: <devicetree+bounces-82950-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-82951-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A06E9267CD
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 20:09:07 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B21B1926806
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 20:22:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5B12CB23EFC
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 18:09:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2C852B219DE
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2024 18:22:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7FDB1891D6;
-	Wed,  3 Jul 2024 18:08:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="MDJyJiQw"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60240187567;
+	Wed,  3 Jul 2024 18:22:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2060.outbound.protection.outlook.com [40.107.21.60])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9A97187567;
-	Wed,  3 Jul 2024 18:08:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.60
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720030113; cv=fail; b=uvpXoqu+cB0dYw8avWqWfDX2gLQGTv1oVfY2JPQKRIWKbjZeWLrvBzf2SJrBfQ35MhWeBqL5wLNyBrzixUQJzO7RZjmQdEf7NTKHyBRRkMCQVZDUqCXZwF3awDdz8LU6H3SZUel7GtdIbCuZLi7g9AhmL9A2aZDpiZXgSDYC8/8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720030113; c=relaxed/simple;
-	bh=Jrd6CvNcDalKKMpsmTUI/VowSv41yeks+OCXy5rG5/k=;
-	h=From:Date:Subject:Content-Type:Message-Id:References:In-Reply-To:
-	 To:Cc:MIME-Version; b=DuNTJVbrJ8+cWUM6Ditc2Nz/g+FkhcKY2izLZdkN3e9M3Zz2Ak5FgN2mA5v/6/Xcvs9IOBbFA4C7YMrOhtF8cHsdGlfFFsr/p4TVfdyqKlvEDRDiecLJ/PgDTVDkdBBKbm9JKWeMkeUOtWlKqcUyQacX6/xQoayvdz6azEACCJ4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=MDJyJiQw; arc=fail smtp.client-ip=40.107.21.60
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=a0Ub2PlLljHFRHxAn+UVDDvgHXivS63a/UzDpDvbq7/HYknrGo3BxVkyW2yrcNr9PILssq1mej7oWiA7tQcLBH84FEcLdVfX/StWmC296ce2ioOLInZCpPg6HQ6PcC+r5WsjeVDx0j9/yZaXChByM2fRW+uaPac7yJSog4YFG68j4fWW0jBu4jx82ZKrmNJCOcXb9vjRkxtziiAcqM7nb56p/p3MCGC3e/XC18nd3do4rE+FOFEzMzMdMas9EmxzqMW3n7B2kbTAOMYyAGPy/HOzKdp526AA+KwsC6Skgn15NtMdmujnqgbzU8ohPWmKAgh3KJCSnoDeUffuLuoqJw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=c/PHyqOp4/jCXg2GQPjThI6/mregTh0w+9dczcUuaiE=;
- b=K184L+BnwjeNHtrjJhZhYx3g8Ocu8o7H7McuSTUcFn60vYXaQGQfitqZnSEBs3gIZ1AUWa+9t+FMq16VuiwRC9VbY1qwy6whtqm9W9Wl/dw20fnB23WGUwAqGQtm+Qdqig4SYBihfAApYv6CL1/kr7Xad+RKIcZ9okQ52BS5Vgals1mI07Jl9W3/A1Ycna0EXvpHr7LhjfOGnEAQ6FG+8tYxvA+oaAennGnsprzcyI1nb3cQCW0mhSjusGE7nxg2vdeQzp2BKGNODISMOCqsVuQfsrxIQWCQHFACMnguFNNJpmRG4rhNpcD9/HAfUK3lLu/rqudG8uA/sPEqcuAQIQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=c/PHyqOp4/jCXg2GQPjThI6/mregTh0w+9dczcUuaiE=;
- b=MDJyJiQwN5zuMuXVxpF+Bs6p4QQMjk7jukYDtM36FHhSGKXWop5qUGuNGPuZ26evqF8wcTaDH4/AUsqzgUJu4NUa4/UEZEWbrP5bAI3v2rBn5goeyhI8X0iaVdHrob8c62ZEjzz42Cs2O9/GNwDbiNCz8DQS79PFV7Yvi/CrRWU=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by GVXPR04MB10111.eurprd04.prod.outlook.com (2603:10a6:150:1b1::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7719.32; Wed, 3 Jul
- 2024 18:08:27 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%2]) with mapi id 15.20.7719.029; Wed, 3 Jul 2024
- 18:08:27 +0000
-From: Frank Li <Frank.Li@nxp.com>
-Date: Wed, 03 Jul 2024 14:08:12 -0400
-Subject: [PATCH 2/2] arm64: dts: fsl-ls1028a.dtsi: add fsl,ls1028-reset for
- syscon
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240703-ls_reset_syscon-v1-2-338f41b3902d@nxp.com>
-References: <20240703-ls_reset_syscon-v1-0-338f41b3902d@nxp.com>
-In-Reply-To: <20240703-ls_reset_syscon-v1-0-338f41b3902d@nxp.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>
-Cc: linuxppc-dev@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- imx@lists.linux.dev, Frank Li <Frank.Li@nxp.com>
-X-Mailer: b4 0.13-dev-e586c
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1720030099; l=1448;
- i=Frank.Li@nxp.com; s=20240130; h=from:subject:message-id;
- bh=Jrd6CvNcDalKKMpsmTUI/VowSv41yeks+OCXy5rG5/k=;
- b=+QFkpspeSeSnyHo/T1MYnNI+FnhvjJFUp1yzL4XzIIf1f8gq+BAFhwMlfGvei5gtBpAMSYvgj
- v5MlSosiOjZCy6jwNV3FRQwjPr6VidOQt+/qNrpnOUCjlIasBDvxpOB
-X-Developer-Key: i=Frank.Li@nxp.com; a=ed25519;
- pk=I0L1sDUfPxpAkRvPKy7MdauTuSENRq+DnA+G4qcS94Q=
-X-ClientProxiedBy: SJ0PR05CA0178.namprd05.prod.outlook.com
- (2603:10b6:a03:339::33) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DBBF18732D
+	for <devicetree@vger.kernel.org>; Wed,  3 Jul 2024 18:22:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1720030942; cv=none; b=sDej84UsevSKgteIGB2+I4WHvEympGyXToKoFpbcL1koLhRJRNAXNNxHhzAWU7BKTdGH5CV3SifRbcL067Nh5/LD0b/nRfGS62Me5j7RH73N64BcivWQ2dSvwYrNX6ln1gJsS2peVwd7HHegvC1Cm/Qu8uCqw02mNE13+cMU2k0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1720030942; c=relaxed/simple;
+	bh=8Thxo8F5MFVQsKlPB1H/LJLh563VR2o2+9yrChdAfbo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NxxjI5R+j125OhclpL8/eXXggkRqB/5206rCW7z5lM6mAUkS0TM3N9vWL4YRtEah1AAON/BI4HSbGfJTXoh4csFIGRtWPjpAuERROL+xiYAfKA+WwTpsVD2Kl7KrWWcn0JpPEo9I5A5dG+AdfbKn+63gGaep/SHOxiwvBbd2HtM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1sP4cF-000348-Pn; Wed, 03 Jul 2024 20:22:03 +0200
+Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1sP4cE-006uMj-Kl; Wed, 03 Jul 2024 20:22:02 +0200
+Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1sP4cE-00Ca7g-1l;
+	Wed, 03 Jul 2024 20:22:02 +0200
+Date: Wed, 3 Jul 2024 20:22:02 +0200
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: Kamel Bouhara <kamel.bouhara@bootlin.com>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Henrik Rydberg <rydberg@bitmath.org>, linux-input@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Jeff LaBundy <jeff@labundy.com>,
+	catalin.popescu@leica-geosystems.com,
+	mark.satterthwaite@touchnetix.com,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Gregory Clement <gregory.clement@bootlin.com>,
+	bsp-development.geo@leica-geosystems.com
+Subject: Re: [PATCH v16 3/3] Input: Add TouchNetix axiom i2c touchscreen
+ driver
+Message-ID: <20240703182202.draa63ghijbwarcs@pengutronix.de>
+References: <20240703142520.207066-1-kamel.bouhara@bootlin.com>
+ <20240703142520.207066-4-kamel.bouhara@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|GVXPR04MB10111:EE_
-X-MS-Office365-Filtering-Correlation-Id: bed38237-139d-49a7-8b3e-08dc9b8b2353
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|366016|52116014|1800799024|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?THkwZHdlQVNxWEk0eDVLYitnZ3Qzblp1NjN2S1dCOXpvNFRTbkxOV1VzY25S?=
- =?utf-8?B?KzhOQkRTMExuTGZzOU5NVUJLSXgwQk5yVnYzRzN5S2xHaFF6dUx2NUhxbExq?=
- =?utf-8?B?cGJvRFYzaE5oZUxHbHVoNm8rY0Iwck80WXUxeXo5NTZ4WUdOK1VLOTRSVmVX?=
- =?utf-8?B?NmxhcWx4V0Rhd1dEYWlaaDZuYzdEZ0g2TjdDMjJxaXFTMEo0bE4vTEovSlNJ?=
- =?utf-8?B?TjViTlAzcUpXUzR2alE2bHJtODlnSzVOdTJPRkZLVCttdjk5bkhXTU93MHFG?=
- =?utf-8?B?WVZRL1oySHQzTjdncXgyNEF4a2Y0MW03WXFCcHY0ODYzOUprMW5lTytPNmRo?=
- =?utf-8?B?bVZUSTFBVG4ydE8rYmllbmVnNHQ2MW43aW4xT29vdFd3MnRvNGE5NUhOMEUz?=
- =?utf-8?B?MHNqRGFueGZaYVYxZHBCT3hnUHBhdGVTa0JjcGR0NWduQzlicGdkL0ZrVE9t?=
- =?utf-8?B?Q05FMFFSUmhYSWpFYWQ3ZXMzVEJhODRQYm9xOFY2emkrTjBsT01lVGlFQVNS?=
- =?utf-8?B?UjFmaUp6bEgrSzI2UUVnMGYvRllpQS90NkNRZDNja2JZcUgvMmxNMEpha0Zr?=
- =?utf-8?B?Zis3cEtEMXp5RXRZQW5KbDUyczVEc1kwdSttSTVSR2tWeFdLQU1SYkNyTnBC?=
- =?utf-8?B?ajlxbGoxcm5FMk52clRVSEpaTTBkeUpmMDhpSEdMajNYdFJpTkNBcURxZFJM?=
- =?utf-8?B?dTYxeFFtV3YwbXNMQkVmbDBIdTdGWnBVbFlhRTNaSEloczZJR21BWnpPRUEy?=
- =?utf-8?B?RGZQV25CVExIazIreTJlWlQyaDl3bkgra1NIdXhCcFlsVGVsS0hic3MwSFN1?=
- =?utf-8?B?MW9HakIraEZveUFFTG9zSE5HRU1UNk9CbmtITGN4TVlxbE9EVGp1elJNZEl6?=
- =?utf-8?B?a3FCZWcybEM5ZjRabFFVSUFsbndTYjVaSDFFYWNVRHYzYzRXaWg5NWFrM0dK?=
- =?utf-8?B?M2NzeWpyM3c5QnV6VVVpc3hpZ0hpOVQwTm9KWmJqdlUxbGJIdE95bUMwT1lE?=
- =?utf-8?B?UkwxaEE0UUIzTVorUGRBZXNQZGs2YnVLK2l4bjQyczlVVnExNjVxZFI3Q2FX?=
- =?utf-8?B?OGpTNk9rc0pnNEtML1hDVkxhdmg1K3VXbC9yem5kZjZiczd3czBVMDk3a1R6?=
- =?utf-8?B?a0U5N3VYS3pwNE12MGgxRUxKR2o4SjZqQU92NHo2emt3TGF4YjNZdEg3cDBz?=
- =?utf-8?B?aDVXWmJFZzFucEo4QjN4bVBFczE2a1h1ZU9lQlg5b1NMRzlISitPUXZSbDBD?=
- =?utf-8?B?bnVHYVBUM1Z3ZFJ5RnNIV2t5Zy8rTlgzeGlLWlRlSUdoaGM1OFQ1SmV1SzNG?=
- =?utf-8?B?Y3hiK0draEhyM2ZrTDF5Nkl6dENaTEN6cHVoaHVmNElxWGtESEVsTTNMRm1x?=
- =?utf-8?B?a3YxNTlpK21MY01za0MrMkVaWUg3Q2VLWGZzMy9xeHJvZjE2clJIRkd2Mlcz?=
- =?utf-8?B?OXVLUjdZWHphaXFYSTFkclBBdTFkeS9FZWFwR1RMbU5XWGZrZkI2NTZhU0VQ?=
- =?utf-8?B?Z1NkME90QVl0b256WGhYaXFsUjFPNUtneWpLOVBlYWdxRm1wUm5xK1g2dXZu?=
- =?utf-8?B?N3VKMmpGS2VQekxOVllJVFZVbmxKMEFyMjQvSCtnOUttYmViSjNjamRmNm5l?=
- =?utf-8?B?bGdrdC9LNFlnQkExcDM2RkJIdUluNkprY1NUY1BIbUI0OStCeVNTeUFJTitI?=
- =?utf-8?B?ZVRYZGtnUGJhMTVHaWpyM25va21kc1c5RUlXVTBLNHR2a0NyWTVBTHJQcVE0?=
- =?utf-8?B?aEkweWxnMC85akJaTFV3WFZmaXBpdCtJVThCOGxCdDdXWU83NWppNUJOODQy?=
- =?utf-8?B?MmVtbHZvZ0xBdytvTjdCS2hjd05FTEo0eitEQjcyMXlMdXhJSEdjbkI5bUhw?=
- =?utf-8?B?dGVLZDJEZTM5NWhwSkFKc05sL1dsN0lva1dUR0JqNnVTSVE9PQ==?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(52116014)(1800799024)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?K1dESG1PemNEQUtwT2dCSU96MG05TG9pR3hBY3F2TWd3U1k3WmZPOFFad1Bi?=
- =?utf-8?B?WTdaVy8zRnRsakE5SEE4cnpPTG1jcjlYL1ZJZk44VGRReXIyUmd6LzBRYkQ5?=
- =?utf-8?B?S2ZnUkthM2l6cW9IKzIyQ3RDWXVCYUYzS2RiaHRsUlVPWmlqdDZ0RHNvZitU?=
- =?utf-8?B?aG9HWUwvUTdEa05rT3p4OExNTEFBTUMrM24rWlZPNHR2cUJzdEhHNVRDR3g3?=
- =?utf-8?B?cUJURkxmSGxxdWtsN3Q0UDliUGN3WWdENkw1eWlHRXA0RE4vOWhMVW1VTzBK?=
- =?utf-8?B?TXhxSzVLcDlabGw2TnRwWGRWQXNtcU5XcWdnakdqY1ZKZm9SQUQ1dGs5STF3?=
- =?utf-8?B?aDJETVRjZ09UNVBpKzZmR1hrRE5YWStSTjFlcHBxczJDa29yeGxxZFVpTUx2?=
- =?utf-8?B?S05LR1VpYnRQeFFzUnhUVXQ2ODlxenJ0NmtsaHFkUDh4dVUxZ25qK1JKOWlZ?=
- =?utf-8?B?OGYzWFoxUW04NHJ3NGJMaG1xaGhWRnVkRnRzdnd0eW8rLzNUcU4wcW9TTlhX?=
- =?utf-8?B?Ry9WZ3EzaGw3dXh1VkEwbjVFUEdRNGxHMzBOaWpITHcvcjRDYzIyNmJBT0RW?=
- =?utf-8?B?OUZkUkkvT3M4SlJDek1YRzR1TXI3bEo3MWZvUkxjTFJZTEdPakdrZkpidU5K?=
- =?utf-8?B?YXJ1aEhTWWVxeWNjb2djVDlnMG0xRjN1d0NYT0YwRmtZaitqaWJjUmF4UU1s?=
- =?utf-8?B?Y1FWaUV0dnpVS3JrZFlNUEIvS3V1R3F4NC9NNzlxbW1ZVWs3b3NmczRrUGlm?=
- =?utf-8?B?N2hmTU1hOWRwM2J3Q2szckRTY1phajZrOXNZeWozZWsxY1ltL09yMFF1YXlG?=
- =?utf-8?B?NWhmUmRQcUlQdWtFNzdpOWw1QVVHN2VXSzR3OE1XK1lwWUpsVDAzWjE2ajBk?=
- =?utf-8?B?RlFlaXVXNnZhQXRnN0cvOEI2aEdteC9VYTY5Z05DL3FFZFNTOHk2VW1VV2pL?=
- =?utf-8?B?bThzRzdEUkxqL2FlWTFiblVHYnRHcFd5OGdXMDBwZEl3bEhxbDV4YURGTnFM?=
- =?utf-8?B?U3ViZWk5RkJWNlF1VnlaN09CRWd4STdrUjd0cHp6eTcxdnd4V2poOEFLVXVB?=
- =?utf-8?B?bG1zVUVjSmxXT0pqbnhndUsxY3N0MW9kcWwyTldQdnp0TFFzSXBxQVRhVmRt?=
- =?utf-8?B?bW4vcklWRkVnSDJjSE5SUXF2U3JMQXFZSVRWQXIvaExseXM4TzBoZlROT1VL?=
- =?utf-8?B?R0VWN0hJeUo4Q1hjbnVFb3pqKytjdm1abDZzRjduSERtcDJvOVNyQUpDbTlp?=
- =?utf-8?B?eW9LdkRoVFNiQjFkVlllbUwyb294K1Rrb0lVTnFCMnluTmVkUWhMMmQ3b1VP?=
- =?utf-8?B?aXU4V044Z0FQUEN5Tk1CSy9CVUZHQlptcURQUUV3cng0RTl2VnVaS1U4N3lj?=
- =?utf-8?B?eWhWTmNRclRML1FucmpsdEpieXp5U05OeFJLaXlYQjNzMllRWkZGcFFpS1lI?=
- =?utf-8?B?YU5rVzRSL0NYNVpqN0I2VnMwZkM3V2ZJaWFxd1cwaEJjMmpyajhvRVl4elhw?=
- =?utf-8?B?MjVRc2V6anE5THVnRnBTSTNNTmVLQ25NL1BLdnFyVDZvdkZRTmRyeHVSQlo0?=
- =?utf-8?B?M1FlZGh0YUFxMXoxL0RrMXdXeGJIeUFuR0t2SU94QmVhTHB2R2Z3R2laSDhQ?=
- =?utf-8?B?clVGQ3hjVjBEbk12SDlzSjQ2emlUclhrc2dhYUlyM3dlL2pnRGp6ZkNwZk52?=
- =?utf-8?B?TzE2clI1K1QxMFg2NGIzVDRUZHBHRFNHNzlUdUg4MUZ3ZUZDU0crSXFXZFcx?=
- =?utf-8?B?SHRKQTNEUjM5KzBMdXd1RmxURUZnWXhWQW1Yd2hxNTluMjF2UzFuTEtNOG80?=
- =?utf-8?B?UDJQQTQ4bkhPYm9NSFBaRG1NaXZkQTFxaXZWNlFyZlZQNmkzYXdweXlnSjFQ?=
- =?utf-8?B?QXNvNm5obDdIQ3lCQWtWQnVtVDVtT1NUWjFLb2dWYmNGM3FCM0dvTWU2WkR3?=
- =?utf-8?B?b0RobTBNQ2k1OUN3SVRiNzN6ak1YcVp2QW9LYWRIc1Y2L1BPelhIOXFxK0xv?=
- =?utf-8?B?MUJWRWtsOXI0QTNrNHN4VzNaTEJaeWNtMmxIQm1lSXRzbUFQb3BzYjNyOVRB?=
- =?utf-8?B?ZlBDWXdzMnhxVDZDZStwTFFHRXdSbzhML3huSHdSV2lxeG5qK2Zja0RISFdN?=
- =?utf-8?Q?IQed9n3Nxyuozcqpl+PtjFLKJ?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bed38237-139d-49a7-8b3e-08dc9b8b2353
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jul 2024 18:08:27.6093
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: H4vUyqD7ZGnqU+IIkmocXOU1nB6RYJE6iWTSZpI0xnASRVRTEpOBLt2ozcVFV34dN8E3qUJqPthzhc3r6cDCYA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB10111
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240703142520.207066-4-kamel.bouhara@bootlin.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Add platform specific compatiable string 'fsl,ls1028-reset' for syscon and
-move reboot node under reset syscon node to fix below warning.
+Hi Kamel,
 
-syscon@1e60000: compatible: 'anyOf' conditional failed, one must be fixed:
-        ['syscon'] is too short
-        'syscon' is not one of ['al,alpine-sysfabric-service', ...
+thank you for the updated version please see my comment inline.
 
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
- arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi | 17 ++++++++---------
- 1 file changed, 8 insertions(+), 9 deletions(-)
+On 24-07-03, Kamel Bouhara wrote:
+> Add a new driver for the TouchNetix's axiom family of
+> touchscreen controllers. This driver only supports i2c
+> and can be later adapted for SPI and USB support.
+> 
+> Signed-off-by: Kamel Bouhara <kamel.bouhara@bootlin.com>
+> ---
+>  MAINTAINERS                                  |   1 +
+>  drivers/input/touchscreen/Kconfig            |  14 +
+>  drivers/input/touchscreen/Makefile           |   1 +
+>  drivers/input/touchscreen/touchnetix_axiom.c | 616 +++++++++++++++++++
+>  4 files changed, 632 insertions(+)
+>  create mode 100644 drivers/input/touchscreen/touchnetix_axiom.c
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 2041384d3866..ac6b612bfbba 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -22745,6 +22745,7 @@ M:	Kamel Bouhara <kamel.bouhara@bootlin.com>
+>  L:	linux-input@vger.kernel.org
+>  S:	Maintained
+>  F:	Documentation/devicetree/bindings/input/touchscreen/touchnetix,ax54a.yaml
+> +F:	drivers/input/touchscreen/touchnetix_axiom.c
+>  
+>  TPM DEVICE DRIVER
+>  M:	Peter Huewe <peterhuewe@gmx.de>
+> diff --git a/drivers/input/touchscreen/Kconfig b/drivers/input/touchscreen/Kconfig
+> index c821fe3ee794..1ce8f1c25625 100644
+> --- a/drivers/input/touchscreen/Kconfig
+> +++ b/drivers/input/touchscreen/Kconfig
+> @@ -834,6 +834,20 @@ config TOUCHSCREEN_MIGOR
+>  	  To compile this driver as a module, choose M here: the
+>  	  module will be called migor_ts.
+>  
+> +config TOUCHSCREEN_TOUCHNETIX_AXIOM
+> +	tristate "TouchNetix AXIOM based touchscreen controllers"
+> +	depends on I2C
+> +	select CRC16
+> +	select REGMAP_I2C
+> +	help
+> +	  Say Y here if you have a axiom touchscreen connected to
+> +	  your system.
+> +
+> +	  If unsure, say N.
+> +
+> +	  To compile this driver as a module, choose M here: the
+> +	  module will be called axiom.
+> +
+>  config TOUCHSCREEN_TOUCHRIGHT
+>  	tristate "Touchright serial touchscreen"
+>  	select SERIO
+> diff --git a/drivers/input/touchscreen/Makefile b/drivers/input/touchscreen/Makefile
+> index a81cb5aa21a5..6ce7b804adc7 100644
+> --- a/drivers/input/touchscreen/Makefile
+> +++ b/drivers/input/touchscreen/Makefile
+> @@ -91,6 +91,7 @@ obj-$(CONFIG_TOUCHSCREEN_SUR40)		+= sur40.o
+>  obj-$(CONFIG_TOUCHSCREEN_SURFACE3_SPI)	+= surface3_spi.o
+>  obj-$(CONFIG_TOUCHSCREEN_TI_AM335X_TSC)	+= ti_am335x_tsc.o
+>  obj-$(CONFIG_TOUCHSCREEN_TOUCHIT213)	+= touchit213.o
+> +obj-$(CONFIG_TOUCHSCREEN_TOUCHNETIX_AXIOM)	+= touchnetix_axiom.o
+>  obj-$(CONFIG_TOUCHSCREEN_TOUCHRIGHT)	+= touchright.o
+>  obj-$(CONFIG_TOUCHSCREEN_TOUCHWIN)	+= touchwin.o
+>  obj-$(CONFIG_TOUCHSCREEN_TS4800)	+= ts4800-ts.o
+> diff --git a/drivers/input/touchscreen/touchnetix_axiom.c b/drivers/input/touchscreen/touchnetix_axiom.c
+> new file mode 100644
+> index 000000000000..cea52dafc913
+> --- /dev/null
+> +++ b/drivers/input/touchscreen/touchnetix_axiom.c
+> @@ -0,0 +1,616 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * TouchNetix axiom Touchscreen Driver
+> + *
+> + * Copyright (C) 2020-2023 TouchNetix Ltd.
+> + *
+> + * Author(s): Bart Prescott <bartp@baasheep.co.uk>
+> + *            Pedro Torruella <pedro.torruella@touchnetix.com>
+> + *            Mark Satterthwaite <mark.satterthwaite@touchnetix.com>
+> + *            Hannah Rossiter <hannah.rossiter@touchnetix.com>
+> + *            Kamel Bouhara <kamel.bouhara@bootlin.com>
+> + *
+> + */
+> +#include <linux/bitfield.h>
+> +#include <linux/crc16.h>
+> +#include <linux/delay.h>
+> +#include <linux/device.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/i2c.h>
+> +#include <linux/input.h>
+> +#include <linux/input/mt.h>
+> +#include <linux/input/touchscreen.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/regmap.h>
+> +
+> +#include <asm/unaligned.h>
+> +#define AXIOM_PROX_LEVEL		-128
+> +#define AXIOM_STARTUP_TIME_MS		110
+> +/*
+> + * Register group u31 has 2 pages for usage table entries.
+> + */
+> +#define AXIOM_U31_MAX_USAGES		0xff
+> +#define AXIOM_U31_BYTES_PER_USAGE	6
+> +#define AXIOM_U31_PAGE0_LENGTH		0x0C
+> +#define AXIOM_U31_BOOTMODE_MASK		BIT(7)
+> +#define AXIOM_U31_DEVID_MASK		GENMASK(14, 0)
+> +
+> +#define AXIOM_MAX_REPORT_LEN		0x7f
+> +
+> +#define AXIOM_CMD_HEADER_READ_MASK	BIT(15)
+> +#define AXIOM_U41_MAX_TARGETS		10
+> +
+> +#define AXIOM_U46_AUX_CHANNELS		4
+> +#define AXIOM_U46_AUX_MASK		GENMASK(11, 0)
+> +
+> +#define AXIOM_COMMS_MAX_USAGE_PAGES	3
+> +#define AXIOM_COMMS_PAGE_SIZE		256
+> +#define AXIOM_COMMS_REPORT_LEN_MASK	GENMASK(6, 0)
+> +
+> +#define AXIOM_REPORT_USAGE_ID		0x34
+> +#define AXIOM_DEVINFO_USAGE_ID		0x31
+> +#define AXIOM_USAGE_2HB_REPORT_ID	0x01
+> +#define AXIOM_USAGE_2AUX_REPORT_ID	0x46
+> +#define AXIOM_USAGE_2DCTS_REPORT_ID	0x41
+> +
+> +#define AXIOM_PAGE_OFFSET_MASK		GENMASK(6, 0)
+> +
+> +struct axiom_devinfo {
+> +	__le16 device_id;
+> +	u8 fw_minor;
+> +	u8 fw_major;
+> +	u8 fw_info_extra;
+> +	u8 tcp_revision;
+> +	u8 bootloader_fw_minor;
+> +	u8 bootloader_fw_major;
+> +	__le16 jedec_id;
+> +	u8 num_usages;
+> +} __packed;
+> +
+> +/*
+> + * Describes parameters of a specific usage, essentially a single element of
+> + * the "Usage Table"
+> + */
+> +struct axiom_usage_entry {
+> +	u8 id;
+> +	bool is_report;
+> +	u8 start_page;
+> +	u8 num_pages;
+> +};
+> +
+> +/*
+> + * Represents state of a touch or target when detected prior to a touch (eg.
+> + * hover or proximity events).
+> + */
+> +enum axiom_target_state {
+> +	AXIOM_TARGET_STATE_NOT_PRESENT = 0,
+> +	AXIOM_TARGET_STATE_PROX = 1,
+> +	AXIOM_TARGET_STATE_HOVER = 2,
+> +	AXIOM_TARGET_STATE_TOUCHING = 3,
+> +};
+> +
+> +struct axiom_u41_target {
+> +	enum axiom_target_state state;
+> +	u16 x;
+> +	u16 y;
+> +	s8 z;
+> +	/* force target report processing */
+> +	bool insert;
+> +	bool touch;
+> +};
+> +
+> +struct axiom_target_report {
+> +	u8 index;
+> +	bool present;
+> +	u16 x;
+> +	u16 y;
+> +	s8 z;
+> +};
+> +
+> +union axiom_cmd_header {
+> +	__le32 preamble;
+> +	struct {
+> +		__le16 target_address;
+> +		__le16 length;
+> +	} head;
+> +};
+> +
+> +struct axiom_data {
+> +	struct axiom_devinfo devinfo;
+> +	struct device *dev;
+> +	struct gpio_desc *reset_gpio;
+			    ^
+The reset is done within the probe so this can be dropped.
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-index 6b6e3ee950e53..fd93e66c071e1 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-@@ -112,13 +112,6 @@ optee: optee  {
- 		};
- 	};
- 
--	reboot {
--		compatible = "syscon-reboot";
--		regmap = <&rst>;
--		offset = <0>;
--		mask = <0x02>;
--	};
--
- 	timer {
- 		compatible = "arm,armv8-timer";
- 		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(2) |
-@@ -235,10 +228,16 @@ fspi_clk: clock-controller@900 {
- 			};
- 		};
- 
--		rst: syscon@1e60000 {
--			compatible = "syscon";
-+		syscon@1e60000 {
-+			compatible = "fsl,ls1028a-reset", "syscon", "simple-mfd";
- 			reg = <0x0 0x1e60000 0x0 0x10000>;
- 			little-endian;
-+
-+			reboot {
-+				compatible = "syscon-reboot";
-+				offset = <0>;
-+				mask = <0x02>;
-+			};
- 		};
- 
- 		sfp: efuse@1e80000 {
+> +	struct i2c_client *client;
+			    ^
+The client is never used. I would either store the client or the device
+reference but not both.
 
--- 
-2.34.1
+> +	struct input_dev *input_dev;
+> +	u32 max_report_len;
+> +	u8 rx_buf[AXIOM_COMMS_MAX_USAGE_PAGES * AXIOM_COMMS_PAGE_SIZE];
 
+Is there a reason for having the rx_buf within the driver priv data?
+IMHO it's more error probe since we never set it to zero before we use
+the buffer. I would rather move the rx-buffer to the functions which
+perform the read.
+
+> +	struct axiom_u41_target targets[AXIOM_U41_MAX_TARGETS];
+> +	struct axiom_usage_entry usage_table[AXIOM_U31_MAX_USAGES];
+> +	bool usage_table_populated;
+		^
+This can be an inline helper which checks the max_report_len e.g:
+
+static inline bool axiom_usage_table_populated(struct axiom_data *ts)
+{
+	return ts->max_report_len;
+}
+
+> +	struct regmap *regmap;
+> +	struct touchscreen_properties	prop;
+> +};
+> +
+> +static const struct regmap_config axiom_i2c_regmap_config = {
+> +	.reg_bits = 32,
+> +	.reg_format_endian = REGMAP_ENDIAN_LITTLE,
+> +	.val_bits = 8,
+> +	.val_format_endian = REGMAP_ENDIAN_LITTLE,
+> +};
+> +
+> +/*
+> + * axiom devices are typically configured to report touches at a rate
+> + * of 100Hz (10ms) for systems that require polling for reports.
+> + * When reports are polled, it will be expected to occasionally
+> + * observe the overflow bit being set in the reports.
+> + * This indicates that reports are not being read fast enough.
+> + */
+> +#define POLL_INTERVAL_DEFAULT_MS 10
+> +
+> +/* Translate usage/page/offset triplet into physical address. */
+> +static u16 axiom_usage_to_target_address(struct axiom_data *ts, u8 usage, u8 page,
+> +					 char offset)
+> +{
+> +	/* At the moment the convention is that u31 is always at physical address 0x0 */
+> +	if (!ts->usage_table_populated) {
+> +		if (usage == AXIOM_DEVINFO_USAGE_ID)
+> +			return ((page << 8) + offset);
+> +		else
+> +			return 0xffff;
+> +	}
+> +
+> +	if (page >= ts->usage_table[usage].num_pages) {
+> +		dev_err(ts->dev, "Invalid usage table! usage: u%02x, page: %02x, offset: %02x\n",
+> +			usage, page, offset);
+> +		return 0xffff;
+> +	}
+> +
+> +	return ((ts->usage_table[usage].start_page + page) << 8) + offset;
+> +}
+> +
+> +static int axiom_read(struct axiom_data *ts, u8 usage, u8 page, void *buf, u16 len)
+> +{
+> +	union axiom_cmd_header cmd_header;
+> +	int ret;
+> +
+> +	cmd_header.head.target_address =
+> +		cpu_to_le16(axiom_usage_to_target_address(ts, usage, page, 0));
+> +	cmd_header.head.length = cpu_to_le16(len | AXIOM_CMD_HEADER_READ_MASK);
+> +
+> +	ret = regmap_write(ts->regmap, le32_to_cpu(cmd_header.preamble), 0);
+> +	if (ret) {
+> +		dev_err(ts->dev, "failed to write preamble, error %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	ret = regmap_raw_read(ts->regmap, 0, buf, len);
+> +	if (ret) {
+> +		dev_err(ts->dev, "failed to read target address %04x, error %d\n",
+> +			cmd_header.head.target_address, ret);
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +/*
+> + * One of the main purposes for reading the usage table is to identify
+> + * which usages reside at which target address.
+> + * When performing subsequent reads or writes to AXIOM, the target address
+> + * is used to specify which usage is being accessed.
+> + * Consider the following discovery code which will build up the usage table.
+> + */
+> +static u32 axiom_populate_usage_table(struct axiom_data *ts)
+> +{
+> +	struct axiom_usage_entry *usage_table;
+> +	u8 *rx_data = ts->rx_buf;
+> +	u32 max_report_len = 0;
+> +	u32 usage_id;
+> +	int error;
+> +
+> +	usage_table = ts->usage_table;
+> +
+> +	/* Read the second page of usage u31 to get the usage table */
+> +	error = axiom_read(ts, AXIOM_DEVINFO_USAGE_ID, 1, rx_data,
+> +			   (AXIOM_U31_BYTES_PER_USAGE * ts->devinfo.num_usages));
+> +
+> +	if (error)
+> +		return error;
+> +
+> +	for (usage_id = 0; usage_id < ts->devinfo.num_usages; usage_id++) {
+> +		u16 offset = (usage_id * AXIOM_U31_BYTES_PER_USAGE);
+> +		u8 id = rx_data[offset + 0];
+> +		u8 start_page = rx_data[offset + 1];
+> +		u8 num_pages = rx_data[offset + 2];
+> +		u32 max_offset = ((rx_data[offset + 3] & AXIOM_PAGE_OFFSET_MASK) + 1) * 2;
+> +
+> +		usage_table[id].is_report = !num_pages;
+> +
+> +		/* Store the entry into the usage table */
+> +		usage_table[id].id = id;
+> +		usage_table[id].start_page = start_page;
+> +		usage_table[id].num_pages = num_pages;
+> +
+> +		dev_dbg(ts->dev, "Usage u%02x Info: %*ph\n", id, AXIOM_U31_BYTES_PER_USAGE,
+> +			&rx_data[offset]);
+> +
+> +		/* Identify the max report length the module will receive */
+> +		if (usage_table[id].is_report && max_offset > max_report_len)
+> +			max_report_len = max_offset;
+> +	}
+> +
+> +	ts->usage_table_populated = true;
+> +
+> +	return max_report_len;
+> +}
+> +
+> +static int axiom_discover(struct axiom_data *ts)
+> +{
+> +	int error;
+> +
+> +	/*
+> +	 * Fetch the first page of usage u31 to get the
+> +	 * device information and the number of usages
+> +	 */
+> +	error = axiom_read(ts, AXIOM_DEVINFO_USAGE_ID, 0, &ts->devinfo, AXIOM_U31_PAGE0_LENGTH);
+> +	if (error)
+> +		return error;
+> +
+> +	dev_dbg(ts->dev, "  Boot Mode      : %s\n",
+> +		FIELD_GET(AXIOM_U31_BOOTMODE_MASK,
+> +			  le16_to_cpu(ts->devinfo.device_id)) ? "BLP" : "TCP");
+> +	dev_dbg(ts->dev, "  Device ID      : %04lx\n",
+> +		FIELD_GET(AXIOM_U31_DEVID_MASK, le16_to_cpu(ts->devinfo.device_id)));
+> +	dev_dbg(ts->dev, "  Firmware Rev   : %02x.%02x\n", ts->devinfo.fw_major,
+> +		ts->devinfo.fw_minor);
+> +	dev_dbg(ts->dev, "  Bootloader Rev : %02x.%02x\n", ts->devinfo.bootloader_fw_major,
+> +		ts->devinfo.bootloader_fw_minor);
+> +	dev_dbg(ts->dev, "  FW Extra Info  : %04x\n", ts->devinfo.fw_info_extra);
+> +	dev_dbg(ts->dev, "  Silicon        : %04x\n", le16_to_cpu(ts->devinfo.jedec_id));
+> +	dev_dbg(ts->dev, "  Number usages        : %04x\n", ts->devinfo.num_usages);
+> +
+> +	ts->max_report_len = axiom_populate_usage_table(ts);
+> +	if (!ts->max_report_len || !ts->devinfo.num_usages ||
+> +	    ts->max_report_len > AXIOM_MAX_REPORT_LEN) {
+> +		dev_err(ts->dev, "Invalid report length or usages number");
+> +		return -EINVAL;
+> +	}
+> +
+> +	dev_dbg(ts->dev, "Max Report Length: %u\n", ts->max_report_len);
+> +
+> +	return 0;
+> +}
+> +
+> +/*
+> + * Support function to axiom_process_u41_report.
+> + * Generates input-subsystem events for every target.
+> + * After calling this function the caller shall issue
+> + * a Sync to the input sub-system.
+> + */
+> +static bool axiom_process_u41_report_target(struct axiom_data *ts,
+> +					    struct axiom_target_report *target)
+> +{
+> +	struct input_dev *input_dev = ts->input_dev;
+> +	struct axiom_u41_target *target_prev_state;
+> +	enum axiom_target_state current_state;
+> +	int id;
+> +
+> +	/* Verify the target index */
+> +	if (target->index >= AXIOM_U41_MAX_TARGETS) {
+> +		dev_err(ts->dev, "Invalid target index! %u\n", target->index);
+> +		return false;
+> +	}
+> +
+> +	target_prev_state = &ts->targets[target->index];
+> +
+> +	current_state = AXIOM_TARGET_STATE_NOT_PRESENT;
+> +
+> +	if (target->present) {
+> +		if (target->z >= 0)
+> +			current_state = AXIOM_TARGET_STATE_TOUCHING;
+> +		else if (target->z > AXIOM_PROX_LEVEL && target->z < 0)
+> +			current_state = AXIOM_TARGET_STATE_HOVER;
+> +		else if (target->z == AXIOM_PROX_LEVEL)
+> +			current_state = AXIOM_TARGET_STATE_PROX;
+> +	}
+> +
+> +	id = target->index;
+> +
+> +	dev_dbg(ts->dev, "U41 Target T%u, present:%u, x:%u, y:%u, z:%d\n",
+> +		target->index, target->present,
+> +		target->x, target->y, target->z);
+> +
+> +	switch (current_state) {
+> +	case AXIOM_TARGET_STATE_NOT_PRESENT:
+> +	case AXIOM_TARGET_STATE_PROX:
+> +		if (!target_prev_state->insert)
+> +			break;
+> +		target_prev_state->insert = false;
+> +
+> +		input_mt_report_slot_inactive(input_dev);
+> +		/*
+> +		 * make sure the previous coordinates are
+> +		 * all off screen when the finger comes back
+> +		 */
+> +		target->x = 65535;
+> +		target->y = 65535;
+> +		target->z = AXIOM_PROX_LEVEL;
+> +		break;
+> +	case AXIOM_TARGET_STATE_HOVER:
+> +	case AXIOM_TARGET_STATE_TOUCHING:
+> +		target_prev_state->insert = true;
+> +		input_mt_slot(ts->input_dev, id);
+> +		input_mt_report_slot_state(ts->input_dev, MT_TOOL_FINGER, true);
+> +		input_report_abs(input_dev, ABS_MT_TRACKING_ID, id);
+> +		input_report_abs(input_dev, ABS_MT_POSITION_X, target->x);
+> +		input_report_abs(input_dev, ABS_MT_POSITION_Y, target->y);
+> +
+> +		if (current_state == AXIOM_TARGET_STATE_TOUCHING) {
+> +			input_report_abs(input_dev, ABS_MT_DISTANCE, 0);
+> +			input_report_abs(input_dev, ABS_MT_PRESSURE, target->z);
+> +		} else {
+> +			input_report_abs(input_dev, ABS_MT_DISTANCE, -target->z);
+> +			input_report_abs(input_dev, ABS_MT_PRESSURE, 0);
+> +		}
+> +
+> +		break;
+> +	default:
+> +		break;
+> +	}
+> +
+> +	target_prev_state->state = current_state;
+> +	target_prev_state->x = target->x;
+> +	target_prev_state->y = target->y;
+> +	target_prev_state->z = target->z;
+> +
+> +	return true;
+> +}
+> +
+> +/*
+> + * U41 is the output report of the 2D CTS and contains the status of targets
+> + * (including contacts and pre-contacts) along with their X,Y,Z values.
+> + * When a target has been removed (no longer detected),
+> + * the corresponding X,Y,Z values will be zeroed.
+> + */
+> +static bool axiom_process_u41_report(struct axiom_data *ts, u8 *rx_buf)
+> +{
+> +	struct axiom_target_report target;
+> +	bool update_done = false;
+> +	u16 target_status;
+> +	int i;
+> +
+> +	target_status = get_unaligned_le16(rx_buf + 1);
+> +
+> +	for (i = 0; i < AXIOM_U41_MAX_TARGETS; i++) {
+> +		u8 *target_step = &rx_buf[i * 4];
+> +
+> +		target.index = i;
+> +		target.present = ((target_status & (1 << i)) != 0) ? true : false;
+> +		target.x = get_unaligned_le16(target_step + 3);
+> +		target.y = get_unaligned_le16(target_step + 5);
+> +		target.z = (s8)(rx_buf[i + 43]);
+> +		update_done |= axiom_process_u41_report_target(ts, &target);
+> +	}
+> +
+> +	return update_done;
+> +}
+> +
+> +/*
+> + * Validates the crc and demultiplexes the axiom reports to the appropriate
+> + * report handler
+> + */
+> +static int axiom_handle_events(struct axiom_data *ts)
+> +{
+> +	struct input_dev *input_dev = ts->input_dev;
+> +	u8 *report_data = ts->rx_buf;
+> +	struct device *dev = ts->dev;
+> +	u16 crc_report;
+> +	u8 *crc_bytes;
+> +	u16 crc_calc;
+> +	int error;
+> +	u8 len;
+> +
+> +	error = axiom_read(ts, AXIOM_REPORT_USAGE_ID, 0, report_data, ts->max_report_len);
+> +	if (error)
+> +		return error;
+> +
+> +	len = (report_data[0] & AXIOM_COMMS_REPORT_LEN_MASK) << 1;
+> +	if (len <= 2) {
+> +		dev_err(dev, "Zero length report discarded.\n");
+> +		return -ENODATA;
+> +	}
+> +
+> +	/* Validate the report CRC */
+> +	crc_bytes = &report_data[len];
+> +
+> +	crc_report = get_unaligned_le16(crc_bytes - 2);
+> +	/* Length is in 16 bit words and remove the size of the CRC16 itself */
+> +	crc_calc = crc16(0, report_data, (len - 2));
+> +
+> +	if (crc_calc != crc_report) {
+> +		dev_err(dev,
+> +			"CRC mismatch! Expected: %#x, Calculated CRC: %#x.\n",
+> +			crc_report, crc_calc);
+> +		return -EINVAL;
+> +	}
+> +
+> +	switch (report_data[1]) {
+> +	case AXIOM_USAGE_2DCTS_REPORT_ID:
+> +		if (axiom_process_u41_report(ts, &report_data[1])) {
+> +			input_mt_sync_frame(input_dev);
+> +			input_sync(input_dev);
+> +		}
+> +		break;
+> +
+> +	case AXIOM_USAGE_2AUX_REPORT_ID:
+> +		/* This is an aux report (force), not used currently */
+> +		break;
+> +
+> +	case AXIOM_USAGE_2HB_REPORT_ID:
+> +		/* This is a heartbeat report */
+> +		break;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static void axiom_i2c_poll(struct input_dev *input_dev)
+> +{
+> +	struct axiom_data *ts = input_get_drvdata(input_dev);
+> +
+> +	axiom_handle_events(ts);
+> +}
+> +
+> +static irqreturn_t axiom_irq(int irq, void *dev_id)
+> +{
+> +	struct axiom_data *ts = dev_id;
+> +
+> +	axiom_handle_events(ts);
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static void axiom_reset(struct gpio_desc *reset_gpio)
+> +{
+> +	gpiod_set_value_cansleep(reset_gpio, 1);
+> +	usleep_range(1000, 2000);
+> +	gpiod_set_value_cansleep(reset_gpio, 0);
+> +	msleep(AXIOM_STARTUP_TIME_MS);
+> +}
+> +
+> +static int axiom_i2c_probe(struct i2c_client *client)
+> +{
+> +	struct device *dev = &client->dev;
+> +	struct input_dev *input_dev;
+> +	struct axiom_data *ts;
+> +	u32 poll_interval;
+> +	int target;
+> +	int error;
+> +
+> +	ts = devm_kzalloc(dev, sizeof(*ts), GFP_KERNEL);
+> +	if (!ts)
+> +		return -ENOMEM;
+> +
+> +	i2c_set_clientdata(client, ts);
+> +	ts->client = client;
+> +	ts->dev = dev;
+> +
+> +	ts->regmap = devm_regmap_init_i2c(client, &axiom_i2c_regmap_config);
+> +	error = PTR_ERR_OR_ZERO(ts->regmap);
+> +	if (error) {
+> +		dev_err(dev, "Failed to initialize regmap: %d\n", error);
+> +		return error;
+> +	}
+> +
+> +	error = devm_regulator_get_enable(dev, "vddi");
+> +	if (error)
+> +		return dev_err_probe(&client->dev, error,
+> +				     "Failed to enable VDDI regulator\n");
+> +
+> +	error = devm_regulator_get_enable(dev, "vdda");
+> +	if (error)
+> +		return dev_err_probe(&client->dev, error,
+> +				     "Failed to enable VDDA regulator\n");
+> +
+> +	ts->reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
+> +	if (IS_ERR(ts->reset_gpio))
+> +		return dev_err_probe(dev, PTR_ERR(ts->reset_gpio), "failed to get reset GPIO\n");
+> +
+> +	/* Make sure the time after a power ON sequence is meet */
+> +	if (ts->reset_gpio)
+> +		axiom_reset(ts->reset_gpio);
+> +	else
+
+No else just:
+
+> +		msleep(AXIOM_STARTUP_TIME_MS);
+
+	msleep(AXIOM_STARTUP_TIME_MS);
+
+and drop the msleep within the axiom_reset().
+
+Regards,
+  Marco
+
+> +
+> +	error = axiom_discover(ts);
+> +	if (error)
+> +		return dev_err_probe(dev, error, "Failed touchscreen discover\n");
+> +
+> +	input_dev = devm_input_allocate_device(ts->dev);
+> +	if (!input_dev)
+> +		return -ENOMEM;
+> +
+> +	input_dev->name = "TouchNetix axiom Touchscreen";
+> +	input_dev->phys = "input/axiom_ts";
+> +
+> +	input_set_abs_params(input_dev, ABS_MT_POSITION_X, 0, 65535, 0, 0);
+> +	input_set_abs_params(input_dev, ABS_MT_POSITION_Y, 0, 65535, 0, 0);
+> +	input_set_abs_params(input_dev, ABS_MT_TOOL_TYPE, 0, MT_TOOL_FINGER, 0, 0);
+> +	input_set_abs_params(input_dev, ABS_MT_DISTANCE, 0, 127, 0, 0);
+> +	input_set_abs_params(input_dev, ABS_MT_PRESSURE, 0, 127, 0, 0);
+> +
+> +	touchscreen_parse_properties(input_dev, true, &ts->prop);
+> +
+> +	/* Registers the axiom device as a touchscreen instead of a mouse pointer */
+> +	error = input_mt_init_slots(input_dev, AXIOM_U41_MAX_TARGETS, INPUT_MT_DIRECT);
+> +	if (error)
+> +		return error;
+> +
+> +	/* Enables the raw data for up to 4 force channels to be sent to the input subsystem */
+> +	set_bit(EV_MSC, input_dev->evbit);
+> +	/* Declare that we support "RAW" Miscellaneous events */
+> +	set_bit(MSC_RAW, input_dev->mscbit);
+> +
+> +	ts->input_dev = input_dev;
+> +	input_set_drvdata(ts->input_dev, ts);
+> +
+> +	/* Ensure that all reports are initialised to not be present. */
+> +	for (target = 0; target < AXIOM_U41_MAX_TARGETS; target++)
+> +		ts->targets[target].state = AXIOM_TARGET_STATE_NOT_PRESENT;
+> +
+> +	if (client->irq) {
+> +		error = devm_request_threaded_irq(dev, client->irq, NULL,
+> +						  axiom_irq, IRQF_ONESHOT, dev_name(dev), ts);
+> +		if (error)
+> +			dev_err_probe(dev, error, "failed to request irq");
+> +	} else {
+> +		error = input_setup_polling(input_dev, axiom_i2c_poll);
+> +		if (error)
+> +			return dev_err_probe(ts->dev, error, "Unable to set up polling mode\n");
+> +
+> +		if (!device_property_read_u32(ts->dev, "poll-interval", &poll_interval))
+> +			input_set_poll_interval(input_dev, poll_interval);
+> +		else
+> +			input_set_poll_interval(input_dev, POLL_INTERVAL_DEFAULT_MS);
+> +	}
+> +
+> +	error = input_register_device(input_dev);
+> +	if (error)
+> +		return dev_err_probe(ts->dev, error, "failed to register input device\n");
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct i2c_device_id axiom_i2c_id_table[] = {
+> +	{ "ax54a" },
+> +	{ },
+> +};
+> +MODULE_DEVICE_TABLE(i2c, axiom_i2c_id_table);
+> +
+> +static const struct of_device_id axiom_i2c_of_match[] = {
+> +	{ .compatible = "touchnetix,ax54a", },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, axiom_i2c_of_match);
+> +
+> +static struct i2c_driver axiom_i2c_driver = {
+> +	.driver = {
+> +		   .name = "axiom",
+> +		   .of_match_table = axiom_i2c_of_match,
+> +	},
+> +	.id_table = axiom_i2c_id_table,
+> +	.probe = axiom_i2c_probe,
+> +};
+> +module_i2c_driver(axiom_i2c_driver);
+> +
+> +MODULE_AUTHOR("Bart Prescott <bartp@baasheep.co.uk>");
+> +MODULE_AUTHOR("Pedro Torruella <pedro.torruella@touchnetix.com>");
+> +MODULE_AUTHOR("Mark Satterthwaite <mark.satterthwaite@touchnetix.com>");
+> +MODULE_AUTHOR("Hannah Rossiter <hannah.rossiter@touchnetix.com>");
+> +MODULE_AUTHOR("Kamel Bouhara <kamel.bouhara@bootlin.com>");
+> +MODULE_DESCRIPTION("TouchNetix axiom touchscreen I2C bus driver");
+> +MODULE_LICENSE("GPL");
+> -- 
+> 2.25.1
+> 
+> 
 
