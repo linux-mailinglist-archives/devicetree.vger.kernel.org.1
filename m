@@ -1,155 +1,113 @@
-Return-Path: <devicetree+bounces-83152-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83153-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6899C9275B4
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 14:06:04 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 050E49275D3
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 14:21:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1E3181F22474
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 12:06:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BE985281B9E
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 12:21:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 718691AE0B5;
-	Thu,  4 Jul 2024 12:05:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA5B81ABCC4;
+	Thu,  4 Jul 2024 12:21:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="FPG1Gpwq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from mout.web.de (mout.web.de [217.72.192.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0D121AB503;
-	Thu,  4 Jul 2024 12:05:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A7AD1A072E;
+	Thu,  4 Jul 2024 12:21:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.72.192.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720094757; cv=none; b=aHSlQgv0VBun4mWRZDrmisSJvXKq871rvHw+eCVuJKsN329mnfiZklSfsHTk30S6SBc98CLRjZgulcs+peh2bM3QpX77dMqs3ewSYpS+VinuUNOI7RglQjxGf84tsg+AUI4l1SprYvUJFlQI+t74aHwIEKchzl0MbZZTBM9ehg8=
+	t=1720095681; cv=none; b=IwDEtEySvX7tbnsBiPisyjsg5DZ2KUVH8MYnZh95VaVYLHNmCPmO0NQ7AzV4Jxfn18cx5eL+RudUI6BuqoPB3ehHyjnfHIF0jeZv6dMC32eMtPSmIlFI5w1Lg+UBfeIijPJ+uk/SxJqoY+pzxNRR2xksT1XjhhIFrHxd4sPeQeQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720094757; c=relaxed/simple;
-	bh=L+Sz0ZouYi21bliJnhv4trBwcjkjzcxkmiWNOR4Bjko=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=t71sWlbfex/CLe/JJGNAAicZAICj8yJFtNMb+wIMlRx3ue6ivXv+BRmhg3fJmWjWYfFFFPC1R3pVk/M8mjb2v6ngqTIy9P7Llu4WHer5WhzpDtykVxfFf6DbQfXX2wx4YdsneXaM1L60GZFd+jfoHiV1Pe9GJeQVJIlcD9EnMpw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-Received: from i53875ac2.versanet.de ([83.135.90.194] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1sPLDg-0000bm-60; Thu, 04 Jul 2024 14:05:48 +0200
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: linux-rockchip@lists.infradead.org,
- Diederik de Haas <didi.debian@cknow.org>, Alex Bee <knaerzche@gmail.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] arm64: dts: rockchip: add rock5 itx board
-Date: Thu, 04 Jul 2024 14:05:47 +0200
-Message-ID: <2004736.8hb0ThOEGa@diego>
-In-Reply-To: <2c46dfb7-5ef3-494f-8cf1-413033e73412@gmail.com>
-References:
- <20240703210524.776455-1-heiko@sntech.de> <4552794.8F6SAcFxjW@diego>
- <2c46dfb7-5ef3-494f-8cf1-413033e73412@gmail.com>
+	s=arc-20240116; t=1720095681; c=relaxed/simple;
+	bh=HxsvT81qKePcMxn8Vt6TAWWT85euwfj751GojjeLcOo=;
+	h=Message-ID:Date:MIME-Version:To:Cc:References:Subject:From:
+	 In-Reply-To:Content-Type; b=SlnN6s4cfnkq7ik/1nNc2/z2kUesyjbfYiQQFkvLGsQ0w6goG0MB/wNaf6Awxf1TJOsosvJ9iyIF3kr8Wfu3HCkfAXpwfT81j8ddBiWgQGTk/EGLWu9oIEtJS6hp3rfFic9ks5QxhRkS4U8880keSJ1CErxtTey/M/wMNfS5DfM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=FPG1Gpwq; arc=none smtp.client-ip=217.72.192.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+	s=s29768273; t=1720095657; x=1720700457; i=markus.elfring@web.de;
+	bh=RkwvNaNtMTa/E1eey+qDqTLd5BXYMTgaMsbsOtcI6eY=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:References:
+	 Subject:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
+	 cc:content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=FPG1Gpwq9oxaMJdRBNG/DPztQODGZDU1TKFOeqxHqndD4Pbs8hb0fokYtndiIFNk
+	 mX6pnXZwkgbUMjb44Le6zTFmzWOxntEGzB2zZFVC/UiDxejmNF7qt67yxWfc2RV9R
+	 Tn4EIgk5ijq+RQl31ezeSZ/zSUXRb1ybRZWCssIOwPRLIVXk/qbNuLJImIisxMo7O
+	 C+zCohjmLTav5Q/7oJID1coRw9UPHUczcDRnVybYU1rXQEPJjG4CLa434Bz9uSf7/
+	 sZzTaQTXFvUcgLf/tMeEOzZ0uElGnhjiZdp4TsiH2nbrs/hxfhkgYdPHV/HXH8/HF
+	 Z6SvLx8A+xSgOAqzIA==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from [192.168.178.21] ([94.31.91.95]) by smtp.web.de (mrweb105
+ [213.165.67.124]) with ESMTPSA (Nemesis) id 1MuVGC-1s77oh2Lxq-016qBk; Thu, 04
+ Jul 2024 14:20:57 +0200
+Message-ID: <0fd113ef-67f9-4510-ab28-8b49089ef4ff@web.de>
+Date: Thu, 4 Jul 2024 14:20:51 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+To: Taniya Das <quic_tdas@quicinc.com>, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>,
+ Stephen Boyd <sboyd@kernel.org>
+Cc: LKML <linux-kernel@vger.kernel.org>,
+ Imran Shaik <quic_imrashai@quicinc.com>,
+ Jagadeesh Kona <quic_jkona@quicinc.com>
+References: <20240612-sa8775p-mm-clock-controllers-v1-3-db295a846ee7@quicinc.com>
+Subject: Re: [PATCH 3/8] dt-bindings: clock: qcom: Add SA8775P camera clock
+ controller
+Content-Language: en-GB
+From: Markus Elfring <Markus.Elfring@web.de>
+In-Reply-To: <20240612-sa8775p-mm-clock-controllers-v1-3-db295a846ee7@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+X-Provags-ID: V03:K1:w1JpRox6PEFAAvDdVOuSIdokeECm0Nb9I2VXa0A3zhcX8CkCoVi
+ EY/TvlgYk7yoVjyr62ckdf+BU6IEO6MKiTbc9kTzO9CaFbrwgLIWy4Xu3ghHLcjOl3dUd60
+ uooblIDaF+wXNiSFL53ZwmZQjjTf1GpnxBboW20+tXTqUj+hjJwesQc5WLySMaR6CrrA2Li
+ W+8nWJut+sQn9iGxQYL/g==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:kg9mRIQBY6M=;42unBiiR+YXfe+cQ+fl8JPqiA4i
+ o4rstFvyCG2ouiUFMBwEQCcvjzjMfBFObW7sPaU81trk1bYBkWiFFcnZlItPK5rBmf3iG5IrD
+ PbvwnUZZAoBqghKTIw9oSCuYzYeOvEY1ge7Gh7thR+P33y5rtNr8vpHuUXZQ2VGQeXajRlIfA
+ RW/NwlHT86Rqa4GRVd2l8/2u/G7iDByahoxT6KEkCXOzmBEZFRLjwRCtL4/dv8ygHGkQw/jnU
+ 5SmshY40SAHXkidfQ8CARSYyGYS61ICWOxTY2uPy5Oxez3doeLxRDwB5TXUBIFQWJVthkcSWA
+ D44+jW2MuxNUZbNq6OmtCKR3o+tc/R9KxZHVP9wOrNtduCsZqgLoOQWKL34Ta++GfDnPxQyen
+ /e2rKtMyh3QZs+h2exPlUh8HStJu2hMJZiEF0LeF3jYxhA36aO3lfEDKl1rB7UrzrdDUEiFyU
+ SV5DwhnC7JRRmKJoMbc4TSkYOLWCM6Q2iuuBACudafAuY2s8OtLPrR5GU4p1T5t8DP0O6mMOV
+ laBpVRBEQfFMHpDncZk/JZuQWGJUcp34fmGoK4okJ/dYLR/GxcXUTWTjMURr0Sax89otafevW
+ jCdMrm9B0jIAJNoAkSo8CPU19G2Ubsi1YQTPV2uqZ3ZwzyA3C2tFjEZQ9HlPiMuNlbNhPSF//
+ 5mzJXTeukIxmm9QYZj/6Nf1l8Ps68Ort+htQwPEXuLdwjEjiYoP94OCrb5/opXVfdzMV7uYjr
+ aZ5/w/m8U2irQRJ3QrgQyDI+Ab6Nee0GHghIW7xPYk47REC89jjIDFJblq9HU0bwPxSwk2zyR
+ 6vJxZVFJb7bqtCqAqROi1KLLodLyjMHjltt+WAsCGSYxM=
 
-Am Donnerstag, 4. Juli 2024, 13:43:47 CEST schrieb Alex Bee:
-> Am 04.07.24 um 12:05 schrieb Heiko St=FCbner:
-> > Hi Diederik,
-> >=20
-> > Am Donnerstag, 4. Juli 2024, 11:38:51 CEST schrieb Diederik de Haas:
-> >> Thanks for submitting this. A quick scan indicates it should work with=
- a
-> >> (recent) Debian kernel OOTB :-)
-> >>
-> >> On Wednesday, 3 July 2024 23:05:24 CEST Heiko Stuebner wrote:
-> >>> +&sdhci {
-> >>> +       bus-width =3D <8>;
-> >>> +       no-sdio;
-> >>> +       no-sd;
-> >>> +       non-removable;
-> >>> +       max-frequency =3D <200000000>;
-> >>> +       mmc-hs400-1_8v;
-> >>> +       mmc-hs400-enhanced-strobe;
-> >>> +       mmc-hs200-1_8v;
-> >>> +       status =3D "okay";
-> >>> +};
-> >>> +
-> >>> +&sdmmc {
-> >>> +       max-frequency =3D <200000000>;
-> >>> +       no-sdio;
-> >>> +       no-mmc;
-> >>> +       bus-width =3D <4>;
-> >>> +       cap-mmc-highspeed;
-> >>> +       cap-sd-highspeed;
-> >>> +       disable-wp;
-> >>> +       sd-uhs-sdr104;
-> >>> +       vmmc-supply =3D <&vcc_3v3_s3>;
-> >>> +       vqmmc-supply =3D <&vccio_sd_s0>;
-> >>> +       pinctrl-names =3D "default";
-> >>> +       pinctrl-0 =3D <&sdmmc_bus4 &sdmmc_clk &sdmmc_cmd &sdmmc_det>;
-> >>> +       status =3D "okay";
-> >>> +};
-> >>> +
-> >>> +/* M.2 E-KEY */
-> >>> +&sdio {
-> >>> +       broken-cd;
-> >>> +       bus-width =3D <4>;
-> >>> +       cap-sdio-irq;
-> >>> +       disable-wp;
-> >>> +       keep-power-in-suspend;
-> >>> +       max-frequency =3D <150000000>;
-> >>> +       mmc-pwrseq =3D <&sdio_pwrseq>;
-> >>> +       no-sd;
-> >>> +       no-mmc;
-> >>> +       non-removable;
-> >>> +       pinctrl-names =3D "default";
-> >>> +       pinctrl-0 =3D <&sdiom0_pins>;
-> >>> +       sd-uhs-sdr104;
-> >>> +       vmmc-supply =3D <&vcc3v3_ekey>;
-> >>> +       status =3D "okay";
-> >>> +};
-> >>> +
-> >>> +&sfc {
-> >>> +       pinctrl-names =3D "default";
-> >>> +       pinctrl-0 =3D <&fspim2_pins>;
-> >>> +       status =3D "okay";
-> >>
-> >> Shouldn't those properties be sorted alphabetically? Or at least consi=
-stently?
-> >> Note that the same issue is present on other places too, but I believe=
- the
-> >> above quoted part shows the issue enough.
-> >=20
-> > The main sorting is
-> > - compatible
-> > - reg
-> > [... alphabetically ...]
-> > - status
-> >=20
-> Yeah ... that's always the question when adding new board files. Do it li=
-ke
-> "it's always been done" or re-sort the properties alphanumeric _everywher=
-e_
-> which looks quite strange at times. If I'm getting the newly added dt
-> coding style correctly common (subsystem?) properties should also be plac=
-ed
-> before vendor (driver?) specific ones. Yet I didn't see a board file which
-> places 'regulator-max-microvolt' before 'regulator-min-microvolt'. So I
-> guess it's fine if it's done consistently within the same file?
+=E2=80=A6
+> +++ b/include/dt-bindings/clock/qcom,sa8775p-camcc.h
+> @@ -0,0 +1,107 @@
+=E2=80=A6
+> +/* CAM_CC clocks */
+> +#define CAM_CC_CAMNOC_AXI_CLK					0
+> +#define CAM_CC_CAMNOC_AXI_CLK_SRC				1
+> +#define CAM_CC_CAMNOC_DCD_XO_CLK				2
+> +#define CAM_CC_CAMNOC_XO_CLK					3
+=E2=80=A6
 
-I always see it as a best-effort thing. If all regulator-* stuff is grouped
-together it will be mostly fine. I'm not going to haggle over the sorting
-of the 10th character of property names ;-) .
+How do you think about to offer such information as an enumeration?
 
-(and of course reading min before max, is sort of more intuitive)
-
-And of course leaf-things (board dts) are less "important" than the core
-nodes in soc devicetrees.
-
-
-
+Regards,
+Markus
 
