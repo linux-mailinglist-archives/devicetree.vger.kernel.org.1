@@ -1,178 +1,180 @@
-Return-Path: <devicetree+bounces-83290-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83289-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94C8F927D0A
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 20:30:52 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66B7B927D04
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 20:29:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B8A0C1C22302
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 18:30:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5A499B22BB9
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 18:29:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CEFF13B2B0;
-	Thu,  4 Jul 2024 18:28:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B36D1419A0;
+	Thu,  4 Jul 2024 18:28:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CLHRDdFX"
+	dkim=pass (2048-bit key) header.d=xenosoft.de header.i=@xenosoft.de header.b="l5Si8M9U";
+	dkim=permerror (0-bit key) header.d=xenosoft.de header.i=@xenosoft.de header.b="qBMcCXzG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f172.google.com (mail-vk1-f172.google.com [209.85.221.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E12213B2A9;
-	Thu,  4 Jul 2024 18:28:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.172
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720117708; cv=none; b=hlPcrp/xpy5yUN5oLTxKKsFcKgt8z+NQGOj/MbUtvT0L+h+LVkrks6r3G59Ft5ZHZ5QKWL0UCz8N2dvJ3ycO3CJT/uP4j/KnlpXwdMcRIbAn4k3xQKgRBgMEddlmw0vn48nufH2fPXjXgiwCo9gfsrCHzVYCwMztw7MgLV6s1Lg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720117708; c=relaxed/simple;
-	bh=ql3NJLqLvGGjKh/ENYL+RT8GUzbEEpLQsYLo5p4RuLo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=G3WlTL8sDKxFwvMcgcAy+XZKTZ4pEUOVDsBpKw7GFlGvoRNCOKa8JmnH1WX8mc6qhxi1fB6Bs70DPERZu8Hobu4RCIrR2NZmGiFoQq/BBVPgoU0MY4p4Whf2P2NW5IaQS4dyAgi61A5kt9qwC4LGySLXDZ6Mh3QFNR7gkQV1XRA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CLHRDdFX; arc=none smtp.client-ip=209.85.221.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f172.google.com with SMTP id 71dfb90a1353d-4f2e1093abeso334201e0c.1;
-        Thu, 04 Jul 2024 11:28:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1720117705; x=1720722505; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=41UyELOuWm3D84QeHs4TWRy8/vIfZ61Eerp9KOgoxnY=;
-        b=CLHRDdFXYHz92HIWSW//hTL6q4fSk4aX7J8MhElom7QUvLcmHjCM/LcVViV51iAlbx
-         0MkqEXi/9GDBKwsbFa7uONXMfvkhbEciqfPxW7QhAV8AzqaC2oKS8Try8cFy8zdONwyQ
-         h+THMwqX7+mgDc0aKWHkvZxhiUou/dq6YZtiwHHzq5w7IVqPcMT373W5efYOdwsshTaM
-         MeNN68Ga5payQ3pchScR2bPWklHyT1ptdWA2+6uj8kGd0cQs972/xfZJOLSkVW9CUkHH
-         O5lE669wf0oK1Wx1Nwd+MIszmDQZi461J8eESWhImw6bwiIfsqIbPFyoUfv6zXfvMFJd
-         qRBw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720117705; x=1720722505;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=41UyELOuWm3D84QeHs4TWRy8/vIfZ61Eerp9KOgoxnY=;
-        b=cNrMrRhuUKRh6pp/6hXicxxj/S+AEqii9p3Gh00Tfli+gUud6HMk+KYQmHYKMs3z+5
-         P2IJMp/Z0IygfvTTfhBnhBYZqBiF+je6eRB3/N4wjZLZIm+mYvPG9xAW6yzx9S6159eA
-         Ube1IZ0kON6AU7dHJI3+pbr/68KCWhZqHJGsXLs4jitIQXoAIx0OzAhlQYu83MLkaqug
-         j0I6qHNhNUTdS+Bg/lkpnUwQNSpgzQG1Nn5RL4lfrk8wErEEvY9QnF6UwlW4VFOK3n96
-         z1SMpYydW+ZFecJPQtOGXejF42JjXJ8/s2nbAndmqyeaDjmSODYxNqKi4rsgLcOqIwy3
-         pRfg==
-X-Forwarded-Encrypted: i=1; AJvYcCUZg42eFGvB8WOEV5rF1/UXRhG55caBM6DpPsohSqqa2STZ8MA5PHNwB9t9CTf9p6XRziCExKxlaET/Gnz3ZTrOe3RxcNOaoT8dJXkdEGPpY7xdJklKEn4zpQ+75n9JEv7OH/QskdwUgZGftaXtYhuuKrdjjkBZ5eiBY/38gki6HLAwuhkov7lTwqxvOHa2Jjhhf8oDfuBi9BRP6Qe0uCL2PBBSeIsq
-X-Gm-Message-State: AOJu0YwdT49YX6qJOEFyxVcPZPbVt8afHzUZEPbG/lk4GDpVIAmRIvTC
-	VO2+K4T8BvCCkFRA9+lXYHSdvEgTG2UPkoJi6jYfPNTwigH7pQXp0lc+xQYGj+mFK8zTrPrT4yi
-	ogXIartRt9V8kDywt9SOzbaE5tcE=
-X-Google-Smtp-Source: AGHT+IGHCsmRte6KVDKNJur2+3AVPLn8c/jfknG1Y5A+vwTj64aZLTaFtfyia5arJXQL7aA/Oh+DetF6OU7OJMYVGAo=
-X-Received: by 2002:a05:6122:4205:b0:4f2:f331:b34d with SMTP id
- 71dfb90a1353d-4f2f3f2c267mr2938863e0c.7.1720117705232; Thu, 04 Jul 2024
- 11:28:25 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D872B13D250;
+	Thu,  4 Jul 2024 18:28:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=85.215.255.51
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1720117686; cv=pass; b=jj6oh2INDP3zM0CtvAxK5k4aabQpAabUiVjkqWVbM2IbtSlVw+psm83X+3l5HoBc3XA0Vxy+0CC0iLuMGyvl/nP4oSyhoStyje+/uxS0cP/PPscVj/g52wgaAqmJgez5FgrEP6JD4St7TnmYj2IryXwjbAGdH/uPiQs7S9GZnpc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1720117686; c=relaxed/simple;
+	bh=6NFNT1aliQ0mk/TC71IaMfgcjYB9X2hKt+teOtKS05c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CYFBMNYkbPJ2VXNUdGPynivGMY7e/ix4r9zPXWTR/cMXJHT96pf80pPpdcm44zPJFA9/oD1S3DP4BlESVu6cUEXam3i6OOM3ve7Uuy5y0Qj0FhxV6odRb2ccXbX4Ee4AYMoa+9xE9Z6xCOm92TM9CHurnsrxYnXo2MuIxYB719Q=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=xenosoft.de; spf=none smtp.mailfrom=xenosoft.de; dkim=pass (2048-bit key) header.d=xenosoft.de header.i=@xenosoft.de header.b=l5Si8M9U; dkim=permerror (0-bit key) header.d=xenosoft.de header.i=@xenosoft.de header.b=qBMcCXzG; arc=pass smtp.client-ip=85.215.255.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=xenosoft.de
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=xenosoft.de
+ARC-Seal: i=1; a=rsa-sha256; t=1720117643; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=Fy80Yhj0x290kYEKrd1RQq5Ma4YrsvEuYkpH3LYU9DoorwUkKSLbMWAvJixniXyf5g
+    yVC4srGT7gF1k+RLkH9bW3YN6L5wNbkjSEp9fzCOwqTCH4VJtr4otCsKv5epcDFCbOmC
+    uI7Ntpymsr6rOrlXg/q0Con21LOV8yaMA1SfenfbFiDHQBX18wmyYDlCgtTdpd8qAoj2
+    SMNKyehlaFcgbSy369A+C5icUBoE/w9pPV0QFmNjw7Bi+BeHBxocimWkNImqMF4Wp/pk
+    w/GNQKJmEaAPEiorZmrAiAKUinkZrpdp4RqJrpOrNaFPffpX7PUCSxemxIfkGYRCLTR/
+    fgww==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1720117643;
+    s=strato-dkim-0002; d=strato.com;
+    h=In-Reply-To:From:References:Cc:To:Subject:Date:Message-ID:Cc:Date:
+    From:Subject:Sender;
+    bh=MF0O/2pT9UmMWAClfRsttShUZ9knD0aIZeQYuAUw6dU=;
+    b=EHC56Dpn2gs6Skqy1ifHEIIlFMQaQI9TfG1ICcGuahMdnAon0fBmAmSqUe/ogSu9JB
+    cElXLbZfbSiWIY6Yyn8W7lS7ojbTf4vx7qjAjbPIFjHMIrI8xHoYwPH7VClf0scPN2UO
+    yzaPaqy6YTt25/IjANSsYlsSzcu8QsaOWnQWjU+4lW2MXwH3qTKOWs+vMeg7olTDzdQt
+    2pYUo+mjowSdEGnCsKOHvgQw863GszbGGz5G7mpEFfNwLrvzGv2JAMVXORhIdlH1mwm6
+    KzYTWoj/xDprxISEgXnqYUiJ9d0khPVrp+llDDh/v3zFTnCHNqqeLX4S0b+b66hs511s
+    chMQ==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo01
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1720117643;
+    s=strato-dkim-0002; d=xenosoft.de;
+    h=In-Reply-To:From:References:Cc:To:Subject:Date:Message-ID:Cc:Date:
+    From:Subject:Sender;
+    bh=MF0O/2pT9UmMWAClfRsttShUZ9knD0aIZeQYuAUw6dU=;
+    b=l5Si8M9UJxarFg/qgHvJFHeU7jTArtd5tKBk45N+PGvKPPeTbhOZWRLQ4OB7DCUPfc
+    X+80A8ms55gD0Fb41YnWnJl1WN+cz030p5gzUvY2QaH+LqaL1lVTSJYMVw1+g5cGprO/
+    4/qYGjuB5RJmWj/l3Dyra/k5LI1T4rCDxzpMhqeRIZQnGyEpjFsVDEdBQSdQI8CkFJa3
+    djf5MYuSPZM2HgIQKAD1U6CBeDyfXQCchwWPnCLOYyrLRYwss6b4C6X2qqLLO8Rj/5ZL
+    3vAG+lYfPuGayKYv/4phOz3m8H0fc09XNNFfXqR5RqrSLWlOTQJGYeUM65HNA1c+LDMk
+    Y/Ow==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1720117643;
+    s=strato-dkim-0003; d=xenosoft.de;
+    h=In-Reply-To:From:References:Cc:To:Subject:Date:Message-ID:Cc:Date:
+    From:Subject:Sender;
+    bh=MF0O/2pT9UmMWAClfRsttShUZ9knD0aIZeQYuAUw6dU=;
+    b=qBMcCXzGHDJUBfTeFFb6gqTp2Nv7XFgLfH/4PCluveo1Sc4a7mTdMpfYKnUq3gXI2E
+    eEtys1FZvCwUm2s8XsDA==
+X-RZG-AUTH: ":L2QefEenb+UdBJSdRCXu93KJ1bmSGnhMdmOod1DhGM4l4Hio94KKxRySfLxnHvJzedR43JwnbXz/kFsuSUCat82PJROdEuWUwpcR8HY5"
+Received: from [IPV6:2a01:599:806:6955:6d1:546c:8e64:4d8]
+    by smtp.strato.de (RZmta 50.5.0 AUTH)
+    with ESMTPSA id e08389064IRLU8S
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+	(Client did not present a certificate);
+    Thu, 4 Jul 2024 20:27:21 +0200 (CEST)
+Message-ID: <3baff554-e8f6-42b0-b931-207175a4d8fd@xenosoft.de>
+Date: Thu, 4 Jul 2024 20:27:57 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240626132341.342963-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20240626132341.342963-2-prabhakar.mahadev-lad.rj@bp.renesas.com> <ZoUb_olfaVapoYBi@shikoro>
-In-Reply-To: <ZoUb_olfaVapoYBi@shikoro>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Thu, 4 Jul 2024 19:27:13 +0100
-Message-ID: <CA+V-a8uJ-jv65fK7=XYtMvCCiEbFKcRHW3xNj8SQd2TJ++43QQ@mail.gmail.com>
-Subject: Re: [PATCH v4 1/3] dt-bindings: mmc: renesas,sdhi: Document RZ/V2H(P) support
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
-	Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Prabhakar <prabhakar.csengg@gmail.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, Biju Das <biju.das.jz@bp.renesas.com>, 
-	linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-mmc@vger.kernel.org, 
-	Magnus Damm <magnus.damm@gmail.com>, Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PowerPC] [PASEMI] Issue with the identification of ATA drives
+ after the of/irq updates 2024-05-29
+To: Michael Ellerman <mpe@ellerman.id.au>, Marc Zyngier <maz@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, apatel@ventanamicro.com,
+ DTML <devicetree@vger.kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+ mad skateman <madskateman@gmail.com>, "R.T.Dickinson" <rtd2@xtra.co.nz>,
+ Matthew Leaman <matthew@a-eon.biz>, Darren Stevens
+ <darren@stevens-zone.net>, Christian Zigotzky <info@xenosoft.de>
+References: <3ab66fab-c3f2-4bed-a04d-a10c57dcdd9b@xenosoft.de>
+ <86zfqzhgys.wl-maz@kernel.org>
+ <ccf14173-9818-44ef-8610-db2900c67ae8@xenosoft.de>
+ <874j95jrur.fsf@mail.lhotse>
+Content-Language: en-US
+From: Christian Zigotzky <chzigotzky@xenosoft.de>
+In-Reply-To: <874j95jrur.fsf@mail.lhotse>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Wolfram,
-
-On Wed, Jul 3, 2024 at 10:38=E2=80=AFAM Wolfram Sang
-<wsa+renesas@sang-engineering.com> wrote:
+On 04.07.24 13:53, Michael Ellerman wrote:
+> Christian Zigotzky <chzigotzky@xenosoft.de> writes:
+>> On 02.07.24 18:54, Marc Zyngier wrote:
+>>> On Sun, 30 Jun 2024 11:21:55 +0100,
+>>> Christian Zigotzky <chzigotzky@xenosoft.de> wrote:
+>>>> Hello,
+>>>>
+>>>> There is an issue with the identification of ATA drives with our
+>>>> P.A. Semi Nemo boards [1] after the
+>>>> commit "of/irq: Factor out parsing of interrupt-map parent
+>>>> phandle+args from of_irq_parse_raw()" [2].
+> ...
+>>> --- a/drivers/of/irq.c
+>>> +++ b/drivers/of/irq.c
+>>> @@ -282,8 +282,10 @@ int of_irq_parse_raw(const __be32 *addr, struct of_phandle_args *out_irq)
+>>>    
+>>>    			oldimap = imap;
+>>>    			imap = of_irq_parse_imap_parent(oldimap, imaplen, out_irq);
+>>> -			if (!imap)
+>>> -				goto fail;
+>>> +			if (!imap) {
+>>> +				match = 0;
+>>> +				break;
+>>> +			}
+>>>    
+>>>    			match &= of_device_is_available(out_irq->np);
+>>>    			if (match)
+>>>
+>>>
+>> We tested this patch yesterday and it solves the boot problem.
+> Hi Christian,
 >
-> On Wed, Jun 26, 2024 at 02:23:39PM +0100, Prabhakar wrote:
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > The SD/MMC block on the RZ/V2H(P) ("R9A09G057") SoC is similar to that
-> > of the R-Car Gen3, but it has some differences:
-> > - HS400 is not supported.
-> > - It supports the SD_IOVS bit to control the IO voltage level.
-> > - It supports fixed address mode.
-> >
-> > To accommodate these differences, a SoC-specific 'renesas,sdhi-r9a09g05=
-7'
-> > compatible string is added.
-> >
-> > A 'vqmmc-regulator' object is introduced to handle the power enable (PW=
-EN)
-> > and voltage level switching for the SD/MMC.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Instead of that patch, can you try the one below. AFAICS the device tree
+> fixups done in early boot mean the interrupt-map is not needed, and also
+> has the wrong content, so if we can remove it entirely that might avoid
+> the problems in the parsing code.
 >
-> Can we have an example here? I can read DTS snippets better than YAML
-> code :/ Also wondering about the "regulator-compatible" property but
-> maybe the example makes the problem clear?
+> I don't know if your firmware actually implements those methods, I
+> couldn't find anything online to confirm or deny it. Seems the only
+> option is to test it.
 >
-You mean in the commit message or comment section? (I had added below
-in the cover letter)
+> cheers
+>
+>
+> diff --git a/arch/powerpc/kernel/prom_init.c b/arch/powerpc/kernel/prom_init.c
+> index fbb68fc28ed3..28fe082ede57 100644
+> --- a/arch/powerpc/kernel/prom_init.c
+> +++ b/arch/powerpc/kernel/prom_init.c
+> @@ -3138,6 +3138,14 @@ static void __init fixup_device_tree_pasemi(void)
+>   
+>   	prom_setprop(iob, name, "interrupt-controller", &val, 0);
+>   
+> +	prom_printf("nemo: deleting interrupt-map properties\n");
+> +	rc = call_prom("interpret", 1, 1,
+> +		      " s\" /pxp@0,e0000000\" find-device"
+> +		      " s\" interrupt-map\" delete-property"
+> +		      " s\" interrupt-map-mask\" delete-property"
+> +		      " device-end");
+> +	prom_printf("nemo: interpret returned %d\n", rc);
+> +
+>   	pci_name = "/pxp@0,e0000000/pci@11";
+>   	node = call_prom("finddevice", 1, 1, ADDR(pci_name));
+>   	parent = ADDR(iob);
+Hi Michael,
 
-SoC DTSI node:
-sdhi1: mmc@15c10000 {
-        compatible =3D "renesas,sdhi-r9a09g057";
-        reg =3D <0x0 0x15c10000 0 0x10000>;
-        interrupts =3D <GIC_SPI 737 IRQ_TYPE_LEVEL_HIGH>,
-                        <GIC_SPI 738 IRQ_TYPE_LEVEL_HIGH>;
-        clocks =3D <&cpg CPG_MOD 167>,
-                        <&cpg CPG_MOD 169>,
-                        <&cpg CPG_MOD 168>,
-                        <&cpg CPG_MOD 170>;
-        clock-names =3D "core", "clkh", "cd", "aclk";
-        resets =3D <&cpg 168>;
-        power-domains =3D <&cpg>;
-        status =3D "disabled";
+Many thanks for your patch. We will test it as soon as possible.
 
-        vqmmc_sdhi1: vqmmc-regulator {
-                regulator-compatible =3D "vqmmc-r9a09g057-regulator";
-                regulator-name =3D "sdhi1-vqmmc-regulator";
-                regulator-min-microvolt =3D <1800000>;
-                regulator-max-microvolt =3D <3300000>;
-                status =3D "disabled";
-        };
-};
-
-Board DTS:
-&sdhi1 {
-        pinctrl-0 =3D <&sdhi1_pins>;
-        pinctrl-1 =3D <&sdhi1_pins>;
-        pinctrl-names =3D "default", "state_uhs";
-        vmmc-supply =3D <&reg_3p3v>;
-        vqmmc-supply =3D <&vqmmc_sdhi1>;
-        bus-width =3D <4>;
-        sd-uhs-sdr50;
-        sd-uhs-sdr104;
-        status =3D "okay";
-};
-
-&vqmmc_sdhi1 {
-     status =3D "okay";
-};
-
-Based on feedback from Conor, we cannot use the regulator-compatible
-property. This would require us to implement separate drivers (one for
-VMMC and another for VQMMC), which I believe would necessitate the use
-of regmap. Currently, this seems unnecessary for controlling the two
-bits as a regulator. As Geert previously pointed out, the PWEN and
-IOVS pins can always be multiplexed as GPIOs on the RZ/V2H SoC (as is
-done on R-Car devices). Therefore, I am inclined to drop the internal
-regulator support for now.
-
-Let me know your thoughts.
-
-Cheers,
-Prabhakar
+Christian
 
