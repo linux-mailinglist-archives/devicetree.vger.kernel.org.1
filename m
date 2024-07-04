@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-83129-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83130-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37B1A927454
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 12:47:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7067D92745C
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 12:49:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E8D96281ADF
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 10:47:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 299BE286456
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 10:49:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FA8F1AB8FE;
-	Thu,  4 Jul 2024 10:47:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87D3F1ABC4E;
+	Thu,  4 Jul 2024 10:48:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N/YoHxB1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KUTnqOco"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32D6112D76E;
-	Thu,  4 Jul 2024 10:47:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6103E1A4F12;
+	Thu,  4 Jul 2024 10:48:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720090067; cv=none; b=sjoH5qprkArbmtjm7zvZJQdMMCD4PTdXRwWNTZi0QR6IOhmWgO94izHzj3TWVHp/kM4AzqQ1wiLbZOHk0YXHbqHXVNYck9em0wtQNDXMTFPF38BvTpy71ZVVeWKCbjAzoVv2bZQrOps94SJ+yihzQ/xazqiFaTlgmKcQBpl6yfs=
+	t=1720090137; cv=none; b=YESDqdAeZY173G0R2vyw4Csp2AQC3JcvVwJikUV40jgk86IGMAXIuoWxL41aupRwb1JRo01tsjN2IRr6O/zf7OJn07hAGCKlfHQXtxlj2Lr4yuTCtEoCipZEB05gr1KcVls+JqJEWQ6HfK7MPp690IwkIRSA56rJR4giRf5FDMw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720090067; c=relaxed/simple;
-	bh=pY45yYldwW47Trj7xJ3qAVBLYPUNu/TkSH4X6ZZde0M=;
+	s=arc-20240116; t=1720090137; c=relaxed/simple;
+	bh=F5M57piIAzwqb0xD98ri0OX8cYycfgxs1/FQ02iZjjo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YBHdABgLhRRchZokntsAftZHB7MqsoHf55kaRTD6fEfewg8ILu1aR574S03lxznFQXSkhMcx0Bl5Sg2baIr8Br07cNb9+5/SBP4QIezNaEjfCeZUH19PrHQI8gyL2MGopfe1hsHzryP55qJjOnJLUi0v7fjyDl4VJNSEmZZRmAA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N/YoHxB1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45B34C3277B;
-	Thu,  4 Jul 2024 10:47:42 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=L0fnWzUMnXKsBfxxLbNtx7VrznuGLgehuQjuMdZw9QNv4YFAQkgH1VQ6NGKwsTAH4rNa23AUhu05Es6X3B8QHko/cu0K8iuYav6Ck4d5leH7LZ6HKXX+fqCTB7QfCyB5NiUDpe2SAjUe2JcscGO4Q1bEtnGWpeLIinOigO0apwo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KUTnqOco; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11DD6C3277B;
+	Thu,  4 Jul 2024 10:48:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720090067;
-	bh=pY45yYldwW47Trj7xJ3qAVBLYPUNu/TkSH4X6ZZde0M=;
+	s=k20201202; t=1720090137;
+	bh=F5M57piIAzwqb0xD98ri0OX8cYycfgxs1/FQ02iZjjo=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=N/YoHxB1kTqCN7bW73FO6Xa7kuZWF3hT9tn5x/XeRziL/QXJA5fCCkLwIRZwT7r4C
-	 R44FQEkSEtNuyk/8OGarvAuCWijJsoJD3snnXIc6tZQOy9toqmRCmeKR1y5iqI7WUE
-	 8aEcu/obFTV1oz0ectj8GOekqyaTkbNpDHFXX8805Km8Dvitcie/AxiJ9QsJilgpBA
-	 cpnVixMdlzbCcnNtSqGVAL101aAF4NfyY/EOrcA8g80eUXCxeMcpacmkHvbpSoDQV2
-	 2drd/0RVEwSAQEmwEjNg93IHOqx/52l3Ro07yRxeNVj3hY7XSPu3bIh5Q+QcryAdZJ
-	 XRIwmMkpfr/rA==
-Message-ID: <3121cd5e-7fcd-4daf-b51c-afba8074d5a3@kernel.org>
-Date: Thu, 4 Jul 2024 12:47:40 +0200
+	b=KUTnqOco2oe4IJNXUqHGS3Dxa1yZaUImr80s6u+BjHdPfeiNDIjK6n4lbqVlmSvAD
+	 YzO1sSoxySEFLmc/GBy5t4rggBL7MDuP+j+k0e5Ph+l4WRuM2UzWwMReLGKQ23EtX0
+	 ngLX46QF0Sv4OWEL9hKb+ekgC+FuRgYPMwRI0cYoe7yBX9Op1OsBuEAhYcf0TZ8VGR
+	 iMDMTQAV3ZFRet12pVcAbW5YaAMUHgHIG1NF7kNHlaMapKNJK1/NpBbsLZy0zenRpw
+	 2wToaElnfrubIy/+otKhwoFeMTeoUrp8P8q9UcBtSiAvWp+2V2HxW3zUwO9UEOA9Gf
+	 UkquHdUT6b6ag==
+Message-ID: <8a7b784e-cb70-4f1a-87d9-662ef021ca61@kernel.org>
+Date: Thu, 4 Jul 2024 12:48:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,25 +50,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: iio: adc: sophgo,cv18xx-saradc.yaml: Add
- Sophgo SARADC binding documentation
-To: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-Cc: Albert Ou <aou@eecs.berkeley.edu>, Palmer Dabbelt <palmer@dabbelt.com>,
- Paul Walmsley <paul.walmsley@sifive.com>,
- Inochi Amaoto <inochiama@outlook.com>, Chen Wang <unicorn_wang@outlook.com>,
- Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
- Rob Herring <robh@kernel.org>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- =?UTF-8?Q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- Lars-Peter Clausen <lars@metafoo.de>, linux-kernel@vger.kernel.org,
- linux-riscv@lists.infradead.org
-References: <20240702-sg2002-adc-v1-0-ac66e076a756@bootlin.com>
- <20240702-sg2002-adc-v1-1-ac66e076a756@bootlin.com>
- <b7913f90-7405-4a77-9c57-97ef124de6e1@kernel.org>
- <8d368347-7cee-41af-a033-c495eeb62e2a@bootlin.com>
- <577a5623-6dd8-4229-9c07-61e131a01aa8@kernel.org>
- <0d50df10-4b4e-47c4-930f-cd8f645a7e2d@bootlin.com>
+Subject: Re: [PATCH 3/4] MAINTAINERS: add SAM9X7 SoC's Microchip's MIPI DSI
+ host wrapper driver
+To: Manikandan Muralidharan <manikandan.m@microchip.com>,
+ andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org,
+ Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+ jernej.skrabec@gmail.com, airlied@gmail.com, daniel@ffwll.ch,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux@armlinux.org.uk, nicolas.ferre@microchip.com,
+ alexandre.belloni@bootlin.com, claudiu.beznea@tuxon.dev, arnd@arndb.de,
+ Jason@zx2c4.com, palmer@rivosinc.com, mpe@ellerman.id.au,
+ rdunlap@infradead.org, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+Cc: Hari.PrasathGE@microchip.com
+References: <20240704084837.168075-1-manikandan.m@microchip.com>
+ <20240704084837.168075-4-manikandan.m@microchip.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -114,73 +112,35 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <0d50df10-4b4e-47c4-930f-cd8f645a7e2d@bootlin.com>
+In-Reply-To: <20240704084837.168075-4-manikandan.m@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 04/07/2024 10:52, Thomas Bonnefille wrote:
+On 04/07/2024 10:48, Manikandan Muralidharan wrote:
+> Add the Microchip's DSI controller wrapper driver that uses the
+> Synopsys DesignWare MIPI DSI host controller bridge for the SAM9X7
+> SoC series to the MAINTAINERS entry.
 > 
+> Signed-off-by: Manikandan Muralidharan <manikandan.m@microchip.com>
+> ---
+>  MAINTAINERS | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 > 
-> On 7/4/24 10:39 AM, Krzysztof Kozlowski wrote:
->> On 04/07/2024 10:35, Thomas Bonnefille wrote:
->>> Hello Krzysztof,
->>> Thank you for your feedback
->>>
->>> On 7/3/24 7:08 AM, Krzysztof Kozlowski wrote:
->>>> On 02/07/2024 13:52, Thomas Bonnefille wrote:
->>>>> The Sophgo SARADC is a Successive Approximation ADC that can be found in
->>>>> the Sophgo SoC.
->>>>>
->>>>> Signed-off-by: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
->>>>> ---
->>>>>    .../bindings/iio/adc/sophgo,cv18xx-saradc.yaml     | 51 ++++++++++++++++++++++
->>>>>    MAINTAINERS                                        |  5 +++
->>>>>    2 files changed, 56 insertions(+)
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/iio/adc/sophgo,cv18xx-saradc.yaml b/Documentation/devicetree/bindings/iio/adc/sophgo,cv18xx-saradc.yaml
->>>>> new file mode 100644
->>>>> index 000000000000..21fd5dc8e24e
->>>>> --- /dev/null
->>>>> +++ b/Documentation/devicetree/bindings/iio/adc/sophgo,cv18xx-saradc.yaml
->>>>> @@ -0,0 +1,51 @@
->>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>>> +%YAML 1.2
->>>>> +---
->>>>> +$id: http://devicetree.org/schemas/iio/adc/sophgo,cv18xx-adc.yaml#
->>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>> +
->>>>> +title: Sophgo 3 channels Successive Approximation Analog to Digital Converters
->>>>> +
->>>>> +maintainers:
->>>>> +  - Thomas Bonnefille <thomas.bonnefille@bootlin.com>
->>>>> +
->>>>> +description:
->>>>> +  Datasheet at https://github.com/sophgo/sophgo-doc/releases
->>>>> +
->>>>> +properties:
->>>>> +  compatible:
->>>>> +    const: sophgo,cv18xx-saradc
->>>>
->>>> Except that this was never tested... wild-cards are generally not allowed.
->>>>
->>>
->>> I realized I made a mistake when using the "make dt_binding_check"
->>> command, which led to some errors in this dt_binding. I have now
->>> addressed all of them, but I'm not sure I understand your comment.
->>>
->>> I don't see any wildcards in the YAML file. Could you please provide
->>> more details on what you expect?
->>
->> What is "xx"? Sounds like wildcard. I do not see such SoC compatible.
->>
-> 
-> The point of cv18xx is to have a single compatible for all SoCs of the 
-> cv18xx series from Sophgo (cv1800b, cv1812h but also sg2000 and sg2002). 
-> I used that as a reflection of the cv18xx.dtsi used for all those SoCs.
-> 
-> Should I create multiple compatible for all the SoCs of a same brand ?
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index f2d8bc44bb52..a814636e8cf2 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -14839,6 +14839,14 @@ S:	Supported
+>  F:	Documentation/devicetree/bindings/display/bridge/microchip,sam9x75-lvds.yaml
+>  F:	drivers/gpu/drm/bridge/microchip-lvds.c
+>  
+> +DRM DRIVER FOR MICROCHIP SAM9X7-COMPATIBLE MIPI DSI HOST CONTROLLER
+> +M:	Manikandan Muralidharan <manikandan.m@microchip.com>
+> +L:	dri-devel@lists.freedesktop.org
+> +S:	Supported
+> +T:	git git://anongit.freedesktop.org/drm/drm-misc
 
-See writing bindings (and numerous presentation on this topic).
+Do you have commit rights to above repo? If not, drop the T:.
 
 Best regards,
 Krzysztof
