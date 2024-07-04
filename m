@@ -1,541 +1,146 @@
-Return-Path: <devicetree+bounces-83142-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83143-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 999F6927545
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 13:39:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA7FD927549
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 13:39:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2672B1F24767
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 11:39:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6500D1F24A02
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 11:39:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0D691AC420;
-	Thu,  4 Jul 2024 11:39:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B3EC1AC45C;
+	Thu,  4 Jul 2024 11:39:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="Q+VD2LFz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 532BF1946C0;
-	Thu,  4 Jul 2024 11:39:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 153021AC43C
+	for <devicetree@vger.kernel.org>; Thu,  4 Jul 2024 11:39:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720093177; cv=none; b=R1mK0HIKLw0A/Pl0LOgZP430MdgU7HyMPgQ5aw2rh2drMmg4QVqTmx0SocK7n5LGY7L9teAyDe5lVqgGP13pn1fhNqmz1A1LgLIw4oTCoVlMIF4JDxxaRby6FOMhK6IvIuPrMxY1H83irTJ66ILv3m+9Q5gLenAM/HLe5gni47E=
+	t=1720093182; cv=none; b=ML5q+uV72v2i4h3cv5of9WUFEYHIvtKu/pKX85+xgusxolaHSF5KxKhSI1w2Yijuvc+1SIE/FYRTgyEowoyXAQMm9ZBM8WIjWdEZ96KKvj01OVnAXChh1Ra7kFMJcwIPcNPQGicL86PM19rkRIhZA06qPC/uu8haSixUvoj9aC8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720093177; c=relaxed/simple;
-	bh=uKws6f/4xMvwUFbk04SOJ1F70Mxyk79PZasCzGo0r/Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hzc+9LcsSiiJ3chS5qr6LsJDYhKrNcfyMrZ+nytpjoKOoCmc1FkVUWyrN0rgfupNNV/jDv0x84J4DTfKI+8/qa7/4logUhd9rUzMFg5A/5ac/UJvcLqfIWExTy6ViXqW9fC19XZmo1KU7cEtdD/aUgS8x+mx+kX+3t24lvOVD50=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-Date: Thu, 4 Jul 2024 11:39:22 +0000
-From: Yixun Lan <dlan@gentoo.org>
-To: Jesse Taube <jesse@rivosinc.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Conor Dooley <conor@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Anup Patel <anup@brainfault.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Yangyu Chen <cyy@cyyself.name>,
-	Inochi Amaoto <inochiama@outlook.com>, linux-serial@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	Meng Zhang <zhangmeng.kevin@spacemit.com>
-Subject: Re: [PATCH v3 08/11] riscv: dts: add initial SpacemiT K1 SoC device
- tree
-Message-ID: <20240704113922.GA2889185@ofsar>
-References: <20240703-k1-01-basic-dt-v3-0-12f73b47461e@gentoo.org>
- <20240703-k1-01-basic-dt-v3-8-12f73b47461e@gentoo.org>
- <dd619ad4-86f4-4ddd-be16-fbbaa197d551@rivosinc.com>
+	s=arc-20240116; t=1720093182; c=relaxed/simple;
+	bh=cebFaK1PCNoKeU18B3oxIeruyJcc2wRP3KXLZsY2bZQ=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=lJ4J9JiUaEsEoOSu6zu9xs4t9PI2jCDr9pEIE5ulAwrFvwi7i5O6vCfoLmH3Ke58k0NdtS14fL0CSpo5Ovyk+EHq3aYxo29M9psWPlsmxdF9j7hGUGOBJPkqwdqrWBMG+xhAVXNui+vbkn3ZW+OA9hl//tf1Ik8LdyWvXP4fnxA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=Q+VD2LFz; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-42561c16ffeso3725225e9.3
+        for <devicetree@vger.kernel.org>; Thu, 04 Jul 2024 04:39:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1720093177; x=1720697977; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=iG2QvdM8ow9ri0MC7ZjMDAjQNyzUeAXguRK1dhaQ4EU=;
+        b=Q+VD2LFz62xzTrEsLOTKhq53mV4Jmh6fh3UAtogAo/IGFxsbUey3/IYsJn0KNsmr5F
+         P0KSrax0jO6q8cVbklyPszEoQX9rw/eLGBce1B6TCqI26L82JO2DuMez8OruetiBjKiw
+         KBHgQgzR6BcOw/6P2k2WkNfdDK3NsoK6CKEYFadWfSyHnWY2mkkjqVfX8KRtCG0vslZI
+         4bv2k7FmMn0dmLhNIGss16g5ROyoseGOLDr21mxtmzqMSf+9sp1IqE5TLIBIJ6Om9CC1
+         L2tKX5rkPQQenueG/d+x9/3FTby5T4I7K/Zxu1hEd7wKwkkiQyV3Feek1KpI1dfjGbjf
+         yIug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720093177; x=1720697977;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=iG2QvdM8ow9ri0MC7ZjMDAjQNyzUeAXguRK1dhaQ4EU=;
+        b=geHw0Y6y4gpjn8Yt0cEPMSunloGCDKhXDYcu61WIzpV57jY7L5wP94SM4RgFQZXYDD
+         gKVgpY56JimPIoHkUyopWVFcTkMtuACeTpZURMv37CuV7xVoqj+Vom/cBp339PkTHu6c
+         yNS1+OF8AF5emHn4EPAXakUSR8KYJZPFbnqCC+PAvNzQVhXljdLwQROkqjFlctTspTza
+         VFAeCiZbV3SLrbpjtVVtxasxtg/gUQgoTveRwSqSpzOTeyPgVNDMyrd9xk4ysl+VFlwq
+         qYIkprPFosnCh+HOualdrW+F+64zgpE7Ob2a3OyzCWiWI6xFIoMA+zQMR59oV4ja95o6
+         aIbQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVWWcwvg+MOxqTj8JHfvwNT/rk+y0q7slpzgW940euflestv+d5hpfAk/jFK4VelQL0UE9UxjV/LBELeE1PidC4MyxkGkvdINWL6Q==
+X-Gm-Message-State: AOJu0YxN28HDt3crXOzi43HCEnzyaTdzyZOzum7EEVyuo/nhQjSBI0vv
+	qS+6ivb18t3LNUv+gk00RrabuP2PWBKkDYAPHtmuWnoNz2kO/xbLXW1t4JM0/KM=
+X-Google-Smtp-Source: AGHT+IFF+9XJUYkfl3PDjXhqWeuEZV+2D54hXSyv5DSMVDSNk+SGcKx5ctLEi9Wm7CrneuFEpTI6LA==
+X-Received: by 2002:adf:ecd2:0:b0:35f:1dce:8671 with SMTP id ffacd0b85a97d-3679dd29926mr1099679f8f.25.1720093177309;
+        Thu, 04 Jul 2024 04:39:37 -0700 (PDT)
+Received: from [192.168.108.81] (freebox.vlq16.iliad.fr. [213.36.7.13])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3679d827789sm1398974f8f.76.2024.07.04.04.39.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 04 Jul 2024 04:39:36 -0700 (PDT)
+Message-ID: <0d66422c-ab7b-4364-bd74-d2aca24b8a2d@freebox.fr>
+Date: Thu, 4 Jul 2024 13:39:36 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <dd619ad4-86f4-4ddd-be16-fbbaa197d551@rivosinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 0/3] Add support for qcom msm8998-venus (HW vdec /
+ venc)
+From: Marc Gonzalez <mgonzalez@freebox.fr>
+To: Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+ Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc: MSM <linux-arm-msm@vger.kernel.org>,
+ linux-media <linux-media@vger.kernel.org>, DT <devicetree@vger.kernel.org>,
+ Pierre-Hugues Husson <phhusson@freebox.fr>, Arnaud Vrac <avrac@freebox.fr>,
+ Jeffrey Hugo <quic_jhugo@quicinc.com>, Bjorn Andersson
+ <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Bryan O Donoghue <bryan.odonoghue@linaro.org>,
+ Vikash Garodia <quic_vgarodia@quicinc.com>
+References: <8b2705b7-f33c-4ebe-a6a8-c5ef776fe9ad@freebox.fr>
+Content-Language: en-US
+In-Reply-To: <8b2705b7-f33c-4ebe-a6a8-c5ef776fe9ad@freebox.fr>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Jesse
+On 04/06/2024 18:41, Marc Gonzalez wrote:
 
-On 21:17 Wed 03 Jul     , Jesse Taube wrote:
-> On 7/3/24 10:55, Yixun Lan wrote:
-> > From: Yangyu Chen <cyy@cyyself.name>
-> > 
-> > Banana Pi BPI-F3 motherboard is powered by SpacemiT K1[1].
-> > 
-> > Key features:
-> > - 4 cores per cluster, 2 clusters on chip
-> > - UART IP is Intel XScale UART
-> > 
-> > Some key considerations:
-> > - ISA string is inferred from vendor documentation[2]
-> > - Cluster topology is inferred from datasheet[1] and L2 in vendor dts[3]
-> > - No coherent DMA on this board
-> >      Inferred by taking vendor ethernet and MMC drivers to the mainline
-> >      kernel. Without dma-noncoherent in soc node, the driver fails.
-> > - No cache nodes now
-> >      The parameters from vendor dts are likely to be wrong. It has 512
-> >      sets for a 32KiB L1 Cache. In this case, each set is 64B in size.
-> >      When the size of the cache line is 64B, it is a directly mapped
-> >      cache rather than a set-associative cache, the latter is commonly
-> >      used. Thus, I didn't use the parameters from vendor dts.
-> > 
-> > Currently only support booting into console with only uart, other
-> > features will be added soon later.
-> > 
-> > Link: https://docs.banana-pi.org/en/BPI-F3/SpacemiT_K1_datasheet [1]
-> > Link: https://developer.spacemit.com/#/documentation?token=BWbGwbx7liGW21kq9lucSA6Vnpb [2]
-> > Link: https://gitee.com/bianbu-linux/linux-6.1/blob/bl-v1.0.y/arch/riscv/boot/dts/spacemit/k1-x.dtsi [3]
-> > Signed-off-by: Yangyu Chen <cyy@cyyself.name>
-> > Signed-off-by: Yixun Lan <dlan@gentoo.org>
-> > ---
-> >   arch/riscv/boot/dts/spacemit/k1.dtsi | 376 +++++++++++++++++++++++++++++++++++
-> >   1 file changed, 376 insertions(+)
-> > 
-> > diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dts/spacemit/k1.dtsi
-> > new file mode 100644
-> > index 0000000000000..a076e35855a2e
-> > --- /dev/null
-> > +++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
-> > @@ -0,0 +1,376 @@
-> > +// SPDX-License-Identifier: GPL-2.0 OR MIT
-> > +/*
-> > + * Copyright (C) 2024 Yangyu Chen <cyy@cyyself.name>
-> > + */
-> > +
-> > +/dts-v1/;
-> > +/ {
-> > +	#address-cells = <2>;
-> > +	#size-cells = <2>;
-> > +	model = "SpacemiT K1";
-> > +	compatible = "spacemit,k1";
-> > +
-> > +	aliases {
-> > +		serial0 = &uart0;
-> > +		serial1 = &uart2;
-> > +		serial2 = &uart3;
-> > +		serial3 = &uart4;
-> > +		serial4 = &uart5;
-> > +		serial5 = &uart6;
-> > +		serial6 = &uart7;
-> > +		serial7 = &uart8;
-> > +		serial8 = &uart9;
-> > +	};
-> > +
-> > +	cpus {
-> > +		#address-cells = <1>;
-> > +		#size-cells = <0>;
-> > +		timebase-frequency = <24000000>;
-> > +
-> > +		cpu-map {
-> > +			cluster0 {
-> > +				core0 {
-> > +					cpu = <&cpu_0>;
-> > +				};
-> > +				core1 {
-> > +					cpu = <&cpu_1>;
-> > +				};
-> > +				core2 {
-> > +					cpu = <&cpu_2>;
-> > +				};
-> > +				core3 {
-> > +					cpu = <&cpu_3>;
-> > +				};
-> > +			};
-> > +
-> > +			cluster1 {
-> > +				core0 {
-> > +					cpu = <&cpu_4>;
-> > +				};
-> > +				core1 {
-> > +					cpu = <&cpu_5>;
-> > +				};
-> > +				core2 {
-> > +					cpu = <&cpu_6>;
-> > +				};
-> > +				core3 {
-> > +					cpu = <&cpu_7>;
-> > +				};
-> > +			};
-> > +		};
-> > +
-> > +		cpu_0: cpu@0 {
-> > +			compatible = "spacemit,x60", "riscv";
-> > +			device_type = "cpu";
-> > +			reg = <0>;
-> > +			riscv,isa = "rv64imafdcv_zicbom_zicbop_zicboz_zicntr_zicond_zicsr_zifencei_zihintpause_zihpm_zfh_zba_zbb_zbc_zbs_zkt_zvfh_zvkt_sscofpmf_sstc_svinval_svnapot_svpbmt";
-> > +			riscv,isa-base = "rv64i";
-> > +			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "v", "zicbom",
-> > +					       "zicbop", "zicboz", "zicntr", "zicond", "zicsr",
-> > +					       "zifencei", "zihintpause", "zihpm", "zfh", "zba",
-> > +					       "zbb", "zbc", "zbs", "zkt", "zvfh", "zvkt",
-> > +					       "sscofpmf", "sstc", "svinval", "svnapot", "svpbmt";
-> > +			riscv,cbom-block-size = <64>;
-> > +			riscv,cbop-block-size = <64>;
-> > +			riscv,cboz-block-size = <64>;
+> Changes in v5
+> - Collect latest Acks (from Vikash)
+> - Resend to Mauro
 > 
-> Is there a reson not to add the I and D cache sizes.
-No specific reason..
-
-For "not adding those properties", I think it's largely due to Yangyu is kind of
-skeptical about the info from vendor dts, and he do want to test/verify before
-adding them..
-
-so, did you test all these info, and confirm they are correct?
-
+> Marc Gonzalez (1):
+>   dt-bindings: media: add qcom,msm8998-venus
 > 
-> 			i-cache-block-size = <64>;
-> 			i-cache-size = <32768>;
-> 			i-cache-sets = <512>;
-> 			d-cache-block-size = <64>;
-> 			d-cache-size = <32768>;
-> 			d-cache-sets = <512>;
-> 			next-level-cache = <&cluster0_l2_cache>;
-> ......
+> Pierre-Hugues Husson (2):
+>   arm64: dts: qcom: msm8998: add venus node
+>   media: venus: add msm8998 support
 > 
-> 		cluster0_l2_cache: l2-cache0 {
-> 			compatible = "cache";
-> 			cache-block-size = <64>;
-> 			cache-level = <2>;
-> 			cache-size = <524288>;
-> 			cache-sets = <1024>;
-> 			cache-unified;
-> 		};
-> 
-I think we probably have two options, 1) including this info in next version bump
-2) leave it alone, and sending via another independent patch
+>  Documentation/devicetree/bindings/media/qcom,msm8996-venus.yaml |  4 ++-
+>  arch/arm64/boot/dts/qcom/msm8998.dtsi                           | 48 +++++++++++++++++++++++++++++
+>  drivers/media/platform/qcom/venus/core.c                        | 39 +++++++++++++++++++++++
+>  3 files changed, 90 insertions(+), 1 deletion(-)
 
-I do not have strong preference, but do want to confirm before adding them.
+Hello Hans,
 
-> > +			mmu-type = "riscv,sv39";
-> > +
-> > +			cpu0_intc: interrupt-controller {
-> > +				compatible = "riscv,cpu-intc";
-> > +				interrupt-controller;
-> > +				#interrupt-cells = <1>;
-> > +			};
-> > +		};
-> > +
-> > +		cpu_1: cpu@1 {
-> > +			compatible = "spacemit,x60", "riscv";
-> > +			device_type = "cpu";
-> > +			reg = <1>;
-> > +			riscv,isa = "rv64imafdcv_zicbom_zicbop_zicboz_zicntr_zicond_zicsr_zifencei_zihintpause_zihpm_zfh_zba_zbb_zbc_zbs_zkt_zvfh_zvkt_sscofpmf_sstc_svinval_svnapot_svpbmt";
-> > +			riscv,isa-base = "rv64i";
-> > +			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "v", "zicbom",
-> > +					       "zicbop", "zicboz", "zicntr", "zicond", "zicsr",
-> > +					       "zifencei", "zihintpause", "zihpm", "zfh", "zba",
-> > +					       "zbb", "zbc", "zbs", "zkt", "zvfh", "zvkt",
-> > +					       "sscofpmf", "sstc", "svinval", "svnapot", "svpbmt";
-> > +			riscv,cbom-block-size = <64>;
-> > +			riscv,cbop-block-size = <64>;
-> > +			riscv,cboz-block-size = <64>;
-> > +			mmu-type = "riscv,sv39";
-> > +
-> > +			cpu1_intc: interrupt-controller {
-> > +				compatible = "riscv,cpu-intc";
-> > +				interrupt-controller;
-> > +				#interrupt-cells = <1>;
-> > +			};
-> > +		};
-> > +
-> > +		cpu_2: cpu@2 {
-> > +			compatible = "spacemit,x60", "riscv";
-> > +			device_type = "cpu";
-> > +			reg = <2>;
-> > +			riscv,isa = "rv64imafdcv_zicbom_zicbop_zicboz_zicntr_zicond_zicsr_zifencei_zihintpause_zihpm_zfh_zba_zbb_zbc_zbs_zkt_zvfh_zvkt_sscofpmf_sstc_svinval_svnapot_svpbmt";
-> > +			riscv,isa-base = "rv64i";
-> > +			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "v", "zicbom",
-> > +					       "zicbop", "zicboz", "zicntr", "zicond", "zicsr",
-> > +					       "zifencei", "zihintpause", "zihpm", "zfh", "zba",
-> > +					       "zbb", "zbc", "zbs", "zkt", "zvfh", "zvkt",
-> > +					       "sscofpmf", "sstc", "svinval", "svnapot", "svpbmt";
-> > +			riscv,cbom-block-size = <64>;
-> > +			riscv,cbop-block-size = <64>;
-> > +			riscv,cboz-block-size = <64>;
-> > +			mmu-type = "riscv,sv39";
-> > +
-> > +			cpu2_intc: interrupt-controller {
-> > +				compatible = "riscv,cpu-intc";
-> > +				interrupt-controller;
-> > +				#interrupt-cells = <1>;
-> > +			};
-> > +		};
-> > +
-> > +		cpu_3: cpu@3 {
-> > +			compatible = "spacemit,x60", "riscv";
-> > +			device_type = "cpu";
-> > +			reg = <3>;
-> > +			riscv,isa = "rv64imafdcv_zicbom_zicbop_zicboz_zicntr_zicond_zicsr_zifencei_zihintpause_zihpm_zfh_zba_zbb_zbc_zbs_zkt_zvfh_zvkt_sscofpmf_sstc_svinval_svnapot_svpbmt";
-> > +			riscv,isa-base = "rv64i";
-> > +			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "v", "zicbom",
-> > +					       "zicbop", "zicboz", "zicntr", "zicond", "zicsr",
-> > +					       "zifencei", "zihintpause", "zihpm", "zfh", "zba",
-> > +					       "zbb", "zbc", "zbs", "zkt", "zvfh", "zvkt",
-> > +					       "sscofpmf", "sstc", "svinval", "svnapot", "svpbmt";
-> > +			riscv,cbom-block-size = <64>;
-> > +			riscv,cbop-block-size = <64>;
-> > +			riscv,cboz-block-size = <64>;
-> > +			mmu-type = "riscv,sv39";
-> > +
-> > +			cpu3_intc: interrupt-controller {
-> > +				compatible = "riscv,cpu-intc";
-> > +				interrupt-controller;
-> > +				#interrupt-cells = <1>;
-> > +			};
-> > +		};
-> > +
-> > +		cpu_4: cpu@4 {
-> > +			compatible = "spacemit,x60", "riscv";
-> > +			device_type = "cpu";
-> > +			reg = <4>;
-> > +			riscv,isa = "rv64imafdcv_zicbom_zicbop_zicboz_zicntr_zicond_zicsr_zifencei_zihintpause_zihpm_zfh_zba_zbb_zbc_zbs_zkt_zvfh_zvkt_sscofpmf_sstc_svinval_svnapot_svpbmt";
-> > +			riscv,isa-base = "rv64i";
-> > +			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "v", "zicbom",
-> > +					       "zicbop", "zicboz", "zicntr", "zicond", "zicsr",
-> > +					       "zifencei", "zihintpause", "zihpm", "zfh", "zba",
-> > +					       "zbb", "zbc", "zbs", "zkt", "zvfh", "zvkt",
-> > +					       "sscofpmf", "sstc", "svinval", "svnapot", "svpbmt";
-> > +			riscv,cbom-block-size = <64>;
-> > +			riscv,cbop-block-size = <64>;
-> > +			riscv,cboz-block-size = <64>;
-> > +			mmu-type = "riscv,sv39";
-> > +
-> > +			cpu4_intc: interrupt-controller {
-> > +				compatible = "riscv,cpu-intc";
-> > +				interrupt-controller;
-> > +				#interrupt-cells = <1>;
-> > +			};
-> > +		};
-> > +
-> > +		cpu_5: cpu@5 {
-> > +			compatible = "spacemit,x60", "riscv";
-> > +			device_type = "cpu";
-> > +			reg = <5>;
-> > +			riscv,isa = "rv64imafdcv_zicbom_zicbop_zicboz_zicntr_zicond_zicsr_zifencei_zihintpause_zihpm_zfh_zba_zbb_zbc_zbs_zkt_zvfh_zvkt_sscofpmf_sstc_svinval_svnapot_svpbmt";
-> > +			riscv,isa-base = "rv64i";
-> > +			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "v", "zicbom",
-> > +					       "zicbop", "zicboz", "zicntr", "zicond", "zicsr",
-> > +					       "zifencei", "zihintpause", "zihpm", "zfh", "zba",
-> > +					       "zbb", "zbc", "zbs", "zkt", "zvfh", "zvkt",
-> > +					       "sscofpmf", "sstc", "svinval", "svnapot", "svpbmt";
-> > +			riscv,cbom-block-size = <64>;
-> > +			riscv,cbop-block-size = <64>;
-> > +			riscv,cboz-block-size = <64>;
-> > +			mmu-type = "riscv,sv39";
-> > +
-> > +			cpu5_intc: interrupt-controller {
-> > +				compatible = "riscv,cpu-intc";
-> > +				interrupt-controller;
-> > +				#interrupt-cells = <1>;
-> > +			};
-> > +		};
-> > +
-> > +		cpu_6: cpu@6 {
-> > +			compatible = "spacemit,x60", "riscv";
-> > +			device_type = "cpu";
-> > +			reg = <6>;
-> > +			riscv,isa = "rv64imafdcv_zicbom_zicbop_zicboz_zicntr_zicond_zicsr_zifencei_zihintpause_zihpm_zfh_zba_zbb_zbc_zbs_zkt_zvfh_zvkt_sscofpmf_sstc_svinval_svnapot_svpbmt";
-> > +			riscv,isa-base = "rv64i";
-> > +			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "v", "zicbom",
-> > +					       "zicbop", "zicboz", "zicntr", "zicond", "zicsr",
-> > +					       "zifencei", "zihintpause", "zihpm", "zfh", "zba",
-> > +					       "zbb", "zbc", "zbs", "zkt", "zvfh", "zvkt",
-> > +					       "sscofpmf", "sstc", "svinval", "svnapot", "svpbmt";
-> > +			riscv,cbom-block-size = <64>;
-> > +			riscv,cbop-block-size = <64>;
-> > +			riscv,cboz-block-size = <64>;
-> > +			mmu-type = "riscv,sv39";
-> > +
-> > +			cpu6_intc: interrupt-controller {
-> > +				compatible = "riscv,cpu-intc";
-> > +				interrupt-controller;
-> > +				#interrupt-cells = <1>;
-> > +			};
-> > +		};
-> > +
-> > +		cpu_7: cpu@7 {
-> > +			compatible = "spacemit,x60", "riscv";
-> > +			device_type = "cpu";
-> > +			reg = <7>;
-> > +			riscv,isa = "rv64imafdcv_zicbom_zicbop_zicboz_zicntr_zicond_zicsr_zifencei_zihintpause_zihpm_zfh_zba_zbb_zbc_zbs_zkt_zvfh_zvkt_sscofpmf_sstc_svinval_svnapot_svpbmt";
-> > +			riscv,isa-base = "rv64i";
-> > +			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "v", "zicbom",
-> > +					       "zicbop", "zicboz", "zicntr", "zicond", "zicsr",
-> > +					       "zifencei", "zihintpause", "zihpm", "zfh", "zba",
-> > +					       "zbb", "zbc", "zbs", "zkt", "zvfh", "zvkt",
-> > +					       "sscofpmf", "sstc", "svinval", "svnapot", "svpbmt";
-> > +			riscv,cbom-block-size = <64>;
-> > +			riscv,cbop-block-size = <64>;
-> > +			riscv,cboz-block-size = <64>;
-> > +			mmu-type = "riscv,sv39";
-> > +
-> > +			cpu7_intc: interrupt-controller {
-> > +				compatible = "riscv,cpu-intc";
-> > +				interrupt-controller;
-> > +				#interrupt-cells = <1>;
-> > +			};
-> > +		};
-> > +
-> > +	};
-> > +
-> > +	soc {
-> > +		compatible = "simple-bus";
-> > +		interrupt-parent = <&plic>;
-    we have interrrupt-parent info here
+I got an email stating:
 
-> > +		#address-cells = <2>;
-> > +		#size-cells = <2>;
-> > +		dma-noncoherent;
-> > +		ranges;
-> > +
-> > +		uart0: serial@d4017000 {
-> > +			compatible = "spacemit,k1-uart", "intel,xscale-uart";
-> > +			reg = <0x0 0xd4017000 0x0 0x100>;
-> > +			interrupts = <42>;
-> 
-> 			interrupt-parent = <&plic>;
-I think if we omit this info, then this node's interrupt parent property will
-inherit from its device tree parent?
+The following patches (submitted by you) have been updated in Patchwork:
 
-But I'm not sure if this is the right way to do from dt maintainer's
-perspective? or should we specify interrupt-parent explicitly?
+ * linux-media: [v5,1/3] dt-bindings: media: add qcom,msm8998-venus
+     - http://patchwork.linuxtv.org/project/linux-media/patch/2db42e45-c034-43be-be96-0e88511d1878@freebox.fr/
+     - for: Linux Media kernel patches
+    was: New
+    now: Accepted
 
-thanks for raising this question
-> 
-> Thanks,
-> Jesse Taube
-> 
-> > +			clock-frequency = <14857000>;
-> > +			reg-shift = <2>;
-> > +			reg-io-width = <4>;
-> > +			status = "disabled";
-> > +		};
-> > +
-> > +		uart2: serial@d4017100 {
-> > +			compatible = "spacemit,k1-uart", "intel,xscale-uart";
-> > +			reg = <0x0 0xd4017100 0x0 0x100>;
-> > +			interrupts = <44>;
-> > +			clock-frequency = <14857000>;
-> > +			reg-shift = <2>;
-> > +			reg-io-width = <4>;
-> > +			status = "disabled";
-> > +		};
-> > +
-> > +		uart3: serial@d4017200 {
-> > +			compatible = "spacemit,k1-uart", "intel,xscale-uart";
-> > +			reg = <0x0 0xd4017200 0x0 0x100>;
-> > +			interrupts = <45>;
-> > +			clock-frequency = <14857000>;
-> > +			reg-shift = <2>;
-> > +			reg-io-width = <4>;
-> > +			status = "disabled";
-> > +		};
-> > +
-> > +		uart4: serial@d4017300 {
-> > +			compatible = "spacemit,k1-uart", "intel,xscale-uart";
-> > +			reg = <0x0 0xd4017300 0x0 0x100>;
-> > +			interrupts = <46>;
-> > +			clock-frequency = <14857000>;
-> > +			reg-shift = <2>;
-> > +			reg-io-width = <4>;
-> > +			status = "disabled";
-> > +		};
-> > +
-> > +		uart5: serial@d4017400 {
-> > +			compatible = "spacemit,k1-uart", "intel,xscale-uart";
-> > +			reg = <0x0 0xd4017400 0x0 0x100>;
-> > +			interrupts = <47>;
-> > +			clock-frequency = <14857000>;
-> > +			reg-shift = <2>;
-> > +			reg-io-width = <4>;
-> > +			status = "disabled";
-> > +		};
-> > +
-> > +		uart6: serial@d4017500 {
-> > +			compatible = "spacemit,k1-uart", "intel,xscale-uart";
-> > +			reg = <0x0 0xd4017500 0x0 0x100>;
-> > +			interrupts = <48>;
-> > +			clock-frequency = <14857000>;
-> > +			reg-shift = <2>;
-> > +			reg-io-width = <4>;
-> > +			status = "disabled";
-> > +		};
-> > +
-> > +		uart7: serial@d4017600 {
-> > +			compatible = "spacemit,k1-uart", "intel,xscale-uart";
-> > +			reg = <0x0 0xd4017600 0x0 0x100>;
-> > +			interrupts = <49>;
-> > +			clock-frequency = <14857000>;
-> > +			reg-shift = <2>;
-> > +			reg-io-width = <4>;
-> > +			status = "disabled";
-> > +		};
-> > +
-> > +		uart8: serial@d4017700 {
-> > +			compatible = "spacemit,k1-uart", "intel,xscale-uart";
-> > +			reg = <0x0 0xd4017700 0x0 0x100>;
-> > +			interrupts = <50>;
-> > +			clock-frequency = <14857000>;
-> > +			reg-shift = <2>;
-> > +			reg-io-width = <4>;
-> > +			status = "disabled";
-> > +		};
-> > +
-> > +		uart9: serial@d4017800 {
-> > +			compatible = "spacemit,k1-uart", "intel,xscale-uart";
-> > +			reg = <0x0 0xd4017800 0x0 0x100>;
-> > +			interrupts = <51>;
-> > +			clock-frequency = <14857000>;
-> > +			reg-shift = <2>;
-> > +			reg-io-width = <4>;
-> > +			status = "disabled";
-> > +		};
-> > +
-> > +		plic: interrupt-controller@e0000000 {
-> > +			compatible = "spacemit,k1-plic", "sifive,plic-1.0.0";
-> > +			reg = <0x0 0xe0000000 0x0 0x4000000>;
-> > +			interrupts-extended = <&cpu0_intc 11>, <&cpu0_intc 9>,
-> > +					      <&cpu1_intc 11>, <&cpu1_intc 9>,
-> > +					      <&cpu2_intc 11>, <&cpu2_intc 9>,
-> > +					      <&cpu3_intc 11>, <&cpu3_intc 9>,
-> > +					      <&cpu4_intc 11>, <&cpu4_intc 9>,
-> > +					      <&cpu5_intc 11>, <&cpu5_intc 9>,
-> > +					      <&cpu6_intc 11>, <&cpu6_intc 9>,
-> > +					      <&cpu7_intc 11>, <&cpu7_intc 9>;
-> > +			interrupt-controller;
-> > +			#address-cells = <0>;
-> > +			#interrupt-cells = <1>;
-> > +			riscv,ndev = <159>;
-> > +		};
-> > +
-> > +		clint: timer@e4000000 {
-> > +			compatible = "spacemit,k1-clint", "sifive,clint0";
-> > +			reg = <0x0 0xe4000000 0x0 0x10000>;
-> > +			interrupts-extended = <&cpu0_intc 3>, <&cpu0_intc 7>,
-> > +					      <&cpu1_intc 3>, <&cpu1_intc 7>,
-> > +					      <&cpu2_intc 3>, <&cpu2_intc 7>,
-> > +					      <&cpu3_intc 3>, <&cpu3_intc 7>,
-> > +					      <&cpu4_intc 3>, <&cpu4_intc 7>,
-> > +					      <&cpu5_intc 3>, <&cpu5_intc 7>,
-> > +					      <&cpu6_intc 3>, <&cpu6_intc 7>,
-> > +					      <&cpu7_intc 3>, <&cpu7_intc 7>;
-> > +		};
-> > +	};
-> > +};
-> > 
+ * linux-media: [v5,2/3] media: venus: add msm8998 support
+     - http://patchwork.linuxtv.org/project/linux-media/patch/eb15a48b-6185-42dd-92ca-8df33b0ea4b5@freebox.fr/
+     - for: Linux Media kernel patches
+    was: New
+    now: Accepted
 
--- 
-Yixun Lan (dlan)
-Gentoo Linux Developer
-GPG Key ID AABEFD55
+
+Yet, I've gotten a warning from kernel test robot <lkp@intel.com> stating:
+
+arch/arm64/boot/dts/qcom/msm8998-mtp.dtb: /soc@0/video-codec@cc00000: failed to match any schema with compatible: ['qcom,msm8998-venus']
+
+
+Is this because the patches are not merged in linux-next?
+
+Will they be merged in v6.11 ?
+
+Regards
+
 
