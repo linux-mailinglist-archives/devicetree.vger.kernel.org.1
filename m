@@ -1,136 +1,115 @@
-Return-Path: <devicetree+bounces-83296-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83297-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD11A927DA3
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 21:12:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A28E1927DB7
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 21:20:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0A2991C234C6
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 19:12:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D3A3A1C2110F
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 19:20:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74F20132122;
-	Thu,  4 Jul 2024 19:12:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E1D913212F;
+	Thu,  4 Jul 2024 19:20:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="e5yZkCE9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from out-180.mta0.migadu.com (out-180.mta0.migadu.com [91.218.175.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFE2D54660;
-	Thu,  4 Jul 2024 19:12:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00A6C6CDA1;
+	Thu,  4 Jul 2024 19:19:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720120338; cv=none; b=t2lmfwFJJQZAl4UwH5fURsPzMYJhQNOOh68ojoEfQoo1+6dLwYiXZOCWlgfFecI+Wr927Av2PshoqyFQCWOwqATmZkOfm6ybZJAMjqbMbWBestq10kFLZnwKNN2n1202prkhEUJlTiFEAPW0NhXpgCMEBW/FInGWlMF29daOWVY=
+	t=1720120801; cv=none; b=PmK368iQuPW6waNgtfL9PHt5DUm0gqrJTnhELxH9Urau6ass6Uk7usOMDcN7TJW0DvG+l9eYh8f+hXwb/xC3SFAhxIhN9LtGzAisXdHZujV0ymnCG6GTz3PUEY0x9PyYera0wWZZeKvGCnmvkHYC6r4TshlejLvc/R/gOFpMOtA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720120338; c=relaxed/simple;
-	bh=M6/LlRP2nHP5mIfhhKoIGQGpaZOEBl6b/oqLipJ1cOI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=kVcYNbPT/5Srx988+2U+9eM3sA9Tv2dQQsEl0cunS1A7cjaw1cI/1JYSAKQWCBAIR6PAuugFZGqea4RuXPUdzkiJYi2k7pfL+URYc+JzHILe80lBmHiyxSfr9uja/J8sFmr7fosgkGAfsUzujh+xU+10EHudFmZst00luA1VSoY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-Received: from i53875ac2.versanet.de ([83.135.90.194] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1sPRsJ-0005zp-Ho; Thu, 04 Jul 2024 21:12:11 +0200
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Chukun Pan <amadeus@jmu.edu.cn>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- Chukun Pan <amadeus@jmu.edu.cn>
-Subject:
- Re: [PATCH v2 7/9] arm64: dts: rockchip: use generic Ethernet PHY reset
- bindings for Lunzn Fastrhino R68S
-Date: Thu, 04 Jul 2024 21:12:10 +0200
-Message-ID: <2210411.C4sosBPzcN@diego>
-In-Reply-To: <20240630150010.55729-8-amadeus@jmu.edu.cn>
-References:
- <20240630150010.55729-1-amadeus@jmu.edu.cn>
- <20240630150010.55729-8-amadeus@jmu.edu.cn>
+	s=arc-20240116; t=1720120801; c=relaxed/simple;
+	bh=5EKYtMONthEsFSA+n04NFH8luj6pT4LCFD5nneRT3jk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=YhCJFyU2SAFmH7KLnCH/ZkqR6fcdH+XGvDZ1rjyXXRS5LdoIHBzILB++/E+xG4aGxUF+lCoJboznnrXxM+qMFpa20isvthEypXsRPdqBi1rNloMuL1daxHOehm6F50buoEAhBIWl8VsJ6IWyjnPm/F3dyj56Ob3mN0qqu42IN9s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=e5yZkCE9; arc=none smtp.client-ip=91.218.175.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
+X-Envelope-To: heiko@sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
+	t=1720120794;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=12kQGJpaxYXve/bNP2Rvzy67ptC3odJSOf9IDo8D060=;
+	b=e5yZkCE9Ici3nvB7wz3sGd0TYcyIk2C3zY2FsiTaZiC9RFqNZwenUU0Pi0C9dQCkiaQLVx
+	GthxTDvHEs0RrfGFiKJgkZwiwis9mQTzfH4h2QdHMKZAM+LW44xMIZN9Dl6Bs9nr1l0NN1
+	Aqv+tLEuQo0AtZpWbzfI+SqBL7Nb66MQTznoHVT+p3fUyMa3sA65aBn5x6VJHStbpQv5mh
+	niIEg3sAHNZQdI/rvMSO2sw04gpwjejRa/iNHmzpANDuSALc4qDbyDPi2QPB4Qlqt6lwKq
+	oEgwIVGIxzjV9Mz3qFrIcQczJ+MlRVi8Qx4NHx0JZL5ohtdJXj/PxTNrZtIq6w==
+X-Envelope-To: knaerzche@gmail.com
+X-Envelope-To: dsimic@manjaro.org
+X-Envelope-To: linux-rockchip@lists.infradead.org
+X-Envelope-To: devicetree@vger.kernel.org
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+X-Envelope-To: linux-kernel@vger.kernel.org
+X-Envelope-To: didi.debian@cknow.org
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Diederik de Haas <didi.debian@cknow.org>
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: Alex Bee <knaerzche@gmail.com>,
+	Dragan Simic <dsimic@manjaro.org>,
+	linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Diederik de Haas <didi.debian@cknow.org>
+Subject: [PATCH] arm64: dts: rockchip: Add avdd supplies to hdmi on rock64
+Date: Thu,  4 Jul 2024 21:18:33 +0200
+Message-ID: <20240704191919.38856-1-didi.debian@cknow.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
 
-Hi,
+Pine64's Rock64 was missing the avdd supply properties on the hdmi node,
+causing the following warnings:
 
-Am Sonntag, 30. Juni 2024, 17:00:08 CEST schrieb Chukun Pan:
-> Replace the deprecated snps,reset-xxx bindings to the generic Ethernet
-> PHY reset GPIO bindings. Also updates the delays based on the vendor
-> recommendations.
-> 
-> Fixes: b9f8ca655d80 ("arm64: dts: rockchip: Add Lunzn Fastrhino R68S")
-> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
-> ---
->  .../boot/dts/rockchip/rk3568-fastrhino-r68s.dts    | 14 ++++++--------
->  1 file changed, 6 insertions(+), 8 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-fastrhino-r68s.dts b/arch/arm64/boot/dts/rockchip/rk3568-fastrhino-r68s.dts
-> index ce2a5e1ccefc..02d966d218fd 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3568-fastrhino-r68s.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3568-fastrhino-r68s.dts
-> @@ -39,10 +39,6 @@ &gmac0_tx_bus2
->  		     &gmac0_rx_bus2
->  		     &gmac0_rgmii_clk
->  		     &gmac0_rgmii_bus>;
-> -	snps,reset-gpio = <&gpio1 RK_PB0 GPIO_ACTIVE_LOW>;
-> -	snps,reset-active-low;
-> -	/* Reset time is 15ms, 50ms for rtl8211f */
-> -	snps,reset-delays-us = <0 15000 50000>;
->  	tx_delay = <0x3c>;
->  	rx_delay = <0x2f>;
->  	status = "okay";
-> @@ -61,10 +57,6 @@ &gmac1m1_tx_bus2
->  		     &gmac1m1_rx_bus2
->  		     &gmac1m1_rgmii_clk
->  		     &gmac1m1_rgmii_bus>;
-> -	snps,reset-gpio = <&gpio1 RK_PB1 GPIO_ACTIVE_LOW>;
-> -	snps,reset-active-low;
-> -	/* Reset time is 15ms, 50ms for rtl8211f */
-> -	snps,reset-delays-us = <0 15000 50000>;
->  	tx_delay = <0x4f>;
->  	rx_delay = <0x26>;
->  	status = "okay";
-> @@ -76,6 +68,9 @@ rgmii_phy0: ethernet-phy@1 {
->  		reg = <0x1>;
->  		pinctrl-0 = <&eth_phy0_reset_pin>;
->  		pinctrl-names = "default";
-> +		reset-assert-us = <20000>;
-> +		reset-deassert-us = <100000>;
+  dwhdmi-rockchip ff3c0000.hdmi: supply avdd-0v9 not found, using dummy regulator
+  dwhdmi-rockchip ff3c0000.hdmi: supply avdd-1v8 not found, using dummy regulator
 
-what's the reason behind the changed timings?
+In the Rock64 Schematic document version 2.0 those supplies are marked
+as DVIDEO_AVDD_1V0 and DVIDEO_AVDD_1V8 respectively, but in version 3.0
+those are named HDMI_AVDD_1V0 and HDMI_AVDD_1V8, which is a bit clearer.
+In both versions those are connected to LDO3 and LDO1 respectively.
 
-The original comment stated,
-	/* Reset time is 15ms, 50ms for rtl8211f */
-so that timing change needs an explanation please :-)
+While the DeviceTree property is named 'avdd-0v9-supply' the
+'rockchip,dw-hdmi.yaml' binding document notes the following:
 
-Thanks
-Heiko
+  A 0.9V supply that powers up the SoC internal circuitry. The actual
+  pin name varies between the different SoCs and is usually
+  HDMI_TX_AVDD_0V9 or sometimes HDMI_AVDD_1V0.
 
-> +		reset-gpios = <&gpio1 RK_PB0 GPIO_ACTIVE_LOW>;
->  	};
->  };
->  
-> @@ -85,6 +80,9 @@ rgmii_phy1: ethernet-phy@1 {
->  		reg = <0x1>;
->  		pinctrl-0 = <&eth_phy1_reset_pin>;
->  		pinctrl-names = "default";
-> +		reset-assert-us = <20000>;
-> +		reset-deassert-us = <100000>;
-> +		reset-gpios = <&gpio1 RK_PB1 GPIO_ACTIVE_LOW>;
->  	};
->  };
->  
-> 
+So the 'vdd_10' reference is not an error.
 
+Signed-off-by: Diederik de Haas <didi.debian@cknow.org>
+---
+ arch/arm64/boot/dts/rockchip/rk3328-rock64.dts | 2 ++
+ 1 file changed, 2 insertions(+)
 
-
+diff --git a/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts b/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts
+index 229fe9da9c2d..90fef766f3ae 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts
+@@ -154,6 +154,8 @@ &gmac2io {
+ };
+ 
+ &hdmi {
++	avdd-0v9-supply = <&vdd_10>;
++	avdd-1v8-supply = <&vcc_18>;
+ 	status = "okay";
+ };
+ 
+-- 
+2.45.2
 
 
