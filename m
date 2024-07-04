@@ -1,216 +1,232 @@
-Return-Path: <devicetree+bounces-83239-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83240-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CADC927AB4
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 17:58:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67AD6927AC3
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 18:01:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CCE46B26740
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 15:58:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8977C1C210CD
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 16:01:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34B711B29BF;
-	Thu,  4 Jul 2024 15:58:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4EC21B14E2;
+	Thu,  4 Jul 2024 16:01:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fzah5f2j"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="klClIM5y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f173.google.com (mail-vk1-f173.google.com [209.85.221.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2059.outbound.protection.outlook.com [40.107.22.59])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 677311ACE67;
-	Thu,  4 Jul 2024 15:58:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.173
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720108692; cv=none; b=o6xzWEqFc+4tKtKaAGYvmxL+oZu+QaLIV90aAAj0GTMUEp4kkWgTWGYZzzEPPblAeJ8+Gq3Vz1tyWb03+zbh+eCGnYljpugTuF54+mAT/2T4zxO65fkoctLrOzR+NjqOzRCFsPzrzS7UoIHm+sP6RoMAwnCMR2HQsbq9nj8oWvw=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720108692; c=relaxed/simple;
-	bh=wJE7HlCPQ2VZ9sr7/loD0hwkFhbboA9WmXEnW4+ChsQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=orgkQGoQCEx7Ffkguj34NQy7tQWkLxTfo9ebzOtFShuNqrcgGqMIDQd44+QVcVLKvCbwTDvdva7ZmTqE74F0GyYDEMikDmjKMYwILtF4E0yKgIces+tEhfsSGOQh5Fyp4j356eZx/4pX1SsP/0rniwo9W+mz80trEcDzQPAA+qY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fzah5f2j; arc=none smtp.client-ip=209.85.221.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f173.google.com with SMTP id 71dfb90a1353d-4ef6c8e3602so326850e0c.0;
-        Thu, 04 Jul 2024 08:58:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1720108689; x=1720713489; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=n97CqCq+SpioBUdMovQEEVaZXmKGUSWX+N+6ZspvJ5Y=;
-        b=fzah5f2jPp6xeoFelee2+jl1Jn3hKibubDigkvbQsHgv5GzFC0+nFQris9eZwQ+NOv
-         C8r4OwujqbDFBfGp5PuYGdFVygq9IjqdKzsZhOn6MarqHKJHmQI8OVZYjfXf4u+d0e/A
-         niNupZ9nwSJa1XuVz78JbSbP/4X7322uh8tfjRZpbSkkYcN2mde8al0O0GS6auW89S7X
-         XrME3v8yxfjby9iiEEcmFuKbxEFVY+nl+iPNCiiVN72FldRTEedUwDc9eSvE+zmPaLvK
-         YjakGdyZD3zLSWeOY7JftCVArKFCuq4qOmda6m7TNJrRhW854H1JGVf37RpktRXFOPyT
-         vmvg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720108689; x=1720713489;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=n97CqCq+SpioBUdMovQEEVaZXmKGUSWX+N+6ZspvJ5Y=;
-        b=c47otx7njgEewVCWLFfCNjnj+cPMLfUatpFJK9a7D/ra1IX9FtyEWg9YBTl3XblmoV
-         lBqz0sw0iI70GJK5xmxP8F9oJF1x8GqKSMowfybKSePAbpCy4hst8KRVE2aZLDke4/ft
-         zIjqFxVqjO9rLnS7pOR7dT78hvM4KGmEisP3Zqni4aa4GhGXnYNALUIrfkmqaQdvK+pD
-         7mofMNUIIS1i119+MmLkvU+3VqXl26ChyB8Y2pi+dtI8UGzHUJ1PLxHOMDgAPKo0vYZO
-         sE/1gJLyfLI4oJfCPyf6eSS2jkl7XBv6RueKhOwy1/IP7mmxF6zbB9sLDMGgUcoxcnTY
-         USLA==
-X-Forwarded-Encrypted: i=1; AJvYcCUPnMaayVI6UqPSkxl/wWWdcUDZmXaVfjhjGJEgDNfLOthlhUZaQFGu/CGFjd+/cvRMGq11Y2DVpyAYv+Uf1u4qKTeYLJ/qzf3hqqvtHD8BBZnVr6qvylWV7zrnecE8A2r/9gpsuViln+EYorvAuShD+rNNeVmFfnB30Sl72QWDFeFnsEVjpgE0JPLTf5qlNreQEZRKYaw31oNqC1j0+z3GYAk6b9B/
-X-Gm-Message-State: AOJu0Yw0vS/g5Zst0KfddZGebQi5AmWoBPDhKvM/euNn54qeBbTvkD9e
-	y6XLeEWTtndTw4u6rlx96s64GewRznvOTreCrHzJ/t5kxBt+Ow0cvLnGO4WN0rF5bCUX0o08RO1
-	zhuzpqqDaMV9J1LKg7ZVwlK/BBq4=
-X-Google-Smtp-Source: AGHT+IFZ1AIkhnIlR1F2PajHwGmAM3QHm7zYfUYNlGkAcCt+TyLYZj4pGDx0Qw5zZbScstvZjUXz2fAMKekKDEkjrCQ=
-X-Received: by 2002:a05:6122:3887:b0:4ef:4b35:896f with SMTP id
- 71dfb90a1353d-4f2f3e9ea73mr2621613e0c.7.1720108688497; Thu, 04 Jul 2024
- 08:58:08 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE96F1A2C1E;
+	Thu,  4 Jul 2024 16:01:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.59
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1720108870; cv=fail; b=tN2YPbYYohd75QxNvRA08C5J3x9qFab5uuEMwAOslqR0R+JkyhpYDcOzeuS/Icf9/UvNB/3mvu/fEy5CtYCEbHSQ0KaFcLtd8/DojBu47Q4LrYTfq6XIw6KPvy8H7uyShjZaasVvCP15wcK9MNgVSKtyqTHwx8VkPN2EFerM29s=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1720108870; c=relaxed/simple;
+	bh=IXV2qV30cSXeucJALgM0nDZoHXr5+Ymfs4Kia8vG2QI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=j2FRZXn9fkcBaAaDZ1CbyIJ0utRhxxzh4VfsTibU9xwFTNELW5kunSG1xzRGj7KEg3Y+oxxipZGfQGU8PKCHvZ2QshGqeH7Uj1q2aWRxrVFHsMlKM7T/v/K3ZAcy63vKfi4ecbkHqdU5XVbzWl7AhoGeIrVy6OVMAto1r2tTKxo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=klClIM5y; arc=fail smtp.client-ip=40.107.22.59
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=nW6Al1cZqDE8OcmXM9m14UZT5ftRd0rbrA9CzeQMdiAPP8B0YVdmnMNa8YMCto5xJQMZ+qjwy+Wf3GaNexdS6UJB0PlXqxL9MC2iZ6P0In1h+epBL18xcnfBaz4ww4hDG9VWfB++BDiJqSMPzh3CYOuIqh4Zb2Iwocgz6wenRHmpBT7NEr4MMfXE2E6Ul09ybtOvHpSgerOLs4rofIdqyiqCB5BEOdU4GkkMJKSXbq/dwBxrJaLGvFZPLlxkfQ0F+A8ObGdwzEeSrCQQzP1PWEBFUusymjqfWdDuuHdr7Rl+ZXhJbnrrU+lD+5LCpV2aZSgvuC6nESGsSmTFPyGuFQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=xF0RzoyMYT9jmvmtScpSlGi8X6Gy4KiLtnyr9+mNJys=;
+ b=Y2ndYkiEBRI2Vr3gfDkbqD9eNJ08qBjU9qiW762Zcs+itj9TSBJkxWmf4PrbYEvK4EDj4X2AlLep8kPK7slZL5VakicO59lYUv7a4TGcZL2b0X/DuIzzLAaFc6r7liAJXJjCf4MT6xOCoYRzBtwWkuBu61i7D1g5vQsSh2fL5tkCIwO64WtaDxTaIK+GxyW/Dh/LtxGAobfPCauoW/QSUXivNI70f+IdWyUhyKWV1a/ktud2DL3pd/rCMBv+CxISEiFFtNkmiYZQ3csXjbTlpGwP2r59odPjUTw58MMNP+DgMXn+mbSbKy9hjL6AhS2pUiqoscMsLxz44oZ7SKXyzg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=xF0RzoyMYT9jmvmtScpSlGi8X6Gy4KiLtnyr9+mNJys=;
+ b=klClIM5ygDtAaTqLmTmvdVsxDX80BU8uFpImbfEmuaF6l5yEYrLtNd/Brnqspbb9Du3US0OIz7mijHLBVMzFxGvNawlka5XmiU79G9HgVAwjCX7+DkRER4S37/sRQ/uPOYiQ/BiE37vPkQV1aiSkVgs/6oSfyh4DxtOQieYK0o4=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by GVXPR04MB9950.eurprd04.prod.outlook.com (2603:10a6:150:11a::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7719.34; Thu, 4 Jul
+ 2024 16:01:02 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%2]) with mapi id 15.20.7741.027; Thu, 4 Jul 2024
+ 16:01:02 +0000
+Date: Thu, 4 Jul 2024 12:00:53 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Thinh Nguyen <Thinh.Nguyen@synopsys.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Felipe Balbi <balbi@kernel.org>,
+	"linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	Ran Wang <ran.wang_1@nxp.com>, Jun Li <jun.li@nxp.com>
+Subject: Re: [PATCH 0/2] usb: dwc3: Add cache type configuration support for
+ freescale layerscape
+Message-ID: <ZobHNfI9doRyd+nj@lizhi-Precision-Tower-5810>
+References: <20240703-dwc-v1-0-9cbc93d49180@nxp.com>
+ <20240703233310.2oxguahed2g2lknm@synopsys.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240703233310.2oxguahed2g2lknm@synopsys.com>
+X-ClientProxiedBy: SJ0PR03CA0149.namprd03.prod.outlook.com
+ (2603:10b6:a03:33c::34) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240626132341.342963-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20240626132341.342963-4-prabhakar.mahadev-lad.rj@bp.renesas.com> <ZoUdUyrld2kZorvU@shikoro>
-In-Reply-To: <ZoUdUyrld2kZorvU@shikoro>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Thu, 4 Jul 2024 16:56:56 +0100
-Message-ID: <CA+V-a8v5VcBRjp-kPGp2pKXZ2RhCSXHdsL9X5YDOxjL6W1Mg=Q@mail.gmail.com>
-Subject: Re: [PATCH v4 3/3] mmc: renesas_sdhi: Add support for RZ/V2H(P) SoC
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, Ulf Hansson <ulf.hansson@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Prabhakar <prabhakar.csengg@gmail.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, Biju Das <biju.das.jz@bp.renesas.com>, 
-	linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-mmc@vger.kernel.org, 
-	Magnus Damm <magnus.damm@gmail.com>, Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|GVXPR04MB9950:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8e6795cd-1296-4833-569d-08dc9c428105
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|1800799024|52116014|7416014|376014|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?3XLGbUf42UDmzfUoF+3B4a9CSUYHAfsXcRFjlganpODT1jLYwrbw/39N9Nkl?=
+ =?us-ascii?Q?X4rTg48wxCCzc73Io0vrSZHJrGlTPVpdWndoizlSRPjw5wJZEZqrMn+rB1LL?=
+ =?us-ascii?Q?W+T76fiHUjNUHQl4cNqsbfdUGB4wQz/j6xtsYEedCq9vkuwE0yCNQ2d8OvIN?=
+ =?us-ascii?Q?/3NrXPZii/USfR0ql3ogbzh+yB8WDz7dybgjnTN6soMlhqUTVVZ/QzFbRozG?=
+ =?us-ascii?Q?+RNHN9OFew1sITBOYUKFTDC1OZnHAgXhrM802VGIdhTXwXNW1W/YXDEo4hS1?=
+ =?us-ascii?Q?ip5nP6t9RH1dVo/O4W+CIZlJ7pRhWv/BA6NjhtqwZ5tb61SdRsXcT6ZMbTZb?=
+ =?us-ascii?Q?FsrmUbIFBqsubSAX964uqysSbllAkS4YTNGaSWBIWJw+oQrzP4vpRhF0ELMm?=
+ =?us-ascii?Q?d04yRxvLul5KQb1MEhDpI4augE3uvMgHmVGt/phwWgsrSAxAQV9BL6tFuYFg?=
+ =?us-ascii?Q?YTKcfOZ5osx2eo6/UKFZuRYbNdp/sqvEOkg0OpH9mGm7ZBnbTDi4QqjnJQWE?=
+ =?us-ascii?Q?3JIp6kV0BW4mnej2p0oAG/5wC4ftbMlIx0ezcv3Mdd/AZO4vwHYNpT1szFc9?=
+ =?us-ascii?Q?wxwiPt7fV6RMtCHi8BDiq3W9Fvw4gHRzCJpNokU2Y0uVrQvjaApLAFgMwYIG?=
+ =?us-ascii?Q?Q1oART+dFddR3W284xiAJ0CxYVgyFPPnIBtD1WRIMer/h1Ot0OKbHQLHRpxJ?=
+ =?us-ascii?Q?ebplGkMxOAH9VNyhlMbaTvEKvuVekm3rmzV4PxSPXKtd/Ku3VL6NBhWo87Bc?=
+ =?us-ascii?Q?BnVcQM/m48I+wx4ygaDXKwPKR9xtxK0tdfXRonHd45oPfetOtHH8NuMFQo8b?=
+ =?us-ascii?Q?HWD1wKjDlUAGmSWpSQFTsQR/Y37GrwLfHdqk6eVy4rzQTo2FclfLOKEfa+kh?=
+ =?us-ascii?Q?NtFr2h5xqZv7JmXZzPjMGVUxmGERj8En2Zrl8CdtMEsF2pp/y1oLnSpQgNpN?=
+ =?us-ascii?Q?pNZLcxlerTPBDXZUKnxU8lEqErXlUJKkDquoeFRQOHM3KpVhpIlripT4UMmC?=
+ =?us-ascii?Q?rgQ7BkDJLgdoAjbZdMQD1+rMN77qkrNRbeSaGSFrbbBkRYQTzG7808PZNg8k?=
+ =?us-ascii?Q?npQ+u7xylKkkO0B3kDg/i+bBnaZxLl0+/ZnZiBjjFXtHFbw2BvQjtbtVsurq?=
+ =?us-ascii?Q?dUW/DjU0o6pVmSlfvwwiVr73hjZUa8KPqrRCQOzZnSiccOn8C/7cn0pI3/sO?=
+ =?us-ascii?Q?L3eP1Cxiq2RrzqiJwfKq/WYYVUn69d2SvyQBvrSLBSuAJnaCe7SFAE/sSlIs?=
+ =?us-ascii?Q?L8jdvyxsyjbpWnwND60TL0iQrqE92BbrMEljxi3voR4Akn4grwm7ztL5Z6i5?=
+ =?us-ascii?Q?SfWI3HvkXBGofzFrzb/AXF1xYG9C2imJe0RdlJP5lDvBLx/3GCr0+ROaK6E7?=
+ =?us-ascii?Q?SqLS5Hc=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(52116014)(7416014)(376014)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?39bgXEE2UBcKr6Rrx2R+ksOlatb6NWXchzVYgOAw6Nj4oJQY5NmHiZF9YsgP?=
+ =?us-ascii?Q?vnjGqjmF+Z2oFiqlmUUkKNeuvuCuFcYSeAn7AXoMKFuHWxeYP/DcM986BdD2?=
+ =?us-ascii?Q?Ernn5AAcJRsrbviaR0BsxmEfwdtiMrPO8y/7ZJyP9CnwCJD28KS9E0cfR12n?=
+ =?us-ascii?Q?UKLVkH2sgyeKSXq7q+Ed2Iupw6NaVUlTL1gqsrK9RUY3QC0CUxdGfVtsEkRz?=
+ =?us-ascii?Q?1DTlGUsB0sCkF+xAK5gjR5Tc73lBtlt1XYVrdEz/i2Y4LTvTF7ak17uHW2YL?=
+ =?us-ascii?Q?Xn8scHLbhcHLUxVBYO/UbtF5WZLGSVvhP9WWW3gN9MXWPxICnJLVebWH2gzs?=
+ =?us-ascii?Q?MvxCMoYMqp9BBAIcO+frrw9GIB6jO93C448umbPF3hm4nHa/QViH+In78Zwg?=
+ =?us-ascii?Q?d7kCAr/d90yGM+9Ygz41tP6d9Pinj7+atB2aES1dlFRGEEeWO5xuFQLzOYWs?=
+ =?us-ascii?Q?6uiUnXdBtZmg/eNtnBmpD4TFsQpHHEIQM0lRf6eWuwTXrPbMbEKDxJTxuBit?=
+ =?us-ascii?Q?YNxGSb7n6EzbuDryvoGvzQrR6F8oZtgIsj7qYTQiNs9ex7tY102Wi1fl5jWJ?=
+ =?us-ascii?Q?K0Mcrjang9BzL/OaIE5pafhJPCOgI5ekyIySqbeAnOmtdgG4pyDv3MAEc0Ep?=
+ =?us-ascii?Q?93svg7eJY3NLImZ1CbTX4CECPjMKOliH14v5n3QlBWvXCtz0NsNA14nh+qki?=
+ =?us-ascii?Q?pcRG3B8QxEUm7F61AkSnqnn1H4c2aI0/QLDPvnL3tyfjXc0GeS+5wFaYxpUQ?=
+ =?us-ascii?Q?lMYa8Z5HLaW2RbzfbrG6hycanVOU2Zyd9RIVF7mFHze20Ps2YJ/Izm/jNGe8?=
+ =?us-ascii?Q?fBzdG5EZUca6uCfT1yvhyBVArV5NUZb3HQadBKdJfLKYWMI3RZIqUXkQwhdS?=
+ =?us-ascii?Q?HpXGBnNacPXD7wjQuCUuN1RmTqK2MwaHolXr+4E4fIlzzHyK5J9sm9rNDPMW?=
+ =?us-ascii?Q?Ukrn82ZzwJ8wYqSbUIgpEnPqjHP29H825xsSoLIPF0zOHpZUe8V0OxQt0IUR?=
+ =?us-ascii?Q?2UawznS9o2Hae7v2uPKFx2rjgE0i8CjxqTLecYe80GYO7h7jY1e23K1y1Vzo?=
+ =?us-ascii?Q?0Ba2DxLYApRWEJXliPH088DpQWxJFeReMUoeg4IDqI9yIhiP1xdRj6GWWLPy?=
+ =?us-ascii?Q?fkkmMaC+7U85GBCjXL7eOR3NTBdWoHt0xU/YnsWKjVf9bEykU1iQeVaoNwVE?=
+ =?us-ascii?Q?fEZwgIsyYEt4rBuoezd6cK39tTzDmCc6S1zySdaJsfVaypwdalo9jYgPXa3V?=
+ =?us-ascii?Q?ql8ULxzGTysFV16TvzpQs9yf3OXobbNoMpqTU5riD/WQYdGxbTMK4X1M09Bm?=
+ =?us-ascii?Q?JxZ6R2wxB7RxCd54djW0km6wzu8efnQyHkBhlliZ4jk12V92zNv8oimmjji4?=
+ =?us-ascii?Q?bEiaNnkas7wXpFuuqmdaBp9EfNLsbJ3A5aheB/A4GLRPsTeVG0kUzl2QZ2WL?=
+ =?us-ascii?Q?9g3Z/RMd9w2exBNEJOcoxXb/q8WZwyTuBKcSLNrsket9zHGTW0GS9YhX0wvT?=
+ =?us-ascii?Q?QZTmB8LoHc0IH9ggvh2AGKnZZXcRXYBVk/DUbBQMUYtqOvEfqge9G2pkimzA?=
+ =?us-ascii?Q?X2/pujB6KtJCjcrbW176eX0i02s+zCmd4zCTqyo0?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8e6795cd-1296-4833-569d-08dc9c428105
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Jul 2024 16:01:02.7298
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: V0Olf1DUyYUU0hQVX5+9bGrZ1AlJylooyRSlhqbdZ7DBK/9yurtUQ6mNKrFdoBeReVZ2RU/zoyp/oP+7mJxW8w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB9950
 
-Hi Wolfram,
+On Wed, Jul 03, 2024 at 11:33:23PM +0000, Thinh Nguyen wrote:
+> Hi Frank,
+> 
+> On Wed, Jul 03, 2024, Frank Li wrote:
+> > There are several attempt to upstream this code in past year.
+> > 
+> > The first attempt:
+> > https://urldefense.com/v3/__https://lore.kernel.org/linux-usb/20191121095356.GB7503@b29397-desktop/__;!!A4F2R9G_pg!cdNydVZ64br9EHG13lgP3lKWe5VuXQvvfvA1CzKJqhXZZB1H9vcJlwI1vj1EF3ynRFl2u8tD3lYqRvrJFSs2$ 
+> > 
+> > cache type is dwc core setting, not glue layer. So It'd better change in
+> > dwc core instead of glue layer code.
+> 
+> Why not glue layer?
 
-Thank you for the review.
+I understand glue layer is what provide clock, reset, power and other
+control for dwc usb core and have a seperate mmio register space. All dwc
+core register access should belong to dwc-core part. You may have
+difference defination for glue layer.
 
-On Wed, Jul 3, 2024 at 10:43=E2=80=AFAM Wolfram Sang
-<wsa+renesas@sang-engineering.com> wrote:
->
-> Hi Prabhakar,
->
-> On Wed, Jun 26, 2024 at 02:23:41PM +0100, Prabhakar wrote:
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > The SDHI/eMMC IPs found in the RZ/V2H(P) (a.k.a. r9a09g057) are very
-> > similar to those found in R-Car Gen3. However, they are not identical,
-> > necessitating an SoC-specific compatible string for fine-tuning driver
-> > support.
-> >
-> > Key features of the RZ/V2H(P) SDHI/eMMC IPs include:
-> > - Voltage level control via the IOVS bit.
-> > - PWEN pin support via SD_STATUS register.
-> > - Lack of HS400 support.
-> > - Fixed address mode operation.
-> >
-> > internal regulator support is added to control the voltage levels of SD
-> > pins via sd_iovs/sd_pwen bits in SD_STATUS register.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > Tested-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com> # on RZ/G3=
-S
+> 
+> > 
+> > The second attempt:
+> > https://urldefense.com/v3/__https://lore.kernel.org/linux-usb/20240123170206.3702413-1-Frank.Li@nxp.com/*t__;Iw!!A4F2R9G_pg!cdNydVZ64br9EHG13lgP3lKWe5VuXQvvfvA1CzKJqhXZZB1H9vcJlwI1vj1EF3ynRFl2u8tD3lYqRh7SiHmM$ 
+> > 
+> > DT team think there are not variable for property 'snps,dat-wr-reqinfo'.
+> > And suggest use vendor compatible string.
+> > 
+> > This is third attempt:
+> > Compared with first attempt:
+> > - reduce compatible string to one 'fsl,ls-dwc3' because all setting are the
+> > same.
+> > - move update burst type code into dwc3_set_incr_burst_type(). and check
+> > compatible string 'fsl,ls-dwc3'.
+> > - Using bit field help macro.
+> > 
+> > Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > > ---
-> > v3->v4
-> > - Dropped using 'renesas,sdhi-use-internal-regulator' property
-> > - Now using of_device_is_available() to check if regulator is available=
- and enabled
-> > - Dropped extra spaces during operations
-> > - Included tested by tag from Claudiu
-> > - Rebased patch on top of https://patchwork.kernel.org/project/linux-re=
-nesas-soc/patch/20240626085015.32171-2-wsa+renesas@sang-engineering.com/
-> >
-> > v2->v3
-> > - Moved regulator info to renesas_sdhi_of_data instead of quirks
-> > - Added support to configure the init state of regulator
-> > - Added function pointers to configure regulator
-> > - Added REGULATOR_CHANGE_VOLTAGE mask
-> >
-> > v1->v2
-> > - Now controlling PWEN bit get/set_voltage
+> > Ran Wang (2):
+> >       dt-bindings: usb: Add chip-specific compatible string 'fsl,ls-dwc3'
+> >       usb: dwc3: Set cache type to 'snoop' for freescale layerscape chip
+> > 
+> >  Documentation/devicetree/bindings/usb/snps,dwc3.yaml |  1 +
+> >  drivers/usb/dwc3/core.c                              | 12 ++++++++++++
+> >  drivers/usb/dwc3/core.h                              |  4 ++++
+> >  3 files changed, 17 insertions(+)
 > > ---
-> >  drivers/mmc/host/renesas_sdhi.h               |  13 ++
-> >  drivers/mmc/host/renesas_sdhi_core.c          |  98 ++++++++++++
-> >  drivers/mmc/host/renesas_sdhi_internal_dmac.c | 147 ++++++++++++++++++
-> >  drivers/mmc/host/tmio_mmc.h                   |   5 +
-> >  4 files changed, 263 insertions(+)
-> >
-> > diff --git a/drivers/mmc/host/renesas_sdhi.h b/drivers/mmc/host/renesas=
-_sdhi.h
-> > index f12a87442338..cd509e7142ba 100644
-> > --- a/drivers/mmc/host/renesas_sdhi.h
-> > +++ b/drivers/mmc/host/renesas_sdhi.h
-> > @@ -11,6 +11,8 @@
-> >
-> >  #include <linux/dmaengine.h>
-> >  #include <linux/platform_device.h>
-> > +#include <linux/regulator/driver.h>
-> > +#include <linux/regulator/machine.h>
-> >  #include <linux/workqueue.h>
-> >  #include "tmio_mmc.h"
-> >
-> > @@ -36,6 +38,12 @@ struct renesas_sdhi_of_data {
-> >       unsigned int max_blk_count;
-> >       unsigned short max_segs;
-> >       unsigned long sdhi_flags;
-> > +     struct regulator_desc *rdesc;
-> > +     struct regulator_init_data *reg_init_data;
-> > +     bool regulator_init_state;
-> > +     unsigned int regulator_init_voltage;
-> > +     int (*regulator_force_endis)(struct regulator_dev *rdev, bool ena=
-ble);
-> > +     int (*regulator_force_voltage)(struct regulator_dev *rdev, unsign=
-ed int voltage);
->
-> I am open for discussing this but maybe here only
->
-> +       struct renesas_sdhi_regulator *internal_regulator
->
-> or something and create the new struct with the additions above?
->
-> > +     int (*regulator_force_endis)(struct regulator_dev *rdev, bool ena=
-ble);
-> > +     int (*regulator_force_voltage)(struct regulator_dev *rdev, unsign=
-ed int voltage);
->
-> Do we need these functions because the regulator framework cannot force
-> these actions because it caches the old state? I wonder if we can avoid
-> these functions...
->
-Yes, for the voltage setting, it caches the values. However, for the
-regulator enable/disable, we can use is_enabled(), which probes the
-hardware.
+> > base-commit: 0b58e108042b0ed28a71cd7edf5175999955b233
+> > change-id: 20240703-dwc-5be3e378ddbe
+> > 
+> > Best regards,
+> > ---
+> > Frank Li <Frank.Li@nxp.com>
+> > 
+> 
+> This may blow up the dwc3 core from various platforms and compatible
+> strings. This can be handled in the glue driver and create the software
+> property instead.
+> 
+> Radhey Shyam is working on this also. You can check his work here:
+> 
+> https://lore.kernel.org/linux-usb/1717657279-2631757-1-git-send-email-radhey.shyam.pandey@amd.com/
 
-The reset value for PWEN is 1. The regulator_force_endis() callback is
-mainly added for a scenario where, consider a code flow where the
-regulator is disabled (using regulator_disable()) and now we land in
-the reset callback (i.e., renesas_sdhi_reset()). Here, after issuing
-the reset, the PWEN value will be 1, but we need to restore it back.
-Hence, this callback is necessary. Note that is_enabled() cannot be
-used, as it probes the hardware when it switches states after a reset.
+This is quite good.
 
-The reset value for IOVS is 3.3V. Below is the scenario for which
-regulator_force_voltage() is added:
+Frank
 
------> Current value: 1.8V (cached by the regulator)
---------------> After reset:
-------------------> Hardware has 3.3V, but the regulator core cache
-still has 1.8V.
-----------------------> When requested to switch to 1.8V from MMC
-core: The regulator core returns success, as it sees 1.8V in the
-cached state.
-----------------------------> As a result, the SD card won't work.
-
-Cheers,
-Prabhakar
+> 
+> Thanks,
+> Thinh
 
