@@ -1,144 +1,269 @@
-Return-Path: <devicetree+bounces-83270-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83271-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20148927C45
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 19:33:25 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C7DE927C49
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 19:33:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D05BD28145A
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 17:33:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 60B70B246FB
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 17:33:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFCF413D2BC;
-	Thu,  4 Jul 2024 17:29:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 165AF144D20;
+	Thu,  4 Jul 2024 17:30:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b="UXvT/yiE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com [209.85.219.177])
+Received: from mail-il1-f175.google.com (mail-il1-f175.google.com [209.85.166.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA4F04964E;
-	Thu,  4 Jul 2024 17:29:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22C694EB38
+	for <devicetree@vger.kernel.org>; Thu,  4 Jul 2024 17:30:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720114189; cv=none; b=ayq6hKh4l7gIksWc5er2XfLiY2fFOCSfHXiF1gJZVEEA4shuzbDUGlOCgkBEdoa9qt0ODuDeNPZdoxVz53jeWTVQAnyWVWXfEj5uHspw5gcDbZwbJcS5kTusYa0ITASsuK/2hrx40EjIJiTMu1kF4hiUA1A9IFY6wndxcaRh9MA=
+	t=1720114209; cv=none; b=JXxER2kjPYBlAHDBcGb6p8bx1qGfAe5FxYlqoc5OTDPmCqNlW5t0Ep/iynEwVtrH5Lk4DBlR4Q47G/YtjWg+roXcKti90GC1PyGf1pZhxcpXFSqC/5J05nUq3Qgb7tQHmSbDRMc0yqCeN25ZzHRy0B2v5RKh0xZxfriwpGVHG/w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720114189; c=relaxed/simple;
-	bh=4Wsbr2NxsRTX2OtbK42P57QdvwytpLHmffqyJLEMNlA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Ke3EyGN0H+6F9tC85HcKFLqYTP/EdDuIjRZZKnAANwNvNM08YSF1DtXIBsrMuOUMs34fkm+wpuFnFWXL930dCdbExW10z2T3JzP+QiBsmgAdobuS+fS3JBONIHIJvfc1kR7HTB5AabTr5awRgsyThjmdJl/KiW2r1++tN15Id8I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-e03a17a50a9so905747276.1;
-        Thu, 04 Jul 2024 10:29:47 -0700 (PDT)
+	s=arc-20240116; t=1720114209; c=relaxed/simple;
+	bh=39SZmuOAzOac7DEQShFuwZCwODWZty1qetVkzMt8Gkg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=H9mZ8zqQ/RSgm4V5iQkVacoYpWhABapvH/yh6yjCk+3QgrEUSt5GmRCm6d6qIC5gqVHDnsN+g3go4mwQDY5M5PsMSlkS4+VH8mCd3TBwNjL+UYx9cfw/KGPpB+zRbc/juyaOwe0KKEHj5J5R/GDYv6TFbD6TIU3dL9R0wYkMWZs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org; spf=fail smtp.mailfrom=beagleboard.org; dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b=UXvT/yiE; arc=none smtp.client-ip=209.85.166.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=beagleboard.org
+Received: by mail-il1-f175.google.com with SMTP id e9e14a558f8ab-380f2c58838so220925ab.3
+        for <devicetree@vger.kernel.org>; Thu, 04 Jul 2024 10:30:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=beagleboard-org.20230601.gappssmtp.com; s=20230601; t=1720114206; x=1720719006; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=BUjgYu7QIwdF8ohWpyMEIznAetSMlKfAB/i6BfjXVtw=;
+        b=UXvT/yiEgc3RGkQEPFvryHH+tIj8T85gtG2P4aE5affJCavoKS3NAyxQmEQyyNAhGL
+         IMyRXet06F14YsSG0alPiW1EXTj6PRaS/DSrq9whyL5XkjWI53m2W/i/UNYhDEZMZzef
+         42ac229oSIfLCzR+V0X8UhAp8y+EJkthU2aJcX60/HACTmS7tCoPr4SWJb1yLYzKusNU
+         8HyYDFt+UADhvpykZRBXIPTGPnjyplVGtqXr4wB5coRNDpA3lWYcI9NVsF7fKQ3iZKzY
+         xIsQ9a8LaRUm0Ey1qYrhb8hkr1UDrsXmLnDz+2xQ+sd/BXAVORKkoD1ZbPjhkUfKu1Eo
+         RwMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720114186; x=1720718986;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=RgbAK2gmsO/PF4jPJxOEopv4w1e21JKoV2IL1BCw5Go=;
-        b=UKWhNAiwF6oXMfUC8eDVzR774bDPv60zJ8TIfhWMuloW/R32i9TvV5tt/GazHazSlz
-         bPtiZnW1LJImMJWzkdKs1pnys+c65kzv3Kv5VL+H7YfztpmBEtAcOLJIiAqOAsj26vON
-         cxyAs1yB1OF1JTTXLvZ1U9nKDdMSGOIG8Jz9d0F+HwrXxK5MgjBV8tMT4ia8/YsOe6EF
-         vLRUUJiZnFFGvkNwFkKCfmvxy7Qn6GSV8dnlEglYPyV9p0FbZfsRjC8GRubZ/5mXBDs8
-         y4A15kJBRbwzj6n4Th9r1QTQG+1BvxNcsqT6IYI8MgHjigOnr8+Mbj58Zf+3Vktk33+4
-         F9tQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUpZQgAGH10Zw3+wD0PabTbJ0hLLWjm8zkysCjAzkDGadvh8ygpBlIRVqqcTJCcTLPrluCcis0k+Tcgo0skK1s3SHcBJUNX+6pU5M586DXH46+QPn1+ZRbWUrX7ATrttyKOU3KQHPVVxtLtnmv2ilqtTzCwrUgS8tzxTrPoO9fkNyRRn8yBzHYKn4q0cXmUzBceXrBmcGXQXhxGn/+9ilOp39uwDE2s2g==
-X-Gm-Message-State: AOJu0Yyn9ZgcIhPLQhm7DU2AleiDV1qTfni7UAHzyQthb/qdycoHuAXz
-	vt0VUaEzH+6sgTIQBV/J53UnEDRC2o+h3vTXXF8/hV78nF8IHlh3TkiqJp70
-X-Google-Smtp-Source: AGHT+IFZjsO9ewiEjzbgBpzemu3XQvaSNNPVO6kLW3HNuSidg0ssPZtMGo+f9sd+cX1cuGQfWH2KAA==
-X-Received: by 2002:a25:aa71:0:b0:e03:adcb:f8e8 with SMTP id 3f1490d57ef6-e03c1934e9emr2503622276.30.1720114186257;
-        Thu, 04 Jul 2024 10:29:46 -0700 (PDT)
-Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com. [209.85.128.171])
-        by smtp.gmail.com with ESMTPSA id 3f1490d57ef6-e037fc7a070sm1564902276.51.2024.07.04.10.29.45
+        d=1e100.net; s=20230601; t=1720114206; x=1720719006;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=BUjgYu7QIwdF8ohWpyMEIznAetSMlKfAB/i6BfjXVtw=;
+        b=IH6fsvzb+Dk1ULUaoPHj3QfSYDlScevp+0Qwj35hmwtgrT0P8EP3934axTBWOsn0ly
+         XK5ayVtqa0f059ptT3heO4ijCEOkU3FzzwGM6ZRgNVaSVYSTdNTNCa9rHFAGLgrLf4HF
+         yXZJBDNq3NayYOxBiSB+CGpQ7iXWy1lBumsEVbuBXhlc4CZ3tJ5howPQ2TDB8OlsHwBP
+         8AYGN1gtyhESCAunnhnGsQRz/VUwdIiHZhA3JRksDgxFGAnQdt0L5aHyWxNJpSHijus+
+         j7WLYxmfoKUGRjJEPkjG/UbDA7ZZJ+5FVkXFDuRIFftWH20iouwoZ81aggRdwilTjY3d
+         viCg==
+X-Forwarded-Encrypted: i=1; AJvYcCXLa01NCOGK0tAg/VHEJz/MiBPhZ60vkdkfDkugoQahG5gADIzgYGBswa54IYxPUWs4GZzGvn8df5SLhj+68f8NPd3KwaBebQXA3A==
+X-Gm-Message-State: AOJu0Yxy4LpED349vv2LVjX+3lhpSr8Vcfn6bekMjN4dVmtcdaoebd/c
+	IjGoIkYr7+Qnb9C2ogSWko9ZNpm9HIwADOwpjG7wbRLetzgOIA1fBvILhUZ8nQ==
+X-Google-Smtp-Source: AGHT+IEJwnKoNwatNxId+LXLBWLrnYxTUABi4DWUsVWFR6EsrNwCXq/FN62nxAoslZVwVKt5Kctb3Q==
+X-Received: by 2002:a05:6e02:d04:b0:376:3918:c50 with SMTP id e9e14a558f8ab-38395e7712bmr21775675ab.0.1720114206079;
+        Thu, 04 Jul 2024 10:30:06 -0700 (PDT)
+Received: from ?IPV6:2401:4900:1f3f:cba4:e1a3:7d47:549c:8f33? ([2401:4900:1f3f:cba4:e1a3:7d47:549c:8f33])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-70b09ea7fe0sm407673b3a.13.2024.07.04.10.30.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 Jul 2024 10:29:45 -0700 (PDT)
-Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-650469f59d7so7798887b3.2;
-        Thu, 04 Jul 2024 10:29:45 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWFG5ZkEK472Np8QaqEpEkEfBtf6AKNM24b4ZBadS1iYYpV1N0muAtF+BOpw7iTr7P/rd0c55BFJpwKFRqea3tQksAEM+SceUd/vBm/7J0e7SlX5A/npKwWhiTjLxaROJ+7eoRTXHzP5xPyE66vGa0Zw1CeziE94u5YmtgrpaE4cDWT/LuxYu8zDIe/BlXzP5ILorxK3E6Xq7MnqvGg1+xNYNA5b6apRA==
-X-Received: by 2002:a05:690c:498a:b0:646:25c7:178e with SMTP id
- 00721157ae682-652d53481d4mr26390677b3.5.1720114185422; Thu, 04 Jul 2024
- 10:29:45 -0700 (PDT)
+        Thu, 04 Jul 2024 10:30:05 -0700 (PDT)
+Message-ID: <44b0a477-a636-4a40-8027-6888dfc5f95b@beagleboard.org>
+Date: Thu, 4 Jul 2024 22:59:57 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240625200316.4282-1-paul.barker.ct@bp.renesas.com> <20240625200316.4282-4-paul.barker.ct@bp.renesas.com>
-In-Reply-To: <20240625200316.4282-4-paul.barker.ct@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 4 Jul 2024 19:29:32 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWbq_L1o3WxeHoD4n12DjEYV_k9RzGQbYP1EzhX6tr6_A@mail.gmail.com>
-Message-ID: <CAMuHMdWbq_L1o3WxeHoD4n12DjEYV_k9RzGQbYP1EzhX6tr6_A@mail.gmail.com>
-Subject: Re: [PATCH v3 3/9] pinctrl: renesas: rzg2l: Support output enable on RZ/G2L
-To: Paul Barker <paul.barker.ct@bp.renesas.com>
-Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Linus Walleij <linus.walleij@linaro.org>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, linux-renesas-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC 3/3] arm64: dts: ti: grove: Add Grove Sunlight Sensor
+ overlay
+To: Andrew Davis <afd@ti.com>, Nishanth Menon <nm@ti.com>,
+ Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+ Vaishnav M A <vaishnav@beagleboard.org>,
+ Derek Kiernan <derek.kiernan@amd.com>, Dragan Cvetic
+ <dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>,
+ Michael Walle <mwalle@kernel.org>, Jason Kridner <jkridner@beagleboard.org>,
+ Robert Nelson <robertcnelson@beagleboard.org>,
+ Robert Nelson <robertcnelson@gmail.com>,
+ Ayush Singh <ayushdevel1325@gmail.com>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240702164403.29067-1-afd@ti.com>
+ <20240702164403.29067-4-afd@ti.com>
+ <df0f9705-b1e9-4dce-b110-09be540d5e25@beagleboard.org>
+ <edfac25c-d708-4a55-a9bb-97d329877444@ti.com>
+Content-Language: en-US
+From: Ayush Singh <ayush@beagleboard.org>
+In-Reply-To: <edfac25c-d708-4a55-a9bb-97d329877444@ti.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi Paul,
 
-On Tue, Jun 25, 2024 at 10:03=E2=80=AFPM Paul Barker
-<paul.barker.ct@bp.renesas.com> wrote:
-> On the RZ/G2L SoC family, the direction of the Ethernet TXC/TX_CLK
-> signal is selectable to support an Ethernet PHY operating in either MII
-> or RGMII mode. By default, the signal is configured as an input and MII
-> mode is supported. The ETH_MODE register can be modified to configure
-> this signal as an output to support RGMII mode.
+On 7/4/24 22:25, Andrew Davis wrote:
+> On 7/3/24 9:15 AM, Ayush Singh wrote:
+>> On 7/2/24 22:14, Andrew Davis wrote:
+>>
+>>> Add DT overlay for the Grove Sunlight Sensor[0].
+>>>
+>>> [0] https://wiki.seeedstudio.com/Grove-Sunlight_Sensor/
+>>>
+>>> Signed-off-by: Andrew Davis <afd@ti.com>
+>>> ---
+>>>   arch/arm64/boot/dts/ti/Makefile               |  3 ++
+>>>   .../boot/dts/ti/grove-sunlight-sensor.dtso    | 31 
+>>> +++++++++++++++++++
+>>>   2 files changed, 34 insertions(+)
+>>>   create mode 100644 arch/arm64/boot/dts/ti/grove-sunlight-sensor.dtso
+>>>
+>>> diff --git a/arch/arm64/boot/dts/ti/Makefile 
+>>> b/arch/arm64/boot/dts/ti/Makefile
+>>> index a859629a6072c..7d1ce7a5d97bc 100644
+>>> --- a/arch/arm64/boot/dts/ti/Makefile
+>>> +++ b/arch/arm64/boot/dts/ti/Makefile
+>>> @@ -8,6 +8,9 @@
+>>>   # Entries are grouped as per SoC present on the board. Groups are 
+>>> sorted
+>>>   # alphabetically.
+>>> +# This needs a better directory location
+>>> +dtb-$(CONFIG_OF_OVERLAY) += grove-sunlight-sensor.dtbo
+>>> +
+>>>   # Boards with AM62x SoC
+>>>   dtb-$(CONFIG_ARCH_K3) += k3-am625-beagleplay.dtb
+>>>   dtb-$(CONFIG_ARCH_K3) += k3-am625-beagleplay-csi2-ov5640.dtbo
+>>> diff --git a/arch/arm64/boot/dts/ti/grove-sunlight-sensor.dtso 
+>>> b/arch/arm64/boot/dts/ti/grove-sunlight-sensor.dtso
+>>> new file mode 100644
+>>> index 0000000000000..ab2f102e1f8ab
+>>> --- /dev/null
+>>> +++ b/arch/arm64/boot/dts/ti/grove-sunlight-sensor.dtso
+>>> @@ -0,0 +1,31 @@
+>>> +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+>>> +/**
+>>> + * Grove - Sunlight Sensor v1.0
+>>> + *
+>>> + * https://wiki.seeedstudio.com/Grove-Sunlight_Sensor/
+>>> + *
+>>> + * Copyright (C) 2024 Texas Instruments Incorporated - 
+>>> http://www.ti.com/
+>>> + */
+>>> +
+>>> +/dts-v1/;
+>>> +/plugin/;
+>>> +
+>>> +&GROVE_CONNECTOR {
+>>> +    status = "okay";
+>>> +    pinctrl-names = "default";
+>>> +    pinctrl-0 = <&GROVE_PIN1_MUX_I2C_SCL>,
+>>> +                <&GROVE_PIN2_MUX_I2C_SDA>;
+>>> +};
+>>
+>> On setting pinctrl in the mikrobus connector, I seem to encounter 
+>> problem with the SPI driver trying to use the device before the pins 
+>> are ready. So I think, the pinctrl should probably be defined in the 
+>> respective i2c, spi, etc nodes instead of connector.
+>>
 >
-> As this signal is by default an input, and can optionally be switched to
-> an output, it maps neatly onto an `output-enable` property in the device
-> tree.
+> Maybe, I originally did that but the issue there is it can overwrite
+> any existing pinmux for that IP node. For instance if you add the
+> pinmux to a GPIO node, any other users of that GPIO lose their mux.
 >
-> Signed-off-by: Paul Barker <paul.barker.ct@bp.renesas.com>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Acked-by: Linus Walleij <linus.walleij@linaro.org>
-> ---
-> Changes v2->v3:
->   * Picked up Linus W's Acked-by tag & Geert's Reviewed-by tag.
->   * Simplify arguments to rzg2l_pin_to_oen_bit() and decode pin/caps
->     inside this function. No check is needed for dedicated pins as no
->     dedicated pins support OEN in the RZ/G2L family.
-
-Thanks for the update!
-
-> --- a/drivers/pinctrl/renesas/pinctrl-rzg2l.c
-> +++ b/drivers/pinctrl/renesas/pinctrl-rzg2l.c
-> @@ -994,6 +994,61 @@ static bool rzg2l_ds_is_supported(struct rzg2l_pinct=
-rl *pctrl, u32 caps,
->         return false;
->  }
+> But you are right, they belong in the IP node. Maybe even in the
+> specific consumer device node (si1145@60 in this case).
 >
-> +static int rzg2l_pin_to_oen_bit(struct rzg2l_pinctrl *pctrl, unsigned in=
-t _pin)
-> +{
-> +       u64 *pin_data =3D pctrl->desc.pins[_pin].drv_data;
-> +       u64 caps =3D FIELD_GET(PIN_CFG_MASK, *pin_data);
-> +       u8 max_pin =3D pctrl->data->hwcfg->oen_max_pin;
-> +       u8 pin =3D RZG2L_PIN_ID_TO_PIN(_pin);
-> +
-> +       if (pin > max_pin)
+> The general idea with all of this is that if we have a board in a
+> static state (with add-ons already attached) we could write a DTS
+> that fully describes that steady state. Our challenge is to create
+> an overlay that transforms the base board into what we would have
+> written in the static case. In the static case we would have added
+> the pinmux to the IP node, so that is where it belongs.
+>
+> The issue then is the overlay mechanism is not complete. We
+> can add properties to nodes, and add nodes to nodes, and append
+> properties to nodes, but cannot append values to existing properties,
+> only replace them completely. This gap in the overlay system will
+> prevent a general solution. So I've started to work on adding
+> that property appending ability to the overlay system. I should
+> have some patches posted against the upstream dtc/libfdt here
+> in the next week or so.
 
-Likewise 2/9, just use the original directly.
-No need to resend, I can do this while applying.
+Sure. Will look forward to testing it.
 
-Gr{oetje,eeting}s,
 
-                        Geert
+>
+>>> +
+>>> +&GROVE_PIN1_I2C {
+>>> +    status = "okay";
+>>> +    #address-cells = <1>;
+>>> +    #size-cells = <0>;
+>>> +
+>>> +    clock-frequency = <100000>;
+>>> +
+>>> +    si1145@60 {
+>>> +        compatible = "si,si1145";
+>>> +        reg = <0x60>;
+>>> +    };
+>>> +};
+>>
+>>
+>> I also have question regarding how to define reg property in SPI 
+>> (chipselect). Ideally, we want to define it relative to the connector 
+>> pins, but since the SPI device(s) is a child of SPI controller, I am 
+>> not sure how I can do remapping.
+>>
+>
+> Could you give me an example? Sounds like the interrupt issue, where
+> we want say the interrupt belonging to "pin 5", but need to specify
+> it relative to the base interrupt controller, which we cannot know
+> anything about in the general case. Instead we need a map, from
+> pin number to both interrupt controller and IRQ number (or SPI
+> controller and chipselect number, etc..). I think you are on to
+> something with the GPIO names, select the GPIO by generic name,
+> not by board specific number. That might be extendable to IRQs
+> and other numbered items (but yes, that is still an open item
+> and I'm waiting on some add-on boards to arrive before I can
+> start testing ideas on this..).
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Yes, the same problem will also occur for interrupt. What I am referring 
+to here is the SPI chipselect. In a child of SPI controller, the reg 
+property in child specifies the logical chipselect using a u32 number 
+which is then mapped to the physical chipselect by the controller. So 
+the Mikrobus CS pin might be SPI_CS0 on one system while it might be 
+SPI_CS1 on another. This means we need a way to do the following:
+
+
+&MIKROBUS_SCK_SPI {
+     status = "okay";
+
+     #address-cells = <1>;
+     #size-cells = <0>;
+
+     lsm6dsl_click: lsm6dsl-click@MIKROBUS_CS_SPI_REG {
+         reg = <MIKROBUS_CS_SPI_REG>;
+         compatible = "st,lsm6ds3";
+         spi-max-frequency = <1000000>;
+     };
+};
+
+
+Additionally, other pins can also be used as chipselect (Eg, SPI Extend 
+Click uses RST and AN as chipselect). Some chipselect might be directly 
+controlled by SPI controller while others might be normal GPIOs which 
+were added using `cs-gpios` property in the controller.
+
+
+of_spi_parse_dt(): 
+https://github.com/torvalds/linux/blob/795c58e4c7fc6163d8fb9f2baa86cfe898fa4b19/drivers/spi/spi.c#L2468
+
+
+>
+> Andrew
+>
+>>
+>> Ayush Singh
+>>
 
