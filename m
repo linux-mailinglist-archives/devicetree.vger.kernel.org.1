@@ -1,73 +1,73 @@
-Return-Path: <devicetree+bounces-83194-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83195-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22B1692781E
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 16:19:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98196927825
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 16:20:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C937F1F23FD0
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 14:19:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C9A2C1C2280E
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 14:20:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 264041B11E8;
-	Thu,  4 Jul 2024 14:19:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A16D21B1424;
+	Thu,  4 Jul 2024 14:19:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ep7+sx7/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S9KKVb4z"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE6461B010A;
-	Thu,  4 Jul 2024 14:19:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 727AA1B121F;
+	Thu,  4 Jul 2024 14:19:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720102757; cv=none; b=r/Sl/kwxFsIYUsoCMXAeWg6W/5uKPXlwjErzU7Io/YCZzEN1LtCuUCYrV3p95sgFNtXTWL5hxV8BMQ62TnNw3O09jfZ7KQNL9I7d6pqOvyJXPx+36nDInnWvh4WZYBl1SVIvWMHyD7GXWmuMMzaFiQbZFNo1NUN7fqIObKfJ9JY=
+	t=1720102766; cv=none; b=nqR4RKz75iDRwUHNqgpCunNaWK9A8sztO4s+F2hlsbXWkuK+dobj3xTpOr/9GvA9lgO9/tr/Maztw87psmF1zbJdZa0f6xnrTWCqWBVqH+QVQZEEFFftk8jGSSP++WkSvLu3Hv69W4k3AfPO6fDna/WnVw4J5BxqW8ulI4Sg0Fk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720102757; c=relaxed/simple;
-	bh=YUUaox4QmEDxktmHdK7cEJhex29ZOYDxVznfPTuSThk=;
+	s=arc-20240116; t=1720102766; c=relaxed/simple;
+	bh=rhtBhS/CBJwV8ITSg9IDBvbJbDtnj2UkM1J450xWCtY=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=unaA8j+QVn/glpz+cndpU6Icv/WvXTVSC25E373EazQkCPCa+wB0D9+DaQoWFsF2lxOd3r5zdAzck5UgfWYd6mWAJQ/3a6kEU+/pAw85Vpcc8IcF7KUHRLWb/cHrmsdsHhCsnHb9sx/ZDWJIMpC1AzBNBR1HMlYYghRps0Ynxoc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ep7+sx7/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44BA7C4AF0D;
-	Thu,  4 Jul 2024 14:19:13 +0000 (UTC)
+	 MIME-Version:Content-Type; b=H2fklJapiKaU6Ibw9psOBetkRUYEhXHofWjsPYWqQvK82wUyMbQ5h+TwH0ai2v4uTNiwMoQySiWRaT2RAJQovY3TL93VF3WOpOeUDSRN8ilfFniKNuQFGBrGGTsQlddK+9yKRa9c0bWjkUnYjINHanZ7/lJbQ83unI0f5iUPICg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S9KKVb4z; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A70D0C4AF0D;
+	Thu,  4 Jul 2024 14:19:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720102756;
-	bh=YUUaox4QmEDxktmHdK7cEJhex29ZOYDxVznfPTuSThk=;
+	s=k20201202; t=1720102766;
+	bh=rhtBhS/CBJwV8ITSg9IDBvbJbDtnj2UkM1J450xWCtY=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=ep7+sx7/U+a3JxROBWJy6PYSDV4eOSDAMdRwK8A32iMc9lfmXlx1R5Qzb+pdZSHHy
-	 UJQvhMhJhuw/YwRpoxmwSYWIJbH85JatxZf65aDs0Kivz8dL98GHtGfsmWJSSX76Bm
-	 zfIM1BwXura0tiP3JZk/S+k/Z3bXRPkrW1qHwT/likboAN2ZinR5uGrVi7MqyaJg5a
-	 JTPK74vUKgRKqt7r9CBgZb3OkVASfOkMkLMA8bh0m+2MQo5Ol9aVSrRHpR+j6NFrKP
-	 C3hM4CgpL8jbs5OZ+5NtK6Ey5RqwENMIJ/29nDjnje8kWHTcKfTriQy4oz9g/7XfPq
-	 1kkdG91zSKzwQ==
+	b=S9KKVb4zR4ws4a4Ey1hdFcsOGe8qLy0xkejIdZvgG7OAEoXgzdWX6TM+hXVjmmTN1
+	 fsL4p1AEIEFJLKQckvIuKUih+RFCofhKka9wfVtybFfnFskAC7rJbXF/+2fRY+wh0t
+	 UWSWBycthso418WA90A344JZ5WEQzTuWVSka4VsRTtG6E6cvzCUnRZNUCFx7wDHEKN
+	 mEasV/UwQMeWeEmPZAQ1FA+CNd+DmU7r3dZtXmrGxMpsNZF5myzfp8NLTcuOwQ09zM
+	 nG5b03J68sPWoEpUeNgPn3T3Eq9wPeyw2jVQebxT1yp5pxa6Th0aPjCLRdRf7bSq2f
+	 obUBrjWV6kAfg==
 From: Will Deacon <will@kernel.org>
-To: lpieralisi@kernel.org,
-	kw@linux.com,
-	robh@kernel.org,
-	bhelgaas@google.com,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	liviu.dudau@arm.com,
-	sudeep.holla@arm.com,
-	joro@8bytes.org,
-	Jean-Philippe Brucker <jean-philippe@linaro.org>
+To: Joerg Roedel <joro@8bytes.org>,
+	Robin Murphy <robin.murphy@arm.com>
 Cc: catalin.marinas@arm.com,
 	kernel-team@android.com,
 	Will Deacon <will@kernel.org>,
-	robin.murphy@arm.com,
-	nicolinc@nvidia.com,
-	ketanp@nvidia.com,
-	linux-pci@vger.kernel.org,
+	linux-acpi@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
 	iommu@lists.linux.dev,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 0/3] Enable PCIe ATS for devicetree boot
-Date: Thu,  4 Jul 2024 15:18:58 +0100
-Message-Id: <172010124265.2651905.5967081185838500176.b4-ty@kernel.org>
+	devicetree@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Hanjun Guo <guohanjun@huawei.com>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Len Brown <lenb@kernel.org>,
+	Jean-Philippe Brucker <jean-philippe@linaro.org>,
+	Andy Shevchenko <andy.shevchenko@gmail.com>,
+	Yong Wu <yong.wu@mediatek.com>
+Subject: Re: [PATCH v3 0/5] iommu: Remove iommu_fwspec ops
+Date: Thu,  4 Jul 2024 15:19:01 +0100
+Message-Id: <172010016495.204079.11503801872554345950.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20240607105415.2501934-2-jean-philippe@linaro.org>
-References: <20240607105415.2501934-2-jean-philippe@linaro.org>
+In-Reply-To: <cover.1719919669.git.robin.murphy@arm.com>
+References: <cover.1719919669.git.robin.murphy@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,26 +77,29 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
-On Fri, 07 Jun 2024 11:54:13 +0100, Jean-Philippe Brucker wrote:
-> Before enabling Address Translation Support (ATS) in endpoints, the OS
-> needs to confirm that the Root Complex supports it. Obtain this
-> information from the firmware description since there is no architected
-> method. ACPI provides a bit via IORT tables, so add the devicetree
-> equivalent.
+On Tue, 02 Jul 2024 12:40:46 +0100, Robin Murphy wrote:
+> v2: https://lore.kernel.org/linux-iommu/cover.1718994350.git.robin.murphy@arm.com/
 > 
-> Since v1 [1] I added the review and ack tags, thanks all. This should be
-> ready to go via the IOMMU tree.
+> Hi all,
+> 
+> Just a quick update with an extra patch to avoid the mediatek-v1 driver
+> breaking (and I have now build-tested ARCH=arm to make sure, apologies
+> for being lazy before...)
 > 
 > [...]
 
-Applied to iommu (pci/ats), thanks!
+Applied to arm64 (fwspec-ops-removal), thanks!
 
-[1/3] dt-bindings: PCI: generic: Add ats-supported property
-      https://git.kernel.org/iommu/c/40929e8e5449
-[2/3] iommu/of: Support ats-supported device-tree property
-      https://git.kernel.org/iommu/c/86e02a88bedc
-[3/3] arm64: dts: fvp: Enable PCIe ATS for Base RevC FVP
-      https://git.kernel.org/iommu/c/6bac3388889c
+[1/5] iommu/mediatek-v1: Clean up redundant fwspec checks
+      https://git.kernel.org/iommu/c/e7acc36f26b0
+[2/5] iommu: Resolve fwspec ops automatically
+      https://git.kernel.org/iommu/c/3f7c32091628
+[3/5] ACPI: Retire acpi_iommu_fwspec_ops()
+      https://git.kernel.org/iommu/c/78596b5c321c
+[4/5] OF: Simplify of_iommu_configure()
+      https://git.kernel.org/iommu/c/5f937bc48a6a
+[5/5] iommu: Remove iommu_fwspec ops
+      https://git.kernel.org/iommu/c/3e36c15fc1cc
 
 Cheers,
 -- 
