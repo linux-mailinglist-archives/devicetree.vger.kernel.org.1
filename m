@@ -1,188 +1,139 @@
-Return-Path: <devicetree+bounces-83147-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83148-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 026EE927576
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 13:49:20 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6AC7927583
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 13:53:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B22AB2820F8
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 11:49:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0E1B4B211CA
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 11:53:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64E011AB51E;
-	Thu,  4 Jul 2024 11:49:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F9291AD9CB;
+	Thu,  4 Jul 2024 11:53:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="rmU1cJKQ"
+	dkim=pass (2048-bit key) header.d=ellerman.id.au header.i=@ellerman.id.au header.b="fHVydoH/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out30-132.freemail.mail.aliyun.com (out30-132.freemail.mail.aliyun.com [115.124.30.132])
+Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8B7416F0D5;
-	Thu,  4 Jul 2024 11:49:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=115.124.30.132
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 204F116A945;
+	Thu,  4 Jul 2024 11:53:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=150.107.74.76
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720093754; cv=none; b=TLzNLy4uGQagpRFioIb1fVp8phkKccvHF7z/1P18T2LiRZiSEei4kd8K4zDk4GSPQyQL/jir76xmaxR3BJgkGxkWITpUdNJ+DPBIMma4zwXLHaU45ReDtaSXncNIeIcykpKhdr7VSYWmo9smWjedt7dwDEMKzUh+QMui/iMKNJ0=
+	t=1720094021; cv=none; b=AD0wTeGJbRziEUdyN92Ja7CIuYEbqwB20h5sutgMlig1zMCjRuqCTEjwQTEzNjtIkUGUj/Ix0W+U5Z9Cbxbf1x6vSP3O35ywzQ4SghdTQGmeSBUHZ9wTeWSceRnWS8v0M6Tp6siAzyBB/P+vezzjAdUdj5K7p5blUhPrrfjgKtI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720093754; c=relaxed/simple;
-	bh=+ZO4E8s2E70xagRUNoHmxIKLlEHfBkwR8G9jUKMb5R4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YwiICrCxK0hUssfzr3b1LwxThdnHRkm6DTiqee+wGToGL5+udpShZXoBK+1apzZ6XQigSnnYEAIkc3PoL1W6C2WD54J9XwoVSEA9Tcuga79UNe4WPbTNl9jUaeCo2yYeKfFw88HkXO1BuvsSUl8A/H73j8sZUkrO+MaRrQ+DDWE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.alibaba.com; spf=pass smtp.mailfrom=linux.alibaba.com; dkim=pass (1024-bit key) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b=rmU1cJKQ; arc=none smtp.client-ip=115.124.30.132
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.alibaba.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.alibaba.com
-DKIM-Signature:v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=linux.alibaba.com; s=default;
-	t=1720093749; h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type;
-	bh=/8KlDc1Q1lXOp6OasZ6L+XmlH+f8Rq5x2AV+s1uBmwE=;
-	b=rmU1cJKQ9dKI6r3Bo9/h9FB3aBjHLFngWe2Ky8XBDTK2l2xYdQ4O55DtYtbmDFhGaTOxbS9M/ZthtRE8K9s8M6y6umU6wjpvDFwqzrLDHVAkvm6rbQmBkhhiwhg38YxIYpSiZK0usnnLa3pqg7z68CT6MEOJ+9+WU4EZerfe2lc=
-X-Alimail-AntiSpam:AC=PASS;BC=-1|-1;BR=01201311R401e4;CH=green;DM=||false|;DS=||;FP=0|-1|-1|-1|0|-1|-1|-1;HT=maildocker-contentspam033037067113;MF=baolin.wang@linux.alibaba.com;NM=1;PH=DS;RN=11;SR=0;TI=SMTPD_---0W9qn9fg_1720093748;
-Received: from 30.97.56.65(mailfrom:baolin.wang@linux.alibaba.com fp:SMTPD_---0W9qn9fg_1720093748)
-          by smtp.aliyun-inc.com;
-          Thu, 04 Jul 2024 19:49:08 +0800
-Message-ID: <648b121e-149c-417a-afd5-848348923721@linux.alibaba.com>
-Date: Thu, 4 Jul 2024 19:49:07 +0800
+	s=arc-20240116; t=1720094021; c=relaxed/simple;
+	bh=LUKKqXDRtPTs8fwKoTUODWegGw2rUYI8Ob+iOihmyto=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=Ygh/n2eg4b6Pep83Pg3OPHF4CSS1jFuOFRqfpmJQT98G0HXT3nnF5R+9RIUr6h1J2gnLZde/6E27iU712c8e7oNFJZR6NsMQGY8clq9oJpwo6hLelzLJRASRUs/rC0RbVJf9v5skVJA5ImLHGS0boj+CJo+wlaSbFwVj1isuGso=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ellerman.id.au; spf=pass smtp.mailfrom=ellerman.id.au; dkim=pass (2048-bit key) header.d=ellerman.id.au header.i=@ellerman.id.au header.b=fHVydoH/; arc=none smtp.client-ip=150.107.74.76
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ellerman.id.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ellerman.id.au
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ellerman.id.au;
+	s=201909; t=1720094015;
+	bh=Uk9degHg/Z1P6m2/0OM79LElxTX1OBh3M5kqaL4bWSE=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+	b=fHVydoH/PVY7laXT4hMSD557OSb5R8yAcRpLMi5ulEWFVjqaVntnyKvov/ojV1e61
+	 iSzIkDKnubhZrKc2fmC+xQHTBDmZTDROKRzY6zQVnvKmGru/PmP7wfYogPBavu3rNf
+	 68o4HMp/oaLFc/tkbmpZfq4ht86Mj9yzlS6C4TjajGp4w5eytEWbfBEKYPVYx8B7gp
+	 n0wtRAgm53AMWikl/4RrvAiYegQAvJ2CYNyNjU9P0fnZQPFvvATzWcoF8kvn1bNSjP
+	 P3py82HVp0HBqcL2Ia8VXiEKEFzvOri7h6FrHp8NfEGEhW13z2fA8PYjbc/Qxe6GB1
+	 mcWsr36DlxVAA==
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mail.ozlabs.org (Postfix) with ESMTPSA id 4WFFR22Qlhz4wx6;
+	Thu,  4 Jul 2024 21:53:33 +1000 (AEST)
+From: Michael Ellerman <mpe@ellerman.id.au>
+To: Christian Zigotzky <chzigotzky@xenosoft.de>, Marc Zyngier <maz@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, apatel@ventanamicro.com, DTML
+ <devicetree@vger.kernel.org>, Linux Kernel Mailing List
+ <linux-kernel@vger.kernel.org>, linuxppc-dev
+ <linuxppc-dev@lists.ozlabs.org>, mad skateman <madskateman@gmail.com>,
+ "R.T.Dickinson" <rtd2@xtra.co.nz>, Matthew Leaman <matthew@a-eon.biz>,
+ Darren Stevens <darren@stevens-zone.net>, Christian Zigotzky
+ <info@xenosoft.de>
+Subject: Re: [PowerPC] [PASEMI] Issue with the identification of ATA drives
+ after the of/irq updates 2024-05-29
+In-Reply-To: <ccf14173-9818-44ef-8610-db2900c67ae8@xenosoft.de>
+References: <3ab66fab-c3f2-4bed-a04d-a10c57dcdd9b@xenosoft.de>
+ <86zfqzhgys.wl-maz@kernel.org>
+ <ccf14173-9818-44ef-8610-db2900c67ae8@xenosoft.de>
+Date: Thu, 04 Jul 2024 21:53:32 +1000
+Message-ID: <874j95jrur.fsf@mail.lhotse>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: timer: sprd-timer: convert to YAML
-To: Stanislav Jakubek <stano.jakubek@gmail.com>,
- Daniel Lezcano <daniel.lezcano@linaro.org>,
- Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Orson Zhai <orsonzhai@gmail.com>,
- Baolin Wang <baolin.wang7@gmail.com>, Chunyan Zhang <zhang.lyra@gmail.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <ZoU95lBgoyF/8Md3@standask-GA-A55M-S2HP>
-From: Baolin Wang <baolin.wang@linux.alibaba.com>
-In-Reply-To: <ZoU95lBgoyF/8Md3@standask-GA-A55M-S2HP>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+
+Christian Zigotzky <chzigotzky@xenosoft.de> writes:
+> On 02.07.24 18:54, Marc Zyngier wrote:
+>> On Sun, 30 Jun 2024 11:21:55 +0100,
+>> Christian Zigotzky <chzigotzky@xenosoft.de> wrote:
+>>> Hello,
+>>>
+>>> There is an issue with the identification of ATA drives with our
+>>> P.A. Semi Nemo boards [1] after the
+>>> commit "of/irq: Factor out parsing of interrupt-map parent
+>>> phandle+args from of_irq_parse_raw()" [2].
+...
+>>
+>> --- a/drivers/of/irq.c
+>> +++ b/drivers/of/irq.c
+>> @@ -282,8 +282,10 @@ int of_irq_parse_raw(const __be32 *addr, struct of_phandle_args *out_irq)
+>>   
+>>   			oldimap = imap;
+>>   			imap = of_irq_parse_imap_parent(oldimap, imaplen, out_irq);
+>> -			if (!imap)
+>> -				goto fail;
+>> +			if (!imap) {
+>> +				match = 0;
+>> +				break;
+>> +			}
+>>   
+>>   			match &= of_device_is_available(out_irq->np);
+>>   			if (match)
+>>
+>>
+> We tested this patch yesterday and it solves the boot problem.
+
+Hi Christian,
+
+Instead of that patch, can you try the one below. AFAICS the device tree
+fixups done in early boot mean the interrupt-map is not needed, and also
+has the wrong content, so if we can remove it entirely that might avoid
+the problems in the parsing code.
+
+I don't know if your firmware actually implements those methods, I
+couldn't find anything online to confirm or deny it. Seems the only
+option is to test it.
+
+cheers
 
 
-
-On 2024/7/3 20:02, Stanislav Jakubek wrote:
-> Convert the Spreadtrum SC9860 timer bindings to DT schema.
-> 
-> Changes during conversion:
->    - rename file to match compatible
->    - add sprd,sc9860-suspend-timer which was previously undocumented
->    - minor grammar fix in description
-> 
-> Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
-
-Thanks.
-Reviewed-by: Baolin Wang <baolin.wang@linux.alibaba.com>
-
-> ---
->   .../bindings/timer/sprd,sc9860-timer.yaml     | 68 +++++++++++++++++++
->   .../bindings/timer/spreadtrum,sprd-timer.txt  | 20 ------
->   2 files changed, 68 insertions(+), 20 deletions(-)
->   create mode 100644 Documentation/devicetree/bindings/timer/sprd,sc9860-timer.yaml
->   delete mode 100644 Documentation/devicetree/bindings/timer/spreadtrum,sprd-timer.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/timer/sprd,sc9860-timer.yaml b/Documentation/devicetree/bindings/timer/sprd,sc9860-timer.yaml
-> new file mode 100644
-> index 000000000000..62c6da8bab5a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/timer/sprd,sc9860-timer.yaml
-> @@ -0,0 +1,68 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/timer/sprd,sc9860-timer.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Spreadtrum SC9860 timer
-> +
-> +maintainers:
-> +  - Orson Zhai <orsonzhai@gmail.com>
-> +  - Baolin Wang <baolin.wang7@gmail.com>
-> +  - Chunyan Zhang <zhang.lyra@gmail.com>
-> +
-> +description:
-> +  The Spreadtrum SC9860 platform provides 3 general-purpose timers.
-> +  These timers can support 32bit or 64bit counter, as well as supporting
-> +  period mode or one-shot mode, and they can be a wakeup source
-> +  during deep sleep.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - sprd,sc9860-timer
-> +      - sprd,sc9860-suspend-timer
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: sprd,sc9860-timer
-> +    then:
-> +      required:
-> +        - interrupts
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    soc {
-> +      #address-cells = <2>;
-> +      #size-cells = <2>;
-> +
-> +      timer@40050000 {
-> +        compatible = "sprd,sc9860-timer";
-> +        reg = <0 0x40050000 0 0x20>;
-> +        interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
-> +        clocks = <&ext_32k>;
-> +      };
-> +    };
-> +...
-> diff --git a/Documentation/devicetree/bindings/timer/spreadtrum,sprd-timer.txt b/Documentation/devicetree/bindings/timer/spreadtrum,sprd-timer.txt
-> deleted file mode 100644
-> index 6d97e7d0f6e8..000000000000
-> --- a/Documentation/devicetree/bindings/timer/spreadtrum,sprd-timer.txt
-> +++ /dev/null
-> @@ -1,20 +0,0 @@
-> -Spreadtrum timers
-> -
-> -The Spreadtrum SC9860 platform provides 3 general-purpose timers.
-> -These timers can support 32bit or 64bit counter, as well as supporting
-> -period mode or one-shot mode, and they are can be wakeup source
-> -during deep sleep.
-> -
-> -Required properties:
-> -- compatible: should be "sprd,sc9860-timer" for SC9860 platform.
-> -- reg: The register address of the timer device.
-> -- interrupts: Should contain the interrupt for the timer device.
-> -- clocks: The phandle to the source clock (usually a 32.768 KHz fixed clock).
-> -
-> -Example:
-> -	timer@40050000 {
-> -		compatible = "sprd,sc9860-timer";
-> -		reg = <0 0x40050000 0 0x20>;
-> -		interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
-> -		clocks = <&ext_32k>;
-> -	};
+diff --git a/arch/powerpc/kernel/prom_init.c b/arch/powerpc/kernel/prom_init.c
+index fbb68fc28ed3..28fe082ede57 100644
+--- a/arch/powerpc/kernel/prom_init.c
++++ b/arch/powerpc/kernel/prom_init.c
+@@ -3138,6 +3138,14 @@ static void __init fixup_device_tree_pasemi(void)
+ 
+ 	prom_setprop(iob, name, "interrupt-controller", &val, 0);
+ 
++	prom_printf("nemo: deleting interrupt-map properties\n");
++	rc = call_prom("interpret", 1, 1,
++		      " s\" /pxp@0,e0000000\" find-device"
++		      " s\" interrupt-map\" delete-property"
++		      " s\" interrupt-map-mask\" delete-property"
++		      " device-end");
++	prom_printf("nemo: interpret returned %d\n", rc);
++
+ 	pci_name = "/pxp@0,e0000000/pci@11";
+ 	node = call_prom("finddevice", 1, 1, ADDR(pci_name));
+ 	parent = ADDR(iob);
 
