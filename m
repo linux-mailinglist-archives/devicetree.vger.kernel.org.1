@@ -1,105 +1,161 @@
-Return-Path: <devicetree+bounces-83309-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83310-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3C61927E77
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 23:12:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F6BA927E7D
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 23:22:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 098741C22133
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 21:12:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 29EEC1C22777
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 21:22:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A1C813B2A9;
-	Thu,  4 Jul 2024 21:11:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93C9113D2B8;
+	Thu,  4 Jul 2024 21:22:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="EGhoQSVd"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="N15e8AiR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBCE01755B;
-	Thu,  4 Jul 2024 21:11:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 702D213D246;
+	Thu,  4 Jul 2024 21:22:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720127518; cv=none; b=izH5Dv6RqGci9+BfviWauX+maWgIBWHvL0UWA+i+Bi295F6NKYQh8kDycuKtHEjEwe1S7jApHFJmpkdTdgn/aihf/c60dES/IbcUwpLzabtcJtX2p2DO9qAfBw7k31lHu0CWislciCBNSvjqTNKDhnDtJoplIWaE/ezgk/ay5gQ=
+	t=1720128157; cv=none; b=jDF+1alUft5gwRKWdJhQgK9Oz9vVwEEbD9Fs+IBHN95HrG65IRnN1FVggheE6Cn97x4de+wETaq933XOHL+1E+jjgHs+b0bs3Q7dvtHDHM2CLvjwzkDwFEITVHhDpv8K8um/gU5Xj9DiR2b0cOIdMohEy8IfJ3JnamlBctj7wN4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720127518; c=relaxed/simple;
-	bh=1HtV605rr1/Y3GdSz1tJZ3XhiXaiq/FJwY3hYlYAuq8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=F0YwVyn2Mq37kO0fwry7CAuUERDkDomNlsA9x4XjGkiccURbDdRRH9rUdllcEm5KRxVxYJmgjruFe7p5sGKw0o3MaQHRmJlmSG4Kvq1cuJlwlRGMIsKt2gFvheSXZZUC1WSU1mDguieRkTBvSzeXvBmgnoIxSu4qGbvD1t71/UM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=EGhoQSVd; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=iS4Ki0FfgKFDGFlTkcQJD+T+q8NKxHbuR15GMQm4etM=; b=EGhoQSVdSKOnHDaL16nn+ug5Si
-	zukYO68rDkOFds4nGPLCNHEQqOgCqOEQWCETTUMe2dUduxmH08c11Mx7BWZTwuBcYBZJjiTDAoU58
-	CZLQgJ4qJ3Z6pdKLWJSm8tPF6s0tWy6vsPer5mn6jwS7/LUUYca1Yv2i+cCKMlD5f/4A=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1sPTjx-001qMx-7h; Thu, 04 Jul 2024 23:11:41 +0200
-Date: Thu, 4 Jul 2024 23:11:41 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Conor Dooley <conor@kernel.org>
-Cc: Kamil =?iso-8859-1?Q?Hor=E1k_=282N=29?= <kamilh@axis.com>,
-	florian.fainelli@broadcom.com,
-	bcm-kernel-feedback-list@broadcom.com, hkallweit1@gmail.com,
-	linux@armlinux.org.uk, davem@davemloft.net, edumazet@google.com,
-	kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v10 3/4] dt-bindings: ethernet-phy: add optional brr-mode
- flag
-Message-ID: <35d571bd-251d-45b5-9e4f-93c83d1a43c8@lunn.ch>
-References: <20240704140413.2797199-1-kamilh@axis.com>
- <20240704140413.2797199-4-kamilh@axis.com>
- <20240704-snitch-national-0ac33afdfb68@spud>
+	s=arc-20240116; t=1720128157; c=relaxed/simple;
+	bh=1Zu1gGORmacWVfCT7ud6HJOjHdkKGR/FUkFzDZWk0nQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=sGCacnIfwK6F3ZG9kyWzX0MHnpThgjkYibkv9lCaky/REmd2y2y5ljrUQG/u5M+xhS4yqgcZp73b3ih4RIGeVHgZVLLUmEKiWsmuLMB40JD5EvYglXSucxQA83Uct8LQ/DvfOj6tFqXV9dWQVPQ4XGrA/JLHTXgz1Pqlrvzeb00=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=N15e8AiR; arc=none smtp.client-ip=217.70.183.200
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 6636E20004;
+	Thu,  4 Jul 2024 21:22:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1720128152;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=onBW+se5+BtMcp5qnhtubaXPDp7r6YYWbW0Ehl7rFLo=;
+	b=N15e8AiRH0ck0gvHomMZjncrDUfKX8k8UDXEbIU2gqQROhfMLvrFLmTw4w+v2uNzi2cZqM
+	vvjsN5J3bcs276CI1Ma6CDZ8KyQig8vjWTOQshOeC2buQ5UrITxSceJdAuKxa5GCjNsY9x
+	Hh/45ZNrK8L3NZnnjq5ExkGHI0qTM2Fgv8eLQ518h9V+YDoAEQniusQulGIYM/Ch0fE5+P
+	ubjwFjdGD06kgpQuCi4ujm4VOCuRrmkpU9EeMUvZR/9hc7cA6Abd0Y1IPsi1EcY3G1MqvB
+	blGmmhdj+OC0BzMHr5gRIBcbGXpvDN2DW/pIisMpfOhmJCY+vDJ/8EJ3wZQzNw==
+Date: Thu, 4 Jul 2024 23:22:22 +0200
+From: Luca Ceresoli <luca.ceresoli@bootlin.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Conor Dooley
+ <conor@kernel.org>, "devicetree@vger.kernel.org"
+ <devicetree@vger.kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>, Saravana
+ Kannan <saravanak@google.com>, linux-kernel@vger.kernel.org, =?UTF-8?Q?He?=
+ =?UTF-8?Q?rv=C3=A9?= Codina <herve.codina@bootlin.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>
+Subject: Re: Fixing property memory leaks on device tree overlay removal
+Message-ID: <20240704232222.7557dfa0@booty>
+In-Reply-To: <CAL_JsqJ1aKP=9VdAxjWvjZdyD0tYPhKSZKa1kAnQwPv4sBpbtA@mail.gmail.com>
+References: <20240624232122.3cfe03f8@booty>
+	<CAL_Jsq+=mGEJXsjq1UZFMJtHko_z+doiFMXnx9K7exDuznymSA@mail.gmail.com>
+	<20240627145741.77ddccbf@booty>
+	<CAL_JsqJ1aKP=9VdAxjWvjZdyD0tYPhKSZKa1kAnQwPv4sBpbtA@mail.gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240704-snitch-national-0ac33afdfb68@spud>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-GND-Sasl: luca.ceresoli@bootlin.com
 
-> > ---
-> >  Documentation/devicetree/bindings/net/ethernet-phy.yaml | 8 ++++++++
-> >  1 file changed, 8 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/net/ethernet-phy.yaml b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-> > index 8fb2a6ee7e5b..349ae72ebf42 100644
-> > --- a/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-> > +++ b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-> > @@ -93,6 +93,14 @@ properties:
-> >        the turn around line low at end of the control phase of the
-> >        MDIO transaction.
-> >  
-> > +  brr-mode:
-> > +    $ref: /schemas/types.yaml#/definitions/flag
-> > +    description:
-> > +      If set, indicates the network cable interface is alternative one as
-> > +      defined in the BroadR-Reach link mode specification under 1BR-100 and
-> > +      1BR-10 names. The driver needs to configure the PHY to operate in
-> > +      BroadR-Reach mode.
+Hello Rob,
+
+On Wed, 3 Jul 2024 15:08:11 -0600
+Rob Herring <robh@kernel.org> wrote:
+
+> > > I need to study this more, but a notifier is never a great design so
+> > > maybe we can come up with something better.  
+> >
+> > Do you have specific ideas in mind? I'm very interested in knowing
+> > alternative options.  
 > 
-> I find this second sentence unclear. Does the driver need to do
-> configure the phy because this mode is not enabled by default or because
-> the device will not work outside of this mode.
+> Like I said, need to study it more... Perhaps just remove notifying on
+> properties. I think properties changing at any point in time is
+> difficult to support and we just shouldn't support that other than a
+> few exceptions like "status". Or we could have a "node changed"
+> notifier and then it's the client's problem to figure out what
+> property changed.
 
-BroadR-Reach uses one pair. Standard 10/100Mbps ethernet needs 2 pair,
-and 1G needs 4 pair. So any attempt to use standard 10/100/1G is going
-to fail, the socket/plug and cable just don't work for anything other
-than BroadR-Reach.
+At first glance it makes sense. And, reassuring, I'm not using property
+notifiers in my code.
 
-As far as i understand it, the PHY could be strapped into BroadR-Reach
-mode, but there is no guarantee it is, so we should also program it to
-BroadR-Reach mode if this property is present.
+> > > > Once all call sites are updated to the new API, the old API can be
+> > > > removed entirely along with the deadprops list and the
+> > > > CONFIG_EXPORT_UNSAFE_OF_ACCESSORS Kconfig symbol.  
+> > >
+> > > I don't like the kconfig symbol even if it is temporary. How does it
+> > > get configured for a multi-platform kernel?  
+> >
+> > First of all: this kconfig symbol is useful only if the goal is to
+> > remove all property-leaking APIs.
+> >
+> > The idea is to use it as a guard: if a defconfig builds with it set to
+> > 'n', then all the code enabled in that defconfig is not using any
+> > "unsafe" accessor. Meaning: we haven't removed all accessors from the
+> > whole kernel, but from the subset of the kernel that this defconfig is
+> > building.
+> >
+> > For multi-platform kernels it is not much relevant in the short term.
+> > If/when at some point we will be able to set it to 'n' in one of them
+> > (e.g. arch/arm64/configs/defconfig) that would mean a large percentage
+> > of call sites have been removed, and (even more important) _no_ call
+> > sites will be added anymore or the defconfiig will fail immediately.
+> >
+> > And I think it should be a requirement for any driver loading/unloading
+> > overlays, so that one cannot even load an overlay without fixing all
+> > the call sites. I think this is the most relevant usefulness in the
+> > short term: either you call unsafe accessors or you load overlays, not
+> > both.  
+> 
+> Sure, but that can be runtime. If you load overlays, then you'll get
+> warnings for calling unsafe accessors on the nodes associated with the
+> overlay.
 
-	Andrew
+I got your position, thanks for taking time to provide more details.
+
+> > > > Note there is no "convert all call sites" in the plan. The amount of
+> > > > drivers alone is huge, and converting all of them would not be doable
+> > > > entirely by us both in terms of amount of work and for lack of hardware
+> > > > to test the changes.  
+> > >
+> > > That would only be necessary if we allow any change everywhere in a DT
+> > > on every system. IOW, if we accepted the userspace configfs overlay
+> > > applying patchset. If things are constrained to specific systems and
+> > > specific parts of a DT (e.g. under a connector node), then it is a lot
+> > > fewer pieces to fix. If powerpc is excluded for example, that alone
+> > > eliminates a bunch of code and drivers to worry about.  
+> >
+> > Bottom line, I think the takeaway is that in your opinion removing the
+> > unsafe property accessors is not a requirement for accepting a driver
+> > that loads/unloads an overlay. Only having zero warnings for the
+> > specific overlay is a requirement. Correct?  
+> 
+> Right, assuming unsafe property accessors warn or we can deem it safe
+> in some other way. For example, we've had fixup overlays which fixed
+> old bindings to new ones in tree. Those were safe as they are never
+> removed and are applied before the affected driver probed.
+
+I see, good to know.
+
+Luca
+
+-- 
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
