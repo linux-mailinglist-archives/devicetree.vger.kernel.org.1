@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-83146-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83147-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD2F892756E
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 13:47:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 026EE927576
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 13:49:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1AC8F1C21B8B
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 11:47:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B22AB2820F8
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 11:49:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 162701AC246;
-	Thu,  4 Jul 2024 11:47:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64E011AB51E;
+	Thu,  4 Jul 2024 11:49:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="GEDz0Cpe"
+	dkim=pass (1024-bit key) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="rmU1cJKQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from out30-132.freemail.mail.aliyun.com (out30-132.freemail.mail.aliyun.com [115.124.30.132])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E96F31AB514;
-	Thu,  4 Jul 2024 11:46:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8B7416F0D5;
+	Thu,  4 Jul 2024 11:49:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=115.124.30.132
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720093620; cv=none; b=cPYOQa4qM0MvkVeGmvYosZYCqZczvhvgh2FyDYLmeE0YhvmCCS+1EcNe0jOi/q6JA/zEcNxJG7HzYYAqiuXh0MM3c2cy7uYdYThCXWoHgVi+LibVl3FGHB7scL3wGvXlYxF99Ey7LXOweE+CmIWmtUQn+7l636DHtuRaoOGMk0w=
+	t=1720093754; cv=none; b=TLzNLy4uGQagpRFioIb1fVp8phkKccvHF7z/1P18T2LiRZiSEei4kd8K4zDk4GSPQyQL/jir76xmaxR3BJgkGxkWITpUdNJ+DPBIMma4zwXLHaU45ReDtaSXncNIeIcykpKhdr7VSYWmo9smWjedt7dwDEMKzUh+QMui/iMKNJ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720093620; c=relaxed/simple;
-	bh=ZzjdEOYiQi74Xl8Oe1HIoYpWaQVx43+ymIJ2BdS2yXE=;
+	s=arc-20240116; t=1720093754; c=relaxed/simple;
+	bh=+ZO4E8s2E70xagRUNoHmxIKLlEHfBkwR8G9jUKMb5R4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bBwo95r6hP+kkygtUn1/gcYm15w0kAfZllL0fX65wC+wi1JlK/V7uxZ33FJ6uxTTbPoit2Bk5gfCFaQhwPaQy/HhgCVdYmi7/SibTpjx6rJZOZwu46CJLDPoqaHcy33r4GUoIIMuLVhrag8xadZDdgaX+vDC/ZUudq8Fpjou09A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.alibaba.com; spf=pass smtp.mailfrom=linux.alibaba.com; dkim=pass (1024-bit key) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b=GEDz0Cpe; arc=none smtp.client-ip=115.124.30.132
+	 In-Reply-To:Content-Type; b=YwiICrCxK0hUssfzr3b1LwxThdnHRkm6DTiqee+wGToGL5+udpShZXoBK+1apzZ6XQigSnnYEAIkc3PoL1W6C2WD54J9XwoVSEA9Tcuga79UNe4WPbTNl9jUaeCo2yYeKfFw88HkXO1BuvsSUl8A/H73j8sZUkrO+MaRrQ+DDWE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.alibaba.com; spf=pass smtp.mailfrom=linux.alibaba.com; dkim=pass (1024-bit key) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b=rmU1cJKQ; arc=none smtp.client-ip=115.124.30.132
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.alibaba.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.alibaba.com
 DKIM-Signature:v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=linux.alibaba.com; s=default;
-	t=1720093608; h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type;
-	bh=kFAPwFpQW+/4sfB3wXDzgFi5nuHijwnrZKGmyQsAwcU=;
-	b=GEDz0CpeyZF5jweENBL86optd1IJFXOcw/njBwYLCdavsLDLSqyfleuPAvquf0kvFgtZVpCSM5HRKTmuUXKFGmt4GiUl4YE0a3IOmsZXmldJvLATtc/E5CC4NtSwZM3NdMST4uI/J1QUjyWzYz7xzxYcbSzR00ClF7VcOg5jDEg=
-X-Alimail-AntiSpam:AC=PASS;BC=-1|-1;BR=01201311R141e4;CH=green;DM=||false|;DS=||;FP=0|-1|-1|-1|0|-1|-1|-1;HT=maildocker-contentspam033037067110;MF=baolin.wang@linux.alibaba.com;NM=1;PH=DS;RN=11;SR=0;TI=SMTPD_---0W9qikfx_1720093607;
-Received: from 30.97.56.65(mailfrom:baolin.wang@linux.alibaba.com fp:SMTPD_---0W9qikfx_1720093607)
+	t=1720093749; h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type;
+	bh=/8KlDc1Q1lXOp6OasZ6L+XmlH+f8Rq5x2AV+s1uBmwE=;
+	b=rmU1cJKQ9dKI6r3Bo9/h9FB3aBjHLFngWe2Ky8XBDTK2l2xYdQ4O55DtYtbmDFhGaTOxbS9M/ZthtRE8K9s8M6y6umU6wjpvDFwqzrLDHVAkvm6rbQmBkhhiwhg38YxIYpSiZK0usnnLa3pqg7z68CT6MEOJ+9+WU4EZerfe2lc=
+X-Alimail-AntiSpam:AC=PASS;BC=-1|-1;BR=01201311R401e4;CH=green;DM=||false|;DS=||;FP=0|-1|-1|-1|0|-1|-1|-1;HT=maildocker-contentspam033037067113;MF=baolin.wang@linux.alibaba.com;NM=1;PH=DS;RN=11;SR=0;TI=SMTPD_---0W9qn9fg_1720093748;
+Received: from 30.97.56.65(mailfrom:baolin.wang@linux.alibaba.com fp:SMTPD_---0W9qn9fg_1720093748)
           by smtp.aliyun-inc.com;
-          Thu, 04 Jul 2024 19:46:48 +0800
-Message-ID: <e4e9eddb-d5a8-4534-91eb-8dcdad593f5d@linux.alibaba.com>
-Date: Thu, 4 Jul 2024 19:46:47 +0800
+          Thu, 04 Jul 2024 19:49:08 +0800
+Message-ID: <648b121e-149c-417a-afd5-848348923721@linux.alibaba.com>
+Date: Thu, 4 Jul 2024 19:49:07 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -49,126 +49,140 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] dt-bindings: hwlock: sprd-hwspinlock: convert to YAML
+Subject: Re: [PATCH] dt-bindings: timer: sprd-timer: convert to YAML
 To: Stanislav Jakubek <stano.jakubek@gmail.com>,
- Bjorn Andersson <andersson@kernel.org>, baolin.wang7@gmail.com,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Orson Zhai <orsonzhai@gmail.com>,
- Chunyan Zhang <zhang.lyra@gmail.com>
-Cc: linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <ZoaJ04kASEs9M4f6@standask-GA-A55M-S2HP>
+ Daniel Lezcano <daniel.lezcano@linaro.org>,
+ Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Orson Zhai <orsonzhai@gmail.com>,
+ Baolin Wang <baolin.wang7@gmail.com>, Chunyan Zhang <zhang.lyra@gmail.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <ZoU95lBgoyF/8Md3@standask-GA-A55M-S2HP>
 From: Baolin Wang <baolin.wang@linux.alibaba.com>
-In-Reply-To: <ZoaJ04kASEs9M4f6@standask-GA-A55M-S2HP>
+In-Reply-To: <ZoU95lBgoyF/8Md3@standask-GA-A55M-S2HP>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
 
 
-On 2024/7/4 19:38, Stanislav Jakubek wrote:
-> Convert the Spreadtrum hardware spinlock bindings to DT schema.
+On 2024/7/3 20:02, Stanislav Jakubek wrote:
+> Convert the Spreadtrum SC9860 timer bindings to DT schema.
 > 
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> Changes during conversion:
+>    - rename file to match compatible
+>    - add sprd,sc9860-suspend-timer which was previously undocumented
+>    - minor grammar fix in description
+> 
 > Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
 
-LGTM. Thanks.
+Thanks.
 Reviewed-by: Baolin Wang <baolin.wang@linux.alibaba.com>
 
 > ---
-> Changes in V2:
->    - fix double space in example
->    - switch to #address-cells = <1> and #size-cells = <1> in example
->    - add Conor's R-b
+>   .../bindings/timer/sprd,sc9860-timer.yaml     | 68 +++++++++++++++++++
+>   .../bindings/timer/spreadtrum,sprd-timer.txt  | 20 ------
+>   2 files changed, 68 insertions(+), 20 deletions(-)
+>   create mode 100644 Documentation/devicetree/bindings/timer/sprd,sc9860-timer.yaml
+>   delete mode 100644 Documentation/devicetree/bindings/timer/spreadtrum,sprd-timer.txt
 > 
->   .../bindings/hwlock/sprd,hwspinlock-r3p0.yaml | 50 +++++++++++++++++++
->   .../bindings/hwlock/sprd-hwspinlock.txt       | 23 ---------
->   2 files changed, 50 insertions(+), 23 deletions(-)
->   create mode 100644 Documentation/devicetree/bindings/hwlock/sprd,hwspinlock-r3p0.yaml
->   delete mode 100644 Documentation/devicetree/bindings/hwlock/sprd-hwspinlock.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/hwlock/sprd,hwspinlock-r3p0.yaml b/Documentation/devicetree/bindings/hwlock/sprd,hwspinlock-r3p0.yaml
+> diff --git a/Documentation/devicetree/bindings/timer/sprd,sc9860-timer.yaml b/Documentation/devicetree/bindings/timer/sprd,sc9860-timer.yaml
 > new file mode 100644
-> index 000000000000..abe11df25761
+> index 000000000000..62c6da8bab5a
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwlock/sprd,hwspinlock-r3p0.yaml
-> @@ -0,0 +1,50 @@
+> +++ b/Documentation/devicetree/bindings/timer/sprd,sc9860-timer.yaml
+> @@ -0,0 +1,68 @@
 > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/hwlock/sprd,hwspinlock-r3p0.yaml#
+> +$id: http://devicetree.org/schemas/timer/sprd,sc9860-timer.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Spreadtrum hardware spinlock
+> +title: Spreadtrum SC9860 timer
 > +
 > +maintainers:
 > +  - Orson Zhai <orsonzhai@gmail.com>
 > +  - Baolin Wang <baolin.wang7@gmail.com>
 > +  - Chunyan Zhang <zhang.lyra@gmail.com>
 > +
+> +description:
+> +  The Spreadtrum SC9860 platform provides 3 general-purpose timers.
+> +  These timers can support 32bit or 64bit counter, as well as supporting
+> +  period mode or one-shot mode, and they can be a wakeup source
+> +  during deep sleep.
+> +
 > +properties:
 > +  compatible:
-> +    const: sprd,hwspinlock-r3p0
+> +    enum:
+> +      - sprd,sc9860-timer
+> +      - sprd,sc9860-suspend-timer
 > +
 > +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
 > +    maxItems: 1
 > +
 > +  clocks:
 > +    maxItems: 1
 > +
-> +  clock-names:
-> +    const: enable
-> +
-> +  '#hwlock-cells':
-> +    const: 1
-> +
 > +required:
 > +  - compatible
 > +  - reg
 > +  - clocks
-> +  - clock-names
-> +  - '#hwlock-cells'
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: sprd,sc9860-timer
+> +    then:
+> +      required:
+> +        - interrupts
 > +
 > +additionalProperties: false
 > +
 > +examples:
 > +  - |
-> +    #include <dt-bindings/clock/sprd,sc9860-clk.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
 > +
-> +    hwlock@40500000 {
-> +      compatible = "sprd,hwspinlock-r3p0";
-> +      reg = <0x40500000 0x1000>;
-> +      clocks = <&aon_gate CLK_SPLK_EB>;
-> +      clock-names = "enable";
-> +      #hwlock-cells = <1>;
+> +    soc {
+> +      #address-cells = <2>;
+> +      #size-cells = <2>;
+> +
+> +      timer@40050000 {
+> +        compatible = "sprd,sc9860-timer";
+> +        reg = <0 0x40050000 0 0x20>;
+> +        interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
+> +        clocks = <&ext_32k>;
+> +      };
 > +    };
 > +...
-> diff --git a/Documentation/devicetree/bindings/hwlock/sprd-hwspinlock.txt b/Documentation/devicetree/bindings/hwlock/sprd-hwspinlock.txt
+> diff --git a/Documentation/devicetree/bindings/timer/spreadtrum,sprd-timer.txt b/Documentation/devicetree/bindings/timer/spreadtrum,sprd-timer.txt
 > deleted file mode 100644
-> index 581db9d941ba..000000000000
-> --- a/Documentation/devicetree/bindings/hwlock/sprd-hwspinlock.txt
+> index 6d97e7d0f6e8..000000000000
+> --- a/Documentation/devicetree/bindings/timer/spreadtrum,sprd-timer.txt
 > +++ /dev/null
-> @@ -1,23 +0,0 @@
-> -SPRD Hardware Spinlock Device Binding
-> --------------------------------------
+> @@ -1,20 +0,0 @@
+> -Spreadtrum timers
 > -
-> -Required properties :
-> -- compatible : should be "sprd,hwspinlock-r3p0".
-> -- reg : the register address of hwspinlock.
-> -- #hwlock-cells : hwlock users only use the hwlock id to represent a specific
-> -	hwlock, so the number of cells should be <1> here.
-> -- clock-names : Must contain "enable".
-> -- clocks : Must contain a phandle entry for the clock in clock-names, see the
-> -	common clock bindings.
+> -The Spreadtrum SC9860 platform provides 3 general-purpose timers.
+> -These timers can support 32bit or 64bit counter, as well as supporting
+> -period mode or one-shot mode, and they are can be wakeup source
+> -during deep sleep.
 > -
-> -Please look at the generic hwlock binding for usage information for consumers,
-> -"Documentation/devicetree/bindings/hwlock/hwlock.txt"
+> -Required properties:
+> -- compatible: should be "sprd,sc9860-timer" for SC9860 platform.
+> -- reg: The register address of the timer device.
+> -- interrupts: Should contain the interrupt for the timer device.
+> -- clocks: The phandle to the source clock (usually a 32.768 KHz fixed clock).
 > -
-> -Example of hwlock provider:
-> -	hwspinlock@40500000 {
-> -		compatible  = "sprd,hwspinlock-r3p0";
-> -		reg = <0 0x40500000 0 0x1000>;
-> -		#hwlock-cells = <1>;
-> -		clock-names = "enable";
-> -		clocks = <&clk_aon_apb_gates0 22>;
+> -Example:
+> -	timer@40050000 {
+> -		compatible = "sprd,sc9860-timer";
+> -		reg = <0 0x40050000 0 0x20>;
+> -		interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
+> -		clocks = <&ext_32k>;
 > -	};
 
