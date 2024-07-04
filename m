@@ -1,55 +1,52 @@
-Return-Path: <devicetree+bounces-83077-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83078-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 096179271B5
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 10:30:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CB5E29271D5
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 10:35:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B88182837F3
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 08:29:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8410D285120
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 08:35:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B9F71A3BC8;
-	Thu,  4 Jul 2024 08:29:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCEAE1A4F24;
+	Thu,  4 Jul 2024 08:35:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="RJ7VLSBu"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="WUyqWIIg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0E8E1822E2;
-	Thu,  4 Jul 2024 08:29:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B0931A4F1C;
+	Thu,  4 Jul 2024 08:35:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720081796; cv=none; b=IsS0m1tVu49/qSe/MzLtA6klbwmnRo7Hdtm8M7TiEttgpuoxhRimkO4cADf6C9zFct/HrzFaKV7iJzt1oq1g8xYieCdmOdyyvdTZaLD2Cy2mo270pj5ORw0fwkkCnyLuoO+WNgw/6ADBeM4okMBfWJsTXC75hXZMz+Y6QevmkS8=
+	t=1720082132; cv=none; b=F6+p18tf2S02BVYISEEDyp7090ffbf9hgKl4VFDWMFupndTVESPLrwkvUPTMm+HAyv4dMDs9JoqqPRkBv6lqITISRWkXuHMmnNyo+amRMX5lrmWJL0ku324QOyZVgSrUTQ9dUbSjks3NgKjRVoEJS6zdCICWquJ9+OYx6hmgFcc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720081796; c=relaxed/simple;
-	bh=+1mAHgPt3THuLbRBMxm88DU/XThtegA8e9GHYVcJVnk=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=U0TcISNopitWmUdA6OLH8EeoE6tSzoAcfCOlEsvpYTY6fzb39x8wZoC0Rj5qrBAXTlZVGygkQ8ZN1HT353cOWnTlY6keYg5JCl59p4YTxKX69LGsoqgyTrviQaf3+tgzULEXaZur/c3kwiZbVhO7qYzG6xvP+E1E5SYs8CJFRb8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=RJ7VLSBu; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1720081793;
-	bh=+1mAHgPt3THuLbRBMxm88DU/XThtegA8e9GHYVcJVnk=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=RJ7VLSBu70E4JQRr8j/FTeeGrJ+6X7wJcoARYxTLPL8lZTnJ4MCuDJlZhdtbkkQCB
-	 6rCyD8yztQlLHrJ2bsPSHiYBveTKrY7WFM9fTSItwyinCLM4vx5UPP5uThlpLkQe+z
-	 phAvHnj9Ux6sWNYJJu5bEnDLblXi6KYDWbK/EWwy+55dERsxki7uPPemYkpHjvQKuM
-	 HbJxUTJUgX6xoXvKEYJMM0IPGbGLYsVPqGIg60xk4rsMNaUJCEL6dfb96BXWS3j60Y
-	 LFMQgwbQ8+d2HJhkBZe4lhnTCDnUMpXxz+eQa3pYgiJUQpgSiaxgfq9M1AhbH7OD4w
-	 L+CIbs+QkgSew==
-Received: from [100.115.223.179] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: cristicc)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 2825637821A8;
-	Thu,  4 Jul 2024 08:29:52 +0000 (UTC)
-Message-ID: <4e7b019c-f685-4370-9f67-f45e0bcbc626@collabora.com>
-Date: Thu, 4 Jul 2024 11:29:51 +0300
+	s=arc-20240116; t=1720082132; c=relaxed/simple;
+	bh=ha80nLRuPkxl6TD3WGhJxFUjmnwZGetl3R4YGxxUPRg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=K5cuqUwYjdJlQyaJ1KlYHAFcJ6QgLPD+x3q4nmRLz1Cv3nNMkCat11CCbG0GTPv5QJSepsydn4jqxwTae+v54jh5ikYuKN6LHlSrQKDeCXxU294hvsT7NVEEJ8eUoE8wZ+LWtNQ6n2V0xajTSaZLe88VRoyEOZS6imsJYYe6PQI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=WUyqWIIg; arc=none smtp.client-ip=217.70.183.196
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id A56C3E0006;
+	Thu,  4 Jul 2024 08:35:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1720082128;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=VWar8m3O4fo/jZOi8A6VIxRWgKYWwe4SDSJKBXm4MU8=;
+	b=WUyqWIIgLtb7ykFLsUTyM+0/eHHcIhl5IRjvw2bfVzhIjxXfCwGVhH1pwDAF7crb5ffXu4
+	cORDlXxTlzHgnTdNGHo8uxhVGRZKgXBA9owVfPuSPdG3tcV8HN1G8CBnQopHwcG5SJeK8H
+	BvBfeOHHL9L9NoEuDbh24zce/yRjNMbY6HLX39ovWFAXjSe9Jr40Veeuu209ulSqFDaSFD
+	X1hUKGz6XVt34aElqd5YYkObjRogHKEAdZqAXHnDnLp2kP6g5wEHE6qv59gLVmY/SCSMkZ
+	SABmtWRB7y6xLa1EKLnaz0mID5g2lObdb/lF9i6JUanYXdQi+TFsY1yJaQlrlQ==
+Message-ID: <8d368347-7cee-41af-a033-c495eeb62e2a@bootlin.com>
+Date: Thu, 4 Jul 2024 10:35:25 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,79 +54,77 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/4] Add clock provider support to Rockchip RK3588 HDMI
- TX PHY
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-To: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
- <kishon@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Algea Cao <algea.cao@rock-chips.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: kernel@collabora.com, linux-phy@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20240620-rk3588-hdmiphy-clkprov-v2-0-6a2d2164e508@collabora.com>
+Subject: Re: [PATCH 1/3] dt-bindings: iio: adc: sophgo,cv18xx-saradc.yaml: Add
+ Sophgo SARADC binding documentation
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Albert Ou <aou@eecs.berkeley.edu>, Palmer Dabbelt <palmer@dabbelt.com>,
+ Paul Walmsley <paul.walmsley@sifive.com>,
+ Inochi Amaoto <inochiama@outlook.com>, Chen Wang <unicorn_wang@outlook.com>,
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
+ Rob Herring <robh@kernel.org>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ =?UTF-8?Q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ Lars-Peter Clausen <lars@metafoo.de>, linux-kernel@vger.kernel.org,
+ linux-riscv@lists.infradead.org
+References: <20240702-sg2002-adc-v1-0-ac66e076a756@bootlin.com>
+ <20240702-sg2002-adc-v1-1-ac66e076a756@bootlin.com>
+ <b7913f90-7405-4a77-9c57-97ef124de6e1@kernel.org>
 Content-Language: en-US
-In-Reply-To: <20240620-rk3588-hdmiphy-clkprov-v2-0-6a2d2164e508@collabora.com>
-Content-Type: text/plain; charset=UTF-8
+From: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+In-Reply-To: <b7913f90-7405-4a77-9c57-97ef124de6e1@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+X-GND-Sasl: thomas.bonnefille@bootlin.com
 
-Hi Vinod,
+Hello Krzysztof,
+Thank you for your feedback
 
-Please let me know if there are any additional items required for this
-series to be picked up.
+On 7/3/24 7:08 AM, Krzysztof Kozlowski wrote:
+> On 02/07/2024 13:52, Thomas Bonnefille wrote:
+>> The Sophgo SARADC is a Successive Approximation ADC that can be found in
+>> the Sophgo SoC.
+>>
+>> Signed-off-by: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+>> ---
+>>   .../bindings/iio/adc/sophgo,cv18xx-saradc.yaml     | 51 ++++++++++++++++++++++
+>>   MAINTAINERS                                        |  5 +++
+>>   2 files changed, 56 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/iio/adc/sophgo,cv18xx-saradc.yaml b/Documentation/devicetree/bindings/iio/adc/sophgo,cv18xx-saradc.yaml
+>> new file mode 100644
+>> index 000000000000..21fd5dc8e24e
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/iio/adc/sophgo,cv18xx-saradc.yaml
+>> @@ -0,0 +1,51 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/iio/adc/sophgo,cv18xx-adc.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Sophgo 3 channels Successive Approximation Analog to Digital Converters
+>> +
+>> +maintainers:
+>> +  - Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+>> +
+>> +description:
+>> +  Datasheet at https://github.com/sophgo/sophgo-doc/releases
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: sophgo,cv18xx-saradc
+> 
+> Except that this was never tested... wild-cards are generally not allowed.
+> 
 
-Thanks,
-Cristian
+I realized I made a mistake when using the "make dt_binding_check" 
+command, which led to some errors in this dt_binding. I have now 
+addressed all of them, but I'm not sure I understand your comment.
 
-On 6/20/24 3:36 AM, Cristian Ciocaltea wrote:
-> The HDMI PHY PLL can be used as an alternative clock source to RK3588
-> SoC CRU. Since it provides more accurate clock rates, it can be used by
-> VOP2 to improve display modes handling, such as supporting non-integer
-> refresh rates.
-> 
-> The first two patches in the series provide a couple of fixes and
-> improvements to the existing HDPTX PHY driver, while the next two add
-> the necessary changes to support the clock provider functionality.
-> 
-> To: Vinod Koul <vkoul@kernel.org>
-> To: Kishon Vijay Abraham I <kishon@kernel.org>
-> To: Heiko Stuebner <heiko@sntech.de>
-> To: Algea Cao <algea.cao@rock-chips.com>
-> To: Rob Herring <robh@kernel.org>
-> To: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> To: Conor Dooley <conor+dt@kernel.org>
-> Cc: kernel@collabora.com
-> Cc: linux-phy@lists.infradead.org
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-rockchip@lists.infradead.org
-> Cc: linux-kernel@vger.kernel.org
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-> 
-> --- Changes in v2:
-> - Collected Reviewed-by tag from Heiko on PATCH 1 & 2, and Acked-by from
->   Krzysztof on PATCH 3
-> - Updated PATCH 4 to make use of a forced consumer put in
->   rk_hdptx_phy_power_on() and rk_hdptx_phy_clk_unprepare()
-> - Link to v1: https://lore.kernel.org/r/20240618-rk3588-hdmiphy-clkprov-v1-0-80e4aa12177e@collabora.com
-> 
-> ---
-> Cristian Ciocaltea (4):
->       phy: phy-rockchip-samsung-hdptx: Explicitly include pm_runtime.h
->       phy: phy-rockchip-samsung-hdptx: Enable runtime PM at PHY core level
->       dt-bindings: phy: rockchip,rk3588-hdptx-phy: Add #clock-cells
->       phy: phy-rockchip-samsung-hdptx: Add clock provider support
-> 
->  .../bindings/phy/rockchip,rk3588-hdptx-phy.yaml    |   3 +
->  drivers/phy/rockchip/phy-rockchip-samsung-hdptx.c  | 206 +++++++++++++++++----
->  2 files changed, 176 insertions(+), 33 deletions(-)
-> ---
-> base-commit: 6906a84c482f098d31486df8dc98cead21cce2d0
-> change-id: 20240617-rk3588-hdmiphy-clkprov-f05f165ac029
-> 
-> _______________________________________________
-> Kernel mailing list -- kernel@mailman.collabora.com
-> To unsubscribe send an email to kernel-leave@mailman.collabora.com
-> This list is managed by https://mailman.collabora.com
+I don't see any wildcards in the YAML file. Could you please provide 
+more details on what you expect?
+
+Best regards,
+Thomas
 
