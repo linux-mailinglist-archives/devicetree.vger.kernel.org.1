@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-83044-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83045-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35EAE926FBF
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 08:40:55 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE98B926FCC
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 08:42:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E090028101A
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 06:40:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6DE29B2158D
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 06:42:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 200C01A08B7;
-	Thu,  4 Jul 2024 06:40:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C3A91A08B4;
+	Thu,  4 Jul 2024 06:42:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q2LI2Dmd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Xz/Srpr9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6F441A08B4;
-	Thu,  4 Jul 2024 06:40:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04078200A3;
+	Thu,  4 Jul 2024 06:42:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720075250; cv=none; b=lHZBOVVj3yN7BI8jZnobKYsOhx7hhtzfYTyNF8Xz0M5VUfaJiQVaJ42G3jrr0E+qoE1/EiRG/G6tb3C/YJVsIr7uIIcMeWBj+z4lpu+M0fWIHbxgL0tTa9TST0ir8G96l903P7VPA3JDzX8tb7H9EZp5Ym6CSgVBTGpHSkPqOVI=
+	t=1720075343; cv=none; b=Ts4DxB6Bx80PZm1uzRXCve8OBq+BCPt3/ElqxBKkLj1Glp7bUpXWnEmwgulOwRjLz1mRbjRQt0TOFuoVAcES2kMJIYg4LjMcBeK9bu3MwFWOqgVLt1sjYeMKhVO2BvRo44cLQfRqWAj4WIqf9ffntOXQBJ7Fm7tBw9NKUQ111as=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720075250; c=relaxed/simple;
-	bh=fjYHKXeXfcWPbTARVXxLxmg9e5bmuUZofo7yFQI5rFw=;
+	s=arc-20240116; t=1720075343; c=relaxed/simple;
+	bh=mEcx7gzb3oXAPtuaQcYIpFg5tcTgZumTilQBHIc62BY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=sqjUEZeNJnaXcBX9xkfHfT29mNOWWaoqokP8ETGcnlTTRbtnTvmIiENR+U3Xxfmp4zTj2/hzhjdYSHHpUZjd6fsJP0r+xUXneKjZZ5bSAOKpD2ni95zTi1YoeNrNzDa6zvO4fQwIJlPXUTcLkmgt9DwSAmFFGC+X07Dl9hzVfGU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q2LI2Dmd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E38B0C3277B;
-	Thu,  4 Jul 2024 06:40:43 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=RGFOCbQ+bG/As0VIgs/vUWz5FJISIisAXKEulhgvrdcqt1q9BlMZ9z2yX0mhqtnBK74/9GqTz9nvdplumHJzlRXEqfueBR+IXqb6OuAaXbm93/Mm/qofOgIESaCQlkfzZe8WQczd+Pbm6S58m/5nvaCydWVnc/ZNKahzKWJTGCI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Xz/Srpr9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F0290C3277B;
+	Thu,  4 Jul 2024 06:42:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720075249;
-	bh=fjYHKXeXfcWPbTARVXxLxmg9e5bmuUZofo7yFQI5rFw=;
+	s=k20201202; t=1720075342;
+	bh=mEcx7gzb3oXAPtuaQcYIpFg5tcTgZumTilQBHIc62BY=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Q2LI2DmdsmyFlqtHLUnStjr91RXoX3+Ymj5nrKZ6TbrGjR73sGJOGdIX/dhUwVjWq
-	 l/quqT94CcB5AXyZbMF7DHf0PFnL8OTPL4OD7qEczbLy4i9mzmtOY1xAP0ONfhqLzY
-	 WmoSzuickiin+gfaU00i5YaSana8v2oe/nYHEqNeaOENhWhhkxDDOeoXWVo8NZPHYh
-	 3WKEEi0+UyCe2hzRt4RSbq3BCcuty0y9m+CndzaCrdMTCIOxRw+ouFQAgCSf4AAAQt
-	 B1oEkJ75Qd+F7ECIXXL5eVBrP1l5WKMlgUr8ZgPYLNUxKTcDmUA8gvXduVs+cHBHXj
-	 iyuUkAJkqYW0g==
-Message-ID: <df291860-cbbe-4f94-a18d-00ae9cf905b1@kernel.org>
-Date: Thu, 4 Jul 2024 08:40:41 +0200
+	b=Xz/Srpr9M3EfMndkgvIfCh2T4pxbJ4KZwzyONQDf5J93+hN5JyKkHssuzSkTjeFvh
+	 1Vjkt0mXCKIbhPCE52czltMun5ygSz+6HnuKTBXgH6FwMcklTe6EbEGyHBhSsp/FSH
+	 RrYybu5DiHgatji0u5nu5RDyEuSIDcCNrCDIPOgRUAi+hCtHxV84YBqEKCJqc9Iwmy
+	 74BqcVlXxstcK1GY1VxSJ0htIw2OO9h5YvSOPE2mT2oN9nTjzNCjyOFEtWHVIanJqX
+	 4IizZkRdLUARxofF+fV43Y9OB+oHEpb4KWWneMSEfllp+M+/who61Kn/dQlPrL5jB/
+	 vqCo3EpjLM+xg==
+Message-ID: <bf0b9250-d45c-4f8e-907f-e7cec401dd68@kernel.org>
+Date: Thu, 4 Jul 2024 08:42:13 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,29 +50,28 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 01/12] dt-bindings: PCI: Add Broadcom STB 7712 SOC,
- update maintainer
-To: Jim Quinlan <james.quinlan@broadcom.com>, linux-pci@vger.kernel.org,
- Nicolas Saenz Julienne <nsaenz@kernel.org>,
+Subject: Re: [PATCH 1/3] dt-bindings: arm: fsl: Add Kontron i.MX8MP OSM-S
+ based boards
+To: Frieder Schrempf <frieder@fris.de>, Conor Dooley <conor+dt@kernel.org>,
+ devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ linux-kernel@vger.kernel.org, Li Yang <leoyang.li@nxp.com>,
+ Rob Herring <robh@kernel.org>, Shawn Guo <shawnguo@kernel.org>
+Cc: Frieder Schrempf <frieder.schrempf@kontron.de>,
+ Alexander Stein <alexander.stein@ew.tq-group.com>,
  Bjorn Helgaas <bhelgaas@google.com>,
- Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
- Cyril Brulebois <kibi@debian.org>, Stanimir Varbanov <svarbanov@suse.de>,
- bcm-kernel-feedback-list@broadcom.com, jim2101024@gmail.com
-Cc: Florian Fainelli <florian.fainelli@broadcom.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE"
- <linux-rpi-kernel@lists.infradead.org>,
- "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE"
- <linux-arm-kernel@lists.infradead.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
-References: <20240703180300.42959-1-james.quinlan@broadcom.com>
- <20240703180300.42959-2-james.quinlan@broadcom.com>
-Content-Language: en-US
+ Conor Dooley <conor.dooley@microchip.com>,
+ Gregor Herburger <gregor.herburger@ew.tq-group.com>,
+ Hiago De Franco <hiago.franco@toradex.com>,
+ Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+ Joao Paulo Goncalves <joao.goncalves@toradex.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Marco Felsch <m.felsch@pengutronix.de>,
+ Markus Niebel <Markus.Niebel@ew.tq-group.com>,
+ Tim Harvey <tharvey@gateworks.com>
+References: <20240702154413.968044-1-frieder@fris.de>
+ <20240702154413.968044-2-frieder@fris.de>
 From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -116,144 +115,19 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240703180300.42959-2-james.quinlan@broadcom.com>
+In-Reply-To: <20240702154413.968044-2-frieder@fris.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 03/07/2024 20:02, Jim Quinlan wrote:
-> - Update maintainer; Nicolas hasn't been active and it
->   makes more sense to have a Broadcom maintainer
-> - Add a driver compatible string for the new STB SOC 7712
-
-You meant device? Bindings are for hardware.
-
-> - Add two new resets for the 7712: "bridge", for the
->   the bridge between the PCIe core and the memory bus;
->   "swinit", the PCIe core reset.
-> - Order the compatible strings alphabetically
-> - Restructure the reset controllers so that the definitions
->   appear first before any rules that govern them.
-
-Please split cleanups from new device support.
-
+On 02/07/2024 17:43, Frieder Schrempf wrote:
+> From: Frieder Schrempf <frieder.schrempf@kontron.de>
 > 
-> Signed-off-by: Jim Quinlan <james.quinlan@broadcom.com>
-> ---
->  .../bindings/pci/brcm,stb-pcie.yaml           | 44 +++++++++++++++----
->  1 file changed, 36 insertions(+), 8 deletions(-)
+> Add the bindings for the Kontron i.MX8MP OSM-S SoM and carrier
+> boards.
 > 
-> diff --git a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> index 11f8ea33240c..a070f35d28d7 100644
-> --- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> @@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
->  title: Brcmstb PCIe Host Controller
->  
->  maintainers:
-> -  - Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-> +  - Jim Quinlan <james.quinlan@broadcom.com>
->  
->  properties:
->    compatible:
-> @@ -16,11 +16,12 @@ properties:
->            - brcm,bcm2711-pcie # The Raspberry Pi 4
->            - brcm,bcm4908-pcie
->            - brcm,bcm7211-pcie # Broadcom STB version of RPi4
-> -          - brcm,bcm7278-pcie # Broadcom 7278 Arm
->            - brcm,bcm7216-pcie # Broadcom 7216 Arm
-> -          - brcm,bcm7445-pcie # Broadcom 7445 Arm
-> +          - brcm,bcm7278-pcie # Broadcom 7278 Arm
->            - brcm,bcm7425-pcie # Broadcom 7425 MIPs
->            - brcm,bcm7435-pcie # Broadcom 7435 MIPs
-> +          - brcm,bcm7445-pcie # Broadcom 7445 Arm
-> +          - brcm,bcm7712-pcie # STB sibling SOC of Raspberry Pi 5
->  
->    reg:
->      maxItems: 1
-> @@ -95,6 +96,20 @@ properties:
->        minItems: 1
->        maxItems: 3
->  
-> +  resets:
-> +    items:
-> +      - description: reset for phy calibration
-> +      - description: reset for PCIe/CPU bus bridge
-> +      - description: reset for soft PCIe core reset
-> +      - description: reset for PERST# PCIe signal
+> Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
 
-This won't work and I doubt you tested your code. You miss minItems.
-
-> +
-> +  reset-names:
-> +    items:
-> +      - const: rescal
-> +      - const: bridge
-> +      - const: swinit
-> +      - const: perst
-
-This does not match what you have in conditional, so just keep min and
-max Items here.
-
-
-> +
->  required:
->    - compatible
->    - reg
-> @@ -118,13 +133,10 @@ allOf:
->      then:
->        properties:
->          resets:
-> -          items:
-> -            - description: reset controller handling the PERST# signal
-> -
-> +          minItems: 1
-
-maxItems instead. Why three resets should be valid?
-
-
->          reset-names:
->            items:
->              - const: perst
-> -
->        required:
->          - resets
->          - reset-names
-> @@ -136,12 +148,28 @@ allOf:
->      then:
->        properties:
->          resets:
-> +          minItems: 1
-> +        reset-names:
->            items:
-> -            - description: phandle pointing to the RESCAL reset controller
-> +            - const: rescal
-> +      required:
-> +        - resets
-> +        - reset-names
-
-Why?
-
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: brcm,bcm7712-pcie
-> +    then:
-> +      properties:
-> +        resets:
-> +          minItems: 3
-
-Again, you do not have 4 items here.
-
->  
->          reset-names:
->            items:
->              - const: rescal
-> +            - const: bridge
-> +            - const: swinit
->  
->        required:
->          - resets
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
