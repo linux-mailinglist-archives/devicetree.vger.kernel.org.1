@@ -1,111 +1,122 @@
-Return-Path: <devicetree+bounces-83195-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83196-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98196927825
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 16:20:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3DB1927839
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 16:23:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C9A2C1C2280E
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 14:20:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 309651C225F3
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 14:23:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A16D21B1424;
-	Thu,  4 Jul 2024 14:19:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F29171B0121;
+	Thu,  4 Jul 2024 14:23:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S9KKVb4z"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T5L1PTHs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 727AA1B121F;
-	Thu,  4 Jul 2024 14:19:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C93DC1B011E;
+	Thu,  4 Jul 2024 14:23:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720102766; cv=none; b=nqR4RKz75iDRwUHNqgpCunNaWK9A8sztO4s+F2hlsbXWkuK+dobj3xTpOr/9GvA9lgO9/tr/Maztw87psmF1zbJdZa0f6xnrTWCqWBVqH+QVQZEEFFftk8jGSSP++WkSvLu3Hv69W4k3AfPO6fDna/WnVw4J5BxqW8ulI4Sg0Fk=
+	t=1720103003; cv=none; b=hV76IgF9MxBwvfIWPaStoeXBeogmpanOpyvjWKxviOVjlinyCiVQaoXmdlJSu5gthc1Jc3ZiMeE0ryYt1C+SCzKaw8DPMmGlHtmnf/qtduaZYN459qi7g/d6bBoM8r8LB9hWiYkDD5FB8Ey0H+PflB5pmzU7Gc6nYieQ7s6ZYE4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720102766; c=relaxed/simple;
-	bh=rhtBhS/CBJwV8ITSg9IDBvbJbDtnj2UkM1J450xWCtY=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=H2fklJapiKaU6Ibw9psOBetkRUYEhXHofWjsPYWqQvK82wUyMbQ5h+TwH0ai2v4uTNiwMoQySiWRaT2RAJQovY3TL93VF3WOpOeUDSRN8ilfFniKNuQFGBrGGTsQlddK+9yKRa9c0bWjkUnYjINHanZ7/lJbQ83unI0f5iUPICg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S9KKVb4z; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A70D0C4AF0D;
-	Thu,  4 Jul 2024 14:19:22 +0000 (UTC)
+	s=arc-20240116; t=1720103003; c=relaxed/simple;
+	bh=EGbH6Yc9TIU9vUjeuIA0fyuMzfrqxE/18KKYoMkr8yA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=o64R8JStvGSvMFTRDMic5j1Nihj/VjobXtFuh4hrjN/cWS2CiIpRpeMFZZ9PprMHSRR1ls6B/iEYeyuAPCYfXmoDW98RfHCOuFzY+npvPxyjrgdGmRz/3bZu5C17nNMK6L7rQ4qm6Nr0MGPzy+Rnn80srQ8kYiBD1o8GDvFc0K0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T5L1PTHs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F632C3277B;
+	Thu,  4 Jul 2024 14:23:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720102766;
-	bh=rhtBhS/CBJwV8ITSg9IDBvbJbDtnj2UkM1J450xWCtY=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=S9KKVb4zR4ws4a4Ey1hdFcsOGe8qLy0xkejIdZvgG7OAEoXgzdWX6TM+hXVjmmTN1
-	 fsL4p1AEIEFJLKQckvIuKUih+RFCofhKka9wfVtybFfnFskAC7rJbXF/+2fRY+wh0t
-	 UWSWBycthso418WA90A344JZ5WEQzTuWVSka4VsRTtG6E6cvzCUnRZNUCFx7wDHEKN
-	 mEasV/UwQMeWeEmPZAQ1FA+CNd+DmU7r3dZtXmrGxMpsNZF5myzfp8NLTcuOwQ09zM
-	 nG5b03J68sPWoEpUeNgPn3T3Eq9wPeyw2jVQebxT1yp5pxa6Th0aPjCLRdRf7bSq2f
-	 obUBrjWV6kAfg==
-From: Will Deacon <will@kernel.org>
-To: Joerg Roedel <joro@8bytes.org>,
-	Robin Murphy <robin.murphy@arm.com>
-Cc: catalin.marinas@arm.com,
-	kernel-team@android.com,
-	Will Deacon <will@kernel.org>,
-	linux-acpi@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	iommu@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Hanjun Guo <guohanjun@huawei.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Len Brown <lenb@kernel.org>,
-	Jean-Philippe Brucker <jean-philippe@linaro.org>,
-	Andy Shevchenko <andy.shevchenko@gmail.com>,
-	Yong Wu <yong.wu@mediatek.com>
-Subject: Re: [PATCH v3 0/5] iommu: Remove iommu_fwspec ops
-Date: Thu,  4 Jul 2024 15:19:01 +0100
-Message-Id: <172010016495.204079.11503801872554345950.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <cover.1719919669.git.robin.murphy@arm.com>
-References: <cover.1719919669.git.robin.murphy@arm.com>
+	s=k20201202; t=1720103003;
+	bh=EGbH6Yc9TIU9vUjeuIA0fyuMzfrqxE/18KKYoMkr8yA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=T5L1PTHsYT7gnbf1dBeUmBmDO2/6xCIN7J6xXlOT19FIbV8q4toHDleQyaNg+IUZj
+	 4p/9bYOpsCfhE6NxTwe772E+LOP2lPA2GfoD2NcqnWjlA4VHaZAtPD9RSBuK+b8STz
+	 G5P/8SwZenjRFI8u2cg3tg0wezjIT73GwG5E5qIw/PPIPMjUCuEeB/rz38Dbzk4lmK
+	 Ql/Hr79+JdTRiyaVag7rOQHFCuIUE/7f/gJ4UL3sKlpMzqPPnLRwp09LXI4WCodExw
+	 w7vKU4h3eoBKEFe0eV0Mm8tFzlLYFr5LQgbqeCc1/9RwzLARzVJrfNVM18wQPN801G
+	 py9mB6QcQN6fA==
+Message-ID: <0fb942c5-fb3b-4f5d-ba96-c2544ff35d2a@kernel.org>
+Date: Thu, 4 Jul 2024 16:23:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/5] dt-bindings: adc: ad9467: support new parts
+To: Nuno Sa <nuno.sa@analog.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org
+Cc: Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+References: <20240704-dev-iio-ad9467-new-devs-v1-0-f1adfee921f7@analog.com>
+ <20240704-dev-iio-ad9467-new-devs-v1-4-f1adfee921f7@analog.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240704-dev-iio-ad9467-new-devs-v1-4-f1adfee921f7@analog.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, 02 Jul 2024 12:40:46 +0100, Robin Murphy wrote:
-> v2: https://lore.kernel.org/linux-iommu/cover.1718994350.git.robin.murphy@arm.com/
-> 
-> Hi all,
-> 
-> Just a quick update with an extra patch to avoid the mediatek-v1 driver
-> breaking (and I have now build-tested ARCH=arm to make sure, apologies
-> for being lazy before...)
-> 
-> [...]
+On 04/07/2024 11:25, Nuno Sa wrote:
+> Add support for new devices:
+>  * Analog Devices AD9652 16-bit 310 MSPS ADC;
+>  * Analog Devices AD9643 14-Bit, 170/210/250 MSPS ADC;
+>  * Analog Devices AD9649 14-bit 20/40/65/80 MSPS ADC.
 
-Applied to arm64 (fwspec-ops-removal), thanks!
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-[1/5] iommu/mediatek-v1: Clean up redundant fwspec checks
-      https://git.kernel.org/iommu/c/e7acc36f26b0
-[2/5] iommu: Resolve fwspec ops automatically
-      https://git.kernel.org/iommu/c/3f7c32091628
-[3/5] ACPI: Retire acpi_iommu_fwspec_ops()
-      https://git.kernel.org/iommu/c/78596b5c321c
-[4/5] OF: Simplify of_iommu_configure()
-      https://git.kernel.org/iommu/c/5f937bc48a6a
-[5/5] iommu: Remove iommu_fwspec ops
-      https://git.kernel.org/iommu/c/3e36c15fc1cc
+Best regards,
+Krzysztof
 
-Cheers,
--- 
-Will
-
-https://fixes.arm64.dev
-https://next.arm64.dev
-https://will.arm64.dev
 
