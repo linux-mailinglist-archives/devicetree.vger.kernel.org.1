@@ -1,315 +1,165 @@
-Return-Path: <devicetree+bounces-83020-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83021-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C153926E98
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 06:51:07 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A825926EA4
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 07:01:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BE95E1C21EBE
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 04:51:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E69ABB20A88
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 05:01:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2511D13CA81;
-	Thu,  4 Jul 2024 04:50:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 742D919B3EA;
+	Thu,  4 Jul 2024 05:01:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b="eNpH6fZ1"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="LcCwBpRN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 228B8143C59
-	for <devicetree@vger.kernel.org>; Thu,  4 Jul 2024 04:50:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 838BB19AD4F;
+	Thu,  4 Jul 2024 05:01:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720068649; cv=none; b=qe83tX2srCWU33l5SFqIBzF+NELaHLcG6F5UKuBC8uFHxW3cz/wdAsyhyYIznnQk+inCojkajByFviiA4GzeQwUq+p5RAK+MqBy2RiD12USs9DVUXEV4muv9rMZnOmphI1s2Ife9Gekd+CjwvCObif9AAge2G9xQvUs+SXVEUHk=
+	t=1720069312; cv=none; b=RoR7QyJMll8nXp90BGbserCgwug87RLamIgEi4O9sJYI+LiTp8ayOJRWnywBf6Q/e9KeZLC1vtEY1yep5OB1JKWqGcEn54OY7vfjcNuJ/IdE0Y+DqDDKJ93gw2S0c5TRH5ppiD9Yk3285WWAycVB8jEEIqFfHNBgb73qrNtABds=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720068649; c=relaxed/simple;
-	bh=NrDd/CFPb1cghbCYmwp/5w1J8wSLiTpRlpHxCdl2CFM=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=RyyzreiVQxPnDShw9vI+BVuDsxvDa7Y4+kHJRoA7eiMTetrgAcIFzOsWgYgUGQwL6x7wyjc2dCfqVSsfY6ip1iklRdz9YcPAeBDj8QZHXg9MIx8s2NEjCWhrrsxsdBYHw1rhwW2cg88F42Dqa3jYw9zWHTDib6Mra0vQ55fMmec=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com; dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b=eNpH6fZ1; arc=none smtp.client-ip=209.85.210.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com
-Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-7067435d376so197872b3a.0
-        for <devicetree@vger.kernel.org>; Wed, 03 Jul 2024 21:50:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=huaqin-corp-partner-google-com.20230601.gappssmtp.com; s=20230601; t=1720068645; x=1720673445; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+YEP4Pq59dsIwYHVB+3j/E35J2uSNOsK6zNODVCesHM=;
-        b=eNpH6fZ1NPTRMVTzujBUCoX3H7NFwW++bnSJimOFWanp8FY4Al4gaHhGCK+Djb9lxb
-         ET27OquG+lJACn5bQMh/z3MOzHr1yBE+EuYR1p0b+DgVGxpLG46dfo2WipGJVcJaXjBo
-         g3i6FPOLA7g0eH+8MQo//UpMaBBTa1ebL6z20wO7NPlw7MO31dUuRpCPG33tCpkg3m1S
-         k1Gol10Un2NeYUh7IlG8uS565domLZpdXgOoKLxmYv4ye+M5GQNWdym9TA+lmxXILGu4
-         rWj6aJm4o0YIVvY2XgaAcuMDB9xUer/yZR8O2hYJ9zC5m5/iUQ5tcClrBBHIN8p5PJxL
-         tM5Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720068645; x=1720673445;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+YEP4Pq59dsIwYHVB+3j/E35J2uSNOsK6zNODVCesHM=;
-        b=nP6066z7avkn3TS/Om9s6V2RRWl1xlNa0OsE2UtzaVCN+gVg3n26sFU2YEF1zJVabi
-         jjrH8HmohgpIf2qPG9GM8ycLQm0nVxQZw04aAv1/8fCWPjcxeQsVVkHdVGf2O6RpVvs7
-         SRpRV/xHGZrcMzvCD7NV2Fuqwb9pgwmQOsPVkT22fVpQGwbiGM3cU7N+M2eQZpIEOsLW
-         B2AcRUC2QRsiule83nrSiY/m9e3ASMj6ytH0zFO4pqAg6akcUijVLOjPAD1n4Td5sEkt
-         o6OUJCqiSRTxN8s1AuSHxoOYQmv2K1LFHjWgQ5FG62kZ2f/oU5y1FHIElu4UrVzCbx21
-         Yagw==
-X-Forwarded-Encrypted: i=1; AJvYcCWKtGD+oB7xpO2q7osSscVv9XWbK5VHSXU2ceSwHDC15qnJq+tea5dwVt7uyr4rOm9d6/B1ul8NFBvSCyiLu+LjRQ7+cyZ3R3T/iw==
-X-Gm-Message-State: AOJu0Yxz62B7ElNhOKiQUT+fGAzKwIByfy8ldhmvq500DdDLhqwz5mcz
-	a3SXtCyPpB4BmqI++b8JiSzd6+51dh+xVvbIRK6qeSMuoVP3hGGOawZ6unNam/g=
-X-Google-Smtp-Source: AGHT+IHuX5KUBMOSZtD7UAvek5USheWSgaTr64NI2c2gOrXik2u/mBbBLgPRtkMTdjpqPjSzpDJbLg==
-X-Received: by 2002:a05:6a00:99a:b0:707:fa61:1c6a with SMTP id d2e1a72fcca58-70b01b33706mr509515b3a.10.1720068645137;
-        Wed, 03 Jul 2024 21:50:45 -0700 (PDT)
-Received: from yc.huaqin.com ([116.66.212.162])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-70804a8ec1asm11291826b3a.188.2024.07.03.21.50.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Jul 2024 21:50:44 -0700 (PDT)
-From: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-To: sam@ravnborg.org,
-	neil.armstrong@linaro.org,
-	daniel@ffwll.ch,
-	dianders@chromium.org,
-	linus.walleij@linaro.org,
-	swboyd@chromium.org,
-	airlied@gmail.com,
-	dmitry.baryshkov@linaro.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	robh+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: lvzhaoxiong@huaqin.corp-partner.google.com,
-	dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-Subject: [PATCH v2 3/3] drm/panel: jd9365da: Break some CMDS into helper functions
-Date: Thu,  4 Jul 2024 12:50:17 +0800
-Message-Id: <20240704045017.2781991-4-yangcong5@huaqin.corp-partner.google.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240704045017.2781991-1-yangcong5@huaqin.corp-partner.google.com>
-References: <20240704045017.2781991-1-yangcong5@huaqin.corp-partner.google.com>
+	s=arc-20240116; t=1720069312; c=relaxed/simple;
+	bh=OYs1t1EmMEjWZgSl4Ptu8WjVFYsUOekGhU8TVwQVpks=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Msa0rtL9LVFYNv9cWoeTdzTVtkM6s1NuREXOiCWtiFoJZYAqgofEu/cy/0hxpnJeYsKtvc+cbmFfUUQSFj84EEfYH3J77an2Ojj2fl/4R85B9rRE6Nt/0D90UBwX8Ibg0xt4EbBDheGRxSVs+c1hBdl1MF6hjOXRzKoj3cCnWxg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=LcCwBpRN; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 463HXx4h031975;
+	Thu, 4 Jul 2024 05:01:04 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=iNcgdvMIwG/M4ntfOngIntDi
+	XupZN3NLrHQzlpVZhPk=; b=LcCwBpRNBTvo92+5XS2XYHmSYij/zXVq5K85orgv
+	HA7UFcXRBQ1oPvF0rZS2JXEDjBLrq4aG2wBT6ZoY/pK8cruN/crrebAMM45sVGNn
+	uVhJL4nStLDgND2l6olrqfBUyNepmAGFNcSl147KMGl88SA8Sbq1du8Di0b6KBEX
+	27Zu44HAWmquPhZMMtTRpEipZYgRGD0jTuFshiKNkBQrj+SGoln9Awnws2gFtlvs
+	2GAa9TTInMUbgLDnSvg8iX5NyvtMzIEp3SMCHMjQCFReF4ilCBe3tOOPn0eci4ge
+	GM7Qoz46Z0hCS2I6hDxufcv4UL5i9p6l2FG8/YAuXPxHsg==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 402abtth4p-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 04 Jul 2024 05:01:03 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA02.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 464512oD024693
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 4 Jul 2024 05:01:02 GMT
+Received: from hu-varada-blr.qualcomm.com (10.80.80.8) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Wed, 3 Jul 2024 22:00:54 -0700
+Date: Thu, 4 Jul 2024 10:30:50 +0530
+From: Varadarajan Narayanan <quic_varada@quicinc.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: <vireshk@kernel.org>, <nm@ti.com>, <sboyd@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <angelogioacchino.delregno@collabora.com>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <mturquette@baylibre.com>,
+        <ilia.lin@kernel.org>, <rafael@kernel.org>, <ulf.hansson@linaro.org>,
+        <quic_sibis@quicinc.com>, <quic_rjendra@quicinc.com>,
+        <quic_rohiagar@quicinc.com>, <abel.vesa@linaro.org>,
+        <otto.pflueger@abscue.de>, <danila@jiaxyga.com>,
+        <quic_ipkumar@quicinc.com>, <luca@z3ntu.xyz>,
+        <stephan.gerhold@kernkonzept.com>, <nks@flawful.org>,
+        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>
+Subject: Re: [PATCH v4 01/10] soc: qcom: cpr3: Fix 'acc_desc' usage
+Message-ID: <ZoYsguLOCnZjxOku@hu-varada-blr.qualcomm.com>
+References: <20240703091651.2820236-1-quic_varada@quicinc.com>
+ <20240703091651.2820236-2-quic_varada@quicinc.com>
+ <u4hzxnecdyow6h4vhddcp53tuxrqhbqu6cv4cznytihsyshzy4@lqxhsn3qvjbz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <u4hzxnecdyow6h4vhddcp53tuxrqhbqu6cv4cznytihsyshzy4@lqxhsn3qvjbz>
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: bEcWj8Bcx6_gILCbvWsYn4OcS9KhX2bf
+X-Proofpoint-ORIG-GUID: bEcWj8Bcx6_gILCbvWsYn4OcS9KhX2bf
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-03_18,2024-07-03_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0
+ priorityscore=1501 mlxscore=0 clxscore=1015 suspectscore=0 malwarescore=0
+ lowpriorityscore=0 phishscore=0 adultscore=0 spamscore=0 impostorscore=0
+ mlxlogscore=565 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2406140001 definitions=main-2407040035
 
-These panels have some common cmds (e0h~e3h,80h), let's break
-them into helper functions.
+On Wed, Jul 03, 2024 at 01:46:54PM +0300, Dmitry Baryshkov wrote:
+> On Wed, Jul 03, 2024 at 02:46:42PM GMT, Varadarajan Narayanan wrote:
+> > cpr3 code assumes that 'acc_desc' is available for SoCs
+> > implementing CPR version 4 or less. However, IPQ9574 SoC
+> > implements CPRv4 without ACC. This causes NULL pointer accesses
+> > resulting in crashes. Hence, check if 'acc_desc' is populated
+> > before using it.
+> >
+> > Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> > ---
+> > v4: Undo the acc_desc validation in probe function as that could
+> >     affect other SoC.
+> > ---
+> >  drivers/pmdomain/qcom/cpr3.c | 4 ++--
+> >  1 file changed, 2 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/drivers/pmdomain/qcom/cpr3.c b/drivers/pmdomain/qcom/cpr3.c
+> > index c7790a71e74f..6ceb7605f84d 100644
+> > --- a/drivers/pmdomain/qcom/cpr3.c
+> > +++ b/drivers/pmdomain/qcom/cpr3.c
+> > @@ -2399,12 +2399,12 @@ static int cpr_pd_attach_dev(struct generic_pm_domain *domain,
+> >  		if (ret)
+> >  			goto exit;
+> >
+> > -		if (acc_desc->config)
+> > +		if (acc_desc && acc_desc->config)
+> >  			regmap_multi_reg_write(drv->tcsr, acc_desc->config,
+> >  					       acc_desc->num_regs_per_fuse);
+> >
+> >  		/* Enable ACC if required */
+> > -		if (acc_desc->enable_mask)
+> > +		if (acc_desc && acc_desc->enable_mask)
+> >  			regmap_update_bits(drv->tcsr, acc_desc->enable_reg,
+> >  					   acc_desc->enable_mask,
+> >  					   acc_desc->enable_mask);
+>
+> Should the same fix be applied to other places which access acc_desc?
+> For example cpr_pre_voltage() and cpr_post_voltage() which call
+> cpr_set_acc()?
 
-Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
----
- .../gpu/drm/panel/panel-jadard-jd9365da-h3.c  | 89 +++++++++++--------
- 1 file changed, 53 insertions(+), 36 deletions(-)
+With this patch alone, if acc_desc is NULL, cpr_probe() will fail
+at the start itself because of this check
 
-diff --git a/drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c b/drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c
-index 5b525a111b90..04d315d96bff 100644
---- a/drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c
-+++ b/drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c
-@@ -48,6 +48,19 @@ struct jadard {
- 	struct gpio_desc *reset;
- };
- 
-+#define JD9365DA_DCS_SWITCH_PAGE	0xe0
-+
-+#define jd9365da_switch_page(dsi_ctx, page) \
-+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, JD9365DA_DCS_SWITCH_PAGE, (page))
-+
-+static void jadard_enable_standard_cmds(struct mipi_dsi_multi_context *dsi_ctx)
-+{
-+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, 0xe1, 0x93);
-+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, 0xe2, 0x65);
-+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, 0xe3, 0xf8);
-+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, 0x80, 0x03);
-+}
-+
- static inline struct jadard *panel_to_jadard(struct drm_panel *panel)
- {
- 	return container_of(panel, struct jadard, panel);
-@@ -198,12 +211,10 @@ static int radxa_display_8hd_ad002_init_cmds(struct jadard *jadard)
- {
- 	struct mipi_dsi_multi_context dsi_ctx = { .dsi = jadard->dsi };
- 
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xE0, 0x00);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xE1, 0x93);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xE2, 0x65);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xE3, 0xF8);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x80, 0x03);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xE0, 0x01);
-+	jd9365da_switch_page(&dsi_ctx, 0x00);
-+	jadard_enable_standard_cmds(&dsi_ctx);
-+
-+	jd9365da_switch_page(&dsi_ctx, 0x01);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x00, 0x00);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x01, 0x7E);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x03, 0x00);
-@@ -276,7 +287,8 @@ static int radxa_display_8hd_ad002_init_cmds(struct jadard *jadard)
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x80, 0x37);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x81, 0x23);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x82, 0x10);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xE0, 0x02);
-+
-+	jd9365da_switch_page(&dsi_ctx, 0x02);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x00, 0x47);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x01, 0x47);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x02, 0x45);
-@@ -360,13 +372,15 @@ static int radxa_display_8hd_ad002_init_cmds(struct jadard *jadard)
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x7C, 0x00);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x7D, 0x03);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x7E, 0x7B);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xE0, 0x04);
-+
-+	jd9365da_switch_page(&dsi_ctx, 0x04);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x00, 0x0E);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x02, 0xB3);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x09, 0x60);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x0E, 0x2A);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x36, 0x59);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xE0, 0x00);
-+
-+	jd9365da_switch_page(&dsi_ctx, 0x00);
- 
- 	return dsi_ctx.accum_err;
- };
-@@ -398,12 +412,10 @@ static int cz101b4001_init_cmds(struct jadard *jadard)
- {
- 	struct mipi_dsi_multi_context dsi_ctx = { .dsi = jadard->dsi };
- 
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xE0, 0x00);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xE1, 0x93);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xE2, 0x65);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xE3, 0xF8);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x80, 0x03);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xE0, 0x01);
-+	jd9365da_switch_page(&dsi_ctx, 0x00);
-+	jadard_enable_standard_cmds(&dsi_ctx);
-+
-+	jd9365da_switch_page(&dsi_ctx, 0x01);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x00, 0x00);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x01, 0x3B);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x0C, 0x74);
-@@ -471,7 +483,8 @@ static int cz101b4001_init_cmds(struct jadard *jadard)
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x80, 0x20);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x81, 0x0F);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x82, 0x00);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xE0, 0x02);
-+
-+	jd9365da_switch_page(&dsi_ctx, 0x02);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x00, 0x02);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x01, 0x02);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x02, 0x00);
-@@ -584,12 +597,14 @@ static int cz101b4001_init_cmds(struct jadard *jadard)
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x7A, 0x17);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x7D, 0x14);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x7E, 0x82);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xE0, 0x04);
-+
-+	jd9365da_switch_page(&dsi_ctx, 0x04);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x00, 0x0E);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x02, 0xB3);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x09, 0x61);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x0E, 0x48);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xE0, 0x00);
-+
-+	jd9365da_switch_page(&dsi_ctx, 0x00);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xE6, 0x02);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xE7, 0x0C);
- 
-@@ -623,12 +638,10 @@ static int kingdisplay_kd101ne3_init_cmds(struct jadard *jadard)
- {
- 	struct mipi_dsi_multi_context dsi_ctx = { .dsi = jadard->dsi };
- 
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xe0, 0x00);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xe1, 0x93);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xe2, 0x65);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xe3, 0xf8);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x80, 0x03);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xe0, 0x01);
-+	jd9365da_switch_page(&dsi_ctx, 0x00);
-+	jadard_enable_standard_cmds(&dsi_ctx);
-+
-+	jd9365da_switch_page(&dsi_ctx, 0x01);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x0c, 0x74);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x17, 0x00);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x18, 0xc7);
-@@ -694,7 +707,8 @@ static int kingdisplay_kd101ne3_init_cmds(struct jadard *jadard)
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x80, 0x26);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x81, 0x14);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x82, 0x02);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xe0, 0x02);
-+
-+	jd9365da_switch_page(&dsi_ctx, 0x02);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x00, 0x52);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x01, 0x5f);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x02, 0x5f);
-@@ -808,12 +822,14 @@ static int kingdisplay_kd101ne3_init_cmds(struct jadard *jadard)
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x76, 0x00);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x77, 0x05);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x78, 0x2a);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xe0, 0x04);
-+
-+	jd9365da_switch_page(&dsi_ctx, 0x04);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x00, 0x0e);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x02, 0xb3);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x09, 0x61);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x0e, 0x48);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xe0, 0x00);
-+
-+	jd9365da_switch_page(&dsi_ctx, 0x00);
- 
- 	return dsi_ctx.accum_err;
- };
-@@ -854,12 +870,10 @@ static int melfas_lmfbx101117480_init_cmds(struct jadard *jadard)
- {
- 	struct mipi_dsi_multi_context dsi_ctx = { .dsi = jadard->dsi };
- 
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xe0, 0x00);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xe1, 0x93);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xe2, 0x65);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xe3, 0xf8);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x80, 0x03);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xe0, 0x01);
-+	jd9365da_switch_page(&dsi_ctx, 0x00);
-+	jadard_enable_standard_cmds(&dsi_ctx);
-+
-+	jd9365da_switch_page(&dsi_ctx, 0x01);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x0c, 0x74);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x17, 0x00);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x18, 0xbf);
-@@ -932,7 +946,8 @@ static int melfas_lmfbx101117480_init_cmds(struct jadard *jadard)
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x80, 0x24);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x81, 0x12);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x82, 0x02);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xe0, 0x02);
-+
-+	jd9365da_switch_page(&dsi_ctx, 0x02);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x00, 0x52);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x01, 0x55);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x02, 0x55);
-@@ -1046,14 +1061,16 @@ static int melfas_lmfbx101117480_init_cmds(struct jadard *jadard)
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x76, 0x00);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x77, 0x05);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x78, 0x2a);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xe0, 0x04);
-+
-+	jd9365da_switch_page(&dsi_ctx, 0x04);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x02, 0x23);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x09, 0x11);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x0e, 0x48);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x36, 0x49);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x2b, 0x08);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x2e, 0x03);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xe0, 0x00);
-+
-+	jd9365da_switch_page(&dsi_ctx, 0x00);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xe6, 0x02);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xe7, 0x06);
- 
--- 
-2.25.1
+	if (!data->acc_desc && desc->cpr_type < CTRL_TYPE_CPRH)
+		return -EINVAL;
 
+After applying this patch series, cpr_probe will cross the above
+check to accomodate IPQ9574. However, the check below will ensure
+drv->tcsr is not initialized.
+
+	if (desc->cpr_type < CTRL_TYPE_CPRH &&
+	    !of_device_is_compatible(dev->of_node, "qcom,ipq9574-cpr4"))
+
+cpr_pre_voltage() and cpr_post_voltage() call cpr_set_acc() only
+if drv->tcsr is not NULL. Hence acc_desc need not be checked.
+
+Will add the check to cpr_pre_voltage() and cpr_post_voltage() if
+you feel it will make it more robust regardless of the changes to
+cpr_probe in future. Please let me know.
+
+Thanks
+Varada
 
