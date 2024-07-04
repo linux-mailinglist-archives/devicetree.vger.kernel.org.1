@@ -1,131 +1,105 @@
-Return-Path: <devicetree+bounces-83308-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83309-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7397E927E37
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 22:06:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3C61927E77
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 23:12:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2F66C28591D
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 20:06:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 098741C22133
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 21:12:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 174A4145A10;
-	Thu,  4 Jul 2024 20:04:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A1C813B2A9;
+	Thu,  4 Jul 2024 21:11:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kiQgKuhy"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="EGhoQSVd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43A6713D245;
-	Thu,  4 Jul 2024 20:04:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBCE01755B;
+	Thu,  4 Jul 2024 21:11:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720123468; cv=none; b=gO39EtjzyGWVBtHXh8gQfKAJxDBrspFMpJuq3ZbiaAqdQsVXgDXCiMZTAx2Mwi0DWmKh9fr0ocxKjvPnB9W+3W94x6e41x0ClE+vUmDkDGlQ9D3kGJqMFFLcGhHEb+NE117pZu/sb4SyMhoGv/cP0DZwkVhW5hq2mwdA9nDnufE=
+	t=1720127518; cv=none; b=izH5Dv6RqGci9+BfviWauX+maWgIBWHvL0UWA+i+Bi295F6NKYQh8kDycuKtHEjEwe1S7jApHFJmpkdTdgn/aihf/c60dES/IbcUwpLzabtcJtX2p2DO9qAfBw7k31lHu0CWislciCBNSvjqTNKDhnDtJoplIWaE/ezgk/ay5gQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720123468; c=relaxed/simple;
-	bh=IRg1OdfxSxvXT1sq0n2M0MkhmzQBEWJ5offR5cOD+xw=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=ZGZb1dLJNeqs4yxV8kH1txf/I3MHIQNbEyblIt7kUSDiZ1ztDGb9bVvmZMjGwNuE1zdm5bBn0tOZm+OggOpibrJvPibzmLky4zl6gxLubKnwjyK0maQs4rwF3x0Y45tIJWU24bWjj1phJ08ssz9upLF55X3WPIBwxXfkWY2KVOY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kiQgKuhy; arc=none smtp.client-ip=209.85.208.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-57cd26347d3so1354664a12.1;
-        Thu, 04 Jul 2024 13:04:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1720123464; x=1720728264; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=w6GqqCFWFVTzkawZoBGDseEtBHPCa6na2iuHXJweLRs=;
-        b=kiQgKuhyslWaCnO5f/Ui3oHsqFT2bjWEZMCALwyUYbbd0Dcci67Yek4vwb7NtZWkar
-         x9J5f1fEAqlfi0TjIp0NC1bS3ERxqMHF6/azdIe9IzrJRKg7l2TFXrZVwcCVuaVG0TOe
-         IJ+PYJhSyTZgKufFmc8caWAIi4CBX1Wtl8XLYRMfn6KSIEes2W5oE4gV7BbQhKw3cnos
-         AFcJxw2Z08lIsUKbBCvYA6iErJ6+GQ0qzgw4ZSyxQt6MKFuh3O4opn91TfEsUn3ZgGy7
-         l/6auiuS1lW8gtNKaKrT7wTeT4xKsG6nWo6MlpQ+2qhHUw5z6ZfLis9Of+VhxXuw3bZ/
-         AbIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720123464; x=1720728264;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=w6GqqCFWFVTzkawZoBGDseEtBHPCa6na2iuHXJweLRs=;
-        b=EYXurk8TiLcDkKr1M2gdux/ib8BHELV6egVM2r30Pk+JTzOha98kalRUtB9w83Ytm9
-         r3MKj2tlq5f2hwv8JFeLRigRPP0BF5Ep362d7tFa4s5t9Iuy8k39FCJepdTo0NiTgNcm
-         rojcgD3o4MHg9M4nA+rZXW01acT2hPSwhzPokHbCRcZ9LoCQdFwxKL2Tvx+8qHdRu4s8
-         s0UVtKL5OfJj6mdgrN6/lHKI0XoJ0PfOOuco5yVbvZVRKC0B362m9TtCSzECF6wRs4PV
-         RzO3HNlyBye1ITiQMlmJ+4TNMA8sip7RIiWgLU8GBXEWyB9XRW6xE27A8YslMeCPM8++
-         CSNg==
-X-Forwarded-Encrypted: i=1; AJvYcCW1I2njcKikG88PnfEqjyjYhDNCQNLz7ySOOXHXggZIQ90lK4rbZiZv/0j5WNlHn1K0MFsmr9irF4JyxnHacJ4ft7XJ/B6pDgQGsnuFdtf+hvzsmZ40k3AoAVL8E94GugSNvGH7BwYU9w2a19PNEj8CTB/baJ419cLf6e+cYOOKtxRGMO/27KhTu1pa8SbKLQs7UIz8v+v+3u3C1efKlM5tbg==
-X-Gm-Message-State: AOJu0YwDwpz4wTd+GI3leGNRz+kF7NrWsk1e3W23AhVySwhpsClDngaS
-	Bhx8BxmP9G5UYTuRc7ZBve9NX3ObnCH+cou1wPhdTimq0K9Z/t5V2y4BlVEO
-X-Google-Smtp-Source: AGHT+IHVI27OvUSVqiUY1QTwPgOyA49EPNnp4qFvEE///pT54x3j8RDHo/Nkab7Btkp/DKHh0+FKyA==
-X-Received: by 2002:a05:6402:5192:b0:57d:3df:f882 with SMTP id 4fb4d7f45d1cf-58e5a6f265fmr1882853a12.7.1720123464036;
-        Thu, 04 Jul 2024 13:04:24 -0700 (PDT)
-Received: from localhost.localdomain (byx56.neoplus.adsl.tpnet.pl. [83.30.43.56])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-58b4a97b1f3sm4091149a12.18.2024.07.04.13.04.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 Jul 2024 13:04:23 -0700 (PDT)
-From: Adam Skladowski <a39.skl@gmail.com>
-To: 
-Cc: phone-devel@vger.kernel.org,
-	~postmarketos/upstreaming@lists.sr.ht,
-	Adam Skladowski <a39.skl@gmail.com>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Georgi Djakov <djakov@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-msm@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 8/8] interconnect: qcom: msm8953: Add ab_coeff
-Date: Thu,  4 Jul 2024 22:02:31 +0200
-Message-Id: <20240704200327.8583-9-a39.skl@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240704200327.8583-1-a39.skl@gmail.com>
-References: <20240704200327.8583-1-a39.skl@gmail.com>
+	s=arc-20240116; t=1720127518; c=relaxed/simple;
+	bh=1HtV605rr1/Y3GdSz1tJZ3XhiXaiq/FJwY3hYlYAuq8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=F0YwVyn2Mq37kO0fwry7CAuUERDkDomNlsA9x4XjGkiccURbDdRRH9rUdllcEm5KRxVxYJmgjruFe7p5sGKw0o3MaQHRmJlmSG4Kvq1cuJlwlRGMIsKt2gFvheSXZZUC1WSU1mDguieRkTBvSzeXvBmgnoIxSu4qGbvD1t71/UM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=EGhoQSVd; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=iS4Ki0FfgKFDGFlTkcQJD+T+q8NKxHbuR15GMQm4etM=; b=EGhoQSVdSKOnHDaL16nn+ug5Si
+	zukYO68rDkOFds4nGPLCNHEQqOgCqOEQWCETTUMe2dUduxmH08c11Mx7BWZTwuBcYBZJjiTDAoU58
+	CZLQgJ4qJ3Z6pdKLWJSm8tPF6s0tWy6vsPer5mn6jwS7/LUUYca1Yv2i+cCKMlD5f/4A=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1sPTjx-001qMx-7h; Thu, 04 Jul 2024 23:11:41 +0200
+Date: Thu, 4 Jul 2024 23:11:41 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Conor Dooley <conor@kernel.org>
+Cc: Kamil =?iso-8859-1?Q?Hor=E1k_=282N=29?= <kamilh@axis.com>,
+	florian.fainelli@broadcom.com,
+	bcm-kernel-feedback-list@broadcom.com, hkallweit1@gmail.com,
+	linux@armlinux.org.uk, davem@davemloft.net, edumazet@google.com,
+	kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v10 3/4] dt-bindings: ethernet-phy: add optional brr-mode
+ flag
+Message-ID: <35d571bd-251d-45b5-9e4f-93c83d1a43c8@lunn.ch>
+References: <20240704140413.2797199-1-kamilh@axis.com>
+ <20240704140413.2797199-4-kamilh@axis.com>
+ <20240704-snitch-national-0ac33afdfb68@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240704-snitch-national-0ac33afdfb68@spud>
 
-BIMC and SNOC-MM on downstream feature
-qcom,util-fact which translates to ab_coeff, add it.
+> > ---
+> >  Documentation/devicetree/bindings/net/ethernet-phy.yaml | 8 ++++++++
+> >  1 file changed, 8 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/net/ethernet-phy.yaml b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> > index 8fb2a6ee7e5b..349ae72ebf42 100644
+> > --- a/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> > +++ b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> > @@ -93,6 +93,14 @@ properties:
+> >        the turn around line low at end of the control phase of the
+> >        MDIO transaction.
+> >  
+> > +  brr-mode:
+> > +    $ref: /schemas/types.yaml#/definitions/flag
+> > +    description:
+> > +      If set, indicates the network cable interface is alternative one as
+> > +      defined in the BroadR-Reach link mode specification under 1BR-100 and
+> > +      1BR-10 names. The driver needs to configure the PHY to operate in
+> > +      BroadR-Reach mode.
+> 
+> I find this second sentence unclear. Does the driver need to do
+> configure the phy because this mode is not enabled by default or because
+> the device will not work outside of this mode.
 
-Signed-off-by: Adam Skladowski <a39.skl@gmail.com>
----
- drivers/interconnect/qcom/msm8953.c | 2 ++
- 1 file changed, 2 insertions(+)
+BroadR-Reach uses one pair. Standard 10/100Mbps ethernet needs 2 pair,
+and 1G needs 4 pair. So any attempt to use standard 10/100/1G is going
+to fail, the socket/plug and cable just don't work for anything other
+than BroadR-Reach.
 
-diff --git a/drivers/interconnect/qcom/msm8953.c b/drivers/interconnect/qcom/msm8953.c
-index 9e8867c07692..62f8c0774b3e 100644
---- a/drivers/interconnect/qcom/msm8953.c
-+++ b/drivers/interconnect/qcom/msm8953.c
-@@ -1169,6 +1169,7 @@ static const struct qcom_icc_desc msm8953_bimc = {
- 	.nodes = msm8953_bimc_nodes,
- 	.num_nodes = ARRAY_SIZE(msm8953_bimc_nodes),
- 	.qos_offset = 0x8000,
-+	.ab_coeff = 153,
- 	.regmap_cfg = &msm8953_bimc_regmap_config
- };
- 
-@@ -1295,6 +1296,7 @@ static const struct qcom_icc_desc msm8953_snoc_mm = {
- 	.nodes = msm8953_snoc_mm_nodes,
- 	.num_nodes = ARRAY_SIZE(msm8953_snoc_mm_nodes),
- 	.qos_offset = 0x7000,
-+	.ab_coeff = 153,
- 	.regmap_cfg = &msm8953_snoc_regmap_config,
- };
- 
--- 
-2.45.2
+As far as i understand it, the PHY could be strapped into BroadR-Reach
+mode, but there is no guarantee it is, so we should also program it to
+BroadR-Reach mode if this property is present.
 
+	Andrew
 
