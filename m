@@ -1,178 +1,128 @@
-Return-Path: <devicetree+bounces-83031-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83032-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A23A7926F17
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 07:49:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 960AE926F53
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 08:09:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 586B1287858
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 05:49:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1D60B2821BC
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 06:09:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22FF21A0B1C;
-	Thu,  4 Jul 2024 05:48:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 201851A01DE;
+	Thu,  4 Jul 2024 06:09:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="Bkv4eIKS"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="WGw8qtSb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10olkn2104.outbound.protection.outlook.com [40.92.42.104])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 649921A0B18;
-	Thu,  4 Jul 2024 05:47:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.42.104
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720072081; cv=fail; b=nIAcyMmpapXNuq3F+cIlVL76EEtqgtXmO9kpRu4IaU0CC7k0UoNNeUkHxt/JR2vWlg7fS/0lntNOdefMHXZxraqkAuwYAEjcu7qYgLqOQyqxykldtxJGRQLS2u9MllR46jgJCOZ1JO0bDww+nJHTdLsmuOO/rvkwHu5WeR0/PqY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720072081; c=relaxed/simple;
-	bh=SFDYXb41hzaVr/2WoC+AvD8kqIKjfmUMZxcCzEfDYbM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=a01Mx3Gjsug27IiqgsxlkEL7EnyZMubZj9o/5WyGMcWwH6ecca0R1r3L8Mskhqxi4AB3sO2xVt6gc7JITQo0rltQHpqpU9TVvyQOgmB/2WmPWFwSKKAo2M5GeP7Xp6YbqIB6hMa3nDaH6ZqbxbtZ/HNAM8Vn5H23DYyit5iMOdA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=Bkv4eIKS; arc=fail smtp.client-ip=40.92.42.104
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Y+V2tAJ0ag0jOlFgm8mUexkmLmN5Q5r/T4WUk0EvhLhcuVrr+l98TY2s9ore4w4ch/wfNZMmSsCxkMFsoBSFy3/TY1jXCv2H1sdLxyzVBBGScCziEIVpp9oVplyLKnl+78zJLZ6S0vzdyfElQWuyOAYWmlRBI54FBHf6EkiPKnLKymmteD9YpPZ+uGldrhPykL8sRaONuWAo+bfs5rDrOpijmKyUa8PRP/p3bWlyYTHWDRJT3IPE9fb5lh1uabGZ8Q/N51skwtAQ4XwPGweE1QdYWOc14w0uk3oSY4B2mpss0dxh3DzM7lCh5mj/64wlA1vg//Js7GzcoRRMaSWKVA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=h4TbHAu4Ja1EaLRb+ZVAL1MGcs0f/SOJyTBB1iLZqZQ=;
- b=VpIX4SVY8lsPpeHlZhFszQXt/WcHr26DFL/gwfiaox/dfpGtMUNp/3XaXZovPFLifyXYUS/YVRL/Qa3n+gczchBejltB8s2M25MbQfhfei3/DgVv+P2qiWfL71uOe6PxlA1cAxNF6D9QMtWI2+yHYkPS30EB69sHNumXtMRncFPp9sjZIVgukWazA2+scwQpSKQzfCPpHBul+fohYxilpd5KKWisolaXt2GvlEH0behhzZ8HHTEcItE3YY9yNufvgIiHBFYYlOmDRQeFepGb6cb4pUCqdAFIrbrpt8sVFK1Nhz+ECKu+n2pyBlUGf7rHBEM3GbJC35yt/1PqZH8sMQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=h4TbHAu4Ja1EaLRb+ZVAL1MGcs0f/SOJyTBB1iLZqZQ=;
- b=Bkv4eIKSvi1NRO5NSSl1eD3WRGasUB0uEUmExa29BCRxHnPoAs/YgLWMiaUcyZ1yglTYBWurnfpJbK2nYQvIZG97ed7UWaApq/16ZLcwDtWu3VmDMFfJip3tEGcTT6BI9+5jnkHhJ1jZyT7MqUnGVVxUPbq1Mfs/4FFsp9cEKOQ2As2cLFu7f//7pU5Biz1x//VKc9155l1xFRAFW6DvkQSAroXXtC951SxHPT7w17iB7oMiSine2hyDO9Q1+3YfkTXm3GQz7nhuyN8wD7T+5+L3gfW7mH/fIPllF/b/pi47jrd7ywFMsUkVkV/Ti2urDmIHxSs+1STEfeQZMHchwQ==
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
- by MW4PR20MB4293.namprd20.prod.outlook.com (2603:10b6:303:184::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7719.33; Thu, 4 Jul
- 2024 05:47:57 +0000
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::ab0b:c0d3:1f91:d149]) by IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::ab0b:c0d3:1f91:d149%6]) with mapi id 15.20.7741.017; Thu, 4 Jul 2024
- 05:47:57 +0000
-From: Inochi Amaoto <inochiama@outlook.com>
-To: Linus Walleij <linus.walleij@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@outlook.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	Guo Ren <guoren@kernel.org>,
-	Haylen Chu <heylenay@outlook.com>,
-	Drew Fustini <dfustini@baylibre.com>
-Cc: linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: [PATCH 7/7] riscv: dts: sophgo: cv1812h: add pinctrl support
-Date: Thu,  4 Jul 2024 13:46:43 +0800
-Message-ID:
- <IA1PR20MB4953963FAB62D30A6D890440BBDE2@IA1PR20MB4953.namprd20.prod.outlook.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <IA1PR20MB49530F0476B98DBB835B344FBBDE2@IA1PR20MB4953.namprd20.prod.outlook.com>
-References: <IA1PR20MB49530F0476B98DBB835B344FBBDE2@IA1PR20MB4953.namprd20.prod.outlook.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-TMN: [8iHOWFNaa5lxhYEnzhGLWF2P+vnyRrzFHBMB5wpWAzc=]
-X-ClientProxiedBy: SI2PR02CA0020.apcprd02.prod.outlook.com
- (2603:1096:4:195::7) To IA1PR20MB4953.namprd20.prod.outlook.com
- (2603:10b6:208:3af::19)
-X-Microsoft-Original-Message-ID:
- <20240704054647.1747392-7-inochiama@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D506FC0A;
+	Thu,  4 Jul 2024 06:09:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.11
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1720073358; cv=none; b=Rsl1ipfCFgFGbhxgGolWzp8VqPcM8pwwxpHdEhOlWmD+WIEIL2k4eQCMfb5saRlXm4dYf9Op1BNOhZaM3NXgU+BhITKYnMj9puPDsuGMNF0VEXa0A0A9ZLv3pJDXExGS4PdipZiSGp1eRT+BCFUk3/XOLcvtLc1iSIweMx3zmi0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1720073358; c=relaxed/simple;
+	bh=pPrL20troWYfB5rDidUUA+6ppOXIvBHM99wUfpYq0BI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XsxeX1Ih7ZYTOocTxvbF1RByumPAGduBsHEJkayacMxguBpsMUfDfUNfd4TeLqpRrPRr1gikysKtVLxmtGKgdI4jUYU5S7jIGbA1P+WJD/DXISNzkzvYpkgLolm7WYXCnLyVDZjsWRk7XylotJcVn5uy7WKNAZzACKG4gvmLRIo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=WGw8qtSb; arc=none smtp.client-ip=198.175.65.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1720073355; x=1751609355;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=pPrL20troWYfB5rDidUUA+6ppOXIvBHM99wUfpYq0BI=;
+  b=WGw8qtSb9komvqrmZcuQG4Sk+u3Rq2NMPdqoPeT31CwqhcnGww71r7as
+   3lRRof5idY0LFgRIww9ZS+stZVcVzNjprJtW/lgmFmS7seB10wHYvYMN1
+   AoDbsX1cA1eQ5cS19N2cJ8JRa3cs10rjkvHJNRJ9l+TUli1TWUDJD8MsF
+   ViDb6edjw/e1Nm57k5IIL5EC8gF5Ib8/bwCARtJty8iD8CL1CiXzanmgo
+   spUk6eXl7wa9wsEXx5awL9gV2gJemjEn4iEqSPZjnS+u1WGjGmVCm12xV
+   x91f2vH1ubhnE+pK4Ja3/prk9Z/9Uh4+2JXDuKLVRvDBheOOSvt3H23yY
+   Q==;
+X-CSE-ConnectionGUID: Bk1R6R1sRwCVkrftxXHS5Q==
+X-CSE-MsgGUID: 56wfi0X9Qr6a/oNFoTpz7A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11122"; a="27933677"
+X-IronPort-AV: E=Sophos;i="6.09,183,1716274800"; 
+   d="scan'208";a="27933677"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Jul 2024 23:09:14 -0700
+X-CSE-ConnectionGUID: ujL1ThuaT6u4B5IK+EvfHA==
+X-CSE-MsgGUID: ru0SIWscSZqNM0pMdSelDQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,183,1716274800"; 
+   d="scan'208";a="51356292"
+Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
+  by orviesa003.jf.intel.com with ESMTP; 03 Jul 2024 23:09:11 -0700
+Received: from kbuild by 68891e0c336b with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sPFeW-000QdQ-0r;
+	Thu, 04 Jul 2024 06:09:08 +0000
+Date: Thu, 4 Jul 2024 14:08:10 +0800
+From: kernel test robot <lkp@intel.com>
+To: zelong dong <zelong.dong@amlogic.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Kevin Hilman <khilman@baylibre.com>, Rob Herring <robh@kernel.org>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, linux-kernel@vger.kernel.org,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	kelvin.zhang@amlogic.com, Zelong Dong <zelong.dong@amlogic.com>
+Subject: Re: [PATCH 1/3] dt-bindings: reset: Add compatible and DT bindings
+ for Amlogic A4/A5 Reset Controller
+Message-ID: <202407041333.QnHEnGRY-lkp@intel.com>
+References: <20240703061610.37217-2-zelong.dong@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|MW4PR20MB4293:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6370bfaf-8620-4daa-29f2-08dc9becdb07
-X-Microsoft-Antispam:
-	BCL:0;ARA:14566002|8060799006|461199028|440099028|3412199025|1710799026;
-X-Microsoft-Antispam-Message-Info:
-	bPOABhv177xSeBDPtZjpKAV6Dew5KQ+wNsgYxgDoNJasMNoBtWdpWwh4LH8mOg1plgKFohMi6Rx5513fL6cKqYKfK1z4aNhNg1XLma75Kyq1yuvzBRQIZPqAvkxz16pcb3bKq5pPk6SXtrRfNHEJmDa9dC8SBLW3C3BnhNbDEd2cSXQxdgoGZcHi8ezG4flVeIz63P+cBKnkKbcbnQsrBUyiste08al8UEYr+SgLQuiXMkisG1KT2jF9u6xTI+GVeBTA6wS9da1Y6AkQTImP9gDKVLWfvahFr/jshwbsB3rYLIA2nUQ6kTRAD/7dpF+Gvib08cZgAVfMKOt3Vo8HxyFSNYmwafpHdBskmYli7pn5XIW067a2X6eAWGRRU6lBT/bn1lr+V2XaVt7KD7Ndg1kV6VRdrjmd+FrGmb2ZEeO2Y/2yKIK5VoV0GRICB9V3Y2zEtSXtp5hdf55UktkjHBphZ/mplvrDWpudr5LFHEKRt5azk31Qu8xtNZZKCLJN9xqJ90wNwOQ2NO1yHjsVNcfLz/zp5WDalq0KBOXXyYLF23Qf8D0df5GgYA6HXF+LKGa1gWVlDxdfQyoltLrlWIk+I5KMsCptFQGdllcuG+cb/dvTaXYu+ZQiS1kpzppaJAh6vwmJ6XRH0LMMVuW4cQ==
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?Vcd5HnbkNHx/7gm88E5g/INlyTM2cVbU1r6O1HNvoxWfYJVtnzc8obzaUGYN?=
- =?us-ascii?Q?IQVhdfj+Hxmc22Ep5EkhpvxjOpA0+GLhP2HvyX2U/fTJabqZozbWEjrcQAoT?=
- =?us-ascii?Q?J/5fDgKSs5Pj7OWoNjP5wWCpnskJehImouISZdPDRZd7+bSIA7BU4C5e0Cga?=
- =?us-ascii?Q?6aL4HYIKqbBsqRpvRC8VKK27jEZZb9KuIDMJaAWOCtf6e2s0xswEcWp9hAS+?=
- =?us-ascii?Q?PrqZyBEyfYBQdg7eVennXsEf+3Y4ePYhit2IQnj2zhL5D/wthXN8iMl8oFfc?=
- =?us-ascii?Q?2fgJ/moOS9hABiI0LBBaoJtIq/2a9/zDSSQxmooO4BeZw7cLfaTKKWp1vRsG?=
- =?us-ascii?Q?0SGlguQqoXNToBV/m9a9BoXV5UTH7xAGjx56y0sFrHC0VSLOHlE8LhURVnIB?=
- =?us-ascii?Q?rxSNNIugihC0AmQBCU1euVuTmaxR5SujvJkNW6QgY6NQkMxiQppOT8oMxy+e?=
- =?us-ascii?Q?6gXIxB/JFgM4RdH4AUR/W6GNYC6GgMHAh0zam8IlIPIe4FVPl+9dTiaZhCqZ?=
- =?us-ascii?Q?Gm4/ipPlvT3Wh1VcbBdDcPnfLFwsPSzcT5IvVxeKaTTDR0bNSWcdzdgiwlHx?=
- =?us-ascii?Q?o9m1V81o5XLwSOWizgibS0PTOnxCT8XWvmiTmHjO6+1D6MtvKPP3HpLkr+no?=
- =?us-ascii?Q?a3nPT15xu3MQbHh7JNiUjhRiBebCFxW2b0pGMLqF6h/D3sAUTkkKKOhT3dvi?=
- =?us-ascii?Q?FPqTEHvfqIuGNLMnY2HfDu1cneEBkVxWm4kL2i4ItbwMMPmp+hmzSD4vfol9?=
- =?us-ascii?Q?qR2XqcKTS1G2IhnQ+SxvltkgbqPfBjb44IsvZVoC3oxameMy+Cq0xpzfCov0?=
- =?us-ascii?Q?IJTpAK7aNctMTpUVdUYO1LlyZFDplSJ51fTPoEle0GbxIdt/nTRguVKiIWdp?=
- =?us-ascii?Q?AmNrgf2DU+cDXVQ1v/g78ALIiTS3G2kf4wzUhnP3PjpJS5tT2PhlHy7T3ry3?=
- =?us-ascii?Q?D3O/bdRB6RG1Y/26QoQTdTliZL4Cd9Cw/bowX4fMEJa8kY0GZqCs0elWS7gz?=
- =?us-ascii?Q?hTLU6IR3rJfyIKS0/sHcq2lFJcO1g7JUU+Vt6Z3c1j3Q0DXakmRAkMVZzq7p?=
- =?us-ascii?Q?91hr0F8EuYZcaYm9kTN0yktzB9x33RW9jHZm+1CkuBRbmljtK8kEzxz9TX5Z?=
- =?us-ascii?Q?+DqD0kZ3M5jRiHardGDdFIniU+vm0QCH2BJKXWun5d8QxpEXqnpPlLNqVJgS?=
- =?us-ascii?Q?+k7/PsWmn0LgG6+9swXrmSehPkZkpN7wwm73C2xisjfRhfPc1M5HbD2Sk1br?=
- =?us-ascii?Q?dE5nrzKyxsKqbEbLDmZf?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6370bfaf-8620-4daa-29f2-08dc9becdb07
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Jul 2024 05:47:57.0382
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR20MB4293
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240703061610.37217-2-zelong.dong@amlogic.com>
 
-Add pinctrl node for CV1812H SoC.
+Hi zelong,
 
-Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
----
- arch/riscv/boot/dts/sophgo/cv1812h.dtsi | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+kernel test robot noticed the following build warnings:
 
-diff --git a/arch/riscv/boot/dts/sophgo/cv1812h.dtsi b/arch/riscv/boot/dts/sophgo/cv1812h.dtsi
-index 7fa4c1e2d1da..12e44edebfc1 100644
---- a/arch/riscv/boot/dts/sophgo/cv1812h.dtsi
-+++ b/arch/riscv/boot/dts/sophgo/cv1812h.dtsi
-@@ -4,6 +4,7 @@
-  */
+[auto build test WARNING on next-20240703]
+[also build test WARNING on linus/master v6.10-rc6]
+[cannot apply to robh/for-next pza/reset/next pza/imx-drm/next v6.10-rc6 v6.10-rc5 v6.10-rc4]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
- #include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/pinctrl/pinctrl-cv1812h.h>
- #include "cv18xx.dtsi"
+url:    https://github.com/intel-lab-lkp/linux/commits/zelong-dong/dt-bindings-reset-Add-compatible-and-DT-bindings-for-Amlogic-A4-A5-Reset-Controller/20240703-184517
+base:   next-20240703
+patch link:    https://lore.kernel.org/r/20240703061610.37217-2-zelong.dong%40amlogic.com
+patch subject: [PATCH 1/3] dt-bindings: reset: Add compatible and DT bindings for Amlogic A4/A5 Reset Controller
+config: arm64-randconfig-051-20240704 (https://download.01.org/0day-ci/archive/20240704/202407041333.QnHEnGRY-lkp@intel.com/config)
+compiler: aarch64-linux-gcc (GCC) 13.2.0
+dtschema version: 2024.6.dev3+g650bf2d
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240704/202407041333.QnHEnGRY-lkp@intel.com/reproduce)
 
- / {
-@@ -13,6 +14,15 @@ memory@80000000 {
- 		device_type = "memory";
- 		reg = <0x80000000 0x10000000>;
- 	};
-+
-+	soc {
-+		pinctrl: pinctrl@3008000 {
-+			compatible = "sophgo,cv1812h-pinctrl";
-+			reg = <0x03001000 0x1000>,
-+			      <0x05027000 0x1000>;
-+			reg-names = "sys", "rtc";
-+		};
-+	};
- };
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202407041333.QnHEnGRY-lkp@intel.com/
 
- &plic {
---
-2.45.2
+dtcheck warnings: (new ones prefixed by >>)
+   arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi:97.34-111.6: Warning (unit_address_vs_reg): /soc/bus@fe000000/pinctrl@4000: node has a unit name, but no reg or ranges property
+   arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi:97.34-111.6: Warning (simple_bus_reg): /soc/bus@fe000000/pinctrl@4000: missing or empty reg/ranges property
+>> arch/arm64/boot/dts/amlogic/amlogic-c3-c302x-aw409.dtb: reset-controller@2000: compatible: 'oneOf' conditional failed, one must be fixed:
+   	['amlogic,c3-reset'] is too short
+   	'amlogic,c3-reset' is not one of ['amlogic,meson8b-reset', 'amlogic,meson-gxbb-reset', 'amlogic,meson-axg-reset', 'amlogic,meson-a1-reset', 'amlogic,meson-s4-reset', 'amlogic,t7-reset']
+   	from schema $id: http://devicetree.org/schemas/reset/amlogic,meson-reset.yaml#
 
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
