@@ -1,302 +1,246 @@
-Return-Path: <devicetree+bounces-83115-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83116-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 198A89273E9
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 12:22:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B06E92740E
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 12:29:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9AEE61F21426
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 10:22:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BDAFB1C20DB5
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 10:29:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C76B1AB8E4;
-	Thu,  4 Jul 2024 10:22:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7A111AB90F;
+	Thu,  4 Jul 2024 10:28:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="p1MfI5Sj"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FlKRZG7I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53A50A41;
-	Thu,  4 Jul 2024 10:22:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 094551BC4E
+	for <devicetree@vger.kernel.org>; Thu,  4 Jul 2024 10:28:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720088558; cv=none; b=GfX6vLsTjldUVPyvrfEAkmE1iEcArPSoYkBvbXNukEeJnmKQNDZPPLMkKlsgcLINMJLVUxKkeZ2KDV/lDqMJx4HMDKRUjQQA74QfEwL6kbsHhSHDXIYc0sht/18DFIE8s3XPeLgrmvkp0qux531kRj6+RHBys521LJBUr3o1OyU=
+	t=1720088938; cv=none; b=kjB1nuJsMuotbHolbuRhKBsxwKq9L/PbtlMDai6x8B4EM0D+maGJ+X0YcBBwZ+4QCOc39vEl0EWGAi4Eaw7PbWuwJG+zzUBQ40JwSnsSAJqPEUi51nU4Mqmqvv93VGoUVQ/YG3RHzqWaGtUKCujwdTi6vUaQR2pVnbFPJ1NAoWg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720088558; c=relaxed/simple;
-	bh=RrseeKsIw4zTkLal4NO5ir7XI5QFiSYTEFrSIo6M9BQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=H8hMU1xiWOMwAkvPvLlif3swMJpAn/BmSLL+qP8m+pc24q50XAOGBl0JN5FFTC/DWaXzOnzpxvF6iEoQhPQ3AHLxJ6OcuoACDtFqZFxaxmv8wCJJ9F0tSA1ZATuQ9pI60P7E/Fi54k2tUY9eISHTMERO9J4gEuhhEjjZsNu0gIA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=p1MfI5Sj; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4645jbXH023219;
-	Thu, 4 Jul 2024 10:22:21 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	9cggr0TA87Qww/pVCkSy8RIFZHHrOSFsCB8KjZ4LaSw=; b=p1MfI5Sjpuxh6qvm
-	n5C5jf4rkOxCNkzdjfKjFf+/Ki6P2ezZlNWC6m/TmzUKr7sOpk95jH7fpONx4uR6
-	Rex9C3NeA3X6i9kP/6S6Ef9esRDvRqwkG7bbkaxN+9tayhCYMIXeZis6b/qPyTau
-	yRwJI8KASfxb+PK/7K3k0LFc9evNDLudMlQvcPYkq1w3CjT8xWbWbgQd52BJJZZc
-	jI1NNrYz5kdewiZe47FOsXkDjcngRQsVFNH5rhhxbS457xhcBIpLxAnNn9myguG8
-	GlnZ7MR/eLbMUCYv512tIdon2rEh8/ud8w49yse0nfwV1Dg5sDswotw+TjYNFyUE
-	iwRKxw==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4050cybd1d-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 04 Jul 2024 10:22:20 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 464AMJ4o027188
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 4 Jul 2024 10:22:19 GMT
-Received: from [10.131.33.37] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 4 Jul 2024
- 03:22:13 -0700
-Message-ID: <e647ae63-2f30-c55f-7124-ecef1d0d74d3@quicinc.com>
-Date: Thu, 4 Jul 2024 15:52:10 +0530
+	s=arc-20240116; t=1720088938; c=relaxed/simple;
+	bh=XfKgY625lm5NRHaE5irABpnC2S1jw6qv/FJ2nT1sS9o=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=uWs1wrfbYPybL6YDSP/9BAVOH1Z1xlRlBMffQyb0H6qyYNq4ARypMTTDUeArfcmZbZthM7e9ojXyzoUWZBu5/Pp9X/RACG6BZMV5/Nk7fYEXyxH3l7VWNsXjw2Txycp3+x6WE1mfwsIPP8P8W6KROyniYsut0d/Opwbo9Nthlp0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FlKRZG7I; arc=none smtp.client-ip=209.85.208.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-58ba3e37feeso664543a12.3
+        for <devicetree@vger.kernel.org>; Thu, 04 Jul 2024 03:28:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1720088935; x=1720693735; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=W1n41ixNHOs7ND4dHyzhkd0g//JyZDb7AOEWRwz5JLA=;
+        b=FlKRZG7IpNCn8zR/oTHNMsLFiFFngBv1p+EbX82YRurfp1l4PDKDmMGtjYRlViiPrH
+         k61OQgV7hkw5vmjRZzeiIgm90/D6OiBFxymKkqKeQirnXc/B3zQR403G9ORV/ar97QHO
+         uWruZguF2zoTzfxr+VtySLnXyXC6gC/yVwUZUzZKRqlqkPc9MpfJ2OaXOFi63+4dY/dx
+         p+A6brsXbPry5oCVN193BDq/64cFyThW+yWUUm+PNLGkkJveEpdPhbkRBeraf7Xy8VQ7
+         F3UglYUxf+Ox+u58Op2kavUYMB4yE/gF4og+sDS+gcfkJ8/2FUwJQKTHlKpaf+b8Kg0X
+         PYQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720088935; x=1720693735;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=W1n41ixNHOs7ND4dHyzhkd0g//JyZDb7AOEWRwz5JLA=;
+        b=UNVwqO0MThIJr3Sf6ZbLlP5sjH6qu92Q3lfrHL/K+0HvtDAjuoYK+t9g8ERovHL24S
+         AFsskgjv/z7JL6WBC8W16S3QjkLyEndFoseRn9Lpf3C/N7mDdZziMSXIHjB9dZVnu474
+         YyoPJpWsWLG4z80GCoERZ1ojFP2t+4Jtyx/WcrEdQh0lUmQxeoJWGcnQExRgHq7tCehS
+         tqC/x/IgZOZ103FQLEatfEFuOrLkz2AYQE93MlA3Z66VT8G3DmSfdL8AUXZ1jFUOTGEE
+         3GGSOb/i7xMa284YsOVnjUcH+YrmMkMaCKdZ7XEPYRlrlFe9uG0KS7ew56p0gYkj09zT
+         K5bQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW2SiMMA2vsqX8ZKbK0ezPblELkjDlySXE24ow1gg9kIC1jG8c+qSBpKkLfKFuGy3EhznJBB9S3eiMtrf1iiRtOAfFFt5Iyhud1vQ==
+X-Gm-Message-State: AOJu0Yw9w6e52R8//Z7qq/ncmQmOM8GfwWA0OHY+NniHRJN/ijNosz+5
+	N+ATb7CVCLhh2Go/jFq4Qv5COf+WSuifGr8z0VBkhTSNiJhThbk=
+X-Google-Smtp-Source: AGHT+IEq7rCkJ3goBqSiFAE3BU988m6dNO0UHFcNMG7KA3oE7u0dY94ILDMx5QFtaem3q5aXg9m0hg==
+X-Received: by 2002:a05:6402:2754:b0:582:ca34:31b1 with SMTP id 4fb4d7f45d1cf-58e5984c1ddmr996419a12.16.1720088934848;
+        Thu, 04 Jul 2024 03:28:54 -0700 (PDT)
+Received: from ?IPV6:2a02:810b:f40:4600:5f4b:4104:ca7b:6efb? ([2a02:810b:f40:4600:5f4b:4104:ca7b:6efb])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-58612c838casm8325256a12.4.2024.07.04.03.28.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 04 Jul 2024 03:28:54 -0700 (PDT)
+Message-ID: <61b8b328-b72a-4bb5-9fb6-c226c2b773c4@gmail.com>
+Date: Thu, 4 Jul 2024 12:28:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH V6 5/5] arm64: dts: qcom: x1e80100: Enable cpufreq
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v11 09/24] drm/rockchip: dw_hdmi: add regulator support
+To: Diederik de Haas <didi.debian@cknow.org>,
+ dri-devel@lists.freedesktop.org, Sascha Hauer <s.hauer@pengutronix.de>
+Cc: linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ devicetree@vger.kernel.org, kernel@pengutronix.de,
+ Andy Yan <andy.yan@rock-chips.com>,
+ Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+ Michael Riesch <michael.riesch@wolfvision.net>,
+ Sandy Huang <hjc@rock-chips.com>, =?UTF-8?Q?Heiko_St=C3=BCbner?=
+ <heiko@sntech.de>, Peter Geis <pgwipeout@gmail.com>,
+ Dmitry Osipenko <dmitry.osipenko@collabora.com>
+References: <20220422072841.2206452-1-s.hauer@pengutronix.de>
+ <20220422072841.2206452-10-s.hauer@pengutronix.de>
+ <16078476.GIfNKF0EQE@bagend>
 Content-Language: en-US
-To: Nikunj Kela <quic_nkela@quicinc.com>, Johan Hovold <johan@kernel.org>
-CC: <sudeep.holla@arm.com>, <cristian.marussi@arm.com>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <jassisinghbrar@gmail.com>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <dmitry.baryshkov@linaro.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <quic_rgottimu@quicinc.com>, <quic_kshivnan@quicinc.com>,
-        <conor+dt@kernel.org>, <quic_psodagud@quicinc.com>,
-        <abel.vesa@linaro.org>
-References: <20240612124056.39230-1-quic_sibis@quicinc.com>
- <20240612124056.39230-6-quic_sibis@quicinc.com>
- <ZoQjAWse2YxwyRJv@hovoldconsulting.com>
- <f53bc00f-8217-1dc8-5203-1a83c24d353d@quicinc.com>
- <1fcea728-6ee6-4361-b3c5-63d8a2facd74@quicinc.com>
- <65ce72e1-7106-0872-88f7-bfdfcef7a24b@quicinc.com>
- <0f94978c-dad7-418b-b911-edf7e81d7460@quicinc.com>
-From: Sibi Sankar <quic_sibis@quicinc.com>
-In-Reply-To: <0f94978c-dad7-418b-b911-edf7e81d7460@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: R77jCa3RnW-CSyz4PketkcN7Pd0I10S2
-X-Proofpoint-ORIG-GUID: R77jCa3RnW-CSyz4PketkcN7Pd0I10S2
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-07-04_06,2024-07-03_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 malwarescore=0
- mlxlogscore=999 priorityscore=1501 adultscore=0 mlxscore=0 impostorscore=0
- spamscore=0 phishscore=0 lowpriorityscore=0 bulkscore=0 suspectscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2406140001
- definitions=main-2407040072
+From: Alex Bee <knaerzche@gmail.com>
+In-Reply-To: <16078476.GIfNKF0EQE@bagend>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-
-
-On 7/3/24 19:35, Nikunj Kela wrote:
+Am 04.07.24 um 11:09 schrieb Diederik de Haas:
+> On Friday, 22 April 2022 09:28:26 CEST Sascha Hauer wrote:
+>> The RK3568 has HDMI_TX_AVDD0V9 and HDMI_TX_AVDD_1V8 supply inputs needed
+>> for the HDMI port. add support for these to the driver for boards which
+>> have them supplied by switchable regulators.
+>>
+>> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+>> Reviewed-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+>> ---
+>>   drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c | 41 +++++++++++++++++++--
+>>   1 file changed, 38 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
+>> b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c index
+>> b64cc62c7b5af..fe4f9556239ac 100644
+>> --- a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
+>> +++ b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
+>> @@ -9,6 +9,7 @@
+>>   #include <linux/platform_device.h>
+>>   #include <linux/phy/phy.h>
+>>   #include <linux/regmap.h>
+>> +#include <linux/regulator/consumer.h>
+>>
+>>   #include <drm/bridge/dw_hdmi.h>
+>>   #include <drm/drm_edid.h>
+>> @@ -76,6 +77,8 @@ struct rockchip_hdmi {
+>>   	struct clk *ref_clk;
+>>   	struct clk *grf_clk;
+>>   	struct dw_hdmi *hdmi;
+>> +	struct regulator *avdd_0v9;
+>> +	struct regulator *avdd_1v8;
+>>   	struct phy *phy;
+>>   };
+>>
+>> @@ -226,6 +229,14 @@ static int rockchip_hdmi_parse_dt(struct rockchip_hdmi
+>> *hdmi) return PTR_ERR(hdmi->grf_clk);
+>>   	}
+>>
+>> +	hdmi->avdd_0v9 = devm_regulator_get(hdmi->dev, "avdd-0v9");
+>> +	if (IS_ERR(hdmi->avdd_0v9))
+>> +		return PTR_ERR(hdmi->avdd_0v9);
+>> +
+>> +	hdmi->avdd_1v8 = devm_regulator_get(hdmi->dev, "avdd-1v8");
+>> +	if (IS_ERR(hdmi->avdd_1v8))
+>> +		return PTR_ERR(hdmi->avdd_1v8);
+>> +
+>>   	return 0;
+>>   }
+>>
+>> @@ -566,11 +577,23 @@ static int dw_hdmi_rockchip_bind(struct device *dev,
+>> struct device *master, return ret;
+>>   	}
+>>
+>> +	ret = regulator_enable(hdmi->avdd_0v9);
+>> +	if (ret) {
+>> +		DRM_DEV_ERROR(hdmi->dev, "failed to enable avdd0v9:
+> %d\n", ret);
+>> +		goto err_avdd_0v9;
+>> +	}
+>> +
+>> +	ret = regulator_enable(hdmi->avdd_1v8);
+>> +	if (ret) {
+>> +		DRM_DEV_ERROR(hdmi->dev, "failed to enable avdd1v8:
+> %d\n", ret);
+>> +		goto err_avdd_1v8;
+>> +	}
+>> +
+>>   	ret = clk_prepare_enable(hdmi->ref_clk);
+>>   	if (ret) {
+>>   		DRM_DEV_ERROR(hdmi->dev, "Failed to enable HDMI
+> reference clock: %d\n",
+>>   			      ret);
+>> -		return ret;
+>> +		goto err_clk;
+>>   	}
+>>
+>>   	if (hdmi->chip_data == &rk3568_chip_data) {
+>> @@ -594,10 +617,19 @@ static int dw_hdmi_rockchip_bind(struct device *dev,
+>> struct device *master, */
+>>   	if (IS_ERR(hdmi->hdmi)) {
+>>   		ret = PTR_ERR(hdmi->hdmi);
+>> -		drm_encoder_cleanup(encoder);
+>> -		clk_disable_unprepare(hdmi->ref_clk);
+>> +		goto err_bind;
+>>   	}
+>>
+>> +	return 0;
+>> +
+>> +err_bind:
+>> +	clk_disable_unprepare(hdmi->ref_clk);
+>> +	drm_encoder_cleanup(encoder);
+>> +err_clk:
+>> +	regulator_disable(hdmi->avdd_1v8);
+>> +err_avdd_1v8:
+>> +	regulator_disable(hdmi->avdd_0v9);
+>> +err_avdd_0v9:
+>>   	return ret;
+>>   }
+>>
+>> @@ -608,6 +640,9 @@ static void dw_hdmi_rockchip_unbind(struct device *dev,
+>> struct device *master,
+>>
+>>   	dw_hdmi_unbind(hdmi->hdmi);
+>>   	clk_disable_unprepare(hdmi->ref_clk);
+>> +
+>> +	regulator_disable(hdmi->avdd_1v8);
+>> +	regulator_disable(hdmi->avdd_0v9);
+>>   }
+>>
+>>   static const struct component_ops dw_hdmi_rockchip_ops = {
 > 
-> On 7/3/2024 4:23 AM, Sibi Sankar wrote:
->>
->>
->> On 7/3/24 01:43, Nikunj Kela wrote:
->>>
->>> On 7/2/2024 12:59 PM, Sibi Sankar wrote:
->>>>
->>>>
->>>> On 7/2/24 21:25, Johan Hovold wrote:
->>>>> On Wed, Jun 12, 2024 at 06:10:56PM +0530, Sibi Sankar wrote:
->>>>>> Enable cpufreq on X1E80100 SoCs through the SCMI perf protocol node.
->>>>>>
->>>>>> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
->>>>>> ---
->>>>>>     arch/arm64/boot/dts/qcom/x1e80100.dtsi | 63
->>>>>> ++++++++++++++++----------
->>>>>>     1 file changed, 39 insertions(+), 24 deletions(-)
->>>>>>
->>>>>> diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
->>>>>> b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
->>>>>> index 7b619db07694..d134dc4c7425 100644
->>>>>> --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
->>>>>> +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
->>>>>> @@ -69,8 +69,8 @@ CPU0: cpu@0 {
->>>>>>                 reg = <0x0 0x0>;
->>>>>>                 enable-method = "psci";
->>>>>>                 next-level-cache = <&L2_0>;
->>>>>> -            power-domains = <&CPU_PD0>;
->>>>>> -            power-domain-names = "psci";
->>>>>> +            power-domains = <&CPU_PD0>, <&scmi_dvfs 0>;
->>>>>> +            power-domain-names = "psci", "perf";
->>>>>>                 cpu-idle-states = <&CLUSTER_C4>;
->>>>>
->>>>>> +        scmi {
->>>>>> +            compatible = "arm,scmi";
->>>>>> +            mboxes = <&cpucp_mbox 0>, <&cpucp_mbox 2>;
->>>>>> +            mbox-names = "tx", "rx";
->>>>>> +            shmem = <&cpu_scp_lpri0>, <&cpu_scp_lpri1>;
->>>>>> +
->>>>>> +            #address-cells = <1>;
->>>>>> +            #size-cells = <0>;
->>>>>> +
->>>>>> +            scmi_dvfs: protocol@13 {
->>>>>> +                reg = <0x13>;
->>>>>> +                #power-domain-cells = <1>;
->>>>>> +            };
->>>>>> +        };
->>>>>>         };
->>>>>
->>>>
->>>> Hey Johan,
->>>>
->>>> Thanks for trying out the series.
->>>>
->>>>> This series gives a nice performance boost on the x1e80100 CRD, but
->>>>> I'm
->>>>> seeing a bunch of warnings and errors that need to be addressed:
->>>>>
->>>>> [    9.533053] arm-scmi firmware:scmi: Failed to get FC for protocol
->>>>> 13 [MSG_ID:6 / RES_ID:0] - ret:-95. Using regular messaging.
->>>>> [    9.549458] arm-scmi firmware:scmi: Failed to add opps_by_lvl at
->>>>> 3417600 for NCC - ret:-16
->>>>> [    9.563925] arm-scmi firmware:scmi: Failed to add opps_by_lvl at
->>>>> 3417600 for NCC - ret:-16
->>>>> [    9.572835] arm-scmi firmware:scmi: Failed to get FC for protocol
->>>>> 13 [MSG_ID:6 / RES_ID:1] - ret:-95. Using regular messaging.
->>>>> [    9.609471] arm-scmi firmware:scmi: Failed to add opps_by_lvl at
->>>>> 3417600 for NCC - ret:-16
->>>>> [    9.633341] arm-scmi firmware:scmi: Failed to add opps_by_lvl at
->>>>> 3417600 for NCC - ret:-16
->>>>> [    9.650000] arm-scmi firmware:scmi: Failed to get FC for protocol
->>>>> 13 [MSG_ID:6 / RES_ID:2] - ret:-95. Using regular messaging.
->>>>
->>>> X1E uses fast channels only for message-id: 7 (level set) and regular
->>>> channels for all the other messages. The spec doesn't mandate fast
->>>> channels for any of the supported message ids for the perf protocol.
->>>> So nothing to fix here.
->>>>
->>>>> [    9.727098] cpu cpu4: _opp_is_duplicate: duplicate OPPs detected.
->>>>> Existing: freq: 3417600000, volt: 0, enabled: 1. New: freq:
->>>>> 3417600000, volt: 0, enabled: 1
->>>>> [    9.737157] cpu cpu4: _opp_is_duplicate: duplicate OPPs detected.
->>>>> Existing: freq: 3417600000, volt: 0, enabled: 1. New: freq:
->>>>> 3417600000, volt: 0, enabled: 1
->>>>> [    9.875039] cpu cpu8: _opp_is_duplicate: duplicate OPPs detected.
->>>>> Existing: freq: 3417600000, volt: 0, enabled: 1. New: freq:
->>>>> 3417600000, volt: 0, enabled: 1
->>>>> [    9.888428] cpu cpu8: _opp_is_duplicate: duplicate OPPs detected.
->>>>> Existing: freq: 3417600000, volt: 0, enabled: 1. New: freq:
->>>>> 3417600000, volt: 0, enabled: 1
->>>>
->>>> The duplicate entries reported by the perf protocol come directly from
->>>> the speed bins. I was told the duplicate entry with volt 0 is meant to
->>>> indicate a lower power way of achieving the said frequency at a lower
->>>> core count. We have no way of using it in the kernel and it gets safely
->>>> discarded. So again nothing to fix in the kernel.
->>>
->>> Hi Sibi,
->>>
->>> Can you try increasing the max_msg_size to 256 bytes in mailbox
->>> transport? We saw the same issue but got resolved by increasing the
->>> max_msg_size for the transport(obviously, I reduced the max_msg to 10 to
->>> keep the total shmem size same). Even the opps_by_lvl warning went away
->>> with this for us.
->>
->> Nikunj,
->> Thanks for taking time to review the series :)
->>
->> Not sure if we are talking about the same things here, are you
->> suggesting that tweaking with the max_msg size will stop the SCMI
->> controller from reporting duplicate OPPs? Even if it does go away
->> magically wouldn't it mean you are dropping messages? Also opps_by_lvl
->> failing with -16 and duplicate opps detected in the opp core have the
->> same root cause i.e. duplicate entries reported by the controller.
+> Is it possible to probe for those avdd_0v9 and avdd_1v8 regulators only on
+> devices that should have them?
+> 
+Those regulators exist for _all_ RK SoCs that use dw-hdmi controller, as it
+has to be supplied in same why (as it is always the same controller). In
+particular case of rock64[0] its:
+
+DVIDEO_AVDD_1V8P6 -> VCC_18
+DVIDEO_AVDD_1V0M6 -> VDD_10
+
+So: Just fix the device tree and your warnings are gone :)
+
+[0] https://files.pine64.org/doc/rock64/ROCK64_Schematic_v2.0_20171019.pdf
+
+> On a Rock64 (rk3328), but probably for all VOP1 devices, they're not present
+> and that results in the following warnings:
+> dwhdmi-rockchip ff3c0000.hdmi: supply avdd-0v9 not found, using dummy regulator
+> dwhdmi-rockchip ff3c0000.hdmi: supply avdd-1v8 not found, using dummy regulator
+> 
+> And those get repeated a number of times. In my last 6.10-rc5 boot it was 5
+> each and in my last 6.10-rc6 boot it was 9 each. It seems the number varies
+> per boot and is not connected to the specific kernel version.
+> 
+> In [1] I got 36 "dummy regulator" warnings, but some were from others.
+> 
+> [1] https://lore.kernel.org/linux-rockchip/2528743.FZeJfPzi8P@bagend/
+> 
+> Cheers,
+>    Diederik
 > 
 > 
-> Sibi,
-> 
-> My observation was that only 12 OPPs could fit it 128bytes msg_size and
-> our platform was sending 16 OPPs in one go. OPPs above 12 were getting
-> clobbered so the duplicate warning/error were not genuine. You may need
-> to tweak platform to send only 12(or less) OPPs in one go.
+> _______________________________________________
+> Linux-rockchip mailing list
+> Linux-rockchip@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-rockchip
 
-Nikunj,
-
-The platform we are talking abt in this thread is X1E and the number
-of performance levels returned by the PERFORMANCE_DESCRIBE_LEVELS
-is just one. I relies on the skip_index and iterator ops to get
-all the available levels. So the clobbering you are talking abt
-in whatever platform you are referring to does not apply here.
-Please find the logs below for Domain 1. Hope this clears up
-whatever misunderstanding you had about X1E.
-
-Logs Domain -1:
-arm-scmi: iter_perf_levels_update_state num_returned: 1 num_remaining: 15
-arm-scmi firmware:scmi: Level 710400 Power 23243 Latency 30us Ifreq 
-710400 Index 0
-...
-[snip]
-...
-arm-scmi: iter_perf_levels_update_state num_returned: 1 num_remaining: 3
-arm-scmi firmware:scmi: Level 3417600 Power 307141 Latency 30us Ifreq 
-3417600 Index 12
-arm-scmi: iter_perf_levels_update_state num_returned: 1 num_remaining: 2
-arm-scmi firmware:scmi: Failed to add opps_by_lvl at 3417600 for NCC - 
-ret:-16
-arm-scmi firmware:scmi: Level 3417600 Power 307141 Latency 30us Ifreq 
-3417600 Index 13
-arm-scmi: iter_perf_levels_update_state num_returned: 1 num_remaining: 1
-arm-scmi firmware:scmi: Failed to add opps_by_lvl at 3417600 for NCC - 
-ret:-16
-arm-scmi firmware:scmi: Level 3417600 Power 307141 Latency 30us Ifreq 
-3417600 Index 14
-arm-scmi: iter_perf_levels_update_state num_returned: 1 num_remaining: 0
-arm-scmi firmware:scmi: Level 4012800 Power 539962 Latency 30us Ifreq 
-4012800 Index 15
-
-
--Sibi
-
-> 
-> 
->>
->>>
->>> Thanks,
->>>
->>> -Nikunj
->>>
->>>>
->>>>> [    9.913506] debugfs: Directory 'NCC' with parent 'pm_genpd'
->>>>> already present!
->>>>> [    9.922198] debugfs: Directory 'NCC' with parent 'pm_genpd'
->>>>> already present!
->>>>
->>>> Yeah I did notice ^^ during dev, the series isn't the one
->>>> introducing it
->>>> so it shouldn't block the series acceptance. Meanwhile I'll spend some
->>>> cycles to get this warn fixed.
->>
->> Johan,
->>
->> https://lore.kernel.org/lkml/20240703110741.2668800-1-quic_sibis@quicinc.com/
->>
->>
->> Posted a fix for the warn ^^
->>
->>>>
->>>> -Sibi
->>>>
->>>>>
->>>>> Johan
->>>>>
 
