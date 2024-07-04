@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-83081-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83082-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72D6C9271E3
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 10:40:14 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C7809271EA
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 10:41:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 25CA7285922
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 08:40:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 833C1B20C2B
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 08:41:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA6591A4F11;
-	Thu,  4 Jul 2024 08:39:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BED401A4F00;
+	Thu,  4 Jul 2024 08:41:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aclfYBjE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lTDk1Bn/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CDAB1A4F03;
-	Thu,  4 Jul 2024 08:39:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9158B1891DE;
+	Thu,  4 Jul 2024 08:41:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720082398; cv=none; b=o0ySW6ePCM9hZuMnWL9INOCmiMLxklPsDA1KXRPwLyrl49p3ozOXtshhTmEpqfSbM8dfL7sRh6p+C5iMtfxgSOUCdhYpri4MFKmfT6gJHsUfQjmCcyvqcrG4OjdljUlF5sjbRrHltevzjAYJYkRNILVpJHSjydXHUgsaP0DCx/s=
+	t=1720082508; cv=none; b=ArvifYuy2KAzxiuqcBzryGcOeeXrkrD2zc/lD4p5XUhk0nv6CC2I3OoVg4gqwPd5hLn7SI0CRB8a8HKSObieXxn/PKfLw2H5XOI8sVRjQ0nR2WQPrFLc75KmCOWVfLM2tpQVA+fk//zXK6Jyk2uwn7DORmOnTv1AFM3Vx8sewZg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720082398; c=relaxed/simple;
-	bh=fi//By/0BfylN26ma6Q0KWUT4fJdDh/xbXoHLQiZzLg=;
+	s=arc-20240116; t=1720082508; c=relaxed/simple;
+	bh=Sau6sfpL8YENzLqulrYTW3c5o0opYWelOaoKQ6Xul0w=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qdbYQRdXvWqGiHQFKMYAfvYvWN18vBtaaUI+kDYUm6n44HI84TfJalXwu5PTxCUoYxbUj9nhAWfs+lOhnSljnCKfS1si3vqNKe2ZUKA52HcrUVs5x37I/OY+Z5u3O5xew5b3oMnhWngzM+OCTekBAs5F0GSBodhlJzAAf3Lr384=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aclfYBjE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A629AC32786;
-	Thu,  4 Jul 2024 08:39:52 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=dMvqQ/DQxrB1ThS0GF9Gst5AMqxpd7TrigFTS7DP94O2r+N7QxXHnb7KLXwz4dyfksziZlCVBaziW2RromuOdh5A3vysr9//EPQwzJ/Tfvwl+b0w5IQ1vmcR+Ty+ZbugYZJPsaZcObeTShn7TgKBI/oIMT5lOIwDT6XR0RbvXsc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lTDk1Bn/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30918C3277B;
+	Thu,  4 Jul 2024 08:41:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720082398;
-	bh=fi//By/0BfylN26ma6Q0KWUT4fJdDh/xbXoHLQiZzLg=;
+	s=k20201202; t=1720082508;
+	bh=Sau6sfpL8YENzLqulrYTW3c5o0opYWelOaoKQ6Xul0w=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=aclfYBjEjJm9H+AH7Lo7iGkMWFoMInDnwYi9OHTC3YpS+NawKptMGYWCwPsSggMqK
-	 hf0lICb5bHpITpMzy1J51ltkGkrKTPb3Xayp941s6wDaCG82WSywWSpdiK5qRGnhjb
-	 OXh2EgzEIQLJCYvK7joYWP+Nb3EF9M5eGO9GmiSvIglQqnRjog79sQt0wccvSRUz8Z
-	 Gaz81z6n7nB9Nky90VfPlDPDX1l/mQl9MRQ4A7lAp8tYW7vJl6ahD+qow3ATfEDn3d
-	 h4vfAslr6zbqIdDFAz+Jm83VwnMEg2tJVZ0aKiybGZyhpFOqKj+47O59ESIhnUcko1
-	 gZK63lV63dRww==
-Message-ID: <577a5623-6dd8-4229-9c07-61e131a01aa8@kernel.org>
-Date: Thu, 4 Jul 2024 10:39:49 +0200
+	b=lTDk1Bn/swFidPHgAbv4aU/XRXRGAiGXXiLjNU7aJSlta56Gp81ZTZfFHWB8EKASc
+	 80whYvfFt7BFitqrMNQtpaoT9uCTeLvnxyKmk7EfVHgKSxH/gDWB6/3i6S7IctKHav
+	 1Q6JMKtM2Udx8TlrfysBHLekLS2kUkZx16p4FL8cmgqAxb1fgCc9I2H62Z7GZV8rhw
+	 pdyDOOH0XcDAkZ6nzhzK6u7OYKCSmApcpVehzstlYzzXoUstD3zIFS35IZA4IWF/1K
+	 VlbnWWOsx6CXb2T9pAqQ+KtsdLN7/KYVAx3DFe6fyQPcY7m+iSgwUg4B9KfiDL6rCH
+	 IRWtJSgQ2xHYA==
+Message-ID: <b5a056f1-a733-4d8b-94ad-49489ff26da2@kernel.org>
+Date: Thu, 4 Jul 2024 10:41:39 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,23 +50,25 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: iio: adc: sophgo,cv18xx-saradc.yaml: Add
- Sophgo SARADC binding documentation
-To: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-Cc: Albert Ou <aou@eecs.berkeley.edu>, Palmer Dabbelt <palmer@dabbelt.com>,
- Paul Walmsley <paul.walmsley@sifive.com>,
- Inochi Amaoto <inochiama@outlook.com>, Chen Wang <unicorn_wang@outlook.com>,
- Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
- Rob Herring <robh@kernel.org>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- =?UTF-8?Q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- Lars-Peter Clausen <lars@metafoo.de>, linux-kernel@vger.kernel.org,
+Subject: Re: [PATCH v3 1/3] dt-bindings: thermal: sophgo,cv1800-thermal: Add
+ Sophgo CV1800 thermal
+To: Haylen Chu <heylenay@outlook.com>, Conor Dooley <conor@kernel.org>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
+ Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Chen Wang <unicorn_wang@outlook.com>,
+ Inochi Amaoto <inochiama@outlook.com>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Jisheng Zhang <jszhang@kernel.org>, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-riscv@lists.infradead.org
-References: <20240702-sg2002-adc-v1-0-ac66e076a756@bootlin.com>
- <20240702-sg2002-adc-v1-1-ac66e076a756@bootlin.com>
- <b7913f90-7405-4a77-9c57-97ef124de6e1@kernel.org>
- <8d368347-7cee-41af-a033-c495eeb62e2a@bootlin.com>
+References: <SEYPR01MB42213F3A032C60C6AF5EB677D7DC2@SEYPR01MB4221.apcprd01.prod.exchangelabs.com>
+ <SEYPR01MB42217228213F5F2C739088DED7DC2@SEYPR01MB4221.apcprd01.prod.exchangelabs.com>
+ <20240702-aptitude-overripe-8ac9aa3c6b90@spud>
+ <d4b71376-2864-45af-8ad9-92c8a7cde291@kernel.org>
+ <SEYPR01MB4221C23C14DB53299E2E2F12D7DE2@SEYPR01MB4221.apcprd01.prod.exchangelabs.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -112,60 +114,86 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <8d368347-7cee-41af-a033-c495eeb62e2a@bootlin.com>
+In-Reply-To: <SEYPR01MB4221C23C14DB53299E2E2F12D7DE2@SEYPR01MB4221.apcprd01.prod.exchangelabs.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 04/07/2024 10:35, Thomas Bonnefille wrote:
-> Hello Krzysztof,
-> Thank you for your feedback
-> 
-> On 7/3/24 7:08 AM, Krzysztof Kozlowski wrote:
->> On 02/07/2024 13:52, Thomas Bonnefille wrote:
->>> The Sophgo SARADC is a Successive Approximation ADC that can be found in
->>> the Sophgo SoC.
->>>
->>> Signed-off-by: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
->>> ---
->>>   .../bindings/iio/adc/sophgo,cv18xx-saradc.yaml     | 51 ++++++++++++++++++++++
->>>   MAINTAINERS                                        |  5 +++
->>>   2 files changed, 56 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/iio/adc/sophgo,cv18xx-saradc.yaml b/Documentation/devicetree/bindings/iio/adc/sophgo,cv18xx-saradc.yaml
->>> new file mode 100644
->>> index 000000000000..21fd5dc8e24e
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/iio/adc/sophgo,cv18xx-saradc.yaml
->>> @@ -0,0 +1,51 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/iio/adc/sophgo,cv18xx-adc.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Sophgo 3 channels Successive Approximation Analog to Digital Converters
->>> +
->>> +maintainers:
->>> +  - Thomas Bonnefille <thomas.bonnefille@bootlin.com>
->>> +
->>> +description:
->>> +  Datasheet at https://github.com/sophgo/sophgo-doc/releases
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: sophgo,cv18xx-saradc
+On 04/07/2024 10:25, Haylen Chu wrote:
+> On Tue, Jul 02, 2024 at 05:09:35PM +0200, Krzysztof Kozlowski wrote:
+>>>> +
+>>>> +properties:
+>>>> +  compatible:
+>>>> +    enum:
+>>>> +      - sophgo,cv1800-thermal
+>>>> +
+>>>> +  reg:
+>>>> +    maxItems: 1
+>>>> +
+>>>> +  clocks:
+>>>> +    description: The thermal sensor clock
+>>>> +
+>>>> +  interrupts:
+>>>> +    maxItems: 1
+>>>> +
+>>>> +  accumulation-period:
+>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>>> +    description: Accumulation period for a sample
+>>>> +    enum:
+>>>> +      - 512
+>>>> +      - 1024
+>>>> +      - 2048
+>>>> +      - 4096
+>>>> +    default: 2048
+>>>> +
+>>>> +  chop-period:
 >>
->> Except that this was never tested... wild-cards are generally not allowed.
->>
+>> period in what sort of units? Sounds like time to me, so this would
+>> require proper unit suffix.
 > 
-> I realized I made a mistake when using the "make dt_binding_check" 
-> command, which led to some errors in this dt_binding. I have now 
-> addressed all of them, but I'm not sure I understand your comment.
-> 
-> I don't see any wildcards in the YAML file. Could you please provide 
-> more details on what you expect?
+> In clock ticks.
 
-What is "xx"? Sounds like wildcard. I do not see such SoC compatible.
+Then please mention it in the property description.
+
+> 
+> When setting to 1024, a time of sample takes (1024 + 2 + 64) clock
+> ticks. The clock runs at (25MHz / divider) and the divider is
+> configurable.
+
+> 
+>>>
+>>>> +    description: Period between samples. Should be greater than 524us.
+>>>
+>>> The constraint here should be "minimum: 524". What's the upper limit?
+>>>
+>>>> +    default: 1000000
+>>>
+>>> Rob/Krzysztof, could you comment on the suitability of the three custom
+>>> properties here? I know if this was an IIO device, these kinds of things
+>>> would be controllable from userspace, and not in the binding. I
+>>> mentioned this on the previous version, but I'm not really sure if
+>>> thermal devices are somehow different:
+>>> https://lore.kernel.org/all/SEYPR01MB4221A739D0645EF0255336EBD7CE2@SEYPR01MB4221.apcprd01.prod.exchangelabs.com/
+>>>
+>>
+>> Why would different boards have different values here? Does it affect
+>> accuracy? If so, how much?
+>>
+>> I doubt there are any boards with different values, thus it sounds like
+>> unnecessary tuning parameter.
+> 
+> Theses values affect accuracy in a minor way (about 1 Celsius degree in
+> my test) and could be shared between CV18xx/SG20xx SoCs as they have the
+> same design.
+> 
+> In the first revision, fixed values are used, and I was asked to add
+> support for all possible configuration[1]. Now I think this introduces
+> extra unnecessary complexity and should be avoided, since this is a
+> simple thermal sensor, tuning seems to be useless.
+> 
+> I suggest renaming "sample-cycle-us" to "sample-rate-hz" and dropping
+> other parameters for simplicity.
+
+Ack for me.
 
 Best regards,
 Krzysztof
