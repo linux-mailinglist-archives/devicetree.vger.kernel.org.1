@@ -1,154 +1,136 @@
-Return-Path: <devicetree+bounces-83015-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83016-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6ED81926E3E
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 06:11:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87A43926E87
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 06:42:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F1E60B2215C
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 04:11:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 44AA428AA04
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 04:42:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DFF01B7E4;
-	Thu,  4 Jul 2024 04:10:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A46432C85;
+	Thu,  4 Jul 2024 04:36:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=xenosoft.de header.i=@xenosoft.de header.b="e7MMSlim";
-	dkim=permerror (0-bit key) header.d=xenosoft.de header.i=@xenosoft.de header.b="8+5L3yiC"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="Ik9S7gl4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F291210EE;
-	Thu,  4 Jul 2024 04:10:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=85.215.255.52
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720066257; cv=pass; b=YPHc+B26k+U0EADykiVFgigNyvfxK6PCINViOzihm7TZdQmI6oPpwUbx7FTTQzv4f9fEE2yyPSLjtQgr/rWC7exkMIprGRMk/pnuZvjHzrE900JMvK1yVisedO09d646AxwFOJdMitgmdFlxHNw23SOkhcwTIhocsU8qod1GkOc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720066257; c=relaxed/simple;
-	bh=+O2eMUKa8rcdWwn6dYod5eFPVDqCBWyvGbD2DE3l8JM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kc6T3aMONQUcYdIl0gl27UzBFkZaDXE1mH8JcFY6RTsWHaNatCHCNJT2h7kUlqoE1B/LEP8GOJyHUnpZxcYSmvQWmPV9FV9IIJcNrUgLzlMw5/UOApHawvDPkphwkEDff1/dUk0k+1uobze5yiiXRrFH1glFECnVmCZVSt6gQb4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=xenosoft.de; spf=none smtp.mailfrom=xenosoft.de; dkim=pass (2048-bit key) header.d=xenosoft.de header.i=@xenosoft.de header.b=e7MMSlim; dkim=permerror (0-bit key) header.d=xenosoft.de header.i=@xenosoft.de header.b=8+5L3yiC; arc=pass smtp.client-ip=85.215.255.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=xenosoft.de
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=xenosoft.de
-ARC-Seal: i=1; a=rsa-sha256; t=1720066211; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=qkyJygzzQDFPPD8O1Ywk9+fUQD/egWVt7y1Tlt5r4H2umAGSTAZtFwaE4Eq0TeKC2C
-    YZZu30DPTTi+vCfX95KbHLX1Xextg/unk2hxUV4O/qsUToWXOoWQFhjTuPYtdJ/KYvCQ
-    NQGLkyeE1qxlg9CJThEXl8YQ24TIYEOyOh2CgexLOo6f3+IUTEn9lwiSMysOgCT0BykH
-    MimqIsMwRfb/jgoKm+IAja5Na0/kEQ46KLJC229balKUlflVsIqMlUD96zqK20FJUE7Q
-    dU4M3x3qJgFuYcJCjcEKPxBQOnaUn7vW5DjlvmymACy27YftghLjU9Z3OhIt1CZNtYhB
-    z1Vg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1720066211;
-    s=strato-dkim-0002; d=strato.com;
-    h=In-Reply-To:From:References:Cc:To:Subject:Date:Message-ID:Cc:Date:
-    From:Subject:Sender;
-    bh=waNYzVh47/kMBZcFAwbpFzTIdIRmPW6TiXgS9tOC80M=;
-    b=P4RCcPkrP6xjSNAyYAT3YtfUrfNCdKQeslOCqb5mk+xnu7jpijhvuJQHDaK6XcodQL
-    FoQOkMwE6Nxpvpp5XIMRqAqAdrNyEp2++u0NGHAPpUxos+VleDu+zdIWz0jy4GdCTJVQ
-    m4BioGurLrFNYEeP8kW10naFxSKDSxDZrMuX8eNgN4MmQEJnoPA+2XuYYTAQxngiwbyl
-    9nNYfp6q6mFcXUit0frfJhrnR4ot9yST2Ca4l1QtIZhfnll+pzEJJseZFisknVsqffKU
-    E/t2U1fbPAHbxX1wxmBC6s8u+hZajywkOPmcf77COXnR7OgnCLHvk5pjdkXOVyX5Cgtp
-    XjYQ==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo01
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1720066211;
-    s=strato-dkim-0002; d=xenosoft.de;
-    h=In-Reply-To:From:References:Cc:To:Subject:Date:Message-ID:Cc:Date:
-    From:Subject:Sender;
-    bh=waNYzVh47/kMBZcFAwbpFzTIdIRmPW6TiXgS9tOC80M=;
-    b=e7MMSlim9DkMjN8BFpaF13MbZkqpPDSdqlvpb6DjSKfGVDUjqRU3aj/i23ivhNSS+B
-    L1Q2tN/NtNoQ4sGUddX8bdo+qTRb37wa0ydVf+vBY13HoWZUtI7wCC1KDZs/iM98N7ow
-    Lu8MQDlXJN9dOfd6D1oiwno+YtVzL21mJmpbQ0DPRec9PqVXgSxmDkOQyU6uDJu3LXfv
-    e+siN6ELOPulKQ+tTkiG1sgCcEl+gQdAdFN8UnUv9tNunSZqi7gj+7WjMFlQTc23h7Gz
-    8dY+dJcrzLeqfr3RJOImvSeAANd/+APJ972AMe1gE0qA7mxEb0EHIO0j1nAcjJ/g/vMk
-    XKBw==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1720066211;
-    s=strato-dkim-0003; d=xenosoft.de;
-    h=In-Reply-To:From:References:Cc:To:Subject:Date:Message-ID:Cc:Date:
-    From:Subject:Sender;
-    bh=waNYzVh47/kMBZcFAwbpFzTIdIRmPW6TiXgS9tOC80M=;
-    b=8+5L3yiCGaW9qoCPHg4wmxYcjm6J1H0SqqKjk8KyvbOcdaj3c/DpDDKKYYcAvySupO
-    ryzhiomdAj1ftkDZ5sAA==
-X-RZG-AUTH: ":L2QefEenb+UdBJSdRCXu93KJ1bmSGnhMdmOod1DhGM4l4Hio94KKxRySfLxnHvJzedR43J1zbS8JqJTXDk2ePuRj/Ii+5Yjqee1PRe9v5N8="
-Received: from [IPV6:2a01:599:81b:e76c:5d34:e38e:a378:4532]
-    by smtp.strato.de (RZmta 50.5.0 AUTH)
-    with ESMTPSA id e083890644AAQnu
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-	(Client did not present a certificate);
-    Thu, 4 Jul 2024 06:10:10 +0200 (CEST)
-Message-ID: <ccf14173-9818-44ef-8610-db2900c67ae8@xenosoft.de>
-Date: Thu, 4 Jul 2024 06:10:46 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5F243219F
+	for <devicetree@vger.kernel.org>; Thu,  4 Jul 2024 04:36:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.54
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1720067813; cv=none; b=KNGQ1w8u2Fsy2EfxtbsYDBQ0CUaMcO5jU/VH8jD956kHeqKLK1ypbUShyw65XNvLKQ5ZdCqU2WIqWoMWl0gmJXebTSSSLxek8XeQgP7lAiLK7+IFiCusBVh1s5uwGwt+J8bMvCddWRpxdYgBU/IK3CvRb1/9c7Sf9PAne5LX8fw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1720067813; c=relaxed/simple;
+	bh=9slmyaBlklEvimC+IoLVf5ZWppbjvVs6SBoZDCByeC8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=k7HfvxWKbLicBGKcVtpNz2nXHOaEyXCFC9RA7au50DK6MhsaFLFuoSnHIr6Om7nsJi9CkFnnFgAk3QAC0yn1uE1+OiyRL8wYp5l/Mq2AO7pXQ3GKtDJfyWMJYPYAa1JcfnUWnvQjoAy38YbGSeD3YaZuckxsuReoLGx3kHQaeCk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=Ik9S7gl4; arc=none smtp.client-ip=209.85.216.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com
+Received: by mail-pj1-f54.google.com with SMTP id 98e67ed59e1d1-2c97ff39453so201853a91.0
+        for <devicetree@vger.kernel.org>; Wed, 03 Jul 2024 21:36:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1720067811; x=1720672611; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=mAbXjXG0fSvMf5pJhFu2VS2Kd5/IOX1LZWjusen/NTs=;
+        b=Ik9S7gl4Ioi7+3thnWC7qXyQPBEr5A1fI3Ta+TYgemDdCImd/lja8NPeg4FhBYYi49
+         RQfAIKU/CKmAUJGVsozgF7BeGAb97XqyCD4jn++KdJYa1BrJ+Ff0EA/guI/kFdUKScy4
+         eZQpocrEB//JayKnhrcU7fPfAAMNFhR+97gED8iFHt3DyRs9TIMm5Gl3I54uHBzmvaMd
+         mUFZ8/2/5sTb1/I1dbGT1kud/MluW9pzdzuhIOMDt7Ag7wupVngN/c14e3SGlc9oknQK
+         vpGJ43ziVdlJ6puNCTtA57+zUetMWSA7/eUgYkscqI13dYls3hfOhst9pVC1q1TdQpXl
+         3Y2A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720067811; x=1720672611;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=mAbXjXG0fSvMf5pJhFu2VS2Kd5/IOX1LZWjusen/NTs=;
+        b=fYwTscJt7Dekpl7xWNpACTb3Hhm/op/PkGWVdZxjXJFdkJ4Wy9f+28GleYXTpgDOGX
+         IyYbjRFHjw8VWnTv2/7Ejxcc6zrWSI8xJ40D4hfrV4iMvfxKis4RRKaDoQiUhB4kqEwo
+         tEA6hc9fnagKRg8kusIWxptgVOEcXezdA9Qugh35kxpxDvSnkMhfL1P680Rkizg/EOID
+         bjPT+tC3SjvIq04DWyUDQVEd7qxa9mzNj+TvN9StVhBnZ9OlbjTsoIfkzj2UaQs/pbPo
+         yDiXzkzBOtz54cwoSxM0KsjXEiXTpB+LVyCHrlDZ7PkxM6Eqe/H00g28I4uZZtsHLeNG
+         BHxQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWIbC/b0JV1Bw39D1tyzH6VKJQgcHqs2uqhJUse0Nj9FifxonVRSM3QIBvMt97RJgC02FLI0pkO79yvJsVKeHgYSzJyJ3UaKYxJEw==
+X-Gm-Message-State: AOJu0YwZbxmy8olLOEo7LLou4Da9aae8wRi6d5FwgChPrNKK24y0Kz5V
+	etX5SSg9LvqvENrKUfSOZYJ2zaWUXXOR6Gmhe46yvsOdXVcY+R7JVOzAM7A0ebqXvoA4+xJcEis
+	BwkMbl97O/qsIhPq6eJQUvXhlBissvyVum9chprwZH0M2SHG7
+X-Google-Smtp-Source: AGHT+IFtkJ+EuL8PoDKfInod5fFnpjY15Fd6bShoE64mF1c8evcN7TimB/7UEAKFN0CDsuw+N1TkXgUJNgqJPD6HU2A=
+X-Received: by 2002:a17:90a:1fc8:b0:2c2:f6a2:a5f7 with SMTP id
+ 98e67ed59e1d1-2c99c53b414mr431715a91.13.1720067811171; Wed, 03 Jul 2024
+ 21:36:51 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PowerPC] [PASEMI] Issue with the identification of ATA drives
- after the of/irq updates 2024-05-29
-Content-Language: en-US
-To: Marc Zyngier <maz@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, apatel@ventanamicro.com,
- DTML <devicetree@vger.kernel.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
- mad skateman <madskateman@gmail.com>, "R.T.Dickinson" <rtd2@xtra.co.nz>,
- Matthew Leaman <matthew@a-eon.biz>, Darren Stevens
- <darren@stevens-zone.net>, Christian Zigotzky <info@xenosoft.de>
-References: <3ab66fab-c3f2-4bed-a04d-a10c57dcdd9b@xenosoft.de>
- <86zfqzhgys.wl-maz@kernel.org>
-From: Christian Zigotzky <chzigotzky@xenosoft.de>
-In-Reply-To: <86zfqzhgys.wl-maz@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20240702130138.2543711-1-yangcong5@huaqin.corp-partner.google.com>
+ <20240702130138.2543711-3-yangcong5@huaqin.corp-partner.google.com> <CACRpkdY+nuSWz7rnVVUpF_mZOfDUb_6fgoJpnG2Pt-+AGLqt0g@mail.gmail.com>
+In-Reply-To: <CACRpkdY+nuSWz7rnVVUpF_mZOfDUb_6fgoJpnG2Pt-+AGLqt0g@mail.gmail.com>
+From: cong yang <yangcong5@huaqin.corp-partner.google.com>
+Date: Thu, 4 Jul 2024 12:36:40 +0800
+Message-ID: <CAHwB_N+Gr=Kso6=UabHseB0UTb+4wWpHR5MAZ82bHe5At_y-cw@mail.gmail.com>
+Subject: Re: [PATCH v1 2/2] drm/panel: jd9365da: Support for Melfas
+ lmfbx101117480 MIPI-DSI panel
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: sam@ravnborg.org, neil.armstrong@linaro.org, daniel@ffwll.ch, 
+	dianders@chromium.org, swboyd@chromium.org, airlied@gmail.com, 
+	dmitry.baryshkov@linaro.org, krzysztof.kozlowski+dt@linaro.org, 
+	robh+dt@kernel.org, conor+dt@kernel.org, 
+	lvzhaoxiong@huaqin.corp-partner.google.com, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 02.07.24 18:54, Marc Zyngier wrote:
-> On Sun, 30 Jun 2024 11:21:55 +0100,
-> Christian Zigotzky <chzigotzky@xenosoft.de> wrote:
->> Hello,
->>
->> There is an issue with the identification of ATA drives with our
->> P.A. Semi Nemo boards [1] after the
->> commit "of/irq: Factor out parsing of interrupt-map parent
->> phandle+args from of_irq_parse_raw()" [2].
-> [snip]
->
-> My earlier request for valuable debug information still stands. But
-> while you're at it, can you please give the following hack a go?
->
-> 	M.
->
-> --- a/drivers/of/irq.c
-> +++ b/drivers/of/irq.c
-> @@ -282,8 +282,10 @@ int of_irq_parse_raw(const __be32 *addr, struct of_phandle_args *out_irq)
->   
->   			oldimap = imap;
->   			imap = of_irq_parse_imap_parent(oldimap, imaplen, out_irq);
-> -			if (!imap)
-> -				goto fail;
-> +			if (!imap) {
-> +				match = 0;
-> +				break;
-> +			}
->   
->   			match &= of_device_is_available(out_irq->np);
->   			if (match)
->
-> This may not be the final workaround even if it solves your boot
-> problem, but will at least give us a hint at what is going wrong.
->
-> I have the fuzzy feeling that we may be able to lob this broken system
-> as part of the of_irq_imap_abusers[] array, which would solve things
-> pretty "neatly".
->
-> 	M.
->
-We tested this patch yesterday and it solves the boot problem.
+Hi,
 
-Thanks
+Linus Walleij <linus.walleij@linaro.org> =E4=BA=8E2024=E5=B9=B47=E6=9C=883=
+=E6=97=A5=E5=91=A8=E4=B8=89 21:10=E5=86=99=E9=81=93=EF=BC=9A
+>
+> On Tue, Jul 2, 2024 at 3:02=E2=80=AFPM Cong Yang
+> <yangcong5@huaqin.corp-partner.google.com> wrote:
+>
+> > The Melfas lmfbx101117480 is a 10.1" WXGA TFT-LCD panel, use jd9365da
+> > controller, which fits in nicely with the existing panel-jadard-jd9365d=
+a-h3
+> > driver. Hence, we add a new compatible with panel specific config.
+> >
+> > Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
+>
+> This is certainly OK
+> Acked-by: Linus Walleij <linus.walleij@linaro.org>
+>
+> > +static int melfas_lmfbx101117480_init_cmds(struct jadard *jadard)
+> > +{
+> > +       struct mipi_dsi_multi_context dsi_ctx =3D { .dsi =3D jadard->ds=
+i };
+> > +
+> > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xe0, 0x00);
+> > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xe1, 0x93);
+> > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xe2, 0x65);
+> > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xe3, 0xf8);
+> > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x80, 0x03);
+> > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xe0, 0x01);
+>
+> Until this point *all* displays have the same init sequence, what about
+> a follow-up patch that start to break things that are always the
+> same into helper functions?
+>
+> These sequences all have a lot of the same magic bytes, so if
+> you guys have a datasheet for this display controller then start
+> adding gradually some #defines for the e0, e1, e2 etc commands
+> please.
+
+Okay, will add a patch in V2 series to fix it. Thanks.
+
+>
+> Yours,
+> Linus Walleij
 
