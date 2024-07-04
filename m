@@ -1,298 +1,202 @@
-Return-Path: <devicetree+bounces-83182-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83184-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D79F92779D
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 16:01:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEB179277A8
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 16:02:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 32DAC2818E1
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 14:01:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1860D1C23669
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 14:02:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3494C191F6D;
-	Thu,  4 Jul 2024 14:01:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EEFA1AE873;
+	Thu,  4 Jul 2024 14:02:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b="ibJD+rqz"
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="U7eqT9qI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2054.outbound.protection.outlook.com [40.107.20.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21E992F37;
-	Thu,  4 Jul 2024 14:01:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.54
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720101683; cv=fail; b=M0yc7tNeeBVQtnH4QlTLEsVasGjoePro8rRnviMbWvti1n6sGjMD8h2IFtfOTaX1kq0t8za/vkUp7tDUsCtfxYRjkCULhxjrxBDpXsU87qORYX+tsO9hwz56ULIH4cybc0Ko5bqv5ISxdB9TBZlgOsGlwIWlXd/60rOaM0tHo8g=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720101683; c=relaxed/simple;
-	bh=FQTgxI5o4N67O2+/P9UrqHR3kg1I9hBO4UPVA/NHZIw=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=L/DtPeAiR0gHTQaX2Z4qWK9Op6naMIME2XQu5CF0Db/SiQkHTjqpGAu434QDsXf6pSVoGGULmeHCE8BO2lN/MYfVzqVxweuEFOnyHo+82mX7hEdYto2QjK4bGiswcNjJ6VcldfONlWm7gpZ4/CCjuCGxUAEwU9fZkh7YxF7MFdk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=axis.com; spf=pass smtp.mailfrom=2n.com; dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b=ibJD+rqz; arc=fail smtp.client-ip=40.107.20.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=axis.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=2n.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SN5jK47wrSptZsaXQ/+PcYW9U5K1Kt/zwtGC1XIg4llfo0raHET2rKmlg3t4WfAKFmDlBs0qa9W2H5u/YOLnzM7RaIhOl0+gqbF1167VhZ9g9sr5NxusxXy8zqg7Zb2S9jgLzrVrUPESXeUMcPbxQdniWw461mQFtGhUXBfpoenykYZbd9kSdxw5R1K6Wnn7pJX6RbDxm3ojU7m58D29TqvqB3okKrnRMQXmXPnfLqWLrDltFMvqwcWMfjUqzikKzX4rGqL+VaYwXSGGvT0xNAw73XKz+1tpOKzN69RgA59c02R8lFBHtOv0m4FaBFsM3SZSCFYmxZ1mvfV/HpasSw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=UB0H3nwPIC5VbI2MlxF44lXflZ/IGsWNk+xc++yQUhI=;
- b=jZXbSrdFUDhmYrJHeMbayPIAOdOUMHPqcGn1a1FdzBC5rEq4v0iqX1DvvdOWm1iwIGA5hof+PTsRUVocOUFoul3F/SlXsMcts2aBzwLr+5Gsr+CM90FjlqZXaKXIzc332x2BFUlRPKCHgBCvi98R84n99M/irorJZXIg2R5BdQ8qv7beWL6hqbDCot+s6WGwg6xf7XWy0DYGxvlzaWl0wblW51x+3WCiIMcYX4ua15jPfjyErTG4JB9O/KAwjSTwxn7TPO/cW5vaA4WavRqFvHhXTIjgcF25bJ6iEcxu60Ut2m1079OIQOxlTg1Uv2sfB3oKJ+PqhCPD6SdvdPhJqQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=2n.com; dmarc=pass action=none header.from=axis.com; dkim=pass
- header.d=axis.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axis.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=UB0H3nwPIC5VbI2MlxF44lXflZ/IGsWNk+xc++yQUhI=;
- b=ibJD+rqzzpPp5KuIH4wPx6ljizKH/XYhkeSyA3i6VstMriJ1dHC4Yh1+t6jRyEPXbAV83HkfERslBpvsetjE9TEMdmImJgpJ+9pBiLKOcC3mfkYzLB9yVVuACJxtQb4ZLA6dzDC9MnMecp1FW4suPR8LAQbXRmAYhUJaIMHo2Sw=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=axis.com;
-Received: from DB5PR02MB10093.eurprd02.prod.outlook.com (2603:10a6:10:488::13)
- by DU0PR02MB10014.eurprd02.prod.outlook.com (2603:10a6:10:446::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7741.29; Thu, 4 Jul
- 2024 14:01:16 +0000
-Received: from DB5PR02MB10093.eurprd02.prod.outlook.com
- ([fe80::2a25:783c:e73a:a81d]) by DB5PR02MB10093.eurprd02.prod.outlook.com
- ([fe80::2a25:783c:e73a:a81d%5]) with mapi id 15.20.7741.027; Thu, 4 Jul 2024
- 14:01:16 +0000
-Message-ID: <26dcc3ee-6ea8-435e-b9e9-f22c712e5b4c@axis.com>
-Date: Thu, 4 Jul 2024 16:01:13 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 4/4] net: phy: bcm-phy-lib: Implement BroadR-Reach link
- modes
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: florian.fainelli@broadcom.com, bcm-kernel-feedback-list@broadcom.com,
- hkallweit1@gmail.com, linux@armlinux.org.uk, davem@davemloft.net,
- edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240621112633.2802655-1-kamilh@axis.com>
- <20240621112633.2802655-5-kamilh@axis.com>
- <5a77ba27-1a0e-4f29-bf94-04effb37eefb@lunn.ch>
-Content-Language: en-US
-From: =?UTF-8?B?S2FtaWwgSG9yw6FrICgyTik=?= <kamilh@axis.com>
-In-Reply-To: <5a77ba27-1a0e-4f29-bf94-04effb37eefb@lunn.ch>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: VI1PR06CA0115.eurprd06.prod.outlook.com
- (2603:10a6:803:8c::44) To DB5PR02MB10093.eurprd02.prod.outlook.com
- (2603:10a6:10:488::13)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 022D51AD9E0
+	for <devicetree@vger.kernel.org>; Thu,  4 Jul 2024 14:02:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1720101748; cv=none; b=SKzLOKHWUEqbB29gX/o1KXM3jgDczwWHL1wPPdxIfJaTdWJ7wIaVSX3fiwGtgOLYc3sYyKfdopiV+nh+AaDxAIZcJmgIG1TqqDWijdsMYTNaeDl9Dd4IoL5kg4ev+4qDfzCEUIrHZS6jL0TBm1w3oSbsHGy7MnA9yQRxVV2qh+s=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1720101748; c=relaxed/simple;
+	bh=misJld9OXt2HQGXdcMz5/jySo9Fl3DNg/LRqr42yRAw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=V05xlvPdZIiSn1yM3QIYLv8x39okTicOWIdEbon/wgI3vUcdXa4rzyZwgABbEElHt//dP0Lx61fiLCnd/HMTzgLx8QLq91ayqrXt1AfdWTGrV0OCC4iKiqCaMjkznTxQadicgL/TgfhKujZA4iD+xTAoYwLVu3Mn4+ICDoM5Qwg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=U7eqT9qI; arc=none smtp.client-ip=209.85.208.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2ee910d6a9dso3202291fa.1
+        for <devicetree@vger.kernel.org>; Thu, 04 Jul 2024 07:02:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=suse.com; s=google; t=1720101744; x=1720706544; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=wqbXAqL9wlAuHc0SJ4u0nAeJp5BlfcD9g+Q8MysRj3Q=;
+        b=U7eqT9qIOR1gpjPGZ3Vchbpkl7m35zcIcQ7xrevlojwSDjRK8wOimYkz7k+lY+9kGy
+         IIh042z9Yi0V+LdXsXFW6rMKQCwE9sfZtKVi6S79jpIa7YBXK8WZJGYO23ixw4T9JV2k
+         smBamswie1IXGB14BdJEi+yW14nZ6plU/UwE9NOnqXpKzVJLAGG+V6YpSwkAOvGP/A6K
+         7NYGOzrSvkk9lkjGgK8n28bg98Wfo4oQGDMXBOXnrcXu7RFkF/sgqHzCOGy+y34XhGaO
+         TA2IjRCEqpGzGWdNPBaWuQDaorvzjLz//MNEmdgMSlYwZkGhLmOWc64d3tvhHFm7qI3x
+         GYGQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720101744; x=1720706544;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wqbXAqL9wlAuHc0SJ4u0nAeJp5BlfcD9g+Q8MysRj3Q=;
+        b=XWXe3dxaaxcaFewgDVtKWcqDC60LyrCuIFzBtVPO5l0VbTirfQXIG3IlDg+l1AM1C6
+         sJdTDXPRWzpSj+tiP6YZ1LzOkDEg50QhQ6CfYxBpp/5kECc9nBGi10Gabe8oB9kG4XYF
+         /eDC6DuXwWmV+uvI7JV7yiNr9OQW5LS3HeSpFN8rmkdklE7morACruG5Vhagms8aR1KX
+         yNKT+jAn1pMqx6yACPYBq2DSWVcFI01r6R2KpTFoysyQLFGmXFvJOvdpyMyYMpThGAXY
+         Dk1GjxTKU29Hpr+6RZi/Rf5YU545+Izvvj98XAce0EcmRbC/ZtJpwO8WGqGts4wSh5Eh
+         ylqQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU0TmP+auzRW/lAMeiggHpOPI4wa+NO0Awd3bU/2mMk959jCJvfCNlLkKLHKH/NmyJnCQAmGhYOtnjhmtXLVF3Vq8I+NciQIpQ0ow==
+X-Gm-Message-State: AOJu0YzzwCRVUNMgNlMVVFMhMnnL5Ym2erVZEtjQ/kDugUetY9NVkf0H
+	PTaQ/HR5DblFQXIa7X5lq13WxX5Cls3Lqg48TXProIl0pGAqZeWGU9orjP3gPpM=
+X-Google-Smtp-Source: AGHT+IEH0ii/5bDGf3/oJxkx+BSCOwuT1536wkXWHPyM0FRssA3mk6XZ1GyCc9wc5qhQdqz90Kl+Xw==
+X-Received: by 2002:a2e:b043:0:b0:2ec:5685:f06b with SMTP id 38308e7fff4ca-2ee8eda389amr11224661fa.27.1720101744044;
+        Thu, 04 Jul 2024 07:02:24 -0700 (PDT)
+Received: from [192.168.1.135] ([207.188.161.25])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1fac10e3311sm122464035ad.79.2024.07.04.07.02.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 04 Jul 2024 07:02:23 -0700 (PDT)
+Message-ID: <c1c387ad-6586-4108-88c8-1d04a65fdc49@suse.com>
+Date: Thu, 4 Jul 2024 16:02:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB5PR02MB10093:EE_|DU0PR02MB10014:EE_
-X-MS-Office365-Filtering-Correlation-Id: c809b15e-3bf8-47f4-b339-08dc9c31c56e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024|7416014;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?eWhobmdoRVlEMWROeGY0MGhtdXQvSVY0bmpvanIwanF6ZnhMM1YxWml0Vnpu?=
- =?utf-8?B?UW4vZk5zbUVMVEFwZU1pSUxrVkFwM3I0QUJtY2s0dGFHSkw5aU5wNzVqcm05?=
- =?utf-8?B?cHo5ZzR6MXRWMzVHTHg2WUt1THJUdmg5QmVwdFVzajUwUVhJYnZpS0psMUs5?=
- =?utf-8?B?MUlIRkFqcU43K2owc2xoYWJBYm1URUdBUS9YOGRvZjJITXVUYitsdUhSWVdS?=
- =?utf-8?B?ZUhOcVdDZVdZZ3JCWlVRUm44ZDcyVExzREZsYmVYNWdQcUlQNnBHODRaMzU5?=
- =?utf-8?B?bis4WFV3OVhvcExjZ1pLd1FJdTJZZ2IrWU5aWUVkWGhVR01YSk5GdmJXTUpY?=
- =?utf-8?B?VU9RMHJiejlkNitKVm9IaVEwOTVXY1FyYVZKaEFkUldYU3R1NnlWS094STlh?=
- =?utf-8?B?NGNUaU1udGdBck51d3dCWlV6UlM0bGhKVTVTbE1YOFYrc3hZZGo5WmxwVU1v?=
- =?utf-8?B?T0VXVEY5dkxwR2JYWGUwSjlVRnZyeG1BMHNRNlpaQk9nQjBlNlFsbVpXRGo4?=
- =?utf-8?B?cEJSTG44WktTMU50Vm9zSEtWbzQ5ZVNSaHB3Z1VZRTBSNXZ4bTczSTNFeE5P?=
- =?utf-8?B?WENZRWo1ZmtURFFPeFVHUEJzaVcwaEdLNXZNeHZ4V2YvMWdwcUVaQjc1RGJG?=
- =?utf-8?B?NnhpSDZuTHlTQ25TSE9QWWlKMS9NcUVqeHBJZ3c0WWVBTmlySXNIcDQybFFp?=
- =?utf-8?B?Q29zN1ZuVkt3TnIwRkFJdUFGWFRnUysvSjR0SzVDTkJRMHgxdlV6dnJpMTd0?=
- =?utf-8?B?Ry9rYW9DOCtNOUVud1lCVDdid0xLeEgyWE5yTTNHTUN2ZUJNc3Q3c0s3MVNN?=
- =?utf-8?B?UVBvY25rdDgwajUwVXFDdEVzWi82N1hadEdDby84cWVTLzZsY2V5aU91eGNM?=
- =?utf-8?B?NWYxK1ZCTHQwNU0wQ3dxSm9vNjY3WTNmcTRaQlp6bGNsWEdZOStNSkFxMU8v?=
- =?utf-8?B?VVIzdEtkcXEzNjlnd0ZZN3ZWQk9vK2VuRWR2YkNFbWlnZDVtYzRZcjhvVGNY?=
- =?utf-8?B?S0t3SWlWVGpBMEJxOCtYYzlDb2N1MG1jY0FpVUNlcEhndjFUWVRaaFppRlJP?=
- =?utf-8?B?OTZpaDErU1I2dEMyczlqVEpieEFCc1NqZjBWUldFWmxvcWRVZHZLd29KVnl2?=
- =?utf-8?B?cEJsdHNjU00rSXVPcWw5UEhQY1phTmNFODNSMnZCQzFEWWFFeTJUQ2Y5Q3pn?=
- =?utf-8?B?ZXRxYkhLZVZVa1NXQU5UaHJ5SGs2aHFiTmNIYkxnN2Jha0wyYUFqQ3VIYkJ3?=
- =?utf-8?B?MGlWd1pieXcrQzhrSWI2V1RBWGZoSGoxVW15eXhWWVBuZ25LMk93MzR1dUp2?=
- =?utf-8?B?aG81Rm9uRVhCd0JJallrZ1d6eXpQR3UrL01GZ2tKSktYUGtvQW55d1VuQ2sy?=
- =?utf-8?B?QWh5TGJsSWxWeGxYWFZqbm1KcmJ4ejFuZittbUhlcEJhR1hiMVNsYTVZMDJO?=
- =?utf-8?B?cHdTQU9HQ3d2a2tMbG1Ib3RxZXVkOVRRZkdPK2lRZGVrejg1RTBYTEdXdnNX?=
- =?utf-8?B?UXNQQkhwbFVQUktkZHlpalZjTk1vTnQ3TjRJL0crVDFSNi9NbnMvdmdUOUd6?=
- =?utf-8?B?SlVNbnBOeUl1S0ZtcDgxWk9qN092T3BvUENzdzk1Tmwzb1VFRXBWYjFiSFRi?=
- =?utf-8?B?TzVtSVRjZnliOER3WGt0cFltUEh1V0ptWDZDL1hla3VkTlh4ZnQ0dDJvSHJp?=
- =?utf-8?B?TzJLL3ZvR3JXcU9KK3AyOHpzU1BoRzNsUnpUVEV2ZlZ4cWY4YXNQVXN6ZjJL?=
- =?utf-8?B?S0JzSk1KNklURjhQYkJTN1U0L2RYNVdIL1FkZURuRHB3Y29icVpZV3pKOWEy?=
- =?utf-8?B?Y1ZLVllIeHZaUzRrQVhBdz09?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB5PR02MB10093.eurprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(1800799024)(7416014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?T3AwYW5wK2hzUWs1QXYxU0o3ZEdtV0F6TzZQZG1ORk9TTStWRStrb2lQR20w?=
- =?utf-8?B?dmplbXF0aHdZbXBYT1JaZlNVYzF6VHJ0RldMVWQ1SU5RdEl1bFVmSEttN3dw?=
- =?utf-8?B?SUhLN1hLOWJFVUt4Y284U1R3b2RuT3Z3d081Ry9keWFzOU9WbW9abXhEU0k1?=
- =?utf-8?B?NlY2VmlWV2p5L0N0Zm5Ubjh1em4rcG9EOCtQblE1RGZvNS9MaHRNUTdQZVpr?=
- =?utf-8?B?Q09VQjMvVC85Zm1ldlBWajZvaHU0U0dOMitpQVVUVHZZTCt5ekw4a0VicTlJ?=
- =?utf-8?B?OWdsMk1QZ3VHV3FneHJTRHU3aGpwTFJ3eWZZZ2ljdTcwenRiVUxPTWRWcklv?=
- =?utf-8?B?b0daVW01QXJrNC9NdmcvcDFjL2prR29pajRFSGI1RlRreG9kcGltcVpUOVM1?=
- =?utf-8?B?ZU9VRldXV0x4dHZER0ZFMzB1NzNyR2tvTzFmdzUvem1xelc3L1BBTlIrYlVX?=
- =?utf-8?B?ZHIzN05QMkR2QVYxclpkeklsRVBmeDViQXJGY3JMdHQ0enZ3ZkFjT2RnanNk?=
- =?utf-8?B?bytJZklqc0YzRitINWc0UVlkbVV1NkdwZlJ3Rk5HS3ZybkdyZ3QyRU00TDZj?=
- =?utf-8?B?QWxQVURMNE13bTFRUlNJTkkwNWRRS0N4eTc0MnFSQ3NwUjc2N0o2UWNGNlRr?=
- =?utf-8?B?QVdzbkc2Q00vMVAxdmNwSVNVQzNoWXE3OTE0OVhMZnR6WjBJakxsV25CNHpL?=
- =?utf-8?B?NTIxMlVkT2laMXVJZGRUU3hYdHJDSkczTjdrRjRNUnppL3JsQkJwRGhwVGsy?=
- =?utf-8?B?bDVvK1orSnU3VkczQTdlaWJRNWYzOWZPamIrdU1kOU1FL05vMWp5S2NtL2Mv?=
- =?utf-8?B?a3p6ZmNZWjN3dlgxRzdqdllvVTd3cDJYN0czOWJ4R2ZybnphY0s4ZUtQc2Ri?=
- =?utf-8?B?MFIyMmJIS1ZJanpZTUROY2V0SHBLYldUYklRb2xlUnl6YVYrblBCa2tORTF3?=
- =?utf-8?B?QmZ0VWIwbi81VkFNT3VaNTJmTFNuWGhpZHQ5RDhCV3JOK2FoQWZaenc1MWts?=
- =?utf-8?B?a3hJdHNrcXpxOW1GQ1BUdFNZdG5DdWRhaXUrckc1YXJZR1lWNW5LKzVucHRR?=
- =?utf-8?B?N2RaY0JFa2t5aTEyZ0E5RXJFbW9UUUdBQ3lzQ1JHZXk4NHBJbklHUmNMQmJq?=
- =?utf-8?B?Z1lWSVZCRTM0UkphbS9MUCtHOHVFTmx4Q1lQTklyWnVOOXFtOTFSV1dvUDhT?=
- =?utf-8?B?OFVka3BOZUhjU1NtUk9sL2FURUdrV2dVS21ZcnN1SHZwYWhzQy8zNEpIYzND?=
- =?utf-8?B?S1J3R1IzUmQzTGZ0eDFnbGFvZTdRWDJDNzZwbENkc0tCMjJNbUxLdTZFbldK?=
- =?utf-8?B?dXN1ZFRSTFRWeVhLV1pTc2U0ZDFSd2lLWmFGME5LUG5hQjZvY0prajRoMlF5?=
- =?utf-8?B?ekh1Z3FVM25OQTJyR1ZRY0NHZStoczkrYXpCc3hldnJoaFNnMU5QMmtBU3Yw?=
- =?utf-8?B?bVhmd1I0TEp1cTNERUZ2OVdENHJQbXBoaVhWSVZEdDN3eS9GeFVvZFk3Z0xR?=
- =?utf-8?B?ejF3eWNCWXFrczFFYmxjWlEycTFRc3BJMDMrNmoyaUVSd0pnenJIeWJZVnZq?=
- =?utf-8?B?SE1XZVZXVXlSS2R1WUdhZ1J6Wm1JTXN4dTZScHNoQlNaZ2tjcE5oc3laTHlM?=
- =?utf-8?B?N1FJaU8wSG90UkVGT1o2Q2czU1djNTMwZjdsL3VvOGRrd0lvRWdMbjdCaTZB?=
- =?utf-8?B?TUxPNGJ1NmFIcmFmS0thbk5zTkRYRW5jeENFQmF2Wk9LdmtYaEYwbDY3eExF?=
- =?utf-8?B?ektLL1NEWWc0MkcwS2xuMTFsR3lEVktpMXJMS0tGTWtMWlVibmVweXAxRFVS?=
- =?utf-8?B?RDdzK2JTdFRnNHRTeDlnRGdxamtKeHdzT1YxTWtaM2ozWDE1RVRvb3NxSGNN?=
- =?utf-8?B?Yml2VW9rYmhqNmJpNGRjbmpSMjZ0WXBUTy9BUWk4ckszL3BkRFpiTUsxR01H?=
- =?utf-8?B?Q0NJZHVIMzdHSFJpREZRa0xsZmZxcXg0V2lkTGJmeFZDN2FPUUIxNVJjUmUy?=
- =?utf-8?B?Mm1YeWpEN0diN0JISFBWZVJzekU4SU85SUVibnA1d0dKS3J0L1NveUFjSWNZ?=
- =?utf-8?B?MDdnWXV3WHVVNDFHckd6UTk4dElnYnB1S2hwenEwSzNYWHJ0cVhMNzdOdk5X?=
- =?utf-8?Q?c+DmQfl+pqX8YshqsgazCUbjg?=
-X-OriginatorOrg: axis.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c809b15e-3bf8-47f4-b339-08dc9c31c56e
-X-MS-Exchange-CrossTenant-AuthSource: DB5PR02MB10093.eurprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Jul 2024 14:01:16.0203
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 78703d3c-b907-432f-b066-88f7af9ca3af
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: GObrySNl25nSK5yHfkWNOipU6zuoi3pQCJNAADzevgkVtr6Duh6GF4mwIe1vIRbE
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR02MB10014
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] arm64: dts: s32g: Disable usdhc write-protect
+To: Ciprian Costea <ciprianmarian.costea@oss.nxp.com>,
+ Chester Lin <chester62515@gmail.com>,
+ Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, s32@nxp.com
+References: <20240704135653.2969532-1-ciprianmarian.costea@oss.nxp.com>
+Content-Language: en-US, ca-ES, es-ES
+From: Matthias Brugger <mbrugger@suse.com>
+Autocrypt: addr=mbrugger@suse.com; keydata=
+ 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
+ PVrr2NoUqi/bxI8fFQJD1jVj8K0=
+In-Reply-To: <20240704135653.2969532-1-ciprianmarian.costea@oss.nxp.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
 
-On 6/22/24 21:12, Andrew Lunn wrote:
-> On Fri, Jun 21, 2024 at 01:26:33PM +0200, Kamil Horák (2N) wrote:
->> Implement single-pair BroadR-Reach modes on bcm5481x PHY by Broadcom.
->> Create set of functions alternative to IEEE 802.3 to handle
->> configuration of these modes on compatible Broadcom PHYs.
-> What i've not seen anywhere is a link between BroadR-Reach and LRE.
-> Maybe you could explain the relationship here in the commit message?
-> And maybe also how LDS fits in.
 
-Tried to extend it a bit... LRE should be for "Long Reach Ethernet" but 
-Broadcom
+On 04/07/2024 15:56, Ciprian Costea wrote:
+> NXP S32G2/S32G3 SoC based platforms do not
+> use a pin for SD-Card write protection used by
+> the uSDHC controller.
+> 
+> Hence, adding 'disable-wp' usdhc device-tree property in order to fix
+> observed warnings on SD boot as the following:
+> "host does not support reading read-only switch, assuming write-enable"
+> 
+> Signed-off-by: Ciprian Costea <ciprianmarian.costea@oss.nxp.com>
 
-only uses the acronym in the datasheets... LDS is "Long-Distance 
-Signaling", really screwed
+Reviewed-by: Matthias Brugger <mbrugger@suse.com>
 
-term for a link auto-negotiation...
-
->
->> +int bcm_setup_master_slave(struct phy_device *phydev)
-> This is missing the lre in the name.
-Fixed.
->
->> +static int bcm54811_read_abilities(struct phy_device *phydev)
->> +{
->> +	int i, val, err;
->> +	u8 brr_mode;
->> +
->> +	for (i = 0; i < ARRAY_SIZE(bcm54811_linkmodes); i++)
->> +		linkmode_clear_bit(bcm54811_linkmodes[i], phydev->supported);
-> I think that needs a comment since it is not clear what is going on
-> here. What set these bits in supported?
-
-This is an equivalent of genphy_read_abilities for an IEEE PHY, that is, 
-it fills the phydev->supported bit array exactly
-
-as genphy_read_abilities does. The genphy_read_abilities is even called 
-if the PHY is not in BRR mode.
-
->> +
->> +	err = bcm5481x_get_brrmode(phydev, &brr_mode);
->> +	if (err)
->> +		return err;
->> +
->> +	if (brr_mode) {
-> I would expect the DT property to be here somewhere. If the DT
-> property is present, set phydev->supported to only the BRR modes,
-> otherwise set it to the standard baseT modes. That should then allow
-> the core to do most of the validation. This is based on my
-> understanding the coupling hardware makes the two modes mutually
-> exclusive?
-
- From my point of view relying on DT property only would imply to 
-validate the setting with what is read from the PHY on
-
-all code locations where it is currently read by bcm5481x_get_brrmode. 
-This is because the PHY can be reset externally
-
-(at least by power-cycling it) and after reset, it is in IEEE mode. 
-Thus, I chose to set the BRR mode on/off  upon initialization
-
-and then read the setting from the chip when necessary.  The PHY can 
-also be reset by writing bit 15 to register 0
-
-in both IEEE and BRR modes (LRECR/BMCR).
-
-The device I am developing on has no option for IEEE interface but in 
-pure theory, kind of hardware plug-in would be
-
-possible as I was told by our hardware team. However, not even the 
-evaluation kit for bcm54811 can be switched
-
-between BRR and IEEE hardware without at least soldering and desoldering 
-some components on the PCB.
-
->
->> +	/* With BCM54811, BroadR-Reach implies no autoneg */
->> +	if (brr)
->> +		phydev->autoneg = 0;
-> So long as phydev->supported does not indicate autoneg, this should
-> not happen.
-
-I also thought so but unfortunately our batch of bcm54811 indicates 
-possible autoneg in its status register
-
-  (LRESR_LDSABILITY) but refuses to negotiate. So this is rather a 
-preparation for bcm54810 full support. Unlike bcm54811,
-
-the bcm54810 should be aneg-capable but I cannot verify it without the 
-hardware available. The information around
-
-  it is rather fuzzy, we were told by Broadcom tech support that the 
-54811 should autonegotiate as well but
-
-  the datasheets from the same source clearly indicates "no". Same for 
-the bcm54811 evaluation kit,
-
-there is no autoneg option available (only 10/100Mbit and master/slave).
-
-
-In conclusion, the idea was to support as much as possible but with 
-given hardware, only a subset could be verified
-
-  - that is bcm54811 10 or 100 Mbit on one pair and forced master / 
-slave selection. As for the other possibilities, I only
-
-could test that the autoneg is probably not there or at least it does 
-not function with identical hardware on both ends.
-
-We also have a BRR switch and some media converters (BRR/Ethernet) from 
-other manufacturer with bcm54811 to help
-
-the development and all those are fixed setting only, no autoneg.
-
-
->
-> 	Andrew
-
-
-Kamil
-
+> ---
+>   arch/arm64/boot/dts/freescale/s32g274a-evb.dts  | 1 +
+>   arch/arm64/boot/dts/freescale/s32g274a-rdb2.dts | 1 +
+>   arch/arm64/boot/dts/freescale/s32g399a-rdb3.dts | 3 ++-
+>   3 files changed, 4 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/s32g274a-evb.dts b/arch/arm64/boot/dts/freescale/s32g274a-evb.dts
+> index 00070c949e2a..dbe498798bd9 100644
+> --- a/arch/arm64/boot/dts/freescale/s32g274a-evb.dts
+> +++ b/arch/arm64/boot/dts/freescale/s32g274a-evb.dts
+> @@ -34,5 +34,6 @@ &uart0 {
+>   };
+>   
+>   &usdhc0 {
+> +	disable-wp;
+>   	status = "okay";
+>   };
+> diff --git a/arch/arm64/boot/dts/freescale/s32g274a-rdb2.dts b/arch/arm64/boot/dts/freescale/s32g274a-rdb2.dts
+> index b3fc12899cae..ab1e5caaeae7 100644
+> --- a/arch/arm64/boot/dts/freescale/s32g274a-rdb2.dts
+> +++ b/arch/arm64/boot/dts/freescale/s32g274a-rdb2.dts
+> @@ -40,5 +40,6 @@ &uart1 {
+>   };
+>   
+>   &usdhc0 {
+> +	disable-wp;
+>   	status = "okay";
+>   };
+> diff --git a/arch/arm64/boot/dts/freescale/s32g399a-rdb3.dts b/arch/arm64/boot/dts/freescale/s32g399a-rdb3.dts
+> index 9d674819876e..176e5af191c8 100644
+> --- a/arch/arm64/boot/dts/freescale/s32g399a-rdb3.dts
+> +++ b/arch/arm64/boot/dts/freescale/s32g399a-rdb3.dts
+> @@ -1,6 +1,6 @@
+>   // SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
+>   /*
+> - * Copyright 2021-2023 NXP
+> + * Copyright 2021-2024 NXP
+>    *
+>    * NXP S32G3 Reference Design Board 3 (S32G-VNP-RDB3)
+>    */
+> @@ -41,5 +41,6 @@ &uart1 {
+>   
+>   &usdhc0 {
+>   	bus-width = <8>;
+> +	disable-wp;
+>   	status = "okay";
+>   };
 
