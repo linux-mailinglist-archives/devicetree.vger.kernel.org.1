@@ -1,345 +1,182 @@
-Return-Path: <devicetree+bounces-83280-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83281-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 582B0927C7F
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 19:49:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B637927C85
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 19:50:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 791951C21F7A
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 17:49:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 110BB28462D
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 17:50:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FFBB73476;
-	Thu,  4 Jul 2024 17:49:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D343B130A5C;
+	Thu,  4 Jul 2024 17:50:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JwRFOQ4O"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jeB7kLdg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 785A539FC1;
-	Thu,  4 Jul 2024 17:48:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18D2C757E7;
+	Thu,  4 Jul 2024 17:50:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720115340; cv=none; b=gzAai+LHpM8cYy3FYYx7lCziTofB5aFSbshzz4nTwnkYO/NyUxcn3QX3XOIvLaJJn6ODRQiSZI9fOJEkoLU6usbq7X3njF8Bmi1f5ytFkb8VAiVtwOZMdKhSMSLczoq296mXFuRKCV2GbZWR/U+cpxkJ4r4zSuMMQuKPLi2FDEs=
+	t=1720115416; cv=none; b=X5jMs4EDEeKg95rDKP/5wNy6d77LhZD64zUo2Sq1m1gcefxxHNeybRRtgZCmEXJ3sOjARF8gGaR5xmS86ntUr5mR2O4GWMYGfrRdfYIK5jXxw2KTUsbnAoa2dZ2mcxIvQBISP7A9FgN9RCol7JHRkW+m1kf8fIKkG8cO0LnHhxo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720115340; c=relaxed/simple;
-	bh=uqplsOTQD0aDmJIIHhCufLbiJywZFMWrn86Eurr6R7M=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition; b=nRD/HS6/jIIBM6RUZJ2EC8O/rSXAcZCPuPOLPLG2gYEIeFZd21H5U5xGWL7KEvUQfDqX8vIhvc0cFV3frEYlySEl6eVeXEBjCHZOad0ig53Aolob7fVQEPcckbKNBi18s/LVLrk4TUL+p3FkAUU4pZmE3RWuJfeUpnwpKUT9T/8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JwRFOQ4O; arc=none smtp.client-ip=209.85.128.51
+	s=arc-20240116; t=1720115416; c=relaxed/simple;
+	bh=Lx/lp8JyHRt6YZGLK+fFnv0bd7CXeMHcoelSaMDZAxo=;
+	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
+	 Mime-Version:Content-Type; b=dGuAQbJddbfugsHab68zB0UEUXUfs4ZjNybAc67sPeBT5kxAjGuMJLIM/SbMZBU6QF35rEUZpx7JWd1tQrx5Ik4SfLyKhOUxx4bJ2B+fcsXof8OJwrx1ad9LNoh3dq8uFb2nX97aDmIizdA2epiPNBY8V9qTrxyR0Wpaw2FTeL8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jeB7kLdg; arc=none smtp.client-ip=209.85.221.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-4257a390a4eso5919285e9.0;
-        Thu, 04 Jul 2024 10:48:58 -0700 (PDT)
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-36740e64749so513618f8f.0;
+        Thu, 04 Jul 2024 10:50:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1720115337; x=1720720137; darn=vger.kernel.org;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=gnbdFOdtX9oRPijliWDcGViUxTAdc58rewNdsige5wE=;
-        b=JwRFOQ4OPEA1Oj4Mc5hr6aGZDPaAAU4Uyj31lNalJjom4V8VIr8LVwKajhqDZN/BxW
-         5GPnDgzHnb8ruBSCDDF/vMrxl0X14sG4GghQpzc1hKKqHGHNy+mld/B3OVjTNCwT3JQm
-         8hy9u11LD90ZIApbQhTUscfVWXCoW01ugOaTki/v/AxI7M+YeJjxK4sL0CEUWZoIemvN
-         Y+DR64yRYVfxSvFevwdKsC8RHV6x0FTHbvlaXTE/Xqtb0asQh5ZmAxP+se9bjiWqJE4F
-         e+5CKL4+fQ7ot4TQCfepX6WXSWHEm9Q4oFy3EDIAVUWR6vQVb7+vM2AtdiVaaVz3jEjH
-         xN8Q==
+        d=gmail.com; s=20230601; t=1720115413; x=1720720213; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:subject:references
+         :in-reply-to:message-id:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HvtJUrSM2HBk734fijihCAzifwC4hKlOHe36I6FHlJI=;
+        b=jeB7kLdgaU8BPoAxw4T/qKKfCJrOu8LO9sId6pdb6mxuPf3/okuw2Y6+KHIWn2xAft
+         xyR6t49J9KLaAq9ZKwrF1ptT5NFVurHbpW3JvTs3gVemGP2KYQIUR3PEDY9WlHq5DwEt
+         Sfji8BIgB2+y4+y9KDI00wKt+fHWmj2x15Qew6QoteHQX1q/AuwDJdOBoBYI1onovt08
+         3CRfxkX957RaURMi8HVLzB9/n0Tl4wylihYufcmMLf7SIajIuimsi+8Kh1m0YmPk+w+0
+         8JdHnYiCHs3D4Y9vb2OOtFSEjD91ZVQnhiRSBdqyZwgr1QBmjmOoYmtH7dKOLC4aYTno
+         mvgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720115337; x=1720720137;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gnbdFOdtX9oRPijliWDcGViUxTAdc58rewNdsige5wE=;
-        b=dz4fOZ8Lfo+r0qHMvsIT0ve/r2oAUvgVsvolfBwEcyII397JR7Ws4zixn3f8c5lccq
-         LtQtu7A5X7Rxytr13Ph9l9vs1orpVYiXGPG7RHii+xgFUrxj7pArKI4T5EvT8oI5fmyM
-         LinCBYV8PQZeH40i55YPCPrb1VJd/6GEb0RwlLljm+0RENukgGap0D0W34A6bUqlnv0z
-         KIK/KboQDMctLuqrSj9ypMC4C7ijq2fd420RrLfGb/ZR0fl5VmMWQzSGa0CRL0DYnfS/
-         3OEvhkZ9y1CQVVlnJpIxM/B4+xI1lAO0H2SAWngkwnpi2bBfyL5314WM0UwhIFkK7qMg
-         SkEg==
-X-Forwarded-Encrypted: i=1; AJvYcCVAbCEhPRP8hxH81CjAqAiVjTi+3s76FIBDRd2331TTdfhQ0dTJ2BywR0X5W9+7Q1dNa/LpVudJtocc8NTgjWq6H6MRcBQiA47twpKO95htg37iIGR/ZbDC5qd7GMUdxKgjqbnt/UOX5A==
-X-Gm-Message-State: AOJu0YwnI6H40S2FacWhz0H4hI9cxUt6njWlg2AS18RyDdGNxJ4vD8mu
-	u2roagwAI8rJqXK7swUojDaOulmgADui1mQFZpjxHDFFlKtva/8D2DbfhA==
-X-Google-Smtp-Source: AGHT+IGidZZbWuMOivpVaUQO5kd1ycunBxGr3awOjcXbzRXsaEA3IudY8yUHse0AZ4joD0otSjkpwQ==
-X-Received: by 2002:a05:600c:2210:b0:425:624e:d80a with SMTP id 5b1f17b1804b1-4264a3e1ceamr18030295e9.24.1720115336567;
-        Thu, 04 Jul 2024 10:48:56 -0700 (PDT)
-Received: from standask-GA-A55M-S2HP (lu-nat-113-247.ehs.sk. [188.123.113.247])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4264b325576sm28513705e9.5.2024.07.04.10.48.55
+        d=1e100.net; s=20230601; t=1720115413; x=1720720213;
+        h=content-transfer-encoding:mime-version:subject:references
+         :in-reply-to:message-id:cc:to:from:date:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=HvtJUrSM2HBk734fijihCAzifwC4hKlOHe36I6FHlJI=;
+        b=WrVzma3CRQ1sMwaVV9QB0job9EkacnxzDIbzvLUBpAXs9sEHHnnWlYIH7Msk+Mc2wM
+         jgjbRQdP5uYRBdKrTE3RE49prgnjbBOD6Cm1uXz35rTbvGX+flONWkWXJKYQq1Urk81s
+         lehsVAPUyWlVnUVIn9ywqt2DpU2+wqcWdNMg5W/0dV91wXXnFZRciIU4X1QXgukeu2QF
+         VmNSgL9XSiUqsKVi1TFkuuB8qlHqZHAyqO9U7Tek8At83cUGZDdLn7LPsRcgkFo/UCaL
+         ncbV6PMfDAuH13Q2hFmNEUHAPbBHEfX2bQF58vXemrlnv/ue1fKEV5TTFpTb1at7eSxH
+         7tSA==
+X-Forwarded-Encrypted: i=1; AJvYcCWquOyZbotNbU9uWcZPzlBifrdvQjUv7/ajXYMAYRon0Qd8zAM1I0NZv12h7Bhj0PaJ09Co0JSc95tSZG1HL8Y/4KDHEZgP7eOIeaNs6fdMb4YYClnGARspxi0jwJpsyUxQbH7BFc2c1G6/VlxnqnmXBb/8YouDow25mmezNq0o1BSrfg==
+X-Gm-Message-State: AOJu0Yyp7Ssj6igoFfR3B1C+H3eh/o4LHY/2bYwWsJGEkScpl21jbsBj
+	GrSqCJ853ZNPfK+GW3ecl0p7LSzyff5SgPPU1c6mx1byY9s9xBjf
+X-Google-Smtp-Source: AGHT+IEF+so6LAM109TmVNF+G2wrprUUjvAbkco4Iu0FbniEyMnEafoMl9PkJLA9t6uwii0heiPddA==
+X-Received: by 2002:a05:6000:aca:b0:362:def2:3949 with SMTP id ffacd0b85a97d-3679dd2958cmr1691831f8f.22.1720115413168;
+        Thu, 04 Jul 2024 10:50:13 -0700 (PDT)
+Received: from localhost (host-79-55-57-217.retail.telecomitalia.it. [79.55.57.217])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-36795d1fc9csm4358107f8f.83.2024.07.04.10.50.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 Jul 2024 10:48:56 -0700 (PDT)
-Date: Thu, 4 Jul 2024 19:48:54 +0200
-From: Stanislav Jakubek <stano.jakubek@gmail.com>
-To: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Orson Zhai <orsonzhai@gmail.com>,
-	Baolin Wang <baolin.wang@linux.alibaba.com>,
-	Baolin Wang <baolin.wang7@gmail.com>,
-	Chunyan Zhang <zhang.lyra@gmail.com>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v3] dt-bindings: clock: sprd,sc9860-clk: convert to YAML
-Message-ID: <ZobghvwZAyMjl4eB@standask-GA-A55M-S2HP>
+        Thu, 04 Jul 2024 10:50:12 -0700 (PDT)
+Date: Thu, 04 Jul 2024 19:50:12 +0200
+From: Matteo Martelli <matteomartelli3@gmail.com>
+To: Conor Dooley <conor.dooley@microchip.com>, 
+ Matteo Martelli <matteomartelli3@gmail.com>
+Cc: Conor Dooley <conor@kernel.org>, 
+ Jonathan Cameron <jic23@kernel.org>, 
+ Lars-Peter Clausen <lars@metafoo.de>, 
+ Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ linux-iio@vger.kernel.org, 
+ devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org
+Message-ID: <6686e0d41dd61_397df3708e@njaxe.notmuch>
+In-Reply-To: <20240704-distinct-sulk-4fc97a9ddbab@wendy>
+References: <20240703-iio-pac1921-v1-0-54c47d9180b6@gmail.com>
+ <20240703-iio-pac1921-v1-1-54c47d9180b6@gmail.com>
+ <20240703-bovine-thumping-c3747fd7caa1@spud>
+ <668674271f02d_92937078@njaxe.notmuch>
+ <20240704-distinct-sulk-4fc97a9ddbab@wendy>
+Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: add binding for pac1921
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Mime-Version: 1.0
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: 7bit
 
-Convert the Spreadtrum SC9860 clock bindings to DT schema.
+Conor Dooley wrote:
+> On Thu, Jul 04, 2024 at 12:06:31PM +0200, Matteo Martelli wrote:
+> > Conor Dooley wrote:
+> > > > +
+> > > > +  microchip,dv-gain:
+> > > > +    description:
+> > > > +      Digital multiplier to control the effective bus voltage gain. The gain
+> > > > +      value of 1 is the setting for the full-scale range and it can be increased
+> > > > +      when the system is designed for a lower VBUS range.
+> > > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > > +    enum: [1, 2, 4, 8, 16, 32]
+> > > > +    default: 1
+> > > > +
+> > > > +  microchip,di-gain:
+> > > 
+> > > Why is this gain a fixed property in the devicetree, rather than
+> > > something the user can control? Feels like it should be user
+> > > controllable.
+> > 
+> > Gains are user controllable via the IIO_CHAN_INFO_HARDWAREGAIN. I also added
+> > them as DT properties thinking that they could be pre-set depending on hardware
+> > specifications: for instance by board design the monitored section is already
+> > known to be in a particular voltage/current range (datasheet specifies
+> > gains-ranges mapping at table 4-6 and table 4-7). Then, even if gains are
+> > pre-set, the user can change them at runtime for instance by scaling them down
+> > upon an overflow event. However, I can get rid of those gain properties if they
+> > are out of the DT scope.
+> 
+> Usually gain values are left out of DT entirely, unless the gain is
+> something set by the board, for example, whether or not some input pins
+> are tied high or low.
+> 
+> > > > +    description:
+> > > > +      Digital multiplier to control the effective current gain. The gain
+> > > > +      value of 1 is the setting for the full-scale range and it can be
+> > > > +      increased when the system is designed for a lower VSENSE range.
+> > > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > > +    enum: [1, 2, 4, 8, 16, 32, 64, 128]
+> > > > +    default: 1
+> > > > +
+> > > > +required:
+> > > > +  - compatible
+> > > > +  - reg
+> > > > +  - shunt-resistor-micro-ohms
+> > > 
+> > > You're missing a vdd-supply btw and the !read/int pin isn't described
+> > > here either. I think the latter needs a property to control it (probably
+> > > a GPIO since it is intended for host control) and a default value for if
+> > > the GPIO isn't provided?
+> > 
+> > The driver does not currently handle the vdd regulator nor the gpio for the
+> > !read/int pin. Should they be added to the DT schema anyway?
+> 
+> Yes.
+> 
+> > I think I can add the vdd regulator handling with little effort, my guess is
+> > that the "vdd-supply" property can be optional and defined as "vdd-supply: true"
+> > in the DT schema. Then the driver, if the vdd-supply property is present in the
+> > DT, would enable the regulator during device initialization and PM resume, and
+> > disable it on driver removal and PM suspend.
+> 
+> Nah, the regulator should be marked required in the binding, since
+> without power the device cannot function, right? The regulator core will
+> create a dummy register if one is not provided in the device tree, so
+> you don't need to add any conditional logic around regulator actions.
+> 
+> > Reguarding the !read/int pin, the current driver overrides it with a register
+> > bit so it would not be considered at all by the device.
+> 
+> We should fully describe devices, where possible, even if the driver for
+> the device doesn't use it.
+> 
+> Cheers,
+> Conor.
+> 
 
-Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
----
-Changes in V3:
-  - only allow one of reg / sprd,syscon properties
+Thanks Conor, I sent a patch v2 addressing these points.
 
-Changes in V2:
-  - drop inaccurate clocks description
-  - constrain clocks, reg and sprd,syscon per variant
+Link to v2: https://lore.kernel.org/linux-iio/20240704-iio-pac1921-v2-0-0deb95a48409@gmail.com
 
- .../bindings/clock/sprd,sc9860-clk.txt        |  63 -------
- .../bindings/clock/sprd,sc9860-clk.yaml       | 159 ++++++++++++++++++
- 2 files changed, 159 insertions(+), 63 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/clock/sprd,sc9860-clk.txt
- create mode 100644 Documentation/devicetree/bindings/clock/sprd,sc9860-clk.yaml
-
-diff --git a/Documentation/devicetree/bindings/clock/sprd,sc9860-clk.txt b/Documentation/devicetree/bindings/clock/sprd,sc9860-clk.txt
-deleted file mode 100644
-index aaaf02ca2a6a..000000000000
---- a/Documentation/devicetree/bindings/clock/sprd,sc9860-clk.txt
-+++ /dev/null
-@@ -1,63 +0,0 @@
--Spreadtrum SC9860 Clock Binding
--------------------------
--
--Required properties:
--- compatible: should contain the following compatible strings:
--	- "sprd,sc9860-pmu-gate"
--	- "sprd,sc9860-pll"
--	- "sprd,sc9860-ap-clk"
--	- "sprd,sc9860-aon-prediv"
--	- "sprd,sc9860-apahb-gate"
--	- "sprd,sc9860-aon-gate"
--	- "sprd,sc9860-aonsecure-clk"
--	- "sprd,sc9860-agcp-gate"
--	- "sprd,sc9860-gpu-clk"
--	- "sprd,sc9860-vsp-clk"
--	- "sprd,sc9860-vsp-gate"
--	- "sprd,sc9860-cam-clk"
--	- "sprd,sc9860-cam-gate"
--	- "sprd,sc9860-disp-clk"
--	- "sprd,sc9860-disp-gate"
--	- "sprd,sc9860-apapb-gate"
--
--- #clock-cells: must be 1
--
--- clocks : Should be the input parent clock(s) phandle for the clock, this
--	   property here just simply shows which clock group the clocks'
--	   parents are in, since each clk node would represent many clocks
--	   which are defined in the driver.  The detailed dependency
--	   relationship (i.e. how many parents and which are the parents)
--	   are implemented in driver code.
--
--Optional properties:
--
--- reg:	Contain the registers base address and length. It must be configured
--	only if no 'sprd,syscon' under the node.
--
--- sprd,syscon: phandle to the syscon which is in the same address area with
--	       the clock, and so we can get regmap for the clocks from the
--	       syscon device.
--
--Example:
--
--	pmu_gate: pmu-gate {
--		compatible = "sprd,sc9860-pmu-gate";
--		sprd,syscon = <&pmu_regs>;
--		clocks = <&ext_26m>;
--		#clock-cells = <1>;
--	};
--
--	pll: pll {
--		compatible = "sprd,sc9860-pll";
--		sprd,syscon = <&ana_regs>;
--		clocks = <&pmu_gate 0>;
--		#clock-cells = <1>;
--	};
--
--	ap_clk: clock-controller@20000000 {
--		compatible = "sprd,sc9860-ap-clk";
--		reg = <0 0x20000000 0 0x400>;
--		clocks = <&ext_26m>, <&pll 0>,
--			 <&pmu_gate 0>;
--		#clock-cells = <1>;
--	};
-diff --git a/Documentation/devicetree/bindings/clock/sprd,sc9860-clk.yaml b/Documentation/devicetree/bindings/clock/sprd,sc9860-clk.yaml
-new file mode 100644
-index 000000000000..502cd723511f
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/sprd,sc9860-clk.yaml
-@@ -0,0 +1,159 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/sprd,sc9860-clk.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Spreadtrum SC9860 clock
-+
-+maintainers:
-+  - Orson Zhai <orsonzhai@gmail.com>
-+  - Baolin Wang <baolin.wang7@gmail.com>
-+  - Chunyan Zhang <zhang.lyra@gmail.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - sprd,sc9860-agcp-gate
-+      - sprd,sc9860-aonsecure-clk
-+      - sprd,sc9860-aon-gate
-+      - sprd,sc9860-aon-prediv
-+      - sprd,sc9860-apahb-gate
-+      - sprd,sc9860-apapb-gate
-+      - sprd,sc9860-ap-clk
-+      - sprd,sc9860-cam-clk
-+      - sprd,sc9860-cam-gate
-+      - sprd,sc9860-disp-clk
-+      - sprd,sc9860-disp-gate
-+      - sprd,sc9860-gpu-clk
-+      - sprd,sc9860-pll
-+      - sprd,sc9860-pmu-gate
-+      - sprd,sc9860-vsp-clk
-+      - sprd,sc9860-vsp-gate
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    minItems: 1
-+    maxItems: 3
-+
-+  '#clock-cells':
-+    const: 1
-+
-+  sprd,syscon:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description:
-+      phandle to the syscon which is in the same address area with the
-+      clock, and so we can get regmap for the clocks from the syscon device
-+
-+required:
-+  - compatible
-+  - clocks
-+  - '#clock-cells'
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - sprd,sc9860-agcp-gate
-+              - sprd,sc9860-aon-gate
-+              - sprd,sc9860-apahb-gate
-+              - sprd,sc9860-apapb-gate
-+              - sprd,sc9860-cam-gate
-+              - sprd,sc9860-disp-gate
-+              - sprd,sc9860-gpu-clk
-+              - sprd,sc9860-pll
-+              - sprd,sc9860-pmu-gate
-+              - sprd,sc9860-vsp-gate
-+    then:
-+      properties:
-+        clocks:
-+          maxItems: 1
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - sprd,sc9860-aonsecure-clk
-+              - sprd,sc9860-cam-clk
-+              - sprd,sc9860-disp-clk
-+              - sprd,sc9860-vsp-clk
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 2
-+          maxItems: 2
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - sprd,sc9860-aon-prediv
-+              - sprd,sc9860-ap-clk
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 3
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - sprd,sc9860-aonsecure-clk
-+              - sprd,sc9860-aon-prediv
-+              - sprd,sc9860-ap-clk
-+              - sprd,sc9860-cam-clk
-+              - sprd,sc9860-disp-clk
-+              - sprd,sc9860-gpu-clk
-+              - sprd,sc9860-vsp-clk
-+    then:
-+      required:
-+        - reg
-+      properties:
-+        sprd,syscon: false
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - sprd,sc9860-agcp-gate
-+              - sprd,sc9860-aon-gate
-+              - sprd,sc9860-apahb-gate
-+              - sprd,sc9860-apapb-gate
-+              - sprd,sc9860-cam-gate
-+              - sprd,sc9860-disp-gate
-+              - sprd,sc9860-pll
-+              - sprd,sc9860-pmu-gate
-+              - sprd,sc9860-vsp-gate
-+    then:
-+      required:
-+        - sprd,syscon
-+      properties:
-+        reg: false
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    soc {
-+      #address-cells = <2>;
-+      #size-cells = <2>;
-+
-+      pmu-gate {
-+        compatible = "sprd,sc9860-pmu-gate";
-+        clocks = <&ext_26m>;
-+        #clock-cells = <1>;
-+        sprd,syscon = <&pmu_regs>;
-+      };
-+
-+      clock-controller@20000000 {
-+        compatible = "sprd,sc9860-ap-clk";
-+        reg = <0 0x20000000 0 0x400>;
-+        clocks = <&ext_26m>, <&pll 0>, <&pmu_gate 0>;
-+        #clock-cells = <1>;
-+      };
-+    };
-+...
--- 
-2.34.1
-
+Matteo
 
