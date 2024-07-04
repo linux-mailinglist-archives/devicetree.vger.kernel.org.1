@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-83034-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83035-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 469A5926F7A
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 08:26:47 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 271CA926F8C
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 08:28:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 02FCE284169
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 06:26:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B13F3B23DA4
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 06:28:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 372791A01B9;
-	Thu,  4 Jul 2024 06:26:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B70F01A070F;
+	Thu,  4 Jul 2024 06:28:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dUmz8AwC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hUdZVRod"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D14D125BA;
-	Thu,  4 Jul 2024 06:26:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90C17125BA;
+	Thu,  4 Jul 2024 06:28:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720074402; cv=none; b=rq1ZHecW1kROVF5yq3Y7Ttij35rtxjJrvC+tJyJFjZuZTb3Pt2hz1S++NsFDNw0+ulPDAcJWZfzkmooJR8JRGvSbCl9WsX7JkLrrL+4DRxUYjF6lpK6nrf1Vpu08/q7CmJgNmcooWdJQjx4VypWXddxLRAZSMNkLp+EAnqtx8jI=
+	t=1720074514; cv=none; b=cr4CFEhcNpsy1X9tKfPXHyF6lMqdqMHfKunqNkkmCEMPAoPZpIDDCjX4Pi/TMlcKba2mr8aQFNW3XvCZkuV/v1Dtu7XlusHiPjNeR+IbMsfMqTzXISvFQOemffozgQ+iKm0F+6//95Rl7Xvw5bdI7WrLqDOmp4ixGEAskiXl8rk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720074402; c=relaxed/simple;
-	bh=jcM/fhAJp7dFCi0qsIbK+ywgCnEPK+G2cH6y/QUE3c8=;
+	s=arc-20240116; t=1720074514; c=relaxed/simple;
+	bh=mVcqR0CA/a5g7mOdibHsaIrHd9R02SuX6t2jM6J9Lo8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=STnZTj5SZ7npN/Ov7U9Wf6IkWr+DDab81MkBiPpCs0k5LQEYBTfe7BdFt+BHS1UZTP79tVitsqi7UHAo9TO6e1QVFba/jpRCY9rf7U5r8IOsgyQr3A+kXGBkVwPINQJ8z9imK9MW8lSIAtaiTNuuxBWDAeMQC1Pdqd3rXCPz3Yw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dUmz8AwC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE1E8C32781;
-	Thu,  4 Jul 2024 06:26:38 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=m19kF9alQWJGctbkpLYIEJxnPbNd4PpS7ztH5pIT+O0KFm9+R+viHWu3WFrJymas2KRS7OH8vOZCZq5bSWOcqIjxt+OrJqhkRIShhOuHmV1qPKbqmWS1fe+cS7oypSl5ozTU1uiVn5+7YraqHkxwiCo8rVCZS2ZbxKb02aLErCQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hUdZVRod; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89FC9C3277B;
+	Thu,  4 Jul 2024 06:28:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720074401;
-	bh=jcM/fhAJp7dFCi0qsIbK+ywgCnEPK+G2cH6y/QUE3c8=;
+	s=k20201202; t=1720074514;
+	bh=mVcqR0CA/a5g7mOdibHsaIrHd9R02SuX6t2jM6J9Lo8=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=dUmz8AwCwde0hkvJLPnaIChpqwlhwZsctB42xOA5J7lavx4XrRLRYxjKEAhD6SiQ/
-	 0bARRYFZJS2Ojjsb3lIuC4UD5NrqjrTqp0CcpQAvF1CZJwOU7zxm9s8y+vUUPSFAFH
-	 w7Tz6qUsCnShJLbJ5Y60rXGM9v755nVNhgBrKwhVxwJMKJQD+J+ABLkXxR9uLh775u
-	 qopOBlV0GBho5riwQBa55+WfYOQ+svtmRa7vLBaYR3CitjfaJoX0qTCpbEyCCW6DmZ
-	 aWpZgOWdoZ3qhHFLmw23LJg7uTK1qGfCaYuFovw6bfxyJpDlCnYzDUv3uZswc9JzYj
-	 01PWLFYQezSLQ==
-Message-ID: <13e0a35a-729c-42e7-874b-f0d263ba6f35@kernel.org>
-Date: Thu, 4 Jul 2024 08:26:36 +0200
+	b=hUdZVRodpdTgzxZY5yyT+Hkoa1GkX20oZkl8eJVhghBLWEEdnoapxsPhuCQzBKIkG
+	 CnOnuAni5yhxdjJxUOpyHMfUWhb//eL+M10w4WVBC7ybtVemKibLhUoSAqemPzJTSA
+	 p1WvxCb7v5JETW9WKB0UlVovvMqzFeKnlBJn9VcaWTgN/N6jFXXkx7V2u+Nt9wu8lV
+	 MvY4wm+36qfunc599atxnDM17TRFV1j7xfabdKfteBDatSwMKSrkNaQZSjsGyd7buz
+	 CunqZ8dWcURbtVx2aqCjyy14HAj2CWxX7daYBhzo/e3i7EWz00z5rLa3tIIsQWaGeD
+	 z3ZAovSfOF+4Q==
+Message-ID: <a508cc82-5596-4771-af49-ff994ce59a57@kernel.org>
+Date: Thu, 4 Jul 2024 08:28:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,13 +50,13 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: arm: rockchip: Add Rock 5 ITX board
+Subject: Re: [PATCH 2/2] arm64: dts: rockchip: add rock5 itx board
 To: Heiko Stuebner <heiko@sntech.de>
 Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
  devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
 References: <20240703210524.776455-1-heiko@sntech.de>
- <20240703210524.776455-2-heiko@sntech.de>
+ <20240703210524.776455-3-heiko@sntech.de>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -102,17 +102,44 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240703210524.776455-2-heiko@sntech.de>
+In-Reply-To: <20240703210524.776455-3-heiko@sntech.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 03/07/2024 23:05, Heiko Stuebner wrote:
-> Add devicetree binding for the Rock 5 ITX board, build around the rk3588.
-> 
-> Signed-off-by: Heiko Stuebner <heiko@sntech.de>
-> ---
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> +/ {
+> +	model = "Radxa ROCK 5 ITX";
+> +	compatible = "radxa,rock-5itx", "rockchip,rk3588";
+> +
+> +	aliases {
+> +		mmc0 = &sdhci;
+> +		mmc1 = &sdmmc;
+> +		mmc2 = &sdio;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial2:1500000n8";
+> +	};
+> +
+> +	adc_keys: adc-keys {
+> +		compatible = "adc-keys";
+> +		io-channels = <&saradc 0>;
+> +		io-channel-names = "buttons";
+> +		keyup-threshold-microvolt = <1800000>;
+> +		poll-interval = <100>;
+> +		status = "okay";
+
+Looks like status can be dropped.
+
+> +
+> +		button-maskrom {
+> +			label = "Mask Rom";
+> +			linux,code = <KEY_SETUP>;
+> +			press-threshold-microvolt = <1750>;
+> +		};
+> +	};
+
 
 Best regards,
 Krzysztof
