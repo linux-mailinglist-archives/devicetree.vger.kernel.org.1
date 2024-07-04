@@ -1,129 +1,113 @@
-Return-Path: <devicetree+bounces-83241-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83242-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 122A7927AD1
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 18:04:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 086B9927ADD
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 18:12:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 76C1CB2459B
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 16:04:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2E28B1C21C39
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 16:12:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF6461B29DB;
-	Thu,  4 Jul 2024 16:04:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C55301B1500;
+	Thu,  4 Jul 2024 16:12:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="uctUXtst"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J2pgep8T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 459E11B29CD;
-	Thu,  4 Jul 2024 16:04:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9637E1AED45;
+	Thu,  4 Jul 2024 16:12:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720109064; cv=none; b=dtotdWw6xNKVeLbu9nkBsgl+d+Ed+1vwQeHAagnj/e11FE65YnwU6qlhWO9BGGh57KKu/4TV+ENUh768lDIG/SqPxv9e66cSOD/382TzdLqDlrU56elUvJWfSxf3PVKVoS21PCxC75KusaT0wmia6/RCBJfaLdayoKyefWf4LC8=
+	t=1720109531; cv=none; b=fQ5CjwOf+g74DrxLtVykLneDJ19V6pymYtecXBJyMNytMN18fNBDpdMz6ahVOdKNF+4LJR42aHXlXqYYScUvJ5gUs4c4MPBc1KfncHorx661aSfXXIBcAe8TmGrZCB3tsytvi4RSCVavbhNqNrh/XEYWFNQkX+aMob2YJ4V/AlA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720109064; c=relaxed/simple;
-	bh=1+toRJY35/129MSR44qFWaryqVoiascuVBFB3NmaZ/M=;
+	s=arc-20240116; t=1720109531; c=relaxed/simple;
+	bh=CYxifX6Yhm0+JAKQZbOubcWktzgmWp29CWPQj081j7Y=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Tvy2tcntNmsqvvyfx7GRr4698K+UJKCPlS582UAIpLc0LbyuwfhuvStqlafx/vfeO2vBDPvFSJpXbYjJKO0E8g7YPCjOsPQRamI2/vrn/+eLnpWPL2KDaxbDaOIOwKwvCJwFuYZm/Oj01MidtxcDaio519FI6guNC5V/3e7Swkk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=uctUXtst; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=NUvYT0Apw8SqjInlbdvt2ov0pZsd3AGE3tETszdRDzg=; b=uctUXtstqOdYStp1RAdEevee8A
-	og2m1rbeRGyNCyWKUOMtyM5AqIVxQFyxOPDwVFm9FnkbszNQ36vazTBa9yXYKCDMQBhsJURhhsCMA
-	j1mTGX2YuuLQQvVFM9F5PJp4GaLgK5ASkZXssZl/rnBc5yDOus60fNPX7zh7xaHLB3Ec=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1sPOvS-001pKc-Qp; Thu, 04 Jul 2024 18:03:14 +0200
-Date: Thu, 4 Jul 2024 18:03:14 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Tengfei Fan <quic_tengfan@quicinc.com>
-Cc: Andrew Halaney <ahalaney@redhat.com>, andersson@kernel.org,
-	konrad.dybcio@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, djakov@kernel.org, mturquette@baylibre.com,
-	sboyd@kernel.org, jassisinghbrar@gmail.com,
-	herbert@gondor.apana.org.au, davem@davemloft.net,
-	manivannan.sadhasivam@linaro.org, will@kernel.org, joro@8bytes.org,
-	conor@kernel.org, tglx@linutronix.de, amitk@kernel.org,
-	thara.gopinath@gmail.com, linus.walleij@linaro.org,
-	wim@linux-watchdog.org, linux@roeck-us.net, rafael@kernel.org,
-	viresh.kumar@linaro.org, vkoul@kernel.org, edumazet@google.com,
-	kuba@kernel.org, pabeni@redhat.com, mcoquelin.stm32@gmail.com,
-	robimarko@gmail.com, bartosz.golaszewski@linaro.org,
-	kishon@kernel.org, quic_wcheng@quicinc.com, alim.akhtar@samsung.com,
-	avri.altman@wdc.com, bvanassche@acm.org, agross@kernel.org,
-	gregkh@linuxfoundation.org, quic_tdas@quicinc.com,
-	robin.murphy@arm.com, daniel.lezcano@linaro.org,
-	rui.zhang@intel.com, lukasz.luba@arm.com, quic_rjendra@quicinc.com,
-	ulf.hansson@linaro.org, quic_sibis@quicinc.com,
-	otto.pflueger@abscue.de, luca@z3ntu.xyz, neil.armstrong@linaro.org,
-	abel.vesa@linaro.org, bhupesh.sharma@linaro.org,
-	alexandre.torgue@foss.st.com, peppe.cavallaro@st.com,
-	joabreu@synopsys.com, netdev@vger.kernel.org, lpieralisi@kernel.org,
-	kw@linux.com, bhelgaas@google.com, krzysztof.kozlowski@linaro.org,
-	u.kleine-koenig@pengutronix.de, dmitry.baryshkov@linaro.org,
-	quic_cang@quicinc.com, danila@jiaxyga.com,
-	quic_nitirawa@quicinc.com, mantas@8devices.com, athierry@redhat.com,
-	quic_kbajaj@quicinc.com, quic_bjorande@quicinc.com,
-	quic_msarkar@quicinc.com, quic_devipriy@quicinc.com,
-	quic_tsoni@quicinc.com, quic_rgottimu@quicinc.com,
-	quic_shashim@quicinc.com, quic_kaushalk@quicinc.com,
-	quic_tingweiz@quicinc.com, quic_aiquny@quicinc.com,
-	srinivas.kandagatla@linaro.org, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org, linux-clk@vger.kernel.org,
-	linux-phy@lists.infradead.org, linux-crypto@vger.kernel.org,
-	linux-scsi@vger.kernel.org, linux-usb@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-	linux-gpio@vger.kernel.org, linux-watchdog@vger.kernel.org,
-	linux-pci@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
-	kernel@quicinc.com
-Subject: Re: [PATCH 29/47] dt-bindings: net: qcom,ethqos: add description for
- qcs9100
-Message-ID: <add1bdda-2321-4c47-91ef-299f99385bc8@lunn.ch>
-References: <20240703025850.2172008-1-quic_tengfan@quicinc.com>
- <20240703025850.2172008-30-quic_tengfan@quicinc.com>
- <u5ekupjqvgoehkl76pv7ljyqqzbnnyh6ci2dilfxfkcdvdy3dp@ehdujhkul7ow>
- <f4162b7f-d957-4dd6-90a0-f65c1cbc213a@quicinc.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=FqgRSmHVBTbx+Qf/8bfjiDEWvwNyhwj9SeD4wbUKNY2VumCqhPskdIonoMSdNKqNdfHJ2ZJGo/9xCpBy9elas3n7VOpxXtosiA0nF3DfC9INOnuXTU3kx0mOjrGglhExp8JfBr14+kUPUo+zbEUNnE593i3EnPQiYxT6QtNMM5M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J2pgep8T; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7272BC3277B;
+	Thu,  4 Jul 2024 16:12:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720109531;
+	bh=CYxifX6Yhm0+JAKQZbOubcWktzgmWp29CWPQj081j7Y=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=J2pgep8Tpy148dUOc5xlDu4lHLGn1TU8+v0vG6pM5I25X3DZDIFsmsON5ZjCMyN3V
+	 OX145YGUSOi6tUDEOOyVzKRQQ8otPhGRihHApZISWpPhjhH9TkPcKWjNrXFHNAvBfi
+	 wVJsJnhstt8pkmZEI9trNzyUkfmXPUf3sybir9cpDAiXK41Tgv9qhe1gN/W3iMKNds
+	 xOFOVEJ7Qqf5gat2harn554g9LXI8nkKIDh0KyDAzIvV5SBKZR4gyImQ5ZSpwYazHE
+	 qdYrvs1frbsK2u/89AM7nzfvXl1XyPr9Po0weIgNZ2D6+im0BCgiD+YwyKXaraAwn/
+	 gfOVDbNm8yjxw==
+Date: Thu, 4 Jul 2024 17:12:06 +0100
+From: Conor Dooley <conor@kernel.org>
+To: utsav.agarwal@analog.com
+Cc: Michael Hennerich <michael.hennerich@analog.com>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Arturs Artamonovs <arturs.artamonovs@analog.com>,
+	Vasileios Bimpikas <vasileios.bimpikas@analog.com>,
+	Oliver Gaskell <oliver.gaskell@analog.com>
+Subject: Re: [PATCH v8 3/3] dt-bindings: input: Update dtbinding for adp5588
+Message-ID: <20240704-frown-salvation-bc3ab3a9ca25@spud>
+References: <20240704-adp5588_gpio_support-v8-0-208cf5d4c2d6@analog.com>
+ <20240704-adp5588_gpio_support-v8-3-208cf5d4c2d6@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="W8BlEMzrN+B/YFAs"
+Content-Disposition: inline
+In-Reply-To: <20240704-adp5588_gpio_support-v8-3-208cf5d4c2d6@analog.com>
+
+
+--W8BlEMzrN+B/YFAs
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <f4162b7f-d957-4dd6-90a0-f65c1cbc213a@quicinc.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jul 04, 2024 at 09:13:59AM +0800, Tengfei Fan wrote:
-> 
-> 
-> On 7/3/2024 11:09 PM, Andrew Halaney wrote:
-> > On Wed, Jul 03, 2024 at 10:58:32AM GMT, Tengfei Fan wrote:
-> > > Add the compatible for the MAC controller on qcs9100 platforms. This MAC
-> > > works with a single interrupt so add minItems to the interrupts property.
-> > > The fourth clock's name is different here so change it. Enable relevant
-> > > PHY properties. Add the relevant compatibles to the binding document for
-> > > snps,dwmac as well.
-> > 
-> > This description doesn't match what was done in this patch, its what
-> > Bart did when he made changes to add the sa8775 changes. Please consider
-> > using a blurb indicating that this is the same SoC as sa8775p, just with
-> > different firmware strategies or something along those lines?
-> 
-> I will update this commit message as you suggested.
+On Thu, Jul 04, 2024 at 03:26:32PM +0100, Utsav Agarwal via B4 Relay wrote:
+> From: Utsav Agarwal <utsav.agarwal@analog.com>
+>=20
+> Updating dt bindings for adp5588. Since the device can now function in a
+> purely gpio mode, the following keypad specific properties are now made
+> optional:
+> 	- interrupts
+> 	- keypad,num-rows
+> 	- keypad,num-columns
+> 	- linux,keymap
+>=20
+> However the above properties are required to be specified when
+> configuring the device as a keypad, dependencies have been added
+> such that specifying either one would require the remaining as well.
+>=20
+> Note that interrupts are optional, but required when the device has been
+> configured in keypad mode.
+>=20
+> Signed-off-by: Utsav Agarwal <utsav.agarwal@analog.com>
 
-Hi Andrew, Tengfei
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Please trim emails when replying to just the needed context.
+--W8BlEMzrN+B/YFAs
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Thanks
-	Andrew
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZobJ1gAKCRB4tDGHoIJi
+0lpCAP48MkPdu7ZsEOOfbEdEZq0UmulakHv/2VxMQWMgqIwsswD8Dq+q4gHvtaXu
+myfGYb/D1LVg/3Ovg4YSZLLIfErF+gs=
+=6eJf
+-----END PGP SIGNATURE-----
+
+--W8BlEMzrN+B/YFAs--
 
