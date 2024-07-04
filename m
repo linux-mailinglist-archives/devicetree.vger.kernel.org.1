@@ -1,109 +1,129 @@
-Return-Path: <devicetree+bounces-83139-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83140-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 800569274D8
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 13:22:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6898D927510
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 13:27:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1A198B210F4
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 11:22:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 145911F2357A
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 11:27:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8F211ABC32;
-	Thu,  4 Jul 2024 11:21:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B95C1AD3F1;
+	Thu,  4 Jul 2024 11:25:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="k+iyaGdx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04AAF1DA316;
-	Thu,  4 Jul 2024 11:21:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD5501AC449;
+	Thu,  4 Jul 2024 11:25:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720092117; cv=none; b=S/QyJi4yhdrAzebc9tKXfDfSjygTyN8KczCWk1Awcn3TRQ/XgxC1HpCvU9kXc23X68IX1AHBPQFyKxlyYTwK27fI3/XDdTcOk62p28mAV634hScV44yv9GYsXjHBxbmDuRZqCTidrScqIPrtpBfiDbfKawOiosv0PZCy1tS45nE=
+	t=1720092321; cv=none; b=GdfqZ8FuFf/P0feXW6SYopWUoVNcX6d95PL0CEjla/hTewFr5ie7fOjs9AOhgz36ZHvT2LFRynepC07nXhn7FIzhBbDBb7hzaWdHKZYuzpa4YLTnjV1oM22m8VfE2Do+RCM2vO0Xotvbjhnc+XZyFZtqXYkBOUr+XObgMGv7ZY4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720092117; c=relaxed/simple;
-	bh=8Lu+ko5XCeUskMjb7cl9FY9VNWGe3nY3ao9QKA1CCoc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=p79lsI2CtsS49NUF7tRuv4J8LZLrN5EF6+Pu3AfAoHTt1LLv2cxLMN/JcuhxIVU3Y0E5d8+doh0LCb7/E8jrq8xPqzIVEZAb16ai008G7lwf/KYdtfecXe8vw5ou24pIySHRg9YErawSoNlPBZJReZwsBCsPcWAIIoCX55pBkhU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-Received: from i53875ac2.versanet.de ([83.135.90.194] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1sPKX5-0008Oh-P3; Thu, 04 Jul 2024 13:21:47 +0200
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Alex Bee <knaerzche@gmail.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] arm64: dts: rockchip: add rock5 itx board
-Date: Thu, 04 Jul 2024 13:21:46 +0200
-Message-ID: <2224639.1BCLMh4Saa@diego>
-In-Reply-To: <faeb87de-b97e-4f95-bbb0-edd03a411f4c@gmail.com>
-References:
- <20240703210524.776455-1-heiko@sntech.de>
- <20240703210524.776455-3-heiko@sntech.de>
- <faeb87de-b97e-4f95-bbb0-edd03a411f4c@gmail.com>
+	s=arc-20240116; t=1720092321; c=relaxed/simple;
+	bh=jkDP8M9nS6zbeKG8Ls4A6Gkiqj2sTDusTpp/rBGe0V8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=K1r4zA9H4hYxwVCbLCgHspU4Xdk4YHu3BMekApe63F96/MZQKQDT1S9eltIxGeFyw5NYw7vQwtJZGbUqVprSKBXVxMq3bxpF1xmm3IyYU3QpyX7Ov3d3ujZwvFgNpZn+Qm21IZjpmiAlZKaBNWf9rErcM6tezWQS8qpTNBuKCgk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=k+iyaGdx; arc=none smtp.client-ip=198.175.65.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1720092319; x=1751628319;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=jkDP8M9nS6zbeKG8Ls4A6Gkiqj2sTDusTpp/rBGe0V8=;
+  b=k+iyaGdxIEE+bEjjCbngFqguf9ZVanRXNGituaRAbFsY8+naKNzNnEf9
+   LiBHVI0wOlH1/pXTIA/Ox2V6biHD/ZzWlvhEyjoNL3fvDq5KhOgwVhmwb
+   hh48MQTtWtl/f46nF6BmmTPiVsAoIGu0DS0QfHhECe1VydMwBn0zuz//p
+   lJSRKrp4d82MpSrysQTyGrEc810L6R745wpnj4VNoEhVKwdnYosx0ZxRB
+   XRRqMh0WbJRPeaQ96/d4BDqp9dWFWeN5WEUfvyu1AOghrgd3fKOwpeZ67
+   Scam5T7W+3X4YyaOAvB+0OO5v8yaB9aPAwW/F43r+GrAEKoVU/OiwIW24
+   g==;
+X-CSE-ConnectionGUID: Hn0X33VeTmeKrDWy1OdVMA==
+X-CSE-MsgGUID: 3cHolDtUQoiCJ41gtJS2TA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11122"; a="17477832"
+X-IronPort-AV: E=Sophos;i="6.09,183,1716274800"; 
+   d="scan'208";a="17477832"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Jul 2024 04:25:18 -0700
+X-CSE-ConnectionGUID: ws7LtSdaR264xMczHG3i8g==
+X-CSE-MsgGUID: K9y0McSiT7qKUb2J70jrew==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,183,1716274800"; 
+   d="scan'208";a="69759893"
+Received: from bergbenj-mobl1.ger.corp.intel.com (HELO [10.245.246.90]) ([10.245.246.90])
+  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Jul 2024 04:25:12 -0700
+Message-ID: <f9923336-3dd3-4f36-b5f6-f45f4ed09e0c@linux.intel.com>
+Date: Thu, 4 Jul 2024 13:25:09 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v23 32/32] ASoC: doc: Add documentation for SOC USB
+To: =?UTF-8?Q?Amadeusz_S=C5=82awi=C5=84ski?=
+ <amadeuszx.slawinski@linux.intel.com>, Wesley Cheng
+ <quic_wcheng@quicinc.com>, srinivas.kandagatla@linaro.org,
+ mathias.nyman@intel.com, perex@perex.cz, conor+dt@kernel.org,
+ corbet@lwn.net, broonie@kernel.org, lgirdwood@gmail.com, krzk+dt@kernel.org,
+ Thinh.Nguyen@synopsys.com, bgoswami@quicinc.com, tiwai@suse.com,
+ robh@kernel.org, gregkh@linuxfoundation.org
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-sound@vger.kernel.org, linux-usb@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-doc@vger.kernel.org,
+ alsa-devel@alsa-project.org
+References: <20240610235808.22173-1-quic_wcheng@quicinc.com>
+ <5be51e1f-70c9-4bbc-96fa-1e50e441bd35@linux.intel.com>
+ <408d9e8e-0f40-7e66-54be-2f8d2c0783a3@quicinc.com>
+ <ca1e1063-e1bd-4e03-a7cd-91985e9954e9@linux.intel.com>
+ <096d59a0-5e18-092c-c9ae-d98130226f06@quicinc.com>
+ <368d9019-2c96-468e-b472-7e1127f76213@linux.intel.com>
+ <eb6370ea-47a0-3659-3c10-cb7f95e3e520@quicinc.com>
+ <510468c7-b181-48d0-bf2d-3e478b2f2aca@linux.intel.com>
+ <c7a95157-1b71-1489-3657-8fe67f9acb4e@quicinc.com>
+ <90463a4e-c2e7-4b59-9a79-23533b4acd1e@linux.intel.com>
+ <fd8f1eb0-4b21-4697-8175-a61bc3858852@quicinc.com>
+ <f982842a-1804-420b-a539-a609ecf8fb8a@linux.intel.com>
+ <3c358604-6926-4f90-8fc8-8139c68c3418@quicinc.com>
+ <70bf10a7-7f87-4fd1-bd44-1733d3b2b15e@linux.intel.com>
+ <b1fcef2a-2af9-4985-ae00-f348ca5df3f1@linux.intel.com>
+ <ab734271-58ee-4981-926c-9b57f36b8ac6@linux.intel.com>
+ <ccbf9366-f3de-4a80-bffc-e32a8409e1a7@quicinc.com>
+ <adb4e27b-b328-4eef-87ca-9b8bad6639e6@linux.intel.com>
+Content-Language: en-US
+From: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+In-Reply-To: <adb4e27b-b328-4eef-87ca-9b8bad6639e6@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi Alex,
 
-Am Donnerstag, 4. Juli 2024, 12:52:35 CEST schrieb Alex Bee:
-> Am 03.07.24 um 23:05 schrieb Heiko Stuebner:
-> > The Rock 5 ITX as the name suggests is made in the ITX form factor and
-> > actually build in a form to be used in a regular case even providing
-> > connectors for regular front-panel io.
-> > 
-> > It can be powered either bei 12V, ATX power-supply or PoE.
-> > 
-> > Notable peripherals are the 4 SATA ports, M.2 M-Key slot, M.2 E-key slot,
-> > 2*2.5Gb pcie-connected ethernet nics.
-> > 
-> > As of yet unsupported display options consist of 2*hdmi, DP via type-c,
-> > eDP + 2*DSI via pcb connectors.
-> > 
-> > USB ports are 4*USB3 + 2*USB2 on the back panel and 2-port front-panel
-> > connector.
-> > 
-> > Signed-off-by: Heiko Stuebner <heiko@sntech.de>
-> > ---
-
-> > +&usb_host1_xhci {
-> > +	dr_mode = "host";
-> > +	#address-cells = <1>;
-> > +	#size-cells = <0>;
-> > +	status = "okay";
-> > +
-> > +	/* 2.0 hub on port 1 */
-> > +	hub_2_0: hub@1 {
-> > +		compatible = "usb5e3,610";
-> > +		reg = <1>;
-> > +		peer-hub = <&hub_3_0>;
-> > +		vdd-supply = <&vcc5v0_usb12>;
-> Are you sure about this one? I couldn't find any schematics for this board,
-> but both the bindings for usb5e3,610 and the datasheet[0] are saying this
-> is the supply for the hub's internal logic which is typically ~3.3V. It's
-> definitely not a supply for the vbus.
+>> Just so I understand...is it really desired that userspace doesn't
+>> have the flexibility to choose which USB device is offloaded?  I know
+>> it complicates what needs to be done, but it could be just an
+>> additional feature that can be added later on.  Again, by default, we
+>> select the last USB headset plugged in to be enabled for offload by
+>> default.
 > 
-> [0] http://www.sunnyqi.com/upLoad/product/month_1308/GL852G.pdf
+> If it chooses endpoint by itself perhaps you can send patch set without
+> controls first? This has added benefit of less patches in series, making
+> it easier to review and it won't block whole patch set by discussion on
+> controls feature. Controls can be added in followup series.
 
-yeah, you're right. The vdd-supply is coming from vcc_3v3 it seems
-vcc5v0_usb12 is the phy supply instead.
+We do need read-only controls for userspace to know that offload is
+possible and which card/device to use. That can be done in a first step
+assuming there's a single device plugged-in.
 
-Will fix that in v3.
+Dealing with multiple devices and defining rules or configuration
+options to select the offloaded device is a second-level problem.
 
-Thanks for catching that
-Heiko
-
-
+In most cases the only thing that will be offloaded is a headset
+anyways, so the selection could be rather static based on a
+vendor/system ID, all other USB devices would be ignored.
 
