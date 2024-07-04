@@ -1,195 +1,228 @@
-Return-Path: <devicetree+bounces-83120-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83121-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E017A92742B
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 12:37:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE694927431
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 12:40:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6C715B23CA4
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 10:37:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 66B2E28365C
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 10:40:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8EA21ABC40;
-	Thu,  4 Jul 2024 10:37:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15F9B1ABC45;
+	Thu,  4 Jul 2024 10:39:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="Y/BW60Uw"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="TZa27BEx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010001.outbound.protection.outlook.com [52.101.69.1])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A52C712D76E;
-	Thu,  4 Jul 2024 10:37:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720089470; cv=none; b=Yeeu6RYsVpHz1b/KY0eh0R6/IjadbMepzUAvFqqpR+Mm3cQapV/d8BSkP4bHkWrtGG/mpWZzXfbI0K1e2hbqBAD1YpYu+Mb+POdLUriw1k2skPLgXj77F7byY+cxQg6pMFuL1dNE6IckoAiZ9MQj9lHiBSHLBDkhmIEU/KuL6a8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720089470; c=relaxed/simple;
-	bh=I3yB44eJpSE5MtEWunHhYNnzEUavV3jYSvRon/R63q4=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JbHPckDAYBBBiIu936i16t8Ea7HDRY7thgZieRxfi5s8sQJ+L+V13QUzaKggp6PAPVaVk4phFw61mM40jE+8ssmRGMHl6NywEZN2ASZ8slUqJxqnrP7FUZQ43FyrP8GwEauObl9GD/nK2s1M/jN2sy546y+naa8tyKqtqqVeXwM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=fail smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=Y/BW60Uw; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1720089468; x=1751625468;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=I3yB44eJpSE5MtEWunHhYNnzEUavV3jYSvRon/R63q4=;
-  b=Y/BW60UwsBFOO2jw/KDCT5m2wQk5IX0CIWNnTRoQ2HoJG1z/yprk7+2+
-   DF2WCg9kcWU6feC74C94hhPwuDYOvNSbJVhAuonhtiO0tjt1spvwK9uVf
-   K10gfGY67YIjeBT9f0lk82H0SPC59mK5i6PM6DzH9LHiqJA3FC6WHNo5t
-   rQNYAuhDnEtyHzENF2Mlm/bNA/BHj55qacRKHWW5WQU1snCddvNNlMiEt
-   mB9KyLdw+/lSqRsSBonf1PeAxHVMoh+4MX/llJDmD8GRDJdd2B9iAEfPq
-   wB7R1EI+DWKYNyNA480PVYNW1bLfvUZEKFYjJnaCuf5CLZM984oDuhurf
-   g==;
-X-CSE-ConnectionGUID: Hmz/xXFxQReOTn98HhrE8Q==
-X-CSE-MsgGUID: e6N7O7D1RdOEXAzWejL0yQ==
-X-IronPort-AV: E=Sophos;i="6.09,183,1716274800"; 
-   d="asc'?scan'208";a="29489727"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 04 Jul 2024 03:37:47 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 4 Jul 2024 03:37:42 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex04.mchp-main.com (10.10.85.152)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
- Transport; Thu, 4 Jul 2024 03:37:41 -0700
-Date: Thu, 4 Jul 2024 11:37:20 +0100
-From: Conor Dooley <conor.dooley@microchip.com>
-To: Matteo Martelli <matteomartelli3@gmail.com>
-CC: Conor Dooley <conor@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	<linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: add binding for pac1921
-Message-ID: <20240704-distinct-sulk-4fc97a9ddbab@wendy>
-References: <20240703-iio-pac1921-v1-0-54c47d9180b6@gmail.com>
- <20240703-iio-pac1921-v1-1-54c47d9180b6@gmail.com>
- <20240703-bovine-thumping-c3747fd7caa1@spud>
- <668674271f02d_92937078@njaxe.notmuch>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA3501ABC3F;
+	Thu,  4 Jul 2024 10:39:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.1
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1720089598; cv=fail; b=qIGs872vxsO5cAjvrks6Ddw/uYTKEztvCxO/siYFeT53xYgnJrKAIKgRhu/C73u0LrsCnPx4/t4mJeVqFnqQJ4HbTbwRyWJEn0xV+frnOrKNWH/P0oawfXFYkwX+1YvOKT3tulShyDd8fVqz8vScVnXnZ0yjYGdz8Y76tJ1z1GI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1720089598; c=relaxed/simple;
+	bh=E7t6Jg4evrGmF6KlOCzdVNIY93z//Sg6oA4ok5lZ9VY=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=CNPnnW5zh8+8f0GE8zG4x4Bg4FU/xQxLV3H3IepmqULnKwKVEAZhbdq92H9pPTTTTfby2iiCfYtOqCSzrJOatr+figjPEMvdWl2qlS2EIbQioJj9gsM18PBRWE6lW/iMBhO1rrlnFLV9NFnGJJhGAwWSBJhGTGORcZ5vrh3fHjM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=TZa27BEx; arc=fail smtp.client-ip=52.101.69.1
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=AF4j2itgTfRMZPxZ851KcGTH1ZtPXSa/7g5fl1tKdcu1a0KdMUnflzOwNUF4U9/3Q/5XcgTivBTGcTGGwqBS8W9YIO0/PTThTHEJz3XnCI5L7sVB0GNbzil78cEBOP6Xv0h95wBhIE2hj/A2mPQ66I8YPVikJ2iG1nuqguEM+Uo7TK0c0fDCNE9xUFHw+GR/Ny3mCF9dBxp6ivIyjKmsTpD0hrAJpno3WFMvsVQhprt+lfT2lpaOk4GHSrjW5FdJRh8ipRJmlWtK3/fOcj2dE7Eh9acm/A00gOEx2tchgZywDRm/nkrVeXR6r4LfW9d3p1U6DhFtqawqdPN3vLR9NA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=GfIbA2zmUTbQ54xXQy1+DMJicFEF4nRHTELyzyhpjJE=;
+ b=CJZ/5oImoiRBuqVI1CrfAyRGoV1lhvTiVcgXmc+ydn6MEVH4B5maO8fw2nAz4cdUdY8mC7qiBuhn/Y+JhATo7aCjeZR9lfXzwy5ddsHm8xFjJxoB58vSvWcBsjUWpWLUGgUwwzy2WeL6C3n1qbEqf3INRyEF2E2TFRdbO/iy9qquYFsOzyxmPMIcRctOPwPUAyZ5+T4trYA36qWCsd7RT3lqBnRIoOVgJoeoFteLaP5AGaMlgtq3VuAjtUlT3RviegNIeZGfHlMEgQnPX+wZJryOr9Sg/8FRKLXzhUiSkIredEg4wHBRFlkGcQ22OMVSOoYkliBXLxKRt3lEd9auTA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GfIbA2zmUTbQ54xXQy1+DMJicFEF4nRHTELyzyhpjJE=;
+ b=TZa27BExC0Q57uEpXf+GJAuSHeNytis8JvDcpmNi91+Af1PWokYd2Qf9Prj4kBlFcGbBkFWqnqRbaMDddZvt0FyKEWWWwRKlkNXgdSJUpCgAU1dov/WMa4tdFuvquvQYQT8GuINMfRBbEvWrSGG0SNvAcU594zTVBLbWYZTO7nY=
+Received: from AM6PR04MB5941.eurprd04.prod.outlook.com (2603:10a6:20b:9e::16)
+ by AM8PR04MB7203.eurprd04.prod.outlook.com (2603:10a6:20b:1d5::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7741.25; Thu, 4 Jul
+ 2024 10:39:54 +0000
+Received: from AM6PR04MB5941.eurprd04.prod.outlook.com
+ ([fe80::9f4e:b695:f5f0:5256]) by AM6PR04MB5941.eurprd04.prod.outlook.com
+ ([fe80::9f4e:b695:f5f0:5256%4]) with mapi id 15.20.7741.017; Thu, 4 Jul 2024
+ 10:39:54 +0000
+From: Peng Fan <peng.fan@nxp.com>
+To: Sudeep Holla <sudeep.holla@arm.com>, "Peng Fan (OSS)"
+	<peng.fan@oss.nxp.com>
+CC: "cristian.marussi@arm.com" <cristian.marussi@arm.com>, "robh@kernel.org"
+	<robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "arm-scmi@vger.kernel.org"
+	<arm-scmi@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>
+Subject: RE: [PATCH V2 1/2] dt-bindings: firmware: arm,scmi: introduce
+ property mbox-rx-timeout-ms
+Thread-Topic: [PATCH V2 1/2] dt-bindings: firmware: arm,scmi: introduce
+ property mbox-rx-timeout-ms
+Thread-Index: AQHazPZCUnP/ehpH2Em9HKMSjtmmz7HmYioAgAAAeBA=
+Date: Thu, 4 Jul 2024 10:39:53 +0000
+Message-ID:
+ <AM6PR04MB5941A61736496B9850A3B52C88DE2@AM6PR04MB5941.eurprd04.prod.outlook.com>
+References: <20240703031715.379815-1-peng.fan@oss.nxp.com>
+ <ZoZ7NCSaG0YRK-60@bogus>
+In-Reply-To: <ZoZ7NCSaG0YRK-60@bogus>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: AM6PR04MB5941:EE_|AM8PR04MB7203:EE_
+x-ms-office365-filtering-correlation-id: a25c11ce-f38c-4cd5-680a-08dc9c15a409
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|1800799024|376014|366016|38070700018;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?PhF0lx8dxGgCJsgHAGVQFueo4w4E74c3qKt7cxw/1yKelFkfPGsmDTPhVpco?=
+ =?us-ascii?Q?EpGVBuBlwE7Hc26qJoAQSWjcgWbBzDyP+13wheAcwia0+JzpcHHR4xsUummm?=
+ =?us-ascii?Q?vTgday6LljcEgb12dk/f3UFlnhrXBHO0af9E74Xec1PornJqGHqancauEhLb?=
+ =?us-ascii?Q?weWFjvyqfRRHFXnEb6Mq9nsdxwVGInYjQk4z8SM4Ios25J2WhpKndvLXA6LQ?=
+ =?us-ascii?Q?32iPvWb/ix/Ef42faedB40ROY9tuzUB1tT8Z3y0ssWuMaD0dI/XjomB0QDMA?=
+ =?us-ascii?Q?UGOKYh7nfbzJqXTVZJ4GC+ilH/LzFAosl48CnPWyEUgQwu4gBYQ0WWeVKXer?=
+ =?us-ascii?Q?fqY5d1tkCpwVvqB1LdBNZhRqoc8AmKF1i2znZ8yi+IiRtnaOGq57vZxHCWYJ?=
+ =?us-ascii?Q?8ZLt6/TXLMwsFlmtZn0fCKr85UgopLQnx5kqcxm6UaoIPPmhJMaiDNdIwrXU?=
+ =?us-ascii?Q?OvuzArLZuLvNEjLYcCS2Vxb0jA72aoErm7wcpOzTREsvXvNt86uccw5T4rH/?=
+ =?us-ascii?Q?vNtgC6etoisvrxswRKqAHPqS2fIK80cSJupLDAaGw+VTJJ0BitPoJr4tL3F6?=
+ =?us-ascii?Q?lA5ZAIopOAfwfCx/iLKl+XRWRBJczAzx3fJS3W/TmaQVJL5rOyDg7LRf8pCf?=
+ =?us-ascii?Q?hDjygSXoNG+Uv+TaL8QN0OJxv+yX80f98jy17bdtm0YGlwBGiMkqL+B1qSAZ?=
+ =?us-ascii?Q?/Y2AofX6yg3pLxT5vxx3atRxbuLs5dEkEJFc2O+z0VlRsL/l3YDwqKQjrp9G?=
+ =?us-ascii?Q?TNALwG2GSvFPBEwKUslbuGbr+bXseIudh0m3oUARDRZnXnsaVaGsYrH2lqap?=
+ =?us-ascii?Q?jjC0OgxPi+fKnap7x4hCf8F9pRQkDl4gvWmDxALbDMrlVeidUiI/D+RWXIdb?=
+ =?us-ascii?Q?ptEVAb6ExuHjJ/Pvz++r9YUCgtURbjmvR2AZPjBGGzV71LJ/hfPwtY++d5R2?=
+ =?us-ascii?Q?ey5Ofa2yZnhM9h6SLsIyzHpZGHv3/pBPzEX8IRy/g8V//8tzAHbPSwuZkRuD?=
+ =?us-ascii?Q?+g1OXwIta2gwDuzQEnL46DYtffn4q91qMyvc6WFKp04kz6W8dSvWtHaNr6ly?=
+ =?us-ascii?Q?uPYg5zHB1v2/IRCc1w972YtDm4OgnX1N/26K/M77FMZzkIdb0f3QJ4zrueA+?=
+ =?us-ascii?Q?SFc57cIDW8qaxzRTTYyLNqFoth7n2mmEaCBe/Q44vCirPX2UZxZux2xf5fBK?=
+ =?us-ascii?Q?AnvSlSn4arNWuYpbG5XqnTjrxYVBFJj/u5eR6/NjV6UUVEEIiIPM9MhiHZmX?=
+ =?us-ascii?Q?q1QgM09budCn+zjaVm5r4ltkyXUyoHuoLCOYvUygclWDCHumBrWySH+Mi2xJ?=
+ =?us-ascii?Q?p+XfsgFBOC7gldXPIxhcGskoyYW1trGbk5UsHC8BK+H6SDW4dRle59aRrsGG?=
+ =?us-ascii?Q?CEZOqD7TN/9X/7QyeJdGIEIn/asluImtAPx92+Ol1Su4yONsmQ=3D=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB5941.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(366016)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?UPiQDbrJm9NpVebDjyK9ANQSiAo+YZOAUQfntGxcjP+S81ICQRr9C4pxLf7L?=
+ =?us-ascii?Q?PxO90S8udGRs4TCVvIIfquZpPOp0QNofo9XOylb42+6PXSDMkZ4cVE0AGSiH?=
+ =?us-ascii?Q?5bc6tt9xgSYjcf0sMyp7zK8DL0nw/0SAPxpUzOFN137pQGj6bGv8t+f0uLM+?=
+ =?us-ascii?Q?w/2/th0t6h0Gsqfvm5iWbr66+YL86Iu/LEgxkLX6r120c1zkR712VbciDDCA?=
+ =?us-ascii?Q?3R96GOwb68K5kREmesx9JYjXDVLJuCupUbk6FAvzYDAEVX3torRXN+3Oqo9I?=
+ =?us-ascii?Q?28T5fwOQJbrAgu+Djwvz5tVVj0OPuzEo5TC1UmuuX9NVIPBF4MPxuNvbMFVA?=
+ =?us-ascii?Q?enrsT5iLQ1HCLuJJD8E1BIyqNkdTNQ/sBGgn9V5aSXW47oHnw/Ok7nkjEB3S?=
+ =?us-ascii?Q?XbcoqaE8Uk2Z4MbjqM7dubT1fG4pOmnKSauijqJSChmHOEl/xk1adDIllDUR?=
+ =?us-ascii?Q?ieMi5eledX1bGr3AyAP+sTIeie8SG1gtwVkZM8YJ/mWO42xUdLXf/aCEwTmu?=
+ =?us-ascii?Q?RPEtMTeExgfg5KpEqcyOEFB8cmeFypbgzFpYrHtGF9idpbTLGyNzjAIlCHHF?=
+ =?us-ascii?Q?KVHXlPS4hh3lGeInT0YUf/i+srAyPTAGaeUSNbwyz7ZeJsiMTA4+aR5ruSYs?=
+ =?us-ascii?Q?VuG7r1l2GY7F7N9TPkYohmF/6Q2PFi1TFfflIdUVswIQKgKeaTXYZ8Pdg6GD?=
+ =?us-ascii?Q?SkoYJQbGxA6xDPQjdhdzxNmta9J9RP1Mrf6HhgrS+T9Z8hCu+rSQANfKU7rv?=
+ =?us-ascii?Q?hFqSlzGOHW97B+eKbseKQykfJh03V4wxNWpnaJ+CJS5Zoz5JZNkehM7rVFXs?=
+ =?us-ascii?Q?JExLBbc2s9CFn8YxrI3YH1Rr/mmT+6G1vssRjCatZ/PgTAtgv6x7biLFIFBG?=
+ =?us-ascii?Q?UYEWV25MVGqph0L/ulY+qcUdcW/GNKU7GfCboy7jzTQD6ZGY27xnk2giPLbv?=
+ =?us-ascii?Q?esjv/BfcGifuRqjyM+e7EidRM5UHRvqkWhmA+hI9rkhrp/rXSyv01pDV9NlU?=
+ =?us-ascii?Q?Y12I+sNVQUHreYFnxJbNa6qII00IVeCrzf1T5w+tXIbSM9fVDspyinx35sJr?=
+ =?us-ascii?Q?zKz8yIm6yLGVkM5vk/Q1iIVRRsGWVTPs/MhTLkmjdJ710nq8BkdOr/kXE26+?=
+ =?us-ascii?Q?9dIOaNFYudzv4iG9udSnmomAKFZND5W7xPmfNrCwtFPTr1ERGipdgOhmUWmI?=
+ =?us-ascii?Q?+Sey8rGnddwDBTLNxGlfTGZ872UsRje5a5FxMixDES0AxuIZNL4kxGfG+zRz?=
+ =?us-ascii?Q?M+ugUcUApwLMHvsBIujBLxnQmj3gw5RSpCyrGBsnxZBZYuQADQAhYYiXMte5?=
+ =?us-ascii?Q?rZ/o7XQyhCl8WBMlicOoPv5/C+YAZbxekfwyEJgwH+uPZv9hl6WFICzZKR8y?=
+ =?us-ascii?Q?8HvjOZIIZL6aysTyKC9S8VJr9s61bElRZFEGhbU0XFxc1MI/1o4aEWVFVvA8?=
+ =?us-ascii?Q?1DNztYYwQfd9d1ZGcOhoW0/uOAUt4hMlOyHrqjxQfrd8kxJU89whBiT4Miwe?=
+ =?us-ascii?Q?IPnbXxlj6h2bKXDXXtoyOCJ/ZTE5EyGleyz8m/PsnIhtNNQW/ueewULfZHas?=
+ =?us-ascii?Q?72Kuvz9QJJotVgmV1n4=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="1vcxoOf7MdROzijp"
-Content-Disposition: inline
-In-Reply-To: <668674271f02d_92937078@njaxe.notmuch>
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB5941.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a25c11ce-f38c-4cd5-680a-08dc9c15a409
+X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Jul 2024 10:39:53.9812
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: XzQ7RYHnKrS3deJ/FFFTCoB99+Hil7bx9RHO6tkHerSxEgEUGfHDETsZCDcYV5C6W/VvcWXH7h6n3b2y1xi6+w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR04MB7203
 
---1vcxoOf7MdROzijp
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Thu, Jul 04, 2024 at 12:06:31PM +0200, Matteo Martelli wrote:
-> Conor Dooley wrote:
-> > > +
-> > > +  microchip,dv-gain:
-> > > +    description:
-> > > +      Digital multiplier to control the effective bus voltage gain. =
-The gain
-> > > +      value of 1 is the setting for the full-scale range and it can =
-be increased
-> > > +      when the system is designed for a lower VBUS range.
-> > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > +    enum: [1, 2, 4, 8, 16, 32]
-> > > +    default: 1
-> > > +
-> > > +  microchip,di-gain:
-> >=20
-> > Why is this gain a fixed property in the devicetree, rather than
-> > something the user can control? Feels like it should be user
-> > controllable.
+> Subject: Re: [PATCH V2 1/2] dt-bindings: firmware: arm,scmi: introduce
+> property mbox-rx-timeout-ms
 >=20
-> Gains are user controllable via the IIO_CHAN_INFO_HARDWAREGAIN. I also ad=
-ded
-> them as DT properties thinking that they could be pre-set depending on ha=
-rdware
-> specifications: for instance by board design the monitored section is alr=
-eady
-> known to be in a particular voltage/current range (datasheet specifies
-> gains-ranges mapping at table 4-6 and table 4-7). Then, even if gains are
-> pre-set, the user can change them at runtime for instance by scaling them=
- down
-> upon an overflow event. However, I can get rid of those gain properties i=
-f they
-> are out of the DT scope.
-
-Usually gain values are left out of DT entirely, unless the gain is
-something set by the board, for example, whether or not some input pins
-are tied high or low.
-
-> > > +    description:
-> > > +      Digital multiplier to control the effective current gain. The =
-gain
-> > > +      value of 1 is the setting for the full-scale range and it can =
-be
-> > > +      increased when the system is designed for a lower VSENSE range.
-> > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > +    enum: [1, 2, 4, 8, 16, 32, 64, 128]
-> > > +    default: 1
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - reg
-> > > +  - shunt-resistor-micro-ohms
-> >=20
-> > You're missing a vdd-supply btw and the !read/int pin isn't described
-> > here either. I think the latter needs a property to control it (probably
-> > a GPIO since it is intended for host control) and a default value for if
-> > the GPIO isn't provided?
+> On Wed, Jul 03, 2024 at 11:17:14AM +0800, Peng Fan (OSS) wrote:
+> > From: Peng Fan <peng.fan@nxp.com>
+> >
+> > System Controller Management Interface(SCMI) firmwares might
+> have
+> > different designs by SCMI firmware developers. So the maximum
+> receive
+> > channel timeout value might also varies in the various designs.
+> >
+> > So introduce property mbox-rx-timeout-ms to let each platform could
+> > set its own timeout value in device tree.
+> >
+> > Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> > ---
+> >
+> > V2:
+> >  Drop defaults, update description.
+> >
+> >  Documentation/devicetree/bindings/firmware/arm,scmi.yaml | 6
+> ++++++
+> >  1 file changed, 6 insertions(+)
+> >
+> > diff --git
+> a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> > b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> > index ebf384e76df1..dcac0b36c76f 100644
+> > --- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> > +++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> > @@ -121,6 +121,12 @@ properties:
+> >        atomic mode of operation, even if requested.
+> >      default: 0
+> >
+> > +  max-rx-timeout-ms:
+> > +    description:
+> > +      An optional time value, expressed in milliseconds, representing
+> the
+> > +      mailbox maximum timeout value for receive channel. The value
+> should
+> > +      be a non-zero value if set.
+> > +
 >=20
-> The driver does not currently handle the vdd regulator nor the gpio for t=
-he
-> !read/int pin. Should they be added to the DT schema anyway?
+> IIRC, you had the min and max constraint in the earlier response. You
+> need to have rushed and posted another version before I could respond
+> with my preference.
+>=20
+> So there is no rush, these are v6.12 material. Take time for respining
+> and give some time for the review.
 
-Yes.
+Sure. I just not sure what the maximum should be set, so I drop
+the minimum and maximum from my previous email.
 
-> I think I can add the vdd regulator handling with little effort, my guess=
- is
-> that the "vdd-supply" property can be optional and defined as "vdd-supply=
-: true"
-> in the DT schema. Then the driver, if the vdd-supply property is present =
-in the
-> DT, would enable the regulator during device initialization and PM resume=
-, and
-> disable it on driver removal and PM suspend.
+Thanks,
+Peng.
 
-Nah, the regulator should be marked required in the binding, since
-without power the device cannot function, right? The regulator core will
-create a dummy register if one is not provided in the device tree, so
-you don't need to add any conditional logic around regulator actions.
-
-> Reguarding the !read/int pin, the current driver overrides it with a regi=
-ster
-> bit so it would not be considered at all by the device.
-
-We should fully describe devices, where possible, even if the driver for
-the device doesn't use it.
-
-Cheers,
-Conor.
-
-
---1vcxoOf7MdROzijp
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZoZ7YAAKCRB4tDGHoIJi
-0tNiAQClR//D6va0NOuDr2w0cnW7KSXBWtDCjRH9QKRQLU4o9wD/W+DNZAFQxZiv
-Fw4zdmGYhewLsSgEuAZAYWVhCUXIBQw=
-=gP5S
------END PGP SIGNATURE-----
-
---1vcxoOf7MdROzijp--
+>=20
+> --
+> Regards,
+> Sudeep
 
