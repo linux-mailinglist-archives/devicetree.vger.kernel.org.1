@@ -1,87 +1,87 @@
-Return-Path: <devicetree+bounces-83292-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83293-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20798927D65
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 21:00:20 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8624B927D6F
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 21:02:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C9BE02838C8
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 19:00:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DC423B21F54
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 19:01:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A86473465;
-	Thu,  4 Jul 2024 19:00:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2704F7344D;
+	Thu,  4 Jul 2024 19:01:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=xenosoft.de header.i=@xenosoft.de header.b="pr4IL2r7";
-	dkim=permerror (0-bit key) header.d=xenosoft.de header.i=@xenosoft.de header.b="xOLsMFvL"
+	dkim=pass (2048-bit key) header.d=xenosoft.de header.i=@xenosoft.de header.b="mQxfqbiW";
+	dkim=permerror (0-bit key) header.d=xenosoft.de header.i=@xenosoft.de header.b="PfbQKpq/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de [85.215.255.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B8536CDA1;
-	Thu,  4 Jul 2024 19:00:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 479F861FE7;
+	Thu,  4 Jul 2024 19:01:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=85.215.255.81
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720119615; cv=pass; b=YGZdkQ/SJc7C41N/HM7hqk/DFGS74J31y+X2ZnCJYW/h50GCt14LLXoZP4YswUMFm0ucB/p6jcQEe/VWRRjPi7gDKmiG5dCtVw38AvltWggNHzMQydIdITFjROvVnkfsSS6DcJa7VVp1aUdPt6Icz6wkW/wZJdIt1r54NoYh550=
+	t=1720119713; cv=pass; b=h6ZZHvg3LP9UK0U5hDhRIiKami96/yHLhdf26WMordHK6pPruejGwYfk3Cws9fAS8Hw8t6wbRPjlbRuv0NJuRkrt0Mzkl2jThegcK4Q5PCqq3WAKXb7w1RI4gZo5LrweK+8Bn0qeIl3ziZYKQXGEk/WijltFygKNPsDIubHj1kE=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720119615; c=relaxed/simple;
-	bh=IC9p+MRoRRz0HKEpCsqwAaN92/sAl5jhuLFVRzE8XLg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mPctpJba3gOfOacEwgIxL4QLHkm0zO/sY+FMrwqzgyd0l7x4caxfPmExT0mCYw08D2Hxn5fzk/hqYkZ7u1ZaHikD18+pZpMpg1zbhlFuX1aShgFpg/zWFlNXYHUzVW4q4ZBlBzosBn+bxLq2bgaDD/4PXQNGm4wz3/mD/Am7nsw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=xenosoft.de; spf=none smtp.mailfrom=xenosoft.de; dkim=pass (2048-bit key) header.d=xenosoft.de header.i=@xenosoft.de header.b=pr4IL2r7; dkim=permerror (0-bit key) header.d=xenosoft.de header.i=@xenosoft.de header.b=xOLsMFvL; arc=pass smtp.client-ip=85.215.255.81
+	s=arc-20240116; t=1720119713; c=relaxed/simple;
+	bh=k1nFAQI+oZ1dJfJaPTdzgzXQOrsrZGBEskWuZjoPA5o=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=I48vR361hxqjHkDw1rBW2atuptllM9kKRMmXgOiilBtDt5rglVDc0+Ijgkaodz9ax67FZlXdybzLfj/ESLzSLMikzWwFtcfzsIp+FDLlY3o7xA4OTGtCFtLkqbbQFa1WG9K0oTPeAXwm0Q8lMYjZC2/n9agdMPMCg9fR5v0D2qc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=xenosoft.de; spf=none smtp.mailfrom=xenosoft.de; dkim=pass (2048-bit key) header.d=xenosoft.de header.i=@xenosoft.de header.b=mQxfqbiW; dkim=permerror (0-bit key) header.d=xenosoft.de header.i=@xenosoft.de header.b=PfbQKpq/; arc=pass smtp.client-ip=85.215.255.81
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=xenosoft.de
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=xenosoft.de
-ARC-Seal: i=1; a=rsa-sha256; t=1720119248; cv=none;
+ARC-Seal: i=1; a=rsa-sha256; t=1720119521; cv=none;
     d=strato.com; s=strato-dkim-0002;
-    b=Mc3stmrwc7ESbeLm9P4wa4lqI1JK1TgJLetRde4RCCKGaBgLN0fNz0PFR3vlVyzhH+
-    bdynQ6h1o6peu5YWLh5FKbadmN61rXksjIuDaKQnGLs41X5CbZRuBdcNj9KTkZIbdwuT
-    D5iropfjGOCLEqmmY5DnYd7nnqYJUYNqau1a+rkDgULH753bA1YUKl0r+z167gnskLOD
-    Fkc1+qkboWcRJmWclAloGWwOdwqwTZyjeIiofvXpXMC6QnPqjVUAoNXxdY691MuwPTX1
-    +EkIili3qDaIPz3i7WsEC1lIlZrQfn/RS8M5OWobYcCm0jwcYIm/WI3yWuW+AeJvgfk+
-    1ZXA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1720119248;
+    b=R2OKa8uar4LMLdXGcdJNgLtz/M2pzcV12YyN2a99fJazWGNB+oQS8R6X53/jwiqt6D
+    lVv8/gjgvzdQMNj0oTdxwOBNN2ZMB4yAMNY38qFBqCZDWvd5AAq50Rdb4PpatJTbIEzg
+    AM9emp5n9m/1gEwoMR8xGZIKF2wbv+4FifozK6a/F89nwf09HgmKY0lfDt/PbPsWD1sj
+    /cx9ksb2jxL3G+k5jPQ/14tfWfE0pBwjzh2I5WpLnUxOVhEfnC1m63lr2FJct4tGr7Ba
+    nwVcD50Hyu2NFIYHcu/4WERxKwHMbylkjiy9SNVXH9CbYQBZSA6P9BUDNdH41nZwnWnU
+    l7cg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1720119521;
     s=strato-dkim-0002; d=strato.com;
-    h=In-Reply-To:From:References:Cc:To:Subject:Date:Message-ID:Cc:Date:
+    h=In-Reply-To:References:Cc:To:From:Subject:Date:Message-ID:Cc:Date:
     From:Subject:Sender;
-    bh=apTDHF46wlKCwkzD7joD6xmv+z0R4Z2m/26qnRUS808=;
-    b=EpN/XM31U3/fqJJppaIY2ljQ8JDFvChPox/QxxrtaCNygzfvEDgbGvyuiWnDxTrq8R
-    DmyP1SVVwT4c4XNjMJgnT/x+zSkNfPeGnZhgwdtxI82CNZCLWGI8BtsvDmosS2yad1C6
-    mg8MduTl8EHopSimDZOsg81XYYBD84JAei5TGtLa8756fwS8JQCxusjDqH6+9fa1Bre3
-    F1/Tb8FbwN/WJAFOJdcJ+NVBm8oYNgEE60rP9l2TuKi9kzGFJJ9cxcjyEDrtiBS/+50/
-    HelHQ3fzmp9ukG+XOW4q3VusVCxudNlhpzfq1xjAhS3w4qN/AHIL/dlX75j5Zq09nTTY
-    Hw2A==
+    bh=BslT/2fg7mlj0cn70yAR1at5reI4vwwa/29bm/p6uqU=;
+    b=d9irVQE4EGOQoaZS0oVve+ubnoYzO6XoEvjM0TWxExpKT+zA9rcdu+3X4WLypfNNFQ
+    PVZtooFBYMxkiyUGDUtuq/u7Gasjvd6KThOU7eEJx/bHLDIEVWmipHCcHhB65bEwYcQr
+    zXSjstrIwWjedcTojYn99cGj/s3tcRoptG7ppkjswScJBoCZtTzY+kUne5qyZgFyOJr1
+    OAfvtly6Sj+XrS4dzBb7JWuhcdk6IGCBiA5C8LxMQ2xCVn6lDdBGTBokPhiExH9oab5F
+    DLG6mmERKHcQHAbxBdATKlNF5SWS9hk69rC4nwo1wtBmC490zjAmTNacJi3U5sfjVFno
+    i3fQ==
 ARC-Authentication-Results: i=1; strato.com;
     arc=none;
     dkim=none
 X-RZG-CLASS-ID: mo02
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1720119248;
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1720119521;
     s=strato-dkim-0002; d=xenosoft.de;
-    h=In-Reply-To:From:References:Cc:To:Subject:Date:Message-ID:Cc:Date:
+    h=In-Reply-To:References:Cc:To:From:Subject:Date:Message-ID:Cc:Date:
     From:Subject:Sender;
-    bh=apTDHF46wlKCwkzD7joD6xmv+z0R4Z2m/26qnRUS808=;
-    b=pr4IL2r70nT8nSo8PciLwb9V135tbNHG4OiTDxHMh0OIwlv9RMMJKjcgZY/r0LJy6B
-    of5wWpKSlL8kLIPqTOPLS8U6vVmts4V74IUnSpXwJbZR6/Pc811+EXBdWkRRWBHud0Cs
-    wro1AR1GU/2nGEuU3NiDnFOmQcBpnm5SrAd7e+tHRKrnLPugqiaurx/g7jxDuaqJQxKT
-    9nTIBP+qnpZ92vE+hGWgXmi5q23BYjBKk16R4K+hkfr90/Ll4PQNFcc2szUXmXdD3xIH
-    G0oQmFWzdrI418ZwjjMBVZXdvky8+qzKMJ3SgQXRd5EETRqwmXlD9kG2mdaWr/o5LP8B
-    x7VQ==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1720119248;
+    bh=BslT/2fg7mlj0cn70yAR1at5reI4vwwa/29bm/p6uqU=;
+    b=mQxfqbiWoPlYiRW5yDXDyjwlMXq8Dbfyfm4b6S7p7ZI0P8Jcwem22SRu2/gUb2xKGK
+    0c4iSZQrBDR01yMAYxcBeX8V/AUIC5IoIEMYuXMf5zB8igM3F0qstsxdmxy/HCBUp2K1
+    lHW58SJy8JpesvcWl7kT+voYO8+qjRGmxi3IUGLbrbSjBj+Koj9Pat6tX/xdAxGa21aJ
+    I0hjPdMyg2dOBjfuESKwyiSnV2iRPPNrWsrZ4oCHfv6hzfcqcCIIWeXXVi+DZKH4qlIT
+    al6RcRQ6eLm8ibu6SyaED7boopjXGG2+Wa4FndtLqsYc9fSjQujz9bi7b2vVZPjan8sX
+    0y3w==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1720119521;
     s=strato-dkim-0003; d=xenosoft.de;
-    h=In-Reply-To:From:References:Cc:To:Subject:Date:Message-ID:Cc:Date:
+    h=In-Reply-To:References:Cc:To:From:Subject:Date:Message-ID:Cc:Date:
     From:Subject:Sender;
-    bh=apTDHF46wlKCwkzD7joD6xmv+z0R4Z2m/26qnRUS808=;
-    b=xOLsMFvLt329BiX+R1cOs7xrsvzYlgnMKSFQj7dKC3jAL1jrgpW+OA49yjRxF4WTVY
-    2xBcV9hEimqrLEd7RuDQ==
+    bh=BslT/2fg7mlj0cn70yAR1at5reI4vwwa/29bm/p6uqU=;
+    b=PfbQKpq/Ofcrmk17ZZrVeSZH5Z6shH5tqBKS3UTGHKt84AXQFfULB5fc+/6+HHkwgL
+    ONksLpEDqLwb4qB1QVBg==
 X-RZG-AUTH: ":L2QefEenb+UdBJSdRCXu93KJ1bmSGnhMdmOod1DhGM4l4Hio94KKxRySfLxnHvJzedR43JwnbXz/kFsuSUCat82PJROdEuWUwpcR8HY5"
 Received: from [IPV6:2a01:599:806:6955:6d1:546c:8e64:4d8]
     by smtp.strato.de (RZmta 50.5.0 AUTH)
-    with ESMTPSA id e08389064Is7UAd
+    with ESMTPSA id e08389064IwfUB2
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
 	(Client did not present a certificate);
-    Thu, 4 Jul 2024 20:54:07 +0200 (CEST)
-Message-ID: <3c045b0e-70da-48af-9196-2f4225477a32@xenosoft.de>
-Date: Thu, 4 Jul 2024 20:54:43 +0200
+    Thu, 4 Jul 2024 20:58:41 +0200 (CEST)
+Message-ID: <dfc7ec00-5216-4590-9347-ee10cd1e8380@xenosoft.de>
+Date: Thu, 4 Jul 2024 20:59:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -91,7 +91,9 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PowerPC] [PASEMI] Issue with the identification of ATA drives
  after the of/irq updates 2024-05-29
-To: Marc Zyngier <maz@kernel.org>
+Content-Language: en-US
+From: Christian Zigotzky <chzigotzky@xenosoft.de>
+To: Michael Ellerman <mpe@ellerman.id.au>, Marc Zyngier <maz@kernel.org>
 Cc: Rob Herring <robh@kernel.org>, apatel@ventanamicro.com,
  DTML <devicetree@vger.kernel.org>,
  Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
@@ -102,65 +104,93 @@ Cc: Rob Herring <robh@kernel.org>, apatel@ventanamicro.com,
 References: <3ab66fab-c3f2-4bed-a04d-a10c57dcdd9b@xenosoft.de>
  <86zfqzhgys.wl-maz@kernel.org>
  <ccf14173-9818-44ef-8610-db2900c67ae8@xenosoft.de>
- <86ed894l48.wl-maz@kernel.org>
-Content-Language: en-US
-From: Christian Zigotzky <chzigotzky@xenosoft.de>
-In-Reply-To: <86ed894l48.wl-maz@kernel.org>
+ <874j95jrur.fsf@mail.lhotse>
+ <3baff554-e8f6-42b0-b931-207175a4d8fd@xenosoft.de>
+In-Reply-To: <3baff554-e8f6-42b0-b931-207175a4d8fd@xenosoft.de>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 04.07.24 10:28, Marc Zyngier wrote:
-> On Thu, 04 Jul 2024 05:10:46 +0100,
-> Christian Zigotzky <chzigotzky@xenosoft.de> wrote:
->> On 02.07.24 18:54, Marc Zyngier wrote:
->>> On Sun, 30 Jun 2024 11:21:55 +0100,
->>> Christian Zigotzky <chzigotzky@xenosoft.de> wrote:
->>>> Hello,
+On 04.07.24 20:27, Christian Zigotzky wrote:
+> On 04.07.24 13:53, Michael Ellerman wrote:
+>> Christian Zigotzky <chzigotzky@xenosoft.de> writes:
+>>> On 02.07.24 18:54, Marc Zyngier wrote:
+>>>> On Sun, 30 Jun 2024 11:21:55 +0100,
+>>>> Christian Zigotzky <chzigotzky@xenosoft.de> wrote:
+>>>>> Hello,
+>>>>>
+>>>>> There is an issue with the identification of ATA drives with our
+>>>>> P.A. Semi Nemo boards [1] after the
+>>>>> commit "of/irq: Factor out parsing of interrupt-map parent
+>>>>> phandle+args from of_irq_parse_raw()" [2].
+>> ...
+>>>> --- a/drivers/of/irq.c
+>>>> +++ b/drivers/of/irq.c
+>>>> @@ -282,8 +282,10 @@ int of_irq_parse_raw(const __be32 *addr, 
+>>>> struct of_phandle_args *out_irq)
+>>>>                   oldimap = imap;
+>>>>                imap = of_irq_parse_imap_parent(oldimap, imaplen, 
+>>>> out_irq);
+>>>> -            if (!imap)
+>>>> -                goto fail;
+>>>> +            if (!imap) {
+>>>> +                match = 0;
+>>>> +                break;
+>>>> +            }
+>>>>                   match &= of_device_is_available(out_irq->np);
+>>>>                if (match)
 >>>>
->>>> There is an issue with the identification of ATA drives with our
->>>> P.A. Semi Nemo boards [1] after the
->>>> commit "of/irq: Factor out parsing of interrupt-map parent
->>>> phandle+args from of_irq_parse_raw()" [2].
->>> [snip]
->>>
->>> My earlier request for valuable debug information still stands. But
->>> while you're at it, can you please give the following hack a go?
->>>
->>> 	M.
->>>
->>> --- a/drivers/of/irq.c
->>> +++ b/drivers/of/irq.c
->>> @@ -282,8 +282,10 @@ int of_irq_parse_raw(const __be32 *addr, struct of_phandle_args *out_irq)
->>>      			oldimap = imap;
->>>    			imap = of_irq_parse_imap_parent(oldimap, imaplen, out_irq);
->>> -			if (!imap)
->>> -				goto fail;
->>> +			if (!imap) {
->>> +				match = 0;
->>> +				break;
->>> +			}
->>>      			match &= of_device_is_available(out_irq->np);
->>>    			if (match)
->>>
->>> This may not be the final workaround even if it solves your boot
->>> problem, but will at least give us a hint at what is going wrong.
->>>
->>> I have the fuzzy feeling that we may be able to lob this broken system
->>> as part of the of_irq_imap_abusers[] array, which would solve things
->>> pretty "neatly".
->>>
->>> 	M.
->>>
->> We tested this patch yesterday and it solves the boot problem.
-> How about the other patch[1], which would be far preferable?
+>>>>
+>>> We tested this patch yesterday and it solves the boot problem.
+>> Hi Christian,
+>>
+>> Instead of that patch, can you try the one below. AFAICS the device tree
+>> fixups done in early boot mean the interrupt-map is not needed, and also
+>> has the wrong content, so if we can remove it entirely that might avoid
+>> the problems in the parsing code.
+>>
+>> I don't know if your firmware actually implements those methods, I
+>> couldn't find anything online to confirm or deny it. Seems the only
+>> option is to test it.
+>>
+>> cheers
+>>
+>>
+>> diff --git a/arch/powerpc/kernel/prom_init.c 
+>> b/arch/powerpc/kernel/prom_init.c
+>> index fbb68fc28ed3..28fe082ede57 100644
+>> --- a/arch/powerpc/kernel/prom_init.c
+>> +++ b/arch/powerpc/kernel/prom_init.c
+>> @@ -3138,6 +3138,14 @@ static void __init fixup_device_tree_pasemi(void)
+>>         prom_setprop(iob, name, "interrupt-controller", &val, 0);
+>>   +    prom_printf("nemo: deleting interrupt-map properties\n");
+>> +    rc = call_prom("interpret", 1, 1,
+>> +              " s\" /pxp@0,e0000000\" find-device"
+>> +              " s\" interrupt-map\" delete-property"
+>> +              " s\" interrupt-map-mask\" delete-property"
+>> +              " device-end");
+>> +    prom_printf("nemo: interpret returned %d\n", rc);
+>> +
+>>       pci_name = "/pxp@0,e0000000/pci@11";
+>>       node = call_prom("finddevice", 1, 1, ADDR(pci_name));
+>>       parent = ADDR(iob);
+> Hi Michael,
 >
-> 	M.
+> Many thanks for your patch. We will test it as soon as possible.
 >
-> [1] https://lore.kernel.org/all/86ed8ba2sp.wl-maz@kernel.org
->
-Marc,
+> Christian
+Michael,
 
-We will test the patch as soon as possible.
+Unfortunately, the kernel 6.10-rc6 doesn't compile with your patch. "rc" 
+is undeclared.
+
+Error messages:
+
+arch/powerpc/kernel/prom_init.c: In function ‘fixup_device_tree_pasemi’:
+arch/powerpc/kernel/prom_init.c:3142:2: error: ‘rc’ undeclared (first 
+use in this function); did you mean ‘rq’?
+  3142 |  rc = call_prom("interpret", 1, 1,
+       |  ^~
+       |  rq
 
 Christian
 
