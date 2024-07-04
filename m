@@ -1,131 +1,166 @@
-Return-Path: <devicetree+bounces-83291-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83292-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3F06927D31
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 20:36:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20798927D65
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 21:00:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0029B1C222AB
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 18:36:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C9BE02838C8
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 19:00:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DBCB131E2D;
-	Thu,  4 Jul 2024 18:35:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A86473465;
+	Thu,  4 Jul 2024 19:00:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XwkC4aqR"
+	dkim=pass (2048-bit key) header.d=xenosoft.de header.i=@xenosoft.de header.b="pr4IL2r7";
+	dkim=permerror (0-bit key) header.d=xenosoft.de header.i=@xenosoft.de header.b="xOLsMFvL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de [85.215.255.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1141945979;
-	Thu,  4 Jul 2024 18:35:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720118147; cv=none; b=uE80qbm7GuSyETiXp0Mkt2XKlCPs+qHkmEv7zoxFeyOOcWIxse8iOMHy2wuilG18t1TgtZhQnfosAucZ6tGsIZa976gBgyQV/HZiDu53pXmXiyh3j7None9Eb/vNU490Bsxm1IujiggvUQ4hRcJ9NCsD5oIEBBiK5X90p+jptMA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720118147; c=relaxed/simple;
-	bh=rCWEKZiJpFDMpQmRBe2oHF+Q4L1xuCzmJqFKI9sBbBU=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=H70Bqu1PirnJYdsx0vGna+hr0qUq2XD9y6q0kuexQYsNvFibmhgZopONGzT1vx4mYF4LSV9MQpvpthJAe3WvbWdPND37C9ibVF//dc/yhtTIyqEftxIBRZUIbIh4uE8KLCq7W7MzYSql310vWGQuOefmG6nK0eWyeNoKuJRXVP4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XwkC4aqR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CEBE4C32781;
-	Thu,  4 Jul 2024 18:35:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720118145;
-	bh=rCWEKZiJpFDMpQmRBe2oHF+Q4L1xuCzmJqFKI9sBbBU=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=XwkC4aqRrEk7dbyVe7FPkDuvLWRj1jidNP+euuAbzP9JjJzLszTewqZzPa+o+jBjC
-	 FfFm5HKXGJqAADRL6npfN59JBc96M4knjbEw55jvee+lnAx4pced+gtLG/Id8VWOlX
-	 UQaKQ5if+3ZNZlp6hHhpWOkCK8IUesi7Y+7OLE0lk5WaxQg3EGu/fmJaNrpwGR5QFa
-	 TiIMvvL5uQCyFdh6L8HSwLkmE8hrqsRtVIJiouy9JLLCww5LkHFuXxaL0ZNkP965RM
-	 mu/JfdeUKlnfOmLtHEJjNcf0T0eHBjGtDD9EamZCPEDDyP3EtBv9EaBAWPirYx85z0
-	 kOEspMLmVOnEA==
-From: Mark Brown <broonie@kernel.org>
-To: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Qiang Zhao <qiang.zhao@nxp.com>, 
- Shengjiu Wang <shengjiu.wang@gmail.com>, Xiubo Li <Xiubo.Lee@gmail.com>, 
- Fabio Estevam <festevam@gmail.com>, Nicolin Chen <nicoleotsuka@gmail.com>, 
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
- Christophe Leroy <christophe.leroy@csgroup.eu>, 
- Herve Codina <herve.codina@bootlin.com>
-Cc: alsa-devel@alsa-project.org, linuxppc-dev@lists.ozlabs.org, 
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-In-Reply-To: <20240701113038.55144-1-herve.codina@bootlin.com>
-References: <20240701113038.55144-1-herve.codina@bootlin.com>
-Subject: Re: [PATCH v2 00/10] Add support for non-interleaved mode in
- qmc_audio
-Message-Id: <172011814156.108577.6835000954041673379.b4-ty@kernel.org>
-Date: Thu, 04 Jul 2024 19:35:41 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B8536CDA1;
+	Thu,  4 Jul 2024 19:00:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=85.215.255.81
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1720119615; cv=pass; b=YGZdkQ/SJc7C41N/HM7hqk/DFGS74J31y+X2ZnCJYW/h50GCt14LLXoZP4YswUMFm0ucB/p6jcQEe/VWRRjPi7gDKmiG5dCtVw38AvltWggNHzMQydIdITFjROvVnkfsSS6DcJa7VVp1aUdPt6Icz6wkW/wZJdIt1r54NoYh550=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1720119615; c=relaxed/simple;
+	bh=IC9p+MRoRRz0HKEpCsqwAaN92/sAl5jhuLFVRzE8XLg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=mPctpJba3gOfOacEwgIxL4QLHkm0zO/sY+FMrwqzgyd0l7x4caxfPmExT0mCYw08D2Hxn5fzk/hqYkZ7u1ZaHikD18+pZpMpg1zbhlFuX1aShgFpg/zWFlNXYHUzVW4q4ZBlBzosBn+bxLq2bgaDD/4PXQNGm4wz3/mD/Am7nsw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=xenosoft.de; spf=none smtp.mailfrom=xenosoft.de; dkim=pass (2048-bit key) header.d=xenosoft.de header.i=@xenosoft.de header.b=pr4IL2r7; dkim=permerror (0-bit key) header.d=xenosoft.de header.i=@xenosoft.de header.b=xOLsMFvL; arc=pass smtp.client-ip=85.215.255.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=xenosoft.de
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=xenosoft.de
+ARC-Seal: i=1; a=rsa-sha256; t=1720119248; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=Mc3stmrwc7ESbeLm9P4wa4lqI1JK1TgJLetRde4RCCKGaBgLN0fNz0PFR3vlVyzhH+
+    bdynQ6h1o6peu5YWLh5FKbadmN61rXksjIuDaKQnGLs41X5CbZRuBdcNj9KTkZIbdwuT
+    D5iropfjGOCLEqmmY5DnYd7nnqYJUYNqau1a+rkDgULH753bA1YUKl0r+z167gnskLOD
+    Fkc1+qkboWcRJmWclAloGWwOdwqwTZyjeIiofvXpXMC6QnPqjVUAoNXxdY691MuwPTX1
+    +EkIili3qDaIPz3i7WsEC1lIlZrQfn/RS8M5OWobYcCm0jwcYIm/WI3yWuW+AeJvgfk+
+    1ZXA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1720119248;
+    s=strato-dkim-0002; d=strato.com;
+    h=In-Reply-To:From:References:Cc:To:Subject:Date:Message-ID:Cc:Date:
+    From:Subject:Sender;
+    bh=apTDHF46wlKCwkzD7joD6xmv+z0R4Z2m/26qnRUS808=;
+    b=EpN/XM31U3/fqJJppaIY2ljQ8JDFvChPox/QxxrtaCNygzfvEDgbGvyuiWnDxTrq8R
+    DmyP1SVVwT4c4XNjMJgnT/x+zSkNfPeGnZhgwdtxI82CNZCLWGI8BtsvDmosS2yad1C6
+    mg8MduTl8EHopSimDZOsg81XYYBD84JAei5TGtLa8756fwS8JQCxusjDqH6+9fa1Bre3
+    F1/Tb8FbwN/WJAFOJdcJ+NVBm8oYNgEE60rP9l2TuKi9kzGFJJ9cxcjyEDrtiBS/+50/
+    HelHQ3fzmp9ukG+XOW4q3VusVCxudNlhpzfq1xjAhS3w4qN/AHIL/dlX75j5Zq09nTTY
+    Hw2A==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo02
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1720119248;
+    s=strato-dkim-0002; d=xenosoft.de;
+    h=In-Reply-To:From:References:Cc:To:Subject:Date:Message-ID:Cc:Date:
+    From:Subject:Sender;
+    bh=apTDHF46wlKCwkzD7joD6xmv+z0R4Z2m/26qnRUS808=;
+    b=pr4IL2r70nT8nSo8PciLwb9V135tbNHG4OiTDxHMh0OIwlv9RMMJKjcgZY/r0LJy6B
+    of5wWpKSlL8kLIPqTOPLS8U6vVmts4V74IUnSpXwJbZR6/Pc811+EXBdWkRRWBHud0Cs
+    wro1AR1GU/2nGEuU3NiDnFOmQcBpnm5SrAd7e+tHRKrnLPugqiaurx/g7jxDuaqJQxKT
+    9nTIBP+qnpZ92vE+hGWgXmi5q23BYjBKk16R4K+hkfr90/Ll4PQNFcc2szUXmXdD3xIH
+    G0oQmFWzdrI418ZwjjMBVZXdvky8+qzKMJ3SgQXRd5EETRqwmXlD9kG2mdaWr/o5LP8B
+    x7VQ==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1720119248;
+    s=strato-dkim-0003; d=xenosoft.de;
+    h=In-Reply-To:From:References:Cc:To:Subject:Date:Message-ID:Cc:Date:
+    From:Subject:Sender;
+    bh=apTDHF46wlKCwkzD7joD6xmv+z0R4Z2m/26qnRUS808=;
+    b=xOLsMFvLt329BiX+R1cOs7xrsvzYlgnMKSFQj7dKC3jAL1jrgpW+OA49yjRxF4WTVY
+    2xBcV9hEimqrLEd7RuDQ==
+X-RZG-AUTH: ":L2QefEenb+UdBJSdRCXu93KJ1bmSGnhMdmOod1DhGM4l4Hio94KKxRySfLxnHvJzedR43JwnbXz/kFsuSUCat82PJROdEuWUwpcR8HY5"
+Received: from [IPV6:2a01:599:806:6955:6d1:546c:8e64:4d8]
+    by smtp.strato.de (RZmta 50.5.0 AUTH)
+    with ESMTPSA id e08389064Is7UAd
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+	(Client did not present a certificate);
+    Thu, 4 Jul 2024 20:54:07 +0200 (CEST)
+Message-ID: <3c045b0e-70da-48af-9196-2f4225477a32@xenosoft.de>
+Date: Thu, 4 Jul 2024 20:54:43 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PowerPC] [PASEMI] Issue with the identification of ATA drives
+ after the of/irq updates 2024-05-29
+To: Marc Zyngier <maz@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, apatel@ventanamicro.com,
+ DTML <devicetree@vger.kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+ mad skateman <madskateman@gmail.com>, "R.T.Dickinson" <rtd2@xtra.co.nz>,
+ Matthew Leaman <matthew@a-eon.biz>, Darren Stevens
+ <darren@stevens-zone.net>, Christian Zigotzky <info@xenosoft.de>
+References: <3ab66fab-c3f2-4bed-a04d-a10c57dcdd9b@xenosoft.de>
+ <86zfqzhgys.wl-maz@kernel.org>
+ <ccf14173-9818-44ef-8610-db2900c67ae8@xenosoft.de>
+ <86ed894l48.wl-maz@kernel.org>
+Content-Language: en-US
+From: Christian Zigotzky <chzigotzky@xenosoft.de>
+In-Reply-To: <86ed894l48.wl-maz@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14-dev-d4707
 
-On Mon, 01 Jul 2024 13:30:27 +0200, Herve Codina wrote:
-> The qmc_audio driver supports only audio in interleaved mode.
-> Non-interleaved mode can be easily supported using several QMC channel
-> per DAI. In that case, data related to ch0 are sent to (received from)
-> the first QMC channel, data related to ch1 use the next QMC channel and
-> so on up to the last channel.
-> 
-> In terms of constraints and settings, the interleaved and
-> non-interleaved modes are slightly different.
-> 
-> [...]
+On 04.07.24 10:28, Marc Zyngier wrote:
+> On Thu, 04 Jul 2024 05:10:46 +0100,
+> Christian Zigotzky <chzigotzky@xenosoft.de> wrote:
+>> On 02.07.24 18:54, Marc Zyngier wrote:
+>>> On Sun, 30 Jun 2024 11:21:55 +0100,
+>>> Christian Zigotzky <chzigotzky@xenosoft.de> wrote:
+>>>> Hello,
+>>>>
+>>>> There is an issue with the identification of ATA drives with our
+>>>> P.A. Semi Nemo boards [1] after the
+>>>> commit "of/irq: Factor out parsing of interrupt-map parent
+>>>> phandle+args from of_irq_parse_raw()" [2].
+>>> [snip]
+>>>
+>>> My earlier request for valuable debug information still stands. But
+>>> while you're at it, can you please give the following hack a go?
+>>>
+>>> 	M.
+>>>
+>>> --- a/drivers/of/irq.c
+>>> +++ b/drivers/of/irq.c
+>>> @@ -282,8 +282,10 @@ int of_irq_parse_raw(const __be32 *addr, struct of_phandle_args *out_irq)
+>>>      			oldimap = imap;
+>>>    			imap = of_irq_parse_imap_parent(oldimap, imaplen, out_irq);
+>>> -			if (!imap)
+>>> -				goto fail;
+>>> +			if (!imap) {
+>>> +				match = 0;
+>>> +				break;
+>>> +			}
+>>>      			match &= of_device_is_available(out_irq->np);
+>>>    			if (match)
+>>>
+>>> This may not be the final workaround even if it solves your boot
+>>> problem, but will at least give us a hint at what is going wrong.
+>>>
+>>> I have the fuzzy feeling that we may be able to lob this broken system
+>>> as part of the of_irq_imap_abusers[] array, which would solve things
+>>> pretty "neatly".
+>>>
+>>> 	M.
+>>>
+>> We tested this patch yesterday and it solves the boot problem.
+> How about the other patch[1], which would be far preferable?
+>
+> 	M.
+>
+> [1] https://lore.kernel.org/all/86ed8ba2sp.wl-maz@kernel.org
+>
+Marc,
 
-Applied to
+We will test the patch as soon as possible.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-
-Thanks!
-
-[01/10] ASoC: fsl: fsl_qmc_audio: Check devm_kasprintf() returned value
-        commit: e62599902327d27687693f6e5253a5d56583db58
-[02/10] ASoC: fsl: fsl_qmc_audio: Fix issues detected by checkpatch
-        commit: 86dd725b57a88869acfe15b0405937450d0aef30
-[03/10] ASoC: fsl: fsl_qmc_audio: Split channel buffer and PCM pointer handling
-        commit: 42212b2ce8b1182d536452eee2880d2de7cce059
-[04/10] ASoC: fsl: fsl_qmc_audio: Identify the QMC channel involved in completion routines
-        commit: 5e51a1f9dfd90de6e44cfb5340d48263f9e8f8d8
-[05/10] ASoC: fsl: fsl_qmc_audio: Introduce qmc_audio_pcm_{read,write}_submit()
-        commit: 33a6969fbc653f25d5204b17fb67d5a21e6295e6
-[06/10] ASoC: fsl: fsl_qmc_audio: Introduce qmc_dai_constraints_interleaved()
-        commit: b81cfa66435bdab896b4c24e11d24ec33bdb0601
-[07/10] soc: fsl: cpm1: qmc: Introduce functions to get a channel from a phandle list
-        commit: 37797c605da33445adc112561695f70bfaa11133
-[08/10] soc: fsl: cpm1: qmc: Introduce qmc_chan_count_phandles()
-        commit: af8432b2e41abc0a20bdc01a3b144ea7b2f1ee09
-[09/10] dt-bindings: sound: fsl,qmc-audio: Add support for multiple QMC channels per DAI
-        commit: fb6013168fa94d5863ed6085b24eaeb89102ad74
-[10/10] ASoC: fsl: fsl_qmc_audio: Add support for non-interleaved mode.
-        commit: 188d9cae54388171d28bd632a2561863db4b9f8b
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+Christian
 
