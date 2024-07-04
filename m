@@ -1,270 +1,515 @@
-Return-Path: <devicetree+bounces-83180-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83183-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50476927758
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 15:42:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D925C9277A5
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 16:02:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 07769281B99
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 13:42:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 68D9C1F267C6
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 14:02:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 480341AED2F;
-	Thu,  4 Jul 2024 13:42:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F9651AED50;
+	Thu,  4 Jul 2024 14:02:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="Uhwsozec"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Da1TNbJS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EEA21ABC54
-	for <devicetree@vger.kernel.org>; Thu,  4 Jul 2024 13:41:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FF951AE840;
+	Thu,  4 Jul 2024 14:02:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720100520; cv=none; b=XPTfAWY2H9dHtKL6Rra5RnLsApKSWJmAK8SzoKx7+dTE7yHsPKi9v39XOxBFgvzAyb/6qqBON5ctgEUSWXHOZg7uxpFiKMgsCVobTYsIPfblDh0AdkFKAjlhAEB5Y0wWE5ipQOvxqvs09x0NfmECC8+THwJDw9UPLCz05KIQ0lk=
+	t=1720101723; cv=none; b=bQeKkTFSZf6C4TPgr7BEd2G348s2WTsUa2WasWzsfNDUBaZ5UmVwMHUYYFWaNJPBke0ogZ7IVpqyHvqd+JjNaQWnR4/HpxJByykGTHIU1DNTk+O2BH73LbRZw4vkz5z2Xq0EMbRIjIXT/ZcSCKn+dYKKPuC0PU0i7Yisnk5GEWA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720100520; c=relaxed/simple;
-	bh=ZurutrlF5DSOS29VhgpoQ512JwNEuhthUV5Dn8eNNzg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=RFvg5xkAPmYmsCvwzo+ozzzEp4PS4gStoxoW69MDOPND0dQcXmqmP/cdBCKkp7DACpYCFAzwotm9MJa+0k1XxvyoD6+DTXteus0nGqT3hhb5utUBqViYgaFd8HAw151sYmkPjXYZ6iZfEEmu6Ez323PQatfzqcvXE459VMNZ05Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=Uhwsozec; arc=none smtp.client-ip=209.85.128.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-64d408a5d01so6243337b3.1
-        for <devicetree@vger.kernel.org>; Thu, 04 Jul 2024 06:41:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1720100517; x=1720705317; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DqZuuHffUIBiAfDiTFS5HFgQJZKEzHNjVKNJ49rRTBQ=;
-        b=UhwsozecxMkYBXQ4KtoQF9cOwJ0TkNvKECjCciMvP+QoSvF9dIuQJFZ0MEwKESR10e
-         ewCQg08wr137F0QIj9Q0+fXUmg4XMXqkggiMpXT2bdlbO257iL2lLwGgCNpX1Pn9J3f3
-         kC7uEN6TWLTritaM7t7KiNmMwPku6JkKLpTJIYvBvYbMEkYQOcwRcna9nef9xBff+gKu
-         Ad8dnThGTUo3GkSXiECkQYcXC6FkGwhvh76+fBJeyJuuWkMs8ihQFqARVSkXwdTxBETG
-         VyLRyKMcRGf6uSbZrPpVCEmc5U42wabTlF5mlWyqIunePLtl7aRz+FziEQjHVwD6I6Ot
-         M9gg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720100517; x=1720705317;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=DqZuuHffUIBiAfDiTFS5HFgQJZKEzHNjVKNJ49rRTBQ=;
-        b=r49t511+7oZxILDO+unMyS6E53AOUuqcA5aHZjzSlsNU19l0DbrLCwqNXnUVhmSMm3
-         NNYNzXAfzVVEj2ehqVhRlXRXFNPAyaf6PCNr5+ViAqoitkQa+ehwuetqh1dFvtGYlpSL
-         LADNnQ6diFYfoKY+GhjaKU1kdFANfbqQhHUlBJ/jTBOyCAfHzf225JMbF721rJqlMCgG
-         hYZ8TgHDfVkid/0IoOn6GTs+zM2S554bmg8hG/dGHqkM27cky6ga0EcOK5kyx1VXwg7M
-         lk9N/tWHQbrXqZhoGEEKKEy59e3MEIsSStPzbWUkG2cuKMn2umnbJqY7DRiF9PKsslMu
-         XO+w==
-X-Forwarded-Encrypted: i=1; AJvYcCWfmzjgOBIT8+NMbxWjA0e9w8MKfMQMcT9H1YMOvnfZp/2Z4pKw2qG7EKDuIqf0PMF3WdwjxViIiCglRPPUd7+jeVC0uNg/k9kXEg==
-X-Gm-Message-State: AOJu0Yy2h0yfZsikrEGmAKEaIQj6GoqQ6f/Buc2YXo/UQco/grlLLk9Y
-	yFBIOyvukWlvwXOaNEE2Y5aIzB5VV2gk8c8CVhDvSBsdsGaU0E8W/a+zEgSjFfc97swSp5Ws5zg
-	OJK7Xj1wurWH9OsxndnBCu7q6kLX+BW0NxJCUEQ==
-X-Google-Smtp-Source: AGHT+IHEKBkMrwGk47g3+CpUgb4d7hqbP14eAiw/Im3iHfhAjIi1ra45CRslQTJFnzek/489H7UK13rqOIN82fDaWek=
-X-Received: by 2002:a0d:d0c2:0:b0:64b:3f2c:c73f with SMTP id
- 00721157ae682-652d853062fmr15759017b3.45.1720100517327; Thu, 04 Jul 2024
- 06:41:57 -0700 (PDT)
+	s=arc-20240116; t=1720101723; c=relaxed/simple;
+	bh=BpgPLUkOxoys4/2xP23JGgah9GInBRwSP+wjBYdzIYU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NZVAz6E8rDqoGImN0ED74gEx8NwtM88+/XWFwY8FT7Eh2sei3hVnMwFN+77UE79O+zY/xpJTNv+NoJYkVaFRsLG+FYjIemexS0qVRc7+ZPx1AKbh/tydbST0CejG21wdXZbd5DtuL45OzRSbCWP6p0lMRV2+GLpCgohcIo7PMRg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Da1TNbJS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A046CC3277B;
+	Thu,  4 Jul 2024 14:01:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720101722;
+	bh=BpgPLUkOxoys4/2xP23JGgah9GInBRwSP+wjBYdzIYU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Da1TNbJS4oyiLPxoe0do3ahhBFHdPpP/92cYYxhME/EhsT7pFCrqYou+Eyh/nuMMe
+	 nyJID5aPSXH1mdR1ktRtyf00c8ldMQfNTnaYX6yYKv6dCo6xJDY2CBiEx003hwn/VK
+	 a91aDKsZX4S1A2sv0OiiC24Q4fN1PuC9Hf5I0RDPwybLnQ0Fgcol5SPd6kYmrHnAc/
+	 +I2EM8UMuvLFC6Qnawzvi0Gh1v/Rxsd1hGoOyyuP1ew/LWh/9UnHzYPv5n9/2m5L+t
+	 wVuGPl7ApYzdicxZLvMYN/U+8qEnNHzxG+ZlZ0haiT88cRiH/4V00Qw9eVCnnQZGqW
+	 ht67i//WLOCgw==
+Date: Thu, 4 Jul 2024 21:46:46 +0800
+From: Jisheng Zhang <jszhang@kernel.org>
+To: Yixun Lan <dlan@gentoo.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Conor Dooley <conor@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Anup Patel <anup@brainfault.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Yangyu Chen <cyy@cyyself.name>,
+	Inochi Amaoto <inochiama@outlook.com>, linux-serial@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	Meng Zhang <zhangmeng.kevin@spacemit.com>
+Subject: Re: [PATCH v3 08/11] riscv: dts: add initial SpacemiT K1 SoC device
+ tree
+Message-ID: <Zoanxksn0nio4MPg@xhacker>
+References: <20240703-k1-01-basic-dt-v3-0-12f73b47461e@gentoo.org>
+ <20240703-k1-01-basic-dt-v3-8-12f73b47461e@gentoo.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240110141443.364655-1-jstephan@baylibre.com>
- <20240110141443.364655-4-jstephan@baylibre.com> <3c2bee40-3792-409c-b42f-f8b013ff641c@collabora.com>
- <CAEHHSvaT_U+HNzWQUoK9EuqGuqEd11+Lu0CLz_rL7uQf0Q5isw@mail.gmail.com>
- <53838e76-bfa4-41f5-a015-a37472e98991@collabora.com> <CAEHHSvaRqZM9c8oD05WKkhOHdjKLBkR6tXp2Q1b8OMiDxDsDhQ@mail.gmail.com>
- <20240614123345.GN6019@pendragon.ideasonboard.com> <CAEHHSvaWO7m=n5_f0BM7gwuDMfh_GMX=x3DknG28PnmtZbrGQw@mail.gmail.com>
- <20240614144248.GA20136@pendragon.ideasonboard.com> <CAEHHSvZPATFV=w451KaaT+e__EK9u3Vc5ORPRQ-Gfa4rJ_o8hA@mail.gmail.com>
- <20240615004705.GI9171@pendragon.ideasonboard.com>
-In-Reply-To: <20240615004705.GI9171@pendragon.ideasonboard.com>
-From: Julien Stephan <jstephan@baylibre.com>
-Date: Thu, 4 Jul 2024 15:41:45 +0200
-Message-ID: <CAEHHSvb2Ceu8nxs1W6Xi3F6uHQhe9B=CLRZiYQEGnHdajMqGSw@mail.gmail.com>
-Subject: Re: [PATCH v4 3/5] media: platform: mediatek: isp_30: add mediatek
- ISP3.0 sensor interface
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Louis Kuo <louis.kuo@mediatek.com>, Phi-bang Nguyen <pnguyen@baylibre.com>, 
-	Florian Sylvestre <fsylvestre@baylibre.com>, Andy Hsieh <andy.hsieh@mediatek.com>, 
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org, 
-	linux-media@vger.kernel.org, Matthias Brugger <matthias.bgg@gmail.com>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Paul Elder <paul.elder@ideasonboard.com>, 
-	Rob Herring <robh+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20240703-k1-01-basic-dt-v3-8-12f73b47461e@gentoo.org>
 
-Le sam. 15 juin 2024 =C3=A0 02:47, Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> a =C3=A9crit :
->
-> On Fri, Jun 14, 2024 at 04:54:47PM +0200, Julien Stephan wrote:
-> > Le ven. 14 juin 2024 =C3=A0 16:43, Laurent Pinchart a =C3=A9crit :
-> > > On Fri, Jun 14, 2024 at 04:14:52PM +0200, Julien Stephan wrote:
-> > > > Le ven. 14 juin 2024 =C3=A0 14:34, Laurent Pinchart a =C3=A9crit :
-> > > > > On Fri, Jun 14, 2024 at 12:38:15PM +0200, Julien Stephan wrote:
-> > > > > > Le mer. 12 juin 2024 =C3=A0 10:06, AngeloGioacchino Del Regno a=
- =C3=A9crit :
-> > > > > > >
-> > > > > > > Il 10/06/24 16:39, Julien Stephan ha scritto:
-> > > > > > [...]
-> > > > > > > >>
-> > > > > > > >>> +     writel(0x10001, input->base + SENINF_TG1_SEN_CK);
-> > > > > > > >>
-> > > > > > > >> Unroll this one... this is the TG1 sensor clock divider.
-> > > > > > > >>
-> > > > > > > >> CLKFL GENMASK(5, 0)
-> > > > > > > >> CLKRS GENMASK(13, 8)
-> > > > > > > >> CLKCNT GENMASK(21,16)
-> > > > > > > >>
-> > > > > > > >> Like this, I don't get what you're trying to set, because =
-you're using a fixed
-> > > > > > > >> sensor clock rate, meaning that only a handful of camera s=
-ensors will be usable.
-> > > > > > > >>
-> > > > > > > >> Is this 8Mhz? 16? 24? what? :-)
-> > > > > > > >>
-> > > > > > > >> Two hints:
-> > > > > > > >>    - sensor_clk =3D clk_get_rate(isp_clk) / (tg1_sen_ck_cl=
-kcnt + 1);
-> > > > > > > >>    - int mtk_seninf_set_sensor_clk(u8 rate_mhz);
-> > > > > > > >>
-> > > > > > > >> Please :-)
-> > > > > > > >
-> > > > > > > > Hi Angelo,
-> > > > > > > >
-> > > > > > > > I think I get your point about not hardcoding the sensor ra=
-te, but I
-> > > > > > > > am not sure how to use
-> > > > > > > > a mtk_seninf_set_sensor_clk(u8 rate_mhz); function.
-> > > > > > > >
-> > > > > > > > Where would it be called? How is it exposed to the user?
-> > > > > > > >
-> > > > > > >
-> > > > > > > As for where: setup, streaming start, resolution change (whic=
-h may be covered
-> > > > > > > by streaming start anyway, as a change should be calling stop=
-->start anyway).
-> > > > > > >
-> > > > > > > And for the how is it exposed to the user - well, depends wha=
-t you mean for user,
-> > > > > > > but it's all standard V4L2 API :-)
-> > > > > > >
-> > > > > > > Last but not least, I can give you another hint....
-> > > > > > >
-> > > > > > > struct media_entity *entity =3D (something_here);
-> > > > > > > struct media_pad *mpad;
-> > > > > > > struct v4l2_subdev *cam_subdev;
-> > > > > > > struct v4l2_ctrl *ctl;
-> > > > > > > s64 link_frequency, pixel_clock;
-> > > > > > >
-> > > > > > > if (entity->pads[0].flags & MEDIA_PAD_FL_SINK)
-> > > > > > >     return -E_NOT_A_CAMERA_SENSOR_WE_IGNORE_THIS_ONE;
-> > > > > > >
-> > > > > > > pad =3D media_pad_remote_pad_first(&entity->pads[0]);
-> > > > > > > if (!pad)
-> > > > > > >    return -ENOENT;
-> > > > > > >
-> > > > > > > if (!is_media_entity_v4l2_subdev(pad->entity))
-> > > > > > >    return -ENOENT;
-> > > > > > >
-> > > > > > > if (pad->entity->function !=3D MEDIA_ENT_F_CAM_SENSOR)
-> > > > > > >    return -ENOENT;
-> > > > > > >
-> > > > > >
-> > > > > > Hi Angelo,
-> > > > > >
-> > > > > > Thank you for the detailed explanation :)
-> > > > > > However, I can't make it work because in my case, seninf is con=
-nected
-> > > > > > to an external ISP
-> > > > > > so pad->entity->function =3D=3D MEDIA_ENT_F_PROC_VIDEO_ISP.
-> > > > > >
-> > > > > > How can I get the pad corresponding to the sensor?
-> > > > >
-> > > > > You don't have to. You can drop that check, and get the link freq=
-uency
-> > > > > of the source subdev with v4l2_get_link_freq(), whatever it is.
-> > > > >
-> > > > > > > cam_subdev =3D media_entity_to_v4l2_subdev(pad->entity);
-> > > > > > > ctl =3D v4l2_ctrl_find(subdev->ctrl_handler, V4L2_CID_PIXEL_R=
-ATE);
-> > > > > >
-> > > > > > Is this mandatory to implement V4L2_CID_PIXEL_RATE ?
-> > > > > > Should I return an error if not found?
-> > > > >
-> > > > > Does SENINF need to know both the pixel rate and link frequency ?
-> > > > > V4L2_CID_PIXEL_RATE is very ill-defined, at the moment it only ma=
-kes
-> > > > > sense as a value relative to the sensor pixel array, and doesn't =
-really
-> > > > > apply further down in the pipeline. What information do you need =
-to
-> > > > > program the SENINF ?
-> > > >
-> > > > Hi Laurent,
-> > > >
-> > > > I need to know the clock divider for the sensor
-> > >
-> > > Could you provide some details on how the SENINF uses that divisor ?
-> > > What does it control, and what are the constraints ?
-> >
-> > According to the datasheet,  SENINF_TG1_SEN_CK[21:16] :CLKCNT : Sensor
-> > master clock will be ISP_clock/(CLKCNT+1) where CLKCNT >=3D 1
->
-> I'll need more information. My guess so far is that there's a FIFO
-> somewhere in the SENINF, with the pixel bus clocked by the CSI-2 clock
-> before the FIFO, and by the "Sensor master clock" after the FIFO. Is
-> that right ? If so, the simplest approach would be to use the link
-> frequency to compute the pixel clock before the FIFO, and make sure that
-> the sensor master clock will be larger than or equal to that.
->
-> A better approach from a power consumption point of view would be to
-> consider horizontal blanking. The FIFO can fill faster than it gets
-> emptied during the active portion of the line and then drain during
-> blanking. This allows for a slower clock on the output side. You will
-> need to pick an output clock frequency that
->
-> - on average is larger than the number of active pixels per line divided
->   by the line duration ; and
->
-> - ensures the FIFO never overflows during the active portion of the line,
->   for cases where the line length is larger than the FIFO size.
->
+On Wed, Jul 03, 2024 at 02:55:11PM +0000, Yixun Lan wrote:
+> From: Yangyu Chen <cyy@cyyself.name>
+> 
+> Banana Pi BPI-F3 motherboard is powered by SpacemiT K1[1].
+> 
+> Key features:
+> - 4 cores per cluster, 2 clusters on chip
+> - UART IP is Intel XScale UART
+> 
+> Some key considerations:
+> - ISA string is inferred from vendor documentation[2]
+> - Cluster topology is inferred from datasheet[1] and L2 in vendor dts[3]
+> - No coherent DMA on this board
+>     Inferred by taking vendor ethernet and MMC drivers to the mainline
+>     kernel. Without dma-noncoherent in soc node, the driver fails.
+> - No cache nodes now
+>     The parameters from vendor dts are likely to be wrong. It has 512
+>     sets for a 32KiB L1 Cache. In this case, each set is 64B in size.
+>     When the size of the cache line is 64B, it is a directly mapped
+>     cache rather than a set-associative cache, the latter is commonly
+>     used. Thus, I didn't use the parameters from vendor dts.
+> 
+> Currently only support booting into console with only uart, other
+> features will be added soon later.
+> 
+> Link: https://docs.banana-pi.org/en/BPI-F3/SpacemiT_K1_datasheet [1]
+> Link: https://developer.spacemit.com/#/documentation?token=BWbGwbx7liGW21kq9lucSA6Vnpb [2]
+> Link: https://gitee.com/bianbu-linux/linux-6.1/blob/bl-v1.0.y/arch/riscv/boot/dts/spacemit/k1-x.dtsi [3]
+> Signed-off-by: Yangyu Chen <cyy@cyyself.name>
+> Signed-off-by: Yixun Lan <dlan@gentoo.org>
+> ---
+>  arch/riscv/boot/dts/spacemit/k1.dtsi | 376 +++++++++++++++++++++++++++++++++++
+>  1 file changed, 376 insertions(+)
+> 
+> diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dts/spacemit/k1.dtsi
+> new file mode 100644
+> index 0000000000000..a076e35855a2e
+> --- /dev/null
+> +++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
+> @@ -0,0 +1,376 @@
+> +// SPDX-License-Identifier: GPL-2.0 OR MIT
+> +/*
+> + * Copyright (C) 2024 Yangyu Chen <cyy@cyyself.name>
+> + */
+> +
+> +/dts-v1/;
+> +/ {
+> +	#address-cells = <2>;
+> +	#size-cells = <2>;
+> +	model = "SpacemiT K1";
+> +	compatible = "spacemit,k1";
+> +
+> +	aliases {
+> +		serial0 = &uart0;
+> +		serial1 = &uart2;
+> +		serial2 = &uart3;
+> +		serial3 = &uart4;
+> +		serial4 = &uart5;
+> +		serial5 = &uart6;
+> +		serial6 = &uart7;
+> +		serial7 = &uart8;
+> +		serial8 = &uart9;
+> +	};
+> +
+> +	cpus {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		timebase-frequency = <24000000>;
+> +
+> +		cpu-map {
+> +			cluster0 {
+> +				core0 {
+> +					cpu = <&cpu_0>;
+> +				};
+> +				core1 {
+> +					cpu = <&cpu_1>;
+> +				};
+> +				core2 {
+> +					cpu = <&cpu_2>;
+> +				};
+> +				core3 {
+> +					cpu = <&cpu_3>;
+> +				};
+> +			};
+> +
+> +			cluster1 {
+> +				core0 {
+> +					cpu = <&cpu_4>;
+> +				};
+> +				core1 {
+> +					cpu = <&cpu_5>;
+> +				};
+> +				core2 {
+> +					cpu = <&cpu_6>;
+> +				};
+> +				core3 {
+> +					cpu = <&cpu_7>;
+> +				};
+> +			};
+> +		};
+> +
+> +		cpu_0: cpu@0 {
+> +			compatible = "spacemit,x60", "riscv";
+> +			device_type = "cpu";
+> +			reg = <0>;
+> +			riscv,isa = "rv64imafdcv_zicbom_zicbop_zicboz_zicntr_zicond_zicsr_zifencei_zihintpause_zihpm_zfh_zba_zbb_zbc_zbs_zkt_zvfh_zvkt_sscofpmf_sstc_svinval_svnapot_svpbmt";
+> +			riscv,isa-base = "rv64i";
+> +			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "v", "zicbom",
+> +					       "zicbop", "zicboz", "zicntr", "zicond", "zicsr",
+> +					       "zifencei", "zihintpause", "zihpm", "zfh", "zba",
+> +					       "zbb", "zbc", "zbs", "zkt", "zvfh", "zvkt",
+> +					       "sscofpmf", "sstc", "svinval", "svnapot", "svpbmt";
+> +			riscv,cbom-block-size = <64>;
+> +			riscv,cbop-block-size = <64>;
+> +			riscv,cboz-block-size = <64>;
+> +			mmu-type = "riscv,sv39";
+> +
+> +			cpu0_intc: interrupt-controller {
+> +				compatible = "riscv,cpu-intc";
+> +				interrupt-controller;
+> +				#interrupt-cells = <1>;
+> +			};
+> +		};
+> +
+> +		cpu_1: cpu@1 {
+> +			compatible = "spacemit,x60", "riscv";
+> +			device_type = "cpu";
+> +			reg = <1>;
+> +			riscv,isa = "rv64imafdcv_zicbom_zicbop_zicboz_zicntr_zicond_zicsr_zifencei_zihintpause_zihpm_zfh_zba_zbb_zbc_zbs_zkt_zvfh_zvkt_sscofpmf_sstc_svinval_svnapot_svpbmt";
+> +			riscv,isa-base = "rv64i";
+> +			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "v", "zicbom",
+> +					       "zicbop", "zicboz", "zicntr", "zicond", "zicsr",
+> +					       "zifencei", "zihintpause", "zihpm", "zfh", "zba",
+> +					       "zbb", "zbc", "zbs", "zkt", "zvfh", "zvkt",
+> +					       "sscofpmf", "sstc", "svinval", "svnapot", "svpbmt";
+> +			riscv,cbom-block-size = <64>;
+> +			riscv,cbop-block-size = <64>;
+> +			riscv,cboz-block-size = <64>;
+> +			mmu-type = "riscv,sv39";
+> +
+> +			cpu1_intc: interrupt-controller {
+> +				compatible = "riscv,cpu-intc";
+> +				interrupt-controller;
+> +				#interrupt-cells = <1>;
+> +			};
+> +		};
+> +
+> +		cpu_2: cpu@2 {
+> +			compatible = "spacemit,x60", "riscv";
+> +			device_type = "cpu";
+> +			reg = <2>;
+> +			riscv,isa = "rv64imafdcv_zicbom_zicbop_zicboz_zicntr_zicond_zicsr_zifencei_zihintpause_zihpm_zfh_zba_zbb_zbc_zbs_zkt_zvfh_zvkt_sscofpmf_sstc_svinval_svnapot_svpbmt";
+> +			riscv,isa-base = "rv64i";
+> +			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "v", "zicbom",
+> +					       "zicbop", "zicboz", "zicntr", "zicond", "zicsr",
+> +					       "zifencei", "zihintpause", "zihpm", "zfh", "zba",
+> +					       "zbb", "zbc", "zbs", "zkt", "zvfh", "zvkt",
+> +					       "sscofpmf", "sstc", "svinval", "svnapot", "svpbmt";
+> +			riscv,cbom-block-size = <64>;
+> +			riscv,cbop-block-size = <64>;
+> +			riscv,cboz-block-size = <64>;
+> +			mmu-type = "riscv,sv39";
+> +
+> +			cpu2_intc: interrupt-controller {
+> +				compatible = "riscv,cpu-intc";
+> +				interrupt-controller;
+> +				#interrupt-cells = <1>;
+> +			};
+> +		};
+> +
+> +		cpu_3: cpu@3 {
+> +			compatible = "spacemit,x60", "riscv";
+> +			device_type = "cpu";
+> +			reg = <3>;
+> +			riscv,isa = "rv64imafdcv_zicbom_zicbop_zicboz_zicntr_zicond_zicsr_zifencei_zihintpause_zihpm_zfh_zba_zbb_zbc_zbs_zkt_zvfh_zvkt_sscofpmf_sstc_svinval_svnapot_svpbmt";
+> +			riscv,isa-base = "rv64i";
+> +			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "v", "zicbom",
+> +					       "zicbop", "zicboz", "zicntr", "zicond", "zicsr",
+> +					       "zifencei", "zihintpause", "zihpm", "zfh", "zba",
+> +					       "zbb", "zbc", "zbs", "zkt", "zvfh", "zvkt",
+> +					       "sscofpmf", "sstc", "svinval", "svnapot", "svpbmt";
+> +			riscv,cbom-block-size = <64>;
+> +			riscv,cbop-block-size = <64>;
+> +			riscv,cboz-block-size = <64>;
+> +			mmu-type = "riscv,sv39";
+> +
+> +			cpu3_intc: interrupt-controller {
+> +				compatible = "riscv,cpu-intc";
+> +				interrupt-controller;
+> +				#interrupt-cells = <1>;
+> +			};
+> +		};
+> +
+> +		cpu_4: cpu@4 {
+> +			compatible = "spacemit,x60", "riscv";
+> +			device_type = "cpu";
+> +			reg = <4>;
+> +			riscv,isa = "rv64imafdcv_zicbom_zicbop_zicboz_zicntr_zicond_zicsr_zifencei_zihintpause_zihpm_zfh_zba_zbb_zbc_zbs_zkt_zvfh_zvkt_sscofpmf_sstc_svinval_svnapot_svpbmt";
+> +			riscv,isa-base = "rv64i";
+> +			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "v", "zicbom",
+> +					       "zicbop", "zicboz", "zicntr", "zicond", "zicsr",
+> +					       "zifencei", "zihintpause", "zihpm", "zfh", "zba",
+> +					       "zbb", "zbc", "zbs", "zkt", "zvfh", "zvkt",
+> +					       "sscofpmf", "sstc", "svinval", "svnapot", "svpbmt";
+> +			riscv,cbom-block-size = <64>;
+> +			riscv,cbop-block-size = <64>;
+> +			riscv,cboz-block-size = <64>;
+> +			mmu-type = "riscv,sv39";
+> +
+> +			cpu4_intc: interrupt-controller {
+> +				compatible = "riscv,cpu-intc";
+> +				interrupt-controller;
+> +				#interrupt-cells = <1>;
+> +			};
+> +		};
+> +
+> +		cpu_5: cpu@5 {
+> +			compatible = "spacemit,x60", "riscv";
+> +			device_type = "cpu";
+> +			reg = <5>;
+> +			riscv,isa = "rv64imafdcv_zicbom_zicbop_zicboz_zicntr_zicond_zicsr_zifencei_zihintpause_zihpm_zfh_zba_zbb_zbc_zbs_zkt_zvfh_zvkt_sscofpmf_sstc_svinval_svnapot_svpbmt";
+> +			riscv,isa-base = "rv64i";
+> +			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "v", "zicbom",
+> +					       "zicbop", "zicboz", "zicntr", "zicond", "zicsr",
+> +					       "zifencei", "zihintpause", "zihpm", "zfh", "zba",
+> +					       "zbb", "zbc", "zbs", "zkt", "zvfh", "zvkt",
+> +					       "sscofpmf", "sstc", "svinval", "svnapot", "svpbmt";
+> +			riscv,cbom-block-size = <64>;
+> +			riscv,cbop-block-size = <64>;
+> +			riscv,cboz-block-size = <64>;
+> +			mmu-type = "riscv,sv39";
+> +
+> +			cpu5_intc: interrupt-controller {
+> +				compatible = "riscv,cpu-intc";
+> +				interrupt-controller;
+> +				#interrupt-cells = <1>;
+> +			};
+> +		};
+> +
+> +		cpu_6: cpu@6 {
+> +			compatible = "spacemit,x60", "riscv";
+> +			device_type = "cpu";
+> +			reg = <6>;
+> +			riscv,isa = "rv64imafdcv_zicbom_zicbop_zicboz_zicntr_zicond_zicsr_zifencei_zihintpause_zihpm_zfh_zba_zbb_zbc_zbs_zkt_zvfh_zvkt_sscofpmf_sstc_svinval_svnapot_svpbmt";
+> +			riscv,isa-base = "rv64i";
+> +			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "v", "zicbom",
+> +					       "zicbop", "zicboz", "zicntr", "zicond", "zicsr",
+> +					       "zifencei", "zihintpause", "zihpm", "zfh", "zba",
+> +					       "zbb", "zbc", "zbs", "zkt", "zvfh", "zvkt",
+> +					       "sscofpmf", "sstc", "svinval", "svnapot", "svpbmt";
+> +			riscv,cbom-block-size = <64>;
+> +			riscv,cbop-block-size = <64>;
+> +			riscv,cboz-block-size = <64>;
+> +			mmu-type = "riscv,sv39";
+> +
+> +			cpu6_intc: interrupt-controller {
+> +				compatible = "riscv,cpu-intc";
+> +				interrupt-controller;
+> +				#interrupt-cells = <1>;
+> +			};
+> +		};
+> +
+> +		cpu_7: cpu@7 {
+> +			compatible = "spacemit,x60", "riscv";
+> +			device_type = "cpu";
+> +			reg = <7>;
+> +			riscv,isa = "rv64imafdcv_zicbom_zicbop_zicboz_zicntr_zicond_zicsr_zifencei_zihintpause_zihpm_zfh_zba_zbb_zbc_zbs_zkt_zvfh_zvkt_sscofpmf_sstc_svinval_svnapot_svpbmt";
+> +			riscv,isa-base = "rv64i";
+> +			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "v", "zicbom",
+> +					       "zicbop", "zicboz", "zicntr", "zicond", "zicsr",
+> +					       "zifencei", "zihintpause", "zihpm", "zfh", "zba",
+> +					       "zbb", "zbc", "zbs", "zkt", "zvfh", "zvkt",
+> +					       "sscofpmf", "sstc", "svinval", "svnapot", "svpbmt";
+> +			riscv,cbom-block-size = <64>;
+> +			riscv,cbop-block-size = <64>;
+> +			riscv,cboz-block-size = <64>;
+> +			mmu-type = "riscv,sv39";
+> +
+> +			cpu7_intc: interrupt-controller {
+> +				compatible = "riscv,cpu-intc";
+> +				interrupt-controller;
+> +				#interrupt-cells = <1>;
+> +			};
+> +		};
+> +
+> +	};
+> +
+> +	soc {
+> +		compatible = "simple-bus";
+> +		interrupt-parent = <&plic>;
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		dma-noncoherent;
+> +		ranges;
+> +
+> +		uart0: serial@d4017000 {
+> +			compatible = "spacemit,k1-uart", "intel,xscale-uart";
 
-Hi Laurent and Angelo,
+no, this is not a correct hw modeling. The doc on spacemit says
+all the uart support 64 bytes FIFO, declaring xscale only makes
+use of 32 bytes FIFO.
 
-Thank you for your help on this. I just sent a v5 with such a
-function. But it seems like changing
-this register has no effect. I asked some feedback from mediatek's app
-engineer but they are OoO
-until 16/7. I am waiting for them.
+IIRC, 8250_pxa is a xscale uart with 64 bytes FIFO, so this should be
+"mrvl,pxa-uart" or "mrvl,mmp-uart"
 
-Cheers
-Julien
-> > > > > > > /* multiplier is usually bits per pixel, divider is usually n=
-um of lanes */
-> > > > > > > link_frequency =3D v4l2_get_link_freq(cam_subdev->ctrl_handle=
-r, multiplier, divider);
-> > > > > > > pixel_clock =3D v4l2_ctrl_g_ctrl_int64(ctl);
-> > > > > >
-> > > > > > How to know the sensor clock given link_frequency and pixel_clo=
-ck?
-> > > > > > Can you point me to drivers doing something similar?
-> > > > > >
-> > > > > > >
-> > > > > > > ....now you know what the sensor wants, set the seninf sensor=
- clock accordingly.
-> > > > > > >
-> > > > > > > Cheers
-> > > > > > > Angelo
-> > > > > > >
-> > > > > > [...]
->
-> --
-> Regards,
->
-> Laurent Pinchart
+> +			reg = <0x0 0xd4017000 0x0 0x100>;
+> +			interrupts = <42>;
+> +			clock-frequency = <14857000>;
+
+once clk is ready, you will remove this property and add clk phandles,
+so why not bring clk, pinctrl, reset before hand?
+
+> +			reg-shift = <2>;
+> +			reg-io-width = <4>;
+> +			status = "disabled";
+> +		};
+> +
+> +		uart2: serial@d4017100 {
+> +			compatible = "spacemit,k1-uart", "intel,xscale-uart";
+> +			reg = <0x0 0xd4017100 0x0 0x100>;
+> +			interrupts = <44>;
+> +			clock-frequency = <14857000>;
+> +			reg-shift = <2>;
+> +			reg-io-width = <4>;
+> +			status = "disabled";
+> +		};
+> +
+> +		uart3: serial@d4017200 {
+> +			compatible = "spacemit,k1-uart", "intel,xscale-uart";
+> +			reg = <0x0 0xd4017200 0x0 0x100>;
+> +			interrupts = <45>;
+> +			clock-frequency = <14857000>;
+> +			reg-shift = <2>;
+> +			reg-io-width = <4>;
+> +			status = "disabled";
+> +		};
+> +
+> +		uart4: serial@d4017300 {
+> +			compatible = "spacemit,k1-uart", "intel,xscale-uart";
+> +			reg = <0x0 0xd4017300 0x0 0x100>;
+> +			interrupts = <46>;
+> +			clock-frequency = <14857000>;
+> +			reg-shift = <2>;
+> +			reg-io-width = <4>;
+> +			status = "disabled";
+> +		};
+> +
+> +		uart5: serial@d4017400 {
+> +			compatible = "spacemit,k1-uart", "intel,xscale-uart";
+> +			reg = <0x0 0xd4017400 0x0 0x100>;
+> +			interrupts = <47>;
+> +			clock-frequency = <14857000>;
+> +			reg-shift = <2>;
+> +			reg-io-width = <4>;
+> +			status = "disabled";
+> +		};
+> +
+> +		uart6: serial@d4017500 {
+> +			compatible = "spacemit,k1-uart", "intel,xscale-uart";
+> +			reg = <0x0 0xd4017500 0x0 0x100>;
+> +			interrupts = <48>;
+> +			clock-frequency = <14857000>;
+> +			reg-shift = <2>;
+> +			reg-io-width = <4>;
+> +			status = "disabled";
+> +		};
+> +
+> +		uart7: serial@d4017600 {
+> +			compatible = "spacemit,k1-uart", "intel,xscale-uart";
+> +			reg = <0x0 0xd4017600 0x0 0x100>;
+> +			interrupts = <49>;
+> +			clock-frequency = <14857000>;
+> +			reg-shift = <2>;
+> +			reg-io-width = <4>;
+> +			status = "disabled";
+> +		};
+> +
+> +		uart8: serial@d4017700 {
+> +			compatible = "spacemit,k1-uart", "intel,xscale-uart";
+> +			reg = <0x0 0xd4017700 0x0 0x100>;
+> +			interrupts = <50>;
+> +			clock-frequency = <14857000>;
+> +			reg-shift = <2>;
+> +			reg-io-width = <4>;
+> +			status = "disabled";
+> +		};
+> +
+> +		uart9: serial@d4017800 {
+> +			compatible = "spacemit,k1-uart", "intel,xscale-uart";
+> +			reg = <0x0 0xd4017800 0x0 0x100>;
+> +			interrupts = <51>;
+> +			clock-frequency = <14857000>;
+> +			reg-shift = <2>;
+> +			reg-io-width = <4>;
+> +			status = "disabled";
+> +		};
+> +
+> +		plic: interrupt-controller@e0000000 {
+> +			compatible = "spacemit,k1-plic", "sifive,plic-1.0.0";
+> +			reg = <0x0 0xe0000000 0x0 0x4000000>;
+> +			interrupts-extended = <&cpu0_intc 11>, <&cpu0_intc 9>,
+> +					      <&cpu1_intc 11>, <&cpu1_intc 9>,
+> +					      <&cpu2_intc 11>, <&cpu2_intc 9>,
+> +					      <&cpu3_intc 11>, <&cpu3_intc 9>,
+> +					      <&cpu4_intc 11>, <&cpu4_intc 9>,
+> +					      <&cpu5_intc 11>, <&cpu5_intc 9>,
+> +					      <&cpu6_intc 11>, <&cpu6_intc 9>,
+> +					      <&cpu7_intc 11>, <&cpu7_intc 9>;
+> +			interrupt-controller;
+> +			#address-cells = <0>;
+> +			#interrupt-cells = <1>;
+> +			riscv,ndev = <159>;
+> +		};
+> +
+> +		clint: timer@e4000000 {
+> +			compatible = "spacemit,k1-clint", "sifive,clint0";
+> +			reg = <0x0 0xe4000000 0x0 0x10000>;
+> +			interrupts-extended = <&cpu0_intc 3>, <&cpu0_intc 7>,
+> +					      <&cpu1_intc 3>, <&cpu1_intc 7>,
+> +					      <&cpu2_intc 3>, <&cpu2_intc 7>,
+> +					      <&cpu3_intc 3>, <&cpu3_intc 7>,
+> +					      <&cpu4_intc 3>, <&cpu4_intc 7>,
+> +					      <&cpu5_intc 3>, <&cpu5_intc 7>,
+> +					      <&cpu6_intc 3>, <&cpu6_intc 7>,
+> +					      <&cpu7_intc 3>, <&cpu7_intc 7>;
+> +		};
+> +	};
+> +};
+> 
+> -- 
+> 2.45.2
+> 
+> 
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
