@@ -1,129 +1,194 @@
-Return-Path: <devicetree+bounces-83140-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83141-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6898D927510
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 13:27:42 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39A94927542
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 13:39:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 145911F2357A
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 11:27:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B3B92B21417
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 11:39:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B95C1AD3F1;
-	Thu,  4 Jul 2024 11:25:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A98531AC427;
+	Thu,  4 Jul 2024 11:39:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="k+iyaGdx"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TEJ9T4Rz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD5501AC449;
-	Thu,  4 Jul 2024 11:25:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED6C51A4F39;
+	Thu,  4 Jul 2024 11:39:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720092321; cv=none; b=GdfqZ8FuFf/P0feXW6SYopWUoVNcX6d95PL0CEjla/hTewFr5ie7fOjs9AOhgz36ZHvT2LFRynepC07nXhn7FIzhBbDBb7hzaWdHKZYuzpa4YLTnjV1oM22m8VfE2Do+RCM2vO0Xotvbjhnc+XZyFZtqXYkBOUr+XObgMGv7ZY4=
+	t=1720093145; cv=none; b=MYntWJB80ilrm+b/iPApJ41r3r+5OFCP4aGanh5DhGlBYowKzwt71E0YEz7KdY9iZ2KXZRtVlDWC4Yl1xuLikg3fmUtfuWxrM7oKijv6DTwm7eDxnleRCOHmM2/3A3Jl6BDeBElAHqKBXey05wg6yy2t0RHyXa9H82uSOOQX++E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720092321; c=relaxed/simple;
-	bh=jkDP8M9nS6zbeKG8Ls4A6Gkiqj2sTDusTpp/rBGe0V8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=K1r4zA9H4hYxwVCbLCgHspU4Xdk4YHu3BMekApe63F96/MZQKQDT1S9eltIxGeFyw5NYw7vQwtJZGbUqVprSKBXVxMq3bxpF1xmm3IyYU3QpyX7Ov3d3ujZwvFgNpZn+Qm21IZjpmiAlZKaBNWf9rErcM6tezWQS8qpTNBuKCgk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=k+iyaGdx; arc=none smtp.client-ip=198.175.65.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1720092319; x=1751628319;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=jkDP8M9nS6zbeKG8Ls4A6Gkiqj2sTDusTpp/rBGe0V8=;
-  b=k+iyaGdxIEE+bEjjCbngFqguf9ZVanRXNGituaRAbFsY8+naKNzNnEf9
-   LiBHVI0wOlH1/pXTIA/Ox2V6biHD/ZzWlvhEyjoNL3fvDq5KhOgwVhmwb
-   hh48MQTtWtl/f46nF6BmmTPiVsAoIGu0DS0QfHhECe1VydMwBn0zuz//p
-   lJSRKrp4d82MpSrysQTyGrEc810L6R745wpnj4VNoEhVKwdnYosx0ZxRB
-   XRRqMh0WbJRPeaQ96/d4BDqp9dWFWeN5WEUfvyu1AOghrgd3fKOwpeZ67
-   Scam5T7W+3X4YyaOAvB+0OO5v8yaB9aPAwW/F43r+GrAEKoVU/OiwIW24
-   g==;
-X-CSE-ConnectionGUID: Hn0X33VeTmeKrDWy1OdVMA==
-X-CSE-MsgGUID: 3cHolDtUQoiCJ41gtJS2TA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11122"; a="17477832"
-X-IronPort-AV: E=Sophos;i="6.09,183,1716274800"; 
-   d="scan'208";a="17477832"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
-  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Jul 2024 04:25:18 -0700
-X-CSE-ConnectionGUID: ws7LtSdaR264xMczHG3i8g==
-X-CSE-MsgGUID: K9y0McSiT7qKUb2J70jrew==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,183,1716274800"; 
-   d="scan'208";a="69759893"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO [10.245.246.90]) ([10.245.246.90])
-  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Jul 2024 04:25:12 -0700
-Message-ID: <f9923336-3dd3-4f36-b5f6-f45f4ed09e0c@linux.intel.com>
-Date: Thu, 4 Jul 2024 13:25:09 +0200
+	s=arc-20240116; t=1720093145; c=relaxed/simple;
+	bh=zb2UtwgR4nZobCStOCzyvKYLA4QVMrx25u7MFUVL+1Q=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=Gq4Pf95EiHfDJIYI6Zkebw7CateZALO+n5lE6ibClm8I4ZLyuKxWCO/3EfQn6ajOtC8Cs4kvc1gHrwG55GVlGE2b9L7qvqtNMVrnsBjdlU39rZeg2MbG93MyOXB8IQinJU/8EUkzmrHA/8yp9OU8JvMPNjVV1TGyb1AwyVNweVI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TEJ9T4Rz; arc=none smtp.client-ip=209.85.221.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-36740e64749so319356f8f.0;
+        Thu, 04 Jul 2024 04:39:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1720093142; x=1720697942; darn=vger.kernel.org;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6fYLZa4HHF1b9p/c/tnP9OoRCPiUlr8s0XzaHZbBLZA=;
+        b=TEJ9T4Rz84XzuhCdljrwawGtWPs99qxE937GEYw5w9kn5J+qO+zmRVLOqC3kQwCUZs
+         Tq2DDISTuMe/lwKxPPknH5yoMiUBFomtx8poH4H2RCL+iyRPw0oj5A4dtJphzxNr9QBK
+         KTqhHiMH/ca7wr5Md04tyHRYRzgujMTn8imvpguaoHXc8UYvUJKZcroWMklOZQ+u8wvs
+         3tJbn7S29Pj9oQ4d4N3mRSvzUr/Tt5iFb9ph0mIFeRDVrPajskSJW3zuf+7/VO1TWvex
+         sG+XHeqFtxtvztgaOY4EDhAU6yG5G2kZAg9M71NcyBZFA4G7Nr1ZPVDHrRa4z7xSt9gs
+         F7JA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720093142; x=1720697942;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6fYLZa4HHF1b9p/c/tnP9OoRCPiUlr8s0XzaHZbBLZA=;
+        b=I6rNYUVs4M2h5J9Rp/CDp0XSytu3xesZ4gukpZbH9Tuxi87KbvtJVx3CcDEu01MIcF
+         4AVciIGupuJUisfFuqdI/CPimTHPgs7HpbGI/Gh7WrxKUnctP2crJM6JRxyqBlPm0yJI
+         56tzN7h/C+1E+iSAIfG5AKkkx12EM+ejMImOscnxR14QiRW83fw6C9jPlp1hX1y9kJ+c
+         QQVxHyNxinZV8BdhIjhZbgADrBI4biaw0yl7psEt0UmZkSJVCMN8SF+yIPr8FsO5zmsc
+         6Q3gMXTfoX0q7bF9QPDLogmhfd1J8HjrfSrElv0zSW+PniCoju4+QyN/0fmcRRDf0C8i
+         x3tA==
+X-Forwarded-Encrypted: i=1; AJvYcCXZQkQlD4ejw3nOmPhjmjvwGrbPcY2E7qaazx2iqkR3sFT1ZeQLa8gppY1Wz12FwDnmAIjIXDcqOQqdDUa9RSBuC6g4aZD/retVygdysTUPN3ooT39biVhJM2dJFaa66wdur5EwEpwJwg==
+X-Gm-Message-State: AOJu0YyjsWXeEnxLW2WIsizCYrGAkULEtQtjqOhd9vWmN3n0JjdexjME
+	UtY3eKJMns7hE8lIRkUpVAxiuvWIOTjXCcjJ7uf8YHCWUE4zMSNa
+X-Google-Smtp-Source: AGHT+IGiAuo18UNK1htUlJ8y7qww4/M1cpsp0NG4pEBPoLNYgn01/ktpjlibsxE8k0XCW4HG3z//aA==
+X-Received: by 2002:a5d:5489:0:b0:367:911b:ff6f with SMTP id ffacd0b85a97d-3679dd29485mr965923f8f.18.1720093142121;
+        Thu, 04 Jul 2024 04:39:02 -0700 (PDT)
+Received: from standask-GA-A55M-S2HP (lu-nat-113-247.ehs.sk. [188.123.113.247])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3675a0fb92fsm18382943f8f.88.2024.07.04.04.39.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 04 Jul 2024 04:39:01 -0700 (PDT)
+Date: Thu, 4 Jul 2024 13:38:59 +0200
+From: Stanislav Jakubek <stano.jakubek@gmail.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Baolin Wang <baolin.wang@linux.alibaba.com>, baolin.wang7@gmail.com,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Orson Zhai <orsonzhai@gmail.com>,
+	Chunyan Zhang <zhang.lyra@gmail.com>
+Cc: linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2] dt-bindings: hwlock: sprd-hwspinlock: convert to YAML
+Message-ID: <ZoaJ04kASEs9M4f6@standask-GA-A55M-S2HP>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v23 32/32] ASoC: doc: Add documentation for SOC USB
-To: =?UTF-8?Q?Amadeusz_S=C5=82awi=C5=84ski?=
- <amadeuszx.slawinski@linux.intel.com>, Wesley Cheng
- <quic_wcheng@quicinc.com>, srinivas.kandagatla@linaro.org,
- mathias.nyman@intel.com, perex@perex.cz, conor+dt@kernel.org,
- corbet@lwn.net, broonie@kernel.org, lgirdwood@gmail.com, krzk+dt@kernel.org,
- Thinh.Nguyen@synopsys.com, bgoswami@quicinc.com, tiwai@suse.com,
- robh@kernel.org, gregkh@linuxfoundation.org
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-sound@vger.kernel.org, linux-usb@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, linux-doc@vger.kernel.org,
- alsa-devel@alsa-project.org
-References: <20240610235808.22173-1-quic_wcheng@quicinc.com>
- <5be51e1f-70c9-4bbc-96fa-1e50e441bd35@linux.intel.com>
- <408d9e8e-0f40-7e66-54be-2f8d2c0783a3@quicinc.com>
- <ca1e1063-e1bd-4e03-a7cd-91985e9954e9@linux.intel.com>
- <096d59a0-5e18-092c-c9ae-d98130226f06@quicinc.com>
- <368d9019-2c96-468e-b472-7e1127f76213@linux.intel.com>
- <eb6370ea-47a0-3659-3c10-cb7f95e3e520@quicinc.com>
- <510468c7-b181-48d0-bf2d-3e478b2f2aca@linux.intel.com>
- <c7a95157-1b71-1489-3657-8fe67f9acb4e@quicinc.com>
- <90463a4e-c2e7-4b59-9a79-23533b4acd1e@linux.intel.com>
- <fd8f1eb0-4b21-4697-8175-a61bc3858852@quicinc.com>
- <f982842a-1804-420b-a539-a609ecf8fb8a@linux.intel.com>
- <3c358604-6926-4f90-8fc8-8139c68c3418@quicinc.com>
- <70bf10a7-7f87-4fd1-bd44-1733d3b2b15e@linux.intel.com>
- <b1fcef2a-2af9-4985-ae00-f348ca5df3f1@linux.intel.com>
- <ab734271-58ee-4981-926c-9b57f36b8ac6@linux.intel.com>
- <ccbf9366-f3de-4a80-bffc-e32a8409e1a7@quicinc.com>
- <adb4e27b-b328-4eef-87ca-9b8bad6639e6@linux.intel.com>
-Content-Language: en-US
-From: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-In-Reply-To: <adb4e27b-b328-4eef-87ca-9b8bad6639e6@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
+Convert the Spreadtrum hardware spinlock bindings to DT schema.
 
->> Just so I understand...is it really desired that userspace doesn't
->> have the flexibility to choose which USB device is offloaded?  I know
->> it complicates what needs to be done, but it could be just an
->> additional feature that can be added later on.  Again, by default, we
->> select the last USB headset plugged in to be enabled for offload by
->> default.
-> 
-> If it chooses endpoint by itself perhaps you can send patch set without
-> controls first? This has added benefit of less patches in series, making
-> it easier to review and it won't block whole patch set by discussion on
-> controls feature. Controls can be added in followup series.
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
+---
+Changes in V2:
+  - fix double space in example
+  - switch to #address-cells = <1> and #size-cells = <1> in example
+  - add Conor's R-b
 
-We do need read-only controls for userspace to know that offload is
-possible and which card/device to use. That can be done in a first step
-assuming there's a single device plugged-in.
+ .../bindings/hwlock/sprd,hwspinlock-r3p0.yaml | 50 +++++++++++++++++++
+ .../bindings/hwlock/sprd-hwspinlock.txt       | 23 ---------
+ 2 files changed, 50 insertions(+), 23 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/hwlock/sprd,hwspinlock-r3p0.yaml
+ delete mode 100644 Documentation/devicetree/bindings/hwlock/sprd-hwspinlock.txt
 
-Dealing with multiple devices and defining rules or configuration
-options to select the offloaded device is a second-level problem.
+diff --git a/Documentation/devicetree/bindings/hwlock/sprd,hwspinlock-r3p0.yaml b/Documentation/devicetree/bindings/hwlock/sprd,hwspinlock-r3p0.yaml
+new file mode 100644
+index 000000000000..abe11df25761
+--- /dev/null
++++ b/Documentation/devicetree/bindings/hwlock/sprd,hwspinlock-r3p0.yaml
+@@ -0,0 +1,50 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/hwlock/sprd,hwspinlock-r3p0.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Spreadtrum hardware spinlock
++
++maintainers:
++  - Orson Zhai <orsonzhai@gmail.com>
++  - Baolin Wang <baolin.wang7@gmail.com>
++  - Chunyan Zhang <zhang.lyra@gmail.com>
++
++properties:
++  compatible:
++    const: sprd,hwspinlock-r3p0
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    const: enable
++
++  '#hwlock-cells':
++    const: 1
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - '#hwlock-cells'
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/sprd,sc9860-clk.h>
++
++    hwlock@40500000 {
++      compatible = "sprd,hwspinlock-r3p0";
++      reg = <0x40500000 0x1000>;
++      clocks = <&aon_gate CLK_SPLK_EB>;
++      clock-names = "enable";
++      #hwlock-cells = <1>;
++    };
++...
+diff --git a/Documentation/devicetree/bindings/hwlock/sprd-hwspinlock.txt b/Documentation/devicetree/bindings/hwlock/sprd-hwspinlock.txt
+deleted file mode 100644
+index 581db9d941ba..000000000000
+--- a/Documentation/devicetree/bindings/hwlock/sprd-hwspinlock.txt
++++ /dev/null
+@@ -1,23 +0,0 @@
+-SPRD Hardware Spinlock Device Binding
+--------------------------------------
+-
+-Required properties :
+-- compatible : should be "sprd,hwspinlock-r3p0".
+-- reg : the register address of hwspinlock.
+-- #hwlock-cells : hwlock users only use the hwlock id to represent a specific
+-	hwlock, so the number of cells should be <1> here.
+-- clock-names : Must contain "enable".
+-- clocks : Must contain a phandle entry for the clock in clock-names, see the
+-	common clock bindings.
+-
+-Please look at the generic hwlock binding for usage information for consumers,
+-"Documentation/devicetree/bindings/hwlock/hwlock.txt"
+-
+-Example of hwlock provider:
+-	hwspinlock@40500000 {
+-		compatible  = "sprd,hwspinlock-r3p0";
+-		reg = <0 0x40500000 0 0x1000>;
+-		#hwlock-cells = <1>;
+-		clock-names = "enable";
+-		clocks = <&clk_aon_apb_gates0 22>;
+-	};
+-- 
+2.34.1
 
-In most cases the only thing that will be offloaded is a headset
-anyways, so the selection could be rather static based on a
-vendor/system ID, all other USB devices would be ignored.
 
