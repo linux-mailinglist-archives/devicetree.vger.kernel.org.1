@@ -1,121 +1,302 @@
-Return-Path: <devicetree+bounces-83114-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83115-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E4279273A6
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 12:07:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 198A89273E9
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 12:22:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 132051F272F5
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 10:07:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9AEE61F21426
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 10:22:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C15D1AB8F7;
-	Thu,  4 Jul 2024 10:07:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C76B1AB8E4;
+	Thu,  4 Jul 2024 10:22:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="p1MfI5Sj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B70D81AB8E0
-	for <devicetree@vger.kernel.org>; Thu,  4 Jul 2024 10:07:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53A50A41;
+	Thu,  4 Jul 2024 10:22:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720087654; cv=none; b=nMPGmugPpPXl6JIjcyGTVwB0TAKbhQX6HlLSZkaTRLjjAOxlso6EgA/Deflgl3tWe4/10/AJWs16fG3pIZju/VVJiPj8NdZHHibI8A9vaSLkwBfG5ra6YParwsVlPm0hGmnkdwVDT4g1juW0lpbWXoWAZmfNROqem1vwyfuz/Qs=
+	t=1720088558; cv=none; b=GfX6vLsTjldUVPyvrfEAkmE1iEcArPSoYkBvbXNukEeJnmKQNDZPPLMkKlsgcLINMJLVUxKkeZ2KDV/lDqMJx4HMDKRUjQQA74QfEwL6kbsHhSHDXIYc0sht/18DFIE8s3XPeLgrmvkp0qux531kRj6+RHBys521LJBUr3o1OyU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720087654; c=relaxed/simple;
-	bh=L1au4gRMKcI5BIEcsS+8zjDDar+BRU9MILS6EafA7W4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=V68F/wk21czPXfgUYwepx4WWT1pltfdJ1yoaZOFsjBkcis5nTCDNPC7R3pG4SXy2Klz6GP+3MmHttvpLexte85smw7ZPJ43DwpRUpKqt033CsZYaPHFK98nwU39Nys6iRokof/V0K2nr+Uq3G3NlIWYsNWRmUlhoRSC7SRM9NBI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1sPJMm-0004rB-JU; Thu, 04 Jul 2024 12:07:04 +0200
-Received: from [2a0a:edc0:0:b01:1d::7b] (helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1sPJMl-007460-14; Thu, 04 Jul 2024 12:07:03 +0200
-Received: from pengutronix.de (p5de45302.dip0.t-ipconnect.de [93.228.83.2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id 97EF92FABC2;
-	Thu, 04 Jul 2024 10:07:02 +0000 (UTC)
-Date: Thu, 4 Jul 2024 12:07:02 +0200
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"open list:CAN NETWORK DRIVERS" <linux-can@vger.kernel.org>, "open list:NETWORKING DRIVERS" <netdev@vger.kernel.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
-Subject: Re: [PATCH v2 1/1] dt-bindings: can: fsl,flexcan: add common
- 'can-transceiver' for fsl,flexcan
-Message-ID: <20240704-outstanding-outrageous-herring-003368-mkl@pengutronix.de>
-References: <20240629021754.3583641-1-Frank.Li@nxp.com>
+	s=arc-20240116; t=1720088558; c=relaxed/simple;
+	bh=RrseeKsIw4zTkLal4NO5ir7XI5QFiSYTEFrSIo6M9BQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=H8hMU1xiWOMwAkvPvLlif3swMJpAn/BmSLL+qP8m+pc24q50XAOGBl0JN5FFTC/DWaXzOnzpxvF6iEoQhPQ3AHLxJ6OcuoACDtFqZFxaxmv8wCJJ9F0tSA1ZATuQ9pI60P7E/Fi54k2tUY9eISHTMERO9J4gEuhhEjjZsNu0gIA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=p1MfI5Sj; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4645jbXH023219;
+	Thu, 4 Jul 2024 10:22:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	9cggr0TA87Qww/pVCkSy8RIFZHHrOSFsCB8KjZ4LaSw=; b=p1MfI5Sjpuxh6qvm
+	n5C5jf4rkOxCNkzdjfKjFf+/Ki6P2ezZlNWC6m/TmzUKr7sOpk95jH7fpONx4uR6
+	Rex9C3NeA3X6i9kP/6S6Ef9esRDvRqwkG7bbkaxN+9tayhCYMIXeZis6b/qPyTau
+	yRwJI8KASfxb+PK/7K3k0LFc9evNDLudMlQvcPYkq1w3CjT8xWbWbgQd52BJJZZc
+	jI1NNrYz5kdewiZe47FOsXkDjcngRQsVFNH5rhhxbS457xhcBIpLxAnNn9myguG8
+	GlnZ7MR/eLbMUCYv512tIdon2rEh8/ud8w49yse0nfwV1Dg5sDswotw+TjYNFyUE
+	iwRKxw==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4050cybd1d-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 04 Jul 2024 10:22:20 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 464AMJ4o027188
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 4 Jul 2024 10:22:19 GMT
+Received: from [10.131.33.37] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 4 Jul 2024
+ 03:22:13 -0700
+Message-ID: <e647ae63-2f30-c55f-7124-ecef1d0d74d3@quicinc.com>
+Date: Thu, 4 Jul 2024 15:52:10 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="dr2n3t7ohmn737hp"
-Content-Disposition: inline
-In-Reply-To: <20240629021754.3583641-1-Frank.Li@nxp.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH V6 5/5] arm64: dts: qcom: x1e80100: Enable cpufreq
+Content-Language: en-US
+To: Nikunj Kela <quic_nkela@quicinc.com>, Johan Hovold <johan@kernel.org>
+CC: <sudeep.holla@arm.com>, <cristian.marussi@arm.com>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <jassisinghbrar@gmail.com>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <dmitry.baryshkov@linaro.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <quic_rgottimu@quicinc.com>, <quic_kshivnan@quicinc.com>,
+        <conor+dt@kernel.org>, <quic_psodagud@quicinc.com>,
+        <abel.vesa@linaro.org>
+References: <20240612124056.39230-1-quic_sibis@quicinc.com>
+ <20240612124056.39230-6-quic_sibis@quicinc.com>
+ <ZoQjAWse2YxwyRJv@hovoldconsulting.com>
+ <f53bc00f-8217-1dc8-5203-1a83c24d353d@quicinc.com>
+ <1fcea728-6ee6-4361-b3c5-63d8a2facd74@quicinc.com>
+ <65ce72e1-7106-0872-88f7-bfdfcef7a24b@quicinc.com>
+ <0f94978c-dad7-418b-b911-edf7e81d7460@quicinc.com>
+From: Sibi Sankar <quic_sibis@quicinc.com>
+In-Reply-To: <0f94978c-dad7-418b-b911-edf7e81d7460@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: R77jCa3RnW-CSyz4PketkcN7Pd0I10S2
+X-Proofpoint-ORIG-GUID: R77jCa3RnW-CSyz4PketkcN7Pd0I10S2
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-04_06,2024-07-03_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 malwarescore=0
+ mlxlogscore=999 priorityscore=1501 adultscore=0 mlxscore=0 impostorscore=0
+ spamscore=0 phishscore=0 lowpriorityscore=0 bulkscore=0 suspectscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2406140001
+ definitions=main-2407040072
 
 
---dr2n3t7ohmn737hp
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On 28.06.2024 22:17:54, Frank Li wrote:
-> Add common 'can-transceiver' children node for fsl,flexcan.
->=20
-> Fix below warning:
-> arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dtb: can@2180000: 'can-tran=
-sceiver' does not match any of the regexes: 'pinctrl-[0-9]+'
->         from schema $id: http://devicetree.org/schemas/net/can/fsl,flexca=
-n.yaml#
->=20
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+On 7/3/24 19:35, Nikunj Kela wrote:
+> 
+> On 7/3/2024 4:23 AM, Sibi Sankar wrote:
+>>
+>>
+>> On 7/3/24 01:43, Nikunj Kela wrote:
+>>>
+>>> On 7/2/2024 12:59 PM, Sibi Sankar wrote:
+>>>>
+>>>>
+>>>> On 7/2/24 21:25, Johan Hovold wrote:
+>>>>> On Wed, Jun 12, 2024 at 06:10:56PM +0530, Sibi Sankar wrote:
+>>>>>> Enable cpufreq on X1E80100 SoCs through the SCMI perf protocol node.
+>>>>>>
+>>>>>> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
+>>>>>> ---
+>>>>>>     arch/arm64/boot/dts/qcom/x1e80100.dtsi | 63
+>>>>>> ++++++++++++++++----------
+>>>>>>     1 file changed, 39 insertions(+), 24 deletions(-)
+>>>>>>
+>>>>>> diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+>>>>>> b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+>>>>>> index 7b619db07694..d134dc4c7425 100644
+>>>>>> --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+>>>>>> +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+>>>>>> @@ -69,8 +69,8 @@ CPU0: cpu@0 {
+>>>>>>                 reg = <0x0 0x0>;
+>>>>>>                 enable-method = "psci";
+>>>>>>                 next-level-cache = <&L2_0>;
+>>>>>> -            power-domains = <&CPU_PD0>;
+>>>>>> -            power-domain-names = "psci";
+>>>>>> +            power-domains = <&CPU_PD0>, <&scmi_dvfs 0>;
+>>>>>> +            power-domain-names = "psci", "perf";
+>>>>>>                 cpu-idle-states = <&CLUSTER_C4>;
+>>>>>
+>>>>>> +        scmi {
+>>>>>> +            compatible = "arm,scmi";
+>>>>>> +            mboxes = <&cpucp_mbox 0>, <&cpucp_mbox 2>;
+>>>>>> +            mbox-names = "tx", "rx";
+>>>>>> +            shmem = <&cpu_scp_lpri0>, <&cpu_scp_lpri1>;
+>>>>>> +
+>>>>>> +            #address-cells = <1>;
+>>>>>> +            #size-cells = <0>;
+>>>>>> +
+>>>>>> +            scmi_dvfs: protocol@13 {
+>>>>>> +                reg = <0x13>;
+>>>>>> +                #power-domain-cells = <1>;
+>>>>>> +            };
+>>>>>> +        };
+>>>>>>         };
+>>>>>
+>>>>
+>>>> Hey Johan,
+>>>>
+>>>> Thanks for trying out the series.
+>>>>
+>>>>> This series gives a nice performance boost on the x1e80100 CRD, but
+>>>>> I'm
+>>>>> seeing a bunch of warnings and errors that need to be addressed:
+>>>>>
+>>>>> [    9.533053] arm-scmi firmware:scmi: Failed to get FC for protocol
+>>>>> 13 [MSG_ID:6 / RES_ID:0] - ret:-95. Using regular messaging.
+>>>>> [    9.549458] arm-scmi firmware:scmi: Failed to add opps_by_lvl at
+>>>>> 3417600 for NCC - ret:-16
+>>>>> [    9.563925] arm-scmi firmware:scmi: Failed to add opps_by_lvl at
+>>>>> 3417600 for NCC - ret:-16
+>>>>> [    9.572835] arm-scmi firmware:scmi: Failed to get FC for protocol
+>>>>> 13 [MSG_ID:6 / RES_ID:1] - ret:-95. Using regular messaging.
+>>>>> [    9.609471] arm-scmi firmware:scmi: Failed to add opps_by_lvl at
+>>>>> 3417600 for NCC - ret:-16
+>>>>> [    9.633341] arm-scmi firmware:scmi: Failed to add opps_by_lvl at
+>>>>> 3417600 for NCC - ret:-16
+>>>>> [    9.650000] arm-scmi firmware:scmi: Failed to get FC for protocol
+>>>>> 13 [MSG_ID:6 / RES_ID:2] - ret:-95. Using regular messaging.
+>>>>
+>>>> X1E uses fast channels only for message-id: 7 (level set) and regular
+>>>> channels for all the other messages. The spec doesn't mandate fast
+>>>> channels for any of the supported message ids for the perf protocol.
+>>>> So nothing to fix here.
+>>>>
+>>>>> [    9.727098] cpu cpu4: _opp_is_duplicate: duplicate OPPs detected.
+>>>>> Existing: freq: 3417600000, volt: 0, enabled: 1. New: freq:
+>>>>> 3417600000, volt: 0, enabled: 1
+>>>>> [    9.737157] cpu cpu4: _opp_is_duplicate: duplicate OPPs detected.
+>>>>> Existing: freq: 3417600000, volt: 0, enabled: 1. New: freq:
+>>>>> 3417600000, volt: 0, enabled: 1
+>>>>> [    9.875039] cpu cpu8: _opp_is_duplicate: duplicate OPPs detected.
+>>>>> Existing: freq: 3417600000, volt: 0, enabled: 1. New: freq:
+>>>>> 3417600000, volt: 0, enabled: 1
+>>>>> [    9.888428] cpu cpu8: _opp_is_duplicate: duplicate OPPs detected.
+>>>>> Existing: freq: 3417600000, volt: 0, enabled: 1. New: freq:
+>>>>> 3417600000, volt: 0, enabled: 1
+>>>>
+>>>> The duplicate entries reported by the perf protocol come directly from
+>>>> the speed bins. I was told the duplicate entry with volt 0 is meant to
+>>>> indicate a lower power way of achieving the said frequency at a lower
+>>>> core count. We have no way of using it in the kernel and it gets safely
+>>>> discarded. So again nothing to fix in the kernel.
+>>>
+>>> Hi Sibi,
+>>>
+>>> Can you try increasing the max_msg_size to 256 bytes in mailbox
+>>> transport? We saw the same issue but got resolved by increasing the
+>>> max_msg_size for the transport(obviously, I reduced the max_msg to 10 to
+>>> keep the total shmem size same). Even the opps_by_lvl warning went away
+>>> with this for us.
+>>
+>> Nikunj,
+>> Thanks for taking time to review the series :)
+>>
+>> Not sure if we are talking about the same things here, are you
+>> suggesting that tweaking with the max_msg size will stop the SCMI
+>> controller from reporting duplicate OPPs? Even if it does go away
+>> magically wouldn't it mean you are dropping messages? Also opps_by_lvl
+>> failing with -16 and duplicate opps detected in the opp core have the
+>> same root cause i.e. duplicate entries reported by the controller.
+> 
+> 
+> Sibi,
+> 
+> My observation was that only 12 OPPs could fit it 128bytes msg_size and
+> our platform was sending 16 OPPs in one go. OPPs above 12 were getting
+> clobbered so the duplicate warning/error were not genuine. You may need
+> to tweak platform to send only 12(or less) OPPs in one go.
 
-Applied to linux-can-next.
+Nikunj,
 
-Thanks,
-Marc
+The platform we are talking abt in this thread is X1E and the number
+of performance levels returned by the PERFORMANCE_DESCRIBE_LEVELS
+is just one. I relies on the skip_index and iterator ops to get
+all the available levels. So the clobbering you are talking abt
+in whatever platform you are referring to does not apply here.
+Please find the logs below for Domain 1. Hope this clears up
+whatever misunderstanding you had about X1E.
 
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+Logs Domain -1:
+arm-scmi: iter_perf_levels_update_state num_returned: 1 num_remaining: 15
+arm-scmi firmware:scmi: Level 710400 Power 23243 Latency 30us Ifreq 
+710400 Index 0
+...
+[snip]
+...
+arm-scmi: iter_perf_levels_update_state num_returned: 1 num_remaining: 3
+arm-scmi firmware:scmi: Level 3417600 Power 307141 Latency 30us Ifreq 
+3417600 Index 12
+arm-scmi: iter_perf_levels_update_state num_returned: 1 num_remaining: 2
+arm-scmi firmware:scmi: Failed to add opps_by_lvl at 3417600 for NCC - 
+ret:-16
+arm-scmi firmware:scmi: Level 3417600 Power 307141 Latency 30us Ifreq 
+3417600 Index 13
+arm-scmi: iter_perf_levels_update_state num_returned: 1 num_remaining: 1
+arm-scmi firmware:scmi: Failed to add opps_by_lvl at 3417600 for NCC - 
+ret:-16
+arm-scmi firmware:scmi: Level 3417600 Power 307141 Latency 30us Ifreq 
+3417600 Index 14
+arm-scmi: iter_perf_levels_update_state num_returned: 1 num_remaining: 0
+arm-scmi firmware:scmi: Level 4012800 Power 539962 Latency 30us Ifreq 
+4012800 Index 15
 
---dr2n3t7ohmn737hp
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
+-Sibi
 
-iQEzBAABCgAdFiEEUEC6huC2BN0pvD5fKDiiPnotvG8FAmaGdEMACgkQKDiiPnot
-vG+ndwgAmTD3vI+lh+SpHXPC8faiwWnvlpIAuwu1ia2S5LNiIxhehoz6+WgxW3h/
-0KkIbn2zQva+MUsldVljBQd1tGssLrV54uni1v1OF1Hwnjd/E89cYqEZasllZEX/
-sBlUbgBOxj9DW8liWUhk7hsPxPmrSKHJIgnMDq6lW8998oT+EG2DSfTGyU19aJJr
-/mbyaZ/IXIGplQKbS/4tVGABrip20ab95BrbDf6WphlTIgtleyt9ZICdT7CQ6YCH
-WtWHrmy9L6hSNOSTR7qUSG7af7fcXVgg6P1Scmw1DyEirWKyqxXYldb9Tyl1H8gj
-RezwMSF47aHNA9/vXmPeX7WjWsH2Cw==
-=36qY
------END PGP SIGNATURE-----
-
---dr2n3t7ohmn737hp--
+> 
+> 
+>>
+>>>
+>>> Thanks,
+>>>
+>>> -Nikunj
+>>>
+>>>>
+>>>>> [    9.913506] debugfs: Directory 'NCC' with parent 'pm_genpd'
+>>>>> already present!
+>>>>> [    9.922198] debugfs: Directory 'NCC' with parent 'pm_genpd'
+>>>>> already present!
+>>>>
+>>>> Yeah I did notice ^^ during dev, the series isn't the one
+>>>> introducing it
+>>>> so it shouldn't block the series acceptance. Meanwhile I'll spend some
+>>>> cycles to get this warn fixed.
+>>
+>> Johan,
+>>
+>> https://lore.kernel.org/lkml/20240703110741.2668800-1-quic_sibis@quicinc.com/
+>>
+>>
+>> Posted a fix for the warn ^^
+>>
+>>>>
+>>>> -Sibi
+>>>>
+>>>>>
+>>>>> Johan
+>>>>>
 
