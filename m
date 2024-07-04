@@ -1,244 +1,138 @@
-Return-Path: <devicetree+bounces-83096-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83097-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D20399272B1
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 11:09:27 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37CD09272DE
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 11:22:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 43334B23754
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 09:09:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D63531F2444A
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 09:22:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC9511649CC;
-	Thu,  4 Jul 2024 09:09:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E2BE1AAE04;
+	Thu,  4 Jul 2024 09:22:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="KpyxZLqO"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="Mza6HcmC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-183.mta1.migadu.com (out-183.mta1.migadu.com [95.215.58.183])
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25235748F
-	for <devicetree@vger.kernel.org>; Thu,  4 Jul 2024 09:09:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B0AA1A4F27;
+	Thu,  4 Jul 2024 09:22:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720084161; cv=none; b=nVXWBTqwpKL6OIL8H7rbgwf1jlCnl+5kld5+4QIKaFssMlgchXItXsNXY4/EMOuD45cVkns+TFZwHBwEyIVq5Cn3tCsdaipOrB0O3wD0VEfEQl4tv8v2a70CQaBwWvqm9xML091J1JDIeCI5bwoUw3MsgZu4/eUi8OpMxCFUr0s=
+	t=1720084951; cv=none; b=XXl0BVGSA6gYNp+uJAzmunTwlc54EI23su7E8k2foZ5nMo3Par9SV9Ef1LwBD8vSRTdjlyBYPRrd973yiqRyJL+UiAv2tYbaxpZ+VjSGlBdyT6mjhvWpjz2TxlasZIEbWwb1ar+FZqcv1CIjdO2Q8WcNoPvtpsj0/UYT9ztP/QE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720084161; c=relaxed/simple;
-	bh=WRGQbHSKk9L/SCFX/awSo9iKdO99w1Vshn1XrDQHcew=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=kOGppIFGodGh65Sj1GfrgTX4E4dP2H7oFwPYdPHu6jBEYTgs2rCYnt/MOL610437UIJXtOcaWV4AHhb3V94ExnfJ7QBKmjkpgDdCqw3ZRTwSoLfVMD/SwpnhugWwl/KOuU4ml/4WYRewLT6ulJGp6dBU5XhEeEZJ9/TojvkgA08=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=KpyxZLqO; arc=none smtp.client-ip=95.215.58.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
-X-Envelope-To: dri-devel@lists.freedesktop.org
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
-	t=1720084151;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=KC61pWdXwZrmIIucHf8/SOh6wlKbm/uUH0pdpGEOCRg=;
-	b=KpyxZLqOAG/5dsv1nUoc3OjUQ2JVIikIYzIoAH1VK6Lqw/gGTOFopP8F+FkJgxR47ogz+b
-	I2W3qQvXVMBpSWd2ivT4+6XiZ00aglhJg6UIPf3sg1TV1dNoavpm7BUHloQGQsHI2hC1Px
-	QUAbZlr31vlhMDjtPE/X227+/Q1vpdIPM+QjOubdPBCn2M9ocxnwwpP0wsW1xNbGt95mG5
-	ek8W7o5Z4HIK1zFJQUIT0WoohTPlRcwpOz1/aFS6xkvGMv0CsOm0+qseBe6SFySRQJXazm
-	p+g3WQhxeFuYo41+XcNv6aVX3yMjI5G6vDYRB/NQON97wqD4pqUiFCLfqEGxBg==
-X-Envelope-To: s.hauer@pengutronix.de
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-X-Envelope-To: linux-rockchip@lists.infradead.org
-X-Envelope-To: devicetree@vger.kernel.org
-X-Envelope-To: kernel@pengutronix.de
-X-Envelope-To: andy.yan@rock-chips.com
-X-Envelope-To: benjamin.gaignard@collabora.com
-X-Envelope-To: michael.riesch@wolfvision.net
-X-Envelope-To: hjc@rock-chips.com
-X-Envelope-To: heiko@sntech.de
-X-Envelope-To: pgwipeout@gmail.com
-X-Envelope-To: s.hauer@pengutronix.de
-X-Envelope-To: dmitry.osipenko@collabora.com
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Diederik de Haas <didi.debian@cknow.org>
-To: dri-devel@lists.freedesktop.org, Sascha Hauer <s.hauer@pengutronix.de>
-Cc: linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- devicetree@vger.kernel.org, kernel@pengutronix.de,
- Andy Yan <andy.yan@rock-chips.com>,
- Benjamin Gaignard <benjamin.gaignard@collabora.com>,
- Michael Riesch <michael.riesch@wolfvision.net>,
- Sandy Huang <hjc@rock-chips.com>,
- Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
- Peter Geis <pgwipeout@gmail.com>, Sascha Hauer <s.hauer@pengutronix.de>,
- Dmitry Osipenko <dmitry.osipenko@collabora.com>
-Subject: Re: [PATCH v11 09/24] drm/rockchip: dw_hdmi: add regulator support
-Date: Thu, 04 Jul 2024 11:09:00 +0200
-Message-ID: <16078476.GIfNKF0EQE@bagend>
-Organization: Connecting Knowledge
-In-Reply-To: <20220422072841.2206452-10-s.hauer@pengutronix.de>
-References:
- <20220422072841.2206452-1-s.hauer@pengutronix.de>
- <20220422072841.2206452-10-s.hauer@pengutronix.de>
+	s=arc-20240116; t=1720084951; c=relaxed/simple;
+	bh=FM3j6eBYC6DBRvKqO2bJS1PF/k26PJFo78mBeYYmajo=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=kjXU1KqeUnuGKns+royYez/Yfsi9Ti5XJbo7c84xL0fPQwrBscMTxz/Pv7psglFkWGvGb+ORgPKBiwRjVnPIKc7m57jMUlsRzkwaM6wgpozQjotoKuvlUzmecMOQHGVX5LPm/d4IoiML7+FkX1rqPrE4noZKyZYHr3cAL4MJQQw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=Mza6HcmC; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4646iljc003902;
+	Thu, 4 Jul 2024 05:22:17 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=GdrJvTsJ+AZBrKoztv/qSONgLH4
+	MvIxbBUpVh47eqgI=; b=Mza6HcmCGJh+3oXWM/OqHZ5T9r7ucVsCC94zJvk11TQ
+	RPOnlEou23+R8dOX2+S+hcpgU8gBii+841FY6QpzDuhzy2RAxPptiuq5Y+OHpXiK
+	kwuCWu9K30ZDIDzzEoM/rSepG8J7UMLMX/yjxHIURKpZd4DOpepXI4qYDigJ+sSx
+	+tTYFSfltbkax6XbBUBUEIH153eJIhpZmM+MbbujC6lrfl2nMk5sum+u4qlNJOZy
+	5aa/n371JEZspudbOo3/8FIIaD7bllOdCs2vRb58685uuWQZIFlxklIeeREVQxCY
+	+9JU6kEmrx7AphebXHvTnRwm4E+G85EehXIWBj7XR4w==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 405a7natfg-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 04 Jul 2024 05:22:16 -0400 (EDT)
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 4649MFhq058891
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 4 Jul 2024 05:22:15 -0400
+Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
+ ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Thu, 4 Jul 2024 05:22:14 -0400
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
+ ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Thu, 4 Jul 2024 05:22:13 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Thu, 4 Jul 2024 05:22:13 -0400
+Received: from [127.0.0.1] ([10.44.3.56])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 4649M1di012858;
+	Thu, 4 Jul 2024 05:22:03 -0400
+From: Nuno Sa <nuno.sa@analog.com>
+Subject: [PATCH 0/5] iio: adc: ad9467: support new devices
+Date: Thu, 4 Jul 2024 11:25:20 +0200
+Message-ID: <20240704-dev-iio-ad9467-new-devs-v1-0-f1adfee921f7@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart1778036.H1nxkmP1m4";
- micalg="pgp-sha256"; protocol="application/pgp-signature"
-X-Migadu-Flow: FLOW_OUT
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAIBqhmYC/x2MQQqAMAzAviI9W6hVJ/oV8SCu016mbKDC8O9Oj
+ wkkCaIElQhDkSDIqVF3n6EqC1i22a+CajMDEzdkmNDKiao7zrZvTIderk9FdDVJ29aGmRzk+gj
+ i9P7P4/Q8L/rRZLVpAAAA
+To: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC: Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich
+	<Michael.Hennerich@analog.com>,
+        Jonathan Cameron <jic23@kernel.org>, "Rob
+ Herring" <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        "Conor
+ Dooley" <conor+dt@kernel.org>
+X-Mailer: b4 0.14.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1720085156; l=937;
+ i=nuno.sa@analog.com; s=20231116; h=from:subject:message-id;
+ bh=FM3j6eBYC6DBRvKqO2bJS1PF/k26PJFo78mBeYYmajo=;
+ b=mRcuDrqSoTDXKv/928djI61Szt3QkMGi75UL9AqK/VfxFx55QeabszeqNDbe/XNRKg+nfVssH
+ lZy9y+3kuzBDz8pE96ybzZvKfCUCWIsNZgqdfwfPjL7BoAQu1h0fYC4
+X-Developer-Key: i=nuno.sa@analog.com; a=ed25519;
+ pk=3NQwYA013OUYZsmDFBf8rmyyr5iQlxV/9H4/Df83o1E=
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-ORIG-GUID: S4OOZoDMfLUi3VThxEt0B_xOX1cmGuVi
+X-Proofpoint-GUID: S4OOZoDMfLUi3VThxEt0B_xOX1cmGuVi
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-04_06,2024-07-03_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 bulkscore=0
+ priorityscore=1501 phishscore=0 suspectscore=0 mlxscore=0 spamscore=0
+ impostorscore=0 lowpriorityscore=0 mlxlogscore=698 clxscore=1015
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2406140001 definitions=main-2407040064
 
---nextPart1778036.H1nxkmP1m4
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
-From: Diederik de Haas <didi.debian@cknow.org>
-Date: Thu, 04 Jul 2024 11:09:00 +0200
-Message-ID: <16078476.GIfNKF0EQE@bagend>
-Organization: Connecting Knowledge
-In-Reply-To: <20220422072841.2206452-10-s.hauer@pengutronix.de>
-MIME-Version: 1.0
+This series adds support for more devices:
+ * Analog Devices AD9652 16-bit 310 MSPS ADC;
+ * Analog Devices AD9643 14-Bit, 170/210/250 MSPS ADC;
+ * Analog Devices AD9649 14-bit 20/40/65/80 MSPS ADC.
 
-On Friday, 22 April 2022 09:28:26 CEST Sascha Hauer wrote:
-> The RK3568 has HDMI_TX_AVDD0V9 and HDMI_TX_AVDD_1V8 supply inputs needed
-> for the HDMI port. add support for these to the driver for boards which
-> have them supplied by switchable regulators.
-> 
-> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-> Reviewed-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-> ---
->  drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c | 41 +++++++++++++++++++--
->  1 file changed, 38 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
-> b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c index
-> b64cc62c7b5af..fe4f9556239ac 100644
-> --- a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
-> +++ b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
-> @@ -9,6 +9,7 @@
->  #include <linux/platform_device.h>
->  #include <linux/phy/phy.h>
->  #include <linux/regmap.h>
-> +#include <linux/regulator/consumer.h>
-> 
->  #include <drm/bridge/dw_hdmi.h>
->  #include <drm/drm_edid.h>
-> @@ -76,6 +77,8 @@ struct rockchip_hdmi {
->  	struct clk *ref_clk;
->  	struct clk *grf_clk;
->  	struct dw_hdmi *hdmi;
-> +	struct regulator *avdd_0v9;
-> +	struct regulator *avdd_1v8;
->  	struct phy *phy;
->  };
-> 
-> @@ -226,6 +229,14 @@ static int rockchip_hdmi_parse_dt(struct rockchip_hdmi
-> *hdmi) return PTR_ERR(hdmi->grf_clk);
->  	}
-> 
-> +	hdmi->avdd_0v9 = devm_regulator_get(hdmi->dev, "avdd-0v9");
-> +	if (IS_ERR(hdmi->avdd_0v9))
-> +		return PTR_ERR(hdmi->avdd_0v9);
-> +
-> +	hdmi->avdd_1v8 = devm_regulator_get(hdmi->dev, "avdd-1v8");
-> +	if (IS_ERR(hdmi->avdd_1v8))
-> +		return PTR_ERR(hdmi->avdd_1v8);
-> +
->  	return 0;
->  }
-> 
-> @@ -566,11 +577,23 @@ static int dw_hdmi_rockchip_bind(struct device *dev,
-> struct device *master, return ret;
->  	}
-> 
-> +	ret = regulator_enable(hdmi->avdd_0v9);
-> +	if (ret) {
-> +		DRM_DEV_ERROR(hdmi->dev, "failed to enable avdd0v9: 
-%d\n", ret);
-> +		goto err_avdd_0v9;
-> +	}
-> +
-> +	ret = regulator_enable(hdmi->avdd_1v8);
-> +	if (ret) {
-> +		DRM_DEV_ERROR(hdmi->dev, "failed to enable avdd1v8: 
-%d\n", ret);
-> +		goto err_avdd_1v8;
-> +	}
-> +
->  	ret = clk_prepare_enable(hdmi->ref_clk);
->  	if (ret) {
->  		DRM_DEV_ERROR(hdmi->dev, "Failed to enable HDMI 
-reference clock: %d\n",
->  			      ret);
-> -		return ret;
-> +		goto err_clk;
->  	}
-> 
->  	if (hdmi->chip_data == &rk3568_chip_data) {
-> @@ -594,10 +617,19 @@ static int dw_hdmi_rockchip_bind(struct device *dev,
-> struct device *master, */
->  	if (IS_ERR(hdmi->hdmi)) {
->  		ret = PTR_ERR(hdmi->hdmi);
-> -		drm_encoder_cleanup(encoder);
-> -		clk_disable_unprepare(hdmi->ref_clk);
-> +		goto err_bind;
->  	}
-> 
-> +	return 0;
-> +
-> +err_bind:
-> +	clk_disable_unprepare(hdmi->ref_clk);
-> +	drm_encoder_cleanup(encoder);
-> +err_clk:
-> +	regulator_disable(hdmi->avdd_1v8);
-> +err_avdd_1v8:
-> +	regulator_disable(hdmi->avdd_0v9);
-> +err_avdd_0v9:
->  	return ret;
->  }
-> 
-> @@ -608,6 +640,9 @@ static void dw_hdmi_rockchip_unbind(struct device *dev,
-> struct device *master,
-> 
->  	dw_hdmi_unbind(hdmi->hdmi);
->  	clk_disable_unprepare(hdmi->ref_clk);
-> +
-> +	regulator_disable(hdmi->avdd_1v8);
-> +	regulator_disable(hdmi->avdd_0v9);
->  }
-> 
->  static const struct component_ops dw_hdmi_rockchip_ops = {
+The first pacthes are just in preparation to make adding the new devices
+straightforward.
 
-Is it possible to probe for those avdd_0v9 and avdd_1v8 regulators only on 
-devices that should have them?
+---
+Nuno Sa (5):
+      iio: adc: ad9467: support multiple channels calibration
+      iio: adc: ad9467: add new chip_info variables
+      iio: adc: ad9467: don't allow reading vref if not available
+      dt-bindings: adc: ad9467: support new parts
+      iio: adc: ad9467: support new parts
 
-On a Rock64 (rk3328), but probably for all VOP1 devices, they're not present 
-and that results in the following warnings:
-dwhdmi-rockchip ff3c0000.hdmi: supply avdd-0v9 not found, using dummy regulator
-dwhdmi-rockchip ff3c0000.hdmi: supply avdd-1v8 not found, using dummy regulator
+ .../devicetree/bindings/iio/adc/adi,ad9467.yaml    |   3 +
+ drivers/iio/adc/ad9467.c                           | 277 ++++++++++++++++-----
+ 2 files changed, 224 insertions(+), 56 deletions(-)
+---
+base-commit: 7db8a847f98caae68c70bdab9ba92d1af38e5656
+change-id: 20240620-dev-iio-ad9467-new-devs-f30e5536220f
+--
 
-And those get repeated a number of times. In my last 6.10-rc5 boot it was 5 
-each and in my last 6.10-rc6 boot it was 9 each. It seems the number varies 
-per boot and is not connected to the specific kernel version.
-
-In [1] I got 36 "dummy regulator" warnings, but some were from others.
-
-[1] https://lore.kernel.org/linux-rockchip/2528743.FZeJfPzi8P@bagend/
-
-Cheers,
-  Diederik
---nextPart1778036.H1nxkmP1m4
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCZoZmrAAKCRDXblvOeH7b
-bpE6AP9JmF962eoq9QTZo9Unls/1Ob+XfH95r6BWNtb34b9xSgD/Yeq7kP4RyaXH
-HYDpxbMk7ZRrqIBWNLKRKU7cII3f0AU=
-=g+Dz
------END PGP SIGNATURE-----
-
---nextPart1778036.H1nxkmP1m4--
-
-
+Thanks!
+- Nuno Sá
 
 
