@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-83045-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83046-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE98B926FCC
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 08:42:29 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D0DF926FE7
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 08:47:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6DE29B2158D
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 06:42:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A8D391F23404
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 06:47:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C3A91A08B4;
-	Thu,  4 Jul 2024 06:42:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 794361A0721;
+	Thu,  4 Jul 2024 06:47:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Xz/Srpr9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LSJtHY7V"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04078200A3;
-	Thu,  4 Jul 2024 06:42:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48914DF51;
+	Thu,  4 Jul 2024 06:47:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720075343; cv=none; b=Ts4DxB6Bx80PZm1uzRXCve8OBq+BCPt3/ElqxBKkLj1Glp7bUpXWnEmwgulOwRjLz1mRbjRQt0TOFuoVAcES2kMJIYg4LjMcBeK9bu3MwFWOqgVLt1sjYeMKhVO2BvRo44cLQfRqWAj4WIqf9ffntOXQBJ7Fm7tBw9NKUQ111as=
+	t=1720075647; cv=none; b=VXnZ3RJBW5421vmRz+b6T/PAeJZ7I23JiVZ/orV1KOIKP27jtQjOHq7lfBK7g49zPGR59KjKw15yJv4st3KoSCulasFjBGWtYsijzQhWOOjiaaC+JBYzJQgdIKdD1mmzzLQvobKn6JlPm2MHRBIRxg6z286lTKXPidLyRiiD+dA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720075343; c=relaxed/simple;
-	bh=mEcx7gzb3oXAPtuaQcYIpFg5tcTgZumTilQBHIc62BY=;
+	s=arc-20240116; t=1720075647; c=relaxed/simple;
+	bh=PiomyUmGl6plnWsEmsQogpCVgMK71XeKNayFAg2gpfM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RGFOCbQ+bG/As0VIgs/vUWz5FJISIisAXKEulhgvrdcqt1q9BlMZ9z2yX0mhqtnBK74/9GqTz9nvdplumHJzlRXEqfueBR+IXqb6OuAaXbm93/Mm/qofOgIESaCQlkfzZe8WQczd+Pbm6S58m/5nvaCydWVnc/ZNKahzKWJTGCI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Xz/Srpr9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F0290C3277B;
-	Thu,  4 Jul 2024 06:42:15 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=fgSjEd0N2RqYPpYsM8SFcIMMRBPh2QVgVTczoDoUJb8zBPrlxKU69EjBcwwsBXVgitmKhlCNmsHx0Hqu6Yjy1ccVWNhF3B9O2kUduzDnIlnsSUHdQTstkJKnCZlQXFMcBNOv1LqanWR2xFsYwXa0mTKO9qhakZnJPIjoXffNMhg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LSJtHY7V; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E149C3277B;
+	Thu,  4 Jul 2024 06:47:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720075342;
-	bh=mEcx7gzb3oXAPtuaQcYIpFg5tcTgZumTilQBHIc62BY=;
+	s=k20201202; t=1720075646;
+	bh=PiomyUmGl6plnWsEmsQogpCVgMK71XeKNayFAg2gpfM=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Xz/Srpr9M3EfMndkgvIfCh2T4pxbJ4KZwzyONQDf5J93+hN5JyKkHssuzSkTjeFvh
-	 1Vjkt0mXCKIbhPCE52czltMun5ygSz+6HnuKTBXgH6FwMcklTe6EbEGyHBhSsp/FSH
-	 RrYybu5DiHgatji0u5nu5RDyEuSIDcCNrCDIPOgRUAi+hCtHxV84YBqEKCJqc9Iwmy
-	 74BqcVlXxstcK1GY1VxSJ0htIw2OO9h5YvSOPE2mT2oN9nTjzNCjyOFEtWHVIanJqX
-	 4IizZkRdLUARxofF+fV43Y9OB+oHEpb4KWWneMSEfllp+M+/who61Kn/dQlPrL5jB/
-	 vqCo3EpjLM+xg==
-Message-ID: <bf0b9250-d45c-4f8e-907f-e7cec401dd68@kernel.org>
-Date: Thu, 4 Jul 2024 08:42:13 +0200
+	b=LSJtHY7Vm2Byz+C+t2S4O3kkYEkZoRt6A6azq+XmEnx8NG70IAEdTjjsK+Vi2ggif
+	 Kdqem3ajvdy9dLkPwS74P7Tp24aZvB2MV1+r/Wpfl0BdD5epTznHvh1fIH2uUs2aHZ
+	 x/AlX2zwEDvX8OMoE/1Fa4CphaQogY34uaj75kPZ/8+KzfHsG8ux2ByqD9FDMjLBrX
+	 yiWCoW/JUg6h7gtsUNrhOmwq4bqDnkDC/7Hm/4fCgM+2LfGZBShidOTVYerifwril/
+	 JYPpT1eC3dbjkaJT6csZBd2uyGnDcaqOuKbakhqpHxIEBtwlPc0U0B3hyGYU6KaNMN
+	 x82SHRdEBvyMA==
+Message-ID: <e73a86fc-b2ff-4007-b1e2-17063338bd88@kernel.org>
+Date: Thu, 4 Jul 2024 08:47:19 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,26 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: arm: fsl: Add Kontron i.MX8MP OSM-S
- based boards
-To: Frieder Schrempf <frieder@fris.de>, Conor Dooley <conor+dt@kernel.org>,
- devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- linux-kernel@vger.kernel.org, Li Yang <leoyang.li@nxp.com>,
- Rob Herring <robh@kernel.org>, Shawn Guo <shawnguo@kernel.org>
-Cc: Frieder Schrempf <frieder.schrempf@kontron.de>,
- Alexander Stein <alexander.stein@ew.tq-group.com>,
- Bjorn Helgaas <bhelgaas@google.com>,
- Conor Dooley <conor.dooley@microchip.com>,
- Gregor Herburger <gregor.herburger@ew.tq-group.com>,
- Hiago De Franco <hiago.franco@toradex.com>,
- Hugo Villeneuve <hvilleneuve@dimonoff.com>,
- Joao Paulo Goncalves <joao.goncalves@toradex.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Marco Felsch <m.felsch@pengutronix.de>,
- Markus Niebel <Markus.Niebel@ew.tq-group.com>,
- Tim Harvey <tharvey@gateworks.com>
-References: <20240702154413.968044-1-frieder@fris.de>
- <20240702154413.968044-2-frieder@fris.de>
+Subject: Re: [PATCH] dt-bindings: clock: sprd,sc9860-clk: convert to YAML
+To: Stanislav Jakubek <stano.jakubek@gmail.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Orson Zhai <orsonzhai@gmail.com>,
+ Baolin Wang <baolin.wang@linux.alibaba.com>,
+ Baolin Wang <baolin.wang7@gmail.com>, Chunyan Zhang <zhang.lyra@gmail.com>
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <ZoVS1GAC28Zpzok4@standask-GA-A55M-S2HP>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -115,19 +106,172 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240702154413.968044-2-frieder@fris.de>
+In-Reply-To: <ZoVS1GAC28Zpzok4@standask-GA-A55M-S2HP>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 02/07/2024 17:43, Frieder Schrempf wrote:
-> From: Frieder Schrempf <frieder.schrempf@kontron.de>
+On 03/07/2024 15:32, Stanislav Jakubek wrote:
+> Convert the Spreadtrum SC9860 clock bindings to DT schema.
 > 
-> Add the bindings for the Kontron i.MX8MP OSM-S SoM and carrier
-> boards.
+> Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
+> ---
+>  .../bindings/clock/sprd,sc9860-clk.txt        | 63 -------------
+>  .../bindings/clock/sprd,sc9860-clk.yaml       | 90 +++++++++++++++++++
+>  2 files changed, 90 insertions(+), 63 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/clock/sprd,sc9860-clk.txt
+>  create mode 100644 Documentation/devicetree/bindings/clock/sprd,sc9860-clk.yaml
 > 
-> Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
+> diff --git a/Documentation/devicetree/bindings/clock/sprd,sc9860-clk.txt b/Documentation/devicetree/bindings/clock/sprd,sc9860-clk.txt
+> deleted file mode 100644
+> index aaaf02ca2a6a..000000000000
+> --- a/Documentation/devicetree/bindings/clock/sprd,sc9860-clk.txt
+> +++ /dev/null
+> @@ -1,63 +0,0 @@
+> -Spreadtrum SC9860 Clock Binding
+> -------------------------
+> -
+> -Required properties:
+> -- compatible: should contain the following compatible strings:
+> -	- "sprd,sc9860-pmu-gate"
+> -	- "sprd,sc9860-pll"
+> -	- "sprd,sc9860-ap-clk"
+> -	- "sprd,sc9860-aon-prediv"
+> -	- "sprd,sc9860-apahb-gate"
+> -	- "sprd,sc9860-aon-gate"
+> -	- "sprd,sc9860-aonsecure-clk"
+> -	- "sprd,sc9860-agcp-gate"
+> -	- "sprd,sc9860-gpu-clk"
+> -	- "sprd,sc9860-vsp-clk"
+> -	- "sprd,sc9860-vsp-gate"
+> -	- "sprd,sc9860-cam-clk"
+> -	- "sprd,sc9860-cam-gate"
+> -	- "sprd,sc9860-disp-clk"
+> -	- "sprd,sc9860-disp-gate"
+> -	- "sprd,sc9860-apapb-gate"
+> -
+> -- #clock-cells: must be 1
+> -
+> -- clocks : Should be the input parent clock(s) phandle for the clock, this
+> -	   property here just simply shows which clock group the clocks'
+> -	   parents are in, since each clk node would represent many clocks
+> -	   which are defined in the driver.  The detailed dependency
+> -	   relationship (i.e. how many parents and which are the parents)
+> -	   are implemented in driver code.
+> -
+> -Optional properties:
+> -
+> -- reg:	Contain the registers base address and length. It must be configured
+> -	only if no 'sprd,syscon' under the node.
+> -
+> -- sprd,syscon: phandle to the syscon which is in the same address area with
+> -	       the clock, and so we can get regmap for the clocks from the
+> -	       syscon device.
+> -
+> -Example:
+> -
+> -	pmu_gate: pmu-gate {
+> -		compatible = "sprd,sc9860-pmu-gate";
+> -		sprd,syscon = <&pmu_regs>;
+> -		clocks = <&ext_26m>;
+> -		#clock-cells = <1>;
+> -	};
+> -
+> -	pll: pll {
+> -		compatible = "sprd,sc9860-pll";
+> -		sprd,syscon = <&ana_regs>;
+> -		clocks = <&pmu_gate 0>;
+> -		#clock-cells = <1>;
+> -	};
+> -
+> -	ap_clk: clock-controller@20000000 {
+> -		compatible = "sprd,sc9860-ap-clk";
+> -		reg = <0 0x20000000 0 0x400>;
+> -		clocks = <&ext_26m>, <&pll 0>,
+> -			 <&pmu_gate 0>;
+> -		#clock-cells = <1>;
+> -	};
+> diff --git a/Documentation/devicetree/bindings/clock/sprd,sc9860-clk.yaml b/Documentation/devicetree/bindings/clock/sprd,sc9860-clk.yaml
+> new file mode 100644
+> index 000000000000..21ed023a928c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/sprd,sc9860-clk.yaml
+> @@ -0,0 +1,90 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/sprd,sc9860-clk.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Spreadtrum SC9860 clock
+> +
+> +maintainers:
+> +  - Orson Zhai <orsonzhai@gmail.com>
+> +  - Baolin Wang <baolin.wang7@gmail.com>
+> +  - Chunyan Zhang <zhang.lyra@gmail.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - sprd,sc9860-agcp-gate
+> +      - sprd,sc9860-aonsecure-clk
+> +      - sprd,sc9860-aon-gate
+> +      - sprd,sc9860-aon-prediv
+> +      - sprd,sc9860-apahb-gate
+> +      - sprd,sc9860-apapb-gate
+> +      - sprd,sc9860-ap-clk
+> +      - sprd,sc9860-cam-clk
+> +      - sprd,sc9860-cam-gate
+> +      - sprd,sc9860-disp-clk
+> +      - sprd,sc9860-disp-gate
+> +      - sprd,sc9860-gpu-clk
+> +      - sprd,sc9860-pll
+> +      - sprd,sc9860-pmu-gate
+> +      - sprd,sc9860-vsp-clk
+> +      - sprd,sc9860-vsp-gate
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    minItems: 1
+> +    maxItems: 3
+> +    description:
+> +      Should be the input parent clock(s) phandle for the clock, this
+> +      property just simply shows which clock group the clocks' parents
+> +      are in, since each clk node would represent many clocks which are
+> +      defined in the driver. The detailed dependency relationship
+> +      (i.e. how many parents and which are the parents) are implemented
+> +      in driver code.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Description is redundant and not accurate. Which clocks are needed
+cannot be defined by the driver, but by binding.
+
+This should be constrained per variant and each item explicitly listed.
+
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +
+> +  sprd,syscon:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      phandle to the syscon which is in the same address area with the
+> +      clock, and so we can get regmap for the clocks from the syscon device
+> +
+> +oneOf:
+> +  - required:
+> +      - reg
+> +  - required:
+> +      - sprd,syscon
+> +
+> +required:
+> +  - compatible
+> +  - clocks
+> +  - '#clock-cells'
+
+allOf:if:then:, instead above oneOf, so you narrow which variant has reg
+and which uses regmap.
+
 
 Best regards,
 Krzysztof
