@@ -1,184 +1,186 @@
-Return-Path: <devicetree+bounces-83165-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83166-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AABF9276BF
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 15:04:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42A309276CB
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 15:05:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0D1D31F25C8C
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 13:04:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B6B101F26B4C
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 13:05:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE5C71AED48;
-	Thu,  4 Jul 2024 13:03:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C39C81AED3D;
+	Thu,  4 Jul 2024 13:04:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DoGwRvG9"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ErufTdfu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A70351AE86E;
-	Thu,  4 Jul 2024 13:03:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 030B91AED3B;
+	Thu,  4 Jul 2024 13:04:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720098239; cv=none; b=fdTpv0iL64OySGDwsGU3R+wH+IQS4U+jreNy5IACcfJexZrqusaYiZJe7b2fLUy0W6ov5b1Fklw2EEvcOBXgLOlLFnGjb8f5fy+1YBaCQzWaes2d5AYRh3tYHry78EY87XGYC1ZmjBkLqq4pcITJgIYXLQmWirL0YTdk4uh/wxU=
+	t=1720098295; cv=none; b=H22WDyJcmEeBxd3cCYE6mPH5kpbM6rknW9zhCPAUopHAmiQaFYzCLC0nnMTzOybd6605APhN93v1+6cJ1fL7GqWsN5myKyDi+DY6w8D5Vwoe5t3OGQMWAKPIuFLuiztDFh6nFNiMw6Jm78OPLV3kWGhG1FvCxEiNyUvsa843xlY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720098239; c=relaxed/simple;
-	bh=oINsYhT7NF/Wgei6dCm5TiYvPE41JzzV2B2CC4hHUho=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=nwv/92PxbZrpoFDsW/dlh9wIJBq1NjSD+DNfC8n1aiSRnZAySf/ERPG6LZWyGi1Cyd8V2zZy5jAgXYw1rNZpoCXi4y4or/9dSznWlAXyIAiJGpDQQ1Yf0I6G4Lk6ANwfxpzIUCkU0/VwqIdX8q130tnDhhtvAsDt+OY09c+ymds=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DoGwRvG9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 5EE97C4AF0B;
-	Thu,  4 Jul 2024 13:03:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720098239;
-	bh=oINsYhT7NF/Wgei6dCm5TiYvPE41JzzV2B2CC4hHUho=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=DoGwRvG9n6PUZ3Q/F++qFAiwGWCTcDnWPhqbc9Go060qvMfLujpdJ+YzEr4ULNLF6
-	 9I8WsX3cNB+iMw8gKLW+HGOT4DwOY2HojN39zdu7LA+rRcA6oJ+jx8+hUGCkn4Im4O
-	 ouct4VnTP8DbILmAfpXXL1Wcbezqv0ygythSD1CxTrBaMR2gbxdkmU42mcpn2vVcUq
-	 QIXKa2rZWeotMHbiKbdUnZ+qe9cdtqQ6HmRcoZ8mFpisotyPuwbO2PtW51mj7AiKTm
-	 6XsX9rRG9F89jF62k428+QpEAl3CCTGlGXPFu/hWyxDB2JhmeMPRbaBaOhFwmmLLhu
-	 N3Drnxu43VnDA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4E069C38150;
-	Thu,  4 Jul 2024 13:03:59 +0000 (UTC)
-From: Utsav Agarwal via B4 Relay <devnull+utsav.agarwal.analog.com@kernel.org>
-Date: Thu, 04 Jul 2024 14:03:55 +0100
-Subject: [PATCH v7 3/3] dt-bindings: input: Update dtbinding for adp5588
+	s=arc-20240116; t=1720098295; c=relaxed/simple;
+	bh=LKgKk74S0lYEgrU1pNpB/tiD4Mcnke6T0foRtegJ9lc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=dcArzClRf26yEHOxPVv63/ITy9oePTmxV+B4WgvXM4521K0OMCsAcEyD7en/lrOj5CjUSTVZmM6DcVO3rvdLDefStjn47my+nekKbA14NlQAwImtEjKTwg0EHVZK1LHd5HMmtuiJsDXFMMrLN5XgeOAlsN7Voa/qXDpQ+PSunsI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ErufTdfu; arc=none smtp.client-ip=209.85.218.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a77b550128dso79401466b.0;
+        Thu, 04 Jul 2024 06:04:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1720098292; x=1720703092; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=2uPuMCUt+0PiW5wgXWRLYWMzfYRTfHb3fi4+BnRHVqA=;
+        b=ErufTdfu2FJGcxLfQ9iECTyxSCfyDPayL6BcA2qWuJvZ4Mtcm8ieT3v5wUrfrUN92q
+         Af3m7YcY495+rrmNfqcm7pttQDtZemo2CVW9cCcWB8jFTSF8laelyDndd31R1PfpN2vh
+         mTLUZved2wR0HJi6I9qeijgR6tzGlC24SeqYmq/k54mtFiEAgAw4SEGbkneeDG0EzEzY
+         iJdLcbLLO0sd1G4IlcTMHF5XbwoOloV2Pa1j9N9pQI0/g2oTuBM15IuoqGu7ZLZfoxIN
+         +4/D58AlGQrlY1OwI6j4b6FiH6bW08rIOug/T+YxYUX29by8CKDILwLY19S/xCkaAQrM
+         kmUw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720098292; x=1720703092;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2uPuMCUt+0PiW5wgXWRLYWMzfYRTfHb3fi4+BnRHVqA=;
+        b=wN1a/80G+f3ZdXpaBnWqAAM5rZ/E6ZiVamGNFLPzAu2BfM8KNEDmDaKAfVbnvjjAJz
+         7jCmVygD2WJg/WowX2GcAmUaH9K2AJFILvQpj2fot7o34InlA5TaTXDZmnfTND6vnSPc
+         28jMrgWbtjNimMqp3pHllhTKjwLSewI+c38YSNMy758Mfniwwoq0sZC9PcL/MazdSYX5
+         7pZ1uVM2nuEH56fZM3dp4pA/zq9X0fpPZPwKgcMXNjt2zCdsD7mF1H/9cJ4FWDBduEBj
+         lxwV2xjWjSUH4d0PdrFgR308mapgZB4Js6iCM58ivbHjpjYPEOerAqX80/SSo8nS0tq7
+         Hbeg==
+X-Forwarded-Encrypted: i=1; AJvYcCUZqQyw/1rgkBTokKs/IvgLy9nFv7COZui6LqztDHuMWbxjNGIeW7rJ4lBvRMFVMF5/y/tH8YZU8wvomFfHQ/5jmn4ZFLNYlWtOx4cjdfA+Y53II6hacEi25345QJ7oBrvOrPveVotRPg==
+X-Gm-Message-State: AOJu0YwZiNAjuzpnw96p5s4UaD+J4GyFXJ8kUxIiB3LS41iv57aumCo+
+	g+LAYxcx3eGvfk0kIHNDsMZDIiMGe7c46YVj0jp6QIiHwhicir+bJutJ
+X-Google-Smtp-Source: AGHT+IFZIcyALDt43Fk8aUWhime9uuJbu6aaRpQ6g07IxAblZfpNL/zdJWjjDDngZz0vSZjneaXhtQ==
+X-Received: by 2002:a17:906:1158:b0:a72:8d4f:6720 with SMTP id a640c23a62f3a-a77ba72b9dfmr113893666b.69.1720098291839;
+        Thu, 04 Jul 2024 06:04:51 -0700 (PDT)
+Received: from ?IPV6:2a02:810b:f40:4600:ec22:4ef6:28e0:c5f3? ([2a02:810b:f40:4600:ec22:4ef6:28e0:c5f3])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a72aaf1bb6bsm595903366b.30.2024.07.04.06.04.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 04 Jul 2024 06:04:51 -0700 (PDT)
+Message-ID: <85e2ed16-47aa-498c-90a3-0910e5dd97f4@gmail.com>
+Date: Thu, 4 Jul 2024 15:04:50 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240704-adp5588_gpio_support-v7-3-e34eb7eba5ab@analog.com>
-References: <20240704-adp5588_gpio_support-v7-0-e34eb7eba5ab@analog.com>
-In-Reply-To: <20240704-adp5588_gpio_support-v7-0-e34eb7eba5ab@analog.com>
-To: Utsav Agarwal <utsav.agarwal@analog.com>, 
- Michael Hennerich <michael.hennerich@analog.com>, 
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>
-Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Arturs Artamonovs <arturs.artamonovs@analog.com>, 
- Vasileios Bimpikas <vasileios.bimpikas@analog.com>, 
- Oliver Gaskell <oliver.gaskell@analog.com>
-X-Mailer: b4 0.14.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1720098233; l=2571;
- i=utsav.agarwal@analog.com; s=20240701; h=from:subject:message-id;
- bh=sh5kxWaWTPDhoj+9cSNSDb/To5x40jIzkhKcv9bAB0s=;
- b=QGYunNBcclKpPb9VVbUtY1xwjnsovjF13ANGHaAGFHgvKDbwuEQ3hCIiKjs2VBREbN7C6SKwz
- fObnnKxMINxBN9+17mWsqlhr6n+WiIzcyH+DrCRwtoKTFkk6N3xRXet
-X-Developer-Key: i=utsav.agarwal@analog.com; a=ed25519;
- pk=mIG5Dmd3TO5rcICwTsixl2MoUcf/i2u+jYqifd7+fmI=
-X-Endpoint-Received: by B4 Relay for utsav.agarwal@analog.com/20240701 with
- auth_id=178
-X-Original-From: Utsav Agarwal <utsav.agarwal@analog.com>
-Reply-To: utsav.agarwal@analog.com
-
-From: Utsav Agarwal <utsav.agarwal@analog.com>
-
-Updating dt bindings for adp5588. Since the device can now function in a
-purely gpio mode, the following keypad specific properties are now made
-optional:
-	- interrupts
-	- keypad,num-rows
-	- keypad,num-columns
-	- linux,keymap
-
-However the above properties are required to be specified when
-configuring the device as a keypad, dependencies have been added
-such that specifying either one would require the remaining as well.
-
-Note that interrupts are optional, but required when the device has been
-configured in keypad mode.
-
-Signed-off-by: Utsav Agarwal <utsav.agarwal@analog.com>
----
- .../devicetree/bindings/input/adi,adp5588.yaml     | 46 +++++++++++++++++++---
- 1 file changed, 41 insertions(+), 5 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/input/adi,adp5588.yaml b/Documentation/devicetree/bindings/input/adi,adp5588.yaml
-index 26ea66834ae2..481c37595ebb 100644
---- a/Documentation/devicetree/bindings/input/adi,adp5588.yaml
-+++ b/Documentation/devicetree/bindings/input/adi,adp5588.yaml
-@@ -49,7 +49,10 @@ properties:
-   interrupt-controller:
-     description:
-       This property applies if either keypad,num-rows lower than 8 or
--      keypad,num-columns lower than 10.
-+      keypad,num-columns lower than 10. This property is optional if
-+      keypad,num-rows or keypad,num-columns are not specified since the
-+      device then acts as gpio only, during which interrupts may or may
-+      not be utilized.
- 
-   '#interrupt-cells':
-     const: 2
-@@ -65,13 +68,28 @@ properties:
-     minItems: 1
-     maxItems: 2
- 
-+
-+dependencies:
-+  keypad,num-rows:
-+    - linux,keymap
-+    - keypad,num-columns
-+  keypad,num-columns:
-+    - linux,keymap
-+    - keypad,num-rows
-+  linux,keymap:
-+    - keypad,num-rows
-+    - keypad,num-columns
-+
-+if:
-+  required:
-+    - linux,keymap
-+then:
-+  required:
-+    - interrupts
-+
- required:
-   - compatible
-   - reg
--  - interrupts
--  - keypad,num-rows
--  - keypad,num-columns
--  - linux,keymap
- 
- unevaluatedProperties: false
- 
-@@ -108,4 +126,22 @@ examples:
-             >;
-         };
-     };
-+
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/input/input.h>
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        gpio@34 {
-+              compatible = "adi,adp5588";
-+              reg = <0x34>;
-+
-+              #gpio-cells = <2>;
-+              gpio-controller;
-+          };
-+      };
-+
- ...
-
--- 
-2.34.1
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] arm64: dts: rockchip: add rock5 itx board
+To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+ linux-rockchip@lists.infradead.org, Diederik de Haas <didi.debian@cknow.org>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20240703210524.776455-1-heiko@sntech.de>
+ <4552794.8F6SAcFxjW@diego> <2c46dfb7-5ef3-494f-8cf1-413033e73412@gmail.com>
+ <2004736.8hb0ThOEGa@diego>
+Content-Language: en-US
+From: Alex Bee <knaerzche@gmail.com>
+In-Reply-To: <2004736.8hb0ThOEGa@diego>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
 
+Am 04.07.24 um 14:05 schrieb Heiko Stübner:
+> Am Donnerstag, 4. Juli 2024, 13:43:47 CEST schrieb Alex Bee:
+>> Am 04.07.24 um 12:05 schrieb Heiko Stübner:
+>>> Hi Diederik,
+>>>
+>>> Am Donnerstag, 4. Juli 2024, 11:38:51 CEST schrieb Diederik de Haas:
+>>>> Thanks for submitting this. A quick scan indicates it should work with a
+>>>> (recent) Debian kernel OOTB :-)
+>>>>
+>>>> On Wednesday, 3 July 2024 23:05:24 CEST Heiko Stuebner wrote:
+>>>>> +&sdhci {
+>>>>> +       bus-width = <8>;
+>>>>> +       no-sdio;
+>>>>> +       no-sd;
+>>>>> +       non-removable;
+>>>>> +       max-frequency = <200000000>;
+>>>>> +       mmc-hs400-1_8v;
+>>>>> +       mmc-hs400-enhanced-strobe;
+>>>>> +       mmc-hs200-1_8v;
+>>>>> +       status = "okay";
+>>>>> +};
+>>>>> +
+>>>>> +&sdmmc {
+>>>>> +       max-frequency = <200000000>;
+>>>>> +       no-sdio;
+>>>>> +       no-mmc;
+>>>>> +       bus-width = <4>;
+>>>>> +       cap-mmc-highspeed;
+>>>>> +       cap-sd-highspeed;
+>>>>> +       disable-wp;
+>>>>> +       sd-uhs-sdr104;
+>>>>> +       vmmc-supply = <&vcc_3v3_s3>;
+>>>>> +       vqmmc-supply = <&vccio_sd_s0>;
+>>>>> +       pinctrl-names = "default";
+>>>>> +       pinctrl-0 = <&sdmmc_bus4 &sdmmc_clk &sdmmc_cmd &sdmmc_det>;
+>>>>> +       status = "okay";
+>>>>> +};
+>>>>> +
+>>>>> +/* M.2 E-KEY */
+>>>>> +&sdio {
+>>>>> +       broken-cd;
+>>>>> +       bus-width = <4>;
+>>>>> +       cap-sdio-irq;
+>>>>> +       disable-wp;
+>>>>> +       keep-power-in-suspend;
+>>>>> +       max-frequency = <150000000>;
+>>>>> +       mmc-pwrseq = <&sdio_pwrseq>;
+>>>>> +       no-sd;
+>>>>> +       no-mmc;
+>>>>> +       non-removable;
+>>>>> +       pinctrl-names = "default";
+>>>>> +       pinctrl-0 = <&sdiom0_pins>;
+>>>>> +       sd-uhs-sdr104;
+>>>>> +       vmmc-supply = <&vcc3v3_ekey>;
+>>>>> +       status = "okay";
+>>>>> +};
+>>>>> +
+>>>>> +&sfc {
+>>>>> +       pinctrl-names = "default";
+>>>>> +       pinctrl-0 = <&fspim2_pins>;
+>>>>> +       status = "okay";
+>>>> Shouldn't those properties be sorted alphabetically? Or at least consistently?
+>>>> Note that the same issue is present on other places too, but I believe the
+>>>> above quoted part shows the issue enough.
+>>> The main sorting is
+>>> - compatible
+>>> - reg
+>>> [... alphabetically ...]
+>>> - status
+>>>
+>> Yeah ... that's always the question when adding new board files. Do it like
+>> "it's always been done" or re-sort the properties alphanumeric _everywhere_
+>> which looks quite strange at times. If I'm getting the newly added dt
+>> coding style correctly common (subsystem?) properties should also be placed
+>> before vendor (driver?) specific ones. Yet I didn't see a board file which
+>> places 'regulator-max-microvolt' before 'regulator-min-microvolt'. So I
+>> guess it's fine if it's done consistently within the same file?
+> I always see it as a best-effort thing. If all regulator-* stuff is grouped
+> together it will be mostly fine. I'm not going to haggle over the sorting
+> of the 10th character of property names ;-) .
+>
+> (and of course reading min before max, is sort of more intuitive)
+>
+> And of course leaf-things (board dts) are less "important" than the core
+> nodes in soc devicetrees.
+>
+Great, thanks for sharing. Will (try) to follow in future.
+
+Alex
+
+>
 
