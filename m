@@ -1,141 +1,141 @@
-Return-Path: <devicetree+bounces-83222-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83223-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15320927A00
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 17:27:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 20FA6927A06
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 17:30:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 45BA71C217C8
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 15:27:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 43F231C21A82
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 15:30:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CF581AED31;
-	Thu,  4 Jul 2024 15:26:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C8141B1212;
+	Thu,  4 Jul 2024 15:29:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="elAgR08I";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="bUhEWQmh"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="b9KokddA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout8-smtp.messagingengine.com (fout8-smtp.messagingengine.com [103.168.172.151])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4386A1B140F;
-	Thu,  4 Jul 2024 15:26:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.151
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BB8243AB3;
+	Thu,  4 Jul 2024 15:29:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720106814; cv=none; b=Thc8kTEEEl+ip6e8L2F5r0AzTH6CS9j8ECzwnMDnEXigaAnOERkl7zR411UMMZ08QERnHTcSbz53CGxyaFDYZAuXhTkcvZeuw8WiGCwiJTgEeLe9hRcAY3e2VTP6PgAek62L+sXtCZru51E62H2gyJpScQ3AD00Ff1xuOaSNSEM=
+	t=1720106996; cv=none; b=RQMJlqgGhwgmzGz7AnXyfL5NR8eCSRTTzh2pK977GgR/dYVikS5PXUFXC8vAjoBQJYazLaHFw+bGSW1AhXEqyfJAM0e8O0bFR54+6nCfvWDWQL7KKutWJmSGPdw6IsF58lNuS0PFh4ScJEhvymnnCOYyCChefLT1jvp7q45aYkQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720106814; c=relaxed/simple;
-	bh=ZhI+Z0tl78bePu22T7RJC5Roxvh6EkLXuVIji3AFZ88=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=McEsl0ew4ZGogluEwVrF23tZ/k7l6ViW1+KEW4oGF3yGWQabXKqivEhBWVplJgd+W/ioG50LkkHd0JYu3FncfjVHamkjCI0SAZkQE46TefGhnUY527bUsAVMtilX5ydq7XXZDoA9UkO1G9iO5M6NKFRMTSRTM8Z6xV2qPYaxQyo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=elAgR08I; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=bUhEWQmh; arc=none smtp.client-ip=103.168.172.151
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-	by mailfout.nyi.internal (Postfix) with ESMTP id E4E8813801CD;
-	Thu,  4 Jul 2024 11:26:48 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute1.internal (MEProxy); Thu, 04 Jul 2024 11:26:48 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:message-id:mime-version:reply-to
-	:subject:subject:to:to; s=fm1; t=1720106808; x=1720193208; bh=MK
-	A4zZt8xiZ9ffKTIPx9Esc2HF1Qk6W896Fkk5r7czc=; b=elAgR08IZ9CLuYFbOC
-	1wLieAqKLxZbrsCguWgXNJi2apuG0+Ubdus2/1Lc+pNtFwlLB7R1aK8xmEmUXzRt
-	GdyyVnCwgIuQO60YhE4iVaVGewocLjxfL4CTnIfA+EXQikMtsAzFstkamB2nQ95Y
-	tUf+LYZWTsFacan473udQtdpfIHy8uO7aqyK9GCy1B57vLqNcf+ntMQlYECYVumC
-	VEUsawH1qS/+xcjIEuGhq9vtjEJ/S5UiA88iJvPtcRJAe2gCWM7IWo24HbMMYqEA
-	umHpFQhhFInzWsbOWSv3Cj61vn+7N3Ke8VCoX8fGvktXDj1h8ZbjUlW5zwSM5Kz1
-	vtXA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:message-id:mime-version:reply-to:subject
-	:subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-	:x-sasl-enc; s=fm2; t=1720106808; x=1720193208; bh=MKA4zZt8xiZ9f
-	fKTIPx9Esc2HF1Qk6W896Fkk5r7czc=; b=bUhEWQmhgUoau/6CTLRWKWa/1pc9o
-	Nqj+2nNNa1Jj/UQNCJnGHHa9wTog89BkqlDmEkXQ9EyOybEVwai9/fO13SDN+z4J
-	BuaUaZKrK36M+HhXeElSbFZng9lQxrAi14lS85kGL9rAoW6k+yu2ipaEnH+V0O3G
-	j6z5I26G92I26LTCpVO9oY/Egxgp5aJ7KaIJfq/pKI7dDGtQ8Gxm+0I2zaNkLSfR
-	m2XFKiHIkAdxdLk4dqvm+xpTIN3DPT3lyRX7009nMbaO4e8+hB9atSHh5jRjw4k7
-	i44XxE6oDsSAlKnRO+bkxcz9RJhx33MaRYImK8CQ0yd0odBQnPDxQ/6UA==
-X-ME-Sender: <xms:OL-GZp-2fBEHfoSMHIC8w1UQq6FJmo1O3FJUtAN-6odYNzm5PS3RaA>
-    <xme:OL-GZtu3tgJkJ6P3qlfyRhgJv0jk1x7BneuZXie6IhFC1fzqX1klnHCjM2sk4snxg
-    OLJOyaCLg9Y58acXAY>
-X-ME-Received: <xmr:OL-GZnBiP7ACsk879f8Hk_LO4QQH2r2y9eSfVOAEjauXXghf8q-sI_rpiYHqFa66k4tfQATjtChLOgcojxmI2DMIrQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrudelgdekiecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefhvfevufffkffogggtgfesthekredtredtjeenucfhrhhomheppfhikhhlrghs
-    ucfunpguvghrlhhunhguuceonhhikhhlrghsrdhsohguvghrlhhunhguodhrvghnvghsrg
-    hssehrrghgnhgrthgvtghhrdhsvgeqnecuggftrfgrthhtvghrnhepheduleetteekgfff
-    fedufeeuvdejiedvkefhveeifeegffehledtvdevhfefteegnecuvehluhhsthgvrhfuih
-    iivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepnhhikhhlrghsrdhsohguvghrlhhu
-    nhgusehrrghgnhgrthgvtghhrdhsvg
-X-ME-Proxy: <xmx:OL-GZtf1kCGiSteGzaac3trf1ROJWayaKpMMt_CQ3PW-uRyj-7C73A>
-    <xmx:OL-GZuOaD9iiDUarB-XtEhwiMjSrwMEYN-6m4c6fcraPPID1kIyv5A>
-    <xmx:OL-GZvmA9yc1lkdI8aaleavMMQsrLuSkvi389d_UnBsYy2rCM6CMAg>
-    <xmx:OL-GZosxa6iUWELucEIWz7f8EZwfLANKbPwNIl-6_6InIKq4YQue0g>
-    <xmx:OL-GZvjGSxFK7qPXe7aaCh267Qlku1jdPfmVOmQmMumpq65PY5f5Zjf0>
-Feedback-ID: i80c9496c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 4 Jul 2024 11:26:47 -0400 (EDT)
-From: =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
-	Geert Uytterhoeven <geert@linux-m68k.org>
-Subject: [PATCH] arm64: dts: renesas: white-hawk-cpu: Move avb0 reset gpio to mdio node
-Date: Thu,  4 Jul 2024 17:26:10 +0200
-Message-ID: <20240704152610.1345709-1-niklas.soderlund+renesas@ragnatech.se>
-X-Mailer: git-send-email 2.45.2
+	s=arc-20240116; t=1720106996; c=relaxed/simple;
+	bh=+pBGWGdh3cnUqofOvg3buJDNUfB3CuJ7cjR/0uMbscA=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=JZ88ZOyKSh5j0HLm52/JaNIt+o7phjvIxgqZV/7duQMwSRqzbX0gJYPfsctxmGJApt4/O4q+Lm8FDkgPAwoXMId59+oWfm4vcskDQHF28DjrsHTeJGRERRJDM3jp1AQsmSB2bc0s5QrTly5T/ll7RR/2P8cfNkFJ8q5nVLDlDAg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=b9KokddA; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 464Awvef013658;
+	Thu, 4 Jul 2024 15:29:05 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=OLPIs+j1GBx3hzWHuvCwdI
+	D6RqM+Hc+6l/4PhNdfEc0=; b=b9KokddAuhA6rK/kynDLc83UlykhFUcRs3+UDA
+	n9jE4h/u0akXRurCccwnzZeMin/grsId8QZsd3XlQVabtQPj8Jg2FwY8rj3/wP6o
+	PNLBhSlBU24GsgUmJ0hBuytGwervz+f3TRhxK82zSWKaS72cj4uU3vYt3fh9fwOE
+	KjpF4X4wWHyLQaEll9fswrUnp72vPf/AM4cT72pSu6UZCyWYzP+xC3G2kUIScheS
+	x8ayguJZNYzYwU1eklbJa+WTdCt6kgb31AqfZ1XsChW06csWalSjg8hq/VJdDE60
+	nsscZFdyPhadKjFUmQ3wo6O1AQadKHPomDWed1XfYxaGOEjA==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4054ndua62-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 04 Jul 2024 15:29:05 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 464FT388006061
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 4 Jul 2024 15:29:03 GMT
+Received: from hu-kriskura-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Thu, 4 Jul 2024 08:28:57 -0700
+From: Krishna Kurapati <quic_kriskura@quicinc.com>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, Baruch Siach
+	<baruch@tkos.co.il>,
+        Kathiravan T <quic_kathirav@quicinc.com>,
+        "Sivaprakash
+ Murugesan" <sivaprak@codeaurora.org>,
+        Andy Gross <andy.gross@linaro.org>,
+        Jeffrey Hugo <quic_jhugo@quicinc.com>,
+        Douglas Anderson
+	<dianders@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>, Iskren Chernev
+	<me@iskren.info>,
+        AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@somainline.org>,
+        Vivek Gautam
+	<vivek.gautam@codeaurora.org>
+CC: <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <quic_ppratap@quicinc.com>,
+        <quic_jackp@quicinc.com>, Krishna Kurapati <quic_kriskura@quicinc.com>
+Subject: [PATCH 0/8] Disable SS instances in parkmode for Gen-1 targets
+Date: Thu, 4 Jul 2024 20:58:40 +0530
+Message-ID: <20240704152848.3380602-1-quic_kriskura@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: X8lKergz7lxyYqbNaHJ67gv3uxGn0zx6
+X-Proofpoint-ORIG-GUID: X8lKergz7lxyYqbNaHJ67gv3uxGn0zx6
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-04_10,2024-07-03_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 malwarescore=0
+ phishscore=0 impostorscore=0 priorityscore=1501 mlxscore=0 suspectscore=0
+ bulkscore=0 adultscore=0 lowpriorityscore=0 clxscore=1011 mlxlogscore=354
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2406140001
+ definitions=main-2407040110
 
-When creating a dedicated mdio node to describe the bus the gpio reset
-property was erroneously left in the phy node. The reason for adding
-mdio nodes on WhiteHawk was to ensure the PHYs where reset before they
-were probed, keeping the property in the phy node prevented this.
+For targets that have only USB3 Gen-1 DWC3 controllers, it is recommended
+to disable SS instance in park mode to avoid HC died error when working
+in host mode in situations where the controller is stressed out:
 
-Reported-by: Geert Uytterhoeven <geert@linux-m68k.org>
-Fixes: 54bf0c27380b ("arm64: dts: renesas: r8a779g0: Use MDIO node for all AVB devices")
-Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
----
- arch/arm64/boot/dts/renesas/white-hawk-cpu-common.dtsi | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ xhci-hcd.12.auto: xHCI host not responding to stop endpoint command
+ xhci-hcd.12.auto: xHCI host controller not responding, assume dead
+ xhci-hcd.12.auto: HC died; cleaning up
 
-diff --git a/arch/arm64/boot/dts/renesas/white-hawk-cpu-common.dtsi b/arch/arm64/boot/dts/renesas/white-hawk-cpu-common.dtsi
-index 80496fb3d476..4f0230327868 100644
---- a/arch/arm64/boot/dts/renesas/white-hawk-cpu-common.dtsi
-+++ b/arch/arm64/boot/dts/renesas/white-hawk-cpu-common.dtsi
-@@ -156,6 +156,8 @@ mdio {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 
-+		reset-gpios = <&gpio7 10 GPIO_ACTIVE_LOW>;
-+
- 		avb0_phy: ethernet-phy@0 {
- 			compatible = "ethernet-phy-id0022.1622",
- 				     "ethernet-phy-ieee802.3-c22";
-@@ -163,7 +165,6 @@ avb0_phy: ethernet-phy@0 {
- 			reg = <0>;
- 			interrupt-parent = <&gpio7>;
- 			interrupts = <5 IRQ_TYPE_LEVEL_LOW>;
--			reset-gpios = <&gpio7 10 GPIO_ACTIVE_LOW>;
- 		};
- 	};
- };
+Note that in case some SoC's have missed this change, I will send a
+follow up series to fix them up.
+
+Krishna Kurapati (8):
+  arm64: dts: qcom: ipq6018: Disable SS instance in Parkmode for USB
+  arm64: dts: ipq8074: Disable SS instance in Parkmode for USB
+  arm64: dts: qcom: msm8998: Disable SS instance in Parkmode for USB
+  arm64: dts: qcom: sdm630: Disable SS instance in Parkmode for USB
+  arm64: dts: qcom: sm6115: Disable SS instance in Parkmode for USB
+  arm64: dts: qcom: sm6350: Disable SS instance in Parkmode for USB
+  arm64: dts: qcom: msm8996: Disable SS instance in Parkmode for USB
+  arm64: dts: qcom: sdm845: Disable SS instance in Parkmode for USB
+
+ arch/arm64/boot/dts/qcom/ipq6018.dtsi | 1 +
+ arch/arm64/boot/dts/qcom/ipq8074.dtsi | 2 ++
+ arch/arm64/boot/dts/qcom/msm8996.dtsi | 1 +
+ arch/arm64/boot/dts/qcom/msm8998.dtsi | 1 +
+ arch/arm64/boot/dts/qcom/sdm630.dtsi  | 1 +
+ arch/arm64/boot/dts/qcom/sdm845.dtsi  | 2 ++
+ arch/arm64/boot/dts/qcom/sm6115.dtsi  | 1 +
+ arch/arm64/boot/dts/qcom/sm6350.dtsi  | 1 +
+ 8 files changed, 10 insertions(+)
+
 -- 
-2.45.2
+2.34.1
 
 
