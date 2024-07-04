@@ -1,257 +1,287 @@
-Return-Path: <devicetree+bounces-83203-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83207-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A264B927968
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 17:02:04 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 610E4927982
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 17:04:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 23E3D1F23D5B
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 15:02:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 820FC1C23883
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 15:04:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A8391B11FC;
-	Thu,  4 Jul 2024 15:01:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1008E1B1510;
+	Thu,  4 Jul 2024 15:03:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="H9TH+SE/"
+	dkim=pass (1024-bit key) header.d=solidrn.onmicrosoft.com header.i=@solidrn.onmicrosoft.com header.b="SOlzHxIG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11021106.outbound.protection.outlook.com [52.101.70.106])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6008E1AED53
-	for <devicetree@vger.kernel.org>; Thu,  4 Jul 2024 15:01:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720105319; cv=none; b=eXG4u4YnxEQwonTZkNFoxjTMZbdYCkWlg92YnuBZDJ3j2USVGTN2zkLTuZcb0El3215h0gkdu9sAnLrPobSUYjZ9S8Qw+tjp4HKPBLFZdf8H4gk42YLEHEnMda6QAurY4hHApFqLMDp2GNIjepjD4Drf3KiZj/3KpWOtH/Z78+0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720105319; c=relaxed/simple;
-	bh=5XHC/DiPTdbZKgQU4c//xJ3ZzNIOnLdZwKuG4Jg17m0=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=VvQUjbI9eLuntQ2vwAOZyPMpPVadVYn0gUkDJlX7DLdkjgsqvi1HJZUfsgDwfJ/XdWSNcCtKU3u8R/qV/SJv3iP79swKUNDvWhQqtd+a0wPSsDuK/jPfTEjJf7KzvoWFzRtd0LtpNy/SIGl2RVELZnYo5lZ042T9Vg94hoq1lr8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=H9TH+SE/; arc=none smtp.client-ip=209.85.208.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2eaae2a6dc1so9979341fa.0
-        for <devicetree@vger.kernel.org>; Thu, 04 Jul 2024 08:01:57 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB9781B1434;
+	Thu,  4 Jul 2024 15:03:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.106
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1720105436; cv=fail; b=eHBg24NMbK0p6Aq/iYSAfD4OvRigaH84zNrQvby7gAtAdqaSsQXM0YbPETIEJEVzM4Cr2yRkaYXOSsa87rh4AiHodrOWtpgoVwbSlUcWRf2wa/L3r4yDlHkL8d9w2XJ9qccs1R7iBYkVZhtVGFbsD4ccdczdth8JLSXtN921NGI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1720105436; c=relaxed/simple;
+	bh=u4mC5KtZ14UZr1liUxKPQvvalqsZt+yOK47rX6YcEeU=;
+	h=From:Subject:Date:Message-Id:Content-Type:To:Cc:MIME-Version; b=oTvJzrW0lrKMuK7EJM07IhHtPD/QkKxjIoHCvggCb8uoCjY/G3E5nnLJrg7vbI+bEatdkje3nGKgR77JgMAiJbKZ+MFaBQnDcuEMpnwNUDmBqfw8EqV5ddVVh3RY4imMfWuWD6PFrCzGKkGbK+XSTgA2h2v9xYZ17QWb88q1Kjo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=solid-run.com; spf=pass smtp.mailfrom=solid-run.com; dkim=pass (1024-bit key) header.d=solidrn.onmicrosoft.com header.i=@solidrn.onmicrosoft.com header.b=SOlzHxIG; arc=fail smtp.client-ip=52.101.70.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=solid-run.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=solid-run.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=hHI2RPrs4H4asNLpU6JJlnfa5x/JSgxs0JFx7TurmqzLlZrvpCx+6bN36N7WBaR8HIlKqiH+vgoUgZmzcg/mxBF866/j27+p0pE+f9yo5SpkWobXnUzSqvOaBzyESdK2OeHlXAs9i+wIcZP1sVjfAgZIkN8dOTVi1k6e/nYK08DsWCSXb3rEA7a2wyd7DKu8uWd9EWK6FGqVI34GZ41X39sPFupj2mAQVvR6dWZmNJ3PFfUB/mUkwvqyEZCxdeJjdIBNEt+vETWDnD8HmLPRKnosw4//oEmnAUfp8QzfljclQNpHohXzj+DvLi20JVUe/Udj4pU/R+lrRQIVUsKINQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=r08/CNV3F/rcH9+hHhCR4c0GUS5lmkiVa6u9/WMTL0Y=;
+ b=TwDlEoOq5LK1tGV9SC8SQXY45yKLAfrPzl1U/FJqdTEsVEakeGXVKU1otFqAdFmzfuQaOjqa5GX0re2Q8/b6kesbch7aj0DGSyykBm/dRsVwome9olPrn83O4GEKsl/DiAACyHN8k3YscjsLWXNMuzEkDTa2FywBhnqc1H/s6XuISEbsBh1NxgL4yle7hJSESTc/+hvC6BOMjJxUfuTgqq8/nibjvLlqbzvzWKDrRykvf/6SqEy5zlwkxvNek24C4qa/6dGF/alpg03LnhUYRX2HfvjdmHQYLeBAYNW9/FysmfaeiRXigtnJBrXpCKRvJRKZ8JDV7UXXL8PWBOMtqA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=solid-run.com; dmarc=pass action=none
+ header.from=solid-run.com; dkim=pass header.d=solid-run.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1720105315; x=1720710115; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=BULRBOFvK05apBX+ctPL2pcEaLu2COoB/KetU0ktBgg=;
-        b=H9TH+SE/I/sEXYbCjayqnTqxBZTlGn/d+BaNshAFcjDHITKNFamnPgc9uPKpTYA7fk
-         S1yi2FpGMGgU4F9CE5ODb9uZUqs6nK/c2El4rhTB0pQY13NcFiymAD61i8DaqhmX+s30
-         foeTh1EvX3+5KyQM51ElsHaWn8xUEfRTd5LQK86DDLYw/Ji1YQVjJDbY0X0UhmaRDP2w
-         dBwptpoYl5ar5N42fYCw3hBsKTOdbQfOTFa3TNh5X1T/DlTke3ILG3rFCZaVBZLt0jyN
-         QRTUc+odvW32V1/ZekD8/SMLQvps1fm5kBqmPf47NGfx/Ot7X9y5GOlKFW9fyAUCZasy
-         SB/w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720105315; x=1720710115;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=BULRBOFvK05apBX+ctPL2pcEaLu2COoB/KetU0ktBgg=;
-        b=Wkcklfx4z0ZFCAZs2MXeQ6mIiUkmbpN8BS2gHVultYCOJstRMHuJqAE5wuu4s8ZvwU
-         zz7wQd+nFcNZDzsMQpGNJLHR/ia3Vm/yVAAYs9GyR7s4FUA2lKgMfW+vVv88Bqj61nFK
-         hhpIHUieRXVnGNwtWdd/FiwZv02d89YNAsEMPZypz4l324o+QyzCloSkxwLgpm4pCUzD
-         0VQ6CULj3rsB22+pM64LSCYWCJfGa/9V3BvmYYDoSIZLdr9CG3NNoCirdswSqfZryMtO
-         GhDLcK2uL4bcfAx6KiDuyUvviaGVUhzpAMm33VxhUhRfBs4VWyDf8dZSCN2RQfckonyM
-         6R1w==
-X-Forwarded-Encrypted: i=1; AJvYcCVwAeeZTxOJE+gthTsx89JShnlN+M7OxkP4v4atipOoaMXMpMxIshPEq1Qs1uv2S0zYSFJhaGIDQbbMV6mIkjoGnWCTrqEOe+ts8Q==
-X-Gm-Message-State: AOJu0YzVHQF6WZfbZ1ynLoZAE/h3Zdy/D7MK1NaZwVcGgPaNN3YJT+Ig
-	URreqggfdhNdW8vcRJkAGKGFHrcALTXBG2IWzZk8hfeWgAXTBS63W6QzOYqzzbw=
-X-Google-Smtp-Source: AGHT+IF8IG7O3sWGDwGtIn0Is+tyKiyak/t/OHdy0e8YTVFUu5mblg8vYgPAWflBIysihMT7fKvHzw==
-X-Received: by 2002:a2e:9515:0:b0:2ec:5843:2fb8 with SMTP id 38308e7fff4ca-2ee8ee0e795mr14918511fa.42.1720105315487;
-        Thu, 04 Jul 2024 08:01:55 -0700 (PDT)
-Received: from localhost (2a02-a210-20ba-5a00-9ceb-707b-2d57-26f7.cable.dynamic.v6.ziggo.nl. [2a02:a210:20ba:5a00:9ceb:707b:2d57:26f7])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a77c2af0352sm25441466b.198.2024.07.04.08.01.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 Jul 2024 08:01:55 -0700 (PDT)
+ d=solidrn.onmicrosoft.com; s=selector1-solidrn-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=r08/CNV3F/rcH9+hHhCR4c0GUS5lmkiVa6u9/WMTL0Y=;
+ b=SOlzHxIGZ1sWzQM7Gx/qeNlilfDvfM1k6b2wNfW3PBTHfgFPsx4pT+FGOGZte8/KdyVWM40AXubMbCtt4Usr86f+WRnLHzIwydj8bbb96UdBt7aYF5cadPyGZLX56xZxTS34/eK+CGFroOqyUyfh1GOJ8rXced1K0P2PkU5vGs4=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=solid-run.com;
+Received: from AM9PR04MB7586.eurprd04.prod.outlook.com (2603:10a6:20b:2d5::17)
+ by GVXPR04MB9928.eurprd04.prod.outlook.com (2603:10a6:150:117::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7741.29; Thu, 4 Jul
+ 2024 15:03:44 +0000
+Received: from AM9PR04MB7586.eurprd04.prod.outlook.com
+ ([fe80::c04e:8a97:516c:5529]) by AM9PR04MB7586.eurprd04.prod.outlook.com
+ ([fe80::c04e:8a97:516c:5529%5]) with mapi id 15.20.7741.017; Thu, 4 Jul 2024
+ 15:03:44 +0000
+From: Josua Mayer <josua@solid-run.com>
+Subject: [PATCH v7 0/5] arm64: dts: add description for solidrun cn9130 som
+ and clearfog boards
+Date: Thu, 04 Jul 2024 17:03:18 +0200
+Message-Id: <20240704-cn9130-som-v7-0-eea606ba5faa@solid-run.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIALa5hmYC/23O32rDIBTH8VcpXs9xPP7f1d6j7MKqWYU1lriFj
+ pJ330kZJCnBq5/w+eqdtTyU3Njb4c6GPJZWak/DvhxYPIf+M/OSaDMEVCCF47H3QgJv9cKdctm
+ ZEE8QIiNwHXJXbo/Y8YP2ubTvOvw+2qOYb/8zKNaZUXDgVgiBNijwIb+3+lUSH37611gvbE6Nu
+ HA6G47EZegQ0UebMO1xueJiy+XMNQRjk1IZwh5XC9eAG66IQ8CMnYgWktvjes39hmviXisv80l
+ H63c/bxZunl43xJ2XxJ1JKtpnPk3TH9Y9pCTjAQAA
+To: Andrew Lunn <andrew@lunn.ch>, 
+ Gregory Clement <gregory.clement@bootlin.com>, 
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Richard Cochran <richardcochran@gmail.com>
+Cc: Yazan Shhady <yazan.shhady@solid-run.com>, 
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
+ Josua Mayer <josua@solid-run.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.12.4
+X-ClientProxiedBy: FR0P281CA0081.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:1e::7) To AM9PR04MB7586.eurprd04.prod.outlook.com
+ (2603:10a6:20b:2d5::17)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 04 Jul 2024 17:01:54 +0200
-Message-Id: <D2GUG0KGQNHX.3AITI7PGV3KW3@fairphone.com>
-Cc: <linux-arm-msm@vger.kernel.org>, <linux-media@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-i2c@vger.kernel.org>, "Suresh Vankadara"
- <quic_svankada@quicinc.com>, "Trishansh Bhardwaj"
- <quic_tbhardwa@quicinc.com>, "Hariram Purushothaman"
- <quic_hariramp@quicinc.com>
-Subject: Re: [PATCH 0/6] media: qcom: camss: Add sc7280 support
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-To: "Vikram Sharma" <quic_vikramsa@quicinc.com>, "Robert Foss"
- <rfoss@kernel.org>, "Todor Tomov" <todor.too@gmail.com>, "Bryan O'Donoghue"
- <bryan.odonoghue@linaro.org>, "Mauro Carvalho Chehab" <mchehab@kernel.org>,
- "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
- <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Kapatrala
- Syed" <akapatra@quicinc.com>, "Hariram Purushothaman"
- <hariramp@quicinc.com>, <cros-qcom-dts-watchers@chromium.org>, "Bjorn
- Andersson" <andersson@kernel.org>, "Konrad Dybcio"
- <konrad.dybcio@linaro.org>, "Loic Poulain" <loic.poulain@linaro.org>, "Andi
- Shyti" <andi.shyti@kernel.org>
-X-Mailer: aerc 0.17.0-0-g6ea74eb30457
-References: <20240629-camss_first_post_linux_next-v1-0-bc798edabc3a@quicinc.com>
-In-Reply-To: <20240629-camss_first_post_linux_next-v1-0-bc798edabc3a@quicinc.com>
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM9PR04MB7586:EE_|GVXPR04MB9928:EE_
+X-MS-Office365-Filtering-Correlation-Id: 59aa3144-c3d1-4b32-64f0-08dc9c3a7fd1
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|7416014|52116014|1800799024|376014|366016|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?TzRpTmkxTUFtV0VKMnRFNFd1MFFKVzZ6Q0ViUlhDUSttQjllcVJ1ZGxHMlNv?=
+ =?utf-8?B?S0FBaVB2eEgvN1A3QURJZ3hoRkRsMlQ5bjI2MHFJelFnSW9UYW96VFc2cGZm?=
+ =?utf-8?B?MVhQMnRHVEVOSmQzZTJVTzJpZmR1SlNHdDZNUmdkbTVsMlJhOVZQZnFTSldW?=
+ =?utf-8?B?VHhGWDBPT2tWTGRrRVM0NEhPTWFuclhNc3J5R1AvMjdSdlQwbEY1RUo5aGZW?=
+ =?utf-8?B?YzlSREtjV3NBOGh3ZlhSVHI5WElRem9HQ0Nna2ZUSjRjcEFJZ2N2ekJKei9X?=
+ =?utf-8?B?elBVai9mK2dhZytFeWh1M1NITXZ6SlBNbFVRNzA1S2ZmMDNUZnJETHFWais4?=
+ =?utf-8?B?UElvSHF0WTJFSXlYcC9wd2llSFF6dnEzb24zZVAwM0piQTA3OVZST25BVVYv?=
+ =?utf-8?B?bEFvalY5MkJxQ0pzdmlaekhKZkwxbXd5b241RFNIMDVjTGlmZmVPWi9IY1Ar?=
+ =?utf-8?B?NjFKQlBaamJyWlNBdncyWGVha2hWV0FPdC9wNTNLSDhyOGR4c0RuYWZLQ2VJ?=
+ =?utf-8?B?cDJmRFVkQlQzMmlLQ3FTMUxIWExVR25yYTVuL1NYR2JaNk1nT1RLT0dHdGJk?=
+ =?utf-8?B?cWJaeHczRXV1K1Y1aDJ1anVaS1NaSlN1VVA0dkNnZ21UMUY4Zk5vcSttbzlN?=
+ =?utf-8?B?UVZTbHdaUnRYNHdKTnRsTzNYUHpJbDdtM1RGZFhNTHg0djF4ZEdkV3g5SERZ?=
+ =?utf-8?B?blh5NGpXVk5PZEhkMW1mMW1ZbkhvbFNaT0FMVVFoQVQ1dXdSRURzUEc1dnJE?=
+ =?utf-8?B?WGhHUi9ONGtZZ2lhU0RhODQzMm5Yd1E2TzI3OUVPQ1FRNUxoTkpKTXpLRFl2?=
+ =?utf-8?B?OXVnWFg4ODlQeS9KTGRONFZFZEY1cWRYdTVUdncybnRiQTZuSk83SkZBM3BI?=
+ =?utf-8?B?amo4bjZhN0ltV1JIWEJUVFh3MGtBaUpYbE5WK0pDekZiaHZWTU5EUUtuMURs?=
+ =?utf-8?B?U3E4c3BGYy90bzA2VVZMMWNKLzVPbkRlWGRlTUdldXI3aGg3SlBYN2hhSVlV?=
+ =?utf-8?B?YjJHWUpJVHNTUjc3VjAzUzJCbUJJaUpmZHVPWmtobmtGSURtRTgwS1lWVGdw?=
+ =?utf-8?B?RTU2U0FuamlyV3NPSWNtY1haM2NFRFhhOUt3UVZiaWhBbXoycjltNHhiS0NK?=
+ =?utf-8?B?RDJndlhVRjRSeFpGbmZlTW5JbGxucDFkTFByQTByeG9EaHFvWmZVSElIR0ZQ?=
+ =?utf-8?B?WWh3MVk1RGtxVjBqVWJPUmJqNW5Wd1MzWmRkL2xiZVcrekNvaDhYR3p6NVhK?=
+ =?utf-8?B?MXRXTFVjQmhPNjU0Q0VMWk8yb2psb2RRRE1SRXU2Ni9WMTRLSXRHNUpxWmVN?=
+ =?utf-8?B?K0hSL01JU1FabStlWUY0U0FjbzRnTEZrUE9DaWpic09TTjd2bGFndVUrcnQw?=
+ =?utf-8?B?eDU0ZDJLekR3a0YxeWJ0K1VzUVZMTmRUT2ZvL1ZPN09qYk0wd1lIc0RUR3hY?=
+ =?utf-8?B?dFlqVHEvSk1FczhrWWJzelN5RmZTQVpZMER2Zi9sSnZsc1NnMTU1QTNDWmhh?=
+ =?utf-8?B?MmZLRlNxRDFnWk8wb2FBaVV5ak53cWZrazBQRWZjcUg2bkFFQjEwMHZNTVY1?=
+ =?utf-8?B?N0p2SC9UVHhNSjJoN1hpK2VCakRJL24wNGg4MitkK29QMlFtOTQxZDJGRUpi?=
+ =?utf-8?B?Y1ZDZ0xnR1dCSDVUOWw4MTNFclRlZURtUkIvNTA2SnRncXR3YjU0L1Fyb2po?=
+ =?utf-8?B?OTlRTXZOR1RvbEphcUdsSkJ6Yy94azdydm9sZmY1SUhKTGV3ZVh5MGs3SXc4?=
+ =?utf-8?B?ZDB2MEExOVpHVEFjUWovcVZIamlYcGpjWEpXUEdYM3RpbjkxNUNDc2V5QmhG?=
+ =?utf-8?Q?PJYx0Dl2xn+HHL+4Rh4W+QppNmeRF6SS+ADdc=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB7586.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(52116014)(1800799024)(376014)(366016)(38350700014);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?UmZqVzVra2tsWnBad1RqRnUvc0ZhUmlGWS9UVDRCLy9wQnRLWWRiVGJTVHZI?=
+ =?utf-8?B?cDNlMjZWck1mek5uQjJYQXk3YktFYTY5b1FMVUZzcVpaV0tvVjZFbUxPaEM2?=
+ =?utf-8?B?VjRiR05zeXprNEt2N0pxNXJNckhaMGFiUmJQK1VMV2tIdzNIOG11bnVEZlJL?=
+ =?utf-8?B?dlR1T1UrY3hVM21nMTdpOGNpUmVSNE84Q2RFaWlwWEU5VE5RZ200WDFZcWRB?=
+ =?utf-8?B?SnV2Q2dkMFpyKzJqSmhzZ3lnMUhOZ0YrZEJDQXQwM1FzK01Xcll1TUtKdlZp?=
+ =?utf-8?B?c3o1Y1pMVmN1dHNzU2psaWhPNWwyK1ZHUG1qYlZzcWpvR3BiY2xsaFlOZkZI?=
+ =?utf-8?B?NjdWTVg0VkZjYitGK3pZSU5RMEtHRFZtQjkxN2NIeVhHbWtMMkJtZDNWd25p?=
+ =?utf-8?B?eWZPSHkzcFhnayt2SkNiZnVscURHNUhEZ0xYNzA3Yk5MaXo1WFRDVC9DQkt6?=
+ =?utf-8?B?eHJBL0lTa1loNGVydHM0OVBtNnlPQ0JKbStYd2d4dzRJaW0xMCtGTE9rVUVT?=
+ =?utf-8?B?VW1WWHBzQjhvUkU2QU5zKzE5YklJY1JIOXA2TUVDSU1LMnA3SkRFY1VpU3Q0?=
+ =?utf-8?B?dHJseWtuVmtCQXlNUjZHMHJhTDBJOTVNQnRDT3Y5NldBMDhvUnVqMzJVZHRj?=
+ =?utf-8?B?ejVadWFPdG1wN3kwZWRpenNvT2tBSDAwK3Z0UExSRGgycjJPU2xSRzAyMXBo?=
+ =?utf-8?B?eUJVNVYxam4wU0lNanVvaUh6NHBqaHFpeUY0bjNRUlVTWmZaN3FBTVVBeGxq?=
+ =?utf-8?B?cHlJM1ZPZVd6U2hldHZXWUQyY3JKUkRaaW40ZzZJTlBqczR6N2hYS2FmSjdL?=
+ =?utf-8?B?K0FKUmNxYVNQNnRxUWZoSDBYV05sY0UvM1BsQWZDUXQ0eWFXSWZZcWNkMnFm?=
+ =?utf-8?B?RWh4L2taV1VkQTRTQmhIbElxWmJpZzdkdjQ2VFdrSUY4aFNpdXhwWXNiazM2?=
+ =?utf-8?B?bksxT0VjRXBuRE9NNEtYVGdzS0VwRy9HRWx2aVU3Q0VUaDVFcUxGSi8xN2tn?=
+ =?utf-8?B?NHFlemtXOTRscGhWcjROWTJqbzZWclR5cXlsWmttQnRYV2xNM3dOcVJ2aEJT?=
+ =?utf-8?B?YnVybGovNFpzZVdzU3MyMW9kVHpCdFlvaDIxWG0zSHl4aW54d25JWEVUVWRW?=
+ =?utf-8?B?SVBHTFl3SFBWaDlLVGI3VCtySVpSVUFnUFlGL0hRbnJ1RVN4SHkzTXZmNkE4?=
+ =?utf-8?B?L2dIc1JSR3pvTGFTTFcxT3Bpc2gyNS9tZi80dXF3bTVXUG5waGVxSzBPa0hz?=
+ =?utf-8?B?U2Q5R1hBajBWeU5lVjJocm14MGJqTzBmZHNaTmYwL1djTWRsTWRjbGQ5N2NN?=
+ =?utf-8?B?Ynl1YUlOMU91QjZySWVHYW1rcVVxRmxKNGMwWnN5Y3Z0N2w0T084QWdHT1J5?=
+ =?utf-8?B?Rk1JMEZYTFh3RjkwOWRIZURKc1ltRjNzd1NZbVNINXFRSUVzU0JiVzBlaEU3?=
+ =?utf-8?B?MzduU1dMZnhSL0VJN0RsNHRPQlFrWGdRa3lDcDhDeDlhRE5hek5mbjFYYUhw?=
+ =?utf-8?B?c1AvRE56d3JDTWNSSXFqZm11WlZVcjFEdWF6TTNRK1g1d3RLVEF0SFFzRTB5?=
+ =?utf-8?B?VXhERFBFTmM2cFZaUlBMdUVRVVZyK3lRZUthR0hnZjdNcXhvYVRvU2tHeno1?=
+ =?utf-8?B?bkJzWjBqYlRpWElCd1lrdCthMlhCWWFJWGdFUHJIOUJRc0JVaC9ZbXlDREFo?=
+ =?utf-8?B?eXlsNk9EK3pERG9EN2tUckt3SFE2WWpVREN2b0gyaHN6TktEMnJ5b3ZXQWZJ?=
+ =?utf-8?B?SUR2OXNnSXZPVW5WSmZzLzdyQXZWdm95ZXRhMVFUS3BnVXQvR0ErQjc2WFV5?=
+ =?utf-8?B?bGNRY2dzejBraFlEcFlpaWVjSis1VzY0SGUvc1RXSFhvSjZ4RlZJcmh3YWJE?=
+ =?utf-8?B?TDdpVWtITFpvUENDc1NPdURucW1udklreHVyQW9tWE0zM0JpYUk3cys2WVlq?=
+ =?utf-8?B?eXhwWmFiWGU1dmtHRFdBVzZWZ1hZMUo5d2svazV4NFh6UnNSenJIUFh5clds?=
+ =?utf-8?B?Z21iSnA0TDFoTHNkS005MHoyNHlLWTRWbGcvZ0RSamZ3cGF0cWgxYmEvRWxP?=
+ =?utf-8?B?TEJTREk5dXh2MkdWN244NE5lTTlkNmZaQ2NZY0ZTTmdSeVBSVHUwU0k0c2Rm?=
+ =?utf-8?Q?Dz/rC2whbj2XA8sxpwtm5bX4g?=
+X-OriginatorOrg: solid-run.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 59aa3144-c3d1-4b32-64f0-08dc9c3a7fd1
+X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB7586.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Jul 2024 15:03:44.6920
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: a4a8aaf3-fd27-4e27-add2-604707ce5b82
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: cWDAgphBDHtgT3Ir2q56VOuhWur5NPIw9mY7WA/cGFj3oEi/2EPutsvQukA2X4gjwQC/5xJYWmYsLGDmndqQLQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB9928
 
-On Fri Jun 28, 2024 at 8:32 PM CEST, Vikram Sharma wrote:
-> SC7280 is a Qualcomm SoC. This series adds support to
-> bring up the CSIPHY, CSID, VFE/RDI interfaces in SC7280.
->
-> SC7280 provides
->
-> - 3 x VFE, 3 RDI per VFE
-> - 2 x VFE Lite, 4 RDI per VFE
-> - 3 x CSID
-> - 2 x CSID Lite
-> - 5 x CSI PHY
->
-> This series is rebased based on=EF=BC=9A
-> https://lore.kernel.org/linux-arm-msm/20240522154659.510-1-quic_grosikop@=
-quicinc.com/
->
-> The changes are verified on SC7280 qcs6490-rb3gen2 board, the base dts fo=
-r qcs6490-rb3gen2
-> is:
-> https://lore.kernel.org/all/20231103184655.23555-1-quic_kbajaj@quicinc.co=
-m/
+SolidRun CN9130 SoM is a mostly pin-comptible replacement for Armada 388
+SoM used in Clearfog and Clearfog Pro boards.
 
-Hi Vikram,
+1. Add new binding for compatible strings closely matching the original.
 
-Thanks for sending this patch!
+2. Add device-tree includes for SoM and carrier shared design.
 
-I just tried this on QCM6490 Fairphone 5 smartphone but unfortunately
-during probe something is not quite right.
+3. Add device-tree for both Clearfog Base and Pro.
 
-[   99.531855] qcom-camss acaf000.camss: Adding to iommu group 11
-[   99.533180] ------------[ cut here ]------------
-[   99.533187] qcom-camss acaf000.camss: Error: CSID depends on VFE/IFE dev=
-ice ops!
-[   99.533219] WARNING: CPU: 2 PID: 6902 at drivers/media/platform/qcom/cam=
-ss/camss-csid.c:1024 msm_csid_subdev_init+0x41c/0x460 [qcom_camss]
-[   99.533248] Modules linked in: qcom_camss(+) videobuf2_dma_sg videobuf2_=
-memops videobuf2_v4l2 videobuf2_common
-[   99.533266] CPU: 2 PID: 6902 Comm: modprobe Not tainted 6.10.0-rc5-00087=
--g1dd25cd60c69 #138
-[   99.533272] Hardware name: Fairphone 5 (DT)
-[   99.533276] pstate: 60400005 (nZCv daif +PAN -UAO -TCO -DIT -SSBS BTYPE=
-=3D--)
-[   99.533281] pc : msm_csid_subdev_init+0x41c/0x460 [qcom_camss]
-[   99.533301] lr : msm_csid_subdev_init+0x41c/0x460 [qcom_camss]
-[   99.533321] sp : ffff80008575b760
-[   99.533324] x29: ffff80008575b760 x28: ffffae85fd7685d8 x27: ffff8000857=
-5bca8
-[   99.533334] x26: 0000000000002c28 x25: 0000000000000000 x24: ffff307e4c4=
-8a080
-[   99.533343] x23: ffff307e46876080 x22: 0000000000000000 x21: ffff307e40b=
-dac10
-[   99.533352] x20: ffff307e46876080 x19: 0000000000000000 x18: fffffffffff=
-ed520
-[   99.533361] x17: 2065636976656420 x16: 4546492f45465620 x15: 6e6f2073646=
-e6570
-[   99.533369] x14: ffffae865b46dad0 x13: 2173706f20656369 x12: 76656420454=
-6492f
-[   99.533377] x11: ffffae865b46dad0 x10: 00000000000002d3 x9 : ffffae865b4=
-c5ad0
-[   99.533386] x8 : 0000000000017fe8 x7 : 00000000fffff000 x6 : ffffae865b4=
-c5ad0
-[   99.533394] x5 : ffff307fb6f83848 x4 : 0000000000000000 x3 : ffff81f95bd=
-4d000
-[   99.533402] x2 : 0000000000000000 x1 : 0000000000000000 x0 : ffff307e4df=
-e9000
-[   99.533412] Call trace:
-[   99.533415]  msm_csid_subdev_init+0x41c/0x460 [qcom_camss]
-[   99.533435]  camss_probe+0x310/0x998 [qcom_camss]
-[   99.533454]  platform_probe+0x68/0xe0
-[   99.533465]  really_probe+0xbc/0x2c0
-[   99.533471]  __driver_probe_device+0x78/0x120
-[   99.533479]  driver_probe_device+0x3c/0x160
-[   99.533485]  __driver_attach+0x90/0x1a0
-[   99.533490]  bus_for_each_dev+0x7c/0xf0
-[   99.533497]  driver_attach+0x24/0x30
-[   99.533503]  bus_add_driver+0xe4/0x208
-[   99.533509]  driver_register+0x68/0x124
-[   99.533514]  __platform_driver_register+0x28/0x40
-[   99.533521]  qcom_camss_driver_init+0x20/0x1000 [qcom_camss]
-[   99.533540]  do_one_initcall+0x60/0x1d4
-[   99.533547]  do_init_module+0x5c/0x21c
-[   99.533555]  load_module+0x18b0/0x1e40
-[   99.533562]  init_module_from_file+0x88/0xcc
-[   99.533568]  __arm64_sys_finit_module+0x174/0x340
-[   99.533575]  invoke_syscall+0x48/0x10c
-[   99.533582]  el0_svc_common.constprop.0+0x40/0xe0
-[   99.533588]  do_el0_svc+0x1c/0x34
-[   99.533594]  el0_svc+0x34/0xe0
-[   99.533602]  el0t_64_sync_handler+0x120/0x12c
-[   99.533608]  el0t_64_sync+0x190/0x194
-[   99.533613] ---[ end trace 0000000000000000 ]---
-[   99.533619] qcom-camss acaf000.camss: Failed to init csid0 sub-device: -=
-22
-[   99.533828] qcom-camss acaf000.camss: probe with driver qcom-camss faile=
-d with error -22
+While dtbs_check is happy with LED descriptions behind dsa switch,
+functionally they require supporting code by Andrew Lunn:
+https://lore.kernel.org/r/20240401-v6-8-0-net-next-mv88e6xxx-leds-v4-v3-0-221b3fa55f78@lunn.ch
 
-My tree is based on 6.10-rc5 plus v4 of:
-https://lore.kernel.org/linux-arm-msm/20240522154659.510-1-quic_grosikop@qu=
-icinc.com/
-plus your v1 series.
+NOTICE IN CASE ANYBODY WANTS TO SELF-UPGRADE:
+CN9130 SoM has a different footprint from Armada 388 SoM.
+Components on the carrier board below the SoM may collide causing
+damage, such as on Clearfog Base.
 
-And then some extra patches for my device but nothing touching camss
-driver.
+Signed-off-by: Josua Mayer <josua@solid-run.com>
+---
+Changes in v7:
+- dropped dt-bindings for usb phy and adc which were picked into their
+  respective trees
+- Link to v6: https://lore.kernel.org/r/20240602-cn9130-som-v6-0-89393e86d4c7@solid-run.com
 
-Am I missing something?
+Changes in v6:
+- add device-tree for cn9132 clearfog and CEX-7 module
+- add dt compatible for tla2021 adc
+  --> I don't plan to submit a driver patch because I can't test it
+  --> might share untested patch
+- add dt property for swapping d+-/d- on cp110 utmi phy
+  --> I plan to submit a driver patch, already prototyped
+- removed duplicate node reference / status=okay for cp0_utmi from
+  cn9131-cf-solidwan.dts
+- rebased on 6.10-rc1
+- Link to v5: https://lore.kernel.org/r/20240509-cn9130-som-v5-0-95493eb5c79d@solid-run.com
 
-Regards
-Luca
+Changes in v5:
+- replaced *-gpio properties with preferred *-gpios
+  (Reported-by: robh@kernel.org)
+- removed fixed-regulator regulator-oc-protection-microamp properties
+  This property is intended to set a configurable over-current limit to
+  a particular value. The physical component however is not
+  configurable, remove the property.
+- kept all review tags since the changes were minor, hope that is okay
+  with everybody.
+- Link to v4: https://lore.kernel.org/r/20240502-cn9130-som-v4-0-0a2e2f1c70d8@solid-run.com
 
->
-> Suresh Vankadara (2):
-> media: qcom: camss: support for camss driver on sc7280
-> arm64: dts: qcom: sc7280: Add support for camss
->
-> Trishansh Bhardwaj (2):
-> media: qcom: camss: support for camss driver on sc7280
-> arm64: dts: qcom: sc7280: Add support for camss
->
-> Vikram Sharma (1):
-> media: dt-bindings: media: camss: Add qcom,sc7280-camss binding
->
-> Hariram Purshotam (3):
-> i2c: Enable IMX577 camera sensor for qcm6490
-> arm64: dts: qcom: qcs6490-rb3gen2: Enable IMX577 camera sensor
-> arm64: dts: qcom: sc7280: Add IMX577 camera sensor
->
-> Signed-off-by: Vikram Sharma <quic_vikramsa@quicinc.com>
-> ---
-> Suresh Vankadara (1):
->       media: qcom: camss: support for camss driver for sc7280
->
-> Vikram Sharma (5):
->       media: dt-bindings: media: camss: Add qcom,sc7280-camss binding
->       arm64: dts: qcom: sc7280: Add support for camss
->       arm64: dts: qcom: sc7280: Add IMX577 camera sensor
->       arm64: dts: qcom: qcs6490-rb3gen2: Enable IMX577 camera sensor
->       i2c: Enable IMX577 camera sensor for qcm6490
->
->  .../bindings/media/qcom,sc7280-camss.yaml          | 477 +++++++++++++++=
-++++++
->  arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts       |  67 +++
->  arch/arm64/boot/dts/qcom/sc7280.dtsi               | 215 ++++++++++
->  drivers/i2c/busses/i2c-qcom-cci.c                  |   1 +
->  drivers/media/platform/qcom/camss/camss-csid.c     |  16 +-
->  .../platform/qcom/camss/camss-csiphy-3ph-1-0.c     |   2 +
->  drivers/media/platform/qcom/camss/camss-vfe.c      |   2 +
->  drivers/media/platform/qcom/camss/camss.c          | 340 +++++++++++++++
->  drivers/media/platform/qcom/camss/camss.h          |   2 +
->  9 files changed, 1119 insertions(+), 3 deletions(-)
-> ---
-> base-commit: 18eeb2d92baca167809cd5d48eb60e0a5c036d51
-> change-id: 20240627-camss_first_post_linux_next-f4163c90093c
->
-> Best regards,
+Changes in v4:
+- Picked up reviewed-by tags by Andrew Lunn.
+- fixed a typo and changed 3-line comment into single-line comment
+  for clearfog-base/-pro dts, but kept review tags since change was
+  minor.
+- Updated SFP led labels to use "sfp?:colour" without "color" property,
+  to avoid duplicate labels while reflecting they are each dual-colour.
+- Link to v3: https://lore.kernel.org/r/20240414-cn9130-som-v3-0-350a67d44e0a@solid-run.com
+
+Changes in v3:
+- picked up acked-by for dt-bindings
+- skipped acked-by for dts because additional changes were made:
+  - moved legacy netdev aliases to carrier dts
+  - fix status property style errors
+  - add pinctrl for secondary spi chip-select on mikrobus header (& som)
+  - specify spi bus frequency limits for som
+- Added CN9131 SolidWAN board
+- Link to v2: https://lore.kernel.org/r/20240404-cn9130-som-v2-0-3af2229c7d2d@solid-run.com
+
+Changes in v2:
+- rewrote dt bindings dropping unnecessary compatibles
+  (Reported-By: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>)
+- added bindings for two additional boards (cn9131/9132)
+  support planned for the coming weeks, mostly serves
+  illustrational purposes, to understand cn913x variants
+- cf-pro: add description for LEDs behind DSA switch
+- cf-base: add description for LEDs behind PHYs
+  (Reported-By: Andrew Lunn <andrew@lunn.ch>)
+- Link to v1: https://lore.kernel.org/r/20240321-cn9130-som-v1-0-711127a409ae@solid-run.com
+
+---
+Josua Mayer (5):
+      dt-bindings: arm64: marvell: add solidrun cn9130 som based boards
+      dt-bindings: arm64: marvell: add solidrun cn9132 CEX-7 evaluation board
+      arm64: dts: add description for solidrun cn9130 som and clearfog boards
+      arm64: dts: add description for solidrun cn9131 solidwan board
+      arm64: dts: add description for solidrun cn9132 cex7 module and clearfog board
+
+ .../bindings/arm/marvell/armada-7k-8k.yaml         |  18 +
+ arch/arm64/boot/dts/marvell/Makefile               |   4 +
+ arch/arm64/boot/dts/marvell/cn9130-cf-base.dts     | 178 ++++++
+ arch/arm64/boot/dts/marvell/cn9130-cf-pro.dts      | 375 +++++++++++
+ arch/arm64/boot/dts/marvell/cn9130-cf.dtsi         | 197 ++++++
+ arch/arm64/boot/dts/marvell/cn9130-sr-som.dtsi     | 160 +++++
+ arch/arm64/boot/dts/marvell/cn9131-cf-solidwan.dts | 637 ++++++++++++++++++
+ arch/arm64/boot/dts/marvell/cn9132-clearfog.dts    | 673 +++++++++++++++++++
+ arch/arm64/boot/dts/marvell/cn9132-sr-cex7.dtsi    | 712 +++++++++++++++++++++
+ 9 files changed, 2954 insertions(+)
+---
+base-commit: 1613e604df0cd359cf2a7fbd9be7a0bcfacfabd0
+change-id: 20240318-cn9130-som-848e86acb0ac
+
+Sincerely,
+-- 
+Josua Mayer <josua@solid-run.com>
 
 
