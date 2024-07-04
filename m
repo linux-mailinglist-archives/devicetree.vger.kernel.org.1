@@ -1,60 +1,67 @@
-Return-Path: <devicetree+bounces-83250-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83253-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73322927B04
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 18:17:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32BE2927B1D
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 18:27:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2AE55284C36
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 16:17:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A7C601F23545
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 16:27:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA8141B29B5;
-	Thu,  4 Jul 2024 16:17:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB41D1B3730;
+	Thu,  4 Jul 2024 16:27:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P+WVeMF+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OrDUa8n+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B2B91AEFFF;
-	Thu,  4 Jul 2024 16:17:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC4001B3721;
+	Thu,  4 Jul 2024 16:27:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720109864; cv=none; b=KrWdZWFTOq4rl3B4w1nTrJLrntQoFGufo77AmgvzzNEbBtCb/YsaI7Hmsbuyo0epSoI1naHXgIPt5D6iXA8lxQSaLydMWyN9rVtpWGuS/3npvwqRWYQqk4mcGV4O+4ck37bAlTvzwGrvEPmvV7l4POC+6pnMyH32GfIcSLrTrgs=
+	t=1720110421; cv=none; b=PbNm9/Z8kGPxnQJiGrcBy1CX+Q5kjsQno6U9SvxGDHvW28oS+vFnZD35x3U8XocBQwaRhxBNkSBalXDVGbkZCCc6Ekwm7sddPvAi62FkANnpDBnYujRYhCXJDd+BGKVZ/BDE1g9NaR5LKTgZseRaW8bOURepgjWJRGaKYUDlJaQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720109864; c=relaxed/simple;
-	bh=pcYwbjCfgj34IXSyuEgh8UhDZzrsWrKWN//jUhn90xY=;
+	s=arc-20240116; t=1720110421; c=relaxed/simple;
+	bh=OJmz8+6ALNKIZuZiA3L7XZYVfl4eHNDpzxBW8RqwYCw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pjjv7f9uIoRnHOT224n8ARG9zAdbKa89SIGkvypC1G8uGMUvM5uMTnx/uCRQX3qpaTtr2dEjmxVTldKurjKVptXSLbw+37dOrV2obVx7DUW2UABWUoAhc26CZrV786vG2FQQO6E4q4PnLaGYmGK19h+yVvgY7Q8AD4xv7J2pab4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P+WVeMF+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14181C3277B;
-	Thu,  4 Jul 2024 16:17:40 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=m6woeuwyFGFcOqQ9PAV3zEWXU3+G9/Q7p7PZhecopEvDNG+wRSMnriyUgHc2VDZAw0DI2kC44GOSd+Jg1Tcq5dLI5x9JX90lwF7+GEAFaLVyumOCc6dpHsThYaMpYLIudz68HW7nFI4UE4bUYqsNKszlP6VwYMbnjYpYqx9gAAw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OrDUa8n+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6CDFDC3277B;
+	Thu,  4 Jul 2024 16:26:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720109864;
-	bh=pcYwbjCfgj34IXSyuEgh8UhDZzrsWrKWN//jUhn90xY=;
+	s=k20201202; t=1720110421;
+	bh=OJmz8+6ALNKIZuZiA3L7XZYVfl4eHNDpzxBW8RqwYCw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=P+WVeMF+NYPDsHpwlhbI6h6KdYEeIqGROvpXW+rJP51I+9O6hvRGNTTrmjZzFPxRl
-	 ggcDM2r8PlFDZkwQvJMFpcszBkwn1py/KkcSxlQGsRw4EehK2eskO58UXIU6tNTkTq
-	 LPmIlOMACdI81J7aBeKBB/HEcuf+SL0lMdGepAL42WU41BqnHd34MEsmlfxBKRLgww
-	 nFEoV5LKyZj5u0yRHlc8HEhbVj6WUFfEjoIUbTNxDKUmcBttS3RwCzBOo70LTB+Qvj
-	 rZOwfKlmMGP0h3YS+1G2Sgv7w3RfQ6+Kz9Pb8pJ97OvYvGDiJWhL70DTRGJ3PHnJbe
-	 phgWZH51pUzKA==
-Date: Thu, 4 Jul 2024 17:17:38 +0100
+	b=OrDUa8n+RnwzJxAa0YTpcTYvjdnrMog/75aNlJNG5oj0fBL9j91MXxE1+Q1mRDAb6
+	 Yj8LuH/zQXwKEh3njCx7Q1x9MSPQDOGz68fSYbliJTtpC8RBC63uzqy+URgqkNaDgJ
+	 8bgq+SeoubL1oGEb1DLUb1fttr8/CwKzK613L/q3R1SvZL0Fw/RCqmkGVfxD4aR2qp
+	 8lXGA203OPoOdIvWqpGuiHFUtjvAOx1BbcUscY/IpQ9wB63AO+FMkFGDrD7qdzOGyo
+	 Ys4HNl26qcwvstAg2XaOUhkUF+fqt+bjTIQz5UD/TqerHeehIO2Mn88M7V4F7zv1eP
+	 IGeLbBQg4Xxkg==
+Date: Thu, 4 Jul 2024 17:26:56 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Kamil =?iso-8859-1?Q?Hor=E1k_=282N=29?= <kamilh@axis.com>
-Cc: florian.fainelli@broadcom.com, bcm-kernel-feedback-list@broadcom.com,
-	andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk,
-	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v10 3/4] dt-bindings: ethernet-phy: add optional brr-mode
- flag
-Message-ID: <20240704-snitch-national-0ac33afdfb68@spud>
-References: <20240704140413.2797199-1-kamilh@axis.com>
- <20240704140413.2797199-4-kamilh@axis.com>
+To: Julien Stephan <jstephan@baylibre.com>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Andy Hsieh <andy.hsieh@mediatek.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	Louis Kuo <louis.kuo@mediatek.com>,
+	Phi-Bang Nguyen <pnguyen@baylibre.com>
+Subject: Re: [PATCH v5 1/5] dt-bindings: media: add mediatek ISP3.0 sensor
+ interface
+Message-ID: <20240704-catcall-stubbly-9258b056e42e@spud>
+References: <20240704-add-mtk-isp-3-0-support-v5-0-bfccccc5ec21@baylibre.com>
+ <20240704-add-mtk-isp-3-0-support-v5-1-bfccccc5ec21@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,71 +69,263 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="akwRYHEp/6rrMnoh"
+	protocol="application/pgp-signature"; boundary="voVV9R7vNjAajsoC"
 Content-Disposition: inline
-In-Reply-To: <20240704140413.2797199-4-kamilh@axis.com>
+In-Reply-To: <20240704-add-mtk-isp-3-0-support-v5-1-bfccccc5ec21@baylibre.com>
 
 
---akwRYHEp/6rrMnoh
-Content-Type: text/plain; charset=iso-8859-1
+--voVV9R7vNjAajsoC
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jul 04, 2024 at 04:04:12PM +0200, Kamil Hor=E1k (2N) wrote:
-> There is a group of PHY chips supporting BroadR-Reach link modes in
-> a manner allowing for more or less identical register usage as standard
-> Clause 22 PHY.
-> These chips support standard Ethernet link modes as well, however, the
-> circuitry is mutually exclusive and cannot be auto-detected.
-> The link modes in question are 100Base-T1 as defined in IEEE802.3bw,
-> based on Broadcom's 1BR-100 link mode, and newly defined 10Base-T1BRR
-> (1BR-10 in Broadcom documents).
+On Thu, Jul 04, 2024 at 03:36:40PM +0200, Julien Stephan wrote:
+> From: Louis Kuo <louis.kuo@mediatek.com>
 >=20
-> Add optional brr-mode flag to switch the PHY to BroadR-Reach mode.
+> This adds the bindings, for the mediatek ISP3.0 SENINF module embedded in
+> some Mediatek SoC, such as the mt8365
 >=20
-> Signed-off-by: Kamil Hor=E1k (2N) <kamilh@axis.com>
+> Signed-off-by: Louis Kuo <louis.kuo@mediatek.com>
+> Signed-off-by: Phi-Bang Nguyen <pnguyen@baylibre.com>
+> Link: https://lore.kernel.org/r/20230807094940.329165-2-jstephan@baylibre=
+=2Ecom
+> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Signed-off-by: Julien Stephan <jstephan@baylibre.com>
 
-Where did the tags go? There's no mention of why they were dropped.
+I'm really confused by the link tag here. At first glance this looked
+like you were sending out something that had been applied by Laurent,
+given the Link, Rb and SoB from him. Why does he have a SoB on this
+patch? What did Phi-Bang Nguyen do with this patch, and should they have
+a Co-developed-by tag?
 
 > ---
->  Documentation/devicetree/bindings/net/ethernet-phy.yaml | 8 ++++++++
->  1 file changed, 8 insertions(+)
+>  .../bindings/media/mediatek,mt8365-seninf.yaml     | 275 +++++++++++++++=
+++++++
+>  MAINTAINERS                                        |   7 +
+>  2 files changed, 282 insertions(+)
 >=20
-> diff --git a/Documentation/devicetree/bindings/net/ethernet-phy.yaml b/Do=
-cumentation/devicetree/bindings/net/ethernet-phy.yaml
-> index 8fb2a6ee7e5b..349ae72ebf42 100644
-> --- a/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-> +++ b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-> @@ -93,6 +93,14 @@ properties:
->        the turn around line low at end of the control phase of the
->        MDIO transaction.
-> =20
-> +  brr-mode:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description:
-> +      If set, indicates the network cable interface is alternative one as
-> +      defined in the BroadR-Reach link mode specification under 1BR-100 =
-and
-> +      1BR-10 names. The driver needs to configure the PHY to operate in
-> +      BroadR-Reach mode.
+> diff --git a/Documentation/devicetree/bindings/media/mediatek,mt8365-seni=
+nf.yaml b/Documentation/devicetree/bindings/media/mediatek,mt8365-seninf.ya=
+ml
+> new file mode 100644
+> index 000000000000..aeabea9f956a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/mediatek,mt8365-seninf.yaml
+> @@ -0,0 +1,275 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (c) 2023 MediaTek, BayLibre
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/mediatek,mt8365-seninf.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek Sensor Interface 3.0
+> +
+> +maintainers:
+> +  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> +  - Julien Stephan <jstephan@baylibre.com>
+> +  - Andy Hsieh <andy.hsieh@mediatek.com>
+> +
+> +description:
+> +  The ISP3.0 SENINF is the CSI-2 and parallel camera sensor interface fo=
+und in
+> +  multiple MediaTek SoCs. It can support up to three physical CSI-2 inpu=
+t ports,
+> +  configured in DPHY (2 or 4 data lanes) or CPHY depending on the SoC.
+> +  On the output side, SENINF can be connected either to CAMSV instance or
+> +  to the internal ISP. CAMSV is used to bypass the internal ISP processi=
+ng
+> +  in order to connect either an external ISP, or a sensor (RAW, YUV).
+> +
+> +properties:
+> +  compatible:
+> +    const: mediatek,mt8365-seninf
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: Seninf camsys clock
+> +      - description: Seninf top mux clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: camsys
+> +      - const: top_mux
+> +
+> +  phys: true
+> +
+> +  phy-names: true
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        unevaluatedProperties: false
+> +        description: CSI0 or CSI0A port
+> +
+> +        properties:
+> +          endpoint:
+> +            $ref: video-interfaces.yaml#
+> +            unevaluatedProperties: false
+> +
+> +            properties:
+> +              clock-lanes:
+> +                maxItems: 1
+> +              data-lanes:
+> +                minItems: 1
+> +                maxItems: 4
+> +
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        unevaluatedProperties: false
+> +        description: CSI1 port
+> +
+> +        properties:
+> +          endpoint:
+> +            $ref: video-interfaces.yaml#
+> +            unevaluatedProperties: false
+> +
+> +            properties:
+> +              clock-lanes:
+> +                maxItems: 1
+> +              data-lanes:
+> +                minItems: 1
+> +                maxItems: 4
+> +
+> +      port@2:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        unevaluatedProperties: false
+> +        description: CSI2 port
+> +
+> +        properties:
+> +          endpoint:
+> +            $ref: video-interfaces.yaml#
+> +            unevaluatedProperties: false
+> +
+> +            properties:
+> +              clock-lanes:
+> +                maxItems: 1
+> +              data-lanes:
+> +                minItems: 1
+> +                maxItems: 4
+> +
+> +      port@3:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        unevaluatedProperties: false
+> +        description: CSI0B port
+> +
+> +        properties:
+> +          endpoint:
+> +            $ref: video-interfaces.yaml#
+> +            unevaluatedProperties: false
+> +
+> +            properties:
+> +              clock-lanes:
+> +                maxItems: 1
+> +              data-lanes:
+> +                minItems: 1
+> +                maxItems: 2
+> +
+> +      port@4:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: connection point for cam0
+> +
+> +      port@5:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: connection point for cam1
+> +
+> +      port@6:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: connection point for camsv0
+> +
+> +      port@7:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: connection point for camsv1
+> +
+> +      port@8:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: connection point for camsv2
+> +
+> +      port@9:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: connection point for camsv3
+> +
+> +    required:
+> +      - port@0
+> +      - port@1
+> +      - port@2
+> +      - port@3
+> +      - port@4
+> +      - port@5
+> +      - port@6
+> +      - port@7
+> +      - port@8
+> +      - port@9
+> +
+> +required:
+> +  - compatible
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +  - power-domains
+> +  - ports
+> +
+> +additionalProperties: false
+> +
+> +if:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        const: mediatek,mt8365-seninf
 
-I find this second sentence unclear. Does the driver need to do
-configure the phy because this mode is not enabled by default or because
-the device will not work outside of this mode.
+The binding supports only a single compatible, why is this complexity
+required? I don't see other devices being added in this series.
 
 Cheers,
 Conor.
 
---akwRYHEp/6rrMnoh
+> +then:
+> +  properties:
+> +    phys:
+> +      minItems: 2
+> +      maxItems: 2
+> +      description:
+> +        phandle to the PHYs connected to CSI0/A, CSI1, CSI0B
+> +
+> +    phy-names:
+> +      description:
+> +        list of PHYs names
+> +      minItems: 2
+> +      maxItems: 2
+> +      items:
+> +        type: string
+> +        enum:
+> +          - csi0
+> +          - csi1
+> +          - csi0b
+> +      uniqueItems: true
+
+--voVV9R7vNjAajsoC
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZobLIgAKCRB4tDGHoIJi
-0khVAQDaogE6E7Bmwygq9kfblzI9ZEadOk4sGBJj3y6H4ltyHwEAwOOszI49sk1m
-0zPPtlKlL5GBNerNOZGS74x2NHoW6Ak=
-=pxKj
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZobNUAAKCRB4tDGHoIJi
+0pbHAP9oyb3VVfiOce+y/RlLWtTgU60hGLandmi6ztVG/wGCjgEA7nzUqczM/a/v
+53cqRK4JMbZsvZhR3V+fZ+JdSynKGgI=
+=vYDF
 -----END PGP SIGNATURE-----
 
---akwRYHEp/6rrMnoh--
+--voVV9R7vNjAajsoC--
 
