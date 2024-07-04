@@ -1,215 +1,162 @@
-Return-Path: <devicetree+bounces-83264-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83265-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65C79927B7B
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 18:56:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63BAF927B80
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 18:59:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 16768281A70
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 16:56:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D9F391F23833
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 16:59:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C515E1B29CE;
-	Thu,  4 Jul 2024 16:56:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE3931B373F;
+	Thu,  4 Jul 2024 16:59:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="H+PuYr6z"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DfDIMo5B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61F6717BA0;
-	Thu,  4 Jul 2024 16:56:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3855D1B29DA;
+	Thu,  4 Jul 2024 16:59:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720112169; cv=none; b=eymN85jjTwRBtIe+sf8+UMVMWmbzjNHnZPwMAefF/qj/jubvdU/J+mqEWun2oBP90o+CoBom2+es9fKUtMjr5gxmAcTW6+jAxGLDZNEF5S300Xho3+N4BqejMmRcjtyM/Rvh52uQle7mnaw2Cc4kvtxTDSRb1W5Isp3EBaqzA0w=
+	t=1720112365; cv=none; b=R0XQQU5yQKuyFOnk4iqUTOlv19TW/dH32ox7wpEn9UuIxTS2bEJWpJviEdKD7VXvL2msnGKhKd9Ihf95CeOrz2GYSBCzkINrj0eroZt89vTlmXa8ntWg8WqqwKHxa+NpvTI4Z4m2yqQaQZoAAbYSlTOyxgqN+mY/nJtJGukf3c8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720112169; c=relaxed/simple;
-	bh=eSTlpVtR37dGssDRdxSAV+2fxA5MDMp9eHBgulbxRv4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=cN1pIMNkcrozMJrLHNr0SL72Dpp13Yi4z9MIrMpNtcQ117EcZlOlEy/CMwVIzFKuAC7lX3QHx9Wh6s5jUeOm52qNipijqXSgoG9gL6pBtbXfrE4lREoGqj/O/eXEKKAwAnW537DeN1MaDQWT7Vq+BxmkxZaMkcRxvNE5++LGtW8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=H+PuYr6z; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 464GtlYA034530;
-	Thu, 4 Jul 2024 11:55:47 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1720112147;
-	bh=i8mmMS4YeSimO0/7O080Gbc7oU1oizPIJEm45Ldk4J8=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=H+PuYr6zPrOcRdmSYvX2E9JK6xse7jNf0xJRuAERpnkXooHMtvNxO/2XsMfhZ5tHw
-	 oyt9DFiLjyO4fqniqfpugu/WqiuzIQnQy0OXdEI6OlB7d+RB0O2YLe4ZKi6zy3mZGG
-	 /QgYpsOnR/qlWNRERYobBGyCZDxTLse5leM4d0D4=
-Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 464Gtl9i011459
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 4 Jul 2024 11:55:47 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 4
- Jul 2024 11:55:46 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 4 Jul 2024 11:55:47 -0500
-Received: from [10.249.42.149] ([10.249.42.149])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 464Gtk8g092779;
-	Thu, 4 Jul 2024 11:55:46 -0500
-Message-ID: <edfac25c-d708-4a55-a9bb-97d329877444@ti.com>
-Date: Thu, 4 Jul 2024 11:55:45 -0500
+	s=arc-20240116; t=1720112365; c=relaxed/simple;
+	bh=bvh4PuQIuYwyGjq205P+pImBCUy091RMzaW7C+y2JT0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZrUNK5eU0ZFNUvg5Us6tt8vCOlFhb68OPoGh34rS/8VqtOl4BMbuArdhHiygQmbbUIlTAgLDvoMaCtAilTcHkljwjZJfXhiZq0gb3mrN8uzGHCPqmiQHPMCfbvZ4jg/Z7vW5TpRT/n7yZ8VnaI6WHgQdrIYO6n9C2mIyIt9wT+s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DfDIMo5B; arc=none smtp.client-ip=209.85.214.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-1f9de13d6baso5412155ad.2;
+        Thu, 04 Jul 2024 09:59:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1720112363; x=1720717163; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=hbx+rexi+bkisDvN1JHt83FrZQeG/TdSXxtwh8uu4R4=;
+        b=DfDIMo5BNd8DArGrFNTpCs8DElwjVWDjo1UnNf7mzHGL29EjHsZFVL8CAxGVig7uhD
+         GOm1sAa4JOj/1zwYjHkfBfkCKgksH26z9u9tkD1AI5Y84M2R0Wjqlmum5DqS02Bj9PRQ
+         g+E88PoHJCz3Dm7sfmiGlhhVKzojJdIKTmbkWZ+GD8YiarJtYp/CBxOXHToB5VXG4+3z
+         LqlDvomi9IgxFEMN3SYhyvuYpQ51oJOoJ4guXyjcvc/sKuO06vbvqQYbyulWKIZA/BxW
+         HjyjXlH8Nq0Jho9ZdXc5+4095yBeNr+rUMbQ5Skm6Dgi8zt5TV1qWi+QJf5b3Hh29hiq
+         pRGg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720112363; x=1720717163;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=hbx+rexi+bkisDvN1JHt83FrZQeG/TdSXxtwh8uu4R4=;
+        b=pjUxfXDHjz40kyJ/MTv8Nn9tkrm56AkYEwADhGQ80EOXiXu49Y7s6Xk/6iYeyL0omn
+         djXgi0hkDcS8f4KftQv5GKVEtN45R7BjwT4sl8ImSQmSahYY702TwQPWeOAdQ0OJHA8u
+         FFF7G799Z9CVUQoYjL+hg7FIbS3KQlvvV5DpNaNnRhphDASYScmC6CWuYapLVF0nb4He
+         fMMs6PAvSSZ3bR0OJ3G+inE/CyGISEsVLdYxFL+O67LQXdtW4dsgm3EhUblAQkFwd0JN
+         TPKzzl8ZzRVmOP2cs40/VPprA+PTCwnkZOJfvNDtv8okH8w6qHG+DOBkKD9Gdkx5oBHv
+         3+YQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUPonm81lpyuboBXTY+zmeyDJtsgzc6OWUimn7Ry4w2H45nR9FgwaH8+/0V/fKTBfL4Og0fWuMqLKJ+49kwMmSsLPJ4326NL+ct61JiEmVLJ3sy8vIDhix129TbUN/j7OW6kzriTCgRioLM+pky00HjZx1Tf2qFsJ1eGH1UAvTzsA9QXA==
+X-Gm-Message-State: AOJu0Yy/inGnUVTRuHsL3Nn56E15hohlHD4rIyxq2j5DNLMfGky6OduS
+	s7RMI8lg+J78FvQ1oX0TH9c5kirEVNeyKJL2u5leT2jg3gVXlruG
+X-Google-Smtp-Source: AGHT+IFpNMXcHa+uUusED4LID/clJgWo2VKFAANu9IISFIFSGHyMQF87TT1HKT00VSFY3N8gXegW3A==
+X-Received: by 2002:a17:903:32cb:b0:1fb:1a0f:44d3 with SMTP id d9443c01a7336-1fb33e94f14mr19752315ad.39.1720112363237;
+        Thu, 04 Jul 2024 09:59:23 -0700 (PDT)
+Received: from x1 ([2601:1c2:1802:170:8756:5e46:4951:e2d])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1fb1a596822sm34936475ad.163.2024.07.04.09.59.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 04 Jul 2024 09:59:22 -0700 (PDT)
+Date: Thu, 4 Jul 2024 09:59:20 -0700
+From: Drew Fustini <pdp7pdp7@gmail.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: Kanak Shilledar <kanakshilledar@gmail.com>,
+	Serge Semin <fancer.lancer@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>, Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v2 3/3] riscv: dts: thead: add basic spi node
+Message-ID: <ZobU6K/R3pfHrK9c@x1>
+References: <20240701121355.262259-2-kanakshilledar@gmail.com>
+ <20240701121355.262259-5-kanakshilledar@gmail.com>
+ <20240703-juice-refreeze-62c468a56ea5@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC 3/3] arm64: dts: ti: grove: Add Grove Sunlight Sensor
- overlay
-To: Ayush Singh <ayush@beagleboard.org>, Nishanth Menon <nm@ti.com>,
-        Vignesh
- Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>, Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-        Vaishnav M A <vaishnav@beagleboard.org>,
-        Derek
- Kiernan <derek.kiernan@amd.com>,
-        Dragan Cvetic <dragan.cvetic@amd.com>, Arnd
- Bergmann <arnd@arndb.de>,
-        Michael Walle <mwalle@kernel.org>,
-        Jason Kridner
-	<jkridner@beagleboard.org>,
-        Robert Nelson <robertcnelson@beagleboard.org>,
-        Robert Nelson <robertcnelson@gmail.com>,
-        Ayush Singh
-	<ayushdevel1325@gmail.com>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20240702164403.29067-1-afd@ti.com>
- <20240702164403.29067-4-afd@ti.com>
- <df0f9705-b1e9-4dce-b110-09be540d5e25@beagleboard.org>
-Content-Language: en-US
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <df0f9705-b1e9-4dce-b110-09be540d5e25@beagleboard.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240703-juice-refreeze-62c468a56ea5@spud>
 
-On 7/3/24 9:15 AM, Ayush Singh wrote:
-> On 7/2/24 22:14, Andrew Davis wrote:
+On Wed, Jul 03, 2024 at 03:45:37PM +0100, Conor Dooley wrote:
+> Kanak, Drew,
 > 
->> Add DT overlay for the Grove Sunlight Sensor[0].
->>
->> [0] https://wiki.seeedstudio.com/Grove-Sunlight_Sensor/
->>
->> Signed-off-by: Andrew Davis <afd@ti.com>
->> ---
->>   arch/arm64/boot/dts/ti/Makefile               |  3 ++
->>   .../boot/dts/ti/grove-sunlight-sensor.dtso    | 31 +++++++++++++++++++
->>   2 files changed, 34 insertions(+)
->>   create mode 100644 arch/arm64/boot/dts/ti/grove-sunlight-sensor.dtso
->>
->> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
->> index a859629a6072c..7d1ce7a5d97bc 100644
->> --- a/arch/arm64/boot/dts/ti/Makefile
->> +++ b/arch/arm64/boot/dts/ti/Makefile
->> @@ -8,6 +8,9 @@
->>   # Entries are grouped as per SoC present on the board. Groups are sorted
->>   # alphabetically.
->> +# This needs a better directory location
->> +dtb-$(CONFIG_OF_OVERLAY) += grove-sunlight-sensor.dtbo
->> +
->>   # Boards with AM62x SoC
->>   dtb-$(CONFIG_ARCH_K3) += k3-am625-beagleplay.dtb
->>   dtb-$(CONFIG_ARCH_K3) += k3-am625-beagleplay-csi2-ov5640.dtbo
->> diff --git a/arch/arm64/boot/dts/ti/grove-sunlight-sensor.dtso b/arch/arm64/boot/dts/ti/grove-sunlight-sensor.dtso
->> new file mode 100644
->> index 0000000000000..ab2f102e1f8ab
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/ti/grove-sunlight-sensor.dtso
->> @@ -0,0 +1,31 @@
->> +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
->> +/**
->> + * Grove - Sunlight Sensor v1.0
->> + *
->> + * https://wiki.seeedstudio.com/Grove-Sunlight_Sensor/
->> + *
->> + * Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
->> + */
->> +
->> +/dts-v1/;
->> +/plugin/;
->> +
->> +&GROVE_CONNECTOR {
->> +    status = "okay";
->> +    pinctrl-names = "default";
->> +    pinctrl-0 = <&GROVE_PIN1_MUX_I2C_SCL>,
->> +                <&GROVE_PIN2_MUX_I2C_SDA>;
->> +};
+> On Mon, Jul 01, 2024 at 05:43:54PM +0530, Kanak Shilledar wrote:
+> > created spi0 node with fixed clock. the spi0 node
+> > uses synopsis designware driver and has the following
+> > compatible "snps,dw-apb-ssi". the spi0 node is connected
+> > to a SPI NOR flash pad which is left unpopulated on the back
+> > side of the board.
+> > 
+> > Signed-off-by: Kanak Shilledar <kanakshilledar@gmail.com>
+> > ---
+> > Changes in v2:
+> > - Separated from a single patch file
+> > ---
+> >  .../boot/dts/thead/th1520-beaglev-ahead.dts      |  9 +++++++++
+> >  .../boot/dts/thead/th1520-lichee-module-4a.dtsi  |  4 ++++
+> >  .../riscv/boot/dts/thead/th1520-lichee-pi-4a.dts |  5 +++++
 > 
-> On setting pinctrl in the mikrobus connector, I seem to encounter problem with the SPI driver trying to use the device before the pins are ready. So I think, the pinctrl should probably be defined in the respective i2c, spi, etc nodes instead of connector.
+> Didn't you say there was a flash on one of these two boards?
 > 
-
-Maybe, I originally did that but the issue there is it can overwrite
-any existing pinmux for that IP node. For instance if you add the
-pinmux to a GPIO node, any other users of that GPIO lose their mux.
-
-But you are right, they belong in the IP node. Maybe even in the
-specific consumer device node (si1145@60 in this case).
-
-The general idea with all of this is that if we have a board in a
-static state (with add-ons already attached) we could write a DTS
-that fully describes that steady state. Our challenge is to create
-an overlay that transforms the base board into what we would have
-written in the static case. In the static case we would have added
-the pinmux to the IP node, so that is where it belongs.
-
-The issue then is the overlay mechanism is not complete. We
-can add properties to nodes, and add nodes to nodes, and append
-properties to nodes, but cannot append values to existing properties,
-only replace them completely. This gap in the overlay system will
-prevent a general solution. So I've started to work on adding
-that property appending ability to the overlay system. I should
-have some patches posted against the upstream dtc/libfdt here
-in the next week or so.
-
->> +
->> +&GROVE_PIN1_I2C {
->> +    status = "okay";
->> +    #address-cells = <1>;
->> +    #size-cells = <0>;
->> +
->> +    clock-frequency = <100000>;
->> +
->> +    si1145@60 {
->> +        compatible = "si,si1145";
->> +        reg = <0x60>;
->> +    };
->> +};
+> >  arch/riscv/boot/dts/thead/th1520.dtsi            | 16 ++++++++++++++++
+> >  4 files changed, 34 insertions(+)
+> > 
+> > diff --git a/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts b/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
+> > index d9b4de9e4757..3103b74e0288 100644
+> > --- a/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
+> > +++ b/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
+> > @@ -17,6 +17,7 @@ aliases {
+> >  		gpio1 = &gpio1;
+> >  		gpio2 = &gpio2;
+> >  		gpio3 = &gpio3;
+> > +		spi0 = &spi0;
 > 
+> "spi" would sort after "serial".
 > 
-> I also have question regarding how to define reg property in SPI (chipselect). Ideally, we want to define it relative to the connector pins, but since the SPI device(s) is a child of SPI controller, I am not sure how I can do remapping.
+> >  		serial0 = &uart0;
+> >  		serial1 = &uart1;
+> >  		serial2 = &uart2;
+> > @@ -52,6 +53,10 @@ &sdhci_clk {
+> >  	clock-frequency = <198000000>;
+> >  };
+> >  
+> > +&spi_clk {
+> > +	clock-frequency = <396000000>;
+> > +};
 > 
+> I'm pretty sceptical about adding more of these fixed clocks, rather
+> than waiting for the clock driver. Drew, what do you think? Should we
+> just add one more to your fixup list or would you rather delay? Guess it
+> depends on how long more you think that clock driver is likely to take.
 
-Could you give me an example? Sounds like the interrupt issue, where
-we want say the interrupt belonging to "pin 5", but need to specify
-it relative to the base interrupt controller, which we cannot know
-anything about in the general case. Instead we need a map, from
-pin number to both interrupt controller and IRQ number (or SPI
-controller and chipselect number, etc..). I think you are on to
-something with the GPIO names, select the GPIO by generic name,
-not by board specific number. That might be extendable to IRQs
-and other numbered items (but yes, that is still an open item
-and I'm waiting on some add-on boards to arrive before I can
-start testing ideas on this..).
+I think the clk driver [1] is in good shape but it has not been reviewed
+by the clk maintainer yet. Thus it is hard to predict any timeline for
+it getting merged.
 
-Andrew
+SPI support doesn't require any driver changes so I'd be inclined to
+allow the fixed clock in this case. It will be simple to change it over
+to a real clock once the clk driver is upstream.
 
-> 
-> Ayush Singh
-> 
+Acked-by: Drew Fustini <drew@pdp7.com>
+
+Thanks,
+Drew
 
