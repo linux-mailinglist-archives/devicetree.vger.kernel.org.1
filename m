@@ -1,74 +1,48 @@
-Return-Path: <devicetree+bounces-83171-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83172-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2900892772B
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 15:29:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 630D292773A
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 15:36:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4AC7F1C21C39
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 13:29:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 873FB1C21EA6
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 13:36:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6128C1AE85D;
-	Thu,  4 Jul 2024 13:29:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88EEB1AE85C;
+	Thu,  4 Jul 2024 13:36:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b="27svKP75"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I9AEsbiy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f51.google.com (mail-io1-f51.google.com [209.85.166.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EF801ACE62
-	for <devicetree@vger.kernel.org>; Thu,  4 Jul 2024 13:29:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B42119B3FF;
+	Thu,  4 Jul 2024 13:36:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720099784; cv=none; b=l2YPYXz2m5RTR9bi45f4AETe3OVPtbWoqVDosd5YX6p4/ZBbxGiZsPgbmP261Ta4AOiIUBy6MZBDcgLOHVHRu/Bzfy/RXG/s7+w9wXf9eBG8Talz9FdDX6ug3oU/18ceKiyi51ty8+uRpeVqmrc3Zy18f7doDe7NrSv6uHeAYrs=
+	t=1720100189; cv=none; b=KrsdpTR6w7Kd8ZZrwsrqOCFM5BkSkXwE04CWJftgHUO0IPFTHWBNYxTc7NdcJ0otapGqoDaSaLb4zbJM51UcMAr/LH4Rqqe9n2MQftxYj0ky845/zsKHpn02+LYjcJGniv8R9hxdTOcqwfuHtQQOyq/oTfL5rXfZHNtBa2eK3HU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720099784; c=relaxed/simple;
-	bh=DuHm9YqDAtXLrZa9R6Z8EyUhv9Q7HdAR9NpVkAQm7iM=;
+	s=arc-20240116; t=1720100189; c=relaxed/simple;
+	bh=06N+dy5yGVfEX5kHj7Fo14pFgqUOSQBJnG+lGDKRRhQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oI3WPDshlGjKWrXBiZ5wnMy+va5xqWguj7GV0bh8uyjOVB13sEX8I5KopHfD5xCuFVWgX5QiRALXwWlAwGH9EmYuHv+a33g7U3RZdRN2UjUfBEu0vg9Ult7obSpDBIGpGj9QDBUCD/uf8Ad5kWzvKwD4o6DH5IKDA64YkHTuoQ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org; spf=fail smtp.mailfrom=beagleboard.org; dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b=27svKP75; arc=none smtp.client-ip=209.85.166.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=beagleboard.org
-Received: by mail-io1-f51.google.com with SMTP id ca18e2360f4ac-7f3ca9bc769so3000339f.0
-        for <devicetree@vger.kernel.org>; Thu, 04 Jul 2024 06:29:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=beagleboard-org.20230601.gappssmtp.com; s=20230601; t=1720099781; x=1720704581; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=/MZG63Ap6wFSly7nWcSpyYWAg0/zjm1KJcnRMvcDoNk=;
-        b=27svKP75U7vawTTGk0Oz1Cn30K0LvG6nZMX1JeL27BKH8HUTPaNKA/KvveGidUluXk
-         /SlbUp7qchQJCKJkRIrXsWjveCWRcNYQtFLok1eN5gskoOWODwBEzRPeoz77L4saqYa0
-         awJNE/tktrf/UEW9rCZ1IKwVycu8958ACajuaNrEsgTT1qQbDQpkA0x4LZVlpw5zfGfs
-         ZZnQGmGVb1ruzZn802hVANshYLEULKNee2Dw9fIZeJTgKiqZkGNlQ5pCDKnt+fc2dyUy
-         WMDD3kJFF6vp3qbEhMNuXeQMP1e2pbZ8VASQZ62kSTABhmBJWn49aEETwPZcRYZAbim0
-         C1/A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720099781; x=1720704581;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/MZG63Ap6wFSly7nWcSpyYWAg0/zjm1KJcnRMvcDoNk=;
-        b=HVxwj16YU/BT2exAM+89z9PQmnjQVwWMHHvXyGInR+c1jfzT8ZWPAl17R+X48GphzM
-         ZzWfCtAeGPtn6g633XigygU39kPTyRzhrdAUxOHSXOm4ZFn4K9wbgOJF9+iTiBjQ7uXL
-         yryX7yUiUduRXb9mmOpcJcyz0F1A0VabOGKyVRliY5MnSNXQ/BDVnPEpOwO8+y6ZwCkh
-         fmZn6f7Hv6P6KbzhhPEWDIeoM2/e3Js4pqzNEiKdMlyDeybrMtpLWBmmj9UFWJrUafTM
-         GU7YBxTxH+tP/Is2R8wHR9N6ablpRA0owuyG0vWxDfVYaMwmD+/Add/OcftShg1xrrOx
-         VhqA==
-X-Forwarded-Encrypted: i=1; AJvYcCUBfwf00h8lT83nl9J3g1f6JytgN3YC+h8bqliK3GlrAJzO0hte8DuBAEi6Sqh9gCQSZ6PeGZ6bjxckH2lBIraGg11dRB514L4M7A==
-X-Gm-Message-State: AOJu0YzK/PiggtCMpF054jJB53AvvEtX6P+3faLO+V2em81j4rhfmqTr
-	nVH1Rx6Cayo1n73tPEA4kERHQorfS9PuI04z/ZlRj7dBOGbIOKqFFKS//IIV6A==
-X-Google-Smtp-Source: AGHT+IGE2Kn38ZjfKcMb1t/TMP7AB6ho5lYWEiXel+/CwhSR9s4NO6A3R9FmNyoNz/qEzi3cccMnMA==
-X-Received: by 2002:a05:6e02:170c:b0:376:3907:4912 with SMTP id e9e14a558f8ab-38398051e3cmr24448265ab.1.1720099781395;
-        Thu, 04 Jul 2024 06:29:41 -0700 (PDT)
-Received: from ?IPV6:2401:4900:1f3f:cba4:e1a3:7d47:549c:8f33? ([2401:4900:1f3f:cba4:e1a3:7d47:549c:8f33])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-70803ecf70asm12207124b3a.102.2024.07.04.06.29.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 Jul 2024 06:29:41 -0700 (PDT)
-Message-ID: <06ba9d89-255a-437f-816d-ec8004168c63@beagleboard.org>
-Date: Thu, 4 Jul 2024 18:59:33 +0530
+	 In-Reply-To:Content-Type; b=mdnkEmAC8o8yy1xTa0NjWWaRSYunsp3K12VlwDwBWNt+Lw//CXXfysrdhsYtucm2hEDQmd/V71ZvnQ6VQungz178npOYw33ja5VVpRbR2Qz5Ca1HkhnkSMRNgiulexSMM6gepOzz+gLEAEAnuY81hm6LicorBd4XimNZX9LOKN0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I9AEsbiy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4964AC3277B;
+	Thu,  4 Jul 2024 13:36:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720100189;
+	bh=06N+dy5yGVfEX5kHj7Fo14pFgqUOSQBJnG+lGDKRRhQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=I9AEsbiyC8txX+EYPohPJ2OLc0C31bftUTvoEsPIe4YuRMlWP/RmhhnjwPEbtovxN
+	 1m0P+Su6Bt71Bhzo/DgqmyfQt6QKzGZwKvtVSy/+mk4OhEmd7+RHqQMXXW/e7utMah
+	 tXkPxp/7Vo+5RkcpZJmD1uU+tRGrX1/gTDRxFR7c11GVwTqNDJkOipDFudm7GrToy2
+	 fmr6j4j44wxxy+bLPbNlR92yyPp1mpOaoHBz0LvfnN2Bv25bDKo+emOYwrVtivTtkH
+	 D+ZT3FcKBnEdtuEsb5E3Hohtgp9rhJ+GXWGCXe+Gg1eB73cCucxbYIWVPpUntKWKyv
+	 X4ssROhB073LQ==
+Message-ID: <25e29357-8976-4471-af95-08056e8652de@kernel.org>
+Date: Thu, 4 Jul 2024 15:36:21 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,492 +50,166 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 6/7] mikrobus: Add mikroBUS driver
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Mark Brown <broonie@kernel.org>, Vaishnav M A <vaishnav@beagleboard.org>,
+Subject: Re: [PATCH v7 3/3] dt-bindings: input: Update dtbinding for adp5588
+To: utsav.agarwal@analog.com, Michael Hennerich
+ <michael.hennerich@analog.com>, Dmitry Torokhov <dmitry.torokhov@gmail.com>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Derek Kiernan <derek.kiernan@amd.com>,
- Dragan Cvetic <dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>,
- Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
- Tero Kristo <kristo@kernel.org>, Michael Walle <mwalle@kernel.org>,
- Andrew Lunn <andrew@lunn.ch>, jkridner@beagleboard.org,
- robertcnelson@beagleboard.org, linux-spi@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20240627-mikrobus-scratch-spi-v5-0-9e6c148bf5f0@beagleboard.org>
- <20240627-mikrobus-scratch-spi-v5-6-9e6c148bf5f0@beagleboard.org>
- <2024070400-grievance-unmolded-fa66@gregkh>
+ Conor Dooley <conor+dt@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
+ <nuno.sa@analog.com>
+Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ Arturs Artamonovs <arturs.artamonovs@analog.com>,
+ Vasileios Bimpikas <vasileios.bimpikas@analog.com>,
+ Oliver Gaskell <oliver.gaskell@analog.com>
+References: <20240704-adp5588_gpio_support-v7-0-e34eb7eba5ab@analog.com>
+ <20240704-adp5588_gpio_support-v7-3-e34eb7eba5ab@analog.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Ayush Singh <ayush@beagleboard.org>
-In-Reply-To: <2024070400-grievance-unmolded-fa66@gregkh>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240704-adp5588_gpio_support-v7-3-e34eb7eba5ab@analog.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-If Grove Sunlight patches become the primary way of handling connector 
-addon-board design, then most of this driver will probably be redundant. 
-Still, I will try answer the questions as much as I can.
+On 04/07/2024 15:03, Utsav Agarwal via B4 Relay wrote:
+> From: Utsav Agarwal <utsav.agarwal@analog.com>
 
-On 7/4/24 18:36, Greg Kroah-Hartman wrote:
-> On Thu, Jun 27, 2024 at 09:56:16PM +0530, Ayush Singh wrote:
->> Adds support for SPI mikroBUS addon boards with configuration based on
->> device tree. The goal is to get a minimal version in mainline to sort
->> out the device tree structure that should be used.
->>
->> A mikroBUS board can use any combination of the following based protocols:
->> I2C, SPI, UART, PWM, Analog, GPIO with possibility of all pins being used
->> as GPIO instead of their original purpose. This requires the driver to be
->> flexible and identify the type of board based on the compatible string.
-> So this has nothing to do with greybus?  Or am I thinking of something
-> else?
+Subject: everything is an update, be more specific.
 
-MikroBUS is it's own connector. But most of the prior work on MikroBUS 
-was done in relation to using it over greybus. So you are not completely 
-wrong. These patches approach to solve the local mikroBUS connector 
-problem, but should be extendable enough to allow support over greybus 
-in future.
+> 
+> Updating dt bindings for adp5588. Since the device can now function in a
+> purely gpio mode, the following keypad specific properties are now made
+> optional:
+> 	- interrupts
+> 	- keypad,num-rows
+> 	- keypad,num-columns
+> 	- linux,keymap
+> 
+> However the above properties are required to be specified when
+> configuring the device as a keypad, dependencies have been added
+> such that specifying either one would require the remaining as well.
+> 
+> Note that interrupts are optional, but required when the device has been
+> configured in keypad mode.
+> 
+> Signed-off-by: Utsav Agarwal <utsav.agarwal@analog.com>
+> ---
+>  .../devicetree/bindings/input/adi,adp5588.yaml     | 46 +++++++++++++++++++---
+>  1 file changed, 41 insertions(+), 5 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/input/adi,adp5588.yaml b/Documentation/devicetree/bindings/input/adi,adp5588.yaml
+> index 26ea66834ae2..481c37595ebb 100644
+> --- a/Documentation/devicetree/bindings/input/adi,adp5588.yaml
+> +++ b/Documentation/devicetree/bindings/input/adi,adp5588.yaml
+> @@ -49,7 +49,10 @@ properties:
+>    interrupt-controller:
+>      description:
+>        This property applies if either keypad,num-rows lower than 8 or
+> -      keypad,num-columns lower than 10.
+> +      keypad,num-columns lower than 10. This property is optional if
+> +      keypad,num-rows or keypad,num-columns are not specified since the
+> +      device then acts as gpio only, during which interrupts may or may
+> +      not be utilized.
+>  
+>    '#interrupt-cells':
+>      const: 2
+> @@ -65,13 +68,28 @@ properties:
+>      minItems: 1
+>      maxItems: 2
+>  
+> +
+> +dependencies:
+> +  keypad,num-rows:
+> +    - linux,keymap
+> +    - keypad,num-columns
+> +  keypad,num-columns:
+> +    - linux,keymap
+> +    - keypad,num-rows
+> +  linux,keymap:
+> +    - keypad,num-rows
+> +    - keypad,num-columns
+> +
+> +if:
+> +  required:
+> +    - linux,keymap
+> +then:
+> +  required:
+> +    - interrupts
+> +
+>  required:
+>    - compatible
+>    - reg
+> -  - interrupts
+> -  - keypad,num-rows
+> -  - keypad,num-columns
+> -  - linux,keymap
+>  
+>  unevaluatedProperties: false
+>  
+> @@ -108,4 +126,22 @@ examples:
+>              >;
+>          };
+>      };
+> +
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/input/input.h>
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +        gpio@34 {
+> +              compatible = "adi,adp5588";
+> +              reg = <0x34>;
 
->> +menuconfig MIKROBUS
->> +	tristate "Module for instantiating devices on mikroBUS ports"
->> +	depends on GPIOLIB
->> +	help
->> +	  This option enables the mikroBUS driver. mikroBUS is an add-on
->> +	  board socket standard that offers maximum expandability with
->> +	  the smallest number of pins. The mikroBUS driver instantiates
->> +	  devices on a mikroBUS port described mikroBUS manifest which is
->> +	  passed using a sysfs interface.
->> +
->> +
-> Remove extra blank line.
->
->> +	  Say Y here to enable support for this driver.
-> This isn't needed.
->
->> +
->> +	  To compile this code as a module, chose M here: the module
->> +	  will be called mikrobus.ko
->> +
->>   source "drivers/misc/c2port/Kconfig"
->>   source "drivers/misc/eeprom/Kconfig"
->>   source "drivers/misc/cb710/Kconfig"
->> diff --git a/drivers/misc/Makefile b/drivers/misc/Makefile
->> index 153a3f4837e8..f10f1414270b 100644
->> --- a/drivers/misc/Makefile
->> +++ b/drivers/misc/Makefile
->> @@ -69,3 +69,4 @@ obj-$(CONFIG_TMR_INJECT)	+= xilinx_tmr_inject.o
->>   obj-$(CONFIG_TPS6594_ESM)	+= tps6594-esm.o
->>   obj-$(CONFIG_TPS6594_PFSM)	+= tps6594-pfsm.o
->>   obj-$(CONFIG_NSM)		+= nsm.o
->> +obj-$(CONFIG_MIKROBUS)		+= mikrobus.o
->> diff --git a/drivers/misc/mikrobus.c b/drivers/misc/mikrobus.c
->> new file mode 100644
->> index 000000000000..bf160a0e8903
->> --- /dev/null
->> +++ b/drivers/misc/mikrobus.c
->> @@ -0,0 +1,361 @@
->> +// SPDX-License-Identifier: GPL-2.0:
->> +/*
->> + * Copyright 2024 Ayush Singh <ayush@beagleboard.org>
->> + */
->> +
->> +#define pr_fmt(fmt) "mikrobus:%s: " fmt, __func__
-> KBUILD_MODNAME?  Also, why is this needed at all, as you are a
-> bus/subsystem you should never need a pr_*() call, but instead just use
-> dev_*() ones instead.
->
->> +
->> +#include <linux/device.h>
->> +#include <linux/pinctrl/consumer.h>
->> +#include <linux/of.h>
->> +#include <linux/module.h>
->> +#include <linux/kernel.h>
->> +#include <linux/platform_device.h>
->> +#include <linux/mod_devicetable.h>
->> +#include <linux/spi/spi.h>
->> +
->> +struct mikrobus_spi_cs_item {
->> +	const char *cs_name;
->> +	u32 cs;
-> Documentation?  What is "cs"?  More vowels please...
->
->> +};
->> +
->> +/**
->> + * struct mikrobus_port - MikroBUS Driver
->> + *
->> + * @dev: underlying platform_device
-> Why must this be a platform device?  What requires that?
+Still messed indentation.
 
-That is a bit of a hack. My bad.
-
->> + * @board_ocs: board device tree changeset
->> + * @pinctrl: mikroBUS pinctrl
->> + * @mikrobus_spi_cs: list of supported chipselect address and name
->> + * @mikrobus_spi_cs_count: length of mikrobus_spi_cs
->> + * @spi_ctrl: spi controller of mikroBUS connector
->> + * @spi_dev: spi mikroBUS board
->> + */
->> +struct mikrobus_port {
->> +	struct platform_device *dev;
->> +	struct of_changeset board_ocs;
->> +	struct pinctrl *pctrl;
->> +
->> +	struct mikrobus_spi_cs_item *spi_cs;
->> +	int spi_cs_count;
->> +	struct spi_controller *spi_ctrl;
->> +	struct spi_device *spi_dev;
-> What controls the lifespan of this object?  You have multiple devices
-> pointed to here with different lifecycles, what controls this one?
-
-Yes, so the lifecycle is supposed to be tied to the addon-board. Since 
-they are not hot plugable, it is the same as the lifecycle of the port 
-unless there is a sysfs entry for runtime detection of board. Still it 
-should be moved to a `mikrobus_board` struct or somewhere else, if we 
-are not going to use the Grove Patch setup.
-
->> +};
->> +
->> +/*
->> + * mikrobus_pinctrl_select: Select pinctrl state for mikrobus pin
-> Either use kerneldoc or not, should be /** right?
->
->> + *
->> + * @port: mikrobus port
->> + * @pinctrl_selected: pinctrl state to be selected
->> + */
->> +static int mikrobus_pinctrl_select(struct device *dev,
->> +				   const char *pinctrl_selected)
->> +{
->> +	int ret;
->> +	struct pinctrl_state *state;
->> +	struct mikrobus_port *mb = dev_get_drvdata(dev);
->> +
->> +	state = pinctrl_lookup_state(mb->pctrl, pinctrl_selected);
->> +	if (IS_ERR(state))
->> +		return dev_err_probe(dev, PTR_ERR(state),
->> +				     "failed to find state %s",
->> +				     pinctrl_selected);
->> +
->> +	ret = pinctrl_select_state(mb->pctrl, state);
->> +	if (ret)
->> +		return dev_err_probe(dev, ret, "failed to select state %s",
->> +				     pinctrl_selected);
->> +
->> +	dev_dbg_ratelimited(dev, "setting pinctrl %s", pinctrl_selected);
-> Why rate limited?  What is going to cause this to spam the log?
->
->> +
->> +	return 0;
->> +}
->> +
->> +/*
->> + * mikrobus_lookup_cs - lookup mikroBUS SPI chipselect by name
->> + *
->> + * @mb: mikroBUS port
->> + * @cs_name: chipselect name
-> Use "chipselect" instead of "cs" everywhere please.
->
->> + */
->> +static int mikrobus_lookup_cs(const struct mikrobus_port *mb,
->> +			      const char *cs_name)
->> +{
->> +	for (int i = 0; i < mb->spi_cs_count; ++i) {
->> +		if (strcmp(cs_name, mb->spi_cs[i].cs_name) == 0)
->> +			return mb->spi_cs[i].cs;
->> +	}
->> +
->> +	return -1;
-> what does -1 mean?  Use real error numbers please.
->
->> +}
->> +
->> +static int mikrobus_spi_set_cs(struct device *dev, struct device_node *np)
->> +{
->> +	struct mikrobus_port *mb = dev_get_drvdata(dev);
->> +	const char *temp_str;
->> +	int reg_len;
->> +	int ret, i;
->> +	u32 *reg = NULL;
->> +
->> +	reg_len = of_property_count_strings(np, "spi-cs");
->> +	/* Use default cs if spi-cs property not present */
->> +	if (reg_len <= 0) {
->> +		reg_len = 1;
->> +		reg = devm_kmalloc_array(dev, reg_len, sizeof(*reg),
->> +					 GFP_KERNEL);
->> +		if (!reg)
->> +			return -ENOMEM;
->> +
->> +		ret = mikrobus_lookup_cs(mb, "default");
->> +		if (ret < 0)
->> +			goto free_reg;
->> +
->> +		reg[0] = ret;
->> +	} else {
->> +		reg = devm_kmalloc_array(dev, reg_len, sizeof(*reg),
->> +					 GFP_KERNEL);
->> +		if (!reg)
->> +			return -ENOMEM;
->> +
->> +		for (i = 0; i < reg_len; ++i) {
->> +			ret = of_property_read_string_index(np, "spi-cs", i,
->> +							    &temp_str);
->> +			if (ret < 0)
->> +				goto free_reg;
->> +
->> +			ret = mikrobus_lookup_cs(mb, temp_str);
->> +			if (ret < 0)
->> +				goto free_reg;
->> +
->> +			reg[i] = ret;
->> +		}
->> +	}
->> +
->> +	ret = of_changeset_add_prop_u32_array(&mb->board_ocs, np, "reg", reg,
->> +					      reg_len);
->> +	if (ret < 0)
->> +		goto free_reg;
->> +
->> +	ret = of_changeset_apply(&mb->board_ocs);
->> +	if (ret < 0)
->> +		goto free_reg;
->> +
->> +	devm_kfree(dev, reg);
->> +	return 0;
->> +
->> +free_reg:
->> +	devm_kfree(dev, reg);
->> +	return ret;
->> +}
->> +
->> +static int of_register_mikrobus_device(struct mikrobus_port *mb,
->> +				       struct device_node *np)
->> +{
->> +	const char *temp_str;
->> +	int i, pinctrl_count, ret;
->> +	struct spi_device *spi_dev;
->> +	struct device *dev = &mb->dev->dev;
-> That's some pointer dereferencing without checking anything, what could
-> go wrong...
->
-> Why don't you have your own real device?  Why are you relying on a
-> platform device without actually showing your device anywhere in the
-> kernel's device topology?  Are you sure that is ok?
-
-Yes, it should be a real device. I do have patches locally where I am 
-creating and registering a device on mikrobus bus, so will do that in 
-the next patch series.
-
->> +
->> +	pinctrl_count = of_property_count_strings(np, "pinctrl-apply");
->> +	if (pinctrl_count < 0)
->> +		return dev_err_probe(dev, pinctrl_count,
->> +				     "Missing required property pinctrl-apply");
->> +
->> +	for (i = 0; i < pinctrl_count; ++i) {
->> +		ret = of_property_read_string_index(np, "pinctrl-apply", i,
->> +						    &temp_str);
->> +		if (ret < 0)
->> +			return ret;
->> +
->> +		ret = mikrobus_pinctrl_select(dev, temp_str);
->> +		if (ret < 0)
->> +			return dev_err_probe(dev, ret, "Failed to set pinctrl");
->> +	}
->> +
->> +	if (mb->spi_ctrl && !mb->spi_dev &&
->> +	    of_device_is_compatible(np, "mikrobus-spi")) {
->> +		ret = mikrobus_spi_set_cs(dev, np);
->> +		if (ret < 0)
->> +			return dev_err_probe(dev, ret,
->> +					     "Failed to set SPI chipselect");
->> +
->> +		spi_dev = of_register_spi_device(mb->spi_ctrl, np);
->> +		if (IS_ERR(spi_dev))
->> +			return dev_err_probe(dev, PTR_ERR(spi_dev),
->> +					     "Failed to register SPI device");
->> +		mb->spi_dev = spi_dev;
->> +	}
->> +
->> +	return 0;
->> +}
->> +
->> +static int of_register_mikrobus_board(struct mikrobus_port *mb)
->> +{
->> +	struct device *dev = &mb->dev->dev;
->> +	int board_len, i, ret;
->> +	struct device_node *np;
->> +
->> +	board_len = of_count_phandle_with_args(dev->of_node, "board", NULL);
->> +	for (i = 0; i < board_len; ++i) {
->> +		np = of_parse_phandle(dev->of_node, "board", i);
->> +		if (!np) {
->> +			ret = dev_err_probe(dev, -ENODEV, "Board not found");
->> +			goto free_np;
->> +		}
->> +
->> +		ret = of_register_mikrobus_device(mb, np);
->> +		if (ret < 0)
->> +			goto free_np;
->> +
->> +		of_node_put(np);
->> +	}
->> +
->> +	return 0;
->> +free_np:
->> +	of_node_put(np);
->> +	return ret;
->> +}
->> +
->> +static int mikrobus_port_probe(struct platform_device *pdev)
->> +{
->> +	int ret, i;
->> +	struct mikrobus_port *mb;
->> +	struct device_node *np;
->> +	struct device *dev = &pdev->dev;
->> +
->> +	mb = devm_kmalloc(dev, sizeof(*mb), GFP_KERNEL);
->> +	if (!mb)
->> +		return -ENOMEM;
->> +
->> +	dev_set_drvdata(dev, mb);
->> +
->> +	of_changeset_init(&mb->board_ocs);
->> +	mb->dev = pdev;
->> +	mb->pctrl = NULL;
->> +	mb->spi_ctrl = NULL;
->> +	mb->spi_dev = NULL;
->> +	mb->spi_cs = NULL;
->> +	mb->spi_cs_count = 0;
->> +
->> +	mb->pctrl = devm_pinctrl_get(dev);
->> +	if (IS_ERR(mb->pctrl))
->> +		return dev_err_probe(dev, PTR_ERR(mb->pctrl),
->> +				     "failed to get pinctrl [%ld]",
->> +				     PTR_ERR(mb->pctrl));
->> +
->> +	np = of_parse_phandle(dev->of_node, "spi-controller", 0);
->> +	if (np) {
->> +		mb->spi_ctrl = of_find_spi_controller_by_node(np);
->> +		if (mb->spi_ctrl) {
->> +			ret = of_property_count_u32_elems(dev->of_node,
->> +							  "spi-cs");
->> +			if (ret < 0) {
->> +				dev_err(dev, "Missing property spi-cs");
->> +				goto free_np;
->> +			}
->> +
->> +			mb->spi_cs_count = ret;
->> +
->> +			ret = of_property_count_strings(dev->of_node,
->> +							"spi-cs-names");
->> +			if (ret < 0) {
->> +				dev_err(dev, "Missing property spi-cs-names");
->> +				goto free_np;
->> +			}
->> +
->> +			if (mb->spi_cs_count != ret) {
->> +				ret = dev_err_probe(
->> +					dev, -EINVAL,
->> +					"spi-cs and spi-cs-names out of sync");
->> +				goto free_np;
->> +			}
->> +
->> +			mb->spi_cs = devm_kmalloc_array(dev, mb->spi_cs_count,
->> +							sizeof(*mb->spi_cs),
->> +							GFP_KERNEL);
->> +			if (!mb->spi_cs) {
->> +				ret = -ENOMEM;
->> +				goto free_np;
->> +			}
->> +
->> +			for (i = 0; i < mb->spi_cs_count; ++i) {
->> +				of_property_read_u32_index(dev->of_node,
->> +							   "spi-cs", i,
->> +							   &mb->spi_cs->cs);
->> +				of_property_read_string_index(
->> +					dev->of_node, "spi-cs-names", i,
->> +					&mb->spi_cs->cs_name);
->> +			}
->> +		}
->> +	}
->> +	of_node_put(np);
->> +
->> +	ret = of_register_mikrobus_board(mb);
->> +	if (ret < 0)
->> +		return dev_err_probe(dev, -EINVAL,
->> +				     "Failed to register mikrobus board");
->> +
->> +	return 0;
->> +
->> +free_np:
->> +	of_node_put(np);
->> +	return ret;
->> +}
->> +
->> +static void mikrobus_port_remove(struct platform_device *pdev)
->> +{
->> +	struct mikrobus_port *mb = dev_get_drvdata(&pdev->dev);
->> +
->> +	spi_unregister_device(mb->spi_dev);
->> +
->> +	of_changeset_revert(&mb->board_ocs);
->> +}
->> +
->> +static const struct of_device_id mikrobus_port_of_match[] = {
->> +	{ .compatible = "mikrobus-connector" },
->> +	{},
->> +};
->> +MODULE_DEVICE_TABLE(of, mikrobus_port_of_match);
->> +
->> +static struct platform_driver mikrobus_port_driver = {
->> +	.probe = mikrobus_port_probe,
->> +	.remove = mikrobus_port_remove,
-> Again, why is this a platform driver?  Why is a platform device used at
-> all here?
-
-You mean it will be better to have a mikrobus bus driver similar to SPI 
-and I2C? While creating the mikrobus bus device seems simple, I will 
-need to look at how creating a driver from scratch works.
-
->> +	.driver = {
->> +		.name = "mikrobus",
->> +		.of_match_table = mikrobus_port_of_match,
->> +	},
->> +};
->> +
->> +static const struct bus_type mikrobus_bus_type = {
->> +	.name = "mikrobus",
->> +};
->> +
->> +static int mikrobus_init(void)
->> +{
->> +	int ret;
->> +
->> +	ret = bus_register(&mikrobus_bus_type);
->> +	if (ret) {
->> +		pr_err("bus_register failed (%d)", ret);
->> +		return ret;
->> +	}
->> +
->> +	ret = platform_driver_register(&mikrobus_port_driver);
->> +	if (ret)
->> +		pr_err("driver register failed [%d]", ret);
-> It fails yet you leave your bus around?  Not good :(
->
-> thanks,
->
-> greg k-h
+Didn't you get already such feedback?
 
 
-I will be observing the Grove Sunlight Patch series and adopt it if it 
-gets merged in mainline, so almost all of this might go away. Let's wait 
-and see I guess.
-
-
-Ayush Singh
-
-
-Grove Sunlight Patch: 
-https://lore.kernel.org/linux-arm-kernel/20240702164403.29067-1-afd@ti.com/
+Best regards,
+Krzysztof
 
 
