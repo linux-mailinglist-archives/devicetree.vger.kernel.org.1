@@ -1,201 +1,847 @@
-Return-Path: <devicetree+bounces-83258-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83259-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 621C9927B53
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 18:41:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9C00927B5B
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 18:42:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 959B0B25780
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 16:41:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ED1D61C22784
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 16:42:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7ACB1B29C0;
-	Thu,  4 Jul 2024 16:40:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA6201B29B3;
+	Thu,  4 Jul 2024 16:42:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="YqZU6YS7"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="TdVAIo1E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010008.outbound.protection.outlook.com [52.101.69.8])
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E6101AE859;
-	Thu,  4 Jul 2024 16:40:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.8
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720111242; cv=fail; b=Fi47XR2lrlxRIAQtXP7HWK1nZPJ5Gs/pcOfmJWq65+EG5f95Mok5hEkmhNoif+fliGUdChLGJ7CJnY/4Zkwhs+A8ZrGNTUtENSCKRHjIkbU6jfG9arzl2cW3KysQibJTCJ5H5cjjqOCGIbxcZ6AzRDWs86Kb+Nn+NiVOdVBgcLI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720111242; c=relaxed/simple;
-	bh=TSrTxfJQEV/vRH41CEqM1AT+jFmUNlsYy3Pjp5EbEgE=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=PRGBsX8ttwNeT+WA2gEojSl9T5geJGfbUFR1RL7r617lvyiKLyx9qwHUtk/0YDI5x943bWUpNHxxMhikNZ6V2Hj7a3YljICE3dr+DQpKTHBMMG8xrkj5V97HupVavuSJjNGrx3efr5wVYMutB6obZi7XyddlUq/xjOf4ImFTMY4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=YqZU6YS7; arc=fail smtp.client-ip=52.101.69.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XOEd30xojylZDGVPG6aMnx9EX35JFfEQ1N/I9PAGF+VCrtb0UOyLAEvKVsjY69tBGl+qaEe1SbFvc6//E22C7aRrCQ65CeRmxpVxz20Gj50iiaDyIMgxhmhSTYom39rriAtwSwr6iUlOuxqUWc4cBgS9huu9e4Dx8/pUvvLXUeAN8j6/5S8zQQK3/Tgw/RgZCpfCMeD8oeIpBfqgqMuivk0mknabHLmtlyDRJrpFH4AYGDcRRbQTfV9zzJ5sll5IpjoRzaS0Q3YT+rc5147ZJfDQUX79MLM8kfsvMlypmF7elWfzI/11JAwekTtRrb3Z15VbejjhSdkFUVhJNKe30Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=uD5BwmEM+mJwWfW4Czq3K7L7DWXG2AEbxcy0yyD+/5E=;
- b=ek59qbGX4l+xWlFmyq4L2/6zYyu14/zMLM29DAO0JMATeX5UGurT3l8XUhHtgEFuK2gdpLyxidyz55bMvP0hcp+J3sLAD1wDKXC3sRKAl32fMghmJwiyNPAw6wZQV/Ek4yY0oW27hQPDYjEq5yYzyciLGPJgJDBbWssUM0hg/hIldesQ6aVZMvDOGAweyFv70EerRq84a0LsIqOiewAgtzsfHWLRbqeDfDxQuRpQM4YZwqsDWKK2fVOWe0EXNywa/1f4/D7Jj/3TKtwmfzKgIrxTEKuhjcfj5rdhP3HHa3UNuscSFNck4MG5AYTS9IQd3XXaapJ/TTbZCBeQd6tGpg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=uD5BwmEM+mJwWfW4Czq3K7L7DWXG2AEbxcy0yyD+/5E=;
- b=YqZU6YS7CGQ5bpNf2gWC7t2S5gviBIofoVBjPlQKnMYSSP+RlgiwfP72JwfAoJz7Hpwh1Nzbae3L3nAqxtSlv4HtZ/ensCfNN5m1hFa81bUcgnihsvRUS5ZZC8aNKcUI0/iZkQjgAvTzA/LagwGdiobkexqgYdbTs/9s1GB8zxw=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by DBBPR04MB7915.eurprd04.prod.outlook.com (2603:10a6:10:1ea::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7741.25; Thu, 4 Jul
- 2024 16:40:37 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%2]) with mapi id 15.20.7741.027; Thu, 4 Jul 2024
- 16:40:37 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: Will Deacon <will@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-pci@vger.kernel.org (open list:PCI DRIVER FOR GENERIC OF HOSTS),
-	linux-arm-kernel@lists.infradead.org (moderated list:PCI DRIVER FOR GENERIC OF HOSTS),
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-kernel@vger.kernel.org (open list)
-Cc: imx@lists.linux.dev
-Subject: [PATCH v2 1/1] dt-bindings: PCI: host-generic-pci: Drop minItems and maxItems of ranges
-Date: Thu,  4 Jul 2024 12:40:19 -0400
-Message-Id: <20240704164019.611454-1-Frank.Li@nxp.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: BYAPR08CA0071.namprd08.prod.outlook.com
- (2603:10b6:a03:117::48) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75B3E1B0138
+	for <devicetree@vger.kernel.org>; Thu,  4 Jul 2024 16:41:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1720111321; cv=none; b=dGfG/tBqDHRqxvQdHs3YK3r8rOuvpbJXIKvooGRtCMoWHnaeTVqqh7ZJBv5gMxLDPpx+bgGanyehTr4r8PRxVI/SeRkg7L2EiY1uFIRZGYbzh/HTKxPqDnue37fEqZPqXGOlqQReEQeOzR7OC4R37FJGR9zU9x7dUKKHOcs2HWo=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1720111321; c=relaxed/simple;
+	bh=vuAuAdFpv+V8bDTLB1T45I/wyWf4xPG1X7Pf6SOQjU8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=akwiXPn62IGD8DEQarpgW2+VhfXS81HSe3FE/RjBg4C0kJxnGz46XrHfKgtKz20GUbfqkRO5KJjqZvsAZfF8vdlEPlytVPv6vN8bsrKAN+ThMzEbtOLlcCsZ90kCJkx2rTdQG8uH+gh2fAJ9OCPqi0I9sMe/YHPX3rGUHuI3OdI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=TdVAIo1E; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 464BFGiD013833;
+	Thu, 4 Jul 2024 18:41:32 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	bmmQUp+jFbHjiIBageXqkOiFhrcZ73MqxH8zToqMlX0=; b=TdVAIo1Ekpkp1Lqm
+	1LsWBgu407zii/wO0Mfl8I/SstNrB1jhxdbbRijk30gISA3CtkBWUHI8yYbVHxjY
+	wB4O7ibFEWkG80snKjxuNYDGR6dyJD9sIIxzzfyj87jji0J6g3rbRRYK4tK/Axvq
+	y/0U2Zcc2f0zp2cZ8MmSJkObgYed/3kqKO38qOIiWZjEid4ICzzd0TgzA3Gt/omp
+	n1+JBMRRTNKvhVrGuaGP6uNtmK6bYn0WsnLBEen/vtz355jP4oGlY7Ml04gLusIP
+	x7FG5jhdMJdyLORGH2WW/4U466eRrSz4lxGh1YT9VVLn+X3S9Q0iErOZUCt245hZ
+	JBphgQ==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 40295dnut8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 04 Jul 2024 18:41:31 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 4954640044;
+	Thu,  4 Jul 2024 18:41:27 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 991FD22AFFA;
+	Thu,  4 Jul 2024 18:40:50 +0200 (CEST)
+Received: from [10.48.86.79] (10.48.86.79) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Thu, 4 Jul
+ 2024 18:40:49 +0200
+Message-ID: <f303a45a-3844-485c-8971-f71a46b8b0fb@foss.st.com>
+Date: Thu, 4 Jul 2024 18:40:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DBBPR04MB7915:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5e910ccb-9a35-4cf1-5323-08dc9c480896
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|366016|52116014|7416014|376014|921020|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?WAQRMwe/8wcfBUwQIjYaglmsVIDuOqVk2cEhbLlMelpmWp5PftUeOJsw4S4I?=
- =?us-ascii?Q?DJG6IcSH+iIg2j1w/cBiA8eZqZ4LlU23+9njl668CafDWZhzqFiCKT7jT/Ak?=
- =?us-ascii?Q?ZVOHE488ZJUPekqNrWqXlXR4Lnv4fEJeqz8crwJPb8zmhlxyqe+krqlgaq0V?=
- =?us-ascii?Q?jPB2IF8qKdSySVzHjWv3mdz6jFhmMBIYX/FlK8rKTU2C5kaGWQjMdEvtWHPA?=
- =?us-ascii?Q?JpEQIkveYOqyO4MPL4yY/tF0+g/pifSvkbeuV+wB8v3ApemBQ6Q5beTBl4pw?=
- =?us-ascii?Q?HMDzmeH612fUa7MRPVsE58X7xSHLiqRiJ4HwH8E85dHGX6jq6/s7pS0PejnB?=
- =?us-ascii?Q?y70U4yUj4Gp/advPMUxOAgR8ctuX7nsquTnzhy4dVvmXJZFVjfFuTQ73ON7F?=
- =?us-ascii?Q?9kfJ+TLg2ju+a8xeJCKCYPaXib+whVN7cEKuYiRxNvkLWrVJe44U+Ocdsl1r?=
- =?us-ascii?Q?bBgOVbzUbQ4ytFlyNFpIKI38vdtTxMPXq0tQb9tinQfYF86HmB4x7433QRUs?=
- =?us-ascii?Q?/9NLpqTgNal6rgtKfYleo2mK8SR7wdKDEb2cdVPCmPG/fflt/xlg+eL0jHqH?=
- =?us-ascii?Q?VRfujdMt6BgpPsYcuJbJBoWRxtY/T6yW+sEyAF3eIyTYE7Y0M5RgFVSojE8A?=
- =?us-ascii?Q?ePCAOFOB4UV5OgfeEs7LP01Bt9L/dSIbXM2huolPq2dJZo7jZ0lJj71oaqmc?=
- =?us-ascii?Q?RGx5pmwnJFsFH17ggxWOeaSi8Z326/Oji2YYms9p68GCNyp99N5oeGe5HuQW?=
- =?us-ascii?Q?6b08zj2fkcOvXJWx3CPwEOsN+ycpd2jBhR2D1Ci4PcmU0lpJeU1FRkDFLuqu?=
- =?us-ascii?Q?FbQoG4WuGyCjifrzcqBkcD1/mhP24zHR31vhfchXqMh+7XXA2h3zt14YfyfL?=
- =?us-ascii?Q?U1e4wOL2dN4hRkWE0qobLd59a5i65UbQ6mMuzfnxQoiFkrnPdHuS6W3zU6ar?=
- =?us-ascii?Q?/BG4Z93Cg20baCDMAxADPo1goGwvdqOK5nB1NlO8R7L+ks3wm1FCcXw215XN?=
- =?us-ascii?Q?c8klwqycFsFspqxUWtdG7LLmEGsb/IFuaCnVAI24x6UrN9DoID7gl3RmPlMj?=
- =?us-ascii?Q?sV9FNzjg7GjKwpPwoKRaTdp5KRSuyIPQIS0O5eSqtSQr3hmeeU8Iz0rm8oOL?=
- =?us-ascii?Q?iWXUKAugFaYeJtgfEBcUECjxDJoLtil9CcuoD71xpBifENFhIO61eZRt/Zpi?=
- =?us-ascii?Q?wlxeSaZJ5+zwiRPWwrWbAim1Cc9A53Oiqw0N/0fCfIprvmtN2Zu6+VELcbh5?=
- =?us-ascii?Q?kL2BlQtBrpWRXZXRTn21mSGjTKN0+s4ssUuC7cgkTJzXfrnOLwbmi6la0zQM?=
- =?us-ascii?Q?Pvi+8mcfYdOAaNGE7YD7sO+vJN/OWaxT3os8mmdyBjVeCMzlw/nuPWehc4Bm?=
- =?us-ascii?Q?UHb0IvVimbjtYddGvsL37FWN8NjeXvybOA6ZU3ymsCL5hV4OAjYQZE/gKswY?=
- =?us-ascii?Q?dDAAZwmuA28=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(52116014)(7416014)(376014)(921020)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?u+nP/4UXe9D73dmxXR6btC+lHtnlw/UHjRcHgT/6IPtm23/XtR5aRHYCFyaz?=
- =?us-ascii?Q?+PbgnepmMBxQGVp92bkJEGQiZ2ZN7pco1wqfxQ+AQYYEl+/W9dKqKk1yM7b7?=
- =?us-ascii?Q?OJrwTY1Ea7yTCkHP9N1uJn1cGpTI3JMeIuEdSidtObOaX4Qx4pAewgrTLiHH?=
- =?us-ascii?Q?AbCSctCBj422EnUF49IJYWaujByUlpJKeEQbJGPoeeJywkcG32xnkZzYWjyV?=
- =?us-ascii?Q?v+tmp5OBlUJNgvBXEHRRXtzAjp02klTKsOs9FDaF59mVtWkGLuX4UZ1q994J?=
- =?us-ascii?Q?gnsHZ9+5fB0k2lQQkqyTWtjH/lK8smhVaqx2vysbsFyXGPuJIRk6WXLV50Oc?=
- =?us-ascii?Q?W5VieWW8iS6TfkYiCP2oi9siCfl8MeoW2bx0A3VQXMUOnqvCzOsN+Lf3H33J?=
- =?us-ascii?Q?ZRaeCpEUGQ47MaI7EJdxYEDLw/Qr6NARRX0IVtUl0hyQ20V3e/Qf3Isi3+ZP?=
- =?us-ascii?Q?yhPYWfhKW4JekT/rZsLyXrDfaSrgBdtlWksTGDuFGKVBE8WepmA0t+pQq/om?=
- =?us-ascii?Q?ma1GQDL4ogO4/95y2bW5Lbn9BKeYrVFhxHt4vqdXwH5rboHv2osq60ccM5qz?=
- =?us-ascii?Q?zOVCHGBWQYY2yQtyoaVFMXkz8BtlJ66DhzsRNCs53qzkaHncV/Ybk0sc4Cri?=
- =?us-ascii?Q?ydYDyX+DieYO5efSwBKyo8ybLPSCQbkztQn+4G6tnIbwsUBlQ4nSrwIktZAV?=
- =?us-ascii?Q?nrYsPK/UzAyr4Fojb8yy+N1bp0bBLT3wupUusfgmthGDf6AQDnzCHMB6tV1f?=
- =?us-ascii?Q?VffoTAXJ1xREIN0R6Y0BGzutIubnN06SsAgfv7gtnig+YIISU3m5SkM7EnNY?=
- =?us-ascii?Q?kKTSa/2ijpRn208cDVonF1zcbYjGulV+5ayPwq2vG26fvne1lI3n8RhgTeUE?=
- =?us-ascii?Q?ezpT9LMEG4yA6MLP0rPMfjxD/9Z8n82bZfvszX14nhcKb0xfNmzh+cqYvjGI?=
- =?us-ascii?Q?S/fIoMwkokHxwVQqYPMJISpBxbazqNFT1PXpSTgZIfqQAiPFe28yWfkR1WA/?=
- =?us-ascii?Q?9zcdEAN73ABPEQOCIuloLDyGvUHHj3Q0k5khd2nMCO/JcRA/aOpDqjuZh+7F?=
- =?us-ascii?Q?PC7V4I2tUEm12TEVRtTut5I0cq5rrKKnTBOqp6BS6+erHMKJJ2YhArZtLb0O?=
- =?us-ascii?Q?yl4ZesCR3ePDpsddQTVbJGcDfHbeHwwj2kiCQfFHaGVS/Dn0kAvwuNFm4yFy?=
- =?us-ascii?Q?N/1389n8hQFrICaYgdLrJBgiwAUA+KHXAGV1SRf6nrR86GOGsmeJuIAdRiRn?=
- =?us-ascii?Q?3EHH0HFrHvV0v83moDDDTQ2G18LgslrzA5BcnL2DLQjX2oIl1EfHcKzAcLzS?=
- =?us-ascii?Q?vFv23G/oLGeMQ7a8+Qr2Muhx3yCvBevPEUqYROs0WOPspkfWft0v6hE3LZM3?=
- =?us-ascii?Q?KzEN4wt/cqzcn+pZkb4LbMMuhZkapbeZE0Dyj/KDlKcQe/H+bgC3Qihv7pZ7?=
- =?us-ascii?Q?bxpGgpXnBTUB7IDOfvUupE3WByRszzgnQ8xT7t/E2AzaO6hQfT2ukce3d2J0?=
- =?us-ascii?Q?Ozb5mF4rbkN737Fi8V+1KjGB6nvLk8mSMexyoL+DVeEAN2AP1dPSxMKy4rmu?=
- =?us-ascii?Q?2cdKCAdxySWL4STHWRR8qljbdtq50fJLTyQ06VON?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5e910ccb-9a35-4cf1-5323-08dc9c480896
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Jul 2024 16:40:37.7652
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 4Pw5Yyq9L5kzo2uu/d5qnIuMj/OLZShhULtb1ytaAdeyAx7/rZj9omqNn0Wy6PGQE3AVx/7kp1pUug1v39bSoQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7915
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] ARM: dts: stm32: omit unused pinctrl groups from
+ stm32mp13 dtb files
+To: Marek Vasut <marex@denx.de>, <linux-arm-kernel@lists.infradead.org>
+CC: Christophe Roullier <christophe.roullier@foss.st.com>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Maxime
+ Coquelin <mcoquelin.stm32@gmail.com>,
+        Rob Herring <robh@kernel.org>, <devicetree@vger.kernel.org>,
+        <kernel@dh-electronics.com>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+References: <20240629203706.93145-1-marex@denx.de>
+Content-Language: en-US
+From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20240629203706.93145-1-marex@denx.de>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-04_12,2024-07-03_01,2024-05-17_01
 
-The ranges description states that "at least one non-prefetchable memory
-and one or both of prefetchable memory and IO space may also be provided."
+Hi Marek
 
-However, it should not limit the maximum number of ranges to 3.
+On 6/29/24 22:36, Marek Vasut wrote:
+> stm32mp13-pinctrl.dtsi contains nearly all pinctrl groups collected from
+> all boards. Most of them end up unused by a board and only waste binary
+> space. Add /omit-if-no-ref/ to the groups to scrub the unused groups
+> from the dtbs.
+> 
+> Use the following regex to update the file and drop two useless newlines too:
+> s@^\t[^:]\+: [^ ]\+ {$@\t/omit-if-no-ref/\r&@
 
-Freescale LS1028 and iMX95 use more than 3 ranges because the space splits
-some discontinuous prefetchable and non-prefetchable segments.
+I understand the aim of this patch but I'm just wondering about DT 
+overlay that would need one of those configurations. IMO, in this case 
+the DT overlay will not apply.
 
-Drop minItems and maxItems. The number of entries will be limited to 32
-in pci-bus-common.yaml in dtschema, which should be sufficient.
+Alex
 
-Fix the below CHECK_DTBS warning.
-arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dtb: pcie@1f0000000: ranges: [[2181038080, 1, 4160749568, 1, 4160749568, 0, 1441792], [3254779904, 1, 4162191360, 1, 4162191360, 0, 458752], [2181038080, 1, 4162650112, 1, 4162650112, 0, 131072], [3254779904, 1, 4162781184, 1, 4162781184, 0, 131072], [2181038080, 1, 4162912256, 1, 4162912256, 0, 131072], [3254779904, 1, 4163043328, 1, 4163043328, 0, 131072], [2181038080, 1, 4227858432, 1, 4227858432, 0, 4194304]] is too long
-
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
-Change from v1 to v2
-- Rework commit message
-- drop minItems and maxItems according to Rob's comments.
----
- Documentation/devicetree/bindings/pci/host-generic-pci.yaml | 2 --
- 1 file changed, 2 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/pci/host-generic-pci.yaml b/Documentation/devicetree/bindings/pci/host-generic-pci.yaml
-index 3484e0b4b412e..3be1fff411f8d 100644
---- a/Documentation/devicetree/bindings/pci/host-generic-pci.yaml
-+++ b/Documentation/devicetree/bindings/pci/host-generic-pci.yaml
-@@ -102,8 +102,6 @@ properties:
-       As described in IEEE Std 1275-1994, but must provide at least a
-       definition of non-prefetchable memory. One or both of prefetchable Memory
-       and IO Space may also be provided.
--    minItems: 1
--    maxItems: 3
- 
-   dma-coherent: true
-   iommu-map: true
--- 
-2.34.1
-
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> ---
+> Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
+> Cc: Christophe Roullier <christophe.roullier@foss.st.com>
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Cc: kernel@dh-electronics.com
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: linux-stm32@st-md-mailman.stormreply.com
+> ---
+>   arch/arm/boot/dts/st/stm32mp13-pinctrl.dtsi | 92 ++++++++++++++++++++-
+>   1 file changed, 90 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/st/stm32mp13-pinctrl.dtsi b/arch/arm/boot/dts/st/stm32mp13-pinctrl.dtsi
+> index d3deec602ae7a..ca19c8c6b6771 100644
+> --- a/arch/arm/boot/dts/st/stm32mp13-pinctrl.dtsi
+> +++ b/arch/arm/boot/dts/st/stm32mp13-pinctrl.dtsi
+> @@ -6,12 +6,14 @@
+>   #include <dt-bindings/pinctrl/stm32-pinfunc.h>
+>   
+>   &pinctrl {
+> +	/omit-if-no-ref/
+>   	adc1_pins_a: adc1-pins-0 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('A', 3, ANALOG)>; /* ADC1 in12 */
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	adc1_usb_cc_pins_a: adc1-usb-cc-pins-0 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('F', 12, ANALOG)>, /* ADC1 in6 */
+> @@ -19,6 +21,7 @@ pins {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	adc1_usb_cc_pins_b: adc1-usb-cc-pins-1 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('A', 5, ANALOG)>, /* ADC1_INP2 */
+> @@ -26,6 +29,7 @@ pins {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	dcmipp_pins_a: dcmi-0 {
+>   		pins1 {
+>   			pinmux = <STM32_PINMUX('H',  8,  AF13)>,/* DCMI_HSYNC */
+> @@ -43,6 +47,7 @@ pins1 {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	dcmipp_sleep_pins_a: dcmi-sleep-0 {
+>   		pins1 {
+>   			pinmux = <STM32_PINMUX('H',  8,  ANALOG)>,/* DCMI_HSYNC */
+> @@ -59,6 +64,7 @@ pins1 {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	eth1_rgmii_pins_a: eth1-rgmii-0 {
+>   		pins1 {
+>   			pinmux = <STM32_PINMUX('G', 13, AF11)>, /* ETH_RGMII_TXD0 */
+> @@ -83,9 +89,9 @@ pins2 {
+>   				 <STM32_PINMUX('D', 7, AF10)>; /* ETH_RGMII_RX_CLK */
+>   			bias-disable;
+>   		};
+> -
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	eth1_rgmii_sleep_pins_a: eth1-rgmii-sleep-0 {
+>   		pins1 {
+>   			pinmux = <STM32_PINMUX('G', 13, ANALOG)>, /* ETH_RGMII_TXD0 */
+> @@ -105,6 +111,7 @@ pins1 {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	eth1_rmii_pins_a: eth1-rmii-0 {
+>   		pins1 {
+>   			pinmux = <STM32_PINMUX('G', 13, AF11)>, /* ETH_RMII_TXD0 */
+> @@ -124,9 +131,9 @@ pins2 {
+>   				 <STM32_PINMUX('C', 1, AF10)>; /* ETH_RMII_CRS_DV */
+>   			bias-disable;
+>   		};
+> -
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	eth1_rmii_sleep_pins_a: eth1-rmii-sleep-0 {
+>   		pins1 {
+>   			pinmux = <STM32_PINMUX('G', 13, ANALOG)>, /* ETH_RMII_TXD0 */
+> @@ -141,6 +148,7 @@ pins1 {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	eth2_rgmii_pins_a: eth2-rgmii-0 {
+>   		pins1 {
+>   			pinmux = <STM32_PINMUX('F', 7, AF11)>, /* ETH_RGMII_TXD0 */
+> @@ -167,6 +175,7 @@ pins2 {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	eth2_rgmii_sleep_pins_a: eth2-rgmii-sleep-0 {
+>   		pins1 {
+>   			pinmux = <STM32_PINMUX('F', 7, ANALOG)>, /* ETH_RGMII_TXD0 */
+> @@ -186,6 +195,7 @@ pins1 {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	eth2_rmii_pins_a: eth2-rmii-0 {
+>   		pins1 {
+>   			pinmux = <STM32_PINMUX('F', 7, AF11)>, /* ETH_RMII_TXD0 */
+> @@ -207,6 +217,7 @@ pins2 {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	eth2_rmii_sleep_pins_a: eth2-rmii-sleep-0 {
+>   		pins1 {
+>   			pinmux = <STM32_PINMUX('F', 7, ANALOG)>, /* ETH_RMII_TXD0 */
+> @@ -221,6 +232,7 @@ pins1 {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	goodix_pins_a: goodix-0 {
+>   		/*
+>   		 * touchscreen reset needs to be configured
+> @@ -243,6 +255,7 @@ pins2 {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	i2c1_pins_a: i2c1-0 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('D', 12, AF5)>, /* I2C1_SCL */
+> @@ -253,6 +266,7 @@ pins {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	i2c1_sleep_pins_a: i2c1-sleep-0 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('D', 12, ANALOG)>, /* I2C1_SCL */
+> @@ -260,6 +274,7 @@ pins {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	i2c5_pins_a: i2c5-0 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('D', 1, AF4)>, /* I2C5_SCL */
+> @@ -270,6 +285,7 @@ pins {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	i2c5_sleep_pins_a: i2c5-sleep-0 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('D', 1, ANALOG)>, /* I2C5_SCL */
+> @@ -277,6 +293,7 @@ pins {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	i2c5_pins_b: i2c5-1 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('D', 1, AF4)>, /* I2C5_SCL */
+> @@ -287,6 +304,7 @@ pins {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	i2c5_sleep_pins_b: i2c5-sleep-1 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('D', 1, ANALOG)>, /* I2C5_SCL */
+> @@ -294,6 +312,7 @@ pins {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	ltdc_pins_a: ltdc-0 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('D',  9, AF13)>, /* LCD_CLK */
+> @@ -324,6 +343,7 @@ pins {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	ltdc_sleep_pins_a: ltdc-sleep-0 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('D',  9, ANALOG)>, /* LCD_CLK */
+> @@ -351,6 +371,7 @@ pins {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	m_can1_pins_a: m-can1-0 {
+>   		pins1 {
+>   			pinmux = <STM32_PINMUX('G', 10, AF9)>; /* CAN1_TX */
+> @@ -364,6 +385,7 @@ pins2 {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	m_can1_sleep_pins_a: m_can1-sleep-0 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('G', 10, ANALOG)>, /* CAN1_TX */
+> @@ -371,6 +393,7 @@ pins {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	m_can2_pins_a: m-can2-0 {
+>   		pins1 {
+>   			pinmux = <STM32_PINMUX('G', 0, AF9)>; /* CAN2_TX */
+> @@ -384,6 +407,7 @@ pins2 {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	m_can2_sleep_pins_a: m_can2-sleep-0 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('G', 0, ANALOG)>, /* CAN2_TX */
+> @@ -391,6 +415,7 @@ pins {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	mcp23017_pins_a: mcp23017-0 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('G', 12, GPIO)>;
+> @@ -398,6 +423,7 @@ pins {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	pwm3_pins_a: pwm3-0 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('B', 1, AF2)>; /* TIM3_CH4 */
+> @@ -407,12 +433,14 @@ pins {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	pwm3_sleep_pins_a: pwm3-sleep-0 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('B', 1, ANALOG)>; /* TIM3_CH4 */
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	pwm4_pins_a: pwm4-0 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('D', 13, AF2)>; /* TIM4_CH2 */
+> @@ -422,12 +450,14 @@ pins {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	pwm4_sleep_pins_a: pwm4-sleep-0 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('D', 13, ANALOG)>; /* TIM4_CH2 */
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	pwm5_pins_a: pwm5-0 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('H', 12, AF2)>; /* TIM5_CH3 */
+> @@ -437,12 +467,14 @@ pins {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	pwm5_sleep_pins_a: pwm5-sleep-0 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('H', 12, ANALOG)>; /* TIM5_CH3 */
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	pwm8_pins_a: pwm8-0 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('E', 5, AF3)>; /* TIM8_CH3 */
+> @@ -452,12 +484,14 @@ pins {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	pwm8_sleep_pins_a: pwm8-sleep-0 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('E', 5, ANALOG)>; /* TIM8_CH3 */
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	pwm13_pins_a: pwm13-0 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('A', 6, AF9)>; /* TIM13_CH1 */
+> @@ -467,12 +501,14 @@ pins {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	pwm13_sleep_pins_a: pwm13-sleep-0 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('A', 6, ANALOG)>; /* TIM13_CH1 */
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	pwm14_pins_a: pwm14-0 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('F', 9, AF9)>; /* TIM14_CH1 */
+> @@ -482,12 +518,14 @@ pins {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	pwm14_sleep_pins_a: pwm14-sleep-0 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('F', 9, ANALOG)>; /* TIM14_CH1 */
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	qspi_clk_pins_a: qspi-clk-0 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('F', 10, AF9)>; /* QSPI_CLK */
+> @@ -497,12 +535,14 @@ pins {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	qspi_clk_sleep_pins_a: qspi-clk-sleep-0 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('F', 10, ANALOG)>; /* QSPI_CLK */
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	qspi_bk1_pins_a: qspi-bk1-0 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('F', 8, AF10)>, /* QSPI_BK1_IO0 */
+> @@ -515,6 +555,7 @@ pins {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	qspi_bk1_sleep_pins_a: qspi-bk1-sleep-0 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('F', 8, ANALOG)>, /* QSPI_BK1_IO0 */
+> @@ -524,6 +565,7 @@ pins {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	qspi_cs1_pins_a: qspi-cs1-0 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('B', 2, AF9)>; /* QSPI_BK1_NCS */
+> @@ -533,12 +575,14 @@ pins {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	qspi_cs1_sleep_pins_a: qspi-cs1-sleep-0 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('B', 2, ANALOG)>; /* QSPI_BK1_NCS */
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	sai1a_pins_a: sai1a-0 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('A', 4, AF12)>, /* SAI1_SCK_A */
+> @@ -550,6 +594,7 @@ pins {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	sai1a_sleep_pins_a: sai1a-sleep-0 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('A', 4, ANALOG)>, /* SAI1_SCK_A */
+> @@ -558,6 +603,7 @@ pins {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	sai1b_pins_a: sai1b-0 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('A', 0, AF6)>; /* SAI1_SD_B */
+> @@ -565,12 +611,14 @@ pins {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	sai1b_sleep_pins_a: sai1b-sleep-0 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('A', 0, ANALOG)>; /* SAI1_SD_B */
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	sdmmc1_b4_pins_a: sdmmc1-b4-0 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('C', 8, AF12)>, /* SDMMC1_D0 */
+> @@ -584,6 +632,7 @@ pins {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	sdmmc1_b4_od_pins_a: sdmmc1-b4-od-0 {
+>   		pins1 {
+>   			pinmux = <STM32_PINMUX('C', 8, AF12)>, /* SDMMC1_D0 */
+> @@ -602,6 +651,7 @@ pins2 {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	sdmmc1_b4_sleep_pins_a: sdmmc1-b4-sleep-0 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('C', 8, ANALOG)>, /* SDMMC1_D0 */
+> @@ -613,6 +663,7 @@ pins {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	sdmmc1_clk_pins_a: sdmmc1-clk-0 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('C', 12, AF12)>; /* SDMMC1_CK */
+> @@ -622,6 +673,7 @@ pins {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	sdmmc2_b4_pins_a: sdmmc2-b4-0 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('B', 14, AF10)>, /* SDMMC2_D0 */
+> @@ -635,6 +687,7 @@ pins {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	sdmmc2_b4_od_pins_a: sdmmc2-b4-od-0 {
+>   		pins1 {
+>   			pinmux = <STM32_PINMUX('B', 14, AF10)>, /* SDMMC2_D0 */
+> @@ -653,6 +706,7 @@ pins2 {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	sdmmc2_b4_sleep_pins_a: sdmmc2-b4-sleep-0 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('B', 14, ANALOG)>, /* SDMMC2_D0 */
+> @@ -664,6 +718,7 @@ pins {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	sdmmc2_clk_pins_a: sdmmc2-clk-0 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('E', 3, AF10)>; /* SDMMC2_CK */
+> @@ -673,6 +728,7 @@ pins {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	sdmmc2_d47_pins_a: sdmmc2-d47-0 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('F', 0, AF10)>, /* SDMMC2_D4 */
+> @@ -685,6 +741,7 @@ pins {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	sdmmc2_d47_sleep_pins_a: sdmmc2-d47-sleep-0 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('F', 0, ANALOG)>, /* SDMMC2_D4 */
+> @@ -694,6 +751,7 @@ pins {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	spi2_pins_a: spi2-0 {
+>   		pins1 {
+>   			pinmux = <STM32_PINMUX('B', 10, AF6)>, /* SPI2_SCK */
+> @@ -709,6 +767,7 @@ pins2 {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	spi2_sleep_pins_a: spi2-sleep-0 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('B', 10, ANALOG)>, /* SPI2_SCK */
+> @@ -717,6 +776,7 @@ pins {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	spi3_pins_a: spi3-0 {
+>   		pins1 {
+>   			pinmux = <STM32_PINMUX('H', 13, AF6)>, /* SPI3_SCK */
+> @@ -732,6 +792,7 @@ pins2 {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	spi3_sleep_pins_a: spi3-sleep-0 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('H', 13, ANALOG)>, /* SPI3_SCK */
+> @@ -740,6 +801,7 @@ pins {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	spi5_pins_a: spi5-0 {
+>   		pins1 {
+>   			pinmux = <STM32_PINMUX('H', 7, AF6)>, /* SPI5_SCK */
+> @@ -755,6 +817,7 @@ pins2 {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	spi5_sleep_pins_a: spi5-sleep-0 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('H', 7, ANALOG)>, /* SPI5_SCK */
+> @@ -763,6 +826,7 @@ pins {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	stm32g0_intn_pins_a: stm32g0-intn-0 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('I', 2, GPIO)>;
+> @@ -770,6 +834,7 @@ pins {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	uart4_pins_a: uart4-0 {
+>   		pins1 {
+>   			pinmux = <STM32_PINMUX('D', 6, AF8)>; /* UART4_TX */
+> @@ -783,6 +848,7 @@ pins2 {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	uart4_idle_pins_a: uart4-idle-0 {
+>   		pins1 {
+>   			pinmux = <STM32_PINMUX('D', 6, ANALOG)>; /* UART4_TX */
+> @@ -793,6 +859,7 @@ pins2 {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	uart4_sleep_pins_a: uart4-sleep-0 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('D', 6, ANALOG)>, /* UART4_TX */
+> @@ -800,6 +867,7 @@ pins {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	uart4_pins_b: uart4-1 {
+>   		pins1 {
+>   			pinmux = <STM32_PINMUX('A', 9, AF8)>; /* UART4_TX */
+> @@ -813,6 +881,7 @@ pins2 {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	uart4_idle_pins_b: uart4-idle-1 {
+>   		pins1 {
+>   			pinmux = <STM32_PINMUX('A', 9, ANALOG)>; /* UART4_TX */
+> @@ -823,6 +892,7 @@ pins2 {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	uart4_sleep_pins_b: uart4-sleep-1 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('A', 9, ANALOG)>, /* UART4_TX */
+> @@ -830,6 +900,7 @@ pins {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	uart7_pins_a: uart7-0 {
+>   		pins1 {
+>   			pinmux = <STM32_PINMUX('H', 2, AF8)>, /* UART7_TX */
+> @@ -845,6 +916,7 @@ pins2 {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	uart7_idle_pins_a: uart7-idle-0 {
+>   		pins1 {
+>   			pinmux = <STM32_PINMUX('H', 2, ANALOG)>, /* UART7_TX */
+> @@ -862,6 +934,7 @@ pins3 {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	uart7_sleep_pins_a: uart7-sleep-0 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('H', 2, ANALOG)>, /* UART7_TX */
+> @@ -871,6 +944,7 @@ pins {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	uart8_pins_a: uart8-0 {
+>   		pins1 {
+>   			pinmux = <STM32_PINMUX('E', 1, AF8)>; /* UART8_TX */
+> @@ -884,6 +958,7 @@ pins2 {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	uart8_idle_pins_a: uart8-idle-0 {
+>   		pins1 {
+>   			pinmux = <STM32_PINMUX('E', 1, ANALOG)>; /* UART8_TX */
+> @@ -894,6 +969,7 @@ pins2 {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	uart8_sleep_pins_a: uart8-sleep-0 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('E', 1, ANALOG)>, /* UART8_TX */
+> @@ -901,6 +977,7 @@ pins {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	usart1_pins_a: usart1-0 {
+>   		pins1 {
+>   			pinmux = <STM32_PINMUX('C', 0, AF7)>, /* USART1_TX */
+> @@ -916,6 +993,7 @@ pins2 {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	usart1_idle_pins_a: usart1-idle-0 {
+>   		pins1 {
+>   			pinmux = <STM32_PINMUX('C', 0, ANALOG)>, /* USART1_TX */
+> @@ -933,6 +1011,7 @@ pins3 {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	usart1_sleep_pins_a: usart1-sleep-0 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('C', 0, ANALOG)>, /* USART1_TX */
+> @@ -942,6 +1021,7 @@ pins {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	usart1_pins_b: usart1-1 {
+>   		pins1 {
+>   			pinmux = <STM32_PINMUX('C', 0, AF7)>; /* USART1_TX */
+> @@ -955,6 +1035,7 @@ pins2 {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	usart1_idle_pins_b: usart1-idle-1 {
+>   		pins1 {
+>   			pinmux = <STM32_PINMUX('C', 0, ANALOG)>; /* USART1_TX */
+> @@ -965,6 +1046,7 @@ pins2 {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	usart1_sleep_pins_b: usart1-sleep-1 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('C', 0, ANALOG)>, /* USART1_TX */
+> @@ -972,6 +1054,7 @@ pins {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	usart2_pins_a: usart2-0 {
+>   		pins1 {
+>   			pinmux = <STM32_PINMUX('H', 12, AF1)>, /* USART2_TX */
+> @@ -987,6 +1070,7 @@ pins2 {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	usart2_idle_pins_a: usart2-idle-0 {
+>   		pins1 {
+>   			pinmux = <STM32_PINMUX('H', 12, ANALOG)>, /* USART2_TX */
+> @@ -1004,6 +1088,7 @@ pins3 {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	usart2_sleep_pins_a: usart2-sleep-0 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('H', 12, ANALOG)>, /* USART2_TX */
+> @@ -1013,6 +1098,7 @@ pins {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	usart2_pins_b: usart2-0 {
+>   		pins1 {
+>   			pinmux = <STM32_PINMUX('F', 11, AF1)>, /* USART2_TX */
+> @@ -1028,6 +1114,7 @@ pins2 {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	usart2_idle_pins_b: usart2-idle-0 {
+>   		pins1 {
+>   			pinmux = <STM32_PINMUX('F', 11, ANALOG)>, /* USART2_TX */
+> @@ -1045,6 +1132,7 @@ pins3 {
+>   		};
+>   	};
+>   
+> +	/omit-if-no-ref/
+>   	usart2_sleep_pins_b: usart2-sleep-0 {
+>   		pins {
+>   			pinmux = <STM32_PINMUX('F', 11, ANALOG)>, /* USART2_TX */
 
