@@ -1,85 +1,60 @@
-Return-Path: <devicetree+bounces-83278-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83279-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68A99927C6D
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 19:43:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DCE78927C71
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 19:44:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DF3C81F217C2
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 17:43:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 664651F213C3
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2024 17:44:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 111C045C14;
-	Thu,  4 Jul 2024 17:42:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF2613F9C5;
+	Thu,  4 Jul 2024 17:44:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cM+6T6Da"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Fp04a8kh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 384B346447;
-	Thu,  4 Jul 2024 17:42:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7974B3D3AC;
+	Thu,  4 Jul 2024 17:44:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720114970; cv=none; b=gWueDAxqJOuwqHszXcHeTfICsiiHtYsQMZtjcITwUN53DO4Ekf+oaUebKkpjFp5d9wnvwQAXeBW7Y6CUZGctHKFDlg0IKpN9FB9XTNW4boOtWUOxg7z4g1vPM9wwu3qV6hoR3vpTm79jrSQT7G8ndkfadTAI6jT9A+jdegekrgY=
+	t=1720115063; cv=none; b=aRHDFzh1P/2KX+bIg23wD6BIXIBbkDew1sPwfut7sE1OxmzwSj/sUjrQSwqI+xqwi8++FGKyXuzPSYij0hcoor0C+AXSYqQW5VU/Hg8ZnNB4CLhNFgtvXky6nNbpwOoL/rDOCESt645bqt/cufwHje404QsWhN8+bsmvmQ6Ma4I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720114970; c=relaxed/simple;
-	bh=B8/wTrWGfYTi4a470J4qHvN+BJlaqWxEwvi2IHEsF8s=;
+	s=arc-20240116; t=1720115063; c=relaxed/simple;
+	bh=AzVLN5s8m2pR07hkp4MUmLEh08g3IkzD0iu13g2nOIo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TmXnIQM4QUZXTFnmY2JDeFmwacnlVgxiKQuLy1/DwiTbg2Tl34ALITSX5XPNTWohmKL6OnAvCeWXQYuBLC2i77HGE4yXMBtqLwVty1fVkgTZtUGnJ0GV43bk3LMdc/Q0uTYCLoY00VlfPTBMtUAGcOhnQN3mel4+2rcZvv4unQA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cM+6T6Da; arc=none smtp.client-ip=209.85.221.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-367963ea053so668425f8f.2;
-        Thu, 04 Jul 2024 10:42:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1720114966; x=1720719766; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=7vtZ/w5zNW89im8HqRZwOomQ2OX/mj8N4Kk6rmuQv3s=;
-        b=cM+6T6DaYL5mXpLdd2ZcjXs2VelKcQDBxTifTBq9P0tvxkpL+cAZIWePovWmR65xHo
-         3vDm62uugPcjJxznVIvUnEjQSVqT3xKFieMhJrpGroCrBuAoioIMgHspwLG2asmqywGG
-         kdyt/QH2x1MySjk6J+DW90vbYop/2nQer8rd5OI8kSLD9Epevt9iRaATHa88wiLzbu6I
-         +uZEwt8HsKX2NHLubST3cAXvzlM+sl6Rrpisyg0qSxZPdgPLmhKXNG0HzdJQxdIqeY+X
-         pqIxLFpVsqzlfs+8y4IoatuJWg8s8ZM/L8Q7BWGBaeOl3rcLBpGbkJ+N9e+rcrFRe9b0
-         RUJA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720114966; x=1720719766;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7vtZ/w5zNW89im8HqRZwOomQ2OX/mj8N4Kk6rmuQv3s=;
-        b=OSSbRMSUC12tzNYBPMd/cf++1cXZUC/B/xX3HxVxy2WTC1RHxBgQdr1zxJ4pUEZceW
-         CpAYw3RKquh0fihh5+d4XtyYudsDbrrcDUjqlGpYGdCghNHwwS0QsWERoUlLZkCQjmfL
-         wDLxFqqNqGBHhn9xNZvpZzCjuPEYjXrOfF+udVEqBGj4HwhrgItrzLCFXwIUHTmeypH6
-         jaLKhb5SclKleCNta2I2xjm8Ib1ijhJN61jj+MooZGky9QYJ03np9oIpdKHs/r0op3zK
-         MpogN7ViFPlc1JUrQKS4r6Uio6OQ/4cK4b4o4NpmRjLA/V3bPiWJfmGqY468Db6S2GsK
-         LgJQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVOEYDkqINKKMdcPVEHMJD0lvtSq+DBClUSyNKS4DhA3RHUgC+KoZuh5Q4jSu9EmB0S6zJlEpQSbLgJ3CwtfCerex+SBkmOJxpzf6yZ
-X-Gm-Message-State: AOJu0YytS0mb3iTlpxYiMyEwoPFVfaLecU5U+IxK+IKkmL2XJZTW6fyF
-	pHIUDkr+yvdGMFC3HCmOncuqQyMytc3QeOBlJjtIetAzJVRC7UZO9siqAQ==
-X-Google-Smtp-Source: AGHT+IGwpA/Ri2KHPLe1mfcS2CB7JJKPp3dCeWWL3NpPfWiKB2u2gHJTCgiK5unDKILf/5mIRxG7aw==
-X-Received: by 2002:adf:eccf:0:b0:367:92e3:9171 with SMTP id ffacd0b85a97d-3679dd26d28mr2500477f8f.19.1720114966421;
-        Thu, 04 Jul 2024 10:42:46 -0700 (PDT)
-Received: from standask-GA-A55M-S2HP (lu-nat-113-247.ehs.sk. [188.123.113.247])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-367938a6e97sm4693217f8f.109.2024.07.04.10.42.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 Jul 2024 10:42:46 -0700 (PDT)
-Date: Thu, 4 Jul 2024 19:42:44 +0200
-From: Stanislav Jakubek <stano.jakubek@gmail.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Orson Zhai <orsonzhai@gmail.com>,
-	Baolin Wang <baolin.wang@linux.alibaba.com>,
-	Baolin Wang <baolin.wang7@gmail.com>,
-	Chunyan Zhang <zhang.lyra@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] arm64: dts: sprd: move/add SPDX license to top of the
- file
-Message-ID: <e57dd67200e5a4d2399eaf04df0705f30014cc5f.1720112081.git.stano.jakubek@gmail.com>
-References: <cover.1720112081.git.stano.jakubek@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=PSNiSSX6ElzmmmbEtuEh2A2SvsAZpl5FPRsOEa3HmFF2Jygl0j8lDEMRGD0kDsOl5yOw1mKjsRJQWpnDiuTm7HYE/Q7/Pz3IrCPg8hdVPxZ4C7/DNtnNHHKWOheLT8pNGn70F8zGIhhBc/08mvNMO7Yuyh8/VKmna+ZEnSTrV4U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Fp04a8kh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BBF0BC3277B;
+	Thu,  4 Jul 2024 17:44:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720115063;
+	bh=AzVLN5s8m2pR07hkp4MUmLEh08g3IkzD0iu13g2nOIo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Fp04a8khZ0ndBddqA0DLvSs631FmVud72skRkUs8zP/6w+757aMn5psgiVA14HIre
+	 fchF+ee7Y9F5LJSElxVE7mlRVdCTCYIglkzqTD4N2oZUGbOlsbPxsY77cnZcyXKZNA
+	 3MDlgXwMHkX9637NcxJVWNnRNIdqkPabyo27JHud/gNUYn3GfNqZk0GvP8JkKlMOhX
+	 nK2tm6xpN73P9O+DbdyV+7PQGJ9IDkaMNFCHqeMDGkiUqqNZAP05AI2roPkHBUjWUE
+	 sY69eyvc9+Yret1FjSWXFO/O6vMG0Xz2ofudBVZowajTVWwtXMQ7jEcJnrNe9n74hN
+	 osSCiwLuT6bVQ==
+Date: Thu, 4 Jul 2024 12:44:19 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: Odelu Kukatla <quic_okukatla@quicinc.com>
+Cc: Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Kees Cook <keescook@chromium.org>, cros-qcom-dts-watchers@chromium.org, 
+	"Gustavo A . R . Silva" <gustavoars@kernel.org>, linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org, 
+	quic_rlaggysh@quicinc.com, quic_mdtipton@quicinc.com
+Subject: Re: [PATCH] interconnect: qcom: Fix DT backwards compatibility for
+ QoS
+Message-ID: <jhfya4mjnckrmogtmusyvwjv4mlyycgqj3apt2kaj5umxprhtv@rfew7c5w3zf5>
+References: <20240704125515.22194-1-quic_okukatla@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,130 +63,111 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <cover.1720112081.git.stano.jakubek@gmail.com>
+In-Reply-To: <20240704125515.22194-1-quic_okukatla@quicinc.com>
 
-Checkpatch complains about the SPDX-License-Identifier being in the
-wrong place. Move it to the top of the file to fix these warnings.
-In cases of the license being specified only in text, convert these
-to the SPDX-License-Identifier.
+On Thu, Jul 04, 2024 at 06:25:15PM GMT, Odelu Kukatla wrote:
+> Add qos_clks_required flag to skip QoS configuration if clocks property
+> is not populated in devicetree for providers which require clocks to be
+> enabled for accessing registers. This is to keep the QoS configuration
+> backwards compatible with devices that have older DTB.
+> 
 
-Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
----
- arch/arm64/boot/dts/sprd/sc2731.dtsi          | 3 +--
- arch/arm64/boot/dts/sprd/sc9836-openphone.dts | 3 +--
- arch/arm64/boot/dts/sprd/sc9836.dtsi          | 3 +--
- arch/arm64/boot/dts/sprd/sc9860.dtsi          | 3 +--
- arch/arm64/boot/dts/sprd/sharkl64.dtsi        | 3 +--
- arch/arm64/boot/dts/sprd/sp9860g-1h10.dts     | 3 +--
- arch/arm64/boot/dts/sprd/whale2.dtsi          | 3 +--
- 7 files changed, 7 insertions(+), 14 deletions(-)
+Please read "Describe your changes" [1], and make your commit message
+start with the problem description - establish to the reader why this
+change is needed, then follow that with a technical description of the
+solution (likely in a separate paragraph).
 
-diff --git a/arch/arm64/boot/dts/sprd/sc2731.dtsi b/arch/arm64/boot/dts/sprd/sc2731.dtsi
-index e15409f55f43..fc4e2b1e160e 100644
---- a/arch/arm64/boot/dts/sprd/sc2731.dtsi
-+++ b/arch/arm64/boot/dts/sprd/sc2731.dtsi
-@@ -1,9 +1,8 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
- /*
-  * Spreadtrum SC2731 PMIC dts file
-  *
-  * Copyright (C) 2018, Spreadtrum Communications Inc.
-- *
-- * SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-  */
- 
- &adi_bus {
-diff --git a/arch/arm64/boot/dts/sprd/sc9836-openphone.dts b/arch/arm64/boot/dts/sprd/sc9836-openphone.dts
-index e5657c35cd10..b98589ea5ac2 100644
---- a/arch/arm64/boot/dts/sprd/sc9836-openphone.dts
-+++ b/arch/arm64/boot/dts/sprd/sc9836-openphone.dts
-@@ -1,9 +1,8 @@
-+// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
- /*
-  * Spreadtrum SC9836 openphone board DTS file
-  *
-  * Copyright (C) 2014, Spreadtrum Communications Inc.
-- *
-- * This file is licensed under a dual GPLv2 or X11 license.
-  */
- 
- /dts-v1/;
-diff --git a/arch/arm64/boot/dts/sprd/sc9836.dtsi b/arch/arm64/boot/dts/sprd/sc9836.dtsi
-index 8bb8a70966d2..bc3fc9fc3d90 100644
---- a/arch/arm64/boot/dts/sprd/sc9836.dtsi
-+++ b/arch/arm64/boot/dts/sprd/sc9836.dtsi
-@@ -1,9 +1,8 @@
-+// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
- /*
-  * Spreadtrum SC9836 SoC DTS file
-  *
-  * Copyright (C) 2014, Spreadtrum Communications Inc.
-- *
-- * This file is licensed under a dual GPLv2 or X11 license.
-  */
- 
- #include "sharkl64.dtsi"
-diff --git a/arch/arm64/boot/dts/sprd/sc9860.dtsi b/arch/arm64/boot/dts/sprd/sc9860.dtsi
-index 31952d361a8a..d2456d633c39 100644
---- a/arch/arm64/boot/dts/sprd/sc9860.dtsi
-+++ b/arch/arm64/boot/dts/sprd/sc9860.dtsi
-@@ -1,9 +1,8 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
- /*
-  * Spreadtrum SC9860 SoC
-  *
-  * Copyright (C) 2016, Spreadtrum Communications Inc.
-- *
-- * SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-  */
- 
- #include <dt-bindings/interrupt-controller/arm-gic.h>
-diff --git a/arch/arm64/boot/dts/sprd/sharkl64.dtsi b/arch/arm64/boot/dts/sprd/sharkl64.dtsi
-index 69f64e7fce7c..bf58702c4e07 100644
---- a/arch/arm64/boot/dts/sprd/sharkl64.dtsi
-+++ b/arch/arm64/boot/dts/sprd/sharkl64.dtsi
-@@ -1,9 +1,8 @@
-+// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
- /*
-  * Spreadtrum Sharkl64 platform DTS file
-  *
-  * Copyright (C) 2014, Spreadtrum Communications Inc.
-- *
-- * This file is licensed under a dual GPLv2 or X11 license.
-  */
- 
- / {
-diff --git a/arch/arm64/boot/dts/sprd/sp9860g-1h10.dts b/arch/arm64/boot/dts/sprd/sp9860g-1h10.dts
-index 1ce3cbbd9668..095b24a31313 100644
---- a/arch/arm64/boot/dts/sprd/sp9860g-1h10.dts
-+++ b/arch/arm64/boot/dts/sprd/sp9860g-1h10.dts
-@@ -1,9 +1,8 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
- /*
-  * Spreadtrum SP9860g board
-  *
-  * Copyright (C) 2017, Spreadtrum Communications Inc.
-- *
-- * SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-  */
- 
- /dts-v1/;
-diff --git a/arch/arm64/boot/dts/sprd/whale2.dtsi b/arch/arm64/boot/dts/sprd/whale2.dtsi
-index a28f995fb3ff..a551e14ce826 100644
---- a/arch/arm64/boot/dts/sprd/whale2.dtsi
-+++ b/arch/arm64/boot/dts/sprd/whale2.dtsi
-@@ -1,9 +1,8 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
- /*
-  * Spreadtrum Whale2 platform peripherals
-  *
-  * Copyright (C) 2016, Spreadtrum Communications Inc.
-- *
-- * SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-  */
- 
- #include <dt-bindings/clock/sprd,sc9860-clk.h>
--- 
-2.34.1
+[1] https://docs.kernel.org/process/submitting-patches.html#describe-your-changes
 
+> Reported-by: Bjorn Andersson <andersson@kernel.org>
+> Closes: https://lore.kernel.org/all/ciji6nlxn752ina4tmh6kwvek52nxpnguomqek6plwvwgvoqef@yrtexkpmn5br/
+> Signed-off-by: Odelu Kukatla <quic_okukatla@quicinc.com>
+> ---
+>  drivers/interconnect/qcom/icc-rpmh.c | 2 +-
+>  drivers/interconnect/qcom/icc-rpmh.h | 1 +
+>  drivers/interconnect/qcom/sc7280.c   | 2 ++
+>  3 files changed, 4 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/interconnect/qcom/icc-rpmh.c b/drivers/interconnect/qcom/icc-rpmh.c
+> index 93047defd5e2..f49a8e0cb03c 100644
+> --- a/drivers/interconnect/qcom/icc-rpmh.c
+> +++ b/drivers/interconnect/qcom/icc-rpmh.c
+> @@ -311,7 +311,7 @@ int qcom_icc_rpmh_probe(struct platform_device *pdev)
+>  		}
+>  
+>  		qp->num_clks = devm_clk_bulk_get_all(qp->dev, &qp->clks);
+> -		if (qp->num_clks < 0) {
+> +		if (qp->num_clks < 0 || (!qp->num_clks && desc->qos_clks_required)) {
+
+For this new case, I think the dev_info() below makes total sense. I.e.
+this looks good to me.
+
+
+However, the num_clks < 0 case would represent finding a devicetree node
+with clocks specified, but failing to get these clocks. I believe that
+this would include EPROBE_DEFER.
+
+I don't think it's correct to print a informational message and continue
+without QoS. I think we should fail here.
+
+Also, in this case devm_clk_bulk_get_all() would have pr_err() a message
+about which clock it failed to acquire and why, so printing again here
+doesn't seem useful.
+
+But I think that is a separate follow up patch.
+
+>  			dev_info(dev, "Skipping QoS, failed to get clk: %d\n", qp->num_clks);
+>  			goto skip_qos_config;
+>  		}
+> diff --git a/drivers/interconnect/qcom/icc-rpmh.h b/drivers/interconnect/qcom/icc-rpmh.h
+> index 9a5142c70486..14db89850fb3 100644
+> --- a/drivers/interconnect/qcom/icc-rpmh.h
+> +++ b/drivers/interconnect/qcom/icc-rpmh.h
+> @@ -153,6 +153,7 @@ struct qcom_icc_desc {
+>  	size_t num_nodes;
+>  	struct qcom_icc_bcm * const *bcms;
+>  	size_t num_bcms;
+> +	bool qos_clks_required;
+>  };
+>  
+>  int qcom_icc_aggregate(struct icc_node *node, u32 tag, u32 avg_bw,
+> diff --git a/drivers/interconnect/qcom/sc7280.c b/drivers/interconnect/qcom/sc7280.c
+> index 759c609a20bf..167971f8e8be 100644
+> --- a/drivers/interconnect/qcom/sc7280.c
+> +++ b/drivers/interconnect/qcom/sc7280.c
+> @@ -1691,6 +1691,7 @@ static const struct qcom_icc_desc sc7280_aggre1_noc = {
+>  	.num_nodes = ARRAY_SIZE(aggre1_noc_nodes),
+>  	.bcms = aggre1_noc_bcms,
+>  	.num_bcms = ARRAY_SIZE(aggre1_noc_bcms),
+> +	.qos_clks_required = true,
+>  };
+>  
+>  static struct qcom_icc_bcm * const aggre2_noc_bcms[] = {
+> @@ -1722,6 +1723,7 @@ static const struct qcom_icc_desc sc7280_aggre2_noc = {
+>  	.num_nodes = ARRAY_SIZE(aggre2_noc_nodes),
+>  	.bcms = aggre2_noc_bcms,
+>  	.num_bcms = ARRAY_SIZE(aggre2_noc_bcms),
+> +	.qos_clks_required = true,
+
+When reading the commit message and the name of this property, my first
+reaction was "aggre2_noc requires qos clocks".
+
+As such, I'd prefer if this was renamed "qos_requires_clocks" to more
+clearly document what the requirement entails and hint the future reader
+that the interconnect might still be operational.
+
+
+With that said, thanks for your quick reply to my regression report!
+
+Tested-by: Bjorn Andersson <andersson@kernel.org>
+
+Regards,
+Bjorn
+
+>  };
+>  
+>  static struct qcom_icc_bcm * const clk_virt_bcms[] = {
+> -- 
+> 2.17.1
+> 
 
