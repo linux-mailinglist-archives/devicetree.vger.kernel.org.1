@@ -1,131 +1,108 @@
-Return-Path: <devicetree+bounces-83529-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83530-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2FD4928D3F
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 20:03:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EA2D9928D48
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 20:04:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E907C1C212DA
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 18:03:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 26F911C234A9
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 18:04:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DF5F16CD0B;
-	Fri,  5 Jul 2024 18:03:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1696C14A622;
+	Fri,  5 Jul 2024 18:04:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ip5XSHDu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC3C01F94C;
-	Fri,  5 Jul 2024 18:03:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E198A1F94C;
+	Fri,  5 Jul 2024 18:04:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720202588; cv=none; b=hmHKiZ+vVstyc27uZ6la2uTrtBwlC78DrBs4M1JRuFrxyPpiBwBd6HjwJDM0pTHtn3B96v2pLYy0wdtkL8SoljicTPnR5ZtJl+imypRfLeE1oYJLlOBnUtM10ixp8ul87qlL2tz1tccsro19V1Rf8TUCoCNDbezGUZLFpQtmLp0=
+	t=1720202678; cv=none; b=NHwL/TDJivnAAgyHZd7pSbTExzV2mRIEFLg54oLV8VYNeyjkzcksb5Npx3ISonQHFJC2xnJ/qbgAtJEkFNy8CZJSF8/FMhXPCcIvDFn8hC+/fhUt1MWtYLUdn3Yk4TEZhlk+l+GehjmUrQASBYbhcxarGEr95x44u8ax8uOVrYs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720202588; c=relaxed/simple;
-	bh=BURoN9X2Ud9lPSuEZEgb2aTH1L2VxUlOK+mrgn+GDFg=;
-	h=From:In-Reply-To:Content-Type:References:Date:Cc:To:MIME-Version:
-	 Message-ID:Subject; b=t+zS9NDaBq5g9JZh2ZadyrsFqzpiBO8Tc2dg62FOPJURXMZZ0VdnO+9ZH16iqMKjhlEwVuUIavPH01Ai62ez7t1JcHvIq3PCdAG1Ces8h4OGq41B3Ky11w1tl7uM32ocxQqkqLlhx7boebwq/uGQW2ilGVuA82i7jvNZefr3oQQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-Received: from harlem.collaboradmins.com (harlem.collaboradmins.com [IPv6:2a01:4f8:1c0c:5936::1])
-	by madrid.collaboradmins.com (Postfix) with ESMTP id 6A31537800DE;
-	Fri,  5 Jul 2024 18:03:04 +0000 (UTC)
-From: "Shreeya Patel" <shreeya.patel@collabora.com>
-In-Reply-To: <13828cf9-4a93-45a5-b3a3-542ee9ec056b@denx.de>
-Content-Type: text/plain; charset="utf-8"
-X-Forward: 127.0.0.1
-References: <20240705095047.90558-1-marex@denx.de>
- <3b2ca0-6687ce00-3-4dab7280@52083650> <13828cf9-4a93-45a5-b3a3-542ee9ec056b@denx.de>
-Date: Fri, 05 Jul 2024 19:03:04 +0100
-Cc: linux-iio@vger.kernel.org, "Conor Dooley" <conor+dt@kernel.org>, "Jonathan Cameron" <jic23@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Lars-Peter Clausen" <lars@metafoo.de>, "Rob Herring" <robh@kernel.org>, devicetree@vger.kernel.org, kernel@collabora.com
-To: "Marek Vasut" <marex@denx.de>
+	s=arc-20240116; t=1720202678; c=relaxed/simple;
+	bh=JhcO/S986tnJdQ3SRzEjJmm8DfbFGwXOf9yb4qYwoe8=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=WZYbPaRVR3nttcosUbJZPSw0NQcDmjcyGX3SVVYr5kR/JzMgB8N2wHUs5VA1XdMlRXeOeNlBUXQU+MrrumKlljUuY2dm21dm7w5iE0O81wLp8X4Nd3jwF0l7LVS422b57HrRiPVn3fONhG8HqEYqyR+Xq+RygSh6olOetqoRi1A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ip5XSHDu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6D57C116B1;
+	Fri,  5 Jul 2024 18:04:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720202677;
+	bh=JhcO/S986tnJdQ3SRzEjJmm8DfbFGwXOf9yb4qYwoe8=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=ip5XSHDupl/D3tuEGkIZiJlUCMwnjkRigsPAJcMnSFCwOCyxtvHZNshmyqmzfcP9v
+	 ldHM2/JKIk5WB4jXuGtW/l6ga5156auzj+von3J4vOINJjfi0QWCAJ2YZl8da6mZKw
+	 3Un7IlOoGd61ge3fNzP+PvBFQwcrY46OfetlS6dQKgqYVxu1txD6Eyj88yH8JTUUh4
+	 z/nTBB2/qCZK508E6eApKuoglF829knbJViDTKKUlwEdfdAaFHWY5biH9lhATq9DJH
+	 maiuaVVrwqsN80QkdPAuuupzvo/356RWGNsswfexSdv12BH/HUe+huXe5Kf1XU2wp2
+	 JtAK8NmMNQOlg==
+From: Mark Brown <broonie@kernel.org>
+To: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Orson Zhai <orsonzhai@gmail.com>, 
+ Baolin Wang <baolin.wang@linux.alibaba.com>, 
+ Chunyan Zhang <zhang.lyra@gmail.com>, 
+ Baolin Wang <baolin.wang@linux.alibaba.com>, 
+ Stanislav Jakubek <stano.jakubek@gmail.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <ZobxoobZvA8k3pyi@standask-GA-A55M-S2HP>
+References: <ZobxoobZvA8k3pyi@standask-GA-A55M-S2HP>
+Subject: Re: [PATCH] dt-bindings: regulator: sprd,sc2731-regulator: convert
+ to YAML
+Message-Id: <172020267547.58822.12771637622982215899.b4-ty@kernel.org>
+Date: Fri, 05 Jul 2024 19:04:35 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <3dd224-66883580-3-40d7c680@7066446>
-Subject: =?utf-8?q?Re=3A?= [PATCH] =?utf-8?q?iio=3A?==?utf-8?q?_light=3A?=
- =?utf-8?q?_ltrf216a=3A?= Drop undocumented =?utf-8?q?ltr=2Cltrf216a?= 
- compatible string
-User-Agent: SOGoMail 5.10.0
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14-dev-d4707
 
-On Friday, July 05, 2024 20:22 IST, Marek Vasut <marex@denx.de> wrote:
+On Thu, 04 Jul 2024 21:01:54 +0200, Stanislav Jakubek wrote:
+> Convert the Spreadtrum SC2731 regulator bindings to DT schema.
+> 
+> Change during conversion:
+>   - switch compatible from sprd,sc27xx-regulator to sprd,sc2731-regulator,
+>     same as the only in-tree user has done back in 2019 [1]
+> 
+> [1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/arch/arm64/boot/dts/sprd/sc2731.dtsi?h=v6.9&id=0419a75b1808dda225b17ba1509f195f23c0db88
+> 
+> [...]
 
-> On 7/5/24 12:42 PM, Shreeya Patel wrote:
-> > On Friday, July 05, 2024 15:20 IST, Marek Vasut <marex@denx.de> wro=
-te:
-> >=20
-> >> The "ltr,ltrf216a" compatible string is not documented in DT bindi=
-ng
-> >> document, remove it.
-> >>
-> >> Signed-off-by: Marek Vasut <marex@denx.de>
-> >> ---
-> >> Cc: Conor Dooley <conor+dt@kernel.org>
-> >> Cc: Jonathan Cameron <jic23@kernel.org>
-> >> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> >> Cc: Lars-Peter Clausen <lars@metafoo.de>
-> >> Cc: Marek Vasut <marex@denx.de>
-> >> Cc: Rob Herring <robh@kernel.org>
-> >> Cc: Shreeya Patel <shreeya.patel@collabora.com>
-> >> Cc: devicetree@vger.kernel.org
-> >> Cc: linux-iio@vger.kernel.org
-> >> ---
-> >>   drivers/iio/light/ltrf216a.c | 1 -
-> >>   1 file changed, 1 deletion(-)
-> >>
-> >> diff --git a/drivers/iio/light/ltrf216a.c b/drivers/iio/light/ltrf=
-216a.c
-> >> index 68dc48420a886..78fc910fcb18c 100644
-> >> --- a/drivers/iio/light/ltrf216a.c
-> >> +++ b/drivers/iio/light/ltrf216a.c
-> >> @@ -528,7 +528,6 @@ MODULE=5FDEVICE=5FTABLE(i2c, ltrf216a=5Fid);
-> >>  =20
-> >>   static const struct of=5Fdevice=5Fid ltrf216a=5Fof=5Fmatch[] =3D=
- {
-> >>   	{ .compatible =3D "liteon,ltrf216a" },
-> >> -	{ .compatible =3D "ltr,ltrf216a" },
-> >>   	{}
-> >=20
-> > This compatible string with a different vendor prefix was added for=
- a specific reason.
-> > Please see the commit message of the following patch :-
-> > https://lore.kernel.org/all/20220511094024.175994-2-shreeya.patel@c=
-ollabora.com/
-> >=20
-> > We were very well aware that not documenting this was going to gene=
-rate a warning so
-> > we tried to fix that with a deprecated tag but it was NAKd by Rob. =
-What we understood
-> > from his last message was that it wasn't necessary to fix the DT wa=
-rning.
->=20
->  From what I read in the aforementioned discussion thread, it seems R=
-ob=20
-> was very much opposed to this compatible string, so this shouldn't ha=
-ve=20
-> gone in in the first place.
->=20
-> But it did ... so the question is, what now ?
+Applied to
 
-There were multiple versions sent for adding LTRF216A light sensor driv=
-er
-and this compatible string wasn't something that was accepted by mistak=
-e.
-Most of the versions of the patch series made it very clear that it gen=
-erates a warning
-which you can check here :-
-https://lore.kernel.org/lkml/20220731173446.7400bfa8@jic23-huawei/T/#me=
-55be502302d70424a85368c2645c89f860b7b40
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
 
-I would just go with whatever Jonathan decides to do here :)
+Thanks!
+
+[1/1] dt-bindings: regulator: sprd,sc2731-regulator: convert to YAML
+      commit: 6070471088b9db1f7e2aee4b648ce53fdbb3e5aa
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
 Thanks,
-Shreeya Patel
+Mark
 
 
