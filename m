@@ -1,128 +1,104 @@
-Return-Path: <devicetree+bounces-83522-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83523-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73446928BEA
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 17:40:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C74A1928C5A
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 18:33:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2F746284796
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 15:40:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7851E28498D
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 16:33:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 375AF16C866;
-	Fri,  5 Jul 2024 15:40:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6DE9149005;
+	Fri,  5 Jul 2024 16:33:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NKoskVbb"
+	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="yiIaq9w+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out-170.mta0.migadu.com (out-170.mta0.migadu.com [91.218.175.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D62416C6A7
-	for <devicetree@vger.kernel.org>; Fri,  5 Jul 2024 15:40:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57A2A22083
+	for <devicetree@vger.kernel.org>; Fri,  5 Jul 2024 16:33:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720194013; cv=none; b=sA0wqTTEnsDGiFIUbMBDxMu4WRENkyzKeLUkJsz/UHGCdNzXlZTgbhHPBhNiLEdO5Fnt2TIqEvxe+M6iyW0dhPqymP4TIOMXsXNU7a/MmEcpVtn8RCQ3RC7CahY3zXsbbKNFDbg+rYWtyDwUdvI6rWC1ivKWaExPgscCKx7i0oc=
+	t=1720197226; cv=none; b=hVpBgRhH0TRQD5Rl1jn7NuTTNtkfVs7PPBiu6B7iuykEvH7jxivp0YDshFkrIDEyj0pAC+blAgo+ECM2+/Q7Ihj65/cRJtr3/1/3wE27gqsjCSqK2dUGtxKgzN9o9HjQve4OvT2sXVLntFYQ/6R8a5eUCcQ+H4mglhW5G7eD+ZQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720194013; c=relaxed/simple;
-	bh=lvk3fb6EH5rw6dp1DOnJCL3dq9tQI3MOZD7gcFF+qDM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XGq2HMzud9SU7/Gk5BWJVXt8GhO6KxGgpgODsPw9Ua8qdBiR4wfW/z5rk1TT7hplgaPPsXlUL2r+jUDrzB6gAzyuEV8+B6N2xjitEmGyx3PE3aZF7Q8Ydp/y5DodmqDb2lSntxFpGw6/aAMQeU4p1JhrQ5VjUJ3/4Jy8I44gUTA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=NKoskVbb; arc=none smtp.client-ip=209.85.221.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-36796d2e5a9so1195597f8f.3
-        for <devicetree@vger.kernel.org>; Fri, 05 Jul 2024 08:40:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1720194010; x=1720798810; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=rWJsmVbnxMDiuFLY+fOlqn//TXBBmUogobIIxAviZlc=;
-        b=NKoskVbboCs15opK/u8G0ePgBYosmRGjKGCHS/WSYb5wNVrWjJ4EX2lGolUGCOPdB9
-         0uQaIWeVLcyyqRkl0aDLiC0M22BQfSsWudXssBVXP3pxhsgp2pHVNeCJJ6pFb0ysOvku
-         csxvRFZtHVu2Riz/jqwBzAfHZ5pM4k4APkaTzbOevLhvQsW6500bwwj0ndhPXjErmehh
-         +i751M0SzL+icns0EEBvjcXD6QpV1PfdYxsBePfojkYHuOO8lnW0oE7zvqH7TvCPxW5U
-         dkeyRnYpatAZTpYE+qHY+vGIlRIQn6i3NQk7nUNyPXFA2dJHiPpf6KfsSmBx3SHxxs5u
-         bJpw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720194010; x=1720798810;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rWJsmVbnxMDiuFLY+fOlqn//TXBBmUogobIIxAviZlc=;
-        b=aqG7W0cqfCNEChyHXQ7OruVK5Rxt05yz+xO88kvvjnTWHaeNUXiRU4un5jvpk6ayTO
-         ghxUf5XnzxkxvsjfdZZjIYtATX0istMgUJbAgjSjI5TEbR1okhfx4BAW5P9cLAhA02Zc
-         GfUl+k3LTtEcJgD4bZCPILiLX4ZrXCMPDW6CndH6wK4qbqYClN01q7iQC8/oquG6oCP+
-         eIX1/NCoa6A6mSg6J65trZzWMRFqEGUccjrfh5XLugJv9+9kq4STYhQgKBlr4k43YAng
-         K5C5mf9gUBcfvXF0lSTaXBeMEdlZq+lcf6R8ycXk85tx6UsE6F5etvHX7cL/lGmGJ9fM
-         91JA==
-X-Forwarded-Encrypted: i=1; AJvYcCVJo67U0uybObVn8fsH+FG2VNvpkjN6fIa8qfi3osAXbwjG2H5YvJfQdlNun1mlYrZrMFFKfYuEfl5bm4cklRulnbbY6cuWc2f75A==
-X-Gm-Message-State: AOJu0YwbPtOk1Czm/wUWvCZt0IKLIu2XHA56a5qYUV6l24Vif+IkkoXS
-	w7C0C05c10WTmJW4QaTjDNkW6RH7TaS08YoUkcbYTdobGeSjirshFUcWpO6oTs0=
-X-Google-Smtp-Source: AGHT+IFZ5tZcHjh9afQQV6N+UDpsdiCgwUbQuOPcHUbDQTq2FuqnU3hsZXAXDh/UpS3fDJuMgQV8qw==
-X-Received: by 2002:adf:a18f:0:b0:366:f469:a8d with SMTP id ffacd0b85a97d-3679dd35e71mr3543623f8f.35.1720194009828;
-        Fri, 05 Jul 2024 08:40:09 -0700 (PDT)
-Received: from ?IPV6:2a05:6e02:1041:c10:c49e:e1a5:3210:b8c0? ([2a05:6e02:1041:c10:c49e:e1a5:3210:b8c0])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-36795d1fc9csm6559538f8f.83.2024.07.05.08.40.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 05 Jul 2024 08:40:09 -0700 (PDT)
-Message-ID: <c7c78d7d-c920-415f-b97b-c3b7c61eb9fe@linaro.org>
-Date: Fri, 5 Jul 2024 17:40:08 +0200
+	s=arc-20240116; t=1720197226; c=relaxed/simple;
+	bh=FJ6n1XjUi/eyqCVrXLwkSveH/8hWoV86rGKiEPbK2Tc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=kCtENAzkxPUegdN9F7veVP1UyQYl46HduG0qFGYTP0KUtxMpRe6o4f1rtLjaoEEurNtU3d9S6ebu6xwW1q5E2zCN1OwhYvyFc+V2/73St/b5EG3geL+b039GVqR1cKDNgg93o/hRcxB2MKy9d1g9Tsi7bHzDu5R7KiPyw850Acg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=yiIaq9w+; arc=none smtp.client-ip=91.218.175.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
+X-Envelope-To: heiko@sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
+	t=1720197221;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=FJ6n1XjUi/eyqCVrXLwkSveH/8hWoV86rGKiEPbK2Tc=;
+	b=yiIaq9w+BI8XdSfmrn/mw3BrhdTEssvFxmhBQIQUWxqojvVPi7/Mvkbmaj90RBDg69oH/2
+	N6eil8/4OaBOFrIlvkjZCvwhN2Z3EGNNp8+QaPNv10e11VwvQcZw47ultS2eOMcIxRJOp0
+	h7EPX1x1PfJayO6dwVutWH4A3NJqrmRL9gKIFVRhj9NWHEk7cVnxF/KS8LZ1u6xWRK/dgq
+	+yt/aT/RBI2y82DZ84bymyGHnoH5QxQZDYNbG4m5QPZ9yvCx+PO0Oz9YsXdhiEunb+jEB1
+	I5egCnLhAS9zpFoKYLCnfSbl01MTOv25H8uALblUnpdZfaqcgV+2CiJbD/ITzw==
+X-Envelope-To: mweigand@mweigand.net
+X-Envelope-To: dsimic@manjaro.org
+X-Envelope-To: didi.debian@cknow.org
+X-Envelope-To: linux-rockchip@lists.infradead.org
+X-Envelope-To: devicetree@vger.kernel.org
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+X-Envelope-To: linux-kernel@vger.kernel.org
+X-Envelope-To: macromorgan@hotmail.com
+X-Envelope-To: andyshrk@163.com
+X-Envelope-To: jagan@amarulasolutions.com
+X-Envelope-To: amadeus@jmu.edu.cn
+X-Envelope-To: f.kardame@manjaro.org
+X-Envelope-To: michael.riesch@wolfvision.net
+X-Envelope-To: wiagn233@outlook.com
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Diederik de Haas <didi.debian@cknow.org>
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: Maximilian Weigand <mweigand@mweigand.net>,
+	Dragan Simic <dsimic@manjaro.org>,
+	Diederik de Haas <didi.debian@cknow.org>,
+	linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Chris Morgan <macromorgan@hotmail.com>,
+	Andy Yan <andyshrk@163.com>,
+	Jagan Teki <jagan@amarulasolutions.com>,
+	Chukun Pan <amadeus@jmu.edu.cn>,
+	Furkan Kardame <f.kardame@manjaro.org>,
+	Michael Riesch <michael.riesch@wolfvision.net>,
+	Shengyu Qu <wiagn233@outlook.com>
+Subject: arm64: dts: rockchip: Add dma-names to uart-bluetooth rk3566 devices
+Date: Fri,  5 Jul 2024 18:22:12 +0200
+Message-ID: <20240705163004.29678-2-didi.debian@cknow.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND 00/22] dt-bindings: thermal: few cleanups
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Zhang Rui <rui.zhang@intel.com>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Guillaume La Roque <glaroque@baylibre.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Fabio Estevam <festevam@gmail.com>
-Cc: linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-sunxi@lists.linux.dev, imx@lists.linux.dev,
- linux-tegra@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org,
- linux-stm32@st-md-mailman.stormreply.com,
- Florian Fainelli <f.fainelli@gmail.com>,
- linux-rpi-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- Conor Dooley <conor.dooley@microchip.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Vasily Khoruzhick <anarsoul@gmail.com>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Amit Kucheria <amitk@kernel.org>,
- =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
- Heiko Stuebner <heiko@sntech.de>, Biju Das <biju.das.jz@bp.renesas.com>,
- Baolin Wang <baolin.wang@linux.alibaba.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-References: <20240705-dt-bindings-thermal-allof-v1-0-554061b52fbc@linaro.org>
-Content-Language: en-US
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <20240705-dt-bindings-thermal-allof-v1-0-554061b52fbc@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
 
-On 05/07/2024 11:51, Krzysztof Kozlowski wrote:
-> Hi,
-> 
-> Resending (with added tags) because patchset was still not applied.
-> Daniel, can you pick it up?
+This is a single patch which adds the dma-names property to the uart
+node with a bluetooth subnode on Pine64's rk356x devices.
 
-Applied, thanks
+But that property can potentially be added to several other devices, but
+I have zero familiarity with them or their community, so I choose not to
+add it to those devices, but inform people via this cover letter.
 
-
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
-
+The dts/dtsi files I found as potential candidates are:
+- rk3566-anbernic-rgxx3.dtsi
+- rk3566-box-demo.dts
+- rk3566-powkiddy-rk2023.dtsi
+- rk3566-powkiddy-x55.dts
+- rk3566-radxa-cm3.dtsi
+- rk3566-rock-3c.dts
+- rk3566-roc-pc.dts
+- rk3568-rock-3a.dts
 
