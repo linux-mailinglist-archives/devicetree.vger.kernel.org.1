@@ -1,140 +1,132 @@
-Return-Path: <devicetree+bounces-83544-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83545-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65658928E54
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 22:47:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A84A7928E5C
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 22:53:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CA044287813
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 20:47:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D89971C22C2F
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 20:53:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBA55143C72;
-	Fri,  5 Jul 2024 20:47:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00FD014431C;
+	Fri,  5 Jul 2024 20:53:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="HDoBY2uv"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="raTGWSmI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 653BA364A1;
-	Fri,  5 Jul 2024 20:47:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.137.202.133
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7175208A7
+	for <devicetree@vger.kernel.org>; Fri,  5 Jul 2024 20:53:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720212449; cv=none; b=bQuoEqEO+BboA/fTGsdeCc+6lfBSCok/HkGnSVScj4n+sNUTZGKvqXIITyBxh/CVySvy5i3v/31E4fEMXd8myjbdKURX9mcmQuUyOh2kBVla7Cbit21eXAB4vnk0/NBlG0vsraBTKjE3nGHLOoakki5tAr+2Z7kyVb1z2MkNVxY=
+	t=1720212821; cv=none; b=Wsz3yfxICTDrVGgnRwJNI+1zmcBpb3VYvLa1oRvcJf2T9d/JmyGX0RN31Np2sJetTVVdYaY49cAVuYEIR9TLST0l/YqVd3Lvf2DeFpydDLS+rMv9gfBe9uXAR6xBz9D7Yjd0sKtAjz1HDJGzk3x6FOMuhbe1XLnxEwx9DVIaN18=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720212449; c=relaxed/simple;
-	bh=eMozeeNDGgbnk37xu6KniIO54Iq7u9MW21qt2w/Xsx4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=buwWTRtct0M10Yo6ee/SLaDJSpcRJfD0FHoZs3jVmjmxjzdjplNHmgXFYdhO2GIPYrUK5hBz/OOBdx2kMkRp9HhOpo6MJ7RvDYNIX8TK9uUquhIP6ZC9S5G7dUhbT1g95vX8uqKud/EszQVrJ+hU+M4XS64iHatIXjEjk8IVmT0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=HDoBY2uv; arc=none smtp.client-ip=198.137.202.133
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=infradead.org
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Sender:Reply-To:Content-ID:Content-Description;
-	bh=PvCy3PrwhnpHfh2tEhiH0ARV1O+qOmWrJCIYLoSkR0g=; b=HDoBY2uv5BE+KAv1dfieKfCWAs
-	mBqV1FcMGoX5ZwQhjkeHTPLXewaSb+bbFZQf4rCdoL8BOc+GwM+ZslUHEkPsxx5w22fv/o94agik1
-	h/Tfw9JbxalAMZY/aaHTPpRJfzkE5H3X84QPpUZ2ArtLy5Uh3+iruV4RpWAsaVSDtUoTObQRRzzYE
-	eIITusz9xgvb5gdVp+1dc7d7O8nI98ALyZYhwZKx2TN4YEhgUXTupScMvJ9Y7wvVj936rUSUhr8tl
-	wGxHJMuYcXsvS02HdAZ6YrI+de+VlhQvw/NUE8QR+d9dwxv9BI2Byj5euPmdLG6MgEflS+zkSNCBy
-	3+If0Svw==;
-Received: from [50.53.4.147] (helo=[192.168.254.15])
-	by bombadil.infradead.org with esmtpsa (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sPpq1-0000000GoN0-1UGv;
-	Fri, 05 Jul 2024 20:47:25 +0000
-Message-ID: <f7c62def-cba4-46bf-aeda-829d2c378ee3@infradead.org>
-Date: Fri, 5 Jul 2024 13:47:24 -0700
+	s=arc-20240116; t=1720212821; c=relaxed/simple;
+	bh=RnT2BNmiuEmSEAIW2abYdUOVw6Lc6c2/39foamaieO8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fY7VmRX9bQy6ZbAOeA/KketyD7EIlTkZLtVLo8tfp/PFPn6NweBgaceurRS5IQYBXL37t/Gn022Y+gDJj9ufAI5JQuXk4lgPuR15lpPbQx0T0IczPmhgAyMyM26eJMf4LxeCyCKKKhOx5WdYAp9RVsdEa/KwLdajsY5nvhDV99E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=raTGWSmI; arc=none smtp.client-ip=209.85.218.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a77cc73d35fso172200966b.0
+        for <devicetree@vger.kernel.org>; Fri, 05 Jul 2024 13:53:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1720212817; x=1720817617; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=z/RI8+IypXHxfW9Ziu36H6eLxNlyTrtoLgIrlcbG5xE=;
+        b=raTGWSmI9u+Ig3Je96/QPhRSKcIBVDRdAyknPaC+n3h76MvU4XY0MTbWebRyj8/3k1
+         r0BD5VljpLin0S4IFC24I4plVw5IJYg1IpL2JUFoQ2d2AXyO9gjFTbYqnv5zKmFmi5u8
+         zp2zg/CuJps8v/vpKBfgfUE7QnewTyEnF4iMAJa3oDZQzo1Aw5McIB9tmtDx/0msWHBg
+         vuNFevGiIM6QmZQ4wrNfhU2TpZwOfvv72vC5ORM6gjNoL9ksikbkAeV+J8CBuwwXEnaj
+         KFXlLJC2mCaLuJlelHyy50qkmcraQaI9256NBJg+mXJwl472b6YQfbh3QFYaskKNXAK5
+         QtUQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720212817; x=1720817617;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=z/RI8+IypXHxfW9Ziu36H6eLxNlyTrtoLgIrlcbG5xE=;
+        b=AmDksWzC9VcM+QwAkwmDHqGSGdfzhYlBtl1okH+9Ei2tTDdD6pH+Qv8j2gMFh767Ar
+         UNp+M1HTKrmrYRQKfMle738svZYsJhg/zBMuUhtxTXAHBi9UAkXE5BMMj4q60DYsnr7d
+         qtaZpvGZQviJXTyNp623GzH9NP2ZtyO7l/76MUDpb7I9CCIHc8mOKumReTG3zbpn7Lg5
+         2TWNw49+SC49vVxgi8N/LhaXAsA/VSXISW9gTTLpk2L9MMa3WP5qbVA0VY8/79HHzw5z
+         11FFNCwSw4xkWl9zhocVOQETcK0kjgivZ1kQqMcUHtSQgJym+ZlmlPJdAzR1FJDvAQ45
+         hRHw==
+X-Forwarded-Encrypted: i=1; AJvYcCVtVRwdYuifIguv1sqDhD6+5k4Znl2Xp3/5UwlfUBgYPYmQJ5I+TtkVKKFJyxdLQ8iAJ8kzzVVbY2eHUcP+VfNKX6bUG2rIfqQuPg==
+X-Gm-Message-State: AOJu0YzrHT2YBo1Wv3O4rYY2Dr/6evUGQVEatwWLt7ikOJmjjuRnbgoO
+	LrRBjxux2QlCGJ/lxvtHrmtkI1Nyyv62vKfXvLf06iNEw9njUBK50C9Atho+rzA=
+X-Google-Smtp-Source: AGHT+IFGuka/hxl8RhnHoBhFFBpeGFEYTV8+m19H8hGQ4gwZR+orkrF4DTy59PhCviOU8TV3EA9bkA==
+X-Received: by 2002:a17:906:f801:b0:a75:7a8:d70c with SMTP id a640c23a62f3a-a77bd99b7b2mr413357066b.4.1720212816788;
+        Fri, 05 Jul 2024 13:53:36 -0700 (PDT)
+Received: from localhost ([2a02:8071:b783:6940:dc09:29ad:fc9f:a191])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a77b68766d0sm171359166b.195.2024.07.05.13.53.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 05 Jul 2024 13:53:36 -0700 (PDT)
+Date: Fri, 5 Jul 2024 22:53:34 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+To: David Gibson <david@gibson.dropbear.id.au>
+Cc: Rob Herring <robh@kernel.org>, devicetree-compiler@vger.kernel.org, 
+	Geert Uytterhoeven <geert@linux-m68k.org>, Saravana Kannan <saravanak@google.com>, 
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH] libfdt: overlay: Fix phandle overwrite check for new
+ subtrees
+Message-ID: <cjaomdfyojgsq3ykqezitfjdtjqhhetgcncdxs6uoj6llholut@nw4zhuwmht4u>
+References: <20240626075551.2493048-2-u.kleine-koenig@baylibre.com>
+ <bxyscvary2ozzvdnszl3rtfqy3oo5bxnpn6avvaexhtnd47tck@qa44v5zxqhps>
+ <CAL_JsqKj4w92Ym7KTmQo3D+iNszB5u6-kceMCrNCztM0LJaQkA@mail.gmail.com>
+ <ZofdvXLWunF4opJB@zatzit>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 5/5] firmware: imx: adds miscdev
-To: Pankaj Gupta <pankaj.gupta@nxp.com>, Jonathan Corbet <corbet@lwn.net>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org
-References: <20240705-imx-se-if-v4-0-52d000e18a1d@nxp.com>
- <20240705-imx-se-if-v4-5-52d000e18a1d@nxp.com>
-Content-Language: en-US
-From: Randy Dunlap <rdunlap@infradead.org>
-In-Reply-To: <20240705-imx-se-if-v4-5-52d000e18a1d@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="vggu3pwtcali3gn4"
+Content-Disposition: inline
+In-Reply-To: <ZofdvXLWunF4opJB@zatzit>
 
 
+--vggu3pwtcali3gn4
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 7/5/24 6:52 AM, Pankaj Gupta wrote:
-> diff --git a/Documentation/ABI/testing/se-cdev b/Documentation/ABI/testing/se-cdev
-> new file mode 100644
-> index 000000000000..97a5b2ca115d
-> --- /dev/null
-> +++ b/Documentation/ABI/testing/se-cdev
-> @@ -0,0 +1,43 @@
-> +What:		/dev/<se>_mu[0-9]+_ch[0-9]+
-> +Date:		May 2024
-> +KernelVersion:	6.8
-> +Contact:	linux-imx@nxp.com, pankaj.gupta@nxp.com
-> +Description:
-> +		NXP offers multiple hardware IP(s) for  secure enclaves like EdgeLock-
+Hello David,
 
-		                                     ^^^ one space only
+On Fri, Jul 05, 2024 at 09:49:17PM +1000, David Gibson wrote:
+> On Wed, Jul 03, 2024 at 11:06:32AM -0600, Rob Herring wrote:
+> > I think it's just waiting on David.
+>=20
+> Sorry, yes.  I'm always finding it hard to find time for dtc/libfdt
+> maintenance stuff, and I've been particularly busy lately.  I did
+> catch up on a bunch of trivial dtc/libfdt patches lately, but this
+> one's a bit more complex so I didn't get to it yet.
 
-> +		Enclave(ELE), SECO. The character device file descriptors
-> +		/dev/<se>_mu*_ch* are the interface between user-space NXP's secure-
+Good to know it's on your radar. If you have questions or other needs to
+talk about this, don't hesitate to contact me.
 
-Please use "userspace" or "user space".
+Best regards
+Uwe
 
-> +		enclave shared library and the kernel driver.
-> +
-> +		The ioctl(2)-based ABI is defined and documented in
-> +		[include]<linux/firmware/imx/ele_mu_ioctl.h>
+--vggu3pwtcali3gn4
+Content-Type: application/pgp-signature; name="signature.asc"
 
-End the line above with a period.
+-----BEGIN PGP SIGNATURE-----
 
-> +		 ioctl(s) are used primarily for:
-> +			- shared memory management
-> +			- allocation of I/O buffers
-> +			- getting mu info
-> +			- setting a dev-ctx as receiver to receive all the commands from FW
-> +			- getting SoC info
-> +			- send command and receive command response
-> +
-> +		The following file operations are supported:
-> +
-> +		open(2)
-> +		  Currently the only useful flags are O_RDWR.
-> +
-> +		read(2)
-> +		  Every read() from the opened character device context is waiting on
-> +		  wait_event_interruptible, that gets set by the registered mailbox callback
-> +		  function, indicating a message received from the firmware on message-
-> +		  unit.
-> +
-> +		write(2)
-> +		  Every write() to the opened character device context needs to acquire
-> +		  mailbox_lock before sending message on to the message unit.
-> +
-> +		close(2)
-> +		  Stops and frees up the I/O contexts that were associated
-> +		  with the file descriptor.
-> +
-> +Users:		https://github.com/nxp-imx/imx-secure-enclave.git,
-> +		https://github.com/nxp-imx/imx-smw.git
-> +		crypto/skcipher,
-> +		drivers/nvmem/imx-ocotp-ele.c
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmaIXUsACgkQj4D7WH0S
+/k7y6wgAsl1LpftCgasO4MrpmD3n3xfg+7YfgNPjnOsCBajmSsPmH6/UWnsxcEbJ
+rdGuRXEmbv+6FNGW3da/r5V7Fc2xzckmjeG+EB2181Qh4i8oiarFrNZfqwu/WUqT
+MBUzIoNFPtvoZ6oYBmKPoTM9bVTQIomqYLB8y8C+aHKZnyLhLTThuEj9SWPowl4P
+9HsCbQrNajHKlWDexQfepK6y0Hxq/Chjl7FQWpyqriQSzGIsH8RsnYdaHOQJUVSq
+cDTlYAIpfNqeVYChdYRoFxipqv+4/kLBl80JDsRI2EY1YPjyP/ibDqB2BVmcWwjG
+x+Cdr9pCOqFL7UKaNGFAeHJQUkLnaw==
+=5tav
+-----END PGP SIGNATURE-----
 
--- 
-~Randy
+--vggu3pwtcali3gn4--
 
