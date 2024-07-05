@@ -1,129 +1,112 @@
-Return-Path: <devicetree+bounces-83370-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83378-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EC6B928363
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 10:06:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D02DA9283EC
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 10:42:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 030B41C221DB
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 08:06:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 881CF1F22D66
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 08:42:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9E9613C3F9;
-	Fri,  5 Jul 2024 08:06:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F44F14533A;
+	Fri,  5 Jul 2024 08:42:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=xenosoft.de header.i=@xenosoft.de header.b="kMFpwsvI";
-	dkim=permerror (0-bit key) header.d=xenosoft.de header.i=@xenosoft.de header.b="StylesDB"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="QtrI7/rX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [81.169.146.166])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4225481AB;
-	Fri,  5 Jul 2024 08:06:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=81.169.146.166
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720166778; cv=pass; b=S0JGxkWIAWZRwLGZ8rpb76/c+wi7OrEKe5flq230cHavzCPxFTBiXKPq6GIE8acOMtcR5AJB/XWMaPAHR639+kJQKNMJItgJjuhdgM7sMiStB3AyKcAsFXpck0ybKwQ+8rJSVadraKC++hb66ZHsAMwgES4KIpBKJ/FIvMQHraI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720166778; c=relaxed/simple;
-	bh=HDBFrB9U+1H6Na8SeB2ejYtLMqLM4DgPnBZYGDCmFME=;
-	h=Content-Type:From:Mime-Version:Subject:Date:Message-Id:References:
-	 Cc:In-Reply-To:To; b=RNmbyCfPJRewGbmU3EfgudgMTbPNu6SwHJ/DzWIlHSryYif+MZxLjA2y6Ae7ydfGq63BChh4rrhaE0ODgnAahM+NkuqXmhxbNC2RXrbWAFGIUbGfgxQWjC1k9fLA2tgZNoBiH90R7wO6w+xeidy+X8JLcZfkTLkU0qcqMatqlRg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=xenosoft.de; spf=none smtp.mailfrom=xenosoft.de; dkim=pass (2048-bit key) header.d=xenosoft.de header.i=@xenosoft.de header.b=kMFpwsvI; dkim=permerror (0-bit key) header.d=xenosoft.de header.i=@xenosoft.de header.b=StylesDB; arc=pass smtp.client-ip=81.169.146.166
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=xenosoft.de
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=xenosoft.de
-ARC-Seal: i=1; a=rsa-sha256; t=1720166734; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=gl5nexwVkuoIwhgOIbBaOhBfqWlI8nmyb27HyyKv6XdYjnoJfU2bRbCS1UauQcyOLW
-    2z3OWKuyXvxK5UnfNl7cB8In3ywssXW9UvRFNrynPFOpM7b0o7G9BCQGD+fyCzUPmNF7
-    3xHYqgBpZ9+3s02O2GJ9aOp7g5dO8iRc1EL7jOd5GdrgwnYPmi4tbl32oASfdktCyoiZ
-    WEu2woJpavdUZzUQ5dW9b2L3S4ejq6aB665o5pvDXsdV5cCAP2piZyxz0vgcve+x4/cy
-    44hCkxHo1wg1AAKStJnqo+Vu0u3XDfC7f2C6DWrYol/WVaWEkJ2rVcMJVLz/bfuG6IZw
-    Xr9w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1720166734;
-    s=strato-dkim-0002; d=strato.com;
-    h=To:In-Reply-To:Cc:References:Message-Id:Date:Subject:From:Cc:Date:
-    From:Subject:Sender;
-    bh=a97yB0J0sjTTHMcRbynjfBCKVta83Ey42tiJN4TdkTM=;
-    b=OhVE4p+Dp86eMVBYIddhGzOjjolKBO2p5hR9+5ewZLP+kmumbvICdCDmvJgtRYH4Ql
-    gnKQbGcX9xwgH+QjXJXrGvwRgdSd1Hom/jH2StiLDWJW6FOSeItRrsSiLh0II6ME28kZ
-    G+axLatTFK8wUmenkFVMusCMc2ul8z9stmHHwcpocTKeuJl8vYeBQKrXhELemhowQOO6
-    XsSyxGo9KDSnlqz794fQOcH/MzmsPi1qfvQRravDSsWTra1k84yi2oAe5FUUNlIJ6sy+
-    A4zHik+z5zvF2/F/NJejNAcDc1RaUrCYUjpnSOMBtUEv8E4bFSGWNhrgy7K49F95zZqg
-    SMQg==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo01
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1720166734;
-    s=strato-dkim-0002; d=xenosoft.de;
-    h=To:In-Reply-To:Cc:References:Message-Id:Date:Subject:From:Cc:Date:
-    From:Subject:Sender;
-    bh=a97yB0J0sjTTHMcRbynjfBCKVta83Ey42tiJN4TdkTM=;
-    b=kMFpwsvIbsd81XW0VouTIMRlYW1xlT6HcXfU9/NbhToZBUvFK8h2NJUbng6SuVe2X6
-    I0a85rPR/uRTXM74xuf4a1Vc2UOS5T6/hf2Sh50jHHEFKlP+vB9nND+0mOneM7FGSg4K
-    XBTyaBxCU52YiedwGxbXvWYbenDUFuYZX99jK7dgdGvzgiP80MyTHS5JIo1ykguHhWG9
-    KWGthG1eetHoqIzdcVJowupuSMAwqQMMuuYCLcMUwuZOLAX/CevE7EwLRquAMXDqtRRh
-    YBiiroY7KieOmvOK7i6qxjAKfro5rMnjii4ctjNIlqS5WoSfSmuRaAvqrl8oftaQfdla
-    lIMQ==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1720166734;
-    s=strato-dkim-0003; d=xenosoft.de;
-    h=To:In-Reply-To:Cc:References:Message-Id:Date:Subject:From:Cc:Date:
-    From:Subject:Sender;
-    bh=a97yB0J0sjTTHMcRbynjfBCKVta83Ey42tiJN4TdkTM=;
-    b=StylesDB/lgRsS+lQ5LcJxNXmcFf27sGs4aT9DklxOlApqThzoVfVKzhyeMiYj8nUN
-    YDQe4FBftGZ6f4NmK4CQ==
-X-RZG-AUTH: ":L2QefEenb+UdBJSdRCXu93KJ1bmSGnhMdmOod1DhGN0rBVhd9dFr6KxrfO5Oh7V7X5m0s3zACH4zLZuKVd30n/B17YES0k2Xt9gM8w=="
-Received: from smtpclient.apple
-    by smtp.strato.de (RZmta 50.5.0 AUTH)
-    with ESMTPSA id e0838906585YVPi
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-	(Client did not present a certificate);
-    Fri, 5 Jul 2024 10:05:34 +0200 (CEST)
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-From: Christian Zigotzky <chzigotzky@xenosoft.de>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B981A48
+	for <devicetree@vger.kernel.org>; Fri,  5 Jul 2024 08:42:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1720168959; cv=none; b=R6P8MuU+h3mced+skNvGfHjPLNjsBBxxcSmkaOEMs4fg1MFacLXeynkj/ocMiUVwJauEq0Hq7GUgR10PYAeDRWmWT6mxQcpwmAfDmPduzlrG0k3KCp44u3AwTUyto4KCF+m2ie7MAukfLfRwkbhhBY0QsNT9FmhidyAIp7pY0XA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1720168959; c=relaxed/simple;
+	bh=J5wdH0ZBbEA4eP76rz1fA8KJwBugGsQeyMiXQS0vxbs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=qVFxTygXsAvxe4oFP61PYN/335hRVXLN6QhRx42R/4msf7/Qndp7lKzj5NeylG4abFg9ZpfQk5QET7DriKMy9rhzd3VGCAzMS2EXEMEbOeEbvqx0nOwSLDrQeNxbzgurb9hT+7Y1KPmVb0fUqKZhPLVjIDkVAQZoLRbkpzBmmqI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=QtrI7/rX; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id 9ED0D8839D;
+	Fri,  5 Jul 2024 10:42:35 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1720168956;
+	bh=w/iWxCTX5yKL5u5YEhcsM6oZacG0/msdiWVC06pA5D4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=QtrI7/rXcrsxW0Leiz2Dh6JS1uRReU1bhWD0tHDngktvzm+/pabCk1REDUUvLbe4r
+	 F3ty+OY4P1TT5lWjoeN8pgHSCOpNttM9hNHp/q2zGmd/zLYqV1xOv6FgcFD6o/IHpC
+	 bOK7vniQmy1rBFQZ5zHpSLrg5qpBr1gVTC4Svc7qpL2pnhJI6S53Rkijs170rz1JLJ
+	 kRzPrhzLMkaIlzBa66Uwr5C3uzgwf/i6TjQXzFB+x/BKwvLcy3sAEc/YbY+2R1PKKA
+	 HLLcO4GmuZGz04sXIyKfV618TbvkknJaZrwLFXhD/gbKHDLL5Qc0i032t+Z5Jka2vI
+	 i+BNG8nQs/CCw==
+Message-ID: <5b5a196f-58ca-4168-969b-f9efdf8ef57a@denx.de>
+Date: Fri, 5 Jul 2024 10:04:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (1.0)
-Subject: Re: [PowerPC] [PASEMI] Issue with the identification of ATA drives after the of/irq updates 2024-05-29
-Date: Fri, 5 Jul 2024 10:05:23 +0200
-Message-Id: <C7B869E5-95D9-426E-A2CB-8336CC9EF432@xenosoft.de>
-References: <C2FBFAD0-DEEE-4906-80B1-5FA745CD9726@xenosoft.de>
-Cc: Rob Herring <robh@kernel.org>, apatel@ventanamicro.com,
- DTML <devicetree@vger.kernel.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
- mad skateman <madskateman@gmail.com>, "R.T.Dickinson" <rtd2@xtra.co.nz>,
- Matthew Leaman <matthew@a-eon.biz>,
- Darren Stevens <darren@stevens-zone.net>,
- Christian Zigotzky <info@xenosoft.de>
-In-Reply-To: <C2FBFAD0-DEEE-4906-80B1-5FA745CD9726@xenosoft.de>
-To: Marc Zyngier <maz@kernel.org>
-X-Mailer: iPhone Mail (21F90)
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] ARM: dts: stm32: Add ethernet MAC nvmem cells to DH
+ STM32MP13xx DHCOR DHSBC board
+To: Alexandre TORGUE <alexandre.torgue@foss.st.com>,
+ "Rob Herring (Arm)" <robh@kernel.org>
+Cc: kernel@dh-electronics.com,
+ Christophe Roullier <christophe.roullier@foss.st.com>,
+ devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+References: <20240629171100.20285-1-marex@denx.de>
+ <171985715690.313627.4404278514791505125.robh@kernel.org>
+ <cc492f1a-c2f5-438e-a28a-7900cde6f073@denx.de>
+ <9af42035-5cce-4c49-8814-87e517ec24c5@foss.st.com>
+Content-Language: en-US
+From: Marek Vasut <marex@denx.de>
+In-Reply-To: <9af42035-5cce-4c49-8814-87e517ec24c5@foss.st.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-How about the other patch[1], which would be far preferable?
+On 7/5/24 9:30 AM, Alexandre TORGUE wrote:
 
-   M.
+Hi,
 
-[1] https://lore.kernel.org/all/86ed8ba2sp.wl-maz@kernel.org
+>>> arch/arm/boot/dts/st/stm32mp135f-dhcor-dhsbc.dtb: ethernet@5800a000: 
+>>> Unevaluated properties are not allowed ('interrupt-names', 
+>>> 'interrupts-extended', 'mdio', 'nvmem-cell-names', 'nvmem-cells', 
+>>> 'phy-handle', 'phy-mode', 'snps,axi-config', 'snps,mixed-burst', 
+>>> 'snps,pbl', 'snps,tso', 'stmmac-axi-config' were unexpected)
+>>>     from schema $id: http://devicetree.org/schemas/net/stm32-dwmac.yaml#
+>>> arch/arm/boot/dts/st/stm32mp135f-dhcor-dhsbc.dtb: ethernet@5800e000: 
+>>> Unevaluated properties are not allowed ('interrupt-names', 
+>>> 'interrupts-extended', 'mdio', 'nvmem-cell-names', 'nvmem-cells', 
+>>> 'phy-handle', 'phy-mode', 'snps,axi-config', 'snps,mixed-burst', 
+>>> 'snps,pbl', 'snps,tso', 'stmmac-axi-config' were unexpected)
+>>>     from schema $id: http://devicetree.org/schemas/net/stm32-dwmac.yaml#
+>>
+>> I can't seem to be able to reproduce it locally , even with 
+>> dtschema/master updated right now .
+>>
+>> Looking at the bindings, net/stm32-dwmac.yaml does have allof-ref to 
+>> snps,dwmac.yaml which has allof-ref to ethernet-controller.yaml , 
+>> which does list the nvmem-cells/nvmem-cell-names properties .
+>>
+>> What am I missing here ?
+> 
+> I'm also not able to reproduce this issue even after updated the schemas.
+> Rob, can you please double check on your side ?
+> Marek, I think I'll take this patch later for v6.12 cycle.
 
-- - - -
-
-Marc,
-
-We will test the patch as soon as possible.
-
-Christian
-
-- - - -
-
-Our tester has reported, that it doesn=E2=80=99t boot.
-
-Link: https://forum.hyperion-entertainment.com/viewtopic.php?p=3D58627#p5862=
-7=
-
+That's just fine, no worries.
 
