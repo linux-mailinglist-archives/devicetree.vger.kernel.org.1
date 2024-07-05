@@ -1,184 +1,195 @@
-Return-Path: <devicetree+bounces-83527-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83528-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90457928C74
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 18:48:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E15C1928D11
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 19:37:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EF0F1B249D6
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 16:48:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 190F21C224C4
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 17:37:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9794016ABC6;
-	Fri,  5 Jul 2024 16:48:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b="LXF4mp4j"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F06216C42C;
+	Fri,  5 Jul 2024 17:37:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12olkn2054.outbound.protection.outlook.com [40.92.22.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F048414E2D6
-	for <devicetree@vger.kernel.org>; Fri,  5 Jul 2024 16:48:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.22.54
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720198100; cv=fail; b=NyqppZQTXTZxVmV9vK3nVVEyoAW9D/U3M26Gd/kKtEH4sKB+1KFtFypjxueIM5Sw+IbsbzmBLNpZDeeUV+YYdKHDT/wwlkPliahjBV3pQOdWi9+HqWJ0YJ9YJKOJrX0ewBCUJrxbbER0psEc8x1ayoToztrBbzDuRi3qL6x0xxA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720198100; c=relaxed/simple;
-	bh=TygWUajtGXaWzZilWhT2nLvUgNXRGPjJMI6Wfst0yLM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=OxaRw0W7ipBl/uyA89O5/2A7nnc/5fEhF2pEz9msTaRbZHg4eLut0yKgUwI433qqjR+5jFgYpgZikel4sAVYMk7nGRlarBziK5YKo6BgsmeTWxr59Iyj9dv6oCFzvD6aD5wLymBs+s681F1WwcWuzEWxvoDtgMhA2htf1on1/FM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hotmail.com; spf=pass smtp.mailfrom=hotmail.com; dkim=pass (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b=LXF4mp4j; arc=fail smtp.client-ip=40.92.22.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hotmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hotmail.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MLyCr8gLf3xMAIwpMGu3K66njz1qkhFQ7iXLnUaN/uKywUcblpw1ZipCDAGqpVUmhqMLJv0fmmjUFxXUfu3VUpS7Mgm52FuuP2zlzYDpbLrQxGrkAlSJz7l75+9NxQfY7f4/ZlLMG9xlmqh7KN18Oq9L8gUXbF7krR9xnwy0blWswQfHNPn/AtrLkhVS1ieecqBe0kdcnCURrz1fdGtPrfGJCc3dXjwKb4w9OvSl7IXxsmvRTvx7L9IONvrNj5DkbENignywUa81NnQRLihP6ugbkZnmKA/nfH95HPM3/lM2O1ZeRqwqclMFzmnIGRwFyR80Gp/CCvrdEEf9VoNIdA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=FljIydSTfcBqASK0qPFDJF+VYaO358D0jjWwuFonC6k=;
- b=FTc4b87lj/poWL3zl5setjCtp/7e3LfqGPa8FU3MDq8X85eY601BiizRdfKO0ld4trmw/C2KmjAU5P8JG+3t19Mf8J2CXc9bhGnkf+EwLYUNGqW6dOajRMiTSosXviGg9w7qIPzzTz1q0EymbjRD0wGQwph+EHEpnJ9VsgEwB/+YwNsIjyu24/9LvPyPmQ3F6hlok9DiXlh7PYKASkKG3PA2QLJCmIgAhu//SLoLiq6UgHYUVHAha0ZT5oOtZk1zL52baQIyL1eS81JdnwZ29mIOetY6XMV83cj22w8Wmkf0zxnF/MtGO1wRueXwKWwaXQQ7xKkTXr0D9nPCqTwvhg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FljIydSTfcBqASK0qPFDJF+VYaO358D0jjWwuFonC6k=;
- b=LXF4mp4j+ExS/kK1NcHeegi39b1cAF8+37OF+g51/+VAdpNBB6q/mxNIvoqmIQKBab6VnRTztBLzUmGiEIdOVMT9DkipT6Spd2ikAF6hpim/17pmJ+pr7JNLfvmqCMS6v5dw2mjqZWQsTwT7AuRMBAWfhh//VucdeBC4K0PhS9FLBEXdXFAnuvHYMst9nPtf6Y+vgXrPEuiqHmy1t6i4x4efzjxADKOgk+1AUlumOadJu/9UobJ1Tpfd3iGn+52Ty7Lp5KZYuGM5NXumvZEL8VnlzznHvD53M4fq5A/o6aIqdGHTcHpPp/IWj6VDD3e9+lMRNLAPL8SjkANqF1PZsA==
-Received: from MN2PR16MB2941.namprd16.prod.outlook.com (2603:10b6:208:e1::15)
- by MW4PR16MB4768.namprd16.prod.outlook.com (2603:10b6:303:18c::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7741.30; Fri, 5 Jul
- 2024 16:48:14 +0000
-Received: from MN2PR16MB2941.namprd16.prod.outlook.com
- ([fe80::9d62:95ae:c373:c490]) by MN2PR16MB2941.namprd16.prod.outlook.com
- ([fe80::9d62:95ae:c373:c490%3]) with mapi id 15.20.7741.017; Fri, 5 Jul 2024
- 16:48:14 +0000
-Date: Fri, 5 Jul 2024 11:48:10 -0500
-From: Chris Morgan <macromorgan@hotmail.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Chris Morgan <macroalpha82@gmail.com>, linux-sunxi@lists.linux.dev,
-	devicetree@vger.kernel.org, mripard@kernel.org, ryan@testtoast.com,
-	andre.przywara@arm.com, samuel@sholland.org,
-	jernej.skrabec@gmail.com, wens@csie.org, conor+dt@kernel.org,
-	krzk+dt@kernel.org, robh@kernel.org
-Subject: Re: [PATCH V2 1/4] dt-bindings: arm: sunxi: Add Anbernic RG35XXSP
-Message-ID:
- <MN2PR16MB2941C4F2B035C2A0A2303C11A5DF2@MN2PR16MB2941.namprd16.prod.outlook.com>
-References: <20240702193414.57461-1-macroalpha82@gmail.com>
- <20240702193414.57461-2-macroalpha82@gmail.com>
- <29c95f4e-f075-405f-935f-6fd5c616595f@kernel.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <29c95f4e-f075-405f-935f-6fd5c616595f@kernel.org>
-X-TMN: [m4cP9O6x3LH0s801eZi92/CcEzEVTw2QkQ9a9lRAiG4=]
-X-ClientProxiedBy: SA1PR05CA0009.namprd05.prod.outlook.com
- (2603:10b6:806:2d2::11) To MN2PR16MB2941.namprd16.prod.outlook.com
- (2603:10b6:208:e1::15)
-X-Microsoft-Original-Message-ID: <ZogjyuV+LEWrq+yi@wintermute.localhost.fail>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8A831F94C;
+	Fri,  5 Jul 2024 17:37:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.175
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1720201036; cv=none; b=LJr3ZhrZZIdJxST+moKYAXCmqHsjKSUG08MYuTXOYtnnhLJCHRVyci2DCz3jhFHqkxUUy2r+iraaDTyTsIbQh13MXEKwNSjD6aaUYUlM2J2yCjDepzxlELvmW0tTvvXSp4DzO12mHzjL7XYzJRKAxYnjMIHtaaBAAZRiqyx7EU8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1720201036; c=relaxed/simple;
+	bh=e7YSaWF77rgGetEEK69jDsfRDfe3JVxLuUMxZ6fGYo4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=cFvDWp4WEYD/t/L6XCQTtRFVfr/Gp5LCYAfZ7oTbzpypUOvoCFehMe8tDgSCdaieqNmJoDV810pgSVsPMNZRwEbVSBUEiJmmvzxHeHYOG3u2PDUOEYwX8b1DLTOMqjhoMDaYA8ugQx13G+VihLDghRugrfALaODNP0KrnLGXbzM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-650469f59d7so17168207b3.2;
+        Fri, 05 Jul 2024 10:37:13 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720201032; x=1720805832;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=WE2siGt7Dsk8wnjgDVkLAR9HwluMfAZE92CRWcBjgLU=;
+        b=e4L8fslLGhV2Scy83UaecVGtd/qcZqe3L+/caTX213ILYJiof940DWiwEzOIANfC9L
+         +8p1J5qzZhN0QcoUbxkzmm6QsyfegsUUdJ299DWi9B4Ksw+gdBz5xv3jrFU0bgD54R19
+         FcVmvTa55xlVcFCVXNA/QOKQNX7zppN5MwTZhbyDqIdf8hwMZpI8pAjOLLxilKY3ju7+
+         yxrZQRagijo6CStX8dQx2RQmkCdfdn+E04ZPjqFAFB9szMFjnNknP3dfgKnHmgLYJS1p
+         vVemqrXzK9qW+wyTOVUTXoyGdR9LcdMgMA4GvabxjoyZZQXHyMjasn4ziV2nRKL/Q4bq
+         FETg==
+X-Forwarded-Encrypted: i=1; AJvYcCV/Qzpa1U6vzIySOMlvAngwpobSMqCvWKgDTnkyl740ztNtmhly+IbeiOpwPLq8faD0ECEr1Atl4dJvOkWZpVAsgdKrcA02xbJGiBcsw1i14ILcl1RTFDeWIP8uR8YRmvbdRE7pguMTufka8ErbJ8CV5meH8v2KqpNiPKh91azJU0KkqQ==
+X-Gm-Message-State: AOJu0Yz6SnfYNUOYpQr9x1DlWficLpk6gzteY6Y10JmnTazPzoKnJhtH
+	iO6ek/K05Id7ZTbuN/r0h2Une/kfAQYQdVh1mx8IEF1buKyQRwkW7RUwcgcb
+X-Google-Smtp-Source: AGHT+IFsURydJ8bx983Oho8WbV+F978ix/P1z2fX+H6fep6L4vK7Qce6qob2qieivPBy46+l5/3yow==
+X-Received: by 2002:a05:690c:45c5:b0:64a:e7ec:f45 with SMTP id 00721157ae682-652d80377b1mr66844477b3.40.1720201032299;
+        Fri, 05 Jul 2024 10:37:12 -0700 (PDT)
+Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com. [209.85.219.171])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-6533c12b0a9sm5031457b3.81.2024.07.05.10.37.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 05 Jul 2024 10:37:12 -0700 (PDT)
+Received: by mail-yb1-f171.google.com with SMTP id 3f1490d57ef6-df481bf6680so1753905276.3;
+        Fri, 05 Jul 2024 10:37:12 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVcNIuf+fnqBJqE+kcjdE6cOOiRqBAwuPcSLSu7b3I8dcgeoPoDJ1RBFOovgE2i4hVEZMokkE8NIdQEjd65dMKCf8Ua5F/nssUoFA8P2SE+ib69mfnVYlqpR+FOIqQe3NUQuqwE6iNofWe1m85S0pbdv0ghqyBO5IY7WjG4D0EJlYZhnw==
+X-Received: by 2002:a05:690c:ec4:b0:64a:c3b0:3874 with SMTP id
+ 00721157ae682-652d8531072mr62065267b3.47.1720201031887; Fri, 05 Jul 2024
+ 10:37:11 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN2PR16MB2941:EE_|MW4PR16MB4768:EE_
-X-MS-Office365-Filtering-Correlation-Id: 32fd8d21-4e8f-4b02-075d-08dc9d1242a6
-X-Microsoft-Antispam:
-	BCL:0;ARA:14566002|19110799003|461199028|8060799006|440099028|3412199025;
-X-Microsoft-Antispam-Message-Info:
-	TeesAyWPwYkRCSySmnpo5sKbXMD+u9X3RG8+cIfHY008jlNoqvGpCK9YTzgWoTv2b6x0BU1dhFfIXxotIKAT96UbSEysuwGUhmbVyy+OsFk62+XpsvBKXg/kQiIuIlPI2BJAXpeRtbJBa+1opLeLN1390Qv1OXwlGrQhSvxP8JN2lPtnst9rZk2ToTs7e7xZEUGL+cACbV4MZK8LQvr68EI/kwuElitbKtAMr1IGUsOrTh5rIDzv4xLREydwUbiy6RFOPhbaEsn/F+4wH5Jkjz5jXolTmKrT7tfFYtMu8mTKHKDEF0fgBgvtOtXe7FDtt6xYeHNF+mdsZa/OjbI3Lptcj6E2BU3XY+dPOADtkSKHjAvWJM3Lk6d0f3eTRnU/u++ZpFYybnjMWyC/LXaS1Z5KiJhJumXiCC9ZNFsq/KNKgV8Dc9G33l8MSSjiabzkiElb2XKHj1hlgFfXP1VLN5VvOrDZvUq190mJNQRp3skja2Z09TFDm7UMckt0si2Hpn8z3skrBEyjal3zzrflhmyC7VjzljqvNPx09iEjus9SK4iblB7x4KkLepeGkzCrtpqmBRunev1ezgafQ4igcrmcAg026sSySRZptyuJow8PZQ+Z4xsV+6QHfAn+x8ZNIuwWSFcMRLShFTVI4RGoHg==
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?HHPitXcFOo22x+KeMYMAwIGQGkZ9/OSNednh7OkzGFjS2CuTiEDeFo3m1cPu?=
- =?us-ascii?Q?XDezD0jan/6rvyI70qHW13VvdS752imCDKtjJKu+J0EuqiFvW8YS+EBVBTQF?=
- =?us-ascii?Q?DFZfnW3MY97nC5xGMz9dJl2ifXdkztKTG6GNANd7ZDRgyEaAt5sG5s7qJT4v?=
- =?us-ascii?Q?Ehc1/R11zlBeEE/1Iep7fttFubcxepxcX/Mc63MFo6uPO+JizteDiVb8HUQj?=
- =?us-ascii?Q?j6x/hgqZdDaXnrCApJSmTTRaWTHf4ZpEuxmaM3NFFe2dP4dfyyjhwQ+OOm73?=
- =?us-ascii?Q?Sthxv/GtyDdue1LQreH7RfWrjFfUECxZjFia3bLtaGkV0tdjn78YMQI0/Mal?=
- =?us-ascii?Q?jBxme7oqgHB2sgbezGBWyRkL9kWdUk0x4yMoA1JT77+uisIEnw/ohv2tS7Nv?=
- =?us-ascii?Q?K0ZSTTAc40ZtewAWlI4tfj/Li4X6WDG1uf37j7r5ZTObmKuKpYM098PPHphR?=
- =?us-ascii?Q?is8hgBDwxrVe8kZhaYBqvk69um+nCrH8cKPgJ78SM49DvhW2sadRahIP+Qd4?=
- =?us-ascii?Q?pJLhWa3rJT7AUZ/OUzdbJLJBSRy3HcoWNQakR2bxdi4d1Av/CeKtqK1v4e43?=
- =?us-ascii?Q?gXOxMzfpd7W3njJS7F5lHC2/JLrwkwaSsfzbi82erm+mIy2cE2GaaDPgWlYM?=
- =?us-ascii?Q?joWZEIc5N5dUjilZwEOSA+BpzFDxFDo1ip4UgPuLWxhiEH5BRKjke6Rf5GYj?=
- =?us-ascii?Q?gG6QwN9J+H3HWuvX2WtcCw1N/G3+AKsgk2+vcGr7I2inxVIZaKdIPTvlrRR6?=
- =?us-ascii?Q?9WYpiUs/rEH+kdXXnhsDHGZ8d9xUxO9piYb0ftSIYXZt8buzfQlHnuckWknw?=
- =?us-ascii?Q?KXSfima9OSLmwbvAiZ1joUklZfZaT8bAvsyEaihRSUhkGfNm7Xqm6BFkZ6Cp?=
- =?us-ascii?Q?MhZDeu34EmYnf7b5Tjn1lsgsyI2KRmU0DY8fdR3TGGdZy4wIMQPJK5dV3vpJ?=
- =?us-ascii?Q?y+yUHhwLrs28/eWt0xcPnBTLM6X8hrM4bnH+bwx9uuiTP09XaOpU6SakICxn?=
- =?us-ascii?Q?ZJ3Er+FbtA2qePaPXumKX/xQHUKSZZLn0uI2t+Gkqy/n3l5BiwhcZDH98pOE?=
- =?us-ascii?Q?UTBMBzCiRmLbyYu6ewbK1FFlddGHN79WLY5Eqz7n+eEzd31rjuZ9Jl+sNs5v?=
- =?us-ascii?Q?KC6IHJBoQ/yhcXpQdPeo/h0kS5oVsECX9OOPMpwxcgi2AfA/rjV7YxZPu0dL?=
- =?us-ascii?Q?YpSfP4G9r4fqGrlchpfbyuCOZBfGSuLJfvIQyy9rxiPSeNMEcDGCbx7UPaRt?=
- =?us-ascii?Q?K1GTue0F69WY4HlHDyZFW8fLbkRS6SskbtKCScULVQ=3D=3D?=
-X-OriginatorOrg: sct-15-20-7719-20-msonline-outlook-559fc.templateTenant
-X-MS-Exchange-CrossTenant-Network-Message-Id: 32fd8d21-4e8f-4b02-075d-08dc9d1242a6
-X-MS-Exchange-CrossTenant-AuthSource: MN2PR16MB2941.namprd16.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Jul 2024 16:48:13.6396
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR16MB4768
+References: <20240627-mikrobus-scratch-spi-v5-0-9e6c148bf5f0@beagleboard.org>
+ <20240627-mikrobus-scratch-spi-v5-7-9e6c148bf5f0@beagleboard.org>
+ <4e23ec81-b278-4f2b-815d-64ed9390ca55@ti.com> <D2AZ0QKTPY3B.1I48GLI90XD0P@kernel.org>
+ <5b2cd46e-8a51-f145-8876-55b12a6d62d1@linux-m68k.org> <ca2d7d4b-c22d-4d14-a216-8c19073e4189@ti.com>
+In-Reply-To: <ca2d7d4b-c22d-4d14-a216-8c19073e4189@ti.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 5 Jul 2024 19:36:59 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdV_VFSJO-J=sfPGDyzKqF1nRXZ6wr7hgyHh01yiYC_Wvg@mail.gmail.com>
+Message-ID: <CAMuHMdV_VFSJO-J=sfPGDyzKqF1nRXZ6wr7hgyHh01yiYC_Wvg@mail.gmail.com>
+Subject: Re: [PATCH v5 7/7] dts: ti: k3-am625-beagleplay: Add mikroBUS
+To: Andrew Davis <afd@ti.com>
+Cc: Michael Walle <mwalle@kernel.org>, Ayush Singh <ayush@beagleboard.org>, 
+	Mark Brown <broonie@kernel.org>, Vaishnav M A <vaishnav@beagleboard.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Derek Kiernan <derek.kiernan@amd.com>, Dragan Cvetic <dragan.cvetic@amd.com>, 
+	Arnd Bergmann <arnd@arndb.de>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Nishanth Menon <nm@ti.com>, 
+	Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, Andrew Lunn <andrew@lunn.ch>, 
+	jkridner@beagleboard.org, robertcnelson@beagleboard.org, 
+	linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jul 03, 2024 at 07:11:10AM +0200, Krzysztof Kozlowski wrote:
-> On 02/07/2024 21:34, Chris Morgan wrote:
-> > From: Chris Morgan <macromorgan@hotmail.com>
-> > 
-> > Add the Anbernic RG35XXSP variant device and consolidate the Anbernic
-> > H700 devices.
-> > 
-> > The Anbernic RG35XXSP is almost identical to the RG35XX-Plus, but in a
-> > clamshell form-factor with an external RTC and a lid switch.
-> > 
-> > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> > ---
-> >  Documentation/devicetree/bindings/arm/sunxi.yaml | 9 +++++++--
-> >  1 file changed, 7 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documentation/devicetree/bindings/arm/sunxi.yaml
-> > index c2a158b75e49..60b11b289535 100644
-> > --- a/Documentation/devicetree/bindings/arm/sunxi.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
-> > @@ -61,14 +61,19 @@ properties:
-> >            - const: anbernic,rg35xx-2024
-> >            - const: allwinner,sun50i-h700
-> >  
-> > +      - description: Anbernic RG35XX H
-> > +        items:
-> > +          - const: anbernic,rg35xx-h
-> > +          - const: allwinner,sun50i-h700
-> > +
-> >        - description: Anbernic RG35XX Plus
-> >          items:
-> >            - const: anbernic,rg35xx-plus
-> >            - const: allwinner,sun50i-h700
-> >  
-> > -      - description: Anbernic RG35XX H
-> > +      - description: Anbernic RG35XX SP
-> >          items:
-> > -          - const: anbernic,rg35xx-h
-> > +          - const: anbernic,rg35xx-sp
-> 
-> Where is the consolidation? All this is supposed to be in an enum...
-> 
+Hi Andrew,
 
-I didn't properly edit the notes when I posted the v2 sadly. I forgot
-to remove the text about consolidating the devices, since that's how
-the rest of the Allwinner devices are done today. I'll resubmit once
-I have a few more views on the other patches in this series.
+On Fri, Jul 5, 2024 at 6:34=E2=80=AFPM Andrew Davis <afd@ti.com> wrote:
+> On 7/5/24 3:01 AM, Geert Uytterhoeven wrote:
+> > On Thu, 27 Jun 2024, Michael Walle wrote:
+> >> On Thu Jun 27, 2024 at 7:07 PM CEST, Andrew Davis wrote:
+> >>>> +    mikrobus_boards {
+> >>>> +        thermo_click: thermo-click {
+> >>>> +            compatible =3D "maxim,max31855k", "mikrobus-spi";
+> >>>
+> >>> I might be missing something, but your solution cannot possibly be
+> >>> to list every click board that could be connected (all 1500+ of them)
+> >>> to every mikroBUS connector on every device's DT file..
+> >>>
+> >>> Each click board should have a single DTSO overlay file to describe t=
+he
+> >>> click board, one per click board total. And then that overlay should
+> >>> apply cleanly to any device that has a mikroBUS interface.
+> >>>
+> >>> Which means you have not completely solved the fundamental problem of
+> >>> abstracting the mikroBUS connector in DT. Each of these click device =
+child
+> >>> nodes has to be under the parent connector node. Which means a phandl=
+e
+> >>> to the parent node, which is not generically named. For instance
+> >>> if my board has 2 connectors, I would have mikrobus0 and mikrobus1,
+> >>> the click board's overlay would look like this:
+> >>>
+> >>> /dts-v1/;
+> >>> /plugin/;
+> >>>
+> >>> &mikrobus0 {
+> >
+> > Let's use just "&mikrobus" instead...
+> >
+> >>>     status =3D "okay";
+> >>>
+> >>>     mikrobus_board {
+> >>>         thermo-click {
+> >>>             compatible =3D "maxim,max31855k", "mikrobus-spi";
+> >>>             spi-max-frequency =3D <1000000>;
+> >>>             pinctrl-apply =3D "spi_default";
+> >>>         };
+> >>>     };
+> >>> };
+> >>
+> >> If there should only be one DT overlay per click board, how would
+> >> you apply that to to different connectors?
+> >
+> > You teach fdtoverlay[*] to translate anchors, e.g.
+> >
+> >      fdtoverlay -i base.dtb -o final.dtb \
+> >             -t mikrobus=3Dmikrobus0 click1.dtbo \
+> >             -t mikrobus=3Dmikrobus1 click2.dtbo
+> >
+>
+> This basic idea is where I started also, the result is we end
+> up needing a huge number of "anchor" points. And they would
+> also be board specific. So we would want to store all these
+> anchor points in a file, and what better file than another
+> DT file.
 
-Thank you,
-Chris
+Why wouldn't a single anchor point suffice?
+For Mikrobus, the anchor point should have well-known subnodes
+like "spi", "i2c", ... which would take care of the translation.
 
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
+> Putting all the translations in a DT file to allow the DT overlay
+> to become generic is the core idea of this series[0] (looks like
+> you already found it, linking for other following along).
+>
+> And as you note, the symbol table trick allows us to do this
+> without teaching fdtoverlay anything new, so it should work
+> as-is today for any project already supporting overlays.
+
+Yes, and it sounds cool!
+
+> > I believe the Raspberry Pi people already have something like that.
+> >
+> > The mikrobus node handles all other translations (e.g. mapping from
+> > Mikrobus pins to GPIO numbers), so you do not have to handle these
+> > explicitly when adding an overlay.
+>
+> This part seems to still be an open item. For pinmux we can name
+> the pinmux nodes such that their phandles are resolved on overlay
+> application. For Pin number/name to GPIO number we have "gpio-names",
+> and the names can also be generic. But for Interrupts and a couple
+> others, we are still missing a good way to provide a generic mapping
+> from pin name to number.
+
+Isn't that the purpose of nexus nodes in the DT spec?
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
