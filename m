@@ -1,110 +1,134 @@
-Return-Path: <devicetree+bounces-83548-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83549-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C734928EF4
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 23:50:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08104928EFA
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 23:52:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A7E781F23885
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 21:50:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B17961F23854
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 21:52:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 186DA145B12;
-	Fri,  5 Jul 2024 21:50:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04216145A09;
+	Fri,  5 Jul 2024 21:52:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="d5emkgGt"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="mdXhu0i9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B2D114373B;
-	Fri,  5 Jul 2024 21:50:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CA17146A60;
+	Fri,  5 Jul 2024 21:52:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720216252; cv=none; b=Gw6n2BMvDCiiJ7dPY7qsi3CBbRoNE/J9lGZepW1IsnUDSXDecMHejSmDt5D8EFvaRsuYbtdMXLXYmzw4zo7d1GWzhIM+DedXiuj64phhbApC37i/qVJjPBPdVHqhHN5rr5weOsvHi6YU7KcIkGHlN0sIGGysQyd8d4q+qRxcRQ0=
+	t=1720216345; cv=none; b=c4cVg1haD+a7l941LsxK5IN57QdcOLFXw/uGNKFNuj+YW5i7RY2tRhCqCHXdrloGax3+t/862Rb0ne7Q+GUxX5U6+UXQqv0yFzsQyRlFU/GT1G/JlxhedAk1+2rKc482Ih7+M1qDPOGPZecpX/S3sp3F54qdRzzVQ5SlgCBHdGU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720216252; c=relaxed/simple;
-	bh=KN2iATEw+AszbvsC0jz5GWgQ90FLWw4CiJ8TLyIciJk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cXs/wKVFgwRuVDHNtlts25YvosrBTJT6CR+BrlWfQiBwad2qqPa8FcX1W//smcI9nDfj9dQjTuBrTwGgUrPiFH+EhXrgjVqCaqqVCTUrFtD141OwM7f0VAoIMaBdqmyKYYiAaDJ1ilij9Kz6q9i55l2zcBTOFHu5eIcObZOgn8Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=d5emkgGt; arc=none smtp.client-ip=85.214.62.61
+	s=arc-20240116; t=1720216345; c=relaxed/simple;
+	bh=1vKtuRaH9gKpBZAiWoc/J32GV2s67Oe3VAbvYAW3/r8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=LXBgyJNR/c4tZZisS52egzIH0uuXpi9mV+fC6OXjlV834ko32eX/qnJj38eOWYEhXMb8Ti0AcaF9gVACKseW5mMnIpr57yIKg1D1geLYi6G4Lz/TIGfLT8SZvxEgw95bDq/m8mXpBF2C6KIVm7BemVAq1qv/gqz8rjGX+tvNn8w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=mdXhu0i9; arc=none smtp.client-ip=85.214.62.61
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
 	(No client certificate requested)
 	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id E13118813F;
-	Fri,  5 Jul 2024 23:50:40 +0200 (CEST)
+	by phobos.denx.de (Postfix) with ESMTPSA id 7557A881AD;
+	Fri,  5 Jul 2024 23:52:21 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1720216241;
-	bh=n5Gt/eIuZPMyRDdvjrphXCVAI9D5fUg9qibFUjmusak=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=d5emkgGt8WhVIal6n/LvyRIjquSYuHsWZm0YI0wzISgH8wFaxDikDd+OGGIW9KW5a
-	 VclF0Rvr3pdek0kWSDr+hTkVYEye+jBkNx5kMzBMDZ4VGUI9Aa3xJrc1YYq9pgtICk
-	 oz2+Y8Jhof8USt6FwK0gEcDN93aVjBCwJVAqqmZPw8uTwgdTPHD804qzURZThpufSz
-	 ChWQdbVfz/1F7EUnkp4ntz4HH2oMxauCsNWLW1d82v4CbHJ0h4TbR+L3dd9ITxqX8x
-	 K3UJ0jO5aXE6Fq4lVNLGF/7TXiR7VD8Hwp/yhzYfJow52A5cjWN/nr2BXWZ68IsiCt
-	 9XgKnDJt+pLrw==
-Message-ID: <fa6db116-50bb-488b-a48f-c34f918424a2@denx.de>
-Date: Fri, 5 Jul 2024 23:49:56 +0200
+	s=phobos-20191101; t=1720216342;
+	bh=mmPEDXeUzKDrsT/n6IOWn3L16waosfQl1rURoOzvHSs=;
+	h=From:To:Cc:Subject:Date:From;
+	b=mdXhu0i9sEGQU+jYqEBa1WYW8msbexl/BdFKnVmV5RqqRq9y3U81zMFnl4BFYyzGv
+	 Y22gZZDdHU2WFl2pCSdv9biPMs78mQTeHXQziptm1KQfKNUHtLQLVIEe6pfm7PwaRJ
+	 +y8I+sLWIvAT7RkidujC+khA+fLTYBjhVCzZEi4Po25s6SivUVC7HWFCK3pyNGAcEI
+	 u/1kjUpsQvePxCXKav9NnYOUrmL1hgXEnqUXPfq3lGoe8R2eS2ZIwwbm6RkN5vCoyr
+	 XsrJC5MQc4Eq1/MmkVxwYbwTswbnWtlMmhuZK8JB4Un0uQd8jCv/4CO6k0CEdBTpF3
+	 09C4j38Fs4cMQ==
+From: Marek Vasut <marex@denx.de>
+To: netdev@vger.kernel.org
+Cc: kernel@dh-electronics.com,
+	Marek Vasut <marex@denx.de>,
+	"David S. Miller" <davem@davemloft.net>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Eric Dumazet <edumazet@google.com>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	devicetree@vger.kernel.org
+Subject: [net-next,PATCH] dt-bindings: net: realtek,rtl82xx: Document RTL8211F LED support
+Date: Fri,  5 Jul 2024 23:51:46 +0200
+Message-ID: <20240705215207.256863-1-marex@denx.de>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: renesas: Drop ethernet-phy-ieee802.3-c22
- from PHY compatible string on all RZ boards
-To: =?UTF-8?Q?Niklas_S=C3=B6derlund?=
- <niklas.soderlund+renesas@ragnatech.se>,
- Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: linux-arm-kernel@lists.infradead.org, andrew@lunn.ch,
- kernel@dh-electronics.com, kernel test robot <lkp@intel.com>,
- Conor Dooley <conor+dt@kernel.org>,
- Khuong Dinh <khuong@os.amperecomputing.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Magnus Damm
- <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
- devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-References: <20240630034649.173229-1-marex@denx.de>
- <20240630034649.173229-2-marex@denx.de>
- <CAMuHMdXb6nBHLeK1c4CwEUBE8osDyAC_+ohA+10W_mZdGtQufQ@mail.gmail.com>
- <9f1ae430-4cc4-4e2e-a52c-ca17f499bbba@denx.de>
- <CAMuHMdWLLAff5_ndAvH9PofTpibJdOau65wK+QekcwR26H2YoA@mail.gmail.com>
- <20240703093601.GA6493@ragnatech.se>
-Content-Language: en-US
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <20240703093601.GA6493@ragnatech.se>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
 X-Virus-Status: Clean
 
-On 7/3/24 11:36 AM, Niklas Söderlund wrote:
-> On 2024-07-03 10:24:26 +0200, Geert Uytterhoeven wrote:
->> Niklas: commit 54bf0c27380b95a2 ("arm64: dts: renesas: r8a779g0: Use
->> MDIO node for all AVB devices") did keep the reset-gpios property in
->> the PHY node. I guess it should be moved one level up?
-> 
-> It's possible to have a rest-gpios property both in the mdio node and
-> the phy node. The former resets the whole bus while the later a single
-> PHY, at least that's my understanding.
+The RTL8211F PHY does support LED configuration, document support
+for LEDs in the binding document.
 
-My understanding of reset GPIO in the MDIO node is that it is used in 
-case there might be multiple PHYs with shared reset GPIO on the same 
-MDIO bus. Like on the NXP iMX28 .
+Signed-off-by: Marek Vasut <marex@denx.de>
+---
+Cc: "David S. Miller" <davem@davemloft.net>
+Cc: Andrew Lunn <andrew@lunn.ch>
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Eric Dumazet <edumazet@google.com>
+Cc: Florian Fainelli <f.fainelli@gmail.com>
+Cc: Heiner Kallweit <hkallweit1@gmail.com>
+Cc: Jakub Kicinski <kuba@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Paolo Abeni <pabeni@redhat.com>
+Cc: Rob Herring <robh@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: netdev@vger.kernel.org
+---
+ .../devicetree/bindings/net/realtek,rtl82xx.yaml   | 14 +++++++++++---
+ 1 file changed, 11 insertions(+), 3 deletions(-)
 
-> I think it would be more correct to move the reset-gpios up one level
-> for r8a779g0. However as it already was in the PHY node and this
-> functioned as it should I kept it there.
-> 
-> The need for the mdio node was to avoid a device specific property added
-> in the BSP to reset the whole bus. At the moment I can't recall the two
-> different call sites for when the two resets are called. Maybe if we
-> move it to the mdio node we can avoid setting the PHY id in the
-> compatible string as we could then always probe the PHY correctly. I
-> will look into it
-Thanks
+diff --git a/Documentation/devicetree/bindings/net/realtek,rtl82xx.yaml b/Documentation/devicetree/bindings/net/realtek,rtl82xx.yaml
+index 18ee72f5c74a8..28c048368073b 100644
+--- a/Documentation/devicetree/bindings/net/realtek,rtl82xx.yaml
++++ b/Documentation/devicetree/bindings/net/realtek,rtl82xx.yaml
+@@ -14,9 +14,6 @@ maintainers:
+ description:
+   Bindings for Realtek RTL82xx PHYs
+ 
+-allOf:
+-  - $ref: ethernet-phy.yaml#
+-
+ properties:
+   compatible:
+     enum:
+@@ -54,6 +51,17 @@ properties:
+ 
+ unevaluatedProperties: false
+ 
++allOf:
++  - $ref: ethernet-phy.yaml#
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: ethernet-phy-id001c.c916
++    then:
++      properties:
++        leds: true
++
+ examples:
+   - |
+     mdio {
+-- 
+2.43.0
+
 
