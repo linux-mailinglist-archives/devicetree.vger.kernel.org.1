@@ -1,110 +1,186 @@
-Return-Path: <devicetree+bounces-83451-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83452-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9F449286FE
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 12:42:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C030928714
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 12:51:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5FC3A1F22184
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 10:42:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BFF391C20C5F
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 10:51:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE9531487E3;
-	Fri,  5 Jul 2024 10:42:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC345148FF7;
+	Fri,  5 Jul 2024 10:51:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BTGgEA5H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57A2F13C8F9;
-	Fri,  5 Jul 2024 10:42:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08641148844;
+	Fri,  5 Jul 2024 10:51:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720176164; cv=none; b=jxTpjG3X9M8ekQ3NW5puzWPSgjiRSPwggZ9NxqEsfg8GwyJafDxRG7LPj1Yk5pbojd6KlwaamJVDkllDmPVx2X2cEHnKqCcB8+3Er5lJauVo61JTP7aF63CMDjKHDhgKQkT03sOF2WPoNEe2VvR6k0mhg+MFQk42wv4RJ76+z/w=
+	t=1720176693; cv=none; b=XAs55txlRRbKjPKdh47G/P5HgH8qnktO+LUbsB69QdD/96hrE6gcpKcWYr3rDYV8gwx9/c7cSgMteiYyg0a8md1SR/t6gsjHPdmt6RnsOJFZvTMnTanHc4UKyVSKBLSRh138vb3ejG7/KmSrBjJuTZ4+QW32UsvpY9o33xvxnmw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720176164; c=relaxed/simple;
-	bh=zXMAkggHhhAA+aDOLGdaygaaSvxs4nR0CWBBjK/lV3Y=;
-	h=From:In-Reply-To:Content-Type:References:Date:Cc:To:MIME-Version:
-	 Message-ID:Subject; b=CxtTNZBVgKv65f30X9KH8m6X/YM2fS2rOUjIcs8htsJOEJPZ185embJjW6/X/o7c7uqwUK8ArKhp+KuWW2LmtpQAJOEaIFyK87ooFwH6/HdGVXd5kdAYtfra8CSkuPxfWhWvhrN1j5KdegxZ91b5lZLdHQRzISmLuDBm8itqV2I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-Received: from harlem.collaboradmins.com (harlem.collaboradmins.com [IPv6:2a01:4f8:1c0c:5936::1])
-	by madrid.collaboradmins.com (Postfix) with ESMTP id 7E7DB378219E;
-	Fri,  5 Jul 2024 10:42:35 +0000 (UTC)
-From: "Shreeya Patel" <shreeya.patel@collabora.com>
-In-Reply-To: <20240705095047.90558-1-marex@denx.de>
-Content-Type: text/plain; charset="utf-8"
-X-Forward: 127.0.0.1
-References: <20240705095047.90558-1-marex@denx.de>
-Date: Fri, 05 Jul 2024 11:42:35 +0100
-Cc: linux-iio@vger.kernel.org, "Conor Dooley" <conor+dt@kernel.org>, "Jonathan Cameron" <jic23@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Lars-Peter Clausen" <lars@metafoo.de>, "Rob Herring" <robh@kernel.org>, devicetree@vger.kernel.org, kernel@collabora.com
-To: "Marek Vasut" <marex@denx.de>
+	s=arc-20240116; t=1720176693; c=relaxed/simple;
+	bh=AJORAJt9fiLAKgFuj43ReMllSSzMOpQ76O1O1Hy/3gA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GwCABQJ0iX82mvEgz/kKM8L1rfQlOVVG5CXK3uEF1SQlgCKQsOQ6nX0sD8iCFFLcQTgIonCg06F6u8xPuu5XgtMa4NFbS5f7atctc8DTeWkp8aFHMOGi22zUAL7V5qV8ka/w8ZYdO1B9OHgWSly4ygonYRwSbGGdKQy5xeQtr9k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BTGgEA5H; arc=none smtp.client-ip=209.85.221.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-367963ea053so1136518f8f.2;
+        Fri, 05 Jul 2024 03:51:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1720176690; x=1720781490; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=AJORAJt9fiLAKgFuj43ReMllSSzMOpQ76O1O1Hy/3gA=;
+        b=BTGgEA5HqmAOdW3KHJI6pwysUG2UuaWHjI373dcJjUmYvlB1uTN/u2Wyosco6nL3q2
+         Dfvah/yDQ6gNtqTacMAjie6ZOTNB8F+r2T6K+5dgFvcwUthjreoVuHzuPSKr4szRaDeR
+         KUyv4xnMC3PjvP1c/GOhdsWQEVFDdkZfTGmKKDFGlKnW6wQgDYpo/NJVHMV5gqVotS6d
+         NG7nN7DqjVmawnFzfkt2cRnVU8iA3xxhgjFWRZytJrnZFBQt3MpVAJl+5zf29ecotjIg
+         CkXcb2Z+9006HxjAzESM6Krx5IC8DOZvTuONTWWCFc3USInPE3ruI042A3C7/t81/U8J
+         73gQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720176690; x=1720781490;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=AJORAJt9fiLAKgFuj43ReMllSSzMOpQ76O1O1Hy/3gA=;
+        b=gBz6/NyBy4JxLmVslp+6iERYRNwo9uHBkDttJKzrpIxlIpxql1Dc+msi1GYkfRWX2Y
+         LWeiw1xU3XGCmC+R7dhv0N/9uCi1b/INE4Bxqkha07+si/ia5+fGm9PJZzidE7RSO+aF
+         QrjCv3hgAQ2Ey9Rg4A9r03rCYH3iO94pytlPHZc6drPN7eSGSzuq8KpvBJ4CPvgB9T27
+         5dOzIGM/FkzQ7QtLKHJGiyrQU/LBrFeX5iUSmU0NthdXORMl44AcfhfWTGvB6s2qlmKy
+         oK/Uqf5ZJ+J6XELoNLc8nX+0i98Gpd29YDrz6hbCNBJs/3+cXA9c9hZw+JrW/w8BYhQK
+         kuEQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVXX1XhWkx0gs1bvpd+SYoujBkM08G3Eq8WEiTX8eO5QM3jfh1Yh/l6IyIvmSJveEL/IQESU2khYVvj8hV+FmNg0LbHCV7sG2N3xbjqtGdg4pxSYwTpfcRHJwnbGAeukHmc1F/FSxul5Yq1kEvyx/6W7Gp17n3XT+ozgMFD6HypTNY82Me29M2j+dQ89TneA2nClqKppwmD91IgTv4LvIBJpA2XnEb8iIV8VeVWIsL4WP0fxam30bQB/bSlP9xSKMRFRpJ9gD0JDrdtzq8ul5UBDi1cPJG1
+X-Gm-Message-State: AOJu0Yzl71BNvTMhF7AoIv8lXWhfrNmJlqArrN8UhV6vdmeu1L6Q+C3M
+	9WwaTu6POTo69lL6K1QIzxfyW7xFkmXn51wuxsLhf5+xlXV8Vy2z
+X-Google-Smtp-Source: AGHT+IG34mbke5IJo5cR/e8+OiQhSsIhfKjKH4QYsroO50LYMy0yaGverM7QDVIx2MHrrvn7/LDdLQ==
+X-Received: by 2002:a5d:4ace:0:b0:366:e9f9:3d1b with SMTP id ffacd0b85a97d-3679dd10557mr3837762f8f.9.1720176689607;
+        Fri, 05 Jul 2024 03:51:29 -0700 (PDT)
+Received: from orome (p200300e41f162000f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f16:2000:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-367938a6e97sm6252663f8f.109.2024.07.05.03.51.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 05 Jul 2024 03:51:29 -0700 (PDT)
+Date: Fri, 5 Jul 2024 12:51:27 +0200
+From: Thierry Reding <thierry.reding@gmail.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Krishna Yarlagadda <kyarlagadda@nvidia.com>, 
+	linux-tegra@vger.kernel.org, devicetree@vger.kernel.org, linux-doc@vger.kernel.org, 
+	linux-i2c@vger.kernel.org, linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	jonathanh@nvidia.com, krzk+dt@kernel.org, conor+dt@kernel.org, corbet@lwn.net, 
+	andi.shyti@kernel.org, wsa+renesas@sang-engineering.com, ulf.hansson@linaro.org, 
+	adrian.hunter@intel.com, digetx@gmail.com, ldewangan@nvidia.com, mkumard@nvidia.com
+Subject: Re: [RFC PATCH V2 04/12] dt-bindings: misc: tegra-i2c: config
+ settings
+Message-ID: <qg7epd5xmwefp7kimlgummlktnonrd3pd7obnq3chgzrceg3lv@t4iyccqn2zdt>
+References: <20240701151231.29425-1-kyarlagadda@nvidia.com>
+ <20240701151231.29425-5-kyarlagadda@nvidia.com>
+ <20240701174227.GA148633-robh@kernel.org>
+ <hqlckp6hxvxwkkbiagdb5pm4eo5efu55hwuupdal6lojxj2xu5@5zibskqdbdju>
+ <CAL_Jsq+hzbHKeKM9UnJ=VK8_rKs5HJpZRGH2YYWAvjtf9SbPRw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <3b2ca0-6687ce00-3-4dab7280@52083650>
-Subject: =?utf-8?q?Re=3A?= [PATCH] =?utf-8?q?iio=3A?==?utf-8?q?_light=3A?=
- =?utf-8?q?_ltrf216a=3A?= Drop undocumented =?utf-8?q?ltr=2Cltrf216a?= 
- compatible string
-User-Agent: SOGoMail 5.10.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="2yfry5sotijauhey"
+Content-Disposition: inline
+In-Reply-To: <CAL_Jsq+hzbHKeKM9UnJ=VK8_rKs5HJpZRGH2YYWAvjtf9SbPRw@mail.gmail.com>
+
+
+--2yfry5sotijauhey
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Friday, July 05, 2024 15:20 IST, Marek Vasut <marex@denx.de> wrote:
-
-> The "ltr,ltrf216a" compatible string is not documented in DT binding
-> document, remove it.
+On Wed, Jul 03, 2024 at 02:21:04PM GMT, Rob Herring wrote:
+> On Tue, Jul 2, 2024 at 4:29=E2=80=AFAM Thierry Reding <thierry.reding@gma=
+il.com> wrote:
+> >
+> > On Mon, Jul 01, 2024 at 11:42:27AM GMT, Rob Herring wrote:
+> > > On Mon, Jul 01, 2024 at 08:42:22PM +0530, Krishna Yarlagadda wrote:
+> > > > I2C interface timing registers are configured using config setting
+> > > > framework. List available field properties for Tegra I2C controller=
+s.
+> > >
+> > > How is I2C bus timing parameters specific to NVIDIA? Just because you
+> > > have more controls? No. That's no reason to invent a whole new way to
+> > > specify parameters. Extend what's already there and make it work for
+> > > anyone.
+> >
+> > This may be applicable to a subset of this, and yes, maybe we can find
+> > generalizations for some of these parameters.
+> >
+> > However, we're also looking for feedback specifically on these config
+> > nodes that go beyond individual timing parameters. For example in the
+> > case of I2C, how should parameters for different operating modes be
+> > described?
 >=20
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> ---
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Jonathan Cameron <jic23@kernel.org>
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> Cc: Lars-Peter Clausen <lars@metafoo.de>
-> Cc: Marek Vasut <marex@denx.de>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Shreeya Patel <shreeya.patel@collabora.com>
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-iio@vger.kernel.org
-> ---
->  drivers/iio/light/ltrf216a.c | 1 -
->  1 file changed, 1 deletion(-)
+> Like what? It all looks like timing to me.
+
+The problem here isn't the individual properties but rather how to group
+them. More generally the problem is that we have a set of settings that
+need to be applied in different variants. Yes, they are all timings, but
+the values differ based on what mode a given controller operates at.
+
+Take for example I2C where we have things like start-hold time or stop-
+setup time, which we could describe in a more generic way (i.e. leave
+out the vendor prefix). However, depending on the mode that the I2C
+controller runs at (could be standard mode, fast mode or fastplus mode)
+these values need to be adjusted.
+
+So it's the same set of properties but with different values for each
+different operating mode. As far as I can tell there's no good construct
+to describe this in DT currently.
+
+> > Would you agree with something along the lines provided in this series?
 >=20
-> diff --git a/drivers/iio/light/ltrf216a.c b/drivers/iio/light/ltrf216=
-a.c
-> index 68dc48420a886..78fc910fcb18c 100644
-> --- a/drivers/iio/light/ltrf216a.c
-> +++ b/drivers/iio/light/ltrf216a.c
-> @@ -528,7 +528,6 @@ MODULE=5FDEVICE=5FTABLE(i2c, ltrf216a=5Fid);
-> =20
->  static const struct of=5Fdevice=5Fid ltrf216a=5Fof=5Fmatch[] =3D {
->  	{ .compatible =3D "liteon,ltrf216a" },
-> -	{ .compatible =3D "ltr,ltrf216a" },
->  	{}
+> When there are multiple users/vendors of it, maybe.
+>=20
+> In general, it goes against the DT design of properties for foo go in
+> foo's node. This looks more like how ACPI does things where it's add
+> another table for this new thing we need.
 
-This compatible string with a different vendor prefix was added for a s=
-pecific reason.
-Please see the commit message of the following patch :-
-https://lore.kernel.org/all/20220511094024.175994-2-shreeya.patel@colla=
-bora.com/
+Well, that's what Krishna had proposed in the first version of the
+series, which you guys rejected. The problem with that is that we cannot
+easily group these settings using nodes because subnodes of I2C
+controllers are considered to be clients by default. This applies to SPI
+and other busses as well.
 
-We were very well aware that not documenting this was going to generate=
- a warning so
-we tried to fix that with a deprecated tag but it was NAKd by Rob. What=
- we understood
-from his last message was that it wasn't necessary to fix the DT warnin=
-g.
+This approach avoids these issues and can be more easily optimized since
+settings could be shared between multiple instances of the controllers.
+I have a slight preference of putting this into the controllers' device
+tree nodes, but I can't think of a good way of avoiding the above child
+node problem other than what we had in v1.
 
-Thanks,
-Shreeya Patel
+Thierry
 
->  };
->  MODULE=5FDEVICE=5FTABLE(of, ltrf216a=5Fof=5Fmatch);
-> --=20
-> 2.43.0
->
+--2yfry5sotijauhey
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmaH0C8ACgkQ3SOs138+
+s6ElSBAAm6OJyI/B+iIOpmlkdlzG7L2zx/a8cXmzetbdsb5pIpZW1oED1gURbiYJ
+YLp50cUtKcBt+sQWpmf0FWUOCJaoN/151zj4ECK4ptlWRdoaiLm+mC9kG4du+ppz
+p5OSGjhHqva85PR4D1jQLOxPZOY2fDyA5tg4HpdoN9TzgrpZtFRawAUJun5f3lXL
+XdyXai7qCiYrGTAOHthRSzp/HyROYmYqZkku2cNsudgJa1KDlit5VvQzv2JJDA9/
+7mVLHI29v4Fj+OpFgiVnXUDtGLkeUBLCkcNOsKQP9NuTHt6dDMlTCv4BKCA+epIT
+mQeYkYkzyT2FpFWiQqPRsaMzJmNArjGgX2vBSsciU5o9VwF8+a+pYg+s7PiwT1aw
+4hz8HA7MpQeUWktOoaIY0pLrw7D0zCHAsVaRvq4uEOvdFPlefYyo12jP8fLgLK8s
+5I2+Z2qDYuJYPFW87Mco9AjopJe+J25a2L/weVUdyj8a5QvAjrPyiOaS+A6ycnnb
+aaKCL3XEWHyIwC95R2QBXqa0bnCiL8eqIyUF7Mwjg6khLJW4pETth9E5eKCPaq9i
+RWKwlvlGKkIedXqFJ/hchK54treZG14Tcdc3Jpm8ky59zZQWQ19zQMJwsfYThwFQ
+kkL+pOqr/LWSgdrIKDUhZalHjT83nQxOD/cWXs6nww1+M5eeV54=
+=6Nt4
+-----END PGP SIGNATURE-----
+
+--2yfry5sotijauhey--
 
