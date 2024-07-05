@@ -1,152 +1,152 @@
-Return-Path: <devicetree+bounces-83483-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83484-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BAB39288DF
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 14:43:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E3C49288E0
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 14:43:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 167911F22A80
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 12:43:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 330641C210FE
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 12:43:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE5AE1487D8;
-	Fri,  5 Jul 2024 12:43:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2842E14A616;
+	Fri,  5 Jul 2024 12:43:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="HuGhRfW3"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="LZbUzGOc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mslow1.mail.gandi.net (mslow1.mail.gandi.net [217.70.178.240])
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F4F214A61B
-	for <devicetree@vger.kernel.org>; Fri,  5 Jul 2024 12:43:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.178.240
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD4641487D8;
+	Fri,  5 Jul 2024 12:43:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720183389; cv=none; b=eMLWdBsyAnpFswpys1xTy81ssxvfGvShu7HBaS9xLG+vGQl5S+oIy520sAtUVAORpgzaXdosjezRYmuw6JZyQEOCSmHvguuXWAkQRDPdXMHyafS1Quu7/E+44+oZIi3XYcpNHSil3hWZ5MuQw0lsKvZoT+CA4dfB7g1A+U9zpU4=
+	t=1720183422; cv=none; b=u1jlLa4TQ6whuovXU0DqUm3odkdfmfMKlDnWSJUQn1lOYoFa/3bDqMwdfso/SAKGRw9U2rjH6PKA93eIPMmQu4dE8gSzLyD+GtIEXTWh43vvwH8bB8c3dL3Wc+SYKbqkCQgaxasEZSTY7bGl4eCFUzv8lWOl4nLFVlq930+JcbE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720183389; c=relaxed/simple;
-	bh=jTCwjDZ/WqYKhhxkU8dDZ6T5ytrF7DP05rG8nV/C4Zg=;
+	s=arc-20240116; t=1720183422; c=relaxed/simple;
+	bh=niwvqIE+h1cjh82f0pDykYGJvGh/UF7aodFDBImjDLw=;
 	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=ZBXit+HfhAr1xNeUyrzXF+PomopZzFHLj1b7gyMDN3DHEf+rMJ1SI178by3bNLR0ZmLBgJHqQa0mE0eY11uTHRoSVrk2mv1KtihOYckjrTVDEdfadD15AzlSjFnWlDkjx6TiKlbVPUa7eZxariywzvEA/eRyQVBh3IWkUCq++ZM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=HuGhRfW3; arc=none smtp.client-ip=217.70.178.240
+	 MIME-Version:Content-Type; b=APumAnd2RS08vW0W4scMohzztVZOp2152/Ou229p/S/vbb8iHY8CXFCm6rehvvSouJ/qyeKdrOU/PZejFpYYIBfp91/JFl6Ff+S0wygU/6c9QY/rYnXRRJxSuRIpoSEby4K/EVCNa0EGtYv1B5qirmFXt7aZIZsiodCyOH5D4p8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=LZbUzGOc; arc=none smtp.client-ip=217.70.183.197
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from relay8-d.mail.gandi.net (unknown [217.70.183.201])
-	by mslow1.mail.gandi.net (Postfix) with ESMTP id 3229BC782A
-	for <devicetree@vger.kernel.org>; Fri,  5 Jul 2024 12:41:40 +0000 (UTC)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 708071BF20C;
-	Fri,  5 Jul 2024 12:41:31 +0000 (UTC)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 664111C0002;
+	Fri,  5 Jul 2024 12:43:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1720183292;
+	t=1720183418;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=iosINar1te4jQmV0kLBug8VLhQo1H7OfnXMTToJiLeo=;
-	b=HuGhRfW3NamX4GM3vt8ybyncRclOK3/tqvtVgmB/JmbdWBSGFLxDMmHteT0EZk2TFSVum2
-	moDI4KjjZRtlQ2mpNmmIJoUqZXp29d7dG3Q8RLVTfRk/n5GEbFJn3xrG6id3VFVvmYyvJ4
-	3IraKY0z4HAy1+oFuWNq34Pzt9d2TY48+5SLk3vvHxhEN3BKOUkCszMp7lI1E1Ohp4m3Xr
-	1x1pun13K3J621FITvLwMfc5iJ+79vBUZSwuoZrXp9MEMZYFsVmbeM2ytT7n2of6t2LGeb
-	1OueM1+GwUw7p9+7weWUWExO2tW9tbVF+4ezLyQ7Amzj/Mbh5bR61MDCRbXouA==
+	bh=nlfsyrfrSV5hF7t1zqFMldKwtDb7AOHp12rdTPm/ZDs=;
+	b=LZbUzGOcsxUwbjpHB6/JsV9w0p0aBzEauJfj5XkdqIhKIQ5c6HCfvUxklLZUouSWc12ygK
+	WiVEc5tmdKjtaamzVE7SiHcWgB6ZHj6gqe0FyKcIhOkmQ6xcPQbsOtzx2sH1i7/fI0WaGK
+	6gAm66Ee7NuB3gQwI94M7e2DyemlNR5sMM7vKLBRBSCC9ntMV3xajxW0A2x4/I4BZbwdY9
+	VXHuMssMmCFm3L8Gfxc21snO+f4SrZVca8t1nvJoIqsxTmum+fA+VoZhJiHJ58RL3XuKTH
+	SF55iA0tj1WeXyLh0dqJCozh2NrpEV5Oc/VFlyS28AUsZ3tGs3PLXAgTkV92Wg==
 From: Gregory CLEMENT <gregory.clement@bootlin.com>
-To: Marek =?utf-8?Q?Beh=C3=BAn?= <kabel@kernel.org>, Andrew Lunn
- <andrew@lunn.ch>, Sebastian
- Hesselbarth <sebastian.hesselbarth@gmail.com>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, soc@kernel.org, Thomas Gleixner
- <tglx@linutronix.de>
-Cc: Marek =?utf-8?Q?Beh=C3=BAn?= <kabel@kernel.org>
-Subject: Re: [PATCH v2 1/2] ARM: dts: armada-{370-xp,375,38x,39x}: Drop
- #size-cells from mpic node
-In-Reply-To: <20240624145355.8034-2-kabel@kernel.org>
-References: <20240624145355.8034-1-kabel@kernel.org>
- <20240624145355.8034-2-kabel@kernel.org>
-Date: Fri, 05 Jul 2024 14:41:31 +0200
-Message-ID: <87le2gj9j8.fsf@BLaptop.bootlin.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Andrew Lunn
+ <andrew@lunn.ch>, Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Krzysztof Kozlowski
+ <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH 0/7] ARM: dts: marvell: orion / kirkwood: few cleanups
+In-Reply-To: <20240701-dts-marvell-cleanup-v1-0-4773bd20691a@linaro.org>
+References: <20240701-dts-marvell-cleanup-v1-0-4773bd20691a@linaro.org>
+Date: Fri, 05 Jul 2024 14:43:37 +0200
+Message-ID: <87ikxkj9fq.fsf@BLaptop.bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 X-GND-Sasl: gregory.clement@bootlin.com
 
-Marek Beh=C3=BAn <kabel@kernel.org> writes:
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> writes:
 
-> The marvell,mpic interrupt controller has no children nodes. Drop the
+> Few cleanups reported by dtbs_check.
 >
-> Signed-off-by: Marek Beh=C3=BAn <kabel@kernel.org>
+> Best regards,
+> Krzysztof
+>
+> ---
 
-
-Applied on mvebu/dt
+Series applied on mvebu/dt
 
 Thanks,
 
 Gregory
 
 
-> ---
->  arch/arm/boot/dts/marvell/armada-370-xp.dtsi | 1 -
->  arch/arm/boot/dts/marvell/armada-375.dtsi    | 1 -
->  arch/arm/boot/dts/marvell/armada-38x.dtsi    | 1 -
->  arch/arm/boot/dts/marvell/armada-39x.dtsi    | 1 -
->  4 files changed, 4 deletions(-)
+> Krzysztof Kozlowski (7):
+>       ARM: dts: marvell: kirkwood: align GPIO keys node name with bindings
+>       ARM: dts: marvell: kirkwood: drop incorrect address/size-cells in GPIO keys
+>       ARM: dts: marvell: kirkwood: align LED node name with bindings
+>       ARM: dts: marvell: orion: align GPIO keys node name with bindings
+>       ARM: dts: marvell: orion: drop incorrect address/size-cells in GPIO keys
+>       ARM: dts: marvell: orion5x-lswsgl: use 'gpios' property for LEDs
+>       ARM: dts: marvell: orion: align LED node name with bindings
 >
-> diff --git a/arch/arm/boot/dts/marvell/armada-370-xp.dtsi b/arch/arm/boot=
-/dts/marvell/armada-370-xp.dtsi
-> index 0b8c2a64b36f..954c891e5aee 100644
-> --- a/arch/arm/boot/dts/marvell/armada-370-xp.dtsi
-> +++ b/arch/arm/boot/dts/marvell/armada-370-xp.dtsi
-> @@ -168,7 +168,6 @@ mbusc: mbus-controller@20000 {
->  			mpic: interrupt-controller@20a00 {
->  				compatible =3D "marvell,mpic";
->  				#interrupt-cells =3D <1>;
-> -				#size-cells =3D <1>;
->  				interrupt-controller;
->  				msi-controller;
->  			};
-> diff --git a/arch/arm/boot/dts/marvell/armada-375.dtsi b/arch/arm/boot/dt=
-s/marvell/armada-375.dtsi
-> index ddc49547d786..99778b4b7e7b 100644
-> --- a/arch/arm/boot/dts/marvell/armada-375.dtsi
-> +++ b/arch/arm/boot/dts/marvell/armada-375.dtsi
-> @@ -376,7 +376,6 @@ mpic: interrupt-controller@20a00 {
->  				compatible =3D "marvell,mpic";
->  				reg =3D <0x20a00 0x2d0>, <0x21070 0x58>;
->  				#interrupt-cells =3D <1>;
-> -				#size-cells =3D <1>;
->  				interrupt-controller;
->  				msi-controller;
->  				interrupts =3D <GIC_PPI 15 IRQ_TYPE_LEVEL_HIGH>;
-> diff --git a/arch/arm/boot/dts/marvell/armada-38x.dtsi b/arch/arm/boot/dt=
-s/marvell/armada-38x.dtsi
-> index 446861b6b17b..1181b13deabc 100644
-> --- a/arch/arm/boot/dts/marvell/armada-38x.dtsi
-> +++ b/arch/arm/boot/dts/marvell/armada-38x.dtsi
-> @@ -408,7 +408,6 @@ mpic: interrupt-controller@20a00 {
->  				compatible =3D "marvell,mpic";
->  				reg =3D <0x20a00 0x2d0>, <0x21070 0x58>;
->  				#interrupt-cells =3D <1>;
-> -				#size-cells =3D <1>;
->  				interrupt-controller;
->  				msi-controller;
->  				interrupts =3D <GIC_PPI 15 IRQ_TYPE_LEVEL_HIGH>;
-> diff --git a/arch/arm/boot/dts/marvell/armada-39x.dtsi b/arch/arm/boot/dt=
-s/marvell/armada-39x.dtsi
-> index 9d1cac49c022..6d05835efb42 100644
-> --- a/arch/arm/boot/dts/marvell/armada-39x.dtsi
-> +++ b/arch/arm/boot/dts/marvell/armada-39x.dtsi
-> @@ -268,7 +268,6 @@ mpic: interrupt-controller@20a00 {
->  				compatible =3D "marvell,mpic";
->  				reg =3D <0x20a00 0x2d0>, <0x21070 0x58>;
->  				#interrupt-cells =3D <1>;
-> -				#size-cells =3D <1>;
->  				interrupt-controller;
->  				msi-controller;
->  				interrupts =3D <GIC_PPI 15 IRQ_TYPE_LEVEL_HIGH>;
-> --=20
-> 2.44.2
+>  .../dts/marvell/kirkwood-blackarmor-nas220.dts     |  6 +--
+>  arch/arm/boot/dts/marvell/kirkwood-c200-v1.dts     |  8 +--
+>  arch/arm/boot/dts/marvell/kirkwood-cloudbox.dts    |  8 ++-
+>  arch/arm/boot/dts/marvell/kirkwood-d2net.dts       |  2 +-
+>  arch/arm/boot/dts/marvell/kirkwood-dir665.dts      | 22 ++++----
+>  arch/arm/boot/dts/marvell/kirkwood-dns320.dts      | 10 ++--
+>  arch/arm/boot/dts/marvell/kirkwood-dns325.dts      | 10 ++--
+>  arch/arm/boot/dts/marvell/kirkwood-dnskw.dtsi      |  8 ++-
+>  arch/arm/boot/dts/marvell/kirkwood-dockstar.dts    |  4 +-
+>  arch/arm/boot/dts/marvell/kirkwood-dreamplug.dts   |  6 +--
+>  arch/arm/boot/dts/marvell/kirkwood-goflexnet.dts   | 20 ++++----
+>  .../dts/marvell/kirkwood-guruplug-server-plus.dts  |  8 +--
+>  arch/arm/boot/dts/marvell/kirkwood-ib62x0.dts      | 12 ++---
+>  arch/arm/boot/dts/marvell/kirkwood-iconnect.dts    | 20 ++++----
+>  .../boot/dts/marvell/kirkwood-iomega_ix2_200.dts   | 16 +++---
+>  arch/arm/boot/dts/marvell/kirkwood-l-50.dts        | 20 ++++----
+>  arch/arm/boot/dts/marvell/kirkwood-laplug.dts      |  6 +--
+>  .../arm/boot/dts/marvell/kirkwood-linkstation.dtsi |  2 -
+>  .../boot/dts/marvell/kirkwood-linksys-viper.dts    | 10 ++--
+>  arch/arm/boot/dts/marvell/kirkwood-lsxl.dtsi       | 18 +++----
+>  arch/arm/boot/dts/marvell/kirkwood-mplcec4.dts     | 12 ++---
+>  .../boot/dts/marvell/kirkwood-mv88f6281gtw-ge.dts  | 12 ++---
+>  arch/arm/boot/dts/marvell/kirkwood-netxbig.dtsi    |  8 ++-
+>  arch/arm/boot/dts/marvell/kirkwood-ns2-common.dtsi |  6 +--
+>  arch/arm/boot/dts/marvell/kirkwood-ns2lite.dts     |  2 +-
+>  arch/arm/boot/dts/marvell/kirkwood-nsa310.dts      | 20 ++++----
+>  arch/arm/boot/dts/marvell/kirkwood-nsa310a.dts     | 18 +++----
+>  arch/arm/boot/dts/marvell/kirkwood-nsa310s.dts     |  8 ++-
+>  arch/arm/boot/dts/marvell/kirkwood-nsa320.dts      | 18 +++----
+>  arch/arm/boot/dts/marvell/kirkwood-nsa325.dts      | 18 +++----
+>  .../boot/dts/marvell/kirkwood-nsa3x0-common.dtsi   |  8 ++-
+>  .../boot/dts/marvell/kirkwood-openblocks_a6.dts    |  4 +-
+>  .../boot/dts/marvell/kirkwood-openblocks_a7.dts    |  2 -
+>  arch/arm/boot/dts/marvell/kirkwood-pogo_e02.dts    |  4 +-
+>  .../dts/marvell/kirkwood-pogoplug-series-4.dts     |  8 ++-
+>  .../boot/dts/marvell/kirkwood-sheevaplug-esata.dts |  2 +-
+>  arch/arm/boot/dts/marvell/kirkwood-sheevaplug.dts  |  4 +-
+>  arch/arm/boot/dts/marvell/kirkwood-synology.dtsi   | 58 +++++++++++-----------
+>  arch/arm/boot/dts/marvell/kirkwood-t5325.dts       |  4 +-
+>  arch/arm/boot/dts/marvell/kirkwood-ts219-6281.dts  |  6 +--
+>  arch/arm/boot/dts/marvell/kirkwood-ts219-6282.dts  |  6 +--
+>  arch/arm/boot/dts/marvell/kirkwood-ts419.dtsi      |  6 +--
+>  .../dts/marvell/mvebu-linkstation-gpio-simple.dtsi |  2 -
+>  .../boot/dts/marvell/orion5x-lacie-d2-network.dts  |  9 ++--
+>  .../orion5x-lacie-ethernet-disk-mini-v2.dts        |  7 ++-
+>  .../boot/dts/marvell/orion5x-linkstation-lschl.dts |  4 +-
+>  arch/arm/boot/dts/marvell/orion5x-lswsgl.dts       | 25 +++++-----
+>  .../marvell/orion5x-maxtor-shared-storage-2.dts    |  7 ++-
+>  .../boot/dts/marvell/orion5x-netgear-wnr854t.dts   |  2 +-
+>  .../arm/boot/dts/marvell/orion5x-rd88f5182-nas.dts |  2 +-
+>  50 files changed, 230 insertions(+), 278 deletions(-)
+> ---
+> base-commit: 9c9a5aa3a60dc9e1e2448c29f346385914052642
+> change-id: 20240701-dts-marvell-cleanup-1c9fcf6ae439
+>
+> Best regards,
+> -- 
+> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
