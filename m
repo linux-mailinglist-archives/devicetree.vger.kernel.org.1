@@ -1,111 +1,110 @@
-Return-Path: <devicetree+bounces-83450-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83451-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 737DD9286E6
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 12:38:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9F449286FE
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 12:42:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2E8072853D7
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 10:38:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5FC3A1F22184
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 10:42:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72724148855;
-	Fri,  5 Jul 2024 10:38:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CL6VGoNN"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE9531487E3;
+	Fri,  5 Jul 2024 10:42:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 406D514883F;
-	Fri,  5 Jul 2024 10:38:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57A2F13C8F9;
+	Fri,  5 Jul 2024 10:42:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720175907; cv=none; b=JAVxgJHMHD4Ef5DC1mceK/9s3eYFB2eo3UptDs0nZuMYhtKt0QgWEG/rirvaMf+dkqYlSeEzCpExDtJcUFB58Oa7O3+Bv8UQlq1frSunegt3kudm4mYdJYMP89iEXg+tfxtpcU4yUO3RkzWKLxkkmzy2rmviv3llZ0pQFcWYVnA=
+	t=1720176164; cv=none; b=jxTpjG3X9M8ekQ3NW5puzWPSgjiRSPwggZ9NxqEsfg8GwyJafDxRG7LPj1Yk5pbojd6KlwaamJVDkllDmPVx2X2cEHnKqCcB8+3Er5lJauVo61JTP7aF63CMDjKHDhgKQkT03sOF2WPoNEe2VvR6k0mhg+MFQk42wv4RJ76+z/w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720175907; c=relaxed/simple;
-	bh=iEZnnK2AWEZC7uLR/+qs4jJV3guyk9LlQ+WyeybrVD4=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=ekzgxN90WVCHXrxYHMhvF+tqVNOwq0fIS+pEX3KylMKVKAXrNizBKLNh3rzeNcmUin7JiQ0yUqYfBn7o9BqTZmVpF9KaZCi+8RfhjGywJepsP7IsoN5hvp3H6Q/8t+zDEags3XHR1eR9/xaHzpfqGKJ5ZCBdxXdgdjCrZ3LH3S8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CL6VGoNN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C250C4AF0A;
-	Fri,  5 Jul 2024 10:38:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720175905;
-	bh=iEZnnK2AWEZC7uLR/+qs4jJV3guyk9LlQ+WyeybrVD4=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=CL6VGoNNt6O8bFsCs8v7dbqhjV3s08CrZNbSKLf0mM9Cx7BGdFX53D5biTYjhbKfp
-	 q6o44TcbT8cjcB1WJoDv9nkJZQRl0DY3tc41H7lSCvKLmZ4IC/7VRud3jQzyfOYfUw
-	 FN64NAxlEgyZyDCXcqKyz+OvczfjJc7bhpZiRXHBxTSVVgQ76z6+V/MoWHV9Z0wDEq
-	 s9HmjSnD9UVfzlOTMf64Pz6ODnKOIn/PbNwqQMbLhEw9MjOSho5iPS3sJX3KcTg54I
-	 GTyDgseZ0CKALh3Drjz6PrtsXLcE6aAdfe6rIw3lVC7tWoL6202G8KKaEn6MHPqc2E
-	 N17GbQFOZTOrg==
-Date: Fri, 05 Jul 2024 04:38:24 -0600
+	s=arc-20240116; t=1720176164; c=relaxed/simple;
+	bh=zXMAkggHhhAA+aDOLGdaygaaSvxs4nR0CWBBjK/lV3Y=;
+	h=From:In-Reply-To:Content-Type:References:Date:Cc:To:MIME-Version:
+	 Message-ID:Subject; b=CxtTNZBVgKv65f30X9KH8m6X/YM2fS2rOUjIcs8htsJOEJPZ185embJjW6/X/o7c7uqwUK8ArKhp+KuWW2LmtpQAJOEaIFyK87ooFwH6/HdGVXd5kdAYtfra8CSkuPxfWhWvhrN1j5KdegxZ91b5lZLdHQRzISmLuDBm8itqV2I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+Received: from harlem.collaboradmins.com (harlem.collaboradmins.com [IPv6:2a01:4f8:1c0c:5936::1])
+	by madrid.collaboradmins.com (Postfix) with ESMTP id 7E7DB378219E;
+	Fri,  5 Jul 2024 10:42:35 +0000 (UTC)
+From: "Shreeya Patel" <shreeya.patel@collabora.com>
+In-Reply-To: <20240705095047.90558-1-marex@denx.de>
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+X-Forward: 127.0.0.1
+References: <20240705095047.90558-1-marex@denx.de>
+Date: Fri, 05 Jul 2024 11:42:35 +0100
+Cc: linux-iio@vger.kernel.org, "Conor Dooley" <conor+dt@kernel.org>, "Jonathan Cameron" <jic23@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Lars-Peter Clausen" <lars@metafoo.de>, "Rob Herring" <robh@kernel.org>, devicetree@vger.kernel.org, kernel@collabora.com
+To: "Marek Vasut" <marex@denx.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Jie Gan <quic_jiegan@quicinc.com>
-Cc: Trilok Soni <quic_tsoni@quicinc.com>, 
- linux-arm-kernel@lists.infradead.org, 
- Tingwei Zhang <quic_tingweiz@quicinc.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Mike Leach <mike.leach@linaro.org>, linux-kernel@vger.kernel.org, 
- Mathieu Poirier <mathieu.poirier@linaro.org>, 
- Song Chai <quic_songchai@quicinc.com>, Leo Yan <leo.yan@linaro.org>, 
- Jinlong Mao <quic_jinlmao@quicinc.com>, Rob Herring <robh+dt@kernel.org>, 
- Alexander Shishkin <alexander.shishkin@linux.intel.com>, 
- devicetree@vger.kernel.org, coresight@lists.linaro.org, 
- Tao Zhang <quic_taozha@quicinc.com>, 
- Suzuki K Poulose <suzuki.poulose@arm.com>, 
- James Clark <james.clark@arm.com>, 
- Yuanfang Zhang <quic_yuanfang@quicinc.com>, linux-arm-msm@vger.kernel.org
-In-Reply-To: <20240705090049.1656986-3-quic_jiegan@quicinc.com>
-References: <20240705090049.1656986-1-quic_jiegan@quicinc.com>
- <20240705090049.1656986-3-quic_jiegan@quicinc.com>
-Message-Id: <172017590340.2933768.7232556209802046646.robh@kernel.org>
-Subject: Re: [PATCH v2 2/4] dt-bindings: arm: Add binding document for
- Coresight Control Unit device.
+Message-ID: <3b2ca0-6687ce00-3-4dab7280@52083650>
+Subject: =?utf-8?q?Re=3A?= [PATCH] =?utf-8?q?iio=3A?==?utf-8?q?_light=3A?=
+ =?utf-8?q?_ltrf216a=3A?= Drop undocumented =?utf-8?q?ltr=2Cltrf216a?= 
+ compatible string
+User-Agent: SOGoMail 5.10.0
+Content-Transfer-Encoding: quoted-printable
 
+On Friday, July 05, 2024 15:20 IST, Marek Vasut <marex@denx.de> wrote:
 
-On Fri, 05 Jul 2024 17:00:47 +0800, Jie Gan wrote:
-> Add binding document for Coresight Control Unit device.
-> 
-> Signed-off-by: Jie Gan <quic_jiegan@quicinc.com>
+> The "ltr,ltrf216a" compatible string is not documented in DT binding
+> document, remove it.
+>=20
+> Signed-off-by: Marek Vasut <marex@denx.de>
 > ---
->  .../bindings/arm/qcom,coresight-ccu.yaml      | 87 +++++++++++++++++++
->  1 file changed, 87 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/arm/qcom,coresight-ccu.yaml
-> 
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Jonathan Cameron <jic23@kernel.org>
+> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> Cc: Lars-Peter Clausen <lars@metafoo.de>
+> Cc: Marek Vasut <marex@denx.de>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Shreeya Patel <shreeya.patel@collabora.com>
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-iio@vger.kernel.org
+> ---
+>  drivers/iio/light/ltrf216a.c | 1 -
+>  1 file changed, 1 deletion(-)
+>=20
+> diff --git a/drivers/iio/light/ltrf216a.c b/drivers/iio/light/ltrf216=
+a.c
+> index 68dc48420a886..78fc910fcb18c 100644
+> --- a/drivers/iio/light/ltrf216a.c
+> +++ b/drivers/iio/light/ltrf216a.c
+> @@ -528,7 +528,6 @@ MODULE=5FDEVICE=5FTABLE(i2c, ltrf216a=5Fid);
+> =20
+>  static const struct of=5Fdevice=5Fid ltrf216a=5Fof=5Fmatch[] =3D {
+>  	{ .compatible =3D "liteon,ltrf216a" },
+> -	{ .compatible =3D "ltr,ltrf216a" },
+>  	{}
 
-My bot found errors running 'make dt_binding_check' on your patch:
+This compatible string with a different vendor prefix was added for a s=
+pecific reason.
+Please see the commit message of the following patch :-
+https://lore.kernel.org/all/20220511094024.175994-2-shreeya.patel@colla=
+bora.com/
 
-yamllint warnings/errors:
+We were very well aware that not documenting this was going to generate=
+ a warning so
+we tried to fix that with a deprecated tag but it was NAKd by Rob. What=
+ we understood
+from his last message was that it wasn't necessary to fix the DT warnin=
+g.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/arm/qcom,coresight-ccu.yaml: unevaluatedProperties: Missing additionalProperties/unevaluatedProperties constraint
+Thanks,
+Shreeya Patel
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240705090049.1656986-3-quic_jiegan@quicinc.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+>  };
+>  MODULE=5FDEVICE=5FTABLE(of, ltrf216a=5Fof=5Fmatch);
+> --=20
+> 2.43.0
+>
 
 
