@@ -1,136 +1,128 @@
-Return-Path: <devicetree+bounces-83446-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83447-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64A95928642
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 12:00:11 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 953A0928651
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 12:04:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 20A17287FED
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 10:00:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2E61DB209C4
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 10:04:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DC521487EF;
-	Fri,  5 Jul 2024 09:55:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAD6F1459E8;
+	Fri,  5 Jul 2024 10:04:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jcrj5nBP"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="TVq8H7Lj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC4821487E9;
-	Fri,  5 Jul 2024 09:55:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EE2B13B5BB;
+	Fri,  5 Jul 2024 10:03:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720173352; cv=none; b=YCPuv2X9AmSfCBK7mpa3EiVbuSctUjWSy49pqEpCLYPLwMdadYRmU0hNzXOr61VqQhURdckY4l8Rjao6Ku7dPkQjovW0U2n+b7LYAzqpVmi+dfxRdd7QkqfHRM98BGwbRiqxsPeIoPXLXP+AQlIwvd008xxclT/y64Zd3t6xLk4=
+	t=1720173840; cv=none; b=q13Alp1OODoTnHnsgUs90P6IOYWGnPEUY/Kp1ANtCe77Gc6y0enVUH4t9K5qG43DucJtwem4nY80e3PJSoBHSH5gPeLVPDcWZs1AKWLeGVR5Gmhmu+s5aKTcl/lcE86Ttaexecv2Jey+2QIpD+qtga7al++qbT0fOekjL9rsRlE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720173352; c=relaxed/simple;
-	bh=Ixx4qh3AZ6fLCkdwOfadSTiy/P84uqPbgs5Iiitv/KE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MrPg0kKUKFaUQdM6AU4yMhs+eaT3/P3MuvO3P+stmMagDFqmULodQVDT5lldfDb3Pcvj37sJF5YbwDqdgLq5rdORwLkTe/8eBg9SW/KTCHwqqDen+y+FQi9ym7S9JRBV6tujfAYjzkHfEQEzUC5AaalKGOnLM29Xj78R+oxN2MU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jcrj5nBP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EDBB8C116B1;
-	Fri,  5 Jul 2024 09:55:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720173351;
-	bh=Ixx4qh3AZ6fLCkdwOfadSTiy/P84uqPbgs5Iiitv/KE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=jcrj5nBPxc8xVmHcTETPohqM8lTWQ14sjeObp28svSeqFi1ZXcbeLP/puWqR/tCIC
-	 O4Mayhe/iYuguG93cyYBHFdnvB2IFWHc7/aFo8D0LAKf8wmockIOSYiv8+ZDx3ULKG
-	 E91vFYNrpr0pTXC9gsZQsB/3LTwPkuUgnbdQqGfQeeE6xi+N+7CdRC4ieyb2A9WTs8
-	 Y+9oJXsVYLPN4+o/wiBN49I7w1cHBRz/W2Z65T80b0DFxZAg3zZWhWqQoeBfr2exoa
-	 T7PDRUT7dCLgjkvp9IjdVCvtuhT6asu8xKFZvTds6MopXwSBygctOerOWBCBdAwiRN
-	 Wn7to8bEQIU1A==
-Message-ID: <d7c950d9-0187-4e42-8e5c-bf518e1ca7b7@kernel.org>
-Date: Fri, 5 Jul 2024 11:55:45 +0200
+	s=arc-20240116; t=1720173840; c=relaxed/simple;
+	bh=WgDu9ZpACAJvm7Pa4gqk+rNT3auetxE4+ckzl7sJ1ig=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:To:From:Subject:
+	 References:In-Reply-To; b=ozOyeiiFL78nCEZNQUXlBGd2JFuBODbkB7PkvBJVSpeDQkxpcjqgIvRk39NaUlsKebEHrYOHAzX+vg8qqWsteLmAjYivQRc6zV/YP/zv6xK9E1u1CsXrb20ddPnRKDTqLp0IGc7n/jIDbGZoJbUm6+82NzlUbmyv7vrWSVFhxLc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=TVq8H7Lj; arc=none smtp.client-ip=217.70.183.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id BDA511C0012;
+	Fri,  5 Jul 2024 10:03:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1720173836;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=63549/JWR8ZN81iPpBOmB7VHeCd6i6W3nkUlZJSwKPA=;
+	b=TVq8H7Ljl3Cxhy3s5+zVlF60lJwrKbloXTFbbA1uBzXwUN4L9IFxGZn0Ppmd7mjAhknM+t
+	dH28EleXtEiNik7Uu/HeIMf50fGEPNEHmYegErsdPcqWQ8WIr3Ltcoi9ddSmvN1MFjvHej
+	Btbt/MHZBMveLeIv+jeblBjBMafXI4Cu8gZYUXeQk7SgWekwoRykFGXrmM9cWokCDbQS8M
+	rsW0UKLi2KY8RY3GeouyXr4KxL6EiaaAtlNrMX/lr5vXEL53BXRtB3ADULbpULwT4QTDEA
+	gq98IZRL1BGKxBdYhfcf9uW8g17wE/ONuaYHUDFYHruhwheM2i0T/G3STUP24A==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] iio: light: ltrf216a: Drop undocumented ltr,ltrf216a
- compatible string
-To: Marek Vasut <marex@denx.de>, linux-iio@vger.kernel.org
-Cc: Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
- Shreeya Patel <shreeya.patel@collabora.com>, devicetree@vger.kernel.org
-References: <20240705095047.90558-1-marex@denx.de>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240705095047.90558-1-marex@denx.de>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Date: Fri, 05 Jul 2024 12:03:55 +0200
+Message-Id: <D2HIQELPOBJD.1HJZS16QJSSZJ@bootlin.com>
+Cc: <llvm@lists.linux.dev>, <oe-kbuild-all@lists.linux.dev>,
+ <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, "Vladimir Kondratiev"
+ <vladimir.kondratiev@mobileye.com>, =?utf-8?q?Gr=C3=A9gory_Clement?=
+ <gregory.clement@bootlin.com>, "Thomas Petazzoni"
+ <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
+ <tawfik.bayouk@mobileye.com>
+To: "kernel test robot" <lkp@intel.com>, "Michael Turquette"
+ <mturquette@baylibre.com>, "Stephen Boyd" <sboyd@kernel.org>, "Rob Herring"
+ <robh@kernel.org>, "Krzysztof Kozlowski" <krzk@kernel.org>, "Conor Dooley"
+ <conor+dt@kernel.org>
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+Subject: Re: [PATCH v2 4/4] clk: eyeq: add driver
+X-Mailer: aerc 0.17.0-0-g6ea74eb30457
+References: <20240703-mbly-clk-v2-4-fe8c6199a579@bootlin.com>
+ <202407050921.S41aCBdD-lkp@intel.com>
+In-Reply-To: <202407050921.S41aCBdD-lkp@intel.com>
+X-GND-Sasl: theo.lebrun@bootlin.com
 
-On 05/07/2024 11:50, Marek Vasut wrote:
-> The "ltr,ltrf216a" compatible string is not documented in DT binding
-> document, remove it.
+Hello,
 
-Also could be useful:
-"The compatible was rejected during review by Rob Herring but still made
-it to the kernel."
+*Grasp*, I forgot addressing this topic.
 
-> 
-> Signed-off-by: Marek Vasut <marex@denx.de>
+On Fri Jul 5, 2024 at 3:50 AM CEST, kernel test robot wrote:
+> kernel test robot noticed the following build errors:
 
-Ehh, so the original author just half-understood comment from Rob [1]
-and totally ignored checkpatch warning :/
+[...]
 
-If only people actually run and read the output of the tools instead of
-pushing their code...
+> All errors (new ones prefixed by >>):
+>
+>    In file included from drivers/clk/clk-eyeq.c:30:
+>    In file included from include/linux/io.h:14:
+>    In file included from arch/hexagon/include/asm/io.h:328:
+>    include/asm-generic/io.h:548:31: warning: performing pointer
+>        arithmetic on a null pointer has undefined behavior [-Wnull-pointe=
+r-arithmetic]
+>      548 |         val =3D __raw_readb(PCI_IOBASE + addr);
+>          |                           ~~~~~~~~~~ ^
+[...]
 
-Thanks for cleanup.
+Ignoring all the warnings relative to <linux/io.h> as they appear on all
+objects using this config, nothing specific to clk-eyeq.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> >> drivers/clk/clk-eyeq.c:264:9: error: call to undeclared function
+> >>     'readq'; ISO C99 and later do not support implicit function
+> >>     declarations [-Wimplicit-function-declaration]
+>      264 |                 val =3D readq(priv->base + pll->reg64);
+>          |                       ^
 
-[1] https://lore.kernel.org/all/20220516170406.GB2825626-robh@kernel.org/
+Options are:
 
-Best regards,
-Krzysztof
+ - #include <linux/io-64-nonatomic-lo-hi.h> or
+            <linux/io-64-nonatomic-hi-lo.h> or
+
+ - in Kconfig, add "depends on 64BIT # for readq()"
+
+I'm leaning towards the Kconfig option. Build testing this driver on
+32bit platforms makes no sense, this is a SoC clk platform driver used
+on 64bit SoCs. Including a compat layer is a more complex solution.
+
+I'll wait a bit before sending next revision.
+You can ping if you want it straight away of course.
+
+Thanks,
+
+--
+Th=C3=A9o Lebrun, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
 
