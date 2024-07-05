@@ -1,118 +1,128 @@
-Return-Path: <devicetree+bounces-83375-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83377-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDB819283D2
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 10:40:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 217469283E4
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 10:42:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5AA6C2897C3
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 08:40:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C0C181F22BDA
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 08:42:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79F701459F3;
-	Fri,  5 Jul 2024 08:40:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 626291422DD;
+	Fri,  5 Jul 2024 08:42:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Is00ut/C"
+	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="7a36SZQp";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="fOORByrO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fhigh7-smtp.messagingengine.com (fhigh7-smtp.messagingengine.com [103.168.172.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F4DE14533A;
-	Fri,  5 Jul 2024 08:40:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3336A48
+	for <devicetree@vger.kernel.org>; Fri,  5 Jul 2024 08:42:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720168834; cv=none; b=De+iKxN2nwII8fJ5FKV/7Od25B3ERQd35QpugXVXJmMCYktuHgRQ3OnGeX5D7IQuJCTs9e0MSZa59N9IIgsTMr99NJZitVaqnTUw+9hJHyIkiDkEGRoMitssXpVFjIc5r8zJ4cjnkbOp/tRZt25E94v6W5w0EywuUSPxBoMwW0Q=
+	t=1720168941; cv=none; b=pn+zPccVJrTo6KJ0SgFUy8LXwXnKuUI9e3d1LEiMW//hnpUf9R/Z/r2/Wf3OgdxPEtssqQOHSbhfvcxtc/VLTqV7SaXQQ6PB44/ocQ93ndMP2dqWl70MixRvZ0bKyR1TsD3xCEz0A7O/0UiXURMSJqtIRxqp7K7OFhvcaoAetFw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720168834; c=relaxed/simple;
-	bh=OU3txpXlAr+kHFnOZsdCg4voKyQR5vbHID+NPrutMTE=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=awaUCd0/er6bzoW2YutcirTqHMhrhxuM3wiY/73mDk1mO1t7WW8KaWoyjN4uNTDPgffHKpxg60xHhntXjdxXUx8U58WYkQC0grvynzjLmz7AViZ9vASlKy4qVnee1NstPoBD4CYJm5w8FGQnUtfmgZLbG7ho7sBIeZKr2P9SNQQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Is00ut/C; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id A0A2EC4AF07;
-	Fri,  5 Jul 2024 08:40:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720168833;
-	bh=OU3txpXlAr+kHFnOZsdCg4voKyQR5vbHID+NPrutMTE=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=Is00ut/C/U0cgysRENfLJWYQvyyj8uAvLaUOF5+A3Q2iDk8Fsdt88NmoV9BOjrlmE
-	 6llJBbjZDr5ZaSfXfu+gzUfChVH+bkO7/hRX526fYXOgDWFW+gn0w1KwLs7xvIA5/0
-	 Q1MnI6Y/7t6SJ6ZxkmCC35jUJvbbKde35c/2mF+QzYFZdeFsu/McR7AHtq22Apn9Bh
-	 /rPeVCed4Vw4bC9qHgD8iD7eMkUA8oWLze/KcUfKcr2usmnlPB2aZ5LzTOmp6zEvCE
-	 dniUviqrS9tku3YGddOvOJnL1Pa+rm6xqRswNhIle1kO0S2Z/4f93PlipLmQjFW6ep
-	 OZNot3Bnigj9g==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 89DC0C43332;
-	Fri,  5 Jul 2024 08:40:33 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1720168941; c=relaxed/simple;
+	bh=ZHz2NRDW/PQpb9LDnMtin8S3gOU/tY5jqNZoRPgSMVA=;
+	h=MIME-Version:Message-Id:In-Reply-To:References:Date:From:To:Cc:
+	 Subject:Content-Type; b=AqXE04BBl5xOgLs0xF7GzvnHLPiS3ijeCjBbvscwIkoEO7i/wuJBpXobQcaG4A7cixq3xml/wxr7VFbWJZtpMcE1SsYhpm9cPBROAulwkVKDqPT9/tTVyQTxZRjI2ntpGdxmeIzXmOTtJ4fP3mA2NOnY0HN7iYYdOBQy/hg2lNo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=7a36SZQp; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=fOORByrO; arc=none smtp.client-ip=103.168.172.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+	by mailfhigh.nyi.internal (Postfix) with ESMTP id E80E4114009A;
+	Fri,  5 Jul 2024 04:42:18 -0400 (EDT)
+Received: from imap47 ([10.202.2.97])
+  by compute5.internal (MEProxy); Fri, 05 Jul 2024 04:42:18 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
+	 h=cc:cc:content-type:content-type:date:date:from:from
+	:in-reply-to:in-reply-to:message-id:mime-version:references
+	:reply-to:subject:subject:to:to; s=fm2; t=1720168938; x=
+	1720255338; bh=ZHz2NRDW/PQpb9LDnMtin8S3gOU/tY5jqNZoRPgSMVA=; b=7
+	a36SZQpxtfUcYN4Zo6FrQx/dcGwN2cEOe0l8yFwW5bOjsb3IFteEygihPEIkQnJh
+	xLUE+Z6oRCOah2wlv6bVb3xN3BQc4GLqpXdh/kuFxp4lP5BDZc7yFEtOz8ED7WfX
+	0c2YFXr0XTe1JRvI8/RLRHuVlWrg6RJdUlxWHa4WGafo00gJu5mtEAvS7DwsyfjB
+	YJToyzpRaPaxkVj+SY373UqOneTOGraUPpXekNDq3plue4XBn3dQSdjk3U1r4UVd
+	L+nkzO4Pd1m65N/k3eRjs8S+sKUQvh/zUEryUbom01i/aESFrYLTRiR8GMdGq/ss
+	NLff2VOvs1rbPG/Q+oR8A==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-type:content-type:date:date
+	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+	:message-id:mime-version:references:reply-to:subject:subject:to
+	:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+	fm2; t=1720168938; x=1720255338; bh=ZHz2NRDW/PQpb9LDnMtin8S3gOU/
+	tY5jqNZoRPgSMVA=; b=fOORByrObrFDRwZGQdwuk/JrF70SahTy6ojAZnz3lu8z
+	5+ICmKp9gGa1drSDx4y5znkukEZBtA6/o4dvsMvgBv0ZBULs/2VutWwbn52xSZ1E
+	Fy9lbzDej9+l80yAtbZpy/wqGOnGa3w+6gJj0fPzrnW0uTbIvrRc6eeD383mecF0
+	t/0Y2rA9eLoFrkspU6Of9hu0pK9JX9IDnDolfDofn6BbFRziDQGA9eWpsXd3VboF
+	B5bfcwhJhkq0LuPvNl1ACbtqLhq4v4ALuZjrJbhDqLE4Ph6s/lmmZLGHlixgrJ0Z
+	yAWb9cHIAA1C/zAIR1ocXipnbwF5aEFxfOVpTWKYag==
+X-ME-Sender: <xms:6rGHZuEMknt7Jh_6V5McMc9VV4ltDr-jOhxcQppB7YErgMrhojiEOA>
+    <xme:6rGHZvW9IxptNqqqXLGXeLRoC_rUZ9VuVviNBEhRE0ZCFoiCIREpHH85Z0ohmFe2w
+    gHb_3WEsaTN9bdTVQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrvddugddtjecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdfthigr
+    nhcuhggrlhhklhhinhdfuceorhihrghnsehtvghsthhtohgrshhtrdgtohhmqeenucggtf
+    frrghtthgvrhhnpeehvdevieegudejueefgeffhefhffevudfhieejgfdtffetlefgteeu
+    veeiudeijeenucevlhhushhtvghrufhiiigvpedunecurfgrrhgrmhepmhgrihhlfhhroh
+    hmpehrhigrnhesthgvshhtthhorghsthdrtghomh
+X-ME-Proxy: <xmx:6rGHZoJXHsneANVJ5imNt4t-71pMGPBW58iYo_s13F61SnQd7kcDeQ>
+    <xmx:6rGHZoF6RZHn4_Id0JgDyCL1s2YKbSXc89NFM9AoEpI5hpib7B93eQ>
+    <xmx:6rGHZkXT1E-cfealDH4kEz5Y2DueKM6xFWFnoE1TTIiRqB0tMvOUWQ>
+    <xmx:6rGHZrOO8E3ytvILeuwaHKkW93K2ruYXwrZpwhYVArtnfa6q9Qgg3A>
+    <xmx:6rGHZpXYvFKY9B9ow9_f9AC2gyRxQo1KYbF4DmB5Aw63lCAK-gC1dDXU>
+Feedback-ID: idc0145fc:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+	id 80574A60078; Fri,  5 Jul 2024 04:42:18 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.11.0-alpha0-566-g3812ddbbc-fm-20240627.001-g3812ddbb
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next v4 00/10] net: pcs: xpcs: Add memory-mapped device
- support
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: 
- <172016883356.17061.13176667406325533525.git-patchwork-notify@kernel.org>
-Date: Fri, 05 Jul 2024 08:40:33 +0000
-References: <20240701182900.13402-1-fancer.lancer@gmail.com>
-In-Reply-To: <20240701182900.13402-1-fancer.lancer@gmail.com>
-To: Serge Semin <fancer.lancer@gmail.com>
-Cc: andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk,
- alexandre.torgue@foss.st.com, joabreu@synopsys.com, Jose.Abreu@synopsys.com,
- olteanv@gmail.com, f.fainelli@gmail.com, maxime.chevallier@bootlin.com,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- davem@davemloft.net, edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
- quic_scheluve@quicinc.com, quic_abchauha@quicinc.com, ahalaney@redhat.com,
- jiawenwu@trustnetic.com, mengyuanlou@net-swift.com, tmaimon77@gmail.com,
- openbmc@lists.ozlabs.org, netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
+Message-Id: <16bbd1a1-4bc2-4769-9ff4-91b29973580f@app.fastmail.com>
+In-Reply-To: <20240703-cataract-suitor-f930bcc83aa8@spud>
+References: <20240703103710.31169-1-ryan@testtoast.com>
+ <20240703103710.31169-4-ryan@testtoast.com>
+ <20240703-cataract-suitor-f930bcc83aa8@spud>
+Date: Fri, 05 Jul 2024 20:41:53 +1200
+From: "Ryan Walklin" <ryan@testtoast.com>
+To: "Conor Dooley" <conor@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ "Neil Armstrong" <neil.armstrong@linaro.org>,
+ "Jessica Zhang" <quic_jesszhan@quicinc.com>,
+ "Sam Ravnborg" <sam@ravnborg.org>, "David Airlie" <airlied@gmail.com>,
+ "Daniel Vetter" <daniel@ffwll.ch>,
+ "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>,
+ "Maxime Ripard" <mripard@kernel.org>,
+ "Thomas Zimmermann" <tzimmermann@suse.de>, "Rob Herring" <robh@kernel.org>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>,
+ "Hironori KIKUCHI" <kikuchan98@gmail.com>,
+ "Chris Morgan" <macroalpha82@gmail.com>
+Subject: Re: [PATCH v2 3/3] dt-bindings: display: panel: correct Anbernic RG35XX panel
+ example
+Content-Type: text/plain
 
-Hello:
+On Thu, 4 Jul 2024, at 3:38 AM, Conor Dooley wrote:
+> I forgot to reply to, or somehow didn't notice your reply to my comments
+> on this patch. I would just drop this change as I think it's a tooling
+> issue. I checked the version of dt-schema etc that I have here locally
+> and there were no complaints with the binding prior to your patches.
+>
+> Sorry for missing your reply,
+> Conor.
+>
+Thanks Conor, no worries. Happy to resend without this patch in that case, or just have it dropped.
 
-This series was applied to netdev/net-next.git (main)
-by David S. Miller <davem@davemloft.net>:
+Regards,
 
-On Mon,  1 Jul 2024 21:28:31 +0300 you wrote:
-> The main goal of this series is to extend the DW XPCS device support in
-> the kernel. Particularly the patchset adds a support of the DW XPCS
-> device with the MCI/APB3 IO interface registered as a platform device. In
-> order to have them utilized by the DW XPCS core the fwnode-based DW XPCS
-> descriptor creation procedure has been introduced. Finally the STMMAC
-> driver has been altered to support the DW XPCS passed via the 'pcs-handle'
-> property.
-> 
-> [...]
-
-Here is the summary with links:
-  - [net-next,v4,01/10] net: pcs: xpcs: Move native device ID macro to linux/pcs/pcs-xpcs.h
-    https://git.kernel.org/netdev/net-next/c/f37bee950888
-  - [net-next,v4,02/10] net: pcs: xpcs: Split up xpcs_create() body to sub-functions
-    https://git.kernel.org/netdev/net-next/c/03b3be07c69a
-  - [net-next,v4,03/10] net: pcs: xpcs: Convert xpcs_id to dw_xpcs_desc
-    https://git.kernel.org/netdev/net-next/c/71b200b388ef
-  - [net-next,v4,04/10] net: pcs: xpcs: Convert xpcs_compat to dw_xpcs_compat
-    https://git.kernel.org/netdev/net-next/c/410232ab3c07
-  - [net-next,v4,05/10] net: pcs: xpcs: Introduce DW XPCS info structure
-    https://git.kernel.org/netdev/net-next/c/bcac735cf653
-  - [net-next,v4,06/10] dt-bindings: net: Add Synopsys DW xPCS bindings
-    https://git.kernel.org/netdev/net-next/c/664690eb08f7
-  - [net-next,v4,07/10] net: pcs: xpcs: Add Synopsys DW xPCS platform device driver
-    https://git.kernel.org/netdev/net-next/c/f6bb3e9d98c2
-  - [net-next,v4,08/10] net: pcs: xpcs: Add fwnode-based descriptor creation method
-    https://git.kernel.org/netdev/net-next/c/9cad7275463a
-  - [net-next,v4,09/10] net: stmmac: Create DW XPCS device with particular address
-    https://git.kernel.org/netdev/net-next/c/351066bad6ad
-  - [net-next,v4,10/10] net: stmmac: Add DW XPCS specified via "pcs-handle" support
-    https://git.kernel.org/netdev/net-next/c/357768c7e792
-
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
-
+Ryan
 
