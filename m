@@ -1,48 +1,47 @@
-Return-Path: <devicetree+bounces-83318-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83319-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D731F927F50
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 02:20:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC42D927F8A
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 03:06:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8F47C2814C0
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 00:20:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6285F1F25776
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 01:06:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B038139E;
-	Fri,  5 Jul 2024 00:20:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91FE8BE58;
+	Fri,  5 Jul 2024 01:06:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EeLQxX93"
+	dkim=pass (1024-bit key) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="EujO5cZ4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out30-99.freemail.mail.aliyun.com (out30-99.freemail.mail.aliyun.com [115.124.30.99])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53754ED9;
-	Fri,  5 Jul 2024 00:20:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20647B65A;
+	Fri,  5 Jul 2024 01:06:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=115.124.30.99
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720138855; cv=none; b=C8HXHbjLOPd5NR4HWL2o9e+EWoIYCy0ubNIk2hOA25lU0r5wixOJ0TYdpbitn8qUFS8DC5crpbtGGt61r56dAq+G79Usype9ZqhEnculbY6h4bISDMYPWi+6laqt+lGTssfTDzQcreLEdGfCtAIpOgLs62bdeFfXSanlQxMcWWg=
+	t=1720141604; cv=none; b=o6aab9jyLuIhA7R5j+sPCF5aINw97CQJ3VmpoPLlvaymsr0i+OLK09vDBhFVZHnmWKI7M7tFxuUPb5jCRvq5rKG/DPRhOBmbOOwmieMklVZCFEvEUV/LRJ/Xr/8otgOH2LKmVFcbfy0Lpoddjb4TBgZDAzhtKxDwZWxPW5i8DrE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720138855; c=relaxed/simple;
-	bh=Oq0qSOcFVxMRjjIYivTKOa/gblUHRyuTwRuZfJl9GqE=;
+	s=arc-20240116; t=1720141604; c=relaxed/simple;
+	bh=TYhAkvtDwkswGAizxiAdL8hwFy8gEaaAvescvij+s7Y=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=E5zr49c/6i+FEG21/hqjHw+TCQDhybQHYkz+tPzcwHYYv0+gvrFdGKP+UDoOh8JQIUPQbZ9PjnejO39RXgzzF4cJRatRW7TyAWfc77sPBbkESFCkoagxb41o14Kwu/tycgDAyDZdefvhlGzdbL4bzttW8w5663RCN9dK/Dx7MZ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EeLQxX93; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8EF29C3277B;
-	Fri,  5 Jul 2024 00:20:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720138854;
-	bh=Oq0qSOcFVxMRjjIYivTKOa/gblUHRyuTwRuZfJl9GqE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=EeLQxX93ulsLzM58FwsZoR5u7Zu5hZQBo784+Ywo5+WFRErNTJf7Hw3nZkzmSDTmP
-	 pmIfezJ86yDA73T627vkl3zroPqfH8JLv2tbjEvQAzGzjLSlCdVsjhJkMdV932qBXC
-	 A3VYbSDFWgWzHHmubdPekhNQ3UQ4rTbgTq7ue5YpCl/0wy6lK/xMZ2Uire3wflddky
-	 MierFDA6f8x94B+14E6P8kHo8YfJ1O/cf13fJG+1800kz/dLY8Sgn5r30nKTx0ysDH
-	 uNpUOHHVXdSpE0nF7kzSHOUmcmP33aOv2QPJn3ctVZnDmX0OntQu8XQUkwkUc32SjS
-	 w+w5O9gQC+Kaw==
-Message-ID: <cce2627f-c02f-4699-81a2-3cd9a1f2d74b@kernel.org>
-Date: Fri, 5 Jul 2024 09:20:52 +0900
+	 In-Reply-To:Content-Type; b=RcpVEfI8DhAqr0AbJ3rFVCLwyio6fJZNrn0EJskRgAczkfVzr5WT87bLdZqyrp5iqsQtJbBKTAti3EZzFG/sy8roRWJjDAAngLuzGJb07N5oe+JJSrZDuQ38qPetxRBY+lrfRms0cMOarQ9HYyg9zQ43gU+cfjVTTWy+4ZwqPFI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.alibaba.com; spf=pass smtp.mailfrom=linux.alibaba.com; dkim=pass (1024-bit key) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b=EujO5cZ4; arc=none smtp.client-ip=115.124.30.99
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.alibaba.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.alibaba.com
+DKIM-Signature:v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=linux.alibaba.com; s=default;
+	t=1720141592; h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type;
+	bh=4cfuS0iFnw0ne37rW+9HGtwOGkcB1qYjsLKyHH5WycE=;
+	b=EujO5cZ4pe4EyEKIPYsENEve2UW9JJEBSlgLCHZxEZyA9VB4yVa7xbBGuHoISjgDjVv4oBaB2uYKIjHfsVNXVAYvj5WkKudpNGRTXr1ZO2MxgST9aVZFpiThsRII92mgi5DDkBg2P4LCsKBEKTn4tK2unysVjxBj1VOMq8cNKKI=
+X-Alimail-AntiSpam:AC=PASS;BC=-1|-1;BR=01201311R121e4;CH=green;DM=||false|;DS=||;FP=0|-1|-1|-1|0|-1|-1|-1;HT=maildocker-contentspam033037067109;MF=baolin.wang@linux.alibaba.com;NM=1;PH=DS;RN=10;SR=0;TI=SMTPD_---0W9snGSw_1720141591;
+Received: from 30.97.56.65(mailfrom:baolin.wang@linux.alibaba.com fp:SMTPD_---0W9snGSw_1720141591)
+          by smtp.aliyun-inc.com;
+          Fri, 05 Jul 2024 09:06:32 +0800
+Message-ID: <819eac21-9661-4b13-a988-f8f4b736513d@linux.alibaba.com>
+Date: Fri, 5 Jul 2024 09:06:31 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,91 +49,42 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/1] dt-bindings: ata: ahci-fsl-qoriq: add
- fsl,ls1046a-ahci and fsl,ls1012a-ahci
-To: Frank Li <Frank.li@nxp.com>, Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Niklas Cassel <cassel@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>,
- "open list:LIBATA SUBSYSTEM (Serial and Parallel ATA drivers)"
- <linux-ide@vger.kernel.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>,
- imx@lists.linux.dev
-References: <20240625205752.4007067-1-Frank.Li@nxp.com>
- <327d6dd1-3f31-4b49-96f0-afd754eae086@kernel.org>
- <ZoRm/Lwqb4KGCeUx@lizhi-Precision-Tower-5810>
-From: Damien Le Moal <dlemoal@kernel.org>
-Content-Language: en-US
-Organization: Western Digital Research
-In-Reply-To: <ZoRm/Lwqb4KGCeUx@lizhi-Precision-Tower-5810>
-Content-Type: text/plain; charset=UTF-8
+Subject: Re: [PATCH 0/3] Cleanup Spreadtum/Unisoc ARM64 DT
+To: Stanislav Jakubek <stano.jakubek@gmail.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Orson Zhai <orsonzhai@gmail.com>,
+ Baolin Wang <baolin.wang7@gmail.com>, Chunyan Zhang <zhang.lyra@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <cover.1720112081.git.stano.jakubek@gmail.com>
+From: Baolin Wang <baolin.wang@linux.alibaba.com>
+In-Reply-To: <cover.1720112081.git.stano.jakubek@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 7/3/24 05:45, Frank Li wrote:
-> On Wed, Jun 26, 2024 at 10:17:55AM +0200, Krzysztof Kozlowski wrote:
->> On 25/06/2024 22:57, Frank Li wrote:
->>> Add compatible string 'fsl,ls1046a-ahci' and 'fsl,ls1012a-ahci' compatible
->>> string. Allow 'fsl,ls1012a-ahci' fallback to 'fsl,ls1043a-ahci'.
->>>
->>> ls1046a ahci ecc disable bit is difference with other chips.
->>>
->>> Signed-off-by: Frank Li <Frank.Li@nxp.com>
->>> ---
->>>  .../devicetree/bindings/ata/fsl,ahci.yaml     | 19 ++++++++++++-------
->>>  1 file changed, 12 insertions(+), 7 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/ata/fsl,ahci.yaml b/Documentation/devicetree/bindings/ata/fsl,ahci.yaml
->>> index 162b3bb5427ed..a244bc603549d 100644
->>> --- a/Documentation/devicetree/bindings/ata/fsl,ahci.yaml
->>> +++ b/Documentation/devicetree/bindings/ata/fsl,ahci.yaml
->>> @@ -11,13 +11,18 @@ maintainers:
->>>  
->>>  properties:
->>>    compatible:
->>> -    enum:
->>> -      - fsl,ls1021a-ahci
->>> -      - fsl,ls1043a-ahci
->>> -      - fsl,ls1028a-ahci
->>> -      - fsl,ls1088a-ahci
->>> -      - fsl,ls2080a-ahci
->>> -      - fsl,lx2160a-ahci
->>> +    oneOf:
->>> +      - items:
->>> +          - const: fsl,ls1012a-ahci
->>> +          - const: fsl,ls1043a-ahci
->>> +      - enum:
->>> +          - fsl,ls1021a-ahci
->>> +          - fsl,ls1043a-ahci
->>> +          - fsl,ls1046a-ahci
->>
->> Where is the driver change for this?
->>
->> Your commit does not explain why you are doing it and without driver
->> change adding new support it is not obvious. This probably applies to
->> all your patches.
+
+
+On 2024/7/5 01:41, Stanislav Jakubek wrote:
+> This series contains various minor cleanups for Spreadtum/Unisoc ARM64
+> DeviceTrees.
+
+Thanks. All look good to me. For the whole series:
+Reviewed-by: Baolin Wang <baolin.wang@linux.alibaba.com>
+
+> Stanislav Jakubek (3):
+>    arm64: dts: sprd: rename SDHCI nodes to mmc
+>    arm64: dts: sprd: reorder clock-names after clocks
+>    arm64: dts: sprd: move/add SPDX license to top of the file
 > 
-> I think I missed ls1012a and ls1021a.  Commit message is wrong. This is
-> for legancy platorm. 
+>   arch/arm64/boot/dts/sprd/sc2731.dtsi          |  3 +-
+>   arch/arm64/boot/dts/sprd/sc9836-openphone.dts |  3 +-
+>   arch/arm64/boot/dts/sprd/sc9836.dtsi          |  3 +-
+>   arch/arm64/boot/dts/sprd/sc9860.dtsi          |  3 +-
+>   arch/arm64/boot/dts/sprd/sc9863a.dtsi         |  8 ++--
+>   arch/arm64/boot/dts/sprd/sharkl64.dtsi        |  3 +-
+>   arch/arm64/boot/dts/sprd/sp9860g-1h10.dts     |  3 +-
+>   arch/arm64/boot/dts/sprd/ums512.dtsi          |  4 +-
+>   arch/arm64/boot/dts/sprd/whale2.dtsi          | 43 ++++++++++---------
+>   9 files changed, 35 insertions(+), 38 deletions(-)
 > 
-> Basic try to eliminate the CHECK_DTBS warning. ls1012a use
-> 
-> "fsl,ls1012a-ahci", "fsl,ls1043a-ahci". There are two methods, 
-> 1. change binding doc to allow "fsl,ls1012a-ahci", "fsl,ls1043a-ahci"
-
-But then shouldn't you also change the drivers/ata/ahci_qoriq.c to add ls1012a
-as a compatible ?
-
-> 2. remove "fsl,ls1012a-ahci".
-
-I am not sure if that is acceptable since there is one device tree using it out
-there already.
-
-I am no DT expert, but I think (1) with the driver change is the right approach.
-Krzysztof ?
-
--- 
-Damien Le Moal
-Western Digital Research
-
 
