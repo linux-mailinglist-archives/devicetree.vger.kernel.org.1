@@ -1,152 +1,120 @@
-Return-Path: <devicetree+bounces-83474-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83472-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E31B992885E
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 14:03:49 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id ACCA5928838
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 13:51:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8E6F11F22316
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 12:03:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6969A28716A
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 11:51:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90E9B1474A8;
-	Fri,  5 Jul 2024 12:03:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E213149DEA;
+	Fri,  5 Jul 2024 11:51:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b="btrP+pxi"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="JXZimLhh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A9BC1442FD;
-	Fri,  5 Jul 2024 12:03:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=150.107.74.76
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C6EB146D45;
+	Fri,  5 Jul 2024 11:51:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720181026; cv=none; b=MRmi5YJH30qih8aKvCqFf6C9dTDO4c8CNudntreAX66om+ZLCxx+r1IhckWB5LTnD5AOhnclZgVih1MXUU/a2U9XaQtWaPVCCwvhVjyQigaSjcVSmGN9t5LAoHteCtArhSUTq0/gBRnk9pf8z7MviZ1vqrQrq78MFdC2VznBzkI=
+	t=1720180285; cv=none; b=R0+ffCuLQSRYYNbjzWltkAnz5SvwdcEjNIFwBNe8KidmjD7aMBY663EHddjdtK/sncSM/VRWNsXIu4BLtj3gyEn01CSSgyG44ycqBF5EzDfWEvusWjT8/nVvN8bD2nHRYUKboOBQEjQkkTx6w2fT2EEwiSGgYKwQU1cObeSz3PA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720181026; c=relaxed/simple;
-	bh=1qZPiby6dNfdzg4EvnsRz5A/DJxs+m25+lZXsLNft/M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WO1apFCTsqaeEBXjnIQMf5wmkKIZPJs3PyIA8E45w5dMXaGi6/ghghavtxkJL9oDO9OkcwSFScJoIe5KwpJMScG2NlCafQropoNHKWLDBo+moZcp/k6+kbEyDKGnZ6FBDk4ZZCEBueQiYDl1HS+pjaIK5ugdczZnDoShwTUWfrY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au; spf=pass smtp.mailfrom=gandalf.ozlabs.org; dkim=fail (0-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b=btrP+pxi reason="key not found in DNS"; arc=none smtp.client-ip=150.107.74.76
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gandalf.ozlabs.org
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=gibson.dropbear.id.au; s=202312; t=1720181014;
-	bh=X4DAVOP6HMBX8wqyYlWDCDEKSJWq/wH+OjuosJpepIU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=btrP+pxiXGrc7dHO071FFPCV5+QxRNUZ5x0T6KL79ZKYfHv9uioAB1MSps5SsvPsO
-	 +eoi3oga+jopPXCfK8HbpJdAqLybj724XrWyUYsaAtf+bRFj9AmmIdBLoslLOW79jX
-	 oQu89LqsEgznY9YuNLbEA+T/D3Wj4OO3q+9OHrxNCR/Y9wUsTsDGuud4p6RQqBmr2M
-	 w/tUZPGNpzEdxxVgCGxNHcvATfcaTsgJkZO4Hi3Y3TYkME7Z6eRDmFOOG3IsVcdvL/
-	 eoBQbC9pswmyJh9LgGyTxnDTIf1kiUnD+UXw2Jiam4CqY9LK2A8d9ORAZC2JOxWXHq
-	 nkHnYsgvHRYTg==
-Received: by gandalf.ozlabs.org (Postfix, from userid 1007)
-	id 4WFsc640Z1z4wbp; Fri,  5 Jul 2024 22:03:34 +1000 (AEST)
-Date: Fri, 5 Jul 2024 21:49:17 +1000
-From: David Gibson <david@gibson.dropbear.id.au>
-To: Rob Herring <robh@kernel.org>
-Cc: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>,
-	devicetree-compiler@vger.kernel.org,
-	Geert Uytterhoeven <geert@linux-m68k.org>,
-	Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org
-Subject: Re: [PATCH] libfdt: overlay: Fix phandle overwrite check for new
- subtrees
-Message-ID: <ZofdvXLWunF4opJB@zatzit>
-References: <20240626075551.2493048-2-u.kleine-koenig@baylibre.com>
- <bxyscvary2ozzvdnszl3rtfqy3oo5bxnpn6avvaexhtnd47tck@qa44v5zxqhps>
- <CAL_JsqKj4w92Ym7KTmQo3D+iNszB5u6-kceMCrNCztM0LJaQkA@mail.gmail.com>
+	s=arc-20240116; t=1720180285; c=relaxed/simple;
+	bh=0gu17Ptuw5N1WwZNTEylcJ6J3aGZGwfTtrWv2qsSCHY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=qFMOYu81ucrrGHdDnVdaVFrC/PS/hW/0h4yxl158huioYpmY5vBIWWkmhMxxONCFwT3Hg1ZFc1Fb0dcVYXV26oYSw9KuoFA8CmYZ+N7R4tV3VgV2UJmtPhVFzgsKsMPfEX+eKRtNjgT0QR20uyL/PJ9ijmYOfEvEne35VXp0/ic=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=JXZimLhh; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id 5896588605;
+	Fri,  5 Jul 2024 13:51:18 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1720180279;
+	bh=9VuZ9JjG0OVOyH6QxkB1cOF/woKql5YBbDjXiKC+FtU=;
+	h=From:To:Cc:Subject:Date:From;
+	b=JXZimLhhXVEhDPIyZXLbse+6Xijhic69NeFNlg7mPwu4gn8X1qjsvgNIOkJDkEi7q
+	 l/KiXthug0hHLFyTfNCZP6oWTxJQhiO3F/TwUwqlmKjPPxLDXdQns9on62nw6nS4Xh
+	 qDBiNBlclDBkaO2XFmcbYfUC629bhS0TPYXLZX3amGjTkU9uwYItwvIDFYEgGQ7cMM
+	 pEmisgSkj4cDBeknt7U2QPCpqJPLOfgdauNzaOLlMgIzPdueiHy8bRq0AUmH0fJ8Lw
+	 sc+U3OMGEB61eWC3Kcdx1k4hON1gN1//Zom0zDt8wbkKjbGp9t+QP9IQRNtZXdOFq7
+	 zaexxOoSM6HEQ==
+From: Marek Vasut <marex@denx.de>
+To: linux-watchdog@vger.kernel.org
+Cc: Marek Vasut <marex@denx.de>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Christophe Roullier <christophe.roullier@foss.st.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Yannick Fertre <yannick.fertre@foss.st.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-stm32@st-md-mailman.stormreply.com
+Subject: [PATCH] dt-bindings: watchdog: stm32-iwdg: Document interrupt and wakeup properties
+Date: Fri,  5 Jul 2024 13:50:31 +0200
+Message-ID: <20240705115052.116705-1-marex@denx.de>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="K13xU9sxMcB2LoGZ"
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqKj4w92Ym7KTmQo3D+iNszB5u6-kceMCrNCztM0LJaQkA@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
+The watchdog IP can generate pre-timeout interrupt and can be used as
+a wake up source. Document both properties.
 
---K13xU9sxMcB2LoGZ
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Marek Vasut <marex@denx.de>
+---
+Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc: Christophe Roullier <christophe.roullier@foss.st.com>
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Guenter Roeck <linux@roeck-us.net>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
+Cc: Rob Herring <robh@kernel.org>
+Cc: Wim Van Sebroeck <wim@linux-watchdog.org>
+Cc: Yannick Fertre <yannick.fertre@foss.st.com>
+Cc: devicetree@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-stm32@st-md-mailman.stormreply.com
+Cc: linux-watchdog@vger.kernel.org
+---
+ .../devicetree/bindings/watchdog/st,stm32-iwdg.yaml         | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-On Wed, Jul 03, 2024 at 11:06:32AM -0600, Rob Herring wrote:
-> On Tue, Jul 2, 2024 at 7:44=E2=80=AFAM Uwe Kleine-K=C3=B6nig
-> <u.kleine-koenig@baylibre.com> wrote:
-> >
-> > Hello David,
-> >
-> > On Wed, Jun 26, 2024 at 09:55:52AM +0200, Uwe Kleine-K=C3=B6nig wrote:
-> > > If the overlay's target is only created in a previous fragment, it
-> > > doesn't exist in the unmodified base device tree. For the phandle
-> > > overwrite check this can be ignored because in this case the base tree
-> > > doesn't contain a phandle that could be overwritten.
-> > >
-> > > Adapt the corresponding check to not error out if that happens but ju=
-st
-> > > continue with the next fragment.
-> > >
-> > > This is currently triggered by
-> > > arch/arm64/boot/dts/renesas/salvator-panel-aa104xd12.dtso in the kern=
-el
-> > > repository which creates /panel in its first fragment and modifies it=
- in
-> > > its second.
-> > >
-> > > Reported-by: Rob Herring <robh@kernel.org>
-> > > Link: https://lore.kernel.org/all/CAL_JsqL9MPycDjqQfPNAuGfC6EMrdzUivr=
-+fuOS7YgU3biGd4A@mail.gmail.com/
-> > > Fixes: 1fad065080e6 ("libfdt: overlay: ensure that existing phandles =
-are not overwritten")
-> > > Signed-off-by: Uwe Kleine-K=C3=B6nig <u.kleine-koenig@baylibre.com>
-> >
-> > I wonder about this patch's state. Does David wait for feedback by Rob
-> > as he reported the issue? Does Rob expect Geert to comment as
-> > salvator-panel-aa104xd12.dtso is in his maintainer area? Are the
-> > responsible people just busy; or is this fix already hidden in their
-> > backlog?
->=20
-> I think it's just waiting on David.
+diff --git a/Documentation/devicetree/bindings/watchdog/st,stm32-iwdg.yaml b/Documentation/devicetree/bindings/watchdog/st,stm32-iwdg.yaml
+index 6b13bfc11e114..86bd39d508500 100644
+--- a/Documentation/devicetree/bindings/watchdog/st,stm32-iwdg.yaml
++++ b/Documentation/devicetree/bindings/watchdog/st,stm32-iwdg.yaml
+@@ -36,6 +36,12 @@ properties:
+     minItems: 1
+     maxItems: 2
+ 
++  interrupts:
++    maxItems: 1
++    description: Pre-timeout interrupt from the watchdog.
++
++  wakeup-source: true
++
+ required:
+   - compatible
+   - reg
+-- 
+2.43.0
 
-Sorry, yes.  I'm always finding it hard to find time for dtc/libfdt
-maintenance stuff, and I've been particularly busy lately.  I did
-catch up on a bunch of trivial dtc/libfdt patches lately, but this
-one's a bit more complex so I didn't get to it yet.
-
-> The patch looks good to me, but I haven't tested it nor am I that
-> familiar with this particular code.
->=20
-> Rob
->=20
-
---=20
-David Gibson (he or they)	| I'll have my music baroque, and my code
-david AT gibson.dropbear.id.au	| minimalist, thank you, not the other way
-				| around.
-http://www.ozlabs.org/~dgibson
-
---K13xU9sxMcB2LoGZ
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEEO+dNsU4E3yXUXRK2zQJF27ox2GcFAmaH3bEACgkQzQJF27ox
-2GcSQQ/+K0QkGD8v3kH9FElvULiZW7BThvJfwng1aYW88Co1pup/qr/BcGOALKO4
-krPOirBuSmnSBzxMR8Au3RCmnm1D+UrKjKUFnw2/nodDoCRZvOCV7bZuClW0jf01
-CqrhhkoHs3ezOT8Je3ve7vUqIheOwwq65tZWFebnL7NxFNRPKGhtQefGpLaW85+p
-ouF/Su80oyPks3Gcp6vjzxoLu5Ofb91V9tOeSyRHeVtrsBl6TyRaIMbmY2GQnztl
-MXEy5eUq+MeGjhCV8wk5siI9SXyIR85keVbZDrPHB4esBxrQaVPhOuJsmfxOndEO
-S1lyG4f4xNgIVHJvloorvYugHCn7RBiUTCcCQMBiGFYDIW1AI65aXXaJKRz58T5t
-G7/gHKww+Smays3YzPL5C/sXUGRtgH2nmiOJbvUXr3PuY5FrUD/wQUrUXVFtMcdw
-wo6uGxhLiT48PTTnowcIu8XSllvGPtmL2tkOA3eqiaU2eZWE+G5DEGFkFObmcEam
-5G6UZJ1Oo5gaOxVVPHbWutcQAdzEvppSWXujwXa6IxppgcVasyE7aevHGEEqu+8f
-LcQLHtpv1FCwirXLYn/0btTHIm+G8bHTptHznZzWZkaguo270PHjBmHCsPiVHmk8
-73U1O8swusZwxiXJkNaZYpY/pcwx9Vzdf4A60o5aWFcjqGuivR0=
-=C1+P
------END PGP SIGNATURE-----
-
---K13xU9sxMcB2LoGZ--
 
