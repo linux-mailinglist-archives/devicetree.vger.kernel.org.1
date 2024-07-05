@@ -1,126 +1,140 @@
-Return-Path: <devicetree+bounces-83373-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83376-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C9CC9283BA
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 10:35:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C951B9283D6
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 10:40:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ACB44B23EA8
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 08:35:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 57D2E289CBB
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 08:40:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9DD5145FF1;
-	Fri,  5 Jul 2024 08:35:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70B261459F3;
+	Fri,  5 Jul 2024 08:40:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="MvqN0sxv";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="YYvZEiQG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fhigh7-smtp.messagingengine.com (fhigh7-smtp.messagingengine.com [103.168.172.158])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7912145FE0;
-	Fri,  5 Jul 2024 08:35:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7DDA142E83;
+	Fri,  5 Jul 2024 08:40:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720168522; cv=none; b=cAWaXd7CKf54fS/WfkUl1Xf2gvqpKoB7VQSQETHicc6aQ+kDSnJyXT8Gso8BYDRVVjfpAATFISf5cmwoQm0o6NbQcGdfzUpMn5gshBqCUajOBRKBKg6fCAHP+Tu8RLI6r9q44CnyYaML1QFoG3WiAu8pIg2ARe33EX5pjeM9T1U=
+	t=1720168852; cv=none; b=W9Ym+mMop8gB6Y1JNp3sebn66euu/nHk6czR4RGeIzkJf7nChvk+8d6bpNyTZ42WTqABtw5NNhYyTGd+MmQBF6ldqRqA9sqO0QW8/1CtK2V78sWSe1yR8vKC1ztNFeUFk8CORevwCVzD3G1rk40D2LeT4hYDctwfou1Z/oGE84A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720168522; c=relaxed/simple;
-	bh=7SKVpXebhGtAULUA84jFZRf2ihA+hSwEJm+gpDjigQ8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=jraB6QADocf7sgdPR6Zf9h1AY9IfGs8sHPIvwnSxQyrOQD1lOVYfypn4H/h+Vk65MPoCsDdYgtrP00iImX2TgjiG+rDu/ExV+5poIWqdefq1zWHF/tLCyHZu19EGHd08cUb6rgN0qb/QoLubw5JjpS9Jqmirfxak7pd09SOzSdY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-64b9f11b92aso11605247b3.1;
-        Fri, 05 Jul 2024 01:35:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720168520; x=1720773320;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=XE91erkMeoxPa1kwR1rnj3p6jtCHsExCdaiCmXk/lwQ=;
-        b=OlPAdhIbPN32uSMqhih9wxuRbAMECMNJQm123yLJPZ+DNeHILcPfhILxT++uqGTvms
-         zz8/qmS2CXoZFQGVHcdO/V2Kwypw7b28Xw/mXe+r6Sp323MOsZJB+yExBnNB/lsA1svQ
-         0l4pBlKOL1fAqWi5nBBGnhmWR4BilsWqp6mKnL6852wwktHAPZTwb+ssggQy+ln6Zp3Y
-         AKqj+K91ZdPaQx/+gqymnZss/r0Lu2PNz86cIoDcuKxcu4HPEppII7ZYIWWRMIiRu3vg
-         YO8hfY+gsKJz1WrXcuMvyTyPkiMQuaRNQjAERx9HNX0iYgkmoxkRkwwVSEvxGRBTTw9l
-         t4uQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX1OvK3J1eBHlKdU8gGydGDmkHQB7QxfM9F8tL/AyHAR8BqlWGcM1TfJccdbdS9E6Q68rhp5hW4ByxNg52kcvEZNK3Kzq0GHp6p9RpDfc62CqKw90fWby8gZl/8oQcaAJCp0PsD2NGB0A==
-X-Gm-Message-State: AOJu0YyRov3nFExNXqFZB9wwPs0PdpzvDEDsvBQH0X9CWVeeBnmzunX3
-	HVY7IEPdINMVXuQXP1gIGQDFPyXo61HA0D8MwKZJxzI/BH/1bacBr/Ezjjte
-X-Google-Smtp-Source: AGHT+IE5/lgBUlRXB4hx4/LLpzozqgz/KOnvtK7vZm/XFhpS6yvgQCk/Dhuvj8gdumYUddcAyehMEg==
-X-Received: by 2002:a05:690c:6ac2:b0:64b:1e55:9bc7 with SMTP id 00721157ae682-652d5448f14mr51404657b3.14.1720168519762;
-        Fri, 05 Jul 2024 01:35:19 -0700 (PDT)
-Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com. [209.85.128.174])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-6529cb1d468sm5326457b3.105.2024.07.05.01.35.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 05 Jul 2024 01:35:19 -0700 (PDT)
-Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-64b29539d86so12029317b3.2;
-        Fri, 05 Jul 2024 01:35:19 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCW11Y5FL56O+72KpYAVNVjjtCu2WCDF1fhlSnOrs3CsPRwghZvon8q9KxM2rT88OuUr1D2DV1+5zdOy/GoqwrN4ij3un/xPJ25dNQ0EOBknDzhXE/YTo48GYwS9biLP/e5vzDDa0QMQNw==
-X-Received: by 2002:a81:8b45:0:b0:63c:416f:182d with SMTP id
- 00721157ae682-652d5444259mr39064367b3.12.1720168518902; Fri, 05 Jul 2024
- 01:35:18 -0700 (PDT)
+	s=arc-20240116; t=1720168852; c=relaxed/simple;
+	bh=INe9YI/gvN9RsV8rzUze5SNDtnjh987deR2ilDFjZHg=;
+	h=MIME-Version:Message-Id:In-Reply-To:References:Date:From:To:Cc:
+	 Subject:Content-Type; b=rcQkYeM0NeZkZZY2ZZgl8CMhhCQtYLtDXRO8xHfFRTgfvm/4kE6iuOcR29+z6210fQgx+HstVtUTxKxoDsatV7B2HZ3+xYIk/NhfVm5GQ6lNGjXklZo0bPtugSk6CGo72pvZy8QjRxfgvjHKeK23s1RtMGiRNSNIutjxvlHQDuU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=MvqN0sxv; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=YYvZEiQG; arc=none smtp.client-ip=103.168.172.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+	by mailfhigh.nyi.internal (Postfix) with ESMTP id B3A2811401A5;
+	Fri,  5 Jul 2024 04:40:49 -0400 (EDT)
+Received: from imap47 ([10.202.2.97])
+  by compute5.internal (MEProxy); Fri, 05 Jul 2024 04:40:49 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
+	 h=cc:cc:content-type:content-type:date:date:from:from
+	:in-reply-to:in-reply-to:message-id:mime-version:references
+	:reply-to:subject:subject:to:to; s=fm2; t=1720168849; x=
+	1720255249; bh=XggOw6sNdJbe3Ee9jM5s0rhVY/BH/gB5TnFgTwGkUno=; b=M
+	vqN0sxvUNK0jk2xXrivtOhG2fJNAstNS0Az0kPG7Z9Hht1YRiriSkBIlIS9KqLMo
+	QT9hMdM/4uv8kG/bHCwh5AaCiD5HrKpmz4r1a4L6Fv4yRBDPtlxCWuAKEGEGggOw
+	0pl4c7A3RYuDpjpBSIKnUCbmsf+Za4A5S3wWT3+WfKqLxsYruYJ7+bPQ+P7JYZCh
+	SgqT5G/QrB0qnjlewYHrU8AGd+gLrPOE9OPBYGfSPOogc3Iuvibg3w7042SDIvct
+	QFdpElOJlwpIyY+8Pi8f2U4zL+bqoeWz7G6k8Wj1Kqfiixgr4LolPHkH8AAkjo9b
+	25nTbjl+ZHqjFFuFL727w==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-type:content-type:date:date
+	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+	:message-id:mime-version:references:reply-to:subject:subject:to
+	:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+	fm2; t=1720168849; x=1720255249; bh=XggOw6sNdJbe3Ee9jM5s0rhVY/BH
+	/gB5TnFgTwGkUno=; b=YYvZEiQG+jRSv2QL7uMXf4TqqIudGMW1hoFPfUOibxcw
+	TacQLhVfQuk82KlE8enxXU1E6yOhapEGS58U6tChdivRft/rW8INn11QLLGTomDh
+	9gjHNdFX6SCktUAzmesh1UvlY2ae7N/nLra16tQkFg3TKfJ51eRhSr3v6a0ZsXai
+	5xfxiAA2CQWI6MDLuurmJpkB3wQResZL70hlcumcCPC5Y4Mcyx3OT+FIOK3VHZQ3
+	AEoW5bZLB5n/SJ1t/f3IKncqe62iJWqG/k618IDUB9cA2eyZAvANa/e2pX2JL7Ss
+	JsirC9nKOLBrKxQEokKZtToq0ziVhsKtAzkhEfzwGw==
+X-ME-Sender: <xms:kLGHZlr9ABtO4zPZUN0mmhASWOKY1lCBcCX0JNBdUIWA5u7bJvyn-A>
+    <xme:kLGHZnrX-EUuLNQ9wOKdtOAfFWCmbgNzyZk7mu_wVev7jzSurMCpvVx9b1MQ7mkeA
+    UzTxHjiBFnbeIleUQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrvddugddtjecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdfthigr
+    nhcuhggrlhhklhhinhdfuceorhihrghnsehtvghsthhtohgrshhtrdgtohhmqeenucggtf
+    frrghtthgvrhhnpeehvdevieegudejueefgeffhefhffevudfhieejgfdtffetlefgteeu
+    veeiudeijeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhroh
+    hmpehrhigrnhesthgvshhtthhorghsthdrtghomh
+X-ME-Proxy: <xmx:kbGHZiOzY8TJjtzSUlAybkgTSy6oewMQPd9fVCmxRFAzwibbjOI6ow>
+    <xmx:kbGHZg4kjPSctSbDNpxotQi1V6DLxcR-Bgepas0TOnNciieHiDiW8A>
+    <xmx:kbGHZk6yO6WYF6-qIXETTta0hX1UhISvy6KxMJc4XWAc-EKo4ZWcHw>
+    <xmx:kbGHZoiba4Ht9kPv3rSLlvaAKBNNAagSSNMxSRomnY-5KMGfYYHB3g>
+    <xmx:kbGHZq6CQjR2jt6ectEqyn-1UrbcXP7g3vtd5RiGYopbpI06pylUPAi3>
+Feedback-ID: idc0145fc:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+	id E1C02A60078; Fri,  5 Jul 2024 04:40:48 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.11.0-alpha0-566-g3812ddbbc-fm-20240627.001-g3812ddbb
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240702164403.29067-1-afd@ti.com> <20240702164403.29067-4-afd@ti.com>
- <df0f9705-b1e9-4dce-b110-09be540d5e25@beagleboard.org> <edfac25c-d708-4a55-a9bb-97d329877444@ti.com>
-In-Reply-To: <edfac25c-d708-4a55-a9bb-97d329877444@ti.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 5 Jul 2024 10:35:07 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdU55v0AR_jWojbWqdfWyzM-40Jvm5LnjE+hjdC5zNwRnA@mail.gmail.com>
-Message-ID: <CAMuHMdU55v0AR_jWojbWqdfWyzM-40Jvm5LnjE+hjdC5zNwRnA@mail.gmail.com>
-Subject: Re: [PATCH RFC 3/3] arm64: dts: ti: grove: Add Grove Sunlight Sensor overlay
-To: Andrew Davis <afd@ti.com>
-Cc: Ayush Singh <ayush@beagleboard.org>, Nishanth Menon <nm@ti.com>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Andrew Lunn <andrew@lunn.ch>, Vaishnav M A <vaishnav@beagleboard.org>, 
-	Derek Kiernan <derek.kiernan@amd.com>, Dragan Cvetic <dragan.cvetic@amd.com>, 
-	Arnd Bergmann <arnd@arndb.de>, Michael Walle <mwalle@kernel.org>, 
-	Jason Kridner <jkridner@beagleboard.org>, Robert Nelson <robertcnelson@beagleboard.org>, 
-	Robert Nelson <robertcnelson@gmail.com>, Ayush Singh <ayushdevel1325@gmail.com>, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Message-Id: <e041466e-cfdc-46db-ae83-dcc04ed1af42@app.fastmail.com>
+In-Reply-To: <dc00b9daafe6a88ffaaaf4aace29e136.sboyd@kernel.org>
+References: <20240703105454.41254-1-ryan@testtoast.com>
+ <20240703105454.41254-20-ryan@testtoast.com>
+ <dc00b9daafe6a88ffaaaf4aace29e136.sboyd@kernel.org>
+Date: Fri, 05 Jul 2024 20:39:15 +1200
+From: "Ryan Walklin" <ryan@testtoast.com>
+To: "Stephen Boyd" <sboyd@kernel.org>, "Chen-Yu Tsai" <wens@csie.org>,
+ "Conor Dooley" <conor+dt@kernel.org>, "Daniel Vetter" <daniel@ffwll.ch>,
+ "David Airlie" <airlied@gmail.com>,
+ "Jernej Skrabec" <jernej.skrabec@gmail.com>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>,
+ "Maxime Ripard" <mripard@kernel.org>,
+ "Michael Turquette" <mturquette@baylibre.com>,
+ "Rob Herring" <robh@kernel.org>, "Samuel Holland" <samuel@sholland.org>,
+ "Thomas Zimmermann" <tzimmermann@suse.de>
+Cc: "Andre Przywara" <andre.przywara@arm.com>,
+ "Chris Morgan" <macroalpha82@gmail.com>, "John Watts" <contact@jookia.org>,
+ dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org,
+ linux-clk@vger.kernel.org
+Subject: Re: [PATCH v2 19/23] clk: sunxi-ng: ccu: add Display Engine 3.3 (DE33) support
+Content-Type: text/plain
 
-Hi Andrew,
+Hi Stephen, thanks for reviewing.
 
-On Thu, Jul 4, 2024 at 6:56=E2=80=AFPM Andrew Davis <afd@ti.com> wrote:
-> The issue then is the overlay mechanism is not complete. We
-> can add properties to nodes, and add nodes to nodes, and append
-> properties to nodes, but cannot append values to existing properties,
-> only replace them completely. This gap in the overlay system will
-> prevent a general solution. So I've started to work on adding
-> that property appending ability to the overlay system. I should
-> have some patches posted against the upstream dtc/libfdt here
-> in the next week or so.
+On Thu, 4 Jul 2024, at 11:02 AM, Stephen Boyd wrote:
+> Quoting Ryan Walklin (2024-07-03 03:51:09)
+>> +#include <linux/of_address.h>
+>
+> What is this include for?
+>
+for writel, however have confirmed this should instead be #include <asm/io.h>, will correct for v3.
 
-This is not limited to overlays, but also true for plain dts.
-We have /delete-node/ and /delete-property/, but lack /append-property/.
+>> +       if (of_device_is_compatible(pdev->dev.of_node,
+>> +                                   "allwinner,sun50i-h616-de33-clk")) {
+>> +               writel(0, reg + 0x24);
+>> +               writel(0x0000A980, reg + 0x28);
+>
+> Lowercase hex please. Did the downstream driver have names for these
+> register offsets by way of some sort of #define?
 
-Hence we end up having to repeat all existing values when appending
-to a property (e.g. see [1] appending to clocks from [2]).
+Thanks, will correct. AFAIK no, these are from Jernej's tree which I understand he developed independently, there was no vendor driver to reference, nor DE33 datasheet publicly available. 
 
-[2] https://elixir.bootlin.com/linux/latest/source/arch/arm64/boot/dts/rene=
-sas/r8a77951-salvator-xs.dts#L39
-[1] https://elixir.bootlin.com/linux/latest/source/arch/arm64/boot/dts/rene=
-sas/r8a77951.dtsi#L3334
+Jernej, are you able to weigh in at all?
 
-Gr{oetje,eeting}s,
+Thanks,
 
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Ryan
 
