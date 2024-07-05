@@ -1,104 +1,121 @@
-Return-Path: <devicetree+bounces-83478-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83479-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1808B9288AB
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 14:27:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 959C79288C6
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 14:38:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0050F1C22979
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 12:27:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 29924282E31
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 12:38:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60B871487C0;
-	Fri,  5 Jul 2024 12:27:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C29ED149E0A;
+	Fri,  5 Jul 2024 12:38:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nbj2Kxom"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="TIpYwtrx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C055C13D243;
-	Fri,  5 Jul 2024 12:27:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63C27146D76;
+	Fri,  5 Jul 2024 12:38:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720182432; cv=none; b=kboTJpCR/hdgbWKLkrryzz8jLZZj7cOGdn/0h8auwzaW69AYMyUk589HlIhUchJzywhyU9QnIwMXUE9dCMW5GyfYFOchhXNeZQISoNrabEusbF7HXixcdo2/QpLmSPcUFlrFCtAowxlpJWeAXl9dIxvq5uH5GjMrii7tZFp1dfY=
+	t=1720183083; cv=none; b=Uq+tG4UTZcIHT3LiPpUjmGhdrofiPNXibH7Nrwl0M4/Scb9l7nTDOK2rV+gDeCxUgg64jxmgKqKFUW6yhImv8eTGuk8NH3kD7CNu2JabI67Su6d1KX0chINZUAeQpPahNRyCUVlsIcBEa7hip8UF1xJwgeZC/D9jXimr7Q8OImI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720182432; c=relaxed/simple;
-	bh=sIWevVUKkb7FOCasj7mQTl9nMdE+rJH3P8UkJXqyiYg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=oMh95qMPjsKonBSn068C7JPKA45LGHc6pgWxyMsUnyxFWC5MbeuYK//Ay61+FuZ+MWvXNX/ajUTaC4hFnRe348FAda1u7MI7t+z34oQ4ONcX/kwI9hUgBKH1KjbW90FqZprUHDCOW+ETDM5te+OWCeWty33mr0LYPRQ3564JSwg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nbj2Kxom; arc=none smtp.client-ip=209.85.208.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2ee844bb5d7so2487051fa.0;
-        Fri, 05 Jul 2024 05:27:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1720182429; x=1720787229; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=sIWevVUKkb7FOCasj7mQTl9nMdE+rJH3P8UkJXqyiYg=;
-        b=nbj2KxomoIf1w0Ft8nqQRzefIixtER9pCecqC9JwtdOZxFfik/ii+P9J4pE2ydEtw8
-         UJfx97toyH2fo8V7g8xccpQ1HIE2gQDPD4XgXOOc89qPrus+a/UlU79cdPWRVdVbRNcx
-         p8VQ+DnqG6uwSTWG6jtc7J/rVkOKx9R4frJN4IfXm6Te8CSIsiL8zr95QpLOfG6pctl8
-         DR0hYdyQLCKHExA8krfU3fkWiDyie1jggyfP3u9I3PJGU3QfSNE37lZMUfmP4qOkdS/R
-         FL2WU+X98tUKCPJCzEpURqkCNzyaKz5K8KvJt/yt5rOvcqak1X0arMie2bY7r3OiHI/V
-         BRvw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720182429; x=1720787229;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=sIWevVUKkb7FOCasj7mQTl9nMdE+rJH3P8UkJXqyiYg=;
-        b=gYg7Z6MnnPQqQw0DCEDPrgvZZFez3kOQKrrTJBOlamjOxpENMbjjYkyPzW9dWBxnRR
-         AKiI6iCfVC0zufKaQQI3kNNxlw7fsr6YHXRe0FOmgXcpesDTLhClUxOUmV+F0ipIkDfE
-         yVMMK6K4+1QABzsv7rULLXP19okcKVeh1/ht3GycJ0sFhKNaIcOv/B4DIrgZJhjGGJLR
-         6fHnAQAWCs5fZGaSDBBrqIrc6dJTibLqzO4llvub39nkTZscsMZAKVZLMuV6Y7eDGvsA
-         RjffSeto/eIlorFbfw+rrH1CoeXuAnYPOffvcUjZoGK3h1YNNrBXWh7UGk8BTNw+CpOD
-         pOVA==
-X-Forwarded-Encrypted: i=1; AJvYcCX/hPMFXEaSImiv4F3Xg4tYodhyktTwO3UbsEroDpnDa2ihjkZsfbBHHYWO2SyrClCBILw9YjJlI1MvaEsi9iFK9aLYTAqGOhOlR00ebJuTzZ0s1wjKFjgZN3shyHGycjB+Zj35P8/3ug==
-X-Gm-Message-State: AOJu0YwVekKh5xJ4sCRSPwUBEiXfpL3vReZVofIfSQFXAH/wLfbLF343
-	x0zx5oOAE9+Ho3g70ea4G6aChOKIkGbMOkVQExPDr9sJ81eARtEn16SsmA8PifU5+SMZvlx6Xe2
-	w2hOPA3F+F6m/GDFR00fEo4wF+JJHAw==
-X-Google-Smtp-Source: AGHT+IE8OV1AeVxu2SX0O/PkjN0a38BZTc66Pul7Ij78t5Gphi3uH38+dmdzatGgs+bEAS/I8hEOBqE62yBpxruHbxw=
-X-Received: by 2002:a2e:8183:0:b0:2ee:4a99:6a3a with SMTP id
- 38308e7fff4ca-2ee8ed9589fmr29383411fa.2.1720182428647; Fri, 05 Jul 2024
- 05:27:08 -0700 (PDT)
+	s=arc-20240116; t=1720183083; c=relaxed/simple;
+	bh=3HsTbsDKm/NLPUYW8jCyPrQiNP4MJEpDQo2aw2DgUnQ=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=U1oyg8+YL0QSj7/LGqhgQRqAxamQ7BignuLygFHvn3PQgxgkOkcwHUAT2NdL6gk+d+NKmhtiuEjBHXmU7Ulvi7twckoUOQTkuC5FDRAnLqABeOl23PfYgJoq/1qzb7awXjc2NWVx9XX/n+ZHG3ipxeeHgUwLs2pZ8nv5WcGAVqI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=TIpYwtrx; arc=none smtp.client-ip=217.70.183.200
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 76E5220008;
+	Fri,  5 Jul 2024 12:37:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1720183079;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=VouKlLx9uRbG/3DbSVlCs8lvpC20KVHIWouvaxdon2Q=;
+	b=TIpYwtrxmkTM1GtSK2YRQWj9lpXL72qz1Aq9KmZdZpgzCP5PqNocWPox60UN1UGziAa2xv
+	fNkuwx/fxwvEE/HyC41bML7s9ktMH6A85Av08qbz5l8Mj94ht8HCMLwTjj4r6kT3gN9hMb
+	SReFh/iiBDqmbTwrzjwuUnLzVc0GXsk70hoXw24csX4tErE2CeaftBGSPf+hDE+h1vGOyI
+	AHtpGWtD4DlXiJMNweQFrsPCbjgkM3c1FgCnTcKJQMZZ0/EYAIo7XPLp1Mb+DxzNuU8Hu5
+	leD0q4kzrlm+6NEMGdeWrHAo0s4xATDKItyBTgrKVfYPh3DHrklL4vv1D0xByA==
+From: Gregory CLEMENT <gregory.clement@bootlin.com>
+To: Chris Packham <chris.packham@alliedtelesis.co.nz>, andrew@lunn.ch,
+ sebastian.hesselbarth@gmail.com
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Chris Packham
+ <chris.packham@alliedtelesis.co.nz>
+Subject: Re: [PATCH] ARM: dts: marvell: Add 7-segment LED display on x530
+In-Reply-To: <20240530231608.3557782-1-chris.packham@alliedtelesis.co.nz>
+References: <20240530231608.3557782-1-chris.packham@alliedtelesis.co.nz>
+Date: Fri, 05 Jul 2024 14:37:58 +0200
+Message-ID: <87o77cj9p5.fsf@BLaptop.bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240705-bspimx8m-3180-v2-1-dc1a7e1689be@phytec.de>
-In-Reply-To: <20240705-bspimx8m-3180-v2-1-dc1a7e1689be@phytec.de>
-From: Fabio Estevam <festevam@gmail.com>
-Date: Fri, 5 Jul 2024 09:26:56 -0300
-Message-ID: <CAOMZO5BEHoAycqQehddA_d03nrKkNnbcTAkq=VXww0d6HRHFdQ@mail.gmail.com>
-Subject: Re: [PATCH v2] arm64: dts: freescale: imx8mp-phycore: Add no-eth overlay
-To: Benjamin Hahn <B.Hahn@phytec.de>
-Cc: Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	upstream@lists.phytec.de, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+X-GND-Sasl: gregory.clement@bootlin.com
 
-Hi Benjamin,
+Chris Packham <chris.packham@alliedtelesis.co.nz> writes:
 
-On Fri, Jul 5, 2024 at 9:14=E2=80=AFAM Benjamin Hahn <B.Hahn@phytec.de> wro=
-te:
+> The Allied Telesis x530 products have a 7-segment LED display which is
+> used for node identification when the devices are stacked. Represent
+> this as a gpio-7-segment device.
 >
-> Add a devicetree overlay to disable ethernet for boards where it is not
-> populated.
->
-> Signed-off-by: Benjamin Hahn <B.Hahn@phytec.de>
+> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+
+Applied on mvebu/dt
+
+Thanks,
+
+Gregory
 > ---
-> Changes in v2:
-> - Remove the compatible from the overlay
-
-Reviewed-by: Fabio Estevam <festevam@gmail.com>
+> This was originally sent as part of the series that added the seg-led-gpio
+> driver but wasn't applied with those changes. At the time I said I'd submit
+> this separately but I forgot about it until now.
+>
+>  arch/arm/boot/dts/marvell/armada-385-atl-x530.dts | 13 ++++++++++++-
+>  1 file changed, 12 insertions(+), 1 deletion(-)
+>
+> diff --git a/arch/arm/boot/dts/marvell/armada-385-atl-x530.dts b/arch/arm/boot/dts/marvell/armada-385-atl-x530.dts
+> index 5a9ab8410b7b..2fb7304039be 100644
+> --- a/arch/arm/boot/dts/marvell/armada-385-atl-x530.dts
+> +++ b/arch/arm/boot/dts/marvell/armada-385-atl-x530.dts
+> @@ -43,6 +43,17 @@ uart0: serial@12000 {
+>  			};
+>  		};
+>  	};
+> +
+> +	led-7seg {
+> +		compatible = "gpio-7-segment";
+> +		segment-gpios = <&led_7seg_gpio 0 GPIO_ACTIVE_LOW>,
+> +				<&led_7seg_gpio 1 GPIO_ACTIVE_LOW>,
+> +				<&led_7seg_gpio 2 GPIO_ACTIVE_LOW>,
+> +				<&led_7seg_gpio 3 GPIO_ACTIVE_LOW>,
+> +				<&led_7seg_gpio 4 GPIO_ACTIVE_LOW>,
+> +				<&led_7seg_gpio 5 GPIO_ACTIVE_LOW>,
+> +				<&led_7seg_gpio 6 GPIO_ACTIVE_LOW>;
+> +	};
+>  };
+>  
+>  &pciec {
+> @@ -149,7 +160,7 @@ i2c@3 {
+>  			#size-cells = <0>;
+>  			reg = <3>;
+>  
+> -			gpio@20 {
+> +			led_7seg_gpio: gpio@20 {
+>  				compatible = "nxp,pca9554";
+>  				gpio-controller;
+>  				#gpio-cells = <2>;
+> -- 
+> 2.45.1
 
