@@ -1,139 +1,130 @@
-Return-Path: <devicetree+bounces-83348-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83349-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 217DF928242
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 08:43:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C297A928249
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 08:47:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CB8522838BA
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 06:43:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7E41A284EB8
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 06:47:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AE321448D3;
-	Fri,  5 Jul 2024 06:43:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k09VDRLJ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94C95135A53;
+	Fri,  5 Jul 2024 06:47:28 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8B7F144304;
-	Fri,  5 Jul 2024 06:43:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 367B01758D;
+	Fri,  5 Jul 2024 06:47:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720161822; cv=none; b=VPdiYqv9VNoQHKk48DBh06PKCsdkETNCO+CiXku5X7QlepYTRHL1FSk5BgYzoGw5c86E9JFujnlSp/uIyGS1n7gIT5WaZyRYLjnnpeQcdr0Nx3127DzACnMoV3UOJ2v+WwxC0lQF60rKgqD+oMEPE29gcz8rsKuhEdeBoVNWXQQ=
+	t=1720162048; cv=none; b=KxPBD0NWv0ZsoYxGRuOkLtYAW6/s3XM5WiPoSm/0Op4T5SIwESAbV6CBx/kmoemO6e62jC2xfujjNGKcjQsuxmEUif7RY1TRDFmTOuzy061hoqWDA5PMUUB8DrCvArn3vLMesnJUBjk21aeC4IRD0HNxBMP3huYNXQlDP6dHLVw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720161822; c=relaxed/simple;
-	bh=QD1D5JV0h4f+hBJGgiwwPNrcVD1k51TIRByFDxQWr68=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kv2ggucL0j/V8NQBC7op6vgrK7nJKGS0v9fm93T/4r5i86kywe3pBOnl8CSLWUfXszd2ixwptk0d60ahdh/LP9ntY9sw6Ad9VO6DuVqgDaIcbljhJjdvI90wdfL73IjGR8pxOIR3SUWLDJh/Nwc3P36LEgqFcDrAcf2tNNTZNbU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k09VDRLJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3FA5DC32786;
-	Fri,  5 Jul 2024 06:43:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720161821;
-	bh=QD1D5JV0h4f+hBJGgiwwPNrcVD1k51TIRByFDxQWr68=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=k09VDRLJKN3NM3x2EJisjhzWkrGBNW+YZV/xB9rmi08nNsHTAv/NEpU71v0a7n2tP
-	 fibqVVGcbqBaRzLayPL/GwPYWC/G6XZshAZ7ZIFI40u/7dl3F5cqf9SAg6Tl+ay9uk
-	 yrpNdAcuJmUctE7ZIobooKcK+zpmHMXODrsWTUj6164a83e1cH/2TByJbQtYDWKF7M
-	 ctfPJoYuJv1beByjrNTW3OVgSWZ8O8l6dEMmXHujP6J6PMkW1WOXUR+U9jxb4o5NNz
-	 UkY6ZGhG7XTuu32EQNNDuXgy8kPHzlvdp80IeHsCnKCBmoOeyd/oBh7Ei+19ckggC8
-	 6AzGo+L+SwYBQ==
-Message-ID: <c4b23da5-10fc-476e-8acc-8ba0815f5def@kernel.org>
-Date: Fri, 5 Jul 2024 08:43:35 +0200
+	s=arc-20240116; t=1720162048; c=relaxed/simple;
+	bh=zFbuTCd8s/f+WalxBRft3LY+kuvmciauhWVz5S7om+c=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=k2SJ4Sb93WRTsBfwcnkP4JnhAnsR9ZiRI8iPD72ypTALNHCl1JNRAQQJ6GgYawCfRGE8x3OvWOIRBWyeDWrS2eBeo34LG7mkld+xrcqsR/jDqs/fyLHtg7BNsbPvtC/SzbtYVUuVIEVg9THvBEX5Bm5JrMh166iwPwjbB+weQf8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Date: Fri, 5 Jul 2024 06:47:21 +0000
+From: Yixun Lan <dlan@gentoo.org>
+To: Jisheng Zhang <jszhang@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Conor Dooley <conor@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Anup Patel <anup@brainfault.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Yangyu Chen <cyy@cyyself.name>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Inochi Amaoto <inochiama@outlook.com>, linux-serial@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	Meng Zhang <zhangmeng.kevin@spacemit.com>
+Subject: Re: [PATCH v3 06/11] dt-bindings: serial: 8250: Add SpacemiT K1 uart
+ compatible
+Message-ID: <20240705064721.GB3042186@ofsar>
+References: <20240703-k1-01-basic-dt-v3-0-12f73b47461e@gentoo.org>
+ <20240703-k1-01-basic-dt-v3-6-12f73b47461e@gentoo.org>
+ <ZoarsYMNJRu1-_wn@xhacker>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/7] ARM: dts: microchip: at91-sama5d34ek: Align the
- eeprom nodename
-To: Andrei Simion <andrei.simion@microchip.com>, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, nicolas.ferre@microchip.com,
- alexandre.belloni@bootlin.com, claudiu.beznea@tuxon.dev
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20240704151411.69558-1-andrei.simion@microchip.com>
- <20240704151411.69558-4-andrei.simion@microchip.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240704151411.69558-4-andrei.simion@microchip.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZoarsYMNJRu1-_wn@xhacker>
 
-On 04/07/2024 17:14, Andrei Simion wrote:
-> Align the eeprom nodename according to device tree specification
-> and at24.yaml.
+
+On 22:03 Thu 04 Jul     , Jisheng Zhang wrote:
+> On Wed, Jul 03, 2024 at 02:55:09PM +0000, Yixun Lan wrote:
+> > Found SpacemiT's K1 uart controller is compatible with
+> > Intel's Xscale uart, but it's still worth to introduce a new compatible.
 > 
-> Signed-off-by: Andrei Simion <andrei.simion@microchip.com>
+> Per vendor's kernel source code, all the uarts support 64Bytes FIFO.
+> So if it's compatible with Xscale, it's a xscale uart 64 Bytes FIFO.
+yes, I agree
 
-Squash.
+further question would how to implement specific support for spacemit's k1 SoC
+one possible option to add a PORT_SPACEMIT compatible data to 8250_port.c - uart_config[]
 
-> ---
->  arch/arm/boot/dts/microchip/sama5d34ek.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+
+> >From this PoV, the uart isn't a Xscale but a mrvl pxa.
+see my previous comment, probably need further clarification/investigation..
+
 > 
-> diff --git a/arch/arm/boot/dts/microchip/sama5d34ek.dts b/arch/arm/boot/dts/microchip/sama5d34ek.dts
-> index bffd61397cb5..18943b873fff 100644
-> --- a/arch/arm/boot/dts/microchip/sama5d34ek.dts
-> +++ b/arch/arm/boot/dts/microchip/sama5d34ek.dts
-> @@ -36,7 +36,7 @@ i2c0: i2c@f0014000 {
->  			i2c1: i2c@f0018000 {
->  				status = "okay";
->  
-> -				24c256@50 {
-> +				eeprom@50 {
+> But I have one question: is the uart really a mrvl/intel pxa uart? or is just
+No, I'm unable to answer this, I'm not an employee of SpacemiT
+All informations are based on public available source + docs..
 
-What about other names? Why not fixing everything at once?
+> reg programming compatible with pxa?
+> 
+To my knowledge, it's compatible with pxa, but it would be great that vendor can clarify this
 
-Best regards,
-Krzysztof
+> > 
+> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> > Signed-off-by: Yixun Lan <dlan@gentoo.org>
+> > ---
+> >  Documentation/devicetree/bindings/serial/8250.yaml | 4 +++-
+> >  1 file changed, 3 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/serial/8250.yaml b/Documentation/devicetree/bindings/serial/8250.yaml
+> > index 692aa05500fd5..0bde2379e8647 100644
+> > --- a/Documentation/devicetree/bindings/serial/8250.yaml
+> > +++ b/Documentation/devicetree/bindings/serial/8250.yaml
+> > @@ -111,7 +111,9 @@ properties:
+> >                - mediatek,mt7623-btif
+> >            - const: mediatek,mtk-btif
+> >        - items:
+> > -          - const: mrvl,mmp-uart
+> > +          - enum:
+> > +              - mrvl,mmp-uart
+> > +              - spacemit,k1-uart
+> >            - const: intel,xscale-uart
+> >        - items:
+> >            - enum:
+> > 
+> > -- 
+> > 2.45.2
+> > 
+> > 
+> > _______________________________________________
+> > linux-riscv mailing list
+> > linux-riscv@lists.infradead.org
+> > http://lists.infradead.org/mailman/listinfo/linux-riscv
 
+-- 
+Yixun Lan (dlan)
+Gentoo Linux Developer
+GPG Key ID AABEFD55
 
