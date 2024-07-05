@@ -1,141 +1,157 @@
-Return-Path: <devicetree+bounces-83364-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83365-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6B509282FA
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 09:43:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20C8E928305
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 09:44:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 330C61F217A3
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 07:43:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C7EAF2890C8
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 07:44:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD96314388D;
-	Fri,  5 Jul 2024 07:43:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="HuX/m0yo"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 992F514533F;
+	Fri,  5 Jul 2024 07:44:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com [209.85.128.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EF471448E5
-	for <devicetree@vger.kernel.org>; Fri,  5 Jul 2024 07:43:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9191314532A;
+	Fri,  5 Jul 2024 07:44:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720165400; cv=none; b=Lk7jReOXC54LPS9Rg9hIwremST82yt01cDUMUZjuUh0goX6rWU9o7phq3F0QGAUI2O7zM55xjj4QFkwgXNsocgVXSirgbaXqrS+48lZUB1o7ZauY7m9DPMiWwfsfeR/3rgo3wH/SA01Ah25MB47lDhZvgW50VQlHgoroftGcdig=
+	t=1720165470; cv=none; b=IdN/5yNBGWnwogVfxpGh7t5zlN5DzcuG+MNdtThkdUk85AhXUNoTpDU//f4ai9DiBeNeS9NvDL7ggsCVYmAYUNI9KYtiu7Oz8GuP2xC+rmXYxCr/nABkNQ2UwJtaeXGyEC8Qyzdzj9FrnlLPsGF73DxvCN36rmDngLobjBGcmHY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720165400; c=relaxed/simple;
-	bh=xMRKonIgiBI78xXfSxg1vkO7UNb4VpdzvYn8LbbXScg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=mNIDgpcbIKEppYfYIPj3Ih1EW7dEEwTLX0EP+5oUqGgzUM6cuM9GPcmrFELZrRQ4z3pdIgbtuzyqBxST2fUa0u07Mu3nQvvA/CmvDukuiVPHR4pOURDbc5FDZuU8iOEBgO8Fn4oLiPPwho55zo+5ztpuRQpbkGggkI3ahTQS3T0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=HuX/m0yo; arc=none smtp.client-ip=209.85.208.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-58e76294858so2261617a12.0
-        for <devicetree@vger.kernel.org>; Fri, 05 Jul 2024 00:43:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1720165398; x=1720770198; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=8q0QP9vP7dfkRhnJhs06XzMUSeogIVDRANFYGZhnly8=;
-        b=HuX/m0yowfHdvD3KXQTAhFJbOjw/DEgE7WLdQKw8aErbayrpILKN6NSg/e1r9Nl3hk
-         wfHXsfcyUQg6iExYdhGUdZ6gGYtW8821Udliih9okRO6Cg6rwkY53KYwhYnEMvDPEH4R
-         YVECwLPxzdzEzkM/muONsXPP1FHIwsnugQkvO2iat5F85lcjyKRS+bhS3lvrsbVbt+N5
-         F1kP/m07QgVy0rl7xYdd7XIwJePf72oEphVhY/LYgJ0WMawnFmYtfRtaZyF4tJIjy9ek
-         AIfJNGuaIAUVOc3sOM2pNWIfza1pexrRImP8ExqQRnYzXC+LGz3Ol2UryoUtobqR//Ft
-         fBwg==
+	s=arc-20240116; t=1720165470; c=relaxed/simple;
+	bh=oSwBgych3VEMOE22AaK4rg+/aWO15m6ol78WqqdUKuY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=PU9JGI0bwWXRwO0zqgCU21zKuC1J3HVK/BvWkGX1ES+/vpKUAfq99UKq1wYl4qbdN0uBaBcfC3P/OFw5HOWWd9SvH+aSGlgr1SawWA5Gf/0uwVTX61DX30dxmszhj0iSGJ4jxVylIT55e94/f8UkM+I3IB0aZzhXkYSh2oyewrM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-65465878c1fso1509487b3.2;
+        Fri, 05 Jul 2024 00:44:28 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720165398; x=1720770198;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=8q0QP9vP7dfkRhnJhs06XzMUSeogIVDRANFYGZhnly8=;
-        b=Pkog/UffjivhhvFg2nnFK4cC7C3alnT8wL0KRHT8dNEqOrjWBbMFHrnF2gldj5sn8T
-         lgRdQHrv2PcR2B8woPm1m6pJ7NksJzAwWedjaOyhmR5+AxAKuxah9js4LAJ5n1hHfcrw
-         TPBL1rx60z1rGFnJulOZd+COVL42pHPxjJehQ5vk4j5lpFkkJstTpIHNklzLbfAJgEs+
-         r3pgD3js95CEHIsUsV/+0G1JRjSqcAUJajeT0jkJGlv3Hx3xVdkYf5PlCO3UOEBhuEqv
-         NOAsHyTiipyvVbfrYFk6sMurDLRfJbrJ7LzIWr/o9C7wtZKVPZCDe0CBzd/FDBUlZCU9
-         cx9w==
-X-Forwarded-Encrypted: i=1; AJvYcCXDxQDGqfRnoqORnD2F9/Gt2rlE/LoFa3M2lT7rRSFdCk5NbK+UAeEdpEAbX7qHT67Sq8/pvT+k+XHAzgwWk/ZVs2kiqnlrpLgdsQ==
-X-Gm-Message-State: AOJu0YyvCDLvDT8HU6QIVz+M8OHdBCYtJdsh7NfbF+IYzA+jLJcpUYhP
-	2vG08LMifZfBVzi+uZ/hzsW1zGSQr90pgJjxrdbw1iLE3TiJ2qbLwquXeszK0Ug=
-X-Google-Smtp-Source: AGHT+IEFQtKLC2KR8SHNPEDd94zyKDCx/t4ohydEafRFmL3Th2JhU9ob/EKwraM6v7NFE/PI3+olHA==
-X-Received: by 2002:a17:906:f882:b0:a62:e450:b147 with SMTP id a640c23a62f3a-a77bdc1f137mr278703666b.29.1720165397555;
-        Fri, 05 Jul 2024 00:43:17 -0700 (PDT)
-Received: from [100.64.0.4] (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a77c832813csm51332866b.119.2024.07.05.00.43.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Jul 2024 00:43:17 -0700 (PDT)
-From: Luca Weiss <luca.weiss@fairphone.com>
-Date: Fri, 05 Jul 2024 09:43:11 +0200
-Subject: [PATCH v2] arm64: dts: qcom: sm6350: Add missing
- qcom,non-secure-domain property
+        d=1e100.net; s=20230601; t=1720165466; x=1720770266;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=a1SDFiWQ0nEyqIMe3v2gBQzkSPZVxdM8AxvMACbfltA=;
+        b=i+JxuXxAsSj2DcPqPNxvIMu1KCaIf2AOoV96RS+Ol1jM172D61DwuEcyGptyntdS90
+         aQsT/pFD8DTvb3IK2oKHXZ64Wx7UmIFtM4uan8u0ThUMkghDZcjjGYuUzf3L97V7G5Hd
+         QEmgb2KJu2wvpCPfz9Z7OCFGt7k59MgO9xAzqV11PHRjR1r0mPYgB4AirFa+5HLz4rdA
+         dLcBqDKfopAGQQqWMEMu+j8kBX0ADh/y73/XpAS3y9iii2D+xyT17nXC858FYp/6++8J
+         pfkw96d9xiS5lpgC10iCDfvrQNbbR/U5eLUs3rS4QDcI8BIRip3im9sIu/q+AqZB0AUD
+         umIg==
+X-Forwarded-Encrypted: i=1; AJvYcCUx7aXhcOr8hyqeRqooSvPXt3Hn3Mj2JZep4DO/1gHfUG5g27XpZ87EnZsdxgCQeudnKluWewSrH98j/YRLPmPewX6ejrPL2HDMCIf7rXYJHMWifGP6QLnhOA64IC79PwdLa6sUmXC7/ib2O05PNDKUbzrpCSlcucG5pr1HgYVxkhKGwg==
+X-Gm-Message-State: AOJu0YwHg4EPPYimre0h9WtfWn3Vf6spONHfNmMndcp5F92JKsx8viKo
+	ZKNW4sWx/d9NbvDyTJqhqP/w6mw9tSjn28J6FYz1M8ewmGnpeEePNEMCkiaO
+X-Google-Smtp-Source: AGHT+IEslyDL3fxdMpazQfHtBANM90Fh0BMevN+XbKDjllUseDLkcHHLtbjuNgswJ55MbJUn4dC33w==
+X-Received: by 2002:a05:690c:72a:b0:648:c8ca:f2d4 with SMTP id 00721157ae682-652d67c21admr39114527b3.27.1720165466401;
+        Fri, 05 Jul 2024 00:44:26 -0700 (PDT)
+Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com. [209.85.128.174])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-651d036bad4sm7623747b3.54.2024.07.05.00.44.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 05 Jul 2024 00:44:25 -0700 (PDT)
+Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-65465878c1fso1509237b3.2;
+        Fri, 05 Jul 2024 00:44:25 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUvcOCjlCJ3jMd/Jr5UHh0hHydosY8zVRB8iZHzu611zonGM/RVQbngLx/fhzP4Ss9MXX69m9k4RVGPkahdjR1/5AWkDE0WkANyjCtUWVcNeVUwhYmUCTlfxzReztb70NYbaCK998KebbXcOF1WxhNwZbzRsnC/mJmne0IQTC7/pilqJA==
+X-Received: by 2002:a81:8482:0:b0:63c:4140:a0de with SMTP id
+ 00721157ae682-652d5a15025mr36511367b3.6.1720165465602; Fri, 05 Jul 2024
+ 00:44:25 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240705-sm6350-fastrpc-fix-v2-1-89a43166c9bb@fairphone.com>
-X-B4-Tracking: v=1; b=H4sIAA6kh2YC/32NQQ6CMBBFr0Jm7ZhOgVZdeQ/DAunUzgJKWkI0h
- LtbOYDL95L//gaZk3CGW7VB4lWyxKmAPlUwhH56MYorDFrpRllVYx5N3Sr0fV7SPKCXN1qjnL4
- 05NTTQBnOiYs+oo+ucJC8xPQ5Plb62b+5lZDw6klbx2TJtnffS5pDnPg8xBG6fd+/uUjGJ7gAA
- AA=
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
- Konrad Dybcio <konrad.dybcio@somainline.org>, linux-arm-msm@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
- Luca Weiss <luca.weiss@fairphone.com>
-X-Mailer: b4 0.14.0
+References: <20240627-mikrobus-scratch-spi-v5-0-9e6c148bf5f0@beagleboard.org>
+ <20240627-mikrobus-scratch-spi-v5-3-9e6c148bf5f0@beagleboard.org> <20240628-cake-ocean-25363137b1ab@spud>
+In-Reply-To: <20240628-cake-ocean-25363137b1ab@spud>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 5 Jul 2024 09:44:13 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdW_u-TxpP49pybyH+FyBN-1R__c=bE=6rnUXFG0RkiYQA@mail.gmail.com>
+Message-ID: <CAMuHMdW_u-TxpP49pybyH+FyBN-1R__c=bE=6rnUXFG0RkiYQA@mail.gmail.com>
+Subject: Re: [PATCH v5 3/7] dt-bindings: mikrobus: Add mikrobus-spi binding
+To: Conor Dooley <conor@kernel.org>
+Cc: Ayush Singh <ayush@beagleboard.org>, Mark Brown <broonie@kernel.org>, 
+	Vaishnav M A <vaishnav@beagleboard.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Derek Kiernan <derek.kiernan@amd.com>, Dragan Cvetic <dragan.cvetic@amd.com>, 
+	Arnd Bergmann <arnd@arndb.de>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Nishanth Menon <nm@ti.com>, 
+	Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, Michael Walle <mwalle@kernel.org>, 
+	Andrew Lunn <andrew@lunn.ch>, jkridner@beagleboard.org, robertcnelson@beagleboard.org, 
+	linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-By default the DSP domains are secure, add the missing
-qcom,non-secure-domain property to mark them as non-secure.
+On Fri, Jun 28, 2024 at 6:48=E2=80=AFPM Conor Dooley <conor@kernel.org> wro=
+te:
+> On Thu, Jun 27, 2024 at 09:56:13PM +0530, Ayush Singh wrote:
+> > Add bindings for MikroBUS boards using SPI interface.
+> >
+> > Almost all of the properties that are valid for SPI devices can be used
+> > except reg. Since the goal is to allow use of the same MikroBUS board
+> > across different connectors, config needs to be independent of the actu=
+al
+> > SPI controller in mikroBUS port(s), it is not possible to define the
+> > chipselect by number in advance. Thus, `spi-cs-apply` property is used =
+to
+> > specify the chipselect(s) by name.
+> >
+> > Another important fact is that while there is a CS pin in the mikroBUS
+> > connector, some boards (eg SPI Extend Click) use additional pins as
+> > chipselect. Thus we need a way to specify the CS pin(s) in terms of
+> > mikcrobus-connector which can then handle bindings the actual CS pin(s)=
+.
+> >
+> > Link: https://www.mikroe.com/spi-extend-click SPI Extend Click
+> >
+> > Signed-off-by: Ayush Singh <ayush@beagleboard.org>
 
-Fixes: efc33c969f23 ("arm64: dts: qcom: sm6350: Add ADSP nodes")
-Fixes: 8eb5287e8a42 ("arm64: dts: qcom: sm6350: Add CDSP nodes")
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
----
-Changes in v2:
-- Fix copy-pasted secure vs non-secure mistake in commit message
-- Pick up tags
-- Link to v1: https://lore.kernel.org/r/20240703-sm6350-fastrpc-fix-v1-1-9f127de17175@fairphone.com
----
- arch/arm64/boot/dts/qcom/sm6350.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+Thanks for your patch!
 
-diff --git a/arch/arm64/boot/dts/qcom/sm6350.dtsi b/arch/arm64/boot/dts/qcom/sm6350.dtsi
-index 46e122c4421c..8b9bff38e687 100644
---- a/arch/arm64/boot/dts/qcom/sm6350.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm6350.dtsi
-@@ -1323,6 +1323,7 @@ fastrpc {
- 					compatible = "qcom,fastrpc";
- 					qcom,glink-channels = "fastrpcglink-apps-dsp";
- 					label = "adsp";
-+					qcom,non-secure-domain;
- 					#address-cells = <1>;
- 					#size-cells = <0>;
- 
-@@ -1582,6 +1583,7 @@ fastrpc {
- 					compatible = "qcom,fastrpc";
- 					qcom,glink-channels = "fastrpcglink-apps-dsp";
- 					label = "cdsp";
-+					qcom,non-secure-domain;
- 					#address-cells = <1>;
- 					#size-cells = <0>;
- 
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/mikrobus/mikrobus-spi.yaml
 
----
-base-commit: 0b58e108042b0ed28a71cd7edf5175999955b233
-change-id: 20240703-sm6350-fastrpc-fix-760d2841d0b6
+> > +
+> > +required:
+> > +  - compatible
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    thermo-click {
+> > +      compatible =3D "maxim,max31855k", "mikrobus,spi";
+>
+> I am really not keen on what this implies, as I think Rob and I have
+> already mentioned, the connector should handle the "mapping" and the
+> regular SPI/I2C/whatever bindings for the SPI devices themselves
+> should be usable.
 
-Best regards,
--- 
-Luca Weiss <luca.weiss@fairphone.com>
+Indeed.
 
+The (thermocouple component on the) click itself is not compatible with
+"mikrobus,spi", but with "maxim,max31855k". "mikrobus,spi" here means
+SPI is used as the transport layer.
+
+I guess you need "mikrobus,spi" because the click is pointed to by the
+"board" phandle in the connector, instead of being a subnode of the
+connector, like it should be?
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
