@@ -1,104 +1,79 @@
-Return-Path: <devicetree+bounces-83543-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83546-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36139928E4F
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 22:44:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4F91928EB2
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 23:10:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DE8AE285D9B
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 20:44:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 02EFC1C20380
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 21:10:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79D6C1369B0;
-	Fri,  5 Jul 2024 20:44:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="XsLAefyy"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E08417D35B;
+	Fri,  5 Jul 2024 21:06:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 533E51F61C;
-	Fri,  5 Jul 2024 20:44:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.137.202.133
+Received: from gate.crashing.org (gate.crashing.org [63.228.1.57])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AEB3178395;
+	Fri,  5 Jul 2024 21:06:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=63.228.1.57
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720212256; cv=none; b=GbrcZZh0VFz47LL6ydqwBjSqrtk2Knxan91ApJpwBFLEGfGKpIFOVP7fBvoT7EVEWcEUciJDBzoJeA8x+HEtBjTD5tiUwD6hWH3XgdDc9HZGdjhc3NNM5uaF0aB7AiZSCebFM2KtiCZtp+nzcSUpjA2eazBL5eshqJxP+IdsXdg=
+	t=1720213614; cv=none; b=q/C8XM1QmqxuwzbIWjdPzegtUhsfm7mJcLLBM2vQzig3MY58xKVIzA5Wwbivk+obLpalX+36drYxq0F0fmxnSZDypzY4mv9ofp7hOeXU6f5zeBNPO8ErnenwHLRlviZNwp083PAeILt7lp1dL/ES75S7jhlQ2ZLgw8NvXJUcpEg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720212256; c=relaxed/simple;
-	bh=E0DMI2N+rLJVjmBgl8H/STkCxc80BZbM9Ut6SYTItVE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PUeODDXBqr/e+1LmXAGD2OHdSFeyMZuDZV8adQIpgkRg7+RsZInSb+c1eGf0PWu/aYDOArfBGWis9h6jrPfrbHda+TzWYnfKFW/lesZvSJwNFgatbVv07h/MmhMPrhF08G99bhOb6hofIwigohHTg/6wBF1Wjp6Uj/JcIxBpfaI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=XsLAefyy; arc=none smtp.client-ip=198.137.202.133
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=infradead.org
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Sender:Reply-To:Content-ID:Content-Description;
-	bh=WAVTkyGIUNVQYbnMhsGGBhrzpc4yLy1OJogqCv6P6Bw=; b=XsLAefyyJd3YZZ+jdAB7/gxNyy
-	WYOKFxzzFdap0yqppWFgnCcQ8I96hr3/cKmIN/h58UiK9emBD8LZadOWHGWkPQBDRYb7XJ4ZYHriw
-	mh/v0P5zZKsajXgS2iQw0iHqJuvLViBz4t/bvFKeLmhtbsdHpoWLdHwAEa/5u5nlThIWu6ZfIyj6u
-	XJ+fwuUsMJiTln8rKrGHTqIyJ+WtixHoIRLIUsogVP0UwmrLCvXyAJtMIK6LqUBhtHohqOPDPCjgq
-	6GiLwZF1k2UCAUA0qkZtRAITiOzjLeQKDo0XKmKfMLqXyHocVeprSmly/LflesIJFBvTIU4pgNBNx
-	t1HJzxeg==;
-Received: from [50.53.4.147] (helo=[192.168.254.15])
-	by bombadil.infradead.org with esmtpsa (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sPpmm-0000000Go3q-45To;
-	Fri, 05 Jul 2024 20:44:05 +0000
-Message-ID: <318ebc29-df94-495d-b2bc-b24340c3d82a@infradead.org>
-Date: Fri, 5 Jul 2024 13:44:04 -0700
+	s=arc-20240116; t=1720213614; c=relaxed/simple;
+	bh=nDCY5LYEV9Y9sc1gkGZbDSb/JXXsS1WcfZlgDg7Z8W0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Mime-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bff+ggikgJBF4CsWyEXlBCxxtU2ONgI0t6pa3K7RqI+TfjmzE+xrWq2SKp15/5m0TbkVsPb68/5O2HiydXuxtRA14dwgpaNPCe35LVc543xq6Voj+2RKAJDIYlArI/co6oeQshxgNj7ABit83OdT7vUtKLiXYsLVaJaJ429gMiY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kernel.crashing.org; spf=pass smtp.mailfrom=kernel.crashing.org; arc=none smtp.client-ip=63.228.1.57
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kernel.crashing.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kernel.crashing.org
+Received: from gate.crashing.org (localhost.localdomain [127.0.0.1])
+	by gate.crashing.org (8.14.1/8.14.1) with ESMTP id 465KjtGq002299;
+	Fri, 5 Jul 2024 15:45:56 -0500
+Received: (from segher@localhost)
+	by gate.crashing.org (8.14.1/8.14.1/Submit) id 465KjrP6002290;
+	Fri, 5 Jul 2024 15:45:53 -0500
+X-Authentication-Warning: gate.crashing.org: segher set sender to segher@kernel.crashing.org using -f
+Date: Fri, 5 Jul 2024 15:45:52 -0500
+From: Segher Boessenkool <segher@kernel.crashing.org>
+To: Michael Ellerman <mpe@ellerman.id.au>
+Cc: Christian Zigotzky <chzigotzky@xenosoft.de>, Marc Zyngier <maz@kernel.org>,
+        apatel@ventanamicro.com, Rob Herring <robh@kernel.org>,
+        Darren Stevens <darren@stevens-zone.net>,
+        "R.T.Dickinson" <rtd2@xtra.co.nz>, DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        mad skateman <madskateman@gmail.com>,
+        Matthew Leaman <matthew@a-eon.biz>,
+        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+        Christian Zigotzky <info@xenosoft.de>
+Subject: Re: [PowerPC] [PASEMI] Issue with the identification of ATA drives after the of/irq updates 2024-05-29
+Message-ID: <20240705204552.GD19790@gate.crashing.org>
+References: <3ab66fab-c3f2-4bed-a04d-a10c57dcdd9b@xenosoft.de> <86zfqzhgys.wl-maz@kernel.org> <ccf14173-9818-44ef-8610-db2900c67ae8@xenosoft.de> <874j95jrur.fsf@mail.lhotse> <3baff554-e8f6-42b0-b931-207175a4d8fd@xenosoft.de> <dfc7ec00-5216-4590-9347-ee10cd1e8380@xenosoft.de> <87o77ciqj8.fsf@mail.lhotse>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 4/5] firmware: imx: add driver for NXP EdgeLock Enclave
-To: Pankaj Gupta <pankaj.gupta@nxp.com>, Jonathan Corbet <corbet@lwn.net>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org
-References: <20240705-imx-se-if-v4-0-52d000e18a1d@nxp.com>
- <20240705-imx-se-if-v4-4-52d000e18a1d@nxp.com>
-Content-Language: en-US
-From: Randy Dunlap <rdunlap@infradead.org>
-In-Reply-To: <20240705-imx-se-if-v4-4-52d000e18a1d@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87o77ciqj8.fsf@mail.lhotse>
+User-Agent: Mutt/1.4.2.3i
+
+On Fri, Jul 05, 2024 at 11:19:39AM +1000, Michael Ellerman wrote:
+> +	prom_printf("nemo: deleting interrupt-map properties\n");
+> +	rc = call_prom("interpret", 1, 1,
+> +		      " s\" /pxp@0,e0000000\" find-device"
+> +		      " s\" interrupt-map\" delete-property"
+> +		      " s\" interrupt-map-mask\" delete-property"
+> +		      " device-end");
+> +	prom_printf("nemo: interpret returned %d\n", rc);
+
+It's very fragile no matter what.
+
+If some scriupt does something bad, just add something better for it?
+You can replace anything by just adding something with the same name!
 
 
-
-On 7/5/24 6:52 AM, Pankaj Gupta wrote:
-> diff --git a/drivers/firmware/imx/Kconfig b/drivers/firmware/imx/Kconfig
-> index 183613f82a11..56bdca9bd917 100644
-> --- a/drivers/firmware/imx/Kconfig
-> +++ b/drivers/firmware/imx/Kconfig
-> @@ -22,3 +22,15 @@ config IMX_SCU
->  
->  	  This driver manages the IPC interface between host CPU and the
->  	  SCU firmware running on M4.
-> +
-> +config IMX_SEC_ENCLAVE
-> +	tristate "i.MX Embedded Secure Enclave - EdgeLock Enclave Firmware driver."
-> +	depends on IMX_MBOX && ARCH_MXC && ARM64
-> +	default m if ARCH_MXC
-> +
-> +	help
-> +	  It is possible to use APIs exposed by the iMX Secure Enclave HW IP called:
-> +          - EdgeLock Enclave Firmware (for i.MX8ULP, i.MX93),
-> +          like base, HSM, V2X & SHE using the SAB protocol via the shared Messaging
-> +          Unit. This driver exposes these interfaces via a set of file descriptors
-> +          allowing to configure shared memory, send and receive messages.
-
-The 4 lines above should be indented with one tab + 2 spaces instead of _many_ spaces.
-
--- 
-~Randy
+Segher
 
