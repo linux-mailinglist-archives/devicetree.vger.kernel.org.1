@@ -1,266 +1,184 @@
-Return-Path: <devicetree+bounces-83526-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83527-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE652928C6A
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 18:45:31 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90457928C74
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 18:48:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 641022823A6
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 16:45:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EF0F1B249D6
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 16:48:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE2F716A93F;
-	Fri,  5 Jul 2024 16:45:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9794016ABC6;
+	Fri,  5 Jul 2024 16:48:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="e1bygSiH"
+	dkim=pass (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b="LXF4mp4j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12olkn2054.outbound.protection.outlook.com [40.92.22.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B8D41C2AF;
-	Fri,  5 Jul 2024 16:45:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720197927; cv=none; b=S5VSHc5vnxBNch/xltwmb6UMv4T1/oansCdOcXgqNX0y60e/ajxTJf5fSCBG0jH81AoSyC6AZSvZudOdt8S43y8Um8mdsuQ7mKfE2Cu2o8OzbWgZVuvYhWBU5lYSce9wBhLiSjOHUK87qqN0Z6SC9PompWxYAsQW2hyVbfQTCI8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720197927; c=relaxed/simple;
-	bh=OD8+iNTIFkahsNCwhbTydhgfhD6SOrrUCh7L173p4eg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EPCWXhzS7QJIzYmr6s1GWzBdT0LQ2f4gM0pnT5I8KRmTzeaceRBm1aCjrEqnKsK+IXXdCbrxjbQKxlaxNmW25LbTXSVoMRL17EhpUtqGmFH5Aj1JieRpAV8ZVjNaofhmCmN6Z4wfQhdfFhM4mmZNUspiFC5fRq5ECESEKAQuKQE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=e1bygSiH; arc=none smtp.client-ip=198.175.65.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1720197925; x=1751733925;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=OD8+iNTIFkahsNCwhbTydhgfhD6SOrrUCh7L173p4eg=;
-  b=e1bygSiHht/X7DFeE+mvArqhZ7DUOs7hLCGBcn3/vtONWU548qQHagHm
-   mNf3NpdrsDennhBR1W6rdJVyBqwxeDhBc/mkCABjZ8/LGRxUSPYMDsCc7
-   xHizE0PZDNRh6FxaRXzM4b84iGxnzvrJwNXh93Hy7jNpNPN6nVeIKh+9m
-   cwqeOsCNX94jhadDNOUmotd1QDK9Z5120hvDBDSnlJMA1UQsB72AhhpiQ
-   V+PwkyWRagFSz5/Hss2gDXZXb8xnX65VhB33VnLE4ScgVocLhVm83DqXH
-   8bzuK8BdL5jgPvETUEUvJPJ9UgKjshEwQBY/9T0zhOYi2UYPh0xAxzZxy
-   w==;
-X-CSE-ConnectionGUID: NYCpU5puQdW+RcvOTffzMQ==
-X-CSE-MsgGUID: hc5719fpSl2NGODBO1S6ng==
-X-IronPort-AV: E=McAfee;i="6700,10204,11123"; a="40005223"
-X-IronPort-AV: E=Sophos;i="6.09,185,1716274800"; 
-   d="scan'208";a="40005223"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Jul 2024 09:45:25 -0700
-X-CSE-ConnectionGUID: DwxpxFj6TXSvrIiAJrIqXA==
-X-CSE-MsgGUID: EhoeIemwQLuww1Tva0dPaQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,185,1716274800"; 
-   d="scan'208";a="77663354"
-Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
-  by orviesa002.jf.intel.com with ESMTP; 05 Jul 2024 09:45:22 -0700
-Received: from kbuild by 68891e0c336b with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sPm3j-000ScG-1L;
-	Fri, 05 Jul 2024 16:45:19 +0000
-Date: Sat, 6 Jul 2024 00:41:53 +0800
-From: kernel test robot <lkp@intel.com>
-To: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
-	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
-	=?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>
-Subject: Re: [PATCH v2 4/4] clk: eyeq: add driver
-Message-ID: <202407060044.YQzDGVPu-lkp@intel.com>
-References: <20240703-mbly-clk-v2-4-fe8c6199a579@bootlin.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F048414E2D6
+	for <devicetree@vger.kernel.org>; Fri,  5 Jul 2024 16:48:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.22.54
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1720198100; cv=fail; b=NyqppZQTXTZxVmV9vK3nVVEyoAW9D/U3M26Gd/kKtEH4sKB+1KFtFypjxueIM5Sw+IbsbzmBLNpZDeeUV+YYdKHDT/wwlkPliahjBV3pQOdWi9+HqWJ0YJ9YJKOJrX0ewBCUJrxbbER0psEc8x1ayoToztrBbzDuRi3qL6x0xxA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1720198100; c=relaxed/simple;
+	bh=TygWUajtGXaWzZilWhT2nLvUgNXRGPjJMI6Wfst0yLM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=OxaRw0W7ipBl/uyA89O5/2A7nnc/5fEhF2pEz9msTaRbZHg4eLut0yKgUwI433qqjR+5jFgYpgZikel4sAVYMk7nGRlarBziK5YKo6BgsmeTWxr59Iyj9dv6oCFzvD6aD5wLymBs+s681F1WwcWuzEWxvoDtgMhA2htf1on1/FM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hotmail.com; spf=pass smtp.mailfrom=hotmail.com; dkim=pass (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b=LXF4mp4j; arc=fail smtp.client-ip=40.92.22.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hotmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hotmail.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=MLyCr8gLf3xMAIwpMGu3K66njz1qkhFQ7iXLnUaN/uKywUcblpw1ZipCDAGqpVUmhqMLJv0fmmjUFxXUfu3VUpS7Mgm52FuuP2zlzYDpbLrQxGrkAlSJz7l75+9NxQfY7f4/ZlLMG9xlmqh7KN18Oq9L8gUXbF7krR9xnwy0blWswQfHNPn/AtrLkhVS1ieecqBe0kdcnCURrz1fdGtPrfGJCc3dXjwKb4w9OvSl7IXxsmvRTvx7L9IONvrNj5DkbENignywUa81NnQRLihP6ugbkZnmKA/nfH95HPM3/lM2O1ZeRqwqclMFzmnIGRwFyR80Gp/CCvrdEEf9VoNIdA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=FljIydSTfcBqASK0qPFDJF+VYaO358D0jjWwuFonC6k=;
+ b=FTc4b87lj/poWL3zl5setjCtp/7e3LfqGPa8FU3MDq8X85eY601BiizRdfKO0ld4trmw/C2KmjAU5P8JG+3t19Mf8J2CXc9bhGnkf+EwLYUNGqW6dOajRMiTSosXviGg9w7qIPzzTz1q0EymbjRD0wGQwph+EHEpnJ9VsgEwB/+YwNsIjyu24/9LvPyPmQ3F6hlok9DiXlh7PYKASkKG3PA2QLJCmIgAhu//SLoLiq6UgHYUVHAha0ZT5oOtZk1zL52baQIyL1eS81JdnwZ29mIOetY6XMV83cj22w8Wmkf0zxnF/MtGO1wRueXwKWwaXQQ7xKkTXr0D9nPCqTwvhg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=FljIydSTfcBqASK0qPFDJF+VYaO358D0jjWwuFonC6k=;
+ b=LXF4mp4j+ExS/kK1NcHeegi39b1cAF8+37OF+g51/+VAdpNBB6q/mxNIvoqmIQKBab6VnRTztBLzUmGiEIdOVMT9DkipT6Spd2ikAF6hpim/17pmJ+pr7JNLfvmqCMS6v5dw2mjqZWQsTwT7AuRMBAWfhh//VucdeBC4K0PhS9FLBEXdXFAnuvHYMst9nPtf6Y+vgXrPEuiqHmy1t6i4x4efzjxADKOgk+1AUlumOadJu/9UobJ1Tpfd3iGn+52Ty7Lp5KZYuGM5NXumvZEL8VnlzznHvD53M4fq5A/o6aIqdGHTcHpPp/IWj6VDD3e9+lMRNLAPL8SjkANqF1PZsA==
+Received: from MN2PR16MB2941.namprd16.prod.outlook.com (2603:10b6:208:e1::15)
+ by MW4PR16MB4768.namprd16.prod.outlook.com (2603:10b6:303:18c::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7741.30; Fri, 5 Jul
+ 2024 16:48:14 +0000
+Received: from MN2PR16MB2941.namprd16.prod.outlook.com
+ ([fe80::9d62:95ae:c373:c490]) by MN2PR16MB2941.namprd16.prod.outlook.com
+ ([fe80::9d62:95ae:c373:c490%3]) with mapi id 15.20.7741.017; Fri, 5 Jul 2024
+ 16:48:14 +0000
+Date: Fri, 5 Jul 2024 11:48:10 -0500
+From: Chris Morgan <macromorgan@hotmail.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Chris Morgan <macroalpha82@gmail.com>, linux-sunxi@lists.linux.dev,
+	devicetree@vger.kernel.org, mripard@kernel.org, ryan@testtoast.com,
+	andre.przywara@arm.com, samuel@sholland.org,
+	jernej.skrabec@gmail.com, wens@csie.org, conor+dt@kernel.org,
+	krzk+dt@kernel.org, robh@kernel.org
+Subject: Re: [PATCH V2 1/4] dt-bindings: arm: sunxi: Add Anbernic RG35XXSP
+Message-ID:
+ <MN2PR16MB2941C4F2B035C2A0A2303C11A5DF2@MN2PR16MB2941.namprd16.prod.outlook.com>
+References: <20240702193414.57461-1-macroalpha82@gmail.com>
+ <20240702193414.57461-2-macroalpha82@gmail.com>
+ <29c95f4e-f075-405f-935f-6fd5c616595f@kernel.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <29c95f4e-f075-405f-935f-6fd5c616595f@kernel.org>
+X-TMN: [m4cP9O6x3LH0s801eZi92/CcEzEVTw2QkQ9a9lRAiG4=]
+X-ClientProxiedBy: SA1PR05CA0009.namprd05.prod.outlook.com
+ (2603:10b6:806:2d2::11) To MN2PR16MB2941.namprd16.prod.outlook.com
+ (2603:10b6:208:e1::15)
+X-Microsoft-Original-Message-ID: <ZogjyuV+LEWrq+yi@wintermute.localhost.fail>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240703-mbly-clk-v2-4-fe8c6199a579@bootlin.com>
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN2PR16MB2941:EE_|MW4PR16MB4768:EE_
+X-MS-Office365-Filtering-Correlation-Id: 32fd8d21-4e8f-4b02-075d-08dc9d1242a6
+X-Microsoft-Antispam:
+	BCL:0;ARA:14566002|19110799003|461199028|8060799006|440099028|3412199025;
+X-Microsoft-Antispam-Message-Info:
+	TeesAyWPwYkRCSySmnpo5sKbXMD+u9X3RG8+cIfHY008jlNoqvGpCK9YTzgWoTv2b6x0BU1dhFfIXxotIKAT96UbSEysuwGUhmbVyy+OsFk62+XpsvBKXg/kQiIuIlPI2BJAXpeRtbJBa+1opLeLN1390Qv1OXwlGrQhSvxP8JN2lPtnst9rZk2ToTs7e7xZEUGL+cACbV4MZK8LQvr68EI/kwuElitbKtAMr1IGUsOrTh5rIDzv4xLREydwUbiy6RFOPhbaEsn/F+4wH5Jkjz5jXolTmKrT7tfFYtMu8mTKHKDEF0fgBgvtOtXe7FDtt6xYeHNF+mdsZa/OjbI3Lptcj6E2BU3XY+dPOADtkSKHjAvWJM3Lk6d0f3eTRnU/u++ZpFYybnjMWyC/LXaS1Z5KiJhJumXiCC9ZNFsq/KNKgV8Dc9G33l8MSSjiabzkiElb2XKHj1hlgFfXP1VLN5VvOrDZvUq190mJNQRp3skja2Z09TFDm7UMckt0si2Hpn8z3skrBEyjal3zzrflhmyC7VjzljqvNPx09iEjus9SK4iblB7x4KkLepeGkzCrtpqmBRunev1ezgafQ4igcrmcAg026sSySRZptyuJow8PZQ+Z4xsV+6QHfAn+x8ZNIuwWSFcMRLShFTVI4RGoHg==
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?HHPitXcFOo22x+KeMYMAwIGQGkZ9/OSNednh7OkzGFjS2CuTiEDeFo3m1cPu?=
+ =?us-ascii?Q?XDezD0jan/6rvyI70qHW13VvdS752imCDKtjJKu+J0EuqiFvW8YS+EBVBTQF?=
+ =?us-ascii?Q?DFZfnW3MY97nC5xGMz9dJl2ifXdkztKTG6GNANd7ZDRgyEaAt5sG5s7qJT4v?=
+ =?us-ascii?Q?Ehc1/R11zlBeEE/1Iep7fttFubcxepxcX/Mc63MFo6uPO+JizteDiVb8HUQj?=
+ =?us-ascii?Q?j6x/hgqZdDaXnrCApJSmTTRaWTHf4ZpEuxmaM3NFFe2dP4dfyyjhwQ+OOm73?=
+ =?us-ascii?Q?Sthxv/GtyDdue1LQreH7RfWrjFfUECxZjFia3bLtaGkV0tdjn78YMQI0/Mal?=
+ =?us-ascii?Q?jBxme7oqgHB2sgbezGBWyRkL9kWdUk0x4yMoA1JT77+uisIEnw/ohv2tS7Nv?=
+ =?us-ascii?Q?K0ZSTTAc40ZtewAWlI4tfj/Li4X6WDG1uf37j7r5ZTObmKuKpYM098PPHphR?=
+ =?us-ascii?Q?is8hgBDwxrVe8kZhaYBqvk69um+nCrH8cKPgJ78SM49DvhW2sadRahIP+Qd4?=
+ =?us-ascii?Q?pJLhWa3rJT7AUZ/OUzdbJLJBSRy3HcoWNQakR2bxdi4d1Av/CeKtqK1v4e43?=
+ =?us-ascii?Q?gXOxMzfpd7W3njJS7F5lHC2/JLrwkwaSsfzbi82erm+mIy2cE2GaaDPgWlYM?=
+ =?us-ascii?Q?joWZEIc5N5dUjilZwEOSA+BpzFDxFDo1ip4UgPuLWxhiEH5BRKjke6Rf5GYj?=
+ =?us-ascii?Q?gG6QwN9J+H3HWuvX2WtcCw1N/G3+AKsgk2+vcGr7I2inxVIZaKdIPTvlrRR6?=
+ =?us-ascii?Q?9WYpiUs/rEH+kdXXnhsDHGZ8d9xUxO9piYb0ftSIYXZt8buzfQlHnuckWknw?=
+ =?us-ascii?Q?KXSfima9OSLmwbvAiZ1joUklZfZaT8bAvsyEaihRSUhkGfNm7Xqm6BFkZ6Cp?=
+ =?us-ascii?Q?MhZDeu34EmYnf7b5Tjn1lsgsyI2KRmU0DY8fdR3TGGdZy4wIMQPJK5dV3vpJ?=
+ =?us-ascii?Q?y+yUHhwLrs28/eWt0xcPnBTLM6X8hrM4bnH+bwx9uuiTP09XaOpU6SakICxn?=
+ =?us-ascii?Q?ZJ3Er+FbtA2qePaPXumKX/xQHUKSZZLn0uI2t+Gkqy/n3l5BiwhcZDH98pOE?=
+ =?us-ascii?Q?UTBMBzCiRmLbyYu6ewbK1FFlddGHN79WLY5Eqz7n+eEzd31rjuZ9Jl+sNs5v?=
+ =?us-ascii?Q?KC6IHJBoQ/yhcXpQdPeo/h0kS5oVsECX9OOPMpwxcgi2AfA/rjV7YxZPu0dL?=
+ =?us-ascii?Q?YpSfP4G9r4fqGrlchpfbyuCOZBfGSuLJfvIQyy9rxiPSeNMEcDGCbx7UPaRt?=
+ =?us-ascii?Q?K1GTue0F69WY4HlHDyZFW8fLbkRS6SskbtKCScULVQ=3D=3D?=
+X-OriginatorOrg: sct-15-20-7719-20-msonline-outlook-559fc.templateTenant
+X-MS-Exchange-CrossTenant-Network-Message-Id: 32fd8d21-4e8f-4b02-075d-08dc9d1242a6
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR16MB2941.namprd16.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Jul 2024 16:48:13.6396
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR16MB4768
 
-Hi Théo,
+On Wed, Jul 03, 2024 at 07:11:10AM +0200, Krzysztof Kozlowski wrote:
+> On 02/07/2024 21:34, Chris Morgan wrote:
+> > From: Chris Morgan <macromorgan@hotmail.com>
+> > 
+> > Add the Anbernic RG35XXSP variant device and consolidate the Anbernic
+> > H700 devices.
+> > 
+> > The Anbernic RG35XXSP is almost identical to the RG35XX-Plus, but in a
+> > clamshell form-factor with an external RTC and a lid switch.
+> > 
+> > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> > ---
+> >  Documentation/devicetree/bindings/arm/sunxi.yaml | 9 +++++++--
+> >  1 file changed, 7 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documentation/devicetree/bindings/arm/sunxi.yaml
+> > index c2a158b75e49..60b11b289535 100644
+> > --- a/Documentation/devicetree/bindings/arm/sunxi.yaml
+> > +++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
+> > @@ -61,14 +61,19 @@ properties:
+> >            - const: anbernic,rg35xx-2024
+> >            - const: allwinner,sun50i-h700
+> >  
+> > +      - description: Anbernic RG35XX H
+> > +        items:
+> > +          - const: anbernic,rg35xx-h
+> > +          - const: allwinner,sun50i-h700
+> > +
+> >        - description: Anbernic RG35XX Plus
+> >          items:
+> >            - const: anbernic,rg35xx-plus
+> >            - const: allwinner,sun50i-h700
+> >  
+> > -      - description: Anbernic RG35XX H
+> > +      - description: Anbernic RG35XX SP
+> >          items:
+> > -          - const: anbernic,rg35xx-h
+> > +          - const: anbernic,rg35xx-sp
+> 
+> Where is the consolidation? All this is supposed to be in an enum...
+> 
 
-kernel test robot noticed the following build errors:
+I didn't properly edit the notes when I posted the v2 sadly. I forgot
+to remove the text about consolidating the devices, since that's how
+the rest of the Allwinner devices are done today. I'll resubmit once
+I have a few more views on the other patches in this series.
 
-[auto build test ERROR on f2661062f16b2de5d7b6a5c42a9a5c96326b8454]
+Thank you,
+Chris
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Th-o-Lebrun/Revert-dt-bindings-clock-mobileye-eyeq5-clk-add-bindings/20240704-211515
-base:   f2661062f16b2de5d7b6a5c42a9a5c96326b8454
-patch link:    https://lore.kernel.org/r/20240703-mbly-clk-v2-4-fe8c6199a579%40bootlin.com
-patch subject: [PATCH v2 4/4] clk: eyeq: add driver
-config: s390-randconfig-r132-20240705 (https://download.01.org/0day-ci/archive/20240706/202407060044.YQzDGVPu-lkp@intel.com/config)
-compiler: s390-linux-gcc (GCC) 13.2.0
-reproduce: (https://download.01.org/0day-ci/archive/20240706/202407060044.YQzDGVPu-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202407060044.YQzDGVPu-lkp@intel.com/
-
-All error/warnings (new ones prefixed by >>):
-
-   drivers/clk/clk-eyeq.c: In function 'eqc_init':
->> drivers/clk/clk-eyeq.c:679:62: warning: dereferencing 'void *' pointer
-     679 |         early_data = of_match_node(eqc_early_match_table, np)->data;
-         |                                                              ^~
->> drivers/clk/clk-eyeq.c:679:62: error: request for member 'data' in something not a structure or union
-   drivers/clk/clk-eyeq.c: At top level:
->> drivers/clk/clk-eyeq.c:653:34: warning: 'eqc_early_match_table' defined but not used [-Wunused-const-variable=]
-     653 | static const struct of_device_id eqc_early_match_table[] = {
-         |                                  ^~~~~~~~~~~~~~~~~~~~~
-
-
-vim +/data +679 drivers/clk/clk-eyeq.c
-
-   652	
- > 653	static const struct of_device_id eqc_early_match_table[] = {
-   654		{
-   655			.compatible = "mobileye,eyeq5-olb",
-   656			.data = &eqc_eyeq5_early_match_data,
-   657		},
-   658		{
-   659			.compatible = "mobileye,eyeq6h-central-olb",
-   660			.data = &eqc_eyeq6h_central_early_match_data,
-   661		},
-   662		{
-   663			.compatible = "mobileye,eyeq6h-west-olb",
-   664			.data = &eqc_eyeq6h_west_early_match_data,
-   665		},
-   666		{}
-   667	};
-   668	MODULE_DEVICE_TABLE(of, eqc_early_match_table);
-   669	
-   670	static void __init eqc_init(struct device_node *np)
-   671	{
-   672		const struct eqc_early_match_data *early_data;
-   673		unsigned int nb_clks = 0;
-   674		struct eqc_priv *priv;
-   675		void __iomem *base;
-   676		unsigned int i;
-   677		int ret;
-   678	
- > 679		early_data = of_match_node(eqc_early_match_table, np)->data;
-   680	
-   681		/* No reason to early init this clock provider. Delay until probe. */
-   682		if (!early_data || early_data->early_pll_count == 0)
-   683			return;
-   684	
-   685		priv = kzalloc(sizeof(*priv), GFP_KERNEL);
-   686		if (!priv) {
-   687			ret = -ENOMEM;
-   688			goto err;
-   689		}
-   690	
-   691		priv->np = np;
-   692		priv->early_data = early_data;
-   693	
-   694		nb_clks = early_data->early_pll_count + early_data->nb_late_clks;
-   695		priv->cells = kzalloc(struct_size(priv->cells, hws, nb_clks), GFP_KERNEL);
-   696		if (!priv->cells) {
-   697			ret = -ENOMEM;
-   698			goto err;
-   699		}
-   700	
-   701		priv->cells->num = nb_clks;
-   702	
-   703		/*
-   704		 * Mark all clocks as deferred; some are registered here, the rest at
-   705		 * platform device probe.
-   706		 */
-   707		for (i = 0; i < nb_clks; i++)
-   708			priv->cells->hws[i] = ERR_PTR(-EPROBE_DEFER);
-   709	
-   710		/* Offsets (reg64) of early PLLs are relative to OLB block. */
-   711		base = of_iomap(np, 0);
-   712		if (!base) {
-   713			ret = -ENODEV;
-   714			goto err;
-   715		}
-   716	
-   717		for (i = 0; i < early_data->early_pll_count; i++) {
-   718			const struct eqc_pll *pll = &early_data->early_plls[i];
-   719			unsigned long mult, div, acc;
-   720			struct clk_hw *hw;
-   721			u32 r0, r1;
-   722			u64 val;
-   723	
-   724			val = readq(base + pll->reg64);
-   725			r0 = val;
-   726			r1 = val >> 32;
-   727	
-   728			ret = eqc_pll_parse_registers(r0, r1, &mult, &div, &acc);
-   729			if (ret) {
-   730				pr_err("failed parsing state of %s\n", pll->name);
-   731				goto err;
-   732			}
-   733	
-   734			hw = clk_hw_register_fixed_factor_with_accuracy_fwname(NULL,
-   735					np, pll->name, "ref", 0, mult, div, acc);
-   736			priv->cells->hws[pll->index] = hw;
-   737			if (IS_ERR(hw)) {
-   738				pr_err("failed registering %s: %pe\n", pll->name, hw);
-   739				ret = PTR_ERR(hw);
-   740				goto err;
-   741			}
-   742		}
-   743	
-   744		/* When providing a single clock, require no cell. */
-   745		if (nb_clks == 1)
-   746			ret = of_clk_add_hw_provider(np, of_clk_hw_simple_get, priv->cells->hws[0]);
-   747		else
-   748			ret = of_clk_add_hw_provider(np, of_clk_hw_onecell_get, priv->cells);
-   749		if (ret) {
-   750			pr_err("failed registering clk provider: %d\n", ret);
-   751			goto err;
-   752		}
-   753	
-   754		spin_lock(&eqc_list_slock);
-   755		list_add_tail(&priv->list, &eqc_list);
-   756		spin_unlock(&eqc_list_slock);
-   757	
-   758		return;
-   759	
-   760	err:
-   761		/*
-   762		 * We are doomed. The system will not be able to boot.
-   763		 *
-   764		 * Let's still try to be good citizens by freeing resources and print
-   765		 * a last error message that might help debugging.
-   766		 */
-   767	
-   768		if (priv && priv->cells) {
-   769			of_clk_del_provider(np);
-   770	
-   771			for (i = 0; i < early_data->early_pll_count; i++) {
-   772				const struct eqc_pll *pll = &early_data->early_plls[i];
-   773				struct clk_hw *hw = priv->cells->hws[pll->index];
-   774	
-   775				if (!IS_ERR_OR_NULL(hw))
-   776					clk_hw_unregister_fixed_factor(hw);
-   777			}
-   778	
-   779			kfree(priv->cells);
-   780		}
-   781	
-   782		kfree(priv);
-   783	
-   784		pr_err("failed clk init: %d\n", ret);
-   785	}
-   786	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
 
