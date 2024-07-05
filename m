@@ -1,197 +1,144 @@
-Return-Path: <devicetree+bounces-83321-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83324-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D070B927FDC
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 03:51:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A19CD92802C
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 04:15:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EC07AB21BC5
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 01:51:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D33A11C2287C
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 02:15:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 123BEF50F;
-	Fri,  5 Jul 2024 01:51:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90C0E1B806;
+	Fri,  5 Jul 2024 02:15:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="IWYLNnSZ"
+	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="qW954NKA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8A1279D3;
-	Fri,  5 Jul 2024 01:51:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D119DDD4
+	for <devicetree@vger.kernel.org>; Fri,  5 Jul 2024 02:15:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720144267; cv=none; b=PpjjxvjgU7iOmWtI7YmZbCOSQ5QsvNFFrITLd6NE7O7lYyF+iIsPw/rwx5yTFatMcvshibgPUp8uy9HPyIQMiB6uXisHUxWoT9kZbW3ZBQJe4D+RlGeDTnf0lbgvIvo2ZSE6qczIXFMDJ9gNBUMISfckbQxzqqFjOcC6ya61FIQ=
+	t=1720145738; cv=none; b=c0iu7E2+9c8sozsesdQ0D1+r6M17xlSHGIbdxW3kuW+EaJ5kCQJXNmV7OBdx74dMwZPCkRthL7RfauteNONdRqqClHHzoa6MgDCHLaR0GZvCpnxRsNdlSIoW/CHGV5U2CFWD7SART/8eIyLP4btWFhVFOz+sBDmWEYqv6jWrbmE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720144267; c=relaxed/simple;
-	bh=CRRfXqrbQs7tLcrxZpfuE5Kh1RIwcGT87Lps4lI9koU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JbBYOaErqFDN/mh1pti2znfUygoEPuGHytvD6YpSoJURJnyllEVuwkQm9MP/1CvyzqJRtlDWZenyfmc0nlphMop4cb9IEh1+cV92ULkqmz7aidIDWk7//kmujEFj1pzKQh6ln3E+UKGXODvFEsHkkCYAx9ufCXajlDn+ghlFIls=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=IWYLNnSZ; arc=none smtp.client-ip=198.175.65.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1720144264; x=1751680264;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=CRRfXqrbQs7tLcrxZpfuE5Kh1RIwcGT87Lps4lI9koU=;
-  b=IWYLNnSZVCro8PlEsvNuvfTA8fz7bYy3XIloLaCvrQ5nYNA+meHOn2Og
-   C4lTjR/3NLQBY0U88EY/ydBpX3YhdIf5L61Wbo4MXQxDcRsAEdX624KPN
-   tUgZDQGrc2Lt0eoIe21JyD5pDO1ecvk5sIXI57MJp3PnOrqk7OtqOHtXG
-   CX8nHdP+/uKtYdGKrAJMbCSveuaRS85cypNxJsqVwqS2YrQYZxXUCt0OV
-   AxOXuLBGC36e1QeQ8FsXEctZ/IQdNdLy1QsJi66fWSImfm/TFkJUb/Gj5
-   J3DDHif2U3Sh7+qFicABOBW6JNMGbKPEvjbmmteWm6w7Nhm6bnC5KufG3
-   w==;
-X-CSE-ConnectionGUID: NIBPJVoxQL2l7WhcOxyOaQ==
-X-CSE-MsgGUID: J94FQyDgQeqEgXXInLVVqA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11123"; a="21239041"
-X-IronPort-AV: E=Sophos;i="6.09,183,1716274800"; 
-   d="scan'208";a="21239041"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
-  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Jul 2024 18:51:04 -0700
-X-CSE-ConnectionGUID: wGr7m+PyRo+lra4tO7HwPw==
-X-CSE-MsgGUID: Fawo+R7ISN+VwmUeHScWeQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,183,1716274800"; 
-   d="scan'208";a="46699156"
-Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
-  by fmviesa008.fm.intel.com with ESMTP; 04 Jul 2024 18:50:59 -0700
-Received: from kbuild by 68891e0c336b with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sPY6D-000RlE-27;
-	Fri, 05 Jul 2024 01:50:57 +0000
-Date: Fri, 5 Jul 2024 09:50:41 +0800
-From: kernel test robot <lkp@intel.com>
-To: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
-	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
-	=?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>
-Subject: Re: [PATCH v2 4/4] clk: eyeq: add driver
-Message-ID: <202407050921.S41aCBdD-lkp@intel.com>
-References: <20240703-mbly-clk-v2-4-fe8c6199a579@bootlin.com>
+	s=arc-20240116; t=1720145738; c=relaxed/simple;
+	bh=Li9UJWF21WK2qgpZJmm/iekBICw81fetEoXerreNhcU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=outuk24aUrIFXG+87dKbr6GgGh+Ztp0agse/KLQdMNn9LD/tGzvUDW7vNiMdhRVcltJ49LJbcxlPrKFo6oTQadq5SE2GEahwGsHgTpZTwjIECo1PMIiFiruTwaknU3PcqN/tpsoi63nRcjEuh7vaZXGZyOpDmC/+ion/bmzoETI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=qW954NKA; arc=none smtp.client-ip=202.36.163.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 17B8B2C0241;
+	Fri,  5 Jul 2024 14:15:27 +1200 (NZST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+	s=mail181024; t=1720145727;
+	bh=oVuIFkUlXwNllfALTpSQH2TRhtGnRuLM5WxG/PFhMRc=;
+	h=From:To:Cc:Subject:Date:From;
+	b=qW954NKAlY/KHn2uryDhtg+/3fgYAKKOuuJjeyCZ6ASBOZvBEc3jSosPm8gQuqkua
+	 dvF4kXKzjwSXpg/bUcGEqoyi5vr+bu5jfpWYTOAQNl4LHZ7XfvXInvBc08lVYz42cK
+	 2iRtTiLH7aShV/l/HHaf7CtPhEqNfVE6yNwQVlOep9G8j4PnaOpHDAExAaqM9FJNjB
+	 0UjdrkGlw3NL2AZsd5lVjKEqtM9FiY38LCqJB+VAFtBrBz1hC9SrVuvllbcXLHCnz4
+	 lmBajoqqqU5SMUKUYr0sM5Vg54SMaEbgQj5TYltZDhmGshUZ1OWImn93z93Ouma7iK
+	 r8CloPzcnoh9w==
+Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+	id <B6687573e0001>; Fri, 05 Jul 2024 14:15:26 +1200
+Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
+	by pat.atlnz.lc (Postfix) with ESMTP id 73D2713ED5B;
+	Fri,  5 Jul 2024 14:15:26 +1200 (NZST)
+Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
+	id 6E007280930; Fri,  5 Jul 2024 14:15:26 +1200 (NZST)
+From: Chris Packham <chris.packham@alliedtelesis.co.nz>
+To: tglx@linutronix.de,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	tsbogend@alpha.franken.de,
+	daniel.lezcano@linaro.org,
+	paulburton@kernel.org,
+	peterz@infradead.org,
+	mail@birger-koblitz.de,
+	bert@biot.com,
+	john@phrozen.org,
+	sander@svanheule.net
+Cc: linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-mips@vger.kernel.org,
+	kabel@kernel.org,
+	ericwouds@gmail.com,
+	Chris Packham <chris.packham@alliedtelesis.co.nz>
+Subject: [PATCH v4 0/9] mips: Support for RTL9302C
+Date: Fri,  5 Jul 2024 14:15:11 +1200
+Message-ID: <20240705021520.2737568-1-chris.packham@alliedtelesis.co.nz>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240703-mbly-clk-v2-4-fe8c6199a579@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-SEG-SpamProfiler-Analysis: v=2.4 cv=CvQccW4D c=1 sm=1 tr=0 ts=6687573e a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=IkcTkHD0fZMA:10 a=4kmOji7k6h8A:10 a=cAq4xmbCUuwB6dAq1EgA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+X-SEG-SpamProfiler-Score: 0
+x-atlnz-ls: pat
 
-Hi Théo,
+This series adds basic support for the RTL9302C reference board. Currentl=
+y the
+focus is on the CPU block stuff. I hope to get around to the DSA switch d=
+river
+eventually but this is a small start that lets me boot a mainline kernel =
+on the
+board I have. I initialiy started with code from openwrt but have paired =
+it
+down to just the clocksource driver and devicetree.
 
-kernel test robot noticed the following build errors:
+The first two patches in this series are fixing some complaints from make
+dtbs_check for some existing realtek dts files. They can be applied on th=
+eir
+own if desired.
 
-[auto build test ERROR on f2661062f16b2de5d7b6a5c42a9a5c96326b8454]
+Chris Packham (9):
+  mips: dts: realtek: use "serial" instead of "uart" in node name
+  mips: dts: realtek: add device_type property to cpu node
+  dt-bindings: vendor-prefixes: Add Cameo Communications
+  dt-bindings: mips: realtek: Add rtl930x-soc compatible
+  dt-bindings: timer: Add schema for realtek,otto-timer
+  dt-bindings: interrupt-controller: realtek,rtl-intc: Add rtl9300-intc
+  clocksource: realtek: Add timer driver for rtl-otto platforms
+  mips: generic: add fdt fixup for Realtek reference board
+  mips: dts: realtek: Add RTL9302C board
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Th-o-Lebrun/Revert-dt-bindings-clock-mobileye-eyeq5-clk-add-bindings/20240704-211515
-base:   f2661062f16b2de5d7b6a5c42a9a5c96326b8454
-patch link:    https://lore.kernel.org/r/20240703-mbly-clk-v2-4-fe8c6199a579%40bootlin.com
-patch subject: [PATCH v2 4/4] clk: eyeq: add driver
-config: hexagon-allyesconfig (https://download.01.org/0day-ci/archive/20240705/202407050921.S41aCBdD-lkp@intel.com/config)
-compiler: clang version 19.0.0git (https://github.com/llvm/llvm-project a0c6b8aef853eedaa0980f07c0a502a5a8a9740e)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240705/202407050921.S41aCBdD-lkp@intel.com/reproduce)
+ .../realtek,rtl-intc.yaml                     |  20 +-
+ .../devicetree/bindings/mips/realtek-rtl.yaml |   4 +
+ .../bindings/timer/realtek,otto-timer.yaml    |  63 ++++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/mips/boot/dts/realtek/Makefile           |   1 +
+ .../cameo-rtl9302c-2x-rtl8224-2xge.dts        |  73 +++++
+ arch/mips/boot/dts/realtek/rtl838x.dtsi       |   1 +
+ arch/mips/boot/dts/realtek/rtl83xx.dtsi       |   4 +-
+ arch/mips/boot/dts/realtek/rtl930x.dtsi       |  79 +++++
+ arch/mips/generic/Makefile                    |   1 +
+ arch/mips/generic/board-realtek.c             |  79 +++++
+ drivers/clocksource/Kconfig                   |  10 +
+ drivers/clocksource/Makefile                  |   1 +
+ drivers/clocksource/timer-rtl-otto.c          | 291 ++++++++++++++++++
+ include/linux/cpuhotplug.h                    |   1 +
+ 15 files changed, 627 insertions(+), 3 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/timer/realtek,otto-=
+timer.yaml
+ create mode 100644 arch/mips/boot/dts/realtek/cameo-rtl9302c-2x-rtl8224-=
+2xge.dts
+ create mode 100644 arch/mips/boot/dts/realtek/rtl930x.dtsi
+ create mode 100644 arch/mips/generic/board-realtek.c
+ create mode 100644 drivers/clocksource/timer-rtl-otto.c
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202407050921.S41aCBdD-lkp@intel.com/
+--=20
+2.45.2
 
-All errors (new ones prefixed by >>):
-
-   In file included from drivers/clk/clk-eyeq.c:30:
-   In file included from include/linux/io.h:14:
-   In file included from arch/hexagon/include/asm/io.h:328:
-   include/asm-generic/io.h:548:31: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     548 |         val = __raw_readb(PCI_IOBASE + addr);
-         |                           ~~~~~~~~~~ ^
-   include/asm-generic/io.h:561:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     561 |         val = __le16_to_cpu((__le16 __force)__raw_readw(PCI_IOBASE + addr));
-         |                                                         ~~~~~~~~~~ ^
-   include/uapi/linux/byteorder/little_endian.h:37:51: note: expanded from macro '__le16_to_cpu'
-      37 | #define __le16_to_cpu(x) ((__force __u16)(__le16)(x))
-         |                                                   ^
-   In file included from drivers/clk/clk-eyeq.c:30:
-   In file included from include/linux/io.h:14:
-   In file included from arch/hexagon/include/asm/io.h:328:
-   include/asm-generic/io.h:574:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     574 |         val = __le32_to_cpu((__le32 __force)__raw_readl(PCI_IOBASE + addr));
-         |                                                         ~~~~~~~~~~ ^
-   include/uapi/linux/byteorder/little_endian.h:35:51: note: expanded from macro '__le32_to_cpu'
-      35 | #define __le32_to_cpu(x) ((__force __u32)(__le32)(x))
-         |                                                   ^
-   In file included from drivers/clk/clk-eyeq.c:30:
-   In file included from include/linux/io.h:14:
-   In file included from arch/hexagon/include/asm/io.h:328:
-   include/asm-generic/io.h:585:33: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     585 |         __raw_writeb(value, PCI_IOBASE + addr);
-         |                             ~~~~~~~~~~ ^
-   include/asm-generic/io.h:595:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     595 |         __raw_writew((u16 __force)cpu_to_le16(value), PCI_IOBASE + addr);
-         |                                                       ~~~~~~~~~~ ^
-   include/asm-generic/io.h:605:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     605 |         __raw_writel((u32 __force)cpu_to_le32(value), PCI_IOBASE + addr);
-         |                                                       ~~~~~~~~~~ ^
->> drivers/clk/clk-eyeq.c:264:9: error: call to undeclared function 'readq'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     264 |                 val = readq(priv->base + pll->reg64);
-         |                       ^
-   drivers/clk/clk-eyeq.c:724:9: error: call to undeclared function 'readq'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     724 |                 val = readq(base + pll->reg64);
-         |                       ^
-   6 warnings and 2 errors generated.
-
-
-vim +/readq +264 drivers/clk/clk-eyeq.c
-
-   249	
-   250	static void eqc_probe_init_plls(struct device *dev, struct eqc_priv *priv)
-   251	{
-   252		const struct eqc_match_data *data = priv->data;
-   253		unsigned long mult, div, acc;
-   254		const struct eqc_pll *pll;
-   255		struct clk_hw *hw;
-   256		unsigned int i;
-   257		u32 r0, r1;
-   258		u64 val;
-   259		int ret;
-   260	
-   261		for (i = 0; i < data->pll_count; i++) {
-   262			pll = &data->plls[i];
-   263	
- > 264			val = readq(priv->base + pll->reg64);
-   265			r0 = val;
-   266			r1 = val >> 32;
-   267	
-   268			ret = eqc_pll_parse_registers(r0, r1, &mult, &div, &acc);
-   269			if (ret) {
-   270				dev_warn(dev, "failed parsing state of %s\n", pll->name);
-   271				priv->cells->hws[pll->index] = ERR_PTR(ret);
-   272				continue;
-   273			}
-   274	
-   275			hw = clk_hw_register_fixed_factor_with_accuracy_fwname(dev,
-   276					dev->of_node, pll->name, "ref", 0, mult, div, acc);
-   277			priv->cells->hws[pll->index] = hw;
-   278			if (IS_ERR(hw))
-   279				dev_warn(dev, "failed registering %s: %pe\n", pll->name, hw);
-   280		}
-   281	}
-   282	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
