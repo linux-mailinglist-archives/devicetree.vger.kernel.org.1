@@ -1,50 +1,50 @@
-Return-Path: <devicetree+bounces-83486-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83487-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49F679288EC
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 14:46:43 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7A6F9288EE
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 14:46:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 695D11C218C2
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 12:46:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 70284B2223A
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 12:46:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 071FC14D6FB;
-	Fri,  5 Jul 2024 12:46:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 435DF14A619;
+	Fri,  5 Jul 2024 12:46:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="iu3Dyxy9"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="RLdlFXBc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70AB414BF9B
-	for <devicetree@vger.kernel.org>; Fri,  5 Jul 2024 12:46:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53F87148FE1
+	for <devicetree@vger.kernel.org>; Fri,  5 Jul 2024 12:46:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720183567; cv=none; b=kO+MTXE3N8RjUw+/0Z24N8fI0sLdME+t/o47D6XC59JW3/ZiGes6CxwyWyPLgPodz5pjvw/dWGdeuLClCRu+pQT8zXmPDB8X0o6yxmty2+6KZIDbzc2hwy9VhrL8DRy1+zYCc8W6moI4pl2AS2Vc5KJ4jbbt6xobctdO6p4vaxM=
+	t=1720183584; cv=none; b=psSG7g52aByTp9nEmKOTOIU1thuEuVXwtgVGI7guCQJb88+Qtu8j2GQ5uPz3O2phd1qgHK+uo6WFNFaOcHES6TxmN4sdZdSKBr1R+7UxKZFONLnAnKuA/VVGgiJFYABoafE5DqYE/nRYYDodxK3RmOW6VAv7kaPeSfyO/O6UoYQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720183567; c=relaxed/simple;
-	bh=maBKQFuOKUHD4QYdq8DY3g8Z/btky+Fhq2zM/6N22yE=;
+	s=arc-20240116; t=1720183584; c=relaxed/simple;
+	bh=9IILC667MZy6wZxJn0arvMfC67drkFF8jbRJI/RCW0s=;
 	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=H2WviznU8CiJcHfIWXukNXVVX8jOuwumcsHIPCXs7LHLqBfCy3ulOXbAZrOkcUdHxt4MwXo4lPDY5+UWSYFuayeVn3ibpwh7O3Q1GR3jTZNTzNkMv0syHwaMLOn5MYUIglUjAV+H8Mp9BimXyYPJ0zEH55DK/NF0IeZU46t4ywk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=iu3Dyxy9; arc=none smtp.client-ip=217.70.183.193
+	 MIME-Version:Content-Type; b=iXLH/MTFQ8uf8prunXM4vSexbaSbL6ibRqf2GM4fOkfDX8KgLoqPXBCjRbnqmmLzaeRPLCrYKxaVMTqq1rn4m/aK8nnifw79+BtwDhIgZ7DhY45orR/b9WwJKraIuSXUTV2EIz/28yXO80aoxhZsfoVfngvn1Ci9wyRr1YdnkGM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=RLdlFXBc; arc=none smtp.client-ip=217.70.183.198
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id C7E9424000E;
-	Fri,  5 Jul 2024 12:46:02 +0000 (UTC)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 59334C0005;
+	Fri,  5 Jul 2024 12:46:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1720183563;
+	t=1720183580;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=izDTBgSlWHNazZLvxqb8PfZXFxJ5rIcyB7wf/ExlCl8=;
-	b=iu3Dyxy9a9+zRxy28CaeoKV5nPkwtY+e+P1xCapwovheuEyMb1G4Xa2+dG9Z6d938aVozu
-	+7RH7yZLZSus0Q6dm8jz2XRR97E0aqeJTBlAQSWPqTvD178Et2UbMVuIsAjObZwgIJ9m2L
-	cAQykWl8htxabNDXsFJFhS5q7k8h+/BOC3eQDjWwUW5Nwfx9LbPAVHdsEnqtQQBfIB7RKN
-	ADMr0KA1ohorKpCtsBpg8+joW075Bqpy4TYpOaospU3Gl+vFAqgvunuhfUjp+LiUz5y7EV
-	iiDO2ttrn3H8E/Shx6SsmZHyAJaRAkZbcp+QYKM9/aWW1BLxuli2inM4T7fMEA==
+	bh=0Kj1eSZAKDwhk5vAXRl97uoZ1Sujr2CBBYFjFpgU8/A=;
+	b=RLdlFXBcMRAxP1TiU23Cj/PfqhnwgiMMeW56JcIewnO4hNHI3QTWP7+MMlprmIZQUSXXa7
+	WGPsg2RaqpymqUDtEFyNpggh/ES9OB1g7QS9KHXyZckOyM7X7Q+3rDxyIa1w4cXTvVJFlu
+	cW5UZSCDFAivUT7UdQ3zUjqKTWa2xBq5KJy5p5GcTBIdCEmREf3x1fwP7IQjhpsq5yRTna
+	++5a/fDwcZZDi0oV6twzbFaHX/puOaO0Vz1yj54pYce0wJb00NKxsmpojBJ3VqDKDgFkbh
+	HRgxD6zzB6ui1My8hCNanGSSZVwiWKMuvDPfX+TXR+oBAFe4aBVDHuLMWJTK0Q==
 From: Gregory CLEMENT <gregory.clement@bootlin.com>
 To: Marek =?utf-8?Q?Beh=C3=BAn?= <kabel@kernel.org>, Arnd Bergmann
  <arnd@arndb.de>,
@@ -59,13 +59,13 @@ Cc: arm@kernel.org, Andy Shevchenko <andy@kernel.org>, Hans de Goede
  <conor+dt@kernel.org>, Uwe =?utf-8?Q?Kleine-K=C3=B6nig?=
  <uwe@kleine-koenig.org>,
  devicetree@vger.kernel.org
-Subject: Re: [PATCH v13 7/8] ARM: dts: turris-omnia: Add MCU
- system-controller node
-In-Reply-To: <20240701113010.16447-8-kabel@kernel.org>
+Subject: Re: [PATCH v13 8/8] ARM: dts: turris-omnia: Add GPIO key node for
+ front button
+In-Reply-To: <20240701113010.16447-9-kabel@kernel.org>
 References: <20240701113010.16447-1-kabel@kernel.org>
- <20240701113010.16447-8-kabel@kernel.org>
-Date: Fri, 05 Jul 2024 14:46:02 +0200
-Message-ID: <87frsoj9bp.fsf@BLaptop.bootlin.com>
+ <20240701113010.16447-9-kabel@kernel.org>
+Date: Fri, 05 Jul 2024 14:46:19 +0200
+Message-ID: <87cynsj9b8.fsf@BLaptop.bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,16 +78,8 @@ X-GND-Sasl: gregory.clement@bootlin.com
 
 Marek Beh=C3=BAn <kabel@kernel.org> writes:
 
-> Turris Omnia's MCU provides various features that can be configured over
-> I2C at address 0x2a. Add device-tree node.
->
-> This does not carry a Fixes tag - we do not want this to get backported
-> to stable kernels for the following reason: U-Boot since v2022.10
-> inserts a phy-reset-gpio property into the WAN ethernet node pointing to
-> the MCU node if it finds the MCU node with a cznic,turris-omnia-mcu
-> compatible. Thus if this change got backported to a stable kernel, the
-> WAN interface driver would defer probe indefinitely (since it would wait
-> for the turris-omnia-mcu driver which would not be present).
+> Now that we have the MCU device-tree node, which acts as a GPIO
+> controller, add GPIO key node for the front button.
 >
 > Signed-off-by: Marek Beh=C3=BAn <kabel@kernel.org>
 
@@ -96,51 +88,36 @@ Applied on mvebu/dt
 Thanks,
 
 Gregory
+
 > ---
->  .../dts/marvell/armada-385-turris-omnia.dts   | 22 ++++++++++++++++++-
->  1 file changed, 21 insertions(+), 1 deletion(-)
+>  .../boot/dts/marvell/armada-385-turris-omnia.dts    | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
 >
 > diff --git a/arch/arm/boot/dts/marvell/armada-385-turris-omnia.dts b/arch=
 /arm/boot/dts/marvell/armada-385-turris-omnia.dts
-> index 7b755bb4e4e7..59079d63fe27 100644
+> index 59079d63fe27..43202890c959 100644
 > --- a/arch/arm/boot/dts/marvell/armada-385-turris-omnia.dts
 > +++ b/arch/arm/boot/dts/marvell/armada-385-turris-omnia.dts
-> @@ -218,7 +218,22 @@ i2c@0 {
->  			#size-cells =3D <0>;
->  			reg =3D <0>;
+> @@ -112,6 +112,19 @@ sfp: sfp {
+>  		status =3D "disabled";
+>  	};
 >=20=20
-> -			/* STM32F0 command interface at address 0x2a */
-> +			mcu: system-controller@2a {
-> +				compatible =3D "cznic,turris-omnia-mcu";
-> +				reg =3D <0x2a>;
+> +	gpio-keys {
+> +		compatible =3D "gpio-keys";
 > +
-> +				pinctrl-names =3D "default";
-> +				pinctrl-0 =3D <&mcu_pins>;
-> +
-> +				interrupt-parent =3D <&gpio1>;
-> +				interrupts =3D <11 IRQ_TYPE_NONE>;
-> +
-> +				gpio-controller;
-> +				#gpio-cells =3D <3>;
-> +
-> +				interrupt-controller;
-> +				#interrupt-cells =3D <2>;
-> +			};
->=20=20
->  			led-controller@2b {
->  				compatible =3D "cznic,turris-omnia-leds";
-> @@ -501,6 +516,11 @@ fixed-link {
->  };
->=20=20
->  &pinctrl {
-> +	mcu_pins: mcu-pins {
-> +		marvell,pins =3D "mpp43";
-> +		marvell,function =3D "gpio";
+> +		front-button {
+> +			label =3D "Front Button";
+> +			linux,code =3D <KEY_VENDOR>;
+> +			linux,can-disable;
+> +			gpios =3D <&mcu 0 12 GPIO_ACTIVE_HIGH>;
+> +			/* debouncing is done by the microcontroller */
+> +			debounce-interval =3D <0>;
+> +		};
 > +	};
 > +
->  	pcawan_pins: pcawan-pins {
->  		marvell,pins =3D "mpp46";
->  		marvell,function =3D "gpio";
+>  	sound {
+>  		compatible =3D "simple-audio-card";
+>  		simple-audio-card,name =3D "SPDIF";
 > --=20
 > 2.44.2
 
