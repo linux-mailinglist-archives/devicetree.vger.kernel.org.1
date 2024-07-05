@@ -1,195 +1,121 @@
-Return-Path: <devicetree+bounces-83512-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83513-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB07E928B08
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 17:01:30 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C16B5928B42
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 17:08:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 23B63B25271
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 15:01:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6C8CC1F22E40
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 15:08:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 403AB14B95E;
-	Fri,  5 Jul 2024 15:01:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1467816D331;
+	Fri,  5 Jul 2024 15:04:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IJcdLZ6t"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="g4tUJ4TJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12C321BDDC;
-	Fri,  5 Jul 2024 15:01:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BFC816B389
+	for <devicetree@vger.kernel.org>; Fri,  5 Jul 2024 15:04:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720191683; cv=none; b=T+BIxP8tsE2dCCjluQONotiikEeoWioqI71f888LPUGZKULC8sGJYpFVYHyyzEjlW0f8IWBiBvLuB+nV3Wzsb9p4I4+IlNWW8gGIXz9ixLa8/PLgwhinddEI/Rd4pHoIvGax8uVduBYNrP8GdTqRmbSOgMjPOfqzSq6YytIWC7Q=
+	t=1720191888; cv=none; b=aF6FpLvNqkpaYG00EEQ+u/3m7jcIyLKhznbfpQY36TLgM0mizDIXxGWLNK3Kp1NYKjBl0PYqwGGyt1qE633gA4g70xZiI+kSgRhTKa3owxz+v3yd46j3laHGLuemHTfWEhtat3jKh3Zo9kq93eQT31AdakfM9pzsFJc0wQqMkYo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720191683; c=relaxed/simple;
-	bh=xEoppWy0KqDVp9QxcL7rzFgPsmzQXswT2gXTdcrZA/k=;
+	s=arc-20240116; t=1720191888; c=relaxed/simple;
+	bh=03tw9GpUoktebYDiBRLN+yuStGO6NkuqpDICOb4/w2Y=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PLOKAVqrHMfEtqbfHxUJ5SxZTatw+olwWGbZSX2Py4q2uoceQ2wAs+8hFyzJiSDTmyDjkPP7iETQ2DinsxUeQ6CPuyhqgocwmhRHycQeV1H6qMSDgosxfk4Hh2a9NZT+I+0O/gtuO/9zdyzobNxJCd9Q/nXs+R5O3m+tovCgtds=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IJcdLZ6t; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 630D1C116B1;
-	Fri,  5 Jul 2024 15:01:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720191682;
-	bh=xEoppWy0KqDVp9QxcL7rzFgPsmzQXswT2gXTdcrZA/k=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=IJcdLZ6tECRRBILi98BHYGvO9qjylZnL2oVf7RRyX4bk8aaaktei/fm5RbUE4ZvUR
-	 DZix8dkn/ovADFeS3oVmNF+p7GficsV4yPuzp3tgM0gDZMo5bBfslDMG+V9dyXmYkW
-	 xctYTsj7Mey6zvp0vqSxxtC/DMaRXiGZhIfAsi97x9bl71zJc+qmajUCymzGlz+IXP
-	 oAxCubPSbxQzejO28pRdoxoXLhw4WlT1A6gl5sdcG+YFWcyTVT7hCSc9pGq8kVx0cy
-	 3O1aXk1WBrOyagNWE+kU/pQmIuVWI37gi7xWQjRlIJlM3/v5tyQa6TPfNPaKGz8+Y1
-	 it5ieQhVJoFmg==
-Date: Fri, 5 Jul 2024 16:01:17 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@outlook.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	=?iso-8859-1?Q?Miqu=E8l?= Raynal <miquel.raynal@bootlin.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: iio: adc: sophgo,cv18xx-saradc.yaml:
- Add Sophgo SARADC binding documentation
-Message-ID: <20240705-unaired-pesticide-4135eaa04212@spud>
-References: <20240705-sg2002-adc-v2-0-83428c20a9b2@bootlin.com>
- <20240705-sg2002-adc-v2-1-83428c20a9b2@bootlin.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=pZUyPH4gPnxkX77aeL+m3kF/oYTGedcez04SeVsemaiuNIyxnILQ7MfkLFS84V0pz43lyOcQgM7808TODotEVQA4ucDUVgmnmHYjhOISEw71R8JO78MtaB+MzLXVkETuHCeLDXEDj6TACAh08Fu5JwSvwFCGFgMPfOk4UVM6IsM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=g4tUJ4TJ; arc=none smtp.client-ip=209.85.167.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-52ea929ea56so295299e87.0
+        for <devicetree@vger.kernel.org>; Fri, 05 Jul 2024 08:04:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1720191884; x=1720796684; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=G1XUXoP8ZUsxacZi1Zifn4mKpe40fxK2AvpOT6WOw2Q=;
+        b=g4tUJ4TJ2SZ7cpYHpWAkxshY74kyN6C/kuBXneJs4v+E0WvYfRqupvxw7pMtWB1OXg
+         tI2AmXeZJIoGKNF7Y2UBVuk4EB8uWFJ8ulh6Oeoy6C3sp6r3O5UQ8dZCR9VoQYfpHlNb
+         J02JYx1LdcFOuK7o1Qq8Ii0r3QcBRz0bP6l10gEEK4MjYPgfjBcWRtlKo0bxrmTihj/K
+         bjBj5KmtbSEWf/pbOThLdrXKaMi5wEMmkoefdfkYp1dkjHkfvWwW33ogL4WgRj5fre3S
+         Xk1WDB6LdZ1x9WiSvdziIXK5H8UdQs0kj/DMUrow8Q1mnCUxaCvLbbTnuCIKNIoEfanl
+         sKLQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720191884; x=1720796684;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=G1XUXoP8ZUsxacZi1Zifn4mKpe40fxK2AvpOT6WOw2Q=;
+        b=WG+YOOtED6OfaWR4KV+whWdvBfcMHwZ8hUF6W1sYkr55yPOZ/Y7LKW8wvfGXKVneqJ
+         dNapdU3rJ8tyfp8Q1MctLwVOLgwr1YHIQ3WiC4dvJ7T3Bu6+wqbPr/RXH+ZTrAB0GAwO
+         nhvzXPOcKiz3FeGmrXyqnPFhVAnR0AIfBuTZONF460T471PT+VHsGpnKDfcS0WV21ogV
+         0LPg/h7lmjE7cSALafQbGBCf0Xi4LUcI30SQ5BuCOTOalhiPWd4VxHKk1VO2N72fzMo+
+         DSlGEGqJ0zMQN/E5csqGHDJNS6Sr6nU0d4bRifEAeTGvTHRj++7ExXNDwSu63RMi+HFS
+         GyEg==
+X-Forwarded-Encrypted: i=1; AJvYcCW67egIR9Aucy8t4J0mclGZpJTKbr68uHZ31wxcO+eysJxThnJNWp9asooY5wGM/gN7jaCayFzkC1qkV9T90m4Bp5ZkAGOwAmMfIg==
+X-Gm-Message-State: AOJu0YxAheHYqoA46cwBG/yQN41M0qoQUn/GUt+GER5jKDKSF8cKnNzU
+	uu+VRH2vbYqPlEtLIk6Uf/VMLTMpDmwq8tEzMSioxsWa73oNPSbNyICxUDru8fE=
+X-Google-Smtp-Source: AGHT+IGVnJDsTy2hKMNHtroOZv/CQszbYL1ewUUemzM1FxWCzTewJ9w1FvE1OscDzUKStDJwF4xYsg==
+X-Received: by 2002:a19:2d42:0:b0:52e:7df0:9a78 with SMTP id 2adb3069b0e04-52ea063274fmr4038493e87.32.1720191884560;
+        Fri, 05 Jul 2024 08:04:44 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52e7ab0b7fesm2848682e87.31.2024.07.05.08.04.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 05 Jul 2024 08:04:44 -0700 (PDT)
+Date: Fri, 5 Jul 2024 18:04:42 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Taniya Das <quic_tdas@quicinc.com>
+Cc: Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, quic_jkona@quicinc.com, 
+	quic_imrashai@quicinc.com
+Subject: Re: [PATCH 6/8] clk: qcom: Add support for Display clock Controllers
+ on SA8775P
+Message-ID: <ucgeexs6impgapot4a55cwzqy5kv374jkyhylojvpmstm7cf42@r4i5toizchn2>
+References: <20240612-sa8775p-mm-clock-controllers-v1-0-db295a846ee7@quicinc.com>
+ <20240612-sa8775p-mm-clock-controllers-v1-6-db295a846ee7@quicinc.com>
+ <37bbd466-742a-4a23-b3f7-97f8da109608@linaro.org>
+ <053e047b-7594-48bc-ac1b-2368c0c8f1cc@quicinc.com>
+ <8b19c43e-6b13-4b09-9498-ee0b24749d3f@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="xMmRnVLDUviAWcqC"
-Content-Disposition: inline
-In-Reply-To: <20240705-sg2002-adc-v2-1-83428c20a9b2@bootlin.com>
-
-
---xMmRnVLDUviAWcqC
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <8b19c43e-6b13-4b09-9498-ee0b24749d3f@quicinc.com>
 
-On Fri, Jul 05, 2024 at 03:42:23PM +0200, Thomas Bonnefille wrote:
-> The Sophgo SARADC is a Successive Approximation ADC that can be found in
-> the Sophgo SoC.
->=20
-> Signed-off-by: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-> ---
->  .../bindings/iio/adc/sophgo,cv18xx-saradc.yaml     | 63 ++++++++++++++++=
-++++++
->  1 file changed, 63 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/iio/adc/sophgo,cv18xx-sara=
-dc.yaml b/Documentation/devicetree/bindings/iio/adc/sophgo,cv18xx-saradc.ya=
-ml
-> new file mode 100644
-> index 000000000000..31bd8ac6dfa5
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/adc/sophgo,cv18xx-saradc.yaml
-> @@ -0,0 +1,63 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/adc/sophgo,cv18xx-saradc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title:
-> +  Sophgo CV18XX SoC series 3 channels Successive Approximation Analog to
-> +  Digital Converters
-> +
-> +maintainers:
-> +  - Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-> +
-> +description:
-> +  Datasheet at https://github.com/sophgo/sophgo-doc/releases
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - sophgo,cv1800b-saradc
-> +          - const: sophgo,cv18xx-saradc
+On Wed, Jul 03, 2024 at 11:17:01PM GMT, Taniya Das wrote:
+> 
+> 
+> On 6/21/2024 10:03 AM, Taniya Das wrote:
+> > > Please merge this into one to save on boilerplate, take a look
+> > > at dispcc-sc8280xp.c
+> > > 
+> > 
+> > I did take a look at the dispcc for SC8280XP before posting the series,
+> > but it kind of looked tricky to add fixes for a particular dispcc.
+> > Debugging could also be difficult in my opinion.
+> > Though I understand that we are trying to optimize by re-using few
+> > common structures/probe but from clocks side they are all redefined.
+> > That was the reason to keep them separate.
+> 
+> Konrad, are you good with the proposal to keep the two instance of display
+> clock controllers as separate drivers? As I looking to post
+> the next patch series, please let me know your comments.
 
-I don't think the fallback here makes sense. If there's other devices
-with a compatible programming model added later, we can fall back to the
-cv1800b.
+I'd say, continue with the separate drivers.
 
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    description:
-> +      SARADC will use the presence of this clock to determine if the con=
-troller
-> +      needs to be explicitly clocked by it (Active domain) or if it is p=
-art of
-> +      the No-Die Domain, along with the RTC, which does not require expl=
-icit
-> +      clocking.
-
-What does "explicit clocking" mean? Is it clocked directly (or via
-dividers) by a clock on the board or another source?
-
-Cheers,
-Conor.
-
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/sophgo,cv1800.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    /* ADC in the Active domain */
-> +    adc@30f0000 {
-> +        compatible =3D "sophgo,cv1800b-saradc", "sophgo,cv18xx-saradc";
-> +        clocks =3D <&clk CLK_SARADC>;
-> +        interrupts =3D <100 IRQ_TYPE_LEVEL_HIGH>;
-> +        reg =3D <0x030F0000 0x1000>;
-> +    };
-> +  - |
-> +    #include <dt-bindings/clock/sophgo,cv1800.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    /* ADC in the No-Die domain */
-> +    adc@502c000 {
-> +        compatible =3D "sophgo,cv1800b-saradc", "sophgo,cv18xx-saradc";
-> +        reg =3D <0x0502C000 0x1000>;
-> +    };
->=20
-> --=20
-> 2.45.2
->=20
-
---xMmRnVLDUviAWcqC
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZogKvQAKCRB4tDGHoIJi
-0giYAQCgNHCyz5yAdPei9eufgsMfJqNkiZDfQ8RrCap1Y6BZqwD/VGne9AxOjshS
-nixXIYG/eV1vC5giJbjCGbmArAA8nwM=
-=k1hL
------END PGP SIGNATURE-----
-
---xMmRnVLDUviAWcqC--
+-- 
+With best wishes
+Dmitry
 
