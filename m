@@ -1,216 +1,251 @@
-Return-Path: <devicetree+bounces-83556-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83557-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C787928F74
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 00:58:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C10E1928F87
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 01:26:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3C96B283290
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 22:58:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CB4771C21A19
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 23:26:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92F65146A76;
-	Fri,  5 Jul 2024 22:58:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B05C5145B3B;
+	Fri,  5 Jul 2024 23:26:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Lc7huM2K"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="okYXYmty"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA0C9145A0B;
-	Fri,  5 Jul 2024 22:58:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADBFD14532A
+	for <devicetree@vger.kernel.org>; Fri,  5 Jul 2024 23:26:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720220322; cv=none; b=rN6Ul1D19sroB5duZZ2SNIZg2dfAmpsubw2q/MTJkp36kDfXXyy6eVA8hmwsoP/2C1LtEWG/gi6sYF5vj0E0Mca1p4N2Z5Fp0qQ/xfXZicYW3YyDtOQ5P7FV/GytggMQ9nNQ07s/IsOJwLkfZdqEqj7xUOkrYq70qmKpKqlGbBk=
+	t=1720221969; cv=none; b=hF2bl7X2StywCNR9NIGfHs7M14W7gKA+P+KJgBNBef5/LeKaAQ6xr4spnb5zAY/gj/49DgHoiWN+Fl+rp4qBTEWpkqwX54F/6SrTLOTneyxhNb8ipPqtU18gGRF3VKncWxC9/WJi3zRgdc03GzKvwrhgL8xZ57mmW8O46ztcZV0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720220322; c=relaxed/simple;
-	bh=qoZfP1S+acuGp2s4TC90tooFq8WbbDjK2Fz1Bq+nL2s=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=dhKEGfXKrYNBrOO0Z3si7tyS1EWp47dC6xia1idVmm733AhWqF+9Za2y2efrlFXuSofSi7+n8U+ySZblZrSpjAnmjhdzD35Us0EdtvIGojhZ6CyhRBxoQUKEl8eiDqLWVnmqaiWsaidsKw3NELmsBfctQ62xz+RH4r8uFJ4oHYE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Lc7huM2K; arc=none smtp.client-ip=209.85.208.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-58ba3e37feeso2918571a12.3;
-        Fri, 05 Jul 2024 15:58:40 -0700 (PDT)
+	s=arc-20240116; t=1720221969; c=relaxed/simple;
+	bh=3gMAndsUvgabh9qev+8EmCJaTlEII5ryUC+FGczY84o=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=C4RRp9WWZXM10JMINxFvBEYsvUp3h1f18bpWos8gIjHUbpu1pieQH2KUDQ9TLr1occyYdtKCww+sM+p8v6gRoTTtcVLjXtR/D/ZhJFqduOyMO6Ess1ZweMXsqPgK2y/nT4vn1AuajE6E6uhVLKkXryaWFstJY2/CV5nimxgsIxk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=okYXYmty; arc=none smtp.client-ip=209.85.208.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-57cbc66a0a6so3638956a12.1
+        for <devicetree@vger.kernel.org>; Fri, 05 Jul 2024 16:26:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1720220319; x=1720825119; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=FiMeeVhiLcAlXej3uBvwyk/ojiuyjSIG1S2ztz0XYNs=;
-        b=Lc7huM2KjsY6GIN9/f8lgu6xV7Qd/sL1+f6qPEpB1NdrMUZh4NqNyznQB0/Oypt5wx
-         3hg63sQ43qS+Ds9bgMXC2HWfTF2TCoXx0CJgRYBFFtdpbMnOZ5lvY3CmbqWC/k9a0TNL
-         BNssh3BBGj45AXeytwFXObuQUczEMYusWHkuWFYwYmnDrNgm5ZJXrPRWVjW6XnJeUQB2
-         mo4rV7tfFBn5iKQ5Piyayn2Cs0LbKzjHprFLOEgXG+brLWXIPzGl/b4jZnPPJr/KscHo
-         u9cJ1VuzyCUoCPWlABFV95DqaHS3R+hLq9Ork+010WShnMIsPLO01bzIR2XyPzlKkygM
-         wFrw==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1720221966; x=1720826766; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=4FIGyFLoN5cw68zfKfOk7jOzbeIQ4UpGai4sSTRJq1M=;
+        b=okYXYmtyQBk+x56wcaBzuuF38eBKM+Ukl7sZqj8XHTMDa7sM6vPFmp6Jyjk+qgojfL
+         VeFG+M2XFrTUDkTsSomkpHbW44afBWzxC6RsFfQ4qiBt7f3NmD4f/qf0BMdawhN8fnqe
+         nEwH2npskAd5mVeqxFZiUpTGfyMd6etrqVkZmLecuIVdtZwOKlnaT6TXoqCO/0woakPw
+         pYSVADAcgqC+IbZSrjN/K+SRMh5w7E1i1PBVdpiI/HZCc/I38qD4VgQuxkH77AhSabxb
+         IpQpb7zNd7TBFV1VotgvgWNcKTmEIXO82DHynLqWbaX9A0vo8N3xBBc/W4skUAyJbAap
+         DJxg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720220319; x=1720825119;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=FiMeeVhiLcAlXej3uBvwyk/ojiuyjSIG1S2ztz0XYNs=;
-        b=UClJ6+NYZ+VDW26/utljs9xKoeKkzhvCnV0R2mqExkSO/2a+GpTApbkTpljZDEg+p4
-         fqexS3qtafdycD2+3Ip5IIDRBpF7FOtCAtqI4mt/kmVuXSgo3UWIx5LQwldwV/bmTQuB
-         sqQZMB59NrXRGykSqxUJAtUUZlV1OkholE3Yzsre3Oxm7e8hBtkrxsKEVnxmU7+P/JZI
-         gK7TlhgkHsfpZWfamLkl7JIE4R2EAbFdkKNAJ9uhTFaxySQEetoRULbSn6UZIyJJhGoB
-         MBJSjc/AproHTd8gfhIlemHD/oMScCAojxq6A28VO7C/OvA/Y4K52xT6fXH+HeDa9iYT
-         QSDw==
-X-Forwarded-Encrypted: i=1; AJvYcCWnU5ZjW5ubJRnqgX+93AiuriW3Eixphgxr216iWKNda6c4Pq7+DarOe5yGO/BCX1sKZrSpezuBlolhpGN7d264bgUnlLek0DLECvPMAeCZZXK6MUCCEqtofdPyZSrLzqZ21EhpuNNUXw==
-X-Gm-Message-State: AOJu0YyOoVOWCEx+sC7XqZ4lcK5G7HLYp0rNyCdLiyJvcsU0ym7AwZhD
-	cOEOXPg5Pwa8vvvtVJATfW2M/0Wrj4c6wsEDx3sP2rGW16DUF43G
-X-Google-Smtp-Source: AGHT+IF/EnTZ+25wxqkBsWXqxU8jobntZQ97ZpwWquicNED9QnU285ETFWo0voXR6AyZFnJzN7nEIA==
-X-Received: by 2002:a05:6402:254a:b0:586:6365:b3cf with SMTP id 4fb4d7f45d1cf-58e596592cbmr4608643a12.10.1720220318886;
-        Fri, 05 Jul 2024 15:58:38 -0700 (PDT)
-Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5861381868csm10052128a12.55.2024.07.05.15.58.37
+        d=1e100.net; s=20230601; t=1720221966; x=1720826766;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4FIGyFLoN5cw68zfKfOk7jOzbeIQ4UpGai4sSTRJq1M=;
+        b=E+OUinlkmDf+VRcn7oBqepuvwvSXlYS3ArCuWW1jMpG8iQ+1mFax0LKm7zlPCN02pm
+         dP28k1lxWSo55rpSgLGvVUbsb25pSCSyI9NGRvG+IMSlG2meLqyV+Vypmb71/yLHxEtz
+         +7YIxJi4sEv7k4xwf1blKZVo86rn8K6RCfit+d1ic4prEGWzY+VuRX2Z4uGrVHnjotxu
+         8CYIDjMm753R9HOjbLyDMx/rLjgWKSuVlnRIQlsBjrTyjLn3aY6blTkFSJSaYgj5uhFc
+         FKw3szLNdksq6kxtNS+GR494uwLbXPsqlK+UJXKG3uqPz7RwsZSYyB3jvKqfB2KEgLy6
+         WARg==
+X-Forwarded-Encrypted: i=1; AJvYcCXp84W7UdN5Kx7wr69/Oil/xzX5/gs3JSN6GsevT/uCy1wZSKtEQ+UlfcLLapJyV7GYzjwYfdAUkMLu5aapvSKlCpJcZWxyWRr5PQ==
+X-Gm-Message-State: AOJu0YzO3+GcWvRZjhxcPESSYBU0aps39CoF5rIsI76wa4z6dO4i5vac
+	q37zH/Vyux9UkFU4hmtTyFD1k/Qq1PrU8wBAlD8kaUFH++KCbS4cXGaSj6+Uv3Q=
+X-Google-Smtp-Source: AGHT+IFg+5A1xjo41b4Ew2aKc+k+EzcATPIJ3+HMQghpCnt6pAjcGISfM1fIKkVdIzfPnRvqY87VSw==
+X-Received: by 2002:a05:6402:234c:b0:57d:3e48:165d with SMTP id 4fb4d7f45d1cf-58e7a74e11dmr4508736a12.4.1720221965757;
+        Fri, 05 Jul 2024 16:26:05 -0700 (PDT)
+Received: from localhost ([2a02:8071:b783:6940:5898:1844:403c:d2d6])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-58d242037afsm3768133a12.51.2024.07.05.16.26.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Jul 2024 15:58:38 -0700 (PDT)
-From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Michael Walle <michael@walle.cc>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	devicetree@vger.kernel.org,
-	linux-mtd@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	u-boot@lists.denx.de,
-	linux-kernel@vger.kernel.org,
-	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH] dt-bindings: nvmem: convert U-Boot env to a layout
-Date: Sat,  6 Jul 2024 00:58:21 +0200
-Message-Id: <20240705225821.13196-1-zajec5@gmail.com>
-X-Mailer: git-send-email 2.35.3
+        Fri, 05 Jul 2024 16:26:05 -0700 (PDT)
+Date: Sat, 6 Jul 2024 01:26:03 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+To: Binbin Zhou <zhoubinbin@loongson.cn>
+Cc: Binbin Zhou <zhoubb.aaron@gmail.com>, 
+	Huacai Chen <chenhuacai@loongson.cn>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Juxin Gao <gaojuxin@loongson.cn>, Huacai Chen <chenhuacai@kernel.org>, 
+	loongson-kernel@lists.loongnix.cn, linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
+	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev
+Subject: Re: [PATCH v4 2/2] pwm: Add Loongson PWM controller support
+Message-ID: <b2lyte7dtrdxxoj4rwwrxbt5myc3td7v3psus7h36qc7dp3thh@czfp25bferl4>
+References: <cover.1716795485.git.zhoubinbin@loongson.cn>
+ <23d08fa45237efd83cb9dd51a259e2c980f01b3f.1716795485.git.zhoubinbin@loongson.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="3levmdfnv3vsobbm"
+Content-Disposition: inline
+In-Reply-To: <23d08fa45237efd83cb9dd51a259e2c980f01b3f.1716795485.git.zhoubinbin@loongson.cn>
 
-From: Rafał Miłecki <rafal@milecki.pl>
 
-U-Boot environment variables can be stored in various data sources. MTD
-is just one of available options. Refactor DT binding into a layout so
-it can be used with UBI volumes and other NVMEM devices.
+--3levmdfnv3vsobbm
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Link: https://lore.kernel.org/all/20231221173421.13737-1-zajec5@gmail.com/
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
-I'm sending this PATCH without Linux changes to see if this is the
-right approach - for developers and (DT) maintainers to review it first.
+Hello,
 
-My previous attempt (see above Link) turned out in refusal so I'm just
-trying to save some time in case this one goes wrong as well.
+On Mon, May 27, 2024 at 03:51:12PM +0800, Binbin Zhou wrote:
+> +static int pwm_loongson_apply(struct pwm_chip *chip, struct pwm_device *pwm,
+> +			      const struct pwm_state *state)
+> +{
+> +	int ret;
+> +	u64 period, duty_cycle;
+> +	bool enabled = pwm->state.enabled;
+> +
+> +	period = min(state->period, NANOHZ_PER_HZ);
+> +	duty_cycle = min(state->duty_cycle, NANOHZ_PER_HZ);
+> +
+> +	if (state->polarity != pwm->state.polarity) {
+> +		if (enabled) {
+> +			pwm_loongson_disable(chip, pwm);
+> +			enabled = false;
+> +		}
+> +
+> +		ret = pwm_loongson_set_polarity(chip, pwm, state->polarity);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	if (!state->enabled) {
+> +		if (enabled)
+> +			pwm_loongson_disable(chip, pwm);
+> +		return 0;
+> +	}
 
-Hopefully the included example (which I really think we should add)
-explains well how I think this binding should be used with layouts.
+Given that the configured polarity isn't relevant for a disabled PWM, I
+suggest to swap these two if blocks. However then you have to be a bit
+more careful for the polarity check because otherwise the following
+series of commands yields wrong results:
 
-If I get some positive feedback I'll work on V2 with actual Linux
-changes.
+	pwm_apply_might_sleep(pwm, {.duty_cycle = D, .period = P, .polarity = PWM_POLARITY_NORMAL, .enabled = true});
+	pwm_apply_might_sleep(pwm, {.duty_cycle = D, .period = P, .polarity = PWM_POLARITY_INVERSED, .enabled = false});
+	pwm_apply_might_sleep(pwm, {.duty_cycle = D, .period = P, .polarity = PWM_POLARITY_INVERSED, .enabled = true});
 
- .../bindings/nvmem/layouts/nvmem-layout.yaml  |  1 +
- .../nvmem/{ => layouts}/u-boot,env.yaml       | 39 ++++++++++++++++---
- 2 files changed, 35 insertions(+), 5 deletions(-)
- rename Documentation/devicetree/bindings/nvmem/{ => layouts}/u-boot,env.yaml (75%)
+> +	ret = pwm_loongson_config(chip, pwm, duty_cycle, period);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (!enabled)
+> +		ret = pwm_loongson_enable(chip, pwm);
+> +
+> +	return ret;
+> +}
+> +
+> +static int pwm_loongson_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
+> +				  struct pwm_state *state)
+> +{
+> +	u32 duty, period, ctrl;
+> +	struct pwm_loongson_ddata *ddata = to_pwm_loongson_ddata(chip);
+> +
+> +	/* duty_cycle = ddata->duty * NSEC_PER_SEC / ddata->clk_rate */
+> +	duty = pwm_loongson_readl(ddata, LOONGSON_PWM_REG_DUTY);
+> +	state->duty_cycle = mul_u64_u64_div_u64(duty, NSEC_PER_SEC, ddata->clk_rate);
+> +
+> +	/* period = ddata->period * NSEC_PER_SEC / ddata->clk_rate */
+> +	period = pwm_loongson_readl(ddata, LOONGSON_PWM_REG_PERIOD);
+> +	state->period = mul_u64_u64_div_u64(period, NSEC_PER_SEC, ddata->clk_rate);
+> +
+> +	ctrl = pwm_loongson_readl(ddata, LOONGSON_PWM_REG_CTRL);
+> +	state->polarity = (ctrl & LOONGSON_PWM_CTRL_INVERT) ? PWM_POLARITY_INVERSED :
+> +			  PWM_POLARITY_NORMAL;
+> +	state->enabled = (ctrl & LOONGSON_PWM_CTRL_EN) ? true : false;
+> +
+> +	return 0;
 
-diff --git a/Documentation/devicetree/bindings/nvmem/layouts/nvmem-layout.yaml b/Documentation/devicetree/bindings/nvmem/layouts/nvmem-layout.yaml
-index 3b40f7880774..382507060651 100644
---- a/Documentation/devicetree/bindings/nvmem/layouts/nvmem-layout.yaml
-+++ b/Documentation/devicetree/bindings/nvmem/layouts/nvmem-layout.yaml
-@@ -21,6 +21,7 @@ oneOf:
-   - $ref: fixed-layout.yaml
-   - $ref: kontron,sl28-vpd.yaml
-   - $ref: onie,tlv-layout.yaml
-+  - $ref: u-boot,env.yaml
- 
- properties:
-   compatible: true
-diff --git a/Documentation/devicetree/bindings/nvmem/u-boot,env.yaml b/Documentation/devicetree/bindings/nvmem/layouts/u-boot,env.yaml
-similarity index 75%
-rename from Documentation/devicetree/bindings/nvmem/u-boot,env.yaml
-rename to Documentation/devicetree/bindings/nvmem/layouts/u-boot,env.yaml
-index 9c36afc7084b..56a8f55d4a09 100644
---- a/Documentation/devicetree/bindings/nvmem/u-boot,env.yaml
-+++ b/Documentation/devicetree/bindings/nvmem/layouts/u-boot,env.yaml
-@@ -1,10 +1,10 @@
- # SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
--$id: http://devicetree.org/schemas/nvmem/u-boot,env.yaml#
-+$id: http://devicetree.org/schemas/nvmem/layouts/u-boot,env.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
--title: U-Boot environment variables
-+title: U-Boot environment variables layout
- 
- description: |
-   U-Boot uses environment variables to store device parameters and
-@@ -21,9 +21,6 @@ description: |
-   This binding allows marking storage device (as containing env data) and
-   specifying used format.
- 
--  Right now only flash partition case is covered but it may be extended to e.g.
--  UBI volumes in the future.
--
-   Variables can be defined as NVMEM device subnodes.
- 
- maintainers:
-@@ -42,6 +39,7 @@ properties:
-         const: brcm,env
- 
-   reg:
-+    description: Partition offset and size for env on top of MTD
-     maxItems: 1
- 
-   bootcmd:
-@@ -58,6 +56,17 @@ properties:
-         description: The first argument is a MAC address offset.
-         const: 1
- 
-+allOf:
-+  - if:
-+      properties:
-+        $nodename:
-+          not:
-+            contains:
-+              pattern: "^partition@[0-9a-f]+$"
-+    then:
-+      properties:
-+        reg: false
-+
- additionalProperties: false
- 
- examples:
-@@ -101,3 +110,23 @@ examples:
-             };
-         };
-     };
-+  - |
-+    partition@0 {
-+        reg = <0x0 0x100000>;
-+        label = "ubi";
-+        compatible = "linux,ubi";
-+
-+        volumes {
-+            ubi-volume-u-boot-env {
-+                volname = "env";
-+
-+                nvmem-layout {
-+                    compatible = "u-boot,env";
-+
-+                    ethaddr {
-+                        #nvmem-cell-cells = <1>;
-+                    };
-+                };
-+            };
-+        };
-+    };
--- 
-2.35.3
+You didn't test extensively with PWM_DEBUG enabled, right? You need to
+round up the divisions here otherwise you get strange rounding results:
 
+Consider ddata->clk_rate = 1594323. When a state with .period = 20000 is
+applied, LOONGSON_PWM_REG_PERIOD is assigned 31.
+Calling .get_state() in this situation gives .period = 19443. Reapplying
+.period = 19443 results in LOONGSON_PWM_REG_PERIOD := 30. Iterating this
+further yields:
+
+ - .period = 18816
+ - LOONGSON_PWM_REG_PERIOD := 29
+ - .period = 18189
+ - LOONGSON_PWM_REG_PERIOD := 28
+ - ...
+
+> +}
+> +
+> +static const struct pwm_ops pwm_loongson_ops = {
+> +	.apply = pwm_loongson_apply,
+> +	.get_state = pwm_loongson_get_state,
+> +};
+> +
+> +static int pwm_loongson_probe(struct platform_device *pdev)
+> +{
+> +	int ret;
+> +	struct pwm_chip *chip;
+> +	struct pwm_loongson_ddata *ddata;
+> +	struct device *dev = &pdev->dev;
+> +
+> +	chip = devm_pwmchip_alloc(dev, 1, sizeof(*ddata));
+> +	if (IS_ERR(chip))
+> +		return PTR_ERR(chip);
+> +	ddata = to_pwm_loongson_ddata(chip);
+> +
+> +	ddata->base = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(ddata->base))
+> +		return PTR_ERR(ddata->base);
+> +
+> +	if (!has_acpi_companion(dev)) {
+> +		ddata->clk = devm_clk_get_enabled(dev, NULL);
+> +		if (IS_ERR(ddata->clk))
+> +			return dev_err_probe(dev, PTR_ERR(ddata->clk),
+> +					     "failed to get pwm clock\n");
+> +		ddata->clk_rate = clk_get_rate(ddata->clk);
+> +	} else {
+> +		ddata->clk_rate = LOONGSON_PWM_FREQ_STD;
+> +	}
+> +
+> +	chip->ops = &pwm_loongson_ops;
+> +	dev_set_drvdata(dev, chip);
+> +
+> +	ret = devm_pwmchip_add(dev, chip);
+> +	if (ret < 0) {
+> +		clk_disable_unprepare(ddata->clk);
+
+This is wrong. You aquired the clk using devm_clk_get_enabled(), so you
+don't need (and must not) care for disable.
+
+> +		return dev_err_probe(dev, ret, "failed to add PWM chip\n");
+> +	}
+> +
+> +	return 0;
+> +}
+
+Best regards
+Uwe
+
+--3levmdfnv3vsobbm
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmaIgQgACgkQj4D7WH0S
+/k5DmAgAgy9+bQt6LKhD22GPl2c+8gLHZtUHK+moqqjXgshYlaNilsgaj4Uc1fPD
+FQys3BoRj6KRIumOZ3DHeXzeJFUxvykf4+DlSglb5irhXw6sJsSLr9IsSQpIxuLR
+RKmozBhHrmlfuKsRADcUB+3taW8WQVacDqqMCKG4uH9+iKOif8o2+f5RE2xs7AZL
+p9lChxf/UCxULkPwqUEYPsUncgH1/87ozGT9NfUSYQqXR+jJKvermAeMFj3AGeDd
+3ThB5rP2WOYSMcvLbazL5PhTcrvo4nlxMPSelZf+fzDA2H6XBpBwF3pfVgKwR3SE
+FGZ6cq0bx8AobIhqzJ5HE9ylf0hlNw==
+=NAGs
+-----END PGP SIGNATURE-----
+
+--3levmdfnv3vsobbm--
 
