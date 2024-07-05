@@ -1,85 +1,113 @@
-Return-Path: <devicetree+bounces-83493-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83491-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA1AC92893F
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 15:06:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A62D7928929
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 15:01:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EA6141C212AA
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 13:06:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 61DA0286653
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 13:01:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5753214A619;
-	Fri,  5 Jul 2024 13:06:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35F1F146A8A;
+	Fri,  5 Jul 2024 13:01:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="RYIHpHiA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iLVuOg7I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF844143C79;
-	Fri,  5 Jul 2024 13:06:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D13014430E;
+	Fri,  5 Jul 2024 13:01:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720184780; cv=none; b=Rzi4xgiuqjBb22rDgHhx7pCadmsTPF49ZFncbFD3UZr+p/H9jODX/lLg6wOHZTnYORB/aPXjg/r/9nf10dN6H45Dm7KrOpsWycRpABVs27l/VdFlms+rwSoPNejF3ZJuI1ZrPvtPuSEvtfy9ahFEIkosxRUhIvKpJWRLbWF9KSM=
+	t=1720184472; cv=none; b=FhWpoBkq5p05PYWaYbP2m1IPbaKEYideyOMHHtXaV6asLM/Ta/58Vp36mgWAVQ16IUcgEN+bWWrhOVXx9j+NESGOldSbD+36as4RPboaLpj/GChZ6nZjRDFeQbYW/h/E1X6T0In2s8ijzdJW1gYXeduVsue2lP6gsBiLLgmaFvc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720184780; c=relaxed/simple;
-	bh=WmEhNgDAEyTZUHGmtQezCo9iVLbCkSzU0LJjSId6A9s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Mu1wGf6XddsW0fbUqpZOhk7Ei6dAhaRQVCLzKJ3iIUIQ097kMEKxhNdOIrQmQrFZsNtuGN3cJS1/9Bff0WGyGXK/sm0K+bP/7Dn+HKD0pFqkpuKvucl/+G4yPNfiyNETix+aA/HeSGd0RLCL4uAn9FnPfO+WPtEZRcHKscN/I3A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=RYIHpHiA; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from francesco-nb (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id 7336E1F9C8;
-	Fri,  5 Jul 2024 14:57:30 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1720184251;
-	bh=WmEhNgDAEyTZUHGmtQezCo9iVLbCkSzU0LJjSId6A9s=; h=From:To:Subject;
-	b=RYIHpHiA0QZ3wLmsP1vKyCuRUc0DKvv0COFTjmBHm5fEDEzKdHIo0SaP1OpdqR1t0
-	 j60Xw390URTSJKHFVKtq+BuPOGSqeEanvkYkq0S2zrscWacY1AAboZXhKP76DQwnJs
-	 9OW2pDuBbg+mo8La7WBFzpCXb+pUghVvvMkZFFeg/t/ktEcriC8Dg9r5pw39Xm6fJw
-	 cvKkLrL/MPY77iVjnESuq+rDCLI2OscATmE7XIEPpMaUJB0N49+KswB3R1Om9sywrw
-	 SJvSNDGUY1kEpzvSkqJCajvgb68V57wwKMRBytzidogpZtLlAJ+j4oJeKOKa4rREdh
-	 4tPdlXxijpk2Q==
-Date: Fri, 5 Jul 2024 14:57:26 +0200
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Liu Ying <victor.liu@nxp.com>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, p.zabel@pengutronix.de,
-	airlied@gmail.com, daniel@ffwll.ch,
-	maarten.lankhorst@linux.intel.com, mripard@kernel.org,
-	tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-	kernel@pengutronix.de, festevam@gmail.com, tglx@linutronix.de
-Subject: Re: [PATCH 00/10] Add Freescale i.MX8qxp Display Controller support
-Message-ID: <20240705125708.GA73712@francesco-nb>
-References: <20240705090932.1880496-1-victor.liu@nxp.com>
+	s=arc-20240116; t=1720184472; c=relaxed/simple;
+	bh=wFLfSOenR7Pj3La1IrKKOJzJRYxUmpXInQGcTcg3mhI=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=VvzgIfzyT+NOvYeYoM5+weuWkUz864xNwcfjMorhWI67PrSXM4Sb+nvqcrplJV73rz/0nbyBoYFfyzg0NDwf+KwBcT5F1d5eIJjNohBNTLCQmes1qRQSpwQWIune3CYI8u3kZb0rkFg1a0/i5cWNR5N61dYa7u71iCnxGEcz1uo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iLVuOg7I; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81799C116B1;
+	Fri,  5 Jul 2024 13:01:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720184471;
+	bh=wFLfSOenR7Pj3La1IrKKOJzJRYxUmpXInQGcTcg3mhI=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=iLVuOg7IwK1qRdMOX8r6PS1ljKUMSs3jcgOHvAATvhN6+m4Fp//ukq23sZYqi5/qQ
+	 hK1Q4kuGuVIWDsoKdIZzt4G5+Mgjf1xewR8D/3M/Uh12mwAvfScEmDzccVfYLyjR23
+	 Kv4WGfiqdf+yV5QWBo0KP8jny9ZVntXHNbyD/5SSLv9/VVW4RL5Aqkyu7gCwKxFSno
+	 wpx/L0wU56Eseo6AJzkhItK5PBNkbKivgSVxc4No7qQAPpaD40al0i9pz+GreFfIPl
+	 O3hZ1i2oYPViRWJ7KmSQVyPtzNskIA7GEeHworNWXUU9nbDKo6JAttL0NVkgaDCFT3
+	 vM1ok4JgSOblg==
+Received: from disco-boy.misterjones.org ([217.182.43.188] helo=www.loen.fr)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.95)
+	(envelope-from <maz@kernel.org>)
+	id 1sPiYn-00A3gM-2Y;
+	Fri, 05 Jul 2024 14:01:09 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240705090932.1880496-1-victor.liu@nxp.com>
+Date: Fri, 05 Jul 2024 14:01:08 +0100
+From: Marc Zyngier <maz@kernel.org>
+To: Christian Zigotzky <chzigotzky@xenosoft.de>
+Cc: Rob Herring <robh@kernel.org>, apatel@ventanamicro.com, DTML
+ <devicetree@vger.kernel.org>, Linux Kernel Mailing List
+ <linux-kernel@vger.kernel.org>, linuxppc-dev
+ <linuxppc-dev@lists.ozlabs.org>, mad skateman <madskateman@gmail.com>,
+ "R.T.Dickinson" <rtd2@xtra.co.nz>, Matthew Leaman <matthew@a-eon.biz>,
+ Darren Stevens <darren@stevens-zone.net>, Christian Zigotzky
+ <info@xenosoft.de>
+Subject: Re: [PowerPC] [PASEMI] Issue with the identification of ATA drives
+ after the of/irq updates 2024-05-29
+In-Reply-To: <C7B869E5-95D9-426E-A2CB-8336CC9EF432@xenosoft.de>
+References: <C2FBFAD0-DEEE-4906-80B1-5FA745CD9726@xenosoft.de>
+ <C7B869E5-95D9-426E-A2CB-8336CC9EF432@xenosoft.de>
+User-Agent: Roundcube Webmail/1.4.15
+Message-ID: <12665d67dcf74cd9a2cd8388d8106f8d@kernel.org>
+X-Sender: maz@kernel.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 217.182.43.188
+X-SA-Exim-Rcpt-To: chzigotzky@xenosoft.de, robh@kernel.org, apatel@ventanamicro.com, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, madskateman@gmail.com, rtd2@xtra.co.nz, matthew@a-eon.biz, darren@stevens-zone.net, info@xenosoft.de
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 
-Hello Liu,
+On 2024-07-05 09:05, Christian Zigotzky wrote:
+> How about the other patch[1], which would be far preferable?
+> 
+>    M.
+> 
+> [1] https://lore.kernel.org/all/86ed8ba2sp.wl-maz@kernel.org
+> 
+> - - - -
+> 
+> Marc,
+> 
+> We will test the patch as soon as possible.
+> 
+> Christian
+> 
+> - - - -
+> 
+> Our tester has reported, that it doesn’t boot.
 
-On Fri, Jul 05, 2024 at 05:09:22PM +0800, Liu Ying wrote:
-> This patch series aims to add Freescale i.MX8qxp Display Controller support.
+Does it mean you are not testing this yourself???
 
-I really appreciate your work here, I am looking forward for a better
-support in mainline Linux for both i.MX8QXP and i.MX8QP.
+> 
+> Link: 
+> https://forum.hyperion-entertainment.com/viewtopic.php?p=58627#p58627
 
-With that said, would be possible to add to this patch series also the
-required changes on the DTSI/DTS file to facilitate testing this?
-Worst case you can just add those as RFC / DO NOT MERGE at the end of
-this series when you'll send a v2.
+How does it fail? I've repeatedly asked for dmesg outputs
+for working and non-working configurations.
 
-Francesco
-
+         M.
+-- 
+Jazz is not dead. It just smells funny...
 
