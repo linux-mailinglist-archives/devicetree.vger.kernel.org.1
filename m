@@ -1,166 +1,112 @@
-Return-Path: <devicetree+bounces-83517-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83518-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39D44928B99
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 17:24:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8634C928BBC
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 17:33:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D90B31F22A0D
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 15:24:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3A4941F2382C
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 15:33:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC5B616B725;
-	Fri,  5 Jul 2024 15:24:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24C0614B06B;
+	Fri,  5 Jul 2024 15:33:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="OL7Nxx1z"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="gtzYRb6W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D44C16C685;
-	Fri,  5 Jul 2024 15:24:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDBDD18AF4;
+	Fri,  5 Jul 2024 15:33:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720193065; cv=none; b=RqOBTlLnvP7JP8diuatmb9wmTNeh7/X4nw4Jdh29Qi6jAyiPEn6fbB2PvhiQxPKLG7kKV/wMaZHssojjoZZuK8LnoHExmMemZiHKDekGSRZ9yTb2cHfg///7XwyLZnBfTt651u7COQ90ESXRbF3+pBlgEO1k23pN+k9lUjg/OQM=
+	t=1720193604; cv=none; b=ON52AdsunB39Livn6fW2Zi9iXkJAmxrJsMaPeKJo/7GJh6miV0oeeQJG3hxcOORK6FbduGdivav3G7NwJZSkK4so+gonDxCV77C5022uzZDX2RwiiAWfzE2qolojuhcXP+2Od1nSH3qUu67/lADsNFe8FLyq7zoV1QvVfQM03m8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720193065; c=relaxed/simple;
-	bh=6msf+6zQ7jQp5WB6fG+2Y/R5/2ibEiQRwNrsG6fD0tM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YHKkLJATEXi/KyhkWp5VRZR/wR58TBGC/iYxcWs/Wy41iAIJuHQnCZ0NgzxLXcYztkceyYTeq2cclEjBfhprab0WEqzyDjy3g8fthyr3kYv6BGOx4jZJxogUUUg6sI3GpJKmqZxmQJxMWBdNCyA3v4XfMoTkEDD4d2cDyJLHfYc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=OL7Nxx1z; arc=none smtp.client-ip=217.70.183.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 8AFA7C0002;
-	Fri,  5 Jul 2024 15:24:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1720193061;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=VMVflziC1aehBJf4VTjlbQPH2LpM9ezvmYf2pbzh65s=;
-	b=OL7Nxx1zP1SzNXRZ9t2/CTWdNHOcU2FY1TxN46d4gqsX3w73Cd6cmMb8QZ9kQruPrACgHW
-	s9gwRa5IuDYTAOrumyqOY3AcvyGVad0Dxsx3rYgNxEfCcFuoM3kwiGgZlfmMR5PKfzkWYc
-	M033MIo+s/dr582KlrKDvYVlivF+SAw65HQrwnMD7gjLXsBv9xfjTpm04G2UfuruASPNOI
-	3iUSH8jkQGlgWIuUrBgAPn8B46zsKeKQFt+Ca6EcIlaXJ8zA1MFNmesoO0579VO5dOyRFc
-	+disElGQ8OvsMMuepTrwgL1AVoRMj0hh8BRY8MtKORL6TrjS1pMYhoznZ3W5DA==
-Message-ID: <6b5459fd-2873-4c26-b986-882413b8d95b@bootlin.com>
-Date: Fri, 5 Jul 2024 17:24:19 +0200
+	s=arc-20240116; t=1720193604; c=relaxed/simple;
+	bh=OWqU8ZNa1MY59Tpy97hjV0Bl/iQtxL0IG0IYOpW8W0Y=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=YZVbIGjCAEvk/SFNWcc0At1iHjeYRNL9JQYeuhXs0Z0tF+stRc0i7aOe06Qq3AhZIm7fqW93hiBZOgxa+g50RhfnH4S9rAkagymQ4XEafeIUCysVHoi5xPOFE6YV39E/RUCfd+Vl0z1/qXc5m19e+RVDIr3JJ4U+PfakpjBK2Qo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=gtzYRb6W; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4659odKn006945;
+	Fri, 5 Jul 2024 15:33:08 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=l6KgHAu3vGzP0I7lheGdGd
+	7iX4kpuMaTeLn06NcxnSI=; b=gtzYRb6WiVJdAUL274oVzanwEAoKvuwbo/03bl
+	fD4HJvmgrQBehgURuR/EMj3BbAS1juDG6403UC8FD456Z6L3ZE9r/zqPGDVkcvAK
+	gO74oociBw5/hldjwKs0ITWq6fuBFTQ8dPmwLU64O9AX/cReqOAQPGj+nZ7gQKlm
+	e4UEL61MqusdWEvh4lKl6HpBpsFJX/7CZFi3KBBf3+AidePNSGVU+6lgBe5CVzrC
+	YA8JtLQh9nmfNXf4FkMFV5oC02ymRs3c9Tsxlome1bIm2nZ/9NbzEevvVa7eyMQR
+	5XkPujdGuA5vWhTu4zxx+2T7LNvJ9vQoFWJF1TdqScl/xgRQ==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 405cg2d3kk-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 05 Jul 2024 15:33:08 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA03.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 465FX71G029517
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 5 Jul 2024 15:33:08 GMT
+Received: from hu-mojha-hyd.qualcomm.com (10.80.80.8) by
+ nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Fri, 5 Jul 2024 08:33:04 -0700
+From: Mukesh Ojha <quic_mojha@quicinc.com>
+To: <lee@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Mukesh Ojha <quic_mojha@quicinc.com>
+Subject: [PATCH 1/2] dt-bindings: mfd: qcom,tcsr: Add compatible for sa8775p
+Date: Fri, 5 Jul 2024 21:02:51 +0530
+Message-ID: <20240705153252.1571814-1-quic_mojha@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: iio: adc: sophgo,cv18xx-saradc.yaml:
- Add Sophgo SARADC binding documentation
-To: Conor Dooley <conor@kernel.org>
-Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen
- <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Chen Wang <unicorn_wang@outlook.com>,
- Inochi Amaoto <inochiama@outlook.com>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- =?UTF-8?Q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-References: <20240705-sg2002-adc-v2-0-83428c20a9b2@bootlin.com>
- <20240705-sg2002-adc-v2-1-83428c20a9b2@bootlin.com>
- <20240705-unaired-pesticide-4135eaa04212@spud>
-Content-Language: en-US
-From: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-In-Reply-To: <20240705-unaired-pesticide-4135eaa04212@spud>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-GND-Sasl: thomas.bonnefille@bootlin.com
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: um64UVA3MqxIQMwSHoMR5E_nv5p6Yy-3
+X-Proofpoint-ORIG-GUID: um64UVA3MqxIQMwSHoMR5E_nv5p6Yy-3
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-05_11,2024-07-05_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ adultscore=0 spamscore=0 mlxscore=0 bulkscore=0 mlxlogscore=885
+ malwarescore=0 priorityscore=1501 impostorscore=0 suspectscore=0
+ phishscore=0 clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2406140001 definitions=main-2407050112
 
+Document the compatible for sa8775p SoC.
 
+Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
+---
+ Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-On 7/5/24 5:01 PM, Conor Dooley wrote:
-> On Fri, Jul 05, 2024 at 03:42:23PM +0200, Thomas Bonnefille wrote:
->> The Sophgo SARADC is a Successive Approximation ADC that can be found in
->> the Sophgo SoC.
->>
->> Signed-off-by: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
->> ---
->>   .../bindings/iio/adc/sophgo,cv18xx-saradc.yaml     | 63 ++++++++++++++++++++++
->>   1 file changed, 63 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/iio/adc/sophgo,cv18xx-saradc.yaml b/Documentation/devicetree/bindings/iio/adc/sophgo,cv18xx-saradc.yaml
->> new file mode 100644
->> index 000000000000..31bd8ac6dfa5
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/iio/adc/sophgo,cv18xx-saradc.yaml
->> @@ -0,0 +1,63 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/iio/adc/sophgo,cv18xx-saradc.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title:
->> +  Sophgo CV18XX SoC series 3 channels Successive Approximation Analog to
->> +  Digital Converters
->> +
->> +maintainers:
->> +  - Thomas Bonnefille <thomas.bonnefille@bootlin.com>
->> +
->> +description:
->> +  Datasheet at https://github.com/sophgo/sophgo-doc/releases
->> +
->> +properties:
->> +  compatible:
->> +    oneOf:
->> +      - items:
->> +          - enum:
->> +              - sophgo,cv1800b-saradc
->> +          - const: sophgo,cv18xx-saradc
-> 
-> I don't think the fallback here makes sense. If there's other devices
-> with a compatible programming model added later, we can fall back to the
-> cv1800b.
-> 
+diff --git a/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml b/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
+index c6bd14ec5aa0..7d0b0b403150 100644
+--- a/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
++++ b/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
+@@ -21,6 +21,7 @@ properties:
+           - qcom,msm8998-tcsr
+           - qcom,qcm2290-tcsr
+           - qcom,qcs404-tcsr
++          - qcom,sa8775p-tcsr
+           - qcom,sc7180-tcsr
+           - qcom,sc7280-tcsr
+           - qcom,sc8280xp-tcsr
+-- 
+2.34.1
 
-Ok I'll do that, I wasn't sure if it was a good practice to fallback on 
-another SoC specific compatible.
-
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  interrupts:
->> +    maxItems: 1
->> +
->> +  clocks:
->> +    description:
->> +      SARADC will use the presence of this clock to determine if the controller
->> +      needs to be explicitly clocked by it (Active domain) or if it is part of
->> +      the No-Die Domain, along with the RTC, which does not require explicit
->> +      clocking.
-> 
-> What does "explicit clocking" mean? Is it clocked directly (or via
-> dividers) by a clock on the board or another source?
-> 
-
-It means that, if a clock is provided, the driver will work in "Active 
-Domain" and will use the clock generator of the SoC to get the right 
-clock signal.
-
-However if no clock is provided, the controller will work in "No-Die" 
-domain (Always On) and use the RTCSYS subsystem to get its clock signal.
-
-Indeed "explicitly clocked" may not be the right word to describe that, 
-maybe some thing like that is better :
-
-"SARADC will use the presence of this clock to determine if the 
-controller needs to use the clock generator to get its clock signal 
-(Active domain) or if it is part of the No-Die Domain, along with the 
-RTC, and does not require the clock generator."
-
-Regards,
-Thomas
 
