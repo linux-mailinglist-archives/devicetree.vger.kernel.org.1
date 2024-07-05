@@ -1,128 +1,241 @@
-Return-Path: <devicetree+bounces-83385-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83392-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E8BE92843B
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 10:55:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC25A92846D
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 11:02:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4FE54281E41
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 08:55:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D83731C23EC0
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 09:02:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDC9C145B35;
-	Fri,  5 Jul 2024 08:55:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B9E61474AE;
+	Fri,  5 Jul 2024 09:01:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PZzWgObx"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="XtH8lL1b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C29BC143887;
-	Fri,  5 Jul 2024 08:55:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AB5E1465A9;
+	Fri,  5 Jul 2024 09:01:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720169718; cv=none; b=uO0M16TINTV/0bV1DQfOqlLVoBJbn6ozZaEXX1s35we05jmI10xG8ytpxhx+tYAxGmsOmQ4jPow9m7l89ZxBuWff+W4WFfg8tCrLx41mWDPQT0Ntp7luIYNHnMG1kV7ArUmQ889klwdBhyMwWpSn+urmLHYFFLwL4rS4RAuATHs=
+	t=1720170087; cv=none; b=aP93+8ySzpduz3c4iqKy8kOHlY6bUAehkB6G6ePZDYrVgBuiduBqCEU/NyFUadDisc6DpdBonlfQvaoirAM5s7+pNH11qeMzigzWfmvZp97yE0N2MG0CVIqwLzG9KyyBteRVPG9zl990oxhacgItzzTe9nakdPoorvUIHcugyoU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720169718; c=relaxed/simple;
-	bh=KP8b7bq9PaVBCtI1nYv2y4hyKrMoNo/NQYFnmt6693A=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UtimPqYG0tsxHfVo3FeXNimGIjCwkVudJgkqJxDbi+4exe/pe9vMe+nKTxalZOWqMaoU3jDxdXzABsdV5KtTg8b+QZPlwM2G7/xaEE+c2x+od3RCoqiOOuUa6vJ7lG6YnN7G/OCjxmKIcQVqpFFZF15Ws8cFlqnwCKrfK/tAUxM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PZzWgObx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C1F2C116B1;
-	Fri,  5 Jul 2024 08:55:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720169718;
-	bh=KP8b7bq9PaVBCtI1nYv2y4hyKrMoNo/NQYFnmt6693A=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=PZzWgObx0FH+K+CI5qf2mhMrec+J8Gi2YpOl+Xpw9qYS2bu4959pCKdjNdK7CtlO3
-	 SBg6K4r3Gab28MlMi8ig4Wv1jNxbrT9xOt0TAgkKH5IPQNJefkoi4DV7QRsL3S7O4m
-	 soemNRUHSG0cn2b56vpeIMY8BXbkP5znc4GWRzMvIVhZJmW0hn4ngmAlHMx+noneyi
-	 105VDi0i++3L9uc/7sQbmi1vW7iMblBD1RekLfHiKP6IhMklu/6jNcirIDirnsdnUb
-	 cPxSmAhQDR5FoXmnF/n9eGOYZm4aFtz4SKpgLTYZ2tF3IDLCHemdKK+RzrLFqSku4g
-	 Tak4RsCoKYk9Q==
-Message-ID: <a2631ae1-7500-4422-bda9-01867ddcd069@kernel.org>
-Date: Fri, 5 Jul 2024 10:55:13 +0200
+	s=arc-20240116; t=1720170087; c=relaxed/simple;
+	bh=zShQJ2xaddQPUH0o5D/FiebnKdfM57McvAJECGZDgVU=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Zj/jIz6Janf2HRh4VTZ+tXDRKyDV54aSXDj0vTLoLmJ+WVSdPhM2k1mNXC3VVahsfpEeH9IA8//rtvyVAJa1px8lSYVMvr9RwpwUtABYbgB7O9P0LQsHJ0j4kkIe+ANOZkgypKrfV6g8ZiYevJEZD1RAfec6Q37TSu03UZndRuo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=XtH8lL1b; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4650sc0Y032627;
+	Fri, 5 Jul 2024 09:01:12 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=gVLD0PfTypd3x/2oUv8q80
+	Q3drogbSippc8/52aK+4M=; b=XtH8lL1bpfk3Wu/ry9SNZnXap83lAM7iw62cHJ
+	1IYNWUWBaZMkFMWEV5LmNfxEZya8RT1Ig7MNtvLBmtqnO4XimMjzrWx23SxLzxiy
+	Hx/FeC6Uqb+RTY0+Yd9noouP7vtlYCOgphWyjqJuGSuVfJUhzA2qF4r9WhUFzhUl
+	pIvnTksgkuIZPiV0gO13vao1xWrRiwErBP+DqhX7WEYRcDeVsFeDR9I7lvw1YlIY
+	H28ftqo5XX3tyzbTnngJk8yWRj2IZkYIR1waR8resSBqeAiK1a13JiULbrue2Zo4
+	3C79M6NLzSvzCymXZsquvvzCv8Cojmf4crWXwZXgFLc2tW0w==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 402abtwc3x-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 05 Jul 2024 09:01:12 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA03.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 46591AI5002658
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 5 Jul 2024 09:01:10 GMT
+Received: from jiegan-gv.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Fri, 5 Jul 2024 02:01:05 -0700
+From: Jie Gan <quic_jiegan@quicinc.com>
+To: Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Suzuki K Poulose
+	<suzuki.poulose@arm.com>,
+        Alexander Shishkin
+	<alexander.shishkin@linux.intel.com>,
+        Mike Leach <mike.leach@linaro.org>, "Rob Herring" <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        James Clark <james.clark@arm.com>
+CC: Jinlong Mao <quic_jinlmao@quicinc.com>, Leo Yan <leo.yan@linaro.org>,
+        <coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Tingwei Zhang
+	<quic_tingweiz@quicinc.com>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        "Tao
+ Zhang" <quic_taozha@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        "Song
+ Chai" <quic_songchai@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>
+Subject: [PATCH v2 0/4] Coresight: Add Coresight Control Unit driver
+Date: Fri, 5 Jul 2024 17:00:45 +0800
+Message-ID: <20240705090049.1656986-1-quic_jiegan@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: regulator: sprd,sc2731-regulator: convert to
- YAML
-To: Stanislav Jakubek <stano.jakubek@gmail.com>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Orson Zhai <orsonzhai@gmail.com>,
- Baolin Wang <baolin.wang@linux.alibaba.com>,
- Baolin Wang <baolin.wang7@gmail.com>, Chunyan Zhang <zhang.lyra@gmail.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <ZobxoobZvA8k3pyi@standask-GA-A55M-S2HP>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <ZobxoobZvA8k3pyi@standask-GA-A55M-S2HP>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: ymAvc8GBymTm_U0haFnAqBiqUnZr9yFO
+X-Proofpoint-ORIG-GUID: ymAvc8GBymTm_U0haFnAqBiqUnZr9yFO
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-05_05,2024-07-03_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0
+ priorityscore=1501 mlxscore=0 clxscore=1011 suspectscore=0 malwarescore=0
+ lowpriorityscore=0 phishscore=0 adultscore=0 spamscore=0 impostorscore=0
+ mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2406140001 definitions=main-2407050067
 
-On 04/07/2024 21:01, Stanislav Jakubek wrote:
-> Convert the Spreadtrum SC2731 regulator bindings to DT schema.
-> 
-> Change during conversion:
->   - switch compatible from sprd,sc27xx-regulator to sprd,sc2731-regulator,
->     same as the only in-tree user has done back in 2019 [1]
-> 
-> [1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/arch/arm64/boot/dts/sprd/sc2731.dtsi?h=v6.9&id=0419a75b1808dda225b17ba1509f195f23c0db88
-> 
-> Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
+The Coresight Control Unit(CCU) device hosts miscellaneous configuration
+registers to control various features related to TMC ETR device.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+The CCU device works as a helper device physically connected to the TMC ETR device.
+---------------------------------------------------------
+             |ETR0|             |ETR1|
+              . \                 / .
+              .  \               /  .
+              .   \             /   .
+              .    \           /    .
+---------------------------------------------------
+ETR0ATID0-ETR0ATID3     CCU     ETR1ATID0-ETR1ATID3
+---------------------------------------------------
+Each ETR has four ATID registers with 128 bits long in total.
+e.g. ETR0ATID0-ETR0ATID3 registers are used by ETR0 device.
 
-Best regards,
-Krzysztof
+Based on the trace id which is programed in CCU ATID register of
+specific ETR, trace data with that trace id can get into ETR's buffer
+while other trace data gets ignored. The number of CCU ATID registers
+depends on the number of defined TMC ETR devices. For example, two TMC
+ETR devices need eight ATID registers. ETR0 with ETR0ATID0-ETR0ATID3
+and ETR1 with ETR1ATID0-ETRATID3.
+
+The significant challenge in enabling the data filter function is how
+to collect the trace ID of the source device. The introduction of
+trace_id callback function addresses this challenge. The callback function
+collects trace ID of the device and return it directly. The trace ID will be
+stored in the structure called cs_sink_data and transmitted to helper
+and sink devices.
+
+The cs_sink_data structure is created to address how to transmit
+parameters needs by coresight_enable_path/coresight_disbale_path
+functions.
+
+Here is an example of the struct cs_sink_data:
+struct cs_sink_data {
+        struct perf_output_handle  *handle; //used by perf mode
+        struct coresight_device    *sink;   //used to retrieve atid_offset
+        u32                        traceid; //traceid needed by CCU
+};
+
+The atid_offset mentioned before is the offset to ATID register in CCU
+device.
+
+Enabling the source device will configure one bit in the ATID register based
+on its trace ID.
+Disabling the source devices will reset the bit in the AITD register
+based on its trace ID.
+
+Useage:
+Enable:
+STM device with trace ID 5 and ETR0 is activated.
+Bitmap before the enablement:
+ETR0ATID0:
+31..................543210
+==========================
+0000000000000000000000...0
+==========================
+
+Bitmap after the enablement:
+31..................543210
+==========================
+0000000000000...0000100000
+==========================
+
+The bit 5 of the ETR0ATID0 register is configured to 1 when enabling the
+STM device.
+
+Disable:
+STM device with trace ID 5 and ETR0 is activated.
+Bitmap before the disablement:
+ETR0ATID0:
+31................6543210
+=========================
+000000000010111...0100000
+=========================
+
+Bitmap after the disablement
+ETR0ATID0:
+31................6543210
+=========================
+000000000010111...0000000
+=========================
+
+The bit 5 of the ETR0ATID0 register is reset to 0 when disabling the STM
+device.
+
+Previous discussion for V1:
+
+https://lore.kernel.org/lkml/20240618072726.3767974-1-quic_jiegan@quicinc.com/T/#t
+
+V1->V2:
+1. Rename the device to Coresight Control Unit.
+2. Introduce the trace_id function pointer to address the challeng how to
+properly collect the trace ID of the device.
+3. Introduce a new way to define the qcom,ccu-atid-offset property in
+device tree.
+4. Disabling the filter function blocked on acquiring the ATID-offset,
+which will be addressed in a separate patch once it’s ready.
+
+Jie Gan (4):
+  Coresight: Add trace_id function to collect trace ID
+  dt-bindings: arm: Add binding document for Coresight Control Unit
+    device.
+  Coresight: Add Coresight Control Unit driver
+  arm64: dts: qcom: Add CCU and ETR nodes for SA8775p
+
+ .../bindings/arm/qcom,coresight-ccu.yaml      |  87 ++++++
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi         | 163 ++++++++++
+ drivers/hwtracing/coresight/Kconfig           |   6 +
+ drivers/hwtracing/coresight/Makefile          |   1 +
+ drivers/hwtracing/coresight/coresight-ccu.c   | 290 ++++++++++++++++++
+ drivers/hwtracing/coresight/coresight-ccu.h   |  18 ++
+ drivers/hwtracing/coresight/coresight-core.c  |  53 +++-
+ drivers/hwtracing/coresight/coresight-etb10.c |   3 +-
+ .../hwtracing/coresight/coresight-etm-perf.c  |  34 +-
+ .../coresight/coresight-etm3x-core.c          |  14 +
+ .../coresight/coresight-etm4x-core.c          |  13 +
+ drivers/hwtracing/coresight/coresight-priv.h  |  12 +-
+ drivers/hwtracing/coresight/coresight-stm.c   |  13 +
+ drivers/hwtracing/coresight/coresight-sysfs.c |  24 +-
+ .../hwtracing/coresight/coresight-tmc-etf.c   |   3 +-
+ .../hwtracing/coresight/coresight-tmc-etr.c   |   6 +-
+ drivers/hwtracing/coresight/coresight-tpda.c  |  13 +
+ drivers/hwtracing/coresight/coresight-trbe.c  |   4 +-
+ drivers/hwtracing/coresight/ultrasoc-smb.c    |   3 +-
+ include/linux/coresight.h                     |   4 +
+ 20 files changed, 739 insertions(+), 25 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/arm/qcom,coresight-ccu.yaml
+ create mode 100644 drivers/hwtracing/coresight/coresight-ccu.c
+ create mode 100644 drivers/hwtracing/coresight/coresight-ccu.h
+
+-- 
+2.34.1
 
 
