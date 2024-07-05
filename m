@@ -1,140 +1,122 @@
-Return-Path: <devicetree+bounces-83511-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83514-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18329928AE1
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 16:51:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 704E4928B4C
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 17:09:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 40E3D1C22C9B
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 14:51:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9CC5E1C20954
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 15:09:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D26A215FA60;
-	Fri,  5 Jul 2024 14:51:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2935149DE4;
+	Fri,  5 Jul 2024 15:09:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L57ffcZI"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="EREmVSRp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3F7B1BC43;
-	Fri,  5 Jul 2024 14:51:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D97FF14AA0;
+	Fri,  5 Jul 2024 15:09:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720191071; cv=none; b=TgkYvdOsSRkXHZs9vc+zkIVaEPX6Rudo42PcL8g3JrrrY04mz0XBWeogx3lXrMyAoS8UsJPxEisYCh4zMs1EAxXp7Xj/x+uPuyAnzTl9krAAnEVMBB8pojpVhdenvpCviNRYQUwpcJCX10JFIVERF5B8bLCu7axb+XjroO4mAQU=
+	t=1720192151; cv=none; b=keuatOkE87zqGwYBBuF0ElGK8LFAIG6kIvuzV7CsBXMy4Ub+55Uy8b+qq+ORQ8rW5ZD2e9+9qxYaamFVj+vP6BXoX21TcemjBmBIlS1mThW9t3lLRQmTZTbXC9uY1WeAWpgnq5DNqedw+9YUcdHIv5aHPtzkUx4DZo/WzkDH6SU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720191071; c=relaxed/simple;
-	bh=5aSZPBI+CT+PJ2YOau9hx8UcPEqP2KmBHY4e2Kku+os=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Y1MV++7RBB5qEnvaYdaoS/UQ/xHA4u0ZqeWvWaC0ca6Dwk/AxrlsVIMBdQzUkVmbUkjvMsxoJ9VVi31IHkdapdIcH3YQ8vV7WBOXJ2yxbcE6AflT+LKVDg5rsdsuPsMyNwYEcwsUoOguc/F4B4Mb0o2hdpFNHxR5rjyeVbHZ9KI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L57ffcZI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2BEA0C116B1;
-	Fri,  5 Jul 2024 14:51:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720191071;
-	bh=5aSZPBI+CT+PJ2YOau9hx8UcPEqP2KmBHY4e2Kku+os=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=L57ffcZIVNWj2dyoom1oWnhVPZELMhqCPZ9Ni+tfcZXD1RbnRZ60qK7XsEgUj8GUI
-	 yqS8qqdcQzcHm7jp/J7SkAsG6Hzn0xQGhzQMK64pryjq0zRiLT1MVaTCAT1d/ct54b
-	 0PYd0pkszhvNn+TI8cWi9PhxVW3XYuj83KQSthMbnMHJ/byZj+1JBjkXU8+QPEkCWX
-	 06nNDG0Xn1WXhjYtYxsUMes7zytNieNJRu//RAJgxiAahmE/lZOqNEEWQWuUmRz+zQ
-	 bML7/0Y1ZmsXcJGmAYz/m+uggNcIZh04F2jbBL5KnCgSi2oaGUd03jHepvlyQgkWb1
-	 4E7dkG8URec3A==
-Date: Fri, 5 Jul 2024 15:51:06 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Kamil =?iso-8859-1?Q?Hor=E1k_=282N=29?= <kamilh@axis.com>,
-	florian.fainelli@broadcom.com,
-	bcm-kernel-feedback-list@broadcom.com, hkallweit1@gmail.com,
-	linux@armlinux.org.uk, davem@davemloft.net, edumazet@google.com,
-	kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v10 3/4] dt-bindings: ethernet-phy: add optional brr-mode
- flag
-Message-ID: <20240705-curing-lisp-c10eccf74685@spud>
-References: <20240704140413.2797199-1-kamilh@axis.com>
- <20240704140413.2797199-4-kamilh@axis.com>
- <20240704-snitch-national-0ac33afdfb68@spud>
- <35d571bd-251d-45b5-9e4f-93c83d1a43c8@lunn.ch>
+	s=arc-20240116; t=1720192151; c=relaxed/simple;
+	bh=/P6ByaOds/j7kmt2Bjwz6sfg1aVVychv6LXelwiD/M0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bxYwiva8IH0pHqzvbi2/kOaq45LRLnkUD5TaUHsc4Yjfu9xcK9BjeqXkbo+1qAxwuFt4Jpk0eb+5gO8Nfgk7l6MU3hYLVGTXNvKeFZJWtDSEOPqImAfr0Rmli30nAt/HxkhDOQkOsy6MNFv2jxzd39AFZXYlSLqmjffQCoIajiM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=EREmVSRp; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id 64C98882D6;
+	Fri,  5 Jul 2024 17:09:07 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1720192148;
+	bh=jALVO3F6XaL3jTmJOTYpD+uupjSNfNsIznHlOfTwMlk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=EREmVSRpCyEgD9Oq2/7NM+8+uoL4XtnwKVF6afxXc4ctT3V/EWAHhLkqY4O6hUAqa
+	 eZ0nkwO7ivwB289/60cvRIEI4LTNbyJQ37vpBl/nvVudsPtnea09cCZwnoeBCO3A9G
+	 55oaV4oV4ZTHVgWopdOqYC0p04PWZOKRH7e4rKjrwb5G0PfnMQg7YtpoIMV2XSHfOW
+	 dgx+M69HBOiUj8t+wuDqOAEjLOMhlv9XvU6DPEKQGAp0pcItmiaROZjVBz6STi0yMy
+	 ylTSuE7ndK07BLZlxvv3qJ1/xKBcSi8R6Gfc44Qz/5BrttCLQL13e6FH+gYNUlfdYZ
+	 Psr9+smKvIXvQ==
+Message-ID: <13828cf9-4a93-45a5-b3a3-542ee9ec056b@denx.de>
+Date: Fri, 5 Jul 2024 16:52:23 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="AJ85VJgRFD4qhchh"
-Content-Disposition: inline
-In-Reply-To: <35d571bd-251d-45b5-9e4f-93c83d1a43c8@lunn.ch>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] iio: light: ltrf216a: Drop undocumented ltr,ltrf216a
+ compatible string
+To: Shreeya Patel <shreeya.patel@collabora.com>
+Cc: linux-iio@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+ Jonathan Cameron <jic23@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+ kernel@collabora.com
+References: <20240705095047.90558-1-marex@denx.de>
+ <3b2ca0-6687ce00-3-4dab7280@52083650>
+Content-Language: en-US
+From: Marek Vasut <marex@denx.de>
+In-Reply-To: <3b2ca0-6687ce00-3-4dab7280@52083650>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
+On 7/5/24 12:42 PM, Shreeya Patel wrote:
+> On Friday, July 05, 2024 15:20 IST, Marek Vasut <marex@denx.de> wrote:
+> 
+>> The "ltr,ltrf216a" compatible string is not documented in DT binding
+>> document, remove it.
+>>
+>> Signed-off-by: Marek Vasut <marex@denx.de>
+>> ---
+>> Cc: Conor Dooley <conor+dt@kernel.org>
+>> Cc: Jonathan Cameron <jic23@kernel.org>
+>> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+>> Cc: Lars-Peter Clausen <lars@metafoo.de>
+>> Cc: Marek Vasut <marex@denx.de>
+>> Cc: Rob Herring <robh@kernel.org>
+>> Cc: Shreeya Patel <shreeya.patel@collabora.com>
+>> Cc: devicetree@vger.kernel.org
+>> Cc: linux-iio@vger.kernel.org
+>> ---
+>>   drivers/iio/light/ltrf216a.c | 1 -
+>>   1 file changed, 1 deletion(-)
+>>
+>> diff --git a/drivers/iio/light/ltrf216a.c b/drivers/iio/light/ltrf216a.c
+>> index 68dc48420a886..78fc910fcb18c 100644
+>> --- a/drivers/iio/light/ltrf216a.c
+>> +++ b/drivers/iio/light/ltrf216a.c
+>> @@ -528,7 +528,6 @@ MODULE_DEVICE_TABLE(i2c, ltrf216a_id);
+>>   
+>>   static const struct of_device_id ltrf216a_of_match[] = {
+>>   	{ .compatible = "liteon,ltrf216a" },
+>> -	{ .compatible = "ltr,ltrf216a" },
+>>   	{}
+> 
+> This compatible string with a different vendor prefix was added for a specific reason.
+> Please see the commit message of the following patch :-
+> https://lore.kernel.org/all/20220511094024.175994-2-shreeya.patel@collabora.com/
+> 
+> We were very well aware that not documenting this was going to generate a warning so
+> we tried to fix that with a deprecated tag but it was NAKd by Rob. What we understood
+> from his last message was that it wasn't necessary to fix the DT warning.
 
---AJ85VJgRFD4qhchh
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+ From what I read in the aforementioned discussion thread, it seems Rob 
+was very much opposed to this compatible string, so this shouldn't have 
+gone in in the first place.
 
-On Thu, Jul 04, 2024 at 11:11:41PM +0200, Andrew Lunn wrote:
-> > > ---
-> > >  Documentation/devicetree/bindings/net/ethernet-phy.yaml | 8 ++++++++
-> > >  1 file changed, 8 insertions(+)
-> > >=20
-> > > diff --git a/Documentation/devicetree/bindings/net/ethernet-phy.yaml =
-b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-> > > index 8fb2a6ee7e5b..349ae72ebf42 100644
-> > > --- a/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-> > > +++ b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-> > > @@ -93,6 +93,14 @@ properties:
-> > >        the turn around line low at end of the control phase of the
-> > >        MDIO transaction.
-> > > =20
-> > > +  brr-mode:
-> > > +    $ref: /schemas/types.yaml#/definitions/flag
-> > > +    description:
-> > > +      If set, indicates the network cable interface is alternative o=
-ne as
-
-nit: an alternative
-
-> > > +      defined in the BroadR-Reach link mode specification under 1BR-=
-100 and
-> > > +      1BR-10 names. The driver needs to configure the PHY to operate=
- in
-> > > +      BroadR-Reach mode.
-> >=20
-> > I find this second sentence unclear. Does the driver need to do
-> > configure the phy because this mode is not enabled by default or because
-> > the device will not work outside of this mode.
->=20
-> BroadR-Reach uses one pair. Standard 10/100Mbps ethernet needs 2 pair,
-> and 1G needs 4 pair. So any attempt to use standard 10/100/1G is going
-> to fail, the socket/plug and cable just don't work for anything other
-> than BroadR-Reach.
->=20
-> As far as i understand it, the PHY could be strapped into BroadR-Reach
-> mode, but there is no guarantee it is, so we should also program it to
-> BroadR-Reach mode if this property is present.
-
-Right, I guess for people that want brr-mode they'll probably understand
-that and it's just unclear to me as I don't :) The nitpicking side of my
-brain would like that last sentence reworded to "The PHY must be
-configured to operate in BroadR-Reach mode by software", mostly cos the
-word "driver" assumes a particular model for the OS, but it's not really
-a big deal.
-
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
---AJ85VJgRFD4qhchh
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZogIVgAKCRB4tDGHoIJi
-0sESAP9FCOQKHHPEvePmpnAhGYkJLl8a8v/8qnk251JehCIpaAEA/UJDDCiH5KPQ
-TvAbQKLoguD+74GG4gOtvSglYhJbcwc=
-=dWlq
------END PGP SIGNATURE-----
-
---AJ85VJgRFD4qhchh--
+But it did ... so the question is, what now ?
 
