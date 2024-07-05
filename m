@@ -1,66 +1,85 @@
-Return-Path: <devicetree+bounces-83551-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83552-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81FD0928F01
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 23:54:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1C9A928F22
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 00:01:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3E094284777
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 21:54:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2BF681F23C6E
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 22:01:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 251C5145A1E;
-	Fri,  5 Jul 2024 21:54:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE45C144D11;
+	Fri,  5 Jul 2024 22:01:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="FFIQp4hI"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MJTUUPVn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E7D21C693
-	for <devicetree@vger.kernel.org>; Fri,  5 Jul 2024 21:54:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52D7613C904;
+	Fri,  5 Jul 2024 22:01:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720216458; cv=none; b=MWM6dGSHf8YhFaZpgHbTJ5V9MgyqVDAg52UDHCPFnWuLwvutrFwJdx4Xnw2j65LMGcfNb3VzCxvuURIczTRheeaP4AHuk67NscEOyK9wYDh8jBzk01yOVMt8WS85EIaq313vBk0yAU37CbxTrKY3gEfRnRCknakvQyU0mI4LcaQ=
+	t=1720216896; cv=none; b=Cej8cm1zkmmjFYIu0PFUJhmMjbaEpCAL9GSOPmQ6gm1Bqq7HgjzenJK2R/GFFQzrZF6q23Jp65XgQ/p6flA65BnZJFGXgSEcItzLsEOF5n5zCzFM4qPILEccAAXTEbkHa04mbRPPvVsy4W/X8xNnyjPgiLPVnxFDiuZxz/K8BZ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720216458; c=relaxed/simple;
-	bh=mvGO5+L8NVPRI123CvvN3+O/z9m3rRB2q4EXwrlx1ro=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=V6UebH0wp+P08Da3+wxhZkHaOZT+ngsQuKfg0E9ESdBfRkJScr1c3hP28h3HIAneQQpQ6JVFREJOGKcVKluPsiEFKgntlNY5aKTFdOADXgp0uLTdUzYTyEiD5JY/6pmiof2fj0Xmvi72Lu53f6LeZsNvwnfkB+2jElQzwTFlbjc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=FFIQp4hI; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 6D1C1881AD;
-	Fri,  5 Jul 2024 23:54:14 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1720216454;
-	bh=sI2KNZ5kzxkVHD9MHvnScZHh0Hc1IXE5TYPHvTMq8Oc=;
-	h=From:To:Cc:Subject:Date:From;
-	b=FFIQp4hIdo3P0YbeKbePAxwiT6fvuU8gmHZ4fPgpQWVI0vYbLMRW1tMUTqWKdc0Ac
-	 4S8SyiHMcGGtjVsCPBUjkTYNcX3R+ZGGSCBtmBA6e0N6aDUlCwuuc5sWNgcyO9UON5
-	 VF3PytyghkUSuOm+tZjXeN0a54VcVTzrLyZ287B0M5Gzc5cPPk4GLUIiBV8+QGzHZm
-	 VwyTFT0EhCO6VSIpCbneXAiPubIYItUByvZyLNNWZOubkfal4dz557oc6tNUBUzKA6
-	 UncqC8o2SXKKQwAIhRNVylFx/C6SoQpKf8Lu71uPU/FAg48NoaJ9lo5WQEwuyNkabv
-	 UsYKTN/jdXcrg==
-From: Marek Vasut <marex@denx.de>
-To: linux-arm-kernel@lists.infradead.org
-Cc: kernel@dh-electronics.com,
-	Marek Vasut <marex@denx.de>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Christophe Roullier <christophe.roullier@foss.st.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1720216896; c=relaxed/simple;
+	bh=SAuIWm3wPtG2dnwpUNYqAR/1tQpz+ysEG2E2wedoVow=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=BNXQP+2eeVVBLmu6Dz+rIN7XX5+62SvM8anJm0h9nlUhtauradeJJ2AI1UA4DuQTCXDay6BRsLtw3UsnaFP0VMXFdkAoSBa0Yfh9hi3XKCJcqAP8aYgBe4OP211FdCLr+SSPsmhlajnj9Y10BBgk3o/l2P4n8sEjSxaoBOkNAW0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MJTUUPVn; arc=none smtp.client-ip=209.85.221.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-367a464e200so859270f8f.2;
+        Fri, 05 Jul 2024 15:01:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1720216894; x=1720821694; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=l9lFkgeeclSskF6UcXnmfoFAFXtci4Vlps2yKhXYf0E=;
+        b=MJTUUPVnpgVLFPoFU6FbGcIOYVzBtTWotzR03ftlcV0ud2mS95kCMQTZt4Do2ZySCP
+         6iZQ6HX/hxsU1AzIgExHBpsrK2WMQnmzRVEEnZNEBYdC4qiwYn9HtJYCm0YRsOsIIZsw
+         B/fi3Tq4+LIBpw7HO6l/aVCtM3I7PMPy6kT417Fvjm9zDZ+i2tA5xhIvBilumOw9mQNy
+         UoOi7x9Xermve73sNGKBOdsYaDUKXtAhKAsKOeXT79mXNxOqU81FlajduF8Ydaa58ZcU
+         wq9X88kUT42JK0Tofb8mvjDHkP64/yg2EyeGiKR6muJ/1/ZM+NtwXOXlo8EmRXhQQx8p
+         6IuA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720216894; x=1720821694;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=l9lFkgeeclSskF6UcXnmfoFAFXtci4Vlps2yKhXYf0E=;
+        b=qxPnsX8iDeyUTNchkAd5qP+QuhssOnp4OANb5kqVyQ0qqDagyOiPXXqESM2z3iQRtb
+         KDaRUXb3ERK/K2dChp+6CAajUqYQNcd7eLMF0mUBigNEve3QdhPW4vRvnfVmzl2YwvWa
+         2HRMUZdn+wcVRGOIMBgpfSYCrTnEYvf0RQtYr/5NeGZ1xZ9hnRO0S9z8AW2KzhmOnUxz
+         ZnfZplb2r579qiWVrI/YwklhC92FS+T3/NPoxJ9iDXDPylJXfz1n3FPyavRoAKrI8coR
+         /H9btGKudc78/BexcWLN6WK9K8dPuEgivHxAWFNUytGlE7Ou2OWnZ+TOXn/Eoo8Qov1T
+         7usw==
+X-Forwarded-Encrypted: i=1; AJvYcCVt4nKJMBSovijQVeDaSlckQfw/WvRH0PvDA1UrOW7iCFhtW3YNn5hGtdEmSlR2UaWdHKw6asAtlHpvHn+WjN6+F3b7PQt/tXkdT5krqAnb4oVznvDNagVkBhwZBPSD8pJQiiZst1wHKP4DL/drvip0xwcXDBWaEawbgjGsXcVWSVFizg==
+X-Gm-Message-State: AOJu0Yw5uldb1wPO7ebHIWzs3VL2xl3obnINvgITGKj5kfGtM08zUbfC
+	KN0Y591sP8XotuD6r1FoyF5rog/ffnllmTU98MlSeUTFGfFUE9P2
+X-Google-Smtp-Source: AGHT+IFY+m4FLaNedzQANSY7YrWfKtoOsSmG4g8tV814E+53QEEAPkP/6sYGPWlb/SwEJ53Qal1z1w==
+X-Received: by 2002:adf:eeca:0:b0:362:d875:6dab with SMTP id ffacd0b85a97d-3679dd2b1b2mr3949311f8f.25.1720216893156;
+        Fri, 05 Jul 2024 15:01:33 -0700 (PDT)
+Received: from localhost.localdomain ([2a10:d582:37c5:0:7569:beb6:ad56:8719])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4264a2fc9besm75443385e9.43.2024.07.05.15.01.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 05 Jul 2024 15:01:32 -0700 (PDT)
+From: Mudit Sharma <muditsharma.info@gmail.com>
+To: jic23@kernel.org,
+	lars@metafoo.de,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	robh@kernel.org
+Cc: Mudit Sharma <muditsharma.info@gmail.com>,
+	linux-kernel@vger.kernel.org,
+	mazziesaccount@gmail.com,
+	linux-iio@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com
-Subject: [PATCH] ARM: dts: stm32: Describe PHY LEDs in DH STM32MP13xx DHCOR DHSBC board DT
-Date: Fri,  5 Jul 2024 23:53:50 +0200
-Message-ID: <20240705215402.257070-1-marex@denx.de>
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v7 1/2] dt-bindings: iio: light: ROHM BH1745
+Date: Fri,  5 Jul 2024 22:59:07 +0100
+Message-ID: <20240705220018.414771-1-muditsharma.info@gmail.com>
 X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -69,87 +88,89 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
 
-The RTL8211 PHY on DH STM32MP13xx DHCOR DHSBC carrier board supports HW
-LED offload, the LEDs can be configured on link at 10/100/1000 line rate
-and on RXTX activity. There are two PHYs on this board, each only has two
-out of three LEDs connected to the PHY LED outputs. Describe this hardware
-configuration in DT.
+Add ROHM BH1745 - 4 channel I2C colour sensor's dt-bindings.
 
-Signed-off-by: Marek Vasut <marex@denx.de>
+Signed-off-by: Mudit Sharma <muditsharma.info@gmail.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
-Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc: Christophe Roullier <christophe.roullier@foss.st.com>
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
-Cc: Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org
-Cc: kernel@dh-electronics.com
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-stm32@st-md-mailman.stormreply.com
----
- .../boot/dts/st/stm32mp135f-dhcor-dhsbc.dts   | 38 +++++++++++++++++++
- 1 file changed, 38 insertions(+)
+v6->v7:
+- no change
+v5->v6:
+- no change
+v4->v5:
+- add power supply info
+v3->v4:
+- no changes
+v2->v3:
+- move 'additionalproperties' after 'required' block
+- remove block style indicator '|' from description
+v1->v2:
+- fix yaml issue: make `maintainers` a list
 
-diff --git a/arch/arm/boot/dts/st/stm32mp135f-dhcor-dhsbc.dts b/arch/arm/boot/dts/st/stm32mp135f-dhcor-dhsbc.dts
-index 1b916c419e8e2..c80a6ecdb47a6 100644
---- a/arch/arm/boot/dts/st/stm32mp135f-dhcor-dhsbc.dts
-+++ b/arch/arm/boot/dts/st/stm32mp135f-dhcor-dhsbc.dts
-@@ -100,6 +100,25 @@ ethphy1: ethernet-phy@1 {
- 			reset-assert-us = <15000>;
- 			reset-deassert-us = <55000>;
- 			reset-gpios = <&gpioa 11 GPIO_ACTIVE_LOW>;
+ .../bindings/iio/light/rohm,bh1745.yaml       | 53 +++++++++++++++++++
+ 1 file changed, 53 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/light/rohm,bh1745.yaml
+
+diff --git a/Documentation/devicetree/bindings/iio/light/rohm,bh1745.yaml b/Documentation/devicetree/bindings/iio/light/rohm,bh1745.yaml
+new file mode 100644
+index 000000000000..44896795c67e
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/light/rohm,bh1745.yaml
+@@ -0,0 +1,53 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/light/rohm,bh1745.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+			leds {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
++title: ROHM BH1745 colour sensor
 +
-+				led@0 {
-+					reg = <0>;
-+					color = <LED_COLOR_ID_GREEN>;
-+					function = LED_FUNCTION_WAN;
-+					linux,default-trigger = "netdev";
-+				};
++maintainers:
++  - Mudit Sharma <muditsharma.info@gmail.com>
 +
-+				led@1 {
-+					reg = <1>;
-+					color = <LED_COLOR_ID_YELLOW>;
-+					function = LED_FUNCTION_WAN;
-+					linux,default-trigger = "netdev";
-+				};
-+			};
- 		};
- 	};
- };
-@@ -130,6 +149,25 @@ ethphy2: ethernet-phy@1 {
- 			reset-assert-us = <15000>;
- 			reset-deassert-us = <55000>;
- 			reset-gpios = <&gpiog 8 GPIO_ACTIVE_LOW>;
++description:
++  BH1745 is an I2C colour sensor with red, green, blue and clear
++  channels. It has a programmable active low interrupt pin.
++  Interrupt occurs when the signal from the selected interrupt
++  source channel crosses set interrupt threshold high/low level.
 +
-+			leds {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
++properties:
++  compatible:
++    const: rohm,bh1745
 +
-+				led@0 {
-+					reg = <0>;
-+					color = <LED_COLOR_ID_GREEN>;
-+					function = LED_FUNCTION_LAN;
-+					linux,default-trigger = "netdev";
-+				};
++  reg:
++    maxItems: 1
 +
-+				led@1 {
-+					reg = <1>;
-+					color = <LED_COLOR_ID_YELLOW>;
-+					function = LED_FUNCTION_LAN;
-+					linux,default-trigger = "netdev";
-+				};
-+			};
- 		};
- 	};
- };
++  interrupts:
++    maxItems: 1
++
++  vdd-supply: true
++
++required:
++  - compatible
++  - reg
++  - vdd-supply
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        colour-sensor@38 {
++            compatible = "rohm,bh1745";
++            reg = <0x38>;
++            interrupt-parent = <&gpio>;
++            interrupts = <19 IRQ_TYPE_LEVEL_LOW>;
++            vdd-supply = <&vdd>;
++        };
++    };
++
++...
 -- 
 2.43.0
 
