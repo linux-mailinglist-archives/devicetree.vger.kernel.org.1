@@ -1,75 +1,76 @@
-Return-Path: <devicetree+bounces-83404-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83405-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2D3C9284BB
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 11:08:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 611329284C0
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 11:09:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C650D1C24FEA
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 09:08:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 16EE4286D5F
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 09:09:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 728C71474D7;
-	Fri,  5 Jul 2024 09:07:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07B0C148304;
+	Fri,  5 Jul 2024 09:08:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JLMcxbCR"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pQJeXI//"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C3CC1474C5
-	for <devicetree@vger.kernel.org>; Fri,  5 Jul 2024 09:07:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79D7B1474A7
+	for <devicetree@vger.kernel.org>; Fri,  5 Jul 2024 09:08:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720170448; cv=none; b=Covcepxjr2jp0ROkSParmvZuo4kX37RXPAy96Pw00lRvTgGiEizTITmKwl/4JtDGpxmFy0AFNieMGPalc34ohBWV2XF3WPK6v9+qZilTdlEG/ouFrWuX6t+h0dCvpX0CV9Mso9LtccUTx7qyp52wPjPB3rkiVJdLrCgQPWZCa4Y=
+	t=1720170507; cv=none; b=Xft4mAA/EU0gLSifvh7/I0nbeU7mNRqzdWneGGAxEqJ2Py2tyfn5xF7ZEgiJXP9u5YiuK+EZscb6wMjvdqqFkoCrIR4lvPjoYVXFUj28ZC6D3aeYrK+9hcwP2snZTWDDESLHaoUtK0+OEx34Li0kc7lr3TiJsuqRueMB906OQ1Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720170448; c=relaxed/simple;
-	bh=p2YlsrYGFGe/umkJI/1dvCDsxjnyG63634lPFW0Im8k=;
+	s=arc-20240116; t=1720170507; c=relaxed/simple;
+	bh=Q6CV+cKV3vfp1WIWPz496ePmPxh2p3vMQu3u75CY6A4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QSCJH6nWtF7LjvrjdV9ufgQhrwoCe5IskDh0sM1d1SKsmgixheOYizPFbQxMAvh2qH9GZbeMO2abPahDwg0rlei1e6LXpQRB0B7XNxhIsCpfbKyyvHIuxdNpeIZCcmx5mr/tPqHtQLFq4dHoMqNu89g2jd7yrV3hAHGsholuXiM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JLMcxbCR; arc=none smtp.client-ip=209.85.221.44
+	 In-Reply-To:Content-Type; b=iRZljK1vvXLnoBSPpYqG7Zugu2QkRCIcTTfFid9oZSmU8NUvC+Ae++tFjp4yUzgbdkBUalGFKxP29Y1TlzI4g3KN5XNaF22R9VXgm0pOjK2epJ8rX/jbSvkKn+znvScs4dAEK0arOjUl2k/+TP5HUOpIpTfshpypv6MA0H957IY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pQJeXI//; arc=none smtp.client-ip=209.85.221.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-367aa05bf9dso265153f8f.3
-        for <devicetree@vger.kernel.org>; Fri, 05 Jul 2024 02:07:26 -0700 (PDT)
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-36796a9b636so1043207f8f.2
+        for <devicetree@vger.kernel.org>; Fri, 05 Jul 2024 02:08:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1720170445; x=1720775245; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1720170504; x=1720775304; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=s7+f4bN9IA3GtOkD93O0fqU7xnjj0JuofASwj6krZME=;
-        b=JLMcxbCRc3f+KJ/m/+43+NcJ/ZxhttyLS4yv0r1N6tb3ptOPscq7G9pyM/h/+KlXEQ
-         I5u7ZR5prlgaddMouBMzZ/oNA49/EICfETXHXvy2pah2iJSWVtaGz/jzZtA5l/FI9F71
-         INmUezdoNa86waIfmCViVPzGZFK2923cjD34ouCClYlxTHw2cqBhV9eDov72xw2W8oEJ
-         F4mneK3SUOJcIrUcqnQfJIOHUhZesu9GXmni2E3rXkSdGvGrty05g2hWkJ0zSEcdLjYp
-         NMNH6onikYgAyWaikITSU7EIE7PIwXrCojWmq6A05Ul43hO9KdJysCAwvZWEIUxlpAx5
-         jmeQ==
+        bh=03q+yOKYHARHGbY5lKzGA8asSxn/tzdSW6dNG422NKQ=;
+        b=pQJeXI//w91fJE92JSkMFaRxZEraW1TNoDd2onq9/MVokfBOG/Lo6CfyZcL6/HMjQ1
+         qpJeibYtzXhWzzpYikAsltOShJLpXQUx+ME2/YZzSnYuNd+7WBpm7p3ojYzEnIeA+Juh
+         8pprS+yD+o1OI5i3W7hwjuWhE1GDdMThLMM+ZMPbMPAQwzogmyowCfXoS9XQ33xUpL3r
+         PMDYeueMx+jTpzY5lcLEpD0ZF1dDuVBTZ6KSIxka7yOpuFp7x75tLKy1G3ZNkfbqEEn1
+         7ddTSu5ryXU3p9QBRkYzcDT7UGkGMWeyH+E1ko6/yneb4XKYzJ2g9Nv9phvwzAa/wyaj
+         F3vw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720170445; x=1720775245;
+        d=1e100.net; s=20230601; t=1720170504; x=1720775304;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=s7+f4bN9IA3GtOkD93O0fqU7xnjj0JuofASwj6krZME=;
-        b=Kz1ffr4POx47UH2h02U+7gOuYXEag8yZi8BHK5fq+gD+35Ibm0b0LPzulKt9C84SNV
-         VP11clAH7p26D2atZR9VMvInVTTGIYObQRnhkOZ0qo6QwHdCkv2hHaLG+MF7OF35EIFF
-         1yf0wyZN8CDMQaBh8lJDrHcDSW/EI+LzOCruIg8M8cTIBhWrIItdTP+gXYCHwLgKa3MU
-         ZSCUkTcMBxHXudqGiQdHImETwHVxlFB6HEcDRXGoagUeIRbA027dkGKvDOK52tP+Kut+
-         odAfJZGbDEL7olF1we5RqRpob5sPi5KCq/71AKgYLJSU2a4iKOUjEfpO4i8jCjqjV/2+
-         4gzg==
-X-Forwarded-Encrypted: i=1; AJvYcCX5lgM0IVtvZkmhoGeC0+ploxf4lwxmCgO2+xroeMlvnog3Cx3yzB2I6TAgq1KrphXgKpMh0Qp1tJIHkNMpFsv0n51AF5aJaUWZpw==
-X-Gm-Message-State: AOJu0Yyyt8KS2Y6IOf/NzRVij56gCskSzDe7AuGv4+2RbSZdG1Dv4VoE
-	LfQ77t3zcuPciLcy44CbKaQrbW4xF2ourzXuokl10e7uN4QPTadfL3W/4SWjwAo=
-X-Google-Smtp-Source: AGHT+IFcutVu2ekAp7fLPXcXazDy+13qbDBe2jaFzTw/7WA/dC1t2iWx+iFoJItONpfBMX1C8NWkYA==
-X-Received: by 2002:adf:ff83:0:b0:367:4d9d:568b with SMTP id ffacd0b85a97d-3679de96b24mr2849650f8f.68.1720170444676;
-        Fri, 05 Jul 2024 02:07:24 -0700 (PDT)
+        bh=03q+yOKYHARHGbY5lKzGA8asSxn/tzdSW6dNG422NKQ=;
+        b=pjm4zP/Yz1mawNpLZdco2z9K/2k79k9OAlwYezAGQTlc64170kytE8aw/z/D6GGq0A
+         Nqds9sChU2WI0VlfitNNAskK6OucDiUkBsDzMBMss01Kr9AqWeZsoc8G+Q10cpM5Jm0J
+         yWJAjDpszRDZFcvD3gf4wzldU1oWmszC4LUxnYImQeCRgrS46FJRtVJ2v9Oke3xdIHYb
+         fMqOtp+XTc/sGw4ZUJ6tqkvEySaOVNO8mP+0FEk4ypsAII3uwkHxVK/r9gnQuuGz+upO
+         qTyrBqWCpEPX7XlRDG3RZI2jZ2dkEGEf6L9y5ibaOcYPkKW1WunIA6tJIqRe2Wj1hqbn
+         ZC2A==
+X-Forwarded-Encrypted: i=1; AJvYcCUhAq1PxmrlbPtGF3u2Iq2DbblBDEZVgEsbUWaf7pPMQBhQpXveeLmMay18l5YenFnPI2VkLowgi2IlBAiCuCP007ogNfAVQYvQwA==
+X-Gm-Message-State: AOJu0YwMN1YSdmM55FjY/IOG5snU7feksmbvmJkTuj78Qo83O3+XU0Pe
+	km2pG3Z0QrvovCGwVZgB6SXHiMdA2jh1zoYm6eKsYz/OeP+mSFbA+eoVpruYiuKb4pOxq5o2O2v
+	4
+X-Google-Smtp-Source: AGHT+IFkKshORuwAmsZnn8xxofp9a6fcJtaxQLVFg8WAgCFiqFkB3N2AvjI0Q+cJPc7zo1sInebzog==
+X-Received: by 2002:adf:ed52:0:b0:367:96a0:c4b7 with SMTP id ffacd0b85a97d-3679dd73e11mr2952668f8f.62.1720170503963;
+        Fri, 05 Jul 2024 02:08:23 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.137])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-367900fd1e5sm6924021f8f.63.2024.07.05.02.07.23
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-36788e37b53sm8830126f8f.45.2024.07.05.02.08.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 05 Jul 2024 02:07:24 -0700 (PDT)
-Message-ID: <5f7cf9e4-cf1c-41d1-8985-3bcf1d943f08@linaro.org>
-Date: Fri, 5 Jul 2024 11:07:22 +0200
+        Fri, 05 Jul 2024 02:08:23 -0700 (PDT)
+Message-ID: <d25c2dbb-f862-4f06-acb7-a3e7ebe954db@linaro.org>
+Date: Fri, 5 Jul 2024 11:08:18 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,8 +78,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/4] dt-bindings: arm: Add binding document for
- Coresight Control Unit device.
+Subject: Re: [PATCH v2 4/4] arm64: dts: qcom: Add CCU and ETR nodes for
+ SA8775p
 To: Jie Gan <quic_jiegan@quicinc.com>,
  Mathieu Poirier <mathieu.poirier@linaro.org>,
  Suzuki K Poulose <suzuki.poulose@arm.com>,
@@ -94,7 +95,7 @@ Cc: Jinlong Mao <quic_jinlmao@quicinc.com>, Leo Yan <leo.yan@linaro.org>,
  Tao Zhang <quic_taozha@quicinc.com>, Trilok Soni <quic_tsoni@quicinc.com>,
  Song Chai <quic_songchai@quicinc.com>, linux-arm-msm@vger.kernel.org
 References: <20240705090049.1656986-1-quic_jiegan@quicinc.com>
- <20240705090049.1656986-3-quic_jiegan@quicinc.com>
+ <20240705090049.1656986-5-quic_jiegan@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -141,137 +142,35 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240705090049.1656986-3-quic_jiegan@quicinc.com>
+In-Reply-To: <20240705090049.1656986-5-quic_jiegan@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
 On 05/07/2024 11:00, Jie Gan wrote:
-> Add binding document for Coresight Control Unit device.
-
-<form letter>
-Please use scripts/get_maintainers.pl to get a list of necessary people
-and lists to CC (and consider --no-git-fallback argument). It might
-happen, that command when run on an older kernel, gives you outdated
-entries. Therefore please be sure you base your patches on recent Linux
-kernel.
-
-Tools like b4 or scripts/get_maintainer.pl provide you proper list of
-people, so fix your workflow. Tools might also fail if you work on some
-ancient tree (don't, instead use mainline) or work on fork of kernel
-(don't, instead use mainline). Just use b4 and everything should be
-fine, although remember about `b4 prep --auto-to-cc` if you added new
-patches to the patchset.
-</form letter>
-
-Or stop developing on some old tree. It's some sort of weird pattern in
-entire Qualcomm Coresight - everything developed on old kernels.
-
-You must work on latest mainline or maintainer or linux-next tree, not
-some old Qualcomm tree. Your v5.15, v5.19, v6.4 or v6.8 or whatever you
-have there: BIG NOPE.
-
+> Add CCU and ETR device tree nodes to enable related functions.
 > 
 > Signed-off-by: Jie Gan <quic_jiegan@quicinc.com>
 > ---
-
-Subject: it never ends with full stop.
-
-A nit, subject: drop second/last, redundant "bindings". The
-"dt-bindings" prefix is already stating that these are bindings.
-See also:
-https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
-
->  .../bindings/arm/qcom,coresight-ccu.yaml      | 87 +++++++++++++++++++
->  1 file changed, 87 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/arm/qcom,coresight-ccu.yaml
+>  arch/arm64/boot/dts/qcom/sa8775p.dtsi | 163 ++++++++++++++++++++++++++
+>  1 file changed, 163 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight-ccu.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight-ccu.yaml
-> new file mode 100644
-> index 000000000000..9bb8ced393a7
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/qcom,coresight-ccu.yaml
-> @@ -0,0 +1,87 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/arm/qcom,coresight-ccu.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: CoreSight Control Unit
-> +
-> +maintainers:
-> +  - Yuanfang Zhang <quic_yuanfang@quicinc.com>
-> +  - Mao Jinlong <quic_jinlmao@quicinc.com>
-> +  - Jie Gan <quic_jiegan@quicinc.com>
-> +
-> +description:
-> +  The Coresight Control unit controls various Coresight behaviors.
-> +  Used to enable/disable ETR’s data filter function based on trace ID.
-> +
-> +properties:
-> +  compatible:
-> +    const: qcom,coresight-ccu
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    items:
-> +      - const: apb_pclk
+> diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+> index 23f1b2e5e624..ef4df5e59ab3 100644
+> --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+> @@ -1664,6 +1664,38 @@ ice: crypto@1d88000 {
+>  			clocks = <&gcc GCC_UFS_PHY_ICE_CORE_CLK>;
+>  		};
+>  
+> +		ccu@4001000 {
+> +			compatible = "qcom,coresight-ccu";
+> +			reg = <0x0 0x4001000 0x0 0x1000>;
+> +			reg-names = "ccu-base";
 
-Drop _pclk
+NAK, not tested.
 
-> +
-> +  reg-names:
-
-Please follow DTS coding style about order of properties.
-
-> +    items:
-> +      - const: ccu-base
-> +
-> +  in-ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    unevaluatedProperties:
-
-This was never tested and it cannot reliably work.
-
-Sorry, this is waste of our time.
-
-
-> +      patternProperties:
-> +        '^port(@[0-7])?$':
-> +          description: Input connections from CoreSight Trace bus
-> +          $ref: /schemas/graph.yaml#/properties/port
-> +
-> +          properties:
-> +            qcom,ccu-atid-offset:
-> +              description:
-> +                Offset to the Coresight Control Unit component's ATID register
-> +                that is used by specific TMC ETR. The ATID register can be programed based
-> +                on the trace id to filter out specific trace data which gets into ETR buffer.
-> +              $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - in-ports
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    syscon@1001000 {
-
-That's not a syscon.
-
-> +        compatible = "qcom,coresight-ccu";
-> +        reg = <0x1001000 0x1000>;
-> +        reg-names = "ccu-base";
-> +
+Follow your own internal guidelines - they are precise in what testing
+you must peform.
 
 Best regards,
 Krzysztof
