@@ -1,124 +1,194 @@
-Return-Path: <devicetree+bounces-83494-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83495-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D4E8928973
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 15:20:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 66EB29289DC
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 15:37:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D2C1FB243F6
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 13:20:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C168AB26F06
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 13:37:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABE2814AD02;
-	Fri,  5 Jul 2024 13:20:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CF5114B959;
+	Fri,  5 Jul 2024 13:34:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="i+NjTql6"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="DBwN7dch"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8501D14A0B7;
-	Fri,  5 Jul 2024 13:20:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C8AE14A4CC
+	for <devicetree@vger.kernel.org>; Fri,  5 Jul 2024 13:34:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720185631; cv=none; b=I2WE3CHKlhIGlliQ8BU6lB3rMVXq80bSHAfyirUAYPm/oqdWgTwIFYGPLKicRQ4Bsva1SN4GUqJ2TWFrTJX7LVUcBv4uUtgVo0sj8z/Bvy73zSiRJ6bt7luPrVl07TqQ6GT/qJiapZzDm7W4GVKz8AkksHsDfONZO7xpJuVpzdA=
+	t=1720186475; cv=none; b=shLswNj/N+0OigqJja6ZfWLhvX5cToEPq1Q1HDDfVVXXSliGbiq9pJ+zqrTmi/c8DQkalRlkTDDvKe0TH66Ilo76McBN49KvFTad2oe2lf4d/1Yald4G+aietQr/QdB9MuYxmMJ9bk3VF9i5xoZBZS87l3cFUqynIx8bVzRuFh8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720185631; c=relaxed/simple;
-	bh=7O65BSY1YnjABerUEX/XSkLKOtyucgsCv4IEnEsfzOk=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Gsu88DOZY3ob+6DQdDrQJRR++o31lYPWthugdVr2U+kvCOam/IllewtcEgvf0buvKProlc7PaMUtb7yuDGr1iAsu6Q8k9PhYw3BbO5EaKaeHPcpA4/qlp3EtBFndPSNy5DfD47vhcs6B6/5b+HJ/D7x1F4SE7PlW/iZ5yn2JQr8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=i+NjTql6; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 465DKCfI084749;
-	Fri, 5 Jul 2024 08:20:12 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1720185612;
-	bh=8GENAj70qaKif1xSCoXGz2QyshHZX03wXyFYQ7Hi+5s=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=i+NjTql6RiTijT1B7B03+IOymnRUsRNKC/UpilHGvq1Ujvm+R+M22h3MdZ+kF0mru
-	 aTwuSDWWwMfi6LGp1Q4VEshAW5lsxoM6TOKwTCYzMBG9+W9CsG3XsphV+jODZ16TNU
-	 Uz/Mir00HVqXrR0+GyZSyBprXSR9vmjusZMot5lI=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 465DKCnJ009840
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 5 Jul 2024 08:20:12 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 5
- Jul 2024 08:20:12 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 5 Jul 2024 08:20:12 -0500
-Received: from uda0132425.dhcp.ti.com (uda0132425.dhcp.ti.com [172.24.227.94])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 465DK7bB072061;
-	Fri, 5 Jul 2024 08:20:07 -0500
-From: Vignesh Raghavendra <vigneshr@ti.com>
-To: <nm@ti.com>, <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Devarsh Thakkar
-	<devarsht@ti.com>
-CC: Vignesh Raghavendra <vigneshr@ti.com>, <praneeth@ti.com>,
-        <a-bhatia1@ti.com>, <j-luthra@ti.com>, <b-brnich@ti.com>,
-        <detheridge@ti.com>, <p-mantena@ti.com>, <vijayp@ti.com>
-Subject: Re: (subset)[PATCH 0/3] Add global CMA reserve area
-Date: Fri, 5 Jul 2024 18:48:26 +0530
-Message-ID: <172018547554.2460342.5699091093485450824.b4-ty@ti.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240613150902.2173582-1-devarsht@ti.com>
-References: <20240613150902.2173582-1-devarsht@ti.com>
+	s=arc-20240116; t=1720186475; c=relaxed/simple;
+	bh=/WWUk8xgbMeoX+XMjmJKMzm4jVM0QnM4PPaAAtS6ETg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=locLGqV0UGjfAgqfYMUV6qmz2I8HaYu1w0yxr8SWiGt//mtNilt9rlZg2TVsO2MFKBDCNefAHQbMlifT8uOThIlLSkUPUvNFe4PBPlB7rE15MXW38VphYGZ7dbrh7sgvSazx6X9nQdyPWT8tuYtPE2cLsTzk274J0pphsxJXtE8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=DBwN7dch; arc=none smtp.client-ip=209.85.167.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-52ea16b429dso1215300e87.1
+        for <devicetree@vger.kernel.org>; Fri, 05 Jul 2024 06:34:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1720186469; x=1720791269; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+7lziJDkz8ksR4dmlddeHMdYw7zMgC8DIyGzxNLyJTo=;
+        b=DBwN7dchrM3Uhg+n02ERwvcj+HPkIr+eeN3Y0hVvZU+poqph18SqrUpsRb5dSvPXLP
+         Bl8bNTdNMs/SuoDAoRBr34bDHcresooRAlZ+WI4Z6SF3N6br9Jwyie3873hslJPTC8it
+         XI8TC8TvKqf0slKrVdh1Glb9oUi7fSWUcEaM52pS7/jP7I7Bs11b5DxPaxGn2xXcaH/p
+         D5LTJcH+d1K8VHnMEzisIELFthjn/kqnKQs1eEABc/BEZ8iafqaKpFnsUULTDsuErzoj
+         W9uYmuXDn4S8V82szriUbBspjQ3g5iX133Lc9WTmfo9usHFeIdvyjfV7sL3110MaU3y5
+         JHhQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720186469; x=1720791269;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=+7lziJDkz8ksR4dmlddeHMdYw7zMgC8DIyGzxNLyJTo=;
+        b=Dl0pgzIEvNigqNM2rHkNloqnzw7hJOJ+qofYmWtW1RVJAWaW/KZ7cN3ZC+bUH83Rmh
+         2Ihg0HpDH+gLr5/QqinePAbVAD/Q4Pl7EGb3SSbEkE2imMLXOP8B/51fu2UMv+BofqZj
+         eKs7E25WqdsS1Fcve0b9g7tdx3yAPiS+K9u2OxWv4ooAN+Z/wYw4BQ8TmjULah5xmP4X
+         9306LFeeVpV3cChZkJC0Dzb1Cr2NK7zX6e79OVanoBnoyoqiXr4ZygaK57luufB105Pf
+         wpW/fzA1tOzv6pzqkJ2F1c34aKIBjYzzEY83FoByzvFCx3D46NsSVJ6FXScOm03+GefI
+         i6/w==
+X-Forwarded-Encrypted: i=1; AJvYcCWlGkwshSzMHasjRcgDwlC5KDddqSwM1W90PvVMjbYLuS2A4E6GQGQ3oPo1h0S1HAIE+Yuk9wSXXs/+55CC3C8dLvmqJpZbVK/ULQ==
+X-Gm-Message-State: AOJu0YzsGOSTsiDuYrQtF1Hu3Q18vCswn78bvNURNrAK/P2HgHcK0zAh
+	jfYK42yXxydD0kXZsm0HHcy3JlZfviiFCyKcyR0s3cOr8mr4yMUhW1+gXH7wOt3Dcp7aevqGZZF
+	w0fRCiq7EzyB8HiYbsKA0fJPO6gMN/zWaqMzzyw==
+X-Google-Smtp-Source: AGHT+IH002bET0sLDg515bzQ4elXCWBoy5idHfanq8GGKi/meSChCtgNax2EBm7zNVr+Mq15wxISI8Af7tGceGvs1Lk=
+X-Received: by 2002:a05:6512:3694:b0:52c:ebf6:9a87 with SMTP id
+ 2adb3069b0e04-52ea0e00c5emr1457812e87.26.1720186469286; Fri, 05 Jul 2024
+ 06:34:29 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20240705-pwrseq-v1-0-31829b47fc72@amlogic.com> <20240705-pwrseq-v1-1-31829b47fc72@amlogic.com>
+In-Reply-To: <20240705-pwrseq-v1-1-31829b47fc72@amlogic.com>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Fri, 5 Jul 2024 15:34:18 +0200
+Message-ID: <CAMRc=Me+Fd_Kjgm0u0JhUatVEp=XS71xys82snAimpw2U5MQTw@mail.gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: power: Add power sequence for Amloigc
+ WCN chips
+To: yang.li@amlogic.com
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Devarsh Thakkar,
+On Fri, Jul 5, 2024 at 1:13=E2=80=AFPM Yang Li via B4 Relay
+<devnull+yang.li.amlogic.com@kernel.org> wrote:
+>
+> From: Yang Li <yang.li@amlogic.com>
+>
+> Add binding document to introduce power sequence of
+> Amlogic WCN chips.
+>
 
-On Thu, 13 Jun 2024 20:38:59 +0530, Devarsh Thakkar wrote:
-> Add global CMA reserve area for AM62x, AM62A and AM62P SoCs.
-> These SoCs do not have MMU and hence require contiguous memory pool to
-> support various multimedia use-cases.
-> 
-> Brandon Brnich (1):
->   arm64: dts: ti: k3-am62p5-sk: Reserve 576 MiB of global CMA
-> 
-> [...]
+Hi! Thanks for the interest in this new subsystem.
 
-I have applied the following to branch ti-k3-dts-next on [1].
-Thank you!
+> Signed-off-by: Yang Li <yang.li@amlogic.com>
+> ---
+>  .../bindings/power/amlogic,w155s2-pwrseq.yaml      | 62 ++++++++++++++++=
+++++++
+>  1 file changed, 62 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/power/amlogic,w155s2-pwrse=
+q.yaml b/Documentation/devicetree/bindings/power/amlogic,w155s2-pwrseq.yaml
+> new file mode 100644
+> index 000000000000..f99a775fcf9b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/power/amlogic,w155s2-pwrseq.yaml
+> @@ -0,0 +1,62 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/power/amlogic,w155s2-pwrseq.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Amlogic power sequence for WCN chips
+> +
+> +maintainers:
+> +  - Yang Li <yang.li@amlogic.com>
+> +
+> +description:
+> +  The Amlogic WCN chip contains discrete modules for WLAN and Bluetooth.=
+ Power on
+> +  Bluetooth and Wi-Fi respectively, including chip_en pull-up and bt_en =
+pull-up,
+> +  and generation of the 32.768KHz clock.
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - const: amlogic,w155s2-pwrseq
+> +      - items:
+> +          - enum:
+> +              - amlogic,w265s1-pwrseq
+> +              - amlogic,w265p1-pwrseq
+> +              - amlogic,w265s2-pwrseq
+> +          - const: amlogic,w155s2-pwrseq
 
-[1/3] arm64: dts: ti: k3-am62x-sk-common: Reserve 128MiB of global CMA
-      commit: 9e8560556f9c41da28118af3385b4e9dc832ae2b
-[2/3] arm64: dts: ti: k3-am62a7-sk: Reserve 576MiB of global CMA
-      commit: 6406c5d5512c0814b8c155df7f833a98d9069a72
+The name is wrong. There's no such device as 'pwrseq'. There's most
+likely some kind of a Power Management Unit and the compatible string
+must reflect this.
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+> +
+> +  clocks:
+> +    maxItems: 1
+> +    description: clock provided to the controller (32.768KHz)
+> +
+> +  clock-names:
+> +    items:
+> +      - const: ext_clock
+> +
+> +  amlogic,chip-enable-gpios:
+> +    maxItems: 1
+> +    description: gpio specifier used to enable chipset
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+Why not simply: chip-enable-gpios or even enable-gpios?
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+> +
+> +  amlogic,bt-enable-gpios:
+> +    maxItems: 1
+> +    description: gpio specifier used to enable BT
+> +
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+Same here: should be simply bt-enable-gpios.
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
---
-Vignesh
+Bart
 
+> +required:
+> +  - compatible
+> +  - clocks
+> +  - clock-names
+> +  - amlogic,chip-enable-gpios
+> +  - amlogic,bt-enable-gpios
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    wcn_pwrseq {
+> +        compatible =3D "amlogic,w155s2-pwrseq";
+> +        clocks =3D <&extclk>;
+> +        clock-names =3D "ext_clock";
+> +        amlogic,chip-enable-gpios =3D <&gpio 7 GPIO_ACTIVE_HIGH>;
+> +        amlogic,bt-enable-gpios =3D <&gpio 17 GPIO_ACTIVE_HIGH>;
+> +    };
+>
+> --
+> 2.42.0
+>
+>
 
