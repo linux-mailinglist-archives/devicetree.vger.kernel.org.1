@@ -1,130 +1,197 @@
-Return-Path: <devicetree+bounces-83320-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83321-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81F39927FB1
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 03:20:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D070B927FDC
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 03:51:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 933D8B2290B
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 01:20:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EC07AB21BC5
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 01:51:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95E4979EF;
-	Fri,  5 Jul 2024 01:19:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 123BEF50F;
+	Fri,  5 Jul 2024 01:51:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ellerman.id.au header.i=@ellerman.id.au header.b="dScaGYx/"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="IWYLNnSZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCD1510A24;
-	Fri,  5 Jul 2024 01:19:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=150.107.74.76
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8A1279D3;
+	Fri,  5 Jul 2024 01:51:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720142389; cv=none; b=lo8Yf+fu39A8zQa0bf/5Chrp2svBDU3+M1NV/9OqlSkHQ6/E6ChuZBZaB7d43i2SQ6vp9lEIMtvmrnb4kity18FurAVzBJUdPZ28Do9XAs+VwJXMMFv1ZXQ/SoTp3+dH5lvHEGTVnJuYA2Jl7RMox7X+RY1671D+u2O6nqojs3c=
+	t=1720144267; cv=none; b=PpjjxvjgU7iOmWtI7YmZbCOSQ5QsvNFFrITLd6NE7O7lYyF+iIsPw/rwx5yTFatMcvshibgPUp8uy9HPyIQMiB6uXisHUxWoT9kZbW3ZBQJe4D+RlGeDTnf0lbgvIvo2ZSE6qczIXFMDJ9gNBUMISfckbQxzqqFjOcC6ya61FIQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720142389; c=relaxed/simple;
-	bh=4jXA60CwTqUR5bZu5hr9dmdPy/sOO2/oK1vX+xklF5o=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=kmFleZq+dhCzi5wYYjUMlgHtcj6fqwD2+ekd0QnqWWpv4wSoznYrLL9dqUWNvz6W2oEdioz6qnXNXNC1PWZf371gTGgOKR11Tq1VjcZ1hS2XNyqU3ZKYrnQH8ZhSx3LcxbwugMqOSz5Yr+2U75i/djWlJ3BU8c28Nhx2unJ6frY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ellerman.id.au; spf=pass smtp.mailfrom=ellerman.id.au; dkim=pass (2048-bit key) header.d=ellerman.id.au header.i=@ellerman.id.au header.b=dScaGYx/; arc=none smtp.client-ip=150.107.74.76
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ellerman.id.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ellerman.id.au
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ellerman.id.au;
-	s=201909; t=1720142382;
-	bh=UCMaIVTnGE08WOL8bGCywK+Z7TDVAMtL/zyKNBMfqBk=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-	b=dScaGYx/VAT1PxfoDVsug+gCtBq4YJ4QfRBfg7DW04HpffBYfKmUJHAruupwwMsWr
-	 GNYcEBSFfTl/llWg1f8VT1LwAU/H1dVxv6OcCPQLAkUwzCbA70fo+FcimqPKJ17YGV
-	 wK2VO3TdDquqcngJsKeg4bCN1NWoT/sBJbKt9c9tVeNSVhDcWeZG9yicBKCFn9x8bm
-	 /wxenOnMKvQEudhsKzijOqw5Rv0DGEPUhbWLrTAEbc3+7aGvg5qNzIfKs4VP8EkHFP
-	 xTdd0jdhCobAWneOQdFmCEYpjGKyRusmZY8J/w8VJepbBHSU4V7Fh/6yLH2v2/rXHN
-	 S8QgFt72S/IBQ==
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mail.ozlabs.org (Postfix) with ESMTPSA id 4WFbK93fn5z4w2F;
-	Fri,  5 Jul 2024 11:19:40 +1000 (AEST)
-From: Michael Ellerman <mpe@ellerman.id.au>
-To: Christian Zigotzky <chzigotzky@xenosoft.de>, Marc Zyngier <maz@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, apatel@ventanamicro.com, DTML
- <devicetree@vger.kernel.org>, Linux Kernel Mailing List
- <linux-kernel@vger.kernel.org>, linuxppc-dev
- <linuxppc-dev@lists.ozlabs.org>, mad skateman <madskateman@gmail.com>,
- "R.T.Dickinson" <rtd2@xtra.co.nz>, Matthew Leaman <matthew@a-eon.biz>,
- Darren Stevens <darren@stevens-zone.net>, Christian Zigotzky
- <info@xenosoft.de>
-Subject: Re: [PowerPC] [PASEMI] Issue with the identification of ATA drives
- after the of/irq updates 2024-05-29
-In-Reply-To: <dfc7ec00-5216-4590-9347-ee10cd1e8380@xenosoft.de>
-References: <3ab66fab-c3f2-4bed-a04d-a10c57dcdd9b@xenosoft.de>
- <86zfqzhgys.wl-maz@kernel.org>
- <ccf14173-9818-44ef-8610-db2900c67ae8@xenosoft.de>
- <874j95jrur.fsf@mail.lhotse>
- <3baff554-e8f6-42b0-b931-207175a4d8fd@xenosoft.de>
- <dfc7ec00-5216-4590-9347-ee10cd1e8380@xenosoft.de>
-Date: Fri, 05 Jul 2024 11:19:39 +1000
-Message-ID: <87o77ciqj8.fsf@mail.lhotse>
+	s=arc-20240116; t=1720144267; c=relaxed/simple;
+	bh=CRRfXqrbQs7tLcrxZpfuE5Kh1RIwcGT87Lps4lI9koU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JbBYOaErqFDN/mh1pti2znfUygoEPuGHytvD6YpSoJURJnyllEVuwkQm9MP/1CvyzqJRtlDWZenyfmc0nlphMop4cb9IEh1+cV92ULkqmz7aidIDWk7//kmujEFj1pzKQh6ln3E+UKGXODvFEsHkkCYAx9ufCXajlDn+ghlFIls=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=IWYLNnSZ; arc=none smtp.client-ip=198.175.65.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1720144264; x=1751680264;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=CRRfXqrbQs7tLcrxZpfuE5Kh1RIwcGT87Lps4lI9koU=;
+  b=IWYLNnSZVCro8PlEsvNuvfTA8fz7bYy3XIloLaCvrQ5nYNA+meHOn2Og
+   C4lTjR/3NLQBY0U88EY/ydBpX3YhdIf5L61Wbo4MXQxDcRsAEdX624KPN
+   tUgZDQGrc2Lt0eoIe21JyD5pDO1ecvk5sIXI57MJp3PnOrqk7OtqOHtXG
+   CX8nHdP+/uKtYdGKrAJMbCSveuaRS85cypNxJsqVwqS2YrQYZxXUCt0OV
+   AxOXuLBGC36e1QeQ8FsXEctZ/IQdNdLy1QsJi66fWSImfm/TFkJUb/Gj5
+   J3DDHif2U3Sh7+qFicABOBW6JNMGbKPEvjbmmteWm6w7Nhm6bnC5KufG3
+   w==;
+X-CSE-ConnectionGUID: NIBPJVoxQL2l7WhcOxyOaQ==
+X-CSE-MsgGUID: J94FQyDgQeqEgXXInLVVqA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11123"; a="21239041"
+X-IronPort-AV: E=Sophos;i="6.09,183,1716274800"; 
+   d="scan'208";a="21239041"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Jul 2024 18:51:04 -0700
+X-CSE-ConnectionGUID: wGr7m+PyRo+lra4tO7HwPw==
+X-CSE-MsgGUID: Fawo+R7ISN+VwmUeHScWeQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,183,1716274800"; 
+   d="scan'208";a="46699156"
+Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
+  by fmviesa008.fm.intel.com with ESMTP; 04 Jul 2024 18:50:59 -0700
+Received: from kbuild by 68891e0c336b with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sPY6D-000RlE-27;
+	Fri, 05 Jul 2024 01:50:57 +0000
+Date: Fri, 5 Jul 2024 09:50:41 +0800
+From: kernel test robot <lkp@intel.com>
+To: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
+	=?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>
+Subject: Re: [PATCH v2 4/4] clk: eyeq: add driver
+Message-ID: <202407050921.S41aCBdD-lkp@intel.com>
+References: <20240703-mbly-clk-v2-4-fe8c6199a579@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240703-mbly-clk-v2-4-fe8c6199a579@bootlin.com>
 
-Christian Zigotzky <chzigotzky@xenosoft.de> writes:
-> On 04.07.24 20:27, Christian Zigotzky wrote:
->> On 04.07.24 13:53, Michael Ellerman wrote:
->>> Christian Zigotzky <chzigotzky@xenosoft.de> writes:
-...
->>>
->>> Instead of that patch, can you try the one below. AFAICS the device tree
->>> fixups done in early boot mean the interrupt-map is not needed, and also
->>> has the wrong content, so if we can remove it entirely that might avoid
->>> the problems in the parsing code.
->>>
->>> I don't know if your firmware actually implements those methods, I
->>> couldn't find anything online to confirm or deny it. Seems the only
->>> option is to test it.
-...
->
-> Unfortunately, the kernel 6.10-rc6 doesn't compile with your patch. "rc" 
-> is undeclared.
+Hi Théo,
 
-Right, I had some debug code that I removed before posting.
+kernel test robot noticed the following build errors:
 
-This version should compile :}
+[auto build test ERROR on f2661062f16b2de5d7b6a5c42a9a5c96326b8454]
 
-cheers
+url:    https://github.com/intel-lab-lkp/linux/commits/Th-o-Lebrun/Revert-dt-bindings-clock-mobileye-eyeq5-clk-add-bindings/20240704-211515
+base:   f2661062f16b2de5d7b6a5c42a9a5c96326b8454
+patch link:    https://lore.kernel.org/r/20240703-mbly-clk-v2-4-fe8c6199a579%40bootlin.com
+patch subject: [PATCH v2 4/4] clk: eyeq: add driver
+config: hexagon-allyesconfig (https://download.01.org/0day-ci/archive/20240705/202407050921.S41aCBdD-lkp@intel.com/config)
+compiler: clang version 19.0.0git (https://github.com/llvm/llvm-project a0c6b8aef853eedaa0980f07c0a502a5a8a9740e)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240705/202407050921.S41aCBdD-lkp@intel.com/reproduce)
 
-diff --git a/arch/powerpc/kernel/prom_init.c b/arch/powerpc/kernel/prom_init.c
-index fbb68fc28ed3..965d58c54fab 100644
---- a/arch/powerpc/kernel/prom_init.c
-+++ b/arch/powerpc/kernel/prom_init.c
-@@ -3123,6 +3123,7 @@ static void __init fixup_device_tree_pasemi(void)
- 	u32 interrupts[2], parent, rval, val = 0;
- 	char *name, *pci_name;
- 	phandle iob, node;
-+	int rc;
- 
- 	/* Find the root pci node */
- 	name = "/pxp@0,e0000000";
-@@ -3138,6 +3139,14 @@ static void __init fixup_device_tree_pasemi(void)
- 
- 	prom_setprop(iob, name, "interrupt-controller", &val, 0);
- 
-+	prom_printf("nemo: deleting interrupt-map properties\n");
-+	rc = call_prom("interpret", 1, 1,
-+		      " s\" /pxp@0,e0000000\" find-device"
-+		      " s\" interrupt-map\" delete-property"
-+		      " s\" interrupt-map-mask\" delete-property"
-+		      " device-end");
-+	prom_printf("nemo: interpret returned %d\n", rc);
-+
- 	pci_name = "/pxp@0,e0000000/pci@11";
- 	node = call_prom("finddevice", 1, 1, ADDR(pci_name));
- 	parent = ADDR(iob);
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202407050921.S41aCBdD-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   In file included from drivers/clk/clk-eyeq.c:30:
+   In file included from include/linux/io.h:14:
+   In file included from arch/hexagon/include/asm/io.h:328:
+   include/asm-generic/io.h:548:31: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     548 |         val = __raw_readb(PCI_IOBASE + addr);
+         |                           ~~~~~~~~~~ ^
+   include/asm-generic/io.h:561:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     561 |         val = __le16_to_cpu((__le16 __force)__raw_readw(PCI_IOBASE + addr));
+         |                                                         ~~~~~~~~~~ ^
+   include/uapi/linux/byteorder/little_endian.h:37:51: note: expanded from macro '__le16_to_cpu'
+      37 | #define __le16_to_cpu(x) ((__force __u16)(__le16)(x))
+         |                                                   ^
+   In file included from drivers/clk/clk-eyeq.c:30:
+   In file included from include/linux/io.h:14:
+   In file included from arch/hexagon/include/asm/io.h:328:
+   include/asm-generic/io.h:574:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     574 |         val = __le32_to_cpu((__le32 __force)__raw_readl(PCI_IOBASE + addr));
+         |                                                         ~~~~~~~~~~ ^
+   include/uapi/linux/byteorder/little_endian.h:35:51: note: expanded from macro '__le32_to_cpu'
+      35 | #define __le32_to_cpu(x) ((__force __u32)(__le32)(x))
+         |                                                   ^
+   In file included from drivers/clk/clk-eyeq.c:30:
+   In file included from include/linux/io.h:14:
+   In file included from arch/hexagon/include/asm/io.h:328:
+   include/asm-generic/io.h:585:33: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     585 |         __raw_writeb(value, PCI_IOBASE + addr);
+         |                             ~~~~~~~~~~ ^
+   include/asm-generic/io.h:595:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     595 |         __raw_writew((u16 __force)cpu_to_le16(value), PCI_IOBASE + addr);
+         |                                                       ~~~~~~~~~~ ^
+   include/asm-generic/io.h:605:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     605 |         __raw_writel((u32 __force)cpu_to_le32(value), PCI_IOBASE + addr);
+         |                                                       ~~~~~~~~~~ ^
+>> drivers/clk/clk-eyeq.c:264:9: error: call to undeclared function 'readq'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+     264 |                 val = readq(priv->base + pll->reg64);
+         |                       ^
+   drivers/clk/clk-eyeq.c:724:9: error: call to undeclared function 'readq'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+     724 |                 val = readq(base + pll->reg64);
+         |                       ^
+   6 warnings and 2 errors generated.
+
+
+vim +/readq +264 drivers/clk/clk-eyeq.c
+
+   249	
+   250	static void eqc_probe_init_plls(struct device *dev, struct eqc_priv *priv)
+   251	{
+   252		const struct eqc_match_data *data = priv->data;
+   253		unsigned long mult, div, acc;
+   254		const struct eqc_pll *pll;
+   255		struct clk_hw *hw;
+   256		unsigned int i;
+   257		u32 r0, r1;
+   258		u64 val;
+   259		int ret;
+   260	
+   261		for (i = 0; i < data->pll_count; i++) {
+   262			pll = &data->plls[i];
+   263	
+ > 264			val = readq(priv->base + pll->reg64);
+   265			r0 = val;
+   266			r1 = val >> 32;
+   267	
+   268			ret = eqc_pll_parse_registers(r0, r1, &mult, &div, &acc);
+   269			if (ret) {
+   270				dev_warn(dev, "failed parsing state of %s\n", pll->name);
+   271				priv->cells->hws[pll->index] = ERR_PTR(ret);
+   272				continue;
+   273			}
+   274	
+   275			hw = clk_hw_register_fixed_factor_with_accuracy_fwname(dev,
+   276					dev->of_node, pll->name, "ref", 0, mult, div, acc);
+   277			priv->cells->hws[pll->index] = hw;
+   278			if (IS_ERR(hw))
+   279				dev_warn(dev, "failed registering %s: %pe\n", pll->name, hw);
+   280		}
+   281	}
+   282	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
