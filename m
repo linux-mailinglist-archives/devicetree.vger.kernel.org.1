@@ -1,90 +1,130 @@
-Return-Path: <devicetree+bounces-83319-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83320-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC42D927F8A
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 03:06:47 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81F39927FB1
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 03:20:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6285F1F25776
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 01:06:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 933D8B2290B
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 01:20:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91FE8BE58;
-	Fri,  5 Jul 2024 01:06:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95E4979EF;
+	Fri,  5 Jul 2024 01:19:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="EujO5cZ4"
+	dkim=pass (2048-bit key) header.d=ellerman.id.au header.i=@ellerman.id.au header.b="dScaGYx/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out30-99.freemail.mail.aliyun.com (out30-99.freemail.mail.aliyun.com [115.124.30.99])
+Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20647B65A;
-	Fri,  5 Jul 2024 01:06:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=115.124.30.99
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCD1510A24;
+	Fri,  5 Jul 2024 01:19:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=150.107.74.76
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720141604; cv=none; b=o6aab9jyLuIhA7R5j+sPCF5aINw97CQJ3VmpoPLlvaymsr0i+OLK09vDBhFVZHnmWKI7M7tFxuUPb5jCRvq5rKG/DPRhOBmbOOwmieMklVZCFEvEUV/LRJ/Xr/8otgOH2LKmVFcbfy0Lpoddjb4TBgZDAzhtKxDwZWxPW5i8DrE=
+	t=1720142389; cv=none; b=lo8Yf+fu39A8zQa0bf/5Chrp2svBDU3+M1NV/9OqlSkHQ6/E6ChuZBZaB7d43i2SQ6vp9lEIMtvmrnb4kity18FurAVzBJUdPZ28Do9XAs+VwJXMMFv1ZXQ/SoTp3+dH5lvHEGTVnJuYA2Jl7RMox7X+RY1671D+u2O6nqojs3c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720141604; c=relaxed/simple;
-	bh=TYhAkvtDwkswGAizxiAdL8hwFy8gEaaAvescvij+s7Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RcpVEfI8DhAqr0AbJ3rFVCLwyio6fJZNrn0EJskRgAczkfVzr5WT87bLdZqyrp5iqsQtJbBKTAti3EZzFG/sy8roRWJjDAAngLuzGJb07N5oe+JJSrZDuQ38qPetxRBY+lrfRms0cMOarQ9HYyg9zQ43gU+cfjVTTWy+4ZwqPFI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.alibaba.com; spf=pass smtp.mailfrom=linux.alibaba.com; dkim=pass (1024-bit key) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b=EujO5cZ4; arc=none smtp.client-ip=115.124.30.99
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.alibaba.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.alibaba.com
-DKIM-Signature:v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=linux.alibaba.com; s=default;
-	t=1720141592; h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type;
-	bh=4cfuS0iFnw0ne37rW+9HGtwOGkcB1qYjsLKyHH5WycE=;
-	b=EujO5cZ4pe4EyEKIPYsENEve2UW9JJEBSlgLCHZxEZyA9VB4yVa7xbBGuHoISjgDjVv4oBaB2uYKIjHfsVNXVAYvj5WkKudpNGRTXr1ZO2MxgST9aVZFpiThsRII92mgi5DDkBg2P4LCsKBEKTn4tK2unysVjxBj1VOMq8cNKKI=
-X-Alimail-AntiSpam:AC=PASS;BC=-1|-1;BR=01201311R121e4;CH=green;DM=||false|;DS=||;FP=0|-1|-1|-1|0|-1|-1|-1;HT=maildocker-contentspam033037067109;MF=baolin.wang@linux.alibaba.com;NM=1;PH=DS;RN=10;SR=0;TI=SMTPD_---0W9snGSw_1720141591;
-Received: from 30.97.56.65(mailfrom:baolin.wang@linux.alibaba.com fp:SMTPD_---0W9snGSw_1720141591)
-          by smtp.aliyun-inc.com;
-          Fri, 05 Jul 2024 09:06:32 +0800
-Message-ID: <819eac21-9661-4b13-a988-f8f4b736513d@linux.alibaba.com>
-Date: Fri, 5 Jul 2024 09:06:31 +0800
+	s=arc-20240116; t=1720142389; c=relaxed/simple;
+	bh=4jXA60CwTqUR5bZu5hr9dmdPy/sOO2/oK1vX+xklF5o=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=kmFleZq+dhCzi5wYYjUMlgHtcj6fqwD2+ekd0QnqWWpv4wSoznYrLL9dqUWNvz6W2oEdioz6qnXNXNC1PWZf371gTGgOKR11Tq1VjcZ1hS2XNyqU3ZKYrnQH8ZhSx3LcxbwugMqOSz5Yr+2U75i/djWlJ3BU8c28Nhx2unJ6frY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ellerman.id.au; spf=pass smtp.mailfrom=ellerman.id.au; dkim=pass (2048-bit key) header.d=ellerman.id.au header.i=@ellerman.id.au header.b=dScaGYx/; arc=none smtp.client-ip=150.107.74.76
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ellerman.id.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ellerman.id.au
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ellerman.id.au;
+	s=201909; t=1720142382;
+	bh=UCMaIVTnGE08WOL8bGCywK+Z7TDVAMtL/zyKNBMfqBk=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+	b=dScaGYx/VAT1PxfoDVsug+gCtBq4YJ4QfRBfg7DW04HpffBYfKmUJHAruupwwMsWr
+	 GNYcEBSFfTl/llWg1f8VT1LwAU/H1dVxv6OcCPQLAkUwzCbA70fo+FcimqPKJ17YGV
+	 wK2VO3TdDquqcngJsKeg4bCN1NWoT/sBJbKt9c9tVeNSVhDcWeZG9yicBKCFn9x8bm
+	 /wxenOnMKvQEudhsKzijOqw5Rv0DGEPUhbWLrTAEbc3+7aGvg5qNzIfKs4VP8EkHFP
+	 xTdd0jdhCobAWneOQdFmCEYpjGKyRusmZY8J/w8VJepbBHSU4V7Fh/6yLH2v2/rXHN
+	 S8QgFt72S/IBQ==
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mail.ozlabs.org (Postfix) with ESMTPSA id 4WFbK93fn5z4w2F;
+	Fri,  5 Jul 2024 11:19:40 +1000 (AEST)
+From: Michael Ellerman <mpe@ellerman.id.au>
+To: Christian Zigotzky <chzigotzky@xenosoft.de>, Marc Zyngier <maz@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, apatel@ventanamicro.com, DTML
+ <devicetree@vger.kernel.org>, Linux Kernel Mailing List
+ <linux-kernel@vger.kernel.org>, linuxppc-dev
+ <linuxppc-dev@lists.ozlabs.org>, mad skateman <madskateman@gmail.com>,
+ "R.T.Dickinson" <rtd2@xtra.co.nz>, Matthew Leaman <matthew@a-eon.biz>,
+ Darren Stevens <darren@stevens-zone.net>, Christian Zigotzky
+ <info@xenosoft.de>
+Subject: Re: [PowerPC] [PASEMI] Issue with the identification of ATA drives
+ after the of/irq updates 2024-05-29
+In-Reply-To: <dfc7ec00-5216-4590-9347-ee10cd1e8380@xenosoft.de>
+References: <3ab66fab-c3f2-4bed-a04d-a10c57dcdd9b@xenosoft.de>
+ <86zfqzhgys.wl-maz@kernel.org>
+ <ccf14173-9818-44ef-8610-db2900c67ae8@xenosoft.de>
+ <874j95jrur.fsf@mail.lhotse>
+ <3baff554-e8f6-42b0-b931-207175a4d8fd@xenosoft.de>
+ <dfc7ec00-5216-4590-9347-ee10cd1e8380@xenosoft.de>
+Date: Fri, 05 Jul 2024 11:19:39 +1000
+Message-ID: <87o77ciqj8.fsf@mail.lhotse>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/3] Cleanup Spreadtum/Unisoc ARM64 DT
-To: Stanislav Jakubek <stano.jakubek@gmail.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Orson Zhai <orsonzhai@gmail.com>,
- Baolin Wang <baolin.wang7@gmail.com>, Chunyan Zhang <zhang.lyra@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <cover.1720112081.git.stano.jakubek@gmail.com>
-From: Baolin Wang <baolin.wang@linux.alibaba.com>
-In-Reply-To: <cover.1720112081.git.stano.jakubek@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
 
+Christian Zigotzky <chzigotzky@xenosoft.de> writes:
+> On 04.07.24 20:27, Christian Zigotzky wrote:
+>> On 04.07.24 13:53, Michael Ellerman wrote:
+>>> Christian Zigotzky <chzigotzky@xenosoft.de> writes:
+...
+>>>
+>>> Instead of that patch, can you try the one below. AFAICS the device tree
+>>> fixups done in early boot mean the interrupt-map is not needed, and also
+>>> has the wrong content, so if we can remove it entirely that might avoid
+>>> the problems in the parsing code.
+>>>
+>>> I don't know if your firmware actually implements those methods, I
+>>> couldn't find anything online to confirm or deny it. Seems the only
+>>> option is to test it.
+...
+>
+> Unfortunately, the kernel 6.10-rc6 doesn't compile with your patch. "rc" 
+> is undeclared.
 
+Right, I had some debug code that I removed before posting.
 
-On 2024/7/5 01:41, Stanislav Jakubek wrote:
-> This series contains various minor cleanups for Spreadtum/Unisoc ARM64
-> DeviceTrees.
+This version should compile :}
 
-Thanks. All look good to me. For the whole series:
-Reviewed-by: Baolin Wang <baolin.wang@linux.alibaba.com>
+cheers
 
-> Stanislav Jakubek (3):
->    arm64: dts: sprd: rename SDHCI nodes to mmc
->    arm64: dts: sprd: reorder clock-names after clocks
->    arm64: dts: sprd: move/add SPDX license to top of the file
-> 
->   arch/arm64/boot/dts/sprd/sc2731.dtsi          |  3 +-
->   arch/arm64/boot/dts/sprd/sc9836-openphone.dts |  3 +-
->   arch/arm64/boot/dts/sprd/sc9836.dtsi          |  3 +-
->   arch/arm64/boot/dts/sprd/sc9860.dtsi          |  3 +-
->   arch/arm64/boot/dts/sprd/sc9863a.dtsi         |  8 ++--
->   arch/arm64/boot/dts/sprd/sharkl64.dtsi        |  3 +-
->   arch/arm64/boot/dts/sprd/sp9860g-1h10.dts     |  3 +-
->   arch/arm64/boot/dts/sprd/ums512.dtsi          |  4 +-
->   arch/arm64/boot/dts/sprd/whale2.dtsi          | 43 ++++++++++---------
->   9 files changed, 35 insertions(+), 38 deletions(-)
-> 
+diff --git a/arch/powerpc/kernel/prom_init.c b/arch/powerpc/kernel/prom_init.c
+index fbb68fc28ed3..965d58c54fab 100644
+--- a/arch/powerpc/kernel/prom_init.c
++++ b/arch/powerpc/kernel/prom_init.c
+@@ -3123,6 +3123,7 @@ static void __init fixup_device_tree_pasemi(void)
+ 	u32 interrupts[2], parent, rval, val = 0;
+ 	char *name, *pci_name;
+ 	phandle iob, node;
++	int rc;
+ 
+ 	/* Find the root pci node */
+ 	name = "/pxp@0,e0000000";
+@@ -3138,6 +3139,14 @@ static void __init fixup_device_tree_pasemi(void)
+ 
+ 	prom_setprop(iob, name, "interrupt-controller", &val, 0);
+ 
++	prom_printf("nemo: deleting interrupt-map properties\n");
++	rc = call_prom("interpret", 1, 1,
++		      " s\" /pxp@0,e0000000\" find-device"
++		      " s\" interrupt-map\" delete-property"
++		      " s\" interrupt-map-mask\" delete-property"
++		      " device-end");
++	prom_printf("nemo: interpret returned %d\n", rc);
++
+ 	pci_name = "/pxp@0,e0000000/pci@11";
+ 	node = call_prom("finddevice", 1, 1, ADDR(pci_name));
+ 	parent = ADDR(iob);
 
