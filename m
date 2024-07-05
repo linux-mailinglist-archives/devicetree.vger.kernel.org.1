@@ -1,183 +1,104 @@
-Return-Path: <devicetree+bounces-83542-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83543-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62957928E3E
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 22:29:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36139928E4F
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 22:44:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9681FB2591C
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 20:29:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DE8AE285D9B
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 20:44:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B670517C7A4;
-	Fri,  5 Jul 2024 20:27:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79D6C1369B0;
+	Fri,  5 Jul 2024 20:44:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="kqhNYSGu"
+	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="XsLAefyy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE3E417B427
-	for <devicetree@vger.kernel.org>; Fri,  5 Jul 2024 20:27:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 533E51F61C;
+	Fri,  5 Jul 2024 20:44:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.137.202.133
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720211237; cv=none; b=qMbcJYYJ8gR1JimaCYJj8UCqN/eJdlwys9LRT5Drs4BcqwpaY5bG4XyhHBGrC5oLIH6KXDkvUALLMTJ+ZQrtQ1dso1YoWUVckze9uzNiYDTgGX0BAvm79Du0/zodOiCp3flPbWZ+G08ltzXgmOG14nXKxqC8ypbZezD+gVvDEoc=
+	t=1720212256; cv=none; b=GbrcZZh0VFz47LL6ydqwBjSqrtk2Knxan91ApJpwBFLEGfGKpIFOVP7fBvoT7EVEWcEUciJDBzoJeA8x+HEtBjTD5tiUwD6hWH3XgdDc9HZGdjhc3NNM5uaF0aB7AiZSCebFM2KtiCZtp+nzcSUpjA2eazBL5eshqJxP+IdsXdg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720211237; c=relaxed/simple;
-	bh=x+REoia1SPVixROvzFdazwCRh5mhW9XzZbQzMlPar2M=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=XwEAEN+kniLy+8vT5LSj7CVdFOCcvC9HDct/QC6PDbXDa/XvQh1GjYwLoooxiZzaCWOamPzweIoa7aI2tXJNCJUabqRig7gf1I7Yj5qXbCa7oDhSn94wXhF5uoKKe/PlyINbsQ77g9bDafB3sJD9Qex7URurMjBOBQ9U4tOXgOs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=kqhNYSGu; arc=none smtp.client-ip=209.85.128.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-4256aee6d4fso12274665e9.3
-        for <devicetree@vger.kernel.org>; Fri, 05 Jul 2024 13:27:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1720211234; x=1720816034; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Xo8BvOJHNg5KkElAnqbJxKoNs4vF5XqhPo69/tFmIJc=;
-        b=kqhNYSGu6VaYR1mjSrfrMzijCLnGY2zRDZeZ1Ou0s5wrwyX97PAr8ANVsCUP0d3hbh
-         abf9pxBH3fDbinDMG9nLyJ80e8qXjXfbbBSwyL84yVJqu9Ql5AAiz4GgGOthaFHYlxIK
-         j8L5XkrjM2t+OeGiZKASTZ9I37T3SdpBuf3NlVrxpMn3y3gj1U4I/Ff2CnHBPCJ0UucC
-         NIoulD+QBaMhuGMNfJFlAhZ/pSJyz0/gFN6sxUMQJw/Pl371y1p04A2iQV+Mg3atFxz8
-         dPQLvqiECX0qj8jbTYNH69jwPmqc5X2QtUa3Cop9y6T7xZuZUfXU4qLloxIYmfbycqrQ
-         oFsg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720211234; x=1720816034;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Xo8BvOJHNg5KkElAnqbJxKoNs4vF5XqhPo69/tFmIJc=;
-        b=wJbAKIDWO1fVoggEsxX2yenSGxh0DNHThzlvm2BPCN+29+i0WlLCcpKDagoRjyDvjT
-         +r05Sow7BT89KrvMeewnfKWieZSJSBWMSDTT6DAtVXB9dddwfGvf6mjepmuBC1eNrmso
-         ZVgxxYNmzZMX7SnpKV45XyefOUWoPPo8s5iG5447quEmOvKWelOAp5tQ+JWv2tpxwQ34
-         H/GlJSdnV8f4YLLd6NwyGK0w840eEggiUjCupkbtsdqiFlhG3kqfjXG+2ZQcAERVYR69
-         rSzR6xrMvqozPIewCv2Rr2QzBDhESJ81dasdYcojqBYHKqP59XlKpDNCyAmA+JaAR5RL
-         wHVg==
-X-Forwarded-Encrypted: i=1; AJvYcCXfhnr+9dAbOtqsCKhuUHxn4kTtbBBm+nY97y7R6JXIciAjgdFwf+AKofN6ZEyB41ununeH3V1qCvhmBJCg4YwJx/3MFa06zkxcwQ==
-X-Gm-Message-State: AOJu0YxIPVTiOl8M5ck8UrHfaqI4AUiiuB8Q9ty27/VGdk1WiMz520Pk
-	Y90I3rrTXj3zw/QT1UxKc9jK1hSrWafBKwYqVA+8OnDZfCsmBBvt/5Zr+dUJ0yA=
-X-Google-Smtp-Source: AGHT+IHk45VodLs4hfZ4bMqYhA8JhJaClHg8mzt3znbrPWdgMMhSoHE2jkLb2VW+d//JgbWdYJaYpA==
-X-Received: by 2002:a05:600c:4993:b0:426:54c9:dfe5 with SMTP id 5b1f17b1804b1-42654c9e20emr18480915e9.10.1720211234305;
-        Fri, 05 Jul 2024 13:27:14 -0700 (PDT)
-Received: from [127.0.1.1] ([2a01:cb1d:dc:7e00:c688:2842:8675:211])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4264a1d5116sm74397625e9.10.2024.07.05.13.27.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Jul 2024 13:27:14 -0700 (PDT)
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Fri, 05 Jul 2024 22:26:40 +0200
-Subject: [PATCH 6/6] arm64: dts: qcom: sm8650-qrd: use the PMU to power up
- bluetooth
+	s=arc-20240116; t=1720212256; c=relaxed/simple;
+	bh=E0DMI2N+rLJVjmBgl8H/STkCxc80BZbM9Ut6SYTItVE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=PUeODDXBqr/e+1LmXAGD2OHdSFeyMZuDZV8adQIpgkRg7+RsZInSb+c1eGf0PWu/aYDOArfBGWis9h6jrPfrbHda+TzWYnfKFW/lesZvSJwNFgatbVv07h/MmhMPrhF08G99bhOb6hofIwigohHTg/6wBF1Wjp6Uj/JcIxBpfaI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=XsLAefyy; arc=none smtp.client-ip=198.137.202.133
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=infradead.org
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Sender:Reply-To:Content-ID:Content-Description;
+	bh=WAVTkyGIUNVQYbnMhsGGBhrzpc4yLy1OJogqCv6P6Bw=; b=XsLAefyyJd3YZZ+jdAB7/gxNyy
+	WYOKFxzzFdap0yqppWFgnCcQ8I96hr3/cKmIN/h58UiK9emBD8LZadOWHGWkPQBDRYb7XJ4ZYHriw
+	mh/v0P5zZKsajXgS2iQw0iHqJuvLViBz4t/bvFKeLmhtbsdHpoWLdHwAEa/5u5nlThIWu6ZfIyj6u
+	XJ+fwuUsMJiTln8rKrGHTqIyJ+WtixHoIRLIUsogVP0UwmrLCvXyAJtMIK6LqUBhtHohqOPDPCjgq
+	6GiLwZF1k2UCAUA0qkZtRAITiOzjLeQKDo0XKmKfMLqXyHocVeprSmly/LflesIJFBvTIU4pgNBNx
+	t1HJzxeg==;
+Received: from [50.53.4.147] (helo=[192.168.254.15])
+	by bombadil.infradead.org with esmtpsa (Exim 4.97.1 #2 (Red Hat Linux))
+	id 1sPpmm-0000000Go3q-45To;
+	Fri, 05 Jul 2024 20:44:05 +0000
+Message-ID: <318ebc29-df94-495d-b2bc-b24340c3d82a@infradead.org>
+Date: Fri, 5 Jul 2024 13:44:04 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 4/5] firmware: imx: add driver for NXP EdgeLock Enclave
+To: Pankaj Gupta <pankaj.gupta@nxp.com>, Jonathan Corbet <corbet@lwn.net>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org
+References: <20240705-imx-se-if-v4-0-52d000e18a1d@nxp.com>
+ <20240705-imx-se-if-v4-4-52d000e18a1d@nxp.com>
+Content-Language: en-US
+From: Randy Dunlap <rdunlap@infradead.org>
+In-Reply-To: <20240705-imx-se-if-v4-4-52d000e18a1d@nxp.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240705-hci_qca_refactor-v1-6-e2442121c13e@linaro.org>
-References: <20240705-hci_qca_refactor-v1-0-e2442121c13e@linaro.org>
-In-Reply-To: <20240705-hci_qca_refactor-v1-0-e2442121c13e@linaro.org>
-To: Marcel Holtmann <marcel@holtmann.org>, 
- Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Balakrishna Godavarthi <quic_bgodavar@quicinc.com>, 
- Rocky Liao <quic_rjliao@quicinc.com>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, 
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1973;
- i=bartosz.golaszewski@linaro.org; h=from:subject:message-id;
- bh=kdQldVCRGhnIPxVPu3DpUjVdb4CujtCOUfjhf5GMlEY=;
- b=owEBbQKS/ZANAwAKARGnLqAUcddyAcsmYgBmiFcaeCfsaInBBJIIlhG+1f/h4DrpvPHua2tpg
- s7T2ZuAaUqJAjMEAAEKAB0WIQQWnetsC8PEYBPSx58Rpy6gFHHXcgUCZohXGgAKCRARpy6gFHHX
- cvPIEACF7n3xgUaa9Am60rAm+YiQrXmvaiDReuJWuKZ2mJCC0pglCJK5K9XEpSalxPOhUGbaIpH
- nu93vvC0ZL9kH1Ow8Oxpi8Cd0sqjcKWgLQHVfuXw3fTPO+vX7OC+wTN9OoyTtc68Gp08HUV402W
- ZA64XN/frf4gLo8MynFzddhlYz+oScisQx1zlRYkgY0m4HCdoRK22ATDh4fvaVESUIqDyoWkHJ8
- 4HzwpZvKHop1HGHRk+3uaC+uxhaXUAITTZ14vD5X9h7QZYSD0pMELSgTEWH9LMGmX8z81KHjhF0
- np9v5kI8M7IRISCndFEThWWnIkC/HjJW+tnTwIRQad9FmhempXux2cxDNkF8lq91sHJl38y3mN8
- SNwRhM5gGTu8/2HLyX6+eER3PEy8/fp47TtRz3uU9DXwJ6AGnjK+YyEtpHRpvxkjDR6xl0Dyn9t
- nQjczoH92VdohNbX48KtbynSTQ97wfspJG3WNF3fY5imsJDz+HBTCBXZq08BnWFrsZnqu2C/EVJ
- Fev/KcrZP+j4qa+UtjdWs9JEHBzmGjibFQSMwoDMRh00jnrafkD2NeCPBjL+iWYEFBzneAWTW7/
- LFy+wz6TZA8iQ2bJHJTA0/vtIp2+ZKpPjGGCKSGfpkRU5NiKkgS26M+YSlyCrMokhlIOwKmiGYd
- c40Ymd6+uyULcrQ==
-X-Developer-Key: i=bartosz.golaszewski@linaro.org; a=openpgp;
- fpr=169DEB6C0BC3C46013D2C79F11A72EA01471D772
 
-From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-Change the HW model in sm8650-qrd.dts to a one closer to reality - where
-the WLAN and Bluetooth modules of the WCN7850 are powered by the PMU
-inside the package.
 
-Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8650-qrd.dts | 28 +++++++++-------------------
- 1 file changed, 9 insertions(+), 19 deletions(-)
+On 7/5/24 6:52 AM, Pankaj Gupta wrote:
+> diff --git a/drivers/firmware/imx/Kconfig b/drivers/firmware/imx/Kconfig
+> index 183613f82a11..56bdca9bd917 100644
+> --- a/drivers/firmware/imx/Kconfig
+> +++ b/drivers/firmware/imx/Kconfig
+> @@ -22,3 +22,15 @@ config IMX_SCU
+>  
+>  	  This driver manages the IPC interface between host CPU and the
+>  	  SCU firmware running on M4.
+> +
+> +config IMX_SEC_ENCLAVE
+> +	tristate "i.MX Embedded Secure Enclave - EdgeLock Enclave Firmware driver."
+> +	depends on IMX_MBOX && ARCH_MXC && ARM64
+> +	default m if ARCH_MXC
+> +
+> +	help
+> +	  It is possible to use APIs exposed by the iMX Secure Enclave HW IP called:
+> +          - EdgeLock Enclave Firmware (for i.MX8ULP, i.MX93),
+> +          like base, HSM, V2X & SHE using the SAB protocol via the shared Messaging
+> +          Unit. This driver exposes these interfaces via a set of file descriptors
+> +          allowing to configure shared memory, send and receive messages.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8650-qrd.dts b/arch/arm64/boot/dts/qcom/sm8650-qrd.dts
-index b0d7927b708f..8ca0d28eba9b 100644
---- a/arch/arm64/boot/dts/qcom/sm8650-qrd.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8650-qrd.dts
-@@ -208,13 +208,10 @@ wcn7850-pmu {
- 		compatible = "qcom,wcn7850-pmu";
- 
- 		pinctrl-names = "default";
--		pinctrl-0 = <&wlan_en>;
-+		pinctrl-0 = <&wlan_en>, <&bt_default>;
- 
- 		wlan-enable-gpios = <&tlmm 16 GPIO_ACTIVE_HIGH>;
--		/*
--		 * TODO Add bt-enable-gpios once the Bluetooth driver is
--		 * converted to using the power sequencer.
--		 */
-+		bt-enable-gpios = <&tlmm 17 GPIO_ACTIVE_HIGH>;
- 
- 		vdd-supply = <&vreg_s4i_0p85>;
- 		vddio-supply = <&vreg_l15b_1p8>;
-@@ -1255,22 +1252,15 @@ &uart14 {
- 	bluetooth {
- 		compatible = "qcom,wcn7850-bt";
- 
--		clocks = <&rpmhcc RPMH_RF_CLK1>;
--
--		vddio-supply = <&vreg_l3c_1p2>;
--		vddaon-supply = <&vreg_l15b_1p8>;
--		vdddig-supply = <&vreg_s3c_0p9>;
--		vddrfa0p8-supply = <&vreg_s3c_0p9>;
--		vddrfa1p2-supply = <&vreg_s1c_1p2>;
--		vddrfa1p9-supply = <&vreg_s6c_1p8>;
-+		vddrfacmn-supply = <&vreg_pmu_rfa_cmn>;
-+		vddaon-supply = <&vreg_pmu_aon_0p59>;
-+		vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
-+		vddwlmx-supply = <&vreg_pmu_wlmx_0p85>;
-+		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
-+		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
-+		vddrfa1p8-supply = <&vreg_pmu_rfa_1p8>;
- 
- 		max-speed = <3200000>;
--
--		enable-gpios = <&tlmm 17 GPIO_ACTIVE_HIGH>;
--		swctrl-gpios = <&tlmm 18 GPIO_ACTIVE_HIGH>;
--
--		pinctrl-0 = <&bt_default>;
--		pinctrl-names = "default";
- 	};
- };
- 
+The 4 lines above should be indented with one tab + 2 spaces instead of _many_ spaces.
 
 -- 
-2.43.0
-
+~Randy
 
