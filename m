@@ -1,183 +1,85 @@
-Return-Path: <devicetree+bounces-83490-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83493-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7067928916
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 14:55:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA1AC92893F
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 15:06:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2D6FA1F25F92
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 12:55:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EA6141C212AA
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 13:06:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9CFC14A61E;
-	Fri,  5 Jul 2024 12:55:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5753214A619;
+	Fri,  5 Jul 2024 13:06:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="NXUgf4BJ"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="RYIHpHiA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CE6413C8F9;
-	Fri,  5 Jul 2024 12:55:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF844143C79;
+	Fri,  5 Jul 2024 13:06:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720184134; cv=none; b=KUmdS1EMjGFP4Ib7GW31lVR5ejF7a72Pz5aO1vxWQYGNzWkRoE0imLLqoF/YuV/lGgomtdpvutFUGDqGUhGkTtVNeOAkHIFd3vZ85r1228EjFEV+/XFkBy7CvIwANRq1Eg5N2euyopVeC7wIKwCRhbbDSXffeonZmC9jvTK2E3w=
+	t=1720184780; cv=none; b=Rzi4xgiuqjBb22rDgHhx7pCadmsTPF49ZFncbFD3UZr+p/H9jODX/lLg6wOHZTnYORB/aPXjg/r/9nf10dN6H45Dm7KrOpsWycRpABVs27l/VdFlms+rwSoPNejF3ZJuI1ZrPvtPuSEvtfy9ahFEIkosxRUhIvKpJWRLbWF9KSM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720184134; c=relaxed/simple;
-	bh=Z5KVVpVzJXWZTDYsocGuEMhDUmkZAVHCjL4h2Uv1m1A=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=C+nl1gCWpGTt1IvM05l0SbJLXzDf5mmqZhFmFNwA8U2cwQxEyVj9jRhya9Fo7g3TXwIDsPUCRvt1m3tdX9KgaYL9njhkttnG+MxO3QImcoPZSUi6I1sIm33bRNT678Q1FSaHw7fgiV3PhDQOm+GCYY2VGdCOS1l3ClSBv7wCtiw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=NXUgf4BJ; arc=none smtp.client-ip=217.70.183.201
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 1A52D1BF203;
-	Fri,  5 Jul 2024 12:55:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1720184130;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=lkgdhWZpV73wja8j2NNVmvhUuPQEYOksDpCMcDjmmaU=;
-	b=NXUgf4BJj0wmKWhJnyfVixE2x94XeGk/xAfGBuP1f7ziJ7A4z5MFm+lXPEYxXp28SieMER
-	HYti3Q4/Zyd/kHK23zeKlKLfi8Of58Ss3MQiGCUvmRW765bv2URtYnMQQ+N4SYJRTP3YVI
-	GDRxQ+74Ngx0kynw+unwWLpcAQWEGVHupZe856UUX3WC0QfM8HAU+YU+jsdE5af75LTqvA
-	2DpNBtJyN182bwC5qf9rNjyS4RMX2EZMOD1gHlGkyE0E+TvtgoHz06DD+GMJlnmYJzx0KW
-	XviMTHzayaCTBdlSNcUNR3P5MdaXtTm8q4YbBrMl5MGhWSF9mF1ZGzuGumAPWg==
-From: Gregory CLEMENT <gregory.clement@bootlin.com>
-To: Josua Mayer <josua@solid-run.com>, Andrew Lunn <andrew@lunn.ch>,
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Richard Cochran <richardcochran@gmail.com>
-Cc: Yazan Shhady <yazan.shhady@solid-run.com>,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, netdev@vger.kernel.org, Josua Mayer
- <josua@solid-run.com>, Krzysztof Kozlowski
- <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v7 0/5] arm64: dts: add description for solidrun cn9130
- som and clearfog boards
-In-Reply-To: <20240704-cn9130-som-v7-0-eea606ba5faa@solid-run.com>
-References: <20240704-cn9130-som-v7-0-eea606ba5faa@solid-run.com>
-Date: Fri, 05 Jul 2024 14:55:29 +0200
-Message-ID: <8734ooj8vy.fsf@BLaptop.bootlin.com>
+	s=arc-20240116; t=1720184780; c=relaxed/simple;
+	bh=WmEhNgDAEyTZUHGmtQezCo9iVLbCkSzU0LJjSId6A9s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Mu1wGf6XddsW0fbUqpZOhk7Ei6dAhaRQVCLzKJ3iIUIQ097kMEKxhNdOIrQmQrFZsNtuGN3cJS1/9Bff0WGyGXK/sm0K+bP/7Dn+HKD0pFqkpuKvucl/+G4yPNfiyNETix+aA/HeSGd0RLCL4uAn9FnPfO+WPtEZRcHKscN/I3A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=RYIHpHiA; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from francesco-nb (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+	by mail11.truemail.it (Postfix) with ESMTPA id 7336E1F9C8;
+	Fri,  5 Jul 2024 14:57:30 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1720184251;
+	bh=WmEhNgDAEyTZUHGmtQezCo9iVLbCkSzU0LJjSId6A9s=; h=From:To:Subject;
+	b=RYIHpHiA0QZ3wLmsP1vKyCuRUc0DKvv0COFTjmBHm5fEDEzKdHIo0SaP1OpdqR1t0
+	 j60Xw390URTSJKHFVKtq+BuPOGSqeEanvkYkq0S2zrscWacY1AAboZXhKP76DQwnJs
+	 9OW2pDuBbg+mo8La7WBFzpCXb+pUghVvvMkZFFeg/t/ktEcriC8Dg9r5pw39Xm6fJw
+	 cvKkLrL/MPY77iVjnESuq+rDCLI2OscATmE7XIEPpMaUJB0N49+KswB3R1Om9sywrw
+	 SJvSNDGUY1kEpzvSkqJCajvgb68V57wwKMRBytzidogpZtLlAJ+j4oJeKOKa4rREdh
+	 4tPdlXxijpk2Q==
+Date: Fri, 5 Jul 2024 14:57:26 +0200
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Liu Ying <victor.liu@nxp.com>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, p.zabel@pengutronix.de,
+	airlied@gmail.com, daniel@ffwll.ch,
+	maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+	tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+	kernel@pengutronix.de, festevam@gmail.com, tglx@linutronix.de
+Subject: Re: [PATCH 00/10] Add Freescale i.MX8qxp Display Controller support
+Message-ID: <20240705125708.GA73712@francesco-nb>
+References: <20240705090932.1880496-1-victor.liu@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-GND-Sasl: gregory.clement@bootlin.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240705090932.1880496-1-victor.liu@nxp.com>
 
-Josua Mayer <josua@solid-run.com> writes:
+Hello Liu,
 
-> SolidRun CN9130 SoM is a mostly pin-comptible replacement for Armada 388
-> SoM used in Clearfog and Clearfog Pro boards.
->
-> 1. Add new binding for compatible strings closely matching the original.
->
-> 2. Add device-tree includes for SoM and carrier shared design.
->
-> 3. Add device-tree for both Clearfog Base and Pro.
->
-> While dtbs_check is happy with LED descriptions behind dsa switch,
-> functionally they require supporting code by Andrew Lunn:
-> https://lore.kernel.org/r/20240401-v6-8-0-net-next-mv88e6xxx-leds-v4-v3-0-221b3fa55f78@lunn.ch
->
-> NOTICE IN CASE ANYBODY WANTS TO SELF-UPGRADE:
-> CN9130 SoM has a different footprint from Armada 388 SoM.
-> Components on the carrier board below the SoM may collide causing
-> damage, such as on Clearfog Base.
->
-> Signed-off-by: Josua Mayer <josua@solid-run.com>
+On Fri, Jul 05, 2024 at 05:09:22PM +0800, Liu Ying wrote:
+> This patch series aims to add Freescale i.MX8qxp Display Controller support.
 
-Seriues applied on mvebu/dt64
+I really appreciate your work here, I am looking forward for a better
+support in mainline Linux for both i.MX8QXP and i.MX8QP.
 
-Thanks,
+With that said, would be possible to add to this patch series also the
+required changes on the DTSI/DTS file to facilitate testing this?
+Worst case you can just add those as RFC / DO NOT MERGE at the end of
+this series when you'll send a v2.
 
-Gregory
-> ---
-> Changes in v7:
-> - dropped dt-bindings for usb phy and adc which were picked into their
->   respective trees
-> - Link to v6: https://lore.kernel.org/r/20240602-cn9130-som-v6-0-89393e86d4c7@solid-run.com
->
-> Changes in v6:
-> - add device-tree for cn9132 clearfog and CEX-7 module
-> - add dt compatible for tla2021 adc
->   --> I don't plan to submit a driver patch because I can't test it
->   --> might share untested patch
-> - add dt property for swapping d+-/d- on cp110 utmi phy
->   --> I plan to submit a driver patch, already prototyped
-> - removed duplicate node reference / status=okay for cp0_utmi from
->   cn9131-cf-solidwan.dts
-> - rebased on 6.10-rc1
-> - Link to v5: https://lore.kernel.org/r/20240509-cn9130-som-v5-0-95493eb5c79d@solid-run.com
->
-> Changes in v5:
-> - replaced *-gpio properties with preferred *-gpios
->   (Reported-by: robh@kernel.org)
-> - removed fixed-regulator regulator-oc-protection-microamp properties
->   This property is intended to set a configurable over-current limit to
->   a particular value. The physical component however is not
->   configurable, remove the property.
-> - kept all review tags since the changes were minor, hope that is okay
->   with everybody.
-> - Link to v4: https://lore.kernel.org/r/20240502-cn9130-som-v4-0-0a2e2f1c70d8@solid-run.com
->
-> Changes in v4:
-> - Picked up reviewed-by tags by Andrew Lunn.
-> - fixed a typo and changed 3-line comment into single-line comment
->   for clearfog-base/-pro dts, but kept review tags since change was
->   minor.
-> - Updated SFP led labels to use "sfp?:colour" without "color" property,
->   to avoid duplicate labels while reflecting they are each dual-colour.
-> - Link to v3: https://lore.kernel.org/r/20240414-cn9130-som-v3-0-350a67d44e0a@solid-run.com
->
-> Changes in v3:
-> - picked up acked-by for dt-bindings
-> - skipped acked-by for dts because additional changes were made:
->   - moved legacy netdev aliases to carrier dts
->   - fix status property style errors
->   - add pinctrl for secondary spi chip-select on mikrobus header (& som)
->   - specify spi bus frequency limits for som
-> - Added CN9131 SolidWAN board
-> - Link to v2: https://lore.kernel.org/r/20240404-cn9130-som-v2-0-3af2229c7d2d@solid-run.com
->
-> Changes in v2:
-> - rewrote dt bindings dropping unnecessary compatibles
->   (Reported-By: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>)
-> - added bindings for two additional boards (cn9131/9132)
->   support planned for the coming weeks, mostly serves
->   illustrational purposes, to understand cn913x variants
-> - cf-pro: add description for LEDs behind DSA switch
-> - cf-base: add description for LEDs behind PHYs
->   (Reported-By: Andrew Lunn <andrew@lunn.ch>)
-> - Link to v1: https://lore.kernel.org/r/20240321-cn9130-som-v1-0-711127a409ae@solid-run.com
->
-> ---
-> Josua Mayer (5):
->       dt-bindings: arm64: marvell: add solidrun cn9130 som based boards
->       dt-bindings: arm64: marvell: add solidrun cn9132 CEX-7 evaluation board
->       arm64: dts: add description for solidrun cn9130 som and clearfog boards
->       arm64: dts: add description for solidrun cn9131 solidwan board
->       arm64: dts: add description for solidrun cn9132 cex7 module and clearfog board
->
->  .../bindings/arm/marvell/armada-7k-8k.yaml         |  18 +
->  arch/arm64/boot/dts/marvell/Makefile               |   4 +
->  arch/arm64/boot/dts/marvell/cn9130-cf-base.dts     | 178 ++++++
->  arch/arm64/boot/dts/marvell/cn9130-cf-pro.dts      | 375 +++++++++++
->  arch/arm64/boot/dts/marvell/cn9130-cf.dtsi         | 197 ++++++
->  arch/arm64/boot/dts/marvell/cn9130-sr-som.dtsi     | 160 +++++
->  arch/arm64/boot/dts/marvell/cn9131-cf-solidwan.dts | 637 ++++++++++++++++++
->  arch/arm64/boot/dts/marvell/cn9132-clearfog.dts    | 673 +++++++++++++++++++
->  arch/arm64/boot/dts/marvell/cn9132-sr-cex7.dtsi    | 712 +++++++++++++++++++++
->  9 files changed, 2954 insertions(+)
-> ---
-> base-commit: 1613e604df0cd359cf2a7fbd9be7a0bcfacfabd0
-> change-id: 20240318-cn9130-som-848e86acb0ac
->
-> Sincerely,
-> -- 
-> Josua Mayer <josua@solid-run.com>
+Francesco
+
 
