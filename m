@@ -1,106 +1,204 @@
-Return-Path: <devicetree+bounces-83421-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83423-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 320FD928577
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 11:51:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18858928585
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 11:52:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E2172283D1A
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 09:51:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9561B1F24888
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 09:52:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F1C3146A72;
-	Fri,  5 Jul 2024 09:51:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37CAC146A8D;
+	Fri,  5 Jul 2024 09:51:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="eog9TsOq"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iJksSF8t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B2A8146015;
-	Fri,  5 Jul 2024 09:51:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BE07146A9B
+	for <devicetree@vger.kernel.org>; Fri,  5 Jul 2024 09:51:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720173068; cv=none; b=kAdrvi5sBaRuZVW0ffGRIvg7ec07tnlsoQ3eOv9wxsUokS9GFbeSlUvPtkAYlYl/v8SqpezlQjTqUGYidxZaERBGb8OxWzYHFPeApzeBNv90o5bCZicsoOe3OkQK8m3TRMpwBE/UTqRxiiTSIGHHISqu99YvtJVKs82ZPpfv0AE=
+	t=1720173119; cv=none; b=X3yzd9SGjFyS9NRdql5O8vsWuxKo7PPpkMimK8SWDZEhGixYCl0cTxdpheGqngxuo+vbZuYjV/G53Dg6TXo3FJyEzi5XqrR2uvSHZxtDmWoLffpuBcvClR83vuN3CjLD3X4tpvqUryIFwgPeyFXw9Yqc9HQH92gZFoWU4YIwvAU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720173068; c=relaxed/simple;
-	bh=sXd368oAAwWq4VK0mGuPO3OdSq/Yp60ZT2fpecwd7qs=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=hxPlnlOJ0ApKxKhYgL6W88Lld17RlF9PDYAcueHKnhF1eW71MCClocMXh6CvRRI5U//+rp+7CJnhZDrZwW4s/SGhz8YEK0AZzkyaE7+KGdLRQFEVdPh3B/zHFIEmo0n/uGTJp/Haxsqp0jX1NBaOVqtnQNQ0f9v2/oQm1yr+8mM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=eog9TsOq; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id B147D882F0;
-	Fri,  5 Jul 2024 11:51:02 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1720173063;
-	bh=96I37y7l6BCzp899YSBCDVRbsoRH4E+fgJrQ/eLsQVg=;
-	h=From:To:Cc:Subject:Date:From;
-	b=eog9TsOq9oh+2k5GS+ci3AHhzM1vJ4PExhBE0FZQYxZe7nA26v1cNgdnX+PTJ2dmQ
-	 EuWVKeQ0CWWJGSY48aYQKloplGBmDjmZGtPSP/yPqwgvPZiDgg5bY7JrPtcg6x6a2q
-	 X52d1FM2tUbAoyQymu0QBaDxx20OM/VL8k+KlvdOyuNpBiZ6+Iric+XPdvRjxtSeXP
-	 5Gg5ijW5OQsykU5OW8ACq5UBZ9PXwxz5quvlX6oeiHe+QK9r+fOmqGd93nvkvrAQN+
-	 Ftw7KIc1QXfUVCWr2rC6eDoxpWKOP6xPtBZ/JZ32MovYRcYRnq+Fa+o24QY2E+9agL
-	 deanRyS7hiiAw==
-From: Marek Vasut <marex@denx.de>
-To: linux-iio@vger.kernel.org
-Cc: Marek Vasut <marex@denx.de>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Rob Herring <robh@kernel.org>,
-	Shreeya Patel <shreeya.patel@collabora.com>,
-	devicetree@vger.kernel.org
-Subject: [PATCH] iio: light: ltrf216a: Drop undocumented ltr,ltrf216a compatible string
-Date: Fri,  5 Jul 2024 11:50:28 +0200
-Message-ID: <20240705095047.90558-1-marex@denx.de>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1720173119; c=relaxed/simple;
+	bh=e0XnXkSS2UbFWN0Enj/RykHQGyKigRvVK0Ae2vPy69Q=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=HLy+0/Jq7ia8FsurwVSyCzwNDyWIiaMBJ10rUi38WNkjr2oxiN5W4Lp81mL52FZvG2JpWDNKNnIMVDg1VsBLvKlz+fVKVm21cZMdim4d6l/r4LjkNzlAVbV/RB5VeOhBqLuCm2OQpvmk9kZ5Or+Fv4lyGQRHqE/zDzaASEtvNWw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=iJksSF8t; arc=none smtp.client-ip=209.85.221.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-367963ea053so1100707f8f.2
+        for <devicetree@vger.kernel.org>; Fri, 05 Jul 2024 02:51:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1720173115; x=1720777915; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=kJu1vmWUxTKY4ACFv7SXUQFPNZpjog7M5wGF280T4yg=;
+        b=iJksSF8tH+siIX7cytno/G3Off4WTLYpQiwWaVDJhmRLTCgdRlGFPoB/vrGtO0aQhv
+         huOPqrEB4lhu2DqvWDiPh/JXwbpdSaCR38mX2HUlLMRJhtT/ySuvkJQvhebLKsj0CwZW
+         nhc2JqHsyVlxo/fxQ5nlZDbZ0en5uZ/hmJ+IVOkpq1S6oW0xgWQFwGnaJ4nLT67YETML
+         05nO3dne6iwz5tb2OjqL+/3EZ9p3XT3db7EHYswrhDmI422n6ot8pz9JHCv0u+v+xXkn
+         Y1HrQVNuh6Jk2WIqWYlPFyIlVUXjc7Jo4jeuKoqWxOyMAsZ3SI2Yfwc5XqLMGKx62Z2G
+         /E3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720173115; x=1720777915;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=kJu1vmWUxTKY4ACFv7SXUQFPNZpjog7M5wGF280T4yg=;
+        b=QkUCr5XbSYG6N4pQApvBzsilOPaoXsbWN8gH3KAeGZgxsD0IkO5YL8zudBc6Yz8wsg
+         32lEZPx1B29T26for3hHF7xZ3pIxB6fLiZK59EsFHHGIgHaqVzReTEv5zYgwv366Jq9k
+         /dDPBxn1N6gQgGHThrBrAbeeDB9xA3HbwPep1hQ4MS9VX6w4KACURkzeiU+8FU2pg1vu
+         cKemxJLp7eynCfrpSpIZX/JCIaPU7tajMAupZvx/VEIXXyfbtuFhDMeMP+dmGfUG4T5x
+         Fg/BUBcV8E/NZintQX9SaFrby7vJ00dXHuSRb+k/X6Y1lQhp9Zjr3Koe7+lZOlxB7kKZ
+         3NGA==
+X-Forwarded-Encrypted: i=1; AJvYcCWfSaE5UXYLrrD8IlNEBXA3dc+CtF8/eZJdvq/wsbcPG/oducmWfWDOx2XHUkM913WFX7FFa7m1lBQey7ensefQpP0QWE1yiD4dPw==
+X-Gm-Message-State: AOJu0YytcWDUuj6IlxZupf+1JcYc2gQOvKLfx4WgKEP15HKlzx0qECTi
+	9fSpsUQJMlxjVqFd98wJHgAnpnNM/oJmrhBHP2ObdoWmaZnxyBiytIJrixUEV8g=
+X-Google-Smtp-Source: AGHT+IH8V0hkcfYPUlBscK7rDTKJum3Y/kp1D4wfK5gH6s/Rm3xSZgQUyKRbc81OqnK8GjQSgcWNiw==
+X-Received: by 2002:a5d:62c4:0:b0:367:957d:b46d with SMTP id ffacd0b85a97d-3679dd71ef8mr3422417f8f.66.1720173114610;
+        Fri, 05 Jul 2024 02:51:54 -0700 (PDT)
+Received: from [127.0.1.1] ([178.197.219.137])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4264a1d1650sm55528995e9.2.2024.07.05.02.51.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 05 Jul 2024 02:51:53 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH RESEND 00/22] dt-bindings: thermal: few cleanups
+Date: Fri, 05 Jul 2024 11:51:19 +0200
+Message-Id: <20240705-dt-bindings-thermal-allof-v1-0-554061b52fbc@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABjCh2YC/42NwQ6CMBBEf4Xs2TVtLRw8eZCrBz0aDgUW2KS2Z
+ kuIhvDvNnyBxzeTebNCImFKcC5WEFo4cQwZ9KGAbnJhJOQ+MxhlrKq0xX7GlkPPYUw4TyQv59F
+ 5Hwe0SnelokrTYCDv30IDf3b3E+71o75docn5xGmO8t0vF723f9gXjQpPqjWlqxwZSxfPwUk8R
+ hmh2bbtB1q92lvLAAAA
+To: Daniel Lezcano <daniel.lezcano@linaro.org>, 
+ Zhang Rui <rui.zhang@intel.com>, Rob Herring <robh@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Guillaume La Roque <glaroque@baylibre.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
+ Fabio Estevam <festevam@gmail.com>
+Cc: linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+ linux-sunxi@lists.linux.dev, imx@lists.linux.dev, 
+ linux-tegra@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+ linux-stm32@st-md-mailman.stormreply.com, 
+ Florian Fainelli <f.fainelli@gmail.com>, 
+ linux-rpi-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ Conor Dooley <conor.dooley@microchip.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Vasily Khoruzhick <anarsoul@gmail.com>, 
+ Florian Fainelli <florian.fainelli@broadcom.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+ Amit Kucheria <amitk@kernel.org>, 
+ =?utf-8?q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>, 
+ Heiko Stuebner <heiko@sntech.de>, Biju Das <biju.das.jz@bp.renesas.com>, 
+ Baolin Wang <baolin.wang@linux.alibaba.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+X-Mailer: b4 0.14.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3987;
+ i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
+ bh=e0XnXkSS2UbFWN0Enj/RykHQGyKigRvVK0Ae2vPy69Q=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBmh8IhQOLA3YgiesM3X3PsNvQ88/UNWP+TTpAnV
+ HPEl13fLgmJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCZofCIQAKCRDBN2bmhouD
+ 16lHEACAIqQ6rJ+IssE7c+6Byc/DFWCacf2uYgdbCx9SEJkdhTd2FBmqtuIGorS7GWv7sQjWxUw
+ s0tkl2uvy1SLpEwSsjDX8jifZyU9Isz2koX+MPKaBiaM/l+shANrL9Ub8nkbK2VdKHVoqlBJ1jx
+ CRViJ5HwLCQ+xul2EKAI8qfZdiBhLCvCWXiWyqNVOzGla8SXM2b07zV+Akza3BDZPfw42QEbgVE
+ ZCAP2eYkIe0ZJiHNJ6PwjIb94/46R44k0NevaC/FRcinUnaHRNaKcUJ+fkPQ5XZjFH9sg8TCkxV
+ vRMnI7NYrYrvYIOgRBa2T0QfbAP2dnxqo1gMdxQy0kJowh61zrLfLKAbYNJvlRh/r0AYziRZHrc
+ U8k2+NDtbOPfp0vKsIvEtEC3qnpVHB8LTlfPNK+cpvv8uj0wWe+H0kJ/DCxIhbCjYZk/63YOAl8
+ P4xRXaf/fFVZy+HxPYFCNrvf4MYBSg2XOhwvfprdm8AZXX3yR3YyZGVJ3UoGlbYvSkJDxTmP3Ii
+ J1lsr1ay4TULQcqQNg3uiC5RLHxzMo/USu2p/M0FBbi2TJ/OlJynDRAO8z0Ox8Ggk1eiruF+q83
+ 92qWVFjKIhRWyHIkXpUcZhNw7GNERqxdsj6jrNJBa1nRCBdhobA/n7B8PPeqcsgzie6AEOHo9Ji
+ h+HUlL/i4jtZxAA==
+X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
+ fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 
-The "ltr,ltrf216a" compatible string is not documented in DT binding
-document, remove it.
+Hi,
 
-Signed-off-by: Marek Vasut <marex@denx.de>
+Resending (with added tags) because patchset was still not applied.
+Daniel, can you pick it up?
+
+Few cleanups witout practical impact, except maybe the Amlogic schema
+(bringing required cells).
+
+Link to v1: https://lore.kernel.org/r/20240614-dt-bindings-thermal-allof-v1-0-30b25a6ae24e@linaro.org
+
+Best regards,
+Krzysztof
+
 ---
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Jonathan Cameron <jic23@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Lars-Peter Clausen <lars@metafoo.de>
-Cc: Marek Vasut <marex@denx.de>
-Cc: Rob Herring <robh@kernel.org>
-Cc: Shreeya Patel <shreeya.patel@collabora.com>
-Cc: devicetree@vger.kernel.org
-Cc: linux-iio@vger.kernel.org
----
- drivers/iio/light/ltrf216a.c | 1 -
- 1 file changed, 1 deletion(-)
+Krzysztof Kozlowski (22):
+      dt-bindings: thermal: samsung,exynos: specify cells
+      dt-bindings: thermal: amlogic: reference thermal-sensor schema
+      dt-bindings: thermal: allwinner,sun8i-a83t-ths: reference thermal-sensor schema
+      dt-bindings: thermal: brcm,avs-ro: reference thermal-sensor schema
+      dt-bindings: thermal: generic-adc: reference thermal-sensor schema
+      dt-bindings: thermal: imx8mm: reference thermal-sensor schema
+      dt-bindings: thermal: nvidia,tegra186-bpmp: reference thermal-sensor schema
+      dt-bindings: thermal: nvidia,tegra30-tsensor: reference thermal-sensor schema
+      dt-bindings: thermal: qcom-spmi-adc-tm-hc: reference thermal-sensor schema
+      dt-bindings: thermal: qcom-spmi-adc-tm5: reference thermal-sensor schema
+      dt-bindings: thermal: qcom-tsens: reference thermal-sensor schema
+      dt-bindings: thermal: qoriq: reference thermal-sensor schema
+      dt-bindings: thermal: rcar-gen3: reference thermal-sensor schema
+      dt-bindings: thermal: rockchip: reference thermal-sensor schema
+      dt-bindings: thermal: rzg2l: reference thermal-sensor schema
+      dt-bindings: thermal: socionext,uniphier: reference thermal-sensor schema
+      dt-bindings: thermal: sprd: reference thermal-sensor schema
+      dt-bindings: thermal: st,stm32: reference thermal-sensor schema
+      dt-bindings: thermal: ti,am654: reference thermal-sensor schema
+      dt-bindings: thermal: ti,j72xx: reference thermal-sensor schema
+      dt-bindings: thermal: simplify few bindings
+      dt-bindings: thermal: cleanup examples indentation
 
-diff --git a/drivers/iio/light/ltrf216a.c b/drivers/iio/light/ltrf216a.c
-index 68dc48420a886..78fc910fcb18c 100644
---- a/drivers/iio/light/ltrf216a.c
-+++ b/drivers/iio/light/ltrf216a.c
-@@ -528,7 +528,6 @@ MODULE_DEVICE_TABLE(i2c, ltrf216a_id);
- 
- static const struct of_device_id ltrf216a_of_match[] = {
- 	{ .compatible = "liteon,ltrf216a" },
--	{ .compatible = "ltr,ltrf216a" },
- 	{}
- };
- MODULE_DEVICE_TABLE(of, ltrf216a_of_match);
+ .../bindings/thermal/allwinner,sun8i-a83t-ths.yaml |  6 +-
+ .../bindings/thermal/amlogic,thermal.yaml          | 22 ++---
+ .../bindings/thermal/brcm,avs-ro-thermal.yaml      | 22 ++---
+ .../devicetree/bindings/thermal/brcm,avs-tmon.yaml | 17 ++--
+ .../bindings/thermal/brcm,bcm2835-thermal.yaml     |  1 -
+ .../bindings/thermal/fsl,scu-thermal.yaml          |  1 -
+ .../bindings/thermal/generic-adc-thermal.yaml      |  5 +-
+ .../bindings/thermal/imx8mm-thermal.yaml           |  5 +-
+ .../bindings/thermal/loongson,ls2k-thermal.yaml    |  1 -
+ .../bindings/thermal/mediatek,lvts-thermal.yaml    |  1 -
+ .../bindings/thermal/nvidia,tegra124-soctherm.yaml |  1 -
+ .../thermal/nvidia,tegra186-bpmp-thermal.yaml      | 12 +--
+ .../bindings/thermal/nvidia,tegra30-tsensor.yaml   |  9 +-
+ .../bindings/thermal/qcom,spmi-temp-alarm.yaml     |  1 -
+ .../bindings/thermal/qcom-spmi-adc-tm-hc.yaml      |  8 +-
+ .../bindings/thermal/qcom-spmi-adc-tm5.yaml        |  8 +-
+ .../devicetree/bindings/thermal/qcom-tsens.yaml    | 96 ++++++++++------------
+ .../devicetree/bindings/thermal/qoriq-thermal.yaml |  5 +-
+ .../bindings/thermal/rcar-gen3-thermal.yaml        | 69 ++++++++--------
+ .../devicetree/bindings/thermal/rcar-thermal.yaml  | 60 +++++++-------
+ .../bindings/thermal/rockchip-thermal.yaml         |  5 +-
+ .../devicetree/bindings/thermal/rzg2l-thermal.yaml | 41 ++++-----
+ .../bindings/thermal/samsung,exynos-thermal.yaml   |  3 +-
+ .../thermal/socionext,uniphier-thermal.yaml        |  5 +-
+ .../devicetree/bindings/thermal/sprd-thermal.yaml  | 47 +++++------
+ .../bindings/thermal/st,stm32-thermal.yaml         |  5 +-
+ .../bindings/thermal/ti,am654-thermal.yaml         | 15 ++--
+ .../bindings/thermal/ti,j72xx-thermal.yaml         |  5 +-
+ 28 files changed, 230 insertions(+), 246 deletions(-)
+---
+base-commit: 0b58e108042b0ed28a71cd7edf5175999955b233
+change-id: 20240614-dt-bindings-thermal-allof-401c50e61ef2
+
+Best regards,
 -- 
-2.43.0
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
