@@ -1,69 +1,65 @@
-Return-Path: <devicetree+bounces-83549-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83550-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08104928EFA
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 23:52:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BC34928EFF
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 23:53:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B17961F23854
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 21:52:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 362AB281651
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 21:53:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04216145A09;
-	Fri,  5 Jul 2024 21:52:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC09F145A09;
+	Fri,  5 Jul 2024 21:53:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="mdXhu0i9"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="ZhbnZNqp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CA17146A60;
-	Fri,  5 Jul 2024 21:52:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 158B81C693;
+	Fri,  5 Jul 2024 21:53:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720216345; cv=none; b=c4cVg1haD+a7l941LsxK5IN57QdcOLFXw/uGNKFNuj+YW5i7RY2tRhCqCHXdrloGax3+t/862Rb0ne7Q+GUxX5U6+UXQqv0yFzsQyRlFU/GT1G/JlxhedAk1+2rKc482Ih7+M1qDPOGPZecpX/S3sp3F54qdRzzVQ5SlgCBHdGU=
+	t=1720216416; cv=none; b=QJ2vevXXxEC9kH+MqQgXsxSbIUXi+KUsa0LjLKO7PWVwEvvKhv5q5tliujmEEHYXUGqLnmwQDKNiLuRTG9NhWDgpvwupWLFJhd+OFpFs0CWELOzT2TOvkiZM3gkfW7n9ezA9UUMwoZ6wrA+ZsWBRcix7B9tFAcR5haJ8MVFNh+k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720216345; c=relaxed/simple;
-	bh=1vKtuRaH9gKpBZAiWoc/J32GV2s67Oe3VAbvYAW3/r8=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=LXBgyJNR/c4tZZisS52egzIH0uuXpi9mV+fC6OXjlV834ko32eX/qnJj38eOWYEhXMb8Ti0AcaF9gVACKseW5mMnIpr57yIKg1D1geLYi6G4Lz/TIGfLT8SZvxEgw95bDq/m8mXpBF2C6KIVm7BemVAq1qv/gqz8rjGX+tvNn8w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=mdXhu0i9; arc=none smtp.client-ip=85.214.62.61
+	s=arc-20240116; t=1720216416; c=relaxed/simple;
+	bh=7RS//O1sJvZBsjt75ltHlk5ubxjwwyRXm284xrlcGeE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=kcf7yIrPjnN/+9qOY2JXs2VPHX8zqe9dIj1Yj+/mQpPFv+JAIkUJKe5C14h6lXMY7608X3zZ/s/I+DwT16aQY//rRE2lRxHC7SRSBqHBHCkwCgP5PcgtZ57aCOAhbP9lM3jCnwYjSpqhZ4zraLDJJjya2A2b9Wv6x1PI4G8spcM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=ZhbnZNqp; arc=none smtp.client-ip=85.214.62.61
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
 Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
 	(No client certificate requested)
 	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 7557A881AD;
-	Fri,  5 Jul 2024 23:52:21 +0200 (CEST)
+	by phobos.denx.de (Postfix) with ESMTPSA id 0D6DE881AD;
+	Fri,  5 Jul 2024 23:53:33 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1720216342;
-	bh=mmPEDXeUzKDrsT/n6IOWn3L16waosfQl1rURoOzvHSs=;
+	s=phobos-20191101; t=1720216413;
+	bh=yXYTcJV2BM8NCC6fvNkqGrsypMESBBsvyS/tVJ7b8UE=;
 	h=From:To:Cc:Subject:Date:From;
-	b=mdXhu0i9sEGQU+jYqEBa1WYW8msbexl/BdFKnVmV5RqqRq9y3U81zMFnl4BFYyzGv
-	 Y22gZZDdHU2WFl2pCSdv9biPMs78mQTeHXQziptm1KQfKNUHtLQLVIEe6pfm7PwaRJ
-	 +y8I+sLWIvAT7RkidujC+khA+fLTYBjhVCzZEi4Po25s6SivUVC7HWFCK3pyNGAcEI
-	 u/1kjUpsQvePxCXKav9NnYOUrmL1hgXEnqUXPfq3lGoe8R2eS2ZIwwbm6RkN5vCoyr
-	 XsrJC5MQc4Eq1/MmkVxwYbwTswbnWtlMmhuZK8JB4Un0uQd8jCv/4CO6k0CEdBTpF3
-	 09C4j38Fs4cMQ==
+	b=ZhbnZNqplQ81X19TPdt/OvVc5j1DLyldyfRPRtt7q+/qklij6rNpOQk8mGXDd2Hvq
+	 dvAhHZdclTfLp2yNkEh7C2zA4sJDna2VcF4NOkdlFNIbPZHmAHMtcZAY6hIsyUjpkR
+	 0Z0aOVJ0Cg572jv4pdRij7a6tN4fFA1D9ee0qnOhHlopmkr0AdGt9wBozpHOXHEsM3
+	 T10liYNO4thSbWn6ZdjU2hGS+sMseRuiXXPPpM/mapwPEkosax5dp0q4/IHP9o+YXw
+	 B8xnwpGZVBx5JXBYyMf6PmDPupJQAOghmYSYgDgIYt30acJHupK0XeuvJAczBIGvBR
+	 DHRBKctFIQs0w==
 From: Marek Vasut <marex@denx.de>
-To: netdev@vger.kernel.org
+To: linux-leds@vger.kernel.org
 Cc: kernel@dh-electronics.com,
 	Marek Vasut <marex@denx.de>,
-	"David S. Miller" <davem@davemloft.net>,
-	Andrew Lunn <andrew@lunn.ch>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Eric Dumazet <edumazet@google.com>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Jakub Kicinski <kuba@kernel.org>,
+	Jacek Anaszewski <jacek.anaszewski@gmail.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
+	Lee Jones <lee@kernel.org>,
+	Pavel Machek <pavel@ucw.cz>,
 	Rob Herring <robh@kernel.org>,
 	devicetree@vger.kernel.org
-Subject: [net-next,PATCH] dt-bindings: net: realtek,rtl82xx: Document RTL8211F LED support
-Date: Fri,  5 Jul 2024 23:51:46 +0200
-Message-ID: <20240705215207.256863-1-marex@denx.de>
+Subject: [PATCH] dt-bindings: leds: Document "netdev" trigger
+Date: Fri,  5 Jul 2024 23:52:51 +0200
+Message-ID: <20240705215313.256963-1-marex@denx.de>
 X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -75,59 +71,36 @@ Content-Transfer-Encoding: 8bit
 X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
 X-Virus-Status: Clean
 
-The RTL8211F PHY does support LED configuration, document support
-for LEDs in the binding document.
+Document the "netdev" trigger which is used to control LEDs by
+network device activity.
 
 Signed-off-by: Marek Vasut <marex@denx.de>
 ---
-Cc: "David S. Miller" <davem@davemloft.net>
-Cc: Andrew Lunn <andrew@lunn.ch>
 Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Eric Dumazet <edumazet@google.com>
-Cc: Florian Fainelli <f.fainelli@gmail.com>
-Cc: Heiner Kallweit <hkallweit1@gmail.com>
-Cc: Jakub Kicinski <kuba@kernel.org>
+Cc: Jacek Anaszewski <jacek.anaszewski@gmail.com>
 Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Paolo Abeni <pabeni@redhat.com>
+Cc: Lee Jones <lee@kernel.org>
+Cc: Pavel Machek <pavel@ucw.cz>
 Cc: Rob Herring <robh@kernel.org>
 Cc: devicetree@vger.kernel.org
-Cc: netdev@vger.kernel.org
+Cc: linux-leds@vger.kernel.org
 ---
- .../devicetree/bindings/net/realtek,rtl82xx.yaml   | 14 +++++++++++---
- 1 file changed, 11 insertions(+), 3 deletions(-)
+ Documentation/devicetree/bindings/leds/common.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/net/realtek,rtl82xx.yaml b/Documentation/devicetree/bindings/net/realtek,rtl82xx.yaml
-index 18ee72f5c74a8..28c048368073b 100644
---- a/Documentation/devicetree/bindings/net/realtek,rtl82xx.yaml
-+++ b/Documentation/devicetree/bindings/net/realtek,rtl82xx.yaml
-@@ -14,9 +14,6 @@ maintainers:
- description:
-   Bindings for Realtek RTL82xx PHYs
- 
--allOf:
--  - $ref: ethernet-phy.yaml#
--
- properties:
-   compatible:
-     enum:
-@@ -54,6 +51,17 @@ properties:
- 
- unevaluatedProperties: false
- 
-+allOf:
-+  - $ref: ethernet-phy.yaml#
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: ethernet-phy-id001c.c916
-+    then:
-+      properties:
-+        leds: true
-+
- examples:
-   - |
-     mdio {
+diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Documentation/devicetree/bindings/leds/common.yaml
+index 8a3c2398b10ce..bf9a101e4d420 100644
+--- a/Documentation/devicetree/bindings/leds/common.yaml
++++ b/Documentation/devicetree/bindings/leds/common.yaml
+@@ -113,6 +113,8 @@ properties:
+             # LED indicates NAND memory activity (deprecated),
+             # in new implementations use "mtd"
+           - nand-disk
++            # LED indicates network activity
++          - netdev
+             # No trigger assigned to the LED. This is the default mode
+             # if trigger is absent
+           - none
 -- 
 2.43.0
 
