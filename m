@@ -1,121 +1,123 @@
-Return-Path: <devicetree+bounces-83479-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83480-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 959C79288C6
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 14:38:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1B699288CE
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 14:40:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 29924282E31
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 12:38:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2FA501C21BC7
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 12:40:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C29ED149E0A;
-	Fri,  5 Jul 2024 12:38:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA1F514AD0C;
+	Fri,  5 Jul 2024 12:40:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="TIpYwtrx"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="RkHmvkCl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63C27146D76;
-	Fri,  5 Jul 2024 12:38:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F045D143C79
+	for <devicetree@vger.kernel.org>; Fri,  5 Jul 2024 12:40:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720183083; cv=none; b=Uq+tG4UTZcIHT3LiPpUjmGhdrofiPNXibH7Nrwl0M4/Scb9l7nTDOK2rV+gDeCxUgg64jxmgKqKFUW6yhImv8eTGuk8NH3kD7CNu2JabI67Su6d1KX0chINZUAeQpPahNRyCUVlsIcBEa7hip8UF1xJwgeZC/D9jXimr7Q8OImI=
+	t=1720183216; cv=none; b=EseONY10sg9z757giJHEVBERig3JeHu1h8NuQizIuGPIc/RY9dlwlNVfF0YCl9W9i9W5MQ25+GVsMZ+tbPYpJNGhDHnwT3sNfvN0BwNEXsk5R8EgHhJ+IL839BdSX0nJVdD6kbBG424KI3cUvKRZ5lvImYDXIkQRTEDUXxN8vao=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720183083; c=relaxed/simple;
-	bh=3HsTbsDKm/NLPUYW8jCyPrQiNP4MJEpDQo2aw2DgUnQ=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=U1oyg8+YL0QSj7/LGqhgQRqAxamQ7BignuLygFHvn3PQgxgkOkcwHUAT2NdL6gk+d+NKmhtiuEjBHXmU7Ulvi7twckoUOQTkuC5FDRAnLqABeOl23PfYgJoq/1qzb7awXjc2NWVx9XX/n+ZHG3ipxeeHgUwLs2pZ8nv5WcGAVqI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=TIpYwtrx; arc=none smtp.client-ip=217.70.183.200
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 76E5220008;
-	Fri,  5 Jul 2024 12:37:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1720183079;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=VouKlLx9uRbG/3DbSVlCs8lvpC20KVHIWouvaxdon2Q=;
-	b=TIpYwtrxmkTM1GtSK2YRQWj9lpXL72qz1Aq9KmZdZpgzCP5PqNocWPox60UN1UGziAa2xv
-	fNkuwx/fxwvEE/HyC41bML7s9ktMH6A85Av08qbz5l8Mj94ht8HCMLwTjj4r6kT3gN9hMb
-	SReFh/iiBDqmbTwrzjwuUnLzVc0GXsk70hoXw24csX4tErE2CeaftBGSPf+hDE+h1vGOyI
-	AHtpGWtD4DlXiJMNweQFrsPCbjgkM3c1FgCnTcKJQMZZ0/EYAIo7XPLp1Mb+DxzNuU8Hu5
-	leD0q4kzrlm+6NEMGdeWrHAo0s4xATDKItyBTgrKVfYPh3DHrklL4vv1D0xByA==
-From: Gregory CLEMENT <gregory.clement@bootlin.com>
-To: Chris Packham <chris.packham@alliedtelesis.co.nz>, andrew@lunn.ch,
- sebastian.hesselbarth@gmail.com
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Chris Packham
- <chris.packham@alliedtelesis.co.nz>
-Subject: Re: [PATCH] ARM: dts: marvell: Add 7-segment LED display on x530
-In-Reply-To: <20240530231608.3557782-1-chris.packham@alliedtelesis.co.nz>
-References: <20240530231608.3557782-1-chris.packham@alliedtelesis.co.nz>
-Date: Fri, 05 Jul 2024 14:37:58 +0200
-Message-ID: <87o77cj9p5.fsf@BLaptop.bootlin.com>
+	s=arc-20240116; t=1720183216; c=relaxed/simple;
+	bh=h8RQ3gIuXSb77DJPrRwPE3c59rwl0ZIme+E0cdb67fU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=pLI03zTLzjhNgzja9TNX/DOEMLdzCBcVEl2BnWj9qzb/ES8LtvkFJqoqhRO5CR7dLUtD8xFD5YH2oDT+EFO+1gs09SIiec+QjnC2B6N5hQ3Q54uWqu7+gRFagbVEp8S8hU+MYP4CarmPjsYfaz3oJyTIRMJ2st5g4ynbo/Am0hI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=RkHmvkCl; arc=none smtp.client-ip=209.85.167.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-52e9f863c46so1663387e87.1
+        for <devicetree@vger.kernel.org>; Fri, 05 Jul 2024 05:40:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1720183213; x=1720788013; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=/PLu2I0Vdf1hwlHNvhPaU4cM/LFvM/NCf4ja1wMxoVU=;
+        b=RkHmvkClAvlU80oY9lxMB+HtgUHuVvF5LBPTnmbgRrHL9l3792OkLGMYeaInsJPLgy
+         Tk8GGhumnadQIdjg8dseozqzhrViRVcOg5JqwFPl6tFnUrFzAzeDl/8O/eYLitQlqyUV
+         l1bkOFeN9mqtI+BVb8LoqaO9h3EQmN5941jP3dJUBuFWf8xLAtvPmCHzwTAKcWSY4YoT
+         OUCT8XoTNJ6gu1A592o/RdQuTo4kgRBUiG8tMzRDwDa8thYW5OpQ/oWeZZxZQ8qgJhA+
+         AsxWrgvSDS3DU50jEZMSu57pf5RNQhzKAyxySHc6cgLG5nQT4MXWVQgXL50LbgoKD/pZ
+         tDsg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720183213; x=1720788013;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/PLu2I0Vdf1hwlHNvhPaU4cM/LFvM/NCf4ja1wMxoVU=;
+        b=wgPI+FmzypApSEEBxDFUr1CSisXJ+WfDB9kcySe6qr9ALdNPP4JJzFiHKhOXZ1Vpps
+         VBrPDeJ780RoGNrrG3IsJ/JTBybg33Yx7yyYFliUe+FlC8w1jJz6moFb2JMiV5O2+v2I
+         BDQYQcE9+mgZrH6+v/3tgrZ0g5H5shW5DzD5EaViBOhwOzxGevMNzJ7aJPRSDHnfJjy+
+         MPZa0B4ilcmuJRQwZ6WmkMrQXteDHvMjbaWWcJiQ6Iq7n++ngfoQqTPY7toCDCzJwJeq
+         F1MG7MdXontvUrj/A6a6ju3P2ooL3rGheAt4o0CaYHmsWvScm4o3fmpw5fxf/PMClmsQ
+         Pq8g==
+X-Forwarded-Encrypted: i=1; AJvYcCUFf3cTVzEm58DQT0KuoA3VZrSGS4+csC+Cj5/7PfRcgLUfG9LoclR2lFrW5VRZaVyAbAjDkalQDsJWntMb7g2aAJ0N6AdW0y7u5w==
+X-Gm-Message-State: AOJu0YyXB47RHCDZo7kfGd5dvKDe8Tn4HttrElQa/MhU3M/42OPrlvg7
+	dBzfM7TIg4pePlV3Ltkjs4ylHmhr39zsI/cygyzuWhBdI7dicddbu/2shH+P9GIU06JF6+oPiZ0
+	1
+X-Google-Smtp-Source: AGHT+IFIw+YdwZKpWaElCgPPGZV5ODZPThv5LPqh2kUnionfeRKB5Dchz1f1F2h5P2OOB/zufsW9ZQ==
+X-Received: by 2002:a19:5e1a:0:b0:52e:99fd:e3d2 with SMTP id 2adb3069b0e04-52ea06de234mr2794396e87.66.1720183213052;
+        Fri, 05 Jul 2024 05:40:13 -0700 (PDT)
+Received: from [100.64.0.4] (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a77d0908f51sm40930666b.125.2024.07.05.05.40.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 05 Jul 2024 05:40:12 -0700 (PDT)
+From: Luca Weiss <luca.weiss@fairphone.com>
+Subject: [PATCH v2 0/2] More thermal configuration for Fairphone 4
+Date: Fri, 05 Jul 2024 14:40:08 +0200
+Message-Id: <20240705-fp4-thermals-v2-0-a4870a8d084f@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-GND-Sasl: gregory.clement@bootlin.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKjph2YC/3XMQQ6CMBCF4auQWTumLdQiK+9hWBSc2kmEkpYQD
+ endrexd/i953w6JIlOCrtoh0saJw1xCnSoYvZ2fhPwoDUqoRkih0S0Nrp7iZF8JXT22JBppBiO
+ gXJZIjt8Hd+9Le05riJ9D3+Rv/QNtEgW6q26Ntrq+DObmLMfFh5nOY5igzzl/AZjckJmsAAAA
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Luca Weiss <luca.weiss@fairphone.com>
+X-Mailer: b4 0.14.0
 
-Chris Packham <chris.packham@alliedtelesis.co.nz> writes:
+Add the thermal configuration for the thermistors connected to PMK8003
+and PM6150L. With that all the external thermistors on the phone should
+be present in the dts.
 
-> The Allied Telesis x530 products have a 7-segment LED display which is
-> used for node identification when the devices are stacked. Represent
-> this as a gpio-7-segment device.
->
-> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+---
+Changes in v2:
+- Remove polling-delay/polling-delay-passive=0
+- Reorder props, e.g. put qcom,ratiometric boolean prop at end
+- Put in 45degC 'passive' and 55degC 'critical' trip for sdm-skin-therm
+  instead of dummy trip
+- Pick up tags
+- Link to v1: https://lore.kernel.org/r/20240105-fp4-thermals-v1-0-f95875a536b7@fairphone.com
 
-Applied on mvebu/dt
+---
+Luca Weiss (2):
+      arm64: dts: qcom: sm7225-fairphone-fp4: Add PMK8003 thermals
+      arm64: dts: qcom: sm7225-fairphone-fp4: Add PM6150L thermals
 
-Thanks,
+ arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts | 212 ++++++++++++++++++++++
+ 1 file changed, 212 insertions(+)
+---
+base-commit: 243741e78f0c8460fe2e76ef7b241c6ec5b8e28b
+change-id: 20240105-fp4-thermals-f3c8e0417b70
 
-Gregory
-> ---
-> This was originally sent as part of the series that added the seg-led-gpio
-> driver but wasn't applied with those changes. At the time I said I'd submit
-> this separately but I forgot about it until now.
->
->  arch/arm/boot/dts/marvell/armada-385-atl-x530.dts | 13 ++++++++++++-
->  1 file changed, 12 insertions(+), 1 deletion(-)
->
-> diff --git a/arch/arm/boot/dts/marvell/armada-385-atl-x530.dts b/arch/arm/boot/dts/marvell/armada-385-atl-x530.dts
-> index 5a9ab8410b7b..2fb7304039be 100644
-> --- a/arch/arm/boot/dts/marvell/armada-385-atl-x530.dts
-> +++ b/arch/arm/boot/dts/marvell/armada-385-atl-x530.dts
-> @@ -43,6 +43,17 @@ uart0: serial@12000 {
->  			};
->  		};
->  	};
-> +
-> +	led-7seg {
-> +		compatible = "gpio-7-segment";
-> +		segment-gpios = <&led_7seg_gpio 0 GPIO_ACTIVE_LOW>,
-> +				<&led_7seg_gpio 1 GPIO_ACTIVE_LOW>,
-> +				<&led_7seg_gpio 2 GPIO_ACTIVE_LOW>,
-> +				<&led_7seg_gpio 3 GPIO_ACTIVE_LOW>,
-> +				<&led_7seg_gpio 4 GPIO_ACTIVE_LOW>,
-> +				<&led_7seg_gpio 5 GPIO_ACTIVE_LOW>,
-> +				<&led_7seg_gpio 6 GPIO_ACTIVE_LOW>;
-> +	};
->  };
->  
->  &pciec {
-> @@ -149,7 +160,7 @@ i2c@3 {
->  			#size-cells = <0>;
->  			reg = <3>;
->  
-> -			gpio@20 {
-> +			led_7seg_gpio: gpio@20 {
->  				compatible = "nxp,pca9554";
->  				gpio-controller;
->  				#gpio-cells = <2>;
-> -- 
-> 2.45.1
+Best regards,
+-- 
+Luca Weiss <luca.weiss@fairphone.com>
+
 
