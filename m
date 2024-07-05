@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-83347-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83348-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B092992823D
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 08:43:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 217DF928242
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 08:43:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E1BB71C21A12
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 06:43:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CB8522838BA
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 06:43:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B818143C67;
-	Fri,  5 Jul 2024 06:42:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AE321448D3;
+	Fri,  5 Jul 2024 06:43:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lWtxvFhK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k09VDRLJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2272617995;
-	Fri,  5 Jul 2024 06:42:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8B7F144304;
+	Fri,  5 Jul 2024 06:43:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720161777; cv=none; b=f9HHTN00ezY3a/o3lTapTAapUNU6P8ObewLsU2rCpz0D2hcJ4n6yM1yBuY92AKEBKNu8cAU/zqO6UUXHNpv01ywGe6VQN5YTq4I6PDVyHMiR8Ujzr23qgKhUfcGoQM03oqiQxSP+All/HePqMbUTNcqUlolqyoF4Vf0DdFhVTJM=
+	t=1720161822; cv=none; b=VPdiYqv9VNoQHKk48DBh06PKCsdkETNCO+CiXku5X7QlepYTRHL1FSk5BgYzoGw5c86E9JFujnlSp/uIyGS1n7gIT5WaZyRYLjnnpeQcdr0Nx3127DzACnMoV3UOJ2v+WwxC0lQF60rKgqD+oMEPE29gcz8rsKuhEdeBoVNWXQQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720161777; c=relaxed/simple;
-	bh=3feq3zy3LVhoVZsBE7lgjmWvun/vCEETaM4I0T5bAsE=;
+	s=arc-20240116; t=1720161822; c=relaxed/simple;
+	bh=QD1D5JV0h4f+hBJGgiwwPNrcVD1k51TIRByFDxQWr68=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=sSu/NzhMHwihdGktSg2vmD7unn+zAP99MhHwX1aUmzYLqraOzK83WjbtyKAXxD8PvQTF3hS/l5MW7mfqhimwo1XpZl9U54M7DgBErvudS/OckxyHvrPzdOQcj0pqerh9IlpOjMYeJXQP0KUwP37671OVdMAILMXneSJFyCkBtPE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lWtxvFhK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3CC65C116B1;
-	Fri,  5 Jul 2024 06:42:53 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=kv2ggucL0j/V8NQBC7op6vgrK7nJKGS0v9fm93T/4r5i86kywe3pBOnl8CSLWUfXszd2ixwptk0d60ahdh/LP9ntY9sw6Ad9VO6DuVqgDaIcbljhJjdvI90wdfL73IjGR8pxOIR3SUWLDJh/Nwc3P36LEgqFcDrAcf2tNNTZNbU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k09VDRLJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3FA5DC32786;
+	Fri,  5 Jul 2024 06:43:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720161776;
-	bh=3feq3zy3LVhoVZsBE7lgjmWvun/vCEETaM4I0T5bAsE=;
+	s=k20201202; t=1720161821;
+	bh=QD1D5JV0h4f+hBJGgiwwPNrcVD1k51TIRByFDxQWr68=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=lWtxvFhKBNBI6sTvVWOJic2sNbVLE8nxM5E7IGDSKsifJ6FRaLweEQn3KVu031Kbh
-	 mI8O+5kOJKC2/bWkmgtv+IYS1UNV6USv1LwuzcR1kw+7BFLFyVNiRieCx30RHHGUVW
-	 2zDvtAg2mqwl6HvP5gW2Mg7qqEMSOZcqFP+NWYu7Rn3a+BIfoufT0GjkzvIeBbHvbv
-	 qREnX6kThjY907YEUvPQezEYgZvPWO7DHq4CwOhZ3nbJPGPv+Zo6OR+K43yW0E+rCa
-	 7dzDzkeumg2G2VwgiZGY1MYC/uUBjaguDFNkP9jKtyf4C+sXDRTOgwvL3oaEhmTFYf
-	 2tzBN5LYNmCuQ==
-Message-ID: <ac8fd558-b41e-4c7f-9431-1f308a6a9e23@kernel.org>
-Date: Fri, 5 Jul 2024 08:42:50 +0200
+	b=k09VDRLJKN3NM3x2EJisjhzWkrGBNW+YZV/xB9rmi08nNsHTAv/NEpU71v0a7n2tP
+	 fibqVVGcbqBaRzLayPL/GwPYWC/G6XZshAZ7ZIFI40u/7dl3F5cqf9SAg6Tl+ay9uk
+	 yrpNdAcuJmUctE7ZIobooKcK+zpmHMXODrsWTUj6164a83e1cH/2TByJbQtYDWKF7M
+	 ctfPJoYuJv1beByjrNTW3OVgSWZ8O8l6dEMmXHujP6J6PMkW1WOXUR+U9jxb4o5NNz
+	 UkY6ZGhG7XTuu32EQNNDuXgy8kPHzlvdp80IeHsCnKCBmoOeyd/oBh7Ei+19ckggC8
+	 6AzGo+L+SwYBQ==
+Message-ID: <c4b23da5-10fc-476e-8acc-8ba0815f5def@kernel.org>
+Date: Fri, 5 Jul 2024 08:43:35 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,7 +50,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/7] ARM: dts: microchip: at91-sama5d2_ptc_ek: Align the
+Subject: Re: [PATCH 3/7] ARM: dts: microchip: at91-sama5d34ek: Align the
  eeprom nodename
 To: Andrei Simion <andrei.simion@microchip.com>, robh@kernel.org,
  krzk+dt@kernel.org, conor+dt@kernel.org, nicolas.ferre@microchip.com,
@@ -58,9 +58,9 @@ To: Andrei Simion <andrei.simion@microchip.com>, robh@kernel.org,
 Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-kernel@vger.kernel.org
 References: <20240704151411.69558-1-andrei.simion@microchip.com>
- <20240704151411.69558-3-andrei.simion@microchip.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+ <20240704151411.69558-4-andrei.simion@microchip.com>
 Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -104,32 +104,34 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240704151411.69558-3-andrei.simion@microchip.com>
+In-Reply-To: <20240704151411.69558-4-andrei.simion@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 04/07/2024 17:14, Andrei Simion wrote:
-> Aling the eeprom nodename according to device tree specification
+> Align the eeprom nodename according to device tree specification
 > and at24.yaml.
 > 
 > Signed-off-by: Andrei Simion <andrei.simion@microchip.com>
+
+Squash.
+
 > ---
->  arch/arm/boot/dts/microchip/at91-sama5d2_ptc_ek.dts | 2 +-
+>  arch/arm/boot/dts/microchip/sama5d34ek.dts | 2 +-
 >  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/arch/arm/boot/dts/microchip/at91-sama5d2_ptc_ek.dts b/arch/arm/boot/dts/microchip/at91-sama5d2_ptc_ek.dts
-> index 200b20515ab1..e4ae60ef5f8a 100644
-> --- a/arch/arm/boot/dts/microchip/at91-sama5d2_ptc_ek.dts
-> +++ b/arch/arm/boot/dts/microchip/at91-sama5d2_ptc_ek.dts
-> @@ -231,7 +231,7 @@ i2c1: i2c@fc028000 {
->  				scl-gpios = <&pioA PIN_PC7 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+> diff --git a/arch/arm/boot/dts/microchip/sama5d34ek.dts b/arch/arm/boot/dts/microchip/sama5d34ek.dts
+> index bffd61397cb5..18943b873fff 100644
+> --- a/arch/arm/boot/dts/microchip/sama5d34ek.dts
+> +++ b/arch/arm/boot/dts/microchip/sama5d34ek.dts
+> @@ -36,7 +36,7 @@ i2c0: i2c@f0014000 {
+>  			i2c1: i2c@f0018000 {
 >  				status = "okay";
 >  
-> -				at24@50 {
+> -				24c256@50 {
 > +				eeprom@50 {
 
-Just squash these all into one commit. This is just naming,
-non-functional change so creating 7 patches for this is just huge churn.
+What about other names? Why not fixing everything at once?
 
 Best regards,
 Krzysztof
