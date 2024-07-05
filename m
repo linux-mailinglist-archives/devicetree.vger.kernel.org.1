@@ -1,164 +1,166 @@
-Return-Path: <devicetree+bounces-83515-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83516-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 874ED928B7A
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 17:18:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61BF6928B96
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 17:23:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3C496281F30
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 15:18:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E13BF1F217E3
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 15:23:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7F8116C861;
-	Fri,  5 Jul 2024 15:16:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B010716B72D;
+	Fri,  5 Jul 2024 15:23:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="W3XEmMPl"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="maj+Npc0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98FFC149DE4
-	for <devicetree@vger.kernel.org>; Fri,  5 Jul 2024 15:16:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1D7A14A62E;
+	Fri,  5 Jul 2024 15:23:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720192618; cv=none; b=PqeZnK35/R3F4OBMVc6r1jzkIo/XubfZT9nJ/xbhJEtlgu4cdF0sIf1oJAUa++B+KY2E0OXWcYjBs5VYPhYQE3K/fB+rv834Ni7F6q/dhiatF7Oj+nMe1g8rRnoZtSSrCV15uXnWUDDVCR2IgwlA2nspizYsDIHQbl8Td6WZwnM=
+	t=1720193004; cv=none; b=gDtJ0Y4zqb744WLNAt+Txu3bcLyy774iC4LrYeY48EryUUak0qqUEIfcq3LIzBKpj0Ugm51gy1XzCLYmF9ch1ZkPpenG/q6Qg8AqiWyvC+GBZ+ZRciyhcv3mXzishzj4s3tem+O1VI2+zePXK012z9sZ4ZnB7eIiFJ8EbXK8ZwU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720192618; c=relaxed/simple;
-	bh=1SJmi6roK53nVSxDpk01R+5CCMtW24rzBmgbVvZa2Uo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SjeIxVN/DgD88fQbQ2O2V7TLxDgWZCS3iPNmOU727VuUNuaYua93KGRD+zqhyXvCGqOE9mhaAOSHvJ56UNKiyjME1R26EYorqwa9YWxUS9Mtu8Ain1fGGte8Aoop5UUo7gCsAsuwfOon6nry5LY8RxXXEBre1iHkckyjTP2s/JM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=W3XEmMPl; arc=none smtp.client-ip=209.85.167.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-52e9f788e7bso1868966e87.0
-        for <devicetree@vger.kernel.org>; Fri, 05 Jul 2024 08:16:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1720192614; x=1720797414; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=jAi8Yh8H6kvgELJJaleTT1aA4PEdcZWxJ8yjwouMUBU=;
-        b=W3XEmMPlaruFF4HyT9k2xhRRwhbpFg4N6Qmi4Z7vyUphmTXgvE1GJ1rrnHdqX1nZSW
-         cxAYuxauplJPOV6l0XNM8Gph55reSYZOSVZhxQscmVkxNUK1sZwH9+w/7d7UxKvGIqTX
-         9C16hJpgv2Fa4Hp7vAbA6ZQmZlQySk3haIkl66qeDCbrBq0eXVU5v1AJJglkc2oVPA8u
-         B7Wm9DkOC03RTnKqf8JvhH6A3EUid+bIvtjrOZjp5XTx1u7Ox1lHOlFT1B/Nwp9sskOk
-         em699gf9hAuF6SO8fuac4wlVD3Owi4Bw3yuWTvyl4fCaGuZQs9/lkt22qLdXp9184zuN
-         Av/A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720192614; x=1720797414;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jAi8Yh8H6kvgELJJaleTT1aA4PEdcZWxJ8yjwouMUBU=;
-        b=pg7gBHero0JYPE/SCp/IlHlHoxi3jS0Elt4dbAf/HdvP87IyL0gnPW87XS2+8R39ES
-         BxnCBCF7okX52RvjNDC9IImPv6Dm/W2LvCndyzYDWBNOr288r8FNNdeywXxCeaT38CY6
-         g1Y/Yu3igKSzQMHqlNA03sNk548SPOLosDIGw5+VtYzE2TL63rUFkYabXgPm3PJ395Gq
-         mZilzGTVmPJiY2FR9nZ8dNHRuK8U9T7qgXjIVWptOCdGIdwihRqBI8Xg8FsNaC6tJZKx
-         5f6rm5LiHUQOqIMkbj3iWjC7U6o1iI43yWieeuUxV8KkaqRONMY2Q+7RAKsD6sChpYfQ
-         ZMGA==
-X-Forwarded-Encrypted: i=1; AJvYcCWPqaLUDnhGPAad/E8SEnEQIsHUQp69VimtPCh9a47vtUtHslYpLPY/HbB6xQEFSoBiwnyVI7++d0JBirYDNmHyDhO/vahGpduanQ==
-X-Gm-Message-State: AOJu0YzujAThqcRX1w9WOYJROUbg/MXjJe16OLEXYMrihr+giaUmTJYE
-	VeROE8FFxVWFLdcs4w3mChAbtj2DwC1lGoa2k3XGxksNwKWt0CECXJzhb7coOCk=
-X-Google-Smtp-Source: AGHT+IFF0x3NMy9LMtTvla/+V+TLaDM4vdzLOeeF5CqOS6ZS3ehsuSFZ/VTsszSK87chi/FZYGvU/g==
-X-Received: by 2002:a05:6512:3da3:b0:52c:db80:d694 with SMTP id 2adb3069b0e04-52ea0626e92mr4204523e87.20.1720192613739;
-        Fri, 05 Jul 2024 08:16:53 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52e9baf8e26sm730057e87.128.2024.07.05.08.16.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Jul 2024 08:16:53 -0700 (PDT)
-Date: Fri, 5 Jul 2024 18:16:51 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Varadarajan Narayanan <quic_varada@quicinc.com>
-Cc: vireshk@kernel.org, nm@ti.com, sboyd@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, angelogioacchino.delregno@collabora.com, 
-	andersson@kernel.org, konrad.dybcio@linaro.org, mturquette@baylibre.com, 
-	ilia.lin@kernel.org, rafael@kernel.org, ulf.hansson@linaro.org, 
-	quic_sibis@quicinc.com, quic_rjendra@quicinc.com, quic_rohiagar@quicinc.com, 
-	abel.vesa@linaro.org, otto.pflueger@abscue.de, danila@jiaxyga.com, 
-	quic_ipkumar@quicinc.com, luca@z3ntu.xyz, stephan.gerhold@kernkonzept.com, nks@flawful.org, 
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org
-Subject: Re: [PATCH v4 01/10] soc: qcom: cpr3: Fix 'acc_desc' usage
-Message-ID: <bsr6l33xllblwwoa3ftbldxvqwe6tcljt3ek2petoc4hc5xgsg@b36fw3wetj5f>
-References: <20240703091651.2820236-1-quic_varada@quicinc.com>
- <20240703091651.2820236-2-quic_varada@quicinc.com>
- <u4hzxnecdyow6h4vhddcp53tuxrqhbqu6cv4cznytihsyshzy4@lqxhsn3qvjbz>
- <ZoYsguLOCnZjxOku@hu-varada-blr.qualcomm.com>
+	s=arc-20240116; t=1720193004; c=relaxed/simple;
+	bh=vMGT4AZjWRF1Ju5kXvo191g8lbBZ1bFe0vECnmqaQAQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=X9KqaOWo4u8GU2QjDLHMXOb2OGH+bAwq6cmV7ATtD125dSn0/UxjAPoHBZfqCuNjwU9IeUws1cf55Iqezri2yBUcB2Ec4D7jBQe+mbgd5KvBWk8NZyjx8y7Bw0KCYJbD6zjK75a2pmHTpXTY4eiLVr9wqRK2veRxLt2jQCLbQ5Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=maj+Npc0; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4659bVWH012943;
+	Fri, 5 Jul 2024 15:23:09 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	YxEIK2I8gW9X589r/yuYkg4MIfn7+vy7CW4LLUIvbrs=; b=maj+Npc0yFZMyePz
+	oHfRR7ctvMKSpzb1as5ATTcFSuCxqlWM6hvdbrgFMN4uiXHDXrrLR8g29TCZtc3u
+	5XpXaX6RJANz3PB9jbauSrJUTG/AKypTiZrZ8/6BHTldfodCHLeXWwnhnFpmApLi
+	Bnq+R74wNPyHySZFkxy9SPNUwu58DTXYATTXGuwP7fviiTLZVwqszjF4B5UmymVO
+	TFMeO0BY02URHPNhzn5U6NDk4bLAxd3zrS88J9AOAlo3nLyqMc2mnajWKLggb6Sj
+	hsZLY3witvaficWmotawaaZgn6YyftYSuFKtyA54c5sa2EjyAVGBj9p3AVgtjR9N
+	KpaobQ==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 404yr9eyhd-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 05 Jul 2024 15:23:09 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA02.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 465FN8XW013861
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 5 Jul 2024 15:23:08 GMT
+Received: from [10.239.133.211] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 5 Jul 2024
+ 08:23:03 -0700
+Message-ID: <5ee373ed-abef-4611-a355-44668a85d0a7@quicinc.com>
+Date: Fri, 5 Jul 2024 23:23:00 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZoYsguLOCnZjxOku@hu-varada-blr.qualcomm.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/3] dt-bindings: arm:
+ qcom,coresight-static-replicator: Add property for source filtering
+To: "Rob Herring (Arm)" <robh@kernel.org>
+CC: Jie Gan <quic_jiegan@quicinc.com>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Mike Leach <mike.leach@linaro.org>, <coresight@lists.linaro.org>,
+        "Alexander
+ Shishkin" <alexander.shishkin@linux.intel.com>,
+        Yuanfang Zhang
+	<quic_yuanfang@quicinc.com>,
+        James Clark <james.clark@arm.com>,
+        "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Tingwei Zhang
+	<quic_tingweiz@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, Rob Herring
+	<robh+dt@kernel.org>,
+        Song Chai <quic_songchai@quicinc.com>, Leo Yan
+	<leo.yan@linaro.org>,
+        Jinlong Mao <quic_jinlmao@quicinc.com>, <devicetree@vger.kernel.org>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>
+References: <20240705085152.9063-1-quic_taozha@quicinc.com>
+ <20240705085152.9063-2-quic_taozha@quicinc.com>
+ <172017590249.2933726.1790899873101654561.robh@kernel.org>
+Content-Language: en-US
+From: Tao Zhang <quic_taozha@quicinc.com>
+In-Reply-To: <172017590249.2933726.1790899873101654561.robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 4IqDtG7AUMEyBqwuX_WO3utuJKlT_XC2
+X-Proofpoint-ORIG-GUID: 4IqDtG7AUMEyBqwuX_WO3utuJKlT_XC2
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-05_11,2024-07-05_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 clxscore=1011
+ bulkscore=0 impostorscore=0 malwarescore=0 spamscore=0 mlxscore=0
+ mlxlogscore=999 adultscore=0 lowpriorityscore=0 priorityscore=1501
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2406140001 definitions=main-2407050111
 
-On Thu, Jul 04, 2024 at 10:30:50AM GMT, Varadarajan Narayanan wrote:
-> On Wed, Jul 03, 2024 at 01:46:54PM +0300, Dmitry Baryshkov wrote:
-> > On Wed, Jul 03, 2024 at 02:46:42PM GMT, Varadarajan Narayanan wrote:
-> > > cpr3 code assumes that 'acc_desc' is available for SoCs
-> > > implementing CPR version 4 or less. However, IPQ9574 SoC
-> > > implements CPRv4 without ACC. This causes NULL pointer accesses
-> > > resulting in crashes. Hence, check if 'acc_desc' is populated
-> > > before using it.
-> > >
-> > > Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> > > ---
-> > > v4: Undo the acc_desc validation in probe function as that could
-> > >     affect other SoC.
-> > > ---
-> > >  drivers/pmdomain/qcom/cpr3.c | 4 ++--
-> > >  1 file changed, 2 insertions(+), 2 deletions(-)
-> > >
-> > > diff --git a/drivers/pmdomain/qcom/cpr3.c b/drivers/pmdomain/qcom/cpr3.c
-> > > index c7790a71e74f..6ceb7605f84d 100644
-> > > --- a/drivers/pmdomain/qcom/cpr3.c
-> > > +++ b/drivers/pmdomain/qcom/cpr3.c
-> > > @@ -2399,12 +2399,12 @@ static int cpr_pd_attach_dev(struct generic_pm_domain *domain,
-> > >  		if (ret)
-> > >  			goto exit;
-> > >
-> > > -		if (acc_desc->config)
-> > > +		if (acc_desc && acc_desc->config)
-> > >  			regmap_multi_reg_write(drv->tcsr, acc_desc->config,
-> > >  					       acc_desc->num_regs_per_fuse);
-> > >
-> > >  		/* Enable ACC if required */
-> > > -		if (acc_desc->enable_mask)
-> > > +		if (acc_desc && acc_desc->enable_mask)
-> > >  			regmap_update_bits(drv->tcsr, acc_desc->enable_reg,
-> > >  					   acc_desc->enable_mask,
-> > >  					   acc_desc->enable_mask);
-> >
-> > Should the same fix be applied to other places which access acc_desc?
-> > For example cpr_pre_voltage() and cpr_post_voltage() which call
-> > cpr_set_acc()?
-> 
-> With this patch alone, if acc_desc is NULL, cpr_probe() will fail
-> at the start itself because of this check
-> 
-> 	if (!data->acc_desc && desc->cpr_type < CTRL_TYPE_CPRH)
-> 		return -EINVAL;
-> 
-> After applying this patch series, cpr_probe will cross the above
-> check to accomodate IPQ9574. However, the check below will ensure
-> drv->tcsr is not initialized.
-> 
-> 	if (desc->cpr_type < CTRL_TYPE_CPRH &&
-> 	    !of_device_is_compatible(dev->of_node, "qcom,ipq9574-cpr4"))
-> 
-> cpr_pre_voltage() and cpr_post_voltage() call cpr_set_acc() only
-> if drv->tcsr is not NULL. Hence acc_desc need not be checked.
-> 
-> Will add the check to cpr_pre_voltage() and cpr_post_voltage() if
-> you feel it will make it more robust regardless of the changes to
-> cpr_probe in future. Please let me know.
 
-Having !acc_desc check instead of the of_device_is_compatible would
-solve the issue.
+On 7/5/2024 6:38 PM, Rob Herring (Arm) wrote:
+> On Fri, 05 Jul 2024 16:51:50 +0800, Tao Zhang wrote:
+>> Add a new property "filter_src" to label the source corresponding
+>> to the output connection for a static replicator. By combining
+>> a funnel and a static replicator in devicetree, a new device that
+>> supports multi-port input and multi-port output is implemented.
+>> In order to match the output port with the input port and
+>> successfully build the trace path, add this new property to
+>> indicate the data source corresponding to this output port.
+>>
+>> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
+>> ---
+>>   .../arm/arm,coresight-static-replicator.yaml   | 18 +++++++++++++++++-
+>>   1 file changed, 17 insertions(+), 1 deletion(-)
+>>
+> My bot found errors running 'make dt_binding_check' on your patch:
+>
+> yamllint warnings/errors:
+>
+> dtschema/dtc warnings/errors:
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/arm/arm,coresight-static-replicator.yaml: ^port@[01]$: Missing additionalProperties/unevaluatedProperties constraint
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/arm/arm,coresight-static-replicator.yaml: endpoint: Missing additionalProperties/unevaluatedProperties constraint
+>
+> doc reference errors (make refcheckdocs):
+>
+> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240705085152.9063-2-quic_taozha@quicinc.com
+>
+> The base for the series is generally the latest rc1. A different dependency
+> should be noted in *this* patch.
+>
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+>
+> pip3 install dtschema --upgrade
 
--- 
-With best wishes
-Dmitry
+Yes, I didn't see this errors in running 'make dt_binding_check', I will 
+re-run this check
+
+according to your suggestion.
+
+
+Best,
+
+Tao
+
+>
+> Please check and re-submit after running the above command yourself. Note
+> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+> your schema. However, it must be unset to test all examples with your schema.
+>
 
