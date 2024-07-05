@@ -1,450 +1,167 @@
-Return-Path: <devicetree+bounces-83342-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83343-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66C6A928210
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 08:28:51 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C89E928217
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 08:30:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DD9941F24F97
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 06:28:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DA224B20EE8
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 06:30:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0BBE145FE4;
-	Fri,  5 Jul 2024 06:27:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CF8C14036F;
+	Fri,  5 Jul 2024 06:30:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="bRkB+Fpg"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="ZQA68Ysd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 000F8145B17;
-	Fri,  5 Jul 2024 06:26:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BA45143C6C;
+	Fri,  5 Jul 2024 06:30:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720160821; cv=none; b=Bh9bT/jIFhWP7NIxRZk+dMQKGJpbcvoPbmBljvklVJnanw9BAqkfftVZUtZGR6y9v1AiHgrimPMHL+s2+NYBhPpY3WKqhrCfhzvNfWfrcMtLeYnUxnWa2FcolS0O3cvv5viNvd0aa0TASM4McA2/oefSkbDOeraZa025XbW1rEQ=
+	t=1720161009; cv=none; b=JqIKxTF/enLd26tZD+Tflh4VUoF37CAOIiTcQJGBDu4RB3VNTdzlubsnZVltM2TZSBXuTq7iwlhElRJRr1osVKDr8isuYly/INMa3R0eUpTK0N0riAMPg9AmLS3s7DPSlrxlFP5D0w2PQhd/HGt44xrXSub+kL/YR1IMpAwpD94=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720160821; c=relaxed/simple;
-	bh=2hPwQeh2GVN3zVk9L+8Guy6HoxbD2IYpS3uZiLk6OtU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=Ebmkb9XgQ4ahxRXg8qf04XhUnsNGA6G+J4aAV84PNp2x7F7oCbekKDmfbkvZLP8eOpb0hKNa+lCsE4DRhtaYENkh3nDBBCcGVMKm9B7Gkwdj1CNooiHfLr6D6MXxK8CLCt60Jz1mtuYM14ILY1UuOHV9tyt24+EGNoguq7UNAKs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=bRkB+Fpg; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4656Qsgx012632;
-	Fri, 5 Jul 2024 01:26:54 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1720160814;
-	bh=7OrY75KxpjrDo2Cp3k6pJUKMsYTPByuTEqWPq12EUFM=;
-	h=From:Date:Subject:References:In-Reply-To:To:CC;
-	b=bRkB+Fpgtq6CnE0X/Ia7h3Ejh+8vQxWPpE2gVv3t9sc4pdfjuMttZjL30u/TB0IGW
-	 rd3n9dooPIpjkWWgQy8hNCsfil/ztSN+YOgc/KuRXWmCuOVC3ZF2gl+TfNgVf5hkxo
-	 dUPGzfsH5Jwpit9DD5Srwy46ksEDRLTYq9FgbayQ=
-Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4656QsSJ060044
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 5 Jul 2024 01:26:54 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 5
- Jul 2024 01:26:54 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 5 Jul 2024 01:26:54 -0500
-Received: from [127.0.1.1] (uda0497581.dhcp.ti.com [10.24.68.185])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4656QTk2127334;
-	Fri, 5 Jul 2024 01:26:50 -0500
-From: Manorit Chawdhry <m-chawdhry@ti.com>
-Date: Fri, 5 Jul 2024 11:56:31 +0530
-Subject: [PATCH v2 5/5] arm64: dts: ti: k3-j7200*: Add bootph-* properties
+	s=arc-20240116; t=1720161009; c=relaxed/simple;
+	bh=izJ3y+NkTJsJ80bDCgRyTE8U6iYt3auKIsi7LoIzQKc=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hbC3IzwZpnD4PonlGKAqkW9pG/zMFyOzRwHw74akaVa+HWUYCTPmnj5gNImNdghltFK636Webz/06SbLr8iWrTkw0uK7dZWYrCao01x/5ygKTwA2a8iDHm8UqGAQH/CKNN6o1DP1mvwIJzH341FLg7RSoYviN6G9Mmo7o65cIPM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=fail smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=ZQA68Ysd; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1720161008; x=1751697008;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=izJ3y+NkTJsJ80bDCgRyTE8U6iYt3auKIsi7LoIzQKc=;
+  b=ZQA68Ysd5tenckhsS/PSFuZhs38iJbQmMQJIHwIPBRUHeV/114xmgmqO
+   hnh/zwkNDT5KJPs7zneK4ektOfv/X17nd9HWXO3zrJmmQr+1095ooSfce
+   RNRx20UtAh0u+iTlMPCjQM99yN+cOqESnaIFPKPfvY2uI83gseh34L+2Q
+   +/T4SJfFKZWcDwA2H2tm8AZO3LABQaoqqdUQU1GXH2EEOEBEusaN5wESv
+   9/B3nGxQ3R3oHYzJXMDhvm0ye7OkZcD/Z6LAEVPm+vBPddN0X2gmb2bGv
+   YPXG5PrhxoFQqjL6+xSAB0o2BduzaB7eBNGzVN1HqnS/D5YCr2airVnvN
+   g==;
+X-CSE-ConnectionGUID: gdsRTikOT2O4QUp3P+IObg==
+X-CSE-MsgGUID: lqjWRQYaSmmt33bLQNGuLA==
+X-IronPort-AV: E=Sophos;i="6.09,184,1716274800"; 
+   d="asc'?scan'208";a="28877280"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 04 Jul 2024 23:30:06 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
+ chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Thu, 4 Jul 2024 23:29:23 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex02.mchp-main.com (10.10.85.144)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
+ Transport; Thu, 4 Jul 2024 23:29:19 -0700
+Date: Fri, 5 Jul 2024 07:28:58 +0100
+From: Conor Dooley <conor.dooley@microchip.com>
+To: =?utf-8?B?5byg54yb?= <zhangmeng.kevin@spacemit.com>
+CC: Yixun Lan <dlan@gentoo.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Conor
+ Dooley <conor@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, Palmer
+ Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Daniel
+ Lezcano <daniel.lezcano@linaro.org>, Thomas Gleixner <tglx@linutronix.de>,
+	Samuel Holland <samuel.holland@sifive.com>, Anup Patel <anup@brainfault.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby
+	<jirislaby@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-riscv@lists.infradead.org>, <linux-serial@vger.kernel.org>, Inochi
+ Amaoto <inochiama@outlook.com>, Icenowy Zheng <uwu@icenowy.me>, Yangyu Chen
+	<cyy@cyyself.name>
+Subject: Re: [PATCH v3 08/11] riscv: dts: add initial SpacemiT K1 SoC device
+ tree
+Message-ID: <20240705-moneybags-showpiece-a21262d4e2aa@wendy>
+References: <20240703-k1-01-basic-dt-v3-0-12f73b47461e@gentoo.org>
+ <20240703-k1-01-basic-dt-v3-8-12f73b47461e@gentoo.org>
+ <21b192b47649688e2400e3968e28905bba186d51.f11b05e2.052c.43d9.be00.bc0a5da97b9c@feishu.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20240705-b4-upstream-bootph-all-v2-5-9007681ed7d8@ti.com>
-References: <20240705-b4-upstream-bootph-all-v2-0-9007681ed7d8@ti.com>
-In-Reply-To: <20240705-b4-upstream-bootph-all-v2-0-9007681ed7d8@ti.com>
-To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Neha Malcom Francis <n-francis@ti.com>,
-        Aniket Limaye <a-limaye@ti.com>, Udit Kumar <u-kumar1@ti.com>,
-        Beleswar Padhi
-	<b-padhi@ti.com>, Manorit Chawdhry <m-chawdhry@ti.com>
-X-Mailer: b4 0.14-dev
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1720160789; l=10033;
- i=m-chawdhry@ti.com; s=20231127; h=from:subject:message-id;
- bh=2hPwQeh2GVN3zVk9L+8Guy6HoxbD2IYpS3uZiLk6OtU=;
- b=C9HRemWFE9bc2fJFtFLhVPunx0reirjhhBfhYcynGy/avNUEwkdA3CUItCH3kpbpE9WVYMZug
- MR5rOaSvJj3D2Dz12hCeRsmUuIixk3oUKnLS0Jzhc++qMFupaAlJed8
-X-Developer-Key: i=m-chawdhry@ti.com; a=ed25519;
- pk=fsr6Tm39TvsTgfyfFQLk+nnqIz2sBA1PthfqqfiiYSs=
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="r5FHo/hUFI/U0wLN"
+Content-Disposition: inline
+In-Reply-To: <21b192b47649688e2400e3968e28905bba186d51.f11b05e2.052c.43d9.be00.bc0a5da97b9c@feishu.cn>
 
-Adds bootph-* properties to the leaf nodes to enable U-boot to
-utilise them.
+--r5FHo/hUFI/U0wLN
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Manorit Chawdhry <m-chawdhry@ti.com>
----
- .../boot/dts/ti/k3-j7200-common-proc-board.dts     | 23 ++++++++++++++++++++++
- arch/arm64/boot/dts/ti/k3-j7200-main.dtsi          |  2 ++
- arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi    | 11 +++++++++++
- arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi        |  7 +++++++
- 4 files changed, 43 insertions(+)
+On Fri, Jul 05, 2024 at 01:55:43PM +0800, =E5=BC=A0=E7=8C=9B wrote:
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-index 6593c5da82c0..f7b96e8d6462 100644
---- a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-@@ -129,6 +129,7 @@ J721E_WKUP_IOPAD(0x94, PIN_OUTPUT, 0) /* (E21) MCU_UART0_RTSn */
- 			J721E_WKUP_IOPAD(0x8c, PIN_INPUT, 0) /* (D20) MCU_UART0_RXD */
- 			J721E_WKUP_IOPAD(0x88, PIN_OUTPUT, 0) /* (D19) MCU_UART0_TXD */
- 		>;
-+		bootph-all;
- 	};
- 
- 	wkup_uart0_pins_default: wkup-uart0-default-pins {
-@@ -136,6 +137,7 @@ wkup_uart0_pins_default: wkup-uart0-default-pins {
- 			J721E_WKUP_IOPAD(0x48, PIN_INPUT, 0) /* (B14) WKUP_UART0_RXD */
- 			J721E_WKUP_IOPAD(0x4c, PIN_OUTPUT, 0) /* (A14) WKUP_UART0_TXD */
- 		>;
-+		bootph-all;
- 	};
- 
- 	mcu_cpsw_pins_default: mcu-cpsw-default-pins {
-@@ -153,12 +155,14 @@ J721E_WKUP_IOPAD(0x002c, PIN_INPUT, 0) /* MCU_RGMII1_RD0 */
- 			J721E_WKUP_IOPAD(0x0018, PIN_OUTPUT, 0) /* MCU_RGMII1_TXC */
- 			J721E_WKUP_IOPAD(0x001c, PIN_INPUT, 0) /* MCU_RGMII1_RXC */
- 		>;
-+		bootph-all;
- 	};
- 
- 	wkup_gpio_pins_default: wkup-gpio-default-pins {
- 		pinctrl-single,pins = <
- 			J721E_WKUP_IOPAD(0x70, PIN_INPUT, 7) /* (C14) WKUP_GPIO0_6 */
- 		>;
-+		bootph-all;
- 	};
- 
- 	mcu_mdio_pins_default: mcu-mdio1-default-pins {
-@@ -204,6 +208,7 @@ J721E_IOPAD(0xb4, PIN_OUTPUT, 0) /* (T17) UART0_TXD */
- 			J721E_IOPAD(0xc0, PIN_INPUT, 2) /* (W3) SPI0_CS0.UART0_CTSn */
- 			J721E_IOPAD(0xc4, PIN_OUTPUT, 2) /* (U5) SPI0_CS1.UART0_RTSn */
- 		>;
-+		bootph-all;
- 	};
- 
- 	main_uart1_pins_default: main-uart1-default-pins {
-@@ -238,6 +243,7 @@ J721E_IOPAD(0xf0, PIN_INPUT, 0) /* (N20) MMC1_DAT2 */
- 			J721E_IOPAD(0xec, PIN_INPUT, 0) /* (N19) MMC1_DAT3 */
- 			J721E_IOPAD(0xe4, PIN_INPUT, 8) /* (V1) TIMER_IO0.MMC1_SDCD */
- 		>;
-+		bootph-all;
- 	};
- 
- 	vdd_sd_dv_pins_default: vdd-sd-dv-default-pins {
-@@ -259,6 +265,7 @@ main_usbss0_pins_default: main-usbss0-default-pins {
- 		pinctrl-single,pins = <
- 			J721E_IOPAD(0x04, PIN_OUTPUT, 0) /* (T4) USB0_DRVVBUS */
- 		>;
-+		bootph-all;
- 	};
- };
- 
-@@ -267,12 +274,14 @@ &wkup_uart0 {
- 	status = "reserved";
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&wkup_uart0_pins_default>;
-+	bootph-all;
- };
- 
- &mcu_uart0 {
- 	status = "okay";
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&mcu_uart0_pins_default>;
-+	bootph-all;
- };
- 
- &main_uart0 {
-@@ -281,6 +290,7 @@ &main_uart0 {
- 	power-domains = <&k3_pds 146 TI_SCI_PD_SHARED>;
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&main_uart0_pins_default>;
-+	bootph-all;
- };
- 
- &main_uart1 {
-@@ -293,6 +303,7 @@ &main_uart1 {
- &main_uart2 {
- 	/* MAIN UART 2 is used by R5F firmware */
- 	status = "reserved";
-+	bootph-all; /* Doubtful if required or not */
- };
- 
- &main_uart3 {
-@@ -310,11 +321,13 @@ &wkup_gpio0 {
- 	status = "okay";
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&wkup_gpio_pins_default>;
-+	bootph-all;
- };
- 
- &mcu_cpsw {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&mcu_cpsw_pins_default>, <&mcu_mdio_pins_default>;
-+	bootph-all;
- };
- 
- &davinci_mdio {
-@@ -341,6 +354,7 @@ exp1: gpio@20 {
- 		reg = <0x20>;
- 		gpio-controller;
- 		#gpio-cells = <2>;
-+		bootph-all;
- 	};
- 
- 	exp2: gpio@22 {
-@@ -348,6 +362,7 @@ exp2: gpio@22 {
- 		reg = <0x22>;
- 		gpio-controller;
- 		#gpio-cells = <2>;
-+		bootph-all;
- 	};
- };
- 
-@@ -381,6 +396,7 @@ &main_sdhci0 {
- 	non-removable;
- 	ti,driver-strength-ohm = <50>;
- 	disable-wp;
-+	bootph-all;
- };
- 
- &main_sdhci1 {
-@@ -392,15 +408,18 @@ &main_sdhci1 {
- 	vqmmc-supply = <&vdd_sd_dv>;
- 	ti,driver-strength-ohm = <50>;
- 	disable-wp;
-+	bootph-all;
- };
- 
- &serdes_ln_ctrl {
- 	idle-states = <J7200_SERDES0_LANE0_PCIE1_LANE0>, <J7200_SERDES0_LANE1_PCIE1_LANE1>,
- 		      <J7200_SERDES0_LANE2_QSGMII_LANE1>, <J7200_SERDES0_LANE3_IP4_UNUSED>;
-+	bootph-all;
- };
- 
- &usb_serdes_mux {
- 	idle-states = <1>; /* USB0 to SERDES lane 3 */
-+	bootph-all;
- };
- 
- &usbss0 {
-@@ -408,11 +427,13 @@ &usbss0 {
- 	pinctrl-0 = <&main_usbss0_pins_default>;
- 	ti,vbus-divider;
- 	ti,usb2-only;
-+	bootph-all;
- };
- 
- &usb0 {
- 	dr_mode = "otg";
- 	maximum-speed = "high-speed";
-+	bootph-all;
- };
- 
- &tscadc0 {
-@@ -432,6 +453,7 @@ serdes0_pcie_link: phy@0 {
- 		#phy-cells = <0>;
- 		cdns,phy-type = <PHY_TYPE_PCIE>;
- 		resets = <&serdes_wiz0 1>, <&serdes_wiz0 2>;
-+		bootph-all;
- 	};
- 
- 	serdes0_qsgmii_link: phy@1 {
-@@ -440,6 +462,7 @@ serdes0_qsgmii_link: phy@1 {
- 		#phy-cells = <0>;
- 		cdns,phy-type = <PHY_TYPE_QSGMII>;
- 		resets = <&serdes_wiz0 3>;
-+		bootph-all;
- 	};
- };
- 
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-index 9386bf3ef9f6..b95656942412 100644
---- a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-@@ -136,6 +136,7 @@ secure_proxy_main: mailbox@32c00000 {
- 			      <0x00 0x32800000 0x00 0x100000>;
- 			interrupt-names = "rx_011";
- 			interrupts = <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>;
-+			bootph-all;
- 		};
- 
- 		hwspinlock: spinlock@30e00000 {
-@@ -1528,5 +1529,6 @@ main_esm: esm@700000 {
- 		compatible = "ti,j721e-esm";
- 		reg = <0x0 0x700000 0x0 0x1000>;
- 		ti,esm-pins = <656>, <657>;
-+		bootph-all;
- 	};
- };
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-index 5097d192c2b2..fba8fa1557b1 100644
---- a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-@@ -17,20 +17,24 @@ dmsc: system-controller@44083000 {
- 
- 		reg-names = "debug_messages";
- 		reg = <0x00 0x44083000 0x00 0x1000>;
-+		bootph-all;
- 
- 		k3_pds: power-controller {
- 			compatible = "ti,sci-pm-domain";
- 			#power-domain-cells = <2>;
-+			bootph-all;
- 		};
- 
- 		k3_clks: clock-controller {
- 			compatible = "ti,k2g-sci-clk";
- 			#clock-cells = <2>;
-+			bootph-all;
- 		};
- 
- 		k3_reset: reset-controller {
- 			compatible = "ti,sci-reset";
- 			#reset-cells = <2>;
-+			bootph-all;
- 		};
- 	};
- 
-@@ -45,6 +49,7 @@ mcu_timer0: timer@40400000 {
- 		assigned-clock-parents = <&k3_clks 35 2>;
- 		power-domains = <&k3_pds 35 TI_SCI_PD_EXCLUSIVE>;
- 		ti,timer-pwm;
-+		bootph-pre-ram;
- 	};
- 
- 	mcu_timer1: timer@40410000 {
-@@ -191,6 +196,7 @@ wkup_conf: bus@43000000 {
- 		chipid: chipid@14 {
- 			compatible = "ti,am654-chipid";
- 			reg = <0x14 0x4>;
-+			bootph-all;
- 		};
- 	};
- 
-@@ -349,6 +355,7 @@ mcu_ringacc: ringacc@2b800000 {
- 			ti,sci = <&dmsc>;
- 			ti,sci-dev-id = <235>;
- 			msi-parent = <&main_udmass_inta>;
-+			bootph-all;
- 		};
- 
- 		mcu_udmap: dma-controller@285c0000 {
-@@ -373,6 +380,7 @@ mcu_udmap: dma-controller@285c0000 {
- 			ti,sci-rm-range-rchan = <0x0a>, /* RX_CHAN */
- 						<0x0b>; /* RX_HCHAN */
- 			ti,sci-rm-range-rflow = <0x00>; /* GP RFLOW */
-+			bootph-all;
- 		};
- 	};
- 
-@@ -389,6 +397,7 @@ secure_proxy_mcu: mailbox@2a480000 {
- 		 * firmware on non-MPU processors
- 		 */
- 		status = "disabled";
-+		bootph-pre-ram;
- 	};
- 
- 	mcu_cpsw: ethernet@46000000 {
-@@ -534,6 +543,7 @@ hbmc_mux: mux-controller@47000004 {
- 			reg = <0x00 0x47000004 0x00 0x4>;
- 			#mux-control-cells = <1>;
- 			mux-reg-masks = <0x0 0x2>; /* HBMC select */
-+			bootph-pre-ram;
- 		};
- 
- 		hbmc: hyperbus@47034000 {
-@@ -652,6 +662,7 @@ wkup_vtm0: temperature-sensor@42040000 {
- 		      <0x00 0x42050000 0x00 0x350>;
- 		power-domains = <&k3_pds 154 TI_SCI_PD_EXCLUSIVE>;
- 		#thermal-sensor-cells = <1>;
-+		bootph-pre-ram;
- 	};
- 
- 	mcu_esm: esm@40800000 {
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
-index 21fe194a5766..d78f86889bf9 100644
---- a/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
-@@ -121,6 +121,7 @@ J721E_WKUP_IOPAD(0x20, PIN_INPUT, 1) /* (B8) MCU_OSPI0_D5.MCU_HYPERBUS0_DQ5 */
- 			J721E_WKUP_IOPAD(0x24, PIN_INPUT, 1) /* (A8) MCU_OSPI0_D6.MCU_HYPERBUS0_DQ6 */
- 			J721E_WKUP_IOPAD(0x28, PIN_INPUT, 1) /* (A7) MCU_OSPI0_D7.MCU_HYPERBUS0_DQ7 */
- 		>;
-+		bootph-all;
- 	};
- 
- 	mcu_fss0_ospi0_pins_default: mcu-fss0-ospi0-default-pins {
-@@ -137,6 +138,7 @@ J721E_WKUP_IOPAD(0x0024, PIN_INPUT, 0)  /* MCU_OSPI0_D6 */
- 			J721E_WKUP_IOPAD(0x0028, PIN_INPUT, 0)  /* MCU_OSPI0_D7 */
- 			J721E_WKUP_IOPAD(0x0008, PIN_INPUT, 0)  /* MCU_OSPI0_DQS */
- 		>;
-+		bootph-all;
- 	};
- };
- 
-@@ -146,6 +148,7 @@ wkup_i2c0_pins_default: wkup-i2c0-default-pins {
- 			J721E_WKUP_IOPAD(0x98, PIN_INPUT_PULLUP, 0) /* (F20) WKUP_I2C0_SCL */
- 			J721E_WKUP_IOPAD(0x9c, PIN_INPUT_PULLUP, 0) /* (H21) WKUP_I2C0_SDA */
- 		>;
-+		bootph-all;
- 	};
- };
- 
-@@ -163,6 +166,7 @@ main_i2c0_pins_default: main-i2c0-default-pins {
- 			J721E_IOPAD(0xd4, PIN_INPUT_PULLUP, 0) /* (V3) I2C0_SCL */
- 			J721E_IOPAD(0xd8, PIN_INPUT_PULLUP, 0) /* (W2) I2C0_SDA */
- 		>;
-+		bootph-all;
- 	};
- 
- 	main_mcan0_pins_default: main-mcan0-default-pins {
-@@ -186,6 +190,7 @@ &hbmc {
- 	flash@0,0 {
- 		compatible = "cypress,hyperflash", "cfi-flash";
- 		reg = <0x00 0x00 0x4000000>;
-+		bootph-all;
- 
- 		partitions {
- 			compatible = "fixed-partitions";
-@@ -330,6 +335,7 @@ bucka1: buck1 {
- 				regulator-max-microvolt = <1800000>;
- 				regulator-boot-on;
- 				regulator-always-on;
-+				bootph-all;
- 			};
- 
- 			bucka2: buck2 {
-@@ -464,6 +470,7 @@ flash@0 {
- 		cdns,tchsh-ns = <60>;
- 		cdns,tslch-ns = <60>;
- 		cdns,read-delay = <4>;
-+		bootph-all;
- 
- 		partitions {
- 			compatible = "fixed-partitions";
+> > + =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0=C2=A0 riscv,isa =3D "rv64imafdcv_zicbom_zicbop_zicboz_zicntr_zicond=
+_zicsr_zifencei_zihintpause_zihpm_zfh_zba_zbb_zbc_zbs_zkt_zvfh_zvkt_sscofpm=
+f_sstc_svinval_svnapot_svpbmt";
+> Linux 6.7 kernel modifies the definition of the "riscv, isa" property, an=
+d describes the extended features in the "riscv, isa-extensions". So, can t=
+he definition of "riscv, isa" be simplified here?
+> Defined as =EF=BC=9A=C2=A0 riscv,isa =3D "rv64imafdcv";
 
--- 
-2.45.1
+No, they should match, other than vendor extensions. Not every project
+supports the new property.
 
+> This message and any attachment are confidential and may be privileged or=
+ otherwise protected from disclosure. If you are not an intended recipient =
+of this message, please delete it and any attachment from your system and n=
+otify the sender immediately by reply e-mail. Unintended recipients should =
+not use, copy, disclose or take any action based on this message or any inf=
+ormation contained in this message. Emails cannot be guaranteed to be secur=
+e or error free as they can be intercepted, amended, lost or destroyed, and=
+ you should take full responsibility for security checking.=20
+> =20
+> =E6=9C=AC=E9=82=AE=E4=BB=B6=E5=8F=8A=E5=85=B6=E4=BB=BB=E4=BD=95=E9=99=84=
+=E4=BB=B6=E5=85=B7=E6=9C=89=E4=BF=9D=E5=AF=86=E6=80=A7=E8=B4=A8=EF=BC=8C=E5=
+=B9=B6=E5=8F=AF=E8=83=BD=E5=8F=97=E5=85=B6=E4=BB=96=E4=BF=9D=E6=8A=A4=E6=88=
+=96=E4=B8=8D=E5=85=81=E8=AE=B8=E8=A2=AB=E6=8A=AB=E9=9C=B2=E7=BB=99=E7=AC=AC=
+=E4=B8=89=E6=96=B9=E3=80=82=E5=A6=82=E9=98=81=E4=B8=8B=E8=AF=AF=E6=94=B6=E5=
+=88=B0=E6=9C=AC=E9=82=AE=E4=BB=B6=EF=BC=8C=E6=95=AC=E8=AF=B7=E7=AB=8B=E5=8D=
+=B3=E4=BB=A5=E5=9B=9E=E5=A4=8D=E7=94=B5=E5=AD=90=E9=82=AE=E4=BB=B6=E7=9A=84=
+=E6=96=B9=E5=BC=8F=E9=80=9A=E7=9F=A5=E5=8F=91=E4=BB=B6=E4=BA=BA=EF=BC=8C=E5=
+=B9=B6=E5=B0=86=E6=9C=AC=E9=82=AE=E4=BB=B6=E5=8F=8A=E5=85=B6=E4=BB=BB=E4=BD=
+=95=E9=99=84=E4=BB=B6=E4=BB=8E=E9=98=81=E4=B8=8B=E7=B3=BB=E7=BB=9F=E4=B8=AD=
+=E4=BA=88=E4=BB=A5=E5=88=A0=E9=99=A4=E3=80=82=E5=A6=82=E9=98=81=E4=B8=8B=E5=
+=B9=B6=E9=9D=9E=E6=9C=AC=E9=82=AE=E4=BB=B6=E5=86=99=E6=98=8E=E4=B9=8B=E6=94=
+=B6=E4=BB=B6=E4=BA=BA=EF=BC=8C=E6=95=AC=E8=AF=B7=E5=88=87=E5=8B=BF=E4=BD=BF=
+=E7=94=A8=E3=80=81=E5=A4=8D=E5=88=B6=E3=80=81=E6=8A=AB=E9=9C=B2=E6=9C=AC=E9=
+=82=AE=E4=BB=B6=E6=88=96=E5=85=B6=E4=BB=BB=E4=BD=95=E5=86=85=E5=AE=B9=EF=BC=
+=8C=E4=BA=A6=E8=AF=B7=E5=88=87=E5=8B=BF=E4=BE=9D=E6=9C=AC=E9=82=AE=E4=BB=B6=
+=E6=88=96=E5=85=B6=E4=BB=BB=E4=BD=95=E5=86=85=E5=AE=B9=E8=80=8C=E9=87=87=E5=
+=8F=96=E4=BB=BB=E4=BD=95=E8=A1=8C=E5=8A=A8=E3=80=82=E7=94=B5=E5=AD=90=E9=82=
+=AE=E4=BB=B6=E6=97=A0=E6=B3=95=E4=BF=9D=E8=AF=81=E6=98=AF=E4=B8=80=E7=A7=8D=
+=E5=AE=89=E5=85=A8=E5=92=8C=E4=B8=8D=E4=BC=9A=E5=87=BA=E7=8E=B0=E4=BB=BB=E4=
+=BD=95=E5=B7=AE=E9=94=99=E7=9A=84=E9=80=9A=E4=BF=A1=E6=96=B9=E5=BC=8F=EF=BC=
+=8C=E5=8F=AF=E8=83=BD=E4=BC=9A=E8=A2=AB=E6=8B=A6=E6=88=AA=E3=80=81=E4=BF=AE=
+=E6=94=B9=E3=80=81=E4=B8=A2=E5=A4=B1=E6=88=96=E6=8D=9F=E5=9D=8F=EF=BC=8C=E6=
+=94=B6=E4=BB=B6=E4=BA=BA=E9=9C=80=E8=87=AA=E8=A1=8C=E8=B4=9F=E8=B4=A3=E5=81=
+=9A=E5=A5=BD=E5=AE=89=E5=85=A8=E6=A3=80=E6=9F=A5=E3=80=82
+
+Please fix your mail client/system to not append this. Such footers are
+incompatible with kernel development.
+
+Thanks,
+Conor.
+
+--r5FHo/hUFI/U0wLN
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZoeSmgAKCRB4tDGHoIJi
+0sF4AQDCX4JI0M03jibGYAqEQ7wU9mHU2p/KBPLAZdO4LNHmkwD/W7rLzQrOADWi
+aweZNUwFUrpe1QE1vQc/UoM1xw3llAU=
+=GiR5
+-----END PGP SIGNATURE-----
+
+--r5FHo/hUFI/U0wLN--
 
