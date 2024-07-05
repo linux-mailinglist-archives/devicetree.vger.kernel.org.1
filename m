@@ -1,113 +1,216 @@
-Return-Path: <devicetree+bounces-83555-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83556-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4EEC928F57
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 00:30:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C787928F74
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 00:58:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 02ADC1C2185C
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 22:30:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3C96B283290
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 22:58:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C31614533C;
-	Fri,  5 Jul 2024 22:30:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92F65146A76;
+	Fri,  5 Jul 2024 22:58:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="oomEegJC"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Lc7huM2K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ixit.cz (ip-89-177-23-149.bb.vodafone.cz [89.177.23.149])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED18C5FBB7;
-	Fri,  5 Jul 2024 22:30:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.177.23.149
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA0C9145A0B;
+	Fri,  5 Jul 2024 22:58:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720218638; cv=none; b=fKGeiw//gH1CqnB/pDQb73nxoa8b8lEFp2QG2xGfhUJaCqa/2QISWMLv/Lbu622Fgx/TNEE676b7J6X0m6L4nfX3TNxbu4iCVNkmfH6EQd7vN0d1AeQb/RxdH6vCf1EbFDaXu19d45pL6+Hdzjf0Ev6ph4fWCvfVELJNRFtSDOI=
+	t=1720220322; cv=none; b=rN6Ul1D19sroB5duZZ2SNIZg2dfAmpsubw2q/MTJkp36kDfXXyy6eVA8hmwsoP/2C1LtEWG/gi6sYF5vj0E0Mca1p4N2Z5Fp0qQ/xfXZicYW3YyDtOQ5P7FV/GytggMQ9nNQ07s/IsOJwLkfZdqEqj7xUOkrYq70qmKpKqlGbBk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720218638; c=relaxed/simple;
-	bh=+gunZ9KL34vm2mxBSzC1useMM3XoN+VJW9Z+YBsOC6A=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XakDm0AH7WSJKOfb7LLdz7oY3uLCg2RFgMAPB1rZOK4wtWS4BNUnVNvGqosDT//i1QwuxeZWuHwL4TzZeaFllvxeEYDrRlepYQhvpLflArbKG5G0CUWX1bg8fpof77B/qinat4uqNclOYOSE1SRbA5zAP9ec5bq1Ug5zMkFEpeQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=oomEegJC; arc=none smtp.client-ip=89.177.23.149
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ixit.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
-Received: from [192.168.1.102] (76-224-187-148.lightspeed.sntcca.sbcglobal.net [76.224.187.148])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
-	(No client certificate requested)
-	by ixit.cz (Postfix) with ESMTPSA id 7FAED162E54;
-	Sat,  6 Jul 2024 00:30:31 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-	t=1720218633;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=gkLrx3USlAitu1v8+/UYYJlNqCIYzzVC8MR/agytWqo=;
-	b=oomEegJCq0c6WS2RIoJKJYzTkTjWo2Wopp95594YeVt+cf0HDsgedPpSCvwzn3rPxtgvKI
-	wEyUeq3k2rP45BK7KzAhenEkHcxmS1fLtdrqQNTuK5ecLcsPqoe6Xc0PKJE9SQvBdQUcZC
-	cwWmSenV7ROaX4wR5tb55cRkCywrCbY=
-Message-ID: <11042ffd-63e3-4e1a-a674-599842c46238@ixit.cz>
-Date: Fri, 5 Jul 2024 15:30:30 -0700
+	s=arc-20240116; t=1720220322; c=relaxed/simple;
+	bh=qoZfP1S+acuGp2s4TC90tooFq8WbbDjK2Fz1Bq+nL2s=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=dhKEGfXKrYNBrOO0Z3si7tyS1EWp47dC6xia1idVmm733AhWqF+9Za2y2efrlFXuSofSi7+n8U+ySZblZrSpjAnmjhdzD35Us0EdtvIGojhZ6CyhRBxoQUKEl8eiDqLWVnmqaiWsaidsKw3NELmsBfctQ62xz+RH4r8uFJ4oHYE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Lc7huM2K; arc=none smtp.client-ip=209.85.208.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-58ba3e37feeso2918571a12.3;
+        Fri, 05 Jul 2024 15:58:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1720220319; x=1720825119; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=FiMeeVhiLcAlXej3uBvwyk/ojiuyjSIG1S2ztz0XYNs=;
+        b=Lc7huM2KjsY6GIN9/f8lgu6xV7Qd/sL1+f6qPEpB1NdrMUZh4NqNyznQB0/Oypt5wx
+         3hg63sQ43qS+Ds9bgMXC2HWfTF2TCoXx0CJgRYBFFtdpbMnOZ5lvY3CmbqWC/k9a0TNL
+         BNssh3BBGj45AXeytwFXObuQUczEMYusWHkuWFYwYmnDrNgm5ZJXrPRWVjW6XnJeUQB2
+         mo4rV7tfFBn5iKQ5Piyayn2Cs0LbKzjHprFLOEgXG+brLWXIPzGl/b4jZnPPJr/KscHo
+         u9cJ1VuzyCUoCPWlABFV95DqaHS3R+hLq9Ork+010WShnMIsPLO01bzIR2XyPzlKkygM
+         wFrw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720220319; x=1720825119;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=FiMeeVhiLcAlXej3uBvwyk/ojiuyjSIG1S2ztz0XYNs=;
+        b=UClJ6+NYZ+VDW26/utljs9xKoeKkzhvCnV0R2mqExkSO/2a+GpTApbkTpljZDEg+p4
+         fqexS3qtafdycD2+3Ip5IIDRBpF7FOtCAtqI4mt/kmVuXSgo3UWIx5LQwldwV/bmTQuB
+         sqQZMB59NrXRGykSqxUJAtUUZlV1OkholE3Yzsre3Oxm7e8hBtkrxsKEVnxmU7+P/JZI
+         gK7TlhgkHsfpZWfamLkl7JIE4R2EAbFdkKNAJ9uhTFaxySQEetoRULbSn6UZIyJJhGoB
+         MBJSjc/AproHTd8gfhIlemHD/oMScCAojxq6A28VO7C/OvA/Y4K52xT6fXH+HeDa9iYT
+         QSDw==
+X-Forwarded-Encrypted: i=1; AJvYcCWnU5ZjW5ubJRnqgX+93AiuriW3Eixphgxr216iWKNda6c4Pq7+DarOe5yGO/BCX1sKZrSpezuBlolhpGN7d264bgUnlLek0DLECvPMAeCZZXK6MUCCEqtofdPyZSrLzqZ21EhpuNNUXw==
+X-Gm-Message-State: AOJu0YyOoVOWCEx+sC7XqZ4lcK5G7HLYp0rNyCdLiyJvcsU0ym7AwZhD
+	cOEOXPg5Pwa8vvvtVJATfW2M/0Wrj4c6wsEDx3sP2rGW16DUF43G
+X-Google-Smtp-Source: AGHT+IF/EnTZ+25wxqkBsWXqxU8jobntZQ97ZpwWquicNED9QnU285ETFWo0voXR6AyZFnJzN7nEIA==
+X-Received: by 2002:a05:6402:254a:b0:586:6365:b3cf with SMTP id 4fb4d7f45d1cf-58e596592cbmr4608643a12.10.1720220318886;
+        Fri, 05 Jul 2024 15:58:38 -0700 (PDT)
+Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5861381868csm10052128a12.55.2024.07.05.15.58.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 05 Jul 2024 15:58:38 -0700 (PDT)
+From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Michael Walle <michael@walle.cc>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	devicetree@vger.kernel.org,
+	linux-mtd@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	u-boot@lists.denx.de,
+	linux-kernel@vger.kernel.org,
+	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH] dt-bindings: nvmem: convert U-Boot env to a layout
+Date: Sat,  6 Jul 2024 00:58:21 +0200
+Message-Id: <20240705225821.13196-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.35.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird Beta
-Subject: Re: [PATCH] ARM: dts: qcom: apq8960: reflect that memory node starts
- at offset 0
-To: Konrad Dybcio <konrad.dybcio@linaro.org>, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20230812183218.374157-1-david@ixit.cz>
- <bfacff27-e3b2-43e8-b50e-3da0f13feb5c@linaro.org>
-Content-Language: en-US
-From: David Heidelberg <david@ixit.cz>
-In-Reply-To: <bfacff27-e3b2-43e8-b50e-3da0f13feb5c@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Can we get this in then?
+From: Rafał Miłecki <rafal@milecki.pl>
 
-Thanks
-David
+U-Boot environment variables can be stored in various data sources. MTD
+is just one of available options. Refactor DT binding into a layout so
+it can be used with UBI volumes and other NVMEM devices.
 
-On 25/08/2023 04:57, Konrad Dybcio wrote:
-> On 12.08.2023 20:32, David Heidelberg wrote:
->> Fixes warning generated by `make qcom-msm8960-cdp.dtb`:
->> arch/arm/boot/dts/qcom-msm8960-cdp.dt.yaml: /: memory: False schema does not allow {'device_type': ['memory'], 'reg': [[0, 0]]}
->>
->> Signed-off-by: David Heidelberg <david@ixit.cz>
->> ---
-> But does it really?
->
-> i.e., if you boot it on a device and xxd /sys/firmware/devicetree/base/memory
-> or decompile /sys/firmware/fdt, is it updated to <0x0 0xsomesize>?
->
-> Konrad
->>   arch/arm/boot/dts/qcom/qcom-msm8960.dtsi | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/arch/arm/boot/dts/qcom/qcom-msm8960.dtsi b/arch/arm/boot/dts/qcom/qcom-msm8960.dtsi
->> index c10797f3793c..c20f16845a97 100644
->> --- a/arch/arm/boot/dts/qcom/qcom-msm8960.dtsi
->> +++ b/arch/arm/boot/dts/qcom/qcom-msm8960.dtsi
->> @@ -47,7 +47,7 @@ L2: l2-cache {
->>   		};
->>   	};
->>   
->> -	memory {
->> +	memory@0 {
->>   		device_type = "memory";
->>   		reg = <0x0 0x0>;
->>   	};
+Link: https://lore.kernel.org/all/20231221173421.13737-1-zajec5@gmail.com/
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+I'm sending this PATCH without Linux changes to see if this is the
+right approach - for developers and (DT) maintainers to review it first.
 
+My previous attempt (see above Link) turned out in refusal so I'm just
+trying to save some time in case this one goes wrong as well.
+
+Hopefully the included example (which I really think we should add)
+explains well how I think this binding should be used with layouts.
+
+If I get some positive feedback I'll work on V2 with actual Linux
+changes.
+
+ .../bindings/nvmem/layouts/nvmem-layout.yaml  |  1 +
+ .../nvmem/{ => layouts}/u-boot,env.yaml       | 39 ++++++++++++++++---
+ 2 files changed, 35 insertions(+), 5 deletions(-)
+ rename Documentation/devicetree/bindings/nvmem/{ => layouts}/u-boot,env.yaml (75%)
+
+diff --git a/Documentation/devicetree/bindings/nvmem/layouts/nvmem-layout.yaml b/Documentation/devicetree/bindings/nvmem/layouts/nvmem-layout.yaml
+index 3b40f7880774..382507060651 100644
+--- a/Documentation/devicetree/bindings/nvmem/layouts/nvmem-layout.yaml
++++ b/Documentation/devicetree/bindings/nvmem/layouts/nvmem-layout.yaml
+@@ -21,6 +21,7 @@ oneOf:
+   - $ref: fixed-layout.yaml
+   - $ref: kontron,sl28-vpd.yaml
+   - $ref: onie,tlv-layout.yaml
++  - $ref: u-boot,env.yaml
+ 
+ properties:
+   compatible: true
+diff --git a/Documentation/devicetree/bindings/nvmem/u-boot,env.yaml b/Documentation/devicetree/bindings/nvmem/layouts/u-boot,env.yaml
+similarity index 75%
+rename from Documentation/devicetree/bindings/nvmem/u-boot,env.yaml
+rename to Documentation/devicetree/bindings/nvmem/layouts/u-boot,env.yaml
+index 9c36afc7084b..56a8f55d4a09 100644
+--- a/Documentation/devicetree/bindings/nvmem/u-boot,env.yaml
++++ b/Documentation/devicetree/bindings/nvmem/layouts/u-boot,env.yaml
+@@ -1,10 +1,10 @@
+ # SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+-$id: http://devicetree.org/schemas/nvmem/u-boot,env.yaml#
++$id: http://devicetree.org/schemas/nvmem/layouts/u-boot,env.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+-title: U-Boot environment variables
++title: U-Boot environment variables layout
+ 
+ description: |
+   U-Boot uses environment variables to store device parameters and
+@@ -21,9 +21,6 @@ description: |
+   This binding allows marking storage device (as containing env data) and
+   specifying used format.
+ 
+-  Right now only flash partition case is covered but it may be extended to e.g.
+-  UBI volumes in the future.
+-
+   Variables can be defined as NVMEM device subnodes.
+ 
+ maintainers:
+@@ -42,6 +39,7 @@ properties:
+         const: brcm,env
+ 
+   reg:
++    description: Partition offset and size for env on top of MTD
+     maxItems: 1
+ 
+   bootcmd:
+@@ -58,6 +56,17 @@ properties:
+         description: The first argument is a MAC address offset.
+         const: 1
+ 
++allOf:
++  - if:
++      properties:
++        $nodename:
++          not:
++            contains:
++              pattern: "^partition@[0-9a-f]+$"
++    then:
++      properties:
++        reg: false
++
+ additionalProperties: false
+ 
+ examples:
+@@ -101,3 +110,23 @@ examples:
+             };
+         };
+     };
++  - |
++    partition@0 {
++        reg = <0x0 0x100000>;
++        label = "ubi";
++        compatible = "linux,ubi";
++
++        volumes {
++            ubi-volume-u-boot-env {
++                volname = "env";
++
++                nvmem-layout {
++                    compatible = "u-boot,env";
++
++                    ethaddr {
++                        #nvmem-cell-cells = <1>;
++                    };
++                };
++            };
++        };
++    };
 -- 
-David Heidelberg
+2.35.3
 
 
