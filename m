@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-83418-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83419-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CB1B92854D
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 11:40:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EBCD928566
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 11:45:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BFFE31F237CC
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 09:40:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1BC01283C41
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 09:45:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E9B41474A4;
-	Fri,  5 Jul 2024 09:40:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11F0E1474B7;
+	Fri,  5 Jul 2024 09:45:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VCvFILF1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HmjEmk8q"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA614146A9B;
-	Fri,  5 Jul 2024 09:40:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC9F0146D45;
+	Fri,  5 Jul 2024 09:45:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720172432; cv=none; b=fMc+Wk2bKEqTKaLcpf1BolaHl4GCg6OI5OszdurvKPEEhjs0gOwgOH7RWsdb/dFSJ7crAnajbiF3uivt9OC1jRuslmSK4nSnRuOUUS/nbbyo4RDGFVtIN20ccG3VHXt2cz98geKyMVE6vm/sXkjG8kX+/9FdrnDQP1AmSjh9Lt4=
+	t=1720172727; cv=none; b=BTvG10kNB+C10/vgk9bOMav8j2xLbCu+kXcA2sKjAHT0lvsOxivArFQ4rWfjgwZC/qmyNuzUGqNOewDIOVineV5l7VZayMdZ5Zq16iD4IbYLHSGj6dPqtZ9f3lkhjEa5xhZ9DQvsdnWREBjjyfDfxvlqHqRXdDq0XDeWZaw0WGw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720172432; c=relaxed/simple;
-	bh=aNrZlmnjPrqLBOJBPDREEHQflgAaZRC3XHxn1YSWfkA=;
+	s=arc-20240116; t=1720172727; c=relaxed/simple;
+	bh=frGlIKAT1dBQamK3hrm7nlyGSfk0wKGWy6qgMoho1Go=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mofeqW5iwL44fBeVCMZE1RlZtiGDHKaHeexDC+C8n0lPd6srz2yuNpjAA9hAYTF1z9vL0T9ezHzcAp+5cGwqSSZQBJ02mozCtjympWawcQJAfWPz7dNpNConjJ+9/iDuJ1w0P4O5z7dm/slGZ7h9Tv1j3XasfGW9ttqouS60KUE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VCvFILF1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5127FC116B1;
-	Fri,  5 Jul 2024 09:40:29 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=qv8wlCN/u34NM4Ha09JMCAhWrzQKrri/rFB206jWHw62gqSi/vM+FD/DA+EWTB16qAQm6ilxEzcqeYFgKEd4X/0WPxwoANZrIK4y2ohCVjX1thzKXqMeYGWimi4ScZq2KUhN3oaj1vZ2zovD7FIHfgo5vYL9kysH3wEFZ1affYw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HmjEmk8q; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC8DEC32781;
+	Fri,  5 Jul 2024 09:45:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720172432;
-	bh=aNrZlmnjPrqLBOJBPDREEHQflgAaZRC3XHxn1YSWfkA=;
+	s=k20201202; t=1720172726;
+	bh=frGlIKAT1dBQamK3hrm7nlyGSfk0wKGWy6qgMoho1Go=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=VCvFILF1eirkIXXuepCGsE+lPelDZN+n9dchjih6o7F+tMPEYiTh3soLzFM5sMd9T
-	 Svw6GF91Und9kEN06O1CDv4w0Nfi7usYPO+03ifF5sYWMmDzxhkH5L7Wy2MWoTNeSV
-	 eFp9QZ2kDENG9sM3wLS1M5ft8udysjw3eszr8gpVwp7d5P8+LoZptB4ikWL9ehnz0L
-	 wOlC27t55HDHwyxTPxsLJPJcff0FkThBQwyfF0a2xtVJhXQ5AXkYZaZGHVzgdoNtyV
-	 ZU4Z69JD8lpyrI4PZXc/MqpagKQKFbLinyLkkAf+g6H/2dm/2mh44QBHqfTb6tAD4a
-	 3cMr9hETEZd5Q==
-Message-ID: <b794ed7c-d3b2-4fcd-94fb-de499de89804@kernel.org>
-Date: Fri, 5 Jul 2024 11:40:27 +0200
+	b=HmjEmk8q+boavLnh5eijeqX6BB29MyjznDpYJ4KYRZcSi6b80eBzHdXfmXHhklXG2
+	 1CC0DP6yFIefErS/a0iNQgzrUAKhxuH0qst77N0LtGKPFizE83ZFPSgzpmPAbYAOT2
+	 XT754oE0XRMFex9WQIyd1OIJBZoSAuYLeVO5vmguBGMAxbCp4nyOHmPhgnKs3t9o/k
+	 4DGsPwuvKZ258jtwdPSo+jmXyonKaqXaPhNlvMGNLeCUUvHw7F7GzZg+2pG4QGedoc
+	 CDk5Pl5vER+eR+tzTcc/cyXiZrygRUPuhvAOT0lsgd7KF2/T0P8brZvy0CezWAlPmi
+	 mI0iQUdjcmbiw==
+Message-ID: <b16d1ace-b113-47e2-9c48-7c89d122e2a9@kernel.org>
+Date: Fri, 5 Jul 2024 11:45:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,14 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] iio: light: ltrf216a: Add LTR-308 support
-To: Marek Vasut <marex@denx.de>, linux-iio@vger.kernel.org
-Cc: Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
- Shreeya Patel <shreeya.patel@collabora.com>, devicetree@vger.kernel.org
-References: <20240705091222.86916-1-marex@denx.de>
- <20240705091222.86916-2-marex@denx.de>
+Subject: Re: [PATCH 3/7] ARM: dts: microchip: at91-sama5d34ek: Align the
+ eeprom nodename
+To: Andrei.Simion@microchip.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, Nicolas.Ferre@microchip.com,
+ alexandre.belloni@bootlin.com, claudiu.beznea@tuxon.dev
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20240704151411.69558-1-andrei.simion@microchip.com>
+ <20240704151411.69558-4-andrei.simion@microchip.com>
+ <c4b23da5-10fc-476e-8acc-8ba0815f5def@kernel.org>
+ <aecc9240-8a19-47bf-b42a-e74690d8315f@microchip.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -103,69 +106,47 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240705091222.86916-2-marex@denx.de>
+In-Reply-To: <aecc9240-8a19-47bf-b42a-e74690d8315f@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 05/07/2024 11:11, Marek Vasut wrote:
-> Add LiteOn LTR-308 support into LTR-F216A kernel driver.
+On 05/07/2024 11:31, Andrei.Simion@microchip.com wrote:
+> On 05.07.2024 09:43, Krzysztof Kozlowski wrote:
+>> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+>>
+>> On 04/07/2024 17:14, Andrei Simion wrote:
+>>> Align the eeprom nodename according to device tree specification
+>>> and at24.yaml.
+>>>
+>>> Signed-off-by: Andrei Simion <andrei.simion@microchip.com>
+>>
+>> Squash.
+>>
 > 
-> The two devices seem to have almost identical register map, except that
-> the LTR-308 does not have three CLEAR_DATA registers, which are unused
-> by this driver. Furthermore, LTR-308 and LTR-F216A use different lux
-> calculation constants, 0.6 and 0.45 respectively. Both differences are
-> handled using chip info data.
+> I will squash.
 > 
-> https://optoelectronics.liteon.com/upload/download/DS86-2016-0027/LTR-308ALS_Final_%20DS_V1%201.pdf
-> https://optoelectronics.liteon.com/upload/download/DS86-2019-0016/LTR-F216A_Final_DS_V1.4.PDF
+>>> ---
+>>>  arch/arm/boot/dts/microchip/sama5d34ek.dts | 2 +-
+>>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>>
+>>> diff --git a/arch/arm/boot/dts/microchip/sama5d34ek.dts b/arch/arm/boot/dts/microchip/sama5d34ek.dts
+>>> index bffd61397cb5..18943b873fff 100644
+>>> --- a/arch/arm/boot/dts/microchip/sama5d34ek.dts
+>>> +++ b/arch/arm/boot/dts/microchip/sama5d34ek.dts
+>>> @@ -36,7 +36,7 @@ i2c0: i2c@f0014000 {
+>>>                       i2c1: i2c@f0018000 {
+>>>                               status = "okay";
+>>>
+>>> -                             24c256@50 {
+>>> +                             eeprom@50 {
+>>
+>> What about other names? Why not fixing everything at once?
+>>
 > 
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> ---
+> There are 149 dts+dtsi files. I would like to fix them step by step. (lots to check)
 
-...
-
->  	mutex_init(&data->lock);
->  
-> @@ -520,15 +537,27 @@ static int ltrf216a_runtime_resume(struct device *dev)
->  static DEFINE_RUNTIME_DEV_PM_OPS(ltrf216a_pm_ops, ltrf216a_runtime_suspend,
->  				 ltrf216a_runtime_resume, NULL);
->  
-> +struct ltr_chip_info ltr308_chip_info = {
-
-static const
-
-> +	.has_clear_data		= false,
-> +	.lux_multiplier		= 60,
-> +};
-> +
-> +struct ltr_chip_info ltrf216a_chip_info = {
-
-static const
-
-
-> +	.has_clear_data		= true,
-> +	.lux_multiplier		= 45,
-> +};
-> +
->  static const struct i2c_device_id ltrf216a_id[] = {
-> -	{ "ltrf216a" },
-> +	{ "ltr308", .driver_data = (kernel_ulong_t)&ltr308_chip_info },
-> +	{ "ltrf216a", .driver_data = (kernel_ulong_t)&ltrf216a_chip_info },
->  	{}
->  };
->  MODULE_DEVICE_TABLE(i2c, ltrf216a_id);
->  
->  static const struct of_device_id ltrf216a_of_match[] = {
-> -	{ .compatible = "liteon,ltrf216a" },
-> -	{ .compatible = "ltr,ltrf216a" },
-> +	{ .compatible = "liteon,ltr308", .data = &ltr308_chip_info },
-> +	{ .compatible = "liteon,ltrf216a", .data = &ltrf216a_chip_info },
-> +	{ .compatible = "ltr,ltrf216a", .data = &ltrf216a_chip_info },
-
-Drop this one. You cannot have undocumented compatibles - and checkpatch
-tells you this - and we do not want to accept stuff just because someone
-made something somewhere (e.g. ACPI, out of tree junk etc). There was
-similar effort in the past and we made it clear.
+I meant, if doing cosmetic changes like this to these files, why not
+fixing other names? Some of the work is automatic.
 
 Best regards,
 Krzysztof
