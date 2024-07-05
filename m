@@ -1,251 +1,185 @@
-Return-Path: <devicetree+bounces-83557-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83558-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C10E1928F87
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 01:26:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 57377928F96
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 01:47:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CB4771C21A19
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 23:26:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7EB1C1C216D5
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 23:47:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B05C5145B3B;
-	Fri,  5 Jul 2024 23:26:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D41B145A05;
+	Fri,  5 Jul 2024 23:47:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="okYXYmty"
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b="MNnMjHAz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADBFD14532A
-	for <devicetree@vger.kernel.org>; Fri,  5 Jul 2024 23:26:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A9C01CD02;
+	Fri,  5 Jul 2024 23:47:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=150.107.74.76
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720221969; cv=none; b=hF2bl7X2StywCNR9NIGfHs7M14W7gKA+P+KJgBNBef5/LeKaAQ6xr4spnb5zAY/gj/49DgHoiWN+Fl+rp4qBTEWpkqwX54F/6SrTLOTneyxhNb8ipPqtU18gGRF3VKncWxC9/WJi3zRgdc03GzKvwrhgL8xZ57mmW8O46ztcZV0=
+	t=1720223233; cv=none; b=kCfw4vJ/BlEUSO0wgxWyRIXV5OdKNSxKmHcwa8z/sNLb2bVC5vDz1qV/ffAqjIeA/yZQF8AWwo5if1fLNo8ssTou2eZ5fCLz2NYoxF0JoeIhxdXKEnbTuAqKZj5CVtRyeyDG4khRRw7DchwuvRqswoyXKtn4/nmjEhZC2enM5Ps=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720221969; c=relaxed/simple;
-	bh=3gMAndsUvgabh9qev+8EmCJaTlEII5ryUC+FGczY84o=;
+	s=arc-20240116; t=1720223233; c=relaxed/simple;
+	bh=ZXI91hteVgV6hZah8UJOV9un9PntqH8D+psnOoOPm+I=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=C4RRp9WWZXM10JMINxFvBEYsvUp3h1f18bpWos8gIjHUbpu1pieQH2KUDQ9TLr1occyYdtKCww+sM+p8v6gRoTTtcVLjXtR/D/ZhJFqduOyMO6Ess1ZweMXsqPgK2y/nT4vn1AuajE6E6uhVLKkXryaWFstJY2/CV5nimxgsIxk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=okYXYmty; arc=none smtp.client-ip=209.85.208.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-57cbc66a0a6so3638956a12.1
-        for <devicetree@vger.kernel.org>; Fri, 05 Jul 2024 16:26:07 -0700 (PDT)
+	 Content-Type:Content-Disposition:In-Reply-To; b=tnd89VyQnQj2/fIhNI1t6tjL2QfJTLkOyth1l6LN9RuRg5128ub8UD3ALcfseoSZc42/qXu66xFNFPNG1xFBqprsprBDF6e92kMk70q7ib307ybqW8FSIrkxnwdNPdHVgvcM7mmvx2TTl4GC4Il9TLxplLIRzRjE156+VDb8wjQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au; spf=pass smtp.mailfrom=gandalf.ozlabs.org; dkim=fail (0-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b=MNnMjHAz reason="key not found in DNS"; arc=none smtp.client-ip=150.107.74.76
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gandalf.ozlabs.org
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1720221966; x=1720826766; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=4FIGyFLoN5cw68zfKfOk7jOzbeIQ4UpGai4sSTRJq1M=;
-        b=okYXYmtyQBk+x56wcaBzuuF38eBKM+Ukl7sZqj8XHTMDa7sM6vPFmp6Jyjk+qgojfL
-         VeFG+M2XFrTUDkTsSomkpHbW44afBWzxC6RsFfQ4qiBt7f3NmD4f/qf0BMdawhN8fnqe
-         nEwH2npskAd5mVeqxFZiUpTGfyMd6etrqVkZmLecuIVdtZwOKlnaT6TXoqCO/0woakPw
-         pYSVADAcgqC+IbZSrjN/K+SRMh5w7E1i1PBVdpiI/HZCc/I38qD4VgQuxkH77AhSabxb
-         IpQpb7zNd7TBFV1VotgvgWNcKTmEIXO82DHynLqWbaX9A0vo8N3xBBc/W4skUAyJbAap
-         DJxg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720221966; x=1720826766;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4FIGyFLoN5cw68zfKfOk7jOzbeIQ4UpGai4sSTRJq1M=;
-        b=E+OUinlkmDf+VRcn7oBqepuvwvSXlYS3ArCuWW1jMpG8iQ+1mFax0LKm7zlPCN02pm
-         dP28k1lxWSo55rpSgLGvVUbsb25pSCSyI9NGRvG+IMSlG2meLqyV+Vypmb71/yLHxEtz
-         +7YIxJi4sEv7k4xwf1blKZVo86rn8K6RCfit+d1ic4prEGWzY+VuRX2Z4uGrVHnjotxu
-         8CYIDjMm753R9HOjbLyDMx/rLjgWKSuVlnRIQlsBjrTyjLn3aY6blTkFSJSaYgj5uhFc
-         FKw3szLNdksq6kxtNS+GR494uwLbXPsqlK+UJXKG3uqPz7RwsZSYyB3jvKqfB2KEgLy6
-         WARg==
-X-Forwarded-Encrypted: i=1; AJvYcCXp84W7UdN5Kx7wr69/Oil/xzX5/gs3JSN6GsevT/uCy1wZSKtEQ+UlfcLLapJyV7GYzjwYfdAUkMLu5aapvSKlCpJcZWxyWRr5PQ==
-X-Gm-Message-State: AOJu0YzO3+GcWvRZjhxcPESSYBU0aps39CoF5rIsI76wa4z6dO4i5vac
-	q37zH/Vyux9UkFU4hmtTyFD1k/Qq1PrU8wBAlD8kaUFH++KCbS4cXGaSj6+Uv3Q=
-X-Google-Smtp-Source: AGHT+IFg+5A1xjo41b4Ew2aKc+k+EzcATPIJ3+HMQghpCnt6pAjcGISfM1fIKkVdIzfPnRvqY87VSw==
-X-Received: by 2002:a05:6402:234c:b0:57d:3e48:165d with SMTP id 4fb4d7f45d1cf-58e7a74e11dmr4508736a12.4.1720221965757;
-        Fri, 05 Jul 2024 16:26:05 -0700 (PDT)
-Received: from localhost ([2a02:8071:b783:6940:5898:1844:403c:d2d6])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-58d242037afsm3768133a12.51.2024.07.05.16.26.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Jul 2024 16:26:05 -0700 (PDT)
-Date: Sat, 6 Jul 2024 01:26:03 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-To: Binbin Zhou <zhoubinbin@loongson.cn>
-Cc: Binbin Zhou <zhoubb.aaron@gmail.com>, 
-	Huacai Chen <chenhuacai@loongson.cn>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Juxin Gao <gaojuxin@loongson.cn>, Huacai Chen <chenhuacai@kernel.org>, 
-	loongson-kernel@lists.loongnix.cn, linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
-	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev
-Subject: Re: [PATCH v4 2/2] pwm: Add Loongson PWM controller support
-Message-ID: <b2lyte7dtrdxxoj4rwwrxbt5myc3td7v3psus7h36qc7dp3thh@czfp25bferl4>
-References: <cover.1716795485.git.zhoubinbin@loongson.cn>
- <23d08fa45237efd83cb9dd51a259e2c980f01b3f.1716795485.git.zhoubinbin@loongson.cn>
+	d=gibson.dropbear.id.au; s=202312; t=1720223226;
+	bh=0IEJWSRJc1bDYeAOIet9+b2NmjxcA5xTugFWIFbBDuc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=MNnMjHAzeB+nZ5wkypo4/qLzQnvzIlpgcS0oJfggSx9xTVCcelBD70hCQ2PIsSi9k
+	 cGNXmn8bq5Z2ZZj2fI192G6KFh6C/lrPMfXLCXKm057Yrpx/fPDan0e+ti64X2EnrS
+	 cHRsKGHzDWeETC+NDTPBKBf1xC6ShP416BSNPP48NxbvBwxRL0fBwLBa408/19Z25D
+	 nh6/lTZTo63q+3QcWLjlJtqfLkd7MXM5PrkpzMTWl/yaXFT+Mpm1CwY+NBy/HU3SPV
+	 n/edGI9YlGn/olHqYBEoZKh4veZbN+SQuPvoC4qIv2qlmQhk/VzA4Dhvyp6vtaTu90
+	 JoJ+ugMkLJL3Q==
+Received: by gandalf.ozlabs.org (Postfix, from userid 1007)
+	id 4WG9Ct0N12z4wyR; Sat,  6 Jul 2024 09:47:06 +1000 (AEST)
+Date: Sat, 6 Jul 2024 09:46:17 +1000
+From: David Gibson <david@gibson.dropbear.id.au>
+To: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>
+Cc: devicetree-compiler@vger.kernel.org, Rob Herring <robh@kernel.org>,
+	Geert Uytterhoeven <geert@linux-m68k.org>,
+	Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org
+Subject: Re: [PATCH] libfdt: overlay: Fix phandle overwrite check for new
+ subtrees
+Message-ID: <ZoiFyfnD7qpIh3XT@zatzit>
+References: <20240626075551.2493048-2-u.kleine-koenig@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="3levmdfnv3vsobbm"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="aNQZc6VLXZk5T8x5"
 Content-Disposition: inline
-In-Reply-To: <23d08fa45237efd83cb9dd51a259e2c980f01b3f.1716795485.git.zhoubinbin@loongson.cn>
+In-Reply-To: <20240626075551.2493048-2-u.kleine-koenig@baylibre.com>
 
 
---3levmdfnv3vsobbm
-Content-Type: text/plain; charset=us-ascii
+--aNQZc6VLXZk5T8x5
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Hello,
+On Wed, Jun 26, 2024 at 09:55:52AM +0200, Uwe Kleine-K=F6nig wrote:
+> If the overlay's target is only created in a previous fragment, it
+> doesn't exist in the unmodified base device tree. For the phandle
+> overwrite check this can be ignored because in this case the base tree
+> doesn't contain a phandle that could be overwritten.
+>=20
+> Adapt the corresponding check to not error out if that happens but just
+> continue with the next fragment.
+>=20
+> This is currently triggered by
+> arch/arm64/boot/dts/renesas/salvator-panel-aa104xd12.dtso in the kernel
+> repository which creates /panel in its first fragment and modifies it in
+> its second.
+>=20
+> Reported-by: Rob Herring <robh@kernel.org>
+> Link: https://lore.kernel.org/all/CAL_JsqL9MPycDjqQfPNAuGfC6EMrdzUivr+fuO=
+S7YgU3biGd4A@mail.gmail.com/
+> Fixes: 1fad065080e6 ("libfdt: overlay: ensure that existing phandles are =
+not overwritten")
+> Signed-off-by: Uwe Kleine-K=F6nig <u.kleine-koenig@baylibre.com>
 
-On Mon, May 27, 2024 at 03:51:12PM +0800, Binbin Zhou wrote:
-> +static int pwm_loongson_apply(struct pwm_chip *chip, struct pwm_device *pwm,
-> +			      const struct pwm_state *state)
-> +{
-> +	int ret;
-> +	u64 period, duty_cycle;
-> +	bool enabled = pwm->state.enabled;
-> +
-> +	period = min(state->period, NANOHZ_PER_HZ);
-> +	duty_cycle = min(state->duty_cycle, NANOHZ_PER_HZ);
-> +
-> +	if (state->polarity != pwm->state.polarity) {
-> +		if (enabled) {
-> +			pwm_loongson_disable(chip, pwm);
-> +			enabled = false;
-> +		}
-> +
-> +		ret = pwm_loongson_set_polarity(chip, pwm, state->polarity);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	if (!state->enabled) {
-> +		if (enabled)
-> +			pwm_loongson_disable(chip, pwm);
-> +		return 0;
-> +	}
+Merged, thanks.
 
-Given that the configured polarity isn't relevant for a disabled PWM, I
-suggest to swap these two if blocks. However then you have to be a bit
-more careful for the polarity check because otherwise the following
-series of commands yields wrong results:
-
-	pwm_apply_might_sleep(pwm, {.duty_cycle = D, .period = P, .polarity = PWM_POLARITY_NORMAL, .enabled = true});
-	pwm_apply_might_sleep(pwm, {.duty_cycle = D, .period = P, .polarity = PWM_POLARITY_INVERSED, .enabled = false});
-	pwm_apply_might_sleep(pwm, {.duty_cycle = D, .period = P, .polarity = PWM_POLARITY_INVERSED, .enabled = true});
-
-> +	ret = pwm_loongson_config(chip, pwm, duty_cycle, period);
-> +	if (ret)
-> +		return ret;
+> ---
+>  libfdt/fdt_overlay.c                | 8 +++++++-
+>  tests/overlay_overlay_bypath.dts    | 4 ++++
+>  tests/overlay_overlay_no_fixups.dts | 8 ++++++++
+>  3 files changed, 19 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/libfdt/fdt_overlay.c b/libfdt/fdt_overlay.c
+> index e19506fb56a5..28b667ffc490 100644
+> --- a/libfdt/fdt_overlay.c
+> +++ b/libfdt/fdt_overlay.c
+> @@ -729,7 +729,13 @@ static int overlay_prevent_phandle_overwrite(void *f=
+dt, void *fdto)
+>  			return overlay;
+> =20
+>  		target =3D fdt_overlay_target_offset(fdt, fdto, fragment, NULL);
+> -		if (target < 0)
+> +		if (target =3D=3D -FDT_ERR_NOTFOUND)
+> +			/*
+> +			 * The subtree doesn't exist in the base, so nothing
+> +			 * will be overwritten.
+> +			 */
+> +			continue;
+> +		else if (target < 0)
+>  			return target;
+> =20
+>  		ret =3D overlay_prevent_phandle_overwrite_node(fdt, target,
+> diff --git a/tests/overlay_overlay_bypath.dts b/tests/overlay_overlay_byp=
+ath.dts
+> index f23e7b6035e2..dfcb7cdb25a4 100644
+> --- a/tests/overlay_overlay_bypath.dts
+> +++ b/tests/overlay_overlay_bypath.dts
+> @@ -46,3 +46,7 @@
+>  		new-sub-test-property;
+>  	};
+>  };
 > +
-> +	if (!enabled)
-> +		ret = pwm_loongson_enable(chip, pwm);
-> +
-> +	return ret;
-> +}
-> +
-> +static int pwm_loongson_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
-> +				  struct pwm_state *state)
-> +{
-> +	u32 duty, period, ctrl;
-> +	struct pwm_loongson_ddata *ddata = to_pwm_loongson_ddata(chip);
-> +
-> +	/* duty_cycle = ddata->duty * NSEC_PER_SEC / ddata->clk_rate */
-> +	duty = pwm_loongson_readl(ddata, LOONGSON_PWM_REG_DUTY);
-> +	state->duty_cycle = mul_u64_u64_div_u64(duty, NSEC_PER_SEC, ddata->clk_rate);
-> +
-> +	/* period = ddata->period * NSEC_PER_SEC / ddata->clk_rate */
-> +	period = pwm_loongson_readl(ddata, LOONGSON_PWM_REG_PERIOD);
-> +	state->period = mul_u64_u64_div_u64(period, NSEC_PER_SEC, ddata->clk_rate);
-> +
-> +	ctrl = pwm_loongson_readl(ddata, LOONGSON_PWM_REG_CTRL);
-> +	state->polarity = (ctrl & LOONGSON_PWM_CTRL_INVERT) ? PWM_POLARITY_INVERSED :
-> +			  PWM_POLARITY_NORMAL;
-> +	state->enabled = (ctrl & LOONGSON_PWM_CTRL_EN) ? true : false;
-> +
-> +	return 0;
-
-You didn't test extensively with PWM_DEBUG enabled, right? You need to
-round up the divisions here otherwise you get strange rounding results:
-
-Consider ddata->clk_rate = 1594323. When a state with .period = 20000 is
-applied, LOONGSON_PWM_REG_PERIOD is assigned 31.
-Calling .get_state() in this situation gives .period = 19443. Reapplying
-.period = 19443 results in LOONGSON_PWM_REG_PERIOD := 30. Iterating this
-further yields:
-
- - .period = 18816
- - LOONGSON_PWM_REG_PERIOD := 29
- - .period = 18189
- - LOONGSON_PWM_REG_PERIOD := 28
- - ...
-
-> +}
-> +
-> +static const struct pwm_ops pwm_loongson_ops = {
-> +	.apply = pwm_loongson_apply,
-> +	.get_state = pwm_loongson_get_state,
+> +&{/new-local-node} {
+> +	another-new-property;
 > +};
+> diff --git a/tests/overlay_overlay_no_fixups.dts b/tests/overlay_overlay_=
+no_fixups.dts
+> index e8d0f96d889c..1dbdcdc2b40f 100644
+> --- a/tests/overlay_overlay_no_fixups.dts
+> +++ b/tests/overlay_overlay_no_fixups.dts
+> @@ -72,6 +72,14 @@
+>  		};
+>  	};
+> =20
+> +	fragment@7 {
+> +		target-path =3D "/new-local-node";
 > +
-> +static int pwm_loongson_probe(struct platform_device *pdev)
-> +{
-> +	int ret;
-> +	struct pwm_chip *chip;
-> +	struct pwm_loongson_ddata *ddata;
-> +	struct device *dev = &pdev->dev;
+> +		__overlay__ {
+> +			another-new-property;
+> +		};
+> +	};
 > +
-> +	chip = devm_pwmchip_alloc(dev, 1, sizeof(*ddata));
-> +	if (IS_ERR(chip))
-> +		return PTR_ERR(chip);
-> +	ddata = to_pwm_loongson_ddata(chip);
-> +
-> +	ddata->base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(ddata->base))
-> +		return PTR_ERR(ddata->base);
-> +
-> +	if (!has_acpi_companion(dev)) {
-> +		ddata->clk = devm_clk_get_enabled(dev, NULL);
-> +		if (IS_ERR(ddata->clk))
-> +			return dev_err_probe(dev, PTR_ERR(ddata->clk),
-> +					     "failed to get pwm clock\n");
-> +		ddata->clk_rate = clk_get_rate(ddata->clk);
-> +	} else {
-> +		ddata->clk_rate = LOONGSON_PWM_FREQ_STD;
-> +	}
-> +
-> +	chip->ops = &pwm_loongson_ops;
-> +	dev_set_drvdata(dev, chip);
-> +
-> +	ret = devm_pwmchip_add(dev, chip);
-> +	if (ret < 0) {
-> +		clk_disable_unprepare(ddata->clk);
+>  	__local_fixups__ {
+>  		fragment@5 {
+>  			__overlay__ {
+>=20
+> base-commit: ff4f17eb58650784ffb2e8a8fbefebce1038f80b
 
-This is wrong. You aquired the clk using devm_clk_get_enabled(), so you
-don't need (and must not) care for disable.
+--=20
+David Gibson (he or they)	| I'll have my music baroque, and my code
+david AT gibson.dropbear.id.au	| minimalist, thank you, not the other way
+				| around.
+http://www.ozlabs.org/~dgibson
 
-> +		return dev_err_probe(dev, ret, "failed to add PWM chip\n");
-> +	}
-> +
-> +	return 0;
-> +}
-
-Best regards
-Uwe
-
---3levmdfnv3vsobbm
+--aNQZc6VLXZk5T8x5
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmaIgQgACgkQj4D7WH0S
-/k5DmAgAgy9+bQt6LKhD22GPl2c+8gLHZtUHK+moqqjXgshYlaNilsgaj4Uc1fPD
-FQys3BoRj6KRIumOZ3DHeXzeJFUxvykf4+DlSglb5irhXw6sJsSLr9IsSQpIxuLR
-RKmozBhHrmlfuKsRADcUB+3taW8WQVacDqqMCKG4uH9+iKOif8o2+f5RE2xs7AZL
-p9lChxf/UCxULkPwqUEYPsUncgH1/87ozGT9NfUSYQqXR+jJKvermAeMFj3AGeDd
-3ThB5rP2WOYSMcvLbazL5PhTcrvo4nlxMPSelZf+fzDA2H6XBpBwF3pfVgKwR3SE
-FGZ6cq0bx8AobIhqzJ5HE9ylf0hlNw==
-=NAGs
+iQIzBAEBCAAdFiEEO+dNsU4E3yXUXRK2zQJF27ox2GcFAmaIhbUACgkQzQJF27ox
+2GfKAhAAjG6L1dh4NYz3s+Phd79eaTD0R1biN+/SsxlQJRQCiB4/zNYjPndKgZ/A
+vbBag9JsNwp6PfccssTV1mwZOlg0Bts/JyFNqP0ZLcDxAFPa4R92Lge6uz2jggW5
+0t98teCB5ycEFTMQwJXC9CiPCHoI9uP+JylzaSoxaIT2pbO6oJVn1/v8K/pn/TeC
+mqrKOFTELOHScReVJJd3X6/zSn47jkQNAR2wgpjlaElZ1Kb2ayQgctAXzQ53mf+9
+nGLpAA85GfqtXG19cz7pPlJRPDuHW1WarJrfk7+sOgR5KlhFN3vZoyH73qyz7y1k
+g7aG6gD71O0O2GQezAG2Z4CUQtMDBSQwhHJXAEBwDMaI8cE70o8koVTklfvFctR2
+sY4kQuSDbtjnIvIksQczcwqraicCBpUqh5VyDbPlmUvKGnnMSswWibZC15bi67Ck
+C9LcNRLd4A0tSgWY9yBve5gnWm/ng2Y+XJT0LY0cwzeDWErcGfov9jylNIeh+vYl
+zwHTNCkOilTyNY0cARv7GCV9i8XPEafORPI1PPCbUrbhRZK0FrIgLzikSaEFdvEE
+p0T6fdjOVu5ImYumJuE+7dLbGb1/wBAlMpdxcdEZPM2EtenwN6gY1bzj+00NTsZ2
+tflkhNDu4PrccDnpaLX+HsvJb675gBFo9IbIk3XpsoJcUY2az4U=
+=whnn
 -----END PGP SIGNATURE-----
 
---3levmdfnv3vsobbm--
+--aNQZc6VLXZk5T8x5--
 
