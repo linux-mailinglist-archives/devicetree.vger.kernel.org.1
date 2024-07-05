@@ -1,135 +1,129 @@
-Return-Path: <devicetree+bounces-83368-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83370-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C04B928359
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 10:01:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EC6B928363
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 10:06:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 20C601F2411E
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 08:01:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 030B41C221DB
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 08:06:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B29B13BC11;
-	Fri,  5 Jul 2024 08:01:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9E9613C3F9;
+	Fri,  5 Jul 2024 08:06:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=xenosoft.de header.i=@xenosoft.de header.b="kMFpwsvI";
+	dkim=permerror (0-bit key) header.d=xenosoft.de header.i=@xenosoft.de header.b="StylesDB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from laurent.telenet-ops.be (laurent.telenet-ops.be [195.130.137.89])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [81.169.146.166])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FA1B481AB
-	for <devicetree@vger.kernel.org>; Fri,  5 Jul 2024 08:01:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.130.137.89
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720166495; cv=none; b=uvaN0cAtsAP5/9AWW/bPBNqql5MVRlNS5y+Fy9FYXFpmY+QnwcfPViiz9HiqM+wr5I1PphTc2V7GDiUN0CxDJY1aAg/LUis15zCydN7+ApqV4jrgaLPrTQyw6XBQq40D2jpTjhhNSVViq87ccf/7zX8qNYyJY7jCNimqK/H1vbw=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720166495; c=relaxed/simple;
-	bh=N19zfTC7t9jI7s/JygfHbPjFkXgNtL5gwQ8EcozKBuw=;
-	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
-	 MIME-Version:Content-Type; b=f5VWw+1nasGDO3UEFqzP6I5gE9RGxp/C87FDW5W0Y4oMihxCmkK0GkmcEIRMyLVYO35wIfyrGuranIy7ueL+e5h6mVbJGXncSBm/Mv3qHXUeYu/1LDtbx9DJRL64gVsRghs1awMHvSRDze0yvxbI0QAjhE9FwiS0HTkN8Rtfv2w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=none smtp.mailfrom=linux-m68k.org; arc=none smtp.client-ip=195.130.137.89
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux-m68k.org
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed80:c3ba:e01c:f6c8:df75])
-	by laurent.telenet-ops.be with bizsmtp
-	id jk1B2C01H36r8Me01k1BWn; Fri, 05 Jul 2024 10:01:25 +0200
-Received: from geert (helo=localhost)
-	by ramsan.of.borg with local-esmtp (Exim 4.95)
-	(envelope-from <geert@linux-m68k.org>)
-	id 1sPdsV-001F3R-DT;
-	Fri, 05 Jul 2024 10:01:11 +0200
-Date: Fri, 5 Jul 2024 10:01:11 +0200 (CEST)
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-To: Michael Walle <mwalle@kernel.org>
-cc: Andrew Davis <afd@ti.com>, Ayush Singh <ayush@beagleboard.org>, 
-    Mark Brown <broonie@kernel.org>, Vaishnav M A <vaishnav@beagleboard.org>, 
-    Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-    Conor Dooley <conor+dt@kernel.org>, Derek Kiernan <derek.kiernan@amd.com>, 
-    Dragan Cvetic <dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>, 
-    Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-    Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, 
-    Tero Kristo <kristo@kernel.org>, Andrew Lunn <andrew@lunn.ch>, 
-    jkridner@beagleboard.org, robertcnelson@beagleboard.org, 
-    linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org, 
-    devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v5 7/7] dts: ti: k3-am625-beagleplay: Add mikroBUS
-In-Reply-To: <D2AZ0QKTPY3B.1I48GLI90XD0P@kernel.org>
-Message-ID: <5b2cd46e-8a51-f145-8876-55b12a6d62d1@linux-m68k.org>
-References: <20240627-mikrobus-scratch-spi-v5-0-9e6c148bf5f0@beagleboard.org> <20240627-mikrobus-scratch-spi-v5-7-9e6c148bf5f0@beagleboard.org> <4e23ec81-b278-4f2b-815d-64ed9390ca55@ti.com> <D2AZ0QKTPY3B.1I48GLI90XD0P@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4225481AB;
+	Fri,  5 Jul 2024 08:06:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=81.169.146.166
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1720166778; cv=pass; b=S0JGxkWIAWZRwLGZ8rpb76/c+wi7OrEKe5flq230cHavzCPxFTBiXKPq6GIE8acOMtcR5AJB/XWMaPAHR639+kJQKNMJItgJjuhdgM7sMiStB3AyKcAsFXpck0ybKwQ+8rJSVadraKC++hb66ZHsAMwgES4KIpBKJ/FIvMQHraI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1720166778; c=relaxed/simple;
+	bh=HDBFrB9U+1H6Na8SeB2ejYtLMqLM4DgPnBZYGDCmFME=;
+	h=Content-Type:From:Mime-Version:Subject:Date:Message-Id:References:
+	 Cc:In-Reply-To:To; b=RNmbyCfPJRewGbmU3EfgudgMTbPNu6SwHJ/DzWIlHSryYif+MZxLjA2y6Ae7ydfGq63BChh4rrhaE0ODgnAahM+NkuqXmhxbNC2RXrbWAFGIUbGfgxQWjC1k9fLA2tgZNoBiH90R7wO6w+xeidy+X8JLcZfkTLkU0qcqMatqlRg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=xenosoft.de; spf=none smtp.mailfrom=xenosoft.de; dkim=pass (2048-bit key) header.d=xenosoft.de header.i=@xenosoft.de header.b=kMFpwsvI; dkim=permerror (0-bit key) header.d=xenosoft.de header.i=@xenosoft.de header.b=StylesDB; arc=pass smtp.client-ip=81.169.146.166
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=xenosoft.de
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=xenosoft.de
+ARC-Seal: i=1; a=rsa-sha256; t=1720166734; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=gl5nexwVkuoIwhgOIbBaOhBfqWlI8nmyb27HyyKv6XdYjnoJfU2bRbCS1UauQcyOLW
+    2z3OWKuyXvxK5UnfNl7cB8In3ywssXW9UvRFNrynPFOpM7b0o7G9BCQGD+fyCzUPmNF7
+    3xHYqgBpZ9+3s02O2GJ9aOp7g5dO8iRc1EL7jOd5GdrgwnYPmi4tbl32oASfdktCyoiZ
+    WEu2woJpavdUZzUQ5dW9b2L3S4ejq6aB665o5pvDXsdV5cCAP2piZyxz0vgcve+x4/cy
+    44hCkxHo1wg1AAKStJnqo+Vu0u3XDfC7f2C6DWrYol/WVaWEkJ2rVcMJVLz/bfuG6IZw
+    Xr9w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1720166734;
+    s=strato-dkim-0002; d=strato.com;
+    h=To:In-Reply-To:Cc:References:Message-Id:Date:Subject:From:Cc:Date:
+    From:Subject:Sender;
+    bh=a97yB0J0sjTTHMcRbynjfBCKVta83Ey42tiJN4TdkTM=;
+    b=OhVE4p+Dp86eMVBYIddhGzOjjolKBO2p5hR9+5ewZLP+kmumbvICdCDmvJgtRYH4Ql
+    gnKQbGcX9xwgH+QjXJXrGvwRgdSd1Hom/jH2StiLDWJW6FOSeItRrsSiLh0II6ME28kZ
+    G+axLatTFK8wUmenkFVMusCMc2ul8z9stmHHwcpocTKeuJl8vYeBQKrXhELemhowQOO6
+    XsSyxGo9KDSnlqz794fQOcH/MzmsPi1qfvQRravDSsWTra1k84yi2oAe5FUUNlIJ6sy+
+    A4zHik+z5zvF2/F/NJejNAcDc1RaUrCYUjpnSOMBtUEv8E4bFSGWNhrgy7K49F95zZqg
+    SMQg==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo01
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1720166734;
+    s=strato-dkim-0002; d=xenosoft.de;
+    h=To:In-Reply-To:Cc:References:Message-Id:Date:Subject:From:Cc:Date:
+    From:Subject:Sender;
+    bh=a97yB0J0sjTTHMcRbynjfBCKVta83Ey42tiJN4TdkTM=;
+    b=kMFpwsvIbsd81XW0VouTIMRlYW1xlT6HcXfU9/NbhToZBUvFK8h2NJUbng6SuVe2X6
+    I0a85rPR/uRTXM74xuf4a1Vc2UOS5T6/hf2Sh50jHHEFKlP+vB9nND+0mOneM7FGSg4K
+    XBTyaBxCU52YiedwGxbXvWYbenDUFuYZX99jK7dgdGvzgiP80MyTHS5JIo1ykguHhWG9
+    KWGthG1eetHoqIzdcVJowupuSMAwqQMMuuYCLcMUwuZOLAX/CevE7EwLRquAMXDqtRRh
+    YBiiroY7KieOmvOK7i6qxjAKfro5rMnjii4ctjNIlqS5WoSfSmuRaAvqrl8oftaQfdla
+    lIMQ==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1720166734;
+    s=strato-dkim-0003; d=xenosoft.de;
+    h=To:In-Reply-To:Cc:References:Message-Id:Date:Subject:From:Cc:Date:
+    From:Subject:Sender;
+    bh=a97yB0J0sjTTHMcRbynjfBCKVta83Ey42tiJN4TdkTM=;
+    b=StylesDB/lgRsS+lQ5LcJxNXmcFf27sGs4aT9DklxOlApqThzoVfVKzhyeMiYj8nUN
+    YDQe4FBftGZ6f4NmK4CQ==
+X-RZG-AUTH: ":L2QefEenb+UdBJSdRCXu93KJ1bmSGnhMdmOod1DhGN0rBVhd9dFr6KxrfO5Oh7V7X5m0s3zACH4zLZuKVd30n/B17YES0k2Xt9gM8w=="
+Received: from smtpclient.apple
+    by smtp.strato.de (RZmta 50.5.0 AUTH)
+    with ESMTPSA id e0838906585YVPi
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+	(Client did not present a certificate);
+    Fri, 5 Jul 2024 10:05:34 +0200 (CEST)
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+From: Christian Zigotzky <chzigotzky@xenosoft.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII; format=flowed
+Mime-Version: 1.0 (1.0)
+Subject: Re: [PowerPC] [PASEMI] Issue with the identification of ATA drives after the of/irq updates 2024-05-29
+Date: Fri, 5 Jul 2024 10:05:23 +0200
+Message-Id: <C7B869E5-95D9-426E-A2CB-8336CC9EF432@xenosoft.de>
+References: <C2FBFAD0-DEEE-4906-80B1-5FA745CD9726@xenosoft.de>
+Cc: Rob Herring <robh@kernel.org>, apatel@ventanamicro.com,
+ DTML <devicetree@vger.kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+ mad skateman <madskateman@gmail.com>, "R.T.Dickinson" <rtd2@xtra.co.nz>,
+ Matthew Leaman <matthew@a-eon.biz>,
+ Darren Stevens <darren@stevens-zone.net>,
+ Christian Zigotzky <info@xenosoft.de>
+In-Reply-To: <C2FBFAD0-DEEE-4906-80B1-5FA745CD9726@xenosoft.de>
+To: Marc Zyngier <maz@kernel.org>
+X-Mailer: iPhone Mail (21F90)
 
- 	Hi Michael,
+How about the other patch[1], which would be far preferable?
 
-On Thu, 27 Jun 2024, Michael Walle wrote:
-> On Thu Jun 27, 2024 at 7:07 PM CEST, Andrew Davis wrote:
->>> +	mikrobus_boards {
->>> +		thermo_click: thermo-click {
->>> +			compatible = "maxim,max31855k", "mikrobus-spi";
->>
->> I might be missing something, but your solution cannot possibly be
->> to list every click board that could be connected (all 1500+ of them)
->> to every mikroBUS connector on every device's DT file..
->>
->> Each click board should have a single DTSO overlay file to describe the
->> click board, one per click board total. And then that overlay should
->> apply cleanly to any device that has a mikroBUS interface.
->>
->> Which means you have not completely solved the fundamental problem of
->> abstracting the mikroBUS connector in DT. Each of these click device child
->> nodes has to be under the parent connector node. Which means a phandle
->> to the parent node, which is not generically named. For instance
->> if my board has 2 connectors, I would have mikrobus0 and mikrobus1,
->> the click board's overlay would look like this:
->>
->> /dts-v1/;
->> /plugin/;
->>
->> &mikrobus0 {
+   M.
 
-Let's use just "&mikrobus" instead...
+[1] https://lore.kernel.org/all/86ed8ba2sp.wl-maz@kernel.org
 
->> 	status = "okay";
->>
->> 	mikrobus_board {
->> 		thermo-click {
->> 			compatible = "maxim,max31855k", "mikrobus-spi";
->> 			spi-max-frequency = <1000000>;
->> 			pinctrl-apply = "spi_default";
->> 		};
->> 	};
->> };
->
-> If there should only be one DT overlay per click board, how would
-> you apply that to to different connectors?
+- - - -
 
-You teach fdtoverlay[*] to translate anchors, e.g.
+Marc,
 
-     fdtoverlay -i base.dtb -o final.dtb \
- 	       -t mikrobus=mikrobus0 click1.dtbo \
- 	       -t mikrobus=mikrobus1 click2.dtbo
+We will test the patch as soon as possible.
 
-I believe the Raspberry Pi people already have something like that.
+Christian
 
-The mikrobus node handles all other translations (e.g. mapping from
-Mikrobus pins to GPIO numbers), so you do not have to handle these
-explicitly when adding an overlay.
+- - - -
 
-[*] And anything else that handles overlays (U-Boot, out-of-tree
-     OF_CONFIGFS, ...)
+Our tester has reported, that it doesn=E2=80=99t boot.
 
-Gr{oetje,eeting}s,
+Link: https://forum.hyperion-entertainment.com/viewtopic.php?p=3D58627#p5862=
+7=
 
- 						Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
- 							    -- Linus Torvalds
 
