@@ -1,63 +1,64 @@
-Return-Path: <devicetree+bounces-83629-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83630-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8228929572
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jul 2024 00:01:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DFED929580
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jul 2024 00:03:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 50F421F2175C
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 22:01:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1B7A41C20C01
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 22:03:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06EC73A28B;
-	Sat,  6 Jul 2024 22:01:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F69A1428EC;
+	Sat,  6 Jul 2024 22:01:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Cj8vp3qc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kfo0HyKR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA92A339AC;
-	Sat,  6 Jul 2024 22:01:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5E5A14036D;
+	Sat,  6 Jul 2024 22:01:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720303294; cv=none; b=q66445/n9N4dGytz3TbiSeTcEKViaMoQJTEMpzdbGG1FnSdz6iUVSzU6QbsQkppF4npeFYwiEL2ICSgMH7I1lcl7/U/7bur+g7ngCoVLkVC1awGEWOxeazk3ecR0DwBGcJie9Kti8lYw2L1JZBfrlLdiCoCaoWlCqqO7THD2aJM=
+	t=1720303301; cv=none; b=st22E4eCFWceJ3kc9DexNvfFtt4LzIdO3WsztTbh5h35O7BJwlvSo1oRzW8uas1BHm7U1ZHHgEQHiWp84e49e4uvsOfqdJxuCFfsMQHi1hDon80lnU+0oqXswvfJrnJEgKUiiJVMXavvmitQfSw3WJ/uZCsEFjAqZeWRZZ1nIFM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720303294; c=relaxed/simple;
-	bh=b7FMk8yaivqnVyPJYtM/vlRfAHS64LY/MtAAWWYBIw8=;
+	s=arc-20240116; t=1720303301; c=relaxed/simple;
+	bh=wdNnOaJiX/VT5+td9QKppYZ4ZVlw14p0tPuOG5IO/lM=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=eVnSigItRL43K6xAg1Y2HHKCs1KtuwyjbAMWQBLveH8v86aj+ZqCrUxm6or5ORuQQ8bbH/e2vx1cS8TiBGbhlP4dIF9FRwXCfxCf/wGGZAK1qW06C8BdX+9SEFbNBMLnT3cg4dn60+cfxDsqYQlfg34BImq9yC2D4cOgDW1NBoI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Cj8vp3qc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79E77C4AF0B;
-	Sat,  6 Jul 2024 22:01:33 +0000 (UTC)
+	 MIME-Version:Content-Type; b=suCSTJfmp7GCiZMatxR9mlI29b0Vco9AroKBfVsZFHzv6El9s3zF4N6i1x4eqmYwS7iXg+2B4Tk54HlLpQ5EJvjUaPKqzHY1LlM8czmU61AmKGjeIZdtD1e940zLEtC5CmdCEz6Tgq0diy9ZDCbIMq8mqas80XgqK3EJCOt1qAk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kfo0HyKR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5EC54C2BD10;
+	Sat,  6 Jul 2024 22:01:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720303294;
-	bh=b7FMk8yaivqnVyPJYtM/vlRfAHS64LY/MtAAWWYBIw8=;
+	s=k20201202; t=1720303300;
+	bh=wdNnOaJiX/VT5+td9QKppYZ4ZVlw14p0tPuOG5IO/lM=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=Cj8vp3qcKaHQcnApTZSzvonT2Gl8hVyR6gdGsAinVKnzEw8c59E1aRf98Rm47mMhX
-	 m9hdeHelpVfAnJufCOYy32RwFEplKLsL/S1pL7X7j+pwqJw/vmibfnw3j+R88pV1Rh
-	 obt+Z5yvTFK1mXoPGCseZ9iltk05b6qxwNalWCKH41k9HpakerfD0o/CVJ/Bz0Tk3L
-	 FH1v8wEABKd8KnQS0iTOLX2RwaExSbDRTGBXiBCXa1Up/NFkot+HUKd1uSqhwe6T1U
-	 dBxBHKNWaOHVx0RWN38D5HBs+wnIrvpTIsnvmPSVWlj6KEkq6asf/GPaRSB3zKtcnT
-	 xze/VrGd/IupA==
+	b=kfo0HyKRJSqrfUbIBrGtaVD44IoGyouTdi0WLDQA4LFyTptgEXhuCj/tYvikVbyhl
+	 EnWMCm+dOW57eivzsaHAlDn1QexiNxvjc6m3eQaseRcxZJE9aL/3UEKn4XyU/7cOFu
+	 i9PwcjTuVBb17kK8pVMyQOObhpFGY0OMzj0hWXeREEho4lK2y0x+dMt7hjX/XRg7Lc
+	 Zldve5mw8AKvPPT3tz7mKJbvErXazh4GMUfe+vKR7mMUh2AyX3E62ZZrANiqh1thyp
+	 qhTTHy/zWtzsROuUSAAXd6N8uJVWOUQGPZk2p/rwwlrozDaCJUAMpl5tGeLc0xHyPS
+	 Qsn/qJUFpbHBg==
 From: Bjorn Andersson <andersson@kernel.org>
-To: dmitry.torokhov@gmail.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	konrad.dybcio@linaro.org,
-	Jens Reidel <adrian@travitia.xyz>
-Cc: linux-arm-msm@vger.kernel.org,
-	linux-input@vger.kernel.org,
+To: Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Luca Weiss <luca.weiss@fairphone.com>
+Cc: ~postmarketos/upstreaming@lists.sr.ht,
+	phone-devel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: Re: (subset) [PATCH 0/2] Add vibrator support for PM6150 PMIC
-Date: Sat,  6 Jul 2024 17:01:17 -0500
-Message-ID: <172030328811.28909.3827861968759501138.b4-ty@kernel.org>
+Subject: Re: [PATCH v2 0/2] More thermal configuration for Fairphone 4
+Date: Sat,  6 Jul 2024 17:01:23 -0500
+Message-ID: <172030328809.28909.15694647738799552654.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240606181027.98537-1-adrian@travitia.xyz>
-References: <20240606181027.98537-1-adrian@travitia.xyz>
+In-Reply-To: <20240705-fp4-thermals-v2-0-a4870a8d084f@fairphone.com>
+References: <20240705-fp4-thermals-v2-0-a4870a8d084f@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,28 +69,19 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Thu, 06 Jun 2024 20:10:25 +0200, Jens Reidel wrote:
-> This series adds vibrator support for PM6150. Was tested on SM7150
-> (xiaomi-davinci).
+On Fri, 05 Jul 2024 14:40:08 +0200, Luca Weiss wrote:
+> Add the thermal configuration for the thermistors connected to PMK8003
+> and PM6150L. With that all the external thermistors on the phone should
+> be present in the dts.
 > 
-> To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-> To: Rob Herring <robh@kernel.org>
-> To: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> To: Conor Dooley <conor+dt@kernel.org>
-> To: Bjorn Andersson <andersson@kernel.org>
-> To: Konrad Dybcio <konrad.dybcio@linaro.org>
-> Cc: linux-arm-msm@vger.kernel.org
-> Cc: linux-input@vger.kernel.org
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-kernel@vger.kernel.org
-> Signed-off-by: Jens Reidel <adrian@travitia.xyz>
 > 
-> [...]
 
 Applied, thanks!
 
-[2/2] arm64: dts: qcom: pm6150: Add vibrator
-      commit: e3e169cd28d0ba80d25ad683e076b299a39e8526
+[1/2] arm64: dts: qcom: sm7225-fairphone-fp4: Add PMK8003 thermals
+      commit: 4d37847187b3fd7ff1fac23248a8ec11d89b3e55
+[2/2] arm64: dts: qcom: sm7225-fairphone-fp4: Add PM6150L thermals
+      commit: 8cf636a03260352853ff1c949f30c418600e7b2b
 
 Best regards,
 -- 
