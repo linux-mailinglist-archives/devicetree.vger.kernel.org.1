@@ -1,65 +1,73 @@
-Return-Path: <devicetree+bounces-83631-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83632-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D5DA929584
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jul 2024 00:03:45 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D8FC92958A
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jul 2024 00:04:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BBB481F216B9
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 22:03:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C914BB21DBC
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 22:04:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39696144D24;
-	Sat,  6 Jul 2024 22:01:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7403F146D6B;
+	Sat,  6 Jul 2024 22:01:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="f4zYhYhO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pcgBbiKk"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A4D4144D1D;
-	Sat,  6 Jul 2024 22:01:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A9EB2BCF9;
+	Sat,  6 Jul 2024 22:01:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720303302; cv=none; b=Dj0yf5ze6lQD+X6py8q0fhvlDlnOxIS9pdDTP6lqWhWTYXbLjUK/LOLR+IxhdrP3JpCeAMHMAvka6SUyPOyhK2HhoLnt3vv2dbPb3ENTDZIxCARqnNHQ+TbDd4AiQx9SWVTtBdOE/HCOGdEegzgw1Hg+76sOANdM8l7zFuz4Nac=
+	t=1720303304; cv=none; b=kD29kplYJhFFwxxwnI0dV/tD92KY9wGeT/Y3wojQXdg1FxyIG1euFUW/OEki3n/PzoPfS8Z94JKyy5NcVziDdVsD/b+J92P4O4OP9/2Qv98VDRRTZFLctxrgT6gDMUIXnTjwhQV3Cl9L3uP36WCQQMAV6lMCMe8z81jgtAixTQ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720303302; c=relaxed/simple;
-	bh=vk/Cvb7kD79ksF6Cfvk78sTu/Roq1tjpCW8NeoaxwdY=;
+	s=arc-20240116; t=1720303304; c=relaxed/simple;
+	bh=4RNuJ7x9wqIDUwrus11KgAmxZ8koMeKy8khMbeqi1gs=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=s0JHwbbpWCsD5u36tWfaY4G1gp6Zy+m4T6y58wAjwXFeQ/AbzSGTWPW7TCETYn8CB/wgAss3l66eQo4p07IFsPBDgVb5j6xhWpt7AKVnwPBbVnoJ+9Z4mGO/oIgqrBsRnbkR/PmDIzXPNFpYTfKt0L/cFYF+haO538ryEM2loHM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=f4zYhYhO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2A5CC4AF0C;
-	Sat,  6 Jul 2024 22:01:40 +0000 (UTC)
+	 MIME-Version:Content-Type; b=A9g7PdWCNTBc8dm+jEP/XTFhjJZPEdkwePfN3R/7Cc9iwIb2I7g1ZvFBo3KPvyiD2HCDa+iAC1ddb0zPD0Ong4h02Z523+zWHHfzt9Fu0TIqhB5Cyl1cuJLIaY0rSAkrvtN481YKWwC8NS/x6THQCcqh3gqYeq7sQHlSHCSvlBc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pcgBbiKk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B03D8C32781;
+	Sat,  6 Jul 2024 22:01:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720303301;
-	bh=vk/Cvb7kD79ksF6Cfvk78sTu/Roq1tjpCW8NeoaxwdY=;
+	s=k20201202; t=1720303304;
+	bh=4RNuJ7x9wqIDUwrus11KgAmxZ8koMeKy8khMbeqi1gs=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=f4zYhYhOPZM6thlux8OdE7JFdRWcPQTCbT6es+wAX7ekTMh4l/P7ieohxg4Y6yglt
-	 dJRneo7LMqdsVUDNRRuQT8oZlWam78vgzpiSZlB30+EC50Na4Smfza8eyFOBcMYkxh
-	 Ud0k94DvYTdIPAqlZFMzDpamflV9Dxf2EpEhlWbTojU6oho0Jk5ke+Sj7u2pJr7PdO
-	 T2Q31ve7/O2UH8nDvF2A+6gWyxFIykVrkx0RPv1NsiADDszCA1vxuidHwY4rovXtr7
-	 JlZP2yIcmHSMl0RK/KE0u4lKsMLXGh5ggOERh7BHNPhaZqipH1+Lakqj3kua72qUe1
-	 dGZOAJnBk88iA==
+	b=pcgBbiKk0YTtSOTMzgNSzDQ5m1+Wl4k7izgB3YBCkNvq6QLv8VUCzJuERto4evrb+
+	 NHVC2E1sfFAxxdqeNDFt2yFm/wUFmEhX+ffwY43VGEmdUMpKT664LD7TpwgMalp1Mt
+	 jfo4wdUHkEYR5UX57B95nZ2jTO7PlRpikv3p488KKqsxQvKDpQAyPggLnYObR9uzze
+	 NeIc7HuPpIDBGkc09jPLj3wuGSp+6yhjfb9GjKex/+eBNzgYVuRPBBCdFjqlz5KtbL
+	 xIV+yp1vjfh1s1989Ird5Z4eY0qk3XEluNhikisjGinLvlFch+u9KOyILYUXNOQ+Sv
+	 RbHB467ltRRUA==
 From: Bjorn Andersson <andersson@kernel.org>
-To: Konrad Dybcio <konrad.dybcio@linaro.org>,
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Luca Weiss <luca.weiss@fairphone.com>
-Cc: ~postmarketos/upstreaming@lists.sr.ht,
-	phone-devel@vger.kernel.org,
-	Konrad Dybcio <konrad.dybcio@somainline.org>,
+	Baruch Siach <baruch@tkos.co.il>,
+	Kathiravan T <quic_kathirav@quicinc.com>,
+	Sivaprakash Murugesan <sivaprak@codeaurora.org>,
+	Andy Gross <andy.gross@linaro.org>,
+	Jeffrey Hugo <quic_jhugo@quicinc.com>,
+	Douglas Anderson <dianders@chromium.org>,
+	Stephen Boyd <swboyd@chromium.org>,
+	Iskren Chernev <me@iskren.info>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>,
+	Vivek Gautam <vivek.gautam@codeaurora.org>,
+	Krishna Kurapati <quic_kriskura@quicinc.com>
+Cc: linux-kernel@vger.kernel.org,
 	linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Subject: Re: [PATCH v2] arm64: dts: qcom: sm6350: Add missing qcom,non-secure-domain property
-Date: Sat,  6 Jul 2024 17:01:24 -0500
-Message-ID: <172030328809.28909.14419610576118929541.b4-ty@kernel.org>
+	quic_ppratap@quicinc.com,
+	quic_jackp@quicinc.com
+Subject: Re: [PATCH 0/8] Disable SS instances in parkmode for Gen-1 targets
+Date: Sat,  6 Jul 2024 17:01:26 -0500
+Message-ID: <172030328808.28909.12287943929043586307.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240705-sm6350-fastrpc-fix-v2-1-89a43166c9bb@fairphone.com>
-References: <20240705-sm6350-fastrpc-fix-v2-1-89a43166c9bb@fairphone.com>
+In-Reply-To: <20240704152848.3380602-1-quic_kriskura@quicinc.com>
+References: <20240704152848.3380602-1-quic_kriskura@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,16 +78,35 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Fri, 05 Jul 2024 09:43:11 +0200, Luca Weiss wrote:
-> By default the DSP domains are secure, add the missing
-> qcom,non-secure-domain property to mark them as non-secure.
+On Thu, 04 Jul 2024 20:58:40 +0530, Krishna Kurapati wrote:
+> For targets that have only USB3 Gen-1 DWC3 controllers, it is recommended
+> to disable SS instance in park mode to avoid HC died error when working
+> in host mode in situations where the controller is stressed out:
 > 
+>  xhci-hcd.12.auto: xHCI host not responding to stop endpoint command
+>  xhci-hcd.12.auto: xHCI host controller not responding, assume dead
+>  xhci-hcd.12.auto: HC died; cleaning up
 > 
+> [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: sm6350: Add missing qcom,non-secure-domain property
-      commit: 81008068ee4f2c4c26e97a0404405bb4b450241b
+[1/8] arm64: dts: qcom: ipq6018: Disable SS instance in Parkmode for USB
+      commit: 4ae4837871ee8c8b055cf8131f65d31ee4208fa0
+[2/8] arm64: dts: ipq8074: Disable SS instance in Parkmode for USB
+      commit: dc6ba95c6c4400a84cca5b419b34ae852a08cfb5
+[3/8] arm64: dts: qcom: msm8998: Disable SS instance in Parkmode for USB
+      commit: 0046325ae52079b46da13a7f84dd7b2a6f7c38f8
+[4/8] arm64: dts: qcom: sdm630: Disable SS instance in Parkmode for USB
+      commit: fad58a41b84667cb6c9232371fc3af77d4443889
+[5/8] arm64: dts: qcom: sm6115: Disable SS instance in Parkmode for USB
+      commit: 074992a1163295d717faa21d1818c4c19ef6e676
+[6/8] arm64: dts: qcom: sm6350: Disable SS instance in Parkmode for USB
+      commit: c5d57eb7d06df16c07037cea5dacfd74d49d1833
+[7/8] arm64: dts: qcom: msm8996: Disable SS instance in Parkmode for USB
+      commit: 44ea1ae3cf95db97e10d6ce17527948121f1dd4b
+[8/8] arm64: dts: qcom: sdm845: Disable SS instance in Parkmode for USB
+      commit: cf4d6d54eadb60d2ee4d31c9d92299f5e8dcb55c
 
 Best regards,
 -- 
