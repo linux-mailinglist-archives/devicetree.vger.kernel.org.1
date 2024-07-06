@@ -1,104 +1,97 @@
-Return-Path: <devicetree+bounces-83628-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83629-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F2AF929563
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jul 2024 00:01:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8228929572
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jul 2024 00:01:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9E0CAB211EB
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 22:01:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 50F421F2175C
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 22:01:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FDFE224EF;
-	Sat,  6 Jul 2024 22:00:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06EC73A28B;
+	Sat,  6 Jul 2024 22:01:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="jbQ7oxWu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Cj8vp3qc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ixit.cz (ip-89-177-23-149.bb.vodafone.cz [89.177.23.149])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 898E71BF58;
-	Sat,  6 Jul 2024 22:00:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.177.23.149
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA92A339AC;
+	Sat,  6 Jul 2024 22:01:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720303255; cv=none; b=tDrQ4SExq+mb2GJj7JcAShhqjZl2KU4b9plg0K8zU/M0g0jlKrRvSQjWMA9WG4v4CZUu3ezeC1RaDPxdx4PIARKs/AogZxAtt7+hqs+Fm9f+eL7m2Bt5m5Lbsa7S5AIeZqIz7Nb0FYzS9wsvYF92jqEkJXb4wdZpW6DwbOaIOs4=
+	t=1720303294; cv=none; b=q66445/n9N4dGytz3TbiSeTcEKViaMoQJTEMpzdbGG1FnSdz6iUVSzU6QbsQkppF4npeFYwiEL2ICSgMH7I1lcl7/U/7bur+g7ngCoVLkVC1awGEWOxeazk3ecR0DwBGcJie9Kti8lYw2L1JZBfrlLdiCoCaoWlCqqO7THD2aJM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720303255; c=relaxed/simple;
-	bh=L0DmlBrywElD3FskQlMVzfQTsHLaAQHxjythqqbokUI=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=HOrk+ySp3UomykT5aReUxL3UuL5ANzIOT479Bw5uZMNf1VBlmk3L/HNd5P5o1EyctwH4FzH21kbQc7w1ssYavFt8mLL/i1ZEIAxDVHrzS0fpIExErwHhiJU6Na8A9tGyato9sD2iQdkiAsMgqwdLJ+9SxL7D2MCa0gfH/99b8Bo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=jbQ7oxWu; arc=none smtp.client-ip=89.177.23.149
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ixit.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
-Received: from newone.attlocal.net (76-224-187-148.lightspeed.sntcca.sbcglobal.net [76.224.187.148])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by ixit.cz (Postfix) with ESMTPSA id 02E911650ED;
-	Sun,  7 Jul 2024 00:00:44 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-	t=1720303247;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=PqfZG+GyBCV/bwFst3yoT6QdmPT89Y9QsWEZ0NJOICM=;
-	b=jbQ7oxWu0iK1ODnOkFb8/aL7t9anC92oBIiTqoP11ejxyx8vfwu4QJDRCPbpObbjLew+go
-	gzE6avDQYUlTdklw3Bomx3gDwbZbyCru7NE3X9QT4fncWjkBHHhYlDsGQ3EFgrKlTL5lEe
-	U8PFdBIZVCDjbvwTURleOkEao8aM+/Y=
-From: David Heidelberg <david@ixit.cz>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: David Heidelberg <david@ixit.cz>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	linux-arm-msm@vger.kernel.org,
+	s=arc-20240116; t=1720303294; c=relaxed/simple;
+	bh=b7FMk8yaivqnVyPJYtM/vlRfAHS64LY/MtAAWWYBIw8=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=eVnSigItRL43K6xAg1Y2HHKCs1KtuwyjbAMWQBLveH8v86aj+ZqCrUxm6or5ORuQQ8bbH/e2vx1cS8TiBGbhlP4dIF9FRwXCfxCf/wGGZAK1qW06C8BdX+9SEFbNBMLnT3cg4dn60+cfxDsqYQlfg34BImq9yC2D4cOgDW1NBoI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Cj8vp3qc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79E77C4AF0B;
+	Sat,  6 Jul 2024 22:01:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720303294;
+	bh=b7FMk8yaivqnVyPJYtM/vlRfAHS64LY/MtAAWWYBIw8=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=Cj8vp3qcKaHQcnApTZSzvonT2Gl8hVyR6gdGsAinVKnzEw8c59E1aRf98Rm47mMhX
+	 m9hdeHelpVfAnJufCOYy32RwFEplKLsL/S1pL7X7j+pwqJw/vmibfnw3j+R88pV1Rh
+	 obt+Z5yvTFK1mXoPGCseZ9iltk05b6qxwNalWCKH41k9HpakerfD0o/CVJ/Bz0Tk3L
+	 FH1v8wEABKd8KnQS0iTOLX2RwaExSbDRTGBXiBCXa1Up/NFkot+HUKd1uSqhwe6T1U
+	 dBxBHKNWaOHVx0RWN38D5HBs+wnIrvpTIsnvmPSVWlj6KEkq6asf/GPaRSB3zKtcnT
+	 xze/VrGd/IupA==
+From: Bjorn Andersson <andersson@kernel.org>
+To: dmitry.torokhov@gmail.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	konrad.dybcio@linaro.org,
+	Jens Reidel <adrian@travitia.xyz>
+Cc: linux-arm-msm@vger.kernel.org,
+	linux-input@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH] ARM: dts: qcom: msm8960: correct memory base
-Date: Sat,  6 Jul 2024 15:00:30 -0700
-Message-ID: <20240706220041.241839-1-david@ixit.cz>
+Subject: Re: (subset) [PATCH 0/2] Add vibrator support for PM6150 PMIC
+Date: Sat,  6 Jul 2024 17:01:17 -0500
+Message-ID: <172030328811.28909.3827861968759501138.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20240606181027.98537-1-adrian@travitia.xyz>
+References: <20240606181027.98537-1-adrian@travitia.xyz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
-DeviceTree validation requires a unit address on the memory node, adjust
-the base to match [Ref] and use this as unit address.
 
-The bootloader will update the information with the actual values during
-boot.
+On Thu, 06 Jun 2024 20:10:25 +0200, Jens Reidel wrote:
+> This series adds vibrator support for PM6150. Was tested on SM7150
+> (xiaomi-davinci).
+> 
+> To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+> To: Rob Herring <robh@kernel.org>
+> To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> To: Conor Dooley <conor+dt@kernel.org>
+> To: Bjorn Andersson <andersson@kernel.org>
+> To: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Cc: linux-arm-msm@vger.kernel.org
+> Cc: linux-input@vger.kernel.org
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-kernel@vger.kernel.org
+> Signed-off-by: Jens Reidel <adrian@travitia.xyz>
+> 
+> [...]
 
-Ref: https://github.com/msm8916-mainline/lk2nd/blob/main/target/msm8960/rules.mk
+Applied, thanks!
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Signed-off-by: David Heidelberg <david@ixit.cz>
----
- arch/arm/boot/dts/qcom/qcom-msm8960.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+[2/2] arm64: dts: qcom: pm6150: Add vibrator
+      commit: e3e169cd28d0ba80d25ad683e076b299a39e8526
 
-diff --git ./arch/arm/boot/dts/qcom/qcom-msm8960.dtsi ./arch/arm/boot/dts/qcom/qcom-msm8960.dtsi
-index a9c6d2dbb460..ebc43c5c6e5f 100644
---- ./arch/arm/boot/dts/qcom/qcom-msm8960.dtsi
-+++ ./arch/arm/boot/dts/qcom/qcom-msm8960.dtsi
-@@ -47,9 +47,9 @@ L2: l2-cache {
- 		};
- 	};
- 
--	memory {
-+	memory@80000000 {
- 		device_type = "memory";
--		reg = <0x0 0x0>;
-+		reg = <0x80000000 0>;
- 	};
- 
- 	cpu-pmu {
+Best regards,
 -- 
-2.45.2
-
+Bjorn Andersson <andersson@kernel.org>
 
