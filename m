@@ -1,164 +1,98 @@
-Return-Path: <devicetree+bounces-83622-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83623-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BF889294EC
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 19:40:10 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6587492951D
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 21:34:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B8E0828236C
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 17:40:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 910081C20C0F
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 19:34:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 507F013C673;
-	Sat,  6 Jul 2024 17:40:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4D811BDDB;
+	Sat,  6 Jul 2024 19:34:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XLEGXMu9"
+	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="q/H1I/LB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from ixit.cz (ip-89-177-23-149.bb.vodafone.cz [89.177.23.149])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B61A04F20C
-	for <devicetree@vger.kernel.org>; Sat,  6 Jul 2024 17:40:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D268E57D;
+	Sat,  6 Jul 2024 19:34:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.177.23.149
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720287605; cv=none; b=c+lQDGlA/wuzrReJmzcSL9pezuQk3FUuLM02ZocOVXlm5gnHaDU8mqiM9KQOEfqO1xBbxQMPM79RubSfmkXJudXrLHOQxMwYw2TJU9YqdjaknqQ2iEKcAqMLv2M90wHU7n73Bw6wWRVKIdHJ398w+XUhcJUJUfZLA0zjjCVeVpc=
+	t=1720294468; cv=none; b=jlWYmvJ7nKjo5OgLViojeO1duzzVAsV0GyXYHdiAjIupKItzriO3Hmn+AVw8YVuzzDpDgEOXEc4ACGpPVmHgpbAWCqdngTzXgSYwqh3whfSLIqPHiZAwt1jJmCWe94/I0wPNxI0CbZt4HAwvlRPF4T1pD8+9oHjC+hhM7ZeR3Jg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720287605; c=relaxed/simple;
-	bh=K7/5S3Zqv2W8qdrNqOS6SWkrmCLz+5aP6vwqLcb5BLU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=upn7Wf1u4v7ctHsBNHIrAG6J95mUhxh0pYuEYPWmWa6RuFRjdLIUkWhqcejnuvgw6Q/mUsQFYSkjifo7nQrr7UenfgmNQOfAo8dgm4to6UjLPJHZIuVFqNB/935+Yvm1bzuUtNC1UxY77w7Vq8P2/pInrePdP0IPoODP9csqHSQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XLEGXMu9; arc=none smtp.client-ip=209.85.214.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-1fb3cf78fa6so14343245ad.1
-        for <devicetree@vger.kernel.org>; Sat, 06 Jul 2024 10:40:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1720287603; x=1720892403; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=+w1HhCtOPF6+jQjVe2f79xd5RcxOFhfFM5UmLnkLxcg=;
-        b=XLEGXMu9mAzJRha7s0vx6wQnX8lZhbRxYW2lXioss/ZRJOLUUiY0DDl1jiTBL62W/V
-         Ycjb+VxiaU5KISo7qWfzQ5LH2OwrN6HFIZZW65r5DJ7mh7I6ttQyr5bjy2I3UzLw8GC5
-         MR4jTt4KrRsof0NmHWQ5pGPvr/utEKgDaH57LTvjD6tArjE71efkDRe4WfrnTT3xq/SU
-         voWgmOCb19R08LZa14xyWMNhqveCZFT4hXGVjoYREB/DTmHlvk9okgXIDiqVbzywyFI6
-         vrNm6CeK2XRO/9PeAegILo4Ib4PwMJXqSkrbgzESNtz69QfoqhdEcTebRoQsHyZh1n+E
-         UVLg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720287603; x=1720892403;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+w1HhCtOPF6+jQjVe2f79xd5RcxOFhfFM5UmLnkLxcg=;
-        b=fEPiNN0F9gDwoe9dudTtSON609HkwfbLU5KsgarJ0tmqMP9s3A90AsiSb5tiAYeKde
-         wdlkBS/XPX4EiJ6KkF52MPB4FcN51af1LhuJqU8gp3uLScKKaP3pY1eAMRc9WfB71Nxs
-         B954MSvw/0fUSTJsbBObO40fFrsivXEvT1BquDvcq/YVPz4AkeJ3DYpdZOAsY339GLp/
-         rtMyq6IML6lrq+kWbNPDaG1Eq+DiPt4WtT1K9H1ZjTIHAekxxEch75L+gCWxHasw0trh
-         vGu10U7oyGUJGDk1cbuGTOJv7UGmk/X+CYSxIne3cw3/pchtigNphL3Gc6JkQ+H4uEjC
-         gi3Q==
-X-Forwarded-Encrypted: i=1; AJvYcCV6VJu1/htPPK69ZNq5xDSPWfZQoDpaVxK4aqAkHwbRtrtOh+MD3YYZk/xqEbwlKl2iZ5yL6szUUtIdq8+iIVtN+hITNSnbLN+A1w==
-X-Gm-Message-State: AOJu0YxGeH3cdOqfe4ok4eUjWVjM/K+DmAzWKDoqc+b0cGGlHR9LHpIj
-	PSwIoNpHcOSCqS+KIr31G4xwp48SjwPHK2bBIwTaoNVGQ3MqlzwaDZPxKTKp43YjrPvIFFGTwlk
-	=
-X-Google-Smtp-Source: AGHT+IFfAmOh1vpybFa6ASP3tIwymsHJN+q/v+qmk1RVhTTsF5OCIrWZZWApJcwuyin0gArdkk3Wrw==
-X-Received: by 2002:a17:902:d4cd:b0:1f6:e20f:86b4 with SMTP id d9443c01a7336-1fb33f36fc1mr68382145ad.61.1720287603063;
-        Sat, 06 Jul 2024 10:40:03 -0700 (PDT)
-Received: from thinkpad ([220.158.156.249])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1fb14faa241sm70616845ad.110.2024.07.06.10.39.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 06 Jul 2024 10:40:02 -0700 (PDT)
-Date: Sat, 6 Jul 2024 23:09:54 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Richard Zhu <hongxing.zhu@nxp.com>,
-	Lucas Stach <l.stach@pengutronix.de>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-pci@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, bpf@vger.kernel.org,
-	devicetree@vger.kernel.org, Jason Liu <jason.hui.liu@nxp.com>
-Subject: Re: [PATCH v6 02/10] PCI: imx6: Fix i.MX8MP PCIe EP's occasional
- failure to trigger MSI
-Message-ID: <20240706173954.GB3980@thinkpad>
-References: <20240617-pci2_upstream-v6-0-e0821238f997@nxp.com>
- <20240617-pci2_upstream-v6-2-e0821238f997@nxp.com>
- <20240629130525.GC5608@thinkpad>
- <ZoL2W1Blrhzf19oM@lizhi-Precision-Tower-5810>
+	s=arc-20240116; t=1720294468; c=relaxed/simple;
+	bh=5I6LVk7Txwaahax/bricu9HTmCY4s4vm6thseHjOwHo=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=rgt+3MdxU7PP2+58cSh6SlFXi53TN7sYV0Jo5ion9DJLYOJehMlV5lSGMEAD2WJVSjq89Y/87xEeS/RTpjiNbnPdp5lO25Zlzl6eQWkh9TxfGMA56gCG7byo7n3yoMvq4W4Pb1ktifU4ACMD4fSFZRghk49e8shVLPPYJb8v5Gg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=q/H1I/LB; arc=none smtp.client-ip=89.177.23.149
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ixit.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
+Received: from newone.attlocal.net (76-224-187-148.lightspeed.sntcca.sbcglobal.net [76.224.187.148])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by ixit.cz (Postfix) with ESMTPSA id 80103165261;
+	Sat,  6 Jul 2024 21:34:19 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+	t=1720294461;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=UfHLKki3pLgKZQ70IUT8yid0txh8OHetOx+0DIT6chM=;
+	b=q/H1I/LBDjzphcGjisA3CJybJW6RD41JafCrY48pM/6QL93BT62o6ZwtSY9VzRD/YNiPSC
+	eWP7mU6zSeoUCuCk+XnizWu+luR8OemJOc7m/uxW3g+ZxSK+q6jqNwEiU5k5l9sYqKEcjN
+	RN3ksbrC2OfVnFQyqTmW8e75sAkxM4I=
+From: David Heidelberg <david@ixit.cz>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: David Heidelberg <david@ixit.cz>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] ARM: dts: qcom: apq8960: correct memory base
+Date: Sat,  6 Jul 2024 12:34:07 -0700
+Message-ID: <20240706193415.218940-1-david@ixit.cz>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZoL2W1Blrhzf19oM@lizhi-Precision-Tower-5810>
 
-On Mon, Jul 01, 2024 at 02:32:59PM -0400, Frank Li wrote:
-> On Sat, Jun 29, 2024 at 06:35:25PM +0530, Manivannan Sadhasivam wrote:
-> > On Mon, Jun 17, 2024 at 04:16:38PM -0400, Frank Li wrote:
-> > > From: Richard Zhu <hongxing.zhu@nxp.com>
-> > > 
-> > > Correct occasional MSI triggering failures in i.MX8MP PCIe EP by apply 64KB
-> > > hardware alignment requirement.
-> > > 
-> > > MSI triggering fail if the outbound MSI memory region (ep->msi_mem) is not
-> > > aligned to 64KB.
-> > > 
-> > > In dw_pcie_ep_init():
-> > > 
-> > > ep->msi_mem = pci_epc_mem_alloc_addr(epc, &ep->msi_mem_phys,
-> > > 				     epc->mem->window.page_size);
-> > > 
-> > 
-> > So this is an alignment restriction w.r.t iATU. In that case, we should be
-> > passing 'pci_epc_features::align' instead?
-> 
-> pci_epc_features::align already set.
-> 
-> pci_epc_mem_alloc_addr(
-> 	...
-> 	align_size = ALIGN(size, mem->window.page_size);
-> 	order = pci_epc_mem_get_order(mem, align_size);
-> 	...
-> }
-> 
-> but pci_epc_mem_alloc_addr() align to page_size, instead of
-> pci_epc_features::align.
-> 
+Bootloader will provide the information anyway to the kernel.
 
-'window.page_size' is set to what is passed as 'page_size' argument to
-pci_epc_mem_init(). In this case, 'ep->page_size' is passed which corresponds to
-size of pages that can be allocated within the memory window.
+Ref: https://github.com/msm8916-mainline/lk2nd/blob/main/target/msm8960/rules.mk
 
-Default value of 'ep->page_size' is PAGE_SIZE which is most likely 4K. So if
-your hardware cannot allocate 4K pages within the memory window, then it
-doesn't support splitting this OB region into 4K pages.
+Signed-off-by: David Heidelberg <david@ixit.cz>
+---
+ arch/arm/boot/dts/qcom/qcom-msm8960.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-But this has nothing to do with alignment AFAIU since epc_features::align is
-used for IB memory. This 'page_size' argument was introduced for some TI SoC
-that doesn't handle PAGE_SIZE splitting of OB memory window. Reference:
-
-52c9285d4745 ("PCI: endpoint: Add support for configurable page size")
-
-Can you check if your SoC also suffers from the same limitation? If so, then you
-should modify the commit message to make it clear.
-
-- Mani
-
+diff --git ./arch/arm/boot/dts/qcom/qcom-msm8960.dtsi ./arch/arm/boot/dts/qcom/qcom-msm8960.dtsi
+index a9c6d2dbb460..ebc43c5c6e5f 100644
+--- ./arch/arm/boot/dts/qcom/qcom-msm8960.dtsi
++++ ./arch/arm/boot/dts/qcom/qcom-msm8960.dtsi
+@@ -47,9 +47,9 @@ L2: l2-cache {
+ 		};
+ 	};
+ 
+-	memory {
++	memory@80000000 {
+ 		device_type = "memory";
+-		reg = <0x0 0x0>;
++		reg = <0x80000000 0>;
+ 	};
+ 
+ 	cpu-pmu {
 -- 
-மணிவண்ணன் சதாசிவம்
+2.45.2
+
 
