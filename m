@@ -1,163 +1,164 @@
-Return-Path: <devicetree+bounces-83621-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83622-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B61B69294C9
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 18:49:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BF889294EC
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 19:40:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 48A70281BD1
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 16:49:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B8E0828236C
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 17:40:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 512F113A895;
-	Sat,  6 Jul 2024 16:49:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 507F013C673;
+	Sat,  6 Jul 2024 17:40:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OYInJxk/"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XLEGXMu9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
+Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3692C8E1;
-	Sat,  6 Jul 2024 16:49:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B61A04F20C
+	for <devicetree@vger.kernel.org>; Sat,  6 Jul 2024 17:40:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720284543; cv=none; b=Z11bytaTakbT8v5pT5zMdY3avbutRLGbNCyUAd/ic5UTB1IharomnfhAzUucn70A4NuOsIS2HBsIo0zuAmTR4C/I5KrsE72Ude1LP0iqAn9E3y/IVbgsMxttY/PulilEkPNpkljOxl7rtsV90SdogJyKEnvjtrniJ75/hLzPd2I=
+	t=1720287605; cv=none; b=c+lQDGlA/wuzrReJmzcSL9pezuQk3FUuLM02ZocOVXlm5gnHaDU8mqiM9KQOEfqO1xBbxQMPM79RubSfmkXJudXrLHOQxMwYw2TJU9YqdjaknqQ2iEKcAqMLv2M90wHU7n73Bw6wWRVKIdHJ398w+XUhcJUJUfZLA0zjjCVeVpc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720284543; c=relaxed/simple;
-	bh=lVLS1J+a6VwpogBP/TJsabzltLu0nFkAMMRxA/hKr6o=;
+	s=arc-20240116; t=1720287605; c=relaxed/simple;
+	bh=K7/5S3Zqv2W8qdrNqOS6SWkrmCLz+5aP6vwqLcb5BLU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=c8128RxIbf+KrPQTQglEXYDYqiThidLzf330gjUyHiRP4r/x/C+aT7H/KN4Hj6HVnb9cQbpPqWpEkrZf40TOHCzWUaHKjcN9WaLzOGl9Z0TVfT/wj3SiAwgUE70yWtc51HB8fj6/L+43cPDKIfADxdps6LY9j0v/SaYd2rCz4sU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OYInJxk/; arc=none smtp.client-ip=209.85.214.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-1fb70169c23so1573025ad.1;
-        Sat, 06 Jul 2024 09:49:01 -0700 (PDT)
+	 Content-Type:Content-Disposition:In-Reply-To; b=upn7Wf1u4v7ctHsBNHIrAG6J95mUhxh0pYuEYPWmWa6RuFRjdLIUkWhqcejnuvgw6Q/mUsQFYSkjifo7nQrr7UenfgmNQOfAo8dgm4to6UjLPJHZIuVFqNB/935+Yvm1bzuUtNC1UxY77w7Vq8P2/pInrePdP0IPoODP9csqHSQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XLEGXMu9; arc=none smtp.client-ip=209.85.214.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-1fb3cf78fa6so14343245ad.1
+        for <devicetree@vger.kernel.org>; Sat, 06 Jul 2024 10:40:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1720284541; x=1720889341; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=7pPLymTdWA31lQrXZwdfEII/TYIYPSXMJ6wqAirrqs4=;
-        b=OYInJxk/sGH2PwBEDOl/32wgiVeefpOJFok2f6EFSdTCqwn/Qn5/jYiamBfwewXiwV
-         b7Xn356e8jJIO8AjptvVKt6JGjxc9CC4M/+Knk3vk35YHeCTKsflo9IN98JauwQHHVFz
-         hOLZ9YxynigTgH6Cw39izIvsp4pTiFttvm3bP/yp5AGVbN5pXkyXDfQWs3fEjKD2iLOp
-         b4ZmmdkagyKBz0Hu0ZhP8e5l5ZdI10cLZhoEL6h61Kt0MGE//wgBrJTZCM3FfOrJT8gh
-         NhEsHC/Ra90s/1ssvu4tEIGV4MrwjLrs/nUWeyh+e1X/yJLaTSYZ2PXgdDGSeL5OZfxo
-         vIdA==
+        d=linaro.org; s=google; t=1720287603; x=1720892403; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=+w1HhCtOPF6+jQjVe2f79xd5RcxOFhfFM5UmLnkLxcg=;
+        b=XLEGXMu9mAzJRha7s0vx6wQnX8lZhbRxYW2lXioss/ZRJOLUUiY0DDl1jiTBL62W/V
+         Ycjb+VxiaU5KISo7qWfzQ5LH2OwrN6HFIZZW65r5DJ7mh7I6ttQyr5bjy2I3UzLw8GC5
+         MR4jTt4KrRsof0NmHWQ5pGPvr/utEKgDaH57LTvjD6tArjE71efkDRe4WfrnTT3xq/SU
+         voWgmOCb19R08LZa14xyWMNhqveCZFT4hXGVjoYREB/DTmHlvk9okgXIDiqVbzywyFI6
+         vrNm6CeK2XRO/9PeAegILo4Ib4PwMJXqSkrbgzESNtz69QfoqhdEcTebRoQsHyZh1n+E
+         UVLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720284541; x=1720889341;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=7pPLymTdWA31lQrXZwdfEII/TYIYPSXMJ6wqAirrqs4=;
-        b=k5lxXXe4Kh4MkiPOoOu5UOx44dQrHPREdaqWBiAEYlDIslWRBMcy7FCJ2aG7RqQni0
-         funPvkelpPg4RTCOhLT80BdD/KkbKeG+tQt/x5hYfO3jB14nvYwQpuTUx99oc8Dls6is
-         bZyNr76d2VWCFiI00u/1/a629b/Z41o4tdy7LG125yCEgsE0Lz3CU1jIe1GThxGL/Lc8
-         QbfQMM01LPlQQEQOzydjihXd3U4O7VEDBHnSDwHK6fPBsFX+VvFbGsE1kqskTaRYUkkJ
-         Xc2fOJNPcbfFiGdYfZG2BB23yTdgrlcrsa6n7tcVFwoiiF+fe89k0NdqrgPOf8cSV+Ku
-         t/kA==
-X-Forwarded-Encrypted: i=1; AJvYcCXS9Te4spjKeGliRe73ZVfS/4915OMzvCQPBAeBZJ9xaCUVpsGcvBoivZyNhwtLwKOwBd9OwpB0desj4NBkOYl5/3gBrSqdENsy69rTFhC2D3ESeu3HLUDOPhm03UXAndpAzil9jIDdTwzlRpNpeZ2DyGk1Suhc+YClKXEJwDGU/5hsSNUjde2QOyU1TZ+2k9vpwZZuwQGl7QcU17k+TTZh
-X-Gm-Message-State: AOJu0Yx8gklIB+Rm02tXGO+Csj1UdldbZbmzSqcaaC48FlHTXrU5M8iT
-	P/CB+Co1mejlWSPhHf2PE4rDQMx/IG6rRcPrGDoyy4S4FDpwb/oJ
-X-Google-Smtp-Source: AGHT+IENJeiU7Mi8p64xH7HmJ8ROz4UbZ9E6gDDBcfa1jvirP9W3uzmIUxJcyVS/Lt1WZqvP42h/qQ==
-X-Received: by 2002:a17:902:f541:b0:1fb:29d1:501b with SMTP id d9443c01a7336-1fb33dfc2f8mr53062975ad.5.1720284540933;
-        Sat, 06 Jul 2024 09:49:00 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1fb3419e297sm50786015ad.70.2024.07.06.09.48.59
+        d=1e100.net; s=20230601; t=1720287603; x=1720892403;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=+w1HhCtOPF6+jQjVe2f79xd5RcxOFhfFM5UmLnkLxcg=;
+        b=fEPiNN0F9gDwoe9dudTtSON609HkwfbLU5KsgarJ0tmqMP9s3A90AsiSb5tiAYeKde
+         wdlkBS/XPX4EiJ6KkF52MPB4FcN51af1LhuJqU8gp3uLScKKaP3pY1eAMRc9WfB71Nxs
+         B954MSvw/0fUSTJsbBObO40fFrsivXEvT1BquDvcq/YVPz4AkeJ3DYpdZOAsY339GLp/
+         rtMyq6IML6lrq+kWbNPDaG1Eq+DiPt4WtT1K9H1ZjTIHAekxxEch75L+gCWxHasw0trh
+         vGu10U7oyGUJGDk1cbuGTOJv7UGmk/X+CYSxIne3cw3/pchtigNphL3Gc6JkQ+H4uEjC
+         gi3Q==
+X-Forwarded-Encrypted: i=1; AJvYcCV6VJu1/htPPK69ZNq5xDSPWfZQoDpaVxK4aqAkHwbRtrtOh+MD3YYZk/xqEbwlKl2iZ5yL6szUUtIdq8+iIVtN+hITNSnbLN+A1w==
+X-Gm-Message-State: AOJu0YxGeH3cdOqfe4ok4eUjWVjM/K+DmAzWKDoqc+b0cGGlHR9LHpIj
+	PSwIoNpHcOSCqS+KIr31G4xwp48SjwPHK2bBIwTaoNVGQ3MqlzwaDZPxKTKp43YjrPvIFFGTwlk
+	=
+X-Google-Smtp-Source: AGHT+IFfAmOh1vpybFa6ASP3tIwymsHJN+q/v+qmk1RVhTTsF5OCIrWZZWApJcwuyin0gArdkk3Wrw==
+X-Received: by 2002:a17:902:d4cd:b0:1f6:e20f:86b4 with SMTP id d9443c01a7336-1fb33f36fc1mr68382145ad.61.1720287603063;
+        Sat, 06 Jul 2024 10:40:03 -0700 (PDT)
+Received: from thinkpad ([220.158.156.249])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1fb14faa241sm70616845ad.110.2024.07.06.10.39.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 06 Jul 2024 09:48:59 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Sat, 6 Jul 2024 09:48:58 -0700
-From: Guenter Roeck <linux@roeck-us.net>
-To: Inochi Amaoto <inochiama@outlook.com>
-Cc: Jean Delvare <jdelvare@suse.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org, linux-riscv@lists.infradead.org,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v6 1/2] dt-bindings: hwmon: Add Sophgo SG2042 external
- hardware monitor support
-Message-ID: <5a2e23f4-d54a-45ae-a09d-e557b110e017@roeck-us.net>
-References: <IA1PR20MB4953967EA6AF3A6EFAE6AB10BBDD2@IA1PR20MB4953.namprd20.prod.outlook.com>
- <IA1PR20MB4953F58B631D836F3863115ABBDD2@IA1PR20MB4953.namprd20.prod.outlook.com>
+        Sat, 06 Jul 2024 10:40:02 -0700 (PDT)
+Date: Sat, 6 Jul 2024 23:09:54 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Richard Zhu <hongxing.zhu@nxp.com>,
+	Lucas Stach <l.stach@pengutronix.de>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-pci@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, bpf@vger.kernel.org,
+	devicetree@vger.kernel.org, Jason Liu <jason.hui.liu@nxp.com>
+Subject: Re: [PATCH v6 02/10] PCI: imx6: Fix i.MX8MP PCIe EP's occasional
+ failure to trigger MSI
+Message-ID: <20240706173954.GB3980@thinkpad>
+References: <20240617-pci2_upstream-v6-0-e0821238f997@nxp.com>
+ <20240617-pci2_upstream-v6-2-e0821238f997@nxp.com>
+ <20240629130525.GC5608@thinkpad>
+ <ZoL2W1Blrhzf19oM@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <IA1PR20MB4953F58B631D836F3863115ABBDD2@IA1PR20MB4953.namprd20.prod.outlook.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ZoL2W1Blrhzf19oM@lizhi-Precision-Tower-5810>
 
-On Wed, Jul 03, 2024 at 10:30:43AM +0800, Inochi Amaoto wrote:
-> Due to the design, Sophgo SG2042 use an external MCU to provide
-> hardware information, thermal information and reset control.
+On Mon, Jul 01, 2024 at 02:32:59PM -0400, Frank Li wrote:
+> On Sat, Jun 29, 2024 at 06:35:25PM +0530, Manivannan Sadhasivam wrote:
+> > On Mon, Jun 17, 2024 at 04:16:38PM -0400, Frank Li wrote:
+> > > From: Richard Zhu <hongxing.zhu@nxp.com>
+> > > 
+> > > Correct occasional MSI triggering failures in i.MX8MP PCIe EP by apply 64KB
+> > > hardware alignment requirement.
+> > > 
+> > > MSI triggering fail if the outbound MSI memory region (ep->msi_mem) is not
+> > > aligned to 64KB.
+> > > 
+> > > In dw_pcie_ep_init():
+> > > 
+> > > ep->msi_mem = pci_epc_mem_alloc_addr(epc, &ep->msi_mem_phys,
+> > > 				     epc->mem->window.page_size);
+> > > 
+> > 
+> > So this is an alignment restriction w.r.t iATU. In that case, we should be
+> > passing 'pci_epc_features::align' instead?
 > 
-> Add bindings for this monitor device.
+> pci_epc_features::align already set.
 > 
-> Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
->  .../hwmon/sophgo,sg2042-hwmon-mcu.yaml        | 43 +++++++++++++++++++
->  1 file changed, 43 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/sophgo,sg2042-hwmon-mcu.yaml
+> pci_epc_mem_alloc_addr(
+> 	...
+> 	align_size = ALIGN(size, mem->window.page_size);
+> 	order = pci_epc_mem_get_order(mem, align_size);
+> 	...
+> }
 > 
-> --
-> 2.45.2
+> but pci_epc_mem_alloc_addr() align to page_size, instead of
+> pci_epc_features::align.
 > 
-> diff --git a/Documentation/devicetree/bindings/hwmon/sophgo,sg2042-hwmon-mcu.yaml b/Documentation/devicetree/bindings/hwmon/sophgo,sg2042-hwmon-mcu.yaml
-> new file mode 100644
-> index 000000000000..f0667ac41d75
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/sophgo,sg2042-hwmon-mcu.yaml
-> @@ -0,0 +1,43 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/hwmon/sophgo,sg2042-hwmon-mcu.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Sophgo SG2042 onboard MCU support
-> +
-> +maintainers:
-> +  - Inochi Amaoto <inochiama@outlook.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: sophgo,sg2042-hwmon-mcu
 
-According to the other patch, this actually covers four
-distinct models/devices.
+'window.page_size' is set to what is passed as 'page_size' argument to
+pci_epc_mem_init(). In this case, 'ep->page_size' is passed which corresponds to
+size of pages that can be allocated within the memory window.
 
-static const struct sg2042_mcu_board_data sg2042_boards_data[] = {
-> +	{
-> +		.id = 0x80,
-> +		.name = "SG2042 evb x8",
-> +	},
-> +	{
-> +		.id = 0x81,
-> +		.name = "SG2042R evb",
-> +	},
-> +	{
-> +		.id = 0x83,
-> +		.name = "SG2042 evb x4",
-> +	},
-> +	{
-> +		.id = 0x90,
-> +		.name = "Milk-V Pioneer",
-> +	},
-> +};
-> +
+Default value of 'ep->page_size' is PAGE_SIZE which is most likely 4K. So if
+your hardware cannot allocate 4K pages within the memory window, then it
+doesn't support splitting this OB region into 4K pages.
 
-Is it really appropriate to use a single compatible property for all of those ?
+But this has nothing to do with alignment AFAIU since epc_features::align is
+used for IB memory. This 'page_size' argument was introduced for some TI SoC
+that doesn't handle PAGE_SIZE splitting of OB memory window. Reference:
 
-Guenter
+52c9285d4745 ("PCI: endpoint: Add support for configurable page size")
+
+Can you check if your SoC also suffers from the same limitation? If so, then you
+should modify the commit message to make it clear.
+
+- Mani
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
