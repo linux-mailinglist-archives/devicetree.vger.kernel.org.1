@@ -1,186 +1,81 @@
-Return-Path: <devicetree+bounces-83603-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83604-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE58892938C
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 14:28:06 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66C5F92938F
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 14:29:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A5F421F20EC7
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 12:28:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E8E62B21A93
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 12:29:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77DBF7D3FB;
-	Sat,  6 Jul 2024 12:28:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C56E82D6D;
+	Sat,  6 Jul 2024 12:29:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="so7RMjU3"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="kMtAaZ3r"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D2BA8249F;
-	Sat,  6 Jul 2024 12:28:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD3C37D3FB;
+	Sat,  6 Jul 2024 12:29:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720268881; cv=none; b=Ak9hjGTJpr0c2RBTTuZZiUaDKMSXYhry6C6MLpaCdU4GqE2ueyHorrYyCnFnZmpY5Gf1h29VRRdzCKpOr67whczZHg3EJM/28djh1lkCkSqzYgzh0rJUADK08UAB9fG0udhkkbByHChemE8D8bhzDbpxLFaGoaUHfnk4erxkYPM=
+	t=1720268974; cv=none; b=UBGzQUPctD6fobp27DJ+QLw+DDl3UadjIk5ap8HWTOgMYvfO01O8f3u+DJDtTCImYJ4kRPW3d3Wy4xhdi6lbuGamjgjRElAGlKbkyXb0WdZC2XeDxXQ3cJn/EdVRzjR3Ccs0heIDKS2ncVPF7z5lS2+l9UapzDb60FAhuWWeexc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720268881; c=relaxed/simple;
-	bh=hsYaAdB5PnzdQQq7GR2Msbjo7dWt4Vmkj2ad3a4XiRk=;
+	s=arc-20240116; t=1720268974; c=relaxed/simple;
+	bh=a4hr+lF5lsa4T4pmwO8qJMekpIUAmRcbcuxqF7sAq9A=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Oq0eU5He/PlSK/YWOGvoOcZtqi+W40wVvu7BkHKR3FrwFBqhMCTojIUp/1e/9ugKinobMBwMwnmRXFZ991YjBfxm6RwoBey9rXuMrj6dOeJWvKWl6zHEwd8LpdyDpcMoWGKPAe2PkX9W/aCPs0Huw1xgjZ7w70QclpuxUoFihbk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=so7RMjU3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2598C2BD10;
-	Sat,  6 Jul 2024 12:27:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720268880;
-	bh=hsYaAdB5PnzdQQq7GR2Msbjo7dWt4Vmkj2ad3a4XiRk=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=LUSK6kyXvcjqRRvQuHQmxor0cUiAFmeN+SD0BpqnNOVtY41q1zsgxeo4xyy8JvWil6dLQW3j4tPBMsyJ2sVB6FEyraBmxuVH6we+LEemyAtMvXDUXHqxONy5v+8cUN3iIHyToeVrfdtBA7aDevqNWC/6iJ1mlwx9bmCS3VUHpT8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=kMtAaZ3r; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44313C2BD10;
+	Sat,  6 Jul 2024 12:29:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1720268974;
+	bh=a4hr+lF5lsa4T4pmwO8qJMekpIUAmRcbcuxqF7sAq9A=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=so7RMjU3NsjXWp5FEx5op21IqqozTWuj8GJb0tp/8EVgD5xr0lWBNdKDZsFwr+soi
-	 x1aQ0mxuv2cxkA5/E06e0v/jtQkHTBLo/K7RrGLNcOzJBRN4jG7dvHku5JJ4MXYfjf
-	 pW1YBQBHGW9AWmBIdO3ffJ+MiF40O5kDTszdNKIVG0dyIWUu0oBmp7Hl6YG+k23kLZ
-	 3Y4aU6X3cmrwp3AMIWFxbHOU+BqBaLsytQ3j0nJBqznlPAYx3dL4pcaakC4/ViDZvt
-	 F+Na3T6qdMpLJGPj0kTJGx/qdJjumMdXKHSk8JiZ32Mt6N/BzVMuIpR/xetB6FhBXS
-	 HWYX+FJwnfygw==
-Date: Sat, 6 Jul 2024 13:27:54 +0100
-From: Simon Horman <horms@kernel.org>
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: netdev@vger.kernel.org, nbd@nbd.name, lorenzo.bianconi83@gmail.com,
-	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, conor@kernel.org,
-	linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, catalin.marinas@arm.com,
-	will@kernel.org, upstream@airoha.com,
-	angelogioacchino.delregno@collabora.com,
-	benjamin.larsson@genexis.eu, rkannoth@marvell.com,
-	sgoutham@marvell.com, andrew@lunn.ch, arnd@arndb.de
-Subject: Re: [PATCH v5 net-next 2/2] net: airoha: Introduce ethernet support
- for EN7581 SoC
-Message-ID: <20240706122754.GD1481495@kernel.org>
-References: <cover.1720079772.git.lorenzo@kernel.org>
- <18e837f0f9377b68302d42ec9174473046a4a30a.1720079772.git.lorenzo@kernel.org>
- <20240705190644.GB1480790@kernel.org>
- <Zoj_1JWfd_3Yu71t@lore-desk>
+	b=kMtAaZ3rW/sxE4lcqDb92weUGcjRRAQEKY8otuHoXIER2jg/W7KDYffFwIcUKoDIa
+	 oyErOKmSTuco6IiVOVg+msVbbSBIe21TTjDS39Ep5P5g5qQ5Bg95kyVBC+3K+8GanD
+	 Sr89VWLp1l0l8ewB6Z1wLRppVY8MVdut7nA7t/O0=
+Date: Sat, 6 Jul 2024 08:29:28 -0400
+From: Konstantin Ryabitsev <konstantin@linuxfoundation.org>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Guillaume Stols <gstols@baylibre.com>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-fbdev@vger.kernel.org, devicetree@vger.kernel.org, 
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>, jstephan@baylibre.com, dlechner@baylibre.com, 
+	Conor Dooley <conor.dooley@microchip.com>, tools@kernel.org
+Subject: Re: [PATCH v3 0/8] iio: adc: ad7606: Improvements
+Message-ID: <20240706-funny-flamingo-of-temperance-9d1e85@lemur>
+References: <20240702-cleanup-ad7606-v3-0-57fd02a4e2aa@baylibre.com>
+ <20240706131549.1f94449c@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <Zoj_1JWfd_3Yu71t@lore-desk>
+In-Reply-To: <20240706131549.1f94449c@jic23-huawei>
 
-On Sat, Jul 06, 2024 at 10:27:00AM +0200, Lorenzo Bianconi wrote:
-> > On Thu, Jul 04, 2024 at 10:08:11AM +0200, Lorenzo Bianconi wrote:
-> > > Add airoha_eth driver in order to introduce ethernet support for
-> > > Airoha EN7581 SoC available on EN7581 development board (en7581-evb).
-> > > en7581-evb networking architecture is composed by airoha_eth as mac
-> > > controller (cpu port) and a mt7530 dsa based switch.
-> > > EN7581 mac controller is mainly composed by Frame Engine (FE) and
-> > > QoS-DMA (QDMA) modules. FE is used for traffic offloading (just basic
-> > > functionalities are supported now) while QDMA is used for DMA operation
-> > > and QOS functionalities between mac layer and the dsa switch (hw QoS is
-> > > not available yet and it will be added in the future).
-> > > Currently only hw lan features are available, hw wan will be added with
-> > > subsequent patches.
-> > > 
-> > > Tested-by: Benjamin Larsson <benjamin.larsson@genexis.eu>
-> > > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> > 
-> > ...
-> > 
-> > > +static const char * const airoha_ethtool_stats_name[] = {
-> > > +	"tx_eth_pkt_cnt",
-> > > +	"tx_eth_byte_cnt",
-> > > +	"tx_ok_pkt_cnt",
-> > > +	"tx_ok_byte_cnt",
-> > > +	"tx_eth_drop_cnt",
-> > > +	"tx_eth_bc_cnt",
-> > > +	"tx_eth_mc_cnt",
-> > > +	"tx_eth_lt64_cnt",
-> > > +	"tx_eth_eq64_cnt",
-> > > +	"tx_eth_65_127_cnt",
-> > > +	"tx_eth_128_255_cnt",
-> > > +	"tx_eth_256_511_cnt",
-> > > +	"tx_eth_512_1023_cnt",
-> > > +	"tx_eth_1024_1518_cnt",
-> > > +	"tx_eth_gt1518_cnt",
-> > > +	"rx_eth_pkt_cnt",
-> > > +	"rx_eth_byte_cnt",
-> > > +	"rx_ok_pkt_cnt",
-> > > +	"rx_ok_byte_cnt",
-> > > +	"rx_eth_drop_cnt",
-> > > +	"rx_eth_bc_cnt",
-> > > +	"rx_eth_mc_cnt",
-> > > +	"rx_eth_crc_drop_cnt",
-> > > +	"rx_eth_frag_cnt",
-> > > +	"rx_eth_jabber_cnt",
-> > > +	"rx_eth_lt64_cnt",
-> > > +	"rx_eth_eq64_cnt",
-> > > +	"rx_eth_65_127_cnt",
-> > > +	"rx_eth_128_255_cnt",
-> > > +	"rx_eth_256_511_cnt",
-> > > +	"rx_eth_512_1023_cnt",
-> > > +	"rx_eth_1024_1518_cnt",
-> > > +	"rx_eth_gt1518_cnt",
-> > > +};
-> > 
-> > Hi Lorenzo,
-> > 
-> > Sorry for not noticing this earlier.
+On Sat, Jul 06, 2024 at 01:15:49PM GMT, Jonathan Cameron wrote:
+> This series is blowing up with b4, in that it is finding tags that were
+> not given and I can't work out why.
 > 
-> Hi Simon,
-> 
-> no worries :)
-> 
-> > It seems to me that some of the stats above could
-> > use standard stats, which is preferred.
-> 
-> Please correct me if I am wrong but it seems quite a common approach to have
-> same stats in both .ndo_get_stats64() and .get_ethtool_stats():
-> - https://github.com/torvalds/linux/blob/master/drivers/net/ethernet/mediatek/mtk_eth_soc.c#L212
-> - https://github.com/torvalds/linux/blob/master/drivers/net/ethernet/marvell/mvneta.c#L435
-> - https://github.com/torvalds/linux/blob/master/drivers/net/ethernet/intel/i40e/i40e_ethtool.c#L243
-> - https://github.com/torvalds/linux/blob/master/net/mac80211/ethtool.c#L52
-> - ...
-> 
-> Do you mean I should just report common stats (e.g. tx_packets or tx_bytes) in
-> .ndo_get_stats64()? Or it is fine to just add .ndo_get_stats64() callback (not
-> supported at the moment)?
+> Tried various options but even a simple b4 am -l 20240702-cleanup-ad7606-v3-0-57fd02a4e2aa@baylibre.com
+> Is merrily finding tags that I can find no record of.
 
-The first option: It is my understanding that it preferred to only
-report common stats via ndo_get_stats64.
+I can't replicate this, so something else is going on. Can you try:
 
-  "Please limit stats you report in ethtool -S to just the stats for which
-   proper interfaces don't exist. Don't duplicate what's already reported
-   via rtase_get_stats64(), also take a look at what can be reported via
-   various *_stats members of struct ethtool_ops."
+    b4 --no-cache am -l 20240702-cleanup-ad7606-v3-0-57fd02a4e2aa@baylibre.com
 
-   - Re: [PATCH net-next v18 10/13] rtase: Implement ethtool function
-     by Jakub Kicinski
-     https://lore.kernel.org/netdev/20240509204047.149e226e@kernel.org/
+In either case, I want to see the output of:
 
-> > Basically, my understanding is that one should:
-> > 1. Implement .ndo_get_stats64
-> >    (that seems relevant here)
-> > 2. As appropriate implement ethtool_stats non-extended stats operations
-> >    (perhaps not relevant here)
-> 
-> Can you please provide me a pointer for it?
+    b4 -d am -l 20240702-cleanup-ad7606-v3-0-57fd02a4e2aa@baylibre.com 2>/tmp/b4-debug
 
-Sorry, that was not at all clear.
-I meant, as per the quote above, *_stats members of struct ethtool_ops,
-other than those that implement extended ops.
-e.g. get_rmon_stats.
-
-> 
-> Regards,
-> Lorenzo
-> 
-> > 3. Then implement get_ethtool_stats for what is left over
-> > 
-> > ...
-
-
+-K
 
