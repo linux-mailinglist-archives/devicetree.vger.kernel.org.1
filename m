@@ -1,662 +1,414 @@
-Return-Path: <devicetree+bounces-83576-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83577-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1015B9290E7
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 06:56:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4523E929103
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 07:06:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 338AC1C213C9
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 04:56:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B15BF1F22034
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 05:06:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E05B643AA8;
-	Sat,  6 Jul 2024 04:55:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Dulk1Y1r"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE2F5D2EE;
+	Sat,  6 Jul 2024 05:06:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD4BF42A9A;
-	Sat,  6 Jul 2024 04:55:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C84F3A3D;
+	Sat,  6 Jul 2024 05:06:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720241705; cv=none; b=Z1u58oD7mqdGR/rVtg9IS/qvhPTZXSsaLKy23J2swzGYRUpp7Uv1XM2fFf0g3KX8VQXTb5ZB6nXxFU+PnSzWjWhAJ8OMQp4cviu02FDCBjwCbMfC4Fr9JvkueQ3oZj1Tsud9UTcy6QKxI1Mtrd3vo2mPif+Asu9yZTvzAsj+BJc=
+	t=1720242370; cv=none; b=KrkUbgnzsKIzGZme2vDOuDM45zo4LzD3Ebs4WqKk4u6BsYN4swRM9OUdoCMOPNmfTdBGrjRQLLXCoGCfyVJA5orogxZnlhP5uGU33EqlGbJaFiAmcQ+55mBVHuZxtlH6eLCq8mVaopytF9LZe6Jf/dJul2yQEdheasAFNvXpaWQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720241705; c=relaxed/simple;
-	bh=st2Ms1bN8sE6Z5ywlsCGwxuICLUADsDh8X61EAH47dA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=sUsZKuX8r7/dG4CFDV8rVRpKHl9s7vJDGWTun3CzpqFXXvhcit17pSThsr/z7imBAsrGceG/xt/gtSEFP/YU6bllwry0orduNSs0RzgtAd82XN5bjdHXtlNT7YyHLX+J/a/fWEyzruLq3j1DCQh8P1aU23Y4aYLNyE4u3V6axPU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Dulk1Y1r; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32C31C4AF1A;
-	Sat,  6 Jul 2024 04:55:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720241705;
-	bh=st2Ms1bN8sE6Z5ywlsCGwxuICLUADsDh8X61EAH47dA=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=Dulk1Y1rM8gDLSN7lBzhfMybwzWFpC6mIWLV48Qm2XH6eaClJo4y7XXXdp2SEIwQE
-	 DOx4BE+4Cw9Jwrs7EMth8PlbqDOZXhTtvGWl6TAk7h5yjY3fqp/I3ClgL1M6ladCxd
-	 +rRDZ/Y5fFLZWnHz5+h0bXTXDa46UBsJQjMnMahza+BMvbd+FRtv2JjNLatr+QeqrR
-	 g0zIJdCMGyB38bRAXQXWoil1cAcJ0SdnNyNX4+kWL9OZ0BtIyl/L2S8Ai2oz+RXmYu
-	 d+9Net3mDrKUDxUgXIf4KtX1dW6SKPapoLIO6wROffxZRvrKGjYyYMhs7NOeJ2SSud
-	 TT0yvpySvaCyg==
-From: Stephen Boyd <sboyd@kernel.org>
-To: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>
-Cc: linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	patches@lists.linux.dev,
-	kunit-dev@googlegroups.com,
-	linux-kselftest@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Brendan Higgins <brendan.higgins@linux.dev>,
-	David Gow <davidgow@google.com>,
-	Rae Moar <rmoar@google.com>,
+	s=arc-20240116; t=1720242370; c=relaxed/simple;
+	bh=sCEQxmLktGe6WAt0S22K3yOORKJME0lUrQor4e9Pq30=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=i3b/R2hV/NcbOhbde/Y7LyAf6U+3ARP42UPUMjO0gvhjzZo9doEj2VALyAyv5Cpo50XkkhLSLo/MWmMWhQjRu+gt0rB/SDkT44FmrIJJko1MDb27eF27l0gZMEqOU9ECIg513AS/KGRXnKCVvkvFpmHYOWpqzkDZ9uLG6RnitzM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Date: Sat, 6 Jul 2024 05:05:56 +0000
+From: Yixun Lan <dlan@gentoo.org>
+To: Jisheng Zhang <jszhang@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Conor Dooley <conor@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Anup Patel <anup@brainfault.org>,
 	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J . Wysocki" <rafael@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Daniel Latypov <dlatypov@google.com>,
-	Christian Marangi <ansuelsmth@gmail.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Ripard <maxime@cerno.tech>
-Subject: [PATCH v6 8/8] clk: Add KUnit tests for clks registered with struct clk_parent_data
-Date: Fri,  5 Jul 2024 21:54:53 -0700
-Message-ID: <20240706045454.215701-9-sboyd@kernel.org>
-X-Mailer: git-send-email 2.45.2.803.g4e1b14247a-goog
-In-Reply-To: <20240706045454.215701-1-sboyd@kernel.org>
-References: <20240706045454.215701-1-sboyd@kernel.org>
+	Jiri Slaby <jirislaby@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Yangyu Chen <cyy@cyyself.name>,
+	Inochi Amaoto <inochiama@outlook.com>, linux-serial@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	Meng Zhang <zhangmeng.kevin@spacemit.com>
+Subject: Re: [PATCH v3 08/11] riscv: dts: add initial SpacemiT K1 SoC device
+ tree
+Message-ID: <20240706050556.GA3590714@ofsar>
+References: <20240703-k1-01-basic-dt-v3-0-12f73b47461e@gentoo.org>
+ <20240703-k1-01-basic-dt-v3-8-12f73b47461e@gentoo.org>
+ <Zoanxksn0nio4MPg@xhacker>
+ <20240705063839.GA3042186@ofsar>
+ <ZojEEAdUwxPJwqIS@xhacker>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZojEEAdUwxPJwqIS@xhacker>
 
-Test that clks registered with 'struct clk_parent_data' work as
-intended and can find their parents.
 
-Cc: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Brendan Higgins <brendan.higgins@linux.dev>
-Reviewed-by: David Gow <davidgow@google.com>
-Cc: Rae Moar <rmoar@google.com>
-Signed-off-by: Stephen Boyd <sboyd@kernel.org>
----
- drivers/clk/Kconfig                         |   2 +
- drivers/clk/Makefile                        |   3 +-
- drivers/clk/clk_parent_data_test.h          |  10 +
- drivers/clk/clk_test.c                      | 453 +++++++++++++++++++-
- drivers/clk/kunit_clk_parent_data_test.dtso |  28 ++
- 5 files changed, 494 insertions(+), 2 deletions(-)
- create mode 100644 drivers/clk/clk_parent_data_test.h
- create mode 100644 drivers/clk/kunit_clk_parent_data_test.dtso
+On 12:12 Sat 06 Jul     , Jisheng Zhang wrote:
+> On Fri, Jul 05, 2024 at 06:38:39AM +0000, Yixun Lan wrote:
+> > 
+> > On 21:46 Thu 04 Jul     , Jisheng Zhang wrote:
+> > > On Wed, Jul 03, 2024 at 02:55:11PM +0000, Yixun Lan wrote:
+> > > > From: Yangyu Chen <cyy@cyyself.name>
+> > > > 
+> > > > Banana Pi BPI-F3 motherboard is powered by SpacemiT K1[1].
+> > > > 
+> > > > Key features:
+> > > > - 4 cores per cluster, 2 clusters on chip
+> > > > - UART IP is Intel XScale UART
+> > > > 
+> > > > Some key considerations:
+> > > > - ISA string is inferred from vendor documentation[2]
+> > > > - Cluster topology is inferred from datasheet[1] and L2 in vendor dts[3]
+> > > > - No coherent DMA on this board
+> > > >     Inferred by taking vendor ethernet and MMC drivers to the mainline
+> > > >     kernel. Without dma-noncoherent in soc node, the driver fails.
+> > > > - No cache nodes now
+> > > >     The parameters from vendor dts are likely to be wrong. It has 512
+> > > >     sets for a 32KiB L1 Cache. In this case, each set is 64B in size.
+> > > >     When the size of the cache line is 64B, it is a directly mapped
+> > > >     cache rather than a set-associative cache, the latter is commonly
+> > > >     used. Thus, I didn't use the parameters from vendor dts.
+> > > > 
+> > > > Currently only support booting into console with only uart, other
+> > > > features will be added soon later.
+> > > > 
+> > > > Link: https://docs.banana-pi.org/en/BPI-F3/SpacemiT_K1_datasheet [1]
+> > > > Link: https://developer.spacemit.com/#/documentation?token=BWbGwbx7liGW21kq9lucSA6Vnpb [2]
+> > > > Link: https://gitee.com/bianbu-linux/linux-6.1/blob/bl-v1.0.y/arch/riscv/boot/dts/spacemit/k1-x.dtsi [3]
+> > > > Signed-off-by: Yangyu Chen <cyy@cyyself.name>
+> > > > Signed-off-by: Yixun Lan <dlan@gentoo.org>
+> > > > ---
+> > > >  arch/riscv/boot/dts/spacemit/k1.dtsi | 376 +++++++++++++++++++++++++++++++++++
+> > > >  1 file changed, 376 insertions(+)
+> > > > 
+> > > > diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dts/spacemit/k1.dtsi
+> > > > new file mode 100644
+> > > > index 0000000000000..a076e35855a2e
+> > > > --- /dev/null
+> > > > +++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
+> > > > @@ -0,0 +1,376 @@
+> > > > +// SPDX-License-Identifier: GPL-2.0 OR MIT
+> > > > +/*
+> > > > + * Copyright (C) 2024 Yangyu Chen <cyy@cyyself.name>
+> > > > + */
+> > > > +
+> > > > +/dts-v1/;
+> > > > +/ {
+> > > > +	#address-cells = <2>;
+> > > > +	#size-cells = <2>;
+> > > > +	model = "SpacemiT K1";
+> > > > +	compatible = "spacemit,k1";
+> > > > +
+> > > > +	aliases {
+> > > > +		serial0 = &uart0;
+> > > > +		serial1 = &uart2;
+> > > > +		serial2 = &uart3;
+> > > > +		serial3 = &uart4;
+> > > > +		serial4 = &uart5;
+> > > > +		serial5 = &uart6;
+> > > > +		serial6 = &uart7;
+> > > > +		serial7 = &uart8;
+> > > > +		serial8 = &uart9;
+> > > > +	};
+> > > > +
+> > > > +	cpus {
+> > > > +		#address-cells = <1>;
+> > > > +		#size-cells = <0>;
+> > > > +		timebase-frequency = <24000000>;
+> > > > +
+> > > > +		cpu-map {
+> > > > +			cluster0 {
+> > > > +				core0 {
+> > > > +					cpu = <&cpu_0>;
+> > > > +				};
+> > > > +				core1 {
+> > > > +					cpu = <&cpu_1>;
+> > > > +				};
+> > > > +				core2 {
+> > > > +					cpu = <&cpu_2>;
+> > > > +				};
+> > > > +				core3 {
+> > > > +					cpu = <&cpu_3>;
+> > > > +				};
+> > > > +			};
+> > > > +
+> > > > +			cluster1 {
+> > > > +				core0 {
+> > > > +					cpu = <&cpu_4>;
+> > > > +				};
+> > > > +				core1 {
+> > > > +					cpu = <&cpu_5>;
+> > > > +				};
+> > > > +				core2 {
+> > > > +					cpu = <&cpu_6>;
+> > > > +				};
+> > > > +				core3 {
+> > > > +					cpu = <&cpu_7>;
+> > > > +				};
+> > > > +			};
+> > > > +		};
+> > > > +
+> > > > +		cpu_0: cpu@0 {
+> > > > +			compatible = "spacemit,x60", "riscv";
+> > > > +			device_type = "cpu";
+> > > > +			reg = <0>;
+> > > > +			riscv,isa = "rv64imafdcv_zicbom_zicbop_zicboz_zicntr_zicond_zicsr_zifencei_zihintpause_zihpm_zfh_zba_zbb_zbc_zbs_zkt_zvfh_zvkt_sscofpmf_sstc_svinval_svnapot_svpbmt";
+> > > > +			riscv,isa-base = "rv64i";
+> > > > +			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "v", "zicbom",
+> > > > +					       "zicbop", "zicboz", "zicntr", "zicond", "zicsr",
+> > > > +					       "zifencei", "zihintpause", "zihpm", "zfh", "zba",
+> > > > +					       "zbb", "zbc", "zbs", "zkt", "zvfh", "zvkt",
+> > > > +					       "sscofpmf", "sstc", "svinval", "svnapot", "svpbmt";
+> > > > +			riscv,cbom-block-size = <64>;
+> > > > +			riscv,cbop-block-size = <64>;
+> > > > +			riscv,cboz-block-size = <64>;
+> > > > +			mmu-type = "riscv,sv39";
+> > > > +
+> > > > +			cpu0_intc: interrupt-controller {
+> > > > +				compatible = "riscv,cpu-intc";
+> > > > +				interrupt-controller;
+> > > > +				#interrupt-cells = <1>;
+> > > > +			};
+> > > > +		};
+> > > > +
+> > > > +		cpu_1: cpu@1 {
+> > > > +			compatible = "spacemit,x60", "riscv";
+> > > > +			device_type = "cpu";
+> > > > +			reg = <1>;
+> > > > +			riscv,isa = "rv64imafdcv_zicbom_zicbop_zicboz_zicntr_zicond_zicsr_zifencei_zihintpause_zihpm_zfh_zba_zbb_zbc_zbs_zkt_zvfh_zvkt_sscofpmf_sstc_svinval_svnapot_svpbmt";
+> > > > +			riscv,isa-base = "rv64i";
+> > > > +			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "v", "zicbom",
+> > > > +					       "zicbop", "zicboz", "zicntr", "zicond", "zicsr",
+> > > > +					       "zifencei", "zihintpause", "zihpm", "zfh", "zba",
+> > > > +					       "zbb", "zbc", "zbs", "zkt", "zvfh", "zvkt",
+> > > > +					       "sscofpmf", "sstc", "svinval", "svnapot", "svpbmt";
+> > > > +			riscv,cbom-block-size = <64>;
+> > > > +			riscv,cbop-block-size = <64>;
+> > > > +			riscv,cboz-block-size = <64>;
+> > > > +			mmu-type = "riscv,sv39";
+> > > > +
+> > > > +			cpu1_intc: interrupt-controller {
+> > > > +				compatible = "riscv,cpu-intc";
+> > > > +				interrupt-controller;
+> > > > +				#interrupt-cells = <1>;
+> > > > +			};
+> > > > +		};
+> > > > +
+> > > > +		cpu_2: cpu@2 {
+> > > > +			compatible = "spacemit,x60", "riscv";
+> > > > +			device_type = "cpu";
+> > > > +			reg = <2>;
+> > > > +			riscv,isa = "rv64imafdcv_zicbom_zicbop_zicboz_zicntr_zicond_zicsr_zifencei_zihintpause_zihpm_zfh_zba_zbb_zbc_zbs_zkt_zvfh_zvkt_sscofpmf_sstc_svinval_svnapot_svpbmt";
+> > > > +			riscv,isa-base = "rv64i";
+> > > > +			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "v", "zicbom",
+> > > > +					       "zicbop", "zicboz", "zicntr", "zicond", "zicsr",
+> > > > +					       "zifencei", "zihintpause", "zihpm", "zfh", "zba",
+> > > > +					       "zbb", "zbc", "zbs", "zkt", "zvfh", "zvkt",
+> > > > +					       "sscofpmf", "sstc", "svinval", "svnapot", "svpbmt";
+> > > > +			riscv,cbom-block-size = <64>;
+> > > > +			riscv,cbop-block-size = <64>;
+> > > > +			riscv,cboz-block-size = <64>;
+> > > > +			mmu-type = "riscv,sv39";
+> > > > +
+> > > > +			cpu2_intc: interrupt-controller {
+> > > > +				compatible = "riscv,cpu-intc";
+> > > > +				interrupt-controller;
+> > > > +				#interrupt-cells = <1>;
+> > > > +			};
+> > > > +		};
+> > > > +
+> > > > +		cpu_3: cpu@3 {
+> > > > +			compatible = "spacemit,x60", "riscv";
+> > > > +			device_type = "cpu";
+> > > > +			reg = <3>;
+> > > > +			riscv,isa = "rv64imafdcv_zicbom_zicbop_zicboz_zicntr_zicond_zicsr_zifencei_zihintpause_zihpm_zfh_zba_zbb_zbc_zbs_zkt_zvfh_zvkt_sscofpmf_sstc_svinval_svnapot_svpbmt";
+> > > > +			riscv,isa-base = "rv64i";
+> > > > +			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "v", "zicbom",
+> > > > +					       "zicbop", "zicboz", "zicntr", "zicond", "zicsr",
+> > > > +					       "zifencei", "zihintpause", "zihpm", "zfh", "zba",
+> > > > +					       "zbb", "zbc", "zbs", "zkt", "zvfh", "zvkt",
+> > > > +					       "sscofpmf", "sstc", "svinval", "svnapot", "svpbmt";
+> > > > +			riscv,cbom-block-size = <64>;
+> > > > +			riscv,cbop-block-size = <64>;
+> > > > +			riscv,cboz-block-size = <64>;
+> > > > +			mmu-type = "riscv,sv39";
+> > > > +
+> > > > +			cpu3_intc: interrupt-controller {
+> > > > +				compatible = "riscv,cpu-intc";
+> > > > +				interrupt-controller;
+> > > > +				#interrupt-cells = <1>;
+> > > > +			};
+> > > > +		};
+> > > > +
+> > > > +		cpu_4: cpu@4 {
+> > > > +			compatible = "spacemit,x60", "riscv";
+> > > > +			device_type = "cpu";
+> > > > +			reg = <4>;
+> > > > +			riscv,isa = "rv64imafdcv_zicbom_zicbop_zicboz_zicntr_zicond_zicsr_zifencei_zihintpause_zihpm_zfh_zba_zbb_zbc_zbs_zkt_zvfh_zvkt_sscofpmf_sstc_svinval_svnapot_svpbmt";
+> > > > +			riscv,isa-base = "rv64i";
+> > > > +			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "v", "zicbom",
+> > > > +					       "zicbop", "zicboz", "zicntr", "zicond", "zicsr",
+> > > > +					       "zifencei", "zihintpause", "zihpm", "zfh", "zba",
+> > > > +					       "zbb", "zbc", "zbs", "zkt", "zvfh", "zvkt",
+> > > > +					       "sscofpmf", "sstc", "svinval", "svnapot", "svpbmt";
+> > > > +			riscv,cbom-block-size = <64>;
+> > > > +			riscv,cbop-block-size = <64>;
+> > > > +			riscv,cboz-block-size = <64>;
+> > > > +			mmu-type = "riscv,sv39";
+> > > > +
+> > > > +			cpu4_intc: interrupt-controller {
+> > > > +				compatible = "riscv,cpu-intc";
+> > > > +				interrupt-controller;
+> > > > +				#interrupt-cells = <1>;
+> > > > +			};
+> > > > +		};
+> > > > +
+> > > > +		cpu_5: cpu@5 {
+> > > > +			compatible = "spacemit,x60", "riscv";
+> > > > +			device_type = "cpu";
+> > > > +			reg = <5>;
+> > > > +			riscv,isa = "rv64imafdcv_zicbom_zicbop_zicboz_zicntr_zicond_zicsr_zifencei_zihintpause_zihpm_zfh_zba_zbb_zbc_zbs_zkt_zvfh_zvkt_sscofpmf_sstc_svinval_svnapot_svpbmt";
+> > > > +			riscv,isa-base = "rv64i";
+> > > > +			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "v", "zicbom",
+> > > > +					       "zicbop", "zicboz", "zicntr", "zicond", "zicsr",
+> > > > +					       "zifencei", "zihintpause", "zihpm", "zfh", "zba",
+> > > > +					       "zbb", "zbc", "zbs", "zkt", "zvfh", "zvkt",
+> > > > +					       "sscofpmf", "sstc", "svinval", "svnapot", "svpbmt";
+> > > > +			riscv,cbom-block-size = <64>;
+> > > > +			riscv,cbop-block-size = <64>;
+> > > > +			riscv,cboz-block-size = <64>;
+> > > > +			mmu-type = "riscv,sv39";
+> > > > +
+> > > > +			cpu5_intc: interrupt-controller {
+> > > > +				compatible = "riscv,cpu-intc";
+> > > > +				interrupt-controller;
+> > > > +				#interrupt-cells = <1>;
+> > > > +			};
+> > > > +		};
+> > > > +
+> > > > +		cpu_6: cpu@6 {
+> > > > +			compatible = "spacemit,x60", "riscv";
+> > > > +			device_type = "cpu";
+> > > > +			reg = <6>;
+> > > > +			riscv,isa = "rv64imafdcv_zicbom_zicbop_zicboz_zicntr_zicond_zicsr_zifencei_zihintpause_zihpm_zfh_zba_zbb_zbc_zbs_zkt_zvfh_zvkt_sscofpmf_sstc_svinval_svnapot_svpbmt";
+> > > > +			riscv,isa-base = "rv64i";
+> > > > +			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "v", "zicbom",
+> > > > +					       "zicbop", "zicboz", "zicntr", "zicond", "zicsr",
+> > > > +					       "zifencei", "zihintpause", "zihpm", "zfh", "zba",
+> > > > +					       "zbb", "zbc", "zbs", "zkt", "zvfh", "zvkt",
+> > > > +					       "sscofpmf", "sstc", "svinval", "svnapot", "svpbmt";
+> > > > +			riscv,cbom-block-size = <64>;
+> > > > +			riscv,cbop-block-size = <64>;
+> > > > +			riscv,cboz-block-size = <64>;
+> > > > +			mmu-type = "riscv,sv39";
+> > > > +
+> > > > +			cpu6_intc: interrupt-controller {
+> > > > +				compatible = "riscv,cpu-intc";
+> > > > +				interrupt-controller;
+> > > > +				#interrupt-cells = <1>;
+> > > > +			};
+> > > > +		};
+> > > > +
+> > > > +		cpu_7: cpu@7 {
+> > > > +			compatible = "spacemit,x60", "riscv";
+> > > > +			device_type = "cpu";
+> > > > +			reg = <7>;
+> > > > +			riscv,isa = "rv64imafdcv_zicbom_zicbop_zicboz_zicntr_zicond_zicsr_zifencei_zihintpause_zihpm_zfh_zba_zbb_zbc_zbs_zkt_zvfh_zvkt_sscofpmf_sstc_svinval_svnapot_svpbmt";
+> > > > +			riscv,isa-base = "rv64i";
+> > > > +			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "v", "zicbom",
+> > > > +					       "zicbop", "zicboz", "zicntr", "zicond", "zicsr",
+> > > > +					       "zifencei", "zihintpause", "zihpm", "zfh", "zba",
+> > > > +					       "zbb", "zbc", "zbs", "zkt", "zvfh", "zvkt",
+> > > > +					       "sscofpmf", "sstc", "svinval", "svnapot", "svpbmt";
+> > > > +			riscv,cbom-block-size = <64>;
+> > > > +			riscv,cbop-block-size = <64>;
+> > > > +			riscv,cboz-block-size = <64>;
+> > > > +			mmu-type = "riscv,sv39";
+> > > > +
+> > > > +			cpu7_intc: interrupt-controller {
+> > > > +				compatible = "riscv,cpu-intc";
+> > > > +				interrupt-controller;
+> > > > +				#interrupt-cells = <1>;
+> > > > +			};
+> > > > +		};
+> > > > +
+> > > > +	};
+> > > > +
+> > > > +	soc {
+> > > > +		compatible = "simple-bus";
+> > > > +		interrupt-parent = <&plic>;
+> > > > +		#address-cells = <2>;
+> > > > +		#size-cells = <2>;
+> > > > +		dma-noncoherent;
+> > > > +		ranges;
+> > > > +
+> > > > +		uart0: serial@d4017000 {
+> > > > +			compatible = "spacemit,k1-uart", "intel,xscale-uart";
+> > > 
+> > > no, this is not a correct hw modeling. The doc on spacemit says
+> > > all the uart support 64 bytes FIFO, declaring xscale only makes
+> > > use of 32 bytes FIFO.
+> > yes, I also noticed it's 64 bytes FIFO
+> > 
+> > > 
+> > > IIRC, 8250_pxa is a xscale uart with 64 bytes FIFO, so this should be
+> > > "mrvl,pxa-uart" or "mrvl,mmp-uart"
+> > 
+> > 
+> > for mrvl,pxa-uart, I think you imply to use drivers/tty/serial/8250/8250_pxa.c,
+> > which turn out doesn't work on k1 SoC, for the record, we need to adjust
+> 
+> Really? I just tried "mrvl,pxa-uart" with rc6, it works perfectly, and the FIFO
+> in the driver logic is 64bytes now. Am I misssing something or you never tried it?
+> 
+Ok, I realised it's the clock issue
 
-diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
-index d8482e015c49..0e4819c1cfd2 100644
---- a/drivers/clk/Kconfig
-+++ b/drivers/clk/Kconfig
-@@ -508,6 +508,8 @@ config CLK_KUNIT_TEST
- 	tristate "Basic Clock Framework Kunit Tests" if !KUNIT_ALL_TESTS
- 	depends on KUNIT
- 	default KUNIT_ALL_TESTS
-+	select OF_OVERLAY if OF
-+	select DTC
- 	help
- 	  Kunit tests for the common clock framework.
- 
-diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
-index 7b57e3d22cee..ed4e1a0e6943 100644
---- a/drivers/clk/Makefile
-+++ b/drivers/clk/Makefile
-@@ -2,7 +2,8 @@
- # common clock types
- obj-$(CONFIG_HAVE_CLK)		+= clk-devres.o clk-bulk.o clkdev.o
- obj-$(CONFIG_COMMON_CLK)	+= clk.o
--obj-$(CONFIG_CLK_KUNIT_TEST)	+= clk_test.o
-+obj-$(CONFIG_CLK_KUNIT_TEST)	+= clk_test.o \
-+				   kunit_clk_parent_data_test.dtbo.o
- obj-$(CONFIG_COMMON_CLK)	+= clk-divider.o
- obj-$(CONFIG_COMMON_CLK)	+= clk-fixed-factor.o
- obj-$(CONFIG_COMMON_CLK)	+= clk-fixed-rate.o
-diff --git a/drivers/clk/clk_parent_data_test.h b/drivers/clk/clk_parent_data_test.h
-new file mode 100644
-index 000000000000..eedd53ae910d
---- /dev/null
-+++ b/drivers/clk/clk_parent_data_test.h
-@@ -0,0 +1,10 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+#ifndef _CLK_PARENT_DATA_TEST_H
-+#define _CLK_PARENT_DATA_TEST_H
-+
-+#define CLK_PARENT_DATA_1MHZ_NAME	"1mhz_fixed_legacy"
-+#define CLK_PARENT_DATA_PARENT1		"parent_fwname"
-+#define CLK_PARENT_DATA_PARENT2		"50"
-+#define CLK_PARENT_DATA_50MHZ_NAME	"50_clk"
-+
-+#endif
-diff --git a/drivers/clk/clk_test.c b/drivers/clk/clk_test.c
-index 39e2b5ff4f51..c2127f46fb93 100644
---- a/drivers/clk/clk_test.c
-+++ b/drivers/clk/clk_test.c
-@@ -4,12 +4,19 @@
-  */
- #include <linux/clk.h>
- #include <linux/clk-provider.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
- 
- /* Needed for clk_hw_get_clk() */
- #include "clk.h"
- 
-+#include <kunit/clk.h>
-+#include <kunit/of.h>
-+#include <kunit/platform_device.h>
- #include <kunit/test.h>
- 
-+#include "clk_parent_data_test.h"
-+
- static const struct clk_ops empty_clk_ops = { };
- 
- #define DUMMY_CLOCK_INIT_RATE	(42 * 1000 * 1000)
-@@ -2659,6 +2666,448 @@ static struct kunit_suite clk_mux_no_reparent_test_suite = {
- 	.test_cases = clk_mux_no_reparent_test_cases,
- };
- 
-+struct clk_register_clk_parent_data_test_case {
-+	const char *desc;
-+	struct clk_parent_data pdata;
-+};
-+
-+static void
-+clk_register_clk_parent_data_test_case_to_desc(
-+		const struct clk_register_clk_parent_data_test_case *t, char *desc)
-+{
-+	strcpy(desc, t->desc);
-+}
-+
-+static const struct clk_register_clk_parent_data_test_case
-+clk_register_clk_parent_data_of_cases[] = {
-+	{
-+		/*
-+		 * Test that a clk registered with a struct device_node can
-+		 * find a parent based on struct clk_parent_data::index.
-+		 */
-+		.desc = "clk_parent_data_of_index_test",
-+		.pdata.index = 0,
-+	},
-+	{
-+		/*
-+		 * Test that a clk registered with a struct device_node can
-+		 * find a parent based on struct clk_parent_data::fwname.
-+		 */
-+		.desc = "clk_parent_data_of_fwname_test",
-+		.pdata.fw_name = CLK_PARENT_DATA_PARENT1,
-+	},
-+	{
-+		/*
-+		 * Test that a clk registered with a struct device_node can
-+		 * find a parent based on struct clk_parent_data::name.
-+		 */
-+		.desc = "clk_parent_data_of_name_test",
-+		/* The index must be negative to indicate firmware not used */
-+		.pdata.index = -1,
-+		.pdata.name = CLK_PARENT_DATA_1MHZ_NAME,
-+	},
-+	{
-+		/*
-+		 * Test that a clk registered with a struct device_node can
-+		 * find a parent based on struct
-+		 * clk_parent_data::{fw_name,name}.
-+		 */
-+		.desc = "clk_parent_data_of_fwname_name_test",
-+		.pdata.fw_name = CLK_PARENT_DATA_PARENT1,
-+		.pdata.name = "not_matching",
-+	},
-+	{
-+		/*
-+		 * Test that a clk registered with a struct device_node can
-+		 * find a parent based on struct clk_parent_data::{index,name}.
-+		 * Index takes priority.
-+		 */
-+		.desc = "clk_parent_data_of_index_name_priority_test",
-+		.pdata.index = 0,
-+		.pdata.name = "not_matching",
-+	},
-+	{
-+		/*
-+		 * Test that a clk registered with a struct device_node can
-+		 * find a parent based on struct
-+		 * clk_parent_data::{index,fwname,name}. The fw_name takes
-+		 * priority over index and name.
-+		 */
-+		.desc = "clk_parent_data_of_index_fwname_name_priority_test",
-+		.pdata.index = 1,
-+		.pdata.fw_name = CLK_PARENT_DATA_PARENT1,
-+		.pdata.name = "not_matching",
-+	},
-+};
-+
-+KUNIT_ARRAY_PARAM(clk_register_clk_parent_data_of_test, clk_register_clk_parent_data_of_cases,
-+		  clk_register_clk_parent_data_test_case_to_desc)
-+
-+/**
-+ * struct clk_register_clk_parent_data_of_ctx - Context for clk_parent_data OF tests
-+ * @np: device node of clk under test
-+ * @hw: clk_hw for clk under test
-+ */
-+struct clk_register_clk_parent_data_of_ctx {
-+	struct device_node *np;
-+	struct clk_hw hw;
-+};
-+
-+static int clk_register_clk_parent_data_of_test_init(struct kunit *test)
-+{
-+	struct clk_register_clk_parent_data_of_ctx *ctx;
-+
-+	KUNIT_ASSERT_EQ(test, 0,
-+			of_overlay_apply_kunit(test, kunit_clk_parent_data_test));
-+
-+	ctx = kunit_kzalloc(test, sizeof(*ctx), GFP_KERNEL);
-+	if (!ctx)
-+		return -ENOMEM;
-+	test->priv = ctx;
-+
-+	ctx->np = of_find_compatible_node(NULL, NULL, "test,clk-parent-data");
-+	if (!ctx->np)
-+		return -ENODEV;
-+
-+	of_node_put_kunit(test, ctx->np);
-+
-+	return 0;
-+}
-+
-+/*
-+ * Test that a clk registered with a struct device_node can find a parent based on
-+ * struct clk_parent_data when the hw member isn't set.
-+ */
-+static void clk_register_clk_parent_data_of_test(struct kunit *test)
-+{
-+	struct clk_register_clk_parent_data_of_ctx *ctx = test->priv;
-+	struct clk_hw *parent_hw;
-+	const struct clk_register_clk_parent_data_test_case *test_param;
-+	struct clk_init_data init = { };
-+	struct clk *expected_parent, *actual_parent;
-+
-+	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, ctx->np);
-+
-+	expected_parent = of_clk_get_kunit(test, ctx->np, 0);
-+	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, expected_parent);
-+
-+	test_param = test->param_value;
-+	init.parent_data = &test_param->pdata;
-+	init.num_parents = 1;
-+	init.name = "parent_data_of_test_clk";
-+	init.ops = &clk_dummy_single_parent_ops;
-+	ctx->hw.init = &init;
-+	KUNIT_ASSERT_EQ(test, 0, of_clk_hw_register_kunit(test, ctx->np, &ctx->hw));
-+
-+	parent_hw = clk_hw_get_parent(&ctx->hw);
-+	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, parent_hw);
-+
-+	actual_parent = clk_hw_get_clk_kunit(test, parent_hw, __func__);
-+	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, actual_parent);
-+
-+	KUNIT_EXPECT_TRUE(test, clk_is_match(expected_parent, actual_parent));
-+}
-+
-+static struct kunit_case clk_register_clk_parent_data_of_test_cases[] = {
-+	KUNIT_CASE_PARAM(clk_register_clk_parent_data_of_test,
-+			 clk_register_clk_parent_data_of_test_gen_params),
-+	{}
-+};
-+
-+/*
-+ * Test suite for registering clks with struct clk_parent_data and a struct
-+ * device_node.
-+ */
-+static struct kunit_suite clk_register_clk_parent_data_of_suite = {
-+	.name = "clk_register_clk_parent_data_of",
-+	.init = clk_register_clk_parent_data_of_test_init,
-+	.test_cases = clk_register_clk_parent_data_of_test_cases,
-+};
-+
-+/**
-+ * struct clk_register_clk_parent_data_device_ctx - Context for clk_parent_data device tests
-+ * @dev: device of clk under test
-+ * @hw: clk_hw for clk under test
-+ * @pdrv: driver to attach to find @dev
-+ */
-+struct clk_register_clk_parent_data_device_ctx {
-+	struct device *dev;
-+	struct clk_hw hw;
-+	struct platform_driver pdrv;
-+};
-+
-+static inline struct clk_register_clk_parent_data_device_ctx *
-+clk_register_clk_parent_data_driver_to_test_context(struct platform_device *pdev)
-+{
-+	return container_of(to_platform_driver(pdev->dev.driver),
-+			    struct clk_register_clk_parent_data_device_ctx, pdrv);
-+}
-+
-+static int clk_register_clk_parent_data_device_probe(struct platform_device *pdev)
-+{
-+	struct clk_register_clk_parent_data_device_ctx *ctx;
-+
-+	ctx = clk_register_clk_parent_data_driver_to_test_context(pdev);
-+	ctx->dev = &pdev->dev;
-+
-+	return 0;
-+}
-+
-+static void clk_register_clk_parent_data_device_driver(struct kunit *test)
-+{
-+	struct clk_register_clk_parent_data_device_ctx *ctx = test->priv;
-+	static const struct of_device_id match_table[] = {
-+		{ .compatible = "test,clk-parent-data" },
-+		{ }
-+	};
-+
-+	ctx->pdrv.probe = clk_register_clk_parent_data_device_probe;
-+	ctx->pdrv.driver.of_match_table = match_table;
-+	ctx->pdrv.driver.name = __func__;
-+	ctx->pdrv.driver.owner = THIS_MODULE;
-+
-+	KUNIT_ASSERT_EQ(test, 0, kunit_platform_driver_register(test, &ctx->pdrv));
-+	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, ctx->dev);
-+}
-+
-+static const struct clk_register_clk_parent_data_test_case
-+clk_register_clk_parent_data_device_cases[] = {
-+	{
-+		/*
-+		 * Test that a clk registered with a struct device can find a
-+		 * parent based on struct clk_parent_data::index.
-+		 */
-+		.desc = "clk_parent_data_device_index_test",
-+		.pdata.index = 1,
-+	},
-+	{
-+		/*
-+		 * Test that a clk registered with a struct device can find a
-+		 * parent based on struct clk_parent_data::fwname.
-+		 */
-+		.desc = "clk_parent_data_device_fwname_test",
-+		.pdata.fw_name = CLK_PARENT_DATA_PARENT2,
-+	},
-+	{
-+		/*
-+		 * Test that a clk registered with a struct device can find a
-+		 * parent based on struct clk_parent_data::name.
-+		 */
-+		.desc = "clk_parent_data_device_name_test",
-+		/* The index must be negative to indicate firmware not used */
-+		.pdata.index = -1,
-+		.pdata.name = CLK_PARENT_DATA_50MHZ_NAME,
-+	},
-+	{
-+		/*
-+		 * Test that a clk registered with a struct device can find a
-+		 * parent based on struct clk_parent_data::{fw_name,name}.
-+		 */
-+		.desc = "clk_parent_data_device_fwname_name_test",
-+		.pdata.fw_name = CLK_PARENT_DATA_PARENT2,
-+		.pdata.name = "not_matching",
-+	},
-+	{
-+		/*
-+		 * Test that a clk registered with a struct device can find a
-+		 * parent based on struct clk_parent_data::{index,name}. Index
-+		 * takes priority.
-+		 */
-+		.desc = "clk_parent_data_device_index_name_priority_test",
-+		.pdata.index = 1,
-+		.pdata.name = "not_matching",
-+	},
-+	{
-+		/*
-+		 * Test that a clk registered with a struct device can find a
-+		 * parent based on struct clk_parent_data::{index,fwname,name}.
-+		 * The fw_name takes priority over index and name.
-+		 */
-+		.desc = "clk_parent_data_device_index_fwname_name_priority_test",
-+		.pdata.index = 0,
-+		.pdata.fw_name = CLK_PARENT_DATA_PARENT2,
-+		.pdata.name = "not_matching",
-+	},
-+};
-+
-+KUNIT_ARRAY_PARAM(clk_register_clk_parent_data_device_test,
-+		  clk_register_clk_parent_data_device_cases,
-+		  clk_register_clk_parent_data_test_case_to_desc)
-+
-+/*
-+ * Test that a clk registered with a struct device can find a parent based on
-+ * struct clk_parent_data when the hw member isn't set.
-+ */
-+static void clk_register_clk_parent_data_device_test(struct kunit *test)
-+{
-+	struct clk_register_clk_parent_data_device_ctx *ctx;
-+	const struct clk_register_clk_parent_data_test_case *test_param;
-+	struct clk_hw *parent_hw;
-+	struct clk_init_data init = { };
-+	struct clk *expected_parent, *actual_parent;
-+
-+	ctx = kunit_kzalloc(test, sizeof(*ctx), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, ctx);
-+	test->priv = ctx;
-+
-+	clk_register_clk_parent_data_device_driver(test);
-+
-+	expected_parent = clk_get_kunit(test, ctx->dev, "50");
-+	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, expected_parent);
-+
-+	test_param = test->param_value;
-+	init.parent_data = &test_param->pdata;
-+	init.num_parents = 1;
-+	init.name = "parent_data_device_test_clk";
-+	init.ops = &clk_dummy_single_parent_ops;
-+	ctx->hw.init = &init;
-+	KUNIT_ASSERT_EQ(test, 0, clk_hw_register_kunit(test, ctx->dev, &ctx->hw));
-+
-+	parent_hw = clk_hw_get_parent(&ctx->hw);
-+	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, parent_hw);
-+
-+	actual_parent = clk_hw_get_clk_kunit(test, parent_hw, __func__);
-+	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, actual_parent);
-+
-+	KUNIT_EXPECT_TRUE(test, clk_is_match(expected_parent, actual_parent));
-+}
-+
-+static const struct clk_register_clk_parent_data_test_case
-+clk_register_clk_parent_data_device_hw_cases[] = {
-+	{
-+		/*
-+		 * Test that a clk registered with a struct device can find a
-+		 * parent based on struct clk_parent_data::hw.
-+		 */
-+		.desc = "clk_parent_data_device_hw_index_test",
-+		/* The index must be negative to indicate firmware not used */
-+		.pdata.index = -1,
-+	},
-+	{
-+		/*
-+		 * Test that a clk registered with a struct device can find a
-+		 * parent based on struct clk_parent_data::hw when
-+		 * struct clk_parent_data::fw_name is set.
-+		 */
-+		.desc = "clk_parent_data_device_hw_fwname_test",
-+		.pdata.fw_name = CLK_PARENT_DATA_PARENT2,
-+	},
-+	{
-+		/*
-+		 * Test that a clk registered with a struct device can find a
-+		 * parent based on struct clk_parent_data::hw when struct
-+		 * clk_parent_data::name is set.
-+		 */
-+		.desc = "clk_parent_data_device_hw_name_test",
-+		/* The index must be negative to indicate firmware not used */
-+		.pdata.index = -1,
-+		.pdata.name = CLK_PARENT_DATA_50MHZ_NAME,
-+	},
-+	{
-+		/*
-+		 * Test that a clk registered with a struct device can find a
-+		 * parent based on struct clk_parent_data::hw when struct
-+		 * clk_parent_data::{fw_name,name} are set.
-+		 */
-+		.desc = "clk_parent_data_device_hw_fwname_name_test",
-+		.pdata.fw_name = CLK_PARENT_DATA_PARENT2,
-+		.pdata.name = "not_matching",
-+	},
-+	{
-+		/*
-+		 * Test that a clk registered with a struct device can find a
-+		 * parent based on struct clk_parent_data::hw when struct
-+		 * clk_parent_data::index is set. The hw pointer takes
-+		 * priority.
-+		 */
-+		.desc = "clk_parent_data_device_hw_index_priority_test",
-+		.pdata.index = 0,
-+	},
-+	{
-+		/*
-+		 * Test that a clk registered with a struct device can find a
-+		 * parent based on struct clk_parent_data::hw when
-+		 * struct clk_parent_data::{index,fwname,name} are set.
-+		 * The hw pointer takes priority over everything else.
-+		 */
-+		.desc = "clk_parent_data_device_hw_index_fwname_name_priority_test",
-+		.pdata.index = 0,
-+		.pdata.fw_name = CLK_PARENT_DATA_PARENT2,
-+		.pdata.name = "not_matching",
-+	},
-+};
-+
-+KUNIT_ARRAY_PARAM(clk_register_clk_parent_data_device_hw_test,
-+		  clk_register_clk_parent_data_device_hw_cases,
-+		  clk_register_clk_parent_data_test_case_to_desc)
-+
-+/*
-+ * Test that a clk registered with a struct device can find a
-+ * parent based on struct clk_parent_data::hw.
-+ */
-+static void clk_register_clk_parent_data_device_hw_test(struct kunit *test)
-+{
-+	struct clk_register_clk_parent_data_device_ctx *ctx;
-+	const struct clk_register_clk_parent_data_test_case *test_param;
-+	struct clk_dummy_context *parent;
-+	struct clk_hw *parent_hw;
-+	struct clk_parent_data pdata = { };
-+	struct clk_init_data init = { };
-+
-+	ctx = kunit_kzalloc(test, sizeof(*ctx), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, ctx);
-+	test->priv = ctx;
-+
-+	clk_register_clk_parent_data_device_driver(test);
-+
-+	parent = kunit_kzalloc(test, sizeof(*parent), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, parent);
-+
-+	parent_hw = &parent->hw;
-+	parent_hw->init = CLK_HW_INIT_NO_PARENT("parent-clk",
-+						&clk_dummy_rate_ops, 0);
-+
-+	KUNIT_ASSERT_EQ(test, 0, clk_hw_register_kunit(test, ctx->dev, parent_hw));
-+
-+	test_param = test->param_value;
-+	memcpy(&pdata, &test_param->pdata, sizeof(pdata));
-+	pdata.hw = parent_hw;
-+	init.parent_data = &pdata;
-+	init.num_parents = 1;
-+	init.ops = &clk_dummy_single_parent_ops;
-+	init.name = "parent_data_device_hw_test_clk";
-+	ctx->hw.init = &init;
-+	KUNIT_ASSERT_EQ(test, 0, clk_hw_register_kunit(test, ctx->dev, &ctx->hw));
-+
-+	KUNIT_EXPECT_PTR_EQ(test, parent_hw, clk_hw_get_parent(&ctx->hw));
-+}
-+
-+static struct kunit_case clk_register_clk_parent_data_device_test_cases[] = {
-+	KUNIT_CASE_PARAM(clk_register_clk_parent_data_device_test,
-+			 clk_register_clk_parent_data_device_test_gen_params),
-+	KUNIT_CASE_PARAM(clk_register_clk_parent_data_device_hw_test,
-+			 clk_register_clk_parent_data_device_hw_test_gen_params),
-+	{}
-+};
-+
-+static int clk_register_clk_parent_data_device_init(struct kunit *test)
-+{
-+	KUNIT_ASSERT_EQ(test, 0,
-+			of_overlay_apply_kunit(test, kunit_clk_parent_data_test));
-+
-+	return 0;
-+}
-+
-+/*
-+ * Test suite for registering clks with struct clk_parent_data and a struct
-+ * device.
-+ */
-+static struct kunit_suite clk_register_clk_parent_data_device_suite = {
-+	.name = "clk_register_clk_parent_data_device",
-+	.init = clk_register_clk_parent_data_device_init,
-+	.test_cases = clk_register_clk_parent_data_device_test_cases,
-+};
-+
- kunit_test_suites(
- 	&clk_leaf_mux_set_rate_parent_test_suite,
- 	&clk_test_suite,
-@@ -2671,7 +3120,9 @@ kunit_test_suites(
- 	&clk_range_test_suite,
- 	&clk_range_maximize_test_suite,
- 	&clk_range_minimize_test_suite,
-+	&clk_register_clk_parent_data_of_suite,
-+	&clk_register_clk_parent_data_device_suite,
- 	&clk_single_parent_mux_test_suite,
--	&clk_uncached_test_suite
-+	&clk_uncached_test_suite,
- );
- MODULE_LICENSE("GPL v2");
-diff --git a/drivers/clk/kunit_clk_parent_data_test.dtso b/drivers/clk/kunit_clk_parent_data_test.dtso
-new file mode 100644
-index 000000000000..7d3ed9a5a2e8
---- /dev/null
-+++ b/drivers/clk/kunit_clk_parent_data_test.dtso
-@@ -0,0 +1,28 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/dts-v1/;
-+/plugin/;
-+
-+#include "clk_parent_data_test.h"
-+
-+&{/} {
-+	fixed_50: kunit-clock-50MHz {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <50000000>;
-+		clock-output-names = CLK_PARENT_DATA_50MHZ_NAME;
-+	};
-+
-+	fixed_parent: kunit-clock-1MHz {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <1000000>;
-+		clock-output-names = CLK_PARENT_DATA_1MHZ_NAME;
-+	};
-+
-+	kunit-clock-controller {
-+		compatible = "test,clk-parent-data";
-+		clocks = <&fixed_parent>, <&fixed_50>;
-+		clock-names = CLK_PARENT_DATA_PARENT1, CLK_PARENT_DATA_PARENT2;
-+		#clock-cells = <1>;
-+	};
-+};
+still, I'm not fully convinced about using "mrvl,pxa-uart",
+e.g this driver hardcoded tz_loadsz to 32, not sure if K1 suffer same problem
+5208e7ced520 ("serial: 8250_pxa: Configure tx_loadsz to match FIFO IRQ level")
+
+also, what's the preference when choosing driver between 8250_pxa.c vs 8250_of.c?
+it occur to me that 8250_pxa.c is more specially tailored for pxa hardware, while
+8250_of.c is more generic.. besides, should we consider one more step if we want to
+support DMA mode in the future (vendor uart driver has DMA support)?
+
+
+> >  drivers/tty/serial/8250/Kconfig to enable the driver for ARCH_SPACEMIT,
+> >  and change uart compatible to "spacemit,k1-uart", "mrvl,pxa-uart"
+> > 
+> > for mrvl,mmp-uart, I see two choices, one using 8250_pxa.c which has same result
+> > as mrvl,pxa-uart, another choice would using the driver of 8250_of.c 
+> > and it work as same as "intel,xscale-uart", I don't see any difference..
+> > 
+> > P.S: there is possibly a side problem that "mrvl,mmp-uart" from 8250_of.c doesn't 
+> > really compatile with "mrvl,mmp-uart" from 8250_pxa.c, but I think it's another story
+
 -- 
-https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git/
-https://git.kernel.org/pub/scm/linux/kernel/git/sboyd/spmi.git
-
+Yixun Lan (dlan)
+Gentoo Linux Developer
+GPG Key ID AABEFD55
 
