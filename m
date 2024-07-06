@@ -1,84 +1,92 @@
-Return-Path: <devicetree+bounces-83620-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83621-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E4DD9294B4
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 18:12:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B61B69294C9
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 18:49:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2ABCC1F22D8B
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 16:12:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 48A70281BD1
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 16:49:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85EAE13AD07;
-	Sat,  6 Jul 2024 16:11:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 512F113A895;
+	Sat,  6 Jul 2024 16:49:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gZlEYqkc"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OYInJxk/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDD8D6A357;
-	Sat,  6 Jul 2024 16:11:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3692C8E1;
+	Sat,  6 Jul 2024 16:49:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720282318; cv=none; b=F2am5vpgaygLT+47aimfwO4kpRo6wkoLuliB+3KiPY1bFQvzVc8kTBKiWfPumBWYujutU9oCnzeg5WDESzaJYLiFb53lFijvOf0lt4Ygre9avSn2QSRv4KSDM355CExEgTC4R0Cfi26X9L0oC3hWBh1wsddDFzhCqyO6WHKuEZI=
+	t=1720284543; cv=none; b=Z11bytaTakbT8v5pT5zMdY3avbutRLGbNCyUAd/ic5UTB1IharomnfhAzUucn70A4NuOsIS2HBsIo0zuAmTR4C/I5KrsE72Ude1LP0iqAn9E3y/IVbgsMxttY/PulilEkPNpkljOxl7rtsV90SdogJyKEnvjtrniJ75/hLzPd2I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720282318; c=relaxed/simple;
-	bh=hx7hu1VppO7Lceczk4LBvMp0grQA3KyUAjS2JOTWiHA=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition; b=D2K6YAT0GocMyNnbQnbwmEnuh0qdaFSDut0fViUWIdnLwDWZBZb+BTV8AKuZ/gjx6lyXQ1UxF4yA+HJRDgMGB17pFExdZDOaTPbyuoE98F8jswy2jJKXyuzprWBDCLeGYaE2I1KUW6AHd/moO23K3oIKvcUEk1FUpiEaDTU0kWU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gZlEYqkc; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1720284543; c=relaxed/simple;
+	bh=lVLS1J+a6VwpogBP/TJsabzltLu0nFkAMMRxA/hKr6o=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=c8128RxIbf+KrPQTQglEXYDYqiThidLzf330gjUyHiRP4r/x/C+aT7H/KN4Hj6HVnb9cQbpPqWpEkrZf40TOHCzWUaHKjcN9WaLzOGl9Z0TVfT/wj3SiAwgUE70yWtc51HB8fj6/L+43cPDKIfADxdps6LY9j0v/SaYd2rCz4sU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OYInJxk/; arc=none smtp.client-ip=209.85.214.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-42641dec7c3so15905875e9.0;
-        Sat, 06 Jul 2024 09:11:56 -0700 (PDT)
+Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-1fb70169c23so1573025ad.1;
+        Sat, 06 Jul 2024 09:49:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1720282315; x=1720887115; darn=vger.kernel.org;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=BTB8Xon6KPoe3db5OQQTjTGvBHSB1yuS1b9hsPygqLE=;
-        b=gZlEYqkcYrpvphzL369WxBi7PuPiAudY5lTNaiok9I5xtdyTdUUUrOYJsNRPai1Iuq
-         d3GxJbqoL50vaGq6TmtbaF51vLb2DraqiQdiwdwFnhSCs0GqY7WT1i0bV8dXwXQ0Gg6d
-         +xPIeOBg6LmKGYQYQyerNxiWJYKGimAcup3iPeNMyqyU1RAzpkD7WED/u5tb1vGzKjeL
-         F3gb9JsE+ZJ3zZqGKOI2w8Pmdz3a0X1t0WZmhP194jBVje4vq+thdbDuEMcfUKzv8Jnt
-         yROtQt/WEYH2MNwVW1SsBc7ZTSeXqlSOxlhan9xzLHDbxQNDWqetEOPi/cEQi8EN49aT
-         2yAA==
+        d=gmail.com; s=20230601; t=1720284541; x=1720889341; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7pPLymTdWA31lQrXZwdfEII/TYIYPSXMJ6wqAirrqs4=;
+        b=OYInJxk/sGH2PwBEDOl/32wgiVeefpOJFok2f6EFSdTCqwn/Qn5/jYiamBfwewXiwV
+         b7Xn356e8jJIO8AjptvVKt6JGjxc9CC4M/+Knk3vk35YHeCTKsflo9IN98JauwQHHVFz
+         hOLZ9YxynigTgH6Cw39izIvsp4pTiFttvm3bP/yp5AGVbN5pXkyXDfQWs3fEjKD2iLOp
+         b4ZmmdkagyKBz0Hu0ZhP8e5l5ZdI10cLZhoEL6h61Kt0MGE//wgBrJTZCM3FfOrJT8gh
+         NhEsHC/Ra90s/1ssvu4tEIGV4MrwjLrs/nUWeyh+e1X/yJLaTSYZ2PXgdDGSeL5OZfxo
+         vIdA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720282315; x=1720887115;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BTB8Xon6KPoe3db5OQQTjTGvBHSB1yuS1b9hsPygqLE=;
-        b=BqBVDTdu4ig7JwVfNehCtTdOFXY+MGUFlcVlUfHYnpdW/KMf8hBnAAme3i4DNu+fjV
-         3yJrGY6r3K0JIi0SCD2XpoPRT+IiDlhe/JA0TBEJ159PjD+QQntOfxsDfvAR4LOHOlDj
-         nHgs/eQT9a2KgLQU90eG1k9/xdyBynH9pmb2KVlxOPmtXiv7zFxnODQ9gTYBic3rVR4x
-         96rN8Ja19qHiN+/euECr1VyQyasvG9jBVdYD2D0mAIqvM4bRAzIDWWWLyvERVNZdyf5y
-         TErjEHjmulfCQSbJl3QXAJnFQVdMUTKCU5LBL97a9j8lh4c9l4zg6TSIPJ1/t7QMv8f4
-         T8lA==
-X-Forwarded-Encrypted: i=1; AJvYcCVISFRjaRehszfpqFFKNbKoLDaPBErvr3q1SEFSnF3Fbq2tpfCzzddUxUe1gRlBRZRdCt2fXOHwhp7IJrXWoRWZpES9RYw2hhdoxVTOcjBjQH9u/1GWtC9PH8zh7swWqTNv+9646D2/Dw==
-X-Gm-Message-State: AOJu0Yy3zpYECLPM4N92QNB4N8EyGpIKD+yG2xbM1fFo9ukMJXek4r1A
-	59lJgMEDlUBhGWf8bQ7iUGIZ8AEXTVL0J8h7qaM/DBJ4qVEJP2H9
-X-Google-Smtp-Source: AGHT+IE8na9QX/RTxi1AT0cEX8PHZn2T/lH8IJzOK6lmzb1OjJrAo99AnmrH8u/7T4uTpxPsTi1ZfA==
-X-Received: by 2002:a5d:658e:0:b0:367:880f:5d4e with SMTP id ffacd0b85a97d-3679dd34ca9mr5207671f8f.39.1720282314870;
-        Sat, 06 Jul 2024 09:11:54 -0700 (PDT)
-Received: from standask-GA-A55M-S2HP (lu-nat-113-247.ehs.sk. [188.123.113.247])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3675a043a16sm23911430f8f.0.2024.07.06.09.11.54
+        d=1e100.net; s=20230601; t=1720284541; x=1720889341;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=7pPLymTdWA31lQrXZwdfEII/TYIYPSXMJ6wqAirrqs4=;
+        b=k5lxXXe4Kh4MkiPOoOu5UOx44dQrHPREdaqWBiAEYlDIslWRBMcy7FCJ2aG7RqQni0
+         funPvkelpPg4RTCOhLT80BdD/KkbKeG+tQt/x5hYfO3jB14nvYwQpuTUx99oc8Dls6is
+         bZyNr76d2VWCFiI00u/1/a629b/Z41o4tdy7LG125yCEgsE0Lz3CU1jIe1GThxGL/Lc8
+         QbfQMM01LPlQQEQOzydjihXd3U4O7VEDBHnSDwHK6fPBsFX+VvFbGsE1kqskTaRYUkkJ
+         Xc2fOJNPcbfFiGdYfZG2BB23yTdgrlcrsa6n7tcVFwoiiF+fe89k0NdqrgPOf8cSV+Ku
+         t/kA==
+X-Forwarded-Encrypted: i=1; AJvYcCXS9Te4spjKeGliRe73ZVfS/4915OMzvCQPBAeBZJ9xaCUVpsGcvBoivZyNhwtLwKOwBd9OwpB0desj4NBkOYl5/3gBrSqdENsy69rTFhC2D3ESeu3HLUDOPhm03UXAndpAzil9jIDdTwzlRpNpeZ2DyGk1Suhc+YClKXEJwDGU/5hsSNUjde2QOyU1TZ+2k9vpwZZuwQGl7QcU17k+TTZh
+X-Gm-Message-State: AOJu0Yx8gklIB+Rm02tXGO+Csj1UdldbZbmzSqcaaC48FlHTXrU5M8iT
+	P/CB+Co1mejlWSPhHf2PE4rDQMx/IG6rRcPrGDoyy4S4FDpwb/oJ
+X-Google-Smtp-Source: AGHT+IENJeiU7Mi8p64xH7HmJ8ROz4UbZ9E6gDDBcfa1jvirP9W3uzmIUxJcyVS/Lt1WZqvP42h/qQ==
+X-Received: by 2002:a17:902:f541:b0:1fb:29d1:501b with SMTP id d9443c01a7336-1fb33dfc2f8mr53062975ad.5.1720284540933;
+        Sat, 06 Jul 2024 09:49:00 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1fb3419e297sm50786015ad.70.2024.07.06.09.48.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 06 Jul 2024 09:11:54 -0700 (PDT)
-Date: Sat, 6 Jul 2024 18:11:52 +0200
-From: Stanislav Jakubek <stano.jakubek@gmail.com>
-To: Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Rob Herring <robh@kernel.org>,
+        Sat, 06 Jul 2024 09:48:59 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Sat, 6 Jul 2024 09:48:58 -0700
+From: Guenter Roeck <linux@roeck-us.net>
+To: Inochi Amaoto <inochiama@outlook.com>
+Cc: Jean Delvare <jdelvare@suse.com>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Orson Zhai <orsonzhai@gmail.com>,
-	Baolin Wang <baolin.wang@linux.alibaba.com>,
-	Baolin Wang <baolin.wang7@gmail.com>,
-	Chunyan Zhang <zhang.lyra@gmail.com>
-Cc: linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: rtc: sprd,sc2731-rtc: convert to YAML
-Message-ID: <ZolsyEC8eeJWNIb6@standask-GA-A55M-S2HP>
+	Chen Wang <unicorn_wang@outlook.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org, linux-riscv@lists.infradead.org,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v6 1/2] dt-bindings: hwmon: Add Sophgo SG2042 external
+ hardware monitor support
+Message-ID: <5a2e23f4-d54a-45ae-a09d-e557b110e017@roeck-us.net>
+References: <IA1PR20MB4953967EA6AF3A6EFAE6AB10BBDD2@IA1PR20MB4953.namprd20.prod.outlook.com>
+ <IA1PR20MB4953F58B631D836F3863115ABBDD2@IA1PR20MB4953.namprd20.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,106 +95,69 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <IA1PR20MB4953F58B631D836F3863115ABBDD2@IA1PR20MB4953.namprd20.prod.outlook.com>
 
-Convert the Spreadtrum SC2731 RTC bindings to DT schema.
-Rename file to match compatible.
+On Wed, Jul 03, 2024 at 10:30:43AM +0800, Inochi Amaoto wrote:
+> Due to the design, Sophgo SG2042 use an external MCU to provide
+> hardware information, thermal information and reset control.
+> 
+> Add bindings for this monitor device.
+> 
+> Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+>  .../hwmon/sophgo,sg2042-hwmon-mcu.yaml        | 43 +++++++++++++++++++
+>  1 file changed, 43 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/sophgo,sg2042-hwmon-mcu.yaml
+> 
+> --
+> 2.45.2
+> 
+> diff --git a/Documentation/devicetree/bindings/hwmon/sophgo,sg2042-hwmon-mcu.yaml b/Documentation/devicetree/bindings/hwmon/sophgo,sg2042-hwmon-mcu.yaml
+> new file mode 100644
+> index 000000000000..f0667ac41d75
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/sophgo,sg2042-hwmon-mcu.yaml
+> @@ -0,0 +1,43 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/hwmon/sophgo,sg2042-hwmon-mcu.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Sophgo SG2042 onboard MCU support
+> +
+> +maintainers:
+> +  - Inochi Amaoto <inochiama@outlook.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: sophgo,sg2042-hwmon-mcu
 
-Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
----
- .../bindings/rtc/sprd,sc2731-rtc.yaml         | 49 +++++++++++++++++++
- .../bindings/rtc/sprd,sc27xx-rtc.txt          | 26 ----------
- 2 files changed, 49 insertions(+), 26 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/rtc/sprd,sc2731-rtc.yaml
- delete mode 100644 Documentation/devicetree/bindings/rtc/sprd,sc27xx-rtc.txt
+According to the other patch, this actually covers four
+distinct models/devices.
 
-diff --git a/Documentation/devicetree/bindings/rtc/sprd,sc2731-rtc.yaml b/Documentation/devicetree/bindings/rtc/sprd,sc2731-rtc.yaml
-new file mode 100644
-index 000000000000..f3d20e976965
---- /dev/null
-+++ b/Documentation/devicetree/bindings/rtc/sprd,sc2731-rtc.yaml
-@@ -0,0 +1,49 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/rtc/sprd,sc2731-rtc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Spreadtrum SC2731 Real Time Clock
-+
-+maintainers:
-+  - Orson Zhai <orsonzhai@gmail.com>
-+  - Baolin Wang <baolin.wang7@gmail.com>
-+  - Chunyan Zhang <zhang.lyra@gmail.com>
-+
-+properties:
-+  compatible:
-+    const: sprd,sc2731-rtc
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+allOf:
-+  - $ref: rtc.yaml#
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    pmic {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      rtc@280 {
-+        compatible = "sprd,sc2731-rtc";
-+        reg = <0x280>;
-+        interrupt-parent = <&sc2731_pmic>;
-+        interrupts = <2 IRQ_TYPE_LEVEL_HIGH>;
-+      };
-+    };
-+...
-diff --git a/Documentation/devicetree/bindings/rtc/sprd,sc27xx-rtc.txt b/Documentation/devicetree/bindings/rtc/sprd,sc27xx-rtc.txt
-deleted file mode 100644
-index 1f5754299d31..000000000000
---- a/Documentation/devicetree/bindings/rtc/sprd,sc27xx-rtc.txt
-+++ /dev/null
-@@ -1,26 +0,0 @@
--Spreadtrum SC27xx Real Time Clock
--
--Required properties:
--- compatible: should be "sprd,sc2731-rtc".
--- reg: address offset of rtc register.
--- interrupts: rtc alarm interrupt.
--
--Example:
--
--	sc2731_pmic: pmic@0 {
--		compatible = "sprd,sc2731";
--		reg = <0>;
--		spi-max-frequency = <26000000>;
--		interrupts = <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
--		interrupt-controller;
--		#interrupt-cells = <2>;
--		#address-cells = <1>;
--		#size-cells = <0>;
--
--		rtc@280 {
--			compatible = "sprd,sc2731-rtc";
--			reg = <0x280>;
--			interrupt-parent = <&sc2731_pmic>;
--			interrupts = <2 IRQ_TYPE_LEVEL_HIGH>;
--		};
--	};
--- 
-2.34.1
+static const struct sg2042_mcu_board_data sg2042_boards_data[] = {
+> +	{
+> +		.id = 0x80,
+> +		.name = "SG2042 evb x8",
+> +	},
+> +	{
+> +		.id = 0x81,
+> +		.name = "SG2042R evb",
+> +	},
+> +	{
+> +		.id = 0x83,
+> +		.name = "SG2042 evb x4",
+> +	},
+> +	{
+> +		.id = 0x90,
+> +		.name = "Milk-V Pioneer",
+> +	},
+> +};
+> +
 
+Is it really appropriate to use a single compatible property for all of those ?
+
+Guenter
 
