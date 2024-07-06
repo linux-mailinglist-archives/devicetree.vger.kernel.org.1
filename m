@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-83601-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83602-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5081929385
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 14:25:50 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D20A929389
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 14:27:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 47AF11F21AB6
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 12:25:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0ABA1282FD7
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 12:27:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 794B681727;
-	Sat,  6 Jul 2024 12:25:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64CA18174E;
+	Sat,  6 Jul 2024 12:27:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IIbfvqXf"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="u16bcXx/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBCC27D3E3
-	for <devicetree@vger.kernel.org>; Sat,  6 Jul 2024 12:25:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A28F57D3E3
+	for <devicetree@vger.kernel.org>; Sat,  6 Jul 2024 12:27:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720268745; cv=none; b=aYq11O1JMB1bwrJX0PwugTZGVZ90SscvSnXL/MQh4k2QjLlt4MVPCxg4B1u+7JH8ecVhEN7Jl8yxnS21IsDFLnNazwJkzQ2s1t3fWoTDFLfGdPGNT7SWZ3nLDBtk38n0tEcqeiogXakx2pDd8bE3P3jgWdhd4GZXQjUrdJZr/mU=
+	t=1720268853; cv=none; b=c/VudgvBibiEA0VPe2WfnSFPJf8CaqQx37XhMK+B9V0+JS37sUGMKaudf7bIpR86/TDcKLOWRfo/7f1LBLlxYB7kLGkMS/HUeqiZEMRRxXmNySsHtaQLx30Lsq1sT+IDZWPPURHc8phEoNxykBDOY7S5UrGGTe679TttbWMGyk0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720268745; c=relaxed/simple;
-	bh=DFZp1w3U1zLZ9mYRVJJhPbbkzweHlhuPmDJD27v2LZU=;
+	s=arc-20240116; t=1720268853; c=relaxed/simple;
+	bh=CNh77vBEEcst80YNM8uwqUWtpZsl1u1HS+xSctV9qng=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rZo0tuGuWtvUHovNjdgxJD5uqMz0pW2rdEhWl7uExyS8AEnfMJ4dciolEFSWXurRWsJlzaeu/Gai6bSH0aStRHOEgqi+xOV7IG8F3rWBX8CzxZcu7Jfg1QZ0ayhbgphOp0r328DS5c6GvA5WDS9fmWyhOt5IYHQZXMKzk6fdYQQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IIbfvqXf; arc=none smtp.client-ip=209.85.218.47
+	 In-Reply-To:Content-Type; b=FTrgNWAaUQwkLDSeIso0Dxmf8+2Pas0qqvOKEWSkrW+f0qfzlXenOib5sRO7EiLRv8eH0Fric6ev8LFiNVggphg9Xi9TpPY8IqQGQyiFi2+l8dL2VLucKJy/dNzysyzN/8TwXDfCgrre6DdWxeB7ScLJw10EouY8jLFVIOS/lS0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=u16bcXx/; arc=none smtp.client-ip=209.85.208.171
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a77abe5c709so306250666b.2
-        for <devicetree@vger.kernel.org>; Sat, 06 Jul 2024 05:25:43 -0700 (PDT)
+Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2ee794ebffbso39131381fa.1
+        for <devicetree@vger.kernel.org>; Sat, 06 Jul 2024 05:27:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1720268742; x=1720873542; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1720268850; x=1720873650; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=GzVcGfV+V/qu8k2Xj2lgZCFxGBSRmb7rl1SXjaVtCD8=;
-        b=IIbfvqXfUlPCVyHb+vb3Lrwh1pgXHI0EMD5FC4NXGiT4wrej0cTo9GAGYsBNNXI2Ax
-         EVIyxQ4O5Z+cDJ3tbbMO8cgD6dLNepBr/fub21ZybbJuGEXYyXIj6xmsJuef0Akxq1LX
-         MLhH1yGlD+HBZT1BImApEO+N5UeurOz8C97HzQ9gRqG66/N1jXXIyXHnJWkIn+ow/xrx
-         iobHWe6RSHRNHZ9IhJHsnoiDlHuNTu4XRzN5vLvNj+zQaKNkj1q6e+W5hiVatKRGGTxV
-         R1P/vITlryhwe0SquRC0Fmg8D6mCs6OVt0D0K0z1+HfP7kXjtVN+txb01zY4bqZlA8vI
-         sOfQ==
+        bh=7OzdIv4B3CXoRooPpy7PW3AjhEb9rUJkTARdZztIO/8=;
+        b=u16bcXx//FVL0+fE8XM+dlUblx9eP8E4BGlwx2V1yZalRhfuP1b99XhcaEVMMa9Tuf
+         +s/64o9EW2rPbQGbPjuPkSJ/JXNBEp6nn3InvSP7BH7WhROxs7ZiiXY61zxXOAYHooS7
+         SVDRhJGZljbwqI845zhj7anUBfc1tXQbcOx68NUIrNzCH3cwElFEdFLWWEGlJAKaZyA2
+         rFRm6y6TVL8Wb60Cl0ym01Pizwft6sM1vrlFaTxmtcAuCiq9qU4b43FeMDQCvjqOpN2Z
+         9SWk5dRahP7U27Rnu9fOkpzBgQE+xnV0ENNFcGE1CSFB1guMH/bsq+P18jxnkYQlx+w2
+         XBGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720268742; x=1720873542;
+        d=1e100.net; s=20230601; t=1720268850; x=1720873650;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=GzVcGfV+V/qu8k2Xj2lgZCFxGBSRmb7rl1SXjaVtCD8=;
-        b=P0XC+cMGEf0ALa07IIkKm6BNkAUXTbBUPtxFkt2PqVqMv9qKpimKkhxfd+p6NCFMr7
-         gOBB2oqkvclaXvdwvQtqBkHNDhSHP9tqirdRXuXvU5ouSoxTkAlLptKTFe7kO0jKHL4c
-         Ylh0ziFv5O+ZGzQp/N0XLuLnECsqFMnPMvHNTDc8FZcbBAcLlen9w1icN0MIfDiRHKZO
-         uf8sKkLM2fanWTHf/tgDvIcxh5TFZ1BqOiFLwmqrpb3tYqlsymKL0GriuVJ2Hpf1zJ2E
-         /KN7KK2qwsqLNSFSSzlG+xWcPNw3c9MQI6hVKB3KCtbqDZoxqSY5ADYJ00dLAy6QRCyb
-         S0QQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUjbc8BQfwS1KzEI6Wiry+JrlG0VIviwG7ECUsbRYCvCTF7tk2oAoCQmuncvJ260dsCJdCGD133yiLKMaSzHVRzma9jOCBcYAT4Gw==
-X-Gm-Message-State: AOJu0Yxclm/Jg3zwnt6RH39Sq1YZCXNhzkECxu85+tXOSoV29Xw52+01
-	zFP//xspHiQO9w/4/PBfeq5sTgBKIF/W+ilxdT1fFAjpLBoX4NHoETSDeRybk58=
-X-Google-Smtp-Source: AGHT+IFesui1g3h3kXHDuok+m5oigNedPmIZKPMtcnYCh6HpEOC2GIsFKqa6U0WqyvXH/75yivsacA==
-X-Received: by 2002:a17:906:6b19:b0:a77:c9cc:f96f with SMTP id a640c23a62f3a-a77c9ccfaaamr310088666b.7.1720268741610;
-        Sat, 06 Jul 2024 05:25:41 -0700 (PDT)
+        bh=7OzdIv4B3CXoRooPpy7PW3AjhEb9rUJkTARdZztIO/8=;
+        b=cP2fMfuKzU+3tejo1q0nyb3Vzc0T+ehKeW1bcXLLKsSjdud5fQdrbGGl28Ge97CF8z
+         RTeuOdMErpEj6XGgUpgOcCtzEZTEIfUHlw2/wWgZnFr+kyxi46RBbbxFY0sHUd5A/0lJ
+         2MTyn+tsGzjhmV7Roavg+5P3CwDMw46AAGHd+777/1RcG5j5twVCq6fVY5a5ITe99bq7
+         F3Fkh753at/urn8ZHseunnMXCd4PYWuxpof+eGTcyZ9ynmU7B2Smem/iEDt0au8iEWH1
+         CRoip9Ax8O6eEtnISUWXjSEke2iG8eBsx65sUy4pmgb4cm5HQI3N8PY7ff2IBa4mSf/h
+         gCBA==
+X-Forwarded-Encrypted: i=1; AJvYcCXzn1Tm5FRIbx3ZpxD5q8+LLadnp0SMDYP2fYKIAIc6HzBUMCUNiRG+6Vd1PBknIgtT1eEjLhIOGIIgEvTULIRnrmFf/W5WkOPftQ==
+X-Gm-Message-State: AOJu0Yy0n+tt2fOKK6PY0CqpSSi1vXWV5kqNp38iiijcpG9WteStD3vF
+	BTgwtUNwOhkYUqT85y+lzA4THKHXzqs8UWjQbkjhpBGmdYTYpU4+QUP2LGiBn/M=
+X-Google-Smtp-Source: AGHT+IG0zM4EoZaIWz2SJ7wgUaWziV/xyRRgtrQtEvnRyahvRk4wDLrwnXeaQF2iTgDHymRZcJ3nSQ==
+X-Received: by 2002:a2e:9ad4:0:b0:2ee:8566:32cb with SMTP id 38308e7fff4ca-2ee8ed91179mr54011221fa.16.1720268848945;
+        Sat, 06 Jul 2024 05:27:28 -0700 (PDT)
 Received: from [192.168.105.194] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a77c25b6b47sm186760066b.199.2024.07.06.05.25.39
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a77dfd03b3fsm70663566b.162.2024.07.06.05.27.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 06 Jul 2024 05:25:40 -0700 (PDT)
-Message-ID: <1d8e3779-aebf-4f27-bd54-58007b80192a@linaro.org>
-Date: Sat, 6 Jul 2024 14:25:37 +0200
+        Sat, 06 Jul 2024 05:27:28 -0700 (PDT)
+Message-ID: <635cc297-1111-41fa-b8da-06f69447ba22@linaro.org>
+Date: Sat, 6 Jul 2024 14:27:26 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,24 +77,13 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 6/8] clk: qcom: Add support for Display clock Controllers
- on SA8775P
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Taniya Das <quic_tdas@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
- linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- quic_jkona@quicinc.com, quic_imrashai@quicinc.com
-References: <20240612-sa8775p-mm-clock-controllers-v1-0-db295a846ee7@quicinc.com>
- <20240612-sa8775p-mm-clock-controllers-v1-6-db295a846ee7@quicinc.com>
- <37bbd466-742a-4a23-b3f7-97f8da109608@linaro.org>
- <053e047b-7594-48bc-ac1b-2368c0c8f1cc@quicinc.com>
- <8b19c43e-6b13-4b09-9498-ee0b24749d3f@quicinc.com>
- <ucgeexs6impgapot4a55cwzqy5kv374jkyhylojvpmstm7cf42@r4i5toizchn2>
+Subject: Re: [PATCH v2] arm64: dts: qcom: sc7280: Enable download mode
+ register write
+To: Mukesh Ojha <quic_mojha@quicinc.com>, andersson@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240705143443.1491956-1-quic_mojha@quicinc.com>
 Content-Language: en-US
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
@@ -132,33 +121,18 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <ucgeexs6impgapot4a55cwzqy5kv374jkyhylojvpmstm7cf42@r4i5toizchn2>
+In-Reply-To: <20240705143443.1491956-1-quic_mojha@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 5.07.2024 5:04 PM, Dmitry Baryshkov wrote:
-> On Wed, Jul 03, 2024 at 11:17:01PM GMT, Taniya Das wrote:
->>
->>
->> On 6/21/2024 10:03 AM, Taniya Das wrote:
->>>> Please merge this into one to save on boilerplate, take a look
->>>> at dispcc-sc8280xp.c
->>>>
->>>
->>> I did take a look at the dispcc for SC8280XP before posting the series,
->>> but it kind of looked tricky to add fixes for a particular dispcc.
->>> Debugging could also be difficult in my opinion.
->>> Though I understand that we are trying to optimize by re-using few
->>> common structures/probe but from clocks side they are all redefined.
->>> That was the reason to keep them separate.
->>
->> Konrad, are you good with the proposal to keep the two instance of display
->> clock controllers as separate drivers? As I looking to post
->> the next patch series, please let me know your comments.
+On 5.07.2024 4:34 PM, Mukesh Ojha wrote:
+> Enable download mode setting for sc7280 which can help collect
+> ramdump for this SoC.
 > 
-> I'd say, continue with the separate drivers.
+> Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
+> ---
 
-+1
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
 
