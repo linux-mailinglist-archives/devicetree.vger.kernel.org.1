@@ -1,195 +1,104 @@
-Return-Path: <devicetree+bounces-83627-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83628-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7F1592953A
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 23:12:31 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F2AF929563
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jul 2024 00:01:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 536A91F2174E
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 21:12:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9E0CAB211EB
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 22:01:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CDB7210F8;
-	Sat,  6 Jul 2024 21:12:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FDFE224EF;
+	Sat,  6 Jul 2024 22:00:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lB8GNJOs"
+	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="jbQ7oxWu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from ixit.cz (ip-89-177-23-149.bb.vodafone.cz [89.177.23.149])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 184EB1CD13;
-	Sat,  6 Jul 2024 21:12:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 898E71BF58;
+	Sat,  6 Jul 2024 22:00:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.177.23.149
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720300347; cv=none; b=FlhRclgdPdWRP/Cqd/+L8M4A7ivwpCF6ZulTh5h7ChJNwHndUbopz+NHREkWo/dDKTApWiGbqlgeq20Bm/hsXcFo5GSvJx1c/W0uY2FI9oUjQG9xlm/kbx32WePuaKK8AWQSxuutJkjM480ArHkV6PIc44fTD55gvq2LSxnC7Bc=
+	t=1720303255; cv=none; b=tDrQ4SExq+mb2GJj7JcAShhqjZl2KU4b9plg0K8zU/M0g0jlKrRvSQjWMA9WG4v4CZUu3ezeC1RaDPxdx4PIARKs/AogZxAtt7+hqs+Fm9f+eL7m2Bt5m5Lbsa7S5AIeZqIz7Nb0FYzS9wsvYF92jqEkJXb4wdZpW6DwbOaIOs4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720300347; c=relaxed/simple;
-	bh=nJNFookH7BOLgSmzU5vUHiCpMqpfXwBi8e5XFCkRAAI=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=IKZmaeRUDcwhawHOVAoDFpxRMz7/JE/hoSjfzwG42EoIOlFaUTPsPu6fCXaOp77rziTygbpRsMbWdk3X8M/F7CYFhO0L8UNh68KdkAS4164IydI1nZESXGJDBRkDkwqcNMVs2HcjVEeTAFN5ObXJsGkBME2NbCWXnreyCfUDrok=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lB8GNJOs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70F27C2BD10;
-	Sat,  6 Jul 2024 21:12:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720300346;
-	bh=nJNFookH7BOLgSmzU5vUHiCpMqpfXwBi8e5XFCkRAAI=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=lB8GNJOsB+fzmHXJ3J5F2XVWshm4+q5LVbyVHrUBv9+8AgwwybYbFRsHp8eWukAm5
-	 /bnZncL8sPdJ4+RzyAciX/y4EgUoNr1m6KGtW3G/HWyCoJNc6yK7NZ1jxecnpM0g0C
-	 PJH89ZQK58h/4Vbh8uohhgKwNk6GrFsKD75o8Zi3+trHVcCxStS7aVWeAGNS93CSzj
-	 Cqr5bTFGLD4+YSyAj7WohalwOBPBI+GZxCBnAEtsHLekrUWughhp/36hJctJ/F1ZC8
-	 kOAfvxxtpK4Di/HNCbfSZV8AjvlAiLn0AldxvLB/9nXBjzftHjm/ji6GddcSDSZh8G
-	 ODs2r8s+ryndQ==
-Date: Sat, 06 Jul 2024 15:12:25 -0600
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1720303255; c=relaxed/simple;
+	bh=L0DmlBrywElD3FskQlMVzfQTsHLaAQHxjythqqbokUI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=HOrk+ySp3UomykT5aReUxL3UuL5ANzIOT479Bw5uZMNf1VBlmk3L/HNd5P5o1EyctwH4FzH21kbQc7w1ssYavFt8mLL/i1ZEIAxDVHrzS0fpIExErwHhiJU6Na8A9tGyato9sD2iQdkiAsMgqwdLJ+9SxL7D2MCa0gfH/99b8Bo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=jbQ7oxWu; arc=none smtp.client-ip=89.177.23.149
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ixit.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
+Received: from newone.attlocal.net (76-224-187-148.lightspeed.sntcca.sbcglobal.net [76.224.187.148])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by ixit.cz (Postfix) with ESMTPSA id 02E911650ED;
+	Sun,  7 Jul 2024 00:00:44 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+	t=1720303247;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=PqfZG+GyBCV/bwFst3yoT6QdmPT89Y9QsWEZ0NJOICM=;
+	b=jbQ7oxWu0iK1ODnOkFb8/aL7t9anC92oBIiTqoP11ejxyx8vfwu4QJDRCPbpObbjLew+go
+	gzE6avDQYUlTdklw3Bomx3gDwbZbyCru7NE3X9QT4fncWjkBHHhYlDsGQ3EFgrKlTL5lEe
+	U8PFdBIZVCDjbvwTURleOkEao8aM+/Y=
+From: David Heidelberg <david@ixit.cz>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: David Heidelberg <david@ixit.cz>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] ARM: dts: qcom: msm8960: correct memory base
+Date: Sat,  6 Jul 2024 15:00:30 -0700
+Message-ID: <20240706220041.241839-1-david@ixit.cz>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Mark Watson <markus.c.watson@gmail.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- conor+dt@kernel.org, krzk+dt@kernel.org
-In-Reply-To: <ZomhRSs3Y/EQKXNa@laptop>
-References: <ZomhRSs3Y/EQKXNa@laptop>
-Message-Id: <172030034555.3339698.1374802054532903085.robh@kernel.org>
-Subject: Re: [PATCH] dt-bindings: misc: axi-fifo: Add dt documentation for
- xilinx axi-fifo
+Content-Transfer-Encoding: 8bit
 
+DeviceTree validation requires a unit address on the memory node, adjust
+the base to match [Ref] and use this as unit address.
 
-On Sat, 06 Jul 2024 16:55:49 -0300, Mark Watson wrote:
-> This resolves a checkpatch warning in drivers/staging/axis-fifo
-> regarding a missing devie-tree binding. The full warning is included
-> below.
-> 
-> WARNING: DT compatible string "xlnx,axi-fifo-mm-s-4.1" appears
-> un-documented -- check ./Documentation/devicetree/bindings/
-> +       { .compatible = "xlnx,axi-fifo-mm-s-4.1", },
-> 
-> Signed-off-by: Mark Watson <markus.c.watson@gmail.com>
-> ---
->  .../bindings/misc/xlnx,axi-fifo-mm-s-4.1.yaml | 214 ++++++++++++++++++
->  1 file changed, 214 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/misc/xlnx,axi-fifo-mm-s-4.1.yaml
-> 
+The bootloader will update the information with the actual values during
+boot.
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Ref: https://github.com/msm8916-mainline/lk2nd/blob/main/target/msm8960/rules.mk
 
-yamllint warnings/errors:
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Signed-off-by: David Heidelberg <david@ixit.cz>
+---
+ arch/arm/boot/dts/qcom/qcom-msm8960.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/misc/xlnx,axi-fifo-mm-s-4.1.yaml: 'maintainers' is a required property
-	hint: Metaschema for devicetree binding documentation
-	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/misc/xlnx,axi-fifo-mm-s-4.1.yaml: properties:interrupt-parent: False schema does not allow {'$ref': '/schemas/types.yaml#/definitions/phandle'}
-	from schema $id: http://devicetree.org/meta-schemas/interrupts.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/misc/xlnx,axi-fifo-mm-s-4.1.yaml: properties:xlnx,axis-tid-width: 'anyOf' conditional failed, one must be fixed:
-	'description' is a dependency of '$ref'
-	'/schemas/types.yaml#/definitions/uint32' does not match '^#/(definitions|\\$defs)/'
-		hint: A vendor property can have a $ref to a a $defs schema
-	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
-	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/misc/xlnx,axi-fifo-mm-s-4.1.yaml: properties:xlnx,rx-fifo-depth: 'anyOf' conditional failed, one must be fixed:
-	'description' is a dependency of '$ref'
-	'/schemas/types.yaml#/definitions/uint32' does not match '^#/(definitions|\\$defs)/'
-		hint: A vendor property can have a $ref to a a $defs schema
-	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
-	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/misc/xlnx,axi-fifo-mm-s-4.1.yaml: properties:xlnx,axis-tuser-width: 'anyOf' conditional failed, one must be fixed:
-	'description' is a dependency of '$ref'
-	'/schemas/types.yaml#/definitions/uint32' does not match '^#/(definitions|\\$defs)/'
-		hint: A vendor property can have a $ref to a a $defs schema
-	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
-	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/misc/xlnx,axi-fifo-mm-s-4.1.yaml: properties:xlnx,tx-fifo-depth: 'anyOf' conditional failed, one must be fixed:
-	'description' is a dependency of '$ref'
-	'/schemas/types.yaml#/definitions/uint32' does not match '^#/(definitions|\\$defs)/'
-		hint: A vendor property can have a $ref to a a $defs schema
-	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
-	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/misc/xlnx,axi-fifo-mm-s-4.1.yaml: properties:xlnx,tx-fifo-pf-threshold: 'anyOf' conditional failed, one must be fixed:
-	'description' is a dependency of '$ref'
-	'/schemas/types.yaml#/definitions/uint32' does not match '^#/(definitions|\\$defs)/'
-		hint: A vendor property can have a $ref to a a $defs schema
-	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
-	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/misc/xlnx,axi-fifo-mm-s-4.1.yaml: properties:xlnx,axis-tdest-width: 'anyOf' conditional failed, one must be fixed:
-	'description' is a dependency of '$ref'
-	'/schemas/types.yaml#/definitions/uint32' does not match '^#/(definitions|\\$defs)/'
-		hint: A vendor property can have a $ref to a a $defs schema
-	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
-	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/misc/xlnx,axi-fifo-mm-s-4.1.yaml: properties:xlnx,rx-fifo-pf-threshold: 'anyOf' conditional failed, one must be fixed:
-	'description' is a dependency of '$ref'
-	'/schemas/types.yaml#/definitions/uint32' does not match '^#/(definitions|\\$defs)/'
-		hint: A vendor property can have a $ref to a a $defs schema
-	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
-	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/misc/xlnx,axi-fifo-mm-s-4.1.yaml: properties:xlnx,rx-min-pkt-size: 'anyOf' conditional failed, one must be fixed:
-	'description' is a dependency of '$ref'
-	'/schemas/types.yaml#/definitions/uint32' does not match '^#/(definitions|\\$defs)/'
-		hint: A vendor property can have a $ref to a a $defs schema
-	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
-	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/misc/xlnx,axi-fifo-mm-s-4.1.yaml: properties:xlnx,tx-max-pkt-size: 'anyOf' conditional failed, one must be fixed:
-	'description' is a dependency of '$ref'
-	'/schemas/types.yaml#/definitions/uint32' does not match '^#/(definitions|\\$defs)/'
-		hint: A vendor property can have a $ref to a a $defs schema
-	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
-	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/misc/xlnx,axi-fifo-mm-s-4.1.yaml: properties:xlnx,tx-fifo-pe-threshold: 'anyOf' conditional failed, one must be fixed:
-	'description' is a dependency of '$ref'
-	'/schemas/types.yaml#/definitions/uint32' does not match '^#/(definitions|\\$defs)/'
-		hint: A vendor property can have a $ref to a a $defs schema
-	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
-	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/misc/xlnx,axi-fifo-mm-s-4.1.yaml: properties:xlnx,rx-fifo-pe-threshold: 'anyOf' conditional failed, one must be fixed:
-	'description' is a dependency of '$ref'
-	'/schemas/types.yaml#/definitions/uint32' does not match '^#/(definitions|\\$defs)/'
-		hint: A vendor property can have a $ref to a a $defs schema
-	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
-	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/misc/xlnx,axi-fifo-mm-s-4.1.yaml: xlnx,axi-str-rxd-tdata-width: missing type definition
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/misc/xlnx,axi-fifo-mm-s-4.1.yaml: xlnx,axi-str-txc-tdata-width: missing type definition
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/misc/xlnx,axi-fifo-mm-s-4.1.yaml: xlnx,axi-str-txd-tdata-width: missing type definition
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/misc/xlnx,axi-fifo-mm-s-4.1.yaml: xlnx,data-interface-type: missing type definition
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/misc/xlnx,axi-fifo-mm-s-4.1.yaml: xlnx,has-axis-tdest: missing type definition
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/misc/xlnx,axi-fifo-mm-s-4.1.yaml: xlnx,has-axis-tid: missing type definition
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/misc/xlnx,axi-fifo-mm-s-4.1.yaml: xlnx,has-axis-tkeep: missing type definition
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/misc/xlnx,axi-fifo-mm-s-4.1.yaml: xlnx,has-axis-tstrb: missing type definition
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/misc/xlnx,axi-fifo-mm-s-4.1.yaml: xlnx,has-axis-tuser: missing type definition
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/misc/xlnx,axi-fifo-mm-s-4.1.yaml: xlnx,s-axi-id-width: missing type definition
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/misc/xlnx,axi-fifo-mm-s-4.1.yaml: xlnx,s-axi4-data-width: missing type definition
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/misc/xlnx,axi-fifo-mm-s-4.1.yaml: xlnx,select-xpm: missing type definition
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/misc/xlnx,axi-fifo-mm-s-4.1.yaml: xlnx,use-rx-cut-through: missing type definition
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/misc/xlnx,axi-fifo-mm-s-4.1.yaml: xlnx,use-rx-data: missing type definition
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/misc/xlnx,axi-fifo-mm-s-4.1.yaml: xlnx,use-tx-ctrl: missing type definition
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/misc/xlnx,axi-fifo-mm-s-4.1.yaml: xlnx,use-tx-cut-through: missing type definition
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/misc/xlnx,axi-fifo-mm-s-4.1.yaml: xlnx,use-tx-data: missing type definition
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/misc/xlnx,axi-fifo-mm-s-4.1.example.dtb: axi_fifo_mm_s@43c00000: xlnx,use-rx-data:0:0: 1 was expected
-	from schema $id: http://devicetree.org/schemas/misc/xlnx,axi-fifo-mm-s-4.1.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/misc/xlnx,axi-fifo-mm-s-4.1.example.dtb: axi_fifo_mm_s@43c00000: 'interrupt-parent' is a required property
-	from schema $id: http://devicetree.org/schemas/misc/xlnx,axi-fifo-mm-s-4.1.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/ZomhRSs3Y/EQKXNa@laptop
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+diff --git ./arch/arm/boot/dts/qcom/qcom-msm8960.dtsi ./arch/arm/boot/dts/qcom/qcom-msm8960.dtsi
+index a9c6d2dbb460..ebc43c5c6e5f 100644
+--- ./arch/arm/boot/dts/qcom/qcom-msm8960.dtsi
++++ ./arch/arm/boot/dts/qcom/qcom-msm8960.dtsi
+@@ -47,9 +47,9 @@ L2: l2-cache {
+ 		};
+ 	};
+ 
+-	memory {
++	memory@80000000 {
+ 		device_type = "memory";
+-		reg = <0x0 0x0>;
++		reg = <0x80000000 0>;
+ 	};
+ 
+ 	cpu-pmu {
+-- 
+2.45.2
 
 
