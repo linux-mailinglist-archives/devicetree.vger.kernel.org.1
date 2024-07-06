@@ -1,137 +1,106 @@
-Return-Path: <devicetree+bounces-83559-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83560-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68A36928F98
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 01:53:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 957EE928FB2
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 02:17:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E9C8F2819AF
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2024 23:53:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 515C028402C
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 00:17:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E205146597;
-	Fri,  5 Jul 2024 23:53:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="i5oKoVHp"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF9474A1A;
+	Sat,  6 Jul 2024 00:17:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from ixit.cz (ip-89-177-23-149.bb.vodafone.cz [89.177.23.149])
+Received: from norbury.hmeau.com (helcar.hmeau.com [216.24.177.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD7FE1CD02;
-	Fri,  5 Jul 2024 23:53:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.177.23.149
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B305B629;
+	Sat,  6 Jul 2024 00:17:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=216.24.177.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720223589; cv=none; b=eGK/wQv5Dd/MH2xNWw0X9lEe9JolwcHwmTBTrGPrUrdIWCcbhG9y48MqCsj9b0RYol3GPTuULmyOsFz5vO/z3v3Ig/7ZhtMXZkPM2njTktUgFwul8VZ/hvyWgXf3OiYH/ImNjvLvGDRubSMlVDdGwxX/PftFYGEEb5wGDyCVBII=
+	t=1720225047; cv=none; b=CYB5zfiX73mW0gVAv8x9kwX0yjdWU9pr3vkd6rRTkQp3aOrs/KXk+w53lXZCIkHS6n9vBRssfOJje6zIboljeh8aLQ92nwiQxPImGnfnhPCU/le94ZnZr6uR7sRh53uN6WiOyf4FS9HUo2AwhuuIvBZOJvFMm/3CCb0irP2sCCI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720223589; c=relaxed/simple;
-	bh=3air+A7ccHa6fsMOmaDa+MESI0V1oa0oHDRzEst3Yt0=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=JePwr3Fkc0ddkN/baqFOmnlnHJzQjnqlBWpna1K9MAaz53fsUBdvyvIXuhqHLIQwgzIXlfzxQWren/4fms23sCcWkZWgAU9ejxPLdmldrRpW4sEZrNMZv3erabBXwdMY7hvbft8n5wr30HImGfxKRzlxh/YsLg4L2IHqW//d5Yo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=i5oKoVHp; arc=none smtp.client-ip=89.177.23.149
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ixit.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
-Received: from newone.attlocal.net (76-224-187-148.lightspeed.sntcca.sbcglobal.net [76.224.187.148])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by ixit.cz (Postfix) with ESMTPSA id 85AF7161786;
-	Sat,  6 Jul 2024 01:52:58 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-	t=1720223581;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=juajFapR18+rbVIe+VNt3xVKZE6hUrFZ0A5oAknWLJw=;
-	b=i5oKoVHpRHN3FLZ1ZMQggMLHzjgTx1B7KGZGxk+TgsCaVr4+rpgHT7vF1SjQaPVXZbjiyF
-	UZVW0XCGtlanRZSRMSWs5cDzui32pTPxlL2bJo5xMe1sWYc2QJBz+TUjII9HMrdMJPChxW
-	3a/eMRmGR9E8Go0ZQiozyMtqpL2qR9o=
-From: David Heidelberg <david@ixit.cz>
-To: Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1720225047; c=relaxed/simple;
+	bh=cMJATAPOvLQoqwfPFRdiXpLFlGIrRlz9nAZQSkU3gS0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=t6pCmRhQ1zN74D/u5PSGB8dWdnLcWVqE3o2EkXe31RZ1fAyK418zN/HNwrdDdbtoeRAB4+QKQQm36RWkpmxYjr/gvZ5SeFecp+whpKKeYOpiwa51sHy95G8mVcmtWq2unMOZ+jhoIohmaHE4BJ3pDddnAfxlcX0DhBoPlWM8Gi4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au; spf=pass smtp.mailfrom=gondor.apana.org.au; arc=none smtp.client-ip=216.24.177.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gondor.apana.org.au
+Received: from gwarestrin.arnor.me.apana.org.au ([192.168.103.7])
+	by norbury.hmeau.com with smtp (Exim 4.96 #2 (Debian))
+	id 1sPt5o-006giK-2U;
+	Sat, 06 Jul 2024 10:16:11 +1000
+Received: by gwarestrin.arnor.me.apana.org.au (sSMTP sendmail emulation); Sat, 06 Jul 2024 10:15:57 +1000
+Date: Sat, 6 Jul 2024 10:15:57 +1000
+From: Herbert Xu <herbert@gondor.apana.org.au>
+To: Daniel Golle <daniel@makrotopia.org>
+Cc: Aurelien Jarno <aurelien@aurel32.net>,
+	Olivia Mackall <olivia@selenic.com>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Svyatoslav Ryhel <clamor95@gmail.com>,
-	David Heidelberg <david@ixit.cz>,
-	Maxim Schwalm <maxim.schwalm@gmail.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Thierry Reding <treding@nvidia.com>,
-	devicetree@vger.kernel.org,
-	linux-tegra@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: arm: tegra: Document Nyan, all revisions in kernel tree
-Date: Fri,  5 Jul 2024 16:52:43 -0700
-Message-ID: <20240705235254.126567-1-david@ixit.cz>
-X-Mailer: git-send-email 2.45.2
+	Heiko Stuebner <heiko@sntech.de>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@debian.org>,
+	Dragan Simic <dsimic@manjaro.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Martin Kaiser <martin@kaiser.cx>, Tony Luck <tony.luck@intel.com>,
+	Ard Biesheuvel <ardb@kernel.org>, linux-crypto@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 2/3] hwrng: add hwrng driver for Rockchip RK3568 SoC
+Message-ID: <ZoiMvTzXMFxkfcJF@gondor.apana.org.au>
+References: <cover.1719365405.git.daniel@makrotopia.org>
+ <15b001360cffc0832e7e2748ad900b1336e0fa32.1719365406.git.daniel@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <15b001360cffc0832e7e2748ad900b1336e0fa32.1719365406.git.daniel@makrotopia.org>
 
-Avoid firing useless warnings when running make dtbs_check
+On Wed, Jun 26, 2024 at 02:37:10AM +0100, Daniel Golle wrote:
+>
+> +#ifndef CONFIG_PM
+> +	rk_rng->rng.init = rk_rng_init;
+> +	rk_rng->rng.cleanup = rk_rng_cleanup;
+> +#endif
 
-Signed-off-by: David Heidelberg <david@ixit.cz>
----
- .../devicetree/bindings/arm/tegra.yaml        | 42 +++++++++++++++++++
- 1 file changed, 42 insertions(+)
+Please rewrite this as
 
-diff --git ./Documentation/devicetree/bindings/arm/tegra.yaml ./Documentation/devicetree/bindings/arm/tegra.yaml
-index 8fb4923517d0..2889fd0e6592 100644
---- ./Documentation/devicetree/bindings/arm/tegra.yaml
-+++ ./Documentation/devicetree/bindings/arm/tegra.yaml
-@@ -127,6 +127,48 @@ properties:
-               - nvidia,norrin
-           - const: nvidia,tegra132
-           - const: nvidia,tegra124
-+      - items:
-+          - const: google,nyan-blaze-rev10
-+          - const: google,nyan-blaze-rev9
-+          - const: google,nyan-blaze-rev8
-+          - const: google,nyan-blaze-rev7
-+          - const: google,nyan-blaze-rev6
-+          - const: google,nyan-blaze-rev5
-+          - const: google,nyan-blaze-rev4
-+          - const: google,nyan-blaze-rev3
-+          - const: google,nyan-blaze-rev2
-+          - const: google,nyan-blaze-rev1
-+          - const: google,nyan-blaze-rev0
-+          - const: google,nyan-blaze
-+          - const: google,nyan
-+          - const: nvidia,tegra124
-+      - items:
-+          - const: google,nyan-big-rev10
-+          - const: google,nyan-big-rev9
-+          - const: google,nyan-big-rev8
-+          - const: google,nyan-big-rev7
-+          - const: google,nyan-big-rev6
-+          - const: google,nyan-big-rev5
-+          - const: google,nyan-big-rev4
-+          - const: google,nyan-big-rev3
-+          - const: google,nyan-big-rev2
-+          - const: google,nyan-big-rev1
-+          - const: google,nyan-big-rev0
-+          - const: google,nyan-big
-+          - const: google,nyan
-+          - const: nvidia,tegra124
-+      - items:
-+          - const: google,nyan-big-rev7
-+          - const: google,nyan-big-rev6
-+          - const: google,nyan-big-rev5
-+          - const: google,nyan-big-rev4
-+          - const: google,nyan-big-rev3
-+          - const: google,nyan-big-rev2
-+          - const: google,nyan-big-rev1
-+          - const: google,nyan-big-rev0
-+          - const: google,nyan-big
-+          - const: google,nyan
-+          - const: nvidia,tegra124
-       - items:
-           - enum:
-               - nvidia,darcy
+	if (!IS_ENABLED(CONFIG_PM)) {
+		...
+	}
+
+> +#ifdef CONFIG_PM
+> +static int rk_rng_runtime_suspend(struct device *dev)
+> +{
+> +	struct rk_rng *rk_rng = dev_get_drvdata(dev);
+> +
+> +	rk_rng_cleanup(&rk_rng->rng);
+> +
+> +	return 0;
+> +}
+> +
+> +static int rk_rng_runtime_resume(struct device *dev)
+> +{
+> +	struct rk_rng *rk_rng = dev_get_drvdata(dev);
+> +
+> +	return rk_rng_init(&rk_rng->rng);
+> +}
+> +#endif
+
+These ifdefs should just disappear, with __maybe_unused added
+instead.
+
+Thanks,
 -- 
-2.45.2
-
+Email: Herbert Xu <herbert@gondor.apana.org.au>
+Home Page: http://gondor.apana.org.au/~herbert/
+PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
 
