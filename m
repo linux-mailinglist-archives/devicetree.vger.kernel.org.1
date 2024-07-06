@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-83605-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83606-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BFCA929393
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 14:31:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1721D929397
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 14:35:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BB537282FB9
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 12:31:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4804D1C20F65
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 12:35:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE73928371;
-	Sat,  6 Jul 2024 12:31:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BF736BFC0;
+	Sat,  6 Jul 2024 12:35:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jEbGzdph"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aaKOB4ok"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13C5E23BE
-	for <devicetree@vger.kernel.org>; Sat,  6 Jul 2024 12:31:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDBFE12BF1C
+	for <devicetree@vger.kernel.org>; Sat,  6 Jul 2024 12:34:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720269109; cv=none; b=hlIXmfYWYE3oHIo3H2PlzudYdIds4ExeNv0CZtWmQY7oW7cf3nA9xMxsuUiLb/Ecmvc/UQUcZrMdNC+KVyXADO4Sy0gGenBXI3nSbaue6HWb5GTq1YgpUQ1PZAi0bDeCxNnpUHDuZvClMxHyBKbSfFroY8B7fe+a8HAj6rZwQBw=
+	t=1720269301; cv=none; b=Q26yaf5zrYoVLBlOREbZT3HJC5iy09VRDb1UMIRF1QW1ZA2Pp6UbOG5Whdy0sn9XGP3kmzs40KfhyOPKQgE6Q3IIWigF4dLW8IX/TjVmr2qjNWsvNKmCEzx2FdTEWAoI8P9KPOaLPj5quHYpBMeWEIIoxaMhIneq6rMrVXiWYEw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720269109; c=relaxed/simple;
-	bh=AZeVgGjUhu0VLE0MdVJfGODsbNpLCLUc7QabVgczy4c=;
+	s=arc-20240116; t=1720269301; c=relaxed/simple;
+	bh=N8qxiNxOzTF7l2a5E7y2OOw3RhrWWstM6g44ep0jE7g=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FSpglHxyl5OKFo8PZq5Qtgujwar0FpnzkXbZUtj9L1vQUD/D4ZYBwp/qT7f9arIVvmVLc6ovtzihFXdexXSK+V4ZW8nk0fapDgbuLaR+m36c4lNvlslm76l1qP0x1YbhcMC6De6qkv74lqNTk8wMFi/57PR7oxFYRZS0SKJijCE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jEbGzdph; arc=none smtp.client-ip=209.85.208.45
+	 In-Reply-To:Content-Type; b=TD/De5jPWGAjfznDeJzEeLpGzhyq0E+QL24tHCNbudA8lWHF3WsbkQtCrol4b0p4P/ySEUzsQuBU/fwf/myJq61nBy50QG/mqqqVGJvl4W6V862dvQz3Mo7RGwig4BkfRuhnLv1WA870KYqlkggBTuEwZl1DU83vBETjtYmz70A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=aaKOB4ok; arc=none smtp.client-ip=209.85.218.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-58ef19aa6c4so2337636a12.2
-        for <devicetree@vger.kernel.org>; Sat, 06 Jul 2024 05:31:47 -0700 (PDT)
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a77c2d89af8so241697466b.2
+        for <devicetree@vger.kernel.org>; Sat, 06 Jul 2024 05:34:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1720269106; x=1720873906; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1720269297; x=1720874097; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=WxO9tUoRJ8g2YphFGWhNO5NnoblLdOv7a0AOZSNvnaY=;
-        b=jEbGzdphwYMn99g5rD4CYqpGE1FgTnTeRZTL83RvKQSYiUaetjPXK6CK6gD34Eq+9n
-         qmS7FjaGpVhJegb10zHMr3afEHO29YgW3TnA9ClNuT6X+vvn0YmTNNJJEJsgCy1ygsLU
-         An86qfpKidBEMuYWnaZUiBuun4TbIg8NZBMHj2lLMMxhdbSrJ2QdHPv9Q5dVNquHeBKj
-         BZPgz8c6pmlR6J9sJZyw245ARhVvMiAg7oHlQouf/L9FnLa8gjBSQA8vhUFiHw5gsdhm
-         j83AztYMT/4Q6FFdVA+JR9g/XjEDNPl963RyNysM+PV6F0C8mg6PeIAIU0sriETu9/h5
-         7g6Q==
+        bh=08Kw+l4O9PQ6vVBW6VIbYgR+1zWbPaA4afAxHHCGvu4=;
+        b=aaKOB4ok0OoKsU8nm6DjxpyPRa6o0BuAHfxi5u0w1Yjak8NNhXrQ+Ttq22bPZt5djd
+         yf8jUZfNd4uE9/CrftsBvtpq1Mplq7GyRF6L+yIcCJkq/h3rLhz2lgkJDzC3TOJk1e9h
+         LQvp3rhUrpa79I2kt/9+P/P6So81EHN1FXWR7snYMOG1xA9TxDsVCdHa4DKr9NPbH1Us
+         pzdgEt3MlavKz7Mvh+0hTNrxKyiXtNitHxzh7/u4T8/duvTNs9NmeECV3ul6aBWwVexd
+         zRTRuagHCSshhks3c6yNLQJGQG08HNgl2WLiIgwYQWVV4ow0YXYxyT+oU20oZY0g9ffx
+         ZxgA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720269106; x=1720873906;
+        d=1e100.net; s=20230601; t=1720269297; x=1720874097;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=WxO9tUoRJ8g2YphFGWhNO5NnoblLdOv7a0AOZSNvnaY=;
-        b=LlASx1F3NjPxVN2RGhPDHmB9QVxUKYbcXfWuTeKY3p14B/JR6Ksw8jr6Lq0c8NXH8c
-         7eV7i4584yya1ccbtm7jUt9Npqo8doeh/lqqTFQD6SE5nvaAkAZZFH9jpfg7VlvJlaMG
-         CiR+1Ej84Nugg9wRHp8b7EzyrxqzO59hrIy4KzOnCWSUEebw73lzPVMnee+1P7qui4CT
-         4sLivtwsp9D1GQAOeyxLpsC/23O2CWbi/7DOluxEgCkk4sXDDrDZHsNmhELlICA/g0Ot
-         fj79tmuQEOmdZgAT92gTlrg27hi3GtMy4d900dW1z3PpYg99IdfFGMBJybGj/GKP4Zd9
-         G5/g==
-X-Forwarded-Encrypted: i=1; AJvYcCWr3kOB0OY74162PBLNVgPKMu0JZQHBCHReO5tdIf137KeecWaWMyzRmCo2K+hD/rEHK0FHOkckKi65jcVKqAyHqrs+jGnHPFEdew==
-X-Gm-Message-State: AOJu0YxehDo6mbKkgRmyi5JjDYNbhp10YqFRhXxxoGq2tOGlZSNhcVz+
-	ts+QkD2ei9+W0rEBtgX7tWtjiMQJMFNxYYpUYtJGNFajDi/4BmaoJcd9usZ45KA=
-X-Google-Smtp-Source: AGHT+IFI1cK6dkv274ZfwByVzNk3B8KSxmGMCLvDGsiBoU/kAEVX4B/R+FpPnlJdrcjBGgmV37lYoA==
-X-Received: by 2002:a05:6402:5108:b0:57d:692:92d9 with SMTP id 4fb4d7f45d1cf-58e59265f08mr5744423a12.4.1720269105563;
-        Sat, 06 Jul 2024 05:31:45 -0700 (PDT)
+        bh=08Kw+l4O9PQ6vVBW6VIbYgR+1zWbPaA4afAxHHCGvu4=;
+        b=UTs7tJzG7EoddImNL3tMAD6tP6FL8yrNJ3bIDvLlJyqCVjPY+kHQuwDu7GduksrrKN
+         /3tFFHQ4Vuyme0hr5/RywHW3UCf3qka4WcaO67ka8qah/AciCknrBZg+XHwMlCeze6zR
+         K0YfZklJj2AKGeStY4/Oc570VjS+5wQNeLpkDtHpwSXCU3kHK/UWQ6ZttUXMhiKqqklM
+         O8RpgPHgcaC2YtbiGXIe2WOE0iFa67IkaVWvmXuPOU4jr3ERXcl/POF8gqK/ELf0rcmm
+         0M7sOxSt1ZkdZ+/4de5RVg/QmeySunzmRwMjmdGoquo0xrdnOczfQF5czZRAfZVmi9Gg
+         aegQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUhVQjp8gRKlHR0rsBPVjlaMWDXSnYFcEwbQkGlHkeufARSUdLX4J3AkkP5+PceGPOlUOjIi/1PaiXkxf3ScLQyRK6fRXfcs2+eow==
+X-Gm-Message-State: AOJu0YwNldQ/WFci/EOdKivnri3EoEpvjeiFuK0Oi/ua7FIashJ/7n6R
+	/7rcVbRUAxlMljOCP8TBCs10u5xZPGeC9NXQWlnNxiWZGn0+ntzRaTyXnmLXTdY=
+X-Google-Smtp-Source: AGHT+IE9STNKNGTITDsmx9SEfaoEH9cr8oUJZP6k1jkdzI+oKS5bOvRwVpzbbyKMLhZyJ4dq0yK7Xw==
+X-Received: by 2002:a17:906:c116:b0:a72:b361:41df with SMTP id a640c23a62f3a-a77ba72958amr530089566b.73.1720269297074;
+        Sat, 06 Jul 2024 05:34:57 -0700 (PDT)
 Received: from [192.168.105.194] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-58f63380f3csm2126686a12.58.2024.07.06.05.31.43
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a77c3925a96sm177284766b.120.2024.07.06.05.34.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 06 Jul 2024 05:31:45 -0700 (PDT)
-Message-ID: <c15fc1de-c930-44b6-a9f9-d17e4da002fe@linaro.org>
-Date: Sat, 6 Jul 2024 14:31:42 +0200
+        Sat, 06 Jul 2024 05:34:56 -0700 (PDT)
+Message-ID: <d17ed113-9293-4286-ad75-4ce2c98e4d12@linaro.org>
+Date: Sat, 6 Jul 2024 14:34:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,21 +77,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] interconnect: qcom: Fix DT backwards compatibility for
- QoS
-To: Bjorn Andersson <andersson@kernel.org>,
- Odelu Kukatla <quic_okukatla@quicinc.com>
-Cc: Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Kees Cook <keescook@chromium.org>,
- cros-qcom-dts-watchers@chromium.org,
- "Gustavo A . R . Silva" <gustavoars@kernel.org>,
- linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-hardening@vger.kernel.org, quic_rlaggysh@quicinc.com,
- quic_mdtipton@quicinc.com
-References: <20240704125515.22194-1-quic_okukatla@quicinc.com>
- <jhfya4mjnckrmogtmusyvwjv4mlyycgqj3apt2kaj5umxprhtv@rfew7c5w3zf5>
+Subject: Re: [PATCH 0/8] Disable SS instances in parkmode for Gen-1 targets
+To: Krishna Kurapati <quic_kriskura@quicinc.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Baruch Siach <baruch@tkos.co.il>, Kathiravan T <quic_kathirav@quicinc.com>,
+ Sivaprakash Murugesan <sivaprak@codeaurora.org>,
+ Andy Gross <andy.gross@linaro.org>, Jeffrey Hugo <quic_jhugo@quicinc.com>,
+ Douglas Anderson <dianders@chromium.org>, Stephen Boyd
+ <swboyd@chromium.org>, Iskren Chernev <me@iskren.info>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>,
+ Vivek Gautam <vivek.gautam@codeaurora.org>
+Cc: linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, quic_ppratap@quicinc.com, quic_jackp@quicinc.com
+References: <20240704152848.3380602-1-quic_kriskura@quicinc.com>
 Content-Language: en-US
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
@@ -129,60 +128,22 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <jhfya4mjnckrmogtmusyvwjv4mlyycgqj3apt2kaj5umxprhtv@rfew7c5w3zf5>
+In-Reply-To: <20240704152848.3380602-1-quic_kriskura@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 4.07.2024 7:44 PM, Bjorn Andersson wrote:
-> On Thu, Jul 04, 2024 at 06:25:15PM GMT, Odelu Kukatla wrote:
->> Add qos_clks_required flag to skip QoS configuration if clocks property
->> is not populated in devicetree for providers which require clocks to be
->> enabled for accessing registers. This is to keep the QoS configuration
->> backwards compatible with devices that have older DTB.
->>
+On 4.07.2024 5:28 PM, Krishna Kurapati wrote:
+> For targets that have only USB3 Gen-1 DWC3 controllers, it is recommended
+> to disable SS instance in park mode to avoid HC died error when working
+> in host mode in situations where the controller is stressed out:
 > 
-> Please read "Describe your changes" [1], and make your commit message
-> start with the problem description - establish to the reader why this
-> change is needed, then follow that with a technical description of the
-> solution (likely in a separate paragraph).
-> 
-> [1] https://docs.kernel.org/process/submitting-patches.html#describe-your-changes
-> 
->> Reported-by: Bjorn Andersson <andersson@kernel.org>
->> Closes: https://lore.kernel.org/all/ciji6nlxn752ina4tmh6kwvek52nxpnguomqek6plwvwgvoqef@yrtexkpmn5br/
->> Signed-off-by: Odelu Kukatla <quic_okukatla@quicinc.com>
->> ---
->>  drivers/interconnect/qcom/icc-rpmh.c | 2 +-
->>  drivers/interconnect/qcom/icc-rpmh.h | 1 +
->>  drivers/interconnect/qcom/sc7280.c   | 2 ++
->>  3 files changed, 4 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/interconnect/qcom/icc-rpmh.c b/drivers/interconnect/qcom/icc-rpmh.c
->> index 93047defd5e2..f49a8e0cb03c 100644
->> --- a/drivers/interconnect/qcom/icc-rpmh.c
->> +++ b/drivers/interconnect/qcom/icc-rpmh.c
->> @@ -311,7 +311,7 @@ int qcom_icc_rpmh_probe(struct platform_device *pdev)
->>  		}
->>  
->>  		qp->num_clks = devm_clk_bulk_get_all(qp->dev, &qp->clks);
->> -		if (qp->num_clks < 0) {
->> +		if (qp->num_clks < 0 || (!qp->num_clks && desc->qos_clks_required)) {
-> 
-> For this new case, I think the dev_info() below makes total sense. I.e.
-> this looks good to me.
-> 
-> 
-> However, the num_clks < 0 case would represent finding a devicetree node
-> with clocks specified, but failing to get these clocks. I believe that
-> this would include EPROBE_DEFER.
-> 
-> I don't think it's correct to print a informational message and continue
-> without QoS. I think we should fail here.
+>  xhci-hcd.12.auto: xHCI host not responding to stop endpoint command
+>  xhci-hcd.12.auto: xHCI host controller not responding, assume dead
+>  xhci-hcd.12.auto: HC died; cleaning up
 
-Since setting QoS settings is optional, I'd say we should simply skip trying
-to do so. Unless setting them on some buses (i.e. ones without failing clocks)
-and not on the rest would cause issues. But then, these settings should be
-bus-local, so perhaps it would still be fine?
+Thanks for looking into this!
+
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
 
