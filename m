@@ -1,149 +1,199 @@
-Return-Path: <devicetree+bounces-83606-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83607-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1721D929397
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 14:35:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FDA992939E
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 14:42:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4804D1C20F65
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 12:35:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3871A283076
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 12:42:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BF736BFC0;
-	Sat,  6 Jul 2024 12:35:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9272728371;
+	Sat,  6 Jul 2024 12:42:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aaKOB4ok"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BoLWMmPc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDBFE12BF1C
-	for <devicetree@vger.kernel.org>; Sat,  6 Jul 2024 12:34:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63C5217FE;
+	Sat,  6 Jul 2024 12:42:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720269301; cv=none; b=Q26yaf5zrYoVLBlOREbZT3HJC5iy09VRDb1UMIRF1QW1ZA2Pp6UbOG5Whdy0sn9XGP3kmzs40KfhyOPKQgE6Q3IIWigF4dLW8IX/TjVmr2qjNWsvNKmCEzx2FdTEWAoI8P9KPOaLPj5quHYpBMeWEIIoxaMhIneq6rMrVXiWYEw=
+	t=1720269756; cv=none; b=V5XZq3abQEU8PXhLUibQUW9QYAtcJwTxYLEjJcb3YMo0g1qLJfZkw5Oa+Fz6EbmGfDUBTj7MhXjg2WOVJssoVL3xVbeMcTRR2dlb5A/XqSSCiHSCWZvkvVWeinvP+XY2SyJqDjurFjHFTUUicxvlW8y39IvoPS0VgzlGm9tOXf4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720269301; c=relaxed/simple;
-	bh=N8qxiNxOzTF7l2a5E7y2OOw3RhrWWstM6g44ep0jE7g=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TD/De5jPWGAjfznDeJzEeLpGzhyq0E+QL24tHCNbudA8lWHF3WsbkQtCrol4b0p4P/ySEUzsQuBU/fwf/myJq61nBy50QG/mqqqVGJvl4W6V862dvQz3Mo7RGwig4BkfRuhnLv1WA870KYqlkggBTuEwZl1DU83vBETjtYmz70A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=aaKOB4ok; arc=none smtp.client-ip=209.85.218.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a77c2d89af8so241697466b.2
-        for <devicetree@vger.kernel.org>; Sat, 06 Jul 2024 05:34:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1720269297; x=1720874097; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=08Kw+l4O9PQ6vVBW6VIbYgR+1zWbPaA4afAxHHCGvu4=;
-        b=aaKOB4ok0OoKsU8nm6DjxpyPRa6o0BuAHfxi5u0w1Yjak8NNhXrQ+Ttq22bPZt5djd
-         yf8jUZfNd4uE9/CrftsBvtpq1Mplq7GyRF6L+yIcCJkq/h3rLhz2lgkJDzC3TOJk1e9h
-         LQvp3rhUrpa79I2kt/9+P/P6So81EHN1FXWR7snYMOG1xA9TxDsVCdHa4DKr9NPbH1Us
-         pzdgEt3MlavKz7Mvh+0hTNrxKyiXtNitHxzh7/u4T8/duvTNs9NmeECV3ul6aBWwVexd
-         zRTRuagHCSshhks3c6yNLQJGQG08HNgl2WLiIgwYQWVV4ow0YXYxyT+oU20oZY0g9ffx
-         ZxgA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720269297; x=1720874097;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=08Kw+l4O9PQ6vVBW6VIbYgR+1zWbPaA4afAxHHCGvu4=;
-        b=UTs7tJzG7EoddImNL3tMAD6tP6FL8yrNJ3bIDvLlJyqCVjPY+kHQuwDu7GduksrrKN
-         /3tFFHQ4Vuyme0hr5/RywHW3UCf3qka4WcaO67ka8qah/AciCknrBZg+XHwMlCeze6zR
-         K0YfZklJj2AKGeStY4/Oc570VjS+5wQNeLpkDtHpwSXCU3kHK/UWQ6ZttUXMhiKqqklM
-         O8RpgPHgcaC2YtbiGXIe2WOE0iFa67IkaVWvmXuPOU4jr3ERXcl/POF8gqK/ELf0rcmm
-         0M7sOxSt1ZkdZ+/4de5RVg/QmeySunzmRwMjmdGoquo0xrdnOczfQF5czZRAfZVmi9Gg
-         aegQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUhVQjp8gRKlHR0rsBPVjlaMWDXSnYFcEwbQkGlHkeufARSUdLX4J3AkkP5+PceGPOlUOjIi/1PaiXkxf3ScLQyRK6fRXfcs2+eow==
-X-Gm-Message-State: AOJu0YwNldQ/WFci/EOdKivnri3EoEpvjeiFuK0Oi/ua7FIashJ/7n6R
-	/7rcVbRUAxlMljOCP8TBCs10u5xZPGeC9NXQWlnNxiWZGn0+ntzRaTyXnmLXTdY=
-X-Google-Smtp-Source: AGHT+IE9STNKNGTITDsmx9SEfaoEH9cr8oUJZP6k1jkdzI+oKS5bOvRwVpzbbyKMLhZyJ4dq0yK7Xw==
-X-Received: by 2002:a17:906:c116:b0:a72:b361:41df with SMTP id a640c23a62f3a-a77ba72958amr530089566b.73.1720269297074;
-        Sat, 06 Jul 2024 05:34:57 -0700 (PDT)
-Received: from [192.168.105.194] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a77c3925a96sm177284766b.120.2024.07.06.05.34.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 06 Jul 2024 05:34:56 -0700 (PDT)
-Message-ID: <d17ed113-9293-4286-ad75-4ce2c98e4d12@linaro.org>
-Date: Sat, 6 Jul 2024 14:34:53 +0200
+	s=arc-20240116; t=1720269756; c=relaxed/simple;
+	bh=5ENXDBMXjmBF8k+3fFYXj93fQplVf1tf/1nvD0CaQKQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=oI1aeUR3SEPBv3Gkucm/HRKGhJfuQdnKTx0UvBL+EeSZiP5mQ5fwWbCB3AuOCvV1VcN8+DJm6mWtxv7glpWVrWI4mXVdA3X7yUjPnYvhGppGMQ846DN2JaZNi+a+Mhco+HJvRiZQNJUf7Qp0PA1tbv1fUH5fCMHvSpDVNGEHOx8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BoLWMmPc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE3FBC2BD10;
+	Sat,  6 Jul 2024 12:42:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720269755;
+	bh=5ENXDBMXjmBF8k+3fFYXj93fQplVf1tf/1nvD0CaQKQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=BoLWMmPcnjpFf8esl6hgCqhPDj5PqyEsrTzO55nalHLxCPaeZFXfSVSj8yK67wH/G
+	 3uODPanPgVwiAtGQEoikDTOqQji5SZij2Gqua89zyBIrKL24W0Lx0CFjy7vA6QFEeW
+	 XYXW+44HhK5U2uvLj/xKpWbusoyYvc6iJaJWFaYrK+++2prj4yjkQzn3r+j5cbIZ/d
+	 1dEM+qzGBLuOO7Sugn19QX/u2trEToCEYrjbE7aWXH/VJer7XCW0FZo5WznS6z/EPb
+	 2cXYpb+NzaMqvz+H/j7e05o+vM2PrgJofxT0vj/ifXDQA1fklOXROxaOt/4yKBiQlr
+	 rOcyUtJWVtpZQ==
+Date: Sat, 6 Jul 2024 13:42:30 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Inochi Amaoto <inochiama@outlook.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	=?iso-8859-1?Q?Miqu=E8l?= Raynal <miquel.raynal@bootlin.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: iio: adc: sophgo,cv18xx-saradc.yaml:
+ Add Sophgo SARADC binding documentation
+Message-ID: <20240706-remote-undergo-3b9dfe44d16f@spud>
+References: <20240705-sg2002-adc-v2-0-83428c20a9b2@bootlin.com>
+ <20240705-sg2002-adc-v2-1-83428c20a9b2@bootlin.com>
+ <20240705-unaired-pesticide-4135eaa04212@spud>
+ <6b5459fd-2873-4c26-b986-882413b8d95b@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/8] Disable SS instances in parkmode for Gen-1 targets
-To: Krishna Kurapati <quic_kriskura@quicinc.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Baruch Siach <baruch@tkos.co.il>, Kathiravan T <quic_kathirav@quicinc.com>,
- Sivaprakash Murugesan <sivaprak@codeaurora.org>,
- Andy Gross <andy.gross@linaro.org>, Jeffrey Hugo <quic_jhugo@quicinc.com>,
- Douglas Anderson <dianders@chromium.org>, Stephen Boyd
- <swboyd@chromium.org>, Iskren Chernev <me@iskren.info>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>,
- Vivek Gautam <vivek.gautam@codeaurora.org>
-Cc: linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, quic_ppratap@quicinc.com, quic_jackp@quicinc.com
-References: <20240704152848.3380602-1-quic_kriskura@quicinc.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20240704152848.3380602-1-quic_kriskura@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="aooyyyTiQwVeE6tX"
+Content-Disposition: inline
+In-Reply-To: <6b5459fd-2873-4c26-b986-882413b8d95b@bootlin.com>
 
-On 4.07.2024 5:28 PM, Krishna Kurapati wrote:
-> For targets that have only USB3 Gen-1 DWC3 controllers, it is recommended
-> to disable SS instance in park mode to avoid HC died error when working
-> in host mode in situations where the controller is stressed out:
-> 
->  xhci-hcd.12.auto: xHCI host not responding to stop endpoint command
->  xhci-hcd.12.auto: xHCI host controller not responding, assume dead
->  xhci-hcd.12.auto: HC died; cleaning up
 
-Thanks for looking into this!
+--aooyyyTiQwVeE6tX
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+On Fri, Jul 05, 2024 at 05:24:19PM +0200, Thomas Bonnefille wrote:
+>=20
+>=20
+> On 7/5/24 5:01 PM, Conor Dooley wrote:
+> > On Fri, Jul 05, 2024 at 03:42:23PM +0200, Thomas Bonnefille wrote:
+> > > The Sophgo SARADC is a Successive Approximation ADC that can be found=
+ in
+> > > the Sophgo SoC.
+> > >=20
+> > > Signed-off-by: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+> > > ---
+> > >   .../bindings/iio/adc/sophgo,cv18xx-saradc.yaml     | 63 +++++++++++=
++++++++++++
+> > >   1 file changed, 63 insertions(+)
+> > >=20
+> > > diff --git a/Documentation/devicetree/bindings/iio/adc/sophgo,cv18xx-=
+saradc.yaml b/Documentation/devicetree/bindings/iio/adc/sophgo,cv18xx-sarad=
+c.yaml
+> > > new file mode 100644
+> > > index 000000000000..31bd8ac6dfa5
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/iio/adc/sophgo,cv18xx-saradc.=
+yaml
+> > > @@ -0,0 +1,63 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/iio/adc/sophgo,cv18xx-saradc.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title:
+> > > +  Sophgo CV18XX SoC series 3 channels Successive Approximation Analo=
+g to
+> > > +  Digital Converters
+> > > +
+> > > +maintainers:
+> > > +  - Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+> > > +
+> > > +description:
+> > > +  Datasheet at https://github.com/sophgo/sophgo-doc/releases
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    oneOf:
+> > > +      - items:
+> > > +          - enum:
+> > > +              - sophgo,cv1800b-saradc
+> > > +          - const: sophgo,cv18xx-saradc
+> >=20
+> > I don't think the fallback here makes sense. If there's other devices
+> > with a compatible programming model added later, we can fall back to the
+> > cv1800b.
+> >=20
+>=20
+> Ok I'll do that, I wasn't sure if it was a good practice to fallback on
+> another SoC specific compatible.
+>=20
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  interrupts:
+> > > +    maxItems: 1
+> > > +
+> > > +  clocks:
+> > > +    description:
+> > > +      SARADC will use the presence of this clock to determine if the=
+ controller
+> > > +      needs to be explicitly clocked by it (Active domain) or if it =
+is part of
+> > > +      the No-Die Domain, along with the RTC, which does not require =
+explicit
+> > > +      clocking.
+> >=20
+> > What does "explicit clocking" mean? Is it clocked directly (or via
+> > dividers) by a clock on the board or another source?
+> >=20
+>=20
+> It means that, if a clock is provided, the driver will work in "Active
+> Domain" and will use the clock generator of the SoC to get the right clock
+> signal.
+>=20
+> However if no clock is provided, the controller will work in "No-Die" dom=
+ain
+> (Always On) and use the RTCSYS subsystem to get its clock signal.
 
-Konrad
+So it does have a clock, but provided by a different provider. I don't
+really understand why that would "excuse" it from having a clocks
+property, with the RTCSYS as the provider.
+
+>=20
+> Indeed "explicitly clocked" may not be the right word to describe that,
+> maybe some thing like that is better :
+>=20
+> "SARADC will use the presence of this clock to determine if the controller
+> needs to use the clock generator to get its clock signal (Active domain) =
+or
+> if it is part of the No-Die Domain, along with the RTC, and does not requ=
+ire
+> the clock generator."
+
+
+
+--aooyyyTiQwVeE6tX
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZok7sgAKCRB4tDGHoIJi
+0lbpAQDwZEbhHg3rnEogG8hOoesPmLsMyjpyNzblwX9hRpY4cAEAhWAWi099oKNO
+nEQMmNkQKNvn/HlxM66JXbe1kmIIMAQ=
+=RK8u
+-----END PGP SIGNATURE-----
+
+--aooyyyTiQwVeE6tX--
 
