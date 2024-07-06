@@ -1,306 +1,163 @@
-Return-Path: <devicetree+bounces-83610-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83611-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F38929293CA
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 15:33:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A026B9293D3
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 15:39:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 743E61F2186F
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 13:33:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5749A281810
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 13:39:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98D8F757EA;
-	Sat,  6 Jul 2024 13:33:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D39AE1304A2;
+	Sat,  6 Jul 2024 13:39:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="A0xGflf6"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oUxT4UJy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5D0E50285;
-	Sat,  6 Jul 2024 13:33:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C5E87BB14
+	for <devicetree@vger.kernel.org>; Sat,  6 Jul 2024 13:39:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720272816; cv=none; b=K8nOu9hNO+fekOHM3Uh8YJbY8N5Xe8pcU3o1j/zKIcsG+YTvS3cRAJBnd4K8jz5ldsARfwpB+EDqWMPvv/Qbin7x2E64km9Ki+TzWogaOXZR5OvTpehLeu/0M/g4d0xrmuQu2uXvLQbo9thy+D5n1zOIHSLKtDC4Q88p7uN5eco=
+	t=1720273187; cv=none; b=ONHbkirX8dgUBC7lxBCAJmv7Kol6i9kM5avvvcp58nyLv65Iow5zKNtTEOy+x+YTOuImOSRMF8PM/XwxUunkkDg2VI7WDPBYffZjIl57TpS+Wd8g8/imjnuIHIHYWn+HLi2eKP+/jhIs5B0J73Jncc1HSk8vIOotWxVG/KtkKhE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720272816; c=relaxed/simple;
-	bh=65bZJJmOm8R1QkVqY8ukfBhTeQrrey9GA2nRERDUUuU=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition; b=Rs7nzDGi9eQ6NXFcIhA8td+6/LRwbvbZJrW8ll7l+yn0XTKgo59xQukHyfrV+kNd5KWZKicE3ZyWq/k1n5FSJw5+gAKhpNQeODiQHFwtUgz2E6u+XCdOGcqVSqhLtmRqUyTBn98hJv7FAQ1RrAD09rEpPt3W8QHG3dBb9NYgrvQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=A0xGflf6; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-4255fa23f7bso16456605e9.2;
-        Sat, 06 Jul 2024 06:33:34 -0700 (PDT)
+	s=arc-20240116; t=1720273187; c=relaxed/simple;
+	bh=jqIO9PtF3Kc1L3VYD56gt6cNcLUYYBsDSS5jH3CuGo4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=js9QRdHa20pBt2G4Ggsn2Tc7NKS/W6YBrxN6zLXjxd/sjuyH4ZAh5/b0g4fGxNq8dljDsXk+UA4fVZ3g9UO7AaBk6wXptiL9yXH8E3912XcY+LmtdS6bwesvXrsv4zTVzCayzqaBVWQCPScTl3XCHEZq2CpEU9Ei0PitQhweCOQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=oUxT4UJy; arc=none smtp.client-ip=209.85.218.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a77abe5c709so310724866b.2
+        for <devicetree@vger.kernel.org>; Sat, 06 Jul 2024 06:39:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1720272813; x=1720877613; darn=vger.kernel.org;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=SIoT7ZBfIhmIp8CBtQ1Sfwkn0lYW/qF5loxt2bM++CA=;
-        b=A0xGflf60rNENGHMmXWd2iL40qNQQ+yF3LgsV3OC6nKr0sv6GdVY2eNwdVxxurPa06
-         4YUHkn2MIZZtuRSTc1EyiR5TA6qNxxbpeOf/EjwpLBZpU8JTqdaQvCBrmjFgL5g/qwKT
-         RkNHuAsZVsODVwnMWy58IWsi9fbaPJb4F7ofgSfqLv3xqCYMrXG3bWSd7LJd6qTLGQl6
-         p30ofpaP98ltUzAgOKvVvaj3u/7TbLkSUQzEG6Rj2V7hrEwKqVyUE2y2Pomg7nO8udtd
-         VNKwJyUpeSob8J3qbdVS6HuJtJSCvu5bIUlUiK98ntzrw9vx1YkR0dl7TW8XVhC8SV5Y
-         WfFQ==
+        d=linaro.org; s=google; t=1720273184; x=1720877984; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=aLaGeABuo22IKbCJ19S9kGM6QaZsE7VgK9tDKh+bfiY=;
+        b=oUxT4UJyxbWqgA4xqi8eQNqdq48gNwemhC+4aVFaK+/XO0AThTg55SRhj37yZvmF6C
+         B6M/vx8JDaYYhc0lmhHRDvllO5MFQogcXd3oD7y7LNB9vZoPEbhYWTBb+yynYvsfPsz7
+         k3ZHEgFwvpbM4coz1ctBRQONbEWU+G37jf/EnkpApT04a7VSzZkj43z3BLs02NTQbmNI
+         Fe5NqB6lRloe9CZuRq4sr1nHwXr2y705PSVLj9aFfi3m/8RoDnnHvIHTUqsLuZbEYSJA
+         xy63TKo4TUpD5qzEnVe6i9Nkr3LvzcYl3cYiZSiUwUcvK5TanBPf4WLStsGYoXs2UzKx
+         xbMQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720272813; x=1720877613;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SIoT7ZBfIhmIp8CBtQ1Sfwkn0lYW/qF5loxt2bM++CA=;
-        b=Ac2Ah+NOudm3n6ZqTuu9Fzj6BP6hr1r7XCKE4XrBUdltHuF0jVVg0xstXNj5UeVHpl
-         g1Ppt/qhDGPnS8I9tzK6d4lRdXrUi2/dkPlBmILFlAxsq25OxwgjkyZ3boY53LIUYqht
-         MFyHpJ4/DmDLqXLPyKXwAUrws46WKUJatBvJTGYnNHeyOUxunVl7J8dvzU8V2ZZeoAJh
-         fQSx6a2QtfQYOL6mYNIJyRCAMeeFtBLpDGfBoytBCG3UJoNqjdDjHwsZgP8fFBCocvvv
-         gnFizsEHt/V2uC1h+4DrWXndH+8oSFu6CdpdGMQ7Y8D2w6/RL2IfcvW0paZ5dRMIW3mn
-         QguQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWo3dCvDwNpc2G1HMt/0eltIymwpW5U5CnY5WfCa+rY+QfPdvovS38Ni0VyB69ymoa1g/8cAHk9Dmmgox38X9QnNI14FWirCSrRxbA5uBe0iKH+Sr5TIyhnFhFHHabQwB6UgEpZmvuWRA==
-X-Gm-Message-State: AOJu0Yy2+fPHr91L/DbTPw1M/aFwHl+PLc+AMwnPn9SARKRRhPIe3A83
-	V2u2bNUzDhakc+aPTAvm5VErG9SK+1AMXQliNaXr0OunafyRzxKu
-X-Google-Smtp-Source: AGHT+IGyLdMJkQD2YIPfyHwXPNVPWRLLzrCzTeATKrNq75NyGmHq1Rx8jxCFqP6frOsCMjHGmFjR4Q==
-X-Received: by 2002:a7b:cd95:0:b0:425:63a9:f96e with SMTP id 5b1f17b1804b1-4264a428f87mr51263685e9.36.1720272812800;
-        Sat, 06 Jul 2024 06:33:32 -0700 (PDT)
-Received: from standask-GA-A55M-S2HP (lu-nat-113-247.ehs.sk. [188.123.113.247])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4264a28333dsm97774285e9.40.2024.07.06.06.33.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 06 Jul 2024 06:33:32 -0700 (PDT)
-Date: Sat, 6 Jul 2024 15:33:30 +0200
-From: Stanislav Jakubek <stano.jakubek@gmail.com>
-To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Orson Zhai <orsonzhai@gmail.com>,
-	Baolin Wang <baolin.wang@linux.alibaba.com>,
-	Baolin Wang <baolin.wang7@gmail.com>,
-	Chunyan Zhang <zhang.lyra@gmail.com>
-Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: mmc: sdhci-sprd: convert to YAML
-Message-ID: <ZolHqsBnQxSo6SbT@standask-GA-A55M-S2HP>
+        d=1e100.net; s=20230601; t=1720273184; x=1720877984;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=aLaGeABuo22IKbCJ19S9kGM6QaZsE7VgK9tDKh+bfiY=;
+        b=f+NjndIyTZiZQJIFS0aKSSkyrd1oaeK52HPA+5sD0b6sR0hdBOJ+FfTFMr3K+juYY2
+         UeD0bpQCCnspF6+kfdKX1UxN8EIz9pecrJEaKjwNAi090KIsRrYBOuZAkJewpD9zdghX
+         2yVyKhiMxbCW4ia+VyBSSyMqyWQtaDv/GAHc74c+jK7eaZ5hqOcUTLL+InicFxWHszj9
+         lvrxah8NbdQCl52MYLspL8DJXL+HWFUfefPqhylgiTi/nhsaSX+7ZFIDNwqByXZnfotG
+         sn7znIjrUfUCXqhj52gt0zPo3Agjha76wODXiLnjPhdqnR2uREXEUAnF51FbpIUOOaEF
+         5K/Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUfIANWJNaczZiplZhxBlQi+aP3KejTU0G9wN6xyP/IbFcwhdQpwOB4EM1X/VINbX0kxhtjmThhkihdbWY4x1blojvb3QaeUEn9cQ==
+X-Gm-Message-State: AOJu0Yxa8IRjX3VMiQrltP2qXt4fUEGNtPNaxu/MpLVgwLdi3EZgBqLX
+	nh8eT1d207OC7OqFuSfugfl3VMcyXpjgLPXppMmOMdyt71ZERu+XbeL2HSpcwow=
+X-Google-Smtp-Source: AGHT+IFAoehJjp/+4dx7+u2sPKkChGIxTTTUsqzPOJ2ThVjyIiUITZKYrBakHLo9QU6SlWhvQYmPeg==
+X-Received: by 2002:a17:906:7704:b0:a77:c96b:a113 with SMTP id a640c23a62f3a-a77c96ba1b5mr309327266b.60.1720273183969;
+        Sat, 06 Jul 2024 06:39:43 -0700 (PDT)
+Received: from [192.168.105.194] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a72ab0900f1sm763063066b.168.2024.07.06.06.39.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 06 Jul 2024 06:39:43 -0700 (PDT)
+Message-ID: <eb71f14d-bf27-4f23-870e-7dfa01e44e80@linaro.org>
+Date: Sat, 6 Jul 2024 15:39:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/6] clk: qcom: clk-alpha-pll: Update set_rate for
+ Zonda PLL
+To: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Abhishek Sahu <absahu@codeaurora.org>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Stephen Boyd <sboyd@codeaurora.org>, linux-arm-msm@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, Ajit Pandey <quic_ajipan@quicinc.com>,
+ Imran Shaik <quic_imrashai@quicinc.com>, Taniya Das <quic_tdas@quicinc.com>,
+ Jagadeesh Kona <quic_jkona@quicinc.com>
+References: <20240702-camcc-support-sm8150-v2-0-4baf54ec7333@quicinc.com>
+ <20240702-camcc-support-sm8150-v2-2-4baf54ec7333@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20240702-camcc-support-sm8150-v2-2-4baf54ec7333@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Covert the Spreadtrum SDHCI controller bindings to DT schema.
-Rename the file to match compatible.
+On 2.07.2024 5:50 PM, Satya Priya Kakitapalli wrote:
+> The Zonda PLL has a 16 bit signed alpha and in the cases where the alpha
+> value is greater than 0.5, the L value needs to be adjusted accordingly.
+> Thus update the logic for the same.
+> 
+> Also, fix zonda set_rate failure when PLL is disabled. Currently,
+> clk_zonda_pll_set_rate polls for the PLL to lock even if the PLL is
+> disabled. However, if the PLL is disabled then LOCK_DET will never
+> assert and we'll return an error. There is no reason to poll LOCK_DET
+> if the PLL is already disabled, so skip polling in this case.
+> 
+> Signed-off-by: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
+> ---
 
-Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
----
-Node name adjustments in DTS are being handled as part of:
-https://lore.kernel.org/lkml/cover.1720112081.git.stano.jakubek@gmail.com/
+[...]
 
- .../devicetree/bindings/mmc/sdhci-sprd.txt    |  67 ----------
- .../bindings/mmc/sprd,sdhci-r11.yaml          | 120 ++++++++++++++++++
- 2 files changed, 120 insertions(+), 67 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/mmc/sdhci-sprd.txt
- create mode 100644 Documentation/devicetree/bindings/mmc/sprd,sdhci-r11.yaml
+> @@ -2077,9 +2089,15 @@ static int clk_zonda_pll_set_rate(struct clk_hw *hw, unsigned long rate,
+>  	if (ret < 0)
+>  		return ret;
+>  
+> +	if (a & BIT(15))
+> +		zonda_pll_adjust_l_val(rate, prate, &l);
 
-diff --git a/Documentation/devicetree/bindings/mmc/sdhci-sprd.txt b/Documentation/devicetree/bindings/mmc/sdhci-sprd.txt
-deleted file mode 100644
-index eb7eb1b529f0..000000000000
---- a/Documentation/devicetree/bindings/mmc/sdhci-sprd.txt
-+++ /dev/null
-@@ -1,67 +0,0 @@
--* Spreadtrum SDHCI controller (sdhci-sprd)
--
--The Secure Digital (SD) Host controller on Spreadtrum SoCs provides an interface
--for MMC, SD and SDIO types of cards.
--
--This file documents differences between the core properties in mmc.txt
--and the properties used by the sdhci-sprd driver.
--
--Required properties:
--- compatible: Should contain "sprd,sdhci-r11".
--- reg: physical base address of the controller and length.
--- interrupts: Interrupts used by the SDHCI controller.
--- clocks: Should contain phandle for the clock feeding the SDHCI controller
--- clock-names: Should contain the following:
--	"sdio" - SDIO source clock (required)
--	"enable" - gate clock which used for enabling/disabling the device (required)
--	"2x_enable" - gate clock controlling the device for some special platforms (optional)
--
--Optional properties:
--- assigned-clocks: the same with "sdio" clock
--- assigned-clock-parents: the default parent of "sdio" clock
--- pinctrl-names: should be "default", "state_uhs"
--- pinctrl-0: should contain default/high speed pin control
--- pinctrl-1: should contain uhs mode pin control
--
--PHY DLL delays are used to delay the data valid window, and align the window
--to sampling clock. PHY DLL delays can be configured by following properties,
--and each property contains 4 cells which are used to configure the clock data
--write line delay value, clock read command line delay value, clock read data
--positive edge delay value and clock read data negative edge delay value.
--Each cell's delay value unit is cycle of the PHY clock.
--
--- sprd,phy-delay-legacy: Delay value for legacy timing.
--- sprd,phy-delay-sd-highspeed: Delay value for SD high-speed timing.
--- sprd,phy-delay-sd-uhs-sdr50: Delay value for SD UHS SDR50 timing.
--- sprd,phy-delay-sd-uhs-sdr104: Delay value for SD UHS SDR50 timing.
--- sprd,phy-delay-mmc-highspeed: Delay value for MMC high-speed timing.
--- sprd,phy-delay-mmc-ddr52: Delay value for MMC DDR52 timing.
--- sprd,phy-delay-mmc-hs200: Delay value for MMC HS200 timing.
--- sprd,phy-delay-mmc-hs400: Delay value for MMC HS400 timing.
--- sprd,phy-delay-mmc-hs400es: Delay value for MMC HS400 enhanced strobe timing.
--
--Examples:
--
--sdio0: sdio@20600000 {
--	compatible  = "sprd,sdhci-r11";
--	reg = <0 0x20600000 0 0x1000>;
--	interrupts = <GIC_SPI 60 IRQ_TYPE_LEVEL_HIGH>;
--
--	clock-names = "sdio", "enable";
--	clocks = <&ap_clk CLK_EMMC_2X>,
--		 <&apahb_gate CLK_EMMC_EB>;
--	assigned-clocks = <&ap_clk CLK_EMMC_2X>;
--	assigned-clock-parents = <&rpll CLK_RPLL_390M>;
--
--	pinctrl-names = "default", "state_uhs";
--	pinctrl-0 = <&sd0_pins_default>;
--	pinctrl-1 = <&sd0_pins_uhs>;
--
--	sprd,phy-delay-sd-uhs-sdr104 = <0x3f 0x7f 0x2e 0x2e>;
--	bus-width = <8>;
--	non-removable;
--	no-sdio;
--	no-sd;
--	cap-mmc-hw-reset;
--	status = "okay";
--};
-diff --git a/Documentation/devicetree/bindings/mmc/sprd,sdhci-r11.yaml b/Documentation/devicetree/bindings/mmc/sprd,sdhci-r11.yaml
-new file mode 100644
-index 000000000000..3cf4a41e4ed8
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mmc/sprd,sdhci-r11.yaml
-@@ -0,0 +1,120 @@
-+# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mmc/sprd,sdhci-r11.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Spreadtrum SDHCI controller
-+
-+maintainers:
-+  - Orson Zhai <orsonzhai@gmail.com>
-+  - Baolin Wang <baolin.wang7@gmail.com>
-+  - Chunyan Zhang <zhang.lyra@gmail.com>
-+
-+properties:
-+  compatible:
-+    const: sprd,sdhci-r11
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    minItems: 2
-+    items:
-+      - description: SDIO source clock
-+      - description: gate clock for enabling/disabling the device
-+      - description: gate clock controlling the device for some special platforms (optional)
-+
-+  clock-names:
-+    minItems: 2
-+    items:
-+      - const: sdio
-+      - const: enable
-+      - const: 2x_enable
-+
-+  assigned-clocks:
-+    maxItems: 1
-+
-+  assigned-clock-parents:
-+    maxItems: 1
-+
-+  pinctrl-0:
-+    description: default/high speed pin control
-+    maxItems: 1
-+
-+  pinctrl-1:
-+    description: UHS mode pin control
-+    maxItems: 1
-+
-+  pinctrl-names:
-+    minItems: 1
-+    items:
-+      - const: default
-+      - const: state_uhs
-+
-+patternProperties:
-+  "^sprd,phy-delay-(legacy|mmc-(ddr52|highspeed|hs[24]00|hs400es)|sd-(highspeed|uhs-sdr(50|104)))$":
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+    items:
-+      - description: clock data write line delay value
-+      - description: clock read command line delay value
-+      - description: clock read data positive edge delay value
-+      - description: clock read data negative edge delay value
-+    description:
-+      PHY DLL delays are used to delay the data valid window, and align
-+      the window to the sampling clock. Each cell's delay value unit is
-+      cycle of the PHY clock.
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+
-+allOf:
-+  - $ref: sdhci-common.yaml#
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/sprd,sc9860-clk.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    mmc@50430000 {
-+      compatible = "sprd,sdhci-r11";
-+      reg = <0x50430000 0x1000>;
-+      interrupts = <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>;
-+
-+      clocks = <&aon_prediv CLK_EMMC_2X>,
-+               <&apahb_gate CLK_EMMC_EB>,
-+               <&aon_gate CLK_EMMC_2X_EN>;
-+      clock-names = "sdio", "enable", "2x_enable";
-+      assigned-clocks = <&aon_prediv CLK_EMMC_2X>;
-+      assigned-clock-parents = <&clk_l0_409m6>;
-+
-+      pinctrl-0 = <&sd0_pins_default>;
-+      pinctrl-1 = <&sd0_pins_uhs>;
-+      pinctrl-names = "default", "state_uhs";
-+
-+      bus-width = <8>;
-+      cap-mmc-hw-reset;
-+      mmc-hs400-enhanced-strobe;
-+      mmc-hs400-1_8v;
-+      mmc-hs200-1_8v;
-+      mmc-ddr-1_8v;
-+      non-removable;
-+      no-sdio;
-+      no-sd;
-+
-+      sprd,phy-delay-mmc-ddr52 = <0x3f 0x75 0x14 0x14>;
-+      sprd,phy-delay-mmc-hs200 = <0x0 0x8c 0x8c 0x8c>;
-+      sprd,phy-delay-mmc-hs400 = <0x44 0x7f 0x2e 0x2e>;
-+      sprd,phy-delay-mmc-hs400es = <0x3f 0x3f 0x2e 0x2e>;
-+    };
-+...
--- 
-2.34.1
+A random check for a seemingly random, undocumented bit only confuses the reader
 
+Konrad
 
