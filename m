@@ -1,146 +1,276 @@
-Return-Path: <devicetree+bounces-83585-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83587-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 810859291FC
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 10:39:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3EC4929224
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 11:08:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C1441B20E43
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 08:39:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 66C071F21801
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 09:08:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0B7641A94;
-	Sat,  6 Jul 2024 08:39:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 924FA4AED7;
+	Sat,  6 Jul 2024 09:08:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="dlXoDY4m";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="Xi/nFfp8"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hatvtp5e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout1-smtp.messagingengine.com (fout1-smtp.messagingengine.com [103.168.172.144])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com [209.85.219.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D12171C69D;
-	Sat,  6 Jul 2024 08:39:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.144
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB3BC481DB;
+	Sat,  6 Jul 2024 09:08:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720255190; cv=none; b=SxRfvCACWQUoNvjAuNByHBBNVcvCivu3dTBmX0pa/uWCBZmBscB3LN5c8i1EJZSljzGbEZtjZZCQ3YTad+kzmCjqFyRMDff1zPVNnuXhOhQdS+MquW+igjcj58vtQXeTLP08kNeO6vtVsNOEo8+u7c1iUf8jTYcUyqYCCQ1z6Tw=
+	t=1720256925; cv=none; b=ca1C4NEA5pI8jzEDJ2KNpJ8FdI+NRQfLt3Q+ND75pQ2Z4sCMbcGM/s/uE4aQKqyMHTUl6BLiUNN407MNpGmbyxOhYvxca0sT1vtJFlGVZF00spIK0YTncjxpRMm2CSiRDMggw8s8SfNR0HtmItWIo1b3pl3MMznOFXdKxHZmllY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720255190; c=relaxed/simple;
-	bh=4mmW/ixGVCtiwQF+/k9RAFIivf75MKuQG5FPUIXvMnI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=idgHQT2Am3Mq31WYpVw3Yz1CIIG38dmMFmAYMCCqRQoyKJz6Of4OfffWeSkLQ4vYiRU9P7W66NM/Cm5ONuaVJnjDnZDg3XZjQt+NarThIfnDuQF6vhpWsibjo9hkpdYZBcQ/OyIIzRrk4vz+YdXDz6Nie7LhEk3BNYdMj//aqVA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=dlXoDY4m; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=Xi/nFfp8; arc=none smtp.client-ip=103.168.172.144
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
-	by mailfout.nyi.internal (Postfix) with ESMTP id 855411380651;
-	Sat,  6 Jul 2024 04:39:45 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute6.internal (MEProxy); Sat, 06 Jul 2024 04:39:45 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm1; t=1720255185;
-	 x=1720341585; bh=wyH5ITGH73BgbNDhAYSW71/jWvMw5CdCjpRmRCSjMig=; b=
-	dlXoDY4meUin/wyJfeQ1WI5vie/h/bL7HnMiV6G5rgdaNytTVN5jOyCmR1YiNaMF
-	zzVq+EiJfKc6/0JnhQ61BYyrHOEIVhTa92WYObcCCe80I9VwcSUueuEr7Y9Mkglh
-	p41JK1wVdcehOKryiqBN76tmCcQf8iMW88N7TyW25HJP+/pMiI93YTx0u1yXLTyS
-	ERuGXpkjxGsUxxSuOrNhQGy3HPw8sUhZzsltcFESIIsFdTxk+kEf7ffp5W5i0JoR
-	UiuSEtyLCpps4ftkoxi3AUZsx9Rc4gbKsHAo1pDtdDg3Dpzk2yosZFK+mhQIRILt
-	Xgynk35qNzT8YtxmF09oXQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1720255185; x=
-	1720341585; bh=wyH5ITGH73BgbNDhAYSW71/jWvMw5CdCjpRmRCSjMig=; b=X
-	i/nFfp8FxETayp4KZBRpUUvOiF6RSzmekWM9ZDb5oOzdCnWfveDMWAx2StkFha/j
-	UjNMhmpV21fhibJw/EJH4JRT+zaSsbuB0Jq7/Ee9SLmd6cDZ0SZzQWebvxb9TQmz
-	15Gn89nx/mY4yCzbiUKfHDFzsqdKNWvBVAzQO5iXnxqZdaZDWjxHNRiRy3zQeOhm
-	6B7TNT5gr/fFyAnHFVU8POm88oH+934Q59JRpw3qs1BGO14hWBCECa4f2m9cqI7I
-	3YcV2ppduWOv8yU2wPub3zf+BxN54B2PGWXbeuwKm822kVWKg7G69avdQEkxKG8D
-	G9cyq/5Y9Uv/iaYBfqW/A==
-X-ME-Sender: <xms:0AKJZuKX0kaxJrFDFT4leGHRyVdJn4FRrXe9qlAraUNZOG3PcEN2XA>
-    <xme:0AKJZmLTbaQcoA5fw19VEKEDM2A2bHvVUvG-TQGtDKYjhjavYiR_e4B5AcvVB-QxO
-    HWVzjIiQClntYJ_Wg0>
-X-ME-Received: <xmr:0AKJZutkZYB7tKee7dVNUeiwW43I53taQRTCe_bZPGniuYvgXvMPgeYL-mkgz7BsVq9_TgQ5G7s5oQKk39j-igr22YtJGf0XvV38ZNN5>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrvdefgddtjecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpeffhffvvefukfhfgggtugfgjgesthekredttddtjeenucfhrhhomheppfhikhhl
-    rghsucfunpguvghrlhhunhguuceonhhikhhlrghsrdhsohguvghrlhhunhguodhrvghnvg
-    hsrghssehrrghgnhgrthgvtghhrdhsvgeqnecuggftrfgrthhtvghrnhepfefhleelhfff
-    jefgfedugfegjeelhfevheeikefhueelgfdtfeeuhefftddvleeinecuvehluhhsthgvrh
-    fuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepnhhikhhlrghsrdhsohguvghr
-    lhhunhguodhrvghnvghsrghssehrrghgnhgrthgvtghhrdhsvg
-X-ME-Proxy: <xmx:0AKJZjaGXttGjlLTnMI3rSLCMBHrNwr3B5wA76Y3GmwN8wSzVlKLRA>
-    <xmx:0AKJZlZt3x37qY95lTiHFMNkVKJTFymZWhjEJlV-RjZ4ImBPrXLNiw>
-    <xmx:0AKJZvBti1RvlNHPSlQQsi1VrEF4fkA6JqzTmEtLZiWuf6yFF274JA>
-    <xmx:0AKJZrYAATBQ7g5ikq0yiWP7a0BVeBUqDIvwaYuOMVNrdqrlBRRiVw>
-    <xmx:0QKJZppEYixoA6kwceYIezARaUOZ7id_ui46AKspvoK2TLEZA5yEswEb>
-Feedback-ID: i80c9496c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sat,
- 6 Jul 2024 04:39:44 -0400 (EDT)
-Date: Sat, 6 Jul 2024 10:39:35 +0200
-From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-To: Marek Vasut <marex@denx.de>
-Cc: Geert Uytterhoeven <geert@linux-m68k.org>,
-	linux-arm-kernel@lists.infradead.org, andrew@lunn.ch,
-	kernel@dh-electronics.com, kernel test robot <lkp@intel.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Khuong Dinh <khuong@os.amperecomputing.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH 2/2] arm64: dts: renesas: Drop ethernet-phy-ieee802.3-c22
- from PHY compatible string on all RZ boards
-Message-ID: <20240706083935.GA2366@ragnatech.se>
-References: <20240630034649.173229-1-marex@denx.de>
- <20240630034649.173229-2-marex@denx.de>
- <CAMuHMdXb6nBHLeK1c4CwEUBE8osDyAC_+ohA+10W_mZdGtQufQ@mail.gmail.com>
- <9f1ae430-4cc4-4e2e-a52c-ca17f499bbba@denx.de>
- <CAMuHMdWLLAff5_ndAvH9PofTpibJdOau65wK+QekcwR26H2YoA@mail.gmail.com>
- <20240703093601.GA6493@ragnatech.se>
- <fa6db116-50bb-488b-a48f-c34f918424a2@denx.de>
+	s=arc-20240116; t=1720256925; c=relaxed/simple;
+	bh=fG6F3w5XsMlqbqQaRKmHuITZUAA7HSkYvoR9erwN8ZE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=CSNx9wrrxRSNg5G7+yHtwFJuiMGY33ug94bubYMunrr+aw02B+XMA2+bMmG0mHLsEFuUrntfsPyyaj7gB2km5ROSYAka+9mFVtdd0xD2SrORjYb/yzL6LiwSF6chzNa67J0wPGWTJj6S+MqnsIs/Z+U9zA5NgnK6uihDK9J8IS4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hatvtp5e; arc=none smtp.client-ip=209.85.219.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f176.google.com with SMTP id 3f1490d57ef6-e03618fc78bso2258295276.2;
+        Sat, 06 Jul 2024 02:08:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1720256923; x=1720861723; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yvNcPTmqNxB21weQxooRmeGNUZ7Ly0Y/MJ1ArZkMpmU=;
+        b=hatvtp5e5IuBFYo90EVklyxKOa9diqQfJwN28tHuqw84x4psONTlzhSaSIhIxTneu5
+         QeYYsoSG09TZxEvn1Z6XB0MWNzOXye7/2kFaBu5tZ3qXealY6JtNBjFQdRFZEIUr8gZp
+         VAMR8bjTfwBQfzXrMLNCEsUUQkVUqwB6vl6lGTheOPOsDg9QoFtSEo563Gg38AwNMoGZ
+         +CEyZLDVKGOixZROgkkyoK5I3qPqBRfGY/g9t1zdNc+v/wLAmSnDUeDUlani52ZOmVB5
+         FvAIDZe3nfuxZTo3yPQA4fwtvXJkd5UvqY2KnQ6iinm/YzzupbIlue22necpE0aXa3uD
+         rk9Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720256923; x=1720861723;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=yvNcPTmqNxB21weQxooRmeGNUZ7Ly0Y/MJ1ArZkMpmU=;
+        b=wVyo7rpAhLdmhCjYlVVbkbN0T5/ArG7IceqOvaTplOZn1oa+1mgZIV5Ycqupi4hzix
+         EFSyWVuFrqwWjewYrB+yJpaHf5jHpLiEeLhAqqkhosWs+jWPkO4Rw1he2OKAgwl9xJkW
+         Kbr6NlE+UD/0x1WzjlbgzT3Ad0dZ2tuYNr48UJqtLxVpmNsu3lhjxDKmKuG0ARNzd/ML
+         P5hQaMN5eigC8ugGUU0bFTIbPY2SEPXRIZLVBKzZi7VVWB7veQL7xejCoYOPNJbk2/W8
+         yeH4FEBNUE1cjvdOYOgjcPJJDEtZpz0+HoN18CL8DGhS3kgSwuHVqRYpNGKaxvx3qrIU
+         s3uw==
+X-Forwarded-Encrypted: i=1; AJvYcCWvmJzpAA+f2c48To5heqTljn8D7A4hqOK9rhuPQvS3opKIDeSU7l32thZMV5jwn+bTLuwMOZw77TTg7wrodxEtBj/kuxbuwk+0MBMeo7G+ZOi/C4fUVy/3Dr9EYuRMnjKdpIUXIA==
+X-Gm-Message-State: AOJu0Yz6VIm4272vVuBT6Nw4H2bA9GQoeUdALchwq7MyhhQztXaglXdf
+	rIcbxSi+mzEIO9w1HLxPxPLtyugte/ZSYZX2BtKe5N/RmJsRCKy2AnHqUQCdgWTQ3MKJrcVTWDj
+	VKi89SEkPk+z1iZzInNvI/oqrZCs=
+X-Google-Smtp-Source: AGHT+IFE3DfCqBS0dBLUuf7e4wOAB+PSbhsnQbFKEqOsySRZmgtE3ogKqcORJbpXpQ7hTP37DJbqioZiEMx0ltxd/Eo=
+X-Received: by 2002:a25:c70e:0:b0:e03:abdc:f2a0 with SMTP id
+ 3f1490d57ef6-e03c1a05b56mr6735108276.60.1720256922772; Sat, 06 Jul 2024
+ 02:08:42 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <fa6db116-50bb-488b-a48f-c34f918424a2@denx.de>
+References: <cover.1716795485.git.zhoubinbin@loongson.cn> <23d08fa45237efd83cb9dd51a259e2c980f01b3f.1716795485.git.zhoubinbin@loongson.cn>
+ <b2lyte7dtrdxxoj4rwwrxbt5myc3td7v3psus7h36qc7dp3thh@czfp25bferl4>
+In-Reply-To: <b2lyte7dtrdxxoj4rwwrxbt5myc3td7v3psus7h36qc7dp3thh@czfp25bferl4>
+From: Binbin Zhou <zhoubb.aaron@gmail.com>
+Date: Sat, 6 Jul 2024 15:08:30 +0600
+Message-ID: <CAMpQs4Lo55VhFCNKFxjdA2zMt8GdMTo4sn4BXdy8Nr+kq2OfvQ@mail.gmail.com>
+Subject: Re: [PATCH v4 2/2] pwm: Add Loongson PWM controller support
+To: =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Juxin Gao <gaojuxin@loongson.cn>, Huacai Chen <chenhuacai@kernel.org>, 
+	loongson-kernel@lists.loongnix.cn, linux-pwm@vger.kernel.org, 
+	devicetree@vger.kernel.org, Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 2024-07-05 23:49:56 +0200, Marek Vasut wrote:
-> On 7/3/24 11:36 AM, Niklas Söderlund wrote:
-> > On 2024-07-03 10:24:26 +0200, Geert Uytterhoeven wrote:
-> > > Niklas: commit 54bf0c27380b95a2 ("arm64: dts: renesas: r8a779g0: Use
-> > > MDIO node for all AVB devices") did keep the reset-gpios property in
-> > > the PHY node. I guess it should be moved one level up?
-> > 
-> > It's possible to have a rest-gpios property both in the mdio node and
-> > the phy node. The former resets the whole bus while the later a single
-> > PHY, at least that's my understanding.
-> 
-> My understanding of reset GPIO in the MDIO node is that it is used in case
-> there might be multiple PHYs with shared reset GPIO on the same MDIO bus.
-> Like on the NXP iMX28 .
+Hi Uwe:
 
-There is a use-case for a single PHY on the MDIO bus too, at least in 
-Linux as I understand it. If the boot process leave the PHY in a bad 
-state which prevents it from being probed. A GPIO reset in the MDIO node 
-is used when the MDIO bus is registered thus resetting all (in this 
-use-case the one) PHYs which later allows them to be probed. A GPIO 
-reset on the PHY node is only used after a PHY have been probed, at 
-least that is my understanding.
+Thanks for your reply.
 
-This is the use-case for adding a MDIO node to the AVB driver and 
-WhiteHawk.
+On Sat, Jul 6, 2024 at 5:26=E2=80=AFAM Uwe Kleine-K=C3=B6nig
+<u.kleine-koenig@baylibre.com> wrote:
+>
+> Hello,
+>
+> On Mon, May 27, 2024 at 03:51:12PM +0800, Binbin Zhou wrote:
+> > +static int pwm_loongson_apply(struct pwm_chip *chip, struct pwm_device=
+ *pwm,
+> > +                           const struct pwm_state *state)
+> > +{
+> > +     int ret;
+> > +     u64 period, duty_cycle;
+> > +     bool enabled =3D pwm->state.enabled;
+> > +
+> > +     period =3D min(state->period, NANOHZ_PER_HZ);
+> > +     duty_cycle =3D min(state->duty_cycle, NANOHZ_PER_HZ);
+> > +
+> > +     if (state->polarity !=3D pwm->state.polarity) {
+> > +             if (enabled) {
+> > +                     pwm_loongson_disable(chip, pwm);
+> > +                     enabled =3D false;
+> > +             }
+> > +
+> > +             ret =3D pwm_loongson_set_polarity(chip, pwm, state->polar=
+ity);
+> > +             if (ret)
+> > +                     return ret;
+> > +     }
+> > +
+> > +     if (!state->enabled) {
+> > +             if (enabled)
+> > +                     pwm_loongson_disable(chip, pwm);
+> > +             return 0;
+> > +     }
+>
+> Given that the configured polarity isn't relevant for a disabled PWM, I
+> suggest to swap these two if blocks. However then you have to be a bit
+> more careful for the polarity check because otherwise the following
+> series of commands yields wrong results:
+>
+>         pwm_apply_might_sleep(pwm, {.duty_cycle =3D D, .period =3D P, .po=
+larity =3D PWM_POLARITY_NORMAL, .enabled =3D true});
+>         pwm_apply_might_sleep(pwm, {.duty_cycle =3D D, .period =3D P, .po=
+larity =3D PWM_POLARITY_INVERSED, .enabled =3D false});
+>         pwm_apply_might_sleep(pwm, {.duty_cycle =3D D, .period =3D P, .po=
+larity =3D PWM_POLARITY_INVERSED, .enabled =3D true});
+>
 
--- 
-Kind Regards,
-Niklas Söderlund
+Yes, we'd better make sure pwm is enabled first.
+I will swap the two if blocks.
+
+> > +     ret =3D pwm_loongson_config(chip, pwm, duty_cycle, period);
+> > +     if (ret)
+> > +             return ret;
+> > +
+> > +     if (!enabled)
+> > +             ret =3D pwm_loongson_enable(chip, pwm);
+> > +
+> > +     return ret;
+> > +}
+> > +
+> > +static int pwm_loongson_get_state(struct pwm_chip *chip, struct pwm_de=
+vice *pwm,
+> > +                               struct pwm_state *state)
+> > +{
+> > +     u32 duty, period, ctrl;
+> > +     struct pwm_loongson_ddata *ddata =3D to_pwm_loongson_ddata(chip);
+> > +
+> > +     /* duty_cycle =3D ddata->duty * NSEC_PER_SEC / ddata->clk_rate */
+> > +     duty =3D pwm_loongson_readl(ddata, LOONGSON_PWM_REG_DUTY);
+> > +     state->duty_cycle =3D mul_u64_u64_div_u64(duty, NSEC_PER_SEC, dda=
+ta->clk_rate);
+> > +
+> > +     /* period =3D ddata->period * NSEC_PER_SEC / ddata->clk_rate */
+> > +     period =3D pwm_loongson_readl(ddata, LOONGSON_PWM_REG_PERIOD);
+> > +     state->period =3D mul_u64_u64_div_u64(period, NSEC_PER_SEC, ddata=
+->clk_rate);
+> > +
+> > +     ctrl =3D pwm_loongson_readl(ddata, LOONGSON_PWM_REG_CTRL);
+> > +     state->polarity =3D (ctrl & LOONGSON_PWM_CTRL_INVERT) ? PWM_POLAR=
+ITY_INVERSED :
+> > +                       PWM_POLARITY_NORMAL;
+> > +     state->enabled =3D (ctrl & LOONGSON_PWM_CTRL_EN) ? true : false;
+> > +
+> > +     return 0;
+>
+> You didn't test extensively with PWM_DEBUG enabled, right? You need to
+> round up the divisions here otherwise you get strange rounding results:
+>
+> Consider ddata->clk_rate =3D 1594323. When a state with .period =3D 20000=
+ is
+> applied, LOONGSON_PWM_REG_PERIOD is assigned 31.
+> Calling .get_state() in this situation gives .period =3D 19443. Reapplyin=
+g
+> .period =3D 19443 results in LOONGSON_PWM_REG_PERIOD :=3D 30. Iterating t=
+his
+> further yields:
+>
+>  - .period =3D 18816
+>  - LOONGSON_PWM_REG_PERIOD :=3D 29
+>  - .period =3D 18189
+>  - LOONGSON_PWM_REG_PERIOD :=3D 28
+>  - ...
+>
+Yes, I'm very sorry I didn't do extensive testing with PWM_DEBUG enabled.
+Here I do need to use DIV64_U64_ROUND_UP().
+
+Below:
+
+        /* duty_cycle =3D ddata->duty * NSEC_PER_SEC / ddata->clk_rate */
+        duty =3D pwm_loongson_readl(ddata, LOONGSON_PWM_REG_DUTY);
+        state->duty_cycle =3D DIV64_U64_ROUND_UP((u64)duty *
+NSEC_PER_SEC, ddata->clk_rate);
+
+        /* period =3D ddata->period * NSEC_PER_SEC / ddata->clk_rate */
+        period =3D pwm_loongson_readl(ddata, LOONGSON_PWM_REG_PERIOD);
+        state->period =3D DIV64_U64_ROUND_UP((u64)period * NSEC_PER_SEC,
+ddata->clk_rate);
+
+
+I'd also like to ask which tests I still need to do to make sure the
+driver is more complete?
+
+> > +}
+> > +
+> > +static const struct pwm_ops pwm_loongson_ops =3D {
+> > +     .apply =3D pwm_loongson_apply,
+> > +     .get_state =3D pwm_loongson_get_state,
+> > +};
+> > +
+> > +static int pwm_loongson_probe(struct platform_device *pdev)
+> > +{
+> > +     int ret;
+> > +     struct pwm_chip *chip;
+> > +     struct pwm_loongson_ddata *ddata;
+> > +     struct device *dev =3D &pdev->dev;
+> > +
+> > +     chip =3D devm_pwmchip_alloc(dev, 1, sizeof(*ddata));
+> > +     if (IS_ERR(chip))
+> > +             return PTR_ERR(chip);
+> > +     ddata =3D to_pwm_loongson_ddata(chip);
+> > +
+> > +     ddata->base =3D devm_platform_ioremap_resource(pdev, 0);
+> > +     if (IS_ERR(ddata->base))
+> > +             return PTR_ERR(ddata->base);
+> > +
+> > +     if (!has_acpi_companion(dev)) {
+> > +             ddata->clk =3D devm_clk_get_enabled(dev, NULL);
+> > +             if (IS_ERR(ddata->clk))
+> > +                     return dev_err_probe(dev, PTR_ERR(ddata->clk),
+> > +                                          "failed to get pwm clock\n")=
+;
+> > +             ddata->clk_rate =3D clk_get_rate(ddata->clk);
+> > +     } else {
+> > +             ddata->clk_rate =3D LOONGSON_PWM_FREQ_STD;
+> > +     }
+> > +
+> > +     chip->ops =3D &pwm_loongson_ops;
+> > +     dev_set_drvdata(dev, chip);
+> > +
+> > +     ret =3D devm_pwmchip_add(dev, chip);
+> > +     if (ret < 0) {
+> > +             clk_disable_unprepare(ddata->clk);
+>
+> This is wrong. You aquired the clk using devm_clk_get_enabled(), so you
+> don't need (and must not) care for disable.
+>
+Sorry, I had some misunderstanding about devm_clk_get_enabled(), I will fix=
+ it.
+
+Thanks.
+Binbin
+> > +             return dev_err_probe(dev, ret, "failed to add PWM chip\n"=
+);
+> > +     }
+> > +
+> > +     return 0;
+> > +}
+>
+> Best regards
+> Uwe
 
