@@ -1,56 +1,72 @@
-Return-Path: <devicetree+bounces-83561-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83562-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7415B928FF4
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 03:30:57 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDA4F929050
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 05:24:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 303E9281C60
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 01:30:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5B2EFB2237C
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2024 03:24:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 466E26FC2;
-	Sat,  6 Jul 2024 01:30:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B66EAE556;
+	Sat,  6 Jul 2024 03:24:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from norbury.hmeau.com (abb.hmeau.com [144.6.53.87])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 214EF33DF;
-	Sat,  6 Jul 2024 01:30:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=144.6.53.87
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D1AF17E9;
+	Sat,  6 Jul 2024 03:24:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720229453; cv=none; b=Lm0151uUODG1Fg+8RKMQgt3wket5bL4d1LuQRN4+zhgtDB+4nJ0DZH/q9cBL30jOPoZX6kDqw2foenSDRvUetG2AoiSX1lf1TglQnMwiA8jgM3pAXTlt39Hi15SxH4+It2PQvhQaEvPQCs0CzTeFVDcptAay1wfz0IZrJiouki0=
+	t=1720236275; cv=none; b=c4Z20DuGV+U55zLyHSHaHf+2xrcKMdpitwD7Yblu3N/o2dKHJwscxDeBNrd9e20e+pTTW3vcYATKOuT9N/UY5IB2sozxM97tzypOCU7nzAYZWYa/4Yfja0r223pKPvtzj4hOFinnSQg79XReq9LW0POp+1t3uFv8OwmAiIJEQio=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720229453; c=relaxed/simple;
-	bh=Eij4TIBMvKRm+0hBbw/dPnWyF+2k31vb8n451hmoMVE=;
+	s=arc-20240116; t=1720236275; c=relaxed/simple;
+	bh=Hb5PgMHh9aLvQi1yuVN4GWqNjsdDKqaYmaMQZ/b+tiE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=d5C+HUueo8IHkLrcty4/ria4tYWjyBhXx+uPtWAo7XLWPdoIBGwjBAvHU+8LQPfkGPN0USvi7qc8xR4CC+dIYfqFy8r2FequLxelCXl6d8/qhPjm1AQUJGB4hrlP8YA9vcW95v3/V7n7Wgwrpidx+DrjRR6lPINJP2mthh2yiN0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au; spf=pass smtp.mailfrom=gondor.apana.org.au; arc=none smtp.client-ip=144.6.53.87
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gondor.apana.org.au
-Received: from gwarestrin.arnor.me.apana.org.au ([192.168.103.7])
-	by norbury.hmeau.com with smtp (Exim 4.96 #2 (Debian))
-	id 1sPtbs-006h1Y-2e;
-	Sat, 06 Jul 2024 10:49:05 +1000
-Received: by gwarestrin.arnor.me.apana.org.au (sSMTP sendmail emulation); Sat, 06 Jul 2024 10:48:51 +1000
-Date: Sat, 6 Jul 2024 10:48:51 +1000
-From: Herbert Xu <herbert@gondor.apana.org.au>
-To: Andre Przywara <andre.przywara@arm.com>
-Cc: Corentin Labbe <clabbe.montjoie@gmail.com>,
-	"David S . Miller" <davem@davemloft.net>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Ryan Walklin <ryan@testtoast.com>,
-	Philippe Simons <simons.philippe@gmail.com>,
-	linux-crypto@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 0/4] crypto: sun8i-ce: add Allwinner H616 support
-Message-ID: <ZoiUc5TEk64hseK7@gondor.apana.org.au>
-References: <20240624232110.9817-1-andre.przywara@arm.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=dtL7SxBXQrEKlXAGrsxofzGCTaURQ7tV4aS4ULdZN3RqY/whhoEXbgaQvBDeXhWGuBPPaGtTQenENUjydfPRPiP2LdhVTDTThL4DT7zHw6u9kYmjyAlMf2E1BggDxj1pIiv83hKAQphTYi269lVqjpTH09QXjEOtUQ2wfyZUiXQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.210.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-70b04cb28baso1610412b3a.1;
+        Fri, 05 Jul 2024 20:24:34 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720236274; x=1720841074;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9Pb7EbDUVGH98ibgR3s40PMLBJFydYTcIKO50p0umcU=;
+        b=ViQQA0zXMfFeV+kehrvNxYuL5r6w7+rYSNo72nfxaoGMgLFdHIRaQA8V/hnl5UO8zo
+         swRjMlpsm6dGN1Wjh3+IHgicFWDj5O4mRcZL3x1xqBu28cYKGRUHRZYBh09v+LvCz/Ie
+         LsGdbEsZuJMfANiG104uv7gCOpzlUBYDt77D06RkhGivOiYNjFmG7wfemquqMrLeuQEg
+         Np+dkYOs4lcy07OeEfrBagV3KlnJ8AoaosCgk1Enw3oD8zGZTRLWapSknBNStVYfJP6C
+         1NepLgwsDqDFBQjQIelAU+vJpdWJA46hQ1vRt0Oy3bH1zNiLmrfOUPoxy6OMcPXCKdy/
+         e/yQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUo+xiviyzpPf63Eqtu3A3RF2Ebtl2ZPPvL2MoeXssPcBNumwGnBhqAUeg8ePxhYutLl8QUzXECAGialteCLjgAnFC4/1wm0NkA86eeif1fp1F1vXitb+yDZjq34TGuAWxmWjMBuA==
+X-Gm-Message-State: AOJu0YyKMsrfhidP3twH2YwBW13KL4lMKsDkSG+iqxo1C6GfN0u3OnBG
+	XWJftwOv1D6NhTJt2a9jzs1OmNC8vFRDQmzAKk8RKOhR+GHXd3uq
+X-Google-Smtp-Source: AGHT+IFURMNMv3i2QDNgjzV+meNyec/XNEWMDIioYfNtMKTQgCJfyraBJJkOdc75XnBjTu8O+vWrCQ==
+X-Received: by 2002:a05:6a00:170d:b0:704:24fb:11c6 with SMTP id d2e1a72fcca58-70b0094a6c0mr6154295b3a.12.1720236273403;
+        Fri, 05 Jul 2024 20:24:33 -0700 (PDT)
+Received: from localhost (fpd11144dd.ap.nuro.jp. [209.17.68.221])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-70afeb4186esm3967297b3a.41.2024.07.05.20.24.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 05 Jul 2024 20:24:33 -0700 (PDT)
+Date: Sat, 6 Jul 2024 12:24:31 +0900
+From: Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
+To: Jean-Philippe Brucker <jean-philippe@linaro.org>
+Cc: will@kernel.org, lpieralisi@kernel.org, robh@kernel.org,
+	bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org,
+	liviu.dudau@arm.com, sudeep.holla@arm.com, joro@8bytes.org,
+	robin.murphy@arm.com, nicolinc@nvidia.com, ketanp@nvidia.com,
+	linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	iommu@lists.linux.dev, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: PCI: generic: Add ats-supported
+ property
+Message-ID: <20240706032431.GH1195499@rocinante>
+References: <20240607105415.2501934-2-jean-philippe@linaro.org>
+ <20240607105415.2501934-3-jean-philippe@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,64 +75,27 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240624232110.9817-1-andre.przywara@arm.com>
+In-Reply-To: <20240607105415.2501934-3-jean-philippe@linaro.org>
 
-On Tue, Jun 25, 2024 at 12:21:06AM +0100, Andre Przywara wrote:
-> This is an update to the H616 crypto engine support, with the sparse
-> warning fixed and the accrued tags added.
-> ========================
-> 
-> This series adds support for the crypto engine in the Allwinner H616
-> SoC. The IP and its capabilities are very similar to the H6, with the
-> major difference of the DMA engine supporting 34 bit wide addresses.
-> This is achieved by just shifting every address by 2 bits in the DMA
-> descriptors; Allwinner calls this "word addresses".
-> Patch 2/4 adds support for this by wrapping every address access in a
-> function that does the shift as needed. Patch 1/4 adds the new
-> compatible string to the binding, patch 3/4 adds that string to the
-> driver and enables the address shift for it. The final patch 4/4 adds
-> the DT node to the SoC .dtsi. Since this is an internal peripheral,
-> it's always enabled.
-> 
-> Corentin's cryptotest passed for me, though I haven't checked how fast
-> it is and if it really brings an advantage performance-wise, but maybe
-> people find it useful to offload that from the CPU cores.
-> One immediate advantage is the availability of the TRNG device, which
-> helps to feed the kernel's entropy pool much faster - typically before
-> we reach userland. Without the driver this sometimes takes minutes, and
-> delays workloads that rely on the entropy pool.
-> 
-> Please have a look and comment!
-> 
-> Cheers,
-> Andre
-> 
-> Changelog v1 ... v2:
-> - fix sparse warning by treating writel() call differently (2/4)
-> - add Acks, R-b and Tested-by: tags
-> 
-> Andre Przywara (4):
->   dt-bindings: crypto: sun8i-ce: Add compatible for H616
->   crypto: sun8i-ce - wrap accesses to descriptor address fields
->   crypto: sun8i-ce - add Allwinner H616 support
->   arm64: dts: allwinner: h616: add crypto engine node
-> 
->  .../bindings/crypto/allwinner,sun8i-ce.yaml   |  2 ++
->  .../arm64/boot/dts/allwinner/sun50i-h616.dtsi | 10 +++++++
->  .../allwinner/sun8i-ce/sun8i-ce-cipher.c      |  8 +++---
->  .../crypto/allwinner/sun8i-ce/sun8i-ce-core.c | 28 ++++++++++++++++++-
->  .../crypto/allwinner/sun8i-ce/sun8i-ce-hash.c |  6 ++--
->  .../crypto/allwinner/sun8i-ce/sun8i-ce-prng.c |  6 ++--
->  .../crypto/allwinner/sun8i-ce/sun8i-ce-trng.c |  2 +-
->  drivers/crypto/allwinner/sun8i-ce/sun8i-ce.h  | 15 ++++++++++
->  8 files changed, 65 insertions(+), 12 deletions(-)
-> 
-> -- 
-> 2.39.4
+Hello,
 
-Patches 1-3 applied.  Thanks.
--- 
-Email: Herbert Xu <herbert@gondor.apana.org.au>
-Home Page: http://gondor.apana.org.au/~herbert/
-PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+> Add a way for firmware to tell the OS that ATS is supported by the PCI
+> root complex. An endpoint with ATS enabled may send Translation Requests
+> and Translated Memory Requests, which look just like Normal Memory
+> Requests with a non-zero AT field. So a root controller that ignores the
+> AT field may simply forward the request to the IOMMU as a Normal Memory
+> Request, which could end badly. In any case, the endpoint will be
+> unusable.
+> 
+> The ats-supported property allows the OS to only enable ATS in endpoints
+> if the root controller can handle ATS requests. Only add the property to
+> pcie-host-ecam-generic for the moment. For non-generic root controllers,
+> availability of ATS can be inferred from the compatible string.
+
+Applied to dt-bindings, thank you!
+
+[1/1] dt-bindings: PCI: generic: Add ats-supported property
+      https://git.kernel.org/pci/pci/c/631b2e7318d45
+
+	Krzysztof
 
