@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-83657-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83658-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 241119297B5
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jul 2024 13:58:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2ABF59297BA
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jul 2024 14:02:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C62102810DF
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jul 2024 11:58:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AAD1A1F21089
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jul 2024 12:02:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49B531BF50;
-	Sun,  7 Jul 2024 11:58:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B09E41BF47;
+	Sun,  7 Jul 2024 12:02:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vHqpg2up"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nA14nBv0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AECC1C683;
-	Sun,  7 Jul 2024 11:58:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88913FBEA;
+	Sun,  7 Jul 2024 12:02:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720353535; cv=none; b=Kv9CQ3xKMKI19P8rxn+HRP4ZEb1HlsRbVuchh2UfM976zi2MSsKVVLvbSsTuuqkQDkceknF+kHH4WBI90ZGafGd6MaJZItWIAK5VzBzqmXKqW5rFEgJKEDfRnT0egBTjv3Qpw4oV0NRqgEvF0fhAFWaB7Snc1M8Yg2TsOG6ud2M=
+	t=1720353765; cv=none; b=N0QvJt7B/Ba7Qf8r5fIqX9cU8tJW28FjnW4dJT84uoL9/Kg6/GQXvsQHrPVZH1O1zp/94a9F//DhiyE9rU9OCqSPjDPYVR9A0ric+vxo6zFJINtg6dmqxedHSkeqsYsBMudLgSky6qtIk/7rqHadqcMxiLDc3YHB/5qalk8QAD0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720353535; c=relaxed/simple;
-	bh=yRtvEd+JZxJk1MCeokZN0nsYN7A1lE9WPI0r8bmpmdY=;
+	s=arc-20240116; t=1720353765; c=relaxed/simple;
+	bh=6TaseJNEX8nKaVfJr1mJuYNLBqyiWY02WbWt6CHT2HY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Qr5bzVSS/4Gw0nU9HMyBB5jNRbLJ1w03vJZyw3ClPJto4NEPeRy0+FPc2BmwcLPtICghDEaMuXcji+hqat4wbtubpnw3sg4UckDbnDI9XaufSCEF9tb+Nzyi6bkbu6Av11Xs7arg4D6iTurZvdNoQy+RblQy487CnXTQ8AkEswU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vHqpg2up; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EAEC4C3277B;
-	Sun,  7 Jul 2024 11:58:49 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=oTiirr14L9MdWAS3jST2Bvt5s4pCuYfJOTK96gU8JCj9emwJB+etnYafiTbd545+YU/mRCGqPgKxYegeRhV2csBcnGwkEZvYNcFEDRbaRMxmwJz47sY68Vw0r+AXfR9I/a6834PTI3ndUSzI3Ma8NGmhe8SHcu3NSPfaME6NFR8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nA14nBv0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B724C3277B;
+	Sun,  7 Jul 2024 12:02:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720353534;
-	bh=yRtvEd+JZxJk1MCeokZN0nsYN7A1lE9WPI0r8bmpmdY=;
+	s=k20201202; t=1720353765;
+	bh=6TaseJNEX8nKaVfJr1mJuYNLBqyiWY02WbWt6CHT2HY=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=vHqpg2upNSEo1ky28Icsz3D8QMijImadmsJuADC46GGyjMlT2/UEKXA4/0Wq0DHEU
-	 AU+Ku+4aLu5urieq9i1xegC8l/lT4He2qOzB3eA5LzBtog+67dadRTHolzA9UQ0Rq3
-	 27mQfv+RxKYye7VT3aoXP3XChEnAWSjNTSWrthvlHgDkwt9ndNIW/aO8hO+SPqgLrB
-	 xQp9bTrj+INN75NmNsZQzS8hGknKOiNAuJJCI21YQ56xZKA6M3l6qdb9N+jSLRoPjG
-	 yOoYQ9lS1R+RxkpA9oHjpUu6yuY6YBI9kLTwYrntHOEAQpjU3cZ+vjD8+yJIPVu5YS
-	 q70y/TAOQAgug==
-Message-ID: <b71cb924-7f63-4141-97da-319d8c840465@kernel.org>
-Date: Sun, 7 Jul 2024 13:58:47 +0200
+	b=nA14nBv00dk6F6SiGXlusTnU5ztjde3wQxqxQ++dM7SI8CREJJ82Ith4fcVDWMbZ/
+	 pR1x5w/RzsgGSvROJv51lqLP/KrJEK6iQw3OOGlCI8X17uX5YaroHXYlSGeFY7FRET
+	 +maKHu0k6+BaNf7cxi3uDx/6q9geQw/nmJhfkaw2DiCzb+b0EtGdzPsnNDNnJgPCcw
+	 H84cQ2Z5J1lxqYN/DsSDXYE0S3RZuz6760q3Q/nxPqXsSko529Q4XgeLAFC5lWCqPO
+	 8nBSMen6q0uLaBG0Rcty2p943X6HvY6+nHYFjDSskmhIPjOqnR8dF11E3OSGCunMhu
+	 VI/6tCqFPwWBg==
+Message-ID: <98992b1d-c94a-4053-a755-32a25d7fdc46@kernel.org>
+Date: Sun, 7 Jul 2024 14:02:39 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,29 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 01/12] dt-bindings: PCI: Add Broadcom STB 7712 SOC,
- update maintainer
-To: Jim Quinlan <james.quinlan@broadcom.com>
-Cc: linux-pci@vger.kernel.org, Nicolas Saenz Julienne <nsaenz@kernel.org>,
- Bjorn Helgaas <bhelgaas@google.com>,
- Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
- Cyril Brulebois <kibi@debian.org>, Stanimir Varbanov <svarbanov@suse.de>,
- bcm-kernel-feedback-list@broadcom.com, jim2101024@gmail.com,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE"
- <linux-rpi-kernel@lists.infradead.org>,
- "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE"
- <linux-arm-kernel@lists.infradead.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
-References: <20240703180300.42959-1-james.quinlan@broadcom.com>
- <20240703180300.42959-2-james.quinlan@broadcom.com>
- <df291860-cbbe-4f94-a18d-00ae9cf905b1@kernel.org>
- <CA+-6iNwSk9-k=BZLbmPtwHHgqWs4ZB9OPGfF3Ruy4883dSTH7A@mail.gmail.com>
+Subject: Re: [PATCH] iio: light: ltrf216a: Drop undocumented ltr,ltrf216a
+ compatible string
+To: Shreeya Patel <shreeya.patel@collabora.com>, Marek Vasut <marex@denx.de>
+Cc: linux-iio@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+ Jonathan Cameron <jic23@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+ kernel@collabora.com
+References: <20240705095047.90558-1-marex@denx.de>
+ <3b2ca0-6687ce00-3-4dab7280@52083650>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -118,148 +105,66 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <CA+-6iNwSk9-k=BZLbmPtwHHgqWs4ZB9OPGfF3Ruy4883dSTH7A@mail.gmail.com>
+In-Reply-To: <3b2ca0-6687ce00-3-4dab7280@52083650>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 05/07/2024 22:02, Jim Quinlan wrote:
-> On Thu, Jul 4, 2024 at 2:40 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>
->> On 03/07/2024 20:02, Jim Quinlan wrote:
->>> - Update maintainer; Nicolas hasn't been active and it
->>>   makes more sense to have a Broadcom maintainer
->>> - Add a driver compatible string for the new STB SOC 7712
->>
->> You meant device? Bindings are for hardware.
->>
->>> - Add two new resets for the 7712: "bridge", for the
->>>   the bridge between the PCIe core and the memory bus;
->>>   "swinit", the PCIe core reset.
->>> - Order the compatible strings alphabetically
->>> - Restructure the reset controllers so that the definitions
->>>   appear first before any rules that govern them.
->>
->> Please split cleanups from new device support.
->>
->>>
->>> Signed-off-by: Jim Quinlan <james.quinlan@broadcom.com>
->>> ---
->>>  .../bindings/pci/brcm,stb-pcie.yaml           | 44 +++++++++++++++----
->>>  1 file changed, 36 insertions(+), 8 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
->>> index 11f8ea33240c..a070f35d28d7 100644
->>> --- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
->>> +++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
->>> @@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
->>>  title: Brcmstb PCIe Host Controller
->>>
->>>  maintainers:
->>> -  - Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
->>> +  - Jim Quinlan <james.quinlan@broadcom.com>
->>>
->>>  properties:
->>>    compatible:
->>> @@ -16,11 +16,12 @@ properties:
->>>            - brcm,bcm2711-pcie # The Raspberry Pi 4
->>>            - brcm,bcm4908-pcie
->>>            - brcm,bcm7211-pcie # Broadcom STB version of RPi4
->>> -          - brcm,bcm7278-pcie # Broadcom 7278 Arm
->>>            - brcm,bcm7216-pcie # Broadcom 7216 Arm
->>> -          - brcm,bcm7445-pcie # Broadcom 7445 Arm
->>> +          - brcm,bcm7278-pcie # Broadcom 7278 Arm
->>>            - brcm,bcm7425-pcie # Broadcom 7425 MIPs
->>>            - brcm,bcm7435-pcie # Broadcom 7435 MIPs
->>> +          - brcm,bcm7445-pcie # Broadcom 7445 Arm
->>> +          - brcm,bcm7712-pcie # STB sibling SOC of Raspberry Pi 5
->>>
->>>    reg:
->>>      maxItems: 1
->>> @@ -95,6 +96,20 @@ properties:
->>>        minItems: 1
->>>        maxItems: 3
->>>
->>> +  resets:
->>> +    items:
->>> +      - description: reset for phy calibration
->>> +      - description: reset for PCIe/CPU bus bridge
->>> +      - description: reset for soft PCIe core reset
->>> +      - description: reset for PERST# PCIe signal
->>
->> This won't work and I doubt you tested your code. You miss minItems.
+On 05/07/2024 12:42, Shreeya Patel wrote:
+> On Friday, July 05, 2024 15:20 IST, Marek Vasut <marex@denx.de> wrote:
 > 
-> I did test my code and there were no errors.  I perform the following test:
+>> The "ltr,ltrf216a" compatible string is not documented in DT binding
+>> document, remove it.
+>>
+>> Signed-off-by: Marek Vasut <marex@denx.de>
+>> ---
+>> Cc: Conor Dooley <conor+dt@kernel.org>
+>> Cc: Jonathan Cameron <jic23@kernel.org>
+>> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+>> Cc: Lars-Peter Clausen <lars@metafoo.de>
+>> Cc: Marek Vasut <marex@denx.de>
+>> Cc: Rob Herring <robh@kernel.org>
+>> Cc: Shreeya Patel <shreeya.patel@collabora.com>
+>> Cc: devicetree@vger.kernel.org
+>> Cc: linux-iio@vger.kernel.org
+>> ---
+>>  drivers/iio/light/ltrf216a.c | 1 -
+>>  1 file changed, 1 deletion(-)
+>>
+>> diff --git a/drivers/iio/light/ltrf216a.c b/drivers/iio/light/ltrf216a.c
+>> index 68dc48420a886..78fc910fcb18c 100644
+>> --- a/drivers/iio/light/ltrf216a.c
+>> +++ b/drivers/iio/light/ltrf216a.c
+>> @@ -528,7 +528,6 @@ MODULE_DEVICE_TABLE(i2c, ltrf216a_id);
+>>  
+>>  static const struct of_device_id ltrf216a_of_match[] = {
+>>  	{ .compatible = "liteon,ltrf216a" },
+>> -	{ .compatible = "ltr,ltrf216a" },
+>>  	{}
 > 
-> make ARCH=arm64 dt_binding_check DT_CHECKER_FLAGS=-m
-> DT_SCHEMA_FILES=Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> 
-> Is this incorrect?
+> This compatible string with a different vendor prefix was added for a specific reason.
+> Please see the commit message of the following patch :-
+> https://lore.kernel.org/all/20220511094024.175994-2-shreeya.patel@collabora.com/
 
-That's correct and you are right - it passes the checks. Recent dtschema
-changed the logic behind this. I am not sure if the new approach will
-stay, I would find explicit minItems here more obvious and readable, so:
-resets:
-  minItems: 1
-  items:
-    - .........
-    - .........
-    - .........
-    - .........
+And adding this specific compatible was clearly NAKed:
+https://lore.kernel.org/all/20220516170406.GB2825626-robh@kernel.org/
 
+yet you still added it. That's a deliberate going around maintainer's
+decision.
 
 > 
->>
->>> +
->>> +  reset-names:
->>> +    items:
->>> +      - const: rescal
->>> +      - const: bridge
->>> +      - const: swinit
->>> +      - const: perst
->>
->> This does not match what you have in conditional, so just keep min and
->> max Items here.
-> 
-> I'm not sure what you mean.  One chips uses a single reset, another
-> chip uses a different single reset,
-> and the third (7712) uses three of the four resets.
+> We were very well aware that not documenting this was going to generate a warning so
 
-Your conditional in allOf:if:then has different order.
+You *CANNOT* have undocumented compatibles.
 
-> 
-> I was instructed to separate the descriptions from the rules, or at
-> least that's what I thought I was asked.
->>
->>
->>> +
->>>  required:
->>>    - compatible
->>>    - reg
->>> @@ -118,13 +133,10 @@ allOf:
->>>      then:
->>>        properties:
->>>          resets:
->>> -          items:
->>> -            - description: reset controller handling the PERST# signal
->>> -
->>> +          minItems: 1
->>
->> maxItems instead. Why three resets should be valid?
-> 
-> See above.  Note that I was just instructed to separate the rules from
-> the descriptions.
-> In doing so I placed all of the reset descripts on the top and then
-> the rules below.
-> There are four possible resets but no single chip uses all of them and
-> three chips
-> use one or three of them.
-> 
-> Please advise.
+> we tried to fix that with a deprecated tag but it was NAKd by Rob. What we understood
 
-I don't understand that explanation. Why this particular variant works
-with 1, 2, 3 or 4 resets in the same time?
+Because the driver was NAKed obviously as well.
 
-Constraints are supposed to be precise / exact.
+> from his last message was that it wasn't necessary to fix the DT warning.
+
+I am quite angry that maintainer tells you something, but you push your
+patch through because apparently you need to fulfill your project
+requirements.
 
 Best regards,
 Krzysztof
