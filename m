@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-83680-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83681-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C79ED929832
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jul 2024 15:49:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D58092983B
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jul 2024 15:58:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 566B4B20A4D
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jul 2024 13:49:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 044CFB2123B
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jul 2024 13:58:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA7C220DCB;
-	Sun,  7 Jul 2024 13:49:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B91421350;
+	Sun,  7 Jul 2024 13:58:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K2ylfVrM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Cq9pO14Y"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80BB51E532;
-	Sun,  7 Jul 2024 13:49:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5688122EEF;
+	Sun,  7 Jul 2024 13:58:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720360182; cv=none; b=GOV4yotkPS+YyiPPdQswnqMIo+GsscaA7gXWNvToZmIdtpgeCuMUEnr3IlUTha5tWh+NWQB9i3eldRcxpYT8n8Po4ZkOcppPLBaHjzNIpDgOeDA+HbIxE1XoHjhmg4vNDjoNKoh6Saj/69MslxpFoyYyoXLKjKeCJvFICh7bkHU=
+	t=1720360694; cv=none; b=jtyk9zUQ42RP0rhz60Pbu7ObBo3VidwTZ56jiGAb7AEFPPVfar+jfYaeMgtWBGz3d0cKn+h5KSw0bN5siyeRktrs7h+r6468l0NTacfwM720VdaJ3qrzF7N1nvMJ810X02L+wtp6ztNzcn/EBFLlz21fgTltDY+52L1NUr5dvbY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720360182; c=relaxed/simple;
-	bh=YLUcrqd/Odb31JX6AgEGplnH1bPhvoiaZ7aedx3y+zA=;
+	s=arc-20240116; t=1720360694; c=relaxed/simple;
+	bh=8Kylf+t2UNpIbjF9sss2Nya8a4fTm/WXmwgVokPpJ38=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qPnI/Cf6QtlseXS3Hz9XM+lW69ZjnDzX4kZlcAv1AwpFE/0Jk23EExM0I0N1owNlh8YDVSomx+M+Mfr1FJmB5a7aQJ9O0Or3xm3PgA1W6Xp6MWw4XyDBg11ZjUQwPxZ8z2ZwmnBhB+cnt6+heLKgdSHjPoZi4dgaqm1aQuxictI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K2ylfVrM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04681C3277B;
-	Sun,  7 Jul 2024 13:49:38 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=p2Jrv4vNWN1CPBrrcgyaPCOneZoTV1Td6TroNMzQRHjbZxgJtg2pzmd1OoHyhMZpnzsJn0Z4Qy6sAPJuBk9BZOMvEeCXbF+GMbMfmypICu4T31JmJ1ZE/4gSRbJ4eNtDEIUkITsnpKQl7chfM/Ir914PnZ2XJB/wdZZDq6HCIZI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Cq9pO14Y; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32BDAC3277B;
+	Sun,  7 Jul 2024 13:58:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720360182;
-	bh=YLUcrqd/Odb31JX6AgEGplnH1bPhvoiaZ7aedx3y+zA=;
+	s=k20201202; t=1720360693;
+	bh=8Kylf+t2UNpIbjF9sss2Nya8a4fTm/WXmwgVokPpJ38=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=K2ylfVrMWT6u6D2cNstwxIZJf4z6QI7ep4PWFbHxAwTBnhceR1CHbQJbEqbI/rFrD
-	 BDXMfPHv9vl4SEa7gENeMHGCvHJ0ugm26o/tGZZwhQtm/aylgyW/FAxjZQlOxgTn6r
-	 gK2nJ97KuOabLbKvb/yYROWsVP3syjzmHrEktH9k9qMQax+bRa4DmDUUf1uhQ5uZfC
-	 CXZYoxfAMagZOb1cF5O6BqX2OIqWH5p+YwpIC4+TS9PmoU9CrWTLzhn19RlN6Ur/Z1
-	 KtyX88ds0uGl+omOjmvj92ZZVR7WgIsueT6CGBwWUELoPZFNY4XcGD/LNl23nez4i2
-	 b+6DjCYxCqtDA==
-Message-ID: <22b43c93-6055-4503-94ad-cd449f21f801@kernel.org>
-Date: Sun, 7 Jul 2024 15:49:36 +0200
+	b=Cq9pO14YA3xvEgzmURKEXlEx2QAJJigIvzd9oWKfch1rHKqK+jC1k06b3zymFbDih
+	 KwXB6XFkKPIJIEXG8/PGMXO4LI33rNcy7Kfi6QGHP2K3YOR9JZ5dSWNawL0DP+hlHQ
+	 z9mO0AABa0pLZhP7w41NRNUmA4QZKHC3b9OkaCni5NiGjTURkObYlJE9N1dwYTZXhn
+	 iZxwdvyR2cFQV0N2uupPDgVmIRq23EyOUF+xDohtVKNtUytcv2OC6/+dXmyoETiDeh
+	 /wzsHtzWiaTrBV+6bHJORRsemdfn94GcXsADFc8ymRkuXYuUsgMSZjR503kFhg57VS
+	 BYanrbZV7gxpw==
+Message-ID: <eec3d2a7-0197-4196-bf6f-71d0e29777de@kernel.org>
+Date: Sun, 7 Jul 2024 15:58:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,14 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: leds: Document "netdev" trigger
-To: Marek Vasut <marex@denx.de>, linux-leds@vger.kernel.org
-Cc: kernel@dh-electronics.com, Conor Dooley <conor+dt@kernel.org>,
- Jacek Anaszewski <jacek.anaszewski@gmail.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Lee Jones <lee@kernel.org>,
- Pavel Machek <pavel@ucw.cz>, Rob Herring <robh@kernel.org>,
- devicetree@vger.kernel.org
-References: <20240705215313.256963-1-marex@denx.de>
+Subject: Re: [PATCH 01/10] dt-bindings: display: imx: Add some i.MX8qxp
+ Display Controller processing units
+To: Liu Ying <victor.liu@nxp.com>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc: p.zabel@pengutronix.de, airlied@gmail.com, daniel@ffwll.ch,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+ festevam@gmail.com, tglx@linutronix.de
+References: <20240705090932.1880496-1-victor.liu@nxp.com>
+ <20240705090932.1880496-2-victor.liu@nxp.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -103,20 +107,32 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240705215313.256963-1-marex@denx.de>
+In-Reply-To: <20240705090932.1880496-2-victor.liu@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 05/07/2024 23:52, Marek Vasut wrote:
-> Document the "netdev" trigger which is used to control LEDs by
-> network device activity.
+On 05/07/2024 11:09, Liu Ying wrote:
+> Freescale i.MX8qxp Display Controller is implemented as construction set of
+> building blocks with unified concept and standardized interfaces.
+> 
+> Document some processing units to support two display outputs.
 
-Instead, please propose a patch adding a comment there (in that place):
-"# netdev - not accepted, please do not add it"
 
-This is like fourth or fifth attempt.
+> +maintainers:
+> +  - Liu Ying <victor.liu@nxp.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: fsl,imx8qxp-dc-tcon
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  fsl,dc-tc-id:
+> +    description: Timing Controller unit instance number
 
-https://lore.kernel.org/all/20230217230346.GA2217008-robh@kernel.org/
+No instance numbering. This applies to your entire patchset.
+
 
 
 Best regards,
