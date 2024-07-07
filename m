@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-83666-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83667-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BB579297E1
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jul 2024 14:47:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD71C9297FA
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jul 2024 14:59:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 349AD1C209E9
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jul 2024 12:47:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D04971C210C7
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jul 2024 12:59:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FFAF1CF8B;
-	Sun,  7 Jul 2024 12:47:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 321171DFEB;
+	Sun,  7 Jul 2024 12:59:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j/SSDjxd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k3iSw9ML"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7691918C31;
-	Sun,  7 Jul 2024 12:47:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 042C01429B;
+	Sun,  7 Jul 2024 12:59:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720356425; cv=none; b=u30RGxvY0/LpDFYy1RtG8fjwE5DrJeE+5qL3NsrSLCbOMLDOAtJ/Q1pwsPVV1xwZZ/kZHDDixmOQDi0pD1Y7WWD7OJVLjrGpJ6a0zlJYB6L6Ktrt20/KLfusJJdvo52acXzuacRpthdX5XIdsTc9Moi9AeniPAqqLlbk0LMM3P8=
+	t=1720357191; cv=none; b=njXPwKW1XVtMh6cdmC8b1+DEAfGnmgUKniCzDXD0gHshX2PwmzsnOfUtVNzgCwYT5RH1pLzKmpHNqST10HoT0YH8TlSVtxya32YXLJoPsfpzvTjObRWg0VLvK6nj8l0TXQBUWQPQvHAUySFVbweFz3bHMWHc//PwwZDKur3cpVI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720356425; c=relaxed/simple;
-	bh=tUa18Im2NrzZwuN6YIjmqlyQnmms9tiBpfEKVla0Das=;
+	s=arc-20240116; t=1720357191; c=relaxed/simple;
+	bh=tiXMA8EECBkqN/vv2Nt4zH0sM+yAKEX9K1n1zCy7yDU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FpdH1Fo4qb+HHEtpi7JS0pMIWf5YSByUvOWJ/jwdPiUOCLY+6T12LM68r7Q6GkXz7JjDVvhL0Grv4MkECwjWV5DOy5hODOIEv2gTfAUWmp4hAQkZxk9aAs8IHGURQdMXGThuSfvzpcCf14QAbpaNg9u+Qx/MjtZN+Z/+Qxb184Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j/SSDjxd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18251C3277B;
-	Sun,  7 Jul 2024 12:47:00 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=CmBgKvKaDldIx8MBmF0Mwp/wiYz5ceViNgpCH0XGmVFjtLhFbnZgtth0uS2x2gEIUO38gYGi9pTxvxhxR4cE2blaaEALpi58ns1XvV9wQIsifE8uhheK4M10XSbgLFgQq45x7T3eDfIRsGpNS/bvDut7uKgYkYEa2VzgiY8RjyU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k3iSw9ML; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7056AC3277B;
+	Sun,  7 Jul 2024 12:59:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720356425;
-	bh=tUa18Im2NrzZwuN6YIjmqlyQnmms9tiBpfEKVla0Das=;
+	s=k20201202; t=1720357190;
+	bh=tiXMA8EECBkqN/vv2Nt4zH0sM+yAKEX9K1n1zCy7yDU=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=j/SSDjxdhNKm1DhkHJeM+zEXe0ZD7nePfw9pVimLh3cVwZFMUB9YRIfnIsZAvP3Ey
-	 BzM0v0lfMZ/iTdn9ZNaUh554L5oql6JnF7QhBxRQzHgQBgZNK+02p6Q1/2wKDek3zk
-	 981Oby3fByW8WoW0YonC15m7YEmxVvMrlbxxZBssecoKvEUYv1RGSAwCNrhbA0J/aH
-	 wLFpaFVTiiCYKw1iWzIjOwkdSMJVy2Sh6MtlA3sJSp3jTSiqED/QN/T8AUC7l5Vca2
-	 W5FOsZwIVKCn3aLYOrTPsOvD61nmfwxCiywpagMs0e3HgKTL/Wzf54PQ3PMRiYi6fl
-	 Co/uFbT6iGkhA==
-Message-ID: <50d0bdd6-2262-4404-9a26-29b1f2e6fe92@kernel.org>
-Date: Sun, 7 Jul 2024 14:46:59 +0200
+	b=k3iSw9MLTQChGjG8cN9oUX2rM6wytHwmk+SoKRGOKGU/ZHJClzLXbtECPEb/LASPj
+	 ikdewirGrr1ly6Q87+3fKOHS9tnk+fUz8d+uLhNY72wn26fIrSSPa3zgjknmdk2Gki
+	 2beXfNiqkffUlNvmKivL3c1RkpdLrKQrdUDbiT1m8hnSARqZKmxMK0snepAisTX3K4
+	 WdGiGIo+y+4nDycEKyjRfZIBdvqO9dWlfj+bOzFgashQCgnry77o0ygxkUUML6JyYu
+	 g37Ercm9NIzl8M/Y/Zr+hsLqXgrCVVH+ZZUZP/FNwt1xm8FLa309qNqR/L/X1iQKJT
+	 1cK4QyMCVNY7g==
+Message-ID: <a4d08999-55ea-4674-bb0f-6d618b7bdea7@kernel.org>
+Date: Sun, 7 Jul 2024 14:59:44 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: sa8775p: Add TCSR halt register
- space
-To: Mukesh Ojha <quic_mojha@quicinc.com>, lee@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, andersson@kernel.org,
- konrad.dybcio@linaro.org
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240705153252.1571814-1-quic_mojha@quicinc.com>
- <20240705153252.1571814-2-quic_mojha@quicinc.com>
+Subject: Re: [PATCH 1/3] dt-bindings: power: Add power sequence for Amloigc
+ WCN chips
+To: yang.li@amlogic.com, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org
+References: <20240705-pwrseq-v1-0-31829b47fc72@amlogic.com>
+ <20240705-pwrseq-v1-1-31829b47fc72@amlogic.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,42 +104,98 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240705153252.1571814-2-quic_mojha@quicinc.com>
+In-Reply-To: <20240705-pwrseq-v1-1-31829b47fc72@amlogic.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 05/07/2024 17:32, Mukesh Ojha wrote:
-> Enable download mode for sa8775p which can help collect
-> ramdump for this SoC.
+On 05/07/2024 13:13, Yang Li via B4 Relay wrote:
+> From: Yang Li <yang.li@amlogic.com>
 > 
-> Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
+> Add binding document to introduce power sequence of
+> Amlogic WCN chips.
+> 
+> Signed-off-by: Yang Li <yang.li@amlogic.com>
 > ---
->  arch/arm64/boot/dts/qcom/sa8775p.dtsi | 6 ++++++
->  1 file changed, 6 insertions(+)
+>  .../bindings/power/amlogic,w155s2-pwrseq.yaml      | 62 ++++++++++++++++++++++
+>  1 file changed, 62 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> index 23f1b2e5e624..a46d00b1ddda 100644
-> --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> @@ -221,6 +221,7 @@ eud_in: endpoint {
->  	firmware {
->  		scm {
->  			compatible = "qcom,scm-sa8775p", "qcom,scm";
-> +			qcom,dload-mode = <&tcsr 0x13000>;
->  			memory-region = <&tz_ffi_mem>;
->  		};
->  	};
-> @@ -2824,6 +2825,11 @@ tcsr_mutex: hwlock@1f40000 {
->  			#hwlock-cells = <1>;
->  		};
->  
-> +		tcsr: syscon@1fc0000 {
-> +			compatible = "qcom,sa8775p-tcsr", "syscon";
+> diff --git a/Documentation/devicetree/bindings/power/amlogic,w155s2-pwrseq.yaml b/Documentation/devicetree/bindings/power/amlogic,w155s2-pwrseq.yaml
+> new file mode 100644
+> index 000000000000..f99a775fcf9b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/power/amlogic,w155s2-pwrseq.yaml
+> @@ -0,0 +1,62 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/power/amlogic,w155s2-pwrseq.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Amlogic power sequence for WCN chips
+> +
+> +maintainers:
+> +  - Yang Li <yang.li@amlogic.com>
+> +
+> +description:
+> +  The Amlogic WCN chip contains discrete modules for WLAN and Bluetooth. Power on
+> +  Bluetooth and Wi-Fi respectively, including chip_en pull-up and bt_en pull-up,
+> +  and generation of the 32.768KHz clock.
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - const: amlogic,w155s2-pwrseq
+> +      - items:
+> +          - enum:
+> +              - amlogic,w265s1-pwrseq
+> +              - amlogic,w265p1-pwrseq
+> +              - amlogic,w265s2-pwrseq
+> +          - const: amlogic,w155s2-pwrseq
+> +
+> +  clocks:
+> +    maxItems: 1
+> +    description: clock provided to the controller (32.768KHz)
+> +
+> +  clock-names:
+> +    items:
+> +      - const: ext_clock
 
-The file is going away. This change is very confusing.
+Drop _clock... or actually drop entire clock-names, not much helpful.
 
-Please align first with your colleagues instead of sending conflicting
-work without any explanation.
+> +
+> +  amlogic,chip-enable-gpios:
+> +    maxItems: 1
+> +    description: gpio specifier used to enable chipset
+
+For entire chipset? Then enable-gpios
+
+> +
+> +  amlogic,bt-enable-gpios:
+> +    maxItems: 1
+> +    description: gpio specifier used to enable BT
+
+Follow existing bindings for Qualcomm as example.
+
+> +
+> +required:
+> +  - compatible
+> +  - clocks
+> +  - clock-names
+> +  - amlogic,chip-enable-gpios
+> +  - amlogic,bt-enable-gpios
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    wcn_pwrseq {
+
+No underscores in node names, generic node names.
+
+There is no device as "pwrseq". I also do not get what "wcn" means here.
+
+
 
 Best regards,
 Krzysztof
