@@ -1,145 +1,288 @@
-Return-Path: <devicetree+bounces-83661-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83662-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F8CC9297C7
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jul 2024 14:18:10 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F12759297D0
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jul 2024 14:35:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2588CB20F77
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jul 2024 12:18:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A8B47B20FA0
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jul 2024 12:35:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BC731CA96;
-	Sun,  7 Jul 2024 12:18:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F8371CD00;
+	Sun,  7 Jul 2024 12:35:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=j.neuschaefer@gmx.net header.b="N9tbjIy9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QF5f9Hhq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D3521C694;
-	Sun,  7 Jul 2024 12:18:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9F4B18C31;
+	Sun,  7 Jul 2024 12:35:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720354683; cv=none; b=EdVy0kSRs92Z16VD6R1busCn7sXeKd5qbtXpdcJ0Hv3g9yBEzCYpzvOk7HY++KDope+0j/QYZ0RXhnTpNi4LbrBOGsMPO2J8wNzKhbhxePIKaaVYL/cymb79pnv7yIU2IA98mDEz+d/wrOVgiRtqftCcJS4bEdtBc6nqO9hDo70=
+	t=1720355705; cv=none; b=iDgxN8XB8Z/ggEb7aBd4uuU2O6eGSvVsF0GwEbqm0kaAyCuM6kSIvNFWV/nfxQF9H3XgXe9PkMLSxDySmhiH6bsLKIBrRl9cuX5XJgcivvTLzi/uBem6K1V1A3zDWLwSnt4aA0E8cxCgL/c/65lNyBsf5an3xJQl1LTgHPbbl3k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720354683; c=relaxed/simple;
-	bh=/ZE98uSxNAbfzHkH31FBNDLThBe/haeN9Vnngj4CFRI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tgJW/uvtTHJk6PReOiLebCqzhRVVAUEoYEym5+mkvkUpVEVQbLhyUdkapX2geXPp09vM4IdgOKv4Ajnv5Du2e0nVKzwpKzdr0bXKRR3yRopN8gReHCSAYoHivULIyuMPpCtf8IN5TdPIWUsz4cRHe2FYZv89dTgT+/RjfU6KzLE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=j.neuschaefer@gmx.net header.b=N9tbjIy9; arc=none smtp.client-ip=212.227.17.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
-	s=s31663417; t=1720354672; x=1720959472; i=j.neuschaefer@gmx.net;
-	bh=wOY2LTVtor9c0uh4sZNyK/qPJ5Ak71J0G4tckDfFQzU=;
-	h=X-UI-Sender-Class:Date:From:To:Cc:Subject:Message-ID:References:
-	 MIME-Version:Content-Type:Content-Transfer-Encoding:In-Reply-To:
-	 cc:content-transfer-encoding:content-type:date:from:message-id:
-	 mime-version:reply-to:subject:to;
-	b=N9tbjIy9QZbwZCaOjcLLmAIhLQ35YZsTqGiNPsM4LojXWbONQO0lLDx8F+jMmEqk
-	 i2n+SNidrO6TmTr9cTokLSHiQmLKKle8iRl/Z3LfIu2dzUlHCLYEoBwAPaBHaUS49
-	 AonpM1jLresat1y6sulftZHioMX+LnGn+RjvQOXXHxAuTClkCqUyGGu3oWudfPD2i
-	 /0ncmybCL9Q0AkwrQHyhIl0FuVQek+lESZlbzOVcrkx2HQ6b1uHNTGrtGA27sEEGy
-	 ulnBlHGDN+j7sE7BCL2UPZibjg81hDMscOs9YrXJ1GYLnSZTZ0a/36u+rU+VU+IJN
-	 cg+kxbL1FYI79ptsDg==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from probook ([89.0.46.161]) by mail.gmx.net (mrgmx104
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1MysRu-1sCd4k23Bi-00xmgG; Sun, 07
- Jul 2024 14:17:52 +0200
-Date: Sun, 7 Jul 2024 14:17:51 +0200
-From: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, openbmc@lists.ozlabs.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: nuvoton: wpcm450: align LED and GPIO keys node
- name with bindings
-Message-ID: <ZoqHb93S6j-_jaRo@probook>
-References: <20240701164915.577068-1-krzysztof.kozlowski@linaro.org>
+	s=arc-20240116; t=1720355705; c=relaxed/simple;
+	bh=WWN+fePr3kxsmN+FBpOBpPnJnDZrGl72GjXhpYaus9s=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=KT+WG/sYS0HcLMmaSUV09r5+n8w4xXV3OOD0LWOo/SnWqhQ6pbAPdxD3sGspJMDBzOz+GoOyIGcXtdwGNXLORu2w8f3zkObQLALPC/RdsGEF+eqznYU2iRlMqCMh1GtfppoIz7dRB+cM7dXytA2weE2Sz4VpdaYQd8hTypi7Fxw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QF5f9Hhq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8DE07C3277B;
+	Sun,  7 Jul 2024 12:34:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720355704;
+	bh=WWN+fePr3kxsmN+FBpOBpPnJnDZrGl72GjXhpYaus9s=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=QF5f9HhquPLiwmrVo/gRMcIOlCTzQnAf5n+HE7QGwsnNhd8dbtOd69gPsPlD9gofR
+	 m6kwq3XUiE6JG76f3ZLj2q6V/YNTLckIi/SjXzMX2uXFrJZI6Z9ERWN7dm7E4+SVzg
+	 LdU6kHAr28NcD0OMDDdVUVllGACPG1H9U6T8m/bdjAes/hXeHq/4wkxNnNq8PbpVna
+	 t2B26l3cEekU2By3/dXuGALNQKfsPMcIwRTNBY+xSpmBBxk49GNgVtx3oaUDCvhJS0
+	 sw5wMEPMkrVQ+m9Vl7a+3hFRXZYLMCVW7m0ZsiE9EU20tlQ/Rfc9PT0P9NX85vDrxi
+	 vtb63DgjJgYwA==
+Message-ID: <450d1575-c9b3-413b-bfa9-8dc4352fa263@kernel.org>
+Date: Sun, 7 Jul 2024 14:34:57 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20240701164915.577068-1-krzysztof.kozlowski@linaro.org>
-X-Provags-ID: V03:K1:b4mry7pjbZIt6XKul32V8zWb7qm4V36BMOV1anIacoWRyYBuYrx
- uWIeweF7djxvaYIjhUFzpl1+zKZP6ze2aWiiTmQFfBtn4Glw/E9TKhcPemzk7fHCzPLoqfJ
- nrQ5eIfx/8rrvyMtkYcNlEWcvUb1EuL9vHm78AxGO3NfkFVCGf9JwvozGMnpD18K4V9XXxz
- cKxBsT/L5k1ZA+f1OKzlg==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:iobDFNDXXZ4=;pJuCc/1CkdUEyqNPsAqpRgO60r4
- dAgJiXZ/eHyUTv9uc9Lzt01g4j5Zbn3AI6hisd2rjyZ2951CCgkaQMs0avIWEmsU2IK0JReJb
- ThObmSeDPbJe7kQgOZVFFlr1gr/3ferB18uIZZ3TxzYSa+gPDS/N+jiZ0f7MNcwH739aO7uRM
- LyXM+L9xeHUoza20NExz8t3fk40dY+grkNpwN3oLUyGCPm7Oas+YxWZe0Wzb2iuVZMuQniY+z
- LjX4H7W9LvDr6UgFikA51xpw3f/dB0rf/qK4lOZOVykPt+s9+Z2MMNAlJAjCIY6SuVQgE28KP
- c8PKgCECwY8I/ViRHyZBvSANNc+e2jOh3YmpNsfhYwviagzuCiDSBeZ9anAq0uYkRhtnbbf40
- hlv1IXulfeAMHl4vncJbKkxyzr3bzPs8NIafkSuuoxGOaL80aol+sl51gUhBa+jmcxi+KC+WQ
- hHcREWtqII4YrgjSdyCuyUndMazV1rJtkNWGZXF+c0PtfexFNQpviGbJvxayRQ3p6h87PIrAS
- 15moPSBJKqz+bBp8P4R6qZ9Fwyl3LMiDk+EViLOF9AOIxGwMW2jj+jPmvtmQLTCL/a/P8GWcm
- SmtGIAijzOVH1zP55e1HVKCU+pF22AYQ1cxuw82kX1LHS0/YrRLNo9XHXDyoaJTe8QZPNRLSg
- qy9WKoGGSrFMOt+6/3dqAqX/nz4z09fMvdCgeyqWI5b16w/fEHFOw15wNReNq+my//3hj4DP0
- kSqrunjXUR24ZEllZWvZ4EZ1flSn+P5DeCUsy+Jyvc/p6yDN8ts0+5+K7hIhjImzEjlVuDNru
- rLx6XgNm/LR3fSS1JSMOBXqHKPh7qHqF96ZUrQVY5Vpbs=
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/5] dt-bindings: arm: fsl: add imx-se-fw binding doc
+To: Pankaj Gupta <pankaj.gupta@nxp.com>, Jonathan Corbet <corbet@lwn.net>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org
+References: <20240705-imx-se-if-v4-0-52d000e18a1d@nxp.com>
+ <20240705-imx-se-if-v4-2-52d000e18a1d@nxp.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240705-imx-se-if-v4-2-52d000e18a1d@nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, Jul 01, 2024 at 06:49:15PM +0200, Krzysztof Kozlowski wrote:
-> Bindings expect the LED and GPIO keys node names to follow certain
-> pattern, see dtbs_check warnings:
->
->   nuvoton-wpcm450-supermicro-x9sci-ln4f.dtb: gpio-keys: 'uid' does not m=
-atch any of the regexes: '^(button|event|key|switch|(button|event|key|swit=
-ch)...
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On 05/07/2024 15:52, Pankaj Gupta wrote:
+> The NXP security hardware IP(s) like: i.MX EdgeLock Enclave, V2X etc.,
+> creates an embedded secure enclave within the SoC boundary to enable
+> features like:
+> - HSM
+> - SHE
+> - V2X
+> 
+> Secure-Enclave(s) communication interface are typically via message
+> unit, i.e., based on mailbox linux kernel driver. This driver enables
+> communication ensuring well defined message sequence protocol between
+> Application Core and enclave's firmware.
+> 
+> Driver configures multiple misc-device on the MU, for multiple
+> user-space applications, to be able to communicate over single MU.
+> 
+> It exists on some i.MX processors. e.g. i.MX8ULP, i.MX93 etc.
+
+This binding is not improving, even though it is v5.
+
+> 
+> Signed-off-by: Pankaj Gupta <pankaj.gupta@nxp.com>
 > ---
+>  .../devicetree/bindings/firmware/fsl,imx-se.yaml   | 133 +++++++++++++++++++++
+>  1 file changed, 133 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/firmware/fsl,imx-se.yaml b/Documentation/devicetree/bindings/firmware/fsl,imx-se.yaml
+> new file mode 100644
+> index 000000000000..b9018645101d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/firmware/fsl,imx-se.yaml
+> @@ -0,0 +1,133 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/firmware/fsl,imx-se.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NXP i.MX HW Secure Enclave(s) EdgeLock Enclave
+> +
+> +maintainers:
+> +  - Pankaj Gupta <pankaj.gupta@nxp.com>
+> +
+> +description: |
+> +  NXP's SoC may contain one or multiple embedded secure-enclave HW
+> +  IP(s) like i.MX EdgeLock Enclave, V2X etc. These NXP's HW IP(s)
+> +  enables features like
+> +    - Hardware Security Module (HSM),
+> +    - Security Hardware Extension (SHE), and
+> +    - Vehicular to Anything (V2X)
+> +
+> +  Communication interface to the secure-enclaves is based on the
+> +  messaging unit(s).
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "firmware@[0-9a-f]+$"
+> +
+> +  compatible:
+> +    enum:
+> +      - fsl,imx8ulp-se
+> +      - fsl,imx93-se
+> +      - fsl,imx95-se
+> +
+> +  reg:
+> +    maxItems: 1
+> +    description: Identifier of the communication interface to secure-enclave.
+> +
+> +  mboxes:
+> +    description: contain a list of phandles to mailboxes.
 
-Looks good, thanks!
+Drop, obvious.
 
-Reviewed-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
+> +    items:
+> +      - description: Specify the mailbox used to send message to se firmware
+> +      - description: Specify the mailbox used to receive message from se firmware
 
->  .../dts/nuvoton/nuvoton-wpcm450-supermicro-x9sci-ln4f.dts   | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
->
-> diff --git a/arch/arm/boot/dts/nuvoton/nuvoton-wpcm450-supermicro-x9sci-=
-ln4f.dts b/arch/arm/boot/dts/nuvoton/nuvoton-wpcm450-supermicro-x9sci-ln4f=
-.dts
-> index b78c116cbc18..edb907f740bf 100644
-> --- a/arch/arm/boot/dts/nuvoton/nuvoton-wpcm450-supermicro-x9sci-ln4f.dt=
-s
-> +++ b/arch/arm/boot/dts/nuvoton/nuvoton-wpcm450-supermicro-x9sci-ln4f.dt=
-s
-> @@ -34,7 +34,7 @@ gpio-keys {
->  		pinctrl-names =3D "default";
->  		pinctrl-0 =3D <&key_pins>;
->
-> -		uid {
-> +		button-uid {
->  			label =3D "UID button";
->  			linux,code =3D <KEY_HOME>;
->  			gpios =3D <&gpio0 14 GPIO_ACTIVE_HIGH>;
-> @@ -46,12 +46,12 @@ gpio-leds {
->  		pinctrl-names =3D "default";
->  		pinctrl-0 =3D <&led_pins>;
->
-> -		uid {
-> +		led-uid {
->  			label =3D "UID";
->  			gpios =3D <&gpio1 7 GPIO_ACTIVE_HIGH>;
->  		};
->
-> -		heartbeat {
-> +		led-heartbeat {
->  			label =3D "heartbeat";
->  			gpios =3D <&gpio1 4 GPIO_ACTIVE_LOW>;
->  		};
-> --
-> 2.43.0
->
+Drop redundant/obvious parts.
+
+So two mailboxes?
+
+> +
+> +  mbox-names:
+> +    items:
+> +      - const: tx
+> +      - const: rx
+> +      - const: txdb
+> +      - const: rxdb
+
+4 mailboxes? This cannot be different.
+
+> +    minItems: 2
+> +
+> +  memory-region:
+> +    description: contains the phandle to reserved external memory.
+
+Drop
+
+> +    items:
+> +      - description: It is used by secure-enclave firmware. It is an optional
+> +          property based on compatible and identifier to communication interface.
+> +          (see bindings/reserved-memory/reserved-memory.txt)
+> +
+> +  sram:
+> +    description: contains the phandle to sram.
+
+Drop
+
+> +    items:
+> +      - description: Phandle to the device SRAM. It is an optional property
+> +          based on compatible and identifier to communication interface.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - mboxes
+> +  - mbox-names
+> +
+> +additionalProperties: false
+
+Keep it after allOf block
+
+
+> +
+> +allOf:
+> +  # memory-region
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - fsl,imx8ulp-se
+> +              - fsl,imx93-se
+> +    then:
+> +      required:
+> +        - memory-region
+> +    else:
+> +      properties:
+> +        memory-region: false
+> +
+> +  # sram
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - fsl,imx8ulp-se
+> +    then:
+> +      required:
+> +        - sram
+> +
+> +    else:
+> +      properties:
+> +        sram: false
+> +
+> +examples:
+> +  - |
+> +    firmware {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +      firmware@0 {
+> +        compatible = "fsl,imx95-se";
+> +        reg = <0x0>;
+> +        mboxes = <&ele_mu0 0 0>, <&ele_mu0 1 0>;
+> +        mbox-names = "tx", "rx";
+> +      };
+
+One example is enough.
+
+
+Best regards,
+Krzysztof
+
 
