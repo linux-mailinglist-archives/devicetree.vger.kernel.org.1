@@ -1,167 +1,87 @@
-Return-Path: <devicetree+bounces-83693-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83694-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7611C9298E8
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jul 2024 18:49:23 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5150792993C
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jul 2024 20:02:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 53BBCB21040
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jul 2024 16:49:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DEE26B20C11
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jul 2024 18:02:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B3503BB32;
-	Sun,  7 Jul 2024 16:49:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2572E55897;
+	Sun,  7 Jul 2024 18:02:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YxwcN5SY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BaIrVkzn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 133D02BD1E;
-	Sun,  7 Jul 2024 16:49:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB0675381A;
+	Sun,  7 Jul 2024 18:02:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720370956; cv=none; b=s9vjf65LtabYKwREtT9Sbsw/j/y5g+y49Utxj8eT5LceeXA+f9btGib9iTEqnRvmJTPAvnchkPbJmai7w8eoBPBmqoV+ec2Km/7SUp0qXgZQixcmW4XqMn2cRLHb4lMAbHg19YSe+FRwAP5CUWXp+LrdyoPtXjkmfAHSdI58gKg=
+	t=1720375329; cv=none; b=tg/6V4J00B3LLP9dz7rb4lqra8s2wd5oiWocM5u+QAGvkB2gyeiEAea3YI0s8lQFuN0QHnJI21yHEG+xmrWQW5fCTuX+aqFIFYvtCxWqV5qA6gli9pZ9RZu9O5W0FRtvkcczfZCZ2R69e/ikBjS4tj44Ek25Sk/dO/EWNYCpbSs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720370956; c=relaxed/simple;
-	bh=7ArQ+zJe3h8U8SVv6/dkC8pEhzbfkjiB48zAxkgXS9M=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=o625zSephBfy7+NOwjEiBrChmybnB9kAYOM69/UJklPzWSBd0d+Au6i7KruYPVlA7MvsTu6buFlU3F9feQROxwTB7fa40Fe4V8X+WuV0JAVDXfeU9F8ASgyNpBHDiMYuPQa2cK2OdzYCB1n5YUbL7qoftoi34UkSIBmpo6aBzT0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YxwcN5SY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76EA3C3277B;
-	Sun,  7 Jul 2024 16:49:13 +0000 (UTC)
+	s=arc-20240116; t=1720375329; c=relaxed/simple;
+	bh=YoijC6Vk1pkQnDOd+ZxBUq+s9vUL35PJZT2W3dIs6TA=;
+	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
+	 Subject:From:Cc:To:Date; b=mEmRPkGlslxr/x1Kg3/LswCbwpWvpOwNXqwtXaSxV8V3fLGmcCAubxS24+oG07PK0+rY/HkypDA8k65T9NU6EcS+mnOktgzt22KCFnVrk+y+W61/u3dUhJGEKJBhWA5fb5NMuLmE2WmigvshjBtZNGE82/R5qpvWAqVoztQqBJA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BaIrVkzn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 618E6C3277B;
+	Sun,  7 Jul 2024 18:02:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720370955;
-	bh=7ArQ+zJe3h8U8SVv6/dkC8pEhzbfkjiB48zAxkgXS9M=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=YxwcN5SY3VoEI3h1PHTqAA0nEMEjIpm3VxjzqEZ+lztr6OvxCmX3EDwJR5YvbSHN5
-	 kOxBoExhCky0OIGvQWzcSGARA3HzRHPdum6kCW1Sg8C2tEF0agu4YcZgMomVFrAgBr
-	 jgCHC6GDkEeb2ErpU8goiDdcJx4TMyQFFrGT+5vV7wA/f9TiUpdNuN+o+Fh2aTOG0m
-	 ERoyEox08CngXRYLibH1OJ5SrqzftAVC7vxnAMcz/FLNOBEAQnmGvop46ocDo/I6Nm
-	 JyAmn62nO8tlhIshnezIhsFzIEESdALYdY58rcB/tWRhpXdr8PkPWJXv+DZvnsUUTP
-	 HCIgE2VmseyyA==
-Date: Sun, 7 Jul 2024 17:49:10 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Kaustabh Chakraborty <kauschluss@disroot.org>
-Cc: Conor Dooley <conor@kernel.org>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, conor+dt@kernel.org
-Subject: Re: [PATCH 2/2] dt-bindings: iio: light: stk33xx: add compatible
- for stk3013
-Message-ID: <20240707174910.156b3e3c@jic23-huawei>
-In-Reply-To: <9a7f7eb2b5e8841b8c1f1064cccdd86f@disroot.org>
-References: <20240625165122.231182-1-kauschluss@disroot.org>
-	<20240625165122.231182-2-kauschluss@disroot.org>
-	<20240626-junior-tag-cd3e27c4b140@spud>
-	<7f99d77c65bc347bf8b7935220520fdb@disroot.org>
-	<20240703-velvet-badly-904e7afc7cf8@spud>
-	<9a7f7eb2b5e8841b8c1f1064cccdd86f@disroot.org>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-pc-linux-gnu)
+	s=k20201202; t=1720375328;
+	bh=YoijC6Vk1pkQnDOd+ZxBUq+s9vUL35PJZT2W3dIs6TA=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=BaIrVkznuAXWqaVhAwxoyitCyyTIFU0/EtMQ2KPWxx2UAggoTQdiTstpBZZ2Fk0XA
+	 WjTH5jP27RDRdggBD9J+hkVKEfuUW6JUwqHnoxJi/sici6oNNQj/wu4Dr+okHsL/wZ
+	 Tsh7Hnjd3xcw4Z8NTHsr362ZA+N2YvTGa76UEcQ/QELXkaZn5V9gCq48faMDPTDAsF
+	 Uzx1oZh5TXOg/wjsdDODlCGeELVt30SRq6Q8ekj6zsWqbQomDimVZDbZ4JqwY13Lis
+	 p/LD4F4Ofx9O8j7Uxfjo+E8y39eoadVeM1k4s3DEMJE5VzhRNQxeI2sSscImXlTFRv
+	 iHdSa847br+KQ==
+Message-ID: <34d38e79a2008ed6e4303e6911b1cf08.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <CABVgOSk93mNY4diXppGWJZgWJhrHpGqECBXNROWkRCaZjFi2tw@mail.gmail.com>
+References: <20240706045454.215701-1-sboyd@kernel.org> <20240706045454.215701-6-sboyd@kernel.org> <CABVgOSk93mNY4diXppGWJZgWJhrHpGqECBXNROWkRCaZjFi2tw@mail.gmail.com>
+Subject: Re: [PATCH v6 5/8] platform: Add test managed platform_device/driver APIs
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>, linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, patches@lists.linux.dev, kunit-dev@googlegroups.com, linux-kselftest@vger.kernel.org, devicetree@vger.kernel.org, Brendan Higgins <brendan.higgins@linux.dev>, Rae Moar <rmoar@google.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rafael J . Wysocki <rafael@kernel.org>, Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, Daniel Latypov <dlatypov@google.com>, Christian Marangi <ansuelsmth@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Maxime Ripard <maxime@cerno.tech>
+To: David Gow <davidgow@google.com>
+Date: Sun, 07 Jul 2024 11:02:06 -0700
+User-Agent: alot/0.10
 
-On Thu, 04 Jul 2024 07:16:10 +0000
-Kaustabh Chakraborty <kauschluss@disroot.org> wrote:
+Quoting David Gow (2024-07-06 01:04:25)
+> On Sat, 6 Jul 2024 at 12:55, Stephen Boyd <sboyd@kernel.org> wrote:
+> >
+> > Introduce KUnit resource wrappers around platform_driver_register(),
+> > platform_device_alloc(), and platform_device_add() so that test authors
+> > can register platform drivers/devices from their tests and have the
+> > drivers/devices automatically be unregistered when the test is done.
+> >
+> > This makes test setup code simpler when a platform driver or platform
+> > device is needed. Add a few test cases at the same time to make sure the
+> > APIs work as intended.
+> >
+> > Cc: Brendan Higgins <brendan.higgins@linux.dev>
+> > Reviewed-by: David Gow <davidgow@google.com>
+> > Cc: Rae Moar <rmoar@google.com>
+> > Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> > Cc: "Rafael J. Wysocki" <rafael@kernel.org>
+> > Signed-off-by: Stephen Boyd <sboyd@kernel.org>
+> > ---
+>=20
+> Hmm... this is failing under KASAN for me. I'll take a closer look
+> next week, but in case there's anything super-obvious, here's the
+> report:
 
-> On 2024-07-03 19:30, Conor Dooley wrote:
-> > On Wed, Jul 03, 2024 at 06:31:13PM +0000, Kaustabh Chakraborty wrote:  
-> >> On 2024-06-26 16:06, Conor Dooley wrote:  
-> >> > On Tue, Jun 25, 2024 at 10:21:06PM +0530, Kaustabh Chakraborty wrote:  
-> >> >> Add the compatible string of stk3013 to the existing list.
-> >> >> 
-> >> >> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
-> >> >> ---
-> >> >>  Documentation/devicetree/bindings/iio/light/stk33xx.yaml | 1 +
-> >> >>  1 file changed, 1 insertion(+)
-> >> >> 
-> >> >> diff --git a/Documentation/devicetree/bindings/iio/light/stk33xx.yaml b/Documentation/devicetree/bindings/iio/light/stk33xx.yaml
-> >> >> index f6e22dc9814a..6003da66a7e6 100644
-> >> >> --- a/Documentation/devicetree/bindings/iio/light/stk33xx.yaml
-> >> >> +++ b/Documentation/devicetree/bindings/iio/light/stk33xx.yaml
-> >> >> @@ -19,6 +19,7 @@ allOf:
-> >> >>  properties:
-> >> >>    compatible:
-> >> >>      enum:
-> >> >> +      - sensortek,stk3013  
-> >> > 
-> >> > The driver change suggests that this device is compatible with the
-> >> > existing sensors.
-> >> > Jonathan, could we relax the warning during init  
-> >> 
-> >> What does 'relax' mean here? Earlier there used to be a probing error,
-> >> and now it's just a warning. Is that not relaxed enough?  
-> > 
-> > If it is something intentionally, I don't think a warning is suitable.
-> > It makes the user thing something is wrong.  
-> 
-> So, something like:
-> 
->   dev_info(&client->dev, "chip id: 0x%x\n", chipid);
-> 
-> is suitable in this context?
-
-Key is to indicate in a 'friendly' fashion that we don't recognise the part
-but we are treating it as what DT says.
-
-dev_info(&client->dev, "New unknown chip id: 0x%x\n", chip_id);
-only in the path where we don't have a match
-
-> 
-> And doesn't it make stk3310_check_chip_id() obsolete? In all cases chipid
-> should be printed as it's not an error/warning message.
-
-No. Printing it when we know what it is counts as annoying noise.
-We want the print to indicate we don't know what it is.
-
-There have been too many instances of manufacturers switching to
-a part that is compatible with some non-mainline driver (because they
-match on a whoami and handle it appropriately) that doesn't work
-in Linux.  Hence we want to print a warning so that when we get such
-a report we can ask for more info on what the device actually is.
-
-If device manufacturers would actually update their DT when they changed
-a sensor for an incompatible one we'd not need this.  Unfortunately
-some of them don't :(
-
-Jonathan
-
-
-
-> 
-> >   
-> >>   
-> >> > 	ret = stk3310_check_chip_id(chipid);
-> >> > 	if (ret < 0)
-> >> > 		dev_warn(&client->dev, "unknown chip id: 0x%x\n", chipid);
-> >> > and allow fallback compatibles here please?  
-> >> 
-> >> So, you mean something like this in devicetree?
-> >> 
-> >>   compatible = "sensortek,stk3013", "sensortek,stk3310";
-> >> 
-> >> I mean that's fine, but we also need to change devicetree sources for
-> >> other devices. If that's what we're doing, please let me know how do
-> >> I frame the commits.  
-> > 
-> > Why would you need to change the dts for other devices to add a fallback
-> > for this new compatible that is being added?  
-> 
-> Okay gotcha, so it's just for stk3013.
-> 
-> >   
-> >> >>        - sensortek,stk3310
-> >> >>        - sensortek,stk3311
-> >> >>        - sensortek,stk3335
-> >> >> -- 
-> >> >> 2.45.2
-> >> >>  
-> >> 
-> >> Thank you.  
-
+Thanks. I reproduced with your commandline and I'll take a look.
 
