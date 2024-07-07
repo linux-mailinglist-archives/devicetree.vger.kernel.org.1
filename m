@@ -1,127 +1,145 @@
-Return-Path: <devicetree+bounces-83660-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83661-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58CCA9297C1
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jul 2024 14:11:15 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F8CC9297C7
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jul 2024 14:18:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BF832B2105D
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jul 2024 12:11:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2588CB20F77
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jul 2024 12:18:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4246220319;
-	Sun,  7 Jul 2024 12:10:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BC731CA96;
+	Sun,  7 Jul 2024 12:18:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dRRYW54K"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=j.neuschaefer@gmx.net header.b="N9tbjIy9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18E6D1F95A;
-	Sun,  7 Jul 2024 12:10:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D3521C694;
+	Sun,  7 Jul 2024 12:18:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720354258; cv=none; b=Zi3XrPWZhZFVlquDZ4uIeztYc7HIUaZGOFKObPh2ecZNyhFoW1yo0nRgbLHXcRB9ZbOudjrwrRm+1sqB6qPjXAewfOmNynkkJ4iszMZZZbHDljDYz8p50s8FgcAMtEk2AaO332Q2EZraIb4qwUgqiy7JelbXqkT5Oee1dH6XPHU=
+	t=1720354683; cv=none; b=EdVy0kSRs92Z16VD6R1busCn7sXeKd5qbtXpdcJ0Hv3g9yBEzCYpzvOk7HY++KDope+0j/QYZ0RXhnTpNi4LbrBOGsMPO2J8wNzKhbhxePIKaaVYL/cymb79pnv7yIU2IA98mDEz+d/wrOVgiRtqftCcJS4bEdtBc6nqO9hDo70=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720354258; c=relaxed/simple;
-	bh=V3apqepPO6JspS26e38Tfk7L1zGPXSQVGOzHimSsgEU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mHNDx0LZTl5h0l15mOKHXHS+/l/3sVnCWy/aA7h1xHjn1gaBIDrb+o8q+TPRJH4aQ/FmzEiScVKDz0v6xxJyVswuMZ9MzrZiLSZwnvR0qGzYHf2EKbYs4UAal1LF2EOFFPRl1KYXYeHazvfv3t8oQaPNwrccbRROz1Jg5d/u0C0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dRRYW54K; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 329D8C3277B;
-	Sun,  7 Jul 2024 12:10:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720354257;
-	bh=V3apqepPO6JspS26e38Tfk7L1zGPXSQVGOzHimSsgEU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=dRRYW54Kl2hWtwPIjEkGRqihPa6ehob9rd6kqn8Qaj2z6c1YRPA2efqvrbE3cbrQS
-	 ZH1MJsU7OX/+HdbCzBRsVGJBLmjFETCcBIEoVoJWpoiMXCdYZ4kHmEJpFm83u+czWV
-	 DwnEn2rY0kCBxZbLk6UI4nznH0IcNYt/uGidBFBRN4OMr4ydfovv9oapfXje0jzEL0
-	 QjBCmooSxucFSMC+YwER0l+MrNM/mnlUFFaH9dyRuTNBS9DzTLof5mF+UYbxesJEi5
-	 Ry/2/LoYLV/4VxkkNhjZrAT1zKwOCpgAuv6eObnp10TykdBYmZh7LxETxieFzPAYS/
-	 AXnMQhRj+8fsw==
-Message-ID: <ea7679f5-0144-4ed1-81e1-679bec97c2e1@kernel.org>
-Date: Sun, 7 Jul 2024 14:10:53 +0200
+	s=arc-20240116; t=1720354683; c=relaxed/simple;
+	bh=/ZE98uSxNAbfzHkH31FBNDLThBe/haeN9Vnngj4CFRI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tgJW/uvtTHJk6PReOiLebCqzhRVVAUEoYEym5+mkvkUpVEVQbLhyUdkapX2geXPp09vM4IdgOKv4Ajnv5Du2e0nVKzwpKzdr0bXKRR3yRopN8gReHCSAYoHivULIyuMPpCtf8IN5TdPIWUsz4cRHe2FYZv89dTgT+/RjfU6KzLE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=j.neuschaefer@gmx.net header.b=N9tbjIy9; arc=none smtp.client-ip=212.227.17.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
+	s=s31663417; t=1720354672; x=1720959472; i=j.neuschaefer@gmx.net;
+	bh=wOY2LTVtor9c0uh4sZNyK/qPJ5Ak71J0G4tckDfFQzU=;
+	h=X-UI-Sender-Class:Date:From:To:Cc:Subject:Message-ID:References:
+	 MIME-Version:Content-Type:Content-Transfer-Encoding:In-Reply-To:
+	 cc:content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=N9tbjIy9QZbwZCaOjcLLmAIhLQ35YZsTqGiNPsM4LojXWbONQO0lLDx8F+jMmEqk
+	 i2n+SNidrO6TmTr9cTokLSHiQmLKKle8iRl/Z3LfIu2dzUlHCLYEoBwAPaBHaUS49
+	 AonpM1jLresat1y6sulftZHioMX+LnGn+RjvQOXXHxAuTClkCqUyGGu3oWudfPD2i
+	 /0ncmybCL9Q0AkwrQHyhIl0FuVQek+lESZlbzOVcrkx2HQ6b1uHNTGrtGA27sEEGy
+	 ulnBlHGDN+j7sE7BCL2UPZibjg81hDMscOs9YrXJ1GYLnSZTZ0a/36u+rU+VU+IJN
+	 cg+kxbL1FYI79ptsDg==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from probook ([89.0.46.161]) by mail.gmx.net (mrgmx104
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1MysRu-1sCd4k23Bi-00xmgG; Sun, 07
+ Jul 2024 14:17:52 +0200
+Date: Sun, 7 Jul 2024 14:17:51 +0200
+From: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, openbmc@lists.ozlabs.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: nuvoton: wpcm450: align LED and GPIO keys node
+ name with bindings
+Message-ID: <ZoqHb93S6j-_jaRo@probook>
+References: <20240701164915.577068-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: misc: axi-fifo: Add dt documentation for
- xilinx axi-fifo
-To: Mark Watson <markus.c.watson@gmail.com>, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <ZomhRSs3Y/EQKXNa@laptop>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <ZomhRSs3Y/EQKXNa@laptop>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240701164915.577068-1-krzysztof.kozlowski@linaro.org>
+X-Provags-ID: V03:K1:b4mry7pjbZIt6XKul32V8zWb7qm4V36BMOV1anIacoWRyYBuYrx
+ uWIeweF7djxvaYIjhUFzpl1+zKZP6ze2aWiiTmQFfBtn4Glw/E9TKhcPemzk7fHCzPLoqfJ
+ nrQ5eIfx/8rrvyMtkYcNlEWcvUb1EuL9vHm78AxGO3NfkFVCGf9JwvozGMnpD18K4V9XXxz
+ cKxBsT/L5k1ZA+f1OKzlg==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:iobDFNDXXZ4=;pJuCc/1CkdUEyqNPsAqpRgO60r4
+ dAgJiXZ/eHyUTv9uc9Lzt01g4j5Zbn3AI6hisd2rjyZ2951CCgkaQMs0avIWEmsU2IK0JReJb
+ ThObmSeDPbJe7kQgOZVFFlr1gr/3ferB18uIZZ3TxzYSa+gPDS/N+jiZ0f7MNcwH739aO7uRM
+ LyXM+L9xeHUoza20NExz8t3fk40dY+grkNpwN3oLUyGCPm7Oas+YxWZe0Wzb2iuVZMuQniY+z
+ LjX4H7W9LvDr6UgFikA51xpw3f/dB0rf/qK4lOZOVykPt+s9+Z2MMNAlJAjCIY6SuVQgE28KP
+ c8PKgCECwY8I/ViRHyZBvSANNc+e2jOh3YmpNsfhYwviagzuCiDSBeZ9anAq0uYkRhtnbbf40
+ hlv1IXulfeAMHl4vncJbKkxyzr3bzPs8NIafkSuuoxGOaL80aol+sl51gUhBa+jmcxi+KC+WQ
+ hHcREWtqII4YrgjSdyCuyUndMazV1rJtkNWGZXF+c0PtfexFNQpviGbJvxayRQ3p6h87PIrAS
+ 15moPSBJKqz+bBp8P4R6qZ9Fwyl3LMiDk+EViLOF9AOIxGwMW2jj+jPmvtmQLTCL/a/P8GWcm
+ SmtGIAijzOVH1zP55e1HVKCU+pF22AYQ1cxuw82kX1LHS0/YrRLNo9XHXDyoaJTe8QZPNRLSg
+ qy9WKoGGSrFMOt+6/3dqAqX/nz4z09fMvdCgeyqWI5b16w/fEHFOw15wNReNq+my//3hj4DP0
+ kSqrunjXUR24ZEllZWvZ4EZ1flSn+P5DeCUsy+Jyvc/p6yDN8ts0+5+K7hIhjImzEjlVuDNru
+ rLx6XgNm/LR3fSS1JSMOBXqHKPh7qHqF96ZUrQVY5Vpbs=
 
-On 06/07/2024 21:55, Mark Watson wrote:
-> This resolves a checkpatch warning in drivers/staging/axis-fifo
-> regarding a missing devie-tree binding. The full warning is included
-> below.
-> 
-> WARNING: DT compatible string "xlnx,axi-fifo-mm-s-4.1" appears
-> un-documented -- check ./Documentation/devicetree/bindings/
-> +       { .compatible = "xlnx,axi-fifo-mm-s-4.1", },
+On Mon, Jul 01, 2024 at 06:49:15PM +0200, Krzysztof Kozlowski wrote:
+> Bindings expect the LED and GPIO keys node names to follow certain
+> pattern, see dtbs_check warnings:
+>
+>   nuvoton-wpcm450-supermicro-x9sci-ln4f.dtb: gpio-keys: 'uid' does not m=
+atch any of the regexes: '^(button|event|key|switch|(button|event|key|swit=
+ch)...
+>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
 
-NAK, it is documented.
+Looks good, thanks!
 
-You sending it twice is clearly ignoring my earlier comments. Why didn't
-you respond there?
+Reviewed-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
 
-NAK
-
-Best regards,
-Krzysztof
-
+>  .../dts/nuvoton/nuvoton-wpcm450-supermicro-x9sci-ln4f.dts   | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
+>
+> diff --git a/arch/arm/boot/dts/nuvoton/nuvoton-wpcm450-supermicro-x9sci-=
+ln4f.dts b/arch/arm/boot/dts/nuvoton/nuvoton-wpcm450-supermicro-x9sci-ln4f=
+.dts
+> index b78c116cbc18..edb907f740bf 100644
+> --- a/arch/arm/boot/dts/nuvoton/nuvoton-wpcm450-supermicro-x9sci-ln4f.dt=
+s
+> +++ b/arch/arm/boot/dts/nuvoton/nuvoton-wpcm450-supermicro-x9sci-ln4f.dt=
+s
+> @@ -34,7 +34,7 @@ gpio-keys {
+>  		pinctrl-names =3D "default";
+>  		pinctrl-0 =3D <&key_pins>;
+>
+> -		uid {
+> +		button-uid {
+>  			label =3D "UID button";
+>  			linux,code =3D <KEY_HOME>;
+>  			gpios =3D <&gpio0 14 GPIO_ACTIVE_HIGH>;
+> @@ -46,12 +46,12 @@ gpio-leds {
+>  		pinctrl-names =3D "default";
+>  		pinctrl-0 =3D <&led_pins>;
+>
+> -		uid {
+> +		led-uid {
+>  			label =3D "UID";
+>  			gpios =3D <&gpio1 7 GPIO_ACTIVE_HIGH>;
+>  		};
+>
+> -		heartbeat {
+> +		led-heartbeat {
+>  			label =3D "heartbeat";
+>  			gpios =3D <&gpio1 4 GPIO_ACTIVE_LOW>;
+>  		};
+> --
+> 2.43.0
+>
 
