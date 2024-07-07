@@ -1,133 +1,215 @@
-Return-Path: <devicetree+bounces-83701-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83703-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 103469299CF
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jul 2024 23:23:49 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30FC49299FB
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 00:37:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8B23628158D
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jul 2024 21:23:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A4064B20D6F
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jul 2024 22:37:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5093D4436A;
-	Sun,  7 Jul 2024 21:23:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83F556A8BE;
+	Sun,  7 Jul 2024 22:37:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="AiZRnWd1"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=j.neuschaefer@gmx.net header.b="Pbg16VQE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40CD41D52B;
-	Sun,  7 Jul 2024 21:23:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6857CEDC;
+	Sun,  7 Jul 2024 22:37:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720387423; cv=none; b=IW9v2MgRpUfPaewSj5QkESbswvMlmz9ZM6j+QjKiUBTU69G6M3OZ7VxFgsVPWXTzW2+NHTbVrd1s80GekshnlCkB/6iGFQbb9/lATfhlINq6DTHAdDCu5/0P259laRptuPYRHURwt/FGwbRPgBGJSLeRFtHMrcFs9Bg8LKXbfU8=
+	t=1720391860; cv=none; b=oU3imAEiu9imooB7lRUq285zVCjemg7yBuu7851avbloWDhofhI2HRjorStuJCJQI6pjYJMx/KFAORLJ5C5V0dbD7GJEWizrfDSShP5ms8R1bYdTC1yZc4kqjCLklcwRtmOaeEdp2JePYKAG5M/lkVdumv3ISvf+EoWgLZ4LQtQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720387423; c=relaxed/simple;
-	bh=iXENnuUzS4oyzom10Ti7DPkCgMhu/FRBNPg/lAqJRjk=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=JChuiFCnj9DD384ELLA2sJnm/YZNSlVVhYqxUDaZEHqLYFiAM9unmAGLfQ787S5RJcH33dPBCRQIbiK3Q2hucMcbId/2y96Sbxxmzlx/0Dw0YqxZj01+kp/3yvNgJ6UHhlIj8LHltRGts4Ep6r19ceff3u4YUyG+q81dFFO1rWk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=AiZRnWd1; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1720391860; c=relaxed/simple;
+	bh=O7XVQdyMHMxbunVATdf/LX5GcM2hGQPm9TlJn5WdkTA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=SP/V7SJ5bSlPe4nmOng0cEdOQL7LHhGxm8xm6UGfxZG+4x8fWcQIhi7lbRwrdAcmKwbIQekJCkNvhbhzG3MJbPTycf2cr/6xs3inCPe9JwyH664llsJ4h+M+wYpgdmZ42f7zlyiaZCV4wOoQqHsnhOBA3/d0bTKKnmWFh1qsGJM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=j.neuschaefer@gmx.net header.b=Pbg16VQE; arc=none smtp.client-ip=212.227.15.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
+	s=s31663417; t=1720391849; x=1720996649; i=j.neuschaefer@gmx.net;
+	bh=k/2wUJqCS/1bOuRYIc422cgLx2nAzXVqfJrn7v4mg+Y=;
+	h=X-UI-Sender-Class:From:Subject:Date:Message-Id:MIME-Version:
+	 Content-Type:Content-Transfer-Encoding:To:Cc:cc:
+	 content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=Pbg16VQErMMKQt5uc4D1u5x1W0FuGQcf/eUELyTC8PJrW7abo+4yCloLDuXikIyl
+	 Z7eJaQJK/kl4qEN8jBqa3ZVdmkuQggzNOcDSg+j66+DESfjqoMkvov6ICz7dNrELM
+	 AnoWgJKF7S2cCNkgNywFTdDAY7FKZQ1NFTNAThdyTftlriDzLA3su/0EUctjixSGX
+	 yZhOb1eeiXlKIlvxUiIfOMmjOLsoshF9KlAGDCHYIF0P/i2sbieaJ6ZGJHaHN/CKO
+	 WM/Cloojr2Y4So8j1jh8lvup4aFU434BIq9an36m6+PebEiNKBkBYeEno9qdnzPoT
+	 pktlTQmHF1P530IruA==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from probook ([89.0.46.161]) by mail.gmx.net (mrgmx004
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MWzk3-1sszQ13jFx-00Z6oA; Mon, 08
+ Jul 2024 00:37:28 +0200
+From: =?utf-8?q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+Subject: [PATCH RESEND v12 0/6] Nuvoton WPCM450 clock and reset driver
+Date: Mon, 08 Jul 2024 00:37:13 +0200
+Message-Id: <20240708-wpcm-clk-v12-0-1afac539c37d@gmx.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1720387411;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=SbDqxtlfTjjwVsq4VbK1kprB7ccA8aGj5XdW5T2ZQN0=;
-	b=AiZRnWd13UqUtBGbzOOOmxVrw18Du3ZsLIh18sIWWJ3dLfeQnYX/mSTxlB82iPD72aj13u
-	ZRO1yTm2orjUxDMYs1SfVQkzR91lPZiwfa/WYmKVGBmV71PTBr43Ykr2YwHmfVqcD9j7Yv
-	13gSdaPo3OsFbiWDs0BGnsvjPqMLWHI9pI59I5WJTweqXKxS+zV/SSX2X5NXBoiVPdbCF+
-	Wiyw0x0TVddnoIQHDOCv1sTTUBtlA1w+7SO1xM59wtOpkMKcIwG94K+boZLmpJRFFoZiCW
-	pyURBk+bxbHU/zFTpEI1KA5dzpIN25LI0lkhMMbkxWYrcyUxna5CA+ptF+Fmqw==
-Date: Sun, 07 Jul 2024 23:23:30 +0200
-From: Dragan Simic <dsimic@manjaro.org>
-To: Diederik de Haas <didi.debian@cknow.org>
-Cc: Heiko Stuebner <heiko@sntech.de>, Alex Bee <knaerzche@gmail.com>,
- linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: rockchip: Add avdd supplies to hdmi on rock64
-In-Reply-To: <20240704191919.38856-1-didi.debian@cknow.org>
-References: <20240704191919.38856-1-didi.debian@cknow.org>
-Message-ID: <31a86ec073e1de9e0241845f8783cd6b@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+To: openbmc@lists.ozlabs.org, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org
+Cc: Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, linux-kernel@vger.kernel.org, 
+ =?utf-8?q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1720391846; l=4460;
+ i=j.neuschaefer@gmx.net; s=20240329; h=from:subject:message-id;
+ bh=LHlwXz0xY3IxreqHfZl/rfZVPyckYCVZucb0Ic/3Jx4=;
+ b=3vx2VHTzAy3f/sw5YbD5Lfuf7A/GvQe73unYvZpZ28E03+qj3610qUK549NYrgnXfICu28ZlD
+ YuF9/CarQxeAAKUllGdrY7uKZBsbqWqwgSvY6kMcHLWYoFUEuCBHQDO
+X-Developer-Key: i=j.neuschaefer@gmx.net; a=ed25519;
+ pk=NIe0bK42wNaX/C4bi6ezm7NJK0IQE+8MKBm7igFMIS4=
+X-Provags-ID: V03:K1:jokVZF9njeuTuV9Gdi0f/8ho8RZIo6O2MkwzzTMqajdkEY6TnCX
+ V19p+YOnRRDV3l0nbSMkz8trfgtolb/hg0wnbQzpLGZBL7JDfCl8MKdlHyrRRWbh/G0TYKZ
+ MbqYQ2PHx0yCkYYcNau8AdWckgh1yyzGomujXx9A9Wt03cWsdpMJ0pgb8/ZV5eErsYkZs3M
+ KGtQUNm5CLTupHJpe4zag==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:ZWyB94pXxsY=;z2pe3s+AvEnqbB3e6T2ZITGDJId
+ R4a53ndv2bLz5sCV3IqaY02zhPIxkbXqGbHswjvEpoctw+py6DGDVdrVNv3rrKi6Wuj9PqiyQ
+ rTB+nXMV6b/zhQht/AdAdb3EkZimjBmA+2tQdCViJJqLeiP89aHbcCHdHwsxlodiNmmWoj0PN
+ USRtgUSbclF8FVBfcDyFV8GcHjApwyooXaHGrSRONFNQ98AKrJwV9sqtR+IB1jYm5FO8VMTg+
+ Ws49PvqV2ODlStqZl71ZVaMik2xWU0Wv9Xk3G00Na/6ts1krnVyrc8fKcA5jMwzLlcxDAfkga
+ t8jyqlroigj3udWfGuX5ziZgL3ksqlRQyTntquJSWzQzzDsG/qnK28aFzqn5hN38QLTIzfYEu
+ wwoJxMf3sn6UPBh1rprmkzJoLTytTEXjPSpMAFsxGGzVjtlRCJSRqQhSHE4k2OJsCrxEkVCxK
+ BqkfcaN7hPV/eihj2nfJI+ApUqWT4pUpddBb3ual4cR/9QcX4CRZlhIugryUGdSci0p9DCOxW
+ jPXp7YO746yHdMzeOBPQT3jjAkB6HfQJHhtOqWsTXeHtnDQ2KQ/t8jptSB67lsTBS7ZktvW7N
+ /91Qs3Tf+W5J68a6STVJeubQ9NxHlQV3GmXK8fjh/Tz9I5rdc1+LYsJTWEOKX2MzjC/+B8We8
+ NXTLqsYL56y+jbdBrt+HJzCGPaUFHrbyueWzmkKggXfmDvbTGAlSs+hqSqodN9yxQbphhcZ7m
+ OcqCdw1Vqu0lvEamWpvJMcUQfOmlf5lYWQotBAz9GgLqQJbrI/aGDfhvd2mHPXbAuIaHClodr
+ JWVT5PVYMEiOoXn0SFQdAu7E6gI4TGRpsr6NYu1Uwmka4=
 
-Hello Diederik,
+This series adds support for the clock and reset controller in the Nuvoton
+WPCM450 SoC. This means that the clock rates for peripherals will be
+calculated automatically based on the clock tree as it was preconfigured
+by the bootloader.  The 24 MHz dummy clock, that is currently in the
+devicetree, is no longer needed.  Somewhat unfortunately, this also
+means that there is a breaking change once the devicetree starts relying
+on the clock driver, but I find it acceptable in this case, because
+WPCM450 is still at a somewhat early stage.
 
-Please see some comments below.
+v12:
+- Convert to platform driver, but use fixed-factor-clock for timer
+  (a necessary workaround because npcm7xx-timer needs its clock earlier
+  than a platform driver can provide it)
+- Various driver improvements suggested or inspired by Stephen Boyd
+- New patches:
+  - clk: Introduce devm_clk_hw_register_divider_table_parent_data()
+  - clk: provider: Address documentation pitfall in struct clk_parent_data
 
-On 2024-07-04 21:18, Diederik de Haas wrote:
-> Pine64's Rock64 was missing the avdd supply properties on the hdmi 
-> node,
-> causing the following warnings:
-> 
->   dwhdmi-rockchip ff3c0000.hdmi: supply avdd-0v9 not found, using
-> dummy regulator
->   dwhdmi-rockchip ff3c0000.hdmi: supply avdd-1v8 not found, using
-> dummy regulator
-> 
-> In the Rock64 Schematic document version 2.0 those supplies are marked
-> as DVIDEO_AVDD_1V0 and DVIDEO_AVDD_1V8 respectively, but in version 3.0
-> those are named HDMI_AVDD_1V0 and HDMI_AVDD_1V8, which is a bit 
-> clearer.
-> In both versions those are connected to LDO3 and LDO1 respectively.
-> 
-> While the DeviceTree property is named 'avdd-0v9-supply' the
-> 'rockchip,dw-hdmi.yaml' binding document notes the following:
-> 
->   A 0.9V supply that powers up the SoC internal circuitry. The actual
->   pin name varies between the different SoCs and is usually
->   HDMI_TX_AVDD_0V9 or sometimes HDMI_AVDD_1V0.
-> 
-> So the 'vdd_10' reference is not an error.
-> 
-> Signed-off-by: Diederik de Haas <didi.debian@cknow.org>
+v11:
+- Link: https://lore.kernel.org/r/20240401-wpcm-clk-v11-0-379472961244@gmx=
+.net
+- Improved description in "ARM: dts: wpcm450: Remove clock-output-names
+  from reference clock node"
+- some minor format differences due to switching to B4
 
-Already verified the above-quoted statement from the .yaml binding
-in the RK3328 and RK3399 datasheets.  Thus, hoping that you agree
-with the first line:
+v10:
+- A small tweak (using selected instead of extending an already-long
+  default line) in Kconfig, for better robustness
 
-Helped-by: Dragan Simic <dsimic@manjaro.org>
-Reviewed-by: Dragan Simic <dsimic@manjaro.org>
+v9:
+- Various improvements to the driver
+- No longer use global clock names (and the clock-output-names property)
+  to refer to the reference clock, but instead rely on a phandle reference
 
-I'd also suggest that a brief comment is added to rk3328-rock64.dts,
-right above the "avdd-0v9-supply = <&vdd_10>;" line.  Perhaps something
-like this:
+v8:
+- https://lore.kernel.org/lkml/20230428190226.1304326-1-j.neuschaefer@gmx.=
+net/
+- Use %pe throughout the driver
 
-> +	/*
-> +	 * RK3328 requires 1.0 V on HDMI_AVDD_1V0, which is HDMI_AVDD_0V9
-> +	 * and requires 0.9 V on other Rockchip SoCs
-> +	 */
+v7:
+- Simplified the error handling, by largely removing resource
+  deallocation, which:
+  - was already incomplete
+  - would only happen in a case when the system is in pretty bad state
+    because the clock driver didn't initialize correctly (in other
+    words, the clock driver isn't optional enough that complex error
+    handling really pays off)
 
-> ---
->  arch/arm64/boot/dts/rockchip/rk3328-rock64.dts | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts
-> b/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts
-> index 229fe9da9c2d..90fef766f3ae 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts
-> @@ -154,6 +154,8 @@ &gmac2io {
->  };
-> 
->  &hdmi {
-> +	avdd-0v9-supply = <&vdd_10>;
-> +	avdd-1v8-supply = <&vcc_18>;
->  	status = "okay";
->  };
+v6:
+- Dropped all patches except the clock binding and the clock driver, becau=
+se
+  they have mostly been merged
+- Minor correction to how RESET_SIMPLE is selected
+
+v5:
+- Dropped patch 2 (watchdog: npcm: Enable clock if provided), which
+  was since merged upstream
+- Added patch 2 (clocksource: timer-npcm7xx: Enable timer 1 clock before u=
+se) again,
+  because I wasn't able to find it in linux-next
+- Switched the driver to using struct clk_parent_data
+- Rebased on 6.1-rc3
+
+v4:
+- Leave WDT clock running during after restart handler
+- Fix reset controller initialization
+- Dropped patch 2/7 (clocksource: timer-npcm7xx: Enable timer 1 clock befo=
+re use),
+  as it was applied by Daniel Lezcano
+
+v3:
+- https://lore.kernel.org/lkml/20220508194333.2170161-1-j.neuschaefer@gmx.=
+net/
+- Changed "refclk" string to "ref"
+- Fixed some dead code in the driver
+- Added clk_prepare_enable call to the watchdog restart handler
+- Added a few review tags
+
+v2:
+- https://lore.kernel.org/lkml/20220429172030.398011-1-j.neuschaefer@gmx.n=
+et/
+- various small improvements
+
+v1:
+- https://lore.kernel.org/lkml/20220422183012.444674-1-j.neuschaefer@gmx.n=
+et/
+
+Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
+=2D--
+=2D--
+Jonathan Neusch=C3=A4fer (6):
+      dt-bindings: clock: Add Nuvoton WPCM450 clock/reset controller
+      clk: Introduce devm_clk_hw_register_divider_table_parent_data()
+      clk: provider: Address documentation pitfall in struct clk_parent_da=
+ta
+      clk: wpcm450: Add Nuvoton WPCM450 clock/reset controller driver
+      ARM: dts: wpcm450: Remove clock-output-names from reference clock no=
+de
+      ARM: dts: wpcm450: Switch clocks to clock controller
+
+ .../bindings/clock/nuvoton,wpcm450-clk.yaml        |  65 +++
+ arch/arm/boot/dts/nuvoton/nuvoton-wpcm450.dtsi     |  33 +-
+ drivers/clk/Makefile                               |   2 +-
+ drivers/clk/nuvoton/Kconfig                        |  10 +-
+ drivers/clk/nuvoton/Makefile                       |   1 +
+ drivers/clk/nuvoton/clk-wpcm450.c                  | 455 ++++++++++++++++=
++++++
+ include/dt-bindings/clock/nuvoton,wpcm450-clk.h    |  67 +++
+ include/linux/clk-provider.h                       |  26 +-
+ 8 files changed, 643 insertions(+), 16 deletions(-)
+=2D--
+base-commit: 4cece764965020c22cff7665b18a012006359095
+change-id: 20240330-wpcm-clk-222a37f59cfb
+
+Best regards,
+=2D-
+Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
+
 
