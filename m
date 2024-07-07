@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-83664-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83665-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D359E9297D6
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jul 2024 14:43:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E543D9297DE
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jul 2024 14:46:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DCDE0B20C38
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jul 2024 12:43:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A702F28166F
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jul 2024 12:46:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A2031CD2D;
-	Sun,  7 Jul 2024 12:43:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3225F1CF8A;
+	Sun,  7 Jul 2024 12:46:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GTLBD2KL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c8hM+e72"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C7A41CD00;
-	Sun,  7 Jul 2024 12:43:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06F6EB641;
+	Sun,  7 Jul 2024 12:46:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720356185; cv=none; b=GQfDMTOAz4MISpD7SX2NFTXW4HEoL8Mzee7p/gwmL2FqfA/sBFA353KbntncO7+d4wcaf26zh1UkYbTBy/YN9hHoc5cmvaJdBaN1AX5yi1a2Bk4cxXTIhc0SRN/fk+30DFDJkGrLqXIVMVf68cqy/y45Mp+iblxUJNXt+HnkS4w=
+	t=1720356386; cv=none; b=cCNSeGfcRIt0xX4DM6PWmi8mdGYp3jCJa3tnook+k0Yqlbs1f+LRaygyHxNqr85XxKgvQz/GLbNki4ky+c5gEYdGzkRJtx6vcGiGl9m50OyzKem9bQi4uKy4nG1+GmO66uit5Y+aPO6zv4jGntfHsYXwYiCCxpUxHYb9mYabytM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720356185; c=relaxed/simple;
-	bh=dlU6ZwxMDTR7FRLnhiLzmeaWHsDmk2u8PeU97jG5du8=;
+	s=arc-20240116; t=1720356386; c=relaxed/simple;
+	bh=zV4yHD7y/f2HJEayuc3XEOB00vxrcOFh7lGZS+35yes=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VsemwTHodFXR5MTNUssYihUd6/TSjm/rlS+4070Kqr+CSJY54sFY37LDFaaZrTSsdufe4pAfPwARDgb/0ZGGd0U6MgKawDkt8pnBagfhoPhC6Vs3Oqdz5+GNemWc2YtjTup3vq42vzl/Inq0JirdHMces6Ei/6RSkxCcAKHW6vk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GTLBD2KL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04444C4AF07;
-	Sun,  7 Jul 2024 12:43:00 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=p9m/MIKb3JNaEnCpqPo00Hgrh3xAkZ2qtssw//zEbNgBa3gbOTK5zdas96DRe3YqTeMhEUmqcAk+sEJb7faVBfsfMtr9vw/I3GHkrlQi+zJcO8TjLjFXl8LcrL4p/9qXm0mznjlK89l81s2afHsGjGIvrix510ITxlY2Bq9FtJM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c8hM+e72; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D411CC3277B;
+	Sun,  7 Jul 2024 12:46:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720356184;
-	bh=dlU6ZwxMDTR7FRLnhiLzmeaWHsDmk2u8PeU97jG5du8=;
+	s=k20201202; t=1720356385;
+	bh=zV4yHD7y/f2HJEayuc3XEOB00vxrcOFh7lGZS+35yes=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=GTLBD2KLl4YeuoLBpH6OnjEKYMlTptTEkoLcw7/141+T17ltNhsYeiGaFJzuIlDN2
-	 vSZrAa13c7V/acq1JSyZ6SoQ5Lmh7bUAlFWV5LyLDB5LkRnvqdH+rhqsFkIeFq+Zvo
-	 +fQQ+hDeun2oDbfZBheOZTur0Lm+nyvh0BYjL/smWJDqUYEDS2sc13ifJv6Pd19uHa
-	 LhAg4YrD6VV3TkNopGNymXHm2vpFxf+3LG6z/b/QapYOba3hL8G8d590HrxnhLkVGz
-	 SYPadMPiDr5p/pqjB0HeWqjwSQX39iGmIYuihLJchbZ0jvjjPaORoA/JMPqRAk36/y
-	 okvLQxj/DjfGQ==
-Message-ID: <f452408f-2ec3-4893-b287-157579d5e48a@kernel.org>
-Date: Sun, 7 Jul 2024 14:42:58 +0200
+	b=c8hM+e72qShL0rk5mW9cQwB4Sq/abfTTyhXVyuMg0xwvWkA3iyYJN6rMoY7VyYA6Z
+	 LJX6WSJTlOrBKqXUx8BYIXj1ApAK4swmXOdQT0wK+sqpRyZGnkRonA4VtyS/HhXPRS
+	 s3Nn/bk/dFdLn4FoXmspfJ1rEqXueymlAlVnZstR3xYAx4ov3fMpDQ1BsITXkhsZez
+	 HaJDvnUdLk98ifrxO1sIymRTh0yWE8aNNmLxIDzRs6mZ8rkX8F+X1BxLBILtAQSYHS
+	 s5y4JJAH7QJpp0qGkIXZS8HDiGH817WUqhRJaBtTjLwKEJ5o2RMuBoHkfOntOr5TMa
+	 0eZpU4zVTnS5g==
+Message-ID: <3b16214b-4693-4754-b62a-fea2e070269c@kernel.org>
+Date: Sun, 7 Jul 2024 14:46:19 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] dt-bindings: dma: mv-xor-v2: Convert to dtschema
-To: Shresth Prasad <shresthprasad7@gmail.com>, vkoul@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, hdegoede@redhat.com
-Cc: dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, skhan@linuxfoundation.org,
- javier.carrasco.cruz@gmail.com
-References: <20240707091331.127520-3-shresthprasad7@gmail.com>
-Content-Language: en-US
+Subject: Re: [PATCH 1/2] dt-bindings: mfd: qcom,tcsr: Add compatible for
+ sa8775p
+To: Mukesh Ojha <quic_mojha@quicinc.com>, lee@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, andersson@kernel.org,
+ konrad.dybcio@linaro.org
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240705153252.1571814-1-quic_mojha@quicinc.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -102,113 +103,16 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240707091331.127520-3-shresthprasad7@gmail.com>
+In-Reply-To: <20240705153252.1571814-1-quic_mojha@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 07/07/2024 11:13, Shresth Prasad wrote:
-> Convert txt bindings of Marvell XOR v2 engines to dtschema to allow
-> for validation.
+On 05/07/2024 17:32, Mukesh Ojha wrote:
+> Document the compatible for sa8775p SoC.
 > 
-> Also add missing property `dma-coherent` as `drivers/dma/mv_xor_v2.c`
-> calls various dma-coherent memory functions.
-> 
-> Signed-off-by: Shresth Prasad <shresthprasad7@gmail.com>
-> ---
-> Changes in v2:
->     - Update commit message to indicate addition of `dma-coherent`
->     - Change maintainer
->     - Change compatible section
->     - Add `minItems` to `clock-names`
->     - Remove "location and length" from reg description
->     - List out `clock-names` items in `if:`
->     - Create two variants of `if:`
-> 
-> Tested against `marvell/armada-7040-db.dtb`, `marvell/armada-7040-mochabin.dtb`
-> and `marvell/armada-8080-db.dtb`
-> 
->  .../bindings/dma/marvell,xor-v2.yaml          | 86 +++++++++++++++++++
->  .../devicetree/bindings/dma/mv-xor-v2.txt     | 28 ------
->  2 files changed, 86 insertions(+), 28 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/dma/marvell,xor-v2.yaml
->  delete mode 100644 Documentation/devicetree/bindings/dma/mv-xor-v2.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/dma/marvell,xor-v2.yaml b/Documentation/devicetree/bindings/dma/marvell,xor-v2.yaml
-> new file mode 100644
-> index 000000000000..da58f6e0feab
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/dma/marvell,xor-v2.yaml
-> @@ -0,0 +1,86 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/dma/marvell,xor-v2.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Marvell XOR v2 engines
-> +
-> +maintainers:
-> +  - Hans de Goede <hdegoede@redhat.com>
+> Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
 
-I don't think Hans maintains this platform - Marvell SoCs. Didn't we
-talk already what is "platform"?
-
-
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - const: marvell,xor-v2
-> +      - items:
-> +          - enum:
-> +              - marvell,armada-7k-xor
-> +          - const: marvell,xor-v2
-> +
-
-> +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        clocks:
-> +          maxItems: 1
-
-Still not much improved. There are plenty of examples how this is done,
-so please do not invent one, entirely new style. Think for a sec, why
-doing things differently? Why this code is the first example of such syntax?
-
-I asked to limit it pear each variant.
-
-https://elixir.bootlin.com/linux/v6.8/source/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml#L132
-
-
-
-> +    then:
-> +      properties:
-> +        clock-names:
-> +          items:
-> +            - const: core
-> +  - if:
-> +      properties:
-> +        clocks:
-> +          minItems: 2
-> +      required:
-> +        - clocks
-> +    then:
-> +      properties:
-> +        clock-names:
-> +          items:
-> +            - const: core
-> +            - const: reg
-> +      required:
-> +        - clock-names
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    xor0@6a0000 {
-
-xor@6a0000
+Eh? SA8775p is going to be removed/changed... why adding this?
 
 Best regards,
 Krzysztof
