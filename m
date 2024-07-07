@@ -1,130 +1,244 @@
-Return-Path: <devicetree+bounces-83652-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83653-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C36E929787
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jul 2024 13:03:29 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5602D929792
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jul 2024 13:12:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C75101C2074C
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jul 2024 11:03:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AFC22B20ECF
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jul 2024 11:12:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C7C118C22;
-	Sun,  7 Jul 2024 11:03:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nvGwxSoY"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 572121BC46;
+	Sun,  7 Jul 2024 11:12:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17C3D1CD00;
-	Sun,  7 Jul 2024 11:03:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 275B9125DB;
+	Sun,  7 Jul 2024 11:11:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720350204; cv=none; b=me/GuMbuRGOihG7LP/nqZm4UhFJQcNRc9fcVe1VdSfbIJ95XqcsN9cVIkNAIfVGRCBWH+JAHmjg/fhhMNoTKhuK7mFN+YROUum53j4RwUSuACWdkAf9Hb0tIo1iS/A2kBCMn8FpsU4IstsNtvdNpWinvW35pqle9e87aT+IadnA=
+	t=1720350723; cv=none; b=kHsTKtF9tttUbfVQdQSQ8IaXVQeEe2qj1eyITdTPMlyQtcNayvWSGycBkI56cQxKjx0impgmMXHHNAJyrDeaXJcYLEnf4wlJ8tpixg1uYq8i1SuIWQjXf9sdpkwBRIN8/PhXUBdRxiUyuKsZwXV/suuGTXgTaKJhZtZBW6jXkTM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720350204; c=relaxed/simple;
-	bh=rZq8y/nfB592aWpSAA6XvX0lF6OMilx0LOgA1yo+8TA=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=J1jefBrcljC4t5al8lhDj8kgktvgZQDE+VZrhH8I9DsOb9qfdLzJeTwuQ2BIzWej4dVp4L0zYAznEvfK4+KvGDIE3FgOLDaD6jOt5x3N0KBA38VuLN8KHt+goVoBHxO7Y/pBElcKi2N3SKI7Pif97CFbn3NP9gf3VomQ6JPbYho=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nvGwxSoY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B14AC3277B;
-	Sun,  7 Jul 2024 11:03:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720350203;
-	bh=rZq8y/nfB592aWpSAA6XvX0lF6OMilx0LOgA1yo+8TA=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=nvGwxSoYJuakPOlDpRHXlFptfutMGIfqXzFmmW8kJvfyIMSHxcq7Y9fdNoTp5n/BL
-	 Jxa2LurSK7neDOoQF7kQWbamXeoUgvr6NF3PYWygcqNTqXg2GFORuFrAMiWEm4MXZ2
-	 rWXzoBIbtyNW1KTx8hevn3qBIkUEIxFEIZwd915aRXOnYOdI8FkysRH/57QRMOfPtE
-	 BcOgkf7HCSocRQFQBjIm/1FTAun6mHJvYRLIbWM+jdfnukk/I8hhRKxM8qNj6aFqNA
-	 A6onupEz7vDbPW6z1pFy5qbTUUIcUBDxZdqsfrsV87BbRMDSvPO0OLSa2vpYbJ8+O3
-	 87U1BVqAdJcog==
-Date: Sun, 7 Jul 2024 12:03:14 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Guillaume Stols <gstols@baylibre.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-fbdev@vger.kernel.org, devicetree@vger.kernel.org, Jonathan Cameron
- <Jonathan.Cameron@huawei.com>, jstephan@baylibre.com,
- dlechner@baylibre.com, Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v3 0/8] iio: adc: ad7606: Improvements
-Message-ID: <20240707120314.7d363662@jic23-huawei>
-In-Reply-To: <20240702-cleanup-ad7606-v3-0-57fd02a4e2aa@baylibre.com>
-References: <20240702-cleanup-ad7606-v3-0-57fd02a4e2aa@baylibre.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1720350723; c=relaxed/simple;
+	bh=Q9SjyPgvaHl3vXTYNqVYNgJq0a0fLsJyDb8/VUfmeT0=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=NDs9H0by1sid9pcoBuWzppJCgyKoSaVLg6P9paB7Y/Onf/BiRdfDODXQHC/bapKSitPDw4EAeL3DLSTFYLciM4uSbs7lCv7Cplr4SnjK4/STeUN2SbDVI+oVWadqzvjdR+yAVWU1Jv0HF89fqHuWTQU0EuzpEtiWhh4fPZnbicA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+Received: from i53875a87.versanet.de ([83.135.90.135] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1sQPnv-0007PA-Vn; Sun, 07 Jul 2024 13:11:40 +0200
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Alexey Charkov <alchark@gmail.com>,
+ Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>,
+ Dragan Simic <dsimic@manjaro.org>, Viresh Kumar <viresh.kumar@linaro.org>,
+ Chen-Yu Tsai <wens@kernel.org>, Diederik de Haas <didi.debian@cknow.org>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 0/8] RK3588 and Rock 5B dts additions: thermal,
+ OPP and fan
+Date: Sun, 07 Jul 2024 13:11:38 +0200
+Message-ID: <2236519.ZfL8zNpBrT@diego>
+In-Reply-To: <0418B5BB-6759-4BFA-BE6E-F5C7FA0CBF4F@gmail.com>
+References:
+ <20240617-rk-dts-additions-v5-0-c1f5f3267f1e@gmail.com>
+ <0418B5BB-6759-4BFA-BE6E-F5C7FA0CBF4F@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
 
-On Tue, 02 Jul 2024 17:34:04 +0000
-Guillaume Stols <gstols@baylibre.com> wrote:
+Hey,
 
-> This series adds the following improvements over the current AD7606's
-> driver implementation:
-> 
-> - Fix wrong usage of gpio array
-> - Fix standby that was documented as ACTIVE_LOW but handled in the
->   driver as if it was ACTIVE_HIGH
-> - Improve dt-bindings documentation
-> - Switch mutex lock to scoped guard
-> 
-> Signed-off-by: Guillaume Stols <gstols@baylibre.com>
-Given issues I'm having locally with b4 I applied these but added tags by hand.
-Tweaked last patch description to mention guard() rather than scoped_guard()
-to reflect changes in v3.
+Am Sonntag, 7. Juli 2024, 11:39:57 CEST schrieb Piotr Oniszczuk:
+> Alexey,
+> I=E2=80=99m playing with this series on rock5c on 6.10-rc6.
+>=20
+> Is code in this series enough to get working pwm-fan on rock5c?
+> (of course after adding required changes from rokc5b dts to rock5c dts)
+>=20
+> In my case i=E2=80=99m getting constantly full speed of fan on my rock5c.
+>=20
+> hw seems ok as echo 96 > /sys/devices/platform/pwm-fan/hwmon/hwmon0/pwm1 =
+changes fans speed as expected.
+>=20
+> May you pls hint me what i=E2=80=99m missing here?
 
-Thanks,
+at least on my rock 5 itx patches, I get varying fan-speeds.
+The fan starts high and then lowers its speed once the cpu-regulators
+and every is set up.
 
-Jonathan
+While I was working on the dts and the cpu-supplies were not yet working,
+the fan speed stayed high, so maybe check that frequency scaling actually
+works? And of course you need the thermal map to handle the fan.
 
-> ---
-> Changes in v3:
-> - Remove the two first patches that were already picked up.
-> - Add styling corrections.
-> - [Patch 6/8] Improve commit message.
-> - [Patch 8/8] Replace every scoped_guard by simple guard.
-> - Link to v2: https://lore.kernel.org/r/20240628-cleanup-ad7606-v2-0-96e02f90256d@baylibre.com
-> 
-> Changes in v2:
-> - Change scoped guard to guard(mutex)(&st->lock). This was tested with
->   Rob's bot condition, and seems not to generate warning anymore.
-> - Reorder the commits for avoiding bisection issues and respect commit
->   priority rules.
-> - Add vdrive-supply to required properties.
-> - Separate cosmetic changes from content ones in dt-binding
->   descriptions.
-> - Move maxItems changes (and plural in descriptions) to the commit that
->   adds conditions.
-> - Link to v1: https://lore.kernel.org/r/20240618-cleanup-ad7606-v1-0-f1854d5c779d@baylibre.com
-> 
-> ---
-> Guillaume Stols (8):
->       dt-bindings: iio: adc: adi,ad7606: normalize textwidth
->       dt-bindings: iio: adc: adi,ad7606: improve descriptions
->       dt-bindings: iio: adc: adi,ad7606: add supply properties
->       dt-bindings: iio: adc: adi,ad7606: fix example
->       dt-bindings: iio: adc: adi,ad7606: add conditions
->       iio: adc: ad7606: fix oversampling gpio array
->       iio: adc: ad7606: fix standby gpio state to match the documentation
->       iio: adc: ad7606: switch mutexes to scoped_guard
-> 
->  .../devicetree/bindings/iio/adc/adi,ad7606.yaml    | 123 ++++++++++++++++-----
->  drivers/iio/adc/ad7606.c                           |  47 ++++----
->  drivers/iio/adc/ad7606_spi.c                       |   5 +-
->  3 files changed, 115 insertions(+), 60 deletions(-)
-> ---
-> base-commit: 340fa834ae229a952db04a57ed13fd5d35d75818
-> change-id: 20240416-cleanup-ad7606-161e2ed9818b
-> 
-> Best regards,
+Also of course I don't see a rock5c patch anywhere, so where did that
+board dts come from?=20
+
+
+Heiko
+
+> > Wiadomo=C5=9B=C4=87 napisana przez Alexey Charkov <alchark@gmail.com> w=
+ dniu 17.06.2024, o godz. 20:28:
+> >=20
+> > This enables thermal monitoring and CPU DVFS on RK3588(s), as well as
+> > active cooling on Radxa Rock 5B via the provided PWM fan.
+> >=20
+> > Some RK3588 boards use separate regulators to supply CPUs and their
+> > respective memory interfaces, so this is handled by coupling those
+> > regulators in affected boards' device trees to ensure that their
+> > voltage is adjusted in step.
+> >=20
+> > This also enables the built-in thermal sensor (TSADC) for all boards
+> > that don't currently have it enabled, using the default CRU based
+> > emergency thermal reset. This default configuration only uses on-SoC
+> > devices and doesn't rely on any external wiring, thus it should work
+> > for all devices (tested only on Rock 5B though).
+> >=20
+> > The boards that have TSADC_SHUT signal wired to the PMIC reset line
+> > can choose to override the default reset logic in favour of GPIO
+> > driven (PMIC assisted) reset, but in my testing it didn't work on
+> > Radxa Rock 5B - maybe I'm reading the schematic wrong and it doesn't
+> > support PMIC assisted reset after all.
+> >=20
+> > Fan control on Rock 5B has been split into two intervals: let it spin
+> > at the minimum cooling state between 55C and 65C, and then accelerate
+> > if the system crosses the 65C mark - thanks to Dragan for suggesting.
+> > This lets some cooling setups with beefier heatsinks and/or larger
+> > fan fins to stay in the quietest non-zero fan state while still
+> > gaining potential benefits from the airflow it generates, and
+> > possibly avoiding noisy speeds altogether for some workloads.
+> >=20
+> > OPPs help actually scale CPU frequencies up and down for both cooling
+> > and performance - tested on Rock 5B under varied loads. I've dropped
+> > those OPPs that cause frequency reductions without accompanying decrease
+> > in CPU voltage, as they don't seem to be adding much benefit in day to
+> > day use, while the kernel log gets a number of "OPP is inefficient" lin=
+es.
+> >=20
+> > Note that this submission doesn't touch the SRAM read margin updates or
+> > the OPP calibration based on silicon quality which the downstream driver
+> > does and which were mentioned in [1]. It works as it is (also confirmed=
+ by
+> > Sebastian in his follow-up message [2]), and it is stable in my testing=
+ on
+> > Rock 5B, so it sounds better to merge a simple version first and then
+> > extend when/if required.
+> >=20
+> > This patch series has been rebased on top of Heiko's recent for-next br=
+anch
+> > with Dragan's patch [3] which rearranges the .dtsi files for per-varian=
+t OPPs.
+> > As a result, it now includes separate CPU OPP tables for RK3588(s) and =
+RK3588j.
+> >=20
+> > GPU OPPs have also been split out to accommodate for the difference in =
+RK3588j.
+> >=20
+> > [1] https://lore.kernel.org/linux-rockchip/CABjd4YzTL=3D5S7cS8ACNAYVa73=
+0WA3iGd5L_wP1Vn9=3Df83RCORA@mail.gmail.com/
+> > [2] https://lore.kernel.org/linux-rockchip/pkyne4g2cln27dcdu3jm7bqdqpmd=
+2kwkbguiolmozntjuiajrb@gvq4nupzna4o/
+> > [3] https://lore.kernel.org/linux-rockchip/9ffedc0e2ca7f167d9d795b2a8f4=
+3cb9f56a653b.1717923308.git.dsimic@manjaro.org/
+> >=20
+> > Signed-off-by: Alexey Charkov <alchark@gmail.com>
+> > ---
+> > Changes in v5:
+> > - Rebased against linux-rockchip/for-next with Dragan's .dtsi reshuffli=
+ng on top
+> > - Added separate OPP values for RK3588j (these also apply to RK3588m)
+> > - Separated GPU OPP values for RK3588j (RK3588m ones differ slightly, n=
+ot included here)
+> > - Dragan's patch: https://lore.kernel.org/linux-rockchip/9ffedc0e2ca7f1=
+67d9d795b2a8f43cb9f56a653b.1717923308.git.dsimic@manjaro.org/
+> > - Link to v4: https://lore.kernel.org/r/20240506-rk-dts-additions-v4-0-=
+271023ddfd40@gmail.com
+> >=20
+> > Changes in v4:
+> > - Rebased against linux-rockchip/for-next
+> > - Reordered DT nodes alphabetically as pointed out by Diederik
+> > - Moved the TSADC enablement to per-board .dts/.dtsi files
+> > - Dropped extra "inefficient" OPPs (same voltage - lower frequencies)
+> > - Dropped second passive cooling trips altogether to keep things simple
+> > - Added a cooling map for passive GPU cooling (in a separate patch)
+> > - Link to v3: https://lore.kernel.org/r/20240229-rk-dts-additions-v3-0-=
+6afe8473a631@gmail.com
+> >=20
+> > Changes in v3:
+> > - Added regulator coupling for EVB1 and QuartzPro64
+> > - Enabled the TSADC for all boards in .dtsi, not just Rock 5B (thanks C=
+henYu)
+> > - Added comments regarding two passive cooling trips in each zone (than=
+ks Dragan)
+> > - Fixed active cooling map numbering for Radxa Rock 5B (thanks Dragan)
+> > - Dropped Daniel's Acked-by tag from the Rock 5B fan patch, as there's =
+been quite some
+> >  churn there since the version he acknowledged
+> > - Link to v2: https://lore.kernel.org/r/20240130-rk-dts-additions-v2-0-=
+c6222c4c78df@gmail.com
+> >=20
+> > Changes in v2:
+> > - Dropped the rfkill patch which Heiko has already applied
+> > - Set higher 'polling-delay-passive' (100 instead of 20)
+> > - Name all cooling maps starting from map0 in each respective zone
+> > - Drop 'contribution' properties from passive cooling maps
+> > - Link to v1: https://lore.kernel.org/r/20240125-rk-dts-additions-v1-0-=
+5879275db36f@gmail.com
+> >=20
+> > ---
+> > Alexey Charkov (8):
+> >      arm64: dts: rockchip: add thermal zones information on RK3588
+> >      arm64: dts: rockchip: enable thermal management on all RK3588 boar=
+ds
+> >      arm64: dts: rockchip: add passive GPU cooling on RK3588
+> >      arm64: dts: rockchip: enable automatic fan control on Rock 5B
+> >      arm64: dts: rockchip: Add CPU/memory regulator coupling for RK3588
+> >      arm64: dts: rockchip: Add OPP data for CPU cores on RK3588
+> >      arm64: dts: rockchip: Add OPP data for CPU cores on RK3588j
+> >      arm64: dts: rockchip: Split GPU OPPs of RK3588 and RK3588j
+> >=20
+> > .../boot/dts/rockchip/rk3588-armsom-sige7.dts      |   4 +
+> > arch/arm64/boot/dts/rockchip/rk3588-base.dtsi      | 197 ++++++++++++++=
++++----
+> > .../dts/rockchip/rk3588-edgeble-neu6a-common.dtsi  |   4 +
+> > arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts   |  16 ++
+> > arch/arm64/boot/dts/rockchip/rk3588-ok3588-c.dts   |   4 +
+> > arch/arm64/boot/dts/rockchip/rk3588-opp.dtsi       | 190 ++++++++++++++=
+++++++
+> > .../arm64/boot/dts/rockchip/rk3588-quartzpro64.dts |  12 ++
+> > arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts    |  34 +++-
+> > .../arm64/boot/dts/rockchip/rk3588-toybrick-x0.dts |   4 +
+> > .../arm64/boot/dts/rockchip/rk3588-turing-rk1.dtsi |   4 +
+> > arch/arm64/boot/dts/rockchip/rk3588.dtsi           |   1 +
+> > arch/arm64/boot/dts/rockchip/rk3588j.dtsi          | 141 +++++++++++++++
+> > arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts   |   4 +
+> > arch/arm64/boot/dts/rockchip/rk3588s.dtsi          |   1 +
+> > 14 files changed, 577 insertions(+), 39 deletions(-)
+> > ---
+> > base-commit: 5cc74606bf40a2bbaccd3e3bb2781f637baebde5
+> > change-id: 20240124-rk-dts-additions-a6d7b52787b9
+> >=20
+> > Best regards,
+>=20
+>=20
+
+
+
 
 
