@@ -1,250 +1,270 @@
-Return-Path: <devicetree+bounces-83685-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83686-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F279192984C
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jul 2024 16:04:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80C4392984F
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jul 2024 16:08:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3EB90B208A8
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jul 2024 14:04:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BB0CC1C20972
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jul 2024 14:08:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91697210F8;
-	Sun,  7 Jul 2024 14:04:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 380CC225D4;
+	Sun,  7 Jul 2024 14:08:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OaO+Xbcg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sAWScSYi"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6490F210E4;
-	Sun,  7 Jul 2024 14:04:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FCE7210EC;
+	Sun,  7 Jul 2024 14:08:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720361047; cv=none; b=EGEgoZ9Ie5O5sKg9O6IBnMvGVZgDK9TrBqTE6PD/0NwdRXdxDAXYBpQPXgGI840V6GtGR0R6D2+tmWjJIsQpbGejwBzf4RoMJ/6a+nvTsXY3wpmXIk20XuLmZ+XubdPXy+TwB11hwuNlbJQw1AfLur4vA/WyRtQXGXvdt5NsL58=
+	t=1720361325; cv=none; b=nVYD2B6GsUYDISvJUqyA5d+UxvpG3ZCXG7pkONwYFmjR6RWb2vNWAmfbLDhuKxMSyPXwybSCDCPcS5cYcamJwtx5a0UU/iyTaKJtf4EaaWpnNCBC50+aKvDggms9UaVTXBk4TGpBu7gL6G6qwYSHcWMOC98zMfuGtRUUN9KDcKg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720361047; c=relaxed/simple;
-	bh=4w3hEfthvLJb+KZOXnF/6omToYQkMKwOslerv3L7JWM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=q55CJMATjSt/3HKudKj5InQxEYrflyFkN3B9IYEH2X+eV/cy85LpgPDAq/keBmCs2s0D+05eZ54Q48YGymGbMjU8EwYKms2vsDxutWF5MgOynuxK6CW6qHGSZxeurnpxKJALSQQZRfZ5z2B9TwHPU1OuVGu/0VwZkW+Uk9gFcJo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OaO+Xbcg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D875C3277B;
-	Sun,  7 Jul 2024 14:04:00 +0000 (UTC)
+	s=arc-20240116; t=1720361325; c=relaxed/simple;
+	bh=APb3owfajHa58YxU2rbCOFM9wWI5gLvEEkczPG6ODMU=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Iehj0GOoeg3O1HQD16Kzqspf4tU4/H1yRqAmn5p4g46uTSOuyB+BMbxTxLeDRJZcmXRNtVBotzrTFRyp2S9wKXDEbEURRO8Hlqgb5tznDtdkVHspB23XpOqzV7vUKF65QXdBdrLcfoe2aPzEHFYlJ3ngw+YMRy/S0XDG3X970no=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sAWScSYi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94926C3277B;
+	Sun,  7 Jul 2024 14:08:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720361047;
-	bh=4w3hEfthvLJb+KZOXnF/6omToYQkMKwOslerv3L7JWM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=OaO+Xbcg11o6Bn04s0byyYBatWxqqGxrz82+qH/hUasbAXskXSi7qMORigQbl5w/0
-	 iZNZ7jVXeSXEgkRCLJIF89lFSTa7d3l4LM3gvP9A7C8AawCeRb9bdUk29q4PV7VTtN
-	 z2n0Rgpf0opgMEzDHqMIRz4mB26wZSIvcS2x7zqi1kQu9AVkG/kJ4c3IgJ6JbWI6fC
-	 5jUT1+80xcWEkllxCyr2RIKvJcK7PtzpO7Ujc+XkMR7GJwYWuoOm5z7znPliXkCC2A
-	 P6faaVNOdJumuVRt74hSqoQvCxyoRx9MKM8WTZ8+VuBenYeoeHuDi+RVLPwtt0sLK5
-	 nJxvhoZGJwlgg==
-Message-ID: <e2454904-c70e-49f9-b7b6-05ef348c35fb@kernel.org>
-Date: Sun, 7 Jul 2024 16:03:58 +0200
+	s=k20201202; t=1720361324;
+	bh=APb3owfajHa58YxU2rbCOFM9wWI5gLvEEkczPG6ODMU=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=sAWScSYigeBrdu9EN9cWmEpdZit0udrI4+eYu58oa6Nk/wZx8Q2OmTaZH9DzkOUpf
+	 pc4y0XGP3pDitK6TR9WPJfITJEiMW007MCSgRDRFFrU0obOSJDJWGJIE+A2DSZ9GKP
+	 DmCF6ZjnzBuIBNtlEVjXyKeBBfN9XZLmvMfbXBu/hbKcpSPhuFhbqEzo1YMVL1Z6i8
+	 RAsCI8Wq9mOkcaWlzsD8gGRuYN5SB+uogqcz1vWLwSUPtMJh5zqA9yPkjgVTlyrlvh
+	 SfpBwzL92CeqXMVjDhoH1PrKN2yZvZS9isKt1eRLb0XKFC1BnNmmNuRorutINclEM7
+	 pnitb4bYEa2ig==
+Date: Sun, 7 Jul 2024 15:08:35 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Shreeya Patel <shreeya.patel@collabora.com>, Marek Vasut
+ <marex@denx.de>, linux-iio@vger.kernel.org, Conor Dooley
+ <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Lars-Peter
+ Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+ devicetree@vger.kernel.org, kernel@collabora.com, Andy Shevchenko
+ <andriy.shevchenko@linux.intel.com>
+Subject: Re: [PATCH] iio: light: ltrf216a: Drop undocumented ltr,ltrf216a
+ compatible string
+Message-ID: <20240707150835.40db1897@jic23-huawei>
+In-Reply-To: <1effec8c-8228-482b-b476-06838128adfa@kernel.org>
+References: <20240705095047.90558-1-marex@denx.de>
+	<3b2ca0-6687ce00-3-4dab7280@52083650>
+	<98992b1d-c94a-4053-a755-32a25d7fdc46@kernel.org>
+	<20240707143759.7718e0f3@jic23-huawei>
+	<1effec8c-8228-482b-b476-06838128adfa@kernel.org>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 05/10] dt-bindings: display: imx: Add i.MX8qxp Display
- Controller
-To: Liu Ying <victor.liu@nxp.com>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc: p.zabel@pengutronix.de, airlied@gmail.com, daniel@ffwll.ch,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
- festevam@gmail.com, tglx@linutronix.de
-References: <20240705090932.1880496-1-victor.liu@nxp.com>
- <20240705090932.1880496-6-victor.liu@nxp.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240705090932.1880496-6-victor.liu@nxp.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On 05/07/2024 11:09, Liu Ying wrote:
-> i.MX8qxp Display Controller(DC) is comprised of three main components that
-> include a blit engine for 2D graphics accelerations, display controller for
-> display output processing, as well as a command sequencer.
+On Sun, 7 Jul 2024 15:46:26 +0200
+Krzysztof Kozlowski <krzk@kernel.org> wrote:
+
+> On 07/07/2024 15:37, Jonathan Cameron wrote:
+> > On Sun, 7 Jul 2024 14:02:39 +0200
+> > Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> >   
+> >> On 05/07/2024 12:42, Shreeya Patel wrote:  
+> >>> On Friday, July 05, 2024 15:20 IST, Marek Vasut <marex@denx.de> wrote:
+> >>>     
+> >>>> The "ltr,ltrf216a" compatible string is not documented in DT binding
+> >>>> document, remove it.
+> >>>>
+> >>>> Signed-off-by: Marek Vasut <marex@denx.de>
+> >>>> ---
+> >>>> Cc: Conor Dooley <conor+dt@kernel.org>
+> >>>> Cc: Jonathan Cameron <jic23@kernel.org>
+> >>>> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> >>>> Cc: Lars-Peter Clausen <lars@metafoo.de>
+> >>>> Cc: Marek Vasut <marex@denx.de>
+> >>>> Cc: Rob Herring <robh@kernel.org>
+> >>>> Cc: Shreeya Patel <shreeya.patel@collabora.com>
+> >>>> Cc: devicetree@vger.kernel.org
+> >>>> Cc: linux-iio@vger.kernel.org
+> >>>> ---
+> >>>>  drivers/iio/light/ltrf216a.c | 1 -
+> >>>>  1 file changed, 1 deletion(-)
+> >>>>
+> >>>> diff --git a/drivers/iio/light/ltrf216a.c b/drivers/iio/light/ltrf216a.c
+> >>>> index 68dc48420a886..78fc910fcb18c 100644
+> >>>> --- a/drivers/iio/light/ltrf216a.c
+> >>>> +++ b/drivers/iio/light/ltrf216a.c
+> >>>> @@ -528,7 +528,6 @@ MODULE_DEVICE_TABLE(i2c, ltrf216a_id);
+> >>>>  
+> >>>>  static const struct of_device_id ltrf216a_of_match[] = {
+> >>>>  	{ .compatible = "liteon,ltrf216a" },
+> >>>> -	{ .compatible = "ltr,ltrf216a" },
+> >>>>  	{}    
+> >>>
+> >>> This compatible string with a different vendor prefix was added for a specific reason.
+> >>> Please see the commit message of the following patch :-
+> >>> https://lore.kernel.org/all/20220511094024.175994-2-shreeya.patel@collabora.com/    
+> >>
+> >> And adding this specific compatible was clearly NAKed:
+> >> https://lore.kernel.org/all/20220516170406.GB2825626-robh@kernel.org/
+> >>
+> >> yet you still added it. That's a deliberate going around maintainer's
+> >> decision.
+> >>  
+> > 
+> > The statement from Rob was very specific. The schema is not applicable to ACPI bindings
+> > - that's the basis on which he doesn't want this in the schema. Specifically
+> > because "There's not really any point in having this in schema as you can't
+> > use that schema with ACPI".
+> > 
+> > That is true (though arguably you could with sufficient tooling apply the schema
+> > to the relevant part of DSDT).
+> > 
+> > The compatible is usable, via PRP0001 ACPI IDs.  
 > 
-> Signed-off-by: Liu Ying <victor.liu@nxp.com>
-> ---
->  .../bindings/display/imx/fsl,imx8qxp-dc.yaml  | 243 ++++++++++++++++++
->  1 file changed, 243 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dc.yaml
+> Uh, that's sounds like a slippery slope. To my understanding, PRP0001
+> allows to create ACPI IDs from OF IDs, so it requires to have a valid OF
+> ID. Valid OF ID requires bindings, doesn't it?
 > 
-> diff --git a/Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dc.yaml b/Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dc.yaml
-> new file mode 100644
-> index 000000000000..a2ad280d2839
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dc.yaml
-> @@ -0,0 +1,243 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/imx/fsl,imx8qxp-dc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Freescale i.MX8qxp Display Controller
-> +
-> +description: |
-> +  The Freescale i.MX8qxp Display Controller(DC) is comprised of three main
-> +  components that include a blit engine for 2D graphics accelerations, display
-> +  controller for display output processing, as well as a command sequencer.
-> +
-> +                                  Display buffers              Source buffers
-> +                                 (AXI read master)            (AXI read master)
-> +                                  | .......... |                  | | |
-> +      +---------------------------+------------+------------------+-+-+------+
-> +      | Display Controller (DC)   | .......... |                  | | |      |
-> +      |                           |            |                  | | |      |
-> +      |   @@@@@@@@@@@  +----------+------------+------------+     | | |      |
-> +  A   |  | Command   | |          V            V            |     | | |      |
-> +  X <-+->| Sequencer | |    @@@@@@@@@@@@@@@@@@@@@@@@@@@@    |     V V V      |
-> +  I   |  | (AXI CLK) | |   |                            |   |   @@@@@@@@@@   |
-> +      |   @@@@@@@@@@@  |   |       Pixel Engine         |   |  |          |  |
-> +      |       |        |   |         (AXI CLK)          |   |  |          |  |
-> +      |       V        |    @@@@@@@@@@@@@@@@@@@@@@@@@@@@    |  |          |  |
-> +  A   |   ***********  |       |   |            |   |       |  |   Blit   |  |
-> +  H <-+->| Configure | |       V   V            V   V       |  |  Engine  |  |
-> +  B   |  | (CFG CLK) | |    00000000000      11111111111    |  | (AXI CLK)|  |
-> +      |   ***********  |   |  Display  |    |  Display  |   |  |          |  |
-> +      |                |   |  Engine   |    |  Engine   |   |  |          |  |
-> +      |                |   | (Disp CLK)|    | (Disp CLK)|   |  |          |  |
-> +      |   @@@@@@@@@@@  |    00000000000      11111111111    |   @@@@@@@@@@   |
-> +  I   |  |  Common   | |         |                |         |       |        |
-> +  R <-+--|  Control  | |         |    Display     |         |       |        |
-> +  Q   |  | (AXI CLK) | |         |   Controller   |         |       |        |
-> +      |   @@@@@@@@@@@  +------------------------------------+       |        |
-> +      |                          |                |       ^         |        |
-> +      +--------------------------+----------------+-------+---------+--------+
-> +              ^                  |                |       |         |
-> +              |                  V                V       |         V
-> +       Clocks & Resets        Display          Display  Panic   Destination
-> +                              Output0          Output1 Control    buffer
-> +                                                              (AXI write master)
-> +
-> +maintainers:
-> +  - Liu Ying <victor.liu@nxp.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: fsl,imx8qxp-dc
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    maxItems: 2
-> +
-> +  reset-names:
-> +    items:
-> +      - const: axi
-> +      - const: cfg
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 1
-> +
-> +  ranges: true
-> +
-> +patternProperties:
-> +  "^axi-performance-counter@[0-9a-f]+$":
+> If it does not, then anyone can add any Devicetree properties, claiming
+> it is for ACPI ID thus not providing bindings (or bypassing bindings
+> review / NAK).
 
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+True, but in a similar fashion to ACPI bindings (which Andy in particular
+keeps a close eye on!) we should ask for very specific device reference
+and document the broken part.  I've gotten a lot stricter on this over
+the last few years so new cases of this in IIO at least require such
+a comment alongside the ID table entry.
+
+> 
+> >   
+> >>>
+> >>> We were very well aware that not documenting this was going to generate a warning so    
+> >>
+> >> You *CANNOT* have undocumented compatibles.  
+> > 
+> > Why not? This corner case is a valid reason for that to be allowed.
+> > You cannot use that compatible with DT bindings.  Absolutely.  The compatible
+> > has other uses...  
+> 
+> Okay. With that approach what stops anyone from submitting DTS using
+> that compatible (claiming there is a driver for that compatible)?
+
+That's a good point.  Perhaps we should just add a check for this?
+Easy to add a check on the firmware type. This is a rare enough case that
+just doing it in the driver seems fine to me (rather than more general
+infrastructure).
+
+> 
+> > 
+> >   
+> >>  
+> >>> we tried to fix that with a deprecated tag but it was NAKd by Rob. What we understood    
+> >>
+> >> Because the driver was NAKed obviously as well.
+> >>  
+> >>> from his last message was that it wasn't necessary to fix the DT warning.    
+> >>
+> >> I am quite angry that maintainer tells you something, but you push your
+> >> patch through because apparently you need to fulfill your project
+> >> requirements.  
+> > 
+> > I think this is a fundamental misunderstanding of the situation and probably
+> > at least partly my fault for not clarifying my reading of the situation more
+> > fully at the time.
+> > 
+> > As far as I am concerned. The situation is:
+> > 1) Existing shipping consumer device.  We have 100s of cases of ACPI bindings
+> >    that exist just to deal with garbage firmware's.  The folk involved in
+> >    reviewing these have pushed back hard for a long time, but sadly there
+> >    is still a lot of garbage shipping because Windows lets it through and
+> >    Linux support comes second.  It's made even worse by Microsoft defining
+> >    their own standards that aren't compliant with ACPI as they don't
+> >    even bother with reserving the methods IDs.  ROTM for example.  
+> 
+> Hm, and these devices do not provide normal ACPI IDs? They use Of-like
+> ones? I don't know that much about ACPI, but aren't they coming without
+> vendor prefix thus "ltr,ltrf216a" is just wrong and should be "lTRF216A"
+> alone?
+
+Yes, they come with the ID that is matched on by the ACPI core as PRP0001
+which basically means use the DT compatible.
+Then a device specific property that provides 'compatible' to look up against.
+The intent being to allow use of existing drivers without needing to modify
+them to add ACPI IDs to match against. 
+
+LTRF216A is worse than using PRP0001 and DT vendor ID
+ACPI has it's own equivalent of vendor IDs and you have to apply for one from
+relevant committee in the UEFI forum (ASWG)
+https://uefi.org/ACPI_ID_List
+(there is a 3 letter form as well).
+It's easy to get an ID (takes a few weeks though) but many sensor companies
+etc don't bother.  Sometimes they say it's because the OEMs should do this
+and sometimes those OEMs do, so the binding is under their vendor not the
+device manufacturer.  That's when you see what looks like completely unrelated
+IDs being used.
+
+It would be good it liteon got a proper ID and started issuing device numbers
+to go with it though.
+
+There are a lot of old bindings that make IDs up. Some are based on cut and paste
+and we've been trying to scrub those, others are based on what Windows drivers
+bind against and so we are stuck with that set.
+For extra fun we have examples of hardware with a common ID for incompatible
+devices for which we have different drivers.  That's a real pain when it happens
+but a few sensor manufacturers have 'one windows driver' for many years worth
+of unrelated devices and use horrible matching routines to figure out what is
+actually there...).
+
+> 
+> > 
+> > 2) This is an ACPI binding, it just happens to use a DT compatible via the
+> >    PRP0001 mechanism.  Yes, we strongly discourage people doing that in
+> >    shipping products but there have been other cases of it.  
+> 
+> OK, is this the case here?
+
+Shreeya, can you check this.  If we can get an example of such a device
+that would help.  (This is the same request we've made when removing
+potentially false ACPI IDs).  If we can't actually pin it down to a device
+I don't mind dropping the ID and seeing if anyone shouts.
+
+> 
+> > 
+> > 3) Shreeya read a distinction (that I also agree with) between the schema
+> >    and the compatible list.  The schema does not apply to this situation
+> >    (because we can't actually check it today for DSDT) hence Rob's Nack
+> >    was making the point it was inappropriate to carry it there.
+> > 
+> > So, I don't see this as a deliberate attempt to bypass a maintainer Nack.
+> > I'd love to be in a position to say no on ACPI bindings that are garbage
+> > (there are a lot of them) but Windows is dominant in that space so
+> > we get stuck with their mess.  On server's it is a different game
+> > and the kernel community regularly gets significant changes made.  
+> 
+> Original discussion had only vague statement of "vendor prefix name as
+> 'ltr' through ACPI". But what does it even mean? What ACPI ID is
+> reported by these devices?
+
+PRP0001 is the only way it can be done that I know of so I read the
+original thread with that in mind.  I might be wrong though and
+that would indeed change this discussion!
+
+Thanks,
+
+Jonathan
 
 
-Is this a PMU?
-
-> +    type: object
-> +    additionalProperties: true
-> +
-> +    properties:
-> +      compatible:
-> +        const: fsl,imx8qxp-dc-axi-performance-counter
-> +
-
-
-> +        pixel-engine@56180800 {
-> +            compatible = "fsl,imx8qxp-dc-pixel-engine";
-> +            reg = <0x56180800 0xac00>;
-> +            clocks = <&dc0_lpcg IMX_LPCG_CLK_5>;
-> +            #address-cells = <1>;
-> +            #size-cells = <1>;
-> +            ranges;
-> +        };
-> +
-> +        display-engine@5618b400 {
-> +            compatible = "fsl,imx8qxp-dc-display-engine";
-> +            reg = <0x5618b400 0x14>, <0x5618b800 0x1c00>;
-> +            reg-names = "top", "cfg";
-> +            interrupt-parent = <&dc0_intc>;
-
-Where is this node?
-
-I think this proves that interrupt controller is part of the display
-controller.
-
-Best regards,
-Krzysztof
+> 
+> Best regards,
+> Krzysztof
+> 
 
 
