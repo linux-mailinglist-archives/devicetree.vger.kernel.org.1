@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-83659-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83660-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 478779297BD
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jul 2024 14:06:20 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58CCA9297C1
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jul 2024 14:11:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6973D1C20980
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jul 2024 12:06:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BF832B2105D
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jul 2024 12:11:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E23F91C68C;
-	Sun,  7 Jul 2024 12:06:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4246220319;
+	Sun,  7 Jul 2024 12:10:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BxjgU4kh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dRRYW54K"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7CB66FBE;
-	Sun,  7 Jul 2024 12:06:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18E6D1F95A;
+	Sun,  7 Jul 2024 12:10:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720353976; cv=none; b=bCsnbbIf4c2tVApcar8soXWcbitAz4LCZK19+h7PP1MEGJIh3Lu6seGW4kVTctrPX/aKgj5k4ZjaMt/kXLtrv9rHVhuRW6IMfdhFzBscEOv/7TlLJO2n5QuJMvqxhSWtS44lu0dnjs+6ihKQthvdUMm2ZuU4PHikcowWL271g8k=
+	t=1720354258; cv=none; b=Zi3XrPWZhZFVlquDZ4uIeztYc7HIUaZGOFKObPh2ecZNyhFoW1yo0nRgbLHXcRB9ZbOudjrwrRm+1sqB6qPjXAewfOmNynkkJ4iszMZZZbHDljDYz8p50s8FgcAMtEk2AaO332Q2EZraIb4qwUgqiy7JelbXqkT5Oee1dH6XPHU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720353976; c=relaxed/simple;
-	bh=00bQCX7YO7qb1Gb+6Z0Zr2Nmihjx2XaZ13Cm1h+5edE=;
+	s=arc-20240116; t=1720354258; c=relaxed/simple;
+	bh=V3apqepPO6JspS26e38Tfk7L1zGPXSQVGOzHimSsgEU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EbbfGdXIfbV69zDZw/bWHbiZvz+SfjpHA9/v6R+UFkKz37H4Sh4XTYRwosjNgMv9cA81ygK13BgFLy98scwwhv0yTEvaIvgp1AIz8nQeYYJHvzn67xckuwC6AeSctzIsElkiprjj9lMVfclGSWgU4EhcbJk7VggNWsxVB1mUis8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BxjgU4kh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 933C8C3277B;
-	Sun,  7 Jul 2024 12:06:12 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=mHNDx0LZTl5h0l15mOKHXHS+/l/3sVnCWy/aA7h1xHjn1gaBIDrb+o8q+TPRJH4aQ/FmzEiScVKDz0v6xxJyVswuMZ9MzrZiLSZwnvR0qGzYHf2EKbYs4UAal1LF2EOFFPRl1KYXYeHazvfv3t8oQaPNwrccbRROz1Jg5d/u0C0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dRRYW54K; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 329D8C3277B;
+	Sun,  7 Jul 2024 12:10:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720353976;
-	bh=00bQCX7YO7qb1Gb+6Z0Zr2Nmihjx2XaZ13Cm1h+5edE=;
+	s=k20201202; t=1720354257;
+	bh=V3apqepPO6JspS26e38Tfk7L1zGPXSQVGOzHimSsgEU=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=BxjgU4khwD+iodFdePlbg1hT8cmkFuiaMVgj9W1TF1xK3ZaUZQQngnROYdxKIp83t
-	 9bLNZPwGMAtLE1Lon+J2U1jIxmdgxfsDtOBx2g9jes6MuW6fDQFTXOH8GYZ+SrvsU2
-	 C6Nw/qEzEHPqGJg1b2E6K1tG/aiS94TbM+J1fR00DevEqOQ3GObQiw3UfD+n3pHTKR
-	 GUkPUOjdlvxH2kHZPEERwP5geJjs4jJ78ZGD7Z/U6v4GU+lXA4Ku8ddKzXwQxk2oRt
-	 cIIGf8FXVavharx4Z73M7hZdRs3LzR7c7U2mx0NnfAkxKYdjVIAGUh8y3U16nQzSVw
-	 H87NZt5aollzw==
-Message-ID: <c0172272-88bd-44eb-94a6-40b5488e453a@kernel.org>
-Date: Sun, 7 Jul 2024 14:06:10 +0200
+	b=dRRYW54Kl2hWtwPIjEkGRqihPa6ehob9rd6kqn8Qaj2z6c1YRPA2efqvrbE3cbrQS
+	 ZH1MJsU7OX/+HdbCzBRsVGJBLmjFETCcBIEoVoJWpoiMXCdYZ4kHmEJpFm83u+czWV
+	 DwnEn2rY0kCBxZbLk6UI4nznH0IcNYt/uGidBFBRN4OMr4ydfovv9oapfXje0jzEL0
+	 QjBCmooSxucFSMC+YwER0l+MrNM/mnlUFFaH9dyRuTNBS9DzTLof5mF+UYbxesJEi5
+	 Ry/2/LoYLV/4VxkkNhjZrAT1zKwOCpgAuv6eObnp10TykdBYmZh7LxETxieFzPAYS/
+	 AXnMQhRj+8fsw==
+Message-ID: <ea7679f5-0144-4ed1-81e1-679bec97c2e1@kernel.org>
+Date: Sun, 7 Jul 2024 14:10:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +50,12 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] iio: light: ltrf216a: Drop undocumented ltr,ltrf216a
- compatible string
-To: Jonathan Cameron <jic23@kernel.org>,
- Shreeya Patel <shreeya.patel@collabora.com>
-Cc: Marek Vasut <marex@denx.de>, linux-iio@vger.kernel.org,
- Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
- Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
- kernel@collabora.com
-References: <20240705095047.90558-1-marex@denx.de>
- <3b2ca0-6687ce00-3-4dab7280@52083650>
- <13828cf9-4a93-45a5-b3a3-542ee9ec056b@denx.de>
- <3dd224-66883580-3-40d7c680@7066446> <20240707122620.7b3e6173@jic23-huawei>
+Subject: Re: [PATCH] dt-bindings: misc: axi-fifo: Add dt documentation for
+ xilinx axi-fifo
+To: Mark Watson <markus.c.watson@gmail.com>, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <ZomhRSs3Y/EQKXNa@laptop>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,99 +101,25 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240707122620.7b3e6173@jic23-huawei>
+In-Reply-To: <ZomhRSs3Y/EQKXNa@laptop>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 07/07/2024 13:26, Jonathan Cameron wrote:
-> On Fri, 05 Jul 2024 19:03:04 +0100
-> "Shreeya Patel" <shreeya.patel@collabora.com> wrote:
+On 06/07/2024 21:55, Mark Watson wrote:
+> This resolves a checkpatch warning in drivers/staging/axis-fifo
+> regarding a missing devie-tree binding. The full warning is included
+> below.
 > 
->> On Friday, July 05, 2024 20:22 IST, Marek Vasut <marex@denx.de> wrote:
->>
->>> On 7/5/24 12:42 PM, Shreeya Patel wrote:  
->>>> On Friday, July 05, 2024 15:20 IST, Marek Vasut <marex@denx.de> wrote:
->>>>   
->>>>> The "ltr,ltrf216a" compatible string is not documented in DT binding
->>>>> document, remove it.
->>>>>
->>>>> Signed-off-by: Marek Vasut <marex@denx.de>
->>>>> ---
->>>>> Cc: Conor Dooley <conor+dt@kernel.org>
->>>>> Cc: Jonathan Cameron <jic23@kernel.org>
->>>>> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
->>>>> Cc: Lars-Peter Clausen <lars@metafoo.de>
->>>>> Cc: Marek Vasut <marex@denx.de>
->>>>> Cc: Rob Herring <robh@kernel.org>
->>>>> Cc: Shreeya Patel <shreeya.patel@collabora.com>
->>>>> Cc: devicetree@vger.kernel.org
->>>>> Cc: linux-iio@vger.kernel.org
->>>>> ---
->>>>>   drivers/iio/light/ltrf216a.c | 1 -
->>>>>   1 file changed, 1 deletion(-)
->>>>>
->>>>> diff --git a/drivers/iio/light/ltrf216a.c b/drivers/iio/light/ltrf216a.c
->>>>> index 68dc48420a886..78fc910fcb18c 100644
->>>>> --- a/drivers/iio/light/ltrf216a.c
->>>>> +++ b/drivers/iio/light/ltrf216a.c
->>>>> @@ -528,7 +528,6 @@ MODULE_DEVICE_TABLE(i2c, ltrf216a_id);
->>>>>   
->>>>>   static const struct of_device_id ltrf216a_of_match[] = {
->>>>>   	{ .compatible = "liteon,ltrf216a" },
->>>>> -	{ .compatible = "ltr,ltrf216a" },
->>>>>   	{}  
->>>>
->>>> This compatible string with a different vendor prefix was added for a specific reason.
->>>> Please see the commit message of the following patch :-
->>>> https://lore.kernel.org/all/20220511094024.175994-2-shreeya.patel@collabora.com/
->>>>
->>>> We were very well aware that not documenting this was going to generate a warning so
->>>> we tried to fix that with a deprecated tag but it was NAKd by Rob. What we understood
->>>> from his last message was that it wasn't necessary to fix the DT warning.  
->>>
->>>  From what I read in the aforementioned discussion thread, it seems Rob 
->>> was very much opposed to this compatible string, so this shouldn't have 
->>> gone in in the first place.
->>>
->>> But it did ... so the question is, what now ?  
->>
->> There were multiple versions sent for adding LTRF216A light sensor driver
->> and this compatible string wasn't something that was accepted by mistake.
->> Most of the versions of the patch series made it very clear that it generates a warning
->> which you can check here :-
->> https://lore.kernel.org/lkml/20220731173446.7400bfa8@jic23-huawei/T/#me55be502302d70424a85368c2645c89f860b7b40
->>
->> I would just go with whatever Jonathan decides to do here :)
-> 
-> If it's needed for a released device (which is what Shreeya's linked thread suggests)
+> WARNING: DT compatible string "xlnx,axi-fifo-mm-s-4.1" appears
+> un-documented -- check ./Documentation/devicetree/bindings/
+> +       { .compatible = "xlnx,axi-fifo-mm-s-4.1", },
 
-Not entirely. The device was released EARLIER and they wanted to add
-support for ACPI or out-of-tree kernel for EARLIER releases.
+NAK, it is documented.
 
-Regression rule does not work like that.
+You sending it twice is clearly ignoring my earlier comments. Why didn't
+you respond there?
 
-> that we can't get the manufacturer to fix, we are stuck with that entry existing for ever.
-> No regressions rule applies.
-
-At the moment of posting their patch regression rule did not apply. Only
-now you could claim that Collabora's broken code is being part of ABI,
-even though it was explicitly NAKed.
-
-So what does it mean for us? Collabora wants to add ABI, we NAK it, ABI
-sneaks in (happens) and now we are going to support that ABI?
-
-So what incentive any company has to follow maintainers decision if they
-can sneak such stuff in and get away with it?
-
-> 
-> It would be helpful to have a specific reference to what that device is though.
-> When we've had this mess for horribly broken ACPI IDs that have gotten into devices
-> we try to add a comment on where they are known to exist.  I'd ideally like such
-> a comment added here.
-
-Sorry, I stand by decision from May 2022: this was NAKed by Rob and
-should have never been supported by kernel. We did not agree to support
-it. Will it affect users? Sure, Collabora's fault.
+NAK
 
 Best regards,
 Krzysztof
