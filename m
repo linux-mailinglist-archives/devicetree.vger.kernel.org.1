@@ -1,129 +1,174 @@
-Return-Path: <devicetree+bounces-84019-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84020-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24F4D92AAF5
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 23:16:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A36F292AAFC
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 23:16:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9B205B21B36
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 21:15:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0E0FF283415
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 21:16:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16B1914EC5C;
-	Mon,  8 Jul 2024 21:15:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6983314F9C6;
+	Mon,  8 Jul 2024 21:16:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="hrz3z6OW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Lsw4pn/m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CACE381211
-	for <devicetree@vger.kernel.org>; Mon,  8 Jul 2024 21:15:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FC5B12E75;
+	Mon,  8 Jul 2024 21:16:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720473351; cv=none; b=JICXzZjN1QF2RGfJvrr/G/Ko7lrbjVFmo/mdBtltov037nrLY8QDI6LQ3GM58QKtmhLRKySUwbC2Eg5mlwq5HPb16FnNNuu+3o625rGdquIlcUfr2hchDd5q0uXfvlDVbtO15bwPyNNfFASwRYgh4FNO7qMRCSYFH0v3ZTbEBfs=
+	t=1720473391; cv=none; b=BBTPx53NGJ9aNcytE7SE1oWhmInQlaLFfVE6E0WrD0uFU/airzePznZO3f8smNfAA96q1LJQkTuBXRi8tVR3rHdgV9VpdYUwcxEztHYrTmcGcdDgqJkfqb33C4ZRRt7ALKsQMMrYuaYnXZW++jNDOYL1gseVtVzOFVjF+xeDrVs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720473351; c=relaxed/simple;
-	bh=rhLMzhnBr1fmJn4hsQMzNNrDyhSsV9+nyDHGBNMD9LQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UEAT+8XrEZhEBexRYEHi6EN67nspxJ9y7yciiWUbKAOC+d1cgmf0/bmvI30/ABKB8u0RQiM1+Aa4CSnPKKVgdDvfH0mA3QOopPtH/4Y2ZSyjUz8HgJAG8PQz5fSyilLK8YhCYO6orIJZT5VOvxnl2Uch/eBH/U7sUOUPHMR4bHM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=hrz3z6OW; arc=none smtp.client-ip=209.85.210.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ot1-f51.google.com with SMTP id 46e09a7af769-703647385b6so1347967a34.3
-        for <devicetree@vger.kernel.org>; Mon, 08 Jul 2024 14:15:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1720473347; x=1721078147; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=0uy9ikK6i2ce0Lmsca9PL3vsPP0xYz4tW9STZ+9c+oE=;
-        b=hrz3z6OW3ATt5CSB4mfO5xjFlxqwUs6Lo/q/HKft1Js9CilVhTs/Y4SGBf/dIqNMSq
-         nsCYuBpZRNHDb9jyyrez8V/6qZMgIHz2EZn3ORg2SB17NxPMPKmWYhd66/LrCbQfbS+E
-         /JVYjpIfQwnE3PxGZfvNddZSnCFoyOmFeiNfmcJVtvuV7tvADNdkJQraZfk3Xp/xBQyG
-         F4HnMoaVRTkL7VchWJNgQq7VHxxTaG+AzgsI/xdwSLcod/x2s4UMHngt7frp2WjwytBm
-         b0RcZTcQlbQ8eHGAHpLRaPEQeDkbh1UyP1KRIWQzf5hYlwyFA8RhR8e6gJcNd8KbmnMZ
-         lxuQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720473347; x=1721078147;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0uy9ikK6i2ce0Lmsca9PL3vsPP0xYz4tW9STZ+9c+oE=;
-        b=U0ncVH1EYIEtFNuNubqVWXRrVdm9+qech2zNsVQVURSYlvSSzsykwEY78TLUyktlQe
-         W5v1Ss179Mal+QpUYo1N04P32fHG38lz6IYRWNbcWzhk2sjc4NrI6DfQ0v4Bzleel44u
-         44vxZHlN8GZFW0/f5jIJwLa5hJ25HrQaa4rw2wbVUywmqCIisgRPWXxIkFvsR5G8uFgl
-         sadsZbKP9aIRjXSWMv+bI8LYQCLwgp40oNwxrEhMBlxtgQMQ61TGo3ay4oop9BrY0QYu
-         tpXzywNcqBMyU5IYW3WpunBavOEogaBIty7hGZYB+IyAardDZMURMnt+opgEKU3NSQa1
-         dXsg==
-X-Forwarded-Encrypted: i=1; AJvYcCUA3VxuMc5tZLM+zOBfdiCooZdA3TBAHOqfevgjQ2KFlmtcw37qU0KrnufHVNbLXiuscCpnGOO809rcwNW6WnGufgKf5wSzudsA8g==
-X-Gm-Message-State: AOJu0Yxph7Vb7NLUoSLT3tLIngWXadcOpqFJq5F18WFvkEH6+36mZQlu
-	asrydcBLLEi7iirEe9gB4oMT7mJqcOmPka3z6FUyJyJe0/F1Yw8RAjxGSKRdyolEd9AUPyBxZAU
-	o
-X-Google-Smtp-Source: AGHT+IFCFAiZRzRwOpzCyq4dZt7m1IKHP5ZbEcsTgsYyiNk5cHylYqzh4ru8zGjJ0H54yTk3AdBIWw==
-X-Received: by 2002:a9d:6316:0:b0:703:64d4:8e12 with SMTP id 46e09a7af769-70375a06a12mr723275a34.2.1720473346891;
-        Mon, 08 Jul 2024 14:15:46 -0700 (PDT)
-Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-70374fc0af5sm157297a34.62.2024.07.08.14.15.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 Jul 2024 14:15:46 -0700 (PDT)
-Message-ID: <bc88e0c7-516f-4eef-a9d9-ce0250d6a570@baylibre.com>
-Date: Mon, 8 Jul 2024 16:15:45 -0500
+	s=arc-20240116; t=1720473391; c=relaxed/simple;
+	bh=MiCSvIEK0l/TjhKUxrz4JOVrP2CSGLGatDFwJW1Tdc4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qVtrnKwDpv1Dg/o9GAbCFhmbo87Uxjx/SJuo3ZiV6a81rl46+mcym4JPRL5idUVHdsdt6rtEWnVO9NcddCH9q6ZbGXvmO/AucPI0SIOA3oiFhuG7h2DqiU0rcE5ktrFlcv44tAiJ/XTL6d+Bv3+PcU7fVP5OoFkSvNohQNzAf6c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Lsw4pn/m; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D5C2C116B1;
+	Mon,  8 Jul 2024 21:16:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720473390;
+	bh=MiCSvIEK0l/TjhKUxrz4JOVrP2CSGLGatDFwJW1Tdc4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Lsw4pn/mmsF/guRcIjwA+5dZ0MJNt/aIikyJDaj99W6AZaGXGsFaCZ/z4+Vqx5pFO
+	 kbf0N0hKKfz6s7//7iIDFzHfOpyaNS3e83HJ0fe8ufpKW4hjgrcRxDLTobrWfDsmi2
+	 b0GUHYhBNKMUzU1MmTUM6MLYF8r3G6LRqhRUZKddj9wd/h4F0HdVq0/IDIIWf+zQ5R
+	 SZ9FZ+GcWyEeb9LTZu1ZZvyP+vwD0oZuzrP4RpGHDSIQwnCx2K26MFQC+ViaUZACv1
+	 vE13oqY+8lVEUT3Ldwe0yuBIAqtp5siQ+90gvFArXbdGH6/w+zdJHih9HAieeNLcmD
+	 z2qtwg/qNjf6A==
+Date: Mon, 8 Jul 2024 23:16:27 +0200
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Rob Herring <robh@kernel.org>, netdev@vger.kernel.org, nbd@nbd.name,
+	lorenzo.bianconi83@gmail.com, davem@davemloft.net,
+	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+	conor@kernel.org, linux-arm-kernel@lists.infradead.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, catalin.marinas@arm.com,
+	will@kernel.org, upstream@airoha.com,
+	angelogioacchino.delregno@collabora.com,
+	benjamin.larsson@genexis.eu, rkannoth@marvell.com,
+	sgoutham@marvell.com, arnd@arndb.de, horms@kernel.org
+Subject: Re: [PATCH v5 net-next 1/2] dt-bindings: net: airoha: Add EN7581
+ ethernet controller
+Message-ID: <ZoxXK-uGsX_9_Fn4@lore-desk>
+References: <cover.1720079772.git.lorenzo@kernel.org>
+ <48dde2595c6ff497a846183b117ac9704537b78c.1720079772.git.lorenzo@kernel.org>
+ <20240708163708.GA3371750-robh@kernel.org>
+ <Zowb18jXTOw5L2aT@lore-desk>
+ <CAL_JsqJPe1=K7VimSWz+AH2h4fu_2WEud_rUw1dV=SE7pY3C6w@mail.gmail.com>
+ <8f8a1ee1-8c6c-48d6-a794-286464c38712@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/7] spi: Enable controllers to extend the SPI protocol
- with MOSI idle configuration
-To: Marcelo Schmitt <marcelo.schmitt@analog.com>, broonie@kernel.org,
- lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- nuno.sa@analog.com, corbet@lwn.net, marcelo.schmitt1@gmail.com
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-spi@vger.kernel.org, linux-doc@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <cover.1719686465.git.marcelo.schmitt@analog.com>
- <7eb23146ad6bf6090183c6340e4d59cb269d83a7.1719686465.git.marcelo.schmitt@analog.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <7eb23146ad6bf6090183c6340e4d59cb269d83a7.1719686465.git.marcelo.schmitt@analog.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="Cu2L8LuMZ/p8V+GH"
+Content-Disposition: inline
+In-Reply-To: <8f8a1ee1-8c6c-48d6-a794-286464c38712@lunn.ch>
 
-On 6/29/24 2:04 PM, Marcelo Schmitt wrote:
-> The behavior of an SPI controller data output line (SDO or MOSI or COPI
-> (Controller Output Peripheral Input) for disambiguation) is usually not
-> specified when the controller is not clocking out data on SCLK edges.
-> However, there do exist SPI peripherals that require specific MOSI line
-> state when data is not being clocked out of the controller.
-> 
-> Conventional SPI controllers may set the MOSI line on SCLK edges then bring
-> it low when no data is going out or leave the line the state of the last
-> transfer bit. More elaborated controllers are capable to set the MOSI idle
-> state according to different configurable levels and thus are more suitable
-> for interfacing with demanding peripherals.
-> 
-> Add SPI mode bits to allow peripherals to request explicit MOSI idle state
-> when needed.
-> 
-> When supporting a particular MOSI idle configuration, the data output line
-> state is expected to remain at the configured level when the controller is
-> not clocking out data. When a device that needs a specific MOSI idle state
-> is identified, its driver should request the MOSI idle configuration by
-> setting the proper SPI mode bit.
-> 
-> Acked-by: Nuno Sa <nuno.sa@analog.com>
-> Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
-> ---
 
-Tested both valid and invalid combinations of flags and saw expected
-behavior/error messages in all cases.
+--Cu2L8LuMZ/p8V+GH
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Reviewed-by: David Lechner <dlechner@baylibre.com>
-Tested-by: David Lechner <dlechner@baylibre.com>
+> > > eth0: ethernet@1fb50000 {
+> > >         compatible =3D "airoha,en7581-eth";
+> > >         reg =3D <0 0x1fb50000 0 0x2600>,
+> > >               <0 0x1fb54000 0 0x2000>,
+> > >               <0 0x1fb56000 0 0x2000>;
+> > >         reg-names =3D "fe", "qdma0", "qdma1";
+> > >
+> > >         resets =3D <&scuclk EN7581_FE_RST>,
+> > >                  <&scuclk EN7581_FE_PDMA_RST>,
+> > >                  <&scuclk EN7581_FE_QDMA_RST>,
+> > >                  <&scuclk EN7581_XSI_MAC_RST>,
+> > >                  <&scuclk EN7581_DUAL_HSI0_MAC_RST>,
+> > >                  <&scuclk EN7581_DUAL_HSI1_MAC_RST>,
+> > >                  <&scuclk EN7581_HSI_MAC_RST>,
+> > >                  <&scuclk EN7581_XFP_MAC_RST>;
+> > >         reset-names =3D "fe", "pdma", "qdma", "xsi-mac",
+> > >                       "hsi0-mac", "hsi1-mac", "hsi-mac",
+> > >                       "xfp-mac";
+> > >
+> > >         interrupts =3D <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>,
+> > >                      <GIC_SPI 55 IRQ_TYPE_LEVEL_HIGH>,
+> > >                      <GIC_SPI 56 IRQ_TYPE_LEVEL_HIGH>,
+> > >                      <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>,
+> > >                      <GIC_SPI 38 IRQ_TYPE_LEVEL_HIGH>,
+> > >                      <GIC_SPI 58 IRQ_TYPE_LEVEL_HIGH>,
+> > >                      <GIC_SPI 59 IRQ_TYPE_LEVEL_HIGH>,
+> > >                      <GIC_SPI 60 IRQ_TYPE_LEVEL_HIGH>,
+> > >                      <GIC_SPI 49 IRQ_TYPE_LEVEL_HIGH>,
+> > >                      <GIC_SPI 64 IRQ_TYPE_LEVEL_HIGH>;
+> > >
+> > >         status =3D "disabled";
+> > >
+> > >         #address-cells =3D <1>;
+> > >         #size-cells =3D <0>;
+> > >
+> > >         gdm1: mac@1 {
+> > >                 compatible =3D "airoha,eth-mac";
+> > >                 reg =3D <1>;
+> > >                 phy-mode =3D "internal";
+> > >                 status =3D "disabled";
+> > >
+> > >                 fixed-link {
+> > >                         speed =3D <1000>;
+> > >                         full-duplex;
+> > >                         pause;
+> > >                 };
+> > >         };
+> > > };
+> > >
+> > > I am using phy related binding for gdm1:mac@1 node.
+>=20
+> Hi Lorenzo
 
+Hi Andrew,
+
+>=20
+> phy-mode is a MAC property, not a PHY property. Same for
+> fixed-link. These are in ethernet-controller.yaml.
+
+ack
+
+>=20
+> You sometimes have an network controller IP which has multiple MACs
+> and some shared infrastructure. You would typically describe the
+> shared infrastructure at the top level. The MACs are then listed as
+> children, and they make use of ethernet-controller.yaml, and that is
+> where all the network specific properties are placed. Is that what you
+> are trying to do here?
+
+yep, exactly. Here we have multiple mac nodes that represent the real
+ethernet controllers (e.g. used as DSA cpu port). I will use the
+ethernet-controller.yaml just for the mac childs.
+
+Regards,
+Lorenzo
+
+>=20
+>     Andrew
+
+--Cu2L8LuMZ/p8V+GH
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZoxXKgAKCRA6cBh0uS2t
+rDwOAQCrVya7sfgRJqZGKdFPLB748PsT7YO1VxAuzpHbXbbveQD/Stiv17jgUWbv
+jlIJtfQCPrAPQJ5j+1P+uhoEh/5bTAk=
+=1oOg
+-----END PGP SIGNATURE-----
+
+--Cu2L8LuMZ/p8V+GH--
 
