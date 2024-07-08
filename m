@@ -1,88 +1,103 @@
-Return-Path: <devicetree+bounces-83960-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83939-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6995592A742
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 18:25:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B859292A6BE
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 18:04:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 209451F210D8
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 16:25:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 692631F21C77
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 16:04:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D69AD146A63;
-	Mon,  8 Jul 2024 16:24:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1950913F012;
+	Mon,  8 Jul 2024 16:04:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="rXOCARO2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zv64vPdr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DC28145B3B;
-	Mon,  8 Jul 2024 16:24:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9F1578C99;
+	Mon,  8 Jul 2024 16:04:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720455892; cv=none; b=owzkGbOhNX566YzswQL21hM3EJRnjs2FgW6r8GSIf8FrYD8pHjE9EVLsk7rdX6WftCytQuXQi4KkJLl440zAOLRPhFtP/s4z9hqAI9Tv5vS8J7OabdHiFiGFnMWgh3gWSc/w8eWYlgW4lu7lCpi0JsFYcqS9LEgxBxrCynQQgHo=
+	t=1720454664; cv=none; b=RlgdY8Z7MdzdAXUjLYuo1ptLldTPOqwCDvspPgcOygABn1gU7roPTwFKRUyGtpVlhFdCMciEwJNEQh2C9/dk0ZFm0p8RmEEpL0sB2AIaFEQp40V59q92FHJ65/xCfOni8azsQzEwrRbfyvlb6veazbWLGXiZUa0qRtwvW5LqjEY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720455892; c=relaxed/simple;
-	bh=Gp0kHHNFI2rcZtMat8BDy18rJEf5wmNrtHW9mAED3k4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HCr7X4ISZL2AAuGy7dKFSmZAcieBsSNLefJXkgGr8yyksBL8JZOwP9H1rQ4sVkFWZtbSEq3XqtUPHIcE1styCeIgaki0AGuVKJy9yuVF5zq0r4jT3lKpvgdsvTfBicva7f2JQuIESq6NQ3LGJaHZXSfwY2wpKN8PD/64VFv+GjA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=rXOCARO2; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 5776C887D1;
-	Mon,  8 Jul 2024 18:24:48 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1720455889;
-	bh=zUULNVojGptCWtPVxs+eXicSamISZThFxxUZa0HSZpA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=rXOCARO2PtRFuUu8pxRp+fcq5/BOkRU+FlQqVGeMPDOIc/zZjfqDhHoTh/P7FBx8P
-	 yekFiWsXcp/5H1LnmZUcoP1qIU57ow/1LKYu1n4D2s2le7VMpeuaKeV8vlOAlIDs/u
-	 Z7QchiKwi9Ozq8kUaKLEVCCcyLaRYnq/cWW/q4kpCkGq0DfugNwPXndMesYV4bL5H2
-	 0bSwM5cwCV7rt7PqNkS6czG1S4YoH/PvrmWfHD6V0ghJdkq7P4kNWX+jp+vsDc4ynB
-	 IDtxy6elZBhTahjXinTuNdL8Aqshllme4UDXS6Cnsr7fqFpU9VkVoIS/eWzHoM3/73
-	 AJrhaXdKl7pTw==
-Message-ID: <1921604a-c4c5-440c-9d9b-90169a556062@denx.de>
-Date: Mon, 8 Jul 2024 17:53:25 +0200
+	s=arc-20240116; t=1720454664; c=relaxed/simple;
+	bh=B+wgdQOGBCJumVIrWn6svGrdoWlDkgcqo510Z+SmmF4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CEcW1APp1N85J3w6IEONwPokSEufidb0KZA+x2aFgmMcjzMByHuw5reOW5hg2V8zg+O4p6qwy6vwZEkyrrueSp+rc7SvXHYmRXXDdaZT0rPCYRVQnYYmU980R3QcQbHpA9qQ9dcvW+901gxFa84nQJc6RrQl7Ul1isydv7q5368=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zv64vPdr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D915C116B1;
+	Mon,  8 Jul 2024 16:04:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720454663;
+	bh=B+wgdQOGBCJumVIrWn6svGrdoWlDkgcqo510Z+SmmF4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Zv64vPdrwmX3RZ/8XTQyyyazgJhxqmXoVpgxynC7Ym2Gx2kfPGByiTvjznRhIyWjU
+	 Yw78ddCOk9aQNqKbk9ErcZh6E36/AQGcPsKsDtRRXic4NuJ41yirYE3ij0OOsXHIh6
+	 G2FbBQxAbTdHadfYYJQ0mZIyxKKiGkzM2HTOWFL9swaxQkpu+2lwT5q3BIjH9q/JcR
+	 sBm7fdCCoXdZqX74/js6i58mE6060hAT8ZgCR2UCqHMLvZByzZeqQ8jQsD+U0g/xJf
+	 MSb0oFXcaEgbirQZKm8hvDmNRFCjwN1xom6zl/mNfI26he0kUX0p5ZWhphdZKirnAv
+	 2zDpv6wAZBEcw==
+Date: Mon, 8 Jul 2024 10:04:21 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: linux-arm-kernel@lists.infradead.org, linuxppc-dev@lists.ozlabs.org,
+	imx@lists.linux.dev, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: soc: fsl: cpm_qe: convert to yaml format
+Message-ID: <172045465945.3262448.18446369145755550940.robh@kernel.org>
+References: <20240703-ls_qe_warning-v1-0-7fe4af5b0bb0@nxp.com>
+ <20240703-ls_qe_warning-v1-1-7fe4af5b0bb0@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: display: bridge: ti,sn65dsi83: add
- burst-mode-disabled
-To: stefano.radaelli21@gmail.com, Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: "Noah J . Rosa" <noahj.rosa@gmail.com>
-References: <20240708151857.40538-1-stefano.radaelli21@gmail.com>
-Content-Language: en-US
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <20240708151857.40538-1-stefano.radaelli21@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240703-ls_qe_warning-v1-1-7fe4af5b0bb0@nxp.com>
 
-On 7/8/24 5:18 PM, stefano.radaelli21@gmail.com wrote:
-> From: Stefano Radaelli <stefano.radaelli21@gmail.com>
+
+On Wed, 03 Jul 2024 12:49:39 -0400, Frank Li wrote:
+> Convert binding doc qe.txt to yaml format. Split it to
+> fsl,qe-firmware.yaml, fsl,qe-ic.yaml, fsl,qe-muram.yaml, fsl,qe-si.yaml
+> fsl,qe-siram.yaml, fsl,qe.yaml.
 > 
-> It allows to disable Burst video mode
+> Additional Changes:
+> - Fix error in example.
+> - Change to low case for hex value.
+> - Remove fsl,qe-num-riscs and fsl,qe-snums from required list.
+> - Add #address-cell and #size-cell.
+> - Add interrupts description for qe-ic.
+> - Add compatible string fsl,ls1043-qe-si for fsl,qe-si.yaml
+> - Add compatible string fsl,ls1043-qe-siram for fsl,qe-siram.yaml
+> - Add child node for fsl,qe.yaml
+> 
+> Fix below warning:
+> arch/arm64/boot/dts/freescale/fsl-ls1043a-rdb.dtb: /soc/uqe@2400000/muram@10000: failed to match any schema with compatible: ['fsl,qe-muram', 'fsl,cpm-muram']
+> arch/arm64/boot/dts/freescale/fsl-ls1043a-rdb.dtb: /soc/uqe@2400000/muram@10000: failed to match any schema with compatible: ['fsl,qe-muram', 'fsl,cpm-muram']
+> arch/arm64/boot/dts/freescale/fsl-ls1043a-rdb.dtb: /soc/uqe@2400000/muram@10000/data-only@0: failed to match any schema with compatible: ['fsl,qe-muram-data', 'fsl,cpm-muram-data']
+> arch/arm64/boot/dts/freescale/fsl-ls1043a-qds.dtb: /soc/uqe@2400000: failed to match any schema with compatible: ['fsl,qe', 'simple-bus']
+> arch/arm64/boot/dts/freescale/fsl-ls1043a-rdb.dtb: /soc/uqe@2400000/muram@10000/data-only@0: failed to match any schema with compatible: ['fsl,qe-muram-data', 'fsl,cpm-muram-data']
+> arch/arm64/boot/dts/freescale/fsl-ls1043a-qds.dtb: /soc/uqe@2400000/qeic@80: failed to match any schema with compatible: ['fsl,qe-ic']
+> 
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+>  .../bindings/soc/fsl/cpm_qe/fsl,qe-firmware.yaml   |  48 ++++++
+>  .../bindings/soc/fsl/cpm_qe/fsl,qe-ic.yaml         |  47 ++++++
+>  .../bindings/soc/fsl/cpm_qe/fsl,qe-muram.yaml      |  71 ++++++++
+>  .../bindings/soc/fsl/cpm_qe/fsl,qe-si.yaml         |  40 +++++
+>  .../bindings/soc/fsl/cpm_qe/fsl,qe-siram.yaml      |  39 +++++
+>  .../devicetree/bindings/soc/fsl/cpm_qe/fsl,qe.yaml | 148 +++++++++++++++++
+>  .../devicetree/bindings/soc/fsl/cpm_qe/qe.txt      | 178 ---------------------
+>  7 files changed, 393 insertions(+), 178 deletions(-)
+> 
 
-Why would you want to disable burst mode ? This is the energy efficient 
-and recommended mode, why disable it ? Details please ?
+Applied, thanks!
+
 
