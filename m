@@ -1,62 +1,57 @@
-Return-Path: <devicetree+bounces-84013-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84014-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A3D992AAD3
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 22:59:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 765E992AAD5
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 23:00:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 540A8283241
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 20:59:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 29F841F22504
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 21:00:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5937D14D705;
-	Mon,  8 Jul 2024 20:58:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8DC73D552;
+	Mon,  8 Jul 2024 21:00:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NGJApps5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RTy6zSuu"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E3021EA74;
-	Mon,  8 Jul 2024 20:58:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72415748A;
+	Mon,  8 Jul 2024 21:00:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720472338; cv=none; b=kPIIloaAyNkk6J4/rMfYuCrHTVZoSvXjdy2qNFAVlKVwlewd9GRnfVV95Douc/x/jCI+r29cCCxX/otP6DWQ46pRxB9H14Ts4La77+55PNW7CsznFjpN8DuZ38Wjs+SPxFMmNDsItUNUiAvsM7DZS6bA4LmCcxoywyWMnLAPn2s=
+	t=1720472446; cv=none; b=uXU1Kw9mnKUiiFS9d5ak4vmO2gtRCR8NJZ0PQnPh3o+HAweY/HHAvNTmCvdFRON7gsN5T7Ib6oAjt8huKLArkc5sdLRjHzmqV148twgF3TgVqm6xbNNwQlY6bL4iUpGBUVn6CR5+jYPPSlvgt7QU65Xfn64tHiN9W5D5f58TC58=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720472338; c=relaxed/simple;
-	bh=wxLwQcBxOGi+KEPgw1dhpPRqW2v9/uLDaH3R4WblSLU=;
+	s=arc-20240116; t=1720472446; c=relaxed/simple;
+	bh=42gS1nMI85V4oiOAsvAixKC1DvPcw6XJmD6MkJh3tm4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CtoijKKdmHd0olnEMNUPJgY/oOOG4QeG1C5Lj28kturDGXG3gRvPL0DTdHPKDemGOryL109Y8F2W+2NrBrzE9sAyYwj60tAc/tADuwoiOo7xbkTFKkPjzYpfbbzwtoessOA2mIuRAOncL/4xVXdvVehj3FPP70h6BW+q/BE9Wb8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NGJApps5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97B95C116B1;
-	Mon,  8 Jul 2024 20:58:57 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=VggHdsZLvahGXoGv7VVnmkVjDftrkoIFOaFGkXG6gO6P+OeRDzXXKfgNtNWUNrMPR+Jcbzg3EOGlG7riv8jx11Tav4G616hkloZWuubTX97dc0eWRyW8f+QtKCBav1tIDruGYMZXrkHp89F8GRag6J5pNCt5U0cwjx37HW0mRe0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RTy6zSuu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E7EBC4AF0E;
+	Mon,  8 Jul 2024 21:00:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720472337;
-	bh=wxLwQcBxOGi+KEPgw1dhpPRqW2v9/uLDaH3R4WblSLU=;
+	s=k20201202; t=1720472445;
+	bh=42gS1nMI85V4oiOAsvAixKC1DvPcw6XJmD6MkJh3tm4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NGJApps5trd66OaohZreX/5Q72O9xVhSrBP3D/llHKab0d0jzyTvOwfVOBgmWTUrG
-	 EzUxMBiQMgKRtTMXnkRc1LpVmIKV9/NKB3JKtdDdrbySlGP0FHvvdCOtVpIPTtbKEc
-	 vauHHakedM6G4xNtL09dLyUk95R1fE+qoWFrEI0wNn1LTBLtXE7al5uJTdpBRu7KUs
-	 l7wMdE/0NNY/+Wdf950LrKbzpEHsJthAqBR+OE1wy1q3sKsv3ycFxZS3qOYpZfW7mk
-	 ICazoCw0o3yJ2P3BipWUT2kmDthhj00jjpEgaqrq8Ie6Yps1p2dmcPhHDY8WnhvTYi
-	 UOeSk5GfR0cwg==
-Date: Mon, 8 Jul 2024 14:58:56 -0600
-From: Rob Herring <robh@kernel.org>
-To: Marek Vasut <marex@denx.de>
-Cc: netdev@vger.kernel.org, kernel@dh-electronics.com,
-	"David S. Miller" <davem@davemloft.net>,
-	Andrew Lunn <andrew@lunn.ch>, Conor Dooley <conor+dt@kernel.org>,
-	Eric Dumazet <edumazet@google.com>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>, devicetree@vger.kernel.org
-Subject: Re: [net-next,PATCH] dt-bindings: net: realtek,rtl82xx: Document
- RTL8211F LED support
-Message-ID: <20240708205856.GA3874098-robh@kernel.org>
-References: <20240705215207.256863-1-marex@denx.de>
+	b=RTy6zSuuhRm55fKoP9JOgDqIYkJwgTtLlGmYYvmT/GeUKEBd5BGwuNO7FeZQP8tOy
+	 KVge5s7kJ/sBB2C+/8roi4w2jYIVofT3anDc8fZORhsNou4Sy3jPiKvhmDGT5I6nMy
+	 k7o4NYRr2eJo2sXIG50JPomyCPU+vvkG92cRYnAnm5l2g+6bgUO7vDiTgua/7tkequ
+	 k4LrMoEmhoSV8qTbXsojRm4jZ+A086tlGmAzczRX5E9qwlr3SfVxb6iaVbBHcQ3sjH
+	 sj12bEBssKy4v2Z9A+Pic5PfDFSkiCcgxXa5l/xJfXbIkqkH+c+KL8ktzpv2ReM0Ad
+	 Mo7NDsKlBwtMw==
+Date: Mon, 8 Jul 2024 15:00:44 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: David Heidelberg <david@ixit.cz>
+Cc: devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Joerg Roedel <joro@8bytes.org>,
+	Will Deacon <will@kernel.org>, linux-arm-msm@vger.kernel.org,
+	iommu@lists.linux.dev, linux-kernel@vger.kernel.org,
+	Robin Murphy <robin.murphy@arm.com>
+Subject: Re: [PATCH v7] dt-bindings: iommu: Convert msm,iommu-v0 to yaml
+Message-ID: <172047244295.3895229.16417666171365762021.robh@kernel.org>
+References: <20240705221520.109540-1-david@ixit.cz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,63 +60,51 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240705215207.256863-1-marex@denx.de>
+In-Reply-To: <20240705221520.109540-1-david@ixit.cz>
 
-On Fri, Jul 05, 2024 at 11:51:46PM +0200, Marek Vasut wrote:
-> The RTL8211F PHY does support LED configuration, document support
-> for LEDs in the binding document.
+
+On Fri, 05 Jul 2024 15:14:54 -0700, David Heidelberg wrote:
+> Convert Qualcomm IOMMU v0 implementation to yaml format.
 > 
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> ---
-> Cc: "David S. Miller" <davem@davemloft.net>
-> Cc: Andrew Lunn <andrew@lunn.ch>
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Eric Dumazet <edumazet@google.com>
-> Cc: Florian Fainelli <f.fainelli@gmail.com>
-> Cc: Heiner Kallweit <hkallweit1@gmail.com>
-> Cc: Jakub Kicinski <kuba@kernel.org>
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> Cc: Paolo Abeni <pabeni@redhat.com>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: netdev@vger.kernel.org
-> ---
->  .../devicetree/bindings/net/realtek,rtl82xx.yaml   | 14 +++++++++++---
->  1 file changed, 11 insertions(+), 3 deletions(-)
+> iommus part being ommited for the other bindings, as mdp4 one.
 > 
-> diff --git a/Documentation/devicetree/bindings/net/realtek,rtl82xx.yaml b/Documentation/devicetree/bindings/net/realtek,rtl82xx.yaml
-> index 18ee72f5c74a8..28c048368073b 100644
-> --- a/Documentation/devicetree/bindings/net/realtek,rtl82xx.yaml
-> +++ b/Documentation/devicetree/bindings/net/realtek,rtl82xx.yaml
-> @@ -14,9 +14,6 @@ maintainers:
->  description:
->    Bindings for Realtek RTL82xx PHYs
->  
-> -allOf:
-> -  - $ref: ethernet-phy.yaml#
-> -
->  properties:
->    compatible:
->      enum:
-> @@ -54,6 +51,17 @@ properties:
->  
->  unevaluatedProperties: false
->  
-> +allOf:
-> +  - $ref: ethernet-phy.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: ethernet-phy-id001c.c916
-> +    then:
-> +      properties:
-> +        leds: true
+> Signed-off-by: David Heidelberg <david@ixit.cz>
+> ---
+> v7:
+>  - change maintainer to myself
+>  - define NCB range (thx @Rob)
+> v6:
+>  - clean iommu-cells description (thx @Robin)
+> v5:
+>  - updated example (thx @Konrad)
+>  - ordering of requirements + dropped > and | and reformatted (thx @Konrad)
+> v4:
+>  - renamed to qcom,apq8064-iommu as Rob requested
+>  - changed title to Qualcomm APQ8064 IOMMU
+>  - dropped quotes around URLs
+>  - dropped mdp node
+>  - dropped unused mdp_port0 label
+> 
+> v3:
+>  - I kept the name as -v0, since we have other binding -v1 and it look
+>    good, I can change thou in v4 if requested.
+>  - dropped non-existent smmu_clk part (and adjusted example, which was
+>    using it)
+>  - dropped iommu description
+>  - moved iommu-cells description to the property #iommu-cells
+> 
+> v2:
+>  - fix wrong path in binding $id
+>  - comment qcom,mdp4 node example (we don't want to validate it yet)
+> Signed-off-by: David Heidelberg <david@ixit.cz>
+> 
+>  .../bindings/iommu/msm,iommu-v0.txt           | 64 ---------------
+>  .../bindings/iommu/qcom,apq8064-iommu.yaml    | 78 +++++++++++++++++++
+>  2 files changed, 78 insertions(+), 64 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/iommu/msm,iommu-v0.txt
+>  create mode 100644 Documentation/devicetree/bindings/iommu/qcom,apq8064-iommu.yaml
+> 
 
-This has no effect. 'leds' node is already allowed with the ref to 
-ethernet-phy.yaml. I suppose you could negate the if and then, but I'm 
-not really that worried if someone defines LEDs for a device with no 
-LEDs. 
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-Rob
 
