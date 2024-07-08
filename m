@@ -1,940 +1,362 @@
-Return-Path: <devicetree+bounces-83815-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83816-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA4BD929FBF
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 11:58:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4D1C929FDB
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 12:07:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 598FE287020
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 09:58:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C86301C20B12
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 10:07:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6B6178C7F;
-	Mon,  8 Jul 2024 09:57:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3C7B7580A;
+	Mon,  8 Jul 2024 10:07:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="FJlI59Ex"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="BCAeP5lK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2051.outbound.protection.outlook.com [40.107.20.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A280D6F2FE;
-	Mon,  8 Jul 2024 09:57:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720432658; cv=none; b=WacDJKL1HX9rx42mrX0IwlY/s9hs5MWmgPN7RaSA6OUAb0uq/goq7XUVCBM9oLzqAXRYdW6JkHeBRKtzcmaDRAUxOG+HGhVMfjiH/Y8CMzeYWvRK3yEtckc+GU1xeCOWpiNH6WDxDfDNLIRbCI7GWjiHK3zEI63dv3m5lAUqby0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720432658; c=relaxed/simple;
-	bh=xt8qPlvMNqh6gl2iLg559SdSRyiRGkrrJ1a4VKL7Zr8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Da52hTdR9PmH30y1tysK/v9IcUCSnOQmfcJk8PPy/dW7mnhM1Djxe2sujIv/Q4MpixUL5SKKn1DWW2RgOG8dJ1fw41asPYbbdiKVQ1OjHMYPxE64/LoOvXPCaDXbtY5yudX1ekmrymx4YAVtD9MoSfjEp4Ti9hrLXwTtKKTx3Xc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=FJlI59Ex; arc=none smtp.client-ip=217.70.183.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 7F7B11C0004;
-	Mon,  8 Jul 2024 09:57:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1720432654;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=sBDjUaK6KGzcbUUorCBNlupKo4aAH/b1cM/+htptWak=;
-	b=FJlI59ExZhVHgFnpNlY9syiT5ERuxKPLSwcEgu+eVS8PE26NDxnZK2oi6LCPwGU0H/n6ci
-	FNK6d50TxChN4Qr3cwB611jsYnla66ccj0FM1y1lZk7xsgd9d4ugGu4WW2VYi2bP8dlTJz
-	43IwzBKQ1B/Z4m3FKMZ4r/+i/TE2yfUinqLabqvXYvI8KfStOyjhiI1pskEDNsQIWSdv6D
-	BNlhruy6VgPNBAHYtokXz7A0HH55GT6HJOlEewm1/l/YkYaIlq+Sg4/GMZHaITVj32/rVu
-	VRwgg/uibHqlamopRE/2DpmBt+rCJ7Ieq8/PwYQAoLqUJEwz1/k2Q8aKFkENdg==
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Date: Mon, 08 Jul 2024 11:56:34 +0200
-Subject: [PATCH v3 4/4] clk: eyeq: add driver
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54B486F2E6;
+	Mon,  8 Jul 2024 10:07:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.51
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1720433227; cv=fail; b=KvuDlHcuo7UKwdBzdijx2L1baeN0JDdqvdoI9Dx5Ss7Nez7w7PEL+hDv2CXTp8H5mtTae5wURLd7i1jv+pHg5XqGcV7ZeKv/YFb7kITYtxbti4TX/ZwDjZOSgdhCIOv1/GylXalfNto0CJwbZV54YHhde0Qem4Nkhv4+6Q9ubVs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1720433227; c=relaxed/simple;
+	bh=xPagFjFVth7w24ZVtURBYPtd40yqP2m+OV7EdG4hNIU=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=BFqq+uAxdrjm6UOFEa2oaYuN3S3oT/dmhQFlZQiCvful2RgMg/mlz7Ss8vjwkGo4w/7l18xp7f91yx2HRtbgseXiiAAiAcogTAzHVbA8uLLZVEyU4L2DLrl+p2S7+SzhV3ooOImS9+Fj5T9Jb8lVSUh0/1pctZEsbKBqgW0Vws0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=BCAeP5lK; arc=fail smtp.client-ip=40.107.20.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=GjLL8yRJHwcbTjjLpqYbxtOgo9dtQBWNNfuG+7BVlWj6pdMSOhHNLFJtB0I3YMr+kwdmHqAT39r25Mskq06lql963xww9pz6WY/cQMKCmYbop29GDjRw5xQw9vwckGUnXEpqsawruyP6I0zPZybOeDqsbqci56ecPDyS+UrlhluFvXqcUZycb/NMQjfIaN32SCuVnwLTo4MXc/1urRoHFxuG3VbW4R9Dqk7F665N1xuI+pmWMdqfvDoR7E+i5pTXdMJMNTx15t2mWNQnTXe/FAXkiqFXXtLRUJcMu15nIzLvkobx/1jpd65vApLwl4vmLE6KeshbDHzXmgsWwY872g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=xPagFjFVth7w24ZVtURBYPtd40yqP2m+OV7EdG4hNIU=;
+ b=LH5vPv+WuxNImnIvsA307oqIWQngSoKzVXeAB+5dceMSHBxSyOv25Hqbr5sRBFh7shGSalA1686sbtw/l1KfIDIq3sWYF5QEoNjMlOY2ISaE085OIJHj7f7Iy8ETgRRUY5gA8O0MM/lNAaISV+UFeHserkQzpioYlXDCoMurCYeA8/dWdWQxOkdPyzXCWArLyTsP8rK46dqHt0lmnhzTBozMlDP3BMJFI1BVSOYSKeSBhMbgaHQjWkM8acRaMB9rHENZ1wBhpFh3FFpRPf/ulU6jMigWkLt5WfPHIkFYVhrFZ9S6YYW9aa7RG6b/EFQ9BU1pq6qU8NkSZtyPF1fBaw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=xPagFjFVth7w24ZVtURBYPtd40yqP2m+OV7EdG4hNIU=;
+ b=BCAeP5lKn2POyDaV0hKr/EMJ1zEgrVmtvsK4nMc2EsnTxTJDSCK3GTBEr5JwZaAOs+K/Fi63whAkglcWN0G2J3AEB6pQX1dCa6rDOpuwis4hzLSwMT74mfP4VTIK6YOtCuga8nfuTgmUUoVM5ouMARCxbmPOU+NFtMjewrpOnXc=
+Received: from PAXPR04MB8510.eurprd04.prod.outlook.com (2603:10a6:102:211::7)
+ by VI1PR04MB6926.eurprd04.prod.outlook.com (2603:10a6:803:133::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7741.35; Mon, 8 Jul
+ 2024 10:07:02 +0000
+Received: from PAXPR04MB8510.eurprd04.prod.outlook.com
+ ([fe80::a7c2:e2fa:8e04:40db]) by PAXPR04MB8510.eurprd04.prod.outlook.com
+ ([fe80::a7c2:e2fa:8e04:40db%6]) with mapi id 15.20.7741.033; Mon, 8 Jul 2024
+ 10:07:02 +0000
+From: Wei Fang <wei.fang@nxp.com>
+To: Frank Li <frank.li@nxp.com>, "krzk@kernel.org" <krzk@kernel.org>
+CC: Frank Li <frank.li@nxp.com>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"davem@davemloft.net" <davem@davemloft.net>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "edumazet@google.com" <edumazet@google.com>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>, "krzk+dt@kernel.org"
+	<krzk+dt@kernel.org>, "kuba@kernel.org" <kuba@kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"netdev@vger.kernel.org" <netdev@vger.kernel.org>, "pabeni@redhat.com"
+	<pabeni@redhat.com>, "robh@kernel.org" <robh@kernel.org>, Vladimir Oltean
+	<vladimir.oltean@nxp.com>, Claudiu Manoil <claudiu.manoil@nxp.com>, Clark
+ Wang <xiaoning.wang@nxp.com>
+Subject: RE: [PATCH v2 1/1] dt-bindings: net: convert enetc to yaml
+Thread-Topic: [PATCH v2 1/1] dt-bindings: net: convert enetc to yaml
+Thread-Index: AQHax+U3Zm0nW+5pRUG/N+UuUo631rHsoNfA
+Date: Mon, 8 Jul 2024 10:07:02 +0000
+Message-ID:
+ <PAXPR04MB85101FF8C01B57F87DF1B04A88DA2@PAXPR04MB8510.eurprd04.prod.outlook.com>
+References: <20240626162307.1748759-1-Frank.Li@nxp.com>
+In-Reply-To: <20240626162307.1748759-1-Frank.Li@nxp.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PAXPR04MB8510:EE_|VI1PR04MB6926:EE_
+x-ms-office365-filtering-correlation-id: 1554263a-6c23-45e9-ba7b-08dc9f35b655
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|1800799024|7416014|376014|366016|38070700018;
+x-microsoft-antispam-message-info:
+ =?gb2312?B?Nms2dlU4dWlhS3Nxa21uM3paMk9mM1pITytXYnMyRHk4dFBmc2x1M3Uvc2VF?=
+ =?gb2312?B?OExOSTROZW8zN2loVVVYRlFiVHprd3A3RjlpNkxnT3ZtUllWczNXMzAycnkx?=
+ =?gb2312?B?WE41ZkdqVENJSjBhMm90NllESTJxWU5hanI5MHhkRVI0cXNqOW1EZG5UU3ZU?=
+ =?gb2312?B?Uk1CcXBXTk5WVjl3SzhRNlJoVnJYUXppOWpTcWJGcVlndnVOUTBmRU0yZVZj?=
+ =?gb2312?B?WE9jdUZoRkhjRFlkUXdscnRoaVpqMngrTVYvMmhwWkdtWlBmY1oyNTBQaFFP?=
+ =?gb2312?B?cDBJUTVQay93czdDOGF6M1hQaWllY2RCRHpic01zbFUzdlBTdFBsZlNUWmxi?=
+ =?gb2312?B?ZGlocVV2TEMwMDlWbVAzTHhMQUVYMXQ3OVZzM0g3cHpldzZuUU43Z2RKYnVC?=
+ =?gb2312?B?bXJ5TWJMZkdLLzdZUVQyQ1cwK1FITkl6UGovRjVid2lSemI0U3Mrb3hIaHAv?=
+ =?gb2312?B?OEM5K0pQK0FqZzhzaGtYbTJoU2ZIb2pQZmo5UjVIZHJCTHMzd1AzcEsrTVRo?=
+ =?gb2312?B?QnI1MzJaUktia3N5WG5LdFFuQy9XczdjOHFHUVoyazRBTXBYNC9LMjJ6cmJO?=
+ =?gb2312?B?T3FwSFd1cVZidjBJMExNelE4QVNCUGpNMHlQdmxkdE42aWJjRkJ0MmRqV3Vq?=
+ =?gb2312?B?YzZBcS82aUNSMTVIVFNaZkdGY2NDaC8rMi9kM0ZwYzhoRGZjQUZQbS83eElL?=
+ =?gb2312?B?MGlSbDJkVC9FUUdRNERkZU10SFlRMWQwUkRGOGpsSzgwY29YcGNLUkxqNWlV?=
+ =?gb2312?B?dmVBSURvbWtYY1lRT2VJdlBkQ1RReXd1WVhxU29Jd0RNbW9PZjFOSWhOaVo2?=
+ =?gb2312?B?QUYwRExnTTlpREl3ZkMvc1FjdjhnM29JaElqS2EzWEZsaTVqMndsWWYwTi9u?=
+ =?gb2312?B?UGdBRThsNjYvd2NYa1ZTWm1jdzFWajV6b0hxeGtHOWN1NWdITzFJQXhSY2Iv?=
+ =?gb2312?B?SThKZEp1cnpUSHN0dU9pS0JFTHhVNEp2Wjdnb2g4V0NUaWcwczRlbHVNblp2?=
+ =?gb2312?B?REx0UlJ3b0dvTEZvcmRyeWNmaGVsQmlIQlBiTnRGL2ZaOStvSTNjVzl2TzVn?=
+ =?gb2312?B?UXd1NndFdWFQN1U1NGlQUTJDeHRJQ3RsUFFRelYxak5yazdUSTZ6QUFINVM1?=
+ =?gb2312?B?RnJZV1JRcVFSTkpSNkc4VnFxanFuOFphZlhxcVg4TXI5WEhGQWVNR0Z0Yk5n?=
+ =?gb2312?B?UWRnSzNvOGtWMCtRVWhJVDhFRDBYaGxiQldLSUtkMHlYZk5hVGE3cGxjd2p4?=
+ =?gb2312?B?dUZIMTFBN2NYMjhVblc3OU9KN1cvWmZNQkdMVGhBeHc1bi8xak5Nc0M5K295?=
+ =?gb2312?B?d3YydlJaRlY3U3VkaUMyZm5wTnNraDhmbU1kV01wR01RNXNOL1BzUXRhTm50?=
+ =?gb2312?B?bGRTTmhhYmdnbThQcHYrTkVFckJyVWo5bFdpWXo2Z3J5T0hNTlB6Q2dxTlpl?=
+ =?gb2312?B?UFRWMFNsR2pQbmt0aVJLdjhWUGtyTWl5YUtpdkJlakRoU3VuWXV3dEp2SHBw?=
+ =?gb2312?B?U2lLNjNJSzRzN0Y4SGZGS04vR2ViNm5JQ09taW52K1orWHhyUjFZeDRuY3pw?=
+ =?gb2312?B?QndVKzEwVkdZdHIwL0plamFFb1MyRnlveWZiT05uME1qZFpQMnA3ZFFKUXdR?=
+ =?gb2312?B?WUdmWmFTYTR3K1hjcHVXQVUyY1ZHVVVWS2ZmcnZWbHU3OTd1L2ZKMkFqNUpT?=
+ =?gb2312?B?SHRoQ3NScWZ0enhaeHI3eXYvN29oVW1wbXRScENRMmY2akVtSThXRFgraUZx?=
+ =?gb2312?B?UVRwKzNncDM4L29hRmZ2NlFjRDd0SW5rUUNTTmV5VXdqd2dLVm00cmNtWXJ2?=
+ =?gb2312?B?WjZUeCtvZ2s0aEkrSi9aT000dWhFUzlSSEVXM0VjYXE4d1pSRzY5MnZwZ2Nz?=
+ =?gb2312?B?TThDMTZOMkpSdmxrVjNWbkxYYkFmR09rRlpOOWlTQUhjd0E9PQ==?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:zh-cn;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8510.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(366016)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?gb2312?B?WTRXY09sZEZJdXZnZ1g0SGNybjhmMWpKNHhhWHBsamJ2alB5ZGNRWkZkTG0r?=
+ =?gb2312?B?cEpQV2UyN0g0SldoeENvWmM0c0tEem5UNmo5RnY2SU00YkMyZldEZ2VCanVx?=
+ =?gb2312?B?bVE1cFpTU0FhZ3hwWE9zRUlWc0xQdDFzeUg1SzFsdVFBT0pLRUZVVWhLakQ4?=
+ =?gb2312?B?b09FUFNnbm1rZDQ4b2d6S2FqU1E3VnZMeUFMMFMwZ3Y1a2dXbGoyRElqMHZW?=
+ =?gb2312?B?ZFRNM1AvZjRFRno4Yzg0QjBQUG54dkFSZm45bXlJK05jZlk5TFV6M2FwNnBZ?=
+ =?gb2312?B?dFNjRGd3YU1LZE1aKyszSE9USWUvYS9wOFZFZE94OFV3Z056VkxucElOaDh4?=
+ =?gb2312?B?Nkc0dWsxYTk3VnIvYSs1ZW1PbXU1YWNvM0tYUzByZEtReDBsWW43cFpxQXUr?=
+ =?gb2312?B?bkZWVjU4OEx4Z3N6VGZ5MlFYRHFTOElHMGc2bDBDZHhSQVJMQkJhazNRVXZk?=
+ =?gb2312?B?VzlyYmxCOFp5WFQyWlovRG43Qko3Q2c4aVFFSWdsWFg2NTd6L25NVzZqeGZ0?=
+ =?gb2312?B?V2FpYk5lR3NRVnBZaGdUNGdrWi9lVUdtZGMzWWlOQmVFcW50bVJEd2o2eG5K?=
+ =?gb2312?B?dmpUVmZoYjBEVWEyR3J2L3d1cUtOU1RKUi9wZ2N5T1ZENUJlOG5ldko5ZGRW?=
+ =?gb2312?B?WDM1OVk0bGo4bXRRZ0swaHJaOUFuN2l0ODd3UHlIejVMTGR6ZG9mKzZtSGJY?=
+ =?gb2312?B?V2JNaFg2bzRIYWFvT3ZmYVFoWkZ6ODdMUmJyclRrV1dtMG5FUG5iSnEwNTZi?=
+ =?gb2312?B?SXZmK2VwNTd0QkkrYnNMcTZLRWh5VUtqZ2lLYjB4bVh6WXZUa2JyZ2NGNHVV?=
+ =?gb2312?B?U1hFUmhFTEh5eWxHeVhZU1hCSG1naVU0YmZFSzVyVWFHelB6RGNzQkEzNUl2?=
+ =?gb2312?B?N1h1Zkc4RU5uSE1CS1FnWWxmdDZhVkhYaGdZTFVUMEVVZHAzRjNucnNpOHl1?=
+ =?gb2312?B?TEtFUEJCVlV1SGl0U01UelUxd1VnWWVudCs1Wk9oUmJvSFJjajJXUzFEdGQy?=
+ =?gb2312?B?RWxBQWxqUE4zK3BCZDdYdDNxbmFnTE0zZGVMUzdjSXR6ejRrSFdqcTQwLzdk?=
+ =?gb2312?B?YzRNS2VOMkFBQlhlVld1VEFReDkzY0lSUXRRR2NUN1FJSnVTNk45ZDNYd3Bt?=
+ =?gb2312?B?MEhMQkp1cVNKdC9jYk1nNkltV2dRckhabEp1TndJYjNPdkxWT1Y0OGhnY0Zo?=
+ =?gb2312?B?Z0FjZG0zZ0Z2MUFqZHVuUlgyTEM3Qm43Z2kzcHNqQXBKb3JxRzNPb2tmZGEr?=
+ =?gb2312?B?UkkyMTdYY3Y0R0FCcHBScEtjVHB0N3RINkZGMjZueEVOS3g5WWRnVjZjL1FK?=
+ =?gb2312?B?RWZyYitIWVpWWVpab2FsZXJlN0JGNHNJKzFRb29ocEdPdStMb3krZkV3NEpP?=
+ =?gb2312?B?Q3BlRmRaUC9JemtoRjFieWZiRlNEVkxvVWtZUDkzSUFqaUsxbituNjByNy9Q?=
+ =?gb2312?B?T0pTWkNNeTdzTTNqL2JvWjVSak9UZzE5TGtXa25CS0pFckw2WW5SU1B0WjVR?=
+ =?gb2312?B?V3JTSGpyTlZxQ1dDRGdCUjJYUC9RYU9DL2ZaZTNWdDVpTG9iR0tGc2RRczlz?=
+ =?gb2312?B?ek0rcklQZ2V5NUlQZWMwcDludkRvdnhjTUJhNmZWRGRkbllDc3lPMVlMZjR0?=
+ =?gb2312?B?eTBmSDVOdUloVTZLdm9OTnBEbnpjbmRKc2phTTk5R25VcnNOaHFZbDc1Ym5P?=
+ =?gb2312?B?Y3hJR1M0WDNhUkRwYys0UEVINDJKaVNNbTAzQzZ5UEpaWUpkRWxtYW9PbzdF?=
+ =?gb2312?B?VC91WUY4ZUtmYlV0WkhNbE8yRWM2TkgrcU9iNXFVSXVSWmx1T3VIU0FnMnRp?=
+ =?gb2312?B?MVgxa2o1bFduSTRsVENxcFJvMFNCZ1Nsd3lsQktsY2pEMHE1QWVVdjhyTFg2?=
+ =?gb2312?B?dDBTdlZXcEkxenRqN0pKcC9heU5MVW5FK0s1VXl0Sis0QUtva01CakZFa3ly?=
+ =?gb2312?B?NXhib1pDVHRkNko5NjJJQi85dERsbFFybFl5QXcxb0lnNW4xY3pydlpmbXlE?=
+ =?gb2312?B?YTVpOEhwZ0t4N1NXZW9DSisvQ2dMQnlYbEFLc3FEbDk3TzlTdUEwRFBwaWJM?=
+ =?gb2312?B?QzhiakNFbDJhQWxBaUgrUGg0bUdjSlBvRzFDSzlHVC9tQThSaWUxbmpwVWln?=
+ =?gb2312?Q?LeZk=3D?=
+Content-Type: text/plain; charset="gb2312"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20240708-mbly-clk-v3-4-f3fa1ee28fed@bootlin.com>
-References: <20240708-mbly-clk-v3-0-f3fa1ee28fed@bootlin.com>
-In-Reply-To: <20240708-mbly-clk-v3-0-f3fa1ee28fed@bootlin.com>
-To: Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
- =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Tawfik Bayouk <tawfik.bayouk@mobileye.com>, 
- =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-X-Mailer: b4 0.14.0
-X-GND-Sasl: theo.lebrun@bootlin.com
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8510.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1554263a-6c23-45e9-ba7b-08dc9f35b655
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Jul 2024 10:07:02.0882
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: fkjZx1leZMS4yWdZI2wO0piRl2A/OWyjoZmi5Bq4gT1GGL5QMo081B9BhygTaHtM6iXk7Cp+1dDSg8+MW435Jg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB6926
 
-Add Mobileye EyeQ5, EyeQ6L and EyeQ6H clock controller driver. It is
-both a platform driver and a hook onto of_clk_init() used for clocks
-required early (GIC timer, UARTs).
-
-For some compatible, it is both at the same time. eqc_init() initialises
-early PLLs and stores clock array in a static linked list. It marks
-other clocks as deferred. eqc_probe() retrieves the clock array and
-adds all remaining clocks.
-
-It exposes read-only PLLs derived from the main crystal on board. It
-also exposes another type of clocks: divider clocks. They always have
-even divisors and have one PLL as parent.
-
-This driver also bears the responsability for optional reset and pinctrl
-auxiliary devices. The match data attached to the devicetree node
-compatible indicate if such devices should be created. They all get
-passed a pointer to the start of the OLB region.
-
-Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
----
- drivers/clk/Kconfig    |  13 +
- drivers/clk/Makefile   |   1 +
- drivers/clk/clk-eyeq.c | 793 +++++++++++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 807 insertions(+)
-
-diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
-index 3e9099504fad..31f48edf855c 100644
---- a/drivers/clk/Kconfig
-+++ b/drivers/clk/Kconfig
-@@ -218,6 +218,19 @@ config COMMON_CLK_EN7523
- 	  This driver provides the fixed clocks and gates present on Airoha
- 	  ARM silicon.
- 
-+config COMMON_CLK_EYEQ
-+	bool "Clock driver for the Mobileye EyeQ platform"
-+	depends on 64BIT # for readq()
-+	depends on OF || COMPILE_TEST
-+	depends on MACH_EYEQ5 || MACH_EYEQ6H || COMPILE_TEST
-+	select AUXILIARY_BUS
-+	default MACH_EYEQ5 || MACH_EYEQ6H
-+	help
-+	  This driver provides clocks found on Mobileye EyeQ5, EyeQ6L and Eye6H
-+	  SoCs. Controllers live in shared register regions called OLB. Driver
-+	  provides read-only PLLs, derived from the main crystal clock (which
-+	  must be constant). It also exposes some divider clocks.
-+
- config COMMON_CLK_FSL_FLEXSPI
- 	tristate "Clock driver for FlexSPI on Layerscape SoCs"
- 	depends on ARCH_LAYERSCAPE || COMPILE_TEST
-diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
-index 4abe16c8ccdf..40bc2e48e1ab 100644
---- a/drivers/clk/Makefile
-+++ b/drivers/clk/Makefile
-@@ -32,6 +32,7 @@ obj-$(CONFIG_ARCH_CLPS711X)		+= clk-clps711x.o
- obj-$(CONFIG_COMMON_CLK_CS2000_CP)	+= clk-cs2000-cp.o
- obj-$(CONFIG_ARCH_SPARX5)		+= clk-sparx5.o
- obj-$(CONFIG_COMMON_CLK_EN7523)		+= clk-en7523.o
-+obj-$(CONFIG_COMMON_CLK_EYEQ)		+= clk-eyeq.o
- obj-$(CONFIG_COMMON_CLK_FIXED_MMIO)	+= clk-fixed-mmio.o
- obj-$(CONFIG_COMMON_CLK_FSL_FLEXSPI)	+= clk-fsl-flexspi.o
- obj-$(CONFIG_COMMON_CLK_FSL_SAI)	+= clk-fsl-sai.o
-diff --git a/drivers/clk/clk-eyeq.c b/drivers/clk/clk-eyeq.c
-new file mode 100644
-index 000000000000..dbf912aa1217
---- /dev/null
-+++ b/drivers/clk/clk-eyeq.c
-@@ -0,0 +1,793 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * PLL clock driver for the Mobileye EyeQ5, EyeQ6L and EyeQ6H platforms.
-+ *
-+ * This controller handles read-only PLLs, all derived from the same main
-+ * crystal clock. It also exposes divider clocks, those are children to PLLs.
-+ * Parent clock is expected to be constant. This driver's registers live in
-+ * a shared region called OLB. Some PLLs are initialised early by of_clk_init().
-+ *
-+ * We use eqc_ as prefix, as-in "EyeQ Clock", but way shorter.
-+ *
-+ * Copyright (C) 2024 Mobileye Vision Technologies Ltd.
-+ */
-+
-+/*
-+ * Set pr_fmt() for printing from eqc_init().
-+ * It is called at of_clk_init() stage (read: really early).
-+ */
-+#define pr_fmt(fmt) "clk-eyeq: " fmt
-+
-+#include <linux/array_size.h>
-+#include <linux/auxiliary_bus.h>
-+#include <linux/bitfield.h>
-+#include <linux/bits.h>
-+#include <linux/clk-provider.h>
-+#include <linux/device.h>
-+#include <linux/err.h>
-+#include <linux/errno.h>
-+#include <linux/init.h>
-+#include <linux/io.h>
-+#include <linux/list.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/of_address.h>
-+#include <linux/overflow.h>
-+#include <linux/platform_device.h>
-+#include <linux/printk.h>
-+#include <linux/slab.h>
-+#include <linux/spinlock.h>
-+#include <linux/types.h>
-+
-+#include <dt-bindings/clock/mobileye,eyeq5-clk.h>
-+
-+#define EQC_MAX_DIV_COUNT		4
-+
-+/* In frac mode, it enables fractional noise canceling DAC. Else, no function. */
-+#define PCSR0_DAC_EN			BIT(0)
-+/* Fractional or integer mode */
-+#define PCSR0_DSM_EN			BIT(1)
-+#define PCSR0_PLL_EN			BIT(2)
-+/* All clocks output held at 0 */
-+#define PCSR0_FOUTPOSTDIV_EN		BIT(3)
-+#define PCSR0_POST_DIV1			GENMASK(6, 4)
-+#define PCSR0_POST_DIV2			GENMASK(9, 7)
-+#define PCSR0_REF_DIV			GENMASK(15, 10)
-+#define PCSR0_INTIN			GENMASK(27, 16)
-+#define PCSR0_BYPASS			BIT(28)
-+/* Bits 30..29 are reserved */
-+#define PCSR0_PLL_LOCKED		BIT(31)
-+
-+#define PCSR1_RESET			BIT(0)
-+#define PCSR1_SSGC_DIV			GENMASK(4, 1)
-+/* Spread amplitude (% = 0.1 * SPREAD[4:0]) */
-+#define PCSR1_SPREAD			GENMASK(9, 5)
-+#define PCSR1_DIS_SSCG			BIT(10)
-+/* Down-spread or center-spread */
-+#define PCSR1_DOWN_SPREAD		BIT(11)
-+#define PCSR1_FRAC_IN			GENMASK(31, 12)
-+
-+/*
-+ * Driver might register clock provider from eqc_init() if PLLs are required
-+ * early (before platform bus is ready). Store struct eqc_priv inside linked
-+ * list to pass clock provider from eqc_init() to eqc_probe() and register
-+ * remaining clocks from platform device probe.
-+ *
-+ * Clock provider is NOT created by eqc_init() if no early clock is required.
-+ * Store as linked list because EyeQ6H has multiple clock controller instances.
-+ * Matching is done based on devicetree node pointer.
-+ */
-+static DEFINE_SPINLOCK(eqc_list_slock);
-+static LIST_HEAD(eqc_list);
-+
-+struct eqc_pll {
-+	unsigned int	index;
-+	const char	*name;
-+	unsigned int	reg64;
-+};
-+
-+/*
-+ * Divider clock. Divider is 2*(v+1), with v the register value.
-+ * Min divider is 2, max is 2*(2^width).
-+ */
-+struct eqc_div {
-+	unsigned int	index;
-+	const char	*name;
-+	unsigned int	parent;
-+	unsigned int	reg;
-+	u8		shift;
-+	u8		width;
-+};
-+
-+struct eqc_match_data {
-+	unsigned int		pll_count;
-+	const struct eqc_pll	*plls;
-+
-+	unsigned int		div_count;
-+	const struct eqc_div	*divs;
-+
-+	const char		*reset_auxdev_name;
-+	const char		*pinctrl_auxdev_name;
-+};
-+
-+struct eqc_early_match_data {
-+	unsigned int		early_pll_count;
-+	const struct eqc_pll	*early_plls;
-+	/* Information required to init properly clk HW cells. */
-+	unsigned int		nb_late_clks;
-+};
-+
-+struct eqc_priv {
-+	struct clk_hw_onecell_data	*cells;
-+	const struct eqc_early_match_data *early_data;
-+	const struct eqc_match_data	*data;
-+	void __iomem			*base;
-+	struct device_node		*np;
-+	struct list_head		list;
-+};
-+
-+/*
-+ * Both factors (mult and div) must fit in 32 bits. When an operation overflows,
-+ * this function throws away low bits so that factors still fit in 32 bits.
-+ *
-+ * Precision loss depends on amplitude of mult and div. Worst theorical
-+ * loss is: (UINT_MAX+1) / UINT_MAX - 1 = 2.3e-10.
-+ * This is 1Hz every 4.3GHz.
-+ */
-+static void eqc_pll_downshift_factors(unsigned long *mult, unsigned long *div)
-+{
-+	unsigned long biggest;
-+	unsigned int shift;
-+
-+	/* This function can be removed if mult/div switch to unsigned long. */
-+	static_assert(sizeof_field(struct clk_fixed_factor, mult) == sizeof(unsigned int));
-+	static_assert(sizeof_field(struct clk_fixed_factor, div) == sizeof(unsigned int));
-+
-+	/* No overflow, nothing to be done. */
-+	if (*mult <= UINT_MAX && *div <= UINT_MAX)
-+		return;
-+
-+	/*
-+	 * Compute the shift required to bring the biggest factor into unsigned
-+	 * int range. That is, shift its highest set bit to the unsigned int
-+	 * most significant bit.
-+	 */
-+	biggest = max(*mult, *div);
-+	shift = __fls(biggest) - (BITS_PER_BYTE * sizeof(unsigned int)) + 1;
-+
-+	*mult >>= shift;
-+	*div >>= shift;
-+}
-+
-+static int eqc_pll_parse_registers(u32 r0, u32 r1, unsigned long *mult,
-+				   unsigned long *div, unsigned long *acc)
-+{
-+	if (r0 & PCSR0_BYPASS) {
-+		*mult = 1;
-+		*div = 1;
-+		*acc = 0;
-+		return 0;
-+	}
-+
-+	if (!(r0 & PCSR0_PLL_LOCKED))
-+		return -EINVAL;
-+
-+	*mult = FIELD_GET(PCSR0_INTIN, r0);
-+	*div = FIELD_GET(PCSR0_REF_DIV, r0);
-+	if (r0 & PCSR0_FOUTPOSTDIV_EN)
-+		*div *= FIELD_GET(PCSR0_POST_DIV1, r0) * FIELD_GET(PCSR0_POST_DIV2, r0);
-+
-+	/* Fractional mode, in 2^20 (0x100000) parts. */
-+	if (r0 & PCSR0_DSM_EN) {
-+		*div *= 0x100000;
-+		*mult = *mult * 0x100000 + FIELD_GET(PCSR1_FRAC_IN, r1);
-+	}
-+
-+	if (!*mult || !*div)
-+		return -EINVAL;
-+
-+	/* Spread spectrum. */
-+	if (!(r1 & (PCSR1_RESET | PCSR1_DIS_SSCG))) {
-+		/*
-+		 * Spread is 1/1000 parts of frequency, accuracy is half of
-+		 * that. To get accuracy, convert to ppb (parts per billion).
-+		 */
-+		u32 spread = FIELD_GET(PCSR1_SPREAD, r1);
-+
-+		*acc = spread * 500000;
-+		if (r1 & PCSR1_DOWN_SPREAD) {
-+			/*
-+			 * Downspreading: the central frequency is half a
-+			 * spread lower.
-+			 */
-+			*mult *= 2000 - spread;
-+			*div *= 2000;
-+
-+			/*
-+			 * Previous operation might overflow 32 bits. If it
-+			 * does, throw away the least amount of low bits.
-+			 */
-+			eqc_pll_downshift_factors(mult, div);
-+		}
-+	} else {
-+		*acc = 0;
-+	}
-+
-+	return 0;
-+}
-+
-+static unsigned int eqc_compute_clock_count(const struct eqc_early_match_data *early_data,
-+					    const struct eqc_match_data *data)
-+{
-+	unsigned int i, nb_clks = 0, sum = 0;
-+
-+	if (early_data) {
-+		sum += early_data->early_pll_count;
-+
-+		for (i = 0; i < early_data->early_pll_count; i++)
-+			if (early_data->early_plls[i].index >= nb_clks)
-+				nb_clks = early_data->early_plls[i].index + 1;
-+	}
-+
-+	if (data) {
-+		sum += data->pll_count + data->div_count;
-+
-+		for (i = 0; i < data->pll_count; i++)
-+			if (data->plls[i].index >= nb_clks)
-+				nb_clks = data->plls[i].index + 1;
-+
-+		for (i = 0; i < data->div_count; i++)
-+			if (data->divs[i].index >= nb_clks)
-+				nb_clks = data->divs[i].index + 1;
-+	}
-+
-+	/* We expect the biggest clock index to be 1 below the clock count. */
-+	WARN_ON(nb_clks != sum);
-+
-+	return nb_clks;
-+}
-+
-+static void eqc_probe_init_plls(struct device *dev, struct eqc_priv *priv)
-+{
-+	const struct eqc_match_data *data = priv->data;
-+	unsigned long mult, div, acc;
-+	const struct eqc_pll *pll;
-+	struct clk_hw *hw;
-+	unsigned int i;
-+	u32 r0, r1;
-+	u64 val;
-+	int ret;
-+
-+	for (i = 0; i < data->pll_count; i++) {
-+		pll = &data->plls[i];
-+
-+		val = readq(priv->base + pll->reg64);
-+		r0 = val;
-+		r1 = val >> 32;
-+
-+		ret = eqc_pll_parse_registers(r0, r1, &mult, &div, &acc);
-+		if (ret) {
-+			dev_warn(dev, "failed parsing state of %s\n", pll->name);
-+			priv->cells->hws[pll->index] = ERR_PTR(ret);
-+			continue;
-+		}
-+
-+		hw = clk_hw_register_fixed_factor_with_accuracy_fwname(dev,
-+				dev->of_node, pll->name, "ref", 0, mult, div, acc);
-+		priv->cells->hws[pll->index] = hw;
-+		if (IS_ERR(hw))
-+			dev_warn(dev, "failed registering %s: %pe\n", pll->name, hw);
-+	}
-+}
-+
-+static void eqc_probe_init_divs(struct platform_device *pdev, struct device *dev,
-+				struct eqc_priv *priv)
-+{
-+	const struct eqc_match_data *data = priv->data;
-+	const struct eqc_div *div;
-+	struct clk_hw *parent;
-+	void __iomem *reg;
-+	struct clk_hw *hw;
-+	unsigned int i;
-+
-+	for (i = 0; i < data->div_count; i++) {
-+		div = &data->divs[i];
-+		reg = priv->base + div->reg;
-+		parent = priv->cells->hws[div->parent];
-+
-+		hw = clk_hw_register_divider_table_parent_hw(dev, div->name,
-+				parent, 0, reg, div->shift, div->width,
-+				CLK_DIVIDER_EVEN_INTEGERS, NULL, NULL);
-+		priv->cells->hws[div->index] = hw;
-+		if (IS_ERR(hw))
-+			dev_warn(dev, "failed registering %s: %pe\n",
-+				 div->name, hw);
-+	}
-+}
-+
-+static void eqc_auxdev_release(struct device *dev)
-+{
-+	struct auxiliary_device *adev = to_auxiliary_dev(dev);
-+
-+	kfree(adev);
-+}
-+
-+static void eqc_auxdev_unregister(void *arg)
-+{
-+	struct auxiliary_device *adev = arg;
-+
-+	auxiliary_device_delete(adev);
-+	auxiliary_device_uninit(adev);
-+}
-+
-+static int eqc_auxdev_create(struct device *dev, void __iomem *base,
-+			     const char *name, u32 id)
-+{
-+	struct auxiliary_device *adev;
-+	int ret;
-+
-+	adev = kzalloc(sizeof(*adev), GFP_KERNEL);
-+	if (!adev)
-+		return -ENOMEM;
-+
-+	adev->name = name;
-+	adev->dev.parent = dev;
-+	adev->dev.platform_data = (void __force *)base;
-+	adev->dev.release = eqc_auxdev_release;
-+	adev->id = id;
-+
-+	ret = auxiliary_device_init(adev);
-+	if (ret)
-+		return ret;
-+
-+	ret = auxiliary_device_add(adev);
-+	if (ret) {
-+		auxiliary_device_uninit(adev);
-+		return ret;
-+	}
-+
-+	return devm_add_action_or_reset(dev, eqc_auxdev_unregister, adev);
-+}
-+
-+static int eqc_probe(struct platform_device *pdev)
-+{
-+	const struct eqc_match_data *data;
-+	struct device *dev = &pdev->dev;
-+	struct eqc_priv *priv = NULL;
-+	struct eqc_priv *entry;
-+	unsigned int nb_clks;
-+	void __iomem *base;
-+	int ret;
-+
-+	data = device_get_match_data(dev);
-+	if (!data)
-+		return 0; /* No clocks nor auxdevs, we are done. */
-+
-+	base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(base))
-+		return PTR_ERR(base);
-+
-+	/* Init optional reset auxiliary device. */
-+	if (data->reset_auxdev_name) {
-+		ret = eqc_auxdev_create(dev, base, data->reset_auxdev_name, 0);
-+		if (ret)
-+			dev_warn(dev, "failed creating auxiliary device %s.%s: %d\n",
-+				 KBUILD_MODNAME, data->reset_auxdev_name, ret);
-+	}
-+
-+	/* Init optional pinctrl auxiliary device. */
-+	if (data->pinctrl_auxdev_name) {
-+		ret = eqc_auxdev_create(dev, base, data->pinctrl_auxdev_name, 0);
-+		if (ret)
-+			dev_warn(dev, "failed creating auxiliary device %s.%s: %d\n",
-+				 KBUILD_MODNAME, data->pinctrl_auxdev_name, ret);
-+	}
-+
-+	if (data->pll_count + data->div_count == 0)
-+		return 0; /* Zero clocks, we are done. */
-+
-+	/* Try retrieving early init private data. */
-+	spin_lock(&eqc_list_slock);
-+	list_for_each_entry(entry, &eqc_list, list) {
-+		if (entry->np == dev->of_node) {
-+			priv = entry;
-+			break;
-+		}
-+	}
-+	spin_unlock(&eqc_list_slock);
-+
-+	if (!priv) {
-+		/* Device did not get init early. Do it now. */
-+
-+		priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+		if (!priv)
-+			return -ENOMEM;
-+
-+		priv->np = dev->of_node;
-+
-+		nb_clks = eqc_compute_clock_count(NULL, data);
-+		priv->cells = devm_kzalloc(dev, struct_size(priv->cells, hws, nb_clks),
-+					   GFP_KERNEL);
-+		if (!priv->cells)
-+			return -ENOMEM;
-+
-+		priv->cells->num = nb_clks;
-+	} else {
-+		/*
-+		 * Device got init early. Check clock count.
-+		 *
-+		 * eqc_init() should already know the exact clk count using
-+		 * nb_late_clks field. We ensure computation was right and fix
-+		 * clk cells if not.
-+		 */
-+		nb_clks = eqc_compute_clock_count(priv->early_data, data);
-+		if (WARN_ON(nb_clks != priv->cells->num))
-+			priv->cells->num = nb_clks;
-+	}
-+
-+	priv->base = base;
-+	priv->data = data;
-+
-+	eqc_probe_init_plls(dev, priv);
-+
-+	eqc_probe_init_divs(pdev, dev, priv);
-+
-+	/* Clock provider has not been registered by eqc_init(). Do it now. */
-+	if (!priv->early_data) {
-+		/* When providing a single clock, require no cell. */
-+		if (priv->cells->num == 1)
-+			ret = devm_of_clk_add_hw_provider(dev, of_clk_hw_simple_get,
-+							  priv->cells->hws[0]);
-+		else
-+			ret = devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
-+							  priv->cells);
-+
-+		if (ret)
-+			return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct eqc_pll eqc_eyeq5_plls[] = {
-+	{ .index = EQ5C_PLL_VMP,  .name = "pll-vmp",  .reg64 = 0x034 },
-+	{ .index = EQ5C_PLL_PMA,  .name = "pll-pma",  .reg64 = 0x03C },
-+	{ .index = EQ5C_PLL_VDI,  .name = "pll-vdi",  .reg64 = 0x044 },
-+	{ .index = EQ5C_PLL_DDR0, .name = "pll-ddr0", .reg64 = 0x04C },
-+	{ .index = EQ5C_PLL_PCI,  .name = "pll-pci",  .reg64 = 0x054 },
-+	{ .index = EQ5C_PLL_PMAC, .name = "pll-pmac", .reg64 = 0x064 },
-+	{ .index = EQ5C_PLL_MPC,  .name = "pll-mpc",  .reg64 = 0x06C },
-+	{ .index = EQ5C_PLL_DDR1, .name = "pll-ddr1", .reg64 = 0x074 },
-+};
-+
-+static const struct eqc_div eqc_eyeq5_divs[] = {
-+	{
-+		.index = EQ5C_DIV_OSPI,
-+		.name = "div-ospi",
-+		.parent = EQ5C_PLL_PER,
-+		.reg = 0x11C,
-+		.shift = 0,
-+		.width = 4,
-+	},
-+};
-+
-+static const struct eqc_match_data eqc_eyeq5_match_data = {
-+	.pll_count	= ARRAY_SIZE(eqc_eyeq5_plls),
-+	.plls		= eqc_eyeq5_plls,
-+
-+	.div_count	= ARRAY_SIZE(eqc_eyeq5_divs),
-+	.divs		= eqc_eyeq5_divs,
-+
-+	.reset_auxdev_name = "reset",
-+	.pinctrl_auxdev_name = "pinctrl",
-+};
-+
-+static const struct eqc_pll eqc_eyeq6l_plls[] = {
-+	{ .index = EQ6LC_PLL_DDR, .name = "pll-ddr", .reg64 = 0x02C },
-+	{ .index = EQ6LC_PLL_CPU, .name = "pll-cpu", .reg64 = 0x034 }, /* also acc */
-+	{ .index = EQ6LC_PLL_PER, .name = "pll-per", .reg64 = 0x03C },
-+	{ .index = EQ6LC_PLL_VDI, .name = "pll-vdi", .reg64 = 0x044 },
-+};
-+
-+static const struct eqc_match_data eqc_eyeq6l_match_data = {
-+	.pll_count	= ARRAY_SIZE(eqc_eyeq6l_plls),
-+	.plls		= eqc_eyeq6l_plls,
-+
-+	.reset_auxdev_name = "reset",
-+};
-+
-+static const struct eqc_match_data eqc_eyeq6h_west_match_data = {
-+	.reset_auxdev_name = "reset_west",
-+};
-+
-+static const struct eqc_pll eqc_eyeq6h_east_plls[] = {
-+	{ .index = 0, .name = "pll-east", .reg64 = 0x074 },
-+};
-+
-+static const struct eqc_match_data eqc_eyeq6h_east_match_data = {
-+	.pll_count	= ARRAY_SIZE(eqc_eyeq6h_east_plls),
-+	.plls		= eqc_eyeq6h_east_plls,
-+
-+	.reset_auxdev_name = "reset_east",
-+};
-+
-+static const struct eqc_pll eqc_eyeq6h_south_plls[] = {
-+	{ .index = EQ6HC_SOUTH_PLL_VDI,  .name = "pll-vdi",  .reg64 = 0x000 },
-+	{ .index = EQ6HC_SOUTH_PLL_PCIE, .name = "pll-pcie", .reg64 = 0x008 },
-+	{ .index = EQ6HC_SOUTH_PLL_PER,  .name = "pll-per",  .reg64 = 0x010 },
-+	{ .index = EQ6HC_SOUTH_PLL_ISP,  .name = "pll-isp",  .reg64 = 0x018 },
-+};
-+
-+static const struct eqc_div eqc_eyeq6h_south_divs[] = {
-+	{
-+		.index = EQ6HC_SOUTH_DIV_EMMC,
-+		.name = "div-emmc",
-+		.parent = EQ6HC_SOUTH_PLL_PER,
-+		.reg = 0x070,
-+		.shift = 4,
-+		.width = 4,
-+	},
-+	{
-+		.index = EQ6HC_SOUTH_DIV_OSPI_REF,
-+		.name = "div-ospi-ref",
-+		.parent = EQ6HC_SOUTH_PLL_PER,
-+		.reg = 0x090,
-+		.shift = 4,
-+		.width = 4,
-+	},
-+	{
-+		.index = EQ6HC_SOUTH_DIV_OSPI_SYS,
-+		.name = "div-ospi-sys",
-+		.parent = EQ6HC_SOUTH_PLL_PER,
-+		.reg = 0x090,
-+		.shift = 8,
-+		.width = 1,
-+	},
-+	{
-+		.index = EQ6HC_SOUTH_DIV_TSU,
-+		.name = "div-tsu",
-+		.parent = EQ6HC_SOUTH_PLL_PCIE,
-+		.reg = 0x098,
-+		.shift = 4,
-+		.width = 8,
-+	},
-+};
-+
-+static const struct eqc_match_data eqc_eyeq6h_south_match_data = {
-+	.pll_count	= ARRAY_SIZE(eqc_eyeq6h_south_plls),
-+	.plls		= eqc_eyeq6h_south_plls,
-+
-+	.div_count	= ARRAY_SIZE(eqc_eyeq6h_south_divs),
-+	.divs		= eqc_eyeq6h_south_divs,
-+};
-+
-+static const struct eqc_pll eqc_eyeq6h_ddr0_plls[] = {
-+	{ .index = 0, .name = "pll-ddr0", .reg64 = 0x074 },
-+};
-+
-+static const struct eqc_match_data eqc_eyeq6h_ddr0_match_data = {
-+	.pll_count	= ARRAY_SIZE(eqc_eyeq6h_ddr0_plls),
-+	.plls		= eqc_eyeq6h_ddr0_plls,
-+};
-+
-+static const struct eqc_pll eqc_eyeq6h_ddr1_plls[] = {
-+	{ .index = 0, .name = "pll-ddr1", .reg64 = 0x074 },
-+};
-+
-+static const struct eqc_match_data eqc_eyeq6h_ddr1_match_data = {
-+	.pll_count	= ARRAY_SIZE(eqc_eyeq6h_ddr1_plls),
-+	.plls		= eqc_eyeq6h_ddr1_plls,
-+};
-+
-+static const struct eqc_pll eqc_eyeq6h_acc_plls[] = {
-+	{ .index = EQ6HC_ACC_PLL_XNN, .name = "pll-xnn", .reg64 = 0x040 },
-+	{ .index = EQ6HC_ACC_PLL_VMP, .name = "pll-vmp", .reg64 = 0x050 },
-+	{ .index = EQ6HC_ACC_PLL_PMA, .name = "pll-pma", .reg64 = 0x05C },
-+	{ .index = EQ6HC_ACC_PLL_MPC, .name = "pll-mpc", .reg64 = 0x068 },
-+	{ .index = EQ6HC_ACC_PLL_NOC, .name = "pll-noc", .reg64 = 0x070 },
-+};
-+
-+static const struct eqc_match_data eqc_eyeq6h_acc_match_data = {
-+	.pll_count	= ARRAY_SIZE(eqc_eyeq6h_acc_plls),
-+	.plls		= eqc_eyeq6h_acc_plls,
-+
-+	.reset_auxdev_name = "reset_acc",
-+};
-+
-+static const struct of_device_id eqc_match_table[] = {
-+	{ .compatible = "mobileye,eyeq5-olb", .data = &eqc_eyeq5_match_data },
-+	{ .compatible = "mobileye,eyeq6l-olb", .data = &eqc_eyeq6l_match_data },
-+	{ .compatible = "mobileye,eyeq6h-west-olb", .data = &eqc_eyeq6h_west_match_data },
-+	{ .compatible = "mobileye,eyeq6h-east-olb", .data = &eqc_eyeq6h_east_match_data },
-+	{ .compatible = "mobileye,eyeq6h-south-olb", .data = &eqc_eyeq6h_south_match_data },
-+	{ .compatible = "mobileye,eyeq6h-ddr0-olb", .data = &eqc_eyeq6h_ddr0_match_data },
-+	{ .compatible = "mobileye,eyeq6h-ddr1-olb", .data = &eqc_eyeq6h_ddr1_match_data },
-+	{ .compatible = "mobileye,eyeq6h-acc-olb", .data = &eqc_eyeq6h_acc_match_data },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, eqc_match_table);
-+
-+static struct platform_driver eqc_driver = {
-+	.probe = eqc_probe,
-+	.driver = {
-+		.name = "clk-eyeq",
-+		.of_match_table = eqc_match_table,
-+	},
-+};
-+builtin_platform_driver(eqc_driver);
-+
-+/* Required early for GIC timer (pll-cpu) and UARTs (pll-per). */
-+static const struct eqc_pll eqc_eyeq5_early_plls[] = {
-+	{ .index = EQ5C_PLL_CPU, .name = "pll-cpu",  .reg64 = 0x02C },
-+	{ .index = EQ5C_PLL_PER, .name = "pll-per",  .reg64 = 0x05C },
-+};
-+
-+static const struct eqc_early_match_data eqc_eyeq5_early_match_data = {
-+	.early_pll_count	= ARRAY_SIZE(eqc_eyeq5_early_plls),
-+	.early_plls		= eqc_eyeq5_early_plls,
-+	.nb_late_clks = eqc_eyeq5_match_data.pll_count + eqc_eyeq5_match_data.div_count,
-+};
-+
-+/* Required early for GIC timer. */
-+static const struct eqc_pll eqc_eyeq6h_central_early_plls[] = {
-+	{ .index = 0, .name = "pll-cpu", .reg64 = 0x02C },
-+};
-+
-+static const struct eqc_early_match_data eqc_eyeq6h_central_early_match_data = {
-+	.early_pll_count	= ARRAY_SIZE(eqc_eyeq6h_central_early_plls),
-+	.early_plls		= eqc_eyeq6h_central_early_plls,
-+	.nb_late_clks = 0,
-+};
-+
-+/* Required early for UART. */
-+static const struct eqc_pll eqc_eyeq6h_west_early_plls[] = {
-+	{ .index = 0, .name = "pll-west", .reg64 = 0x074 },
-+};
-+
-+static const struct eqc_early_match_data eqc_eyeq6h_west_early_match_data = {
-+	.early_pll_count	= ARRAY_SIZE(eqc_eyeq6h_west_early_plls),
-+	.early_plls		= eqc_eyeq6h_west_early_plls,
-+	.nb_late_clks = 0,
-+};
-+
-+static const struct of_device_id eqc_early_match_table[] = {
-+	{
-+		.compatible = "mobileye,eyeq5-olb",
-+		.data = &eqc_eyeq5_early_match_data,
-+	},
-+	{
-+		.compatible = "mobileye,eyeq6h-central-olb",
-+		.data = &eqc_eyeq6h_central_early_match_data,
-+	},
-+	{
-+		.compatible = "mobileye,eyeq6h-west-olb",
-+		.data = &eqc_eyeq6h_west_early_match_data,
-+	},
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, eqc_early_match_table);
-+
-+static void __init eqc_init(struct device_node *np)
-+{
-+	const struct eqc_early_match_data *early_data;
-+	const struct of_device_id *early_match_data;
-+	unsigned int nb_clks = 0;
-+	struct eqc_priv *priv;
-+	void __iomem *base;
-+	unsigned int i;
-+	int ret;
-+
-+	early_match_data = of_match_node(eqc_early_match_table, np);
-+	if (!early_match_data)
-+		return;
-+
-+	early_data = early_match_data->data;
-+	/* No reason to early init this clock provider. Delay until probe. */
-+	if (!early_data || early_data->early_pll_count == 0)
-+		return;
-+
-+	priv = kzalloc(sizeof(*priv), GFP_KERNEL);
-+	if (!priv) {
-+		ret = -ENOMEM;
-+		goto err;
-+	}
-+
-+	priv->np = np;
-+	priv->early_data = early_data;
-+
-+	nb_clks = early_data->early_pll_count + early_data->nb_late_clks;
-+	priv->cells = kzalloc(struct_size(priv->cells, hws, nb_clks), GFP_KERNEL);
-+	if (!priv->cells) {
-+		ret = -ENOMEM;
-+		goto err;
-+	}
-+
-+	priv->cells->num = nb_clks;
-+
-+	/*
-+	 * Mark all clocks as deferred; some are registered here, the rest at
-+	 * platform device probe.
-+	 */
-+	for (i = 0; i < nb_clks; i++)
-+		priv->cells->hws[i] = ERR_PTR(-EPROBE_DEFER);
-+
-+	/* Offsets (reg64) of early PLLs are relative to OLB block. */
-+	base = of_iomap(np, 0);
-+	if (!base) {
-+		ret = -ENODEV;
-+		goto err;
-+	}
-+
-+	for (i = 0; i < early_data->early_pll_count; i++) {
-+		const struct eqc_pll *pll = &early_data->early_plls[i];
-+		unsigned long mult, div, acc;
-+		struct clk_hw *hw;
-+		u32 r0, r1;
-+		u64 val;
-+
-+		val = readq(base + pll->reg64);
-+		r0 = val;
-+		r1 = val >> 32;
-+
-+		ret = eqc_pll_parse_registers(r0, r1, &mult, &div, &acc);
-+		if (ret) {
-+			pr_err("failed parsing state of %s\n", pll->name);
-+			goto err;
-+		}
-+
-+		hw = clk_hw_register_fixed_factor_with_accuracy_fwname(NULL,
-+				np, pll->name, "ref", 0, mult, div, acc);
-+		priv->cells->hws[pll->index] = hw;
-+		if (IS_ERR(hw)) {
-+			pr_err("failed registering %s: %pe\n", pll->name, hw);
-+			ret = PTR_ERR(hw);
-+			goto err;
-+		}
-+	}
-+
-+	/* When providing a single clock, require no cell. */
-+	if (nb_clks == 1)
-+		ret = of_clk_add_hw_provider(np, of_clk_hw_simple_get, priv->cells->hws[0]);
-+	else
-+		ret = of_clk_add_hw_provider(np, of_clk_hw_onecell_get, priv->cells);
-+	if (ret) {
-+		pr_err("failed registering clk provider: %d\n", ret);
-+		goto err;
-+	}
-+
-+	spin_lock(&eqc_list_slock);
-+	list_add_tail(&priv->list, &eqc_list);
-+	spin_unlock(&eqc_list_slock);
-+
-+	return;
-+
-+err:
-+	/*
-+	 * We are doomed. The system will not be able to boot.
-+	 *
-+	 * Let's still try to be good citizens by freeing resources and print
-+	 * a last error message that might help debugging.
-+	 */
-+
-+	if (priv && priv->cells) {
-+		of_clk_del_provider(np);
-+
-+		for (i = 0; i < early_data->early_pll_count; i++) {
-+			const struct eqc_pll *pll = &early_data->early_plls[i];
-+			struct clk_hw *hw = priv->cells->hws[pll->index];
-+
-+			if (!IS_ERR_OR_NULL(hw))
-+				clk_hw_unregister_fixed_factor(hw);
-+		}
-+
-+		kfree(priv->cells);
-+	}
-+
-+	kfree(priv);
-+
-+	pr_err("failed clk init: %d\n", ret);
-+}
-+
-+CLK_OF_DECLARE_DRIVER(eqc_eyeq5, "mobileye,eyeq5-olb", eqc_init);
-+CLK_OF_DECLARE_DRIVER(eqc_eyeq6h_central, "mobileye,eyeq6h-central-olb", eqc_init);
-+CLK_OF_DECLARE_DRIVER(eqc_eyeq6h_west, "mobileye,eyeq6h-west-olb", eqc_init);
-
--- 
-2.45.2
-
+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBGcmFuayBMaSA8RnJhbmsuTGlA
+bnhwLmNvbT4NCj4gU2VudDogMjAyNMTqNtTCMjfI1SAwOjIzDQo+IFRvOiBrcnprQGtlcm5lbC5v
+cmcNCj4gQ2M6IEZyYW5rIExpIDxmcmFuay5saUBueHAuY29tPjsgY29ub3IrZHRAa2VybmVsLm9y
+ZzsNCj4gZGF2ZW1AZGF2ZW1sb2Z0Lm5ldDsgZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmc7IGVk
+dW1hemV0QGdvb2dsZS5jb207DQo+IGlteEBsaXN0cy5saW51eC5kZXY7IGtyemsrZHRAa2VybmVs
+Lm9yZzsga3ViYUBrZXJuZWwub3JnOw0KPiBsaW51eC1rZXJuZWxAdmdlci5rZXJuZWwub3JnOyBu
+ZXRkZXZAdmdlci5rZXJuZWwub3JnOyBwYWJlbmlAcmVkaGF0LmNvbTsNCj4gcm9iaEBrZXJuZWwu
+b3JnDQo+IFN1YmplY3Q6IFtQQVRDSCB2MiAxLzFdIGR0LWJpbmRpbmdzOiBuZXQ6IGNvbnZlcnQg
+ZW5ldGMgdG8geWFtbA0KPiANCj4gQ29udmVydCBlbmV0YyBkZXZpY2UgYmluZGluZyBmaWxlIHRv
+IHlhbWwuIFNwbGl0IHRvIDMgeWFtbCBmaWxlcywgJ2ZzbCxlbmV0Yy55YW1sJywNCj4gJ2ZzbCxl
+bmV0Yy1tZGlvLnlhbWwnLCAnZnNsLGVuZXRjLWllcmIueWFtbCcuDQo+IA0KDQpTb3JyeSBJIGRp
+ZG4ndCBzZWUgdGhpcyBwYXRjaCB1bnRpbCBub3csIEkgd2FzIHBsYW5uaW5nIHRvIG1ha2UgdGhp
+cyBjb252ZXJzaW9uDQpidXQgZGlkbid0IHJlYWxpemUgeW91IGhhZCBzdGFydGVkIGl0IGZpcnN0
+LiBJdCdzIHZlcnkgbmljZSwgdGhhbmtzIQ0KDQo+IEFkZGl0aW9uYWwgQ2hhbmdlczoNCj4gLSBB
+ZGQgcGNpPHZlbmRvciBpZD4sPHByb2R1Y3Rpb24gaWQ+IGluIGNvbXBhdGlibGUgc3RyaW5nLg0K
+PiAtIFJlZiB0byBjb21tb24gZXRoZXJuZXQtY29udHJvbGxlci55YW1sIGFuZCBtZGlvLnlhbWwu
+DQo+IC0gUmVtb3ZlIGZpeGVkLWxpbmsgcGFydC4NCj4gDQo+IFNpZ25lZC1vZmYtYnk6IEZyYW5r
+IExpIDxGcmFuay5MaUBueHAuY29tPg0KPiAtLS0NCj4gQ2hhbmdlIGZyb20gdjEgdG8gdjINCj4g
+LSByZW5hbWVlIGZpbGUgYXMgZnNsLGVuZXRjLW1kaW8ueWFtbCwgZnNsLGVuZXRjLWllcmIueWFt
+bCwgZnNsLGVuZXRjLnlhbWwNCj4gLSBleGFtcGxlIGluY2x1ZGUgcGNpZSBub2RlDQo+IC0tLQ0K
+PiAgLi4uL2JpbmRpbmdzL25ldC9mc2wsZW5ldGMtaWVyYi55YW1sICAgICAgICAgIHwgIDM1ICsr
+KysrKw0KPiAgLi4uL2JpbmRpbmdzL25ldC9mc2wsZW5ldGMtbWRpby55YW1sICAgICAgICAgIHwg
+IDUzICsrKysrKysrDQo+ICAuLi4vZGV2aWNldHJlZS9iaW5kaW5ncy9uZXQvZnNsLGVuZXRjLnlh
+bWwgICAgfCAgNTAgKysrKysrKysNCj4gIC4uLi9kZXZpY2V0cmVlL2JpbmRpbmdzL25ldC9mc2wt
+ZW5ldGMudHh0ICAgICB8IDExOSAtLS0tLS0tLS0tLS0tLS0tLS0NCj4gIDQgZmlsZXMgY2hhbmdl
+ZCwgMTM4IGluc2VydGlvbnMoKyksIDExOSBkZWxldGlvbnMoLSkgIGNyZWF0ZSBtb2RlIDEwMDY0
+NA0KPiBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbmV0L2ZzbCxlbmV0Yy1pZXJi
+LnlhbWwNCj4gIGNyZWF0ZSBtb2RlIDEwMDY0NA0KPiBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUv
+YmluZGluZ3MvbmV0L2ZzbCxlbmV0Yy1tZGlvLnlhbWwNCj4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBE
+b2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbmV0L2ZzbCxlbmV0Yy55YW1sDQo+ICBk
+ZWxldGUgbW9kZSAxMDA2NDQgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL25ldC9m
+c2wtZW5ldGMudHh0DQo+IA0KPiBkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVl
+L2JpbmRpbmdzL25ldC9mc2wsZW5ldGMtbWRpby55YW1sDQo+IGIvRG9jdW1lbnRhdGlvbi9kZXZp
+Y2V0cmVlL2JpbmRpbmdzL25ldC9mc2wsZW5ldGMtbWRpby55YW1sDQo+IG5ldyBmaWxlIG1vZGUg
+MTAwNjQ0DQo+IGluZGV4IDAwMDAwMDAwMDAwMDAuLjYwNzQwZWE1NmNiMDgNCj4gLS0tIC9kZXYv
+bnVsbA0KPiArKysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbmV0L2ZzbCxl
+bmV0Yy1tZGlvLnlhbWwNCg0KSSBzdWdnZXN0IGNoYW5naW5nIHRoZSBmaWxlIG5hbWUgdG8gbnhw
+LG5ldGMtZW1kaW8ueWFtbC4gImZzbCIgaXMgYSB2ZXJ5IG91dGRhdGVkDQpwcmVmaXguIEZvciBu
+ZXcgZmlsZXMsIEkgdGhpbmsgIm54cCIgaXMgYSBiZXR0ZXIgcHJlZml4Lg0KDQo+IEBAIC0wLDAg
+KzEsNTMgQEANCj4gKyMgU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IChHUEwtMi4wLW9ubHkgT1Ig
+QlNELTItQ2xhdXNlKSAlWUFNTCAxLjINCj4gKy0tLQ0KPiArDQo+ICt0aXRsZTogRU5FVEMgdGhl
+IGNlbnRyYWwgTURJTyBQQ0llIGVuZHBvaW50IGRldmljZQ0KZXh0ZXJuYWwgaXMgYmV0dGVyLCB0
+aGF0IGlzIHdoeSB3ZSBjYWxsIGl0IEVNRElPLg0KDQo+ICsNCj4gK2Rlc2NyaXB0aW9uOg0KPiAr
+ICBJbiB0aGlzIGNhc2UsIHRoZSBtZGlvIG5vZGUgc2hvdWxkIGJlIGRlZmluZWQgYXMgYW5vdGhl
+ciBQQ0llDQo+ICsgIGVuZHBvaW50IG5vZGUsIGF0IHRoZSBzYW1lIGxldmVsIHdpdGggdGhlIEVO
+RVRDIHBvcnQgbm9kZXMNCj4gKw0KVGhpcyBteSBsb2NhbCBkZXNjcmlwdGlvbiwgZXhjZXJwdGVk
+IGZyb20gTkVUQydzIGJsb2NrIGd1aWRlLCBGWUkuDQpkZXNjcmlwdGlvbjogfA0KICBORVRDIHBy
+b3ZpZGVzIGFuIGV4dGVybmFsIG1hc3RlciBNRElPIGludGVyZmFjZSAoRU1ESU8pIGZvciBtYW5h
+Z2luZyBleHRlcm5hbA0KICBkZXZpY2VzIChQSFlzKS4gRU1ESU8gc3VwcG9ydHMgYm90aCBDbGF1
+c2UgMjIgYW5kIDQ1IHByb3RvY29scy4gQW5kIHRoZSBFTURJTw0KICBwcm92aWRlcyBhIG1lYW5z
+IGZvciBkaWZmZXJlbnQgc29mdHdhcmUgbW9kdWxlcyB0byBzaGFyZSBhIHNpbmdsZSBzZXQgb2Yg
+TURJTw0KICBzaWduYWxzIHRvIGFjY2VzcyB0aGVpciBQSFlzLg0KDQo+ICttYWludGFpbmVyczoN
+Cj4gKyAgLSBGcmFuayBMaSA8RnJhbmsuTGlAbnhwLmNvbT4uDQpWbGFkaW1pciBhbmQgQ2xhdWRp
+dSBhcyB0aGUgZHJpdmVyIG1haW50YWluZXIsIGl0IGlzIGJlc3QgdG8gYWRkIHRoZW0NCnRvIHRo
+aXMgbGlzdA0KDQo+ICsNCj4gK3Byb3BlcnRpZXM6DQo+ICsgIGNvbXBhdGlibGU6DQo+ICsgICAg
+aXRlbXM6DQo+ICsgICAgICAtIGVudW06DQo+ICsgICAgICAgICAgLSBwY2kxOTU3LGVlMDENCj4g
+KyAgICAgIC0gY29uc3Q6IGZzbCxlbmV0Yy1tZGlvDQoNCiIgZnNsLGVuZXRjLW1kaW8iIGlzIG1l
+YW5pbmdsZXNzLCB3ZSBkaWQgbm90IHVzZSBpdCBldmVyLg0KPiArDQo+ICsgIHJlZzoNCj4gKyAg
+ICBtYXhJdGVtczogMQ0KPiArDQo+ICtyZXF1aXJlZDoNCj4gKyAgLSBjb21wYXRpYmxlDQo+ICsg
+IC0gcmVnDQo+ICsNCj4gK2FsbE9mOg0KPiArICAtICRyZWY6IG1kaW8ueWFtbA0KPiArDQo+ICt1
+bmV2YWx1YXRlZFByb3BlcnRpZXM6IGZhbHNlDQo+ICsNCj4gK2V4YW1wbGVzOg0KPiArICAtIHwN
+Cj4gKyAgICBwY2llQDFmMDAwMDAwMCB7DQo+ICsgICAgICAgIGNvbXBhdGlibGUgPSAicGNpLWhv
+c3QtZWNhbS1nZW5lcmljIjsNCj4gKyAgICAgICAgcmVnID0gPDB4MDEgMHhmMDAwMDAwMCAweDAg
+MHgxMDAwMDA+Ow0KPiArICAgICAgICAjYWRkcmVzcy1jZWxscyA9IDwzPjsNCj4gKyAgICAgICAg
+I3NpemUtY2VsbHMgPSA8Mj47DQo+ICsNCj4gKyAgICAgICAgbWRpb0AwLDMgew0KPiArICAgICAg
+ICAgICAgY29tcGF0aWJsZSA9ICJwY2kxOTU3LGVlMDEiLCAiZnNsLGVuZXRjLW1kaW8iOw0KPiAr
+ICAgICAgICAgICAgcmVnID0gPDB4MDAwMzAwIDAgMCAwIDA+Ow0KPiArICAgICAgICAgICAgI2Fk
+ZHJlc3MtY2VsbHMgPSA8MT47DQo+ICsgICAgICAgICAgICAjc2l6ZS1jZWxscyA9IDwwPjsNCj4g
+Kw0KPiArICAgICAgICAgICAgZXRoZXJuZXQtcGh5QDIgew0KPiArICAgICAgICAgICAgICAgIHJl
+ZyA9IDwweDI+Ow0KPiArICAgICAgICAgICAgfTsNCj4gKyAgICAgICAgfTsNCj4gKyAgICB9Ow0K
+PiBkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL25ldC9mc2ws
+ZW5ldGMueWFtbA0KPiBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9uZXQvZnNs
+LGVuZXRjLnlhbWwNCj4gbmV3IGZpbGUgbW9kZSAxMDA2NDQNCj4gaW5kZXggMDAwMDAwMDAwMDAw
+MC4uODQzYzI3ZTM1N2YyZA0KPiAtLS0gL2Rldi9udWxsDQo+ICsrKyBiL0RvY3VtZW50YXRpb24v
+ZGV2aWNldHJlZS9iaW5kaW5ncy9uZXQvZnNsLGVuZXRjLnlhbWwNClNhbWUgYXMgYWJvdmUsIG54
+cCxlbmV0Yy55YW1sIG9yIG54cCxuZXRjLWVuZXRjLnlhbWwgaXMgYmV0dGVyLg0KDQo+IEBAIC0w
+LDAgKzEsNTAgQEANCj4gK3RpdGxlOiBFTkVUQyBldGhlcm5ldA0KdGl0bGU6IFRoZSBOSUMgZnVu
+Y3Rpb25hbGl0eSBvZiBOWFAgTkVUQw0KDQo+ICsNCj4gK2Rlc2NyaXB0aW9uOg0KPiArICBEZXBl
+bmRpbmcgb24gYm9hcmQgZGVzaWduIGFuZCBFTkVUQyBwb3J0IHR5cGUgKGludGVybmFsIG9yDQo+
+ICsgIGV4dGVybmFsKSB0aGVyZSBhcmUgdHdvIHN1cHBvcnRlZCBsaW5rIG1vZGVzIHNwZWNpZmll
+ZCBieQ0KPiArICBiZWxvdyBkZXZpY2UgdHJlZSBiaW5kaW5ncy4NCmRlc2NyaXB0aW9uOiB8DQog
+IFRoZSBOSUMgZnVuY3Rpb25hbGl0eSBpbiBORVRDIGlzIGtub3duIGFzIEV0aGVyTkVUIENvbnRy
+b2xsZXIgKEVORVRDKS4gRU5FVEMNCiAgc3VwcG9ydHMgdmlydHVhbGl6YXRpb24vaXNvbGF0aW9u
+IGJhc2VkIG9uIFBDSWUgU2luZ2xlIFJvb3QgSU8gVmlydHVhbGl6YXRpb24NCiAgKFNSLUlPViks
+IGFkdmFuY2VkIFFvUyB3aXRoIDggdHJhZmZpYyBjbGFzc2VzIGFuZCA0IGRyb3AgcmVzaWxpZW5j
+ZSBsZXZlbHMsDQogIGFuZCBhIGZ1bGwgcmFuZ2Ugb2YgVFNOIHN0YW5kYXJkcyBhbmQgTklDIG9m
+ZmxvYWQgY2FwYWJpbGl0aWVzLg0KDQo+ICsNCj4gK21haW50YWluZXJzOg0KPiArICAtIEZyYW5r
+IExpIDxGcmFuay5MaUBueHAuY29tPg0KU2F2ZSBhcyBhYm92ZS4NCg0KPiArDQo+ICtwcm9wZXJ0
+aWVzOg0KPiArICBjb21wYXRpYmxlOg0KPiArICAgIGl0ZW1zOg0KPiArICAgICAgLSBlbnVtOg0K
+PiArICAgICAgICAgIC0gcGNpMTk1NyxlMTAwDQo+ICsgICAgICAtIGNvbnN0OiBmc2wsZW5ldGMN
+ClNob3VsZCBiZSByZW1vdmVkLg0KDQo+ICsNCj4gKyAgcmVnOg0KPiArICAgIG1heEl0ZW1zOiAx
+DQo+ICsNCg0KVGhpcyBpcyBhbiBleGFtcGxlIEkgc2VlIGluIGZzbC1lbmV0Yy50eHQNCmV0aGVy
+bmV0QDAsMCB7DQoJY29tcGF0aWJsZSA9ICJmc2wsZW5ldGMiOw0KCXJlZyA9IDwweDAwMDAwMCAw
+IDAgMCAwPjsNCglwaHktaGFuZGxlID0gPCZzZ21paV9waHkwPjsNCglwaHktY29ubmVjdGlvbi10
+eXBlID0gInNnbWlpIjsNCg0KCW1kaW8gew0KCQkjYWRkcmVzcy1jZWxscyA9IDwxPjsNCgkJI3Np
+emUtY2VsbHMgPSA8MD47DQoJCXNnbWlpX3BoeTA6IGV0aGVybmV0LXBoeUAyIHsNCgkJCXJlZyA9
+IDwweDI+Ow0KCQl9Ow0KCX07DQp9Ow0KQnV0IGhlcmUgSSBkb24ndCBzZWUgYW55IGRlc2NyaXB0
+aW9uIG9mIHRoZSBtZGlvIGNoaWxkIG5vZGUuDQpJIHRoaW5rIHlvdSBuZWVkIHRvIGFkZCBpdCwg
+anVzdCBsaWtlIGJlbG93Lg0KbWRpbzoNCiAgICAkcmVmOiBtZGlvLnlhbWwjDQogICAgdW5ldmFs
+dWF0ZWRQcm9wZXJ0aWVzOiBmYWxzZQ0KICAgIGRlc2NyaXB0aW9uOiB8DQogICAgICBPcHRpb25h
+bCBjaGlsZCBub2RlIGZvciBFTkVUQyBpbnN0YW5jZSwgb3RoZXJ3aXNlIHVzZSBORVRDIEVNRElP
+Lg0KDQo+ICtyZXF1aXJlZDoNCj4gKyAgLSBjb21wYXRpYmxlDQo+ICsgIC0gcmVnDQo+ICsNCj4g
+K2FsbE9mOg0KPiArICAtICRyZWY6IGV0aGVybmV0LWNvbnRyb2xsZXIueWFtbA0KPiArDQo+ICt1
+bmV2YWx1YXRlZFByb3BlcnRpZXM6IGZhbHNlDQo+ICsNCj4gK2V4YW1wbGVzOg0KPiArICAtIHwN
+Cj4gKyAgICBwY2llQDFmMDAwMDAwMCB7DQo+ICsgICAgICAgIGNvbXBhdGlibGUgPSAicGNpLWhv
+c3QtZWNhbS1nZW5lcmljIjsNCj4gKyAgICAgICAgcmVnID0gPDB4MDEgMHhmMDAwMDAwMCAweDAg
+MHgxMDAwMDA+Ow0KPiArICAgICAgICAjYWRkcmVzcy1jZWxscyA9IDwzPjsNCj4gKyAgICAgICAg
+I3NpemUtY2VsbHMgPSA8Mj47DQo+ICsNCj4gKyAgICAgICAgZXRoZXJuZXRAMCwwIHsNCj4gKyAg
+ICAgICAgICAgIGNvbXBhdGlibGUgPSAicGNpMTk1NyxlMTAwIiwgImZzbCxlbmV0YyI7DQo+ICsg
+ICAgICAgICAgICByZWcgPSA8MHgwMDAwMDAgMCAwIDAgMD47DQo+ICsgICAgICAgICAgICBwaHkt
+aGFuZGxlID0gPCZzZ21paV9waHkwPjsNCj4gKyAgICAgICAgICAgIHBoeS1jb25uZWN0aW9uLXR5
+cGUgPSAic2dtaWkiOw0KPiArICAgICAgICB9Ow0KPiArICAgIH07DQo+IGRpZmYgLS1naXQgYS9E
+b2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbmV0L2ZzbC1lbmV0Yy50eHQNCj4gYi9E
+b2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbmV0L2ZzbC1lbmV0Yy50eHQNCj4gZGVs
+ZXRlZCBmaWxlIG1vZGUgMTAwNjQ0DQo+IGluZGV4IDliOWEzZjE5N2UyZDMuLjAwMDAwMDAwMDAw
+MDANCj4gLS0tIGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL25ldC9mc2wtZW5l
+dGMudHh0DQo+ICsrKyAvZGV2L251bGwNCj4gQEAgLTEsMTE5ICswLDAgQEANCj4gLSogRU5FVEMg
+ZXRoZXJuZXQgZGV2aWNlIHRyZWUgYmluZGluZ3MNCj4gLQ0KPiAtRGVwZW5kaW5nIG9uIGJvYXJk
+IGRlc2lnbiBhbmQgRU5FVEMgcG9ydCB0eXBlIChpbnRlcm5hbCBvcg0KPiAtZXh0ZXJuYWwpIHRo
+ZXJlIGFyZSB0d28gc3VwcG9ydGVkIGxpbmsgbW9kZXMgc3BlY2lmaWVkIGJ5IC1iZWxvdyBkZXZp
+Y2UgdHJlZQ0KPiBiaW5kaW5ncy4NCj4gLQ0KPiAtUmVxdWlyZWQgcHJvcGVydGllczoNCj4gLQ0K
+PiAtLSByZWcJCTogU3BlY2lmaWVzIFBDSWUgRGV2aWNlIE51bWJlciBhbmQgRnVuY3Rpb24NCj4g
+LQkJICBOdW1iZXIgb2YgdGhlIEVORVRDIGVuZHBvaW50IGRldmljZSwgYWNjb3JkaW5nDQo+IC0J
+CSAgdG8gcGFyZW50IG5vZGUgYmluZGluZ3MuDQo+IC0tIGNvbXBhdGlibGUJOiBTaG91bGQgYmUg
+ImZzbCxlbmV0YyIuDQo+IC0NCj4gLTEuIFRoZSBFTkVUQyBleHRlcm5hbCBwb3J0IGlzIGNvbm5l
+Y3RlZCB0byBhIE1ESU8gY29uZmlndXJhYmxlIHBoeQ0KPiAtDQo+IC0xLjEuIFVzaW5nIHRoZSBs
+b2NhbCBFTkVUQyBQb3J0IE1ESU8gaW50ZXJmYWNlDQo+IC0NCj4gLUluIHRoaXMgY2FzZSwgdGhl
+IEVORVRDIG5vZGUgc2hvdWxkIGluY2x1ZGUgYSAibWRpbyIgc3ViLW5vZGUgLXRoYXQgaW4gdHVy
+bg0KPiBzaG91bGQgY29udGFpbiB0aGUgImV0aGVybmV0LXBoeSIgbm9kZSBkZXNjcmliaW5nIHRo
+ZSAtZXh0ZXJuYWwgcGh5LiAgQmVsb3cNCj4gcHJvcGVydGllcyBhcmUgcmVxdWlyZWQsIHRoZWly
+IGJpbmRpbmdzIC1hbHJlYWR5IGRlZmluZWQgaW4NCj4gRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVl
+L2JpbmRpbmdzL25ldC9ldGhlcm5ldC50eHQgb3INCj4gLURvY3VtZW50YXRpb24vZGV2aWNldHJl
+ZS9iaW5kaW5ncy9uZXQvcGh5LnR4dC4NCj4gLQ0KPiAtUmVxdWlyZWQ6DQo+IC0NCj4gLS0gcGh5
+LWhhbmRsZQkJOiBQaGFuZGxlIHRvIGEgUEhZIG9uIHRoZSBNRElPIGJ1cy4NCj4gLQkJCSAgRGVm
+aW5lZCBpbiBldGhlcm5ldC50eHQuDQo+IC0NCj4gLS0gcGh5LWNvbm5lY3Rpb24tdHlwZQk6IERl
+ZmluZWQgaW4gZXRoZXJuZXQudHh0Lg0KPiAtDQo+IC0tIG1kaW8JCQk6ICJtZGlvIiBub2RlLCBk
+ZWZpbmVkIGluIG1kaW8udHh0Lg0KPiAtDQo+IC0tIGV0aGVybmV0LXBoeQkJOiAiZXRoZXJuZXQt
+cGh5IiBub2RlLCBkZWZpbmVkIGluIHBoeS50eHQuDQo+IC0NCj4gLUV4YW1wbGU6DQo+IC0NCj4g
+LQlldGhlcm5ldEAwLDAgew0KPiAtCQljb21wYXRpYmxlID0gImZzbCxlbmV0YyI7DQo+IC0JCXJl
+ZyA9IDwweDAwMDAwMCAwIDAgMCAwPjsNCj4gLQkJcGh5LWhhbmRsZSA9IDwmc2dtaWlfcGh5MD47
+DQo+IC0JCXBoeS1jb25uZWN0aW9uLXR5cGUgPSAic2dtaWkiOw0KPiAtDQo+IC0JCW1kaW8gew0K
+PiAtCQkJI2FkZHJlc3MtY2VsbHMgPSA8MT47DQo+IC0JCQkjc2l6ZS1jZWxscyA9IDwwPjsNCj4g
+LQkJCXNnbWlpX3BoeTA6IGV0aGVybmV0LXBoeUAyIHsNCj4gLQkJCQlyZWcgPSA8MHgyPjsNCj4g
+LQkJCX07DQo+IC0JCX07DQo+IC0JfTsNCj4gLQ0KPiAtMS4yLiBVc2luZyB0aGUgY2VudHJhbCBN
+RElPIFBDSWUgZW5kcG9pbnQgZGV2aWNlDQo+IC0NCj4gLUluIHRoaXMgY2FzZSwgdGhlIG1kaW8g
+bm9kZSBzaG91bGQgYmUgZGVmaW5lZCBhcyBhbm90aGVyIFBDSWUgLWVuZHBvaW50IG5vZGUsDQo+
+IGF0IHRoZSBzYW1lIGxldmVsIHdpdGggdGhlIEVORVRDIHBvcnQgbm9kZXMuDQo+IC0NCj4gLVJl
+cXVpcmVkIHByb3BlcnRpZXM6DQo+IC0NCj4gLS0gcmVnCQk6IFNwZWNpZmllcyBQQ0llIERldmlj
+ZSBOdW1iZXIgYW5kIEZ1bmN0aW9uDQo+IC0JCSAgTnVtYmVyIG9mIHRoZSBFTkVUQyBlbmRwb2lu
+dCBkZXZpY2UsIGFjY29yZGluZw0KPiAtCQkgIHRvIHBhcmVudCBub2RlIGJpbmRpbmdzLg0KPiAt
+LSBjb21wYXRpYmxlCTogU2hvdWxkIGJlICJmc2wsZW5ldGMtbWRpbyIuDQo+IC0NCj4gLVRoZSBy
+ZW1haW5pbmcgcmVxdWlyZWQgbWRpbyBidXMgcHJvcGVydGllcyBhcmUgc3RhbmRhcmQsIHRoZWly
+IGJpbmRpbmdzDQo+IC1hbHJlYWR5IGRlZmluZWQgaW4gRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVl
+L2JpbmRpbmdzL25ldC9tZGlvLnR4dC4NCj4gLQ0KPiAtRXhhbXBsZToNCj4gLQ0KPiAtCWV0aGVy
+bmV0QDAsMCB7DQo+IC0JCWNvbXBhdGlibGUgPSAiZnNsLGVuZXRjIjsNCj4gLQkJcmVnID0gPDB4
+MDAwMDAwIDAgMCAwIDA+Ow0KPiAtCQlwaHktaGFuZGxlID0gPCZzZ21paV9waHkwPjsNCj4gLQkJ
+cGh5LWNvbm5lY3Rpb24tdHlwZSA9ICJzZ21paSI7DQo+IC0JfTsNCj4gLQ0KPiAtCW1kaW9AMCwz
+IHsNCj4gLQkJY29tcGF0aWJsZSA9ICJmc2wsZW5ldGMtbWRpbyI7DQo+IC0JCXJlZyA9IDwweDAw
+MDMwMCAwIDAgMCAwPjsNCj4gLQkJI2FkZHJlc3MtY2VsbHMgPSA8MT47DQo+IC0JCSNzaXplLWNl
+bGxzID0gPDA+Ow0KPiAtCQlzZ21paV9waHkwOiBldGhlcm5ldC1waHlAMiB7DQo+IC0JCQlyZWcg
+PSA8MHgyPjsNCj4gLQkJfTsNCj4gLQl9Ow0KPiAtDQo+IC0yLiBUaGUgRU5FVEMgcG9ydCBpcyBh
+biBpbnRlcm5hbCBwb3J0IG9yIGhhcyBhIGZpeGVkLWxpbmsgZXh0ZXJuYWwgLWNvbm5lY3Rpb24N
+Cj4gLQ0KPiAtSW4gdGhpcyBjYXNlLCB0aGUgRU5FVEMgcG9ydCBub2RlIGRlZmluZXMgYSBmaXhl
+ZCBsaW5rIGNvbm5lY3Rpb24sIC1hcyBzcGVjaWZpZWQNCj4gYnkgRG9jdW1lbnRhdGlvbi9kZXZp
+Y2V0cmVlL2JpbmRpbmdzL25ldC9maXhlZC1saW5rLnR4dC4NCj4gLQ0KPiAtUmVxdWlyZWQ6DQo+
+IC0NCj4gLS0gZml4ZWQtbGluawk6ICJmaXhlZC1saW5rIiBub2RlLCBkZWZpbmVkIGluICJmaXhl
+ZC1saW5rLnR4dCIuDQo+IC0NCj4gLUV4YW1wbGU6DQo+IC0JZXRoZXJuZXRAMCwyIHsNCj4gLQkJ
+Y29tcGF0aWJsZSA9ICJmc2wsZW5ldGMiOw0KPiAtCQlyZWcgPSA8MHgwMDAyMDAgMCAwIDAgMD47
+DQo+IC0JCWZpeGVkLWxpbmsgew0KPiAtCQkJc3BlZWQgPSA8MTAwMD47DQo+IC0JCQlmdWxsLWR1
+cGxleDsNCj4gLQkJfTsNCj4gLQl9Ow0KPiAtDQo+IC0qIEludGVncmF0ZWQgRW5kcG9pbnQgUmVn
+aXN0ZXIgQmxvY2sgYmluZGluZ3MNCj4gLQ0KPiAtT3B0aW9uYWxseSwgdGhlIGZzbF9lbmV0YyBk
+cml2ZXIgY2FuIHByb2JlIG9uIHRoZSBJbnRlZ3JhdGVkIEVuZHBvaW50IFJlZ2lzdGVyDQo+IC1C
+bG9jaywgd2hpY2ggcHJlY29uZmlndXJlcyB0aGUgRklGTyBsaW1pdHMgZm9yIHRoZSBFTkVUQyBw
+b3J0cy4gVGhpcyBpcyBhIG5vZGUNCj4gLXdpdGggdGhlIGZvbGxvd2luZyBwcm9wZXJ0aWVzOg0K
+PiAtDQo+IC0tIHJlZwkJOiBTcGVjaWZpZXMgdGhlIGFkZHJlc3MgaW4gdGhlIFNvQyBtZW1vcnkg
+c3BhY2UuDQo+IC0tIGNvbXBhdGlibGUJOiBNdXN0IGJlICJmc2wsbHMxMDI4YS1lbmV0Yy1pZXJi
+Ii4NCj4gLQ0KPiAtRXhhbXBsZToNCj4gLQlpZXJiQDFmMDgwMDAwMCB7DQo+IC0JCWNvbXBhdGli
+bGUgPSAiZnNsLGxzMTAyOGEtZW5ldGMtaWVyYiI7DQo+IC0JCXJlZyA9IDwweDAxIDB4ZjA4MDAw
+MDAgMHgwIDB4MTAwMDA+Ow0KPiAtCX07DQo+IC0tDQo+IDIuMzQuMQ0KPiANCg0K
 
