@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-83768-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83769-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1949929D26
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 09:33:17 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CDD1929D2C
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 09:34:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D43491C20D87
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 07:33:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8C68CB20B07
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 07:33:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C67A208AD;
-	Mon,  8 Jul 2024 07:33:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 249E8210EC;
+	Mon,  8 Jul 2024 07:33:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GvfvbM22"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QHfaOZ0e"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30BE918EBF;
-	Mon,  8 Jul 2024 07:33:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E51BF224F6;
+	Mon,  8 Jul 2024 07:33:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720423993; cv=none; b=FaN6aN726MmwZv06Ho7f2Lfq32Tbgjbopep/Hw3PcsePT6v0gR0iQT6UCboAhUU//2+GUvMGtsVS6/XQVZqLLcZ+Rdxb3pXB8Fmtze7gJlEI5Wi/utshiW69hKfztbDZQtuFpO0jF3ESxASii11i+VrO7F/F8QiTLrlkGqsGW5M=
+	t=1720424035; cv=none; b=pF67UHQMotoIEVus6W7AHNLHwYDjWhLlK32cDLSvP+MTJ6TjuxYjKLPJwDJnXVwwI5dbNgKC0QW1srtm5xVfXnn9q43mNx/yg6ME+w3CfWD4R+QBWq2hSZbcvLlj2R46/rcvLQWSjYe+ODtvrcsfqt1UFRILm5wW3OhWGkKhxOk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720423993; c=relaxed/simple;
-	bh=A0VXbThaldSglFo32u5p70kxlO/JzsYI2cfWWiOLsWM=;
+	s=arc-20240116; t=1720424035; c=relaxed/simple;
+	bh=mxMf1TrNtyc53HRtih3uOjiq76vxAUZxBn5/tCBbW0c=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=eQJiZDy1gzk1OV7I5PiWQRqLNMsi3WdZP9P8cDEu0wLEJ6ee+V8SWxVsCkBiJ/FU/ASNhGTa+ljL8JWK0TpziEDrS2+Dj/jq34jd3a++lPwWOJpv9zOQsd/G2NYrq4wXJh+twXg3Otvsleg6j4JHWLft1d67NzvgD1jpLsIZO/Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GvfvbM22; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23FF3C116B1;
-	Mon,  8 Jul 2024 07:33:06 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=J4tNnHL6hkHvntrII811VggAu8ASMyreYroTyxu9u4IqsexZzLURPGdJdxh12k9FMJhDXFPWkB0MdmBcXtfOQvrlsOifUgF52IW0y9BjQ0ZIdcLm7ILCLqeloUtFdvg9Yq8wKcZScQuy5L8Ddcy/VUtp9KOWNNr6aHdN8E0GWuw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QHfaOZ0e; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BF334C116B1;
+	Mon,  8 Jul 2024 07:33:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720423992;
-	bh=A0VXbThaldSglFo32u5p70kxlO/JzsYI2cfWWiOLsWM=;
+	s=k20201202; t=1720424034;
+	bh=mxMf1TrNtyc53HRtih3uOjiq76vxAUZxBn5/tCBbW0c=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=GvfvbM22UDRINvtifxCox/X+JeZqYyHhVMmTzQbouZWMjnC7X1F9IRdFbOdWWFNQT
-	 V8lEfmC23ArMqRJbn8PyWJVwZOhPKQ5KlOZxSG8oroPQgToyMtcfOouRmdzn+kOfyG
-	 6d13msSioRUBSfqhJwzVyg3KhCn6UHoW47s3ZJp3U9oD+/oOD4KP9vnvtUe61q5sn+
-	 Z6nI+16ddLW5tfkrlrELqcOPIJ8MgVgbEqcp28I2/JP3Xmb6f3C3IJopD4OlrzoQ+A
-	 TuB9u/AEX8yqW78NWwpne5ECccEAN3s29CIYu3PUqjtXI2hI5jY3PLw+wEVPY9C+Ps
-	 SwzvFD1dN/nKg==
-Message-ID: <304b7bb1-d315-4147-820b-1ec0aa63e759@kernel.org>
-Date: Mon, 8 Jul 2024 09:33:04 +0200
+	b=QHfaOZ0eyaurIs232cTzHi6U0VGfa28JITak1PJ+4Cl9y8TIKdhAsJT1Rg7W9Q9TO
+	 iRlRhS/HEyOEMuBsPLcjXn5CGmFg+cAr6ldlxovSjReJv7sLtrworV30xqh424HpH3
+	 Ly+I5g3qHVYgzXtmKO+S/8qHu1MFHnu4VbVXtpTG++TUE3j/G2VYKWLFRqAzZSbaXL
+	 CUVmvhNspD+kDKOoi1hfpjxs3wh96lb09AM1+vDZShce0z0FY5c33bNV5oZDsqVo+R
+	 gj0mOW9bCC+2l6r54orlfkZT2boznT9tXz0s3lMCmy8puRdJCmajq3VkwW5p9fBrSt
+	 AjFcEmL7fG67Q==
+Message-ID: <23e80ead-1b52-4db8-af61-44f622458f97@kernel.org>
+Date: Mon, 8 Jul 2024 09:33:45 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,24 +50,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: iio: adc: sophgo,cv18xx-saradc.yaml:
- Add Sophgo SARADC binding documentation
-To: Miquel Raynal <miquel.raynal@bootlin.com>, Conor Dooley <conor@kernel.org>
-Cc: Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
- Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen Wang <unicorn_wang@outlook.com>,
- Inochi Amaoto <inochiama@outlook.com>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-riscv@lists.infradead.org
-References: <20240705-sg2002-adc-v2-0-83428c20a9b2@bootlin.com>
- <20240705-sg2002-adc-v2-1-83428c20a9b2@bootlin.com>
- <20240705-unaired-pesticide-4135eaa04212@spud>
- <6b5459fd-2873-4c26-b986-882413b8d95b@bootlin.com>
- <20240706-remote-undergo-3b9dfe44d16f@spud> <20240708083011.058d0c57@xps-13>
+Subject: Re: [09/10] drm/imx: Add i.MX8qxp Display Controller KMS
+To: Liu Ying <victor.liu@nxp.com>, dri-devel@lists.freedesktop.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ kernel@pengutronix.de, devicetree@vger.kernel.org
+Cc: LKML <linux-kernel@vger.kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>,
+ Fabio Estevam <festevam@gmail.com>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Rob Herring <robh@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Shawn Guo <shawnguo@kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
+ Thomas Zimmermann <tzimmermann@suse.de>
+References: <20240705090932.1880496-10-victor.liu@nxp.com>
+ <6595d4fa-2e83-4380-b36e-9c4d910aadea@web.de>
+ <3b91320f-730e-46e4-9c96-8c348bf9a2a2@nxp.com>
+ <5bb059a0-b94c-44cd-b18f-4e2a79a6e8a3@web.de>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -113,38 +111,26 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240708083011.058d0c57@xps-13>
+In-Reply-To: <5bb059a0-b94c-44cd-b18f-4e2a79a6e8a3@web.de>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 08/07/2024 08:30, Miquel Raynal wrote:
-> Hi Conor,
+On 08/07/2024 09:09, Markus Elfring wrote:
+>>> Under which circumstances would you become interested to apply a statement
+>>> like “guard(spinlock_irqsave)(&crtc->dev->event_lock);”?
+>>
+>> I just follow the kerneldoc of drm_crtc_send_vblank_event() to
+>> hold event lock like many other drivers do.
 > 
->>>>> +properties:
->>>>> +  compatible:
->>>>> +    oneOf:
->>>>> +      - items:
->>>>> +          - enum:
->>>>> +              - sophgo,cv1800b-saradc
->>>>> +          - const: sophgo,cv18xx-saradc  
->>>>
->>>> I don't think the fallback here makes sense. If there's other devices
->>>> with a compatible programming model added later, we can fall back to the
->>>> cv1800b.
-> 
-> I'm sorry but isn't this slightly disagreeing with the "writing
-> bindings" doc pointed in v1? It says,
-> 
-> * DO use fallback compatibles when devices are the same as or a subset
->   of prior implementations.
-> 
-> I believe we fall in the "devices are the same" category, so I would
-> have myself wrote a similar binding here with a compatible matching
-> them all, plus a hardware-implementation-specific compatible as well;
-> just in case.
+> Please take another look at software design possibilities to benefit more
+> from further applications of scope-based resource management.
 
-Fallback from one model to another. There is no "another" model here,
-but wildcard. There is no such device as cv18xx, right?
+<form letter>
+Feel free to ignore all comments from Markus, regardless whether the
+suggestion is reasonable or not. This person is banned from LKML and
+several maintainers ignore Markus' feedback, because it is just a waste
+of time.
+</form letter>
 
 Best regards,
 Krzysztof
