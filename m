@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-83844-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83845-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E88B92A0F5
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 13:24:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFCCB92A0FB
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 13:25:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 55587B21BF0
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 11:23:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 758A2281C2D
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 11:25:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B21B7A715;
-	Mon,  8 Jul 2024 11:23:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11A697BAE3;
+	Mon,  8 Jul 2024 11:25:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i3ikLgat"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iVgYVGuZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09C11101E2;
-	Mon,  8 Jul 2024 11:23:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB2D27A715;
+	Mon,  8 Jul 2024 11:25:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720437835; cv=none; b=tQW7DjEKDNLM4zoL1c2aLdrye/lU6oFvVjL9m+u52QF+UcJPkMRg+ywj66eDOnei73jIawW3Iho5tEfdJK7Gn5pdhtmjhjaJ+ubpW4hsKy8AFUu2mqHyOQEOwuv3QKlJk/l5Z1ywENfICgLtpZ+UAUOUNcCvpQ6swxmVQoNkiKI=
+	t=1720437916; cv=none; b=dH5PX5S1lq5j7cJpthqb5CjTlWsVUu1T5EVNsSC1zXyHWN0qVRZH0GmGLhSps4c2Y6mDk7Ai49XMCV7+mvolviKhxSy8c6ljQIhL9KFv+Q1lDtoVUg2Bph5LRh+xGWcZqmyheY+8Cy5vdV9A/mkvWhC7FxIBNqMUrYBRCuItDlU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720437835; c=relaxed/simple;
-	bh=wVbhmgIV0XSNGTyn5Cat9As96xgxbawNSvJULCBPh8E=;
+	s=arc-20240116; t=1720437916; c=relaxed/simple;
+	bh=QrRKS+3iDLmeUQXoJ08zl803lCFnPF6mGpqzE/kCciM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cLX/HOkV+3i7SJnklyrXbhgibakaMYALND+JFrfgdgCVsvmubvusF11nw3QRo9pkXrz25jXYkPLe6kLJezRxBmGWRRor0Q0G/QLdUjp7EqMjrmzT8CfSszHEaaZqIy/w4m1nXZFMjtXNni6T/tG4uzEITXrQbZyC9QslVClkwrc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i3ikLgat; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B99D4C116B1;
-	Mon,  8 Jul 2024 11:23:50 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=gO7OLzI4XPeXHVN/AXVPpGvCoCqSY9QetHbKKGGptsPVYH9ouffftafY2qODZnLJX0bcpCJp1Ofj8Dx/tVmPCDBq0WhLIQ965H/gwvrazjGCx1spB0+jh56e48pGb7h++JrnBcGwpJcOB/0lipNR2PH2d8xzosjBhzppM5CniLY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iVgYVGuZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14618C116B1;
+	Mon,  8 Jul 2024 11:25:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720437834;
-	bh=wVbhmgIV0XSNGTyn5Cat9As96xgxbawNSvJULCBPh8E=;
+	s=k20201202; t=1720437915;
+	bh=QrRKS+3iDLmeUQXoJ08zl803lCFnPF6mGpqzE/kCciM=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=i3ikLgatDvek29zbWE0fMM+CiKWoKP9OGRo6fSZMpByM5MzUAT5kIxxC9Obeos8gR
-	 XAyQ3wUwYR0OrZLw+qO8P1oODN+5nRp+7qKvcgFTbyzf5fs+w0+ytnLvxci5Rg45UJ
-	 uQwVNoy4B/ohY27ywvyg7fYoR1lKn4KXpGk3kK6B9GkdYWwMXP4XsyQYkvNSQmINe0
-	 VFi7fjZMIcVMP0LjhMMfF+eBZ1vQ/1lvZZG1Esd/KHgqNiMac/va4ZagaHXW5jQ1oG
-	 FoTCnQuCsryhbLphTZR4SjDKQF7+Z1MSMEUjnXDz4/c4Sv2l8M1cj0bKgJYMqmCkua
-	 mdZMD4gaQ90eQ==
-Message-ID: <d9d334cd-543d-4316-ab0b-9ab253fffbd0@kernel.org>
-Date: Mon, 8 Jul 2024 13:23:48 +0200
+	b=iVgYVGuZrT8xc/2wXlg8hJItfn6ClJ+teYVEIKdMnaBLPYy6a7tLXsUTZRxiBO0+Q
+	 r68K5aqcr98hIMiskn1icNuBVabKB5XrACs3kIUntnVCWC19vl8/GkGP8AchpDPljw
+	 utrZ+Cxtd0oD0Azd3wEpPufRihBIriwJGHQeSkJin6AtG5ylndqdyo6ZaMsAjtC2Xs
+	 WZsOzvoIeVSBCUxKvpzCegyuU7tDRhtz2tc0SqkgfFcFctn6vbFKE8cNLVfy4pAtJq
+	 wfqOjybf6SiEAai/ZroxnHAi87jqqtfzCMgPbGDMfU2bq00AZ8etLh/dobUxJMsJPo
+	 UN0AAGA8+c6FQ==
+Message-ID: <9db672d4-a305-45ed-95f1-402c70a15379@kernel.org>
+Date: Mon, 8 Jul 2024 13:25:10 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,26 +50,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [EXT] Re: [PATCH v4 2/5] dt-bindings: arm: fsl: add imx-se-fw
- binding doc
-To: Pankaj Gupta <pankaj.gupta@nxp.com>, Jonathan Corbet <corbet@lwn.net>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "imx@lists.linux.dev" <imx@lists.linux.dev>,
- "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-References: <20240705-imx-se-if-v4-0-52d000e18a1d@nxp.com>
- <20240705-imx-se-if-v4-2-52d000e18a1d@nxp.com>
- <450d1575-c9b3-413b-bfa9-8dc4352fa263@kernel.org>
- <AM9PR04MB8604B9A9F3D22C35679AD1D195DA2@AM9PR04MB8604.eurprd04.prod.outlook.com>
- <c7688fba-0570-4dc6-80c4-23cd75ed29aa@kernel.org>
- <AM9PR04MB86040DFD0C0EF5D904BF960D95DA2@AM9PR04MB8604.eurprd04.prod.outlook.com>
+Subject: Re: [PATCH] iio: light: ltrf216a: Drop undocumented ltr,ltrf216a
+ compatible string
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Shreeya Patel <shreeya.patel@collabora.com>, Marek Vasut <marex@denx.de>,
+ linux-iio@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+ devicetree@vger.kernel.org, kernel@collabora.com,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+References: <20240705095047.90558-1-marex@denx.de>
+ <3b2ca0-6687ce00-3-4dab7280@52083650>
+ <98992b1d-c94a-4053-a755-32a25d7fdc46@kernel.org>
+ <20240707143759.7718e0f3@jic23-huawei>
+ <1effec8c-8228-482b-b476-06838128adfa@kernel.org>
+ <20240707150835.40db1897@jic23-huawei>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -115,35 +110,109 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <AM9PR04MB86040DFD0C0EF5D904BF960D95DA2@AM9PR04MB8604.eurprd04.prod.outlook.com>
+In-Reply-To: <20240707150835.40db1897@jic23-huawei>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 08/07/2024 13:19, Pankaj Gupta wrote:
->>>> 4 mailboxes? This cannot be different.
->>> mbox-names can have any of the above mentioned 4 values.
->>> And  two values are minimum, required.
+On 07/07/2024 16:08, Jonathan Cameron wrote:
 >>
->> No, I said it cannot be different. If two are minimum, then you can have here
->> 4, right? But earlier you said you can have only 2. It does not make any sense.
+>>>   
+>>>>>
+>>>>> We were very well aware that not documenting this was going to generate a warning so    
+>>>>
+>>>> You *CANNOT* have undocumented compatibles.  
+>>>
+>>> Why not? This corner case is a valid reason for that to be allowed.
+>>> You cannot use that compatible with DT bindings.  Absolutely.  The compatible
+>>> has other uses...  
+>>
+>> Okay. With that approach what stops anyone from submitting DTS using
+>> that compatible (claiming there is a driver for that compatible)?
 > 
-> Understood.  Will fix this with following changes.
-> 
-> -      - const: tx
-> -      - const: rx
-> -      - const: txdb
-> -      - const: rxdb
-> -    minItems: 2
-> +      - enum:
-> +          - tx
-> +          - txdb
-> +      - enum:
-> +          - rx
-> +          - rxdb
+> That's a good point.  Perhaps we should just add a check for this?
+> Easy to add a check on the firmware type. This is a rare enough case that
+> just doing it in the driver seems fine to me (rather than more general
+> infrastructure).
 
-OK, this is now clear and answer is also clear:
-No, you cannot have different names, except some rare cases. Please
-explain why this should be an exception?
+Another point of slippery slope:
+1. We accept such undocumented compatible in OF device id for ACPI
+(PRP0001).
+2. Out-of-tree DTS uses it.
+3. Whatever we decide to do now with that compatible, we have
+undocumented ABI exposed and used by users.
+
+That's the answer why we cannot have undocumented compatibles: because
+we do not want to have implicit ABI. We want explicit ABI, which is:
+1. Clearly documented,
+2. Reviewed/accepted explicitly.
+
+
+> 
+>>
+>>>
+>>>   
+>>>>  
+>>>>> we tried to fix that with a deprecated tag but it was NAKd by Rob. What we understood    
+>>>>
+>>>> Because the driver was NAKed obviously as well.
+>>>>  
+>>>>> from his last message was that it wasn't necessary to fix the DT warning.    
+>>>>
+>>>> I am quite angry that maintainer tells you something, but you push your
+>>>> patch through because apparently you need to fulfill your project
+>>>> requirements.  
+>>>
+>>> I think this is a fundamental misunderstanding of the situation and probably
+>>> at least partly my fault for not clarifying my reading of the situation more
+>>> fully at the time.
+>>>
+>>> As far as I am concerned. The situation is:
+>>> 1) Existing shipping consumer device.  We have 100s of cases of ACPI bindings
+>>>    that exist just to deal with garbage firmware's.  The folk involved in
+>>>    reviewing these have pushed back hard for a long time, but sadly there
+>>>    is still a lot of garbage shipping because Windows lets it through and
+>>>    Linux support comes second.  It's made even worse by Microsoft defining
+>>>    their own standards that aren't compliant with ACPI as they don't
+>>>    even bother with reserving the methods IDs.  ROTM for example.  
+>>
+>> Hm, and these devices do not provide normal ACPI IDs? They use Of-like
+>> ones? I don't know that much about ACPI, but aren't they coming without
+>> vendor prefix thus "ltr,ltrf216a" is just wrong and should be "lTRF216A"
+>> alone?
+> 
+> Yes, they come with the ID that is matched on by the ACPI core as PRP0001
+> which basically means use the DT compatible.
+> Then a device specific property that provides 'compatible' to look up against.
+> The intent being to allow use of existing drivers without needing to modify
+> them to add ACPI IDs to match against. 
+> 
+> LTRF216A is worse than using PRP0001 and DT vendor ID
+> ACPI has it's own equivalent of vendor IDs and you have to apply for one from
+> relevant committee in the UEFI forum (ASWG)
+> https://uefi.org/ACPI_ID_List
+> (there is a 3 letter form as well).
+> It's easy to get an ID (takes a few weeks though) but many sensor companies
+> etc don't bother.  Sometimes they say it's because the OEMs should do this
+> and sometimes those OEMs do, so the binding is under their vendor not the
+> device manufacturer.  That's when you see what looks like completely unrelated
+> IDs being used.
+> 
+> It would be good it liteon got a proper ID and started issuing device numbers
+> to go with it though.
+> 
+> There are a lot of old bindings that make IDs up. Some are based on cut and paste
+> and we've been trying to scrub those, others are based on what Windows drivers
+> bind against and so we are stuck with that set.
+> For extra fun we have examples of hardware with a common ID for incompatible
+> devices for which we have different drivers.  That's a real pain when it happens
+> but a few sensor manufacturers have 'one windows driver' for many years worth
+> of unrelated devices and use horrible matching routines to figure out what is
+> actually there...).
+
+BTW, I really miss the information what sort of users they have for that
+compatible. The explanation was vague. What are the "released devices"?
+What ACPI tables do they have?
+
 
 Best regards,
 Krzysztof
