@@ -1,134 +1,118 @@
-Return-Path: <devicetree+bounces-83915-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83916-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF10392A524
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 16:52:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C700F92A52C
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 16:53:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4C32A1F23141
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 14:52:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0388D1C20E67
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 14:53:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C955B13FD69;
-	Mon,  8 Jul 2024 14:52:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92D23140E29;
+	Mon,  8 Jul 2024 14:53:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dF6QKyWy"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="XL1CqNZw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D53F1E521;
-	Mon,  8 Jul 2024 14:52:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF59778C75
+	for <devicetree@vger.kernel.org>; Mon,  8 Jul 2024 14:53:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720450325; cv=none; b=sA1qIAuQZHVFBjTthdHsU0BTn9vD8NiTOVOZorjBDvqMzX0EmzHQ3Xdj5lPFu/17kCFIraJM50Kcdtwjqt8Ik+uXs6Ggo35AuLQHxcTaoeXSVg1jrPonlzXt0Clk2lGFg+qLt6V4xdhde9eF+6AkpAc8z5y04eS4mal3sAl10hc=
+	t=1720450430; cv=none; b=d2EVMpIgB40vjodliygrn1AeWdL7YEnwQ73lRXxmPOL+NxyQKjTHRndVK7jhV1GmdY4mvaZrqgo3IqZNbnvwkrhRAFwTEGh6jGcyYrptleKM3LvZFYHoWddUD6/T6S2PGOxBLDbvd8nmAofTVV1HkenEds4XDQ0X1eHGWYRPndA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720450325; c=relaxed/simple;
-	bh=YERbyHj9XHJH1vnRDd/SgiY4nsJmsp/2GcWPpPbtfJc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YODAzrTD5L5FuLHyC1zCZBx/cGFkEwDBUlwnH0g6EtKlDXGg3lUktUpcpuFUinRRL7LYvNBRm452qiWWLcKEPPItBd0Ssdq5fqslpIdj7sTzxAirINLlUzZfHQfyyJzeBAc8W+WcbYloR75hr0helaTQfWobHrJAcRWDwlQmPsk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dF6QKyWy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B657EC116B1;
-	Mon,  8 Jul 2024 14:52:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720450325;
-	bh=YERbyHj9XHJH1vnRDd/SgiY4nsJmsp/2GcWPpPbtfJc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dF6QKyWybB4iV14aqAs6X/0kRJirLWH9Dhl/v5hDAlCJAOSythcdcW/1hnjlqE9sr
-	 R2BLQl75V9Jpad23dD0XD4vkDSO00IY0Lq4IPOJefvrygD1LD9H3ektcAkDLALaAfF
-	 wSWrhHLtj+xCOV5v3gyEmlfVkJklXM20RQomfWafNtYu959NdnZ9ex/38H+tuuIqf+
-	 WQsQeuzTFVYpK1tCgL1Cv5XK4YW61N5jcZnmDrHVmGFSD7yPGV6uyDsgnTIjzBlrqN
-	 H92ZBcigzizLyhOLAYBV/iyy3yKmGD4JBFF+1Do02uip0FG3mOuTeWkm7RCYv1DCSH
-	 NGBPJ616rRy0A==
-Date: Mon, 8 Jul 2024 16:52:02 +0200
-From: Maxime Ripard <mripard@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Liu Ying <victor.liu@nxp.com>, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, p.zabel@pengutronix.de, airlied@gmail.com, daniel@ffwll.ch, 
-	maarten.lankhorst@linux.intel.com, tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de, 
-	kernel@pengutronix.de, festevam@gmail.com, tglx@linutronix.de
-Subject: Re: [PATCH 02/10] dt-bindings: display: imx: Add i.MX8qxp Display
- Controller display engine
-Message-ID: <20240708-mega-nautilus-of-champagne-cd4be6@houat>
-References: <20240705090932.1880496-1-victor.liu@nxp.com>
- <20240705090932.1880496-3-victor.liu@nxp.com>
- <cd558335-6e72-46d1-911b-68ccbb211136@kernel.org>
- <b9583c86-b5ed-4642-9baf-2ac850656ee3@nxp.com>
- <eda90514-e40c-4edd-8c15-18717a5e9784@kernel.org>
+	s=arc-20240116; t=1720450430; c=relaxed/simple;
+	bh=oS/9j3dsYpP59idtGgIC4uuWK33USwlviNFf2Yb9edY=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=UbBYsw0BztKTzR0w5PWK95UQrgXZEohx0zgzhT3jgDKFDDraM/x3h6d6fLAA00RDqYA+r/WkbYtlIvcPzRt630Vm6FVC8B24IjKAvFzQe/Upy7JAKeIvk9iZw6iLsfaXgPJQ+GbM8kGh0q5/NosmF8rQLUzQ0vXyf2SbFepEaBU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=XL1CqNZw; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-4266eda81c5so2663645e9.0
+        for <devicetree@vger.kernel.org>; Mon, 08 Jul 2024 07:53:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1720450427; x=1721055227; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=EyqFib4M3rqlBFw/ZGzz1LaByQHFqZPSGdvyPY+IPB0=;
+        b=XL1CqNZwkkWELRYJEe9haeA07ZsDwWWm3PbUZF6DzOWI9yTLS72PRr5QecEoUmuh8J
+         0GfgCfxRnSi6ULMkKakl8H2DB0negyPnLI8hfGTZvLI3lSBGAkWJZBgKhItFFd6FxT6U
+         tiqxTPMdbygQQGo7b8KysReMrE0+rAWzf8LiS65c59/lIRE0p38E8ug9RD/XlqCysSzO
+         KkeNopZ0pVr3RHd4LKMrZ6SaMdohrnT1BaxughNmfw4DP3+5Xlq/lw+ybwLZIYiB3xk4
+         sX3yM4vAQYNhJjAeivmQL1nxKvH4oghdPG2rng5EehQHriKFJe0dFTyL/RRV7Oi8KShr
+         HNuw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720450427; x=1721055227;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=EyqFib4M3rqlBFw/ZGzz1LaByQHFqZPSGdvyPY+IPB0=;
+        b=Tw0VD56ru98bAqZ2Tjy8eWg6kocHse8QwSc8/RqmaS70M2rpadJUQcf4Xp+GbDAiOX
+         EGf2rALyZjzXIPoQdONN7ccmNejGxRnYdvVim5Et15BO+2G+2pCJxzhDBhOrbH1pQIts
+         fsH9U0jEdaUxN7jcCfuTi/S616/45xSLJyVt3V/EgCLJ95m8YkJ4YHHegygQ8i1ubHzP
+         RUBamfpVkn5cDAJbJk/iMkstiZC5z0HqfyC6BxxYOGzNs2fLZ/kbcr6q9/2EPAUGA3KV
+         nNyKZ/JlV3JKAs0RJziwj3H/X6lNExE8FHTPjN49E0+i6sioAxc4QiuQO+5hFsfSnKsm
+         YsyQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXfy45+ljhgWg3st7Hd6+efX3+wzKKsdzEsakUZs6iBu7wnpgubIJldIK41QtrEN5ZiB/EIn3W9o1kahbbzOcXpOTUcEryMAnHKGA==
+X-Gm-Message-State: AOJu0YxOvkYe8Wcr4+3vyhIj2wjiFGoyAL2X1CJPnrPDedLvK4vNQk5R
+	hpC1EJaCTWlbBJX2c5c5bwvTSYUZpX+AD5/IDUSZng1J2fU1B5teFvEg/WweNMkRAGd0xQFzxQv
+	T
+X-Google-Smtp-Source: AGHT+IEBuhdhAHUYp56NAUgYnKaRIraX3CZBvDDbgKXiz0kpyc8NLn1O5Tq1/i1agiHJxKvs5l9b7Q==
+X-Received: by 2002:a05:600c:378b:b0:426:6f87:65fc with SMTP id 5b1f17b1804b1-4266f876712mr488425e9.17.1720450427358;
+        Mon, 08 Jul 2024 07:53:47 -0700 (PDT)
+Received: from brgl-uxlite.home ([2a01:cb1d:dc:7e00:a2a3:9ebc:2cb5:a86a])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4266f6e09fcsm1933645e9.4.2024.07.08.07.53.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Jul 2024 07:53:47 -0700 (PDT)
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+To: Bartosz Golaszewski <brgl@bgdev.pl>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	linux-gpio@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Stefan Agner <stefan@agner.ch>,
+	Frieder Schrempf <frieder@fris.de>
+Cc: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	Frieder Schrempf <frieder.schrempf@kontron.de>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH v2 1/5] dt-bindings: gpio: vf610: Allow gpio-line-names to be set
+Date: Mon,  8 Jul 2024 16:53:45 +0200
+Message-ID: <172045041379.123415.15663684790489482699.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240708084107.38986-2-frieder@fris.de>
+References: <20240708084107.38986-1-frieder@fris.de> <20240708084107.38986-2-frieder@fris.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
-	protocol="application/pgp-signature"; boundary="hwztwzscqtxaisoz"
-Content-Disposition: inline
-In-Reply-To: <eda90514-e40c-4edd-8c15-18717a5e9784@kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+
+From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
 
---hwztwzscqtxaisoz
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Mon, 08 Jul 2024 10:40:31 +0200, Frieder Schrempf wrote:
+> Describe common "gpio-line-names" property to allow DTs to
+> specify names for GPIO lines.
+> 
+> 
 
-On Mon, Jul 08, 2024 at 04:04:21PM GMT, Krzysztof Kozlowski wrote:
-> On 08/07/2024 08:40, Liu Ying wrote:
-> >>> +
-> >>> +  "^framegen@[0-9a-f]+$":
-> >>> +    type: object
-> >>> +    additionalProperties: true
-> >>> +
-> >>> +    properties:
-> >>> +      compatible:
-> >>> +        const: fsl,imx8qxp-dc-framegen
-> >>> +
-> >>> +  "^gammacor@[0-9a-f]+$":
-> >>
-> >> This looks like you are organizing bindings per your driver architectu=
-re.
-> >=20
-> > As I mentioned in cover letter, this series addresses Maxime's
-> > comment for the previous series - split the display controller
-> > into multiple internal devices.  Maxime insisted on doing this.
->=20
-> But these are not separate devices. Look:
-> 1. parent DC:
-> reg =3D <0x56180000 0x40000>;
->=20
-> 2. child interrupt controller:
-> reg =3D <0x56180040 0x60>;
->=20
-> That address is within parent.
->=20
-> 3. Then we go to things like:
-> reg =3D <0x5618b400 0x14>, <0x5618b800 0x1c00>;
->=20
-> Still within parent's range and just few words in address range. That's
-> a clear indication that you choose few registers and call it a "device".
+Applied, thanks!
 
-That's never really been a metric though?
+[1/5] dt-bindings: gpio: vf610: Allow gpio-line-names to be set
+      commit: 8060be2489f9bfa0c603373fa71cc2f93e46e462
 
-If not, one could just create a "soc" device node covering the entire
-register map, and since it would overlap despite clearly defined
-features, you would claim it's a single device?
-
-Maxime
-
---hwztwzscqtxaisoz
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZov9DgAKCRAnX84Zoj2+
-dkUHAYDd6QPLRCe/rIwamlM0RQXWTfISioM+Bfl577L8uSU4MMjj3TeJBgCqmeVK
-LJ0ey5QBf2qzE6bXOEcjZgciImlWol3ZdG7vHmEWfdiqGRQY4lQA+t9T11YMNhVe
-hA01YtfCWQ==
-=lXFJ
------END PGP SIGNATURE-----
-
---hwztwzscqtxaisoz--
+Best regards,
+-- 
+Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
