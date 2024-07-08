@@ -1,120 +1,151 @@
-Return-Path: <devicetree+bounces-83934-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83935-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DC7C92A682
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 17:59:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id F256792A68D
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 17:59:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8BFAC1C21617
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 15:59:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A97691F21C1C
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 15:59:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EAFF1487FF;
-	Mon,  8 Jul 2024 15:55:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UuYXxDIw"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1C05149DEF;
+	Mon,  8 Jul 2024 15:57:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D54D81442FB;
-	Mon,  8 Jul 2024 15:55:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41425EC7;
+	Mon,  8 Jul 2024 15:57:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720454130; cv=none; b=EfoRHoj8qpRyYYd3BvpbYnngjzQrGvZMDvJvISUO3XNkBCc3fuQq7qYV1CA+JhcD3NOuqwiHBvOPEg2cTkACt3HunOIYnRnf2UZP8GCjygQ7WMCCQl38e3DzBcRHTX2KRP3nSQ8I4kCF+I65Y8mFcrKUFjgsrywKwcIYGWdOaV8=
+	t=1720454246; cv=none; b=EvppT0JB0mHwqD0uAX0rmtRsOcs9+qkP6ZC5GURMmFrMAUOtKdqnJHcsW8rTzxlg56dllkUU3E1t7WydjYu1VZrbTjMRHG3Z7fZJC/gj6Bz08uHP5eWURSC2al8DE7RToTKv14yBjZjraaJ+J8QWIgE4+Urk8hrE6wHLsfpimyc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720454130; c=relaxed/simple;
-	bh=klBVxy8IiZUybk4NUjWGo9X6b6GwYIN3vkEddYVTDBM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HmKs9WnhwUv1M2xY40cgQdBt1hhB8F2z8p0PYJc3HR/X21eK1DeuqJyvaicxOudVuMtbvyWGZwwwY8qBKiZCvt0UUoJGDs9lVTe37/rdUCa9vpMXEQn8sXlJYU6CjTs/1AgiJuvzsHXRMZn4hZQQE70OkqSesoLtSLbka38g5kg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UuYXxDIw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F2E3C116B1;
-	Mon,  8 Jul 2024 15:55:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720454130;
-	bh=klBVxy8IiZUybk4NUjWGo9X6b6GwYIN3vkEddYVTDBM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UuYXxDIwcX4c9njAFXgqD6kPCnPvkqX13R4dwZkTjIwWzz9OlnkW+7lI2+BXng8Ex
-	 HlueLCAKnas2BmaNAh8QSG+hNMLtbnRy4vkD6hZIxgpC9QQluc2SdJPnXlJrlZMWf6
-	 28++49Pxyc8yqDP+VuaugpaSlF+qhCUagZeOQc+WrV9NL6UtEW3Klsz7G68LZWFZTo
-	 QEySb4mqzeqfsZCdbu5dyK0D4OF8BzcNmgLCSKA4/RbdAIQM8L04RHG2DgZNQ8Uuh4
-	 9G3rpoNOteMmvTxDGL2r26Udlv6QoM0cnjch5TTdK42W/BPN8UVVs5rMiTpjJ5Glfq
-	 dZykVd8kygQfg==
-Date: Mon, 8 Jul 2024 09:55:29 -0600
-From: Rob Herring <robh@kernel.org>
-To: Varadarajan Narayanan <quic_varada@quicinc.com>
-Cc: vireshk@kernel.org, nm@ti.com, sboyd@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, angelogioacchino.delregno@collabora.com,
-	andersson@kernel.org, konrad.dybcio@linaro.org,
-	mturquette@baylibre.com, ilia.lin@kernel.org, rafael@kernel.org,
-	ulf.hansson@linaro.org, quic_sibis@quicinc.com,
-	quic_rjendra@quicinc.com, quic_rohiagar@quicinc.com,
-	abel.vesa@linaro.org, otto.pflueger@abscue.de, danila@jiaxyga.com,
-	quic_ipkumar@quicinc.com, luca@z3ntu.xyz,
-	stephan.gerhold@kernkonzept.com, nks@flawful.org,
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	linux-clk@vger.kernel.org
-Subject: Re: [PATCH v4 09/10] dt-bindings: opp: v2-qcom-level: Update
- minItems for oloop-vadj & cloop-vadj
-Message-ID: <20240708155529.GA3244015-robh@kernel.org>
-References: <20240703091651.2820236-1-quic_varada@quicinc.com>
- <20240703091651.2820236-10-quic_varada@quicinc.com>
+	s=arc-20240116; t=1720454246; c=relaxed/simple;
+	bh=CZH5/kjytJ3jx7EIEdxQVlVUXsBWoEKmLZ3ROVPx8k0=;
+	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=IkAWF0ioHzro4+5SFrHFiajZqligxJ9vmyovCxAwbnU/WqsfUL9phXNRNVwC+rvZmCoTLi3LiuHDLNadw9KUltBZO8UnyI9MFcgxwP3/z+nUeuaWkSAqAdra9Cyo3AhYcLJjSCBWHiy+FN1/zgLXhpq9G3E8rJP72zCKGBkiwU4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.186.31])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4WHpcw5ts8z6K5r4;
+	Mon,  8 Jul 2024 23:56:00 +0800 (CST)
+Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
+	by mail.maildlp.com (Postfix) with ESMTPS id 7E4AF1400CF;
+	Mon,  8 Jul 2024 23:57:20 +0800 (CST)
+Received: from localhost (10.203.174.77) by lhrpeml500005.china.huawei.com
+ (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Mon, 8 Jul
+ 2024 16:57:19 +0100
+Date: Mon, 8 Jul 2024 16:57:19 +0100
+From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To: Miquel Raynal <miquel.raynal@bootlin.com>
+CC: Krzysztof Kozlowski <krzk@kernel.org>, Conor Dooley <conor@kernel.org>,
+	Thomas Bonnefille <thomas.bonnefille@bootlin.com>, Jonathan Cameron
+	<jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto
+	<inochiama@outlook.com>, Paul Walmsley <paul.walmsley@sifive.com>, "Palmer
+ Dabbelt" <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, "Thomas
+ Petazzoni" <thomas.petazzoni@bootlin.com>, <linux-iio@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-riscv@lists.infradead.org>
+Subject: Re: [PATCH v2 1/3] dt-bindings: iio: adc:
+ sophgo,cv18xx-saradc.yaml: Add Sophgo SARADC binding documentation
+Message-ID: <20240708165719.000021b9@Huawei.com>
+In-Reply-To: <20240708142344.47da466e@xps-13>
+References: <20240705-sg2002-adc-v2-0-83428c20a9b2@bootlin.com>
+	<20240705-sg2002-adc-v2-1-83428c20a9b2@bootlin.com>
+	<20240705-unaired-pesticide-4135eaa04212@spud>
+	<6b5459fd-2873-4c26-b986-882413b8d95b@bootlin.com>
+	<20240706-remote-undergo-3b9dfe44d16f@spud>
+	<20240708083011.058d0c57@xps-13>
+	<304b7bb1-d315-4147-820b-1ec0aa63e759@kernel.org>
+	<20240708142344.47da466e@xps-13>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240703091651.2820236-10-quic_varada@quicinc.com>
+Content-Type: text/plain; charset="ISO-8859-1"
+Content-Transfer-Encoding: quoted-printable
+X-ClientProxiedBy: lhrpeml100003.china.huawei.com (7.191.160.210) To
+ lhrpeml500005.china.huawei.com (7.191.163.240)
 
-On Wed, Jul 03, 2024 at 02:46:50PM +0530, Varadarajan Narayanan wrote:
-> Since IPQ9574 has only one CPR thread it will specify
-> only one voltage adjustment value. Hence update min items
-> accordingly for oloop-vadj and cloop-vadj. Without
-> constraining min items, dt_binding_check gives errors
-> 
-> 	opp-table-cpr4:opp-0:qcom,opp-cloop-vadj:0: [0] is too short
-> 	opp-table-cpr4:opp-0:qcom,opp-oloop-vadj:0: [0] is too short
-> 
-> 	Failed validating 'minItems' in schema . . .
-> 		{'maxItems': 2, 'minItems': 2}
-> 
-> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> ---
-> v4: Fix dt_bindings_check error
-> ---
->  Documentation/devicetree/bindings/opp/opp-v2-qcom-level.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+On Mon, 8 Jul 2024 14:23:44 +0200
+Miquel Raynal <miquel.raynal@bootlin.com> wrote:
 
-This is going to need to be rolled into your dependency because it needs 
-the same fix.
+> Hi Krzysztof,
+>=20
+> krzk@kernel.org wrote on Mon, 8 Jul 2024 09:33:04 +0200:
+>=20
+> > On 08/07/2024 08:30, Miquel Raynal wrote: =20
+> > > Hi Conor,
+> > >    =20
+> > >>>>> +properties:
+> > >>>>> +  compatible:
+> > >>>>> +    oneOf:
+> > >>>>> +      - items:
+> > >>>>> +          - enum:
+> > >>>>> +              - sophgo,cv1800b-saradc
+> > >>>>> +          - const: sophgo,cv18xx-saradc     =20
+> > >>>>
+> > >>>> I don't think the fallback here makes sense. If there's other devi=
+ces
+> > >>>> with a compatible programming model added later, we can fall back =
+to the
+> > >>>> cv1800b.   =20
+> > >=20
+> > > I'm sorry but isn't this slightly disagreeing with the "writing
+> > > bindings" doc pointed in v1? It says,
+> > >=20
+> > > * DO use fallback compatibles when devices are the same as or a subset
+> > >   of prior implementations.
+> > >=20
+> > > I believe we fall in the "devices are the same" category, so I would
+> > > have myself wrote a similar binding here with a compatible matching
+> > > them all, plus a hardware-implementation-specific compatible as well;
+> > > just in case.   =20
+> >=20
+> > Fallback from one model to another. There is no "another" model here,
+> > but wildcard. There is no such device as cv18xx, right? =20
+>=20
+> No there is not. But I don't think there is a "base" model either.
+> Just multiple SoCs named cv18<something> with apparently the same ADC.
+>=20
+> So actually I guess the discussion here is about the wildcard
+> compatible. It feels strange to me to have no generic compatible either
+> with a wildcard or with a "base" implementation (because there is
+> probably none). So I guess the solution here is to just list a single
+> specific compatible in the end.
 
-> 
-> diff --git a/Documentation/devicetree/bindings/opp/opp-v2-qcom-level.yaml b/Documentation/devicetree/bindings/opp/opp-v2-qcom-level.yaml
-> index b203ea01b17a..1c1a9e12d57a 100644
-> --- a/Documentation/devicetree/bindings/opp/opp-v2-qcom-level.yaml
-> +++ b/Documentation/devicetree/bindings/opp/opp-v2-qcom-level.yaml
-> @@ -39,6 +39,7 @@ patternProperties:
->            An array of per-thread values representing the closed-loop
->            voltage adjustment value associated with this OPP node.
->          $ref: /schemas/types.yaml#/definitions/int32-array
-> +        minItems: 1
->          maxItems: 2
->  
->        qcom,opp-oloop-vadj:
-> @@ -46,6 +47,7 @@ patternProperties:
->            An array of per-thread values representing the open-loop
->            voltage adjustment value associated with this OPP node.
->          $ref: /schemas/types.yaml#/definitions/int32-array
-> +        minItems: 1
->          maxItems: 2
->  
->      required:
-> -- 
-> 2.34.1
-> 
+It comes from long experience of silicon vendors not being consistent
+with part naming.  Far too often we've had a nice generic wild card
+entry and along comes the vendor with a new part in the middle
+of that range that is completely incompatible.  Then we end up with
+people assuming the wildcard means it will work and a bunch of bug
+reports.  Hence no wild cards, just define first supported part as your
+'base' and go from there.
+
+It's even more fun when a vendor driver papers over the differences
+and so it 'works', but the upstream one doesn't.  In extreme case
+because a different driver entirely is required.
+
+So basically we don't trust silicon vendors :)
+Speaking as someone who works for one - I think that's entirely
+reasonable!!
+
+Jonathan
+
+>=20
+> Thanks,
+> Miqu=E8l
+>=20
+>=20
+
 
