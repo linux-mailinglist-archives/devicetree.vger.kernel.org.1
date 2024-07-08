@@ -1,72 +1,128 @@
-Return-Path: <devicetree+bounces-83994-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83995-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38D8192A994
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 21:08:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B930092A99F
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 21:14:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DB70D1F22567
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 19:08:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E89FF1C210DC
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 19:14:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C79414D6E0;
-	Mon,  8 Jul 2024 19:08:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EACE214A4D4;
+	Mon,  8 Jul 2024 19:14:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PFXOJpe2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CMQ2xoJs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AAC814D443;
-	Mon,  8 Jul 2024 19:08:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7ED014BF87;
+	Mon,  8 Jul 2024 19:14:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720465691; cv=none; b=iEICYY/kikRPTyB4gB8+c8cbAaSmY5FfQgjPfc24jOi/Y9pamrMalVDhO4MN+hM00DHnjSNM3VIO9MWSsnRWSUu/Lf+KT828qxiHyp/S8v55pGpUKHSzeig1HfJ+7e4kBvwNx6WcLmEPJoAxFHLOKMRVK10InkSDlDqij1xJ8a0=
+	t=1720466077; cv=none; b=d6iOqELDzLYwpx+yWYLHkE09/ALuw/p6Z2qAecfvU3ODEs6cwv7wbEV+3yAKUUvEXw5zbiNdE+l1YvUYcgpT5YOlGHcgTBtCw2JHRYNRzdRAK/vFcfP4nCCnI8WsHIj5La8WLklNot+C//IqQ73WKJYjMApwAq23Oy812lYN/Jo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720465691; c=relaxed/simple;
-	bh=R8/Nus0e7IW0C9Eu5Ta/MA+sKFXKraYblzR3qp2a6xQ=;
-	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
-	 Subject:From:Cc:To:Date; b=CHJ6INeyHauHnYb+FDQzH5J17/ivhmQ7rzaUEbmkF4zdqHoIJCk+0BxcgbBd7ioVdp2YtVuYqpXRWnFwkdIvlsolANggtxK30Ja2TBBXgiVH12I8qMHfyb6ktgET3omty4NcCeBdBV/GklQd146eAduMAgTW6gsB2t+22ashxcw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PFXOJpe2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB86AC116B1;
-	Mon,  8 Jul 2024 19:08:10 +0000 (UTC)
+	s=arc-20240116; t=1720466077; c=relaxed/simple;
+	bh=MMzPt1qLEIBFPhRV9nvK5Pdc6T5Fmql+DzmSgYeT42g=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=muB5SYfr5eNwaPzLOQlhu0jCVFpnjo/JGoUA3N1hnatGjCBSPBKTEc4urMczhw8cV2CEUm36b30mddccZrlz8Z/HrLdUt49R7hl+N7sAD6EQzRDjzv47s9ihxGjAdKGq5RXeDCEerMg+Lw2RRtBXJIhfKHwHvwR2G/eN/UOcuxA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CMQ2xoJs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D3CFC3277B;
+	Mon,  8 Jul 2024 19:14:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720465691;
-	bh=R8/Nus0e7IW0C9Eu5Ta/MA+sKFXKraYblzR3qp2a6xQ=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=PFXOJpe2b/wv9Zp0SpgMXqF9oWbgwtMxtkPM1PeuY+BSmzW/zKQ8CNgfAUtdErEAx
-	 mxUr+N5w/7hG58fL75t3pPed3kDt+SXKjs/g8qK6H0ZooD6/XcBY26p1ZvyYN97mUA
-	 yIF8Qe0Ue6fn49rFbtExg9jHNcRMIsr/ZCSDP/GnqPvEOgrjbjJPwDz+MQ00+7HAuQ
-	 1m+iNacvsTFg0Ocn9bbjT5n1AlQbHDHg1S26nrBrs/WzVr6Uui7dvTLef/IbFKZQrL
-	 WLFR+H687vPdmjsojDlaw518Rnyy9qblJmsd8GEgVmksYCa5cAtk8ldOI9FIvvJH4P
-	 yhbPvOZCHgBBw==
-Message-ID: <c43d0d221df30fe1a215dab07da10245.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+	s=k20201202; t=1720466077;
+	bh=MMzPt1qLEIBFPhRV9nvK5Pdc6T5Fmql+DzmSgYeT42g=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=CMQ2xoJsPqqdADYwCDYy/gW5cLanL24QDbLS5EDVLOGfvwXCKdGPXIpY74Z5nlbL9
+	 uNWjXkhyj/oUe3IvkDZw1Z7BguBh6Wx0i8cS867uhVrKRAzm1xGY6phABCfmqPchUf
+	 OkCAYz+uEkGxFMsNsny71RPucWbcrDT6RefehqhWxantYEAClNfcIdRGt7zLetbBmb
+	 l94yo3iBAZVfC+Wl1Y9858WifMJ2jWVm3TVImvj/0PU2mDAiOQAcelClasA+/9ApNb
+	 4TQ1YPE1kNh1dvQx1oxzguLW9yCfr0t8ZQrpNxK13+IOehjz0AuDlwVLb1BzAkHbwX
+	 hsJWsq2ou8CZQ==
+From: Mark Brown <broonie@kernel.org>
+To: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+ Russell King <linux@armlinux.org.uk>, 
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+ Shengjiu Wang <shengjiu.wang@gmail.com>, Xiubo Li <Xiubo.Lee@gmail.com>, 
+ Nicolin Chen <nicoleotsuka@gmail.com>, 
+ Elinor Montmasson <elinor.montmasson@savoirfairelinux.com>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org, 
+ linuxppc-dev@lists.ozlabs.org, 
+ Philip-Dylan <philip-dylan.gleonec@savoirfairelinux.com>
+In-Reply-To: <20240627083104.123357-1-elinor.montmasson@savoirfairelinux.com>
+References: <20240627083104.123357-1-elinor.montmasson@savoirfairelinux.com>
+Subject: Re: (subset) [PATCH v6 0/7] ASoC: fsl-asoc-card: add S/PDIF
+ controller support
+Message-Id: <172046607109.120366.13569145279464885226.b4-ty@kernel.org>
+Date: Mon, 08 Jul 2024 20:14:31 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20240619085322.66716-2-angelogioacchino.delregno@collabora.com>
-References: <20240619085322.66716-1-angelogioacchino.delregno@collabora.com> <20240619085322.66716-2-angelogioacchino.delregno@collabora.com>
-Subject: Re: [PATCH 2/3] dt-bindings: clock: mediatek: Document reset cells for MT8188 sys
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: mturquette@baylibre.com, robh@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com, jassisinghbrar@gmail.com, garmin.chang@mediatek.com, houlong.wei@mediatek.com, Jason-ch.Chen@mediatek.com, amergnat@baylibre.com, Elvis.Wang@mediatek.com, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, kernel@collabora.com
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, krzk+dt@kernel.org
-Date: Mon, 08 Jul 2024 12:08:08 -0700
-User-Agent: alot/0.10
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14-dev-d4707
 
-Quoting AngeloGioacchino Del Regno (2024-06-19 01:53:21)
-> The MT8188 sys clocks embed a reset controller: add #reset-cells
-> to the binding to allow using resets.
->=20
-> Fixes: 1086a5310f9c ("dt-bindings: clock: mediatek: Add new MT8188 clock")
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
-abora.com>
-> ---
+On Thu, 27 Jun 2024 10:30:57 +0200, Elinor Montmasson wrote:
+> This is the v6 of the series of patches aiming to make the machine
+> driver `fsl-asoc-card` compatible with S/PDIF controllers on imx boards.
+> The main goal is to allow the use of S/PDIF controllers with ASRC
+> modules.
+> 
+> The `imx-spdif` machine driver already has specific support for S/PDIF
+> controllers but doesn't support using an ASRC with it. However, the
+> `fsl-asoc-card` machine driver has the necessary code to create a sound
+> card which can use an ASRC module.
+> It is then possible to extend the support for S/PDIF audio cards by
+> merging the `imx-spdif` driver into `fsl-asoc-card`.
+> 
+> [...]
 
-Applied to clk-next
+Applied to
+
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+
+Thanks!
+
+[1/7] ASoC: fsl-asoc-card: add support for dai links with multiple codecs
+      commit: a613b63db233b6e7d46ec72f009c1cbb7db8be66
+[2/7] ASoC: fsl-asoc-card: add second dai link component for codecs
+      commit: c68fa0d9b0f8cc7c3ae7d29c02adbc97622a73f5
+[3/7] ASoC: fsl-asoc-card: add compatibility to use 2 codecs in dai-links
+      commit: fcc6ace84f1f6ce2211af25c3c8fb30a0fb2bb2c
+[4/7] ASoC: fsl-asoc-card: merge spdif support from imx-spdif.c
+      commit: 6d174cc4f22461ad3fe383570527e86bf1948a2e
+[5/7] ASoC: dt-bindings: update fsl-asoc-card bindings after imx-spdif merge
+      commit: 4359caadd17fbde64d656c10bd6f2dc91b675a11
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
 
