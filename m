@@ -1,241 +1,112 @@
-Return-Path: <devicetree+bounces-83724-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83725-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98539929B07
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 05:16:52 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31BEA929B22
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 05:47:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 13BA41F211FE
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 03:16:52 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BB6E9B20DCF
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 03:47:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC0623C0C;
-	Mon,  8 Jul 2024 03:16:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0ABD12582;
+	Mon,  8 Jul 2024 03:47:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="bk+XHpE/"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WXsozBWT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f195.google.com (mail-pl1-f195.google.com [209.85.214.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CAB12FB6;
-	Mon,  8 Jul 2024 03:16:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5788E812;
+	Mon,  8 Jul 2024 03:47:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720408608; cv=none; b=rBUXOb10S3coyhRecaL014oD77nly8IDc1LlpCqJ9JoNYQO5aDift3HL7u8O7G2TdgUoEpi/4Rg6S9x/ahsZ3ijg6peNAzv37LnpXqKM0qp/8XZZKMonmZYFtpBxo4xxKo+jZq6mPUJgeiqhx+5G9GCujX55nE0IQlad0XtfgUU=
+	t=1720410461; cv=none; b=Zryo0GVAisosKzjSV+N5Msf97OZ2K7bWkC3YjGFVVtmlupxHG2LtCnwSWCp/Ycy5IyliUzql8Adfap5yr/gPyjg52Z2sh6cZUoHjxse4o8FdwaCLrQkVpLRO22sCbsKbuJRnBPkHb0bnmFcZ1dGNikG2jZQB9i4k90dfyb4aOzE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720408608; c=relaxed/simple;
-	bh=lbEMPrSpCdABxOClAmHcc5Vm36A5NdX88qh9m87XESw=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VH4u9mJjWgu6k/FxMMVSt+OOks3UtFfgXb9PUMhm2xZNqdKnFzlB7sV9G7S4QWWlBQYsCld9A46mtbiZo+UUNfDg5DXZgzlFePKTjAkThjaLkjbcndumTtR+A4MiqpFBfpwEGOihv+jFsdN2dC/q1yUtmmYiXy+cCoeKak7DK90=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=bk+XHpE/; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4680jeIm009524;
-	Mon, 8 Jul 2024 03:16:33 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=iGLJ8rZgPHxFeQ0fOi/vKI8j
-	E/UtbutbhZP87gHY+0E=; b=bk+XHpE/y2b1Yhu/1ZiigoxMJwJN9WghnuLLv3Sy
-	kHdCYnzVpE6sqOXQg3JzRrT837ki7zbrk3QSAySxGCgKlRmf8uClihSGB0cmt4oG
-	5GKngV2uCFa4TgPafScBDV8nQG4o8QGqGtrFgaEaCOtxKce1l9A1RmJZv0neFhHd
-	/1ZTsuAHf65GS33ZGqIOj5kwlRLrqyQrhh5fGh18ZGybuDzpfUnMlLWuApAUw0AD
-	kjVKIEepsEqvsnJRzZApFKcfXw5MMH/rdlFRNAGNG4Uczc3kcsPXKVqJdkz1iR4c
-	DjWm0cIClzJfdH9EDvfkoeyzfm3qhHFYh9+YC2pdjgrhOA==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 406x0t2fyq-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 08 Jul 2024 03:16:33 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA04.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 4683GWaQ002605
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 8 Jul 2024 03:16:32 GMT
-Received: from jiegan-gv.ap.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Sun, 7 Jul 2024 20:16:26 -0700
-Date: Mon, 8 Jul 2024 11:16:23 +0800
-From: JieGan <quic_jiegan@quicinc.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC: Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Suzuki K Poulose
-	<suzuki.poulose@arm.com>,
-        Alexander Shishkin
-	<alexander.shishkin@linux.intel.com>,
-        Mike Leach <mike.leach@linaro.org>, "Rob Herring" <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        James Clark <james.clark@arm.com>,
-        Jinlong Mao <quic_jinlmao@quicinc.com>, Leo Yan <leo.yan@linaro.org>,
-        <coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Tingwei Zhang
-	<quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        "Tao
- Zhang" <quic_taozha@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        "Song
- Chai" <quic_songchai@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>
-Subject: Re: [PATCH v2 3/4] Coresight: Add Coresight Control Unit driver
-Message-ID: <ZotaBxRpv29crRHV@jiegan-gv.ap.qualcomm.com>
-References: <20240705090049.1656986-1-quic_jiegan@quicinc.com>
- <20240705090049.1656986-4-quic_jiegan@quicinc.com>
- <9b502ba5-7042-424e-b0a2-5659e4064462@linaro.org>
+	s=arc-20240116; t=1720410461; c=relaxed/simple;
+	bh=EGlitiQ+7azkrlc+AyuJmqvbVuxh+O+C3MAA0ATjmxg=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=f0CNPF7qV4cTW8XefZIVJeuAXxIxrZvwhPfzbQMXU0Nm9OXAkuY9h7YFojepoDpKJipnPnl2Sk7muJ4dnWhOvp79qTmM/gIvruvq1FKgX4xBMnNzRpExZ1PFk/VhqlcQ9g18YskCTp+3QgGTGZkqNvEbl/Lx5WtRBQ6IXcojzZk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WXsozBWT; arc=none smtp.client-ip=209.85.214.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f195.google.com with SMTP id d9443c01a7336-1f4c7b022f8so23890975ad.1;
+        Sun, 07 Jul 2024 20:47:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1720410459; x=1721015259; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=dD8EVl2OD2lKbICm6AWgZ5uplW/zFGU233eXdZiblYU=;
+        b=WXsozBWTAwzesEA6ryQDtjVIE0dhrHgeaXUOU53pjTcGsZWBrMRS1MYGPma5A62945
+         aZmdmuzK/lMv7MBqeqtCIsZYOGaFy+VMANB2eiX0gr5q7iBI9RPP8hDpO2Gu2YZpQwsV
+         AbFakmUfjzYBKM39IqM+HfoHjvFK7MlmYHzaeadD2KCX4rU3RcrNazs2b287DwJauwAU
+         RVpo8swo8fJVZifxZRsWMDCCpmwx6u0bWji1ywP99xA0IZcUbsV4TR+/30sKrOjUO4wH
+         IB3px6zOlVsFd8awwu+GxcXgbgYW8ORpSilTe9YnC8W0mBJkNXA+3zGxnJw3MymAmlRF
+         oMwg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720410459; x=1721015259;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=dD8EVl2OD2lKbICm6AWgZ5uplW/zFGU233eXdZiblYU=;
+        b=LKdlX4a4rVduXgAUJfuGkxvkZpo2RvAbQ5ZaGnoxjrGhF4nf3MEmy2jvyE0sbpQ1rz
+         u2R+WL5oE4qc39fPHhlwazCXZk/sI/YgsqU5YW0IrbV53U5vNVXp0fHO3R1Y3i6Jq8Lh
+         Oc7FOZYPW+lxWb6a4HkY7tL8ZhnwUgIpdYBmsy3jcujqKaIRL4LkcPdUiawvSb+fU3LE
+         vaEPacj8Xnu41pnCWiGRa9A1odVZQ3SQvj3HonYfggpYxu2rwku30gZW64vKRQNsqQs9
+         G9/2eiMoyjZFB1j6W6kPKXl0RKIzX6Ru7uvdBFXhc/pQMOoq0gwOUJfMxSdrwpOGP6Kb
+         JRQg==
+X-Forwarded-Encrypted: i=1; AJvYcCVl2tUAyDxPRpcMNAy8NuA1gqH0fXaSg0i+NVom9wXe258D8g6iPl+tOzVxVyEu8Mimg9RLrLB5HV/akt4U9lg14DEeQYY6oIm2SNTJ
+X-Gm-Message-State: AOJu0YwiWi6uTJACB/CaAGeKVvVHXRbvSQ1eTieeU3BS46lM6HEV56Vx
+	ZgahKmkoPEH94HWxwoNL83ksc7V0m7EHnww1tozFc+++CkkWN83oqEw8Vlbs
+X-Google-Smtp-Source: AGHT+IEfhNewiFkD9qCPnpsxedt+bsoXU61Lo/i8mRnWBWH1fjPCfpRQcvs04bkLIWdMuqKfKSGrxQ==
+X-Received: by 2002:a17:903:2444:b0:1fb:798d:b333 with SMTP id d9443c01a7336-1fb798db6f0mr46232975ad.66.1720410459057;
+        Sun, 07 Jul 2024 20:47:39 -0700 (PDT)
+Received: from localhost (66.112.216.249.16clouds.com. [66.112.216.249])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1fb48b1bb68sm50824035ad.283.2024.07.07.20.47.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 07 Jul 2024 20:47:38 -0700 (PDT)
+From: George Liu <liuxiwei1013@gmail.com>
+X-Google-Original-From: George Liu <liuxiwei@ieisystem.com>
+To: linux-aspeed@lists.ozlabs.org
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org
+Subject: [PATCH v2] dt-bindings: vendor-prefixes: Add prefix for ieisystem
+Date: Mon,  8 Jul 2024 11:47:35 +0800
+Message-Id: <20240708034735.99939-1-liuxiwei@ieisystem.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <9b502ba5-7042-424e-b0a2-5659e4064462@linaro.org>
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: ZAIsfCBzQoxETJFvt1uGg4ZiiXagjVHa
-X-Proofpoint-ORIG-GUID: ZAIsfCBzQoxETJFvt1uGg4ZiiXagjVHa
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-07-07_10,2024-07-05_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 bulkscore=0
- lowpriorityscore=0 impostorscore=0 adultscore=0 suspectscore=0
- phishscore=0 mlxlogscore=999 priorityscore=1501 malwarescore=0 spamscore=0
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2406140001 definitions=main-2407080025
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Fri, Jul 05, 2024 at 11:11:19AM +0200, Krzysztof Kozlowski wrote:
-> On 05/07/2024 11:00, Jie Gan wrote:
-> > The Coresight Control Unit hosts miscellaneous configuration registers
-> > which control various features related to TMC ETR sink.
-> > 
-> > Based on the trace ID, which is programmed in the related CCU ATID register
-> > of a specific ETR, trace data with that trace ID gets into the ETR buffer,
-> 
-> ....
-> 
-> > +static int ccu_probe(struct platform_device *pdev)
-> > +{
-> > +	struct device *dev = &pdev->dev;
-> > +	struct coresight_platform_data *pdata;
-> > +	struct ccu_drvdata *drvdata;
-> > +	struct coresight_desc desc = { 0 };
-> > +	struct resource *res;
-> > +
-> > +	desc.name = coresight_alloc_device_name(&ccu_devs, dev);
-> > +	if (!desc.name)
-> > +		return -ENOMEM;
-> > +	pdata = coresight_get_platform_data(dev);
-> > +	if (IS_ERR(pdata))
-> > +		return PTR_ERR(pdata);
-> > +	pdev->dev.platform_data = pdata;
-> > +
-> > +	drvdata = devm_kzalloc(dev, sizeof(*drvdata), GFP_KERNEL);
-> > +	if (!drvdata)
-> > +		return -ENOMEM;
-> > +	drvdata->dev = &pdev->dev;
-> 
-> Use stored dev variable.
-pdev->dev replaced by dev variable.
+Add a vendor prefix entry for ieisystem
 
+Signed-off-by: George Liu <liuxiwei@ieisystem.com>
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-> 
-> > +	drvdata->atid_offset = 0;
-> > +	platform_set_drvdata(pdev, drvdata);
-> > +
-> > +	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "ccu-base");
-> > +	if (!res)
-> > +		return -ENODEV;
-> > +	drvdata->pbase = res->start;
-> 
-> Drop.
-Dropped.
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 573578db9509..0ffa8d06aea9 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -609,6 +609,8 @@ patternProperties:
+     description: IC Plus Corp.
+   "^idt,.*":
+     description: Integrated Device Technologies, Inc.
++  "^ieit,.*":
++    description: IEIT SYSTEMS Co.，Ltd.
+   "^ifi,.*":
+     description: Ingenieurburo Fur Ic-Technologie (I/F/I)
+   "^ilitek,.*":
+-- 
+2.34.1
 
-> 
-> > +
-> > +	drvdata->base = devm_ioremap(dev, res->start, resource_size(res));
-> 
-> Use proper wrapper for this two.
-Replaced by:
-res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-drvdata->base = devm_ioremap_resource(dev, res);
-
-> 
-> > +	if (!drvdata->base)
-> > +		return -ENOMEM;
-> > +
-> > +	desc.type = CORESIGHT_DEV_TYPE_HELPER;
-> > +	desc.pdata = pdev->dev.platform_data;
-> > +	desc.dev = &pdev->dev;
-> > +	desc.ops = &ccu_ops;
-> > +
-> > +	drvdata->csdev = coresight_register(&desc);
-> > +	if (IS_ERR(drvdata->csdev))
-> > +		return PTR_ERR(drvdata->csdev);
-> > +
-> > +	dev_dbg(dev, "CCU initialized: %s\n", desc.name);
-> 
-> Drop.
-Dropped.
-
-> 
-> > +	return 0;
-> > +}
-> > +
-> > +static void ccu_remove(struct platform_device *pdev)
-> > +{
-> > +	struct ccu_drvdata *drvdata = platform_get_drvdata(pdev);
-> > +
-> > +	coresight_unregister(drvdata->csdev);
-> > +}
-> > +
-> > +static const struct of_device_id ccu_match[] = {
-> > +	{.compatible = "qcom,coresight-ccu"},
-> > +	{}
-> > +};
-> > +
-> > +static struct platform_driver ccu_driver = {
-> > +	.probe          = ccu_probe,
-> > +	.remove         = ccu_remove,
-> > +	.driver         = {
-> > +		.name   = "coresight-ccu",
-> > +		.of_match_table = ccu_match,
-> > +		.suppress_bind_attrs = true,
-> 
-> Why?
-Sorry, I dont get the point here.
-We dont need automatic bind/unbind, so the suppress_bind_attrs sets to true.
-We need configure some settings before we register the device.
-
-> 
-> > +	},
-> > +};
-> > +
-> > +static int __init ccu_init(void)
-> > +{
-> > +	return platform_driver_register(&ccu_driver);
-> > +}
-> > +module_init(ccu_init);
-> > +
-> > +static void __exit ccu_exit(void)
-> > +{
-> > +	platform_driver_unregister(&ccu_driver);
-> > +}
-> > +module_exit(ccu_exit);
-> 
-> Why this is not just module platform driver?
-Replaced by module_platform_driver(ccu_driver);
-
-> 
-> Best regards,
-> Krzysztof
-> 
-
-
-Thanks,
-Jie
 
