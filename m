@@ -1,516 +1,221 @@
-Return-Path: <devicetree+bounces-83827-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83832-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE2BA92A03F
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 12:30:30 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8538392A05E
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 12:41:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0482A1C21715
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 10:30:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1BCBBB22F6A
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 10:41:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C903077113;
-	Mon,  8 Jul 2024 10:29:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADEA577F0B;
+	Mon,  8 Jul 2024 10:41:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="C7V9skWu"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="si4lGhfo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
+Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F0D1770F0
-	for <devicetree@vger.kernel.org>; Mon,  8 Jul 2024 10:29:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.24
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BDE71DA303;
+	Mon,  8 Jul 2024 10:41:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.89.224.132
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720434592; cv=none; b=lLrkrfprN6YZ9UY2gVye6oFGbPVbD7eYpnfm6J+8CvtLgZzL/inAdhwy4yzMnMSy6gsPUEgxoy1oNveLihBW3oOeIBk+eboR+aUtmkW9EXt8itf7BGjePHbXLgkIwaCZFlvLuzxAhXmzi31ZVtuIybGRgOl9sJ2WstCv8EQx9kg=
+	t=1720435273; cv=none; b=HTj3Wg/eXVaW/cP/b/53FN+iaksW4YxlxlC9jpfuOEAafzXJuuIxJnZaSBBQvDJaYOiMWbAOFPPsIiUvsODOYJLTjGeIk/vtOBdos7pKSWs/GZ2Vdsj0/o2+q2pKnxa959B1v481ak5VxNTMjbuGBSJ1em7jZ8G7ap5CkfRuNJE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720434592; c=relaxed/simple;
-	bh=/ZvJTvcmE9aPETbkJhWmhgYarZUd7/0YkdrdOi3MJJI=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=STWGbfpBPsZ+dBV49CrR0R3MwjH81O1yMfYIuSOpagCKtB2L6na7ny8YZPdRNGxFEU4PmvGoii21ZiKOS0Z+ArX/FynanJiWYZFWz2YvQk3srrc2UFeeXRxFbhUh1m1wvdk3Ljjy27wIORb01fqSEU3WtnJ9bBoI0xnOVV4pCzQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=C7V9skWu; arc=none smtp.client-ip=203.254.224.24
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
-	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20240708102947epoutp01c692eb9e625cd81ac5eee69dec7b96e6~gNiRE4HFg0254402544epoutp01J
-	for <devicetree@vger.kernel.org>; Mon,  8 Jul 2024 10:29:47 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20240708102947epoutp01c692eb9e625cd81ac5eee69dec7b96e6~gNiRE4HFg0254402544epoutp01J
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1720434587;
-	bh=9I+tPOsB1yepSP2MvCHhunRshCumusiuhsWZrNBfunc=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=C7V9skWuL3LOuNuqld1XGiJBHJfYubQVkeMg4i7qJGWrcQHTbnQubFCN/i3dnh/dr
-	 YUXDm3eDdXs6pGTl/P0MRJziJXC2GHUti06yV1aK//KomUEVVbZ91SmR1yWQFqPt62
-	 JxL8o9ENurAP5h5fYeM9HdK+HYmmVxSlS4zrl7vk=
-Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
-	epcas5p2.samsung.com (KnoxPortal) with ESMTP id
-	20240708102946epcas5p2946bf369f8ffe8f456a184c13c283d8d~gNiQVyKl61819518195epcas5p2I;
-	Mon,  8 Jul 2024 10:29:46 +0000 (GMT)
-Received: from epsmgec5p1-new.samsung.com (unknown [182.195.38.181]) by
-	epsnrtp4.localdomain (Postfix) with ESMTP id 4WHgNS467fz4x9Q6; Mon,  8 Jul
-	2024 10:29:44 +0000 (GMT)
-Received: from epcas5p3.samsung.com ( [182.195.41.41]) by
-	epsmgec5p1-new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	DC.1E.19174.89FBB866; Mon,  8 Jul 2024 19:29:44 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-	epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
-	20240708102943epcas5p18979436522e364a60f14658b78a784ea~gNiOJBYMY2622226222epcas5p1a;
-	Mon,  8 Jul 2024 10:29:43 +0000 (GMT)
-Received: from epsmgms1p2new.samsung.com (unknown [182.195.42.42]) by
-	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-	20240708102943epsmtrp297bcfc60acc449913c7d0b9572d4a9cf~gNiOH6PDC0821308213epsmtrp2W;
-	Mon,  8 Jul 2024 10:29:43 +0000 (GMT)
-X-AuditID: b6c32a50-87fff70000004ae6-d5-668bbf987e1b
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-	epsmgms1p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	7B.6D.19057.79FBB866; Mon,  8 Jul 2024 19:29:43 +0900 (KST)
-Received: from INBRO002756 (unknown [107.122.12.5]) by epsmtip1.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20240708102941epsmtip117c62ed7cfd98747cc1cbc18b1c082e8~gNiMM7SCJ0447404474epsmtip1i;
-	Mon,  8 Jul 2024 10:29:41 +0000 (GMT)
-From: "Alim Akhtar" <alim.akhtar@samsung.com>
-To: "'Sunyeal Hong'" <sunyeal.hong@samsung.com>, "'Krzysztof Kozlowski'"
-	<krzk@kernel.org>, "'Sylwester Nawrocki'" <s.nawrocki@samsung.com>,
-	"'Chanwoo Choi'" <cw00.choi@samsung.com>, "'Michael Turquette'"
-	<mturquette@baylibre.com>, "'Stephen Boyd'" <sboyd@kernel.org>, "'Rob
- Herring'" <robh@kernel.org>, "'Conor Dooley'" <conor+dt@kernel.org>
-Cc: <linux-samsung-soc@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>
-In-Reply-To: <20240707231331.3433340-2-sunyeal.hong@samsung.com>
-Subject: RE: [PATCH v2 1/4] dt-bindings: clock: add Exynos Auto v920 SoC CMU
- bindings
-Date: Mon, 8 Jul 2024 15:59:40 +0530
-Message-ID: <000001dad121$bf3c0a80$3db41f80$@samsung.com>
+	s=arc-20240116; t=1720435273; c=relaxed/simple;
+	bh=XskS0maRgQZBHDKIK+8SstCfUi84xbdyiEgDFbw91do=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=pqVi7qOig4bBFMme7NMc/iW34EEYnBkGoGUkrdllQm7frEjSE1LrX4ksEw6SVAq3Y7IrNpPx/Jk+frWjrsrX2c19YjtU/EIAnsHxbKZc/pTA2NBCyiyXbskmOkqpxsFAme6KcqaPbcSmhcKMlbkWKUzIl2QhXuBDJlTMy4rkjt0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=si4lGhfo; arc=none smtp.client-ip=45.89.224.132
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
+Received: from p-infra-ksmg-sc-msk02.sberdevices.ru (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 622EC120008;
+	Mon,  8 Jul 2024 13:33:41 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 622EC120008
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1720434821;
+	bh=kBbfq6zVIOZORkXhMU7x0H9PE5kCZaCWJAnTAIPXkmY=;
+	h=From:To:Subject:Date:Message-ID:Content-Type:MIME-Version:From;
+	b=si4lGhfoSQTWKP9/NbaYbHvz1faTyy/JNf1vI3yqVkRZayYWHD0xzEnShKSZ2tZrE
+	 a6IloUlEQ8PY/QvFvgUp6SxqspX0cQirhGdr7EK7Gr9NJ/Cqq1ObfH7s4ssHLk+Fcd
+	 daX9+ezpKZO2aF8WU1BoVM/v1Xaf+Kv5We7VFzajZDsJE4KImCpoS/d3WmZwMwQ1c+
+	 v6hJRRJJZb1MPNuGq+LFkyyiW3JkGJZnHMJ0THBrA4gQGvaC9fX+Uf2YroFHT8kYFY
+	 x3iuKAmuVw3i4UIpFU3z5+nQ5QI7MUcXW4Vcb8KKGsBKa0lyTB9yYxOgUAHofDp/UG
+	 UZ+CVfBeS7faw==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Mon,  8 Jul 2024 13:33:41 +0300 (MSK)
+Received: from p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) by
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Mon, 8 Jul 2024 13:33:40 +0300
+Received: from p-i-exch-sc-m02.sberdevices.ru ([fe80::81d7:3d68:fdfd:518]) by
+ p-i-exch-sc-m02.sberdevices.ru ([fe80::81d7:3d68:fdfd:518%9]) with mapi id
+ 15.02.1118.040; Mon, 8 Jul 2024 13:33:40 +0300
+From: Alexey Romanov <avromanov@salutedevices.com>
+To: Rob Herring <robh@kernel.org>
+CC: "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
+	"clabbe@baylibre.com" <clabbe@baylibre.com>, "herbert@gondor.apana.org.au"
+	<herbert@gondor.apana.org.au>, "davem@davemloft.net" <davem@davemloft.net>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, "khilman@baylibre.com"
+	<khilman@baylibre.com>, "jbrunet@baylibre.com" <jbrunet@baylibre.com>,
+	"martin.blumenstingl@googlemail.com" <martin.blumenstingl@googlemail.com>,
+	"vadim.fedorenko@linux.dev" <vadim.fedorenko@linux.dev>,
+	"linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
+	"linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, kernel <kernel@sberdevices.ru>
+Subject: Re: [PATCH v8 17/23] dt-bindings: crypto: meson: correct clk and
+ remove second interrupt line
+Thread-Topic: [PATCH v8 17/23] dt-bindings: crypto: meson: correct clk and
+ remove second interrupt line
+Thread-Index: AQHauOTSAXN6fA211UWCwBG9LZMwhLHBZvKAgCs5hgA=
+Date: Mon, 8 Jul 2024 10:33:40 +0000
+Message-ID: <20240708103330.w2krusjlyoucsvcn@cab-wsm-0029881.sigma.sbrf.ru>
+References: <20240607141242.2616580-1-avromanov@salutedevices.com>
+ <20240607141242.2616580-18-avromanov@salutedevices.com>
+ <20240610222827.GA3166929-robh@kernel.org>
+In-Reply-To: <20240610222827.GA3166929-robh@kernel.org>
+Accept-Language: ru-RU, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <79D38F7E409215488E684887CF215ECF@sberdevices.ru>
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQJHtUpDsgLCeLIQdS8546uqgvLWdQE7Blz4AfM7P5yw+WJ0wA==
-Content-Language: en-us
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrBJsWRmVeSWpSXmKPExsWy7bCmpu6M/d1pBjO2yFqs2XuOyeL6l+es
-	FvOPnGO1OH9+A7vFpsfXWC0+9txjtbi8aw6bxYzz+5gsLp5ytfi/Zwe7xeE37awW/65tZLFo
-	WraeyYHX4/2NVnaPTas62Tw2L6n36NuyitHj8ya5ANaobJuM1MSU1CKF1Lzk/JTMvHRbJe/g
-	eOd4UzMDQ11DSwtzJYW8xNxUWyUXnwBdt8wcoBOVFMoSc0qBQgGJxcVK+nY2RfmlJakKGfnF
-	JbZKqQUpOQUmBXrFibnFpXnpenmpJVaGBgZGpkCFCdkZc3q3Mhb8T6/4dOsXYwPjlpAuRg4O
-	CQETiT83UrsYuTiEBPYwStxsfsYI4XxilHi4YDYThPONUWLrlIMsXYycYB0vN5xghkjsZZS4
-	8r4bquoFo8TsPT/ZQKrYBHQldixuA7NFBO4xSXzcaw5SxCywjlFi88wj7CAJTgEHiWk3joON
-	FRYIl/h7YgJYnEVARWL5+5XMIDavgKXEttVL2SFsQYmTM5+A1TMLaEssW/iaGeIkBYmfT5ex
-	Qixzkti//CszRI24xMujILu4gGoOcEj8+NwJ1eAi0b/sPCuELSzx6vgWdghbSuLzu71sEHa2
-	xPGLs6DsConu1o9QNfYSOx/dZAGFHrOApsT6XfoQu/gken8/YYIEKq9ER5sQRLWqRPO7q9CQ
-	k5aY2N0NtdVDYtK/R4wTGBVnIflsFpLPZiH5YBbCsgWMLKsYpVILinPTU5NNCwx181LL4TGe
-	nJ+7iRGchLUCdjCu3vBX7xAjEwfjIUYJDmYlEd7Tj9vThHhTEiurUovy44tKc1KLDzGaAsN7
-	IrOUaHI+MA/klcQbmlgamJiZmZlYGpsZKonzvm6dmyIkkJ5YkpqdmlqQWgTTx8TBKdXA5D+l
-	Wqg0IKVYaatdZ6cbW3L/ysw5d6Zv+Z9/M+Zamnlm7LxUY5W0j0YODeJL7dbVLnnkY+18KLP3
-	98Z00WO/ZvSL8cgd/2occK6XV6uqP/jypjkSHvETPM3Y9EsVsnlOnL0vHHn03/enCgvkHxUy
-	zm69yLTyz/fK8k6h1esKd+W8EtI3WfDuM3O57alL14WTkpfvzV32QnjZjthFZuUn7lRdbP71
-	Sob3FycPc2pzyOYmtYYNyRdij/Gfni43W3biQu0NZxwKJbacilJf1n3q0Lzo536//jdu0ldk
-	PePxtGT1RmcvrZniepVpmzNOMAdtUufd5jtp2pW98n1GwrZsdlfuygV9sb62y7I68xeHEktx
-	RqKhFnNRcSIABdAX3EsEAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprPIsWRmVeSWpSXmKPExsWy7bCSnO70/d1pBg926Fis2XuOyeL6l+es
-	FvOPnGO1OH9+A7vFpsfXWC0+9txjtbi8aw6bxYzz+5gsLp5ytfi/Zwe7xeE37awW/65tZLFo
-	WraeyYHX4/2NVnaPTas62Tw2L6n36NuyitHj8ya5ANYoLpuU1JzMstQifbsEroy7Mz6yF+xP
-	qZh2fCZ7A+OLgC5GTg4JAROJlxtOMIPYQgK7GSWuT7KAiEtLXN84gR3CFpZY+e85O0TNM0aJ
-	+z/TQWw2AV2JHYvb2EBsEYEnTBJbD0d3MXJxMAtsYpQ4t/smG4gjJHCUUeLb2WmMIFWcAg4S
-	024cZwGxhQVCJf7eOgEWZxFQkVj+fiXYFbwClhLbVi9lh7AFJU7OfAJWzyygLfH05lM4e9nC
-	18wQ1ylI/Hy6jBXiCieJ/cu/MkPUiEu8PHqEfQKj8Cwko2YhGTULyahZSFoWMLKsYpRMLSjO
-	Tc8tNiwwykst1ytOzC0uzUvXS87P3cQIjkMtrR2Me1Z90DvEyMTBeIhRgoNZSYT39OP2NCHe
-	lMTKqtSi/Pii0pzU4kOM0hwsSuK83173pggJpCeWpGanphakFsFkmTg4pRqYZiU/OaPktODF
-	xnmiTZ3zLP/8WJYadsfAmc89JjOafYdEjqvuBrNm4wdhqdPXPftTp3s3OO/ADt66E8kH9Gbc
-	r94d9ap34w0OpnntRzIeRRp4nhZ8lX+uqkrpo94+v12itUuV4m+LvpuaYGovxzd7Vs/GaabC
-	QrOjLnnNEmRYqfaA91XT1oea9RkLX6y+oJp8VVrG5ZPCNSP3c3oWy1S03y7iFio5F3gqx/rA
-	5HfhrVv2J4infz5tpr7uTv4DjdK0BaJZ12v+xLXceXllftDc8JQ9ema7pXX4T19Zc+Pyit5/
-	dXdVth4wPS/P6tZWcuJw39H49AU/Ku8y3mLg46j6GTj9wrmkyuVXZq7v+HxYWImlOCPRUIu5
-	qDgRABFlXM8yAwAA
-X-CMS-MailID: 20240708102943epcas5p18979436522e364a60f14658b78a784ea
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20240707231444epcas2p17d7c9842f0acaff0cc352d5c15f38e73
-References: <20240707231331.3433340-1-sunyeal.hong@samsung.com>
-	<CGME20240707231444epcas2p17d7c9842f0acaff0cc352d5c15f38e73@epcas2p1.samsung.com>
-	<20240707231331.3433340-2-sunyeal.hong@samsung.com>
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 186370 [Jul 08 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.4
+X-KSMG-AntiSpam-Envelope-From: avromanov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 21 0.3.21 ebee5449fc125b2da45f1a6a6bc2c5c0c3ad0e05, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, smtp.sberdevices.ru:7.1.1,5.0.1;cab-wsm-0029881.sigma.sbrf.ru:7.1.1,5.0.1;127.0.0.199:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;salutedevices.com:7.1.1, FromAlignment: s
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/07/08 09:16:00 #25900162
+X-KSMG-AntiVirus-Status: Clean, skipped
 
-Hello Sunyeal
+Hi Rob,
 
-> -----Original Message-----
-> From: Sunyeal Hong <sunyeal.hong=40samsung.com>
-> Sent: Monday, July 8, 2024 4:43 AM
-> To: Krzysztof Kozlowski <krzk=40kernel.org>; Sylwester Nawrocki
-> <s.nawrocki=40samsung.com>; Chanwoo Choi <cw00.choi=40samsung.com>;
-> Alim Akhtar <alim.akhtar=40samsung.com>; Michael Turquette
-> <mturquette=40baylibre.com>; Stephen Boyd <sboyd=40kernel.org>; Rob
-> Herring <robh=40kernel.org>; Conor Dooley <conor+dt=40kernel.org>
-> Cc: linux-samsung-soc=40vger.kernel.org; linux-clk=40vger.kernel.org;
-> devicetree=40vger.kernel.org; linux-arm-kernel=40lists.infradead.org; lin=
-ux-
-> kernel=40vger.kernel.org; Sunyeal Hong <sunyeal.hong=40samsung.com>
-> Subject: =5BPATCH v2 1/4=5D dt-bindings: clock: add Exynos Auto v920 SoC =
-CMU
-> bindings
+thank you for the review.
+
+On Mon, Jun 10, 2024 at 04:28:27PM -0600, Rob Herring wrote:
+> On Fri, Jun 07, 2024 at 05:12:36PM +0300, Alexey Romanov wrote:
+> > GXL and newer SoC's uses the DMA engine (not blkmv) for crypto HW.
+> > Crypto HW doesn't actually use the blkmv clk. At RTL level, crypto
+> > engine is hard weired to a clk81 (CLKID_CLK81).
 >=20
-> Add dt-schema for Exynos Auto v920 SoC clock controller.
-Prefer to have Exynos Auto -> ExynosAuto to match with the naming conventio=
-n and the UM.
-
-> Add device tree clock binding definitions for below CMU blocks.
+> typo.
 >=20
-> - CMU_TOP
-> - CMU_PERIC0
+> >=20
+> > Also, GXL crypto IP isn't to seconnd interrput line. So we must
 >=20
-> Signed-off-by: Sunyeal Hong <sunyeal.hong=40samsung.com>
-> ---
->  .../clock/samsung,exynosautov920-clock.yaml   =7C 115 +++++++++++
->  .../clock/samsung,exynosautov920.h            =7C 191 ++++++++++++++++++
->  2 files changed, 306 insertions(+)
->  create mode 100644
-> Documentation/devicetree/bindings/clock/samsung,exynosautov920-
-> clock.yaml
->  create mode 100644 include/dt-bindings/clock/samsung,exynosautov920.h
+> 2 more typos. Spell checkers exist. Use them instead of me please.
 >=20
-> diff --git
-> a/Documentation/devicetree/bindings/clock/samsung,exynosautov920-
-> clock.yaml
-> b/Documentation/devicetree/bindings/clock/samsung,exynosautov920-
-> clock.yaml
-> new file mode 100644
-> index 000000000000..ade74d6e90c0
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/samsung,exynosautov920-
-> clo
-> +++ ck.yaml
-> =40=40 -0,0 +1,115 =40=40
-> +=23 SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
-> +---
-> +=24id:
-> +http://devicetree.org/schemas/clock/samsung,exynosautov920-
-> clock.yaml=23
-> +=24schema: http://devicetree.org/meta-schemas/core.yaml=23
-> +
-> +title: Samsung Exynos Auto v920 SoC clock controller
-> +
-> +maintainers:
-> +  - Sunyeal Hong <sunyeal.hong=40samsung.com>
-> +  - Chanwoo Choi <cw00.choi=40samsung.com>
-> +  - Krzysztof Kozlowski <krzk=40kernel.org>
-> +  - Sylwester Nawrocki <s.nawrocki=40samsung.com>
-> +
-> +description: =7C
-> +  Exynos Auto v920 clock controller is comprised of several CMU units,
-> +generating
-> +  clocks for different domains. Those CMU units are modeled as separate
-> +device
-> +  tree nodes, and might depend on each other. Root clocks in that clock
-> +tree are
-> +  two external clocks:: OSCCLK/XTCXO (38.4 MHz) and RTCCLK/XrtcXTI
-> (32768 Hz).
-> +  The external OSCCLK must be defined as fixed-rate clock in dts.
-> +
-> +  CMU_TOP is a top-level CMU, where all base clocks are prepared using
-> + PLLs and  dividers; all other clocks of function blocks (other CMUs)
-> + are usually  derived from CMU_TOP.
-> +
-> +  Each clock is assigned an identifier and client nodes can use this
-> + identifier  to specify the clock which they consume. All clocks
-> + available for usage  in clock consumer nodes are defined as
-> + preprocessor macros in  'include/dt-
-> bindings/clock/samsung,exynosautov920.h' header.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - samsung,exynosautov920-cmu-top
-> +      - samsung,exynosautov920-cmu-peric0
-> +
-> +  clocks:
-> +    minItems: 1
-> +    maxItems: 3
-> +
-> +  clock-names:
-> +    minItems: 1
-> +    maxItems: 3
-> +
-> +  =22=23clock-cells=22:
-> +    const: 1
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: samsung,exynosautov920-cmu-top
-> +
-> +    then:
-> +      properties:
-> +        clocks:
-> +          items:
-> +            - description: External reference clock (38.4 MHz)
-> +
-> +        clock-names:
-> +          items:
-> +            - const: oscclk
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: samsung,exynosautov920-cmu-peric0
-> +
-> +    then:
-> +      properties:
-> +        clocks:
-> +          items:
-> +            - description: External reference clock (38.4 MHz)
-> +            - description: CMU_PERIC0 NOC clock (from CMU_TOP)
-> +            - description: CMU_PERIC0 IP clock (from CMU_TOP)
-> +
-> +        clock-names:
-> +          items:
-> +            - const: oscclk
-> +            - const: noc
-> +            - const: ip
-These are too generic name, please add peric0_noc and peric0_ip, and this i=
-s to match with the UM.
-I am sure in future you would like to add other IPs like USI, I2C etc for t=
-he peric0 block
-> +
-> +required:
-> +  - compatible
-> +  - =22=23clock-cells=22
-> +  - clocks
-> +  - clock-names
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  =23 Clock controller node for CMU_PERIC0
-> +  - =7C
-> +    =23include <dt-bindings/clock/samsung,exynosautov920.h>
-> +
-> +    cmu_peric0: clock-controller=4010800000 =7B
-> +        compatible =3D =22samsung,exynosautov920-cmu-peric0=22;
-> +        reg =3D <0x10800000 0x8000>;
-> +        =23clock-cells =3D <1>;
-> +
-> +        clocks =3D <&xtcxo>,
-> +                 <&cmu_top DOUT_CLKCMU_PERIC0_NOC>,
-> +                 <&cmu_top DOUT_CLKCMU_PERIC0_IP>;
-> +        clock-names =3D =22oscclk=22,
-> +                      =22noc=22,
-> +                      =22ip=22;
-> +    =7D;
-> +
-> +...
-> diff --git a/include/dt-bindings/clock/samsung,exynosautov920.h
-> b/include/dt-bindings/clock/samsung,exynosautov920.h
-> new file mode 100644
-> index 000000000000..9daa617c3636
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/samsung,exynosautov920.h
-> =40=40 -0,0 +1,191 =40=40
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> +/*
-> + * Copyright (c) 2024 Samsung Electronics Co., Ltd.
-> + * Author: Sunyeal Hong <sunyeal.hong=40samsung.com>
-> + *
-> + * Device Tree binding constants for Exynos Auto V920 clock controller.
-> + */
-> +
-> +=23ifndef _DT_BINDINGS_CLOCK_EXYNOSAUTOV920_H
-> +=23define _DT_BINDINGS_CLOCK_EXYNOSAUTOV920_H
-> +
-> +/* CMU_TOP */
-> +=23define FOUT_SHARED0_PLL		1
-> +=23define FOUT_SHARED1_PLL		2
-> +=23define FOUT_SHARED2_PLL		3
-> +=23define FOUT_SHARED3_PLL		4
-> +=23define FOUT_SHARED4_PLL		5
-> +=23define FOUT_SHARED5_PLL		6
-> +=23define FOUT_MMC_PLL			7
-> +
-> +/* MUX in CMU_TOP */
-> +=23define MOUT_SHARED0_PLL		101
-> +=23define MOUT_SHARED1_PLL		102
-> +=23define MOUT_SHARED2_PLL		103
-> +=23define MOUT_SHARED3_PLL		104
-> +=23define MOUT_SHARED4_PLL		105
-> +=23define MOUT_SHARED5_PLL		106
-> +=23define MOUT_MMC_PLL			107
-> +=23define MOUT_CLKCMU_CMU_BOOST		108
-> +=23define MOUT_CLKCMU_CMU_CMUREF		109
-> +=23define MOUT_CLKCMU_ACC_NOC		110
-> +=23define MOUT_CLKCMU_ACC_ORB		111
-> +=23define MOUT_CLKCMU_APM_NOC		112
-> +=23define MOUT_CLKCMU_AUD_CPU		113
-> +=23define MOUT_CLKCMU_AUD_NOC		114
-> +=23define MOUT_CLKCMU_CPUCL0_SWITCH	115
-> +=23define MOUT_CLKCMU_CPUCL0_CLUSTER	116
-> +=23define MOUT_CLKCMU_CPUCL0_DBG		117
-> +=23define MOUT_CLKCMU_CPUCL1_SWITCH	118
-> +=23define MOUT_CLKCMU_CPUCL1_CLUSTER	119
-> +=23define MOUT_CLKCMU_CPUCL2_SWITCH	120
-> +=23define MOUT_CLKCMU_CPUCL2_CLUSTER	121
-> +=23define MOUT_CLKCMU_DNC_NOC		122
-> +=23define MOUT_CLKCMU_DPTX_NOC		123
-> +=23define MOUT_CLKCMU_DPTX_DPGTC		124
-> +=23define MOUT_CLKCMU_DPTX_DPOSC		125
-> +=23define MOUT_CLKCMU_DPUB_NOC		126
-> +=23define MOUT_CLKCMU_DPUB_DSIM		127
-> +=23define MOUT_CLKCMU_DPUF0_NOC		128
-> +=23define MOUT_CLKCMU_DPUF1_NOC		129
-> +=23define MOUT_CLKCMU_DPUF2_NOC		130
-> +=23define MOUT_CLKCMU_DSP_NOC		131
-> +=23define MOUT_CLKCMU_G3D_SWITCH		132
-> +=23define MOUT_CLKCMU_G3D_NOCP		133
-> +=23define MOUT_CLKCMU_GNPU_NOC		134
-> +=23define MOUT_CLKCMU_HSI0_NOC		135
-> +=23define MOUT_CLKCMU_HSI1_NOC		136
-> +=23define MOUT_CLKCMU_HSI1_USBDRD		137
-> +=23define MOUT_CLKCMU_HSI1_MMC_CARD	138
-> +=23define MOUT_CLKCMU_HSI2_NOC		139
-> +=23define MOUT_CLKCMU_HSI2_NOC_UFS	140
-> +=23define MOUT_CLKCMU_HSI2_UFS_EMBD	141
-> +=23define MOUT_CLKCMU_HSI2_ETHERNET	142
-> +=23define MOUT_CLKCMU_ISP_NOC		143
-> +=23define MOUT_CLKCMU_M2M_NOC		144
-> +=23define MOUT_CLKCMU_M2M_JPEG		145
-> +=23define MOUT_CLKCMU_MFC_MFC		146
-> +=23define MOUT_CLKCMU_MFC_WFD		147
-> +=23define MOUT_CLKCMU_MFD_NOC		148
-> +=23define MOUT_CLKCMU_MIF_SWITCH		149
-> +=23define MOUT_CLKCMU_MIF_NOCP		150
-> +=23define MOUT_CLKCMU_MISC_NOC		151
-> +=23define MOUT_CLKCMU_NOCL0_NOC		152
-> +=23define MOUT_CLKCMU_NOCL1_NOC		153
-> +=23define MOUT_CLKCMU_NOCL2_NOC		154
-> +=23define MOUT_CLKCMU_PERIC0_NOC		155
-> +=23define MOUT_CLKCMU_PERIC0_IP		156
-> +=23define MOUT_CLKCMU_PERIC1_NOC		157
-> +=23define MOUT_CLKCMU_PERIC1_IP		158
-> +=23define MOUT_CLKCMU_SDMA_NOC		159
-> +=23define MOUT_CLKCMU_SNW_NOC		160
-> +=23define MOUT_CLKCMU_SSP_NOC		161
-> +=23define MOUT_CLKCMU_TAA_NOC		162
-> +
-> +/* DIV in CMU_TOP */
-> +=23define DOUT_SHARED0_DIV1		201
-> +=23define DOUT_SHARED0_DIV2		202
-> +=23define DOUT_SHARED0_DIV3		203
-> +=23define DOUT_SHARED0_DIV4		204
-> +=23define DOUT_SHARED1_DIV1		205
-> +=23define DOUT_SHARED1_DIV2		206
-> +=23define DOUT_SHARED1_DIV3		207
-> +=23define DOUT_SHARED1_DIV4		208
-> +=23define DOUT_SHARED2_DIV1		209
-> +=23define DOUT_SHARED2_DIV2		210
-> +=23define DOUT_SHARED2_DIV3		211
-> +=23define DOUT_SHARED2_DIV4		212
-> +=23define DOUT_SHARED3_DIV1		213
-> +=23define DOUT_SHARED3_DIV2		214
-> +=23define DOUT_SHARED3_DIV3		215
-> +=23define DOUT_SHARED3_DIV4		216
-> +=23define DOUT_SHARED4_DIV1		217
-> +=23define DOUT_SHARED4_DIV2		218
-> +=23define DOUT_SHARED4_DIV3		219
-> +=23define DOUT_SHARED4_DIV4		220
-> +=23define DOUT_SHARED5_DIV1		221
-> +=23define DOUT_SHARED5_DIV2		222
-> +=23define DOUT_SHARED5_DIV3		223
-> +=23define DOUT_SHARED5_DIV4		224
-> +=23define DOUT_CLKCMU_CMU_BOOST		225
-> +=23define DOUT_CLKCMU_ACC_NOC		226
-> +=23define DOUT_CLKCMU_ACC_ORB		227
-> +=23define DOUT_CLKCMU_APM_NOC		228
-> +=23define DOUT_CLKCMU_AUD_CPU		229
-> +=23define DOUT_CLKCMU_AUD_NOC		230
-> +=23define DOUT_CLKCMU_CPUCL0_SWITCH	231
-> +=23define DOUT_CLKCMU_CPUCL0_CLUSTER	232
-> +=23define DOUT_CLKCMU_CPUCL0_DBG		233
-> +=23define DOUT_CLKCMU_CPUCL1_SWITCH	234
-> +=23define DOUT_CLKCMU_CPUCL1_CLUSTER	235
-> +=23define DOUT_CLKCMU_CPUCL2_SWITCH	236
-> +=23define DOUT_CLKCMU_CPUCL2_CLUSTER	237
-> +=23define DOUT_CLKCMU_DNC_NOC		238
-> +=23define DOUT_CLKCMU_DPTX_NOC		239
-> +=23define DOUT_CLKCMU_DPTX_DPGTC		240
-> +=23define DOUT_CLKCMU_DPTX_DPOSC		241
-> +=23define DOUT_CLKCMU_DPUB_NOC		242
-> +=23define DOUT_CLKCMU_DPUB_DSIM		243
-> +=23define DOUT_CLKCMU_DPUF0_NOC		244
-> +=23define DOUT_CLKCMU_DPUF1_NOC		245
-> +=23define DOUT_CLKCMU_DPUF2_NOC		246
-> +=23define DOUT_CLKCMU_DSP_NOC		247
-> +=23define DOUT_CLKCMU_G3D_SWITCH		248
-> +=23define DOUT_CLKCMU_G3D_NOCP		249
-> +=23define DOUT_CLKCMU_GNPU_NOC		250
-> +=23define DOUT_CLKCMU_HSI0_NOC		251
-> +=23define DOUT_CLKCMU_HSI1_NOC		252
-> +=23define DOUT_CLKCMU_HSI1_USBDRD		253
-> +=23define DOUT_CLKCMU_HSI1_MMC_CARD	254
-> +=23define DOUT_CLKCMU_HSI2_NOC		255
-> +=23define DOUT_CLKCMU_HSI2_NOC_UFS	256
-> +=23define DOUT_CLKCMU_HSI2_UFS_EMBD	257
-> +=23define DOUT_CLKCMU_HSI2_ETHERNET	258
-> +=23define DOUT_CLKCMU_ISP_NOC		259
-> +=23define DOUT_CLKCMU_M2M_NOC		260
-> +=23define DOUT_CLKCMU_M2M_JPEG		261
-> +=23define DOUT_CLKCMU_MFC_MFC		262
-> +=23define DOUT_CLKCMU_MFC_WFD		263
-> +=23define DOUT_CLKCMU_MFD_NOC		264
-> +=23define DOUT_CLKCMU_MIF_NOCP		265
-> +=23define DOUT_CLKCMU_MISC_NOC		266
-> +=23define DOUT_CLKCMU_NOCL0_NOC		267
-> +=23define DOUT_CLKCMU_NOCL1_NOC		268
-> +=23define DOUT_CLKCMU_NOCL2_NOC		269
-> +=23define DOUT_CLKCMU_PERIC0_NOC		270
-> +=23define DOUT_CLKCMU_PERIC0_IP		271
-> +=23define DOUT_CLKCMU_PERIC1_NOC		272
-> +=23define DOUT_CLKCMU_PERIC1_IP		273
-> +=23define DOUT_CLKCMU_SDMA_NOC		274
-> +=23define DOUT_CLKCMU_SNW_NOC		275
-> +=23define DOUT_CLKCMU_SSP_NOC		276
-> +=23define DOUT_CLKCMU_TAA_NOC		277
-> +
-> +/* CMU_PERIC0 */
-> +=23define CLK_MOUT_PERIC0_IP_USER		1
-> +=23define CLK_MOUT_PERIC0_NOC_USER	2
-> +=23define CLK_MOUT_PERIC0_USI00_USI	3
-> +=23define CLK_MOUT_PERIC0_USI01_USI	4
-> +=23define CLK_MOUT_PERIC0_USI02_USI	5
-> +=23define CLK_MOUT_PERIC0_USI03_USI	6
-> +=23define CLK_MOUT_PERIC0_USI04_USI	7
-> +=23define CLK_MOUT_PERIC0_USI05_USI	8
-> +=23define CLK_MOUT_PERIC0_USI06_USI	9
-> +=23define CLK_MOUT_PERIC0_USI07_USI	10
-> +=23define CLK_MOUT_PERIC0_USI08_USI	11
-> +=23define CLK_MOUT_PERIC0_USI_I2C		12
-> +=23define CLK_MOUT_PERIC0_I3C		13
-> +
-> +=23define CLK_DOUT_PERIC0_USI00_USI	14
-> +=23define CLK_DOUT_PERIC0_USI01_USI	15
-> +=23define CLK_DOUT_PERIC0_USI02_USI	16
-> +=23define CLK_DOUT_PERIC0_USI03_USI	17
-> +=23define CLK_DOUT_PERIC0_USI04_USI	18
-> +=23define CLK_DOUT_PERIC0_USI05_USI	19
-> +=23define CLK_DOUT_PERIC0_USI06_USI	20
-> +=23define CLK_DOUT_PERIC0_USI07_USI	21
-> +=23define CLK_DOUT_PERIC0_USI08_USI	22
-> +=23define CLK_DOUT_PERIC0_USI_I2C		23
-> +=23define CLK_DOUT_PERIC0_I3C		24
-> +
-> +=23endif /* _DT_BINDINGS_CLOCK_EXYNOSAUTOV920_H */
-> --
-> 2.45.2
+> I think you forgot the word 'connected' too.
 
+Yep, sorry, I will fix all typos.
 
+>=20
+> > remove it from dt-bindings.
+>=20
+>=20
+> So did this binding not work at all?=20
+
+Yes.
+
+> Are there any users?=20
+
+No.
+
+> You need a bit=20
+> more justification for an ABI breaking change.
+
+I will add more clarification information in commit message in V9.
+
+>=20
+> >=20
+> > Fixes: 7f7d115dfb51 ("dt-bindings: crypto: Add DT bindings
+> > documentation for amlogic-crypto")
+>=20
+> This line should not be wrapped.
+> >=20
+>=20
+> Drop the blank line.
+>=20
+> > Signed-off-by: Alexey Romanov <avromanov@salutedevices.com>
+> > ---
+> >  .../bindings/crypto/amlogic,gxl-crypto.yaml          | 12 +++++++-----
+> >  1 file changed, 7 insertions(+), 5 deletions(-)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypt=
+o.yaml b/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml
+> > index 948e11ebe4ee..aff6f3234dc9 100644
+> > --- a/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml
+> > +++ b/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml
+> > @@ -20,13 +20,15 @@ properties:
+> >    interrupts:
+> >      items:
+> >        - description: Interrupt for flow 0
+> > -      - description: Interrupt for flow 1
+> > =20
+> >    clocks:
+> >      maxItems: 1
+> > =20
+> >    clock-names:
+> > -    const: blkmv
+> > +    const: clk81
+>=20
+> Clocks are supposed be named local to the block like what function or=20
+> part of the block they clock. This sounds like something global.=20
+>=20
+> With only 1 clock, I'd just drop the name altogether.
+
+I think I have to remove clock-names field in V9.
+
+>=20
+> > +
+> > +  power-domains:
+> > +    maxItems: 1
+> > =20
+> >  required:
+> >    - compatible
+> > @@ -46,7 +48,7 @@ examples:
+> >      crypto: crypto-engine@c883e000 {
+> >          compatible =3D "amlogic,gxl-crypto";
+> >          reg =3D <0xc883e000 0x36>;
+> > -        interrupts =3D <GIC_SPI 188 IRQ_TYPE_EDGE_RISING>, <GIC_SPI 18=
+9 IRQ_TYPE_EDGE_RISING>;
+> > -        clocks =3D <&clkc CLKID_BLKMV>;
+> > -        clock-names =3D "blkmv";
+> > +        interrupts =3D <GIC_SPI 188 IRQ_TYPE_EDGE_RISING>;
+> > +        clocks =3D <&clkc CLKID_CLK81>;
+> > +        clock-names =3D "clk81";
+> >      };
+> > --=20
+> > 2.34.1
+> >=20
+
+--=20
+Thank you,
+Alexey=
 
