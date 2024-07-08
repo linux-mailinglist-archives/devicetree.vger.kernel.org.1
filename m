@@ -1,74 +1,40 @@
-Return-Path: <devicetree+bounces-83879-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83881-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A47792A316
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 14:43:37 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 585E592A330
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 14:50:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D475128138E
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 12:43:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C567DB219FB
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 12:50:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A2D381720;
-	Mon,  8 Jul 2024 12:43:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PtwQDajp"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB3D181AD2;
+	Mon,  8 Jul 2024 12:50:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A40F281211;
-	Mon,  8 Jul 2024 12:43:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC1DA7E0EA;
+	Mon,  8 Jul 2024 12:50:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720442615; cv=none; b=JixMjr3dpF183ijIOnxVvA7uHC+867PJJF4pn3IkU/4VpBsP8xeot81aAAj4YeCUk94pdBu1pg43Qysy9Q4P514emJB+gtaLQBBzvGW1QOn0DzpTbhUzPhr6W12ube8TdMx0OMq3o8LTfuuUpg4ZqomD7edvIWn1Q/3LsQOW1Tc=
+	t=1720443019; cv=none; b=L4WEbWOgsBTm4bsKL4uDqsLWfWbYdjkNkv/Dd7SRWkwd2C7/Du0xBpXVWCgYNpBOQL3NFXRC34PEck9+To416aJ0Bdm05iE67bKtmU84RYqcDljGtxNt5DOSJfLvfpjsZgyZ3cyE8b9G5BG/fXmdILJiHEe7CmYfSCrrYQManE4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720442615; c=relaxed/simple;
-	bh=BI28wz5XInTgMXnFdy8HZ6+ujkFpibqozOzg9QsIMI8=;
+	s=arc-20240116; t=1720443019; c=relaxed/simple;
+	bh=OFqD32J3lAHI3ENFac/jIZMKqrQ93Cts5OasYxedmXQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SeGE7/PWKuNzA8WxyqbV7pT47ig4ycvP6PxdgajqhqvD+7rMpDkSJEeeDC6fMLTICRDv0KDZfOoKyKcUcH+1tXAVX4i1qqZUzmzvKpVQtasEj7nMOWx0NwyiMhUiYPwAXrD2arK1nkE4Gvw/1c82+aYERmQxASVJ7AieGE7v4MI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PtwQDajp; arc=none smtp.client-ip=209.85.167.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-52e9fe05354so5657360e87.1;
-        Mon, 08 Jul 2024 05:43:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1720442612; x=1721047412; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=tE4/Xw/cTAW7KhMX9aTxF+9g4e51k+vLuUCkv+6bpaI=;
-        b=PtwQDajpW9YriSdltVhsOZo8EtXVyXm1UF6m7I0EXWbTYl7lW57mkWALIp2VY0Taty
-         bgx5bg3DVQ9sZhQahU9jVo7hR7K27O402Hn9Tj+2fOu4uYWStlB03wg/LMBwhzvf2I1X
-         jsL7KsL8IAojdOI4GgYsjEyhLDltThrfZpJc/he2Kkzr01mv8lc3c2ecGUdhymN8xOM3
-         LMR2oU+irvGUJh7uX+iO1Va9y1dGxYfNHSL2t9FzK8Pv/Ovgn36obgHPhX+h09mEEx8p
-         jAduzkGfiTAyyIyOl0oAQWHCpJImYq140kTArOOCo7Jzcax6yPVfOkRKc/cgC1QDZ3qu
-         D8ig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720442612; x=1721047412;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tE4/Xw/cTAW7KhMX9aTxF+9g4e51k+vLuUCkv+6bpaI=;
-        b=bPTUG37651Z1a3SL/D57ycSvu1iPgRWwTZV80StbFU7e9CmVWLqEOh0z5J1Xnb58uN
-         CtiEbFeiVefGpfs8jS6jPdPWIUwBHdzEAcl20EpbeMv9vR7da50I6hZ+oolWVUPq/D24
-         KkfFe3H22QlRHmvzM1KSXe8/Jxl+bjsyzOSUe7P3EDDBq7OGOFALLo2dqYgpNAJA2BBD
-         FA4YXA35IECBOnZhI4+FNrH0lkkc1UxprbRlogF9g8q18lSG5e5Mj0jeTnf2fwEwPYMJ
-         w8pOmLK8CpJKUgM/96OSdJN0waIEA1DuAJR2FixdUyPcclJs1xlK71kVUmwi1L+s65sB
-         bTaQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUlG5Ls+4TqR+dJ1UU/+nDb/Go4gdXuYOp4diBflknEK84phh9JRLHTQlgl6GsrSJMLG7sBH/QAqLUxC2WFEybKBmV+wXuJkDHmIqC8T5N9oooQPKTDgs1L7AF3uu+H8Z3YTnJoYJ8dha9kIVxyKSrWjedN9WF6cIhGQhoieQV+KvRDSQ==
-X-Gm-Message-State: AOJu0Yy63JdclNuykdJ+Z6wYt1VX6EASJ7R6f1HrEBaqTarkF37WBkVj
-	chBoW4TcMjT43SQD+iupHj+9uSd2L8kgTU9SxfDrAsRi/gM/+k6b
-X-Google-Smtp-Source: AGHT+IFxhmAI/t2baGo+8FHPDAJctn5KhZOEAfWFa+hD/m+yvpkjzx7stU+T+XnzM4iZBgNF6eESyA==
-X-Received: by 2002:a19:7702:0:b0:52c:dba6:b4c8 with SMTP id 2adb3069b0e04-52ea0619e3cmr9176706e87.13.1720442611240;
-        Mon, 08 Jul 2024 05:43:31 -0700 (PDT)
-Received: from ?IPV6:2a10:a5c0:800d:dd00:8cfe:d6e7:6701:9dfd? ([2a10:a5c0:800d:dd00:8cfe:d6e7:6701:9dfd])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52ea90ba285sm723630e87.127.2024.07.08.05.43.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 Jul 2024 05:43:30 -0700 (PDT)
-Message-ID: <622f5382-10c9-4bd5-84ab-544d7c16f1fe@gmail.com>
-Date: Mon, 8 Jul 2024 15:43:29 +0300
+	 In-Reply-To:Content-Type; b=qlO3B3N+CtJFbFjDJvXZvHkUlWvkBwI8iY5YlEt6k925nHQ23uCKODv0CTgDmddyg6lZqkp4XY8Gd5WuiKUvvSXJ/KfNHlwGBC5ifSmc/3QHNw5eXreD6u8T7r0nW8ZM7Q11devtgtxghVMPQGoHsLPjjc+xVmrGx/snXHP79cI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 096651042;
+	Mon,  8 Jul 2024 05:50:41 -0700 (PDT)
+Received: from [10.57.74.191] (unknown [10.57.74.191])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 19AFC3F766;
+	Mon,  8 Jul 2024 05:50:12 -0700 (PDT)
+Message-ID: <6a23eb7f-2fad-4a44-bf7c-ab7f01c342f3@arm.com>
+Date: Mon, 8 Jul 2024 13:50:11 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,93 +42,134 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/7] dt-bindings: iio: BU27034 => BU27034ANUC
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
- Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <cover.1720176341.git.mazziesaccount@gmail.com>
- <c39f9c67b3c07a27d7a13109c7b69cff9cfd2b9b.1720176341.git.mazziesaccount@gmail.com>
- <20240707140536.1dbb989b@jic23-huawei>
-Content-Language: en-US, en-GB
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <20240707140536.1dbb989b@jic23-huawei>
+Subject: Re: [PATCH v2 2/4] dt-bindings: arm: Add binding document for
+ Coresight Control Unit device.
+Content-Language: en-GB
+To: JieGan <quic_jiegan@quicinc.com>
+Cc: Mathieu Poirier <mathieu.poirier@linaro.org>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ Mike Leach <mike.leach@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ James Clark <james.clark@arm.com>, Jinlong Mao <quic_jinlmao@quicinc.com>,
+ Leo Yan <leo.yan@linaro.org>, coresight@lists.linaro.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, Tingwei Zhang <quic_tingweiz@quicinc.com>,
+ Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+ Tao Zhang <quic_taozha@quicinc.com>, Trilok Soni <quic_tsoni@quicinc.com>,
+ Song Chai <quic_songchai@quicinc.com>, linux-arm-msm@vger.kernel.org
+References: <20240705090049.1656986-1-quic_jiegan@quicinc.com>
+ <20240705090049.1656986-3-quic_jiegan@quicinc.com>
+ <208b3861-6898-4506-9152-c9d770ef1555@arm.com>
+ <Zou7FA2Av7CJO+ds@jiegan-gv.ap.qualcomm.com>
+ <Zou+fmUJoyzamWcw@jiegan-gv.ap.qualcomm.com>
+From: Suzuki K Poulose <suzuki.poulose@arm.com>
+In-Reply-To: <Zou+fmUJoyzamWcw@jiegan-gv.ap.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 7/7/24 16:05, Jonathan Cameron wrote:
-> On Fri, 5 Jul 2024 13:54:12 +0300
-> Matti Vaittinen <mazziesaccount@gmail.com> wrote:
-> 
->> The BU27034NUC was cancelled before it entered mass production. It was
->> replaced by a new variant BU27034ANUC (note, added 'A'). The new
->> variant gained a few significant changes, like removal of the 3.rd data
->> channel and dropping some of the gain settings. This means that, from
->> software point of view these ICs are incompatible. Lux calculation based
->> on the data from the sensors needs to be done differently, and on the
->> BU27034ANUC the channel 3 data is missing. Also, the gain setting
->> differencies matter.
->>
->> Unfortunately, the identification register was not changed so there is no
->> safe way for the software to distinguish the variants.
->>
->> According to the ROHM HQ engineers, the old BU27034NUC should not be
->> encountered in the wild. Hence it makes sense to remove the support for
->> the old BU27034NUC and add support for the new BU27034ANUC. Change the
->> compatible in order to not load the incompatible old driver for new sensor
->> (or, if someone had the old sensor, the new driver for it).
->>
->> Drop the compatible for old sensor which should not be in the wild and
->> add a new compatible for the new model with accurate model suffix
->> 'anuc'.
->>
->> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
-> Rename indeed makes sense.  One minor, 'whilst you are here' comment inline.
-> 
->>
->> ---
->> A patch renaming the file according to the new compatible will follow.
->> If renaming is not needed or appropriate, that patch can be dropped.
->>
->> Revision history:
->> v2: New patch
->> ---
->>   .../devicetree/bindings/iio/light/rohm,bu27034.yaml      | 9 ++++-----
->>   1 file changed, 4 insertions(+), 5 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/iio/light/rohm,bu27034.yaml b/Documentation/devicetree/bindings/iio/light/rohm,bu27034.yaml
->> index 30a109a1bf3b..535bd18348ac 100644
->> --- a/Documentation/devicetree/bindings/iio/light/rohm,bu27034.yaml
->> +++ b/Documentation/devicetree/bindings/iio/light/rohm,bu27034.yaml
->> @@ -4,20 +4,19 @@
->>   $id: http://devicetree.org/schemas/iio/light/rohm,bu27034.yaml#
->>   $schema: http://devicetree.org/meta-schemas/core.yaml#
+On 08/07/2024 11:25, JieGan wrote:
+> On Mon, Jul 08, 2024 at 06:10:28PM +0800, JieGan wrote:
+>> On Mon, Jul 08, 2024 at 10:41:55AM +0100, Suzuki K Poulose wrote:
+>>> On 05/07/2024 10:00, Jie Gan wrote:
+>>>> Add binding document for Coresight Control Unit device.
+>>>
+>>> nit: This is again too generic ? corsight-tmc-control-unit ? After all
+>>> thats what it is and not a *generic* coresight control unit ?
+>>>
+>> coresight-tmc-control-unit is much better. We will check it.
 >>   
->> -title: ROHM BU27034 ambient light sensor
->> +title: ROHM BU27034ANUC ambient light sensor
->>   
->>   maintainers:
->>     - Matti Vaittinen <mazziesaccount@gmail.com>
->>   
->>   description: |
->> -  ROHM BU27034 is an ambient light sesnor with 3 channels and 3 photo diodes
->> +  ROHM BU27034ANUC is an ambient light sesnor with 2 channels and 2 photo diodes
+>>>>
+>>>> Signed-off-by: Jie Gan <quic_jiegan@quicinc.com>
+>>>> ---
+>>>>    .../bindings/arm/qcom,coresight-ccu.yaml      | 87 +++++++++++++++++++
+>>>>    1 file changed, 87 insertions(+)
+>>>>    create mode 100644 Documentation/devicetree/bindings/arm/qcom,coresight-ccu.yaml
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight-ccu.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight-ccu.yaml
+>>>> new file mode 100644
+>>>> index 000000000000..9bb8ced393a7
+>>>> --- /dev/null
+>>>> +++ b/Documentation/devicetree/bindings/arm/qcom,coresight-ccu.yaml
+>>>> @@ -0,0 +1,87 @@
+>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>> +%YAML 1.2
+>>>> +---
+>>>> +$id: http://devicetree.org/schemas/arm/qcom,coresight-ccu.yaml#
+>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>> +
+>>>> +title: CoreSight Control Unit
+>>>> +
+>>>> +maintainers:
+>>>> +  - Yuanfang Zhang <quic_yuanfang@quicinc.com>
+>>>> +  - Mao Jinlong <quic_jinlmao@quicinc.com>
+>>>> +  - Jie Gan <quic_jiegan@quicinc.com>
+>>>> +
+>>>> +description:
+>>>> +  The Coresight Control unit controls various Coresight behaviors.
+>>>> +  Used to enable/disable ETR’s data filter function based on trace ID.
+>>>> +
+>>>> +properties:
+>>>> +  compatible:
+>>>> +    const: qcom,coresight-ccu
+>>>> +
+>>>> +  reg:
+>>>> +    maxItems: 1
+>>>> +
+>>>> +  clocks:
+>>>> +    maxItems: 1
+>>>> +
+>>>> +  clock-names:
+>>>> +    items:
+>>>> +      - const: apb_pclk
+>>>> +
+>>>> +  reg-names:
+>>>> +    items:
+>>>> +      - const: ccu-base
+>>>> +
+>>>> +  in-ports:
+>>>> +    $ref: /schemas/graph.yaml#/properties/ports
+>>>> +
+>>>> +    unevaluatedProperties:
+>>>> +      patternProperties:
+>>>> +        '^port(@[0-7])?$':
+>>>> +          description: Input connections from CoreSight Trace bus
+>>>> +          $ref: /schemas/graph.yaml#/properties/port
+>>>> +
+>>>> +          properties:
+>>>> +            qcom,ccu-atid-offset:
+>>>
+>>> Why do we need this atid offset ? Couldn't this be mapped to the "port"
+>>> number ?
+>>>
+>>> e.g, input-port 0 on CCU => Offset x
+>>>       input-port 1 on CCU => (Offset x + Size of 1 region)
+>> If the first ATID offset remains constant, it appears to be feasible.
+>> We will consider the possibility of this solution.
+> We just checked the ATID offset varies across different hardware platforms.
+> It defined as 0xf4 on some platforms, and some others defined as 0xf8.
+
+What do you mean ? The offset where you apply the filter changes across
+different platforms ? or different "tmc-control-unit" implementations ?
+Is this discoverable from the device ? We could use different
+compatibles for different "types" of the "devices". Simply adding
+something in the DT is not the right way.
+
 > 
->   sensor
+> So I think it should be better to define it in device tree node.
 
-Thanks Jonathan!
+No. See above.
 
-I won't re-spin this unless you ask me to because you wrote you can fix 
-it whilist applying... Please, let me know if you wish me to fix and 
-re-spin :)
+Suzuki
 
--- 
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
-
-~~ When things go utterly wrong vim users can always type :help! ~~
+> 
+>>
+>>>
+>>> I believe I mentioned this in the previous posting too ?
+>> Yes, you mentioned before. I moved it from TMC filed to CCU filed.
+>>
+>>>
+>>> Suzuki
+>>>
+>>
 
 
