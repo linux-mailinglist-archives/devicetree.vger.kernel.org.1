@@ -1,124 +1,123 @@
-Return-Path: <devicetree+bounces-83929-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83931-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37FEC92A615
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 17:50:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B40992A625
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 17:52:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E7812282B79
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 15:50:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 23F871F22497
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 15:52:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F16E2143C45;
-	Mon,  8 Jul 2024 15:49:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C228145341;
+	Mon,  8 Jul 2024 15:52:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fCI4ytXT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 533B613D281;
-	Mon,  8 Jul 2024 15:49:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4324614532B;
+	Mon,  8 Jul 2024 15:52:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720453799; cv=none; b=d0htTrxFKqclRBLgiGxE0aeaAew4hkg1rl9K+OTp/JbBhxbTOZuufAp96Duuxxr2GjC/p5ZGTQ8+fi1TpSQcZQMAePB2Lm9l6gyjjzYsivTtfajroSua/HC90K0txsEPyD+Lsy50UGmGNKx/2g2Scmg9M9TAF0z65EAbFapJQ4o=
+	t=1720453931; cv=none; b=GyFdrHMFeKiiOmoe6tKJ/7aQJiTNqeC/xzmc3QbA22W0xAzkaSW8kNtlyalsuCqsG3saXT06RRtMD6qpi3WPUn7AF8aVkpK/rbhr0UNp3B8lw9xUZk0SXvuSx96d4JgozuIvnd354aw3kL4Iko9EIPnbXn8bZoXjo9kpXP9eC7E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720453799; c=relaxed/simple;
-	bh=ogOl0ipcrNilhuvwQ0+LIidbO/TV8MjrdeKk9e/EV0s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WYmLb6etxaICf1LEcXHJhOQlmsX2qRD1m4Jo3SN+E7YrzhW4HOn+OscIZUcC3WI/MTuick4hBPDA1sTrLMudJFaI/khJI5RZe4rqRLY+c08VPo3ncwhLu96GmC/aPq9TAUdKMCiJMrD2KK3STEhjb0HYMNCvO0rxz6k1fm2lQT4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id CBD161042;
-	Mon,  8 Jul 2024 08:50:22 -0700 (PDT)
-Received: from [10.57.74.191] (unknown [10.57.74.191])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 489683F641;
-	Mon,  8 Jul 2024 08:49:55 -0700 (PDT)
-Message-ID: <2fdaac53-3695-45cd-a57a-1afaf365a19a@arm.com>
-Date: Mon, 8 Jul 2024 16:49:53 +0100
+	s=arc-20240116; t=1720453931; c=relaxed/simple;
+	bh=BQg4ZdFzDwwDN7evDXN3MBq4j4BMw5MqDlE19xZONW0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ilFrqfkMpCFGkwja1oZUpjLjDdpdA67rn14Yy3eaYcgC9+PdeB3hI9dyT8fwUW/T57er6FxpqJW2wMQfDrsO/1yY4i6W5bHYxpOo+I6EikW7Xhr0PHN657bVVIpVw7SUgY58HqQwcNMEZQnha5NRpxhdfyoHqQni2sslim2cgJ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fCI4ytXT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A8FBC4AF0C;
+	Mon,  8 Jul 2024 15:52:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720453930;
+	bh=BQg4ZdFzDwwDN7evDXN3MBq4j4BMw5MqDlE19xZONW0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=fCI4ytXTNkR9PaCDa+HL4hGXYk74jmyFJjyEHZ8b1Nl99+m+jrKjckKYKxgVDab/g
+	 O/fiJ8kHbHNmkQtvW/1YECiEhHcZl4nIXtEa1SG2Jw3rBYlGB7nHb/eeDakJFJSRh9
+	 cagcXBekLdu7wSQ+F55DedMIGn5xuSofvYxA9/M8sQwX6iymHci/kS7+jnvvl+YBOL
+	 1q5fRoJBM1v6WW0Aa7tjAM+YwSufIL0U4XEABU2+kboVBYEU6FmUBAxB3Fh4TUBKKe
+	 8IsCtTlLtEDbRL3HTGHf4ZLR/hrJwXW103Twy7Eo/50gsfzeQpntlrBbY33X8itaRh
+	 YwU4bSmcmT72w==
+Date: Mon, 8 Jul 2024 09:52:09 -0600
+From: Rob Herring <robh@kernel.org>
+To: zelong dong <zelong.dong@amlogic.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	kelvin.zhang@amlogic.com
+Subject: Re: [PATCH 1/3] dt-bindings: reset: Add compatible and DT bindings
+ for Amlogic A4/A5 Reset Controller
+Message-ID: <20240708155209.GA3239782-robh@kernel.org>
+References: <20240703061610.37217-1-zelong.dong@amlogic.com>
+ <20240703061610.37217-2-zelong.dong@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 3/3] coresight-tpda: Optimize the function of reading
- element size
-Content-Language: en-GB
-To: Tao Zhang <quic_taozha@quicinc.com>,
- Mathieu Poirier <mathieu.poirier@linaro.org>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Mike Leach <mike.leach@linaro.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- James Clark <james.clark@arm.com>
-Cc: Jinlong Mao <quic_jinlmao@quicinc.com>, Leo Yan <leo.yan@linaro.org>,
- coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- Tingwei Zhang <quic_tingweiz@quicinc.com>,
- Yuanfang Zhang <quic_yuanfang@quicinc.com>,
- Trilok Soni <quic_tsoni@quicinc.com>, Song Chai <quic_songchai@quicinc.com>,
- linux-arm-msm@vger.kernel.org, Jie Gan <quic_jiegan@quicinc.com>
-References: <20240705085152.9063-1-quic_taozha@quicinc.com>
- <20240705085152.9063-4-quic_taozha@quicinc.com>
-From: Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <20240705085152.9063-4-quic_taozha@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240703061610.37217-2-zelong.dong@amlogic.com>
 
-On 05/07/2024 09:51, Tao Zhang wrote:
-> Since the new funnel device supports multi-port output scenarios,
-> there may be more than one TPDM connected to one TPDA. In this
-> way, when reading the element size of the TPDM, TPDA driver needs
-> to find the expected TPDM corresponding to the filter source.
-> When TPDA finds a TPDM or a filter source from a input connection,
-> it will read the Devicetree to get the expected TPDM's element
-> size.
+On Wed, Jul 03, 2024 at 02:16:08PM +0800, zelong dong wrote:
+> From: Zelong Dong <zelong.dong@amlogic.com>
 > 
-> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
+> Add new compatible and DT bindings for Amlogic A4/A5 Reset Controller
+> 
+> Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
 > ---
->   drivers/hwtracing/coresight/coresight-tpda.c | 6 ++++--
->   1 file changed, 4 insertions(+), 2 deletions(-)
+>  .../bindings/reset/amlogic,meson-reset.yaml   | 22 +++++++++++++------
+>  1 file changed, 15 insertions(+), 7 deletions(-)
 > 
-> diff --git a/drivers/hwtracing/coresight/coresight-tpda.c b/drivers/hwtracing/coresight/coresight-tpda.c
-> index 52b0201090fb..fc5a4e46cf5d 100644
-> --- a/drivers/hwtracing/coresight/coresight-tpda.c
-> +++ b/drivers/hwtracing/coresight/coresight-tpda.c
-> @@ -110,9 +110,12 @@ static int tpda_get_element_size(struct tpda_drvdata *drvdata,
->   		    csdev->pdata->in_conns[i]->dest_port != inport)
->   			continue;
->
-		
+> diff --git a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
+> index f0c6c0df0ce3..80345af81d5a 100644
+> --- a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
+> +++ b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
+> @@ -12,13 +12,21 @@ maintainers:
+>  
+>  properties:
+>    compatible:
+> -    enum:
+> -      - amlogic,meson8b-reset # Reset Controller on Meson8b and compatible SoCs
+> -      - amlogic,meson-gxbb-reset # Reset Controller on GXBB and compatible SoCs
+> -      - amlogic,meson-axg-reset # Reset Controller on AXG and compatible SoCs
+> -      - amlogic,meson-a1-reset # Reset Controller on A1 and compatible SoCs
+> -      - amlogic,meson-s4-reset # Reset Controller on S4 and compatible SoCs
+> -      - amlogic,c3-reset # Reset Controller on C3 and compatible SoCs
+> +    oneOf:
+> +      - items:
 
-> -		if (coresight_device_is_tpdm(in)) {
-> +		if (coresight_device_is_tpdm(in)
-> +		    || csdev->pdata->in_conns[i]->filter_src_dev) {
+Don't need items here.
 
-How can we assume that the filter-source device is always TPDM ?
-It may be true for your test board, but driver must handle all
-possible cases. I would rather prefer:
+> +          - enum:
+> +              - amlogic,meson8b-reset # Reset Controller on Meson8b and compatible SoCs
+> +              - amlogic,meson-gxbb-reset # Reset Controller on GXBB and compatible SoCs
+> +              - amlogic,meson-axg-reset # Reset Controller on AXG and compatible SoCs
+> +              - amlogic,meson-a1-reset # Reset Controller on A1 and compatible SoCs
+> +              - amlogic,meson-s4-reset # Reset Controller on S4 and compatible SoCs
+> +              - amlogic,t7-reset
 
-diff --git a/drivers/hwtracing/coresight/coresight-tpda.c 
-b/drivers/hwtracing/coresight/coresight-tpda.c
-index bfca103f9f84..b1d6f1dd60e3 100644
---- a/drivers/hwtracing/coresight/coresight-tpda.c
-+++ b/drivers/hwtracing/coresight/coresight-tpda.c
-@@ -110,6 +110,13 @@ static int tpda_get_element_size(struct 
-tpda_drvdata *drvdata,
-                     csdev->pdata->in_conns[i]->dest_port != inport)
-                         continue;
+What's t7?
 
-+               /*
-+                * If this port is tied to a source device,
-+                * jump to that directly.
-+                */
-+               if (csdev->pdata->in_conns[i]->filter_src)
-+                       in = csdev->pdata->in_conns[i]->filter_src;
-+
-                 if (coresight_device_is_tpdm(in)) {
-                         if (drvdata->dsb_esize || drvdata->cmb_esize)
-                                 return -EEXIST;
-
-
-Suzuki
-
+> +      - items:
+> +          - enum:
+> +              - amlogic,a4-reset
+> +              - amlogic,a5-reset
+> +              - amlogic,c3-reset
+> +          - const: amlogic,meson-s4-reset
+>  
+>    reg:
+>      maxItems: 1
+> -- 
+> 2.35.1
+> 
 
