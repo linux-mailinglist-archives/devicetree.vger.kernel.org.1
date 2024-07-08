@@ -1,244 +1,199 @@
-Return-Path: <devicetree+bounces-83765-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83766-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA5D5929CF3
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 09:17:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D91F0929D13
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 09:31:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0806CB20C86
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 07:17:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8FDC32817F5
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 07:31:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E10CB381BE;
-	Mon,  8 Jul 2024 07:16:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86B871CD06;
+	Mon,  8 Jul 2024 07:31:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RsiDSzZE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W2NDqntp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CC6D2C694;
-	Mon,  8 Jul 2024 07:16:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FFCB1946F;
+	Mon,  8 Jul 2024 07:31:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720422973; cv=none; b=CBmC4MOccS+IFq91ysWchrWnCWPvONQj322p3Ko2a09CwTQ/xtb0SKNsArmw354cb4ML/YI+GoSffJjKuYAURMvCK3GorZlZBPtuW7Yf+J18YpC5YQGeOj+wRtzXz4ZcV+FdwBw8fcdv6UcfnQl0qkjSWfE6JPkiXweAE2eHzoI=
+	t=1720423902; cv=none; b=L4lvWAw5sqTc/S9ODSgfysCd738Egw+czvME2sfF7cK7vBGiGYPO0bvA4KmBkevvFTKRoVdwpCD0Iw40nfurmGU3DLI3TG8bguxfwYzcxI3R9FwpUjckKLoMSc4QgpFg+DP47ppYvLh8Lwc4bPRcJGT4/DJn9X3uhavTfIWgmCY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720422973; c=relaxed/simple;
-	bh=yOX+W+4UFfjm7aIIDqbdd1jZIgnWT/b322lNMxg98U8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=pCyQ5b8LSKINduhw+bNXgYbKqrNpDLJF6hExWFgtiY3+9D3KlmCf8jR9bW8nxORr4yJ2v0RUKqcFiMGimxuJAO2md9JjaEIjrxOlYjkvwgtUVmpeaz+88iVFtUQRBatFL2SmbBSfP3GTvA5NAUi+kQNR/GQcYEZhr9pn/LK02n4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RsiDSzZE; arc=none smtp.client-ip=209.85.128.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-4255fa23f7bso23839925e9.2;
-        Mon, 08 Jul 2024 00:16:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1720422971; x=1721027771; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FvhvTdVpDZ79yvlH1+XJiOzGxkpYhrLPBWh5+/JeQbw=;
-        b=RsiDSzZEIkmDOvGFKwHp+z2k2I64b7beUeqsfRU0aEVmIcYIIEgwPum0yOW1gtS9Dp
-         6BC9HKpxpGVSu4HaZ/ogsU8LekaBQMmoXtsU8EMfMbVzcwpBmq56j/e2F9UPUd9q65un
-         un4V/g1jKNN/DQyuFXz+PfkAKekx9oqlfiuxTL2Yn8jDZ+qgvJuHcARGMZTVbRfB0AsC
-         1wyS3sa4mmvYux8+N5+osjA+dRN1KjJ6VS5RRRJwHomMVYLfa4ei1+/CPw0S63sY9BwK
-         7TjxitDflv45UdAoQZiUK6PEPagVWYoxaEMS9f1RUbG7q+pTBOXr4XM6j4mFBf9OlkTe
-         p1DA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720422971; x=1721027771;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=FvhvTdVpDZ79yvlH1+XJiOzGxkpYhrLPBWh5+/JeQbw=;
-        b=aLtFKF0xTx7/PR3kG/sJQSEyHzG9SZQPQdSW0vfiGKrtXf8Kwmx8+CHM1jNpMYsvFJ
-         c/BXYM1R0KgdEdJDJElb+SyvXSFf0dvqjivHmNVg2hFif38tzJ5eLGkmpd6GX72BwbII
-         Iy3AEEYkhsURjI3UsbEw4r96nGoxJiuq51XiRc0DOvgujuHvSr8N9qs+OYOC414/pD3e
-         VA8JCMUCmxOUJDC7kjcDIXVZdKP8QNMT94oTH+eQNYNsAeJtoKJ2jeRw4uywRjqbofhF
-         zf1rxqdlSAHOzCm12fGp7sASBxt5GVfgjMWYdzY+UrvK/18/y5fNQZqf8JGpyXZ5mmpg
-         JXmQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUChUwJdBRDJ1yBZOvSQpKdst3AI8LU9AK2jsNjPaJ/8J51yXx3bj/sO2R0nEOiI/CnF3sczka9vWROgYdCyZZ5QcLa2SQC/Qd1JYLT7OZyvkEr+Iu8peN2ywHDgxXU1b7JtVS8noE1Sw==
-X-Gm-Message-State: AOJu0YzxRJNwi65Ul8kA6q2AvTO9Fxqn6H4j6fdBJwjAx3picXgNwqrC
-	3nlPTAP3FmKTt1LEpTg+TtQfLY+4mBiQdWBCWNwO/3SrdXNirEwT
-X-Google-Smtp-Source: AGHT+IENCKvfCZxO2Rt6KDsB7M0kjjFGMdi6MvfCYZJU7eP3x5K0nZi26KF8OMrrBBbNgihafqwRFw==
-X-Received: by 2002:a05:600c:4f0f:b0:425:5ec3:570b with SMTP id 5b1f17b1804b1-4264a428ec4mr69226885e9.35.1720422970695;
-        Mon, 08 Jul 2024 00:16:10 -0700 (PDT)
-Received: from eichest-laptop.toradex.int ([2a02:168:af72:0:a786:d603:1c55:ced1])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3679dd5ea09sm9994564f8f.65.2024.07.08.00.16.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Jul 2024 00:16:10 -0700 (PDT)
-From: Stefan Eichenberger <eichest@gmail.com>
-To: nick@shmanahar.org,
-	dmitry.torokhov@gmail.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	nicolas.ferre@microchip.com,
-	alexandre.belloni@bootlin.com,
-	claudiu.beznea@tuxon.dev,
-	linus.walleij@linaro.org,
-	francesco.dolcini@toradex.com,
-	joao.goncalves@toradex.com
-Cc: linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Stefan Eichenberger <stefan.eichenberger@toradex.com>
-Subject: [PATCH v5 4/4] Input: atmel_mxt_ts - add support for poweroff-sleep
-Date: Mon,  8 Jul 2024 09:15:51 +0200
-Message-ID: <20240708071601.7571-5-eichest@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240708071601.7571-1-eichest@gmail.com>
-References: <20240708071601.7571-1-eichest@gmail.com>
+	s=arc-20240116; t=1720423902; c=relaxed/simple;
+	bh=b686QiTKvy8ZMExM84K9kzUt3iG3OHu8RvGNrJ3LUPU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=gVlq2AqxV9YhN/gjIr8zpsE2coYr7ahNKSzBiFQM8nKD2elY2DwOL+wRvmucqfd0AUjcBlU7XW33M4LInnuv0GihRKzCo9jFsQ9yqBMDkvo2/u0Ihtc9Il+r4BP/cKDZwOieZ8eN5qNdKeuNKNYDL52rESSLHcfdQgwtV/dbNDs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W2NDqntp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5E3BBC116B1;
+	Mon,  8 Jul 2024 07:31:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720423901;
+	bh=b686QiTKvy8ZMExM84K9kzUt3iG3OHu8RvGNrJ3LUPU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=W2NDqntp1Ulgp8VAPtW9t6MUVRBg2m24WUTXj6PfM3FSPT6WnvnROZIOHULWUqOgT
+	 aWqsNEhpd+JKiouZTJGp7zJZg+KEggH+2wFwNf9Jvcbyr/tjpShaShqhdXl2lVlj49
+	 qjscpyLwq1KwbCmSwqT+Jqat5Y2n7bIV8a/ZPwwr4+gFyY0o1Cs3AUeHCYUskKypQI
+	 Jis8m+kGIeU9LqBdsmcbTFufx5GqCPgZXGDZPzEh5McNcju/zyfQSj/Xf2sKw+pDti
+	 hHmWLNmFSVBozoY7HjZbCxHNC2jlqlgeXUMur4A392g6iSujvhXKe4jHoSKmcPYE0x
+	 RD+heg8f8EMGQ==
+Message-ID: <f8d17f99-cb76-427a-a23c-6777ab8f4370@kernel.org>
+Date: Mon, 8 Jul 2024 09:31:11 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 01/47] dt-bindings: arm: qcom: Document QCS9100 SoC and
+ RIDE board
+To: "Aiqun Yu (Maria)" <quic_aiquny@quicinc.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Tengfei Fan <quic_tengfan@quicinc.com>, andersson@kernel.org,
+ konrad.dybcio@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, djakov@kernel.org, mturquette@baylibre.com,
+ sboyd@kernel.org, jassisinghbrar@gmail.com, herbert@gondor.apana.org.au,
+ davem@davemloft.net, manivannan.sadhasivam@linaro.org, will@kernel.org,
+ joro@8bytes.org, conor@kernel.org, tglx@linutronix.de, amitk@kernel.org,
+ thara.gopinath@gmail.com, linus.walleij@linaro.org, wim@linux-watchdog.org,
+ linux@roeck-us.net, rafael@kernel.org, viresh.kumar@linaro.org,
+ vkoul@kernel.org, edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+ mcoquelin.stm32@gmail.com
+Cc: robimarko@gmail.com, bartosz.golaszewski@linaro.org, kishon@kernel.org,
+ quic_wcheng@quicinc.com, alim.akhtar@samsung.com, avri.altman@wdc.com,
+ bvanassche@acm.org, agross@kernel.org, gregkh@linuxfoundation.org,
+ quic_tdas@quicinc.com, robin.murphy@arm.com, daniel.lezcano@linaro.org,
+ rui.zhang@intel.com, lukasz.luba@arm.com, quic_rjendra@quicinc.com,
+ ulf.hansson@linaro.org, quic_sibis@quicinc.com, otto.pflueger@abscue.de,
+ luca@z3ntu.xyz, neil.armstrong@linaro.org, abel.vesa@linaro.org,
+ bhupesh.sharma@linaro.org, alexandre.torgue@foss.st.com,
+ peppe.cavallaro@st.com, joabreu@synopsys.com, netdev@vger.kernel.org,
+ lpieralisi@kernel.org, kw@linux.com, bhelgaas@google.com,
+ ahalaney@redhat.com, u.kleine-koenig@pengutronix.de,
+ dmitry.baryshkov@linaro.org, quic_cang@quicinc.com, danila@jiaxyga.com,
+ quic_nitirawa@quicinc.com, mantas@8devices.com, athierry@redhat.com,
+ quic_kbajaj@quicinc.com, quic_bjorande@quicinc.com,
+ quic_msarkar@quicinc.com, quic_devipriy@quicinc.com, quic_tsoni@quicinc.com,
+ quic_rgottimu@quicinc.com, quic_shashim@quicinc.com,
+ quic_kaushalk@quicinc.com, quic_tingweiz@quicinc.com,
+ srinivas.kandagatla@linaro.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org, linux-clk@vger.kernel.org,
+ linux-phy@lists.infradead.org, linux-crypto@vger.kernel.org,
+ linux-scsi@vger.kernel.org, linux-usb@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
+ linux-riscv@lists.infradead.org, linux-gpio@vger.kernel.org,
+ linux-watchdog@vger.kernel.org, linux-pci@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com, kernel@quicinc.com
+References: <20240703025850.2172008-1-quic_tengfan@quicinc.com>
+ <20240703025850.2172008-2-quic_tengfan@quicinc.com>
+ <665f6c8c-4f43-4d20-90e9-9e037a942066@kernel.org>
+ <fbeb5969-0b3a-455e-88eb-b83734bf2c50@quicinc.com>
+ <97c9484b-e257-4163-a104-3457d59bc69b@kernel.org>
+ <63eb3f58-d4a4-4a27-b78c-f4cb83e62c63@quicinc.com>
+ <f8f3c4d4-bf24-4195-a7b0-eec95cd64b57@linaro.org>
+ <c9822569-896c-4d5f-b917-2826bf414e67@quicinc.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <c9822569-896c-4d5f-b917-2826bf414e67@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Stefan Eichenberger <stefan.eichenberger@toradex.com>
+On 08/07/2024 09:13, Aiqun Yu (Maria) wrote:
+> 
+> 
+> On 7/8/2024 2:07 PM, Krzysztof Kozlowski wrote:
+>> On 08/07/2024 06:45, Aiqun Yu (Maria) wrote:
+>>>
+>>>
+>>> On 7/3/2024 5:33 PM, Krzysztof Kozlowski wrote:
+>>>> On 03/07/2024 11:21, Tengfei Fan wrote:
+>>>>>>>         - items:
+>>>>>>>             - enum:
+>>>>>>> +              - qcom,qcs9100-ride
+>>>>>>>                 - qcom,sa8775p-ride
+>>>>>>> +          - const: qcom,qcs9100
+>>>>>>
+>>>>>> This changes existing compatible for sa8775p without any explanation in
+>>>>>> commit msg.
+>>>>>>
+>>>>>> Best regards,
+>>>>>> Krzysztof
+>>>>>>
+>>>>>
+>>>>> In the next verion patch series, I will provide relevant explanatory 
+>>>>> information in this patch commit message.
+>>>>
+>>>> TBH, I cannot think of any reasonable explanation for this, especially
+>>>> considering rest of the patchset which does not fix resulting dtbs_check
+>>>> warning.
+>>>
+>>> The existing compatible "sa8775p" warning can only be addressed When
+>>> @Nikunj's "sa8775p" changes merged.
+>>>
+>>> Let me know if you have other suggestions for this.
+>>
+>> I don't have, because I don't understand why do you want/need to change
+>> existing board compatible.
+> 
+> We can left the current existing sa8775p board compatible as it is. And
+> have a brand new qcs9100 and qcs9100-board item for current non-scmi
+> resources compatible.
+> 
+> Will that be more reasonable from your end?
 
-Add support for poweroff-sleep to the Atmel maXTouch driver. This allows
-us to power off the input device entirely and only power it on when it
-is opened. This will also automatically power it off when we suspend the
-system.
+Yes, this is what I would expect. If you choose any other way - just
+like I wrote - you need to explain why you are doing this.
 
-Signed-off-by: Stefan Eichenberger <stefan.eichenberger@toradex.com>
----
- drivers/input/touchscreen/atmel_mxt_ts.c | 59 ++++++++++++++++++++++--
- 1 file changed, 55 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/input/touchscreen/atmel_mxt_ts.c b/drivers/input/touchscreen/atmel_mxt_ts.c
-index 85f3c685bf526..3bcdbb58a24e6 100644
---- a/drivers/input/touchscreen/atmel_mxt_ts.c
-+++ b/drivers/input/touchscreen/atmel_mxt_ts.c
-@@ -265,6 +265,7 @@ enum v4l_dbg_inputs {
- enum mxt_suspend_mode {
- 	MXT_SUSPEND_DEEP_SLEEP	= 0,
- 	MXT_SUSPEND_T9_CTRL	= 1,
-+	MXT_SUSPEND_POWEROFF	= 2,
- };
- 
- /* Config update context */
-@@ -2273,8 +2274,38 @@ static int mxt_configure_objects(struct mxt_data *data,
- 
- static void mxt_config_cb(const struct firmware *cfg, void *ctx)
- {
-+	struct mxt_data *data = ctx;
-+
- 	mxt_configure_objects(ctx, cfg);
- 	release_firmware(cfg);
-+
-+	if ((data->suspend_mode == MXT_SUSPEND_POWEROFF) && !data->in_bootloader) {
-+		disable_irq(data->irq);
-+		mxt_power_off(data);
-+	}
-+}
-+
-+static void mxt_initialize_after_resume(struct mxt_data *data)
-+{
-+	int error;
-+
-+	error = mxt_power_on(data);
-+	if (error) {
-+		dev_err(&data->client->dev, "Failed to power on device\n");
-+		return;
-+	}
-+
-+	error = mxt_acquire_irq(data);
-+	if (error) {
-+		dev_err(&data->client->dev, "Failed to acquire IRQ\n");
-+		return;
-+	}
-+
-+	error = mxt_configure_objects(data, NULL);
-+	if (error) {
-+		dev_err(&data->client->dev, "Failed to configure objects\n");
-+		return;
-+	}
- }
- 
- static void mxt_debug_init(struct mxt_data *data);
-@@ -3089,6 +3120,12 @@ static ssize_t mxt_update_fw_store(struct device *dev,
- 	struct mxt_data *data = dev_get_drvdata(dev);
- 	int error;
- 
-+	if ((data->suspend_mode == MXT_SUSPEND_POWEROFF) && !data->in_bootloader) {
-+		error = mxt_power_on(data);
-+		if (error)
-+			return error;
-+	}
-+
- 	error = mxt_load_fw(dev, MXT_FW_NAME);
- 	if (error) {
- 		dev_err(dev, "The firmware update failed(%d)\n", error);
-@@ -3123,7 +3160,10 @@ static const struct attribute_group mxt_attr_group = {
- 
- static void mxt_start(struct mxt_data *data)
- {
--	mxt_wakeup_toggle(data->client, true, false);
-+	if (data->suspend_mode == MXT_SUSPEND_POWEROFF)
-+		mxt_initialize_after_resume(data);
-+	else
-+		mxt_wakeup_toggle(data->client, true, false);
- 
- 	switch (data->suspend_mode) {
- 	case MXT_SUSPEND_T9_CTRL:
-@@ -3135,6 +3175,7 @@ static void mxt_start(struct mxt_data *data)
- 				MXT_TOUCH_MULTI_T9, MXT_T9_CTRL, 0x83);
- 		break;
- 
-+	case MXT_SUSPEND_POWEROFF:
- 	case MXT_SUSPEND_DEEP_SLEEP:
- 	default:
- 		mxt_set_t7_power_cfg(data, MXT_POWER_CFG_RUN);
-@@ -3160,7 +3201,12 @@ static void mxt_stop(struct mxt_data *data)
- 		break;
- 	}
- 
--	mxt_wakeup_toggle(data->client, false, false);
-+	if (data->suspend_mode == MXT_SUSPEND_POWEROFF) {
-+		disable_irq(data->irq);
-+		mxt_power_off(data);
-+	} else {
-+		mxt_wakeup_toggle(data->client, false, false);
-+	}
- }
- 
- static int mxt_input_open(struct input_dev *dev)
-@@ -3357,6 +3403,9 @@ static int mxt_probe(struct i2c_client *client)
- 	if (error)
- 		return error;
- 
-+	if (device_property_read_bool(&client->dev, "atmel,poweroff-sleep"))
-+		data->suspend_mode = MXT_SUSPEND_POWEROFF;
-+
- 	/*
- 	 * Controllers like mXT1386 have a dedicated WAKE line that could be
- 	 * connected to a GPIO or to I2C SCL pin, or permanently asserted low.
-@@ -3406,7 +3455,8 @@ static void mxt_remove(struct i2c_client *client)
- 	sysfs_remove_group(&client->dev.kobj, &mxt_attr_group);
- 	mxt_free_input_device(data);
- 	mxt_free_object_table(data);
--	mxt_power_off(data);
-+	if (!(data->suspend_mode == MXT_SUSPEND_POWEROFF))
-+		mxt_power_off(data);
- }
- 
- static int mxt_suspend(struct device *dev)
-@@ -3439,7 +3489,8 @@ static int mxt_resume(struct device *dev)
- 	if (!input_dev)
- 		return 0;
- 
--	enable_irq(data->irq);
-+	if (!(data->suspend_mode == MXT_SUSPEND_POWEROFF))
-+		enable_irq(data->irq);
- 
- 	mutex_lock(&input_dev->mutex);
- 
--- 
-2.43.0
+Best regards,
+Krzysztof
 
 
