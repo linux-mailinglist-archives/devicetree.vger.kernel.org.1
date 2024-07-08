@@ -1,180 +1,129 @@
-Return-Path: <devicetree+bounces-83923-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83924-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8106992A564
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 17:10:53 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9082092A57F
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 17:19:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0D87C1F21BE1
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 15:10:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3A828B21151
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 15:19:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1798C1422C7;
-	Mon,  8 Jul 2024 15:10:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8BE180045;
+	Mon,  8 Jul 2024 15:19:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="npeeBszn"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hKmCIaXj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3701F13EFF3;
-	Mon,  8 Jul 2024 15:10:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 229C313F426;
+	Mon,  8 Jul 2024 15:19:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720451448; cv=none; b=QUFhcciJ3zx883Z9B8KlJ0TWij7UoFjS20nYG3P0HxCCH9PTEIwBsx9gNsDMJJx0uRKppQuk/3GtHemZg0gGeWKxkxN0jzyNzQbpCSitXEus93zAD0YbI0Iv/XkmUN2pJGf5v2tmXaSnrgrb0qRjB4qJdjGtgLYjaBvc3kVOOFo=
+	t=1720451942; cv=none; b=iZ4ZHtU/nLEaMUKyGVhPhjdIjEYKRsrtHZ1AVz+bldAzcXBOFQvNd2ezqIHOOpuxdlkJV525FlqesGCvje+Rq0ZyO6or6T4ahjVxBJXu44jQsBDI1sEkFK/bWj9GpgQAPk7D3dP3vcKe2wNhpWAYE1dyHAVSLQNRl+iFy5UJSRw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720451448; c=relaxed/simple;
-	bh=4LT7AEfF/TPa7SKuf0c4uaNffiHw8b9Mv/WEe8DdYkA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=S5HTokxUk8bN7UlZ2KZ6RPvkJF8X1F3zWm983IWottr1UUOcHmEHJnssCz6CFMQBtcU4sfu5kG2DtK314d3DGj1KKHYINl94+S6Z5wscwRbaqfMF5XoyqXdPYMYAlmSxrTLtc8yIan5rDgmtlDujau/nE4hoBiyJj5xsMU4+F+w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=npeeBszn; arc=none smtp.client-ip=217.70.183.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 10B8660002;
-	Mon,  8 Jul 2024 15:10:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1720451437;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=GOZqQN/Nnha6t0DDSE4qaJBTCsvAvOYX1HhTukGXw48=;
-	b=npeeBsznrrp7xGGJL236f8vBtetBSs+MHA67lR06ypSpJWUIBMAHxpA/hOjBM36PsrisV9
-	2S/b8i0wpkPmraw8WY3YxG96DQPCOU5bll31FA1XQD90gJY9hftdOzZHX6agN7gL80iQQ/
-	BIRSgNQe489XeE2zsZ+p745t1JBCBJFvN5CcBtqG6P+VlEhYFFRj7VChfOVjmpk1fDcNKE
-	d0mn8jYUNY1GKusVafscSYifocrYwNqDIlYgMjQsVZE7jwm49gFgI6oJ/MaLg0W+AI/B31
-	zFvIWEQhErCif5ozEfuMt/uRcC3Caj/SXiISut3cFhf00XAXJbBkbx5NL8qzTg==
-Message-ID: <3df11ce2-6b84-4f80-a24c-20c8d4019e7c@bootlin.com>
-Date: Mon, 8 Jul 2024 17:10:34 +0200
+	s=arc-20240116; t=1720451942; c=relaxed/simple;
+	bh=S4wdFE5mYwdlzL98v6PKiIlzLusgf9RSFez0pzc7VpY=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=o2c/aaRes4W+qyARkgtcrwjFnOpE3kWmCHbBN3/DAoqIvttDJqQexbSIEt4UsKTGLA7JEW/fj5kZCmvdwctu3oewsthSbUMOKOgGKtZYtOlGfBcgRX3iWRyD7vWONz99uop2MGlUkbhK0mVvCPah8iXLNFlZGgdhxDLTujDAZ+k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hKmCIaXj; arc=none smtp.client-ip=209.85.208.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-2eaafda3b5cso40148201fa.3;
+        Mon, 08 Jul 2024 08:19:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1720451939; x=1721056739; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=TSBUSiGrKda6Rclc8JKjTu2mlczLCGQS71CjDrMpfKo=;
+        b=hKmCIaXjeybNMkJwvAg9cv4JJH9DxKnUh48bvUDGSrmL/n4IVtISFfsZLtDMT+EEp+
+         Ycmk0h0UlRKchD2tVjG3fd029+Msii7T5CVOIe+N3aAcdctY7NIRt06ncxWmwg7yjeyJ
+         XC1fC+e/wsYP5+0ecRf261FUnN1UcMWquX1WXRIu3Djp7q8mmaxL3dtctfeqlaUd/Vln
+         KHQlPgCqsN9namqFjrzYcQ0ySdWv8dvyTeU4n1C4BB6Tt21M9Cv7OxWXu267HBYE1qrZ
+         1VhbpTLjcW5QCZxiKGvWQAMx7kTjTDmyrjneQVN110wNbMAIEJVqxc3NfhO/iSiPCbm0
+         0+3w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720451939; x=1721056739;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TSBUSiGrKda6Rclc8JKjTu2mlczLCGQS71CjDrMpfKo=;
+        b=rfn9dc7hcrIe6MnRWlVgcVX60SKTnQktIRCXujs9RcEfdl0TQhXh6cNkYrrsc46XMv
+         MSKock91bUCHpPEanC9cvE/Q4pOsz0ERPU7OPhsc2N+2lQHzPDVz2VvPDghPopdcsLT7
+         8vYz7TF8ixvDdoc9FU7cIDrKf+glbxI8c8XbQywHnJ7pLnZaM78z8/7FRX42vodBj3Oj
+         Z55q8bnyrACq9UJPiQgoR6surKjUdYdjAiUL3APl7cd0PUS+kQLwSHIz0M+Rw/55koQ0
+         x57woM5ZoP4m1wJ77WNafALOVj6uF2vUWpZPga39ZQ6Wq27YAgowSdK+BUHTkQJCCRSl
+         MTkg==
+X-Forwarded-Encrypted: i=1; AJvYcCWa0A3zuktjFT5wHUorCWACdlRyX9wCdUcS4ENai58Y1EzSTBC/hvWhT+VgVwsJR7z/faQWnTaDhbEBK4A4ETPJ1gOpFv0WNJIDVByB6jp5XRwWmo/M8ichUdZh9u+/Gy8/iTkxc4PUmA==
+X-Gm-Message-State: AOJu0Yzyl43/rHfQK8VArgdh7PfgiAHytCkrgPXk0A8GjiY8y7D1PPBK
+	yCupnkZsMdELNjidkWbkGEtPDhJhtc/G5N1piZey2i0eUA2F70uc
+X-Google-Smtp-Source: AGHT+IHBOpU2TpGoqEtMyb1uE3hxIskr/IILSBqTmPyQ+zwbgIxWLN7Nwf+BZwShchhySLprAWHYaw==
+X-Received: by 2002:a2e:86cc:0:b0:2ed:275d:aa44 with SMTP id 38308e7fff4ca-2eeb30fcd17mr242501fa.28.1720451939038;
+        Mon, 08 Jul 2024 08:18:59 -0700 (PDT)
+Received: from GLaDOS.tastitalia.local ([37.77.97.75])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-58e113d1c45sm5537837a12.64.2024.07.08.08.18.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Jul 2024 08:18:58 -0700 (PDT)
+From: stefano.radaelli21@gmail.com
+To: Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	David Airlie <airlied@gmail.com>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Marek Vasut <marex@denx.de>,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Stefano Radaelli <stefano.radaelli21@gmail.com>,
+	"Noah J . Rosa" <noahj.rosa@gmail.com>
+Subject: [PATCH] dt-bindings: display: bridge: ti,sn65dsi83: add burst-mode-disabled
+Date: Mon,  8 Jul 2024 17:18:56 +0200
+Message-Id: <20240708151857.40538-1-stefano.radaelli21@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: iio: adc: sophgo,cv18xx-saradc.yaml:
- Add Sophgo SARADC binding documentation
-To: Conor Dooley <conor@kernel.org>, Inochi Amaoto <inochiama@outlook.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen
- <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Chen Wang <unicorn_wang@outlook.com>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- =?UTF-8?Q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-References: <20240705-sg2002-adc-v2-0-83428c20a9b2@bootlin.com>
- <20240705-sg2002-adc-v2-1-83428c20a9b2@bootlin.com>
- <20240705-unaired-pesticide-4135eaa04212@spud>
- <6b5459fd-2873-4c26-b986-882413b8d95b@bootlin.com>
- <20240706-remote-undergo-3b9dfe44d16f@spud>
-Content-Language: en-US
-From: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-In-Reply-To: <20240706-remote-undergo-3b9dfe44d16f@spud>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-GND-Sasl: thomas.bonnefille@bootlin.com
 
+From: Stefano Radaelli <stefano.radaelli21@gmail.com>
 
+It allows to disable Burst video mode
 
-On 7/6/24 2:42 PM, Conor Dooley wrote:
-> On Fri, Jul 05, 2024 at 05:24:19PM +0200, Thomas Bonnefille wrote:
->>
->>
->> On 7/5/24 5:01 PM, Conor Dooley wrote:
->>> On Fri, Jul 05, 2024 at 03:42:23PM +0200, Thomas Bonnefille wrote:
->>>> The Sophgo SARADC is a Successive Approximation ADC that can be found in
->>>> the Sophgo SoC.
->>>>
->>>> Signed-off-by: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
->>>> ---
->>>>    .../bindings/iio/adc/sophgo,cv18xx-saradc.yaml     | 63 ++++++++++++++++++++++
->>>>    1 file changed, 63 insertions(+)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/iio/adc/sophgo,cv18xx-saradc.yaml b/Documentation/devicetree/bindings/iio/adc/sophgo,cv18xx-saradc.yaml
->>>> new file mode 100644
->>>> index 000000000000..31bd8ac6dfa5
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/iio/adc/sophgo,cv18xx-saradc.yaml
->>>> @@ -0,0 +1,63 @@
->>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>> +%YAML 1.2
->>>> +---
->>>> +$id: http://devicetree.org/schemas/iio/adc/sophgo,cv18xx-saradc.yaml#
->>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>> +
->>>> +title:
->>>> +  Sophgo CV18XX SoC series 3 channels Successive Approximation Analog to
->>>> +  Digital Converters
->>>> +
->>>> +maintainers:
->>>> +  - Thomas Bonnefille <thomas.bonnefille@bootlin.com>
->>>> +
->>>> +description:
->>>> +  Datasheet at https://github.com/sophgo/sophgo-doc/releases
->>>> +
->>>> +properties:
->>>> +  compatible:
->>>> +    oneOf:
->>>> +      - items:
->>>> +          - enum:
->>>> +              - sophgo,cv1800b-saradc
->>>> +          - const: sophgo,cv18xx-saradc
->>>
->>> I don't think the fallback here makes sense. If there's other devices
->>> with a compatible programming model added later, we can fall back to the
->>> cv1800b.
->>>
->>
->> Ok I'll do that, I wasn't sure if it was a good practice to fallback on
->> another SoC specific compatible.
->>
->>>> +
->>>> +  reg:
->>>> +    maxItems: 1
->>>> +
->>>> +  interrupts:
->>>> +    maxItems: 1
->>>> +
->>>> +  clocks:
->>>> +    description:
->>>> +      SARADC will use the presence of this clock to determine if the controller
->>>> +      needs to be explicitly clocked by it (Active domain) or if it is part of
->>>> +      the No-Die Domain, along with the RTC, which does not require explicit
->>>> +      clocking.
->>>
->>> What does "explicit clocking" mean? Is it clocked directly (or via
->>> dividers) by a clock on the board or another source?
->>>
->>
->> It means that, if a clock is provided, the driver will work in "Active
->> Domain" and will use the clock generator of the SoC to get the right clock
->> signal.
->>
->> However if no clock is provided, the controller will work in "No-Die" domain
->> (Always On) and use the RTCSYS subsystem to get its clock signal.
-> 
-> So it does have a clock, but provided by a different provider. I don't
-> really understand why that would "excuse" it from having a clocks
-> property, with the RTCSYS as the provider.
+Co-developed-by: Noah J. Rosa <noahj.rosa@gmail.com>
+Signed-off-by: Noah J. Rosa <noahj.rosa@gmail.com>
+Signed-off-by: Stefano Radaelli <stefano.radaelli21@gmail.com>
+---
+ .../devicetree/bindings/display/bridge/ti,sn65dsi83.yaml       | 3 +++
+ 1 file changed, 3 insertions(+)
 
-By digging into the datasheet, I discovered that there might be a way to 
-use a valid clock as the input of the No-Die domain ADC. I would like to 
-ask Inochi about this, as he wrote the clock driver for this SoC.
+diff --git a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+index 48a97bb3e2e0..eb9c8b6b6813 100644
+--- a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
++++ b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+@@ -35,6 +35,9 @@ properties:
+   vcc-supply:
+     description: A 1.8V power supply (see regulator/regulator.yaml).
+ 
++  burst-mode-disabled:
++    description: Set Video Mode in Non-Burst Mode
++
+   ports:
+     $ref: /schemas/graph.yaml#/properties/ports
+ 
+-- 
+2.34.1
 
-As I understand it, the SARADC working in the No-Die domain is fed, like 
-every other IP in the No-Die domain, by the CLK_SRC_RTC_SYS_0. This 
-clock source is either a division of the main oscillator (referred to as 
-osc_parents in the clock driver) or "xtal," which is an external 
-oscillator. Am I right? What is the role of CLK_RTC_24M?
-
-If I'm correct, this description isn't needed anymore in the bindings, 
-and the device tree node for the SARADC in the No-Die domain will need 
-this line:
-
-+                       clocks = <&clk CLK_SRC_RTC_SYS_0>;
 
