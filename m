@@ -1,83 +1,98 @@
-Return-Path: <devicetree+bounces-84042-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84043-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8F2592AC12
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 00:28:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13E6892AC3A
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 00:45:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6497C1F21D56
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 22:28:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C3A90283233
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 22:45:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2545315099C;
-	Mon,  8 Jul 2024 22:27:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6054768FC;
+	Mon,  8 Jul 2024 22:45:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BI0wlKY8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C31F1527B4;
-	Mon,  8 Jul 2024 22:27:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95895381BE;
+	Mon,  8 Jul 2024 22:45:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720477675; cv=none; b=szlskVAuMqy/LSRWHLr0+yYtXYgc3W7Lw8puR+40B8Cby7DJP7F07DMUAAf4ccO8gDJLSLxFmoNrVkvjUFZQVKqbH8+7hyVxkNi0K0iiQkFPwCQ3oR0GBF3JemIWDn49qSO4RWz0EIN5tGqkW6571KsBCgkKUYi107775l2+Mzk=
+	t=1720478725; cv=none; b=LN72gRqSBOjH1RiNsPNDpl2MfPpE1QGiTP6pzWy5f7zlGAfdzYJW2G14eBpbqE5mFVyg+LHKWTNv9QnGjqN7dmC9dL0BCXHx1q3wkz68yp3MYh/oB6fV4se627Hv+/Yqs2vdABNO+6rsJPbm28VhLuLru2I7+BcelqSf0nLPEHQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720477675; c=relaxed/simple;
-	bh=oIKlpNgkl5RIQen92oXvw5GhHrdwhpC3wO/q1J0No8c=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=qu+KgpqwC58V7ybNFsi8PpCoKUjvI1YEq+erhY7mRq9Hdqmew2rNRnPYN71Kwk0SqDLF1wAUBhhXjY2O4tiaFjlfNteTpuwaYu+BXYgJ5QOnD6hbZkMxCx+QX5oGdxn0u3qCHfce/F5+NyvylJ0VTwd5/II5PiBvFk9SiVckTN0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-Received: from i5e8616d7.versanet.de ([94.134.22.215] helo=phil.lan)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1sQwpj-0006Hg-KE; Tue, 09 Jul 2024 00:27:43 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	linux-kernel@vger.kernel.org,
-	FUKAUMI Naoki <naoki@radxa.com>,
-	linux-arm-kernel@lists.infradead.org,
+	s=arc-20240116; t=1720478725; c=relaxed/simple;
+	bh=7YHz7y+T/d/K9XBn3bDo+/LX40FSv7Jm/vdn58aKRkQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XUTNLCKhDZy2gcZomBzU1tRbDElfm3Tj5jeKcddMWVatTKTjgvvStzkOEQAWOjzw8Y6Vo8zvb4loRIov24B88hD0pASS6aiXKHNU0GbRLARlWloVR879ESTOeQG7sjOpnp7ePSJNKz/isaoHyNcU4FIplk+7XQl905CAClVbrQI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BI0wlKY8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F14FAC3277B;
+	Mon,  8 Jul 2024 22:45:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720478725;
+	bh=7YHz7y+T/d/K9XBn3bDo+/LX40FSv7Jm/vdn58aKRkQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=BI0wlKY81Q579BFKw8zWMWC1SIwNd/gVSKkx7IsVlekVsv3X7cxz/TUVpSKqP9dxe
+	 5/c1ZyOvWy/q96QswErv4pQOumxSPIIxhTbehYXPi/bV9fY8BuhUHqkaMcEU94IgyI
+	 hPHVQwF7oo3gUOSCe5etKokUMLKT5tepIOBSmPCEmnUvCClWm1cPXnQme/B726qrAf
+	 KZnckvtI2EiIHhy9sB1QKfM5AychhQBbEmhEdXjZejk9ZnCoW0Ep40AiLTAaEJaAFX
+	 nnCkCaNxQa/zeY//19pq24YRvXay3/oM6zBeFsvWQC2HRA51Tt2JgI71FYd0iXy6G3
+	 F9eS93ChH2lJg==
+Date: Mon, 8 Jul 2024 16:45:22 -0600
+From: Rob Herring <robh@kernel.org>
+To: Farouk Bouabid <farouk.bouabid@cherry.de>
+Cc: linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Jean Delvare <jdelvare@suse.com>, linux-hwmon@vger.kernel.org,
 	linux-rockchip@lists.infradead.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 0/2] arm64: dts: rockchip: Add Radxa ROCK 3B
-Date: Tue,  9 Jul 2024 00:27:41 +0200
-Message-Id: <172047765645.1423318.7033657572852954750.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240627211737.1985549-1-jonas@kwiboo.se>
-References: <20240627211737.1985549-1-jonas@kwiboo.se>
+	Quentin Schulz <quentin.schulz@cherry.de>,
+	Peter Rosin <peda@axentia.se>, Guenter Roeck <linux@roeck-us.net>,
+	linux-arm-kernel@lists.infradead.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 3/8] dt-bindings: i2c: add support for tsd,mule
+Message-ID: <20240708224522.GA4092671-robh@kernel.org>
+References: <20240708-dev-mule-i2c-mux-v5-0-71446d3f0b8d@cherry.de>
+ <20240708-dev-mule-i2c-mux-v5-3-71446d3f0b8d@cherry.de>
+ <172045906545.3469012.7420722768425918930.robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <172045906545.3469012.7420722768425918930.robh@kernel.org>
 
-On Thu, 27 Jun 2024 21:17:29 +0000, Jonas Karlman wrote:
-> This series adds initial support for the Radxa ROCK 3B board.
+On Mon, Jul 08, 2024 at 11:17:45AM -0600, Rob Herring (Arm) wrote:
 > 
-> The Radxa ROCK 3B is a single-board computer based on the Pico-ITX form
-> factor (100mm x 75mm). Two versions of the ROCK 3B exists, a community
-> version based on the RK3568 SoC and an industrial version based on the
-> RK3568J SoC.
+> On Mon, 08 Jul 2024 18:12:14 +0200, Farouk Bouabid wrote:
+> > Theobroma Systems Mule is an MCU that emulates a set of I2C devices,
+> > among which is an amc6821 and other devices that are reachable through
+> > an I2C-mux. The devices on the mux can be selected by writing the
+> > appropriate device number to an I2C config register (amc6821: reg 0xff)
+> > 
+> > Signed-off-by: Farouk Bouabid <farouk.bouabid@cherry.de>
+> > ---
+> >  .../devicetree/bindings/i2c/tsd,mule.yaml          | 63 ++++++++++++++++++++++
+> >  1 file changed, 63 insertions(+)
+> > 
 > 
-> [...]
+> My bot found errors running 'make dt_binding_check' on your patch:
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> Documentation/devicetree/bindings/i2c/tsd,mule.example.dtb: /example-0/i2c/fan@18/i2c-mux: failed to match any schema with compatible: ['tsd,mule-i2c-mux']
 
-Applied, thanks!
+This can be ignored. Looks like things went sideways here because patch 
+1 subject is a substring of patch 3 and then it got marked as 
+Superseded.
 
-[1/2] dt-bindings: arm: rockchip: Add Radxa ROCK 3B
-      commit: 056abbd100ce9ce6dae3e5e64ffee92b56439c0c
-[2/2] arm64: dts: rockchip: Add Radxa ROCK 3B
-      commit: 846ef7748fa9124c8eea76e2d5e833fa69b3ef7c
-
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+Rob
 
