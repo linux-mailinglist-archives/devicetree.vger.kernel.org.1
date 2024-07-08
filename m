@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-83741-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83742-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1D9F929C03
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 08:16:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 978BA929C0A
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 08:18:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 65FA01F214B1
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 06:16:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5300228143C
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 06:18:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BCF610953;
-	Mon,  8 Jul 2024 06:16:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CD6511720;
+	Mon,  8 Jul 2024 06:18:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EznK2/Nd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KLuD9geF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CA583C0C;
-	Mon,  8 Jul 2024 06:16:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 466DF6FB9;
+	Mon,  8 Jul 2024 06:18:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720419381; cv=none; b=PKMXydOEdpVmzNaleCU+jkRu0W6ckW14icQqA303/qR8inz/0OCGkDxukEwYmRCTSnKl805miaiLPhs+1nPQFZ3shgE0Sl87drExdltmdZyNPeIt7tdKzwwmZVvjHJxLR5DlFAI6kKiYLwdCIBd0/fr4h50r73wmIxr2n4Uxcug=
+	t=1720419515; cv=none; b=IiORfLj7vKYU62JA7ny8o9lV3ILcmzEYO2dFku2Fhmnq60a2CaYwhSTHMEas/eia2LH5mnGPa64evmujQurvzv2QDqAVOl+m2Ecrqu/ZolrqvQ7lpkyGavKy55sp8/Mb7qqeF7o6UKJ/K9fyrhOtsG9B51iKzSZAZ72kyWvxj6E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720419381; c=relaxed/simple;
-	bh=nDJE18CH1b2XqBPQyCOcOyZPkrflQJKDXEmzhbVH/d0=;
+	s=arc-20240116; t=1720419515; c=relaxed/simple;
+	bh=WyI2tOjR1wvtR1vlEuMCrHnZzMvNiCxmI9bcy6i71qg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PVPpjL1ianNI4V7cNRKQ1Tnm1zO1ExKyNjKsqQTPCpjfOkaZDeZ8Qu6RVNbAuILNpW98f63b0RpOofFcdwKRmJTRkj6n3kEDNx/+s2o6xrKlD98tr9/QKVFJMH5FN+oTRNEyaaWNPS4PN4sJir2eHov/EYvdoBHcI1aSBITtzDQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EznK2/Nd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0DBBFC116B1;
-	Mon,  8 Jul 2024 06:16:15 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=VzPlDDblT6EKMd1sMfA+EP//0tKEWQ0SI2iNguarlTrs5PON7EZziY0rv1fFAUNeO0mT1svKws/4ePoJUHMfizD7IQHjVUnjeIbkV27FWxd6bc7v36+NhkEmNfuSIeQabbRfhkINzKX6qifSvoUGNhyTKIzkiAK/escbSyhkeZA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KLuD9geF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DCC1DC116B1;
+	Mon,  8 Jul 2024 06:18:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720419380;
-	bh=nDJE18CH1b2XqBPQyCOcOyZPkrflQJKDXEmzhbVH/d0=;
+	s=k20201202; t=1720419514;
+	bh=WyI2tOjR1wvtR1vlEuMCrHnZzMvNiCxmI9bcy6i71qg=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=EznK2/Nd6OwMmaJ6awGlqGtUBD1CFQ4THI0QacinMh1DrN0C4KAP651dhbIFtaeMV
-	 yP2Ek2X8MszbHtltYQA9p+KKBr9W/+zDm4HzPVYHdpSPkZemT0AGmX1lRF8ra4iJ06
-	 eve73KWFK8hqxxsb661+fH542zTFyOMkIjjWDkRZibDM6/QERJm6DnlMhfzqmj0zLF
-	 iuKc8rXpA32NniMgS01CUpkUb44kEN3addek9++e1jEvkJbsufETRBsCZTfUF6Ke8d
-	 A0IjbUtBGKn9y+VJ8GJBg9NMHlEa0MKi1gXPCB6MN2K767L90+6+OKDGLFQqCnbeMI
-	 gbELR/8G+2aBg==
-Message-ID: <c7688fba-0570-4dc6-80c4-23cd75ed29aa@kernel.org>
-Date: Mon, 8 Jul 2024 08:16:13 +0200
+	b=KLuD9geFA5Od9PEwe/scDT+57Aqiu410OhiJvA23p6rBSCcShRkdYsKr4NQvH9RmN
+	 PbQdm1pS6VTAzQVbaRHcrP06s7uPOldyz7JQpiu/Abkn/8pVA0C3ojEt57j3Eb3Mf5
+	 QqETzm/vtiakf2T8bJh1hV724WxiOIxklkuh8a6HBBjrIj0wOowO8tHsagmz38OCKA
+	 yJ1JUxB01f3TKWRFRvkUcncoqGoiU6floFDKqpU5L2x8sl8cwa4f8aWlkR3xLb/G8U
+	 KgUDKXoxO12oNphkJ+B6qBW9yd1aKZp8WpI5cIZjvHyAJPrGGesvXn8JDebs603cgQ
+	 Sa9rtgpUx5nMg==
+Message-ID: <9a0b596a-82ab-4731-8a48-88b02e48395b@kernel.org>
+Date: Mon, 8 Jul 2024 08:18:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,24 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [EXT] Re: [PATCH v4 2/5] dt-bindings: arm: fsl: add imx-se-fw
- binding doc
-To: Pankaj Gupta <pankaj.gupta@nxp.com>, Jonathan Corbet <corbet@lwn.net>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "imx@lists.linux.dev" <imx@lists.linux.dev>,
- "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-References: <20240705-imx-se-if-v4-0-52d000e18a1d@nxp.com>
- <20240705-imx-se-if-v4-2-52d000e18a1d@nxp.com>
- <450d1575-c9b3-413b-bfa9-8dc4352fa263@kernel.org>
- <AM9PR04MB8604B9A9F3D22C35679AD1D195DA2@AM9PR04MB8604.eurprd04.prod.outlook.com>
+Subject: Re: [PATCH] dt-bindings: leds: Document "netdev" trigger
+To: Marek Vasut <marex@denx.de>, linux-leds@vger.kernel.org
+Cc: kernel@dh-electronics.com, Conor Dooley <conor+dt@kernel.org>,
+ Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+ Pavel Machek <pavel@ucw.cz>, Rob Herring <robh@kernel.org>,
+ devicetree@vger.kernel.org
+References: <20240705215313.256963-1-marex@denx.de>
+ <22b43c93-6055-4503-94ad-cd449f21f801@kernel.org>
+ <ba158821-2f9f-46f6-9929-5bc810f2e10b@denx.de>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -113,84 +105,36 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <AM9PR04MB8604B9A9F3D22C35679AD1D195DA2@AM9PR04MB8604.eurprd04.prod.outlook.com>
+In-Reply-To: <ba158821-2f9f-46f6-9929-5bc810f2e10b@denx.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 08/07/2024 07:50, Pankaj Gupta wrote:
->> Drop redundant/obvious parts.
-> Will replace above two description line with the below two.
->       - description: mailbox phandle to send message to se firmware
->       - description: mailbox phandle to receive message from se firmware
+On 07/07/2024 21:49, Marek Vasut wrote:
+> On 7/7/24 3:49 PM, Krzysztof Kozlowski wrote:
+>> On 05/07/2024 23:52, Marek Vasut wrote:
+>>> Document the "netdev" trigger which is used to control LEDs by
+>>> network device activity.
+>>
+>> Instead, please propose a patch adding a comment there (in that place):
+>> "# netdev - not accepted, please do not add it"
+>>
+>> This is like fourth or fifth attempt.
+>>
+>> https://lore.kernel.org/all/20230217230346.GA2217008-robh@kernel.org/
 > 
->>
->> So two mailboxes?
-> Two handles of the same mailbox.
+> There is a follow up to that discussion:
 > 
->>
->>> +
->>> +  mbox-names:
->>> +    items:
->>> +      - const: tx
->>> +      - const: rx
->>> +      - const: txdb
->>> +      - const: rxdb
->>
->> 4 mailboxes? This cannot be different.
-> mbox-names can have any of the above mentioned 4 values.
-> And  two values are minimum, required.
+> https://lore.kernel.org/all/20230221014413.GA780723-robh@kernel.org/
+> 
+> That netdev trigger is nothing new, there are existing DTs using that 
+> trigger in-tree going back to 2019, this is only documenting it.
+> 
+> So, shall I really add a comment or update the commit message ?
 
-No, I said it cannot be different. If two are minimum, then you can have
-here 4, right? But earlier you said you can have only 2. It does not
-make any sense.
+I was not aware that discussion, so it seems commit will be fine, but
+with updated message.
 
-> 
->>
->>> +    minItems: 2
->>> +
->>> +  memory-region:
->>> +    description: contains the phandle to reserved external memory.
->>
->> Drop
-> Will remove the line " description: contains the phandle to reserved external memory."
-> 
->>
->>> +    items:
->>> +      - description: It is used by secure-enclave firmware. It is an optional
->>> +          property based on compatible and identifier to communication
->> interface.
->>> +          (see bindings/reserved-memory/reserved-memory.txt)
->>> +
->>> +  sram:
->>> +    description: contains the phandle to sram.
->>
->> Drop
-> Will remove " description: contains the phandle to sram."
-> 
->>
->>> +    items:
->>> +      - description: Phandle to the device SRAM. It is an optional property
->>> +          based on compatible and identifier to communication interface.
->>> +
->>> +required:
->>> +  - compatible
->>> +  - reg
->>> +  - mboxes
->>> +  - mbox-names
->>> +
->>> +additionalProperties: false
->>
->> Keep it after allOf block
-> 
-> In V2, it is after allOf block.
-> In previous comments, it was commented to place allOf block, after required.
-> I am little confused.
-
-So why did you implement it entirely different? Read the comment from
-Conor and from me again. I am sorry, but repeating the same three times
-(once by Conor, twice by me) is quite a waste of time.
-
-Open example-schema. How is it done there?
+Thanks.
 
 Best regards,
 Krzysztof
