@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-83836-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83837-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FD9392A074
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 12:44:56 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6EE892A077
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 12:46:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1675A2895DE
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 10:44:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1CF58B21F01
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 10:46:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF84377F0B;
-	Mon,  8 Jul 2024 10:44:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E7277710F;
+	Mon,  8 Jul 2024 10:46:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="u9Bq4SoT"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Rz0x9RTn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32B4677113
-	for <devicetree@vger.kernel.org>; Mon,  8 Jul 2024 10:44:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4DF36BFA5
+	for <devicetree@vger.kernel.org>; Mon,  8 Jul 2024 10:46:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720435489; cv=none; b=ipye48DhYYhXQCXF2xtBnS+PRzdHkV1giXNynaEcssVjeamE+P9+ofNAAYaKzCvEca9zVS+kdG0NRUFLTxi1+2HvoQ23A+Oqhs6PHFANFk/YtXdpYoUlnOZ0TyyjOUNSRNJzGgTqKe/vWrZYlF56zKaf6hcQg33vh+PeNe/X7zQ=
+	t=1720435599; cv=none; b=K4a/0Rjv6SdjQGJIjeKwnPYVTT2EGzdIoZn+yyw/khseAkziHcswZih3Snv4E3mdnn4a+MHN4XdEqTxE1Fr57Y/RLgmPkd7UHVK2ZxoAmBJupra66B/X7Nprldffm2NaKWTQ66op0cpuwwhlRiG9+ZfBYi9xpSffExAR0yx+iYw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720435489; c=relaxed/simple;
-	bh=qrguO9XYxn1AsUNTBJzMiGlMcI948CMxVWhaabMNExo=;
+	s=arc-20240116; t=1720435599; c=relaxed/simple;
+	bh=IGz0H0ejmbpuQYPOvUgeiC1fBrQQEFDPZp/NdopND0w=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=R6oa/3KTz1HkLdsHiXv0tKjGtbWPwl3/1xzE+KvwuAM5h/IVfAgwaKDEssPstcXgAcZledcKnScAmUMEQt87g/M+cT/NHP7oqsGws5u7LPTfT+vb7CQdyMKHsvUdxp4Oi70K/MFBlAzMXiidPSC6McxZUBnTLN5rAnKwFiyPdtw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=u9Bq4SoT; arc=none smtp.client-ip=209.85.221.44
+	 In-Reply-To:Content-Type; b=QQyWfZ41sSm3smaea1K3TXlsU0vW/f+7SHrGLHm2gpyLYh8hkj0sKfzm1igx6ZCvLUf+ptTQQHb/PerfuH81Hh7hjxVonepDWwRjbcld0nueOUa1JtpNPbhTLut/90o5KqCUhGhzIiuqWzx/eTmdfVggMVFKOLRcBpfsaPruXRk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Rz0x9RTn; arc=none smtp.client-ip=209.85.128.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-36796aee597so2427599f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 08 Jul 2024 03:44:47 -0700 (PDT)
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-426640582f4so8265285e9.1
+        for <devicetree@vger.kernel.org>; Mon, 08 Jul 2024 03:46:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1720435486; x=1721040286; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1720435596; x=1721040396; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=a37xqtAhqBn6RFQufMqGlI4wV85VoVHD0Umy9Ckc/Lc=;
-        b=u9Bq4SoTmS4AbOsUz/JhD8lWwMWURPP24fNQwkaCElNRzke2BVhdyhpfSjLp+2gaSk
-         WOm+AVqyAqCHAdubQSu9Nl3jYyNvhHcKULwqR6v+MkiJOXRsxaj3StZSotaIct67yydY
-         q2OjsdxBLX6oMyE+9hSHgZ7eQufP2aM/WjGJWyengf+AMb2WZ4RXGqQraxJIzRkmtCf3
-         ohu/bGPwKlW6EJCLbujDUc7KyQsqGIeW9QCpmYI57HPtN/yCO5xvCu6wDGTsLhN24YaE
-         Dzx8HmoSsjDU4yfFAaBXIzpMuuEJJ24VyCwrcD0UOVIIJZfE1zdMNeDkd4jw7CnRl8eR
-         tJ4Q==
+        bh=IVILljSb9x9qkP7jWklTsmAiZWD+eaDZZkSqNjXUOF0=;
+        b=Rz0x9RTnD7mTCRPEQdPb/1ozB9u4lKY+HQ6taecK0lx+OKsJzC9bYOOG0vr3SM/Gxd
+         WBq1a2JwViVYqX/AAdx4ZqBLAwBQmXbEIvXm0LUHbPcGqXu7k1lcLM0Xgu+JwSsqo/yO
+         Z8XE9v1zA0WGp5YPmcKPM0a90vnALy0/f0SDnjDcRN67j77mjMCAhRyDddpTY/2Nf85A
+         fUUCOPeorbJY+VS/3+emJ8WLXpYkGGwIBnxCIMOS57ynU1qW4yns+o6eaj/gz22/wN8P
+         iIzw5SuAMFjmkwwGcU5jjgn7PHQRwVsvyoGMMHp+0G1Xu98uekIQhidMOqRil5yAo7aX
+         M6Tg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720435486; x=1721040286;
+        d=1e100.net; s=20230601; t=1720435596; x=1721040396;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=a37xqtAhqBn6RFQufMqGlI4wV85VoVHD0Umy9Ckc/Lc=;
-        b=HUgHrq2CCByrhc75+tZmjniNw2xQ71w+ro/5v3L1864uJA/3Ovl3SKtdIqv/Z2JvO+
-         fswfATwNRjEMO2y4qw6f/VGaWrPS4/eEymEwqmv/zLrL+CEFRQEj0U8IVSHQm1NOKxOO
-         lRdVODaOD/UVIDwkYK90GysZscSGMmAG7mgKkIPA6AEqbyj1f045iZPvcHHCfNVDV3mY
-         KUCW2VPkACmez2rLynQyFb2WfzXbs51f/NOtg32XVYVhoMdFW6RGIOnCLKNYWu/OLMQH
-         Uv3crBebspEh3q1lGZD92jGWvwbjKyu6Ol+hq+8EzXescmu6V7GvfjYy/H5SvXa5xvbl
-         4cGg==
-X-Forwarded-Encrypted: i=1; AJvYcCUmS+SiQ8JPCZrBiF0yaOMZ5EA7ypYYwoebi9FmOaSxpdMTBW2msdGyvioWDMaCJCEMWjz6V868OVe63ypQU0aq2hT8scS5Q0anbA==
-X-Gm-Message-State: AOJu0YxRVYvocU8Sk0lQdSjyvQRIpZhlyMIsobc1ZoQFeqXdTJNApFD3
-	gZzbZ6RLwWvVXrgGi6c7gB3t8Tow5juG8aazs/bdOSextY2n1bnd4h/VKfBYvJ0=
-X-Google-Smtp-Source: AGHT+IEX4+Ix+R9k1DiSQE1LFtm+JaPwNJfxzl5UgCb/G8Xy6bP/f5Oerfl19+46U34y0fv2YfKoww==
-X-Received: by 2002:a05:6000:4023:b0:367:8e53:7fe5 with SMTP id ffacd0b85a97d-3679dd353b8mr8685700f8f.40.1720435486564;
-        Mon, 08 Jul 2024 03:44:46 -0700 (PDT)
+        bh=IVILljSb9x9qkP7jWklTsmAiZWD+eaDZZkSqNjXUOF0=;
+        b=pmoWZfsiISsgxmHdGDbF3OXILlW2SkgJG7nRJDDdXBjIThWNdNEUeUDNj3YPaECYc8
+         eyTG8mzIR3h+sAO8dVePtvNSgGY2W+nCEoB/EvMP0FMNzaqZHE4YNDD+d1qd3AlHMGqO
+         b1X1uDFYoys1mvasahZskPum3xrd3eSthcUyuWVGrrGexm4K4ALaki3WgXYq6JP9sjZu
+         X2e+Jn+2fLoJ7aDtqtsskwsHZ6nLfRe0MoOGdhchKifi9s6iILS4gjJOEHnWEgiKcqYI
+         feJIDXJXcBm8aqfoQP7md4+NJa3Khql9FubRLTG3HupZIs9vMOja9AYam6p2bTaNUWXy
+         IkIw==
+X-Forwarded-Encrypted: i=1; AJvYcCU74HDvlul2PbbkSVERnEL+saPjICDuZ7KTYzTuHmvvXRxHFwa42GmekQ+E/7YpnyDvp46KCj/GQf8N8w+evSwUSlJw+TUv1FOg1A==
+X-Gm-Message-State: AOJu0YxFA85Ri/9Xz7qbWLPIb3EvMT2WZMQIDx5DL31ODdEZQvvQjU8T
+	qfHO2eAl6Cz7B7aBS+NfiNMLYZJ9WQ8KhRXxzaoCJx62ZIoK0hmB9o3mS9cOxZs=
+X-Google-Smtp-Source: AGHT+IHPD3sUGOjkgnjW7Se/uaST289CjzpIdzf+NHWpDnL0L7U3y/2m9im81/Zj8GzzJZwhHx4OWw==
+X-Received: by 2002:a05:600c:6544:b0:426:629f:1550 with SMTP id 5b1f17b1804b1-426629f17a4mr30916805e9.9.1720435596095;
+        Mon, 08 Jul 2024 03:46:36 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.137])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-36798e435c3sm11479442f8f.72.2024.07.08.03.44.44
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42659fc902csm110192695e9.5.2024.07.08.03.46.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 Jul 2024 03:44:46 -0700 (PDT)
-Message-ID: <afd3c7b3-9d12-4ece-a938-c99bf9c5bb7b@linaro.org>
-Date: Mon, 8 Jul 2024 12:44:43 +0200
+        Mon, 08 Jul 2024 03:46:35 -0700 (PDT)
+Message-ID: <1764670d-0248-46fd-b0ce-03bcbcd6977b@linaro.org>
+Date: Mon, 8 Jul 2024 12:46:33 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,24 +77,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/4] Coresight: Add Coresight Control Unit driver
-To: JieGan <quic_jiegan@quicinc.com>
-Cc: Mathieu Poirier <mathieu.poirier@linaro.org>,
- Suzuki K Poulose <suzuki.poulose@arm.com>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Mike Leach <mike.leach@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+Subject: Re: [PATCH v2] arm64: dts: freescale: imx8mp-phycore: Add no-eth
+ overlay
+To: Benjamin Hahn <B.Hahn@phytec.de>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- James Clark <james.clark@arm.com>, Jinlong Mao <quic_jinlmao@quicinc.com>,
- Leo Yan <leo.yan@linaro.org>, coresight@lists.linaro.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, Tingwei Zhang <quic_tingweiz@quicinc.com>,
- Yuanfang Zhang <quic_yuanfang@quicinc.com>,
- Tao Zhang <quic_taozha@quicinc.com>, Trilok Soni <quic_tsoni@quicinc.com>,
- Song Chai <quic_songchai@quicinc.com>, linux-arm-msm@vger.kernel.org
-References: <20240705090049.1656986-1-quic_jiegan@quicinc.com>
- <20240705090049.1656986-4-quic_jiegan@quicinc.com>
- <9b502ba5-7042-424e-b0a2-5659e4064462@linaro.org>
- <ZotaBxRpv29crRHV@jiegan-gv.ap.qualcomm.com>
+ Conor Dooley <conor+dt@kernel.org>
+Cc: upstream@lists.phytec.de, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240705-bspimx8m-3180-v2-1-dc1a7e1689be@phytec.de>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -141,51 +135,34 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <ZotaBxRpv29crRHV@jiegan-gv.ap.qualcomm.com>
+In-Reply-To: <20240705-bspimx8m-3180-v2-1-dc1a7e1689be@phytec.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 08/07/2024 05:16, JieGan wrote:
+On 05/07/2024 14:14, Benjamin Hahn wrote:
+> Add a devicetree overlay to disable ethernet for boards where it is not
+> populated.
 > 
->>
->>> +
->>> +	drvdata->base = devm_ioremap(dev, res->start, resource_size(res));
->>
->> Use proper wrapper for this two.
-> Replaced by:
-> res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> drvdata->base = devm_ioremap_resource(dev, res);
+> Signed-off-by: Benjamin Hahn <B.Hahn@phytec.de>
+> ---
+> Changes in v2:
 
-Why?
+That's some old kernel you are developing on, right?
 
-Use the wrapper.
+<form letter>
+Please use scripts/get_maintainers.pl to get a list of necessary people
+and lists to CC (and consider --no-git-fallback argument). It might
+happen, that command when run on an older kernel, gives you outdated
+entries. Therefore please be sure you base your patches on recent Linux
+kernel.
 
-
-...
-
->>> +
->>> +static struct platform_driver ccu_driver = {
->>> +	.probe          = ccu_probe,
->>> +	.remove         = ccu_remove,
->>> +	.driver         = {
->>> +		.name   = "coresight-ccu",
->>> +		.of_match_table = ccu_match,
->>> +		.suppress_bind_attrs = true,
->>
->> Why?
-> Sorry, I dont get the point here.
-
-You do not get the point why I am asking "why?"?
-
-Why do you need it?
-
-> We dont need automatic bind/unbind, so the suppress_bind_attrs sets to true.
-
-But I need it...
-
-> We need configure some settings before we register the device.
-
-Hm, is this expected for coresight devices?
+Tools like b4 or scripts/get_maintainer.pl provide you proper list of
+people, so fix your workflow. Tools might also fail if you work on some
+ancient tree (don't, instead use mainline) or work on fork of kernel
+(don't, instead use mainline). Just use b4 and everything should be
+fine, although remember about `b4 prep --auto-to-cc` if you added new
+patches to the patchset.
+</form letter>
 
 Best regards,
 Krzysztof
