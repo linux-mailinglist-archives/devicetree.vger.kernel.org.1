@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-83770-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83771-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 133CE929D37
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 09:38:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B47D929D42
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 09:40:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 92A37B2123C
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 07:38:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9066B2819C0
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 07:40:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C47DA224FA;
-	Mon,  8 Jul 2024 07:38:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED0C122625;
+	Mon,  8 Jul 2024 07:39:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MYCUH+1L"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RnR6lqb4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97B96224F6;
-	Mon,  8 Jul 2024 07:38:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE8A621345;
+	Mon,  8 Jul 2024 07:39:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720424286; cv=none; b=iBg+/GOMuQUb31CmaeJJa9h9BlvUD6yXP60EHlb34zuOR8K9CQVk+NKnoKAa8evW9EmZ+G1LfDULlVwdEfOwDPdLx1FcHmCr4pnn9QVDcsW+I3F8GfhPIsIgnZNaxqH63e7nrFdfdBBDSUyve9pwqdGreBuEiIB72u/BJAZhrEU=
+	t=1720424396; cv=none; b=SteHhcvlZA9adLxkLYMCztLMN/zpRrzyumBhTE6+pC4kXtdBIOcwqE4Kp0IfEdCaGcOTu+OUEyN9bRdKchTM7Pp2yg1Ha3Q2nFdiFdAX8j0x5G1Ed/jN6EgRE/Kwa1zNOVmVNglGO7/YRlbvPj2DeYsJJ/Bsa7IeEo+GUm1/DrI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720424286; c=relaxed/simple;
-	bh=oMiPUlVaYyVu66rjInYRHiAkIAq9At6rRlylsvOCCRg=;
+	s=arc-20240116; t=1720424396; c=relaxed/simple;
+	bh=RsdUJss9LcLt8pOVWaNnHYAizzsm4k7O7vwS0cooSas=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=S8aKCAVPk3u7ZcPlMfYOxq6gne8FZVkqwvxmPWqMULUk/iFoqKSUc/5xIm3BRG9SfnpbV5USz5SgM4W7AEjSBw481uZFniWbhQXl6xPT08X65d16yEgCvLZUsAz/hggdBgceziWRAUdD8ErNSkVt4UWy6Bs6L9pXbZkkz7H6DDQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MYCUH+1L; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F1A3C4AF0B;
-	Mon,  8 Jul 2024 07:38:00 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=kqcSzC7K91CNnDJ7WKINWhRT45mR3O/cLySLt6XC24eWmQuY24/2MKq9h/vG3mfAQysIb7/T343c6YO0c2h40fEPgtVZ93gl8W+LgjBVJFjtEN2BiU7o3ggNiPbP/Jiv/cknHPWajfSS4X1BycvruGia2C96Ev3KtSTJJSvmwJs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RnR6lqb4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A1DFC116B1;
+	Mon,  8 Jul 2024 07:39:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720424286;
-	bh=oMiPUlVaYyVu66rjInYRHiAkIAq9At6rRlylsvOCCRg=;
+	s=k20201202; t=1720424396;
+	bh=RsdUJss9LcLt8pOVWaNnHYAizzsm4k7O7vwS0cooSas=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=MYCUH+1LfF/A77Udmoga7d/Y0/f0zG6df7Lu3TuZqh7G3RUuvvC55SnUyNSB39rTm
-	 9oK2MO9Tk5xWW7zyZl2c/LxIL4F88KrPUhOr1yPY7T+JiVDeDXGSD5R2BkPpaaESQU
-	 0qk0r4v+sM2pR7XHwIHpj8Aeczo58K6fMTdwh4TF+eXGackWMBIrjXnpe6FyYmV6lN
-	 /Bu5X06faISlUWnIVfoiwPH/348Q+/9TGXHDYeMnC0x8wW1UXeDqbU2LlQX7l3qlW4
-	 N8TsBvsgm758oqTKzbtWAER2jCFeMQJRRXGGcMZ/3KbufKq4J6M03UkZkff2+zIPEK
-	 Xt/AHctork+Xw==
-Message-ID: <3d40f02f-529b-45ac-aa31-c4342f6f4f55@kernel.org>
-Date: Mon, 8 Jul 2024 09:37:58 +0200
+	b=RnR6lqb4MQpeeZCx8Kgmzt67z5n7Wcbx6m4wIPclUxd7C30T18rK6cUnwBrYhQxoK
+	 vcWI34ytKr1UZSCW9iVh1M358dJjpI3u73CTH1YabMEeDH/OTrKL2pui3FvMbUvsyW
+	 7ch75TXfMgTJIXLjzfHn438MYR/xsSMl+c6Bkc5YVc17AzpnjL34+YpQeT8AklsnM3
+	 jBYDYjMMo6g0slUxI+y1IX6gh3rTXTKAPd7hmFbwQCDnoILBfJ4B87ruxfUI/2czNM
+	 f2wZg33qDs7X6i8i3d1C3xLmmcSao01IzhHKYnsaQB55L9TMJpQ7EDlhSlA2qV24oc
+	 em1lOabbYKWEg==
+Message-ID: <5a493a25-b633-44fa-bb1d-17019e551e14@kernel.org>
+Date: Mon, 8 Jul 2024 09:39:50 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ASoC: dt-bindings: cirrus,cs4270: Convert to dtschema
-To: Animesh Agarwal <animeshagarwal28@gmail.com>
-Cc: Daniel Baluta <daniel.baluta@nxp.com>,
- David Rhodes <david.rhodes@cirrus.com>,
- Richard Fitzgerald <rf@opensource.cirrus.com>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+Subject: Re: [PATCH] dt-bindings: rtc: sprd,sc2731-rtc: convert to YAML
+To: Stanislav Jakubek <stano.jakubek@gmail.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, patches@opensource.cirrus.com,
- alsa-devel@alsa-project.org, linux-sound@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240707062702.174390-1-animeshagarwal28@gmail.com>
+ Conor Dooley <conor+dt@kernel.org>, Orson Zhai <orsonzhai@gmail.com>,
+ Baolin Wang <baolin.wang@linux.alibaba.com>,
+ Baolin Wang <baolin.wang7@gmail.com>, Chunyan Zhang <zhang.lyra@gmail.com>
+Cc: linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <ZolsyEC8eeJWNIb6@standask-GA-A55M-S2HP>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,61 +105,44 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240707062702.174390-1-animeshagarwal28@gmail.com>
+In-Reply-To: <ZolsyEC8eeJWNIb6@standask-GA-A55M-S2HP>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 07/07/2024 08:26, Animesh Agarwal wrote:
+On 06/07/2024 18:11, Stanislav Jakubek wrote:
+> Convert the Spreadtrum SC2731 RTC bindings to DT schema.
+> Rename file to match compatible.
+> 
+> Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
+> ---
+>  .../bindings/rtc/sprd,sc2731-rtc.yaml         | 49 +++++++++++++++++++
+>  .../bindings/rtc/sprd,sc27xx-rtc.txt          | 26 ----------
+>  2 files changed, 49 insertions(+), 26 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/rtc/sprd,sc2731-rtc.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/rtc/sprd,sc27xx-rtc.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/rtc/sprd,sc2731-rtc.yaml b/Documentation/devicetree/bindings/rtc/sprd,sc2731-rtc.yaml
+> new file mode 100644
+> index 000000000000..f3d20e976965
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/rtc/sprd,sc2731-rtc.yaml
+> @@ -0,0 +1,49 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/rtc/sprd,sc2731-rtc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +  reg:
-> +    maxItems: 1
+> +title: Spreadtrum SC2731 Real Time Clock
 > +
-> +  reset-gpios:
-> +    description:
-> +      This pin will be deasserted before communication to the codec starts.
-> +    maxItems: 1
-> +
-> +  va-supply:
-> +    description: Voltage regulator phandle for the VA supply.
+> +maintainers:
+> +  - Orson Zhai <orsonzhai@gmail.com>
+> +  - Baolin Wang <baolin.wang7@gmail.com>
+> +  - Chunyan Zhang <zhang.lyra@gmail.com>
 
-Your description is redundant: you did not say anything more than it is
-already said in the property name. This could be in such case just:
-": true"
+This could just go to trivial-rtc.yaml.
 
-Please keep this feedback for any future work (I feel I already said it
-once...).
-
-> +
-> +  vd-supply:
-> +    description: Voltage regulator phandle for the VD supply.
-> +
-> +  vlc-supply:
-> +    description: Voltage regulator phandle for the VLC supply.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-
-This won't validate DTS... test the DTS. You miss dai-common.
-
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      codec: cs4270@48 {
-
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-e.g. audio-codec or codec
-
-And drop unused label "codec:"
-
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
