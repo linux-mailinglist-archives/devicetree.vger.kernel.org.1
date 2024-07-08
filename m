@@ -1,130 +1,116 @@
-Return-Path: <devicetree+bounces-83780-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83781-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F149929DC0
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 09:52:11 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id EFF82929DD3
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 10:00:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3393C1F22ED2
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 07:52:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8C42CB22FBC
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 08:00:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E58DA3B290;
-	Mon,  8 Jul 2024 07:51:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE87F3B791;
+	Mon,  8 Jul 2024 07:59:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="XCLV5akn"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UHluF3Ik"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com [209.85.160.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61C2F2C694
-	for <devicetree@vger.kernel.org>; Mon,  8 Jul 2024 07:51:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B21738FA1;
+	Mon,  8 Jul 2024 07:59:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720425093; cv=none; b=RZcKIEMREjMVJDjwig9hxzXImGSVZPjeUQW/3JE4RCOGDywffibZ8a+4z+1Ps/59uSllhOUNee+RMSvcN6vr/PWljkgECvNY7pbeycKWUnxq2seYFxdjb2hGAa7h/40CF6+rqz7br0tvLLbE2JxNzFclgqlHVOylsPOAL8HWIt0=
+	t=1720425595; cv=none; b=flr7KlRg4ADKnoH64yI9B0RjOS7XG5Lh/ZxkhnK5YDEoA1s/EpRqDmHTrdzbx+jnJLaaX3lkHbmYaq8JjaFTKjgl9UeA0I0YBDQnmuudHmUDRNh410Y9vVryGr9dpn7kKc8JbXwU//cAv1a+IJCWYMa0+UKXTYcyargFOtXtdu4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720425093; c=relaxed/simple;
-	bh=sMCuHNPwMzVOTIECsai/oVdKXcj1XiUQZZ+KQ8wvdlg=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=aeUZzmp/PVJFS1FBv7JU0lUkIWYanVIOXJUcMYTxRYcInzQM1qGskUQ2DcwzXc7hRiiyz3KP/UjdUXJSU6N0zqEwu53m3q1UdsnDmov4tQ9zeJv5GHxDq0ACK+FWaBDeLzpn9Y1uoL9GigMYJIDWoCtG4NyuPre9afI7vKNCG+Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=XCLV5akn; arc=none smtp.client-ip=170.10.129.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1720425091;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=mbt2usRMEhPQM41Uc5WG7giJsy4J3tFaRLey9pcvtWo=;
-	b=XCLV5aknbT8E2DitpWQv4nSvhzJOW+SzlSqRAvOafJN1teNzWXhJ6CYesegh1swWsd7IgI
-	UiFVla35Cifuvok8q7HI2oGf9k+loNrTIC2vpsKcqpVpTfcPVb0s1ouiixbTc6eHrtY675
-	3S0APCqECaPBWRT7TP6d2YzRrQFbk/M=
-Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
- [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-669-6H4XNDlZP-yUC0LsEp5oVA-1; Mon, 08 Jul 2024 03:51:29 -0400
-X-MC-Unique: 6H4XNDlZP-yUC0LsEp5oVA-1
-Received: by mail-wm1-f71.google.com with SMTP id 5b1f17b1804b1-4265f7f395cso12752175e9.3
-        for <devicetree@vger.kernel.org>; Mon, 08 Jul 2024 00:51:28 -0700 (PDT)
+	s=arc-20240116; t=1720425595; c=relaxed/simple;
+	bh=rs6JcL6vNDmIMyLHr4sEqjRKenwYOM5DCBPg4j4VF0E=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=GbhIWXFqovhXuZ8a1nQjKAh8LsH18XScYsCRvlW8sbgwVwCH5mI6/YMCG8KjPaapYX/18HP3KeuJc7Ye8bL2GowJvsKzlM46XHc/03byB8TMtlN/SnQ4t3c1Xyy6Exsn+YMErxHytzOWmd1uQdPqKlc/kb7RBpoo4u8rXPkC85g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UHluF3Ik; arc=none smtp.client-ip=209.85.160.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qt1-f174.google.com with SMTP id d75a77b69052e-447f0a76a08so4402231cf.0;
+        Mon, 08 Jul 2024 00:59:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1720425593; x=1721030393; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rs6JcL6vNDmIMyLHr4sEqjRKenwYOM5DCBPg4j4VF0E=;
+        b=UHluF3IkE2J56VNAsUetfBF/yrOEyAN605DgzzkZ7Csux8PkQqlE05Wqbg81a8LZjo
+         qCPlOJyQi3phRrpOHrqb4FNnC2iA3C2qnv50ocr+rvyu6xSgvwgFOhr7vp6zpDD9u06I
+         N2fn9NBw4eejwxNTziDE36VQJLSDp+psSsVFfh8+CcwF5tjWODbsekl9no9g1kNRP4/V
+         u4MWkzwhsGa5704t+JNLMrrlAhXNIn89+pWS8FX6LPyMVWNbXMtbT0BxmPHic2Tds9Kk
+         yW+Mk9PcB0TQ5xTCDenEAdJPE8bwBELHZ+Vx3I2xA3y7YFkuYfh0tLh6zeYecwmHBDmx
+         dw5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720425088; x=1721029888;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=mbt2usRMEhPQM41Uc5WG7giJsy4J3tFaRLey9pcvtWo=;
-        b=u0CtZxy3rM8Bl02vfipj/Kb24F8g8GE1iEtGmsBQopCl+BIuLp9eQujXXoNziwNsWR
-         EQt9GhgeRyN3SmoSSkwvl/u31QCY6E3XdIbOkJO2WVBu/PBl29CayO55JX40bG4OFl/s
-         SlUIlRAW+dmQhy71wtmeiN5ZpyPd/TVyNJ9+WcXCgP409GYpXQHAJqJeD69ZzRrWlJNp
-         AD3g479e+Unc9yvw0JprhmGY5MOE8GcsYGxYfDGY4xn2MwzX/P78QR5/ZyiotRttxbsv
-         Q2+lm0hCGifWpSL3KcTU2lAiW3Sr1vwLSKiH/MXU5FIIYLKKvzUDmvrOWd8OsYygckZ3
-         4EKQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXYgzQtcMo29c4E0WLvZk2Yaa+gZoZOFPUaq5zuRlWOaYxS2LNRWkyoHTOs3ApjtQzOUjImfANyV/EKV8EaqsrMBWV/Nk3pTZXy6Q==
-X-Gm-Message-State: AOJu0Yyg2nc/Bx9Y88sq9ULaNd9iw4Ed5J4J/xrnJ5QyfrOKeRKJg5A/
-	HZBSy/dVf/WrYNLe9miaAkmJUabX4YP/E147dQdPi8FG9PGCHDZF1XNtlH1O4MGD6ez2GWSHhQl
-	iibiOn2nxI9NUiZgwv0KFl5X/vUb6hAUys2Vz4/lzXRdbFjii/3W01g33eL8=
-X-Received: by 2002:a05:600c:2e49:b0:426:5471:156a with SMTP id 5b1f17b1804b1-426547117a5mr52986475e9.13.1720425087992;
-        Mon, 08 Jul 2024 00:51:27 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFgOpusd4NR4jXY1q924v3zDOMC+LgMqX0gtVRoZWih+SE99nRuVfWcAwG/NI2cxpeKYpWMxw==
-X-Received: by 2002:a05:600c:2e49:b0:426:5471:156a with SMTP id 5b1f17b1804b1-426547117a5mr52986345e9.13.1720425087614;
-        Mon, 08 Jul 2024 00:51:27 -0700 (PDT)
-Received: from lbulwahn-thinkpadx1carbongen9.rmtde.csb ([2a02:810d:7e40:14b0:4ce1:e394:7ac0:6905])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4264a2ca4b7sm153482915e9.37.2024.07.08.00.51.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Jul 2024 00:51:27 -0700 (PDT)
-From: Lukas Bulwahn <lbulwahn@redhat.com>
-X-Google-Original-From: Lukas Bulwahn <lukas.bulwahn@redhat.com>
-To: Frank Li <Frank.Li@nxp.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org
-Cc: Stuart Yoder <stuyoder@gmail.com>,
-	Laurentiu Tudor <laurentiu.tudor@nxp.com>,
-	kernel-janitors@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Lukas Bulwahn <lukas.bulwahn@redhat.com>
-Subject: [PATCH] MAINTAINERS: adjust file entry in QORIQ DPAA2 FSL-MC BUS DRIVER
-Date: Mon,  8 Jul 2024 09:51:24 +0200
-Message-ID: <20240708075124.73522-1-lukas.bulwahn@redhat.com>
-X-Mailer: git-send-email 2.45.2
+        d=1e100.net; s=20230601; t=1720425593; x=1721030393;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=rs6JcL6vNDmIMyLHr4sEqjRKenwYOM5DCBPg4j4VF0E=;
+        b=ZMiDu8pav/DwJN+IWoAOhl3ZrwG3m2O8CdppWOVDp3kFrBqzHsB/jjx+WloGCR5VkR
+         aSM8wgtNRYXjfzUnsxvk6wpH3Gk2EI1TgCoebHjg+DTdi1E4WxWXi6DUE+gjif6dFl3n
+         8EbHYZ++Qn7i1scUr2YQuBazzuh0lM0vJhU7t/m9hVVlyVKwsj2nsNfLbDzTM9/iyO0r
+         Caeg2/6k7ROTMhxIerD6FRlX2uT6bUWDts6iVVDvSAIQNogG5HX1KIciJ+hxxw49dcAn
+         cPHfQ+Re123LYrUQ5dFR3r0tk06iaw4E3uEG372i8ciq4Rcjx2Wpp+4jTCaRiyWHB9/+
+         oeeg==
+X-Forwarded-Encrypted: i=1; AJvYcCWHpie7PiXWoDwaZfOBts01GazD3XQ0fv7NdHUFvFW0d0jogCX2YxNbzAZHCfaFhH6TqfdnSMT8MY2LLZcmA9OQwzCLkZruF1ff5ottmcepNu7pgh6YFB4EKMR+X6P0YmScx/tlcZx+uQ==
+X-Gm-Message-State: AOJu0YzRlf8wWmiHngNnMhyeVO8jff/6kqP/11ffY4ZZhjyzasCckzhG
+	QHcnSn/vg5afpWitYaUBw/csM9XLkFza2mIoPbIEuDe06S1XUXps6wC49p8jOSHpOkIYZLpVBg+
+	gSlMGWoXp3YQweN2AMR3iQOuK+D6VXkrnkCOVvg==
+X-Google-Smtp-Source: AGHT+IH/VkfDIhs6MN4moaEli4OluWsChfXFbrXfH1W4zaZXzfmzxCus8rkkzYzz2iIioaZ3+7DwykAmfvpfNMasWUw=
+X-Received: by 2002:a05:622a:40c:b0:446:6824:166a with SMTP id
+ d75a77b69052e-447cced7b40mr172582011cf.10.1720425593179; Mon, 08 Jul 2024
+ 00:59:53 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20240617-rk-dts-additions-v5-0-c1f5f3267f1e@gmail.com>
+ <0418B5BB-6759-4BFA-BE6E-F5C7FA0CBF4F@gmail.com> <2236519.ZfL8zNpBrT@diego>
+ <1E6ED98C-BD49-485D-9FE9-9E7CAEDB4564@gmail.com> <503ECE3A-CA1C-43A7-AEB2-C0000A930B3A@gmail.com>
+In-Reply-To: <503ECE3A-CA1C-43A7-AEB2-C0000A930B3A@gmail.com>
+From: Alexey Charkov <alchark@gmail.com>
+Date: Mon, 8 Jul 2024 10:59:42 +0300
+Message-ID: <CABjd4YyY68dcA+Z0nWAUq1UmVLeLw52Pg6NGpzcW=WMNX8ioqA@mail.gmail.com>
+Subject: Re: [PATCH v5 0/8] RK3588 and Rock 5B dts additions: thermal, OPP and fan
+To: Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
+Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Daniel Lezcano <daniel.lezcano@linaro.org>, Dragan Simic <dsimic@manjaro.org>, 
+	Viresh Kumar <viresh.kumar@linaro.org>, Chen-Yu Tsai <wens@kernel.org>, 
+	Diederik de Haas <didi.debian@cknow.org>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, 
+	"open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Lukas Bulwahn <lukas.bulwahn@redhat.com>
+Hi Piotr,
 
-Commit 78fa0d19a50a ("dt-bindings: misc: fsl,qoriq-mc: convert to yaml
-format") converts fsl,qoriq-mc.txt to yaml format, but misses to adjust the
-file entry in QORIQ DPAA2 FSL-MC BUS DRIVER.
+On Sun, Jul 7, 2024 at 9:32=E2=80=AFPM Piotr Oniszczuk
+<piotr.oniszczuk@gmail.com> wrote:
+>
+> Heiko, Alexey,
+>
+> After some more tests: is varying fan-speeds working stable for you?
 
-Hence, ./scripts/get_maintainer.pl --self-test=patterns complains about a
-broken reference.
+Yes, in my testing on Rock 5B it's been stable.
 
-Adjust the file entry in QORIQ DPAA2 FSL-MC BUS DRIVER.
+> In my case - 1 per few reboots results with board enters state with: cons=
+tant full speed and no any reaction for cpu temp.
+> In such state - I need multiple hw poweroffs (remove usb-c plug) to get f=
+an-speeds working again.
+> When board is such state - all seems to work ok (frequency scaling, etc) =
+except fan is constantly full speed=E2=80=A6
 
-Signed-off-by: Lukas Bulwahn <lukas.bulwahn@redhat.com>
----
- MAINTAINERS | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+One thought: could you please check which thermal governor gets
+loaded? I used stepwise in my testing.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 4cb9f0819d8e..13332cfc15f6 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -18588,7 +18588,7 @@ M:	Laurentiu Tudor <laurentiu.tudor@nxp.com>
- L:	linux-kernel@vger.kernel.org
- S:	Maintained
- F:	Documentation/ABI/stable/sysfs-bus-fsl-mc
--F:	Documentation/devicetree/bindings/misc/fsl,qoriq-mc.txt
-+F:	Documentation/devicetree/bindings/misc/fsl,qoriq-mc.yaml
- F:	Documentation/networking/device_drivers/ethernet/freescale/dpaa2/overview.rst
- F:	drivers/bus/fsl-mc/
- F:	include/uapi/linux/fsl_mc.h
--- 
-2.45.2
-
+Best regards,
+Alexey
 
