@@ -1,200 +1,167 @@
-Return-Path: <devicetree+bounces-83799-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83800-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 670B8929F2E
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 11:37:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4411929F45
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 11:39:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 241B12899E7
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 09:37:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5876028A9D1
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 09:39:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9B0256452;
-	Mon,  8 Jul 2024 09:37:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B00436EB56;
+	Mon,  8 Jul 2024 09:39:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="qU8h94+u"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="piy1hm9b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B56E853362
-	for <devicetree@vger.kernel.org>; Mon,  8 Jul 2024 09:36:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B6E719470
+	for <devicetree@vger.kernel.org>; Mon,  8 Jul 2024 09:39:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720431421; cv=none; b=LlSNZ8kzFLmXcrNWH+tKHnHPJLR7hWVJx6twffXLxwO5jLIu/ySw7sY3s38RTMysXSk+P2D+UMCxWGCu6ZqgAC29HpLVw+3OF0fgJtPXCnjN/wM6J1OOxPh7HGASVQ7VusiEAUnNO39O4ap+7Oq4W2zEbYUvSny57aLXCGnzAhM=
+	t=1720431583; cv=none; b=eavsVH+ndYTo0FcCECPgN1sx5/QRugvT+wOyLVqZIujTfNc/YIH9LusIki2w/U0tFDNlpOzPXh7vHh+K5cGPA//sbWxyzl83uzib8yH4kQnMaEiqntBk2V2RDnp7in7B6sgaQ1MXCKvsHyJ8OQKvEdGB6ozA7LkB1tbUYLrUz/4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720431421; c=relaxed/simple;
-	bh=DUT2qfyHnBiSJswKU9IBPVcRdLDUr47dwJz4WyHcfk4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=k7MRgHrMKSnXEeVEQDrrtkULDAL3GyJhtyrblaCGVzUxs4hPdbrlnNNaYBmwIMm5OdFKF7YfOGxjiGQ7pMA9k0cDh83pi9R7r5BdTzNFJBFPvrndyhDKqPEkQrjFToNIUYWzJzVOXPbDQYbLPftRD9gjZxPu6bSV8+kgaNbFGMw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=qU8h94+u; arc=none smtp.client-ip=209.85.208.182
+	s=arc-20240116; t=1720431583; c=relaxed/simple;
+	bh=Ms2t5BNcjWNPX/heR3W7hDqoYgMgMgSn0c4sEqEa7VE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=NDeTQnknccP/WC5MBON/6dFTBKf6s3CMIz9WJIwUM8mfXS/bYiQgOtjDuXaA9304DQhBOPHryMBUALi0QvzulWF576P2bunpJkvxDAM6Fz81XMtWuWMirczQ0mgHvAAKpZBmGkf1+2rLaCqMW4tCie6UncXBkKk7WJAThNWFsY0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=piy1hm9b; arc=none smtp.client-ip=209.85.221.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2eaafda3b5cso36469481fa.3
-        for <devicetree@vger.kernel.org>; Mon, 08 Jul 2024 02:36:59 -0700 (PDT)
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-36794da7c96so2256883f8f.0
+        for <devicetree@vger.kernel.org>; Mon, 08 Jul 2024 02:39:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1720431418; x=1721036218; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=t/fDaFsT8bVF74YZaw1dcXDPONZE3lh/2d8bp4xBoeE=;
-        b=qU8h94+umLg4DCBsm8JHYfr8ydS/X8yO9fbu8tauPN5MKq8I4OwpykY7agKQgG0ocB
-         IYSO3aGreEMnHAPw8XBSBhJ8w8mFBmAv4sY/E2LuCxro0dxZOlXmhZdCwqVVTONHwwbP
-         dznW9++G6Pw+1yay8BotT5/B7VVkjnvL+uxBV2QOmJzKebwvXtLbE4Rt8QBY9UWEqWNS
-         sPfI+3zO1iE68Fx5y1yXBA9zs5MlLIiEffKWsjjhWNOEowdsAGdMZMF0W7TRIMwNaP1u
-         4S1wy2yFj090HoAVR2rVvmepWHpyu0rHReH6+A1h59oZcXBSwQjJv9xdEuCPayVJSbTa
-         2AyQ==
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1720431579; x=1721036379; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=CWgLIM9qKcrPLrrUHtXvW+gvDxnJ8RJKAdy5dnMDqJU=;
+        b=piy1hm9bRHACTg9jhzjZ0rBS4HRP/WjjTJBzITYvUEeK+hoN5VvoQH64Q9Yljrl9Me
+         SOaCad62pyHLrq/qBtyu77F+C89Sx86zl9+pSZ/mxg+DcPL9qF8QtH5QCCcxTJi618VM
+         IBxmegotSgW+tZPK7YHIIOfpRaoXFUhzSJJ2D7mI1cdbPPRRC7Ju1muc96E3cCXWh+fy
+         6xj+lf76hNgqhIyJKpr176zLWzmEvz8U/oncbUcj3KiYfbrlbKPrE4aRvMmq5LIEaxy9
+         9CC0/G8Bpykg/R5aDYd9gGTJkXQjAVgSoKf2rbu5F3yNQ84Xc/vRpMyKEeQ7yTupAksJ
+         YRbQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720431418; x=1721036218;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=t/fDaFsT8bVF74YZaw1dcXDPONZE3lh/2d8bp4xBoeE=;
-        b=OBgiScfvolyDxNK9wl9cmoon+7lAvBJzuo1lzdvQPCP0HJATXk7ODkAt9aTl5rs3W7
-         F5OfkCFtktVtZMIgEkwZdIiCrnJHLzDZ0R9IRzSd3zMY3P1VZCRkSABueEOsEWQFDORp
-         1kU4cgw7wMY9HiBWT2gu/YLRzZ+DG1/AxxNedHEapx8a5HbiNiDL9vjj/T+s2bJ2x2h7
-         V21FzgZvizNaPLRHR5R/U4yPRacGFKQnaRu9byXiZpv5Qkp5hCC+yfIEJPI0OtbPWaFy
-         aOf5zYNFn1/NX4VqPyoa+m+/qQfL/LZFYvGIy5qZLeQ5sMJzLzbKfLz1pEhLW2Q26H9G
-         8UHA==
-X-Forwarded-Encrypted: i=1; AJvYcCV204qYhNSP69xwL2KDwCTStiMWwCiUG+2GHA+dsj7Xl23WCNoeIDlH6+1urRu/F4N7doY63b79721xkvycQtj9QMUMrz/qjpvmVA==
-X-Gm-Message-State: AOJu0Yx5hcZxv8AvVfghQURxxuGL2xUCpfZQ4Lu5L/PDVIvVpn3wedtG
-	VTPlszVuiV3zz4+tXFk0XMisRAeaM3oOWFr7Ak+eldt3pY5YX+OFQHgixIN9cxrfFYgPboMmXfG
-	EkFkZeHF3HgYaI4ohIXK6CXDsJIhrZ/PlKtmmkw==
-X-Google-Smtp-Source: AGHT+IEJMNPJRZ4ikmMySY61VYumW34qVN8KfZiDAw4e13a6IxOH1mxxtIHzIHcKSJJmLmuyxIw8TtR3feufoV7jpQU=
-X-Received: by 2002:a05:6512:3d29:b0:52e:a63f:16e8 with SMTP id
- 2adb3069b0e04-52ea63f1808mr5972739e87.33.1720431417658; Mon, 08 Jul 2024
- 02:36:57 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1720431579; x=1721036379;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=CWgLIM9qKcrPLrrUHtXvW+gvDxnJ8RJKAdy5dnMDqJU=;
+        b=nQEW6nhUC5ej6aKR7uygEUm3NCOi7C35FeFWPBminaGylzohFJoWLBR7Ih9C6iQEeb
+         HBRHWVwlx/DAXIvnsAiPR6qGmh7o0Pl/0seeMlVX/QvC45IAK1o8DH6/fRO5pVmp1B9I
+         /mLQuDEKHQrul+U3kmH02ObolMMXci8mHU3mk8Oia41BWuif0Z7JacDshjziDvywRyKj
+         5joUUNQNKa1ShLJ8IjH2EDOG5C0MNI4LzOeHaYjAjhYDhnemp0zRLFIAFSf5Q4uljcmE
+         yDP4dn5Jcsuz1hWpm1es5ekZzt5y4G5ZF8teTeLyrCpICf0mJtUEq9y82Bm+vYZRcmcv
+         Wfwg==
+X-Forwarded-Encrypted: i=1; AJvYcCVJji5GjytLTz9ZRQNv20iepklVwVH3XEAD2QGCTnxLIW07py4asyVbiCK450HDlOQhLbxsREufCp2Wm3A81wIvAa8AHs1ocb9zFA==
+X-Gm-Message-State: AOJu0YwTsYvBMwDX13+YDCCL5PsaMYoHor+Ei0mBefIVbLPBICFbkHEp
+	X5skwI9vZP35PwmNpojYBQdgtOqNAiO6cnA214WWnSppRk+6woWYnRJ+mE30+28=
+X-Google-Smtp-Source: AGHT+IFXK4/ep40hT5+M0sRQUwSOZqqauY35f7kO+cSaI3vg/+HQxp281vElMypynTWPaVFuPH2MaA==
+X-Received: by 2002:adf:e94a:0:b0:367:88c2:23a5 with SMTP id ffacd0b85a97d-3679dd2b344mr6641004f8f.27.1720431579437;
+        Mon, 08 Jul 2024 02:39:39 -0700 (PDT)
+Received: from [127.0.1.1] ([2a01:cb1d:dc:7e00:a2a3:9ebc:2cb5:a86a])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-36789fd7a0esm15457779f8f.104.2024.07.08.02.39.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Jul 2024 02:39:39 -0700 (PDT)
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Subject: [PATCH v2 0/6] Bluetooth: hci_qca: use the power sequencer for
+ wcn7850
+Date: Mon, 08 Jul 2024 11:39:23 +0200
+Message-Id: <20240708-hci_qca_refactor-v2-0-b6e83b3d1ca5@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240705-pwrseq-v1-0-31829b47fc72@amlogic.com>
- <20240705-pwrseq-v1-1-31829b47fc72@amlogic.com> <a4d08999-55ea-4674-bb0f-6d618b7bdea7@kernel.org>
- <9c550278-2205-4663-917c-c303c65726ad@amlogic.com> <726a0561-b3fc-46bb-a834-3ed8b0e993e1@kernel.org>
- <91e42fbc-712e-44b4-8200-23aaf1fade43@amlogic.com> <7d109ab0-ebd0-4739-a15e-958e82552a7d@kernel.org>
- <2c51fff5-bc63-4f30-bb6d-f5fe91854d6d@amlogic.com> <aab8fae1-c0ba-4fab-8690-88c6cfe569e5@kernel.org>
-In-Reply-To: <aab8fae1-c0ba-4fab-8690-88c6cfe569e5@kernel.org>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Mon, 8 Jul 2024 11:36:46 +0200
-Message-ID: <CAMRc=Mckr4EE+TWgwHb5iLYTiPT0=2ES9Kkf27XTJmESPAxAgw@mail.gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: power: Add power sequence for Amloigc
- WCN chips
-To: Yang Li <yang.li@amlogic.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
-	Krzysztof Kozlowski <krzk@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMuzi2YC/2WNQQrCMBBFr1JmbSRJI6GuvIeUEuO0GZBEJxKUk
+ rsbC65cvj//v1khIxNmOHYrMBbKlGIDvevABxcXFHRtDFpqI600IniaHt5NjLPzz8RCWitxGHo
+ 1Xwy02b1d6LUpz2PjQLnV3tuHor7pT3b4lxUlpEBtjFZaedXj6UbRcdonXmCstX4AZZbTVbEAA
+ AA=
+To: Marcel Holtmann <marcel@holtmann.org>, 
+ Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Balakrishna Godavarthi <quic_bgodavar@quicinc.com>, 
+ Rocky Liao <quic_rjliao@quicinc.com>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, 
+ Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2246;
+ i=bartosz.golaszewski@linaro.org; h=from:subject:message-id;
+ bh=Ms2t5BNcjWNPX/heR3W7hDqoYgMgMgSn0c4sEqEa7VE=;
+ b=owEBbQKS/ZANAwAKARGnLqAUcddyAcsmYgBmi7PVX7BJqyH+oZvhWBQCHEcv+QA3f83Wxu1/M
+ cVU4wDa8AeJAjMEAAEKAB0WIQQWnetsC8PEYBPSx58Rpy6gFHHXcgUCZouz1QAKCRARpy6gFHHX
+ cvipEADFsF4UeWoJ20FiBCL5sQFzEftsRznE64rF5F+XIbrj4K+i2trXBA3LTWKXyT3oxLnrYhr
+ kG0898JoBP+h+BPnFNpp0Pxa2B6PbPiDzRYIDmKeP2ZIxNvj+BurRQFOsk8KVaWHa/wNtMZnyFU
+ TDVvahX9GwbND7kENQOpXXUvQmQn8CGl7qbjTUwd6J5orHVo5W4UewL9+PNEOInn2h6L0vZj1Xz
+ htI2rtGAf0kBeIjr1ZsNgLX9fKI48l4XSzbTUInuyrOidcsklml7tjU5Ft4mbxEK23MoLoAsByh
+ oXN1zC7rqEqdl4imkIZWx15LHUBh5SaJhOmonPNN4/irZDBSqB5eZo5BhEZGejBW23096UHAhaO
+ vQ1NM5w0rcF4r8HPZt5PZs4oC0k+EMsjat3raM6SXoYZKL7HYsdqhWkvoYBSqHnV2hO7hQ/+rLY
+ wwFE3RHzQTqB8nc53KL9V8Clz6QeJD1wVE/EdPycNSBa5EO8t45KHndXrc6lfEsRNmBkUIDeULC
+ ezHFqnzt/oxfZvYabRDu2hCBEoTQ11pgw0LttF0kxP5hIJYjCuG5cSJfga3W/NKLWIEixT48HB9
+ c/wBgixF+uafD7O8rG95O8xavPlr6jDsfChEFy1p+I6f/Kh93ezIY4xojnkbPUibe4KwTRmqSfW
+ RfMSN87Vb+0oWow==
+X-Developer-Key: i=bartosz.golaszewski@linaro.org; a=openpgp;
+ fpr=169DEB6C0BC3C46013D2C79F11A72EA01471D772
 
-On Mon, Jul 8, 2024 at 11:10=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
->
-> On 08/07/2024 10:21, Yang Li wrote:
-> >
-> > On 2024/7/8 15:32, Krzysztof Kozlowski wrote:
-> >> On 08/07/2024 08:32, Yang Li wrote:
-> >>> =E5=9C=A8 2024/7/8 14:11, Krzysztof Kozlowski wrote:
-> >>>> On 08/07/2024 08:04, Yang Li wrote:
-> >>>>>>> +
-> >>>>>>> +required:
-> >>>>>>> +  - compatible
-> >>>>>>> +  - clocks
-> >>>>>>> +  - clock-names
-> >>>>>>> +  - amlogic,chip-enable-gpios
-> >>>>>>> +  - amlogic,bt-enable-gpios
-> >>>>>>> +
-> >>>>>>> +additionalProperties: false
-> >>>>>>> +
-> >>>>>>> +examples:
-> >>>>>>> +  - |
-> >>>>>>> +    #include <dt-bindings/gpio/gpio.h>
-> >>>>>>> +    wcn_pwrseq {
-> >>>>>> No underscores in node names, generic node names.
-> >>>>>>
-> >>>>>> There is no device as "pwrseq". I also do not get what "wcn" means=
- here.
-> >>>>> Yes, I understand.
-> >>>>>
-> >>>>> Can I change "wcn_pwrseq" to "pmu", and do I need to change the bin=
-ding
-> >>>> What is pmu for your device? What is this device in the first place =
-you
-> >>>> are documenting? Where is the datasheet?
-> >>> ^_^ Well, You are right, the "pmu" wasn't really fit in here.
->
-> So no datasheet? Then you are on your own.
->
-> >>>
-> >>> I'd like to explain the current usage first, and could you please giv=
-e
-> >>> me a suggestion?
-> >>>
-> >>> This module(pwrseq) used to power on Bluetooth & Wi-Fi combo chip, bo=
-th
-> >>> Bluetooth and
-> >>>
-> >>> Wi-Fi driver need to control "chip-en-gpios" pins, so we introduced t=
-he
-> >>> power sequence module.
-> >>>
-> >>> What should we call it in this case?
-> >> Sorry, you describe driver, not a device.
-> >>
-> >> That would be a no-go for entire binding. Please describe the hardware=
-,
-> >> not what you want to achieve in Linux drivers.
-> > W155s2 is a Bluetooth and WiFi combination chip. Bluetooth requires the
->
-> I asked about this device here.
->
-> You speak now about W155s2 but everywhere else you were using "WCN".
-> What is that WCN?
->
-> > bt-en pin to be pulled up, the chip-en pin to be pulled up, and the
-> > 32.768KHz clock. WiFi requires the chip-en pin to be pulled up, and the
-> > 32.768KHz clock. It can be seen that Bluetooth and WiFi are coupled to
-> > the chip-en pin and the 32.768KHz clock. When Bluetooth and WiFi are
-> > working at the same time, no matter which one is turned off, it will
-> > affect the other device. Therefore, a pwrseq device is now abstracted t=
-o
->
-> It is the first time you mention pwrseq device from above paragraph.
-> Nothing above describes pwrseq.
->
-> Stop describing your problem, we all know it exactly if you follow the
-> discussions about power sequencing. Instead describe this particular
-> device you add binding for. What is this pwrseq in hardware? How does it
-> look? Where is it located? What are its pins? What are its supplies?
->
-> > manage the chip-en pin, bt-en pin, and the 32.768KHz clock.
->
-> >
-> > There is currently no matching device name for the pwrseq composite dev=
-ice.
->
-> ? No clue what does this mean.
-> >
-> > Could you please give me some advice?
->
-> Again, you do not describe the device for the binding but something
-> else. Something for your drivers, sorry. No.
->
-> If you disagree, respond accurately to all questions above, not to only
-> some of them...
->
-> Best regards,
-> Krzysztof
->
+The following series extend the usage of the power sequencing subsystem
+in the hci_qca driver.
 
-Yang, please look at the existing pwrseq-qcom-wcn.c driver and its
-bindings. They do exactly what you most likely want to do here. They
-describe the power management unit of the chipset, its inputs from
-host and outputs consumed by the WLAN and BT modules. Please try to
-follow it for your device.
+The end goal is to convert the entire driver to be exclusively pwrseq-based
+and simplify it in the process. However due to a large number of users we
+need to be careful and consider every case separately.
 
-Bart
+Right now the only model that fully uses the power sequencer is QCA6390 on
+the RB5 board. The next steps are enabling pwrseq for Bluetooth on sm8650
+and the X13s laptop. To that end we need to make wcn7850 and wcn6855 aware
+of the power sequencing but also keep backward compatibility with older
+device trees.
+
+This series contains changes to mainline DT bindings for wcn7850, some
+refactoring of the hci_qca driver, making pwrseq the default for the two
+models mentioned above and finally modifies the device-tree for sm8650-qrd
+to correctly represent the way the Bluetooth module is powered.
+
+I made the last patch part of this series as it has a run-time dependency
+on previous changes in it and bluetooth support on the board will break
+without them.
+
+Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+---
+Changes in v2:
+- Fix a switch issue reported by the test bot
+- Link to v1: https://lore.kernel.org/r/20240705-hci_qca_refactor-v1-0-e2442121c13e@linaro.org
+
+---
+Bartosz Golaszewski (6):
+      dt-bindings: bluetooth: qualcomm: describe the inputs from PMU for wcn7850
+      Bluetooth: hci_qca: schedule a devm action for disabling the clock
+      Bluetooth: hci_qca: unduplicate calls to hci_uart_register_device()
+      Bluetooth: hci_qca: make pwrseq calls the default if available
+      Bluetooth: hci_qca: use the power sequencer for wcn7850 and wcn6855
+      arm64: dts: qcom: sm8650-qrd: use the PMU to power up bluetooth
+
+ .../bindings/net/bluetooth/qualcomm-bluetooth.yaml | 18 +++--
+ arch/arm64/boot/dts/qcom/sm8650-qrd.dts            | 28 +++----
+ drivers/bluetooth/hci_qca.c                        | 86 ++++++++++++----------
+ 3 files changed, 71 insertions(+), 61 deletions(-)
+---
+base-commit: 0b58e108042b0ed28a71cd7edf5175999955b233
+change-id: 20240704-hci_qca_refactor-0770e9931fb4
+
+Best regards,
+-- 
+Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+
 
