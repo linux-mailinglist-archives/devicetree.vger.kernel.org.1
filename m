@@ -1,373 +1,125 @@
-Return-Path: <devicetree+bounces-83855-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83857-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9F6892A24F
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 14:14:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A352592A26B
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 14:16:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 125D6B25940
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 12:14:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 591A51F22578
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 12:16:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36EAF13DDC9;
-	Mon,  8 Jul 2024 12:09:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92BEB80024;
+	Mon,  8 Jul 2024 12:13:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="NganzT7N"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="SbSiXmim"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05F8E13DB8C;
-	Mon,  8 Jul 2024 12:09:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFAF67C6CE;
+	Mon,  8 Jul 2024 12:13:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720440599; cv=none; b=J4dHAshS6h/Kd5IRAoiUCvxrvAbtCvTjpkB5Yus0nmJD1VMsoo+p7nq7tXfgXltAmInO1yU1N/cxfKXHOzmpoAPbtqhHsfdQerc5PHKOW3dtZ8SScOI5+SHwoJEHXFq/t1Fw9PHnAU/BU0bv/IeCHSFme4CvxnTTHPAA9O/XMKg=
+	t=1720440806; cv=none; b=mluhFxobBvOkEB90oiQsw2pjeKK1WB7MQVBQI/mGCz2N8I4KWHsd1rfhUooK0p+n8pqmqm1rHpXS4euvvbE8y2vh9EwQmunkLUlZLut0NpJisItvWryQ1BIZf94Uh3eeqdhotVD3QDnmzrxcjzSvbJ1O+XQ0NWYFS+IRRYKNWSY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720440599; c=relaxed/simple;
-	bh=GKh2e7qWA5HsZ7T0GUHBoY32vMBZY1omyDv7U9SNINk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Ue1c97Kojt0+oNvdZHwrdH/XvQrn1VnUO8LB5nJD1WEm8OLykODBHsDenYMNmEMOQGWU8QwP9CQ31zkWKpvEY/PFgliFFLuNirzzLsIzRR1LbDoKk/8UoYEqOe4V+H9jlHYKrs3UH01bUTgloEOmsKYMbmcUBwkJgdUPS1SWl94=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=NganzT7N; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from localhost (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id 896DB41830;
-	Mon,  8 Jul 2024 14:09:55 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
-	by localhost (disroot.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id TobvjB_VNwxu; Mon,  8 Jul 2024 14:09:52 +0200 (CEST)
-From: Yao Zi <ziyao@disroot.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1720440590; bh=GKh2e7qWA5HsZ7T0GUHBoY32vMBZY1omyDv7U9SNINk=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=NganzT7NufEAIE8f1SUQBP6m7CK+Jj5e3DISmVjHcOtihzo58wlViRJ6YiVazxp2n
-	 BbekamtWZRmsJkelmtO//DPm69sMOXgxIO0y6px3cYwcSUn/gNO8/9qWA3U42lT9Df
-	 kfZ117c5jwF55VXOKpKsFXe2hNGqwxWEQp55FoFoKe6RFFrCScFQVLC9izGp76c67K
-	 31CLsI6uOzpikUeDhJ8/DpxQm3SDkEiVXK7ArAEqwFbarIcNhGifXCpJBDqZdzBw3K
-	 6nlkjdgt89IQSNbNKy8WM/3CPkJeqDXdtFQjz+MV8AMJZwNW3jpQNYj/J6PTxYKiHh
-	 LHmJBVoSoZb1g==
-To: Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@outlook.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Cc: Yao Zi <ziyao@disroot.org>
-Subject: [PATCH 3/3] phy: sophgo: add usb phy driver for Sophgo CV1800 SoCs
-Date: Mon,  8 Jul 2024 12:08:30 +0000
-Message-ID: <20240708120830.5785-4-ziyao@disroot.org>
-In-Reply-To: <20240708120830.5785-1-ziyao@disroot.org>
-References: <20240708120830.5785-1-ziyao@disroot.org>
+	s=arc-20240116; t=1720440806; c=relaxed/simple;
+	bh=+nJMkCqOAbHEuYD4KRDwUHDVHDHPJAlNGEhdDqx7/qg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=p4XAbHCGpQkn1lPoBcljtQM9CcKCW/BfgUN5Lw7nZbXN8un3mSWKwU4YyFCvNQVLm1YsOzokmeqPIv7oU/iMH6JW4zs2zJn7n8ctSashPxgXyiaFVcGENISL4G+4XoZksIvjVN32RIs15ByTVhjX6sovub9ApdtAwBW4NLwWraI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=SbSiXmim; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1720440803;
+	bh=+nJMkCqOAbHEuYD4KRDwUHDVHDHPJAlNGEhdDqx7/qg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=SbSiXmimyFUuGSDC5A88jA6/Sp379Ck5IBDs3T+nX0OoOfERpaUYUhRhdgjlp72Eo
+	 goZOPifGZQLRL6Sqm9sO7IAsK2KCbRC4utsQKMzwfR5nfyjcG94Ttdu8EGwaLUL76J
+	 lCX3Ihy5oXZ5OrhShMRYSodKQE81ubS7Sa328slifEpPQdQKqK5U8M9ralzY7yD8iI
+	 ZR3GgBRYPhaHrG7rvXGF+Tr/2Ob7sDCOuM1yVII+yIF4uQMvCXFa6GdvSQmdwAV93p
+	 au3I3NgflrrioZ59V57ZUA+8vZSZ4E8XmH8BO8v2H4mib7fASLEHjnmCV4xPqfPCo8
+	 Qmh/wnkAMLNrQ==
+Received: from mercury (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sre)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 1312C3780BFE;
+	Mon,  8 Jul 2024 12:13:23 +0000 (UTC)
+Received: by mercury (Postfix, from userid 1000)
+	id B64771060623; Mon, 08 Jul 2024 14:13:22 +0200 (CEST)
+Date: Mon, 8 Jul 2024 14:13:22 +0200
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, 
+	Shreeya Patel <shreeya.patel@collabora.com>, Marek Vasut <marex@denx.de>, linux-iio@vger.kernel.org, 
+	Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
+	kernel@collabora.com, Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Subject: Re: [PATCH] iio: light: ltrf216a: Drop undocumented ltr,ltrf216a
+ compatible string
+Message-ID: <u5gzxmapos2mo7rldarzdzp22wauuzcozywbynh2ryislqrtpw@cleln4mgilgy>
+References: <20240705095047.90558-1-marex@denx.de>
+ <3b2ca0-6687ce00-3-4dab7280@52083650>
+ <98992b1d-c94a-4053-a755-32a25d7fdc46@kernel.org>
+ <20240707143759.7718e0f3@jic23-huawei>
+ <1effec8c-8228-482b-b476-06838128adfa@kernel.org>
+ <20240707150835.40db1897@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="2n432feszofn6atr"
+Content-Disposition: inline
+In-Reply-To: <20240707150835.40db1897@jic23-huawei>
 
-This adds a new driver for USB2 phys integrated in Sophgo CV1800 and
-SG200x SoCs, which have the same design.
 
-Most CV1800/SG200x boards have broken VBUS/ID detection, so we force
-ID status to be specified in the device tree. This phy also supports
-charger detection, which could be implemented later.
+--2n432feszofn6atr
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Unfortunately, there is no description about the phy in the public
-datasheet. The driver was written by reading Sophgo GPL kernel source
-and dumping registers on actual SG2002 devices.
+Hi,
 
-Signed-off-by: Yao Zi <ziyao@disroot.org>
----
- drivers/phy/Kconfig                 |   1 +
- drivers/phy/Makefile                |   1 +
- drivers/phy/sophgo/Kconfig          |  10 ++
- drivers/phy/sophgo/Makefile         |   2 +
- drivers/phy/sophgo/phy-cv1800-usb.c | 213 ++++++++++++++++++++++++++++
- 5 files changed, 227 insertions(+)
- create mode 100644 drivers/phy/sophgo/Kconfig
- create mode 100644 drivers/phy/sophgo/Makefile
- create mode 100644 drivers/phy/sophgo/phy-cv1800-usb.c
+On Sun, Jul 07, 2024 at 03:08:35PM GMT, Jonathan Cameron wrote:
+> > > 2) This is an ACPI binding, it just happens to use a DT compatible vi=
+a the
+> > >    PRP0001 mechanism. Yes, we strongly discourage people doing that in
+> > >    shipping products but there have been other cases of it.
+> >=20
+> > OK, is this the case here?
+>=20
+> [...] If we can get an example of such a device that would help. [...]
 
-diff --git a/drivers/phy/Kconfig b/drivers/phy/Kconfig
-index 787354b849c7..596b37ab3191 100644
---- a/drivers/phy/Kconfig
-+++ b/drivers/phy/Kconfig
-@@ -92,6 +92,7 @@ source "drivers/phy/renesas/Kconfig"
- source "drivers/phy/rockchip/Kconfig"
- source "drivers/phy/samsung/Kconfig"
- source "drivers/phy/socionext/Kconfig"
-+source "drivers/phy/sophgo/Kconfig"
- source "drivers/phy/st/Kconfig"
- source "drivers/phy/starfive/Kconfig"
- source "drivers/phy/sunplus/Kconfig"
-diff --git a/drivers/phy/Makefile b/drivers/phy/Makefile
-index 868a220ed0f6..7ff32f0ae08a 100644
---- a/drivers/phy/Makefile
-+++ b/drivers/phy/Makefile
-@@ -31,6 +31,7 @@ obj-y					+= allwinner/	\
- 					   rockchip/	\
- 					   samsung/	\
- 					   socionext/	\
-+					   sophgo/	\
- 					   st/		\
- 					   starfive/	\
- 					   sunplus/	\
-diff --git a/drivers/phy/sophgo/Kconfig b/drivers/phy/sophgo/Kconfig
-new file mode 100644
-index 000000000000..6feb5795f1fc
---- /dev/null
-+++ b/drivers/phy/sophgo/Kconfig
-@@ -0,0 +1,10 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+
-+config PHY_SOPHGO_CV1800_USB
-+	tristate "SOPHGO CV1800 USB 2.0 PHY driver"
-+	depends on OF && (ARCH_SOPHGO || COMPILE_TEST)
-+	select GENERIC_PHY
-+	help
-+	  Enable this to support the USB 2.0 PHY on Sophgo CV1800
-+	  and SG200x SoCs.
-+	  If unsure, say N.
-diff --git a/drivers/phy/sophgo/Makefile b/drivers/phy/sophgo/Makefile
-new file mode 100644
-index 000000000000..b4b9de0697e7
---- /dev/null
-+++ b/drivers/phy/sophgo/Makefile
-@@ -0,0 +1,2 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+obj-$(CONFIG_PHY_SOPHGO_CV1800_USB)	+= phy-cv1800-usb.o
-diff --git a/drivers/phy/sophgo/phy-cv1800-usb.c b/drivers/phy/sophgo/phy-cv1800-usb.c
-new file mode 100644
-index 000000000000..873c72bd95cf
---- /dev/null
-+++ b/drivers/phy/sophgo/phy-cv1800-usb.c
-@@ -0,0 +1,213 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * USB PHY driver for Sophgo CV1800 SoCs.
-+ *
-+ * Copyright 2024 Yao Zi <ziyao@disroot.org>
-+ */
-+
-+#include <linux/clk.h>
-+#include <linux/device.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+#include <linux/phy/phy.h>
-+
-+#define CV1800_REG04				0x04
-+#define CV1800_REG14				0x14
-+#define  CV1800_REG14_UTMI_OVERRIDE		BIT(0)
-+#define  CV1800_REG14_OPMODE_MASK		(0x3 << 1)
-+#define  CV1800_REG14_OPMODE_SHIFT		1
-+#define  CV1800_REG14_XCVRSEL_MASK		(0x3 << 3)
-+#define  CV1800_REG14_XCVRSEL_SHIFT		3
-+#define  CV1800_REG14_TERMSEL			BIT(5)
-+#define  CV1800_REG14_DPPULLDOWN		BIT(6)
-+#define  CV1800_REG14_DMPULLDOWN		BIT(7)
-+#define  CV1800_REG14_UTMI_RESET		BIT(8)
-+#define CV1800_REG20				0x20
-+#define  CV1800_REG20_BC_EN			BIT(0)
-+#define  CV1800_REG20_DCD_EN			BIT(1)
-+#define  CV1800_REG20_DP_CMP_EN			BIT(2)
-+#define  CV1800_REG20_DM_CMP_EN			BIT(3)
-+#define  CV1800_REG20_VDP_SRC_EN		BIT(4)
-+#define  CV1800_REG20_VDM_SRC_EN		BIT(5)
-+#define  CV1800_REG20_CHG_DET			BIT(16)
-+#define  CV1800_REG20_DP_DET			BIT(17)
-+
-+#define CV1800_PIN_ID_OVERWRITE_EN		BIT(6)
-+#define CV1800_PIN_ID_OVERWRITE_VALUE(v)	((v) << 7)
-+
-+enum cv1800_usb_phy_role {
-+	CV1800_USB_PHY_HOST	= 0,
-+	CV1800_USB_PHY_DEVICE	= 1,
-+};
-+
-+struct cv1800_usb_phy_priv {
-+	void __iomem *regs;
-+	void __iomem *pinreg;
-+	struct clk *clk_apb;
-+	struct clk *clk_125m;
-+	struct clk *clk_33k;
-+	struct clk *clk_12m;
-+	enum cv1800_usb_phy_role role;
-+};
-+
-+static void
-+cv1800_usb_phy_set_role(struct cv1800_usb_phy_priv *priv,
-+			enum cv1800_usb_phy_role role)
-+{
-+	writel(CV1800_PIN_ID_OVERWRITE_EN | CV1800_PIN_ID_OVERWRITE_VALUE(role),
-+	       priv->pinreg);
-+}
-+
-+static int cv1800_usb_phy_init(struct phy *phy)
-+{
-+	struct cv1800_usb_phy_priv *priv = phy_get_drvdata(phy);
-+	int ret = 0;
-+
-+	ret = clk_prepare_enable(priv->clk_apb);
-+	if (ret)
-+		return ret;
-+
-+	ret = clk_prepare_enable(priv->clk_125m);
-+	if (ret)
-+		goto err_clk_125m;
-+
-+	ret = clk_prepare_enable(priv->clk_33k);
-+	if (ret)
-+		goto err_clk_33k;
-+
-+	ret = clk_prepare_enable(priv->clk_12m);
-+	if (ret)
-+		goto err_clk_12m;
-+
-+	writel(0xa, priv->regs + CV1800_REG04);		/* magic number	*/
-+	writel(0, priv->regs + CV1800_REG14);
-+	writel(0, priv->regs + CV1800_REG20);
-+
-+	cv1800_usb_phy_set_role(priv, priv->role);
-+
-+	return 0;
-+
-+err_clk_12m:
-+	clk_disable_unprepare(priv->clk_33k);
-+err_clk_33k:
-+	clk_disable_unprepare(priv->clk_125m);
-+err_clk_125m:
-+	clk_disable_unprepare(priv->clk_apb);
-+
-+	return ret;
-+}
-+
-+static int cv1800_usb_phy_exit(struct phy *phy)
-+{
-+	struct cv1800_usb_phy_priv *priv = phy_get_drvdata(phy);
-+
-+	clk_disable_unprepare(priv->clk_33k);
-+	clk_disable_unprepare(priv->clk_125m);
-+	clk_disable_unprepare(priv->clk_apb);
-+
-+	return 0;
-+}
-+
-+static const struct phy_ops cv1800_usb_phy_ops = {
-+	.init = cv1800_usb_phy_init,
-+	.exit = cv1800_usb_phy_exit,
-+};
-+
-+static int
-+cv1800b_usb_phy_parse_dt(struct cv1800_usb_phy_priv *priv, struct device *dev)
-+{
-+	const char *role;
-+
-+	if (!of_property_read_string(dev->of_node, "dr_role", &role)) {
-+		if (!strcmp(role, "host")) {
-+			priv->role = CV1800_USB_PHY_HOST;
-+		} else if (!strcmp(role, "device")) {
-+			priv->role = CV1800_USB_PHY_DEVICE;
-+		} else {
-+			dev_err(dev, "invalid dr_role %s", role);
-+			return -EINVAL;
-+		}
-+	} else {
-+		priv->role = CV1800_USB_PHY_DEVICE;
-+	}
-+
-+	return 0;
-+}
-+
-+static int cv1800_usb_phy_probe(struct platform_device *pdev)
-+{
-+	struct cv1800_usb_phy_priv *priv;
-+	struct phy_provider *provider;
-+	struct device *dev = &pdev->dev;
-+	struct phy *phy;
-+	int ret;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	ret = cv1800b_usb_phy_parse_dt(priv, dev);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to parse dt");
-+
-+	priv->regs = devm_platform_ioremap_resource_byname(pdev, "phy");
-+	if (IS_ERR(priv->regs))
-+		return dev_err_probe(dev, PTR_ERR(priv->regs),
-+				     "failed to map phy registers");
-+
-+	priv->pinreg = devm_platform_ioremap_resource_byname(pdev, "pin");
-+	if (IS_ERR(priv->pinreg))
-+		return dev_err_probe(dev, PTR_ERR(priv->pinreg),
-+				     "failed to map pin register");
-+
-+	priv->clk_apb = devm_clk_get(dev, "apb");
-+	if (IS_ERR(priv->clk_apb))
-+		return dev_err_probe(dev, PTR_ERR(priv->clk_apb),
-+				     "failed to get apb clock");
-+
-+	priv->clk_125m = devm_clk_get(dev, "125m");
-+	if (IS_ERR(priv->clk_125m))
-+		return dev_err_probe(dev, PTR_ERR(priv->clk_125m),
-+				     "failed to get 125m clock");
-+
-+	priv->clk_33k = devm_clk_get(dev, "33k");
-+	if (IS_ERR(priv->clk_33k))
-+		return dev_err_probe(dev, PTR_ERR(priv->clk_33k),
-+				     "failed to get 33k clock");
-+
-+	priv->clk_12m = devm_clk_get(dev, "12m");
-+	if (IS_ERR(priv->clk_12m))
-+		return dev_err_probe(dev, PTR_ERR(priv->clk_12m),
-+				     "failed to get 12m clock");
-+
-+	phy = devm_phy_create(dev, NULL, &cv1800_usb_phy_ops);
-+	if (IS_ERR(phy))
-+		return dev_err_probe(dev, PTR_ERR(phy),
-+				     "cannot create phy");
-+
-+	provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
-+
-+	phy_set_drvdata(phy, priv);
-+
-+	return PTR_ERR_OR_ZERO(provider);
-+}
-+
-+static const struct of_device_id cv1800_usb_phy_of_match_table[] = {
-+	{ .compatible = "sophgo,cv1800-usb-phy" },
-+	{ },
-+};
-+
-+static struct platform_driver cv1800_usb_phy_platform_driver = {
-+	.driver = {
-+		.name = "cv1800-usb-phy",
-+		.of_match_table = cv1800_usb_phy_of_match_table,
-+	},
-+	.probe = cv1800_usb_phy_probe,
-+};
-+
-+module_platform_driver(cv1800_usb_phy_platform_driver);
-+
-+MODULE_DESCRIPTION("Sophgo CV1800 USB PHY Driver");
-+MODULE_AUTHOR("Yao Zi <ziyao@disroot.org>");
-+MODULE_LICENSE("GPL");
--- 
-2.45.2
+The ALS is used by the Valve Steamdeck via ACPI + PRP0001 with the
+bad compatible string.
 
+-- Sebastian
+
+--2n432feszofn6atr
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmaL194ACgkQ2O7X88g7
++ppYKg/+NFCpzVB6jazl4U6umaHiZINKxpLFPkdTfJDAYCUjvXEppNs/bkLqAO+a
+Hl2Fj73XbjLXDW0fdZkq7NJn61Ss8LOGOorUeVJ1YMrG3vL2hGr/+2FBYkkotCUT
+9Gp4LGhAGjDfxqNHK9l2Nt3c1gUMHEXgG6mW5kWRAAftcqjjB/qXoJb05WXWKztP
+Hh1NclviMQlmkl7dFmibaX5hfI17A9R8BrV1vHZgucG45wH5gnSC9vmDVTcJIk6Y
+pPy4g7/JdhXKcLpnYlOogfGDHL+BACEWkq6v23oM9mnnvPKwgs6g3BaMBgGqWSrO
+iuj/dYS3skHCzdfhzx/OXch6FYN94XNzmbhwfpSNx9yl0P81dO/S6J9P8tFr0ssV
+F+UgBSl7lR19WYH7Y7AczPPnDmJAbcYkWO0sB5bA714oLIv78Tt6++saRggSVEre
+coG7LpKJU8ajlZxu6zOcH6F/VHzjtdQrndc8O41HgYAk9WLq3iFBrEE6sLu4pDon
+/luZ79Ci/BT5vJOc/VZVteYhtbSEE7Px43CxcZmDu+3P3FAcMN1f6n0eu+c9DVbn
+nrveDEaGDlacvSPkR5ywEioB1ottRcNs7bMfyTdRGIoeiXRqCDJLZo8B5tCVRhG/
+zkB7ZHh7POv/wHAd2NCjKzyafyuGmUD6lBx2lJMELPpPfFWSNvU=
+=GHr2
+-----END PGP SIGNATURE-----
+
+--2n432feszofn6atr--
 
