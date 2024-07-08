@@ -1,178 +1,76 @@
-Return-Path: <devicetree+bounces-83989-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83990-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B920492A959
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 20:56:35 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5004F92A95E
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 20:58:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EA8451C217B0
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 18:56:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B378BB21B0B
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 18:58:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5707014B083;
-	Mon,  8 Jul 2024 18:56:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98D6414B94E;
+	Mon,  8 Jul 2024 18:58:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="TlpzN3EA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZaVPYfZW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1E0314B07B;
-	Mon,  8 Jul 2024 18:56:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6532717C9E;
+	Mon,  8 Jul 2024 18:58:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720464992; cv=none; b=WOEJ5K77y0HZ2WcIvbLQgCoDokzMuBg/9uWoXKbxf4j4isR30xFIsTYcULhpiMB+h4EYvX76eWmuM1ycLIv3J0X3ib0NY6dOkUZRJJtveTcLjw2W2m7j6Lj7Ylj43bixGDRt61nOChcPgjQzdytb3Mc+PerkfgIt/UWLALugk7o=
+	t=1720465103; cv=none; b=RpW24MjBaTHeKj+1Ph4+AzeGmLaaco0rvIDVBG24ISVXIb6LVcnZK0OkZsNIo57bdFwJBtANYb28Yydtob/Z1VFaU1YAAfbkHmanXAva1FkR5nVFadEdvM6pGZeAVNF+9Vy9BsPGv4FrXGk7vjAcxo8KSbZU2dtRwEelZ7r8oYQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720464992; c=relaxed/simple;
-	bh=gM0Y/RgU44s/WF55oq92oWg/kZnsd1CfJuaY7BInVSY=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=uTqRmnQ9KtqSVmt8ry6IVSi4XMf59oTMrASdUga86CjXZZysB/fESM/QwCYgw9cgJeMdTVgMGbhjG5LXJS4HwVQRApiJdFOkSGtNK4crITRJ3drUoOD9OQKQDdrh//WLuImHNoY2Ip+4Pr4cRHeCK/bM1rOXUu4uGYtQTStbYNc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=TlpzN3EA; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from localhost (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id 83F4840F00;
-	Mon,  8 Jul 2024 20:56:26 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
-	by localhost (disroot.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 6plcH9AA_KY5; Mon,  8 Jul 2024 20:56:25 +0200 (CEST)
+	s=arc-20240116; t=1720465103; c=relaxed/simple;
+	bh=yDOevjl9/3Scra8njCk7go9N9fHFm7QgYzrojjkktOE=;
+	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
+	 Subject:From:Cc:To:Date; b=ixQxgZEni3ajOYo5zeBzftt2xZCkk2CLAD2D5Qrv0wWQCLHy2cRi0TPyfCJVyuTDAieUIQlDq+V0gvH1naj94T9vOLhFFa/eb1IwmmvlEBtLECSScKassvkq0T7t/UDXfnAtEfkLTCN25VhM6K3XNMU/Cz3vpLa2HWUmFvA3lQA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZaVPYfZW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D71E2C116B1;
+	Mon,  8 Jul 2024 18:58:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720465103;
+	bh=yDOevjl9/3Scra8njCk7go9N9fHFm7QgYzrojjkktOE=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=ZaVPYfZWSlJqTSqII31rl/oKcbzNPFVfwkUHPNbXeF/lYHw7y3Jh2Ggnx6ypfA09x
+	 RAA5LLL37h4tzCd5cSzC1fYt6UiHdshAhTQ9zNoaRsViDz8RKzGrwS+erMgzKK5BYH
+	 1A8YCeEI/P9rjDOqvJIR0fTTOCQyvWOgsM2eo9X7cRLT86epvSeupKXky42nR3UGmB
+	 zkCopa1K29YmC1M7HH1G6O+ML/lY/s3vnzxPN+llMos6E6994dt5SjYicD+Fahx53k
+	 OTjmMR7/2uIDs71U4KqYGgs2IhEbzrf61L4VVDFD86YmuoV1aqZHVCp1hAIzA8bccg
+	 /hy7EtCdYWf/g==
+Message-ID: <e00b0f47acb3aefd9c936189d9442008.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1720464985; bh=gM0Y/RgU44s/WF55oq92oWg/kZnsd1CfJuaY7BInVSY=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=TlpzN3EAM2KnAfqBw0xaGkjPRz/EGSBA8G16nvq1hgOLZRT8H6Tg+JEBHcWTzVxy5
-	 OQcx+YBs804nxdOkpQ8z9uRPn/4lhUG4Qg+/EZ5uAmfN85HwLc6Dhnvs1hrFESerKv
-	 S8JYTPqIPAD4Zgk3n2OqhVsehT8aU4coK+1GFnm0nGARkeXwExHjDNyh+8fUwngPR7
-	 e49PD52ZdrZogh8lnjMs7iRsQpKVOH8XGctTyxgAmxMGsg6rCfPNaoWfkHyUO+uVDW
-	 fNsk6pCP85I8tRChmr7wj5EN2y69fDWZ3veAEGAAMYJ9Y0isGGt4VJ5ExIi090t5B8
-	 gJnDzCL8wS3Mw==
-Date: Mon, 08 Jul 2024 18:56:25 +0000
-From: Kaustabh Chakraborty <kauschluss@disroot.org>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Conor Dooley <conor@kernel.org>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, conor+dt@kernel.org, kauschluss
- <kauschluss@disroot.org>
-Subject: Re: [PATCH 2/2] dt-bindings: iio: light: stk33xx: add compatible for
- stk3013
-In-Reply-To: <20240707174910.156b3e3c@jic23-huawei>
-References: <20240625165122.231182-1-kauschluss@disroot.org>
- <20240625165122.231182-2-kauschluss@disroot.org>
- <20240626-junior-tag-cd3e27c4b140@spud>
- <7f99d77c65bc347bf8b7935220520fdb@disroot.org>
- <20240703-velvet-badly-904e7afc7cf8@spud>
- <9a7f7eb2b5e8841b8c1f1064cccdd86f@disroot.org>
- <20240707174910.156b3e3c@jic23-huawei>
-Message-ID: <dd623c35ca67b1574b2f84074ca68b8a@disroot.org>
-X-Sender: kauschluss@disroot.org
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240701205809.1978389-1-Frank.Li@nxp.com>
+References: <20240701205809.1978389-1-Frank.Li@nxp.com>
+Subject: Re: [PATCH v2 1/1] dt-bindings: clock: qoriq-clock: convert to yaml format
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: imx@lists.linux.dev
+To: Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org
+Date: Mon, 08 Jul 2024 11:58:20 -0700
+User-Agent: alot/0.10
 
-On 2024-07-07 16:49, Jonathan Cameron wrote:
-> On Thu, 04 Jul 2024 07:16:10 +0000
-> Kaustabh Chakraborty <kauschluss@disroot.org> wrote:
-> 
->> On 2024-07-03 19:30, Conor Dooley wrote:
->> > On Wed, Jul 03, 2024 at 06:31:13PM +0000, Kaustabh Chakraborty wrote:  
->> >> On 2024-06-26 16:06, Conor Dooley wrote:  
->> >> > On Tue, Jun 25, 2024 at 10:21:06PM +0530, Kaustabh Chakraborty wrote:  
->> >> >> Add the compatible string of stk3013 to the existing list.
->> >> >> 
->> >> >> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
->> >> >> ---
->> >> >>  Documentation/devicetree/bindings/iio/light/stk33xx.yaml | 1 +
->> >> >>  1 file changed, 1 insertion(+)
->> >> >> 
->> >> >> diff --git a/Documentation/devicetree/bindings/iio/light/stk33xx.yaml b/Documentation/devicetree/bindings/iio/light/stk33xx.yaml
->> >> >> index f6e22dc9814a..6003da66a7e6 100644
->> >> >> --- a/Documentation/devicetree/bindings/iio/light/stk33xx.yaml
->> >> >> +++ b/Documentation/devicetree/bindings/iio/light/stk33xx.yaml
->> >> >> @@ -19,6 +19,7 @@ allOf:
->> >> >>  properties:
->> >> >>    compatible:
->> >> >>      enum:
->> >> >> +      - sensortek,stk3013  
->> >> > 
->> >> > The driver change suggests that this device is compatible with the
->> >> > existing sensors.
->> >> > Jonathan, could we relax the warning during init  
->> >> 
->> >> What does 'relax' mean here? Earlier there used to be a probing error,
->> >> and now it's just a warning. Is that not relaxed enough?  
->> > 
->> > If it is something intentionally, I don't think a warning is suitable.
->> > It makes the user thing something is wrong.  
->> 
->> So, something like:
->> 
->>   dev_info(&client->dev, "chip id: 0x%x\n", chipid);
->> 
->> is suitable in this context?
-> 
-> Key is to indicate in a 'friendly' fashion that we don't recognise the part
-> but we are treating it as what DT says.
-> 
-> dev_info(&client->dev, "New unknown chip id: 0x%x\n", chip_id);
-> only in the path where we don't have a match
-> 
->> 
->> And doesn't it make stk3310_check_chip_id() obsolete? In all cases chipid
->> should be printed as it's not an error/warning message.
-> 
-> No. Printing it when we know what it is counts as annoying noise.
-> We want the print to indicate we don't know what it is.
-> 
-> There have been too many instances of manufacturers switching to
-> a part that is compatible with some non-mainline driver (because they
-> match on a whoami and handle it appropriately) that doesn't work
-> in Linux.  Hence we want to print a warning so that when we get such
-> a report we can ask for more info on what the device actually is.
-> 
-> If device manufacturers would actually update their DT when they changed
-> a sensor for an incompatible one we'd not need this.  Unfortunately
-> some of them don't :(
+Quoting Frank Li (2024-07-01 13:58:08)
+> Convert qoria-clock DT binding to yaml format. Split to two files
+> qoriq-clock.yaml and qoriq-clock-legancy.yaml.
+>=20
+> Addtional change:
+> - Remove clock consumer part in example
+> - Fixed example dts error
+> - Deprecated legancy node
+> - fsl,b4420-clockgen and fsl,b4860-clockgen fallback to fsl,b4-clockgen.
+>=20
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
 
-I see. Sure, I'll modify it accordingly and send a v2.
-
-> 
-> Jonathan
-> 
-> 
-> 
->> 
->> >   
->> >>   
->> >> > 	ret = stk3310_check_chip_id(chipid);
->> >> > 	if (ret < 0)
->> >> > 		dev_warn(&client->dev, "unknown chip id: 0x%x\n", chipid);
->> >> > and allow fallback compatibles here please?  
->> >> 
->> >> So, you mean something like this in devicetree?
->> >> 
->> >>   compatible = "sensortek,stk3013", "sensortek,stk3310";
->> >> 
->> >> I mean that's fine, but we also need to change devicetree sources for
->> >> other devices. If that's what we're doing, please let me know how do
->> >> I frame the commits.  
->> > 
->> > Why would you need to change the dts for other devices to add a fallback
->> > for this new compatible that is being added?  
->> 
->> Okay gotcha, so it's just for stk3013.
->> 
->> >   
->> >> >>        - sensortek,stk3310
->> >> >>        - sensortek,stk3311
->> >> >>        - sensortek,stk3335
->> >> >> -- 
->> >> >> 2.45.2
->> >> >>  
->> >> 
->> >> Thank you.
+Applied to clk-next
 
