@@ -1,256 +1,513 @@
-Return-Path: <devicetree+bounces-83838-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83830-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 158F692A07A
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 12:47:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FBD192A057
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 12:39:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A72A7B22967
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 10:47:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B5F191F21230
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 10:39:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B202976046;
-	Mon,  8 Jul 2024 10:47:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C2D473466;
+	Mon,  8 Jul 2024 10:39:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="pX8BzdjT"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fNhkTbDO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.sberdevices.ru (mx1.sberdevices.ru [37.18.73.165])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 912AB78C6B;
-	Mon,  8 Jul 2024 10:47:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=37.18.73.165
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FF831DA303
+	for <devicetree@vger.kernel.org>; Mon,  8 Jul 2024 10:39:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720435626; cv=none; b=PL7Dw0rIwwC3t1ojQu48s4PlexjsDl9BjRQVcbydDz7KQ8qBKEp603nn5COIirAbrEH9LFTFT+B/V2UEZYmL5Ntgh0KFChMUZLEseADdc3ILDYD2s5PGH23D5NZcd8Cg8jczjvPw0WLojcuXodPFdE1xG3grB3Fk2nVW7OwOU44=
+	t=1720435151; cv=none; b=ZrRGkQPkK+sS4ujDPJPnUtSsRO5cbh346L8SL5eWfChM7jE/Y14iA9UVHguXpxIm52ZJoZtUUNZ5Ko+KdfQ9eCVe4HXbpvK7LL1AmbTtZQ5vvYU5NWm8j6Sn+1cERhvM5OESJ66IVcHoyTTg/hj2I98VLoKoPFSEzaMfmzwc7ns=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720435626; c=relaxed/simple;
-	bh=ilxHIEdVtIi5zUs2MBBm+xOd0JqEjsVGOsD7DLcfHpE=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=etdxlDQ85K3NECr0/nF0nZtVP8gk2vLSWPSxX9jLjs/TxigK3Z1muLcyt09AmFkmhbs17yyQaJblFmEV3hXB6kHjzoGMvIxEcYpz5mz8D/qjK5d60VeAWGjdUasbAi5Y/CDTlwlBxgIe3J2T05385JM1hUeVOmMtlFa3BUpJFzg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=pX8BzdjT; arc=none smtp.client-ip=37.18.73.165
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
-Received: from p-infra-ksmg-sc-msk01.sberdevices.ru (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id F334C100002;
-	Mon,  8 Jul 2024 13:37:50 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru F334C100002
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1720435070;
-	bh=d7X44jwm0wJ1wwPyOMAr2L4W1FfaWYOt7WkDvfHxW6w=;
-	h=From:To:Subject:Date:Message-ID:Content-Type:MIME-Version:From;
-	b=pX8BzdjTVcKak4nV9jcvk4i6JcH6R8K9AUOQkyFxGwDtHrrd7OYYT5CJkCQ6Np1pr
-	 WI5UM5IbKNSv4qpyVNdsjNLmbJqO6gaA2+J9/yRntQRjLcBRT/cRwv6Z0PmWwerNir
-	 X8/lvmicn2JHfeg0UspHwMmJNLRCG9W9558LHZcDMc0or4puelrYgFkC3sNmris3Is
-	 0ufJxBKfL2gfXeIzPEJ9olbY1sVLcEwXbfUjdeCVGxM/2D6gKELZFUUgaLqvILbKmI
-	 vm/rTrX2jLEwObQMj6TouHCZkIcs4oj+fjiKZSwAOyaiJXmW1Ec4Of+gIXGZZfB5FY
-	 IDilZ8dTd/UZA==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Mon,  8 Jul 2024 13:37:50 +0300 (MSK)
-Received: from p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) by
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Mon, 8 Jul 2024 13:37:50 +0300
-Received: from p-i-exch-sc-m02.sberdevices.ru ([fe80::81d7:3d68:fdfd:518]) by
- p-i-exch-sc-m02.sberdevices.ru ([fe80::81d7:3d68:fdfd:518%9]) with mapi id
- 15.02.1118.040; Mon, 8 Jul 2024 13:37:50 +0300
-From: Alexey Romanov <avromanov@salutedevices.com>
-To: "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
-	"clabbe@baylibre.com" <clabbe@baylibre.com>, "herbert@gondor.apana.org.au"
-	<herbert@gondor.apana.org.au>, "davem@davemloft.net" <davem@davemloft.net>,
-	"robh+dt@kernel.org" <robh+dt@kernel.org>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, "khilman@baylibre.com"
-	<khilman@baylibre.com>, "jbrunet@baylibre.com" <jbrunet@baylibre.com>,
-	"martin.blumenstingl@googlemail.com" <martin.blumenstingl@googlemail.com>,
-	"vadim.fedorenko@linux.dev" <vadim.fedorenko@linux.dev>
-CC: "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
-	"linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v8 00/23] Support more Amlogic SoC families in crypto
- driver
-Thread-Topic: [PATCH v8 00/23] Support more Amlogic SoC families in crypto
- driver
-Thread-Index: AQHauOTJ02Umg/ygAkayQ8Cnf3rYU7HsoakA
-Date: Mon, 8 Jul 2024 10:37:50 +0000
-Message-ID: <20240708103736.a23yez2n3s526zdy@cab-wsm-0029881.sigma.sbrf.ru>
-References: <20240607141242.2616580-1-avromanov@salutedevices.com>
-In-Reply-To: <20240607141242.2616580-1-avromanov@salutedevices.com>
-Accept-Language: ru-RU, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <FD5FF1BA27A64B48B90BDD07E871D796@sberdevices.ru>
-Content-Transfer-Encoding: quoted-printable
+	s=arc-20240116; t=1720435151; c=relaxed/simple;
+	bh=/xcVJFK6RKS+DK6bYBnuMiiKIYgcDjsHyc/DztIsWP8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bR9fv636Xry4n1LahkZi6+QoQYJGCU97AexeX8Y5MIDrjS2W6ZL18QtS8UQnoOuUncuOu8Zgnvf1SmlTi7ttQ+WdCbg8vE+SQqAn1uCt2QISZmvLwp9rvt0ykxiyifJIjMWx2Bjmxgy6h+zXlRT0/pNKYNLY9F9VK6DFGMANfa4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fNhkTbDO; arc=none smtp.client-ip=209.85.218.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a77e392f59fso186622966b.1
+        for <devicetree@vger.kernel.org>; Mon, 08 Jul 2024 03:39:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1720435148; x=1721039948; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=9jxzyIxqTABgkhjm6R4qxSzR4yYlT0nTZszB5SrFD9s=;
+        b=fNhkTbDOyOXiSzc0rOBjXIFzMpRtWiwjecBlNEorKTqbXtQ0Z+p5ewiRws4j0XwSWs
+         /yi/DQFrFJe0tRp89Idt/Od9Iq40gL8jKP8aKVjZ35nxjSEYpOayHEDYQliP1RqScc/c
+         TCMtj9EaJ0NIRMop1sVV4pmuFmgaBAzB42cggnltsnvGkPKJLAHu7Xm13KKvlOgUwJoO
+         +IW5GQmJZhwsxOYGOmO75eHqBlmfN+1hd09wta9jkDxHzCHl0eZZbaMvlhlB+3N4FSz+
+         MeV00Z5zcFRP+oiuC7rN1M5cAOgU1cA+5T3ldmIIPfbKIHDj6qtkkid6GI1vThRfec0o
+         CmrQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720435148; x=1721039948;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9jxzyIxqTABgkhjm6R4qxSzR4yYlT0nTZszB5SrFD9s=;
+        b=r+V1hC3MSfMSNjKOpqD3rAFJe66VpukK/fXUsqocLFdFqJBpUgpQuPXGe14Lt6CHGT
+         WXEdMPqc+XRkyl/chBpiBnR/QhHJ8CNbwnM/D8doVouaiYu1MuNIFvdZnSNDxjWEOKKj
+         R7TPPD+x38Q16cfAHdb7ZXnMS9YYjQ/GmKeM+QYquQILmg7XsquRPECbnM31avam0OH2
+         C5cW0a8r3zHCMkMrGO86L/phBgBe7ix6CYapZkV9S5ZbOweM84Y9pJEVQkcK/yCtbeaT
+         w2kzvMkG3U5mpeAPXBHxW7kKliJkcTH008rncnuP3YsMSwNznv5ncTbAE4z46CyUmwN8
+         4HOQ==
+X-Gm-Message-State: AOJu0YwJxK/RVd+O/YyvjPSoQMovw4WUuAl3fvhOVQQos4PUINkbuuVV
+	48nuo4Nn/fIXISgf9Tue9j9T1Pgk2JMtV186WYHsAOCEYXxy9zCEo/yFJ5lPIAo=
+X-Google-Smtp-Source: AGHT+IGDO+mSbeS1LZffv7q+j89FCECA4eSRvjqLw9Nh91QptkKNmlQCCH9zQz3ZWo4gZH60p/amvA==
+X-Received: by 2002:a17:906:fa0e:b0:a72:8d2f:859c with SMTP id a640c23a62f3a-a77ba48deb1mr726233466b.33.1720435147450;
+        Mon, 08 Jul 2024 03:39:07 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.137])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a77c0117b15sm356874666b.43.2024.07.08.03.39.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 08 Jul 2024 03:39:06 -0700 (PDT)
+Message-ID: <a049486a-0ec6-4e12-afbf-7c0def8ef23b@linaro.org>
+Date: Mon, 8 Jul 2024 12:39:05 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 186370 [Jul 08 2024]
-X-KSMG-AntiSpam-Version: 6.1.0.4
-X-KSMG-AntiSpam-Envelope-From: avromanov@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 21 0.3.21 ebee5449fc125b2da45f1a6a6bc2c5c0c3ad0e05, {Tracking_uf_ne_domains}, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, 127.0.0.199:7.1.2;cab-wsm-0029881.sigma.sbrf.ru:7.1.1,5.0.1;salutedevices.com:7.1.1;gist.github.com:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;lore.kernel.org:7.1.1;smtp.sberdevices.ru:7.1.1,5.0.1, FromAlignment: s
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean, bases: 2024/07/08 10:00:00
-X-KSMG-LinksScanning: Clean, bases: 2024/07/08 10:00:00
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/07/08 09:16:00 #25900162
-X-KSMG-AntiVirus-Status: Clean, skipped
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] ARM: dts: aspeed: Add IEISystems NF5280M7 BMC machine
+To: George Liu <liuxiwei1013@gmail.com>, linux-aspeed@lists.ozlabs.org
+Cc: devicetree@vger.kernel.org, openbmc@lists.ozlabs.org,
+ linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+ linux-arm-kernel@lists.infradead.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, joel@jms.id.au, andrew@codeconstruct.com.au
+References: <20240708062316.208383-1-liuxiwei@ieisystem.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240708062316.208383-1-liuxiwei@ieisystem.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi guys, ping.
-
-On Fri, Jun 07, 2024 at 05:12:19PM +0300, Alexey Romanov wrote:
-> Hello!
->=20
-> This patchset expand the funcionality of the Amlogic
-> crypto driver by adding support for more SoC families:
-> AXG, G12A, G12B, SM1, A1, S4.
->=20
-> Also specify and enable crypto node in device tree
-> for reference Amlogic devices.
->=20
-> Tested on GXL, AXG, G12A/B, SM1, A1 and S4 devices via
-> custom tests [1] and tcrypt module.
->=20
+On 08/07/2024 08:23, George Liu wrote:
+> The IEISystems NF5280M7 is an x86 platform server with an
+> AST2600-based BMC.
+> This dts file provides a basic configuration for its OpenBMC
+> development.
+> 
+> Signed-off-by: George Liu <liuxiwei@ieisystem.com>
 > ---
->=20
-> Changes V1 -> V2 [2]:
->=20
-> - Rebased over linux-next.
-> - Adjusted device tree bindings description.
-> - A1 and S4 dts use their own compatible, which is a G12 fallback.
->=20
-> Changes V2 -> V3 [3]:
->=20
-> - Fix errors in dt-bindings and device tree.
-> - Add new field in platform data, which determines
-> whether clock controller should be used for crypto IP.
-> - Place back MODULE_DEVICE_TABLE.
-> - Correct commit messages.
->=20
-> Changes V3 -> V4 [4]:
->=20
-> - Update dt-bindings as per Krzysztof Kozlowski comments.
-> - Fix bisection: get rid of compiler errors in some patches.
->=20
-> Changes V4 -> V5 [5]:
->=20
-> - Tested on GXL board:
->   1. Fix panic detected by Corentin Labbe [6].
->   2. Disable hasher backend for GXL: in its current realization
->      is doesn't work. And there are no examples or docs in the
->      vendor SDK.
-> - Fix AES-CTR realization: legacy boards (gxl, g12, axg) requires
->   inversion of the keyiv at keys setup stage.
-> - A1 now uses its own compatible string.
-> - S4 uses A1 compatible as fallback.
-> - Code fixes based on comments Neil Atrmstrong and Rob Herring.
-> - Style fixes (set correct indentations)
->=20
-> Changes V5 -> V6 [7]:
->=20
-> - Fix DMA sync warning reported by Corentin Labbe [8].
-> - Remove CLK input from driver. Remove clk definition
->   and second interrput line from crypto node inside GXL dtsi.
->=20
-> Changes V6 -> V7 [9]:
->=20
-> - Fix dt-schema: power domain now required only for A1.
-> - Use crypto_skcipher_ctx_dma() helper for cipher instead of
->   ____cacheline_aligned.
-> - Add import/export functions for hasher.
-> - Fix commit message for patch 17, acorrding to discussion [10].
->=20
-> Changes V7 -> V8 [11]:
->=20
-> - Test patchset with CONFIG_CRYPTO_MANAGER_EXTRA_TESTS: fix some bugs
->   in hasher logic.
-> - Use crypto crypto_ahash_ctx_dma in hasher code.
-> - Correct clock definition: clk81 is required for all SoC's.
-> - Add fixed-clock (clk81) definition for A1/S4.
-> - Add information (in commit messages) why different compatibles are used=
-.
->=20
-> Links:
->   - [1] https://gist.github.com/mRrvz/3fb8943a7487ab7b943ec140706995e7
->   - [2] https://lore.kernel.org/all/20240110201216.18016-1-avromanov@salu=
-tedevices.com/
->   - [3] https://lore.kernel.org/all/20240123165831.970023-1-avromanov@sal=
-utedevices.com/
->   - [4] https://lore.kernel.org/all/20240205155521.1795552-1-avromanov@sa=
-lutedevices.com/
->   - [5] https://lore.kernel.org/all/20240212135108.549755-1-avromanov@sal=
-utedevices.com/
->   - [6] https://lore.kernel.org/all/ZcsYaPIUrBSg8iXu@Red/
->   - [7] https://lore.kernel.org/all/20240301132936.621238-1-avromanov@sal=
-utedevices.com/
->   - [8] https://lore.kernel.org/all/Zf1BAlYtiwPOG-Os@Red/
->   - [9] https://lore.kernel.org/all/20240326153219.2915080-1-avromanov@sa=
-lutedevices.com/
->   - [10] https://lore.kernel.org/all/20240329-dotted-illusive-9f0593805a0=
-5@wendy/
->   - [11] https://lore.kernel.org/all/20240411133832.2896463-1-avromanov@s=
-alutedevices.com/
->=20
-> Alexey Romanov (23):
->   drivers: crypto: meson: don't hardcode IRQ count
->   drviers: crypto: meson: add platform data
->   drivers: crypto: meson: remove clock input
->   drivers: crypto: meson: add MMIO helpers
->   drivers: crypto: meson: move get_engine_number()
->   drivers: crypto: meson: drop status field from meson_flow
->   drivers: crypto: meson: move algs definition and cipher API to
->     cipher.c
->   drivers: crypto: meson: cleanup defines
->   drivers: crypto: meson: process more than MAXDESCS descriptors
->   drivers: crypto: meson: avoid kzalloc in engine thread
->   drivers: crypto: meson: introduce hasher
->   drivers: crypto: meson: add support for AES-CTR
->   drivers: crypto: meson: use fallback for 192-bit keys
->   drivers: crypto: meson: add support for G12-series
->   drivers: crypto: meson: add support for AXG-series
->   drivers: crypto: meson: add support for A1-series
->   dt-bindings: crypto: meson: correct clk and remove second interrupt
->     line
->   arch: arm64: dts: meson: gxl: correct crypto node definition
->   dt-bindings: crypto: meson: support new SoC's
->   arch: arm64: dts: meson: a1: add crypto node
->   arch: arm64: dts: meson: s4: add crypto node
->   arch: arm64: dts: meson: g12: add crypto node
->   arch: arm64: dts: meson: axg: add crypto node
->=20
->  .../bindings/crypto/amlogic,gxl-crypto.yaml   |  33 +-
->  arch/arm64/boot/dts/amlogic/meson-a1.dtsi     |  15 +
->  arch/arm64/boot/dts/amlogic/meson-axg.dtsi    |   8 +
->  .../boot/dts/amlogic/meson-g12-common.dtsi    |   8 +
->  arch/arm64/boot/dts/amlogic/meson-gxl.dtsi    |   7 +-
->  arch/arm64/boot/dts/amlogic/meson-s4.dtsi     |  14 +
->  drivers/crypto/amlogic/Makefile               |   2 +-
->  drivers/crypto/amlogic/amlogic-gxl-cipher.c   | 632 ++++++++++++------
->  drivers/crypto/amlogic/amlogic-gxl-core.c     | 292 ++++----
->  drivers/crypto/amlogic/amlogic-gxl-hasher.c   | 507 ++++++++++++++
->  drivers/crypto/amlogic/amlogic-gxl.h          | 118 +++-
->  11 files changed, 1277 insertions(+), 359 deletions(-)
->  create mode 100644 drivers/crypto/amlogic/amlogic-gxl-hasher.c
->=20
-> --=20
-> 2.34.1
->=20
 
---=20
-Thank you,
-Alexey=
+No changelog, so did you just ignore all feedback?
+
+>  arch/arm/boot/dts/aspeed/Makefile             |   1 +
+>  .../aspeed/aspeed-bmc-ieisystems-nf5280m7.dts | 697 ++++++++++++++++++
+>  2 files changed, 698 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dts
+> 
+> diff --git a/arch/arm/boot/dts/aspeed/Makefile b/arch/arm/boot/dts/aspeed/Makefile
+> index 5e3392621697..51531d494415 100644
+> --- a/arch/arm/boot/dts/aspeed/Makefile
+> +++ b/arch/arm/boot/dts/aspeed/Makefile
+> @@ -40,6 +40,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
+>  	aspeed-bmc-ibm-rainier-1s4u.dtb \
+>  	aspeed-bmc-ibm-rainier-4u.dtb \
+>  	aspeed-bmc-ibm-system1.dtb \
+> +	aspeed-bmc-ieisystems-nf5280m7.dtb \
+>  	aspeed-bmc-intel-s2600wf.dtb \
+>  	aspeed-bmc-inspur-fp5280g2.dtb \
+>  	aspeed-bmc-inspur-nf5280m6.dtb \
+> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dts
+> new file mode 100644
+> index 000000000000..d706b4f64f6c
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-ieisystems-nf5280m7.dts
+> @@ -0,0 +1,697 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +// Copyright (c) 2023 IEISystems Corporation
+> +
+> +/dts-v1/;
+> +
+> +#include "aspeed-g6.dtsi"
+> +#include <dt-bindings/gpio/aspeed-gpio.h>
+> +#include <dt-bindings/leds/leds-pca955x.h>
+> +#include <dt-bindings/i2c/i2c.h>
+> +
+> +/ {
+> +	model = "NF5280M7 BMC";
+> +	compatible = "ieisystems,nf5280m7-bmc", "aspeed,ast2600";
+> +	aliases {
+> +		i2c200 = &bus2_mux70_0;
+> +		i2c500 = &bus5_mux00;
+> +		i2c501 = &bus5_mux01;
+> +		i2c600 = &i2c6s0ch0;
+> +		i2c601 = &i2c6s0ch1;
+> +		i2c602 = &i2c6s0ch2;
+> +		i2c603 = &i2c6s0ch3;
+> +		i2c604 = &i2c6s0ch4;
+> +		i2c605 = &i2c6s0ch5;
+> +		i2c606 = &i2c6s0ch6;
+> +		i2c607 = &i2c6s0ch7;
+> +		i2c610 = &i2c6s1ch0;
+> +		i2c611 = &i2c6s1ch1;
+> +		i2c612 = &i2c6s1ch2;
+> +		i2c613 = &i2c6s1ch3;
+> +		i2c614 = &i2c6s1ch4;
+> +		i2c615 = &i2c6s1ch5;
+> +		i2c616 = &i2c6s1ch6;
+> +		i2c617 = &i2c6s1ch7;
+> +		i2c620 = &i2c6s2ch0;
+> +		i2c621 = &i2c6s2ch1;
+> +		i2c622 = &i2c6s2ch2;
+> +		i2c623 = &i2c6s2ch3;
+> +		i2c624 = &i2c6s2ch4;
+> +		i2c625 = &i2c6s2ch5;
+> +		i2c626 = &i2c6s2ch6;
+> +		i2c627 = &i2c6s2ch7;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = &uart5;
+> +		bootargs = "console=ttyS4,115200n8";
+
+Not much improved.
+
+> +	};
+> +
+> +	memory@80000000 {
+> +		device_type = "memory";
+> +		reg = <0x80000000 0x80000000>;
+> +	};
+> +
+> +	reserved-memory {
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		ranges;
+> +
+> +		video_engine_memory: jpegbuffer {
+> +			size = <0x02000000>;	/* 32M */
+> +			alignment = <0x01000000>;
+> +			compatible = "shared-dma-pool";
+> +			reusable;
+> +		};
+> +
+> +		vga_memory: frammebuffer {
+> +			no-map;
+> +			reg = <0x9ff00000 0x01000000>; /* 16M */
+> +		};
+> +	};
+> +
+> +	iio-hwmon {
+> +		compatible = "iio-hwmon";
+> +		io-channels = <&adc0 0>, <&adc0 1>, <&adc0 2>, <&adc0 3>,
+> +                      <&adc0 4>, <&adc0 5>, <&adc0 6>, <&adc0 7>,
+> +                      <&adc1 0>, <&adc1 1>, <&adc1 2>, <&adc1 3>,
+> +                      <&adc1 4>, <&adc1 5>, <&adc1 6>, <&adc1 7>;
+> +	};
+> +
+> +	gpio-keys {
+> +		compatible = "gpio-keys";
+> +
+> +		cpld {
+
+It does not look like you tested the DTS against bindings. Please run
+`make dtbs_check W=1` (see
+Documentation/devicetree/bindings/writing-schema.rst or
+https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+for instructions).
+
+> +			label = "cpld";
+> +			gpios = <&gpio0 ASPEED_GPIO(N, 2) GPIO_ACTIVE_HIGH>;
+> +			linux,code = <ASPEED_GPIO(N, 2)>;
+> +		};
+> +	};
+> +
+> +	leds {
+> +		compatible = "gpio-leds";
+> +
+> +		fan-fault {
+
+It does not look like you tested the DTS against bindings. Please run
+`make dtbs_check W=1` (see
+Documentation/devicetree/bindings/writing-schema.rst or
+https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+for instructions).
+
+> +			label = "fan-fault";
+> +			gpios = <&gpio0 ASPEED_GPIO(B, 0) GPIO_ACTIVE_LOW>;
+> +		};
+> +
+> +		system-hot {
+> +			label = "system-hot";
+> +			gpios = <&gpio0 ASPEED_GPIO(B, 1) GPIO_ACTIVE_LOW>;
+> +		};
+> +
+> +		psu-fault {
+> +			label = "psu-fault";
+> +			gpios = <&gpio0 ASPEED_GPIO(B, 2) GPIO_ACTIVE_LOW>;
+> +		};
+> +
+> +		heartbeat {
+> +			label = "heartbeat";
+> +			gpios = <&gpio0 ASPEED_GPIO(P, 7) GPIO_ACTIVE_LOW>;
+> +		};
+> +
+> +		memory-fault {
+> +			label = "memory-fault";
+> +			gpios = <&gpio0 ASPEED_GPIO(Y, 2) GPIO_ACTIVE_LOW>;
+> +		};
+> +
+> +		system-fault {
+> +			label = "system-fault";
+> +			gpios = <&gpio0 ASPEED_GPIO(Y, 3) GPIO_ACTIVE_LOW>;
+> +		};
+> +	};
+> +};
+> +
+> +&fmc {
+> +	status = "okay";
+> +
+> +	flash@0 {
+> +		status = "okay";
+> +
+> +		m25p,fast-read;
+> +		label = "bmc";
+> +		spi-max-frequency = <50000000>;
+> +#include "openbmc-flash-layout-64.dtsi"
+> +	};
+> +	flash@1 {
+> +		status = "okay";
+> +
+> +		m25p,fast-read;
+> +		label = "alt-bmc";
+> +		spi-max-frequency = <50000000>;
+> +#include "openbmc-flash-layout-64-alt.dtsi"
+> +	};
+> +};
+> +
+> +
+> +&spi1 {
+> +	status = "okay";
+> +
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_spi1_default>;
+> +
+> +	flash@0 {
+> +		status = "okay";
+> +
+> +		m25p,fast-read;
+> +		label = "bios";
+> +		spi-max-frequency = <50000000>;
+> +	};
+> +};
+> +
+> +&peci0 {
+> +	status = "okay";
+> +
+> +	gpios = <&gpio0 ASPEED_GPIO(F, 6) 0>;
+> +
+> +	peci-client@30 {
+> +		compatible = "intel,peci-client";
+> +		reg = <0x30>;
+> +	};
+> +
+> +	peci-client@31 {
+> +		compatible = "intel,peci-client";
+> +		reg = <0x31>;
+> +	};
+> +};
+> +
+> +&gpio0 {
+> +	status = "okay";
+> +
+> +	gpio-line-names =
+> +	/*A0-A7*/	"","","","","","","","",
+> +	/*B0-B7*/	"","","","","","","","",
+> +	/*C0-C7*/	"","","","","","","","",
+> +	/*D0-D7*/	"","","","","","","","",
+> +	/*E0-E7*/	"","","","","","","","",
+> +	/*F0-F7*/	"","","","","","","","",
+> +	/*G0-G7*/	"","","","","","","","",
+> +	/*H0-H7*/	"","","","","","","","",
+> +	/*I0-I7*/	"","","","","","POWER_OUT","RESET_OUT","",
+> +	/*J0-J7*/	"","","","","","","","",
+> +	/*K0-K7*/	"","","","","","","","",
+> +	/*L0-L7*/	"","","","","","","","",
+> +	/*M0-M7*/	"","","","","","","","",
+> +	/*N0-N7*/	"","","","","","","","",
+> +	/*O0-O7*/	"","","","","","","","",
+> +	/*P0-P7*/	"RESET_BUTTON","","","NMI_BUTTON","NMI_OUT","","","",
+> +	/*Q0-Q7*/	"","","","","","","","",
+> +	/*R0-R7*/	"","","","","","","","",
+> +	/*S0-S7*/	"","","","SIO_ONCONTROL","","","","",
+> +	/*T0-T7*/	"","","","","","","","",
+> +	/*U0-U7*/	"","","","","","","","",
+> +	/*V0-V7*/	"","SIO_S5","POWER_BUTTON","","PS_PWROK","","","",
+> +	/*W0-W7*/	"","","","","","","","",
+> +	/*X0-X7*/	"","","POST_COMPLETE","","","","","",
+> +	/*Y0-Y7*/	"","","","","","","","",
+> +	/*Z0-Z7*/	"","","","","","","","";
+> +};
+> +
+> +&kcs3 {
+> +	aspeed,lpc-io-reg = <0xCA2>;
+> +	status = "okay";
+> +};
+> +
+> +&kcs4 {
+> +	aspeed,lpc-io-reg = <0xCA4>;
+> +	status = "okay";
+> +};
+> +
+> +&lpc_snoop {
+> +	snoop-ports = <0x80>;
+> +	status = "okay";
+> +};
+> +
+> +&mdio1 {
+> +	status = "okay";
+> +
+> +	ethphy1: ethernet-phy@0 {
+> +		compatible = "ethernet-phy-ieee802.3-c22";
+> +		reg = <0>;
+> +	};
+> +};
+> +
+> +&mac2 {
+> +	status = "okay";
+> +
+> +	phy-mode = "rgmii";
+> +	phy-handle = <&ethphy1>;
+> +
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_rgmii3_default>;
+> +};
+> +
+> +&mac3 {
+> +	status = "okay";
+> +
+> +	phy-mode = "rmii";
+> +	use-ncsi;
+> +
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_rmii4_default>;
+> +};
+> +
+> +&adc0 {
+> +	status = "okay";
+> +
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_adc0_default &pinctrl_adc1_default
+> +		&pinctrl_adc2_default &pinctrl_adc3_default
+> +		&pinctrl_adc4_default &pinctrl_adc5_default
+> +		&pinctrl_adc6_default &pinctrl_adc7_default>;
+> +};
+> +
+> +&adc1 {
+> +	status = "okay";
+> +
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_adc8_default &pinctrl_adc9_default
+> +		&pinctrl_adc10_default &pinctrl_adc11_default
+> +		&pinctrl_adc12_default &pinctrl_adc13_default
+> +		&pinctrl_adc14_default &pinctrl_adc15_default>;
+> +};
+> +
+> +&uart1 {
+> +	status = "okay";
+> +};
+> +
+> +&uart3 {
+> +	status = "okay";
+> +};
+> +
+> +&uart4 {
+> +	status = "okay";
+> +};
+> +
+> +&uart5 {
+> +	status = "okay";
+> +};
+> +
+> +&vuart1 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c0 {
+> +	multi-master;
+> +	status = "okay";
+> +};
+> +
+> +&i2c1 {
+> +	multi-master;
+> +	status = "okay";
+> +
+> +	eeprom@50 {
+> +		compatible = "atmel,24c256";
+> +		reg = <0x50>;
+> +	};
+> +};
+> +
+> +&i2c2 {
+> +	status = "okay";
+> +
+> +	i2c-mux@70 {
+> +		compatible = "nxp,pca9546";
+> +		reg = <0x70>;
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		bus2_mux70_0:i2c@2 {
+
+Why did you change the format and dropped the space after :?
+
+Please respond to previous feedback and acknowledge each comment.
+
+Best regards,
+Krzysztof
+
 
