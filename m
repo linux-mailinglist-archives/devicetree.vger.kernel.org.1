@@ -1,105 +1,130 @@
-Return-Path: <devicetree+bounces-83894-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83895-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9129792A402
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 15:47:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DFE0292A430
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 15:58:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1E0A9B224CE
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 13:47:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 964AF2817A4
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 13:58:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2ED178C75;
-	Mon,  8 Jul 2024 13:47:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71F9313B299;
+	Mon,  8 Jul 2024 13:58:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YJmTuOFz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rtw1fbI6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C397B2746D;
-	Mon,  8 Jul 2024 13:47:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DBDB137923;
+	Mon,  8 Jul 2024 13:58:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720446451; cv=none; b=O6ebkvWcPjUN7CU1fnffQCMUBAhl+okFp9xrZxuIklzOY9LjteE+ZM13xFAQHNliqzIwD0w9rtTPcSvsL9thrhFALhQl0vBe3O+F1lUrkqevJjlyAnIj2cJ9zglPwboLDRRqSH0YIWYbfK3FqJf4e4uvhGAi+/CMaFAFuXTMKFs=
+	t=1720447110; cv=none; b=PFDUQrig2woHdFrdQbQ3P2B2+kykgQJooIgxzKd7+hMoZQThsX4V3vYCXvHMc2vzMbBp7JaZ4dHNU8e8EVINI72hI4NbBo2TX17fks2AxeemCWyVIgL2AflYFlagWZZjscPj6Y+Im51eoEq7OeN2u912zjFJj1bT60ghN+NojMw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720446451; c=relaxed/simple;
-	bh=7hu3e9/Hj8XC7xexm2FHFjZJcixRqYd55unsbK3uK94=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Q79Fo0Wp23bf9OBWf0hyssl9m4JvQFPPHFrJaqvppq3kfCMDfhDHPx9LbWNs3LuJChlZII2TyV3T8UgjiTPKjAVtd/894eRqn4aYu9hFTjehlvLngp8kGeZPQS3u836hATnfN1pPfY9/9ngiRifdCsfEOtGZm4g4IYJb711fsTM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YJmTuOFz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68E71C116B1;
-	Mon,  8 Jul 2024 13:47:31 +0000 (UTC)
+	s=arc-20240116; t=1720447110; c=relaxed/simple;
+	bh=wouNF8BXEZ4escIBHpIcmwyAcz/iPh2eGVPERjaaqao=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=mVAiD+CPUQYLkW0sTnSjgwPMa6piMZOYFT0pypEXBAx787EHjI5Sb4vxgF7zpw8ypPOwtl138ybJbSe4u6x7ttDxQkQTwjASJrGxkWNdMCEsD44KzcNSyaqRO5CqdCOSLaEXBD4x76Sa1c0/gcu3se7pUS1JQ8TDO0nFJ+/WQK0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rtw1fbI6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27C6EC116B1;
+	Mon,  8 Jul 2024 13:58:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720446451;
-	bh=7hu3e9/Hj8XC7xexm2FHFjZJcixRqYd55unsbK3uK94=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YJmTuOFz9YUaZVvSbeZHVgmn99MOvvOkPPiu3F3d7+5/m5qwDzOZPIyuVKx4O3U1p
-	 1FfRqxlNExaCIF0AtJa8O8k8vDj4tqtbl/7XsHVFb8iuTuGwXU50sMnr/skst8U8Vs
-	 TMuSFeqpmtLZZ+nFYW7bh2UrvJXdFnyUaHV4PQKhhuZxD38t2kmzvfFrWjIQ2HPimE
-	 CQGsCDfOF7yWoRatQHQByGWHGUerIz+V1thfMUIFmJhwJK+k9Ujnun0xRrnU5KByBr
-	 UUA7ivjC8UF8z4BtLu8yQnTNVwlZKOyi9I+ge5s6ZnR4YU88xqTXFsY8vRw2kGgY4r
-	 LOKXviKqq9olw==
-Date: Mon, 8 Jul 2024 07:47:30 -0600
-From: Rob Herring <robh@kernel.org>
-To: Eddie James <eajames@linux.ibm.com>
-Cc: linux-fsi@lists.ozlabs.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, ninad@linux.ibm.com,
-	lakshmiy@us.ibm.com, linux-i2c@vger.kernel.org,
-	linux-spi@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
-	andrew@codeconstruct.com.au, joel@jms.id.au, conor+dt@kernel.org,
-	krzk+dt@kernel.org, andi.shyti@kernel.org, broonie@kernel.org
-Subject: Re: [PATCH v6 00/20] ARM: dts: aspeed: Add IBM P11 BMC systems
-Message-ID: <20240708134730.GA2916637-robh@kernel.org>
-References: <20240522192524.3286237-1-eajames@linux.ibm.com>
+	s=k20201202; t=1720447109;
+	bh=wouNF8BXEZ4escIBHpIcmwyAcz/iPh2eGVPERjaaqao=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=rtw1fbI6NfEPqJLhDMPj+Zq/6yh3YRxCtHJIZHWxUpJ5GQBvn5aG3/Nfnji4Sn4Wp
+	 /9Uaq6JQrk01k/YDnRE755ueLKQi9BKZFsECfsWzffN3kOC1yY8Zx548OyMXIIxWcz
+	 rNycKt4k4zEjef1GavNHedgDYbPaO3+WGN376lqDxaQ4anCA4AA/h+yaTXIAVw52Y1
+	 fgHb9ujqjIDxy7dC4cHJTfdvNnk18uvv2X+F6Gp8a5+Ium6Dlxag0y3nqyT+7oFpCW
+	 FaszMJFA03Ok+IMW/QqKWGeW0uZ5FiQ4cb6h3XSkpv8kY25jERYZHV5XR6iEmK+gYf
+	 FQa7NDGoNhiVA==
+Message-ID: <e7290b87-60a8-41ab-803b-3fbb06b27f67@kernel.org>
+Date: Mon, 8 Jul 2024 15:58:22 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240522192524.3286237-1-eajames@linux.ibm.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/5] dt-bindings: gpio: vf610: Allow gpio-line-names to
+ be set
+To: Frieder Schrempf <frieder@fris.de>, Bartosz Golaszewski <brgl@bgdev.pl>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Linus Walleij <linus.walleij@linaro.org>, linux-gpio@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
+ Stefan Agner <stefan@agner.ch>
+Cc: Frieder Schrempf <frieder.schrempf@kontron.de>,
+ Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Peng Fan <peng.fan@nxp.com>
+References: <20240708084107.38986-1-frieder@fris.de>
+ <20240708084107.38986-2-frieder@fris.de>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240708084107.38986-2-frieder@fris.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Wed, May 22, 2024 at 02:25:04PM -0500, Eddie James wrote:
-> Add the Blueridge and Fuji BMC systems. Document many missing FSI related
-> properties, and fix existing warnings. Make some minor fixes in OCC and
-> SCOM drivers for the updated bindings.
+On 08/07/2024 10:40, Frieder Schrempf wrote:
+> From: Frieder Schrempf <frieder.schrempf@kontron.de>
 > 
-> Changes since v5:
->  - Switch from clock-frequency to bus-frequency for common FSI controller
->    properties
->  - Add reg properties for AST2700 FSI controller
->  - Fix patternProperties for i2c bus nodes under FSI-based I2C controller
->  - Add bus-frequency for P11 FSI device tree node
->  - Change model name from Blueridge to Blueridge 2U
->  - Add missing reset gpio to led controller on Fuji
->  - Add Huygens (Rainier with modified FSI wiring)
+> Describe common "gpio-line-names" property to allow DTs to
+> specify names for GPIO lines.
 > 
-> Eddie James (20):
->   spi: dt-bindings: Document the IBM FSI-attached SPI controller
->   dt-bindings: fsi: fsi2spi: Document SPI controller child nodes
->   dt-bindings: fsi: Document the IBM SCOM engine
->   dt-bindings: fsi: p9-occ: Convert to json-schema
->   dt-bindings: fsi: Document the IBM SBEFIFO engine
->   dt-bindings: fsi: Document the FSI controller common properties
->   dt-bindings: fsi: ibm,i2cr-fsi-master: Reference common FSI controller
->   dt-bindings: fsi: ast2600-fsi-master: Convert to json-schema
->   dt-bindings: fsi: Document the AST2700 FSI controller
->   dt-bindings: fsi: Document the FSI Hub Controller
->   dt-bindings: i2c: i2c-fsi: Convert to json-schema
+> Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
+> ---
 
-Looks like these haven't been applied, so I applied patches 2-11.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
->   dt-bindings: arm: aspeed: add IBM P11 BMC boards
->   ARM: dts: aspeed: Add IBM P11 FSI devices
->   ARM: dts: aspeed: Add IBM P11 Blueridge BMC system
->   ARM: dts: aspeed: Add IBM P11 Blueridge 4U BMC system
->   ARM: dts: aspeed: Add IBM P11 Fuji BMC system
->   ARM: dts: aspeed: Add IBM Huygens BMC system
->   fsi: occ: Get device number from FSI minor number API
->   fsi: occ: Find next available child rather than node name match
->   fsi: scom: Update compatible string to match documentation
+Best regards,
+Krzysztof
+
 
