@@ -1,130 +1,178 @@
-Return-Path: <devicetree+bounces-83791-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83792-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E3BA929E87
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 10:55:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78AD0929EA3
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 11:04:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CA6E1B235EC
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 08:55:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0289A282369
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 09:04:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3314A47F53;
-	Mon,  8 Jul 2024 08:55:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DC173A27B;
+	Mon,  8 Jul 2024 09:04:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="W8zPPwr8"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="aqcgCVnp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 340602D05D;
-	Mon,  8 Jul 2024 08:55:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0BD58C06;
+	Mon,  8 Jul 2024 09:04:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720428941; cv=none; b=J/wzhCNcWOjFpXjXqFhOvc0anY9C5QCbximXDHygxMwWFvg3va5RhqFThJbAQ1I6yPda1YlyKpGnKOjk1t44rspK7FqBFfNVCBSvfOm7uOhQEHdl+aTnrhcTX9yasd+Vf4uq6Gniqdt26a71IAA/Oz9jSCIEE0bezzG3vcV2BG0=
+	t=1720429480; cv=none; b=aNQj0VVjJs+/ZE7bCaqNZOC1Z9nCOnQpA9nNJ37ck7/m1O5KxoTuQfdkSPKXjpSNi0OAaqCLi6Ow1WuKa42m6BnWjleT/Tk6zU4bF78lY0BR6oh2ovqyrpQrxKphX4+nbxfm7RlsKZ80UCjslIvJNr5l3BrNqSsE/EQc3qDxqYU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720428941; c=relaxed/simple;
-	bh=6loMpFpx3P9PFnAc28r8p2yWuBnloCE5jWkAX0Wzl64=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=Dj4WK5opKxyhl9qhrcgyneT6YBcnSk5HEPOM+GP9NeSbd4d3EyOQyYUVOkh/3anGZyERw1Vi/s0zdHOZNDoue7DuUeRJAqrjF6LNlDnjrkeL0Anxc+xAYJz9CVhY1r5Ytrc1l3VWZ0w2lyTeFV2DkVVGUQlNnodt9FvYaa51UXQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=W8zPPwr8; arc=none smtp.client-ip=217.70.183.199
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 2ADABFF80B;
-	Mon,  8 Jul 2024 08:55:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1720428936;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=LIRhsvv/pIVr36oyhlkGcGkygXhvNc+0sDuKltZxyyM=;
-	b=W8zPPwr8wJbYRqqZpfKafh/ovWZuVi2za8KrcBuLYz3qvWIpVLfBqwmX4NVwBYfIw8bj75
-	H+v+nYE9nusa7Bfn+XAKacQbLoFLhDcr0sediO5uEy4EA86wXpPBxFaiMJVRwPjUBAN53x
-	g2NuFqKwf5MLB5BE0T0r0emF7QvKMqBKpc0oL+HxSiO+OXEnoqp7e6yavuyCGj0NpcSj/O
-	d5U2gt/3JkH1l90kStRdKZUzhi3xf09rX2blvRlyw5vbLFpK5BB2PsNyI1cQkniDoR9ZD4
-	gM3+fGVSF4/aemsVMKaOekLu1cPhmsdcjE2IFyP979CIVx3qmRvK/v8jp5rrZQ==
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Date: Mon, 08 Jul 2024 10:55:31 +0200
-Subject: [PATCH] of: replace of_match_node() macro by a function when
- !CONFIG_OF
+	s=arc-20240116; t=1720429480; c=relaxed/simple;
+	bh=0aI49ZEwUflNdgkB5KmEXIC466KnmIbQc17d0H6wyiU=;
+	h=From:Date:To:cc:Subject:In-Reply-To:Message-ID:References:
+	 MIME-Version:Content-Type; b=osKWboFTnp69XNse+EQO3hVt2cwHDXi4gvNoAEAbmUNSr13r1d6SGL6DnqhHNXU134pn1pvrSutpzJH/UHWWMJVDlGtUvODF3pjEcDNSQPYvwYhmDPaRUZYSTDjukb/sjPt6NsOr781ZNIqqB/fizZ20ZMFU1qlFTcfI46nF/eQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=aqcgCVnp; arc=none smtp.client-ip=198.175.65.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1720429478; x=1751965478;
+  h=from:date:to:cc:subject:in-reply-to:message-id:
+   references:mime-version;
+  bh=0aI49ZEwUflNdgkB5KmEXIC466KnmIbQc17d0H6wyiU=;
+  b=aqcgCVnpKzoDolEw0GMjEa2sryv8aUSJi4rndyUe3Qpnh0jK1q9AKGXe
+   WGGkKJXHLXnvMiy3e6wvM0LQN9141uSFpWuus8SyK8Uk08bkvh+a3i8XW
+   ZcjOUVCA9Or+Gi81wWg69RM5Ni+xxjsE8eVhDLcLRJqpz/+gUuEW5g06r
+   I3dDOii7+Klm0g1jDCn9C1mkyBZuLPRMrQB8X9bk3TsDpgfTUmmvzN/MH
+   7GoEDBKsvkaJjKZ5SAsqVoEKspOWkpHcQHF0DKOws2as3Y8y9/UPhtyKH
+   0hU1+F961LjAAaX5KUReSipPjUb1vv3AMNOTA01TQ6ZKkrYJi67T2v6gU
+   w==;
+X-CSE-ConnectionGUID: n3GQKVskT0GimjxTotXspA==
+X-CSE-MsgGUID: DTq9CWWWQMuSC2MfGgmo0w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11126"; a="17754111"
+X-IronPort-AV: E=Sophos;i="6.09,191,1716274800"; 
+   d="scan'208";a="17754111"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Jul 2024 02:04:38 -0700
+X-CSE-ConnectionGUID: q9lJAyFqTYyN1F2sobzr4w==
+X-CSE-MsgGUID: VMNX/6kuSp24CnC+3hRKRg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,191,1716274800"; 
+   d="scan'208";a="47323026"
+Received: from ijarvine-desk1.ger.corp.intel.com (HELO localhost) ([10.245.247.115])
+  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Jul 2024 02:04:34 -0700
+From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Date: Mon, 8 Jul 2024 12:04:31 +0300 (EEST)
+To: daire.mcnamara@microchip.com
+cc: linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+    conor.dooley@microchip.com, lpieralisi@kernel.org, kw@linux.com, 
+    robh@kernel.org, bhelgaas@google.com, LKML <linux-kernel@vger.kernel.org>, 
+    linux-riscv@lists.infradead.org, krzk+dt@kernel.org, conor+dt@kernel.org
+Subject: Re: [PATCH v6 1/3] PCI: microchip: Fix outbound address translation
+ tables
+In-Reply-To: <20240628115923.4133286-2-daire.mcnamara@microchip.com>
+Message-ID: <6c879527-4578-e3b5-2cc2-cf0638901f24@linux.intel.com>
+References: <20240628115923.4133286-1-daire.mcnamara@microchip.com> <20240628115923.4133286-2-daire.mcnamara@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20240708-of-match-node-v1-1-90aaa7c2d21d@bootlin.com>
-X-B4-Tracking: v=1; b=H4sIAIKpi2YC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDIxMDcwML3fw03dzEkuQM3bz8lFTdxBRjA0MTg0SDRMtkJaCegqLUtMwKsHn
- RsbW1AGJjFPRfAAAA
-To: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
- =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Tawfik Bayouk <tawfik.bayouk@mobileye.com>, 
- =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-X-Mailer: b4 0.14.0
-X-GND-Sasl: theo.lebrun@bootlin.com
+Content-Type: multipart/mixed; boundary="8323328-728995024-1720429471=:1343"
 
-In the !CONFIG_OF case, replace the of_match_node() macro implementation
-by a static function. This ensures drivers calling of_match_node() can
-be COMPILE_TESTed.
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-include/linux/of.h declares of_match_node() like this:
+--8323328-728995024-1720429471=:1343
+Content-Type: text/plain; charset=ISO-8859-15
+Content-Transfer-Encoding: QUOTED-PRINTABLE
 
-	#ifdef CONFIG_OF
-	extern const struct of_device_id *of_match_node(
-		const struct of_device_id *matches, const struct device_node *node);
-	#else
-	#define of_match_node(_matches, _node)	NULL
-	#endif
+On Fri, 28 Jun 2024, daire.mcnamara@microchip.com wrote:
 
-When used inside an expression, those two implementations behave truly
-differently. The macro implementation has (at least) two pitfalls:
+> From: Daire McNamara <daire.mcnamara@microchip.com>
+>=20
+> On Microchip PolarFire SoC (MPFS) the PCIe Root Port can be behind one of
+> three general-purpose Fabric Interface Controller (FIC) buses that
+> encapsulate an AXI-M interface. That FIC is responsible for managing
+> the translations of the upper 32-bits of the AXI-M address. On MPFS,
+> the Root Port driver needs to take account of that outbound address
+> translation done by the parent FIC bus before setting up its own
+> outbound address translation tables.  In all cases on MPFS,
+> the remaining outbound address translation tables are 32-bit only.
+>=20
+> Limit the outbound address translation tables to 32-bit only.
+>=20
+> This necessitates changing a size_t in mc_pcie_setup_window
+> to a resource_size_t to avoid a compile error on 32-bit platforms.
 
- - Arguments are removed by the preprocessor meaning they do not appear
-   to the compiler. This can give "defined but not used" warnings.
+Do you really mean "a compile error" here, that is, building 32-bit kernel=
+=20
+fails during compile stage? If not, it would be good to rephrase this line.
 
- - The returned value type is (void *)
-   versus (const struct of_device_id *).
-   It works okay if the value is stored in a variable, thanks to C's
-   implicit void pointer casting rules. It causes build errors if used
-   like `of_match_data(...)->data`.
+Other than that,
 
-Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
----
- include/linux/of.h | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+Reviewed-by: Ilpo J=E4rvinen <ilpo.jarvinen@linux.intel.com>
 
-diff --git a/include/linux/of.h b/include/linux/of.h
-index a0bedd038a05..f973ae119504 100644
---- a/include/linux/of.h
-+++ b/include/linux/of.h
-@@ -891,7 +891,13 @@ static inline const void *of_device_get_match_data(const struct device *dev)
- }
- 
- #define of_match_ptr(_ptr)	NULL
--#define of_match_node(_matches, _node)	NULL
-+
-+static inline const struct of_device_id *of_match_node(
-+	const struct of_device_id *matches, const struct device_node *node)
-+{
-+	return NULL;
-+}
-+
- #endif /* CONFIG_OF */
- 
- /* Default string compare functions, Allow arch asm/prom.h to override */
+--
+ i.
 
----
-base-commit: 256abd8e550ce977b728be79a74e1729438b4948
-change-id: 20240708-of-match-node-ad30140a0a9c
+> Fixes: 6f15a9c9f941 ("PCI: microchip: Add Microchip Polarfire PCIe contro=
+ller driver")
+> Signed-off-by: Daire McNamara <daire.mcnamara@microchip.com>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+>  drivers/pci/controller/pcie-microchip-host.c | 12 +++++++-----
+>  1 file changed, 7 insertions(+), 5 deletions(-)
+>=20
+> diff --git a/drivers/pci/controller/pcie-microchip-host.c b/drivers/pci/c=
+ontroller/pcie-microchip-host.c
+> index 137fb8570ba2..47c397ae515a 100644
+> --- a/drivers/pci/controller/pcie-microchip-host.c
+> +++ b/drivers/pci/controller/pcie-microchip-host.c
+> @@ -23,6 +23,8 @@
+>  /* Number of MSI IRQs */
+>  #define MC_MAX_NUM_MSI_IRQS=09=09=0932
+> =20
+> +#define MC_OUTBOUND_TRANS_TBL_MASK=09=09GENMASK(31, 0)
+> +
+>  /* PCIe Bridge Phy and Controller Phy offsets */
+>  #define MC_PCIE1_BRIDGE_ADDR=09=09=090x00008000u
+>  #define MC_PCIE1_CTRL_ADDR=09=09=090x0000a000u
+> @@ -933,7 +935,7 @@ static int mc_pcie_init_irq_domains(struct mc_pcie *p=
+ort)
+> =20
+>  static void mc_pcie_setup_window(void __iomem *bridge_base_addr, u32 ind=
+ex,
+>  =09=09=09=09 phys_addr_t axi_addr, phys_addr_t pci_addr,
+> -=09=09=09=09 size_t size)
+> +=09=09=09=09 resource_size_t size)
+>  {
+>  =09u32 atr_sz =3D ilog2(size) - 1;
+>  =09u32 val;
+> @@ -983,7 +985,8 @@ static int mc_pcie_setup_windows(struct platform_devi=
+ce *pdev,
+>  =09=09if (resource_type(entry->res) =3D=3D IORESOURCE_MEM) {
+>  =09=09=09pci_addr =3D entry->res->start - entry->offset;
+>  =09=09=09mc_pcie_setup_window(bridge_base_addr, index,
+> -=09=09=09=09=09     entry->res->start, pci_addr,
+> +=09=09=09=09=09     entry->res->start & MC_OUTBOUND_TRANS_TBL_MASK,
+> +=09=09=09=09=09     pci_addr,
+>  =09=09=09=09=09     resource_size(entry->res));
+>  =09=09=09index++;
+>  =09=09}
+> @@ -1117,9 +1120,8 @@ static int mc_platform_init(struct pci_config_windo=
+w *cfg)
+>  =09int ret;
+> =20
+>  =09/* Configure address translation table 0 for PCIe config space */
+> -=09mc_pcie_setup_window(bridge_base_addr, 0, cfg->res.start,
+> -=09=09=09     cfg->res.start,
+> -=09=09=09     resource_size(&cfg->res));
+> +=09mc_pcie_setup_window(bridge_base_addr, 0, cfg->res.start & MC_OUTBOUN=
+D_TRANS_TBL_MASK,
+> +=09=09=09     0, resource_size(&cfg->res));
+> =20
+>  =09/* Need some fixups in config space */
+>  =09mc_pcie_enable_msi(port, cfg->win);
 
-Best regards,
--- 
-Théo Lebrun <theo.lebrun@bootlin.com>
 
+--8323328-728995024-1720429471=:1343--
 
