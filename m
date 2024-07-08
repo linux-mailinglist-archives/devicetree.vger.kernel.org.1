@@ -1,176 +1,135 @@
-Return-Path: <devicetree+bounces-84045-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84046-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E85092AC58
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 01:03:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E2B292AC5C
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 01:07:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C9F621F224B5
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 23:03:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 26ADC2816D1
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 23:07:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABD0214F105;
-	Mon,  8 Jul 2024 23:03:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D17D2152190;
+	Mon,  8 Jul 2024 23:07:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EX90j3iX"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="I9oq3bVg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77D333BBCE;
-	Mon,  8 Jul 2024 23:03:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28CD714F9E6;
+	Mon,  8 Jul 2024 23:07:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720479813; cv=none; b=grNcL1QYRCjPuMWrkXqpVFMciOP4aPpJR/DuznSLtp1dk4/wUEwHnoc5chZriORM3CbGDaS5KByrKaNDqtjIpeEOBrq0k6GTwRIM0fdGo17vaVK0rSkRyEB52PNA8jtw4WJ1qH2TRB7Cc4Ci6Bw84MI5887YLjXwSHARrnJqm/c=
+	t=1720480024; cv=none; b=IA7M6zUpKgluQ3RbQhOp3ssLOC4ohn9DSuKn7xIKG7qwgQI8m00AgilWXsHh2Tb6n+p4YvgWRSKQiBRKxJfWnukx8yoYgslmIbIke1ORG8bZCyZW7ArmBW9jUq8/Rp77UluI8D/wfyreIBgNmpbK3ggOA8/EeQDp2leSfXMXmiM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720479813; c=relaxed/simple;
-	bh=Z5GwSzhcq9MvxkYULUBz/U1Czb52lUPwmgBTFwviZ7Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=j7SsmRBzv5fzIBRPmYLrOp5mchIeiCQuld5sHSfDCS/V+ZqjiU7IJc+qkcutJUvZC1ZeqCSjsblYrLSio9F5MLkAya/XKGrDyGeTuGESlFk7oCig8/J1qLxPALIXvsuELinfC5lV25ElbSJnSyzfAwzUxa3ZGYy9uHMnnGf+REM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EX90j3iX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4290C116B1;
-	Mon,  8 Jul 2024 23:03:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720479813;
-	bh=Z5GwSzhcq9MvxkYULUBz/U1Czb52lUPwmgBTFwviZ7Q=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EX90j3iXDpqHcRJkAMnoseWhjVZN9xLZvNI6uxE8EhDSEJnOJHDugXzlqfbUEanlK
-	 P1TbWtywQQi6+1ceeH7ecAYbCaqo8driXHGOI3YBP7qW64wK760cvhdqS53G9qCUYP
-	 Wml3IqS81Ag08OSF2L0mqBEq8l1mNM2lCTipJ4ZsLs6BV6AbLHLG6PeWhUaiDFI1Ri
-	 KEj5Nm3n2oyg7+JgQtVNMkAzDurWtPm2R88i4ifSaJDHN/2zwvYdjIJXy9OCHCcL2Q
-	 PxwKX3sssNI2eQnU6bH4OkNSFAI7sYWHTHdU9IWAitlY1xRuzJ1ATQj2RgvSJ9ukm2
-	 SmD6BPutebrdA==
-Date: Mon, 8 Jul 2024 17:03:31 -0600
-From: Rob Herring <robh@kernel.org>
-To: Farouk Bouabid <farouk.bouabid@cherry.de>
-Cc: Andi Shyti <andi.shyti@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Quentin Schulz <quentin.schulz@cherry.de>,
-	Peter Rosin <peda@axentia.se>, Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Heiko Stuebner <heiko@sntech.de>, linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-hwmon@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v5 3/8] dt-bindings: i2c: add support for tsd,mule
-Message-ID: <20240708230331.GC4092671-robh@kernel.org>
-References: <20240708-dev-mule-i2c-mux-v5-0-71446d3f0b8d@cherry.de>
- <20240708-dev-mule-i2c-mux-v5-3-71446d3f0b8d@cherry.de>
+	s=arc-20240116; t=1720480024; c=relaxed/simple;
+	bh=qt1XEsOk5vXNGPRWZWnyoZrrno6rZqqFm/L8YdIS0kI=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=GcHpTyq+TovyAMy93kM+9r9pqEeCuMygjtC8fm6TtrC9/VkFwp4YaRWCSCC+X4IBi+2giXfKA1Wt1+Y12ttpMvMmsFBchTWAELMKddL2MO0eWG4McLR69VbGTVdKHwlH2gGg6vOQKKL4rdzPXmECD+kS/DoW26P4r6rhvdKhR0Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=I9oq3bVg; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 468Aq7Ei006130;
+	Mon, 8 Jul 2024 23:06:44 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=8nKoI01F6Z4EuurtlDnpb+
+	wjt4ns0mL+M/RbDFOpneU=; b=I9oq3bVg+SpnTfY1Y3CXTGBanWO1jX5sqMOvfH
+	e8PsMlJu/gUyg/8xbv2ypoNaLvsU6OgFPjed186QO5Y+9pm0gXdA3+m/kpXxQM8M
+	yJBe5E2AXM3Ia29Ln9P/hDTrVH68G/jYn444WXssyZ+ObQ29GopEMAGThEACtDRq
+	b4+OciIC9VfB0DhZgm95pSQKs1T3uTvHK+DCuB1rrh1+vZLynYvZxj8Edqlyueer
+	7AFbpYI5DrJ6bR0VOJbowUeubwf9aIzc8oVmwXUxgix6xyZSHCckuYFcSAA9+kkz
+	Keqc0/tA1QrxDrr2/tbiFjhuNGKzJf+p4CKWwPa0P4eoj54g==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 406xa64tev-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 08 Jul 2024 23:06:44 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA04.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 468N6hX3002213
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 8 Jul 2024 23:06:43 GMT
+Received: from hu-obabatun-lv.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Mon, 8 Jul 2024 16:06:39 -0700
+From: Oreoluwa Babatunde <quic_obabatun@quicinc.com>
+To: <robh@kernel.org>, <saravanak@google.com>, <klarasmodin@gmail.com>,
+        <aisheng.dong@nxp.com>
+CC: <hch@lst.de>, <m.szyprowski@samsung.com>, <robin.murphy@arm.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <iommu@lists.linux.dev>, <will@kernel.org>, <catalin.marinas@arm.com>,
+        <kernel@quicinc.com>, Oreoluwa Babatunde <quic_obabatun@quicinc.com>
+Subject: [PATCH 0/4] Revert use of Unflatten_devicetree APIs from reserved_mem
+Date: Mon, 8 Jul 2024 16:06:09 -0700
+Message-ID: <20240708230613.448846-1-quic_obabatun@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240708-dev-mule-i2c-mux-v5-3-71446d3f0b8d@cherry.de>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: FM60Zs7zcx79mNLOdFsyTJKXzE2_eRNI
+X-Proofpoint-ORIG-GUID: FM60Zs7zcx79mNLOdFsyTJKXzE2_eRNI
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-08_13,2024-07-05_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=883
+ suspectscore=0 lowpriorityscore=0 impostorscore=0 phishscore=0 spamscore=0
+ clxscore=1011 adultscore=0 malwarescore=0 mlxscore=0 bulkscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2406140001 definitions=main-2407080172
 
-On Mon, Jul 08, 2024 at 06:12:14PM +0200, Farouk Bouabid wrote:
-> Theobroma Systems Mule is an MCU that emulates a set of I2C devices,
-> among which is an amc6821 and other devices that are reachable through
-> an I2C-mux. The devices on the mux can be selected by writing the
-> appropriate device number to an I2C config register (amc6821: reg 0xff)
-> 
-> Signed-off-by: Farouk Bouabid <farouk.bouabid@cherry.de>
-> ---
->  .../devicetree/bindings/i2c/tsd,mule.yaml          | 63 ++++++++++++++++++++++
->  1 file changed, 63 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/i2c/tsd,mule.yaml b/Documentation/devicetree/bindings/i2c/tsd,mule.yaml
-> new file mode 100644
-> index 000000000000..dbbabba8dd6f
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/i2c/tsd,mule.yaml
-> @@ -0,0 +1,63 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/i2c/tsd,mule.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Theobroma Systems Mule I2C device
-> +
-> +maintainers:
-> +  - Farouk Bouabid <farouk.bouabid@cherry.de>
-> +  - Quentin Schulz <quentin.schulz@cherry.de>
-> +
-> +description: |
-> +  Theobroma Systems Mule is an MCU that emulates a set of I2C devices, among
-> +  which is an amc6821 and other devices that are reachable through an I2C-mux.
-> +  The devices on the mux can be selected by writing the appropriate device
-> +  number to an I2C config register (amc6821: reg 0xff)
-> +
-> +additionalProperties: true
+With recent changes made to initialize the cma regions before the page
+tables are setup, commit f2a524d9ef5b ("of: reserved_mem: Restructure
+code to call reserved mem init functions earlier"), an issue was
+introduced where the initialization of the cma regions fail and are
+initialized as "non-reusable" regions instead of "reusable". [1], [2]
 
-Must be false.
+This issue occurs because the device_node of the regions are not yet
+created by the time the cma regions are being initialized.
 
-> +
-> +properties:
-> +  compatible:
-> +    contains:
+The cma regions need to be initialized before the page tables are setup
+for them to be configured correctly as was realized in [3].
 
-No, must define the entries and the order.
+Hence, since the unflatten_devicetree APIs are not available until after
+the page tables have been setup, revert back to using the fdt APIs. This
+makes it possible to store a reference to each cma node in the
+reserved_mem array by the time it is needed in the init function.
 
-> +      enum:
-> +        - tsd,mule
-> +        - ti,amc6821
+[1] https://lore.kernel.org/all/DU0PR04MB9299C3EC247E1FE2C373440F80DE2@DU0PR04MB9299.eurprd04.prod.outlook.com/
 
-Need to drop this from trivial-devices.yaml. We don't define the same 
-compatible in 2 places.
+[2] https://lore.kernel.org/all/986361f4-f000-4129-8214-39f2fb4a90da@gmail.com/
 
-As the original device was ti,amc6821 and this is a superset, the 
-binding should first document ti,amc6821 meaning that should be the 
-filename, title, etc. And then describe the Mule additions. (I mean how 
-the binding should read, not patch structure. 1 patch for this is fine.)
+[3] https://lore.kernel.org/all/20240610213403.GA1697364@thelio-3990X/
 
-> +
-> +  reg:
-> +    maxItems: 1
+Oreoluwa Babatunde (4):
+  Revert "of: reserved_mem: Restructure code to call reserved mem init
+    functions earlier"
+  Revert "of: reserved_mem: Rename fdt_* functions to refelct the change
+    from using fdt APIs"
+  Revert "of: reserved_mem: Use unflatten_devicetree APIs to scan
+    reserved memory nodes"
+  of: reserved_mem: Restructure code to call rmem init functions earlier
 
-To fix the additionalProperties failure you will see, you need to add:
+ drivers/of/fdt.c                |   2 +-
+ drivers/of/of_private.h         |   2 +-
+ drivers/of/of_reserved_mem.c    | 103 +++++++++++++++++---------------
+ include/linux/of_reserved_mem.h |   2 +-
+ kernel/dma/coherent.c           |  10 ++--
+ kernel/dma/contiguous.c         |   8 +--
+ kernel/dma/swiotlb.c            |  10 ++--
+ 7 files changed, 72 insertions(+), 65 deletions(-)
 
-     i2c-mux:
-       type: object
+-- 
+2.34.1
 
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        fan@18 {
-> +            compatible = "tsd,mule", "ti,amc6821";
-> +            reg = <0x18>;
-> +
-> +            i2c-mux {
-> +                compatible = "tsd,mule-i2c-mux";
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +
-> +                i2c@0 {
-> +                    reg = <0x0>;
-> +                    #address-cells = <1>;
-> +                    #size-cells = <0>;
-> +
-> +                    rtc@6f {
-> +                        compatible = "isil,isl1208";
-> +                        reg = <0x6f>;
-> +                    };
-> +                };
-> +            };
-> +        };
-> +    };
-> +...
-> 
-> -- 
-> 2.34.1
-> 
 
