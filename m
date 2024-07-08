@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-83900-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83901-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D65792A452
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 16:09:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B22E92A45A
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 16:13:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 479831F2203D
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 14:09:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 047C51F21E55
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 14:13:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA69313AA51;
-	Mon,  8 Jul 2024 14:09:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51BA5139568;
+	Mon,  8 Jul 2024 14:13:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I7FiAjt+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="olJIPavz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A630200DB;
-	Mon,  8 Jul 2024 14:09:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27C924653A;
+	Mon,  8 Jul 2024 14:13:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720447782; cv=none; b=N1euL8wNU3GvzoGnSG2KCNaH1cHIRUMoNLmt5j7xTHm4Hgn7xSY4W0W0T4meLknd2FSpE3tMaTIJuAK/+u2EDPkRoFcUz6QJZ1nWufjwsoWxo6CtY2lqeyW8LerZ74MoiViCL/qewL6bDkk96We77guC6mtkXvfzdvGUs5jgdjo=
+	t=1720447998; cv=none; b=MeT345rdry9YOIRw6Ul84w6u3EZakJ9SPRufQcbtIh4RFoRGdoTICCvNTuTz6U3EFJVD11R51pCej7qXlcT4MlVbS+joURwJIlJa4unqgG3sPS4bYfHXEpYRh/7Ezcm0HP6OAkNutW+OsfEbmT0spMWoHafRB5Zi90ZDr0e55YA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720447782; c=relaxed/simple;
-	bh=CF0DPeRn5VszrUZffHovk/7+iBXFdC6spgWpYJy3pVU=;
+	s=arc-20240116; t=1720447998; c=relaxed/simple;
+	bh=RpPEzr68TgUiSL5corM6dIxDoHQmBrnphWZSIwbmPQQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OiNQ/ggyG2Nq1a9BavYey5EvGn5NlCEzKgw6W/f+AQnhHSSjmjF2OJOqQotW8k3+GX6U/o/S+hOryGwXogiaX9I9dsAa1LTHm55U7gBw6zAvKEBntmRo5z74UqMLVEhWUrhvovH4dzQrSLM5WEHXivCNBO2qaq6LdBbLOUJPxGA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I7FiAjt+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47AE8C116B1;
-	Mon,  8 Jul 2024 14:09:34 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=L4dVwWVpm/MoA4NHCXMRW+m9Cmhyaj8bfLjPppvkYX2g5WjvT42gEaFmdgWs7UZoKkloS0udW0Reyq9dPBTkLUsmbtms7vqNgBF9ToisWIlGIvdsmTdZwfxtWclGygxIGL4E+A/eciAISMp0ONYuYpXxRiRtLlJnZ2jYL1y+2lU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=olJIPavz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13965C116B1;
+	Mon,  8 Jul 2024 14:13:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720447782;
-	bh=CF0DPeRn5VszrUZffHovk/7+iBXFdC6spgWpYJy3pVU=;
+	s=k20201202; t=1720447997;
+	bh=RpPEzr68TgUiSL5corM6dIxDoHQmBrnphWZSIwbmPQQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=I7FiAjt+5agFJKcl0MnCIAu8UmE3zgEkkWzikd9B1U7dPWaAWJ3OMlReTXlK1nThf
-	 w5eJZxfz7MgEYo14ah66V3iJMJ17iX2f8LuLSkSV2yScACJPvILrzW0M/Qvw21mGa7
-	 UO4CG8pldl9WzTJVmxAJyD5FiVqyCrdQqAo+eh/lSSLVaEego3Qt3EzDUB9jE53LVV
-	 xzdPkvH0WlAgv/3ci9jsYMUUyQAKg48OA/4hwCLeRA+sW+yNidOUUx9gmFbgWa5EUu
-	 d/Tbw1u3B1H5y/UlGCNSTkp3+yhOBqLrhJ05NFuw0vJOeECkdXdGkVn9PHOpWHgpi+
-	 2P0hoSJFekr5Q==
-Message-ID: <3fd67d12-4964-48eb-89cb-482b4a7e769d@kernel.org>
-Date: Mon, 8 Jul 2024 16:09:33 +0200
+	b=olJIPavzTmNy9h09fUo+jxthqa/oX4+K9TxcOAcz5Co3NYEr4bMn8diJla4PRKtmi
+	 78hycxRvTkV1Xe8lQwwl1Q9E9CqZ/TydwDZ8G0GEOLtuX1kFQl+RRA1S8g2g/hEUZq
+	 YGybFJYgrG8VA/hpWzL0AzqKNyAfWCfsGPuj0x9TQAA1HWdRZgGb0kFyTQMV2sZFaA
+	 OioQTblktfn1H+M9f2ce6KCbl7F6z5lIvANkVDXYCAkgpFxWI1Ngju9jxOwH7qq7rS
+	 oayz2xD85Key68Bj6QNASVQrT2MEfL2HJO6h5R3awBGemnjL4pqt17LQ8SKXc5JamY
+	 Q4XpboXBFaEBQ==
+Message-ID: <a3400961-ae76-4e11-ba8d-1f659f7324d0@kernel.org>
+Date: Mon, 8 Jul 2024 16:13:10 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,20 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 04/10] dt-bindings: interrupt-controller: Add i.MX8qxp
- Display Controller interrupt controller
-To: Liu Ying <victor.liu@nxp.com>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, imx@lists.linux.dev,
+Subject: Re: [PATCH 1/2] dt-bindings: arm: bcm2835: Specify
+ /system/linux,revision property
+To: =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Ray Jui <rjui@broadcom.com>,
+ Scott Branden <sbranden@broadcom.com>, Eric Anholt <eric@anholt.net>,
+ Stefan Wahren <wahrenst@gmx.net>, Russell King <linux@armlinux.org.uk>
+Cc: devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc: p.zabel@pengutronix.de, airlied@gmail.com, daniel@ffwll.ch,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
- festevam@gmail.com, tglx@linutronix.de
-References: <20240705090932.1880496-1-victor.liu@nxp.com>
- <20240705090932.1880496-5-victor.liu@nxp.com>
- <b0cbd659-21b8-4049-8882-f49275d4a247@kernel.org>
- <31301581-a710-4e25-a079-e017686c52ec@nxp.com>
+References: <20240708-raspi-revision-v1-0-66e7e403e0b5@gmx.net>
+ <20240708-raspi-revision-v1-1-66e7e403e0b5@gmx.net>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,74 +109,20 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <31301581-a710-4e25-a079-e017686c52ec@nxp.com>
+In-Reply-To: <20240708-raspi-revision-v1-1-66e7e403e0b5@gmx.net>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 08/07/2024 08:51, Liu Ying wrote:
-> On 07/07/2024, Krzysztof Kozlowski wrote:
->> On 05/07/2024 11:09, Liu Ying wrote:
->>> i.MX8qxp Display Controller has a built-in interrupt controller to support
->>> Enable/Status/Preset/Clear interrupt bit.
->>>
->>> Signed-off-by: Liu Ying <victor.liu@nxp.com>
->>> ---
->>>  .../fsl,imx8qxp-dc-intc.yaml                  | 321 ++++++++++++++++++
->>>  1 file changed, 321 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/fsl,imx8qxp-dc-intc.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/interrupt-controller/fsl,imx8qxp-dc-intc.yaml b/Documentation/devicetree/bindings/interrupt-controller/fsl,imx8qxp-dc-intc.yaml
->>> new file mode 100644
->>> index 000000000000..3d0d11def505
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/interrupt-controller/fsl,imx8qxp-dc-intc.yaml
->>> @@ -0,0 +1,321 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/interrupt-controller/fsl,imx8qxp-dc-intc.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Freescale i.MX8qxp Display Controller interrupt controller
->>> +
->>> +description: |
->>> +  The Display Controller has a built-in interrupt controller with the following
->>> +  features for all relevant HW events:
->>> +
->>> +  * Enable bit (mask)
->>> +  * Status bit (set by an HW event)
->>> +  * Preset bit (can be used by SW to set status)
->>> +  * Clear bit (used by SW to reset the status)
->>
->> 1. Why this is split from the main node?
-> 
-> Maxime suggested to do so:
-> 
-> "
-> But at least the CRTC and the interrupt controller should be split away,
-> or explained and detailed far better than "well it's just convenient".
-> "
-> 
-> https://lore.kernel.org/lkml/2k3cc3yfwqlpquxrdmzmaafz55b3lnqomzxjsvtetfriliqj3k@tv6uh7dzc2ea/
-> 
->>
->> 2. Who can use this interrupt controller? Children of your display unit?
-> 
-> Yes, only devices in the main display controller use it.
-> 
->> Then it is not really a separate device, is it?
-> 
-> Er, per Maxime, it is a separate device.
+On 08/07/2024 01:08, Jonathan Neuschäfer wrote:
+> The Raspberry Pi bootloader provides a revision code[0] in the
+> devicetree, at /system/linux,revision. This patch adds
+> /system/linux,revision to the schema to allow it to be used in
+> mainline Linux.
 
-It's not for me, especially considering small register region used here.
+Sorry, no, we do not document stuff for various out of tree things.
+Otherwise we would have to accept hundreds of ridiculous, vendor properties.
 
-Srsly, with that claim, some I2C device like PMIC also has a separate
-interrupt controller, because interrupts are in separate few registers
-(e.g. status, mask and ack).
-
-Can any of the children interrupts be routed differently?
-
-Post entire, complete DTS for review.
+Fix your bootloader or make it upstream.
 
 Best regards,
 Krzysztof
