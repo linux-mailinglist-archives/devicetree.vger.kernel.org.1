@@ -1,74 +1,63 @@
-Return-Path: <devicetree+bounces-84023-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84024-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D715F92AB1F
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 23:25:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A25B292AB2D
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 23:29:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8B064282E9B
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 21:25:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4ADFE1F2245B
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 21:29:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7997A14EC65;
-	Mon,  8 Jul 2024 21:25:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA77F14EC77;
+	Mon,  8 Jul 2024 21:29:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="BrFEH0TF"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="VetV0gBQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f43.google.com (mail-oa1-f43.google.com [209.85.160.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9786F14EC42
-	for <devicetree@vger.kernel.org>; Mon,  8 Jul 2024 21:25:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB4C314EC42;
+	Mon,  8 Jul 2024 21:29:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720473937; cv=none; b=WF5FE5LFWGLQt2YlUVRdgJDQTBZaOWTAGs/WhQ6bTvWZFSWY4g/YNlY6nq8Vgk+Fqh8/o2T4sJQ1IKhBKRqKrYjHKacdFK1d9D/DrYHPApLLUV3II69R+C0ylPkdqVfNLSaGT7tZ+IeF71Cki4953nFMIeYD620slDLE8smW4FA=
+	t=1720474170; cv=none; b=bAtp3g4/6ZNO3u1JYEgHKBHySF26KwY2dENCRmkpLDmasINmFYmwmQrJnuO3CbDjWpL+WdJc+bXHU7sf+ho5VAxKMq+5U5/7DhFxYrJVtckgaftfHsT00doKCGLkQJUNqZoLZt6Co2R0/556XZCuy+C/jl7TNTaHTsVreCOIlBY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720473937; c=relaxed/simple;
-	bh=7JctZJAKiS8OEudEyYr/ynOmVp0voSFvu/g3pykv3D0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PRxbR7jilFqUDvysXfzNpP4yzzTFwe00kcjfnPpfUENzTGteaOh9r/B91nRLBSAg3kPLyfusmRQwJnlutR18pL0nVTI/vcJWS3PJMJuBMksx+6nxXcNPW2BNpEiHMF/XwgdCOmvLyn0N0y4roOQprS7MSOLpe0acz2mo3QCOUyY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=BrFEH0TF; arc=none smtp.client-ip=209.85.160.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-25e397c51b2so2196987fac.3
-        for <devicetree@vger.kernel.org>; Mon, 08 Jul 2024 14:25:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1720473935; x=1721078735; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=xJvFU7TYtpQ06K0DjMCeUx+4vp854MVTBkG3gu9NGtM=;
-        b=BrFEH0TFO/sVO7amffuQwbUgj3tcoE1Z/l702jjZY9TMQl173pUcT2uiQl7nyqVnuH
-         K7KqbPqGVUwUN+uMec7k/rD1soOQHcjbRa9jgFWSIGm1fmi2wBzT466XVfbH5WAjs3Ra
-         CMcNj04TEE9CaoPXDgfNsC0I70JS7YR0QJesCaqPFeQcRIXWp920wDuY/2NoC2grPgvR
-         f74uea0Qw39QZzGA0Us6hkDDmntJcY+xw0K64BCr7Y4G7zAfKKTfb2OnSmAWnD8Qbso5
-         zZZtJATBIjvU6N0Ojwhu3RFhc81RR/aTyvzmmfTk71soOE4JtErqUxNJvZWjEBgZglZF
-         fTIA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720473935; x=1721078735;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xJvFU7TYtpQ06K0DjMCeUx+4vp854MVTBkG3gu9NGtM=;
-        b=KVRKUcVdByXYdHr/vxDJ3eFEEWoI/gmV491E9jTLuj/x+ZH37OW5xR9lZvgsRxCUob
-         37pi3U0xWBWybvhvVWU2QiyOd5yjVhXtjgzd1c+Zswd38CK4s5nRVslH+YVMpY1LhsJO
-         52Jz6w5UWGGCZbfU3ATtxR7ko6rtEKl4pEfEtXVnY7wVBUxeaoUoER/b9wSsj3ftBYde
-         Ne8SIYyCNUW1nlatcta/dr8WJnW9wxaUxz86mr6jbIK4JnBFCD5tyooT+dudqd0mznrr
-         pkRBMedaiJlCqJYZhbmQQvzUPUBWOnvaOPkO8J9aJ+h4pIT+v5hWwwUfUfjfGvV4Uq5T
-         d8zQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW+LxwSw5ccQL0sCHQi8s5chblnVilTErIEEMNT4MSxP+Zmf70++FzxqyZEmmkBVH6l4cASHafxpjGFqNzmF/AFWThCjQIjMuuClg==
-X-Gm-Message-State: AOJu0YxOdCUJy76Ehvb5zAtzw1bdJEcc2JsE8uXiDWR84W+TjRYFj7YM
-	cyzKm7/09bfMl0dF9Rp0zbCCHn9Np8hF//ycr8x6OkN995b0KrTBXYtkckEwbiQ=
-X-Google-Smtp-Source: AGHT+IFibYrQLzTfmVuZB2cwTblZ0w0GWvA/Rp6zMFtf4QieNjy5zWIw9c6j8/BZsVvjrbrriJbOIg==
-X-Received: by 2002:a05:6870:2105:b0:25e:1f67:b3c2 with SMTP id 586e51a60fabf-25eae756dc3mr544905fac.1.1720473934739;
-        Mon, 08 Jul 2024 14:25:34 -0700 (PDT)
-Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-25ea9feb688sm194630fac.20.2024.07.08.14.25.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 Jul 2024 14:25:34 -0700 (PDT)
-Message-ID: <d4505dbf-a886-4fbe-8305-9ebee22a46b9@baylibre.com>
-Date: Mon, 8 Jul 2024 16:25:33 -0500
+	s=arc-20240116; t=1720474170; c=relaxed/simple;
+	bh=b0oDwn4gLRiHgGRfxw91SMeNt0IW2bO9mGUNu3um8JA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=JEToY9zr9aFk0DoSK4iTf/WbKwpt1oJfk7/Vb5eDtaka8s8maNPw3jK3mZser0uZU3QmcvPdExRewTutVB9X/vmmuhyHSRvt+6e+7r9gLysZxphPvb/b08VBGW+6+cORkOcJGHBM7U3gXU4FwDk778BZ5daELyeSn7ZpiotxTys=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=VetV0gBQ; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 468BUfmR012081;
+	Mon, 8 Jul 2024 21:28:56 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	0g+a5SSirBeJBrscbEp+Kt7zeD2Yr2kttzpSH4nI7Bo=; b=VetV0gBQbwT/LGcd
+	L8hrRUROuj2R8E44VjIQGj6aQAw3ZfMtvGTKzFrYmbdO9EDJMW/x4hTrST1en486
+	heMOQBD54qWAd8mYsyt8OO+SKcJ+NuNuZZJ3ct6SSaip0N9zp0AmQZyUmGq3jxwO
+	J6lUurd3ocG0YvMa2dLvGRYhYuIRyf5ielFINeCUwyLBhgAywVgGdUh3D5+OmEnZ
+	3tSjfo1E89Dx1XbQtJr5Pb0LMSYinLyRVqEdluvLVog0p0Q3BSFEb7PXV+fKyuWE
+	CwEUSnBKiJRkVSy3D31NkHQfLGj3hpnKLIMaq8wVUytZ/ih69z6GS22Wa4sYD5yR
+	jklfeQ==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 406wjn4tva-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 08 Jul 2024 21:28:56 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA03.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 468LSsbv015439
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 8 Jul 2024 21:28:54 GMT
+Received: from [10.110.111.200] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 8 Jul 2024
+ 14:28:51 -0700
+Message-ID: <3c3067d3-d142-4648-b22b-8a5971d02ff8@quicinc.com>
+Date: Mon, 8 Jul 2024 14:28:44 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,29 +65,81 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 7/7] docs: iio: Add documentation for AD4000
-To: Marcelo Schmitt <marcelo.schmitt@analog.com>, broonie@kernel.org,
- lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- nuno.sa@analog.com, corbet@lwn.net, marcelo.schmitt1@gmail.com
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-spi@vger.kernel.org, linux-doc@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <cover.1719686465.git.marcelo.schmitt@analog.com>
- <d5f07e2ea4f4aaae1c13ed0b1b0c6abb15492a67.1719686465.git.marcelo.schmitt@analog.com>
+Subject: Re: [PATCH v3 0/2] Add interconnect support for stmmac driver.\
+To: Andrew Lunn <andrew@lunn.ch>
+CC: Vinod Koul <vkoul@kernel.org>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        "David S.
+ Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        "Jakub
+ Kicinski" <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+        Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>,
+        Russell King <linux@armlinux.org.uk>, "Rob
+ Herring" <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        "Conor
+ Dooley" <conor+dt@kernel.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>, <kernel@quicinc.com>,
+        Andrew Halaney <ahalaney@redhat.com>, <linux-arm-msm@vger.kernel.org>,
+        <netdev@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <20240703-icc_bw_voting_from_ethqos-v3-0-8f9148ac60a3@quicinc.com>
+ <72c55623-8d62-4346-8f04-506d0eaed867@lunn.ch>
 Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <d5f07e2ea4f4aaae1c13ed0b1b0c6abb15492a67.1719686465.git.marcelo.schmitt@analog.com>
-Content-Type: text/plain; charset=UTF-8
+From: Sagar Cheluvegowda <quic_scheluve@quicinc.com>
+In-Reply-To: <72c55623-8d62-4346-8f04-506d0eaed867@lunn.ch>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 8lFJqCbxgWtA9q0lIBWE2lOgx5RgKIc7
+X-Proofpoint-GUID: 8lFJqCbxgWtA9q0lIBWE2lOgx5RgKIc7
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-08_11,2024-07-05_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 clxscore=1015
+ mlxscore=0 adultscore=0 lowpriorityscore=0 suspectscore=0
+ priorityscore=1501 phishscore=0 malwarescore=0 bulkscore=0 impostorscore=0
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2406140001 definitions=main-2407080159
 
-On 6/29/24 2:07 PM, Marcelo Schmitt wrote:
-> Document wiring configurations for the AD4000 series of ADCs.
+
+
+On 7/3/2024 3:21 PM, Andrew Lunn wrote:
+> On Wed, Jul 03, 2024 at 03:15:20PM -0700, Sagar Cheluvegowda wrote:
+>> Interconnect is a software framework to access NOC bus topology
+>> of the system, this framework is designed to provide a standard
+>> kernel interface to control the settings of the interconnects on
+>> an SoC.
+>> The interconnect support is now being added to the stmmac driver
+>> so that any vendors who wants to use this feature can just
+>> define corresponging dtsi properties according to their
+>> NOC bus topologies. 
+>>
+>> Signed-off-by: Sagar Cheluvegowda <quic_scheluve@quicinc.com>
 > 
-> Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
+> Thanks for the rework.
+> 
+> It is normal to have a user of a new feature. Please could you patch a
+> few .dts files with these new properties.
+> 
+> Thanks
+> 	Andrew
 > ---
+> pw-bot: cr
 
-Reviewed-by: David Lechner <dlechner@baylibre.com>
+I should have referenced corresponding dtsi patch in this series,
+i am going to post a Version 4 patch updating the cover letter
+with a link to the dtsi patch which is enabling interconnect support on
+SA8775P ethernet device.
 
-
+Regards,
+Sagar
 
