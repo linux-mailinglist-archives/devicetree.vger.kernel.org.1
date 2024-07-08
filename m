@@ -1,332 +1,137 @@
-Return-Path: <devicetree+bounces-83753-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83754-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DE13929CA3
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 09:01:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66BBD929CAF
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 09:02:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BBA51280A99
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 07:00:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 221C0280AAC
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 07:02:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CCF417C66;
-	Mon,  8 Jul 2024 07:00:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="c4ohIXcE"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3CF3182AE;
+	Mon,  8 Jul 2024 07:02:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011032.outbound.protection.outlook.com [52.101.70.32])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com [209.85.219.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4869F125A9;
-	Mon,  8 Jul 2024 07:00:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.32
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720422056; cv=fail; b=UN04yxAn8GGF5H2+Oo0mdrRPnLTTh6BqNPyPhckFMA8d6aiRbaMkCosRUzyHqg6pQXrCUlTRhUiK8wKKkkK2Fv/7vCIO3D0tYRiGmHcLbuBXLh9+K2Xg9+eczCK3qknm1AcGbUivsLpACnlyinvIt4THWUOPrwIjmy6euaEmnMw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720422056; c=relaxed/simple;
-	bh=YtdOuOTlSjc3MduH8m8/ZN+wWwujUjO3pRRnhRgfarw=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=VhRQvJummfkYMP0ABJ+cet0Sgb0617DLcnVoq8cuNUGwPuqpfFk10n6/TuzLqi68D81p5zvI04aTJt2iYSfCWh0ox1ypBRqV35UrhflW5xLet+i5BeeV79Enp/LNVlgF6+2TlRESaRdf6nN7PNSsfvKYTSpcqgtyniArAR2G0bA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=c4ohIXcE; arc=fail smtp.client-ip=52.101.70.32
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=j6qg81nsRCSD+UoK8NpMBE/UPq4HsfgXxvOKWWUwnMoa6KTdsc0L34RRvfmnaXNcm2KSWH4lfnhSDypVIxn1IB6xLAeLuOIeSxeMYgDWyiDMQ9+ISAMIrK15MhN1MOT6rc5lQnYiZbDF3Tfdgnbxfa3gBHVX5i7m7pELn91ClO1C50zXZCawcP4AaWdsUrcoZyIqWzVtQMOF+43y1OEAuhuVrW/XKwMMz3tChepSgmWrYxpOBMcQgLdUQSyWvA7OWRNGOu8d/6fuWzBeWtxGxOXrwa6YE85p3sOsiwVl+qjrTu0vJ6YGhLm0dse/zDq2YCz/Zgm4lYEI1jfxUqewEw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1ujfMXvevWHSC/7dJbQQjhsWKGdPnRON/f12g6fqhcY=;
- b=hNqKdYRYmSamOCMYM4w5HCxafg4OeH/lS266DvATClz4xi4vh5KIHCC9zeGO0PNaG/wHJail73Cyuy+Rf3Y/Q0LUL7eWj18ZU53+p6foTSHkXWQU6zitccVQ+vxdSA8/vzKOujnsT68XL1FjQ8dh/j4kODfe8vp4SCUcwh9vbH04x00XEXg8ka4mCrYHyNTu4ZgMexqOmKCX6LMmcNl5N/ISlfOyg1Ep+0XgV8Rt9BUkxktMsC57zdIjmuwHJzzrt7ROEka7/zkMac+3COJKx/UFKnu1IimRrwz9TZmWZag9TYeyGAjiDgjXpvaOs2OIgT3HMIWKbz1cF9JMyUodBQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1ujfMXvevWHSC/7dJbQQjhsWKGdPnRON/f12g6fqhcY=;
- b=c4ohIXcEjapLiwNs56Ei3c8cwUEGjNTL7Du3HpkAPQrZJcJMuRIq9dnx4mHuMxcKSH7wYeH0JpoANFZQCPa+wsTK5A7OuhPRDtc3iTHucKNIPDxPr8imxuc43inJRlmYv2E4lXJn8q9hw7/GQ1gJmtl8PNVDc+sCDn22dnT2nWA=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
- by AS8PR04MB7559.eurprd04.prod.outlook.com (2603:10a6:20b:295::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7741.36; Mon, 8 Jul
- 2024 07:00:51 +0000
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::d1ce:ea15:6648:6f90]) by AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::d1ce:ea15:6648:6f90%2]) with mapi id 15.20.7741.033; Mon, 8 Jul 2024
- 07:00:51 +0000
-Message-ID: <a5515f50-38fd-4578-ae92-f8fc3e5fb4e0@nxp.com>
-Date: Mon, 8 Jul 2024 15:01:14 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 05/10] dt-bindings: display: imx: Add i.MX8qxp Display
- Controller
-To: Krzysztof Kozlowski <krzk@kernel.org>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc: p.zabel@pengutronix.de, airlied@gmail.com, daniel@ffwll.ch,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
- festevam@gmail.com, tglx@linutronix.de
-References: <20240705090932.1880496-1-victor.liu@nxp.com>
- <20240705090932.1880496-6-victor.liu@nxp.com>
- <e2454904-c70e-49f9-b7b6-05ef348c35fb@kernel.org>
-From: Liu Ying <victor.liu@nxp.com>
-Content-Language: en-US
-In-Reply-To: <e2454904-c70e-49f9-b7b6-05ef348c35fb@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-X-ClientProxiedBy: SG2P153CA0013.APCP153.PROD.OUTLOOK.COM (2603:1096::23) To
- AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15A581BF3F;
+	Mon,  8 Jul 2024 07:02:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.177
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1720422150; cv=none; b=JdUoTPD4TZ8OoRn15g3mNhKjpT9m6VTfwg8Ni5augVibUedXlF//76tBdzrLnpXuCCaqrg2f3ghe9VMWdqURs+3MHMBgUmxeLmTpOviNFMmpG/zs12KUD2DaH7eS2AtGB/t3/fomM1jyryzgbFlstYjD9wxT8oB2hz5VVigpCgA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1720422150; c=relaxed/simple;
+	bh=blekNSaifvF8rH97LXQzaFG6kEbkNseGmHpipfOHVG0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=FP9ceox9pcRUfZD+2U+KCMuMy+oC8S91DGS12eTYm1Q78iKeM4XkNSOP+iXNdztBw+AQoi5sBIi6C5xuTs2gng/7y2GCdoLGP3fgjXMFmGuOG2ckAATgMq2ZQPbiG/vL/RPPdsDeaM0169AMt8laoi+Slzh5ab+fXwtWs9RZQG0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-e026a2238d8so3790155276.0;
+        Mon, 08 Jul 2024 00:02:28 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720422146; x=1721026946;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=rtbU4m2r0Wr0MicFZxyKb/Qi0+cPjkiW5kPjK5OPEfg=;
+        b=p0U0U9y9mpy4w8jRZ1Y61QncfHmcZQIHy2Pi1iTErqKjPaXn1T5suaRvW9KlahHdRO
+         5RFb56EOjDLw1rIe+cQdvzqFCHRFyDUnzlvMcgnih6AzxIP9gd3yoIJ5j8DkpgYDtc1c
+         nMGUj0fl+dgi0iSeOZJ10CPZYP7MDHl1brrDz8U+tET1Vla6Jxng32AaaTp1ZTnj/esW
+         ikWlXEq5GTqWl0ClyGb13b6vTpjUge0BT1G8s2ui/3Hc3vEDVTuriUyuxsYRSrmSPhcc
+         EGl0tBNTu6TS+UcUzaCT0cgtuNcrX0ZBJMJAV3AcwnDTg+dnoNwlcpY4yJCZKGZB+DoR
+         Y6rw==
+X-Forwarded-Encrypted: i=1; AJvYcCVz2x4PPEiy5LCnJNQbKKKmDU3tEvDHHWK17P45ma2MRBOmxvQ25RGVh5GVyQC/oayFWK83P/FwyxyoVOSNiw2GU+6W7k3aXqZbXBtNdjbIkewY7zciRKDHrqftxAbmdQN+ef+/FaCDbXLsEmqp
+X-Gm-Message-State: AOJu0YzjEPFiKBNZpeh9dLQHlTzGk6be6y/eZz7jfffLL+llVxFYsh0t
+	EbWzLdYGQ9215DuvTgWH11TaY0LXxdkFdvmSsPgANBEezgexRwq8RnoM4+LE
+X-Google-Smtp-Source: AGHT+IHgGICmSBw+SKJTSCNg7hZ8oKG6BzpcnAqTLP2tcIz2ljEPuFOVwR+JhSBBLTeotM1jin+WAQ==
+X-Received: by 2002:a81:9289:0:b0:64b:392a:b9d7 with SMTP id 00721157ae682-652d7d56271mr111787157b3.45.1720422145750;
+        Mon, 08 Jul 2024 00:02:25 -0700 (PDT)
+Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com. [209.85.128.171])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-6547503977bsm10118157b3.33.2024.07.08.00.02.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 08 Jul 2024 00:02:24 -0700 (PDT)
+Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-64789495923so28447897b3.0;
+        Mon, 08 Jul 2024 00:02:24 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCX31nPnbem11slqcEzNsYYfp0SQPYm4UShB2EqPXFD/kgWjuhb+9gxOZNLozs2px915x1eRygxP/x1umVI7yMY1nIvV1F94Q70hq9LxDUpA7Zhdx7RKUZqdDloV2bj6nb9caTYqQcqA0sfQz+eU
+X-Received: by 2002:a05:690c:6910:b0:64a:5df5:3afb with SMTP id
+ 00721157ae682-652d7870764mr134640307b3.39.1720422144034; Mon, 08 Jul 2024
+ 00:02:24 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM7PR04MB7046:EE_|AS8PR04MB7559:EE_
-X-MS-Office365-Filtering-Correlation-Id: dbcf0100-8ec7-4b6f-4fc6-08dc9f1bb3bc
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|7416014|376014;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?c0RXZlFFcitSZURwYVMwZFFWaXgvZ1dOZHZweUxhQmovK3h6cExyUExCTGMx?=
- =?utf-8?B?RENwMCt2RDEyR3h2ejdBL1FwSm5mMTR1MTFTRVFqdGQzMkFtdDNibnBuK1Mz?=
- =?utf-8?B?T0kzUTUzN0x6RjhVMmM0UE1yQUt4WllvZWtiM0FFeHpVcjFvT3FPK3hPaklW?=
- =?utf-8?B?UnpDNjFhSGM2MTBkSFJ0MGVNT1U3cWZvNU54anl1bGRuL0grbEhhVC9PeVFq?=
- =?utf-8?B?WldhOXFDV3AxVjlOd25WY1lSNjZYdjN2MGdzN2c5VWFZT2NwdDZUd2JWZmgr?=
- =?utf-8?B?NGg3WW40czN1alh4MUdUTDVBd3Vua3VKUFdiZDEvR0gxMXdzMjFZd2FFNGZn?=
- =?utf-8?B?WGZsb0JJeGlYQjIzdFdGeHI3d3dJWG9tTzl1N2U0ekw1UWZJTFlDa01WLzE0?=
- =?utf-8?B?WkNPaVlmQmVzM1J0ZWZqMllJbHRQNU1WaThrdFB0UE9qZmpPaytCR2g5c1FG?=
- =?utf-8?B?cm5tMktkeXdZMk5ZbFhtNHVUeTFnUjlzci93b0JoKzFmVUtzYUNka3hrZ1A5?=
- =?utf-8?B?UjBYM1M4SENUN21jeStkZmJpZ05hL0Zxb1Bya0RyWE1hemhFeXM5U3ZNa1FK?=
- =?utf-8?B?T1Z6UTQ0OW9UVEhsa1hVVTM2SG5UbXI5UjN4dHZ4TUJHVWlJWVBXUENSRlBi?=
- =?utf-8?B?RERzQW5GVUJBaVZqdkUweFJKRFZLTkE3Q0ZBQzhUT2NFY0EyWHE3SDhXQ0lq?=
- =?utf-8?B?R2lFUVlKa1htRG1DcTdLUENqeUlDdGYrMDQ2OHlibWlvTFlqeW9kVnBZelZw?=
- =?utf-8?B?OW1hcjFrM3BTNzVJbkVIWjN4eDBrVDVxc0F2Y2xIZlpwcnFjM3BBTG80RHdj?=
- =?utf-8?B?NmRRTngrbG5MVDBrelg4OTJmdUlFdUdZNjFsem8rU0J0azZ1aFlZQk5FTXBw?=
- =?utf-8?B?ZzRkYnh5bGUzSWZOM2xvRkZuRzltT0NhU3RsWmlNZGJvR2ZMbWV3YURNazFO?=
- =?utf-8?B?blJBc1JsclNrU2FvZ1ZEZ1NONTEwdlNiSHJjTytRbEVxMXoyZTRGdXhtdngy?=
- =?utf-8?B?VmlMRmIxOW9aeFpjQ1pkMzU5dTArRWJMVUlBdzJZTS9nLzlCVWwwUjl0ZENu?=
- =?utf-8?B?QzVXR2l5bEFIbGpENitmaXVLZDNvUFNteDcxTC9BQ1FTa0c2MEYzZ3FrVU5q?=
- =?utf-8?B?dFhwazBqVmVrQmRLNTdCSzhwRXZ6VXdBK0poNkZ1Qi9qaXVwWHpsS1J2MXBV?=
- =?utf-8?B?ZFVyeWMzak40RTNNMWtuZStzcmdadURJc2c3bHU1dWR5bnFWMTdLc2ptbk85?=
- =?utf-8?B?aTV5NFZ6cnlxYnBLUVpzU0ZOYVZ3YVJnSm1RTDFaK2gyaEFtNDVyS2xhM0wx?=
- =?utf-8?B?eHR1R1ZIOGVpSlNqU3ZHckY1WjZiWGxkblJkTk5rS0UvS3RkYXkvRXZxRmNW?=
- =?utf-8?B?MWxtT3dmbkxXWGJRVmFJT0gwTTFXME1aV3RYTWhYTVNDNEt5VG5aekNEK2N6?=
- =?utf-8?B?SXFxVGVYZjNmYnpWNlFIcTU5MjlwVmFIazR2cE5taCs2cGlQMUtDSDkrb0Jh?=
- =?utf-8?B?YWk4VlhKNkFpalFvY3FHRDM0RWd5UXY5RVRtaU5QK2ZNWFZmZXk1TFZoUUtm?=
- =?utf-8?B?WG1hMkg0M1FsN1BrZTdtOHM1OXdpVnE3RlRiSU1aUmhNOFJFMVlJc2xBa3Q0?=
- =?utf-8?B?UzhGaW5UTTB1c1N2Tjd5MHEwa2FlS1VKOWxvdVJrRy9ieEczUWg1OVZkL05Q?=
- =?utf-8?B?dXZqZ0I5QWFRMktCaURsOHNKUjhRQnJvQmpsd3UyMzZLNDhrOEtmZjJNeEJW?=
- =?utf-8?Q?MOYr81/paz9yikLux4=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(7416014)(376014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?Wm45TmNlZEtkc2FYZ1FwQi8vSnBqcU80TTNWeVFIcVFOVnNpVDF6VDM4NzlY?=
- =?utf-8?B?VE15QTFRek1UZDZEWkdBalAvVEl4S3ZHTlV2S3IzN3M2VlJvMEgzZTE1VU9L?=
- =?utf-8?B?dmhzeWlOL3Y4ZldnUS9DK0dsSGFHaGVlem0rNFNrUUp1V0pITDdNUGp0Qytq?=
- =?utf-8?B?OGpOdUtyVURkQUg2L0QrczBlNlBDRHNUOEdnR21GZHhRaUhDdUFNWXhwL3FE?=
- =?utf-8?B?OG96aHNBdnJiZk4zSmkzVUlqdWZneHgrdzlSYkRRaXljaFN2U3F4ZWR0dW9h?=
- =?utf-8?B?dlpsTTN2aFlLL3M3dWtMTVRiTEZ4aWNTVkVlZmtOTFp6QUh1L3pqSGo1NFpC?=
- =?utf-8?B?NFZNZzFSOTZZVWQ5d0g5cG1KTWZmeWxKTzRiREtuNFhyMmtrYkZOTFFKWGFR?=
- =?utf-8?B?MDJScGRjM24vY1BPZS9lRk5qN3JOME0rM0p2Q3ZVZUZFbDl0UTgvWTZERzZR?=
- =?utf-8?B?L1FCdlNsTGV1eExxUGNnZmJ6QnI1bm00Zmh2U255L2k2MlNDM0FYVEpMOHRW?=
- =?utf-8?B?ZW5ibnVDaDRzOXhVMmI3eVVHa2xlRTh0dkVXR1FwTVhsbzV1d3dYZDREMit0?=
- =?utf-8?B?QVdNTjBEeFVScGRVZnYwMzgwQVl4VDl4dVVNdTBjUE00aGt2VXVnRkZ3Vmdk?=
- =?utf-8?B?MGlmZDZ1TVJqdEo0VFA1cnVlblBDZ0JJa2hNOVgrQjZldWtMNktBUEN1Skk5?=
- =?utf-8?B?a2Z5Rm16RzhuYVJpeHk5VXl5aHE1NlFQeEVWZVBsMUY1RllkVGtMaTYrMEV1?=
- =?utf-8?B?dlZNY05INFJiMHY3WHdwOXhVOW5Ec0ovQXJ2cjljblZuZDAvUEQwR3p3UHd5?=
- =?utf-8?B?VEZjOEFTRG5OcEhXK3l2TjA0YTdmN2VXYzc5OUYwaVlpL1hMTlJ5aE5KM1hh?=
- =?utf-8?B?REFhSGZCZnl3dmdVclJZS0QveC9mMHpBa2MwTUZjNUovUE8weDBmb3FSOVlI?=
- =?utf-8?B?L0REUWFlMk1aS0daZFpzcDRQcHBnOFpPbkFCMkpDbFhMN1pmWFFLNm0vaXVJ?=
- =?utf-8?B?cmh0YnVVVUtuaDFOQXMyQWI0UHlYanBKalMwNUxOTmtCdW1qS3JIYjNjTFM4?=
- =?utf-8?B?dnpPeFByamFodU1oYUJDUDFSSGZOc1YvWmpMTEYrcFRaQ1JQSFJUNERUOXlY?=
- =?utf-8?B?YTBtWU5wRThPZHhLWnA1TGVLUDNrdDVwSEZOVXRJalJmVVU0d08zZEt2Z1pv?=
- =?utf-8?B?OE1wL1BNUGNvRmcxRVc2UndvelhxM3Z3S3BvUitwZ1BXZEJmY3JoUVNNKzcx?=
- =?utf-8?B?WjZIUGxRa0FyN3lhbzhXVkJpOG5FUW9NV1lrK0ZibW1FUmdPUnFnNnNjK1Bv?=
- =?utf-8?B?aGNqdi9DZFJVMFk0T1B1ZjI4TURBbXNPYkJlUklhbXd2bVlRSmRCTHdTQUkz?=
- =?utf-8?B?YVVpY0RCSXJZcCtBa0ZuTVpLOFFaTHN0YU9hK0x1R3hzMTF1dVV1dzJhbzZ0?=
- =?utf-8?B?cm1Xc0tZUk4wNHFobWxGSjVXZVgwV2FkcTZnRUlybG1YVFRmaWN1OFdvc2Jn?=
- =?utf-8?B?RXlMb1ZETTcxbTZ5QmlTUW5TQW0vc3hzM0RLZzY0ckRBZlNSOW15d0ltOEZj?=
- =?utf-8?B?MTRqVThwdVpRdlJqWjk4enY0N3RBYy9VNjhzamhPdC93bm5aU0hwVllIMkR5?=
- =?utf-8?B?RldGYXJ1TlhQVFlGNldwVFA1WXFpTVR0UXZXcUJoTE92VU4yaFh2ZWNiVHNt?=
- =?utf-8?B?Tkg3ckRlUFovRW5OZDZ6T0ZZV3hXbzF4V1dDOGpYODU5L2RkSU5hUytzYm1j?=
- =?utf-8?B?UXM3MnVFOEk0N3NqeUE3RWpDVk1RaXo1azJJM2QzTXlvV2ZjUlBvQkl6TVJF?=
- =?utf-8?B?ZXR4Y0JiZkNKU2dMdFVnYTNnaWZCMDZmbXI2NGVzK1NxUFdVRkFUR0dka3dW?=
- =?utf-8?B?ZWNuajJ0YVkvaGVza1hDSUNETWV4cWxIaTFaT2VuSUthWDlyUVUvZHZCVlNL?=
- =?utf-8?B?ckVBMkw2akdiUUEwRlJSZnpuMFhDS203NWZndzJERHNpMzF0bStwM09UMVZE?=
- =?utf-8?B?ZWpDeTRKelhKMTYxZTNOanBMN3RlRVBFYmloRXo5OXFVUjljU25PUVpFS0Fl?=
- =?utf-8?B?YlovQlNCY21rdHVTbXFEVjNsODl6SGxsL2ZGeTIyWmY4NnQzRzFZNXlUUHJL?=
- =?utf-8?Q?m8NFcpAq8oNrBkTJmHFu8M6Jr?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: dbcf0100-8ec7-4b6f-4fc6-08dc9f1bb3bc
-X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jul 2024 07:00:51.1070
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: z2IzK6EDlmGWfK1TcZ8oMvgoqb/xEjoM/6oRagxkhMHGShoUpSY/OYUvLzHLGqD2xmpyEJ/TaZ6DSlgDHtAHsQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB7559
+References: <20240630034649.173229-1-marex@denx.de> <20240630034649.173229-2-marex@denx.de>
+ <CAMuHMdXb6nBHLeK1c4CwEUBE8osDyAC_+ohA+10W_mZdGtQufQ@mail.gmail.com>
+ <9f1ae430-4cc4-4e2e-a52c-ca17f499bbba@denx.de> <CAMuHMdWLLAff5_ndAvH9PofTpibJdOau65wK+QekcwR26H2YoA@mail.gmail.com>
+ <20240703093601.GA6493@ragnatech.se> <fa6db116-50bb-488b-a48f-c34f918424a2@denx.de>
+ <20240706083935.GA2366@ragnatech.se>
+In-Reply-To: <20240706083935.GA2366@ragnatech.se>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 8 Jul 2024 09:02:12 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVWAGuravTq1OEx++NhmmUnYKcexdp+A5Cz0dtmyuZ-Og@mail.gmail.com>
+Message-ID: <CAMuHMdVWAGuravTq1OEx++NhmmUnYKcexdp+A5Cz0dtmyuZ-Og@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: renesas: Drop ethernet-phy-ieee802.3-c22
+ from PHY compatible string on all RZ boards
+To: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Cc: Marek Vasut <marex@denx.de>, linux-arm-kernel@lists.infradead.org, andrew@lunn.ch, 
+	kernel@dh-electronics.com, kernel test robot <lkp@intel.com>, 
+	Conor Dooley <conor+dt@kernel.org>, Khuong Dinh <khuong@os.amperecomputing.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
+	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 07/07/2024, Krzysztof Kozlowski wrote:
-> On 05/07/2024 11:09, Liu Ying wrote:
->> i.MX8qxp Display Controller(DC) is comprised of three main components that
->> include a blit engine for 2D graphics accelerations, display controller for
->> display output processing, as well as a command sequencer.
->>
->> Signed-off-by: Liu Ying <victor.liu@nxp.com>
->> ---
->>  .../bindings/display/imx/fsl,imx8qxp-dc.yaml  | 243 ++++++++++++++++++
->>  1 file changed, 243 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dc.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dc.yaml b/Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dc.yaml
->> new file mode 100644
->> index 000000000000..a2ad280d2839
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dc.yaml
->> @@ -0,0 +1,243 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/display/imx/fsl,imx8qxp-dc.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Freescale i.MX8qxp Display Controller
->> +
->> +description: |
->> +  The Freescale i.MX8qxp Display Controller(DC) is comprised of three main
->> +  components that include a blit engine for 2D graphics accelerations, display
->> +  controller for display output processing, as well as a command sequencer.
->> +
->> +                                  Display buffers              Source buffers
->> +                                 (AXI read master)            (AXI read master)
->> +                                  | .......... |                  | | |
->> +      +---------------------------+------------+------------------+-+-+------+
->> +      | Display Controller (DC)   | .......... |                  | | |      |
->> +      |                           |            |                  | | |      |
->> +      |   @@@@@@@@@@@  +----------+------------+------------+     | | |      |
->> +  A   |  | Command   | |          V            V            |     | | |      |
->> +  X <-+->| Sequencer | |    @@@@@@@@@@@@@@@@@@@@@@@@@@@@    |     V V V      |
->> +  I   |  | (AXI CLK) | |   |                            |   |   @@@@@@@@@@   |
->> +      |   @@@@@@@@@@@  |   |       Pixel Engine         |   |  |          |  |
->> +      |       |        |   |         (AXI CLK)          |   |  |          |  |
->> +      |       V        |    @@@@@@@@@@@@@@@@@@@@@@@@@@@@    |  |          |  |
->> +  A   |   ***********  |       |   |            |   |       |  |   Blit   |  |
->> +  H <-+->| Configure | |       V   V            V   V       |  |  Engine  |  |
->> +  B   |  | (CFG CLK) | |    00000000000      11111111111    |  | (AXI CLK)|  |
->> +      |   ***********  |   |  Display  |    |  Display  |   |  |          |  |
->> +      |                |   |  Engine   |    |  Engine   |   |  |          |  |
->> +      |                |   | (Disp CLK)|    | (Disp CLK)|   |  |          |  |
->> +      |   @@@@@@@@@@@  |    00000000000      11111111111    |   @@@@@@@@@@   |
->> +  I   |  |  Common   | |         |                |         |       |        |
->> +  R <-+--|  Control  | |         |    Display     |         |       |        |
->> +  Q   |  | (AXI CLK) | |         |   Controller   |         |       |        |
->> +      |   @@@@@@@@@@@  +------------------------------------+       |        |
->> +      |                          |                |       ^         |        |
->> +      +--------------------------+----------------+-------+---------+--------+
->> +              ^                  |                |       |         |
->> +              |                  V                V       |         V
->> +       Clocks & Resets        Display          Display  Panic   Destination
->> +                              Output0          Output1 Control    buffer
->> +                                                              (AXI write master)
->> +
->> +maintainers:
->> +  - Liu Ying <victor.liu@nxp.com>
->> +
->> +properties:
->> +  compatible:
->> +    const: fsl,imx8qxp-dc
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  clocks:
->> +    maxItems: 1
->> +
->> +  resets:
->> +    maxItems: 2
->> +
->> +  reset-names:
->> +    items:
->> +      - const: axi
->> +      - const: cfg
->> +
->> +  power-domains:
->> +    maxItems: 1
->> +
->> +  "#address-cells":
->> +    const: 1
->> +
->> +  "#size-cells":
->> +    const: 1
->> +
->> +  ranges: true
->> +
->> +patternProperties:
->> +  "^axi-performance-counter@[0-9a-f]+$":
-> 
-> Node names should be generic. See also an explanation and list of
+Hi Niklas,
 
-Ok.
+On Sat, Jul 6, 2024 at 10:39=E2=80=AFAM Niklas S=C3=B6derlund
+<niklas.soderlund+renesas@ragnatech.se> wrote:
+> On 2024-07-05 23:49:56 +0200, Marek Vasut wrote:
+> > On 7/3/24 11:36 AM, Niklas S=C3=B6derlund wrote:
+> > > On 2024-07-03 10:24:26 +0200, Geert Uytterhoeven wrote:
+> > > > Niklas: commit 54bf0c27380b95a2 ("arm64: dts: renesas: r8a779g0: Us=
+e
+> > > > MDIO node for all AVB devices") did keep the reset-gpios property i=
+n
+> > > > the PHY node. I guess it should be moved one level up?
+> > >
+> > > It's possible to have a rest-gpios property both in the mdio node and
+> > > the phy node. The former resets the whole bus while the later a singl=
+e
+> > > PHY, at least that's my understanding.
+> >
+> > My understanding of reset GPIO in the MDIO node is that it is used in c=
+ase
+> > there might be multiple PHYs with shared reset GPIO on the same MDIO bu=
+s.
+> > Like on the NXP iMX28 .
+>
+> There is a use-case for a single PHY on the MDIO bus too, at least in
+> Linux as I understand it. If the boot process leave the PHY in a bad
+> state which prevents it from being probed. A GPIO reset in the MDIO node
+> is used when the MDIO bus is registered thus resetting all (in this
+> use-case the one) PHYs which later allows them to be probed. A GPIO
+> reset on the PHY node is only used after a PHY have been probed, at
+> least that is my understanding.
 
-> examples (not exhaustive) in DT specification:
-> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-> 
-> 
-> Is this a PMU?
+The reset is also asserted on driver unbind.
 
-Will use "^pmu@[0-9a-f]+$".  Thanks.
+Gr{oetje,eeting}s,
 
-> 
->> +    type: object
->> +    additionalProperties: true
->> +
->> +    properties:
->> +      compatible:
->> +        const: fsl,imx8qxp-dc-axi-performance-counter
->> +
-> 
-> 
->> +        pixel-engine@56180800 {
->> +            compatible = "fsl,imx8qxp-dc-pixel-engine";
->> +            reg = <0x56180800 0xac00>;
->> +            clocks = <&dc0_lpcg IMX_LPCG_CLK_5>;
->> +            #address-cells = <1>;
->> +            #size-cells = <1>;
->> +            ranges;
->> +        };
->> +
->> +        display-engine@5618b400 {
->> +            compatible = "fsl,imx8qxp-dc-display-engine";
->> +            reg = <0x5618b400 0x14>, <0x5618b800 0x1c00>;
->> +            reg-names = "top", "cfg";
->> +            interrupt-parent = <&dc0_intc>;
-> 
-> Where is this node?
+                        Geert
 
-It's the interrupt controller documented in patch 4/10 in this series.
-It's a child node in the main display controller node.
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-> 
-> I think this proves that interrupt controller is part of the display
-> controller.
-
-Yes.  But, per Maxime, the interrupt controller is a separate device.
-
-> 
-> Best regards,
-> Krzysztof
-> 
-> 
-
--- 
-Regards,
-Liu Ying
-
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
