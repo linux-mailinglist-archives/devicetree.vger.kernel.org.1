@@ -1,68 +1,62 @@
-Return-Path: <devicetree+bounces-84012-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84013-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11DE392AAC1
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 22:48:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A3D992AAD3
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 22:59:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BD27B1F227C6
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 20:48:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 540A8283241
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 20:59:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7AA14778C;
-	Mon,  8 Jul 2024 20:48:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5937D14D705;
+	Mon,  8 Jul 2024 20:58:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="AWIAbczp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NGJApps5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 234BD1E522;
-	Mon,  8 Jul 2024 20:48:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E3021EA74;
+	Mon,  8 Jul 2024 20:58:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720471702; cv=none; b=OXaIeKUGeGQCm1I+dMHu1sMxcrDJM4J7ZGxQbqkX4WgHGCxwvdK5byM4whzE8465PDYWnLwh/bhaLxFhKU4pebaSGF2XSr3quUfYXZlY24F6RuULWt3Dy847m631L9dx3EA1ykbU1vMBLsIm3nH4zQAgecAHxHhav2OgSzL8+dk=
+	t=1720472338; cv=none; b=kPIIloaAyNkk6J4/rMfYuCrHTVZoSvXjdy2qNFAVlKVwlewd9GRnfVV95Douc/x/jCI+r29cCCxX/otP6DWQ46pRxB9H14Ts4La77+55PNW7CsznFjpN8DuZ38Wjs+SPxFMmNDsItUNUiAvsM7DZS6bA4LmCcxoywyWMnLAPn2s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720471702; c=relaxed/simple;
-	bh=2GkQsCCPDTrqvfuEafdWglVgLfi+67h0EEETS2zDisg=;
+	s=arc-20240116; t=1720472338; c=relaxed/simple;
+	bh=wxLwQcBxOGi+KEPgw1dhpPRqW2v9/uLDaH3R4WblSLU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EgWP4AmNR5pGFF3lXlbtrR1xd72RLX7r83TD4hN4DfIYQJeeOdCZeHD53pqvqladZDqbZWARJCdYLPSfIbCqT96hA1fn7iHb+xyzmQAocEKENw8kvlPmDoAVywOilamxhmplWqRNw0H0L03MM50Mzx8jJABCkAA2mK/qVdymUwc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=AWIAbczp; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=3hgADx49+dWBMpzr3NECvdFeri8qwK2tYtwt9hplSU8=; b=AWIAbczpxE+iyVV3FSvTJjZ1/l
-	GVDr99Ml4qiOU427sMzeMZFUQZZ3uAWm2ezGR1UPDoQDsEI8PmFbirOXlXNmjcAigHOB4fNX/d6wc
-	6ljXeP6arOFKM4Ql88fs7kclsO6djZxkzQUSazJlWYixCVrUnRCrJ5StazYd7HxpueOM=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1sQvHJ-0024dh-Cj; Mon, 08 Jul 2024 22:48:05 +0200
-Date: Mon, 8 Jul 2024 22:48:05 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Rob Herring <robh@kernel.org>
-Cc: Lorenzo Bianconi <lorenzo@kernel.org>, netdev@vger.kernel.org,
-	nbd@nbd.name, lorenzo.bianconi83@gmail.com, davem@davemloft.net,
-	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-	conor@kernel.org, linux-arm-kernel@lists.infradead.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, catalin.marinas@arm.com,
-	will@kernel.org, upstream@airoha.com,
-	angelogioacchino.delregno@collabora.com,
-	benjamin.larsson@genexis.eu, rkannoth@marvell.com,
-	sgoutham@marvell.com, arnd@arndb.de, horms@kernel.org
-Subject: Re: [PATCH v5 net-next 1/2] dt-bindings: net: airoha: Add EN7581
- ethernet controller
-Message-ID: <8f8a1ee1-8c6c-48d6-a794-286464c38712@lunn.ch>
-References: <cover.1720079772.git.lorenzo@kernel.org>
- <48dde2595c6ff497a846183b117ac9704537b78c.1720079772.git.lorenzo@kernel.org>
- <20240708163708.GA3371750-robh@kernel.org>
- <Zowb18jXTOw5L2aT@lore-desk>
- <CAL_JsqJPe1=K7VimSWz+AH2h4fu_2WEud_rUw1dV=SE7pY3C6w@mail.gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=CtoijKKdmHd0olnEMNUPJgY/oOOG4QeG1C5Lj28kturDGXG3gRvPL0DTdHPKDemGOryL109Y8F2W+2NrBrzE9sAyYwj60tAc/tADuwoiOo7xbkTFKkPjzYpfbbzwtoessOA2mIuRAOncL/4xVXdvVehj3FPP70h6BW+q/BE9Wb8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NGJApps5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97B95C116B1;
+	Mon,  8 Jul 2024 20:58:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720472337;
+	bh=wxLwQcBxOGi+KEPgw1dhpPRqW2v9/uLDaH3R4WblSLU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=NGJApps5trd66OaohZreX/5Q72O9xVhSrBP3D/llHKab0d0jzyTvOwfVOBgmWTUrG
+	 EzUxMBiQMgKRtTMXnkRc1LpVmIKV9/NKB3JKtdDdrbySlGP0FHvvdCOtVpIPTtbKEc
+	 vauHHakedM6G4xNtL09dLyUk95R1fE+qoWFrEI0wNn1LTBLtXE7al5uJTdpBRu7KUs
+	 l7wMdE/0NNY/+Wdf950LrKbzpEHsJthAqBR+OE1wy1q3sKsv3ycFxZS3qOYpZfW7mk
+	 ICazoCw0o3yJ2P3BipWUT2kmDthhj00jjpEgaqrq8Ie6Yps1p2dmcPhHDY8WnhvTYi
+	 UOeSk5GfR0cwg==
+Date: Mon, 8 Jul 2024 14:58:56 -0600
+From: Rob Herring <robh@kernel.org>
+To: Marek Vasut <marex@denx.de>
+Cc: netdev@vger.kernel.org, kernel@dh-electronics.com,
+	"David S. Miller" <davem@davemloft.net>,
+	Andrew Lunn <andrew@lunn.ch>, Conor Dooley <conor+dt@kernel.org>,
+	Eric Dumazet <edumazet@google.com>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>, devicetree@vger.kernel.org
+Subject: Re: [net-next,PATCH] dt-bindings: net: realtek,rtl82xx: Document
+ RTL8211F LED support
+Message-ID: <20240708205856.GA3874098-robh@kernel.org>
+References: <20240705215207.256863-1-marex@denx.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,70 +65,63 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAL_JsqJPe1=K7VimSWz+AH2h4fu_2WEud_rUw1dV=SE7pY3C6w@mail.gmail.com>
+In-Reply-To: <20240705215207.256863-1-marex@denx.de>
 
-> > eth0: ethernet@1fb50000 {
-> >         compatible = "airoha,en7581-eth";
-> >         reg = <0 0x1fb50000 0 0x2600>,
-> >               <0 0x1fb54000 0 0x2000>,
-> >               <0 0x1fb56000 0 0x2000>;
-> >         reg-names = "fe", "qdma0", "qdma1";
-> >
-> >         resets = <&scuclk EN7581_FE_RST>,
-> >                  <&scuclk EN7581_FE_PDMA_RST>,
-> >                  <&scuclk EN7581_FE_QDMA_RST>,
-> >                  <&scuclk EN7581_XSI_MAC_RST>,
-> >                  <&scuclk EN7581_DUAL_HSI0_MAC_RST>,
-> >                  <&scuclk EN7581_DUAL_HSI1_MAC_RST>,
-> >                  <&scuclk EN7581_HSI_MAC_RST>,
-> >                  <&scuclk EN7581_XFP_MAC_RST>;
-> >         reset-names = "fe", "pdma", "qdma", "xsi-mac",
-> >                       "hsi0-mac", "hsi1-mac", "hsi-mac",
-> >                       "xfp-mac";
-> >
-> >         interrupts = <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>,
-> >                      <GIC_SPI 55 IRQ_TYPE_LEVEL_HIGH>,
-> >                      <GIC_SPI 56 IRQ_TYPE_LEVEL_HIGH>,
-> >                      <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>,
-> >                      <GIC_SPI 38 IRQ_TYPE_LEVEL_HIGH>,
-> >                      <GIC_SPI 58 IRQ_TYPE_LEVEL_HIGH>,
-> >                      <GIC_SPI 59 IRQ_TYPE_LEVEL_HIGH>,
-> >                      <GIC_SPI 60 IRQ_TYPE_LEVEL_HIGH>,
-> >                      <GIC_SPI 49 IRQ_TYPE_LEVEL_HIGH>,
-> >                      <GIC_SPI 64 IRQ_TYPE_LEVEL_HIGH>;
-> >
-> >         status = "disabled";
-> >
-> >         #address-cells = <1>;
-> >         #size-cells = <0>;
-> >
-> >         gdm1: mac@1 {
-> >                 compatible = "airoha,eth-mac";
-> >                 reg = <1>;
-> >                 phy-mode = "internal";
-> >                 status = "disabled";
-> >
-> >                 fixed-link {
-> >                         speed = <1000>;
-> >                         full-duplex;
-> >                         pause;
-> >                 };
-> >         };
-> > };
-> >
-> > I am using phy related binding for gdm1:mac@1 node.
+On Fri, Jul 05, 2024 at 11:51:46PM +0200, Marek Vasut wrote:
+> The RTL8211F PHY does support LED configuration, document support
+> for LEDs in the binding document.
+> 
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> ---
+> Cc: "David S. Miller" <davem@davemloft.net>
+> Cc: Andrew Lunn <andrew@lunn.ch>
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Eric Dumazet <edumazet@google.com>
+> Cc: Florian Fainelli <f.fainelli@gmail.com>
+> Cc: Heiner Kallweit <hkallweit1@gmail.com>
+> Cc: Jakub Kicinski <kuba@kernel.org>
+> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> Cc: Paolo Abeni <pabeni@redhat.com>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Cc: netdev@vger.kernel.org
+> ---
+>  .../devicetree/bindings/net/realtek,rtl82xx.yaml   | 14 +++++++++++---
+>  1 file changed, 11 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/realtek,rtl82xx.yaml b/Documentation/devicetree/bindings/net/realtek,rtl82xx.yaml
+> index 18ee72f5c74a8..28c048368073b 100644
+> --- a/Documentation/devicetree/bindings/net/realtek,rtl82xx.yaml
+> +++ b/Documentation/devicetree/bindings/net/realtek,rtl82xx.yaml
+> @@ -14,9 +14,6 @@ maintainers:
+>  description:
+>    Bindings for Realtek RTL82xx PHYs
+>  
+> -allOf:
+> -  - $ref: ethernet-phy.yaml#
+> -
+>  properties:
+>    compatible:
+>      enum:
+> @@ -54,6 +51,17 @@ properties:
+>  
+>  unevaluatedProperties: false
+>  
+> +allOf:
+> +  - $ref: ethernet-phy.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: ethernet-phy-id001c.c916
+> +    then:
+> +      properties:
+> +        leds: true
 
-Hi Lorenzo
+This has no effect. 'leds' node is already allowed with the ref to 
+ethernet-phy.yaml. I suppose you could negate the if and then, but I'm 
+not really that worried if someone defines LEDs for a device with no 
+LEDs. 
 
-phy-mode is a MAC property, not a PHY property. Same for
-fixed-link. These are in ethernet-controller.yaml.
-
-You sometimes have an network controller IP which has multiple MACs
-and some shared infrastructure. You would typically describe the
-shared infrastructure at the top level. The MACs are then listed as
-children, and they make use of ethernet-controller.yaml, and that is
-where all the network specific properties are placed. Is that what you
-are trying to do here?
-
-    Andrew
+Rob
 
