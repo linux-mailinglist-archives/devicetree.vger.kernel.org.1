@@ -1,228 +1,90 @@
-Return-Path: <devicetree+bounces-83910-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83911-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89D9792A4CE
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 16:35:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FE2492A4F6
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 16:44:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8D5042817CF
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 14:35:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 511FB1C212F0
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 14:44:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1D3413E03F;
-	Mon,  8 Jul 2024 14:34:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03D9613E3F7;
+	Mon,  8 Jul 2024 14:44:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GX1WBYmB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mgVOK1Pa"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB3A313DDCA;
-	Mon,  8 Jul 2024 14:34:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF84513DDAC;
+	Mon,  8 Jul 2024 14:44:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720449284; cv=none; b=CEf0FCydVHbZn0k8zj+OJbZNd2xLfHnu+nRcP7XpX0H3ig8uYgtAGad9ow7giNJ7avYGh2DTFJfvK2ShQCwyqDE2m9mQv/1Xl/5JK2UKEgX+r3UGM5Uy7j9l58tYHQGoJFkDYWvDD1bK7gRbpYYq4LiyWdN+6wSsTEiI/RvEi/Y=
+	t=1720449879; cv=none; b=mLTAug6RUqSYlE6Z5RbgTIjgG5IGogyWo13lvaw3qjaUnrCbEyD6dh72Puguc3zGxYGnEW5ga8GR1Z32Tp8GVW+GpGDxjSqVrPhqEQd0+swRNm3RVV8LsZ5+MXokxhXCyjIuriOGjNwFe3/jtn8Zo9CAcJrIKE/V+2h0b03t5X4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720449284; c=relaxed/simple;
-	bh=s6M5nbZ68G8/iy6k6aEBsfDMDF5Vn95v0Ca9+I2QOc8=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=YmURIobfDUNszgYsfZ42DFpTinLKhBVdVH7fvaHGJA0s8lvaq+wihoZZB7/RsNkFHD2ew49fCuABjEj29AyS9l2MzvWOOCHAn4pmpwsxuAupFentOkal5hc0gNzP6gL8C3TPAALTF2Yqn3JRQLjgm+aqvsSbE8nOM/L2IR4xGeI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GX1WBYmB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC7E2C4AF11;
-	Mon,  8 Jul 2024 14:34:43 +0000 (UTC)
+	s=arc-20240116; t=1720449879; c=relaxed/simple;
+	bh=XOlkof7heUnyINqmNnRU1NkGO2/QrognmlUxLHzJxxE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HE4cvdP5JgRC5A1HW6WK57mCqNZAQA2cOn4yeT/scwRdBMPrbjbEMCAdRJ/u7+jABoa5C5kLipz6RgSoD7g/aqbmzIOKdHFLrIne00/Io3r49y0PnToLHBo8VdEAmoMh2UfTtDSFFyAyWdmygkAUCpCTQsLR8CgiLDM1QwpYk+8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mgVOK1Pa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69D20C4AF0C;
+	Mon,  8 Jul 2024 14:44:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720449284;
-	bh=s6M5nbZ68G8/iy6k6aEBsfDMDF5Vn95v0Ca9+I2QOc8=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=GX1WBYmB87KtyQYfL/zkSXTc46d8R4QfTs51tMzD6UrTsbRHupKHoss7UcbnjrriA
-	 FrfQ5FCFndwES9UaUQIspNwuwgxrcK7IiztP3HhDaxaWUx08TwqGXEhQbN4xM0dKJZ
-	 cgUHnFhYcevQ+honH7gopOD8mJ6OcAP8zqQS2hvHqa0KPVXnnl8bBKpTIg70Exibch
-	 pSfiEel5fIHzNQOtjayOiakEpnpTIP1dqH2uQPz4kJ6Zof08hr1cLotZXjrkxx3haL
-	 YxiaECtSbU6zZwi8kSTxAqv8ccKKYfEnuUH4j1eRr7cuc7fNMna8nxJLylAPI6vmrz
-	 Z1M7+0zraY9sw==
-Date: Mon, 08 Jul 2024 08:34:42 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1720449879;
+	bh=XOlkof7heUnyINqmNnRU1NkGO2/QrognmlUxLHzJxxE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=mgVOK1PaoG2+z5fHjbpQCgjbgXDapnKot4qp1Ol8fk83NoRQSblAvhGWpLebd7doa
+	 cTP+xvUle8d1sugEXAqIuHZcB+rHUGG6vynie3vHsnmM69LZjPB1deOvEjqFhXRdQS
+	 21ZNXf1aIE+qlXrG+1zwh/YndRa2Jn2WJ0fe9SkgQJEQpI1ra7RF90jQoTfFCVLp6k
+	 KbMYCsFOKi97JTR0uatjDYb29zLiR6XmbpPZVCzb8ucOrYg3uAX0iPEsNGF2hLg8sk
+	 txKlvK2edCIljuKCJg+FL/QEGqyq1Q8TzDmNDROcG8pRrzK2SqNfvNq4Mk5NNawwVV
+	 MEVJH8Vea9NZQ==
+Date: Mon, 8 Jul 2024 08:44:37 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Kamil =?iso-8859-1?Q?Hor=E1k?= <kamilh@axis.com>
+Cc: linux@armlinux.org.uk, andrew@lunn.ch, edumazet@google.com,
+	devicetree@vger.kernel.org, davem@davemloft.net,
+	conor+dt@kernel.org, netdev@vger.kernel.org,
+	bcm-kernel-feedback-list@broadcom.com, hkallweit1@gmail.com,
+	kuba@kernel.org, florian.fainelli@broadcom.com, krzk+dt@kernel.org,
+	pabeni@redhat.com, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v11 3/4] dt-bindings: ethernet-phy: add optional brr-mode
+ flag
+Message-ID: <172044987681.3165374.12381204340909635857.robh@kernel.org>
+References: <20240708102716.1246571-1-kamilh@axis.com>
+ <20240708102716.1246571-4-kamilh@axis.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Frieder Schrempf <frieder@fris.de>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Shawn Guo <shawnguo@kernel.org>, 
- Stefan Agner <stefan@agner.ch>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- Gregor Herburger <gregor.herburger@ew.tq-group.com>, 
- Bo Liu <liubo03@inspur.com>, Frieder Schrempf <frieder.schrempf@kontron.de>, 
- linux-kernel@vger.kernel.org, 
- Joao Paulo Goncalves <joao.goncalves@toradex.com>, 
- devicetree@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>, 
- Hiago De Franco <hiago.franco@toradex.com>, 
- Tim Harvey <tharvey@gateworks.com>, 
- Linus Walleij <linus.walleij@linaro.org>, 
- Markus Niebel <Markus.Niebel@ew.tq-group.com>, linux-gpio@vger.kernel.org, 
- Bartosz Golaszewski <brgl@bgdev.pl>, imx@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, 
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Joy Zou <joy.zou@nxp.com>, 
- Marco Felsch <m.felsch@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Bjorn Helgaas <bhelgaas@google.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Alexander Stein <alexander.stein@ew.tq-group.com>, 
- Robin Gong <yibin.gong@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>, 
- Mathieu Othacehe <m.othacehe@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Peng Fan <peng.fan@nxp.com>, Hugo Villeneuve <hvilleneuve@dimonoff.com>, 
- Li Yang <leoyang.li@nxp.com>, Fabio Estevam <festevam@gmail.com>
-In-Reply-To: <20240708084107.38986-1-frieder@fris.de>
-References: <20240708084107.38986-1-frieder@fris.de>
-Message-Id: <172044909550.3146333.2379422584888739611.robh@kernel.org>
-Subject: Re: [PATCH v2 0/5] Add support for Kontron OSM-S i.MX93 SoM and
- carrier board
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240708102716.1246571-4-kamilh@axis.com>
 
 
-On Mon, 08 Jul 2024 10:40:30 +0200, Frieder Schrempf wrote:
-> From: Frieder Schrempf <frieder.schrempf@kontron.de>
+On Mon, 08 Jul 2024 12:27:15 +0200, Kamil Horák (2N) wrote:
+> There is a group of PHY chips supporting BroadR-Reach link modes in
+> a manner allowing for more or less identical register usage as standard
+> Clause 22 PHY.
+> These chips support standard Ethernet link modes as well, however, the
+> circuitry is mutually exclusive and cannot be auto-detected.
+> The link modes in question are 100Base-T1 as defined in IEEE802.3bw,
+> based on Broadcom's 1BR-100 link mode, and newly defined 10Base-T1BRR
+> (1BR-10 in Broadcom documents).
 > 
-> Patch 1-2: small DT binding fixups
-> Patch 3: board DT bindings
-> Patch 4: support PMIC driver without IRQ
-> Patch 5: add devicetrees
+> Add optional brr-mode flag to switch the PHY to BroadR-Reach mode.
 > 
-> Changes for v2:
-> * remove applied patches 1 and 2
-> * add tags
-> * improvements suggested by Krzysztof (thanks!)
-> * add missing Makefile entry for DT
-> 
-> Frieder Schrempf (5):
->   dt-bindings: gpio: vf610: Allow gpio-line-names to be set
->   dt-bindings: regulator: pca9450: Make interrupt optional
->   dt-bindings: arm: fsl: Add Kontron i.MX93 OSM-S based boards
->   regulator: pca9450: Make IRQ optional
->   arm64: dts: Add support for Kontron i.MX93 OSM-S SoM and BL carrier
->     board
-> 
->  .../devicetree/bindings/arm/fsl.yaml          |   6 +
->  .../devicetree/bindings/gpio/gpio-vf610.yaml  |   4 +
->  .../regulator/nxp,pca9450-regulator.yaml      |   1 -
->  arch/arm64/boot/dts/freescale/Makefile        |   1 +
->  .../dts/freescale/imx93-kontron-bl-osm-s.dts  | 165 ++++++
->  .../dts/freescale/imx93-kontron-osm-s.dtsi    | 547 ++++++++++++++++++
->  drivers/regulator/pca9450-regulator.c         |  41 +-
->  7 files changed, 742 insertions(+), 23 deletions(-)
->  create mode 100644 arch/arm64/boot/dts/freescale/imx93-kontron-bl-osm-s.dts
->  create mode 100644 arch/arm64/boot/dts/freescale/imx93-kontron-osm-s.dtsi
-> 
-> --
-> 2.45.2
-> 
+> Signed-off-by: Kamil Horák (2N) <kamilh@axis.com>
+> ---
+>  Documentation/devicetree/bindings/net/ethernet-phy.yaml | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 > 
 
-
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
-
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
-
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-New warnings running 'make CHECK_DTBS=y freescale/imx93-kontron-bl-osm-s.dtb' for 20240708084107.38986-1-frieder@fris.de:
-
-arch/arm64/boot/dts/freescale/imx93-kontron-bl-osm-s.dtb: eeprom@50: compatible: 'oneOf' conditional failed, one must be fixed:
-arch/arm64/boot/dts/freescale/imx93-kontron-bl-osm-s.dtb: eeprom@50: compatible: 'oneOf' conditional failed, one must be fixed:
-		'onnn,n24s64b' does not match 'c00$'
-		'onnn,n24s64b' does not match 'c01$'
-		'onnn,n24s64b' does not match 'cs01$'
-		'onnn,n24s64b' does not match 'c02$'
-		'onnn,n24s64b' does not match 'cs02$'
-		'onnn,n24s64b' does not match 'mac402$'
-		'onnn,n24s64b' does not match 'mac602$'
-		'onnn,n24s64b' does not match 'c04$'
-		'onnn,n24s64b' does not match 'cs04$'
-		'onnn,n24s64b' does not match 'c08$'
-		'onnn,n24s64b' does not match 'cs08$'
-		'onnn,n24s64b' does not match 'c16$'
-		'onnn,n24s64b' does not match 'cs16$'
-		'onnn,n24s64b' does not match 'c32$'
-		'onnn,n24s64b' does not match 'cs32$'
-		'onnn,n24s64b' does not match 'c64$'
-		'onnn,n24s64b' does not match 'cs64$'
-		'onnn,n24s64b' does not match 'c128$'
-		'onnn,n24s64b' does not match 'cs128$'
-		'onnn,n24s64b' does not match 'c256$'
-		'onnn,n24s64b' does not match 'cs256$'
-		'onnn,n24s64b' does not match 'c512$'
-		'onnn,n24s64b' does not match 'cs512$'
-		'onnn,n24s64b' does not match 'c1024$'
-		'onnn,n24s64b' does not match 'cs1024$'
-		'onnn,n24s64b' does not match 'c1025$'
-		'onnn,n24s64b' does not match 'cs1025$'
-		'onnn,n24s64b' does not match 'c2048$'
-		'onnn,n24s64b' does not match 'cs2048$'
-		'onnn,n24s64b' does not match 'spd$'
-		'atmel,24c64' does not match 'c00$'
-		'atmel,24c64' does not match 'c01$'
-		'atmel,24c64' does not match 'cs01$'
-		'atmel,24c64' does not match 'c02$'
-		'atmel,24c64' does not match 'cs02$'
-		'atmel,24c64' does not match 'mac402$'
-		'atmel,24c64' does not match 'mac602$'
-		'atmel,24c64' does not match 'c04$'
-		'atmel,24c64' does not match 'cs04$'
-		'atmel,24c64' does not match 'c08$'
-		'atmel,24c64' does not match 'cs08$'
-		'atmel,24c64' does not match 'c16$'
-		'atmel,24c64' does not match 'cs16$'
-		'atmel,24c64' does not match 'c32$'
-		'atmel,24c64' does not match 'cs32$'
-		'atmel,24c64' does not match 'cs64$'
-		'atmel,24c64' does not match 'c128$'
-		'atmel,24c64' does not match 'cs128$'
-		'atmel,24c64' does not match 'c256$'
-		'atmel,24c64' does not match 'cs256$'
-		'atmel,24c64' does not match 'c512$'
-		'atmel,24c64' does not match 'cs512$'
-		'atmel,24c64' does not match 'c1024$'
-		'atmel,24c64' does not match 'cs1024$'
-		'atmel,24c64' does not match 'c1025$'
-		'atmel,24c64' does not match 'cs1025$'
-		'atmel,24c64' does not match 'c2048$'
-		'atmel,24c64' does not match 'cs2048$'
-		'atmel,24c64' does not match 'spd$'
-	['onnn,n24s64b', 'atmel,24c64'] is too long
-	'onnn,n24s64b' does not match '^(atmel|catalyst|microchip|nxp|ramtron|renesas|rohm|st),(24(c|cs|lc|mac)[0-9]+|spd)$'
-	'belling,bl24c16a' was expected
-	'onnn,n24s64b' is not one of ['rohm,br24g01', 'rohm,br24t01']
-	'onnn,n24s64b' is not one of ['nxp,se97b', 'renesas,r1ex24002']
-	'onnn,n24s64b' is not one of ['onnn,cat24c04', 'onnn,cat24c05', 'rohm,br24g04']
-	'renesas,r1ex24016' was expected
-	'giantec,gt24c32a' was expected
-	'onnn,n24s64b' is not one of ['renesas,r1ex24128', 'samsung,s524ad0xd1']
-	'onnn,n24s64b' does not match '^atmel,24c(32|64)d-wl$'
-	'atmel,24c16' was expected
-	'atmel,24c01' was expected
-	'atmel,24c02' was expected
-	'atmel,24c04' was expected
-	'atmel,24c32' was expected
-	'atmel,24c128' was expected
-	from schema $id: http://devicetree.org/schemas/eeprom/at24.yaml#
-arch/arm64/boot/dts/freescale/imx93-kontron-bl-osm-s.dtb: eeprom@50: Unevaluated properties are not allowed ('compatible' was unexpected)
-	from schema $id: http://devicetree.org/schemas/eeprom/at24.yaml#
-arch/arm64/boot/dts/freescale/imx93-kontron-bl-osm-s.dtb: /soc@0/bus@44000000/i2c@44340000/eeprom@50: failed to match any schema with compatible: ['onnn,n24s64b', 'atmel,24c64']
-
-
-
-
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
