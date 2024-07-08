@@ -1,355 +1,153 @@
-Return-Path: <devicetree+bounces-84017-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84018-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A4A792AAEA
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 23:11:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 427B392AAEE
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 23:15:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8D2281C210C1
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 21:11:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DE2851F2280C
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 21:15:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72F2414E2E3;
-	Mon,  8 Jul 2024 21:11:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD3773399B;
+	Mon,  8 Jul 2024 21:15:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Lk2ks/fL"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="nbIApz44"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AE7720DE8;
-	Mon,  8 Jul 2024 21:11:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07ED212E75;
+	Mon,  8 Jul 2024 21:15:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720473064; cv=none; b=ZcDqkY8hmq3e88yk/jypsvrcxP2vHS7PsvVELHf6OXRoHLm50e/bCpfcFjXyU/vt3VmkL6uiUiHxs+1Fx+ciOHb2/8MZBhTVyEOmly5TgLaZ8eLaoHRjockvVIRAW7/DyditnyTPyL16iZEzqbagQmzlfaq2bH2jnHPnWqFZ4/A=
+	t=1720473318; cv=none; b=eQ1C5pnYfE/ONdCnw/vI+seH8g67rmt0W+q2vsN5WqsAg3BTwIZRPZbX0a2evtq5Q7NEH2rXoOhu9l273XCb4I/KhugxXMtI4WZ3hR5/wF+twhqbjchZPCfETkJJW5CBmvApXs5Wd4hgvk6Y6tZZw3FIWAshwPH+b8eWZdpKZjQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720473064; c=relaxed/simple;
-	bh=qlncNLyaA3yc3AXdndUDPtc2YHOaKBOTbDUfNAxhA+s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IWAvq+XtWPprPxVBg30OdLaYNFd/drUgmsNtwHEHxL452vWAe2cZ41stzRbYYhuUCs9vY1SpSq50im4nkocDzp+dsn4/pSGcZinq7VXDLHv6vmN/UGqNJlPyiiL4jYROIgXWJPPlImTwphSPvprUwBpazcssPZmhYiv2mbJXdAs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Lk2ks/fL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4AFCDC116B1;
-	Mon,  8 Jul 2024 21:11:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720473063;
-	bh=qlncNLyaA3yc3AXdndUDPtc2YHOaKBOTbDUfNAxhA+s=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Lk2ks/fLh9udrJ7lJ91dCC/vOQjE9igKDqIPouyruxFx7NuUSnt/UOfSF8B0KDX8Z
-	 75Qk8fGD+k52p9CINZwijEzldy2+ZrWfrrM4JhbQRMTzuWEChgna3Iyqv1qDo5LMAn
-	 KZ+BOgMJO1rZgYXuy7k1S7I4t6mjkRo2uiDAI3e8+qxto8Bq39qClrYOQxK4v4le1h
-	 8eKg1hDye4d3FPSn6VceKYRhRr/A+gMP352CYdO3BYaHKAo8WjxwviN5fE795KKC0e
-	 SkKwaPD//zEcR6LfEl8TcFnmGr/o4gyPZrTJ2TTzGqq0IdGcSUUGWQu7hLVQq5yMbv
-	 qEZ7eRig+kwLw==
-Date: Mon, 8 Jul 2024 23:10:59 +0200
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: netdev@vger.kernel.org, nbd@nbd.name, lorenzo.bianconi83@gmail.com,
-	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, conor@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, catalin.marinas@arm.com,
-	will@kernel.org, upstream@airoha.com,
-	angelogioacchino.delregno@collabora.com,
-	benjamin.larsson@genexis.eu, rkannoth@marvell.com,
-	sgoutham@marvell.com, andrew@lunn.ch, arnd@arndb.de,
-	horms@kernel.org
-Subject: Re: [PATCH v5 net-next 1/2] dt-bindings: net: airoha: Add EN7581
- ethernet controller
-Message-ID: <ZoxV45hyccLHAm1P@lore-desk>
-References: <cover.1720079772.git.lorenzo@kernel.org>
- <48dde2595c6ff497a846183b117ac9704537b78c.1720079772.git.lorenzo@kernel.org>
- <20240708163708.GA3371750-robh@kernel.org>
- <Zowb18jXTOw5L2aT@lore-desk>
- <CAL_JsqJPe1=K7VimSWz+AH2h4fu_2WEud_rUw1dV=SE7pY3C6w@mail.gmail.com>
+	s=arc-20240116; t=1720473318; c=relaxed/simple;
+	bh=kAc6w7ha10sYNCEe/V6aYJmYQvnIrUSX27i4gmDVeaw=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=tb/wi7aUNdBvleFLUXCEEO9vix/3W9QDc568McfGeoeV6bbCMqFNVTjNvRRdUD0isj0i93cmFvFwblt/RMxAKU5SYOy5gkUK+YTMTq8/jn45F1i+obPqG3E8rzXL6W7Z9Gwv78DnjJR4h7Z5Ncu4IDU7K+4xyTUlw9ZfSMowcRU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=nbIApz44; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 468BwTvk025637;
+	Mon, 8 Jul 2024 21:15:08 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=HIraQW69nRCntJylblT984
+	/L8ukZ5pc+efMd0GeGwhk=; b=nbIApz44TDoEtAqJlDyc7uwdWdfby7UYYXUqCn
+	vQTbPL8awqp7TxGcNAinhnPY2mDILZoFi2exaBiyZJUnpBsfFd8HrXYwJCYcIQ/s
+	7SQvCqMGhXP6KMu0+bfIB0H+Bqn5bDzh/GBfCYrti1RWA9tjYgtup8b/5lJOlcu+
+	pnopY0uC77fNKnGup4GNA241JY/yyNxu2hPXLcYlF8yMrPo9HjsMeehSv/r5sXur
+	5G2EKAJJlkzhZgaFqlqhyERsHk7N+RRSSlg3LOk4bfER56gKeLEnTv27SIz+ChtO
+	ORjCmEOgSbQFL/FwFlgwCGxOpeWQjL9gjCdiUvqwZcBLxuHw==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 406we8vt0p-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 08 Jul 2024 21:15:08 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA05.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 468LF6gk030793
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 8 Jul 2024 21:15:06 GMT
+Received: from hu-scheluve-lv.qualcomm.com (10.49.16.6) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Mon, 8 Jul 2024 14:15:03 -0700
+From: Sagar Cheluvegowda <quic_scheluve@quicinc.com>
+Date: Mon, 8 Jul 2024 14:14:47 -0700
+Subject: [PATCH] arm64: dts: qcom: sa8775p: Add interconnects for ethernet
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="4lIwAWTvaLItX9IW"
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqJPe1=K7VimSWz+AH2h4fu_2WEud_rUw1dV=SE7pY3C6w@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-ID: <20240708-icc_bw_voting_emac_dtsi-v1-1-4b091b3150c0@quicinc.com>
+X-B4-Tracking: v=1; b=H4sIAMZWjGYC/x3MQQqAIBBA0avIrBPUgrKrRIjZVLNIQ6WC6O5Jy
+ 7f4/4GEkTBBzx6IeFKi4AtkxcBt1q/IaS4GJVQjWlFzcs5MlzlDJr8a3K0zc07ElRV60VZ2sm2
+ g1EfEhe7/PIzv+wFnY8UVaQAAAA==
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+        Andrew Halaney
+	<ahalaney@redhat.com>, <kernel@quicinc.com>,
+        Sagar Cheluvegowda
+	<quic_scheluve@quicinc.com>
+X-Mailer: b4 0.13.0
+X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: bqWY1VxPVVcV1HvT7K3kLRKBqr30oM4O
+X-Proofpoint-ORIG-GUID: bqWY1VxPVVcV1HvT7K3kLRKBqr30oM4O
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-08_11,2024-07-05_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 adultscore=0
+ malwarescore=0 priorityscore=1501 clxscore=1011 impostorscore=0
+ lowpriorityscore=0 spamscore=0 mlxlogscore=999 phishscore=0 mlxscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2406140001 definitions=main-2407080157
 
+Define interconnect properties for ethernet hardware.
 
---4lIwAWTvaLItX9IW
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Suggested-by: Andrew Halaney <ahalaney@redhat.com>
+Signed-off-by: Sagar Cheluvegowda <quic_scheluve@quicinc.com>
+---
+Adding interconnect dtsi properties within ethernet node of SA8775P,
+this patch is adding support for the interconnect properties defined
+in the series ->  
+https://lore.kernel.org/all/20240703-icc_bw_voting_from_ethqos-v3-0-8f9148ac60a3@quicinc.com/
+---
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-> On Mon, Jul 8, 2024 at 11:03=E2=80=AFAM Lorenzo Bianconi <lorenzo@kernel.=
-org> wrote:
-> >
-> > > On Thu, Jul 04, 2024 at 10:08:10AM +0200, Lorenzo Bianconi wrote:
-> > > > Introduce device-tree binding documentation for Airoha EN7581 ether=
-net
-> > > > mac controller.
-> > > >
-> > > > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> > > > ---
-> > > >  .../bindings/net/airoha,en7581-eth.yaml       | 146 ++++++++++++++=
-++++
-> > > >  1 file changed, 146 insertions(+)
-> > > >  create mode 100644 Documentation/devicetree/bindings/net/airoha,en=
-7581-eth.yaml
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/net/airoha,en7581-et=
-h.yaml b/Documentation/devicetree/bindings/net/airoha,en7581-eth.yaml
-> > > > new file mode 100644
-> > > > index 000000000000..f4b1f8afddd0
-> > > > --- /dev/null
-> > > > +++ b/Documentation/devicetree/bindings/net/airoha,en7581-eth.yaml
-> > > > @@ -0,0 +1,146 @@
-> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > > +%YAML 1.2
-> > > > +---
-> > > > +$id: http://devicetree.org/schemas/net/airoha,en7581-eth.yaml#
-> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > +
-> > > > +title: Airoha EN7581 Frame Engine Ethernet controller
-> > > > +
-> > > > +allOf:
-> > > > +  - $ref: ethernet-controller.yaml#
-> > >
-> > > Again, to rephrase, what are you using from this binding? It does not
-> > > make sense for the parent and child both to use it.
-> >
-> > Below I reported the ethernet dts node I am using (I have not posted th=
-e dts
-> > changes yet):
->=20
-> What happens when you remove this $ref? Nothing, because you use 0
-> properties from it. If none of the properties apply, then don't
-> reference it. It is that simple.
+diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+index 23f1b2e5e624..7ebf03953b7b 100644
+--- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
++++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+@@ -3464,6 +3464,12 @@ ethernet1: ethernet@23000000 {
+ 				      "ptp_ref",
+ 				      "phyaux";
+ 
++			interconnect-names = "mac-mem", "cpu-mac";
++			interconnects = <&aggre1_noc MASTER_EMAC_1 QCOM_ICC_TAG_ALWAYS
++					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
++					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
++					 &config_noc SLAVE_EMAC1_CFG QCOM_ICC_TAG_ALWAYS>;
++
+ 			power-domains = <&gcc EMAC1_GDSC>;
+ 
+ 			phys = <&serdes1>;
+@@ -3499,6 +3505,12 @@ ethernet0: ethernet@23040000 {
+ 				      "ptp_ref",
+ 				      "phyaux";
+ 
++			interconnect-names = "mac-mem", "cpu-mac";
++			interconnects = <&aggre1_noc MASTER_EMAC QCOM_ICC_TAG_ALWAYS
++					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
++					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
++					 &config_noc SLAVE_EMAC_CFG QCOM_ICC_TAG_ALWAYS>;
++
+ 			power-domains = <&gcc EMAC0_GDSC>;
+ 
+ 			phys = <&serdes0>;
 
-if I get rid of "$ref: ethernet-controller.yaml#" here I get the following =
-error using
-en7581-evb.dts (not posted upstream yet):
+---
+base-commit: 0b58e108042b0ed28a71cd7edf5175999955b233
+change-id: 20240703-icc_bw_voting_emac_dtsi-2a09f9a18174
 
-$make CHECK_DTBS=3Dy DT_SCHEMA_FILES=3Dairoha airoha/en7581-evb.dtb
-  UPD     include/config/kernel.release
-  DTC_CHK arch/arm64/boot/dts/airoha/en7581-evb.dtb
-  /home/lorenzo/workspace/linux-mediatek/arch/arm64/boot/dts/airoha/en7581-=
-evb.dtb: ethernet@1fb50000: mac@1: Unevaluated properties are not allowed (=
-'fixed-link', 'phy-mode' were unexpected)
-  from schema $id: http://devicetree.org/schemas/net/airoha,en7581-eth.yaml#
+Best regards,
+-- 
+Sagar Cheluvegowda <quic_scheluve@quicinc.com>
 
->=20
-> >
-> > eth0: ethernet@1fb50000 {
-> >         compatible =3D "airoha,en7581-eth";
-> >         reg =3D <0 0x1fb50000 0 0x2600>,
-> >               <0 0x1fb54000 0 0x2000>,
-> >               <0 0x1fb56000 0 0x2000>;
-> >         reg-names =3D "fe", "qdma0", "qdma1";
-> >
-> >         resets =3D <&scuclk EN7581_FE_RST>,
-> >                  <&scuclk EN7581_FE_PDMA_RST>,
-> >                  <&scuclk EN7581_FE_QDMA_RST>,
-> >                  <&scuclk EN7581_XSI_MAC_RST>,
-> >                  <&scuclk EN7581_DUAL_HSI0_MAC_RST>,
-> >                  <&scuclk EN7581_DUAL_HSI1_MAC_RST>,
-> >                  <&scuclk EN7581_HSI_MAC_RST>,
-> >                  <&scuclk EN7581_XFP_MAC_RST>;
-> >         reset-names =3D "fe", "pdma", "qdma", "xsi-mac",
-> >                       "hsi0-mac", "hsi1-mac", "hsi-mac",
-> >                       "xfp-mac";
-> >
-> >         interrupts =3D <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>,
-> >                      <GIC_SPI 55 IRQ_TYPE_LEVEL_HIGH>,
-> >                      <GIC_SPI 56 IRQ_TYPE_LEVEL_HIGH>,
-> >                      <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>,
-> >                      <GIC_SPI 38 IRQ_TYPE_LEVEL_HIGH>,
-> >                      <GIC_SPI 58 IRQ_TYPE_LEVEL_HIGH>,
-> >                      <GIC_SPI 59 IRQ_TYPE_LEVEL_HIGH>,
-> >                      <GIC_SPI 60 IRQ_TYPE_LEVEL_HIGH>,
-> >                      <GIC_SPI 49 IRQ_TYPE_LEVEL_HIGH>,
-> >                      <GIC_SPI 64 IRQ_TYPE_LEVEL_HIGH>;
-> >
-> >         status =3D "disabled";
-> >
-> >         #address-cells =3D <1>;
-> >         #size-cells =3D <0>;
-> >
-> >         gdm1: mac@1 {
-> >                 compatible =3D "airoha,eth-mac";
-> >                 reg =3D <1>;
-> >                 phy-mode =3D "internal";
-> >                 status =3D "disabled";
-> >
-> >                 fixed-link {
-> >                         speed =3D <1000>;
-> >                         full-duplex;
-> >                         pause;
-> >                 };
-> >         };
-> > };
-> >
-> > I am using phy related binding for gdm1:mac@1 node.
->=20
-> Right, so you should reference ethernet-controller.yaml for the mac
-> node because you use properties from the schema.
-
-ack. So, IIUC what you mean here, I need to get rid of "$ref: ethernet-cont=
-roller.yaml#"
-in the parent node and just use in the mac node. Correct?
-
->=20
-> > gdm1 is the GMAC port used
-> > as cpu port by the mt7530 dsa switch
->=20
-> That has nothing to do with *this* binding...
->=20
-> >
-> > switch: switch@1fb58000 {
-> >         compatible =3D "airoha,en7581-switch";
-> >         reg =3D <0 0x1fb58000 0 0x8000>;
-> >         resets =3D <&scuclk EN7581_GSW_RST>;
-> >
-> >         interrupt-controller;
-> >         #interrupt-cells =3D <1>;
-> >         interrupt-parent =3D <&gic>;
-> >         interrupts =3D <GIC_SPI 209 IRQ_TYPE_LEVEL_HIGH>;
-> >
-> >         status =3D "disabled";
-> >
-> >         #address-cells =3D <1>;
-> >         #size-cells =3D <1>;
-> >
-> >         ports {
-> >                 #address-cells =3D <1>;
-> >                 #size-cells =3D <0>;
-> >
-> >                 gsw_port1: port@1 {
-> >                         reg =3D <1>;
-> >                         label =3D "lan1";
-> >                         phy-mode =3D "internal";
-> >                         phy-handle =3D <&gsw_phy1>;
-> >                 };
-> >
-> >                 gsw_port2: port@2 {
-> >                         reg =3D <2>;
-> >                         label =3D "lan2";
-> >                         phy-mode =3D "internal";
-> >                         phy-handle =3D <&gsw_phy2>;
-> >                 };
-> >
-> >                 gsw_port3: port@3 {
-> >                         reg =3D <3>;
-> >                         label =3D "lan3";
-> >                         phy-mode =3D "internal";
-> >                         phy-handle =3D <&gsw_phy3>;
-> >                 };
-> >
-> >                 gsw_port4: port@4 {
-> >                         reg =3D <4>;
-> >                         label =3D "lan4";
-> >                         phy-mode =3D "internal";
-> >                         phy-handle =3D <&gsw_phy4>;
-> >                 };
-> >
-> >                 port@6 {
-> >                         reg =3D <6>;
-> >                         label =3D "cpu";
-> >                         ethernet =3D <&gdm1>;
-> >                         phy-mode =3D "internal";
-> >
-> >                         fixed-link {
-> >                                 speed =3D <1000>;
-> >                                 full-duplex;
-> >                                 pause;
-> >                         };
-> >                 };
-> >         };
-> >
-> >         mdio {
-> >                 #address-cells =3D <1>;
-> >                 #size-cells =3D <0>;
-> >
-> >                 gsw_phy1: ethernet-phy@1 {
-> >                         compatible =3D "ethernet-phy-ieee802.3-c22";
-> >                         reg =3D <9>;
-> >                         phy-mode =3D "internal";
-> >                 };
-> >
-> >                 gsw_phy2: ethernet-phy@2 {
-> >                         compatible =3D "ethernet-phy-ieee802.3-c22";
-> >                         reg =3D <10>;
-> >                         phy-mode =3D "internal";
-> >                 };
-> >
-> >                 gsw_phy3: ethernet-phy@3 {
-> >                         compatible =3D "ethernet-phy-ieee802.3-c22";
-> >                         reg =3D <11>;
-> >                         phy-mode =3D "internal";
-> >                 };
-> >
-> >                 gsw_phy4: ethernet-phy@4 {
-> >                         compatible =3D "ethernet-phy-ieee802.3-c22";
-> >                         reg =3D <12>;
-> >                         phy-mode =3D "internal";
-> >                 };
-> >         };
-> > };
->=20
-> None of this is relevant.
->=20
-> > > > +patternProperties:
-> > > > +  "^mac@[1-4]$":
-> > >
-> > > 'ethernet' is the defined node name for users of
-> > > ethernet-controller.yaml.
-> >
-> > Looking at the dts above, ethernet is already used by the parent node.
->=20
-> So? Not really any reason a node named foo can't have a child named foo, =
-too.
-
-ack, fine. I will fix it in the next revision.
-
->=20
-> An 'ethernet' node should implement an ethernet interface. It is the
-> child nodes that implement the ethernet interface(s). Whether you use
-> 'ethernet' on the parent or not, I don't care too much.
-
-ack, I will use "$ref: ethernet-controller.yaml#" just for the child in thi=
-s case.
-
-Regards,
-Lorenzo
-
->=20
-> > This approach has been already used here [0],[1],[2]. Is it fine to reu=
-se it?
->=20
-> That one appears to be wrong too with the parent referencing
-> ethernet-controller.yaml.
->=20
-> Rob
->=20
-> > Regards,
-> > Lorenzo
-> >
-> > [0] https://github.com/torvalds/linux/blob/master/arch/arm64/boot/dts/m=
-ediatek/mt7622.dtsi#L964
-> > [1] https://github.com/torvalds/linux/blob/master/arch/arm64/boot/dts/m=
-ediatek/mt7622-bananapi-bpi-r64.dts#L136
-> > [2] https://github.com/torvalds/linux/blob/master/Documentation/devicet=
-ree/bindings/net/mediatek%2Cnet.yaml#L370
-
---4lIwAWTvaLItX9IW
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZoxV4wAKCRA6cBh0uS2t
-rP37AP41VxaGSbi9DK4tkO8fFeR3aWMDrKOBXVc4wqVtPu62+wEA+PBBRzvFOLrf
-fI5irjM0KudrfoyuZYD3c1kLhu82KwU=
-=Cemr
------END PGP SIGNATURE-----
-
---4lIwAWTvaLItX9IW--
 
