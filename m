@@ -1,76 +1,76 @@
-Return-Path: <devicetree+bounces-83860-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83861-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C93E892A28D
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 14:23:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86D7C92A292
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 14:23:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 49EB51F2281B
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 12:23:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 362061F21108
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 12:23:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F35182480;
-	Mon,  8 Jul 2024 12:23:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FB9686636;
+	Mon,  8 Jul 2024 12:23:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="M/gIXr8W"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="atM897Iu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4C3A81204
-	for <devicetree@vger.kernel.org>; Mon,  8 Jul 2024 12:23:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DDBA839E3
+	for <devicetree@vger.kernel.org>; Mon,  8 Jul 2024 12:23:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720441383; cv=none; b=X/QhY2lsacqkKG+zGlFi/ao3CGTEyD9EhMgV5BzMKdyfWJODcvUSg6znkpsqy5WfOYAvH0oWC2hJr8zPAqHjnaETMwCh1S5GU7EaDJc0bZCnmzdLPrNoa0ACHZmoWmQ5nAMtm9Ftjyy9HJt2KUInBLyBU3rmO0h9GFKuUzMHcLc=
+	t=1720441386; cv=none; b=ZXRfeo29W5bp2C5gMYKU/q3Z9ejNWolqF2pvJtiiTXZaxprlHyj/hlh2Atf09DwAvgOInIIS081DKMq+9P7THZa1F+3p2X3ujFwgtPcJm/cAGGp0MHg2V0PT+lqDiCg7k8i7LHc+zCJwfhwKi/AdqgA9fTs08RmdxwKURX2lpt8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720441383; c=relaxed/simple;
-	bh=YS331u/IScHChATk8p7aL3JRzn+3f0/zhE16HH8SRSg=;
+	s=arc-20240116; t=1720441386; c=relaxed/simple;
+	bh=a9ltpCCByjdBmPwzY8NTJCgzDHbIcqn2UsHtrfrIUGg=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=eHSKjqStc95PFxMskrODcRi4Pz91CjFgnweGCHsMvGvTIeff+ZnnRdWzWIBqmI/GGzNq3goMkTadesH9WsdEKCPSBWnyV0H0lIgob3yM5gPU/xcJNxr10Gcrh4B9a5xYC1+J4pfQcEXRAf9FBfOl1kBDX1Yi/qo9HIWb5NLIbeY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=M/gIXr8W; arc=none smtp.client-ip=209.85.218.46
+	 In-Reply-To:To:Cc; b=VlBwn8c2KrxB/pyvgV9HE9M4npOQCdYylyGJlJWMeszQq5oorCwDSalcXg27yXkZ1df/BR1X1dmpFG6zdi1vqlbf2CEu8yX3K1P18LqiWMjLe+2RU/XVFQ0+BUCt6ju3988zMFUKupV2enN959L5mHsyoXGeYfXcjgvAmQ2m3Vw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=atM897Iu; arc=none smtp.client-ip=209.85.218.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a77e7a6cfa7so155094266b.1
-        for <devicetree@vger.kernel.org>; Mon, 08 Jul 2024 05:23:01 -0700 (PDT)
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a77c25beae1so404657666b.2
+        for <devicetree@vger.kernel.org>; Mon, 08 Jul 2024 05:23:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1720441380; x=1721046180; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1720441383; x=1721046183; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=KuoGIEtLY+sG9K81klkUtIfsNH9bTZF+T0WBDkLiP+Y=;
-        b=M/gIXr8WAFooNn7+uWmO8b2rRBTL4a7nYJmhoZUGMukLF9UfZ+sHiATOGF3z8Ykooq
-         hCOs+FQyicG4eQIjFKd1JmB3WQUKwTN2DX4ySFgqEoELa4iKtWC4RPU6UKjO3eR2rfaO
-         pI9m/qS9sK/GJ5KnT9rSckYd/2ffBTc5v5QN6UwHMhMdhmA2jt9TGonDAgQKUXWKzENv
-         FGEvdLfdqETkgOzpEw9H1ilGJo6eYGUmdQoZ7ul0Yym3sQp2lWmvIPc1gKSeKxLyhiUD
-         bXgfkIQX5nOqcRMPdkoDK8HN96X8IcH4kIKfx2RWF2Mp0wo51dGCam8ed+ImqPFsLwFF
-         DNMA==
+        bh=Cjsp7pSBAArMHdQni+W9ujHChM6z0PA2ajKmcUfUJMI=;
+        b=atM897IudYcXRpsJMP5fjs3c369ZkOgXekJQmgp3/xcNiaf6+fIX4sGz8BYwl9xang
+         J+0UkuDMAVicOuYMqivv826JMtc6mvCOxODEegsfyb/QZCwpy7QkLMHFYAP7fdKgvlpP
+         sVnglHeNbqCzppUStFSCurg6Fu+Zh0QADbMej6TsmZMVfMG+y+MUPIXCz645WEZbLgwq
+         Q7i7DpfWM90vzsWRvWD4sYgGVqBRgEk1mFkDtDy88vA2VaN/Om8xuP5sb5xq15v2ClHS
+         nKLwHB3n9ilupSboujG/3R6hsMW6F8130tGuiKQsrW32Y0XlWjALAtPAcZytHCCTk8Qy
+         p0Iw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720441380; x=1721046180;
+        d=1e100.net; s=20230601; t=1720441383; x=1721046183;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=KuoGIEtLY+sG9K81klkUtIfsNH9bTZF+T0WBDkLiP+Y=;
-        b=JSJd8J84sYl+/BqSij21Ol9hDGrWo4D9sdtB44zhKxOb0NvrNKouiR5R3mCSxaVM/x
-         YQhwCBAAjtmSOg158v/T5wnqZGatIqWSkwaYqYfe8kjBFm5OoaBYIxPrklC5h08Pe1kX
-         wWWfZ9FrTjZ56fUoPet8yQjSeWwOnpgD/tZLfGn9Dh7yz99A9L5dq5e48ILocCkVKwVz
-         9wKLVEgC/GTCMMnOuqaD0YT3zulBc1K3jkID1aVZ6lQsgSMIS4OKEFdBxO6o2zK7ebL5
-         RLKF5h45rnxTxRuF3+GMjcRF1HXlq1Jm97w7D6NuY4Yocnp9tIjIIIGdBhK1oqGdJR9s
-         3EMw==
-X-Forwarded-Encrypted: i=1; AJvYcCXRjvQsUuA+pxwgFoVInnJH0Rz9va8pTqe9nqVGsQV1Q9//lrHJ8aMiUTG0UNXkUF4Gks/p9raG5uDGqqhfOfpmSsnva8Qmr0M9uQ==
-X-Gm-Message-State: AOJu0YyHDd+XdaC+ohJc/4AK7NisTXwNtGmzKdlZiiwl/lgoLQgtuocp
-	19JPSPD9EAnPrBtINTypTy02OKHc5ZRoUrBxOJWsAbPafdvx4t2yI5WPzGSZAPE=
-X-Google-Smtp-Source: AGHT+IFsv0xnzPRSLt3WVV1W7Q5iYcFTyqb19d+OrVEXe8LFZ/SMKdneIgEa59nbjfQgeGZ1WzSZDQ==
-X-Received: by 2002:a17:906:b11:b0:a77:db36:1ccc with SMTP id a640c23a62f3a-a77db361dbcmr561338666b.24.1720441380037;
-        Mon, 08 Jul 2024 05:23:00 -0700 (PDT)
+        bh=Cjsp7pSBAArMHdQni+W9ujHChM6z0PA2ajKmcUfUJMI=;
+        b=jYsmvBVCPW8+d23UeePPd4qXvv/eHJjs62QnB3qhgkgf8AVlcapf63VKVa/yR1J0Qh
+         EqLCmFZMQeEAemCy4iEgmqxpuqiHtpelqj9BIjZZU0j8vUYEYryMfRBaPeTtIhSYXJRK
+         x+4NIiwszyG2iPHZKHYesIk2Lk8BUkXeYJuocfy+qXcZHAQhVfue1UsOFdOjwvaVp+Id
+         SZGO4nLdV7gfheL558lfZBfjNrP99YCGCkvvK9t4l+rsy2D4TJippOtegtMnOFRTeNvd
+         nPUXrVgoIUdV5H81U2u139wWlRqYL01yFeH4vFXDNN368geapKprbxOUQFiA90OO1amh
+         9WbA==
+X-Forwarded-Encrypted: i=1; AJvYcCUoU5VoTADzoLPNOa2u8jwQDD3v3c47EqwwSDm2QxsuU/62tFQsxxIaZVVH3Jy/2IdaW3ibZ9pvzbDg9bw9K7uFYuGkCTEsMjLBTA==
+X-Gm-Message-State: AOJu0YxveoN9cEUw/A6MBDYWlThiMQOxn8erZvbfWpqJzRh1HviuHN1G
+	qxOybEcgHEvccTCV90OJfgBelVpZtr6MIAXPgtvzHYRebqbg5iUYQXcMXKMI/Jg=
+X-Google-Smtp-Source: AGHT+IEHOSOCSTQTCAKQiQAbeH62nSmAElW3TfCdMCd1bjLHPVzqzlCm2o+YDc+pjUO8cHDBRIdJFQ==
+X-Received: by 2002:a17:906:81d4:b0:a77:e0ed:8bb with SMTP id a640c23a62f3a-a77e0ed09bbmr414346166b.42.1720441382755;
+        Mon, 08 Jul 2024 05:23:02 -0700 (PDT)
 Received: from [192.168.105.194] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a77e52ccf19sm208983666b.147.2024.07.08.05.22.57
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a77e52ccf19sm208983666b.147.2024.07.08.05.23.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Jul 2024 05:22:59 -0700 (PDT)
+        Mon, 08 Jul 2024 05:23:02 -0700 (PDT)
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Date: Mon, 08 Jul 2024 14:22:33 +0200
-Subject: [PATCH v15 02/10] dt-bindings: opp: v2-qcom-level: Document CPR3
- open/closed loop volt adjustment
+Date: Mon, 08 Jul 2024 14:22:34 +0200
+Subject: [PATCH v15 03/10] dt-bindings: opp: v2-qcom-level: Allow
+ opp-shared
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,7 +79,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240708-topic-cpr3h-v15-2-5bc8b8936489@linaro.org>
+Message-Id: <20240708-topic-cpr3h-v15-3-5bc8b8936489@linaro.org>
 References: <20240708-topic-cpr3h-v15-0-5bc8b8936489@linaro.org>
 In-Reply-To: <20240708-topic-cpr3h-v15-0-5bc8b8936489@linaro.org>
 To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
@@ -99,53 +99,37 @@ Cc: Robert Marko <robimarko@gmail.com>, linux-kernel@vger.kernel.org,
  Marijn Suijten <marijn.suijten@somainline.org>, 
  Konrad Dybcio <konradybcio@kernel.org>, 
  Varadarajan Narayanan <quic_varada@quicinc.com>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+ Konrad Dybcio <konrad.dybcio@linaro.org>
 X-Mailer: b4 0.14.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1720441372; l=1573;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1720441372; l=790;
  i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=YS331u/IScHChATk8p7aL3JRzn+3f0/zhE16HH8SRSg=;
- b=uNRqYMh/GkR9tuyunemDFYhU/xn9vIoAkwNKZTtZ5batuz+sXQqmlvlrnW0DwTRPo0MvR9slD
- 8EjaugTz36YDu9o6x6nZj536R7z0ZkcUzz5gAvMEgu6ZL9IiR5sv1Kk
+ bh=a9ltpCCByjdBmPwzY8NTJCgzDHbIcqn2UsHtrfrIUGg=;
+ b=4vzsiflIbtRjRk3Rt4GJxG4C5hZHfbRBCjf34IdI2ymD5PPib4hhrTZp2N3seAJmS0shxegbs
+ Tl8XZiHD6rgDV5ftBxlM3T4yJ18fAzZhMJVP26R4rhhHxEYzm3nZvPT
 X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
  pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 
-CPR3 and newer can be fed per-OPP voltage adjustment values for both
-open- and closed-loop paths to make better decisions about settling
-on the final voltage offset target. Document these properties.
+Some devices may use a shared OPP table, such as separate CPR threads.
+Allow the table to be marked as such.
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- .../devicetree/bindings/opp/opp-v2-qcom-level.yaml         | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+ Documentation/devicetree/bindings/opp/opp-v2-qcom-level.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
 diff --git a/Documentation/devicetree/bindings/opp/opp-v2-qcom-level.yaml b/Documentation/devicetree/bindings/opp/opp-v2-qcom-level.yaml
-index a30ef93213c0..b203ea01b17a 100644
+index b203ea01b17a..cc694b254a14 100644
 --- a/Documentation/devicetree/bindings/opp/opp-v2-qcom-level.yaml
 +++ b/Documentation/devicetree/bindings/opp/opp-v2-qcom-level.yaml
-@@ -34,6 +34,20 @@ patternProperties:
-         minItems: 1
-         maxItems: 2
+@@ -16,6 +16,8 @@ properties:
+   compatible:
+     const: operating-points-v2-qcom-level
  
-+      qcom,opp-cloop-vadj:
-+        description: |
-+          An array of per-thread values representing the closed-loop
-+          voltage adjustment value associated with this OPP node.
-+        $ref: /schemas/types.yaml#/definitions/int32-array
-+        maxItems: 2
++  opp-shared: true
 +
-+      qcom,opp-oloop-vadj:
-+        description: |
-+          An array of per-thread values representing the open-loop
-+          voltage adjustment value associated with this OPP node.
-+        $ref: /schemas/types.yaml#/definitions/int32-array
-+        maxItems: 2
-+
-     required:
-       - opp-level
-       - qcom,opp-fuse-level
+ patternProperties:
+   '^opp-?[0-9]+$':
+     type: object
 
 -- 
 2.45.2
