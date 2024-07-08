@@ -1,141 +1,246 @@
-Return-Path: <devicetree+bounces-83963-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-83964-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69EE792A769
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 18:36:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 17DF092A76E
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 18:37:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 20510281AA2
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 16:36:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C1CF6280E0C
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2024 16:37:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4787F1474DA;
-	Mon,  8 Jul 2024 16:35:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43110145B37;
+	Mon,  8 Jul 2024 16:37:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="U44a0MWP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Cj2PdjOf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-182.mta1.migadu.com (out-182.mta1.migadu.com [95.215.58.182])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 361C3142E92
-	for <devicetree@vger.kernel.org>; Mon,  8 Jul 2024 16:35:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19934142E92;
+	Mon,  8 Jul 2024 16:37:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720456557; cv=none; b=te4h+pEe1CEwVCgmOFVZayrP1E9gtejeQjZeliE3zyQBKjUwwzv1jO1frTHZjq2ft/jeKT12Yt1jLzDA8JnEIImwkM7oYoGRDDyhfQRqbKvm1nkTqxAY+obW7VqOoV68HRpZUhJesKpKNEiuflrpczy8ZewVVoLclZhpUUB95lI=
+	t=1720456630; cv=none; b=A/zSX/Hfz9oC4/S0FU+wXwxSnOtBcJljUIAIUaBMPC+xERiOcHvdEnpdBKQv5bSPeEdtMr+HP0KjwUTkffukjAOEY3TP76iilQXL3/fUKthENlrGTxbfcrkQO+eF5v6npg/MHgLHe8Y1BdrmmTZod8JYhWp4ecKYhvoAbmJMb3Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720456557; c=relaxed/simple;
-	bh=epV5XKr+izWXQUuHLm0+Hd1JdiR9XIiEqS4eTdKApHY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=cNwObPDfg8Zl37w/UejhYOiEHuEUTWGv6I/QjPMZ/LNpeH3+Cz5z2mzuiDu9dfujDCTgpU93Kb468WcHHu7FGY2f9+ILqx6B+ifDUVHNQ7nKF2xbZG4d47Kpo7XAHRbS9QoFRclwsqXnJVrRzeQpfbudu44L/vOUNTAKLlYa/cA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=U44a0MWP; arc=none smtp.client-ip=95.215.58.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
-X-Envelope-To: macromorgan@hotmail.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
-	t=1720456552;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Q1xLGY2jSIrtPqPZ9NbhDBkO1nnpCkyLaDO8znSKpp4=;
-	b=U44a0MWPWvNcZbVouFYU5A9SDhVDTDZA4UcB2WhGSUt87LnPir9tVEsOxbm1QjV3ITL2QN
-	ex3G2qsk5edc65UXRRd7GIPsSZYWd1STBVrSVXvCUHK2yi8M+MTzfagvmDfeSKjYJAbyVO
-	Yhk9Sc7tF6qQ2s3KW0QSNKj+Ve8uBAohc6pMZKRxMtj/F6EIXofU2MOkTLNrMIBWdqeRqJ
-	rOfVlZmvkD56mawtUvu9xHDg8lELcz/1wJJaHW/wPJ2cgqs7KQuNPGYETyzqIierkd1pII
-	14Yu7lWMSDhr1pkjwg/ME0Gd0boEj90C8AuAFyiu43dmpiGgio67mGBZubJ4wA==
-X-Envelope-To: heiko@sntech.de
-X-Envelope-To: mweigand@mweigand.net
-X-Envelope-To: dsimic@manjaro.org
-X-Envelope-To: linux-rockchip@lists.infradead.org
-X-Envelope-To: devicetree@vger.kernel.org
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-X-Envelope-To: linux-kernel@vger.kernel.org
-X-Envelope-To: andyshrk@163.com
-X-Envelope-To: jagan@amarulasolutions.com
-X-Envelope-To: amadeus@jmu.edu.cn
-X-Envelope-To: f.kardame@manjaro.org
-X-Envelope-To: michael.riesch@wolfvision.net
-X-Envelope-To: wiagn233@outlook.com
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Diederik de Haas <didi.debian@cknow.org>
-To: Chris Morgan <macromorgan@hotmail.com>
-Cc: Heiko Stuebner <heiko@sntech.de>,
- Maximilian Weigand <mweigand@mweigand.net>,
- Dragan Simic <dsimic@manjaro.org>, linux-rockchip@lists.infradead.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, Andy Yan <andyshrk@163.com>,
- Jagan Teki <jagan@amarulasolutions.com>, Chukun Pan <amadeus@jmu.edu.cn>,
- Furkan Kardame <f.kardame@manjaro.org>,
- Michael Riesch <michael.riesch@wolfvision.net>,
- Shengyu Qu <wiagn233@outlook.com>
-Subject:
- Re: arm64: dts: rockchip: Add dma-names to uart-bluetooth rk3566 devices
-Date: Mon, 08 Jul 2024 18:35:39 +0200
-Message-ID: <18704154.NT27xa3IZQ@bagend>
-Organization: Connecting Knowledge
-In-Reply-To:
- <MN2PR16MB29416FE9165FB72824266667A5DA2@MN2PR16MB2941.namprd16.prod.outlook.com>
-References:
- <20240705163004.29678-2-didi.debian@cknow.org>
- <MN2PR16MB29416FE9165FB72824266667A5DA2@MN2PR16MB2941.namprd16.prod.outlook.com>
+	s=arc-20240116; t=1720456630; c=relaxed/simple;
+	bh=lJGd+nVv18omxFkLiXtuoAeQ/dT7m1C/E4pcSNjQLpM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hpSr/wDXpy4bdfPJ/8LABJ4Kryd2w4XVap1vxQgfDpqjySc/RNOhlGT/avBa3qvXkR7C+LJyOuCEslSXak5EQgkJqNrgJiQDoFnoM/De12WywcFEDQd2vQQGMRlHZNIlVW7Qrupbe46o+6KmG4qi/U0/wmU5muGEbaOtHHHPpNA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Cj2PdjOf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A5BAC116B1;
+	Mon,  8 Jul 2024 16:37:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720456629;
+	bh=lJGd+nVv18omxFkLiXtuoAeQ/dT7m1C/E4pcSNjQLpM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Cj2PdjOfqC/V2zLlbonGQSNK7FrUxVYjTa7glx0NPUZ8w/UjO5tVv9G9kv2z/YlFi
+	 THB2lc2HBEd/Zx+4euQRPFJNSJcyHmKkUdR81UjDoLnMn9EtME7lixEnJX3JrsdKSW
+	 eK0AWaQLmXKwKQtw2EVFA0iXcoAS2fJUaCA71DpBSRsWcQIFtUbO7DV5rGD2FfiWot
+	 8GOV6OWUTen4NxUVs98g2xOIE91QYwwFag99FoFNSz/iPQXQ5/pj/yc3zxv2vkJGUY
+	 wwcSZvyniG/BHvT03Q5+tEOiam/DPy6d6hcvwdPDQROzSuEANdYRDT7VCnLG1P5yGk
+	 k0H2VhufWVNCg==
+Date: Mon, 8 Jul 2024 10:37:08 -0600
+From: Rob Herring <robh@kernel.org>
+To: Lorenzo Bianconi <lorenzo@kernel.org>
+Cc: netdev@vger.kernel.org, nbd@nbd.name, lorenzo.bianconi83@gmail.com,
+	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, conor@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, catalin.marinas@arm.com,
+	will@kernel.org, upstream@airoha.com,
+	angelogioacchino.delregno@collabora.com,
+	benjamin.larsson@genexis.eu, rkannoth@marvell.com,
+	sgoutham@marvell.com, andrew@lunn.ch, arnd@arndb.de,
+	horms@kernel.org
+Subject: Re: [PATCH v5 net-next 1/2] dt-bindings: net: airoha: Add EN7581
+ ethernet controller
+Message-ID: <20240708163708.GA3371750-robh@kernel.org>
+References: <cover.1720079772.git.lorenzo@kernel.org>
+ <48dde2595c6ff497a846183b117ac9704537b78c.1720079772.git.lorenzo@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart5757575.N3OQHAa34O";
- micalg="pgp-sha256"; protocol="application/pgp-signature"
-X-Migadu-Flow: FLOW_OUT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <48dde2595c6ff497a846183b117ac9704537b78c.1720079772.git.lorenzo@kernel.org>
 
---nextPart5757575.N3OQHAa34O
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
-From: Diederik de Haas <didi.debian@cknow.org>
-To: Chris Morgan <macromorgan@hotmail.com>
-Date: Mon, 08 Jul 2024 18:35:39 +0200
-Message-ID: <18704154.NT27xa3IZQ@bagend>
-Organization: Connecting Knowledge
-MIME-Version: 1.0
-
-On Monday, 8 July 2024 18:05:05 CEST Chris Morgan wrote:
-> > This is a single patch which adds the dma-names property to the uart
-> > node with a bluetooth subnode on Pine64's rk356x devices.
-> > 
-> > But that property can potentially be added to several other devices, but
-> > I have zero familiarity with them or their community, so I choose not to
-> > add it to those devices, but inform people via this cover letter.
+On Thu, Jul 04, 2024 at 10:08:10AM +0200, Lorenzo Bianconi wrote:
+> Introduce device-tree binding documentation for Airoha EN7581 ethernet
+> mac controller.
 > 
-> Thank you, but based on past experience the bluetooth failed to work
-> when I had the DMA names present (which is why I removed them on my
-> devices). I will however test it again to confirm that is still the
-> case or not.
+> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> ---
+>  .../bindings/net/airoha,en7581-eth.yaml       | 146 ++++++++++++++++++
+>  1 file changed, 146 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/airoha,en7581-eth.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/net/airoha,en7581-eth.yaml b/Documentation/devicetree/bindings/net/airoha,en7581-eth.yaml
+> new file mode 100644
+> index 000000000000..f4b1f8afddd0
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/airoha,en7581-eth.yaml
+> @@ -0,0 +1,146 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/airoha,en7581-eth.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Airoha EN7581 Frame Engine Ethernet controller
+> +
+> +allOf:
+> +  - $ref: ethernet-controller.yaml#
 
-That is very well possible as I had specifically you in mind when I chose to 
-only apply it to Pine64 devices (as I could directly contact those people).
-I had a vague recollection that there was 'something' with bluetooth on 
-devices you added.
+Again, to rephrase, what are you using from this binding? It does not 
+make sense for the parent and child both to use it.
 
-Thus it seemed better to inform people of the possibility, but let the actual 
-implementation up to them.
+> +
+> +maintainers:
+> +  - Lorenzo Bianconi <lorenzo@kernel.org>
+> +
+> +description:
+> +  The frame engine ethernet controller can be found on Airoha SoCs.
+> +  These SoCs have multi-GMAC ports.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - airoha,en7581-eth
+> +
+> +  reg:
+> +    items:
+> +      - description: Frame engine base address
+> +      - description: QDMA0 base address
+> +      - description: QDMA1 base address
+> +
+> +  reg-names:
+> +    items:
+> +      - const: fe
+> +      - const: qdma0
+> +      - const: qdma1
+> +
+> +  interrupts:
+> +    items:
+> +      - description: QDMA lan irq0
+> +      - description: QDMA lan irq1
+> +      - description: QDMA lan irq2
+> +      - description: QDMA lan irq3
+> +      - description: QDMA wan irq0
+> +      - description: QDMA wan irq1
+> +      - description: QDMA wan irq2
+> +      - description: QDMA wan irq3
+> +      - description: FE error irq
+> +      - description: PDMA irq
+> +
+> +  resets:
+> +    maxItems: 8
+> +
+> +  reset-names:
+> +    items:
+> +      - const: fe
+> +      - const: pdma
+> +      - const: qdma
+> +      - const: xsi-mac
+> +      - const: hsi0-mac
+> +      - const: hsi1-mac
+> +      - const: hsi-mac
+> +      - const: xfp-mac
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+> +patternProperties:
+> +  "^mac@[1-4]$":
 
-Cheers,
-  Diederik
---nextPart5757575.N3OQHAa34O
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
+'ethernet' is the defined node name for users of  
+ethernet-controller.yaml.
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCZowVWwAKCRDXblvOeH7b
-bvr8AQCR3UX8zsLmcd9BjCPsexTjAxcrLuEqZKdpAGwYqlz/8AEAijpXHym1iyGu
-wbw7/ntw95MClGyHkeh4XovtnqM37gc=
-=+Whf
------END PGP SIGNATURE-----
-
---nextPart5757575.N3OQHAa34O--
-
-
-
+> +    type: object
+> +    unevaluatedProperties: false
+> +    $ref: ethernet-controller.yaml#
+> +    description:
+> +      Ethernet GMAC port associated to the MAC controller
+> +    properties:
+> +      compatible:
+> +        const: airoha,eth-mac
+> +
+> +      reg:
+> +        minimum: 1
+> +        maximum: 4
+> +        description: GMAC port identifier
+> +
+> +    required:
+> +      - reg
+> +      - compatible
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - resets
+> +  - reset-names
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/clock/en7523-clk.h>
+> +
+> +    soc {
+> +      #address-cells = <2>;
+> +      #size-cells = <2>;
+> +
+> +      eth0: ethernet@1fb50000 {
+> +        compatible = "airoha,en7581-eth";
+> +        reg = <0 0x1fb50000 0 0x2600>,
+> +              <0 0x1fb54000 0 0x2000>,
+> +              <0 0x1fb56000 0 0x2000>;
+> +        reg-names = "fe", "qdma0", "qdma1";
+> +
+> +        resets = <&scuclk 44>,
+> +                 <&scuclk 30>,
+> +                 <&scuclk 31>,
+> +                 <&scuclk 6>,
+> +                 <&scuclk 15>,
+> +                 <&scuclk 16>,
+> +                 <&scuclk 17>,
+> +                 <&scuclk 26>;
+> +        reset-names = "fe", "pdma", "qdma", "xsi-mac",
+> +                      "hsi0-mac", "hsi1-mac", "hsi-mac",
+> +                      "xfp-mac";
+> +
+> +        interrupts = <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 55 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 56 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 38 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 58 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 59 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 60 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 49 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 64 IRQ_TYPE_LEVEL_HIGH>;
+> +
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        mac1: mac@1 {
+> +          compatible = "airoha,eth-mac";
+> +          reg = <1>;
+> +        };
+> +      };
+> +    };
+> -- 
+> 2.45.2
+> 
 
