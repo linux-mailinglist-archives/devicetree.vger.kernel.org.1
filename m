@@ -1,150 +1,150 @@
-Return-Path: <devicetree+bounces-84142-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84143-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C38EA92B28F
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 10:49:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F49092B2A2
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 10:53:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6DF1E1F229A8
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 08:49:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4287A1C21B41
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 08:53:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DEB4152E0D;
-	Tue,  9 Jul 2024 08:49:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 381A6153824;
+	Tue,  9 Jul 2024 08:53:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="pyxsdBDn"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wHRIHcyM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA7BD6138;
-	Tue,  9 Jul 2024 08:49:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5BAB1534FD
+	for <devicetree@vger.kernel.org>; Tue,  9 Jul 2024 08:53:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720514956; cv=none; b=tI02aDV01RTuUnUvApCwYpnGVDHLnUd9h8tTKDGm699HqpRr/gauTRxnD2Nu6DpWNXRD6+ytawlv0sxyYN7GZRk7Z1iAoKc4PhmGOCn2qrLntcCLQz/fXgaVcxYLxtDy5GH8yRxTxK1FFx0aA0DNvZCHwdiugNiK3OFP1SyXIQw=
+	t=1720515225; cv=none; b=kmYmFcgfyHRrcwgTtY0Hn5aKvK9l8vacab3n867eVXZSu8FKoPpHf1FdYV6Qoyrlm3flnJpjvIwIxiAno7bnnAvOPfjakUMeA0G6LJX6/xQ2kuASzbDnqofV7EwaDWMku3aa+4ZAR5Wo33N3HLAgZGlvqQ401Eey3K7rQvnNPe4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720514956; c=relaxed/simple;
-	bh=cP47i/7cJ4lkFges4Nl7itt3YRqAnpRsXN1/clKfjGY=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=J2CF0bBL1f3Vs5auA07+iwhqj/xlmNcOSbH/gyi39zXXTlOyH1EPhJWXS3FcHXL53X9Zw8ojWf1QdZvIEhlWl+oYZwndo6SJohW5ChyeYfHl0CWdZIBnRGR7gOTA5Jt2TIKSf60MJuMHJ2XQtvjY49YmmnyU2P9XftyD+yrVdJQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=pyxsdBDn; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4698mwu3070460;
-	Tue, 9 Jul 2024 03:48:58 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1720514938;
-	bh=5WZkfsvmLamemn97uUc60YsRqdAwy+JB+ny9+g16q3I=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=pyxsdBDn1uvDNX9Z5rxqHK4FNIggT2azEx6j3TeV77Gdrsuv4jzOytz5vL8aRaVDR
-	 u0Gw47zSO7/SleQwSJLWgzC3pcKLHBCTu6dLMhiTwDAlYfCiF0ZLT0SGg/beJf1CsF
-	 DjvH86un1lsJTkBdbd/WAH+VDb/7T/xrXA5SVU+A=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4698mwts024085
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 9 Jul 2024 03:48:58 -0500
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 9
- Jul 2024 03:48:58 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 9 Jul 2024 03:48:58 -0500
-Received: from localhost (uda0497581.dhcp.ti.com [10.24.68.185])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4698mvpw110540;
-	Tue, 9 Jul 2024 03:48:58 -0500
-Date: Tue, 9 Jul 2024 14:18:57 +0530
-From: Manorit Chawdhry <m-chawdhry@ti.com>
-To: Vignesh Raghavendra <vigneshr@ti.com>
-CC: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Neha Malcom
- Francis <n-francis@ti.com>,
-        Aniket Limaye <a-limaye@ti.com>, Udit Kumar
-	<u-kumar1@ti.com>,
-        Beleswar Padhi <b-padhi@ti.com>
-Subject: Re: [PATCH v2 1/5] arm64: dts: ti: k3-j721s2*: Add bootph-*
- properties
-Message-ID: <20240709084857.nf7c57mi6miajeau@uda0497581>
-References: <20240705-b4-upstream-bootph-all-v2-0-9007681ed7d8@ti.com>
- <20240705-b4-upstream-bootph-all-v2-1-9007681ed7d8@ti.com>
- <da36d283-73f0-4110-a9fa-3964eae19689@ti.com>
+	s=arc-20240116; t=1720515225; c=relaxed/simple;
+	bh=cd79zXbx+N5vL7P7T5X50BfnGu+fuRaCuSWUDwLHr4E=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=O9FU1ht84WtkYVUYV8QdI2U3uCVJ8xe9WTdTzBsdGe9GP3O0RcXF3gFwr1NwC+VXW4Ko9jQS2bnyNWU/zbvwE2k4H08/AaX7bTrFLw3+gqTdU7setpe/bL6h3NXp1tBrpqssG2Ij4IDB3fRMDgcrrIzwxYF1ScIQpPiXTys6mXE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wHRIHcyM; arc=none smtp.client-ip=209.85.221.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-36798779d75so4289928f8f.3
+        for <devicetree@vger.kernel.org>; Tue, 09 Jul 2024 01:53:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1720515221; x=1721120021; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=SA4aYgkuEJQ+2zt3ir0pQgoFJui8snze/b5Z9Ceeoqw=;
+        b=wHRIHcyMlXzYlbMt90M/WZqByG20ElKqxAluGsfVWgsQ7nOnBaQpqATQCqOXaCIYdx
+         MBsrtBVad9S9+iorF95revQHv7VwrMXfLYbcOqU3pStNWqy/84lTDRZOM/mgf7jRItrC
+         rlW8DXzQEIMXYl/G/EouPZBX+3qJe3AiV5AkTBrXsjrGk5vmoH36P4SmPW8CCpJ0NGrq
+         I2bNWLq6q4eyItfSQmO4aD/f4ziHxPPZjbYlGRXL1SMajfyMfWNp+igzrIKvf8YkaAsg
+         JOwpruZ9Y+KNK0qb9SGMqXGCkyBPc/jZPALtMS31NQCuCHcMmmqAAzAfkZMxM927R5Nk
+         rmhA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720515221; x=1721120021;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=SA4aYgkuEJQ+2zt3ir0pQgoFJui8snze/b5Z9Ceeoqw=;
+        b=pTynYaIT+MykeiIWDS8lvlJ9ADEUOqfbFoR70bkcPVPpbxk7PWFKlm2ttlHHRGVf/y
+         lXqjbMYoMKIOg5AHqcIgCOZZoP3bAeJGMXkSWfU2JW3ATIEjd9Oaso6FdehFwObtoDBG
+         GmG3JH4JRZk84NdV4gs2oqA7pirqlRhzZQ+WDy+j+vUZYsVcZRBIXwB48+ssjCeL9A/5
+         QGaWB0rN9RtAlbF0O0APbSOx0MESqtoITp6nv15oJmHynUTjgHQrZceI9on/zvadVo7l
+         hSrBi0wPUw/yBcPW+MYTQL3A51/yJ4pWfTy8ABsDmm7750tcA9nhSa+R+EJFyjexwC6C
+         ZuNQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUlxVxN6I8VzZMw6YdC1oTz0Cqn+bZ4SGM5d2dYy7g+5DGVIVktv8RShHUPes+Gv8tKgmhJh6+0rB0gerXpvXKo/1C1oMb9/g/nrw==
+X-Gm-Message-State: AOJu0YxfJp1xhWBmSrtfwtLFtUqM7KM0rYkjVxe0UO6Muf/jfrKCcZrj
+	JkuM5T5rft6NGCwPGTaKnqp6SmFLdy+fKz4AqMEGQu9v7K9+vKJFFwiO5nBmfhA=
+X-Google-Smtp-Source: AGHT+IGqB81NuLSnCUMTBHrJCIu396Gu/1DlJmDXwuPVOZxJWI5XPrLUGFSWhEfO8pch8PKu4xYm1Q==
+X-Received: by 2002:adf:f30b:0:b0:366:eba0:8d8c with SMTP id ffacd0b85a97d-367cead19b5mr1656003f8f.54.1720515221137;
+        Tue, 09 Jul 2024 01:53:41 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:cad:2140:b12a:8461:5e2a:dfe? ([2a01:e0a:cad:2140:b12a:8461:5e2a:dfe])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4266f6e09fcsm31353055e9.4.2024.07.09.01.53.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 09 Jul 2024 01:53:40 -0700 (PDT)
+Message-ID: <a75ae0d7-9945-4e97-a4f9-706b253a161e@linaro.org>
+Date: Tue, 9 Jul 2024 10:53:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <da36d283-73f0-4110-a9fa-3964eae19689@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+User-Agent: Mozilla Thunderbird
+From: neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 4/4] arm64: dts: meson: a1: bind power domain to
+ temperature sensor
+To: George Stark <gnstark@salutedevices.com>, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, khilman@baylibre.com,
+ jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
+ hkallweit1@gmail.com, broonie@kernel.org, glaroque@baylibre.com,
+ rafael@kernel.org, daniel.lezcano@linaro.org, rui.zhang@intel.com,
+ lukasz.luba@arm.com, b.galvani@gmail.com, mmkurbanov@sberdevices.ru
+Cc: linux-i2c@vger.kernel.org, linux-spi@vger.kernel.org,
+ linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, kernel@salutedevices.com
+References: <20240708194808.1819185-1-gnstark@salutedevices.com>
+ <20240708194808.1819185-5-gnstark@salutedevices.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20240708194808.1819185-5-gnstark@salutedevices.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Vignesh,
+On 08/07/2024 21:48, George Stark wrote:
+> Meson A1 temperature sensor has dedicated power domain so bind it
+> to the device node.
+> 
+> Signed-off-by: George Stark <gnstark@salutedevices.com>
+> ---
+>   arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 1 +
+>   1 file changed, 1 insertion(+)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+> index dd5695963caa..86d77f51c25c 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+> @@ -919,6 +919,7 @@ cpu_temp: temperature-sensor@4c00 {
+>   				assigned-clock-rates = <500000>;
+>   				#thermal-sensor-cells = <0>;
+>   				amlogic,ao-secure = <&sec_AO>;
+> +				power-domains = <&pwrc PWRC_I2C_ID>;
+>   			};
+>   
+>   			hwrng: rng@5118 {
 
-On 13:02-20240709, Vignesh Raghavendra wrote:
-> 
-> 
-> On 05/07/24 11:56, Manorit Chawdhry wrote:
-> > diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-> > index 8feb42c89e47..497e0dfa8011 100644
-> > --- a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-> > +++ b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-> > @@ -17,20 +17,24 @@ sms: system-controller@44083000 {
-> >  
-> >  		reg-names = "debug_messages";
-> >  		reg = <0x00 0x44083000 0x00 0x1000>;
-> > +		bootph-all;
-> 
-> Since [0] in U-Boot, bootph-* is automatically propagated to supernodes.
-> Please fix throughout the series
-
-In v1, Aniket posted a review comment and that corresponded to all the
-devices hence added that [0]. As you mentioned offline, this node might
-be getting called in U-boot proper prior to re-location and somehow the
-property is not getting passed on at that stage. Might need some furthur
-debugging as to why it's failing. Will see what can be done about it.
-Thanks.
-
-[0]: https://lore.kernel.org/all/3e478ecc-33b8-4aa6-b984-67877864e900@ti.com/
-
-Regards,
-Manorit
-
-> 
-> >  
-> >  		k3_pds: power-controller {
-> >  			compatible = "ti,sci-pm-domain";
-> >  			#power-domain-cells = <2>;
-> > +			bootph-all;
-> >  		};
-> >  
-> >  		k3_clks: clock-controller {
-> >  			compatible = "ti,k2g-sci-clk";
-> >  			#clock-cells = <2>;
-> > +			bootph-all;
-> >  		};
-> >  
-> >  		k3_reset: reset-controller {
-> >  			compatible = "ti,sci-reset";
-> >  			#reset-cells = <2>;
-> > +			bootph-all;
-> >  		};
-> >  	};
-> 
-> 
-> [0]
-> 
-> -- 
-> Regards
-> Vignesh
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
