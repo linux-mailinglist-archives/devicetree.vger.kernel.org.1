@@ -1,56 +1,56 @@
-Return-Path: <devicetree+bounces-84447-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84448-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3670E92C422
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 21:53:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3D2592C431
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 21:57:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5D9131C22165
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 19:53:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6BD1D1F233D1
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 19:57:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97F1718003D;
-	Tue,  9 Jul 2024 19:53:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5011E182A7B;
+	Tue,  9 Jul 2024 19:57:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=j.neuschaefer@gmx.net header.b="rUnY0UFI"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=j.neuschaefer@gmx.net header.b="jzY1FJBd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30E681B86ED;
-	Tue,  9 Jul 2024 19:53:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0090B182A75;
+	Tue,  9 Jul 2024 19:57:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720554794; cv=none; b=F3njYr5x6jZI7GSmgd7lB8FLJvf1/9rFXFHtwBh8ZWgFQFp/h1thh0NAQpJTYeszcH0dOGO6VQ6lIrsrXiMTuzJCx280RDe+reeIMVow0UtEqHg/LE5gcvoLZGTXB4i22vXS8genDehYTL36Me2Nh5MP0dS4nezw6cAx+XJh+jM=
+	t=1720555029; cv=none; b=pNWKy5OypB4oomVCRN5Rbr/2svfei1faECmF4H6sHz2qxPcth78o2H6OZSmGONBlAc5LYpIqYGycAFgvptK7UdxZ5aWLJJJthOHLZ7d3UvA2F2bafJ0cNn85Jl724Yy41YpIFHHkz+rjAG5nts1FuvkqyUv+GPcBsPqhEEuJAaQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720554794; c=relaxed/simple;
-	bh=4VS6Gzx42in4s/cuAXwyjapmmPAl1UBawf23jVaBWnE=;
+	s=arc-20240116; t=1720555029; c=relaxed/simple;
+	bh=pe6E40kD2UguQlc+1RZnhH3OiNQLpX1XEWsDvh08jx0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RNUKFsKm//BMlsj+Vo0jWFhWaziZOy+nSz0mTV1b67Wf6YexZiuSxNtLeQnXqmQIgEqEqlZ8T3aom7bEh2teqi9WAKU/4djfIdCuH7rfX8ice/3af1zl31UmTxizb7RYR6FXzoBglwPrAQnQau+K/xPArKibdULgVx3Mr6jLwdA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=j.neuschaefer@gmx.net header.b=rUnY0UFI; arc=none smtp.client-ip=212.227.17.21
+	 Content-Type:Content-Disposition:In-Reply-To; b=e/wpuqLP+uPyezRWzKYwn0MvYV2eRKEP4l8ocqlSrGppuU0oya+EBNakLxRHhAaPazkMMLyYAxulHZd/HDNSZxG2FXt/0zAh5i6GjZ3z058PjjBXPJTN63ei8XHy52cxUyv/1hYiQPmUEgwBpin5SuC5xSR6lku8Nx0n08p4kfA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=j.neuschaefer@gmx.net header.b=jzY1FJBd; arc=none smtp.client-ip=212.227.17.21
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
-	s=s31663417; t=1720554773; x=1721159573; i=j.neuschaefer@gmx.net;
-	bh=4VS6Gzx42in4s/cuAXwyjapmmPAl1UBawf23jVaBWnE=;
+	s=s31663417; t=1720555016; x=1721159816; i=j.neuschaefer@gmx.net;
+	bh=X+Aym152/slUT1a8cnR0jcSyki1jKyW1FASNrMPLCdk=;
 	h=X-UI-Sender-Class:Date:From:To:Cc:Subject:Message-ID:References:
 	 MIME-Version:Content-Type:Content-Transfer-Encoding:In-Reply-To:
 	 cc:content-transfer-encoding:content-type:date:from:message-id:
 	 mime-version:reply-to:subject:to;
-	b=rUnY0UFIabfP2Tbh1ZPdf39SARlrVoyRanRLWcmkfM3ikQ7REFFIXdaWC2QZNf0k
-	 d6n7kS7EMJSpzaXW2VpG3kT5N8irmm118zpNLIF+jecHyKSuoTrO59y6IbrazvjZy
-	 NsvP8aPWqhCBkHaxuaofVEdOZooL/GhvsWH9sjKx8HzdP8gq4BsXkHJmORb9C2+QM
-	 QB6uWLTk+PgmLirYCigv+RMve1YkzroKk0kBgU/bZnPv/NSvEHc9KlXda71qFLPca
-	 6+eoKzv01fWkgktNfGzPudQtY7lgN1jLP3AtpLE2/uarIjFL8vkA1C+fDQXaUDwp0
-	 otL2ObFUzHgZy1VCEA==
+	b=jzY1FJBdhCxT/HHU2tS+0TAm8kni7R9aeDkXMVQrIVDggCWa0GDCrrfuT+sF7caf
+	 FfcoskCpkhelDEQXs2cPV0yLU8b8n4RrGvlqm/0ATL6utfBSShYiwyiowshuwnuy6
+	 kcL9bouaOG55N/otNU4OeLt3gFuxcU19alIdvIgSnURGBdFPtEWN75hbEdhzKhqnK
+	 eumCUBMyDoCz81Sl6qX4XXRsF29Zs0vvVBSB1bdWdJJ9UFANFJsrwaS9SOXlzG760
+	 Vulowvw3I+mGbCOs6Q/OmudJ46ZRipJTQ8KEnDmSsi8VZTTfKuH/KeeXAX429VmMw
+	 b1iMwLWGOu7LKdw6sw==
 X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from probook ([5.145.135.151]) by mail.gmx.net (mrgmx105
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1MDQic-1sZYMl0kpK-006lrd; Tue, 09
- Jul 2024 21:52:53 +0200
-Date: Tue, 9 Jul 2024 21:52:49 +0200
+Received: from probook ([5.145.135.151]) by mail.gmx.net (mrgmx104
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1N7i8Y-1sNN0M0lwg-013BSB; Tue, 09
+ Jul 2024 21:56:56 +0200
+Date: Tue, 9 Jul 2024 21:56:55 +0200
 From: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-To: Krzysztof Kozlowski <krzk@kernel.org>
+To: Stefan Wahren <wahrenst@gmx.net>
 Cc: Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -58,16 +58,14 @@ Cc: Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
 	Florian Fainelli <florian.fainelli@broadcom.com>,
 	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
 	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-	Eric Anholt <eric@anholt.net>, Stefan Wahren <wahrenst@gmx.net>,
-	Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org,
-	linux-rpi-kernel@lists.infradead.org,
+	Eric Anholt <eric@anholt.net>, Russell King <linux@armlinux.org.uk>,
+	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
 	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: arm: bcm2835: Specify
- /system/linux,revision property
-Message-ID: <Zo2VEZ3kHmYtU1_T@probook>
+Subject: Re: [PATCH 0/2] ARM: Expose Raspberry Pi revision code in
+ /proc/cpuinfo
+Message-ID: <Zo2WB_2szbCLgxNN@probook>
 References: <20240708-raspi-revision-v1-0-66e7e403e0b5@gmx.net>
- <20240708-raspi-revision-v1-1-66e7e403e0b5@gmx.net>
- <a3400961-ae76-4e11-ba8d-1f659f7324d0@kernel.org>
+ <b1cc367d-6782-4116-b3e7-3dd12e83032e@gmx.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,45 +75,60 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <a3400961-ae76-4e11-ba8d-1f659f7324d0@kernel.org>
-X-Provags-ID: V03:K1:g0FDFvr9YWbx7Xcr+ARx7Y+T9ipJ+T99zpRg2SekCAz/fQV9uvp
- kIiSiJm3rbcTNEAsrW1V9DRdorYz8DTKLf3R2Htzjzv0gN7VCsCyEzWpyQPO2vrsaCePNlW
- 4l8rssdbSDjQKSLHcR/Ud31wWA6nGXNbF5cj14R8MjM3HSCAqiaPJ7JF3AExOBHthbDuXrj
- mfBQpUqzguui1YA68pUsg==
+In-Reply-To: <b1cc367d-6782-4116-b3e7-3dd12e83032e@gmx.net>
+X-Provags-ID: V03:K1:HzpoMj+s7p1IKHbvapYEwrDBxL/rnbhNOt+116rouKn47XEs0yo
+ 8eFyc7oKimyGRicJDYM44pFm22cf5XMalPjNMeSEvJTMf3AshQaQULxVhyCAVRe5V+g1dts
+ hSrBc810lkQfc1Ii3cocFqhGQS0PZQR+4A9MappFR27Sm8LRlr5qJS0JDRD/rXDzFlHeUWa
+ sNA8mImy8Rb0bCMwRDfXA==
 X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:IaDw7jJPIVc=;tL7hhhJJSKOgU1n+kVDY7cTif4g
- KxteMqy3s8Gw+w2CGqG7TsoBVEDeITP6oFNXpVjW4AAoC43XVvpxOjBq0crytkDyATPAbWJxD
- CgRwrkl55DqS3NvscbgWKd/BGAgBD1SGhtk6nwQnsP6DiDutO2GakAEbNRQNcV3cKv+GtGOBV
- 8YaCgCU/EYSDAFp7CW+Q27wZCsfVkaejV2XYZFe1/6HXiqWtynaQ6iQ5QNJ4o2LuxOes3KZpP
- Dwgi/QnNF2k1F2QbIZJ1E3vVfxa4lIvothzd9o8EodT9hS/5BQ0UaRb7TbIes0kke8lRm/0Tq
- F7+8mjkeqXfomRxzaFETlhmcoQwjs3hh8pLsEtomrLvEmEd2rQuF8ZxzwTUh4sYPzyuHfIIdo
- llGJdILYwM0VyrEvNN36dsZcorDevmrc+vUiZctMt9YaKLeNkms8y1gVmAf+YaA5AValVf+L/
- vRqiWSdm+9QZPFSND/WNpcZbziMIHCi0ptzzSuMDPxtH5ISGw7bSXAgCNoT3h96CkruTTvCeE
- gdZSYgGIzNHVMaajk8splH9jEZjgUJrEwwpzBv5iRpZGxCZT9Hat4adYSNrVpuIWDnvB6QVal
- oa+A1t8JVAx6NNFPnsurdOwK28rn8M1FYJoFggezPmmbVl5ggfIJQnWvDC0QcVQ2lWneACvWY
- cSBdYcoCGA0iYfZPSBU1uPwyw3f5qh8F/BANmHipdAXv9+Qa++jZpVjewX79Jff7/FzXBMIHL
- pjHywquwSXUHivcGXe80jJDLI64gTwfQ++mbZBQn+ZYM+KY/j5tiOVH7qhtau9464cwahAFaq
- Lyc3Yo4V5YsSlegk2nNxghqMGziihgF9VLQa9R6sY649E=
+UI-OutboundReport: notjunk:1;M01:P0:vhGguK/+o90=;iWeMgc6cMgIrp8RBv+RDpYUhOAL
+ xMjrm4wBWQSNkchJLWM8A62yLdMPGag4ylSfLt9PR2992H3Wporx7y6FKZ7I0ilFKw8YxktQq
+ x9OWMI5XzTfxBWwrF+BPOH0/hKpONJ10+xSSc9MSv4263qUPT+q5n0kK3+nYkh196Y4/ZqTJb
+ glfGgSCGHfTq+4EOy8YAtkACdhidwxM+C5x7bWul/g1gi5Ss64m5cW//tG5q0wYKPdtXyTUPG
+ 2NtUVkt1RHYD/pYg5+CYrI4kj5Uu7pVxW/txQUlQVPwiA2Rl+pXYRAj8oGkgvUoqEfHbRC25C
+ mTCC1SybGQhTxxxq8detQ2hOFsQUereDp8XphRqXQQJbzzw3VBRb90/xrhXwoQg9qWMPIfAIA
+ ZGqapXSOEhr8eROkbOa6Xm63kKxsBv3k0zJMfrrhaQ60spnh3FIaCRNuoLdA3zuFYlbavafCW
+ EPVqN7khRrfjniZuL9yNhzKCuXqiAXoWhr/X6+pifB5JYfDS0zSeKlBOdKEhSbfEXwfAoVi0M
+ lfHZZHWZK08i5s8CmvYSbZGSiVefs0i3pqtNMSH+z6n9hQ7gVrqyrsp+hfKxra0YIBRk28BXc
+ ZZELWyNrxGP4ZMNEA41cLlhWprQ0qyMB7mowC0/ob8NYUw8TAhp28rKUmpAbPeq3PtlYyheq3
+ Ao+qV3sUDDjFgYQ/NebnoGxeRxnKGE4VmT5xrA7qBV411vVhgslqmj29MpuLLl83xRbHMBhxl
+ snrSUEPQpmvHakLhzdIgXBYt04yt48JwMkrXIAbL1fdGGhAusyhJiIqnrbY0e0G9NQyqen1kn
+ M6vF87RmmrglNAWSwgtZYPKo4tkysacPnhIvFHXLj30ig=
 
-On Mon, Jul 08, 2024 at 04:13:10PM +0200, Krzysztof Kozlowski wrote:
-> On 08/07/2024 01:08, Jonathan Neusch=C3=A4fer wrote:
-> > The Raspberry Pi bootloader provides a revision code[0] in the
-> > devicetree, at /system/linux,revision. This patch adds
-> > /system/linux,revision to the schema to allow it to be used in
-> > mainline Linux.
+On Mon, Jul 08, 2024 at 06:14:01PM +0200, Stefan Wahren wrote:
+> Hi Jonathan,
 >
-> Sorry, no, we do not document stuff for various out of tree things.
-> Otherwise we would have to accept hundreds of ridiculous, vendor propert=
-ies.
+> Am 08.07.24 um 01:08 schrieb Jonathan Neusch=C3=A4fer:
+> > Raspberry Pi boards have a "revision code", documented here:
+> >
+> >    https://www.raspberrypi.com/documentation/computers/raspberry-pi.ht=
+ml#new-style-revision-codes
+> AFAIK these revision codes mostly refer to the board and not to the CPU.
 
-Fair enough.
+True.
 
-> Fix your bootloader or make it upstream.
+> The abuse of /proc/cpuinfo has been rejected in the past and from my
+> understanding this applies also in this case.
 
-There is no open source upstream for this bootloader. It is (sadly)
-Broadcom's own proprietary code.
+Alright
 
-Not sure what fixing it would entail.
+> > This patch copies what the downstream kernel does and reads it from th=
+e
+> > devicetree property /system/linux,revision. This enables some software
+> > to work as intended on mainline kernels:
+> >
+> >    https://github.com/hzeller/rpi-rgb-led-matrix/blob/a3eea997a9254b83=
+ab2de97ae80d83588f696387/lib/gpio.cc#L247
+> This is a bad example because the application doesn't really care about
+> the kernel and directly access the hardware registers via /dev/mem. A
+> proper application would use the dedicated userspace API (GPIO Character
+> Device or PWM).
+
+Right
+
+> I would bet that the application does not work with the Raspberry Pi 5.
+
+Probably, yeah.
 
 
 Jonathan
