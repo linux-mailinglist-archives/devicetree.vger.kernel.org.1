@@ -1,148 +1,131 @@
-Return-Path: <devicetree+bounces-84423-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84424-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A60CF92C23B
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 19:20:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F48692C275
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 19:29:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B1EF1B29F21
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 17:15:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 42A521F22BAA
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 17:29:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8D3B18784F;
-	Tue,  9 Jul 2024 17:02:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F40917DE1A;
+	Tue,  9 Jul 2024 17:28:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d00pFqlD"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="jgiTUpBr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx1.sberdevices.ru (mx1.sberdevices.ru [37.18.73.165])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91B4F639;
-	Tue,  9 Jul 2024 17:02:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8A9917B03C;
+	Tue,  9 Jul 2024 17:28:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=37.18.73.165
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720544570; cv=none; b=o7E8mtgXC+ZuzB2B3AU1jOs2Ptbk8K27X26wBYUE2XBi6XLu7s6MN5FeFo1oBuJsNr9pQBr//y96NYuLRSKz3zNwAYKKi930kG8m17s3q6hG+XhVl5x0iXpS0JE1UwA9Y6TVDvlzluwgfbvz9f+q4Zjdc4IRywFXg6pFxlZWqW8=
+	t=1720546136; cv=none; b=hmc8ynOF5n35Ek2ATb1nnBYpQBMnyQN66NikEW28obWpetkfD/ZkM/qz6j9GtgUmy1kMS8LMluUXKWDfchoSYfifeYoQDBdFEtaNRn7HAsy7qvg0LtMpyg+EWagxWn1rCbBOb6cmevpQ8hXChVdI7jLdtiObjWugyzK2tDZ31s0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720544570; c=relaxed/simple;
-	bh=UzBIt+FVpxgii3bYvT/TnaWmQi6iHbmvBKeb61lHb3k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WVRA1QQV7krJc7w4DBNMoi3Zy0BMUBvur8cJySKERyzAhEGGXaoDi1fOCebjSo85GRvwEKgE15HtVI4KIM4yHUE64WSIe1jm/dGbQif6Q+M+asDxL1UVo3r6RP773y1NTu8foUosHmR4O87aazhiyXv384a5Q6gKXgchTSvKnRg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d00pFqlD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E60E8C3277B;
-	Tue,  9 Jul 2024 17:02:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720544570;
-	bh=UzBIt+FVpxgii3bYvT/TnaWmQi6iHbmvBKeb61lHb3k=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=d00pFqlDVfdTFREfEUkJuxoLP5iXotpydIl8G2UUgF+TKjBxoc4MFjv8iKVgZ3Hj9
-	 o8l5blsRE3ApLwbyhrfTraoP3ntoI4lcGb3kZExgvOc7TH09ZdtoXfsPPSXVnjHWEO
-	 Fh5uz7qx0SDLAED79e/P/xRLPj/Oym5HtnlcekoqhihDU0uus6e6rzD4U51yqVXm3A
-	 De7E/+7ZAXGlQi0b+C1obR3cRkdlnsHXpqah0M4KygMrTOUcuBHykxMZQMXjbexgaI
-	 /lpKz8IU+m12M31xGzkEPhxCXL9T4u6kFm6SIIs1ZsIDjLXIbfFm8yW1i5VHJaraSZ
-	 Q0S02+Zj8Q9Pg==
-Date: Tue, 9 Jul 2024 11:02:48 -0600
-From: Rob Herring <robh@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Marek Vasut <marex@denx.de>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>
-Subject: Re: [PATCH] dt-bindings: non-dt-devices: document ltr,ltrf216a used
- via ACPI PRP0001
-Message-ID: <20240709170248.GA3803124-robh@kernel.org>
-References: <20240709084401.21108-1-krzysztof.kozlowski@linaro.org>
+	s=arc-20240116; t=1720546136; c=relaxed/simple;
+	bh=dS5S9BguHM1vS4P1U3XrpCCXneI1h01yyFvwA5AGRtE=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=cjCgLn6KsrBfWwAJz/yTbI8BTf3WcTtCW3R+oW8D73CHKZXPQ0B3F0Mx1Vv7SOUdeRVzK+/LTptW5dCyl2moRR8SPojTyyQDFf+3MnvldBWwrux7IkepDj572cpZSy+TW3nZqga39/N7Y80m1UHOBp8jPGCYYkwy5Xr1Nax8Uk0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=jgiTUpBr; arc=none smtp.client-ip=37.18.73.165
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
+Received: from p-infra-ksmg-sc-msk01.sberdevices.ru (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 61BFE100015;
+	Tue,  9 Jul 2024 20:28:48 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 61BFE100015
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1720546128;
+	bh=TcDFy71/AXx2pzb0rvOUPBB3G3vJtOd7X2G3cLpovvA=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
+	b=jgiTUpBroJT9klmCru2FBllEFPACegOD4SspDNuyezS9+XJQ1yiNFfPqhO3hJOJu6
+	 msnigEwKBvq3Z+319jYzXiBFx23jioC0NTqKj6QYn/6zgEXV8GwpI8TLe3qivyxXaN
+	 z/GGDq5UQCwgMyJgY7zcBZHUp0gz5TlCJdgMxRh9Xd0sl1E9IcShChcTRKPBMtBcoK
+	 W+u+TJOFp06M2t5UxQF7sHAQjTTfJyRGO+2XRADIhk2uDSshW0j17TdFXU5x7DDHbV
+	 gj3WYkD7jI8SJB0mkm92Ev+kz+rSJyJRoOXHmzsIYq+3EwYlx5tScWjw9D2fXP3aNU
+	 IXK+H2ppMs5JA==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Tue,  9 Jul 2024 20:28:48 +0300 (MSK)
+Received: from localhost.localdomain (100.64.160.123) by
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Tue, 9 Jul 2024 20:28:47 +0300
+From: Igor Prusov <ivprusov@salutedevices.com>
+To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai
+	<tiwai@suse.com>, Philipp Zabel <p.zabel@pengutronix.de>, Igor Prusov
+	<ivprusov@salutedevices.com>
+CC: <prusovigor@gmail.com>, <kernel@salutedevices.com>,
+	<linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>
+Subject: [PATCH 0/6] ASoC: Add NTP8918 and NTP8835 codecs support
+Date: Tue, 9 Jul 2024 20:28:28 +0300
+Message-ID: <20240709172834.9785-1-ivprusov@salutedevices.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240709084401.21108-1-krzysztof.kozlowski@linaro.org>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 186397 [Jul 09 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.4
+X-KSMG-AntiSpam-Envelope-From: ivprusov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 24 0.3.24 186c4d603b899ccfd4883d230c53f273b80e467f, {Tracking_from_domain_doesnt_match_to}, smtp.sberdevices.ru:5.0.1,7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;salutedevices.com:7.1.1;100.64.160.123:7.1.2;127.0.0.199:7.1.2, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/07/09 15:25:00 #25923573
+X-KSMG-AntiVirus-Status: Clean, skipped
 
-On Tue, Jul 09, 2024 at 10:44:01AM +0200, Krzysztof Kozlowski wrote:
-> There is a device in the wild with non-updatable firmware coming with
-> ACPI tables with rejected "ltr,ltrf216a" compatible.  Linux kernel still
-> supports this device via ACPI PRP0001, however the compatible was never
-> accepted to bindings.  Lack of bindings causes checkpatch.pl warning
-> about undocumented compatible.
+This series adds support for two NeoFidelity amplifiers. For both
+amplifiers vendor provides software for equalizer and filters
+configuration, which generates firmware files with registers values.
+Since in both cases those files have same encoding, a common helper
+module is added to get firmware via request_firmware() API and set
+registers values.
 
-Why do we care? For checkpatch.pl I really don't. That hack check I 
-wrote makes any string in binding docs a documented compatible. I have a 
-better check using the schema written, but that would make checkpatch 
-dependent on dtschema tools. So maybe just time to drop this check from 
-checkpatch as we have other ways to check and track this.
+Igor Prusov (6):
+  dt-bindings: vendor-prefixes: Add NeoFidelity, Inc
+  ASoC: codecs: Add NeoFidelity Firmware helpers
+  ASoC: dt-bindings: Add bindings for NeoFidelity NTP8918
+  ASoC: codecs: Add NeoFidelity NTP8918 codec
+  ASoC: dt-bindings: Add bindings for NeoFidelity NTP8835
+  ASoC: codecs: Add NeoFidelity NTP8835 codec
 
-However, I do care about 'make dt_compatible_check'. Besides these ACPI 
-cases, there's a bunch of cases that we'll never have schemas for. Like 
-everything from Sparc... Old PowerMac stuff... So I would like to 
-'document' them just to exclude from dt_compatible_check. So perhaps 
-this should be generalized.
+ .../bindings/sound/neofidelity,ntp8835.yaml   |  65 +++
+ .../bindings/sound/neofidelity,ntp8918.yaml   |  63 +++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ sound/soc/codecs/Kconfig                      |  13 +
+ sound/soc/codecs/Makefile                     |   6 +
+ sound/soc/codecs/ntp8835.c                    | 432 ++++++++++++++++++
+ sound/soc/codecs/ntp8918.c                    | 356 +++++++++++++++
+ sound/soc/codecs/ntpfw.c                      | 137 ++++++
+ sound/soc/codecs/ntpfw.h                      |  23 +
+ 9 files changed, 1097 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/neofidelity,ntp8835.yaml
+ create mode 100644 Documentation/devicetree/bindings/sound/neofidelity,ntp8918.yaml
+ create mode 100644 sound/soc/codecs/ntp8835.c
+ create mode 100644 sound/soc/codecs/ntp8918.c
+ create mode 100644 sound/soc/codecs/ntpfw.c
+ create mode 100644 sound/soc/codecs/ntpfw.h
 
-> 
-> Add a schema for such ACPI PRP0001 devices purely to satisfy
-> checkpatch.pl and document consensus: ltr,ltrf216a compatible is allowed
-> only via ACPI PRP0001, but not bindings.
-> 
-> Link: https://lore.kernel.org/all/20240705095047.90558-1-marex@denx.de/
-> Link: https://lore.kernel.org/lkml/20220731173446.7400bfa8@jic23-huawei/T/#me55be502302d70424a85368c2645c89f860b7b40
-> Cc: Marek Vasut <marex@denx.de>
-> Cc: Jonathan Cameron <jic23@kernel.org>
-> Cc: Sebastian Reichel <sebastian.reichel@collabora.com>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  .../devicetree/bindings/non-dt-devices.yaml   | 35 +++++++++++++++++++
->  1 file changed, 35 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/non-dt-devices.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/non-dt-devices.yaml b/Documentation/devicetree/bindings/non-dt-devices.yaml
-> new file mode 100644
-> index 000000000000..206334693c7b
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/non-dt-devices.yaml
-> @@ -0,0 +1,35 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/non-dt-devices.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Non-devicetree Devices - Exception List
-> +
-> +maintainers:
-> +  - Rob Herring <robh@kernel.org>
-> +
-> +description:
-> +  Some devices using ACPI with non-updatable firmware/ACPI tables use
-> +  incorrect Devicetree compatibles via ACPI PRP0001.  Developers want to
-> +  support these devices, thus use such compatibles in Linux drivers, however
-> +  usage of these within Devicetree sources was rejected.
-> +
-> +  Following list of devices is an incomplete schema with a goal to pass Linux
-> +  kernel scripts/checkpatch.pl checks about undocumented compatibles but also
-> +  reject any DTS file using such un-approved compatible.
-> +
-> +  Usage of any of following compatibles is not allowed in Devicetree sources,
-> +  even if they come from immutable firmware.  New entries can be added
-> +  only on the basis of non-updatable ACPI firmware on the device.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - ltr,ltrf216a
-> +
-> +required:
-> +  - compatible
-> +  - broken-usage-of-incorrect-compatible
+-- 
+2.34.1
 
-That's a neat trick...
-
-> +
-> +additionalProperties: false
-> -- 
-> 2.43.0
-> 
 
