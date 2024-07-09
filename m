@@ -1,169 +1,142 @@
-Return-Path: <devicetree+bounces-84234-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84235-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DADFB92B7F1
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 13:29:00 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B635392B81D
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 13:30:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7C0291F21406
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 11:29:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4517C1F21708
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 11:30:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 556961586F6;
-	Tue,  9 Jul 2024 11:28:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44E5615749F;
+	Tue,  9 Jul 2024 11:30:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ayo1fYoB"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="REHOlr9y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
+Received: from mail-il1-f180.google.com (mail-il1-f180.google.com [209.85.166.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CDD414E2F4
-	for <devicetree@vger.kernel.org>; Tue,  9 Jul 2024 11:28:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3C3312CDB6;
+	Tue,  9 Jul 2024 11:30:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720524535; cv=none; b=m12LsVdoHXNR2VH6G3ocZgd+Yj5yL5qSy4WGcLZ8wMkOTfGgJUbgncznhMCpM5w7CLiKUq0P8VMCfcT2GKaX/PUCqHGqhw3f5n+3In0uBtHq9lTz8pyF8kiMPCG73Df2yWsZ/VsbgylgXnbdlOXsXU7FjuBY8NqKHOiu2PYqkb4=
+	t=1720524640; cv=none; b=sHNBp2U2ZjuETUFEvqH704YabaPKsiq0sfGUpi4LEytonml6Omdd+lsMxvtmAAjAHDj7wtLT1eEn90Oh6qSROoLy9JqyAm8LAMOAfImYOjOkFw0gn3DCK+ztByvrDKO0kpy6En3L20MSUPD93oULWEmpF8iFX9BQIkz5tsJp+hg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720524535; c=relaxed/simple;
-	bh=ViVFjZGgS8dNPjz5ZsLdjn3yYXpL9aBl4uTllH3CRXM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bSljdjAaQTbnlWxlGNIX1js4P+rvJ9RMYyBYlISfiH9vMNMv+eiw4+1v+x3uXZ35e4nr8dqI9ZyL4IYdR6abrzpy4HX5hOI7YVxCs3vVuIlXFoNImtD8QAdDBZFpGybGo5PZA++UoAWZFstHq/ILuy/U7//PG35XisNOerIaTuc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ayo1fYoB; arc=none smtp.client-ip=209.85.208.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2eea8ea8bb0so33850661fa.1
-        for <devicetree@vger.kernel.org>; Tue, 09 Jul 2024 04:28:52 -0700 (PDT)
+	s=arc-20240116; t=1720524640; c=relaxed/simple;
+	bh=fIX6ixrAYdf6dI/dZkfwDgBUu1sXkxgK8sJ2KThkAKY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=LJHQbyaWzZpCPEdpyIQjrPTAo/IF3ridL39bSJYvsvDexf24kMg5ynwvDaxjBTaht45YTJlaXpJ0pTBtffky1Q2AygbcyyZ6ptgnuQB4NZQfbyOvPqro52051LC34zrCV6gcKB36DX69HuHUfN2nX93DjvZRd7HCMNRB5yvTx1k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=REHOlr9y; arc=none smtp.client-ip=209.85.166.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-il1-f180.google.com with SMTP id e9e14a558f8ab-38b1ce72526so1021715ab.0;
+        Tue, 09 Jul 2024 04:30:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1720524531; x=1721129331; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=3qzAJjCuxDfaalc2old/6w/0ikvjZdAHEMZJhAtd5HY=;
-        b=ayo1fYoBJJWD+RtYUNvHxZokC1nykAxVgvPCnAaNsWoM9BbKuR3wO8oHwAZWB8oRmX
-         zM8wS32V8lEcBz3daIKPie4x/kjF2Bzi4AD/7M60ZPN06aTfxynRIy/RxOHotEUI1PU6
-         Rk0HJXzpMnIqAIAy0UTdH9RZZE2ax0CT9wWdLsOtfFoZSp7CmY9nQlRgLj9YOtE+s+YW
-         GfvGzndm/NvDNML8Pqt0nzCuEUgYH52uZlhzdErg0v3brT7yI/XoFwSM1qhFNuRA8zTQ
-         YGDDXbtXvAKtxJJxXlT32jIOYe6WBjjp4AUimxy/ncjZPRL7Fq7eBdsZOrqyvLwnl5et
-         mnBw==
+        d=gmail.com; s=20230601; t=1720524638; x=1721129438; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=OybDJgpz6EY+j/3mJEj8sCqVPmrO9HMmhiXf8ikWJtY=;
+        b=REHOlr9yLph/zHi5D2ehMTTwZ48soxeCJaFIWes9SIj9qw3lQP8EUONC4UhHj/SdNH
+         HcPNwQZfNBoyFojIzFDqgSKKN/wY7gFTWbnL5lG8zUk1TxPZ1yREOUuL5joEYhLmWQl3
+         WTHSMk410jvEshtEOUGzfnPeGXq1Dekt6oUSnr4Y2utcZCaiHXxoQWUKD/93Gfx6QnrS
+         xjyJS0WDyTkkk69vs9DyXA2H6wBzU7Ls7PW+WfrK/bbzemes69BDPWEcRzjXCZ9Z14ZP
+         W9PQ9UBI7juiavZzSV2Veo6r3MEOh1jAxhhNWKgLnVuMAMp6w8rPUVMFjaUrUltJQeZI
+         94sg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720524531; x=1721129331;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3qzAJjCuxDfaalc2old/6w/0ikvjZdAHEMZJhAtd5HY=;
-        b=Q+J9wKk0Xr2jC/k2HaQGacjGC19wOy5H1Imeot37UHvxD10txtMFULF5jLypuiv5Lu
-         0X4r/2fzAzdg34z0ofnQy97czFqHJY35CaJm+Sizi4zfN0/ADRCrXB2dVDyv9Wf1vUYR
-         28wNQBFRBkYrbsRxElcCPzE42ppuvNRgTpwX+Zxk+q4jm+4mMVSDPKg5oRMQmB6jIdmS
-         rUe4gwcNNEU7ejhV4T3hojrXYRm0B8R2UwFKJhM5uPIuGsDmBQuNvf5ZIbqksxZJnmd4
-         Jodi6a/ofgqdOaQ0iruu0b0lHZwQXaR7cC6VW/WRgJpk37JAzl3Vw539K+SbLgx6KW1s
-         HHIg==
-X-Forwarded-Encrypted: i=1; AJvYcCVtxZ4LFDU0qmoex+eYQIBr2z5pW2c1OyikO+DL+0XXaH4JE8BeTXT3ltZfdKM1QYOBmwWpxfZUcmShTkl1yEWATq57nsayy07QuA==
-X-Gm-Message-State: AOJu0YxAeZBDypBCN5Uepnv2RwkNKUGXPE13y7KJgUI2ZmURNaU8v/ND
-	Llr6TFhQcA6D0nZxlcUQWNyhoKM0pfNdJRjLg2LjUsXNzpkDegQErX3JRVUqtWc=
-X-Google-Smtp-Source: AGHT+IGS4L2H+hCKSxQz3uGyB0VuG6clhftOdyLInR1ymwePpLnvGZ+2GHobh0M7Xqc+cm/ImHJG3g==
-X-Received: by 2002:a2e:a7c7:0:b0:2ee:8d9a:811a with SMTP id 38308e7fff4ca-2eeb310233amr24871521fa.31.1720524530481;
-        Tue, 09 Jul 2024 04:28:50 -0700 (PDT)
-Received: from [192.168.105.194] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a780a7ff02dsm68784266b.110.2024.07.09.04.28.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 Jul 2024 04:28:50 -0700 (PDT)
-Message-ID: <1ec0dbfa-dbef-41e6-a871-7da61651572b@linaro.org>
-Date: Tue, 9 Jul 2024 13:28:46 +0200
+        d=1e100.net; s=20230601; t=1720524638; x=1721129438;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=OybDJgpz6EY+j/3mJEj8sCqVPmrO9HMmhiXf8ikWJtY=;
+        b=J8jeIVeW788kHTus4SVaX3xnGBP8nHvs3qbC64OnzF+F17mqbsAkoELKYflWl4FeWj
+         g2lQaxt2OwTAeN0wSoll5ekR0MJSISh9EISCuK5MXsEJ7usgxEQnqkiqwslt+QBfGtR1
+         Nsv05FDpHPVh5nFYzRq5lYPimpsW92JCqLaDGcyzpfd1Zu8s5tvSLtPK6yhKw+Mj5c8F
+         4/cEZTD4EN2jp62n2BUKS3xs3pmmlCo2NS3iNMMdM5IIPZPWQl8+73yN3ElnHtUQBgtP
+         e+CU6JMm45sYCOkhg4vT1k3Ct7uNl/EmtnzwaO+0pYvAYITMaW5zsT5wHUgdIF8QMmpu
+         D6xA==
+X-Forwarded-Encrypted: i=1; AJvYcCUyp/SlzUvAz1wCtFTTOY5InhjZsSABiLT5DWKGNqCglIy8P8jrNa8Bpjj84FIOWMObkiuwxpFku/wIkIjxuoGQ1R16N/l++imVfFaFgTOBY76YyDjX+FdKx7VaJ7Nd+84xhdcyxOAIIQ==
+X-Gm-Message-State: AOJu0YwOL63wzWFdCYEnVTXY7Ghlb2Xu7kPSR2GVngdd0A6NbGtng+aa
+	amJi/cXJaAt0dzQAJY1vc4btuhXag3g6oD0PM0DwOFJVAaFJXkk+VK2URUt2cZ6SEdwlSdjiQKT
+	RRAio4LRGg1wVmoDh0UIvmk13XHo=
+X-Google-Smtp-Source: AGHT+IFPPY70EF131mrWS92AdxahsTxcIjvT/UMQ5GCEha7X5m+AdeBkpVaMR0Kgsk0JXGV9ftk+CsXREEzIyZTvwPw=
+X-Received: by 2002:a05:6e02:1c03:b0:382:7825:fe4e with SMTP id
+ e9e14a558f8ab-38a585851d4mr26758075ab.16.1720524637800; Tue, 09 Jul 2024
+ 04:30:37 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 09/10] dt-bindings: opp: v2-qcom-level: Update minItems
- for oloop-vadj & cloop-vadj
-To: Varadarajan Narayanan <quic_varada@quicinc.com>
-Cc: vireshk@kernel.org, nm@ti.com, sboyd@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, angelogioacchino.delregno@collabora.com,
- andersson@kernel.org, mturquette@baylibre.com, ilia.lin@kernel.org,
- rafael@kernel.org, ulf.hansson@linaro.org, quic_sibis@quicinc.com,
- quic_rjendra@quicinc.com, quic_rohiagar@quicinc.com, abel.vesa@linaro.org,
- otto.pflueger@abscue.de, danila@jiaxyga.com, quic_ipkumar@quicinc.com,
- luca@z3ntu.xyz, stephan.gerhold@kernkonzept.com, nks@flawful.org,
- linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-clk@vger.kernel.org
-References: <20240703091651.2820236-1-quic_varada@quicinc.com>
- <20240703091651.2820236-10-quic_varada@quicinc.com>
- <20240708155529.GA3244015-robh@kernel.org>
- <ZozgNAYKAvhPr0qk@hu-varada-blr.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <ZozgNAYKAvhPr0qk@hu-varada-blr.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20240708230613.448846-1-quic_obabatun@quicinc.com>
+In-Reply-To: <20240708230613.448846-1-quic_obabatun@quicinc.com>
+From: Klara Modin <klarasmodin@gmail.com>
+Date: Tue, 9 Jul 2024 13:30:27 +0200
+Message-ID: <CABq1_vjvPeF-h19-H99q5D1u7wvtbRPoKKqroMJFaMb+yUFLgg@mail.gmail.com>
+Subject: Re: [PATCH 0/4] Revert use of Unflatten_devicetree APIs from reserved_mem
+To: Oreoluwa Babatunde <quic_obabatun@quicinc.com>
+Cc: robh@kernel.org, saravanak@google.com, aisheng.dong@nxp.com, hch@lst.de, 
+	m.szyprowski@samsung.com, robin.murphy@arm.com, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, iommu@lists.linux.dev, will@kernel.org, 
+	catalin.marinas@arm.com, kernel@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
 
-On 9.07.2024 9:01 AM, Varadarajan Narayanan wrote:
-> On Mon, Jul 08, 2024 at 09:55:29AM -0600, Rob Herring wrote:
->> On Wed, Jul 03, 2024 at 02:46:50PM +0530, Varadarajan Narayanan wrote:
->>> Since IPQ9574 has only one CPR thread it will specify
->>> only one voltage adjustment value. Hence update min items
->>> accordingly for oloop-vadj and cloop-vadj. Without
->>> constraining min items, dt_binding_check gives errors
->>>
->>> 	opp-table-cpr4:opp-0:qcom,opp-cloop-vadj:0: [0] is too short
->>> 	opp-table-cpr4:opp-0:qcom,opp-oloop-vadj:0: [0] is too short
->>>
->>> 	Failed validating 'minItems' in schema . . .
->>> 		{'maxItems': 2, 'minItems': 2}
->>>
->>> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
->>> ---
->>> v4: Fix dt_bindings_check error
->>> ---
->>>  Documentation/devicetree/bindings/opp/opp-v2-qcom-level.yaml | 2 ++
->>>  1 file changed, 2 insertions(+)
->>
->> This is going to need to be rolled into your dependency because it needs
->> the same fix.
-> 
-> Konrad,
-> 
-> Can you please squash this into https://lore.kernel.org/lkml/20230217-topic-cpr3h-v14-2-9fd23241493d@linaro.org/
+Hi,
 
-Yes, I'll do that in the next revision.. forgot to validate this..
+Den tis 9 juli 2024 kl 01:06 skrev Oreoluwa Babatunde
+<quic_obabatun@quicinc.com>:
+>
+> With recent changes made to initialize the cma regions before the page
+> tables are setup, commit f2a524d9ef5b ("of: reserved_mem: Restructure
+> code to call reserved mem init functions earlier"), an issue was
+> introduced where the initialization of the cma regions fail and are
+> initialized as "non-reusable" regions instead of "reusable". [1], [2]
+>
+> This issue occurs because the device_node of the regions are not yet
+> created by the time the cma regions are being initialized.
+>
+> The cma regions need to be initialized before the page tables are setup
+> for them to be configured correctly as was realized in [3].
+>
+> Hence, since the unflatten_devicetree APIs are not available until after
+> the page tables have been setup, revert back to using the fdt APIs. This
+> makes it possible to store a reference to each cma node in the
+> reserved_mem array by the time it is needed in the init function.
+>
+> [1] https://lore.kernel.org/all/DU0PR04MB9299C3EC247E1FE2C373440F80DE2@DU0PR04MB9299.eurprd04.prod.outlook.com/
+>
+> [2] https://lore.kernel.org/all/986361f4-f000-4129-8214-39f2fb4a90da@gmail.com/
+>
+> [3] https://lore.kernel.org/all/20240610213403.GA1697364@thelio-3990X/
+>
 
-Konrad
+These reverts also fixes the issue for me. Feel free to CC me when you
+decide to send the next version if you want and I can retest it.
+
+Regards,
+Tested-by: Klara Modin <klarasmodin@gmail.com>
+
+> Oreoluwa Babatunde (4):
+>   Revert "of: reserved_mem: Restructure code to call reserved mem init
+>     functions earlier"
+>   Revert "of: reserved_mem: Rename fdt_* functions to refelct the change
+>     from using fdt APIs"
+>   Revert "of: reserved_mem: Use unflatten_devicetree APIs to scan
+>     reserved memory nodes"
+>   of: reserved_mem: Restructure code to call rmem init functions earlier
+>
+>  drivers/of/fdt.c                |   2 +-
+>  drivers/of/of_private.h         |   2 +-
+>  drivers/of/of_reserved_mem.c    | 103 +++++++++++++++++---------------
+>  include/linux/of_reserved_mem.h |   2 +-
+>  kernel/dma/coherent.c           |  10 ++--
+>  kernel/dma/contiguous.c         |   8 +--
+>  kernel/dma/swiotlb.c            |  10 ++--
+>  7 files changed, 72 insertions(+), 65 deletions(-)
+>
+> --
+> 2.34.1
+>
 
