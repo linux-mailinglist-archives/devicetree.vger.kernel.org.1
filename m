@@ -1,113 +1,91 @@
-Return-Path: <devicetree+bounces-84352-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84353-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94A2E92BDAD
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 17:02:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8579B92BDB4
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 17:03:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3EFDF1F25822
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 15:02:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B62111C23CE2
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 15:03:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01F9B19D067;
-	Tue,  9 Jul 2024 15:01:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DE4619D07E;
+	Tue,  9 Jul 2024 15:02:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="AzZ4p/1U"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Po51Gkls"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3113319DF62;
-	Tue,  9 Jul 2024 15:00:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC05F15B999;
+	Tue,  9 Jul 2024 15:02:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720537260; cv=none; b=ewPBnwHIV73Czmp8KaJw4T+2B8UH/gselctcjBDy/2YOIFrLfjE+lQOo7WBiFzHSbOsAH9/sGj2GbmXfg44io5h9C5MPnB7Wy9gQ5glKxiK5/myX8nPB4ykjS+10lv0253M4Rr1hBfhPJTQHps2ofu097ZCBFE1MozFEJ9AVfMU=
+	t=1720537338; cv=none; b=tpRqFEzs5GlMPhl7z2rn5SHLxX6kxNewce7iIgU9VpKGwOQ7vBgggCihWTKidr9Bk5BexzNjd2PrLkQs6eclYvuRWk/Dv3qsLCfDq9FV67JBy/308/VjayeAa5bcVl7995+6jkXIWLnhP/8opVPVDLadV9VCVDWL1VNQpk5zgo4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720537260; c=relaxed/simple;
-	bh=D/wJbIM+lRhAXcdp1BawofJZHyy7Gni6K6sYqGtwPnM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=F7xZY7Nm7ViKgJIWkLRmIBS4/Wo3nJrbegtnwCdziyp/YFXelUAkkh1eQAaTzL3+cA4ZZ87jKTzreb+1j+otNHltnu32eYlo6UpIRJHKwGeMGQ+0A2W6yvNezhYjARUF1kEXEHUHgN4jP7D51y7Adj4Xd1s1T4HWZ0VLn4i39EI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=AzZ4p/1U; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id C46D7885A5;
-	Tue,  9 Jul 2024 17:00:55 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1720537257;
-	bh=drnLt1b1BmTFLCLihLElO36n1bFhH7KTbcwXYuUra4Y=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=AzZ4p/1UriwwwQz6i5ha/gIYsThJk8EAZl1hYrRahDLWWeMNwFom64hSOevZAa6w5
-	 ylnMGCw6SX+/6Opd4jjtceI/HKg/ke05ahV23OylQDb8Ow04aYwiXCQeJeUOWHFHqI
-	 20BtFFctc5S0OAUwo3maMdwItjhRFYQNyOC9pMgftNdii8Qy5f/g7QOrF1GiPCtM8U
-	 /JrP+jdjNQadsuLGk9Nhpr1FJkjwBLehYZUJ2zmOSGTLOO6hLFR94MzKNISbPexyUd
-	 Z95NedLf+n+KNrHargWVDdOZgHybQ8Sg+NfD2zFuziAtWsqj+VTTNtP+6QvI9U/CW0
-	 thzM3Eq0uk4Kw==
-Message-ID: <223b287f-4da6-4ec1-be7c-6135215c5551@denx.de>
-Date: Tue, 9 Jul 2024 17:00:55 +0200
+	s=arc-20240116; t=1720537338; c=relaxed/simple;
+	bh=QOu4N1gVL/EoBAJAI5M5R2AXSz6SIL6j6PhrzKJo5Y0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=J5OUZtpu1YMe8a9zase9dVbPxF+/U6xfWz/bM7YdPVkzh7palwVruHqWs8n2Yei3tJ7lJ8vhHfpIqgM5F77XES9Cj2+OGuxT902kXiz/VztECnbGqVT56JdhMB6NcxlvKXg7TAWbbGGZkUsIkwmAGSdR8UDieMp1ECf+Enk28UE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Po51Gkls; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C70EC4AF0A;
+	Tue,  9 Jul 2024 15:02:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720537337;
+	bh=QOu4N1gVL/EoBAJAI5M5R2AXSz6SIL6j6PhrzKJo5Y0=;
+	h=From:To:Cc:Subject:Date:From;
+	b=Po51GklsoR8R61E7m9xF6gajCVJcicZzBpxe4bmXdWpQHu88m2D5dYh1h0vQOOVuZ
+	 XK2WesGh54zzOEAAm2etTV2F0inUC+v1suMw24lqvtym8o5GHwkpsq5rgJM0kcFIGb
+	 YdzJGFbtkVmnXZP7FGBv8b2uTvcwrWUpbBlC3YWPy5vhpM2C1/ZksILJGsGETuR4si
+	 HUga+rZ8quDKpvig+6jJEXciOozKhsZFA+dem8xUL+7B3JDv/pnG5+P+7FTbHOjkzO
+	 7kXSQ2FuWyb6zszjrenCP95UGlfj1ba8kpA7Dm2CKJzVCJuwYXYqoUgZY/gX6PPdv+
+	 y+vnBzdRvVNuw==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: "Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>,
+	Lukasz Luba <lukasz.luba@arm.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: thermal: Drop 'trips' node as required
+Date: Tue,  9 Jul 2024 09:01:53 -0600
+Message-ID: <20240709150154.3272825-1-robh@kernel.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: display: bridge: ti,sn65dsi83: add
- burst-mode-disabled
-To: Stefano Radaelli <stefano.radaelli21@gmail.com>
-Cc: "Rob Herring (Arm)" <robh@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Andrzej Hajda <andrzej.hajda@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- David Airlie <airlied@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Maxime Ripard <mripard@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, devicetree@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
- "Noah J . Rosa" <noahj.rosa@gmail.com>, linux-kernel@vger.kernel.org
-References: <20240708151857.40538-1-stefano.radaelli21@gmail.com>
- <172045725750.3389992.15451403448241421795.robh@kernel.org>
- <CAK+owohBrewYFpDKjsE5iWC5OQ3p6S_9fwj7DWa1Ux2h8CXcAw@mail.gmail.com>
- <944ecc41-9ef7-4d9e-9d96-3c5c0cdb71b5@denx.de>
- <CAK+owoiQY8OYiZofyq4jj2S3Mg6ub88DF5V52JcppxhWbUsWgg@mail.gmail.com>
-Content-Language: en-US
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <CAK+owoiQY8OYiZofyq4jj2S3Mg6ub88DF5V52JcppxhWbUsWgg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Transfer-Encoding: 8bit
 
-On 7/9/24 4:44 PM, Stefano Radaelli wrote:
-> Hi Marek,
+It is possible to have thermal zones which don't have any trip points.
+These zones in effect simply represent a temperature sensor without any
+action associated with it. While the schema has always required a
+'trips' node, users have existed for a long time without it. Update the
+schema to match reality.
 
-Hi,
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+---
+ Documentation/devicetree/bindings/thermal/thermal-zones.yaml | 1 -
+ 1 file changed, 1 deletion(-)
 
-> Actually this property is specific also to DSI8x bridge, as you can see
-> from the screenshot below taken from official datasheet:
-> 
-> [image: image.png]
-> 
-> And it's the sn65dsi8x driver that tells MIPI driver which flags to use
-> during attachment.
+diff --git a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
+index 68398e7e8655..8315ab4b00eb 100644
+--- a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
++++ b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
+@@ -229,7 +229,6 @@ patternProperties:
+ 
+     required:
+       - thermal-sensors
+-      - trips
+ 
+     additionalProperties: false
+ 
+-- 
+2.43.0
 
-There are other bridges and panels which support both DSI burst and 
-sync-pulse/sync-events modes, so a property which selects the mode is 
-generic, not specific to this particular bridge . The bridge driver 
-could parse such generic property, although it would be better if the 
-core code parsed it instead.
-
-> So, for example, this bridge can work also for MIPI interfaces which don't
-> support burst-mode.
-> Also, as a value-added benefit, I found non-burst mode better for some
-> 1920x1200 LVDS panels I'm testing (Of course with more energy consumption).
-> That's why I though it could be useful have this option, since SN65DSI8x
-> supports both modes.
-
-Can you share which panel model this is ?
 
