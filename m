@@ -1,154 +1,176 @@
-Return-Path: <devicetree+bounces-84223-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84224-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1225992B5CE
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 12:48:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4637692B5DC
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 12:50:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 42B8F1C2108E
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 10:48:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 779061C20F21
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 10:50:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E330155727;
-	Tue,  9 Jul 2024 10:46:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEDBD156F44;
+	Tue,  9 Jul 2024 10:50:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="kBam262B"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="co2T6EgR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E2FE15884E;
-	Tue,  9 Jul 2024 10:46:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 867AC156967;
+	Tue,  9 Jul 2024 10:50:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720522009; cv=none; b=VCwvCHCPnIEemLf98MhIT91OhwY2akudHJYF8fqrjQwykgm06fXGu6ddDKPWc9J/rG1OsBZqlVji9UDEvpykKXlK11Cv/QBZveMM5WUnK4PXUFe2tyQ4KnO8SrJCmkzNaFw1EVYkYlBP2Hi1I2Dyl21YRUZSmrVwudz0GtvKpYQ=
+	t=1720522233; cv=none; b=WTnJbjPGo1rHjR9KtNkPrWX+oMLFAxsdZxZco4D5o1zsbQ8v4HDY95a+3+sfuYjwotViMzxfiHtz2R5nPRrE9k/GJp6HoLXA82KEBkwVRwalKvTf6xkf3i0EMEEvHjHwdaYrxg+hG1YGLnpRhj67mYDyN0fflOeLmVDWsoP1EUA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720522009; c=relaxed/simple;
-	bh=cg7AhZmeWk5N9xWjq7as8vdozigU8aTMRed2yz+QDxQ=;
-	h=Mime-Version:Content-Type:Date:Message-Id:From:Subject:Cc:To:
-	 References:In-Reply-To; b=XpqmIubAaQcgx5w4u5krDZvnwusWeYD88Ti/xAI1aTJ3BASa0x710maJoQicLzcz8D3sfqvJlccUe25IHN4WoK4k7b1xYMFDbOaQNx4Sbc1LNEZuoPNaBw6z/aCg7q7DV3m9SHwaSeBln+DFxlZD0QAp9HWA3AZQbcHoaDyC1BA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=kBam262B; arc=none smtp.client-ip=217.70.183.199
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id A6764FF80C;
-	Tue,  9 Jul 2024 10:46:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1720521998;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=1CXbzUma1zkNzQTIijTVlpg1CvjyFMrqWEgyHu/ugEQ=;
-	b=kBam262BVsnC9ZEzHppU5OfoIvXxcbpBftI9R7F0IkjStXxWBYVTOK/qZV2wIG+DPJk03r
-	hK775m0cfIsMMEnX51OATZxEayABlxgaKtSJNVZmYWV9nnhEybKD5XNZHY42AphwcEau+1
-	WSL8oBz47lh9QyWWEDYmv5WZ4TiZ6+7GOO4H3JBE+TcNB4SoLPObxLH+wNEkgNdnuZWBB0
-	jc34+W19U84845YPv44cEfyhX+eX02h0wzVEjoAQqlUghJbdGFozZY5pgq+oghQRUPO0I2
-	7TfNFj0DYytTcfMtitmvHmfVVBRyIm6QREW6JTQnhN4WI++HUnQur6yNPpEO9w==
+	s=arc-20240116; t=1720522233; c=relaxed/simple;
+	bh=KBCyi08P5VEAGDKywTuRsjtLZ1Wk3bq99HxLuAgdfUY=;
+	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XAEw/p7ELznhvHRSofGZy35/DUJkZJ98nOanaMtPt3juNx32Zdl2DxR56DjCwSs9SW4SgJoZF90AFnbBg+TlNOlr2Pzo0oZBUaJegFhMlA4nDfEGZjWh03OM87rYU6uo4VRoOPYdK5zHiKweo8es92yNhulOYiTcMKWSyGCZfXM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=co2T6EgR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37D89C3277B;
+	Tue,  9 Jul 2024 10:50:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720522233;
+	bh=KBCyi08P5VEAGDKywTuRsjtLZ1Wk3bq99HxLuAgdfUY=;
+	h=Date:From:To:Subject:References:In-Reply-To:From;
+	b=co2T6EgRbtzNMZmROrCnN8zRKlLCswW/EgBWaTCQyNLGXkkia/rNwVeQEC55vffLs
+	 eK0zV+xsdEVDtPGFaL5UAvfwVwywjLFlpNqugipv67RspcbPk4jtDNrFpHF8dU9csK
+	 WFGVfenJ5OMuZKW19VAQbujJL9npjr0xKThIqSLbcAd5vGURH04Rn8JTg08hnct4Uu
+	 solI+0T4YD7Ln0H2adcmF+7rqRrXNHQ5WOgkK/DcV8OKx2IRwPIxySjI6HWAVmWJPf
+	 +WghI3v70BYesstEWrFHUmj8nSpaLqSJk3QSgGHtGXj7RpGVIX6F1GRdmwgOUFmb04
+	 a1mWO3rCNWXCQ==
+Date: Tue, 9 Jul 2024 11:50:29 +0100
+From: Conor Dooley <conor@kernel.org>
+To: claudiu beznea <claudiu.beznea@tuxon.dev>, devicetree@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Mihai Sain <mihai.sain@microchip.com>
+Subject: Re: [PATCH] ARM: dts: microchip: sam9x60: Move i2c address/size to
+ dtsi
+Message-ID: <20240709-education-unfreeze-a719c6927d73@spud>
+References: <20240528153109.439407-1-ada@thorsis.com>
+ <20240705-defection-septum-dd9202836b23@thorsis.com>
+ <30fc0b41-49b9-41b8-82ef-c27d202492e6@tuxon.dev>
+ <20240709-specked-paging-b821f10a657b@thorsis.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="wK73nfjr5zodA4AQ"
+Content-Disposition: inline
+In-Reply-To: <20240709-specked-paging-b821f10a657b@thorsis.com>
+
+
+--wK73nfjr5zodA4AQ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 09 Jul 2024 12:46:37 +0200
-Message-Id: <D2KY5A2XRUQN.6IO8XX1FL19H@bootlin.com>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Subject: Re: [PATCH] of: replace of_match_node() macro by a function when
- !CONFIG_OF
-Cc: "Saravana Kannan" <saravanak@google.com>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, "Vladimir Kondratiev"
- <vladimir.kondratiev@mobileye.com>, =?utf-8?q?Gr=C3=A9gory_Clement?=
- <gregory.clement@bootlin.com>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
- <tawfik.bayouk@mobileye.com>
-To: "Rob Herring" <robh@kernel.org>
-X-Mailer: aerc 0.17.0-0-g6ea74eb30457
-References: <20240708-of-match-node-v1-1-90aaa7c2d21d@bootlin.com>
- <CAL_JsqLBmpEQVgZ1UciAdxdiSj6Ly4bpYtYPvazr9m=vRj7qEQ@mail.gmail.com>
-In-Reply-To: <CAL_JsqLBmpEQVgZ1UciAdxdiSj6Ly4bpYtYPvazr9m=vRj7qEQ@mail.gmail.com>
-X-GND-Sasl: theo.lebrun@bootlin.com
 
-Hello Rob,
+On Tue, Jul 09, 2024 at 12:41:02PM +0200, Alexander Dahl wrote:
+> Am Mon, Jul 08, 2024 at 07:23:47PM +0300 schrieb claudiu beznea:
+> > On 05.07.2024 09:19, Alexander Dahl wrote:
+> > > Am Tue, May 28, 2024 at 05:31:09PM +0200 schrieb Alexander Dahl:
+> > > It's been a while.  Is something wrong with the patch?  Or with the
+> > > commit message?
+> >=20
+> > Please CC your patches to proper people (e.g., use
+> > ./script/get_maintainer.pl). I see no Microchip AT91 maintainers in the
+> > initial to/cc list of your patch.
+>=20
+> You can be sure I did.  This is the list I got on my patch and you see
+> I CCed everone listed as a _maintainer_ from that output:
+>=20
+>     % ./scripts/get_maintainer.pl outgoing/arm-dts-microchip/0001-ARM-dts=
+-microchip-sam9x60-Move-i2c-address-size-to-d.patch=20
+>     Rob Herring <robh@kernel.org> (maintainer:OPEN FIRMWARE AND FLATTENED=
+ DEVICE TREE BINDINGS)
+>     Krzysztof Kozlowski <krzk+dt@kernel.org> (maintainer:OPEN FIRMWARE AN=
+D FLATTENED DEVICE TREE BINDINGS)
+>     Conor Dooley <conor+dt@kernel.org> (maintainer:OPEN FIRMWARE AND FLAT=
+TENED DEVICE TREE BINDINGS)
+>     Nicolas Ferre <nicolas.ferre@microchip.com> (supporter:ARM/Microchip =
+(AT91) SoC support)
+>     Alexandre Belloni <alexandre.belloni@bootlin.com> (supporter:ARM/Micr=
+ochip (AT91) SoC support)
+>     Claudiu Beznea <claudiu.beznea@tuxon.dev> (supporter:ARM/Microchip (A=
+T91) SoC support,commit_signer:1/2=3D50%,authored:1/2=3D50%,added_lines:32/=
+45=3D71%,removed_lines:32/45=3D71%)
+>=20
+> Not sure why Nicolas, Alexandre, and you are listed as "supporter"
+> only?  I think you should have been in the CC list in the first place,
+> sorry about that.
 
-On Tue Jul 9, 2024 at 12:24 AM CEST, Rob Herring wrote:
-> On Mon, Jul 8, 2024 at 2:55=E2=80=AFAM Th=C3=A9o Lebrun <theo.lebrun@boot=
-lin.com> wrote:
-> >
-> > In the !CONFIG_OF case, replace the of_match_node() macro implementatio=
-n
-> > by a static function. This ensures drivers calling of_match_node() can
-> > be COMPILE_TESTed.
-> >
-> > include/linux/of.h declares of_match_node() like this:
-> >
-> >         #ifdef CONFIG_OF
-> >         extern const struct of_device_id *of_match_node(
-> >                 const struct of_device_id *matches, const struct device=
-_node *node);
-> >         #else
-> >         #define of_match_node(_matches, _node)  NULL
-> >         #endif
-> >
-> > When used inside an expression, those two implementations behave truly
-> > differently. The macro implementation has (at least) two pitfalls:
-> >
-> >  - Arguments are removed by the preprocessor meaning they do not appear
-> >    to the compiler. This can give "defined but not used" warnings.
->
-> It also means the arguments don't have to be defined at all which is
-> the reasoning the commit adding the macro gave:
->
->     I have chosen to use a macro instead of a function to
->     be able to avoid defining the first parameter.
->     In fact, this "struct of_device_id *" first parameter
->     is usualy not defined as well on non-dt builds.
->
-> We could change our mind here, but I suspect applying this would
-> result in some build failures.
+You say only, but actually "supporter" is a stronger wording than
+"maintainer" as it means that the people are actually paid to look after
+the platform:
+	S: *Status*, one of the following:
+	   Supported:	Someone is actually paid to look after this.
+	   Maintained:	Someone actually looks after it.
+	   Odd Fixes:	It has a maintainer but they don't have time to do
+			much other than throw the odd patch in. See below..
+	   Orphan:	No current maintainer [but maybe you could take the
+			role as you write your new code].
+	   Obsolete:	Old code. Something tagged obsolete generally means
+			it has been replaced by a better system and you
+			should be using that.
 
-It appears like it would and I did not think about this edge-case. It
-doesn't appear like it is a lot of drivers. I'm seeing 221 files with
-calls to of_match_node(). Out of those, 22 match for CONFIG_OF.
+As an aside, it might be a bit inaccurate here though, because Claudiu
+is not paid to look after AT91 and Alexandre might not be either.
 
-Out of those, only 9 have their of_device_id table guarded but not the
-of_match_node() call. Remainders fall into two categories:
- - call is guarded by #ifdef CONFIG_OF as well,
- - neither of_device_id table nor of_match_node() call are guarded.
+> Besides, I just noticed arch/arm/boot/dts/microchip/sam9x60.dtsi is
+> not covered by specific matches in MAINTAINERS file, just through a
+> generic fallback for all dts.  Lines in question are these, sam9 is
+> not matched:
+>=20
+>     F:  arch/arm/boot/dts/microchip/at91*
+>     F:  arch/arm/boot/dts/microchip/sama*
 
-The list of remaining culprits:
-	drivers/dma/at_hdmac.c
-	drivers/dma/dw/rzn1-dmamux.c
-	drivers/gpu/drm/omapdrm/omap_dmm_tiler.c
-	drivers/i2c/busses/i2c-at91-core.c
-	drivers/i2c/busses/i2c-xiic.c
-	drivers/misc/atmel-ssc.c
-	drivers/net/can/at91_can.c
-	drivers/net/ethernet/cadence/macb_main.c
-	sound/soc/codecs/wm8904.c
+I think this is a hangover from when all arm dts files used to be in
+arch/arm/boot/dts/, so the patter was needed to only match stuff the
+lads cared about. Now that arm is like other architectures and has
+subdirectories for vendors I think these could be simplified:
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 691f98fe8ed3..1d2b201563e7 100644
+	--- a/MAINTAINERS
+	+++ b/MAINTAINERS
+	@@ -2534,8 +2534,7 @@ L:	linux-arm-kernel@lists.infradead.org (moderated f=
+or non-subscribers)
+	 S:	Supported
+	 W:	http://www.linux4sam.org
+	 T:	git git://git.kernel.org/pub/scm/linux/kernel/git/at91/linux.git
+	-F:	arch/arm/boot/dts/microchip/at91*
+	-F:	arch/arm/boot/dts/microchip/sama*
+	+F:	arch/arm/boot/dts/microchip/
+	 F:	arch/arm/include/debug/at91.S
+	 F:	arch/arm/mach-at91/
+	 F:	drivers/memory/atmel*
 
-There could be build errors on drivers that do not match for CONFIG_OF,
-as well.
 
-> >  - The returned value type is (void *)
-> >    versus (const struct of_device_id *).
-> >    It works okay if the value is stored in a variable, thanks to C's
-> >    implicit void pointer casting rules. It causes build errors if used
-> >    like `of_match_data(...)->data`.
->
-> Really, the only places of_match_node() should be used are ones
-> without a struct device. Otherwise, of_device_get_match_data() or
-> device_get_match_data() should be used instead.
+>=20
+> Okay for the next time I will also CC supporters, but I found the
+> output of get_maintainer.pl some kind of confusing here.
 
-I completely agree.
+Cheers,
+Conor.
 
-Regards,
+--wK73nfjr5zodA4AQ
+Content-Type: application/pgp-signature; name="signature.asc"
 
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+-----BEGIN PGP SIGNATURE-----
 
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZo0V9QAKCRB4tDGHoIJi
+0s4oAQDhdnuqeY0WEpTQlCh28Z70EQ1nspON5dYgjSQv7njFswD6AlLsu/K8jUPU
+M+S4K/mpy0UdwyU5EYETMOmtz7sUOgQ=
+=a1xN
+-----END PGP SIGNATURE-----
+
+--wK73nfjr5zodA4AQ--
 
