@@ -1,184 +1,185 @@
-Return-Path: <devicetree+bounces-84179-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84180-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A86A892B45F
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 11:49:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C204192B465
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 11:51:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 284041F21F78
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 09:49:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 48DFC2849F4
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 09:51:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7414715574E;
-	Tue,  9 Jul 2024 09:49:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 717DC15539D;
+	Tue,  9 Jul 2024 09:51:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vxmz/atC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j3oZYSxh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3CAD155398
-	for <devicetree@vger.kernel.org>; Tue,  9 Jul 2024 09:49:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47682152E03;
+	Tue,  9 Jul 2024 09:51:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720518586; cv=none; b=WRB2ICJmCXm6S/JmZFy0WrU2QN5kjEbAmpwSHJ8UnqAm26n5FBGCw1u4AcJ1BhlLPjVi/S2Ebp4r2MBmrqgkpvMg+8JKEH/IONVm+ArGYAQ13pxxaOWy6o7XOBptdfz9VSOqBLQqgbqawB9jdeRB3YgAr0Hyo+sgePB3Yh9xF54=
+	t=1720518694; cv=none; b=dU0t80ZEGkBJdy3nNgULMUxV4GpHUMXa5xqbV9WA4ycunLCnZ6L87/1mrf5MGchp7mhEK3tbJhAQHv3ghhAYzsY6ZZVOl/dV7Gl2LSuvq59zD3LCBcv1W7ylpQhInqnd4KMGHrGk8ctOxkq735eQJfeuhMgYk3WOA7IICAG+7+g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720518586; c=relaxed/simple;
-	bh=+chQesbQ8IjMDaLXVcqZFyhiyu7jYuAsU6LcpQ3w/nU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qa+vuJlzWIVP4/YlPoLvXBL1/7fOe2Yt+FPIBVDf2XuW0NlWoZ2vvMH0WamOzrN7D6uhpMPIpMnoO4i4LSiHOD5QststiN8CCGeW61NmoL0MTL0WIyVas7ag9VCEawJYxdEjDfcunadtHLYLxRczTjtZbGcieHoaO6XH1Hr9JpA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vxmz/atC; arc=none smtp.client-ip=209.85.208.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-58ef19aa6b3so2624997a12.1
-        for <devicetree@vger.kernel.org>; Tue, 09 Jul 2024 02:49:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1720518583; x=1721123383; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=YnCSBbKU3ioIHg5WvkeZ7VAE/TUgPg1AYZbUSm93KBg=;
-        b=vxmz/atC7O9+TTrc8cTTJm5er8juHC4km8btrEaERViRGFuTx76Yds70uW4c/h3d06
-         lMEgGmrLDoslf3GZU2eKRnVVvlKPwvDJmYHBYTNAs/EjltF8JiPYZS3YnwqKZeA4LxUp
-         EmqPGY7tn1kkzkGU9mB73JYkp6BsFNnpI6xaHhFfzt+rljZRXTly2yYVy4y+NfHwMvJa
-         991Uq8stbDSKN5dyIYK15AOrPlNOskvxkdcO6o3YMLwLF3RSdfHwVhsW7HPHFtgMdAGw
-         XwW+vHlAVP9vCxrR2jy+0aE3Hrb1rRNpnNF/TEw93quiK5TqRoNxDEioyxgO5gGfqeNt
-         0z3g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720518583; x=1721123383;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YnCSBbKU3ioIHg5WvkeZ7VAE/TUgPg1AYZbUSm93KBg=;
-        b=J+9CYTkhephuKePnTYATmGyaHfo2amjTb6F9nbK6KaeBORJZEdEpQOF0le//xENZC6
-         MWrqbDBdt71P04l2+gnvQzC6cwHtrWN1N4IBf02pmAxYRShxNaASnJmgdC7t7XRT24V0
-         xZ0PZvRHBDzrMzi148RMEvHahxBoRJGQxS/lIkdiENfdscH/kLHl/Pl5WZ4XalLgzh5s
-         WjsqPtiZS/4690rdbJr1ewn8dFu32oX3027leTJCEeyYaMwIpFnMmgxkf6VI80grNXam
-         /W0etSB7C9Rj6qI1Dhdu+636J4fLdUXAuSefizr/kkHvrsPthRsoScxqSg2LqITOHNZv
-         +wMQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWPc4PUNBoVe0kJZjk4DxiO2kvGJV/TiMiKwvxgLph0lOuI/0WBNSY35PQEqsMwHVyH/j+qgzYVUjkvY+znoa05dtWyOYcQq2UCFw==
-X-Gm-Message-State: AOJu0YybMyUjLbo/xp2R8HdArN03cRaB/qmMa3xWiOpzGJhsQqUpHSxL
-	KHuyMzAJqkQIPTvnRo8YmqBH6Gx1KVaEtes6Cm7HWRMJ+vDNZ5I0TPsWS8z0XS8=
-X-Google-Smtp-Source: AGHT+IF3WOZNV5SxJx71Y5Vzqutl5kaWi2iKT/CrgRtHdwVifN3axQWMUdfNrRCiuQeWx0uDeOH0fA==
-X-Received: by 2002:a05:6402:40d5:b0:57d:3df:f881 with SMTP id 4fb4d7f45d1cf-594bab80834mr1900788a12.3.1720518582870;
-        Tue, 09 Jul 2024 02:49:42 -0700 (PDT)
-Received: from [192.168.105.194] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a780a6bc701sm63664966b.34.2024.07.09.02.49.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 Jul 2024 02:49:42 -0700 (PDT)
-Message-ID: <94b2842b-6093-4c4d-a099-3e0a3198b753@linaro.org>
-Date: Tue, 9 Jul 2024 11:49:39 +0200
+	s=arc-20240116; t=1720518694; c=relaxed/simple;
+	bh=bL4qqpnXgSeE002tT5hkhdq/LTVBpp3383J8u7fQ4bc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=K1G9BqznIxbSu0szRjFLMXK+lFU0hLkw4bSMLnriHpf1zY3vaxnwrzrYoNOa4SvWdtfOBXKHpA502XfE2M1l1pZSRex5j53o6NWwP7x7BpWQiVi5QEA1UzxuO7IqRlHcnckdjRfxxuK9MIDWfxo7Hi5vn/rzfVWNKDcH9zwrJkg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j3oZYSxh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0883C3277B;
+	Tue,  9 Jul 2024 09:51:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720518693;
+	bh=bL4qqpnXgSeE002tT5hkhdq/LTVBpp3383J8u7fQ4bc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=j3oZYSxhrUHeBC7D3++kc3VMMIROXNpVTp/zPdT90QqvPQgNm5XI2F6MBXPM/+UA3
+	 UH9RuK2MShKrBmUTslqSXwP3Vk6xC9PEhP727zHiCfE1dR9NNi04itTL2M4g2JPGca
+	 DYbyB6fhgfRRpxw2TSGozYaH9fBkaZqsPy7wqUTf/Em/9DzIDZtwFFcgksMprYZaEr
+	 aZMcxEFFAdQ80JKr95+yYz7gtnWdrvetTEsvaLEIzp8rQlJK8hzi7OlJIcFemoHGE/
+	 v0rnx/MlMCVg9pE9T6LJmQXapizmm4+K4joqB3CEAt9ivGtpfDOMHt/a2HbXmnnjPB
+	 mBMeYRnBPpOlQ==
+Date: Tue, 9 Jul 2024 10:51:27 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Charlie Jenkins <charlie@rivosinc.com>
+Cc: Anup Patel <apatel@ventanamicro.com>,
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+	Anup Patel <anup@brainfault.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Frank Rowand <frowand.list@gmail.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Samuel Holland <samuel@sholland.org>, devicetree@vger.kernel.org,
+	Saravana Kannan <saravanak@google.com>,
+	Marc Zyngier <maz@kernel.org>, linux-kernel@vger.kernel.org,
+	=?iso-8859-1?Q?Bj=F6rn_T=F6pel?= <bjorn@kernel.org>,
+	Atish Patra <atishp@atishpatra.org>,
+	linux-riscv@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	Andrew Jones <ajones@ventanamicro.com>
+Subject: Re: [PATCH v14 01/18] irqchip/sifive-plic: Convert PLIC driver into
+ a platform driver
+Message-ID: <20240709-mutt-truffle-3ac954bc00ba@spud>
+References: <20240222094006.1030709-1-apatel@ventanamicro.com>
+ <20240222094006.1030709-2-apatel@ventanamicro.com>
+ <CAJM55Z9hGKo4784N3s3DhWw=nMRKZKcmvZ58x7uVBghExhoc9A@mail.gmail.com>
+ <CAK9=C2WP2+gKScUFuoE9782gjSfnDtcLAw01eCwram3LMAStBg@mail.gmail.com>
+ <CAJM55Z8ti-ePT0t714h1Za9X3Ns3=Fw0pCu3NZ=7eT76JU_p5g@mail.gmail.com>
+ <CAAhSdy1pesbdTfWnFURMJRcy2ujjX+cXtt-cfLDj2CQf2Ua_gw@mail.gmail.com>
+ <CAJM55Z_=94+aMv=ywhih44eF0pR2WXiyx3FcrwRaX6tZto4gpQ@mail.gmail.com>
+ <CAK9=C2XWjtWtV1WbQrX4Cg8KyzjVevMjG18YTgQJbZxi61BFjg@mail.gmail.com>
+ <ZoydV7vad5JWIcZb@ghost>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v15 01/10] MAINTAINERS: Include new Qualcomm CPR drivers
- in the file list
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
- Stephen Boyd <sboyd@kernel.org>, Niklas Cassel <nks@flawful.org>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
- Viresh Kumar <viresh.kumar@linaro.org>, Ulf Hansson
- <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Robert Marko <robimarko@gmail.com>, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-pm@vger.kernel.org, Jeffrey Hugo <quic_jhugo@quicinc.com>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Varadarajan Narayanan <quic_varada@quicinc.com>
-References: <20240708-topic-cpr3h-v15-0-5bc8b8936489@linaro.org>
- <20240708-topic-cpr3h-v15-1-5bc8b8936489@linaro.org>
- <cd1c3450-1905-4d71-bcdd-5f880d743820@kernel.org>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <cd1c3450-1905-4d71-bcdd-5f880d743820@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="bSqWFTNZ10MZH6YN"
+Content-Disposition: inline
+In-Reply-To: <ZoydV7vad5JWIcZb@ghost>
 
-On 9.07.2024 11:04 AM, Krzysztof Kozlowski wrote:
-> On 08/07/2024 14:22, Konrad Dybcio wrote:
->> Expand the Qualcomm Core Power Reduction section to include the files
->> concerning CPR3+ support.
->>
->> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->> ---
->>  MAINTAINERS | 5 +++--
->>  1 file changed, 3 insertions(+), 2 deletions(-)
->>
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index dcb37b635f2c..f3e013a52c16 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -18687,14 +18687,15 @@ F:	Documentation/accel/qaic/
->>  F:	drivers/accel/qaic/
->>  F:	include/uapi/drm/qaic_accel.h
->>  
->> -QUALCOMM CORE POWER REDUCTION (CPR) AVS DRIVER
->> +QUALCOMM CORE POWER REDUCTION (CPR) AVS DRIVERS
->>  M:	Bjorn Andersson <andersson@kernel.org>
->>  M:	Konrad Dybcio <konrad.dybcio@linaro.org>
->>  L:	linux-pm@vger.kernel.org
->>  L:	linux-arm-msm@vger.kernel.org
->>  S:	Maintained
->>  F:	Documentation/devicetree/bindings/power/avs/qcom,cpr.yaml
->> -F:	drivers/pmdomain/qcom/cpr.c
->> +F:	Documentation/devicetree/bindings/soc/qcom/qcom,cpr3.yaml
-> 
-> Maybe combine these two into:
-> Documentation/devicetree/bindings/power/avs/qcom,cpr*
 
-I think avs was proposed to be a subsystem/driver directory at some point
-and (adaptive voltage source? something like that) and this is the only file
-in that directory in bindings..
+--bSqWFTNZ10MZH6YN
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Should we continue with this "class" of devices, or should I move qcom,cpr.yaml
-to soc?
+On Mon, Jul 08, 2024 at 07:15:51PM -0700, Charlie Jenkins wrote:
+> CONFIG_NONPORTABLE=3Dy
+> CONFIG_RISCV_EFFICIENT_UNALIGNED_ACCESS=3Dy
+>=20
+> A new warning is tripped:
+>=20
+> [    1.015134] No max_rate, ignoring min_rate of clock 9 - pll-video0
+> [    1.021322] WARNING: CPU: 0 PID: 1 at drivers/clk/sunxi-ng/ccu_common.=
+c:155 sunxi_ccu_probe+0x144/0x1a2
+> [    1.021351] Modules linked in:
+> [    1.021360] CPU: 0 PID: 1 Comm: swapper Tainted: G        W          6=
+=2E10.0-rc6 #1
+> [    1.021372] Hardware name: Allwinner D1 Nezha (changed) (DT)
+> [    1.021377] epc : sunxi_ccu_probe+0x144/0x1a2
+> [    1.021386]  ra : sunxi_ccu_probe+0x144/0x1a2
+> [    1.021397] epc : ffffffff80405a50 ra : ffffffff80405a50 sp : ffffffc8=
+0000bb80
+> [    1.021406]  gp : ffffffff815f69c8 tp : ffffffd801df8000 t0 : 61000000=
+00000000
+> [    1.021414]  t1 : 000000000000004e t2 : 61725f78616d206f s0 : ffffffc8=
+0000bbe0
+> [    1.021422]  s1 : ffffffff81537498 a0 : 0000000000000036 a1 : 00000000=
+0000054b
+> [    1.021430]  a2 : 00000000ffffefff a3 : 0000000000000000 a4 : ffffffff=
+8141f628
+> [    1.021438]  a5 : 0000000000000000 a6 : 0000000000000000 a7 : 00000000=
+4442434e
+> [    1.021446]  s2 : 0000000000000009 s3 : 0000000000000000 s4 : ffffffd8=
+01dc9010
+> [    1.021453]  s5 : ffffffd802428a00 s6 : ffffffd83ffdcf20 s7 : ffffffc8=
+00015000
+> [    1.021462]  s8 : ffffffff80e55360 s9 : ffffffff81034598 s10: 00000000=
+00000000
+> [    1.021470]  s11: 0000000000000000 t3 : ffffffff8160a257 t4 : ffffffff=
+8160a257
+> [    1.021478]  t5 : ffffffff8160a258 t6 : ffffffc80000b990
+> [    1.021485] status: 0000000200000120 badaddr: 0000000000000000 cause: =
+0000000000000003
+> [    1.021493] [<ffffffff80405a50>] sunxi_ccu_probe+0x144/0x1a2
+> [    1.021510] [<ffffffff80405af6>] devm_sunxi_ccu_probe+0x48/0x82
+> [    1.021524] [<ffffffff80409020>] sun20i_d1_ccu_probe+0xba/0xfa
+> [    1.021546] [<ffffffff804a8b40>] platform_probe+0x4e/0xa6
+> [    1.021562] [<ffffffff808d81ee>] really_probe+0x10a/0x2dc
+> [    1.021581] [<ffffffff808d8472>] __driver_probe_device.part.0+0xb2/0xe8
+> [    1.021597] [<ffffffff804a67aa>] driver_probe_device+0x7a/0xca
+> [    1.021621] [<ffffffff804a6912>] __driver_attach+0x52/0x164
+> [    1.021638] [<ffffffff804a4c7a>] bus_for_each_dev+0x56/0x8c
+> [    1.021656] [<ffffffff804a6382>] driver_attach+0x1a/0x22
+> [    1.021673] [<ffffffff804a5c18>] bus_add_driver+0xea/0x1d8
+> [    1.021690] [<ffffffff804a7852>] driver_register+0x3e/0xd8
+> [    1.021709] [<ffffffff804a8826>] __platform_driver_register+0x1c/0x24
+> Emil[    1.021725] [<ffffffff80a17488>] sun20i_d1_ccu_driver_init+0x1a/0x=
+22
+> [    1.021746] [<ffffffff800026ae>] do_one_initcall+0x46/0x1be
+> [    1.021762] [<ffffffff80a00ef2>] kernel_init_freeable+0x1c6/0x220
+> [    1.021791] [<ffffffff808e0b46>] kernel_init+0x1e/0x112
+> Linked as a fwnode consumer[    1.021807] [<ffffffff808e7632>] ret_from_f=
+ork+0xe/0x1c
+>=20
+> The warning is not fatal, so execution continues until hanging at
+>=20
+> [    2.110919] printk: legacy console [ttyS0] disabled
+> [    2.136911] 2500000.serial: ttyS0 at MMIO 0x2500000 (irq =3D 205, base=
+_baud =3D 1500000) is a 16550A=EF=BF=BD[    2.145674] printk: legacy consol=
+e [ttyS0] enabled
+> [    2.145674] printk: legacy console [ttyS0] enabled
+> [    2.155095] printk: legacy bootconsole [sbi0] disabled
+> [    2.155095] printk: legacy bootconsole [sbi0] disabled
+>=20
+> I have not been able to discover why it hangs here.
 
-Konrad
+FWIW, that's probably because the CCU is the clock driver providing the
+clock for the uart, so when the sbi console goes away you lose output
+cos the uart driver cannot get the right rate for its input.
+You'd probably get further if you set keep_bootcon in your cmdline - but
+realistically the clock driver failing to probe is gonna have a load of
+knock on effects that it's probably enough to just have the failure you
+link here.
+
+--bSqWFTNZ10MZH6YN
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZo0IHwAKCRB4tDGHoIJi
+0vRfAP9bUI5Q8gO+0jDxlcnbZTpLWQkYqx7dZemPzbLJwoQxWgD/bpGeA4LqYj1+
+AREvEnMKmNas6haB0YYEh9d10Wx65g4=
+=hcxv
+-----END PGP SIGNATURE-----
+
+--bSqWFTNZ10MZH6YN--
 
