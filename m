@@ -1,146 +1,118 @@
-Return-Path: <devicetree+bounces-84062-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84059-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F8CB92AD38
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 02:44:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E9A9492AD0C
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 02:21:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1709AB209C7
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 00:44:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7446AB21DD4
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 00:21:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 774911EA8D;
-	Tue,  9 Jul 2024 00:44:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=toshiba.co.jp header.i=yuji2.ishikawa@toshiba.co.jp header.b="mnQId6Xx"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D57C926AD0;
+	Tue,  9 Jul 2024 00:21:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mo-csw-fb.securemx.jp (mo-csw-fb1122.securemx.jp [210.130.202.130])
+Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F9724A05;
-	Tue,  9 Jul 2024 00:44:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.130.202.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A2F828DB3
+	for <devicetree@vger.kernel.org>; Tue,  9 Jul 2024 00:21:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720485887; cv=none; b=ma6iUziaqHKZYICrpMZ/7nKtxtNR6bZjLVNUb2aY5nD7w3HLUKmArMyiDrqAgggBVxAUHpxMzS7ysq3xACLXRoAt/B6OQxcWPK1gyVWpVNh0baC6nBeMBlf7zhJMOAUtbhTPLrlHspf50a3YchItE7csgG99J2I5eQErcvNKqHU=
+	t=1720484477; cv=none; b=pNdiPoqgZV/f4sXcuBDcHVyRfH8HkDvS2t/G497qwrCjVpi5LP7+BK9Tln5IZfu0lhf6VjCuci7paE53J1dByUXcPkb+USmRIXblo3TFnP/LlPc36kHXMdNckBpJnR1wxnaM92QUMzPR+X4sp+M4rLFH+M7SLVH9b7ZGTyPZi7c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720485887; c=relaxed/simple;
-	bh=e1dzAiBXQhbVLezx3qDYjhlathF5T/E1TJvwyCTSHl8=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=d1F698p9flQRDCiJI8mh3yLISYHr7TX8o7OkRzElHZyewVFo826o4nZ/3LTAX2C70hfxmX4K8kHFfkCD+gnPkD5si4bgWRsql7TXP3WTH3TP5fQ6UPQcU0tnbyIOoVOrS9JKRqgJWQdDQy9am/ht83neZJGVQSsSioySvpFb3sg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=toshiba.co.jp; spf=pass smtp.mailfrom=toshiba.co.jp; dkim=pass (2048-bit key) header.d=toshiba.co.jp header.i=yuji2.ishikawa@toshiba.co.jp header.b=mnQId6Xx; arc=none smtp.client-ip=210.130.202.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=toshiba.co.jp
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=toshiba.co.jp
-Received: by mo-csw-fb.securemx.jp (mx-mo-csw-fb1122) id 4690FGhA2337246; Tue, 9 Jul 2024 09:15:16 +0900
-DKIM-Signature: v=1;a=rsa-sha256;c=relaxed/simple;d=toshiba.co.jp;h=From:To:Cc
-	:Subject:Date:Message-Id:In-Reply-To:References:MIME-Version:
-	Content-Transfer-Encoding;i=yuji2.ishikawa@toshiba.co.jp;s=key2.smx;t=
-	1720484084;x=1721693684;bh=e1dzAiBXQhbVLezx3qDYjhlathF5T/E1TJvwyCTSHl8=;b=mnQ
-	Id6XxWHtvudM4ICe1B99n9nk/F/zlkvsjZ2hxIVIsvf0HvQa4mFKKd78ukwTqttz9w7cHvG7B2U72
-	QEUWLcNwaZXon8tt5bJ6QxGIsvee8Gqt+sJ5HObQ5Q9EsEdw8LcLIYb3dSvIEZ7znRMBZxA/NZOgp
-	BhhvDUEevO7HulaF4r+aopVwrZeLKBP31VmetqyieB4iiq5xtvIpbkBdQhmVl97ci0fW/TYPnfZDV
-	NZUY0XT2yeGQx6O6JL9b+GvsnTLqvVQs5Pio9EgC24ho/1q92LToJZWktEfsWU0+xESEh7Rhc1Mvv
-	2XWPkbIFqEXq4hZRzlXz5ycyV3Ep32w==;
-Received: by mo-csw.securemx.jp (mx-mo-csw1122) id 4690Eigc3581316; Tue, 9 Jul 2024 09:14:44 +0900
-X-Iguazu-Qid: 2rWgcwEFXkFHW1EwRr
-X-Iguazu-QSIG: v=2; s=0; t=1720484083; q=2rWgcwEFXkFHW1EwRr; m=RC9L+gHFs2stttK5pKGR6z1upsS3B/TWlkYHLZqw76M=
-Received: from imx2-a.toshiba.co.jp (imx2-a.toshiba.co.jp [106.186.93.35])
-	by relay.securemx.jp (mx-mr1121) id 4690EgBh130368
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Tue, 9 Jul 2024 09:14:43 +0900
-X-SA-MID: 26358990
-From: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
-To: Hans Verkuil <hverkuil@xs4all.nl>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-        Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v11 6/6] MAINTAINERS: Add entries for Toshiba Visconti Video Input Interface
-Date: Tue,  9 Jul 2024 09:08:48 +0900
-X-TSB-HOP2: ON
-Message-Id: <20240709000848.1108788-7-yuji2.ishikawa@toshiba.co.jp>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240709000848.1108788-1-yuji2.ishikawa@toshiba.co.jp>
-References: <20240709000848.1108788-1-yuji2.ishikawa@toshiba.co.jp>
+	s=arc-20240116; t=1720484477; c=relaxed/simple;
+	bh=de1avitQBiu1Fy1ZdwBYZlwPKhu/bH+ZiSpazxU48yY=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=q02eSg8dz2QwvpfAlImqBO8lrsYviwkoqxSi8GKaEYsBXPPuzUa9ial4ZBPBAgotUKnRyQwwmuVoK2H8TVZ5BYmlEaQDPU8WCAYJtbA88jRggDkpxbLNo7MF+lXUMGXx2ixXGbiEF647ndkdOIyyzREInkZ4iMjvzaWCmDy66RQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org; spf=pass smtp.mailfrom=baylibre.com; arc=none smtp.client-ip=209.85.214.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-1fb1c69e936so23281505ad.3
+        for <devicetree@vger.kernel.org>; Mon, 08 Jul 2024 17:21:16 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720484475; x=1721089275;
+        h=content-transfer-encoding:mime-version:message-id:date:references
+         :in-reply-to:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=yrbRzW7TmvE/emyggKx8DBxtpeVLv4H61DaYvPd4Jec=;
+        b=gwbtPOH6GfnK09Ru5oaRZAGGlE5/TwmHEWnmCF8cWGnfTmu+SzqYFnOP+mwIh8jLJ6
+         e8O1QLBFDDqsv/m4phDNWwmMDm5/002du2OFuOdP2mtE6SlJYvfrEf5NT6iRb19jDM6I
+         RwkTYchmB6mr6Elz1dnEtG8XiA/bTBeC4B0831IpelvI2YKGDkDVh/6C/L85hxOrvvrH
+         Rbv2Bxj77azfuhWaJKQKPenuYQ/b5rWHmhf/oR0NDLuJfvB6YlidtI7KMP20Vm1nC6UL
+         p/xVRbNxe6XG+BICTSnPqgz6tkgcIalYLWIdHkGlEDlVODoBdeByzjCt6cgfXh+vVwjp
+         vM3Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUPZDTgGgjteq6b30EBa3ePYL2EZTAgzPpe87QYAqo6iBS9YsrCiMgPgrQMXfSrJOzMnjvAs/4ChG2Rv0RwHYa+MXyUDhc74qPeCw==
+X-Gm-Message-State: AOJu0Yzep5fBfxTOD3ODQmD62iWG7aTjnyf8HBuAmdGNflh22vCL+Cj8
+	l9e1zvz+1jqdKrG9z4P4uQY0RDY1NaMyz8W+LiPlGah/NWZRfmSkR3MVkdvIkXA=
+X-Google-Smtp-Source: AGHT+IFppyFwTeQ3Z2Thxvru++KEqbVGYMZHsFalxNlJLyydnbWVl4ppQ4d3ZcJeQ7Zn8jsELviLTw==
+X-Received: by 2002:a17:902:f644:b0:1f4:620b:6a27 with SMTP id d9443c01a7336-1fbb6d25158mr8435815ad.13.1720484475579;
+        Mon, 08 Jul 2024 17:21:15 -0700 (PDT)
+Received: from localhost (97-126-77-189.tukw.qwest.net. [97.126.77.189])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1fbb6acfa67sm4227455ad.266.2024.07.08.17.21.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Jul 2024 17:21:15 -0700 (PDT)
+From: Kevin Hilman <khilman@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Bartosz
+ Golaszewski <brgl@bgdev.pl>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, =?utf-8?Q?Beno=C3=AEt?= Cousson
+ <bcousson@baylibre.com>, Tony Lindgren <tony@atomide.com>,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: ti: align panel timings node name with dtschema
+In-Reply-To: <b1f07743-a2a7-4984-b168-0f08e87ce0ec@linaro.org>
+References: <20240509104813.216655-1-krzysztof.kozlowski@linaro.org>
+ <171940115812.32431.4234002524799635130.b4-ty@linaro.org>
+ <CAMRc=Mc8ET2GneRT_PoGvffe+c5u13zAYsRr3u5P+aRzQv4CAQ@mail.gmail.com>
+ <b1f07743-a2a7-4984-b168-0f08e87ce0ec@linaro.org>
+Date: Mon, 08 Jul 2024 17:21:14 -0700
+Message-ID: <7hsewj76v9.fsf@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-Added entries for visconti Video Input Interface driver, including;
-* device tree bindings
-* source files
-* documentation files
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> writes:
 
-Signed-off-by: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
-Reviewed-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
----
-Changelog v2:
-- no change
+> On 26/06/2024 13:47, Bartosz Golaszewski wrote:
+>> On Wed, Jun 26, 2024 at 1:26=E2=80=AFPM Krzysztof Kozlowski
+>> <krzysztof.kozlowski@linaro.org> wrote:
+>>>
+>>>
+>>> On Thu, 09 May 2024 12:48:13 +0200, Krzysztof Kozlowski wrote:
+>>>> DT schema expects panel timings node to follow certain pattern,
+>>>> dtbs_check warnings:
+>>>>
+>>>>   am335x-pdu001.dtb: display-timings: '240x320p16' does not match any =
+of the regexes: '^timing', 'pinctrl-[0-9]+'
+>>>>
+>>>> Linux drivers do not care about node name, so this should not have
+>>>> effect on Linux.
+>>>>
+>>>> [...]
+>>>
+>>> 1.5 months on the lists, but maybe I combined too many separate TI main=
+tainers,
+>>> so no one feels responsible... then I guess I will take it.
+>>>
+>>=20
+>> Yeah next time you should probably at least split omap and davinci
+>> bits into separate patches. Otherwise I think Tony thought I'd pick it
+>> up and vice versa.
+>
+> I guess after you acked it, Tony would pick it up.
+>
+> Anyway, please let me know if I should drop the patch / resend / split et=
+c.
 
-Changelog v3:
-- added entry for driver API documentation
+There's a bit of a handover transition as I take over from Tony on the
+omap stuff.  Sorry for the lag, but thanks for picking this up.
 
-Changelog v4:
-- added entry for header file
-
-Changelog v5:
-- no change
-
-Changelog v6:
-- update path to VIIF driver source files
-
-Changelog v7:
-- no change
-
-Changelog v8:
-- rename bindings description file
-
-Changelog v9:
-- no change
-
-Changelog v10:
-- add a separate entry of VIIF driver
-
-Changelog v11:
-- no change
-
- MAINTAINERS | 11 +++++++++++
- 1 file changed, 11 insertions(+)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 3c4fdf74a3..f051f4ab34 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -22734,6 +22734,17 @@ F:	Documentation/devicetree/bindings/media/i2c/tc358743.txt
- F:	drivers/media/i2c/tc358743*
- F:	include/media/i2c/tc358743.h
- 
-+TOSHIBA VISCONTI VIIF DRIVER
-+M:	Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-+M:	Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
-+L:	linux-media@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/admin-guide/media/visconti-viif.*
-+F:	Documentation/devicetree/bindings/media/toshiba,visconti5-viif.yaml
-+F:	Documentation/userspace-api/media/v4l/metafmt-visconti-viif.rst
-+F:	drivers/media/platform/toshiba/visconti/
-+F:	include/uapi/linux/visconti_viif.h
-+
- TOSHIBA WMI HOTKEYS DRIVER
- M:	Azael Avalos <coproscefalo@gmail.com>
- L:	platform-driver-x86@vger.kernel.org
--- 
-2.25.1
-
-
+Kevin
 
