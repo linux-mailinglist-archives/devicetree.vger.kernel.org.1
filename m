@@ -1,223 +1,503 @@
-Return-Path: <devicetree+bounces-84468-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84469-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C88D92C5B1
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 23:47:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2596B92C5B3
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 23:49:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8FDB81F22BE8
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 21:47:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CFD6B28327B
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 21:49:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8341A1850A2;
-	Tue,  9 Jul 2024 21:47:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 402CC185607;
+	Tue,  9 Jul 2024 21:49:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="IdrmmNOf"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="TlFD/ngm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2049.outbound.protection.outlook.com [40.107.243.49])
+Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11013025.outbound.protection.outlook.com [52.101.67.25])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADF4B14374C;
-	Tue,  9 Jul 2024 21:47:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.243.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 719B614374C;
+	Tue,  9 Jul 2024 21:49:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.67.25
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720561670; cv=fail; b=Q7wUg+BzpUG1bZ9QW7qlVKPuZaeA84l7EzqZRISTgDoYAfoaeLfXZk5LM+4NQywlubiigwz689bF8+G8W/IkMdbwmv2L/a4SbF3xInbPHeO2RHNShNxud3cG3oXev/TyKomvdchKc7tlxBbBz/8ro4dLCN9yjM/4+rTL4hIfwDg=
+	t=1720561746; cv=fail; b=ZqReI2S+8/m7pC02o+xXQbkVp5CWti3sMYunzSDFT1zBEqjRY+nmTHwNv+ypU+1c0738NJcQI7VuEScxnysqCgVH610nAu94Aa/W1vx6GyatOAmeHS19L7amiimwNlJd6WmQO+NvufES1kK57egOFHqovPGBvDSeh/SMNvi/mQE=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720561670; c=relaxed/simple;
-	bh=RT2KFS1TDiZsl5R/m1HisoICnymkzprZUOUet5+PdmU=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=tQSKVjVyjU0CcwEDgm7XiL7WzHn40LdfR6ddjQm4RIx790Vkw8kSyDexCjKzFu/kxQ7bDssh+Dl699iBYW1NvEHY/Jb6ltKxq44qJb+5Vt2D5dlJ/LPQaRrO1ePUxHbzMp8YgLPY7ggt10AIk59Tpk9F9ix6A5M789BUqt6tcbw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=IdrmmNOf; arc=fail smtp.client-ip=40.107.243.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+	s=arc-20240116; t=1720561746; c=relaxed/simple;
+	bh=E/XMdZWE9aJ+A27IUhYbLIkDpEgCB+yfa8KFaalHCTE=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=sKYXTIU9XRWyjToxf4VyL3L8e8aIysvbSE3DWu5SULrWQtXjg0EdOmhx2Ean/oqjiEfqJIB+rem2W8J8N6YLhNahYBvnUBn4+Vr08mGCbk64P/hrfCWeirOEE1ZCVj9yea6wIk7H4xwPYk1OoBr00lLMjIF1D3/TnmhAAE1cm9M=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=TlFD/ngm; arc=fail smtp.client-ip=52.101.67.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lHradRu+Pi1EnozcMAsHTvKoDNICVkyBXgPrIuCid8bn75EjQej282M24nGEzWH9amKkwMZfwE0GSPhMOMLbRs9xxIAmquMc+6KzZPHj/sfmHKFlwNCTAAEHFcAnoGzWlBgkUVU5C5HTsTxyn3Zwe5d9uGO+Qtc4/TbkWhVdJ4rGin88V9lkE5cz1pXW/+7vgX7puo98YcH3PmxMFos9/BReW6ykXggK3dUi9bl5PAzjzYwNFWcNMUHYBpNJWKhd0URMREmD1hqezbrDnm9p7/wj15rhSI7I/Odv63QJBEmwwY/9B0w0jNAo/q1BzC8XHJ8hlwQY0oq4jG7rC710MQ==
+ b=ZRg0CCMxNfJ8KfNLckM70dey1OJe5/6iSfilAdc7IqRdd++ZBCuo70nX0GuRyJi6ngIwFh/gmdZtffZ0F2mFZCiRJsPLkNMc8Gkpuf4ItB1vja6otsoUaYnFzm+msRKqLCHO8PK0/fgBNWwgBCjq87PZSF4JnQzzAjaz6aHbQHC5zaVsjx5IYPGfab3kpV3jdDWMazbZXoD7MLLNqWw5o0TtWrOp0XDAm7GQyZI0xTeyMltDsMictzCZQ/n8crxJ1kEMtSMOT1uwT4diikT6kz5F35k4BgfiP65xMq7Eqt9YLSYfSf1IVleMzjeC0ojYwELT54piaCut2jsmNGHxWw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+iayTMhLi4MgKWrl8aoPyRqSBPrdqO1LUaeh5xAvHE8=;
- b=dAsfG8hrGc57yyLdKlhWJSduQM9gQk1D85snnSonwnqRXzR4UdC/6fkvHYRjES6bYBQoUH56wR+7mux2dUWFcg4sBFB4fgKiHYCw3LiZZnsxJrt3FfPS6GSK6pX2MUsL5NazNP8PQY/2urpjuzcciu4smzdt5Be4vAn3GsKiTafCTxPq/4Brte2RAxhYBGI9GPIZsc9IHNgNL0eRGOBBbKbf8qp+6LKroKiu9dhvCB7ddQkoBDR9ULkcmbbx8Ez6svGHoEzS/1QQkniHwDBqBcp/rSicCHJgarys741PpyHFAIgohk42IEmL2xShmXs/PicHfNdWxH/exssEjGe1nA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.118.232) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
+ bh=ePr9Qg+GpTnLb5HwdTn/liJiQ+K/eMCpO/f7QPu9zfs=;
+ b=eB8xuM0URyTSAj+Rh9bL/+58AzVySRE4o/xBpew4bohFfsD8JqD0sjcHD3Qdyk+M2G2FfA30upqLCsKvpoCpkc6pob9SH7/BWzKN72AUpxZCgTWyVMZ6xG8Qx3wW3cB54ggDo79yNIxGPoZGUdjDbQZeJ4Cq/SmduheYi8HdJtJNSVHgC5DfQA+FQypolO6uvWMJdqaBuEFajUyVmysvInQDnFvguK6kkKel09+g/3XVrNtdndNouRtVQdSPeMI329XS017rPJbO0jfL1iJySDNUUujebJ0OLMkXSwIKS6RbnCVyLB8acQlxxqZggSiuQvR5d9UuTKKVf2e1xeoytA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+iayTMhLi4MgKWrl8aoPyRqSBPrdqO1LUaeh5xAvHE8=;
- b=IdrmmNOfgdIo/2Xa9dVAbu8BQecahpYKiivGVzgSEenq4mkuf15Ull2F5vSCEgUBoPBL3J5ZbOgM71n1UAwGHYW3oz1kJWznmOS1zzbMMKJDQ5hKi6QQ99XfDbyL6l/+6DC9z70f8QemigGX0337SzNGbRFShqjLC3WFe4FI0INgTx0w+Kl5FDZUlkPcNZt5E7Ntg0Pw6L3+MYI7sMPErMT5a+B2B2hUjDYMncQToQTDCUlaX0lykrY7XZaxBzifQ8Iw5a4DknZhnwq9BPiYaeKklyJHMyC0oPdQQQvzTSFQqdjgPKgsbKVE4yu0/1AMBboTMl89onpOB0f1yxrXNg==
-Received: from SJ0PR13CA0171.namprd13.prod.outlook.com (2603:10b6:a03:2c7::26)
- by DM4PR12MB6040.namprd12.prod.outlook.com (2603:10b6:8:af::14) with
+ bh=ePr9Qg+GpTnLb5HwdTn/liJiQ+K/eMCpO/f7QPu9zfs=;
+ b=TlFD/ngmVNGTEfJt4crm8aT25CdBhRa4rj1XUDL1ubVPSpqsApyYKtWPmG5+XefsCnGv7VZKNutxskLJ20sw9c2ycwfgiTU7vS8bs5LYLnN+77DXIOVUeSUu/1WIRuxNEvG/DGHLZOSm1iemLdzXUlnumjVEh6G568EVzL3mJp0=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by VE1PR04MB7391.eurprd04.prod.outlook.com (2603:10a6:800:1b3::16) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7741.35; Tue, 9 Jul
- 2024 21:47:45 +0000
-Received: from CO1PEPF000044F3.namprd05.prod.outlook.com
- (2603:10b6:a03:2c7:cafe::ef) by SJ0PR13CA0171.outlook.office365.com
- (2603:10b6:a03:2c7::26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7762.20 via Frontend
- Transport; Tue, 9 Jul 2024 21:47:44 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.118.232)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.118.232 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.118.232; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.118.232) by
- CO1PEPF000044F3.mail.protection.outlook.com (10.167.241.73) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7762.17 via Frontend Transport; Tue, 9 Jul 2024 21:47:44 +0000
-Received: from drhqmail201.nvidia.com (10.126.190.180) by mail.nvidia.com
- (10.127.129.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Tue, 9 Jul 2024
- 14:47:36 -0700
-Received: from drhqmail201.nvidia.com (10.126.190.180) by
- drhqmail201.nvidia.com (10.126.190.180) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.4; Tue, 9 Jul 2024 14:47:35 -0700
-Received: from l4tsclab4-2000.nvidia.com (10.127.8.12) by mail.nvidia.com
- (10.126.190.180) with Microsoft SMTP Server id 15.2.1544.4 via Frontend
- Transport; Tue, 9 Jul 2024 14:47:35 -0700
-From: Vedant Deshpande <vedantd@nvidia.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Thierry Reding
-	<thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, "Brad
- Griffis" <bgriffis@nvidia.com>, <devicetree@vger.kernel.org>,
-	<linux-tegra@vger.kernel.org>
-CC: Vedant Deshpande <vedantd@nvidia.com>
-Subject: [PATCH] arm64: tegra: enable same UARTs for Orin NX/Nano
-Date: Tue, 9 Jul 2024 21:46:09 +0000
-Message-ID: <20240709214609.2472562-1-vedantd@nvidia.com>
-X-Mailer: git-send-email 2.25.1
+ 2024 21:48:58 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%2]) with mapi id 15.20.7741.033; Tue, 9 Jul 2024
+ 21:48:58 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: robh@kernel.org
+Cc: Frank.li@nxp.com,
+	conor+dt@kernel.org,
+	davem@davemloft.net,
+	devicetree@vger.kernel.org,
+	edumazet@google.com,
+	imx@lists.linux.dev,
+	krzk+dt@kernel.org,
+	krzk@kernel.org,
+	kuba@kernel.org,
+	linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org,
+	pabeni@redhat.com
+Subject: [PATCH v3 1/1] dt-bindings: net: convert enetc to yaml
+Date: Tue,  9 Jul 2024 17:48:41 -0400
+Message-Id: <20240709214841.570154-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SJ0PR05CA0198.namprd05.prod.outlook.com
+ (2603:10b6:a03:330::23) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-NVConfidentiality: public
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-NV-OnPremToCloud: ExternallySecured
-X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PEPF000044F3:EE_|DM4PR12MB6040:EE_
-X-MS-Office365-Filtering-Correlation-Id: 90263ed8-968a-439c-7940-08dca060c414
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|VE1PR04MB7391:EE_
+X-MS-Office365-Filtering-Correlation-Id: b3461e8e-7f98-4334-c83e-08dca060efe6
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|376014|36860700013|82310400026;
+	BCL:0;ARA:13230040|366016|52116014|7416014|376014|1800799024|38350700014;
 X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?CS0f5EfxnDUrx+Hh64SO2ayGnFIilMuO16XdnKucm6Bp4U22KxaPIECCAA20?=
- =?us-ascii?Q?cUbFP9ziDtv7bwWRaJgP1wVMR/qthUvm36UMujoId+bbi0PZVY0fFjbAOwT/?=
- =?us-ascii?Q?3iFD6KY8SpCdxUB9N43MJxJmW7YdvAsgSzvAam38LKVsP2ZOnlvjxTetKK71?=
- =?us-ascii?Q?mPEU7GxCy//YRqKG90ifk8LSfDz21Wh8yUZP9oV42ZJKmMtHMG9Hhqo6Pqph?=
- =?us-ascii?Q?ZMBmllR8Eqn1yEKLK8qN0I3DTDQqJBM4XA900qGjEc7eTRumofPRmS2jOfId?=
- =?us-ascii?Q?307SHEwWO8w/X02+MFJzv0hyrAkr0kb6gfiUGUNYQiX0WWSUUwDyDDVDtHAi?=
- =?us-ascii?Q?CoXbYzMa0Q4LXCoxyFkx40VYX7jfHinmZScysbXOvF7TpIA7rMgiFHMdl75R?=
- =?us-ascii?Q?Y/9JiiO+JdK1Wva7W9FN0JBbYoF79nx8Fgy30jVKEHIVr4KmRZAlxkIpWsiF?=
- =?us-ascii?Q?JCHm1FCPcZQbU4lbnn51Lzs2TGIweqK/8noQKLUyrr8IFHBvBMyU1ibgTXQ3?=
- =?us-ascii?Q?QeYEQxrRTrzghOoh4NjuyBded6qs3XQJI/FrAtGF/qs8ZLGfORZXrOtDNCpS?=
- =?us-ascii?Q?upMldGcMzxTWtaAYmj7e5UU6kCbcys1fwo2Z39QFcMnFrUxuUTYGMf07vLgv?=
- =?us-ascii?Q?R8PbvqU9v39SYCVy9mKBz5oYRA9/BsCK44hJOMxKo60ADlf9NsFvfUg79erH?=
- =?us-ascii?Q?DiZgcYdZLki0lxpj6hOdQEC8N+Dql36jqf9YQoWwsE2t7ypPADfv5Zx27nh+?=
- =?us-ascii?Q?VHTf20wF/MzzoUT7i58T/Wi7fiFSaXHw6D/ePDPTodh74ZAF5+vYOLmuilha?=
- =?us-ascii?Q?4hw8ZMsiBoxljBSQolS3cWIY7dazjYFqdm6866ELVbhsSt80TUNnjXRNvveN?=
- =?us-ascii?Q?sxiO0pNvbm48BTVaBPKJQItvcZNx3nO56sWwa3OdVpw58T6MfnYAJnCAyQjt?=
- =?us-ascii?Q?0dHKFYoDEgqQ8p99gbNudEijFfEAwdXnh0WQWl7z80FmGaaMgjRq5Ui1sRHy?=
- =?us-ascii?Q?jw98QGIPgQO+sjqoP826bNHW/ateADeuBqVic8PMbxTVWVRlHVdHv8lHYvjU?=
- =?us-ascii?Q?oQQ8pNsymu2KgDljx1U+w6nPyT74VkObNoNc3ZLM3lglo7tLbfIK2Ug5c9vt?=
- =?us-ascii?Q?uhIH6Ii1e0nb1PtFcJiJz/Ba5sUjFXgcyTCqdjfk+t5MylCOFlGePfF5UPp+?=
- =?us-ascii?Q?bYdlGy3MW2YQdIQyPvyI7fhT0Xglpm/KIR7E2oF3mUgM5u/ISZE2pew4hUCz?=
- =?us-ascii?Q?rLLZFWWN9dFpzM8YMF8VIVLt8ftfas+qgA8UVIiDzIREbdhKYMjqmXQnOeC6?=
- =?us-ascii?Q?xp0QYEC5RxAQ6Usc8/6AdLRFz6VSv6scU1gbXyF2UXflkrdNv2TY58cDwP4s?=
- =?us-ascii?Q?SaBVAMd/2RYNd4w56vDqyOT2WFzoc2kNojPQjMw7NJO2XFbMLi7NPNU6SAt0?=
- =?us-ascii?Q?jFqgfLBVeAL4loLMWy01EVebxn5jtSks?=
+	=?us-ascii?Q?EFjQObO1L1WojZWNeHKq1rTU1mHPEyOJoFDCq3kWhWAL/dfgPutAeoRi79v4?=
+ =?us-ascii?Q?o0dl6iZm65l2KcUEukydDFvcFqTt6bR5Mdtv1mnKNrU+BT1ikSP4gmycOrUd?=
+ =?us-ascii?Q?x8aDEeeKLgzBBnCPm4Iho0pPJu7BzF3fWRAqquL6cfvXj7WsxzD7LLuapdUu?=
+ =?us-ascii?Q?QQrBY4De3UqyLrO0g918S11CKK8+OWXrXTKBVS1cZ8L8+XFnW+XFs6MnX4Uh?=
+ =?us-ascii?Q?PqXviZcQrhYb9JSO3a6j2PpAolfLdU1It680hN1Y3+rl3hvBP96i2oIQEICe?=
+ =?us-ascii?Q?Hmug8AqMLH4tQcJ9TBqn0KwPUISzeNtDYpnPQNyHiJwavlCGzlCgQnMikglp?=
+ =?us-ascii?Q?2InjXGYLvokT98h4JrJ6K0mlmb7cti2sKDQ9/RPxF4PfYTvN/MQtMl4vm5SL?=
+ =?us-ascii?Q?ZT++1UD4B0wcgB2GtqUjfadgc3UFjxX+NbVvqzSrYmVhkXa9QPaA/IlxWAzl?=
+ =?us-ascii?Q?cfCeyTbxlK6CVXzVdtw/X2CNAsDEIQwaWGDaI15kpzyDpz0H+S3AjwezkPaY?=
+ =?us-ascii?Q?DjUqTQ2jv9NVrH0G67SugImNTo4FZDxEizaVb+z+4hwZggIouQgkNXVmQBxT?=
+ =?us-ascii?Q?rV7v/L5hAF7uJyDvoW8u4OLn1u3Cl1Mg8ApzoJbHlln9c4KOHuRsR2e8Qjdl?=
+ =?us-ascii?Q?IKSx1oeV81KcK/NqISXjP2F91C+mRTcfnrsnTTu/DhqlX1fDlDD7bCOP0ejX?=
+ =?us-ascii?Q?GTpmbsLcZEaHziVNkgR6HDhD8Jvq6DlJuqttRfWmNT1q3W1aoDnhNYaxRxDq?=
+ =?us-ascii?Q?RVm9lEITHr/Hdxze8jBDtfd3PpCTTh4M1NHeMV/5VsA2kN2KdkuAsM9nFVlI?=
+ =?us-ascii?Q?OKC9lEHH5ZzYlGheKqmFrPzxk8FcZnIOZ2tujW7PdCAILf3YiKyOmj59z6cw?=
+ =?us-ascii?Q?3iCZFEI7TGHU/Y51QjtXoi7tkKjK3MgJA16FDilcHXU33BCkeNnUzusBj0J8?=
+ =?us-ascii?Q?Z20mXl9BpMq1JxDogA4Ub3e2zIxI8wtcaHjRGItFn8Ka52sJA4zHiyuB8pED?=
+ =?us-ascii?Q?55dgheNNe9DQ0BK/K7PSgiZZ9R6YT2yc95DNJglxnaW4UVxUKbk6ErSzk7rY?=
+ =?us-ascii?Q?qHRtudDe1ah/g4Py+H6F0x5iI7+nm8BJPGVsBbNbqxN51Gd5FHVqfWMUgkWk?=
+ =?us-ascii?Q?0PYHwxghc2P+Qc3RWohbIlUX+XP9jQ1U6l83e3NYWMKUn0mByXsDRCzAEQuB?=
+ =?us-ascii?Q?fr6jYtDv9k3XzyS+MY06CIA4dxqUaeciFBaDvY1nEgt9R0yvDotMRlXF+aaQ?=
+ =?us-ascii?Q?t45iDK8qd7F2VYfEHDA/C/GuYlyNu0kYKVtFcmFmlvhRYph/tBd7LIgpgBqC?=
+ =?us-ascii?Q?N4VAvX9K17FyNGJMDMAJi+n/SrK+iVz9I3+AxdQUsbO9qseIY3/tl0EQUkRz?=
+ =?us-ascii?Q?OX/gOQg=3D?=
 X-Forefront-Antispam-Report:
-	CIP:216.228.118.232;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc7edge1.nvidia.com;CAT:NONE;SFS:(13230040)(1800799024)(376014)(36860700013)(82310400026);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jul 2024 21:47:44.5967
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(52116014)(7416014)(376014)(1800799024)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?Jk+dcqH0QloR7d8FzM5M04eXMUCbtRLyFmpX311MNgVWiQ/Wj/ba8WL5apvN?=
+ =?us-ascii?Q?DTmN/9znCsfdPgh4cPgykvJ8uIHPdBE9i2DHrLokTcnK/+FCUkABayP4QGw6?=
+ =?us-ascii?Q?KxNUv/5onU7LdyIN0QIOP/AJc+MDIqUfGNTi16Srp546ZT45aDrwC6ZV+sD8?=
+ =?us-ascii?Q?+Vm5odkNjOKBgODB/H3vO8rsKK7HH6MHLOSf1SwOn5lmJcVI3kFu3BKn0uuv?=
+ =?us-ascii?Q?hHlDwoy5aUw5RgnZKb3cdUrWXEWnsTZlB5/RvMbTPaLwYIpAtbv54SRI7/ET?=
+ =?us-ascii?Q?0IRodBTYW0UP790oCJbKOwxAZoWLPEDTxTzg1ndHecgxTnbxUDD62qvZEicV?=
+ =?us-ascii?Q?9wSNI/BZK/3YAih8c5L6mk9jYEWhLOQGRwQwABihDvk7gggj80MkEUCx53T/?=
+ =?us-ascii?Q?dYURGMq5z+5dH33bSvRReTVVfE0f0GpXJ3zhanq1240EQVqMC1cCeLC5Qp9c?=
+ =?us-ascii?Q?+2FF0BOb6FC8lwVVIgy48uPpDX/bkh22JoDIE1SW+whhhTeL13yNPTviw+Ph?=
+ =?us-ascii?Q?dKl56lshiFnBVdFrSc/WaU41crDxDh3jAGNCfcmrF/W6geNlLiL1JrN311be?=
+ =?us-ascii?Q?SFoxH0/wO1oDIWkdiLNgne59Wf6B0V2OMZdIJSAgEHfk4hI6/vLSFTMey0UT?=
+ =?us-ascii?Q?VS7E2pQKQCzzU/VR4J3OwlcrUpBGvSpB3ojSMDtkBkOv9O4s0E7FrPDIYGM6?=
+ =?us-ascii?Q?5Dc0SEYmFbaPsLyJ8Q34dZmczskBvdOY0+HaJFQUK7QpSJjjdgQXG1WCNhu2?=
+ =?us-ascii?Q?LCgGvU35xfSoE1VdLf+jQrt+eXvirCsIw3wa+fiB8N5vXlKdQKowh4nCIibv?=
+ =?us-ascii?Q?UazpftJqyzMoEX/oHyz3ISUhxZkZEeSGNhd/fh8JdKc0dYFWsMKcWr2TYFw8?=
+ =?us-ascii?Q?I5Wu3CdIufsiShcTx0hK4ebsg8bA2MTf0yWjVCwn6L1v1Zmf38DKDg8WYdlb?=
+ =?us-ascii?Q?ikpOoMvEaWh2JGuvn+C6jpej+GkXfY2BXMAy7mpccpwId5+4pMcfBN/e5V6n?=
+ =?us-ascii?Q?KnkkuIoatysqu29SQv1EIvFZMpl+txIyaxcMVnj+8NInAIrOifedVUey7RCW?=
+ =?us-ascii?Q?NTxBz5erE2nRHKyqsqIE6G7CIx5jUPolo5MZ9LFYPS5kmanIKZdmaR2Pq1+H?=
+ =?us-ascii?Q?/xFDeifPpZTwR61fr73VPNVy+2E6sEdeX15TeW+VbCZsauq8ZQtfkfGg0mko?=
+ =?us-ascii?Q?VUWOGV9ThIyCphNDYJvE9wpIyofbCD/r8JGHOwS3sSZEtokxyBJ5TNl9NYNg?=
+ =?us-ascii?Q?rCTe+iRZqcS/nNto9JQH4T3MHa3pJGkwOSA+mPJptQuYeScH/qbNRSbVkoD6?=
+ =?us-ascii?Q?oV+QpGHbJNUyuaez2hLBF78MQS4N1Du3Mlg/gjOAVPXshveEeQAjIbX4IJRd?=
+ =?us-ascii?Q?sDYStNZo0MbBb+1aMnhNMPnyIQIspc4XeHSjkOqGFLK9q+3RAQNp7u+Bep1q?=
+ =?us-ascii?Q?ZrihXP4Aw4h9bXQNVBPBK/EsxGhLRCBW9cbuTE6+8OXGPbug2tF+penXQorP?=
+ =?us-ascii?Q?3CNAzf+TUpP1QvGTtLw5l+jF3GAFuzj6C3p0Ewt7AUFt/dQ5hpf2ERt033YZ?=
+ =?us-ascii?Q?u77W0VPR1Elk/8TvzfJekiapkPeszpJnKuo79g9O?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b3461e8e-7f98-4334-c83e-08dca060efe6
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jul 2024 21:48:58.5244
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 90263ed8-968a-439c-7940-08dca060c414
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.118.232];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	CO1PEPF000044F3.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6040
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: aWlXN/9NXx5/q4Fh2cJxR/i+vRkY3hlvnPEso/tjzw4mpp+05UgIQrxG5A142Szi2eiFJ939onTwQZ8M2sp5SQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB7391
 
-This patch ensures that Orin NX and Orin Nano enable an identical
-set of serial ports. UARTA/UARTE will be enabled by adding
-respective nodes to the board dtsi file.
+Convert enetc device binding file to yaml. Split to 3 yaml files,
+'fsl,enetc.yaml', 'fsl,enetc-mdio.yaml', 'fsl,enetc-ierb.yaml'.
 
-Signed-off-by: Vedant Deshpande <vedantd@nvidia.com>
+Additional Changes:
+- Add pci<vendor id>,<production id> in compatible string.
+- Ref to common ethernet-controller.yaml and mdio.yaml.
+- Add Wei fang, Vladimir and Claudiu as maintainer.
+- Update ENETC description.
+- Remove fixed-link part.
+
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
 ---
- .../nvidia/tegra234-p3768-0000+p3767-0000.dts   | 17 -----------------
- .../dts/nvidia/tegra234-p3768-0000+p3767.dtsi   | 14 ++++++++++++++
- 2 files changed, 14 insertions(+), 17 deletions(-)
+Change from v2 to v3
+- use endpoint-config as node name for fsl,enetc-ierb.yaml,
+- wrap to 80 in fsl,enetc-ierb.yaml.
+- fix unit address don't match
+- Remove reg/compatible string for pci
+- Add pci-device.yaml, which need absolute path.
+- Use example which have mdio sub node.
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0000.dts b/arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0000.dts
-index 82a59e33c46c..5dc974bb360c 100644
---- a/arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0000.dts
-+++ b/arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0000.dts
-@@ -7,24 +7,7 @@ / {
- 	compatible = "nvidia,p3768-0000+p3767-0000", "nvidia,p3767-0000", "nvidia,tegra234";
- 	model = "NVIDIA Jetson Orin NX Engineering Reference Developer Kit";
- 
--	aliases {
--		serial1 = &uarta;
--		serial2 = &uarte;
+Change from v1 to v2
+- renamee file as fsl,enetc-mdio.yaml, fsl,enetc-ierb.yaml, fsl,enetc.yaml
+- example include pcie node
+---
+ .../bindings/net/fsl,enetc-ierb.yaml          |  38 ++++++
+ .../bindings/net/fsl,enetc-mdio.yaml          |  57 +++++++++
+ .../devicetree/bindings/net/fsl,enetc.yaml    |  66 ++++++++++
+ .../devicetree/bindings/net/fsl-enetc.txt     | 119 ------------------
+ 4 files changed, 161 insertions(+), 119 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/fsl,enetc-ierb.yaml
+ create mode 100644 Documentation/devicetree/bindings/net/fsl,enetc-mdio.yaml
+ create mode 100644 Documentation/devicetree/bindings/net/fsl,enetc.yaml
+ delete mode 100644 Documentation/devicetree/bindings/net/fsl-enetc.txt
+
+diff --git a/Documentation/devicetree/bindings/net/fsl,enetc-ierb.yaml b/Documentation/devicetree/bindings/net/fsl,enetc-ierb.yaml
+new file mode 100644
+index 0000000000000..c8a654310b905
+--- /dev/null
++++ b/Documentation/devicetree/bindings/net/fsl,enetc-ierb.yaml
+@@ -0,0 +1,38 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/net/fsl,enetc-ierb.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Integrated Endpoint Register Block
++
++description:
++  The fsl_enetc driver can probe on the Integrated Endpoint Register Block,
++  which preconfigures the FIFO limits for the ENETC ports.
++
++maintainers:
++  - Frank Li <Frank.Li@nxp.com>
++  - Vladimir Oltean <vladimir.oltean@nxp.com>
++  - Wei Fang <wei.fang@nxp.com>
++  - Claudiu Manoil <claudiu.manoil@nxp.com>
++
++properties:
++  compatible:
++    enum:
++      - fsl,ls1028a-enetc-ierb
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    endpoint-config@f0800000 {
++        compatible = "fsl,ls1028a-enetc-ierb";
++        reg = <0xf0800000 0x10000>;
++    };
+diff --git a/Documentation/devicetree/bindings/net/fsl,enetc-mdio.yaml b/Documentation/devicetree/bindings/net/fsl,enetc-mdio.yaml
+new file mode 100644
+index 0000000000000..c1dd6aa04321e
+--- /dev/null
++++ b/Documentation/devicetree/bindings/net/fsl,enetc-mdio.yaml
+@@ -0,0 +1,57 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/net/fsl,enetc-mdio.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: ENETC external MDIO PCIe endpoint device
++
++description:
++  NETC provides an external master MDIO interface (EMDIO) for managing external
++  devices (PHYs). EMDIO supports both Clause 22 and 45 protocols. And the EMDIO
++  provides a means for different software modules to share a single set of MDIO
++  signals to access their PHYs.
++
++maintainers:
++  - Frank Li <Frank.Li@nxp.com>
++  - Vladimir Oltean <vladimir.oltean@nxp.com>
++  - Wei Fang <wei.fang@nxp.com>
++  - Claudiu Manoil <claudiu.manoil@nxp.com>
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - pci1957,ee01
++      - const: fsl,enetc-mdio
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++allOf:
++  - $ref: mdio.yaml
++  - $ref: /schemas/pci/pci-device.yaml
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    pcie{
++        #address-cells = <3>;
++        #size-cells = <2>;
++
++        mdio@0,3 {
++            compatible = "pci1957,ee01", "fsl,enetc-mdio";
++            reg = <0x000300 0 0 0 0>;
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            ethernet-phy@2 {
++                reg = <0x2>;
++            };
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/net/fsl,enetc.yaml b/Documentation/devicetree/bindings/net/fsl,enetc.yaml
+new file mode 100644
+index 0000000000000..e152c93998fe1
+--- /dev/null
++++ b/Documentation/devicetree/bindings/net/fsl,enetc.yaml
+@@ -0,0 +1,66 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/net/fsl,enetc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: The NIC functionality of NXP NETC
++
++description:
++  The NIC functionality in NETC is known as EtherNET Controller (ENETC). ENETC
++  supports virtualization/isolation based on PCIe Single Root IO Virtualization
++  (SR-IOV), advanced QoS with 8 traffic classes and 4 drop resilience levels,
++  and a full range of TSN standards and NIC offload capabilities
++
++maintainers:
++  - Frank Li <Frank.Li@nxp.com>
++  - Vladimir Oltean <vladimir.oltean@nxp.com>
++  - Wei Fang <wei.fang@nxp.com>
++  - Claudiu Manoil <claudiu.manoil@nxp.com>
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - pci1957,e100
++      - const: fsl,enetc
++
++  reg:
++    maxItems: 1
++
++  mdio:
++    $ref: mdio.yaml
++    unevaluatedProperties: false
++    description: Optional child node for ENETC instance, otherwise use NETC EMDIO.
++
++required:
++  - compatible
++  - reg
++
++allOf:
++  - $ref: /schemas/pci/pci-device.yaml
++  - $ref: ethernet-controller.yaml
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    pcie {
++        #address-cells = <3>;
++        #size-cells = <2>;
++
++        ethernet@0,0 {
++            compatible = "pci1957,e100", "fsl,enetc";
++            reg = <0x000000 0 0 0 0>;
++            phy-handle = <&sgmii_phy0>;
++            phy-connection-type = "sgmii";
++
++            mdio {
++                #address-cells = <1>;
++                #size-cells = <0>;
++                phy@2 {
++                    reg = <0x2>;
++                };
++            };
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/net/fsl-enetc.txt b/Documentation/devicetree/bindings/net/fsl-enetc.txt
+deleted file mode 100644
+index 9b9a3f197e2d3..0000000000000
+--- a/Documentation/devicetree/bindings/net/fsl-enetc.txt
++++ /dev/null
+@@ -1,119 +0,0 @@
+-* ENETC ethernet device tree bindings
+-
+-Depending on board design and ENETC port type (internal or
+-external) there are two supported link modes specified by
+-below device tree bindings.
+-
+-Required properties:
+-
+-- reg		: Specifies PCIe Device Number and Function
+-		  Number of the ENETC endpoint device, according
+-		  to parent node bindings.
+-- compatible	: Should be "fsl,enetc".
+-
+-1. The ENETC external port is connected to a MDIO configurable phy
+-
+-1.1. Using the local ENETC Port MDIO interface
+-
+-In this case, the ENETC node should include a "mdio" sub-node
+-that in turn should contain the "ethernet-phy" node describing the
+-external phy.  Below properties are required, their bindings
+-already defined in Documentation/devicetree/bindings/net/ethernet.txt or
+-Documentation/devicetree/bindings/net/phy.txt.
+-
+-Required:
+-
+-- phy-handle		: Phandle to a PHY on the MDIO bus.
+-			  Defined in ethernet.txt.
+-
+-- phy-connection-type	: Defined in ethernet.txt.
+-
+-- mdio			: "mdio" node, defined in mdio.txt.
+-
+-- ethernet-phy		: "ethernet-phy" node, defined in phy.txt.
+-
+-Example:
+-
+-	ethernet@0,0 {
+-		compatible = "fsl,enetc";
+-		reg = <0x000000 0 0 0 0>;
+-		phy-handle = <&sgmii_phy0>;
+-		phy-connection-type = "sgmii";
+-
+-		mdio {
+-			#address-cells = <1>;
+-			#size-cells = <0>;
+-			sgmii_phy0: ethernet-phy@2 {
+-				reg = <0x2>;
+-			};
+-		};
 -	};
 -
- 	bus@0 {
--		serial@3100000 {
--			compatible = "nvidia,tegra194-hsuart";
--			reset-names = "serial";
--			status = "okay";
--		};
+-1.2. Using the central MDIO PCIe endpoint device
 -
--		serial@3140000 {
--			compatible = "nvidia,tegra194-hsuart";
--			reset-names = "serial";
--			status = "okay";
--		};
+-In this case, the mdio node should be defined as another PCIe
+-endpoint node, at the same level with the ENETC port nodes.
 -
- 		hda@3510000 {
- 			nvidia,model = "NVIDIA Jetson Orin NX HDA";
- 		};
-diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767.dtsi b/arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767.dtsi
-index 6d64a24fa251..81d4f4f12ab1 100644
---- a/arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767.dtsi
-@@ -9,6 +9,8 @@ / {
- 
- 	aliases {
- 		serial0 = &tcu;
-+		serial1 = &uarta;
-+		serial2 = &uarte;
- 	};
- 
- 	chosen {
-@@ -16,6 +18,18 @@ chosen {
- 	};
- 
- 	bus@0 {
-+		serial@3100000 {
-+			compatible = "nvidia,tegra194-hsuart";
-+			reset-names = "serial";
-+			status = "okay";
-+		};
-+
-+		serial@3140000 {
-+			compatible = "nvidia,tegra194-hsuart";
-+			reset-names = "serial";
-+			status = "okay";
-+		};
-+
- 		i2c@3160000 {
- 			status = "okay";
- 
+-Required properties:
+-
+-- reg		: Specifies PCIe Device Number and Function
+-		  Number of the ENETC endpoint device, according
+-		  to parent node bindings.
+-- compatible	: Should be "fsl,enetc-mdio".
+-
+-The remaining required mdio bus properties are standard, their bindings
+-already defined in Documentation/devicetree/bindings/net/mdio.txt.
+-
+-Example:
+-
+-	ethernet@0,0 {
+-		compatible = "fsl,enetc";
+-		reg = <0x000000 0 0 0 0>;
+-		phy-handle = <&sgmii_phy0>;
+-		phy-connection-type = "sgmii";
+-	};
+-
+-	mdio@0,3 {
+-		compatible = "fsl,enetc-mdio";
+-		reg = <0x000300 0 0 0 0>;
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-		sgmii_phy0: ethernet-phy@2 {
+-			reg = <0x2>;
+-		};
+-	};
+-
+-2. The ENETC port is an internal port or has a fixed-link external
+-connection
+-
+-In this case, the ENETC port node defines a fixed link connection,
+-as specified by Documentation/devicetree/bindings/net/fixed-link.txt.
+-
+-Required:
+-
+-- fixed-link	: "fixed-link" node, defined in "fixed-link.txt".
+-
+-Example:
+-	ethernet@0,2 {
+-		compatible = "fsl,enetc";
+-		reg = <0x000200 0 0 0 0>;
+-		fixed-link {
+-			speed = <1000>;
+-			full-duplex;
+-		};
+-	};
+-
+-* Integrated Endpoint Register Block bindings
+-
+-Optionally, the fsl_enetc driver can probe on the Integrated Endpoint Register
+-Block, which preconfigures the FIFO limits for the ENETC ports. This is a node
+-with the following properties:
+-
+-- reg		: Specifies the address in the SoC memory space.
+-- compatible	: Must be "fsl,ls1028a-enetc-ierb".
+-
+-Example:
+-	ierb@1f0800000 {
+-		compatible = "fsl,ls1028a-enetc-ierb";
+-		reg = <0x01 0xf0800000 0x0 0x10000>;
+-	};
 -- 
-2.25.1
+2.34.1
 
 
