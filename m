@@ -1,227 +1,168 @@
-Return-Path: <devicetree+bounces-84365-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84366-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4808192BE1F
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 17:21:30 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7920B92BE2A
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 17:22:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6B9A91C222E0
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 15:21:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EBF7F1F2708C
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 15:22:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 624F419CD1E;
-	Tue,  9 Jul 2024 15:21:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B37D319D88A;
+	Tue,  9 Jul 2024 15:22:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="v4Q4VgRG"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="EkV/fz5J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com [209.85.219.176])
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D1AC18C34F
-	for <devicetree@vger.kernel.org>; Tue,  9 Jul 2024 15:21:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 754E418A92D
+	for <devicetree@vger.kernel.org>; Tue,  9 Jul 2024 15:22:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720538486; cv=none; b=K7ER/T7rRDaP/GwY4usQ8TbpUwy1SH/jqKe1XwiyDJWici+52cXS5vwN6atyHDiZujX5Qnjv8iJDx/jBNL83zhcXURS74KbcD5ymGA0r++NqP1Gln1LcOgtkThiJ+aErIK/n8KbtHZ2VNB91du5iogaWMt7tYSkrDsLlBbeVdnI=
+	t=1720538532; cv=none; b=Vv/dJ8r/EHlZIBetpVCNACEUeYtDEaRhJNE9/fHLU+F8fVAf6PZYpohrPVgeR63fwnMPCzwsTVd1CF49Lk0kmcnaIyrMViA4OGOWgmsHBI+lMWpcVUt0DkzAT96M/eircwP1cKhOAYtLwD+/ljDoXrM7y2qh24jfkXrjRSg0iRs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720538486; c=relaxed/simple;
-	bh=JnqGX+NqSmCpgSLShW9xRhy64Jd1gG2A9mOPxMqFDNM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=MI8nB8Ss2UTLVIXsAWH0NI8/ZI+2AYzk+Snkwnt4ttJRZb56cXTa//WWhFdMF1vUgBqV0FweLZA4RXUovfDIDw2FiAJhp4mb+hxMAxSxAOeObI9oJQp0zfi+MDdq3b/ZASBaFXY8W0YxMGk8i4FR3Uy2g7RRLlOpNliqkObyv7w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=v4Q4VgRG; arc=none smtp.client-ip=209.85.219.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f176.google.com with SMTP id 3f1490d57ef6-dfef5980a69so5483430276.3
-        for <devicetree@vger.kernel.org>; Tue, 09 Jul 2024 08:21:24 -0700 (PDT)
+	s=arc-20240116; t=1720538532; c=relaxed/simple;
+	bh=JWAQLFqZkuWOfZpZyTRyc8jygVtPln2o1M5TZCpyi7E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=UlQJV4dwEe1ZivLocnzbiaZU3K8zwPqnoSXSxkXDc6rXvyUtYmKbmaUXxLuROfNBziGuBSf+41L6uofEbfstCD5KcCXOColQ0Ko/kvIF+YMcUDLpSDoWnHTt3gzXqfP9tKSW00WDaGh+wQhetERcwU79jiH/m/CUP1vCWXBMYYE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=EkV/fz5J; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-42122ac2f38so32368755e9.1
+        for <devicetree@vger.kernel.org>; Tue, 09 Jul 2024 08:22:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1720538483; x=1721143283; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=ICl7/zRhEDU7+lYP8K9yTw1Jz5+/brpOoKv+lstlOO4=;
-        b=v4Q4VgRGZhA79kUTppY3diTJHXMv8V2mi5R0cSUkcgpMMp7PBVzO+RmmJO1LMHvMsJ
-         hYoGP0SXqM7deZ4Tv5nPFpqKTbLAT5/rBN+HV7Nc0lOdvkS40hMCqBs0lQYITm1feV98
-         ywmqKfioQq84k41pLvIZKWtGv7qAvDJjzqEg8Sqm3/bpCRWL3OmpJTAOBpul34+BIqyM
-         GcvJ6C9lk1QDtp2J3VePsCfRIp9vFeDw4KeFI53reCduEdY6mYH/HGBBJqP+WeDlycgh
-         24QZMu5a4NwUV2J2+9tNHGdiZUm/MF4cyV2Ot4M+QnnZvxMJkrsPxAnkm1wpR7RxgRh8
-         tcrA==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1720538529; x=1721143329; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=jfUB9ZJ69EL9GipUtbkxGBaJaIV82ecNhY+j5SzQ2gM=;
+        b=EkV/fz5JvvHmnnNHgq4YBGewGglZkbZNa2fXIL2HdY63vneGnl6IzcUIQrksC9fkk/
+         6v3opD75UBPoSNI/KtCHYFOEnw7OgYVBWRREW/oIUtl7vaXPOkkMmG9HZrakDH/E3/wT
+         AAv5y0kbebSyBPwOHK3auUFmOBjVElMRxmQ91soA6aOy2DUPXRqvytsQX5MU+1TW6s1D
+         ee+F6JjwCPNJlKf4yhsjIkNAGD3mQRc9B/V3TXOGssh95SVNZ1cDJ3rn+/xui/u2Y0kz
+         9RD6hXVj8Y3GfLtcRuwI/NQRz+mArYfTC2pAnm41DrP7QwtFEOb6h1OlYfXR4LF6/q50
+         TgEw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720538483; x=1721143283;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ICl7/zRhEDU7+lYP8K9yTw1Jz5+/brpOoKv+lstlOO4=;
-        b=cPRINlPOH0LBrf30X6JecWXfOIPZwXBtRXHOzhkT7mSrUOK+Iy7igogiJKZ5wk2U0N
-         ePbDtvfGY4fkAja0uIJTq5Y+dYl+ny2u+UAWj4lExTCPp3uwKkAkrX4Yna+sn1gm6ZnK
-         jQpPWBxfQ5hsCQFTox8ZIQQy7qkVoeRTVeCo7tnK3q9Slwfq0cqWyaSM/mSBe5vUFD9N
-         wCcpTQq+DeHPOZrThk6xuhA6SPksAaxwd+Ikv7h2U9gPG2hWDqetfbvsNvbDK8N9spWg
-         LcJa8IjjqMOIopLfMKVHV/BgM3WJg628Tk9yNiWiCMipODIU8aiSAX3g7szpFGBQf+MU
-         CVPw==
-X-Forwarded-Encrypted: i=1; AJvYcCXX4ev37a0sgrQzGCB0av2FM1TDYaKTP1KI0wX/ngTlXNujKJsgAA/IOrjnaYHSBnffHi0XHT9f9A2IhmhohiAZ/v3tawzoJWuwKw==
-X-Gm-Message-State: AOJu0Yw+qtyJwk5L0Y1ZM6S6IBzkr39suvJvVyT51dHxz5tL+N+5fusn
-	pwZM/lmjILojuj/rc4cw3KJ+54x7W/lPq1vo9jgpxGDdnApXqw1to9jeAi5iMEmDyaY0rq6vxvm
-	OOHTW+PoAtRkOrebqYXaN67vnQEHAsZB/SxKBvg==
-X-Google-Smtp-Source: AGHT+IEEAUwdlCn2/Ki0VmNsTPtfj2S/xTZsi8vYK2ZmZboTHZVvEXX6s9CJFnBiMKE9+CtvZNiEJj0wkmn4ulsV4X8=
-X-Received: by 2002:a05:690c:30f:b0:643:ed61:11bb with SMTP id
- 00721157ae682-658ee791041mr37664557b3.7.1720538483530; Tue, 09 Jul 2024
- 08:21:23 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1720538529; x=1721143329;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jfUB9ZJ69EL9GipUtbkxGBaJaIV82ecNhY+j5SzQ2gM=;
+        b=ucHUCkfnTA2iyhF+6Thocr6kpaVSdcH7w32x72DaVvbVMzagXxeq1AsoB1r+XglrNy
+         govirwltFg6HCN9DoglqsLmQ59T8EfHrCQuqUIkwo4P6TxIN3rzB69ooIuiz/D60zT4y
+         SnX55zWQC4fNMRY7pfoa01VUvHgt1qW+ZON5yvKccr5n/zjgXcI9PvZYaf6wLn2vxmAm
+         EAYkxdWkQqHPZJpDcYGr0e8chvPVyBpecQ8I3UlHVTmHN9+TcFbakuV4CRUDEUS64hQD
+         ETzHClkoGOXrqcR9rIv5V5W5PvVsTEhOq/TxrGkOCLl4naEM55VXyTNyockSV7siZQ5b
+         x5gg==
+X-Forwarded-Encrypted: i=1; AJvYcCWYMacEpX2ls387VONuLHX8upSycmdo6F25O0vJPdObS8NMeJKaxMsbp0POTrZZMvyzvLETI/Hr5fVN63vdRceQ8H92sVkdudLk6A==
+X-Gm-Message-State: AOJu0YzJeY7qL9J7pksa85z8PP3pe+rhpFT3xmvgHNbOr6gsGuuMpG79
+	f0j+cDhv6Ib0Afz5AvTAqdSJGuIbq3Dk0kG0/uJy13cbR32cYqJjBEiCU9OE4aM=
+X-Google-Smtp-Source: AGHT+IFKyuCi8F65Rnjy2ONu9WDc7c8zSBudZGwZQkQFlY9b9EBnNysV/fwsOhCmIH3gVuNNKX3o0A==
+X-Received: by 2002:a05:600c:4ba4:b0:424:aa83:ef27 with SMTP id 5b1f17b1804b1-426722c11a1mr22876765e9.1.1720538528867;
+        Tue, 09 Jul 2024 08:22:08 -0700 (PDT)
+Received: from localhost (p50915e7b.dip0.t-ipconnect.de. [80.145.94.123])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4266f6f5f51sm46910255e9.25.2024.07.09.08.22.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 Jul 2024 08:22:08 -0700 (PDT)
+Date: Tue, 9 Jul 2024 17:22:07 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+To: Rob Herring <robh+dt@kernel.org>
+Cc: Nikita Shubin <nikita.shubin@maquefel.me>, 
+	Andy Shevchenko <andy.shevchenko@gmail.com>, Arnd Bergmann <arnd@arndb.de>, Stephen Boyd <sboyd@kernel.org>, 
+	Hartley Sweeten <hsweeten@visionengravers.com>, Alexander Sverdlin <alexander.sverdlin@gmail.com>, 
+	Russell King <linux@armlinux.org.uk>, Lukasz Majewski <lukma@denx.de>, 
+	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+	Andy Shevchenko <andy@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
+	Sebastian Reichel <sre@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>, 
+	Guenter Roeck <linux@roeck-us.net>, Thierry Reding <thierry.reding@gmail.com>, 
+	Mark Brown <broonie@kernel.org>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
+	Paolo Abeni <pabeni@redhat.com>, Miquel Raynal <miquel.raynal@bootlin.com>, 
+	Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
+	Damien Le Moal <dlemoal@kernel.org>, Sergey Shtylyov <s.shtylyov@omp.ru>, 
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Liam Girdwood <lgirdwood@gmail.com>, 
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+	Ralf Baechle <ralf@linux-mips.org>, "Wu, Aaron" <Aaron.Wu@analog.com>, Lee Jones <lee@kernel.org>, 
+	Olof Johansson <olof@lixom.net>, Niklas Cassel <cassel@kernel.org>, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+	dmaengine@vger.kernel.org, linux-watchdog@vger.kernel.org, linux-pwm@vger.kernel.org, 
+	linux-spi@vger.kernel.org, netdev@vger.kernel.org, linux-mtd@lists.infradead.org, 
+	linux-ide@vger.kernel.org, linux-input@vger.kernel.org, linux-sound@vger.kernel.org, 
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Andrew Lunn <andrew@lunn.ch>, Vinod Koul <vkoul@kernel.org>
+Subject: Re: [PATCH v10 00/38] ep93xx device tree conversion
+Message-ID: <fjbvn3p7nqtvllcohtmcwlyv45blulb47t62gz3xey37wrbie5@ke6xcrfq2ztq>
+References: <20240617-ep93xx-v10-0-662e640ed811@maquefel.me>
+ <CAHp75VfSC9gAD9ipeWRPdQOxUp4FXqYYei-cJTs38nbz0cHpkg@mail.gmail.com>
+ <48c242838c77034485a9e667dc0e867207c5beed.camel@maquefel.me>
+ <241a4cf9830b0118f01e8fcf2853c62527636049.camel@maquefel.me>
+ <jyvlqfvqn5bp3jmvxvwyrcqmihjohuq3o757mfph7x37kbwvtq@gtgyh4fca4fq>
+ <CAL_Jsq+9Jk90HovH8bwzgCHwwh9j4mBm_Aaiq+EOj1HT3R17_Q@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1716811405.git.geert+renesas@glider.be> <CAPDyKFpa4LZF3eN7x-NT+b9=dKB3Oe6RY8RAyetdRBSR1-LQoQ@mail.gmail.com>
- <0a025885-ed95-45d3-bf76-d2a043baaed7@ideasonboard.com> <CAPDyKFrxUDhnUUfz5wHpGVQfNYssxoWO5Eb2wtmZMTcMYhEjxQ@mail.gmail.com>
- <1bda8e8f-10df-4a10-a217-26cf50ef3577@ideasonboard.com> <CAGETcx-T54w=x=gv524dUJtnRGmOiXFA2CRYHE5Pawbux8_Tig@mail.gmail.com>
- <CAMuHMdUTGLSDv-zAun7tV2VnN0q08PibBT9B-MhxqdwmRTA_UQ@mail.gmail.com>
-In-Reply-To: <CAMuHMdUTGLSDv-zAun7tV2VnN0q08PibBT9B-MhxqdwmRTA_UQ@mail.gmail.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Tue, 9 Jul 2024 17:20:46 +0200
-Message-ID: <CAPDyKFpYvinCB3t7aNp02_-=QNwQr+B4wWvtzAAzYi8rTwKkKQ@mail.gmail.com>
-Subject: Re: [PATCH/RFC 0/3] pmdomain: renesas: rmobile-sysc: Remove serial
- console handling
-To: Geert Uytterhoeven <geert@linux-m68k.org>, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, 
-	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Cc: Saravana Kannan <saravanak@google.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Jiri Slaby <jirislaby@kernel.org>, "Rafael J . Wysocki" <rafael@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Peng Fan <peng.fan@nxp.com>, linux-pm@vger.kernel.org, linux-serial@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Devarsh Thakkar <devarsht@ti.com>, 
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="piveefpjjxp5n6ob"
+Content-Disposition: inline
+In-Reply-To: <CAL_Jsq+9Jk90HovH8bwzgCHwwh9j4mBm_Aaiq+EOj1HT3R17_Q@mail.gmail.com>
 
-[...]
 
-> > > >>>>
-> > > >>>> However, if the serial port's clock or PM Domain is shared with another
-> > > >>>> device, and that other device is runtime-suspended before the full
-> > > >>>> serial driver has probed, the serial port's clock and/or PM Domain will
-> > > >>>> be disabled inadvertently.  Any subsequent serial console output will
-> > > >>>> cause a crash or system lock-up.  E.g. on R/SH-Mobile SoCs, the serial
-> > > >>>> ports share their PM Domain with several other I/O devices.  After the
-> > > >>>> use of pwm (Armadillo-800-EVA) or i2c (KZM-A9-GT) during early boot,
-> > > >>>> before the full serial driver takes over, the PM Domain containing the
-> > > >>>> early serial port is powered down, causing a lock-up when booted with
-> > > >>>> "earlycon".
->
-> Let's call this "Case B".
->
-> > > >>>
-> > > >>> Thanks for the detailed description of the problem! As pointed out in
-> > > >>> regards to another similar recent patch [1], this is indeed a generic
-> > > >>> problem, not limited to the serial console handling.
-> > > >>>
-> > > >>> At Linaro Connect a few weeks ago I followed up with Saravana from the
-> > > >>> earlier discussions at LPC last fall. We now have a generic solution
-> > > >>> for genpd drafted on plain paper, based on fw_devlink and the
-> > > >>> ->sync_state() callback. I am currently working on the genpd series,
-> > > >>> while Saravana will re-spin the series (can't find the link to the
-> > > >>> last version) for the clock framework. Ideally, we want these things
-> > > >>> to work in a very similar way.
-> > > >>>
-> > > >>> That said, allow me to post the series for genpd in a week or two to
-> > > >>> see if it can solve your problem too, for the serial console.
+--piveefpjjxp5n6ob
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I managed to hit the vacation period before I was able to post the
-series. I will pick it up this week and hopefully should be able to
-post something next week.
+Hello Rob,
 
-> > > >>
-> > > >> Both the genpd and the clock solutions will make suppliers depend on all
-> > > >> their consumers to be probed, right?
-> > > >>
-> > > >> I think it is a solution, and should be worked on, but it has the
-> > > >> drawback that suppliers that have consumers that will possibly never be
-> > > >> probed, will also never be able to turn off unused resources.
-> > > >>
-> > > >> This was specifically the case with the TI ti-sci pmdomain case I was
-> > > >> looking at: the genpd driver (ti_sci_pm_domains.c) provides a lot of
-> > > >> genpds for totally unrelated devices, and so if, e.g., you don't have or
-> > > >> don't want to load a driver for the GPU, all PDs are affected.
-> > > >>
-> > > >> Even here the solutions you mention will help: instead of things getting
-> > > >> broken because genpds get turned off while they are actually in use, the
-> > > >> genpds will be kept enabled, thus fixing the breakage. Unfortunately,
-> > > >> they'll be kept enabled forever.
-> > > >>
-> > > >> I've been ill for quite a while so I haven't had the chance to look at
-> > > >> this more, but before that I was hacking around a bit with something I
-> > > >> named .partial_sync_state(). .sync_state() gets called when all the
-> > > >> consumers have probed, but .partial_sync_state() gets called when _a_
-> > > >> consumer has been probed.
-> > > >>
-> > > >> For the .sync_state() things are easy for the driver, as it knows
-> > > >> everything related has been probed, but for .partial_sync_state() the
-> > > >> driver needs to track resources internally. .partial_sync_state() will
-> > > >> tell the driver that a consumer device has probed, the driver can then
-> > > >> find out which specific resources (genpds in my case) that consumer
-> > > >> refers to, and then... Well, that's how far I got with my hacks =).
-> > > >>
-> > > >> So, I don't know if this .partial_sync_state() can even work, but I
-> > > >> think we do need something more on top of the .sync_state().
-> > > >
-> > > > Thanks for the update!
-> > > >
-> > > > You certainly have a point, but rather than implementing some platform
-> > > > specific method, I think we should be able enforce the call to
-> > > > ->sync_state(), based upon some condition/timeout - and even if all
-> > > > consumers haven't been probed.
-> > >
-> > > Hmm, I think that was already implemented in some of the serieses out
-> > > there (or even in mainline already?), as I remember doing some
-> > > experiments with it. I don't like it much, though.
-> > >
-> > > With a simple timeout, it'll always be just a bit too early for some
-> > > user (nfs mount took a bit more time than expected -> board frozen).
-> > >
-> > > The only condition I can see that would somewhat work is a manual
-> > > trigger from the userspace. The boot scripts could then signal the
-> > > kernel when all the modules have been loaded and probably a suitable,
-> > > platform/use case specific amount of time has passed to allow the
-> > > drivers to probe.
-> >
-> > This is also already supported in mainline.
-> >
-> > Devices with sync_state() implementations (once Ulf adds it) will have
-> > a state_synced file in sysfs. It shows where it has been called yet or
-> > not. But you can also echo 1 into it to force the sync_state()
-> > callback (only if it hasn't been called already). So, yeah, all
-> > methods of handling this are available if you implement the
-> > sync_state() callback.
-> >
-> > By default it's all strict (wait till all consumers probe
-> > successfully). But you can set it to timeout (fw_devlink.sync_state).
-> > And you also have the option I mentioned above that you can use with
-> > both cases.
->
-> So the idea is to disable unused genpds and clocks from the genpd
-> resp. clock's driver .sync_state() callback, instead of from a late
-> initcall?  That would indeed solve issues related to "Case A".
->
-> However, how to solve "Case B"? Ignore disabling genpds or clocks
-> before .sync_state() callback() has been called?
-> That would cause issues for cases where the clock must be disabled,
-> cfr.
->     "[PATCH RFC 0/3] Add clk_disable_unprepare_sync()"
->     https://lore.kernel.org/all/20240131160947.96171-1-biju.das.jz@bp.renesas.com/
->     "[PATCH v3 0/3] Add clk_poll_disable_unprepare()"
->     https://lore.kernel.org/linux-renesas-soc/20240318110842.41956-1-biju.das.jz@bp.renesas.com/
->
+On Tue, Jul 09, 2024 at 07:58:42AM -0600, Rob Herring wrote:
+> On Fri, Jul 5, 2024 at 3:21=E2=80=AFAM Uwe Kleine-K=C3=B6nig
+> <u.kleine-koenig@baylibre.com> wrote:
+> > As we're approaching the merge window and this is still unclear, I
+> > applied the pwm bits (i.e. patches 12, 13). If I understand correctly,
+> > patch 33 isn't suitable for application yet as it has a dependency on
+> > pinctrl changes in that series.
+>=20
+> Now causing an error in linux-next:
+>=20
+> Documentation/devicetree/bindings/pwm/cirrus,ep9301-pwm.example.dts:18:18:
+> fatal error: dt-bindings/clock/cirrus,ep9301-syscon.h: No such file or
+> directory
+>    18 |         #include <dt-bindings/clock/cirrus,ep9301-syscon.h>
+>       |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> compilation terminated.
+> make[2]: *** [scripts/Makefile.lib:442:
+> Documentation/devicetree/bindings/pwm/cirrus,ep9301-pwm.example.dtb]
+> Error 1
 
-For genpd, the plan is to check the initial state of the PM domain. It
-can be powered-on or powered-off and if it's powered-on, we should not
-allow it to be powered-off until after ->sync_state() have been
-called.
+Oh, I thought I had tested that, but obviously I didn't. I'll drop them
+again.
 
-The similar approach is what Saravanna is trying to implement for
-clocks, I think.
+Thanks for letting me know.
 
-In the end, we simply need to try out these approaches to see if they
-really work. Although, based on previous discussions (LKML +
-F2F-conferences), I think there should be a good chance for us.
+Best regards
+Uwe
 
-[...]
+--piveefpjjxp5n6ob
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Kind regards
-Uffe
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmaNVZwACgkQj4D7WH0S
+/k4myggAuVPCnTKtBso6CgCuYoUSZB8cGFx1+fM36OQ0B75EHfb+T+oujbdiO1op
+Q/3NTb3vIUE2+lHn6n/WxHLdeKE1vhmOgiaHW3UabNSZZyT360OZNjin7rLPlQEy
+r1DW1w3QOUIS4g8P/v7skKSis2rOiAkICHLcRdDbW5K5dHLInEshegSKVLo+4McU
+8SqKoYP4acYJFTxAC+gPkDS663k7UCsJbnbHDLstfUnuxPbtKpbDx2z8zB9IXh89
+DMwNeZq7tszOWVZ3i0QEX9fZ/DBoFWY+lSL62ZKsQgh3fJucnwXkwqCdLWahNY0k
+Wth32xU/Xhmh//FAw+1Q2VDgLI37Kw==
+=z8zY
+-----END PGP SIGNATURE-----
+
+--piveefpjjxp5n6ob--
 
