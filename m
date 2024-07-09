@@ -1,194 +1,154 @@
-Return-Path: <devicetree+bounces-84222-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84223-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30BEA92B5C6
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 12:47:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1225992B5CE
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 12:48:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D869B282F9E
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 10:47:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 42B8F1C2108E
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 10:48:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B2BB1581E9;
-	Tue,  9 Jul 2024 10:46:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E330155727;
+	Tue,  9 Jul 2024 10:46:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MOpyRtCe"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="kBam262B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91494158D76
-	for <devicetree@vger.kernel.org>; Tue,  9 Jul 2024 10:46:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E2FE15884E;
+	Tue,  9 Jul 2024 10:46:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720521962; cv=none; b=ZGBoJN72x7PVAkdl2wDq8hA4MBRszAJVIyq3dBxParFLizVCtVH5r1gS1qBBOQhgBsgdCTip9exTNp4csiPXzdMXTlDcFsDbuDeKwnphjQEYst1NjGMQh64NZxoq0Cc3V9GHpvKyxecjIMcUhb2kQ0NqQ2huhGZX0kSwwvufggg=
+	t=1720522009; cv=none; b=VCwvCHCPnIEemLf98MhIT91OhwY2akudHJYF8fqrjQwykgm06fXGu6ddDKPWc9J/rG1OsBZqlVji9UDEvpykKXlK11Cv/QBZveMM5WUnK4PXUFe2tyQ4KnO8SrJCmkzNaFw1EVYkYlBP2Hi1I2Dyl21YRUZSmrVwudz0GtvKpYQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720521962; c=relaxed/simple;
-	bh=Il2UvibnuII6pAMEt7ZcsOO48MoDeeFboVabC36fJtY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=PmtOK+hUhoypNl9qYt+Aix45LoYVbFmTt23FR6IxL8LAKZu3sK60toTYnbCATv3TKNHqFSHPVtzzdPsbB9v00tA+IhrMbfIXUbfn0UTaZaXxhuiWf4kfqpMbVYgc4Gr2KlA9a4nFq1YzSL/8jkp0Sdz3hkumuYvF1jSAHAIOdcE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=MOpyRtCe; arc=none smtp.client-ip=209.85.208.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-58b966b4166so5940643a12.1
-        for <devicetree@vger.kernel.org>; Tue, 09 Jul 2024 03:46:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1720521959; x=1721126759; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=OZxsbIBefCYoeKy9Cb25bQD5JKjjQqCGKHe9J4bV87I=;
-        b=MOpyRtCe7jlTwghXztKAiZ3DAoc9a96SFsmOOToI8TOl80Cfc5kvWGQBTrKJZ2HO7p
-         Vp3t8St9d+UCtXrDrMGPaTfBBhISlKxW6xK1wGLpgzf0iIx5nFbJCqPCpbBlIvJ9rFx+
-         nBEgXhWi0mOiARgS3nmw1quxwM2EOJG3oChhV0aK8Fch11ACnNk6UduEbkBLblb4OV5L
-         gkoYALdFBNiGgUUw/wwV32RHGKO/jRYw4NUX2tRgsgjN4ilwKx3xrLb1ifbVAzJ/G1kg
-         dzPW3kzQGTntBEbs+Lrs9JPhbcVkTJb/ojX1V0QkFQu8QYOV+5gBDLL2LgovVJzhqcWe
-         saLw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720521959; x=1721126759;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=OZxsbIBefCYoeKy9Cb25bQD5JKjjQqCGKHe9J4bV87I=;
-        b=S13etKm/1/6/hWLyWz5R5XMQXQLYY2EMd0+wg0zwOoBFh/G/FL5XcnuYvGNvCZaC1E
-         tV6aMpdfIVYENP+JAGIjmtr8aM2g38xNvLMpW56Q+Hxy8K94Y9zQh00OUNROVSLnAQPs
-         N/TsdD/DOGAEiV47eFIcV5etUnG4YY1W7Ji/d1k8GZW5rF96cj6L+9phwGoBabYWdy6i
-         hZAZA0Fpxc0DNQjBzB0tO60i7rW7vB+lXoJz3C0HOMBziSh0VJdWsAPg5CeqOhzfEu3g
-         xTyxYtVbjDLYj2V7NySNULgjosDXe8KIaByDAZMrh5oHR64b1QUcvVlvLzU7aEtuasXO
-         66Ng==
-X-Forwarded-Encrypted: i=1; AJvYcCVUQpSnXTWWEDWKC1MtKlPa4KJ7EhYG7cG+FR2iK+4VpFwgL/3BoThs9aGvat/YFKkXUJdh+dAiA1QaM/3BCvUosSJ7nWU3aWFOEA==
-X-Gm-Message-State: AOJu0YzYOLoUnaz1M8gd4TsWrEpryMFOIlsiJgWT6NrrRdOEhSgWFRmg
-	EOa/GuSHlaMdqwh0xfKazYjREMf1LCF7dLcAqu5khTg19t/wLkwm0s1b4PhRFbf8JMgTugYaLfp
-	Z
-X-Google-Smtp-Source: AGHT+IGvYcfPFQV+7DBEYzRD0HAnZlDvmx5BFJoXF/V4cTRfvWKAKQqrkJLnm9w0OQ8iV7jmOHjokw==
-X-Received: by 2002:a17:906:c309:b0:a77:e55a:9e91 with SMTP id a640c23a62f3a-a780b6b0e59mr135132566b.19.1720521958889;
-        Tue, 09 Jul 2024 03:45:58 -0700 (PDT)
-Received: from [192.168.105.194] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a780a7ff038sm66295466b.115.2024.07.09.03.45.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Jul 2024 03:45:58 -0700 (PDT)
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Date: Tue, 09 Jul 2024 12:45:33 +0200
-Subject: [PATCH v5 5/5] arm64: dts: qcom: sm8550: Wire up GPU speed bin &
- more OPPs
+	s=arc-20240116; t=1720522009; c=relaxed/simple;
+	bh=cg7AhZmeWk5N9xWjq7as8vdozigU8aTMRed2yz+QDxQ=;
+	h=Mime-Version:Content-Type:Date:Message-Id:From:Subject:Cc:To:
+	 References:In-Reply-To; b=XpqmIubAaQcgx5w4u5krDZvnwusWeYD88Ti/xAI1aTJ3BASa0x710maJoQicLzcz8D3sfqvJlccUe25IHN4WoK4k7b1xYMFDbOaQNx4Sbc1LNEZuoPNaBw6z/aCg7q7DV3m9SHwaSeBln+DFxlZD0QAp9HWA3AZQbcHoaDyC1BA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=kBam262B; arc=none smtp.client-ip=217.70.183.199
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id A6764FF80C;
+	Tue,  9 Jul 2024 10:46:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1720521998;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=1CXbzUma1zkNzQTIijTVlpg1CvjyFMrqWEgyHu/ugEQ=;
+	b=kBam262BVsnC9ZEzHppU5OfoIvXxcbpBftI9R7F0IkjStXxWBYVTOK/qZV2wIG+DPJk03r
+	hK775m0cfIsMMEnX51OATZxEayABlxgaKtSJNVZmYWV9nnhEybKD5XNZHY42AphwcEau+1
+	WSL8oBz47lh9QyWWEDYmv5WZ4TiZ6+7GOO4H3JBE+TcNB4SoLPObxLH+wNEkgNdnuZWBB0
+	jc34+W19U84845YPv44cEfyhX+eX02h0wzVEjoAQqlUghJbdGFozZY5pgq+oghQRUPO0I2
+	7TfNFj0DYytTcfMtitmvHmfVVBRyIm6QREW6JTQnhN4WI++HUnQur6yNPpEO9w==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240709-topic-smem_speedbin-v5-5-e2146be0c96f@linaro.org>
-References: <20240709-topic-smem_speedbin-v5-0-e2146be0c96f@linaro.org>
-In-Reply-To: <20240709-topic-smem_speedbin-v5-0-e2146be0c96f@linaro.org>
-To: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>, 
- Abhinav Kumar <quic_abhinavk@quicinc.com>, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
- Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>, 
- linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, Konrad Dybcio <konrad.dybcio@linaro.org>
-X-Mailer: b4 0.14.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1720521930; l=2474;
- i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=Il2UvibnuII6pAMEt7ZcsOO48MoDeeFboVabC36fJtY=;
- b=UbAw9OwhyAwE8k7rUjhzv7OltpusBA6x/6YgB89OJWD+ojTrhyLuMSRDX4HAiIBsrrG0jevUW
- UobpDIs2ywfBIgClNuK2w9UxluMiW7//vluUrY7DilgVsJMyXYkgv3/
-X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Tue, 09 Jul 2024 12:46:37 +0200
+Message-Id: <D2KY5A2XRUQN.6IO8XX1FL19H@bootlin.com>
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+Subject: Re: [PATCH] of: replace of_match_node() macro by a function when
+ !CONFIG_OF
+Cc: "Saravana Kannan" <saravanak@google.com>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, "Vladimir Kondratiev"
+ <vladimir.kondratiev@mobileye.com>, =?utf-8?q?Gr=C3=A9gory_Clement?=
+ <gregory.clement@bootlin.com>, "Thomas Petazzoni"
+ <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
+ <tawfik.bayouk@mobileye.com>
+To: "Rob Herring" <robh@kernel.org>
+X-Mailer: aerc 0.17.0-0-g6ea74eb30457
+References: <20240708-of-match-node-v1-1-90aaa7c2d21d@bootlin.com>
+ <CAL_JsqLBmpEQVgZ1UciAdxdiSj6Ly4bpYtYPvazr9m=vRj7qEQ@mail.gmail.com>
+In-Reply-To: <CAL_JsqLBmpEQVgZ1UciAdxdiSj6Ly4bpYtYPvazr9m=vRj7qEQ@mail.gmail.com>
+X-GND-Sasl: theo.lebrun@bootlin.com
 
-Add the speedbin masks to ensure only the desired OPPs are available on
-chips of a given bin.
+Hello Rob,
 
-Using this, add the binned 719 MHz OPP and the non-binned 124.8 MHz.
+On Tue Jul 9, 2024 at 12:24 AM CEST, Rob Herring wrote:
+> On Mon, Jul 8, 2024 at 2:55=E2=80=AFAM Th=C3=A9o Lebrun <theo.lebrun@boot=
+lin.com> wrote:
+> >
+> > In the !CONFIG_OF case, replace the of_match_node() macro implementatio=
+n
+> > by a static function. This ensures drivers calling of_match_node() can
+> > be COMPILE_TESTed.
+> >
+> > include/linux/of.h declares of_match_node() like this:
+> >
+> >         #ifdef CONFIG_OF
+> >         extern const struct of_device_id *of_match_node(
+> >                 const struct of_device_id *matches, const struct device=
+_node *node);
+> >         #else
+> >         #define of_match_node(_matches, _node)  NULL
+> >         #endif
+> >
+> > When used inside an expression, those two implementations behave truly
+> > differently. The macro implementation has (at least) two pitfalls:
+> >
+> >  - Arguments are removed by the preprocessor meaning they do not appear
+> >    to the compiler. This can give "defined but not used" warnings.
+>
+> It also means the arguments don't have to be defined at all which is
+> the reasoning the commit adding the macro gave:
+>
+>     I have chosen to use a macro instead of a function to
+>     be able to avoid defining the first parameter.
+>     In fact, this "struct of_device_id *" first parameter
+>     is usualy not defined as well on non-dt builds.
+>
+> We could change our mind here, but I suspect applying this would
+> result in some build failures.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8550.dtsi | 21 ++++++++++++++++++++-
- 1 file changed, 20 insertions(+), 1 deletion(-)
+It appears like it would and I did not think about this edge-case. It
+doesn't appear like it is a lot of drivers. I'm seeing 221 files with
+calls to of_match_node(). Out of those, 22 match for CONFIG_OF.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-index 4c9820adcf52..c1e3cec1540a 100644
---- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-@@ -2119,48 +2119,67 @@ zap-shader {
- 				memory-region = <&gpu_micro_code_mem>;
- 			};
- 
--			/* Speedbin needs more work on A740+, keep only lower freqs */
- 			gpu_opp_table: opp-table {
- 				compatible = "operating-points-v2";
- 
-+				opp-719000000 {
-+					opp-hz = /bits/ 64 <719000000>;
-+					opp-level = <RPMH_REGULATOR_LEVEL_SVS_L2>;
-+					opp-supported-hw = <0x1>;
-+				};
-+
- 				opp-680000000 {
- 					opp-hz = /bits/ 64 <680000000>;
- 					opp-level = <RPMH_REGULATOR_LEVEL_SVS_L1>;
-+					opp-supported-hw = <0x3>;
- 				};
- 
- 				opp-615000000 {
- 					opp-hz = /bits/ 64 <615000000>;
- 					opp-level = <RPMH_REGULATOR_LEVEL_SVS_L0>;
-+					opp-supported-hw = <0x3>;
- 				};
- 
- 				opp-550000000 {
- 					opp-hz = /bits/ 64 <550000000>;
- 					opp-level = <RPMH_REGULATOR_LEVEL_SVS>;
-+					opp-supported-hw = <0x3>;
- 				};
- 
- 				opp-475000000 {
- 					opp-hz = /bits/ 64 <475000000>;
- 					opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS_L1>;
-+					opp-supported-hw = <0x3>;
- 				};
- 
- 				opp-401000000 {
- 					opp-hz = /bits/ 64 <401000000>;
- 					opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS>;
-+					opp-supported-hw = <0x3>;
- 				};
- 
- 				opp-348000000 {
- 					opp-hz = /bits/ 64 <348000000>;
- 					opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS_D0>;
-+					opp-supported-hw = <0x3>;
- 				};
- 
- 				opp-295000000 {
- 					opp-hz = /bits/ 64 <295000000>;
- 					opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS_D1>;
-+					opp-supported-hw = <0x3>;
- 				};
- 
- 				opp-220000000 {
- 					opp-hz = /bits/ 64 <220000000>;
- 					opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS_D2>;
-+					opp-supported-hw = <0x3>;
-+				};
-+
-+				opp-124800000 {
-+					opp-hz = /bits/ 64 <124800000>;
-+					opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS_D2>;
-+					opp-supported-hw = <0x3>;
- 				};
- 			};
- 		};
+Out of those, only 9 have their of_device_id table guarded but not the
+of_match_node() call. Remainders fall into two categories:
+ - call is guarded by #ifdef CONFIG_OF as well,
+ - neither of_device_id table nor of_match_node() call are guarded.
 
--- 
-2.45.2
+The list of remaining culprits:
+	drivers/dma/at_hdmac.c
+	drivers/dma/dw/rzn1-dmamux.c
+	drivers/gpu/drm/omapdrm/omap_dmm_tiler.c
+	drivers/i2c/busses/i2c-at91-core.c
+	drivers/i2c/busses/i2c-xiic.c
+	drivers/misc/atmel-ssc.c
+	drivers/net/can/at91_can.c
+	drivers/net/ethernet/cadence/macb_main.c
+	sound/soc/codecs/wm8904.c
+
+There could be build errors on drivers that do not match for CONFIG_OF,
+as well.
+
+> >  - The returned value type is (void *)
+> >    versus (const struct of_device_id *).
+> >    It works okay if the value is stored in a variable, thanks to C's
+> >    implicit void pointer casting rules. It causes build errors if used
+> >    like `of_match_data(...)->data`.
+>
+> Really, the only places of_match_node() should be used are ones
+> without a struct device. Otherwise, of_device_get_match_data() or
+> device_get_match_data() should be used instead.
+
+I completely agree.
+
+Regards,
+
+--
+Th=C3=A9o Lebrun, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
 
