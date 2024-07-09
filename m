@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-84177-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84178-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C097F92B40E
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 11:40:05 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FD4F92B44B
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 11:46:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 28723B22AE9
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 09:40:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 772CAB20F87
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 09:46:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6908155352;
-	Tue,  9 Jul 2024 09:39:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6A96155382;
+	Tue,  9 Jul 2024 09:46:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HEesyLqX"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mH9RaYcf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C02E1534FC
-	for <devicetree@vger.kernel.org>; Tue,  9 Jul 2024 09:39:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB14613B7A9
+	for <devicetree@vger.kernel.org>; Tue,  9 Jul 2024 09:46:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720517998; cv=none; b=n4H29sgRY45R2vsyIxDF5gK3cU7N7gun+h4lhNz+aVAfWT+mKPQ8FXLWZLyWkejtZo7irr+YD1Ar/w1k2TprgT0sULj9hbEvbVDTx9OUMFAu6TRJkxUAy/zq9ysvw7XONuuqKGdsEzOETEeQs8dv09OnCq6IkEnVIm5HSkaaXo8=
+	t=1720518385; cv=none; b=fM3eOaL0tAexWt7xC68L8MQhUHNtZTSblQD6+NozLu6DdeElL/T7PkuEm7o8v83QSD8zI2yndgdHtl0QokLuwKYh9l8r5JfErEPqeoyBGCrajZ2t4NIEBw2OlF/Hy5s+hC4U4BL4Zys04RM6LfGtEFX0b9AjbbP7Z+9vfIPpxak=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720517998; c=relaxed/simple;
-	bh=XFBX22GMqSvQ4yF/p0eTw1vNADK5MKQQ3e4vO66O5Dc=;
+	s=arc-20240116; t=1720518385; c=relaxed/simple;
+	bh=xrX9189y3J6RTL9wsavIida+ycAnE1HLJ4O+uVBj2NA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OGnVtF+d1i5IacdvzyoRNnO68yHVDrlVZJwMnCnP9IM9/tY6CNvotC5FJkZ33hG7R9p23BKlj2SKUtHbNETDkAc8B1q6+8oYHQCfA5N3sV2z/wmCKYpGS1hqNVeU+WFbZB9vbWdOp1MrQ5OBF4LgoBLryx89l8agPSySEhR84tU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HEesyLqX; arc=none smtp.client-ip=209.85.218.47
+	 In-Reply-To:Content-Type; b=a76uIgNIu8Z18NcSQ9Ovs7toXOqOZmvm/nFRzLfPCjZEYc7PomD9byn21k+ii+j1jljDXpqHHrHqYruUgFGIJSdSqcnOAhG+xDEpf98nsoJ8Zy64RuYeD0DZqBQYfkBYk9EdF0cdBkU41B9rzstVj55UMHcuPqFDo1RovgNcBJ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mH9RaYcf; arc=none smtp.client-ip=209.85.208.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a77c080b521so542696566b.3
-        for <devicetree@vger.kernel.org>; Tue, 09 Jul 2024 02:39:56 -0700 (PDT)
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-58b447c519eso6005714a12.3
+        for <devicetree@vger.kernel.org>; Tue, 09 Jul 2024 02:46:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1720517995; x=1721122795; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1720518382; x=1721123182; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=jKU8pw+Qs8+GTKI4pzMf/E6ufM6LjVXqPkb5yoMPBvQ=;
-        b=HEesyLqX2nMXEgr+IbX0mxkAEsuX8kZ9wcZfTi2MpdC+ukOi6784Qr32HB19mhC7GC
-         w1JqhKvDzbJvTuZRNLM1ftBu+5GD7HzSRsfn0GizPzglWG0dtj+ik9QWXUuK7irktRU4
-         nn4KOXiv/FNmMAUGK/8FqQAPRHkeJ1YTZ3gmIQnXXUijBK1XkXtehypLv1QxP8u5Va2u
-         ekThlPiN+lSyrUO1y6NvP0oTrxSYScG/hA3xkj2aHsPpbHo2+dUnPABja770BhjtS4J9
-         u0dwXMfP6v/yuYiE/00lQM/l1EVxH18lzol2bqJN9JcY80H2wbLn0IBvLY0BbHDTd9EV
-         LO6w==
+        bh=xndzXPaOahAfjvRuCniO4KjfCO34NFKI528Yw+eLHAU=;
+        b=mH9RaYcfzGjv+AkSavGyyq2EBkJym+eyoFHZU8iXnMSi5qK+s4WHqYpPd9PuB94P4E
+         N1QfB/wRRNzec3h79GLkJth3H7h6g4uUKe/Y+TASj/BgcOQkrMOGSgk7Bz+AHnHm2L/k
+         N6r7kzElcbkazufjqCsP+m05qAWkAWuAa8sWmwTamW+gY45F1r6GmktW+UUopq/tF67x
+         mBH8s780ufKTN0JNL9DdttIqGYuZ6Gea10rrFGELAn3GcnXx/P15pJP6gZEUBNR5qAMV
+         H6klOF/3kmX6o+DiLR1EqM7oPpJlk2hYfOsd2Fj/iiGYGo+yNn7w8+MubK5LTUJjYt7S
+         dgCw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720517995; x=1721122795;
+        d=1e100.net; s=20230601; t=1720518382; x=1721123182;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=jKU8pw+Qs8+GTKI4pzMf/E6ufM6LjVXqPkb5yoMPBvQ=;
-        b=b6R5Vswqcc+vu3FHQHBMZlQ+StyHTglkPABSpN7x3vZwhyX1oxWWSZf3WBxpW2PsUo
-         YZo/q+v6rSR0pLY1xAZCNc+gmhRUyLkSFMx02+0Av9K//mg84tRdjUI07DN8kc2Djtb+
-         0acpEuVKb6DjFoipAls8scz6F1Qn9PwKx36bm4ibqpj71HJgZrnzfr16VLm3SOCuhftG
-         lTOzOLomA9rwIpa76vfrm41NX35pwjbCT+RgLKNxSIGFBHSoiTOekvzD4hUWuxhiYVKX
-         eSgB2rTA4t7i8KYsJjukzOsndVkF9SXB2b1ZolR8Y18400SnYh2PLLkx7uoOi3FwbWXT
-         qTbg==
-X-Forwarded-Encrypted: i=1; AJvYcCW5jTgeYPCXnXOFCkRbGK3sr2hD/eKtD8iMiYQwnoh57fMOFvBzStQe6TP9ZKkfc126j1qD9h9JQTVNfFiw1LqZqfxAaqKVbvTjWQ==
-X-Gm-Message-State: AOJu0Yy3M4VQt2qvzSis3kbSWHMTv1q1UmfDaL10fsh21Eis1oWuPbR+
-	17hg78XBlNnUu3udmKCMDkDmUb72pneLA0M7WaYT6P0EEtiFkLIYeJk3Dg+23bU=
-X-Google-Smtp-Source: AGHT+IE5dVAZblRZuS88vFnQlzf6kGWVkD8iWoKdgrwFaoHYnTZaP3nVG+frQanmEfzetUmHS5LdDw==
-X-Received: by 2002:a17:906:c141:b0:a77:c26c:a56f with SMTP id a640c23a62f3a-a780b68832fmr158070666b.3.1720517995060;
-        Tue, 09 Jul 2024 02:39:55 -0700 (PDT)
+        bh=xndzXPaOahAfjvRuCniO4KjfCO34NFKI528Yw+eLHAU=;
+        b=E3Y1Y2mC6cCMcEQtxrXtairI26ThJ+CTHYesTIa4Xxh38+boc0BRcTmiC901CMGLAB
+         YSNWK37m9PsBGET31cmCOgG9X13YW2Tnztoz460Mm0Z2JpzbVU3gdk9LkFsEImiQ/tio
+         RGg4i1SxD89Nqgb8rX4zBVt3Q8ZYFJnTgTtLc8huwRjl/jC1AyMp12x+9L4C+hvISV0F
+         jxH+e5wHW/gMtRFsLQB5eupGVuUMQLYusNxG4+oGEAjvb1gZueysnqpgrOkwymzMW3Wq
+         vfeVp0mK/ssdRiAq2fpg6RKocizUlKVTp0+zamMPWFA0pR1eEjWY7ir6vx0YfHr0uNgE
+         5YUA==
+X-Forwarded-Encrypted: i=1; AJvYcCUMwej+v2hdBay/HPVAXJW2vKlneyKutmtxSR/Y8U7fE7rAGW+TfIFDGpKc5AabjLghlst5BiisPpQuL8qYT6xB1wJ53mObYhY+aw==
+X-Gm-Message-State: AOJu0Yz5WPQEq52knS1gp/eW6ju9/j3XWjutDC4PnoODjeZciwEtF+Qk
+	O9Y9V4XAlxN28JJEMd6rHw27bCUDGIalUDpX9nEHd/JwG594RVxhgRgUNnMOdFI=
+X-Google-Smtp-Source: AGHT+IHjPy7oHxBkWuRW/Jl+7QaB0fxfudKtoUsrHhltTvPwL7lfVnDuCLwUMhpeiB4EqK+93Z30TQ==
+X-Received: by 2002:a05:6402:517a:b0:58a:e810:227d with SMTP id 4fb4d7f45d1cf-594ba59f8d6mr1113424a12.21.1720518382094;
+        Tue, 09 Jul 2024 02:46:22 -0700 (PDT)
 Received: from [192.168.105.194] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a780a7fef43sm62342366b.124.2024.07.09.02.39.52
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-594bd45a162sm849610a12.68.2024.07.09.02.46.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 Jul 2024 02:39:54 -0700 (PDT)
-Message-ID: <408d7048-7ebb-4b32-bdfc-5e26a5c449e0@linaro.org>
-Date: Tue, 9 Jul 2024 11:39:51 +0200
+        Tue, 09 Jul 2024 02:46:21 -0700 (PDT)
+Message-ID: <ac53d26a-b2f8-4172-987d-b4fcbb7f6e51@linaro.org>
+Date: Tue, 9 Jul 2024 11:46:19 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,20 +77,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V6 5/5] arm64: dts: qcom: x1e80100: Enable cpufreq
-To: Johan Hovold <johan@kernel.org>, Sibi Sankar <quic_sibis@quicinc.com>
-Cc: sudeep.holla@arm.com, cristian.marussi@arm.com, andersson@kernel.org,
- jassisinghbrar@gmail.com, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, dmitry.baryshkov@linaro.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, quic_rgottimu@quicinc.com,
- quic_kshivnan@quicinc.com, conor+dt@kernel.org, quic_nkela@quicinc.com,
- quic_psodagud@quicinc.com, abel.vesa@linaro.org
-References: <20240612124056.39230-1-quic_sibis@quicinc.com>
- <20240612124056.39230-6-quic_sibis@quicinc.com>
- <ZoQjAWse2YxwyRJv@hovoldconsulting.com>
- <f53bc00f-8217-1dc8-5203-1a83c24d353d@quicinc.com>
- <Zoz_UmPBWKHA37Kq@hovoldconsulting.com>
+Subject: Re: [PATCH v4 3/5] arm64: dts: qcom: sdx75: update reserved memory
+ regions for mpss
+To: Naina Mehta <quic_nainmeht@quicinc.com>, andersson@kernel.org,
+ mathieu.poirier@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, manivannan.sadhasivam@linaro.org
+Cc: linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240709064924.325478-1-quic_nainmeht@quicinc.com>
+ <20240709064924.325478-4-quic_nainmeht@quicinc.com>
 Content-Language: en-US
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
@@ -128,93 +123,28 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <Zoz_UmPBWKHA37Kq@hovoldconsulting.com>
+In-Reply-To: <20240709064924.325478-4-quic_nainmeht@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 9.07.2024 11:13 AM, Johan Hovold wrote:
-> Hi Sibi,
+On 9.07.2024 8:49 AM, Naina Mehta wrote:
+> Rename qdss@88800000 memory region as qlink_logging memory region
+> and add qdss_mem memory region at address of 0x88500000,
+> qlink_logging is being added at the memory region at the address
+> of 0x88800000 as the region is being used by modem firmware.
+> Since different DSM region size is required for different modem
+> firmware, split mpss_dsmharq_mem region into 2 separate regions.
+> This would provide the flexibility to remove the region which is
+> not required for a particular platform. Based on the modem firmware
+> either both the regions have to be used or only mpss_dsm_mem has
+> to be used. Also, reduce the size of mpssadsp_mem region.
 > 
-> On Wed, Jul 03, 2024 at 01:29:11AM +0530, Sibi Sankar wrote:
->> On 7/2/24 21:25, Johan Hovold wrote:
->>> On Wed, Jun 12, 2024 at 06:10:56PM +0530, Sibi Sankar wrote:
->>>> Enable cpufreq on X1E80100 SoCs through the SCMI perf protocol node.
-> 
->>> This series gives a nice performance boost on the x1e80100 CRD, but I'm
->>> seeing a bunch of warnings and errors that need to be addressed:
->>>
->>> [    9.533053] arm-scmi firmware:scmi: Failed to get FC for protocol 13 [MSG_ID:6 / RES_ID:0] - ret:-95. Using regular messaging.
->>> [    9.549458] arm-scmi firmware:scmi: Failed to add opps_by_lvl at 3417600 for NCC - ret:-16
->>> [    9.563925] arm-scmi firmware:scmi: Failed to add opps_by_lvl at 3417600 for NCC - ret:-16
->>> [    9.572835] arm-scmi firmware:scmi: Failed to get FC for protocol 13 [MSG_ID:6 / RES_ID:1] - ret:-95. Using regular messaging.
->>> [    9.609471] arm-scmi firmware:scmi: Failed to add opps_by_lvl at 3417600 for NCC - ret:-16
->>> [    9.633341] arm-scmi firmware:scmi: Failed to add opps_by_lvl at 3417600 for NCC - ret:-16
->>> [    9.650000] arm-scmi firmware:scmi: Failed to get FC for protocol 13 [MSG_ID:6 / RES_ID:2] - ret:-95. Using regular messaging.
->>
->> X1E uses fast channels only for message-id: 7 (level set) and regular
->> channels for all the other messages. The spec doesn't mandate fast
->> channels for any of the supported message ids for the perf protocol.
->> So nothing to fix here.
-> 
-> I didn't look at this in any detail, but if the firmware is spec
-> compliant you should not be spamming the logs with warnings. Not sure
-> how best to address that, but you could, for example, add a quirk for
-> qcom fw or at a minimum demote this mess to info level.
-> 
-> Also the failure to add oops_by_lvl appears to be a separate issue (e.g.
-> related to the duplicate entries).
-> 
->>> [    9.727098] cpu cpu4: _opp_is_duplicate: duplicate OPPs detected. Existing: freq: 3417600000, volt: 0, enabled: 1. New: freq: 3417600000, volt: 0, enabled: 1
->>> [    9.737157] cpu cpu4: _opp_is_duplicate: duplicate OPPs detected. Existing: freq: 3417600000, volt: 0, enabled: 1. New: freq: 3417600000, volt: 0, enabled: 1
->>> [    9.875039] cpu cpu8: _opp_is_duplicate: duplicate OPPs detected. Existing: freq: 3417600000, volt: 0, enabled: 1. New: freq: 3417600000, volt: 0, enabled: 1
->>> [    9.888428] cpu cpu8: _opp_is_duplicate: duplicate OPPs detected. Existing: freq: 3417600000, volt: 0, enabled: 1. New: freq: 3417600000, volt: 0, enabled: 1
->>
->> The duplicate entries reported by the perf protocol come directly from
->> the speed bins. I was told the duplicate entry with volt 0 is meant to
->> indicate a lower power way of achieving the said frequency at a lower
->> core count. We have no way of using it in the kernel and it gets safely
->> discarded. So again nothing to fix in the kernel.
-> 
-> Again, you should not be spamming the logs with warnings for things are
-> benign (e.g. as it may prevent people from noticing real issues).
-> 
-> Also these duplicate entries do not seem to get safely discarded as they
-> result in a bunch of operations failing loudly at boot (e.g. the
-> oops_by_lvl warning above) and similarly at resume as I recently
-> noticed:
-> 
-> [   42.690569] CPU4: Booted secondary processor 0x0000010000 [0x511f0011]
-> [   42.704360] cpu cpu4: _opp_is_duplicate: duplicate OPPs detected. Existing: freq: 3417600000, volt: 0, enabled: 1. New: freq: 3417600000, volt: 0, enabled: 1
-> [   42.737865] cpu cpu4: _opp_is_duplicate: duplicate OPPs detected. Existing: freq: 3417600000, volt: 0, enabled: 1. New: freq: 3417600000, volt: 0, enabled: 1
-> [   42.752943] debugfs: File 'cpu5' in directory 'opp' already present!
-> [   42.759956] debugfs: File 'cpu6' in directory 'opp' already present!
-> [   42.766641] debugfs: File 'cpu7' in directory 'opp' already present!
-> ...
-> [   42.855520] CPU8: Booted secondary processor 0x0000020000 [0x511f0011]
-> [   42.865188] cpu cpu8: _opp_is_duplicate: duplicate OPPs detected. Existing: freq: 3417600000, volt: 0, enabled: 1. New: freq: 3417600000, volt: 0, enabled: 1
-> [   42.898494] cpu cpu8: _opp_is_duplicate: duplicate OPPs detected. Existing: freq: 3417600000, volt: 0, enabled: 1. New: freq: 3417600000, volt: 0, enabled: 1
-> [   42.913559] debugfs: File 'cpu9' in directory 'opp' already present!
-> [   42.920265] debugfs: File 'cpu10' in directory 'opp' already present!
-> [   42.927029] debugfs: File 'cpu11' in directory 'opp' already present!
-> 
-> Perhaps you can find some way to filter out the unused, duplicate
-> entries for qualcomm fw so that all of these issues go away.
+> Signed-off-by: Naina Mehta <quic_nainmeht@quicinc.com>
+> ---
 
-I would say that the firmware should probably change the PSTATEs'
-"enabled" state based on availability and report that to the OS..
-Or the OS should know the conditions (enabled core count as you mentioned)
-and decide whether it makes sense to shut down these cores, based on
-workloads.. The latter sounds more sane..
+Thanks
 
-The SCMI perf protocol already exposes power metrics (through opp->power)
-for EAS purposes, so perhaps additional field could be added (cpu mask /
-cpu count, depending on whether the specific cores being off is meaningful)
-so that the OS can make more educated choices here.. otherwise this almost
-looks like a hack that made it into the firmware because there was no
-time left or something..
-
-You mentioned that "We have no way of using it in the kernel", but is that
-actually true? Can you not set that OPP if the conditions are met?
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
 
