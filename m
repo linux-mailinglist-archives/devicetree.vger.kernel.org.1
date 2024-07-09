@@ -1,310 +1,161 @@
-Return-Path: <devicetree+bounces-84061-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84060-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5AE592AD36
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 02:44:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B05D492AD32
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 02:44:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E0FA91C20B19
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 00:44:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5E873281FCC
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 00:44:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B6812CCC2;
-	Tue,  9 Jul 2024 00:44:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2145014290;
+	Tue,  9 Jul 2024 00:44:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="c2Xf+Bbc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EB602A8FE;
-	Tue,  9 Jul 2024 00:44:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A34BF4A05;
+	Tue,  9 Jul 2024 00:44:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720485858; cv=none; b=gBG9ZsiYpsEk4tDRrrTw6czY9jjRm3mMr2vD9BHbOwl/RKdABTM5nCR9wWh1OrjY3Aj9iacxVe3aLoi3phKutdLXlyXcdMkm8ALyoFuMkh+mb8wJQ0eQ2x6t0M9IcviJFx1FgukKdPLw6A9tchZIQVZqW5++C5qN6q7W8Vz55bs=
+	t=1720485854; cv=none; b=chuoGWPdR/Y9Ev6I22jJ9MHv0IzLixg1QRWm8MGvduI+ze0wgnl0cZNeLDaIcmKBTe7mPQ8MeePH+asCmT5sSsmV1+n7PHel4w/qJF0RZZzUONqnQW9SDbUr3rxKO0xo70DIiMKtXVOEljtRuV3bksPT0uKKSZrZhFHpCvi7N1Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720485858; c=relaxed/simple;
-	bh=mkMDPYFbxx1FptqvwTRdJB2ALENlrVB4g6QrIyguxpM=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=BuZSgAuPHToCiy718mpN3zFnBEYMADkzzGp70HgLldifocHKwPBjxh66+sc572vw5N+iTzUcBzV3sG1XUdNWYwGWAO8GLQTCgoVCNelXkAjjJ26rt0VLSWg1aMT8fd1C+u1GuQAcomZmTIF/VBVxAiaLgyaqtuNPhJOQT7gJF3k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B0C061007;
-	Mon,  8 Jul 2024 17:44:39 -0700 (PDT)
-Received: from minigeek.lan (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id F14C53F762;
-	Mon,  8 Jul 2024 17:44:11 -0700 (PDT)
-Date: Tue, 9 Jul 2024 01:42:10 +0100
-From: Andre Przywara <andre.przywara@arm.com>
-To: Ryan Walklin <ryan@testtoast.com>
-Cc: Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann
- <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Daniel Vetter
- <daniel@ffwll.ch>, Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel
- Holland <samuel@sholland.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Michael
- Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Chris
- Morgan <macroalpha82@gmail.com>, John Watts <contact@jookia.org>,
- dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org,
- linux-clk@vger.kernel.org
-Subject: Re: [PATCH v2 02/23] drm: sun4i: de2/de3: Merge CSC functions into
- one
-Message-ID: <20240709014210.45ce6054@minigeek.lan>
-In-Reply-To: <20240703105454.41254-3-ryan@testtoast.com>
-References: <20240703105454.41254-1-ryan@testtoast.com>
-	<20240703105454.41254-3-ryan@testtoast.com>
-Organization: Arm Ltd.
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
+	s=arc-20240116; t=1720485854; c=relaxed/simple;
+	bh=tpbHRBh4d+0IiY2NfwjMpLqsvd+S+0x5OU+TSwfJSrY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HKca37Fofp2cpXjGzDRK5pcGr7eqQAaOBMcfoicxu6Shc3fpP6XDhZE4nV8ERkds8qZ7IB7pPOMKtxC5DmbhzdW/3Q9iwIHO5HLp5iKogjpd5IUMNRkB7smposSZFm8mS4ktUllwLgzOLNkHb7Q+3WC1puWCqAzDkp7TucjYPyA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=c2Xf+Bbc; arc=none smtp.client-ip=209.85.210.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-70af48692bcso2797220b3a.1;
+        Mon, 08 Jul 2024 17:44:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1720485852; x=1721090652; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=6oekEBsNfcqTY5UwTmkOZY/H/imciLbC6YXve9TKW5A=;
+        b=c2Xf+BbcnkJlmORHWN37ErtrsXyPuEn9rj8gKl7BPu/A+fKZH9i0Ylj8XBAg9dvz/C
+         YkHtULGGPIr2jkJI6hVcGEqEpzevzQxMsQ8aryIpR8fqXAXhlz3VXbzLI3dIH4fh5NWc
+         DX96lET8crC3egw4vCRqjIhMjSbcsxNKvhW+R6s41bX5CkSaq1yylZZeBNAegGsimTZ+
+         vbYmo1zYhyCS3nVHK7Pm/cxE9ePS65a0uXOXSoCdD6rVUnhQp/G1xGHfh8qh/vzxmWUX
+         bcGaU9MvLLfKVnhCu8LARzUbOT1O6/UpRTTbrWC4TCn7HPgyJ79aLSpBLR6zhsZbsBxL
+         Ou3A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720485852; x=1721090652;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6oekEBsNfcqTY5UwTmkOZY/H/imciLbC6YXve9TKW5A=;
+        b=fXTpt80rV+yCSNzCdS6jlLx2LSjbaL101iptdyIQ718tCCIkyXXEssIAGjIDuOR8zl
+         YESbwdof8oIWu2QKqJjiGn8EROxUSPlvGfppuCmM6cn6VVS83ZuSDSxrtgyEITkfScsz
+         BXs55xTXMvQdpMOPhlMYyulSbNdLtM2biGiNdWsZuKu/rksnI/trRSSKiqBUMkuDmAPO
+         RChlwdkZQg6P8iIlW+i/wE9MJfFkEhGwkAS0IbCMgA9c6NBtaq74fH5BGRvjBicP73T/
+         MWsGUEAuVZ5xMKEvXBOzPfFwH9desJhx7BS/gAIsbkUuxu1t/vHwiM25sKUiOoOv/TZd
+         BpaQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVanyEZVDq815mYTg4ZVqejVdmlzAQ91LD9LgNLBsm/t3GkiQYSSVYxyxTDZxnIAygeJ/JGYVGzLg8G8jTLydbRdehfXT4Zx4EIYJvndgNGbRVKDOo6qprepuZql9xn5VRkE0KfxNlpD63L44Nw7RjT+FGNyZzoEMlzHPDUDmu6h+NwC+BF
+X-Gm-Message-State: AOJu0Yzf3GByK9jK7snAOEXiPAKlZ3a8E6ZOmdQceoq9LWsDq5WhoMvX
+	5q16MPEDm9SzCmRRVwHYglELtWWWzHFrQ+DcGGFQPY2HonFIjdMe
+X-Google-Smtp-Source: AGHT+IESLDsxuQJzQb+WmmouNAV6ruO9FmYiZwrQnxfT4qcZ9DD6ZoTCwxGD0gsFfb0C6uWhixSnAg==
+X-Received: by 2002:a05:6a21:1a7:b0:1c2:8d97:563f with SMTP id adf61e73a8af0-1c298205e72mr1270108637.8.1720485851861;
+        Mon, 08 Jul 2024 17:44:11 -0700 (PDT)
+Received: from google.com ([2620:15c:9d:2:922a:af36:b3d9:2eac])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1fbb6ab6c92sm4445585ad.154.2024.07.08.17.44.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Jul 2024 17:44:11 -0700 (PDT)
+Date: Mon, 8 Jul 2024 17:44:08 -0700
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Javier Carrasco <javier.carrasco@wolfvision.net>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bastian Hecht <hechtb@gmail.com>,
+	Michael Riesch <michael.riesch@wolfvision.net>,
+	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Jeff LaBundy <jeff@labundy.com>
+Subject: Re: [PATCH v10 4/4] Input: st1232 - add touch overlays handling
+Message-ID: <ZoyH2KiYn-tHu8w2@google.com>
+References: <20240626-feature-ts_virtobj_patch-v10-0-873ad79bb2c9@wolfvision.net>
+ <20240626-feature-ts_virtobj_patch-v10-4-873ad79bb2c9@wolfvision.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240626-feature-ts_virtobj_patch-v10-4-873ad79bb2c9@wolfvision.net>
 
-On Wed,  3 Jul 2024 22:50:52 +1200
-Ryan Walklin <ryan@testtoast.com> wrote:
+Hi Javier,
 
-Hi,
-
-> From: Jernej Skrabec <jernej.skrabec@gmail.com>
+On Wed, Jun 26, 2024 at 11:56:16AM +0200, Javier Carrasco wrote:
+> Use touch-overlay to support overlay objects such as buttons and a
+> resized frame defined in the device tree.
 > 
-> Merging both function into one lets this one decide on it's own if CSC
-> should be enabled or not.
-
-"both functions" is not very specific or telling, and left me a bit
-clueless, so can we maybe use:
-
-"At the moment the colour space conversion is handled by two functions:
-one to setup the conversion parameters, and another one to enable the
-conversion. Merging both into one gives more flexibility for upcoming
-extensions to support whole YUV pipelines, in the DE33."
-
-Maybe someone knows the real killer reason why this is required, this
-could then be added here.
-
-> Currently heuristics for that is pretty simple
-> - enable it for YUV formats and disable for RGB. However, DE3 can have
-> whole pipeline in RGB or YUV format. YUV pipeline will be supported in
-> later commits.
-
-The actual patch looks like a valid transformation to me, so with an
-amended commit message:
-
-> Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
-> Signed-off-by: Ryan Walklin <ryan@testtoast.com>
-
-Reviewed-by: Andre Przywara <andre.przywara@arm.com>
-
-Cheers,
-Andre
-
+> A key event will be generated if the coordinates of a touch event are
+> within the area defined by the button properties.
+> 
+> Reviewed-by: Jeff LaBundy <jeff@labundy.com>
+> Signed-off-by: Javier Carrasco <javier.carrasco@wolfvision.net>
 > ---
->  drivers/gpu/drm/sun4i/sun8i_csc.c      | 89 ++++++++++----------------
->  drivers/gpu/drm/sun4i/sun8i_csc.h      |  9 ++-
->  drivers/gpu/drm/sun4i/sun8i_vi_layer.c | 11 +---
->  3 files changed, 40 insertions(+), 69 deletions(-)
+>  drivers/input/touchscreen/st1232.c | 48 +++++++++++++++++++++++++++-----------
+>  1 file changed, 34 insertions(+), 14 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/sun4i/sun8i_csc.c b/drivers/gpu/drm/sun4i/sun8i_csc.c
-> index 6ebd1c3aa3ab5..0dcbc0866ae82 100644
-> --- a/drivers/gpu/drm/sun4i/sun8i_csc.c
-> +++ b/drivers/gpu/drm/sun4i/sun8i_csc.c
-> @@ -107,23 +107,28 @@ static const u32 yuv2rgb_de3[2][3][12] = {
->  	},
+> diff --git a/drivers/input/touchscreen/st1232.c b/drivers/input/touchscreen/st1232.c
+> index 6475084aee1b..4fa31447dbc1 100644
+> --- a/drivers/input/touchscreen/st1232.c
+> +++ b/drivers/input/touchscreen/st1232.c
+> @@ -22,6 +22,7 @@
+>  #include <linux/pm_qos.h>
+>  #include <linux/slab.h>
+>  #include <linux/types.h>
+> +#include <linux/input/touch-overlay.h>
+>  
+>  #define ST1232_TS_NAME	"st1232-ts"
+>  #define ST1633_TS_NAME	"st1633-ts"
+> @@ -57,6 +58,7 @@ struct st1232_ts_data {
+>  	struct dev_pm_qos_request low_latency_req;
+>  	struct gpio_desc *reset_gpio;
+>  	const struct st_chip_info *chip_info;
+> +	struct list_head touch_overlay_list;
+>  	int read_buf_len;
+>  	u8 *read_buf;
 >  };
+> @@ -138,14 +140,20 @@ static int st1232_ts_parse_and_report(struct st1232_ts_data *ts)
 >  
-> -static void sun8i_csc_set_coefficients(struct regmap *map, u32 base,
-> -				       enum format_type fmt_type,
-> -				       enum drm_color_encoding encoding,
-> -				       enum drm_color_range range)
-> +static void sun8i_csc_setup(struct regmap *map, u32 base,
-> +			    enum format_type fmt_type,
-> +			    enum drm_color_encoding encoding,
-> +			    enum drm_color_range range)
->  {
-> +	u32 base_reg, val;
->  	const u32 *table;
-> -	u32 base_reg;
->  	int i;
+>  	for (i = 0; i < ts->chip_info->max_fingers; i++) {
+>  		u8 *buf = &ts->read_buf[i * 4];
+> +		bool contact = buf[0] & BIT(7);
+> +		unsigned int x, y;
 >  
->  	table = yuv2rgb[range][encoding];
->  
->  	switch (fmt_type) {
-> +	case FORMAT_TYPE_RGB:
-> +		val = 0;
-> +		break;
->  	case FORMAT_TYPE_YUV:
-> +		val = SUN8I_CSC_CTRL_EN;
->  		base_reg = SUN8I_CSC_COEFF(base, 0);
->  		regmap_bulk_write(map, base_reg, table, 12);
->  		break;
->  	case FORMAT_TYPE_YVU:
-> +		val = SUN8I_CSC_CTRL_EN;
->  		for (i = 0; i < 12; i++) {
->  			if ((i & 3) == 1)
->  				base_reg = SUN8I_CSC_COEFF(base, i + 1);
-> @@ -135,28 +140,37 @@ static void sun8i_csc_set_coefficients(struct regmap *map, u32 base,
->  		}
->  		break;
->  	default:
-> +		val = 0;
->  		DRM_WARN("Wrong CSC mode specified.\n");
->  		return;
->  	}
-> +
-> +	regmap_write(map, SUN8I_CSC_CTRL(base), val);
->  }
->  
-> -static void sun8i_de3_ccsc_set_coefficients(struct regmap *map, int layer,
-> -					    enum format_type fmt_type,
-> -					    enum drm_color_encoding encoding,
-> -					    enum drm_color_range range)
-> +static void sun8i_de3_ccsc_setup(struct regmap *map, int layer,
-> +				 enum format_type fmt_type,
-> +				 enum drm_color_encoding encoding,
-> +				 enum drm_color_range range)
->  {
-> +	u32 addr, val, mask;
->  	const u32 *table;
-> -	u32 addr;
->  	int i;
->  
-> +	mask = SUN50I_MIXER_BLEND_CSC_CTL_EN(layer);
->  	table = yuv2rgb_de3[range][encoding];
->  
->  	switch (fmt_type) {
-> +	case FORMAT_TYPE_RGB:
-> +		val = 0;
-> +		break;
->  	case FORMAT_TYPE_YUV:
-> +		val = mask;
->  		addr = SUN50I_MIXER_BLEND_CSC_COEFF(DE3_BLD_BASE, layer, 0);
->  		regmap_bulk_write(map, addr, table, 12);
->  		break;
->  	case FORMAT_TYPE_YVU:
-> +		val = mask;
->  		for (i = 0; i < 12; i++) {
->  			if ((i & 3) == 1)
->  				addr = SUN50I_MIXER_BLEND_CSC_COEFF(DE3_BLD_BASE,
-> @@ -173,67 +187,30 @@ static void sun8i_de3_ccsc_set_coefficients(struct regmap *map, int layer,
->  		}
->  		break;
->  	default:
-> +		val = 0;
->  		DRM_WARN("Wrong CSC mode specified.\n");
->  		return;
->  	}
-> -}
+> -		if (buf[0] & BIT(7)) {
+> -			unsigned int x = ((buf[0] & 0x70) << 4) | buf[1];
+> -			unsigned int y = ((buf[0] & 0x07) << 8) | buf[2];
 > -
-> -static void sun8i_csc_enable(struct regmap *map, u32 base, bool enable)
-> -{
-> -	u32 val;
-> -
-> -	if (enable)
-> -		val = SUN8I_CSC_CTRL_EN;
-> -	else
-> -		val = 0;
-> -
-> -	regmap_update_bits(map, SUN8I_CSC_CTRL(base), SUN8I_CSC_CTRL_EN, val);
-> -}
-> -
-> -static void sun8i_de3_ccsc_enable(struct regmap *map, int layer, bool enable)
-> -{
-> -	u32 val, mask;
-> -
-> -	mask = SUN50I_MIXER_BLEND_CSC_CTL_EN(layer);
-> -
-> -	if (enable)
-> -		val = mask;
-> -	else
-> -		val = 0;
->  
->  	regmap_update_bits(map, SUN50I_MIXER_BLEND_CSC_CTL(DE3_BLD_BASE),
->  			   mask, val);
->  }
->  
-> -void sun8i_csc_set_ccsc_coefficients(struct sun8i_mixer *mixer, int layer,
-> -				     enum format_type fmt_type,
-> -				     enum drm_color_encoding encoding,
-> -				     enum drm_color_range range)
-> -{
-> -	u32 base;
-> -
-> -	if (mixer->cfg->is_de3) {
-> -		sun8i_de3_ccsc_set_coefficients(mixer->engine.regs, layer,
-> -						fmt_type, encoding, range);
-> -		return;
-> -	}
-> -
-> -	base = ccsc_base[mixer->cfg->ccsc][layer];
-> -
-> -	sun8i_csc_set_coefficients(mixer->engine.regs, base,
-> -				   fmt_type, encoding, range);
-> -}
-> -
-> -void sun8i_csc_enable_ccsc(struct sun8i_mixer *mixer, int layer, bool enable)
-> +void sun8i_csc_set_ccsc(struct sun8i_mixer *mixer, int layer,
-> +			enum format_type fmt_type,
-> +			enum drm_color_encoding encoding,
-> +			enum drm_color_range range)
->  {
->  	u32 base;
->  
->  	if (mixer->cfg->is_de3) {
-> -		sun8i_de3_ccsc_enable(mixer->engine.regs, layer, enable);
-> +		sun8i_de3_ccsc_setup(mixer->engine.regs, layer,
-> +				     fmt_type, encoding, range);
->  		return;
->  	}
->  
->  	base = ccsc_base[mixer->cfg->ccsc][layer];
->  
-> -	sun8i_csc_enable(mixer->engine.regs, base, enable);
-> +	sun8i_csc_setup(mixer->engine.regs, base,
-> +			fmt_type, encoding, range);
->  }
-> diff --git a/drivers/gpu/drm/sun4i/sun8i_csc.h b/drivers/gpu/drm/sun4i/sun8i_csc.h
-> index 7322770f39f03..b7546e06e315c 100644
-> --- a/drivers/gpu/drm/sun4i/sun8i_csc.h
-> +++ b/drivers/gpu/drm/sun4i/sun8i_csc.h
-> @@ -28,10 +28,9 @@ enum format_type {
->  	FORMAT_TYPE_YVU,
->  };
->  
-> -void sun8i_csc_set_ccsc_coefficients(struct sun8i_mixer *mixer, int layer,
-> -				     enum format_type fmt_type,
-> -				     enum drm_color_encoding encoding,
-> -				     enum drm_color_range range);
-> -void sun8i_csc_enable_ccsc(struct sun8i_mixer *mixer, int layer, bool enable);
-> +void sun8i_csc_set_ccsc(struct sun8i_mixer *mixer, int layer,
-> +			enum format_type fmt_type,
-> +			enum drm_color_encoding encoding,
-> +			enum drm_color_range range);
->  
->  #endif
-> diff --git a/drivers/gpu/drm/sun4i/sun8i_vi_layer.c b/drivers/gpu/drm/sun4i/sun8i_vi_layer.c
-> index 76e2d3ec0a78c..6ee3790a2a812 100644
-> --- a/drivers/gpu/drm/sun4i/sun8i_vi_layer.c
-> +++ b/drivers/gpu/drm/sun4i/sun8i_vi_layer.c
-> @@ -281,14 +281,9 @@ static int sun8i_vi_layer_update_formats(struct sun8i_mixer *mixer, int channel,
->  			   SUN8I_MIXER_CHAN_VI_LAYER_ATTR_FBFMT_MASK, val);
->  
->  	fmt_type = sun8i_vi_layer_get_format_type(fmt);
-> -	if (fmt_type != FORMAT_TYPE_RGB) {
-> -		sun8i_csc_set_ccsc_coefficients(mixer, channel, fmt_type,
-> -						state->color_encoding,
-> -						state->color_range);
-> -		sun8i_csc_enable_ccsc(mixer, channel, true);
-> -	} else {
-> -		sun8i_csc_enable_ccsc(mixer, channel, false);
-> -	}
-> +	sun8i_csc_set_ccsc(mixer, channel, fmt_type,
-> +			   state->color_encoding,
-> +			   state->color_range);
->  
->  	if (!fmt->is_yuv)
->  		val = SUN8I_MIXER_CHAN_VI_LAYER_ATTR_RGB_MODE;
+> -			touchscreen_set_mt_pos(&pos[n_contacts],
+> -					       &ts->prop, x, y);
+> +		if (contact) {
+> +			x = ((buf[0] & 0x70) << 4) | buf[1];
+> +			y = ((buf[0] & 0x07) << 8) | buf[2];
+> +		}
+> +		if (touch_overlay_process_event(&ts->touch_overlay_list, input,
+> +						contact ? &x : NULL,
+> +						contact ? &y : NULL, i))
+> +			continue;
 
+So here is the exact issue I was talking about: you are using index of
+the contact as a slot, which assumes that the device maintains position
+of contacts in the overall event stream. However the driver uses input
+core to track and assign slots (see calls to touchscreen_set_mt_pos()
+and input_mt_assign_slots() below), which suggest that the touch
+controller may reorder positions as needed.
+
+Thanks.
+
+-- 
+Dmitry
 
