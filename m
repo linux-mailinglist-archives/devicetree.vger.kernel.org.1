@@ -1,227 +1,304 @@
-Return-Path: <devicetree+bounces-84098-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84099-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30E7592AFE1
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 08:16:49 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A16DA92B019
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 08:30:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DBF32281D74
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 06:16:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2037F1F21B50
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 06:30:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1C97823A9;
-	Tue,  9 Jul 2024 06:16:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB20312D1ED;
+	Tue,  9 Jul 2024 06:30:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="faq9+OjW"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="e+vFQtoM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR03-AM7-obe.outbound.protection.outlook.com (mail-am7eur03on2040.outbound.protection.outlook.com [40.107.105.40])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6518614A85;
-	Tue,  9 Jul 2024 06:16:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.105.40
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720505804; cv=fail; b=KnoWcaD1OS8odDuU2yuwbgMe80GBfEVIJtgf0jkwFqdnA19O/fLOYxlOzEk/FgsyLOGNHZ9xha3HuFYE0aFpTKwkCHKQS7gWt3DxjHctdrGG128V82yJODHnxR9AwJ/i6wsdy5ghX2UWDKQTljPrvYba+StoFFScCX/n3XbRSYY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720505804; c=relaxed/simple;
-	bh=DnooNqsPyGLJhzpgThhlDfHZrSKa1PxnI6H6gjx5fc4=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=j342niLA/9Bd9+B2ubWRZaWs61WmA+/0F4CfOLlWKIrEkKIrxVSIL0e8gYP6gpXSTx853y5CIU4W+T5tIgApvVCfU6yZEZ0X6W1Mj9FDCihQEDXiQFsfilyys4rjHcTFNpTMv9ms9vr34TH9nPEXbywSdC0qlA9et9+ZD43o7is=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=faq9+OjW; arc=fail smtp.client-ip=40.107.105.40
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=eHva7Xm09pUQvPdfk5KF9azZpl4RNCd2TUQ5BCLemjdhU1uevHNnSVUq6edeaO9EmxCNupnPls31YPrMs/oUkVTCEnfJ9lV0mNCzoaT4Z9GjIWhbSD53fkhqMT8ug9IpCtt+04db2mF9OAXnUFSguiGHAtPe+FW/t3Gn+2a96LGTL45CJnmAQznWlzYgawDG35OXoHTv2w2DmDhj9HHZi9zxfq/JaJ3yhM7VXhiSZ5Gcn0QHWhs2ouMQ/YDqgQ7/8T/hxThZuykRWTIRlXMDTrBaSJun7Ed0z3scMEZToFQoMqFR2mn046cRRe+KZ7f9mTuKFUPdqi6CJGxsf75PKA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=DnooNqsPyGLJhzpgThhlDfHZrSKa1PxnI6H6gjx5fc4=;
- b=ODuiCuVTWuyodP5kLS1sod1t+dJ2DhCg7B8+ZP2XKPQFZRDu5whIZNbDjQbm31mUIB7lDWxto0tjZlv/41MvHMibQgPKSZg0A9WHSlfhK3Hh91xNafIXRjKDuMRuR5i+xmcuf0ASDh23QhGg1h77ImxIHLfcqOVr20dQRf4On0mV4cTSal1XA5khbQ1/XQSQbLKtNSzuoFL2x5LxkXJ/JP8kRuufLzUoTcIT0cN9GOIEc0lNXJJ1Q+55nIHLoM1fZxm0FOSYD0UC8/fzZKVeabsqwEUwvnwet3xgbKAtE20D4EMrFCQ0Owyhcw2O5CYBHTPhY4Yta9XBOw3xC230rA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=DnooNqsPyGLJhzpgThhlDfHZrSKa1PxnI6H6gjx5fc4=;
- b=faq9+OjW79gMhZDi2qCVXTur7Z0wffor7L3iHg0n6zA+qXOVTK8MR3Nlmc7dq9kBHk0nqWQI/Kt6teNzJ56CSRV/RxJOKtydDC/pzPJVAeCmZV1w1bAx9PibzsWxnABur6nGB9yuxbSAiR9bzBcZknerPngyRsZeU3MGv0YqanM=
-Received: from AM9PR04MB8604.eurprd04.prod.outlook.com (2603:10a6:20b:43b::21)
- by DB8PR04MB7098.eurprd04.prod.outlook.com (2603:10a6:10:fd::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7741.35; Tue, 9 Jul
- 2024 06:16:38 +0000
-Received: from AM9PR04MB8604.eurprd04.prod.outlook.com
- ([fe80::e751:223e:aa3d:5827]) by AM9PR04MB8604.eurprd04.prod.outlook.com
- ([fe80::e751:223e:aa3d:5827%3]) with mapi id 15.20.7741.033; Tue, 9 Jul 2024
- 06:16:38 +0000
-From: Pankaj Gupta <pankaj.gupta@nxp.com>
-To: Randy Dunlap <rdunlap@infradead.org>, Jonathan Corbet <corbet@lwn.net>,
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha
- Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team
-	<kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Rob Herring
-	<robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC: "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-Subject: RE: [EXT] Re: [PATCH v4 4/5] firmware: imx: add driver for NXP
- EdgeLock Enclave
-Thread-Topic: [EXT] Re: [PATCH v4 4/5] firmware: imx: add driver for NXP
- EdgeLock Enclave
-Thread-Index: AQHazuMXk5fiLsrWBE6WkZNs4dui17Homl8AgAVV/4A=
-Date: Tue, 9 Jul 2024 06:16:38 +0000
-Message-ID:
- <AM9PR04MB86045A7D4612D40950B7DF8395DB2@AM9PR04MB8604.eurprd04.prod.outlook.com>
-References: <20240705-imx-se-if-v4-0-52d000e18a1d@nxp.com>
- <20240705-imx-se-if-v4-4-52d000e18a1d@nxp.com>
- <318ebc29-df94-495d-b2bc-b24340c3d82a@infradead.org>
-In-Reply-To: <318ebc29-df94-495d-b2bc-b24340c3d82a@infradead.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: AM9PR04MB8604:EE_|DB8PR04MB7098:EE_
-x-ms-office365-filtering-correlation-id: 68d4e078-2cf3-4d96-139a-08dc9fdeb138
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|7416014|1800799024|376014|366016|921020|38070700018;
-x-microsoft-antispam-message-info:
- =?utf-8?B?Q3dlNEFLaHd1L1E2WEhaaDlXeS9zczlMZFBaL0w4bnM1blZNMWRUcEZyczdX?=
- =?utf-8?B?TFdMZUJYcFpjVS9WUzUvenBvSm9RSy93L3JQOGI5cXNYNEdiWm9HZkVYdEtk?=
- =?utf-8?B?VTNqL1Y4bWFjSGpXeEdtS2RIUnBZYkx5QmR4NllkenFwdXRoMmQrUysycFJ1?=
- =?utf-8?B?eEk2dTl4UkRKVHVycW9zR3ZLME9ESGZ0Q3BhWCtHZmdmTDdkbHY3Vjl3ZHBZ?=
- =?utf-8?B?elVHQnJRMG5kalNFMWRlT3ZCRVRxWHdDbWhaK3BkTUc0dVBpcG5Nc3gwSmEy?=
- =?utf-8?B?TzU5aG1IVlBNNlA2V0cwVG1WeC81UGNkWk9wRGFZcWhXOW8wKzFlbjY1YnBl?=
- =?utf-8?B?cVd2WXNKZ0lzSDJaNDJWdWcxMUEvbWV4QnJjekhyVkNvOFJ3VGZsY3RhaFlv?=
- =?utf-8?B?VUorSStPaXpIYTl5bTBHK1EzbWdOQUpIWklJQlZQemhjV2RENjNoaEI4N0xL?=
- =?utf-8?B?NjBEZkV2MEMrNE45R20xcW1vZzhNK29McVBveEVDeFNTN0lzMFhPL25weUto?=
- =?utf-8?B?cW9MTTZKVVpMajlNY3FCejNWZ2lSR1VWSmxsN0NZc0g1SmFxMG16ZkpEcEJR?=
- =?utf-8?B?L0NPVGNWRk51MXBFNTRrak1VZ3RqL2RJTXoxcUpXYmJPMmVEZHk3U1RMcjN5?=
- =?utf-8?B?SWVMWmZ1UjFCMUhVYktzNVMrcWs5SjV1N3NOMjFRRFFpek9rK3YvSHFpS1BQ?=
- =?utf-8?B?cityTzBocEU0aSthT0t0bUp3RmxicWc2V0RVZ0ptWXdpTTRhR29WbE1XZzFx?=
- =?utf-8?B?M3dlWHRsOTlSbTRpSEJmeS8vL3lzYkZqY3J0QUFvZTNMYkh1bWwvVUxhNmE4?=
- =?utf-8?B?UTZ0dEhvN3Z4RGNzVk5ZMDJyVDNkeTlXWG9QRlIrNi9WZWsvZ3ZqcFF1VUkv?=
- =?utf-8?B?N3lZOEVKQ3JiN0xlRjN5VXdWYklJYW03eEtNd0NQUUYzN2VIOXJleStOMDQ4?=
- =?utf-8?B?eDlsVjJpY2lNZHlZZ0UrYW9UeUd6S1hEbVhiSmI3TXBVN21hVUUrcHRUekZS?=
- =?utf-8?B?UmxQLzVCK1ZsZ2pYa2dKTXVZS0JKT0pKSE1UcVQwM0IvS0xMWVIyOHVSK3pF?=
- =?utf-8?B?WFlFMXBOd0lTay9sM1R1SjBXTzJCMGpYVm1XUFBreGJBMDRHYjNIOFFwVUlN?=
- =?utf-8?B?MVBoOHJGWndOeXkzK0RpZFNqZzl6c1pkVlpPQk4rcU9BOUpDSkZDdnFqdU1Z?=
- =?utf-8?B?T3ZmazI2ek1vdlVqWkQ0SnJDN0c1NCtPWTdOL0hrUmFGSHorVVpReDZqUTdl?=
- =?utf-8?B?cDBIYVU5Y1ZjZDFnN2FoU0wxK2pYd3FzVzFENG5KODJzRTA3cWlsZkVES1Vo?=
- =?utf-8?B?akpvMjlWNlZ1aE1RbFFoN21yZCtUdy9FL2ZpWXlMdEJNb2J2ZDZaNzRsUnRI?=
- =?utf-8?B?YU52VUJ4N2ZNZ0NSZC9KVWJqTW9oOWd5eVdtdThaNVJLanl5aHNPcjFYdWp2?=
- =?utf-8?B?L082bU5FQ3Zjd0NEcjRIeUxOeU1GRVBLNEtjdDgwdGljVTYvMGwzZ1BSOEVP?=
- =?utf-8?B?cThGeTJDWnBDRGllNEU2MS8xUklCK1ZkbnQxdWpkbldoblBmR254bXhabTdJ?=
- =?utf-8?B?ZGhwTkZLSFByZWVEVTNta1ViN3JPVzEwUnBhdUZQTFdtUUoxT3laaDhLMStX?=
- =?utf-8?B?cUNGV09sUlorUUU2eGF0N2tEYlFVOVBUYUNMSW5PTzlleXZYZDdUQmtpOUQ3?=
- =?utf-8?B?NVJya0VmeVNZN2xKcE1MblZ4dmdQd0pqeTQrcUV2c0xQWWdFa1ZHRjBoSFVC?=
- =?utf-8?B?b0ZielphNDU1WVFYVUt6UElkYmZpY01DaGdRV3YxOW1zWmlpbGVaQUxoOWV6?=
- =?utf-8?B?ZTZobHNZTE9Obm83bWlXS1lpWDYzU2ZQaUh5R01Ob2tWSE9vdDFIK2ZaRE40?=
- =?utf-8?B?cG9oYlpRd0MyRWxRWm5ibTR6bHphMVlQZzhlM3M2Q05WNGplSTMxVnNJaWtV?=
- =?utf-8?Q?UFavd0vEvFY=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB8604.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(1800799024)(376014)(366016)(921020)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?VWxmTEJ5NlhSZWQ3clpyemt1Tmh6ZlJQWUZ4eEVCeWdRVkhhTTdCd1ZoVEdh?=
- =?utf-8?B?MTBTSElocGNxUHV3a0tuMmM3Mmlsb1E4US9DOTRxaFY2ODkxekZ5MzBCaHZa?=
- =?utf-8?B?OStqc0RCNUs2OGV5QXBqbFBEb0xNclVmTTRnZDlzaWs3cHlGQkNKbis5VkV6?=
- =?utf-8?B?S3J4OU0vbDYrN0pHQXJJV0NNVFdkS2FrVENQaEg3clphcU1GUmE0RWdWZHFx?=
- =?utf-8?B?Uk9GSlIxc1pmOC9aR3N3S3VGeVFSV1pKMWJtV2phSTY4Z0czeFRmS2t0UnNt?=
- =?utf-8?B?MHE4Rm5obGRIcXRCWDdZR25rR2ozcHNpYzlhSE9lck1yUUZNUmNnT0RhQk9C?=
- =?utf-8?B?anB5SkpmNlgwY08zcDU5K3Zkb0h3WHh3alZoYkVZY3g2cXlsem9qZUJXVUVh?=
- =?utf-8?B?aHdsRjJHeWxMTFpoU0l1WWM2RzdXbW5yKzNSVzBlanpiOE5mb25oVHc0OHRW?=
- =?utf-8?B?VFRWRXEzMUcxZ0hWQzhPVzRRM0EwUE95aEFsYytyeXVOcWhQSk9xdWRjNzUv?=
- =?utf-8?B?NmZsdmdWeGdFUlc1OTVqZTV6T2s0dUg1WVBwWGNNWUFFME1GT2R5Rk8rSVZn?=
- =?utf-8?B?aWlvOHRiSkUrK01ZQUtaMlVvaTNHU3lDMTdNVFJ5UUtsNDV4aUxUS01neWxo?=
- =?utf-8?B?ZUxsVjdQYXBucjFya25PbEo0d0FMN3h3ZmZqZjB6K2xrUWtHMGVVdzM3Qnp6?=
- =?utf-8?B?MFowcXFoRUl5ajN6ZWdTMTJjMmpBeXQ4c1BOTGhuV1NWeUI2K0hmWE9uemN3?=
- =?utf-8?B?ZW92OHViS3FmYjZHdVJnc2pWd3d4aUU5OFZsYkxUSXJ1SXlaWHJVaUNFdDhx?=
- =?utf-8?B?L2Vxako2blFDcEJuZG5NVFZtbkJGMHNTWTVYRnpGZ0kwS3FPZURNcnd5UWJv?=
- =?utf-8?B?TTN4c0pYeVk3aVNSNXJYOHdLYzB6QnJrL3ZVUHMxVkluaEEyTy9GUTI3cEY3?=
- =?utf-8?B?a2FCTlQ5RWl5ak43UkJnL2hRcXJXalJtOVdZK0x3UnRQcXlwMkh3cVlybUhk?=
- =?utf-8?B?YksyOFBWdDluSWFkazhhcjN5U25NQ2d1K3plTXRZWUpVR1JuU3lGaERNVmNy?=
- =?utf-8?B?aXduTFU1UTFHWE4rWmsyRlRLUDBSbU83dXdET0tBaWNKdVBtdmgzVDU0YjJu?=
- =?utf-8?B?YVRmcnlZcUdXQmQvdHFaTVNGM3BkNzdFSUxJMjFrRmNCcW9TU3F4MmlZK2U3?=
- =?utf-8?B?azFyRjN3aWFEdTFBbGZDaDI5cVdvR1U0N1RYaEN1MHVjK2FQaXkycThxeEhV?=
- =?utf-8?B?dFljTXA1dmtLVGtncDR6a1VSSS90SVhQckt1VmlVSWgyNzkxWnNuN2w5WGJB?=
- =?utf-8?B?c3pteExqZUQ3N3hCRmZ0Mms5SGZzaWRiOFdmdlJkTEE0OXJJaVdENFBWcE5x?=
- =?utf-8?B?eUNTSVRDeHhySkRybEVGTFFTUGFzRThXNUc2R3JuMEc3c2NPMWFrenNVbjQy?=
- =?utf-8?B?dlRWb3RpSE1qZGdQQUthYjBYbVRXNWN3M1QvWXFUb2l2QnhuL0oxZm5DOGE1?=
- =?utf-8?B?TzV1bjVuUEI5ME80MStBK1NPb2pqbVZteDhYRllWNmsrQ2NuOVZsci95bkFy?=
- =?utf-8?B?M0l4aFlGOWkwYVRkaVBpYWppOGEvOUNwbDBMYXUyYUcxSGF5YVVtR1prMVQ3?=
- =?utf-8?B?YnNrNHI2aG8xeXVNaGcrVXFSQ1JEdllYYXNDWE1aTzNtT1lZSVp6dFJrdGdH?=
- =?utf-8?B?WUFacEh3OUFoR0NhWExFZlVGc2pvYlJXdVZkYWNETXRwSXowd1ZqNmxUbzZn?=
- =?utf-8?B?VWtBYnZiRTAyVVZqdFJBdDdhanpnNTZrUEJ5SEgydUVHY1YxblVUc21SbDFM?=
- =?utf-8?B?eHNjMm9FLyt4TWdORkZpVEgrLzNBazJlUjV2Snp5ejRES09QME03aEo2ckll?=
- =?utf-8?B?SmFVRjN3RDBLR0Jac1RtU0U5YWpYeFBCMGRCa3h0a2xPOHZXOXZrWUU1VS9E?=
- =?utf-8?B?OUUweXpleHZXQ3AvMVY2ZjBTaVExRVZlVGtiS0xuMHlCL0tyZHUzV281N3Y4?=
- =?utf-8?B?Uzc3YldWaVMxWTBzNHN1SVpiblVwcFhBRjd5d2xwS0h2enRGa2YyUEhSeWFU?=
- =?utf-8?B?U2xWc21rc0JhVUFlNjI0UTBXOVRRdTVzSDVkMTJqZVFFTDF1Z1FhSmc2M2F3?=
- =?utf-8?Q?6eOSuDIOaHi95GpOZgcKat0xv?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D84B412C49C;
+	Tue,  9 Jul 2024 06:30:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1720506624; cv=none; b=u8UQJaJPxJl3TW2GNUl8Y2VrBiNt/CpVC20J6yhbsKvuzd94rWiOSuZUQzFMuzXDUWsa0a3XWXEvQWB1ibh7F1fmFaU0ogxbDO8GUdtZ9P2FaF7EmiB7cftErUD2WInuePfRqb7pR4Zv90W3X8g+LH4EsRVBEtKthDY2RtTcD4Q=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1720506624; c=relaxed/simple;
+	bh=KlDRQVtmM8THEFm2okCe18ZiNAPaeO9CrxKIi3ZHxPI=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=M/qeWyBDjmtYAwSg/27ReuI3+UtufkI4OcLtLDY7GM2kxdoPG08jzdcgJbkIz2s9n6nuwTfgtpxPI+7qwQ2o3Ij8xLV6o8xGwGToFEQN85uxskR6rRe0xtH2Rgy9gwi9IqfjozcrgkEXDj431/gNlaU06PDSwOmcJDKEgvgoY4I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=e+vFQtoM; arc=none smtp.client-ip=209.85.167.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-52e99060b41so5076788e87.2;
+        Mon, 08 Jul 2024 23:30:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1720506621; x=1721111421; darn=vger.kernel.org;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ShtGGv5EDAR4+wbh24vGDrCYLPGvjs8IbCaS8cbSqGs=;
+        b=e+vFQtoMB9WGAbSRCeutA6MhX+9VihxbGQI+SFyFVv/wVbFoLXK792KR2hKsBtrH3q
+         UCD7fe1HsZ+F78M/aVvcDBbWmk0bacb73sLapFpmzf/2OTHWC/cpYXzZ20xY/59OoqNk
+         TK0HmmULlsRzq/DjZiPkRITcKu2wUgdq38y/PStI58bCf0A8zEwaH6wEq3sBVXHJhVah
+         PzoBbztLb4ebom4hZhBOHM1j+gXBy6EB34FaCsnvu+j2TsOQ/vgiQ14sckp6S0RZZk9a
+         6alopt0zEuyFF5agfL/amiEsLiLdQYkOIFT7Neq70SF1ufyvm1AwmqSX2CDrB35OcZrA
+         ShqA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720506621; x=1721111421;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ShtGGv5EDAR4+wbh24vGDrCYLPGvjs8IbCaS8cbSqGs=;
+        b=hHNZQCziM+T9PIoVZzxG+3cA5kxh9VEIG7LCCniiTxtu5VSaLAAhxpd7K8/ljnVWDL
+         VpKeNTTXzm64LqvTjtknF0XzWgX5DqXvWi1pU//t6EZyWGobPGGu5Gc2Mxo6cJgE6e8D
+         1U+ZBP/bfyT3LaJtIrc1Ssg+S/RNAP4ANamEN/OfGdKhbSM/xqL8zJBMWby/fFMUWb7l
+         ZbQOxQFTSuY25Q1xnAeFN0pTrGFGUd2vcPpHafXxa8zRTE7h3ZvqOyxX9v7OQEwMK4UH
+         aX0806imwrr005p8Jbq/ynf2E3TF1MBLopmEO8IMPSq1IPmS6zZGvDh2C/JsVMN4ZpaS
+         Znlg==
+X-Forwarded-Encrypted: i=1; AJvYcCVxXK2VD6sLP2wNLN+L+VrfPYeKuQw0FZ48iWglU/ANE1Xjbb060kR3tPbdZUplxr1D6yAT3Yp48VSCUfTDYmGykv+3ozgTCx1hfKXYic++IEX2KTOyr+9ARZ4ecfO4f5qQKG5AggUwMg==
+X-Gm-Message-State: AOJu0YwSZUMsnxd3xE9QJXo2wjWP8qiTR7pxO3k5n5oZ+9AdBZDsOwdJ
+	Kl8f+fb7kuf8FMcXujvGsKvLh0784g/QBEGfS0khrB+u6xq9oW93
+X-Google-Smtp-Source: AGHT+IHrKs/8CNW8VfLftkpz3GKY9iSu0jP4UR0SAR9FzqhgG+U76RdECOJ6HqAbEzyS5DKPUnRHsQ==
+X-Received: by 2002:a05:6512:110c:b0:52e:943c:c637 with SMTP id 2adb3069b0e04-52eb99a1936mr953395e87.37.1720506620535;
+        Mon, 08 Jul 2024 23:30:20 -0700 (PDT)
+Received: from standask-GA-A55M-S2HP (lu-nat-113-247.ehs.sk. [188.123.113.247])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4264a1f2375sm193478805e9.27.2024.07.08.23.30.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Jul 2024 23:30:20 -0700 (PDT)
+Date: Tue, 9 Jul 2024 08:30:18 +0200
+From: Stanislav Jakubek <stano.jakubek@gmail.com>
+To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Orson Zhai <orsonzhai@gmail.com>,
+	Baolin Wang <baolin.wang@linux.alibaba.com>,
+	Baolin Wang <baolin.wang7@gmail.com>,
+	Chunyan Zhang <zhang.lyra@gmail.com>
+Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2] dt-bindings: mmc: sdhci-sprd: convert to YAML
+Message-ID: <ZozY+tOkzK9yfjbo@standask-GA-A55M-S2HP>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB8604.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 68d4e078-2cf3-4d96-139a-08dc9fdeb138
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Jul 2024 06:16:38.4468
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Kl8nJ1FRdmPnHNTbGcx6rs4pMgZzQXPjDMjAuG4w5gECBFZyEw4X9+9YJWDQJDxs1sIxoyUgug7Bg3qZuLBqRA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB7098
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogUmFuZHkgRHVubGFwIDxy
-ZHVubGFwQGluZnJhZGVhZC5vcmc+DQo+IFNlbnQ6IFNhdHVyZGF5LCBKdWx5IDYsIDIwMjQgMjox
-NCBBTQ0KPiBUbzogUGFua2FqIEd1cHRhIDxwYW5rYWouZ3VwdGFAbnhwLmNvbT47IEpvbmF0aGFu
-IENvcmJldA0KPiA8Y29yYmV0QGx3bi5uZXQ+OyBSb2IgSGVycmluZyA8cm9iaEBrZXJuZWwub3Jn
-PjsgS3J6eXN6dG9mIEtvemxvd3NraQ0KPiA8a3J6aytkdEBrZXJuZWwub3JnPjsgQ29ub3IgRG9v
-bGV5IDxjb25vcitkdEBrZXJuZWwub3JnPjsgU2hhd24gR3VvDQo+IDxzaGF3bmd1b0BrZXJuZWwu
-b3JnPjsgU2FzY2hhIEhhdWVyIDxzLmhhdWVyQHBlbmd1dHJvbml4LmRlPjsNCj4gUGVuZ3V0cm9u
-aXggS2VybmVsIFRlYW0gPGtlcm5lbEBwZW5ndXRyb25peC5kZT47IEZhYmlvIEVzdGV2YW0NCj4g
-PGZlc3RldmFtQGdtYWlsLmNvbT47IFJvYiBIZXJyaW5nIDxyb2JoK2R0QGtlcm5lbC5vcmc+OyBL
-cnp5c3p0b2YNCj4gS296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpK2R0QGxpbmFyby5vcmc+
-DQo+IENjOiBsaW51eC1kb2NAdmdlci5rZXJuZWwub3JnOyBsaW51eC1rZXJuZWxAdmdlci5rZXJu
-ZWwub3JnOw0KPiBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZzsgaW14QGxpc3RzLmxpbnV4LmRl
-djsgbGludXgtYXJtLQ0KPiBrZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZw0KPiBTdWJqZWN0OiBb
-RVhUXSBSZTogW1BBVENIIHY0IDQvNV0gZmlybXdhcmU6IGlteDogYWRkIGRyaXZlciBmb3IgTlhQ
-IEVkZ2VMb2NrDQo+IEVuY2xhdmUNCj4gDQo+IENhdXRpb246IFRoaXMgaXMgYW4gZXh0ZXJuYWwg
-ZW1haWwuIFBsZWFzZSB0YWtlIGNhcmUgd2hlbiBjbGlja2luZyBsaW5rcyBvcg0KPiBvcGVuaW5n
-IGF0dGFjaG1lbnRzLiBXaGVuIGluIGRvdWJ0LCByZXBvcnQgdGhlIG1lc3NhZ2UgdXNpbmcgdGhl
-ICdSZXBvcnQNCj4gdGhpcyBlbWFpbCcgYnV0dG9uDQo+IA0KPiANCj4gT24gNy81LzI0IDY6NTIg
-QU0sIFBhbmthaiBHdXB0YSB3cm90ZToNCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9maXJtd2Fy
-ZS9pbXgvS2NvbmZpZw0KPiA+IGIvZHJpdmVycy9maXJtd2FyZS9pbXgvS2NvbmZpZyBpbmRleCAx
-ODM2MTNmODJhMTEuLjU2YmRjYTliZDkxNw0KPiAxMDA2NDQNCj4gPiAtLS0gYS9kcml2ZXJzL2Zp
-cm13YXJlL2lteC9LY29uZmlnDQo+ID4gKysrIGIvZHJpdmVycy9maXJtd2FyZS9pbXgvS2NvbmZp
-Zw0KPiA+IEBAIC0yMiwzICsyMiwxNSBAQCBjb25maWcgSU1YX1NDVQ0KPiA+DQo+ID4gICAgICAg
-ICBUaGlzIGRyaXZlciBtYW5hZ2VzIHRoZSBJUEMgaW50ZXJmYWNlIGJldHdlZW4gaG9zdCBDUFUg
-YW5kIHRoZQ0KPiA+ICAgICAgICAgU0NVIGZpcm13YXJlIHJ1bm5pbmcgb24gTTQuDQo+ID4gKw0K
-PiA+ICtjb25maWcgSU1YX1NFQ19FTkNMQVZFDQo+ID4gKyAgICAgdHJpc3RhdGUgImkuTVggRW1i
-ZWRkZWQgU2VjdXJlIEVuY2xhdmUgLSBFZGdlTG9jayBFbmNsYXZlIEZpcm13YXJlDQo+IGRyaXZl
-ci4iDQo+ID4gKyAgICAgZGVwZW5kcyBvbiBJTVhfTUJPWCAmJiBBUkNIX01YQyAmJiBBUk02NA0K
-PiA+ICsgICAgIGRlZmF1bHQgbSBpZiBBUkNIX01YQw0KPiA+ICsNCj4gPiArICAgICBoZWxwDQo+
-ID4gKyAgICAgICBJdCBpcyBwb3NzaWJsZSB0byB1c2UgQVBJcyBleHBvc2VkIGJ5IHRoZSBpTVgg
-U2VjdXJlIEVuY2xhdmUgSFcgSVANCj4gY2FsbGVkOg0KPiA+ICsgICAgICAgICAgLSBFZGdlTG9j
-ayBFbmNsYXZlIEZpcm13YXJlIChmb3IgaS5NWDhVTFAsIGkuTVg5MyksDQo+ID4gKyAgICAgICAg
-ICBsaWtlIGJhc2UsIEhTTSwgVjJYICYgU0hFIHVzaW5nIHRoZSBTQUIgcHJvdG9jb2wgdmlhIHRo
-ZSBzaGFyZWQNCj4gTWVzc2FnaW5nDQo+ID4gKyAgICAgICAgICBVbml0LiBUaGlzIGRyaXZlciBl
-eHBvc2VzIHRoZXNlIGludGVyZmFjZXMgdmlhIGEgc2V0IG9mIGZpbGUgZGVzY3JpcHRvcnMNCj4g
-PiArICAgICAgICAgIGFsbG93aW5nIHRvIGNvbmZpZ3VyZSBzaGFyZWQgbWVtb3J5LCBzZW5kIGFu
-ZCByZWNlaXZlIG1lc3NhZ2VzLg0KPiANCj4gVGhlIDQgbGluZXMgYWJvdmUgc2hvdWxkIGJlIGlu
-ZGVudGVkIHdpdGggb25lIHRhYiArIDIgc3BhY2VzIGluc3RlYWQgb2YNCj4gX21hbnlfIHNwYWNl
-cy4NCkFjY2VwdGVkLg0KDQo+IA0KPiAtLQ0KPiB+UmFuZHkNCg==
+Covert the Spreadtrum SDHCI controller bindings to DT schema.
+Rename the file to match compatible. Drop assigned-* properties as
+these should not be needed.
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
+---
+Node name adjustments in DTS are being handled as part of:
+https://lore.kernel.org/lkml/cover.1720112081.git.stano.jakubek@gmail.com/
+
+Changes in V2:
+  - drop assigned-* properties, these shouldn't be needed (Krzysztof)
+  - reflect this change in the commit description
+
+ .../devicetree/bindings/mmc/sdhci-sprd.txt    |  67 -----------
+ .../bindings/mmc/sprd,sdhci-r11.yaml          | 112 ++++++++++++++++++
+ 2 files changed, 112 insertions(+), 67 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/mmc/sdhci-sprd.txt
+ create mode 100644 Documentation/devicetree/bindings/mmc/sprd,sdhci-r11.yaml
+
+diff --git a/Documentation/devicetree/bindings/mmc/sdhci-sprd.txt b/Documentation/devicetree/bindings/mmc/sdhci-sprd.txt
+deleted file mode 100644
+index eb7eb1b529f0..000000000000
+--- a/Documentation/devicetree/bindings/mmc/sdhci-sprd.txt
++++ /dev/null
+@@ -1,67 +0,0 @@
+-* Spreadtrum SDHCI controller (sdhci-sprd)
+-
+-The Secure Digital (SD) Host controller on Spreadtrum SoCs provides an interface
+-for MMC, SD and SDIO types of cards.
+-
+-This file documents differences between the core properties in mmc.txt
+-and the properties used by the sdhci-sprd driver.
+-
+-Required properties:
+-- compatible: Should contain "sprd,sdhci-r11".
+-- reg: physical base address of the controller and length.
+-- interrupts: Interrupts used by the SDHCI controller.
+-- clocks: Should contain phandle for the clock feeding the SDHCI controller
+-- clock-names: Should contain the following:
+-	"sdio" - SDIO source clock (required)
+-	"enable" - gate clock which used for enabling/disabling the device (required)
+-	"2x_enable" - gate clock controlling the device for some special platforms (optional)
+-
+-Optional properties:
+-- assigned-clocks: the same with "sdio" clock
+-- assigned-clock-parents: the default parent of "sdio" clock
+-- pinctrl-names: should be "default", "state_uhs"
+-- pinctrl-0: should contain default/high speed pin control
+-- pinctrl-1: should contain uhs mode pin control
+-
+-PHY DLL delays are used to delay the data valid window, and align the window
+-to sampling clock. PHY DLL delays can be configured by following properties,
+-and each property contains 4 cells which are used to configure the clock data
+-write line delay value, clock read command line delay value, clock read data
+-positive edge delay value and clock read data negative edge delay value.
+-Each cell's delay value unit is cycle of the PHY clock.
+-
+-- sprd,phy-delay-legacy: Delay value for legacy timing.
+-- sprd,phy-delay-sd-highspeed: Delay value for SD high-speed timing.
+-- sprd,phy-delay-sd-uhs-sdr50: Delay value for SD UHS SDR50 timing.
+-- sprd,phy-delay-sd-uhs-sdr104: Delay value for SD UHS SDR50 timing.
+-- sprd,phy-delay-mmc-highspeed: Delay value for MMC high-speed timing.
+-- sprd,phy-delay-mmc-ddr52: Delay value for MMC DDR52 timing.
+-- sprd,phy-delay-mmc-hs200: Delay value for MMC HS200 timing.
+-- sprd,phy-delay-mmc-hs400: Delay value for MMC HS400 timing.
+-- sprd,phy-delay-mmc-hs400es: Delay value for MMC HS400 enhanced strobe timing.
+-
+-Examples:
+-
+-sdio0: sdio@20600000 {
+-	compatible  = "sprd,sdhci-r11";
+-	reg = <0 0x20600000 0 0x1000>;
+-	interrupts = <GIC_SPI 60 IRQ_TYPE_LEVEL_HIGH>;
+-
+-	clock-names = "sdio", "enable";
+-	clocks = <&ap_clk CLK_EMMC_2X>,
+-		 <&apahb_gate CLK_EMMC_EB>;
+-	assigned-clocks = <&ap_clk CLK_EMMC_2X>;
+-	assigned-clock-parents = <&rpll CLK_RPLL_390M>;
+-
+-	pinctrl-names = "default", "state_uhs";
+-	pinctrl-0 = <&sd0_pins_default>;
+-	pinctrl-1 = <&sd0_pins_uhs>;
+-
+-	sprd,phy-delay-sd-uhs-sdr104 = <0x3f 0x7f 0x2e 0x2e>;
+-	bus-width = <8>;
+-	non-removable;
+-	no-sdio;
+-	no-sd;
+-	cap-mmc-hw-reset;
+-	status = "okay";
+-};
+diff --git a/Documentation/devicetree/bindings/mmc/sprd,sdhci-r11.yaml b/Documentation/devicetree/bindings/mmc/sprd,sdhci-r11.yaml
+new file mode 100644
+index 000000000000..b08081bc018b
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mmc/sprd,sdhci-r11.yaml
+@@ -0,0 +1,112 @@
++# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mmc/sprd,sdhci-r11.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Spreadtrum SDHCI controller
++
++maintainers:
++  - Orson Zhai <orsonzhai@gmail.com>
++  - Baolin Wang <baolin.wang7@gmail.com>
++  - Chunyan Zhang <zhang.lyra@gmail.com>
++
++properties:
++  compatible:
++    const: sprd,sdhci-r11
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    minItems: 2
++    items:
++      - description: SDIO source clock
++      - description: gate clock for enabling/disabling the device
++      - description: gate clock controlling the device for some special platforms (optional)
++
++  clock-names:
++    minItems: 2
++    items:
++      - const: sdio
++      - const: enable
++      - const: 2x_enable
++
++  pinctrl-0:
++    description: default/high speed pin control
++    maxItems: 1
++
++  pinctrl-1:
++    description: UHS mode pin control
++    maxItems: 1
++
++  pinctrl-names:
++    minItems: 1
++    items:
++      - const: default
++      - const: state_uhs
++
++patternProperties:
++  "^sprd,phy-delay-(legacy|mmc-(ddr52|highspeed|hs[24]00|hs400es)|sd-(highspeed|uhs-sdr(50|104)))$":
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    items:
++      - description: clock data write line delay value
++      - description: clock read command line delay value
++      - description: clock read data positive edge delay value
++      - description: clock read data negative edge delay value
++    description:
++      PHY DLL delays are used to delay the data valid window, and align
++      the window to the sampling clock. Each cell's delay value unit is
++      cycle of the PHY clock.
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - clock-names
++
++allOf:
++  - $ref: sdhci-common.yaml#
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/sprd,sc9860-clk.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    mmc@50430000 {
++      compatible = "sprd,sdhci-r11";
++      reg = <0x50430000 0x1000>;
++      interrupts = <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>;
++
++      clocks = <&aon_prediv CLK_EMMC_2X>,
++               <&apahb_gate CLK_EMMC_EB>,
++               <&aon_gate CLK_EMMC_2X_EN>;
++      clock-names = "sdio", "enable", "2x_enable";
++
++      pinctrl-0 = <&sd0_pins_default>;
++      pinctrl-1 = <&sd0_pins_uhs>;
++      pinctrl-names = "default", "state_uhs";
++
++      bus-width = <8>;
++      cap-mmc-hw-reset;
++      mmc-hs400-enhanced-strobe;
++      mmc-hs400-1_8v;
++      mmc-hs200-1_8v;
++      mmc-ddr-1_8v;
++      non-removable;
++      no-sdio;
++      no-sd;
++
++      sprd,phy-delay-mmc-ddr52 = <0x3f 0x75 0x14 0x14>;
++      sprd,phy-delay-mmc-hs200 = <0x0 0x8c 0x8c 0x8c>;
++      sprd,phy-delay-mmc-hs400 = <0x44 0x7f 0x2e 0x2e>;
++      sprd,phy-delay-mmc-hs400es = <0x3f 0x3f 0x2e 0x2e>;
++    };
++...
+-- 
+2.34.1
+
 
