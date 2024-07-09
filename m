@@ -1,109 +1,132 @@
-Return-Path: <devicetree+bounces-84119-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84120-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA15792B10D
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 09:30:06 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DCA392B123
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 09:33:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2773F1C21CA0
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 07:30:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F2B62B20EDB
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 07:33:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48E10142E7C;
-	Tue,  9 Jul 2024 07:30:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEA2B13AD3F;
+	Tue,  9 Jul 2024 07:33:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="L96GDT+l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from szxga01-in.huawei.com (szxga01-in.huawei.com [45.249.212.187])
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28D9E13A27D;
-	Tue,  9 Jul 2024 07:29:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.249.212.187
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF80727713;
+	Tue,  9 Jul 2024 07:33:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720510202; cv=none; b=gNFhbEx/8PNAokhaFtI7aEwJ4GfDSsNQKFhSQCI+Q2JvhOHaFXA1ohxKW6Z2nK94peTKXcMhD++TEz9+sL6CwoCNLXg59xok8A0wot4EfG8IJ+f0GCQoWH7mufzNZTpg05IehmZI4eZVanu5jZuQvROKwCk8uuMk8QJeDCk4FJA=
+	t=1720510391; cv=none; b=tNapvI8NSGkRRK1QqWG5MsUWp3IWbLIvJ3/p/kCg3BIGZpIRKt7zT6uuREgjb4sR6VzFs/bt7Tm61cXoOde7YxTvkw9O+0FgKF0kSLB+CewQuD8BLaM4+nod5GVXnaSBcakmjkRds2ByrcSp++QAJJoLVHnhU0PP6RtLMpk7S5Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720510202; c=relaxed/simple;
-	bh=gzc0c54BDDk/Q+GMrR87SF/g6DuMufpih9B/SrhZzxc=;
-	h=Subject:To:CC:References:From:Message-ID:Date:MIME-Version:
-	 In-Reply-To:Content-Type; b=ZxWKJoWN9Umr+GuzJKuB0kGDT8ILQpeb8fZjwYzpYPtzU7uCNq/cmuc9jg9emhi+iezBM4nRgQFvRPsDG/LV1hjjXKjH+0Vo8qYWVeeYBvx45pKtBN5C4PWS8V0x2zbn2uy7poKQobSBhNN8ZvXyl1nkEPBvGGmk06mdmSdLmJI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=45.249.212.187
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.19.163.252])
-	by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4WJCF73k6HzwWd4;
-	Tue,  9 Jul 2024 15:25:15 +0800 (CST)
-Received: from kwepemm600007.china.huawei.com (unknown [7.193.23.208])
-	by mail.maildlp.com (Postfix) with ESMTPS id B1012180AE5;
-	Tue,  9 Jul 2024 15:29:56 +0800 (CST)
-Received: from [10.174.185.179] (10.174.185.179) by
- kwepemm600007.china.huawei.com (7.193.23.208) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Tue, 9 Jul 2024 15:29:54 +0800
-Subject: Re: [PATCH 6/9] accel/rocket: Add a new driver for Rockchip's NPU
-To: Tomeu Vizoso <tomeu@tomeuvizoso.net>
-CC: Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, Robin
- Murphy <robin.murphy@arm.com>, Heiko Stuebner <heiko@sntech.de>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Oded Gabbay <ogabbay@kernel.org>, Tomeu Vizoso
-	<tomeu.vizoso@tomeuvizoso.net>, David Airlie <airlied@gmail.com>, Daniel
- Vetter <daniel@ffwll.ch>, Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>, Philipp Zabel
-	<p.zabel@pengutronix.de>, Sumit Semwal <sumit.semwal@linaro.org>,
-	=?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
-	<iommu@lists.linux.dev>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-rockchip@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-	<linux-media@vger.kernel.org>, <linaro-mm-sig@lists.linaro.org>
-References: <20240612-6-10-rocket-v1-0-060e48eea250@tomeuvizoso.net>
- <20240612-6-10-rocket-v1-6-060e48eea250@tomeuvizoso.net>
-From: Zenghui Yu <yuzenghui@huawei.com>
-Message-ID: <ad2628b2-aab2-2c7a-d4df-5356c55fae39@huawei.com>
-Date: Tue, 9 Jul 2024 15:29:53 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.9.0
+	s=arc-20240116; t=1720510391; c=relaxed/simple;
+	bh=gSERHO7SPM3v1RtUEbwdPvkwOWI4iQMpuHomPnu55VM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=ONJDP58Zfwvs6uLVJSjc8GLWq8xMW7e+QNNOrrUrrY78iQlFA+MVyOvHQS6jJD+SglTtDd+0L5K/VJQKnoRelkBgiDMiWbvVvt963X4COkuL5sv/kok8OfXQWaM8T6SnZjG8pHwaxsBeVtT9UPN08cYl2ELy6HJdtyw2d3ZH9Kc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=L96GDT+l; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4697X126007375;
+	Tue, 9 Jul 2024 02:33:01 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1720510381;
+	bh=KaQtpDY7no19ULV5JoJHn2GC2yJhfNsVtj20pWHAYN8=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=L96GDT+lvFcjfEoXLPI4IfUbjGh5DMMsrDLmeLvRUuN9r8HO5atlje9IRwMICHt+p
+	 tzOmVQhhDoN7EmrV0x6fu5pMfxXlMeg9dO8uDDwTN/DenjRIz7lH1WEGte1ySJiVra
+	 CdporAngontGrPPIhT7pLXfGQs6f6jD2tXAjgJ30=
+Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4697X1Y8037824
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 9 Jul 2024 02:33:01 -0500
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 9
+ Jul 2024 02:33:01 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 9 Jul 2024 02:33:01 -0500
+Received: from [172.24.227.94] (uda0132425.dhcp.ti.com [172.24.227.94])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4697WvvK058766;
+	Tue, 9 Jul 2024 02:32:57 -0500
+Message-ID: <da36d283-73f0-4110-a9fa-3964eae19689@ti.com>
+Date: Tue, 9 Jul 2024 13:02:56 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <20240612-6-10-rocket-v1-6-060e48eea250@tomeuvizoso.net>
-Content-Type: text/plain; charset="utf-8"; format=flowed
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/5] arm64: dts: ti: k3-j721s2*: Add bootph-*
+ properties
+To: Manorit Chawdhry <m-chawdhry@ti.com>, Nishanth Menon <nm@ti.com>,
+        Tero
+ Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Neha Malcom Francis <n-francis@ti.com>,
+        Aniket Limaye <a-limaye@ti.com>, Udit Kumar <u-kumar1@ti.com>,
+        Beleswar Padhi
+	<b-padhi@ti.com>
+References: <20240705-b4-upstream-bootph-all-v2-0-9007681ed7d8@ti.com>
+ <20240705-b4-upstream-bootph-all-v2-1-9007681ed7d8@ti.com>
+From: Vignesh Raghavendra <vigneshr@ti.com>
 Content-Language: en-US
+In-Reply-To: <20240705-b4-upstream-bootph-all-v2-1-9007681ed7d8@ti.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: dggems706-chm.china.huawei.com (10.3.19.183) To
- kwepemm600007.china.huawei.com (7.193.23.208)
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On 2024/6/12 21:52, Tomeu Vizoso wrote:
-> This initial version supports the NPU as shipped in the RK3588 SoC and
-> described in the first part of its TRM, in Chapter 36.
-> 
-> This NPU contains 3 independent cores that the driver can submit jobs
-> to.
-> 
-> This commit adds just hardware initialization and power management.
-> 
-> Signed-off-by: Tomeu Vizoso <tomeu@tomeuvizoso.net>
 
-[...]
 
-> +void rocket_core_reset(struct rocket_core *core)
-> +{
-> +	reset_control_assert(core->a_reset);
-> +	reset_control_assert(core->h_reset);
-> +
-> +	udelay(10);
-> +
-> +	reset_control_deassert(core->a_reset);
-> +	reset_control_deassert(core->h_reset);
-> +}
+On 05/07/24 11:56, Manorit Chawdhry wrote:
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
+> index 8feb42c89e47..497e0dfa8011 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
+> @@ -17,20 +17,24 @@ sms: system-controller@44083000 {
+>  
+>  		reg-names = "debug_messages";
+>  		reg = <0x00 0x44083000 0x00 0x1000>;
+> +		bootph-all;
 
-Seems unused.
+Since [0] in U-Boot, bootph-* is automatically propagated to supernodes.
+Please fix throughout the series
 
-> +void rocket_core_reset(struct rocket_core *core);
+>  
+>  		k3_pds: power-controller {
+>  			compatible = "ti,sci-pm-domain";
+>  			#power-domain-cells = <2>;
+> +			bootph-all;
+>  		};
+>  
+>  		k3_clks: clock-controller {
+>  			compatible = "ti,k2g-sci-clk";
+>  			#clock-cells = <2>;
+> +			bootph-all;
+>  		};
+>  
+>  		k3_reset: reset-controller {
+>  			compatible = "ti,sci-reset";
+>  			#reset-cells = <2>;
+> +			bootph-all;
+>  		};
+>  	};
 
-> +void rocket_device_reset(struct rocket_device *rdev);
 
-Ditto.
+[0]
+
+-- 
+Regards
+Vignesh
 
