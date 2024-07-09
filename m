@@ -1,174 +1,199 @@
-Return-Path: <devicetree+bounces-84088-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84090-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD5A692AEF0
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 06:06:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6275092AF2E
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 06:55:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 094441C2132D
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 04:06:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D77F41F2209E
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 04:55:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03DCE433DC;
-	Tue,  9 Jul 2024 04:06:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B79212C49B;
+	Tue,  9 Jul 2024 04:55:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="dg0rbrOp"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JeV1ScEj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f170.google.com (mail-pg1-f170.google.com [209.85.215.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82DFD2BD05;
-	Tue,  9 Jul 2024 04:06:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 747EC29CEA;
+	Tue,  9 Jul 2024 04:55:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720497969; cv=none; b=q1FfPA3ViVRrUeC8b0pcqwbDfbH+sd9xEg7JbuMbTkcTV4P6AIYdmD0jmJCv/PaG56UTsNnqK+c48/xJt8c2vWJE3bSoF7OWsATyCoNp43T7Lm75WcVk09cp4cgq/Br0KRP5EulGze5CnvI9dHPHUEFJN54P4zHKWjr3hXcu+qo=
+	t=1720500943; cv=none; b=lPcgWrZCbo7mZ0XIW8Y0ly257uXO3ulh1l9T+MdsNNY03aED1XaNUqT8SdFqLOaXhmkwV4dayzztMo3w+PyFOvR8AfBCDFlDgH3yi1d5pd2CNullSGnWMgvWFLXNav1JodK0sXNGo2HIecFq/4poXgsafxN5AaLzythn+tvFeIc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720497969; c=relaxed/simple;
-	bh=NFDu3F7rDMNV4FUo0YDfu3JzkZQunh0B5Q61UPbhL5c=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=B7726EdYxWq/sEkMwAxmuD5e/f2FrNTT2AqlzbX5p8teMEd7pFkMdtbplcKO7DDNaI3at7hNjWCa1txyNcM9eAUqiL/jgN/ni9g1nKqOGAJqkpcsoIX389pdrT6F7rLMi4twSg5++abRR48hijAhA+jDHllBkcqXcUQgjrczYiQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=dg0rbrOp; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4693QcTl019517;
-	Tue, 9 Jul 2024 04:05:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=cuu2bpuOvAkFqLc8LvHG+iaz
-	1VSGPDczMvb/f1B4aBk=; b=dg0rbrOpUHUdyRl+pBoNijqg8BIWiQ89yGaQzJB+
-	l6gz2MX6cllc7j8b90kEuKsLIg3kcrtURxzBoVjaXl3kQ4nc+R9Fr1hs6jT7XYG5
-	6Qrv7UwJn4J4p8QUJZXCWi3Cfy2MAztlqWMGqsIR8fXcVmJRK9Yx1AEhXAfsPWEG
-	gZOGBTI4i+40fEy8ZgjTWhNOjr+o1RkwVixshIG10++G/jYwh9BupdU0z/m9F0pZ
-	rW/OBc/KqRi8J/j93YvvyPpHeHqLwZSqiD2vfpO9e5jwiYCbrBNV2TN+M69MT2Dm
-	VDr8tBOgcCyOQjyxFZRG1nOs6qnCWB5WFUbyWWq2+6Yk5A==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 406wgwn94m-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 09 Jul 2024 04:05:54 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA02.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 46945q4g009025
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 9 Jul 2024 04:05:52 GMT
-Received: from jiegan-gv.ap.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Mon, 8 Jul 2024 21:05:47 -0700
-Date: Tue, 9 Jul 2024 12:05:43 +0800
-From: JieGan <quic_jiegan@quicinc.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC: Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Suzuki K Poulose
-	<suzuki.poulose@arm.com>,
-        Alexander Shishkin
-	<alexander.shishkin@linux.intel.com>,
-        Mike Leach <mike.leach@linaro.org>, "Rob Herring" <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        James Clark <james.clark@arm.com>,
-        Jinlong Mao <quic_jinlmao@quicinc.com>, Leo Yan <leo.yan@linaro.org>,
-        <coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Tingwei Zhang
-	<quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        "Tao
- Zhang" <quic_taozha@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        "Song
- Chai" <quic_songchai@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>
-Subject: Re: [PATCH v2 3/4] Coresight: Add Coresight Control Unit driver
-Message-ID: <Zoy3FwurfmQUhF0S@jiegan-gv.ap.qualcomm.com>
-References: <20240705090049.1656986-1-quic_jiegan@quicinc.com>
- <20240705090049.1656986-4-quic_jiegan@quicinc.com>
- <9b502ba5-7042-424e-b0a2-5659e4064462@linaro.org>
- <ZotaBxRpv29crRHV@jiegan-gv.ap.qualcomm.com>
- <afd3c7b3-9d12-4ece-a938-c99bf9c5bb7b@linaro.org>
+	s=arc-20240116; t=1720500943; c=relaxed/simple;
+	bh=eHlJaYGkVYm28d+8Yw6VuGyew1kE2JhPT0Et+UQxfhU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=aA2AfDe83D22s2PEAK4OkLky/dfFVMQZA6QBAS2CH5K5oDVWgSEl64rABj8cr6P8F203PM9Jayov17iewmEfm/23tAV4hVd+llvXLZNfzJCqHzVIAB9Y3DXXkML8WIkuWDzl9K9wlk4YIfcYoQzyQlZ8D0JQABsdtlIhccZI5Ag=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JeV1ScEj; arc=none smtp.client-ip=209.85.215.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f170.google.com with SMTP id 41be03b00d2f7-6bce380eb9bso2730855a12.0;
+        Mon, 08 Jul 2024 21:55:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1720500942; x=1721105742; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=SqKaJocUioa9zVhmFj29t92/q5RUZD9GpRYJvaszsh0=;
+        b=JeV1ScEjpjpHkm0YU8QzGqt/TFmi4AyED8Su5GxN/Uju2Qu8IpTmdcqqwHw4x3vr8d
+         3S0H1vDQxyR3GRqyipX3j3dKL2UhuJ8rEeov9nmQDk5GlJnhhvmf9qRpX2BY9QWbGr6u
+         EXSBlaErmE/jqLXLCoO2F6wUswRInUcAiLYp5gtogbvQhNM02eVj5hhL1jw9JMeKXygU
+         7NTm/aq9nmaVS+MLcLzJdeEU8YhOnKEAsSnHnHdRJnDGb99mTMgom7DflzkOvQK7isUj
+         fIWVm3W9qzKN7rK4CfW23cwH0ObdUDryGiRdhNRkg1mVKZX9jsw+MGD/BRjdsEsp6nKA
+         tO4g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720500942; x=1721105742;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=SqKaJocUioa9zVhmFj29t92/q5RUZD9GpRYJvaszsh0=;
+        b=vw8ro2tpXu9vQJ5u3KRfJYxmoshEjQ6JOg4sZYvnmb236As/dnQp41tvz+e6SwLV7d
+         I+r/kn8Jw1QwvZh3G1434oUauUMIxpxvf4F3gcQPhbTp//9wHZkAHZUNMJKh8HKEtEge
+         x2LhWbfKkYsnU7vNl6Jxg9K04804FJsWC3v7pXr3BqL7ckO1XgcAoovhAuqldnKqnwal
+         jNbqy8Nk90917AB12CTph0zWx6YBadSJIBSg83mGwWKFQ/ynZYUTpTxWxQ6j0up7wV7z
+         wyopITaVzYmRwZT+U6lMJa+nKASTA/7+Hu+8ndWZ9/jbY24EsMinRzEj9evlfcpUhj+M
+         SfrQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUhEtKrsvwJdwG8GgWeK1BdWmHSnaXevEA44z+g2XqhxoX4WBRALkg9LAFp/ubKEOnI7GeT5YicUhTFwbduZr7v5zHG6tAcIvztxyyhHIjCYSLCl9Go07e03jKWcF0Gkgz3wqY60GOhvNejh4mImENfUplokfEXEFT7mk6d3uSzNFDRt79w
+X-Gm-Message-State: AOJu0YzuHWm8i/LB3s/z72T3Y5eF1f9CPp92aFK5rqiBK0t6Ku+1yhJ3
+	grpmBTn0S/dfy0W0Ycy7+dCGL72dK1oHZZVgioAWGxgMWgjZg5qIE48V8w==
+X-Google-Smtp-Source: AGHT+IHbadqVJQre10gCHyswTEmwsTSHIFV6clkSkz4h7Tp9Flx8bMAH8aAoU2KjYDqs5mnA6wfg4Q==
+X-Received: by 2002:a05:6a20:4f12:b0:1be:e265:81fa with SMTP id adf61e73a8af0-1c29824d472mr1014200637.35.1720500941419;
+        Mon, 08 Jul 2024 21:55:41 -0700 (PDT)
+Received: from google.com ([2620:15c:9d:2:922a:af36:b3d9:2eac])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2ca34e89d46sm889698a91.27.2024.07.08.21.55.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Jul 2024 21:55:41 -0700 (PDT)
+Date: Mon, 8 Jul 2024 21:55:37 -0700
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Stefan Eichenberger <eichest@gmail.com>
+Cc: nick@shmanahar.org, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, nicolas.ferre@microchip.com,
+	alexandre.belloni@bootlin.com, claudiu.beznea@tuxon.dev,
+	linus.walleij@linaro.org, linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Stefan Eichenberger <stefan.eichenberger@toradex.com>
+Subject: Re: [PATCH v4 1/4] Input: atmel_mxt_ts - add power off and power on
+ functions
+Message-ID: <ZozCyQ-deK8A2uOe@google.com>
+References: <20240417090527.15357-1-eichest@gmail.com>
+ <20240417090527.15357-2-eichest@gmail.com>
+ <ZnRMxONryyi5uZ8a@google.com>
+ <ZnWQYc1IunNyhmD4@eichest-laptop>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <afd3c7b3-9d12-4ece-a938-c99bf9c5bb7b@linaro.org>
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: M18-D_-Qvg3WEgDOf71E8l-bUyNnTU2w
-X-Proofpoint-ORIG-GUID: M18-D_-Qvg3WEgDOf71E8l-bUyNnTU2w
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-07-08_15,2024-07-08_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=811 mlxscore=0
- adultscore=0 malwarescore=0 spamscore=0 bulkscore=0 lowpriorityscore=0
- suspectscore=0 clxscore=1015 priorityscore=1501 phishscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2406140001 definitions=main-2407090024
+In-Reply-To: <ZnWQYc1IunNyhmD4@eichest-laptop>
 
-On Mon, Jul 08, 2024 at 12:44:43PM +0200, Krzysztof Kozlowski wrote:
-> On 08/07/2024 05:16, JieGan wrote:
+Hi Stefan,
+
+On Fri, Jun 21, 2024 at 04:38:25PM +0200, Stefan Eichenberger wrote:
+> Hi Dmitry
+> 
+> On Thu, Jun 20, 2024 at 08:37:40AM -0700, Dmitry Torokhov wrote:
+> > Hi Stefan,
 > > 
-> >>
-> >>> +
-> >>> +	drvdata->base = devm_ioremap(dev, res->start, resource_size(res));
-> >>
-> >> Use proper wrapper for this two.
-> > Replaced by:
-> > res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> > drvdata->base = devm_ioremap_resource(dev, res);
+> > On Wed, Apr 17, 2024 at 11:05:24AM +0200, Stefan Eichenberger wrote:
+> > > @@ -3374,8 +3390,7 @@ static void mxt_remove(struct i2c_client *client)
+> > >  	sysfs_remove_group(&client->dev.kobj, &mxt_attr_group);
+> > >  	mxt_free_input_device(data);
+> > >  	mxt_free_object_table(data);
+> > > -	regulator_bulk_disable(ARRAY_SIZE(data->regulators),
+> > > -			       data->regulators);
+> > > +	mxt_power_off(data);
+> > 
+> > This change means that on unbind we will leave with GPIO line asserted.
+> > Won't this potentially cause some current leakage? Why do we need to
+> > have reset asserted here?
 > 
-> Why?
-> 
-> Use the wrapper.
-Sorry, I misunderstood the "wrapper" before.
-Just wrapped drvdata->base by void __iomem *base;
+> This is correct, but I checked the datasheet of three different maxTouch
+> models and all of them have the reset line low active. This means we had
+> a current leakage before this patch.
 
-> 
-> 
-> ...
-> 
-> >>> +
-> >>> +static struct platform_driver ccu_driver = {
-> >>> +	.probe          = ccu_probe,
-> >>> +	.remove         = ccu_remove,
-> >>> +	.driver         = {
-> >>> +		.name   = "coresight-ccu",
-> >>> +		.of_match_table = ccu_match,
-> >>> +		.suppress_bind_attrs = true,
-> >>
-> >> Why?
-> > Sorry, I dont get the point here.
-> 
-> You do not get the point why I am asking "why?"?
-> 
-> Why do you need it?
-> 
-> > We dont need automatic bind/unbind, so the suppress_bind_attrs sets to true.
-> 
-> But I need it...
-> 
-> > We need configure some settings before we register the device.
-> 
-> Hm, is this expected for coresight devices?
-The coresight device cannot be unbinded independently. As we known, 
-The coresight devices collaborate to form a path, from source, link, to sink.
-If an unexpected unbinding occurs for a coresight device that is part of the path,
-it will disrupt the entire path.
+No, the reset line would be either set or pulled high, which is the
+normal state for the device.
 
-I think it's the reason why the coresight device driver does not need automatic bind/unbind.
-Here is the previous discussion for suppress_bind_attrs:
-https://lore.kernel.org/all/1453753248-1716-1-git-send-email-mathieu.poirier@linaro.org/#r
+> Now it is fixed because we assert
+> the reset line, which sets the pin to 0. I also think it makes sense if
+> we look at the power on sequence. There we first power on the controller
+> before we release the reset line. Without asserting it on unbind this
+> would never trigger a reset after a power on.
 
-> 
-> Best regards,
-> Krzysztof
-> 
+Please see that in mxt_probe() we do:
 
-Thanks,
-Jie
+	/* Request the RESET line as asserted so we go into reset */
+	data->reset_gpio = devm_gpiod_get_optional(&client->dev,
+						   "reset", GPIOD_OUT_HIGH);
+
+If the reset GPIO is annotated as "active low" (as it should unless
+there are inverters on the line) this will cause the line
+be driven to 0, putting the chip into the reset state. Then we enable
+regulators and deassert the reset GPIO with this bit of code:
+
+	if (data->reset_gpio) {
+		/* Wait a while and then de-assert the RESET GPIO line */
+		msleep(MXT_RESET_GPIO_TIME);
+		gpiod_set_value(data->reset_gpio, 0);
+		msleep(MXT_RESET_INVALID_CHG);
+	}
+
+So the line here will be left at "1" state (logical off). It should stay
+this way until we need to go through the reset sequence again.
+
+I can see that you need the power on sequence to be executed again after
+probing is done. I recommend you make it something like this:
+
+static int mxt_power_on()
+{
+	int error;
+
+	if (data->reset_gpio)
+		gpiod_set_value_cansleep(data->reset_gpio, 1);
+
+
+	error = regulator_bulk_enable(ARRAY_SIZE(data->regulators),
+				      data->regulators);
+	if (error) {
+		dev_err(&client->dev, "failed to enable regulators: %d\n",
+			error);
+		return error;
+	}
+
+	/*
+	 * The device takes 40ms to come up after power-on according
+	 * to the mXT224 datasheet, page 13.
+	 */
+	msleep(MXT_BACKUP_TIME);
+
+	if (data->reset_gpio) {
+		/* Wait a while and then de-assert the RESET GPIO line */
+		msleep(MXT_RESET_GPIO_TIME);
+		gpiod_set_value(data->reset_gpio, 0);
+		msleep(MXT_RESET_INVALID_CHG);
+	}
+
+	return 0;
+}
+
+And then mxt_power_off() should only disable regulators, and leave the
+reset line alone. This way first time around the first
+"piod_set_value_cansleep(data->reset_gpio, 1)" will be effectively a
+noop, but on subsequent calls it will ensure that you have the
+transition inactive->active->inactive for the reset line.
+
+I wonder if we need both MXT_BACKUP_TIME and MXT_RESET_GPIO_TIME
+though...
+
+Thanks.
+
+-- 
+Dmitry
 
