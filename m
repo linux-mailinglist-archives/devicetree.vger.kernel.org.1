@@ -1,206 +1,163 @@
-Return-Path: <devicetree+bounces-84308-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84309-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75C6992BC02
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 15:53:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C633B92BC3F
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 15:58:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2FC4328217A
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 13:53:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E8AEB1C20BEC
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 13:58:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62A991891D4;
-	Tue,  9 Jul 2024 13:52:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16AAE1891CF;
+	Tue,  9 Jul 2024 13:57:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="MWJNPbo/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94D8A1607B7;
-	Tue,  9 Jul 2024 13:52:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9570E1850A2;
+	Tue,  9 Jul 2024 13:57:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720533179; cv=none; b=KOYOYZiWbBane6poqaz0z856zUl/OEAeNdL8VPoH3WLWi7TUD5xKuIPkvPM8JPALEclQQ7pkzfMqCSWD6f5X3wuRJ3051grsDVVqyiOhJJvxjH94BwHjzVzoFXMdSLLhNDAi0NnLt6S64e3lcb9E3t4xVh0/WV1E5uXoTB4C12o=
+	t=1720533442; cv=none; b=qWHgOJ20lR+W/Nu4MQD8xeyTsRcMUwe6Pqcy8WlIFSXCTND830PJ7cAT9mSEFyZdRbi5S8Bn7LJVzPxzDmSdfQuwjXZyLEMh9PqehoJYW3OdWkkrGOl6Atb1iI0TmCshsaRh5VIzdxXjefZDEdx3XUpxwUu3LD4WK3mj71d/uwY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720533179; c=relaxed/simple;
-	bh=q0V4APoRmHaCbW6MmjIJ6GHfqAT/z6YApcKKwuGqzQ4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=gXzMDoF/BrydFWpIuDPINbhVDVhKNpA8qra9yR85+OLGBt568I/8vOdvQlbDgKaWT8rI6xgG2g8ad9qTcBQxCO5+o0S9nmYKzgMs+DilKUJpTv2w7QC/R5Km9swGqY4Um9kf9lOQOPF8D16f9qqoEYmzvgS3s0B5cZMpbnt8+tk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-X-IronPort-AV: E=Sophos;i="6.09,195,1716217200"; 
-   d="scan'208";a="214766397"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie6.idc.renesas.com with ESMTP; 09 Jul 2024 22:52:56 +0900
-Received: from localhost.localdomain (unknown [10.226.92.130])
-	by relmlir6.idc.renesas.com (Postfix) with ESMTP id 793C943DEDAE;
-	Tue,  9 Jul 2024 22:52:50 +0900 (JST)
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	linux-media@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH v2 9/9] arm64: dts: renesas: r9a07g043u11-smarc: Enable DU
-Date: Tue,  9 Jul 2024 14:51:47 +0100
-Message-ID: <20240709135152.185042-10-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240709135152.185042-1-biju.das.jz@bp.renesas.com>
-References: <20240709135152.185042-1-biju.das.jz@bp.renesas.com>
+	s=arc-20240116; t=1720533442; c=relaxed/simple;
+	bh=HEr0HPxjelqJ3oX82GEVZTV5xdIMPqGPD+jcTVomdDY=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=B9hGEmNGHzgqKigw6yBDudxH+dVxqlkN5H4ay8CfMSVYWeI5JE4QBrqlATwdeGQIYcAMezM9KKhdhs5NuNYaKYpig4dwrOcKWI0rt6sxgC/fZ0AAIXhvSvE7nMjXe0/MSXi6cRFv7mLXSkkfAWPDzGJkpg9Q8CfhQeft6jKgc6g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=MWJNPbo/; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 469Bm52g015976;
+	Tue, 9 Jul 2024 13:57:07 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=pSoKKJd+KGOwGbP1EvBI7g
+	R5LzyKw21ySidDByFY1eI=; b=MWJNPbo/1M6ihvrCOQlFu7uT6uCL6joPdH8l1Y
+	/83W4SvabTPz+xMY8HinRdFawXEi3YAxdzg9hTJtGOliXfT3G2O7PGChTAUdqPwy
+	Q85lVfrs1g3smu7KQnf7q6nKyklXLQTiG72QzuhQiWQ/45+GhSF3WrtSa+UOfC5h
+	rFmPC6rbMEn95sPbVO4F/ii141pp70ZYHSBymw4VWA1a1h/Y3yuh7Xt4Y/iEJ9Oe
+	3MnrrgQ5bvgdJEVrctS416roBZxVdRY56L9H/3HlJwTKmkZ42mncWxE0l0LCqyzY
+	zmBvEuZp1KaIXONNPGyOvFgVl8qTtb6FwzSdg/fsCXAsrZGg==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 406y3hebn5-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 09 Jul 2024 13:57:07 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 469Dv6eL008307
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 9 Jul 2024 13:57:06 GMT
+Received: from tengfan-gv.ap.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Tue, 9 Jul 2024 06:57:01 -0700
+From: Tengfei Fan <quic_tengfan@quicinc.com>
+Date: Tue, 9 Jul 2024 21:56:45 +0800
+Subject: [PATCH v2] dt-bindings: interrupt-controller: qcom,pdc: document
+ pdc on QCS9100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-ID: <20240709-document_qcs9100_pdc_compatible-v2-1-83619dcd2658@quicinc.com>
+X-B4-Tracking: v=1; b=H4sIAJ1BjWYC/zWNWwqDMBQFtyL5buQm9dmv7qOIaLzqhZpoEqVF3
+ Huj0M85cGZ25tASOvaIdmZxI0dGB5C3iKmx0QNy6gIzCTKBHEreGbVOqH29KFcKgHruVK3MNDe
+ e2jfyLMUEsqwVuSxYsMwWe/pchVcVeCTnjf1ewU2c6999B5kWKcQyXAEKLviykqo96qFv9PME0
+ ioOLVYdx/EDjQQdWbsAAAA=
+To: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>
+CC: <kernel@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Tengfei Fan
+	<quic_tengfan@quicinc.com>
+X-Mailer: b4 0.15-dev-a66ce
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1720533420; l=2372;
+ i=quic_tengfan@quicinc.com; s=20240709; h=from:subject:message-id;
+ bh=HEr0HPxjelqJ3oX82GEVZTV5xdIMPqGPD+jcTVomdDY=;
+ b=sZX0BRLqszm6V6A4pIeEj+L+LBXW9bIwgkLDp81HJiUBSXTCSUAzV2tYVgVnZIegsz4ANovZc
+ +DmrWB1Cj4GBolw6iPzR3Py0BTOPNkLCFpfAGdLeZBayyt6c+2J7pe9
+X-Developer-Key: i=quic_tengfan@quicinc.com; a=ed25519;
+ pk=4VjoTogHXJhZUM9XlxbCAcZ4zmrLeuep4dfOeKqQD0c=
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 9wpC2PsmCgA261EYisKVb3HL2jBcoBie
+X-Proofpoint-GUID: 9wpC2PsmCgA261EYisKVb3HL2jBcoBie
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-09_04,2024-07-09_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 bulkscore=0
+ spamscore=0 adultscore=0 mlxscore=0 lowpriorityscore=0 suspectscore=0
+ clxscore=1015 mlxlogscore=835 impostorscore=0 phishscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2406140001 definitions=main-2407090090
 
-Enable DU and link with the HDMI add-on board connected with
-the parallel connector on RZ/G2UL SMARC EVK.
+The QCS9100 SoC includes a PDC, document it.
+QCS9100 is drived from SA8775p. Currently, both the QCS9100 and SA8775p
+platform use non-SCMI resource. In the future, the SA8775p platform will
+move to use SCMI resources and it will have new sa8775p-related device
+tree. Consequently, introduce "qcom,qcs9100-pdc" to describe non-SCMI
+based pdc.
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
 ---
-v1->v2:
- * No change.
----
- .../boot/dts/renesas/r9a07g043u11-smarc.dts   | 111 ++++++++++++++++++
- 1 file changed, 111 insertions(+)
+Introduce support for the QCS9100 SoC device tree (DTSI) and the
+QCS9100 RIDE board DTS. The QCS9100 is a variant of the SA8775p.
+While the QCS9100 platform is still in the early design stage, the
+QCS9100 RIDE board is identical to the SA8775p RIDE board, except it
+mounts the QCS9100 SoC instead of the SA8775p SoC.
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a07g043u11-smarc.dts b/arch/arm64/boot/dts/renesas/r9a07g043u11-smarc.dts
-index 8e0107df2d46..dda37cf4d3fd 100644
---- a/arch/arm64/boot/dts/renesas/r9a07g043u11-smarc.dts
-+++ b/arch/arm64/boot/dts/renesas/r9a07g043u11-smarc.dts
-@@ -35,4 +35,115 @@
- / {
- 	model = "Renesas SMARC EVK based on r9a07g043u11";
- 	compatible = "renesas,smarc-evk", "renesas,r9a07g043u11", "renesas,r9a07g043";
-+
-+	hdmi-out {
-+		compatible = "hdmi-connector";
-+		type = "d";
-+
-+		port {
-+			hdmi_con_out: endpoint {
-+				remote-endpoint = <&adv7513_out>;
-+			};
-+		};
-+	};
-+};
-+
-+&du {
-+	pinctrl-0 = <&du_pins>;
-+	pinctrl-names = "default";
-+
-+	status = "okay";
-+
-+	ports {
-+		port@1 {
-+			du_out_rgb: endpoint {
-+				remote-endpoint = <&adv7513_in>;
-+			};
-+		};
-+	};
-+};
-+
-+&i2c1 {
-+	adv7513: adv7513@39 {
-+		compatible = "adi,adv7513";
-+		reg = <0x39>;
-+
-+		adi,input-depth = <8>;
-+		adi,input-colorspace = "rgb";
-+		adi,input-clock = "1x";
-+
-+		avdd-supply = <&reg_1p8v>;
-+		dvdd-supply = <&reg_1p8v>;
-+		pvdd-supply = <&reg_1p8v>;
-+		dvdd-3v-supply = <&reg_3p3v>;
-+		bgvdd-supply = <&reg_1p8v>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+
-+				adv7513_in: endpoint {
-+					remote-endpoint = <&du_out_rgb>;
-+				};
-+			};
-+
-+			port@1 {
-+				reg = <1>;
-+
-+				adv7513_out: endpoint {
-+					remote-endpoint = <&hdmi_con_out>;
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+&pinctrl {
-+	du_pins: du {
-+		data {
-+			pinmux = <RZG2L_PORT_PINMUX(11, 2, 6)>,
-+				 <RZG2L_PORT_PINMUX(13, 1, 6)>,
-+				 <RZG2L_PORT_PINMUX(13, 0, 6)>,
-+				 <RZG2L_PORT_PINMUX(13, 4, 6)>,
-+				 <RZG2L_PORT_PINMUX(13, 3, 6)>,
-+				 <RZG2L_PORT_PINMUX(12, 1, 6)>,
-+				 <RZG2L_PORT_PINMUX(13, 2, 6)>,
-+				 <RZG2L_PORT_PINMUX(14, 0, 6)>,
-+				 <RZG2L_PORT_PINMUX(14, 2, 6)>,
-+				 <RZG2L_PORT_PINMUX(14, 1, 6)>,
-+				 <RZG2L_PORT_PINMUX(16, 0, 6)>,
-+				 <RZG2L_PORT_PINMUX(15, 0, 6)>,
-+				 <RZG2L_PORT_PINMUX(16, 1, 6)>,
-+				 <RZG2L_PORT_PINMUX(15, 1, 6)>,
-+				 <RZG2L_PORT_PINMUX(15, 3, 6)>,
-+				 <RZG2L_PORT_PINMUX(18, 0, 6)>,
-+				 <RZG2L_PORT_PINMUX(15, 2, 6)>,
-+				 <RZG2L_PORT_PINMUX(17, 0, 6)>,
-+				 <RZG2L_PORT_PINMUX(17, 2, 6)>,
-+				 <RZG2L_PORT_PINMUX(17, 1, 6)>,
-+				 <RZG2L_PORT_PINMUX(18, 1, 6)>,
-+				 <RZG2L_PORT_PINMUX(18, 2, 6)>,
-+				 <RZG2L_PORT_PINMUX(17, 3, 6)>,
-+				 <RZG2L_PORT_PINMUX(18, 3, 6)>;
-+			drive-strength = <2>;
-+		};
-+
-+		sync {
-+			pinmux = <RZG2L_PORT_PINMUX(11, 0, 6)>, /* HSYNC */
-+				 <RZG2L_PORT_PINMUX(12, 0, 6)>; /* VSYNC */
-+			drive-strength = <2>;
-+		};
-+
-+		de {
-+			pinmux = <RZG2L_PORT_PINMUX(11, 1, 6)>; /* DE */
-+			drive-strength = <2>;
-+		};
-+
-+		clk {
-+			pinmux = <RZG2L_PORT_PINMUX(11, 3, 6)>; /* CLK */
-+		};
-+	};
- };
+The QCS9100 SoC DTSI is directly renamed from the SA8775p SoC DTSI, and
+all the compatible strings will be updated from "SA8775p" to "QCS9100".
+The QCS9100 device tree patches will be pushed after all the device tree
+bindings and device driver patches are reviewed.
+
+The final dtsi will like:
+https://lore.kernel.org/linux-arm-msm/20240703025850.2172008-3-quic_tengfan@quicinc.com/
+
+The detailed cover letter reference:
+https://lore.kernel.org/linux-arm-msm/20240703025850.2172008-1-quic_tengfan@quicinc.com/
+---
+Changes in v2:
+  - Split huge patch series into different patch series according to
+    subsytems
+  - Update patch commit message
+
+prevous disscussion here:
+[1] v1: https://lore.kernel.org/linux-arm-msm/20240703025850.2172008-1-quic_tengfan@quicinc.com/
+---
+ Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml b/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml
+index 985fa10abb99..41fbfce838fa 100644
+--- a/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml
++++ b/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml
+@@ -26,6 +26,7 @@ properties:
+   compatible:
+     items:
+       - enum:
++          - qcom,qcs9100-pdc
+           - qcom,qdu1000-pdc
+           - qcom,sa8775p-pdc
+           - qcom,sc7180-pdc
+
+---
+base-commit: 0b58e108042b0ed28a71cd7edf5175999955b233
+change-id: 20240709-document_qcs9100_pdc_compatible-65e4066b1728
+
+Best regards,
 -- 
-2.43.0
+Tengfei Fan <quic_tengfan@quicinc.com>
 
 
