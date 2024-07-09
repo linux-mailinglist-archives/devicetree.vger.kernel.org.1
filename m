@@ -1,142 +1,113 @@
-Return-Path: <devicetree+bounces-84229-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84230-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D38C92B608
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 12:56:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA1BA92B69A
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 13:15:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4CB301F22229
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 10:56:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 73502284C0F
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 11:15:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B86E9157485;
-	Tue,  9 Jul 2024 10:56:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 484CF158A01;
+	Tue,  9 Jul 2024 11:15:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="g/51zbrS"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="we/KRAhE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com [209.85.128.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45872157466;
-	Tue,  9 Jul 2024 10:56:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDF9B158870
+	for <devicetree@vger.kernel.org>; Tue,  9 Jul 2024 11:15:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720522616; cv=none; b=jQFrduEpNIlmiXhpqo1lIPPIXZ93PeqyuNcfYAafrGcuuCuslDxuq+agD+71KUJPk3OaO3Hh+SuSB3h7+yFdyDV+ClSUPo9DrpQYXN8rqQBqJHP2YL7i0isxnghDZpiBTEtScSbPM7ZYTK+6XMoLAJIiWCqR5IWRrjNyqT2Y6xo=
+	t=1720523715; cv=none; b=UD0PXMxg7y3gXQuXbHZp5gbApLMPW6J/KyJlMs9IGyi5N0Mih1bj3BZuUj+s4XrwGCtgyJWrt1mVUsH1z3F2+wOWc0PkMjeiGMVnBG3fTYLaTCZGgruqdPGJkoAd6KcTnzVheWU4YY03pralNxrA2GDAInG4fLHjeHAWnT8AU9I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720522616; c=relaxed/simple;
-	bh=84F1L1sHzWlLsLS7ya9AqFpPG7XUdqgHj/9UGtgoTMo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=b73sH1+6BSeHn/QmLnC2Aykhg7vypAxjBEIBegb72A9yqSa6gUal4+6MyLmFkFuXDIo/Rvw3yaBphZUVAjpwEWqOK/+w/pW+UJrhw1pX7b8Uv5c5ECmGF7Rv7q5PnPTYfCdy0J9j7o116Xc1F7vxB7W2QFWDhDYZHfeH9PLWymk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=g/51zbrS; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 469AnSJG004577;
-	Tue, 9 Jul 2024 10:56:36 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	fHwmQdirbf7RLBWn75SXhPKkKCFB1DZbgj07ksairGA=; b=g/51zbrScIQZQTQE
-	o+y+lNZcAkxc4AIbGxiIlUmGiptHNI/0TszYkdmV2KIUmjfJiUEr3eNz4hWreL3I
-	LT0C0f69HIfvXK3R1m+TiVsSihHyveHDA5ktWjPF3pxusjKC1FBynKPepLe6AQJy
-	I5/NOD9mmKR9753aUutSMsDoytp3ROglS/LTD1Qlr9U5NevJRdf9R2mBFBIYlHrJ
-	G2jeeZ+WLWMJNkg9lKq4/jayF+fJUbO4nVA9G9bj5+yVV8vEtEX8hbXq8RXAyLbk
-	b9dYejy3tA7heuzkeMS8GZDGUBq0GxLKP3KBC/IJ9jsQq8XrYPiDJctOzhG+j5kB
-	Pbq1Sw==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 406xa6656m-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 09 Jul 2024 10:56:36 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA03.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 469AuXvB029013
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 9 Jul 2024 10:56:33 GMT
-Received: from [10.216.26.146] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 9 Jul 2024
- 03:56:27 -0700
-Message-ID: <60d64abc-a43b-2bdb-812f-8e1198274702@quicinc.com>
-Date: Tue, 9 Jul 2024 16:26:23 +0530
+	s=arc-20240116; t=1720523715; c=relaxed/simple;
+	bh=a1z9aXVH0jD/Ns99p9cnjXyxouNm3dQ2gvZ1e148jWs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=exI1O4H+azRhIQJX9ANLvoRWksi1MgIsRj7mFZlhVnnK6nPDoAD+EwY2gs2B9JDrDC+ICRe/Z5uqn8YG1h9itkZfxanwmJWSzG8zTyr+4/N04RdstzbT8kB0tQsy+yPxgo0E+4uy+HnelYCzEeUmJ2EEwraLnbWM3El9Ld6gXqs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=we/KRAhE; arc=none smtp.client-ip=209.85.128.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-65011d9bd75so42266897b3.2
+        for <devicetree@vger.kernel.org>; Tue, 09 Jul 2024 04:15:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1720523713; x=1721128513; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=JRnxn5kBog1S4c87fuPJ8CVw2ogmUFe7KoQqF9HGur4=;
+        b=we/KRAhEuF/YgHgY85BnisOG1Vgur+POcRbi7uJp2gSTb357E6r4ZScnZ7UQv0vSNH
+         ZvGD6gB8aJr1RbfSFQxCHEUbkksODOTT2LtW9mUGMV3g4BliEr2KwnffFYhya6q9PEje
+         7acmZVnvudpRt5YTL3zsuOj8IBIofIPu3mXevczEEDgLozpYqn8eWMZE9S0ucDvXJO3w
+         JsRsqcvelD6Nt/oZkzQB/svpQZeMvHFKav+Mxp0HOjzKjIWlTcWFALDBhY8Gyf9pVG5r
+         DwYJm5G5ey7ZRfxVpexRxmZacjBUKNJrTiOuhXHLsZzluUtdegiIL3Dg6KLJ+yE4DDC9
+         geuQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720523713; x=1721128513;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=JRnxn5kBog1S4c87fuPJ8CVw2ogmUFe7KoQqF9HGur4=;
+        b=PL1+MuwIcW7RhXxa0+ORvql4bkr9NyEMl0/4TAx5cGB7oA+gIQrqmqERoisU479Tze
+         BsEo1/wWcfkHRCsUkAmlodpzNbi13y0tPxiBHXuy2OoDMcRY2Q6U8fabdhLzy6CMK7lJ
+         tA56iSi1d+ORWsWY7lxSNJ+0AQadFzXmff3asay3s6zHWRcqYMvaTUBWQUDcbkiB9zLh
+         9Lls8WMY0nfW5TngF41BBjNIgRkRX5bLsA0eyhjd8+Z9AE7mGXgKDB0QkHD2SMkhYpzW
+         OHbKckcOCZ1OYkd9a15sl0YhbwHFJh8Ij5klyciQ1ogZfWYBwVMerzjwpni5wTQUsBEm
+         K0XA==
+X-Forwarded-Encrypted: i=1; AJvYcCWXjQnI85QdprPiZwnWpX56Dnmby1UX/lFdVIztj1EV0EzAIwW6dtdjB6T4hlm4/CNcfJ+qCr/lrg9koWsYx0HcS37sp676GLRSfQ==
+X-Gm-Message-State: AOJu0YzVwyZiOv6DZWnbp2AN2VPbbdvxzIADmE63KVFIIk0sIzbLziTa
+	yVb1BTQpQV2MYQVu7W0KFPETOp/YoxWC/kkAfqfl3J17Roh20d0py4l5QXZ2PfZ1LXife/E+NUh
+	VYr/Je0gf/YbH/8GH1CiH7ref5O6WNonl34fyQA==
+X-Google-Smtp-Source: AGHT+IHvO18cEkcdgxI9LdmOavq97SRmsNIECRYT+ECXAWD9UTP9pFQ6ZQOwH4TjXmRjZ21qPReOQ/XXVr1I24f4iJ4=
+X-Received: by 2002:a05:690c:4b06:b0:62c:c684:b1e1 with SMTP id
+ 00721157ae682-658ef249fc6mr31666527b3.29.1720523712710; Tue, 09 Jul 2024
+ 04:15:12 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH v2 2/6] clk: qcom: clk-alpha-pll: Update set_rate for
- Zonda PLL
-Content-Language: en-US
-To: Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        "Stephen
- Boyd" <sboyd@kernel.org>,
-        Abhishek Sahu <absahu@codeaurora.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: Stephen Boyd <sboyd@codeaurora.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, Ajit Pandey <quic_ajipan@quicinc.com>,
-        "Imran
- Shaik" <quic_imrashai@quicinc.com>,
-        Taniya Das <quic_tdas@quicinc.com>,
-        Jagadeesh Kona <quic_jkona@quicinc.com>
-References: <20240702-camcc-support-sm8150-v2-0-4baf54ec7333@quicinc.com>
- <20240702-camcc-support-sm8150-v2-2-4baf54ec7333@quicinc.com>
- <eb71f14d-bf27-4f23-870e-7dfa01e44e80@linaro.org>
-From: "Satya Priya Kakitapalli (Temp)" <quic_skakitap@quicinc.com>
-In-Reply-To: <eb71f14d-bf27-4f23-870e-7dfa01e44e80@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: l1P5Rx6oLNtvbmNnY38HR_q6B_My_C7G
-X-Proofpoint-ORIG-GUID: l1P5Rx6oLNtvbmNnY38HR_q6B_My_C7G
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-07-09_02,2024-07-08_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
- suspectscore=0 lowpriorityscore=0 impostorscore=0 phishscore=0 spamscore=0
- clxscore=1015 adultscore=0 malwarescore=0 mlxscore=0 bulkscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2406140001 definitions=main-2407090075
+References: <20240627-a5_secpower-v1-0-1f47dde1270c@amlogic.com>
+In-Reply-To: <20240627-a5_secpower-v1-0-1f47dde1270c@amlogic.com>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Tue, 9 Jul 2024 13:14:37 +0200
+Message-ID: <CAPDyKFrY6rL-aCo=GtmRBoJNBH=p3DteWWfBmWkFnWhpwHLnLA@mail.gmail.com>
+Subject: Re: [PATCH 0/3] Power: A5: add power domain driver
+To: xianwei.zhao@amlogic.com
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Jianxin Pan <jianxin.pan@amlogic.com>, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-pm@vger.kernel.org, Hongyu Chen <hongyu.chen1@amlogic.com>
+Content-Type: text/plain; charset="UTF-8"
 
-
-On 7/6/2024 7:09 PM, Konrad Dybcio wrote:
-> On 2.07.2024 5:50 PM, Satya Priya Kakitapalli wrote:
->> The Zonda PLL has a 16 bit signed alpha and in the cases where the alpha
->> value is greater than 0.5, the L value needs to be adjusted accordingly.
->> Thus update the logic for the same.
->>
->> Also, fix zonda set_rate failure when PLL is disabled. Currently,
->> clk_zonda_pll_set_rate polls for the PLL to lock even if the PLL is
->> disabled. However, if the PLL is disabled then LOCK_DET will never
->> assert and we'll return an error. There is no reason to poll LOCK_DET
->> if the PLL is already disabled, so skip polling in this case.
->>
->> Signed-off-by: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
->> ---
-> [...]
+On Thu, 27 Jun 2024 at 13:47, Xianwei Zhao via B4 Relay
+<devnull+xianwei.zhao.amlogic.com@kernel.org> wrote:
 >
->> @@ -2077,9 +2089,15 @@ static int clk_zonda_pll_set_rate(struct clk_hw *hw, unsigned long rate,
->>   	if (ret < 0)
->>   		return ret;
->>   
->> +	if (a & BIT(15))
->> +		zonda_pll_adjust_l_val(rate, prate, &l);
-> A random check for a seemingly random, undocumented bit only confuses the reader
+> Add power controller driver support for Amlogic A5 SoC.
+>
+> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> ---
+> Xianwei Zhao (3):
+>       dt-bindings: power: add Amlogic A5 power domains
+>       pmdomain: amlogic: Add support for A5 power domains controller
+>       arm64: dts: amlogic: a5: add power domain controller node
+>
+>  .../bindings/power/amlogic,meson-sec-pwrc.yaml     |  1 +
+>  arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi        | 10 +++++++++
+>  drivers/pmdomain/amlogic/meson-secure-pwrc.c       | 26 ++++++++++++++++++++++
+>  include/dt-bindings/power/amlogic,a5-pwrc.h        | 21 +++++++++++++++++
+>  4 files changed, 58 insertions(+)
+> ---
 
+Patch 1 and 2 applied for next (patch 1 is available at the immutable
+dt branch too), thanks!
 
-Sure, I'll define a macro for this.
-
-
-Thanks.
-
+Kind regards
+Uffe
 
