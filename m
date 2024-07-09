@@ -1,56 +1,62 @@
-Return-Path: <devicetree+bounces-84408-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84409-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0024292C0FB
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 18:48:57 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32C1692C144
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 18:55:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 307D91C22CE1
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 16:48:57 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BAD05B2CBC2
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 16:51:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83EB718FA29;
-	Tue,  9 Jul 2024 16:25:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D29F01A4F1B;
+	Tue,  9 Jul 2024 16:26:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iHUIDBE4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IDBLvmZB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D8B118FA22;
-	Tue,  9 Jul 2024 16:25:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A13D01A4F07;
+	Tue,  9 Jul 2024 16:26:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720542343; cv=none; b=Sm2QiOio7opCXkbAdlsxVRyEFXNfbEWheoNQq1mmIcT+6rzd84yTI0Fp2JyuKK0NX4XUyl//3XwiNtz3LL+NrYA1CgTTPjWbfCHbvaaMqna/vZ8ver2pj46ARXCKFPfyLe5syH5yhJrIg1PatloNSVfnh8h6vpK7Me2dFVKp2mo=
+	t=1720542378; cv=none; b=seG3k32gfkFOUR74rpVtH+w3Z/aEKkMJ/C7qmKMYVmXwpIOSx6iFT3kz7ocMrC+heoNt/i+Y7tf7MRcgBCvEPV4Nftas3QhQG9wPrmDpkgveg5WRPL6nFqV9JG8+kgMMgcfKqoGE/NSCyFbUKAELisY+BkdJwo6nRh5yw2dMayo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720542343; c=relaxed/simple;
-	bh=HNZERyax7YfeQp01st75pcXuzHJEbSApRID1V7p3OuE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Xs4C5RQl702yJqqx7vZsGDgqKtoh8Jy8vL80tGXYm21VMZIoDYLsuHj0pm3lE29VXDr4dBBmFqhLGodm6xLQGKvVsZ+qtbPL67Or4hdQTp/fsNiQFl9oCuXyYJMgmejlVxlMTky6ebtdCyvNe4AAtlNfi4VdO0+DZjSH5f3dy8U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iHUIDBE4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 051B3C4AF0A;
-	Tue,  9 Jul 2024 16:25:42 +0000 (UTC)
+	s=arc-20240116; t=1720542378; c=relaxed/simple;
+	bh=+bZLGqWY1DDBcyTEH10hsAqp0+mebKEECO2I2Lb/wl8=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=cKTYgS6+0y02D5Agn+k8Q3TCAyJX8LGBys+E+wOSZo2sb92ayoG9Unz9RARG+kCLu0C4iAa6RBiYDJVnhdwb9qXTKjU6UEAqq6f5C9YFB5tJ99/+ySwNMP0wShIA8+Q6ep/eTAq+Oi3jQ0Hbh4lwy3ycXHIQ/ZRdvWkLkJPFavI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IDBLvmZB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03FCBC3277B;
+	Tue,  9 Jul 2024 16:26:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720542343;
-	bh=HNZERyax7YfeQp01st75pcXuzHJEbSApRID1V7p3OuE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=iHUIDBE4GwDL2TuhKWi3TEIqXmzbP/vCD/CeAe6EkVKb3NC3tMP1dYiGFzXlNqoxh
-	 BjBnQU3sGIt9PcajkS1QI8Ufz4/VCk1QNGm3Bd8hdCstWib+384X2BIMDknG6Y8BK2
-	 kcsaTJBMSJFfi8XQ9R0gyIaMsrXHCHGyR6mXSTUn6E0Z4m4hXk90PeQ12cOwEx/0CZ
-	 xp3vliteT2PpbjprrlX75KtrY7aLPxLCWhiRIpNrd+6cRdQmg6Rx06hXOpKyTmMrWU
-	 zUWWx3FM2x38dHdKoVuzF8qIj8t+GYlNkWyiuTDhd+Fvh0uPWIoTRbXJATS/vujvzi
-	 k8lfXH8F9Hg0w==
-Date: Tue, 9 Jul 2024 10:25:41 -0600
-From: Rob Herring <robh@kernel.org>
-To: George Liu <liuxiwei1013@gmail.com>
-Cc: linux-aspeed@lists.ozlabs.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org
-Subject: Re: [PATCH v2] dt-bindings: arm: aspeed: add IEIT x86 platform BMC
- boards
-Message-ID: <20240709162541.GA3680692-robh@kernel.org>
-References: <20240708034848.100930-1-liuxiwei@ieisystem.com>
+	s=k20201202; t=1720542378;
+	bh=+bZLGqWY1DDBcyTEH10hsAqp0+mebKEECO2I2Lb/wl8=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=IDBLvmZBCCFufsM+sPjL6bm0hoX51V5WbYI6jjJCmWNdXwhUXuEWUtbmUAVlSVtaY
+	 7VUq0dOWOd5vPkGKLT6vEIzv94XAWqZLNJ0yNkJYm9G7wTSvtjbe/j+RIa4fNLaHvQ
+	 eVe67BFLUV9sbdO/iuphzr8kwE/ZExgNxGeTcHa1LKQV0Ig+5Py1irT1nVCktdT/xt
+	 N7Gzb3U01PW2GVllWF9hXRL3FDHxBhuSbtnJ/BDkR6J0GhrLKlgbTEUzCh9k32nLVb
+	 90Ve4y/HS6L+EKvDda1dkV+pYt8E0xyUFicvcX9xixXBZ+tIDg/VWptNhM+M8k5Yl0
+	 /RqOzI/LgAMVQ==
+Date: Tue, 9 Jul 2024 11:26:16 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Tengfei Fan <quic_tengfan@quicinc.com>
+Cc: Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	kernel@quicinc.com, linux-arm-msm@vger.kernel.org,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] PCI: qcom: Add support for QCS9100 SoC
+Message-ID: <20240709162616.GA175928@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,35 +65,39 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240708034848.100930-1-liuxiwei@ieisystem.com>
+In-Reply-To: <20240709-add_qcs9100_pcie_compatible-v2-2-04f1e85c8a48@quicinc.com>
 
-On Mon, Jul 08, 2024 at 11:48:48AM +0800, George Liu wrote:
-> Document the new compatibles used on the ieisystems
+On Tue, Jul 09, 2024 at 10:59:30PM +0800, Tengfei Fan wrote:
+> Add support for QCS9100 SoC that uses controller version 5.90
+> reusing the 1.9.0 config.
+
+Add blank line here if this is a paragraph break.
+
+> QCS9100 is drived from SA8775p. Currently, both the QCS9100 and SA8775p
+> platform use non-SCMI resource. In the future, the SA8775p platform will
+> move to use SCMI resources and it will have new sa8775p-related device
+> tree. Consequently, introduce "qcom,pcie-qcs9100" to the PCIe device
+> match table.
 > 
-> Signed-off-by: George Liu <liuxiwei@ieisystem.com>
-
-Still confused with the 3 names: ieisystems, ieisystem, and ieit
-
-The preference for vendor prefixes is domain names, but if ieit is a 
-better identifier please explain why (in the commit msg).
-
+> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
 > ---
->  Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml | 1 +
+>  drivers/pci/controller/dwc/pcie-qcom.c | 1 +
 >  1 file changed, 1 insertion(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
-> index e386d0ebfb14..818fbe9c45fc 100644
-> --- a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
-> +++ b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
-> @@ -92,6 +92,7 @@ properties:
->                - ibm,rainier-bmc
->                - ibm,system1-bmc
->                - ibm,tacoma-bmc
-> +              - ieit,nf5280m7-bmc
->                - inventec,starscream-bmc
->                - inventec,transformer-bmc
->                - jabil,rbp-bmc
+> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+> index 26405fcfa499..ea3fddc74498 100644
+> --- a/drivers/pci/controller/dwc/pcie-qcom.c
+> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+> @@ -1722,6 +1722,7 @@ static const struct of_device_id qcom_pcie_match[] = {
+>  	{ .compatible = "qcom,pcie-ipq8074-gen3", .data = &cfg_2_9_0 },
+>  	{ .compatible = "qcom,pcie-msm8996", .data = &cfg_2_3_2 },
+>  	{ .compatible = "qcom,pcie-qcs404", .data = &cfg_2_4_0 },
+> +	{ .compatible = "qcom,pcie-qcs9100", .data = &cfg_sc8280xp },
+>  	{ .compatible = "qcom,pcie-sa8540p", .data = &cfg_sc8280xp },
+>  	{ .compatible = "qcom,pcie-sa8775p", .data = &cfg_1_34_0},
+>  	{ .compatible = "qcom,pcie-sc7280", .data = &cfg_1_9_0 },
+> 
 > -- 
-> 2.34.1
+> 2.25.1
 > 
 
