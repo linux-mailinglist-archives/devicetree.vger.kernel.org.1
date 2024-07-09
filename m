@@ -1,167 +1,150 @@
-Return-Path: <devicetree+bounces-84188-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84189-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B25A92B4C0
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 12:08:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9992392B4D2
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 12:10:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A9B281F216AE
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 10:08:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4F47E281B07
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 10:10:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6669A15749E;
-	Tue,  9 Jul 2024 10:07:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99CC6155749;
+	Tue,  9 Jul 2024 10:10:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="OG5NbqLD"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cO7XRAQD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2673156677;
-	Tue,  9 Jul 2024 10:07:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4239E153824
+	for <devicetree@vger.kernel.org>; Tue,  9 Jul 2024 10:10:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720519650; cv=none; b=DRADQNkC34yMG1SEGZdBV97eK4OcI9+whWZr0kYXh1oHp5v1LJdP9/pLPHUKfofvXHn6z5WGWF6umCcr1wXy/sNbaOsz3vih+0mq8i3gnQHZAuiL3R0zA/zfKrqvaL7/kHSjWuojV4utRwzD3wlKp58sAK9HQjT/QVIlRI0JTkw=
+	t=1720519844; cv=none; b=ZmA73DoYOHMUcP/TObYhaBSLUvv3EJisXXwX7zc0ym+VrkGc9KUythsDDF/5LYGB7beCma+60zdyW/Uwp6yvmkFsBJVeW60vHiQC5+oAQamCrEGi90E2CI6rd0IggX5Jmj/6voArUPWUPxqFaxrPZHhFWcOB+yGSCmbX1fmhuNI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720519650; c=relaxed/simple;
-	bh=5KKw6M74A/DclraUTuoBJCsigKAUo94+LXOXkaaNZcc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Ysezp/X4hLQVaSIH/lqRDP6dOcLLOpVNMJPtd6+PtJE7QQQWF90Hn/ccDimT15c3H4XATnSAQvebhXapDeDefmUyAxh6hZGnigNatIXzYQpTSPVh3usVdT35fK2uV1ceECvVBdeWPJA7lzHsPr07ykgkCCkBPC2wTcI4nHxgo0U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=OG5NbqLD; arc=none smtp.client-ip=217.70.183.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 89A6C4000D;
-	Tue,  9 Jul 2024 10:07:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1720519646;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ES8mi7d+KSw4EqedKB92e7v4sIMF0mwW3Ict+VP51AU=;
-	b=OG5NbqLDCZjIVYYEUEpydKqEgnUS2ISHAhyus72wN8mPU9VLi8sNlv2ZeyIq+gaPg/twZO
-	DSk9KwzEfjEtR/MVQPOBArnRqobi0nK4vodab2PZIGka9JLfE/yWCZnFbBEbNWFlvIfkIl
-	rNholjGdHPOw+N8qT1cQF9VPoKXbVb86Q6Ik0ItnuAuu6VUbMMyZEBNHsDXwpTGkDhk130
-	1FUzp2yeuX7fVYc2xjRgrB+7JpCSdV6zwyIxeGrxbo0j4+JmIERL6Ovy6psxcDMkhBv2y/
-	NOme7KpDrtvuNmv4ifF5hitt6J0ZsfvMHfyAEAghDIYngs7x6GIdY5A3TkdI+w==
-From: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-Date: Tue, 09 Jul 2024 12:07:20 +0200
-Subject: [PATCH v3 5/5] riscv: dts: sophgo: Add LicheeRV Nano board device
- tree
+	s=arc-20240116; t=1720519844; c=relaxed/simple;
+	bh=NPDJQWFMBg1N7Ij6Du+SoVPn1EVzMY6sx/kDXOi+R70=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=eIT5/hC+6nUR6bCQ7Fk6VW3UAve40VFwqJ5/62Puyfyg4rg6aREbpLu2slrjjDbGdRqQa6ZgZdsOqnrGhhYjeu91vql+w9wj1zqIRLXEwHFls11YVC6oDX7DaS2asyYGzIuOWTDFVRJ9HGdF+ZYCFSWIBAPvDt748YG1Q1m6QRk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cO7XRAQD; arc=none smtp.client-ip=209.85.210.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-70b04cb28acso3314929b3a.0
+        for <devicetree@vger.kernel.org>; Tue, 09 Jul 2024 03:10:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1720519842; x=1721124642; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=nnPeUwagpX34GrQVUm/eQerepI0eGCCGd1FU50bUkf0=;
+        b=cO7XRAQDPKe3qPpjgEUuULiFCnv7YEZBTsTRcm+kM2nyAQb8OfTgKsHz4ysoeGcHYE
+         tuArtDrSnsUC7ylk1Po2f2C84hLkzePmdToDaY6mEYkbAaHQP/J26ET/VE0rjp+5POHh
+         PWTDyk8qUgHaxD+8sPIqvxyDmgI2J0ofp6cxdJIErj2vsj7DH3jTupEzKDV2UmhSUZQJ
+         /WzemXJfSMkU9mOpiaGAd+lTXL3AmHapukD3/IsZX1HmoCLVH/HExmfLuDhcrsg3Y3Fy
+         cFDt3qXvvJw4u9bhVkAVBu9/yJtUg0aJ0URy7DIkqUvp00Q1rsdPLM5GvVTPNYKjvHXv
+         CRWQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720519842; x=1721124642;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=nnPeUwagpX34GrQVUm/eQerepI0eGCCGd1FU50bUkf0=;
+        b=xDf6ASIXTbOnRaoUwnGD+tfiZgWfukJTz0zh7QSxCEt8sJgPna1ixna+cenrCRVIJQ
+         lp5mu4+NcDFhCnYaVl1SMeKvVKUk7ZZkNZPzmjfYFjH2Kml3/agA3q6ajMdLxnH5OZK/
+         Zt/+P6X7rOtQNt1F2Zt6RZ9Rn/Vtgm9BSRlsHjNHusfYzOBPD2eEcMM3iSJsdlHviAYH
+         6PCUtVOYafChIsWYFbs2nhuhO4LwDBIGDo4UMKisFnttnvoQxR4N8XA5E6roAdo+LM90
+         /lHdmtvNX/3RGoje/gn10XFOr6HbnWxpOzgF69h+QU1DuUYk+oe8k6V+2PDQx3TW/XrY
+         AnSg==
+X-Forwarded-Encrypted: i=1; AJvYcCX0gflVYuURHYFh4FR6jy8SoBeBfp79wf1ehZ7ho/XCUeT6XpzM4vVW/QdOrZh9/xYW/fhQ89wPu667lI0F4OIDxtFzcFW2FFLejA==
+X-Gm-Message-State: AOJu0YxJ/IQJfy95NFRToMVbEA0UNj121jGMqucUEQov4Ogeov8sqmfB
+	JYYH2oTeMealGerw6+5/VsYQCbZDpcHfu+f1imXrTYtmZWCKNT7l7lwggPh0cZQ=
+X-Google-Smtp-Source: AGHT+IGY1Pe1r//Dd07K6/Nl+QdtHZ9ZtoZxqKzqVdSu70UadlzYzvyA0dW27fLhNu8Dx+V1hklbLQ==
+X-Received: by 2002:a05:6a00:2190:b0:706:938a:5d49 with SMTP id d2e1a72fcca58-70b44e02bbamr2756913b3a.14.1720519842470;
+        Tue, 09 Jul 2024 03:10:42 -0700 (PDT)
+Received: from [192.168.105.194] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-70b43899614sm1465109b3a.17.2024.07.09.03.10.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 09 Jul 2024 03:10:42 -0700 (PDT)
+Message-ID: <2b278a27-f527-448c-99b5-fc307d792127@linaro.org>
+Date: Tue, 9 Jul 2024 12:10:36 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC V3 2/4] firmware: arm_scmi: vendors: Add ARM SCMI QCOM
+ vendor protocol v1.0
+To: Sibi Sankar <quic_sibis@quicinc.com>, sudeep.holla@arm.com,
+ cristian.marussi@arm.com, andersson@kernel.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org
+Cc: linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ quic_rgottimu@quicinc.com, quic_kshivnan@quicinc.com, conor+dt@kernel.org,
+ Amir Vajid <avajid@quicinc.com>
+References: <20240702191440.2161623-1-quic_sibis@quicinc.com>
+ <20240702191440.2161623-3-quic_sibis@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20240702191440.2161623-3-quic_sibis@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240709-sg2002-v3-5-af779c3d139d@bootlin.com>
-References: <20240709-sg2002-v3-0-af779c3d139d@bootlin.com>
-In-Reply-To: <20240709-sg2002-v3-0-af779c3d139d@bootlin.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Paul Walmsley <paul.walmsley@sifive.com>, 
- Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@outlook.com>, 
- Chao Wei <chao.wei@sophgo.com>
-Cc: Albert Ou <aou@eecs.berkeley.edu>, Palmer Dabbelt <palmer@dabbelt.com>, 
- Samuel Holland <samuel.holland@sifive.com>, 
- Thomas Gleixner <tglx@linutronix.de>, 
- Daniel Lezcano <daniel.lezcano@linaro.org>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- =?utf-8?q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-riscv@lists.infradead.org, 
- Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-X-Mailer: b4 0.14.0
-X-GND-Sasl: thomas.bonnefille@bootlin.com
 
-LicheeRV Nano B [1] is an embedded development platform based on the SOPHGO
-SG2002 chip, the B(ase) version is deprived of Wifi/Bluetooth and Ethernet.
+On 2.07.2024 9:14 PM, Sibi Sankar wrote:
+> The ARM SCMI QCOM vendor protocol provides a generic way of exposing a
+> number of Qualcomm SoC specific features (like memory bus scaling) through
+> a mixture of pre-determined algorithm strings and param_id pairs hosted on
+> the SCMI controller.
+> 
 
-Add only support for UART and SDHCI.
+[...]
 
-Link: https://wiki.sipeed.com/hardware/en/lichee/RV_Nano/1_intro.html [1]
+> +/**
+> + * qcom_scmi_vendor_protocol_cmd - vendor specific commands supported by Qualcomm SCMI
+> + *                                 vendor protocol.
 
-Signed-off-by: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
----
- arch/riscv/boot/dts/sophgo/Makefile                |  1 +
- .../boot/dts/sophgo/sg2002-licheerv-nano-b.dts     | 54 ++++++++++++++++++++++
- 2 files changed, 55 insertions(+)
+include the word 'enum' or:
 
-diff --git a/arch/riscv/boot/dts/sophgo/Makefile b/arch/riscv/boot/dts/sophgo/Makefile
-index 57ad82a61ea6..47d4243a8f35 100644
---- a/arch/riscv/boot/dts/sophgo/Makefile
-+++ b/arch/riscv/boot/dts/sophgo/Makefile
-@@ -1,4 +1,5 @@
- # SPDX-License-Identifier: GPL-2.0
- dtb-$(CONFIG_ARCH_SOPHGO) += cv1800b-milkv-duo.dtb
- dtb-$(CONFIG_ARCH_SOPHGO) += cv1812h-huashan-pi.dtb
-+dtb-$(CONFIG_ARCH_SOPHGO) += sg2002-licheerv-nano-b.dtb
- dtb-$(CONFIG_ARCH_SOPHGO) += sg2042-milkv-pioneer.dtb
-diff --git a/arch/riscv/boot/dts/sophgo/sg2002-licheerv-nano-b.dts b/arch/riscv/boot/dts/sophgo/sg2002-licheerv-nano-b.dts
-new file mode 100644
-index 000000000000..fc98b6a0ddf7
---- /dev/null
-+++ b/arch/riscv/boot/dts/sophgo/sg2002-licheerv-nano-b.dts
-@@ -0,0 +1,54 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright (C) 2024 Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include "sg2002.dtsi"
-+
-+/ {
-+	model = "LicheeRV Nano B";
-+	compatible = "sipeed,licheerv-nano-b", "sipeed,licheerv-nano", "sophgo,sg2002";
-+
-+	aliases {
-+		gpio0 = &gpio0;
-+		gpio1 = &gpio1;
-+		gpio2 = &gpio2;
-+		gpio3 = &gpio3;
-+		serial0 = &uart0;
-+		serial1 = &uart1;
-+		serial2 = &uart2;
-+		serial3 = &uart3;
-+		serial4 = &uart4;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+};
-+
-+&osc {
-+	clock-frequency = <25000000>;
-+};
-+
-+&sdhci0 {
-+	status = "okay";
-+	bus-width = <4>;
-+	no-1-8-v;
-+	no-mmc;
-+	no-sdio;
-+	disable-wp;
-+};
-+
-+&uart0 {
-+	status = "okay";
-+};
-+
-+&uart1 {
-+	status = "okay";
-+};
-+
-+&i2c0 {
-+	status = "okay";
-+};
+warning: cannot understand function prototype: 'enum qcom_scmi_vendor_protocol_cmd '
 
--- 
-2.45.2
-
+Konrad
 
