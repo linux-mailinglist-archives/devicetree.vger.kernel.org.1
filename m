@@ -1,429 +1,220 @@
-Return-Path: <devicetree+bounces-84176-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84177-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBBBE92B3DE
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 11:32:11 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C097F92B40E
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 11:40:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7AAB81F23585
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 09:32:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 28723B22AE9
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 09:40:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F1DA154458;
-	Tue,  9 Jul 2024 09:32:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6908155352;
+	Tue,  9 Jul 2024 09:39:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YCzGDMAe"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HEesyLqX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB57E14E2C5;
-	Tue,  9 Jul 2024 09:32:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C02E1534FC
+	for <devicetree@vger.kernel.org>; Tue,  9 Jul 2024 09:39:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720517526; cv=none; b=VpXfZmX8QGInnV7plqBjRu3aaxdcajAphGuIkFJqJmccKfC67VJ/vjHTpejy5fy3PHrW9xRw0ccfrA/gLfwD25Y5aUn7NVTCSCwDyc4Si6fOEIGXFxg5T3aX9aMsJQ5SIxEcZA21d0b8S7Eb/a9VW5h1y05BI7G6JUGdMLuX5qw=
+	t=1720517998; cv=none; b=n4H29sgRY45R2vsyIxDF5gK3cU7N7gun+h4lhNz+aVAfWT+mKPQ8FXLWZLyWkejtZo7irr+YD1Ar/w1k2TprgT0sULj9hbEvbVDTx9OUMFAu6TRJkxUAy/zq9ysvw7XONuuqKGdsEzOETEeQs8dv09OnCq6IkEnVIm5HSkaaXo8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720517526; c=relaxed/simple;
-	bh=e9Ydcuo0W4Af71o9LIySsEaFpFHJbdtbXE0ERF+h7fY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=sjGtN2c8T48VXuArTgyBgBULoiN1rz3v05YIR0414QsyZkqsZq7Onl3eFNSQAXMN1rcQzA6ScVto9oK2iMO8KuI6Usjfefv7W80WhgjtO6hwbGswHRlRuPK1el55JxOPTyrfTLT6ul8QBm0Z1jzavlaS957wjdLKbBdS8TePAjs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YCzGDMAe; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 65429C32786;
-	Tue,  9 Jul 2024 09:32:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720517525;
-	bh=e9Ydcuo0W4Af71o9LIySsEaFpFHJbdtbXE0ERF+h7fY=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=YCzGDMAeRnwYUu2z18zXOBFbxk/z3t0M/IEuqReUpPbc/iilYDbyHkr3BDSCykSOO
-	 3QYDKO4FRl8pI7J/Uqvcsuy0Irs1Qzbr+442x39CMTvwltz6aKY0Z0kOTugwUGJNOn
-	 OmQGlPYMUX820LZHSqAAh5s4itbEWGvsP+sRMLyiGVHV0G19jzpT6/u2I8b2B/tM8C
-	 EDZMDm5aw5Mf+3OH549EaNBiUEhvYPKn15fs4YxGr8+YRkcyiS+doRxBcyuGI3UEES
-	 LaEpf1eMicyEwAZBbJ6EY5/8XMTO+Q/yyKtBJEP4xx68VqV2Ka/Ggt8qqXvYbzy08r
-	 /QbvndPWcGQug==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 51950C2BD09;
-	Tue,  9 Jul 2024 09:32:05 +0000 (UTC)
-From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Tue, 09 Jul 2024 17:32:03 +0800
-Subject: [PATCH v2] arm64: dts: amlogic: enable some device nodes for S4
+	s=arc-20240116; t=1720517998; c=relaxed/simple;
+	bh=XFBX22GMqSvQ4yF/p0eTw1vNADK5MKQQ3e4vO66O5Dc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=OGnVtF+d1i5IacdvzyoRNnO68yHVDrlVZJwMnCnP9IM9/tY6CNvotC5FJkZ33hG7R9p23BKlj2SKUtHbNETDkAc8B1q6+8oYHQCfA5N3sV2z/wmCKYpGS1hqNVeU+WFbZB9vbWdOp1MrQ5OBF4LgoBLryx89l8agPSySEhR84tU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HEesyLqX; arc=none smtp.client-ip=209.85.218.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a77c080b521so542696566b.3
+        for <devicetree@vger.kernel.org>; Tue, 09 Jul 2024 02:39:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1720517995; x=1721122795; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=jKU8pw+Qs8+GTKI4pzMf/E6ufM6LjVXqPkb5yoMPBvQ=;
+        b=HEesyLqX2nMXEgr+IbX0mxkAEsuX8kZ9wcZfTi2MpdC+ukOi6784Qr32HB19mhC7GC
+         w1JqhKvDzbJvTuZRNLM1ftBu+5GD7HzSRsfn0GizPzglWG0dtj+ik9QWXUuK7irktRU4
+         nn4KOXiv/FNmMAUGK/8FqQAPRHkeJ1YTZ3gmIQnXXUijBK1XkXtehypLv1QxP8u5Va2u
+         ekThlPiN+lSyrUO1y6NvP0oTrxSYScG/hA3xkj2aHsPpbHo2+dUnPABja770BhjtS4J9
+         u0dwXMfP6v/yuYiE/00lQM/l1EVxH18lzol2bqJN9JcY80H2wbLn0IBvLY0BbHDTd9EV
+         LO6w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720517995; x=1721122795;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jKU8pw+Qs8+GTKI4pzMf/E6ufM6LjVXqPkb5yoMPBvQ=;
+        b=b6R5Vswqcc+vu3FHQHBMZlQ+StyHTglkPABSpN7x3vZwhyX1oxWWSZf3WBxpW2PsUo
+         YZo/q+v6rSR0pLY1xAZCNc+gmhRUyLkSFMx02+0Av9K//mg84tRdjUI07DN8kc2Djtb+
+         0acpEuVKb6DjFoipAls8scz6F1Qn9PwKx36bm4ibqpj71HJgZrnzfr16VLm3SOCuhftG
+         lTOzOLomA9rwIpa76vfrm41NX35pwjbCT+RgLKNxSIGFBHSoiTOekvzD4hUWuxhiYVKX
+         eSgB2rTA4t7i8KYsJjukzOsndVkF9SXB2b1ZolR8Y18400SnYh2PLLkx7uoOi3FwbWXT
+         qTbg==
+X-Forwarded-Encrypted: i=1; AJvYcCW5jTgeYPCXnXOFCkRbGK3sr2hD/eKtD8iMiYQwnoh57fMOFvBzStQe6TP9ZKkfc126j1qD9h9JQTVNfFiw1LqZqfxAaqKVbvTjWQ==
+X-Gm-Message-State: AOJu0Yy3M4VQt2qvzSis3kbSWHMTv1q1UmfDaL10fsh21Eis1oWuPbR+
+	17hg78XBlNnUu3udmKCMDkDmUb72pneLA0M7WaYT6P0EEtiFkLIYeJk3Dg+23bU=
+X-Google-Smtp-Source: AGHT+IE5dVAZblRZuS88vFnQlzf6kGWVkD8iWoKdgrwFaoHYnTZaP3nVG+frQanmEfzetUmHS5LdDw==
+X-Received: by 2002:a17:906:c141:b0:a77:c26c:a56f with SMTP id a640c23a62f3a-a780b68832fmr158070666b.3.1720517995060;
+        Tue, 09 Jul 2024 02:39:55 -0700 (PDT)
+Received: from [192.168.105.194] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a780a7fef43sm62342366b.124.2024.07.09.02.39.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 09 Jul 2024 02:39:54 -0700 (PDT)
+Message-ID: <408d7048-7ebb-4b32-bdfc-5e26a5c449e0@linaro.org>
+Date: Tue, 9 Jul 2024 11:39:51 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V6 5/5] arm64: dts: qcom: x1e80100: Enable cpufreq
+To: Johan Hovold <johan@kernel.org>, Sibi Sankar <quic_sibis@quicinc.com>
+Cc: sudeep.holla@arm.com, cristian.marussi@arm.com, andersson@kernel.org,
+ jassisinghbrar@gmail.com, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, dmitry.baryshkov@linaro.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, quic_rgottimu@quicinc.com,
+ quic_kshivnan@quicinc.com, conor+dt@kernel.org, quic_nkela@quicinc.com,
+ quic_psodagud@quicinc.com, abel.vesa@linaro.org
+References: <20240612124056.39230-1-quic_sibis@quicinc.com>
+ <20240612124056.39230-6-quic_sibis@quicinc.com>
+ <ZoQjAWse2YxwyRJv@hovoldconsulting.com>
+ <f53bc00f-8217-1dc8-5203-1a83c24d353d@quicinc.com>
+ <Zoz_UmPBWKHA37Kq@hovoldconsulting.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <Zoz_UmPBWKHA37Kq@hovoldconsulting.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240709-s4_node-v2-1-b9a218603c31@amlogic.com>
-X-B4-Tracking: v=1; b=H4sIAJIDjWYC/2XMQQrCMBCF4auUWRtJYkyrK+8hRcJ02g7YpCQSl
- JK7G7t1+T8e3waJIlOCa7NBpMyJg6+hDw3g7PxEgofaoKU2spVnkczDh4FEp5Skk+4sSoT6XiO
- N/N6le1975vQK8bPDWf3WfyMroYQ1Fl3r0IzycnPLM0yMRwwL9KWUL1wnPfugAAAA
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Xianwei Zhao <xianwei.zhao@amlogic.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1720517524; l=8594;
- i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
- bh=Zs9WrSBNZgepZCTAoVgjN3CrsmCt214ZOLiWJxrC+28=;
- b=2ErEE2AA7/EYW3a4j6G++WwqUeGDlBsmltDhLfEKFStoVVBmtK5LAyFZWN6rNEM9+ynSNxNpc
- BzOIzfGis0sD6Yoxounuip1waaQ9+RBK5hPdWB8i4Zc+/ojHAyHWv5s
-X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
- pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
-X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
- auth_id=107
-X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-Reply-To: xianwei.zhao@amlogic.com
 
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+On 9.07.2024 11:13 AM, Johan Hovold wrote:
+> Hi Sibi,
+> 
+> On Wed, Jul 03, 2024 at 01:29:11AM +0530, Sibi Sankar wrote:
+>> On 7/2/24 21:25, Johan Hovold wrote:
+>>> On Wed, Jun 12, 2024 at 06:10:56PM +0530, Sibi Sankar wrote:
+>>>> Enable cpufreq on X1E80100 SoCs through the SCMI perf protocol node.
+> 
+>>> This series gives a nice performance boost on the x1e80100 CRD, but I'm
+>>> seeing a bunch of warnings and errors that need to be addressed:
+>>>
+>>> [    9.533053] arm-scmi firmware:scmi: Failed to get FC for protocol 13 [MSG_ID:6 / RES_ID:0] - ret:-95. Using regular messaging.
+>>> [    9.549458] arm-scmi firmware:scmi: Failed to add opps_by_lvl at 3417600 for NCC - ret:-16
+>>> [    9.563925] arm-scmi firmware:scmi: Failed to add opps_by_lvl at 3417600 for NCC - ret:-16
+>>> [    9.572835] arm-scmi firmware:scmi: Failed to get FC for protocol 13 [MSG_ID:6 / RES_ID:1] - ret:-95. Using regular messaging.
+>>> [    9.609471] arm-scmi firmware:scmi: Failed to add opps_by_lvl at 3417600 for NCC - ret:-16
+>>> [    9.633341] arm-scmi firmware:scmi: Failed to add opps_by_lvl at 3417600 for NCC - ret:-16
+>>> [    9.650000] arm-scmi firmware:scmi: Failed to get FC for protocol 13 [MSG_ID:6 / RES_ID:2] - ret:-95. Using regular messaging.
+>>
+>> X1E uses fast channels only for message-id: 7 (level set) and regular
+>> channels for all the other messages. The spec doesn't mandate fast
+>> channels for any of the supported message ids for the perf protocol.
+>> So nothing to fix here.
+> 
+> I didn't look at this in any detail, but if the firmware is spec
+> compliant you should not be spamming the logs with warnings. Not sure
+> how best to address that, but you could, for example, add a quirk for
+> qcom fw or at a minimum demote this mess to info level.
+> 
+> Also the failure to add oops_by_lvl appears to be a separate issue (e.g.
+> related to the duplicate entries).
+> 
+>>> [    9.727098] cpu cpu4: _opp_is_duplicate: duplicate OPPs detected. Existing: freq: 3417600000, volt: 0, enabled: 1. New: freq: 3417600000, volt: 0, enabled: 1
+>>> [    9.737157] cpu cpu4: _opp_is_duplicate: duplicate OPPs detected. Existing: freq: 3417600000, volt: 0, enabled: 1. New: freq: 3417600000, volt: 0, enabled: 1
+>>> [    9.875039] cpu cpu8: _opp_is_duplicate: duplicate OPPs detected. Existing: freq: 3417600000, volt: 0, enabled: 1. New: freq: 3417600000, volt: 0, enabled: 1
+>>> [    9.888428] cpu cpu8: _opp_is_duplicate: duplicate OPPs detected. Existing: freq: 3417600000, volt: 0, enabled: 1. New: freq: 3417600000, volt: 0, enabled: 1
+>>
+>> The duplicate entries reported by the perf protocol come directly from
+>> the speed bins. I was told the duplicate entry with volt 0 is meant to
+>> indicate a lower power way of achieving the said frequency at a lower
+>> core count. We have no way of using it in the kernel and it gets safely
+>> discarded. So again nothing to fix in the kernel.
+> 
+> Again, you should not be spamming the logs with warnings for things are
+> benign (e.g. as it may prevent people from noticing real issues).
+> 
+> Also these duplicate entries do not seem to get safely discarded as they
+> result in a bunch of operations failing loudly at boot (e.g. the
+> oops_by_lvl warning above) and similarly at resume as I recently
+> noticed:
+> 
+> [   42.690569] CPU4: Booted secondary processor 0x0000010000 [0x511f0011]
+> [   42.704360] cpu cpu4: _opp_is_duplicate: duplicate OPPs detected. Existing: freq: 3417600000, volt: 0, enabled: 1. New: freq: 3417600000, volt: 0, enabled: 1
+> [   42.737865] cpu cpu4: _opp_is_duplicate: duplicate OPPs detected. Existing: freq: 3417600000, volt: 0, enabled: 1. New: freq: 3417600000, volt: 0, enabled: 1
+> [   42.752943] debugfs: File 'cpu5' in directory 'opp' already present!
+> [   42.759956] debugfs: File 'cpu6' in directory 'opp' already present!
+> [   42.766641] debugfs: File 'cpu7' in directory 'opp' already present!
+> ...
+> [   42.855520] CPU8: Booted secondary processor 0x0000020000 [0x511f0011]
+> [   42.865188] cpu cpu8: _opp_is_duplicate: duplicate OPPs detected. Existing: freq: 3417600000, volt: 0, enabled: 1. New: freq: 3417600000, volt: 0, enabled: 1
+> [   42.898494] cpu cpu8: _opp_is_duplicate: duplicate OPPs detected. Existing: freq: 3417600000, volt: 0, enabled: 1. New: freq: 3417600000, volt: 0, enabled: 1
+> [   42.913559] debugfs: File 'cpu9' in directory 'opp' already present!
+> [   42.920265] debugfs: File 'cpu10' in directory 'opp' already present!
+> [   42.927029] debugfs: File 'cpu11' in directory 'opp' already present!
+> 
+> Perhaps you can find some way to filter out the unused, duplicate
+> entries for qualcomm fw so that all of these issues go away.
 
-Enable more device nodes for AQ222 base S4, including
-SD, regulator and ethnernet node.
+I would say that the firmware should probably change the PSTATEs'
+"enabled" state based on availability and report that to the OS..
+Or the OS should know the conditions (enabled core count as you mentioned)
+and decide whether it makes sense to shut down these cores, based on
+workloads.. The latter sounds more sane..
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
----
-Add more device nodes for S4.
----
-Changes in v2:
-- Delete status of regulator-vddcpu node, use default status OK.
-- Link to v1: https://lore.kernel.org/r/20240705-s4_node-v1-1-646ca7ac4f09@amlogic.com
----
- .../boot/dts/amlogic/meson-s4-s805x2-aq222.dts     | 145 +++++++++++++++++++++
- arch/arm64/boot/dts/amlogic/meson-s4.dtsi          | 128 ++++++++++++++++++
- 2 files changed, 273 insertions(+)
+The SCMI perf protocol already exposes power metrics (through opp->power)
+for EAS purposes, so perhaps additional field could be added (cpu mask /
+cpu count, depending on whether the specific cores being off is meaningful)
+so that the OS can make more educated choices here.. otherwise this almost
+looks like a hack that made it into the firmware because there was no
+time left or something..
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts b/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
-index 983caddc409c..6730c44642d2 100644
---- a/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
-@@ -34,6 +34,111 @@ secmon_reserved: secmon@5000000 {
- 			no-map;
- 		};
- 	};
-+
-+	sdio_32k: sdio-32k {
-+		compatible = "pwm-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <32768>;
-+		pwms = <&pwm_ef 0 30518 0>; /* PWM_E at 32.768KHz */
-+	};
-+
-+	sdio_pwrseq: sdio-pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		reset-gpios = <&gpio GPIOX_6 GPIO_ACTIVE_LOW>;
-+		clocks = <&sdio_32k>;
-+		clock-names = "ext_clock";
-+	};
-+
-+	main_12v: regulator-main-12v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "12V";
-+		regulator-min-microvolt = <12000000>;
-+		regulator-max-microvolt = <12000000>;
-+		regulator-always-on;
-+	};
-+
-+	vddao_3v3: regulator-vddao-3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDAO_3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&main_12v>;
-+		regulator-always-on;
-+	};
-+
-+	vddio_ao1v8: regulator-vddio-ao1v8 {
-+	       compatible = "regulator-fixed";
-+	       regulator-name = "VDDIO_AO1V8";
-+	       regulator-min-microvolt = <1800000>;
-+	       regulator-max-microvolt = <1800000>;
-+	       vin-supply = <&vddao_3v3>;
-+	       regulator-always-on;
-+	};
-+
-+	/* SY8120B1ABC DC/DC Regulator. */
-+	vddcpu: regulator-vddcpu {
-+		compatible = "pwm-regulator";
-+
-+		regulator-name = "VDDCPU";
-+		regulator-min-microvolt = <689000>;
-+		regulator-max-microvolt = <1049000>;
-+
-+		vin-supply = <&main_12v>;
-+
-+		pwms = <&pwm_ij 1 1500 0>;
-+		pwm-dutycycle-range = <100 0>;
-+
-+		regulator-boot-on;
-+		regulator-always-on;
-+		/* Voltage Duty-Cycle */
-+		voltage-table = <1049000 0>,
-+				<1039000 3>,
-+				<1029000 6>,
-+				<1019000 9>,
-+				<1009000 12>,
-+				<999000 14>,
-+				<989000 17>,
-+				<979000 20>,
-+				<969000 23>,
-+				<959000 26>,
-+				<949000 29>,
-+				<939000 31>,
-+				<929000 34>,
-+				<919000 37>,
-+				<909000 40>,
-+				<899000 43>,
-+				<889000 45>,
-+				<879000 48>,
-+				<869000 51>,
-+				<859000 54>,
-+				<849000 56>,
-+				<839000 59>,
-+				<829000 62>,
-+				<819000 65>,
-+				<809000 68>,
-+				<799000 70>,
-+				<789000 73>,
-+				<779000 76>,
-+				<769000 79>,
-+				<759000 81>,
-+				<749000 84>,
-+				<739000 87>,
-+				<729000 89>,
-+				<719000 92>,
-+				<709000 95>,
-+				<699000 98>,
-+				<689000 100>;
-+	};
-+};
-+
-+&pwm_ef {
-+	status = "okay";
-+	pinctrl-0 = <&pwm_e_pins1>;
-+	pinctrl-names = "default";
-+};
-+
-+&pwm_ij {
-+	status = "okay";
- };
- 
- &uart_b {
-@@ -46,6 +151,40 @@ &ir {
- 	pinctrl-names = "default";
- };
- 
-+&sdio {
-+	pinctrl-0 = <&sdio_pins>;
-+	pinctrl-1 = <&sdio_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	bus-width = <4>;
-+	cap-sd-highspeed;
-+	sd-uhs-sdr50;
-+	sd-uhs-sdr104;
-+	max-frequency = <200000000>;
-+	non-removable;
-+	disable-wp;
-+	no-sd;
-+	no-mmc;
-+	vmmc-supply = <&vddao_3v3>;
-+	vqmmc-supply = <&vddio_ao1v8>;
-+};
-+
-+&sd {
-+	status = "okay";
-+	pinctrl-0 = <&sdcard_pins>;
-+	pinctrl-1 = <&sdcard_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
-+	bus-width = <4>;
-+	cap-sd-highspeed;
-+	max-frequency = <200000000>;
-+	disable-wp;
-+
-+	cd-gpios = <&gpio GPIOC_6 GPIO_ACTIVE_LOW>;
-+	vmmc-supply = <&vddao_3v3>;
-+	vqmmc-supply = <&vddao_3v3>;
-+};
-+
- &nand {
- 	status = "okay";
- 	#address-cells = <1>;
-@@ -90,3 +229,9 @@ &spicc0 {
- 	pinctrl-0 = <&spicc0_pins_x>;
- 	cs-gpios = <&gpio GPIOX_10 GPIO_ACTIVE_LOW>;
- };
-+
-+&ethmac {
-+	status = "okay";
-+	phy-handle = <&internal_ephy>;
-+	phy-mode = "rmii";
-+};
-diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-index b686eacb9662..c11c947fa18c 100644
---- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-@@ -10,6 +10,7 @@
- #include <dt-bindings/clock/amlogic,s4-pll-clkc.h>
- #include <dt-bindings/clock/amlogic,s4-peripherals-clkc.h>
- #include <dt-bindings/power/meson-s4-power.h>
-+#include <dt-bindings/reset/amlogic,meson-s4-reset.h>
- 
- / {
- 	cpus {
-@@ -466,6 +467,93 @@ mux {
- 					};
- 				};
- 
-+				sdcard_pins: sdcard-pins {
-+					mux {
-+						groups = "sdcard_d0_c",
-+							 "sdcard_d1_c",
-+							 "sdcard_d2_c",
-+							 "sdcard_d3_c",
-+							 "sdcard_clk_c",
-+							 "sdcard_cmd_c";
-+						function = "sdcard";
-+						bias-pull-up;
-+						drive-strength-microamp = <4000>;
-+					};
-+				};
-+
-+				sdcard_clk_gate_pins: sdcard-clk-gate-pins {
-+					mux {
-+						groups = "GPIOC_4";
-+						function = "gpio_periphs";
-+						bias-pull-down;
-+						drive-strength-microamp = <4000>;
-+					};
-+				};
-+
-+				emmc_pins: emmc-pins {
-+					mux-0 {
-+						groups = "emmc_nand_d0",
-+							 "emmc_nand_d1",
-+							 "emmc_nand_d2",
-+							 "emmc_nand_d3",
-+							 "emmc_nand_d4",
-+							 "emmc_nand_d5",
-+							 "emmc_nand_d6",
-+							 "emmc_nand_d7",
-+							 "emmc_cmd";
-+						function = "emmc";
-+						bias-pull-up;
-+						drive-strength-microamp = <4000>;
-+					};
-+					mux-1 {
-+						groups = "emmc_clk";
-+						function = "emmc";
-+						bias-pull-up;
-+						drive-strength-microamp = <4000>;
-+					};
-+				};
-+
-+				emmc_ds_pins: emmc-ds-pins {
-+					mux {
-+						groups = "emmc_nand_ds";
-+						function = "emmc";
-+						bias-pull-down;
-+						drive-strength-microamp = <4000>;
-+					};
-+				};
-+
-+				emmc_clk_gate_pins: emmc-clk-gate-pins {
-+					mux {
-+						groups = "GPIOB_8";
-+						function = "gpio_periphs";
-+						bias-pull-down;
-+						drive-strength-microamp = <4000>;
-+					};
-+				};
-+
-+				sdio_pins: sdio-pins {
-+					mux {
-+						groups = "sdio_d0",
-+							 "sdio_d1",
-+							 "sdio_d2",
-+							 "sdio_d3",
-+							 "sdio_clk",
-+							 "sdio_cmd";
-+						function = "sdio";
-+						bias-pull-up;
-+						drive-strength-microamp = <4000>;
-+					};
-+				};
-+
-+				sdio_clk_gate_pins: sdio-clk-gate-pins {
-+					mux {
-+						groups = "GPIOX_4";
-+						function = "gpio_periphs";
-+						bias-pull-down;
-+						drive-strength-microamp = <4000>;
-+					};
-+				};
-+
- 				spicc0_pins_x: spicc0-pins_x {
- 					mux {
- 						groups = "spi_a_mosi_x",
-@@ -712,5 +800,45 @@ mdio0: mdio {
- 				compatible = "snps,dwmac-mdio";
- 			};
- 		};
-+
-+		sdio: mmc@fe088000 {
-+			compatible = "amlogic,meson-axg-mmc";
-+			reg = <0x0 0xfe088000 0x0 0x800>;
-+			interrupts = <GIC_SPI 176 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clkc_periphs CLKID_SDEMMC_A>,
-+				 <&xtal>,
-+				 <&clkc_pll CLKID_FCLK_DIV2>;
-+			clock-names = "core", "clkin0", "clkin1";
-+			resets = <&reset RESET_SD_EMMC_A>;
-+			cap-sdio-irq;
-+			keep-power-in-suspend;
-+			status = "disabled";
-+		};
-+
-+		sd: mmc@fe08a000 {
-+			compatible = "amlogic,meson-axg-mmc";
-+			reg = <0x0 0xfe08a000 0x0 0x800>;
-+			interrupts = <GIC_SPI 177 IRQ_TYPE_EDGE_RISING>;
-+			clocks = <&clkc_periphs CLKID_SDEMMC_B>,
-+				 <&clkc_periphs CLKID_SD_EMMC_B>,
-+				 <&clkc_pll CLKID_FCLK_DIV2>;
-+			clock-names = "core", "clkin0", "clkin1";
-+			resets = <&reset RESET_SD_EMMC_B>;
-+			status = "disabled";
-+		};
-+
-+		emmc: mmc@fe08c000 {
-+			compatible = "amlogic,meson-axg-mmc";
-+			reg = <0x0 0xfe08c000 0x0 0x800>;
-+			interrupts = <GIC_SPI 178 IRQ_TYPE_EDGE_RISING>;
-+			clocks = <&clkc_periphs CLKID_NAND>,
-+				 <&xtal>,
-+				 <&clkc_pll CLKID_FCLK_DIV2>;
-+			clock-names = "core", "clkin0", "clkin1";
-+			resets = <&reset RESET_NAND_EMMC>;
-+			no-sdio;
-+			no-sd;
-+			status = "disabled";
-+		};
- 	};
- };
+You mentioned that "We have no way of using it in the kernel", but is that
+actually true? Can you not set that OPP if the conditions are met?
 
----
-base-commit: 338c92a5d1956f1841f84b86923087676d1d0cea
-change-id: 20240705-s4_node-8110e3286c0c
-
-Best regards,
--- 
-Xianwei Zhao <xianwei.zhao@amlogic.com>
-
-
+Konrad
 
