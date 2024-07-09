@@ -1,156 +1,131 @@
-Return-Path: <devicetree+bounces-84122-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84124-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 081D392B14A
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 09:37:36 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3654192B167
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 09:43:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 34E6B2808B3
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 07:37:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 684761C21DD4
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 07:43:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 021E5142E79;
-	Tue,  9 Jul 2024 07:37:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BED7144313;
+	Tue,  9 Jul 2024 07:43:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dqlOdBIy"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lBZ5A5ed"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5258827713;
-	Tue,  9 Jul 2024 07:37:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D04C013211E
+	for <devicetree@vger.kernel.org>; Tue,  9 Jul 2024 07:43:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720510648; cv=none; b=bjJM2QiKl2njvx1M7Nic8U3XnN9oM1eJDmTcUyF7TGZQgUOuF76/4aoyvvkdlfGXUEdr0r6p1KKE9xplwUHZ5f3puy5yzvwTKq5+lsc8b1NHzhiB5EQv56w6lxic/XCsxOEhp//2TPAdKSfSM8mD24J/z8OzxdUyKnuvYuAg8N4=
+	t=1720510996; cv=none; b=PCXjAtrYxyICqJ1bJgNJLk/KyGs0bTdJUbSFzfCBhfb228HlAVWr+5nxKun9dIBQsG02BDaoK8uFUSM6ounDxQWB4k/L6rHyn0hcklrWuYPZcm/qHZsT7HoqAt0EFrdqdTU2whbJEx7YxRIz1XXOVog6A7083j5rM1ydqlHBXO0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720510648; c=relaxed/simple;
-	bh=HyE1OC2jUz69RbLf+QbjEwXtvPn9VOx/T6a0hK703Co=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=rVxSUV2qRQVewxFQOqFsC0eAl/FyFMflykLPgT3MvZ/JTWDbpfdkK/q1eNii0r+BUOPVcJUUX4xInPCbPjpIUqaZNHP5FUJ+mxpIFqAoX71YXICR0a17HgwboujFeR9HETdBiFpMXG/BOSiWRxFtPEPPqM6KLgeqb8CeSxf+ISA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dqlOdBIy; arc=none smtp.client-ip=209.85.208.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2ee910d6aaeso53860861fa.1;
-        Tue, 09 Jul 2024 00:37:27 -0700 (PDT)
+	s=arc-20240116; t=1720510996; c=relaxed/simple;
+	bh=jAG3/aKaD/kqbIcJypKqQbgWvBndMAYJGXwk/ugv40Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=siEzsT6Vb9vsTHp2Bc8DijuYfr4wLVa+5RIT3Ks2LP4FJvEdA+x040YX+bxrx61sj70oGBHELz5ka8vXlVkW8RS2XwkuAJbItc2X/I7Ti+uVzr9odY/aReramcyXNEPI0v081t6Ndt0r4aOSWL3p25SXQc5V267mPfoZNxDpPa4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lBZ5A5ed; arc=none smtp.client-ip=209.85.221.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-36786081ac8so2957611f8f.0
+        for <devicetree@vger.kernel.org>; Tue, 09 Jul 2024 00:43:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1720510645; x=1721115445; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=gJblcrgCB69StiCEtXH3DZ/GYofswUEElGj+y5LAqrc=;
-        b=dqlOdBIy3T1ujy5KSBThBeW3TzJu9lv6DKxYBcQtxLtfurTbhJ1MiTNQ07KZV7+IXo
-         3OIRr/paFAnPf4a8eMasuDEb/R3/SD3I3cq85jKVMEUO5at0/xvoa5qc0OuFjD3tO5zC
-         AwZs49ySZ5KjqQW2zejnVASd2oFWWdWjUvPIB1a/ihlRVrg11/nzwcGacdMjJkqWFlua
-         PtgDtwD3HVsjP3JqZan6PnibLC8XuiAc5hQEWDdmJG19ftpdkVlgT32L/1M06Kz9T2sd
-         pQdsb7eNRaUZljbP6KvNBac82kBJagY2GozJuZvRq6fM+JJKxoOZ5nXnAXjRLOLXjWW0
-         xPsQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720510645; x=1721115445;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+        d=linaro.org; s=google; t=1720510993; x=1721115793; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=gJblcrgCB69StiCEtXH3DZ/GYofswUEElGj+y5LAqrc=;
-        b=JXYdjJXgYM+vce3xZKaS8ooJWfcYIDe7JY8QNbQR6B38TwVhCM32d2zXmJhvovcQ0p
-         x2izwinsBR7cEIENZOvTSQXZX/aQ/rnLqYUN+3fElYap5HanS7IgBOtt9wEdme2gHEwX
-         rWvmqpa/LDAOs+tXT5mtDK6PdZCTVhHuVedAMbxyUpsEYcpdRG2yZg6VEcoj3365V7FY
-         GNFbbNm4B79aaM2e4ZteDGgEWc0mZmMDvEALD/f2ifnGC6gjIEor2alRxevYAWhhikAr
-         JBOd+mgsHtCNLdHuS9s6Fv7a8PE1rsc2xhDxpwVuhal4cCPc+/C3Ex30bQHDM6DZSqv/
-         QKgA==
-X-Forwarded-Encrypted: i=1; AJvYcCVO+eYYpy3xqfkuvyIsxu7JgjeQwt8+YJKOgPVmB7mD0GtTy1E3yqMBKSfoQD2AIAr3wlxQ8eSCo2ZkuAl5ap5EcRNau2KgwjaYnpWiq7odRf+Fs2ECrdApiZGmJ/Cl4NkA8JDKzdPAgcqsIDrIKfgdCZO44ZbxoWnfHb7fd9pqsI74VzDK0pExxH6HuUj9ccAuvkucnn3Fnxq/cOdTWg==
-X-Gm-Message-State: AOJu0YyQf4X9/PE7s57PAS01EbDBgqscgUUYr5Y8EgjhQqSJch2dlFmE
-	jj6RL+NiW9o1KD28TXW6Hs102tiLADOVBBt/DKvWCXJaJ9Q5UWht
-X-Google-Smtp-Source: AGHT+IF1DuvD0MmXmObeiIwlMnO3IreBxRQdx/tSoUTS0K1lrv/8qspqFspqy+cy1inG25V9c4HGcw==
-X-Received: by 2002:a05:6512:31c8:b0:52d:b118:5063 with SMTP id 2adb3069b0e04-52eb99cc6camr965176e87.47.1720510645078;
-        Tue, 09 Jul 2024 00:37:25 -0700 (PDT)
-Received: from ?IPv6:2003:f6:ef1c:c500:ee59:d953:f148:40ba? (p200300f6ef1cc500ee59d953f14840ba.dip0.t-ipconnect.de. [2003:f6:ef1c:c500:ee59:d953:f148:40ba])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-594bd459e2csm737131a12.65.2024.07.09.00.37.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Jul 2024 00:37:24 -0700 (PDT)
-Message-ID: <5c7fcaa93c8184dd62beeccccfa07e144042fdc4.camel@gmail.com>
-Subject: Re: [PATCH v6 6/7] iio: adc: Add support for AD4000
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Marcelo Schmitt <marcelo.schmitt@analog.com>, broonie@kernel.org, 
- lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org, 
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-  nuno.sa@analog.com, dlechner@baylibre.com, corbet@lwn.net, 
- marcelo.schmitt1@gmail.com
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-spi@vger.kernel.org, linux-doc@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Date: Tue, 09 Jul 2024 09:41:18 +0200
-In-Reply-To: <628a85cb8cbee32ea7d2930c63e73f2ef449a800.1719686465.git.marcelo.schmitt@analog.com>
-References: <cover.1719686465.git.marcelo.schmitt@analog.com>
-	 <628a85cb8cbee32ea7d2930c63e73f2ef449a800.1719686465.git.marcelo.schmitt@analog.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.3 
+        bh=h1CLW71m5KlFIfS4WtV1HBML6Ik9miyTvvoVtrTfgdI=;
+        b=lBZ5A5ed3jLJAWQDSBmi68plpWpHA+F4E8qQYgOtu46nHdf5NTFGetJK8IfEdMijzJ
+         Iu5o227LaIzKXnLgFFLA/67Psjwt8XdbAKrFlq53I29f/mgUsWPtKvfIuaXhLTTdwQWB
+         IobTTLpchBtFcQLB2uismdWU0vC4FrGdjnqhjaRap1unKlz2LoR/3VA47acWSEl5cSZq
+         PPUIPPmrOTemFKrwcjF8XMcccyzEj3TzBXKD+XeTBsgthA8KRlE8a1sZDI5rbrwXSDgz
+         CqO/kHqvOvynfJvpJD5QzEpvinpgCndptbxaPIvZVwEmNyg5R67oeb3LPIH8dJNq/zov
+         phDw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720510993; x=1721115793;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=h1CLW71m5KlFIfS4WtV1HBML6Ik9miyTvvoVtrTfgdI=;
+        b=LJmyNAvekBV1Tck+ozxHBjR+t6YkhXoTuuv3bb0BFXXyUOGAkgfIjB130ogWNbYLHd
+         4Viu+ZfYh6kPLyufrCYE/S9YcyUHk1iQI38ENOlpFnAMr38mZh3mqxuZgKdODnRmzWy6
+         51P5rKqL8NPWdC8Y25ZV7QygJYOZ/xaQfFKadM9qdQzwqCjcG7725HjTMBaT6gPBwLNE
+         KZqkzsBDmexThFj/d10BY5i1rrSsz9gxxBgM8TxbXzGHV6tQw6biVq21lELmsRPmjp/C
+         00QzUsz45T/Xmn7VJt/QYa9SOWQbpWpSjs7Nj/GU6qVyAfALOKaWYUTAYBX2R9Q7jsBM
+         K1qQ==
+X-Gm-Message-State: AOJu0YxM5mH6tc+uITm0pxxM7BtkbfiAMKoSjhr071eikk3j4eqIeyRl
+	TM6OAr67IppMykdndaRjxFSzAiugCITNhsw4QUT4+S4fD82Ak1vZQ7vjd43XX44=
+X-Google-Smtp-Source: AGHT+IFW+YP/WjH3mfocei0KWEyOnvOvhNRqjin5G0HJ1iruDzyBQrHEp0XoWZjyCQ5cCU6oLsl5Mw==
+X-Received: by 2002:a05:6000:18aa:b0:367:9073:3491 with SMTP id ffacd0b85a97d-367cea46301mr1400995f8f.5.1720510993204;
+        Tue, 09 Jul 2024 00:43:13 -0700 (PDT)
+Received: from ?IPV6:2a05:6e02:1041:c10:cf24:cce:17df:12ab? ([2a05:6e02:1041:c10:cf24:cce:17df:12ab])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-367cde7df48sm1746617f8f.1.2024.07.09.00.43.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 09 Jul 2024 00:43:12 -0700 (PDT)
+Message-ID: <0fdbddfb-f25b-4d39-a80c-770fb8ed40f4@linaro.org>
+Date: Tue, 9 Jul 2024 09:43:12 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/3] dt-bindings: timer: renesas,tmu: Add more SoC
+ families
+To: Geert Uytterhoeven <geert@linux-m68k.org>,
+ Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>,
+ Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+Cc: devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Geert Uytterhoeven <geert+renesas@glider.be>
+References: <cover.1716985096.git.geert+renesas@glider.be>
+ <CAMuHMdWP7y=8rA5jszCbzh_RnXnv4tFUpHv0qtbucHEYRFE9qw@mail.gmail.com>
+Content-Language: en-US
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <CAMuHMdWP7y=8rA5jszCbzh_RnXnv4tFUpHv0qtbucHEYRFE9qw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Sat, 2024-06-29 at 16:06 -0300, Marcelo Schmitt wrote:
-> Add support for AD4000 series of low noise, low power, high speed,
-> successive approximation register (SAR) ADCs.
->=20
-> Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
-> ---
+On 09/07/2024 09:39, Geert Uytterhoeven wrote:
+> On Wed, May 29, 2024 at 2:22 PM Geert Uytterhoeven
+> <geert+renesas@glider.be> wrote:
+>> This patch series documents support for the Timer Unit (TMU) on the
+>> R-Mobile APE6 SoC, and on various SoCs from the RZ/G1 and R-Car Gen2
+>> families.
+>>
+>> Changes compared to v1:
+>>    - Add Acked-by, Reviewed-by.
+>>
+>> Thanks for your comments!
+>>
+>> Geert Uytterhoeven (3):
+>>    dt-bindings: timer: renesas,tmu: Add R-Mobile APE6 support
+>>    dt-bindings: timer: renesas,tmu: Add RZ/G1 support
+>>    dt-bindings: timer: renesas,tmu: Add R-Car Gen2 support
+>>
+>>   .../devicetree/bindings/timer/renesas,tmu.yaml       | 12 ++++++++++++
+>>   1 file changed, 12 insertions(+)
+> 
+> Gentle ping, as these are already in use in DTS since v6.10-rc1.
+> Thanks!
+> 
+> Gr{oetje,eeting}s,
+> 
+>                          Geert
 
-Hi Marcelo,
+Applied, thanks
 
-LGTM. Only one thing that needs to be addressed. With that,
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
-Reviewed-by: Nuno Sa <nuno.sa@analog.com>
-
-> =C2=A0MAINTAINERS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 +
-> =C2=A0drivers/iio/adc/Kconfig=C2=A0 |=C2=A0 12 +
-> =C2=A0drivers/iio/adc/Makefile |=C2=A0=C2=A0 1 +
-> =C2=A0drivers/iio/adc/ad4000.c | 708 ++++++++++++++++++++++++++++++++++++=
-+++
-> =C2=A04 files changed, 722 insertions(+)
-> =C2=A0create mode 100644 drivers/iio/adc/ad4000.c
->=20
-
-...
-
->=20
-> +	st->gain_milli =3D 1000;
-> +	if (chip->has_hardware_gain &&
-> +	=C2=A0=C2=A0=C2=A0 device_property_present(dev, "adi,gain-milli")) {
-> +		ret =3D device_property_read_u16(dev, "adi,gain-milli",
-> +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 &st->gain_milli);
-> +		if (ret)
-> +			return dev_err_probe(dev, ret,
-> +					=C2=A0=C2=A0=C2=A0=C2=A0 "Failed to read gain
-> property\n");
-> +	}
-
-The above is odd. Why not reading directly device_property_read_u16()? Skip=
- the
-call to device_property_present().=C2=A0
-
-But most importantly, you're not doing any validation on gain_milli which i=
-s an
-enum (by looking at the bindings). So in theory even 0 would be accepted wh=
-ich
-would lead to a divide by 0 later on. I would do:
-
-if (chip->has_hardware_gain) {
-	ret =3D device_property_read_u16(...)
-	if (!ret) {
-		/* validate here for a proper value /*
-	}
-}
-
-You can also check for ret < 0 and -EINVAL to detect an invalid devicetree
-parameter instead of completely ignoring return codes (but for non mandator=
-y
-properties one typically does not care much - up to you)
-
-- Nuno S=C3=A1
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
 
