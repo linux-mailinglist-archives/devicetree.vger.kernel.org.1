@@ -1,119 +1,170 @@
-Return-Path: <devicetree+bounces-84461-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84462-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A29A192C543
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 23:23:26 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D91D92C598
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 23:41:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 01416B227CE
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 21:23:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 47D0C1F238AC
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 21:41:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16C1718785B;
-	Tue,  9 Jul 2024 21:22:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FC6C185602;
+	Tue,  9 Jul 2024 21:41:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F1fgBk9l"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zdqnlp3c"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DECD9187852;
-	Tue,  9 Jul 2024 21:22:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB2181B86D4;
+	Tue,  9 Jul 2024 21:41:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720560143; cv=none; b=gBZtKntrfH7G28RqK43R7CsRnt6qoOzukqEiXGHdvkjP5XkmfhwkqAwyzdPnpv667v8fcreGVXbroZAiRIlFfoDV4nPNGEhg6705i6ZO8O0icdApUvgRWpcewfIzHRvynjXrtB5fDIoq0M/IMk2h+XCmWt6mQfI085JgQB52W+I=
+	t=1720561287; cv=none; b=hKmNRwkQ0TcOGqAzfmtWthOwfFy10yTHN5I+3/FchRQ/HChmD6391ULfMnAkSGmKlg7FklJLCoG7XLNfT/ptyPiPsjxQsTB/EcO5D0L4C6xKcWiWexhhnH4Lzgz9QOExw7I2mZa8k5mgWWtVaXuU+xHAcLc0X+oYiWBuzmOfKms=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720560143; c=relaxed/simple;
-	bh=PBSqaIbfp0Htue5RbLXrgCqKnH8wnNGynK9hnMexWRE=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=F5bnPKRZGNb2OQ7/n9AsNXc3P0/CBPZNesDXiWtGqEZlnR3FRq1BxVY09cXXEEUP505Qx2vPdZwAvIPM8+XkJIodjLi0vKxOHLTPptknZTaFjbZdE1tfDBtZ2AQJlr13fqK5CAjy+M49FwZLCih8gNeNlImtvFZBxUAXaBKsyY8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F1fgBk9l; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BF332C4AF0B;
-	Tue,  9 Jul 2024 21:22:21 +0000 (UTC)
+	s=arc-20240116; t=1720561287; c=relaxed/simple;
+	bh=SbPui1m3AbW2qMNDA/2hyBzJDO2nizxqPFCaBUQhvh4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DSb8KkwoL+pL0hk4NSEDREfzvrjUwAbb10LV2vj6qsl/80TgCKlXUIHMNP8F3TXmtG4oGYm1g92vat140XKbJy/MyQ1pGsLkEtHLpvhqhM4UFl2WBhO3oJI6Ur77LPwvFGuHx0n576lmYeHgi2iObNPUHarojAKkfOkz7Aj3XR4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zdqnlp3c; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 12C15C3277B;
+	Tue,  9 Jul 2024 21:41:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720560142;
-	bh=PBSqaIbfp0Htue5RbLXrgCqKnH8wnNGynK9hnMexWRE=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=F1fgBk9ldH/2Z+INmq6me9LfLS2IPWylQzzywzEusildr2LW6Li3l2sMqzFtZ/U7X
-	 6NSM4GFI+W4Y+XFal97cQTifRDSludzWpKnU0F6MuwLIdH/0U5ebB/yo60B8tIjFNe
-	 3EvgjK82VYK7SpcSMCKLy9RYVw/aXU/5sUHDG3QQym24tbVu13g/upa2386i/1rTCk
-	 bTtWZELqLivrvzH2saaVBGgMwWiHhK77ymj10AGAIZiKyqQuZAseVanRjKpK5qF+pD
-	 omN45FRjnbCbwQD8f6sgxZ7J/NGuFZrBQygJKjJiAifF0rIZq8th0zZblbZ4AgsLQS
-	 CPZHWOujA8oSQ==
-Date: Tue, 09 Jul 2024 15:22:20 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1720561285;
+	bh=SbPui1m3AbW2qMNDA/2hyBzJDO2nizxqPFCaBUQhvh4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Zdqnlp3cfXCg1vtf8kYrFslpTxMjoIIVaYuKHXr3o9Zo5c9CssG94rFfBYPK1mIMF
+	 WGJQ0XQs1RiB6iccNf7Rd+irjH77f9A1PANeZ6XmWxre7vg6E9CiGUFGH+Xuu1ajvC
+	 dgMDk4XcpvCfRbv4neg6FTrwjUuhFDrSDvQocb/Gi0WOOLENSTCgswHGlcgwDYjYkR
+	 OBBMmrjp56WwlXBCYT5W7ifjmsMRBdwhQCLAVBeuGDGs2MdF3DBSDuaj7lVVz45nP9
+	 m4qXXRurak2mcvRWmOd2Bm4tF8kJpE8JrWQKEM31nifkiocXZFUN7aOWMh98TAtNm9
+	 Qq4w5krFTQHng==
+Date: Tue, 9 Jul 2024 23:41:21 +0200
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: netdev@vger.kernel.org, nbd@nbd.name, lorenzo.bianconi83@gmail.com,
+	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, conor@kernel.org,
+	linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, catalin.marinas@arm.com,
+	will@kernel.org, upstream@airoha.com,
+	angelogioacchino.delregno@collabora.com,
+	benjamin.larsson@genexis.eu, rkannoth@marvell.com,
+	sgoutham@marvell.com, arnd@arndb.de, horms@kernel.org
+Subject: Re: [PATCH v6 net-next 2/2] net: airoha: Introduce ethernet support
+ for EN7581 SoC
+Message-ID: <Zo2ugWhc3wHqyKLq@lore-desk>
+References: <cover.1720504637.git.lorenzo@kernel.org>
+ <bafc8bcf6c2d8c2b80e6bafebe3661d795ffcbee.1720504637.git.lorenzo@kernel.org>
+ <68a37d33-6155-4ffc-a0ad-8c5a5b8fed25@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Igor Prusov <ivprusov@salutedevices.com>
-Cc: Takashi Iwai <tiwai@suse.com>, kernel@salutedevices.com, 
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
- Jaroslav Kysela <perex@perex.cz>, linux-sound@vger.kernel.org, 
- prusovigor@gmail.com, Liam Girdwood <lgirdwood@gmail.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org, 
- Philipp Zabel <p.zabel@pengutronix.de>, Mark Brown <broonie@kernel.org>
-In-Reply-To: <20240709172834.9785-6-ivprusov@salutedevices.com>
-References: <20240709172834.9785-1-ivprusov@salutedevices.com>
- <20240709172834.9785-6-ivprusov@salutedevices.com>
-Message-Id: <172056013918.1151267.15277149998657038582.robh@kernel.org>
-Subject: Re: [PATCH 5/6] ASoC: dt-bindings: Add bindings for NeoFidelity
- NTP8835
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="Cq3ZvBjA33dFjzfY"
+Content-Disposition: inline
+In-Reply-To: <68a37d33-6155-4ffc-a0ad-8c5a5b8fed25@lunn.ch>
 
 
-On Tue, 09 Jul 2024 20:28:33 +0300, Igor Prusov wrote:
-> Add dt-bindings for NeoFidelity NTP8835C/NTP8835C Amplifiers
-> 
-> Signed-off-by: Igor Prusov <ivprusov@salutedevices.com>
+--Cq3ZvBjA33dFjzfY
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+> > +static int airoha_qdma_init_rx_queue(struct airoha_eth *eth,
+> > +				     struct airoha_queue *q, int ndesc)
+> > +{
+> > +	struct page_pool_params pp_params =3D {
+> > +		.order =3D 0,
+> > +		.pool_size =3D 256,
+> > +		.flags =3D PP_FLAG_DMA_MAP | PP_FLAG_DMA_SYNC_DEV,
+> > +		.dma_dir =3D DMA_FROM_DEVICE,
+> > +		.max_len =3D PAGE_SIZE,
+> > +		.nid =3D NUMA_NO_NODE,
+> > +		.dev =3D eth->dev,
+> > +		.napi =3D &q->napi,
+> > +	};
+>=20
+> I think you can make this const.
+
+ack
+
+>=20
+> > +static int airoha_alloc_gdm_port(struct airoha_eth *eth, struct device=
+_node *np)
+> > +{
+>=20
+> > +	port =3D netdev_priv(dev);
+> > +	mutex_init(&port->stats.mutex);
+> > +	port->dev =3D dev;
+> > +	port->eth =3D eth;
+> > +	port->id =3D id;
+> > +
+> > +	err =3D register_netdev(dev);
+> > +	if (err)
+> > +		return err;
+> > +
+> > +	eth->ports[index] =3D port;
+>=20
+> eth->ports[index] appears to be used in
+> airoha_qdma_rx_process(). There is a small race condition here, since
+> the interface could be in use before register_netdev() returns,
+> e.g. NFS root. It would be better to do the assignment before
+> registering the interface.
+
+actually I check eth->ports[] is not NULL before accessing it in
+airoha_qdma_rx_process():
+
+	p =3D airoha_qdma_get_gdm_port(eth, desc);
+	if (p < 0 || !eth->ports[p]) {
+		...
+	}
+
+Moreover, in airoha_alloc_gdm_port(), I set eth->ports[index] pointer just =
+if
+register_netdev() is successful in order to avoid to call unregister_netdev=
+()
+on an not-registered net_device in the airoha_probe() error path. I guess w=
+e can
+even check reg_state for this:
+
+	for (i =3D 0; i < ARRAY_SIZE(eth->ports); i++) {
+		...
+		if (dev->reg_state =3D=3D NETREG_REGISTERED)
+			unregister_netdev(dev);
+	}
+
+What do you prefer?
+
+Regards,
+Lorenzo
+
+>=20
+> These are quite minor, so please add to the next version:
+>=20
+> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+>=20
+>     Andrew
+>=20
 > ---
->  .../bindings/sound/neofidelity,ntp8835.yaml   | 65 +++++++++++++++++++
->  1 file changed, 65 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/neofidelity,ntp8835.yaml
-> 
+> pw-bot: cr
 
-My bot found errors running 'make dt_binding_check' on your patch:
+--Cq3ZvBjA33dFjzfY
+Content-Type: application/pgp-signature; name="signature.asc"
 
-yamllint warnings/errors:
+-----BEGIN PGP SIGNATURE-----
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/neofidelity,ntp8835.yaml: properties:reg: 'enum' should not be valid under {'enum': ['const', 'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'minimum', 'maximum', 'multipleOf', 'pattern']}
-	hint: Scalar and array keywords cannot be mixed
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/neofidelity,ntp8835.yaml: properties:reg: 'anyOf' conditional failed, one must be fixed:
-	'enum' is not one of ['maxItems', 'description', 'deprecated']
-		hint: Only "maxItems" is required for a single entry if there are no constraints defined for the values.
-	Additional properties are not allowed ('enum' was unexpected)
-		hint: Arrays must be described with a combination of minItems/maxItems/items
-	'maxItems' is not one of ['description', 'deprecated', 'const', 'enum', 'minimum', 'maximum', 'multipleOf', 'default', '$ref', 'oneOf']
-	1 is less than the minimum of 2
-		hint: Arrays must be described with a combination of minItems/maxItems/items
-	hint: cell array properties must define how many entries and what the entries are when there is more than one entry.
-	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/neofidelity,ntp8835.example.dtb: ntp8835@56: reg:0:0: 86 is not one of [42, 43, 44, 45]
-	from schema $id: http://devicetree.org/schemas/sound/neofidelity,ntp8835.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/neofidelity,ntp8835.example.dtb: ntp8835@56: Unevaluated properties are not allowed ('reg' was unexpected)
-	from schema $id: http://devicetree.org/schemas/sound/neofidelity,ntp8835.yaml#
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZo2ugQAKCRA6cBh0uS2t
+rGN2AP0bH3wSTrIDAe85Rz4cnutNGUlzziiMIYqhemR1cSKNpwEAoNK2xWm5yS8V
+emtoQ9fNnbYzEVx2KF1312Kt2xUh/QA=
+=d8Yw
+-----END PGP SIGNATURE-----
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240709172834.9785-6-ivprusov@salutedevices.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+--Cq3ZvBjA33dFjzfY--
 
