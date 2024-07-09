@@ -1,150 +1,152 @@
-Return-Path: <devicetree+bounces-84436-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84437-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D1F892C304
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 20:01:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E672892C32A
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 20:13:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 980E4B235DF
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 18:01:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9CBF61F23D3D
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 18:13:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C61EA17B04B;
-	Tue,  9 Jul 2024 18:01:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8623517B05C;
+	Tue,  9 Jul 2024 18:13:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="gQ0g/0fx"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RQkAW/mk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0924C6F2E6;
-	Tue,  9 Jul 2024 18:01:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B66F1B86ED;
+	Tue,  9 Jul 2024 18:13:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720548094; cv=none; b=l1hlHR93KckT9o6elgfXFc//W2ytUA/9E7pZ+OZzU0T8VS5s1vih1ymwZoNH+JKoH90Gdl8Lyg1KtlMo9VCULk4a8G4kMO4uGsQRKilqRTe7TO8yVo6fqjknQTonHlP7fg2eUFljkBDUYDfngKSRMt/ICfB+iDLknMoeJBYSEQE=
+	t=1720548825; cv=none; b=IfJ9Hca7LXor7MyJFB+6/HR29xOz3omE8z/nP1LF0mx7WfGAJeSXjFThYezGkiMIv1kotzFrWUytGaM0wkKHcZrDzxJh3BKk+fNaonf8EmfYdD+6ur/rcH36NxQW+e5DbXqSZY+T38q2RnXPH7LDtY/QiKrcrnJaKaITY/rX7Do=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720548094; c=relaxed/simple;
-	bh=Ie/cA6P/3uKrFYB6QT8wxFA2AMrE4qFcEz3hTHvYjAM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=ofB3LjTCUKwEWlv0a+adMdNICGrO8ekyGd18OU+OGj9Rj0giPT2UylPsaCghxpRoVYxsY8zxFdIWmECdU3fpDpxFh1JvTOzgfyhEnnSEqPU4n7ZAVOJEFdXniXswxrGy5JrE+3BJB1JPt4i4hVM7qeIs6c6F7nnojMkMy8so8YY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=gQ0g/0fx; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 469AClT8015045;
-	Tue, 9 Jul 2024 18:01:07 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ckbc1aApQyQvJVHtxNFftIi/hYatRS4haFz7C8Uy4PI=; b=gQ0g/0fxCV2ZsAez
-	+I6iPHngo+babc30b+t7QNxBDdq/a2Sb7IWonSJkLCpwhia0//vT8QQ3740y+Fq2
-	yrufpFv4lPl5t//0JepkJP9S73hPNC+yL+VCdDoP1q/jhhNxXl8yX0jzRpgdxNjK
-	CxacFfJGWJrLlHP4aA7//IHnQQWMfW4CRtt7sSPJkUBGrT0FVdEEJHMuygu0Ip6c
-	45+ynpYeCPBPTv7Aiwn52fCuVhFAODkENCfMEBCLBkv+iMqsd4498dELwN0W55yH
-	gyoK3PMoGYm1oWtSMgiQ+8GFKzgSienTQ08XwO4bdU50OgLi4rWBbZw42KJlEl/b
-	p7vsaw==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 406x0t7fts-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 09 Jul 2024 18:01:07 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA02.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 469I15O5020027
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 9 Jul 2024 18:01:05 GMT
-Received: from [10.110.47.59] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 9 Jul 2024
- 11:01:02 -0700
-Message-ID: <f8ea46eb-61dc-4869-843c-a7fe9a37881e@quicinc.com>
-Date: Tue, 9 Jul 2024 11:01:02 -0700
+	s=arc-20240116; t=1720548825; c=relaxed/simple;
+	bh=QL6vfS7t2ZXZBqDE+w38HqrlAOgIQ5D/Jl7C3qGdIq0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Fplb7huQ3a7E31OlHuNwOYKGmLM+Es8nrUDCYlgHQXkhfcg1aGcNcmGj6PdTommWTzuP9zeeK5izGEGJdnW5LQzpTL/hssTZHCsbt7Fgt4tgNmD5fFbejvPDh5qEqMMkY/F/6eafqd721Gg+KOrhQGUZrkwt/l65u/pBuyl2r20=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RQkAW/mk; arc=none smtp.client-ip=209.85.167.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oi1-f176.google.com with SMTP id 5614622812f47-3d9231a8dd6so1624991b6e.1;
+        Tue, 09 Jul 2024 11:13:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1720548823; x=1721153623; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ROMHyto+2d5m9gvIVW0NcBrDATzh3Wi6vpT55RVsNsM=;
+        b=RQkAW/mksYDy12jfluNuPqI4WXB1EGPrsXEbxn9fF+KyfnN6S5Vxqx9BLa6z2EdPFi
+         7eNy4KZ0cyexTvnboq9eJdrSUVWxTRqw41fQmNly9gMrcnYe21m1RDOX6XtNmQw6/aub
+         IUXfPDZ4CKSaqgxjSa8r8+N34g4K4+l1XEKU68+4evLTAfyVgux2Ru+KR5v2CDOqDc1o
+         jaCZ4coh86zQbck0LnModlPHRmNfw/l+GagttkMzm9aV3tHrMyryA6Il0zcORpj2pwRF
+         r43m8AhcU3Pz/GFhtXRmzjhxbdQUaj7aRIHzO7C5SGrZ8vi31YVV7RP+VhysoS0dZAIe
+         3bog==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720548823; x=1721153623;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ROMHyto+2d5m9gvIVW0NcBrDATzh3Wi6vpT55RVsNsM=;
+        b=pEsAmiYuGeS+gKgkMj8d6NuHir1Exhe8jPyNA1QCJUcJa1xQgvVb+AaGI8VUahnek0
+         ybobn9vBjfjW/rESaZtNVXcG5d19XUqRW3BDh2jHwNtvtLhdc2nI/k+r2eu9dLiwQNF5
+         LCqnFT/fE/49WjA9b/Wu+xnA5thPd4w9B5B4b81Y9f9yFvVHqTzkiIZ3FBmHsdxfBswc
+         KPZn+z8GpTfjBNOCxgVgkU4+meRZV1uIf+Z+vtwXpFs8mMvqYniBiI5/sGxoMTxsuBr2
+         WfRoL1hsTTaDPzbYIhZxuRyZqaEWLcqgbQ60KQFz8LDZlEnrCZGOuDfsg3wk2NOURkrJ
+         V9NQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV233fdqSuYTJnXPoE8RQgODc9fNFF8ZKC9NPRkSTeD8Gr1yC4u0C75jwDJOwfaV2b+QRKMZhbxZYacV3iVDRyok2PX4wgn0pHAaL9syYy4lRJSKsPPz5jOlLCpVsm0Ngu44kRXGIsNVll8/2PnV1vIj6EL3ZH8TpEdsdg4D1mBeC3diocv
+X-Gm-Message-State: AOJu0Yz4I5kV01rDYPYYnqQ+OyGLLVsm4hmV54m6IFsFk7d44GmaWx+F
+	mZJlfgkjZuMUFKCcjZCV6mz4qeJ9JhOX1fPhnsNC0Uq7O2XPBFr4OrMHJyhqRMPAjPxyS2MH6Mk
+	96RO3ITdErQvU3IJrvkoi9acWc6tJFZBk
+X-Google-Smtp-Source: AGHT+IHevraVd4VAfdho+QOwUt6YVkQU8bdQp+gENg36rqNZi9wUtYbQlbdAXUq6zj6JrypsVOIIC94IzJBFd1iJw6o=
+X-Received: by 2002:a05:6871:b23:b0:25e:2b26:e05e with SMTP id
+ 586e51a60fabf-25eae83c5demr2302832fac.23.1720548822974; Tue, 09 Jul 2024
+ 11:13:42 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] dt-bindings: net: qcom: ethernet: Add interconnect
- properties
-To: Krzysztof Kozlowski <krzk@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu
-	<joabreu@synopsys.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet
-	<edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni
-	<pabeni@redhat.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        "Russell
- King" <linux@armlinux.org.uk>, Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "Bhupesh
- Sharma" <bhupesh.sharma@linaro.org>
-CC: <kernel@quicinc.com>, Andrew Halaney <ahalaney@redhat.com>,
-        Andrew Lunn
-	<andrew@lunn.ch>, <linux-arm-msm@vger.kernel.org>,
-        <netdev@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-References: <20240708-icc_bw_voting_from_ethqos-v4-0-c6bc3db86071@quicinc.com>
- <20240708-icc_bw_voting_from_ethqos-v4-1-c6bc3db86071@quicinc.com>
- <3ba8bcde-496c-4084-8941-397b4dd7f55f@kernel.org>
-Content-Language: en-US
-From: Sagar Cheluvegowda <quic_scheluve@quicinc.com>
-In-Reply-To: <3ba8bcde-496c-4084-8941-397b4dd7f55f@kernel.org>
+References: <20240707062702.174390-1-animeshagarwal28@gmail.com> <3d40f02f-529b-45ac-aa31-c4342f6f4f55@kernel.org>
+In-Reply-To: <3d40f02f-529b-45ac-aa31-c4342f6f4f55@kernel.org>
+From: Animesh Agarwal <animeshagarwal28@gmail.com>
+Date: Tue, 9 Jul 2024 23:43:31 +0530
+Message-ID: <CAE3Oz82KvEv3uJw-ha4RjXDuwqbMAy5ifEnK-gtR9ajkEbm-bA@mail.gmail.com>
+Subject: Re: [PATCH] ASoC: dt-bindings: cirrus,cs4270: Convert to dtschema
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Daniel Baluta <daniel.baluta@nxp.com>, David Rhodes <david.rhodes@cirrus.com>, 
+	Richard Fitzgerald <rf@opensource.cirrus.com>, Liam Girdwood <lgirdwood@gmail.com>, 
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, patches@opensource.cirrus.com, 
+	alsa-devel@alsa-project.org, linux-sound@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: yDvVNb0LXaXMTeKNf3sPdFREp4zrUFxu
-X-Proofpoint-ORIG-GUID: yDvVNb0LXaXMTeKNf3sPdFREp4zrUFxu
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-07-09_07,2024-07-09_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 bulkscore=0
- lowpriorityscore=0 impostorscore=0 adultscore=0 suspectscore=0
- phishscore=0 mlxlogscore=999 priorityscore=1501 malwarescore=0 spamscore=0
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2406140001 definitions=main-2407090121
+Content-Transfer-Encoding: quoted-printable
 
+xOn Mon, Jul 8, 2024 at 1:08=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
+>
+> On 07/07/2024 08:26, Animesh Agarwal wrote:
+> > +  va-supply:
+> > +    description: Voltage regulator phandle for the VA supply.
+>
+> Your description is redundant: you did not say anything more than it is
+> already said in the property name. This could be in such case just:
+> ": true"
+>
+> Please keep this feedback for any future work (I feel I already said it
+> once...).
+>
 
+I'll add proper descriptions for each of these instead, thanks for the head=
+s-up.
 
-On 7/9/2024 1:56 AM, Krzysztof Kozlowski wrote:
-> On 08/07/2024 23:30, Sagar Cheluvegowda wrote:
->> Add documentation for the interconnect and interconnect-names
->> properties required when voting for AHB and AXI buses.
->>
->> Suggested-by: Andrew Halaney <ahalaney@redhat.com>
->> Signed-off-by: Sagar Cheluvegowda <quic_scheluve@quicinc.com>
-> 
-> <form letter>
-> This is a friendly reminder during the review process.
-> 
-> It looks like you received a tag and forgot to add it.
-> 
-> If you do not know the process, here is a short explanation:
-> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-> versions, under or above your Signed-off-by tag. Tag is "received", when
-> provided in a message replied to you on the mailing list. Tools like b4
-> can help here. However, there's no need to repost patches *only* to add
-> the tags. The upstream maintainer will do that for tags received on the
-> version they apply.
-> 
-> https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
-> 
-> If a tag was not added on purpose, please state why and what changed.
-> </form letter>
-> 
+> > +
+> > +  vd-supply:
+> > +    description: Voltage regulator phandle for the VD supply.
+> > +
+> > +  vlc-supply:
+> > +    description: Voltage regulator phandle for the VLC supply.
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +
+> > +additionalProperties: false
+>
+> This won't validate DTS... test the DTS. You miss dai-common.
+>
+
+Weirdly, this wasn't giving any errors upon running the dtbs_check,
+however I should fix this.
+
+> > +
+> > +examples:
+> > +  - |
+> > +    i2c {
+> > +      #address-cells =3D <1>;
+> > +      #size-cells =3D <0>;
+> > +
+> > +      codec: cs4270@48 {
+>
+> Node names should be generic. See also an explanation and list of
+> examples (not exhaustive) in DT specification:
+> https://devicetree-specification.readthedocs.io/en/latest/chapter2-device=
+tree-basics.html#generic-names-recommendation
+> e.g. audio-codec or codec
+>
+> And drop unused label "codec:"
+>
+
+I can see some other cirrus bindings with this mistake, maybe because
+they were written/converted several years ago. I shall fix it here.
+
+>
 > Best regards,
 > Krzysztof
-> 
-
-
-Thanks Krzysztof for the explanation, i will make a note of it.
+>
 
