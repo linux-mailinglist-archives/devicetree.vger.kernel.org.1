@@ -1,149 +1,133 @@
-Return-Path: <devicetree+bounces-84374-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84375-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6B3D92BE6E
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 17:31:04 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C45792BE77
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 17:32:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5CF5B1F264B9
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 15:31:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 08DE9285F59
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 15:32:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C391919DF6B;
-	Tue,  9 Jul 2024 15:30:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F01319D8B5;
+	Tue,  9 Jul 2024 15:31:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i7AFXYQg"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GWw9hR3n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A7FD1514DE;
-	Tue,  9 Jul 2024 15:30:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6B0E19D8A9
+	for <devicetree@vger.kernel.org>; Tue,  9 Jul 2024 15:31:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720539011; cv=none; b=bNYgkjDc89EWYhy+KeB0G/L+CGVicYQS36JstB0+6ht9XtiR8oCeTQWkSubEtipDnNTiwKPC2L5WqqZN1KqzD/HVThYx99lVsJta/ccgJOQN+0jbX6vWs/LTxB+EPABp1YOhvF5W3QMBx5ep8rC8XCDSUA+3KpQTWA6BpIcb780=
+	t=1720539114; cv=none; b=l1bUA8KZXUX74OsVJEQsSskzXq1lanHiKq91ihJO0ayzbAVZXrlfthDRgvjHwKDk2djxw96UGLwpEKmKMTHK+Zg1VSB4Au29wc5+70N/LebKW+QirF/xir6uTsQoR9Wp/LHFbTXKN4DhYqI5hO/OqQjYASgDSV1aCv+siIzP35k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720539011; c=relaxed/simple;
-	bh=+ZQqls9Ki3eLB72qUlI4VM01dYMXVStw5ak0Hd2lE+M=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=ebpCBcAkMbcCs7UdROeGXfsp2aDa2IZV78zg3K4awIOsgIRqFmDswJmIWpZUpWoRwqTiX0PLCf/APcGH4e5AXr5BJvjPMm8BmtAD0IQrbWhXA2pRm5dEeQdkEhoP31x0WYSBzzMaqLwlqpm5ntt/v5N1S+mq2B9tTyTyNT/12SA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i7AFXYQg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE69AC3277B;
-	Tue,  9 Jul 2024 15:30:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720539011;
-	bh=+ZQqls9Ki3eLB72qUlI4VM01dYMXVStw5ak0Hd2lE+M=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=i7AFXYQguJeWjmOqz9Ncvilo/H7LDSdis3d86F0w4rZI+EeJPxk4CNR2fPFxI6DQt
-	 E6TVsVGY+Jg0ZbgkUWIxisxs3vxApiAKTu8tBZyJ4HQ1U57IkfHImWKsHkwPyIHnxY
-	 4eK4M0qupkxLG9e6jP1KoXwb9ezFoxNwj5aElhzELn4YN/Hc0bo++eKPg2XmNeL4dK
-	 DpU8XcM1iwRXblkDKcy5YP1EVgh0J/76imAX3vRGhpxGtHY7qdGHpuEGFna+Scve5D
-	 9p1B/fGT/cditH56ZHavrfxnyVKqLCGa9O0ZM/2GOog1lft1YcsR07sBeFL3Ljr6h0
-	 WtZwQD/ZPxy2g==
-Date: Tue, 09 Jul 2024 09:30:09 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1720539114; c=relaxed/simple;
+	bh=rBFFYJWprlboz0nJvWGx9LMFY6mldxF8e2qpxgT8MAw=;
+	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=ixBkT+Z1XsDVCYATgdlCy+L2F1gUjZEi1b6ZXHtflbm2VbBFY8YAM1TFodM0n98hkqECXs9U0bfed7k1uA8MrIqvlfXk1VMOW5siIfdblsZSwFtyGJWj8MSVmcOBKrixtzdg4U3mGP7jbLoovL64VbKdWA1JH26nyhR1FM3KkG8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GWw9hR3n; arc=none smtp.client-ip=209.85.167.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-52e9fe05354so7764206e87.1
+        for <devicetree@vger.kernel.org>; Tue, 09 Jul 2024 08:31:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1720539111; x=1721143911; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=xHpq5wMNrD2/hubIXHOBObHVSlKgS/wJVizku6aE47M=;
+        b=GWw9hR3nzm2cwpv4Hv9FKYaxBajE+r81HjJdnlxYb9TwFlhqaZ6v+X337uwX5/rFwB
+         rx0HmwNpnnEQOIQko/g0VS7okp8yfUiM9Wa1dCxBoQCWcsSPQ8d2pZZ14MupSWnECv3a
+         JhKNqiZmQtaPIEciHT7xefo3bJFEfjIl+g0CAK6nh7YpMT+xtDfvRJd1dn+th2JBkT5S
+         /LuFURVZIhbKK9Pg5st3OAlP2d96qkwQPf5a9u7DPbjbQeJLiesG06Bmag1IHrCiGPet
+         XXy7XXGD3rV2axvh7iZJxpONG2xTOvL8Wi6EyciQjCGkoy95w/1W/ofja54y/oNIYOCH
+         HoTg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720539111; x=1721143911;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=xHpq5wMNrD2/hubIXHOBObHVSlKgS/wJVizku6aE47M=;
+        b=hJI0uXW2LKflFeBmAs6EhTBJLUVQRDxORxq7k4bVV1ygN6y3DCqDWkMli1393Z+Pdw
+         Ck+EaLhj3RZRXN/iRZmGLjAmlVhuw/z3aC6dcvCRuAD0eGDNZ3OpKCHDrzuddhHlNLYL
+         9xGcMpJCT5vJ/ejGFK+mKMp0UcN5XKxJkW0/tUkdo23ChGj7SKC+O8MwmjyYQu10mK6l
+         paTI6XvR4eLFTqH4bE13ynJTJAAvjPH48A0ijUCemeLy3dub/V4dr7OyUolEKsIMyv/5
+         P+AaVVaqENIlNYonNF8fvvILlzMJtZdgQOvlojlAJQQkyyTzurvvbfcqrMiaeQUMDk01
+         la2w==
+X-Forwarded-Encrypted: i=1; AJvYcCVDm77oHri6H6XD0Bw96OSmefV9eTIo3vpcMSmjWeM+NFaTTCKL4jLsdMHnbv20mJIgtdkzHixMwWgkrUOH1JRlLeBgeR+7MwQHOg==
+X-Gm-Message-State: AOJu0YwFCM+TqEgJIeKXUojKLqFZdiv2UBPzrlK5dQu04NQuTFEMBHHe
+	nYKg+4E/5Xe3B+xpnjCuLMKWNim+V4lSz30BTYBdlVhptEFTTmQ4FZJON9bjETU=
+X-Google-Smtp-Source: AGHT+IHewN66x2HRe8W5Nt8NVnXoo8G3n2GpDN/d4haqMEb11yeCmND6FM7mgc4d6Mu6XfbF2ACV5g==
+X-Received: by 2002:a2e:7c04:0:b0:2ee:4af7:d78e with SMTP id 38308e7fff4ca-2eeb3181914mr24259971fa.34.1720539110506;
+        Tue, 09 Jul 2024 08:31:50 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4264a1d16b0sm209556185e9.7.2024.07.09.08.31.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 Jul 2024 08:31:50 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20240701165210.578817-1-krzysztof.kozlowski@linaro.org>
+References: <20240701165210.578817-1-krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH] ARM: dts: amlogic: meson8b-ec100: align GPIO keys node
+ name with bindings
+Message-Id: <172053910960.1180991.4934338719791810029.b4-ty@linaro.org>
+Date: Tue, 09 Jul 2024 17:31:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-Cc: Inochi Amaoto <inochiama@outlook.com>, 
- Albert Ou <aou@eecs.berkeley.edu>, Thomas Gleixner <tglx@linutronix.de>, 
- Chao Wei <chao.wei@sophgo.com>, Conor Dooley <conor.dooley@microchip.com>, 
- Daniel Lezcano <daniel.lezcano@linaro.org>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Chen Wang <unicorn_wang@outlook.com>, 
- Samuel Holland <samuel.holland@sifive.com>, linux-riscv@lists.infradead.org, 
- linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@dabbelt.com>, 
- =?utf-8?q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>, 
- Paul Walmsley <paul.walmsley@sifive.com>, devicetree@vger.kernel.org, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-In-Reply-To: <20240709-sg2002-v3-0-af779c3d139d@bootlin.com>
-References: <20240709-sg2002-v3-0-af779c3d139d@bootlin.com>
-Message-Id: <172053886159.3452537.17376675816752046144.robh@kernel.org>
-Subject: Re: [PATCH v3 0/5] Add board support for Sipeed LicheeRV Nano
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13.0
 
+Hi,
 
-On Tue, 09 Jul 2024 12:07:15 +0200, Thomas Bonnefille wrote:
-> The LicheeRV Nano is a RISC-V SBC based on the Sophgo SG2002 chip. Adds
-> minimal device tree files for this board to make it boot to a basic
-> shell.
+On Mon, 01 Jul 2024 18:52:10 +0200, Krzysztof Kozlowski wrote:
+> Bindings expect the GPIO keys node names to follow certain pattern, see
+> dtbs_check warnings:
 > 
-> Signed-off-by: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-> ---
-> Changes in v3:
-> - Remove /dts-v1/ directive from sg2002.dtsi file
-> - Add disable-wp property to sdhci node to avoid having a write
->   protected SD card
-> - Drop changes in cv18xx.dtsi and cv1800b.dtsi
-> - Add fallback compatible to cv1800b in SDHCI node of sg2002.dtsi
-> - Link to v2: https://lore.kernel.org/r/20240612-sg2002-v2-0-19a585af6846@bootlin.com
-> 
-> Changes in v2:
-> - Add SDHCI support
-> - Change device tree name to match the Makefile
-> - Add oscillator frequency
-> - Add aliases to other UARTs
-> - Add aliases to GPIOs
-> - Move compatible for SDHCI from common DT to specific DT
-> - Link to v1: https://lore.kernel.org/r/20240527-sg2002-v1-0-1b6cb38ce8f4@bootlin.com
-> 
-> ---
-> Thomas Bonnefille (5):
->       dt-bindings: interrupt-controller: Add SOPHGO SG2002 plic
->       dt-bindings: timer: Add SOPHGO SG2002 clint
->       dt-bindings: riscv: Add Sipeed LicheeRV Nano board compatibles
->       riscv: dts: sophgo: Add initial SG2002 SoC device tree
->       riscv: dts: sophgo: Add LicheeRV Nano board device tree
-> 
->  .../interrupt-controller/sifive,plic-1.0.0.yaml    |  1 +
->  .../devicetree/bindings/riscv/sophgo.yaml          |  5 ++
->  .../devicetree/bindings/timer/sifive,clint.yaml    |  1 +
->  arch/riscv/boot/dts/sophgo/Makefile                |  1 +
->  .../boot/dts/sophgo/sg2002-licheerv-nano-b.dts     | 54 ++++++++++++++++++++++
->  arch/riscv/boot/dts/sophgo/sg2002.dtsi             | 32 +++++++++++++
->  6 files changed, 94 insertions(+)
-> ---
-> base-commit: d20f6b3d747c36889b7ce75ee369182af3decb6b
-> change-id: 20240515-sg2002-93dce1d263be
-> 
-> Best regards,
-> --
-> Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-> 
+>   meson8b-ec100.dtb: gpio-keys: '#address-cells', '#size-cells' do not match any of the regexes: '^(button|event|key|switch|(button|event|key|switch)...
 > 
 > 
 
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.11/arm-dt)
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
+[1/1] ARM: dts: amlogic: meson8b-ec100: align GPIO keys node name with bindings
+      https://git.kernel.org/amlogic/c/488386d7ec680c8900f81b3fd7570797935bf1ff
 
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
+These changes has been applied on the intermediate git tree [1].
 
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
+The v6.11/arm-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+for inclusion in their intermediate git branches in order to be sent to Linus during
+the next merge window, or sooner if it's a set of fixes.
 
-  pip3 install dtschema --upgrade
+In the cases of fixes, those will be merged in the current release candidate
+kernel and as soon they appear on the Linux master branch they will be
+backported to the previous Stable and Long-Stable kernels [2].
 
+The intermediate git branches are merged daily in the linux-next tree [3],
+people are encouraged testing these pre-release kernels and report issues on the
+relevant mailing-lists.
 
-New warnings running 'make CHECK_DTBS=y sophgo/sg2002-licheerv-nano-b.dtb' for 20240709-sg2002-v3-0-af779c3d139d@bootlin.com:
+If problems are discovered on those changes, please submit a signed-off-by revert
+patch followed by a corrective changeset.
 
-arch/riscv/boot/dts/sophgo/sg2002-licheerv-nano-b.dtb: mmc@4310000: compatible: ['sophgo,sg2002-dwcmshc', 'sophgo,cv1800b-dwcmshc'] is too long
-	from schema $id: http://devicetree.org/schemas/mmc/snps,dwcmshc-sdhci.yaml#
-arch/riscv/boot/dts/sophgo/sg2002-licheerv-nano-b.dtb: mmc@4310000: Unevaluated properties are not allowed ('compatible' was unexpected)
-	from schema $id: http://devicetree.org/schemas/mmc/snps,dwcmshc-sdhci.yaml#
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
 
-
-
-
+-- 
+Neil
 
 
