@@ -1,84 +1,86 @@
-Return-Path: <devicetree+bounces-84369-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84370-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDADC92BE57
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 17:29:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 74BD492BE58
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 17:29:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5DF91B22C9D
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 15:28:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2F111284459
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 15:29:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C9C519D8A9;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A656019D8BB;
 	Tue,  9 Jul 2024 15:28:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jjM+1wvR"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yLtiPau6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7359243147
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1364819CD0A
 	for <devicetree@vger.kernel.org>; Tue,  9 Jul 2024 15:28:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.175
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720538928; cv=none; b=c9m7Hd4eua6VdbbrZU9OTYlpCPYMsN0ahKvddk3gtn5Kl7izxz+OZuxDkHQHaZPO/9LlCNQkSPPA5q1ynnSXe2J9jlRw+AWiDmVidFXdWIpnCw3DVwV4Pd3V5VkX5AkqMfwxmkU460SdA8zYu4rOxhJ/yz4KIdNxhIavQhw0WHg=
+	t=1720538928; cv=none; b=TJlSPEflaKjjsMqkhT4mxpcB/XXSMvJtTAtot6hPVCC0yjsysiRPfDtbTjLMu4DkaHd6Po0ImzjGrOAwqLipb2FAtDxoRS4wXX0hdzx11HJDZQ32wgryXfIpMrGB6hFRdOVuo0qKC5qh3dqcwYEYurfvgNSIn3uKq5W7LiC/QNw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1720538928; c=relaxed/simple;
-	bh=JZ5BZeaxbdiSFlXTOCSDXtgZTkCzn2hATfivmbxW4hA=;
+	bh=4ztXr0pYL5TO1gtMd+rtNuWMHPlgOlNGjjPwwANhHVw=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=TVQuthhDPHZb8qDwetv6wiCD0NdztNeAANZPoiicakAWPZruPB/OuW1e3Df8ar/6WE8VpA0zWrVX++j2PIp4dwrbvO22+o3LVXyExU3FjLuZepsd/M0lNxHueQjqWXdlyMZupPZ9cZyqjg3yOVNlqmGb4BVnCdhYJAoNJV4SLow=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jjM+1wvR; arc=none smtp.client-ip=209.85.208.175
+	 MIME-Version:Content-Type; b=OpdL0Go1F4iLpQ6zOkQlGKnRhe3gjqccFS2+fcZ3gUaMBYfSk9wDT/GTpHWXoY02XVYf2jYTytnjMT0MR8YEzUh2cU1w4XwskeWcaJ4gz1aeshDgRR+/tUEdJmsKdMME+vl14ngsqgXPzOZ5BnLja5/lfskybItYihzTUJ7Dvso=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yLtiPau6; arc=none smtp.client-ip=209.85.221.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-2ee90f56e31so49698711fa.0
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-367a081d1cdso3017404f8f.1
         for <devicetree@vger.kernel.org>; Tue, 09 Jul 2024 08:28:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google; t=1720538925; x=1721143725; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=m7VCefezFc30AtwGu+xav+TuUFtkI2yJOqQ6ST8ep6k=;
-        b=jjM+1wvRQutEs9SuZSWxz5YwmC8hnmWBNWWfONxsPmlu2jQXG4tjlGpJ6Gc8KdjDeC
-         szE4GkZIvC9vB+XCMqagIwrku2OnsUV94u0oHNduhlh8B1N6yVqvjYbyCeYZrEQa1e1E
-         2hgemWFNKS9hH3FNLVm9p3NrVOtaQNJsu64tQ+7NGj3lyC+AtH7SKBrjMRXfaLA/voMB
-         8HJMnvg/gwqHa9E5ehaxCsI0dZqI1rFu5IdxBKtiMKZY4ZlhGK/X2aqLL5p15eD1Uiov
-         L/v1JkQyzkNeC4iVcAzd/0eJquOcXTQXejLQtvFMtyBLCERj+ep4HvT8rbRz0qpIsQYx
-         1Mwg==
+        bh=qggsgys4NITMh2ghLGb9NlRQPBQp9UFrf0DAdDJLM1A=;
+        b=yLtiPau6x9Yc0W00g2VSls+WVNo0WbQDGPiuZaWLoM9zWnLbu5WM0SBClnpmMLHZIn
+         hQ+Gko8o6Y4Ffx2HYt/VN+eR3u4qjwtcQacPH5C/MSQ3fuW4SU4C/EGl48L3fS+psppY
+         fObZFmgEGEAvwwtKuq5eUtiEeM0GzYvTt0os/CfTbDhVMNL+mIWGTYZpUjXTmyItXPPN
+         V7zRsP+VD2/tWx8Xn7X/QPT2HEHJfmfG2zqF2smWtOLbrcJ4UfdpiV00aNsTSViiczmo
+         9P02uGuoC7HxhB9bjquz7lMW6mWDybaqPEYuCN6G22pnJT7wRj9QioyXNxHqUhg7Rize
+         2f1Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20230601; t=1720538925; x=1721143725;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=m7VCefezFc30AtwGu+xav+TuUFtkI2yJOqQ6ST8ep6k=;
-        b=I8Z91nDfHlRpJF9alMl5MPoJ1mMeLg/XQ/UKT1Nf+aQeGFtlEFQSu/vpw0ifGofd1v
-         3jKW2JFcrNe7R2sOX+D0xLXNXXM2WXLr2BGF915vCsmOkckT7fag6xCnj4louwnSIeA7
-         hBoyhK5TTlmKn5OfmSo9VQUnMSkqltwolq0OU6ACu36O5LHtWKlh0qMo/YDve80WrAhs
-         fJYKvuhn1uXRTT8GOeYikcdeVB9weCemK7fOzAUruiZxbOXe1agMqBYkZEQ4MVG/KMNb
-         tsi7y66lM0zy/8whfFhNc+C2Xd+dhBrl6jaAAfhNHh6+8iwrQ1Dct2+D2LEvxIEhX79W
-         QeLw==
-X-Gm-Message-State: AOJu0Yy8GEsbh0TyXJFF9sEoQfZOHhI33aF+fmILfr9kyYvsfl8q7xDK
-	fX9KXpYJlS89E0YpFhLIomtYiWhhEEpbSZ1nKp8vpiz5J+tmAtWHDHjHQv3irPM=
-X-Google-Smtp-Source: AGHT+IFa2X1bOPgyGU6tWNjQXbvCOo8F9vMPhtpQvUqb8MkspFBRD/98lPiJyeKG8fauhInR8IKF6Q==
-X-Received: by 2002:ac2:4641:0:b0:52c:df5f:7b4e with SMTP id 2adb3069b0e04-52eb99a3087mr1588779e87.38.1720538924372;
-        Tue, 09 Jul 2024 08:28:44 -0700 (PDT)
+        bh=qggsgys4NITMh2ghLGb9NlRQPBQp9UFrf0DAdDJLM1A=;
+        b=u9RXF6JOuIgoBn/PyxtaV3WM2mLcztLxetpP08m9ScVG/KFvlm28KtGd5rxxmsilqx
+         cr1TxFVYpVTzELicQOCUHI60EwJ+ruuBLFNsDiHA2ShDNF86x4Fq9RSAv8HH2UGR/X07
+         RI/mL37KQyzuzprxNHYRgMkUmkEEvOVsA8pxK9gpjO6OdYxwFrWrxPfzNiGpra/8C+2U
+         BKUxSr/1zMC/h2ujiVMAlkLOiAgcoU3vHn/rgoxMAXl9KUPIBK684Ot8/JMgBHfeFNfa
+         9QP+ceL/EAqoc3NSVX4b2DBCNKTa5KItLhK42rlTV8nht27PNKBB0u5zNajFCIiMLTZd
+         gDzg==
+X-Gm-Message-State: AOJu0YzAcQCR3C6nS/EU6mw1qoT8k635//b+cgjX4kwIBhqSCIF/8a6F
+	8WCJKY3x/qm2VlgfASl8jg7SZsR4DFhEGpF01RE6ktls7+UaL4WA4zNTtVdpa78=
+X-Google-Smtp-Source: AGHT+IEVPnUlGz4qBOpMvn0Cp+wRKUUvSpZGFqyVY/8mj8sAm5oAs73VACcPAdVUmONzXpqsQCIfmQ==
+X-Received: by 2002:adf:e412:0:b0:367:9bc8:8c0a with SMTP id ffacd0b85a97d-367cead844bmr1967042f8f.64.1720538925370;
+        Tue, 09 Jul 2024 08:28:45 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-367cdfab748sm2849119f8f.111.2024.07.09.08.28.43
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-367cdfab748sm2849119f8f.111.2024.07.09.08.28.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Jul 2024 08:28:43 -0700 (PDT)
+        Tue, 09 Jul 2024 08:28:45 -0700 (PDT)
 From: Neil Armstrong <neil.armstrong@linaro.org>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
  Jerome Brunet <jbrunet@baylibre.com>, 
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Jianxin Pan <jianxin.pan@amlogic.com>, Ulf Hansson <ulf.hansson@linaro.org>, 
  Xianwei Zhao <xianwei.zhao@amlogic.com>
 Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20240705-s4_node-v1-1-646ca7ac4f09@amlogic.com>
-References: <20240705-s4_node-v1-1-646ca7ac4f09@amlogic.com>
-Subject: Re: [PATCH] arm64: dts: amlogic: enable some device nodes for S4
-Message-Id: <172053892355.1166789.14049124707326749938.b4-ty@linaro.org>
-Date: Tue, 09 Jul 2024 17:28:43 +0200
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ linux-pm@vger.kernel.org, Hongyu Chen <hongyu.chen1@amlogic.com>
+In-Reply-To: <20240627-a5_secpower-v1-0-1f47dde1270c@amlogic.com>
+References: <20240627-a5_secpower-v1-0-1f47dde1270c@amlogic.com>
+Subject: Re: (subset) [PATCH 0/3] Power: A5: add power domain driver
+Message-Id: <172053892457.1166789.8670207814900707876.b4-ty@linaro.org>
+Date: Tue, 09 Jul 2024 17:28:44 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -91,16 +93,15 @@ X-Mailer: b4 0.13.0
 
 Hi,
 
-On Fri, 05 Jul 2024 13:39:16 +0800, Xianwei Zhao wrote:
-> Enable some device nodes for AQ222 base S4, including
-> SD, regulator and ethnernet node.
+On Thu, 27 Jun 2024 19:47:50 +0800, Xianwei Zhao wrote:
+> Add power controller driver support for Amlogic A5 SoC.
 > 
 > 
 
 Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.11/arm64-dt)
 
-[1/1] arm64: dts: amlogic: enable some device nodes for S4
-      https://git.kernel.org/amlogic/c/d3cc1daf38aaa0dd6546dd915ce5d536c250f3eb
+[3/3] arm64: dts: amlogic: a5: add power domain controller node
+      https://git.kernel.org/amlogic/c/c087cd0ef1b0c2adfabd216e28dfed242b5f4f07
 
 These changes has been applied on the intermediate git tree [1].
 
