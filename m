@@ -1,150 +1,279 @@
-Return-Path: <devicetree+bounces-84189-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84190-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9992392B4D2
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 12:10:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54A6092B4DB
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 12:12:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4F47E281B07
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 10:10:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D5AFF1F2386A
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 10:12:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99CC6155749;
-	Tue,  9 Jul 2024 10:10:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FC74156644;
+	Tue,  9 Jul 2024 10:12:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cO7XRAQD"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b="GzEGvIvi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4239E153824
-	for <devicetree@vger.kernel.org>; Tue,  9 Jul 2024 10:10:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11C19155C98
+	for <devicetree@vger.kernel.org>; Tue,  9 Jul 2024 10:12:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.26.50.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720519844; cv=none; b=ZmA73DoYOHMUcP/TObYhaBSLUvv3EJisXXwX7zc0ym+VrkGc9KUythsDDF/5LYGB7beCma+60zdyW/Uwp6yvmkFsBJVeW60vHiQC5+oAQamCrEGi90E2CI6rd0IggX5Jmj/6voArUPWUPxqFaxrPZHhFWcOB+yGSCmbX1fmhuNI=
+	t=1720519942; cv=none; b=rrVMeAD4qmb/OkeREXhuKVixClxQ2zbwB4i/dy8pfFd/Es8V5nxLB1aakTQEGmng4dW7oy5xIir5NYq5bl0rmM/E4wFf3KRY0R9u9g9FI2vuFV2R0plYoMu248E2afQs42FVUnAW4Z9K5HDX2B226Ag9HVs6i1nl90EftZOqutM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720519844; c=relaxed/simple;
-	bh=NPDJQWFMBg1N7Ij6Du+SoVPn1EVzMY6sx/kDXOi+R70=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=eIT5/hC+6nUR6bCQ7Fk6VW3UAve40VFwqJ5/62Puyfyg4rg6aREbpLu2slrjjDbGdRqQa6ZgZdsOqnrGhhYjeu91vql+w9wj1zqIRLXEwHFls11YVC6oDX7DaS2asyYGzIuOWTDFVRJ9HGdF+ZYCFSWIBAPvDt748YG1Q1m6QRk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cO7XRAQD; arc=none smtp.client-ip=209.85.210.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-70b04cb28acso3314929b3a.0
-        for <devicetree@vger.kernel.org>; Tue, 09 Jul 2024 03:10:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1720519842; x=1721124642; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=nnPeUwagpX34GrQVUm/eQerepI0eGCCGd1FU50bUkf0=;
-        b=cO7XRAQDPKe3qPpjgEUuULiFCnv7YEZBTsTRcm+kM2nyAQb8OfTgKsHz4ysoeGcHYE
-         tuArtDrSnsUC7ylk1Po2f2C84hLkzePmdToDaY6mEYkbAaHQP/J26ET/VE0rjp+5POHh
-         PWTDyk8qUgHaxD+8sPIqvxyDmgI2J0ofp6cxdJIErj2vsj7DH3jTupEzKDV2UmhSUZQJ
-         /WzemXJfSMkU9mOpiaGAd+lTXL3AmHapukD3/IsZX1HmoCLVH/HExmfLuDhcrsg3Y3Fy
-         cFDt3qXvvJw4u9bhVkAVBu9/yJtUg0aJ0URy7DIkqUvp00Q1rsdPLM5GvVTPNYKjvHXv
-         CRWQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720519842; x=1721124642;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nnPeUwagpX34GrQVUm/eQerepI0eGCCGd1FU50bUkf0=;
-        b=xDf6ASIXTbOnRaoUwnGD+tfiZgWfukJTz0zh7QSxCEt8sJgPna1ixna+cenrCRVIJQ
-         lp5mu4+NcDFhCnYaVl1SMeKvVKUk7ZZkNZPzmjfYFjH2Kml3/agA3q6ajMdLxnH5OZK/
-         Zt/+P6X7rOtQNt1F2Zt6RZ9Rn/Vtgm9BSRlsHjNHusfYzOBPD2eEcMM3iSJsdlHviAYH
-         6PCUtVOYafChIsWYFbs2nhuhO4LwDBIGDo4UMKisFnttnvoQxR4N8XA5E6roAdo+LM90
-         /lHdmtvNX/3RGoje/gn10XFOr6HbnWxpOzgF69h+QU1DuUYk+oe8k6V+2PDQx3TW/XrY
-         AnSg==
-X-Forwarded-Encrypted: i=1; AJvYcCX0gflVYuURHYFh4FR6jy8SoBeBfp79wf1ehZ7ho/XCUeT6XpzM4vVW/QdOrZh9/xYW/fhQ89wPu667lI0F4OIDxtFzcFW2FFLejA==
-X-Gm-Message-State: AOJu0YxJ/IQJfy95NFRToMVbEA0UNj121jGMqucUEQov4Ogeov8sqmfB
-	JYYH2oTeMealGerw6+5/VsYQCbZDpcHfu+f1imXrTYtmZWCKNT7l7lwggPh0cZQ=
-X-Google-Smtp-Source: AGHT+IGY1Pe1r//Dd07K6/Nl+QdtHZ9ZtoZxqKzqVdSu70UadlzYzvyA0dW27fLhNu8Dx+V1hklbLQ==
-X-Received: by 2002:a05:6a00:2190:b0:706:938a:5d49 with SMTP id d2e1a72fcca58-70b44e02bbamr2756913b3a.14.1720519842470;
-        Tue, 09 Jul 2024 03:10:42 -0700 (PDT)
-Received: from [192.168.105.194] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-70b43899614sm1465109b3a.17.2024.07.09.03.10.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 Jul 2024 03:10:42 -0700 (PDT)
-Message-ID: <2b278a27-f527-448c-99b5-fc307d792127@linaro.org>
-Date: Tue, 9 Jul 2024 12:10:36 +0200
+	s=arc-20240116; t=1720519942; c=relaxed/simple;
+	bh=JzTV9pIdctu6iSCRfcsT8ted6LsnSLQTnPRPdGhiTNo=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=t9Z9RIP9mev8Axw4Uxp4ZRPhowyRjvpmQ42Ao5Zr+Vs3EIo7KkReRRe/LquMvsb19r8pl51rgpelOVha26iYYgwcXuDdisHNBHIZzlGO/8hmv+JN5n2VhQP1PqLkjlWuCAriQVxjr6/zY0QHooYlEzyPk9Jt55h9x9BzS8q0cGk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b=GzEGvIvi; arc=none smtp.client-ip=91.26.50.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
+DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
+	q=dns/txt; i=@phytec.de; t=1720519933; x=1723111933;
+	h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=JzTV9pIdctu6iSCRfcsT8ted6LsnSLQTnPRPdGhiTNo=;
+	b=GzEGvIvi9v23eQ1Gz8OPT2wW9AG5g+OnrA8IGmR5eiTU/SIvLRTDDaRENpga3WFo
+	7XRwauDHmtqGiaMesOfIy2ACNDGxpkKTBthzha7mYtnl2bu6it2XVhpZPV7yvaHK
+	GKLbVaYNOFlb6LXrkz84OCQ/q3O9a2p3nqHS6dJ+UAY=;
+X-AuditID: ac14000a-03e52700000021bc-ad-668d0cfdba0b
+Received: from berlix.phytec.de (Unknown_Domain [172.25.0.12])
+	(using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(Client did not present a certificate)
+	by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id CB.98.08636.DFC0D866; Tue,  9 Jul 2024 12:12:13 +0200 (CEST)
+Received: from augenblix2.phytec.de (172.25.0.11) by Berlix.phytec.de
+ (172.25.0.12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Tue, 9 Jul 2024
+ 12:12:13 +0200
+From: Wadim Egorov <w.egorov@phytec.de>
+To: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <upstream@lists.phytec.de>
+CC: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <d.schultz@phytec.de>
+Subject: [PATCH] arm64: dts: ti: am642-phyboard-electra: Add PRU-ICSSG nodes
+Date: Tue, 9 Jul 2024 12:12:05 +0200
+Message-ID: <20240709101205.891587-1-w.egorov@phytec.de>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC V3 2/4] firmware: arm_scmi: vendors: Add ARM SCMI QCOM
- vendor protocol v1.0
-To: Sibi Sankar <quic_sibis@quicinc.com>, sudeep.holla@arm.com,
- cristian.marussi@arm.com, andersson@kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org
-Cc: linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- quic_rgottimu@quicinc.com, quic_kshivnan@quicinc.com, conor+dt@kernel.org,
- Amir Vajid <avajid@quicinc.com>
-References: <20240702191440.2161623-1-quic_sibis@quicinc.com>
- <20240702191440.2161623-3-quic_sibis@quicinc.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20240702191440.2161623-3-quic_sibis@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: Florix.phytec.de (172.25.0.13) To Berlix.phytec.de
+ (172.25.0.12)
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrBLMWRmVeSWpSXmKPExsWyRpKBR/cvT2+awZHfShZr9p5jsph/5Byr
+	xfLPs9ktXs66x2ax6fE1VovLu+awWbz5cZbJ4v+eHewW3e/ULf6f/cDuwOWxaVUnm8fmJfUe
+	/d0trB7Hb2xn8vi8SS6ANYrLJiU1J7MstUjfLoEr48med8wF/60rXqxoY2tgfGHQxcjBISFg
+	ItFwtbaLkZNDSGAJk8SsVRpdjFxA9iNGiXknp7GBJNgE1CXubPjGCpIQEWhjlJi15hoLiMMs
+	MIFRYvuv3WBVwgI+EpPXfAKzWQRUJOYvmcQMYvMKWEjs/HGDEcSWEJCXmHnpOztEXFDi5Mwn
+	LCA2M1C8eetsZghbQuLgixfMECfJS7y4tJwFpnfaudfMEHaoxJFNq5kmMArMQjJqFpJRs5CM
+	WsDIvIpRKDczOTu1KDNbryCjsiQ1WS8ldRMjKPRFGLh2MPbN8TjEyMTBeIhRgoNZSYR3/o3u
+	NCHelMTKqtSi/Pii0pzU4kOM0hwsSuK8qzuCU4UE0hNLUrNTUwtSi2CyTBycUg2MS68zHxau
+	W1b9evLP6znxb5uOf6w7ZHzyx0u73vYOxjeSjlsWqruZbueyDc+dfmvPL8eu2P/Brg+uz+O4
+	uHkO24eJB01mzBAK4nHYya6ccd36Gu8mxgfXTv6xcGqoe9vSt3f9qYQ53goGLAb/lvDNkxIS
+	qeBumXm/d9KPUNW30zLOsDLbz17HqcRSnJFoqMVcVJwIAPveZYxrAgAA
 
-On 2.07.2024 9:14 PM, Sibi Sankar wrote:
-> The ARM SCMI QCOM vendor protocol provides a generic way of exposing a
-> number of Qualcomm SoC specific features (like memory bus scaling) through
-> a mixture of pre-determined algorithm strings and param_id pairs hosted on
-> the SCMI controller.
-> 
+The phyBOARD-Electra implements two Ethernet ports utilizing PRUs.
+Add configuration for both mac ports & PHYs.
 
-[...]
+Signed-off-by: Wadim Egorov <w.egorov@phytec.de>
+---
+ .../dts/ti/k3-am642-phyboard-electra-rdk.dts  | 146 ++++++++++++++++++
+ 1 file changed, 146 insertions(+)
 
-> +/**
-> + * qcom_scmi_vendor_protocol_cmd - vendor specific commands supported by Qualcomm SCMI
-> + *                                 vendor protocol.
+diff --git a/arch/arm64/boot/dts/ti/k3-am642-phyboard-electra-rdk.dts b/arch/arm64/boot/dts/ti/k3-am642-phyboard-electra-rdk.dts
+index 6df331ccb970..364a7582cf99 100644
+--- a/arch/arm64/boot/dts/ti/k3-am642-phyboard-electra-rdk.dts
++++ b/arch/arm64/boot/dts/ti/k3-am642-phyboard-electra-rdk.dts
+@@ -28,6 +28,8 @@ / {
+ 	model = "PHYTEC phyBOARD-Electra-AM64x RDK";
+ 
+ 	aliases {
++		ethernet1 = &icssg0_emac0;
++		ethernet2 = &icssg0_emac1;
+ 		mmc1 = &sdhci1;
+ 		serial2 = &main_uart0;
+ 		serial3 = &main_uart1;
+@@ -55,6 +57,73 @@ can_tc2: can-phy1 {
+ 		standby-gpios = <&main_gpio0 35 GPIO_ACTIVE_HIGH>;
+ 	};
+ 
++	/* Dual Ethernet application node on PRU-ICSSG0 */
++	ethernet {
++		compatible = "ti,am642-icssg-prueth";
++		pinctrl-names = "default";
++		pinctrl-0 = <&icssg0_rgmii1_pins_default &icssg0_rgmii2_pins_default>;
++
++		sram = <&oc_sram>;
++		ti,prus = <&pru0_0>, <&rtu0_0>, <&tx_pru0_0>, <&pru0_1>, <&rtu0_1>, <&tx_pru0_1>;
++		firmware-name = "ti-pruss/am65x-sr2-pru0-prueth-fw.elf",
++				"ti-pruss/am65x-sr2-rtu0-prueth-fw.elf",
++				"ti-pruss/am65x-sr2-txpru0-prueth-fw.elf",
++				"ti-pruss/am65x-sr2-pru1-prueth-fw.elf",
++				"ti-pruss/am65x-sr2-rtu1-prueth-fw.elf",
++				"ti-pruss/am65x-sr2-txpru1-prueth-fw.elf";
++
++		ti,pruss-gp-mux-sel = <2>,	/* MII mode */
++				      <2>,
++				      <2>,
++				      <2>,	/* MII mode */
++				      <2>,
++				      <2>;
++
++		ti,mii-g-rt = <&icssg0_mii_g_rt>;
++		ti,mii-rt = <&icssg0_mii_rt>;
++		ti,iep = <&icssg0_iep0>, <&icssg0_iep1>;
++
++		interrupt-parent = <&icssg0_intc>;
++		interrupts = <24 0 2>, <25 1 3>;
++		interrupt-names = "tx_ts0", "tx_ts1";
++
++		dmas = <&main_pktdma 0xc100 15>, /* egress slice 0 */
++		       <&main_pktdma 0xc101 15>, /* egress slice 0 */
++		       <&main_pktdma 0xc102 15>, /* egress slice 0 */
++		       <&main_pktdma 0xc103 15>, /* egress slice 0 */
++		       <&main_pktdma 0xc104 15>, /* egress slice 1 */
++		       <&main_pktdma 0xc105 15>, /* egress slice 1 */
++		       <&main_pktdma 0xc106 15>, /* egress slice 1 */
++		       <&main_pktdma 0xc107 15>, /* egress slice 1 */
++		       <&main_pktdma 0x4100 15>, /* ingress slice 0 */
++		       <&main_pktdma 0x4101 15>; /* ingress slice 1 */
++		dma-names = "tx0-0", "tx0-1", "tx0-2", "tx0-3",
++			    "tx1-0", "tx1-1", "tx1-2", "tx1-3",
++			    "rx0", "rx1";
++
++		ethernet-ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			icssg0_emac0: port@0 {
++				reg = <0>;
++				phy-handle = <&icssg0_phy1>;
++				phy-mode = "rgmii-id";
++				ti,syscon-rgmii-delay = <&main_conf 0x4100>;
++				/* Filled in by bootloader */
++				local-mac-address = [00 00 00 00 00 00];
++			};
++
++			icssg0_emac1: port@1 {
++				reg = <1>;
++				phy-handle = <&icssg0_phy2>;
++				phy-mode = "rgmii-id";
++				ti,syscon-rgmii-delay = <&main_conf 0x4104>;
++				/* Filled in by bootloader */
++				local-mac-address = [00 00 00 00 00 00];
++			};
++		};
++	};
++
+ 	keys {
+ 		compatible = "gpio-keys";
+ 		autorepeat;
+@@ -118,6 +187,12 @@ AM64X_IOPAD(0x0090, PIN_OUTPUT, 7)	/* (P17) GPMC0_BE0n_CLE.GPIO0_35 */
+ 		>;
+ 	};
+ 
++	clkout0_pins_default: clkout0-default-pins {
++		pinctrl-single,pins = <
++			AM64X_IOPAD(0x0274, PIN_OUTPUT, 5)	/* (A19) EXT_REFCLK1.CLKOUT0 */
++		>;
++	};
++
+ 	gpio_keys_pins_default: gpio-keys-default-pins {
+ 		pinctrl-single,pins = <
+ 			AM64X_IOPAD(0x0044, PIN_INPUT, 7)	/* (T18) GPMC0_AD2.GPIO0_17 */
+@@ -125,6 +200,49 @@ AM64X_IOPAD(0x0054, PIN_INPUT, 7)	/* (V20) GPMC0_AD6.GPIO0_21 */
+ 		>;
+ 	};
+ 
++	icssg0_mdio_pins_default: icssg0-mdio-default-pins {
++		pinctrl-single,pins = <
++			AM64X_IOPAD(0x0200, PIN_INPUT, 0)	/* (P2) PRG0_MDIO0_MDIO */
++			AM64X_IOPAD(0x0204, PIN_OUTPUT, 0)	/* (P3) PRG0_MDIO0_MDC */
++			AM64X_IOPAD(0x01A8, PIN_OUTPUT, 7)	/* (V1) PRG0_PRU0_GPO18.GPIO1_18 */
++			AM64X_IOPAD(0x01AC, PIN_OUTPUT, 7)	/* (W1) PRG0_PRU0_GPO19.GPIO1_19 */
++		>;
++	};
++
++	icssg0_rgmii1_pins_default: icssg0-rgmii1-default-pins {
++		pinctrl-single,pins = <
++			AM64X_IOPAD(0x0160, PIN_INPUT, 2)	/* (Y1) PRG0_PRU0_GPO0.PRG0_RGMII1_RD0 */
++			AM64X_IOPAD(0x0164, PIN_INPUT, 2)	/* (R4) PRG0_PRU0_GPO1.PRG0_RGMII1_RD1 */
++			AM64X_IOPAD(0x0168, PIN_INPUT, 2)	/* (U2) PRG0_PRU0_GPO2.PRG0_RGMII1_RD2 */
++			AM64X_IOPAD(0x016c, PIN_INPUT, 2)	/* (V2) PRG0_PRU0_GPO3.PRG0_RGMII1_RD3 */
++			AM64X_IOPAD(0x0170, PIN_INPUT, 2)	/* (AA2) PRG0_PRU0_GPO4.PRG0_RGMII1_RX_CTL */
++			AM64X_IOPAD(0x0178, PIN_INPUT, 2)	/* (T3) PRG0_PRU0_GPO6.PRG0_RGMII1_RXC */
++			AM64X_IOPAD(0x018c, PIN_OUTPUT, 2)	/* (Y3) PRG0_PRU0_GPO11.PRG0_RGMII1_TD0 */
++			AM64X_IOPAD(0x0190, PIN_OUTPUT, 2)	/* (AA3) PRG0_PRU0_GPO12.PRG0_RGMII1_TD1 */
++			AM64X_IOPAD(0x0194, PIN_OUTPUT, 2)	/* (R6) PRG0_PRU0_GPO13.PRG0_RGMII1_TD2 */
++			AM64X_IOPAD(0x0198, PIN_OUTPUT, 2)	/* (V4) PRG0_PRU0_GPO14.PRG0_RGMII1_TD3 */
++			AM64X_IOPAD(0x019c, PIN_OUTPUT, 2)	/* (T5) PRG0_PRU0_GPO15.PRG0_RGMII1_TX_CTL */
++			AM64X_IOPAD(0x01a0, PIN_OUTPUT, 2)	/* (U4) PRG0_PRU0_GPO16.PRG0_RGMII1_TXC */
++		>;
++	};
++
++	icssg0_rgmii2_pins_default: icssg0-rgmii2-default-pins {
++		pinctrl-single,pins = <
++			AM64X_IOPAD(0x01b0, PIN_INPUT, 2)	/* (Y2) PRG0_PRU1_GPO0.PRG0_RGMII2_RD0 */
++			AM64X_IOPAD(0x01b4, PIN_INPUT, 2)	/* (W2) PRG0_PRU1_GPO1.PRG0_RGMII2_RD1 */
++			AM64X_IOPAD(0x01b8, PIN_INPUT, 2)	/* (V3) PRG0_PRU1_GPO2.PRG0_RGMII2_RD2 */
++			AM64X_IOPAD(0x01bc, PIN_INPUT, 2)	/* (T4) PRG0_PRU1_GPO3.PRG0_RGMII2_RD3 */
++			AM64X_IOPAD(0x01c0, PIN_INPUT, 2)	/* (W3) PRG0_PRU1_GPO4.PRG0_RGMII2_RX_CTL */
++			AM64X_IOPAD(0x01c8, PIN_INPUT, 2)	/* (R5) PRG0_PRU1_GPO6.PRG0_RGMII2_RXC */
++			AM64X_IOPAD(0x01dc, PIN_OUTPUT, 2)	/* (W4) PRG0_PRU1_GPO11.PRG0_RGMII2_TD0 */
++			AM64X_IOPAD(0x01e0, PIN_OUTPUT, 2)	/* (Y4) PRG0_PRU1_GPO12.PRG0_RGMII2_TD1 */
++			AM64X_IOPAD(0x01e4, PIN_OUTPUT, 2)	/* (T6) PRG0_PRU1_GPO13.PRG0_RGMII2_TD2 */
++			AM64X_IOPAD(0x01e8, PIN_OUTPUT, 2)	/* (U6) PRG0_PRU1_GPO14.PRG0_RGMII2_TD3 */
++			AM64X_IOPAD(0x01ec, PIN_OUTPUT, 2)	/* (U5) PRG0_PRU1_GPO15.PRG0_RGMII2_TX_CTL */
++			AM64X_IOPAD(0x01f0, PIN_OUTPUT, 2)	/* (AA4) PRG0_PRU1_GPO16.PRG0_RGMII2_TXC */
++		>;
++	};
++
+ 	main_i2c1_pins_default: main-i2c1-default-pins {
+ 		pinctrl-single,pins = <
+ 			AM64X_IOPAD(0x0268, PIN_INPUT, 0)	/* (C18) I2C1_SCL */
+@@ -210,6 +328,34 @@ AM64X_IOPAD(0x0040, PIN_OUTPUT, 7)	/* (U21) GPMC0_AD1.GPIO0_16 */
+ 	};
+ };
+ 
++&icssg0_mdio {
++	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&icssg0_mdio_pins_default &clkout0_pins_default>;
++
++	icssg0_phy1: ethernet-phy@1 {
++		compatible = "ethernet-phy-id2000.a231", "ethernet-phy-ieee802.3-c22";
++		reg = <0x1>;
++		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
++		tx-fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
++		rx-fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
++		reset-gpios = <&main_gpio1 18 GPIO_ACTIVE_LOW>;
++		reset-assert-us = <1000>;
++		reset-deassert-us = <1000>;
++	};
++
++	icssg0_phy2: ethernet-phy@2 {
++		compatible = "ethernet-phy-id2000.a231", "ethernet-phy-ieee802.3-c22";
++		reg = <0x2>;
++		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
++		tx-fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
++		rx-fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
++		reset-gpios = <&main_gpio1 19 GPIO_ACTIVE_LOW>;
++		reset-assert-us = <1000>;
++		reset-deassert-us = <1000>;
++	};
++};
++
+ &main_i2c1 {
+ 	status = "okay";
+ 	pinctrl-names = "default";
+-- 
+2.34.1
 
-include the word 'enum' or:
-
-warning: cannot understand function prototype: 'enum qcom_scmi_vendor_protocol_cmd '
-
-Konrad
 
