@@ -1,118 +1,233 @@
-Return-Path: <devicetree+bounces-84125-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84131-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 811D292B17B
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 09:48:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B51B92B1FB
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 10:22:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 36E981F22F60
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 07:48:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 00F342813C2
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 08:22:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DA9614AD03;
-	Tue,  9 Jul 2024 07:48:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 487F815219B;
+	Tue,  9 Jul 2024 08:22:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="Yyg4ZAUa"
+	dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b="aU7JabxT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.web.de (mout.web.de [212.227.15.14])
+Received: from mxout2.routing.net (mxout2.routing.net [134.0.28.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4A4214388F;
-	Tue,  9 Jul 2024 07:48:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A21412CD96;
+	Tue,  9 Jul 2024 08:22:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=134.0.28.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720511305; cv=none; b=EJCgsrvPf2B1BKgGRe99HOWUSLnR5m5wk2pEBDk4bRCjs7rN/N+ai0FBMS5DDy1MlsQlMZ3InDLDvRjM9/yHZBUWkmhE+bXlXwwJXAxIoIXakwH9psvP3IvM5rHf7HWmaqKXYVABrjVDuJaABDyAdMMunQr5DGwBa07hH/UzPmo=
+	t=1720513347; cv=none; b=LTFT4sW1bl184HcKFhPjjfd1l3jO1kAXsQmN8cEpWYZZsZfA3w+/55g/GHDz945Ir1qz+Tefg2cJpeAS2xYbeMRXUI4PcPaFau3IugAf3Bg/XkBP6PrMVX9KnE/qoMcCliXO3plE5CfTJDUnkVaWuHpb6A0Z4I/C2frBQy9M9BI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720511305; c=relaxed/simple;
-	bh=gXm2i0HYYuSYuh7qBSALjsI9yozo6/+CEZoWaEWLEnA=;
-	h=Message-ID:Date:MIME-Version:To:Cc:References:Subject:From:
-	 In-Reply-To:Content-Type; b=eNIdhS4Qk/0LQjAGprHlSvZHJf66sY/NwO79xUyt59mNe8gAC7OWfg2I8iwGPQF5YFJOKuRHS6jbcB2RSLu+vlYuewUtBAWULwMZSynqhATR9CE2GZHpo8f+TT9Ok80C9zfDZLv9Go5AA26Wg7TE+Y7EqADg6ChIs6WIfOM1d1M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=Yyg4ZAUa; arc=none smtp.client-ip=212.227.15.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
-	s=s29768273; t=1720511257; x=1721116057; i=markus.elfring@web.de;
-	bh=KfdwP98EfLVBzYD3qX1tlsoJ0XqC4M1TEOLBCI6Bfuk=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:References:
-	 Subject:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
-	 cc:content-transfer-encoding:content-type:date:from:message-id:
-	 mime-version:reply-to:subject:to;
-	b=Yyg4ZAUaA5Z1YNvxDSxwh8XKxPvQOPx2fsVIKBesdumBqOQnwF7BqeIiOOM5qYnB
-	 89K4BRAycDKVwz5mMnljU8g2H1HXUXkm3v/UEItLg1+nWPaJv3IbBjnL/95dmJsVZ
-	 YUw6/pp8lER4jVmXnLcjek/2SSjcXPH0ROhPgXqfrTP3VqDc5JbEf9Bc5PWEsbTjE
-	 L/n/4GJV2MX87JbZho8ZuamvTMNtsycrnsJDrrwEhLM1Gl9hlVqz7/jHnwOxoetv2
-	 Fj01JBUnARwn5Vm2z8bYsfA1/p4QcJvRW4jh9jHlOl8GSzhtaKI1GrZR0k1n6YFzm
-	 o5Wq0HsMP5SyxEwnBQ==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from [192.168.178.21] ([94.31.91.95]) by smtp.web.de (mrweb006
- [213.165.67.108]) with ESMTPSA (Nemesis) id 1M7ell-1sSTXo1T2r-00EvLU; Tue, 09
- Jul 2024 09:47:37 +0200
-Message-ID: <582f0e6e-7f8b-41db-b08e-5783943dddde@web.de>
-Date: Tue, 9 Jul 2024 09:47:31 +0200
+	s=arc-20240116; t=1720513347; c=relaxed/simple;
+	bh=/gYVJD15xFaui6T9JocnKA1r2ooEEcIgwDZnejMpIlc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=DOMl9yIgwtYFLRjLNmsJ6FIjMQNkX8TFS18EhE4X/tP3wFonyUJe0KFS931dLSZecXbTqiTJ9kDhSPM+cyx89G8NUEbkMv8m+mzlBHLEJP9IxS6e4o2HaWSV0Sh5HsATXJHaOPP1r//JILRys2bq48ZvefZhpHQjni7atBS4Ams=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de; spf=pass smtp.mailfrom=fw-web.de; dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b=aU7JabxT; arc=none smtp.client-ip=134.0.28.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fw-web.de
+Received: from mxbox2.masterlogin.de (unknown [192.168.10.89])
+	by mxout2.routing.net (Postfix) with ESMTP id 0C6E55FD4B;
+	Tue,  9 Jul 2024 08:16:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
+	s=20200217; t=1720512985;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=MDMf7DvFYCdwJ6yYWc6ATDV2rtt8qlGbjIkB3P1prUA=;
+	b=aU7JabxTsf1aK/77OmIldWo1GPgTLA5vNZ2v32VbWnnegBjJxybkGe9FceGO9HlAj28g4w
+	Eb7b0Y8qwAYrzEfsX7GRXJyIQ+7C6CBG62hDSFd2fWvGkcl6v+8eJM2OHAoi8dOT3cgKov
+	mTn9L82xGi7m+N7npAFIKYaHOnhQNl8=
+Received: from frank-u24.. (fttx-pool-217.61.149.221.bambit.de [217.61.149.221])
+	by mxbox2.masterlogin.de (Postfix) with ESMTPSA id 082581006CA;
+	Tue,  9 Jul 2024 08:16:23 +0000 (UTC)
+From: Frank Wunderlich <linux@fw-web.de>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Cc: Frank Wunderlich <frank-w@public-files.de>,
+	Daniel Golle <daniel@makrotopia.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: [PATCH v1] arm64: dts: mediatek: mt7988: add labels for different nodes
+Date: Tue,  9 Jul 2024 10:16:13 +0200
+Message-ID: <20240709081614.19993-1-linux@fw-web.de>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-To: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>,
- Hans Verkuil <hverkuil@xs4all.nl>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Mark Brown <broonie@kernel.org>, Mauro Carvalho Chehab <mchehab@kernel.org>,
- Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
- Rob Herring <robh@kernel.org>, Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc: LKML <linux-kernel@vger.kernel.org>
-References: <20240709000848.1108788-4-yuji2.ishikawa@toshiba.co.jp>
-Subject: Re: [PATCH v11 3/6] media: platform: visconti: Add Toshiba Visconti
- Video Input Interface driver
-Content-Language: en-GB
-From: Markus Elfring <Markus.Elfring@web.de>
-In-Reply-To: <20240709000848.1108788-4-yuji2.ishikawa@toshiba.co.jp>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:Nk5sjzAT/pxzJb3qM00jDkhnh7o3I4KoR7i1lj7yiWJly3w+/j/
- ipzs5mjnxzKA+mrnqKxIpRs9hyzf8m4SsQa+16ILhCuvSCCVDB1JNSSWLeGMUxH9Ln7vdZF
- 5XNPDIHUI99jXOchyPrDvtD3cjXJMdWDSWCljoQsJTDFe9YEzTQ9ChL4TAToGtDeSTM0B0j
- 2MDYDJrBoLtT2UVcP8ULg==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:tTIW3jN3Yyc=;Rmz+amz7iK/+Ny8+TEsgDgS0/DN
- pPg4rtpQxsw43f7BhiK4WYjw00/F8GLJvslF2M59qWskUKCVYa8Uly+aTKGWjp7Hx1Qr69cpL
- 5L+TMMtxvCQ6La6LBKqRvrN++1G/VnSxpFHGzdVw6ewMIrWJ0z3XYf5cmjkuiLiCI6IBobjIh
- tPIBtJGFsBQkO339KXB8pexE6EsWhe0iQHX4B2lcO6AZsVAGG5xNKKnc7t/L3Tv58J6Y+HidX
- J6D0XHSCHac9mBn80XTkQvP2XYZDfizJv5ip5LnNaVwS8/n60Q3qcWS2dpeuX+4asmiztRVjz
- x8Wsr7CpCmjoIEJ9bQs2g0ca0CDPizuhyj/eqskmukekdAzplQ/qQ+GPgdo9ctGxo8i6J/jIL
- nohDo94IWuQhqab490q6Wtuu4q3TZ6LMdqEXUQPwqZYHgEYtt1E+VIRQNMBIIvi9EQJN5ysO/
- P5BhZpPYjra2AtdippSQiyFQOOxXYNjRwowAHyySxhtLjU85np2ArKIDmBpEmeMLOkAdpweQ5
- aBvblOCVL7q5qdBTnEZoABpeCrlNe0vaXd6QzjFICfYOM+KTthy1LJ9M/uZMA95QMBrjPuk3o
- 90Z47DGOtMQt3DF1wMXfAnoDswW60rHb6+pENVn2+3w/axugFVa1f5s8NjqprL10Y8Ew//o87
- eRGkGBsPFsGe4mP+hnzBlimH7VEEIqYcow++OD9Q2kf2bOtVjX8O9W0gqdOs6/38zNjuzGrXR
- FkvokByZJMK2dcWbJjilPq8evSf0IHOVCH//cD8LtwdXnoxeT/2DmEKvWYBBCM4dLdRwQNVxf
- DxLOOt0j5dL0lwHJotckwXMqx4YFzstnYOcID5bZOf1h0=
+Content-Transfer-Encoding: 8bit
+X-Mail-ID: 86a6b8d6-7d26-42ab-aaf3-d045996a5733
 
-=E2=80=A6
-> +++ b/drivers/media/platform/toshiba/visconti/viif_capture.c
-> @@ -0,0 +1,1431 @@
-=E2=80=A6
-> +static int viif_set_img(struct cap_dev *cap_dev, struct vb2_buffer *vb)
-> +{
-=E2=80=A6
-> +	if (cap_dev->pathid =3D=3D CAPTURE_PATH_MAIN_POST0) {
-> +		spin_lock(&viif_dev->regbuf_lock);
-> +		hwd_viif_isp_guard_start(viif_dev);
-=E2=80=A6
-> +		hwd_viif_isp_guard_end(viif_dev);
-> +		spin_unlock(&viif_dev->regbuf_lock);
-=E2=80=A6
+From: Frank Wunderlich <frank-w@public-files.de>
 
-Under which circumstances would you become interested to apply a statement
-like =E2=80=9Cguard(spinlock)(&viif_dev->regbuf_lock);=E2=80=9D?
-https://elixir.bootlin.com/linux/v6.10-rc7/source/include/linux/spinlock.h=
-#L561
+Current devicetree-nodes missing a label which allows to add aproperties
+or phandles to them, so add them.
 
-Regards,
-Markus
+Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+Fixes: 660c230bf302 ("arm64: dts: mediatek: mt7988: add I2C controllers")
+Fixes: 09ff2216a035 ("arm64: dts: mediatek: mt7988: add PWM controller")
+Fixes: 09346afaba0a ("arm64: dts: mediatek: mt7988: add XHCI controllers")
+Fixes: b616b403cbff ("arm64: dts: mediatek: mt7988: add clock controllers")
+Fixes: 6c1d134a103f ("arm64: dts: mediatek: Add initial MT7988A and BPI-R4")
+---
+ arch/arm64/boot/dts/mediatek/mt7988a.dtsi | 32 +++++++++++------------
+ 1 file changed, 16 insertions(+), 16 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/mediatek/mt7988a.dtsi b/arch/arm64/boot/dts/mediatek/mt7988a.dtsi
+index aa728331e876..9ced005b1595 100644
+--- a/arch/arm64/boot/dts/mediatek/mt7988a.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt7988a.dtsi
+@@ -14,28 +14,28 @@ cpus {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+ 
+-		cpu@0 {
++		cpu0: cpu@0 {
+ 			compatible = "arm,cortex-a73";
+ 			reg = <0x0>;
+ 			device_type = "cpu";
+ 			enable-method = "psci";
+ 		};
+ 
+-		cpu@1 {
++		cpu1: cpu@1 {
+ 			compatible = "arm,cortex-a73";
+ 			reg = <0x1>;
+ 			device_type = "cpu";
+ 			enable-method = "psci";
+ 		};
+ 
+-		cpu@2 {
++		cpu2: cpu@2 {
+ 			compatible = "arm,cortex-a73";
+ 			reg = <0x2>;
+ 			device_type = "cpu";
+ 			enable-method = "psci";
+ 		};
+ 
+-		cpu@3 {
++		cpu3: cpu@3 {
+ 			compatible = "arm,cortex-a73";
+ 			reg = <0x3>;
+ 			device_type = "cpu";
+@@ -43,7 +43,7 @@ cpu@3 {
+ 		};
+ 	};
+ 
+-	oscillator-40m {
++	system_clk: oscillator-40m {
+ 		compatible = "fixed-clock";
+ 		clock-frequency = <40000000>;
+ 		#clock-cells = <0>;
+@@ -86,7 +86,7 @@ infracfg: clock-controller@10001000 {
+ 			#clock-cells = <1>;
+ 		};
+ 
+-		clock-controller@1001b000 {
++		topckgen: clock-controller@1001b000 {
+ 			compatible = "mediatek,mt7988-topckgen", "syscon";
+ 			reg = <0 0x1001b000 0 0x1000>;
+ 			#clock-cells = <1>;
+@@ -99,13 +99,13 @@ watchdog: watchdog@1001c000 {
+ 			#reset-cells = <1>;
+ 		};
+ 
+-		clock-controller@1001e000 {
++		apmixedsys: clock-controller@1001e000 {
+ 			compatible = "mediatek,mt7988-apmixedsys";
+ 			reg = <0 0x1001e000 0 0x1000>;
+ 			#clock-cells = <1>;
+ 		};
+ 
+-		pwm@10048000 {
++		pwm: pwm@10048000 {
+ 			compatible = "mediatek,mt7988-pwm";
+ 			reg = <0 0x10048000 0 0x1000>;
+ 			clocks = <&infracfg CLK_INFRA_66M_PWM_BCK>,
+@@ -124,7 +124,7 @@ pwm@10048000 {
+ 			status = "disabled";
+ 		};
+ 
+-		i2c@11003000 {
++		i2c0: i2c@11003000 {
+ 			compatible = "mediatek,mt7981-i2c";
+ 			reg = <0 0x11003000 0 0x1000>,
+ 			      <0 0x10217080 0 0x80>;
+@@ -137,7 +137,7 @@ i2c@11003000 {
+ 			status = "disabled";
+ 		};
+ 
+-		i2c@11004000 {
++		i2c1: i2c@11004000 {
+ 			compatible = "mediatek,mt7981-i2c";
+ 			reg = <0 0x11004000 0 0x1000>,
+ 			      <0 0x10217100 0 0x80>;
+@@ -150,7 +150,7 @@ i2c@11004000 {
+ 			status = "disabled";
+ 		};
+ 
+-		i2c@11005000 {
++		i2c2: i2c@11005000 {
+ 			compatible = "mediatek,mt7981-i2c";
+ 			reg = <0 0x11005000 0 0x1000>,
+ 			      <0 0x10217180 0 0x80>;
+@@ -163,7 +163,7 @@ i2c@11005000 {
+ 			status = "disabled";
+ 		};
+ 
+-		usb@11190000 {
++		ssusb0: usb@11190000 {
+ 			compatible = "mediatek,mt7988-xhci", "mediatek,mtk-xhci";
+ 			reg = <0 0x11190000 0 0x2e00>,
+ 			      <0 0x11193e00 0 0x0100>;
+@@ -177,7 +177,7 @@ usb@11190000 {
+ 			clock-names = "sys_ck", "ref_ck", "mcu_ck", "dma_ck", "xhci_ck";
+ 		};
+ 
+-		usb@11200000 {
++		ssusb1: usb@11200000 {
+ 			compatible = "mediatek,mt7988-xhci", "mediatek,mtk-xhci";
+ 			reg = <0 0x11200000 0 0x2e00>,
+ 			      <0 0x11203e00 0 0x0100>;
+@@ -191,21 +191,21 @@ usb@11200000 {
+ 			clock-names = "sys_ck", "ref_ck", "mcu_ck", "dma_ck", "xhci_ck";
+ 		};
+ 
+-		clock-controller@11f40000 {
++		xfi_pll: clock-controller@11f40000 {
+ 			compatible = "mediatek,mt7988-xfi-pll";
+ 			reg = <0 0x11f40000 0 0x1000>;
+ 			resets = <&watchdog 16>;
+ 			#clock-cells = <1>;
+ 		};
+ 
+-		clock-controller@15000000 {
++		ethsys: clock-controller@15000000 {
+ 			compatible = "mediatek,mt7988-ethsys", "syscon";
+ 			reg = <0 0x15000000 0 0x1000>;
+ 			#clock-cells = <1>;
+ 			#reset-cells = <1>;
+ 		};
+ 
+-		clock-controller@15031000 {
++		ethwarp: clock-controller@15031000 {
+ 			compatible = "mediatek,mt7988-ethwarp";
+ 			reg = <0 0x15031000 0 0x1000>;
+ 			#clock-cells = <1>;
+-- 
+2.43.0
+
 
