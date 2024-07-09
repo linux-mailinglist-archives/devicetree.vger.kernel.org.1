@@ -1,113 +1,97 @@
-Return-Path: <devicetree+bounces-84443-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84444-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4464892C37E
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 20:47:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AA3092C397
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 21:02:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D1A91B2122C
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 18:47:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 047672838E6
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 19:02:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1082117B045;
-	Tue,  9 Jul 2024 18:47:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86C74182A56;
+	Tue,  9 Jul 2024 19:02:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AKxaEiiZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nJFzDerB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1AC51B86C0;
-	Tue,  9 Jul 2024 18:47:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B35C182A4A;
+	Tue,  9 Jul 2024 19:02:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720550853; cv=none; b=NtCFklFE9t4mzL5EX0/MQrAF5BrGCwk1+ZQTZaG8DmlafjAu2BFxxqB40T3JxMEbRKEtYYnOCxWXph1WVnCMuDzxb4YIPrm/Bno+7n2YbKAN7UksAY6k2ODJSxHGwe7SF97yUdeMlRFhYw/xXN7oyD9GhTALS1oo4JBaR1vtKF4=
+	t=1720551722; cv=none; b=W59UMZnwKsQnLT93A0g3MyzLCs6d/Ou2TmzluGQhbzDfzsYvBOiEoSFKCCZr4NKOhkU8eVg46NDEGgU6ir+3ny1wQg/4m2gAkekYB55pE1PIkB+7C7thG+zliblT0Fh9/OuMdEHjQC+e3O0LrJ2otkNIh0BK5MX2k6DRVvz0V+U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720550853; c=relaxed/simple;
-	bh=7ye7ltyXbYOYYi8uAxpAmR2GIyPSMjM7g8VmAI3m74Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Yn3TwIHbyKUWQ+9zxGtLGCXYYlvp2dgEER0t3RSFuuJpDqjnkjFJi8eJkpstRvQ/juckxTKgGJz9Q2kQkk2iAAYYFp+UAQFyU0vzduy2MXREND/jgSA4dodyp7FGEr0uDqN6GCWbae8PT2StyX6JHqw8BNhnD4e5eTW+ly8/ZRQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AKxaEiiZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59F36C3277B;
-	Tue,  9 Jul 2024 18:47:22 +0000 (UTC)
+	s=arc-20240116; t=1720551722; c=relaxed/simple;
+	bh=3ZZ7DQEKNnruhiUNY73zpvLr0deMx91HrqS4mL+RFKk=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=nfdZK2K3mU39ysGsqIfshFW4hAfuQiFk3s6r2WFUEEM2rN1sbUfSJ0F/NaIxcW6A28t0cI1YGmPHMKhFqrGY7loq76hAQKKBor3Q7Zx0kbPYXCZd+hGl/MjLoV7bpVAnFF3x+463wsE4v98HOEi6po897VHdZz+fK745X33vqt4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nJFzDerB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id DD1ACC4AF0A;
+	Tue,  9 Jul 2024 19:02:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720550850;
-	bh=7ye7ltyXbYOYYi8uAxpAmR2GIyPSMjM7g8VmAI3m74Y=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=AKxaEiiZdtZv72eh/8HcEMtgL6askaomDjzh73Zmd585jJ9eTgjA8y605uew+GyXq
-	 BjVzXnTa25OtDMbvRzghMEoaZSm1+ncjkNet75r5zoxZdl3TOyqPMDXXFj0NIZcmzC
-	 C4TEBMPOgR9YjvEpUd1osYwGFrbsBKmsco8O8DLXeeGY//0GxFhujmJCxeaPez7SW3
-	 WY4tI7PURsponiYKUn94muFFNDz0CzfCfgnXc5TRN8r9d6r6uwy6hsgp8bN34Pg5IP
-	 8AfY1UR94wrAFkDc1hKCm/h/s4EFN8h2XUmt2OBSc8FAslyq0lyh2M84LHzJmnqQaF
-	 Wkys6UfkIASfA==
-Date: Tue, 9 Jul 2024 13:47:14 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: Rayyan Ansari <rayyan.ansari@linaro.org>
-Cc: devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, 
-	linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH 0/4] dt-bindings: pinctrl: convert remaining qcom
- bindings to yaml
-Message-ID: <yyxc3ldrgphgp65fydziyswbvrhdkcacsnpw5mfqddglxecpun@rjrxj3ffpxnw>
-References: <20240709162009.5166-1-rayyan.ansari@linaro.org>
+	s=k20201202; t=1720551721;
+	bh=3ZZ7DQEKNnruhiUNY73zpvLr0deMx91HrqS4mL+RFKk=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=nJFzDerB7RWVTBoUS8duP83uuKUWvlPEaIPb/nanYborBpEDO0Hi7yQRxY8wb3Sv0
+	 yBRjMZiUTBQxEcJWfLL5Y5ui0Wcau9z7GQL3WKLEPnkstBaNkxFoOJw2iZI2H9iR3l
+	 QU8R0qBY9TsjmeAJIRfCGO64Pv802Hrcb5YT7waZ4XVl3T84k6DlUOtSAk2u9YgECu
+	 qCR6+VvyVCLA7hkHHhSWXVS+T8iP/JOb1ydKjRzjfMTa4oZqx+rj8mMKK6+bMZgJvx
+	 wEk0yzX9boaNNz2qypPRsZ0uvTIyAHA3MjeFtZf2pLYnygT8x7zDUH58bHVFjTOWDC
+	 HLURNEm6yiiVw==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id CE605C43468;
+	Tue,  9 Jul 2024 19:02:01 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240709162009.5166-1-rayyan.ansari@linaro.org>
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v4 1/2] dt-bindings: net: fsl,fman: allow dma-coherent
+ property
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: 
+ <172055172184.32169.14387199835490742511.git-patchwork-notify@kernel.org>
+Date: Tue, 09 Jul 2024 19:02:01 +0000
+References: <20240708180949.1898495-1-Frank.Li@nxp.com>
+In-Reply-To: <20240708180949.1898495-1-Frank.Li@nxp.com>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: robh@kernel.org, conor+dt@kernel.org, davem@davemloft.net,
+ devicetree@vger.kernel.org, edumazet@google.com, imx@lists.linux.dev,
+ krzk+dt@kernel.org, kuba@kernel.org, linux-kernel@vger.kernel.org,
+ madalin.bucur@nxp.com, netdev@vger.kernel.org, pabeni@redhat.com,
+ sean.anderson@seco.com
 
-On Tue, Jul 09, 2024 at 05:17:52PM GMT, Rayyan Ansari wrote:
-> Hi,
-> The following patches convert all remaining old text bindings for
-> Qualcomm pinctrl to yaml, so device trees can be validated against the
-> schema.
+Hello:
+
+This series was applied to netdev/net-next.git (main)
+by Jakub Kicinski <kuba@kernel.org>:
+
+On Mon,  8 Jul 2024 14:09:48 -0400 you wrote:
+> Add dma-coherent property to fix below warning.
+> arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dtb: fman@1a00000: 'dma-coherent', 'ptimer-handle' do not match any of the regexes: '^ethernet@[a-f0-9]+$', '^mdio@[a-f0-9]+$', '^muram@[a-f0-9]+$', '^phc@[a-f0-9]+$', '^port@[a-f0-9]+$', 'pinctrl-[0-9]+'
+> 	from schema $id: http://devicetree.org/schemas/net/fsl,fman.yaml#
 > 
-
-Thanks for fixing these up!
-
-I think it would have been good to use andersson@kernel.org as the
-maintainer address, but I see the other bindings have the broken address
-as well, so I can follow up with a patch to change them all.
-
-Reviewed-by: Bjorn Andersson <andersson@kernel.org>
-
-Regards,
-Bjorn
-
-> Thanks,
-> Rayyan
+> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > 
-> Rayyan Ansari (4):
->   dt-bindings: pinctrl: qcom,apq8064-pinctrl: convert to dtschema
->   dt-bindings: pinctrl: qcom,ipq8064-pinctrl: convert to dtschema
->   dt-bindings: pinctrl: qcom,ipq4019-pinctrl: convert to dtschema
->   dt-bindings: pinctrl: qcom,apq8084-pinctrl: convert to dtschema
-> 
->  .../bindings/pinctrl/qcom,apq8064-pinctrl.txt |  95 ---------
->  .../pinctrl/qcom,apq8064-pinctrl.yaml         | 110 ++++++++++
->  .../bindings/pinctrl/qcom,apq8084-pinctrl.txt | 188 ------------------
->  .../pinctrl/qcom,apq8084-pinctrl.yaml         | 129 ++++++++++++
->  .../bindings/pinctrl/qcom,ipq4019-pinctrl.txt |  85 --------
->  .../pinctrl/qcom,ipq4019-pinctrl.yaml         | 102 ++++++++++
->  .../bindings/pinctrl/qcom,ipq8064-pinctrl.txt | 101 ----------
->  .../pinctrl/qcom,ipq8064-pinctrl.yaml         | 108 ++++++++++
->  8 files changed, 449 insertions(+), 469 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,apq8064-pinctrl.txt
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,apq8064-pinctrl.yaml
->  delete mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,apq8084-pinctrl.txt
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,apq8084-pinctrl.yaml
->  delete mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,ipq4019-pinctrl.txt
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,ipq4019-pinctrl.yaml
->  delete mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,ipq8064-pinctrl.txt
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,ipq8064-pinctrl.yaml
-> 
-> -- 
-> 2.45.2
-> 
+> [...]
+
+Here is the summary with links:
+  - [v4,1/2] dt-bindings: net: fsl,fman: allow dma-coherent property
+    https://git.kernel.org/netdev/net-next/c/dd84d831ef27
+  - [v4,2/2] dt-bindings: net: fsl,fman: add ptimer-handle property
+    https://git.kernel.org/netdev/net-next/c/5618ced01979
+
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
+
 
