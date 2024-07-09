@@ -1,124 +1,173 @@
-Return-Path: <devicetree+bounces-84111-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84114-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0683D92B09C
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 08:51:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF10292B0A6
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 08:52:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 37D0D1C21646
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 06:51:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 37DC41F249E9
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 06:52:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5ACD8152190;
-	Tue,  9 Jul 2024 06:50:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3EC713E032;
+	Tue,  9 Jul 2024 06:50:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="PQipfchM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ijTIYMUE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECB611514C3;
-	Tue,  9 Jul 2024 06:50:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 751ED13C3CC;
+	Tue,  9 Jul 2024 06:50:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720507830; cv=none; b=nFfuyiRZPCS7jU7Z+iDbvTM7krgbD5y2t+aQTvjTKA846JBzIpc+r/cq+QjiDXAas7WHWl7LDe8ePuVMoGTfwu16Yc3E/kxTDevp1l1wKGjudohaeYNRbSm9fzer5PMnMB2s74tO/4uy5sVSjUbOlulEw89y7Jm/Y+K2oLoLtR4=
+	t=1720507844; cv=none; b=NbozgeJ/eipFcK/8bKBcTqbZxDGNRIleuykfYgzwmDJ9FeohMw1tDI5gyKO3O1egFFiFqN+Zs6irYDkD94VTIv0pFmP3vyNthdU3pBN2haDtwWGqk8HTnfH/CnMqbKz/JlibDWQodML+pp0aXaBShn6AHxKu41YjJif17D1cJ6M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720507830; c=relaxed/simple;
-	bh=BC53NUr5S1tyon6u7PNyp0ncpVxZDaFWVQC6lOvIsPs=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=qTg48YSM0uUUhM7z13YmQcvxuOKWU71tTknaeZeS2ora7Gxniixfvv/sV9EzbqDxv1diDQfHJDn2FYypJa01+aJ9cw/LCyBR+UlHAmXIDa0LVSin/54AClN5agUASxZmoC6VtIax/2yxOWRSd60K21mXiVva0gtnOijwDCSO5U0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=PQipfchM; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 468MxNuY003205;
-	Tue, 9 Jul 2024 06:50:26 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	8AXDN2cjC6HX8I8LZqU07wi/8NyC63TdGCzNBVTdp1s=; b=PQipfchMdlnON4E2
-	BxkkXuw+5C7mBkOQA0z++hIIiDzAVuriW8AJHvnDDVwqj7w5mVVP/ea21jmrckNu
-	mNNvhMOM1TtRQ99IfyMFik7ucjVrq4RTyAoU1mVODLoM4fWmqcaWRp23Fsr25yqj
-	ZrsysHAhuQh2aeM+duuOxHDPOMQaalinPbxrCuZ7NSghJrNc0y4X8ddNbDWJ9lH8
-	xGZ/5uOYE8o4i59mHATholrcnG73x66iSoCuHAjbW7bf7SvPjDo42+c/3oINU96u
-	aV2HNRjYRr5V/etDpqyYsAVYhc3AAeLc/fG41UhuxF8lidT9rBZHI1at13pjF1ZV
-	C7UAaQ==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 406x515q2c-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 09 Jul 2024 06:50:25 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA05.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 4696oPZq021625
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 9 Jul 2024 06:50:25 GMT
-Received: from hu-nainmeht-hyd.qualcomm.com (10.80.80.8) by
- nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Mon, 8 Jul 2024 23:50:21 -0700
-From: Naina Mehta <quic_nainmeht@quicinc.com>
-To: <andersson@kernel.org>, <mathieu.poirier@linaro.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <konrad.dybcio@linaro.org>, <manivannan.sadhasivam@linaro.org>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-remoteproc@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_nainmeht@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Subject: [PATCH v4 5/5] arm64: dts: qcom: sdx75-idp: enable MPSS remoteproc node
-Date: Tue, 9 Jul 2024 12:19:24 +0530
-Message-ID: <20240709064924.325478-6-quic_nainmeht@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240709064924.325478-1-quic_nainmeht@quicinc.com>
-References: <20240709064924.325478-1-quic_nainmeht@quicinc.com>
+	s=arc-20240116; t=1720507844; c=relaxed/simple;
+	bh=3giE4+saP+d7eJZS8OHs0mrpLvS9f7Y4bLyfdFvArS0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WPjGnbv8CbMpzwXW9LZSjrqbfAjDLlG6GhFCAGbY4/PoocoO2n0BtLtJEbLawbX1+Jx2DSc6tS8Q101kIPVefAuENphGOOaoZLKzo+GFqNo1edsQItsHgGadgX1M0IGl4h1rAOaHzlh3/6E4TDEAL6Ks7nwCQ0jYEwIl6FRmiQA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ijTIYMUE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C759EC4AF0A;
+	Tue,  9 Jul 2024 06:50:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720507844;
+	bh=3giE4+saP+d7eJZS8OHs0mrpLvS9f7Y4bLyfdFvArS0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ijTIYMUE7thcEpcNpzkNMd0UQosPV/hE9Tu9hAa/uQl3BOTfAVAbEREoC98CWZPf5
+	 OOXjwA75BCEzqpqvz0TvdArzEpGOARvf+uZhvbiLvDs41xeR8O6jYethTf0jOxWzH1
+	 aH3nx8P5bYwxSTLtsFMZNDBD+zvW4ZCkNnfdKpY4uM/+62OTzhqS/N0LlDt+f//Nls
+	 15UcGWNCBhn5AsaoOpzOQdQIvIj4XfZ1TUbiQq1Shs5df2gCBXB0WaN/ert/tpxLcr
+	 jRqAcCCKz2R/tRPdlVlehQyscxQ8MLgGhWFeN9ngQO+kJsS6j1KN3oX9PpYu6DVHvV
+	 Hbm/nE2SIuwJg==
+Message-ID: <35667bd4-bfb4-4939-9fd7-328e2e8c228f@kernel.org>
+Date: Tue, 9 Jul 2024 08:50:35 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: aGpN8HRr2X-0rx4Qx7IvXXYCdAzn9YMs
-X-Proofpoint-ORIG-GUID: aGpN8HRr2X-0rx4Qx7IvXXYCdAzn9YMs
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-07-08_15,2024-07-08_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 adultscore=0
- suspectscore=0 impostorscore=0 mlxlogscore=962 mlxscore=0 bulkscore=0
- priorityscore=1501 malwarescore=0 lowpriorityscore=0 phishscore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2406140001 definitions=main-2407090044
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 02/10] dt-bindings: display: imx: Add i.MX8qxp Display
+ Controller display engine
+To: Maxime Ripard <mripard@kernel.org>
+Cc: Liu Ying <victor.liu@nxp.com>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ p.zabel@pengutronix.de, airlied@gmail.com, daniel@ffwll.ch,
+ maarten.lankhorst@linux.intel.com, tzimmermann@suse.de, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org,
+ s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+ tglx@linutronix.de
+References: <20240705090932.1880496-1-victor.liu@nxp.com>
+ <20240705090932.1880496-3-victor.liu@nxp.com>
+ <cd558335-6e72-46d1-911b-68ccbb211136@kernel.org>
+ <b9583c86-b5ed-4642-9baf-2ac850656ee3@nxp.com>
+ <eda90514-e40c-4edd-8c15-18717a5e9784@kernel.org>
+ <20240708-mega-nautilus-of-champagne-cd4be6@houat>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240708-mega-nautilus-of-champagne-cd4be6@houat>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Enable MPSS remoteproc node on sdx75-idp platform.
+On 08/07/2024 16:52, Maxime Ripard wrote:
+> On Mon, Jul 08, 2024 at 04:04:21PM GMT, Krzysztof Kozlowski wrote:
+>> On 08/07/2024 08:40, Liu Ying wrote:
+>>>>> +
+>>>>> +  "^framegen@[0-9a-f]+$":
+>>>>> +    type: object
+>>>>> +    additionalProperties: true
+>>>>> +
+>>>>> +    properties:
+>>>>> +      compatible:
+>>>>> +        const: fsl,imx8qxp-dc-framegen
+>>>>> +
+>>>>> +  "^gammacor@[0-9a-f]+$":
+>>>>
+>>>> This looks like you are organizing bindings per your driver architecture.
+>>>
+>>> As I mentioned in cover letter, this series addresses Maxime's
+>>> comment for the previous series - split the display controller
+>>> into multiple internal devices.  Maxime insisted on doing this.
+>>
+>> But these are not separate devices. Look:
+>> 1. parent DC:
+>> reg = <0x56180000 0x40000>;
+>>
+>> 2. child interrupt controller:
+>> reg = <0x56180040 0x60>;
+>>
+>> That address is within parent.
+>>
+>> 3. Then we go to things like:
+>> reg = <0x5618b400 0x14>, <0x5618b800 0x1c00>;
+>>
+>> Still within parent's range and just few words in address range. That's
+>> a clear indication that you choose few registers and call it a "device".
+> 
+> That's never really been a metric though?
+> 
+> If not, one could just create a "soc" device node covering the entire
+> register map, and since it would overlap despite clearly defined
+> features, you would claim it's a single device?
 
-Signed-off-by: Naina Mehta <quic_nainmeht@quicinc.com>
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/sdx75-idp.dts | 6 ++++++
- 1 file changed, 6 insertions(+)
+Since I do not create such one-address-soc devices, I claim I have
+separate devices in the SoC. Here is not the case: there is a device
+covering entire address space.
 
-diff --git a/arch/arm64/boot/dts/qcom/sdx75-idp.dts b/arch/arm64/boot/dts/qcom/sdx75-idp.dts
-index fde16308c7e2..f1bbe7ab01ab 100644
---- a/arch/arm64/boot/dts/qcom/sdx75-idp.dts
-+++ b/arch/arm64/boot/dts/qcom/sdx75-idp.dts
-@@ -282,6 +282,12 @@ &qupv3_id_0 {
- 	status = "okay";
- };
- 
-+&remoteproc_mpss {
-+	firmware-name = "qcom/sdx75/modem.mbn",
-+			"qcom/sdx75/modem_dtb.mbn";
-+	status = "okay";
-+};
-+
- &sdhc {
- 	cd-gpios = <&tlmm 103 GPIO_ACTIVE_LOW>;
- 	vmmc-supply = <&reg_2v95_vdd>;
--- 
-2.34.1
+Soc is a good example, because components/blocks of the SoC are being
+re-used among different SoCs. Is the case here?
+
+BTW, it could be that some of the sub-devices here are worth to be
+devices, I agree.
+
+Best regards,
+Krzysztof
 
 
