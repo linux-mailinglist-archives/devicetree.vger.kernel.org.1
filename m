@@ -1,198 +1,126 @@
-Return-Path: <devicetree+bounces-84232-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84233-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8801C92B789
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 13:24:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26AED92B7B1
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 13:25:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0905A1F215CD
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 11:24:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 586081C22F7F
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 11:25:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1B211586C4;
-	Tue,  9 Jul 2024 11:24:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5CEE15749F;
+	Tue,  9 Jul 2024 11:25:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="lmehysXV"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="xb1PCr3Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F203B14E2F4
-	for <devicetree@vger.kernel.org>; Tue,  9 Jul 2024 11:24:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52AB527713
+	for <devicetree@vger.kernel.org>; Tue,  9 Jul 2024 11:25:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720524253; cv=none; b=IbHElo5/PtYaWj/rNDuweY9Y74mEJj1wuT6t8HxfMqo4tCVxUchclG5X6toN2F5zkNsB5MwHEkoh7KDy2dN4SJXFn7Nsh0b/9cqIh0ZQFMXjS1NPMFIFbSvU1uqQ4GXktAioR9Feycw079xnnGbk+KV97hXVZo6H1IjM0cftUcQ=
+	t=1720524356; cv=none; b=sleIoh/kXXgT1oUzVLFPd5IIaL1js09V7Bs/1N/uaCk8ZX54LtfVC8EU3x4Q3acNOId4BuhiL8T305KNXN8XyWJIV1Y9Q8IzXVHuDjH5AO1SWnaLRcU3YLO7IZhqWRMuzbPog5rlKti5pshRTp1ZGl9zBIceJWmPUGj1o5yoLtA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720524253; c=relaxed/simple;
-	bh=1MDJFZmhN4cjLdwbHrVgqeEpMRkRNvMhwuIEZxPSukM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=S8y05ZXco6DZcOIs76Lnf3UdVgLpATvnEZKiREIloTQAiB4zxU6w3uMmz6KkkMGdr92gbSPUaIOumsOOgMPWQ87fUO8PIjGq/eUKhlHGHdmLEsIuL66ysRKaa/dIcTl0tbia2V6srxh3Hwrog8EEd2uA0JKKXeh98SNqdhUiUXc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=lmehysXV; arc=none smtp.client-ip=209.85.208.169
+	s=arc-20240116; t=1720524356; c=relaxed/simple;
+	bh=vvcwRkM3OuNTwdiB+rwHmWDHQxrEcGpnnFXILUWOzkQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=RAu0Lhc6Fc23dPeA0R7Sfy2Mc0Yp8d0rgLquxovgmDEW5LXAXY1CQIirDHah1tLuUDCzZQSmIxhB2a311/J7snPKRVdlUEkacliYHWkVS8z3xTcLLoqBerjMiv+5z3UtUpjabelIioM7n0lnemHvw1M2Fn51taqWorLTRzY5bfU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=xb1PCr3Q; arc=none smtp.client-ip=209.85.128.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2ee920b0781so48064871fa.1
-        for <devicetree@vger.kernel.org>; Tue, 09 Jul 2024 04:24:11 -0700 (PDT)
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-42561c16ffeso35590465e9.3
+        for <devicetree@vger.kernel.org>; Tue, 09 Jul 2024 04:25:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1720524250; x=1721129050; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1720524354; x=1721129154; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=FaZ65vMVctoeY1+JoopMmTUB0GH0nO8ULrnOSO2EWao=;
-        b=lmehysXV5H2V3wq4JTIzDzYSpcm8YA03p+YirIWEs4QkhTWZrtPlI1YYgU2e2ErcLA
-         ftRVyTBWymuC3R64d9Ect9GHmGu5S6kVIoXLcuO+kE1Gy6OVORpDWHyGaPw7fVQsffuJ
-         qF6Jb8vDFVMeDlY6P2a8DzH8EpP+SRuIw7kJlxZKVPot1GfjlTWBq3y2G9Y8BO9nzeGk
-         OS+Bu9zL7nkUaZ9qGlyaQVGy0jJ2VH+zz/XkiW5Mtvyij41C3Y/eQFvaCrFsdGKhKolh
-         MmgUYdTlhEGn9ncx9R38+Nn3DETAfmfu4J2pCRuznqYhmNnb9xntDXCzblcYm8bVstFM
-         2TgQ==
+        bh=YfvGjeFG4a32Sifih9R0O4zMufu9Pz8z2RfvikPSPHY=;
+        b=xb1PCr3Q5SlATkx0icGFBSkllrJrS5sb53tLnukqOpmzRE6pw0+27j3kEK0ujlSndZ
+         KyFjjN8Jwm173NOiSoV+1mlxeCz+1w9bhsEDQDoX7Bb9kZRCg7ocKOMtPACWXUs1JeiR
+         TCsMA45huAQhNYcts9TWuyelr+SHnAvFFZipLg/lAmXjWxlcPavrKlJS9+UTGyQrn9r3
+         hzXvpOmeh753KXvWUsKKYGp4f0AQbD5gymP8fqj5rhcS+s+XhFHxNwxo3NWn76umRLx1
+         Yc6+jN7w5HauGYqSkx+ZBzS/svY+YkumzbQeNlOe1BnzJPfzaqbSlRC3SBqkFHzC0XeR
+         F5ow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720524250; x=1721129050;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1720524354; x=1721129154;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=FaZ65vMVctoeY1+JoopMmTUB0GH0nO8ULrnOSO2EWao=;
-        b=uOM3TnE94eckllPOXqTjMiE0/os4sc2t9z1I5/glt04Msj5STft/OGsHaogHEMlMlT
-         DAVaGY1Aii8RUzYAQEtGr+GJfIYexRaWF079RT/INbxc9mkRGu7OwMa4pGj2iyrI3emk
-         AbO4D0DJHvsdSJ8khTVPTNN/YWswce+3d7BcBNpAlsrmD/qq9YoVS2Rj34heKj3Dlkuw
-         0/HyJ6nsvqXjwSXrcWyhRzhbXR0gmi2uIAgplUk6hOh9L8PVjZtXpqiVH3WPE1n8EJch
-         Ld5x7W9xN/f3ajrYnAVdbOG/Pjyrmcuwt+WLUXaunyZGH/iNPf+irhXpUhX0pze13Z5V
-         pxEA==
-X-Forwarded-Encrypted: i=1; AJvYcCW2bq1zSkHC5Wp2FqvkHHqcuI2b9kTBPDWJ4hNVERxIxxwZv93NygUQdamKALIUSX4DAtfudD3xTGnBNVLX53OY7AWd5DuIPUYBMw==
-X-Gm-Message-State: AOJu0Ywzv5rzznxvuv4qavgexkvr4Tju4CYOGTgPaQxfqEQJjiZig2yL
-	0kMOjLgTms/9yHXOhHv+bogrcrGxxhaxwV/I8p9NorHHmtCYAfavkPyfdus2gxnqkLaCNLRJkzZ
-	Ustl/TWcA5cB5RWAxAwC218DPswuUWDIzoVyTLQ==
-X-Google-Smtp-Source: AGHT+IGkGJ9ZbQ1uEPkn0q2nvbsxFja022IJ3dsvF/JlzuYh1rz8b0N6+PqWWMO4jqeQxNHabQImzrsDTEoQcO0OoA4=
-X-Received: by 2002:a2e:8784:0:b0:2ec:51fc:2f5a with SMTP id
- 38308e7fff4ca-2eeb30ba00dmr14698871fa.4.1720524249967; Tue, 09 Jul 2024
- 04:24:09 -0700 (PDT)
+        bh=YfvGjeFG4a32Sifih9R0O4zMufu9Pz8z2RfvikPSPHY=;
+        b=hZd1ZFZa/itvl2m0sHuYKrRIMogE8oWvc4pAGh4X+TvVhMvUOVrRG/34NuFxNJNs81
+         Rcnh7fOUC2rwhLC1CoiIh802bcWKeydbZnZgI8TujJ2zHpXcoAuYEN0Nr+2P0WkhVo0j
+         v97EaMWzqymLvEK8KBEyk+B+cPfkfbCocskSQseV79uKa7tQKfG95PlS3cAoeQAcxFw6
+         npD+O+Bxw90dL7JkCG3O43O1jWdgT0Aj6jhkvRCrFN2RE7bzToOj3V6rmQN+53+XCg+h
+         4WDRNT70xJm/LxDasGnQQmGHjnTm3VBnqY8RRTm7B9GiC/5/PLc66j58bMbZomIB6yjP
+         W8GA==
+X-Forwarded-Encrypted: i=1; AJvYcCWAIQSdNP85ojI/jJlu+H5o76O4kGoIxOx0kyrSMs2h8v1FfU2uh0JMoWqCSQ4ixEFVP9fE6pNLNxqblP9YvXrvGoh2KNa6JybLNQ==
+X-Gm-Message-State: AOJu0Ywq2mjsptJY1Za6HdPbKjAAYr+X/BmpULB80iWL+6OScaAyPT56
+	G8Xtkk70c/OfuBWV7cBzUu96IDSSlp6DgBZVKPNFPOAKpe0p3bKKGvLmE6BM+oY=
+X-Google-Smtp-Source: AGHT+IEwiUV54wszrwv/TVpmnu4opeBXJ7Hz9ZlHIOaHbIMMziKYWgHtgwNOIGC1RqDnTBuWbmkq/Q==
+X-Received: by 2002:a5d:54d2:0:b0:367:40b9:e9e6 with SMTP id ffacd0b85a97d-367cea67e6dmr1515785f8f.21.1720524353582;
+        Tue, 09 Jul 2024 04:25:53 -0700 (PDT)
+Received: from brgl-uxlite.home ([2a01:cb1d:dc:7e00:c270:70c:8581:7be])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-367cde7e039sm2307724f8f.2.2024.07.09.04.25.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 Jul 2024 04:25:53 -0700 (PDT)
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+To: linus.walleij@linaro.org,
+	brgl@bgdev.pl,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	nicolas.ferre@microchip.com,
+	alexandre.belloni@bootlin.com,
+	claudiu.beznea@tuxon.dev,
+	arnd@arndb.de,
+	durai.manickamkr@microchip.com,
+	linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Manikandan Muralidharan <manikandan.m@microchip.com>
+Cc: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v3 4/5] dt-bindings: gpio: convert Atmel GPIO to json-schema
+Date: Tue,  9 Jul 2024 13:25:51 +0200
+Message-ID: <172052434347.27822.16864713604407945517.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240709092354.191643-5-manikandan.m@microchip.com>
+References: <20240709092354.191643-1-manikandan.m@microchip.com> <20240709092354.191643-5-manikandan.m@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240708-hci_qca_refactor-v2-2-b6e83b3d1ca5@linaro.org> <202407091813.9IlBCkUP-lkp@intel.com>
-In-Reply-To: <202407091813.9IlBCkUP-lkp@intel.com>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Tue, 9 Jul 2024 13:23:58 +0200
-Message-ID: <CAMRc=Mf9OVsEfe7AZwJa2v1Srjn=3bM6roXvgfF3ALahREY6XA@mail.gmail.com>
-Subject: Re: [PATCH v2 2/6] Bluetooth: hci_qca: schedule a devm action for
- disabling the clock
-To: kernel test robot <lkp@intel.com>
-Cc: Marcel Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Balakrishna Godavarthi <quic_bgodavar@quicinc.com>, Rocky Liao <quic_rjliao@quicinc.com>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, llvm@lists.linux.dev, 
-	oe-kbuild-all@lists.linux.dev, netdev@vger.kernel.org, 
-	linux-bluetooth@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-On Tue, Jul 9, 2024 at 12:34=E2=80=AFPM kernel test robot <lkp@intel.com> w=
-rote:
->
-> Hi Bartosz,
->
-> kernel test robot noticed the following build warnings:
->
-> [auto build test WARNING on 0b58e108042b0ed28a71cd7edf5175999955b233]
->
-> url:    https://github.com/intel-lab-lkp/linux/commits/Bartosz-Golaszewsk=
-i/dt-bindings-bluetooth-qualcomm-describe-the-inputs-from-PMU-for-wcn7850/2=
-0240708-175040
-> base:   0b58e108042b0ed28a71cd7edf5175999955b233
-> patch link:    https://lore.kernel.org/r/20240708-hci_qca_refactor-v2-2-b=
-6e83b3d1ca5%40linaro.org
-> patch subject: [PATCH v2 2/6] Bluetooth: hci_qca: schedule a devm action =
-for disabling the clock
-> config: x86_64-allyesconfig (https://download.01.org/0day-ci/archive/2024=
-0709/202407091813.9IlBCkUP-lkp@intel.com/config)
-> compiler: clang version 18.1.5 (https://github.com/llvm/llvm-project 617a=
-15a9eac96088ae5e9134248d8236e34b91b1)
-> reproduce (this is a W=3D1 build): (https://download.01.org/0day-ci/archi=
-ve/20240709/202407091813.9IlBCkUP-lkp@intel.com/reproduce)
->
-> If you fix the issue in a separate patch/commit (i.e. not just a new vers=
-ion of
-> the same patch/commit), kindly add following tags
-> | Reported-by: kernel test robot <lkp@intel.com>
-> | Closes: https://lore.kernel.org/oe-kbuild-all/202407091813.9IlBCkUP-lkp=
-@intel.com/
->
-> All warnings (new ones prefixed by >>):
->
->    drivers/bluetooth/hci_qca.c:2495:2: warning: label at end of compound =
-statement is a C23 extension [-Wc23-extensions]
->     2495 |         }
->          |         ^
-> >> drivers/bluetooth/hci_qca.c:2494:2: warning: unannotated fall-through =
-between switch labels [-Wimplicit-fallthrough]
->     2494 |         default:
->          |         ^
->    drivers/bluetooth/hci_qca.c:2494:2: note: insert '__attribute__((fallt=
-hrough));' to silence this warning
->     2494 |         default:
->          |         ^
->          |         __attribute__((fallthrough));
->    drivers/bluetooth/hci_qca.c:2494:2: note: insert 'break;' to avoid fal=
-l-through
->     2494 |         default:
->          |         ^
->          |         break;
->    2 warnings generated.
->
->
-> vim +2494 drivers/bluetooth/hci_qca.c
->
-> 05ba533c5c1155 Thierry Escande                2018-03-29  2478
-> 05ba533c5c1155 Thierry Escande                2018-03-29  2479  static vo=
-id qca_serdev_remove(struct serdev_device *serdev)
-> 05ba533c5c1155 Thierry Escande                2018-03-29  2480  {
-> 05ba533c5c1155 Thierry Escande                2018-03-29  2481          s=
-truct qca_serdev *qcadev =3D serdev_device_get_drvdata(serdev);
-> 054ec5e94a46b0 Venkata Lakshmi Narayana Gubba 2020-09-10  2482          s=
-truct qca_power *power =3D qcadev->bt_power;
-> 05ba533c5c1155 Thierry Escande                2018-03-29  2483
-> 691d54d0f7cb14 Neil Armstrong                 2023-08-16  2484          s=
-witch (qcadev->btsoc_type) {
-> 691d54d0f7cb14 Neil Armstrong                 2023-08-16  2485          c=
-ase QCA_WCN3988:
-> 691d54d0f7cb14 Neil Armstrong                 2023-08-16  2486          c=
-ase QCA_WCN3990:
-> 691d54d0f7cb14 Neil Armstrong                 2023-08-16  2487          c=
-ase QCA_WCN3991:
-> 691d54d0f7cb14 Neil Armstrong                 2023-08-16  2488          c=
-ase QCA_WCN3998:
-> 691d54d0f7cb14 Neil Armstrong                 2023-08-16  2489          c=
-ase QCA_WCN6750:
-> 691d54d0f7cb14 Neil Armstrong                 2023-08-16  2490          c=
-ase QCA_WCN6855:
-> e0c1278ac89b03 Neil Armstrong                 2023-08-16  2491          c=
-ase QCA_WCN7850:
-> d12f113a15e826 Bartosz Golaszewski            2024-07-08  2492           =
-       if (power->vregs_on)
-> c2d7827338618a Balakrishna Godavarthi         2018-08-22  2493           =
-               qca_power_shutdown(&qcadev->serdev_hu);
-> 691d54d0f7cb14 Neil Armstrong                 2023-08-16 @2494          d=
-efault:
-> 691d54d0f7cb14 Neil Armstrong                 2023-08-16 @2495          }
-> fa9ad876b8e0eb Balakrishna Godavarthi         2018-08-03  2496
-> fa9ad876b8e0eb Balakrishna Godavarthi         2018-08-03  2497          h=
-ci_uart_unregister_device(&qcadev->serdev_hu);
-> 05ba533c5c1155 Thierry Escande                2018-03-29  2498  }
-> 05ba533c5c1155 Thierry Escande                2018-03-29  2499
->
-> --
-> 0-DAY CI Kernel Test Service
-> https://github.com/intel/lkp-tests/wiki
+From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-Ah, cr*p.
 
-Third time's the charm, I guess...
+On Tue, 09 Jul 2024 14:53:53 +0530, Manikandan Muralidharan wrote:
+> Convert the Atmel GPIO controller binding document to DT schema format
+> using json-schema.
+> The at91 pinctrl driver uses "atmel,at91rm9200-gpio" compatible string
+> to find the number of active GPIO banks and identify the pinmux nodes.
+> "atmel,at91sam9x5-gpio" and "microchip,sam9x60-gpio" have additional
+> registers to handle drive-strength, slew-rate,  pull-down to drive the
+> pinmux configs.
+> The new compatible string "microchip,sam9x7-gpio" is added.
+> 
+> [...]
 
-Bart
+Applied, thanks!
+
+[4/5] dt-bindings: gpio: convert Atmel GPIO to json-schema
+      commit: 337049890b8cbbb4fb527c58976ea19f4dc747a0
+
+Best regards,
+-- 
+Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
