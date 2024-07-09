@@ -1,155 +1,212 @@
-Return-Path: <devicetree+bounces-84441-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84442-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28D4D92C351
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 20:33:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FBF092C36F
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 20:44:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CBF1A284436
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 18:33:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A21371C22829
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 18:43:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E058E18002F;
-	Tue,  9 Jul 2024 18:33:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60CF7182A54;
+	Tue,  9 Jul 2024 18:43:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="f3wgpTzP"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="akNPpfxv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20BA81B86E4;
-	Tue,  9 Jul 2024 18:33:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2CDF18005D;
+	Tue,  9 Jul 2024 18:43:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720549988; cv=none; b=pATITgVXjyjWwX7Xl0/xeJW/wXV1Nzqqml3slJRleJY7mO9TaYU8o68gO/77pkBNHPPTdMCa7+nUK/kqBUyrUxWc0WQr46H8AhTlmuH6FJKh3emJEC7ezqEI7VGkOnYsWWis08XiK87BAq4PJTWVNMjGCfAF4QJNsx9/3SvGzFc=
+	t=1720550629; cv=none; b=mfzLk48V5gXCsXq5EkVvZWlSn22PLmAEjyeT9oRhaDUlcbVtv8yVB9J7QsW8ntkJlT1Dv4hRASjfUMIzjL89UqQ4rzAtLRlnAlqGWZ0xhxzw/KsFN8zts9p+bEug5xap+E72dMT98swX94xZ4RE/4V2BYrELHG+ZyuwDRQlpiek=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720549988; c=relaxed/simple;
-	bh=o7KezNssQ10KvpArozHaQDe0vjPmXwq+WBOthEhLB8s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jZZ6ldreUDJRgX+7ndyk9olQOUup7JevHeY9A8zLcNN9Qa0lXRSSVg1ff4u5rkFktyp3e2z3ifzR1wH5gG0+B/aXgI4tWJ/iysPL3nGwQc2/gjYjtPraagMln3j1l+k7W5ylNJn6S+wJcyDR0sb4ofIC1BV83epyDKlNKoPLs6I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=f3wgpTzP; arc=none smtp.client-ip=209.85.167.46
+	s=arc-20240116; t=1720550629; c=relaxed/simple;
+	bh=VCkxZ+pGG+YSVbanqtrhKtfrCSVwsi7AFT3M1DJIRSY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=cW0siFjtJcZdtqrElMTKzUkB61yvOgVCAaT/wTbX5Fam4wfJhrxWscsbR2GdxdhHktIlicrb7KVSHT+wHh4Ilb/djiAA6XHhzlXTK9K/5DsHslSnRXGtjqtD8/8uerWZileoYM1ZGzKRtQCv3qk1bXiOvtL6v3NebUB0arr1o1g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=akNPpfxv; arc=none smtp.client-ip=209.85.167.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-52e99060b41so5924461e87.2;
-        Tue, 09 Jul 2024 11:33:06 -0700 (PDT)
+Received: by mail-oi1-f172.google.com with SMTP id 5614622812f47-3d93df6b54dso618179b6e.2;
+        Tue, 09 Jul 2024 11:43:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1720549985; x=1721154785; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=qQvoh/iNTo3TxS26T9ik+xylt2WEP99UjL3OjvGhQKQ=;
-        b=f3wgpTzPyG4pT78beBhwK1NyaNHB2V1VGH51bkdGguBUnoV/T5p076l+p3r7+LdCn1
-         aaglEda3dqHXakXAR2OlZ9FI3N0m18w4nQTo3R2MI7xq7+hf35SImzjZ6lrl3w9r+UoH
-         BMFoprQ8Ss0IKe/tEW/URD+Y71FZcq0Df27NdS95Zg/wkwZgWgxhwoHWNdVcNYWEjece
-         0d1Y4/puLW+rIVSr5hDPNLVszkXSbq0DTdiOvGPvZM9PSpYbQZzSrtBsf9eQACti9QKl
-         1l8HXKK3cMZNIKILz5rplrfIlkqSqOtJAj/n69+U3LOU676dUE6xphd45ZalBCK6el9l
-         lpBQ==
+        d=gmail.com; s=20230601; t=1720550627; x=1721155427; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=/EJpK7h0+8kfla+x9mc6dab7bKKbfLCaCqSeT7reyNM=;
+        b=akNPpfxvUdliG6i9mZCH8d6rqB/vhI3Zdx11hVUDjuwgKOQ0geo+UrDzw/RKGqtzFo
+         mk52qbVV/rjaGyY1wReNoSEUAm1+q0lphfyR17Au/e9zCj8PIwt5FQbiYxjBNYBZVafy
+         Kc2jKJhi7VsM+mJXbpMc5hujQzkvAN7XggfBk7OZeJhUhGel1HdDubGHmf8FOzNYE4Y6
+         udZhpWTizPGezaY1UMSQ4G45H97wskEgOT5lmjophuLVb3O+Uk3sWEiDiJIgwUCpJLcS
+         EUe808aU2orEhutjzDk0iEFDSucnAJSSkSzHo+mgWZK+Pa5UPbP0j6RSa1akMuxxINAd
+         IqvQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720549985; x=1721154785;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qQvoh/iNTo3TxS26T9ik+xylt2WEP99UjL3OjvGhQKQ=;
-        b=ZVhMhD74UOTuQE8pM797rUARTJkpAnY7+6eB7pJfH+IhgIq4Rj4REP4LqVCmKCj22j
-         v7etGYBm2X8v7kRMCiI31oQGxEgObBs2/FXc+FiiQ/alXvJ8OVr731PaGX+0TodGpXUT
-         tpEZCGH+v3dP5PKVdEbZgXWeIyoou8gpgHT+LLFzk5uchFcFdgw+a226t34CVfvc+f6d
-         lhu/Nc/uQDsiWPwUGnRC9xTnRCNXTbITtbkouZQ3SRHYjM6pgaOehA2mOZ21fVR0295k
-         8JwQqzL4RHbwO/miMQOgYcG6pOKiPiiOjl3aFHZxTMOuJ0Ku1ED2hxY3onYbm5kTlD06
-         qZPw==
-X-Forwarded-Encrypted: i=1; AJvYcCXgHS16Ijt86oohdMiGAWHiYcxtRjH4o074QXOTDdfJzaUg66VZpk+TyP7+qZJY9L2F28y6uJCa75AXD2HYpn8DpfQJd+AY68AMOBXzPTxAuiesQHCn+k0lQQF/502ypBewaTiidkVmtyMAo6cfe6KwgeR1yYvHIK11IIDtj2blV8B8bg==
-X-Gm-Message-State: AOJu0YzBatt1r7zQ8ECVcBjc7pFy0mxh8mshslvUzT4VVcTuJpllMM0V
-	MLhyVdpZOSrA67YsxuzhBcqbmgQ9qnnhvFz1OND/2pPSmiyfEpCf
-X-Google-Smtp-Source: AGHT+IGdA6qBs/h5ifQa1NLYmmqBaEPCm7bXVlEOtK8ASpi7E8t7wW94TgDIp5nw4qBgiqUe1GdzHw==
-X-Received: by 2002:ac2:5605:0:b0:52e:97b3:42a1 with SMTP id 2adb3069b0e04-52eb9995536mr1796703e87.24.1720549984595;
-        Tue, 09 Jul 2024 11:33:04 -0700 (PDT)
-Received: from ?IPV6:2a10:a5c0:800d:dd00:8cfe:d6e7:6701:9dfd? ([2a10:a5c0:800d:dd00:8cfe:d6e7:6701:9dfd])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52eb8e493cdsm313069e87.85.2024.07.09.11.33.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 Jul 2024 11:33:03 -0700 (PDT)
-Message-ID: <2b66ea94-dd77-4e86-b09b-c00523bdbf75@gmail.com>
-Date: Tue, 9 Jul 2024 21:33:02 +0300
+        d=1e100.net; s=20230601; t=1720550627; x=1721155427;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/EJpK7h0+8kfla+x9mc6dab7bKKbfLCaCqSeT7reyNM=;
+        b=sB4TWWl+rekhsy5dFEPszmXHE1MOalCtaCc34mODY2ZuT/7HTCS8Xep9ZE+0ECooZu
+         91TQMeIjstDA1GcEnPHw7FxjdP0kLfegqfg/H1hdMsvehtopjJUw1TWLswjDICccr5gV
+         ggIIryol8z6tg94dkyPuQCj+Eqv8nIOWrCxPr8/oyD+5nDA/5VmzZEo4QxxYr08wg75I
+         Nkz0QD6lfaQ0aZp9V0ga+IEmJ+GUMfdUli5kMavXJ0XaelmbHGYFXtme5oCjDiGBMQAP
+         52z8s/XVT04fbWo9M3Pb1FW5fAntVAEAPP6A8eLhH3Cpm0Lsp4O8tRUH52/tCHlfNqaR
+         efOg==
+X-Forwarded-Encrypted: i=1; AJvYcCUS1OKULJEvQYzWmTyU/KkSMKmKc7SAQAGBB+qF8rLUmPdFc2rLrD8xT2r/lY5Eyanlvd/s8FoHbo4Pfv9gJEOqih2RdEaS6Xq1Fc53VUQCBGIxVav4IBHnknXXn95BXR59mNq043Qzrx1bCo846f0Qe3nk51P0EEQqRoo/+wiMFVrjJy4w
+X-Gm-Message-State: AOJu0YzQ5lM7oqqyAGTysNfe6ZBcx+L56sQ8iNWOqDqT7rgy7uiaQigE
+	1rG8oOPXwDZ8hv6OKKJ0Rmx7ZrwzkhjrX9UEeVYFbhhrhAEypHi0
+X-Google-Smtp-Source: AGHT+IETG2JaYyEkIUs57OEWEyQjKyGmBijThps0J2yxIds1meOyf1V8scuBk/IWotf98tiQ4xEPJA==
+X-Received: by 2002:a05:6808:148b:b0:3d9:2920:bc2f with SMTP id 5614622812f47-3d93bdd1669mr3866455b6e.10.1720550626620;
+        Tue, 09 Jul 2024 11:43:46 -0700 (PDT)
+Received: from fedora.. ([45.118.158.79])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-77d607d5fa5sm1741683a12.31.2024.07.09.11.43.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 Jul 2024 11:43:46 -0700 (PDT)
+From: Animesh Agarwal <animeshagarwal28@gmail.com>
+To: 
+Cc: Animesh Agarwal <animeshagarwal28@gmail.com>,
+	Daniel Baluta <daniel.baluta@nxp.com>,
+	David Rhodes <david.rhodes@cirrus.com>,
+	Richard Fitzgerald <rf@opensource.cirrus.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	patches@opensource.cirrus.com,
+	alsa-devel@alsa-project.org,
+	linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2] ASoC: dt-bindings: cirrus,cs4270: Convert to dtschema
+Date: Wed, 10 Jul 2024 00:12:25 +0530
+Message-ID: <20240709184231.125207-1-animeshagarwal28@gmail.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/7] dt-bindings: iio: rename bu27034 file
-To: Conor Dooley <conor@kernel.org>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
- Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <cover.1720176341.git.mazziesaccount@gmail.com>
- <f83cf0d6f5b0ed391703ea3908ebd65b3f6e5c87.1720176341.git.mazziesaccount@gmail.com>
- <20240708-eloquent-overdrive-092c7678f913@spud>
-Content-Language: en-US, en-GB
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <20240708-eloquent-overdrive-092c7678f913@spud>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 7/8/24 20:05, Conor Dooley wrote:
-> On Fri, Jul 05, 2024 at 01:54:26PM +0300, Matti Vaittinen wrote:
->> The BU27034NUC was cancelled before it entered mass production. It was
->> replaced by a new variant BU27034ANUC (note, added 'A'). The new
->> variant gained a few significant changes, like removal of the 3.rd data
->> channel and dropping some of the gain settings. This means that, from
->> software point of view these ICs are incompatible. Lux calculation based
->> on the data from the sensors needs to be done differently, and on the
->> BU27034ANUC the channel 3 data is missing. Also, the gain setting
->> differencies matter.
->>
->> The old sensor should not be out there so the compatible was dropped and
->> a new compatible was added for the bu27034anuc. Move the yaml file so
->> the file name matches the binding and change the $id.
->>
->> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
->> ---
->> Revision history:
->> v1 => v2:
->> - New patch
->> ---
->>   .../iio/light/{rohm,bu27034.yaml => rohm,bu27034anuc.yaml}      | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->>   rename Documentation/devicetree/bindings/iio/light/{rohm,bu27034.yaml => rohm,bu27034anuc.yaml} (92%)
->>
->> diff --git a/Documentation/devicetree/bindings/iio/light/rohm,bu27034.yaml b/Documentation/devicetree/bindings/iio/light/rohm,bu27034anuc.yaml
->> similarity index 92%
->> rename from Documentation/devicetree/bindings/iio/light/rohm,bu27034.yaml
->> rename to Documentation/devicetree/bindings/iio/light/rohm,bu27034anuc.yaml
->> index 535bd18348ac..fc3d826ed8ba 100644
->> --- a/Documentation/devicetree/bindings/iio/light/rohm,bu27034.yaml
->> +++ b/Documentation/devicetree/bindings/iio/light/rohm,bu27034anuc.yaml
->> @@ -1,7 +1,7 @@
->>   # SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>   %YAML 1.2
->>   ---
->> -$id: http://devicetree.org/schemas/iio/light/rohm,bu27034.yaml#
->> +$id: http://devicetree.org/schemas/iio/light/rohm,bu27034anuc.yaml#
->>   $schema: http://devicetree.org/meta-schemas/core.yaml#
-> 
-> IMO this should be squashed.
+Convert the Cirrus Logic CS4270 audio CODEC bindings to DT schema. Add
+missing va-supply, vd-supply and vlc-supply properties, because they
+are already being used in the DTS and the driver for this device.
 
-I've no objections to squashing this. The main motivation of having it 
-as a separate patch was to point out the file rename for reviewers and 
-ask if it is Ok. Furthermore, if there was a reason not to do the 
-rename, then this patch could've been just dropped while the rest of the 
-series could've been applied.
+Cc: Daniel Baluta <daniel.baluta@nxp.com>
+Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
 
-Thanks for the review!
+---
+Changes in v2:
+  - Added proper description for power supply properties.
+  - Added ref to dai-common.
+  - Added '#sound-dai-cells'.
+  - Dropped unused labels in example.
+  - Replaced example node name to a generic name.
+---
+ .../bindings/sound/cirrus,cs4270.yaml         | 59 +++++++++++++++++++
+ .../devicetree/bindings/sound/cs4270.txt      | 21 -------
+ 2 files changed, 59 insertions(+), 21 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/cirrus,cs4270.yaml
+ delete mode 100644 Documentation/devicetree/bindings/sound/cs4270.txt
 
-Yours,
-	-- Matti
-
+diff --git a/Documentation/devicetree/bindings/sound/cirrus,cs4270.yaml b/Documentation/devicetree/bindings/sound/cirrus,cs4270.yaml
+new file mode 100644
+index 000000000000..336e11773694
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/cirrus,cs4270.yaml
+@@ -0,0 +1,59 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/cirrus,cs4270.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Cirrus Logic CS4270 audio CODEC
++
++maintainers:
++  - patches@opensource.cirrus.com
++
++description:
++  The CS4270 is a stereo audio codec. The driver for this device currently only
++  supports I2C.
++
++allOf:
++  - $ref: dai-common.yaml#
++
++properties:
++  compatible:
++    const: cirrus,cs4270
++
++  reg:
++    maxItems: 1
++
++  '#sound-dai-cells':
++    const: 0
++
++  reset-gpios:
++    description:
++      This pin will be deasserted before communication to the codec starts.
++    maxItems: 1
++
++  va-supply:
++    description: Analog power supply.
++
++  vd-supply:
++    description: Digital power supply.
++
++  vlc-supply:
++    description: Serial Control Port power supply.
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      codec@48 {
++          compatible = "cirrus,cs4270";
++          reg = <0x48>;
++      };
++    };
+diff --git a/Documentation/devicetree/bindings/sound/cs4270.txt b/Documentation/devicetree/bindings/sound/cs4270.txt
+deleted file mode 100644
+index c33770ec4c3c..000000000000
+--- a/Documentation/devicetree/bindings/sound/cs4270.txt
++++ /dev/null
+@@ -1,21 +0,0 @@
+-CS4270 audio CODEC
+-
+-The driver for this device currently only supports I2C.
+-
+-Required properties:
+-
+-  - compatible : "cirrus,cs4270"
+-
+-  - reg : the I2C address of the device for I2C
+-
+-Optional properties:
+-
+-  - reset-gpios : a GPIO spec for the reset pin. If specified, it will be
+-		  deasserted before communication to the codec starts.
+-
+-Example:
+-
+-codec: cs4270@48 {
+-	compatible = "cirrus,cs4270";
+-	reg = <0x48>;
+-};
 -- 
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
-
-~~ When things go utterly wrong vim users can always type :help! ~~
+2.45.2
 
 
