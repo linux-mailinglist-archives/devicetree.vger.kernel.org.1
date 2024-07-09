@@ -1,170 +1,85 @@
-Return-Path: <devicetree+bounces-84462-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84463-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D91D92C598
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 23:41:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F57F92C599
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 23:42:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 47D0C1F238AC
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 21:41:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5B5972842D3
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 21:42:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FC6C185602;
-	Tue,  9 Jul 2024 21:41:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD381185606;
+	Tue,  9 Jul 2024 21:42:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zdqnlp3c"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CYTWrZ/i"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB2181B86D4;
-	Tue,  9 Jul 2024 21:41:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 809681B86D4;
+	Tue,  9 Jul 2024 21:42:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720561287; cv=none; b=hKmNRwkQ0TcOGqAzfmtWthOwfFy10yTHN5I+3/FchRQ/HChmD6391ULfMnAkSGmKlg7FklJLCoG7XLNfT/ptyPiPsjxQsTB/EcO5D0L4C6xKcWiWexhhnH4Lzgz9QOExw7I2mZa8k5mgWWtVaXuU+xHAcLc0X+oYiWBuzmOfKms=
+	t=1720561354; cv=none; b=gvCgR69rub8or8F1r2323qcfR01yxJib6d1ywmp8vG0OlJVX+GboQjuPLYF6cdMhKxMEcYywer5X8KMKncZaeZeus8w0cRoGFFZimcXbBURxoPxLHQrEzDiAZZ6zvQwjo5uOvmg5vqUYYcvhouVRv2zjXRTr8GyoRxJqDpjJt3o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720561287; c=relaxed/simple;
-	bh=SbPui1m3AbW2qMNDA/2hyBzJDO2nizxqPFCaBUQhvh4=;
+	s=arc-20240116; t=1720561354; c=relaxed/simple;
+	bh=4y+u8QCjLbyxrdA7dU4qxf6989325Mqo3KAHngjVpX8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DSb8KkwoL+pL0hk4NSEDREfzvrjUwAbb10LV2vj6qsl/80TgCKlXUIHMNP8F3TXmtG4oGYm1g92vat140XKbJy/MyQ1pGsLkEtHLpvhqhM4UFl2WBhO3oJI6Ur77LPwvFGuHx0n576lmYeHgi2iObNPUHarojAKkfOkz7Aj3XR4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zdqnlp3c; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 12C15C3277B;
-	Tue,  9 Jul 2024 21:41:24 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=QDJkjFjoOT2f5H7XJQIP2eQwlNXDcwMJTmqtvOAyrUdtm/LuWL+ugBfFGuT4R7pWEK7KKyP3cCr732KBZJEM64eiT8zMzidfpRhJALYSwZWlFIIOpgncXAU1iOfZ7yaot7bHSaeXmsuZEeJixxnDr8Wcd5toWw5RLrk6mJ4ysB4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CYTWrZ/i; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2BDE7C3277B;
+	Tue,  9 Jul 2024 21:42:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720561285;
-	bh=SbPui1m3AbW2qMNDA/2hyBzJDO2nizxqPFCaBUQhvh4=;
+	s=k20201202; t=1720561354;
+	bh=4y+u8QCjLbyxrdA7dU4qxf6989325Mqo3KAHngjVpX8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Zdqnlp3cfXCg1vtf8kYrFslpTxMjoIIVaYuKHXr3o9Zo5c9CssG94rFfBYPK1mIMF
-	 WGJQ0XQs1RiB6iccNf7Rd+irjH77f9A1PANeZ6XmWxre7vg6E9CiGUFGH+Xuu1ajvC
-	 dgMDk4XcpvCfRbv4neg6FTrwjUuhFDrSDvQocb/Gi0WOOLENSTCgswHGlcgwDYjYkR
-	 OBBMmrjp56WwlXBCYT5W7ifjmsMRBdwhQCLAVBeuGDGs2MdF3DBSDuaj7lVVz45nP9
-	 m4qXXRurak2mcvRWmOd2Bm4tF8kJpE8JrWQKEM31nifkiocXZFUN7aOWMh98TAtNm9
-	 Qq4w5krFTQHng==
-Date: Tue, 9 Jul 2024 23:41:21 +0200
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: netdev@vger.kernel.org, nbd@nbd.name, lorenzo.bianconi83@gmail.com,
-	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, conor@kernel.org,
-	linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, catalin.marinas@arm.com,
-	will@kernel.org, upstream@airoha.com,
-	angelogioacchino.delregno@collabora.com,
-	benjamin.larsson@genexis.eu, rkannoth@marvell.com,
-	sgoutham@marvell.com, arnd@arndb.de, horms@kernel.org
-Subject: Re: [PATCH v6 net-next 2/2] net: airoha: Introduce ethernet support
- for EN7581 SoC
-Message-ID: <Zo2ugWhc3wHqyKLq@lore-desk>
-References: <cover.1720504637.git.lorenzo@kernel.org>
- <bafc8bcf6c2d8c2b80e6bafebe3661d795ffcbee.1720504637.git.lorenzo@kernel.org>
- <68a37d33-6155-4ffc-a0ad-8c5a5b8fed25@lunn.ch>
+	b=CYTWrZ/i/1yKjJzl7IyJOu9AVf5GPrN0eXjBBmCFVEOhGFXeKjb6OByML8fNzhUAe
+	 a8fye4Z4AemXFXUzmUsfTPb8RAgq1q5SrB3W6Nn4qiCtiaeoD7L4kMUwvPfMrLowJQ
+	 CmwNTR1KgTxXndy8wXj8uxtecE4ZftERGiDuZdJUAYq6YBEanC/FINzG7/fs0VGpI9
+	 gLjQdOqxnZUCdnBmq3Bv9Saw4WvhU2YpEugJTWF3BZoBBSwqNkHkXJDcE7mfZm2w0W
+	 Ut892CrT4LO9fhTBrM/OMZiXobxbdvlWsLp3mpCqIhKxaTnsx+hhhJv+NdJf+NQVXu
+	 w3wI9ipVK1zcg==
+Date: Tue, 9 Jul 2024 23:42:29 +0200
+From: Andi Shyti <andi.shyti@kernel.org>
+To: Bastien Curutchet <bastien.curutchet@bootlin.com>
+Cc: Peter Rosin <peda@axentia.se>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Peter Korsgaard <peter.korsgaard@barco.com>, Wolfram Sang <wsa@kernel.org>, linux-i2c@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Herve Codina <herve.codina@bootlin.com>, 
+	Christopher Cordahi <christophercordahi@nanometrics.ca>
+Subject: Re: [PATCH v3 1/3] dt-bindings: i2c: gpio: Add 'settle-time-us'
+ property
+Message-ID: <6knnhpymug6qshunynoqg3ljwaamt6bbnak5k6vvblfmzs6csl@2vo4q6t2kxjc>
+References: <20240617120818.81237-1-bastien.curutchet@bootlin.com>
+ <20240617120818.81237-2-bastien.curutchet@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="Cq3ZvBjA33dFjzfY"
-Content-Disposition: inline
-In-Reply-To: <68a37d33-6155-4ffc-a0ad-8c5a5b8fed25@lunn.ch>
-
-
---Cq3ZvBjA33dFjzfY
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240617120818.81237-2-bastien.curutchet@bootlin.com>
 
-> > +static int airoha_qdma_init_rx_queue(struct airoha_eth *eth,
-> > +				     struct airoha_queue *q, int ndesc)
-> > +{
-> > +	struct page_pool_params pp_params =3D {
-> > +		.order =3D 0,
-> > +		.pool_size =3D 256,
-> > +		.flags =3D PP_FLAG_DMA_MAP | PP_FLAG_DMA_SYNC_DEV,
-> > +		.dma_dir =3D DMA_FROM_DEVICE,
-> > +		.max_len =3D PAGE_SIZE,
-> > +		.nid =3D NUMA_NO_NODE,
-> > +		.dev =3D eth->dev,
-> > +		.napi =3D &q->napi,
-> > +	};
->=20
-> I think you can make this const.
+Hi,
 
-ack
+On Mon, Jun 17, 2024 at 02:08:16PM GMT, Bastien Curutchet wrote:
+> I2C MUXes described by the i2c-gpio-mux sometimes need a significant
+> amount of time to switch from a bus to another. When a new bus is
+> selected, the first I2C transfer can fail if it occurs too early. There
+> is no way to describe this transition delay that has to be waited before
+> starting the first I2C transfer.
+> 
+> Add a 'settle-time-us' property that indicates the delay to be
+> respected before doing the first i2c transfer.
+> 
+> Signed-off-by: Bastien Curutchet <bastien.curutchet@bootlin.com>
 
->=20
-> > +static int airoha_alloc_gdm_port(struct airoha_eth *eth, struct device=
-_node *np)
-> > +{
->=20
-> > +	port =3D netdev_priv(dev);
-> > +	mutex_init(&port->stats.mutex);
-> > +	port->dev =3D dev;
-> > +	port->eth =3D eth;
-> > +	port->id =3D id;
-> > +
-> > +	err =3D register_netdev(dev);
-> > +	if (err)
-> > +		return err;
-> > +
-> > +	eth->ports[index] =3D port;
->=20
-> eth->ports[index] appears to be used in
-> airoha_qdma_rx_process(). There is a small race condition here, since
-> the interface could be in use before register_netdev() returns,
-> e.g. NFS root. It would be better to do the assignment before
-> registering the interface.
+Reviewed-by: Andi Shyti <andi.shyti@kernel.org> 
 
-actually I check eth->ports[] is not NULL before accessing it in
-airoha_qdma_rx_process():
-
-	p =3D airoha_qdma_get_gdm_port(eth, desc);
-	if (p < 0 || !eth->ports[p]) {
-		...
-	}
-
-Moreover, in airoha_alloc_gdm_port(), I set eth->ports[index] pointer just =
-if
-register_netdev() is successful in order to avoid to call unregister_netdev=
-()
-on an not-registered net_device in the airoha_probe() error path. I guess w=
-e can
-even check reg_state for this:
-
-	for (i =3D 0; i < ARRAY_SIZE(eth->ports); i++) {
-		...
-		if (dev->reg_state =3D=3D NETREG_REGISTERED)
-			unregister_netdev(dev);
-	}
-
-What do you prefer?
-
-Regards,
-Lorenzo
-
->=20
-> These are quite minor, so please add to the next version:
->=20
-> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
->=20
->     Andrew
->=20
-> ---
-> pw-bot: cr
-
---Cq3ZvBjA33dFjzfY
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZo2ugQAKCRA6cBh0uS2t
-rGN2AP0bH3wSTrIDAe85Rz4cnutNGUlzziiMIYqhemR1cSKNpwEAoNK2xWm5yS8V
-emtoQ9fNnbYzEVx2KF1312Kt2xUh/QA=
-=d8Yw
------END PGP SIGNATURE-----
-
---Cq3ZvBjA33dFjzfY--
+Andi
 
