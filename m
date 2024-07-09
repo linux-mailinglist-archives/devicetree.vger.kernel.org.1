@@ -1,112 +1,307 @@
-Return-Path: <devicetree+bounces-84325-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84316-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A31E292BCA6
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 16:16:36 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0001B92BC76
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 16:05:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5A3431F22919
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 14:16:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2347F1C209DD
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 14:05:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 205FD19CCE2;
-	Tue,  9 Jul 2024 14:16:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC02519B5A3;
+	Tue,  9 Jul 2024 14:05:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="h5sBXcK+"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="IdxzND+z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2069.outbound.protection.outlook.com [40.107.22.69])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 260B1158A37;
-	Tue,  9 Jul 2024 14:16:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720534582; cv=none; b=PGfbpmd+wESoZLoDm5Gqm7SuFNUoK20a00jzmjgRRNzaQzmRaBFcNATSsOVGtKOd8KXfxufmSgPYRLWB2aP7/A5BY9Qnk0kFGrGNGuSvZjDaqScmFxIxIbbg+Hili61/XMbzFp8VcPx0GSU6MqI9V/fxpm/aVtyvKrC0jRtmjJ0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720534582; c=relaxed/simple;
-	bh=ZhaY/4x3f4ruOAcY8iwU5SlZfxMqNd80J3CoK7mNwY8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=N0U5A/Jkp3RdDmcdZbcbnemJE3vLuJ0G/Wyan1J8zdrQGhB9GKEZYFqrGxm+7jMnqXn/iM69dNBGuW3jQ+8ZAmGvYOHFA1EJM/8HIlPvu8S4julaasHskZ4ia77cM4sG5MTmm14P/8oMMydqJkRYY+WHkIBXpdSnVxSEgsx5k7g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=h5sBXcK+; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id CFBC3885CF;
-	Tue,  9 Jul 2024 16:16:16 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1720534578;
-	bh=j8uH5LAqoGEHnE0i2h70/qLLtUa4idrvgO0Or56fKwE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=h5sBXcK+Co55wCMMwagBGX7JKSszZM7MNPT8jFFyRWLz9842GsMso0IRTgUX+kwIw
-	 2Kq/McQRYspT+6Z6QDz4qETUSI3W21jaPNmzSPcIkUTNcOL5Gd2996hid5tpgAsWbE
-	 cXjiAmSR0dQqY1oyQgAUCGSR3Vwt6gvk1NUhZqUqWkUELk/C029+lzRf7siOVwIdey
-	 QobNnpiRHgQEvwl9D9tUpYm7qcyKNCNlOpOP3LMEc19hcQht1Mq3jOYRjVFJtu1NvU
-	 T32nfkhREUUScQepqN6eEgiQ+R6sLcrQaQ65sA72+O2wY8T4+MqrbcliFAkHRQUNDx
-	 brugWrEj1LQVA==
-Message-ID: <944ecc41-9ef7-4d9e-9d96-3c5c0cdb71b5@denx.de>
-Date: Tue, 9 Jul 2024 15:24:05 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C04F4198831;
+	Tue,  9 Jul 2024 14:05:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.69
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1720533954; cv=fail; b=kjiwlrNOZgyMo44O/07nnRhhDEUaW83enLIwZ4vB9sA2z4sdWEEJZUBIiTiN5o9H6dEzOEieyHptR8TUvGwN7PP2aNbaIMCoz0+DHpE/QAFHA0AYZB4fqk1q47hqBsepGc2WH7luKus0dQRlE1v2LII06uLley+i8dRZ0ih8tvM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1720533954; c=relaxed/simple;
+	bh=sVsAXqoeiUcci00etpqMp0Na+XOKEUtmfqkBTJ/F5mM=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=JPyEoGsw6VwQKyb7bwEBSBE/1FIDnpVYD1duw7nWZfGo0phCcr1m7wJHc70XPWiAEVtsFC1P9gaBkiWsurG8MBWwFzhdJGFJBqXum2eh52sIB+4qJ+mY4JipKbdfejAiBA3TazbEBejGvqWhoFylLUTpFxWIOSJaIraddUH2STA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=IdxzND+z; arc=fail smtp.client-ip=40.107.22.69
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=XGgTp9BbkeKsAc/j1qqTBO3vDBcVIhxeLt2WZOfGQg0DzVFPAoVToG9bf3hFIsZlXMdLoje9InPvak+cy0KrPkXKOxCPSaKG4neMuegtnsXP9jUhjXW+yCONTXpBHzku4c3tMPchCPTUgyG2x6DipEFVb9VvH/Br6ccVxyZ1vTJM6srF+szojBJr2JB+3N/xShZNjUNEKCplJkT9XMX42v471SWma0t3tNDwSzwuGyPCLJWpr9GmCY7jt+4TD85BKgimmK5ZqKtH6iaqEyOrZDdNW30MOyTiqX7TAC/agGM7CM887eKv1DRgvOKGjyQuK7cMLgR5Cvnj1B9QbY+h/g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=86LrIviUEq9x99808cq/hAGFER849GvQ8XLDjrrA77k=;
+ b=PgMlAQCpOciGmDPo9qiRpVPyeT0ZEEGoMpYe7uqhakidG10XugBaun0+xXzY26OSDF3c7Fy9tndoz4u2csCkMVW/ipK6O2Bcz5LcUaChJXecOUv/r3cUOruJPy5+3FIAZXpLHUlFJbDFSl/szPsf7Y2MZKseTGO+RBSeh2Dcfatf9cZgrrqylmfHsL+4Ynu79xqA+oOK5zeYCI0O9WGCdtrXoOZfJ8lbAKT834/o0AHQqGRH1ILHjnAg0q9fw38w/ULUtsvcLreZ6rZasCvK1raPiZ5rzDCsMp+za3UPy4t3mUNe3ByKlhZA3TPGSE+3831oV4U0GbUfUqFBPkOB8A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=86LrIviUEq9x99808cq/hAGFER849GvQ8XLDjrrA77k=;
+ b=IdxzND+zP5OoRachyCaykD/0/MeDqLoT1n0oYiJdGToKSb+OaY/2pfa6aDpjnG9XxhCQ7pR18qDGlRs/npYZLJ/Dss0U+IBWyZXM5RViQG4ZsLY4vCqfNUi/m1TOV+a518VBcTniMEKNU+iWHhkVlWX4iImGIjcJ+6CCQSdHkqY=
+Received: from PAXPR04MB8459.eurprd04.prod.outlook.com (2603:10a6:102:1da::15)
+ by AM8PR04MB7986.eurprd04.prod.outlook.com (2603:10a6:20b:245::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7741.36; Tue, 9 Jul
+ 2024 14:05:49 +0000
+Received: from PAXPR04MB8459.eurprd04.prod.outlook.com
+ ([fe80::165a:30a2:5835:9630]) by PAXPR04MB8459.eurprd04.prod.outlook.com
+ ([fe80::165a:30a2:5835:9630%4]) with mapi id 15.20.7741.033; Tue, 9 Jul 2024
+ 14:05:49 +0000
+From: Peng Fan <peng.fan@nxp.com>
+To: Cristian Marussi <cristian.marussi@arm.com>
+CC: Sudeep Holla <sudeep.holla@arm.com>, "Peng Fan (OSS)"
+	<peng.fan@oss.nxp.com>, "robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org"
+	<conor+dt@kernel.org>, "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "arm-scmi@vger.kernel.org"
+	<arm-scmi@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>
+Subject: RE: [PATCH V2 1/2] dt-bindings: firmware: arm,scmi: introduce
+ property mbox-rx-timeout-ms
+Thread-Topic: [PATCH V2 1/2] dt-bindings: firmware: arm,scmi: introduce
+ property mbox-rx-timeout-ms
+Thread-Index:
+ AQHazPZCUnP/ehpH2Em9HKMSjtmmz7HmYioAgAAAeBCAAAFAgIAAHstggAAa2gCAAKEogIAFtSQAgAGDmfA=
+Date: Tue, 9 Jul 2024 14:05:49 +0000
+Message-ID:
+ <PAXPR04MB8459F6F0F9530F2138C4E00688DB2@PAXPR04MB8459.eurprd04.prod.outlook.com>
+References: <20240703031715.379815-1-peng.fan@oss.nxp.com>
+ <ZoZ7NCSaG0YRK-60@bogus>
+ <AM6PR04MB5941A61736496B9850A3B52C88DE2@AM6PR04MB5941.eurprd04.prod.outlook.com>
+ <ZoZ8pfi5KZZGY1wd@bogus>
+ <AM6PR04MB5941F61DFB15AFDA384C153A88DE2@AM6PR04MB5941.eurprd04.prod.outlook.com>
+ <ZoatADKjBfpRCeLz@pluto>
+ <AM6PR04MB594199822CE1944DCE3F86D888DE2@AM6PR04MB5941.eurprd04.prod.outlook.com>
+ <Zov94i6FVShbVFee@pluto>
+In-Reply-To: <Zov94i6FVShbVFee@pluto>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PAXPR04MB8459:EE_|AM8PR04MB7986:EE_
+x-ms-office365-filtering-correlation-id: a564f032-314a-4ecd-920f-08dca0203c94
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|376014|1800799024|366016|38070700018;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?3VZWlJhDDYcYgCssh4EFY/liHBKWNmMa8Ee9S1dWW7d5k7ABN1qSBvuJuesn?=
+ =?us-ascii?Q?8YY6HDeY8VK06Otmp9yXvM2nqirIBq8xPRZ49sqNRYyIS2ZtqfrSS0BeSu+v?=
+ =?us-ascii?Q?jPDlSHlPmTibVMdHCsPCohnOdRRecVCWCNYXJgqMmYiP1CjshdOFtpVM4Ass?=
+ =?us-ascii?Q?zaechj/JiEVW2LqmwZ6AJcQnMKCFCWawXsJF2lIaDB2T2PpNSvwxE8c9Q3IK?=
+ =?us-ascii?Q?Wa3cCmmRVykxht+YGbf/ltg+nm08STp6CvwF6MjmbnRtpKkR2tlqY2trr139?=
+ =?us-ascii?Q?9wcB/tFULQVY0FT9tGl4FVFXweWp09el1EdkWT486TOa+a473CQPmWNJ0F4c?=
+ =?us-ascii?Q?dWxBoaPiRnWbkrm2SXcNChDR1xcImQBvkhmP9ZW7DitVmqwQBOWdYFFM+Vgz?=
+ =?us-ascii?Q?NijlhRBO3heASqPd8LwyIqqI68W3fQzuFTssKibEdKTIrNZ7/Q6QZF/FO+Ha?=
+ =?us-ascii?Q?VNibryoUoozi1//qtxB45EPIB49G8qxNuD/j+q5n4OcVpBpsrr3sjH3xl69k?=
+ =?us-ascii?Q?rjUFP1AHSONX6/89c4b7N20iV+1Xr3lu1V+GBlgp8u4V+X36C8L070n9g8K8?=
+ =?us-ascii?Q?IB+dvywOo7PJgC642Rapn8EjP/2Y2qBAzxvKeoeWgd+HvA1cEHqJVunQ0OWV?=
+ =?us-ascii?Q?JvrwZqpPvwFE9cC17/gRo/D94yQQ6XCAVrbWchcRW7rl+UNuZNvr3wZJmvfu?=
+ =?us-ascii?Q?k5XmphScSmvjhw96MCb2oUhj+mXRtCY/c2SO9yqflAssEcg/FRiYZocPrfz+?=
+ =?us-ascii?Q?MXFeHK9oGlXlLrRpJKSP9pYFIZXf9MA0HtIn9wsFo57MXuZergS66uScQMmf?=
+ =?us-ascii?Q?KNwZUN7HLY5IITDpd8ltQq5jUwSNar8l3tkxQTk856mxNNxbvoJelfatolbq?=
+ =?us-ascii?Q?7JlV3bSr4LkEnJ+30/TgJ2TUD+EoG5OrFWcrTyjrlZNuYAceNjOBpXh4PGVy?=
+ =?us-ascii?Q?vPu5MsPkEItova45xouVeViaAcx94IeRTC9wo8P+rq/DSGZXszNUu7E6emcr?=
+ =?us-ascii?Q?crc7MznyNTentaD1x4vuwhtvIS9HykZqSn9FaFPHDbpyhHKrXucoqc6AjLYQ?=
+ =?us-ascii?Q?dRlxp6JlZlJu0WhFMjCi10DoWwposi0oA0baIDAPkj3gTxYKRDvfPxtLsUKg?=
+ =?us-ascii?Q?DSVmUEQhpfnT2g/Tv72wstBdxJTImFHpH8djvKtuVKmmTc36ZqNs7Pv2muoS?=
+ =?us-ascii?Q?YVBxxcv+ooYL9LeET9+jRmyZoOGk4OezQYVYtw9oSQEkjSuzwCgBKtBvLUTK?=
+ =?us-ascii?Q?f+rnv8mpKAiS7J4i51kh9O2dDck10/gwfBPAumHjFp8I0ofne2dUnFFS1UFw?=
+ =?us-ascii?Q?/xX1Cyrb/GxXUu9Z1CQrOEfSG+1mxdmtZBnZ1Uzbsnvp8cOT/uhDuhdaIh+h?=
+ =?us-ascii?Q?7QXzOm4=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8459.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(366016)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?x/sZV0aVLRj8S28DnFFFNXJQl0liW0s2ByVixeZrnlaJ33AlvWiMw7eioc0+?=
+ =?us-ascii?Q?WIcbkdqoIqIhWuaIM+7yPa/PgyHRsUt0HoVC9cabSBO24btWBHVOr8OD/m9v?=
+ =?us-ascii?Q?qE3db7uvJ7wEh3sfF35HsEg6SXGqTIMz2EGeSD9UINCa7LnyIY4cScHEm0nq?=
+ =?us-ascii?Q?tKm0uYKpWFMtPccvg+ZHcHSnKd1MWfvAr2J9tVcbIk9feOZr7Z9hsyPKaxFL?=
+ =?us-ascii?Q?0ShgjKrUDuMRrS4ibSd8BxCkV3Ttjlk6Csoldjr0nemk+/uGpdEwb5QbpqqY?=
+ =?us-ascii?Q?7pBqyGK9sCYBP73nQnyjO2poEWg8JSuED9nerCEBpeKBgkNV3uw+i5/BpqUu?=
+ =?us-ascii?Q?J3CUWaxe8pV6NILG9S4yEaRJx0/QPvbhYaN2AgpYFTIw1jZO4IAyM8DzPEJ4?=
+ =?us-ascii?Q?1v1ILwLRQz2NkMOL8zU9UKCoppKW52sSy212nX3NUimNcrr+bYXE5tZ9f83E?=
+ =?us-ascii?Q?Ik91/NYY+2CQBvNROQR5n4PC6RsIWTag/2XnW7pTrm13+KNu3LXnpFD6x1TB?=
+ =?us-ascii?Q?yXL+z3bxFTOTcbp41MWYmG88PpFI6sjd0QTNbzPITOQ+QfjPkxXVFDSlYZQw?=
+ =?us-ascii?Q?H0KlPL2OhaUsbM8fByxWezd1fcavppeMUNW5PZtdpxc22WmpyKRsI1ED04l/?=
+ =?us-ascii?Q?6k2pRdetubJ2FzWyrnKeF7eu1KZc+gBE43F3eMdnsLH5lBC8MEm1yYl0MwW6?=
+ =?us-ascii?Q?azT+9zsYqQAMb4oZISo8tzzI8ijkR+J2WAobaeshA9Gl20zf76ziz9QMfIgu?=
+ =?us-ascii?Q?VX3l2KmNCsOeRT/Ebf6mkoMdFbGHQDntAovEIU3wrGhaUwoqVZc0D7mEk7tX?=
+ =?us-ascii?Q?EXSnMBppr7vbyEITU17QZAgSsGmPX8r14KGTeovE6yDffhrDVdvEhZAH+BWP?=
+ =?us-ascii?Q?5iGe4JBwp8daHKIXUS57WE5X8fiCbIEztlvrA3IAsLRXySt9nQrvQwel/i3Q?=
+ =?us-ascii?Q?jZAndm3tuQ9dKoNq0QdJXsDP448dI/M55tQyidYlWFnPMkMXXJHrycWElKbt?=
+ =?us-ascii?Q?/A+5zxBkS6hcEYigXWTB5fz2akXfcJwjhaAZPQwPJvxUfr5+8F/VoDrCiW5Y?=
+ =?us-ascii?Q?YJLlffqcGrPWtlbW4LU0V4aF09XV1g8Hy34X1SfMyo3EJctFSvrfUwFXHRwv?=
+ =?us-ascii?Q?GF8if/EhddWN6Ds03r8xoQQ4eVXYukwPpyXn62tC30HrpQ5KaHlEPXtPkDHA?=
+ =?us-ascii?Q?Dhi+VwjA/L7bVF/bWLmiyBgotnP3rUg0wLZrjbwwYsNa0/L0Ipuam2diapS9?=
+ =?us-ascii?Q?qbcg0CzwHkFH4NjwTcRyx0/36l27a6OK2dZOHeySgM2yxsC0nnMg1Oddwgcb?=
+ =?us-ascii?Q?RUGRMjGf5p/CPHc3FrSujg7AIJeCK3BPMhq0JJEjSvFAhaqcc1Eq9xzGVd2C?=
+ =?us-ascii?Q?/ze6hSQqSNs1rboEaociKaN2pTUsuQnqVDqTgHUVjlQTHovca7RrxyiV2uNH?=
+ =?us-ascii?Q?sFCsWl2fDen62d7fTPDyl+Pqkz55Mo5miXBFId+DA4eqiZzSBafBpjNPpcxa?=
+ =?us-ascii?Q?fPo2iEDucSO6fA0rTi08oqFliyqeAcIaB+bP1fz1COyRNRiefRpLNyJ2wOJB?=
+ =?us-ascii?Q?cm/Y6ZtuGw04kBAp88M=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: display: bridge: ti,sn65dsi83: add
- burst-mode-disabled
-To: Stefano Radaelli <stefano.radaelli21@gmail.com>,
- "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Andrzej Hajda <andrzej.hajda@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- David Airlie <airlied@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Maxime Ripard <mripard@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, devicetree@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
- "Noah J . Rosa" <noahj.rosa@gmail.com>, linux-kernel@vger.kernel.org
-References: <20240708151857.40538-1-stefano.radaelli21@gmail.com>
- <172045725750.3389992.15451403448241421795.robh@kernel.org>
- <CAK+owohBrewYFpDKjsE5iWC5OQ3p6S_9fwj7DWa1Ux2h8CXcAw@mail.gmail.com>
-Content-Language: en-US
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <CAK+owohBrewYFpDKjsE5iWC5OQ3p6S_9fwj7DWa1Ux2h8CXcAw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8459.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a564f032-314a-4ecd-920f-08dca0203c94
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Jul 2024 14:05:49.4920
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: UwJV0V6PU82dejMZ2t51XMy5sct+F8C4ZUmaVNlQJtj34b7xvmtSDqQoxOQmyYr7WNLSeWnYviY4/sHZaUmtMQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR04MB7986
 
-On 7/9/24 2:45 PM, Stefano Radaelli wrote:
-> Hello everyone,
+> Subject: Re: [PATCH V2 1/2] dt-bindings: firmware: arm,scmi: introduce
+> property mbox-rx-timeout-ms
+>=20
+> On Thu, Jul 04, 2024 at 11:48:31PM +0000, Peng Fan wrote:
+> > > Subject: Re: [PATCH V2 1/2] dt-bindings: firmware: arm,scmi:
+> > > introduce property mbox-rx-timeout-ms
+> > >
+> > > On Thu, Jul 04, 2024 at 12:33:09PM +0000, Peng Fan wrote:
+> > > > > Subject: Re: [PATCH V2 1/2] dt-bindings: firmware: arm,scmi:
+> > > > > introduce property mbox-rx-timeout-ms
+> > > > >
+> > > > > On Thu, Jul 04, 2024 at 10:39:53AM +0000, Peng Fan wrote:
+> > > > > > > Subject: Re: [PATCH V2 1/2] dt-bindings: firmware: arm,scmi:
+> > > > > > > introduce property mbox-rx-timeout-ms
+> > > > > > >
+> > > > > > > On Wed, Jul 03, 2024 at 11:17:14AM +0800, Peng Fan (OSS)
+> > > wrote:
+> > > > > > > > From: Peng Fan <peng.fan@nxp.com>
+> > > > > > > >
+> > > > > > > > System Controller Management Interface(SCMI) firmwares
+> > > might
+> > > > > > > have
+> > > > > > > > different designs by SCMI firmware developers. So the
+> > > maximum
+> > > > > > > receive
+> > > > > > > > channel timeout value might also varies in the various
+> designs.
+> > > > > > > >
+> > > > > > > > So introduce property mbox-rx-timeout-ms to let each
+> > > platform
+> > > > > > > > could set its own timeout value in device tree.
+> > > > > > > >
+> > > > > > > > Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> > > > > > > > ---
+> > > > > > > >
+> > > > > > > > V2:
+> > > > > > > >  Drop defaults, update description.
+> > > > > > > >
+> > > > > > > >
+> Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> > > | 6
+> > > > > > > ++++++
+> > > > > > > >  1 file changed, 6 insertions(+)
+> > > > > > > >
+> > > > > > > > diff --git
+> > > > > > >
+> a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> > > > > > > >
+> > > b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> > > > > > > > index ebf384e76df1..dcac0b36c76f 100644
+> > > > > > > > ---
+> > > > > a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> > > > > > > > +++
+> > > > > b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> > > > > > > > @@ -121,6 +121,12 @@ properties:
+> > > > > > > >        atomic mode of operation, even if requested.
+> > > > > > > >      default: 0
+> > > > > > > >
+> > > > > > > > +  max-rx-timeout-ms:
+> > > > > > > > +    description:
+> > > > > > > > +      An optional time value, expressed in milliseconds,
+> > > > > > > > + representing
+> > > > > > > the
+> > > > > > > > +      mailbox maximum timeout value for receive channel.
+> > > > > > > > + The value
+> > > > > > > should
+> > > > > > > > +      be a non-zero value if set.
+> > > > > > > > +
+> > > > > > >
+> > > > > > > IIRC, you had the min and max constraint in the earlier
+> response.
+> > > > > > > You need to have rushed and posted another version before
+> I
+> > > > > > > could respond with my preference.
+> > > > > > >
+> > > > > > > So there is no rush, these are v6.12 material. Take time for
+> > > > > > > respining and give some time for the review.
+> > > > > >
+> > > > > > Sure. I just not sure what the maximum should be set, so I
+> > > > > > drop the minimum and maximum from my previous email.
+> > > > > >
+> > > > >
+> > > > > Worst case we can just have min constraint to indicate it must
+> > > > > be
+> > > > > non- zero value as you have mentioned above and drop that
+> > > statement
+> > > > > as it becomes explicit with the constraint.
+> > > >
+> > > > I'll use below in v3:
+> > > >   max-rx-timeout-ms:
+> > > >     description:
+> > > >       An optional time value, expressed in milliseconds,
+> > > > representing
+> > > the
+> > > >       mailbox maximum timeout value for receive channel. The
+> value
+> > > should
+> > > >       be a non-zero value if set.
+> > > >     minimum: 1
+> > > >
+> > > > Put the binding away, when you have time, please check whether
+> the
+> > > > driver changes are good or not.
+> > > > BTW, since our Android team is waiting for this patchset got R-b
+> > > > or A-b, then the patches could be accepted by Google common
+> > > > kernel,
+> > > we
+> > > > could support GKI in our release which is soon in near days. So I
+> > > > am being pushed :)
+> > >
+> > > Hi Peng,
+> > >
+> > > once the bindings are accepted I wanted to fold also this series of
+> > > yours in my transport rework series.
+> >
+> > No problem, feel free to take it into your series, I will post out V3
+> > later(wait if Sudeep is ok with I add minimum 1 or not), but v3 2/2
+> > should be same as v2 2/2.
+> >
+>=20
+> Still not taken in transport rework V1, but not forgotten :D=09
 
-Hi,
+No problem. just posted out v3. Only binding change to add minimum,
+no more changes.
 
-> Thank you a lot for your prompt feedbacks.
-> I'm really sorry for all the mistakes, it is the first time that I try to
-> submit a patch and i thought I followed the guideline but clearly that was
-> not the case.
-> 
->   @Marek Vasut <marex@denx.de> About your question to why disabling
-> burst-mode:
-> - I agree with you that Burst Mode is the preferred way to send data. For
-> that reason I created the new flag in a way that, if not used in dts, burst
-> mode remains active by default.
->    However, I decide to introduced this property because I have noticed that
-> some dual-channel panels work better in non-burst mode (even if less
-> efficient), and since the sn65dsi84 datasheet allows this setting, I
-> thought to give this opportunity to users.
->    What do you think about it?
+https://lore.kernel.org/all/20240709140957.3171255-1-peng.fan@oss.nxp.com/#=
+t
 
-Are there any further details, which panels behave this way ? Does your 
-DSI host generate correct HS clock, ones which the DSI84 expects to 
-receive on the DSI side ?
+Regards,
+Peng.
 
-Such link mode properties would have to be generic properties placed in 
-some dsi-client.yaml file in any case, such properties are not specific 
-to this DSI8x bridge.
+>=20
+> Thanks,
+> Cristian
 
