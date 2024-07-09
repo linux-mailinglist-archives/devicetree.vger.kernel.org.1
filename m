@@ -1,145 +1,84 @@
-Return-Path: <devicetree+bounces-84445-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84446-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C862C92C3E7
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 21:29:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E048492C412
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 21:49:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 578C01F227A1
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 19:29:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 12C8C1C223D1
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 19:49:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE3AA180053;
-	Tue,  9 Jul 2024 19:29:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0CE318004F;
+	Tue,  9 Jul 2024 19:49:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tM9ouuHc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QUz0X8U6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 108E717B049
-	for <devicetree@vger.kernel.org>; Tue,  9 Jul 2024 19:29:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE7927F7C7;
+	Tue,  9 Jul 2024 19:49:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720553356; cv=none; b=SKlW4qOXC8mhFhZ/3G3IA3Sg4ILiCq+qBAJKUEOm9TkRxeqSnUv5vuFL27Mw/c6L/B7xVY/STau28HUTMbft0gtCMwF4dan1pQTvmiQ5Gj3i/nb3GvnjfNTb/9Xk3JVCoVvuyiGSGYjiTVHmsMs2/cLS2TiHkRvDGcKm/16Zgfo=
+	t=1720554569; cv=none; b=FjnCavckySiah+sGq2JlaUzaOXsHdPZAikLzEyhicq+adzn3eLW0gZXPWcWTPADJlZ8Kntn9yBLfprB+ETJIlIRPT56GvsDLwgQ5wErF1BuIMx030lW/4r+cIaLYy/9FgU00hhZf3u84nBgvTIwNvPq0ah012AY4QjnvyoF+eMI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720553356; c=relaxed/simple;
-	bh=euDAfX44E+bzohp/qgvxP4Urd8ZWcP5tKni32VosqSc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uonluxmwd/DeTuYxDktw15lu4BLspTyAhFQqMx09u9iUTzeIpG/YzZAiFeGgGjGGqp2tXaHILPy6BXS7AxRHia2G7DhinPdv6p4ybZUroRuzPAkHSAUbTSHxJbdDG8YsIyRd382GzyNrkoSnxsxh3DQIJebPqYn8+drJdQt9Qf8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tM9ouuHc; arc=none smtp.client-ip=209.85.208.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-58b447c5112so6354515a12.3
-        for <devicetree@vger.kernel.org>; Tue, 09 Jul 2024 12:29:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1720553353; x=1721158153; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=qvD2qPO0laJ/OSl3ShKVGMpSyFV0nKDMpCM4gAwZl1A=;
-        b=tM9ouuHcwrKGEhCWZwqSEicatdSl/yd0v/VJ+ZkGWLyA03whX4pHAS8uhHTl6wXJNB
-         pCKxExbZ20b122+HLKnkUR+ZKhudSJcr/tBnK7Ahu/G8Lr6S9MqUS8yi531Jhwy5HUX0
-         SXDj71CxpJ/W9tUz+7oj9F5j20sBJG/8dL8EnyQN+sufOQM8XNV0MAPt7T1yw5Jm5A6r
-         H9dlPMa9WmQD5oy87Nh2MGDtA9LMw/9JVarIgciqNjScCYx7u5IoRPlbjWiKXZbO57EI
-         aDuMDjpBxfkFx88tqRyodDajddlWy6a2ERk9QVhYs/5bqzl78gZJZ5wub+qyPxkQzWPg
-         qFwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720553353; x=1721158153;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qvD2qPO0laJ/OSl3ShKVGMpSyFV0nKDMpCM4gAwZl1A=;
-        b=ksrhOE5gmqDU+wAvaBeAlyJeRZIyoWC24NbbZnVI3ryb+quS20yhniDq6N3iL2hveF
-         QRWK/CVb3CgBN8CXtN77SPSZzFspLTlLjc2xZhSpbqyo3h0MJrbMs8Ll+1OOFLU3iDXP
-         UVh+2+jEoFJOaJL+BQWX99OPUrV3NZpqUXUnHXYBoWMbqKpAajtczMoUN+L8jTecQPl4
-         PUiv+YcMdsKBHyOQFhGwuyev3VEVWq2vRsP09TW3Sw+sTxOCEnOMeU3HgOTB+kINelvS
-         GjAMB91rUdibzIHuVVSyNmQgFoKnElUm01FgvL6Wg4nG2vysvbh6ClAwPmXMteX9fylV
-         ++LA==
-X-Forwarded-Encrypted: i=1; AJvYcCWmRbul5sv+cv0AavpQuuxhq4jFDUeUn/JpKHwGDpvx2x1HWM5tiT9dHlPBHg5JRz5hDo2RSrSdbAsRAfD7lheIYHJRYYD/GSNqow==
-X-Gm-Message-State: AOJu0Yw5Kwj+V7tuo+/ws5eQS6RBK+E4dkrLybf8cKDgoN2xmaPlXSel
-	dzzaRCKSOT+XD2grsAjooO2q2kIsdGnICCHl/sFuPYytmRhliijFx6Hf8rdztT0=
-X-Google-Smtp-Source: AGHT+IH11mCGDZKSx6Xr4YjwT39VrW3fzZXhulb9JkmQvzRHwpYPR2yV3DbXrjePhS+oNqyf4JoqoA==
-X-Received: by 2002:a17:906:c149:b0:a75:3c31:4f58 with SMTP id a640c23a62f3a-a780b6b3b67mr248170966b.32.1720553353188;
-        Tue, 09 Jul 2024 12:29:13 -0700 (PDT)
-Received: from [192.168.105.194] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a780a6de0adsm100229066b.59.2024.07.09.12.29.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 Jul 2024 12:29:12 -0700 (PDT)
-Message-ID: <8e6b8187-99fa-4e8b-8a00-2872ef5aee59@linaro.org>
-Date: Tue, 9 Jul 2024 21:29:10 +0200
+	s=arc-20240116; t=1720554569; c=relaxed/simple;
+	bh=nemlQbh6hUiC0LFAb9INgTT743Po9pIJ7bue1vsUjmc=;
+	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
+	 Subject:From:Cc:To:Date; b=aqAD3lpyjuADg2mso/EvLtP+uDcz2nl4h2iTR5E5vYT76sU4u1Gf2zeLlUxjJZBN5cvLV94R5zSZlf077WyckXQrVA36eiBozlVi0J/1elqYAwHzeQ2YMcuxo6T7S/MCHNzKiJpCK2K+9l4jSwwJvK86o1dyewgqJTlBtnJN1PI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QUz0X8U6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27ABCC3277B;
+	Tue,  9 Jul 2024 19:49:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720554569;
+	bh=nemlQbh6hUiC0LFAb9INgTT743Po9pIJ7bue1vsUjmc=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=QUz0X8U6FFM9PwumGE7yIm09NlCgxPuS2oycCmpclHr3W0hcPHM/AHgvP5mzfAXVS
+	 sXRzADzUsr3euni6FfQ9wJa+u3Cx8YsSjTzoybBN9ilo7YlUPQc+q9JA0VgvIdbmLD
+	 2LJYf2o5KGlBmhJuqjUVFKr8TF575pfYW3mjhTIliS5GcwsHahZIWF8BQb8Rizg5P1
+	 nK58UK5k4ex4uj3XAQIU1g0XzL64IinVl7hoT/VgPhosIXjUSGhvEKh1x+qlmvTeCd
+	 M9bh1qTAWW1GWN5qqT/dXpBE22t+MDmF9CFbk5AbHQNqrJ20bRNhZ9xcky5gDa5vJP
+	 L24nVwb8rmAKQ==
+Message-ID: <256827bfb6f7084d337677bf1c03bc61.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: qcom: sa8775p: Add interconnects for
- ethernet
-To: Sagar Cheluvegowda <quic_scheluve@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
- Andrew Halaney <ahalaney@redhat.com>, kernel@quicinc.com
-References: <20240709-icc_bw_voting_emac_dtsi-v2-1-a1e02c7099a5@quicinc.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20240709-icc_bw_voting_emac_dtsi-v2-1-a1e02c7099a5@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <dd7278f5-8da9-46c5-8db2-6d3882f7d674@quicinc.com>
+References: <20240706045454.215701-1-sboyd@kernel.org> <20240706045454.215701-5-sboyd@kernel.org> <dd7278f5-8da9-46c5-8db2-6d3882f7d674@quicinc.com>
+Subject: Re: [PATCH v6 4/8] of: Add a KUnit test for overlays and test managed APIs
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, patches@lists.linux.dev, kunit-dev@googlegroups.com, linux-kselftest@vger.kernel.org, devicetree@vger.kernel.org, Brendan Higgins <brendan.higgins@linux.dev>, David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rafael J . Wysocki <rafael@kernel.org>, Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, Daniel Latypov <dlatypov@google.com>, Christian Marangi <ansuelsmth@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Maxime Ripard <maxime@cerno.tech>
+To: Jeff Johnson <quic_jjohnson@quicinc.com>, Michael Turquette <mturquette@baylibre.com>
+Date: Tue, 09 Jul 2024 12:49:26 -0700
+User-Agent: alot/0.10
 
-On 9.07.2024 8:21 PM, Sagar Cheluvegowda wrote:
-> Define interconnect properties for ethernet hardware.
-> 
-> Suggested-by: Andrew Halaney <ahalaney@redhat.com>
-> Signed-off-by: Sagar Cheluvegowda <quic_scheluve@quicinc.com>
-> ---
-> Adding interconnect dtsi properties within ethernet node of SA8775P,
-> this patch is adding support for the interconnect properties defined
-> in the series ->  
-> https://lore.kernel.org/all/20240703-icc_bw_voting_from_ethqos-v3-0-8f9148ac60a3@quicinc.com/
-> ---
+Quoting Jeff Johnson (2024-07-09 07:49:40)
+> On 7/5/24 21:54, Stephen Boyd wrote:
+> > Test the KUnit test managed overlay APIs. Confirm that platform devices
+> > are created and destroyed properly. This provides us confidence that the
+> > test managed APIs work correctly and can be relied upon to provide tests
+> > with fake platform devices and device nodes via overlays compiled into
+> > the kernel image.
+>=20
+> ...
+>=20
+> > +kunit_test_suites(
+> > +     &of_overlay_apply_kunit_suite,
+> > +);
+> > +MODULE_LICENSE("GPL");
+>=20
+> Multiple patches in this series introduce new instances of=20
+> MODULE_LICENSE() without an accompanying MODULE_DESCRIPTION().
+>=20
+> Building a module without a MODULE_DESCRIPTION() will result in a=20
+> warning when building with make W=3D1.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-
-Konrad
+Thanks! I'll add it.
 
