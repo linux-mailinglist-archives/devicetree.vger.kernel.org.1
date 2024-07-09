@@ -1,257 +1,113 @@
-Return-Path: <devicetree+bounces-84373-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84367-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C74F592BE66
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 17:30:03 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE01992BE51
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 17:28:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7EDC9289410
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 15:30:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 51B58B21610
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 15:28:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CB9319E809;
-	Tue,  9 Jul 2024 15:28:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C43EA19D089;
+	Tue,  9 Jul 2024 15:28:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DyLy/oCA"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Dbo32DBy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA26C19E7F8
-	for <devicetree@vger.kernel.org>; Tue,  9 Jul 2024 15:28:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B31A19CD0A
+	for <devicetree@vger.kernel.org>; Tue,  9 Jul 2024 15:28:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720538934; cv=none; b=GBgiipZMwx0f+7hKNjEy71R/K8hFdMJiT4/AnUEKLvnGabuwX3kyRfOlWMLCecYAEXZryLJsfP/tJkSqPCBPvoBQy2tHTLbmbTbO0sTb98BDpCz0+fwnlm2KtLnTUhBj8ukCQZNAEH8RYoNe4PIPfgZsEl4rgPL05NR2GfZGUmk=
+	t=1720538913; cv=none; b=qusWXITFHjYzY+aP0SvZDmD666J5SjltnYPXff0pfeWG5TrhC+wM0ksna17Bnfw62QGu1v4cRRKJalrDBR5eHEdYpRqorgM5p8WQWnJNS6CcVbAV9WrKj6u+xqLzMInlElBk38F9N1nG4Z7l9+xMcP+RwbRfh61AnwfH2FJP2dg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720538934; c=relaxed/simple;
-	bh=3PoSvU8RpFcazekfoaaScSpR1wxv8/6f43Gz5oYx63w=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=cpCAeG/o0cbuOKrQWwaw+FedYioKwtSDMDJuBfQ9Asx2f6ZxA8jljBaG0f15GXMxj2i53j1oBSCnpdqFCSD30D/F6jmc1VcFg156rVP6aUs4er9q/ZA/620A6Pn7pourUbs6YE+bSSwnXvXhvuSKAR1rVE4Y05nnPgYtCv5oQZA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DyLy/oCA; arc=none smtp.client-ip=209.85.128.54
+	s=arc-20240116; t=1720538913; c=relaxed/simple;
+	bh=pUVev29WhcEhgGm1elSQHnizmrZu4fP1GBI4M6iwq28=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=DnL4lVljLlkWkWixKEfsSjlVJqXPo4Vw0Bk6z+rmLPbHrkWcZ0gXhcbR4ElKT7jj5XKDkNZKcAStUHuXjG+pkihAaVYy2EAvRZYkB92cf9CEp3uCVoWBVLBh5J9Z3MLExnbCDdV38iIWz4wIu7IDI5bCn4t7vdaXlW+E3tCzHwA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Dbo32DBy; arc=none smtp.client-ip=209.85.208.176
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-42726d6eca5so2710915e9.1
-        for <devicetree@vger.kernel.org>; Tue, 09 Jul 2024 08:28:52 -0700 (PDT)
+Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-2ebe40673e8so68470471fa.3
+        for <devicetree@vger.kernel.org>; Tue, 09 Jul 2024 08:28:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1720538931; x=1721143731; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rr3GSFWqoAD9HFFPG7fGztnMb9LgjvrtTWNplj4lKO0=;
-        b=DyLy/oCAQ3krLJ+rvFrbNSlHVwPlQ2xBdMqCRfIDBMu1wxS4JlDSDWNzCj7JRnPeL/
-         fq2H2szFVYPdGE/AdaFBlZc3BYtW5N6eJHfwTRxDVtulXzxNH5LH4GdCOSL5zwOa7IJn
-         egDw8CqyBFXksSIlDyuEEvAR+ySfqoG4awh2WUZOKTCXjCidhDCpC0F385nJ9dz92qlu
-         Ytld2VdxxflOczH7p1MGQrlNKC9eI+2a1YmhOmVv1kC7dAc+VBqR88iGzwTfsHMh9AI0
-         FLjzhiyR1SuheQ1rV5OvPFXnGwh2ujlver3aggOUgXir6tiXP2osXj6Dtl3EHB8svi4E
-         y4SQ==
+        d=linaro.org; s=google; t=1720538910; x=1721143710; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=JMOSbzRuI/wP8g2RSEEFBMHO9y92zSvonnYkHnjB1vo=;
+        b=Dbo32DBy9/I7QybbVHpRUl9MG71X0fuIIEXlKg92uJEJqCQmQ1ek7Ob4U9MNVixa33
+         uLge2+FynV3N05KKRL2P8f61J4OeCXOFzDuGn2Q61krEA8IC1EWCsQWZJXJ6A9zSlpdQ
+         9kp6UmMmc/avFeXLjfUy3qShH2a12WiS6bHxgT5rN5Wh/BWRqnNg9nAa71cCDlw/SuNg
+         iuisJwSbPonpYiPSGvNtuaWB/DRvFJgQfcbZvw7tsXnC0BaphNPjsKJI2bm37Nh/VtOG
+         z9rHzagrs6ReGGO9NgEKNuY6bbWxfn16WZ7Ee/rvfG+nfnucLhcfJSql043Ov0ZJZaxr
+         Fb/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720538931; x=1721143731;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=rr3GSFWqoAD9HFFPG7fGztnMb9LgjvrtTWNplj4lKO0=;
-        b=u6LhcTZA3ycH7k1N8ijOaXnbXVR0iS6StQGe9ETxt6tOBs+8gOtiyKb6ccya6wAxZ7
-         Ic23AsUbtPKXA5tIuzlTTDxHrx2ttRnNcBSZPVJ3Mr+SH8T3OM8t/SpgDQfIqJW8uXaN
-         yJqDdIYIdwZI8pv3xj1yDt6eeLIiPYq9lXwoneHZ8MioA416v1YdHKGc2ZNvHiuNyCJd
-         9G19qEVBZ+D838LhDTXZSuqKzr3TrTnIYLsaQkSsH5/z4SV/oVPa2DiZ8HJbOM7CDnyL
-         NtrGckgryAOw+WTTJiZ2QYQloX43TImJdqLNYBzAB/fcE7B1dke/gk/AvrMf71QvwzRl
-         AtKQ==
-X-Gm-Message-State: AOJu0YwJvTlpfJbPfyY+skcGR49mfTrAqVxoQ+xQ+eU+AJjQOJiuK0zI
-	/AAHA5uKiEfYab9JE5FC0lDnD9RUIsCj9D6UcobJoAMEVr31gT7a7Rqn6HQYczaHjTMzCOOt6CN
-	Z
-X-Google-Smtp-Source: AGHT+IF4NFy7/t/rb7zZIftACNCfbYCcto8cUw9zZFhNxIMxce8lrJOhUjAw1tc171MTvAxJ5BdJSA==
-X-Received: by 2002:a05:600c:6d4:b0:426:6b85:bafb with SMTP id 5b1f17b1804b1-426707db6e7mr16978265e9.20.1720538931001;
-        Tue, 09 Jul 2024 08:28:51 -0700 (PDT)
-Received: from rayyan-pc.broadband ([2a0a:ef40:ee7:2401:197d:e048:a80f:bc44])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4266f6f5a32sm45883775e9.24.2024.07.09.08.28.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Jul 2024 08:28:50 -0700 (PDT)
-From: Rayyan Ansari <rayyan.ansari@linaro.org>
-To: devicetree@vger.kernel.org
-Cc: Rayyan Ansari <rayyan.ansari@linaro.org>,
-	alsa-devel@alsa-project.org,
-	Banajit Goswami <bgoswami@quicinc.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	linux-arm-msm@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-sound@vger.kernel.org,
-	Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [PATCH 2/2] ASoC: dt-bindings: qcom,apq8096-sndcard: use dtschema
-Date: Tue,  9 Jul 2024 16:24:43 +0100
-Message-ID: <20240709152808.155405-3-rayyan.ansari@linaro.org>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240709152808.155405-1-rayyan.ansari@linaro.org>
-References: <20240709152808.155405-1-rayyan.ansari@linaro.org>
+        d=1e100.net; s=20230601; t=1720538910; x=1721143710;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=JMOSbzRuI/wP8g2RSEEFBMHO9y92zSvonnYkHnjB1vo=;
+        b=GaHX1NXHFog6IWBOZry0ZgKj6YKYdsuRAuUYhaN0BIx2yP4JO6kaeKXgv7b8Ut3gvs
+         CLlLRI+Jh8v7QMHy/7v2iGvrAKdygwcjbOzUX9uwoUgh9W7K2Sge3BC/fnMGcVTn4ujb
+         Jnuhxx/eDwzbB7U32SKAbDA1PXriAPAxoIiduTtaeK+TJQ2mgFwoHlohx5C3Q7ABmI/v
+         iS39XY2isxK75n9Q6cay0Ax6LJ7zrxvsSjvkurWZIt14gQkkBncSLE82dq0VxJEFWKsA
+         WMvLfAGp+8Fj1AEBbHv35Zs4nk0zym0V6CoulBHo/UggeykSZuWyVpuxI9OG7j2g4ey0
+         vzNg==
+X-Forwarded-Encrypted: i=1; AJvYcCVpL73Ih2lkhseSRN41QsE+CXcdT0AM8odrRgW9Oh052R/dEfFZsbZXHi7czYoo1owWPYrQc0yvJlgs1MvcuGi8fPWYvHxaFPFJzQ==
+X-Gm-Message-State: AOJu0YyqieKQQ5SDLXYJyD3NAmHeWm//lf9CNELoQzA2wZhrp7VUuXyI
+	6LJf3NxdIzK1zUSXdai9auaKsy/WLACRLtWwd3auv7SDZdyYGFUyZGEOb1wiOpg=
+X-Google-Smtp-Source: AGHT+IFgDSwXDcR641XU+jvAZ04BkLSldWISaOxKmLROroPi2YBGbkMFd54rHfiW2wRLpQGilsILaw==
+X-Received: by 2002:a2e:9c96:0:b0:2eb:d816:7a67 with SMTP id 38308e7fff4ca-2eeb30de2a7mr19395541fa.16.1720538910340;
+        Tue, 09 Jul 2024 08:28:30 -0700 (PDT)
+Received: from ?IPV6:2a05:6e02:1041:c10:cf24:cce:17df:12ab? ([2a05:6e02:1041:c10:cf24:cce:17df:12ab])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-367cdfab11csm2833723f8f.102.2024.07.09.08.28.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 09 Jul 2024 08:28:29 -0700 (PDT)
+Message-ID: <4c989886-1fea-4975-853c-a9b34d9d8b2b@linaro.org>
+Date: Tue, 9 Jul 2024 17:28:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: thermal: Drop 'trips' node as required
+To: "Rob Herring (Arm)" <robh@kernel.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
+ Lukasz Luba <lukasz.luba@arm.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240709150154.3272825-1-robh@kernel.org>
+Content-Language: en-US
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <20240709150154.3272825-1-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-Remove old txt bindings and add apq8096 soundcard entry to existing
-dt schema.
+On 09/07/2024 17:01, Rob Herring (Arm) wrote:
+> It is possible to have thermal zones which don't have any trip points.
+> These zones in effect simply represent a temperature sensor without any
+> action associated with it. While the schema has always required a
+> 'trips' node, users have existed for a long time without it. Update the
+> schema to match reality.
+> 
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> ---
 
-Signed-off-by: Rayyan Ansari <rayyan.ansari@linaro.org>
----
- .../bindings/sound/qcom,apq8096.txt           | 128 ------------------
- .../bindings/sound/qcom,sm8250.yaml           |   1 +
- 2 files changed, 1 insertion(+), 128 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/sound/qcom,apq8096.txt
+Applied, thanks
 
-diff --git a/Documentation/devicetree/bindings/sound/qcom,apq8096.txt b/Documentation/devicetree/bindings/sound/qcom,apq8096.txt
-deleted file mode 100644
-index e1b9fa8a5bf8..000000000000
---- a/Documentation/devicetree/bindings/sound/qcom,apq8096.txt
-+++ /dev/null
-@@ -1,128 +0,0 @@
--* Qualcomm Technologies APQ8096 ASoC sound card driver
--
--This binding describes the APQ8096 sound card, which uses qdsp for audio.
--
--- compatible:
--	Usage: required
--	Value type: <stringlist>
--	Definition: must be "qcom,apq8096-sndcard"
--
--- audio-routing:
--	Usage: Optional
--	Value type: <stringlist>
--	Definition:  A list of the connections between audio components.
--		  Each entry is a pair of strings, the first being the
--		  connection's sink, the second being the connection's
--		  source. Valid names could be power supplies, MicBias
--		  of codec and the jacks on the board:
--		  Valid names include:
--
--		Board Connectors:
--			"Headphone Left"
--			"Headphone Right"
--			"Earphone"
--			"Line Out1"
--			"Line Out2"
--			"Line Out3"
--			"Line Out4"
--			"Analog Mic1"
--			"Analog Mic2"
--			"Analog Mic3"
--			"Analog Mic4"
--			"Analog Mic5"
--			"Analog Mic6"
--			"Digital Mic2"
--			"Digital Mic3"
--
--		Audio pins and MicBias on WCD9335 Codec:
--			"MIC_BIAS1"
--			"MIC_BIAS2"
--			"MIC_BIAS3"
--			"MIC_BIAS4"
--			"AMIC1"
--			"AMIC2"
--			"AMIC3"
--			"AMIC4"
--			"AMIC5"
--			"AMIC6"
--			"AMIC6"
--			"DMIC1"
--			"DMIC2"
--			"DMIC3"
--
--- model:
--	Usage: required
--	Value type: <stringlist>
--	Definition: The user-visible name of this sound card.
--
--- aux-devs
--	Usage: optional
--	Value type: <array of phandles>
--	Definition: A list of phandles for auxiliary devices (e.g. analog
--		    amplifiers) that do not appear directly within the DAI
--		    links. Should be connected to another audio component
--		    using "audio-routing".
--
--= dailinks
--Each subnode of sndcard represents either a dailink, and subnodes of each
--dailinks would be cpu/codec/platform dais.
--
--- link-name:
--	Usage: required
--	Value type: <string>
--	Definition: User friendly name for dai link
--
--= CPU, PLATFORM, CODEC dais subnodes
--- cpu:
--	Usage: required
--	Value type: <subnode>
--	Definition: cpu dai sub-node
--
--- codec:
--	Usage: Optional
--	Value type: <subnode>
--	Definition: codec dai sub-node
--
--- platform:
--	Usage: Optional
--	Value type: <subnode>
--	Definition: platform dai sub-node
--
--- sound-dai:
--	Usage: required
--	Value type: <phandle with arguments>
--	Definition: dai phandle/s and port of CPU/CODEC/PLATFORM node.
--
--Obsolete:
--	qcom,model: String for soundcard name (Use model instead)
--	qcom,audio-routing: A list of the connections between audio components.
--			    (Use audio-routing instead)
--
--Example:
--
--audio {
--	compatible = "qcom,apq8096-sndcard";
--	model = "DB820c";
--
--	mm1-dai-link {
--		link-name = "MultiMedia1";
--		cpu {
--			sound-dai = <&q6asmdai MSM_FRONTEND_DAI_MULTIMEDIA1>;
--		};
--	};
--
--	hdmi-dai-link {
--		link-name = "HDMI Playback";
--		cpu {
--			sound-dai = <&q6afe HDMI_RX>;
--		};
--
--		platform {
--			sound-dai = <&q6adm>;
--		};
--
--		codec {
--			sound-dai = <&hdmi 0>;
--		};
--	};
--};
-diff --git a/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml b/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
-index b2e15ebbd1bc..c9076dcd44c1 100644
---- a/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
-+++ b/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
-@@ -28,6 +28,7 @@ properties:
-           - const: qcom,sm8450-sndcard
-       - enum:
-           - qcom,apq8016-sbc-sndcard
-+          - qcom,apq8096-sndcard
-           - qcom,msm8916-qdsp6-sndcard
-           - qcom,qcm6490-idp-sndcard
-           - qcom,qcs6490-rb3gen2-sndcard
+
 -- 
-2.45.2
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
 
