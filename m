@@ -1,63 +1,87 @@
-Return-Path: <devicetree+bounces-84256-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84257-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD0E892B9DE
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 14:46:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6B2092B9ED
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 14:49:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 979E0285C5E
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 12:46:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1371E1C21B8F
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 12:49:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC5FB15B116;
-	Tue,  9 Jul 2024 12:46:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B9A815A853;
+	Tue,  9 Jul 2024 12:49:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="j/Sed078"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mZRh5Mwe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F4D815ADB2;
-	Tue,  9 Jul 2024 12:46:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EC551581FC
+	for <devicetree@vger.kernel.org>; Tue,  9 Jul 2024 12:49:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720529205; cv=none; b=TqEYy3FXgifDBfJpxRPqlcWoq8C5eKSS6BRs92zMqu1iF6POsx6HYk2dsS1x8y0zUxKKC6by2LpZOgiwyVTOH7L0GQEoEYNeVYES8uRl5Jic8DyqhycESmxxiPzK7VjeVrxUFr2kO9H5iB1d/daY8ZOzJSbPlK0qHTM5p0NqEYw=
+	t=1720529388; cv=none; b=fAMCHUR1P8RjnBjCdME6ZAG/zmUfmapJ5U6JDs98XMsAne6nrYyTeChNiPMoEEVEtM+YTlIkE+KevYZpEtvQbJ0Af95gZeD4aGgrDeKtSXVuMY8kvK2TEpBdSMxwjCTVGIQeqsh4Z8G/zNiBT37ga7Cl8uxx9xw8QeuhrJNXSt0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720529205; c=relaxed/simple;
-	bh=JGyPpjmrhsfqcLhBLrd1A38OzaoCKd0tq/wkHGWp57M=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=J3/ECn+RjwobtQAlObR2iPb3YV3nzKwNseBWMNVrdxsgcgSvi+V2s2P5fkH81qc0SQWqmsbh8TBw5cA6Fo4h2Xxq4Z+L43UwV3+jZt18AgDeH4HmTgz0JOC44Ch4WrmPNJ7qtmx2ZTTtYprE88tryRfz1DEbtXshiOgdr0JjRIU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=j/Sed078; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 469C1Sb8016208;
-	Tue, 9 Jul 2024 12:46:40 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=B75fg+7MGETPksCZcZVLPi
-	Vl5b+K7TaIT1sCh9FBYPo=; b=j/Sed078igS0+u1pqnRyuB5mDS3DIIw/kDhzd7
-	LFU42yDurpcDzc3YIdxWBQkr3s6Qh4EJmdFO/mCs5F/znWfzGq7nNwxlVtY/0Ijk
-	F7Kqfd3yDjbp2UGS7HoITcej+KhQlmnJyRspKgMyTqaOR4UNRNENXioOWdPfgnsX
-	Qx/17uIj8IdddjZAE7SeVuLNUH0HV4Ad4tE0321IXJpatZgCHb6eDv7Ciz1vSbac
-	yaCa9DFEL8IZGPx4Y8HnnYHVs6hhu3LcaDKt+uQBQG7tVvpmMzgb56iZJYgPGzgV
-	MmRnqIGQteOekh2CGggFF3Bp1gmus/QP7fMAiF3V1y9hA59A==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 406x516kn9-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 09 Jul 2024 12:46:39 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 469CkdZg011255
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 9 Jul 2024 12:46:39 GMT
-Received: from tengfan-gv.ap.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Tue, 9 Jul 2024 05:46:33 -0700
-From: Tengfei Fan <quic_tengfan@quicinc.com>
-Date: Tue, 9 Jul 2024 20:46:19 +0800
-Subject: [PATCH v2] dt-bindings: phy: qcom,usb-snps-femto-v2: Add bindings
- for QCS9100
+	s=arc-20240116; t=1720529388; c=relaxed/simple;
+	bh=iAKlK3P8H1O/7wS9TC1ZzdVwKM3jWOpW2nwPZJKLG6E=;
+	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=tgPinnHfddpO/gz5VEziRzBPdDCeDWz+t5Sk2x/68dCNQX/WzSZqLpy2UmSfiCAAMr/Fa5YGpJhJKwuucwJUyEEYsQPd9ointanjBofNIzvOANG8DVvi19O8YWhrqerSt4h6LOxWqM6IaZZbfZTZTUGrh9OfbseAzmPmlabauNM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mZRh5Mwe; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-4266edee10cso8879955e9.2
+        for <devicetree@vger.kernel.org>; Tue, 09 Jul 2024 05:49:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1720529385; x=1721134185; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=iYPXuYNWuUC0ybpVuOxAnF8IJKAQUMORqNNA7E3t+Ys=;
+        b=mZRh5Mwe9/RyZPeKzVOba1Q0bDmhBA2fvLxoBcyxe6H5otLrl8+fksXTvcBF/bDvb8
+         iWx7GOVv/AKbfyKrMzsxWfRcLWkAx6DfddoMTWbUm3Xy8aavxL4XT0WI0bmxp33gR2s9
+         CoSlwAt1AvarkPfgKdRPWeG17TYug8RdtQ1x80U1R+B5NNA7TR0nWayfQvIC9Yvem/v4
+         WOZkhBd4MyiMnCD3eNc6r1hQKjJYu1klIf45MG5b1Ayb+gAoETkyzvYGAtXlb/NpB3Ve
+         lh+Qf8ORrySKWtiSAWL73gFK3gCkYKXsRJL5Tzqhu/vj4n9ENWu7BwGczp+WqjuXNUba
+         Yu+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720529385; x=1721134185;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=iYPXuYNWuUC0ybpVuOxAnF8IJKAQUMORqNNA7E3t+Ys=;
+        b=PZl3noK/iym0CxOPwvCZJSKSfDpRrbk+GXypD4wdU254uxqeZGDjY2iO8q1UshHjr8
+         bABUaAdPD/TVL327PP57y6XB6eMsScq4S8/XlL3Ikob9w8zAk+qd4RP88Zr+PCEHgYrG
+         SiFSM9DAZapt4gGEpVPRPGgJKlJwWEueGo573NevZFzhf2oLBHHnkDJ7aWIQnWc8l77T
+         JF4r2zvGgQbjU7wLv+ndJ6VuUQCRb8L0yIjctJy7pJfihyLWxzBEZK8qeZDXzFJ5gavn
+         w9E6zQyDfWaJKOdOoWzq1yaQh33C8vEE9g4nKoMRSyLa1wbhUqzz6URxBdmfOz5aNqLD
+         P8AQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWkAaz9Ai308UQCzx/8KxPyAKl5lqKu1qMdNXEtHf8goNtvbcYfqjfhmSXE/9KDypZdHBtOZy+OZYJBMrAPhXPQqB62rNQSMYQvhA==
+X-Gm-Message-State: AOJu0YxPqvEPigEakMK1Us4m8bvRn5eJ90ViC2Tw0+6f7HtU4DDUIlLW
+	uBUzOzEG74iADUQdAXurf9uZZDx2b1DdeGqPDuuFHyut10PFyD6CJro4T9vX18A/QipEsfIN+M3
+	nTjU=
+X-Google-Smtp-Source: AGHT+IFcDYqdCyBzlJ2hUBfUEgeqmdLsG6jtJ7rQwZ01MQc6/OtCfICug2ElL+2i54FmsrLOnVfnXQ==
+X-Received: by 2002:a05:600c:428a:b0:426:6153:5318 with SMTP id 5b1f17b1804b1-426707e209emr16226835e9.19.1720529384508;
+        Tue, 09 Jul 2024 05:49:44 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4266f6e9666sm39540095e9.9.2024.07.09.05.49.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 Jul 2024 05:49:44 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+To: megi@xff.cz, javierm@redhat.com, quic_jesszhan@quicinc.com, 
+ sam@ravnborg.org, airlied@gmail.com, daniel@ffwll.ch, 
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, 
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Manikandan Muralidharan <manikandan.m@microchip.com>
+In-Reply-To: <20240701085837.50855-1-manikandan.m@microchip.com>
+References: <20240701085837.50855-1-manikandan.m@microchip.com>
+Subject: Re: [PATCH v2 0/3] Panel HIMAX support for Microchip's AC40T08A
+ MIPI display
+Message-Id: <172052938350.987180.18063209253133555309.b4-ty@linaro.org>
+Date: Tue, 09 Jul 2024 14:49:43 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,99 +90,31 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-ID: <20240709-document_qcs9100_usb_hs_phy_compatible-v2-1-c84fbbafa9d6@quicinc.com>
-X-B4-Tracking: v=1; b=H4sIABoxjWYC/5WOQQ6CMBBFr2K6tmQ6UAVX3sOYhpZRJtGCFIiEc
- HcLiQuXLt9fvPdnEahjCuK0m0VHIwdufATc74SrS38nyVVkgYAZHKGQVeOGJ/nevFwoFIAZgjV
- 1MG09Gdc827Jn+yCZ29QWzh50mpOIsrajG7+30OUauebQN920dUdc128iBdS5hgTVEQFyqeRrY
- Gd68vdb6c8rsHdJbK3ef3+NGIUOldapzgpU8CO8LsvyAWCRRdETAQAA
-To: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <kernel@quicinc.com>, Tengfei Fan <quic_tengfan@quicinc.com>
-X-Mailer: b4 0.15-dev-a66ce
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1720529193; l=2460;
- i=quic_tengfan@quicinc.com; s=20240709; h=from:subject:message-id;
- bh=JGyPpjmrhsfqcLhBLrd1A38OzaoCKd0tq/wkHGWp57M=;
- b=7qjR3zuvGxwujGiBpy2UQ1NPZVX7GQG+Feb3Fouh9sZrsQTIjt6N3VxUam51jyDohkno6Tz1W
- 6U3fwqwUCgXAzYFMYWPK/k0qIBw112eh02MYkYC587FWTaDVnbCA2Gy
-X-Developer-Key: i=quic_tengfan@quicinc.com; a=ed25519;
- pk=4VjoTogHXJhZUM9XlxbCAcZ4zmrLeuep4dfOeKqQD0c=
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 1RErOJMKbgO4QvJLX4zq1LZ7NA1vRNMu
-X-Proofpoint-ORIG-GUID: 1RErOJMKbgO4QvJLX4zq1LZ7NA1vRNMu
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-07-09_02,2024-07-09_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 adultscore=0
- suspectscore=0 impostorscore=0 mlxlogscore=837 mlxscore=0 bulkscore=0
- priorityscore=1501 malwarescore=0 lowpriorityscore=0 phishscore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2406140001 definitions=main-2407090081
+X-Mailer: b4 0.13.0
 
-Document the compatible string for USB phy found in Qualcomm QCS9100
-SoC.
-QCS9100 is drived from SA8775p. Currently, both the QCS9100 and SA8775p
-platform use non-SCMI resource. In the future, the SA8775p platform will
-move to use SCMI resources and it will have new sa8775p-related device
-tree. Consequently, introduce "qcom,qcs9100-usb-hs-phy" to describe
-non-SCMI based USB phy.
+Hi,
 
-Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
----
-Introduce support for the QCS9100 SoC device tree (DTSI) and the
-QCS9100 RIDE board DTS. The QCS9100 is a variant of the SA8775p.
-While the QCS9100 platform is still in the early design stage, the
-QCS9100 RIDE board is identical to the SA8775p RIDE board, except it
-mounts the QCS9100 SoC instead of the SA8775p SoC.
+On Mon, 01 Jul 2024 14:28:34 +0530, Manikandan Muralidharan wrote:
+> This patch series adds panel himax display controller support for the
+> Microchip's AC40T08A MIPI display.
+> 
+> yaml file is validated using the following commands
+> 
+> make dt_binding_check DT_SCHEMA_FILES=<converted_yaml_file>
+> make CHECK_DTBS=y DT_SCHEMA_FILES=<converted_yaml_file>
+> 
+> [...]
 
-The QCS9100 SoC DTSI is directly renamed from the SA8775p SoC DTSI, and
-all the compatible strings will be updated from "SA8775p" to "QCS9100".
-The QCS9100 device tree patches will be pushed after all the device tree
-bindings and device driver patches are reviewed.
+Thanks, Applied to https://gitlab.freedesktop.org/drm/misc/kernel.git (drm-misc-next)
 
-The final dtsi will like:
-https://lore.kernel.org/linux-arm-msm/20240703025850.2172008-3-quic_tengfan@quicinc.com/
+[1/3] dt-bindings: display: himax-hx8394: Add Microchip AC40T08A MIPI Display panel
+      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/223c12dd492d67d90d3712ef3d9e042116a47522
+[2/3] drm/panel: himax-hx8394: switch to devm_gpiod_get_optional() for reset_gpio
+      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/1dcfca093be9e013a53e3c9b74b3f60ea9c5160e
+[3/3] drm/panel: himax-hx8394: Add Support for Microchip AC40T08A MIPI Display Panel
+      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/014e597d35816b56c7aac1348b77c73657c4066e
 
-The detailed cover letter reference:
-https://lore.kernel.org/linux-arm-msm/20240703025850.2172008-1-quic_tengfan@quicinc.com/
----
-Changes in v2:
-  - Split huge patch series into different patch series according to
-    subsytems
-  - Update patch commit message
-
-prevous disscussion here:
-[1] v1: https://lore.kernel.org/linux-arm-msm/20240703025850.2172008-1-quic_tengfan@quicinc.com/
----
- Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml b/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
-index 519c2b403f66..cd0a723590f0 100644
---- a/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
-+++ b/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
-@@ -17,6 +17,7 @@ properties:
-     oneOf:
-       - items:
-           - enum:
-+              - qcom,qcs9100-usb-hs-phy
-               - qcom,sa8775p-usb-hs-phy
-               - qcom,sc8280xp-usb-hs-phy
-           - const: qcom,usb-snps-hs-5nm-phy
-
----
-base-commit: 0b58e108042b0ed28a71cd7edf5175999955b233
-change-id: 20240709-document_qcs9100_usb_hs_phy_compatible-8b3b9cb6538e
-
-Best regards,
 -- 
-Tengfei Fan <quic_tengfan@quicinc.com>
+Neil
 
 
