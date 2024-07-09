@@ -1,161 +1,155 @@
-Return-Path: <devicetree+bounces-84440-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84441-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE1A292C33A
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 20:22:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28D4D92C351
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 20:33:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6915F284345
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 18:22:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CBF1A284436
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 18:33:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFCC717B037;
-	Tue,  9 Jul 2024 18:22:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E058E18002F;
+	Tue,  9 Jul 2024 18:33:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="e5vpixVo"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="f3wgpTzP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51E0F17B020;
-	Tue,  9 Jul 2024 18:22:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20BA81B86E4;
+	Tue,  9 Jul 2024 18:33:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720549325; cv=none; b=f+P96q1jUjITgTpEsOGF8sKxzyfh/Dwk+qHBkVFJciUgL7GYzkxg9E8ayrL14IVUuoa4iOHhR5EZPRHiF798kHYFFK8/RQLcI/lxxXArj6X6ochPWFIBI1zunMPlv5TSRcxyNa2wlnZ4sDXubbsF8W4rFCtbfEZ7xAHgfJahorw=
+	t=1720549988; cv=none; b=pATITgVXjyjWwX7Xl0/xeJW/wXV1Nzqqml3slJRleJY7mO9TaYU8o68gO/77pkBNHPPTdMCa7+nUK/kqBUyrUxWc0WQr46H8AhTlmuH6FJKh3emJEC7ezqEI7VGkOnYsWWis08XiK87BAq4PJTWVNMjGCfAF4QJNsx9/3SvGzFc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720549325; c=relaxed/simple;
-	bh=AepMg0xafuVDLMArb1Kir6rVZXYbez0Hvk8SVdhKTTM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=ogUHQPM3HNwU9GHAOnPKW9oj/627DG4Awd6CJ3Bcs/N4MabPTk6Yb9pVIV3iKHZkPOEulBti381PsdwAIiTdWmzhXIhVo4Lr99gUXPPGE1YeLDlflc/4emjLCEv+Vd8ComKb7A01GHUSIfYzsONpgYPeizll9a+40FxwMnaLzLo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=e5vpixVo; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 469AcgoQ020395;
-	Tue, 9 Jul 2024 18:21:57 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=DrLa1/qOSyd13mUrhEe07s
-	wQvk5h3/sYzyzSSp6FFes=; b=e5vpixVoG2SO91+UZ4wOiofC3iwsLYwbbpfQN+
-	yCRxbhJxolVoR58z6t4sautVRBXjmbvw3ajq7JMLv3wPxy5wMQGeFiBqXhSNneKv
-	xYjfE0JyU16gUSCO5uBgKoKmV+/RVgEQnTszTSnGNqvDnvT1SqejC/AEZ5ZBzcWC
-	2ZA7QWUPVpI5FUaBmgUxG8baRXoPx8vdBtE7u4FQyGcOrGgoUdcYZ8xYfOaYxC3L
-	o8A00DZEZBfeHxgr9Tvf3jgiZ/9TxT/q+DQJcz1zXPbw6xOvc385QTeQ+SSj1m5H
-	g327oqKalmYlrReZXdfj0nua341uUgE1n+z0gbyx9TQ6jvhg==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 406x0t7hb4-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 09 Jul 2024 18:21:57 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA05.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 469ILu59002082
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 9 Jul 2024 18:21:56 GMT
-Received: from hu-scheluve-lv.qualcomm.com (10.49.16.6) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Tue, 9 Jul 2024 11:21:52 -0700
-From: Sagar Cheluvegowda <quic_scheluve@quicinc.com>
-Date: Tue, 9 Jul 2024 11:21:40 -0700
-Subject: [PATCH v2] arm64: dts: qcom: sa8775p: Add interconnects for
- ethernet
+	s=arc-20240116; t=1720549988; c=relaxed/simple;
+	bh=o7KezNssQ10KvpArozHaQDe0vjPmXwq+WBOthEhLB8s=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jZZ6ldreUDJRgX+7ndyk9olQOUup7JevHeY9A8zLcNN9Qa0lXRSSVg1ff4u5rkFktyp3e2z3ifzR1wH5gG0+B/aXgI4tWJ/iysPL3nGwQc2/gjYjtPraagMln3j1l+k7W5ylNJn6S+wJcyDR0sb4ofIC1BV83epyDKlNKoPLs6I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=f3wgpTzP; arc=none smtp.client-ip=209.85.167.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-52e99060b41so5924461e87.2;
+        Tue, 09 Jul 2024 11:33:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1720549985; x=1721154785; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=qQvoh/iNTo3TxS26T9ik+xylt2WEP99UjL3OjvGhQKQ=;
+        b=f3wgpTzPyG4pT78beBhwK1NyaNHB2V1VGH51bkdGguBUnoV/T5p076l+p3r7+LdCn1
+         aaglEda3dqHXakXAR2OlZ9FI3N0m18w4nQTo3R2MI7xq7+hf35SImzjZ6lrl3w9r+UoH
+         BMFoprQ8Ss0IKe/tEW/URD+Y71FZcq0Df27NdS95Zg/wkwZgWgxhwoHWNdVcNYWEjece
+         0d1Y4/puLW+rIVSr5hDPNLVszkXSbq0DTdiOvGPvZM9PSpYbQZzSrtBsf9eQACti9QKl
+         1l8HXKK3cMZNIKILz5rplrfIlkqSqOtJAj/n69+U3LOU676dUE6xphd45ZalBCK6el9l
+         lpBQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720549985; x=1721154785;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=qQvoh/iNTo3TxS26T9ik+xylt2WEP99UjL3OjvGhQKQ=;
+        b=ZVhMhD74UOTuQE8pM797rUARTJkpAnY7+6eB7pJfH+IhgIq4Rj4REP4LqVCmKCj22j
+         v7etGYBm2X8v7kRMCiI31oQGxEgObBs2/FXc+FiiQ/alXvJ8OVr731PaGX+0TodGpXUT
+         tpEZCGH+v3dP5PKVdEbZgXWeIyoou8gpgHT+LLFzk5uchFcFdgw+a226t34CVfvc+f6d
+         lhu/Nc/uQDsiWPwUGnRC9xTnRCNXTbITtbkouZQ3SRHYjM6pgaOehA2mOZ21fVR0295k
+         8JwQqzL4RHbwO/miMQOgYcG6pOKiPiiOjl3aFHZxTMOuJ0Ku1ED2hxY3onYbm5kTlD06
+         qZPw==
+X-Forwarded-Encrypted: i=1; AJvYcCXgHS16Ijt86oohdMiGAWHiYcxtRjH4o074QXOTDdfJzaUg66VZpk+TyP7+qZJY9L2F28y6uJCa75AXD2HYpn8DpfQJd+AY68AMOBXzPTxAuiesQHCn+k0lQQF/502ypBewaTiidkVmtyMAo6cfe6KwgeR1yYvHIK11IIDtj2blV8B8bg==
+X-Gm-Message-State: AOJu0YzBatt1r7zQ8ECVcBjc7pFy0mxh8mshslvUzT4VVcTuJpllMM0V
+	MLhyVdpZOSrA67YsxuzhBcqbmgQ9qnnhvFz1OND/2pPSmiyfEpCf
+X-Google-Smtp-Source: AGHT+IGdA6qBs/h5ifQa1NLYmmqBaEPCm7bXVlEOtK8ASpi7E8t7wW94TgDIp5nw4qBgiqUe1GdzHw==
+X-Received: by 2002:ac2:5605:0:b0:52e:97b3:42a1 with SMTP id 2adb3069b0e04-52eb9995536mr1796703e87.24.1720549984595;
+        Tue, 09 Jul 2024 11:33:04 -0700 (PDT)
+Received: from ?IPV6:2a10:a5c0:800d:dd00:8cfe:d6e7:6701:9dfd? ([2a10:a5c0:800d:dd00:8cfe:d6e7:6701:9dfd])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52eb8e493cdsm313069e87.85.2024.07.09.11.33.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 09 Jul 2024 11:33:03 -0700 (PDT)
+Message-ID: <2b66ea94-dd77-4e86-b09b-c00523bdbf75@gmail.com>
+Date: Tue, 9 Jul 2024 21:33:02 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/7] dt-bindings: iio: rename bu27034 file
+To: Conor Dooley <conor@kernel.org>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+ Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <cover.1720176341.git.mazziesaccount@gmail.com>
+ <f83cf0d6f5b0ed391703ea3908ebd65b3f6e5c87.1720176341.git.mazziesaccount@gmail.com>
+ <20240708-eloquent-overdrive-092c7678f913@spud>
+Content-Language: en-US, en-GB
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <20240708-eloquent-overdrive-092c7678f913@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-ID: <20240709-icc_bw_voting_emac_dtsi-v2-1-a1e02c7099a5@quicinc.com>
-X-B4-Tracking: v=1; b=H4sIALN/jWYC/3WNwQ6CMBAFf4Xs2Zq2YABP/ochTVkK7IFW21o1h
- H+3knj0OJO8eSsE48kEOBcreJMokLMZ5KEAnLWdDKMhM0guK17zkhGi6p8quUh2UmbRqIYYiEn
- N27HVohF1BXl982ak116+dplnCtH5936UxNf+ms3fZhJMsKrnrehLceLIL/cHIVk8olug27btA
- 0wrN3jAAAAA
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-        Andrew Halaney
-	<ahalaney@redhat.com>, <kernel@quicinc.com>,
-        Sagar Cheluvegowda
-	<quic_scheluve@quicinc.com>
-X-Mailer: b4 0.13.0
-X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: hk_VF3wUYlqJUFHOWrucJhHhYRHJMqgI
-X-Proofpoint-ORIG-GUID: hk_VF3wUYlqJUFHOWrucJhHhYRHJMqgI
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-07-09_07,2024-07-09_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 bulkscore=0
- lowpriorityscore=0 impostorscore=0 adultscore=0 suspectscore=0
- phishscore=0 mlxlogscore=999 priorityscore=1501 malwarescore=0 spamscore=0
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2406140001 definitions=main-2407090124
 
-Define interconnect properties for ethernet hardware.
+On 7/8/24 20:05, Conor Dooley wrote:
+> On Fri, Jul 05, 2024 at 01:54:26PM +0300, Matti Vaittinen wrote:
+>> The BU27034NUC was cancelled before it entered mass production. It was
+>> replaced by a new variant BU27034ANUC (note, added 'A'). The new
+>> variant gained a few significant changes, like removal of the 3.rd data
+>> channel and dropping some of the gain settings. This means that, from
+>> software point of view these ICs are incompatible. Lux calculation based
+>> on the data from the sensors needs to be done differently, and on the
+>> BU27034ANUC the channel 3 data is missing. Also, the gain setting
+>> differencies matter.
+>>
+>> The old sensor should not be out there so the compatible was dropped and
+>> a new compatible was added for the bu27034anuc. Move the yaml file so
+>> the file name matches the binding and change the $id.
+>>
+>> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+>> ---
+>> Revision history:
+>> v1 => v2:
+>> - New patch
+>> ---
+>>   .../iio/light/{rohm,bu27034.yaml => rohm,bu27034anuc.yaml}      | 2 +-
+>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>   rename Documentation/devicetree/bindings/iio/light/{rohm,bu27034.yaml => rohm,bu27034anuc.yaml} (92%)
+>>
+>> diff --git a/Documentation/devicetree/bindings/iio/light/rohm,bu27034.yaml b/Documentation/devicetree/bindings/iio/light/rohm,bu27034anuc.yaml
+>> similarity index 92%
+>> rename from Documentation/devicetree/bindings/iio/light/rohm,bu27034.yaml
+>> rename to Documentation/devicetree/bindings/iio/light/rohm,bu27034anuc.yaml
+>> index 535bd18348ac..fc3d826ed8ba 100644
+>> --- a/Documentation/devicetree/bindings/iio/light/rohm,bu27034.yaml
+>> +++ b/Documentation/devicetree/bindings/iio/light/rohm,bu27034anuc.yaml
+>> @@ -1,7 +1,7 @@
+>>   # SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>   %YAML 1.2
+>>   ---
+>> -$id: http://devicetree.org/schemas/iio/light/rohm,bu27034.yaml#
+>> +$id: http://devicetree.org/schemas/iio/light/rohm,bu27034anuc.yaml#
+>>   $schema: http://devicetree.org/meta-schemas/core.yaml#
+> 
+> IMO this should be squashed.
 
-Suggested-by: Andrew Halaney <ahalaney@redhat.com>
-Signed-off-by: Sagar Cheluvegowda <quic_scheluve@quicinc.com>
----
-Adding interconnect dtsi properties within ethernet node of SA8775P,
-this patch is adding support for the interconnect properties defined
-in the series ->  
-https://lore.kernel.org/all/20240703-icc_bw_voting_from_ethqos-v3-0-8f9148ac60a3@quicinc.com/
----
-Changes in v2:
-- Rearrange the interconnect properties for SA8775P to follow the below order.
-	property
-	property-names
-- Link to v1: https://lore.kernel.org/r/20240708-icc_bw_voting_emac_dtsi-v1-1-4b091b3150c0@quicinc.com
----
- arch/arm64/boot/dts/qcom/sa8775p.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+I've no objections to squashing this. The main motivation of having it 
+as a separate patch was to point out the file rename for reviewers and 
+ask if it is Ok. Furthermore, if there was a reason not to do the 
+rename, then this patch could've been just dropped while the rest of the 
+series could've been applied.
 
-diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-index 23f1b2e5e624..cc4ad901fbac 100644
---- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-@@ -3464,6 +3464,12 @@ ethernet1: ethernet@23000000 {
- 				      "ptp_ref",
- 				      "phyaux";
- 
-+			interconnects = <&aggre1_noc MASTER_EMAC_1 QCOM_ICC_TAG_ALWAYS
-+					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
-+					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-+					 &config_noc SLAVE_EMAC1_CFG QCOM_ICC_TAG_ALWAYS>;
-+			interconnect-names = "mac-mem", "cpu-mac";
-+
- 			power-domains = <&gcc EMAC1_GDSC>;
- 
- 			phys = <&serdes1>;
-@@ -3499,6 +3505,12 @@ ethernet0: ethernet@23040000 {
- 				      "ptp_ref",
- 				      "phyaux";
- 
-+			interconnects = <&aggre1_noc MASTER_EMAC QCOM_ICC_TAG_ALWAYS
-+					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
-+					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-+					 &config_noc SLAVE_EMAC_CFG QCOM_ICC_TAG_ALWAYS>;
-+			interconnect-names = "mac-mem", "cpu-mac";
-+
- 			power-domains = <&gcc EMAC0_GDSC>;
- 
- 			phys = <&serdes0>;
+Thanks for the review!
 
----
-base-commit: 0b58e108042b0ed28a71cd7edf5175999955b233
-change-id: 20240703-icc_bw_voting_emac_dtsi-2a09f9a18174
+Yours,
+	-- Matti
 
-Best regards,
 -- 
-Sagar Cheluvegowda <quic_scheluve@quicinc.com>
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
+
+~~ When things go utterly wrong vim users can always type :help! ~~
 
 
