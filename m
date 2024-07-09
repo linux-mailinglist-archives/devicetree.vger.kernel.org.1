@@ -1,73 +1,55 @@
-Return-Path: <devicetree+bounces-84124-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84125-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3654192B167
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 09:43:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 811D292B17B
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 09:48:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 684761C21DD4
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 07:43:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 36E981F22F60
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 07:48:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BED7144313;
-	Tue,  9 Jul 2024 07:43:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DA9614AD03;
+	Tue,  9 Jul 2024 07:48:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lBZ5A5ed"
+	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="Yyg4ZAUa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout.web.de (mout.web.de [212.227.15.14])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D04C013211E
-	for <devicetree@vger.kernel.org>; Tue,  9 Jul 2024 07:43:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4A4214388F;
+	Tue,  9 Jul 2024 07:48:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720510996; cv=none; b=PCXjAtrYxyICqJ1bJgNJLk/KyGs0bTdJUbSFzfCBhfb228HlAVWr+5nxKun9dIBQsG02BDaoK8uFUSM6ounDxQWB4k/L6rHyn0hcklrWuYPZcm/qHZsT7HoqAt0EFrdqdTU2whbJEx7YxRIz1XXOVog6A7083j5rM1ydqlHBXO0=
+	t=1720511305; cv=none; b=EJCgsrvPf2B1BKgGRe99HOWUSLnR5m5wk2pEBDk4bRCjs7rN/N+ai0FBMS5DDy1MlsQlMZ3InDLDvRjM9/yHZBUWkmhE+bXlXwwJXAxIoIXakwH9psvP3IvM5rHf7HWmaqKXYVABrjVDuJaABDyAdMMunQr5DGwBa07hH/UzPmo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720510996; c=relaxed/simple;
-	bh=jAG3/aKaD/kqbIcJypKqQbgWvBndMAYJGXwk/ugv40Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=siEzsT6Vb9vsTHp2Bc8DijuYfr4wLVa+5RIT3Ks2LP4FJvEdA+x040YX+bxrx61sj70oGBHELz5ka8vXlVkW8RS2XwkuAJbItc2X/I7Ti+uVzr9odY/aReramcyXNEPI0v081t6Ndt0r4aOSWL3p25SXQc5V267mPfoZNxDpPa4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lBZ5A5ed; arc=none smtp.client-ip=209.85.221.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-36786081ac8so2957611f8f.0
-        for <devicetree@vger.kernel.org>; Tue, 09 Jul 2024 00:43:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1720510993; x=1721115793; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=h1CLW71m5KlFIfS4WtV1HBML6Ik9miyTvvoVtrTfgdI=;
-        b=lBZ5A5ed3jLJAWQDSBmi68plpWpHA+F4E8qQYgOtu46nHdf5NTFGetJK8IfEdMijzJ
-         Iu5o227LaIzKXnLgFFLA/67Psjwt8XdbAKrFlq53I29f/mgUsWPtKvfIuaXhLTTdwQWB
-         IobTTLpchBtFcQLB2uismdWU0vC4FrGdjnqhjaRap1unKlz2LoR/3VA47acWSEl5cSZq
-         PPUIPPmrOTemFKrwcjF8XMcccyzEj3TzBXKD+XeTBsgthA8KRlE8a1sZDI5rbrwXSDgz
-         CqO/kHqvOvynfJvpJD5QzEpvinpgCndptbxaPIvZVwEmNyg5R67oeb3LPIH8dJNq/zov
-         phDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720510993; x=1721115793;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=h1CLW71m5KlFIfS4WtV1HBML6Ik9miyTvvoVtrTfgdI=;
-        b=LJmyNAvekBV1Tck+ozxHBjR+t6YkhXoTuuv3bb0BFXXyUOGAkgfIjB130ogWNbYLHd
-         4Viu+ZfYh6kPLyufrCYE/S9YcyUHk1iQI38ENOlpFnAMr38mZh3mqxuZgKdODnRmzWy6
-         51P5rKqL8NPWdC8Y25ZV7QygJYOZ/xaQfFKadM9qdQzwqCjcG7725HjTMBaT6gPBwLNE
-         KZqkzsBDmexThFj/d10BY5i1rrSsz9gxxBgM8TxbXzGHV6tQw6biVq21lELmsRPmjp/C
-         00QzUsz45T/Xmn7VJt/QYa9SOWQbpWpSjs7Nj/GU6qVyAfALOKaWYUTAYBX2R9Q7jsBM
-         K1qQ==
-X-Gm-Message-State: AOJu0YxM5mH6tc+uITm0pxxM7BtkbfiAMKoSjhr071eikk3j4eqIeyRl
-	TM6OAr67IppMykdndaRjxFSzAiugCITNhsw4QUT4+S4fD82Ak1vZQ7vjd43XX44=
-X-Google-Smtp-Source: AGHT+IFW+YP/WjH3mfocei0KWEyOnvOvhNRqjin5G0HJ1iruDzyBQrHEp0XoWZjyCQ5cCU6oLsl5Mw==
-X-Received: by 2002:a05:6000:18aa:b0:367:9073:3491 with SMTP id ffacd0b85a97d-367cea46301mr1400995f8f.5.1720510993204;
-        Tue, 09 Jul 2024 00:43:13 -0700 (PDT)
-Received: from ?IPV6:2a05:6e02:1041:c10:cf24:cce:17df:12ab? ([2a05:6e02:1041:c10:cf24:cce:17df:12ab])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-367cde7df48sm1746617f8f.1.2024.07.09.00.43.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 Jul 2024 00:43:12 -0700 (PDT)
-Message-ID: <0fdbddfb-f25b-4d39-a80c-770fb8ed40f4@linaro.org>
-Date: Tue, 9 Jul 2024 09:43:12 +0200
+	s=arc-20240116; t=1720511305; c=relaxed/simple;
+	bh=gXm2i0HYYuSYuh7qBSALjsI9yozo6/+CEZoWaEWLEnA=;
+	h=Message-ID:Date:MIME-Version:To:Cc:References:Subject:From:
+	 In-Reply-To:Content-Type; b=eNIdhS4Qk/0LQjAGprHlSvZHJf66sY/NwO79xUyt59mNe8gAC7OWfg2I8iwGPQF5YFJOKuRHS6jbcB2RSLu+vlYuewUtBAWULwMZSynqhATR9CE2GZHpo8f+TT9Ok80C9zfDZLv9Go5AA26Wg7TE+Y7EqADg6ChIs6WIfOM1d1M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=Yyg4ZAUa; arc=none smtp.client-ip=212.227.15.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+	s=s29768273; t=1720511257; x=1721116057; i=markus.elfring@web.de;
+	bh=KfdwP98EfLVBzYD3qX1tlsoJ0XqC4M1TEOLBCI6Bfuk=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:References:
+	 Subject:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
+	 cc:content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=Yyg4ZAUaA5Z1YNvxDSxwh8XKxPvQOPx2fsVIKBesdumBqOQnwF7BqeIiOOM5qYnB
+	 89K4BRAycDKVwz5mMnljU8g2H1HXUXkm3v/UEItLg1+nWPaJv3IbBjnL/95dmJsVZ
+	 YUw6/pp8lER4jVmXnLcjek/2SSjcXPH0ROhPgXqfrTP3VqDc5JbEf9Bc5PWEsbTjE
+	 L/n/4GJV2MX87JbZho8ZuamvTMNtsycrnsJDrrwEhLM1Gl9hlVqz7/jHnwOxoetv2
+	 Fj01JBUnARwn5Vm2z8bYsfA1/p4QcJvRW4jh9jHlOl8GSzhtaKI1GrZR0k1n6YFzm
+	 o5Wq0HsMP5SyxEwnBQ==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from [192.168.178.21] ([94.31.91.95]) by smtp.web.de (mrweb006
+ [213.165.67.108]) with ESMTPSA (Nemesis) id 1M7ell-1sSTXo1T2r-00EvLU; Tue, 09
+ Jul 2024 09:47:37 +0200
+Message-ID: <582f0e6e-7f8b-41db-b08e-5783943dddde@web.de>
+Date: Tue, 9 Jul 2024 09:47:31 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,57 +57,62 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/3] dt-bindings: timer: renesas,tmu: Add more SoC
- families
-To: Geert Uytterhoeven <geert@linux-m68k.org>,
- Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>,
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Cc: devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- linux-kernel@vger.kernel.org, Geert Uytterhoeven <geert+renesas@glider.be>
-References: <cover.1716985096.git.geert+renesas@glider.be>
- <CAMuHMdWP7y=8rA5jszCbzh_RnXnv4tFUpHv0qtbucHEYRFE9qw@mail.gmail.com>
-Content-Language: en-US
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <CAMuHMdWP7y=8rA5jszCbzh_RnXnv4tFUpHv0qtbucHEYRFE9qw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+To: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>,
+ Hans Verkuil <hverkuil@xs4all.nl>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Mark Brown <broonie@kernel.org>, Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+ Rob Herring <robh@kernel.org>, Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: LKML <linux-kernel@vger.kernel.org>
+References: <20240709000848.1108788-4-yuji2.ishikawa@toshiba.co.jp>
+Subject: Re: [PATCH v11 3/6] media: platform: visconti: Add Toshiba Visconti
+ Video Input Interface driver
+Content-Language: en-GB
+From: Markus Elfring <Markus.Elfring@web.de>
+In-Reply-To: <20240709000848.1108788-4-yuji2.ishikawa@toshiba.co.jp>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:Nk5sjzAT/pxzJb3qM00jDkhnh7o3I4KoR7i1lj7yiWJly3w+/j/
+ ipzs5mjnxzKA+mrnqKxIpRs9hyzf8m4SsQa+16ILhCuvSCCVDB1JNSSWLeGMUxH9Ln7vdZF
+ 5XNPDIHUI99jXOchyPrDvtD3cjXJMdWDSWCljoQsJTDFe9YEzTQ9ChL4TAToGtDeSTM0B0j
+ 2MDYDJrBoLtT2UVcP8ULg==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:tTIW3jN3Yyc=;Rmz+amz7iK/+Ny8+TEsgDgS0/DN
+ pPg4rtpQxsw43f7BhiK4WYjw00/F8GLJvslF2M59qWskUKCVYa8Uly+aTKGWjp7Hx1Qr69cpL
+ 5L+TMMtxvCQ6La6LBKqRvrN++1G/VnSxpFHGzdVw6ewMIrWJ0z3XYf5cmjkuiLiCI6IBobjIh
+ tPIBtJGFsBQkO339KXB8pexE6EsWhe0iQHX4B2lcO6AZsVAGG5xNKKnc7t/L3Tv58J6Y+HidX
+ J6D0XHSCHac9mBn80XTkQvP2XYZDfizJv5ip5LnNaVwS8/n60Q3qcWS2dpeuX+4asmiztRVjz
+ x8Wsr7CpCmjoIEJ9bQs2g0ca0CDPizuhyj/eqskmukekdAzplQ/qQ+GPgdo9ctGxo8i6J/jIL
+ nohDo94IWuQhqab490q6Wtuu4q3TZ6LMdqEXUQPwqZYHgEYtt1E+VIRQNMBIIvi9EQJN5ysO/
+ P5BhZpPYjra2AtdippSQiyFQOOxXYNjRwowAHyySxhtLjU85np2ArKIDmBpEmeMLOkAdpweQ5
+ aBvblOCVL7q5qdBTnEZoABpeCrlNe0vaXd6QzjFICfYOM+KTthy1LJ9M/uZMA95QMBrjPuk3o
+ 90Z47DGOtMQt3DF1wMXfAnoDswW60rHb6+pENVn2+3w/axugFVa1f5s8NjqprL10Y8Ew//o87
+ eRGkGBsPFsGe4mP+hnzBlimH7VEEIqYcow++OD9Q2kf2bOtVjX8O9W0gqdOs6/38zNjuzGrXR
+ FkvokByZJMK2dcWbJjilPq8evSf0IHOVCH//cD8LtwdXnoxeT/2DmEKvWYBBCM4dLdRwQNVxf
+ DxLOOt0j5dL0lwHJotckwXMqx4YFzstnYOcID5bZOf1h0=
 
-On 09/07/2024 09:39, Geert Uytterhoeven wrote:
-> On Wed, May 29, 2024 at 2:22 PM Geert Uytterhoeven
-> <geert+renesas@glider.be> wrote:
->> This patch series documents support for the Timer Unit (TMU) on the
->> R-Mobile APE6 SoC, and on various SoCs from the RZ/G1 and R-Car Gen2
->> families.
->>
->> Changes compared to v1:
->>    - Add Acked-by, Reviewed-by.
->>
->> Thanks for your comments!
->>
->> Geert Uytterhoeven (3):
->>    dt-bindings: timer: renesas,tmu: Add R-Mobile APE6 support
->>    dt-bindings: timer: renesas,tmu: Add RZ/G1 support
->>    dt-bindings: timer: renesas,tmu: Add R-Car Gen2 support
->>
->>   .../devicetree/bindings/timer/renesas,tmu.yaml       | 12 ++++++++++++
->>   1 file changed, 12 insertions(+)
-> 
-> Gentle ping, as these are already in use in DTS since v6.10-rc1.
-> Thanks!
-> 
-> Gr{oetje,eeting}s,
-> 
->                          Geert
+=E2=80=A6
+> +++ b/drivers/media/platform/toshiba/visconti/viif_capture.c
+> @@ -0,0 +1,1431 @@
+=E2=80=A6
+> +static int viif_set_img(struct cap_dev *cap_dev, struct vb2_buffer *vb)
+> +{
+=E2=80=A6
+> +	if (cap_dev->pathid =3D=3D CAPTURE_PATH_MAIN_POST0) {
+> +		spin_lock(&viif_dev->regbuf_lock);
+> +		hwd_viif_isp_guard_start(viif_dev);
+=E2=80=A6
+> +		hwd_viif_isp_guard_end(viif_dev);
+> +		spin_unlock(&viif_dev->regbuf_lock);
+=E2=80=A6
 
-Applied, thanks
+Under which circumstances would you become interested to apply a statement
+like =E2=80=9Cguard(spinlock)(&viif_dev->regbuf_lock);=E2=80=9D?
+https://elixir.bootlin.com/linux/v6.10-rc7/source/include/linux/spinlock.h=
+#L561
 
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
-
+Regards,
+Markus
 
