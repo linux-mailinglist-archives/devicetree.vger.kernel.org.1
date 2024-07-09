@@ -1,62 +1,61 @@
-Return-Path: <devicetree+bounces-84412-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84413-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D893C92C180
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 19:00:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14B8B92C187
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 19:01:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 15A581C23AC4
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 17:00:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B393F1F23B26
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 17:01:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE8D51AC44F;
-	Tue,  9 Jul 2024 16:29:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72EFB19E829;
+	Tue,  9 Jul 2024 16:30:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NycS/DkI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OcDj//x7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0D931AC42B;
-	Tue,  9 Jul 2024 16:29:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 484EB19B5BA;
+	Tue,  9 Jul 2024 16:30:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720542554; cv=none; b=eo52i0YqPS66dh90BXCqpom6+dw3kvpkJkc+oeRoBQz6PAZOIsTzqZ80nunqBIDugQ0zgKcit1bjo2FhHCfoAjQNSwhkfmnwytjr0aKaSZ5mpxNvLXgMpacQlKchDG4kZfYUCwZIHarYngMz+lq51dYZnXDxIrttcp2Dloe4Q40=
+	t=1720542641; cv=none; b=erpkQxiiMnqC665pXADrmppG+ctyRiFMec5cgoKQTD0BsT4QHeGDLm6zd28UTg07ManPZ34AFlVn44QuyExNzSHEOB+NmZc7ok1p1iXdXUDXhj7ketgZnXlkccjOq9DHZkSVJW+wut/3a4gnah2AaqAEeefCGhS0HYcmvFq+sBk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720542554; c=relaxed/simple;
-	bh=RhV3fJwYtKN6ViNUPQofsewkE0uvNr9XIDbS7PLjJpE=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=J5qzoWofJcWN6ab+9yuT/+AsJU9ESBL6c/X0l/BUz/EVH9pyv8/uWP2S7shyfmFU/Rpgjq+A7aw2H7Zjze75MwmeNS2aYiuMWgxJlHopKqs1+KwomxCIX/0x3JO8yClU9U8EJU6IIt5kebs+Nb1YjsUBsqcTsQAnkhYLc+tgVn4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NycS/DkI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 12EBEC32782;
-	Tue,  9 Jul 2024 16:29:13 +0000 (UTC)
+	s=arc-20240116; t=1720542641; c=relaxed/simple;
+	bh=UKvAsz1g4fnOhjjLhryynx4MnRPSHIJ84qICpjwLHE0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IRgLxCJeLnVIW8QEKEOCM2gjjxCLAsInmGQutA8hdWIZC7f6P7de+h9+aY4HnFlm8DAQEqs6yMj6l2a88Pb2TRxMV+RgVxTp1TNdM2tbuW+Awcig6RmwC5/WjDo8iqLMiKN7LZOhAqP+7Rg3TzQqo5p6EYViEp9YQyoZXsJSKiA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OcDj//x7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A9B5C3277B;
+	Tue,  9 Jul 2024 16:30:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720542554;
-	bh=RhV3fJwYtKN6ViNUPQofsewkE0uvNr9XIDbS7PLjJpE=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=NycS/DkI7P9OF8H7e3aIHR6J18UeZ3d2k6bf2FQxhS/x45SkstJat09iSyVjn7+Ez
-	 RP+Ll0mLC3OIvrHnagNJwjfpHVPX5Qmzttc4icEnTFA20a4L2U+vRdk9a1jYGIRdLt
-	 jeUhwZnTy+I1jSwBAuFH1pnu699lKjEDQJi/DqrIRtd1HtQn+d30kLkrZVFT0kKQQy
-	 Q2V38FOoy1WTcmc05qi3X+8TFtbhZ62hEogDtoV3kloxhTQpS843Czd+BbwmFU6rlv
-	 +rmEYVY0JvOrChWyMzHWXRXIWxh7ScxSxMbG2MQMMIyEStlSWkjpM+ZEUf9rTSd32B
-	 EeCHYTCpIYJng==
-Date: Tue, 9 Jul 2024 11:29:12 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Tengfei Fan <quic_tengfan@quicinc.com>
-Cc: Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=k20201202; t=1720542640;
+	bh=UKvAsz1g4fnOhjjLhryynx4MnRPSHIJ84qICpjwLHE0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=OcDj//x71lzAXPBTyD2LF+AFXbTXO0eT0YRpKj7V0MLPCfbQ5jVnxu1Ek9cOWy+Qf
+	 scFvukXODhmmZvouxZBh3vRGgHJZFG6ETDbCGpRJfyzeA/VretAxeLqqZqUndnnJnP
+	 NI6mfm+vRk8IOo1eMYd9bA+pxAirZBWjBZvsD3HsebwLXQzJwxxmThSqkwAckO7/aw
+	 ZO+ziOXinTvU9mmCIbgZSCGrHXIrTBYgWRvmlnaQ+ssu+OIFcxS3BvP5lEzkFrLA3Y
+	 u3Sx+1gdmw43NUajbpSF6Iho9R/KboZyP67DQvWKbGC5iJo/JbwI/Pxd1l83z6rBE8
+	 tL1xrH3JshPNA==
+Date: Tue, 9 Jul 2024 10:30:39 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Valentin Caron <valentin.caron@foss.st.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
 	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	kernel@quicinc.com, linux-arm-msm@vger.kernel.org,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: PCI: Document compatible for QCS9100
-Message-ID: <20240709162912.GA176161@bhelgaas>
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: rtc: stm32: introduce new
+ st,stm32mp25-rtc compatible
+Message-ID: <172054263823.3749406.8767907445542011155.robh@kernel.org>
+References: <20240708153434.416287-1-valentin.caron@foss.st.com>
+ <20240708153434.416287-2-valentin.caron@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,44 +64,27 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240709-add_qcs9100_pcie_compatible-v2-1-04f1e85c8a48@quicinc.com>
+In-Reply-To: <20240708153434.416287-2-valentin.caron@foss.st.com>
 
-On Tue, Jul 09, 2024 at 10:59:29PM +0800, Tengfei Fan wrote:
-> Document compatible for QCS9100 platform.
 
-Add blank line for paragraph breaks.
-
-> QCS9100 is drived from SA8775p. Currently, both the QCS9100 and SA8775p
-> platform use non-SCMI resource. In the future, the SA8775p platform will
-> move to use SCMI resources and it will have new sa8775p-related device
-> tree. Consequently, introduce "qcom,pcie-qcs9100" to describe non-SCMI
-> based PCIe.
-
-Not connected to the patch below.  Move to where it is relevant.
-
-> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
+On Mon, 08 Jul 2024 17:34:33 +0200, Valentin Caron wrote:
+> Introduce new st,stm32mp25-rtc compatible. It is based on st,stm32mp1-rtc.
+> 
+> Difference is that stm32mp25 soc implements a triple protection on RTC
+> registers:
+> - Secure bit based protection
+> - Privileged context based protection
+> - Compartment ID filtering based protection
+> This driver will now check theses configurations before probing to avoid
+> exceptions and fake reads on register.
+> 
+> Link: https://www.st.com/resource/en/reference_manual/rm0457-stm32mp25xx-advanced-armbased-3264bit-mpus-stmicroelectronics.pdf#page=4081
+> Signed-off-by: Valentin Caron <valentin.caron@foss.st.com>
 > ---
->  Documentation/devicetree/bindings/pci/qcom,pcie-sa8775p.yaml | 5 ++++-
+>  Documentation/devicetree/bindings/rtc/st,stm32-rtc.yaml | 5 ++++-
 >  1 file changed, 4 insertions(+), 1 deletion(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-sa8775p.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-sa8775p.yaml
-> index efde49d1bef8..4de33df6963f 100644
-> --- a/Documentation/devicetree/bindings/pci/qcom,pcie-sa8775p.yaml
-> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie-sa8775p.yaml
-> @@ -16,7 +16,10 @@ description:
->  
->  properties:
->    compatible:
-> -    const: qcom,pcie-sa8775p
-> +    items:
-> +      - enum:
-> +          - qcom,pcie-qcs9100
-> +          - qcom,pcie-sa8775p
->  
->    reg:
->      minItems: 6
-> 
-> -- 
-> 2.25.1
-> 
+
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+
 
