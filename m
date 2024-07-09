@@ -1,118 +1,310 @@
-Return-Path: <devicetree+bounces-84059-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84061-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9A9492AD0C
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 02:21:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5AE592AD36
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 02:44:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7446AB21DD4
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 00:21:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E0FA91C20B19
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 00:44:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D57C926AD0;
-	Tue,  9 Jul 2024 00:21:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B6812CCC2;
+	Tue,  9 Jul 2024 00:44:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A2F828DB3
-	for <devicetree@vger.kernel.org>; Tue,  9 Jul 2024 00:21:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EB602A8FE;
+	Tue,  9 Jul 2024 00:44:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720484477; cv=none; b=pNdiPoqgZV/f4sXcuBDcHVyRfH8HkDvS2t/G497qwrCjVpi5LP7+BK9Tln5IZfu0lhf6VjCuci7paE53J1dByUXcPkb+USmRIXblo3TFnP/LlPc36kHXMdNckBpJnR1wxnaM92QUMzPR+X4sp+M4rLFH+M7SLVH9b7ZGTyPZi7c=
+	t=1720485858; cv=none; b=gBG9ZsiYpsEk4tDRrrTw6czY9jjRm3mMr2vD9BHbOwl/RKdABTM5nCR9wWh1OrjY3Aj9iacxVe3aLoi3phKutdLXlyXcdMkm8ALyoFuMkh+mb8wJQ0eQ2x6t0M9IcviJFx1FgukKdPLw6A9tchZIQVZqW5++C5qN6q7W8Vz55bs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720484477; c=relaxed/simple;
-	bh=de1avitQBiu1Fy1ZdwBYZlwPKhu/bH+ZiSpazxU48yY=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=q02eSg8dz2QwvpfAlImqBO8lrsYviwkoqxSi8GKaEYsBXPPuzUa9ial4ZBPBAgotUKnRyQwwmuVoK2H8TVZ5BYmlEaQDPU8WCAYJtbA88jRggDkpxbLNo7MF+lXUMGXx2ixXGbiEF647ndkdOIyyzREInkZ4iMjvzaWCmDy66RQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org; spf=pass smtp.mailfrom=baylibre.com; arc=none smtp.client-ip=209.85.214.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-1fb1c69e936so23281505ad.3
-        for <devicetree@vger.kernel.org>; Mon, 08 Jul 2024 17:21:16 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720484475; x=1721089275;
-        h=content-transfer-encoding:mime-version:message-id:date:references
-         :in-reply-to:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=yrbRzW7TmvE/emyggKx8DBxtpeVLv4H61DaYvPd4Jec=;
-        b=gwbtPOH6GfnK09Ru5oaRZAGGlE5/TwmHEWnmCF8cWGnfTmu+SzqYFnOP+mwIh8jLJ6
-         e8O1QLBFDDqsv/m4phDNWwmMDm5/002du2OFuOdP2mtE6SlJYvfrEf5NT6iRb19jDM6I
-         RwkTYchmB6mr6Elz1dnEtG8XiA/bTBeC4B0831IpelvI2YKGDkDVh/6C/L85hxOrvvrH
-         Rbv2Bxj77azfuhWaJKQKPenuYQ/b5rWHmhf/oR0NDLuJfvB6YlidtI7KMP20Vm1nC6UL
-         p/xVRbNxe6XG+BICTSnPqgz6tkgcIalYLWIdHkGlEDlVODoBdeByzjCt6cgfXh+vVwjp
-         vM3Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUPZDTgGgjteq6b30EBa3ePYL2EZTAgzPpe87QYAqo6iBS9YsrCiMgPgrQMXfSrJOzMnjvAs/4ChG2Rv0RwHYa+MXyUDhc74qPeCw==
-X-Gm-Message-State: AOJu0Yzep5fBfxTOD3ODQmD62iWG7aTjnyf8HBuAmdGNflh22vCL+Cj8
-	l9e1zvz+1jqdKrG9z4P4uQY0RDY1NaMyz8W+LiPlGah/NWZRfmSkR3MVkdvIkXA=
-X-Google-Smtp-Source: AGHT+IFppyFwTeQ3Z2Thxvru++KEqbVGYMZHsFalxNlJLyydnbWVl4ppQ4d3ZcJeQ7Zn8jsELviLTw==
-X-Received: by 2002:a17:902:f644:b0:1f4:620b:6a27 with SMTP id d9443c01a7336-1fbb6d25158mr8435815ad.13.1720484475579;
-        Mon, 08 Jul 2024 17:21:15 -0700 (PDT)
-Received: from localhost (97-126-77-189.tukw.qwest.net. [97.126.77.189])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1fbb6acfa67sm4227455ad.266.2024.07.08.17.21.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Jul 2024 17:21:15 -0700 (PDT)
-From: Kevin Hilman <khilman@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Bartosz
- Golaszewski <brgl@bgdev.pl>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, =?utf-8?Q?Beno=C3=AEt?= Cousson
- <bcousson@baylibre.com>, Tony Lindgren <tony@atomide.com>,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: ti: align panel timings node name with dtschema
-In-Reply-To: <b1f07743-a2a7-4984-b168-0f08e87ce0ec@linaro.org>
-References: <20240509104813.216655-1-krzysztof.kozlowski@linaro.org>
- <171940115812.32431.4234002524799635130.b4-ty@linaro.org>
- <CAMRc=Mc8ET2GneRT_PoGvffe+c5u13zAYsRr3u5P+aRzQv4CAQ@mail.gmail.com>
- <b1f07743-a2a7-4984-b168-0f08e87ce0ec@linaro.org>
-Date: Mon, 08 Jul 2024 17:21:14 -0700
-Message-ID: <7hsewj76v9.fsf@baylibre.com>
+	s=arc-20240116; t=1720485858; c=relaxed/simple;
+	bh=mkMDPYFbxx1FptqvwTRdJB2ALENlrVB4g6QrIyguxpM=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=BuZSgAuPHToCiy718mpN3zFnBEYMADkzzGp70HgLldifocHKwPBjxh66+sc572vw5N+iTzUcBzV3sG1XUdNWYwGWAO8GLQTCgoVCNelXkAjjJ26rt0VLSWg1aMT8fd1C+u1GuQAcomZmTIF/VBVxAiaLgyaqtuNPhJOQT7gJF3k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B0C061007;
+	Mon,  8 Jul 2024 17:44:39 -0700 (PDT)
+Received: from minigeek.lan (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id F14C53F762;
+	Mon,  8 Jul 2024 17:44:11 -0700 (PDT)
+Date: Tue, 9 Jul 2024 01:42:10 +0100
+From: Andre Przywara <andre.przywara@arm.com>
+To: Ryan Walklin <ryan@testtoast.com>
+Cc: Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann
+ <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Daniel Vetter
+ <daniel@ffwll.ch>, Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel
+ Holland <samuel@sholland.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Michael
+ Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Chris
+ Morgan <macroalpha82@gmail.com>, John Watts <contact@jookia.org>,
+ dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org,
+ linux-clk@vger.kernel.org
+Subject: Re: [PATCH v2 02/23] drm: sun4i: de2/de3: Merge CSC functions into
+ one
+Message-ID: <20240709014210.45ce6054@minigeek.lan>
+In-Reply-To: <20240703105454.41254-3-ryan@testtoast.com>
+References: <20240703105454.41254-1-ryan@testtoast.com>
+	<20240703105454.41254-3-ryan@testtoast.com>
+Organization: Arm Ltd.
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> writes:
+On Wed,  3 Jul 2024 22:50:52 +1200
+Ryan Walklin <ryan@testtoast.com> wrote:
 
-> On 26/06/2024 13:47, Bartosz Golaszewski wrote:
->> On Wed, Jun 26, 2024 at 1:26=E2=80=AFPM Krzysztof Kozlowski
->> <krzysztof.kozlowski@linaro.org> wrote:
->>>
->>>
->>> On Thu, 09 May 2024 12:48:13 +0200, Krzysztof Kozlowski wrote:
->>>> DT schema expects panel timings node to follow certain pattern,
->>>> dtbs_check warnings:
->>>>
->>>>   am335x-pdu001.dtb: display-timings: '240x320p16' does not match any =
-of the regexes: '^timing', 'pinctrl-[0-9]+'
->>>>
->>>> Linux drivers do not care about node name, so this should not have
->>>> effect on Linux.
->>>>
->>>> [...]
->>>
->>> 1.5 months on the lists, but maybe I combined too many separate TI main=
-tainers,
->>> so no one feels responsible... then I guess I will take it.
->>>
->>=20
->> Yeah next time you should probably at least split omap and davinci
->> bits into separate patches. Otherwise I think Tony thought I'd pick it
->> up and vice versa.
->
-> I guess after you acked it, Tony would pick it up.
->
-> Anyway, please let me know if I should drop the patch / resend / split et=
-c.
+Hi,
 
-There's a bit of a handover transition as I take over from Tony on the
-omap stuff.  Sorry for the lag, but thanks for picking this up.
+> From: Jernej Skrabec <jernej.skrabec@gmail.com>
+> 
+> Merging both function into one lets this one decide on it's own if CSC
+> should be enabled or not.
 
-Kevin
+"both functions" is not very specific or telling, and left me a bit
+clueless, so can we maybe use:
+
+"At the moment the colour space conversion is handled by two functions:
+one to setup the conversion parameters, and another one to enable the
+conversion. Merging both into one gives more flexibility for upcoming
+extensions to support whole YUV pipelines, in the DE33."
+
+Maybe someone knows the real killer reason why this is required, this
+could then be added here.
+
+> Currently heuristics for that is pretty simple
+> - enable it for YUV formats and disable for RGB. However, DE3 can have
+> whole pipeline in RGB or YUV format. YUV pipeline will be supported in
+> later commits.
+
+The actual patch looks like a valid transformation to me, so with an
+amended commit message:
+
+> Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+> Signed-off-by: Ryan Walklin <ryan@testtoast.com>
+
+Reviewed-by: Andre Przywara <andre.przywara@arm.com>
+
+Cheers,
+Andre
+
+> ---
+>  drivers/gpu/drm/sun4i/sun8i_csc.c      | 89 ++++++++++----------------
+>  drivers/gpu/drm/sun4i/sun8i_csc.h      |  9 ++-
+>  drivers/gpu/drm/sun4i/sun8i_vi_layer.c | 11 +---
+>  3 files changed, 40 insertions(+), 69 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/sun4i/sun8i_csc.c b/drivers/gpu/drm/sun4i/sun8i_csc.c
+> index 6ebd1c3aa3ab5..0dcbc0866ae82 100644
+> --- a/drivers/gpu/drm/sun4i/sun8i_csc.c
+> +++ b/drivers/gpu/drm/sun4i/sun8i_csc.c
+> @@ -107,23 +107,28 @@ static const u32 yuv2rgb_de3[2][3][12] = {
+>  	},
+>  };
+>  
+> -static void sun8i_csc_set_coefficients(struct regmap *map, u32 base,
+> -				       enum format_type fmt_type,
+> -				       enum drm_color_encoding encoding,
+> -				       enum drm_color_range range)
+> +static void sun8i_csc_setup(struct regmap *map, u32 base,
+> +			    enum format_type fmt_type,
+> +			    enum drm_color_encoding encoding,
+> +			    enum drm_color_range range)
+>  {
+> +	u32 base_reg, val;
+>  	const u32 *table;
+> -	u32 base_reg;
+>  	int i;
+>  
+>  	table = yuv2rgb[range][encoding];
+>  
+>  	switch (fmt_type) {
+> +	case FORMAT_TYPE_RGB:
+> +		val = 0;
+> +		break;
+>  	case FORMAT_TYPE_YUV:
+> +		val = SUN8I_CSC_CTRL_EN;
+>  		base_reg = SUN8I_CSC_COEFF(base, 0);
+>  		regmap_bulk_write(map, base_reg, table, 12);
+>  		break;
+>  	case FORMAT_TYPE_YVU:
+> +		val = SUN8I_CSC_CTRL_EN;
+>  		for (i = 0; i < 12; i++) {
+>  			if ((i & 3) == 1)
+>  				base_reg = SUN8I_CSC_COEFF(base, i + 1);
+> @@ -135,28 +140,37 @@ static void sun8i_csc_set_coefficients(struct regmap *map, u32 base,
+>  		}
+>  		break;
+>  	default:
+> +		val = 0;
+>  		DRM_WARN("Wrong CSC mode specified.\n");
+>  		return;
+>  	}
+> +
+> +	regmap_write(map, SUN8I_CSC_CTRL(base), val);
+>  }
+>  
+> -static void sun8i_de3_ccsc_set_coefficients(struct regmap *map, int layer,
+> -					    enum format_type fmt_type,
+> -					    enum drm_color_encoding encoding,
+> -					    enum drm_color_range range)
+> +static void sun8i_de3_ccsc_setup(struct regmap *map, int layer,
+> +				 enum format_type fmt_type,
+> +				 enum drm_color_encoding encoding,
+> +				 enum drm_color_range range)
+>  {
+> +	u32 addr, val, mask;
+>  	const u32 *table;
+> -	u32 addr;
+>  	int i;
+>  
+> +	mask = SUN50I_MIXER_BLEND_CSC_CTL_EN(layer);
+>  	table = yuv2rgb_de3[range][encoding];
+>  
+>  	switch (fmt_type) {
+> +	case FORMAT_TYPE_RGB:
+> +		val = 0;
+> +		break;
+>  	case FORMAT_TYPE_YUV:
+> +		val = mask;
+>  		addr = SUN50I_MIXER_BLEND_CSC_COEFF(DE3_BLD_BASE, layer, 0);
+>  		regmap_bulk_write(map, addr, table, 12);
+>  		break;
+>  	case FORMAT_TYPE_YVU:
+> +		val = mask;
+>  		for (i = 0; i < 12; i++) {
+>  			if ((i & 3) == 1)
+>  				addr = SUN50I_MIXER_BLEND_CSC_COEFF(DE3_BLD_BASE,
+> @@ -173,67 +187,30 @@ static void sun8i_de3_ccsc_set_coefficients(struct regmap *map, int layer,
+>  		}
+>  		break;
+>  	default:
+> +		val = 0;
+>  		DRM_WARN("Wrong CSC mode specified.\n");
+>  		return;
+>  	}
+> -}
+> -
+> -static void sun8i_csc_enable(struct regmap *map, u32 base, bool enable)
+> -{
+> -	u32 val;
+> -
+> -	if (enable)
+> -		val = SUN8I_CSC_CTRL_EN;
+> -	else
+> -		val = 0;
+> -
+> -	regmap_update_bits(map, SUN8I_CSC_CTRL(base), SUN8I_CSC_CTRL_EN, val);
+> -}
+> -
+> -static void sun8i_de3_ccsc_enable(struct regmap *map, int layer, bool enable)
+> -{
+> -	u32 val, mask;
+> -
+> -	mask = SUN50I_MIXER_BLEND_CSC_CTL_EN(layer);
+> -
+> -	if (enable)
+> -		val = mask;
+> -	else
+> -		val = 0;
+>  
+>  	regmap_update_bits(map, SUN50I_MIXER_BLEND_CSC_CTL(DE3_BLD_BASE),
+>  			   mask, val);
+>  }
+>  
+> -void sun8i_csc_set_ccsc_coefficients(struct sun8i_mixer *mixer, int layer,
+> -				     enum format_type fmt_type,
+> -				     enum drm_color_encoding encoding,
+> -				     enum drm_color_range range)
+> -{
+> -	u32 base;
+> -
+> -	if (mixer->cfg->is_de3) {
+> -		sun8i_de3_ccsc_set_coefficients(mixer->engine.regs, layer,
+> -						fmt_type, encoding, range);
+> -		return;
+> -	}
+> -
+> -	base = ccsc_base[mixer->cfg->ccsc][layer];
+> -
+> -	sun8i_csc_set_coefficients(mixer->engine.regs, base,
+> -				   fmt_type, encoding, range);
+> -}
+> -
+> -void sun8i_csc_enable_ccsc(struct sun8i_mixer *mixer, int layer, bool enable)
+> +void sun8i_csc_set_ccsc(struct sun8i_mixer *mixer, int layer,
+> +			enum format_type fmt_type,
+> +			enum drm_color_encoding encoding,
+> +			enum drm_color_range range)
+>  {
+>  	u32 base;
+>  
+>  	if (mixer->cfg->is_de3) {
+> -		sun8i_de3_ccsc_enable(mixer->engine.regs, layer, enable);
+> +		sun8i_de3_ccsc_setup(mixer->engine.regs, layer,
+> +				     fmt_type, encoding, range);
+>  		return;
+>  	}
+>  
+>  	base = ccsc_base[mixer->cfg->ccsc][layer];
+>  
+> -	sun8i_csc_enable(mixer->engine.regs, base, enable);
+> +	sun8i_csc_setup(mixer->engine.regs, base,
+> +			fmt_type, encoding, range);
+>  }
+> diff --git a/drivers/gpu/drm/sun4i/sun8i_csc.h b/drivers/gpu/drm/sun4i/sun8i_csc.h
+> index 7322770f39f03..b7546e06e315c 100644
+> --- a/drivers/gpu/drm/sun4i/sun8i_csc.h
+> +++ b/drivers/gpu/drm/sun4i/sun8i_csc.h
+> @@ -28,10 +28,9 @@ enum format_type {
+>  	FORMAT_TYPE_YVU,
+>  };
+>  
+> -void sun8i_csc_set_ccsc_coefficients(struct sun8i_mixer *mixer, int layer,
+> -				     enum format_type fmt_type,
+> -				     enum drm_color_encoding encoding,
+> -				     enum drm_color_range range);
+> -void sun8i_csc_enable_ccsc(struct sun8i_mixer *mixer, int layer, bool enable);
+> +void sun8i_csc_set_ccsc(struct sun8i_mixer *mixer, int layer,
+> +			enum format_type fmt_type,
+> +			enum drm_color_encoding encoding,
+> +			enum drm_color_range range);
+>  
+>  #endif
+> diff --git a/drivers/gpu/drm/sun4i/sun8i_vi_layer.c b/drivers/gpu/drm/sun4i/sun8i_vi_layer.c
+> index 76e2d3ec0a78c..6ee3790a2a812 100644
+> --- a/drivers/gpu/drm/sun4i/sun8i_vi_layer.c
+> +++ b/drivers/gpu/drm/sun4i/sun8i_vi_layer.c
+> @@ -281,14 +281,9 @@ static int sun8i_vi_layer_update_formats(struct sun8i_mixer *mixer, int channel,
+>  			   SUN8I_MIXER_CHAN_VI_LAYER_ATTR_FBFMT_MASK, val);
+>  
+>  	fmt_type = sun8i_vi_layer_get_format_type(fmt);
+> -	if (fmt_type != FORMAT_TYPE_RGB) {
+> -		sun8i_csc_set_ccsc_coefficients(mixer, channel, fmt_type,
+> -						state->color_encoding,
+> -						state->color_range);
+> -		sun8i_csc_enable_ccsc(mixer, channel, true);
+> -	} else {
+> -		sun8i_csc_enable_ccsc(mixer, channel, false);
+> -	}
+> +	sun8i_csc_set_ccsc(mixer, channel, fmt_type,
+> +			   state->color_encoding,
+> +			   state->color_range);
+>  
+>  	if (!fmt->is_yuv)
+>  		val = SUN8I_MIXER_CHAN_VI_LAYER_ATTR_RGB_MODE;
+
 
