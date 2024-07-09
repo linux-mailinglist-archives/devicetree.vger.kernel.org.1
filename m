@@ -1,191 +1,136 @@
-Return-Path: <devicetree+bounces-84470-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84483-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACAD492C5C1
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 23:57:26 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D58192C617
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 00:14:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A8E6D1C21E4D
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 21:57:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BDCF6B22367
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 22:14:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E63FF18785C;
-	Tue,  9 Jul 2024 21:57:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3A0D192469;
+	Tue,  9 Jul 2024 22:12:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="MqCubbKj"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="EuXZ4NNN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08FF318563B
-	for <devicetree@vger.kernel.org>; Tue,  9 Jul 2024 21:57:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEA7C18D4D6;
+	Tue,  9 Jul 2024 22:12:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.89.224.132
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720562238; cv=none; b=Ielu7sI15mhsVSVxbSinoZwGofWwSlClYcC+35MePXXQsbEM3R+T0qZy/unxLiwNyTWUnCn14nvgp45zK4GCyJHSPSuVUXyzg1QXFKDaKqMUdlD0V2f9likEblZhk+9DhSeXLCHmqTdnYv3JOMTXjbFSZFrpi5XwNY0oTdTW7HU=
+	t=1720563151; cv=none; b=u0O4nGjJEfJfB2tX+v/ViTjJtzyVpSpey1NYxaxA1QESueKLQzsVa80JFCI72qeFn88DsKbLtjqLErh/p24ufefYHqEuyX5rwj6nsNYd0SdPvOFKVFXGJvQ4G9f13qoFLoCEUAOzI7ROlCNrgGGNKkJa2D8Ct0Y3Df07EvOxi1A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720562238; c=relaxed/simple;
-	bh=YSuPWQtqcDpVn4fufa3YjOVpu0/q6G85cntL5U0mCiM=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition; b=VjYLjUipISIFLFX7FOQE/0ShbopzwKY3NMiNWFjzG3Ulxd/Pb95S51WfqtawgOWX6tn7PRNqLvFnppuO6ShgS0bzK+wjra6R/EuQ6YzkgOvVao/ETQzneeP2lHrAdO0emUEaIGW9lp1TkeOneVZb+gL3+717yGS9etGP9mkVlBU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=MqCubbKj; arc=none smtp.client-ip=170.10.129.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1720562234;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type;
-	bh=rOYlwEvE3CRkpdrcIidqEtY0o1/uFJMgJh0+BYOaeTI=;
-	b=MqCubbKj1FMBkzLnC9ROfbkyknDkbfMuAol4Pox892/V/adZii1orDClnwSfqllH+jzV02
-	S6MpZtqBAwY5vX0p9hkMOXCqc9yIpW24FFu/RvgNQTUuALIZHRcFlA5wg4kyaghyhaxf0R
-	qvs23LfjPFwVhZtxB0C4gQ1GpRYCapI=
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com
- [209.85.219.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-589-BTJQnl-NPamVZ_WfNSbTdQ-1; Tue, 09 Jul 2024 17:57:13 -0400
-X-MC-Unique: BTJQnl-NPamVZ_WfNSbTdQ-1
-Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-6b5e96477ebso81966186d6.1
-        for <devicetree@vger.kernel.org>; Tue, 09 Jul 2024 14:57:13 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720562233; x=1721167033;
-        h=content-disposition:mime-version:message-id:subject:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rOYlwEvE3CRkpdrcIidqEtY0o1/uFJMgJh0+BYOaeTI=;
-        b=NG23p4OBb9RIBe+k/9qH0OGPUsasdlFU8Ht/J7ZVmRVZjHz/lZ0wfmcGkIJ9io31bR
-         SJ0XR4qTg/bEIoDz5EflBkZzrHjjYcwUSKRIzAWOg2wbomhGryo6YEQsvc88H1lnafJ6
-         yQbOUG9nCjZ6HACE3aJu8Y2Dws/ZACY8swQa/HWevX2yqjgwI3uSCjwMsetIdVwRWXeH
-         t83tY9zj556h6VFmETreA9ltLTAeRt0GLHH3GDBAq9W9hYIba2XNsf/2d+dKcvm58yNI
-         Tac0snH7gRcDpvemVArPEm4Owllz5rfmUKGxj6FA0OVcJ7AmslItPCzgvHe7iOrhYP+5
-         pkzg==
-X-Forwarded-Encrypted: i=1; AJvYcCXHDJyMcs9GSUFd3vzGkOGQ5Lj2ptUrcHJGk1gJJ2pWhje2eMENEO8Qn1QKiKLIUIp9gMs1iOfvXCu+Cv07zBow6UoLq7spa99dWQ==
-X-Gm-Message-State: AOJu0Yx4yKYfifxafgrzSUezurGktCj+ZBc5gU7vILMyAiiXjf9A5LCl
-	cMHrWbyd7rVnd10819S/1pFV6+7E9QrEnPn9QNhUKfV2B5wJLwzitqyWsPpxRzJdpZljCqk9be0
-	5IitiH2E366Jre+pY/DHfyg7tAZ99uAe2UFMMvUe00GnDfexE56TwRZqJyoU=
-X-Received: by 2002:a05:6214:2389:b0:6b5:a4f6:514 with SMTP id 6a1803df08f44-6b61bf3dccfmr47969176d6.35.1720562233037;
-        Tue, 09 Jul 2024 14:57:13 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEXKwYqsJhIzHXM1Pp2+5dsrEmOceeSwAelsN/xqRAjzsro2gqL+wO4v2T8X+9V2kMBuTmF+Q==
-X-Received: by 2002:a05:6214:2389:b0:6b5:a4f6:514 with SMTP id 6a1803df08f44-6b61bf3dccfmr47968846d6.35.1720562232665;
-        Tue, 09 Jul 2024 14:57:12 -0700 (PDT)
-Received: from x1gen2nano ([2600:1700:1ff0:d0e0::40])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6b61b9c585bsm12321226d6.20.2024.07.09.14.57.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Jul 2024 14:57:12 -0700 (PDT)
-Date: Tue, 9 Jul 2024 16:57:09 -0500
-From: Andrew Halaney <ahalaney@redhat.com>
-To: nm@ti.com, vigneshr@ti.com, kristo@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-kernel@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, vkoul@kernel.org, 
-	kishon@kernel.org, sjakhade@cadence.com, rogerq@kernel.org, 
-	thomas.richard@bootlin.com, theo.lebrun@bootlin.com, make24@iscas.ac.cn, 
-	linux-phy@lists.infradead.org, s-vadapalli@ti.com, mranostay@ti.com
-Subject: [BUG] k3-j784s4-evm/phy-cadence-torrent: Shared reset using
- exclusive API
-Message-ID: <yhtb4clns57t7qo5yxil3oofisdlzfubyiwrvjo2ufw2ngv67m@g6p7ktxfgfv3>
+	s=arc-20240116; t=1720563151; c=relaxed/simple;
+	bh=RYs9z4EYOWfXcSCeORsbSLAQJd893NEHRsyHxd8m0ZY=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ly7e2VB2Bh56/qhYqGqE/6Hm7bB7VTqMGopb/QevJ7hHPGpu9K53G0J0bzYDiMCbUxH/ZouJXwMbriJSkZS1PlQ+CtggYelZsngzMJEaRhhAJLKOyW2HFm8cQJf75GbFeYW/2e4RsTFuggIVxi5aaa2tIj3n+uUPDC/VPYw4NQ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=EuXZ4NNN; arc=none smtp.client-ip=45.89.224.132
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
+Received: from p-infra-ksmg-sc-msk02.sberdevices.ru (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 62030120007;
+	Wed, 10 Jul 2024 01:12:25 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 62030120007
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1720563145;
+	bh=YE1nJN+5xpm97FqeKyLuzXsKRg9SQRHYOLWSBnE7/OI=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
+	b=EuXZ4NNNwVVyXkGrX3KExJxj7uMM/WEgqwwdfUG9EOGMF+YCyxcbIBzl6pRow76tT
+	 N5TZN8UbhRRWfXWBCFp/xMqb60Rr/uq+3UwySKhqdYDoB1GyiQVewxQJpUPp4QGvkV
+	 NC2A012xwtImyKyqMZzhNWF4tlqMqjOFLxBPMOJ2LhRN+qRZX/6268p+4/PalkFrzi
+	 0Vgb4Bks8b0KKT0+yKmFYGIlsQeToKZN/ACIL+WoS2L/aXG874BRqwUmr+aL2jqvJW
+	 ASkLwFI5poHuXZIjTLqCeyPmBQwOU2xhh0oUfuzcTccp5wTafw8MyLXKn+aABa/UNC
+	 KcObt/tWw23Mg==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Wed, 10 Jul 2024 01:12:24 +0300 (MSK)
+Received: from localhost.localdomain (100.64.160.123) by
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Wed, 10 Jul 2024 01:12:24 +0300
+From: Igor Prusov <ivprusov@salutedevices.com>
+To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai
+	<tiwai@suse.com>, Philipp Zabel <p.zabel@pengutronix.de>, Igor Prusov
+	<ivprusov@salutedevices.com>
+CC: <prusovigor@gmail.com>, <kernel@salutedevices.com>,
+	<linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>
+Subject: [PATCH v2 0/6] ASoC: Add NTP8918 and NTP8835 codecs support
+Date: Wed, 10 Jul 2024 01:11:57 +0300
+Message-ID: <20240709221203.92167-1-ivprusov@salutedevices.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 186406 [Jul 09 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.4
+X-KSMG-AntiSpam-Envelope-From: ivprusov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 24 0.3.24 186c4d603b899ccfd4883d230c53f273b80e467f, {Tracking_uf_ne_domains}, {Tracking_from_domain_doesnt_match_to}, 100.64.160.123:7.1.2;lore.kernel.org:7.1.1;salutedevices.com:7.1.1;smtp.sberdevices.ru:5.0.1,7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean, bases: 2024/07/09 21:28:00
+X-KSMG-LinksScanning: Clean, bases: 2024/07/09 21:28:00
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/07/09 21:28:00 #25931284
+X-KSMG-AntiVirus-Status: Clean, skipped
 
-Hi,
+This series adds support for two NeoFidelity amplifiers. For both
+amplifiers vendor provides software for equalizer and filters
+configuration, which generates firmware files with registers values.
+Since in both cases those files have same encoding, a common helper
+module is added to get firmware via request_firmware() API and set
+registers values.
 
-Running linux-next on a k3-j784s4-evm I got this splat:
+V1: https://lore.kernel.org/all/20240709172834.9785-1-ivprusov@salutedevices.com/
 
-	[    4.846253] ------------[ cut here ]------------
-	[    4.846266] WARNING: CPU: 4 PID: 308 at drivers/reset/core.c:792 __reset_control_get_internal+0x128/0x160
-	[    4.846288] Modules linked in: ti_am335x_adc(+) phy_cadence_torrent(+) can_dev snd_soc_ti_udma snd_soc_j721e_evm snd_soc_pcm3168a_i2c drm_kms_helper rtc_tps6594(+) tps6594_regulator(+) mc at24 kfifo_buf tps6594_pfsm(+) tps6594_esm gpio_regmap snd_soc_pcm3168a snd_soc_ti_edma ti_k3_r5_remoteproc k3_j72xx_bandgap ti_j721e_ufs snd_soc_ti_sdma ti_k3_dsp_remoteproc cdns3_ti drm backlight phy_can_transceiver omap_mailbox tps6594_i2c tps6594_core phy_j721e_wiz ti_am335x_tscadc sa2ul authenc rti_wdt fuse ipv6
-	[    4.846336] CPU: 4 UID: 0 PID: 308 Comm: systemd-udevd Not tainted 6.10.0-rc6-next-20240703 #72
-	[    4.846342] Hardware name: ti,j784s4-evm Texas Instruments J784S4 EVM/Texas Instruments J784S4 EVM, BIOS 2024.01-rc3 01/01/2024
-	[    4.846345] pstate: 60000005 (nZCv daif -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
-	[    4.846349] pc : __reset_control_get_internal+0x128/0x160
-	[    4.846354] lr : __of_reset_control_get+0x4e0/0x528
-	[    4.846359] sp : ffff8000858b3400
-	[    4.846360] x29: ffff8000858b3400 x28: 0000000000000001 x27: ffff000f7c00fa98
-	[    4.846365] x26: 0000000000000001 x25: ffff80008324d330 x24: ffff00080aecd2a8
-	[    4.846370] x23: 0000000000000001 x22: 0000000000000000 x21: 0000000000000004
-	[    4.846374] x20: ffff00080aecd288 x19: fffffffffffffff0 x18: 00000000000001d0
-	[    4.846379] x17: 0000000000000230 x16: 00000000000000bc x15: ffff00080a630000
-	[    4.846383] x14: 0000000000000000 x13: 0000000000000000 x12: 0000000000000004
-	[    4.846387] x11: 0000000000000000 x10: 0000000000000005 x9 : 0000000000000000
-	[    4.846391] x8 : ffff00080741f4c8 x7 : 00736c6c65632d74 x6 : 00000080236d626f
-	[    4.846396] x5 : 6f626d2300000000 x4 : 0000000080000000 x3 : 0000000000000001
-	[    4.846400] x2 : 0000000000000000 x1 : 0000000000000004 x0 : ffff00080aecd288
-	[    4.846405] Call trace:
-	[    4.846407]  __reset_control_get_internal+0x128/0x160
-	[    4.846413]  __of_reset_control_get+0x4e0/0x528
-	[    4.846418]  of_reset_control_array_get+0xa4/0x1f8
-	[    4.846423]  cdns_torrent_phy_probe+0xbc8/0x1068 [phy_cadence_torrent]
-	[    4.846445]  platform_probe+0xb4/0xe8
-	[    4.846456]  really_probe+0x134/0x2e0
-	[    4.846460]  __driver_probe_device+0xac/0x140
-	[    4.846464]  driver_probe_device+0x48/0x210
-	[    4.846468]  __driver_attach+0xe8/0x1b8
-	[    4.846472]  bus_for_each_dev+0xf8/0x158
-	[    4.846475]  driver_attach+0x30/0x48
-	[    4.846480]  bus_add_driver+0x160/0x280
-	[    4.846483]  driver_register+0x74/0x118
-	[    4.846486]  __platform_driver_register+0x30/0x48
-	[    4.846491]  init_module+0x2c/0xff8 [phy_cadence_torrent]
-	[    4.846501]  do_one_initcall+0xd0/0x2e0
-	[    4.846509]  do_init_module+0x60/0x210
-	[    4.846515]  load_module+0x14f4/0x1768
-	[    4.846519]  __arm64_sys_finit_module+0x21c/0x2c0
-	[    4.846522]  invoke_syscall+0x4c/0x118
-	[    4.846529]  el0_svc_common+0x8c/0xf0
-	[    4.846534]  do_el0_svc+0x28/0x40
-	[    4.846538]  el0_svc+0x34/0x80
-	[    4.846548]  el0t_64_sync_handler+0x84/0x100
-	[    4.846553]  el0t_64_sync+0x190/0x198
-	[    4.846557] ---[ end trace 0000000000000000 ]---
-	[    4.846577] cdns-torrent-phy 5060000.serdes: phy@0: failed to get reset
+V1 -> V2:
+ - Fix dt_binding_check errors
 
-this is because the devicetree has two[0][1] consumers of the same reset:
+Igor Prusov (6):
+  dt-bindings: vendor-prefixes: Add NeoFidelity, Inc
+  ASoC: codecs: Add NeoFidelity Firmware helpers
+  ASoC: dt-bindings: Add bindings for NeoFidelity NTP8918
+  ASoC: codecs: Add NeoFidelity NTP8918 codec
+  ASoC: dt-bindings: Add bindings for NeoFidelity NTP8835
+  ASoC: codecs: Add NeoFidelity NTP8835 codec
 
-	&serdes0 {
-		status = "okay";
+ .../bindings/sound/neofidelity,ntp8835.yaml   |  64 +++
+ .../bindings/sound/neofidelity,ntp8918.yaml   |  62 +++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ sound/soc/codecs/Kconfig                      |  13 +
+ sound/soc/codecs/Makefile                     |   6 +
+ sound/soc/codecs/ntp8835.c                    | 432 ++++++++++++++++++
+ sound/soc/codecs/ntp8918.c                    | 356 +++++++++++++++
+ sound/soc/codecs/ntpfw.c                      | 137 ++++++
+ sound/soc/codecs/ntpfw.h                      |  23 +
+ 9 files changed, 1095 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/neofidelity,ntp8835.yaml
+ create mode 100644 Documentation/devicetree/bindings/sound/neofidelity,ntp8918.yaml
+ create mode 100644 sound/soc/codecs/ntp8835.c
+ create mode 100644 sound/soc/codecs/ntp8918.c
+ create mode 100644 sound/soc/codecs/ntpfw.c
+ create mode 100644 sound/soc/codecs/ntpfw.h
 
-		serdes0_pcie1_link: phy@0 {
-			reg = <0>;
-			cdns,num-lanes = <4>;
-			#phy-cells = <0>;
-			cdns,phy-type = <PHY_TYPE_PCIE>;
-			resets = <&serdes_wiz0 1>, <&serdes_wiz0 2>,
-				 <&serdes_wiz0 3>, <&serdes_wiz0 4>;
-		};
-	};
-	...
-	&serdes0 {
-		status = "okay";
-
-		serdes0_usb_link: phy@3 {
-			reg = <3>;
-			cdns,num-lanes = <1>;
-			#phy-cells = <0>;
-			cdns,phy-type = <PHY_TYPE_USB3>;
-			resets = <&serdes_wiz0 4>;
-		};
-	};
-
-phy-cadence-torrent (the serdes0 consumer here) uses the exclusive consumer API[2],
-so this blows up.
-
-Is the problem here that one of the above devicetree nodes is using the wrong
-reset, or does the driver need to look into using the shared API? I'm
-not sure where to find the reset definitions for the IP here unfortunately,
-so I'm hoping someone can help confirm if those are correct or not.
-
-Total aside, I think we should put the above dts snippet into one &serdes0 reference
-for readability sake. I'd post the patch but I'm hoping to get the above answered
-first in order to clean that up before shuffling things around for readability sake.
-
-[0] pcie serdes0_pcie1_link: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts?h=next-20240703#n1398
-[1] usb serdes0_usb_link: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts?h=next-20240703#n1270
-[2] phy-cadence-torrent reset usage: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/phy/cadence/phy-cadence-torrent.c?h=next-20240703#n2878
-
-Thanks,
-Andrew
+-- 
+2.34.1
 
 
