@@ -1,48 +1,74 @@
-Return-Path: <devicetree+bounces-84340-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84341-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF84092BD44
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 16:43:01 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F24B192BD5D
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 16:47:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D25771C23A35
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 14:43:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 59698B22EC7
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 14:47:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B140419B5B1;
-	Tue,  9 Jul 2024 14:42:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B79719CD01;
+	Tue,  9 Jul 2024 14:47:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J9QIpnUp"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PaoBAJ9e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C3731684AE;
-	Tue,  9 Jul 2024 14:42:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DDDC18E76B
+	for <devicetree@vger.kernel.org>; Tue,  9 Jul 2024 14:47:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720536170; cv=none; b=DYO1PWVqoC4ZJY7IUdwwAiQ08j6IslFfoo6YRL3vfAITwwGbKIY2A5Vqe4Ftlv08W7SQ9te1fG1VIDuNOryNGGpo4/o1iFstSo78848VzI/AZsQjIwoITCZuSDb5HZa//nwSd0Axl6RF1HO2jGznG2N4RneA7XvO0COQhByRBf8=
+	t=1720536450; cv=none; b=gHQUPjvOnv5hUSTdkOcoiSKDdnQLzS2kyO/YJVtCbvgDwMPE3GT8VZG1Dl0SYu2KCkqw5hKiIGX5q6qocLkk+vBCmBcyZYJ+CebzuzWosX1QDGlbZW7mVYlC1fa3Q14cNqMDK3UgHjm+MeV7HcVji4/BpoF2qdpMkxTtNeAi5Gk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720536170; c=relaxed/simple;
-	bh=VQb5HbnAAByGw4UpXRmO5+2h/szz+KBf2dd25NC67wg=;
+	s=arc-20240116; t=1720536450; c=relaxed/simple;
+	bh=qowTB+RXATM39YldtrIP5C3Bc775t1U/wK/zq6nNFGc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=T+jM6jSVxKpyKbCw/YAkoWi8jAOdDzmGVopKycrgatnWEWAfYPcVRMtSeBLE52ZztP7uGJR8CtBHN3J5K/vCdqa+wFvjCIF/OrE1YPn8TSN3YEgFJPsJv3SKsBzv43/Bkyyscdnz0AujJuv22HHlUw9PGcPvn6+HUXZsPGQqw5k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J9QIpnUp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BEB8BC32786;
-	Tue,  9 Jul 2024 14:42:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720536170;
-	bh=VQb5HbnAAByGw4UpXRmO5+2h/szz+KBf2dd25NC67wg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=J9QIpnUpFtPW7X9iVzt18ET+maZ+keqhGsGaUHuaqQFkC1Q4UO+XywiFHGGdi2WJ2
-	 qiLvsB2/UcjtnrKu4AjzB+g2mPZre5hDDFR/cUgD2JBwtLrPGo+rJ26JwwrwTxZJ1K
-	 S5QeeLe5OzFzAePXFaWMuNqcUjjgljCs/DA2l4NOIaWLY8/3Cd+tenZ1nQcymxaa8P
-	 JVnOVnQfTCIDu7aL9rl2K72UDKkcB9b4H2Ck8P4BhcGwT7uZJpu9Y+CpMdcIc/Z6+k
-	 N3R8FX47L4XfCouHCsfEBxC8rPpp1bAUCn6XpWAWT/Sedrnoepx9x7tMMef1BlemDi
-	 9FYEiohFcpH1w==
-Message-ID: <d35f5c94-7a86-4eea-bb0a-3f2785a25465@kernel.org>
-Date: Tue, 9 Jul 2024 16:42:39 +0200
+	 In-Reply-To:Content-Type; b=VGlZ/gk9AXrlruqdEX3ztjRi8SlwMARtnKGHIWozySg4pbs7CDVe95ogPqcuM3kiGKLb7k4uczJ/8O8S8+JOJo/p9t/5pSnt+5MqcLki9vhLMCV7bkDUZUEvHoS8ETPBqKk3X6qUQcZU8Lcg/BkJ8OF5w4WPk7T0lGO659QhfRY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PaoBAJ9e; arc=none smtp.client-ip=209.85.221.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-3679df4cb4cso3228858f8f.0
+        for <devicetree@vger.kernel.org>; Tue, 09 Jul 2024 07:47:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1720536447; x=1721141247; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=qGU16UMyPzn5K7sq2IuW9mm7+PT26orMfz71lEw7p84=;
+        b=PaoBAJ9e8Sktjq3eecwQYd7aYx6yIPo+PZ1umJMl7RgVhUWHDUM/HX1VE0zI/B5Y9r
+         kHbpp7pTyrXy6sDQQsGEEVPi7hBpcBtekdli2Oh8ZCigYF5kJ0CeWOzmpbYA/P+yOtCO
+         1xiZXei7IOELf/j3ahMuJ7ymknwQrQQNn7wiQteZi8LUnUMrkPH1mX6z07N81kYDFumw
+         jwnkCiZCu/O1blHEMrUIedMNwOqJ0G6dsFmYgFmN8MuQ310qkwPLhZbyAP/2oglvS4j4
+         ms5Nrs3YsbhR6b/g8VGpWgkjaCTM2/I5I1HKcCKDmnHB/mqjyBHQ7SRaXsBqVObTdb7S
+         gdYQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720536447; x=1721141247;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=qGU16UMyPzn5K7sq2IuW9mm7+PT26orMfz71lEw7p84=;
+        b=ObKuls1tOAA+LVYY1hN4EzxZEiaDvXYhL6Nqt7omC8NXyUr4SWRBuyxyUoy+Ul2ujl
+         W0aQBDBSoYho60ieKPHw9VpWUQe94cSVHo8IBjgrNtzFYSpiTwrAapFq1NawhGd6jga7
+         6V5YFVf9Bzugns6DKsyXwMNkLdEmlydQVg2+SbPvaqqdBJX6NoEajt4b5elufF7EsFc+
+         GAL350PYXV2srJ1mKw3OFNhDmUr9ZIbdKYNH04Q+t0D+4vh2bqlhxO+cJ5sRIG19GgWK
+         P39sFN8j+zCSDjVldKmC+l5rLQYacbOF2mE6eQWufzEAob0eYLNZSowzsaFCKwYqDZrD
+         hP/Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVUp2SAS7iqBwmZ6ngWzyXFpeSjgkzmJK1PUdnpiE53PZL1UlY7VQo6rcY8uErMQ854joTTaAR+E/OK/EzlPNgAAaFF/h1GCnfGDg==
+X-Gm-Message-State: AOJu0YxwWGRzOBl3/6xxlqFqPwnE97eYxjvLAfC56GOvRptuIRbJy1Xn
+	0Goqob7JVLFCs0om7uNZxjWUND85gLIJH1UVsgr+G4QTzRVS/+PMcnWLwGYO9tQ=
+X-Google-Smtp-Source: AGHT+IFWVPBkZ6P6fOnS0f+vSCLh6Jw0ML5HsTFsO1p/rCJIxzFeHamqOr0NJgMC1fqb/fWeNruTSQ==
+X-Received: by 2002:a05:6000:11c6:b0:367:940b:b662 with SMTP id ffacd0b85a97d-367d2d5f2demr2580537f8f.31.1720536446756;
+        Tue, 09 Jul 2024 07:47:26 -0700 (PDT)
+Received: from ?IPV6:2a05:6e02:1041:c10:cf24:cce:17df:12ab? ([2a05:6e02:1041:c10:cf24:cce:17df:12ab])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-367cde7e171sm2746398f8f.18.2024.07.09.07.47.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 09 Jul 2024 07:47:26 -0700 (PDT)
+Message-ID: <2835f58f-3ab1-41d7-b85d-174c769cbd3f@linaro.org>
+Date: Tue, 9 Jul 2024 16:47:25 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,124 +76,41 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v15 01/10] MAINTAINERS: Include new Qualcomm CPR drivers
- in the file list
-To: Konrad Dybcio <konrad.dybcio@linaro.org>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
- Stephen Boyd <sboyd@kernel.org>, Niklas Cassel <nks@flawful.org>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
- Viresh Kumar <viresh.kumar@linaro.org>, Ulf Hansson
- <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Robert Marko <robimarko@gmail.com>, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-pm@vger.kernel.org, Jeffrey Hugo <quic_jhugo@quicinc.com>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Varadarajan Narayanan <quic_varada@quicinc.com>
-References: <20240708-topic-cpr3h-v15-0-5bc8b8936489@linaro.org>
- <20240708-topic-cpr3h-v15-1-5bc8b8936489@linaro.org>
- <cd1c3450-1905-4d71-bcdd-5f880d743820@kernel.org>
- <94b2842b-6093-4c4d-a099-3e0a3198b753@linaro.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v3 2/5] dt-bindings: timer: Add SOPHGO SG2002 clint
+To: Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Paul Walmsley
+ <paul.walmsley@sifive.com>, Chen Wang <unicorn_wang@outlook.com>,
+ Inochi Amaoto <inochiama@outlook.com>, Chao Wei <chao.wei@sophgo.com>
+Cc: Albert Ou <aou@eecs.berkeley.edu>, Palmer Dabbelt <palmer@dabbelt.com>,
+ Samuel Holland <samuel.holland@sifive.com>,
+ Thomas Gleixner <tglx@linutronix.de>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ =?UTF-8?Q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-riscv@lists.infradead.org, Conor Dooley <conor.dooley@microchip.com>
+References: <20240709-sg2002-v3-0-af779c3d139d@bootlin.com>
+ <20240709-sg2002-v3-2-af779c3d139d@bootlin.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <94b2842b-6093-4c4d-a099-3e0a3198b753@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <20240709-sg2002-v3-2-af779c3d139d@bootlin.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 09/07/2024 11:49, Konrad Dybcio wrote:
-> On 9.07.2024 11:04 AM, Krzysztof Kozlowski wrote:
->> On 08/07/2024 14:22, Konrad Dybcio wrote:
->>> Expand the Qualcomm Core Power Reduction section to include the files
->>> concerning CPR3+ support.
->>>
->>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->>> ---
->>>  MAINTAINERS | 5 +++--
->>>  1 file changed, 3 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/MAINTAINERS b/MAINTAINERS
->>> index dcb37b635f2c..f3e013a52c16 100644
->>> --- a/MAINTAINERS
->>> +++ b/MAINTAINERS
->>> @@ -18687,14 +18687,15 @@ F:	Documentation/accel/qaic/
->>>  F:	drivers/accel/qaic/
->>>  F:	include/uapi/drm/qaic_accel.h
->>>  
->>> -QUALCOMM CORE POWER REDUCTION (CPR) AVS DRIVER
->>> +QUALCOMM CORE POWER REDUCTION (CPR) AVS DRIVERS
->>>  M:	Bjorn Andersson <andersson@kernel.org>
->>>  M:	Konrad Dybcio <konrad.dybcio@linaro.org>
->>>  L:	linux-pm@vger.kernel.org
->>>  L:	linux-arm-msm@vger.kernel.org
->>>  S:	Maintained
->>>  F:	Documentation/devicetree/bindings/power/avs/qcom,cpr.yaml
->>> -F:	drivers/pmdomain/qcom/cpr.c
->>> +F:	Documentation/devicetree/bindings/soc/qcom/qcom,cpr3.yaml
->>
->> Maybe combine these two into:
->> Documentation/devicetree/bindings/power/avs/qcom,cpr*
+On 09/07/2024 12:07, Thomas Bonnefille wrote:
+> Add compatible string for SOPHGO SG2002 Core-Local Interrupt Controller.
 > 
-> I think avs was proposed to be a subsystem/driver directory at some point
-> and (adaptive voltage source? something like that) and this is the only file
-> in that directory in bindings..
-> 
-> Should we continue with this "class" of devices, or should I move qcom,cpr.yaml
-> to soc?
+> Signed-off-by: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
 
-Rather cpr3 should be moved to avs or some other power directory. "soc"
-is fallback, junkyard for things without clear domain.
+Applied, thanks
 
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
-Best regards,
-Krzysztof
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
 
