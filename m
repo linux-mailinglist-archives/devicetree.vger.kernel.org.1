@@ -1,73 +1,64 @@
-Return-Path: <devicetree+bounces-84417-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84418-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BF8592C19A
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 19:04:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5672792C1A7
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 19:05:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4CDF51C21FC4
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 17:04:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 82BBF1C236FA
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 17:05:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87ED319FA81;
-	Tue,  9 Jul 2024 16:34:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 142DC1B3F39;
+	Tue,  9 Jul 2024 16:35:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bE3mYPur"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="twvyRLuc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B11C19E7E3;
-	Tue,  9 Jul 2024 16:34:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCCD31B3F36;
+	Tue,  9 Jul 2024 16:35:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720542866; cv=none; b=nu/+3FUzpiNe1gemeKvg0qaHgP186SZM5lUZRG8DrjG9Uor2CoVBw0Ohk6BpxkceOxiTEGluyV0ZkchGWLCD4F9YuLR8hmjgr0PywXU7jbygL78U1icBqb101A6xF7bBmGJYXbZC7xMkOpYfrZ6HnmOWmHzatTZeI4kf74WsReM=
+	t=1720542953; cv=none; b=hK20eBb/uBV4BXjiDvemWMLOW0i5CHXXjcWt0Ob5RZIp3dc/8qpK1CdHWDo/AQoyW5GkDxwXElK1bD/YLj6WO6I3ZfLxSkdVVYU+VRf/saotfWwwtmn94nIzlTh420o/1JoZ9ZmQF4WA68IN9ZCpRX3GK9GemhrmJQVN5PwezQk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720542866; c=relaxed/simple;
-	bh=E2za/mh8ktg1bgavQy5omJcI/K13Hs0AayEZ5BBlLwk=;
+	s=arc-20240116; t=1720542953; c=relaxed/simple;
+	bh=PYon4hQdxGO7e0EDMK4Nxz9LKrzuP9di25nvK4n93mQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=c4lNhufg9Pij6Hjd/KcJ88HB91ba+MOdSMI99JiMA5NRFf19cVUhHpF1wTVK/D/CBafUxDgEqHGrhTylJwdj97sS2o/PKGJz+mSgC/FML4HxuE8RMGGQblMTdn7Q/snW5gDcFlSl8TKoWEh6pauWiR0GOyHYv353eqZWiBx6Ju0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bE3mYPur; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1EE01C3277B;
-	Tue,  9 Jul 2024 16:34:25 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=rNp20o3bHRzITnUbH/e1gSKBDNxUnimlXBdEWXGSl7M8/lV7NRlIc4x2OBVQOBciHQ9Ke7E3dZOQoVfLKbGqofeR0rNYco0rfJttI3Cxkrmk1mn9jrQeVU7YU7dGF3Cj9mmHsUg7Wnwuj721KtE2yRSy8KZ+p9DkKgx4kckC/uE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=twvyRLuc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B732C3277B;
+	Tue,  9 Jul 2024 16:35:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720542865;
-	bh=E2za/mh8ktg1bgavQy5omJcI/K13Hs0AayEZ5BBlLwk=;
+	s=k20201202; t=1720542952;
+	bh=PYon4hQdxGO7e0EDMK4Nxz9LKrzuP9di25nvK4n93mQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bE3mYPurLZlXi269n7C4A8hA023tud0MrA3v63hXbQ3NFw2GC5hWWTa4aKb59TToz
-	 1xtJP/DTbBaanRoJVTOKJcytnOJS7ny2COOZ3x6VOzt9tSy9WZi9F2j14Lgyt6Sni6
-	 SX37n6gPcs9XC6DF8/FxfiJgibtz5X8XUqmIj83Cpqj5zFrKk7oMIqSpAG42IWYJ70
-	 xs5oQOjYW6ZBPyNLpIKAFxCgpdv8/HwMM7j22bUiSn5/j0zwmR2Ug46/3g+UnL0Y+e
-	 zOj1u7o0/KqQa6aClSyeqKM7HJzRKyaTMwzIzudP565hjVEsayf3nn3FNLGCwVA9y7
-	 sgtCwzSR0lMqA==
-Date: Tue, 9 Jul 2024 10:34:22 -0600
+	b=twvyRLucwGY1I58lLSwdlpoMQKYfsN7ad13xckCwcWLcTJJCyF/F2wjhV6uOFRK3P
+	 /mfPrbBeBF6yFSudZThbfYJKEJ6aJMEYgFR49affrowxcaMZPT+/UmVkCDXOoHt/Sk
+	 Rztm7x48OlKQDxBoRjuP/hAhWZrzTCYOWZqKPDwKcoi6vYA7Z1kD/k2QcgQrTvQWCb
+	 4U/sOQ3gNj9FMbN4Pz3mpKJNGu3n9FCxRb9JUDGRa1AAQiEnJCrfZjDh4jyE6D4bLY
+	 l+RXRRaFl/e8J2ScMYejv8hmbptKWYCs7fys3F4E00P6OufqAIHvqNrpZrAXYHbc0v
+	 cuoP4FtyXPONA==
+Date: Tue, 9 Jul 2024 10:35:50 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Yixun Lan <dlan@gentoo.org>
-Cc: devicetree@vger.kernel.org, Jisheng Zhang <jszhang@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Anup Patel <anup@brainfault.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	linux-serial@vger.kernel.org, Albert Ou <aou@eecs.berkeley.edu>,
-	Jesse Taube <jesse@rivosinc.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Thomas Gleixner <tglx@linutronix.de>, linux-kernel@vger.kernel.org,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Yangyu Chen <cyy@cyyself.name>,
-	Matthias Brugger <matthias.bgg@kernel.org>,
-	Inochi Amaoto <inochiama@outlook.com>,
-	Conor Dooley <conor@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Meng Zhang <zhangmeng.kevin@spacemit.com>,
-	linux-riscv@lists.infradead.org, Icenowy Zheng <uwu@icenowy.me>,
-	Meng Zhang <kevin.z.m@hotmail.com>
-Subject: Re: [PATCH v4 03/10] dt-bindings: riscv: add SpacemiT K1 bindings
-Message-ID: <172054286210.3798572.13513101197976115030.robh@kernel.org>
-References: <20240709-k1-01-basic-dt-v4-0-ae5bb5e56aaf@gentoo.org>
- <20240709-k1-01-basic-dt-v4-3-ae5bb5e56aaf@gentoo.org>
+To: Lorenzo Bianconi <lorenzo@kernel.org>
+Cc: will@kernel.org, robh+dt@kernel.org, pabeni@redhat.com,
+	catalin.marinas@arm.com, nbd@nbd.name, netdev@vger.kernel.org,
+	conor@kernel.org, kuba@kernel.org, edumazet@google.com,
+	conor+dt@kernel.org, davem@davemloft.net, andrew@lunn.ch,
+	upstream@airoha.com, krzysztof.kozlowski+dt@linaro.org,
+	benjamin.larsson@genexis.eu, devicetree@vger.kernel.org,
+	angelogioacchino.delregno@collabora.com,
+	lorenzo.bianconi83@gmail.com, horms@kernel.org,
+	sgoutham@marvell.com, arnd@arndb.de, rkannoth@marvell.com,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v6 net-next 1/2] dt-bindings: net: airoha: Add EN7581
+ ethernet controller
+Message-ID: <172054295007.3801994.16971652851530691751.robh@kernel.org>
+References: <cover.1720504637.git.lorenzo@kernel.org>
+ <da1a2266e457c8e9b2c29605b8aca4ca688e4c60.1720504637.git.lorenzo@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,25 +67,20 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240709-k1-01-basic-dt-v4-3-ae5bb5e56aaf@gentoo.org>
+In-Reply-To: <da1a2266e457c8e9b2c29605b8aca4ca688e4c60.1720504637.git.lorenzo@kernel.org>
 
 
-On Tue, 09 Jul 2024 03:18:46 +0000, Yixun Lan wrote:
-> From: Yangyu Chen <cyy@cyyself.name>
+On Tue, 09 Jul 2024 08:05:21 +0200, Lorenzo Bianconi wrote:
+> Introduce device-tree binding documentation for Airoha EN7581 ethernet
+> mac controller.
 > 
-> Add DT binding documentation for the SpacemiT K1 SoC[1] and the Banana
-> Pi BPi-F3 board[2] which used it.
-> 
-> Link: https://www.spacemit.com/en/spacemit-key-stone-2/ [1]
-> Link: https://docs.banana-pi.org/en/BPI-F3/BananaPi_BPI-F3 [2]
-> Signed-off-by: Yangyu Chen <cyy@cyyself.name>
-> Reviewed-by: Matthias Brugger <matthias.bgg@kernel.org>
-> Signed-off-by: Yixun Lan <dlan@gentoo.org>
+> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
 > ---
->  .../devicetree/bindings/riscv/spacemit.yaml        | 28 ++++++++++++++++++++++
->  1 file changed, 28 insertions(+)
+>  .../bindings/net/airoha,en7581-eth.yaml       | 143 ++++++++++++++++++
+>  1 file changed, 143 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/airoha,en7581-eth.yaml
 > 
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
