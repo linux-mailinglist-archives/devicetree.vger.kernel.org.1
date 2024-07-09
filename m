@@ -1,126 +1,169 @@
-Return-Path: <devicetree+bounces-84233-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84234-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26AED92B7B1
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 13:25:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DADFB92B7F1
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 13:29:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 586081C22F7F
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 11:25:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7C0291F21406
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 11:29:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5CEE15749F;
-	Tue,  9 Jul 2024 11:25:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 556961586F6;
+	Tue,  9 Jul 2024 11:28:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="xb1PCr3Q"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ayo1fYoB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52AB527713
-	for <devicetree@vger.kernel.org>; Tue,  9 Jul 2024 11:25:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CDD414E2F4
+	for <devicetree@vger.kernel.org>; Tue,  9 Jul 2024 11:28:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720524356; cv=none; b=sleIoh/kXXgT1oUzVLFPd5IIaL1js09V7Bs/1N/uaCk8ZX54LtfVC8EU3x4Q3acNOId4BuhiL8T305KNXN8XyWJIV1Y9Q8IzXVHuDjH5AO1SWnaLRcU3YLO7IZhqWRMuzbPog5rlKti5pshRTp1ZGl9zBIceJWmPUGj1o5yoLtA=
+	t=1720524535; cv=none; b=m12LsVdoHXNR2VH6G3ocZgd+Yj5yL5qSy4WGcLZ8wMkOTfGgJUbgncznhMCpM5w7CLiKUq0P8VMCfcT2GKaX/PUCqHGqhw3f5n+3In0uBtHq9lTz8pyF8kiMPCG73Df2yWsZ/VsbgylgXnbdlOXsXU7FjuBY8NqKHOiu2PYqkb4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720524356; c=relaxed/simple;
-	bh=vvcwRkM3OuNTwdiB+rwHmWDHQxrEcGpnnFXILUWOzkQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=RAu0Lhc6Fc23dPeA0R7Sfy2Mc0Yp8d0rgLquxovgmDEW5LXAXY1CQIirDHah1tLuUDCzZQSmIxhB2a311/J7snPKRVdlUEkacliYHWkVS8z3xTcLLoqBerjMiv+5z3UtUpjabelIioM7n0lnemHvw1M2Fn51taqWorLTRzY5bfU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=xb1PCr3Q; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-42561c16ffeso35590465e9.3
-        for <devicetree@vger.kernel.org>; Tue, 09 Jul 2024 04:25:55 -0700 (PDT)
+	s=arc-20240116; t=1720524535; c=relaxed/simple;
+	bh=ViVFjZGgS8dNPjz5ZsLdjn3yYXpL9aBl4uTllH3CRXM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bSljdjAaQTbnlWxlGNIX1js4P+rvJ9RMYyBYlISfiH9vMNMv+eiw4+1v+x3uXZ35e4nr8dqI9ZyL4IYdR6abrzpy4HX5hOI7YVxCs3vVuIlXFoNImtD8QAdDBZFpGybGo5PZA++UoAWZFstHq/ILuy/U7//PG35XisNOerIaTuc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ayo1fYoB; arc=none smtp.client-ip=209.85.208.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2eea8ea8bb0so33850661fa.1
+        for <devicetree@vger.kernel.org>; Tue, 09 Jul 2024 04:28:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1720524354; x=1721129154; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YfvGjeFG4a32Sifih9R0O4zMufu9Pz8z2RfvikPSPHY=;
-        b=xb1PCr3Q5SlATkx0icGFBSkllrJrS5sb53tLnukqOpmzRE6pw0+27j3kEK0ujlSndZ
-         KyFjjN8Jwm173NOiSoV+1mlxeCz+1w9bhsEDQDoX7Bb9kZRCg7ocKOMtPACWXUs1JeiR
-         TCsMA45huAQhNYcts9TWuyelr+SHnAvFFZipLg/lAmXjWxlcPavrKlJS9+UTGyQrn9r3
-         hzXvpOmeh753KXvWUsKKYGp4f0AQbD5gymP8fqj5rhcS+s+XhFHxNwxo3NWn76umRLx1
-         Yc6+jN7w5HauGYqSkx+ZBzS/svY+YkumzbQeNlOe1BnzJPfzaqbSlRC3SBqkFHzC0XeR
-         F5ow==
+        d=linaro.org; s=google; t=1720524531; x=1721129331; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=3qzAJjCuxDfaalc2old/6w/0ikvjZdAHEMZJhAtd5HY=;
+        b=ayo1fYoBJJWD+RtYUNvHxZokC1nykAxVgvPCnAaNsWoM9BbKuR3wO8oHwAZWB8oRmX
+         zM8wS32V8lEcBz3daIKPie4x/kjF2Bzi4AD/7M60ZPN06aTfxynRIy/RxOHotEUI1PU6
+         Rk0HJXzpMnIqAIAy0UTdH9RZZE2ax0CT9wWdLsOtfFoZSp7CmY9nQlRgLj9YOtE+s+YW
+         GfvGzndm/NvDNML8Pqt0nzCuEUgYH52uZlhzdErg0v3brT7yI/XoFwSM1qhFNuRA8zTQ
+         YGDDXbtXvAKtxJJxXlT32jIOYe6WBjjp4AUimxy/ncjZPRL7Fq7eBdsZOrqyvLwnl5et
+         mnBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720524354; x=1721129154;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=YfvGjeFG4a32Sifih9R0O4zMufu9Pz8z2RfvikPSPHY=;
-        b=hZd1ZFZa/itvl2m0sHuYKrRIMogE8oWvc4pAGh4X+TvVhMvUOVrRG/34NuFxNJNs81
-         Rcnh7fOUC2rwhLC1CoiIh802bcWKeydbZnZgI8TujJ2zHpXcoAuYEN0Nr+2P0WkhVo0j
-         v97EaMWzqymLvEK8KBEyk+B+cPfkfbCocskSQseV79uKa7tQKfG95PlS3cAoeQAcxFw6
-         npD+O+Bxw90dL7JkCG3O43O1jWdgT0Aj6jhkvRCrFN2RE7bzToOj3V6rmQN+53+XCg+h
-         4WDRNT70xJm/LxDasGnQQmGHjnTm3VBnqY8RRTm7B9GiC/5/PLc66j58bMbZomIB6yjP
-         W8GA==
-X-Forwarded-Encrypted: i=1; AJvYcCWAIQSdNP85ojI/jJlu+H5o76O4kGoIxOx0kyrSMs2h8v1FfU2uh0JMoWqCSQ4ixEFVP9fE6pNLNxqblP9YvXrvGoh2KNa6JybLNQ==
-X-Gm-Message-State: AOJu0Ywq2mjsptJY1Za6HdPbKjAAYr+X/BmpULB80iWL+6OScaAyPT56
-	G8Xtkk70c/OfuBWV7cBzUu96IDSSlp6DgBZVKPNFPOAKpe0p3bKKGvLmE6BM+oY=
-X-Google-Smtp-Source: AGHT+IEwiUV54wszrwv/TVpmnu4opeBXJ7Hz9ZlHIOaHbIMMziKYWgHtgwNOIGC1RqDnTBuWbmkq/Q==
-X-Received: by 2002:a5d:54d2:0:b0:367:40b9:e9e6 with SMTP id ffacd0b85a97d-367cea67e6dmr1515785f8f.21.1720524353582;
-        Tue, 09 Jul 2024 04:25:53 -0700 (PDT)
-Received: from brgl-uxlite.home ([2a01:cb1d:dc:7e00:c270:70c:8581:7be])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-367cde7e039sm2307724f8f.2.2024.07.09.04.25.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Jul 2024 04:25:53 -0700 (PDT)
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-To: linus.walleij@linaro.org,
-	brgl@bgdev.pl,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	nicolas.ferre@microchip.com,
-	alexandre.belloni@bootlin.com,
-	claudiu.beznea@tuxon.dev,
-	arnd@arndb.de,
-	durai.manickamkr@microchip.com,
-	linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Manikandan Muralidharan <manikandan.m@microchip.com>
-Cc: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v3 4/5] dt-bindings: gpio: convert Atmel GPIO to json-schema
-Date: Tue,  9 Jul 2024 13:25:51 +0200
-Message-ID: <172052434347.27822.16864713604407945517.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240709092354.191643-5-manikandan.m@microchip.com>
-References: <20240709092354.191643-1-manikandan.m@microchip.com> <20240709092354.191643-5-manikandan.m@microchip.com>
+        d=1e100.net; s=20230601; t=1720524531; x=1721129331;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3qzAJjCuxDfaalc2old/6w/0ikvjZdAHEMZJhAtd5HY=;
+        b=Q+J9wKk0Xr2jC/k2HaQGacjGC19wOy5H1Imeot37UHvxD10txtMFULF5jLypuiv5Lu
+         0X4r/2fzAzdg34z0ofnQy97czFqHJY35CaJm+Sizi4zfN0/ADRCrXB2dVDyv9Wf1vUYR
+         28wNQBFRBkYrbsRxElcCPzE42ppuvNRgTpwX+Zxk+q4jm+4mMVSDPKg5oRMQmB6jIdmS
+         rUe4gwcNNEU7ejhV4T3hojrXYRm0B8R2UwFKJhM5uPIuGsDmBQuNvf5ZIbqksxZJnmd4
+         Jodi6a/ofgqdOaQ0iruu0b0lHZwQXaR7cC6VW/WRgJpk37JAzl3Vw539K+SbLgx6KW1s
+         HHIg==
+X-Forwarded-Encrypted: i=1; AJvYcCVtxZ4LFDU0qmoex+eYQIBr2z5pW2c1OyikO+DL+0XXaH4JE8BeTXT3ltZfdKM1QYOBmwWpxfZUcmShTkl1yEWATq57nsayy07QuA==
+X-Gm-Message-State: AOJu0YxAeZBDypBCN5Uepnv2RwkNKUGXPE13y7KJgUI2ZmURNaU8v/ND
+	Llr6TFhQcA6D0nZxlcUQWNyhoKM0pfNdJRjLg2LjUsXNzpkDegQErX3JRVUqtWc=
+X-Google-Smtp-Source: AGHT+IGS4L2H+hCKSxQz3uGyB0VuG6clhftOdyLInR1ymwePpLnvGZ+2GHobh0M7Xqc+cm/ImHJG3g==
+X-Received: by 2002:a2e:a7c7:0:b0:2ee:8d9a:811a with SMTP id 38308e7fff4ca-2eeb310233amr24871521fa.31.1720524530481;
+        Tue, 09 Jul 2024 04:28:50 -0700 (PDT)
+Received: from [192.168.105.194] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a780a7ff02dsm68784266b.110.2024.07.09.04.28.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 09 Jul 2024 04:28:50 -0700 (PDT)
+Message-ID: <1ec0dbfa-dbef-41e6-a871-7da61651572b@linaro.org>
+Date: Tue, 9 Jul 2024 13:28:46 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 09/10] dt-bindings: opp: v2-qcom-level: Update minItems
+ for oloop-vadj & cloop-vadj
+To: Varadarajan Narayanan <quic_varada@quicinc.com>
+Cc: vireshk@kernel.org, nm@ti.com, sboyd@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, angelogioacchino.delregno@collabora.com,
+ andersson@kernel.org, mturquette@baylibre.com, ilia.lin@kernel.org,
+ rafael@kernel.org, ulf.hansson@linaro.org, quic_sibis@quicinc.com,
+ quic_rjendra@quicinc.com, quic_rohiagar@quicinc.com, abel.vesa@linaro.org,
+ otto.pflueger@abscue.de, danila@jiaxyga.com, quic_ipkumar@quicinc.com,
+ luca@z3ntu.xyz, stephan.gerhold@kernkonzept.com, nks@flawful.org,
+ linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-clk@vger.kernel.org
+References: <20240703091651.2820236-1-quic_varada@quicinc.com>
+ <20240703091651.2820236-10-quic_varada@quicinc.com>
+ <20240708155529.GA3244015-robh@kernel.org>
+ <ZozgNAYKAvhPr0qk@hu-varada-blr.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <ZozgNAYKAvhPr0qk@hu-varada-blr.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-
-
-On Tue, 09 Jul 2024 14:53:53 +0530, Manikandan Muralidharan wrote:
-> Convert the Atmel GPIO controller binding document to DT schema format
-> using json-schema.
-> The at91 pinctrl driver uses "atmel,at91rm9200-gpio" compatible string
-> to find the number of active GPIO banks and identify the pinmux nodes.
-> "atmel,at91sam9x5-gpio" and "microchip,sam9x60-gpio" have additional
-> registers to handle drive-strength, slew-rate,  pull-down to drive the
-> pinmux configs.
-> The new compatible string "microchip,sam9x7-gpio" is added.
+On 9.07.2024 9:01 AM, Varadarajan Narayanan wrote:
+> On Mon, Jul 08, 2024 at 09:55:29AM -0600, Rob Herring wrote:
+>> On Wed, Jul 03, 2024 at 02:46:50PM +0530, Varadarajan Narayanan wrote:
+>>> Since IPQ9574 has only one CPR thread it will specify
+>>> only one voltage adjustment value. Hence update min items
+>>> accordingly for oloop-vadj and cloop-vadj. Without
+>>> constraining min items, dt_binding_check gives errors
+>>>
+>>> 	opp-table-cpr4:opp-0:qcom,opp-cloop-vadj:0: [0] is too short
+>>> 	opp-table-cpr4:opp-0:qcom,opp-oloop-vadj:0: [0] is too short
+>>>
+>>> 	Failed validating 'minItems' in schema . . .
+>>> 		{'maxItems': 2, 'minItems': 2}
+>>>
+>>> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+>>> ---
+>>> v4: Fix dt_bindings_check error
+>>> ---
+>>>  Documentation/devicetree/bindings/opp/opp-v2-qcom-level.yaml | 2 ++
+>>>  1 file changed, 2 insertions(+)
+>>
+>> This is going to need to be rolled into your dependency because it needs
+>> the same fix.
 > 
-> [...]
+> Konrad,
+> 
+> Can you please squash this into https://lore.kernel.org/lkml/20230217-topic-cpr3h-v14-2-9fd23241493d@linaro.org/
 
-Applied, thanks!
+Yes, I'll do that in the next revision.. forgot to validate this..
 
-[4/5] dt-bindings: gpio: convert Atmel GPIO to json-schema
-      commit: 337049890b8cbbb4fb527c58976ea19f4dc747a0
-
-Best regards,
--- 
-Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Konrad
 
