@@ -1,145 +1,169 @@
-Return-Path: <devicetree+bounces-84198-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84200-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8A3492B529
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 12:25:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F9DF92B531
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 12:26:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9EA15285363
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 10:25:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A27141C21A0B
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 10:26:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D407E156C6F;
-	Tue,  9 Jul 2024 10:25:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B490B156864;
+	Tue,  9 Jul 2024 10:25:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yj+7QbJm"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FPZKfoqv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24992156991
-	for <devicetree@vger.kernel.org>; Tue,  9 Jul 2024 10:25:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2698D155C8C
+	for <devicetree@vger.kernel.org>; Tue,  9 Jul 2024 10:25:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720520733; cv=none; b=Sw/ivfAmKoTNcn3+c6zt+DR+N/IgNbdEUBq/44ZMW6h8lNv60wlCfgq6L1OIXucWtz2D1yXqSnz033PaAQmNJDQFYOM0xlvur+dA6oli3C327qYtDGlt8jVPf41MgBk74s9aojk9npiHkg5Nq4A1wj8l9XTasmlbAeXq80zNNgA=
+	t=1720520756; cv=none; b=QSJZ64fwADVkXB4IBSXD3MZcgOk64/P8Ye0tUZnF0t2ANwah2AXNeI9JWySf6ooe3pM/yq/9nmpXx8y/1/7NBNAYqKftNDIAsU6Dt55LjdgxyQsJGOpNzgKDnuRovSLoAxk1vFrlGvUbuUipDFzOxuSdiU2b9WZQaTaKbUunEYQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720520733; c=relaxed/simple;
-	bh=EoSR0aXO2+/z3Iwpc6wgpC/ugmvAjQBUjo7PHJ3kGsY=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=ijRDSh1xNa4ILkHhkpPLQ48Kg7zSU8+XWQ/K1KnVCd1CZqz/CCRU/7wIXODYELEj2IoykhhC2Z7u2F+78oLwjkUXKo21TKVP3C+mK+zVL3ucoH3y5rK2FSoWoJh5yTGv5Lk7cIejn2t263j7hTZ9xgIL4swS8Tx12tIeEk4pta8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yj+7QbJm; arc=none smtp.client-ip=209.85.208.171
+	s=arc-20240116; t=1720520756; c=relaxed/simple;
+	bh=A6pd2XpYR/VxdLWZQRqvnoyExu02xN7pHANL4n43oi0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=GMH8rztVyXaL0B7p74k8mpAqgAQm7cMhgTFDYfz9t2lS0CB3ffaZYAPgs71W8FRhcWVogDjjz19BYQN0mDdyfO0T9/TmApNtNsWDKksycK9FMqbJ5RApEtsL1dLPRH5awJC1XiQrN47OHhUZc8uBoQMasaUA0IiU1W7FOpuerW8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FPZKfoqv; arc=none smtp.client-ip=209.85.208.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2ee910d6a9dso46478521fa.1
-        for <devicetree@vger.kernel.org>; Tue, 09 Jul 2024 03:25:31 -0700 (PDT)
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-58b0dddab63so7309380a12.3
+        for <devicetree@vger.kernel.org>; Tue, 09 Jul 2024 03:25:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1720520730; x=1721125530; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DwCSgjxT2tK3otzDQLFuNSIFcwYyO+N34TvcAykwDTc=;
-        b=yj+7QbJmnaBwMJsJqTe4qDXZjXjNVaPQJc39KaYSB0hqlDgzlaJTigvvkcNuz75Y4e
-         fK7AYDBYQNBj2c6duHNiiKtIEg/ezSW/LQoH4dYtsfeOKFifPQsLycmEofRH33RpsROO
-         kpvTV6+TiDGjjHbWbvDi9zP3u4jbkJ812+BGgXGHw9vwmh0v0y+e+0G7CQWANw9WJLX7
-         wa3mESvF8gjYtLIn4J8YbXpGO/r1PH79BvswPsZcIzTcUbId4innnzXeRIl5pz8HtSLA
-         MiRG7jGupAW9+KckvWyUDvCchcquA+FwYupxCGy//fSR4iI4NszsPLY6o8rJS8mTj8Rj
-         9p9Q==
+        d=linaro.org; s=google; t=1720520753; x=1721125553; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=GdyTrVsoTN9O7NSdA88oWiFu9OfV95HskzoQpLb15Z4=;
+        b=FPZKfoqvw+z3hsAHPVpMY4VwmvToOOJYXIC1/MEcVe9/JGLj/773nOQglrVoeQA/h8
+         hpDftKB5UsHhyzbG8nrlVRQvYI5VWzWpdSHcJoHZH4DJoOPVzeVVJL67TL0o2RptYAQg
+         Llard+NtcAPX5JVgltXP4EfMRwZQLaFq92leuInRlthtfwDb0Db49/klF5tFhSiezpGy
+         14CtezL5vta2qJRD78J9NxuyrMgONWbJGcwnHTxBkQyd8BUyGqc2YqmTRliQRSWu3kZM
+         JKzZ7qXfW8G5NIwsPmLqJyepsLNRzZO+mxUoS2Uc6eRo3Da/y5HjkIdvfLBe66fLqlGP
+         CXwg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720520730; x=1721125530;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=DwCSgjxT2tK3otzDQLFuNSIFcwYyO+N34TvcAykwDTc=;
-        b=mRjL3u0q8sRpa9AIi3m72oH/vXSo+iZk245HrWUZhffToVKiuB/mdqf9fZdBLCQXMj
-         pgpYbSI/nA0SZOCX4kL89FTHa50P0VCKxyL9Qbow4Vv4PMjimaC3MixD5JjhPDUnZzfu
-         tpcMWrNu7ukx3gI8/FcfvTElqNK/xAhCWDABvpXRlBStRc1UaHGysKrJ95DPFfbGkHGG
-         DNRN4/yysU/OBq6AW2mcyHbnZfDmSA669H4TWxLCRsCboDH0vwCTdei1Xo3zuolKrGOB
-         mGUV7ALKy1uIJPAq9xFMDTsuGE6RyFY++Es5mIXTTuQ6IPEXni3ip7tCV7u47FVRZ8f3
-         JSGA==
-X-Forwarded-Encrypted: i=1; AJvYcCXTZA0E0YxQgoTsv/DEgxUEab9nt8gRfa8RLNxBLHSFZdbDVEjiSFlGR+SERZzdyK6A2S33aZ6v64haje90DTWRytEtSkz9llYwqg==
-X-Gm-Message-State: AOJu0YzOlt8tJXvUcqF7MZAkp8iOO3KHm2Ui1EMEKUuajyczFC/owu1A
-	RB+O1Kkr1U/j/pkGfWP52DcBlmojq/lvHrS2ma+hpp1zUE+sBvscKjViBHc3CJs=
-X-Google-Smtp-Source: AGHT+IHXJH3xjv9MTkIQQxNiMOAgiLbTh1Pv7hSzmS2GYQq3dC5IRHiDgUXWiz4o/lttBs7kCUQaWQ==
-X-Received: by 2002:a05:651c:198b:b0:2ed:5c34:4082 with SMTP id 38308e7fff4ca-2eeb30ba0abmr20555151fa.8.1720520730294;
-        Tue, 09 Jul 2024 03:25:30 -0700 (PDT)
-Received: from localhost.localdomain ([89.47.253.130])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4266f741553sm33954285e9.40.2024.07.09.03.25.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Jul 2024 03:25:29 -0700 (PDT)
-From: James Clark <james.clark@linaro.org>
-To: akpm@linux-foundation.org,
-	robh@kernel.org,
-	suzuki.poulose@arm.com
-Cc: linux-perf-users@vger.kernel.org,
-	James Clark <james.clark@linaro.org>,
-	Mike Leach <mike.leach@linaro.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthieu Baerts <matttbe@kernel.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Jiri Kosina <jikos@kernel.org>,
-	Geliang Tang <geliang@kernel.org>,
-	Bjorn Andersson <quic_bjorande@quicinc.com>,
-	Kees Cook <kees@kernel.org>,
-	Matt Ranostay <matt@ranostay.sg>,
-	Oleksij Rempel <o.rempel@pengutronix.de>,
-	Mao Jinlong <quic_jinlmao@quicinc.com>,
-	Hao Zhang <quic_hazha@quicinc.com>,
-	linux-kernel@vger.kernel.org,
-	coresight@lists.linaro.org,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH 2/2] dt-bindings: arm: Update James Clark's email address
-Date: Tue,  9 Jul 2024 11:25:11 +0100
-Message-Id: <20240709102512.31212-3-james.clark@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240709102512.31212-1-james.clark@linaro.org>
-References: <20240709102512.31212-1-james.clark@linaro.org>
+        d=1e100.net; s=20230601; t=1720520753; x=1721125553;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GdyTrVsoTN9O7NSdA88oWiFu9OfV95HskzoQpLb15Z4=;
+        b=bqoBr9ChZCACGUHmDlCDL931ZNSpC+Ez6JQMzMO1EtlhgayUw6ZWrJMxEZ552bqmLH
+         2OpAumC8BOAq7kE6XAFjNL7+Ho9epHD+0Z6W1jbtWW3X6hoKZT3zW+EnAYaEb7Q5Wm7Q
+         MNNEuEjvyETXkB12Z4KRv235Rwo8fC2KZBD1MphyxrMB5+neTsLq0cKCCbfk9XxS1SMG
+         rlKaTwhAqJYv6j8+N6P3L2PBkohDYuz+qHX4kofb9K9FuJ/GLsTkxGjmM+GFl9hSQ7zG
+         yRVaOmiyMOGuWFzwoGAxUu3uuKOk0qtdwNmnQA+JXXeir+PrtqPbW4FbrU7SSTuGHZb8
+         KBNg==
+X-Forwarded-Encrypted: i=1; AJvYcCVIP/VLmCECR0SkLnZg+7Ydnvtu7cIIypn/GLkpwlvAneTTN6rLgUWajqmaxgXsGnfk7aHYbVUoloZn9QBwYFFFaYw/2m+v8Fl7HA==
+X-Gm-Message-State: AOJu0Yz0kRl9qoFj+N04cypq59enAwyv+4rF2e/d0likZq1ZNbC+TL0V
+	wAsa9X7UoW5/inL6VTWAb+wyx7tSg8JJDqSHLGnGlWVUSwXwIiDnwClqQSZfcfs=
+X-Google-Smtp-Source: AGHT+IFuotZgYfU6wVxhSbZdkYxhEmD3ZRvEboyJqHtucWZwusYkQ9GJldTmncLxCN3+0FO4rv+qFg==
+X-Received: by 2002:aa7:c918:0:b0:58a:ffc3:cea5 with SMTP id 4fb4d7f45d1cf-594bbe2ba54mr1263864a12.35.1720520753419;
+        Tue, 09 Jul 2024 03:25:53 -0700 (PDT)
+Received: from [192.168.105.194] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-594bda308efsm883514a12.81.2024.07.09.03.25.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 09 Jul 2024 03:25:53 -0700 (PDT)
+Message-ID: <5a622896-6ce3-4e73-9383-15793b2536bc@linaro.org>
+Date: Tue, 9 Jul 2024 12:25:50 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/5] drm/msm/adreno: Implement SMEM-based speed bin
+To: Akhil P Oommen <quic_akhilpo@quicinc.com>
+Cc: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Marijn Suijten <marijn.suijten@somainline.org>,
+ linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20240625-topic-smem_speedbin-v4-0-f6f8493ab814@linaro.org>
+ <20240625-topic-smem_speedbin-v4-1-f6f8493ab814@linaro.org>
+ <20240630102524.talnb3qx5jfmcj5y@hu-akhilpo-hyd.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20240630102524.talnb3qx5jfmcj5y@hu-akhilpo-hyd.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-My new address is james.clark@linaro.org
+On 30.06.2024 12:25 PM, Akhil P Oommen wrote:
+> On Tue, Jun 25, 2024 at 08:28:06PM +0200, Konrad Dybcio wrote:
+>> On recent (SM8550+) Snapdragon platforms, the GPU speed bin data is
+>> abstracted through SMEM, instead of being directly available in a fuse.
+>>
+>> Add support for SMEM-based speed binning, which includes getting
+>> "feature code" and "product code" from said source and parsing them
+>> to form something that lets us match OPPs against.
+>>
+>> Due to the product code being ignored in the context of Adreno on
+>> production parts (as of SM8650), hardcode it to SOCINFO_PC_UNKNOWN.
+>>
+>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>> ---
 
-Signed-off-by: James Clark <james.clark@linaro.org>
----
- .../devicetree/bindings/arm/arm,coresight-dummy-sink.yaml       | 2 +-
- .../devicetree/bindings/arm/arm,coresight-dummy-source.yaml     | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+[...]
 
-diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-dummy-sink.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-dummy-sink.yaml
-index c960c8e0a9a5..08b89b62c505 100644
---- a/Documentation/devicetree/bindings/arm/arm,coresight-dummy-sink.yaml
-+++ b/Documentation/devicetree/bindings/arm/arm,coresight-dummy-sink.yaml
-@@ -30,7 +30,7 @@ description: |
- maintainers:
-   - Mike Leach <mike.leach@linaro.org>
-   - Suzuki K Poulose <suzuki.poulose@arm.com>
--  - James Clark <james.clark@arm.com>
-+  - James Clark <james.clark@linaro.org>
-   - Mao Jinlong <quic_jinlmao@quicinc.com>
-   - Hao Zhang <quic_hazha@quicinc.com>
- 
-diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-dummy-source.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-dummy-source.yaml
-index 6745b4cc8f1c..d50a60368e27 100644
---- a/Documentation/devicetree/bindings/arm/arm,coresight-dummy-source.yaml
-+++ b/Documentation/devicetree/bindings/arm/arm,coresight-dummy-source.yaml
-@@ -29,7 +29,7 @@ description: |
- maintainers:
-   - Mike Leach <mike.leach@linaro.org>
-   - Suzuki K Poulose <suzuki.poulose@arm.com>
--  - James Clark <james.clark@arm.com>
-+  - James Clark <james.clark@linaro.org>
-   - Mao Jinlong <quic_jinlmao@quicinc.com>
-   - Hao Zhang <quic_hazha@quicinc.com>
- 
--- 
-2.34.1
+> 
+> This value is exposed to userspace via MSM_PARAM_CHIP_ID. 16 bits are
+> reserved for speedbin, so we should ensure somewhere that we don't
+> accidently use more than that.
 
+The "real" chip id is 32b, leaving the other 32 for speedbin, so it's fine
+
+> 
+> Also, what is the the max value of fcode? I think we should leave some
+> space for pcode too. We never know for sure if that won't be required in
+> future.
+
+As of today it seems to be 0xff. Worst case scenario we'll add a new param,
+but hopefully the people that are in charge won't randomly change things..
+
+Konrad
 
