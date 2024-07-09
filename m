@@ -1,176 +1,219 @@
-Return-Path: <devicetree+bounces-84224-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84226-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4637692B5DC
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 12:50:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D155B92B5E5
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 12:52:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 779061C20F21
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 10:50:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5CB2E1F2162D
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 10:52:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEDBD156F44;
-	Tue,  9 Jul 2024 10:50:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F00C157466;
+	Tue,  9 Jul 2024 10:52:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="co2T6EgR"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="I0ET5kgq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 867AC156967;
-	Tue,  9 Jul 2024 10:50:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E117156967;
+	Tue,  9 Jul 2024 10:52:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720522233; cv=none; b=WTnJbjPGo1rHjR9KtNkPrWX+oMLFAxsdZxZco4D5o1zsbQ8v4HDY95a+3+sfuYjwotViMzxfiHtz2R5nPRrE9k/GJp6HoLXA82KEBkwVRwalKvTf6xkf3i0EMEEvHjHwdaYrxg+hG1YGLnpRhj67mYDyN0fflOeLmVDWsoP1EUA=
+	t=1720522338; cv=none; b=o4m8byBitGemWOoeJI4qg+AEkqH/kUr4Q5Ppoz6r3KWBR0rYDiSy/L0Uo11uBQVSHpH/0bk1iaA10hZRcW/+IRBPx21/aebWLsSitvBlvaOgLGWPYuymM6d9J6Bu6zTq0Dv2ck8LSfNwCjzky7MSlRBXCSRGh2ciACScfpkcEr8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720522233; c=relaxed/simple;
-	bh=KBCyi08P5VEAGDKywTuRsjtLZ1Wk3bq99HxLuAgdfUY=;
-	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XAEw/p7ELznhvHRSofGZy35/DUJkZJ98nOanaMtPt3juNx32Zdl2DxR56DjCwSs9SW4SgJoZF90AFnbBg+TlNOlr2Pzo0oZBUaJegFhMlA4nDfEGZjWh03OM87rYU6uo4VRoOPYdK5zHiKweo8es92yNhulOYiTcMKWSyGCZfXM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=co2T6EgR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37D89C3277B;
-	Tue,  9 Jul 2024 10:50:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720522233;
-	bh=KBCyi08P5VEAGDKywTuRsjtLZ1Wk3bq99HxLuAgdfUY=;
-	h=Date:From:To:Subject:References:In-Reply-To:From;
-	b=co2T6EgRbtzNMZmROrCnN8zRKlLCswW/EgBWaTCQyNLGXkkia/rNwVeQEC55vffLs
-	 eK0zV+xsdEVDtPGFaL5UAvfwVwywjLFlpNqugipv67RspcbPk4jtDNrFpHF8dU9csK
-	 WFGVfenJ5OMuZKW19VAQbujJL9npjr0xKThIqSLbcAd5vGURH04Rn8JTg08hnct4Uu
-	 solI+0T4YD7Ln0H2adcmF+7rqRrXNHQ5WOgkK/DcV8OKx2IRwPIxySjI6HWAVmWJPf
-	 +WghI3v70BYesstEWrFHUmj8nSpaLqSJk3QSgGHtGXj7RpGVIX6F1GRdmwgOUFmb04
-	 a1mWO3rCNWXCQ==
-Date: Tue, 9 Jul 2024 11:50:29 +0100
-From: Conor Dooley <conor@kernel.org>
-To: claudiu beznea <claudiu.beznea@tuxon.dev>, devicetree@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Mihai Sain <mihai.sain@microchip.com>
-Subject: Re: [PATCH] ARM: dts: microchip: sam9x60: Move i2c address/size to
- dtsi
-Message-ID: <20240709-education-unfreeze-a719c6927d73@spud>
-References: <20240528153109.439407-1-ada@thorsis.com>
- <20240705-defection-septum-dd9202836b23@thorsis.com>
- <30fc0b41-49b9-41b8-82ef-c27d202492e6@tuxon.dev>
- <20240709-specked-paging-b821f10a657b@thorsis.com>
+	s=arc-20240116; t=1720522338; c=relaxed/simple;
+	bh=YdQdM4xh2TvaXiWwL+MAEKPz4S6pTyKfrWoVs5MiXbc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=GCJOK4qHALaTn7NTac3JF/VcyAMWU3y6B80qKfCKNWb9rZ+QADKZna5nwMU2P6lwjkVMvmBNZfJTTOzg9HRU30nVdVtLnnERtFT8VxGD1gXw4nSoD+4t7bJ/ktFspj2/UOTNesDXUEXo0YkgiIIACinJVAEha3WFXMzCRcqq4IQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=I0ET5kgq; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46919w0X003975;
+	Tue, 9 Jul 2024 10:51:49 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	jtlchnQOp+qiPnzd0Np2Gdw+hp5nOtyxLmguasiBaZ8=; b=I0ET5kgqIqnTLexz
+	kQDobNNWzQMUda0c/lsLbz5436ybQBkMjJgevy+0HlCWVknwCVbWcelEdZlN6Jgn
+	GlbXfRm/kRew/Xdp1xutO7BqY/OuhYrLYtWzu3eSIGQuTUjWimGM7YZfZOmgkeuV
+	LlEdTywnVVsg1pn41SyWYIbKwta9KxFXHhRNKpXY+4ZfUM3eQxRxQrwgSPhePzjb
+	j9noYa0afvaaBDpdqWftJHO1AT0XlVh7ISwd8YA2mR+Cpem86wEpPVTRdxltDSXi
+	4oEMPkyCExsPCQ3i2okkBoG0lfhF5YXYIWf0ITlauUGbrjCnceHCyRhjyjeJaR6J
+	x4X5aQ==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 406wmmpap3-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 09 Jul 2024 10:51:49 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA05.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 469Apm2n023176
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 9 Jul 2024 10:51:48 GMT
+Received: from [10.216.26.146] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 9 Jul 2024
+ 03:51:42 -0700
+Message-ID: <6adaca81-2751-ae48-850c-453a34c0e341@quicinc.com>
+Date: Tue, 9 Jul 2024 16:21:38 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="wK73nfjr5zodA4AQ"
-Content-Disposition: inline
-In-Reply-To: <20240709-specked-paging-b821f10a657b@thorsis.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Subject: Re: [PATCH v2 3/6] clk: qcom: clk-alpha-pll: Add support for Regera
+ PLL ops
+Content-Language: en-US
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Abhishek Sahu <absahu@codeaurora.org>,
+        "Rob
+ Herring" <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Stephen Boyd <sboyd@codeaurora.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, Ajit Pandey <quic_ajipan@quicinc.com>,
+        "Imran
+ Shaik" <quic_imrashai@quicinc.com>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        Jagadeesh Kona <quic_jkona@quicinc.com>
+References: <20240702-camcc-support-sm8150-v2-0-4baf54ec7333@quicinc.com>
+ <20240702-camcc-support-sm8150-v2-3-4baf54ec7333@quicinc.com>
+ <kxoxr5cxxedckh7q45zhhyssqx4ahdfbqw7sdsrxx2ddplummh@2s6jv62ipnhb>
+From: "Satya Priya Kakitapalli (Temp)" <quic_skakitap@quicinc.com>
+In-Reply-To: <kxoxr5cxxedckh7q45zhhyssqx4ahdfbqw7sdsrxx2ddplummh@2s6jv62ipnhb>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: bkMPp0JjqBcXkNi5caMNDOKNajXImBl5
+X-Proofpoint-ORIG-GUID: bkMPp0JjqBcXkNi5caMNDOKNajXImBl5
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-09_02,2024-07-08_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011
+ priorityscore=1501 lowpriorityscore=0 spamscore=0 bulkscore=0 adultscore=0
+ impostorscore=0 suspectscore=0 malwarescore=0 mlxscore=0 mlxlogscore=997
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2406140001 definitions=main-2407090074
 
 
---wK73nfjr5zodA4AQ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Tue, Jul 09, 2024 at 12:41:02PM +0200, Alexander Dahl wrote:
-> Am Mon, Jul 08, 2024 at 07:23:47PM +0300 schrieb claudiu beznea:
-> > On 05.07.2024 09:19, Alexander Dahl wrote:
-> > > Am Tue, May 28, 2024 at 05:31:09PM +0200 schrieb Alexander Dahl:
-> > > It's been a while.  Is something wrong with the patch?  Or with the
-> > > commit message?
-> >=20
-> > Please CC your patches to proper people (e.g., use
-> > ./script/get_maintainer.pl). I see no Microchip AT91 maintainers in the
-> > initial to/cc list of your patch.
->=20
-> You can be sure I did.  This is the list I got on my patch and you see
-> I CCed everone listed as a _maintainer_ from that output:
->=20
->     % ./scripts/get_maintainer.pl outgoing/arm-dts-microchip/0001-ARM-dts=
--microchip-sam9x60-Move-i2c-address-size-to-d.patch=20
->     Rob Herring <robh@kernel.org> (maintainer:OPEN FIRMWARE AND FLATTENED=
- DEVICE TREE BINDINGS)
->     Krzysztof Kozlowski <krzk+dt@kernel.org> (maintainer:OPEN FIRMWARE AN=
-D FLATTENED DEVICE TREE BINDINGS)
->     Conor Dooley <conor+dt@kernel.org> (maintainer:OPEN FIRMWARE AND FLAT=
-TENED DEVICE TREE BINDINGS)
->     Nicolas Ferre <nicolas.ferre@microchip.com> (supporter:ARM/Microchip =
-(AT91) SoC support)
->     Alexandre Belloni <alexandre.belloni@bootlin.com> (supporter:ARM/Micr=
-ochip (AT91) SoC support)
->     Claudiu Beznea <claudiu.beznea@tuxon.dev> (supporter:ARM/Microchip (A=
-T91) SoC support,commit_signer:1/2=3D50%,authored:1/2=3D50%,added_lines:32/=
-45=3D71%,removed_lines:32/45=3D71%)
->=20
-> Not sure why Nicolas, Alexandre, and you are listed as "supporter"
-> only?  I think you should have been in the CC list in the first place,
-> sorry about that.
-
-You say only, but actually "supporter" is a stronger wording than
-"maintainer" as it means that the people are actually paid to look after
-the platform:
-	S: *Status*, one of the following:
-	   Supported:	Someone is actually paid to look after this.
-	   Maintained:	Someone actually looks after it.
-	   Odd Fixes:	It has a maintainer but they don't have time to do
-			much other than throw the odd patch in. See below..
-	   Orphan:	No current maintainer [but maybe you could take the
-			role as you write your new code].
-	   Obsolete:	Old code. Something tagged obsolete generally means
-			it has been replaced by a better system and you
-			should be using that.
-
-As an aside, it might be a bit inaccurate here though, because Claudiu
-is not paid to look after AT91 and Alexandre might not be either.
-
-> Besides, I just noticed arch/arm/boot/dts/microchip/sam9x60.dtsi is
-> not covered by specific matches in MAINTAINERS file, just through a
-> generic fallback for all dts.  Lines in question are these, sam9 is
-> not matched:
->=20
->     F:  arch/arm/boot/dts/microchip/at91*
->     F:  arch/arm/boot/dts/microchip/sama*
-
-I think this is a hangover from when all arm dts files used to be in
-arch/arm/boot/dts/, so the patter was needed to only match stuff the
-lads cared about. Now that arm is like other architectures and has
-subdirectories for vendors I think these could be simplified:
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 691f98fe8ed3..1d2b201563e7 100644
-	--- a/MAINTAINERS
-	+++ b/MAINTAINERS
-	@@ -2534,8 +2534,7 @@ L:	linux-arm-kernel@lists.infradead.org (moderated f=
-or non-subscribers)
-	 S:	Supported
-	 W:	http://www.linux4sam.org
-	 T:	git git://git.kernel.org/pub/scm/linux/kernel/git/at91/linux.git
-	-F:	arch/arm/boot/dts/microchip/at91*
-	-F:	arch/arm/boot/dts/microchip/sama*
-	+F:	arch/arm/boot/dts/microchip/
-	 F:	arch/arm/include/debug/at91.S
-	 F:	arch/arm/mach-at91/
-	 F:	drivers/memory/atmel*
+On 7/3/2024 3:35 PM, Dmitry Baryshkov wrote:
+> On Tue, Jul 02, 2024 at 09:20:41PM GMT, Satya Priya Kakitapalli wrote:
+>> From: Taniya Das <quic_tdas@quicinc.com>
+>>
+>> Regera PLL ops are required to control the Regera PLL from clock
+>> controller drivers, thus add support for the same.
+> the same what?
 
 
->=20
-> Okay for the next time I will also CC supporters, but I found the
-> output of get_maintainer.pl some kind of confusing here.
+I'll rephrase the commit text.
 
-Cheers,
-Conor.
 
---wK73nfjr5zodA4AQ
-Content-Type: application/pgp-signature; name="signature.asc"
+>> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+>> Signed-off-by: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
+>> ---
+>>   drivers/clk/qcom/clk-alpha-pll.c | 32 +++++++++++++++++++++++++++++++-
+>>   drivers/clk/qcom/clk-alpha-pll.h |  5 +++++
+>>   2 files changed, 36 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/clk/qcom/clk-alpha-pll.c b/drivers/clk/qcom/clk-alpha-pll.c
+>> index d2bef078588f..afb7ab72c90d 100644
+>> --- a/drivers/clk/qcom/clk-alpha-pll.c
+>> +++ b/drivers/clk/qcom/clk-alpha-pll.c
+>> @@ -1,7 +1,7 @@
+>>   // SPDX-License-Identifier: GPL-2.0
+>>   /*
+>>    * Copyright (c) 2015, 2018, The Linux Foundation. All rights reserved.
+>> - * Copyright (c) 2021, 2023, Qualcomm Innovation Center, Inc. All rights reserved.
+>> + * Copyright (c) 2021, 2023-2024, Qualcomm Innovation Center, Inc. All rights reserved.
+>>    */
+>>   
+>>   #include <linux/kernel.h>
+>> @@ -2605,3 +2605,33 @@ const struct clk_ops clk_alpha_pll_stromer_plus_ops = {
+>>   	.set_rate = clk_alpha_pll_stromer_plus_set_rate,
+>>   };
+>>   EXPORT_SYMBOL_GPL(clk_alpha_pll_stromer_plus_ops);
+>> +
+>> +void clk_regera_pll_configure(struct clk_alpha_pll *pll, struct regmap *regmap,
+>> +			     const struct alpha_pll_config *config)
+>> +{
+>> +	clk_alpha_pll_write_config(regmap, PLL_L_VAL(pll), config->l);
+>> +	clk_alpha_pll_write_config(regmap, PLL_ALPHA_VAL(pll), config->alpha);
+>> +	clk_alpha_pll_write_config(regmap, PLL_CONFIG_CTL(pll), config->config_ctl_val);
+>> +	clk_alpha_pll_write_config(regmap, PLL_CONFIG_CTL_U(pll), config->config_ctl_hi_val);
+>> +	clk_alpha_pll_write_config(regmap, PLL_CONFIG_CTL_U1(pll), config->config_ctl_hi1_val);
+>> +	clk_alpha_pll_write_config(regmap, PLL_USER_CTL(pll), config->user_ctl_val);
+>> +	clk_alpha_pll_write_config(regmap, PLL_USER_CTL_U(pll), config->user_ctl_hi_val);
+>> +	clk_alpha_pll_write_config(regmap, PLL_USER_CTL_U1(pll), config->user_ctl_hi1_val);
+>> +	clk_alpha_pll_write_config(regmap, PLL_TEST_CTL(pll), config->test_ctl_val);
+>> +	clk_alpha_pll_write_config(regmap, PLL_TEST_CTL_U(pll), config->test_ctl_hi_val);
+>> +	clk_alpha_pll_write_config(regmap, PLL_TEST_CTL_U1(pll), config->test_ctl_hi1_val);
+>> +
+>> +	/* Set operation mode to STANDBY */
+>> +	regmap_write(regmap, PLL_OPMODE(pll), PLL_STANDBY);
+>> +}
+>> +EXPORT_SYMBOL_GPL(clk_regera_pll_configure);
+> Does it make sense to call this function from clk_zonda_pll_configure()?
 
------BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZo0V9QAKCRB4tDGHoIJi
-0s4oAQDhdnuqeY0WEpTQlCh28Z70EQ1nspON5dYgjSQv7njFswD6AlLsu/K8jUPU
-M+S4K/mpy0UdwyU5EYETMOmtz7sUOgQ=
-=a1xN
------END PGP SIGNATURE-----
+Okay, I'll evaluate this internally and see if that can be done.
 
---wK73nfjr5zodA4AQ--
+
+>
+>> +
+>> +const struct clk_ops clk_alpha_pll_regera_ops = {
+>> +	.enable = clk_zonda_pll_enable,
+>> +	.disable = clk_zonda_pll_disable,
+>> +	.is_enabled = clk_alpha_pll_is_enabled,
+>> +	.recalc_rate = clk_trion_pll_recalc_rate,
+>> +	.round_rate = clk_alpha_pll_round_rate,
+>> +	.set_rate = clk_zonda_pll_set_rate,
+>> +};
+>> +EXPORT_SYMBOL_GPL(clk_alpha_pll_regera_ops);
+>> diff --git a/drivers/clk/qcom/clk-alpha-pll.h b/drivers/clk/qcom/clk-alpha-pll.h
+>> index fb6d50263bb9..5bb0a07da53d 100644
+>> --- a/drivers/clk/qcom/clk-alpha-pll.h
+>> +++ b/drivers/clk/qcom/clk-alpha-pll.h
+>> @@ -21,6 +21,7 @@ enum {
+>>   	CLK_ALPHA_PLL_TYPE_LUCID = CLK_ALPHA_PLL_TYPE_TRION,
+>>   	CLK_ALPHA_PLL_TYPE_AGERA,
+>>   	CLK_ALPHA_PLL_TYPE_ZONDA,
+>> +	CLK_ALPHA_PLL_TYPE_REGERA = CLK_ALPHA_PLL_TYPE_ZONDA,
+>>   	CLK_ALPHA_PLL_TYPE_ZONDA_OLE,
+>>   	CLK_ALPHA_PLL_TYPE_LUCID_EVO,
+>>   	CLK_ALPHA_PLL_TYPE_LUCID_OLE,
+>> @@ -189,6 +190,8 @@ extern const struct clk_ops clk_alpha_pll_postdiv_lucid_evo_ops;
+>>   extern const struct clk_ops clk_alpha_pll_rivian_evo_ops;
+>>   #define clk_alpha_pll_postdiv_rivian_evo_ops clk_alpha_pll_postdiv_fabia_ops
+>>   
+>> +extern const struct clk_ops clk_alpha_pll_regera_ops;
+>> +
+>>   void clk_alpha_pll_configure(struct clk_alpha_pll *pll, struct regmap *regmap,
+>>   			     const struct alpha_pll_config *config);
+>>   void clk_fabia_pll_configure(struct clk_alpha_pll *pll, struct regmap *regmap,
+>> @@ -210,5 +213,7 @@ void clk_rivian_evo_pll_configure(struct clk_alpha_pll *pll, struct regmap *regm
+>>   				  const struct alpha_pll_config *config);
+>>   void clk_stromer_pll_configure(struct clk_alpha_pll *pll, struct regmap *regmap,
+>>   			       const struct alpha_pll_config *config);
+>> +void clk_regera_pll_configure(struct clk_alpha_pll *pll, struct regmap *regmap,
+>> +			     const struct alpha_pll_config *config);
+>>   
+>>   #endif
+>>
+>> -- 
+>> 2.25.1
+>>
 
