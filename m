@@ -1,84 +1,122 @@
-Return-Path: <devicetree+bounces-84446-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84447-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E048492C412
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 21:49:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3670E92C422
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 21:53:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 12C8C1C223D1
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 19:49:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5D9131C22165
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 19:53:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0CE318004F;
-	Tue,  9 Jul 2024 19:49:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97F1718003D;
+	Tue,  9 Jul 2024 19:53:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QUz0X8U6"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=j.neuschaefer@gmx.net header.b="rUnY0UFI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE7927F7C7;
-	Tue,  9 Jul 2024 19:49:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30E681B86ED;
+	Tue,  9 Jul 2024 19:53:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720554569; cv=none; b=FjnCavckySiah+sGq2JlaUzaOXsHdPZAikLzEyhicq+adzn3eLW0gZXPWcWTPADJlZ8Kntn9yBLfprB+ETJIlIRPT56GvsDLwgQ5wErF1BuIMx030lW/4r+cIaLYy/9FgU00hhZf3u84nBgvTIwNvPq0ah012AY4QjnvyoF+eMI=
+	t=1720554794; cv=none; b=F3njYr5x6jZI7GSmgd7lB8FLJvf1/9rFXFHtwBh8ZWgFQFp/h1thh0NAQpJTYeszcH0dOGO6VQ6lIrsrXiMTuzJCx280RDe+reeIMVow0UtEqHg/LE5gcvoLZGTXB4i22vXS8genDehYTL36Me2Nh5MP0dS4nezw6cAx+XJh+jM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720554569; c=relaxed/simple;
-	bh=nemlQbh6hUiC0LFAb9INgTT743Po9pIJ7bue1vsUjmc=;
-	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
-	 Subject:From:Cc:To:Date; b=aqAD3lpyjuADg2mso/EvLtP+uDcz2nl4h2iTR5E5vYT76sU4u1Gf2zeLlUxjJZBN5cvLV94R5zSZlf077WyckXQrVA36eiBozlVi0J/1elqYAwHzeQ2YMcuxo6T7S/MCHNzKiJpCK2K+9l4jSwwJvK86o1dyewgqJTlBtnJN1PI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QUz0X8U6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27ABCC3277B;
-	Tue,  9 Jul 2024 19:49:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720554569;
-	bh=nemlQbh6hUiC0LFAb9INgTT743Po9pIJ7bue1vsUjmc=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=QUz0X8U6FFM9PwumGE7yIm09NlCgxPuS2oycCmpclHr3W0hcPHM/AHgvP5mzfAXVS
-	 sXRzADzUsr3euni6FfQ9wJa+u3Cx8YsSjTzoybBN9ilo7YlUPQc+q9JA0VgvIdbmLD
-	 2LJYf2o5KGlBmhJuqjUVFKr8TF575pfYW3mjhTIliS5GcwsHahZIWF8BQb8Rizg5P1
-	 nK58UK5k4ex4uj3XAQIU1g0XzL64IinVl7hoT/VgPhosIXjUSGhvEKh1x+qlmvTeCd
-	 M9bh1qTAWW1GWN5qqT/dXpBE22t+MDmF9CFbk5AbHQNqrJ20bRNhZ9xcky5gDa5vJP
-	 L24nVwb8rmAKQ==
-Message-ID: <256827bfb6f7084d337677bf1c03bc61.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1720554794; c=relaxed/simple;
+	bh=4VS6Gzx42in4s/cuAXwyjapmmPAl1UBawf23jVaBWnE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RNUKFsKm//BMlsj+Vo0jWFhWaziZOy+nSz0mTV1b67Wf6YexZiuSxNtLeQnXqmQIgEqEqlZ8T3aom7bEh2teqi9WAKU/4djfIdCuH7rfX8ice/3af1zl31UmTxizb7RYR6FXzoBglwPrAQnQau+K/xPArKibdULgVx3Mr6jLwdA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=j.neuschaefer@gmx.net header.b=rUnY0UFI; arc=none smtp.client-ip=212.227.17.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
+	s=s31663417; t=1720554773; x=1721159573; i=j.neuschaefer@gmx.net;
+	bh=4VS6Gzx42in4s/cuAXwyjapmmPAl1UBawf23jVaBWnE=;
+	h=X-UI-Sender-Class:Date:From:To:Cc:Subject:Message-ID:References:
+	 MIME-Version:Content-Type:Content-Transfer-Encoding:In-Reply-To:
+	 cc:content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=rUnY0UFIabfP2Tbh1ZPdf39SARlrVoyRanRLWcmkfM3ikQ7REFFIXdaWC2QZNf0k
+	 d6n7kS7EMJSpzaXW2VpG3kT5N8irmm118zpNLIF+jecHyKSuoTrO59y6IbrazvjZy
+	 NsvP8aPWqhCBkHaxuaofVEdOZooL/GhvsWH9sjKx8HzdP8gq4BsXkHJmORb9C2+QM
+	 QB6uWLTk+PgmLirYCigv+RMve1YkzroKk0kBgU/bZnPv/NSvEHc9KlXda71qFLPca
+	 6+eoKzv01fWkgktNfGzPudQtY7lgN1jLP3AtpLE2/uarIjFL8vkA1C+fDQXaUDwp0
+	 otL2ObFUzHgZy1VCEA==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from probook ([5.145.135.151]) by mail.gmx.net (mrgmx105
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1MDQic-1sZYMl0kpK-006lrd; Tue, 09
+ Jul 2024 21:52:53 +0200
+Date: Tue, 9 Jul 2024 21:52:49 +0200
+From: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+	Eric Anholt <eric@anholt.net>, Stefan Wahren <wahrenst@gmx.net>,
+	Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: arm: bcm2835: Specify
+ /system/linux,revision property
+Message-ID: <Zo2VEZ3kHmYtU1_T@probook>
+References: <20240708-raspi-revision-v1-0-66e7e403e0b5@gmx.net>
+ <20240708-raspi-revision-v1-1-66e7e403e0b5@gmx.net>
+ <a3400961-ae76-4e11-ba8d-1f659f7324d0@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <dd7278f5-8da9-46c5-8db2-6d3882f7d674@quicinc.com>
-References: <20240706045454.215701-1-sboyd@kernel.org> <20240706045454.215701-5-sboyd@kernel.org> <dd7278f5-8da9-46c5-8db2-6d3882f7d674@quicinc.com>
-Subject: Re: [PATCH v6 4/8] of: Add a KUnit test for overlays and test managed APIs
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, patches@lists.linux.dev, kunit-dev@googlegroups.com, linux-kselftest@vger.kernel.org, devicetree@vger.kernel.org, Brendan Higgins <brendan.higgins@linux.dev>, David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rafael J . Wysocki <rafael@kernel.org>, Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, Daniel Latypov <dlatypov@google.com>, Christian Marangi <ansuelsmth@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Maxime Ripard <maxime@cerno.tech>
-To: Jeff Johnson <quic_jjohnson@quicinc.com>, Michael Turquette <mturquette@baylibre.com>
-Date: Tue, 09 Jul 2024 12:49:26 -0700
-User-Agent: alot/0.10
+In-Reply-To: <a3400961-ae76-4e11-ba8d-1f659f7324d0@kernel.org>
+X-Provags-ID: V03:K1:g0FDFvr9YWbx7Xcr+ARx7Y+T9ipJ+T99zpRg2SekCAz/fQV9uvp
+ kIiSiJm3rbcTNEAsrW1V9DRdorYz8DTKLf3R2Htzjzv0gN7VCsCyEzWpyQPO2vrsaCePNlW
+ 4l8rssdbSDjQKSLHcR/Ud31wWA6nGXNbF5cj14R8MjM3HSCAqiaPJ7JF3AExOBHthbDuXrj
+ mfBQpUqzguui1YA68pUsg==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:IaDw7jJPIVc=;tL7hhhJJSKOgU1n+kVDY7cTif4g
+ KxteMqy3s8Gw+w2CGqG7TsoBVEDeITP6oFNXpVjW4AAoC43XVvpxOjBq0crytkDyATPAbWJxD
+ CgRwrkl55DqS3NvscbgWKd/BGAgBD1SGhtk6nwQnsP6DiDutO2GakAEbNRQNcV3cKv+GtGOBV
+ 8YaCgCU/EYSDAFp7CW+Q27wZCsfVkaejV2XYZFe1/6HXiqWtynaQ6iQ5QNJ4o2LuxOes3KZpP
+ Dwgi/QnNF2k1F2QbIZJ1E3vVfxa4lIvothzd9o8EodT9hS/5BQ0UaRb7TbIes0kke8lRm/0Tq
+ F7+8mjkeqXfomRxzaFETlhmcoQwjs3hh8pLsEtomrLvEmEd2rQuF8ZxzwTUh4sYPzyuHfIIdo
+ llGJdILYwM0VyrEvNN36dsZcorDevmrc+vUiZctMt9YaKLeNkms8y1gVmAf+YaA5AValVf+L/
+ vRqiWSdm+9QZPFSND/WNpcZbziMIHCi0ptzzSuMDPxtH5ISGw7bSXAgCNoT3h96CkruTTvCeE
+ gdZSYgGIzNHVMaajk8splH9jEZjgUJrEwwpzBv5iRpZGxCZT9Hat4adYSNrVpuIWDnvB6QVal
+ oa+A1t8JVAx6NNFPnsurdOwK28rn8M1FYJoFggezPmmbVl5ggfIJQnWvDC0QcVQ2lWneACvWY
+ cSBdYcoCGA0iYfZPSBU1uPwyw3f5qh8F/BANmHipdAXv9+Qa++jZpVjewX79Jff7/FzXBMIHL
+ pjHywquwSXUHivcGXe80jJDLI64gTwfQ++mbZBQn+ZYM+KY/j5tiOVH7qhtau9464cwahAFaq
+ Lyc3Yo4V5YsSlegk2nNxghqMGziihgF9VLQa9R6sY649E=
 
-Quoting Jeff Johnson (2024-07-09 07:49:40)
-> On 7/5/24 21:54, Stephen Boyd wrote:
-> > Test the KUnit test managed overlay APIs. Confirm that platform devices
-> > are created and destroyed properly. This provides us confidence that the
-> > test managed APIs work correctly and can be relied upon to provide tests
-> > with fake platform devices and device nodes via overlays compiled into
-> > the kernel image.
->=20
-> ...
->=20
-> > +kunit_test_suites(
-> > +     &of_overlay_apply_kunit_suite,
-> > +);
-> > +MODULE_LICENSE("GPL");
->=20
-> Multiple patches in this series introduce new instances of=20
-> MODULE_LICENSE() without an accompanying MODULE_DESCRIPTION().
->=20
-> Building a module without a MODULE_DESCRIPTION() will result in a=20
-> warning when building with make W=3D1.
+On Mon, Jul 08, 2024 at 04:13:10PM +0200, Krzysztof Kozlowski wrote:
+> On 08/07/2024 01:08, Jonathan Neusch=C3=A4fer wrote:
+> > The Raspberry Pi bootloader provides a revision code[0] in the
+> > devicetree, at /system/linux,revision. This patch adds
+> > /system/linux,revision to the schema to allow it to be used in
+> > mainline Linux.
+>
+> Sorry, no, we do not document stuff for various out of tree things.
+> Otherwise we would have to accept hundreds of ridiculous, vendor propert=
+ies.
 
-Thanks! I'll add it.
+Fair enough.
+
+> Fix your bootloader or make it upstream.
+
+There is no open source upstream for this bootloader. It is (sadly)
+Broadcom's own proprietary code.
+
+Not sure what fixing it would entail.
+
+
+Jonathan
 
