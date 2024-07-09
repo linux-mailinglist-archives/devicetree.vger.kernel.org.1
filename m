@@ -1,212 +1,113 @@
-Return-Path: <devicetree+bounces-84442-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84443-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FBF092C36F
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 20:44:00 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4464892C37E
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 20:47:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A21371C22829
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 18:43:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D1A91B2122C
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2024 18:47:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60CF7182A54;
-	Tue,  9 Jul 2024 18:43:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1082117B045;
+	Tue,  9 Jul 2024 18:47:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="akNPpfxv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AKxaEiiZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2CDF18005D;
-	Tue,  9 Jul 2024 18:43:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1AC51B86C0;
+	Tue,  9 Jul 2024 18:47:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720550629; cv=none; b=mfzLk48V5gXCsXq5EkVvZWlSn22PLmAEjyeT9oRhaDUlcbVtv8yVB9J7QsW8ntkJlT1Dv4hRASjfUMIzjL89UqQ4rzAtLRlnAlqGWZ0xhxzw/KsFN8zts9p+bEug5xap+E72dMT98swX94xZ4RE/4V2BYrELHG+ZyuwDRQlpiek=
+	t=1720550853; cv=none; b=NtCFklFE9t4mzL5EX0/MQrAF5BrGCwk1+ZQTZaG8DmlafjAu2BFxxqB40T3JxMEbRKEtYYnOCxWXph1WVnCMuDzxb4YIPrm/Bno+7n2YbKAN7UksAY6k2ODJSxHGwe7SF97yUdeMlRFhYw/xXN7oyD9GhTALS1oo4JBaR1vtKF4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720550629; c=relaxed/simple;
-	bh=VCkxZ+pGG+YSVbanqtrhKtfrCSVwsi7AFT3M1DJIRSY=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=cW0siFjtJcZdtqrElMTKzUkB61yvOgVCAaT/wTbX5Fam4wfJhrxWscsbR2GdxdhHktIlicrb7KVSHT+wHh4Ilb/djiAA6XHhzlXTK9K/5DsHslSnRXGtjqtD8/8uerWZileoYM1ZGzKRtQCv3qk1bXiOvtL6v3NebUB0arr1o1g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=akNPpfxv; arc=none smtp.client-ip=209.85.167.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f172.google.com with SMTP id 5614622812f47-3d93df6b54dso618179b6e.2;
-        Tue, 09 Jul 2024 11:43:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1720550627; x=1721155427; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=/EJpK7h0+8kfla+x9mc6dab7bKKbfLCaCqSeT7reyNM=;
-        b=akNPpfxvUdliG6i9mZCH8d6rqB/vhI3Zdx11hVUDjuwgKOQ0geo+UrDzw/RKGqtzFo
-         mk52qbVV/rjaGyY1wReNoSEUAm1+q0lphfyR17Au/e9zCj8PIwt5FQbiYxjBNYBZVafy
-         Kc2jKJhi7VsM+mJXbpMc5hujQzkvAN7XggfBk7OZeJhUhGel1HdDubGHmf8FOzNYE4Y6
-         udZhpWTizPGezaY1UMSQ4G45H97wskEgOT5lmjophuLVb3O+Uk3sWEiDiJIgwUCpJLcS
-         EUe808aU2orEhutjzDk0iEFDSucnAJSSkSzHo+mgWZK+Pa5UPbP0j6RSa1akMuxxINAd
-         IqvQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720550627; x=1721155427;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/EJpK7h0+8kfla+x9mc6dab7bKKbfLCaCqSeT7reyNM=;
-        b=sB4TWWl+rekhsy5dFEPszmXHE1MOalCtaCc34mODY2ZuT/7HTCS8Xep9ZE+0ECooZu
-         91TQMeIjstDA1GcEnPHw7FxjdP0kLfegqfg/H1hdMsvehtopjJUw1TWLswjDICccr5gV
-         ggIIryol8z6tg94dkyPuQCj+Eqv8nIOWrCxPr8/oyD+5nDA/5VmzZEo4QxxYr08wg75I
-         Nkz0QD6lfaQ0aZp9V0ga+IEmJ+GUMfdUli5kMavXJ0XaelmbHGYFXtme5oCjDiGBMQAP
-         52z8s/XVT04fbWo9M3Pb1FW5fAntVAEAPP6A8eLhH3Cpm0Lsp4O8tRUH52/tCHlfNqaR
-         efOg==
-X-Forwarded-Encrypted: i=1; AJvYcCUS1OKULJEvQYzWmTyU/KkSMKmKc7SAQAGBB+qF8rLUmPdFc2rLrD8xT2r/lY5Eyanlvd/s8FoHbo4Pfv9gJEOqih2RdEaS6Xq1Fc53VUQCBGIxVav4IBHnknXXn95BXR59mNq043Qzrx1bCo846f0Qe3nk51P0EEQqRoo/+wiMFVrjJy4w
-X-Gm-Message-State: AOJu0YzQ5lM7oqqyAGTysNfe6ZBcx+L56sQ8iNWOqDqT7rgy7uiaQigE
-	1rG8oOPXwDZ8hv6OKKJ0Rmx7ZrwzkhjrX9UEeVYFbhhrhAEypHi0
-X-Google-Smtp-Source: AGHT+IETG2JaYyEkIUs57OEWEyQjKyGmBijThps0J2yxIds1meOyf1V8scuBk/IWotf98tiQ4xEPJA==
-X-Received: by 2002:a05:6808:148b:b0:3d9:2920:bc2f with SMTP id 5614622812f47-3d93bdd1669mr3866455b6e.10.1720550626620;
-        Tue, 09 Jul 2024 11:43:46 -0700 (PDT)
-Received: from fedora.. ([45.118.158.79])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-77d607d5fa5sm1741683a12.31.2024.07.09.11.43.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Jul 2024 11:43:46 -0700 (PDT)
-From: Animesh Agarwal <animeshagarwal28@gmail.com>
-To: 
-Cc: Animesh Agarwal <animeshagarwal28@gmail.com>,
-	Daniel Baluta <daniel.baluta@nxp.com>,
-	David Rhodes <david.rhodes@cirrus.com>,
-	Richard Fitzgerald <rf@opensource.cirrus.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	patches@opensource.cirrus.com,
-	alsa-devel@alsa-project.org,
-	linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2] ASoC: dt-bindings: cirrus,cs4270: Convert to dtschema
-Date: Wed, 10 Jul 2024 00:12:25 +0530
-Message-ID: <20240709184231.125207-1-animeshagarwal28@gmail.com>
-X-Mailer: git-send-email 2.45.2
+	s=arc-20240116; t=1720550853; c=relaxed/simple;
+	bh=7ye7ltyXbYOYYi8uAxpAmR2GIyPSMjM7g8VmAI3m74Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Yn3TwIHbyKUWQ+9zxGtLGCXYYlvp2dgEER0t3RSFuuJpDqjnkjFJi8eJkpstRvQ/juckxTKgGJz9Q2kQkk2iAAYYFp+UAQFyU0vzduy2MXREND/jgSA4dodyp7FGEr0uDqN6GCWbae8PT2StyX6JHqw8BNhnD4e5eTW+ly8/ZRQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AKxaEiiZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59F36C3277B;
+	Tue,  9 Jul 2024 18:47:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720550850;
+	bh=7ye7ltyXbYOYYi8uAxpAmR2GIyPSMjM7g8VmAI3m74Y=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=AKxaEiiZdtZv72eh/8HcEMtgL6askaomDjzh73Zmd585jJ9eTgjA8y605uew+GyXq
+	 BjVzXnTa25OtDMbvRzghMEoaZSm1+ncjkNet75r5zoxZdl3TOyqPMDXXFj0NIZcmzC
+	 C4TEBMPOgR9YjvEpUd1osYwGFrbsBKmsco8O8DLXeeGY//0GxFhujmJCxeaPez7SW3
+	 WY4tI7PURsponiYKUn94muFFNDz0CzfCfgnXc5TRN8r9d6r6uwy6hsgp8bN34Pg5IP
+	 8AfY1UR94wrAFkDc1hKCm/h/s4EFN8h2XUmt2OBSc8FAslyq0lyh2M84LHzJmnqQaF
+	 Wkys6UfkIASfA==
+Date: Tue, 9 Jul 2024 13:47:14 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: Rayyan Ansari <rayyan.ansari@linaro.org>
+Cc: devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, 
+	linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH 0/4] dt-bindings: pinctrl: convert remaining qcom
+ bindings to yaml
+Message-ID: <yyxc3ldrgphgp65fydziyswbvrhdkcacsnpw5mfqddglxecpun@rjrxj3ffpxnw>
+References: <20240709162009.5166-1-rayyan.ansari@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240709162009.5166-1-rayyan.ansari@linaro.org>
 
-Convert the Cirrus Logic CS4270 audio CODEC bindings to DT schema. Add
-missing va-supply, vd-supply and vlc-supply properties, because they
-are already being used in the DTS and the driver for this device.
+On Tue, Jul 09, 2024 at 05:17:52PM GMT, Rayyan Ansari wrote:
+> Hi,
+> The following patches convert all remaining old text bindings for
+> Qualcomm pinctrl to yaml, so device trees can be validated against the
+> schema.
+> 
 
-Cc: Daniel Baluta <daniel.baluta@nxp.com>
-Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
+Thanks for fixing these up!
 
----
-Changes in v2:
-  - Added proper description for power supply properties.
-  - Added ref to dai-common.
-  - Added '#sound-dai-cells'.
-  - Dropped unused labels in example.
-  - Replaced example node name to a generic name.
----
- .../bindings/sound/cirrus,cs4270.yaml         | 59 +++++++++++++++++++
- .../devicetree/bindings/sound/cs4270.txt      | 21 -------
- 2 files changed, 59 insertions(+), 21 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/sound/cirrus,cs4270.yaml
- delete mode 100644 Documentation/devicetree/bindings/sound/cs4270.txt
+I think it would have been good to use andersson@kernel.org as the
+maintainer address, but I see the other bindings have the broken address
+as well, so I can follow up with a patch to change them all.
 
-diff --git a/Documentation/devicetree/bindings/sound/cirrus,cs4270.yaml b/Documentation/devicetree/bindings/sound/cirrus,cs4270.yaml
-new file mode 100644
-index 000000000000..336e11773694
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/cirrus,cs4270.yaml
-@@ -0,0 +1,59 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/cirrus,cs4270.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Cirrus Logic CS4270 audio CODEC
-+
-+maintainers:
-+  - patches@opensource.cirrus.com
-+
-+description:
-+  The CS4270 is a stereo audio codec. The driver for this device currently only
-+  supports I2C.
-+
-+allOf:
-+  - $ref: dai-common.yaml#
-+
-+properties:
-+  compatible:
-+    const: cirrus,cs4270
-+
-+  reg:
-+    maxItems: 1
-+
-+  '#sound-dai-cells':
-+    const: 0
-+
-+  reset-gpios:
-+    description:
-+      This pin will be deasserted before communication to the codec starts.
-+    maxItems: 1
-+
-+  va-supply:
-+    description: Analog power supply.
-+
-+  vd-supply:
-+    description: Digital power supply.
-+
-+  vlc-supply:
-+    description: Serial Control Port power supply.
-+
-+required:
-+  - compatible
-+  - reg
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      codec@48 {
-+          compatible = "cirrus,cs4270";
-+          reg = <0x48>;
-+      };
-+    };
-diff --git a/Documentation/devicetree/bindings/sound/cs4270.txt b/Documentation/devicetree/bindings/sound/cs4270.txt
-deleted file mode 100644
-index c33770ec4c3c..000000000000
---- a/Documentation/devicetree/bindings/sound/cs4270.txt
-+++ /dev/null
-@@ -1,21 +0,0 @@
--CS4270 audio CODEC
--
--The driver for this device currently only supports I2C.
--
--Required properties:
--
--  - compatible : "cirrus,cs4270"
--
--  - reg : the I2C address of the device for I2C
--
--Optional properties:
--
--  - reset-gpios : a GPIO spec for the reset pin. If specified, it will be
--		  deasserted before communication to the codec starts.
--
--Example:
--
--codec: cs4270@48 {
--	compatible = "cirrus,cs4270";
--	reg = <0x48>;
--};
--- 
-2.45.2
+Reviewed-by: Bjorn Andersson <andersson@kernel.org>
 
+Regards,
+Bjorn
+
+> Thanks,
+> Rayyan
+> 
+> Rayyan Ansari (4):
+>   dt-bindings: pinctrl: qcom,apq8064-pinctrl: convert to dtschema
+>   dt-bindings: pinctrl: qcom,ipq8064-pinctrl: convert to dtschema
+>   dt-bindings: pinctrl: qcom,ipq4019-pinctrl: convert to dtschema
+>   dt-bindings: pinctrl: qcom,apq8084-pinctrl: convert to dtschema
+> 
+>  .../bindings/pinctrl/qcom,apq8064-pinctrl.txt |  95 ---------
+>  .../pinctrl/qcom,apq8064-pinctrl.yaml         | 110 ++++++++++
+>  .../bindings/pinctrl/qcom,apq8084-pinctrl.txt | 188 ------------------
+>  .../pinctrl/qcom,apq8084-pinctrl.yaml         | 129 ++++++++++++
+>  .../bindings/pinctrl/qcom,ipq4019-pinctrl.txt |  85 --------
+>  .../pinctrl/qcom,ipq4019-pinctrl.yaml         | 102 ++++++++++
+>  .../bindings/pinctrl/qcom,ipq8064-pinctrl.txt | 101 ----------
+>  .../pinctrl/qcom,ipq8064-pinctrl.yaml         | 108 ++++++++++
+>  8 files changed, 449 insertions(+), 469 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,apq8064-pinctrl.txt
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,apq8064-pinctrl.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,apq8084-pinctrl.txt
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,apq8084-pinctrl.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,ipq4019-pinctrl.txt
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,ipq4019-pinctrl.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,ipq8064-pinctrl.txt
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,ipq8064-pinctrl.yaml
+> 
+> -- 
+> 2.45.2
+> 
 
