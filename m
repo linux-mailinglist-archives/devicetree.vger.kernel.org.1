@@ -1,168 +1,191 @@
-Return-Path: <devicetree+bounces-84644-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84645-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E5B792CFCA
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 12:51:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6B1092CFE0
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 12:54:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9F9081F21B51
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 10:51:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D7CC81C23A60
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 10:54:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC98918FC75;
-	Wed, 10 Jul 2024 10:49:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A72012DDBF;
+	Wed, 10 Jul 2024 10:53:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cQ3cuRsj"
+	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="wR10+CUe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out-188.mta0.migadu.com (out-188.mta0.migadu.com [91.218.175.188])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 324B517BB20
-	for <devicetree@vger.kernel.org>; Wed, 10 Jul 2024 10:49:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E5615FB9B
+	for <devicetree@vger.kernel.org>; Wed, 10 Jul 2024 10:53:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.188
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720608560; cv=none; b=DNdUP5wC6lESqPmZvnYRwLfu8EY2FAZh9XDBLk9v7zu+5Yp4mFADcfF2ylGouo3Ho65RZQ1igTZQ+0GrfZs53+fHoi4T2PQnKX5XDu2QIswNOHaQjt3ZsGNMWdcqSQVCfOYJZ8ZwthCphxUCO+od0VnN+mDeJ3bP9H2BGQihsqU=
+	t=1720608833; cv=none; b=HxMV0Z8zoUACyP28m8fhnbk9Fxrq917DIZm09MLiKVuRSKxZM1YJmwzJD6VruV3rhbrwBoUXRRwE5kASWRTt9S0gfhIBkBTMBUZ18TkrpMyqVgw3IzELu4uuhHpPGZAW/Mrsh+hqhoANzYRfo46d3MR46mE24pz5UKq77GY3G2o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720608560; c=relaxed/simple;
-	bh=bbaLeSmE37zgEmxjhsm3MgKlF7I7utb0zJojaDQSFPQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tbfh2th4ifX4rapikHtePje3IzqTGN/dd3YMTOJ2umJ4BWk72htZvuoiXEyWi8e9o11odFOakeux/SweGQqg6yFvxgy1yaLDwwX1G6x97NZy03d5B/kDdZmS+gc9Vy/1AnqjlCgPHWb+8XjUTC/kyaOw3m3AMO9gUfP5muEV4H4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cQ3cuRsj; arc=none smtp.client-ip=209.85.208.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-57cf8880f95so8051841a12.3
-        for <devicetree@vger.kernel.org>; Wed, 10 Jul 2024 03:49:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1720608556; x=1721213356; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=p2SmmD8lFnK+3ph0iUIhMMBa+ayR7kGRg2lbUgLnUKk=;
-        b=cQ3cuRsjQjxzycuQulvSBpAp0d3dNgTkYHhxP+1pZxBhP1i9fh4PmwuvZKxu5TB8xb
-         bOQ9hKROK1reSQ9BnNmy78AMOtacNgWyRlXMXlLS83ywTp4TsIZOHVA3I8OX/k1+iuQz
-         MsWGzzEbowGRY1gBKm1OYiR+YWqjUAYkeByS3gAjGmtTjPZm6E4fya9udS2tJulVGkWd
-         IP+/2UGfRQUSdFu3oHmJ/lUMiRJsBTIAklLMBMoE0ydmOHrOKKjK+QuGjX8F8CSWPhPA
-         G1lvMRKgHu+srwd2aO/Z/SXNrBCJe5JKFNMKqawz7OUMgIBYCB2cdC03J6KV/c8QXqcF
-         tNRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720608556; x=1721213356;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=p2SmmD8lFnK+3ph0iUIhMMBa+ayR7kGRg2lbUgLnUKk=;
-        b=vmGD6vB6sxXf0kLtWkm5krjxj/DbpBL4IC1xNFuPpXo+8QxS8sH4xVsOdN9ynr3Ye9
-         1lAO/t0EBofO8y5xXxKsBuVZkqt2WPWRiThDCDKJNSDAqcX6J5EdrPw1GKrRojMYcJYK
-         41unBXOmqjyIYpycJ3e0L0Fn2sqhH/ZT1vDLuAqQfu80/E2GnVuw27yzUYVTOXNx1jLw
-         0FwWUCbUocb9vvyszt9a70XUnGFIe5Oij4+NizBmPta/c2JhE6lK5/9OkPlT7NtgtIL5
-         Gzur5cnwO7jgDRKeaEQnjSRsEtN14sk42STca4YG+JpoFfKDgAwxi05I1/2AR8NeMDlt
-         0Pcg==
-X-Forwarded-Encrypted: i=1; AJvYcCVIGT/4AIENibVF7OWwIc9W9cE3mIdq9JtBIpc9hzGhBRxUmxXrm4kg04l4DbH5krcZpmSiAUT4fkNSmCcHNyIh8cqc06EjQ8Z2bQ==
-X-Gm-Message-State: AOJu0Ywb68QigVSPg7XoUNbRzFUHYT+j8u4cq50MKevp6aTnizRqJbow
-	iKh93LDyXCKWxNY/oVbzIKg6iZZaliBLlPXNWXDwKOIETT/r5P4kCy4db2GLHtnL0ZmsGq1udcK
-	Y
-X-Google-Smtp-Source: AGHT+IG3kAOB3GOzFDTrAkyUAM0HTc3HljgITzx2bz5AFyIbijHZglmfyD1oe5cVWg1XVEjLEK7DfA==
-X-Received: by 2002:a17:907:7e9c:b0:a6f:e3cf:2b8e with SMTP id a640c23a62f3a-a780b89dd3bmr501964266b.76.1720608556339;
-        Wed, 10 Jul 2024 03:49:16 -0700 (PDT)
-Received: from [192.168.105.194] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a780a856dd6sm148649466b.180.2024.07.10.03.49.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Jul 2024 03:49:16 -0700 (PDT)
-Message-ID: <a4deabfa-1366-47ef-993f-2fae3e206a44@linaro.org>
-Date: Wed, 10 Jul 2024 12:49:13 +0200
+	s=arc-20240116; t=1720608833; c=relaxed/simple;
+	bh=z3S7iXuvLdKmwJNJBgkyyYhXrPNxTJM16i+VsLjTiV0=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=DOcG/VxHsk5S26qSUQu/4kWLKRwvk4bIyZTXbkLPNe5BolNVNoIF92m+bbKT5K1H0bvKW613rMJHDm8zS+/dH3sHKwsdQSv1tvLkf65P5LNYBVBUX+ta099QYrKVrxyBZgkNRNk8rZn1W6QbTAwIQ1S0SMLJdp+dcmHjn1qGVdw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=wR10+CUe; arc=none smtp.client-ip=91.218.175.188
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
+X-Envelope-To: linux-rockchip@lists.infradead.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
+	t=1720608828;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=hrZZahlO9mODR/RGTCTpadzOI8zSbHkN5HJudXp5+wA=;
+	b=wR10+CUeh1G/YqcLWsWs+wu8dAlFiABJ1xFHvrmmtauBxH80hF3q9qbV2Qw+nA4KhPGJ+J
+	YngWeC4gb+G39V1CgsdQMYE4uiC64h3LJVeunSvHiGQqAbDm4FxA77p8acz5hfFB2URao7
+	CS9nbx0ryLQ2SXcOwsvMWElUjozNQ0Ai3Ke80htocg1UCId7fnRyEZG89COWtNR4qKpe49
+	eyg1bIHH8KEEnmQ6U/yxPtT2yfAEyWIBm+qW5l59vmA69TUNjRoM8jCJYEQdwpL0OsGKnh
+	CYnDgvzVJsAEVNpYV2IzZjgZjEh3+IrB+XEsvuId43mj0fs14+eXdwVHKWDXTA==
+X-Envelope-To: p.puschmann@pironex.com
+X-Envelope-To: robh@kernel.org
+X-Envelope-To: krzk+dt@kernel.org
+X-Envelope-To: devicetree@vger.kernel.org
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Diederik de Haas <didi.debian@cknow.org>
+To: linux-rockchip@lists.infradead.org,
+ Philipp Puschmann <p.puschmann@pironex.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, devicetree@vger.kernel.org
+Subject:
+ Re: [PATCH] arm64: dts: rockchip: Add uart dma names to the SoC dtsi for
+ RK356x
+Date: Wed, 10 Jul 2024 12:53:36 +0200
+Message-ID: <18705891.xBnrSCm06O@bagend>
+Organization: Connecting Knowledge
+In-Reply-To: <72e38433-1ed4-460c-9f69-db26b673c441@pironex.com>
+References:
+ <20240710093356.3344056-1-p.puschmann@pironex.com>
+ <5414331.Y6POrrGVKo@bagend>
+ <72e38433-1ed4-460c-9f69-db26b673c441@pironex.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 3/3] arm64: dts: qcom: ipq5332: Add icc provider
- ability to gcc
-To: Varadarajan Narayanan <quic_varada@quicinc.com>
-Cc: andersson@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, djakov@kernel.org,
- linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org
-References: <20240709063949.4127310-1-quic_varada@quicinc.com>
- <20240709063949.4127310-4-quic_varada@quicinc.com>
- <cef54c07-4ecb-44bd-ad7c-aea475b89ffb@linaro.org>
- <Zo5lfDVVdgZ/iwi3@hu-varada-blr.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <Zo5lfDVVdgZ/iwi3@hu-varada-blr.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; boundary="nextPart2410067.Ga172O2onJ";
+ micalg="pgp-sha256"; protocol="application/pgp-signature"
+X-Migadu-Flow: FLOW_OUT
 
-On 10.07.2024 12:42 PM, Varadarajan Narayanan wrote:
-> On Tue, Jul 09, 2024 at 11:53:41AM +0200, Konrad Dybcio wrote:
->> On 9.07.2024 8:39 AM, Varadarajan Narayanan wrote:
->>> IPQ SoCs dont involve RPM in managing NoC related clocks and
->>> there is no NoC scaling. Linux itself handles these clocks.
->>> However, these should not be exposed as just clocks and align
->>> with other Qualcomm SoCs that handle these clocks from a
->>> interconnect provider.
->>>
->>> Hence include icc provider capability to the gcc node so that
->>> peripherals can use the interconnect facility to enable these
->>> clocks.
->>>
->>> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
->>> ---
->>
->> Doesn't the USB host need to have its path described to keep working?
-> 
-> Presently, USB host enables GCC_SNOC_USB_CLK directly using
-> the clocks/clock-name entries. So it is not dependent on ICC.
-> 
-> Shall I update the USB DT node to use interconnects now itself,
-> or wait until this IPQ5332 ICC enablement series is approved?
-> Please let me know.
+--nextPart2410067.Ga172O2onJ
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
+From: Diederik de Haas <didi.debian@cknow.org>
+Cc: robh@kernel.org, krzk+dt@kernel.org, devicetree@vger.kernel.org
+Date: Wed, 10 Jul 2024 12:53:36 +0200
+Message-ID: <18705891.xBnrSCm06O@bagend>
+Organization: Connecting Knowledge
+In-Reply-To: <72e38433-1ed4-460c-9f69-db26b673c441@pironex.com>
+MIME-Version: 1.0
 
-Definitely so. Now that you registered that clock with the
-interconnect framework, the current usage is essentially
-circumventing it..
+Hi Philipp,
 
-Say some consumers casted an ICC vote on that node, and then
-the USB driver called set_rate on the clock.. The data from
-icc-clk would be discarded
+On Wednesday, 10 July 2024 12:20:20 CEST Philipp Puschmann wrote:
+> Am 10.07.24 um 12:02 schrieb Diederik de Haas:
+> > On Wednesday, 10 July 2024 11:33:56 CEST Philipp Puschmann wrote:
+> >> DMA names are required by of_dma_request_slave_channel function that is
+> >> called during uart probe. So to enable DMA for uarts add the names as in
+> >> the RK3568 TRM.
+> > 
+> > Setting it on channels without flow control apparently causes issues. See
+> > 
+> > https://lore.kernel.org/linux-rockchip/20240628120130.24076-1-didi.debian@
+> > cknow.org/
+> Ah is see. The only problem that i have is to enable/disable dmas by having
+> or not having dma-names properties, where the latter case is followed by
+> kernel error messages. That is very counterintuitive.
 
-Konrad
+I forgot to link to my follow up patch where I added the property to
+some other Pine64 devices and added a cover letter inviting others to
+add it to other boards too if that seemed appropriate:
+https://lore.kernel.org/linux-rockchip/20240705163004.29678-2-didi.debian@cknow.org/
+
+Maybe this applies to 'your' board too?
+
+> Maybe a explicit boolean like dma-broken would be better. That could be
+> set on dtsi level as default and deleted on board dts if wanted.
+
+That seems to invert the logic, which I believe was considered
+the 'wrong' solution:
+
+From https://lore.kernel.org/linux-rockchip/18284546.sWSEgdgrri@diego/
+> > > Enabling dma globally can cause some interesting issues, 
+> > > have you tested this fully?
+
+Maybe there is a better solution; possibly others will respond too.
+
+> With such a boolean we could also prevent the misleading
+> "dma-names property of" error message and
+> replace it with a hint that dma is disabled on purpose.
+
+Given that you're now at least the 4th person trying this, I guess
+a hint 'somewhere' would be beneficial.
+I do not know if the error message itself would be considered misleading
+and if something should be done about that.
+
+Cheers,
+  Diederik
+
+> >> Signed-off-by: Philipp Puschmann <p.puschmann@pironex.com>
+> >> ---
+> >> 
+> >>  arch/arm64/boot/dts/rockchip/rk356x.dtsi | 10 ++++++++++
+> >>  1 file changed, 10 insertions(+)
+> >> 
+> >> diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> >> b/arch/arm64/boot/dts/rockchip/rk356x.dtsi index
+> >> d8543b5557ee..4ae40661ca6a
+> >> 100644
+> >> --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> >> +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> >> @@ -489,6 +489,7 @@ uart0: serial@fdd50000 {
+> >> 
+> >>  		clocks = <&pmucru SCLK_UART0>, <&pmucru PCLK_UART0>;
+> >>  		clock-names = "baudclk", "apb_pclk";
+> >>  		dmas = <&dmac0 0>, <&dmac0 1>;
+> >> 
+> >> +		dma-names = "tx", "rx";
+> >> 
+> >>  		pinctrl-0 = <&uart0_xfer>;
+> >>  		pinctrl-names = "default";
+> >>  		reg-io-width = <4>;
+> >> 
+> >> @@ -1389,6 +1390,7 @@ uart1: serial@fe650000 {
+> >> 
+> >>  		clocks = <&cru SCLK_UART1>, <&cru PCLK_UART1>;
+> >>  		clock-names = "baudclk", "apb_pclk";
+> >>  		dmas = <&dmac0 2>, <&dmac0 3>;
+> >> 
+> >> +		dma-names = "tx", "rx";
+> >> 
+> >>  		pinctrl-0 = <&uart1m0_xfer>;
+> >>  		pinctrl-names = "default";
+> >>  		reg-io-width = <4>;
+> >> 
+> >> ...
+
+
+--nextPart2410067.Ga172O2onJ
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCZo5oMAAKCRDXblvOeH7b
+bmGoAQC1Ou//DJUMV1dx5LWCq4RXL2V3lrMo06IwIqmJHTl4ZAD9HLVblwDEpbkp
+vfPu47lbOfgXiCzgq5osIraQlnRkcw4=
+=8R71
+-----END PGP SIGNATURE-----
+
+--nextPart2410067.Ga172O2onJ--
+
+
+
 
