@@ -1,95 +1,111 @@
-Return-Path: <devicetree+bounces-84744-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84745-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EBC492D5BE
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 18:09:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7B7392D5D8
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 18:11:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 808591C215A1
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 16:09:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9D68E1F25439
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 16:11:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F0481946AD;
-	Wed, 10 Jul 2024 16:08:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NP/PYYX7"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25E9B197A6E;
+	Wed, 10 Jul 2024 16:09:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56B2B194AC4;
-	Wed, 10 Jul 2024 16:08:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D0DD194C7E;
+	Wed, 10 Jul 2024 16:09:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720627725; cv=none; b=ZYP3McViXO0XLlv6Q3biMRkdyT68rR2DdV3F1j/XmTc4UwF/wbsFuVXc0OFnf1EXPWrqEcKhpJgKPF1gR7G6MMnxli5kLtqA2EqX5PeMRAbr2bWtztN0ieKiMiq63UbqcZ8cm0G+VEdWGiV3Yzg96H9LyZrDD13Zb6mpLs23uBo=
+	t=1720627789; cv=none; b=KVYXGiKjt+sgUQsDx9OBF2CHDNzsLGvHDdKfGxvVOHe57IAo/wTsKKQPvLBsRsbSOSeRrYdEehp2zpOsiIJrdJUmS2GZ+V5E+Ezhl0ERK5JKt3njf6LOa6pmyPLOi8+RbR19Fu/IsqIDW3LoUE7HaTtx5cb7zEY5MhdOXmtR0fg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720627725; c=relaxed/simple;
-	bh=Slb/lgr8C6eVl3N9fbK03RUMCv8Lbr55/6hSROwKJRA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rxfWZ6QaRrpQ3D2GUUzV7+SjkhvqFUHW8pEt7Y1rUg/hJxOdL1TDfkaqpml+XiIxGI5gxWyhDT4vw8d40RgwkhzTFpPkxwk0S3+cX0omesA/BhtCMDxSyPV5Des4sqJ7l/h5laZDR7HelE7d69GNUk5RKJXTDwNKijjWfb5BPOQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NP/PYYX7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9AE1CC32781;
-	Wed, 10 Jul 2024 16:08:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720627724;
-	bh=Slb/lgr8C6eVl3N9fbK03RUMCv8Lbr55/6hSROwKJRA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NP/PYYX7fsCll8Zx6GTprJEyqYgz0l9RyGPiowVNRqNbW1YG9D2i3JG3QSY15p1N/
-	 /S4BjphjdA6LXf7XUdeCJyoN6YhWTldJzwd5XJnh8v788nhfMpgt0LxqYh1DLtr+BQ
-	 dCrxsxHKbat5T5FKG/BBdf3HdxswCt+/GC+yei+hFMAsroVkPv2O94edwdpLUws51N
-	 3siJrx6P8iV+pdkY9nCKMvHR/YMEULFpgKMz9wE5N9B18/dz5cEfAP3po3NQkMx6hM
-	 rufIyHWLgbEtHih663MwJNjkSy2fDXcA3nQjDbYJc2Rs+Pj4itaaOKmXsmLDZMiI+T
-	 pDXcOT7L5iZoA==
-Date: Wed, 10 Jul 2024 10:08:43 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Adam Skladowski <a39.skl@gmail.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
-	Stephan Gerhold <stephan.gerhold@kernkonzept.com>,
-	Andrew Halaney <ahalaney@redhat.com>,
-	Rohit Agarwal <quic_rohiagar@quicinc.com>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	Vladimir Lypak <vladimir.lypak@gmail.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
-	Georgi Djakov <djakov@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	~postmarketos/upstreaming@lists.sr.ht,
-	Rajendra Nayak <quic_rjendra@quicinc.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Bjorn Andersson <andersson@kernel.org>,
+	s=arc-20240116; t=1720627789; c=relaxed/simple;
+	bh=/k3BZTILZPQfWSq8N8whojUGz/Qyk9P58hWymAT7c6M=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=ut9G0/gKNMUx9xxagnJ/5HIsz0FmlXaB8JxekAGptqFvHEC2nDvnwwQ/LkPm5GvRrAAcsRDJZz8rYqOUeXnXzD77oNfWHynYPO5/y5gTh0ApDFBRLQXyYTpxG2bKARBKJXNc7lWr9CCqHz1ZdBAXi73hEIq8A/jiwB/KF2JAoy8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 17EEB106F;
+	Wed, 10 Jul 2024 09:10:10 -0700 (PDT)
+Received: from e121345-lin.cambridge.arm.com (e121345-lin.cambridge.arm.com [10.1.196.40])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 022563F762;
+	Wed, 10 Jul 2024 09:09:43 -0700 (PDT)
+From: Robin Murphy <robin.murphy@arm.com>
+To: will@kernel.org
+Cc: mark.rutland@arm.com,
+	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Barnabas Czeman <barnabas.czeman@mainlining.org>,
-	phone-devel@vger.kernel.org, Sibi Sankar <quic_sibis@quicinc.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Abel Vesa <abel.vesa@linaro.org>,
-	Danila Tikhonov <danila@jiaxyga.com>, linux-pm@vger.kernel.org
-Subject: Re: [PATCH v3 7/9] dt-bindings: interconnect: qcom: msm8939: Fix
- example
-Message-ID: <172062768089.3154425.11877424132610061384.robh@kernel.org>
-References: <20240709102728.15349-1-a39.skl@gmail.com>
- <20240709102728.15349-8-a39.skl@gmail.com>
+	jialong.yang@shingroup.cn,
+	devicetree@vger.kernel.org
+Subject: [PATCH v2 1/3] dt-bindings/perf: Add Arm NI-700 PMU
+Date: Wed, 10 Jul 2024 17:09:33 +0100
+Message-Id: <e60059b1f4683bd1863f08dd03482e5948c0afb1.1720625639.git.robin.murphy@arm.com>
+X-Mailer: git-send-email 2.39.2.101.g768bb238c484.dirty
+In-Reply-To: <cover.1720625639.git.robin.murphy@arm.com>
+References: <cover.1720625639.git.robin.murphy@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240709102728.15349-8-a39.skl@gmail.com>
+Content-Transfer-Encoding: 8bit
 
+Add an initial binding for the Arm NI-700 interconnect PMU. As with the
+Arm CMN family, there are already future NI products on the roadmap, so
+the overall binding is named generically just in case any
+non-discoverable incompatibility between generations crops up.
 
-On Tue, 09 Jul 2024 12:22:52 +0200, Adam Skladowski wrote:
-> For now example list snoc_mm as children of bimc which is obviously
-> not valid, drop bimc and move snoc_mm into snoc.
-> 
-> Signed-off-by: Adam Skladowski <a39.skl@gmail.com>
-> ---
->  .../devicetree/bindings/interconnect/qcom,msm8939.yaml      | 6 ------
->  1 file changed, 6 deletions(-)
-> 
+Cc: <devicetree@vger.kernel.org>
+Signed-off-by: Robin Murphy <robin.murphy@arm.com>
+---
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+v2: No change
+
+ .../devicetree/bindings/perf/arm,ni.yaml      | 30 +++++++++++++++++++
+ 1 file changed, 30 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/perf/arm,ni.yaml
+
+diff --git a/Documentation/devicetree/bindings/perf/arm,ni.yaml b/Documentation/devicetree/bindings/perf/arm,ni.yaml
+new file mode 100644
+index 000000000000..d66fffa256d5
+--- /dev/null
++++ b/Documentation/devicetree/bindings/perf/arm,ni.yaml
+@@ -0,0 +1,30 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/perf/arm,ni.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Arm NI (Network-on-Chip Interconnect) Performance Monitors
++
++maintainers:
++  - Robin Murphy <robin.murphy@arm.com>
++
++properties:
++  compatible:
++    const: arm,ni-700
++
++  reg:
++    items:
++      - description: Complete configuration register space
++
++  interrupts:
++    minItems: 1
++    maxItems: 32
++    description: Overflow interrupts, one per clock domain, in order of domain ID
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++additionalProperties: false
+-- 
+2.39.2.101.g768bb238c484.dirty
 
 
