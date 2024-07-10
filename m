@@ -1,173 +1,105 @@
-Return-Path: <devicetree+bounces-84735-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84736-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4ADE692D52C
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 17:41:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D8DC92D555
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 17:50:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6DECB1C20EFE
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 15:41:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 26C36288566
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 15:50:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC3A819308C;
-	Wed, 10 Jul 2024 15:41:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DB3F1946D8;
+	Wed, 10 Jul 2024 15:50:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="BpkxVglJ"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="MGIvVfLy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51FF310A09
-	for <devicetree@vger.kernel.org>; Wed, 10 Jul 2024 15:41:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBFD819307A
+	for <devicetree@vger.kernel.org>; Wed, 10 Jul 2024 15:50:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720626111; cv=none; b=ZRUB5/gDCZYhiL93OAJ0l0yM8arxoqDgBjj+O5Eu8qgnxLDJ/hD40DIdP+rIt6vmxcfYyPOURMAld1waG4+QpsrG4ySdTQgIljZnUwTrSGWE+9p4a8rg4iHZZeKAMt+FpQHX4DzjJ8gDoCBOAUkxc4gELDDU/KKqk1QL3XaWKys=
+	t=1720626633; cv=none; b=RP6vfEsNf6wep3ERqLwueSvL3D4EwHoUT3SkTHkn1UCI5tKe1P1CFKYrcQIEbIeGK07K6qAN3srCEutSz5C1TnlSqWWM2akHkRYag6MCdsaL5le6/3oHaot84l+a3XrMWfxeNJf8zE22AZkxQPji5N9O/Rlk8EknIu3G1qO+ons=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720626111; c=relaxed/simple;
-	bh=kjSkQRtJBB57kXqddkxjG3h6NHhl8b8AwIuhcgW6jvA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lsCeKybadz4NMBoWZ7MMKPcrFcWnTDh0O3ogM2MBeJZfyi70zgPutP2D8UtalL8DeIzs8u3cBAsSxJ+9KUIpAFwH9eWmcpCwHDXtlon6kIGVh7C3saRuDwRpMwnb6A7Vz1HFR5Vd1zoi5jvoCFle4OjwsnfiApsVKrxjF/YB1yE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=BpkxVglJ; arc=none smtp.client-ip=170.10.129.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1720626109;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=RFy0Pt4ubesULzO+oQaiRFBM5Ze1aZnn+Qz6jyyaJAc=;
-	b=BpkxVglJmEDOvITQxlBN7RUpPcLsMAoBt+3XF7gbU8thCFy2sZZl9GuwNuEHK+MD3ZYYOb
-	N6lopLSx1m5fk1Q5NagU66uX4RC7wBkHSPQl/8rJ+egdC6ia8i2//Na7lQuYeHLkr1Tt3H
-	h9UV6egzvXXWHXf5z7qZ6IavgjlSGss=
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com
- [209.85.219.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-321-2Wae6PatN5ueVeVkFd2WFw-1; Wed, 10 Jul 2024 11:41:48 -0400
-X-MC-Unique: 2Wae6PatN5ueVeVkFd2WFw-1
-Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-6b7483e3dd9so8138246d6.1
-        for <devicetree@vger.kernel.org>; Wed, 10 Jul 2024 08:41:48 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720626108; x=1721230908;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+	s=arc-20240116; t=1720626633; c=relaxed/simple;
+	bh=yneKc7QmLHbr/S7vKpCuOc/Gw6qodem1chsdBrkwYIA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=PkhWVywXp2HsaFTL7ngjvPxmR8ggph8HRZtUI2FqDilbJW7Y6/L/djCf9jPjr0w0akF0BE7PhUoDJzZzaSyGefviepkRlpm4VZZWxORaCgJp81F/jdjwkMN0RxP5jWMRGxg1TCVbkOntAuA1tyvO62KyAk6cqQSTpV0UuuIj4qM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=MGIvVfLy; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-4266f796e67so57945e9.1
+        for <devicetree@vger.kernel.org>; Wed, 10 Jul 2024 08:50:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1720626630; x=1721231430; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=RFy0Pt4ubesULzO+oQaiRFBM5Ze1aZnn+Qz6jyyaJAc=;
-        b=WOVyKUuQ3tKOuB2V5nSqY236o5/ia4AegC+qmP9G6d3hjjB3852uUmVQl4Xb0xhILN
-         +hu508c0EqCel88mN+h7SM1Hs1plRQjV/HJJJ9vq4mv03EOq6/eLiVPFnZ00kgYwqwBM
-         iQE4APDrp0I7JjkVyqVADzWUfL4h2JlrFBbXboF5FbXTWl3oM/pr6ctTNrD0g3JS8+jA
-         uyJTGXl/j2h7GmU8zI9PH0ioXj9GB3yEh245QmFPFLVRW7oochVPPcem8sc/iKeSekfR
-         rEBuRuKSkKtnp6bpaNY6fs3v+jSJ7bpP2KxnAeha2fv1OoPTcB3BsexQqNuWiecSXSY3
-         oYag==
-X-Forwarded-Encrypted: i=1; AJvYcCU3mDAEMMvDGvjArHPZ740iEYbhOc8gnfjwQRaZm4yBtX9GUF0aRr9HzhyfJB2Gwenk+0pXMjiDp6kf0Etc9bHxDfd+KfekCCyL4w==
-X-Gm-Message-State: AOJu0YxI+kY/RV9Dw9N5NpWUFYJELuizj2Yz3er3anQe9aJDhNMM02Am
-	bgY9l4dFmdv3hbdK9FKdWx54B5vnfr4Eaeeuga3Ynyh7vUACaW0mFrf0DJip0pQGuP4P1UpkBXf
-	2J/Amv2qk1XJCjRVFrzZzqnE4SXiU//TkRYc1mBKS1Ig+k8kMjx/Bz9BLR2Y=
-X-Received: by 2002:ad4:5e8b:0:b0:6b5:d95c:692d with SMTP id 6a1803df08f44-6b74af531a6mr712046d6.13.1720626107779;
-        Wed, 10 Jul 2024 08:41:47 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFm/74UP4TLT1vGs8DLjUNFGeFxt2DXzfyoISdrNcO4smbnFu4jefOYDtfhRDnu4G/xSbFhqw==
-X-Received: by 2002:ad4:5e8b:0:b0:6b5:d95c:692d with SMTP id 6a1803df08f44-6b74af531a6mr711666d6.13.1720626107436;
-        Wed, 10 Jul 2024 08:41:47 -0700 (PDT)
-Received: from x1gen2nano ([2600:1700:1ff0:d0e0::40])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6b61b9c47d4sm18003426d6.23.2024.07.10.08.41.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Jul 2024 08:41:47 -0700 (PDT)
-Date: Wed, 10 Jul 2024 10:41:44 -0500
-From: Andrew Halaney <ahalaney@redhat.com>
-To: Siddharth Vadapalli <s-vadapalli@ti.com>
-Cc: nm@ti.com, vigneshr@ti.com, kristo@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-kernel@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, vkoul@kernel.org, 
-	kishon@kernel.org, sjakhade@cadence.com, rogerq@kernel.org, 
-	thomas.richard@bootlin.com, theo.lebrun@bootlin.com, make24@iscas.ac.cn, 
-	linux-phy@lists.infradead.org, mranostay@ti.com
-Subject: Re: [BUG] k3-j784s4-evm/phy-cadence-torrent: Shared reset using
- exclusive API
-Message-ID: <qgqpibrr6hcicpofi64fxenenq7xdffnddbapefjgzsw6q7j2s@cl3gkkytj2w4>
-References: <yhtb4clns57t7qo5yxil3oofisdlzfubyiwrvjo2ufw2ngv67m@g6p7ktxfgfv3>
- <46e635e6-b6bf-404c-87a2-57fe25b4855a@ti.com>
+        bh=XWZUqKVzg7P6u5MGavsKXGRW26DyCY05W0UIIBlog9I=;
+        b=MGIvVfLymqxteai0GyZsVroo0RQNBjXnda3WRyQtuVSDZznNlcBFBYekilo0P91pAx
+         cnMcS38vNKLGdQ84Mb3ej6+zk8fvEl/VVp/ZZw4UMfaP2Arla0T0yBPeNz6MAbiC2pt6
+         xx/2Ny3aSG59qLqU6MNcOVOkQzbNagWmZlgR/gRsCTfAu6JEN0N0nJM4EvLtdI5/GIKH
+         NcC2+b1PF5VQuYohAVy5aMjScXM63ponFNre5UwZqcF8rKZE3K4Qgv93f4pvs1n3R/s+
+         qmIPto3HoXNv11m84l7OJlE51jkoxmyLnmZe+f/9fk6ctrs66IypvpVYye0GSPxC+Xkq
+         mt8Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720626630; x=1721231430;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=XWZUqKVzg7P6u5MGavsKXGRW26DyCY05W0UIIBlog9I=;
+        b=CtCKVk4PJjZGpnfnSHoLIodwS6uYwQ4NSXuQjC6+1kt8gLXDaZgKkjK7uFyRl/nW8w
+         YMOpfEhJveUf/d1eyctoaaHdq29jPoVGAkPlAcfaEB+3D4OsyJko8sRfObQtWzsKUp61
+         jpZPklwAGeGEk0tmvYYyvq4WpQSZk0FqFcYjVCQW734/eTLMYUptjH7RIUmuHmcq3xEy
+         NM3aXgLu7wxDfA89bB4a7izVBQu5OE66SUu7V0/YtrWmZgzh5v1EzWuqBJvBMKZkHGXF
+         /SA7HHjCl16GeXKk0f8iyMQqq1puqAJGzIcbSavcHeJRmalaEHT75jDpFjxVGoTGw/8O
+         lqag==
+X-Forwarded-Encrypted: i=1; AJvYcCXe3iDaQwjQ+kVSm9ECHNsRYnfnFEAxgBOjN4qjxtjFbnByozsvZW0xvfkwJeI7T3lkMhJePG9VbkfwLfiF4davmJgH/7XtUfLIlQ==
+X-Gm-Message-State: AOJu0YzjYsTrWIQ4swvFFd95lUjiWcvk9aTNEFeyriKicoxIGGFjsQTX
+	3DfyW+dvpN42onhoW5A6C+xlZoaBoqULV++geX+uWwHykXOJd9qFHVum91gEuL3NzUHeKfK80yP
+	ilOUFTWTVdlDgOzrUXuXfJTxWqEdKBR9+KBF3
+X-Google-Smtp-Source: AGHT+IFo76W0cPpP3VpSRtWR1YzUtFerX+Iej1bNsoOgXR2VdbT/Y86UlDjWq8i3WE9bDJY/MtS/YOS5s5OndIv9OFA=
+X-Received: by 2002:a05:600c:5718:b0:426:68ce:c97a with SMTP id
+ 5b1f17b1804b1-42794253b39mr1516875e9.7.1720626629870; Wed, 10 Jul 2024
+ 08:50:29 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <46e635e6-b6bf-404c-87a2-57fe25b4855a@ti.com>
+References: <20240704085555.11204-1-lvzhaoxiong@huaqin.corp-partner.google.com>
+ <20240704085555.11204-3-lvzhaoxiong@huaqin.corp-partner.google.com>
+In-Reply-To: <20240704085555.11204-3-lvzhaoxiong@huaqin.corp-partner.google.com>
+From: Doug Anderson <dianders@google.com>
+Date: Wed, 10 Jul 2024 08:50:12 -0700
+Message-ID: <CAD=FV=XD=B5Mb36UxxaxCdhEhgXMFKmUjf_gnKda7hgq0-YYaA@mail.gmail.com>
+Subject: Re: [PATCH v1 2/2] HID: i2c-hid: elan: Add elan-ekth6a12nay timing
+To: Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com>
+Cc: dmitry.torokhov@gmail.com, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, jikos@kernel.org, bentiss@kernel.org, 
+	linus.walleij@linaro.org, hsinyi@google.com, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jul 10, 2024 at 10:29:46AM GMT, Siddharth Vadapalli wrote:
+Hi,
 
-<snip>
+On Thu, Jul 4, 2024 at 1:56=E2=80=AFAM Zhaoxiong Lv
+<lvzhaoxiong@huaqin.corp-partner.google.com> wrote:
+>
+> Elan-ekth6a12nay requires reset to pull down time greater than 10ms,
+> so the configuration post_power_delay_ms is 10, and the chipset
+> initial time is required to be greater than 300ms,
+> so the post_gpio_reset_on_delay_ms is set to 300.
+>
+> Signed-off-by: Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com>
+> ---
+>  drivers/hid/i2c-hid/i2c-hid-of-elan.c | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 
-> 
-> No, the resets are correct. Both PCIe1 and USB0 use the same instances
-> of SERDES which is SERDES0. I had posted the series for PCIe at:
-> https://lore.kernel.org/r/20240529082259.1619695-1-s-vadapalli@ti.com/
-> with all 4 Lanes of SERDES0 given to PCIe1. Similarly, Ravi had posted
-> the series for USB at:
-> https://lore.kernel.org/r/20240507095545.8210-1-r-gunasekaran@ti.com/
-> with lane 3 of SERDES0 given to USB0.
-> 
-> Since both of the series got merged on the same day (14 Jun 2024):
-> PCIe series:
-> https://lore.kernel.org/r/171826022277.240984.16790260886500529482.b4-ty@ti.com/
-> USB series:
-> https://lore.kernel.org/r/171826022274.240984.5150753966671933401.b4-ty@ti.com/
-> the dependency was unknown when the individual series were posted as
-> neither of them was a part of linux-next/ti-k3-dts-next when the other
-> one was posted.
-> 
-> > 
-> > Total aside, I think we should put the above dts snippet into one &serdes0 reference
-> > for readability sake. I'd post the patch but I'm hoping to get the above answered
-> > first in order to clean that up before shuffling things around for readability sake.
-> 
-> Yes, I agree that both sub-nodes should go into the same referenced
-> serdes0 node in k3-j784s4-evm.dts. The reason it didn't happen that way
-> to begin with is due to the fact that both series got merged on the same
-> day as I pointed out above.
-> 
-> The fix in this case will be to assign lanes 0 and 1 of SERDES0 to PCIe1
-> and lane 3 to USB0 with lane 2 left unused since PCIe doesn't have the
-> concept of a x3 link. In such a configuration, the device-tree nodes
-> will look like:
-
-Thanks alot for the quick explanation and suggestion!
-
-> 
-> &serdes0 {
-> 	status = "okay";
-> 
-> 	serdes0_pcie1_link: phy@0 {
-> 		reg = <0>;
-> 		cdns,num-lanes = <2>;
-> 		#phy-cells = <0>;
-> 		cdns,phy-type = <PHY_TYPE_PCIE>;
-> 		resets = <&serdes_wiz0 1>, <&serdes_wiz0 2>;
-> 	};
-> 
-> 	serdes0_usb_link: phy@3 {
-> 		reg = <3>;
-> 		cdns,num-lanes = <1>;
-> 		#phy-cells = <0>;
-> 		cdns,phy-type = <PHY_TYPE_USB3>;
-> 		resets = <&serdes_wiz0 4>;
-> 	};
-> };
-> 
-> Thank you for pointing out this issue. Please let me know if you plan to
-> post the patch with the above fix or you want me to post the patch for it.
-> 
-
-I've posted a series (with you CC'ed, just realized I CC'ed Matt instead
-of Ravi -- whoops): https://lore.kernel.org/all/20240710-k3-j784s4-evm-serdes0-cleanup-v1-0-03850fe33922@redhat.com/
-
-I'll be on PTO the next few days, so if any changes are required there
-do feel free to do them on my behalf if I don't respin by end of today
-US-time, otherwise I'll make the changes when I return next week.
-
-Thanks again,
-Andrew!
-
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
 
