@@ -1,202 +1,175 @@
-Return-Path: <devicetree+bounces-84772-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84773-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E14D392D82C
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 20:22:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F330C92D8B5
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 21:03:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 10DDB1C2110A
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 18:22:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AA3D0285C0B
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 19:03:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE208195FEC;
-	Wed, 10 Jul 2024 18:22:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7FD6197A61;
+	Wed, 10 Jul 2024 19:03:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="pO6kYaEY"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CEevvTM2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 352343BBED
-	for <devicetree@vger.kernel.org>; Wed, 10 Jul 2024 18:21:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12C541974FA
+	for <devicetree@vger.kernel.org>; Wed, 10 Jul 2024 19:03:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720635723; cv=none; b=T9ZO/9CBLuU4DjWA4+uUPxIfuFEBhTZETx6Y74b/ykNAa9xTAR3KmvJBRiAXNo58UdKUjsNxPQULmYBTxu7JSQW3q84VA27rN8OtBs4XMv18JF3/uZGhqSIK82lVSa6BJqCDzxcEwUf3whEMoOFdLgyYdYlvZFzs61aeAeKxpjQ=
+	t=1720638197; cv=none; b=OA1YWvtp3lHBoyJYrQFtonRiNqodRbnJ4hXmYHFz0hCrBjxC7AvjIqQJTQcoSrR8wiruzJYO6XDMY7fQBi67cRdD6KcxeWT7pBMrNkfltMCo52izzEOQAn2I9wrjJ7sGCdpko+y+GNW79VG2EfqGXezKEnEr0n2vUi81eI2fGDQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720635723; c=relaxed/simple;
-	bh=XU+aQiOEm9xz9rvn411Q8IyDGP/+ExRQPMMwGgD3bbE=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=ZNyHRu8S/NOeaMP1ymk4g/i+eBEtgrULUoUX9IFUkrBJap20zkx8N33eKTkCM6ArE2JiCeJD8jVNEcLWhWg+cG3za5o60GIA+wyVN9WSINll9weUK0QQjw84IXOsOlRlkZbFESRrD39G8HxyIvNhqM2pPFZIx6YpxnpGnAGFSGo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=pO6kYaEY; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1720638197; c=relaxed/simple;
+	bh=3d7FSi9Hcl0cdnxEUaHj4eTaDqmo6qk52W+AULnYB6g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VbMO5LGNJoHoDawfrc3C1xPNPVVU7a42O1wALrk8JtDXbT10BSH4NrgjVhlGbU3WIeR6vHadtQZx3GKgSXI0Z5TXnIuALZyyHvgUizQ7q3qeoluQH4f/I4YUXl401eHGPbHCKG7C3Hw2taX21NotSUuJGMmlaL5+WcJZzoH7VvQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CEevvTM2; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-42795086628so589965e9.3
+        for <devicetree@vger.kernel.org>; Wed, 10 Jul 2024 12:03:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1720638193; x=1721242993; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=0zjwLVxsSVCJgFEWP9NFLGfREZ7pPp0SWHJc73R22HA=;
+        b=CEevvTM2CaEtOXJr+Z0HWaUAbgnXFEJamMk3ldKT/UL2ic5msqIAiy7gi0RhIEQ8HV
+         1sXUdLYtSl7I2nP10mBwoGep3vI30T56+wm0EwH8GDpn9S8bMUR90hroEpVVoKpSNogN
+         fk/wfM51Aifzx8OAxXOxQY1FwdagHYb1PcMgAtVN6j4LGq7sFvQvGBbS1rhnmZgU5qGA
+         JO5HxmYmKJPI24u99pjB+jtpJsCthfxt1xkknagkUPrJJ4teUbkBS8YVyLGWMdEti7U2
+         xpryqJ5f29i/Qqq26V0p0jkYs3j9wJdjNAo2M2QiOptLp4soSLgPcXmztP+UBHviQZi4
+         pjag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720638193; x=1721242993;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=0zjwLVxsSVCJgFEWP9NFLGfREZ7pPp0SWHJc73R22HA=;
+        b=NOvnGmx6p4TRPDrb7WqwHzF+TkNN8ZLoox3dPg8RVDhvAWAFjbCXoHrSvFKbxbYt3y
+         Eb3jTfLdcCJN5o3Pw9UXPMNFf/WyFAKNC6j5Hjt3hSpuvHeEc5zU5x7DerbokQNHRznT
+         VaGpmi6z13aAq0Tik7mJNSSoVme2TVJRSAnWTyxlEr8lyy+WyuZMpojXws6REIa009VE
+         NTw1GJs/o48fYPsprk4Y6XGrj7r6cIyqUdwUOZydVcs5R86PNGzw7LfzjjFj6MunWYBA
+         +mAJBsIiEaASGOWJpK0VigMu76yuWJWnS69haMYLyp9gHpfbW3dD16u+jZ9AIgp1HK9d
+         wAfw==
+X-Forwarded-Encrypted: i=1; AJvYcCXD1dMP6a8sRJIwozYlMvLVyZfN8Xdzs6VXjdS5pIh5GLCfU+N6df3OA4tUHl/VeY9ZyVLuBD9QIPnSq1nsg3z98w8dKq15zkfO2Q==
+X-Gm-Message-State: AOJu0YwWPSsLBOaVDembvkM1+FGZP5i+ain+F+EqXt4VM5ZxCVU1iV9V
+	FJs89WpWgWeOHLjz8FnWKBhaFJtt7zng2VYyRkHysm4qyHKaNyP9eiexdWQ27Lc=
+X-Google-Smtp-Source: AGHT+IExUAfzX0VoKakNYezADDA6Ffrq1A7HPVyOijOdE6adHeuyL79HjX9TXAmqMlMfUj5GJI4TPw==
+X-Received: by 2002:a05:600c:68c:b0:426:6960:34b2 with SMTP id 5b1f17b1804b1-426708f9b36mr39492695e9.33.1720638193372;
+        Wed, 10 Jul 2024 12:03:13 -0700 (PDT)
+Received: from linaro.org ([2a02:2454:ff1f:b280:236a:cbae:b7ec:1f7])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-367cdfab182sm5890728f8f.94.2024.07.10.12.03.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 10 Jul 2024 12:03:12 -0700 (PDT)
+Date: Wed, 10 Jul 2024 21:03:06 +0200
+From: Stephan Gerhold <stephan.gerhold@linaro.org>
+To: Doug Anderson <dianders@chromium.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Jessica Zhang <quic_jesszhan@quicinc.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>,
+	Johan Hovold <johan@kernel.org>
+Subject: Re: [PATCH 1/5] dt-bindings: display: panel: samsung,atna33xc20:
+ Document ATNA45AF01
+Message-ID: <Zo7a6qso7RZ2pkmb@linaro.org>
+References: <20240710-x1e80100-crd-backlight-v1-0-eb242311a23e@linaro.org>
+ <20240710-x1e80100-crd-backlight-v1-1-eb242311a23e@linaro.org>
+ <CAD=FV=XJuV12mStW3eUm5MHG8BA9W_fn0skN=BrtmqC+fnCZig@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1720635704;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=vSx3o5MuJuUVjj8tSSnKV6T0b1jDF8pMDfIllIWeUjI=;
-	b=pO6kYaEYnqpIKkV+83vy5RGRV6s58xsSZOJqlLLS+Gcuva4blOcK+VmRyCanyssNKYM6nD
-	mUjEbKKu8WmuX9RUJ1NhB0FqqFxTuiVejb7u+ANJg47o+nR6UbdYKLuWsc34NXoby5q/Sm
-	Nr7av9hI6t7mrVLWk8e9wmhBpJdyGcsIMRRY63+fjditTvawMehnkNZkchcc1jHEXh+beV
-	xJkg5Lrse8nvCPZfZvSVUgj6YMCa/fypZKoFZSCnFBp0tU7MMmdI3XHn7oiSlg1CG7zqNF
-	LAKalkpvqoDP1kupKzRgrrqATXVo+Yc0BUFEyc7RgWOfwPh6c/baG5s1OO3WAQ==
-Date: Wed, 10 Jul 2024 20:21:43 +0200
-From: Dragan Simic <dsimic@manjaro.org>
-To: Alex Bee <knaerzche@gmail.com>
-Cc: Philipp Puschmann <p.puschmann@pironex.com>, Diederik de Haas
- <didi.debian@cknow.org>, linux-rockchip@lists.infradead.org,
- robh@kernel.org, krzk+dt@kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: rockchip: Add uart dma names to the SoC dtsi
- for RK356x
-In-Reply-To: <cebcc2e7-27e2-4414-91f1-b83bd42876a7@gmail.com>
-References: <20240710093356.3344056-1-p.puschmann@pironex.com>
- <5414331.Y6POrrGVKo@bagend>
- <72e38433-1ed4-460c-9f69-db26b673c441@pironex.com>
- <9af7bd0db5bc5fd23cfeb121b78bbdc1@manjaro.org>
- <9da2d4cf-1210-4e5c-9cab-ae500ae303f9@pironex.com>
- <cebcc2e7-27e2-4414-91f1-b83bd42876a7@gmail.com>
-Message-ID: <cfc99aaebd6aaa7f7a4c2eb4f5bdf13d@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+In-Reply-To: <CAD=FV=XJuV12mStW3eUm5MHG8BA9W_fn0skN=BrtmqC+fnCZig@mail.gmail.com>
 
-Hello Alex,
-
-On 2024-07-10 20:05, Alex Bee wrote:
-> Am 10.07.24 um 17:14 schrieb Philipp Puschmann:
->> Am 10.07.24 um 16:56 schrieb Dragan Simic:
->>> On 2024-07-10 12:20, Philipp Puschmann wrote:
->>>> Am 10.07.24 um 12:02 schrieb Diederik de Haas:
->>>>> On Wednesday, 10 July 2024 11:33:56 CEST Philipp Puschmann wrote:
->>>>>> DMA names are required by of_dma_request_slave_channel function 
->>>>>> that is
->>>>>> called during uart probe. So to enable DMA for uarts add the names 
->>>>>> as in
->>>>>> the RK3568 TRM.
->>>>> 
->>>>> Setting it on channels without flow control apparently causes 
->>>>> issues. See
->>>>> 
->>>>> https://lore.kernel.org/linux-rockchip/20240628120130.24076-1-didi.debian@cknow.org/
->>>> 
->>>> Ah is see. The only problem that i have is to enable/disable dmas by
->>>> having or not having
->>>> dma-names properties, where the latter case is followed by kernel
->>>> error messages. That
->>>> is very counterintuitive. Maybe a explicit boolean like dma-broken
->>>> would be better. That
->>>> could be set on dtsi level as default and deleted on board dts if
->>>> wanted. With such
->>>> a boolean we could also prevent the misleading "dma-names property 
->>>> of"
->>>> error message
->>>> and replace it with a hint that dma is disabled on purpose.
->>> 
->>>  From what I've read in the prior discussions, this seems like a 
->>> driver
->>> issue, so the driver should be fixed instead.
->> 
->> I would tend to disagree. The serial driver just uses the generic dma 
->> API. The error
->> message comes from of_dma_request_slave_channel() in 
->> drivers/dma/of-dma.c
->> and is called from dma_request_chan() inn drivers/dma/dmaengine.c.
->> 
->> The first function expects a device tree node and "dmas" and 
->> "dma-names" properties.
->> And "dma-names" is misused as "enable" switch and if not present (aka 
->> disabled) it
->> dumps "dma-names property of node X missing or empty". For me it's 
->> clear that
->> a clean way to disable or enable using dma via dts would be better to 
->> tell the
->> of_dma_request_slave_channel function that dma is disabled on purpose, 
->> so it
->> could return ENODEV but without printing a misleading error level 
->> message.
+On Wed, Jul 10, 2024 at 10:35:28AM -0700, Doug Anderson wrote:
+> On Wed, Jul 10, 2024 at 10:05 AM Stephan Gerhold
+> <stephan.gerhold@linaro.org> wrote:
+> >
+> > The Samsung ATNA45AF01 panel is an AMOLED eDP panel that has backlight
+> > control over the DP AUX channel. While it works almost correctly with the
+> > generic "edp-panel" compatible, the backlight needs special handling to
+> > work correctly. It is similar to the existing ATNA33XC20 panel, just with
+> > a larger resolution and size.
+> >
+> > Add a new "samsung,atna45af01" compatible to describe this panel in the DT.
+> >
+> > Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
+> > ---
+> >  .../devicetree/bindings/display/panel/samsung,atna33xc20.yaml       | 6 +++++-
+> >  1 file changed, 5 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/display/panel/samsung,atna33xc20.yaml b/Documentation/devicetree/bindings/display/panel/samsung,atna33xc20.yaml
+> > index 765ca155c83a..d668e8d0d296 100644
+> > --- a/Documentation/devicetree/bindings/display/panel/samsung,atna33xc20.yaml
+> > +++ b/Documentation/devicetree/bindings/display/panel/samsung,atna33xc20.yaml
+> > @@ -14,7 +14,11 @@ allOf:
+> >
+> >  properties:
+> >    compatible:
+> > -    const: samsung,atna33xc20
+> > +    enum:
+> > +      # Samsung 13.3" FHD (1920x1080 pixels) eDP AMOLED panel
+> > +      - samsung,atna33xc20
+> > +      # Samsung 14.5" WQXGA+ (2880x1800 pixels) eDP AMOLED panel
+> > +      - samsung,atna45af01
 > 
-> I'm with Philipp here. Topmost because DT should have to do nothing 
-> with a
-> (speculative) driver issue, it represents hardware.
-
-I agree that, ideally, it should actually be seen and treated as a SoC
-feature, i.e. DMA should be described and enabled at the SoC dtsi level.
-
-> I would go further and
-> say boards using a (non-kernel console) uart, which can't use dma for
-> whatever reason should disable it. It will never be an issue for the 
-> kernel
-> console (i.e. "stdout-path = "serialX..." in DT or "console=ttySX" in
-> cmdline) as the kernel will not use dma for this console. It's by the 
-> way
-> even worse for RK3399 Soc DT, which just doesn't expose the dma 
-> channels
-> for the uarts and for RK3368 which does not a expose a single dma 
-> channel
-> of the peripheral dmac (I tent to speculate for the very same reason).
-
-I also agree about the specific boards disabling DMA if they cannot use
-it for whatever reason, simply because DMA would (or should) be enabled
-at the SoC dtsi level.
-
-Though, I'd like to have some time for researching it further, in an 
-attempt
-to figure out what's actually going on.
-
->>>>>> Signed-off-by: Philipp Puschmann <p.puschmann@pironex.com>
->>>>>> ---
->>>>>>   arch/arm64/boot/dts/rockchip/rk356x.dtsi | 10 ++++++++++
->>>>>>   1 file changed, 10 insertions(+)
->>>>>> 
->>>>>> diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
->>>>>> b/arch/arm64/boot/dts/rockchip/rk356x.dtsi index 
->>>>>> d8543b5557ee..4ae40661ca6a
->>>>>> 100644
->>>>>> --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
->>>>>> +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
->>>>>> @@ -489,6 +489,7 @@ uart0: serial@fdd50000 {
->>>>>>           clocks = <&pmucru SCLK_UART0>, <&pmucru PCLK_UART0>;
->>>>>>           clock-names = "baudclk", "apb_pclk";
->>>>>>           dmas = <&dmac0 0>, <&dmac0 1>;
->>>>>> +        dma-names = "tx", "rx";
->>>>>>           pinctrl-0 = <&uart0_xfer>;
->>>>>>           pinctrl-names = "default";
->>>>>>           reg-io-width = <4>;
->>>>>> @@ -1389,6 +1390,7 @@ uart1: serial@fe650000 {
->>>>>>           clocks = <&cru SCLK_UART1>, <&cru PCLK_UART1>;
->>>>>>           clock-names = "baudclk", "apb_pclk";
->>>>>>           dmas = <&dmac0 2>, <&dmac0 3>;
->>>>>> +        dma-names = "tx", "rx";
->>>>>>           pinctrl-0 = <&uart1m0_xfer>;
->>>>>>           pinctrl-names = "default";
->>>>>>           reg-io-width = <4>;
->>>>>> ...
->>>> 
->>>> _______________________________________________
->>>> Linux-rockchip mailing list
->>>> Linux-rockchip@lists.infradead.org
->>>> http://lists.infradead.org/mailman/listinfo/linux-rockchip
->> 
->> _______________________________________________
->> Linux-rockchip mailing list
->> Linux-rockchip@lists.infradead.org
->> http://lists.infradead.org/mailman/listinfo/linux-rockchip
+> Seems OK, but a few thoughts:
 > 
+> 1. Is it worth renaming this file? Something like
+> "samsung,atna-oled-panel.yaml"? I'd be interested in DT maintainer
+> folks' opinions here.
 > 
-> _______________________________________________
-> Linux-rockchip mailing list
-> Linux-rockchip@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-rockchip
+
+I think examples for both approaches exist in the kernel tree, so I am
+also interested in the opinion of the DT maintainers here. :-)
+
+> 2. In theory you could make your compatible look like this:
+> 
+> compatible = "samsung,atna45af01", "samsung,atna33xc20"
+> 
+> ...which would say "I have a 45af01 but if the OS doesn't have
+> anything special to do that it would be fine to use the 33xc20
+> driver". That would allow device trees to work without the kernel
+> changes and would allow you to land the DT changes in parallel with
+> the driver changes and things would keep working.
+> 
+> ...and, in fact, that would mean you _didn't_ need to add the new
+> compatible string to the driver, which is nice.
+> 
+
+Yeah, I considered this. I mentioned the reason why I decided against
+this in patch 2:
+
+> While ATNA45AF01 would also work with "samsung,atna33xc20" as a fallback
+> compatible, the original submission of the compatible in commit
+> 4bfe6c8f7c23 ("drm/panel-simple: Add Samsung ATNA33XC20") had the timings
+> and resolution hardcoded. These would not work for ATNA45AF01.
+
+Basically, it works with the current driver. But if you would run the
+kernel at the state of the original submission then it would behave
+incorrectly. This is why I considered the resolution and timings to be
+part of the "samsung,atna33xc20" "ABI". The new panel would not be
+compatible with that.
+
+I don't mind changing it, if there is consensus that we should ignore
+this and use the fallback compatible instead.
+
+Thanks,
+Stephan
 
