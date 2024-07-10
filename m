@@ -1,82 +1,100 @@
-Return-Path: <devicetree+bounces-84794-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84795-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26B9D92DA8E
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 23:09:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2324D92DB09
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 23:32:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B947F2824CA
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 21:09:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 54F711C2158D
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 21:32:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB5DC84047;
-	Wed, 10 Jul 2024 21:09:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B37813DDA7;
+	Wed, 10 Jul 2024 21:26:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="io4U0kE8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pPZwmdAC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90AB3502A9;
-	Wed, 10 Jul 2024 21:09:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43D4F13DBA7;
+	Wed, 10 Jul 2024 21:26:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720645758; cv=none; b=gwcjQ/M6EKSgFq090hziRRInGpk+cnoBxUdQOu4oaNbTMf5yg7h6kJGfak1Y/+V6retUcPuh06pLkHIe0X75jaq3xU0xHcRQBytYYrrn9JbjYMDDwqAjZoeIXVyGhhx0X+gSnLQp07AJzL9oCZXuRIeJeHDwqISZpclrYLvJLaw=
+	t=1720646819; cv=none; b=k+XU9bXWYVGEyigUo9S8/GFRd8hFlpPyvZqMo8Ok0b/svxOTSAFTgBu3C6QAeJRyepalpDcEIDSbBQOxFVgGPdikAOrqXsY48WvF6O3zqTHSeyUJRXUtYlG+joG/wWrCw+83kYv8Neb76O/56eE1RiQri4xyfU8bn7eY5w3Sdg4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720645758; c=relaxed/simple;
-	bh=grYbuyfrj6pNtJ40Wij1nPQouqoiFgrUmzpUAfnDEMc=;
+	s=arc-20240116; t=1720646819; c=relaxed/simple;
+	bh=UyV9QbskN7z87S59wOHZ2z6ufUHkf36Y+JyJjuFAzSU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Fc2s+onIiFqZGcCnY3JKKEx2AP122PsZt3i6b0xu0h+tvyD/f79CdvhcSi2Y09KVQVpGkKHEQu25IPDWApfDsp6QggsrVriYim9EJPVmBeHEyHCYp0XMyM1bH98OTOAWUQVlCdEqguz8pz8d09I7H6CC7MP6zE3bSwy73hv8K/w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=io4U0kE8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2F28C32781;
-	Wed, 10 Jul 2024 21:09:17 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=BsGifh9f80+ssDYFgEXxou+TgF48pJPrassXa6lQq7/16ZlaSzRrVkFSPXiW7yM7I3xtHIZd/6cqQM8iVioVTyBV/YYBbP3INxEXk1W6hPL2+1E3s8k8zhJBhQ0hg35qvm+24IBDV3CXTa8FqUaQLUVEcScRcs3SaxsRufSdVbo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pPZwmdAC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83EDCC32781;
+	Wed, 10 Jul 2024 21:26:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720645758;
-	bh=grYbuyfrj6pNtJ40Wij1nPQouqoiFgrUmzpUAfnDEMc=;
+	s=k20201202; t=1720646818;
+	bh=UyV9QbskN7z87S59wOHZ2z6ufUHkf36Y+JyJjuFAzSU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=io4U0kE8LMsx3Ub0aJACKNqUq7b+5koJkuX1PN5iqZ8unxhk6fhzMtler8jLwNKKN
-	 Ci9jRy4mNK+yZ2FTO2Siex8GLkGTdRGJLPs4BIRpjmBu+Qdp8uUpsqMf/clp3wXZcl
-	 frmSMQGLg3B5ScMk5TlUuymG7NOJPtbr7rhZrhPurSoJ6bbnLg3QsEGGI5w8iRP/tn
-	 j3Md35OosQeWnBfsoqdLh3TkEQxLg8MvEgoSIKo3gemvf64IUanlFx1MUzDTn8vfrh
-	 TJMcWAt4AyYKl8FLQ+6Irjo3u5hN+M6x4836TjO+vS0qsuBLQfO4hK0ZVjTCmMOypW
-	 GhVcwJhcZQJcw==
-Date: Wed, 10 Jul 2024 15:09:16 -0600
+	b=pPZwmdACIM5CFKtV379ANRxnTOElJ/KOZO8aepw99FFFLmxpWtFWz1WrZ9AT64Oja
+	 07Wtlhw27CDzKBZMWvsaZNko9mwmH4NrjAdwxhc4OpAxPh5eMdr9Z4mrc5OgcMjhbP
+	 9fu/M+OZVbJ4x8b3bu2kbvmf/oqbJR4Tj9gxFDPomiN8EYJ2N4B9METkFfbbvcIWDe
+	 N9xoZRYzOxv1OHS7Xeb2kyo6x3OClcnBl+z2Wn37ZNKWk1PjpRgqGR9lMpArrcW2CD
+	 zeWKZPv+0ILdSC98Vpz7cNE0OEGJqDz+0/cbSuYKzKilHHT1gCt1pcBXwUDB1/f9ZG
+	 z8clcEP33kTyw==
+Date: Wed, 10 Jul 2024 15:26:57 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Robin Murphy <robin.murphy@arm.com>
-Cc: linux-arm-kernel@lists.infradead.org, will@kernel.org,
-	jialong.yang@shingroup.cn, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, mark.rutland@arm.com
-Subject: Re: [PATCH v2 1/3] dt-bindings/perf: Add Arm NI-700 PMU
-Message-ID: <172064575490.3730136.6789600718174419899.robh@kernel.org>
-References: <cover.1720625639.git.robin.murphy@arm.com>
- <e60059b1f4683bd1863f08dd03482e5948c0afb1.1720625639.git.robin.murphy@arm.com>
+To: =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc: Michael Walle <michael@walle.cc>,
+	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mtd@lists.infradead.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Conor Dooley <conor+dt@kernel.org>, u-boot@lists.denx.de,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: nvmem: convert U-Boot env to a layout
+Message-ID: <172064681629.3804403.16986704276630415661.robh@kernel.org>
+References: <20240705225821.13196-1-zajec5@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <e60059b1f4683bd1863f08dd03482e5948c0afb1.1720625639.git.robin.murphy@arm.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240705225821.13196-1-zajec5@gmail.com>
 
 
-On Wed, 10 Jul 2024 17:09:33 +0100, Robin Murphy wrote:
-> Add an initial binding for the Arm NI-700 interconnect PMU. As with the
-> Arm CMN family, there are already future NI products on the roadmap, so
-> the overall binding is named generically just in case any
-> non-discoverable incompatibility between generations crops up.
+On Sat, 06 Jul 2024 00:58:21 +0200, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> Cc: <devicetree@vger.kernel.org>
-> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
+> U-Boot environment variables can be stored in various data sources. MTD
+> is just one of available options. Refactor DT binding into a layout so
+> it can be used with UBI volumes and other NVMEM devices.
+> 
+> Link: https://lore.kernel.org/all/20231221173421.13737-1-zajec5@gmail.com/
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 > ---
+> I'm sending this PATCH without Linux changes to see if this is the
+> right approach - for developers and (DT) maintainers to review it first.
 > 
-> v2: No change
+> My previous attempt (see above Link) turned out in refusal so I'm just
+> trying to save some time in case this one goes wrong as well.
 > 
->  .../devicetree/bindings/perf/arm,ni.yaml      | 30 +++++++++++++++++++
->  1 file changed, 30 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/perf/arm,ni.yaml
+> Hopefully the included example (which I really think we should add)
+> explains well how I think this binding should be used with layouts.
+> 
+> If I get some positive feedback I'll work on V2 with actual Linux
+> changes.
+> 
+>  .../bindings/nvmem/layouts/nvmem-layout.yaml  |  1 +
+>  .../nvmem/{ => layouts}/u-boot,env.yaml       | 39 ++++++++++++++++---
+>  2 files changed, 35 insertions(+), 5 deletions(-)
+>  rename Documentation/devicetree/bindings/nvmem/{ => layouts}/u-boot,env.yaml (75%)
 > 
 
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
