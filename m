@@ -1,122 +1,124 @@
-Return-Path: <devicetree+bounces-84749-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84750-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE4C892D61D
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 18:17:30 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16CFF92D62E
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 18:22:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9631E1F275E1
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 16:17:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9A349B2156F
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 16:22:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C60601953BA;
-	Wed, 10 Jul 2024 16:16:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 020EE194A68;
+	Wed, 10 Jul 2024 16:22:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CF15gAMF"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="K4e6wWkx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AF14194A74;
-	Wed, 10 Jul 2024 16:16:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 547E720312;
+	Wed, 10 Jul 2024 16:22:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720628175; cv=none; b=cMyuyzDpb/77v5PYOY8cX9IFRF6LdfQL+VPl4OmA1AITmvtcv5AIYm1OERHgeQJyr4hWxgIcDSENPaxQcPqtYNbSeeV7BN7IBsjeGBaiBvn5H7tqwyadpKj56TQUK6e9wT7lUENqNfugbv5U0tx4U/0PZcpLx6bSTXBoaF73doQ=
+	t=1720628547; cv=none; b=qI+njVGOqRHaUF2U+Vq6lwRb8e5qKcYI551aAdGt7G09d13DtO7LEehNAeiLKhW6XSZAlLJUzmijJsDhn/iQPV+/I1Eoxn0mn63+/NFEQAGOt5ritFqcgynTJs3ICE+ug/Cz2s1gBGcjfb4E+0KokhSmzYB4OkoPMhmxBsXz9RE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720628175; c=relaxed/simple;
-	bh=bsHpEn3krou53ldx7it8KNunZ7Zrt3zk5bS06koZGwo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uCKIlCSuGzMFuznNQ6df7KBlFGXhE92jlIvQwRN/mGDdM0jOFmn5/wLV2ncayShw4XhRaSN+fzM8gN0ocj2PBuaIW+Y8TJkIcinZVJWr8PLSotcSvCQfurziu5dA/S1DrguXO6c/ZvifCzXqwQJ47cuuh1EMmkq+bVDfpggUFUc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CF15gAMF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 979B4C4AF10;
-	Wed, 10 Jul 2024 16:16:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720628175;
-	bh=bsHpEn3krou53ldx7it8KNunZ7Zrt3zk5bS06koZGwo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=CF15gAMFf7pOAInHCtZ64DFD/d3HzSVI1rqpPx59sVs2CzT07W4I5u/u1mWtu0FXB
-	 IeIPRqN22uealtOuePc/8iKoFQ618ExR8dxg0oAYwX7cdGp0g1mEPj5Hag+y1/wPUR
-	 yldDZTVcGd3DPfa0dErI7JptYqhibYl70ouOTvmhL1ABOmxgT+/V0YUrVt1tdEGY8N
-	 Nfzf+dpOPd5Cez/UfQepL9IzSQOfKd+gWJk/EKPqD/a/spQRdWQD3N59VA4/nL9V+w
-	 seoL/CNX7D6rVtf29Rj+9j+je/lxf+xCwKQsRWq0pbIBqXK0RBnCwrQMXv82E92XTZ
-	 hzg/TfZ2QCXCw==
-Message-ID: <36837adc-1528-408f-95be-4206cf1e219f@kernel.org>
-Date: Wed, 10 Jul 2024 18:16:09 +0200
+	s=arc-20240116; t=1720628547; c=relaxed/simple;
+	bh=s9iOTRxw5Qytoe+VupdvA/reAQiawx9dExWT989PAS0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ggeCB9mWX8bV9YPU9anCfpVB7sxeIV6N87sgy6hTdZjnWprocIkx0jL2hrKEWACEAGmJFNe8vahTEiKVjZ4tPPPZ/xrn0cKvfEjax8FmnFCczuHjYQax0ePkq4d8vHMbfi1bZylAit/ga9SfVvII8Gv5pKUPDxWtLEUK9ldsD28=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=K4e6wWkx; arc=none smtp.client-ip=209.85.218.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a6fd513f18bso700950166b.3;
+        Wed, 10 Jul 2024 09:22:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1720628545; x=1721233345; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=s9iOTRxw5Qytoe+VupdvA/reAQiawx9dExWT989PAS0=;
+        b=K4e6wWkxZOHXGx1zHCFxR14/d3eUGz4z/x2Hr1UhuaSoZHn97ncReYKgeaaMRYL2hJ
+         m4r1B7/raALpNluGNTKiBAnLW/1Tdgo6l/Q9noy5sXzAjtlmaAMVoG8CRJjz58ehKDGN
+         fWL4PHTiwpVU/6B5BEDl3QfSUVYhi9gbMc2mktF8UE2+ZlXD5ENOagAbLY+MOK4qR/Zo
+         Q/CKnycRw9t8Q9NEF+zwzEOiJO0jvb2oJ6x4WMswVQS5kSxdoeaKLYkg4Z5VAOLhB6WU
+         OMu0psNm2VnVnDgUg8NBbROE85U6hWbouVG/ccgONfr8W1+TgXx21DulY9YvaRpnQR3u
+         qWBw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720628545; x=1721233345;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=s9iOTRxw5Qytoe+VupdvA/reAQiawx9dExWT989PAS0=;
+        b=CSlY3cQs/h3ES127YOR5fp00njrgtMQX1bAHqLplK9H4LJyutYGcqFj++UU9Jdtga0
+         hmt8t2t7P96S3hGi8YpObn3KCpQmOC4Am/Np0DzJBvlxIRm2cOJhjldWRA5BeTxXjxZj
+         9vECIbOOj4yd4X22+aaVDc+unfkm3mGsN1fgd49Ssp0TH3XcgqsyiOaDDZi6goPLDrV/
+         H9yg+2EawiCHyiy0ILQGYgOGEI0sb/sOG6bh+BnO7yVurVSkJZq2w8nKaM6GJZ96W1kb
+         vamGle8N4Mdui5pS9d/SbTR0iWRL2Bxv+knnmJpBFbbcWHDeO59qfyQ37IYT7abtNut6
+         yoYg==
+X-Forwarded-Encrypted: i=1; AJvYcCUP9UKL1S0qT6IYyKUfZnBor5b7GGSIchOQPhahAS5oLK19WBYrs8VNZviTToK9mhKkr7RCXpXykPX1xMmBAVnlLkjRePQcmIKg4qlm8e9PoRrram2UJ2u8YPzRIDvslrNiXgVZWwg0JSWcUxmLwu8AAUZpHNsO58z3iylyEzfozd3lyU7r
+X-Gm-Message-State: AOJu0YzZ6CU/30jB3I+lgU1Tso3p4xzcxqXZ+LDhT2ycQ89n2oTKhmwI
+	RDdCEPBItzS2HuR5mV6fK3mvRf0Dvjh0agWgSoiU3/b/0+WmAsTb6apgiackbHRaxFCvu2WEHuZ
+	N6iI+/byhlw6T9nubIINa81yWvn4=
+X-Google-Smtp-Source: AGHT+IFNvET9t815HfmplLSrRTvXphreJ0MNbUuIvztk3gg9+0wgDIzf2fKBnSwvpmHDF9a0kWQlSc1e+i3iMabrSK0=
+X-Received: by 2002:a17:907:2d87:b0:a77:f5ca:f847 with SMTP id
+ a640c23a62f3a-a780b68a20emr471719666b.3.1720628544538; Wed, 10 Jul 2024
+ 09:22:24 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: power: qcom,kpss-acc-v2: add
- qcom,msm8916-acc compatible
-To: Rayyan Ansari <rayyan.ansari@linaro.org>, devicetree@vger.kernel.org
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio
- <konrad.dybcio@linaro.org>, Bjorn Andersson <andersson@kernel.org>,
- Christian Marangi <ansuelsmth@gmail.com>, linux-arm-msm@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240710155226.130086-1-rayyan.ansari@linaro.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240710155226.130086-1-rayyan.ansari@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20240124011459.12204-1-jason-jh.lin@mediatek.com>
+ <20240124011459.12204-2-jason-jh.lin@mediatek.com> <f91d3ac1-0a7d-4ca2-bf0f-c5e471c2f6bb@collabora.com>
+ <2a2a939c9cb56de0383ec3e42db9bcf8e8518775.camel@mediatek.com> <CABb+yY2_oJ_AC2w5AgHMBvqFDeyaUq9BLczqY8JhLFPDnfzY_Q@mail.gmail.com>
+In-Reply-To: <CABb+yY2_oJ_AC2w5AgHMBvqFDeyaUq9BLczqY8JhLFPDnfzY_Q@mail.gmail.com>
+From: Jassi Brar <jassisinghbrar@gmail.com>
+Date: Wed, 10 Jul 2024 11:22:13 -0500
+Message-ID: <CABb+yY3ddp6Ex50yh3hZn2aQcEULvmFfd99xb7ZNVnTPn7=mUg@mail.gmail.com>
+Subject: Re: [PATCH v4 1/3] dt-bindings: mailbox: Add mediatek,gce-props.yaml
+To: =?UTF-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= <Jason-JH.Lin@mediatek.com>
+Cc: "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>, 
+	"chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>, 
+	"angelogioacchino.delregno@collabora.com" <angelogioacchino.delregno@collabora.com>, 
+	"robh+dt@kernel.org" <robh+dt@kernel.org>, 
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>, 
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>, 
+	=?UTF-8?B?U2luZ28gQ2hhbmcgKOW8teiIiOWciyk=?= <Singo.Chang@mediatek.com>, 
+	=?UTF-8?B?Sm9obnNvbiBXYW5nICjnjovogZbpkasp?= <Johnson.Wang@mediatek.com>, 
+	"linaro-mm-sig@lists.linaro.org" <linaro-mm-sig@lists.linaro.org>, 
+	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	=?UTF-8?B?SmFzb24tY2ggQ2hlbiAo6Zmz5bu66LGqKQ==?= <Jason-ch.Chen@mediatek.com>, 
+	=?UTF-8?B?U2hhd24gU3VuZyAo5a6L5a2d6KyZKQ==?= <Shawn.Sung@mediatek.com>, 
+	=?UTF-8?B?TmFuY3kgTGluICjmnpfmrKPonqIp?= <Nancy.Lin@mediatek.com>, 
+	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, 
+	Project_Global_Chrome_Upstream_Group <Project_Global_Chrome_Upstream_Group@mediatek.com>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
+	"fshao@chromium.org" <fshao@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 10/07/2024 17:52, Rayyan Ansari wrote:
-> Add compatible for "qcom,msm8916-acc", used in msm8916.dtsi, to the dt
-> schema.
-> 
-> Signed-off-by: Rayyan Ansari <rayyan.ansari@linaro.org>
+On Wed, Jul 10, 2024 at 9:28=E2=80=AFAM Jassi Brar <jassisinghbrar@gmail.co=
+m> wrote:
+>
+> On Sun, May 26, 2024 at 10:04=E2=80=AFAM Jason-JH Lin (=E6=9E=97=E7=9D=BF=
+=E7=A5=A5)
+> <Jason-JH.Lin@mediatek.com> wrote:
+> >
+> > Hi Angelo, Jassi,
+> >
+> > Could you help me apply this series?
+> > Thanks!
+> >
+> Please get it reviewed by DT maintainers .... Rob or Krzysztof.
+>
+I see Conor Dooley listed as another maintainer, so I am picking it up.
+BTW, I was not CC'ed on the original patch.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
-
+-Jassi
 
