@@ -1,184 +1,166 @@
-Return-Path: <devicetree+bounces-84526-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84527-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC9DF92CA0F
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 07:00:22 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E46992CA6F
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 08:11:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 80656286594
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 05:00:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BE81EB2103E
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 06:11:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 556CF3EA9B;
-	Wed, 10 Jul 2024 05:00:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D541B537F8;
+	Wed, 10 Jul 2024 06:11:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="jl3YCnKU"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="nFvQghFT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0437A4A07;
-	Wed, 10 Jul 2024 05:00:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16DE73FB30;
+	Wed, 10 Jul 2024 06:11:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720587618; cv=none; b=ZhX8oEEzbQ+/gFqoK9D6UtnIdt82E2rz2C+RmS7oOJJYP4I0zBMxrfkG3aXw53NF1MVR8M//oLZsIO9LnA+wAiQGcFlo75PmKWD9dM7Onu7PRtji8dBMLVgdfLZpVxh17W5mR84BPri1omyrRFMNBr5zMQt95sB9pDhd7BMD3uA=
+	t=1720591903; cv=none; b=R60DbrfjyC5Vzr0NwX9CP/PEIGSGMN6u7BpeVHXBvPVhXhHn7hnb+lcvJVFr9vjemWFYZSbsb815m7w+8NVUy5NOap4rLC59Qt+g8NRSnlTIqmFQ+mu+wQlItmi1Ni8Siwa4uveMr/MFje98RtsQ5YXso6hwmFFsG2w83oNi0dw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720587618; c=relaxed/simple;
-	bh=pI4XSLU0+3UNmL28LII8gHITrzyjHueWVVed6laXvBw=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mdR8Z6jpTJtgn9yxKI4kRybv+IeahxRBisT0gZ7wRmRCHxHMV+6uSWjRhBj94fjmyaVQV3DYpJEYfjuNGD0/kD9Zz0bVZbY+TEWGy4VNDEIg4m3XDlX0E3vOIIkHDguEXfuaQqjpyr2Puf76IJcQYZLkrAu4mZvP0jzLSW2B6LU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=jl3YCnKU; arc=none smtp.client-ip=198.47.19.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 46A4xmnm059734;
-	Tue, 9 Jul 2024 23:59:48 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1720587588;
-	bh=Q7P3aIhdZOB3zwAz4JcRP+9F7wT1ukLiFU2YAebXE40=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=jl3YCnKUhCTLPH9YUlnX3ba18w7/Fvjq6iIFb8SKFqsUw5+DiZ+RGy7aIdFFT2me1
-	 vr08Zqwbuu7DWkuNS/8By319/QlPJKWO+C2vjogYj9fyi3rw0sy0rn4s/cDzH1aY5I
-	 2OtXWQengPw2XrrR9wl6Xm7VSCHVLCPgyR4yO/JA=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 46A4xmnU010468
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 9 Jul 2024 23:59:48 -0500
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 9
- Jul 2024 23:59:48 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 9 Jul 2024 23:59:48 -0500
-Received: from localhost (uda0492258.dhcp.ti.com [10.24.72.81])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 46A4xk3E064380;
-	Tue, 9 Jul 2024 23:59:47 -0500
-Date: Wed, 10 Jul 2024 10:29:46 +0530
-From: Siddharth Vadapalli <s-vadapalli@ti.com>
-To: Andrew Halaney <ahalaney@redhat.com>
-CC: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <vkoul@kernel.org>,
-        <kishon@kernel.org>, <sjakhade@cadence.com>, <rogerq@kernel.org>,
-        <thomas.richard@bootlin.com>, <theo.lebrun@bootlin.com>,
-        <make24@iscas.ac.cn>, <linux-phy@lists.infradead.org>,
-        <s-vadapalli@ti.com>, <mranostay@ti.com>
-Subject: Re: [BUG] k3-j784s4-evm/phy-cadence-torrent: Shared reset using
- exclusive API
-Message-ID: <46e635e6-b6bf-404c-87a2-57fe25b4855a@ti.com>
-References: <yhtb4clns57t7qo5yxil3oofisdlzfubyiwrvjo2ufw2ngv67m@g6p7ktxfgfv3>
+	s=arc-20240116; t=1720591903; c=relaxed/simple;
+	bh=Eehj/qZchMn3DSNCSl4U5jLyqPH35iunz5MxV895HTI=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=CblmJYR++/Hf02+dZkSH3Ep4dvzp/X7vI70oQcRjfQ7wcx79RTSDPsxHbP0BBBHIdSwhOBiPEYwZBR8OugLEDE+IGzxZby2y3H9mP3WT2Emkp7Me4RJFDOGdW6yqgxLBg35tbXkjeRIQh83zW7g+7Ue+ASnFtI2iU+jVhHYL9w8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=nFvQghFT; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 469J6FOT019368;
+	Wed, 10 Jul 2024 06:11:24 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=QB9JUyvbnuDaOmcNoe4mKX
+	FWB92oreA2hqkTX9DQOg8=; b=nFvQghFTGjZH25Qd83EnPWWOEhZCR/VPaejCr0
+	Qq5SOscY1pFupEc3+6LObesOESwG5osAz6Ve9Y9Bo0FKNsvzErQVdGB0MzU51YBh
+	AJkw4Ph0OnB3PRVsH9R8YCK5y21Bk9m/F64BLyERAEu/fHVTYk0U4hyFwGA0+6DX
+	QLdDQ5fUIhtzMFdOb1RCthPfkiVk0awV5s+jV4Ouy32NM27X5mCR3vOQQiGsmdPV
+	hKE+xewWOT6OyJnUZ+THP69Uk4mh7kylF4HS1cILmZtcYDq3OlHmLF9uq5tG98qB
+	7uv2ZoQfu4yy5PDn9u4yAtgDR26nZNAbSiYtEM0NrLVJLBRw==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 406wg40kmr-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 10 Jul 2024 06:11:24 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA02.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 46A6BMgo030726
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 10 Jul 2024 06:11:22 GMT
+Received: from hu-varada-blr.qualcomm.com (10.80.80.8) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Tue, 9 Jul 2024 23:11:15 -0700
+From: Varadarajan Narayanan <quic_varada@quicinc.com>
+To: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <mturquette@baylibre.com>, <sboyd@kernel.org>, <ilia.lin@kernel.org>,
+        <rafael@kernel.org>, <viresh.kumar@linaro.org>,
+        <ulf.hansson@linaro.org>, <quic_sibis@quicinc.com>,
+        <quic_rjendra@quicinc.com>, <danila@jiaxyga.com>,
+        <quic_varada@quicinc.com>, <neil.armstrong@linaro.org>,
+        <otto.pflueger@abscue.de>, <abel.vesa@linaro.org>, <luca@z3ntu.xyz>,
+        <geert+renesas@glider.be>, <stephan.gerhold@kernkonzept.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>
+Subject: [PATCH v6 0/9] Enable CPR for IPQ9574
+Date: Wed, 10 Jul 2024 11:40:53 +0530
+Message-ID: <20240710061102.1323550-1-quic_varada@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <yhtb4clns57t7qo5yxil3oofisdlzfubyiwrvjo2ufw2ngv67m@g6p7ktxfgfv3>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: knK5xCGET52fXBUMaEU4Qlwp0x1ZmuSn
+X-Proofpoint-GUID: knK5xCGET52fXBUMaEU4Qlwp0x1ZmuSn
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-10_02,2024-07-09_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ mlxlogscore=999 clxscore=1011 impostorscore=0 malwarescore=0 mlxscore=0
+ bulkscore=0 spamscore=0 adultscore=0 suspectscore=0 lowpriorityscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2406140001 definitions=main-2407100046
 
-On Tue, Jul 09, 2024 at 04:57:09PM -0500, Andrew Halaney wrote:
-> Hi,
-> 
+This series tries to enable CPR on IPQ9574 based on the drivers
+posted in [1] - Add support for Core Power Reduction v3, v4 and Hardened.
 
-[...]
+dt_binding_check and dtbs_check passed.
 
-> 
-> this is because the devicetree has two[0][1] consumers of the same reset:
-> 
-> 	&serdes0 {
-> 		status = "okay";
-> 
-> 		serdes0_pcie1_link: phy@0 {
-> 			reg = <0>;
-> 			cdns,num-lanes = <4>;
-> 			#phy-cells = <0>;
-> 			cdns,phy-type = <PHY_TYPE_PCIE>;
-> 			resets = <&serdes_wiz0 1>, <&serdes_wiz0 2>,
-> 				 <&serdes_wiz0 3>, <&serdes_wiz0 4>;
-> 		};
-> 	};
-> 	...
-> 	&serdes0 {
-> 		status = "okay";
-> 
-> 		serdes0_usb_link: phy@3 {
-> 			reg = <3>;
-> 			cdns,num-lanes = <1>;
-> 			#phy-cells = <0>;
-> 			cdns,phy-type = <PHY_TYPE_USB3>;
-> 			resets = <&serdes_wiz0 4>;
-> 		};
-> 	};
-> 
-> phy-cadence-torrent (the serdes0 consumer here) uses the exclusive consumer API[2],
-> so this blows up.
-> 
-> Is the problem here that one of the above devicetree nodes is using the wrong
-> reset, or does the driver need to look into using the shared API? I'm
-> not sure where to find the reset definitions for the IP here unfortunately,
-> so I'm hoping someone can help confirm if those are correct or not.
+Depends:
+	[1] https://lore.kernel.org/lkml/20240708-topic-cpr3h-v15-0-5bc8b8936489@linaro.org/T/
+	[2] https://lore.kernel.org/linux-arm-msm/20240703091651.2820236-10-quic_varada@quicinc.com/
 
-No, the resets are correct. Both PCIe1 and USB0 use the same instances
-of SERDES which is SERDES0. I had posted the series for PCIe at:
-https://lore.kernel.org/r/20240529082259.1619695-1-s-vadapalli@ti.com/
-with all 4 Lanes of SERDES0 given to PCIe1. Similarly, Ravi had posted
-the series for USB at:
-https://lore.kernel.org/r/20240507095545.8210-1-r-gunasekaran@ti.com/
-with lane 3 of SERDES0 given to USB0.
+v6: Update depends to Konrad's V15
+    Rebase on top of V15
+    Change 'acc_desc' check to accomodate v15 changes
 
-Since both of the series got merged on the same day (14 Jun 2024):
-PCIe series:
-https://lore.kernel.org/r/171826022277.240984.16790260886500529482.b4-ty@ti.com/
-USB series:
-https://lore.kernel.org/r/171826022274.240984.5150753966671933401.b4-ty@ti.com/
-the dependency was unknown when the individual series were posted as
-neither of them was a part of linux-next/ti-k3-dts-next when the other
-one was posted.
+v5:
+This series tries to enable CPR on IPQ9574, that implements
+CPRv4. Since [1] is older, faced few minor issues. Those are
+addressed in [2].
 
-> 
-> Total aside, I think we should put the above dts snippet into one &serdes0 reference
-> for readability sake. I'd post the patch but I'm hoping to get the above answered
-> first in order to clean that up before shuffling things around for readability sake.
+Depends:
+	[1] https://lore.kernel.org/lkml/20230217-topic-cpr3h-v14-0-9fd23241493d@linaro.org/T/
+	[2] https://github.com/quic-varada/cpr/tree/4de50be55a89eb29ab0d40d3fcfe9aa7a9ccf910
+	[3] https://lore.kernel.org/linux-arm-msm/20240703091651.2820236-10-quic_varada@quicinc.com/
 
-Yes, I agree that both sub-nodes should go into the same referenced
-serdes0 node in k3-j784s4-evm.dts. The reason it didn't happen that way
-to begin with is due to the fact that both series got merged on the same
-day as I pointed out above.
+    Drop 'dt-bindings: opp: v2-qcom-level: Update minItems for oloop-vadj & cloop-vadj',
+    the [3] dependency listed above. It should be squashed into [1]
+    Add acc_desc is not NULL check in one more place in cpr_probe
+    Update one commit message and add acked-by, reviewd-by
 
-The fix in this case will be to assign lanes 0 and 1 of SERDES0 to PCIe1
-and lane 3 to USB0 with lane 2 left unused since PCIe doesn't have the
-concept of a x3 link. In such a configuration, the device-tree nodes
-will look like:
+v4: s/cprh/cpr4/
+    Create new match data for ipq9574 that includes genpd_names
+    Update cloop-vadj & oloop-vadj with minItems
 
-&serdes0 {
-	status = "okay";
+v3: Fix patch authorship for 2 patches
+    Include CPR3 file changes done to Konrad's patches in https://github.com/quic-varada/cpr/commits/konrad/
+    Change url for [2] to skip the cpr3 file changes
 
-	serdes0_pcie1_link: phy@0 {
-		reg = <0>;
-		cdns,num-lanes = <2>;
-		#phy-cells = <0>;
-		cdns,phy-type = <PHY_TYPE_PCIE>;
-		resets = <&serdes_wiz0 1>, <&serdes_wiz0 2>;
-	};
+v2: Fix Signed-off-by order in 2 patches
+    Update constraints in qcom,cpr3.yaml
+    Add rbcpr_clk_src registration
+    Add Reviewed-by to one of the patches
+    Not adding Acked-by as the file has changed
 
-	serdes0_usb_link: phy@3 {
-		reg = <3>;
-		cdns,num-lanes = <1>;
-		#phy-cells = <0>;
-		cdns,phy-type = <PHY_TYPE_USB3>;
-		resets = <&serdes_wiz0 4>;
-	};
-};
+Praveenkumar I (2):
+  pmdomain: qcom: rpmpd: Add IPQ9574 power domains
+  soc: qcom: cpr3: Add IPQ9574 definitions
 
-Thank you for pointing out this issue. Please let me know if you plan to
-post the patch with the above fix or you want me to post the patch for it.
+Varadarajan Narayanan (7):
+  soc: qcom: cpr3: Fix 'acc_desc' usage
+  cpufreq: qcom-nvmem: Add support for IPQ9574
+  dt-bindings: power: rpmpd: Add IPQ9574 power domains
+  dt-bindings: soc: qcom: cpr3: Add bindings for IPQ9574
+  dt-bindings: clock: Add CPR clock defines for IPQ9574
+  clk: qcom: gcc-ipq9574: Add CPR clock definition
+  arm64: dts: qcom: ipq9574: Enable CPR
 
-Regards,
-Siddharth.
+ .../devicetree/bindings/power/qcom,rpmpd.yaml |   1 +
+ .../bindings/soc/qcom/qcom,cpr3.yaml          |  35 +++
+ arch/arm64/boot/dts/qcom/ipq9574.dtsi         | 269 ++++++++++++++++--
+ drivers/clk/qcom/gcc-ipq9574.c                |  39 +++
+ drivers/cpufreq/qcom-cpufreq-nvmem.c          |   7 +-
+ drivers/pmdomain/qcom/cpr3.c                  | 149 +++++++++-
+ drivers/pmdomain/qcom/rpmpd.c                 |  19 ++
+ include/dt-bindings/clock/qcom,ipq9574-gcc.h  |   2 +
+ include/dt-bindings/power/qcom-rpmpd.h        |   3 +
+ 9 files changed, 502 insertions(+), 22 deletions(-)
+
+-- 
+2.34.1
+
 
