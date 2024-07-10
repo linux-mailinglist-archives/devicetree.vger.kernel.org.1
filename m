@@ -1,191 +1,203 @@
-Return-Path: <devicetree+bounces-84783-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84784-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 170E492D9B1
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 22:09:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DC5592D9C2
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 22:13:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AB5592815E1
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 20:09:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DDEC01F231A9
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 20:13:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63638193461;
-	Wed, 10 Jul 2024 20:09:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8280E198840;
+	Wed, 10 Jul 2024 20:12:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="E23rDAYY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bhVt+GOZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11012059.outbound.protection.outlook.com [52.101.66.59])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CA604F1E2
-	for <devicetree@vger.kernel.org>; Wed, 10 Jul 2024 20:09:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.59
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720642144; cv=fail; b=or6x6Qg4a85aGljUcJzkC5C6M2dN2BoC67G9+5Pcpv+q2zNe2X9gKt8tSdsxY6mJvIcqJltEFCLXmqe4coApTWmL9vYq14HCoRPahLI3lzaaYlJIRSNx53BcralURqhj4EFcBKnRZEwANv91pI7Ve/85rwacLm37h+kJblvGBiw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720642144; c=relaxed/simple;
-	bh=q9GDTuM9wa2zLXtBnMJwz7v98wZ3KEvN+EYzYaXkcbM=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=lLCZc/sbxeFW7+Mqo9oc41OiaYbHcPlqXqPq/3K86N3OT3ASoIn9qMbJRZmMGn5P76bTwJMut4V3qqV1lsRRpP6yqPyDrT6aKrdMVJN0nJDpRptdJ9jRCWAcdeBbLuSlz9jQ8PMgmtrfp886aH3AjdoubQSxXn4M6Ko16sZin34=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=E23rDAYY; arc=fail smtp.client-ip=52.101.66.59
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=BZmqWQdFvDW6kaEUmIfSGjBNkF0+dlADU8XsLR8ivDLAL7tx1zod5UiXsNZafc9hne3X3Vzm9DB0QK2fcMoB/zMssUu1aUpIy4cW+YDL0U+mn8aVvjZ+N2rZlRpITKFhHIIFHNXYM6qZX7FJDE1WtSAk9BVfiMuVPoofN6jTeLz0CBdeXN9s37lmnGFjtZW0oCnAE9q3f42myq5aNKXKUvvO0mk9hhSZQnTp0+L19JCnH5GAYb9/NR2+rEYAewFaPCYiYxBxSUmZjYWsdIN6GsYat0xzR3m1Nk+lt9U0UicCnwtIGX6l7cCUsPfsptC276sCfWsreQZEvWPvNc7mSQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QJ72/roGC10exdUGK1uz/sjXKKYnojAtLy/As3Ylsd0=;
- b=IDcVQrWXM4tV53wWx3C6RjYwQfmzEwI7U/xa0dBBrJEWBbAwZkuP7J3Gci7klZJCwjeRjKbFQv3jhWCTg0zI0l7/LBklbsGxXXi08vv2K2LoawTzhf1LPo6XB345iEHKPvMpMiO0jCqMNWLbH7Yoslh9KIdFSdULx+biC+mrVkY90L0qfDLVTwmmvbAoFvd6zKLU1YfC/P1wHayZzzXJ7VMS1MObxNhDJkXRw3I0riO+ucv71h5b8rCcQ2oKHJhsgRRsOMDN7oBGcYeCFj+1WJcNKJ2llpt0VL4A5FUMfz4DGeud6woxe2CnNDQfeC1EYviCuPIbNBtT9t2speBO2w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QJ72/roGC10exdUGK1uz/sjXKKYnojAtLy/As3Ylsd0=;
- b=E23rDAYY0DW2vdkmPLz3dYmEP+vJpPLHdEd+4+nQEMCGf36T8ivJEEqaXHFm2PUhvoXx31fF+jUuflPHlkeza4Agr/anMvP7yOjN7dYkPtQeEQJ7yr6XcktpYfdVCVkvOZBD0LVYZ6hCV9N4rqVVk9HZMtpjLJDVwgiVi0jfQXE=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AS8PR04MB9176.eurprd04.prod.outlook.com (2603:10a6:20b:44b::7)
- by GV1PR04MB10725.eurprd04.prod.outlook.com (2603:10a6:150:20a::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7741.36; Wed, 10 Jul
- 2024 20:08:58 +0000
-Received: from AS8PR04MB9176.eurprd04.prod.outlook.com
- ([fe80::4fa4:48:95fd:4fb0]) by AS8PR04MB9176.eurprd04.prod.outlook.com
- ([fe80::4fa4:48:95fd:4fb0%4]) with mapi id 15.20.7698.025; Wed, 10 Jul 2024
- 20:08:58 +0000
-From: Shenwei Wang <shenwei.wang@nxp.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51DAD19538B;
+	Wed, 10 Jul 2024 20:12:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1720642368; cv=none; b=BSppBAcDUdalnodmT+YkkFrNgT04Fjy1s5f5DIP2NOCjNdBiCcrShYGBcqiO9oHONPgizA+RnjRqnPhTu65iuNwXRmxEZ86yajQnK47Ea9k+cTi8WFcEFigE+q8iU9hMG299Z7e44DSe/lUJq64uRWOV1YnDx8oWgyJ8S8uKkB0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1720642368; c=relaxed/simple;
+	bh=MaieDaoyrxvy7cXpRNH8iNTTBi8f16Pt3VoIMf3+AD8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=krMbi21fWGJEoATKRkmvH3XXc9I7EuAFfnJIl57VWIwbQX0tEd/9S5jjGJg0TZ3OEPkWNl3uB7SRwJq+w04sOsf3ROkrIsWRgz19ahl37G+h0i3AoEFAuc9x4SKe/iZBhtrUftjAPLBf15ynjUrVgpbQ6aLcXuCGWCx9714Gpas=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bhVt+GOZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03960C32781;
+	Wed, 10 Jul 2024 20:12:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720642367;
+	bh=MaieDaoyrxvy7cXpRNH8iNTTBi8f16Pt3VoIMf3+AD8=;
+	h=From:To:Cc:Subject:Date:From;
+	b=bhVt+GOZRbYzhbNw12thhS2FGR4B1SIDcrdOVkDmTOfTr1IQ1VzT9/wrocq2FiPJt
+	 pNPlLCbL6sduys1sXSFRv30k+jPGqAARz+dGP7lHIGgBKl7LO7B1VOYTTPFg4I5uxw
+	 q0cofD9RlUIWgcnHrzGPx9NlFE87OAxV70Dc9F/36YIq6oB9fNYirWoXOoXCKaPmZ0
+	 gVB82T4U4ePEeraKprA+6uUn+hKDN+EQ7qJM3JFEtgJCAdt60YH79QLYzsJSLWRROK
+	 HSo5vTgupnW0J3Fk9fHhZwyFp1ZA5y2AYTiSkg0g0SG2ymQqgm/AHvfxE0kVrrdtfv
+	 Ncy+IhALmzq7Q==
+From: Stephen Boyd <sboyd@kernel.org>
+To: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>
+Cc: linux-kernel@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	patches@lists.linux.dev,
+	kunit-dev@googlegroups.com,
+	linux-kselftest@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-imx@nxp.com,
-	Shenwei Wang <shenwei.wang@nxp.com>
-Subject: [PATCH] arm64: dts: imx93: update default value for snps,clk-csr
-Date: Wed, 10 Jul 2024 15:08:33 -0500
-Message-Id: <20240710200833.153521-1-shenwei.wang@nxp.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SJ0PR03CA0348.namprd03.prod.outlook.com
- (2603:10b6:a03:39c::23) To GV1PR04MB9183.eurprd04.prod.outlook.com
- (2603:10a6:150:27::9)
+	Brendan Higgins <brendan.higgins@linux.dev>,
+	David Gow <davidgow@google.com>,
+	Rae Moar <rmoar@google.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Daniel Latypov <dlatypov@google.com>,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Ripard <maxime@cerno.tech>
+Subject: [PATCH v7 0/8] clk: Add kunit tests for fixed rate and parent data
+Date: Wed, 10 Jul 2024 13:12:36 -0700
+Message-ID: <20240710201246.1802189-1-sboyd@kernel.org>
+X-Mailer: git-send-email 2.45.2.803.g4e1b14247a-goog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS8PR04MB9176:EE_|GV1PR04MB10725:EE_
-X-MS-Office365-Filtering-Correlation-Id: a24236a6-468e-4f0c-a9df-08dca11c21ca
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|52116014|7416014|1800799024|366016|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?nh+fUxsMNuyGYebM/KyrPfyg+jzdBf74dBOEWrH4DBXJns9EHafKUNHqgeqx?=
- =?us-ascii?Q?IprMAF4H/UBAnAWf28Fo5AveKUZCb3ysQVFBBBhits/B5C2hKAC4pKBWmk+r?=
- =?us-ascii?Q?sIKVsZp1hyog50pkL8jDTFIy5h2/oVxQWYEAMKWwwmAnTZ70YKXGXlQvINqV?=
- =?us-ascii?Q?U+TWamyjwQ4yIrjUdyyJLT5EvELDo5J06Wh8lRxBxauLx7dE0tod4DtykHoa?=
- =?us-ascii?Q?5zpSgXrbN2OIWUP9k2h7tWnFTFq9UCTYt5usowVeorjGq0zu1bR966mOSM2y?=
- =?us-ascii?Q?EIpFp3ddbJ3dxtKa4AzLYjcI0Fj6PNPpQC2SUmgmd9k9YPvjSScHA3QjBJAM?=
- =?us-ascii?Q?UDCh98VDNsfQKzddZu+4OuP0LtOEmwLTLxlls6xtGa3qLSe9DXnPNm/0ZPj4?=
- =?us-ascii?Q?GrykeuEhNLJBAoRjI6Mblg60u4ETvZKvbzUmY06BZwmesmi8WGxchnxHkk5F?=
- =?us-ascii?Q?gB8plscAqxlbsLCej1KBCdiihP+BFDgQxqUAD1PL1fRZPwrh4vtQwwczx5MA?=
- =?us-ascii?Q?LyxLMoVYhRuQsYcoEWV2NNUEaY8r8LpIWH818YrznJKvmzNWSaD9SjtupwJX?=
- =?us-ascii?Q?pbV3rLWqlpMmGqK9ApTpLtpr/erK+YfTzLPwObkSLajM8cBKmTLV5ZU6hUzy?=
- =?us-ascii?Q?h/IxKdgNoVid/jpwZjkun7M+nX/QHyBJBE8t8e1dwpW3XKylhTjHRl7bVYfQ?=
- =?us-ascii?Q?yzcj2ZGFdbRLSHbHmgl3Sh1HLNQkVUaU5OKOOE1v3kjfnhCHuWthrn3Sin3+?=
- =?us-ascii?Q?ql8lH0YGs168VhjcZmY9NPKWpNpOg8hFw8t/BSHt7iYw87vYB9QvhpNUtqoa?=
- =?us-ascii?Q?kAd96hzVrunu6oY8tm7ikm7170ZRV9Zlm9fnQ+XgiMncS4+i8loBon65WR0n?=
- =?us-ascii?Q?kMnmKjN/WZmqv1CO8h4icGeUeEYZYDuvwDwznH7sM4NetuSAqj2JgaDzoDYv?=
- =?us-ascii?Q?SgjcrpP1mB5zo2OOb5WsLE5/rbbSFZCy9f3+8aF0UdkADwc2dJ1jB674BEQA?=
- =?us-ascii?Q?jtJTCohEVUI1q7/ZGSPwXX0kq/w9LnxzmDBeueBzU2hp72tbfb8mQWGPvEKQ?=
- =?us-ascii?Q?ensswS9DLZ5kMPxhv9Jug8BO6cxeKtl+iia3beb+wWGXe5LgpmbcUyunda6L?=
- =?us-ascii?Q?lMcZyXsypbTZQ8UE0ufgfFMn5wZA1stjzym2qBXQ5WGYIvWIF8dX1RTYSVFP?=
- =?us-ascii?Q?B75NQC5wnMEqVszkLwrmUAqQsugYk5aKRQNZVeywybn4KXeDTD0ywIymxPoe?=
- =?us-ascii?Q?SrQBeOxS6kRhoiyAGU9d3ZZVzgEZwttS4/AY3HOE2ked1og9xDW07SD6thYn?=
- =?us-ascii?Q?pI99TfCO5AeqqlGU6UhTNviHpeYZjXnuBBAgzpZ+/7qBVHjbrMo65wpMScpd?=
- =?us-ascii?Q?6FhLvwT8k9kPefUnAkw3zZFIu8s7H5j1e/uWPcYTWFRLiT+zvg=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB9176.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(52116014)(7416014)(1800799024)(366016)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?XmMkEpfpbOGec4I2TdNhMpcBrwcHiBGmpyC1u2DoTAnAkI6OH8eFDhsY21rD?=
- =?us-ascii?Q?brz27JMjZbfdsflspWnQCCO5+LVkv1wJXUUPabYtb7Cdwry7CEp6PZuVceds?=
- =?us-ascii?Q?EtwxzmF8KIB9WPaM4IAOSlm1sfmksqgrkxyTiy3JWwRWvRdmVeYT1seKd1WJ?=
- =?us-ascii?Q?Fnb9JVbRmOt3CDRVYNUYmpkKn+eK70WGqXDUoUsGcVbCyxlHg/D/jfVGRibL?=
- =?us-ascii?Q?GpH1gOg0hOr+WEXYM+JLWTZAB2/BkRjKjWVE+CMlUeNHzPSK5fEM1EXI5pV3?=
- =?us-ascii?Q?u3sDQ66MxjBPlYf8BOX0RXecsJVd3IM89pedR+wh66gZ0ZELG+4E5SZ7DFcA?=
- =?us-ascii?Q?X2G7qtS4ERdAq5cAMIIi16QwuDBdfSoo/J9SS+Ze4Ifz/9uwd2YHjD2sZtfq?=
- =?us-ascii?Q?1AeLjf4jtWc29cWAYhEZZ3XzuPl56zTx2zu2mUywyJ9+ztPXBpt9oEqGgusu?=
- =?us-ascii?Q?0+YY9rc7JZchY0Tj9fVrhqdRQa9ZRQxhTgupm6lMNwEyYUuCGCxIpmhjKD2V?=
- =?us-ascii?Q?Y+MGquMKsBlIJb8RiK7p0T5w5UAd9S3/HxKPPAUs6x1bsyOMyeb7xiL1H2fB?=
- =?us-ascii?Q?O0ij5G7Fx4pjabbhfnNOJpVS1FbIfZWILxwI+PW2IaW1/n6jpKiGn2yR+TVU?=
- =?us-ascii?Q?/5BOARzB53Wsuq1eBpLXbgzp3XwekeQJGvwQkHWcDeY0WgdCU1oGrM6bmXVY?=
- =?us-ascii?Q?fjgmIrRLvqdF0jUTj610T/Lq/XTZw8EGbsxcbFtLkCoUiav33XtgPoUE0AvH?=
- =?us-ascii?Q?WoKQSvb7IIuewCZebavsOcIXH2qqOWd8xc5ZAJasPICAW/k2hVeKdsovlmAD?=
- =?us-ascii?Q?1lus4eR5k7IDPlQ/SEZpOi3o/DJVEmiYWW80Zizp8K7lqLFjoAbopziaqD1s?=
- =?us-ascii?Q?l8sFs8/5NXd3zdcEskIv062oAnt1gtIBGUiUvD7gF44dZfERznPdXW4LKe5L?=
- =?us-ascii?Q?kMCryrqitPhzrQoX8e73FjIsKlApz752izC4YNYnjn+/QiD8aZAPG/wW2E+s?=
- =?us-ascii?Q?0p8r1cYfjrs3GDElK4KNR/vJbSHGpb9sd0WHNtMzvgdYoy4nOXqrlKC31Unl?=
- =?us-ascii?Q?eSobx+m2uImLTLYYq67130pJlVpZcwTqvBas//lpkSBzegNnv/64rSOjFnfK?=
- =?us-ascii?Q?bmztFrOHAvEn66atkONC9IiYbnPDN2grL5UFHmwE/jOd9+eP59YEWGm1pGOV?=
- =?us-ascii?Q?xwkzOC3u2/0KdxC2xB1umg8EdVrF9adXHn6toCfdWbknaNXSxvJfjuru/1QE?=
- =?us-ascii?Q?zO8Y1uBKjk88XhYBJ2nkRrptO4C7XWzFUiT8I6wvmo96e6ynsw7yWMLW3dz2?=
- =?us-ascii?Q?15FaGbX4gVKI5STcxTHMBattXZScQzInNXpHjd7SqUOvvPnh7e3WbqYzxBL6?=
- =?us-ascii?Q?4EVTp6w611FIcaOD3VJ0sAnRriwmLPW3SR33vdE0THj5DdH9V3BlPkz5wizl?=
- =?us-ascii?Q?ciP3qXbzHCRvNWaeGpWkoMx0uoKydcaD7845NLOaE4QX2Q5bAKmexSPSG4QK?=
- =?us-ascii?Q?eOMvBuT7NrIXzxEPxvv7eP34MeEuD02tb8xiPc2rA17haR0l6OWEfs+Cmfav?=
- =?us-ascii?Q?tLy1j5VmGo05JBsTDpYtO57GcyhZILqNjHwMbPCl?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a24236a6-468e-4f0c-a9df-08dca11c21ca
-X-MS-Exchange-CrossTenant-AuthSource: GV1PR04MB9183.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jul 2024 20:08:58.8740
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: QUP9SG1HuiXDDHI5D4DvxP/rVz2E1+W8PJAiHFuaCqQRERf+6acLTlOOZP0eGLrcf0zN00mBvscQqe0EmD0oAA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR04MB10725
+Content-Transfer-Encoding: 8bit
 
-For the i.MX93 SoC, the clock rate for the IP of STMMAC EQOS is 315 MHz.
-According to the following mapping table from the i.MX93 reference manual,
-this clock rate corresponds to a CSR value of 6.
+This patch series adds unit tests for the clk fixed rate basic type and
+the clk registration functions that use struct clk_parent_data. To get
+there, we add support for loading device tree overlays onto the live DTB
+along with probing platform drivers to bind to device nodes in the
+overlays. With this series, we're able to exercise some of the code in
+the common clk framework that uses devicetree lookups to find parents
+and the fixed rate clk code that scans device tree directly and creates
+clks. Please review.
 
- 0100: CSR clock = 150-250 MHz; MDC clock = CSR clock/102
- 0101: CSR clock = 250-300 MHz; MDC clock = CSR clock/124
- 0110: CSR clock = 300-500 MHz; MDC clock = CSR clock/204
- 0111: CSR clock = 500-800 MHz; MDC clock = CSR clock/324
+I Cced everyone to all the patches so they get the full context. I'm
+hoping I can take the whole pile through the clk tree as they all build
+upon each other. Or the DT part can be merged through the DT tree to
+reduce the dependencies.
 
-Signed-off-by: Shenwei Wang <shenwei.wang@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx93.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Changes from v6: https://lore.kernel.org/r/20240706045454.215701-1-sboyd@kernel.org
+ * Fix kasan error in platform test by fixing the condition to check for
+   correct free callback
+ * Add module descriptions to new modules
 
-diff --git a/arch/arm64/boot/dts/freescale/imx93.dtsi b/arch/arm64/boot/dts/freescale/imx93.dtsi
-index 4a3f42355cb8..a0993022c102 100644
---- a/arch/arm64/boot/dts/freescale/imx93.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx93.dtsi
-@@ -1105,7 +1105,7 @@ eqos: ethernet@428a0000 {
- 							 <&clk IMX93_CLK_SYS_PLL_PFD0_DIV2>;
- 				assigned-clock-rates = <100000000>, <250000000>;
- 				intf_mode = <&wakeupmix_gpr 0x28>;
--				snps,clk-csr = <0>;
-+				snps,clk-csr = <6>;
- 				nvmem-cells = <&eth_mac2>;
- 				nvmem-cell-names = "mac-address";
- 				status = "disabled";
+Changes from v5: https://lore.kernel.org/r/20240603223811.3815762-1-sboyd@kernel.org
+ * Pick up reviewed-by tags
+ * Drop test vendor prefix bindings as dtschema allows anything now
+ * Use of_node_put_kunit() more to plug some reference leaks
+ * Select DTC config to avoid compile fails because of missing dtc
+ * Don't skip for OF_OVERLAY in overlay tests because they depend on it
+
+Changes from v4: https://lore.kernel.org/r/20240422232404.213174-1-sboyd@kernel.org
+ * Picked up reviewed-by tags
+ * Check for non-NULL device pointers before calling put_device()
+ * Fix CFI issues with kunit actions
+ * Introduce platform_device_prepare_wait_for_probe() helper to wait for
+   a platform device to probe
+ * Move platform code to lib/kunit and rename functions to have kunit
+   prefix
+ * Fix issue with platform wrappers messing up reference counting
+   because they used kunit actions
+ * New patch to populate overlay devices on root node for powerpc
+ * Make fixed-rate binding generic single clk consumer binding
+
+Changes from v3: https://lore.kernel.org/r/20230327222159.3509818-1-sboyd@kernel.org
+ * No longer depend on Frank's series[1] because it was merged upstream[2]
+ * Use kunit_add_action_or_reset() to shorten code
+ * Skip tests properly when CONFIG_OF_OVERLAY isn't set
+
+Changes from v2: https://lore.kernel.org/r/20230315183729.2376178-1-sboyd@kernel.org
+ * Overlays don't depend on __symbols__ node
+ * Depend on Frank's always create root node if CONFIG_OF series[1]
+ * Added kernel-doc to KUnit API doc
+ * Fixed some kernel-doc on functions
+ * More test cases for fixed rate clk
+
+Changes from v1: https://lore.kernel.org/r/20230302013822.1808711-1-sboyd@kernel.org
+ * Don't depend on UML, use unittest data approach to attach nodes
+ * Introduce overlay loading API for KUnit
+ * Move platform_device KUnit code to drivers/base/test
+ * Use #define macros for constants shared between unit tests and
+   overlays
+ * Settle on "test" as a vendor prefix
+ * Make KUnit wrappers have "_kunit" postfix
+
+[1] https://lore.kernel.org/r/20230317053415.2254616-1-frowand.list@gmail.com
+[2] https://lore.kernel.org/r/20240308195737.GA1174908-robh@kernel.org
+
+Stephen Boyd (8):
+  of/platform: Allow overlays to create platform devices from the root
+    node
+  of: Add test managed wrappers for of_overlay_apply()/of_node_put()
+  dt-bindings: vendor-prefixes: Add "test" vendor for KUnit and friends
+  of: Add a KUnit test for overlays and test managed APIs
+  platform: Add test managed platform_device/driver APIs
+  clk: Add test managed clk provider/consumer APIs
+  clk: Add KUnit tests for clk fixed rate basic type
+  clk: Add KUnit tests for clks registered with struct clk_parent_data
+
+ Documentation/dev-tools/kunit/api/clk.rst     |  10 +
+ Documentation/dev-tools/kunit/api/index.rst   |  21 +
+ Documentation/dev-tools/kunit/api/of.rst      |  13 +
+ .../dev-tools/kunit/api/platformdevice.rst    |  10 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ drivers/clk/.kunitconfig                      |   2 +
+ drivers/clk/Kconfig                           |  11 +
+ drivers/clk/Makefile                          |   9 +-
+ drivers/clk/clk-fixed-rate_test.c             | 380 +++++++++++++++
+ drivers/clk/clk-fixed-rate_test.h             |   8 +
+ drivers/clk/clk_kunit_helpers.c               | 204 ++++++++
+ drivers/clk/clk_parent_data_test.h            |  10 +
+ drivers/clk/clk_test.c                        | 453 +++++++++++++++++-
+ drivers/clk/kunit_clk_fixed_rate_test.dtso    |  19 +
+ drivers/clk/kunit_clk_parent_data_test.dtso   |  28 ++
+ drivers/of/.kunitconfig                       |   1 +
+ drivers/of/Kconfig                            |  10 +
+ drivers/of/Makefile                           |   2 +
+ drivers/of/kunit_overlay_test.dtso            |   9 +
+ drivers/of/of_kunit_helpers.c                 |  74 +++
+ drivers/of/overlay_test.c                     | 115 +++++
+ drivers/of/platform.c                         |   9 +-
+ include/kunit/clk.h                           |  28 ++
+ include/kunit/of.h                            | 115 +++++
+ include/kunit/platform_device.h               |  20 +
+ lib/kunit/Makefile                            |   4 +-
+ lib/kunit/platform-test.c                     | 224 +++++++++
+ lib/kunit/platform.c                          | 302 ++++++++++++
+ 28 files changed, 2087 insertions(+), 6 deletions(-)
+ create mode 100644 Documentation/dev-tools/kunit/api/clk.rst
+ create mode 100644 Documentation/dev-tools/kunit/api/of.rst
+ create mode 100644 Documentation/dev-tools/kunit/api/platformdevice.rst
+ create mode 100644 drivers/clk/clk-fixed-rate_test.c
+ create mode 100644 drivers/clk/clk-fixed-rate_test.h
+ create mode 100644 drivers/clk/clk_kunit_helpers.c
+ create mode 100644 drivers/clk/clk_parent_data_test.h
+ create mode 100644 drivers/clk/kunit_clk_fixed_rate_test.dtso
+ create mode 100644 drivers/clk/kunit_clk_parent_data_test.dtso
+ create mode 100644 drivers/of/kunit_overlay_test.dtso
+ create mode 100644 drivers/of/of_kunit_helpers.c
+ create mode 100644 drivers/of/overlay_test.c
+ create mode 100644 include/kunit/clk.h
+ create mode 100644 include/kunit/of.h
+ create mode 100644 include/kunit/platform_device.h
+ create mode 100644 lib/kunit/platform-test.c
+ create mode 100644 lib/kunit/platform.c
+
+
+base-commit: 1613e604df0cd359cf2a7fbd9be7a0bcfacfabd0
 -- 
-2.34.1
+https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git/
+https://git.kernel.org/pub/scm/linux/kernel/git/sboyd/spmi.git
 
 
