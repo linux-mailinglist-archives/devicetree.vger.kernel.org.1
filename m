@@ -1,293 +1,237 @@
-Return-Path: <devicetree+bounces-84668-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84669-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90B7992D127
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 13:58:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B87DE92D139
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 14:03:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 11C4B1F21289
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 11:58:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6ECEA287AFF
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 12:03:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62D59190499;
-	Wed, 10 Jul 2024 11:58:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2795618FDBE;
+	Wed, 10 Jul 2024 12:03:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=pironexGmbH.onmicrosoft.com header.i=@pironexGmbH.onmicrosoft.com header.b="RUhu2P1V"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Svd8TDsE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR02-VI1-obe.outbound.protection.outlook.com (mail-vi1eur02on2135.outbound.protection.outlook.com [40.107.241.135])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9643C190485
-	for <devicetree@vger.kernel.org>; Wed, 10 Jul 2024 11:58:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.241.135
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720612703; cv=fail; b=axsBeqclluiVOhulbi+l2fuVKTqn64mtYwGoRTPdvIV4E+TG/I1fnuDWDXwXf5FRt48fqZmBxBgaWO5K/2G/f+5mKo80L0YmBBd2UdP6rzHFyTCAIq9K8G3/qDI+SH2vDDZ+eFyS5NyggKcWdsnd1SuFn+P1xz3wki+GcOv0vvY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720612703; c=relaxed/simple;
-	bh=XMswm2gl9haU9top+k/kYGaPylQCDwsswCh5W7U0u9g=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=gKhSTC8hCyl8PrrNmibIx2wLNDJo9rxKWi6AopPx9iDKWXhb8p44AL00O+ukrxCw0Oa4CNDtjZreIHQYr/kKzaltyFrjrljTiZsuG3pkZaSL8aHPlE/p4idCpAGgeKCMDhUh5yy8KqVLoYd7Pw4/nz0YeKZ5NFm+EnDoMrRN8eU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pironex.com; spf=pass smtp.mailfrom=pironex.com; dkim=pass (1024-bit key) header.d=pironexGmbH.onmicrosoft.com header.i=@pironexGmbH.onmicrosoft.com header.b=RUhu2P1V; arc=fail smtp.client-ip=40.107.241.135
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pironex.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pironex.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZmQFPpDocp+/+SUAbJHpB96dswqjn82b+OU4qE80NBvti8JrbR/nX3WgivVnTqD9EXnRFW8nozF2jR36Bngsx7hOeCu+XKohrbErpH/GA5mloiDsCxflzJPsqfHFFLjf/FNGm0r75/KiXrpSXLX6BCQp83ZAXhSOSElcWW8OL/CHX7z4Myoe1DiPbbp6DvRCRBQ6ktLAmbtbk1su177i30tkbgSGA5O76DufJZNDJv8AsdXaUs5Utu+9QkVAPJxmWXlnDSS/39Ck1TLRUSq1hjczTdb65zUWJn2DVU2ll1/9Myl3SHSZe6IIt1+vEewBh5W/pD7B7a/8zUqkrW9tMg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=eT8lN9CM7Kk4LTwc6XaoD1jifUxPMarTBxEI/UX8ehs=;
- b=kxYTgHortnX3Pkol1+8RYw1FEwVYGOecgvEY2FrWCXZHCDBEw1tasukdZAbzm6V8NhzKyl4OxzL1gqAB57pL9AgeQISKhJX3ynJFBPgIJ87bfZ0bTpDJAQYVQGsualAs/gYgkH9hXfsd6BJHWb0b+DTTiZ1Li01kjew1cr5rc3M2yEH6LgHZ4hRabtgB/qAWtfQS8QjW4ckiUSSHZ7d7IwcDADrgZNuIIdCtAPkXkxuBzS3pM3/eYPT/qUQRM7u+4D7nvFZF61UBTGjh6WD6fgzha8IGUsoIh3wpVX/z4xxqSAN/dDOLMoyCEEPGeWlluOu9naF/08m8OtaeqQaODw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=pironex.com; dmarc=pass action=none header.from=pironex.com;
- dkim=pass header.d=pironex.com; arc=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4680F18560A
+	for <devicetree@vger.kernel.org>; Wed, 10 Jul 2024 12:02:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1720612980; cv=none; b=BZcz4uVtPht1DZcpQ5WgdzOjoTI1rT5lw6jgdRaEr0L2taPE+UxKKQHDc3jLTXv6ZKF8e/um/YI5bG9d+XXsV3nRHsty7McaQDkRH7ODG/7oOG8hFmltbNwzgzac43s8sGZ6XvXgmQziWXN2SqOUg0kyNCsQRHcs1y+CvbwDvS4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1720612980; c=relaxed/simple;
+	bh=WblItfEWCmH+Cp+O0L2GwRr2jMnQBjgUip7cm8z6MbQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=u+7gZjAGpx3xbCciS12R4OQrVJaZ+hllJzWM7l9Z1DZPoSfonKKRDkBh1oDPTN1HHi9rMn7pA+wrtp2Kbwl26yh0L0oSq7IZZqDi0fO8wCFajpFJNBDbQreqgMT5LP1vnba2QBlwijoXMZo7vFRa4XvFuoW2+E2lyPAoyJjtkdU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Svd8TDsE; arc=none smtp.client-ip=209.85.208.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2ec1ac1aed2so66629031fa.3
+        for <devicetree@vger.kernel.org>; Wed, 10 Jul 2024 05:02:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=pironexGmbH.onmicrosoft.com; s=selector2-pironexGmbH-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=eT8lN9CM7Kk4LTwc6XaoD1jifUxPMarTBxEI/UX8ehs=;
- b=RUhu2P1VqWpCNx2Zx1f4xFfgbaR0NiZpNUskqW+ZWQWy4rPfE3rTwI9VhTzgYPnJ5pd9e79ZWjLD2UfRVSoeKPB3hKi/CuZeqA+wbymQpt+xGTrz6aLsoxqEFMRtiPY1UH1u+sY4TyWQsfONsdgnfb2bgwewdm1Ng8RqZNGUOuY=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=pironex.com;
-Received: from AM0PR10MB3601.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:158::19)
- by PAXPR10MB5782.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:102:248::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7762.20; Wed, 10 Jul
- 2024 11:58:16 +0000
-Received: from AM0PR10MB3601.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::4cb2:d40b:7a7d:c0dd]) by AM0PR10MB3601.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::4cb2:d40b:7a7d:c0dd%3]) with mapi id 15.20.7741.033; Wed, 10 Jul 2024
- 11:58:16 +0000
-Message-ID: <135a99f7-1fa2-417f-ba35-77629b9a84e9@pironex.com>
-Date: Wed, 10 Jul 2024 13:58:14 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: rockchip: Add uart dma names to the SoC dtsi
- for RK356x
-To: Diederik de Haas <didi.debian@cknow.org>,
- linux-rockchip@lists.infradead.org
-Cc: robh@kernel.org, krzk+dt@kernel.org, devicetree@vger.kernel.org
-References: <20240710093356.3344056-1-p.puschmann@pironex.com>
- <5414331.Y6POrrGVKo@bagend>
- <72e38433-1ed4-460c-9f69-db26b673c441@pironex.com>
- <18705891.xBnrSCm06O@bagend>
-Content-Language: de-DE, en-US
-From: Philipp Puschmann <p.puschmann@pironex.com>
-In-Reply-To: <18705891.xBnrSCm06O@bagend>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: AM9P193CA0030.EURP193.PROD.OUTLOOK.COM
- (2603:10a6:20b:21e::35) To AM0PR10MB3601.EURPRD10.PROD.OUTLOOK.COM
- (2603:10a6:20b:158::19)
+        d=linaro.org; s=google; t=1720612976; x=1721217776; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=fUjKFWFxbGBOdWwWQ3smtcT5i5d9Ks6ekYS3JTphrnM=;
+        b=Svd8TDsEQ1yGrAvN7tgJwIS88EoUVpU6OJ+O0vS6aD5WUktAYavqiiqI0HWWVV1ppk
+         C2I4b0vcz0g0OgyCCdD0RIiB9v5IkPxpOR6oy/xDjSfYK/oXe4yUR0VQiWjalA/YYPZX
+         LBweK4MIXEfHoVe9tKevQD/v8i4ZRUi49KXLdlC6lBkUHXQ/ug1BdMlEhnThZjZvLCBC
+         3gu/OD7p7s5oHvxlSK0PHROIhoNfZBZsSRaD+Yj6rpQVqzRy/ne6c5LhuAbCnY6/WIxO
+         4EeMrw/AjhH5DBL5NaPp9bmEcLiEPbkNL7cuBS9lK21tlybmLFCwzsjLHbMUigApUNCX
+         hPFg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720612976; x=1721217776;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=fUjKFWFxbGBOdWwWQ3smtcT5i5d9Ks6ekYS3JTphrnM=;
+        b=SuwA/PRbx09aokKk7pz62L958l5I26OlroGtsYqxjS4+rAzc2K++GsSG2Tnh9YkHWw
+         /Gw4UlmMfAuoK/OfFnRfcRD+vSVK9+FSZG4MAopqSkHqvzEDwlrZYSFzTOf0DkEQRBYT
+         y0AKopU54Tkqvw+e7YizhmEEs5xDTSQB4+U4zGhq4aqhPbVMawCmB/aHg/rkE8Y21IAy
+         9h5//3rAK1qS4YhlxiS0xHzU3DuXfHTdBtLRJwhP2P6Cpx+VwvZFqZYzmKDGB6nOAaJ0
+         31n44D2QzY0ycmdo4j8D0vMFoxiMspD+TlOl42dgDjTFyiEvVKqK/n0s2nGWaR5L4iSV
+         PwMA==
+X-Forwarded-Encrypted: i=1; AJvYcCW/dF9GFmlgRmyFRzaaIRuthokWi4r02s0aWsw1X+mmyJaan0YOvHfzU4r5E9jPCw5taQjkJCRZnA++vDhrmNS/ed669VM2TPaKEw==
+X-Gm-Message-State: AOJu0YxInW2DMc6s+JVAyodr/39HHcZ2tr+rE13BO2dnsztTh0OVNtko
+	Q0puRp81ehfMnuVceASHh0etcYTxy6saixMpzh4HGT1hk6j/CCw4AZqCmVxGfeQ=
+X-Google-Smtp-Source: AGHT+IHwMozocS3Y6Q4EbJZwzdte7bV4LDmxqmg7mqTKJnNgYhapQxxEyL1pU+iMJpmNVwoo+n+VbQ==
+X-Received: by 2002:a05:651c:d0:b0:2ec:18e5:e68f with SMTP id 38308e7fff4ca-2eeb318a399mr34441171fa.33.1720612976393;
+        Wed, 10 Jul 2024 05:02:56 -0700 (PDT)
+Received: from [192.168.0.3] ([176.61.106.227])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-367cdfab080sm5141787f8f.104.2024.07.10.05.02.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 10 Jul 2024 05:02:56 -0700 (PDT)
+Message-ID: <8cc2b819-8342-444e-8a31-582949cb9b3d@linaro.org>
+Date: Wed, 10 Jul 2024 13:02:55 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM0PR10MB3601:EE_|PAXPR10MB5782:EE_
-X-MS-Office365-Filtering-Correlation-Id: a5fad655-e756-43d6-5569-08dca0d79511
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?bDNWSzc3MzhQdVJWaElLRmhUQ1ZHSjVaaVA5VlRLbUFWNDhWRWwvbG9MQ3NL?=
- =?utf-8?B?dW9kQjJSc0ppN3plaFVXTjN5KzE2ODZGYmYrbFRQTWQ2Y1BCQlVvTDU4bGd5?=
- =?utf-8?B?eTZoOHdWQnlTRzdNekRhRHVwalZKeDkxQmt1cnc0OFMrYlgrdGthcVpQVUQx?=
- =?utf-8?B?Q1J5b2RqUnVnamlBbG9UM0FpdmIyNkM5K0Z6d2xzNTlLcTI4MzBJMGQybVJZ?=
- =?utf-8?B?RDFtQjh5NWZ3SDdSYVF6Vjl5dUdiYjVNMnVMMDdvSkRGM1lYZ3J5aGJYckh0?=
- =?utf-8?B?cDR1ZjdtNW16ajEwR1pMTzA4cU1XTWZ1b0JsOSswbWt6bWhPS1pJbWtWalhW?=
- =?utf-8?B?OVBocmNVWis3cjN3R1pHcEUwUkRKUGM5UlJudFB3blN0R3JaeHpSR01OTjVi?=
- =?utf-8?B?RHlTV1psNXg1UFg0dmVrb0hUTkhhdHlSbUtwMXhTSlRRN3Q1VFJRcUtwazNy?=
- =?utf-8?B?VEt2QkRXOCtyaFFtTERCT0MyR0xialdDNStON0Y1VHZ1UGYxazBvZENIVzJa?=
- =?utf-8?B?eVZURThZTXQ3eldZNldwWGk3VG1RL3M0ZTFRTXY1RkpUY25pZXB0M3FST0NF?=
- =?utf-8?B?bSt0Mm1wVWpZK0plTlYvYkJKUEpDbWhzS2ZvY3lLVnpvMlRsYVpZUjlUN3Fj?=
- =?utf-8?B?eTFLQmFhdlhuQWhuZnl2KytRS3JKdGFzdktCUCtBTkNuV2k2UFQ3bm9rU2xH?=
- =?utf-8?B?aWhyOFA1Nzk0K1BSZkFBWlBVWGUxckkvZmlNeUVrcjMvYnQ2NTdPL3hrYkNo?=
- =?utf-8?B?ZlZMdDYwTzUyQ082SHJVQXloSG5UNkkwaTdvYVBNa1BLdG9XcnNMdU5sR2JQ?=
- =?utf-8?B?TWdyUFNGZ1VPYzRmaVVReEF3aEZyWHRjMGtDUmlyTkJvTmFEV0NTNjlQdlVa?=
- =?utf-8?B?dzVFTUg3RlA2TERUaGZJRXRQWnBOQ3pVR01HMFBSa1FhcEsvbWZXb2g0WXBr?=
- =?utf-8?B?SVlDb2dPaVJZMVZXVUhmdlArMkhaVVBjZExXQnNaZnBibmNQcnF0cU9mellX?=
- =?utf-8?B?bm5JeDJPd252Wmh2NTR2VGhVSGIvbVlSYjQzY3pDd3cyV3Uza3RBS1k3TFhL?=
- =?utf-8?B?SFU1QjllVnh0R2p0RmF5cVFxV0ZVQlpYNjkyS1VnTno0T1NTaTU3dVJ4eFIx?=
- =?utf-8?B?ZlpQTm5PejNQSFRNdXFxa3lOaWFEVHNHT25VeDVnNHRZQ3ZyZEh2RDY0aDAx?=
- =?utf-8?B?bVRjdUJVcXNHSmxFcjNFZHpMaXBnazlwejZmTjBpUURKTDhRcXd1Zjd1OGNP?=
- =?utf-8?B?WTJXdWJ3Z2c0WmRJR3lQOXBpZUxQUHJXZW1NeWNaaXRZSlY0VDJyeFdHODg3?=
- =?utf-8?B?S2cyWVBTOTRxdHN4Nkd2cW1TTk1yeHBsVmFzb1hBeUNKYmdhMlNVQjljcmw3?=
- =?utf-8?B?ZS9WVFFxVGZsUnRxVWNYUXVYMmd6TWloZVU0a2VjcFNRb3hRMFo1NzlBcGVT?=
- =?utf-8?B?ZTF2WjRQR2VWU3dCNEFWMFlITmtYNmFDRE1jSXZZZlVIeWFrclI1aTUwU2lo?=
- =?utf-8?B?bHpadjM5SExmd2dvOWJmRnZlVFpxNGpROXgwUE4xUGV3Q2ROTU9HRUhPNkRa?=
- =?utf-8?B?dDZ4ODRmSXhjakhPbjFSOUw3ZGdodklONHFqRGhSMmRQUWNyc21Vd1NjdVZB?=
- =?utf-8?B?eFJCRWZYSGsvYUh5eVJ5SFBFWlFFT2E0RTNFVHpiQjV4d0ZTRTJiOVRTRnZv?=
- =?utf-8?B?dm0xNEJQTnV2SzhKZTdyVTV0bGxWSXZET1hkS1hBSTA1UGk5MFlEY2pkb2Js?=
- =?utf-8?Q?qzslg6hVQcXV+lXLII=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR10MB3601.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(366016);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?K1cvbk51Tm1uaStwY1lKSzI3c25qblBRaXRvSGp1MGRORXovRmZZVHdXT0RE?=
- =?utf-8?B?RU05TlVRZUZpaTByR09MRU9JTG5xL3ZwMTZzeWhsNFZUdG4rQ0FxQW1sNWtx?=
- =?utf-8?B?elZxRVREbmN5aFJVblVZNWtvM05GdFVKQitVRncwWHVRN043dlJGc3dVUkgv?=
- =?utf-8?B?aUdpZXBQMytOdS9KdVNPcXZFVGlFeTRGUDJPWjlaM2RBSkxTakhQK1g0WUM4?=
- =?utf-8?B?Qko1YjBRTGNjblFDVXdqVWwvenU5R3RvZ2dnVU1SSlFFbnRsc3FYT0lRUkg2?=
- =?utf-8?B?dE94UHNHYkN1Zjl1Qm5YTmhWblI0L0J4KzBSdjJNZm5ENzRVTE03TFFYSC96?=
- =?utf-8?B?amNwaGtDeElVR0xZZ0JjZ3NFOVhEU21HODVQWVBUSGlwTkFPTk1VM1QyY1NH?=
- =?utf-8?B?UmJuZTdGeFM5a082WTJZYXh6ZmtlM3pkTWlPNjJaaHpRNEhJamhHVnl6Z1pF?=
- =?utf-8?B?OEFhdDlhVXJTZEJSSVdoMGxoUmJ3NlRvcWVVendpMUdiSHR0V0tNd1lUQzFU?=
- =?utf-8?B?VThMa3hkUDQ2WW5IRHZkNGVTb29xbzc3QjJLWTdmTmVhdExTTnZsRS92ZExY?=
- =?utf-8?B?ZnJnZzJnZCtYc3NMR1g5YWNURnRodW9pT0E1TkhlUWg2USttS1ZucXBSWVlW?=
- =?utf-8?B?b0hMdkJjeTlFZkNFNTQ2TVlWSXNiUnBSeEhNZXpDbU0yaGpTY25JUWNEelJJ?=
- =?utf-8?B?MUZsTTNiQUZnNXRuSzJHVmhZb3B0NVQ2YjdTSThQMnVEZjRlR3QvTFk5Sklu?=
- =?utf-8?B?YTFoOVNjamRNMkVrazlDeWNRVFU4bWgyaEVqa3Y4TEJ5cHNqb1kzNHVjUGMx?=
- =?utf-8?B?WkwzT1orU0FnQ3hrT1dkdk5OK1h3aE0vOGtFWjRYSGp3ZEM2cFZPekhsRWp2?=
- =?utf-8?B?RGdEN29ieDNWSXppdnc3cnlNSHNteWMvL2ZNNUVQVlVueUFhck9wcVVUSytT?=
- =?utf-8?B?eHlFckx0d2xndktYRHFKZjNQOGxuZzE3R1BNVkUyV1AxV052NEliMCtSOGhi?=
- =?utf-8?B?Rm9FMmxsWmJGcVlBNXJoMFg2RkNGaWZCdE1GL0NnKzhvek90eVNTbUNncEt1?=
- =?utf-8?B?d0FNT2J2am1naUJ4TWEvMUpnQjlXQTZaR0dqd0l4cnBGcC9RbkFyV0dCZnZa?=
- =?utf-8?B?TjlERjQ3bjczZ3FEeUgySW1oMUVSdWxvRTJDRmV6cHBlcXNqY2JUdlJETksy?=
- =?utf-8?B?KzM3RXdaS3N6UEs5cjMyUkE3cEtuMlFuMzJTN0c2cFI5TnV0bXV3MG1Bcy91?=
- =?utf-8?B?cHN1UjhSYjlDZ0cxdHJzUnhzK2lrYVVMdVQwZm9nakJJUmdER3o3S05DVENL?=
- =?utf-8?B?UkovRC9IS2NJWk1jUXdLR3lhcTF1MG9NakxMdVBycmk2R01oNlJUdDFwYUhj?=
- =?utf-8?B?aDZ2RDFvaGI5dGdHYXRENlg1MHNqVHNMRzhld1pPeHpMT0gzWGxSWmoxQVVM?=
- =?utf-8?B?eTEwZ1BjMDhJNFBpLzc0c1ArWmZNM0pOcnhmS1hsUjNiam5HZlprRmhpWDJm?=
- =?utf-8?B?Y2V4Rmd2eHZIMGIyNGNNT0RKS0d4b2hvcXFXTnp4ZkcxMmVVTmZhZDFXMUg5?=
- =?utf-8?B?V2oyUGc2VS8rNVNFTEZCbTYwSUFOb0wreFVZMU15ZkdOSmpMeXM5SmlkeGk1?=
- =?utf-8?B?WjZpYVU5VUNrVUdFd0R3eTVvMUVIdkxZSzM2NFllV0tRcFZuQzN4ZlBmT0R1?=
- =?utf-8?B?YnFhS29MeDJXNnV5R3VUbGF2Z3ZSakUvUmsvb2pnVm5qYVRFa01qbndGWlUx?=
- =?utf-8?B?ZXVFU3lTcXJoSnZORmNVNjZaU3ZwditsSVl6VGs4UFVlT204N3d0WjBWYzdN?=
- =?utf-8?B?TTVldEpuSkNTRHBwb1ZvMDlIY1BmVFU4THJHcXh5MndGa09IR1h5SEdlR0NB?=
- =?utf-8?B?UkhzWDlNcmExVU5FY1lEKzlHVWhiUFU4TE8wSTA2Um4zcFBBY0lWWlZORHNp?=
- =?utf-8?B?c3Z2ZmR5T1Z5K3RnVFhnSUNxVkZYZG5qVkdNQzZUQ01xaFNOZDFyWWhsNElQ?=
- =?utf-8?B?UFdUYlpURC9OMldnVUlkU2NlOXRUWWkremFITWdCSEgyTHFhQUtmdzlWNVFx?=
- =?utf-8?B?dmtVVUh4RG9IWnBzTFBTa25iYVBXUEtXbmo3QTNkTVVyMmZHelkrU05MNU9s?=
- =?utf-8?B?UC8wVTVpOHp4NGp0TFBWVUMrWDI5Z2NyQkVnaWxKTDZsSGFXcDJFTVBHcWdk?=
- =?utf-8?Q?DdlK0canmK1JSohPsJ2nwY+usJh6ByNvQbE1K+lxp5UT?=
-X-OriginatorOrg: pironex.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a5fad655-e756-43d6-5569-08dca0d79511
-X-MS-Exchange-CrossTenant-AuthSource: AM0PR10MB3601.EURPRD10.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jul 2024 11:58:15.9996
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 00aa8e52-eebe-489a-8263-3195e0a468ca
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: nqC82EkSRA2xkL6n57aNhpDA3K3KTF2Tb611+RMeS0Z2TmUHyien7Db6hGes2Jq28FhoovS80vz1cRF3aS7TJQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR10MB5782
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 12/13] media: qcom: camss: Add sm8550 support
+To: Depeng Shao <quic_depengs@quicinc.com>, rfoss@kernel.org,
+ todor.too@gmail.com, mchehab@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: quic_eberman@quicinc.com, linux-media@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, kernel@quicinc.com
+References: <20240709160656.31146-1-quic_depengs@quicinc.com>
+ <20240709160656.31146-13-quic_depengs@quicinc.com>
+Content-Language: en-US
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20240709160656.31146-13-quic_depengs@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
+On 09/07/2024 17:06, Depeng Shao wrote:
+> Add in functional logic throughout the code to support the SM8550.
+> 
+> Signed-off-by: Depeng Shao <quic_depengs@quicinc.com>
+> ---
+>   .../media/platform/qcom/camss/camss-csid.c    | 21 +++++++++++++++++++
+>   .../qcom/camss/camss-csiphy-3ph-1-0.c         |  6 ++++++
+>   drivers/media/platform/qcom/camss/camss-vfe.c |  6 ++++++
+>   drivers/media/platform/qcom/camss/camss.h     |  1 +
+>   4 files changed, 34 insertions(+)
+> 
+> diff --git a/drivers/media/platform/qcom/camss/camss-csid.c b/drivers/media/platform/qcom/camss/camss-csid.c
+> index 858db5d4ca75..90fba25db4c6 100644
+> --- a/drivers/media/platform/qcom/camss/camss-csid.c
+> +++ b/drivers/media/platform/qcom/camss/camss-csid.c
+> @@ -1013,6 +1013,7 @@ int msm_csid_subdev_init(struct camss *camss, struct csid_device *csid,
+>   {
+>   	struct device *dev = camss->dev;
+>   	struct platform_device *pdev = to_platform_device(dev);
+> +	struct resource *top_res;
+>   	int i, j;
+>   	int ret;
+>   
+> @@ -1040,6 +1041,26 @@ int msm_csid_subdev_init(struct camss *camss, struct csid_device *csid,
+>   		else
+>   			csid->base = csid->res->parent_dev_ops->get_base_address(camss, id)
+>   				 + VFE_480_CSID_OFFSET;
+> +	} else if (camss->res->version == CAMSS_8550) {
+> +		/* for titan 780, CSID lite registers are inside the VFE lite region,
+> +		 * between the VFE "top" and "bus" registers. this requires
+> +		 * VFE to be initialized before CSID
+> +		 */
+> +		if (csid_is_lite(csid))
+> +			csid->base =  csid->res->parent_dev_ops->get_base_address(camss, id);
+> +		else {
+> +			csid->base = devm_platform_ioremap_resource_byname(pdev, res->reg[0]);
+> +			/* CSID "top" is a new function in Titan780.
+> +			 * CSID can connect to VFE & SFE(Sensor Front End).
+> +			 * This connection is ontrolled by CSID "top" registers.
+> +			 * CSID "top" registers at only one region.
+> +			 */
+> +			top_res = platform_get_resource_byname(pdev, IORESOURCE_MEM, res->reg[1]);
+> +			csid->top_base = ioremap(top_res->start, resource_size(top_res));
+> +		}
 
+If we just specify the csid lite regs in the dts, we don't need custom 
+code to get a pointer to them.
 
-Am 10.07.24 um 12:53 schrieb Diederik de Haas:
-> Hi Philipp,
-> 
-> On Wednesday, 10 July 2024 12:20:20 CEST Philipp Puschmann wrote:
->> Am 10.07.24 um 12:02 schrieb Diederik de Haas:
->>> On Wednesday, 10 July 2024 11:33:56 CEST Philipp Puschmann wrote:
->>>> DMA names are required by of_dma_request_slave_channel function that is
->>>> called during uart probe. So to enable DMA for uarts add the names as in
->>>> the RK3568 TRM.
->>>
->>> Setting it on channels without flow control apparently causes issues. See
->>>
->>> https://lore.kernel.org/linux-rockchip/20240628120130.24076-1-didi.debian@
->>> cknow.org/
->> Ah is see. The only problem that i have is to enable/disable dmas by having
->> or not having dma-names properties, where the latter case is followed by
->> kernel error messages. That is very counterintuitive.
-> 
-> I forgot to link to my follow up patch where I added the property to
-> some other Pine64 devices and added a cover letter inviting others to
-> add it to other boards too if that seemed appropriate:
-> https://lore.kernel.org/linux-rockchip/20240705163004.29678-2-didi.debian@cknow.org/
-> 
-> Maybe this applies to 'your' board too?
-> 
->> Maybe a explicit boolean like dma-broken would be better. That could be
->> set on dtsi level as default and deleted on board dts if wanted.
-> 
-> That seems to invert the logic, which I believe was considered
-> the 'wrong' solution:
-> 
-> From https://lore.kernel.org/linux-rockchip/18284546.sWSEgdgrri@diego/
->>>> Enabling dma globally can cause some interesting issues, 
->>>> have you tested this fully?
-> 
-> Maybe there is a better solution; possibly others will respond too.
-> 
+Similarly the csid->top_base = () should be generic not SoC specific, 
+i.e. we should be able to add in CSID 980 without adding any custom code 
+to camss-csid.c
 
-The reason for the suggested inverted logic was that a minimal fix would be to
-provide dma-names on SoC-level dtsi but to explicitly disable dma usage on
-SoC-level too, so that there wouldn't be a need to patch all the boards and
-keep the current SoC-level behaviour (that uart dma is disabled by default).
+> +
+> +		if (IS_ERR(csid->base))
+> +			return PTR_ERR(csid->base);
+>   	} else {
+>   		csid->base = devm_platform_ioremap_resource_byname(pdev, res->reg[0]);
+>   		if (IS_ERR(csid->base))
+> diff --git a/drivers/media/platform/qcom/camss/camss-csiphy-3ph-1-0.c b/drivers/media/platform/qcom/camss/camss-csiphy-3ph-1-0.c
+> index b6d5a27b94a6..53c46c2e5896 100644
+> --- a/drivers/media/platform/qcom/camss/camss-csiphy-3ph-1-0.c
+> +++ b/drivers/media/platform/qcom/camss/camss-csiphy-3ph-1-0.c
+> @@ -631,6 +631,7 @@ static bool csiphy_is_gen2(u32 version)
+>   	case CAMSS_845:
+>   	case CAMSS_8250:
+>   	case CAMSS_8280XP:
+> +	case CAMSS_8550:
+>   		ret = true;
+>   		break;
+>   	}
+> @@ -718,6 +719,11 @@ static int csiphy_init(struct csiphy_device *csiphy)
+>   		regs->lane_regs = &lane_regs_sc8280xp[0];
+>   		regs->lane_array_size = ARRAY_SIZE(lane_regs_sc8280xp);
+>   		break;
+> +	case CAMSS_8550:
+> +		regs->lane_regs = &lane_regs_sm8550[0];
+> +		regs->lane_array_size = ARRAY_SIZE(lane_regs_sm8550);
+> +		regs->offset = 0x1000;
+> +		break;
+>   	default:
+>   		WARN(1, "unknown csiphy version\n");
+>   		return -ENODEV;
+> diff --git a/drivers/media/platform/qcom/camss/camss-vfe.c b/drivers/media/platform/qcom/camss/camss-vfe.c
+> index 83c5a36d071f..479474c1cd95 100644
+> --- a/drivers/media/platform/qcom/camss/camss-vfe.c
+> +++ b/drivers/media/platform/qcom/camss/camss-vfe.c
+> @@ -338,6 +338,7 @@ static u32 vfe_src_pad_code(struct vfe_line *line, u32 sink_code,
+>   	case CAMSS_845:
+>   	case CAMSS_8250:
+>   	case CAMSS_8280XP:
+> +	case CAMSS_8550:
+>   		switch (sink_code) {
+>   		case MEDIA_BUS_FMT_YUYV8_1X16:
+>   		{
+> @@ -408,6 +409,10 @@ int vfe_reset(struct vfe_device *vfe)
+>   
+>   	reinit_completion(&vfe->reset_complete);
+>   
+> +	/* The reset has been moved to csid in 8550 */
+> +	if (vfe->camss->res->version == CAMSS_8550)
+> +		return 0;
+> +
 
+Custom code for a specific SoC in camss.c camss-csid.c or camss-vfe.c 
+indicates to me we need to do more work elsewhere.
 
->> With such a boolean we could also prevent the misleading
->> "dma-names property of" error message and
->> replace it with a hint that dma is disabled on purpose.
-> 
-> Given that you're now at least the 4th person trying this, I guess
-> a hint 'somewhere' would be beneficial.
-> I do not know if the error message itself would be considered misleading
-> and if something should be done about that.
+This would do the same job for you.
 
-The error message itself is okay in the case we actually want to use dma, but
-it's misleading if we disable dma on purpose through not providing dma-names.
+static void vfe_global_reset(struct vfe_device *vfe)
+{
+         /* VFE780 has no global reset, simply report a completion */
+         complete(&vfe->reset_complete);
+}
 
-So i would prefer a explicit enable/disable switch and handle that one before
-looking for the dma-names.
-> 
-> Cheers,
->   Diederik
-> 
->>>> Signed-off-by: Philipp Puschmann <p.puschmann@pironex.com>
->>>> ---
->>>>
->>>>  arch/arm64/boot/dts/rockchip/rk356x.dtsi | 10 ++++++++++
->>>>  1 file changed, 10 insertions(+)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
->>>> b/arch/arm64/boot/dts/rockchip/rk356x.dtsi index
->>>> d8543b5557ee..4ae40661ca6a
->>>> 100644
->>>> --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
->>>> +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
->>>> @@ -489,6 +489,7 @@ uart0: serial@fdd50000 {
->>>>
->>>>  		clocks = <&pmucru SCLK_UART0>, <&pmucru PCLK_UART0>;
->>>>  		clock-names = "baudclk", "apb_pclk";
->>>>  		dmas = <&dmac0 0>, <&dmac0 1>;
->>>>
->>>> +		dma-names = "tx", "rx";
->>>>
->>>>  		pinctrl-0 = <&uart0_xfer>;
->>>>  		pinctrl-names = "default";
->>>>  		reg-io-width = <4>;
->>>>
->>>> @@ -1389,6 +1390,7 @@ uart1: serial@fe650000 {
->>>>
->>>>  		clocks = <&cru SCLK_UART1>, <&cru PCLK_UART1>;
->>>>  		clock-names = "baudclk", "apb_pclk";
->>>>  		dmas = <&dmac0 2>, <&dmac0 3>;
->>>>
->>>> +		dma-names = "tx", "rx";
->>>>
->>>>  		pinctrl-0 = <&uart1m0_xfer>;
->>>>  		pinctrl-names = "default";
->>>>  		reg-io-width = <4>;
->>>>
->>>> ...
-> 
+const struct vfe_hw_ops vfe_ops_780 = {
+         .global_reset = vfe_global_reset,
 
--- 
-Philipp Puschmann, M.Sc.
-Softwareentwicklung
+>   	vfe->res->hw_ops->global_reset(vfe);
+>   
+>   	time = wait_for_completion_timeout(&vfe->reset_complete,
+> @@ -1695,6 +1700,7 @@ static int vfe_bpl_align(struct vfe_device *vfe)
+>   	case CAMSS_845:
+>   	case CAMSS_8250:
+>   	case CAMSS_8280XP:
+> +	case CAMSS_8550:
+>   		ret = 16;
+>   		break;
+>   	default:
+> diff --git a/drivers/media/platform/qcom/camss/camss.h b/drivers/media/platform/qcom/camss/camss.h
+> index 65fcebd42c4b..feac83510a17 100644
+> --- a/drivers/media/platform/qcom/camss/camss.h
+> +++ b/drivers/media/platform/qcom/camss/camss.h
+> @@ -79,6 +79,7 @@ enum camss_version {
+>   	CAMSS_845,
+>   	CAMSS_8250,
+>   	CAMSS_8280XP,
+> +	CAMSS_8550,
+>   };
+>   
+>   enum icc_count {
 
-pironex GmbH
-Stangenland 4
-18146 Rostock
-www.pironex.de
-
-Tel.:   +49 (0) 381 7006 08 44
-E-Mail: p.puschmann@pironex.com
-Firma:  +49 (0) 381 70 06 08 0
-Fax:    +49 (0) 381 49 68 02 77
-Web:    http://www.pironex.de
+---
+bod
 
