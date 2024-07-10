@@ -1,152 +1,126 @@
-Return-Path: <devicetree+bounces-84608-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84609-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E7AE92CE89
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 11:47:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6814092CE97
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 11:51:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BCC2F282508
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 09:47:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 996991C2343A
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 09:51:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26BF318EFCC;
-	Wed, 10 Jul 2024 09:47:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5C6B18FC85;
+	Wed, 10 Jul 2024 09:51:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="edHrWMtv"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b="m8EqlA+p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F03462B9C6;
-	Wed, 10 Jul 2024 09:47:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF8D72B9C6
+	for <devicetree@vger.kernel.org>; Wed, 10 Jul 2024 09:51:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.26.50.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720604846; cv=none; b=Zzzsr0ppUgAixlSjhgKpj01kmpH7ZQGnNgZOBsgtbNtqS7AzceDTM74lO2aaj8FqXOYhMqWDR1Ho2uHVL7Xrm661P2anTOBMtqIqZX3JpFPRdUs09WZHnLz2hDQALvdMOUKL5o/pkVsF6zpJ0wsxqz00bUVCXdX4sQzjS35RcoU=
+	t=1720605092; cv=none; b=ZcXZcY+8+H/gJGTCcpBHmWc9SyJl8exukVL1NjCZ6pjGoyM8QojtkJCCjh1Ys/fguH9YIKxGseh0o36nCaPtwAk+1s5HYaquceRGobJXBCzrR/R/up1Nw1Qx9IUeRmEXqBa7iz7S3TEiZSuYXijlfVFPhq7W83hFt1KhgjRQDvI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720604846; c=relaxed/simple;
-	bh=GRu4FfEYbm8whxTEYwcDaM/6D1f5Whjh+UNZLviD5Bg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=h8hJgDcr6rGPs3EE1CeplQBPBpvGtYvBguzXgxuJ9FqdOcCqwcpe+1YnhxMB/Walcz0wBD8KJy1BlQLVla19G6g6cpslTFaBpXvO0my5hjq0/WZs06IADdT6WqpyH8H5UJ53J49VJ2goQUymRurvkwoJlGpD79FZEdX7yFd+R6k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=edHrWMtv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A579C32781;
-	Wed, 10 Jul 2024 09:47:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720604845;
-	bh=GRu4FfEYbm8whxTEYwcDaM/6D1f5Whjh+UNZLviD5Bg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=edHrWMtvHoKEFL0ZQH5OlsDvT8qGJAF6C5MsjNbE680BCrAa0/UAWf+nsWmGBLcWS
-	 jBL8Us+1vlnwZ9/o+TtCvlRDRTGAF/Y7Rb8neXQm3yhvEUe/XZq5S9azi2K7UEa2Be
-	 0LHxLvt796KBBfF1KZcf1xMAzkavUcpInenxIaE/JStAkl289XNQGiwA0+Ce20CZNr
-	 jgPC9+U2w81bkvbLGsSGeB6NCcUvF382cPT6FXboLrOwyukZZnEWKSFbaxR1xCJU+A
-	 UCImvDRZ7dITjqa5+kePeU+Kk6CBBUfuiHurIADXCaHMCLzXKHTRGGkk27awZjoGKt
-	 3Sy9UWCuqZ3Bw==
-Message-ID: <2e309d52-8180-4922-9a5a-022fc8bf8ef5@kernel.org>
-Date: Wed, 10 Jul 2024 11:47:19 +0200
+	s=arc-20240116; t=1720605092; c=relaxed/simple;
+	bh=5vy6X0O6qEnfmBFIMy66z8mbjzBObduDt7gIIzeMJf0=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=k9Im63hho56yN/VGn4zd60pjLvsA6qMJwZLzpM7GJd6zdQ7dLqcYwoO73F1Ys5pWE+984lHzIJeyeQ1jUr7j9xZCjW4bEIc0ZqM5iIeDikBNNrJfGE9zjpfNQzmWhMsQX029idf/pFJd+RFYasWJGHtVOP8d743N81e1GpBnr34=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b=m8EqlA+p; arc=none smtp.client-ip=91.26.50.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
+DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
+	q=dns/txt; i=@phytec.de; t=1720605086; x=1723197086;
+	h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=5vy6X0O6qEnfmBFIMy66z8mbjzBObduDt7gIIzeMJf0=;
+	b=m8EqlA+paYoBgUaLDhjoUNJTSZc9qT5Ei0rlLfOHx8Quwvf81nB/uYM9fRc5YUFm
+	XSM8dFP1BbRuzkQaNyCn3T3fhdaSV/GICatMauruOfVSeJaTis8A+bQyBOD9A8Eb
+	rb89pTvD/BnJaUK5OaA3wtmjv+FhtCP+EJMAab9NPGo=;
+X-AuditID: ac14000a-03e52700000021bc-46-668e599e3cbe
+Received: from berlix.phytec.de (Unknown_Domain [172.25.0.12])
+	(using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(Client did not present a certificate)
+	by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id BD.7F.08636.E995E866; Wed, 10 Jul 2024 11:51:26 +0200 (CEST)
+Received: from Berlix.phytec.de (172.25.0.12) by Berlix.phytec.de
+ (172.25.0.12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Wed, 10 Jul
+ 2024 11:51:25 +0200
+Received: from Berlix.phytec.de ([fe80::197e:d26b:2ca:c7b4]) by
+ berlix.phytec.de ([fe80::197e:d26b:2ca:c7b4%4]) with mapi id 15.01.2507.006;
+ Wed, 10 Jul 2024 11:51:25 +0200
+From: Benjamin Hahn <B.Hahn@phytec.de>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Shawn Guo
+	<shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, "Pengutronix
+ Kernel Team" <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
+	"Rob Herring" <robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
+CC: PHYTEC Upstream <upstream@lists.phytec.de>, "imx@lists.linux.dev"
+	<imx@lists.linux.dev>, "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2] arm64: dts: freescale: imx8mp-phycore: Add no-eth
+ overlay
+Thread-Topic: [PATCH v2] arm64: dts: freescale: imx8mp-phycore: Add no-eth
+ overlay
+Thread-Index: AQHaztTwwwIaBQqxY0i9PdyfIGTAlrHsiQGAgAMVQoA=
+Date: Wed, 10 Jul 2024 09:51:25 +0000
+Message-ID: <829ab483-fb96-4fd2-be7c-03548ba22ce5@phytec.de>
+References: <20240705-bspimx8m-3180-v2-1-dc1a7e1689be@phytec.de>
+ <1764670d-0248-46fd-b0ce-03bcbcd6977b@linaro.org>
+In-Reply-To: <1764670d-0248-46fd-b0ce-03bcbcd6977b@linaro.org>
+Accept-Language: de-DE, en-US
+Content-Language: de-DE
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <7CD51A38C1FC3D4991D2BFE0AD5067E4@phytec.de>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1] arm64: dts: qcom: sa8775p: Add UART node
-To: Viken Dadhaniya <quic_vdadhani@quicinc.com>, andersson@kernel.org,
- konrad.dybcio@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
- linux-arm-msm@vger.kernel.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: quic_msavaliy@quicinc.com, quic_anupkulk@quicinc.com
-References: <20240710094149.13299-1-quic_vdadhani@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240710094149.13299-1-quic_vdadhani@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrHIsWRmVeSWpSXmKPExsWyRpKBR3deZF+awYV/fBZr9p5jsph/5Byr
+	xcOr/hYz77WyWayaupPFou/FQ2aLva+3sltsenyN1eLyrjlsFq17j7Bb/N2+icXixRZxi+53
+	6g68Hjtn3WX32LSqk83jzrU9bB6bl9R7vNg8k9Gjv7uF1aP/r4HH501yARxRXDYpqTmZZalF
+	+nYJXBnbJy9iLmjhrWi+/4+1gfEGTxcjJ4eEgInEjM9HGbsYuTiEBJYwSTw8MY0VwrnPKNH1
+	+AQ7hLOBUWL3jQUsIC1sAmoSu968BqsSEXjAJNH0+CxYP7PAGiaJk1dWMHcxcnAICwRLbDzD
+	CtIgIhAisfrILRYI20pix/WzbCA2i4CqxJ79G8DivAI2Ev8OL2EEsYUESiQ+zloMNoZTwE5i
+	0lNFkDCjgKzEhg3nmUFsZgFxiU3PvrNCvCAgsWQPRFxCQFTi5eN/UHF5iRO3pjGBjGEW0JRY
+	v0sfotVC4klHJ9QYRYkp3Q/ZIS4QlDg58wnLBEbxWUg2zELonoWkexaS7llIuhcwsq5iFMrN
+	TM5OLcrM1ivIqCxJTdZLSd3ECEoDIgxcOxj75ngcYmTiYDzEKMHBrCTCO/9Gd5oQb0piZVVq
+	UX58UWlOavEhRmkOFiVx3tUdwalCAumJJanZqakFqUUwWSYOTqkGxsRXeR0n+XKXPbpScX9R
+	xMZcLYtVvvmmJ1YnsSxpk39YV7ZQh/O6bPEdo937Hlgte8/SdeztN59ndQ69st/n2hvu2eDW
+	/fTrvL6QB5+dfSo+3DY0eZlw6/XpRapMc09zNz2rzPP7sW+ryL+vztMyvWbLfHN8vEigLeJE
+	uaDN8zOlDlGON9uPVSqxFGckGmoxFxUnAgBYqL1j8QIAAA==
 
-On 10/07/2024 11:41, Viken Dadhaniya wrote:
-> Add missing UART configuration for sa8775.
-> 
-> Signed-off-by: Viken Dadhaniya <quic_vdadhani@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/sa8775p.dtsi | 231 ++++++++++++++++++++++++++
->  1 file changed, 231 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> index 23f1b2e5e624..c107ee40341d 100644
-> --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> @@ -1,6 +1,7 @@
->  // SPDX-License-Identifier: BSD-3-Clause
->  /*
->   * Copyright (c) 2023, Linaro Limited
-> + * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
->   */
->  
->  #include <dt-bindings/interconnect/qcom,icc.h>
-> @@ -657,6 +658,21 @@
->  				status = "disabled";
->  			};
->  
-> +			uart14: serial@880000 {
-> +				compatible = "qcom,geni-uart";
-> +				reg = <0x0 0x00880000 0x0 0x4000>;
-> +				interrupts = <GIC_SPI 373 IRQ_TYPE_LEVEL_HIGH>;
-> +				clocks = <&gcc GCC_QUPV3_WRAP2_S0_CLK>;
-> +				clock-names = "se";
-> +				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
-> +						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
-> +						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-> +						 &config_noc SLAVE_QUP_2 QCOM_ICC_TAG_ALWAYS>;
-> +				interconnect-names = "qup-core", "qup-config";
-> +				power-domains = <&rpmhpd SA8775P_CX>;
-
-All the clocks, interconenct and power domains look to me questionable.
-AFAIK, most of it (if not all) is going to be removed.
-
-Best regards,
-Krzysztof
-
+T24gMDguMDcuMjQgMTI6NDYsIEtyenlzenRvZiBLb3psb3dza2kgd3JvdGU6DQo+IE9uIDA1LzA3
+LzIwMjQgMTQ6MTQsIEJlbmphbWluIEhhaG4gd3JvdGU6DQo+PiBBZGQgYSBkZXZpY2V0cmVlIG92
+ZXJsYXkgdG8gZGlzYWJsZSBldGhlcm5ldCBmb3IgYm9hcmRzIHdoZXJlIGl0IGlzIG5vdA0KPj4g
+cG9wdWxhdGVkLg0KPj4NCj4+IFNpZ25lZC1vZmYtYnk6IEJlbmphbWluIEhhaG4gPEIuSGFobkBw
+aHl0ZWMuZGU+DQo+PiAtLS0NCj4+IENoYW5nZXMgaW4gdjI6DQo+IFRoYXQncyBzb21lIG9sZCBr
+ZXJuZWwgeW91IGFyZSBkZXZlbG9waW5nIG9uLCByaWdodD8NCg0KWW91IGFyZSBjb3JyZWN0LiBJ
+IHdhcyBzdGlsbCBvbiBLZXJuZWwgdmVyc2lvbiA2LjguDQoNCkkgcmViYXNlZCB0byBtYXN0ZXIg
+YW5kIHNlbnQgYSB2My4NCg0KUmVnYXJkcywNCg0KQmVuamFtaW4NCg0KPg0KPiA8Zm9ybSBsZXR0
+ZXI+DQo+IFBsZWFzZSB1c2Ugc2NyaXB0cy9nZXRfbWFpbnRhaW5lcnMucGwgdG8gZ2V0IGEgbGlz
+dCBvZiBuZWNlc3NhcnkgcGVvcGxlDQo+IGFuZCBsaXN0cyB0byBDQyAoYW5kIGNvbnNpZGVyIC0t
+bm8tZ2l0LWZhbGxiYWNrIGFyZ3VtZW50KS4gSXQgbWlnaHQNCj4gaGFwcGVuLCB0aGF0IGNvbW1h
+bmQgd2hlbiBydW4gb24gYW4gb2xkZXIga2VybmVsLCBnaXZlcyB5b3Ugb3V0ZGF0ZWQNCj4gZW50
+cmllcy4gVGhlcmVmb3JlIHBsZWFzZSBiZSBzdXJlIHlvdSBiYXNlIHlvdXIgcGF0Y2hlcyBvbiBy
+ZWNlbnQgTGludXgNCj4ga2VybmVsLg0KPg0KPiBUb29scyBsaWtlIGI0IG9yIHNjcmlwdHMvZ2V0
+X21haW50YWluZXIucGwgcHJvdmlkZSB5b3UgcHJvcGVyIGxpc3Qgb2YNCj4gcGVvcGxlLCBzbyBm
+aXggeW91ciB3b3JrZmxvdy4gVG9vbHMgbWlnaHQgYWxzbyBmYWlsIGlmIHlvdSB3b3JrIG9uIHNv
+bWUNCj4gYW5jaWVudCB0cmVlIChkb24ndCwgaW5zdGVhZCB1c2UgbWFpbmxpbmUpIG9yIHdvcmsg
+b24gZm9yayBvZiBrZXJuZWwNCj4gKGRvbid0LCBpbnN0ZWFkIHVzZSBtYWlubGluZSkuIEp1c3Qg
+dXNlIGI0IGFuZCBldmVyeXRoaW5nIHNob3VsZCBiZQ0KPiBmaW5lLCBhbHRob3VnaCByZW1lbWJl
+ciBhYm91dCBgYjQgcHJlcCAtLWF1dG8tdG8tY2NgIGlmIHlvdSBhZGRlZCBuZXcNCj4gcGF0Y2hl
+cyB0byB0aGUgcGF0Y2hzZXQuDQo+IDwvZm9ybSBsZXR0ZXI+DQo+DQo+IEJlc3QgcmVnYXJkcywN
+Cj4gS3J6eXN6dG9mDQo+DQoNCg==
 
