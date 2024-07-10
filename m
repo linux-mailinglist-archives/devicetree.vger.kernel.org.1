@@ -1,73 +1,75 @@
-Return-Path: <devicetree+bounces-84759-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84760-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BEB792D704
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 19:03:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 272A692D71B
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 19:08:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0409FB20F69
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 17:03:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6387A1F24EC2
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 17:05:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5B7A1946DE;
-	Wed, 10 Jul 2024 17:02:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A13619580F;
+	Wed, 10 Jul 2024 17:05:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ANwSEYFm"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LGsgaows"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E467734545
-	for <devicetree@vger.kernel.org>; Wed, 10 Jul 2024 17:02:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0FC91946DE
+	for <devicetree@vger.kernel.org>; Wed, 10 Jul 2024 17:05:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720630977; cv=none; b=M6xatRsq02BfhXKDjkeDMeozoTEDAPjGvDjpuG+K3d4fVdLjWxDxngz8NDK12v0s/6gja9acgSRQqobJy3UUfJDCEG2gEVQltUDVxovDvPVqlAWDQeGF1vEEg6gfu/0dTMp98IxEidYrYCmhatOPK7FdsqRLyymtlzsWGOcM1PM=
+	t=1720631118; cv=none; b=JzMQW4aizBSzDz1j0o3CI6GxPDVFJedxd7A56jx1nKV2Lh/+2EkyLXC6KJllUAzy5bolT2+41//+0GNAIX+ThdwhOeQQk5Z1XZLIIBIbTLjsyzsyQ68FI0Ji1FkNN8zvy3cEwc5QKYkXZnCxGLmPVGgjUeeV8qpI2O+x2PJM0Wk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720630977; c=relaxed/simple;
-	bh=pXsKLT0GxA/tymfRBh1+fRBjRog6aN9JCp0sbEihXM0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=LHwWBNMTbyEjJNGuBoTPfHotsgL8qHJHbrpvdI33nFCnRG5+hQ1FhkGzfiWlmxHTnwIMhja2hqvdV/amqzK7wTTEJeUt+fxNzx8DOREVR4lVAO7Z7bcmvqvCN7HW7RAXgz+thsaEznGkrABluoJLkEnhTUM8s+sTpEqmcdUx/2E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ANwSEYFm; arc=none smtp.client-ip=209.85.128.41
+	s=arc-20240116; t=1720631118; c=relaxed/simple;
+	bh=y3mPP+gIzqE00dgxHNQadnkkTkyDIlA2uQAKtot/hqg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=FyguxsU7aoxu+zbwIxnicFm1J4idaVfayS671V9moTgNpOlElyXziaXCZGEpRaFwc/WefCGhDEMswxFNWX6uhC59bQGnv2zDiCjiikO1WIifY08a9mLj7pjURyqbtkl3v/U0abkEps8VnnKGaZrWTBUWyv+owMSEndPGSdnTO10=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LGsgaows; arc=none smtp.client-ip=209.85.128.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-4266b1f1b21so22296135e9.1
-        for <devicetree@vger.kernel.org>; Wed, 10 Jul 2024 10:02:55 -0700 (PDT)
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-42793fc0a6dso67665e9.0
+        for <devicetree@vger.kernel.org>; Wed, 10 Jul 2024 10:05:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1720630974; x=1721235774; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=WY9v7fPwC8/Kh/qND3MxqZoOqwJeAGg4mPbNYchqMJk=;
-        b=ANwSEYFmFGHbWNxSb7kHdDIiatcLItQrKPBc8v9NPyGEgPNKUDfuDX4wLbxvUdVq/E
-         AwuHfHWr0hi/FbCbAmZMuUDViB5AJwCFzIfjXY63UYcwYs6UpD4ZdHY8ALpp9Paox1SE
-         GLf49/GhtTjMBU6UTXe66EMNSXP4XsMeCcVOABdzL8vg3weo9oZJoyBHd9FU9guLNSyB
-         zDvwElGqXowdspE2evlYvQhCgZdU4pgf7UDMuYQMlNl5pvJJv7pu3JAErnPT011Ln7Fa
-         Unsxqgm3oVP29wnDUXdJUlYHocczL6aMcBhUNjNrpzU59uD4ZMeWTlvIyRzcobeK1bE/
-         qyFg==
+        d=linaro.org; s=google; t=1720631115; x=1721235915; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=UO6/lK5/7C6XDmsvIs3cVH295usofusy4WKu+UT3LKI=;
+        b=LGsgaowsX3M8QYqgcgDSWCJOKe7jb81lRQ25UGmbb1uAUaL8QMvGE9rYLR94cCkUO6
+         I4G0HnsJH41LA2vkBUTAtPxobrAQtzOndR2a6+Wdbpo3EE98Kvyu3aU/gK2JoAeC9wmz
+         cWFvXu03aYw66M7Y8xGcRzIH150Xi5WGkoL5aSDnT/Udo76NVJL6N7HL/OfA4F2uCHiv
+         OndGp+BqwWZJ94cGYL0pHxsMww3pVary4wvLB6d+E1rnwSLbaMpktxh4g61C4QoXSoBw
+         iHjFdzCOWqsfUxYDFPomv8qYOlaHmwQNuFiKZF/hL05APMd7NR+D1SpgA1sd5gf+x8hR
+         xzDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720630974; x=1721235774;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1720631115; x=1721235915;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=WY9v7fPwC8/Kh/qND3MxqZoOqwJeAGg4mPbNYchqMJk=;
-        b=jYILLfyCJ1J0NIhHKFkEqZjpjkqY3ftasuX/+F054Q95deKedgbTiiLJQgluSHFe/x
-         teMlo4NGxfsoECuN54m3uuv4JhcOjqaMQ1Qg1iotVeegvKwDhsVoe1qE5Lm+L5KveDRb
-         TaPA7jQ8eKwGMNft23Dic0x0iXx4/sTGYnn7DveYpj4lzfj9G2JnLB7MuCPJGrtOvCwe
-         +RJymL6pgipLtDQJl8dRyBHEIy2IwEWil8OOx++rmYSIA9ElucYjARgmkWmk+3ci5wCK
-         pMUjUG8sl0xaFFg07Ad3CzyNJ3Uaw0P0m457K+4L3iQYDFtf5dgJr06y9v2EjC8Y/zOr
-         Hpgg==
-X-Gm-Message-State: AOJu0YxrCNrc4XhBd+E11fBP1i4qxlYt4pYzKyVbA2viRf2Q2gZW7rEP
-	v0wh8zoiJC/lwk95niCTMQCO3LmZdzcE1lwbF6l6dAxWUdnQjaSNsEYT6EkIM1o=
-X-Google-Smtp-Source: AGHT+IEI+1Wx5It+lbWkRbM01pbu3iBKGclgQSGDCuRgL18TTOyAQ/95EOxbxq5oh1RaMyp3qpgqSw==
-X-Received: by 2002:adf:e44b:0:b0:367:4d9d:56a5 with SMTP id ffacd0b85a97d-367cead1001mr4312364f8f.44.1720630973974;
-        Wed, 10 Jul 2024 10:02:53 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-367cde8491dsm5805246f8f.45.2024.07.10.10.02.53
+        bh=UO6/lK5/7C6XDmsvIs3cVH295usofusy4WKu+UT3LKI=;
+        b=p8lhUM7YfielU7n/RSu7Qdc2XhqTjogUYL5IrjlHMLTQ289U42n9OSNLWycCzan/Zm
+         83Yfu3kQr68LVRxGYTzHh1sojkCJRMKL945z53PqXN57Ns0SbYXn/ynQQ7Enbgr7YI9O
+         iq+o04cdrbOg4WxKNCHQqMbc7o/JD5ddH5dS5FWpgvikC5cnB3czqwI3Js1VNzOA2bwZ
+         5r1s+nd8uiknz0qKTQEm+Gw89p3e8IFmt1FAtS0MB+em2fV9v5HQfqCH9SN2dkPjgjs2
+         ceavxgUJcoWAjLtUG1FOy0b04KbUUL1/q0fNND/YI8DnFLWjJB2chSWqG+Ss7US+LMB8
+         gCcw==
+X-Forwarded-Encrypted: i=1; AJvYcCV78NCK+LeMRv77i/aciwEvC036Oa2dHVNmMRLnncnDZ2bcv0R2JiZsXO2H0/dY6+DE+tLQc5o7YRl/qBJawScl4r6ZfcS/5PUFiw==
+X-Gm-Message-State: AOJu0Yz/lx7FY6SWZ5iMTCij+k04ripS7ybygHzDPE5ikPvcPXe/4rj2
+	mx5U8LE9ov6U1ndI9OpzCGWTRBqk592UPrlHOgF4rxgSSQBf1FA36aFSvrqlnxU=
+X-Google-Smtp-Source: AGHT+IEZ/vduzwwhO5K4kQPX85w5VJ3dB+TYQDHXeHNJPj2YvvMVSizSFMwuGwYgtxvCPlkuMJjVQA==
+X-Received: by 2002:a05:600c:5345:b0:426:602d:a243 with SMTP id 5b1f17b1804b1-426707d8a90mr42891675e9.16.1720631115301;
+        Wed, 10 Jul 2024 10:05:15 -0700 (PDT)
+Received: from [127.0.0.2] ([2a02:2454:ff1f:b240:65e6:93ca:5f80:ea9b])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-367cde7dedfsm5838446f8f.24.2024.07.10.10.05.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Jul 2024 10:02:53 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Wed, 10 Jul 2024 19:02:52 +0200
-Subject: [PATCH] dt-bindings: trivial-devices: document the Sierra Wireless
- mangOH Green SPI IoT interface
+        Wed, 10 Jul 2024 10:05:14 -0700 (PDT)
+From: Stephan Gerhold <stephan.gerhold@linaro.org>
+Subject: [PATCH 0/5] drm/panel: atna33xc20: Fix the Samsung ATNA45AF01
+ panel
+Date: Wed, 10 Jul 2024 19:04:56 +0200
+Message-Id: <20240710-x1e80100-crd-backlight-v1-0-eb242311a23e@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,63 +78,56 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240710-topic-mdm9615-mangoh-iotport-spi-bindings-v1-1-3efe20cfea8a@linaro.org>
-X-B4-Tracking: v=1; b=H4sIALu+jmYC/x2NSQrDMAwAvxJ0rsAKrrt8pfRQx2qigy1jmVII+
- XtNjwPDzA7GTdjgPu3Q+CMmWgbQaYJle5WVUdJgmN3s3YUcdq2yYE75FuiMeSi6oWiv2jpaFYx
- SkpTVkGJMwRN7F64werXxW77/1+N5HD+IFnjpewAAAA==
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Neil Armstrong <neil.armstrong@linaro.org>
+X-B4-Tracking: v=1; b=H4sIADi/jmYC/x3MSwqAMAwA0atI1gbSKv6uIi60TTUoKq2IULy7x
+ eVbzEQI7IUDdFkEz7cEOfYElWdglnGfGcUmgyZdUq0IH8UNKSI03uI0mnWTebmwKrRrJ9cWFTt
+ I8enZyfOP++F9P56MXmJoAAAA
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: Jessica Zhang <quic_jesszhan@quicinc.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Douglas Anderson <dianders@chromium.org>, dri-devel@lists.freedesktop.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>, 
+ Johan Hovold <johan@kernel.org>
 X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1323;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=pXsKLT0GxA/tymfRBh1+fRBjRog6aN9JCp0sbEihXM0=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBmjr68CLfByopTepl78SucViyPVyFy5Z3HCS2dGAsK
- JPC/dEyJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZo6+vAAKCRB33NvayMhJ0TQmEA
- Ci7oF27eAjv+M+mY7viqqmUYulOhW+WPeufr3tB8G9bb77dop5ow6YJAwliOzapPZg0JQHYy1io6/2
- ulXOdWOeeEP+D0dVBFbqDMpu6K5rr0gZXk/STtAlDm7c8kX85kYPNklYhIir9tUmljNWQyIcv87u8m
- KN8d7OomYgaY+8GDDLGX6YBtrnuTZ7m2RE5DAeN6sSifAXyn0Mm4q85RNERXrE9lhmDO++MBQceapm
- vpE/RNr+H9uARkwtLyR8en9OkpaO7lq7BOqOuJYImLK50J/RbMGKnZYhGdLjSuYDzH7b8ELmKuUcwN
- b2dSBFeMg6x80RGiDlHjCmdmaHWNRc4elswNgAxmDNXQ7afEthnn3hb6vVlZSrF19NS4n012BKK/Th
- +SEM8gybfz0FxqBJHq/SKriWVxhT95BkL4Hyk/1mM+TgEUlEsrLVVB/B7/IM0DtwJhMIHnLRwgalU+
- UQFoXtjW/1bzf3DOvKBqZLivu1kHoLcfb9HoTR3iE7P0Ero6oCkgE3tFPpPrC1FItOjas+Jg1kiuwC
- 5kOdzqrf5pRh1mnfsNSbpQLil0ar0gKIjtcG3HCfS+fq9fzhypB+ZD4sK5pxrZymgeeRdmfTOc7ANb
- YKAFEK7zfKZ6eqaxyFhr1b7uTdEOgr/OmjMOOYN7HWBg3te0Cqn/dKg/MVvQ==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 
-Document the Sierra Wireless mangOH Green SPI IoT interface as a trivial
-device.
+The backlight of the Samsung ATNA45AF01 panel used in the Qualcomm X1E80100
+CRD does not work correctly with the current display panel configuration
+and drivers: It works after boot, but once the display gets disabled it is
+not possible to get it back on. It turns out that the ATNA45AF01 panel
+needs exactly the same non-standard power sequence as implemented for
+ATNA33XC20 in the panel-samsung-atna33xc20 driver.
 
-This fixes the following check:
-qcom-mdm9615-wp8548-mangoh-green.dtb: /soc/gsbi@16200000/spi@16280000/spi@0: failed to match any schema with compatible: ['swir,mangoh-iotport-spi']
+Move the ATNA45AF01 panel from the generic panel-edp driver to the
+panel-samsung-atna33xc20 driver and fix the panel configuration in the
+x1e80100-crd device tree to make the panel work correctly.
 
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+The DT changes are included here for reference and easier testing, I assume
+Bjorn or Konrad will pick them up after the DRM panel changes were applied.
+
+Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
 ---
- Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+Stephan Gerhold (5):
+      dt-bindings: display: panel: samsung,atna33xc20: Document ATNA45AF01
+      drm/panel: samsung-atna33xc20: Add compatible for ATNA45AF01
+      Revert "drm/panel-edp: Add SDC ATNA45AF01"
+      arm64: dts: qcom: x1e80100-crd: Fix backlight
+      arm64: defconfig: Add CONFIG_DRM_PANEL_SAMSUNG_ATNA33XC20
 
-diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-index 5e58ebfab758..1451a9f68427 100644
---- a/Documentation/devicetree/bindings/trivial-devices.yaml
-+++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-@@ -362,6 +362,8 @@ properties:
-           - sparkfun,qwiic-joystick
-             # i2c serial eeprom (24cxx)
-           - st,24c256
-+            # Sierra Wireless mangOH Green SPI IoT interface
-+          - swir,mangoh-iotport-spi
-             # Ambient Light Sensor with SMBUS/Two Wire Serial Interface
-           - taos,tsl2550
-             # Temperature Monitoring and Fan Control
-
+ .../bindings/display/panel/samsung,atna33xc20.yaml      |  6 +++++-
+ arch/arm64/boot/dts/qcom/x1e80100-crd.dts               | 17 +++++++++++++++--
+ arch/arm64/configs/defconfig                            |  1 +
+ drivers/gpu/drm/panel/panel-edp.c                       |  2 --
+ drivers/gpu/drm/panel/panel-samsung-atna33xc20.c        |  1 +
+ 5 files changed, 22 insertions(+), 5 deletions(-)
 ---
-base-commit: 82e4255305c554b0bb18b7ccf2db86041b4c8b6e
-change-id: 20240710-topic-mdm9615-mangoh-iotport-spi-bindings-1bbd641e4068
+base-commit: 523b23f0bee3014a7a752c9bb9f5c54f0eddae88
+change-id: 20240710-x1e80100-crd-backlight-632f9bf936ef
 
 Best regards,
 -- 
-Neil Armstrong <neil.armstrong@linaro.org>
+Stephan Gerhold <stephan.gerhold@linaro.org>
 
 
