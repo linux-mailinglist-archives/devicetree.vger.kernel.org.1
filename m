@@ -1,168 +1,149 @@
-Return-Path: <devicetree+bounces-84600-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84603-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 646F292CDE3
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 11:05:45 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B38B692CE62
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 11:42:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B5582284A75
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 09:05:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 32EFBB20F41
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 09:42:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35AA518EFF9;
-	Wed, 10 Jul 2024 09:05:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nOOdkfKj"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D156218FA17;
+	Wed, 10 Jul 2024 09:42:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from dd48830.kasserver.com (dd48830.kasserver.com [85.13.164.221])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00E6516938C;
-	Wed, 10 Jul 2024 09:05:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92FBC13777F
+	for <devicetree@vger.kernel.org>; Wed, 10 Jul 2024 09:42:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.13.164.221
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720602342; cv=none; b=Y/83+4ndmJJbps5nTpLV3KpTqZDxbttte68pik++DTMsdBf6TurvsBy0gmDELCkQD4+i5xo34ruv3vAYW+owDNsx9sF5kjcNwoJupCOVX4RhFt8TWZHOwiG10n9Iw8X9ZFycGVlJmNOSEK4ViuOhF5kLksfu9CKE4CKgdouHCOg=
+	t=1720604524; cv=none; b=tMHsithEBVl06jVDKQ77I5gYGdv0xjqXGNmkRLVAcQI4Sp9d3ZDd7hatoNMMygkiwTpQUML2a6EHe9SEcoT+cJtAdMJkySj+dTAm4zyJ/k2Ix5gWmfQutIYna7dzw0aN+fO3oTMr931SDAix0ZdW8wAYOeCiRAKIBnuR68X9t8c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720602342; c=relaxed/simple;
-	bh=oV4+5bN3h0YlN7HPv4WOQIlgS47Ixt5yvCvPSzurRN0=;
-	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=CkwXk99PLQR9FL7OJysNnvCG+HaTHL1uk+WL4CIm+XVqFzoiMEYzxkbzS6+5TDwsQBNW+1Yu+Na+yGWaFE+0LRwTQZzDuAw3XUOulFmAt8vpVKx/OIr98mcTN5cXALbyjQwWIggkV+zCqYZYsNQfxrxcR90LaLvO9EIvw2gwabg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nOOdkfKj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C587C32781;
-	Wed, 10 Jul 2024 09:05:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720602341;
-	bh=oV4+5bN3h0YlN7HPv4WOQIlgS47Ixt5yvCvPSzurRN0=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=nOOdkfKjPBYe5QietuCg0nb8HQcizq7Glr3tdoW7spRIEGHsWILsm9CLcyQpx8Iqe
-	 /6SiHWUryFpLgMQAG8jp/vSRpmAYFmhHKZnyt/uICGV2gLbGOwC+R8/VnijSt0ucSR
-	 RydMN0yCPJMhRNheF/UvkJUDHEybBdYBRiO6SbWfu0of98HjklgBfqRkKQfILPFV3S
-	 ht1Diu5N+QaqkMMeR7x3r2nLC91ne3vaqLKeiBP9a/fgIPCh9PfCcxmS18UppKoQmB
-	 hRXjxHPpse6HLsqMvrjCk9l+1+SQihe+6zaiyiFav9m3BVIl/XSm9t4btRgiHdumEB
-	 nnFz4P8YqwqsA==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.95)
-	(envelope-from <maz@kernel.org>)
-	id 1sRTGd-00BAW4-24;
-	Wed, 10 Jul 2024 10:05:39 +0100
-Date: Wed, 10 Jul 2024 10:05:37 +0100
-Message-ID: <86wmlt39cu.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Sudeep Holla <sudeep.holla@arm.com>
-Cc: David Dai <davidai@google.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Viresh Kumar <viresh.kumar@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Quentin Perret <qperret@google.com>,
-	Masami Hiramatsu <mhiramat@google.com>,
-	Will Deacon <will@kernel.org>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Vincent Guittot <vincent.guittot@linaro.org>,
-	Oliver Upton <oliver.upton@linux.dev>,
-	Dietmar Eggemann <dietmar.eggemann@arm.com>,
-	Pavan Kondeti <quic_pkondeti@quicinc.com>,
-	Gupta Pankaj <pankaj.gupta@amd.com>,
-	Mel Gorman <mgorman@suse.de>,
-	kernel-team@android.com,
-	linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 2/2] cpufreq: add virtual-cpufreq driver
-In-Reply-To: <20240628125106.i4hhyzdgt3uoskat@bogus>
-References: <20240521043102.2786284-1-davidai@google.com>
-	<20240521043102.2786284-3-davidai@google.com>
-	<20240628125106.i4hhyzdgt3uoskat@bogus>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/29.3
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	s=arc-20240116; t=1720604524; c=relaxed/simple;
+	bh=xmP5WqpXVrQl/MruADB6rTfjn+l0K3Ai2X/MlQtpxJo=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=VnVFP4MnD1va5UYQMAkqk6ouPsAULx7iMzCHk8EfAyJEkopg1CXUljMMHmB4O9xOIxVv2+ifmuQMMg9hswkr8E9OD7DXsq15eZ2gOsceEpxXtZChxeBQZz++fpInbgHtFMrEhORZrALdmmeeME7ARIBRyAI7xzsqQyhBOHZKH8E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pironex.com; spf=fail smtp.mailfrom=pironex.com; arc=none smtp.client-ip=85.13.164.221
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pironex.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=pironex.com
+Received: from ms7c95.fritz.box (p5098bff9.dip0.t-ipconnect.de [80.152.191.249])
+	by dd48830.kasserver.com (Postfix) with ESMTPSA id 2C11A6EC0E4B;
+	Wed, 10 Jul 2024 11:34:02 +0200 (CEST)
+From: Philipp Puschmann <p.puschmann@pironex.com>
+To: linux-rockchip@lists.infradead.org
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	p.puschmann@pironex.com,
+	devicetree@vger.kernel.org
+Subject: [PATCH] arm64: dts: rockchip: Add uart dma names to the SoC dtsi for RK356x
+Date: Wed, 10 Jul 2024 11:33:56 +0200
+Message-ID: <20240710093356.3344056-1-p.puschmann@pironex.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: sudeep.holla@arm.com, davidai@google.com, rafael@kernel.org, viresh.kumar@linaro.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, saravanak@google.com, qperret@google.com, mhiramat@google.com, will@kernel.org, peterz@infradead.org, vincent.guittot@linaro.org, oliver.upton@linux.dev, dietmar.eggemann@arm.com, quic_pkondeti@quicinc.com, pankaj.gupta@amd.com, mgorman@suse.de, kernel-team@android.com, linux-pm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spamd-Bar: /
 
-On Fri, 28 Jun 2024 13:51:06 +0100,
-Sudeep Holla <sudeep.holla@arm.com> wrote:
-> 
-> On Mon, May 20, 2024 at 09:30:52PM -0700, David Dai wrote:
-> > Introduce a virtualized cpufreq driver for guest kernels to improve
-> > performance and power of workloads within VMs.
-> >
-> > This driver does two main things:
-> >
-> > 1. Sends the frequency of vCPUs as a hint to the host. The host uses the
-> > hint to schedule the vCPU threads and decide physical CPU frequency.
-> >
-> > 2. If a VM does not support a virtualized FIE(like AMUs), it queries the
-> > host CPU frequency by reading a MMIO region of a virtual cpufreq device
-> > to update the guest's frequency scaling factor periodically. This enables
-> > accurate Per-Entity Load Tracking for tasks running in the guest.
-> >
-> > +
-> > +/*
-> > + * CPU0..CPUn
-> > + * +-------------+-------------------------------+--------+-------+
-> > + * | Register    | Description                   | Offset |   Len |
-> > + * +-------------+-------------------------------+--------+-------+
-> > + * | cur_perf    | read this register to get     |    0x0 |   0x4 |
-> > + * |             | the current perf (integer val |        |       |
-> > + * |             | representing perf relative to |        |       |
-> > + * |             | max performance)              |        |       |
-> > + * |             | that vCPU is running at       |        |       |
-> > + * +-------------+-------------------------------+--------+-------+
-> > + * | set_perf    | write to this register to set |    0x4 |   0x4 |
-> > + * |             | perf value of the vCPU        |        |       |
-> > + * +-------------+-------------------------------+--------+-------+
-> > + * | perftbl_len | number of entries in perf     |    0x8 |   0x4 |
-> > + * |             | table. A single entry in the  |        |       |
-> > + * |             | perf table denotes no table   |        |       |
-> > + * |             | and the entry contains        |        |       |
-> > + * |             | the maximum perf value        |        |       |
-> > + * |             | that this vCPU supports.      |        |       |
-> > + * |             | The guest can request any     |        |       |
-> > + * |             | value between 1 and max perf  |        |       |
-> > + * |             | when perftbls are not used.   |        |       |
-> > + * +---------------------------------------------+--------+-------+
-> > + * | perftbl_sel | write to this register to     |    0xc |   0x4 |
-> > + * |             | select perf table entry to    |        |       |
-> > + * |             | read from                     |        |       |
-> > + * +---------------------------------------------+--------+-------+
-> > + * | perftbl_rd  | read this register to get     |   0x10 |   0x4 |
-> > + * |             | perf value of the selected    |        |       |
-> > + * |             | entry based on perftbl_sel    |        |       |
-> > + * +---------------------------------------------+--------+-------+
-> > + * | perf_domain | performance domain number     |   0x14 |   0x4 |
-> > + * |             | that this vCPU belongs to.    |        |       |
-> > + * |             | vCPUs sharing the same perf   |        |       |
-> > + * |             | domain number are part of the |        |       |
-> > + * |             | same performance domain.      |        |       |
-> > + * +-------------+-------------------------------+--------+-------+
-> > + */
-> 
-> I think it is good idea to version this table, so that it gives flexibility
-> to update the entries. It is a must if we are getting away with DT. I didn't
-> give complete information in my previous response where I agreed with Rafael.
-> 
-> I am not sure how much feasible it is, but can it be queried via KVM IOCTLs
-> to VMM. Just a thought, I am exploring how to make this work even on ACPI
-> systems. It is simpler if we neednot rely on DT or ACPI.
+DMA names are required by of_dma_request_slave_channel function that is
+called during uart probe. So to enable DMA for uarts add the names as in
+the RK3568 TRM.
 
-KVM should not have to know any of this. This is purely between a
-contract (and a pretty weak one) between userspace and the guest.
+Signed-off-by: Philipp Puschmann <p.puschmann@pironex.com>
+---
+ arch/arm64/boot/dts/rockchip/rk356x.dtsi | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-	M.
-
+diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+index d8543b5557ee..4ae40661ca6a 100644
+--- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+@@ -489,6 +489,7 @@ uart0: serial@fdd50000 {
+ 		clocks = <&pmucru SCLK_UART0>, <&pmucru PCLK_UART0>;
+ 		clock-names = "baudclk", "apb_pclk";
+ 		dmas = <&dmac0 0>, <&dmac0 1>;
++		dma-names = "tx", "rx";
+ 		pinctrl-0 = <&uart0_xfer>;
+ 		pinctrl-names = "default";
+ 		reg-io-width = <4>;
+@@ -1389,6 +1390,7 @@ uart1: serial@fe650000 {
+ 		clocks = <&cru SCLK_UART1>, <&cru PCLK_UART1>;
+ 		clock-names = "baudclk", "apb_pclk";
+ 		dmas = <&dmac0 2>, <&dmac0 3>;
++		dma-names = "tx", "rx";
+ 		pinctrl-0 = <&uart1m0_xfer>;
+ 		pinctrl-names = "default";
+ 		reg-io-width = <4>;
+@@ -1403,6 +1405,7 @@ uart2: serial@fe660000 {
+ 		clocks = <&cru SCLK_UART2>, <&cru PCLK_UART2>;
+ 		clock-names = "baudclk", "apb_pclk";
+ 		dmas = <&dmac0 4>, <&dmac0 5>;
++		dma-names = "tx", "rx";
+ 		pinctrl-0 = <&uart2m0_xfer>;
+ 		pinctrl-names = "default";
+ 		reg-io-width = <4>;
+@@ -1417,6 +1420,7 @@ uart3: serial@fe670000 {
+ 		clocks = <&cru SCLK_UART3>, <&cru PCLK_UART3>;
+ 		clock-names = "baudclk", "apb_pclk";
+ 		dmas = <&dmac0 6>, <&dmac0 7>;
++		dma-names = "tx", "rx";
+ 		pinctrl-0 = <&uart3m0_xfer>;
+ 		pinctrl-names = "default";
+ 		reg-io-width = <4>;
+@@ -1431,6 +1435,7 @@ uart4: serial@fe680000 {
+ 		clocks = <&cru SCLK_UART4>, <&cru PCLK_UART4>;
+ 		clock-names = "baudclk", "apb_pclk";
+ 		dmas = <&dmac0 8>, <&dmac0 9>;
++		dma-names = "tx", "rx";
+ 		pinctrl-0 = <&uart4m0_xfer>;
+ 		pinctrl-names = "default";
+ 		reg-io-width = <4>;
+@@ -1445,6 +1450,7 @@ uart5: serial@fe690000 {
+ 		clocks = <&cru SCLK_UART5>, <&cru PCLK_UART5>;
+ 		clock-names = "baudclk", "apb_pclk";
+ 		dmas = <&dmac0 10>, <&dmac0 11>;
++		dma-names = "tx", "rx";
+ 		pinctrl-0 = <&uart5m0_xfer>;
+ 		pinctrl-names = "default";
+ 		reg-io-width = <4>;
+@@ -1459,6 +1465,7 @@ uart6: serial@fe6a0000 {
+ 		clocks = <&cru SCLK_UART6>, <&cru PCLK_UART6>;
+ 		clock-names = "baudclk", "apb_pclk";
+ 		dmas = <&dmac0 12>, <&dmac0 13>;
++		dma-names = "tx", "rx";
+ 		pinctrl-0 = <&uart6m0_xfer>;
+ 		pinctrl-names = "default";
+ 		reg-io-width = <4>;
+@@ -1473,6 +1480,7 @@ uart7: serial@fe6b0000 {
+ 		clocks = <&cru SCLK_UART7>, <&cru PCLK_UART7>;
+ 		clock-names = "baudclk", "apb_pclk";
+ 		dmas = <&dmac0 14>, <&dmac0 15>;
++		dma-names = "tx", "rx";
+ 		pinctrl-0 = <&uart7m0_xfer>;
+ 		pinctrl-names = "default";
+ 		reg-io-width = <4>;
+@@ -1487,6 +1495,7 @@ uart8: serial@fe6c0000 {
+ 		clocks = <&cru SCLK_UART8>, <&cru PCLK_UART8>;
+ 		clock-names = "baudclk", "apb_pclk";
+ 		dmas = <&dmac0 16>, <&dmac0 17>;
++		dma-names = "tx", "rx";
+ 		pinctrl-0 = <&uart8m0_xfer>;
+ 		pinctrl-names = "default";
+ 		reg-io-width = <4>;
+@@ -1501,6 +1510,7 @@ uart9: serial@fe6d0000 {
+ 		clocks = <&cru SCLK_UART9>, <&cru PCLK_UART9>;
+ 		clock-names = "baudclk", "apb_pclk";
+ 		dmas = <&dmac0 18>, <&dmac0 19>;
++		dma-names = "tx", "rx";
+ 		pinctrl-0 = <&uart9m0_xfer>;
+ 		pinctrl-names = "default";
+ 		reg-io-width = <4>;
 -- 
-Without deviation from the norm, progress is not possible.
+2.45.2
+
 
