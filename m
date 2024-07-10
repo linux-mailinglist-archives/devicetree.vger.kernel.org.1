@@ -1,152 +1,120 @@
-Return-Path: <devicetree+bounces-84661-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84663-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEB7292D0C1
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 13:35:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 062B292D0D5
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 13:39:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A3D981F23311
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 11:35:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 844891F23EF8
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 11:39:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C38BE190473;
-	Wed, 10 Jul 2024 11:35:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16AF719049B;
+	Wed, 10 Jul 2024 11:39:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="fPA3cmXm"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bf3zF0lr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57F727D412;
-	Wed, 10 Jul 2024 11:35:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4218019048D
+	for <devicetree@vger.kernel.org>; Wed, 10 Jul 2024 11:39:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720611313; cv=none; b=PCaEQR+tAakkxP861jSUdj2kNEu8OE8QRG08WWsv+7eVjnKs/A/0VCWJWlHA9gbQLeOseRdpN5uw3rVRvefQ5athwyNOUgb6TdF9hGl7uMFbl8YEUMiskmozf/KoDIoZsArDIK4eYtXAkrVA027DIX3FUu5WXWSJrcGXDwRZ7nc=
+	t=1720611583; cv=none; b=sz7YxzpSLSMJFH+xfx4fZ8rfsePprm4vs4UFnbf7BpMD79hJLLA42lTI1okS0dDz4gf43mVB7qVXbEHv7N6RTwMg9lHB81QPdYPeKnij2vsMngkEngvCdv82OyEWK8mWa1Zc4h+A+4DVbFwm7f3qRw1F4AjrqN11zpOC6Vji7TA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720611313; c=relaxed/simple;
-	bh=Ca7YWsHqHzNel/xzp85QT864ezTfPIJoPDCqCbc2WfQ=;
-	h=MIME-Version:Message-ID:From:To:Cc:Subject:Content-Type:Date:
-	 In-Reply-To:References; b=i77PSRLvzNPwXzcBptyosWx8ohYg2v8wUC3Q6v+BHjEm5Hdryz26WlKfpx9QE8wI6WABW7SMV4sorOzPTlyiMJi88uBMMQE6QQRZfI/9AdhN2BG5V51nwu6wnqqhxEi4FS1OPTDZA6FilC0m/uet5FH5r/QVZoBrrB/svGYI944=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de; spf=pass smtp.mailfrom=public-files.de; dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b=fPA3cmXm; arc=none smtp.client-ip=212.227.15.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=public-files.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=public-files.de;
-	s=s31663417; t=1720611282; x=1721216082; i=frank-w@public-files.de;
-	bh=Ca7YWsHqHzNel/xzp85QT864ezTfPIJoPDCqCbc2WfQ=;
-	h=X-UI-Sender-Class:MIME-Version:Message-ID:From:To:Cc:Subject:
-	 Content-Type:Date:In-Reply-To:References:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=fPA3cmXmgU6pQYBA574Np/QsgP2UKY3YRdeTeQxzaDJIvMsDm86RE3r8QPgbfdG1
-	 PpbXq61an4mXRS7iaxfEuJNg810frhWggLxeVdqp2/lo4oJ92M/bQiC+RwkRdN5al
-	 RDi6UhbPZpBRR2f7XU0ixb//8J12/u7IxrUVMSVjNA4T8HPaaxgCqeptDsdctENvs
-	 KMHDxteEMaoFAQy7mXjVYZ02LlzC1JjoPBXZHrF0xnd5+knO+YROpLcj8A4Va49vF
-	 I7uV1hbbkABQjlFsxDOIBct+JTlqRVJsnv9YIr9dgP+O5aKvwaGFM3TAWFDbmSczt
-	 xpeYVmzdcRZUysYYQw==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [217.61.158.245] ([217.61.158.245]) by web-mail.gmx.net
- (3c-app-gmx-bs04.server.lan [172.19.170.53]) (via HTTP); Wed, 10 Jul 2024
- 13:34:42 +0200
+	s=arc-20240116; t=1720611583; c=relaxed/simple;
+	bh=Zi1bu+0mhBf3Hk6tKFUnpbpzDHk75+uCDG1w0Ixbnr4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=G7kjAs4VBd/ncD7LhCNpM2jc3fpu6xTExVRm4g4zMjX5JIhUdsNV2tHRtTBjhyj+56h90KUJpLakldsOCNzmEl84pNYiawbZzDlfkwBZ/v/wQOPa+rytaJOsMVRuyT0xRKnGJgodfHn3CAbVOvW5rza/eQT8KsShxpJiU3+/fBU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bf3zF0lr; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-42561c16ffeso42911595e9.3
+        for <devicetree@vger.kernel.org>; Wed, 10 Jul 2024 04:39:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1720611579; x=1721216379; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=MHKc6WWhLmwAuWzJd0ksrdeT5LunJAc73Qa62Pmp84o=;
+        b=bf3zF0lrAjMZG1XAs24vtGv3b9bZuWMLPwMKZuSrq1Xxr36q1+GbV78eKuKr++b2Mg
+         QBgfvn2JAEXRvZYwpARsYzalMtzoXYw/i7fJOuGc6heO7IZhiX1zZs398a2yUNIVpp06
+         BttZdjuSQxBKg/u1YGsxbTwO3yAv5Jj3j8B0IT2qQk49z1mzAVBSO8PPdkkkWvZe+jmw
+         HKoMBbUk8Q1fwu0lc8DFwDHhxCLYNA49dDswu83OGjre98U7jcEFe3SSR5s2zxcfmWAC
+         Vu8ISbLWif/FBJZiqBq4LAfQXGyuE55G0Dcpi1tmTi5zHCy5vODxjNgqzWDuP7Ff76iF
+         PQSA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720611579; x=1721216379;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MHKc6WWhLmwAuWzJd0ksrdeT5LunJAc73Qa62Pmp84o=;
+        b=SiAlDfpFDxaI/QMuWup8WXOpOgHo9WvBoYyn88Aqd0qYfUXq6X7fMpLRmzEhMOAkkf
+         OkB4WWIiM0qaVcPR+/2n3Ns3okBqKXw7pGRF1cnoipbdvDYWLBCZmF25sQkpLdqla5NV
+         Za42neOmJeRJug2QRPm/7FltZQFmItTddt4YNa9T5A8TaBOHmrh/f8903wOaUIuqKNKM
+         kmsbrtdtaK7xus0afL4Sb3VxHnpKKuUf4EA59xinE1KriXKvUgl87mKRNMqpg0r+6Wo8
+         mst6rdXIqp584RtGsJEdGrmZHw+ceBKKLwodeTHdMr4wI7WSVzAGx2Be2u4VPZbYX71h
+         oUPg==
+X-Gm-Message-State: AOJu0YyA1XjAAk0dFweOCZDwqSYG05Fru0SIa/jKNnM3LTgttOaDTYjG
+	D5izEtOl/qaBtMO95Mb+qQJmeUoU4i2p/5KbpUSyZLWq15fMAznUHuFkmX1C5KzggmGglaRwPhs
+	H
+X-Google-Smtp-Source: AGHT+IFHYPwe6yZ9R+JtpGuu8hlP3VMdv3GZsmSGlWY6ENZv3HqEopDNWzX5jjb+nxuJh9OPTx/xuw==
+X-Received: by 2002:a05:600c:22d3:b0:426:5f09:cf57 with SMTP id 5b1f17b1804b1-426707e3445mr33231125e9.19.1720611579201;
+        Wed, 10 Jul 2024 04:39:39 -0700 (PDT)
+Received: from rayyan-pc.broadband ([2a0a:ef40:ee7:2401:197d:e048:a80f:bc44])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4266f7361b5sm78602875e9.29.2024.07.10.04.39.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 10 Jul 2024 04:39:38 -0700 (PDT)
+From: Rayyan Ansari <rayyan.ansari@linaro.org>
+To: devicetree@vger.kernel.org
+Cc: Rayyan Ansari <rayyan.ansari@linaro.org>,
+	alsa-devel@alsa-project.org,
+	Banajit Goswami <bgoswami@quicinc.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	linux-arm-msm@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-sound@vger.kernel.org,
+	Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Subject: [PATCH v2 0/2] ASoC: dt-bindings: convert qcom sound bindings to yaml
+Date: Wed, 10 Jul 2024 12:36:05 +0100
+Message-ID: <20240710113833.39859-1-rayyan.ansari@linaro.org>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <trinity-93a5ed81-b890-4d49-bfec-1bbb1219cb65-1720611282583@3c-app-gmx-bs04>
-From: Frank Wunderlich <frank-w@public-files.de>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Frank Wunderlich <linux@fw-web.de>, Michael Turquette
- <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, Wim Van
- Sebroeck <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>,
- Daniel Golle <daniel@makrotopia.org>, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- linux-watchdog@vger.kernel.org
-Subject: Aw: Re: [PATCH v1 0/4] add syscon requirement for mt7988
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 10 Jul 2024 13:34:42 +0200
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <126053ef-3bfb-47c2-aa17-eb1d26d99102@collabora.com>
-References: <20240709101328.102969-1-linux@fw-web.de>
- <126053ef-3bfb-47c2-aa17-eb1d26d99102@collabora.com>
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:VqJ3hcPVu1xb9GRAUly8AumwiYagwz5PSVlmCKg5mTSwZJoEnbbu0LT1soXbfegD3Ernj
- +cpVjnfKv7Mc6sSvh/GSJm+gwOdONocDiO3sl5tVAppbv/E//rvACaUzXBknfW5uKmgyUALE3sa4
- GOYdzjiE3ROIWei/P9aszJtcldqIa/3ubboc8IvRuSt0HMYdFOevd3QOAoVvjB82AwO1UEGHu/AB
- wp8+YHPqQPxiQievpPiEqYrCo7HbcOUyEUst3MJZjWZqPn0LXU84ODIG+QnRuQZprx7PgaLTCKkP
- HM=
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:J5us5hzBH7g=;I3oO7BrCPjmdtXrzt/KONxqrjiQ
- eE4SQym1ZEjsCG0I06cjTEAdEqMadHr7wnl5eJsNsexH8IzQCfzI/T8qZioVzNruvB7MpoBWM
- fJKQ6G2nctMhz0sN2/NYfTNpxkF9jCyu1qnhnsjDZvOjkOKhDysuvsN5+Ln18KqLRdW0v1XdU
- 9RLZbHdJ1gMcUQm3aJdyvCfKM7qoi27GK1SXfEGS7pRnauXFSnaEdYUyVG5Y5d3QGKltIzqK/
- GntpjfKGLgXu+HhKVypbT2HwxSvWM97s7p5Er3Q26/zonqeE1FvfedpsXlCCkR2NjZwpeg+l5
- gt8N9XKe9Zv9t6Po8Fvaqk+nyBEoswduX3ijEKPDQdVk2OZJsq2DQXsDDTV5ANOCjGL9STWQZ
- +SpTzTJRp5hgMmfG4Uv/nsID2q2kF46nGmqJp8NqEYt/bgkeZDyWDr+h6qxgLDtYRonVrfj43
- Lpe4JviSNXUL/J3+02anpfYGxFWPUUu2MTmE3p/sv9BgFQEp6VSymI33b504yXVjsZVKdSDII
- zqgj3j9qp+BzZIMuSZQ9vov7JZhWlSSStBOWMYKZU+emtTxk9MUVW7Kwc7uDh/pxBV5/deehi
- Hdj/1R47FpWYG2BQdEJAvalty4ziHGt1ZI7L0JSk3WnBl7Nq4+UEN0UtC7PYqI25FDPTtBMYx
- 2wO2UWPQWDh11PAiD/UfLPyQM+/r7mnwNnejW+5ewA==
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-Hi
+Hi,
+These patches convert the remaining plain text bindings for Qualcomm
+sound drivers to dt schema, so device trees can be validated against
+them.
 
-> Gesendet: Mittwoch, 10. Juli 2024 um 12:45 Uhr
-> Von: "AngeloGioacchino Del Regno" <angelogioacchino.delregno@collabora.c=
-om>
-> Betreff: Re: [PATCH v1 0/4] add syscon requirement for mt7988
->
-> Il 09/07/24 12:13, Frank Wunderlich ha scritto:
-> > From: Frank Wunderlich <frank-w@public-files.de>
-> >
-> > Some nodes require the syscon fallback at least in u-boot when using
-> > OF_UPSTREAM.
-> >
-> > This is because uboot driver uses syscon_node_to_regmap in mtk_eth.c f=
-or
-> > "mediatek,toprgu", "mediatek,xfi_pll" and reset pointing to watchdog-n=
-ode.
-> >
->
-> I wonder what's the major blocker here to modify the u-boot driver to ta=
-ke
-> the upstream devicetree as-is, instead of using syscon_node_to_regmap?
+v1: https://lore.kernel.org/all/20240709152808.155405-1-rayyan.ansari@linaro.org/
 
-in uboot there is no driver for all syscon and to handle parallel access t=
-his is done with the syscon fallback.
+Thanks,
+Rayyan
 
-The syscon uclass is a small driver which is generic and only handle the r=
-egmap in global context.
+Rayyan Ansari (2):
+  ASoC: dt-bindings: qcom,msm8916-wcd-digital-codec: convert to dtschema
+  ASoC: dt-bindings: qcom,apq8096-sndcard: use dtschema
 
-In theory it could be possible that regmap is aquired twice when used from=
- 2+ other drivers...to prevent this without
-adding the syscon fallback each syscon needs a dedicated driver like in li=
-nux which does only syscon stuff (code
-duplication at its best :) ).
+ .../bindings/sound/qcom,apq8096.txt           | 128 ------------------
+ .../sound/qcom,msm8916-wcd-digital-codec.yaml |  55 ++++++++
+ .../sound/qcom,msm8916-wcd-digital.txt        |  20 ---
+ .../bindings/sound/qcom,sm8250.yaml           |   1 +
+ 4 files changed, 56 insertions(+), 148 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/qcom,apq8096.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/qcom,msm8916-wcd-digital-codec.yaml
+ delete mode 100644 Documentation/devicetree/bindings/sound/qcom,msm8916-wcd-digital.txt
 
-of course i can use regmap_init_mem in the uboot ethernet driver
-
-https://elixir.bootlin.com/u-boot/latest/source/drivers/core/regmap.c#L242
-
-like it's done once for syscon-uclass.
-
-but i will cause issues when a second device tries to access this regmap. =
-So it was be much easier (for me) to add this
-fallback and not writing 3 device-drivers in uboot doing the exactly same =
-as syscon.
-
-if you have a better idea how to handle it, let me know :)
-
-regards Frank
-
-> Regards,
-> Angelo
+-- 
+2.45.2
 
 
