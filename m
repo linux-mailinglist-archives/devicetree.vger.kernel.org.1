@@ -1,161 +1,110 @@
-Return-Path: <devicetree+bounces-84755-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84756-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92DA392D6A5
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 18:38:22 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 627A192D6F7
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 18:58:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CAEB01C20D3B
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 16:38:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F1589B2E6B2
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 16:40:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D547D195F22;
-	Wed, 10 Jul 2024 16:35:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B13F1990C6;
+	Wed, 10 Jul 2024 16:37:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UrpvLcFK"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="mZ+/U5Eb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f53.google.com (mail-oo1-f53.google.com [209.85.161.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5367A193445;
-	Wed, 10 Jul 2024 16:35:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 780D2198A06;
+	Wed, 10 Jul 2024 16:37:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720629303; cv=none; b=Kpd2GydJdIGj1uOe0vivfmwIzpFGDT21qt7BFxzImbhJ1BbRVCN5f1xBE8BX3+uAtXVxFxI4ala32aikRLPKlxIiU80Jqb2d8s/gIW+yAaL5oC+L+QHiT01qEo68pKYh1kJrtogqF7yMScFA8QoTbmeXlGlQz+WWdk9SYDag0/0=
+	t=1720629428; cv=none; b=fn2NLhBLuBj1ekACakgWm8ycTQWN6+p0XkZyYWQ7z9pdIP9XIN56c3ESncuxGYIeL007xwZ/B1bzYwZa9MzzakQopaZsHSGQGebMLEkAxxXPiB+Y1AQTNAfJX9912d/T0b5C+fhKiBCrpPCgT9EQpQtc6cjTfo3I7o8OM8Strh4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720629303; c=relaxed/simple;
-	bh=cigVI0/QagXC8kd68wWHO+vt27ycO/n/2ePlPQR9ee4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=rhZXHI2IKl5QyKsqenNnXT1Hj7xB+4OXPoXRhT4fT1srj4mNAhS3zBUAoOECzl4E98y9XaDqvxzC09c2+4/Nix01hMamM2sLQTGUd003gu/+Ju+DZ+HKxmJP2hMki0jLitdUGjspalNUyPnQWxUv0BSbHK+G6yUMlyHBj0/7GHk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UrpvLcFK; arc=none smtp.client-ip=209.85.161.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oo1-f53.google.com with SMTP id 006d021491bc7-5c47ad9967cso3473001eaf.2;
-        Wed, 10 Jul 2024 09:35:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1720629301; x=1721234101; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=9sOw1jVOlPobAJPu4gbAldy0PGuhCOSwT4XWJvQdr+M=;
-        b=UrpvLcFKKQdeErGIxvK5HgJTHyxX/Tevi6ZbYWKxo5d73fY5ISpM2RX3YLCDm3vcf5
-         VS9v3XzrsQmNcfzGXKFj509UlTb3HjIBrqRgsD+1h78IXkwkLhqF2X5bjAjELxFilENF
-         0vq67dkGTZWlS1VU8itIi0V2qUN+5pi96zbwj/68mXZ1BgehtbV354J9bRGfT5DG2BXy
-         swvJoOE+1cL/UEIcGLhEOrJaMh3scdX9WUYd3HoqUWnHJInhDkgl912TTxrIsv4T55IT
-         w2NK5o6CeZObdwuBmwPzkzRTyOjq10LRBIJ6CJxfHHn6tXyVsmPQnJqeMZTScOUdlV5L
-         eCuQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720629301; x=1721234101;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=9sOw1jVOlPobAJPu4gbAldy0PGuhCOSwT4XWJvQdr+M=;
-        b=XPMExduuzRpBL6s8pYfRAMh6KQgHDeEIJL7CsSUoK6zcFvmNrW8U/CXSiZmxvimtcB
-         CpazMOLVH8SPIvKVra0EAGc08jwDDNfZICsk3Q/mxW0ea1casfhcf0wMesb4KABAxjws
-         1jatWXycJCzn24pORl3X8xupghLXB2qYpOdmbhoZti20NTkpnHaXZZzaS/njvVVWe5Um
-         q33tvpiaBFwNnfecVAds7ZvXz38dC7PsNY8wUML39NBMpx5sKw+xPcAzIxAQu956arAg
-         qfGXzjxUpYo75anD85+4e6+5p7PgAQBMGIqFdlk6Kn5oZ3ySHtz6DPZF1fE199nRuevv
-         m7mQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWDNi58nm27Og3VGs0UTQheA95dgf0rlFMKB9t3RW9giSQn/UvU03gi4rzwOGdf4445BxKyaZIJ5HVmo8lo91JeVJWmqx4rXG0sc25n3QaphOsmp6UyBITxv1umOVRhDF0IIMySaJLEAg==
-X-Gm-Message-State: AOJu0YxYjN8DzAZ9ONecjWGLY+uCh7OgGe/cAgOk3AuJVdJdLAOLtR75
-	o9Jbz4bH/JaVheYTr1fTC/AHYjdYyl4rR7X2NeAp+6kDlUep2bU6atfKzvWx05t4qk+IEW+ClAf
-	RZNCJQwi+20a59omEa3QX9+p4hAo=
-X-Google-Smtp-Source: AGHT+IF1zYlVf2JrR0UfDR5LnB72Hd9SePyzSM9ncesabGOLw4uWD1oZizxNrLHziXyws/BSSl8GrVl4f4+HnbSyZ4c=
-X-Received: by 2002:a4a:ac0c:0:b0:5c6:72fb:103e with SMTP id
- 006d021491bc7-5c68e16fb36mr6096218eaf.7.1720629301347; Wed, 10 Jul 2024
- 09:35:01 -0700 (PDT)
+	s=arc-20240116; t=1720629428; c=relaxed/simple;
+	bh=1g8hzPvd2UzxG9OMx/Rv4dhInp4CWnW1AAaOfa9+jWY=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=n8VA4+ufY8HBs+4XFWMFMU5+bYmcTNnEtaPSZWf8S5lL9QocjZJGalrQr749jMMQvpg7N3+HO9KSpScD+ZucklVkR0DpYpUCAaGnuueuJ7CE498u3ZT88shKEs1RwZ19f7TOVENlSec2SlnqW4lWIYolOmIAlWdbeBO6FUoy9hA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=mZ+/U5Eb; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1720629426; x=1752165426;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=1g8hzPvd2UzxG9OMx/Rv4dhInp4CWnW1AAaOfa9+jWY=;
+  b=mZ+/U5EbkIdE0VKaSPqEHjjf82YNSkEFXjwsT4Z1mOi0itv91pTGAP54
+   FrEvdV/TPxNF+w8hEXvrcYpdMECstuj9b4HtGDk0Rq8u4xgaQhRFiIsm7
+   xmBJIJRPspod1bZ2enTl2lf49E7aZgX/T+zShUqKNVBg1AXYAYxvtIpFo
+   7j3Dsdg34HQEnwztvMfH7SB6CrHVdFg90IApW5x0vywsA2zmot7nnzUv0
+   fagCE1+lKCVy1IaOUMDAjovMh5AW/bI6ydFMTtfxWQxw3U4ApaAbGBa7/
+   ctuGlpOsQaM4c1r2Bn3FeEJIK42gDHD7JlgMBEJYcJwJ6hKzHTHmgW+FY
+   A==;
+X-CSE-ConnectionGUID: ickCQRjXQnS7WGcoTl0c4g==
+X-CSE-MsgGUID: LTIQOG2wTne+AFjBWZqzEQ==
+X-IronPort-AV: E=Sophos;i="6.09,198,1716274800"; 
+   d="scan'208";a="29044327"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 10 Jul 2024 09:37:05 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Wed, 10 Jul 2024 09:36:35 -0700
+Received: from ROU-LL-M43238.amer.actel.com (10.10.85.11) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
+ 15.1.2507.35 via Frontend Transport; Wed, 10 Jul 2024 09:36:32 -0700
+From: <nicolas.ferre@microchip.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Conor Dooley
+	<conor.dooley@microchip.com>, Rob Herring <robh@kernel.org>,
+	<devicetree@vger.kernel.org>, <ukleinek@kernel.org>
+CC: Claudiu Beznea <claudiu.beznea@tuxon.dev>, Alexandre Belloni
+	<alexandre.belloni@bootlin.com>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-pwm@vger.kernel.org>, "Nicolas
+ Ferre" <nicolas.ferre@microchip.com>
+Subject: [PATCH] dt-bindings: pwm: at91: Add sama7d65 compatible string
+Date: Wed, 10 Jul 2024 18:36:51 +0200
+Message-ID: <20240710163651.343751-1-nicolas.ferre@microchip.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240710142001.7234-1-linux.amoon@gmail.com> <84dc40f4-1948-4eb7-b16e-8a79357c2622@kwiboo.se>
-In-Reply-To: <84dc40f4-1948-4eb7-b16e-8a79357c2622@kwiboo.se>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Wed, 10 Jul 2024 22:04:44 +0530
-Message-ID: <CANAwSgQr2J_MU1idf5xGt4Q=gSLxLHJSEJGwnnPxWLhRjrx=6Q@mail.gmail.com>
-Subject: Re: [PATCH v1] arm64: dts: rockchip: Add missing pinctrl for PCIe30x4 node
-To: Jonas Karlman <jonas@kwiboo.se>
-Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-Hi Jonas,
+From: Nicolas Ferre <nicolas.ferre@microchip.com>
 
-On Wed, 10 Jul 2024 at 20:11, Jonas Karlman <jonas@kwiboo.se> wrote:
->
-> Hi Anand,
->
-> On 2024-07-10 16:19, Anand Moon wrote:
-> > Add missing pinctrl settings for PCIe 3.0 x4 clock request and wake
-> > signals. Rename node from 'pcie3' to 'pcie30x4' to align with schematic
-> > nomenclature.
-> >
-> > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-> > ---
-> >  .../boot/dts/rockchip/rk3588-rock-5b.dts      | 20 +++++++++++++------
-> >  1 file changed, 14 insertions(+), 6 deletions(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> > index 2e7512676b7e..a9b55b7996cf 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> > @@ -301,7 +301,7 @@ &pcie30phy {
-> >
-> >  &pcie3x4 {
-> >       pinctrl-names = "default";
-> > -     pinctrl-0 = <&pcie3_rst>;
-> > +     pinctrl-0 = <&pcie30x4_perstn_m1 &pcie30x4_clkreqn_m1 &pcie30x4_waken_m1>;
-> >       reset-gpios = <&gpio4 RK_PB6 GPIO_ACTIVE_HIGH>;
-> >       vpcie3v3-supply = <&vcc3v3_pcie30>;
-> >       status = "okay";
-> > @@ -340,14 +340,22 @@ pcie2_2_rst: pcie2-2-rst {
-> >               };
-> >       };
-> >
-> > -     pcie3 {
-> > -             pcie3_rst: pcie3-rst {
-> > -                     rockchip,pins = <4 RK_PB6 RK_FUNC_GPIO &pcfg_pull_none>;
-> > -             };
-> > -
-> > +     pcie30x4 {
-> >               pcie3_vcc3v3_en: pcie3-vcc3v3-en {
-> >                       rockchip,pins = <1 RK_PA4 RK_FUNC_GPIO &pcfg_pull_none>;
-> >               };
-> > +
-> > +             pcie30x4_clkreqn_m1: pcie30x4-clkreqn-m1 {
-> > +                     rockchip,pins = <4 RK_PB4 RK_FUNC_GPIO &pcfg_pull_up>;
-> > +             };
-> > +
-> > +             pcie30x4_waken_m1: pcie30x4-waken-m1 {
-> > +                     rockchip,pins = <4 RK_PB5 RK_FUNC_GPIO &pcfg_pull_down>;
-> > +             };
->
-> Should these not be routed to the clkreqn_m1 and waken_m1 function
-> instead of gpio function?
->
-> E.g. something like:
->
->                 pcie30x4m1_pins: pcie30x4m1-pins {
->                         rockchip,pins =
->                                 <4 RK_PB4 4 &pcfg_pull_none>,
->                                 <4 RK_PB6 RK_FUNC_GPIO &pcfg_pull_none>,
->                                 <4 RK_PB5 4 &pcfg_pull_none>;
->                 };
->
-> There are other rk35xx boards where only the perstn pin is configured
-> and could use a similar fix.
->
+Add compatible string for sama7d65. Like sama7g5, it currently binds to
+"atmel,sama5d2-pwm" compatibility string for this driver, so add an
+"enum" to reflect that.
 
-I understand this grouping for Gpio, but I am not very familiar with
-this feature.
+Signed-off-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+---
+ Documentation/devicetree/bindings/pwm/atmel,at91sam-pwm.yaml | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-> Regards,
-> Jonas
->
-Thanks
--Anand
+diff --git a/Documentation/devicetree/bindings/pwm/atmel,at91sam-pwm.yaml b/Documentation/devicetree/bindings/pwm/atmel,at91sam-pwm.yaml
+index 96cd6f3c3546..d20ad27657aa 100644
+--- a/Documentation/devicetree/bindings/pwm/atmel,at91sam-pwm.yaml
++++ b/Documentation/devicetree/bindings/pwm/atmel,at91sam-pwm.yaml
+@@ -23,7 +23,9 @@ properties:
+               - atmel,sama5d2-pwm
+               - microchip,sam9x60-pwm
+       - items:
+-          - const: microchip,sama7g5-pwm
++          - enum:
++              - microchip,sama7d65-pwm
++              - microchip,sama7g5-pwm
+           - const: atmel,sama5d2-pwm
+       - items:
+           - const: microchip,sam9x7-pwm
+-- 
+2.39.2
+
 
