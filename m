@@ -1,63 +1,66 @@
-Return-Path: <devicetree+bounces-84699-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84701-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC20292D383
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 15:55:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E72BD92D3A7
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 16:01:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DD1131C20A4A
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 13:55:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0C1731C2187B
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 14:01:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B4DF193084;
-	Wed, 10 Jul 2024 13:54:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94D21193067;
+	Wed, 10 Jul 2024 14:01:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QEenr21p"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HlgOnuRb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4CD0193074;
-	Wed, 10 Jul 2024 13:54:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B56E18622;
+	Wed, 10 Jul 2024 14:01:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720619694; cv=none; b=Shnsbztrbczvo31ceo/sbA3RbNz5wejA13izJcbErJLHMVNrtV/pvN/ddQlWyzhj076RHOHyMLgg0qrOU0Hg4qOewwilEIThw34nfOmePr8kMgXMt91Dto7x22zjB3kU3tV7B6+q4ShozEFSal9OYqFJzsRDYLYm1pBWyPrTeUE=
+	t=1720620077; cv=none; b=QmhaqBF7WdzSUDHH/yHbXf18F2MnSrVAKr30zWlutfrrdmkFdAWxEYXRoeUw9/L7Sl7H3kpyPH91Zb43ZCFwy4o4L/59dZTrARDhL1Z2pOFEWbhUIKm0xQVsBzyNAZ/Q5G59Tq3b1DJa7OqrFPZ55rkj9qrNIWQnH+fLZUoVF3o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720619694; c=relaxed/simple;
-	bh=y2gmS34Q778sKnc3UY4lw/NDrvv5SpWlH3ZR36Y0R1I=;
+	s=arc-20240116; t=1720620077; c=relaxed/simple;
+	bh=DqU9cIN76ke48HhYoQkN5R6zkS5nfvCzZJkiZIS32WY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TRW9gVDpAr3GXDDYsGgDpXvL/2We8AQLkeJS1qTGEH0VhUOyBxqIuPwdiBmaa6qLVUgT73SsIi16PAqeGF39K3ceVsHLp16MrRWme1em8GPSUE2pyqjLf6UakLDy1Lmgyv19oyFfXLZ1ZS03Z09WhtD11wdHXKkAvUKgn6SHxPs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QEenr21p; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD26DC32781;
-	Wed, 10 Jul 2024 13:54:51 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=u2qsYIRyGBdfuL75n3GBclI9F2kQOUuPUreEsyqHVlaNDHTFRRo78elbCyOcGkQb+MgKXgEpPRd6WQdqhZ4YSTx2QWqkUzlRqvlzVvserPWYmBKuD3rz6ZMLd1SNrDmD78T/t0bAtqLeMzgKcbj0HpN+H0cX6AkShqt8vqzv2lE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HlgOnuRb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC0FAC32781;
+	Wed, 10 Jul 2024 14:01:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720619694;
-	bh=y2gmS34Q778sKnc3UY4lw/NDrvv5SpWlH3ZR36Y0R1I=;
+	s=k20201202; t=1720620077;
+	bh=DqU9cIN76ke48HhYoQkN5R6zkS5nfvCzZJkiZIS32WY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QEenr21pF9ItOW6whCxqpxVQR5dscccyC+fUJq2SoJ0JKToYLDcRIK41jNGFQZYKl
-	 OsMq/AIaec9MWsYlhR+nFXLqBS1DNFMETYGcS4U86Na3kmiwQkrL3wAWMx3BPt/AFj
-	 En1qw7YpBF2x0qjn/KTTzbpQA81J4qGLz84XecmVoC9aJbi8CQBG9V+V4jEOBdahFE
-	 ZHtFhiYacbcw33jMJRUzj6eArGoVO8ePZv3O519ydSI0XhJNfmjq1lKazZeOcYPSJL
-	 Csed9E3jVTGuzzBGTbMMMUBrcaaLhoSFPrkGo0j1ymXo/A8TL+Pb1I82sl1wOvsSI0
-	 YfUPRkqPmM8Dg==
-Date: Wed, 10 Jul 2024 14:54:49 +0100
+	b=HlgOnuRbZ6Xx/tQ4gLcqAf1Gwh+iqXg4Mwrgmxhw0RxEamHK/vWBzh6aW6egfM4UU
+	 2VJMSyzxe9Gz34O1AHUYmkPLb+84UVZlTLaMm7RMIUwfTyrHjKU0TDn1fKlkTKCiE1
+	 CpS9AF1V2gFvOI/ys1c0rF0kXb2IRt2RDKUgW/Ek0YTL2qxeLPwZ1Ni4lJg9Z6LZ1y
+	 J+hXtqI2ygWYGSp8+GOSVeLVHALLni5Ji0i2R/6/UrdSdP9h4GS8fppawM8UfRBy4r
+	 8RE30X/M+dLvqXO/TZGsJrhsvXpmFSlyuYz8ElZxikpuTX88ZOoQoZRn9jnPgF1Nfp
+	 VIf1GNy49IdqA==
+Date: Wed, 10 Jul 2024 15:01:11 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Jessica Zhang <quic_jesszhan@quicinc.com>,
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+To: Hironori KIKUCHI <kikuchan98@gmail.com>
+Cc: linux-kernel@vger.kernel.org, Jagan Teki <jagan@amarulasolutions.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Jessica Zhang <quic_jesszhan@quicinc.com>,
+	Sam Ravnborg <sam@ravnborg.org>, David Airlie <airlied@gmail.com>,
+	Daniel Vetter <daniel@ffwll.ch>,
 	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
 	Maxime Ripard <mripard@kernel.org>,
 	Thomas Zimmermann <tzimmermann@suse.de>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: display: panel: document BOE
- TV101WUM-LL2 DSI Display Panel
-Message-ID: <20240710-console-dodgy-d7d48667eb96@spud>
-References: <20240709-topic-sdm450-upstream-tbx605f-panel-v1-0-af473397835d@linaro.org>
- <20240709-topic-sdm450-upstream-tbx605f-panel-v1-1-af473397835d@linaro.org>
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 3/5] dt-bindings: display: st7701: Add Anbernic RG28XX
+ panel
+Message-ID: <20240710-showdown-antirust-a3eb8b65c57f@spud>
+References: <20240706102338.99231-1-kikuchan98@gmail.com>
+ <20240706102338.99231-4-kikuchan98@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,34 +68,49 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="MEX5X5+p8+Bv5NnH"
+	protocol="application/pgp-signature"; boundary="HFMSCswt+gKrOFT8"
 Content-Disposition: inline
-In-Reply-To: <20240709-topic-sdm450-upstream-tbx605f-panel-v1-1-af473397835d@linaro.org>
+In-Reply-To: <20240706102338.99231-4-kikuchan98@gmail.com>
 
 
---MEX5X5+p8+Bv5NnH
+--HFMSCswt+gKrOFT8
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jul 09, 2024 at 03:05:44PM +0200, Neil Armstrong wrote:
-> Document the 1200x1920 BOE TV101WUM-LL2 DSI Display Panel found
-> in the Lenovo Smart Tab M10 tablet. The controller is unknown.
+On Sat, Jul 06, 2024 at 07:23:34PM +0900, Hironori KIKUCHI wrote:
+> The RG28XX panel is a display panel of the Anbernic RG28XX, a handheld
+> gaming device from Anbernic. It is 2.8 inches in size (diagonally) with
+> a resolution of 480x640.
 >=20
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> This panel is driven by a variant of the ST7701 driver IC internally,
+> confirmed by dumping and analyzing its BSP initialization sequence
+> by using a logic analyzer. It is very similar to the existing
+> densitron,dmt028vghmcmi-1a panel, but differs in some unknown
+> register values, so add a new entry for the panel to distinguish them.
+>=20
+> Additionally, the panel only has an SPI instead of MIPI DSI.
+> So add and modify for SPI as well.
+>=20
+> Signed-off-by: Hironori KIKUCHI <kikuchan98@gmail.com>
 
+With a mention in the commit message about why we are adding a property
+and then immediately forbidding its use:
 Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
---MEX5X5+p8+Bv5NnH
+Thanks,
+Conor.
+
+--HFMSCswt+gKrOFT8
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZo6SqQAKCRB4tDGHoIJi
-0m8lAQCDsd9XInZIae0ukgPefMVHdfVotzljYPbRmEP+1BP27AEAv4A0Vqu2vrbA
-w0lGgrSbFErSHtc63vpQ2guyYxoYvwc=
-=tWU0
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZo6UJwAKCRB4tDGHoIJi
+0rWJAP9IHO7fHqyM5a/UICny+oqraSfmKGBb4QQ3LA2EqBU78AD/a0EsmZU8OROj
+g207SYlLjekZTX5pN4bqKdUwpSj4AQE=
+=8tYI
 -----END PGP SIGNATURE-----
 
---MEX5X5+p8+Bv5NnH--
+--HFMSCswt+gKrOFT8--
 
