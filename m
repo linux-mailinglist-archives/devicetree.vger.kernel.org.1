@@ -1,48 +1,63 @@
-Return-Path: <devicetree+bounces-84628-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84629-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23CD992CF26
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 12:32:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BE7292CF2D
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 12:33:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5566C1C21FDA
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 10:32:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BB4141C239A0
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 10:33:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB57E190065;
-	Wed, 10 Jul 2024 10:24:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 077A6190072;
+	Wed, 10 Jul 2024 10:25:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FSGOHKI1"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="AHglaftd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF591190060;
-	Wed, 10 Jul 2024 10:24:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4ACBF190068;
+	Wed, 10 Jul 2024 10:25:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720607078; cv=none; b=kJcjj+caF4AXV9YwZASDy7sXnUaauuejoV/R8nD3aiJL2JZFuOmvUXaREGcErtZkBAExB00J23Q3DDWTmj3PQzWht44xCcPNaAlQvmqqeOOJo4eGbAvrt28SROqVTwBXpb9ROPvvtckT8oNXr+GiExk7S8VpfiFDQitFYAhnqvQ=
+	t=1720607133; cv=none; b=p0dNA0KRrsFnEAb2waTLKkdReXn2DH1HcEJMe4NhhEoOmkycvr04SE6p/zBEI3lPL7iXUFTTfPqssmA6gV+6IjE3eHXHKWBMXv3DdcM50Mbk+A0HQFIuKhJFealj3P7+cFO9SWnt0I3gGCP0NxfNHIBaY0MWdRWzkyQ7kEKTQQE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720607078; c=relaxed/simple;
-	bh=wEyjfW8r7FuprVCbJOuHzRa8MC6uYVcwQ35sjaLJCM8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=E2fDeoS3ZIXwdDPwcNEjKogmRu5tSmvYfbfle0PGWSFJrX6S+hKQBkew3rW0KT7uFhxTKLG4KlZjUsx9oz+ADBVYHVvn0yt9aQfnrjHe3LqnUxQRNLuV6zMKWVBUkwa55h0PcgziWVMTEcNDQyQ3ogq3gVYqmkEvX4EK/eh/RhI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FSGOHKI1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59C7CC32781;
-	Wed, 10 Jul 2024 10:24:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720607078;
-	bh=wEyjfW8r7FuprVCbJOuHzRa8MC6uYVcwQ35sjaLJCM8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=FSGOHKI1syVIzJKxKeQg7X563CAb5zDCqAfltMvi6lPXeBGfqLBTJBYRs0uKQ0ie8
-	 7h5qQ/6UmuHXuDjTtDtYpJizWWTQXKN09AKBYPvjL9mjlOPic1iT/sqL/pxlbJkqY3
-	 Cu0V17czxPzLRbf8VmO7Wpb5uQ9ABDMRWWwiqLgtB2Ube492dp1V8ounWIWeo7CCJp
-	 ZEaXrCCDmP96/A3pbzihxcwujYE06Ek8pe6Tnd2MzWTKqQNy0tnV+NmYo/0zIlHOLk
-	 /nq/UwFYTo7bLQB/elDmjKzFtT8tq4UPOo32/NETYZezj/Vvy+VHRp4f3VNoz0e/ZS
-	 A+uOJnJP9svgw==
-Message-ID: <4cb531b8-5ea1-437f-bdb0-a49f7799af47@kernel.org>
-Date: Wed, 10 Jul 2024 12:24:33 +0200
+	s=arc-20240116; t=1720607133; c=relaxed/simple;
+	bh=OItdgYZEX6+etxezYKYw3Axjz71HUX1jrCV+j1iDuAk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=m6dgiOZ7KDRjMkNbNngMPV5009DsRfFJfMO3ku/MY203ibbQMm2JhHya6xrp1U7LcFi6AD088tINmEc7Z4X0dG4Zu5atRGDfCGTtfHUgPnVjhJKccHu5fEhG3p81U88KnFI5YgIryHCul9Gy3OcxH8VoD8JXm6+tLZ4FSAPtchs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=AHglaftd; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46A09rNX020426;
+	Wed, 10 Jul 2024 10:25:19 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	zdctES4zj+uyBrijgw6n67vpIT9s/pRBGfdOtGmqDpU=; b=AHglaftdsIH3dMS1
+	jZzFvxjz709HafISBtXCg5/PsuHpvC5XdUxGtaMnqSblVlTDLgPE0ztJktU3SgMG
+	f8TQ9fjdbsx+Dnd/Hm0sSdmDaqxrMMJHkrVKKhJpt444+4/EMdYrH9c6EVSRpR9d
+	jczwdAN1GcT4IF7Cut0dZlklsK56CFdMbRbTKxcc3YJsG3g7k9BJ8tbnzRThgHlT
+	aSdjF7HFHR82LJ4Ykec2W8S9TvtYcwcIJuS31Xg7g8NElAl8olxf/Oi5yMxddnRt
+	JRv1qzjMbNi7HdeOlO7utnrsk/MznDnT6mGE+IY1M/iZSGPs1lQCl9Z2gZI7mjEG
+	aDw8xw==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 406xa68x2p-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 10 Jul 2024 10:25:18 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA04.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 46AAPHcD022574
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 10 Jul 2024 10:25:17 GMT
+Received: from [10.239.132.150] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 10 Jul
+ 2024 03:25:11 -0700
+Message-ID: <239f408d-7bab-48c3-bf26-3880012d9098@quicinc.com>
+Date: Wed, 10 Jul 2024 18:25:09 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,78 +65,136 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/6] ASoC: dt-bindings: Add bindings for NeoFidelity
- NTP8835
-To: Igor Prusov <ivprusov@salutedevices.com>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>, Philipp Zabel <p.zabel@pengutronix.de>
-Cc: prusovigor@gmail.com, kernel@salutedevices.com,
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240709172834.9785-1-ivprusov@salutedevices.com>
- <20240709172834.9785-6-ivprusov@salutedevices.com>
+Subject: Re: [PATCH v2 0/2] PCI: qcom: Add QCS9100 PCIe compatible
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+CC: Tengfei Fan <quic_tengfan@quicinc.com>,
+        Bjorn Helgaas
+	<bhelgaas@google.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>, <kernel@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-pci@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20240709-add_qcs9100_pcie_compatible-v2-0-04f1e85c8a48@quicinc.com>
+ <20240709175823.GB44420@thinkpad>
+ <1fafb584-fc49-45be-a8a4-4027739eba32@quicinc.com>
+ <20240710070908.GA3731@thinkpad>
 Content-Language: en-US
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240709172834.9785-6-ivprusov@salutedevices.com>
-Content-Type: text/plain; charset=UTF-8
+From: "Aiqun Yu (Maria)" <quic_aiquny@quicinc.com>
+In-Reply-To: <20240710070908.GA3731@thinkpad>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: YinPFAERX8GE8IkCyCBNZEcX8CC-a0e5
+X-Proofpoint-ORIG-GUID: YinPFAERX8GE8IkCyCBNZEcX8CC-a0e5
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-10_06,2024-07-09_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
+ suspectscore=0 lowpriorityscore=0 impostorscore=0 phishscore=0 spamscore=0
+ clxscore=1015 adultscore=0 malwarescore=0 mlxscore=0 bulkscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2406140001 definitions=main-2407100071
 
-On 09/07/2024 19:28, Igor Prusov wrote:
-> Add dt-bindings for NeoFidelity NTP8835C/NTP8835C Amplifiers
+
+
+On 7/10/2024 3:09 PM, Manivannan Sadhasivam wrote:
+> On Wed, Jul 10, 2024 at 09:47:47AM +0800, Aiqun Yu (Maria) wrote:
+>>
+>>
+>> On 7/10/2024 1:58 AM, Manivannan Sadhasivam wrote:
+>>> On Tue, Jul 09, 2024 at 10:59:28PM +0800, Tengfei Fan wrote:
+>>>> Introduce support for the QCS9100 SoC device tree (DTSI) and the
+>>>> QCS9100 RIDE board DTS. The QCS9100 is a variant of the SA8775p.
+>>>> While the QCS9100 platform is still in the early design stage, the
+>>>> QCS9100 RIDE board is identical to the SA8775p RIDE board, except it
+>>>> mounts the QCS9100 SoC instead of the SA8775p SoC.
+>>>>
+>>>> The QCS9100 SoC DTSI is directly renamed from the SA8775p SoC DTSI, and
+>>>> all the compatible strings will be updated from "SA8775p" to "QCS9100".
+>>>> The QCS9100 device tree patches will be pushed after all the device tree
+>>>> bindings and device driver patches are reviewed.
+>>>>
+>>>
+>>> Are you going to remove SA8775p compatible from all drivers as well?
+>>
+>> SA8775p compatible and corresponding scmi solutions for the driver will
+>> be taken care from auto team, currently IOT team is adding QCS9100
+>> support only. Auto team have a dependency on the current QCS9100(IOT
+>> non-scmi solution) and SA8775p(AUTO SCMI solution) device tree splitting
+>> effort.
+>>
+>> More background and information can be referenced from [1].
+>> [1] v1:
+>> https://lore.kernel.org/linux-arm-msm/20240703025850.2172008-1-quic_tengfan@quicinc.com/
 > 
-> Signed-off-by: Igor Prusov <ivprusov@salutedevices.com>
-> ---
->  .../bindings/sound/neofidelity,ntp8835.yaml   | 65 +++++++++++++++++++
+> I'm aware of the background, but what I don't understand is, why do you want to
+> keep the sa8775p compatible in both the driver and binding? Once you rename the
+> DT, these compatibles become meaningless.
+> 
+> Waiting for Auto team to remove the compatible is not ideal. They may anyway
+> modify it based on SCMI design.
 
-No need for new schema. Just put it - after testing - into previous
-bindings file.
+Got it. Will remove sa8775p compatible in next patchset version after
+discuss with Tengfei.
 
-Best regards,
-Krzysztof
+PCIE driver have a very good shape of resources op api, and when SCMI
+resource solution added, "sa8775p" compatible can be added at that time
+with correct SCMI resource ops.
+> 
+> - Mani
+> 
+>>>
+>>> - Mani
+>>>
+>>>> The final dtsi will like:
+>>>> https://lore.kernel.org/linux-arm-msm/20240703025850.2172008-3-quic_tengfan@quicinc.com/
+>>>>
+>>>> The detailed cover letter reference:
+>>>> https://lore.kernel.org/linux-arm-msm/20240703025850.2172008-1-quic_tengfan@quicinc.com/
+>>>>
+>>>> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
+>>>> ---
+>>>> Changes in v2:
+>>>>   - Split huge patch series into different patch series according to
+>>>>     subsytems
+>>>>   - Update patch commit message
+>>>>
+>>>> prevous disscussion here:
+>>>> [1] v1: https://lore.kernel.org/linux-arm-msm/20240703025850.2172008-1-quic_tengfan@quicinc.com/
+>>>>
+>>>> ---
+>>>> Tengfei Fan (2):
+>>>>       dt-bindings: PCI: Document compatible for QCS9100
+>>>>       PCI: qcom: Add support for QCS9100 SoC
+>>>>
+>>>>  Documentation/devicetree/bindings/pci/qcom,pcie-sa8775p.yaml | 5 ++++-
+>>>>  drivers/pci/controller/dwc/pcie-qcom.c                       | 1 +
+>>>>  2 files changed, 5 insertions(+), 1 deletion(-)
+>>>> ---
+>>>> base-commit: 0b58e108042b0ed28a71cd7edf5175999955b233
+>>>> change-id: 20240709-add_qcs9100_pcie_compatible-ceec013a335d
+>>>>
+>>>> Best regards,
+>>>> -- 
+>>>> Tengfei Fan <quic_tengfan@quicinc.com>
+>>>>
+>>>
+>>
+>> -- 
+>> Thx and BRs,
+>> Aiqun(Maria) Yu
+> 
 
+-- 
+Thx and BRs,
+Aiqun(Maria) Yu
 
