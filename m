@@ -1,157 +1,133 @@
-Return-Path: <devicetree+bounces-84599-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84601-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17A9692CDCE
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 11:01:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C38BA92CDE7
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 11:07:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C27631F27314
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 09:01:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5A263280A8A
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 09:07:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CAB9185E7F;
-	Wed, 10 Jul 2024 09:01:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V5KUlUsW"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3848217B517;
+	Wed, 10 Jul 2024 09:07:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.3ffe.de (0001.3ffe.de [159.69.201.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22847185E79;
-	Wed, 10 Jul 2024 09:01:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A58A3C39;
+	Wed, 10 Jul 2024 09:07:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.69.201.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720602102; cv=none; b=g7mNEm4C+O5o9WxFITaG70bxaxl3JdQuD7d1cmpYPE6Mjb3skj2R1IiXZWSrfHshwKtbsJtkQLoFfoKEzFtI/aI0Z94SANk01g38P0WxBu7jwTyIdRhoZhtD7nAihpoGbHYNGlFiHNdDxgb24pgZCVvopXArLTRJfUFE7eNs31E=
+	t=1720602472; cv=none; b=Qfve/u+BXQZMfp7LPku5KiVDi4+5rYStep5kOdXVyJNWhKtsCX+fV+JxN4jxKdgNNye0HdfLacwNmRwb3xIOb2FmqlJon2kqUCNsN74bsyTKeRfJ6GWlVci5fSRlq1z2Uu2ibXns3EJLemOracwg4t2zL97/lwUgh3EiVS0K5nM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720602102; c=relaxed/simple;
-	bh=B/XFMfWU5ZqXj0qnN6nB10B5m+mTj+wFKvLPsFSnbUs=;
-	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=JALddd9OOHebLScup/gQPFpLAvs/cBKOqyIgpPSDEtXahdIKxW9AjWXeNeinACpIMYt/Ke7KR8EvZOfoeqz9LXC2mMprmQhEokVrKPM9U7gTL8TLezpJlrzGxeuKUt/ftp8ryYdj5drS/UjVtLVPWQgZ9ejMnCcD8zIJEQRZKes=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V5KUlUsW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C80DC32781;
-	Wed, 10 Jul 2024 09:01:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720602101;
-	bh=B/XFMfWU5ZqXj0qnN6nB10B5m+mTj+wFKvLPsFSnbUs=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=V5KUlUsWia4ujO5KlNShozP/c4sSt7QYPzm6VZw9+thhlVm3JcN0YCzAwi29KvUGq
-	 58s0kauuUjYAVx7unbeUIg/8bOPbKUUUgkf26iux1CHEUL9I42eQGqi6YfHJPu6K60
-	 XRj1IYbBdXFqUMd7QbPM9R53sWADw0c52KtU5mb+xImQenML3KYHM2h2rTtubk+iyk
-	 awa7hxg4iUG9KK7Zy5L57RikY7esWe233SB1nZk1Xzy4wG7qhp+rz15IM7ZuKrIinH
-	 c766z5kFEYlZkQQyeshRWZVqKuimDBpFwKf8SDg5fo40do9sSCI8p/zyeDvMmahxdf
-	 XHcdJAbD0RvUg==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.95)
-	(envelope-from <maz@kernel.org>)
-	id 1sRTCV-00BAQB-8t;
-	Wed, 10 Jul 2024 10:01:39 +0100
-Date: Wed, 10 Jul 2024 10:01:22 +0100
-Message-ID: <86y16939jx.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: <Nicolas.Ferre@microchip.com>
-Cc: <Varshini.Rajendran@microchip.com>,
-	<conor@kernel.org>,
-	<tglx@linutronix.de>,
-	<robh@kernel.org>,
-	<krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>,
-	<alexandre.belloni@bootlin.com>,
-	<claudiu.beznea@tuxon.dev>,
-	<Dharma.B@microchip.com>,
-	<linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v5 15/27] dt-bindings: interrupt-controller: Document the property microchip,nr-irqs
-In-Reply-To: <82ca4f3d-fa78-4617-823e-69f16a2c3319@microchip.com>
-References: <20240703102011.193343-1-varshini.rajendran@microchip.com>
-	<20240703102814.196063-1-varshini.rajendran@microchip.com>
-	<20240703-dentist-wired-bdb063522ef7@spud>
-	<a41274c3-fd32-4eba-8240-bf95e41f63d9@microchip.com>
-	<82ca4f3d-fa78-4617-823e-69f16a2c3319@microchip.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/29.3
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	s=arc-20240116; t=1720602472; c=relaxed/simple;
+	bh=tGSaydQsMD0Fpgs2z9WG6kisUFtxpKrjPWBY0PrIjPk=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:From:To:
+	 References:In-Reply-To; b=VvuhpwmLduN0audok/5Ej3S1R5/2dGA+O1BAhxyuLsPbKb2ugjOna52X1a3qjapke5Cf66apg0VghNRX8orAMEL46y4Dfaqb+91F84tgD0W4wpIYRi6HaqZNs/NtunnidmdX3/cYLAi53PmQxvOsrcYJ9jCukZSvg3Nkmlr8rZE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org; spf=pass smtp.mailfrom=walle.cc; arc=none smtp.client-ip=159.69.201.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=walle.cc
+Received: from localhost (unknown [IPv6:2a02:810b:4340:4ee9:4685:ff:fe12:5967])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mail.3ffe.de (Postfix) with ESMTPSA id 54D733BC4;
+	Wed, 10 Jul 2024 11:02:04 +0200 (CEST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: Nicolas.Ferre@microchip.com, Varshini.Rajendran@microchip.com, conor@kernel.org, tglx@linutronix.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, alexandre.belloni@bootlin.com, claudiu.beznea@tuxon.dev, Dharma.B@microchip.com, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 10 Jul 2024 11:02:03 +0200
+Message-Id: <D2LQJROQYIY3.2Q88EXS8HUDLQ@kernel.org>
+Subject: Re: [PATCH v1 4/4] drm/panel: ili9806e: Break some CMDS into helper
+ functions
+Cc: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>
+From: "Michael Walle" <mwalle@kernel.org>
+To: "Cong Yang" <yangcong5@huaqin.corp-partner.google.com>,
+ <quic_jesszhan@quicinc.com>, <neil.armstrong@linaro.org>,
+ <dianders@chromium.org>, <linus.walleij@linaro.org>, <airlied@gmail.com>,
+ <dmitry.baryshkov@linaro.org>
+X-Mailer: aerc 0.16.0
+References: <20240710084715.1119935-1-yangcong5@huaqin.corp-partner.google.com> <20240710084715.1119935-5-yangcong5@huaqin.corp-partner.google.com>
+In-Reply-To: <20240710084715.1119935-5-yangcong5@huaqin.corp-partner.google.com>
 
-On Tue, 09 Jul 2024 15:06:29 +0100,
-<Nicolas.Ferre@microchip.com> wrote:
-> 
-> On 09/07/2024 at 08:13, Varshini Rajendran - I67070 wrote:
-> > On 03/07/24 9:11 pm, Conor Dooley wrote:
-> >> On Wed, Jul 03, 2024 at 03:58:14PM +0530, Varshini Rajendran wrote:
-> >>> Add the description and conditions to the device tree documentation
-> >>> for the property microchip,nr-irqs.
-> >>>
-> >>> Signed-off-by: Varshini Rajendran<varshini.rajendran@microchip.com>
-> >> This needs to be part of patch 14.
-> >>
-> >>> ---
-> >>>    .../bindings/interrupt-controller/atmel,aic.yaml     | 12 ++++++++++++
-> >>>    1 file changed, 12 insertions(+)
-> >>>
-> >>> diff --git a/Documentation/devicetree/bindings/interrupt-controller/atmel,aic.yaml b/Documentation/devicetree/bindings/interrupt-controller/atmel,aic.yaml
-> >>> index 9c5af9dbcb6e..06e5f92e7d53 100644
-> >>> --- a/Documentation/devicetree/bindings/interrupt-controller/atmel,aic.yaml
-> >>> +++ b/Documentation/devicetree/bindings/interrupt-controller/atmel,aic.yaml
-> >>> @@ -54,6 +54,10 @@ properties:
-> >>>        $ref: /schemas/types.yaml#/definitions/uint32-array
-> >>>        description: u32 array of external irqs.
-> >>>    
-> >>> +  microchip,nr-irqs:
-> >>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> >>> +    description: u32 array of nr_irqs.
-> >> This makes no sense, did you just copy from above? Why would the number
-> >> of irqs be an array? Why can't you determine this from the compatble?
-> >>
-> > Sorry for the bad description. I will correct it in the next version.
-> > 
-> > For the second part of the question, this change was done as a step to
-> > resolve having a new compatible while having practically the same IP
-> > pointed out in the v3 of the series [1]. It is kind of looping back to
-> > the initial idea now. Even if this is added as a driver data, it
-> > overrides the expectation from the comment in [1]. Please suggest. I
-> 
-> In your v3 patch, indeed you were extracting the number of IRQs from the 
-> compatibility string (aka, from device tree...). It's my preferred 
-> solution as well.
-> 
-> So, come back to v3 [1] and address what Conor said in v4 "...having 
-> specific $soc_aic5_of_init() functions for each SoC seems silly when 
-> usually only the number of interrupts changes. The number of IRQs could 
-> be in the match data and you could use aic5_of_init in your 
-> IRQCHIP_DECLARE directly"
-> 
-> I think that we can convince Marc/Thomas that it's the best option as it 
-> prevents introducing another non-standard property to the DT, break the 
-> ABI (and was used happily for years).
+On Wed Jul 10, 2024 at 10:47 AM CEST, Cong Yang wrote:
+> Break select page cmds into helper function.
 
-In general, the least cruft we add to the DT after the facts, the
-better. If the compatible string is good enough to identify the
-device, I don't think we need to overthink it, specially as there is
-no upside to non-standard properties here -- from what I understand,
-the number of available interrupts is a property of the HW, and not
-something that can be configured, making it part of the programming
-model, just like the layout of registers.
+Why though? I don't find that anything easier to read. In fact, I
+deliberately chose not to factor that out into a function. It's just
+a sequence of magic commands, taken straight from the datasheet. So,
+I'd like to keep it that way.
 
-But I'm not in a deciding position anymore, and this is only my
-(educated) opinion.
+-michael
 
-Thanks,
+> Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
+> ---
+>  drivers/gpu/drm/panel/panel-ilitek-ili9806e.c | 14 ++++++++++----
+>  1 file changed, 10 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/panel/panel-ilitek-ili9806e.c b/drivers/gpu/=
+drm/panel/panel-ilitek-ili9806e.c
+> index e4a44cd26c4d..68fb9a1a4d80 100644
+> --- a/drivers/gpu/drm/panel/panel-ilitek-ili9806e.c
+> +++ b/drivers/gpu/drm/panel/panel-ilitek-ili9806e.c
+> @@ -35,6 +35,12 @@ struct ili9806e_panel {
+>  	enum drm_panel_orientation orientation;
+>  };
+> =20
+> +#define ILI9806E_DCS_SWITCH_PAGE	0xff
+> +
+> +#define ili9806e_switch_page(ctx, page) \
+> +	mipi_dsi_dcs_write_seq_multi(ctx, ILI9806E_DCS_SWITCH_PAGE, \
+> +				     0xff, 0x98, 0x06, 0x04, (page))
+> +
+>  static const char * const regulator_names[] =3D {
+>  	"vdd",
+>  	"vccio",
+> @@ -227,7 +233,7 @@ static void ili9806e_dsi_remove(struct mipi_dsi_devic=
+e *dsi)
+>  static void com35h3p70ulc_init(struct mipi_dsi_multi_context *ctx)
+>  {
+>  	/* Switch to page 1 */
+> -	mipi_dsi_dcs_write_seq_multi(ctx, 0xff, 0xff, 0x98, 0x06, 0x04, 0x01);
+> +	ili9806e_switch_page(ctx, 0x01);
+>  	/* Interface Settings */
+>  	mipi_dsi_dcs_write_seq_multi(ctx, 0x08, 0x18);
+>  	mipi_dsi_dcs_write_seq_multi(ctx, 0x21, 0x01);
+> @@ -285,14 +291,14 @@ static void com35h3p70ulc_init(struct mipi_dsi_mult=
+i_context *ctx)
+>  	mipi_dsi_dcs_write_seq_multi(ctx, 0xcf, 0x0a);
+> =20
+>  	/* Switch to page 7 */
+> -	mipi_dsi_dcs_write_seq_multi(ctx, 0xff, 0xff, 0x98, 0x06, 0x04, 0x07);
+> +	ili9806e_switch_page(ctx, 0x07);
+>  	/* Power Control */
+>  	mipi_dsi_dcs_write_seq_multi(ctx, 0x06, 0x00);
+>  	mipi_dsi_dcs_write_seq_multi(ctx, 0x18, 0x1d);
+>  	mipi_dsi_dcs_write_seq_multi(ctx, 0x17, 0x32);
+> =20
+>  	/* Switch to page 6 */
+> -	mipi_dsi_dcs_write_seq_multi(ctx, 0xff, 0xff, 0x98, 0x06, 0x04, 0x06);
+> +	ili9806e_switch_page(ctx, 0x06);
+>  	/* GIP settings */
+>  	mipi_dsi_dcs_write_seq_multi(ctx, 0x00, 0x20);
+>  	mipi_dsi_dcs_write_seq_multi(ctx, 0x01, 0x02);
+> @@ -352,7 +358,7 @@ static void com35h3p70ulc_init(struct mipi_dsi_multi_=
+context *ctx)
+>  	mipi_dsi_dcs_write_seq_multi(ctx, 0x53, 0x12);
+> =20
+>  	/* Switch to page 0 */
+> -	mipi_dsi_dcs_write_seq_multi(ctx, 0xff, 0xff, 0x98, 0x06, 0x04, 0x00);
+> +	ili9806e_switch_page(ctx, 0x00);
+>  	/* Interface Pixel format */
+>  	mipi_dsi_dcs_write_seq_multi(ctx, 0x3a, 0x60);
+>  };
 
-	M.
-
--- 
-Without deviation from the norm, progress is not possible.
 
