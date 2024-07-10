@@ -1,165 +1,173 @@
-Return-Path: <devicetree+bounces-84734-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84735-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7E9392D526
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 17:37:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4ADE692D52C
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 17:41:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E7F7D1C208C8
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 15:37:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6DECB1C20EFE
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 15:41:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A43B9194A7C;
-	Wed, 10 Jul 2024 15:37:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC3A819308C;
+	Wed, 10 Jul 2024 15:41:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="ZLZqfZlC"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="BpkxVglJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E1A31946C8
-	for <devicetree@vger.kernel.org>; Wed, 10 Jul 2024 15:37:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51FF310A09
+	for <devicetree@vger.kernel.org>; Wed, 10 Jul 2024 15:41:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720625832; cv=none; b=h+4YGM4+RCzWfjs/Z5dkMi9NUBEO+gjuyrw5ajZxCmjGNF2ZoVJj2FFREMNHOIIkDD64BH6XtwUm/0F3kXQgcKZpyckp4MxfQAltYUvyffYECmjgKP3wTjImCXSiyOemW60bumNwGv4H8XYgMlFxDMke5kujgvSZoOHDo9JNB/Y=
+	t=1720626111; cv=none; b=ZRUB5/gDCZYhiL93OAJ0l0yM8arxoqDgBjj+O5Eu8qgnxLDJ/hD40DIdP+rIt6vmxcfYyPOURMAld1waG4+QpsrG4ySdTQgIljZnUwTrSGWE+9p4a8rg4iHZZeKAMt+FpQHX4DzjJ8gDoCBOAUkxc4gELDDU/KKqk1QL3XaWKys=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720625832; c=relaxed/simple;
-	bh=l+IjfJbiptWF288dI0Nr2G4yDhESgXFSBZwA0yeEByQ=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=Dgeoy2e4OTl3igswMx07wNjg0VILsk1mDTtg/FCgIFde1MSI6H2z7LLBaW0E3uDhp+s78czV7PhnVZVAFSgeDV0qfQVwl+W2gRLuoDoSW23+lvnX9Ya/Ak8W2judvGNAe7r0Y8qvqrlRZHi3KkDyJ77yu2cTr+yuO7Xq7pkvJys=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=ZLZqfZlC; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1720626111; c=relaxed/simple;
+	bh=kjSkQRtJBB57kXqddkxjG3h6NHhl8b8AwIuhcgW6jvA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lsCeKybadz4NMBoWZ7MMKPcrFcWnTDh0O3ogM2MBeJZfyi70zgPutP2D8UtalL8DeIzs8u3cBAsSxJ+9KUIpAFwH9eWmcpCwHDXtlon6kIGVh7C3saRuDwRpMwnb6A7Vz1HFR5Vd1zoi5jvoCFle4OjwsnfiApsVKrxjF/YB1yE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=BpkxVglJ; arc=none smtp.client-ip=170.10.129.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1720626109;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=RFy0Pt4ubesULzO+oQaiRFBM5Ze1aZnn+Qz6jyyaJAc=;
+	b=BpkxVglJmEDOvITQxlBN7RUpPcLsMAoBt+3XF7gbU8thCFy2sZZl9GuwNuEHK+MD3ZYYOb
+	N6lopLSx1m5fk1Q5NagU66uX4RC7wBkHSPQl/8rJ+egdC6ia8i2//Na7lQuYeHLkr1Tt3H
+	h9UV6egzvXXWHXf5z7qZ6IavgjlSGss=
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com
+ [209.85.219.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-321-2Wae6PatN5ueVeVkFd2WFw-1; Wed, 10 Jul 2024 11:41:48 -0400
+X-MC-Unique: 2Wae6PatN5ueVeVkFd2WFw-1
+Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-6b7483e3dd9so8138246d6.1
+        for <devicetree@vger.kernel.org>; Wed, 10 Jul 2024 08:41:48 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720626108; x=1721230908;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=RFy0Pt4ubesULzO+oQaiRFBM5Ze1aZnn+Qz6jyyaJAc=;
+        b=WOVyKUuQ3tKOuB2V5nSqY236o5/ia4AegC+qmP9G6d3hjjB3852uUmVQl4Xb0xhILN
+         +hu508c0EqCel88mN+h7SM1Hs1plRQjV/HJJJ9vq4mv03EOq6/eLiVPFnZ00kgYwqwBM
+         iQE4APDrp0I7JjkVyqVADzWUfL4h2JlrFBbXboF5FbXTWl3oM/pr6ctTNrD0g3JS8+jA
+         uyJTGXl/j2h7GmU8zI9PH0ioXj9GB3yEh245QmFPFLVRW7oochVPPcem8sc/iKeSekfR
+         rEBuRuKSkKtnp6bpaNY6fs3v+jSJ7bpP2KxnAeha2fv1OoPTcB3BsexQqNuWiecSXSY3
+         oYag==
+X-Forwarded-Encrypted: i=1; AJvYcCU3mDAEMMvDGvjArHPZ740iEYbhOc8gnfjwQRaZm4yBtX9GUF0aRr9HzhyfJB2Gwenk+0pXMjiDp6kf0Etc9bHxDfd+KfekCCyL4w==
+X-Gm-Message-State: AOJu0YxI+kY/RV9Dw9N5NpWUFYJELuizj2Yz3er3anQe9aJDhNMM02Am
+	bgY9l4dFmdv3hbdK9FKdWx54B5vnfr4Eaeeuga3Ynyh7vUACaW0mFrf0DJip0pQGuP4P1UpkBXf
+	2J/Amv2qk1XJCjRVFrzZzqnE4SXiU//TkRYc1mBKS1Ig+k8kMjx/Bz9BLR2Y=
+X-Received: by 2002:ad4:5e8b:0:b0:6b5:d95c:692d with SMTP id 6a1803df08f44-6b74af531a6mr712046d6.13.1720626107779;
+        Wed, 10 Jul 2024 08:41:47 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFm/74UP4TLT1vGs8DLjUNFGeFxt2DXzfyoISdrNcO4smbnFu4jefOYDtfhRDnu4G/xSbFhqw==
+X-Received: by 2002:ad4:5e8b:0:b0:6b5:d95c:692d with SMTP id 6a1803df08f44-6b74af531a6mr711666d6.13.1720626107436;
+        Wed, 10 Jul 2024 08:41:47 -0700 (PDT)
+Received: from x1gen2nano ([2600:1700:1ff0:d0e0::40])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6b61b9c47d4sm18003426d6.23.2024.07.10.08.41.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 10 Jul 2024 08:41:47 -0700 (PDT)
+Date: Wed, 10 Jul 2024 10:41:44 -0500
+From: Andrew Halaney <ahalaney@redhat.com>
+To: Siddharth Vadapalli <s-vadapalli@ti.com>
+Cc: nm@ti.com, vigneshr@ti.com, kristo@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-kernel@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, vkoul@kernel.org, 
+	kishon@kernel.org, sjakhade@cadence.com, rogerq@kernel.org, 
+	thomas.richard@bootlin.com, theo.lebrun@bootlin.com, make24@iscas.ac.cn, 
+	linux-phy@lists.infradead.org, mranostay@ti.com
+Subject: Re: [BUG] k3-j784s4-evm/phy-cadence-torrent: Shared reset using
+ exclusive API
+Message-ID: <qgqpibrr6hcicpofi64fxenenq7xdffnddbapefjgzsw6q7j2s@cl3gkkytj2w4>
+References: <yhtb4clns57t7qo5yxil3oofisdlzfubyiwrvjo2ufw2ngv67m@g6p7ktxfgfv3>
+ <46e635e6-b6bf-404c-87a2-57fe25b4855a@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1720625827;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=o5YO3vDsKii1RIWSK3o403YfJhyfiHeTw4kZwp3Y5Qo=;
-	b=ZLZqfZlC02eYLNF66XHatbEQe0l1dBLEn57xRtf7jPbU9UTrjLi+2me7BI5YIXidRQ/7SR
-	AHfQZe6uP3uzrVTYYp9ygrUC0SDm6xs6vTjnMkIT62dRoYrgxq/cuZ7+kOW4cRS7lbujDv
-	nMaQBFoeZsKCNasTfQooOXCXM02D//ThsiraJhRgkvMMwTT8z4mZdunbBx61Yb2WojsL1Z
-	fePbjW6exjUTujOJDIxkmxts6xxS/YTrEg/XkO0MP+x68VLRrEeIzmpjnDsUrTHmS2G/5w
-	F2D1JWyKHAvYlYXbHm+m2AYQq2ux3RNdi2LjpeqSi9G/hrwZN8BJkicmA4hspg==
-Date: Wed, 10 Jul 2024 17:37:06 +0200
-From: Dragan Simic <dsimic@manjaro.org>
-To: Philipp Puschmann <p.puschmann@pironex.com>
-Cc: Diederik de Haas <didi.debian@cknow.org>,
- linux-rockchip@lists.infradead.org, robh@kernel.org, krzk+dt@kernel.org,
- devicetree@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: rockchip: Add uart dma names to the SoC dtsi
- for RK356x
-In-Reply-To: <9da2d4cf-1210-4e5c-9cab-ae500ae303f9@pironex.com>
-References: <20240710093356.3344056-1-p.puschmann@pironex.com>
- <5414331.Y6POrrGVKo@bagend>
- <72e38433-1ed4-460c-9f69-db26b673c441@pironex.com>
- <9af7bd0db5bc5fd23cfeb121b78bbdc1@manjaro.org>
- <9da2d4cf-1210-4e5c-9cab-ae500ae303f9@pironex.com>
-Message-ID: <184e5fef15492d43d1e56cc2f7f6a735@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <46e635e6-b6bf-404c-87a2-57fe25b4855a@ti.com>
 
-On 2024-07-10 17:14, Philipp Puschmann wrote:
-> Am 10.07.24 um 16:56 schrieb Dragan Simic:
->> On 2024-07-10 12:20, Philipp Puschmann wrote:
->>> Am 10.07.24 um 12:02 schrieb Diederik de Haas:
->>>> On Wednesday, 10 July 2024 11:33:56 CEST Philipp Puschmann wrote:
->>>>> DMA names are required by of_dma_request_slave_channel function 
->>>>> that is
->>>>> called during uart probe. So to enable DMA for uarts add the names 
->>>>> as in
->>>>> the RK3568 TRM.
->>>> 
->>>> Setting it on channels without flow control apparently causes 
->>>> issues. See
->>>> 
->>>> https://lore.kernel.org/linux-rockchip/20240628120130.24076-1-didi.debian@cknow.org/
->>> 
->>> Ah is see. The only problem that i have is to enable/disable dmas by
->>> having or not having
->>> dma-names properties, where the latter case is followed by kernel
->>> error messages. That
->>> is very counterintuitive. Maybe a explicit boolean like dma-broken
->>> would be better. That
->>> could be set on dtsi level as default and deleted on board dts if
->>> wanted. With such
->>> a boolean we could also prevent the misleading "dma-names property 
->>> of"
->>> error message
->>> and replace it with a hint that dma is disabled on purpose.
->> 
->> From what I've read in the prior discussions, this seems like a driver
->> issue, so the driver should be fixed instead.
-> 
-> I would tend to disagree. The serial driver just uses the generic dma
-> API. The error
-> message comes from of_dma_request_slave_channel() in 
-> drivers/dma/of-dma.c
-> and is called from dma_request_chan() inn drivers/dma/dmaengine.c.
-> 
-> The first function expects a device tree node and "dmas" and
-> "dma-names" properties.
-> And "dma-names" is misused as "enable" switch and if not present (aka
-> disabled) it
-> dumps "dma-names property of node X missing or empty". For me it's 
-> clear that
-> a clean way to disable or enable using dma via dts would be better to 
-> tell the
-> of_dma_request_slave_channel function that dma is disabled on purpose, 
-> so it
-> could return ENODEV but without printing a misleading error level 
-> message.
+On Wed, Jul 10, 2024 at 10:29:46AM GMT, Siddharth Vadapalli wrote:
 
-Hmm, please give me some time to investigate it further.
+<snip>
 
->>>>> Signed-off-by: Philipp Puschmann <p.puschmann@pironex.com>
->>>>> ---
->>>>>  arch/arm64/boot/dts/rockchip/rk356x.dtsi | 10 ++++++++++
->>>>>  1 file changed, 10 insertions(+)
->>>>> 
->>>>> diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
->>>>> b/arch/arm64/boot/dts/rockchip/rk356x.dtsi index 
->>>>> d8543b5557ee..4ae40661ca6a
->>>>> 100644
->>>>> --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
->>>>> +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
->>>>> @@ -489,6 +489,7 @@ uart0: serial@fdd50000 {
->>>>>          clocks = <&pmucru SCLK_UART0>, <&pmucru PCLK_UART0>;
->>>>>          clock-names = "baudclk", "apb_pclk";
->>>>>          dmas = <&dmac0 0>, <&dmac0 1>;
->>>>> +        dma-names = "tx", "rx";
->>>>>          pinctrl-0 = <&uart0_xfer>;
->>>>>          pinctrl-names = "default";
->>>>>          reg-io-width = <4>;
->>>>> @@ -1389,6 +1390,7 @@ uart1: serial@fe650000 {
->>>>>          clocks = <&cru SCLK_UART1>, <&cru PCLK_UART1>;
->>>>>          clock-names = "baudclk", "apb_pclk";
->>>>>          dmas = <&dmac0 2>, <&dmac0 3>;
->>>>> +        dma-names = "tx", "rx";
->>>>>          pinctrl-0 = <&uart1m0_xfer>;
->>>>>          pinctrl-names = "default";
->>>>>          reg-io-width = <4>;
->>>>> ...
->>> 
->>> _______________________________________________
->>> Linux-rockchip mailing list
->>> Linux-rockchip@lists.infradead.org
->>> http://lists.infradead.org/mailman/listinfo/linux-rockchip
 > 
-> _______________________________________________
-> Linux-rockchip mailing list
-> Linux-rockchip@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-rockchip
+> No, the resets are correct. Both PCIe1 and USB0 use the same instances
+> of SERDES which is SERDES0. I had posted the series for PCIe at:
+> https://lore.kernel.org/r/20240529082259.1619695-1-s-vadapalli@ti.com/
+> with all 4 Lanes of SERDES0 given to PCIe1. Similarly, Ravi had posted
+> the series for USB at:
+> https://lore.kernel.org/r/20240507095545.8210-1-r-gunasekaran@ti.com/
+> with lane 3 of SERDES0 given to USB0.
+> 
+> Since both of the series got merged on the same day (14 Jun 2024):
+> PCIe series:
+> https://lore.kernel.org/r/171826022277.240984.16790260886500529482.b4-ty@ti.com/
+> USB series:
+> https://lore.kernel.org/r/171826022274.240984.5150753966671933401.b4-ty@ti.com/
+> the dependency was unknown when the individual series were posted as
+> neither of them was a part of linux-next/ti-k3-dts-next when the other
+> one was posted.
+> 
+> > 
+> > Total aside, I think we should put the above dts snippet into one &serdes0 reference
+> > for readability sake. I'd post the patch but I'm hoping to get the above answered
+> > first in order to clean that up before shuffling things around for readability sake.
+> 
+> Yes, I agree that both sub-nodes should go into the same referenced
+> serdes0 node in k3-j784s4-evm.dts. The reason it didn't happen that way
+> to begin with is due to the fact that both series got merged on the same
+> day as I pointed out above.
+> 
+> The fix in this case will be to assign lanes 0 and 1 of SERDES0 to PCIe1
+> and lane 3 to USB0 with lane 2 left unused since PCIe doesn't have the
+> concept of a x3 link. In such a configuration, the device-tree nodes
+> will look like:
+
+Thanks alot for the quick explanation and suggestion!
+
+> 
+> &serdes0 {
+> 	status = "okay";
+> 
+> 	serdes0_pcie1_link: phy@0 {
+> 		reg = <0>;
+> 		cdns,num-lanes = <2>;
+> 		#phy-cells = <0>;
+> 		cdns,phy-type = <PHY_TYPE_PCIE>;
+> 		resets = <&serdes_wiz0 1>, <&serdes_wiz0 2>;
+> 	};
+> 
+> 	serdes0_usb_link: phy@3 {
+> 		reg = <3>;
+> 		cdns,num-lanes = <1>;
+> 		#phy-cells = <0>;
+> 		cdns,phy-type = <PHY_TYPE_USB3>;
+> 		resets = <&serdes_wiz0 4>;
+> 	};
+> };
+> 
+> Thank you for pointing out this issue. Please let me know if you plan to
+> post the patch with the above fix or you want me to post the patch for it.
+> 
+
+I've posted a series (with you CC'ed, just realized I CC'ed Matt instead
+of Ravi -- whoops): https://lore.kernel.org/all/20240710-k3-j784s4-evm-serdes0-cleanup-v1-0-03850fe33922@redhat.com/
+
+I'll be on PTO the next few days, so if any changes are required there
+do feel free to do them on my behalf if I don't respin by end of today
+US-time, otherwise I'll make the changes when I return next week.
+
+Thanks again,
+Andrew!
+
 
