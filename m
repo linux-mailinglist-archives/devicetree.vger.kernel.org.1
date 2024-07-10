@@ -1,286 +1,152 @@
-Return-Path: <devicetree+bounces-84713-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84712-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67CC192D447
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 16:34:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17F0392D443
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 16:34:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BE37EB2352E
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 14:34:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C1D85280BD9
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 14:34:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFF1A19345A;
-	Wed, 10 Jul 2024 14:34:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FEBC19046A;
+	Wed, 10 Jul 2024 14:34:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZsDYJGXm"
+	dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b="pStlYLo2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from www530.your-server.de (www530.your-server.de [188.40.30.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2F2138FA0;
-	Wed, 10 Jul 2024 14:34:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C91538FA0;
+	Wed, 10 Jul 2024 14:34:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.30.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720622069; cv=none; b=rr7GOdlzJG6CBHq1a+XyK1E9c3Vgee86XvXtxwKgC44BoPKHaazi3MV/qzhYAijzIZzc3tE0rZOoEaDekkpAHc3lAGXde5MdMEJlmoPqnkFGA7ERQ0QNgUQLKnb/58pAWwqYKHbKwEwQwaku2RAbPtBfzA/cqnij+r38C/HRaz4=
+	t=1720622063; cv=none; b=PFYlC/6Aa+D/CEAxA9+fhH2REQQVRZPtvMYLocHbDZaPLH24g//QEojjVmpngvMcOLb3wiI5AqE5fIAUdHoh+W2iUIF5CjtycM3jkCnRaPko701bmSHtASg1S3dTkW1N+z/DHvxWJtgkD6vuV5NLTpVo0aKzp6YHMLJsNcjZJUc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720622069; c=relaxed/simple;
-	bh=VejpL6iBsOGiwiiOFREePNlf3bxoRqbszo5nhTy7wAo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ASfp4vyNhTGMf/qatzm7jIo1IJYXgdWx+6pEC6pgk6yutjDVX5nboxUtEQttvr2fr6BQL4Y0THNbKLDoyeIu0bZ7TeWp+ZzAC5yv0zOFYqkA3SMITISqB6mxbGlbEhMwr8wqHHxhZexCg10RcuTKtknBsUXgKUmMycXISC/BME4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZsDYJGXm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 790F1C4AF48;
-	Wed, 10 Jul 2024 14:34:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720622069;
-	bh=VejpL6iBsOGiwiiOFREePNlf3bxoRqbszo5nhTy7wAo=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=ZsDYJGXmfGAByyUuQdymwbdzTiQgprtXqVper33v/Yjy4M0LLNgNgaW5fqJSwsI6p
-	 AR8lcurBWsByvIssa83QiYqt0XB0zVRwkLzJGCl9OFsslEQ0RIGgq+Y4D6Remp5uTE
-	 YIh2EEoZdn2hxgXP/A67dAgPaEAdd2XkGRErL2Jt4FCmmPTBLcN0+cdWeevZrT80H/
-	 Fq5f1sF5/fDrvImjv3s8e2tTkp2V77N8gQa4j+4FzpfZCsWPCRDXZzc4lUbVpWHf99
-	 OrT1Dty822d2Bc+1AnHkMplq+Dbu49vORisiApr/OPS6xMxhxzOh+XOTpEKMktEKe4
-	 Zt4tVR4DSBjVg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6862DC3DA41;
-	Wed, 10 Jul 2024 14:34:29 +0000 (UTC)
-From: Pieterjan Camerlynck via B4 Relay <devnull+pieterjanca.gmail.com@kernel.org>
-Date: Wed, 10 Jul 2024 16:32:42 +0200
-Subject: [PATCH v2 2/2] leds: leds-pca995x: Add support for NXP PCA9956B
+	s=arc-20240116; t=1720622063; c=relaxed/simple;
+	bh=K+LGB86ywzCtdkH0UoRCHTGWEXsnmmCtiTK+UHcIU6o=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=YHdDgqrSMKtGw+ZEUU4W8LlLhLrfyrxBf/f+XO1A9YEChV7ErT9Oc/y75kDkK7kDlHgDDBeTLEiv/DjUFXD7COOV9QjYMoGi+FsLRMYTDYLoaFigBzAsBrMZE9VYDAoYAUlVnHTL6E38zFCm73B0UObwVeNtnjT52Q4AOPkb9yg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com; spf=pass smtp.mailfrom=geanix.com; dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b=pStlYLo2; arc=none smtp.client-ip=188.40.30.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=geanix.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=geanix.com;
+	s=default2211; h=Content-Type:MIME-Version:Message-ID:Date:References:
+	In-Reply-To:Subject:Cc:To:From:Sender:Reply-To:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=GAM6y8fnj0Euu5w+krZO4tj7MaXUS23Xc1S4ib+0mIk=; b=pStlYLo2/DPDeFYt364zdbEe48
+	QjopVVMc9xErJvDb/64k7JYtL631EN5KqkTc0fZKgmiRTlogv9dO9VK6j1iUNKKYbtpVncaWch17n
+	bnFEScNpCK74BzRzqV40P218HqcXDYx5pi0ftMN1e0ERaEg7VP/STkBoWopB3eW1RjJQHaMCXX4vw
+	SAnP4yuATGEReB4DmufkoK6Y7L8Ril0Gs7T95SQKYZiCC/fow6R4FGAAruCmuanvfmo80/gq1oeGx
+	rNeJzRUJ75ZfDPRP4YoTsGvMALE3zOtXh6kUDy6B35XHmHrVAFT1yp8sMa3pRHWBOJvsZMDmOaxiN
+	LgtRTFEg==;
+Received: from sslproxy01.your-server.de ([78.46.139.224])
+	by www530.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <esben@geanix.com>)
+	id 1sRYOW-000LnL-US; Wed, 10 Jul 2024 16:34:08 +0200
+Received: from [87.49.147.209] (helo=localhost)
+	by sslproxy01.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <esben@geanix.com>)
+	id 1sRYOV-000GU1-10;
+	Wed, 10 Jul 2024 16:34:08 +0200
+From: Esben Haabendal <esben@geanix.com>
+To: Erez <erezgeva2@gmail.com>
+Cc: Tudor Ambarus <tudor.ambarus@linaro.org>,  Jaime Liao
+ <jaimeliao@mxic.com.tw>,  leoyu@mxic.com.tw,  Alvin Zhou
+ <alvinzhou@mxic.com.tw>,  Julien Su <juliensu@mxic.com.tw>,  Erez Geva
+ <erezgeva@nwtime.org>,  linux-mtd@lists.infradead.org,  Pratyush Yadav
+ <pratyush@kernel.org>,  Michael Walle <mwalle@kernel.org>,
+  linux-kernel@vger.kernel.org,  Miquel Raynal <miquel.raynal@bootlin.com>,
+  Richard Weinberger <richard@nod.at>,  Vignesh Raghavendra
+ <vigneshr@ti.com>,  devicetree@vger.kernel.org,  Rob Herring
+ <robh@kernel.org>,  Krzysztof Kozlowski <krzk+dt@kernel.org>,  Conor
+ Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH v2 3/4] dt-bindings: mtd: macronix,mx25l12833f: add
+ SPI-NOR chip
+In-Reply-To: <CANeKEMP+mRefYZNb+TuBmOD7dC6=7Rg7D1EcfnjJoiaeaV28SQ@mail.gmail.com>
+	(Erez's message of "Wed, 3 Jul 2024 10:23:16 +0200")
+References: <20240629103914.161530-1-erezgeva@nwtime.org>
+	<20240629103914.161530-4-erezgeva@nwtime.org>
+	<1c457520-07b7-4bde-b040-e8bca959a4f5@linaro.org>
+	<CANeKEMOODBNZA6efh0E0Ga_KaVs5Y3WLcUftRhNwYHhnXO=GNw@mail.gmail.com>
+	<CANeKEMO42rJt5Ob4_HDcZ3eEMvuMOPvRaFaLwL8SA65NtxSV7A@mail.gmail.com>
+	<1d56c3b2-7adf-45b9-a509-956340f3f17b@linaro.org>
+	<CANeKEMMe-Onpn7xWQHgWz1Ps_uQPEMa7HrKA00HpoKjG+DCJNQ@mail.gmail.com>
+	<3bafcbea-6aa5-43ca-9d12-3916be3fe03d@linaro.org>
+	<CANeKEMM02-Jvb8Pd0fZJFnRg-hsAW+hckYWm11tZZXNMPSPJ=w@mail.gmail.com>
+	<9b45cc73-2251-4085-af95-7ccd00dd6d3b@linaro.org>
+	<CANeKEMP+mRefYZNb+TuBmOD7dC6=7Rg7D1EcfnjJoiaeaV28SQ@mail.gmail.com>
+Date: Wed, 10 Jul 2024 16:34:07 +0200
+Message-ID: <875xtd48ps.fsf@geanix.com>
+User-Agent: Gnus/5.13 (Gnus v5.13)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240710-pca995x-v2-2-8fafb6e4b7d5@gmail.com>
-References: <20240710-pca995x-v2-0-8fafb6e4b7d5@gmail.com>
-In-Reply-To: <20240710-pca995x-v2-0-8fafb6e4b7d5@gmail.com>
-To: Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Isai Gaspar <isaiezequiel.gaspar@nxp.com>, Marek Vasut <marex@denx.de>
-Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Pieterjan Camerlynck <pieterjanca@gmail.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1720622068; l=6241;
- i=pieterjanca@gmail.com; s=20240709; h=from:subject:message-id;
- bh=Z85WZdaxP1sSEe3jl2W64BocdH9j4g6SDJxd/sUHBWU=;
- b=KN4dgO9XhIm59QCOsySH1C/EmDZWLK1TvaYOlyKf9DKVUhKcCEVAzww3vl1U0TOuNODdSZw7G
- AkicQdxywn7BxQHjFj8edK2AF7WULOUGqQs9oRl5I3pux6j2K2v5OpR
-X-Developer-Key: i=pieterjanca@gmail.com; a=ed25519;
- pk=gSAHfvqQjVhNa1MhUClqbt7d3S+fviKz6FdQVaWFRyM=
-X-Endpoint-Received: by B4 Relay for pieterjanca@gmail.com/20240709 with
- auth_id=182
-X-Original-From: Pieterjan Camerlynck <pieterjanca@gmail.com>
-Reply-To: pieterjanca@gmail.com
+Content-Type: text/plain
+X-Authenticated-Sender: esben@geanix.com
+X-Virus-Scanned: Clear (ClamAV 0.103.10/27332/Wed Jul 10 10:36:46 2024)
 
-From: Pieterjan Camerlynck <pieterjanca@gmail.com>
+Erez <erezgeva2@gmail.com> writes:
 
-Add support for PCA9956B chip, which belongs to the same family.
+> On Wed, 3 Jul 2024 at 09:12, Tudor Ambarus <tudor.ambarus@linaro.org> wrote:
+>> On 7/3/24 12:16 AM, Erez wrote:
+>>> On Tue, 2 Jul 2024 at 07:00, Tudor Ambarus <tudor.ambarus@linaro.org> wrote:
+>>>
+>>> The table below uses fixed width characters.
+>>>
+>>> ID      Part.         Size              Status          SFDP status
+>>> according to spec.
+>>>                                                         New chip with
+>>> SFDP for EOL
+>>> c22012  MX25L2005(A)  SZ_256K =  2Mb    EOL             MX25L2006E
+>>> c22532  MX25U2033E    SZ_256K =  2Mb    EOL
+>>> c22013  MX25L4005A    SZ_512K =  4Mb    EOL
+>>> c22533  MX25U4035     SZ_512K =  4Mb    EOL
+>>> c22534  MX25U8035     SZ_1M   =  8Mb    EOL
+>>> c22016  MX25L3205D    SZ_4M   =  32Mb   EOL             MX25L3233F
+>>> c29e16  MX25L3255E    SZ_4M   =  32Mb   EOL
+>>> c22017  MX25L6405D    SZ_8M   =  64Mb   EOL
+>>> c22018  MX25L12805D   SZ_16M  =  128Mb  EOL             MX25L12833F
+>>> c22538  MX25U12835F   SZ_16M  =  128Mb  EOL
+>>> c2253a  MX66U51235F   SZ_64M  =  512Mb  EOL             MX25U51245G
+>>> c22010  MX25L512E     SZ_64K  =  512Kb  NO_REC          Have-SFDP!
+>>> c22015  MX25L1606E    SZ_2M   =  16Mb   NO_REC          Have-SFDP!
+>>> c22536  MX25U3235F    SZ_4M   =  32Mb   NO_REC          Have-SFDP!
+>>> c22816  MX25R3235F    SZ_4M   =  32Mb   NO_REC          Have-SFDP!
+>>> c22537  MX25U6435F    SZ_8M   =  64Mb   NO_REC          Have-SFDP!
+>>> c22019  MX25L25635E   SZ_32M  =  256Mb  NO_REC          Have-SFDP!
+>>> c22539  MX25U25635F   SZ_32M  =  256Mb  NO_REC          Have-SFDP!
+>>> c2201a  MX66L51235F   SZ_64M  =  512Mb  NO_REC          Have-SFDP!
+>>> c2261b  MX66L1G55G    SZ_128M =  1Gb    NO_REC          Spec. is not public
+>>> c22314  MX25V8035F    SZ_1M   =  8Mb    PROD            Have-SFDP!
+>>> c22815  MX25R1635F    SZ_2M   =  16Mb   PROD            Have-SFDP!
+>>> c2201b  MX66L1G45G    SZ_128M =  1Gb    PROD            Have-SFDP!
+>>> c2253c  MX66U2G45G    SZ_256M =  2Gb    PROD            Have-SFDP!
+>>> c2253a  MX25U51245G   SZ_64M  =  512Mb  PROD            Have-SFDP!
+>>>
+>>> EOL     End of Life
+>>> PROD    Normal Production
+>>> NO_REC  Not recommend for new design
+>>>
+>>>
+>>
+>> not sure what you want me to do with these.
+>
+> That we can read SFDP for all chips from Macronix.
+> Only old chips before 2010 do not have SFDP.
 
-This chip features 24 instead of 16 outputs, so add a chipdef struct to
-deal with the different register layouts.
+So, should we try and identify new chips (with SFDP) that re-use the ID of all the
+above mentioned EOL chips that does not have SFDP?
 
-Signed-off-by: Pieterjan Camerlynck <pieterjanca@gmail.com>
----
- drivers/leds/leds-pca995x.c | 82 +++++++++++++++++++++++++--------------------
- 1 file changed, 46 insertions(+), 36 deletions(-)
+As I read the communication from Macronix, then we should expect new
+chips re-using the ID for all of them. It is just a matter of digging.
 
-diff --git a/drivers/leds/leds-pca995x.c b/drivers/leds/leds-pca995x.c
-index 78215dff1499..d783d643d7e9 100644
---- a/drivers/leds/leds-pca995x.c
-+++ b/drivers/leds/leds-pca995x.c
-@@ -19,10 +19,6 @@
- #define PCA995X_MODE1			0x00
- #define PCA995X_MODE2			0x01
- #define PCA995X_LEDOUT0			0x02
--#define PCA9955B_PWM0			0x08
--#define PCA9952_PWM0			0x0A
--#define PCA9952_IREFALL			0x43
--#define PCA9955B_IREFALL		0x45
- 
- /* Auto-increment disabled. Normal mode */
- #define PCA995X_MODE1_CFG		0x00
-@@ -34,17 +30,37 @@
- #define PCA995X_LDRX_MASK		0x3
- #define PCA995X_LDRX_BITS		2
- 
--#define PCA995X_MAX_OUTPUTS		16
- #define PCA995X_OUTPUTS_PER_REG		4
- 
- #define PCA995X_IREFALL_FULL_CFG	0xFF
- #define PCA995X_IREFALL_HALF_CFG	(PCA995X_IREFALL_FULL_CFG / 2)
- 
--#define PCA995X_TYPE_NON_B		0
--#define PCA995X_TYPE_B			1
--
- #define ldev_to_led(c)	container_of(c, struct pca995x_led, ldev)
- 
-+struct pca995x_chipdef {
-+	unsigned int num_leds;
-+	u8 pwm_base;
-+	u8 irefall;
-+};
-+
-+static const struct pca995x_chipdef pca9952_chipdef = {
-+	.num_leds	= 16,
-+	.pwm_base	= 0x0a,
-+	.irefall	= 0x43,
-+};
-+
-+static const struct pca995x_chipdef pca9955b_chipdef = {
-+	.num_leds	= 16,
-+	.pwm_base	= 0x08,
-+	.irefall	= 0x45,
-+};
-+
-+static const struct pca995x_chipdef pca9956b_chipdef = {
-+	.num_leds	= 24,
-+	.pwm_base	= 0x0a,
-+	.irefall	= 0x40,
-+};
-+
- struct pca995x_led {
- 	unsigned int led_no;
- 	struct led_classdev ldev;
-@@ -52,9 +68,9 @@ struct pca995x_led {
- };
- 
- struct pca995x_chip {
-+	const struct pca995x_chipdef *chipdef;
- 	struct regmap *regmap;
--	struct pca995x_led leds[PCA995X_MAX_OUTPUTS];
--	int btype;
-+	struct pca995x_led leds[];
- };
- 
- static int pca995x_brightness_set(struct led_classdev *led_cdev,
-@@ -62,10 +78,11 @@ static int pca995x_brightness_set(struct led_classdev *led_cdev,
- {
- 	struct pca995x_led *led = ldev_to_led(led_cdev);
- 	struct pca995x_chip *chip = led->chip;
-+	const struct pca995x_chipdef *chipdef = chip->chipdef;
- 	u8 ledout_addr, pwmout_addr;
- 	int shift, ret;
- 
--	pwmout_addr = (chip->btype ? PCA9955B_PWM0 : PCA9952_PWM0) + led->led_no;
-+	pwmout_addr = (chipdef->pwm_base) + led->led_no;
- 	ledout_addr = PCA995X_LEDOUT0 + (led->led_no / PCA995X_OUTPUTS_PER_REG);
- 	shift = PCA995X_LDRX_BITS * (led->led_no % PCA995X_OUTPUTS_PER_REG);
- 
-@@ -101,24 +118,24 @@ static const struct regmap_config pca995x_regmap = {
- 
- static int pca995x_probe(struct i2c_client *client)
- {
--	struct fwnode_handle *led_fwnodes[PCA995X_MAX_OUTPUTS] = { 0 };
- 	struct fwnode_handle *np, *child;
- 	struct device *dev = &client->dev;
-+	const struct pca995x_chipdef *chipdef;
- 	struct pca995x_chip *chip;
- 	struct pca995x_led *led;
--	int i, btype, reg, ret;
-+	int reg, ret;
- 
--	btype = (unsigned long)device_get_match_data(&client->dev);
-+	chipdef = device_get_match_data(&client->dev);
- 
- 	np = dev_fwnode(dev);
- 	if (!np)
- 		return -ENODEV;
- 
--	chip = devm_kzalloc(dev, sizeof(*chip), GFP_KERNEL);
-+	chip = devm_kzalloc(dev, struct_size(chip, leds, chipdef->num_leds), GFP_KERNEL);
- 	if (!chip)
- 		return -ENOMEM;
- 
--	chip->btype = btype;
-+	chip->chipdef = chipdef;
- 	chip->regmap = devm_regmap_init_i2c(client, &pca995x_regmap);
- 	if (IS_ERR(chip->regmap))
- 		return PTR_ERR(chip->regmap);
-@@ -126,41 +143,34 @@ static int pca995x_probe(struct i2c_client *client)
- 	i2c_set_clientdata(client, chip);
- 
- 	fwnode_for_each_available_child_node(np, child) {
-+		struct led_init_data init_data = {};
-+
- 		ret = fwnode_property_read_u32(child, "reg", &reg);
- 		if (ret) {
- 			fwnode_handle_put(child);
- 			return ret;
- 		}
- 
--		if (reg < 0 || reg >= PCA995X_MAX_OUTPUTS || led_fwnodes[reg]) {
-+		if (reg < 0 || reg >= chipdef->num_leds) {
- 			fwnode_handle_put(child);
- 			return -EINVAL;
- 		}
- 
- 		led = &chip->leds[reg];
--		led_fwnodes[reg] = child;
- 		led->chip = chip;
- 		led->led_no = reg;
- 		led->ldev.brightness_set_blocking = pca995x_brightness_set;
- 		led->ldev.max_brightness = 255;
--	}
--
--	for (i = 0; i < PCA995X_MAX_OUTPUTS; i++) {
--		struct led_init_data init_data = {};
--
--		if (!led_fwnodes[i])
--			continue;
--
--		init_data.fwnode = led_fwnodes[i];
-+		init_data.fwnode = child;
- 
- 		ret = devm_led_classdev_register_ext(dev,
--						     &chip->leds[i].ldev,
-+						     &led->ldev,
- 						     &init_data);
- 		if (ret < 0) {
- 			fwnode_handle_put(child);
- 			return dev_err_probe(dev, ret,
- 					     "Could not register LED %s\n",
--					     chip->leds[i].ldev.name);
-+					     led->ldev.name);
- 		}
- 	}
- 
-@@ -170,21 +180,21 @@ static int pca995x_probe(struct i2c_client *client)
- 		return ret;
- 
- 	/* IREF Output current value for all LEDn outputs */
--	return regmap_write(chip->regmap,
--			    btype ? PCA9955B_IREFALL : PCA9952_IREFALL,
--			    PCA995X_IREFALL_HALF_CFG);
-+	return regmap_write(chip->regmap, chipdef->irefall, PCA995X_IREFALL_HALF_CFG);
- }
- 
- static const struct i2c_device_id pca995x_id[] = {
--	{ "pca9952", .driver_data = (kernel_ulong_t)PCA995X_TYPE_NON_B },
--	{ "pca9955b", .driver_data = (kernel_ulong_t)PCA995X_TYPE_B },
-+	{ "pca9952", .driver_data = (kernel_ulong_t)&pca9952_chipdef },
-+	{ "pca9955b", .driver_data = (kernel_ulong_t)&pca9955b_chipdef },
-+	{ "pca9956b", .driver_data = (kernel_ulong_t)&pca9956b_chipdef },
- 	{}
- };
- MODULE_DEVICE_TABLE(i2c, pca995x_id);
- 
- static const struct of_device_id pca995x_of_match[] = {
--	{ .compatible = "nxp,pca9952",  .data = (void *)PCA995X_TYPE_NON_B },
--	{ .compatible = "nxp,pca9955b", .data = (void *)PCA995X_TYPE_B },
-+	{ .compatible = "nxp,pca9952", .data = &pca9952_chipdef },
-+	{ .compatible = "nxp,pca9955b", . data = &pca9955b_chipdef },
-+	{ .compatible = "nxp,pca9956b", .data = &pca9956b_chipdef },
- 	{},
- };
- MODULE_DEVICE_TABLE(of, pca995x_of_match);
-
--- 
-2.45.2
-
-
+/Esben
 
