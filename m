@@ -1,146 +1,84 @@
-Return-Path: <devicetree+bounces-84793-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84794-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F0BF92DA58
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 22:44:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26B9D92DA8E
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 23:09:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2F9F6B23901
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 20:44:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B947F2824CA
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 21:09:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CD62198833;
-	Wed, 10 Jul 2024 20:44:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB5DC84047;
+	Wed, 10 Jul 2024 21:09:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="g53VPLWh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="io4U0kE8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79F988249A;
-	Wed, 10 Jul 2024 20:44:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90AB3502A9;
+	Wed, 10 Jul 2024 21:09:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720644245; cv=none; b=KMxHQv4PrCvkYPjxYRz48L2iouQaSj464/hJQimPhZ6m6g/NgT92E7LK4gu8dLEpkt6GrGFGsTvJm4Z3pET7vbo8EL53dE/NZVslH+JAur193TGZLNOhgAIhmIxWY37fRD0CDflhfEERLBbLK5rpCfvwFJ6Em6jnO5lpDBv3qdE=
+	t=1720645758; cv=none; b=gwcjQ/M6EKSgFq090hziRRInGpk+cnoBxUdQOu4oaNbTMf5yg7h6kJGfak1Y/+V6retUcPuh06pLkHIe0X75jaq3xU0xHcRQBytYYrrn9JbjYMDDwqAjZoeIXVyGhhx0X+gSnLQp07AJzL9oCZXuRIeJeHDwqISZpclrYLvJLaw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720644245; c=relaxed/simple;
-	bh=9n/YiBNZAFtCKNJs9J4qVg6zoK1HVK5GRMT7/tkugk8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=SuJxS9gT8boYzK28AClTr5TnLXZf2vfOOY2U2gNPa3vZ28Jv2PdQzgMSVI0gvF1nOsICYL385NOH7G4ZoWM6E92rn4hVGWV6+i6bSoLGv635ab5i4t3IpCH/rl0Y4b9ssNAUAbXi8MsQnJYKmrXOwHDrbmDRoCCM9tQEyA3ULW0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=g53VPLWh; arc=none smtp.client-ip=209.85.208.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2eea7e2b073so2116331fa.0;
-        Wed, 10 Jul 2024 13:44:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1720644242; x=1721249042; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=q96L90hi9kIYDhvQ8lEOxb1HxG/veUDmgixtXCczj8U=;
-        b=g53VPLWhOTNRgBBMMAM51mC5oxLVQ7ifhj7LOoM1iCwg0izn+n2gem5sPliEgsyp99
-         SCUCsNgW/1MQiR5ekZYk1zv8iLg2P8w/mdFsIYl0VHIkYaWCXNOzZXBgT1s9VH99te2y
-         Pme0NjrXr4+m8e3WhEuB40LAc3GzrHDf10zf4R54BGx7Dfto6C6SXVlPf7vaYPERFpVu
-         6+qImjbU4w0RFZzBdRmf1YXJADMUy5ZqZq6iZmfgThZFPfmCzpvi4vYMexpkUhdOIJrt
-         5yhOcDkWDmAQi47Dmznc35jU+vVwp5RmCGinwz+6mfei3h4juN0FGU24Ys0I8BCM4Ga6
-         FShg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720644242; x=1721249042;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=q96L90hi9kIYDhvQ8lEOxb1HxG/veUDmgixtXCczj8U=;
-        b=Rw3OXJUb6L1xqyLGHJw6n9eDcTrIxbrpAZOMZLZZI1ld3ZMyHChKm0Sid4j2rmr6ZC
-         rU8FNiWUiAgNT3z/t8q9uDNp9JmYkQIK4jGPaMrpETXfHUZiRpb8dlpgX0vcFXhOJ57D
-         lS84NrrkKfMrjJ6jifFE9xwpDW8nyG9aA5KxG36XIA+qNROBp39nFnA/Ih+JXSxZishu
-         49KX4GkB4P1SKxfhOWNuaCo2YCd5WwAwAb3/dq2NjFX41EMFeg6sNUhCUbrUViOs9G0S
-         h5ofcXfMVgfPGPf4kHqgQAPC2uH8KL0WdtG1cpVkoU1bYWU6d0e1gfm2aXDwklnYBexR
-         h2Zg==
-X-Forwarded-Encrypted: i=1; AJvYcCWPlP9pkfqJiHMksur1vsl9J1abc6yLGxLtqj+erSsFvhy+mkzvxUbDtCHG2oFOHVRg0ZBwBekzuOcvYQGUc/UGDATIFvCAErAQKvxWx9ISVJsvVM+VBdVtReJmQF5wOUNWvMkiGbrDKbPjkRhKZEUshK6awKuV8PQA8yyWjxGEefIxsZnAuI16FAM3cBcgj5Kfz+dxAdzD+HrU3fOZAOYlc8GDHUa/ALXLFUJmtDrYbnAPx22WZP0VnjrO59GicAM=
-X-Gm-Message-State: AOJu0YyFJZC57kWyX2Y0Q3ccLQQK7nA5a0KDYxtq7ksQw1yaKdp8M3LB
-	M6NkGD6dlAMGU+FTXNGAGCljsMNrljlJPiesVIuIqSn3+CpIulr/QvWrFTh9z2V61uoJV+bNSuO
-	myVT0FuG7PT5DqPtzy6ndtniHyk0=
-X-Google-Smtp-Source: AGHT+IHURG/sGagfJtYokQfANJj/ymOwtgMawMxrvRuFmItb9BIoJ9IqnHF4+ClawkTFmnwhytU+9+Ynj3Rm/KiYGCs=
-X-Received: by 2002:a2e:854e:0:b0:2ee:4f22:33f9 with SMTP id
- 38308e7fff4ca-2eeb30fd3e0mr41054391fa.24.1720644241382; Wed, 10 Jul 2024
- 13:44:01 -0700 (PDT)
+	s=arc-20240116; t=1720645758; c=relaxed/simple;
+	bh=grYbuyfrj6pNtJ40Wij1nPQouqoiFgrUmzpUAfnDEMc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Fc2s+onIiFqZGcCnY3JKKEx2AP122PsZt3i6b0xu0h+tvyD/f79CdvhcSi2Y09KVQVpGkKHEQu25IPDWApfDsp6QggsrVriYim9EJPVmBeHEyHCYp0XMyM1bH98OTOAWUQVlCdEqguz8pz8d09I7H6CC7MP6zE3bSwy73hv8K/w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=io4U0kE8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2F28C32781;
+	Wed, 10 Jul 2024 21:09:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720645758;
+	bh=grYbuyfrj6pNtJ40Wij1nPQouqoiFgrUmzpUAfnDEMc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=io4U0kE8LMsx3Ub0aJACKNqUq7b+5koJkuX1PN5iqZ8unxhk6fhzMtler8jLwNKKN
+	 Ci9jRy4mNK+yZ2FTO2Siex8GLkGTdRGJLPs4BIRpjmBu+Qdp8uUpsqMf/clp3wXZcl
+	 frmSMQGLg3B5ScMk5TlUuymG7NOJPtbr7rhZrhPurSoJ6bbnLg3QsEGGI5w8iRP/tn
+	 j3Md35OosQeWnBfsoqdLh3TkEQxLg8MvEgoSIKo3gemvf64IUanlFx1MUzDTn8vfrh
+	 TJMcWAt4AyYKl8FLQ+6Irjo3u5hN+M6x4836TjO+vS0qsuBLQfO4hK0ZVjTCmMOypW
+	 GhVcwJhcZQJcw==
+Date: Wed, 10 Jul 2024 15:09:16 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Robin Murphy <robin.murphy@arm.com>
+Cc: linux-arm-kernel@lists.infradead.org, will@kernel.org,
+	jialong.yang@shingroup.cn, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, mark.rutland@arm.com
+Subject: Re: [PATCH v2 1/3] dt-bindings/perf: Add Arm NI-700 PMU
+Message-ID: <172064575490.3730136.6789600718174419899.robh@kernel.org>
+References: <cover.1720625639.git.robin.murphy@arm.com>
+ <e60059b1f4683bd1863f08dd03482e5948c0afb1.1720625639.git.robin.murphy@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240709-hci_qca_refactor-v3-0-5f48ca001fed@linaro.org> <172064103479.11923.11962118903624442308.git-patchwork-notify@kernel.org>
-In-Reply-To: <172064103479.11923.11962118903624442308.git-patchwork-notify@kernel.org>
-From: Luiz Augusto von Dentz <luiz.dentz@gmail.com>
-Date: Wed, 10 Jul 2024 16:43:48 -0400
-Message-ID: <CABBYNZKvSF9h1K29oex3kXm+2h+62gwJ8+YJPM0Orap6_xVDTQ@mail.gmail.com>
-Subject: Re: [PATCH v3 0/6] Bluetooth: hci_qca: use the power sequencer for wcn7850
-To: patchwork-bot+bluetooth@kernel.org
-Cc: Bartosz Golaszewski <brgl@bgdev.pl>, marcel@holtmann.org, davem@davemloft.net, 
-	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, quic_bgodavar@quicinc.com, 
-	quic_rjliao@quicinc.com, andersson@kernel.org, konrad.dybcio@linaro.org, 
-	linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, bartosz.golaszewski@linaro.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hi Bartosz,
-
-On Wed, Jul 10, 2024 at 3:50=E2=80=AFPM <patchwork-bot+bluetooth@kernel.org=
-> wrote:
->
-> Hello:
->
-> This series was applied to bluetooth/bluetooth-next.git (master)
-> by Luiz Augusto von Dentz <luiz.von.dentz@intel.com>:
->
-> On Tue, 09 Jul 2024 14:18:31 +0200 you wrote:
-> > The following series extend the usage of the power sequencing subsystem
-> > in the hci_qca driver.
-> >
-> > The end goal is to convert the entire driver to be exclusively pwrseq-b=
-ased
-> > and simplify it in the process. However due to a large number of users =
-we
-> > need to be careful and consider every case separately.
-> >
-> > [...]
->
-> Here is the summary with links:
->   - [v3,1/6] dt-bindings: bluetooth: qualcomm: describe the inputs from P=
-MU for wcn7850
->     https://git.kernel.org/bluetooth/bluetooth-next/c/e1c54afa8526
->   - [v3,2/6] Bluetooth: hci_qca: schedule a devm action for disabling the=
- clock
->     https://git.kernel.org/bluetooth/bluetooth-next/c/a887c8dede8e
->   - [v3,3/6] Bluetooth: hci_qca: unduplicate calls to hci_uart_register_d=
-evice()
->     https://git.kernel.org/bluetooth/bluetooth-next/c/cdd10964f76f
->   - [v3,4/6] Bluetooth: hci_qca: make pwrseq calls the default if availab=
-le
->     https://git.kernel.org/bluetooth/bluetooth-next/c/958a33c3f9fc
->   - [v3,5/6] Bluetooth: hci_qca: use the power sequencer for wcn7850 and =
-wcn6855
->     https://git.kernel.org/bluetooth/bluetooth-next/c/4fa54d8731ec
->   - [v3,6/6] arm64: dts: qcom: sm8650-qrd: use the PMU to power up blueto=
-oth
->     (no matching commit)
-
-Last one doesn't apply so you will probably need to rebase or
-something if it really needs to go thru bluetooth-next.
-
-> You are awesome, thank you!
-> --
-> Deet-doot-dot, I am a bot.
-> https://korg.docs.kernel.org/patchwork/pwbot.html
->
->
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e60059b1f4683bd1863f08dd03482e5948c0afb1.1720625639.git.robin.murphy@arm.com>
 
 
---=20
-Luiz Augusto von Dentz
+On Wed, 10 Jul 2024 17:09:33 +0100, Robin Murphy wrote:
+> Add an initial binding for the Arm NI-700 interconnect PMU. As with the
+> Arm CMN family, there are already future NI products on the roadmap, so
+> the overall binding is named generically just in case any
+> non-discoverable incompatibility between generations crops up.
+> 
+> Cc: <devicetree@vger.kernel.org>
+> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
+> ---
+> 
+> v2: No change
+> 
+>  .../devicetree/bindings/perf/arm,ni.yaml      | 30 +++++++++++++++++++
+>  1 file changed, 30 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/perf/arm,ni.yaml
+> 
+
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+
 
