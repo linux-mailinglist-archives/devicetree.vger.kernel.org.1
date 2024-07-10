@@ -1,251 +1,206 @@
-Return-Path: <devicetree+bounces-84809-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84810-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F53092DC47
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 01:04:22 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF16592DC7B
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 01:17:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 062D02825B7
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 23:04:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EA2DEB23957
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 23:17:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61453158D74;
-	Wed, 10 Jul 2024 23:02:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD436153835;
+	Wed, 10 Jul 2024 23:17:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="CZLZGW3I"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t2haqyCc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010051.outbound.protection.outlook.com [52.101.69.51])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A62F15699E;
-	Wed, 10 Jul 2024 23:02:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.51
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720652576; cv=fail; b=lxtVdxI24vxq3Ul1NP9vywkZ1IoC2hc521bP7AHwZf6+kuiSorpONkajKa1KYZ/3p4pFbirsCE95cver3lmZDZul+boOOHenqfK/XN2KOGgPV874IzzryC3iTsuUtPJO+Egt50oF1yh3m7sfeZgoH7GOTeJDjJ4q56wSfBq8kTE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720652576; c=relaxed/simple;
-	bh=KIaR4KiuqLQ+BWXn1FoPuKby62dlXYXgqiFj7UAupHY=;
-	h=From:Date:Subject:Content-Type:Message-Id:References:In-Reply-To:
-	 To:Cc:MIME-Version; b=Fu8c1YQs/uztZJEwArthGhFeSUH4IEYf3iYwtQ/uINNn35WQm/i/1LRu+ETSpi4+bhs0vaO9O0sqWraKWidpB6s8c/O4hiVin7PqeSXWFbv5rKED4bfN0UayOAjVrZ6yrINsBA8hX5BsxW/jU95Xj+POQljPfraH0xDPwgKz4lQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=CZLZGW3I; arc=fail smtp.client-ip=52.101.69.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CI/cIuBkZVS5uLKeA+xzKu91gPXEj0NzX36Tzwnyx7CejMjBeeiorOqtrpqejybyVBc6M28IqkrR/gU2t8nOfHf0uvDLpZL5YPuQJBSl9WNkgfesNIg2LTcIYFrADD47vtI5yKy5oNg0R/MLWKv4Hg/+Xw7cuUHBvYpiEBRC/LddSeL+rA449dRf7e1Q28pBMA+MxnwJEWpECo61bbx0mS81fV9PjLulYOF1PDyEu+aZzhyGDBe70SY3FRsZ49q+e62f1W0XBMU7f4G6pP7umkHmxNJK6iIfFw9X7hMO5XEsifjZTjuMZsvjaSI62XaMEkakc9QkhlxkF5hMNEdf3Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=e2OWyG6x4PTBJIKOHvsthpRWkAtMo3y1ItAo0YN6Dgc=;
- b=jLUv9q1el6kGmA0E3h7ffDkxAaeacCzB2Sb2hm6DJZA0SMbR+ox+2IsjullQVbwyKl3XK/LYdkitl3rNr6eAw0E4mcr7I6iPnuTR1AUfzICQcKd2Wwvlu+p+JQOeGPKrkDLRTtl+NEuWhiiT3K1Y+cVpLki+nWEt2ixqMcut26yxDU5OvlamyGggIZBm2fvNlsSHIsgGjX8IVb+uUGxO5tyeU+uPgs9SfubUPZxFaV5Taq3M1av6eLgwB2SCy/oyzGi2eNbNOOFiMQyumGQvjsRt2CPwhihJ+83U5gKj034hSfE8bMQnKAbLFc0Hyw302daLU1ssChqilGmkyWW3LQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=e2OWyG6x4PTBJIKOHvsthpRWkAtMo3y1ItAo0YN6Dgc=;
- b=CZLZGW3I8v6p0DAt7FQ4OEZm/sUvZrvCWplLt4Dtklx9K9IZtLX25k6tt46NvdbD8oyX+md1l6+PndUx98l2bGethC3poPHgoUEt31HM+NHhnCOYxt9gpRYymCHiovhBJMLCbNIA5R6bhyHI7AjZNI1tfYU9IDVF1qjQohCMNZA=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by GV1PR04MB10751.eurprd04.prod.outlook.com (2603:10a6:150:20d::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7741.35; Wed, 10 Jul
- 2024 23:02:52 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%2]) with mapi id 15.20.7741.033; Wed, 10 Jul 2024
- 23:02:52 +0000
-From: Frank Li <Frank.Li@nxp.com>
-Date: Wed, 10 Jul 2024 19:02:24 -0400
-Subject: [PATCH 3/3] arm64: dts: layerscape: move dwc3 usb under glue layer
- node
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F2991527A7;
+	Wed, 10 Jul 2024 23:17:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1720653435; cv=none; b=sY+kDCI8oYhjV0HqZvsLGd1Q1dtWqVg4sgmnGhJTZ7otYJHUW7Duaa/Qe7IWKW2FFw0dHpsk8Lz0WPzZPRP88xyOdCDsF3LqvMZnuGoMHLG7D2ZhVtPV/QA9zxR2s5+OkMHxIRd+wPTCMVKEEwAi3Xgw7HmuZVlIo94G6zn1YxM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1720653435; c=relaxed/simple;
+	bh=Jd3wkWpGIxjVE8bZuw1tGBEUQpwx9hG4gsdHuzurtTM=;
+	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
+	 Subject:From:Cc:To:Date; b=INrFtldTCpPaz0e4n48DOVqUH2/M6A2NH3IcrZL+yU2X1Bd2BsnpLJVce+y2mcH69Dqf3sH0Blz71DbZtk8gmRabp5LsvLW07FsTUg7uDbcyzaxw8GgVjPamXXx5xD3skFl+wA9JJbqnF/SsZzTDm0cI9421s7AWDa+5Mu7cl78=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t2haqyCc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0ECB6C4AF07;
+	Wed, 10 Jul 2024 23:17:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720653435;
+	bh=Jd3wkWpGIxjVE8bZuw1tGBEUQpwx9hG4gsdHuzurtTM=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=t2haqyCcJw9sr2yZK5l1zj+YhLnEb/FRj6I69HzdAMOqFUg0ApMQesfJ95wG4i6N2
+	 pzDekhpOYN6r9sbty0qVx9g1Jvx+Y/8jCTEw/iL6sXgDvJn88FkIrR4croxZMHbl10
+	 /j4QO0CQWqxaSbmE2cZCtCT2nkwcuKFildztLjt3FSpqhyAEFVG+rFlsPpSlTGoPY2
+	 kKCZxDLLPKKkmaQ8mN4IgCNuSNq8d986tEHFVUvTszT9ipKROy0yGZbtXTe01fp0Ii
+	 jko+aFhjpzgeBBc3agNERAjpSmj6Qo7rP6ghntuTvWG1I59tup4bkc18Sq7acJ1ih3
+	 EqJtmZ46F9miw==
+Message-ID: <d36ff27b56b3e9c8ef490bfd9d24761d.sboyd@kernel.org>
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240710-ls-dwc-v1-3-62f8cbed31d7@nxp.com>
-References: <20240710-ls-dwc-v1-0-62f8cbed31d7@nxp.com>
-In-Reply-To: <20240710-ls-dwc-v1-0-62f8cbed31d7@nxp.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Thinh Nguyen <Thinh.Nguyen@synopsys.com>, Shawn Guo <shawnguo@kernel.org>
-Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- imx@lists.linux.dev, Frank Li <Frank.Li@nxp.com>
-X-Mailer: b4 0.13-dev-e586c
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1720652559; l=2194;
- i=Frank.Li@nxp.com; s=20240130; h=from:subject:message-id;
- bh=KIaR4KiuqLQ+BWXn1FoPuKby62dlXYXgqiFj7UAupHY=;
- b=zuB4jrZEFslV5TtndQ0K23pgygpf57RZdg2Nu4KbFIC2w37t5B1+Z6HxyYDbwE2A6Al61X4b1
- ohoXcT8mvw1AE8xzrjznaX/jwzMyrKAC249ZYxTQm1zsu8jLwXbPEtr
-X-Developer-Key: i=Frank.Li@nxp.com; a=ed25519;
- pk=I0L1sDUfPxpAkRvPKy7MdauTuSENRq+DnA+G4qcS94Q=
-X-ClientProxiedBy: BYAPR05CA0092.namprd05.prod.outlook.com
- (2603:10b6:a03:e0::33) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|GV1PR04MB10751:EE_
-X-MS-Office365-Filtering-Correlation-Id: c5e98d81-c276-4b19-5758-08dca1346d6b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|52116014|376014|1800799024|7416014|366016|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?SFpscm80KzZvUGRJMnRUdnl6WXNscW53UzluMEVnWW0vbGNKcGdDS3RLNUJM?=
- =?utf-8?B?VVVMcHdjQ1FuRG5FbkhyU0R1aEU1b3pKd0lpVTc5VExsY3B2ZFRyVUxmYzZ6?=
- =?utf-8?B?ZW5QTlNLMHBVNUtDek5WcmJlRTBHaG9HSk50dHJNTmdGcldNTjlDeFRZVHJ1?=
- =?utf-8?B?aThqNjRWRnpZcU1sczdhUjVOT0JocnI1WlZSVzFzdy9xMlhyNXVqMFVRZWN3?=
- =?utf-8?B?bWRyTUxpQjhEZzNldjhaS1JEekV5dWZyeFVrUGpyRDZpSlYvejdORzd6NTc5?=
- =?utf-8?B?V0ZXWW5kT2VJMlJ0VExVL1FBVi9KdUxWRzZxKzE2SDU4ZkhYVG5WbmxIclhG?=
- =?utf-8?B?OXgyQnpEQUxSdVNuSWxFTDZSNjRFWGZZR1hlWU16NU42ZnoxeGJ6R1J1d3VD?=
- =?utf-8?B?MWZ1QVZCNmgwdDJGVnFsdUJZYXR5M0h1UzV4cDFCUXVXUXRUVHY2b0xueEE3?=
- =?utf-8?B?ckdvSUM5bXlpRHN3TTJvdXdoM1RxNGRLMktoWnQwRlk0UldnTmdlMHBGa3dJ?=
- =?utf-8?B?K2lHU1QvSDBVSTEvUytUS0NvNHpucEhDdFZHajFYSkZwM0RqckZFZmhiNFc1?=
- =?utf-8?B?b1piZEtLQ0RNM3g0RGY2NnBrdG1PZWxmZzlDbi93b2JFL3JnbjFRVFVReVAr?=
- =?utf-8?B?bUJWRWMzQzU5T0g3ZVdqRjJBalQrTDhGeTZhTENIajcwUmxDNlpzRVhmSGln?=
- =?utf-8?B?eld1cVcxdjhsYVA4eDR2T2dBZ2pKNnpUNjVCRHhUYTExSUhWSzNXTGJnMzQ0?=
- =?utf-8?B?anNqMGplbnVRNHlHUjRoWGdlNlo3Q1pZb0NjaW5nM2N1OHpSMWovVTlIMGFz?=
- =?utf-8?B?bUJwbjMzcFpyeVlEREJEZnJtU205LzEzVGgzS0pmTzdHTXQyUTltc0tQdDVj?=
- =?utf-8?B?K1Iwc2g2TGhIeW1nSWpqSlAzWUtWdDhid2NRbDExbGsyQVZGVzlGRno0ZHZt?=
- =?utf-8?B?ekhBNmNoeE5vTm41UXhEQ3NHdVIyQnA0UVlXZFBZR3JxbVFaVUNTeG9aM0lU?=
- =?utf-8?B?L1NyTXd1Y0VQY04vVmJ2akRUOC9rS3QzNzU0WnBKeC9yMjIrZlJHbXAxNHZB?=
- =?utf-8?B?TlRETnRiOWFDclJBWElYTlVYNW5pQTdFKzV5RFh4L2xJNmhBRVRrZDAzbkZB?=
- =?utf-8?B?MDhlcVFIU3cyWXBWMWxaenJIOVZyMHBKdG93U0huMmJ6aEJsbThGUUVqVTBj?=
- =?utf-8?B?TEZub054QnhUbjU5bEwzRHpnVnI3alh1OEFhUXJnZEtXZXpjWjVnY2VqWmV1?=
- =?utf-8?B?Z0NtdHRsVm5NQlJ2R2ZiUFd6TzVDYzY3ZkZtQ1U0SXFVSjhoeFYvMmpJZkhI?=
- =?utf-8?B?R3gwbEFEWUI0d1NPbWVGeHpnd3JibjlBWHQvNm5wTEtObHBmYUxBTnkrUTl6?=
- =?utf-8?B?djRnUjZnK0VSZmJVOTlvdlVCNjN2ZXZaT3ptRDlBN2NnZVJqbDM0TitKcHU0?=
- =?utf-8?B?S3V4TlhBekpBbHltdkFaYVBLMXdmcDM2SjYwRnhNTVJNeUE3emJsQzlDeHpU?=
- =?utf-8?B?bzFKQzFoMythOWNZRE1OWTFWQjZKSC9kVy9XWUgzQi84bFBaMklaYlUxN0xD?=
- =?utf-8?B?dlM4TGI3TU9ZRHgyZlhWSEEvQkVPUVRHR01TSEppQjN6QVVYWmdGckJzcW5T?=
- =?utf-8?B?ZWJ3eWJGQ2xKalZKbmNyN25JazVscTJmeldqWFY1Y2RrSEduU056NStyRU5k?=
- =?utf-8?B?UDk2TEF5ZEZ2amNWRDJ5T3BDbzkyMm05SExpNmt3cythM3hrK01Ma2pvRllL?=
- =?utf-8?B?MWRld3g3K3hUUTJtTXlld2dmUUh3TmUreXJyVytPSThXNTk4alJUQ0l1dC9t?=
- =?utf-8?B?d0FrTnFDOGQyZFF5K0RCcFhnemlEWEUzRE9mMmJ1azdyRXVwb2NjWGRCYmJx?=
- =?utf-8?B?SlozTjN1N05wYTEvUDVkay83ajZUMlN1MWpaK2NxeXhwR3c9PQ==?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(376014)(1800799024)(7416014)(366016)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?aVhqS1RMWlg0a05vRFhNNTJmMnhqOVY5Y3U0eFBDaGJQdUFBV3lUSG1JSDdu?=
- =?utf-8?B?Z1gxMElUWGhWUWFmYUZWMUZQSjhXbWpOUTJFdjM3OU4wUjRXaC9pNnB5aFhh?=
- =?utf-8?B?WFlYTVhFUzl6TEp6Q2htbkQ5QkhmKzN0ZUlSZWxWV0JHVE93TW1abUJQR1Bo?=
- =?utf-8?B?RmtNejUwdWs2T0JwMUx5RTFsV21wdDRFUGowUGpKR1lRL2JWWWJ4YnFvQytN?=
- =?utf-8?B?U3czS0dtUWtsMkUxZnEvbkpLY3lyZ3pmTGhKUVBubWhBNDJ6MnFEVG1mZzlt?=
- =?utf-8?B?WFFITmVOblg3UDMrRFRBa0Q0Uy9TOXVhUlpLKzNOVXhZclh6NlJHdGMxbC9u?=
- =?utf-8?B?NFh2Q1l3YmlINmtmZHhYQXRaQUVEYnd5b1lZSndSZitGY1BvUXozcDBCUlE2?=
- =?utf-8?B?Y0hXcjJZRGNPTmFiZmVtMXRnakVXUkpkdXg3NXc1cjNWV1BlV1ZtNEFNZVZZ?=
- =?utf-8?B?aERlblE2eFFPdTdLQzcyUXdyNkpjRzFQNkt5a2NudGhFQXlMSlBYcmh5TUlh?=
- =?utf-8?B?RW5LeC9aQktPYjZ2ZWpUNUQ4cVJUMmM3bjhaMldiNkg1L2l4K0hHRGJIZk92?=
- =?utf-8?B?RmdrUE81ektUK3lhNWtwT0Nac1BuUzF0MkI0YnZjeEIrVVVwNzZBa1dsV3Fl?=
- =?utf-8?B?eTNLSmVWdjJ4VlRVeVZtMU5yczN4aFlSdmFYcWhhUEZJU1U3WDg1N09teVhu?=
- =?utf-8?B?T1QreTBmelZHa1dvazRPM3pZTWp1WEJ1VDBFSjZmUG1IdFJPdlcraTJRcFZu?=
- =?utf-8?B?Qk9jdFNLc25rcjE0ZzM2b3pxa1N3bDJaNUl5dGNuUGlYUE5KQm5UTVdPS3Rt?=
- =?utf-8?B?NzdndWp4c0JOaEU1OE1pc3BtUGZUdjZYY2t3QzZReVk1Wm12bHo2L21KVm9Q?=
- =?utf-8?B?ZE0wREFUNGlsY09jc24wd2VDdE80VUdPWDl4WXhGdTlGWmlocWlIb0ovTGNv?=
- =?utf-8?B?Y0ZxT0FGdDY4b2NleEJGSTF5ODlkZlVVZzJkbDNEQWVuU3htcm9SWG80UUhR?=
- =?utf-8?B?VnlmMU9WdHh4aVFqZ0dOZFlWWHA3R0FQdkxxVEoyOUVCbXRORmlOd2JubzF3?=
- =?utf-8?B?YkhWNThWOWtpTmxJSzdaNmxoMFBLUTRlQkZkNXFwcnY4MDV4NmxNL0gzWSs0?=
- =?utf-8?B?VWhYNHVDQ1gyd1lMbEFIYXBCNlJ3ZEQ2SnEya2x2K3Q0WHJNWlpDOGxGNUJ3?=
- =?utf-8?B?SHJZL0lpTWFoUTE5bE5kWk1uTnViODArSnJURFI3UWJNTGxaRGx2TXhGaC9o?=
- =?utf-8?B?a1M2RXVkd2xIOWRIc2ZYbThXME9zMERpOHA4K2dvR1k0ZUk3ajcrNnh1UlpL?=
- =?utf-8?B?ZHdMa1FlTkNiZ0lnR0E3OGVrdjlubHorMmtHK2c4SG1oZmVQTmI1YkQ5aUo0?=
- =?utf-8?B?Yk1rUW9oR3Q5dXFGbjcyZkxEOEdJUG1VR1NQamIrbE1QR1RtZFh5Z1BqS3lS?=
- =?utf-8?B?dDVYcWdGUFBDUGIrbVhQSjJEWlNLTm9HdUFoemNyaVovQXdldUhEVFlpY2Fo?=
- =?utf-8?B?OVUrNU93OE9uZS84U3VnWTU5dWhGV0xreXZxUkc3NExqQ2VsbXpRTGpLRjFp?=
- =?utf-8?B?RFJUVHlKTlM1UDBZamMyL3dNeW1SVVBqTlF5VGRJM3dVbXR0MlU3S0NpOFBt?=
- =?utf-8?B?cjBSdzlYZjlTRE5TR2xURlVUNHlaMTFZa1d3V0dXdGlmK3dnMHkvS1Y0NTlP?=
- =?utf-8?B?UXRQVm9kTUlIVmlvOHY3UElQNWk2ZkZJUmYzcWlJTXdTSGwwbVZhYkJtRk12?=
- =?utf-8?B?dnJMNGdqcjV0VFFYbnRDZldOdDV4czE1Z3R2MTcvSGFtSFRsQUxTRHdNSTdm?=
- =?utf-8?B?L2NwdGQxRWFMVGhLRHMrbVdYNHR3Q1pTQ1J1OWFkRVdlRzV4SzVtMlFNWVVX?=
- =?utf-8?B?Ti9EQ1h2NzZML3ZtSm16RXBRQ294L0hCckk3d3d0bDJSUVJFZTVra0w4eUxi?=
- =?utf-8?B?bVFQZVJQVXRzNm81UXZOckJzcThDeUNCeGx3M2lsTXY3V0xlZnJMZkMwa0FM?=
- =?utf-8?B?MVVxQ0Zxa0h0QkRwUnZSelJOTEwzNEZXd012T1QvUThrK3ROeGNuRCtQcTVi?=
- =?utf-8?B?amJhNmsvbEF2dDJrcnVRWTFVajVVTVBLeXExOGxGWStZUVVjOVJxQzhHZ0Fn?=
- =?utf-8?Q?Av8h0zp9r2SGKnX8oXq9GUz3T?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c5e98d81-c276-4b19-5758-08dca1346d6b
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jul 2024 23:02:52.6923
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: XjgVK90WC8YhtxOa85si1zAGGtVT6CXQyGDbwA2aKG2wNU88JxHp7sFAv/1O5CTG8t2ZCZGkJGDmr9glAjV08w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR04MB10751
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240623-th1520-clk-v2-2-ad8d6432d9fb@tenstorrent.com>
+References: <20240623-th1520-clk-v2-0-ad8d6432d9fb@tenstorrent.com> <20240623-th1520-clk-v2-2-ad8d6432d9fb@tenstorrent.com>
+Subject: Re: [PATCH v2 2/7] clk: thead: Add support for T-Head TH1520 AP_SUBSYS clocks
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Drew Fustini <dfustini@tenstorrent.com>
+To: Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor+dt@kernel.org>, Drew Fustini <dfustini@tenstorrent.com>, Emil Renner Berthing <emil.renner.berthing@canonical.com>, Fu Wei <wefu@redhat.com>, Guo Ren <guoren@kernel.org>, Jisheng Zhang <jszhang@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>, Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, Rob Herring <robh@kernel.org>, Thomas Bonnefille <thomas.bonnefille@bootlin.com>, Yangtao Li <frank.li@vivo.com>
+Date: Wed, 10 Jul 2024 16:17:12 -0700
+User-Agent: alot/0.10
 
-New usb glue layer driver support enable dma-coherent. So put dwc3 usb node
-under glue layer node and enable dma-coherent.
+Quoting Drew Fustini (2024-06-23 19:12:32)
+> diff --git a/drivers/clk/thead/clk-th1520-ap.c b/drivers/clk/thead/clk-th=
+1520-ap.c
+> new file mode 100644
+> index 000000000000..982d4d40f783
+> --- /dev/null
+> +++ b/drivers/clk/thead/clk-th1520-ap.c
+> @@ -0,0 +1,1086 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (C) 2023 Jisheng Zhang <jszhang@kernel.org>
+> + * Copyright (C) 2023 Vivo Communication Technology Co. Ltd.
+> + *  Authors: Yangtao Li <frank.li@vivo.com>
+> + */
+> +
+> +#include <dt-bindings/clock/thead,th1520-clk-ap.h>
 
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
- arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi | 43 ++++++++++++++++----------
- 1 file changed, 26 insertions(+), 17 deletions(-)
+Preferably include dt-bindings after linux includes.
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-index 70b8731029c4e..24b937032480f 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-@@ -615,24 +615,33 @@ gpio3: gpio@2320000 {
- 			little-endian;
- 		};
- 
--		usb0: usb@3100000 {
--			compatible = "fsl,ls1028a-dwc3", "snps,dwc3";
--			reg = <0x0 0x3100000 0x0 0x10000>;
--			interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>;
--			snps,dis_rxdet_inp3_quirk;
--			snps,quirk-frame-length-adjustment = <0x20>;
--			snps,incr-burst-type-adjustment = <1>, <4>, <8>, <16>;
--			status = "disabled";
--		};
-+		usb {
-+			compatible = "fsl,ls1028a-dwc3";
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			ranges;
-+
-+			usb0: usb@3100000 {
-+				compatible = "snps,dwc3";
-+				reg = <0x0 0x3100000 0x0 0x10000>;
-+				interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>;
-+				dma-coherent;
-+				snps,dis_rxdet_inp3_quirk;
-+				snps,quirk-frame-length-adjustment = <0x20>;
-+				snps,incr-burst-type-adjustment = <1>, <4>, <8>, <16>;
-+				status = "disabled";
-+			};
- 
--		usb1: usb@3110000 {
--			compatible = "fsl,ls1028a-dwc3", "snps,dwc3";
--			reg = <0x0 0x3110000 0x0 0x10000>;
--			interrupts = <GIC_SPI 81 IRQ_TYPE_LEVEL_HIGH>;
--			snps,dis_rxdet_inp3_quirk;
--			snps,quirk-frame-length-adjustment = <0x20>;
--			snps,incr-burst-type-adjustment = <1>, <4>, <8>, <16>;
--			status = "disabled";
-+			usb1: usb@3110000 {
-+				compatible = "snps,dwc3";
-+				reg = <0x0 0x3110000 0x0 0x10000>;
-+				interrupts = <GIC_SPI 81 IRQ_TYPE_LEVEL_HIGH>;
-+				dma-coherent;
-+				snps,dis_rxdet_inp3_quirk;
-+				snps,quirk-frame-length-adjustment = <0x20>;
-+				snps,incr-burst-type-adjustment = <1>, <4>, <8>, <16>;
-+				status = "disabled";
-+			};
- 		};
- 
- 		sata: sata@3200000 {
+> +#include <linux/bitfield.h>
+> +#include <linux/clk-provider.h>
+> +#include <linux/device.h>
+> +#include <linux/module.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/regmap.h>
+> +
+> +#define TH1520_PLL_POSTDIV2    GENMASK(26, 24)
+> +#define TH1520_PLL_POSTDIV1    GENMASK(22, 20)
+> +#define TH1520_PLL_FBDIV       GENMASK(19, 8)
+> +#define TH1520_PLL_REFDIV      GENMASK(5, 0)
+> +#define TH1520_PLL_BYPASS      BIT(30)
+> +#define TH1520_PLL_DSMPD       BIT(24)
+> +#define TH1520_PLL_FRAC                GENMASK(23, 0)
+> +#define TH1520_PLL_FRAC_BITS    24
+[...]
+> +
+> +static unsigned long th1520_pll_vco_recalc_rate(struct clk_hw *hw,
+> +                                               unsigned long parent_rate)
+> +{
+> +       struct ccu_pll *pll =3D hw_to_ccu_pll(hw);
+> +       unsigned long div, mul, frac, rate =3D parent_rate;
+> +       unsigned int cfg0, cfg1;
+> +
+> +       regmap_read(pll->common.map, pll->common.cfg0, &cfg0);
+> +       regmap_read(pll->common.map, pll->common.cfg1, &cfg1);
+> +
+> +       mul =3D FIELD_GET(TH1520_PLL_FBDIV, cfg0);
+> +       div =3D FIELD_GET(TH1520_PLL_REFDIV, cfg0);
+> +       if (!(cfg1 & TH1520_PLL_DSMPD)) {
+> +               mul <<=3D TH1520_PLL_FRAC_BITS;
+> +               frac =3D FIELD_GET(TH1520_PLL_FRAC, cfg1);
+> +               mul +=3D frac;
+> +               div <<=3D TH1520_PLL_FRAC_BITS;
+> +       }
+> +       rate =3D parent_rate * mul;
+> +       do_div(rate, div);
 
--- 
-2.34.1
+'rate' is only unsigned long, so do_div() isn't needed here. Perhaps if
+'parent_rate * mul' can overflow 32-bits then 'rate' should be
+u64.
 
+> +       return rate;
+> +}
+> +
+> +static unsigned long th1520_pll_postdiv_recalc_rate(struct clk_hw *hw,
+> +                                                   unsigned long parent_=
+rate)
+> +{
+> +       struct ccu_pll *pll =3D hw_to_ccu_pll(hw);
+> +       unsigned long rate =3D parent_rate;
+> +       unsigned int cfg0, cfg1;
+> +
+> +       regmap_read(pll->common.map, pll->common.cfg0, &cfg0);
+> +       regmap_read(pll->common.map, pll->common.cfg1, &cfg1);
+> +
+> +       if (cfg1 & TH1520_PLL_BYPASS)
+> +               return rate;
+> +
+> +       do_div(rate, FIELD_GET(TH1520_PLL_POSTDIV1, cfg0) *
+
+Same, 'rate' is unsigned long. Did you get some compilation error
+without this? How big is the divisor going to be? The fields are only
+3-bits wide, so the multiplication would fit into a u32 just fine. Given
+that 'rate' is unsigned long though I think you can just put the
+multiplication result into a local variable that's also unsigned long
+and then just write the divide with unsigned longs
+
+	div =3D FIELD_GET(...) * FIELD_GET(...);
+
+	return rate / div;
+
+> +                    FIELD_GET(TH1520_PLL_POSTDIV2, cfg0));
+> +
+> +       return rate;
+> +}
+> +
+> +static unsigned long ccu_pll_recalc_rate(struct clk_hw *hw,
+> +                                        unsigned long parent_rate)
+> +{
+> +       unsigned long rate =3D parent_rate;
+> +
+> +       rate =3D th1520_pll_vco_recalc_rate(hw, rate);
+> +       rate =3D th1520_pll_postdiv_recalc_rate(hw, rate);
+> +
+> +       return rate;
+> +}
+
+Please fold this in
+
+----8<---
+diff --git a/drivers/clk/thead/clk-th1520-ap.c b/drivers/clk/thead/clk-th15=
+20-ap.c
+index 982d4d40f783..0c3821d50765 100644
+--- a/drivers/clk/thead/clk-th1520-ap.c
++++ b/drivers/clk/thead/clk-th1520-ap.c
+@@ -411,7 +411,7 @@ static const struct clk_parent_data c910_i0_parents[] =
+=3D {
+ 	{ .index =3D 0 }
+ };
+=20
+-struct ccu_mux c910_i0_clk =3D {
++static struct ccu_mux c910_i0_clk =3D {
+ 	.mux	=3D TH_CCU_ARG(1, 1),
+ 	.common	=3D {
+ 		.clkid		=3D CLK_C910_I0,
+@@ -428,7 +428,7 @@ static const struct clk_parent_data c910_parents[] =3D {
+ 	{ .hw =3D &cpu_pll1_clk.common.hw }
+ };
+=20
+-struct ccu_mux c910_clk =3D {
++static struct ccu_mux c910_clk =3D {
+ 	.mux	=3D TH_CCU_ARG(0, 1),
+ 	.common	=3D {
+ 		.clkid		=3D CLK_C910,
+@@ -845,7 +845,7 @@ static const struct clk_parent_data uart_sclk_parents[]=
+ =3D {
+ 	{ .index =3D 0 },
+ };
+=20
+-struct ccu_mux uart_sclk =3D {
++static struct ccu_mux uart_sclk =3D {
+ 	.mux	=3D TH_CCU_ARG(0, 1),
+ 	.common	=3D {
+ 		.clkid          =3D CLK_UART_SCLK,
 
