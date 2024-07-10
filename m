@@ -1,131 +1,107 @@
-Return-Path: <devicetree+bounces-84780-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84781-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 869A592D94A
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 21:38:11 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D80392D987
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 21:50:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B78E11C20F8D
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 19:38:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C4D7E1F2214E
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 19:50:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52389197A97;
-	Wed, 10 Jul 2024 19:38:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9445F196D80;
+	Wed, 10 Jul 2024 19:50:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Sb9rO8xJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.3ffe.de (0001.3ffe.de [159.69.201.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0734419538B;
-	Wed, 10 Jul 2024 19:38:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.69.201.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EA6315E88;
+	Wed, 10 Jul 2024 19:50:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720640286; cv=none; b=tTx2+QMTJKYOue66zRU7nfKYkKloSrl875fax+X90Ej3zlLV/sW4LkQwL4TYwydkdVNjTALwx1q1opG8VqUhedOnQv3cV6NJRbXsSAfnhvrxeFyR7vz1PmgNn02HL3m8X2ueWD+8WO1il+FhwsRinP1VuTvIp5wVIaPSVsU+qQI=
+	t=1720641035; cv=none; b=O1NJA75MMMnR8rgbiCTG6FKxBSoi2ApwLhnULmzigAIbN+LVyFoqumIxLyGbvOkI5E+Ms9a8CnoWNkjaNxpE+SkdO1SDQOfUiF2G0qODNwxR3snuCTlfIHzeZQcZZHns8mMGfXfPhA76RLNnKZW0iG4/UwRs9eqsCe8ncxBOkbE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720640286; c=relaxed/simple;
-	bh=n6EYr46AuST27gIAUpFNLvkfz5XkGxXolnSJHFI7on4=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:From:To:
-	 References:In-Reply-To; b=IyX/tnByP5INReKftNA56tdk9Aw1n6pRuCZyG4gMhRv+q8OmrL0+yOQKG1R6fbPfwBlOkocrJqXO9Qnqaeocf4Hy+xq/c6TOdnAsrIXMG2cZJdi2S/tAQLb5XEyxtxU6LC2h7yXMXl68i3r5/lJyN37XqzDl7X6M2YRGv21biZo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org; spf=pass smtp.mailfrom=walle.cc; arc=none smtp.client-ip=159.69.201.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=walle.cc
-Received: from localhost (unknown [IPv6:2a02:810b:4340:4ee9:4685:ff:fe12:5967])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mail.3ffe.de (Postfix) with ESMTPSA id 72D59581A;
-	Wed, 10 Jul 2024 21:38:00 +0200 (CEST)
+	s=arc-20240116; t=1720641035; c=relaxed/simple;
+	bh=xihsmeAWmOXJW0TEj1iF/9CEInbgkYEYZIMDRf7/TMA=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=d2GjEDh8Fjl5Q1JJlnifH8KO46OgoFELi4tC9byoDfNjMpYzHojhTDi+qMbFRehvvs4kzx0+CslGXeLSUaY4rhXxiibZ6gTzJB4kYyg7KLuHeiraOrBMkkp1CUK4/NGec39FE3hcZ0eMcv/ZVOTFVAhh4jnV/oIjt5rnVosTxNY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Sb9rO8xJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id D4CB7C4AF0D;
+	Wed, 10 Jul 2024 19:50:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720641034;
+	bh=xihsmeAWmOXJW0TEj1iF/9CEInbgkYEYZIMDRf7/TMA=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=Sb9rO8xJAUR8kNxOjj2HYw1jog4jC1IbJUlPgzGwTcUCYX6/rSOD7FjLhcjpin5y1
+	 YMUOTErXKxgr9wsihtzojt4pwdMb6XSucltspyo7KKJupEAR1sDtoBIXj7gbWqKZTR
+	 FRnz3zolywukR2t1NrViHp2Y5PDAw4Ig/ggTquwBOUGf5bQKs9gczVtKP0uR/BsyA3
+	 IsMyKNrQ7lr/Urj7OLKX7dAXZeQWO0s18gZjNKWpqtwVQBOtTHfnaEGkH9avIz9xsw
+	 LVz+Vlj2Mob/7ZGnDhVPyMREE4K3YZ1Xkp/qBT7kxng+y0JOkAoRtXaWNg9UGZQOTc
+	 GiCOCnfZoUlNQ==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id C419AC4332E;
+	Wed, 10 Jul 2024 19:50:34 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 10 Jul 2024 21:38:00 +0200
-Message-Id: <D2M42ODWQPAU.I0BMEOLKUP29@kernel.org>
-Subject: Re: [PATCH v1 4/4] drm/panel: ili9806e: Break some CMDS into helper
- functions
-Cc: "Cong Yang" <yangcong5@huaqin.corp-partner.google.com>,
- <quic_jesszhan@quicinc.com>, <neil.armstrong@linaro.org>,
- <linus.walleij@linaro.org>, <airlied@gmail.com>,
- <dmitry.baryshkov@linaro.org>, <dri-devel@lists.freedesktop.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-From: "Michael Walle" <mwalle@kernel.org>
-To: "Doug Anderson" <dianders@chromium.org>
-X-Mailer: aerc 0.16.0
-References: <20240710084715.1119935-1-yangcong5@huaqin.corp-partner.google.com> <20240710084715.1119935-5-yangcong5@huaqin.corp-partner.google.com> <D2LQJROQYIY3.2Q88EXS8HUDLQ@kernel.org> <CAD=FV=WAosZPSKdpwR6pjOmiy4hih=jXaMg2guuVgmc+qj-Csw@mail.gmail.com>
-In-Reply-To: <CAD=FV=WAosZPSKdpwR6pjOmiy4hih=jXaMg2guuVgmc+qj-Csw@mail.gmail.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v3 0/6] Bluetooth: hci_qca: use the power sequencer for
+ wcn7850
+From: patchwork-bot+bluetooth@kernel.org
+Message-Id: 
+ <172064103479.11923.11962118903624442308.git-patchwork-notify@kernel.org>
+Date: Wed, 10 Jul 2024 19:50:34 +0000
+References: <20240709-hci_qca_refactor-v3-0-5f48ca001fed@linaro.org>
+In-Reply-To: <20240709-hci_qca_refactor-v3-0-5f48ca001fed@linaro.org>
+To: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: marcel@holtmann.org, luiz.dentz@gmail.com, davem@davemloft.net,
+ edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, quic_bgodavar@quicinc.com,
+ quic_rjliao@quicinc.com, andersson@kernel.org, konrad.dybcio@linaro.org,
+ linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, bartosz.golaszewski@linaro.org
 
-On Wed Jul 10, 2024 at 9:12 PM CEST, Doug Anderson wrote:
-> Hi,
->
-> On Wed, Jul 10, 2024 at 2:02=E2=80=AFAM Michael Walle <mwalle@kernel.org>=
- wrote:
-> >
-> > On Wed Jul 10, 2024 at 10:47 AM CEST, Cong Yang wrote:
-> > > Break select page cmds into helper function.
-> >
-> > Why though? I don't find that anything easier to read. In fact, I
-> > deliberately chose not to factor that out into a function. It's just
-> > a sequence of magic commands, taken straight from the datasheet. So,
-> > I'd like to keep it that way.
->
-> The consensus of previous discussion on the lists was that folks
-> agreed that we should, where possible, make it more obvious what these
-> magic sequences of commands were doing. IMO separating out the page
-> switch command helps. Certainly I'm always happy to hear other
-> opinions, though.
+Hello:
 
-Fair enough, but in that case, one should take the datasheet (which
-you can find online) and replace all the magic numbers with the
-correct command names from it. E.g. 0xff is the ENEXTC register. To
-be clear, I'm not just talking about the "switch page command".
+This series was applied to bluetooth/bluetooth-next.git (master)
+by Luiz Augusto von Dentz <luiz.von.dentz@intel.com>:
 
-As patch stands, I don't see much value, TBH. On the contrary, you
-make it harder to compare it with the Ortustech panel datasheet.
+On Tue, 09 Jul 2024 14:18:31 +0200 you wrote:
+> The following series extend the usage of the power sequencing subsystem
+> in the hci_qca driver.
+> 
+> The end goal is to convert the entire driver to be exclusively pwrseq-based
+> and simplify it in the process. However due to a large number of users we
+> need to be careful and consider every case separately.
+> 
+> [...]
 
-just my 2c,
--michael
+Here is the summary with links:
+  - [v3,1/6] dt-bindings: bluetooth: qualcomm: describe the inputs from PMU for wcn7850
+    https://git.kernel.org/bluetooth/bluetooth-next/c/e1c54afa8526
+  - [v3,2/6] Bluetooth: hci_qca: schedule a devm action for disabling the clock
+    https://git.kernel.org/bluetooth/bluetooth-next/c/a887c8dede8e
+  - [v3,3/6] Bluetooth: hci_qca: unduplicate calls to hci_uart_register_device()
+    https://git.kernel.org/bluetooth/bluetooth-next/c/cdd10964f76f
+  - [v3,4/6] Bluetooth: hci_qca: make pwrseq calls the default if available
+    https://git.kernel.org/bluetooth/bluetooth-next/c/958a33c3f9fc
+  - [v3,5/6] Bluetooth: hci_qca: use the power sequencer for wcn7850 and wcn6855
+    https://git.kernel.org/bluetooth/bluetooth-next/c/4fa54d8731ec
+  - [v3,6/6] arm64: dts: qcom: sm8650-qrd: use the PMU to power up bluetooth
+    (no matching commit)
 
-> > -michael
-> >
-> > > Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-> > > ---
-> > >  drivers/gpu/drm/panel/panel-ilitek-ili9806e.c | 14 ++++++++++----
-> > >  1 file changed, 10 insertions(+), 4 deletions(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/panel/panel-ilitek-ili9806e.c b/drivers/=
-gpu/drm/panel/panel-ilitek-ili9806e.c
-> > > index e4a44cd26c4d..68fb9a1a4d80 100644
-> > > --- a/drivers/gpu/drm/panel/panel-ilitek-ili9806e.c
-> > > +++ b/drivers/gpu/drm/panel/panel-ilitek-ili9806e.c
-> > > @@ -35,6 +35,12 @@ struct ili9806e_panel {
-> > >       enum drm_panel_orientation orientation;
-> > >  };
-> > >
-> > > +#define ILI9806E_DCS_SWITCH_PAGE     0xff
-> > > +
-> > > +#define ili9806e_switch_page(ctx, page) \
-> > > +     mipi_dsi_dcs_write_seq_multi(ctx, ILI9806E_DCS_SWITCH_PAGE, \
-> > > +                                  0xff, 0x98, 0x06, 0x04, (page))
-> > > +
-> > >  static const char * const regulator_names[] =3D {
-> > >       "vdd",
-> > >       "vccio",
-> > > @@ -227,7 +233,7 @@ static void ili9806e_dsi_remove(struct mipi_dsi_d=
-evice *dsi)
-> > >  static void com35h3p70ulc_init(struct mipi_dsi_multi_context *ctx)
-> > >  {
-> > >       /* Switch to page 1 */
-> > > -     mipi_dsi_dcs_write_seq_multi(ctx, 0xff, 0xff, 0x98, 0x06, 0x04,=
- 0x01);
-> > > +     ili9806e_switch_page(ctx, 0x01);
->
-> I think with your change you should remove the "Switch to page X"
-> comments since they're now obvious. Other than that, I'm happy with:
->
-> Reviewed-by: Douglas Anderson <dianders@chromium.org>
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
 
 
