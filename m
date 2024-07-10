@@ -1,439 +1,225 @@
-Return-Path: <devicetree+bounces-84497-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84498-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C80E92C83F
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 04:04:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6D2692C842
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 04:09:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5057E282EE7
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 02:04:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C9D0E1C21BF2
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 02:09:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F64F8F62;
-	Wed, 10 Jul 2024 02:04:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F63B8C1E;
+	Wed, 10 Jul 2024 02:09:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="YQGg0A7B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B56E59475;
-	Wed, 10 Jul 2024 02:04:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720577075; cv=none; b=P02o3+77CQH3TtDDf3Sl2k5loFYfI5sx82JGMGsgtjo9yJTmSzlvBFZaRVRXfMpCywa91Bh3Y5yz3n2lB8tElAKZRYpV8O9jJYa3BgS9WklMhcfKofAg6HMrHroqINBafdpUwfupq0VxFwyjN8SI8odPC1xGm00vHiNPLcY5jHs=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720577075; c=relaxed/simple;
-	bh=WkREjQzdU2OL+A/T6V7OmlK3+YhKIpih3ra4M+Je8uw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ocS6zkEjG8dnzcVcbs/kTNqpKFJlGNpLUMqxa7yWmcK8fBeDTXmxRGOVBacUdEQz3r/ZWkfPxIuoLSd/X49y9w9Moifra5z3Wl+R7tPo0n9sD9F1KWZcpHBi511TOZoiPUsLZH4Aris4OzAVlYTD5gXcZLmnwsdbm9QxC7pRFhA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
-Received: from loongson.cn (unknown [223.64.68.130])
-	by gateway (Coremail) with SMTP id _____8DxjPAo7I1mS6wCAA--.8610S3;
-	Wed, 10 Jul 2024 10:04:24 +0800 (CST)
-Received: from localhost.localdomain (unknown [223.64.68.130])
-	by localhost.localdomain (Coremail) with SMTP id AQAAf8Cxbccj7I1m3OFBAA--.20688S4;
-	Wed, 10 Jul 2024 10:04:23 +0800 (CST)
-From: Binbin Zhou <zhoubinbin@loongson.cn>
-To: Binbin Zhou <zhoubb.aaron@gmail.com>,
-	Huacai Chen <chenhuacai@loongson.cn>,
-	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Juxin Gao <gaojuxin@loongson.cn>
-Cc: Huacai Chen <chenhuacai@kernel.org>,
-	linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Xuerui Wang <kernel@xen0n.name>,
-	loongarch@lists.linux.dev,
-	Binbin Zhou <zhoubinbin@loongson.cn>
-Subject: [PATCH v5 2/2] pwm: Add Loongson PWM controller support
-Date: Wed, 10 Jul 2024 10:04:07 +0800
-Message-ID: <63a540e93147eff5e7c942133c462530689f707c.1720516327.git.zhoubinbin@loongson.cn>
-X-Mailer: git-send-email 2.43.5
-In-Reply-To: <cover.1720516327.git.zhoubinbin@loongson.cn>
-References: <cover.1720516327.git.zhoubinbin@loongson.cn>
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2088.outbound.protection.outlook.com [40.107.20.88])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94B905CB8;
+	Wed, 10 Jul 2024 02:09:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.88
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1720577368; cv=fail; b=T080Akv/KPVc9E+vewin2FXJre4Y/C/CnJL7hlgbn0T7HfWwfjFenLUh0oIg3AEw17jQKdjH21eMu7cTlKaeNY1uR7F0mUYiTGYp/+8NSEUz8Zfz6+bS5e8DqI/pSFxXOTUWPEsn2VkLXSCSHKbeVX1ZYkL45nvGH11LP/Opo2A=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1720577368; c=relaxed/simple;
+	bh=bGAVu/x9nls8AgBE8ZfpZaGhTh+EKuo8AXPGMUaqhnU=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=rFtPeVyZlVfdE7eYS2X2ySNssMVFVyOq/BShXORs9oCZaOB3RMfq6nuOBVAkq2HiI+tPAXwQ+mbT82iBj60qFx/jGE0N1f3PhH9DSkTxQo/QqF+pM3A0fULUYLpKmB4UVqMlxPGnU7qnOTcHUTQxxnf5MsFoQL0u6m7WBp70TT4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=YQGg0A7B; arc=fail smtp.client-ip=40.107.20.88
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=RPtqfpE46SrmX3INCeKvN8+gbtENvr4tvW1ET6KUU7IkhwGHw6Hq5N0HB5fEnXG6OuqHY6UDSjJmve3pdtADfnf7zTmrysrDUyo3MWFkyZQUpzp1eIbCyFi7ufL2NULuh/2xn/LsK1mAEXlyKbpDvGnzllcN9qw5uRCubUKVZZtNULxakKnAn0XjZQ0mp3Nmfj5BwtuUJvonrbOc2FByObtnbBRUgQ/peMOrtOfP65B2B2krS3/s+RpAMK9nNjRPcbmkhNcy+hATu+dxIQIf0vMgt/cymAPLqHfsivpmSxgipXO07MbEuASk4fi9GLYjXgrrmtSahBQrIxNLOkD0nA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=bGAVu/x9nls8AgBE8ZfpZaGhTh+EKuo8AXPGMUaqhnU=;
+ b=kCq639CqMoDbcYc3jGNJUoKpyK3KPBDyXewUVnW1ZIBaG+83zFdOFmayMr+24aEWP00VY03RJEUWukopHyoAw+4PlWLAKh1B8QX0VVjZQ8hmPkBLbaYqAqH8Zugs5+wZnf6ZDcosahUppAWkdYyMtJ1cKwovEw2nCl2xO/+9/3o1FzEwXKf72l8m+73TMWHNKMftrS1huAuEQGMxWezscEn1rttvKDzea7xqBOdHa7Wmm1FhUpQdd8eUgzpEvyDMCGH6cifLloKoe+rLIqb+NUSH7xadPXhNCCQ0fDvxIRjwti3Bq7oDNzc/ENmhEyNeaeFZtfVNkmtHQLJ56kCJAw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=bGAVu/x9nls8AgBE8ZfpZaGhTh+EKuo8AXPGMUaqhnU=;
+ b=YQGg0A7BWGrJP3kv3cP+roftoHdThG/Az0T+QT+OvU890lrUGrmf6hUGzNS60lv7GHBihHLGUCHbNiKBBWIDo3ntPnN2v3AJDXMYQU5tUROKxUDrbDC8hTXntfUWCrmAU7OgDafdGKfh92yc6oZq8ixjXmdK0JoR9p/B7bu992g=
+Received: from PAXPR04MB8510.eurprd04.prod.outlook.com (2603:10a6:102:211::7)
+ by PAXPR04MB8671.eurprd04.prod.outlook.com (2603:10a6:102:21e::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7741.36; Wed, 10 Jul
+ 2024 02:09:21 +0000
+Received: from PAXPR04MB8510.eurprd04.prod.outlook.com
+ ([fe80::a7c2:e2fa:8e04:40db]) by PAXPR04MB8510.eurprd04.prod.outlook.com
+ ([fe80::a7c2:e2fa:8e04:40db%6]) with mapi id 15.20.7741.033; Wed, 10 Jul 2024
+ 02:09:21 +0000
+From: Wei Fang <wei.fang@nxp.com>
+To: Peng Fan <peng.fan@nxp.com>, "mturquette@baylibre.com"
+	<mturquette@baylibre.com>, "sboyd@kernel.org" <sboyd@kernel.org>,
+	"robh@kernel.org" <robh@kernel.org>, "conor+dt@kernel.org"
+	<conor+dt@kernel.org>, "shawnguo@kernel.org" <shawnguo@kernel.org>,
+	"s.hauer@pengutronix.de" <s.hauer@pengutronix.de>, "festevam@gmail.com"
+	<festevam@gmail.com>, "abelvesa@kernel.org" <abelvesa@kernel.org>, Clark Wang
+	<xiaoning.wang@nxp.com>
+CC: "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH 2/3] clk: imx95: enable the clock of NETCMIX block control
+Thread-Topic: [PATCH 2/3] clk: imx95: enable the clock of NETCMIX block
+ control
+Thread-Index: AQHa0dSlmJsiuMOg1UmEpR/J2kHl/LHucI+AgADGRlA=
+Date: Wed, 10 Jul 2024 02:09:21 +0000
+Message-ID:
+ <PAXPR04MB85108ED62C1178D9D0BED9F388A42@PAXPR04MB8510.eurprd04.prod.outlook.com>
+References: <20240709073603.1967609-1-wei.fang@nxp.com>
+ <20240709073603.1967609-3-wei.fang@nxp.com>
+ <PAXPR04MB8459C43A1D11FA8A9F4AD0FC88DB2@PAXPR04MB8459.eurprd04.prod.outlook.com>
+In-Reply-To:
+ <PAXPR04MB8459C43A1D11FA8A9F4AD0FC88DB2@PAXPR04MB8459.eurprd04.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PAXPR04MB8510:EE_|PAXPR04MB8671:EE_
+x-ms-office365-filtering-correlation-id: 12c77ed6-7f0e-47cc-7495-08dca0855044
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|366016|1800799024|376014|7416014|38070700018|921020;
+x-microsoft-antispam-message-info:
+ =?gb2312?B?SHJYdnZmWmNVWkFwSGliUE9CUE9WUVUwaWYxSEhmTVNxeDZ4R1h1MGFoQUgz?=
+ =?gb2312?B?WVk4aUp5c2J4YkxKZTVHYUpJZlgwTXVHb1Fmc3Evckd6clFVMnAyQjVIOEJV?=
+ =?gb2312?B?V3RjaGRQdVdRY09oTmdpNVdObFAxK3J4NmVQaHIrWE42OC9MTVBEMVNtSUNK?=
+ =?gb2312?B?N01JYWsyekp4Q2FNd2FERk1Ta1FCNlcveC9YNnJtWXpVYnZsVENLSHM3OXJL?=
+ =?gb2312?B?K1ZpcU9tTU9yd2NjUEQzUXloQmxjR1FoU1RJYUpnTkF3Q3lLaDBSL29lbmtj?=
+ =?gb2312?B?RXRxTUpHWFBJUWpwZ0tvRmc2QmtxYld4RFZzTDZGL3E4cjlKUzhEekltZnVw?=
+ =?gb2312?B?eFlPem5XZUZKSUZhV2pkdGdsblJZdjlZeFNjQ05xZTVVcFlnbkJQa3lmWjJQ?=
+ =?gb2312?B?cVZGL1J0VHdFc2s1VGxKRjVObGtKVHRkcEp4RzlCWHZ1UklLdVpMSGxlaFlS?=
+ =?gb2312?B?eTRkMjJHUEo2SGI2VVVueXhNYU9WTFdCSXAyQmF4cVJQNGRJb2ZQelFCQ21P?=
+ =?gb2312?B?cXlqNkRwaVlibVFSVDZXZXhkTUhUZG9uUzNKUHcwaEJWWnprOE1sbnNVMGJ2?=
+ =?gb2312?B?WVlrVkVVNDM5eVpWb0RtZVM2N2hBaXhhYVZIKytaeE9Pd2NsWjU1TjB2YndY?=
+ =?gb2312?B?eHpTY2FjU09HNFVHWmlENVYyeDQvYm9HN1N3WnFQdmNnQVZCbkd1UTN6YXJw?=
+ =?gb2312?B?OHhUM2VTdEdwRkJkT0JaSnNuNXI2bDZZd0kydUZIbzh4WjJBaS9UekNFN3FK?=
+ =?gb2312?B?MENQRVo1b2pkWXRqSEpCRHFEM2JSUkE3RS94S291U2VjdlhObUlZcFByZGRQ?=
+ =?gb2312?B?SlVkUlNEczdrR2poak0rb0ptUnBBZWRHWXNzRUlMVEMvT2Z0VGpVNU53ZlBO?=
+ =?gb2312?B?cDFDVTdnYjRXVWQrK3h3YzBZK1Z1SHJuMjZBazA1RFo5a1NnZDEvV1ovZVMx?=
+ =?gb2312?B?LzJiMDVTNlpRdEREWUVZWXdaM09PaFB5ZElUaDZjc3ovNmZ4N0Y3SVlZUWdr?=
+ =?gb2312?B?dE1RQTBmZ0JRSkh0V2Q4cHpTeFZyMy9DZlFrcVZQVjRzUWdOMExVNXI3T2wz?=
+ =?gb2312?B?ekhtMEJxd0RBSVlwV3lrQzFramxOWDVOcXFxQ1RGczgrVURGcjVuYjJRSzJt?=
+ =?gb2312?B?bGl4UG9ReUJBWUxGalRpUDBDV0kydUVrNWVRYVQxV3hSaGl2bGlBQzJPRnVI?=
+ =?gb2312?B?ZkZKRU13WU00OUxObjdpQXZUaXNPZnRxR3BVaHl4aXAwM00xQ1h3RUZNOHJ0?=
+ =?gb2312?B?WVdhR3B1N29IUU85ODFnY2JBRG81cXhaSGFsNzhHU293bGhuTmUxOVNUcUFw?=
+ =?gb2312?B?Y2UvZGtEajljL1ZXbnFiUStiRGV6MmZtcVFvWGVMYklhY2sycFVvKzJzbE8w?=
+ =?gb2312?B?TnJVUmV1bTRwVU1va0s2TUxOK3prWjJCQVV5OHVremg3bzJBQllOdkpBcktY?=
+ =?gb2312?B?TFQyS1dWY2R4cU95cGpJV1ZTbE0rZkd3RlFRSk5YTXJLR29wN0JpdjF1S01G?=
+ =?gb2312?B?MDFha1l0NzZqUmlhajdBMER1ckFCVWxkU0M5UGJ3NWtaR3Z1YnZRT3FhbHZW?=
+ =?gb2312?B?NW95YTZGU3hNNUtEd21pcWdLZ2RRdWVWa3BDZVBrWGFJaXFRUk5NM1Vxb3ZP?=
+ =?gb2312?B?TFpqL0srN1VtVGRUYkxOalFSOFd6a3J1OWJUTnpJTFJaT3dia1pZenc4enhR?=
+ =?gb2312?B?ODNabHp4QkorSjEwVlFQazgwc1Z2akM3T29CSGF4V0dFQkVyWHdsRHJIbXQy?=
+ =?gb2312?B?S0xhRjlMcVdab0RiR0dJVkRFWDhLN2hoZmxQMTVXZWtNTWFXL2dYUFZGd0lu?=
+ =?gb2312?B?dUgvQVJNdHp4ZTR2KzhXaTZ0c29QZFd4QkdpWFFxRWVPRGNaakMzdFgxNFN4?=
+ =?gb2312?B?SVJLbXltcnJlOUswblJqSkFTZThhbkJGL0NyU1JKY0RIenBMQnhveG1uWWdG?=
+ =?gb2312?Q?ptA/CPeIQkM=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:zh-cn;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8510.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(7416014)(38070700018)(921020);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?gb2312?B?Rmx0bGVSNVBQWUh0UllRKzNXZTREZUNCUzRxSHZjNkJpb2RwelQ3MElwWE5j?=
+ =?gb2312?B?dWM3U1BzRjY0R1p6a3pGbXRlWUR6eEc3ZkZMbFZ5WWJpUGFTVUxxVVlVanpq?=
+ =?gb2312?B?eitlcWtvbXNsL0xFRmZQUDg4ZXFSelBmOC8rSHhMS0JWRkg3WjdCTnJjVitN?=
+ =?gb2312?B?U1ZSN0d2TllRbG5XM1ppQUtqV2JNdW9aQ2JMSDN0azJQOWtBR05PUW1tQlhz?=
+ =?gb2312?B?cTFvaWNvUTFRT01ndWRxeVBWTU1WOWFKUWpOa0dLYWJONU9rd2tZS2V2NVRa?=
+ =?gb2312?B?cGhKcit1S3FkWDYzYnBWcTV1WS84ak5UaFlmQm43VkIxWFRDcTllRE45T2hl?=
+ =?gb2312?B?Tk5XZk45cWFIZTBuTDZQNUNuNkVZL0dqeGNjc2pFWDlBSE5oMnB0MWJsLy9l?=
+ =?gb2312?B?eGNyTEFuZ2J4YWFNeDZ6S2NxdE41NTlNbUZSNHBodGFtbVk5dE9DNVJ3aVdO?=
+ =?gb2312?B?V0FuODV0Wm8rMVE1VTZsTVJVeGJsZTNVY2s3SnE3Y0RncEg2QVNwYWRsUTFE?=
+ =?gb2312?B?OUtPQzM1bGZTVk44eWdNaFRXZ3dhT1RLTSt5eUZMRHVUekZ3RUc2TXNobmd4?=
+ =?gb2312?B?aHJJRVB1NGVYUVpSV3I4bG9WdEU5RlQ1eEM0SmlGUldGcEJyVkxhUkp5NE4w?=
+ =?gb2312?B?OW5zNjdyOHJOOEN2Wi9RVnBaclo4L0ZLNjlWbVpKY21EdWZHWVAzaDZKOGtD?=
+ =?gb2312?B?WGxDU3FxemZ3RnhpZnBiT3VncDN4U0taSmp2VktJTVZCUVA0U0dPK21yTFlh?=
+ =?gb2312?B?VUtKZjBHYXVpOFYvdmkvUHZQRzhmUWV5dEl3L1haTzhZeFhQMkFod3d6Qko4?=
+ =?gb2312?B?bWtmSVNSbUhLWHJqRjR3NWdKZVMxbG5QRUtjZjc2YWwwbjFHU3ZRRCtYSGRX?=
+ =?gb2312?B?VlIzRENwTFFLbnluS0ZkT3VqNVZuYXczSmZhcTQzdk9RU0lkeS9EWHNBUDQy?=
+ =?gb2312?B?bTc1dkVwZnNYOHNpUnhIT09YdVVkYkczU0ZrU2xkWi9JQWZtMGNRUVo3bjV0?=
+ =?gb2312?B?SDhsejdvU0kyMmNiM3dqbzZVYTh2MXFLWDRLQm5EZEYyclovWHFHZ0R3RkNU?=
+ =?gb2312?B?ek9CUEw5VnRuNUZGbUUvNjU3SUtoY0VrYjF6d0VzUlhlS21WUm15alFFVmdH?=
+ =?gb2312?B?U0paaFFaRW03ZW1peDZ6WW1rZ0tIVU11K0hXcm5vd2ZMZm9GUnBHUDdRVUE2?=
+ =?gb2312?B?TmtkeStvVUtVeFozVnBVSm5sWXlXTVd5UjFhdGFlbXYrejFua3FIQUd5T2lD?=
+ =?gb2312?B?ZTVjd3B5a2JoaGpqaVFOWkxrc3J3YlozUlBwSnFYL0JxNnNBbVdoeDRibFYv?=
+ =?gb2312?B?K0x0YklTMW5Cb0NPWHI1dXhKL1d2eUFXbDhVSkxsa3JJNUFTMFI4NCtZOFA1?=
+ =?gb2312?B?OEJVQ2tJMS81TUM2MDE3dWx5Zzl3ZTBPSmZqbnNnTGVTYTBKTHgvMVBjdWpm?=
+ =?gb2312?B?R3Z1Um1TWHZ1bnhJMzdKd0x2QmZHWWg3THo5dmVPTGk5NzJORGQ3NlJUUWJF?=
+ =?gb2312?B?Y0ZDcnFwakF0T05Ea1VCV29zYXFOdGd5MW14aHRlWjBISWtUMFNXUVk3eHBo?=
+ =?gb2312?B?bzB4ZUwxNUQxb3JyT0xvdmtYSTNkWXhUbHpRandhTEl3QmQzQ0FLSXNrY3Ex?=
+ =?gb2312?B?V2pIeG1GM3F3N0xkZ0pwYnBCZFVGYXpubjlLVDdrcG1IamxiWDhiU3o0bDVP?=
+ =?gb2312?B?UnJCd212SlZoa05mWjBaL3VrYlNvaENTVHphbnB0cm5salk3Skk4RFh6eFVu?=
+ =?gb2312?B?QmtYdFE2YzcybEl0WFhyTWM1TDdqWkdxaFdXakc0dWhabW0rTU1EOG54L3hl?=
+ =?gb2312?B?VHZ1K2k5QmJpVlRYTzRLbU9aRVlWTmJnaXRwMDZBc1AxZGZ2b1FtYUtwcUgy?=
+ =?gb2312?B?d2tlbkpSVXZYZ3VsWHJjMnR4UXI2V0xXL2FLRlRlbnM3RXVZdU5LWURUcHpW?=
+ =?gb2312?B?K0N6TTZzOFhndFAyS01nSWluSEFBbWJVSUswT3JNQURJbFpQcGRiMDhNL0JP?=
+ =?gb2312?B?c1FtMjZlN2pkTTk2MCtOWE8xTDY1YW5JcE8wcW1KRVFoa004Snlsd2VxaFQr?=
+ =?gb2312?B?eWNuVXhWZnNxZGY5clNiS2F0Yk1FT1hBY2c4VXUzTjJBR3YwTG1LZnhPaGc4?=
+ =?gb2312?Q?NyHc=3D?=
+Content-Type: text/plain; charset="gb2312"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:AQAAf8Cxbccj7I1m3OFBAA--.20688S4
-X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
-X-Coremail-Antispam: 1Uk129KBj93XoW3ZF1kXw4fXr4rJryDXryfZrc_yoWkCr1UpF
-	95A34YgryayrWUKws8ZFZ5urn8Z34fZasrJFWfCw1Uur9rtw18Xw1kKF97Gw42yr1kGr1I
-	vFZ5CrW5CF4DGFbCm3ZEXasCq-sJn29KB7ZKAUJUUUUr529EdanIXcx71UUUUU7KY7ZEXa
-	sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
-	0xBIdaVrnRJUUUBFb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
-	IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
-	e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
-	0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVWxJVW8Jr1l84ACjcxK6I8E87Iv6xkF7I0E14v2
-	6r4j6r4UJwAaw2AFwI0_Jrv_JF1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqjxCEc2xF0c
-	Ia020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_Jw0_
-	WrylYx0Ex4A2jsIE14v26r4j6F4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvY0x0EwI
-	xGrwCY1x0262kKe7AKxVWUAVWUtwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWU
-	JVW8JwCFI7km07C267AKxVWUXVWUAwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4
-	vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IY
-	x2IY67AKxVW8JVW5JwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26c
-	xKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r4j6F4UMIIF0xvEx4A2jsIEc7CjxVAF
-	wI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07j2MKZUUUUU=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8510.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 12c77ed6-7f0e-47cc-7495-08dca0855044
+X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Jul 2024 02:09:21.7163
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: q1cSUvTg2RqQo/kyyqUegFM10AGgTsrXT/O/yTe0Yhh4VE3QjST2jpv7ZD4ADjbtiYQbhyk2x2zJO+jy8tjd9A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8671
 
-This commit adds a generic PWM framework driver for the PWM controller
-found on Loongson family chips.
-
-Co-developed-by: Juxin Gao <gaojuxin@loongson.cn>
-Signed-off-by: Juxin Gao <gaojuxin@loongson.cn>
-Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-Acked-by: Huacai Chen <chenhuacai@loongson.cn>
----
- MAINTAINERS                |   1 +
- drivers/pwm/Kconfig        |  12 ++
- drivers/pwm/Makefile       |   1 +
- drivers/pwm/pwm-loongson.c | 285 +++++++++++++++++++++++++++++++++++++
- 4 files changed, 299 insertions(+)
- create mode 100644 drivers/pwm/pwm-loongson.c
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 973d60113105..2222d036057a 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -12994,6 +12994,7 @@ M:	Binbin Zhou <zhoubinbin@loongson.cn>
- L:	linux-pwm@vger.kernel.org
- S:	Maintained
- F:	Documentation/devicetree/bindings/pwm/loongson,ls7a-pwm.yaml
-+F:	drivers/pwm/pwm-loongson.c
- 
- LOONGSON-2 SOC SERIES CLOCK DRIVER
- M:	Yinbo Zhu <zhuyinbo@loongson.cn>
-diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-index 1dd7921194f5..839a63ccda0e 100644
---- a/drivers/pwm/Kconfig
-+++ b/drivers/pwm/Kconfig
-@@ -320,6 +320,18 @@ config PWM_KEEMBAY
- 	  To compile this driver as a module, choose M here: the module
- 	  will be called pwm-keembay.
- 
-+config PWM_LOONGSON
-+	tristate "Loongson PWM support"
-+	depends on MACH_LOONGSON64 || COMPILE_TEST
-+	depends on COMMON_CLK
-+	help
-+	  Generic PWM framework driver for Loongson family.
-+	  It can be found on Loongson-2K series cpus and Loongson LS7A
-+	  bridge chips.
-+
-+	  To compile this driver as a module, choose M here: the module
-+	  will be called pwm-loongson.
-+
- config PWM_LP3943
- 	tristate "TI/National Semiconductor LP3943 PWM support"
- 	depends on MFD_LP3943
-diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
-index 90913519f11a..032d73327509 100644
---- a/drivers/pwm/Makefile
-+++ b/drivers/pwm/Makefile
-@@ -27,6 +27,7 @@ obj-$(CONFIG_PWM_INTEL_LGM)	+= pwm-intel-lgm.o
- obj-$(CONFIG_PWM_IQS620A)	+= pwm-iqs620a.o
- obj-$(CONFIG_PWM_JZ4740)	+= pwm-jz4740.o
- obj-$(CONFIG_PWM_KEEMBAY)	+= pwm-keembay.o
-+obj-$(CONFIG_PWM_LOONGSON)	+= pwm-loongson.o
- obj-$(CONFIG_PWM_LP3943)	+= pwm-lp3943.o
- obj-$(CONFIG_PWM_LPC18XX_SCT)	+= pwm-lpc18xx-sct.o
- obj-$(CONFIG_PWM_LPC32XX)	+= pwm-lpc32xx.o
-diff --git a/drivers/pwm/pwm-loongson.c b/drivers/pwm/pwm-loongson.c
-new file mode 100644
-index 000000000000..17ab2a2f48ad
---- /dev/null
-+++ b/drivers/pwm/pwm-loongson.c
-@@ -0,0 +1,285 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Loongson PWM driver
-+ *
-+ * Author: Juxin Gao <gaojuxin@loongson.cn>
-+ * Further cleanup and restructuring by:
-+ *         Binbin Zhou <zhoubinbin@loongson.cn>
-+ *
-+ * Copyright (C) 2017-2024 Loongson Technology Corporation Limited.
-+ *
-+ * Limitations:
-+ * - The buffer register value should be written before the CTRL register.
-+ * - When disabled the output is driven to 0 independent of the configured
-+ *   polarity.
-+ */
-+
-+#include <linux/acpi.h>
-+#include <linux/clk.h>
-+#include <linux/device.h>
-+#include <linux/init.h>
-+#include <linux/io.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+#include <linux/pwm.h>
-+#include <linux/units.h>
-+
-+/* Loongson PWM registers */
-+#define LOONGSON_PWM_REG_DUTY		0x4 /* Low Pulse Buffer Register */
-+#define LOONGSON_PWM_REG_PERIOD		0x8 /* Pulse Period Buffer Register */
-+#define LOONGSON_PWM_REG_CTRL		0xc /* Control Register */
-+
-+/* Control register bits */
-+#define LOONGSON_PWM_CTRL_EN		BIT(0)  /* Counter Enable Bit */
-+#define LOONGSON_PWM_CTRL_OE		BIT(3)  /* Pulse Output Enable Control Bit, Valid Low */
-+#define LOONGSON_PWM_CTRL_SINGLE	BIT(4)  /* Single Pulse Control Bit */
-+#define LOONGSON_PWM_CTRL_INTE		BIT(5)  /* Interrupt Enable Bit */
-+#define LOONGSON_PWM_CTRL_INT		BIT(6)  /* Interrupt Bit */
-+#define LOONGSON_PWM_CTRL_RST		BIT(7)  /* Counter Reset Bit */
-+#define LOONGSON_PWM_CTRL_CAPTE		BIT(8)  /* Measurement Pulse Enable Bit */
-+#define LOONGSON_PWM_CTRL_INVERT	BIT(9)  /* Output flip-flop Enable Bit */
-+#define LOONGSON_PWM_CTRL_DZONE		BIT(10) /* Anti-dead Zone Enable Bit */
-+
-+#define LOONGSON_PWM_FREQ_STD		(50 * HZ_PER_KHZ)
-+
-+struct pwm_loongson_suspend_store {
-+	u32 ctrl;
-+	u32 duty;
-+	u32 period;
-+};
-+
-+struct pwm_loongson_ddata {
-+	struct clk *clk;
-+	void __iomem *base;
-+	u64 clk_rate;
-+	struct pwm_loongson_suspend_store lss;
-+};
-+
-+static inline struct pwm_loongson_ddata *to_pwm_loongson_ddata(struct pwm_chip *chip)
-+{
-+	return pwmchip_get_drvdata(chip);
-+}
-+
-+static inline u32 pwm_loongson_readl(struct pwm_loongson_ddata *ddata, u32 offset)
-+{
-+	return readl(ddata->base + offset);
-+}
-+
-+static inline void pwm_loongson_writel(struct pwm_loongson_ddata *ddata,
-+				       u32 val, u32 offset)
-+{
-+	writel(val, ddata->base + offset);
-+}
-+
-+static int pwm_loongson_set_polarity(struct pwm_chip *chip, struct pwm_device *pwm,
-+				     enum pwm_polarity polarity)
-+{
-+	u16 val;
-+	struct pwm_loongson_ddata *ddata = to_pwm_loongson_ddata(chip);
-+
-+	val = pwm_loongson_readl(ddata, LOONGSON_PWM_REG_CTRL);
-+
-+	if (polarity == PWM_POLARITY_INVERSED)
-+		/* Duty cycle defines LOW period of PWM */
-+		val |= LOONGSON_PWM_CTRL_INVERT;
-+	else
-+		/* Duty cycle defines HIGH period of PWM */
-+		val &= ~LOONGSON_PWM_CTRL_INVERT;
-+
-+	pwm_loongson_writel(ddata, val, LOONGSON_PWM_REG_CTRL);
-+
-+	return 0;
-+}
-+
-+static void pwm_loongson_disable(struct pwm_chip *chip, struct pwm_device *pwm)
-+{
-+	u32 val;
-+	struct pwm_loongson_ddata *ddata = to_pwm_loongson_ddata(chip);
-+
-+	val = pwm_loongson_readl(ddata, LOONGSON_PWM_REG_CTRL);
-+	val &= ~LOONGSON_PWM_CTRL_EN;
-+	pwm_loongson_writel(ddata, val, LOONGSON_PWM_REG_CTRL);
-+}
-+
-+static int pwm_loongson_enable(struct pwm_chip *chip, struct pwm_device *pwm)
-+{
-+	u32 val;
-+	struct pwm_loongson_ddata *ddata = to_pwm_loongson_ddata(chip);
-+
-+	val = pwm_loongson_readl(ddata, LOONGSON_PWM_REG_CTRL);
-+	val |= LOONGSON_PWM_CTRL_EN;
-+	pwm_loongson_writel(ddata, val, LOONGSON_PWM_REG_CTRL);
-+
-+	return 0;
-+}
-+
-+static int pwm_loongson_config(struct pwm_chip *chip, struct pwm_device *pwm,
-+			       u64 duty_ns, u64 period_ns)
-+{
-+	u32 duty, period;
-+	struct pwm_loongson_ddata *ddata = to_pwm_loongson_ddata(chip);
-+
-+	/* duty = duty_ns * ddata->clk_rate / NSEC_PER_SEC */
-+	duty = mul_u64_u64_div_u64(duty_ns, ddata->clk_rate, NSEC_PER_SEC);
-+	pwm_loongson_writel(ddata, duty, LOONGSON_PWM_REG_DUTY);
-+
-+	/* period = period_ns * ddata->clk_rate / NSEC_PER_SEC */
-+	period = mul_u64_u64_div_u64(period_ns, ddata->clk_rate, NSEC_PER_SEC);
-+	pwm_loongson_writel(ddata, period, LOONGSON_PWM_REG_PERIOD);
-+
-+	return 0;
-+}
-+
-+static int pwm_loongson_apply(struct pwm_chip *chip, struct pwm_device *pwm,
-+			      const struct pwm_state *state)
-+{
-+	int ret;
-+	u64 period, duty_cycle;
-+	bool enabled = pwm->state.enabled;
-+
-+	if (enabled && !state->enabled) {
-+		pwm_loongson_disable(chip, pwm);
-+		return 0;
-+	}
-+
-+	if (state->polarity != pwm->state.polarity) {
-+		ret = pwm_loongson_set_polarity(chip, pwm, state->polarity);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	period = min(state->period, NANOHZ_PER_HZ);
-+	duty_cycle = min(state->duty_cycle, NANOHZ_PER_HZ);
-+
-+	ret = pwm_loongson_config(chip, pwm, duty_cycle, period);
-+	if (ret)
-+		return ret;
-+
-+	if (!enabled && state->enabled)
-+		ret = pwm_loongson_enable(chip, pwm);
-+
-+	return ret;
-+}
-+
-+static int pwm_loongson_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
-+				  struct pwm_state *state)
-+{
-+	u32 duty, period, ctrl;
-+	struct pwm_loongson_ddata *ddata = to_pwm_loongson_ddata(chip);
-+
-+	duty = pwm_loongson_readl(ddata, LOONGSON_PWM_REG_DUTY);
-+	period = pwm_loongson_readl(ddata, LOONGSON_PWM_REG_PERIOD);
-+	ctrl = pwm_loongson_readl(ddata, LOONGSON_PWM_REG_CTRL);
-+
-+	/* duty & period have a max of 2^32, so we can't overflow */
-+	state->duty_cycle = DIV64_U64_ROUND_UP((u64)duty * NSEC_PER_SEC, ddata->clk_rate);
-+	state->period = DIV64_U64_ROUND_UP((u64)period * NSEC_PER_SEC, ddata->clk_rate);
-+	state->polarity = (ctrl & LOONGSON_PWM_CTRL_INVERT) ? PWM_POLARITY_INVERSED :
-+			  PWM_POLARITY_NORMAL;
-+	state->enabled = (ctrl & LOONGSON_PWM_CTRL_EN) ? true : false;
-+
-+	return 0;
-+}
-+
-+static const struct pwm_ops pwm_loongson_ops = {
-+	.apply = pwm_loongson_apply,
-+	.get_state = pwm_loongson_get_state,
-+};
-+
-+static int pwm_loongson_probe(struct platform_device *pdev)
-+{
-+	int ret;
-+	struct pwm_chip *chip;
-+	struct pwm_loongson_ddata *ddata;
-+	struct device *dev = &pdev->dev;
-+
-+	chip = devm_pwmchip_alloc(dev, 1, sizeof(*ddata));
-+	if (IS_ERR(chip))
-+		return PTR_ERR(chip);
-+	ddata = to_pwm_loongson_ddata(chip);
-+
-+	ddata->base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(ddata->base))
-+		return PTR_ERR(ddata->base);
-+
-+	if (!has_acpi_companion(dev)) {
-+		ddata->clk = devm_clk_get_enabled(dev, NULL);
-+		if (IS_ERR(ddata->clk))
-+			return dev_err_probe(dev, PTR_ERR(ddata->clk),
-+					     "failed to get pwm clock\n");
-+		ddata->clk_rate = clk_get_rate(ddata->clk);
-+	} else {
-+		ddata->clk_rate = LOONGSON_PWM_FREQ_STD;
-+	}
-+
-+	chip->ops = &pwm_loongson_ops;
-+	dev_set_drvdata(dev, chip);
-+
-+	ret = devm_pwmchip_add(dev, chip);
-+	if (ret < 0)
-+		return dev_err_probe(dev, ret, "failed to add PWM chip\n");
-+
-+	return 0;
-+}
-+
-+static int pwm_loongson_suspend(struct device *dev)
-+{
-+	struct pwm_chip *chip = dev_get_drvdata(dev);
-+	struct pwm_loongson_ddata *ddata = to_pwm_loongson_ddata(chip);
-+
-+	ddata->lss.ctrl = pwm_loongson_readl(ddata, LOONGSON_PWM_REG_CTRL);
-+	ddata->lss.duty = pwm_loongson_readl(ddata, LOONGSON_PWM_REG_DUTY);
-+	ddata->lss.period = pwm_loongson_readl(ddata, LOONGSON_PWM_REG_PERIOD);
-+
-+	clk_disable_unprepare(ddata->clk);
-+
-+	return 0;
-+}
-+
-+static int pwm_loongson_resume(struct device *dev)
-+{
-+	int ret;
-+	struct pwm_chip *chip = dev_get_drvdata(dev);
-+	struct pwm_loongson_ddata *ddata = to_pwm_loongson_ddata(chip);
-+
-+	ret = clk_prepare_enable(ddata->clk);
-+	if (ret)
-+		return ret;
-+
-+	pwm_loongson_writel(ddata, ddata->lss.ctrl, LOONGSON_PWM_REG_CTRL);
-+	pwm_loongson_writel(ddata, ddata->lss.duty, LOONGSON_PWM_REG_DUTY);
-+	pwm_loongson_writel(ddata, ddata->lss.period, LOONGSON_PWM_REG_PERIOD);
-+
-+	return 0;
-+}
-+
-+static DEFINE_SIMPLE_DEV_PM_OPS(pwm_loongson_pm_ops, pwm_loongson_suspend,
-+				pwm_loongson_resume);
-+
-+static const struct of_device_id pwm_loongson_of_ids[] = {
-+	{ .compatible = "loongson,ls7a-pwm" },
-+	{ /* sentinel */ },
-+};
-+MODULE_DEVICE_TABLE(of, pwm_loongson_of_ids);
-+
-+static const struct acpi_device_id pwm_loongson_acpi_ids[] = {
-+	{ "LOON0006" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(acpi, pwm_loongson_acpi_ids);
-+
-+static struct platform_driver pwm_loongson_driver = {
-+	.probe = pwm_loongson_probe,
-+	.driver = {
-+		.name = "loongson-pwm",
-+		.pm = pm_ptr(&pwm_loongson_pm_ops),
-+		.of_match_table = pwm_loongson_of_ids,
-+		.acpi_match_table = pwm_loongson_acpi_ids,
-+	},
-+};
-+module_platform_driver(pwm_loongson_driver);
-+
-+MODULE_DESCRIPTION("Loongson PWM driver");
-+MODULE_AUTHOR("Loongson Technology Corporation Limited.");
-+MODULE_LICENSE("GPL");
--- 
-2.43.5
-
+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBQZW5nIEZhbiA8cGVuZy5mYW5A
+bnhwLmNvbT4NCj4gU2VudDogMjAyNMTqN9TCOcjVIDIyOjEzDQo+IFRvOiBXZWkgRmFuZyA8d2Vp
+LmZhbmdAbnhwLmNvbT47IG10dXJxdWV0dGVAYmF5bGlicmUuY29tOw0KPiBzYm95ZEBrZXJuZWwu
+b3JnOyByb2JoQGtlcm5lbC5vcmc7IGNvbm9yK2R0QGtlcm5lbC5vcmc7DQo+IHNoYXduZ3VvQGtl
+cm5lbC5vcmc7IHMuaGF1ZXJAcGVuZ3V0cm9uaXguZGU7IGZlc3RldmFtQGdtYWlsLmNvbTsNCj4g
+YWJlbHZlc2FAa2VybmVsLm9yZw0KPiBDYzogbGludXgtY2xrQHZnZXIua2VybmVsLm9yZzsgZGV2
+aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmc7DQo+IGlteEBsaXN0cy5saW51eC5kZXY7IGxpbnV4LWFy
+bS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZzsNCj4gbGludXgta2VybmVsQHZnZXIua2VybmVs
+Lm9yZw0KPiBTdWJqZWN0OiBSRTogW1BBVENIIDIvM10gY2xrOiBpbXg5NTogZW5hYmxlIHRoZSBj
+bG9jayBvZiBORVRDTUlYIGJsb2NrDQo+IGNvbnRyb2wNCj4gDQo+ID4gU3ViamVjdDogW1BBVENI
+IDIvM10gY2xrOiBpbXg5NTogZW5hYmxlIHRoZSBjbG9jayBvZiBORVRDTUlYIGJsb2NrDQo+ID4g
+Y29udHJvbA0KPiA+DQo+ID4gVGhlIE5FVENNSVggYmxvY2sgY29udHJvbCBjb25zaXN0cyBvZiBy
+ZWdpc3RlcnMgZm9yIGNvbmZpZ3VyYXRpb24gb2YNCj4gPiBwZXJpcGhlcmFscyBpbiB0aGUgTkVU
+QyBkb21haW4sIHNvIGVuYWJsZSB0aGUgY2xvY2sgb2YgTkVUQ01JWCB0bw0KPiA+IHN1cHBvcnQg
+dGhlIGNvbmZpZ3VyYXRpb24uDQo+ID4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBXZWkgRmFuZyA8d2Vp
+LmZhbmdAbnhwLmNvbT4NCj4gPiAtLS0NCj4gPiAgZHJpdmVycy9jbGsvaW14L2Nsay1pbXg5NS1i
+bGstY3RsLmMgfCAxICsNCj4gPiAgMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspDQo+ID4N
+Cj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9jbGsvaW14L2Nsay1pbXg5NS1ibGstY3RsLmMNCj4g
+PiBiL2RyaXZlcnMvY2xrL2lteC9jbGstIGlteDk1LWJsay1jdGwuYyBpbmRleA0KPiA+IDc0ZjU5
+NWY5ZTVlMy4uMDdjNzBjMGE1M2Q0IDEwMDY0NA0KPiA+IC0tLSBhL2RyaXZlcnMvY2xrL2lteC9j
+bGstaW14OTUtYmxrLWN0bC5jDQo+ID4gKysrIGIvZHJpdmVycy9jbGsvaW14L2Nsay1pbXg5NS1i
+bGstY3RsLmMNCj4gPiBAQCAtNDE5LDYgKzQxOSw3IEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3Qgb2Zf
+ZGV2aWNlX2lkDQo+ID4gaW14OTVfYmNfb2ZfbWF0Y2hbXSA9IHsNCj4gPiAgCXsgLmNvbXBhdGli
+bGUgPSAibnhwLGlteDk1LWx2ZHMtY3NyIiwgLmRhdGEgPSAmbHZkc19jc3JfZGV2X2RhdGEgfSwN
+Cj4gPiAgCXsgLmNvbXBhdGlibGUgPSAibnhwLGlteDk1LWRpc3BsYXktY3NyIiwgLmRhdGEgPQ0K
+PiA+ICZkaXNwbWl4X2Nzcl9kZXZfZGF0YSB9LA0KPiA+ICAJeyAuY29tcGF0aWJsZSA9ICJueHAs
+aW14OTUtdnB1LWNzciIsIC5kYXRhID0gJnZwdWJsa19kZXZfZGF0YSB9LA0KPiA+ICsJeyAuY29t
+cGF0aWJsZSA9ICJueHAsaW14OTUtbmV0Y21peC1ibGstY3RybCIsIH0sDQo+IA0KPiBUaGlzIHNo
+b3VsZCBub3QgYmUgYWRkZWQgaGVyZSBpZiBubyByZWFsIGNsb2NrcyBhcmUgaW5jbHVkZWQuDQo+
+IA0KVGhpcyBpcyB0aGUgZmlyc3QgcGhhc2UsIGFuZCB3ZSBhcmUgY3VycmVudGx5IHByaW9yaXRp
+emluZyBzdXBwb3J0aW5nIHRoZSBSR01JSQ0KaW50ZXJmYWNlIG9mIEVORVRDIG9uIHVwc3RyZWFt
+LiBXZSB3aWxsIGFkZCBzdXBwb3J0IGZvciBtdWx0aXBsZXhpbmcgb2YgdGhlDQpSTUlJIHJlZmVy
+ZW5jZSBjbG9jayBsYXRlci4NCg0KPiANCj4gPiAgCXsgLyogU2VudGluZWwgKi8gfSwNCj4gPiAg
+fTsNCj4gPiAgTU9EVUxFX0RFVklDRV9UQUJMRShvZiwgaW14OTVfYmNfb2ZfbWF0Y2gpOw0KPiA+
+IC0tDQo+ID4gMi4zNC4xDQoNCg==
 
