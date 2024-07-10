@@ -1,292 +1,236 @@
-Return-Path: <devicetree+bounces-84540-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84541-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C39BF92CAD6
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 08:16:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B81392CAEF
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 08:23:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7964B2867CC
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 06:16:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 30DF7283A37
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 06:23:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC4026F30D;
-	Wed, 10 Jul 2024 06:16:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B60B5EE8D;
+	Wed, 10 Jul 2024 06:23:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="drMKKM1p"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="fdgGZNs+";
+	dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b="nCQFN1Mc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89A146214D;
-	Wed, 10 Jul 2024 06:16:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720592198; cv=none; b=EKq5N0Xebp4LoTTYpTtDEVa9n7WcSHKO/h+sgPGG5sM11I2OQbzLESjmY4E8i4YwzT1lMV98R+c3e7wm7WVBaOBczJHmq798geHYqHKWvGdQfnYS2zJ5+wH1hm/89fKkJ/EBv+pKZc4np9Ml1jAibMaxjf/pxNXIBuI58cXvVw0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720592198; c=relaxed/simple;
-	bh=w1HAGk/mz2aE96EttCrBnH9QPrQ60Q/GLsd6fME4K9s=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=LAVVJ4Ddu5uE/iaI32ih2B9NUWawh4aeYdkfXioYDBP6TNE3MofEWSFKamtU0M6jiOAHQgMwUn0kryUIkOGx/kyvfoZN/Y22M1o6klCmi6JqnsIqu4HIUBrwrrLg/RDRFQO2h4SwhQZOAlkG0IVRTJUxy3D2+Fmu0zo/r0iBzzQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=drMKKM1p; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id DB92AC4AF0F;
-	Wed, 10 Jul 2024 06:16:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720592197;
-	bh=w1HAGk/mz2aE96EttCrBnH9QPrQ60Q/GLsd6fME4K9s=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=drMKKM1pZrtxeWYAxmddwV9LU2AXPkJFv3E5nT7dpHP7x4G8AxFXI5WYZybJxzQeI
-	 hST+jKzxkIBhzq3vntJ6DDPocftdLi98ghhHNlO0zx0ddxxZsak+hqqEal4bBtegTG
-	 Ml0+ULZzvCWvfOEA3sQUi+LOajxLm/QNNjxr6pAX/ufKJ+djHkoOZ4DUiGyqy19soE
-	 /fIjAgr07qtXkrulgbzYTQpvdZrxXR/2sED72q1b7BNZK7Ay8stzqoTsQt45XURaQK
-	 27J8KduyMdyY7QlJjlvznwnG9sN57+1L6vXK6pq+3mUvVwa9Ra56aJ7isR6PHyCslp
-	 9ImNnOmhqlEQg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CDD41C38150;
-	Wed, 10 Jul 2024 06:16:37 +0000 (UTC)
-From: Pieterjan Camerlynck via B4 Relay <devnull+pieterjanca.gmail.com@kernel.org>
-Date: Wed, 10 Jul 2024 08:15:45 +0200
-Subject: [PATCH 2/2] leds: leds-pca995x: Add support for NXP PCA9956B
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDC7B1B86FC;
+	Wed, 10 Jul 2024 06:23:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=210.61.82.184
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1720592587; cv=fail; b=J/2Uk1c1kHC4SjuYPbo+ZcBEQtbfRQyr4wpgPbtf2jIo5fTizmb+ZeJrem3bEId0oxR6+l1d2EHeLo/lxsGjKu8MKlF58Axd5qWvzkqoEwLM48c8yCKoZ9WEKqefFWVb6aROoCcw56kJ7zIU+l87xB5IICBvKYM88dvL/3WuHkI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1720592587; c=relaxed/simple;
+	bh=v2k+F4r212jM3EyYX0/cOPGsyQHOe6QMFEJ9J29aLMY=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=tuMomH+RvX3/8PdkeLRZ8J3C7HuSIg7D3KdMo5gQPLrAe8BFrxqr4BYUWB6TSg2k1p05l9oM/LGyIftTnkvSN1kunYt1M107U6AnqFsUWkhEN2edS71mWNVwhJnnfhBxzwfHGH64cT99N+yPXibqdurmXBjgpfqA/2A7nq5izlI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=fdgGZNs+; dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b=nCQFN1Mc; arc=fail smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: d86a8efc3e8411ef87684b57767b52b1-20240710
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=v2k+F4r212jM3EyYX0/cOPGsyQHOe6QMFEJ9J29aLMY=;
+	b=fdgGZNs+6VjYanbjnw1t5tcMd3+2QHJsBbrnuVbzNS84moa1X6TbbHSnPzVH0VIKtuMAxV9kJAPrm23Yp5rrOysL14cRHgI4yS1YL1VnfOMxWDmyncRFShxNqC/hjhpzK+ZbymPoeteXXyeQ8+96NsBWZ6m5f6gqL1R2qC/rtPQ=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.40,REQID:b314d279-e6ba-4261-88ad-d459fc1b69e6,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:ba885a6,CLOUDID:b5c2470d-46b0-425a-97d3-4623fe284021,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:11|1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES
+	:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULN
+X-UUID: d86a8efc3e8411ef87684b57767b52b1-20240710
+Received: from mtkmbs09n2.mediatek.inc [(172.21.101.94)] by mailgw02.mediatek.com
+	(envelope-from <jianjun.wang@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1955066930; Wed, 10 Jul 2024 14:22:55 +0800
+Received: from mtkmbs10n2.mediatek.inc (172.21.101.183) by
+ MTKMBS14N1.mediatek.inc (172.21.101.75) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Wed, 10 Jul 2024 14:22:56 +0800
+Received: from APC01-PSA-obe.outbound.protection.outlook.com (172.21.101.237)
+ by mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Wed, 10 Jul 2024 14:22:56 +0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=NqJg/m4AZPUnt4+aEbBgAfDMsrpd31SvqayBKBGmBXcY3hhl0VaprUOE9KuDEp+FM1om8wWi+HgDYwWxKRr0XHf/hq1lsYO9uXNrqwJMhCXaFGwigQPx8CCbccEIGdXXGP+iL7xJzOGf3kMdcJj5jBrx0JrN2J34EbMk94qDyipxhRmnYmur2vzI7Pc1OkMFON1RHEVbo6GCOBCXNLzzzqCu8Uw1M5paNibrpwF/uwVMhEDbSWjR0/IOovqujlKWvTvV4GBIbU9d0Kx3AGMscXh44NQNsZ8wua7inAXRxwS7dhSahXPNNvZoWRUvgm2Z4Nm17J8yJs3sBNYizaTCvQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=v2k+F4r212jM3EyYX0/cOPGsyQHOe6QMFEJ9J29aLMY=;
+ b=laL88t/ZDA3tLHsmzeGuQKTh7LQDc2lELIAJv3k1D5xAIgu+dGAunBoY1CtJK/JtVx96WJXzXeSjV6s43MKOyQhN9uPamZxnFRbk4BPcFSIO/F6dysgt8jHMT/VCndQNOPMSECb//Zqh8l1j7zvm0NiWQP1U0seVvVnPB8Yd7Yq3yQRabDtfQN2B7ghJYHc4ZyuQdI0b/LCwixcWhDFNVoe/pyZ+KhpZ2FX6oCT6JpbgXtx8YdS7Bkgwzix70DZmJhMQSBPB6i/ZWklQPkhlEmu5wXcmBk94EXIuWmjFt1zNeub/zi5DSCfLyhLckK+crXN9gI8BT0UiQSLYy605lg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
+ dkim=pass header.d=mediatek.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=v2k+F4r212jM3EyYX0/cOPGsyQHOe6QMFEJ9J29aLMY=;
+ b=nCQFN1Mc1F2iEG9jlbHrJ++a86Z6SjXEKUSv4IdCdtdr6t3tzleyj3K3+Hl388PT2WEVieiX44hDiatQ7dfWnlPe7y4+UhK6XiydMT5DfalmK+sIFAcnF+Hr0t1gTHu64qEQWYoM9149ndDRi4PoFhV5XztHHmcxyka1LLYNyKY=
+Received: from PSAPR03MB5365.apcprd03.prod.outlook.com (2603:1096:301:17::5)
+ by SEZPR03MB7266.apcprd03.prod.outlook.com (2603:1096:101:72::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7741.36; Wed, 10 Jul
+ 2024 06:22:54 +0000
+Received: from PSAPR03MB5365.apcprd03.prod.outlook.com
+ ([fe80::1c6e:6591:5151:27e6]) by PSAPR03MB5365.apcprd03.prod.outlook.com
+ ([fe80::1c6e:6591:5151:27e6%4]) with mapi id 15.20.7762.016; Wed, 10 Jul 2024
+ 06:22:54 +0000
+From: =?utf-8?B?Smlhbmp1biBXYW5nICjnjovlu7rlhpsp?= <Jianjun.Wang@mediatek.com>
+To: "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+	"angelogioacchino.delregno@collabora.com"
+	<angelogioacchino.delregno@collabora.com>, "lorenzo@kernel.org"
+	<lorenzo@kernel.org>
+CC: "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "nbd@nbd.name"
+	<nbd@nbd.name>, "dd@embedd.com" <dd@embedd.com>, "robh@kernel.org"
+	<robh@kernel.org>, "kw@linux.com" <kw@linux.com>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "krzysztof.kozlowski+dt@linaro.org"
+	<krzysztof.kozlowski+dt@linaro.org>, "bhelgaas@google.com"
+	<bhelgaas@google.com>, "lpieralisi@kernel.org" <lpieralisi@kernel.org>, Ryder
+ Lee <Ryder.Lee@mediatek.com>, "lorenzo.bianconi83@gmail.com"
+	<lorenzo.bianconi83@gmail.com>, upstream <upstream@airoha.com>
+Subject: Re: [PATCH v4 1/4] dt-bindings: PCI: mediatek-gen3: add support for
+ Airoha EN7581
+Thread-Topic: [PATCH v4 1/4] dt-bindings: PCI: mediatek-gen3: add support for
+ Airoha EN7581
+Thread-Index: AQHazWP8tlr4XawJCESgP36K/WVuWLHmPC0AgAlMO4A=
+Date: Wed, 10 Jul 2024 06:22:54 +0000
+Message-ID: <e1a557e71ae51a8d7358aa29a5f07f22c30a643f.camel@mediatek.com>
+References: <cover.1720022580.git.lorenzo@kernel.org>
+	 <138d65a140c3dcf2a6aefecc33ba6ba3ca300a23.1720022580.git.lorenzo@kernel.org>
+	 <90342fc9-19ed-4976-8125-f8fccc8d4970@collabora.com>
+In-Reply-To: <90342fc9-19ed-4976-8125-f8fccc8d4970@collabora.com>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=mediatek.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PSAPR03MB5365:EE_|SEZPR03MB7266:EE_
+x-ms-office365-filtering-correlation-id: 082d567b-dab4-4460-6474-08dca0a8bb9b
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|7416014|376014|1800799024|366016|38070700018;
+x-microsoft-antispam-message-info: =?utf-8?B?NFFtdUlqeUVodlArZlhqZWJ3algrcnFpUmZHTXM0WU9nUHoxUHUrWVFORTZx?=
+ =?utf-8?B?WW5ZT3hjcmlzak1CNGlid2k0dDJYa0duQ2dnZ1R2bnMyTUlkN2ZRbE1aOWNp?=
+ =?utf-8?B?ZUpKUTVuY050Q0F3WExRLzIwTktCZnphY2R0YWpoanpiRTR4RU9hdDhXZGUr?=
+ =?utf-8?B?Mjg2bHpBeXNBanZYSVJ4S01LZk54VDB5YWZLam50bDdnY1Fmc20wQUJ2YU5Z?=
+ =?utf-8?B?WE82aENpd0ZBQWxwczNSTVczS2Rxb0xNOXZWWjl5aHRsQ1hsdXFnandYU3ls?=
+ =?utf-8?B?RTJHdS9KNmFVdk9oQ1VNaDNXZndoTkE1bWR5ZGhaZWo3QlJiUXNpRU1YVEpy?=
+ =?utf-8?B?eTg0M1Z3VEN6S2g3R0wxUEY4U3RWVDE2QUNjMUx6YldGSElneDVxMG9KbkNV?=
+ =?utf-8?B?SWhHbVhNamtUL2lhUDI0bm9EUUZLdk9ob2lySngyQ1FtUDNTNDhoUjVBY0hi?=
+ =?utf-8?B?aFQyemVIdmE1U1B0WlV4ZnJKT3hwREdTSlhobTk3SUJDVldOcmVwUGZFNkhh?=
+ =?utf-8?B?WVh0ck9yeFNoVCtQNk1VVWZ5VDNiWWY0L2hOdEVra0J3amJGK3FXc0QwWUR2?=
+ =?utf-8?B?Zk9mSVNqK2ErZVpVeWMvZytCaGFtSUpTcCtNQjlLcU9jdWhFUlA2Q1c5QzZY?=
+ =?utf-8?B?Z1RMWFpjam1MQTdyMXJuR2lReEFPNFFDN2J0Nll1MGprOTgxM0RTd3FPdWlt?=
+ =?utf-8?B?MUtlMndMUnRSSGdxRlRUZGl4WHZrSkdzaGsyUTRRZ2Z4b2J5VzBmYWMzUWph?=
+ =?utf-8?B?VDIydmZmODk4SlQzdlFCa2JRcnVtTm9MUStCOXEzcTF5RnFDN0JGR2xiK3lY?=
+ =?utf-8?B?dGJjU05uTDhreEhvdDFlVnl3SE50OHU5UUtXNng0WTVkMi8wemc3c0R1cW9u?=
+ =?utf-8?B?bUk1UlJLSmIxT1JkekY3VXYzQ1ZxWDdCYzNuSDVCVG5Pd201U05aVXY4eERJ?=
+ =?utf-8?B?UU1yQ2RBSUNkcXBsZ3pweVlzcHo0Zm9rNnp0aTcyK29SOS9kWmpGOFlON1JR?=
+ =?utf-8?B?SDRSTmp6YjE3T0g4Tk80RGE3OUlOL0Jnb0NRUVUrbXdFWDlrSklhVWJ1cEsz?=
+ =?utf-8?B?cXcvLzFOeXcrWUFjY0lyQzNVdkVXMVVuUHI3N3BRK2xRS1FIYjdyME4rc2FD?=
+ =?utf-8?B?RnV6NVFiY042dVB0S3Q4VU8renNBVm5xbG9lbnQ1dUZwVzdUb1FPQVY3M25F?=
+ =?utf-8?B?Q3VMQ2JzMUxtNG1Mck1oY29SYmJxeHRIVGkwQlpvVXl2REpzRWc5Ym85MmMr?=
+ =?utf-8?B?V3o0R2VvMFloaEw4THFzVmtRbFVvbnBpWmZJRkNtYnFmQkhwVHAyL3NzNFY4?=
+ =?utf-8?B?Q0JvRDBpYXc3V0VEYXRIOEtyNytOeEJuYnZCREF6ZHNWWWRZU2ZQOVNYZ2kw?=
+ =?utf-8?B?NUtiMVdlYzZPZHh6OExEL0J6MXZxMGlrNVNwT2xKOXlpclhENTdocVUrY1V4?=
+ =?utf-8?B?N1BITFFseG9RRXhwaXg3dCtEa0hiSi8vVGdpZWZvYkY5aHc4WkpkRHl3QitM?=
+ =?utf-8?B?YlZvU0J4bS9tVSt4ZEZxMlQyTzJtVi9PNFFoaUppU2hpM0p4enBYMjdsMnBP?=
+ =?utf-8?B?bGlRZ0dXdWpmbkEySUhUa3dGZ254cFlIbS9rdWFzVVBsSVI5TjA2TXNseGhT?=
+ =?utf-8?B?dWVXbm82U3lLQlNSSWpET2lTMDYydHE4YmlybTNLUklDdkE4dk8waDBuMTl1?=
+ =?utf-8?B?U1AvbGY5MlQvNHFoL0NsRForbXRZd3lhUEZqRWtXVzBLa3JRdVBNZW83Nzh2?=
+ =?utf-8?B?ekZmLzZCSmJkYnRIWGFxZzQ2eWdSYmhuR0dBRWNyODUzT1lXOTRSVVJZU0d0?=
+ =?utf-8?B?UEhKTVYrQUJibk9XWnd1K2tPTWZzakdyMzVRZU85NE1qZEdNdGZXYnAwZk1n?=
+ =?utf-8?B?Mk0yNy9BWXRrYXM2cTh0bnVSck1ObXVkZVU0ZkxkQWFOalE9PQ==?=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PSAPR03MB5365.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(366016)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?K0J6WVR2QldjOUhiTVBSam0vY1d1emcycWRxcytzNDQ5U1c4K0UyY3ZLcXNT?=
+ =?utf-8?B?aGRkYjdiY2xyY3l1RlNLL1psRXJ0Qm9kUktTVGFtbEQ0UW1PZkt5T3NJS2hC?=
+ =?utf-8?B?ZUh2WWlJWHlKa1JhZnlubmswM2R0ZFhQajRoOHRCaWpHeGMxcldTVDhrWjkx?=
+ =?utf-8?B?MHEwNjNhdWhLb3YrM0VpSVU1b3Q1VEVGVWVvQ3dnRjY2SEV1ay81RHhMYlEr?=
+ =?utf-8?B?RU1rMzRqZ2ZQSEdtT2cwT29rb2poU1ZUc2FBWTlRdlNLSm9IaFppcUllaTl5?=
+ =?utf-8?B?OFZLa1Z2YnUzdVlEWW5VZVdBaEU1ZGJJRVJBNFpnd2l0RzBhYk95ZDJiZFEy?=
+ =?utf-8?B?bkFSSDVVNGlmZXA2d2QraVlpWEx3YnJ3em0yTWJkVnM0bzRaN3EyZzR3bHZ0?=
+ =?utf-8?B?eWUzVGtjTEZKNHhYU0N6N25qTHVuSWFtUXE1UW8ycHFEM0ZmVlJ1c2xOL0FD?=
+ =?utf-8?B?NzVNcFR4SEk5VG9OMDVycjBKS1FGU2dLOVBhV2p4SzdwUjdvK3ZYNE95eEJ5?=
+ =?utf-8?B?KzkvNTcvWTEyaEMzSEFvT3drZEsvYW94clpRbml3UC9qMHhndlZmK2xQOHJi?=
+ =?utf-8?B?UEYzLzM4YXh5b003bVh4WFFsSUIwRGw2c3hZZEFiOHF3TVJXa1Z5UjRtV01a?=
+ =?utf-8?B?aHNKWW1QMXc5WVhTdmZLYzNRdStodHUzbXAzRmFRUlU5Q3I5TWJZeHdHUm1r?=
+ =?utf-8?B?ZUtKQmlDZTh3S3NKdENDWkoxanBtSkxoTC9qZ2ZRVzQvM3dNdlprTStUcVNE?=
+ =?utf-8?B?Z1ovTzEyWktHUFpkTjkyQTNzS0lsRnZVWG5TdzZHZGJ4SWRlT2V2WUZNV2c0?=
+ =?utf-8?B?bVltajBORndJQzhYb3hpa0NGL0F2T3hRcnd0VDZIRTJ2ZnhORzB2c0pwL0RX?=
+ =?utf-8?B?dWVjN0FEU21DdmVDVmtHR2dRN1Y1M2ZWODNNeEdzU3JVSk94QzlxN09EYTI0?=
+ =?utf-8?B?YklEYS90QmVFYm5YUm4vK3J0YzVORC9tbkU3WGs5eUxjd2NHZnNCT2UzWkpQ?=
+ =?utf-8?B?QVdOZ0lvTkRpN29sSlgwbko5TGY1UHRHLy80R3VKRWVnWllqVndjZGo1emdh?=
+ =?utf-8?B?dTl6NXlhYlYyeWdCSEhCV1ZXN2RtTDJmR09HSjNIZXlqQUhVUHpMcXNsTmRt?=
+ =?utf-8?B?Vjl3QXdYQldLZjhvbkxvaTJBL2VtbWxLKzZQaHMrdTUrTE5zaXN6V2VaZ0Js?=
+ =?utf-8?B?WGhwZXpBSW8yc20yQ3RIVmQ3M3o4YkozVXh2OGVCTGt5TVNlaHBXbFhlOEtk?=
+ =?utf-8?B?bDhQUVBBc0JZZ3VLY28rMXJlaHlpb2gyMUF4cncyWCtaM215SkZ2OWtERm9i?=
+ =?utf-8?B?cElqbEdZYjZ1cm51TEVrWUpwOUVLazlGRlZBTEVBZ2JRTFkrSTRzWHVlbzNS?=
+ =?utf-8?B?N0lDZkxlak5OUlF3bUptOXhWdkVFbHlDRmxoSlBLMEF0NXlVaUZOTHN5TVFi?=
+ =?utf-8?B?TW1nVEUyN2g1M3JVcHM4b0JrQ0txRkswNkZRTVkyUWllWkFJaDUyKzd5clZy?=
+ =?utf-8?B?L284azkvZGhNN0d1V2d3aE05Q3l4dnoxem9mQzIyWWVaTUI3Z2k4NzdMSVl1?=
+ =?utf-8?B?U3IvWis2L0ZxUVJEUEZRM3FWWllNc3N0NWRpcXlnZGM5Um5RUUdYNm8vRlRL?=
+ =?utf-8?B?aW9VbzUxdmpMa2VvcUlxeDZueHp3Ujk2dW9sUEgxeHRid0xNNFFlMk56VTZl?=
+ =?utf-8?B?cXJ5K1dPOUdSNGxzQVRkcE53eFViMkMzVTNMdEwwRDg5eXFCVmRGbllYUGVq?=
+ =?utf-8?B?QktVUWlZQ0VNNktPUCs2aE1IQXFZb1hrYzJqT3B1Z0xjZnJaMDczWmFSUU8z?=
+ =?utf-8?B?RklaU1U5S1kwQ0tZMlhiYlU4OW9LUG5IcXgybGJnYzZrTlBrVzVJbUZueU8v?=
+ =?utf-8?B?U3Zqc0hyRXY0NnhRODBjWnoxdlp4bmpXOWJOZHlGQk1oV2VrYUc0cEpsOTAx?=
+ =?utf-8?B?bXdIQWpTUE0vSWZvcytudzJCdzNPRm9XcE9vd01MaDRvZEJ5bDQ4NjdDTTdH?=
+ =?utf-8?B?SFJ4SFJMRU0xY1RsY3dYR2RiMUpYMDAzaWFtTDBqUGE4ZVdSMmhGcnhwOFFE?=
+ =?utf-8?B?YWZKenF2VmVjWnFVN0hIR3QwRytGckVFaHQ1OTBiTTJVend0Q28yUDhOU2ts?=
+ =?utf-8?B?ZHE5T29zM05oNWVXWk1neUMyWWhGTWc4aVNaZXZpbEdHOW5EVmpoZzZoUFhm?=
+ =?utf-8?B?Wmc9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <A815D25BC6CFF44F94FD799F453C843E@apcprd03.prod.outlook.com>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240710-pca995x-v1-2-545015603000@gmail.com>
-References: <20240710-pca995x-v1-0-545015603000@gmail.com>
-In-Reply-To: <20240710-pca995x-v1-0-545015603000@gmail.com>
-To: Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Isai Gaspar <isaiezequiel.gaspar@nxp.com>, Marek Vasut <marex@denx.de>
-Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Pieterjan Camerlynck <pieterjanca@gmail.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1720592196; l=6318;
- i=pieterjanca@gmail.com; s=20240709; h=from:subject:message-id;
- bh=mq1PsTTh485sVEEY1ZBDdJqiSjiPqk3EQrYCQXfMA50=;
- b=SbQHhVwjSFK9g1cGv36Rm5bUDYoJubQXqDyj3b/2CjQJnXHZhloJhGK6WSBJ31uvPpkFrSkod
- Zbt3mKR/xhlBcznznmCbm4T/iUOpDXZ24/HSw+STNKOT3S8xPWWMS7f
-X-Developer-Key: i=pieterjanca@gmail.com; a=ed25519;
- pk=gSAHfvqQjVhNa1MhUClqbt7d3S+fviKz6FdQVaWFRyM=
-X-Endpoint-Received: by B4 Relay for pieterjanca@gmail.com/20240709 with
- auth_id=182
-X-Original-From: Pieterjan Camerlynck <pieterjanca@gmail.com>
-Reply-To: pieterjanca@gmail.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PSAPR03MB5365.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 082d567b-dab4-4460-6474-08dca0a8bb9b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Jul 2024 06:22:54.2176
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: xfCikO3BkQ2CC69419ahVV79cp6+Z9Kgd+7c6jpEQdztdLf4L3WkqB+8RWNSbV40ncsx9YhWruhS3PkuDAoP/lliD0KRgmYyXxQkc8/7VcE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR03MB7266
+X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-AS-Result: No-10--9.735300-8.000000
+X-TMASE-MatchedRID: mIinBA9F1pzUL3YCMmnG4kD6z8N1m1ALjLOy13Cgb49qSjxROy+AU2yd
+	bY7xfgXYvb6Wbu7L5KCx1lMnr76Jla3onYxS1J4DngIgpj8eDcDBa6VG2+9jFL8INwbAZ3yPk9d
+	3W80cjoETEC0P9PvYRt0H8LFZNFG7bkV4e2xSge6MyjzJDrB9cFQ+pP4yAyBoA5kxnPTZwYQw8C
+	+o1xWOCgkrYwrjkf4Y
+X-TM-AS-User-Approved-Sender: No
+X-TM-AS-User-Blocked-Sender: No
+X-TMASE-Result: 10--9.735300-8.000000
+X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-SNTS-SMTP:
+	8157F422FA76802E8FAC01891FFC9C93A5F33D0745DD0DC9D5E8806B24448A2A2000:8
 
-From: Pieterjan Camerlynck <pieterjanca@gmail.com>
-
-Add support for PCA9956B chip, which belongs to the same family.
-
-This chip features 24 instead of 16 outputs, so add a chipdef struct to
-deal with the different register layouts.
-
-Signed-off-by: Pieterjan Camerlynck <pieterjanca@gmail.com>
----
- drivers/leds/leds-pca995x.c | 88 ++++++++++++++++++++++++++-------------------
- 1 file changed, 52 insertions(+), 36 deletions(-)
-
-diff --git a/drivers/leds/leds-pca995x.c b/drivers/leds/leds-pca995x.c
-index 78215dff1499..4cd2828a3f2d 100644
---- a/drivers/leds/leds-pca995x.c
-+++ b/drivers/leds/leds-pca995x.c
-@@ -19,10 +19,6 @@
- #define PCA995X_MODE1			0x00
- #define PCA995X_MODE2			0x01
- #define PCA995X_LEDOUT0			0x02
--#define PCA9955B_PWM0			0x08
--#define PCA9952_PWM0			0x0A
--#define PCA9952_IREFALL			0x43
--#define PCA9955B_IREFALL		0x45
- 
- /* Auto-increment disabled. Normal mode */
- #define PCA995X_MODE1_CFG		0x00
-@@ -34,17 +30,43 @@
- #define PCA995X_LDRX_MASK		0x3
- #define PCA995X_LDRX_BITS		2
- 
--#define PCA995X_MAX_OUTPUTS		16
- #define PCA995X_OUTPUTS_PER_REG		4
- 
- #define PCA995X_IREFALL_FULL_CFG	0xFF
- #define PCA995X_IREFALL_HALF_CFG	(PCA995X_IREFALL_FULL_CFG / 2)
- 
--#define PCA995X_TYPE_NON_B		0
--#define PCA995X_TYPE_B			1
--
- #define ldev_to_led(c)	container_of(c, struct pca995x_led, ldev)
- 
-+enum pca995x_type {
-+	pca9952,
-+	pca9955b,
-+	pca9956b,
-+};
-+
-+struct pca995x_chipdef {
-+	unsigned int num_leds;
-+	u8 pwm_base;
-+	u8 irefall;
-+};
-+
-+static const struct pca995x_chipdef pca995x_chipdefs[] = {
-+	[pca9952] = {
-+		.num_leds	= 16,
-+		.pwm_base	= 0x0a,
-+		.irefall	= 0x43,
-+	},
-+	[pca9955b] = {
-+		.num_leds	= 16,
-+		.pwm_base	= 0x08,
-+		.irefall	= 0x45,
-+	},
-+	[pca9956b] = {
-+		.num_leds	= 24,
-+		.pwm_base	= 0x0a,
-+		.irefall	= 0x40,
-+	},
-+};
-+
- struct pca995x_led {
- 	unsigned int led_no;
- 	struct led_classdev ldev;
-@@ -52,9 +74,9 @@ struct pca995x_led {
- };
- 
- struct pca995x_chip {
-+	const struct pca995x_chipdef *chipdef;
- 	struct regmap *regmap;
--	struct pca995x_led leds[PCA995X_MAX_OUTPUTS];
--	int btype;
-+	struct pca995x_led leds[];
- };
- 
- static int pca995x_brightness_set(struct led_classdev *led_cdev,
-@@ -62,10 +84,11 @@ static int pca995x_brightness_set(struct led_classdev *led_cdev,
- {
- 	struct pca995x_led *led = ldev_to_led(led_cdev);
- 	struct pca995x_chip *chip = led->chip;
-+	const struct pca995x_chipdef *chipdef = chip->chipdef;
- 	u8 ledout_addr, pwmout_addr;
- 	int shift, ret;
- 
--	pwmout_addr = (chip->btype ? PCA9955B_PWM0 : PCA9952_PWM0) + led->led_no;
-+	pwmout_addr = (chipdef->pwm_base) + led->led_no;
- 	ledout_addr = PCA995X_LEDOUT0 + (led->led_no / PCA995X_OUTPUTS_PER_REG);
- 	shift = PCA995X_LDRX_BITS * (led->led_no % PCA995X_OUTPUTS_PER_REG);
- 
-@@ -101,24 +124,24 @@ static const struct regmap_config pca995x_regmap = {
- 
- static int pca995x_probe(struct i2c_client *client)
- {
--	struct fwnode_handle *led_fwnodes[PCA995X_MAX_OUTPUTS] = { 0 };
- 	struct fwnode_handle *np, *child;
- 	struct device *dev = &client->dev;
-+	const struct pca995x_chipdef *chipdef;
- 	struct pca995x_chip *chip;
- 	struct pca995x_led *led;
--	int i, btype, reg, ret;
-+	int reg, ret;
- 
--	btype = (unsigned long)device_get_match_data(&client->dev);
-+	chipdef = device_get_match_data(&client->dev);
- 
- 	np = dev_fwnode(dev);
- 	if (!np)
- 		return -ENODEV;
- 
--	chip = devm_kzalloc(dev, sizeof(*chip), GFP_KERNEL);
-+	chip = devm_kzalloc(dev, struct_size(chip, leds, chipdef->num_leds), GFP_KERNEL);
- 	if (!chip)
- 		return -ENOMEM;
- 
--	chip->btype = btype;
-+	chip->chipdef = chipdef;
- 	chip->regmap = devm_regmap_init_i2c(client, &pca995x_regmap);
- 	if (IS_ERR(chip->regmap))
- 		return PTR_ERR(chip->regmap);
-@@ -126,41 +149,34 @@ static int pca995x_probe(struct i2c_client *client)
- 	i2c_set_clientdata(client, chip);
- 
- 	fwnode_for_each_available_child_node(np, child) {
-+		struct led_init_data init_data = {};
-+
- 		ret = fwnode_property_read_u32(child, "reg", &reg);
- 		if (ret) {
- 			fwnode_handle_put(child);
- 			return ret;
- 		}
- 
--		if (reg < 0 || reg >= PCA995X_MAX_OUTPUTS || led_fwnodes[reg]) {
-+		if (reg < 0 || reg >= chipdef->num_leds) {
- 			fwnode_handle_put(child);
- 			return -EINVAL;
- 		}
- 
- 		led = &chip->leds[reg];
--		led_fwnodes[reg] = child;
- 		led->chip = chip;
- 		led->led_no = reg;
- 		led->ldev.brightness_set_blocking = pca995x_brightness_set;
- 		led->ldev.max_brightness = 255;
--	}
--
--	for (i = 0; i < PCA995X_MAX_OUTPUTS; i++) {
--		struct led_init_data init_data = {};
--
--		if (!led_fwnodes[i])
--			continue;
--
--		init_data.fwnode = led_fwnodes[i];
-+		init_data.fwnode = child;
- 
- 		ret = devm_led_classdev_register_ext(dev,
--						     &chip->leds[i].ldev,
-+						     &led->ldev,
- 						     &init_data);
- 		if (ret < 0) {
- 			fwnode_handle_put(child);
- 			return dev_err_probe(dev, ret,
- 					     "Could not register LED %s\n",
--					     chip->leds[i].ldev.name);
-+					     led->ldev.name);
- 		}
- 	}
- 
-@@ -170,21 +186,21 @@ static int pca995x_probe(struct i2c_client *client)
- 		return ret;
- 
- 	/* IREF Output current value for all LEDn outputs */
--	return regmap_write(chip->regmap,
--			    btype ? PCA9955B_IREFALL : PCA9952_IREFALL,
--			    PCA995X_IREFALL_HALF_CFG);
-+	return regmap_write(chip->regmap, chipdef->irefall, PCA995X_IREFALL_HALF_CFG);
- }
- 
- static const struct i2c_device_id pca995x_id[] = {
--	{ "pca9952", .driver_data = (kernel_ulong_t)PCA995X_TYPE_NON_B },
--	{ "pca9955b", .driver_data = (kernel_ulong_t)PCA995X_TYPE_B },
-+	{ "pca9952", .driver_data = (kernel_ulong_t)&pca995x_chipdefs[pca9952] },
-+	{ "pca9955b", .driver_data = (kernel_ulong_t)&pca995x_chipdefs[pca9955b] },
-+	{ "pca9956b", .driver_data = (kernel_ulong_t)&pca995x_chipdefs[pca9956b] },
- 	{}
- };
- MODULE_DEVICE_TABLE(i2c, pca995x_id);
- 
- static const struct of_device_id pca995x_of_match[] = {
--	{ .compatible = "nxp,pca9952",  .data = (void *)PCA995X_TYPE_NON_B },
--	{ .compatible = "nxp,pca9955b", .data = (void *)PCA995X_TYPE_B },
-+	{ .compatible = "nxp,pca9952", .data = &pca995x_chipdefs[pca9952] },
-+	{ .compatible = "nxp,pca9955b", . data = &pca995x_chipdefs[pca9955b] },
-+	{ .compatible = "nxp,pca9956b", .data = &pca995x_chipdefs[pca9956b] },
- 	{},
- };
- MODULE_DEVICE_TABLE(of, pca995x_of_match);
-
--- 
-2.45.2
-
-
+T24gVGh1LCAyMDI0LTA3LTA0IGF0IDEwOjIzICswMjAwLCBBbmdlbG9HaW9hY2NoaW5vIERlbCBS
+ZWdubyB3cm90ZToNCj4gSWwgMDMvMDcvMjQgMTg6MTIsIExvcmVuem8gQmlhbmNvbmkgaGEgc2Ny
+aXR0bzoNCj4gPiBJbnRyb2R1Y2UgQWlyb2hhIEVONzU4MSBlbnRyeSBpbiBtZWRpYXRlay1nZW4z
+IFBDSWUgY29udHJvbGxlcg0KPiA+IGJpbmRpbmcNCj4gPiANCj4gPiBSZXZpZXdlZC1ieTogQ29u
+b3IgRG9vbGV5IDxjb25vci5kb29sZXlAbWljcm9jaGlwLmNvbT4NCj4gPiBTaWduZWQtb2ZmLWJ5
+OiBMb3JlbnpvIEJpYW5jb25pIDxsb3JlbnpvQGtlcm5lbC5vcmc+DQo+IA0KPiBSZXZpZXdlZC1i
+eTogQW5nZWxvR2lvYWNjaGlubyBEZWwgUmVnbm8gPA0KPiBhbmdlbG9naW9hY2NoaW5vLmRlbHJl
+Z25vQGNvbGxhYm9yYS5jb20+DQo+IA0KDQpBY2tlZC1ieTogSmlhbmp1biBXYW5nIDxqaWFuanVu
+LndhbmdAbWVkaWF0ZWsuY29tPg0K
 
