@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-84616-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84617-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63D8192CEEA
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 12:16:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A19B92CEF5
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 12:24:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B0E53B2160F
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 10:16:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4B9271C234E2
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 10:24:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A07C918FDAD;
-	Wed, 10 Jul 2024 10:12:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C63A190067;
+	Wed, 10 Jul 2024 10:13:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i26JYMet"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iYNZT89r"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 519BC18FA12;
-	Wed, 10 Jul 2024 10:12:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A01D18FC79;
+	Wed, 10 Jul 2024 10:13:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720606331; cv=none; b=ShYneo/PtydR7IXk3407fk+q2iV1jULZlV40BYqXlVuOqFVFA/2uRRvFn+Fs+cnHWJ2x2nQcEdIVnr01VFTsoEXYTEgbDiITbHWhlTaPn+xIBFZUKpn5aKj2fJJbHoTMX0VO/sJ73zKGOtTUIObBg8ikBwzy0ABbTRNBvBAJvyM=
+	t=1720606388; cv=none; b=MB4erM+9My8Qo+Hg+400w3zyGy9HiDPQOJ6+j0UPPl8eIjBgB+FdE6YGXGTs9bSneH1dPFN055l6uGdVf9NjmFjSKt06osrQGrO+i3m3EtMayJHZpWiJ/ZN2bNXJkW1hJYcEn0VsqxM21GQ1Zej/foQEhu8DWyV8nIyPwG6hbtI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720606331; c=relaxed/simple;
-	bh=s7XkNZJ/tmvmUOUOkwxRuX1V+80bZRwPqlq5S+jNx0I=;
+	s=arc-20240116; t=1720606388; c=relaxed/simple;
+	bh=aqyOKL7JUKjyvGHi46mbHx/pjBoWbx2W6dclkhw9M7Q=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=t95e/mLIyJMP39wKv28j4msyvGNu1iYVEEWogb7JWFoTlQ48mbh0s88G2hXoYFuxKQT+2iJMk8MMa/s9nQivZrc9wGSAWfIX6jh0p4/m80vbZZ0//eZr3NhIn2dJfeiZwPEjbYnUksvPn1sPXqsB6tF6awzw6wuu0xsUtqFRNt0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i26JYMet; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7BA5C32781;
-	Wed, 10 Jul 2024 10:12:07 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=dUgMirF5qNuuQ+aT2VTeoJJ0kiMNSooUdt3a+UQXK6n2CgeP0+mpeRitg9F9cax3szpgJhwUhAAUyW5tFPt0NH6LLPi1fxi/tPgCdlIKEbXJSXuX8v7HKA1MVK1sBvAH/DBM7+PXoN9n8DFOiT3ucPO33z1mbI5UU2do2+aOqXw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iYNZT89r; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E842C32781;
+	Wed, 10 Jul 2024 10:13:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720606329;
-	bh=s7XkNZJ/tmvmUOUOkwxRuX1V+80bZRwPqlq5S+jNx0I=;
+	s=k20201202; t=1720606387;
+	bh=aqyOKL7JUKjyvGHi46mbHx/pjBoWbx2W6dclkhw9M7Q=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=i26JYMetfFZ5QN4o7NY1cg/b0O21ZjQnvo9785yPyj53aTuaWeylNI3peXlGCdTIA
-	 p/WLdagSqNkkgz/fFQP7N1zwZq9+nI4R6zuzBsz0LDZgYL7ngrk3exZClL86ass1sR
-	 7x0Cg8dZukIlKgzjlu6fCaNoYSoV/Ljljgb7ZBessk9FZwtAPbiEEihf4eU6lEd8AA
-	 C71Gg9P6APcVazdWIPw3uFESzUvLNQbafuHIymlWJKOJbr3/31OrKloYDdkMWifYeA
-	 f13rYj+8fR4vGqlk69X64ms8U4RRw1NlsULUAWtA0mUJeRRoSewLAvnwD1Pd1lUDZ7
-	 cWZdchxHO55aQ==
-Message-ID: <3828472d-b0ec-4629-a844-d2fb81bc31a8@kernel.org>
-Date: Wed, 10 Jul 2024 12:12:06 +0200
+	b=iYNZT89rEgxwMJW2T1uR/xxwMCJJ5+uzbPtHUvvgd90FNIne5Ixw1kPYtuTf5hm4V
+	 W7uzcdR1d1CsWn+A40hirF6UQGxKDETxbwN/CQVDvJf7nN+/MOKHOE/8/rZ6uQLNM+
+	 kfiopnpbNvF8P6n9YVCdh/1o58+nFdwr6beZT78qhzQMoJn8uON0htG3bNxUZg+R6p
+	 OVt1cami4DUjX8IMsnkyDVZBr0xGyI3TQ5cuGz/uRNEb/GddJkdZkXjvdfkPCby7+L
+	 owxeyJp8Q+vAbSaSmXhbw5FvA0yp5j25OXLCJhHCE4K99LYf+iDxntnZRZ6ZTH9Rnf
+	 Xst6lW/avTT/Q==
+Message-ID: <1486c975-3cc8-46b9-b049-1df4dfed0040@kernel.org>
+Date: Wed, 10 Jul 2024 12:13:03 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] iio: humidity: Add support for ENS21x
-To: Joshua Felmeden <jfelmeden@thegoodpenguin.co.uk>,
- Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+Subject: Re: [PATCH v2 1/2] dt-bindings: phy: describe the Qualcomm SGMII PHY
+ for QCS9100
+To: Tengfei Fan <quic_tengfan@quicinc.com>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Cc: kernel@quicinc.com, linux-arm-msm@vger.kernel.org,
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
-References: <20240709-ens21x-v1-0-678521433cdd@thegoodpenguin.co.uk>
- <20240709-ens21x-v1-2-678521433cdd@thegoodpenguin.co.uk>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+References: <20240709-add_qcs9100_dwmac_sgmii_hpy_compatible-v2-0-5ffeb16252db@quicinc.com>
+ <20240709-add_qcs9100_dwmac_sgmii_hpy_compatible-v2-1-5ffeb16252db@quicinc.com>
 Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -104,137 +106,37 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240709-ens21x-v1-2-678521433cdd@thegoodpenguin.co.uk>
+In-Reply-To: <20240709-add_qcs9100_dwmac_sgmii_hpy_compatible-v2-1-5ffeb16252db@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 09/07/2024 18:36, Joshua Felmeden wrote:
-> Add support for ENS210/ENS210A/ENS211/ENS212/ENS213A/ENS215.
+On 09/07/2024 17:15, Tengfei Fan wrote:
+> Document the Qualcomm SGMII PHY for the QCS9100 platforms.
+> QCS9100 is drived from SA8775p. Currently, both the QCS9100 and SA8775p
+> platform use non-SCMI resource. In the future, the SA8775p platform will
+> move to use SCMI resources and it will have new sa8775p-related device
+> tree. Consequently, introduce "qcom,qcs9100-dwmac-sgmii-phy" to describe
+> non-SCMI based the Qualcomm SGMII PHY.
 > 
-> The ENS21x is a family of temperature and relative humidity sensors with
-> accuracies tailored to the needs of specific applications.
-> 
-> Signed-off-by: Joshua Felmeden <jfelmeden@thegoodpenguin.co.uk>
+> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
 > ---
->  drivers/iio/humidity/Kconfig  |  11 ++
->  drivers/iio/humidity/Makefile |   1 +
->  drivers/iio/humidity/ens21x.c | 348 ++++++++++++++++++++++++++++++++++++++++++
->  3 files changed, 360 insertions(+)
+>  .../devicetree/bindings/phy/qcom,sa8775p-dwmac-sgmii-phy.yaml        | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
 > 
+> diff --git a/Documentation/devicetree/bindings/phy/qcom,sa8775p-dwmac-sgmii-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sa8775p-dwmac-sgmii-phy.yaml
+> index b9107759b2a5..74ec4579c0d6 100644
+> --- a/Documentation/devicetree/bindings/phy/qcom,sa8775p-dwmac-sgmii-phy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/qcom,sa8775p-dwmac-sgmii-phy.yaml
+> @@ -15,7 +15,10 @@ description:
+>  
+>  properties:
+>    compatible:
+> -    const: qcom,sa8775p-dwmac-sgmii-phy
+> +    items:
 
+items is not needed here, this could be an enum directly.
 
-> +
-> +static int ens21x_probe(struct i2c_client *client)
-> +{
-> +	const struct i2c_device_id *id = i2c_client_get_device_id(client);
-> +	const struct of_device_id *match;
-> +	struct ens21x_dev *dev_data;
-> +	struct iio_dev *indio_dev;
-> +	uint16_t part_id_le, part_id;
-> +	int ret, tries;
-> +
-> +	if (!i2c_check_functionality(client->adapter,
-> +			I2C_FUNC_SMBUS_WRITE_BYTE_DATA |
-> +			I2C_FUNC_SMBUS_WRITE_BYTE |
-> +			I2C_FUNC_SMBUS_READ_I2C_BLOCK)) {
-> +		dev_err(&client->dev,
-> +			"adapter does not support some i2c transactions\n");
-> +		return -EOPNOTSUPP;
-> +	}
-> +
-> +	match = of_match_device(ens21x_of_match, &client->dev);
-> +	if (!match) {
-> +		dev_err(&client->dev, "failed to get match data\n");
-
-That's odd. This should never happen, so printing error suggests
-something is odd in your driver.
-
-There is anyway helper for getting match data from i2c/of cases.
-
-
-> +		return -ENODEV;
-> +	}
-> +
-> +	indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*dev_data));
-> +	if (!indio_dev)
-> +		return -ENOMEM;
-> +
-> +	dev_data = iio_priv(indio_dev);
-> +	i2c_set_clientdata(client, indio_dev);
-> +	dev_data->client = client;
-> +	mutex_init(&dev_data->lock);
-> +
-> +	/* reset device */
-> +	ret = i2c_smbus_write_byte_data(client, ENS21X_REG_SYS_CTRL,
-> +					ENS21X_SYS_CTRL_SYS_RESET);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* wait for device to become active */
-> +	usleep_range(4000, 5000);
-> +
-> +	/* disable low power mode */
-> +	ret = i2c_smbus_write_byte_data(client, ENS21X_REG_SYS_CTRL, 0x00);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* wait for device to become active */
-> +	tries = 10;
-> +	while (tries-- > 0) {
-> +		msleep(20);
-> +		ret = i2c_smbus_read_byte_data(client, ENS21X_REG_SYS_STAT);
-> +		if (ret < 0)
-> +			return ret;
-> +		if (ret & ENS21X_SYS_STAT_SYS_ACTIVE)
-> +			break;
-> +	}
-> +	if (tries < 0) {
-> +		dev_err(&client->dev,
-> +			"timeout waiting for ens21x to become active\n");
-> +		return -EIO;
-> +	}
-> +
-> +	/* get part_id */
-> +	part_id_le = i2c_smbus_read_word_data(client, ENS21X_REG_PART_ID);
-> +	if (part_id_le < 0)
-> +		return part_id_le;
-> +	part_id = le16_to_cpu(part_id_le);
-> +
-> +	if (part_id != id->driver_data) {
-> +		dev_err(&client->dev,
-> +			"Part ID does not match (0x%04x != 0x%04lx)\n", part_id,
-> +			id->driver_data);
-> +		return -ENODEV;
-> +	}
-> +
-> +	/* reenable low power */
-> +	ret = i2c_smbus_write_byte_data(client, ENS21X_REG_SYS_CTRL,
-> +					ENS21X_SYS_CTRL_LOW_POWER_ENABLE);
-> +	if (ret)
-> +		return ret;
-> +
-> +	dev_data->part_id = part_id;
-> +
-> +	indio_dev->name = id->name;
-> +	indio_dev->modes = INDIO_DIRECT_MODE;
-> +	indio_dev->channels = ens21x_channels;
-> +	indio_dev->num_channels = ARRAY_SIZE(ens21x_channels);
-> +	indio_dev->info = &ens21x_info;
-> +
-> +	return devm_iio_device_register(&client->dev, indio_dev);
-> +}
-> +
-> +
-> +static const struct of_device_id ens21x_of_match[] = {
-> +	{ .compatible = "sciosense,ens210" },
-> +	{ .compatible = "sciosense,ens210a" },
-> +	{ .compatible = "sciosense,ens211" },
-> +	{ .compatible = "sciosense,ens212" },
-> +	{ .compatible = "sciosense,ens213a" },
-> +	{ .compatible = "sciosense,ens215" },
-
-Mismathed with i2c_device_id. These should have the same data. Also,
-keep the tables next to each other (here).
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
 
