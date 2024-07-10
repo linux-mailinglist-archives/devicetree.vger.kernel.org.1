@@ -1,144 +1,174 @@
-Return-Path: <devicetree+bounces-84704-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84706-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A849292D418
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 16:20:26 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9298E92D41D
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 16:21:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2C82DB22437
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 14:20:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9D3B8B25355
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 14:21:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BE89193461;
-	Wed, 10 Jul 2024 14:20:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D54E3193464;
+	Wed, 10 Jul 2024 14:20:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XOHPgj37"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="a5CBbBb0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 476E3193455
-	for <devicetree@vger.kernel.org>; Wed, 10 Jul 2024 14:20:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D232193447
+	for <devicetree@vger.kernel.org>; Wed, 10 Jul 2024 14:20:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720621218; cv=none; b=vD3EBNWc8mLvgt+SyqVN8Tt13y+uVHeYiL4Y2Ng7rxJoRr9AFeHDwFXpwygWJtjJq2H0ocEiEGGIE4kT9HCN4Rq/n+yxzYGLlZTvTlttsZGzs55aC7jGz538mSHMGouRt5t4yfrF5x9aBBzgravTX/CeeiIgYVzS5XJJAtqpCwo=
+	t=1720621257; cv=none; b=nDEB6ERijlvumG70IrrpB5H0zNHxZM0V7iIRVQX3D8+m3lrK+oUY3zyShG4SME2feWFiesVc0NlcEWudC5mpXeynvP9P8aQvHL38DG4QOubaF1TATYbWMjCteKSEeyHOtfgB2w5RuG0bJUCya1GfeJi5ugVUmajzTAYRULzN3G4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720621218; c=relaxed/simple;
-	bh=ve7x1Dbv42XAuoZEa9Qrx/JMTNm+HI0XOImGmGmFa5g=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=H6hVXzY+Rc/ft9gVo8tsgHVuZpjmUIeJ9Rlsi2wuyILZoq57yt5NWpGfOIm8OwPh4hUfDjhygU+3WPM3p6DZovJvbrocn8gkL0Dq7ub++S2jbjUqgU3LSZB/XYrSJ5e57wXM5392CzRKkaffwQA/db39Bi0icW7iobdFv7NdL70=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XOHPgj37; arc=none smtp.client-ip=209.85.208.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2ee910d6aaeso71571521fa.1
-        for <devicetree@vger.kernel.org>; Wed, 10 Jul 2024 07:20:16 -0700 (PDT)
+	s=arc-20240116; t=1720621257; c=relaxed/simple;
+	bh=W4h0IrOY8Uo6V+EuwKWOQCC/Cs9pfuzhIMe/Ba6k4+E=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NefEOQ7J/ZYK+xhdQP7r01dtCwjs/EaPLk9DmcMGrMWHuXjE8oqCbJe/hJHRcK7XOiOlI9ACH3A/JAsRad7wwXBEIAmAEbCqPVUqx1ruhPuO9Y0m6MuyRxdTjk18P6vQIwqK7kwPl+ubx/vwoLqNEajAWczCCUhrjWigP3HJd40=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=a5CBbBb0; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-42793fc0a6dso5184045e9.0
+        for <devicetree@vger.kernel.org>; Wed, 10 Jul 2024 07:20:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1720621214; x=1721226014; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=XpeXb3pbHZE8iFdvcMTCxnrODafkuyDSXSsC2wHbrso=;
-        b=XOHPgj37w7qRtiiGunJEQEFBeqj+zvLJ0FH8sTaH7mVBEmx6IpY9irZ0YSmHc+IA3S
-         MzHdBsyaaRjRcVqQEjCt/meefLFuCq1tsudSNZgOVn+21jSQMLzBKDr1mzSyzy1KQDMr
-         Kado8vCSefxk/3pXTQ+HW0V/zJlzuU0vPzW1ml/f0nguk9TeNTFDnSVXanFZ3NbJn4Nk
-         FW403KqGTVuj1qpnfv9ZGzRDHyGmmMIreO7ZKc0eoaGpIWPkHepAuIZHLiXOFtnf46Il
-         782r4V9joWxkeA/qDmns7eT+zrThNDughfXYsU/0ZnLyDA8GGKzeiT/OOPKjtTXSzs53
-         i88w==
+        d=tuxon.dev; s=google; t=1720621253; x=1721226053; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=hrBrrFwd71u927GXz6lBE6tAIH4agRf/nva9TIYQidY=;
+        b=a5CBbBb02yX1J/Q9l3BnEgt+YnO/DXVNOg4+4uXTm8daKJ2ZmjMWyFIG8xaYRiWe1C
+         NXpBGtu7lPVo5hm2PyUFHTmxLO5yxwSKvM+pavGEcWibds+gnjDkrS9cpYC2+f4+f8Ok
+         tLKyNm7dTAGCdULJe797B4hVgvauM9Is9DfRsB0XD328nQBbR4m+33DchU4hVTubCZr0
+         Ragyhc5qKR11VgKBTdG9+lMXuSYCOmdeaf/NEhN0XdP31FHY7h0rPEtD1a9MiPi1nrwQ
+         5etdCE9NFDTj08EsxMZGh1nQmd9oB8kyQMlE3DkolZyGntRrv9XKdflyMV0O4cGhM5We
+         28mw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720621214; x=1721226014;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=XpeXb3pbHZE8iFdvcMTCxnrODafkuyDSXSsC2wHbrso=;
-        b=mrgrcjQbj0y6M92P8XGhEzykXdUnOS7TD5jQTxJK40qh2cLkbLabE42BSHQpMbFvJQ
-         vSIxoFQlQEdbu9DBBxc09b2ri6JL1Lv8EIIfLVQSM5mLY53KARFKIM3ygbort0XN9Lsc
-         vAouxcOve65LPE1r+XxJgZqRKg7JpPw7v+8ZLURXH3hBYf0W9Cv9JpkR/ED+saEYoHIt
-         nbqOw0+wG6lU/2pIpOSTkxO+s46UoO1Nyu56q/wbIxfzwXcsiGN/zoq+WlrHxyoPpPd4
-         yQjrV0wjHs5EFcwd3wZ8h0I+N2+sU2gL4wHBdz0rtAAnzkZrKND581oWTUW7lSuzSa04
-         TKAg==
-X-Forwarded-Encrypted: i=1; AJvYcCWCxqTVTfpgtOBbYh7DdGyFSCkxRDYca51ral/HhhNOeUf5vM1GvImLL4Gi8X8mlALsVGu5ulYtjNiIbWb5Cj2P9hT67o3WUgoArg==
-X-Gm-Message-State: AOJu0YwAN34KOGgs2Ww+Qc4snFA908JrBZtIkZ8YXiqCWLv9rIxQwdOC
-	FkaZfWaeFWf/pnX9+TW4EBMK+IfDoXzf7YcJUFnhBaYeUk95aGVAFOJ3Hgfzt5A=
-X-Google-Smtp-Source: AGHT+IHv518AJrnD6yFHzNQhjkiCjkN0ct7XJ+ZrjdCwY06UfQUDBwQbvFbm/FRdyJskVGfv2NTuhQ==
-X-Received: by 2002:a2e:9b0f:0:b0:2ec:3e02:972a with SMTP id 38308e7fff4ca-2eeb30bba8bmr35455641fa.11.1720621214310;
-        Wed, 10 Jul 2024 07:20:14 -0700 (PDT)
-Received: from linaro.org ([82.79.124.209])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4266f6f1182sm82083095e9.14.2024.07.10.07.20.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Jul 2024 07:20:13 -0700 (PDT)
-Date: Wed, 10 Jul 2024 17:20:12 +0300
-From: Abel Vesa <abel.vesa@linaro.org>
-To: Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sibi Sankar <quic_sibis@quicinc.com>,
-	Rajendra Nayak <quic_rjendra@quicinc.com>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: x1e80100: Fix up BAR spaces
-Message-ID: <Zo6YnCVj/8/KLrC1@linaro.org>
-References: <20240710-topic-barman-v1-1-5f63fca8d0fc@linaro.org>
+        d=1e100.net; s=20230601; t=1720621253; x=1721226053;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=hrBrrFwd71u927GXz6lBE6tAIH4agRf/nva9TIYQidY=;
+        b=qsahC4ZBkqJqtg51S/KJ2fki0DoqR2S1J+j0sC2wBJQfBWYvlo0J8M3gwtCy9YeYsf
+         j/jdjFgBbJUMHAKrDMdVJ9YEtCIEyulge35SiFihMApyyGivgnfuPBm8Ar5mJYj6qvaz
+         5DQNGN2U6GqkShCKyAfjHYpOke33kIr2ywFO1vSYsgCXx08qkx5gmxwBSo2S9ex8CgX2
+         IZV2ld7Idco0sSIhuPv8SKqjsLlqEaEZpx8FQQPHZVroBpDaSsBR2t4zWw13W2itrbtw
+         Av2BgE8nOCoRWMB1927e6hvkos1xi8/Op0qgoLlbY7wq0qIybUomGTvrjSbqWvNW8oGp
+         EfaA==
+X-Forwarded-Encrypted: i=1; AJvYcCWSgJVCzWh+/T3wR+mJimuWpF5gSLPHuP5rCQEOfgWmgNajuYv0Y63quojWJTMRni+EFbDQ+ovhLXmsT+1unRh1IRLTD1eabyOVOA==
+X-Gm-Message-State: AOJu0YyErtEqWMHDu3/s2libHg2pxZ1giQ/xZWn0K5hA4k9DtpaTIltC
+	1RXAYXQnavthajyewcHQ9Sol8ZYwUoK7R+HVQP8+oEac1Pus6wlJFNw/TpZ6JLs=
+X-Google-Smtp-Source: AGHT+IETxyB0snJNvMt9MaRxZtX7+j+x5oGjOWzm8oItSS/tUdUHCB4zwYBUxezahOThfFEGvBOjPA==
+X-Received: by 2002:a05:600c:6dca:b0:426:5269:983a with SMTP id 5b1f17b1804b1-426707cc00dmr43281485e9.8.1720621253364;
+        Wed, 10 Jul 2024 07:20:53 -0700 (PDT)
+Received: from [192.168.50.4] ([82.78.167.171])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4266f6f07dasm83508525e9.12.2024.07.10.07.20.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 10 Jul 2024 07:20:52 -0700 (PDT)
+Message-ID: <22db23bd-5872-49a0-990f-2a0e5f51bfb5@tuxon.dev>
+Date: Wed, 10 Jul 2024 17:20:50 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240710-topic-barman-v1-1-5f63fca8d0fc@linaro.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 09/12] i2c: riic: Add support for fast mode plus
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: chris.brandt@renesas.com, andi.shyti@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, magnus.damm@gmail.com,
+ mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
+ wsa+renesas@sang-engineering.com, linux-renesas-soc@vger.kernel.org,
+ linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+ Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+References: <20240625121358.590547-1-claudiu.beznea.uj@bp.renesas.com>
+ <20240625121358.590547-10-claudiu.beznea.uj@bp.renesas.com>
+ <CAMuHMdX4hWou9OtdE8XgU7-U0ghJ6vk2kVqgT90U0ZjsxzR5DA@mail.gmail.com>
+From: claudiu beznea <claudiu.beznea@tuxon.dev>
+Content-Language: en-US
+In-Reply-To: <CAMuHMdX4hWou9OtdE8XgU7-U0ghJ6vk2kVqgT90U0ZjsxzR5DA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On 24-07-10 16:07:23, Konrad Dybcio wrote:
-> The 32-bit BAR spaces are reaching outside their assigned register
-> regions. Shrink them to match their actual sizes.
-> While at it, unify the style.
-> 
-> Fixes: 5eb83fc10289 ("arm64: dts: qcom: x1e80100: Add PCIe nodes")
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Hi, Geert, all,
 
-Reviewed-by: Abel Vesa <abel.vesa@linaro.org>
+On 28.06.2024 12:22, Geert Uytterhoeven wrote:
+> Hi Claudiu,
+> 
+> On Tue, Jun 25, 2024 at 2:14 PM Claudiu <claudiu.beznea@tuxon.dev> wrote:
+>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>>
+>> Fast mode plus is available on most of the IP variants that RIIC driver
+>> is working with. The exception is (according to HW manuals of the SoCs
+>> where this IP is available) the Renesas RZ/A1H. For this, patch
+>> introduces the struct riic_of_data::fast_mode_plus.
+>>
+>> Fast mode plus was tested on RZ/G3S, RZ/G2{L,UL,LC}, RZ/Five by
+>> instantiating the RIIC frequency to 1MHz and issuing i2c reads on the
+>> fast mode plus capable devices (and the i2c clock frequency was checked on
+>> RZ/G3S).
+>>
+>> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> 
+> Thanks for your patch!
+> 
+>> --- a/drivers/i2c/busses/i2c-riic.c
+>> +++ b/drivers/i2c/busses/i2c-riic.c
+>> @@ -407,6 +413,9 @@ static int riic_init_hw(struct riic_dev *riic)
+>>         riic_writeb(riic, 0, RIIC_ICSER);
+>>         riic_writeb(riic, ICMR3_ACKWP | ICMR3_RDRFS, RIIC_ICMR3);
+>>
+>> +       if (info->fast_mode_plus && t->bus_freq_hz == I2C_MAX_FAST_MODE_PLUS_FREQ)
+>> +               riic_clear_set_bit(riic, 0, ICFER_FMPE, RIIC_ICFER);
+> 
+> Unless FM+ is specified, RIIC_ICFER is never written to.
+> Probably the register should always be initialized, also to make sure
+> the FMPE bit is cleared when it was set by the boot loader, but FM+
+> is not to be used.
 
-> ---
->  arch/arm64/boot/dts/qcom/x1e80100.dtsi | 10 +++++-----
->  1 file changed, 5 insertions(+), 5 deletions(-)
+Instead of clearing only this bit, what do you think about using
+reset_control_reset() instead of reset_control_deassert() in riic_i2c_probe()?
+
+HW manuals for all the devices listed in
+Documentation/devicetree/bindings/i2c/renesas,riic.yaml specifies that
+ICFER_FMPE register is initialized with a default value by reset. All the
+other registers are initialized with default values at reset (according to
+HW manuals). I've checked it on RZ/G3S and it behaves like this.
+
+With this:
+
+diff --git a/drivers/i2c/busses/i2c-riic.c b/drivers/i2c/busses/i2c-riic.c
+index ba969ad5f015..150e7841f178 100644
+--- a/drivers/i2c/busses/i2c-riic.c
++++ b/drivers/i2c/busses/i2c-riic.c
+@@ -457,7 +457,7 @@ static int riic_i2c_probe(struct platform_device *pdev)
+                return dev_err_probe(dev, PTR_ERR(riic->rstc),
+                                     "Error: missing reset ctrl\n");
+
+-       ret = reset_control_deassert(riic->rstc);
++       ret = reset_control_reset(riic->rstc);
+        if (ret)
+                return ret;
+
+I've did basic tests (i2cdetect + i2cget with FM+ frequency) on RZ/G2{L,
+LC, UL}, RZ/V2L and all was good.
+
+Thank you,
+Claudiu Beznea
+
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> index 7bca5fcd7d52..bc5b4f5ea127 100644
-> --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> @@ -2895,9 +2895,9 @@ pcie6a: pci@1bf8000 {
->  				    "mhi";
->  			#address-cells = <3>;
->  			#size-cells = <2>;
-> -			ranges = <0x01000000 0 0x00000000 0 0x70200000 0 0x100000>,
-> -				 <0x02000000 0 0x70300000 0 0x70300000 0 0x3d00000>;
-> -			bus-range = <0 0xff>;
-> +			ranges = <0x01000000 0x0 0x00000000 0x0 0x70200000 0x0 0x100000>,
-> +				 <0x02000000 0x0 0x70300000 0x0 0x70300000 0x0 0x1d00000>;
-> +			bus-range = <0x00 0xff>;
->  
->  			dma-coherent;
->  
-> @@ -3016,8 +3016,8 @@ pcie4: pci@1c08000 {
->  				    "mhi";
->  			#address-cells = <3>;
->  			#size-cells = <2>;
-> -			ranges = <0x01000000 0 0x00000000 0 0x7c200000 0 0x100000>,
-> -				 <0x02000000 0 0x7c300000 0 0x7c300000 0 0x3d00000>;
-> +			ranges = <0x01000000 0x0 0x00000000 0x0 0x7c200000 0x0 0x100000>,
-> +				 <0x02000000 0x0 0x7c300000 0x0 0x7c300000 0x0 0x1d00000>;
->  			bus-range = <0x00 0xff>;
->  
->  			dma-coherent;
 > 
-> ---
-> base-commit: 0b58e108042b0ed28a71cd7edf5175999955b233
-> change-id: 20240710-topic-barman-57a52f7de103
+>> +
+>>         riic_clear_set_bit(riic, ICCR1_IICRST, 0, RIIC_ICCR1);
+>>
+>>         pm_runtime_mark_last_busy(dev);
 > 
-> Best regards,
-> -- 
-> Konrad Dybcio <konrad.dybcio@linaro.org>
+> Gr{oetje,eeting}s,
+> 
+>                         Geert
 > 
 
