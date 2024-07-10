@@ -1,94 +1,79 @@
-Return-Path: <devicetree+bounces-84746-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84747-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C55AF92D5F8
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 18:14:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C10AC92D611
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 18:16:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 791CA1F2738E
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 16:14:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F2CEE1C2183F
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 16:16:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE754198E9C;
-	Wed, 10 Jul 2024 16:11:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A576219597F;
+	Wed, 10 Jul 2024 16:14:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BdwAh+dN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RHDxAuxI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8042E197A65;
-	Wed, 10 Jul 2024 16:11:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D19819580C;
+	Wed, 10 Jul 2024 16:14:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720627893; cv=none; b=A8197uxwiwZNou8WLfShfiLw1k+qmPu0UJ4i3Qwemx15RIOw+wLaCW5K7C7d+zSYK8soJMkRdKNZS96ttzDjSQOkpZV9xas1z15PJTTl3vfkSjnhd6QP1SVRTb2fw331qG6tq6ebgFgqj0boRqLq/8CVG4Cziy+2EMB/2c+LmQo=
+	t=1720628054; cv=none; b=NhFGfo5UISMBoMQedLtHVduMPGZZ5uh5OqySv97iMe7X50yJTnLOsjIZfB6ei4YZrRFn8ucsUlhMu3LMawlcCXFcsonn0rRrOqhhJJMkiOIHYKulrON61bP8LXfJoDdHDeqZ8U9PdPtC4ze9IrIYHmmWG6XIuBqyVBJXth3UFk8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720627893; c=relaxed/simple;
-	bh=a+7WKy915cYtcjH7UwZEbtB/L6kz1ndbvjx3AaxaK30=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ViAxef5uePHabAmmPyA/TP8/NFKGR3+Dg0KSClOn5ak+23lV3PYYWrBc+OddYaGwIbwFekhHiVp9lnIGpzjnvH+ySshznyPDxRHqXw3Qu4a2fEdCWmNNW+aWlmQmbJdjdW9ifdcW050FNSBO4CDmer9CE/beJDMKHqjvwi7x3Uo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BdwAh+dN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A62B2C4AF0A;
-	Wed, 10 Jul 2024 16:11:32 +0000 (UTC)
+	s=arc-20240116; t=1720628054; c=relaxed/simple;
+	bh=4fmGngg0GKfeUi4ExPfNLoC2zBK00yaL2AMpUlQFxVg=;
+	h=Subject:From:In-Reply-To:References:Message-Id:Date:To:Cc; b=B/neihPOTPQkkGyJXZSsOFK1gl0ClvHYMf35KUiBFEWGu9JO1vLHECmTqHHhLybl69qoBsIvOczCuTHr7GEalNPejMyS6ukLYO5cpqSBD4dRmW9TSCMhdTOSbifzQa/IUyJRd7JWcNQOk4RlcqXxexGrzMqmjEesIHId//xMzz8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RHDxAuxI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 56FF7C4AF17;
+	Wed, 10 Jul 2024 16:14:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720627892;
-	bh=a+7WKy915cYtcjH7UwZEbtB/L6kz1ndbvjx3AaxaK30=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BdwAh+dNSn6JErm1pydRtzjQ4/A74kobkcw3ruKNPrJTfnzZ7LFJgu25e8HIraQPv
-	 uvlS/RLvof+nQdHtMbpUAPrZ+xFLffJ39TwJNTWSk6ObSRxPu4da+/vMhWPdC2wo6w
-	 fmf2prSUTwNnWuWzsuJBTvE8LZOiFc1o0gY6gTzgy0VpVvlnawGfDHQG1TPnDqLH1c
-	 5WSy0EF8jjMEj0xL/4ltPqKOSytJF1E91s1muNNUWUBteUJTNua0+rpluB6PS5d0Gl
-	 ilK1vuPd+xx1nsKC83ptMtaKnn4kE4RQ40uxiHIDdOIW95o6jML386eya5qXMFoXKv
-	 MjPh0lw5Xsp7Q==
-Date: Wed, 10 Jul 2024 10:11:31 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Adam Skladowski <a39.skl@gmail.com>
-Cc: Sibi Sankar <quic_sibis@quicinc.com>, Georgi Djakov <djakov@kernel.org>,
-	Stephan Gerhold <stephan.gerhold@kernkonzept.com>,
-	devicetree@vger.kernel.org, phone-devel@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Vladimir Lypak <vladimir.lypak@gmail.com>,
-	Abel Vesa <abel.vesa@linaro.org>, linux-arm-msm@vger.kernel.org,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Rohit Agarwal <quic_rohiagar@quicinc.com>,
-	Rajendra Nayak <quic_rjendra@quicinc.com>,
-	~postmarketos/upstreaming@lists.sr.ht,
-	Conor Dooley <conor+dt@kernel.org>,
-	Barnabas Czeman <barnabas.czeman@mainlining.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	linux-kernel@vger.kernel.org, Danila Tikhonov <danila@jiaxyga.com>,
-	linux-pm@vger.kernel.org, Andrew Halaney <ahalaney@redhat.com>
-Subject: Re: [PATCH v3 9/9] dt-bindings: interconnect: qcom: msm8953: Fix
- 'See also' in description
-Message-ID: <172062789070.3205605.3268441513464795042.robh@kernel.org>
-References: <20240709102728.15349-1-a39.skl@gmail.com>
- <20240709102728.15349-10-a39.skl@gmail.com>
+	s=k20201202; t=1720628054;
+	bh=4fmGngg0GKfeUi4ExPfNLoC2zBK00yaL2AMpUlQFxVg=;
+	h=Subject:From:In-Reply-To:References:Date:To:Cc:From;
+	b=RHDxAuxIlcFYvhizctsEJM9sQTXli50hUgRNeed8dWa6mI5/Ll+TT/CU/wSeBYCZh
+	 4luP5JNJIIMr8VTEwYwh2NXwyloddggIyjU8MIEfANFLtvoWz2/T6IwSstvqS3ctHX
+	 TAH+Z0SBwzoLhaderL0q2vfz4BA0ePXi28HrM3R1fCl1dUwjNLBtMWt2v7Mmz9VsB9
+	 Zh8V+fC/dZ2/Ysr7PXSqm05d5POeUpaeCRptGAdZrREvZnXY7zo/lbzuU8nXFD5vPX
+	 O+d1SLnTAZkk5zRJHq/bgVR5A8QVa/zLU7O/XV4kL5TVTREVO/Ka52t3DV6qBkWd0S
+	 UfdW2VaLChGew==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 4CE49C433E9;
+	Wed, 10 Jul 2024 16:14:14 +0000 (UTC)
+Subject: Re: [GIT PULL] Devicetree fixes for v6.10, part 2
+From: pr-tracker-bot@kernel.org
+In-Reply-To: <20240709223653.GA1276694-robh@kernel.org>
+References: <20240709223653.GA1276694-robh@kernel.org>
+X-PR-Tracked-List-Id: <linux-kernel.vger.kernel.org>
+X-PR-Tracked-Message-Id: <20240709223653.GA1276694-robh@kernel.org>
+X-PR-Tracked-Remote: ssh://git@gitolite.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-6.10-2
+X-PR-Tracked-Commit-Id: 2cf6b7d15a28640117bf9f75dc050892cf78a6e8
+X-PR-Merge-Tree: torvalds/linux.git
+X-PR-Merge-Refname: refs/heads/master
+X-PR-Merge-Commit-Id: 367cbaad8887c59e5d017d90d50d16cdd3d76ee2
+Message-Id: <172062805431.17113.2114139134723852915.pr-tracker-bot@kernel.org>
+Date: Wed, 10 Jul 2024 16:14:14 +0000
+To: Rob Herring <robh@kernel.org>
+Cc: Linus Torvalds <torvalds@linux-foundation.org>, Saravana Kannan <saravanak@google.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240709102728.15349-10-a39.skl@gmail.com>
 
+The pull request you sent on Tue, 9 Jul 2024 16:36:53 -0600:
 
-On Tue, 09 Jul 2024 12:22:54 +0200, Adam Skladowski wrote:
-> "See also" in description seems to be wrongly defined,
-> make it inline with other yamls.
-> 
-> Fixes: 791ed23f735b ("dt-bindings: interconnect: qcom: Add Qualcomm MSM8953 NoC")
-> Signed-off-by: Adam Skladowski <a39.skl@gmail.com>
-> ---
->  .../devicetree/bindings/interconnect/qcom,msm8953.yaml         | 3 +--
->  1 file changed, 1 insertion(+), 2 deletions(-)
-> 
+> ssh://git@gitolite.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-6.10-2
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+has been merged into torvalds/linux.git:
+https://git.kernel.org/torvalds/c/367cbaad8887c59e5d017d90d50d16cdd3d76ee2
 
+Thank you!
+
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/prtracker.html
 
