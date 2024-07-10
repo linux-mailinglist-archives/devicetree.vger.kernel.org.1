@@ -1,139 +1,161 @@
-Return-Path: <devicetree+bounces-84612-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84613-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCE1292CEC3
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 12:02:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7848D92CEC9
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 12:04:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8212628A381
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 10:02:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 23C011F23717
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 10:04:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53A7617BB31;
-	Wed, 10 Jul 2024 10:02:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 113DA18FC67;
+	Wed, 10 Jul 2024 10:04:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="uT3hvtKA"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b="epXu2/ac"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-180.mta1.migadu.com (out-180.mta1.migadu.com [95.215.58.180])
+Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50C4C1B86F3
-	for <devicetree@vger.kernel.org>; Wed, 10 Jul 2024 10:02:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4058C7E76F
+	for <devicetree@vger.kernel.org>; Wed, 10 Jul 2024 10:04:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.26.50.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720605749; cv=none; b=iydniMXBFSeVQ091ujwNAfE4bOxtjX25UhJiue+4Slh8t8upZo4v4uPIUzzUVSruQJgxsvOooZXv6yJWj//GFCdSW2s+o3wFoqiHd2ev/iN4W70GLCbormtSkezC3qKbC1TTkg5CMttID5sl9G4zr8IasSx2fU1qnyxxchbtPhs=
+	t=1720605860; cv=none; b=uQPpV7iHNxL8gln2AbFD950HrZonYZbCq76XfvGi5NqJLwP0dOzsB3k2PqH0LQhRWHmjnuIozAuA2pVH7YwGDaVFUI5Se8Ivx/uL7nEuGW/0WNHq8M9IkzglKlmoqnHhDwBKkuv/rfbXQEzGivSpLlAwL7t+O3kGLpYEAkG7Q2E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720605749; c=relaxed/simple;
-	bh=QeCOm8HEg5Y4+iYtW6nhI7mE9h/vrFyYGuEzqhjPunA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=D7lq305Fna5Rgsb9UOKJPU3NDVE2rMml33D6mD0+l8w9DZz57RSt56jPFkuOEHppGzUWQWG1WJVSYfcI7N15UTBE8olhEnYhs0a7LxY5SdENa3oN3xL6QvhC0cQlruDq9FCS0t5JSQZVOc3PuNTanlEOVn10JAud4EXwI8tliDw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=uT3hvtKA; arc=none smtp.client-ip=95.215.58.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
-X-Envelope-To: linux-rockchip@lists.infradead.org
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
-	t=1720605742;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=NJJ/PSTQTb3tpev2BiBmkCTWQ+ec4m22cqLbanWHxvA=;
-	b=uT3hvtKAgzY/2ioKZDXPhajbmNsXISurOLmNL5g2lU4xhAdAu5hukNSIOEXMJSrGNRRkeq
-	1bTPNKbDXbjsBBn6rnByRdvqZsP7qlRx8+1fol1sLcluA1FcqziBJJbn+riR9/mgMeATc5
-	8uspKRWTosYc965LyPcYNwOD4mrEqZJ6TX2z1tAwPV16oz+lqWLb84dYT/kBwESfOhNTNe
-	OtdgczFHK0h0qDPpg3IB1QhIwJW8F2qsB19+rWCzXIsOVYjlrTFKp6QTjGHNShJlUw1+pY
-	BMN6IvwIF67W3b/PSd+lrVFEEPEdj1YEykQn8O3imZJAkqvB2k7OfFC+arEAAQ==
-X-Envelope-To: p.puschmann@pironex.com
-X-Envelope-To: robh@kernel.org
-X-Envelope-To: krzk+dt@kernel.org
-X-Envelope-To: p.puschmann@pironex.com
-X-Envelope-To: devicetree@vger.kernel.org
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Diederik de Haas <didi.debian@cknow.org>
-To: linux-rockchip@lists.infradead.org,
- Philipp Puschmann <p.puschmann@pironex.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, p.puschmann@pironex.com,
- devicetree@vger.kernel.org
-Subject:
- Re: [PATCH] arm64: dts: rockchip: Add uart dma names to the SoC dtsi for
- RK356x
-Date: Wed, 10 Jul 2024 12:02:07 +0200
-Message-ID: <5414331.Y6POrrGVKo@bagend>
-Organization: Connecting Knowledge
-In-Reply-To: <20240710093356.3344056-1-p.puschmann@pironex.com>
-References: <20240710093356.3344056-1-p.puschmann@pironex.com>
+	s=arc-20240116; t=1720605860; c=relaxed/simple;
+	bh=O/iKLOi01DL02R3LaUPQITYi6Ex6Mg2vmu5xThjEQd0=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=quLuAqMa6B9lXwdsVYmylz7hI4oxkqR6/AhsdHWNvGLCX78VXF6lk3ByUe/5wNTmJHPPp1SfhXA4muhShhG7Y0dnu6DLMHfnNZl5vbtaJPo0eu3AkZWhnJqN9b9I3wgIyKd3Rymsw1RGosm5zZpYwZ265zamoz7N99siKiFfVJY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b=epXu2/ac; arc=none smtp.client-ip=91.26.50.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
+DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
+	q=dns/txt; i=@phytec.de; t=1720604949; x=1723196949;
+	h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=O/iKLOi01DL02R3LaUPQITYi6Ex6Mg2vmu5xThjEQd0=;
+	b=epXu2/acK3RTjp1fN3JkHmFk4hIJnM9RGaPIVHWXB6qw2IedCbMT4xgdA8gattbS
+	p9NjLqmetlUD4A/e8unoHqIqt3i/BocgOBtAkh4KHZDtF1Cf1C5+XFfZNV02e9PJ
+	6L/S0k8GcB00Unr6eHbZde08gH5zKV4NnQRyiLhS1z8=;
+X-AuditID: ac14000a-03251700000021bc-0c-668e59142468
+Received: from berlix.phytec.de (Unknown_Domain [172.25.0.12])
+	(using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(Client did not present a certificate)
+	by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id C6.7F.08636.4195E866; Wed, 10 Jul 2024 11:49:08 +0200 (CEST)
+Received: from llp-hahn.phytec.de (172.25.0.11) by Berlix.phytec.de
+ (172.25.0.12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Wed, 10 Jul
+ 2024 11:49:08 +0200
+From: Benjamin Hahn <B.Hahn@phytec.de>
+Date: Wed, 10 Jul 2024 11:48:54 +0200
+Subject: [PATCH v3] arm64: dts: freescale: imx8mp-phycore: Add no-eth
+ overlay
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart2472209.eE7AJ3UNXe";
- micalg="pgp-sha256"; protocol="application/pgp-signature"
-X-Migadu-Flow: FLOW_OUT
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-ID: <20240710-bspimx8m-3180-v3-1-8ef55381172c@phytec.de>
+X-B4-Tracking: v=1; b=H4sIAAVZjmYC/13MSw6DIBSF4a0YxqXhAgp21H00HYDcVgY+AoZoj
+ Hsv2olxeE7yfyuJGDxG8ihWEjD56Ic+D3ErSNOa/ovUu7wJZ1yyChS1cfTdrDsqQDMqlUUHWhp
+ dSpKbMeDHz4f3eufd+jgNYTn4BPv7lxQTFykBBYpSIBOlqS03z7FdJmzuDskuJX6uy2vNc+0aM
+ Aqh0rXFc71t2w8ypN926AAAAA==
+To: Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam
+	<festevam@gmail.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+CC: <imx@lists.linux.dev>, <linux-arm-kernel@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<upstream@lists.phytec.de>, Benjamin Hahn <B.Hahn@phytec.de>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1720604948; l=2166;
+ i=B.Hahn@phytec.de; s=20240126; h=from:subject:message-id;
+ bh=O/iKLOi01DL02R3LaUPQITYi6Ex6Mg2vmu5xThjEQd0=;
+ b=54CcNOt2P672ZNgEbr8B9/EoettTLoQnRD4ejM/OwaOnkvJ5anrQiNuVgdnRHhpA6Z4IDbOhP
+ 4g83FLbkEh0DZ+8JbcD43Qwq0nBZePzbC42VEZe0ah2nzLtvtb19U1q
+X-Developer-Key: i=B.Hahn@phytec.de; a=ed25519;
+ pk=r04clMulHz6S6js6elPBA+U+zVdDAqJyEyoNd8I3pSw=
+X-ClientProxiedBy: Florix.phytec.de (172.25.0.13) To Berlix.phytec.de
+ (172.25.0.12)
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFuphkeLIzCtJLcpLzFFi42JZI8nAoysS2ZdmcP2DucWaveeYLOYfOcdq
+	8fCqv8XMe61sFqum7mSxeDnrHpvFpsfXWC0u75rDZvF/zw52i7/bN7FYvNgibtH9Tt2Bx2Pn
+	rLvsHptWdbJ5bF5S7/Fi80xGj/7uFlaP/r8GHp83yQWwR3HZpKTmZJalFunbJXBlPN66hK3g
+	h0DF/ImlDYwv+LoYOTkkBEwkGrsesHcxcnEICSxhknjQOpcRwnnIKHF43ycmkCo2ATWJXW9e
+	s4LYLAKqEgd+d7CB2MIC/hIX/8xhBrF5BQQlTs58wtLFyMHBLKApsX6XPkiYWUBeYvtbmBIH
+	iTM/ephB5ksINDNJND78xgbiiAhMYpL4tn0mmMMscJBRYtfHK0wgkyQEhCU27dSC6NjNJDG9
+	+QobRDxRYudrOZCpQgKyEjfPb2GDeEdeYtq518wQdqjEkU2rmSYwCs9Cct8shPtmIblvASPz
+	Kkah3Mzk7NSizGy9gozKktRkvZTUTYygGBNh4NrB2DfH4xAjEwfjIUYJDmYlEd75N7rThHhT
+	EiurUovy44tKc1KLDzFKc7AoifOu7ghOFRJITyxJzU5NLUgtgskycXBKNTByvum5NmPD6Ybe
+	R9abJkqYRnN1+EVvOiY/vcBkIsvOhOvBenf4rPZKRLy+dCOiZfmxd93O5/L9uDstcjRbvla/
+	KDidfuv5ad5EKUfuNfLfHs0MOdlaaZvfplN70k3/ypGI4IZ9OaaG3KmSSvv82ItqnTY5yxT1
+	3dZ9spd7n4L7ohCzPX+kTyuxFGckGmoxFxUnAgCAcR9bnwIAAA==
 
---nextPart2472209.eE7AJ3UNXe
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
-From: Diederik de Haas <didi.debian@cknow.org>
-Date: Wed, 10 Jul 2024 12:02:07 +0200
-Message-ID: <5414331.Y6POrrGVKo@bagend>
-Organization: Connecting Knowledge
-In-Reply-To: <20240710093356.3344056-1-p.puschmann@pironex.com>
-References: <20240710093356.3344056-1-p.puschmann@pironex.com>
-MIME-Version: 1.0
+Add a devicetree overlay to disable ethernet for boards where it is not
+populated.
 
-On Wednesday, 10 July 2024 11:33:56 CEST Philipp Puschmann wrote:
-> DMA names are required by of_dma_request_slave_channel function that is
-> called during uart probe. So to enable DMA for uarts add the names as in
-> the RK3568 TRM.
+Signed-off-by: Benjamin Hahn <B.Hahn@phytec.de>
+Reviewed-by: Fabio Estevam <festevam@gmail.com>
+---
+Changes in v3:
+- rebase to master
+- Link to v2: https://lore.kernel.org/r/20240705-bspimx8m-3180-v2-1-dc1a7e1689be@phytec.de
 
-Setting it on channels without flow control apparently causes issues. See
+Changes in v2:
+- Remove the compatible from the overlay
+- Link to v1: https://lore.kernel.org/r/20240703-bspimx8m-3180-v1-1-e43e035a9b2a@phytec.de
+---
+ arch/arm64/boot/dts/freescale/Makefile                   |  2 ++
+ arch/arm64/boot/dts/freescale/imx8mp-phycore-no-eth.dtso | 16 ++++++++++++++++
+ 2 files changed, 18 insertions(+)
 
-https://lore.kernel.org/linux-rockchip/20240628120130.24076-1-didi.debian@cknow.org/
+diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
+index bd443c2bc5a4..647282cc861b 100644
+--- a/arch/arm64/boot/dts/freescale/Makefile
++++ b/arch/arm64/boot/dts/freescale/Makefile
+@@ -173,6 +173,8 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mp-icore-mx8mp-edimm2.2.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mp-msc-sm2s-ep1.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mp-navqp.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mp-phyboard-pollux-rdk.dtb
++imx8mp-phyboard-pollux-rdk-no-eth-dtbs += imx8mp-phyboard-pollux-rdk.dtb imx8mp-phycore-no-eth.dtbo
++dtb-$(CONFIG_ARCH_MXC) += imx8mp-phyboard-pollux-rdk-no-eth.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mp-skov-revb-hdmi.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mp-skov-revb-lt6.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mp-skov-revb-mi1010ait-1cp1.dtb
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-phycore-no-eth.dtso b/arch/arm64/boot/dts/freescale/imx8mp-phycore-no-eth.dtso
+new file mode 100644
+index 000000000000..5f0278bf61ee
+--- /dev/null
++++ b/arch/arm64/boot/dts/freescale/imx8mp-phycore-no-eth.dtso
+@@ -0,0 +1,16 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Copyright (C) 2024 PHYTEC Messtechnik GmbH
++ * Author: Cem Tenruh <c.tenruh@phytec.de>
++ */
++
++/dts-v1/;
++/plugin/;
++
++&ethphy1 {
++	status = "disabled";
++};
++
++&fec {
++	status = "disabled";
++};
 
-> Signed-off-by: Philipp Puschmann <p.puschmann@pironex.com>
-> ---
->  arch/arm64/boot/dts/rockchip/rk356x.dtsi | 10 ++++++++++
->  1 file changed, 10 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> b/arch/arm64/boot/dts/rockchip/rk356x.dtsi index d8543b5557ee..4ae40661ca6a
-> 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> @@ -489,6 +489,7 @@ uart0: serial@fdd50000 {
->  		clocks = <&pmucru SCLK_UART0>, <&pmucru PCLK_UART0>;
->  		clock-names = "baudclk", "apb_pclk";
->  		dmas = <&dmac0 0>, <&dmac0 1>;
-> +		dma-names = "tx", "rx";
->  		pinctrl-0 = <&uart0_xfer>;
->  		pinctrl-names = "default";
->  		reg-io-width = <4>;
-> @@ -1389,6 +1390,7 @@ uart1: serial@fe650000 {
->  		clocks = <&cru SCLK_UART1>, <&cru PCLK_UART1>;
->  		clock-names = "baudclk", "apb_pclk";
->  		dmas = <&dmac0 2>, <&dmac0 3>;
-> +		dma-names = "tx", "rx";
->  		pinctrl-0 = <&uart1m0_xfer>;
->  		pinctrl-names = "default";
->  		reg-io-width = <4>;
-> ...
---nextPart2472209.eE7AJ3UNXe
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
+---
+base-commit: 34afb82a3c67f869267a26f593b6f8fc6bf35905
+change-id: 20240617-bspimx8m-3180-47bed184a854
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCZo5cHwAKCRDXblvOeH7b
-bouTAQDB9gDa4u0c0OxsnNTQjkvPClfMbVNKdre+EbNLhZVp3AD/daehVUuO5Yc0
-iI+Tdb5gNHR3VR2aBz+Sx97qu1gPVgA=
-=v8JT
------END PGP SIGNATURE-----
-
---nextPart2472209.eE7AJ3UNXe--
-
-
+Best regards,
+-- 
+Benjamin Hahn <B.Hahn@phytec.de>
 
 
