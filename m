@@ -1,116 +1,86 @@
-Return-Path: <devicetree+bounces-84701-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84703-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E72BD92D3A7
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 16:01:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADC1A92D3D3
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 16:07:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0C1731C2187B
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 14:01:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DEA611C234DF
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 14:07:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94D21193067;
-	Wed, 10 Jul 2024 14:01:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HlgOnuRb"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AF34193454;
+	Wed, 10 Jul 2024 14:07:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-m49197.qiye.163.com (mail-m49197.qiye.163.com [45.254.49.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B56E18622;
-	Wed, 10 Jul 2024 14:01:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68AE4193464;
+	Wed, 10 Jul 2024 14:07:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720620077; cv=none; b=QmhaqBF7WdzSUDHH/yHbXf18F2MnSrVAKr30zWlutfrrdmkFdAWxEYXRoeUw9/L7Sl7H3kpyPH91Zb43ZCFwy4o4L/59dZTrARDhL1Z2pOFEWbhUIKm0xQVsBzyNAZ/Q5G59Tq3b1DJa7OqrFPZ55rkj9qrNIWQnH+fLZUoVF3o=
+	t=1720620460; cv=none; b=WlHiFvQ63ZvOwkvN9Lz7SwA5l73weGKMoLluXIgnCX21RLuOR4G1DX2PAmLHQBt90Mq8W1HDXiZR6MOT34OtbqO10aDHxCcSr5UaypcFp/LNPKJ5jk6UR1W7FYaGeTcFN6rQuNVNj62LxaCExbEQFKnfZ31o/I84v86oHuCToGI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720620077; c=relaxed/simple;
-	bh=DqU9cIN76ke48HhYoQkN5R6zkS5nfvCzZJkiZIS32WY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=u2qsYIRyGBdfuL75n3GBclI9F2kQOUuPUreEsyqHVlaNDHTFRRo78elbCyOcGkQb+MgKXgEpPRd6WQdqhZ4YSTx2QWqkUzlRqvlzVvserPWYmBKuD3rz6ZMLd1SNrDmD78T/t0bAtqLeMzgKcbj0HpN+H0cX6AkShqt8vqzv2lE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HlgOnuRb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC0FAC32781;
-	Wed, 10 Jul 2024 14:01:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720620077;
-	bh=DqU9cIN76ke48HhYoQkN5R6zkS5nfvCzZJkiZIS32WY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HlgOnuRbZ6Xx/tQ4gLcqAf1Gwh+iqXg4Mwrgmxhw0RxEamHK/vWBzh6aW6egfM4UU
-	 2VJMSyzxe9Gz34O1AHUYmkPLb+84UVZlTLaMm7RMIUwfTyrHjKU0TDn1fKlkTKCiE1
-	 CpS9AF1V2gFvOI/ys1c0rF0kXb2IRt2RDKUgW/Ek0YTL2qxeLPwZ1Ni4lJg9Z6LZ1y
-	 J+hXtqI2ygWYGSp8+GOSVeLVHALLni5Ji0i2R/6/UrdSdP9h4GS8fppawM8UfRBy4r
-	 8RE30X/M+dLvqXO/TZGsJrhsvXpmFSlyuYz8ElZxikpuTX88ZOoQoZRn9jnPgF1Nfp
-	 VIf1GNy49IdqA==
-Date: Wed, 10 Jul 2024 15:01:11 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Hironori KIKUCHI <kikuchan98@gmail.com>
-Cc: linux-kernel@vger.kernel.org, Jagan Teki <jagan@amarulasolutions.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Jessica Zhang <quic_jesszhan@quicinc.com>,
-	Sam Ravnborg <sam@ravnborg.org>, David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 3/5] dt-bindings: display: st7701: Add Anbernic RG28XX
- panel
-Message-ID: <20240710-showdown-antirust-a3eb8b65c57f@spud>
-References: <20240706102338.99231-1-kikuchan98@gmail.com>
- <20240706102338.99231-4-kikuchan98@gmail.com>
+	s=arc-20240116; t=1720620460; c=relaxed/simple;
+	bh=nl4eLnKwkG4ZvQH0Ehrc9uMNGv95e9VFR1r8tFN0sdY=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=SpfqoOqEcwrMiVsTibR9f2ZCqT3s8bMiLW+DzCis+XaPcuPcomRuk3t02Ewms6opdw/7Cg9pDvOw8QR54twDbrOOYZLo/OjLG5o/+bouXVC8MwHhRUygmCDjLiTXq8HPyQcuxc2IrPftNPotwPj6+DWi5l5N1JU2blvIuJSQSNI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
+Received: from amadeus-Vostro-3710.lan (unknown [IPV6:240e:3b3:2c00:fb60:82c0:6879:f4d2:caf4])
+	by smtp.qiye.163.com (Hmail) with ESMTPA id ABB257E0183;
+	Wed, 10 Jul 2024 21:30:32 +0800 (CST)
+From: Chukun Pan <amadeus@jmu.edu.cn>
+To: heiko@sntech.de
+Cc: amadeus@jmu.edu.cn,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	krzk+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	robh@kernel.org
+Subject: Re: [PATCH v2 7/9] arm64: dts: rockchip: use generic Ethernet PHY reset bindings for Lunzn Fastrhino R68S
+Date: Wed, 10 Jul 2024 21:30:29 +0800
+Message-Id: <20240710133029.676677-1-amadeus@jmu.edu.cn>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <2210411.C4sosBPzcN@diego>
+References: <2210411.C4sosBPzcN@diego>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="HFMSCswt+gKrOFT8"
-Content-Disposition: inline
-In-Reply-To: <20240706102338.99231-4-kikuchan98@gmail.com>
+Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlCS0NJVh5LHkJLSkMdSxhJGFYeHw5VEwETFhoSFy
+	QUDg9ZV1kYEgtZQVlJT0seQUgZSEFJGEtLQR0ZTUtBQ0kYS0FNQ0xCQR1PH0lBGBodT1lXWRYaDx
+	IVHRRZQVlPS0hVSktJT09PS1VKS0tVS1kG
+X-HM-Tid: 0a909cd6ac5203a2kunmabb257e0183
+X-HM-MType: 10
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Mj46PTo5SDI5CDAzEEMOPwsZ
+	ORcwCTNVSlVKTElLTUpDSUhISElCVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUlP
+	Sx5BSBlIQUkYS0tBHRlNS0FDSRhLQU1DTEJBHU8fSUEYGh1PWVdZCAFZQUpNQ0M3Bg++
 
+> what's the reason behind the changed timings?
+>
+> The original comment stated,
+>	/* Reset time is 15ms, 50ms for rtl8211f */
+> so that timing change needs an explanation please :-)
 
---HFMSCswt+gKrOFT8
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Sat, Jul 06, 2024 at 07:23:34PM +0900, Hironori KIKUCHI wrote:
-> The RG28XX panel is a display panel of the Anbernic RG28XX, a handheld
-> gaming device from Anbernic. It is 2.8 inches in size (diagonally) with
-> a resolution of 480x640.
->=20
-> This panel is driven by a variant of the ST7701 driver IC internally,
-> confirmed by dumping and analyzing its BSP initialization sequence
-> by using a logic analyzer. It is very similar to the existing
-> densitron,dmt028vghmcmi-1a panel, but differs in some unknown
-> register values, so add a new entry for the panel to distinguish them.
->=20
-> Additionally, the panel only has an SPI instead of MIPI DSI.
-> So add and modify for SPI as well.
->=20
-> Signed-off-by: Hironori KIKUCHI <kikuchan98@gmail.com>
-
-With a mention in the commit message about why we are adding a property
-and then immediately forbidding its use:
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+I don't know why this comment says that, but it's clearly wrong.
+According to the PHY datasheet, the RTL8211F PHY needs a 10ms
+assert delay and at least 72ms deassert delay. Considering the
+possibility of mixed use of PHY chips, the reset time should be
+further increased. 
 
 Thanks,
-Conor.
+Chukun
 
---HFMSCswt+gKrOFT8
-Content-Type: application/pgp-signature; name="signature.asc"
+-- 
+2.25.1
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZo6UJwAKCRB4tDGHoIJi
-0rWJAP9IHO7fHqyM5a/UICny+oqraSfmKGBb4QQ3LA2EqBU78AD/a0EsmZU8OROj
-g207SYlLjekZTX5pN4bqKdUwpSj4AQE=
-=8tYI
------END PGP SIGNATURE-----
-
---HFMSCswt+gKrOFT8--
 
