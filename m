@@ -1,273 +1,157 @@
-Return-Path: <devicetree+bounces-84593-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84599-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EE4092CD97
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 10:57:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17A9692CDCE
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 11:01:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 924FA1C21321
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 08:57:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C27631F27314
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 09:01:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72C1C17B02C;
-	Wed, 10 Jul 2024 08:53:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CAB9185E7F;
+	Wed, 10 Jul 2024 09:01:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="bgJuungu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V5KUlUsW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on2077.outbound.protection.outlook.com [40.107.236.77])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2B79176AD0;
-	Wed, 10 Jul 2024 08:53:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.236.77
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720601619; cv=fail; b=XXfFvHJbDwKb3WT/2GDmhC6sLVi5Qx0HugROHDADmlECwXL5vGc9Nk6mLYRoNI1B5C6gLsx869dmbfYm4yq5Pm2DEEsV5s+cCnudJwl5XA/a4vVswduuk/BwL2szjORBnClBBTZyLXMBvLkD5wjnQHNbjoRzlS7N23oUKHrYhlE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720601619; c=relaxed/simple;
-	bh=w30ZI0Qmn1vTJ0VnLfGcQYiOPc6FrdhawiSxn+AwTqw=;
-	h=Message-ID:Date:Subject:To:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=EoHhOTAyxGo+SC14zPbfzp9PAhyg7o/DCXVA/wXjr198hHazhfSdJMIqCT3W8tEZHqQ4VDWVCzhdA0iR+FIS+NNRhwe4YdHAnk5SZyMZTte7D14C1+WLXZOrIqAIt4Bph4O2TgvEiw5eXwobJyTgTR0MfIODVODHNAA74Ngp0Eo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=bgJuungu; arc=fail smtp.client-ip=40.107.236.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cWS3upTM9oLj6S+0vlx+SbchPg4d7HfRqwKsgwtiBlaUJyILoEJQofDT6RFMEGlCe/16G+1tlPbln6FgNewN95DgMGoYji4h7XRTS95Grb/P6O2v8s5Uw6iYfMgMkwRu88yXvyju1vcIhBIKTSOQ4iAFEFfl/KDoJJ8Rije5jFbuVZWThVGlQao9IZY69lM1YV9lUjt6YuPpuxYcmtnDBxBB1CKLScuM1LdenP6BxTot3rH9G+8OZnFPRzvTihS3nusZBXYuWhSlirlRdnxSoz40GLK2bGEW/MxslVtSrEfGQVM9wGutivt8k0qWh43G6mYn5rmLwL4hr5Y6mg+UFw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nIkcu5Gbit/hN3J09KTNiPUwLCDVeDv6f0DcpOJYLrc=;
- b=lbq9J8p2rburHn5Di1mbPeJfEIVWiY5uMcCZEHh9G034SJtVMEER35nA/ckZdbULAZeiXRiqiWgJmZYBslWrBIbT/131Itltse6C97m+d9pA0DccUznZV9kOxUN7fW85wLCDsttxoRbjOQz0PJEuMCNRYyrhvJ+5o6YxeXpFlS/vd7TyyxrnTsoFfqx+NPemAK1IbU68y+lxfzRxDqJdEGr1yDsidpKzYQB17CcXeowYmF+jy/G1eNvFNC25TzrMFOzPKNOQi20j33K7G8qrdEqpPXdNjmqS/RDReHoluWqerMAyDNtJa3/fvTTdDHADEcK/wyfPR3IRw01Mw/l80A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nIkcu5Gbit/hN3J09KTNiPUwLCDVeDv6f0DcpOJYLrc=;
- b=bgJuunguVU/vE24FRALnCWtxm69eH4g9c3IDw85E+4dU7+vg+CFv21gl5unojgESk+1yRPzbxJdEcWLHMXHbDVCXrFLdkcj+bFLkvr85SC5L7Et7RjEYwOfSR5okZD7OWTesOoyE9mBYpMMtsjSwyBbs3J64Eed0OGtpl+VbCc+DvJ7XBrKmrdtjogIJ5gA4CDdSndgNrTda1FMtcHjgpG8Lo7gaPUotmhVosR5ft3/mKnLdO5dgp1Mdfs/8uF4WgrIei1i/+/PHdqVqkUiCNYrkMPzmXlPYUYVBMS2KhFStutV4uA3CW6HG0yGbmMONKYyynqdz6DETqGmpBol7zg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from CO6PR12MB5444.namprd12.prod.outlook.com (2603:10b6:5:35e::8) by
- CH3PR12MB7620.namprd12.prod.outlook.com (2603:10b6:610:150::5) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7741.35; Wed, 10 Jul 2024 08:53:32 +0000
-Received: from CO6PR12MB5444.namprd12.prod.outlook.com
- ([fe80::ae68:3461:c09b:e6e3]) by CO6PR12MB5444.namprd12.prod.outlook.com
- ([fe80::ae68:3461:c09b:e6e3%6]) with mapi id 15.20.7762.016; Wed, 10 Jul 2024
- 08:53:31 +0000
-Message-ID: <7cacddaf-e3da-42ef-91f0-73ca653f8dcb@nvidia.com>
-Date: Wed, 10 Jul 2024 09:53:26 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: tegra: enable same UARTs for Orin NX/Nano
-To: Vedant Deshpande <vedantd@nvidia.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>,
- Brad Griffis <bgriffis@nvidia.com>, devicetree@vger.kernel.org,
- linux-tegra@vger.kernel.org
-References: <20240709214609.2472562-1-vedantd@nvidia.com>
-From: Jon Hunter <jonathanh@nvidia.com>
-Content-Language: en-US
-In-Reply-To: <20240709214609.2472562-1-vedantd@nvidia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: LO4P123CA0510.GBRP123.PROD.OUTLOOK.COM
- (2603:10a6:600:272::14) To CO6PR12MB5444.namprd12.prod.outlook.com
- (2603:10b6:5:35e::8)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22847185E79;
+	Wed, 10 Jul 2024 09:01:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1720602102; cv=none; b=g7mNEm4C+O5o9WxFITaG70bxaxl3JdQuD7d1cmpYPE6Mjb3skj2R1IiXZWSrfHshwKtbsJtkQLoFfoKEzFtI/aI0Z94SANk01g38P0WxBu7jwTyIdRhoZhtD7nAihpoGbHYNGlFiHNdDxgb24pgZCVvopXArLTRJfUFE7eNs31E=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1720602102; c=relaxed/simple;
+	bh=B/XFMfWU5ZqXj0qnN6nB10B5m+mTj+wFKvLPsFSnbUs=;
+	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=JALddd9OOHebLScup/gQPFpLAvs/cBKOqyIgpPSDEtXahdIKxW9AjWXeNeinACpIMYt/Ke7KR8EvZOfoeqz9LXC2mMprmQhEokVrKPM9U7gTL8TLezpJlrzGxeuKUt/ftp8ryYdj5drS/UjVtLVPWQgZ9ejMnCcD8zIJEQRZKes=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V5KUlUsW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C80DC32781;
+	Wed, 10 Jul 2024 09:01:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720602101;
+	bh=B/XFMfWU5ZqXj0qnN6nB10B5m+mTj+wFKvLPsFSnbUs=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=V5KUlUsWia4ujO5KlNShozP/c4sSt7QYPzm6VZw9+thhlVm3JcN0YCzAwi29KvUGq
+	 58s0kauuUjYAVx7unbeUIg/8bOPbKUUUgkf26iux1CHEUL9I42eQGqi6YfHJPu6K60
+	 XRj1IYbBdXFqUMd7QbPM9R53sWADw0c52KtU5mb+xImQenML3KYHM2h2rTtubk+iyk
+	 awa7hxg4iUG9KK7Zy5L57RikY7esWe233SB1nZk1Xzy4wG7qhp+rz15IM7ZuKrIinH
+	 c766z5kFEYlZkQQyeshRWZVqKuimDBpFwKf8SDg5fo40do9sSCI8p/zyeDvMmahxdf
+	 XHcdJAbD0RvUg==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.95)
+	(envelope-from <maz@kernel.org>)
+	id 1sRTCV-00BAQB-8t;
+	Wed, 10 Jul 2024 10:01:39 +0100
+Date: Wed, 10 Jul 2024 10:01:22 +0100
+Message-ID: <86y16939jx.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: <Nicolas.Ferre@microchip.com>
+Cc: <Varshini.Rajendran@microchip.com>,
+	<conor@kernel.org>,
+	<tglx@linutronix.de>,
+	<robh@kernel.org>,
+	<krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>,
+	<alexandre.belloni@bootlin.com>,
+	<claudiu.beznea@tuxon.dev>,
+	<Dharma.B@microchip.com>,
+	<linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v5 15/27] dt-bindings: interrupt-controller: Document the property microchip,nr-irqs
+In-Reply-To: <82ca4f3d-fa78-4617-823e-69f16a2c3319@microchip.com>
+References: <20240703102011.193343-1-varshini.rajendran@microchip.com>
+	<20240703102814.196063-1-varshini.rajendran@microchip.com>
+	<20240703-dentist-wired-bdb063522ef7@spud>
+	<a41274c3-fd32-4eba-8240-bf95e41f63d9@microchip.com>
+	<82ca4f3d-fa78-4617-823e-69f16a2c3319@microchip.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/29.3
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO6PR12MB5444:EE_|CH3PR12MB7620:EE_
-X-MS-Office365-Filtering-Correlation-Id: fd535a49-bac6-48c8-d925-08dca0bdc658
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?d21SYit0S2w4SnlZZ1NNajZucVhZL0dYdEUzYmJQbitpT29NSmI5Tm81NnJQ?=
- =?utf-8?B?eWZndEhqZzRnRTI1ZHh2SnQ2WnA5S0RFQUFLOU5iSnRzckdmUnVvRTNqUGcr?=
- =?utf-8?B?V1RBdXdXZWc1RDZRaXpxQlZhSVArcEcvVWdicW5nZGhkTjFoMkNuTnhtb083?=
- =?utf-8?B?V0NXWDFxRkZncTkxUUR3dVVzellFRzhoTnRqQ0F5VGVMZHBia3RmWnFaMWJR?=
- =?utf-8?B?VzF5QndONHh3cXBwNFpEbUo1dEh0MThIdDVSTjlhRktGckV0WURkQ3l3ZFVW?=
- =?utf-8?B?eGFxZUczL0grbmg4S213L2h0TWlGNXRrUEp6WVRvUWhTOE5lN215U3JjR0ll?=
- =?utf-8?B?Ti9OdUU0V25uRHVCSjRtSG1PajE4cjZ4emZXTWtPdEpMRE1wM1J6SGtWY3Iz?=
- =?utf-8?B?MHJYOWhYa3FDa2Exc24rNTFHZDgwV2dTZWp1bk8wNjVhaHlYdFlZM3hUZXha?=
- =?utf-8?B?QUdzT1FXdDJhVnZYdWgzUEFRT1FrZ2NlYU1EMjcyangxTGc4WThhRFA5NnlN?=
- =?utf-8?B?TU5uYVYrZzRKRzJIeDdHRXprMER2TkNVZzZzMjNHeE9OSHBwNkYybHA3VTla?=
- =?utf-8?B?dGxnR3hwZDlHMzh1dHBqaWZ4UlVCaUR5RWp2VFJBdFk1eTFKM3BoWmtvUkoz?=
- =?utf-8?B?ZmVtSGFjSHRwT2VlTU11M3Y5VVEwVFZJSUZhVWRMcWFWa0hjZlNiNU5Md0l6?=
- =?utf-8?B?UzVjTlJvUzIwK0djblpHajVsbmdMaG1vYWttMXdMYlV4bGphYis5bHpvcEZM?=
- =?utf-8?B?RmxMUzllaW1kZVRseFdwcThTa0hQMUFrd1Z0ck1BbjQ5VFRqQmpHL3ZXU3Ez?=
- =?utf-8?B?dFdDQWEvTTJOYTlnZWFwZ2FpS1FybUVibmNKYTBWY3kyMExFSnVjTWVMSEJ0?=
- =?utf-8?B?YnBybTg3eUR4MVZ4WXBUTi9DOFhnS1VBWmxYRUJVWmtmOTFXb1B1NUN0Q1pK?=
- =?utf-8?B?dDM5emJ5aEJ6OWg3dVBYZ1EwaFhDZ1hRbWZ0U3FSenJOUWVsRXNIemNuQmlt?=
- =?utf-8?B?Q0xVdG44dVVwVEF4SjRQeDJiUmtPMUhEMDBkK2IvUHlVbHNtdWFEYVVmUmli?=
- =?utf-8?B?b0RWUzZTUUd6UkJLZXpWQ3R0aW9rZWt4Qld6RXZpZFNoaFBjMHdUREd4ZUN6?=
- =?utf-8?B?cDVaVjd1aUY2Mk1HL0hBVk5SbkVORENyeVJXRXpCWng1UVJFSlJaSUppOE5s?=
- =?utf-8?B?WWwwMnFzbmRLOWpFSlRlMk9uRlRJTUVIY2VhYXh3T1lndlk4YnVGd0dtWDBO?=
- =?utf-8?B?VlBHREhJT3AwZElzTHM5YXlHSkh2OVpCQy95bVFuTmpCWExhOG53aVJxR0Fp?=
- =?utf-8?B?bGFudkhjUDlyeDcwcDFocUorbjROajFjZmZjZU1YMXdUN0VVMmhMaHJ0bmlF?=
- =?utf-8?B?eWgxcWNuQ2xrR3FsNDcrZE1CMnNTb20zVWtsQjFqYmVOdkZ0Y1Y1NFJRTk91?=
- =?utf-8?B?ek8wZk15R3d6SE9KOFdwOTEvc3daejFjRkhQUENtd1cwdnRpS2o5QVQzRmdz?=
- =?utf-8?B?eW5nbTQvWEFSdDIrbEFvTWtwZmY5b2FGeHVLaGt1VkdUWDY4RmhQMlZIYkJC?=
- =?utf-8?B?VFFjTS90d1JMQ3cyMUJielh3ZzRuQ0RJd1R5dFI1NFJPS0w4STdNVkJaMiti?=
- =?utf-8?B?b0pzcHVmT3hzZk1pb0g1WitYSjIya1ViSmJBSEVPbGJJQzFrNzI0OEEvVVpW?=
- =?utf-8?B?Zm5OSkgvc29LR2JMZ2R6YXRRS29qTExwZUhmREY4ODl4S2pJVS9JOEFDL29S?=
- =?utf-8?B?L3B4emlNWXlhMW9TMDA5N0M1WTRFazZzNWpwdElISTBBT213ZWNUbVR4WmZk?=
- =?utf-8?B?aDJpV1JmZ3lnTzg3TUtmQT09?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO6PR12MB5444.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(366016);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?SjJ2VkFmS2ZUNlRNTEhRelNxZmhnU2dpREltMmhvOWVQWFZRcktoaytPVzB6?=
- =?utf-8?B?T1FZNU5NTklNSmV3bXRBUmIxVCsrcm1lbmxBb1Z0S1dNQTRoUDdGWVNDWHZk?=
- =?utf-8?B?MEJ2V1FQZjI4SkpCTlI0SUNFV21SOWdTc0w2bjdMdCs5MDIrdml3ZjVMWnJR?=
- =?utf-8?B?ZXp0eUd1cWU4Uk1EWDl5cUVwU0RpOEFGS0ZpanlhaVZYY2lMUFR3Wjg1cFYy?=
- =?utf-8?B?OUV3TjZhS0M4eEdXOC84ZFpTQVU4R1BXVmRYN3NJQVFCYml0UnJUZWNoa250?=
- =?utf-8?B?UTN3dHRnUUFEdVhIWXRDOXIvcitEdmYvQnNaSnRTOHRyQjlzdjBFWCtUUDZ5?=
- =?utf-8?B?bjhNVHlQT0VDWFRGVVJ1NDhybXFwUzhrRDdjSG11ejBhK0pWMDhER1QzU2ZJ?=
- =?utf-8?B?d01wTCtiYWJ3K28rK2xnOFZONHpUdlJxZmZDNTVqWjdkTGlXVzZCUHQxK1Y0?=
- =?utf-8?B?LzhuSVNBTUZnTVBLaURmTzNyeFpmaDVpSVc4WU9qdmlJVEd2T1E2VVdYZ3gy?=
- =?utf-8?B?YXJaVVZoNzRrTzNxYXpxQjAwUkpHM1NaMjRrTHpneTZOUUJHV0RmVkFMcEhO?=
- =?utf-8?B?OXltWlhZUlE0QzF2cFNhL25lRW9YS2lVd3FJa203STBGUEhGRjVTcUpIVER6?=
- =?utf-8?B?Z1FHSTB3QUovRnp1RjdtWDZsL0d3cGZ3NzdJd0grRFdnQUNlTkpqUkphbGYv?=
- =?utf-8?B?Y0h6NXZGZHJReWJNaUFIY3FidzZnZ3ROZkVZZ3Q3eTRYelQ3Q2hMSnRhcGFo?=
- =?utf-8?B?RVlsWFltbmdldC9VTE1xUjcxZXJKcUxJNFdvVWdNeEhmNVdmYmZzKzFuSVov?=
- =?utf-8?B?d3lScXdNbEZzZUlwaWFOaDZrNjczYW85ZU9FNytMTi9oMDJWSkNQZlZTUENU?=
- =?utf-8?B?ZWEyV05JMDREaTRFVGFLejZjTHN0bUFoU2hmejJQSFRnc1BmbXZPWmpENUl6?=
- =?utf-8?B?aEdFblkrUmZQcDVNQk5HNW0rMTBHN3JiUjgxU2J2S3lOZGFwZ0ZzaXJ2Qzho?=
- =?utf-8?B?dWdyV3VNdXMzSlJUd04rVGF5TUtaMi9nUzVxZGVaSVR5Z05yaHFDdnNHdmNv?=
- =?utf-8?B?Rk5rMCtBTHJsYlFJTEJJcjh6SUEvWkdybmFYbGhYL0c4bnFoc3dHSWpscVpr?=
- =?utf-8?B?RnVCNzhBTFQ2eW1EYzNoSGd6eUpsVFFES0FDSjlhdTNPNFlUTVY4MHowVm5i?=
- =?utf-8?B?d0FtS2NQeVh6K0xqajM5U0M0bWR4eWZYQnRWNFk4M1BEazRYNU1RdzFGcllX?=
- =?utf-8?B?S2poS1JLMWFDS04yZFljcEFJaS9sRDBKYWdFYU9CdnF0Tk9WY08zbkEva2ZC?=
- =?utf-8?B?SElsaVpQU1dPVDc1ZDI5MUM4K1JkVFBHQ1pkSjl2MDBub0dIUkhjQ1RxVVlt?=
- =?utf-8?B?Mk1SQm10OW1wbXN1RDhSVERnUjg3ck1vVUlYN2VWODd1UDFFNjg3QmlhRENm?=
- =?utf-8?B?WHZkNkV6WjhqM2Q3R1IwUmtxWkNDV2MrcmJ2YTFQNHdXMmdTN3AwUmpjaGQr?=
- =?utf-8?B?ZWxsYkpmZlVGcTltZmV3YmI1TGx6U1YwRTgydzY0ZmpmTmJ3eU5INDE3Y0xu?=
- =?utf-8?B?SjhkYVh0M1ZhNHVVV2VLeDBVZ3RKVFJiQ20vazB1bGR0ZmR4cnJHZVRDLzlM?=
- =?utf-8?B?aVVwVVFqakg2UElTRGtFdXpKSnZTellYd1NGdTdpbjZTK3QyM0wrRjFkNmRm?=
- =?utf-8?B?YU5ZOHNhVHQrR3dmeEpBeFV3RHE4S3h4Mm5FVjRmT2w2ZUlnSGVMSjJjMTUv?=
- =?utf-8?B?NE1GNnBuYzh3ZGdpNWtqOHhLeTQ4d21jdDB1RzcrcnNLTEtBaGNlYTVXeHRJ?=
- =?utf-8?B?dnFCcjh4ODEvbW8yaFgyTEYxT1QwamR0ZEZoQkdaQ3NibFdPQUpzMWhUTUZG?=
- =?utf-8?B?WUJRYTBuUW4ycXZlcXZUV3ZtS215ak5DVE15VGpMRlhZb08xMk5SYlRYSnpl?=
- =?utf-8?B?WWVPdE9CZ2t1KzhydDA0dkYvRzloUGMrZmR6cmxrOXgrMUZGNk5YbklROFVM?=
- =?utf-8?B?ZUtiTEhHU0UyWVpzMW5uUElvM2lMdEpBSTRPMzVDTUcyVVRwWFdmOVRGdDJl?=
- =?utf-8?B?RlpZTDJXVXZLa1c2cFhZSWZ0U21BM0ZteEJwS0Y4SUVyQld4TFFpRDByTE56?=
- =?utf-8?B?NjMrUWJQUzZnYVlWSVg1dFhoWFlkS1llam0xb0ZVZmYvS3J3QVhtb2RhVzJj?=
- =?utf-8?B?R2M3emR2WXovRVpwcFNGbEg0RGtWa3JhdUJiRXQvSVhsRUU4cXR1akFzL3Zr?=
- =?utf-8?B?dG94T3Q2YjcwYWVtRkNQMkV5YnVBPT0=?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fd535a49-bac6-48c8-d925-08dca0bdc658
-X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5444.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jul 2024 08:53:31.9482
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 0ZYMbqnCuBB2Bddc3wnZeItIa4EBzptxclB86qHzfm5fbZ8JYniOhpp20AamcXxT7CbgwEZg8KWDZf6EPmTN5g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB7620
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: Nicolas.Ferre@microchip.com, Varshini.Rajendran@microchip.com, conor@kernel.org, tglx@linutronix.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, alexandre.belloni@bootlin.com, claudiu.beznea@tuxon.dev, Dharma.B@microchip.com, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 
-
-On 09/07/2024 22:46, Vedant Deshpande wrote:
-> This patch ensures that Orin NX and Orin Nano enable an identical
-> set of serial ports. UARTA/UARTE will be enabled by adding
-> respective nodes to the board dtsi file.
+On Tue, 09 Jul 2024 15:06:29 +0100,
+<Nicolas.Ferre@microchip.com> wrote:
 > 
-> Signed-off-by: Vedant Deshpande <vedantd@nvidia.com>
-> ---
->   .../nvidia/tegra234-p3768-0000+p3767-0000.dts   | 17 -----------------
->   .../dts/nvidia/tegra234-p3768-0000+p3767.dtsi   | 14 ++++++++++++++
->   2 files changed, 14 insertions(+), 17 deletions(-)
+> On 09/07/2024 at 08:13, Varshini Rajendran - I67070 wrote:
+> > On 03/07/24 9:11 pm, Conor Dooley wrote:
+> >> On Wed, Jul 03, 2024 at 03:58:14PM +0530, Varshini Rajendran wrote:
+> >>> Add the description and conditions to the device tree documentation
+> >>> for the property microchip,nr-irqs.
+> >>>
+> >>> Signed-off-by: Varshini Rajendran<varshini.rajendran@microchip.com>
+> >> This needs to be part of patch 14.
+> >>
+> >>> ---
+> >>>    .../bindings/interrupt-controller/atmel,aic.yaml     | 12 ++++++++++++
+> >>>    1 file changed, 12 insertions(+)
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/interrupt-controller/atmel,aic.yaml b/Documentation/devicetree/bindings/interrupt-controller/atmel,aic.yaml
+> >>> index 9c5af9dbcb6e..06e5f92e7d53 100644
+> >>> --- a/Documentation/devicetree/bindings/interrupt-controller/atmel,aic.yaml
+> >>> +++ b/Documentation/devicetree/bindings/interrupt-controller/atmel,aic.yaml
+> >>> @@ -54,6 +54,10 @@ properties:
+> >>>        $ref: /schemas/types.yaml#/definitions/uint32-array
+> >>>        description: u32 array of external irqs.
+> >>>    
+> >>> +  microchip,nr-irqs:
+> >>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> >>> +    description: u32 array of nr_irqs.
+> >> This makes no sense, did you just copy from above? Why would the number
+> >> of irqs be an array? Why can't you determine this from the compatble?
+> >>
+> > Sorry for the bad description. I will correct it in the next version.
+> > 
+> > For the second part of the question, this change was done as a step to
+> > resolve having a new compatible while having practically the same IP
+> > pointed out in the v3 of the series [1]. It is kind of looping back to
+> > the initial idea now. Even if this is added as a driver data, it
+> > overrides the expectation from the comment in [1]. Please suggest. I
 > 
-> diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0000.dts b/arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0000.dts
-> index 82a59e33c46c..5dc974bb360c 100644
-> --- a/arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0000.dts
-> +++ b/arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0000.dts
-> @@ -7,24 +7,7 @@ / {
->   	compatible = "nvidia,p3768-0000+p3767-0000", "nvidia,p3767-0000", "nvidia,tegra234";
->   	model = "NVIDIA Jetson Orin NX Engineering Reference Developer Kit";
->   
-> -	aliases {
-> -		serial1 = &uarta;
-> -		serial2 = &uarte;
-> -	};
-> -
->   	bus@0 {
-> -		serial@3100000 {
-> -			compatible = "nvidia,tegra194-hsuart";
-> -			reset-names = "serial";
-> -			status = "okay";
-> -		};
-> -
-> -		serial@3140000 {
-> -			compatible = "nvidia,tegra194-hsuart";
-> -			reset-names = "serial";
-> -			status = "okay";
-> -		};
-> -
->   		hda@3510000 {
->   			nvidia,model = "NVIDIA Jetson Orin NX HDA";
->   		};
-> diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767.dtsi b/arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767.dtsi
-> index 6d64a24fa251..81d4f4f12ab1 100644
-> --- a/arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767.dtsi
-> +++ b/arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767.dtsi
-> @@ -9,6 +9,8 @@ / {
->   
->   	aliases {
->   		serial0 = &tcu;
-> +		serial1 = &uarta;
-> +		serial2 = &uarte;
->   	};
->   
->   	chosen {
-> @@ -16,6 +18,18 @@ chosen {
->   	};
->   
->   	bus@0 {
-> +		serial@3100000 {
-> +			compatible = "nvidia,tegra194-hsuart";
-> +			reset-names = "serial";
-> +			status = "okay";
-> +		};
-> +
-> +		serial@3140000 {
-> +			compatible = "nvidia,tegra194-hsuart";
-> +			reset-names = "serial";
-> +			status = "okay";
-> +		};
-> +
->   		i2c@3160000 {
->   			status = "okay";
->   
+> In your v3 patch, indeed you were extracting the number of IRQs from the 
+> compatibility string (aka, from device tree...). It's my preferred 
+> solution as well.
+> 
+> So, come back to v3 [1] and address what Conor said in v4 "...having 
+> specific $soc_aic5_of_init() functions for each SoC seems silly when 
+> usually only the number of interrupts changes. The number of IRQs could 
+> be in the match data and you could use aic5_of_init in your 
+> IRQCHIP_DECLARE directly"
+> 
+> I think that we can convince Marc/Thomas that it's the best option as it 
+> prevents introducing another non-standard property to the DT, break the 
+> ABI (and was used happily for years).
 
-When running ...
+In general, the least cruft we add to the DT after the facts, the
+better. If the compatible string is good enough to identify the
+device, I don't think we need to overthink it, specially as there is
+no upside to non-standard properties here -- from what I understand,
+the number of available interrupts is a property of the HW, and not
+something that can be configured, making it part of the programming
+model, just like the layout of registers.
 
-$ make dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/serial/nvidia,tegra20-hsuart.yaml
+But I'm not in a deciding position anymore, and this is only my
+(educated) opinion.
 
-I see ...
+Thanks,
 
-arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0000.dtb: serial@3100000: 'dmas' is a required property
-	from schema $id: http://devicetree.org/schemas/serial/nvidia,tegra20-hsuart.yaml#
-arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0000.dtb: serial@3100000: 'dma-names' is a required property
-	from schema $id: http://devicetree.org/schemas/serial/nvidia,tegra20-hsuart.yaml#
-   DTC_CHK arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0005.dtb
-arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0005.dtb: serial@3100000: 'dmas' is a required property
-	from schema $id: http://devicetree.org/schemas/serial/nvidia,tegra20-hsuart.yaml#
-arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0005.dtb: serial@3100000: 'dma-names' is a required property
-	from schema $id: http://devicetree.org/schemas/serial/nvidia,tegra20-hsuart.yaml#
-
-Although this was already an issue for tegra234-p3768-0000+p3767-0000.dtb
-it is now an issue for both boards. Could we add a patch to fix this?
-
-Thanks
-Jon
+	M.
 
 -- 
-nvpublic
+Without deviation from the norm, progress is not possible.
 
