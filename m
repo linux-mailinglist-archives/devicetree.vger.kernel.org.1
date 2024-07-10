@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-84573-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84574-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F44D92CCD1
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 10:22:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8ED3592CCD6
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 10:23:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C419AB239E5
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 08:22:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 069E4B241F5
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 08:23:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED289127B57;
-	Wed, 10 Jul 2024 08:22:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BAA285947;
+	Wed, 10 Jul 2024 08:23:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jtUhFcGf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Scni5Cp4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFB9985947;
-	Wed, 10 Jul 2024 08:22:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BEF5D535;
+	Wed, 10 Jul 2024 08:23:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720599725; cv=none; b=Y8I8EGUkPjIJTuX3Bnlc9ZcGWbfs8V2i9IbY5eoIG0W7Cs/TfSbHIMjU071e0QCgZPQh2syscGi1WiT9ge4iHGUvb5BEIR6RLLNXxDjBO1rXKFq2hNcy/WpU+kc8cwwQ+Hmo4gp9kf/Mkvou8rtBSRgfocZqmpRxuj1oePN2oXw=
+	t=1720599795; cv=none; b=OSTnJ3TjQO69s4/FeSYF2lv4leLvswY3K4grm2i+2E7WTsV9qlKmOTK1JajBixtrnTEYgJu4H5ouG0nOxC0bp2SKZu31K2Zbg6sjutK6AdUYzAM+rUu8qXUpLD8rDbdLaRSwWde9E0i77gT+Q/z5bvfJJrNN5XOuYW7myQJFchw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720599725; c=relaxed/simple;
-	bh=o0tPpsCYeUn7TKNumWeq6TWkwbORZPB4jdf9dJmh648=;
+	s=arc-20240116; t=1720599795; c=relaxed/simple;
+	bh=zio6/BcIJLmE4NqTo2KSfFFhS58Lfdl4y9lA06n0zDE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ilNHgtRmwg2FF1EjTfDF12bAOs56H7/wyoZ8dtjmHJ6vnOKdPHBNip2w+VcNPJ+zs/n9W2wK1m7qPbRg+0wt86q6dhqIJ7mYE9f4e3TMiJJH7qhnBVj5ZGx1G8QD/g8BE/dFl6lQ2jjqkFl0QzhCjAaFlp+hFMUo96McO6Ka8aI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jtUhFcGf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6096C32781;
-	Wed, 10 Jul 2024 08:21:59 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Ythc21qZBWsIGo8YgU5EhjCrrz6vWjCm9Mxaf8e10bJjf8KWwNIqFhuOvoYsZM2U3J+CgFZqF5OunM324AVAXxB4TPJe4sSeZZJN0tsxGF3qFrW7J07K7+kkrR2N5VIC1zAQ+cd0acZ5zOyapOC3OLgk3ajVzvQDbExcRvo0RkQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Scni5Cp4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF46DC32781;
+	Wed, 10 Jul 2024 08:23:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720599725;
-	bh=o0tPpsCYeUn7TKNumWeq6TWkwbORZPB4jdf9dJmh648=;
+	s=k20201202; t=1720599795;
+	bh=zio6/BcIJLmE4NqTo2KSfFFhS58Lfdl4y9lA06n0zDE=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=jtUhFcGfpxHHPjSS5i07F4mVMrCM8hIWvkkVt5wrrJYzvz0BnCO7wZZYl+4VCRn/w
-	 zx89o9Hlf6OuzAR01vd87PJF5IN2oCT3A/axvrBCn/ObE1C8Y6tctt4M6Onyfxe5Ne
-	 vMnenNcd7WefaptDjB627z8vQV7VNWhxRhwDqN97fOlcaNtCv87SrGFuOjYZTu9CJy
-	 0BSs3lYaHwoO/6razhMzNhoM/gwaC699/LULYF49xwBua/5GG0oEdOxRsKJvJ2AsqN
-	 uUKlKUHSr+i6nGs6nG8uAArEuk58DsjFT4O998NXEFg3HDlXpWy/o3fcfyoGM/G64E
-	 ZU1AHZbdcr5Bw==
-Message-ID: <6374ed31-3832-4b17-9d80-f668c419a016@kernel.org>
-Date: Wed, 10 Jul 2024 10:21:57 +0200
+	b=Scni5Cp4siDTH/HN8bnZE6I5EM2i1M7dszHq806STu7ls+f6eJKKUSXPnSyyosIws
+	 nFJE6w2f83mCi5Ngcrs4DWciGIrpHy66JTSNghV60APqamtQyzCoQpC0qm61SWsSZg
+	 KP3JxN2f/v0Ur/YI/ZTq/jgaAlVq3pgEioph2Yt9qNLhXEVVztR5Dvgs0e2wTuj/hK
+	 Wg6iHoE59+GEOWWN3+xlQu6BNkX6oh250W9JfHX966PKy8SdtLneHptAcn319r8Nzb
+	 lFOL8smEuIBtjwjhKPDmsjS936ooF0tDQv4IKWWO8XDVh9B59Ai8Q2uB/47AzkhTvH
+	 8R9OcICuGaUzw==
+Message-ID: <5f372da5-9904-402b-ae1e-9ceee5cf0bd7@kernel.org>
+Date: Wed, 10 Jul 2024 10:23:09 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,25 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: (subset) [PATCH v3 0/3] Add I2C support on TH1520
-To: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jisheng Zhang <jszhang@kernel.org>,
- Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
- Drew Fustini <dfustini@tenstorrent.com>,
- Emil Renner Berthing <emil.renner.berthing@canonical.com>,
- Conor Dooley <conor@kernel.org>,
- Jarkko Nikula <jarkko.nikula@linux.intel.com>,
- Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-Cc: Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Paul Walmsley <paul.walmsley@sifive.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- =?UTF-8?Q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>,
- linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
- Conor Dooley <conor.dooley@microchip.com>
-References: <20240618-i2c-th1520-v3-0-3042590a16b1@bootlin.com>
- <172059771094.2294116.14777114514280404581.b4-ty@kernel.org>
+Subject: Re: [PATCH 3/4] dt-bindings: pinctrl: qcom,ipq4019-pinctrl: convert
+ to dtschema
+To: Rayyan Ansari <rayyan.ansari@linaro.org>, devicetree@vger.kernel.org
+Cc: Bjorn Andersson <andersson@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Linus Walleij <linus.walleij@linaro.org>, linux-arm-msm@vger.kernel.org,
+ linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Rob Herring <robh@kernel.org>
+References: <20240709162009.5166-1-rayyan.ansari@linaro.org>
+ <20240709162009.5166-4-rayyan.ansari@linaro.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -114,31 +105,17 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <172059771094.2294116.14777114514280404581.b4-ty@kernel.org>
+In-Reply-To: <20240709162009.5166-4-rayyan.ansari@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 10/07/2024 09:48, Andi Shyti wrote:
-> Hi
+On 09/07/2024 18:17, Rayyan Ansari wrote:
+> Convert the Qualcomm IPQ4019 TLMM block bindings from text to yaml dt
+> schema format.
 > 
-> On Tue, 18 Jun 2024 09:42:37 +0200, Thomas Bonnefille wrote:
->> This adds I2C support in the device tree of the T-Head TH1520 RISCV-SoC
->> and a default configuration for the BeagleV-Ahead. It appears that the
->> TH1520 I2C is already supported in the upstream kernel through the
->> Synopsis Designware I2C adapter driver.
->>
->> This patch depends on the clock patch from Drew Fustini
->> Link: https://lore.kernel.org/linux-riscv/20240615-th1520-clk-v1-0-3ba4978c4d6b@tenstorrent.com
->> and the pinctrl patch from Emil Renner Berthing
->> Link: https://lore.kernel.org/linux-riscv/20240103132852.298964-1-emil.renner.berthing@canonical.com
->>
->> [...]
-> 
-> Applied to i2c/i2c-host on
-> 
-> git://git.kernel.org/pub/scm/linux/kernel/git/local tree
+> Signed-off-by: Rayyan Ansari <rayyan.ansari@linaro.org>
 
-Something got odd in the git repo above in your ty letters.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
