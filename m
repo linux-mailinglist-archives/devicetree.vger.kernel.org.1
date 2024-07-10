@@ -1,105 +1,132 @@
-Return-Path: <devicetree+bounces-84818-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84822-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 437EC92DC9B
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 01:26:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC72192DCBD
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 01:41:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EEFC01F272FD
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 23:26:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 878FC283C40
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 23:41:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CBCD154BE8;
-	Wed, 10 Jul 2024 23:26:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0243158DAC;
+	Wed, 10 Jul 2024 23:41:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KuruZDGU"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="RjyXBTc3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D29A31527A7;
-	Wed, 10 Jul 2024 23:26:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44F83848E;
+	Wed, 10 Jul 2024 23:41:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.89.224.132
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720653971; cv=none; b=ZLCnDze7WLq7Yt3J6b4a40rNBixHpj6sXx4flMlkubGTL2JRaijaM67YRZ3SLajdbRNlcUaachJv4YkGk2ETsfHBZN7bm5WX8YQblZn3ukDL3U0ljN/XojkgrYVK3eLFLgO3cZzMyw3sDYhobhhrMJeNLp0kHT1+EvgNX3ICF5Y=
+	t=1720654890; cv=none; b=dg9BpVNEDLSAVLBguRf+vlgIJsL2D7wappIQ+P+WAExL6dzq4xBLTIJ4xsNNgWIXZu3NHTNGIha61vONAUahKZOXS2bsZthHz1kZJV/qMuAC51NPM2YbrXQx9rbzznN/ZPvltgtSIat7egilrA6lrSS8bxjYIAjdJT4GT1ULjYY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720653971; c=relaxed/simple;
-	bh=4j7HhjyR3P0XTsOa2hJfJvKNhltv5iQXTeJBSXBmgDs=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=FgTNcvRTgSniz8muL5io4z/7qJRUiXRih50LqbAn4jXEVBCTNcPGpLfP1oNiiqjT9J1KOZiiakYS7Goum7549UAZMhqD41eLHE3lgFRAS3Atv73oxBQAqbzITNddE89PSXSgjYhhEmcKpRtDDODPMpif/JLDSgyiYKy/6MJJnes=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KuruZDGU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84466C32781;
-	Wed, 10 Jul 2024 23:26:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720653971;
-	bh=4j7HhjyR3P0XTsOa2hJfJvKNhltv5iQXTeJBSXBmgDs=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=KuruZDGU1G9jIshYs8VLqAtfT4LDSGyTiG3NMoJm4+yhB4U++ekx+EtxHSpUo9cD6
-	 6m2pVVNOcvWU8KFzFsoPyqttrDJVxzW2+hwK8E8cpyHvACGi4OGzCrKyHjzxFhiYfI
-	 x5en6NxFiJCLl/OSjS7xD459Oo49zmKpo9Aj7bRFclnALDYUV7H5sSP2kbholTWkRz
-	 pvKX2MOJeuZ6L21eB+TxWTaPV3jhv+vEcKa09o8KsUaRQY1L6CrOT7IWmcxxYRgdC/
-	 qt3kewJN0ylFfma5mUF11JYIemKsHBomT/5zchH9KgbjWRm9c3XAHuJ0zlPM3yMfaD
-	 sX8gm/0aL/Edg==
-From: Mark Brown <broonie@kernel.org>
-To: Animesh Agarwal <animeshagarwal28@gmail.com>
-Cc: Daniel Baluta <daniel.baluta@nxp.com>, 
- David Rhodes <david.rhodes@cirrus.com>, 
- Richard Fitzgerald <rf@opensource.cirrus.com>, 
- Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, patches@opensource.cirrus.com, 
- alsa-devel@alsa-project.org, linux-sound@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20240709184231.125207-1-animeshagarwal28@gmail.com>
-References: <20240709184231.125207-1-animeshagarwal28@gmail.com>
-Subject: Re: [PATCH v2] ASoC: dt-bindings: cirrus,cs4270: Convert to
- dtschema
-Message-Id: <172065396818.391308.16919623245935152451.b4-ty@kernel.org>
-Date: Thu, 11 Jul 2024 00:26:08 +0100
+	s=arc-20240116; t=1720654890; c=relaxed/simple;
+	bh=fIXUY8ThIqyTyr6FnvZy1kNkyUcKEQDEhikWI2x7ewY=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=dDgWugaZteZT+ywZhPt27h+BICgLzOgE/H+xs9A1l46R7fQNgRcptb+49MdPwb4DdVg/7NoepYrosc/UxRouRdYHGjT+NbjKGMUZcVZkA+DUaSF3C7Q4m07pklmSrSH71kDTUjAm1ekgaUboTIKXQCLP3VDaob6qA0Ut4TgJ6FI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=RjyXBTc3; arc=none smtp.client-ip=45.89.224.132
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
+Received: from p-infra-ksmg-sc-msk02.sberdevices.ru (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 2E3CD120006;
+	Thu, 11 Jul 2024 02:41:23 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 2E3CD120006
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1720654883;
+	bh=qRhU2crivn/2xTODAHp+2oPbvB1yAPDlRcyKl3MlgSo=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
+	b=RjyXBTc3Gl147fEQhywvoAtRVsEkNsqXW67MIWT/VVc33gjZphsFQ4nJEBCWN1hmQ
+	 AGD3N1+sSZC5HT7kyFMHjlMN/LnLYBDEr1S7XjrVvJ8ucYPkM7k4yu2HylbvepStFw
+	 qMM+XyPQm0ANEZGve3Wo4BlMWfdtT38LH9A+dnPhUVZTsy4yBmRmdDvFMRpsGSuhWi
+	 dZoNU4eZEI5q4rM4Eq7IP+vEfuJl0W7+7CBw1Ye0yaBAF0JIAV+ef0+yEePmsWoQVv
+	 fV/0RGpYbG2EwOUOe514ufqjQD03nUN/oMP61mSpzUgr+C2e9fwr7pT7m0TDy17Y9w
+	 lGh3NZzyT8nLA==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Thu, 11 Jul 2024 02:41:22 +0300 (MSK)
+Received: from work.sberdevices.ru (100.64.160.123) by
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Thu, 11 Jul 2024 02:41:22 +0300
+From: George Stark <gnstark@salutedevices.com>
+To: <ukleinek@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <neil.armstrong@linaro.org>, <khilman@baylibre.com>,
+	<jbrunet@baylibre.com>, <martin.blumenstingl@googlemail.com>,
+	<hkallweit1@gmail.com>
+CC: <linux-pwm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-amlogic@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <kernel@salutedevices.com>, George Stark
+	<gnstark@salutedevices.com>
+Subject: [PATCH v4 0/3] pwm: meson: add pwm support for A1
+Date: Thu, 11 Jul 2024 02:41:13 +0300
+Message-ID: <20240710234116.2370655-1-gnstark@salutedevices.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14-dev-0bd45
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 186446 [Jul 10 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.4
+X-KSMG-AntiSpam-Envelope-From: gnstark@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 24 0.3.24 186c4d603b899ccfd4883d230c53f273b80e467f, {Tracking_uf_ne_domains}, {Tracking_from_domain_doesnt_match_to}, 127.0.0.199:7.1.2;100.64.160.123:7.1.2;salutedevices.com:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;smtp.sberdevices.ru:5.0.1,7.1.1;lore.kernel.org:7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean, bases: 2024/07/10 23:02:00
+X-KSMG-LinksScanning: Clean, bases: 2024/07/10 23:02:00
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/07/10 21:42:00 #25942395
+X-KSMG-AntiVirus-Status: Clean, skipped
 
-On Wed, 10 Jul 2024 00:12:25 +0530, Animesh Agarwal wrote:
-> Convert the Cirrus Logic CS4270 audio CODEC bindings to DT schema. Add
-> missing va-supply, vd-supply and vlc-supply properties, because they
-> are already being used in the DTS and the driver for this device.
-> 
-> 
+Add support for Amlogic meson A1 SoC family PWM
 
-Applied to
+Changes in v2:
+  add patch with optional power-domains to pwm bindings;
+  fix syntax in a1 bindigns patch:
+  - use enum over const for amlogic,meson-a1-pwm beacuse adding more devices here
+    are expected
+  - leave only base compatible amlogic,meson-s4-pwm in check section
+  dt_binding_check and dtbs_check run ok now;
+  previous version: [1]
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+Changes in v3:
+  squash power-domains patch into main bindigns patch
+  add conditional to bindings that power-domains property is required only for a1
+  previous version: [2]
 
-Thanks!
+Changes in v4:
+  split bindings patch into power-domains patch and new compatible patch
+  previous version: [3]
 
-[1/1] ASoC: dt-bindings: cirrus,cs4270: Convert to dtschema
-      commit: e021e0eecba99d7ec68f6e7972a72175f54ff6e3
+[1] https://lore.kernel.org/lkml/20240701130113.433169-3-gnstark@salutedevices.com/T/
+[2] https://lore.kernel.org/lkml/20240701172016.523402-1-gnstark@salutedevices.com/T/
+[3] https://lore.kernel.org/lkml/20240702123425.584610-1-gnstark@salutedevices.com/T/
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+George Stark (3):
+  dt-bindings: pwm: amlogic: Add optional power-domains
+  dt-bindings: pwm: amlogic: Add new bindings for meson A1 PWM
+  arm64: dts: meson: a1: add definitions for meson PWM
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+ .../devicetree/bindings/pwm/pwm-amlogic.yaml  |  17 ++
+ arch/arm64/boot/dts/amlogic/meson-a1.dtsi     | 215 ++++++++++++++++++
+ 2 files changed, 232 insertions(+)
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+--
+2.25.1
 
 
