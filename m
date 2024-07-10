@@ -1,124 +1,104 @@
-Return-Path: <devicetree+bounces-84537-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84539-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B6AC92CAA7
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 08:16:03 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C18792CAD5
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 08:16:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8EF7CB22591
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 06:16:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 10CFB1F24011
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 06:16:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 953F86A33B;
-	Wed, 10 Jul 2024 06:15:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EE1F5E093;
+	Wed, 10 Jul 2024 06:16:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Ua5hpEGa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uPewflyz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CC414174C;
-	Wed, 10 Jul 2024 06:15:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 452DB5B1F8;
+	Wed, 10 Jul 2024 06:16:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720592150; cv=none; b=WU8BmBZ9ttc7fjqqRi5plQ8bPdLIXN71mpPdkk964P1kVs378zEmB1uab6TDEyjYZpGuAXlHgJo0xgCnnYyHqxxu3BuFlTYutOz6vaSCARKtKvKkgDn4Ee+W725M1j2SNFzMCLyjxrKToZlOPcJCrrb/Mt7UK4x6mn/lrSR7n/I=
+	t=1720592198; cv=none; b=c/ZJI4Mcvovc7PCGJupxmR9ZfzyNv4NTrxRL78zlL6d0pWqKaujFG1xHhD9ly8+0MyML3OXHZWiy8EjHDrM9lOcd5NqCDbi9JomV1Fg4bhZ+2N25f6F7DrVe4A5yIdgHLhKJsgMIkhWKhd8CS3yA9WrFsYv90u7KMrjBs4XEmC4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720592150; c=relaxed/simple;
-	bh=y0Ae7eA352rTkkXZKhSY1RsSKoR9JQgMBiR1kM95uRU=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tnUCP/kVs+lGSTr2cDyQX7ROuP8Q0atyYMA22jhtO2pJWffbNFpF0qoSZGX3CKNP0on8RlhZxtI9/YINz6DDCK5Y7yN7O0jERGxBA+KsP1YmVwNz+ptkgKWQ2bbxqnIddix2rpZD2bxo+9jABU6ncik594wBM14+aeawxmWTsOE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Ua5hpEGa; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 469KpLt7016975;
-	Wed, 10 Jul 2024 06:15:28 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=Xm/hz+/GEvN/jtsQGBaziK4j
-	+UZetj/kf80vnczSJW8=; b=Ua5hpEGaUV6XFrEeyrXHVBziUKBB+hcTG3XGVlOf
-	7FjwCu8xAnYuHm2m0IZLknvwt3aoot663M6ZAHYDJn/gwJqjg+snun3rZYZsshcj
-	v6xPf6l9D2t38CV0bw2VZSSXOC6MvUOkUF3fqqLXmtnRYj3dHaxlX0bC0aUdd2xS
-	aJ+I1mfOd6yExyZSSTKjR6jT3DN4ER/+e6G4m1LHjiXmVqrrhWSlj5rvRyGuSRwP
-	0+EFNiSLJT6FibDr+Lj826Gg707IBPLl5WiaEpKYQhPIGcnd6Ew5kvxHo77oq1t6
-	06ifM/+Uq/y/8pg722pNiAgtBmk9PpJ+KKfooI6ElQupxg==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 406x0t8kx9-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 10 Jul 2024 06:15:27 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA04.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 46A6FL2h004000
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 10 Jul 2024 06:15:21 GMT
-Received: from hu-varada-blr.qualcomm.com (10.80.80.8) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Tue, 9 Jul 2024 23:15:14 -0700
-Date: Wed, 10 Jul 2024 11:45:10 +0530
-From: Varadarajan Narayanan <quic_varada@quicinc.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <angelogioacchino.delregno@collabora.com>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <mturquette@baylibre.com>,
-        <sboyd@kernel.org>, <ilia.lin@kernel.org>, <rafael@kernel.org>,
-        <viresh.kumar@linaro.org>, <ulf.hansson@linaro.org>,
-        <quic_sibis@quicinc.com>, <quic_rjendra@quicinc.com>,
-        <otto.pflueger@abscue.de>, <luca@z3ntu.xyz>, <danila@jiaxyga.com>,
-        <quic_ipkumar@quicinc.com>, <stephan.gerhold@kernkonzept.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>
-Subject: Re: [PATCH v5 9/9] dts: arm64: qcom: ipq9574: Enable CPR
-Message-ID: <Zo4m7pBhXbzNLZh4@hu-varada-blr.qualcomm.com>
-References: <20240709090132.117077-1-quic_varada@quicinc.com>
- <20240709090132.117077-10-quic_varada@quicinc.com>
- <94e9aea3-6231-4dbe-9a7d-07f79216e78b@kernel.org>
+	s=arc-20240116; t=1720592198; c=relaxed/simple;
+	bh=pviwYWTgWw3NGArxYhhEFp+fozfsJBF9UBiIPePQypQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=arVudMt5sSFnsDX6j6+C3zdbAUwFec1hm8Avl2FdjnKxkisCj33EN/hJ3HSeRKzUqSSwq5dTy7xfROL/wlSkqH2J4T1Z7Z74/GqO+M+wlIeeEKT3ih0WqnQZUydKnLxPVQ9hFC5VytHcCv0TsMUFsCWzpvI1N2d6duJ2LEdPve4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uPewflyz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id AF1A1C32781;
+	Wed, 10 Jul 2024 06:16:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720592197;
+	bh=pviwYWTgWw3NGArxYhhEFp+fozfsJBF9UBiIPePQypQ=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=uPewflyzyoJUSO4xqexro0tqcnODuYneaQF7yo00UPxuEiy+UUSaQnBvN7DfSjybL
+	 KoKFsVOPyNVv1HTEXv2oXwhzCQvmZLDpZAztwetB/e+1nCVKLRKY8QRuB8zE0ZHXkO
+	 O6v/XsUmfVjT+Ey8WK1f9eXRgZsV8E2D3bCUxiaimufexOWVGLgGGxtTL01Aw+VQXe
+	 8HTHJgDuoCTIPNOX2ESRvT4PhaoajQQzSqh5QoVJeDXyy40kOgjwm8MFfgUi3d3iOg
+	 BY/1zOEPX6ckwCNc7bAqHRgnuV8Obdebz4Hnw3k2er29ay5ivM+NuVrijg8gQjWC77
+	 AkQRcyIU7eFYA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A3484C3DA42;
+	Wed, 10 Jul 2024 06:16:37 +0000 (UTC)
+From: Pieterjan Camerlynck via B4 Relay <devnull+pieterjanca.gmail.com@kernel.org>
+Subject: [PATCH 0/2] leds: leds-pca995x: Add support for NXP PCA9956B
+Date: Wed, 10 Jul 2024 08:15:43 +0200
+Message-Id: <20240710-pca995x-v1-0-545015603000@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <94e9aea3-6231-4dbe-9a7d-07f79216e78b@kernel.org>
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: ilmjQJAGn6569mie9UNxTYJjYMuM1Z_i
-X-Proofpoint-ORIG-GUID: ilmjQJAGn6569mie9UNxTYJjYMuM1Z_i
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-07-10_02,2024-07-09_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 bulkscore=0
- lowpriorityscore=0 impostorscore=0 adultscore=0 suspectscore=0
- phishscore=0 mlxlogscore=407 priorityscore=1501 malwarescore=0 spamscore=0
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2406140001 definitions=main-2407100047
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAA8njmYC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDcwNL3YLkREtL0wrdFPNk0zRL8zSz1KRkJaDqgqLUtMwKsEnRsbW1AIU
+ h1oJZAAAA
+To: Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Isai Gaspar <isaiezequiel.gaspar@nxp.com>, Marek Vasut <marex@denx.de>
+Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Pieterjan Camerlynck <pieterjanca@gmail.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1720592196; l=851;
+ i=pieterjanca@gmail.com; s=20240709; h=from:subject:message-id;
+ bh=pviwYWTgWw3NGArxYhhEFp+fozfsJBF9UBiIPePQypQ=;
+ b=gN6PPOVhY6hcmCR6ePaNQo7jHDwWqhmkx7tGNyHg06AKjZ4k+cJdsEUy8EaLP+3JMZ6lf+ANk
+ yNjDM/+TE/SCvLoefDlQCMrr8s0wXQMpaMLnRum5O8vuyBH5p3EkUP+
+X-Developer-Key: i=pieterjanca@gmail.com; a=ed25519;
+ pk=gSAHfvqQjVhNa1MhUClqbt7d3S+fviKz6FdQVaWFRyM=
+X-Endpoint-Received: by B4 Relay for pieterjanca@gmail.com/20240709 with
+ auth_id=182
+X-Original-From: Pieterjan Camerlynck <pieterjanca@gmail.com>
+Reply-To: pieterjanca@gmail.com
 
-On Tue, Jul 09, 2024 at 11:04:52AM +0200, Krzysztof Kozlowski wrote:
-> On 09/07/2024 11:01, Varadarajan Narayanan wrote:
-> > * Add CPR, RPMPD, OPP table nodes as applicable to IPQ9574 to
-> >   enable CPR functionality on IPQ9574.
-> >
-> > * Bootloader set frequency 792MHz is added to the OPP table to
-> >   the avoid 'need at least 2 OPPs to use CPR' error
-> >
-> > * Remove 1.2GHz as it is not supported in any of the IPQ9574 SKUs.
-> >
-> > Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
->
-> Please use subject prefixes matching the subsystem. You can get them for
-> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-> your patch is touching. For bindings, the preferred subjects are
-> explained here:
-> https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
+This series adds support for NXP PCA9956B to the pca995x driver. This
+chip is similar to the others but has 24 instead of 16 outputs and a
+slightly different register layout. Datasheet available at [1].
 
-Sorry. Have posted V6 rebased on top of Konrad's latest version
-and rectifying the subject prefix. Please take a look.
+[1]: https://www.nxp.com/docs/en/data-sheet/PCA9956B.pdf
 
-Thanks
-Varada
+Signed-off-by: Pieterjan Camerlynck <pieterjanca@gmail.com>
+---
+Pieterjan Camerlynck (2):
+      dt-bindings: leds: pca995x: Add new nxp,pca9956b compatible
+      leds: leds-pca995x: Add support for NXP PCA9956B
+
+ .../devicetree/bindings/leds/nxp,pca995x.yaml      |  6 +-
+ drivers/leds/leds-pca995x.c                        | 88 +++++++++++++---------
+ 2 files changed, 56 insertions(+), 38 deletions(-)
+---
+base-commit: 82d01fe6ee52086035b201cfa1410a3b04384257
+change-id: 20240709-pca995x-d7c5f97f6ebc
+
+Best regards,
+-- 
+Pieterjan Camerlynck <pieterjanca@gmail.com>
+
+
 
