@@ -1,238 +1,117 @@
-Return-Path: <devicetree+bounces-84558-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84559-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64D2D92CBEA
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 09:28:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7898292CC07
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 09:38:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E8AEE1F22386
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 07:28:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2E2061F21AF6
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 07:38:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED6C484052;
-	Wed, 10 Jul 2024 07:28:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BCFB83A0D;
+	Wed, 10 Jul 2024 07:38:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NYEFHGoS"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="SFwA4HJa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f178.google.com (mail-pg1-f178.google.com [209.85.215.178])
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7338E83CD9;
-	Wed, 10 Jul 2024 07:28:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B267B85626;
+	Wed, 10 Jul 2024 07:38:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720596501; cv=none; b=WksqgclySs4Rk4AT0cxye1A5wE5N/HSC0fTzuyZnLObV+AT0thGNd3wnhJ4C3C/h5vr1F7mqyORaQHTTAcJBTefxl8pUF3nt5E5vtsVScZhY9nRMooNFet1+PGe61ZiUGb/4QVed6+cebft7oaEgRaD77bqw0yftuHsnbUgOJyU=
+	t=1720597110; cv=none; b=VaDm0POu4/mpHXsDx1EV/qEGMqqfOcZPR5dFim5NHpl6ku5XF3I4lxQBDaJGqwLIAMQgV/y3jR5ZmJbC9gvDJatqPTpGZtcFIU3qIQ0H0hgXLmn6QzxIm6qiXLh5SOOP0c18vPnj+bu5NU/SolcmgEqeQP5pu7yL6ZILfr2slbg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720596501; c=relaxed/simple;
-	bh=xLrXFMCa+ZVf2BoMI1TvIQ2l4PsrXNPhP1XvRjPpC3E=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=L5jv9j+uZy88SwZVUuMEFpxyxyvNRfX5ro8TpSpDr6Cb5Z50XwZCtQk/2e/m7/+z6n3NKHc01aBa1t2aF/WklKXfQQDLJ8gBfcaRRu9JO5ZRlHjx52dXwq8ig4bx+UJhgknjZdru40TuOJhb5+21WUXRqU9DszRsIexT+0AgWNQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NYEFHGoS; arc=none smtp.client-ip=209.85.215.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f178.google.com with SMTP id 41be03b00d2f7-6e7e23b42c3so3165576a12.1;
-        Wed, 10 Jul 2024 00:28:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1720596500; x=1721201300; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=/zjRVa3Uqe4dlMlnLz1HXHc8gPRm1KW7opYsvONaNGg=;
-        b=NYEFHGoSHQtu76hEVn4FJX3DOmil/yiPOcH6x+4Xd3EP4cWw03g42v3DbtQTLEoE9j
-         q8DnfCn5waZ1LpYOZOqF/L1WqPQdkwRgTC4k53DWqut8kN+Imfs1b+0KmK53QKLvlvet
-         qP8bph2C4l3PCLh16nmIsGR+kWj01/rtW8BnqQxMPc9nopxlX4JTBrJ2bHX6bbJvdZKA
-         uXcTQ4xM8pl2oRquPhGDUlvZa1sRmClYnrH9ARgAxnUfkg4KkJwXMbwAXQYTUsNPDFjp
-         F69/OXdNsKvhte9I9OattYjBCBEZbmdvx7FWZIYFNAcIPjHO6zNzsFuZZBalyBYAT3cR
-         3kuQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720596500; x=1721201300;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/zjRVa3Uqe4dlMlnLz1HXHc8gPRm1KW7opYsvONaNGg=;
-        b=oZLVFvTprBEhmtBlVPF9Sytt9z5NM49i55AE93qJmkqdsK2F/89/EqcAwrkcNF2pD+
-         Ft567cHiI/69I7g/B1uhJvYQP/SU9HckVzU+LNJbCEovZzMUDecnMqY2hKQ/Vs+c7GiT
-         +XHO3PNJShqfVsWBnO//yl78bnMCoBZb6pf5Xcu/Kl4+BaSQ1cle0GN1DaME9+w+g7rE
-         QVteOYNL02os9XLZ+11T4ybG8zkdnF1iOn3tclqCFU6PwtD2kAg24GilBf9VPCvFfGNE
-         pVnHGfBNTYr8jdn+59d5okLMVsJyFyw8OTBIJ/pEuyrqB8UaXAD5aEmjanpMxfIK6b5M
-         lV9w==
-X-Forwarded-Encrypted: i=1; AJvYcCV/slI865McXxjy20ZoA1trS+SiMAxV4AELV6FSOXFTXlSksP6dO53Hy2cwQE0lQL/M7P1b9zcxaRbihBJF+/GKolbEEPIIdG7Hzj4DlwVkGczP8tMXL3zBM50e8Z1O8c96g45k403gA/MAvxbuSvmmO/qir4F/cI3eCVWerEllv9xN4zQM
-X-Gm-Message-State: AOJu0Yyjjh/0GCaYAc08qi6v7Km0sbGsEb2gMNUuba0rFFCVcexQ8pF1
-	AJNENdAc8PiG74C65T5+lChL0GwBBJq9hrYhXk1cBJ0ZkR+ZZdc1
-X-Google-Smtp-Source: AGHT+IFu0qG2le5/zbstuRM/nVLLnScMXOcToJf4iu1XEgBAZVxL4GTxdNfBD3Wm7sxWWCa+RNKpZg==
-X-Received: by 2002:a05:6a20:9e4a:b0:1be:c3dd:642a with SMTP id adf61e73a8af0-1c2982512f3mr5285279637.37.1720596499433;
-        Wed, 10 Jul 2024 00:28:19 -0700 (PDT)
-Received: from fedora.. ([45.118.158.79])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2ca34e89d46sm3074678a91.27.2024.07.10.00.28.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Jul 2024 00:28:19 -0700 (PDT)
-From: Animesh Agarwal <animeshagarwal28@gmail.com>
-To: 
-Cc: Animesh Agarwal <animeshagarwal28@gmail.com>,
-	Daniel Baluta <daniel.baluta@nxp.com>,
-	David Rhodes <david.rhodes@cirrus.com>,
-	Richard Fitzgerald <rf@opensource.cirrus.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1720597110; c=relaxed/simple;
+	bh=4ggLPVsp/ySWhRBTEdtIVM++k6xstOToW6SYy1qspNc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WqSWX7bqR4PYF2Mco2lkoFUy5Bwdw3Vv/9+r3qo0W+Ve0N5/Sk38/MbrAYvqMCXPigGrBfVmSOHvjWUS+KjvyeYLNA0Df3ZF4ge0WxNFbLf7T/iJbcyKYqOzoNH+/BE29SByetP0QGdA80VkWcg5Jk3R9QYlihynQ+EjJlMluQQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=SFwA4HJa; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from francesco-nb (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+	by mail11.truemail.it (Postfix) with ESMTPA id 7953D1F931;
+	Wed, 10 Jul 2024 09:38:15 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1720597096;
+	bh=m+7eG5SulmxARql1rXta82f53cuxh3ObNVc6xY7pOyY=; h=From:To:Subject;
+	b=SFwA4HJaPolOWR9dBffrEa5tMRLLCcpZt3iVkG82DkooGI/u95mV/+au4EhYWp+fQ
+	 deUzcuOcXxcT+Q7a8SuOyJ+xtcu8GbJlm+c7t0yw4Zwk4uKALEC42xNDurX0jbBm6n
+	 KITgPwHiSmQj4Acs8/lxu8JsOTqqIFaYKYpTS6OzF/ygHYO+KdwAqyfM/I+/1ybS5O
+	 grZGCvRHISntTHcEJqc1zzBgM6Eoa9pzT2fOxtqqYCczMnuUlgcRZqwpfS+s36MNvh
+	 C9FLuwZW9gMTjhGBfqqEO/wUpbVXEg2mwwgiqm4tOZK/xSc4OKaC2v5t65YbM/AWMJ
+	 A241MO+oBUp2Q==
+Date: Wed, 10 Jul 2024 09:38:11 +0200
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Logan Bristol <l-bristol@ti.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Bryan Brattlof <bb@ti.com>,
+	Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	patches@opensource.cirrus.com,
-	alsa-devel@alsa-project.org,
-	linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH] ASoC: dt-bindings: cirrus,cs42xx8: Convert to dtschema
-Date: Wed, 10 Jul 2024 12:57:52 +0530
-Message-ID: <20240710072756.99765-1-animeshagarwal28@gmail.com>
-X-Mailer: git-send-email 2.45.2
+Subject: Re: [RFC] arm64: dts: ti: introduce a minimal am642 device tree
+Message-ID: <20240710073811.GA4855@francesco-nb>
+References: <20220321155417.13267-1-bb@ti.com>
+ <55e161d1-face-6958-1d86-8a85b82e8485@kernel.org>
+ <766dceb1-222a-401b-95e3-69b7fb331411@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <766dceb1-222a-401b-95e3-69b7fb331411@ti.com>
 
-Convert the Cirrus Logic CS42448/CS42888 audio CODEC bindings to DT
-schema format. Set power supply properties to required only for CS42888.
+Hello Logan
 
-Cc: Daniel Baluta <daniel.baluta@nxp.com>
-Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
----
- .../bindings/sound/cirrus,cs42xx8.yaml        | 81 +++++++++++++++++++
- .../devicetree/bindings/sound/cs42xx8.txt     | 34 --------
- 2 files changed, 81 insertions(+), 34 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/sound/cirrus,cs42xx8.yaml
- delete mode 100644 Documentation/devicetree/bindings/sound/cs42xx8.txt
+On Tue, Jul 09, 2024 at 11:20:24AM -0500, Logan Bristol wrote:
+> On 3/22/22 13:14, Krzysztof Kozlowski wrote:
+> > On 21/03/2022 16:54, Bryan Brattlof wrote:
+> >> Texas Instrument's am642 is one of many k3 based, low cost, low power,
+> >> chips designed to work in a wide range of applications spanning an even
+> >> wider range of industries that TI is actively developing
+> >>
+> >> With its pin-mux and peripheral rich designs, these chips will likely
+> >> have a multitude of custom device trees that range wildly from one
+> >> another and (hopefully) guarantee an influx of variants into the kernel
+> >> in the coming years
+> >>
+> >> With overlays no longer a thing, I wanted to ask for opinions on how
+> >> we can best help integrate these dt files as they begin to be developed
+> >>
+> >> I also wanted to introduce a skeletonized (nothing but uart) device tree
+> >> to give others a good starting point while developing their projects.
+> > 
+> > Real hardware as DTS please. There is no need to add some skeleton for
+> > specific SoC. What if every SoC goes that way?
+> > 
+> > Feel free to create re-usable components in DTSI ways, still reflecting
+> > some hardware parts.
+> > 
+> 
+> I am working on a project for the AM62 and came across this email thread.
+> 
+> Following Krzysztof's direction, I am wanting to submit a DTSI to serve
+> as a minimal configuration for the existing boards based on the AM62
+> SoC, which are currently defined by bloated DTS files.
+> 
+> This DTSI file can be consumed by other board DTS files to reduce the
+> configuration. Krzysztof, could this be merged upstream?
 
-diff --git a/Documentation/devicetree/bindings/sound/cirrus,cs42xx8.yaml b/Documentation/devicetree/bindings/sound/cirrus,cs42xx8.yaml
-new file mode 100644
-index 000000000000..725b47e82062
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/cirrus,cs42xx8.yaml
-@@ -0,0 +1,81 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/cirrus,cs42xx8.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Cirrus Logic CS42448/CS42888 audio CODEC
-+
-+maintainers:
-+  - patches@opensource.cirrus.com
-+
-+properties:
-+  compatible:
-+    enum:
-+      - cirrus,cs42448
-+      - cirrus,cs42888
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    minItems: 1
-+    maxItems: 2
-+
-+  clock-names:
-+    const: mclk
-+
-+  VA-supply:
-+    description: Analog power supply.
-+
-+  VD-supply:
-+    description: Digital power supply.
-+
-+  VLC-supply:
-+    description: Control port power supply
-+
-+  VLS-supply:
-+    description: Serial port interface power supply.
-+
-+  reset-gpios:
-+    description: This pin is connected to the chip's RESET pin.
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+
-+if:
-+  properties:
-+    compatible:
-+      contains:
-+        const: cirrus,cs42888
-+then:
-+  required:
-+    - VA-supply
-+    - VD-supply
-+    - VLC-supply
-+    - VLS-supply
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      codec@48 {
-+          compatible = "cirrus,cs42888";
-+          reg = <0x48>;
-+          clocks = <&codec_mclk 0>;
-+          clock-names = "mclk";
-+          VA-supply = <&reg_audio>;
-+          VD-supply = <&reg_audio>;
-+          VLS-supply = <&reg_audio>;
-+          VLC-supply = <&reg_audio>;
-+          reset-gpios = <&gpio 1>;
-+      };
-+    };
-diff --git a/Documentation/devicetree/bindings/sound/cs42xx8.txt b/Documentation/devicetree/bindings/sound/cs42xx8.txt
-deleted file mode 100644
-index bbfe39347c20..000000000000
---- a/Documentation/devicetree/bindings/sound/cs42xx8.txt
-+++ /dev/null
-@@ -1,34 +0,0 @@
--CS42448/CS42888 audio CODEC
--
--Required properties:
--
--  - compatible : must contain one of "cirrus,cs42448" and "cirrus,cs42888"
--
--  - reg : the I2C address of the device for I2C
--
--  - clocks : a list of phandles + clock-specifiers, one for each entry in
--    clock-names
--
--  - clock-names : must contain "mclk"
--
--  - VA-supply, VD-supply, VLS-supply, VLC-supply: power supplies for the device,
--    as covered in Documentation/devicetree/bindings/regulator/regulator.txt
--
--Optional properties:
--
--  - reset-gpios : a GPIO spec to define which pin is connected to the chip's
--    !RESET pin
--
--Example:
--
--cs42888: codec@48 {
--	compatible = "cirrus,cs42888";
--	reg = <0x48>;
--	clocks = <&codec_mclk 0>;
--	clock-names = "mclk";
--	VA-supply = <&reg_audio>;
--	VD-supply = <&reg_audio>;
--	VLS-supply = <&reg_audio>;
--	VLC-supply = <&reg_audio>;
--	reset-gpios = <&pca9557_b 1 GPIO_ACTIVE_LOW>;
--};
--- 
-2.45.2
+Can you elaborate a little bit what you meant as bloated dts file? Why
+would you need different DTSI files compared to the existing one?
+Which problem are you trying to solve (make some example, be specific
+please).
+
+My experience with verdin am62 (k3-am62-verdin*dts*) was pretty smooth,
+I was just able to use the SOC dtsi file and use it to define my own
+board (and I had the same good experience with other SOC/Vendors).
+
+Francesco
 
 
