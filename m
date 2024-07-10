@@ -1,344 +1,293 @@
-Return-Path: <devicetree+bounces-84667-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84668-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE59D92D118
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 13:55:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90B7992D127
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 13:58:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 580DCB2234E
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 11:55:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 11C4B1F21289
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 11:58:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4393A191476;
-	Wed, 10 Jul 2024 11:55:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62D59190499;
+	Wed, 10 Jul 2024 11:58:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="S0/0BPQr"
+	dkim=pass (1024-bit key) header.d=pironexGmbH.onmicrosoft.com header.i=@pironexGmbH.onmicrosoft.com header.b="RUhu2P1V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR02-VI1-obe.outbound.protection.outlook.com (mail-vi1eur02on2135.outbound.protection.outlook.com [40.107.241.135])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3544319066E
-	for <devicetree@vger.kernel.org>; Wed, 10 Jul 2024 11:55:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720612504; cv=none; b=e19quE5byJ/AtKZG2MBGuY6V4ja3RHTwMKYoiyt2bBJBil/sXSAxLqmpNWAKpHCDzk+3tg5SpWywWLLpUgG9RVtiZvN9gv0MdLx8CXPFQFsNG4diCwYqO+vepAd1n1t6ptlUpIfr0P+vrIYhyPW1qJCo5P8QsLMtA2JwDQI6n0Q=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720612504; c=relaxed/simple;
-	bh=paVadfwH0SPC30fmPZ75RsUsAuV+09foiM4V9nvyopI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=odlPUrwzZ53umH+qBo6gmUn1z+ackPZYSNhmGtxU96vi2etrE/hYSxuNhJYj+g3Z/czjoC/t4u/qzbcRXR9f0b5VraoDWZlvHz5P1moFL8YJvcK7H3AmRyqY5RrNITBpb2BM6dpmdYReYJKNtbeSz/Ig8nulPVToKaAVQ3Hasyg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=S0/0BPQr; arc=none smtp.client-ip=209.85.128.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-4266fd395eeso14638835e9.3
-        for <devicetree@vger.kernel.org>; Wed, 10 Jul 2024 04:55:01 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9643C190485
+	for <devicetree@vger.kernel.org>; Wed, 10 Jul 2024 11:58:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.241.135
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1720612703; cv=fail; b=axsBeqclluiVOhulbi+l2fuVKTqn64mtYwGoRTPdvIV4E+TG/I1fnuDWDXwXf5FRt48fqZmBxBgaWO5K/2G/f+5mKo80L0YmBBd2UdP6rzHFyTCAIq9K8G3/qDI+SH2vDDZ+eFyS5NyggKcWdsnd1SuFn+P1xz3wki+GcOv0vvY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1720612703; c=relaxed/simple;
+	bh=XMswm2gl9haU9top+k/kYGaPylQCDwsswCh5W7U0u9g=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=gKhSTC8hCyl8PrrNmibIx2wLNDJo9rxKWi6AopPx9iDKWXhb8p44AL00O+ukrxCw0Oa4CNDtjZreIHQYr/kKzaltyFrjrljTiZsuG3pkZaSL8aHPlE/p4idCpAGgeKCMDhUh5yy8KqVLoYd7Pw4/nz0YeKZ5NFm+EnDoMrRN8eU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pironex.com; spf=pass smtp.mailfrom=pironex.com; dkim=pass (1024-bit key) header.d=pironexGmbH.onmicrosoft.com header.i=@pironexGmbH.onmicrosoft.com header.b=RUhu2P1V; arc=fail smtp.client-ip=40.107.241.135
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pironex.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pironex.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ZmQFPpDocp+/+SUAbJHpB96dswqjn82b+OU4qE80NBvti8JrbR/nX3WgivVnTqD9EXnRFW8nozF2jR36Bngsx7hOeCu+XKohrbErpH/GA5mloiDsCxflzJPsqfHFFLjf/FNGm0r75/KiXrpSXLX6BCQp83ZAXhSOSElcWW8OL/CHX7z4Myoe1DiPbbp6DvRCRBQ6ktLAmbtbk1su177i30tkbgSGA5O76DufJZNDJv8AsdXaUs5Utu+9QkVAPJxmWXlnDSS/39Ck1TLRUSq1hjczTdb65zUWJn2DVU2ll1/9Myl3SHSZe6IIt1+vEewBh5W/pD7B7a/8zUqkrW9tMg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=eT8lN9CM7Kk4LTwc6XaoD1jifUxPMarTBxEI/UX8ehs=;
+ b=kxYTgHortnX3Pkol1+8RYw1FEwVYGOecgvEY2FrWCXZHCDBEw1tasukdZAbzm6V8NhzKyl4OxzL1gqAB57pL9AgeQISKhJX3ynJFBPgIJ87bfZ0bTpDJAQYVQGsualAs/gYgkH9hXfsd6BJHWb0b+DTTiZ1Li01kjew1cr5rc3M2yEH6LgHZ4hRabtgB/qAWtfQS8QjW4ckiUSSHZ7d7IwcDADrgZNuIIdCtAPkXkxuBzS3pM3/eYPT/qUQRM7u+4D7nvFZF61UBTGjh6WD6fgzha8IGUsoIh3wpVX/z4xxqSAN/dDOLMoyCEEPGeWlluOu9naF/08m8OtaeqQaODw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=pironex.com; dmarc=pass action=none header.from=pironex.com;
+ dkim=pass header.d=pironex.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1720612499; x=1721217299; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=C10SPalmjZh+3GoQrwVikq0NAz3oJKzoCAEN1f0fq1E=;
-        b=S0/0BPQrVdGO0QeFrgrL/lQ8mQrz7aRzbxLkMCrZuk7T779Qwj5QAIDwJlK52dPD9B
-         jHyxkMZHpElDRmQlimXxWu8ZmxNkLrGu8dQ1EayODg2d3Ag6W+pjeOU2n8fxeFaM2/UW
-         L8gUR78W8atKAF+koXmGZywsKbfCmhNYhQkbM02TZr8xTDcXO5Apxvao5ps63XawOVld
-         ndhbHKPZkcbBvjWj/TU1glvUgwjXAb3ZBLmRrXzotjVqpP2T3EvID8qFVVCFH0UcmC+5
-         JzwZuruTLvJYqj7zwpFQC9hfNaAfsgWTUBjcIg8nHDunwDebUJANuK7o/OhddZoBJ5BP
-         ReRA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720612499; x=1721217299;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=C10SPalmjZh+3GoQrwVikq0NAz3oJKzoCAEN1f0fq1E=;
-        b=ClUGY2bbXflN6MWn2fRp/BlmLMjGZwQbCtN/tUntPCRrs5+zXn6AlNYDmq54r88SFK
-         wL6hGsEmgj/gK7IvohL0g1WY0r3goeDuXdQ9kzpsSa3vsdfnL4G7EnPZaWRs4mKwUaDA
-         BfIcL4sUBZSUeAoAhsM1/lUGhYe5f8VNbXy68y4mecgEMq61LXdWjR7eNdai+XadZ7PE
-         2mEsrH9RxdqH+9ypTWs3L3iLkgwshMYFFdYQlwDmJsuxCAcdQFn/Tu1jemMl+tflSdpy
-         hSi0c4yHT+aQLfdfQZLSuyNpPHVharxWghozYtErYtO0q2MqAEFVO3NBJpPhiXub6z5V
-         yNFw==
-X-Forwarded-Encrypted: i=1; AJvYcCUzCSANmPuht5VRLvsk098JtY2JsoFsbPz3d3qCRWwN5hp+zjglL7Kkw1QP14xhDi6kt3dIGqO5rL4Cv4uCbXUMmouCCpLEUfZQUg==
-X-Gm-Message-State: AOJu0YyBmkRwpKj+vBUYqt2gr0hZaKu4h5AoNcAEbbTFfl8FPemDcmBq
-	W+nFipOrRQXQcxPXUz2cmudKPpbUDkCtfvvJIEx5Qyntkyph7kTPD2deB9642ZE=
-X-Google-Smtp-Source: AGHT+IFL5IETaUe0YovIdcK9CF583iP6dCztB0+V+HV9LmwPvUePVsgxb3uJajDS20oaqgpsEuIA0g==
-X-Received: by 2002:adf:a31c:0:b0:367:8383:62f3 with SMTP id ffacd0b85a97d-367cea73e8emr3947995f8f.28.1720612499504;
-        Wed, 10 Jul 2024 04:54:59 -0700 (PDT)
-Received: from [192.168.0.3] ([176.61.106.227])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-367cde7dedfsm5192357f8f.24.2024.07.10.04.54.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Jul 2024 04:54:59 -0700 (PDT)
-Message-ID: <236cfe43-8321-4168-8630-fb9528f581bd@linaro.org>
-Date: Wed, 10 Jul 2024 12:54:58 +0100
+ d=pironexGmbH.onmicrosoft.com; s=selector2-pironexGmbH-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=eT8lN9CM7Kk4LTwc6XaoD1jifUxPMarTBxEI/UX8ehs=;
+ b=RUhu2P1VqWpCNx2Zx1f4xFfgbaR0NiZpNUskqW+ZWQWy4rPfE3rTwI9VhTzgYPnJ5pd9e79ZWjLD2UfRVSoeKPB3hKi/CuZeqA+wbymQpt+xGTrz6aLsoxqEFMRtiPY1UH1u+sY4TyWQsfONsdgnfb2bgwewdm1Ng8RqZNGUOuY=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=pironex.com;
+Received: from AM0PR10MB3601.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:158::19)
+ by PAXPR10MB5782.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:102:248::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7762.20; Wed, 10 Jul
+ 2024 11:58:16 +0000
+Received: from AM0PR10MB3601.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::4cb2:d40b:7a7d:c0dd]) by AM0PR10MB3601.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::4cb2:d40b:7a7d:c0dd%3]) with mapi id 15.20.7741.033; Wed, 10 Jul 2024
+ 11:58:16 +0000
+Message-ID: <135a99f7-1fa2-417f-ba35-77629b9a84e9@pironex.com>
+Date: Wed, 10 Jul 2024 13:58:14 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: rockchip: Add uart dma names to the SoC dtsi
+ for RK356x
+To: Diederik de Haas <didi.debian@cknow.org>,
+ linux-rockchip@lists.infradead.org
+Cc: robh@kernel.org, krzk+dt@kernel.org, devicetree@vger.kernel.org
+References: <20240710093356.3344056-1-p.puschmann@pironex.com>
+ <5414331.Y6POrrGVKo@bagend>
+ <72e38433-1ed4-460c-9f69-db26b673c441@pironex.com>
+ <18705891.xBnrSCm06O@bagend>
+Content-Language: de-DE, en-US
+From: Philipp Puschmann <p.puschmann@pironex.com>
+In-Reply-To: <18705891.xBnrSCm06O@bagend>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: AM9P193CA0030.EURP193.PROD.OUTLOOK.COM
+ (2603:10a6:20b:21e::35) To AM0PR10MB3601.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:20b:158::19)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 11/13] media: qcom: camss: Add notify interface in camss
- driver
-To: Depeng Shao <quic_depengs@quicinc.com>, rfoss@kernel.org,
- todor.too@gmail.com, mchehab@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: quic_eberman@quicinc.com, linux-media@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, kernel@quicinc.com
-References: <20240709160656.31146-1-quic_depengs@quicinc.com>
- <20240709160656.31146-12-quic_depengs@quicinc.com>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20240709160656.31146-12-quic_depengs@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM0PR10MB3601:EE_|PAXPR10MB5782:EE_
+X-MS-Office365-Filtering-Correlation-Id: a5fad655-e756-43d6-5569-08dca0d79511
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?bDNWSzc3MzhQdVJWaElLRmhUQ1ZHSjVaaVA5VlRLbUFWNDhWRWwvbG9MQ3NL?=
+ =?utf-8?B?dW9kQjJSc0ppN3plaFVXTjN5KzE2ODZGYmYrbFRQTWQ2Y1BCQlVvTDU4bGd5?=
+ =?utf-8?B?eTZoOHdWQnlTRzdNekRhRHVwalZKeDkxQmt1cnc0OFMrYlgrdGthcVpQVUQx?=
+ =?utf-8?B?Q1J5b2RqUnVnamlBbG9UM0FpdmIyNkM5K0Z6d2xzNTlLcTI4MzBJMGQybVJZ?=
+ =?utf-8?B?RDFtQjh5NWZ3SDdSYVF6Vjl5dUdiYjVNMnVMMDdvSkRGM1lYZ3J5aGJYckh0?=
+ =?utf-8?B?cDR1ZjdtNW16ajEwR1pMTzA4cU1XTWZ1b0JsOSswbWt6bWhPS1pJbWtWalhW?=
+ =?utf-8?B?OVBocmNVWis3cjN3R1pHcEUwUkRKUGM5UlJudFB3blN0R3JaeHpSR01OTjVi?=
+ =?utf-8?B?RHlTV1psNXg1UFg0dmVrb0hUTkhhdHlSbUtwMXhTSlRRN3Q1VFJRcUtwazNy?=
+ =?utf-8?B?VEt2QkRXOCtyaFFtTERCT0MyR0xialdDNStON0Y1VHZ1UGYxazBvZENIVzJa?=
+ =?utf-8?B?eVZURThZTXQ3eldZNldwWGk3VG1RL3M0ZTFRTXY1RkpUY25pZXB0M3FST0NF?=
+ =?utf-8?B?bSt0Mm1wVWpZK0plTlYvYkJKUEpDbWhzS2ZvY3lLVnpvMlRsYVpZUjlUN3Fj?=
+ =?utf-8?B?eTFLQmFhdlhuQWhuZnl2KytRS3JKdGFzdktCUCtBTkNuV2k2UFQ3bm9rU2xH?=
+ =?utf-8?B?aWhyOFA1Nzk0K1BSZkFBWlBVWGUxckkvZmlNeUVrcjMvYnQ2NTdPL3hrYkNo?=
+ =?utf-8?B?ZlZMdDYwTzUyQ082SHJVQXloSG5UNkkwaTdvYVBNa1BLdG9XcnNMdU5sR2JQ?=
+ =?utf-8?B?TWdyUFNGZ1VPYzRmaVVReEF3aEZyWHRjMGtDUmlyTkJvTmFEV0NTNjlQdlVa?=
+ =?utf-8?B?dzVFTUg3RlA2TERUaGZJRXRQWnBOQ3pVR01HMFBSa1FhcEsvbWZXb2g0WXBr?=
+ =?utf-8?B?SVlDb2dPaVJZMVZXVUhmdlArMkhaVVBjZExXQnNaZnBibmNQcnF0cU9mellX?=
+ =?utf-8?B?bm5JeDJPd252Wmh2NTR2VGhVSGIvbVlSYjQzY3pDd3cyV3Uza3RBS1k3TFhL?=
+ =?utf-8?B?SFU1QjllVnh0R2p0RmF5cVFxV0ZVQlpYNjkyS1VnTno0T1NTaTU3dVJ4eFIx?=
+ =?utf-8?B?ZlpQTm5PejNQSFRNdXFxa3lOaWFEVHNHT25VeDVnNHRZQ3ZyZEh2RDY0aDAx?=
+ =?utf-8?B?bVRjdUJVcXNHSmxFcjNFZHpMaXBnazlwejZmTjBpUURKTDhRcXd1Zjd1OGNP?=
+ =?utf-8?B?WTJXdWJ3Z2c0WmRJR3lQOXBpZUxQUHJXZW1NeWNaaXRZSlY0VDJyeFdHODg3?=
+ =?utf-8?B?S2cyWVBTOTRxdHN4Nkd2cW1TTk1yeHBsVmFzb1hBeUNKYmdhMlNVQjljcmw3?=
+ =?utf-8?B?ZS9WVFFxVGZsUnRxVWNYUXVYMmd6TWloZVU0a2VjcFNRb3hRMFo1NzlBcGVT?=
+ =?utf-8?B?ZTF2WjRQR2VWU3dCNEFWMFlITmtYNmFDRE1jSXZZZlVIeWFrclI1aTUwU2lo?=
+ =?utf-8?B?bHpadjM5SExmd2dvOWJmRnZlVFpxNGpROXgwUE4xUGV3Q2ROTU9HRUhPNkRa?=
+ =?utf-8?B?dDZ4ODRmSXhjakhPbjFSOUw3ZGdodklONHFqRGhSMmRQUWNyc21Vd1NjdVZB?=
+ =?utf-8?B?eFJCRWZYSGsvYUh5eVJ5SFBFWlFFT2E0RTNFVHpiQjV4d0ZTRTJiOVRTRnZv?=
+ =?utf-8?B?dm0xNEJQTnV2SzhKZTdyVTV0bGxWSXZET1hkS1hBSTA1UGk5MFlEY2pkb2Js?=
+ =?utf-8?Q?qzslg6hVQcXV+lXLII=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR10MB3601.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(366016);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?K1cvbk51Tm1uaStwY1lKSzI3c25qblBRaXRvSGp1MGRORXovRmZZVHdXT0RE?=
+ =?utf-8?B?RU05TlVRZUZpaTByR09MRU9JTG5xL3ZwMTZzeWhsNFZUdG4rQ0FxQW1sNWtx?=
+ =?utf-8?B?elZxRVREbmN5aFJVblVZNWtvM05GdFVKQitVRncwWHVRN043dlJGc3dVUkgv?=
+ =?utf-8?B?aUdpZXBQMytOdS9KdVNPcXZFVGlFeTRGUDJPWjlaM2RBSkxTakhQK1g0WUM4?=
+ =?utf-8?B?Qko1YjBRTGNjblFDVXdqVWwvenU5R3RvZ2dnVU1SSlFFbnRsc3FYT0lRUkg2?=
+ =?utf-8?B?dE94UHNHYkN1Zjl1Qm5YTmhWblI0L0J4KzBSdjJNZm5ENzRVTE03TFFYSC96?=
+ =?utf-8?B?amNwaGtDeElVR0xZZ0JjZ3NFOVhEU21HODVQWVBUSGlwTkFPTk1VM1QyY1NH?=
+ =?utf-8?B?UmJuZTdGeFM5a082WTJZYXh6ZmtlM3pkTWlPNjJaaHpRNEhJamhHVnl6Z1pF?=
+ =?utf-8?B?OEFhdDlhVXJTZEJSSVdoMGxoUmJ3NlRvcWVVendpMUdiSHR0V0tNd1lUQzFU?=
+ =?utf-8?B?VThMa3hkUDQ2WW5IRHZkNGVTb29xbzc3QjJLWTdmTmVhdExTTnZsRS92ZExY?=
+ =?utf-8?B?ZnJnZzJnZCtYc3NMR1g5YWNURnRodW9pT0E1TkhlUWg2USttS1ZucXBSWVlW?=
+ =?utf-8?B?b0hMdkJjeTlFZkNFNTQ2TVlWSXNiUnBSeEhNZXpDbU0yaGpTY25JUWNEelJJ?=
+ =?utf-8?B?MUZsTTNiQUZnNXRuSzJHVmhZb3B0NVQ2YjdTSThQMnVEZjRlR3QvTFk5Sklu?=
+ =?utf-8?B?YTFoOVNjamRNMkVrazlDeWNRVFU4bWgyaEVqa3Y4TEJ5cHNqb1kzNHVjUGMx?=
+ =?utf-8?B?WkwzT1orU0FnQ3hrT1dkdk5OK1h3aE0vOGtFWjRYSGp3ZEM2cFZPekhsRWp2?=
+ =?utf-8?B?RGdEN29ieDNWSXppdnc3cnlNSHNteWMvL2ZNNUVQVlVueUFhck9wcVVUSytT?=
+ =?utf-8?B?eHlFckx0d2xndktYRHFKZjNQOGxuZzE3R1BNVkUyV1AxV052NEliMCtSOGhi?=
+ =?utf-8?B?Rm9FMmxsWmJGcVlBNXJoMFg2RkNGaWZCdE1GL0NnKzhvek90eVNTbUNncEt1?=
+ =?utf-8?B?d0FNT2J2am1naUJ4TWEvMUpnQjlXQTZaR0dqd0l4cnBGcC9RbkFyV0dCZnZa?=
+ =?utf-8?B?TjlERjQ3bjczZ3FEeUgySW1oMUVSdWxvRTJDRmV6cHBlcXNqY2JUdlJETksy?=
+ =?utf-8?B?KzM3RXdaS3N6UEs5cjMyUkE3cEtuMlFuMzJTN0c2cFI5TnV0bXV3MG1Bcy91?=
+ =?utf-8?B?cHN1UjhSYjlDZ0cxdHJzUnhzK2lrYVVMdVQwZm9nakJJUmdER3o3S05DVENL?=
+ =?utf-8?B?UkovRC9IS2NJWk1jUXdLR3lhcTF1MG9NakxMdVBycmk2R01oNlJUdDFwYUhj?=
+ =?utf-8?B?aDZ2RDFvaGI5dGdHYXRENlg1MHNqVHNMRzhld1pPeHpMT0gzWGxSWmoxQVVM?=
+ =?utf-8?B?eTEwZ1BjMDhJNFBpLzc0c1ArWmZNM0pOcnhmS1hsUjNiam5HZlprRmhpWDJm?=
+ =?utf-8?B?Y2V4Rmd2eHZIMGIyNGNNT0RKS0d4b2hvcXFXTnp4ZkcxMmVVTmZhZDFXMUg5?=
+ =?utf-8?B?V2oyUGc2VS8rNVNFTEZCbTYwSUFOb0wreFVZMU15ZkdOSmpMeXM5SmlkeGk1?=
+ =?utf-8?B?WjZpYVU5VUNrVUdFd0R3eTVvMUVIdkxZSzM2NFllV0tRcFZuQzN4ZlBmT0R1?=
+ =?utf-8?B?YnFhS29MeDJXNnV5R3VUbGF2Z3ZSakUvUmsvb2pnVm5qYVRFa01qbndGWlUx?=
+ =?utf-8?B?ZXVFU3lTcXJoSnZORmNVNjZaU3ZwditsSVl6VGs4UFVlT204N3d0WjBWYzdN?=
+ =?utf-8?B?TTVldEpuSkNTRHBwb1ZvMDlIY1BmVFU4THJHcXh5MndGa09IR1h5SEdlR0NB?=
+ =?utf-8?B?UkhzWDlNcmExVU5FY1lEKzlHVWhiUFU4TE8wSTA2Um4zcFBBY0lWWlZORHNp?=
+ =?utf-8?B?c3Z2ZmR5T1Z5K3RnVFhnSUNxVkZYZG5qVkdNQzZUQ01xaFNOZDFyWWhsNElQ?=
+ =?utf-8?B?UFdUYlpURC9OMldnVUlkU2NlOXRUWWkremFITWdCSEgyTHFhQUtmdzlWNVFx?=
+ =?utf-8?B?dmtVVUh4RG9IWnBzTFBTa25iYVBXUEtXbmo3QTNkTVVyMmZHelkrU05MNU9s?=
+ =?utf-8?B?UC8wVTVpOHp4NGp0TFBWVUMrWDI5Z2NyQkVnaWxKTDZsSGFXcDJFTVBHcWdk?=
+ =?utf-8?Q?DdlK0canmK1JSohPsJ2nwY+usJh6ByNvQbE1K+lxp5UT?=
+X-OriginatorOrg: pironex.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a5fad655-e756-43d6-5569-08dca0d79511
+X-MS-Exchange-CrossTenant-AuthSource: AM0PR10MB3601.EURPRD10.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jul 2024 11:58:15.9996
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 00aa8e52-eebe-489a-8263-3195e0a468ca
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: nqC82EkSRA2xkL6n57aNhpDA3K3KTF2Tb611+RMeS0Z2TmUHyien7Db6hGes2Jq28FhoovS80vz1cRF3aS7TJQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR10MB5782
 
-On 09/07/2024 17:06, Depeng Shao wrote:
-> The main v4l2 process logic in camss vfe subdev driver, so the vfe driver
-> handles the buf done irq and register update configuration. But the buf
-> done irq and register update configuration have been moved CSID HW in
-> Titan 780 and other new platform, so vfe driver needs to call into CSID
-> driver to configure the register update. And CSID driver also needs to
-> call into vfe driver to notify of the buf done irq.
+
+
+Am 10.07.24 um 12:53 schrieb Diederik de Haas:
+> Hi Philipp,
 > 
-> Adding this notify interface in camss structure to do the subdevs cross
-> communication to decouple CSID and VFE, the subdevs can add an interface
-> to process the message what is routed from other subdevices, then we can
-> process the cross communication easily.
+> On Wednesday, 10 July 2024 12:20:20 CEST Philipp Puschmann wrote:
+>> Am 10.07.24 um 12:02 schrieb Diederik de Haas:
+>>> On Wednesday, 10 July 2024 11:33:56 CEST Philipp Puschmann wrote:
+>>>> DMA names are required by of_dma_request_slave_channel function that is
+>>>> called during uart probe. So to enable DMA for uarts add the names as in
+>>>> the RK3568 TRM.
+>>>
+>>> Setting it on channels without flow control apparently causes issues. See
+>>>
+>>> https://lore.kernel.org/linux-rockchip/20240628120130.24076-1-didi.debian@
+>>> cknow.org/
+>> Ah is see. The only problem that i have is to enable/disable dmas by having
+>> or not having dma-names properties, where the latter case is followed by
+>> kernel error messages. That is very counterintuitive.
 > 
-> Signed-off-by: Depeng Shao <quic_depengs@quicinc.com>
-> ---
->   .../platform/qcom/camss/camss-csid-gen3.c     | 38 +++++++++++++++
->   .../media/platform/qcom/camss/camss-csid.h    |  8 ++++
->   .../media/platform/qcom/camss/camss-vfe-780.c | 29 +++++++++++-
->   drivers/media/platform/qcom/camss/camss-vfe.h |  1 +
->   drivers/media/platform/qcom/camss/camss.c     | 47 +++++++++++++++++++
->   drivers/media/platform/qcom/camss/camss.h     |  9 ++++
->   6 files changed, 130 insertions(+), 2 deletions(-)
+> I forgot to link to my follow up patch where I added the property to
+> some other Pine64 devices and added a cover letter inviting others to
+> add it to other boards too if that seemed appropriate:
+> https://lore.kernel.org/linux-rockchip/20240705163004.29678-2-didi.debian@cknow.org/
 > 
-> diff --git a/drivers/media/platform/qcom/camss/camss-csid-gen3.c b/drivers/media/platform/qcom/camss/camss-csid-gen3.c
-> index 17fd7c5499de..585054948255 100644
-> --- a/drivers/media/platform/qcom/camss/camss-csid-gen3.c
-> +++ b/drivers/media/platform/qcom/camss/camss-csid-gen3.c
-> @@ -312,6 +312,18 @@ static u32 csid_hw_version(struct csid_device *csid)
->   	return hw_version;
->   }
->   
-> +static void csid_reg_update(struct csid_device *csid, int port_id)
-> +{
-> +	csid->reg_update |= REG_UPDATE_RDI(csid, port_id);
-> +	writel_relaxed(csid->reg_update, csid->base + CSID_REG_UPDATE_CMD);
-> +}
-> +
-> +static inline void csid_reg_update_clear(struct csid_device *csid,
-> +					int port_id)
-> +{
-> +	csid->reg_update &= ~REG_UPDATE_RDI(csid, port_id);
-> +}
-> +
->   /*
->    * csid_isr - CSID module interrupt service routine
->    * @irq: Interrupt line
-> @@ -341,6 +353,14 @@ static irqreturn_t csid_isr(int irq, void *dev)
->   		if (csid->phy.en_vc & BIT(i)) {
->   			val = readl_relaxed(csid->base + CSID_CSI2_RDIN_IRQ_STATUS(i));
->   			writel_relaxed(val, csid->base + CSID_CSI2_RDIN_IRQ_CLEAR(i));
-> +
-> +			if (buf_done_val & BIT(BUF_DONE_IRQ_STATUS_RDI_OFFSET + i)) {
-> +				/* For Titan 780, Buf Done IRQ&REG has been moved to CSID from VFE.
-> +				 * Once CSID received Buf Done, need notify this event to VFE.
-> +				 * Trigger VFE to handle Buf Done process.
-> +				 */
-> +				csid->camss->notify(&csid->subdev, CAMSS_MSG_BUF_DONE, (void *)&i);
+> Maybe this applies to 'your' board too?
+> 
+>> Maybe a explicit boolean like dma-broken would be better. That could be
+>> set on dtsi level as default and deleted on board dts if wanted.
+> 
+> That seems to invert the logic, which I believe was considered
+> the 'wrong' solution:
+> 
+> From https://lore.kernel.org/linux-rockchip/18284546.sWSEgdgrri@diego/
+>>>> Enabling dma globally can cause some interesting issues, 
+>>>> have you tested this fully?
+> 
+> Maybe there is a better solution; possibly others will respond too.
+> 
 
-Instead of a generic notify function with an enum passed to a switch 
-lets just have a dedicated function for each functional callback.
+The reason for the suggested inverted logic was that a minimal fix would be to
+provide dma-names on SoC-level dtsi but to explicitly disable dma usage on
+SoC-level too, so that there wouldn't be a need to patch all the boards and
+keep the current SoC-level behaviour (that uart dma is disabled by default).
 
-csid->camss->reg_update_cmd();
-csid->camss->reg_clear_cmd();
 
-We can get rid of a switch and an additional enum that way, plus 
-redundant "event not supported" error checking.
+>> With such a boolean we could also prevent the misleading
+>> "dma-names property of" error message and
+>> replace it with a hint that dma is disabled on purpose.
+> 
+> Given that you're now at least the 4th person trying this, I guess
+> a hint 'somewhere' would be beneficial.
+> I do not know if the error message itself would be considered misleading
+> and if something should be done about that.
 
-> +			}
->   		}
->   
->   	val = 1 << IRQ_CMD_CLEAR;
-> @@ -434,6 +454,23 @@ static void csid_subdev_init(struct csid_device *csid)
->   	csid->testgen.nmodes = CSID_PAYLOAD_MODE_NUM_SUPPORTED_GEN2;
->   }
->   
-> +static void csid_subdev_process_msg(struct csid_device *csid, unsigned int msg_type, void *arg)
-> +{
-> +	int msg_data = *(int *)arg;
-> +
-> +	switch (msg_type) {
-> +	case CAMSS_MSG_RUP:
-> +		csid_reg_update(csid, msg_data);
-> +		break;
-> +	case CAMSS_MSG_RUP_CLEAR:
-> +		csid_reg_update_clear(csid, msg_data);
-> +		break;
-> +	default:
-> +		dev_err(csid->camss->dev, "NOT Supported EVT Type\n");
-> +		break;
-> +	}
-> +}
-> +
->   const struct csid_hw_ops csid_ops_gen3 = {
->   	.configure_stream = csid_configure_stream,
->   	.configure_testgen_pattern = csid_configure_testgen_pattern,
-> @@ -442,4 +479,5 @@ const struct csid_hw_ops csid_ops_gen3 = {
->   	.reset = csid_reset,
->   	.src_pad_code = csid_src_pad_code,
->   	.subdev_init = csid_subdev_init,
-> +	.process_msg = csid_subdev_process_msg,
->   };
-> diff --git a/drivers/media/platform/qcom/camss/camss-csid.h b/drivers/media/platform/qcom/camss/camss-csid.h
-> index ae5b6b0dc0ea..714a8db855fd 100644
-> --- a/drivers/media/platform/qcom/camss/camss-csid.h
-> +++ b/drivers/media/platform/qcom/camss/camss-csid.h
-> @@ -152,6 +152,14 @@ struct csid_hw_ops {
->   	 * @csid: CSID device
->   	 */
->   	void (*subdev_init)(struct csid_device *csid);
-> +
-> +	/*
-> +	 * process_msg - receive message from other sub device
-> +	 * @csid: CSID device
-> +	 * @evt_type: event type
-> +	 * @arg: arguments
-> +	 */
-> +	void (*process_msg)(struct csid_device *csid, unsigned int evt_type, void *arg);
->   };
->   
->   struct csid_subdev_resources {
-> diff --git a/drivers/media/platform/qcom/camss/camss-vfe-780.c b/drivers/media/platform/qcom/camss/camss-vfe-780.c
-> index abef2d5b9c2e..3279fe53b987 100644
-> --- a/drivers/media/platform/qcom/camss/camss-vfe-780.c
-> +++ b/drivers/media/platform/qcom/camss/camss-vfe-780.c
-> @@ -131,13 +131,23 @@ static void vfe_wm_update(struct vfe_device *vfe, u8 wm, u64 addr,
->   
->   static void vfe_reg_update(struct vfe_device *vfe, enum vfe_line_id line_id)
->   {
-> -	/* TODO: Add register update support */
-> +	int port_id = line_id;
-> +
-> +	/* RUP(register update) registers has beem moved to CSID in Titan 780.
-> +	 * Notify the event of trigger RUP.
-> +	 */
-> +	vfe->camss->notify(&vfe->line[line_id].subdev, CAMSS_MSG_RUP, (void *)&port_id);
->   }
->   
->   static inline void vfe_reg_update_clear(struct vfe_device *vfe,
->   					enum vfe_line_id line_id)
->   {
-> -	/* TODO: Add register update clear support */
-> +	int port_id = line_id;
-> +
-> +	/* RUP(register update) registers has beem moved to CSID in Titan 780.
-> +	 * Notify the event of trigger RUP clear.
-> +	 */
-> +	vfe->camss->notify(&vfe->line[line_id].subdev, CAMSS_MSG_RUP_CLEAR, (void *)&port_id);
->   }
->   
->   /*
-> @@ -390,6 +400,20 @@ static void vfe_subdev_init(struct device *dev, struct vfe_device *vfe)
->   	vfe->video_ops = vfe_video_ops_780;
->   }
->   
-> +static void vfe_subdev_process_msg(struct vfe_device *vfe, unsigned int msg_type, void *arg)
-> +{
-> +	int port_id = *(int *)arg;
-> +
-> +	switch (msg_type) {
-> +	case CAMSS_MSG_BUF_DONE:
-> +		vfe_buf_done(vfe, port_id);
-> +		break;
-> +
-> +	default:
-> +		break;
-> +	}
-> +}
-> +
->   const struct vfe_hw_ops vfe_ops_780 = {
->   	.global_reset = NULL,
->   	.hw_version = vfe_hw_version,
-> @@ -401,4 +425,5 @@ const struct vfe_hw_ops vfe_ops_780 = {
->   	.vfe_enable = vfe_enable,
->   	.vfe_halt = vfe_halt,
->   	.vfe_wm_stop = vfe_wm_stop,
-> +	.process_msg = vfe_subdev_process_msg,
->   };
-> diff --git a/drivers/media/platform/qcom/camss/camss-vfe.h b/drivers/media/platform/qcom/camss/camss-vfe.h
-> index 10e2cc3c0b83..a8b09ce9941b 100644
-> --- a/drivers/media/platform/qcom/camss/camss-vfe.h
-> +++ b/drivers/media/platform/qcom/camss/camss-vfe.h
-> @@ -115,6 +115,7 @@ struct vfe_hw_ops {
->   	int (*vfe_halt)(struct vfe_device *vfe);
->   	void (*violation_read)(struct vfe_device *vfe);
->   	void (*vfe_wm_stop)(struct vfe_device *vfe, u8 wm);
-> +	void (*process_msg)(struct vfe_device *vfe, unsigned int msg_type, void *arg);
->   };
->   
->   struct vfe_isr_ops {
-> diff --git a/drivers/media/platform/qcom/camss/camss.c b/drivers/media/platform/qcom/camss/camss.c
-> index 1f1f44f6fbb2..abeb0918e47d 100644
-> --- a/drivers/media/platform/qcom/camss/camss.c
-> +++ b/drivers/media/platform/qcom/camss/camss.c
-> @@ -2202,6 +2202,52 @@ static void camss_genpd_cleanup(struct camss *camss)
->   	dev_pm_domain_detach(camss->genpd, true);
->   }
->   
-> +static void camss_notify_msg(struct v4l2_subdev *sd,
-> +			unsigned int msg_type, void *arg)
-> +{
-> +	struct v4l2_device *v4l2_dev = sd->v4l2_dev;
-> +	struct camss *camss = to_camss(v4l2_dev);
-> +	struct vfe_device *vfe;
-> +	struct vfe_line *vfe_line;
-> +	struct csid_device *csid;
-> +	int evt_data = *(int *)arg;
-> +
-> +	switch (msg_type) {
-> +	case CAMSS_MSG_BUF_DONE:
-> +		csid = v4l2_get_subdevdata(sd);
-> +		vfe = &(camss->vfe[csid->id]);
-> +		if (vfe->res->hw_ops->process_msg)
-> +			vfe->res->hw_ops->process_msg(vfe,
-> +				CAMSS_MSG_BUF_DONE, (void *)&evt_data);
-> +		break;
-> +
-> +	case CAMSS_MSG_RUP:
-> +		vfe_line = v4l2_get_subdevdata(sd);
-> +		vfe = to_vfe(vfe_line);
-> +		csid = &(camss->csid[vfe->id]);
-> +
-> +		if (csid->res->hw_ops->process_msg)
-> +			csid->res->hw_ops->process_msg(csid,
-> +				CAMSS_MSG_RUP, (void *)&evt_data);
-> +		break;
-> +
-> +	case CAMSS_MSG_RUP_CLEAR:
-> +		vfe_line = v4l2_get_subdevdata(sd);
-> +		vfe = to_vfe(vfe_line);
-> +		csid = &(camss->csid[vfe->id]);
-> +
-> +		if (csid->res->hw_ops->process_msg)
-> +			csid->res->hw_ops->process_msg(csid,
-> +				CAMSS_MSG_RUP_CLEAR, (void *)&evt_data);
-> +
-> +		break;
-> +
-> +	default:
-> +		dev_err(camss->dev, "Not supported evt type\n");
-> +		break;
-> +	}
-> +}
+The error message itself is okay in the case we actually want to use dma, but
+it's misleading if we disable dma on purpose through not providing dma-names.
 
-Instead of having a central swiss army knife notify() callback these 
-should be CSID or VFE specific callbacks vfe->buf_done() csid->msg_rup() 
-etc.
+So i would prefer a explicit enable/disable switch and handle that one before
+looking for the dma-names.
+> 
+> Cheers,
+>   Diederik
+> 
+>>>> Signed-off-by: Philipp Puschmann <p.puschmann@pironex.com>
+>>>> ---
+>>>>
+>>>>  arch/arm64/boot/dts/rockchip/rk356x.dtsi | 10 ++++++++++
+>>>>  1 file changed, 10 insertions(+)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+>>>> b/arch/arm64/boot/dts/rockchip/rk356x.dtsi index
+>>>> d8543b5557ee..4ae40661ca6a
+>>>> 100644
+>>>> --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+>>>> +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+>>>> @@ -489,6 +489,7 @@ uart0: serial@fdd50000 {
+>>>>
+>>>>  		clocks = <&pmucru SCLK_UART0>, <&pmucru PCLK_UART0>;
+>>>>  		clock-names = "baudclk", "apb_pclk";
+>>>>  		dmas = <&dmac0 0>, <&dmac0 1>;
+>>>>
+>>>> +		dma-names = "tx", "rx";
+>>>>
+>>>>  		pinctrl-0 = <&uart0_xfer>;
+>>>>  		pinctrl-names = "default";
+>>>>  		reg-io-width = <4>;
+>>>>
+>>>> @@ -1389,6 +1390,7 @@ uart1: serial@fe650000 {
+>>>>
+>>>>  		clocks = <&cru SCLK_UART1>, <&cru PCLK_UART1>;
+>>>>  		clock-names = "baudclk", "apb_pclk";
+>>>>  		dmas = <&dmac0 2>, <&dmac0 3>;
+>>>>
+>>>> +		dma-names = "tx", "rx";
+>>>>
+>>>>  		pinctrl-0 = <&uart1m0_xfer>;
+>>>>  		pinctrl-names = "default";
+>>>>  		reg-io-width = <4>;
+>>>>
+>>>> ...
+> 
 
----
-bod
+-- 
+Philipp Puschmann, M.Sc.
+Softwareentwicklung
+
+pironex GmbH
+Stangenland 4
+18146 Rostock
+www.pironex.de
+
+Tel.:   +49 (0) 381 7006 08 44
+E-Mail: p.puschmann@pironex.com
+Firma:  +49 (0) 381 70 06 08 0
+Fax:    +49 (0) 381 49 68 02 77
+Web:    http://www.pironex.de
 
