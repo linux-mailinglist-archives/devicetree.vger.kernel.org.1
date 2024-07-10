@@ -1,77 +1,77 @@
-Return-Path: <devicetree+bounces-84774-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84775-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81F6292D8D5
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 21:13:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CC4192D8DB
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 21:13:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 387461F25A76
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 19:13:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 119771F25F8A
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 19:13:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AFC4197556;
-	Wed, 10 Jul 2024 19:13:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B35F19882C;
+	Wed, 10 Jul 2024 19:13:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="eSorft9+"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="U6qhzHfk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com [209.85.219.171])
+Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A254E1EB2B
-	for <devicetree@vger.kernel.org>; Wed, 10 Jul 2024 19:13:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1805F197556
+	for <devicetree@vger.kernel.org>; Wed, 10 Jul 2024 19:13:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720638782; cv=none; b=bI35MLtrdngt1wfS08S4+Lfj4XNqwu04JW9lYSUOCOxGC4dkbCtIdvq3nJUz/nS5fW/kX6qGNTx3z3aWJ7WbS7FN1OiPgT//Rtqz+Q5N44yOqYYdsIoYpLUxJu961Q/KzCNYjQb5qUJSQX+scu5IHJLf2mQB8sjAFHCbse9eo6E=
+	t=1720638788; cv=none; b=ZNZIj8CM/y9MLWpDOngOyqCQCjE4d+cZ8QpwwgaTEV5uAz5mV2CVjR5F6Is/E/+ACOfOcqbj/wB5rPAD12flp3FIUz3IxLk45rkhDxKozryxwxZgEpmWhV/qE0gPlhSQI2nXTAgJgTfmFcuxWpSkj0hJjsRDuwn3g5H6mKcVWlE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720638782; c=relaxed/simple;
-	bh=Pdmj45LBJKnt2uBezG0hiQjjXNOAPIeCha+bcVFfCXE=;
+	s=arc-20240116; t=1720638788; c=relaxed/simple;
+	bh=TBqlRU7dCTTmZjQE306rKQdmF8zRVusY86qGMrHNxLw=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ng6fz473B46Dr/jErVNraFp5cd1ww7LfD0ptsq0MJaLr7q8gGMleo1qpZwOOBJmz5lBLu9VtTZLGqBJz6M6dj78XsBEYMmjaBPUW9rhqAF+UxW/6SRYLVMDQrxrImTgqf5Ty04y7+Ssuua+FxbZMt/t982lc9ohHppC+5iFbOCQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=eSorft9+; arc=none smtp.client-ip=209.85.219.171
+	 To:Cc:Content-Type; b=UT3Z8oBR6XAAV4toqLwKohSu2D7jrSkKY4lLH56rY/QE71d6hISjinsYhBHYJMbDzdsyXzaqL7OzpxvtWyQ/YzzC3motjRK6EC8V1ds0xmh7pXLTpuM8rJ3fufuCRzh6uF6tS7V+PJimMI/xQhi9D2AP/pQIJ+0FtaVNCtAr/FA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=U6qhzHfk; arc=none smtp.client-ip=209.85.222.178
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-yb1-f171.google.com with SMTP id 3f1490d57ef6-e035ecb35ffso58196276.2
-        for <devicetree@vger.kernel.org>; Wed, 10 Jul 2024 12:13:00 -0700 (PDT)
+Received: by mail-qk1-f178.google.com with SMTP id af79cd13be357-79f178e6225so6661085a.2
+        for <devicetree@vger.kernel.org>; Wed, 10 Jul 2024 12:13:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1720638777; x=1721243577; darn=vger.kernel.org;
+        d=chromium.org; s=google; t=1720638782; x=1721243582; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=msnytkDAJA+P3orVTeKKvN06RuuVdEWbRMnBWzLAFIc=;
-        b=eSorft9+hvWniIqPk+YSmUi83e35rK5Lpr6EI5J//9GMs0IB09VfrOHcusTv2DBHXX
-         RPNyDiZSxYcgw0dZtC/T6EC4J8tFVroU5h8huvq6PweQ91gk2PWV9SysUEtuFRlXSP9w
-         nHQz5cz8AwjbJckQozSAV0DdjPAHYRMCxEPMQ=
+        bh=3lzoBY9/yiM7+D5Gb2Lvu+52q3dl18EqlM4F4NkXNe8=;
+        b=U6qhzHfkVSVUvdQTY3FBdCBE5K5iVsfoUACNlE2ttosDQ3MP2jI5hGl5UXzYPpNHtE
+         p93TqFtosZ8cfNTVRmQDTA3KPWpJv5WYrvQOaSZGAwenQ5j1AErrlQ7/JUs/U20lnl5F
+         jf8nKukuKuPvvfoOnHbXhcBVE0Go+x2KdvFNY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720638777; x=1721243577;
+        d=1e100.net; s=20230601; t=1720638782; x=1721243582;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=msnytkDAJA+P3orVTeKKvN06RuuVdEWbRMnBWzLAFIc=;
-        b=Hkirpb6uQ+fFvMZgncBNTJRQH1dy5pffqLQVvwxoK01wp7uLtwcd8ZhhY2uIuQphJK
-         m77FWcJeWfNT4d99uA0DFsfDwMp8QJFqb+JYap00iXAlGcWiUOJ78XFRRB1bfPwwLwU3
-         WMdOSz/cCWY5Sogdey7ubzQ+9C6VuJJ2SD8Yq/HPbJbU8xmjA3v8Ok7s4qBWE6zPe5+X
-         vDvIyG1yl+zMLoHZcDDt5pjwtS7kpDAAFpETxIcwsH1/e0XwhvV6/4QtL+LIesIqVmVD
-         xUQE4wXLkI2k2aEtuFZa8bahDC6/Jkb/VvcKMXxam9fAZxCHI6IupbjHJEN8Ra5MWWIw
-         U6Mw==
-X-Forwarded-Encrypted: i=1; AJvYcCXp0R0UaVC9G449xuoa3UmT30zakqeStLxU2oIjxpU+Qh0gTrVFdezyxeVBbLPs0m2o8PAiinM0ZwVaFttsiRYMRDB1LZNNNLyKyw==
-X-Gm-Message-State: AOJu0YzKtn8GOaX+hWFno8pWbsZFSsoi1AGfJfVh6WLJZ9eGOThK8GOM
-	4p9zAdjsdhG6sq8xDOX68pU25eXBeNDjZpNSxZQK/xvRMp8IEebLiDm6IB1E+tGNLxGbEuvnM4O
-	N1Q==
-X-Google-Smtp-Source: AGHT+IEPYGr9UTI40aQVtieazzdSO4YTT5sxNSMUxOMwNCXF2Z9kbSLk+Z6rS7959AApBvHVq1P8vA==
-X-Received: by 2002:a81:9f10:0:b0:64b:3057:763d with SMTP id 00721157ae682-658eed5fb7cmr65307907b3.21.1720638776911;
-        Wed, 10 Jul 2024 12:12:56 -0700 (PDT)
-Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com. [209.85.160.173])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6b61ba15924sm19291806d6.68.2024.07.10.12.12.55
+        bh=3lzoBY9/yiM7+D5Gb2Lvu+52q3dl18EqlM4F4NkXNe8=;
+        b=B8NmGQskZbCn1YkmE3SAr59AbP05UkMoxprAs0qQ5b2lb7RUI4ymde+eRv9capbUsb
+         q8NRRD7xA7+FAnxQ+xgWq0mEvhslo1J6XhvuqagjQYRszWm7CnMGqFCkp+APY7WwGfsW
+         lIMgNbQAKsDCqisr5b/2lRZ3k0o+TJk1sx+IIN/C++Pb2i3jeH63u3fu0rUMps3V3DNJ
+         WWu+ljyX0opV89gALPNnFDJOwucVxmYZ16+q/RoZ9vTgmDKCl88/xMZ38Lu31rUebvcE
+         72aSpQDJq2ws4V7DAiuifdT0si4NhUvMS+n8Md+wJlcp0GeUn4Xlb1pZncUSKR9h80iZ
+         nwUg==
+X-Forwarded-Encrypted: i=1; AJvYcCVYweoeVREe+3cf7bP2bH9HI1ZJkagWNyiP3Us+iYTQ5d3RxqcArHTQ0gD3bFhEXnNS8XP8TzzAjpS6KUM3p7rGSCKWjHZ4Bt8Wug==
+X-Gm-Message-State: AOJu0YxXWo20BEI/qcLWupKQrKICerUx3F9Vle+w82eYVNpEZee+wiu+
+	D7YNAqnd8af+YJzNEywQs6b7BT3UQeCZkyunFNGdhZieWulSwVVSJJvJBbB+jpc3vv12NkUcufO
+	+7g==
+X-Google-Smtp-Source: AGHT+IEcDS/Fqbm/kAO1NIOO/4ouqDtvTVz2xA4bgFUXFbzp5WLm03ba7E7vShCSgf2poLEKWCPxMA==
+X-Received: by 2002:a05:620a:1445:b0:79f:750:e5df with SMTP id af79cd13be357-79f19ade2dcmr669012685a.66.1720638782139;
+        Wed, 10 Jul 2024 12:13:02 -0700 (PDT)
+Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com. [209.85.160.171])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-79f18ff6903sm221653385a.25.2024.07.10.12.12.57
         for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Jul 2024 12:12:56 -0700 (PDT)
-Received: by mail-qt1-f173.google.com with SMTP id d75a77b69052e-44a8b140a1bso63301cf.0
-        for <devicetree@vger.kernel.org>; Wed, 10 Jul 2024 12:12:55 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCXYv9uCmizgvwIpy02JKvt6LNHWqMT4tmfaFDBi/uh4A9wNMltaG/6TBi6RXzdTNxzO0mn6irWbXlZhrAd68dNVRng/J44/ldlkYg==
-X-Received: by 2002:ac8:6a12:0:b0:447:e2f0:4d17 with SMTP id
- d75a77b69052e-44d118939ecmr377451cf.7.1720638775365; Wed, 10 Jul 2024
- 12:12:55 -0700 (PDT)
+        Wed, 10 Jul 2024 12:12:57 -0700 (PDT)
+Received: by mail-qt1-f171.google.com with SMTP id d75a77b69052e-447df43324fso56611cf.1
+        for <devicetree@vger.kernel.org>; Wed, 10 Jul 2024 12:12:57 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUcjaCk+Yy0cbEDEIndn5wCDdITA3OmVMsxzbsimxfem1QMxl5hI//OkJlPcCcNMp/XC+sMzbNqdlV+0AunClGiqStJ9l2npvSnKw==
+X-Received: by 2002:ac8:6b94:0:b0:447:e76a:c04b with SMTP id
+ d75a77b69052e-44d0aa46fd5mr520361cf.10.1720638777116; Wed, 10 Jul 2024
+ 12:12:57 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,14 +79,13 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 References: <20240710084715.1119935-1-yangcong5@huaqin.corp-partner.google.com>
- <20240710084715.1119935-2-yangcong5@huaqin.corp-partner.google.com>
-In-Reply-To: <20240710084715.1119935-2-yangcong5@huaqin.corp-partner.google.com>
+ <20240710084715.1119935-3-yangcong5@huaqin.corp-partner.google.com>
+In-Reply-To: <20240710084715.1119935-3-yangcong5@huaqin.corp-partner.google.com>
 From: Doug Anderson <dianders@chromium.org>
-Date: Wed, 10 Jul 2024 12:12:39 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=Vt+8qqY8AQuKkC2np6z8aHoDpeV1siHKrDe-=Ft8xaMg@mail.gmail.com>
-Message-ID: <CAD=FV=Vt+8qqY8AQuKkC2np6z8aHoDpeV1siHKrDe-=Ft8xaMg@mail.gmail.com>
-Subject: Re: [PATCH v1 1/4] drm/panel: boe-tv101wum-nl6: Break some CMDS into
- helper functions
+Date: Wed, 10 Jul 2024 12:12:45 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=UCvbuMbsuproyyDumezHa7eVQHQt-kWxmMwUmxXgh_Sw@mail.gmail.com>
+Message-ID: <CAD=FV=UCvbuMbsuproyyDumezHa7eVQHQt-kWxmMwUmxXgh_Sw@mail.gmail.com>
+Subject: Re: [PATCH v1 2/4] drm/panel: nt35521: Break some CMDS into helper functions
 To: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
 Cc: quic_jesszhan@quicinc.com, neil.armstrong@linaro.org, mwalle@kernel.org, 
 	linus.walleij@linaro.org, airlied@gmail.com, dmitry.baryshkov@linaro.org, 
@@ -100,13 +99,12 @@ Hi,
 On Wed, Jul 10, 2024 at 1:47=E2=80=AFAM Cong Yang
 <yangcong5@huaqin.corp-partner.google.com> wrote:
 >
-> hj110iz-01a and tv110c9m-ll3 both nt36523 controller, and they have
-> some common cmds, so let's break them into helper functions.
+> Break select page cmds into helper functions.
 >
 > Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
 > ---
->  .../gpu/drm/panel/panel-boe-tv101wum-nl6.c    | 190 ++++++------------
->  1 file changed, 63 insertions(+), 127 deletions(-)
+>  .../panel/panel-sony-tulip-truly-nt35521.c    | 29 ++++++++++++++-----
+>  1 file changed, 21 insertions(+), 8 deletions(-)
 
 Reviewed-by: Douglas Anderson <dianders@chromium.org>
 
