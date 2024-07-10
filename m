@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-84614-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84615-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBD2892CED4
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 12:05:53 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5517C92CEDF
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 12:09:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 05B0B1C21F00
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 10:05:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A6E3EB26AF0
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 10:09:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17B4318FA32;
-	Wed, 10 Jul 2024 10:05:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3169818FA32;
+	Wed, 10 Jul 2024 10:09:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gd9NeJ1V"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JnD3ha88"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDA558288F;
-	Wed, 10 Jul 2024 10:05:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0602F43156;
+	Wed, 10 Jul 2024 10:09:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720605944; cv=none; b=o9tXHwq4kCbXUIlCGBGXWNibtm7MoRLe0q03LKDCUrvocqcf4yytobMxekJynOOXjFd9qKuXoPZg7u6kxxKEpRGAy+fvhQ42N8cF+NmBVkJdy6qFWeia7TXl6doztRYjyoWsYpXt2ViEC3DJ/Dxqu+S5y/EItU2M1CbTw2kDw9M=
+	t=1720606168; cv=none; b=jY4H7QI9jFLXPper5R9iRlfyj3oKNhePUCRGenwmYkMaXUbHZM7OCuUjtrPZIy1HieFZeo7nvMKYB6TpajHdyfO9F0Jqv8+I+BSzrLBu6pFCvwhJ22F9pJVd+rS6jiXx7ds1B/lzMv/5sPStqb5g5ncU+vURE73wnTyVM9YOKik=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720605944; c=relaxed/simple;
-	bh=WseIQlHNbc9vSw3sBMfgBfqjHy6gFXtvzDiFsRdb6UU=;
+	s=arc-20240116; t=1720606168; c=relaxed/simple;
+	bh=YeOOqgqihShtVaR4aobEpHkV+3/ihbCPBoX+nXP4imc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ubvvULg9UprdEL7PETcN2t4lf5k5geSsy7nyxijBSd3gjG13Lhkc2kvhsZevQF3HNYium+Pd2HqQVZIcbkAr41ugsb1DqsbPYnTyXXV7t9gdt/gMbGF/DOuQBTqQnvjDw/X5BynowORFkkTxSql6hRfKBVHD89rVra5UumMUyQU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gd9NeJ1V; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77500C32781;
-	Wed, 10 Jul 2024 10:05:40 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=RVF2zvFuhFLg6sdk8en0FiVSqbmmnzKeAaFi4DZ36zv5ySQWNhVuRpgHmvhCCdUiPeEQlmZwWebxB92AZjG5L8kxqwzNHlMEhJH6SnXlnlVnZ6rRgqcoaPm3Tx0E0noW0ekYAqMpF8GDuDkzc7/tlGj9/LjMsrSwLJp06o9RQBw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JnD3ha88; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8FD60C32781;
+	Wed, 10 Jul 2024 10:09:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720605943;
-	bh=WseIQlHNbc9vSw3sBMfgBfqjHy6gFXtvzDiFsRdb6UU=;
+	s=k20201202; t=1720606167;
+	bh=YeOOqgqihShtVaR4aobEpHkV+3/ihbCPBoX+nXP4imc=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=gd9NeJ1V8k2X2ErFaBqjxrs1lWzmpOMEmGj4OGnUb798XkWJkGVfW+cjY4nwWRbho
-	 65xLW6a/oTNMr7r4myUf+8WFzaqsILWACha5IgUkQXlnun2KE1GP0iyb7KT1euw0Se
-	 gktb5a420rzV0f7m67yxu5FV/2q5ZIasf6AatUMV2Q8Od8dLP9Z2ab0GGRGswwKUoN
-	 OUsp4Ap4F2nxjHpt1253tVyoWfxGN/b8lmwqHXWw2sFJB7NPBHfDK5wk1aY+E2GY1H
-	 khI48SDN1HqqpOp+QyTDQyy2qd3Cb+r7sbg5r92JrkGX9HyKjv8dfK/Yqhi0TnEUpQ
-	 gHhzTK7vqDywg==
-Message-ID: <55dd9b13-3430-4455-bd67-1575b5ab3f98@kernel.org>
-Date: Wed, 10 Jul 2024 12:05:38 +0200
+	b=JnD3ha88K7DkkntKt9UlcD+9HmgoBYN3T8c0dpyiFyQjy1CKoCrElTXyDlOf/O/n8
+	 +xkitYfn5pc2z73Ucg/upY6bJ4/pwi3QCtJxx6z3olBFpZuqmesY305clciDvsd7j9
+	 vIfPCexDNkfhA98cFOtbjC/hbbEtJLN4f4Mk3tgtXTt7pziQ5gKFTcZ4ausC+5Lisy
+	 KK/B8zAlf+bfzFqiKY0p9EqqEJDlIWzdUVLFuCtSKR2JK7VLHzO59BqB2Cq9vOVymB
+	 VHf676l7/lG6qjUcLK6R22EAFd8ZfGZ5kyg9vvCXLWz3U1h2slJygKavNzWQfU2USX
+	 BQcuKh3WLiI3w==
+Message-ID: <54468cb8-9603-430e-8d09-ba2a243ff552@kernel.org>
+Date: Wed, 10 Jul 2024 12:09:24 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] ASoC: dt-bindings: cirrus,cs4270: Convert to dtschema
-To: Animesh Agarwal <animeshagarwal28@gmail.com>
-Cc: Daniel Baluta <daniel.baluta@nxp.com>,
- David Rhodes <david.rhodes@cirrus.com>,
- Richard Fitzgerald <rf@opensource.cirrus.com>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+Subject: Re: [PATCH 1/2] dt-bindings: iio: humidity: add ENS21x sensor family
+To: Joshua Felmeden <jfelmeden@thegoodpenguin.co.uk>,
+ Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, patches@opensource.cirrus.com,
- alsa-devel@alsa-project.org, linux-sound@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240709184231.125207-1-animeshagarwal28@gmail.com>
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240709-ens21x-v1-0-678521433cdd@thegoodpenguin.co.uk>
+ <20240709-ens21x-v1-1-678521433cdd@thegoodpenguin.co.uk>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,20 +104,76 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240709184231.125207-1-animeshagarwal28@gmail.com>
+In-Reply-To: <20240709-ens21x-v1-1-678521433cdd@thegoodpenguin.co.uk>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 09/07/2024 20:42, Animesh Agarwal wrote:
-> Convert the Cirrus Logic CS4270 audio CODEC bindings to DT schema. Add
-> missing va-supply, vd-supply and vlc-supply properties, because they
-> are already being used in the DTS and the driver for this device.
+On 09/07/2024 18:36, Joshua Felmeden wrote:
+> Add device tree documentation for ENS21x family of temperature and
+> humidity sensors
 > 
-> Cc: Daniel Baluta <daniel.baluta@nxp.com>
-> Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
-> 
+> Signed-off-by: Joshua Felmeden <jfelmeden@thegoodpenguin.co.uk>
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+I believe that's either RESEND or v2, so you are supposed to mark it in
+patch prefix accordingly. If it is v2, then provide also changelog under
+--- or in cover letter.
+
+> ---
+>  .../bindings/iio/humidity/sciosense,ens21x.yaml    | 50 ++++++++++++++++++++++
+>  1 file changed, 50 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/humidity/sciosense,ens21x.yaml b/Documentation/devicetree/bindings/iio/humidity/sciosense,ens21x.yaml
+> new file mode 100644
+> index 000000000000..3140349a58b8
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/humidity/sciosense,ens21x.yaml
+> @@ -0,0 +1,50 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/humidity/sciosense,ens21x.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ScioSense ENS21x temperature and humidity sensor
+> +
+> +maintainers:
+> +  - Joshua Felmeden <jfelmeden@thegoodpenguin.co.uk>
+> +
+> +description: |
+> +  Temperature and Humidity sensor.
+> +
+> +  Datasheet:
+> +    https://www.sciosense.com/wp-content/uploads/2024/04/ENS21x-Datasheet.pdf
+> +    https://www.sciosense.com/wp-content/uploads/2023/12/ENS210-Datasheet.pdf
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - sciosense,ens210
+> +      - sciosense,ens210a
+> +      - sciosense,ens211
+> +      - sciosense,ens212
+> +      - sciosense,ens213a
+> +      - sciosense,ens215
+
+Driver suggests these are compatible, so I would normally expect using
+one as fallback for others.
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+
+Missing supply.
+
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +unevaluatedProperties: false
+
+This must be additionalProperties instead.
 
 Best regards,
 Krzysztof
