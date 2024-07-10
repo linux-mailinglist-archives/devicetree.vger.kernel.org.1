@@ -1,155 +1,136 @@
-Return-Path: <devicetree+bounces-84779-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84777-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1155592D8F4
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 21:20:26 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48B4392D8E3
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 21:15:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 351191C21015
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 19:20:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E3E331F26735
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 19:15:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7E3D197A90;
-	Wed, 10 Jul 2024 19:20:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EAD4194C73;
+	Wed, 10 Jul 2024 19:15:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="muC4ov7P"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="zz9Kyvc8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f44.google.com (mail-io1-f44.google.com [209.85.166.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74A37196D81
-	for <devicetree@vger.kernel.org>; Wed, 10 Jul 2024 19:20:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D4AA19415C;
+	Wed, 10 Jul 2024 19:15:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720639219; cv=none; b=nbZqMTyyl4oOmMFPWxSvrtkqjYnQLu1HSYrmlgQ845dIxFpUQN2bN6XbGZwelJoffAcrL2/5XEVeOknWP1H4STrwEKpcQo8ocnEDJ/O5VOsecqgg4EG0vZPsIu+Roi8MPQHevb9YyarfzPkfcMqriRiWP6iEaVEjfJbTINGBYYI=
+	t=1720638949; cv=none; b=f21765FVGfw0FbR6gdRN3Q+e8y+v1SyYBGDfWsZKOKKnU0PONcDWvzcVe8IW0yiTn3NPZu7S/ydCHWxWaWXzwIj1yqGrd7K4JcBpX7UpU4xHHhT9b3eR3BrmsixAUqcmPpo9gSzcXh515MNm9r2QDpMD2FZYTlzk3M//21nWQRs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720639219; c=relaxed/simple;
-	bh=w6Cd9JxYQr3oSlfhrzlHyozKmwFFDkIPTQcG3FZGAZc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=fTmdh29S43XwS2W3AvXFKLVEXYQ6RSGZg6bc2nIEgiP+rc0P/eucKg0MKWy2bDtIYkXdhKwyPFhwOkq1gxn7vHrFtiv41w8F4VkbcP+XaXZUZ73PGbI2Ce5StxZ7UJ/wc9Uu/oo9oRV8Ug51d2mekSTimFyAPsq2623RpWZaIf8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=muC4ov7P; arc=none smtp.client-ip=209.85.166.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-io1-f44.google.com with SMTP id ca18e2360f4ac-7f70a708f8aso5091939f.2
-        for <devicetree@vger.kernel.org>; Wed, 10 Jul 2024 12:20:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1720639217; x=1721244017; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4CJcQA4rqRaCFjiUl3yXOwI538Rxwz2YD9AUd38FoKk=;
-        b=muC4ov7Pe1spJ8cwIU7PBqYfwl02BDwlNhXYZkm71Kmj+zhaPSD24ydvdKRPczRWN6
-         1JPqeoMjkfu+iK7Ka1PLu0P6HpE60XnYDktjTemm1bMuJTdUR+q3QeToaHeopGrnQ7SI
-         y0gyzuWYrBahzlVIZG0NaIOaOdpAussxOEBHs=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720639217; x=1721244017;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4CJcQA4rqRaCFjiUl3yXOwI538Rxwz2YD9AUd38FoKk=;
-        b=V86VNSeCEq5MvFGEkK2gDOy7WmS4U4epMEweJEo/YxAl4GGHZZSWi1IAhe+P7qNwwy
-         dz9RNB+Dnh5+GCxoEFWOtdCp1/s0JSNNZPSWiHDP+ToQGfUHd5HXV9PCvbD9RF6hBrhS
-         rrAsQrtpLjer6toPpTOmt0pur4J9Xh3kqu/gm9TqRrSIeonn1FcjAxI3K8Eia5oEV4Jt
-         w2V27JLuJ8Et6E8U9UWcAQC684SgcZyb2OK0m06OOYGtR1NTjifRdMZvZITZDdamxss0
-         wYpF+/Ht8WE3uf43JGQ9gomqHQYQMlA8pYncttvE+grV37s0/T+7AAqmi8qQW/gkjsnx
-         AwSw==
-X-Forwarded-Encrypted: i=1; AJvYcCUHc/Teijya7KZlVA1wFjwhT86dmaZk9tXSSxWTWlbufCx1sRdVwOaUplzUa4tCjkCRdKv7+pp6dRWIBUnMzqBtoZELPM4DerKntw==
-X-Gm-Message-State: AOJu0YxT+LwSdn8/ngVM9oA1eSlApwzoV5KkoL7XZtQpp7Oypv8gnKJQ
-	BN5enTAh5VmMBBfobTw67zNJHLNWYAra5JAS1HCa5J4SqhcG1FU9oq8mUJf3Tc+QiQb2MLUaW6k
-	aLg==
-X-Google-Smtp-Source: AGHT+IFPUzp6VPKI3tae5hiiwazdAusiBdZMFscuOy9tmkdzOrelx3MhKU+a4m/+0qRg7RW8QZ/Rtw==
-X-Received: by 2002:a05:6602:164b:b0:7fa:e54a:ab3c with SMTP id ca18e2360f4ac-800023b5d18mr927978439f.13.1720639216980;
-        Wed, 10 Jul 2024 12:20:16 -0700 (PDT)
-Received: from mail-il1-f176.google.com (mail-il1-f176.google.com. [209.85.166.176])
-        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-4c0b1af80d9sm1345266173.11.2024.07.10.12.20.16
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Jul 2024 12:20:16 -0700 (PDT)
-Received: by mail-il1-f176.google.com with SMTP id e9e14a558f8ab-38b3543541dso28985ab.0
-        for <devicetree@vger.kernel.org>; Wed, 10 Jul 2024 12:20:16 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCXFtJ7QqP8nOXcmEF5/9944t91XvAvVk0enZnTCGAMK4GARU4Tj64GjvJg7Bhce7xZlVxj7JAOjP7FebU1knkLaWTNW7CoX7qmw4A==
-X-Received: by 2002:ac8:730a:0:b0:447:d7fd:63f with SMTP id
- d75a77b69052e-44d11f851f2mr337601cf.19.1720638789687; Wed, 10 Jul 2024
- 12:13:09 -0700 (PDT)
+	s=arc-20240116; t=1720638949; c=relaxed/simple;
+	bh=XcRXiDRqA+ir3jqrK/0TX5hqWhgGqVuOsPns1Whd1o0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hkX96kQtRW+WqtJiuVJIsPs1lvhQ1pOr78kZQyMhJbGk9wns7IBClUPQYJkSCbN5yBftZ8ALUIaGuvIerEx384X+s700k7t0Q5a3czLr+KWvJeN7jRdeQRzVbSGaaml9EdPym93yfv+jENPGDA4pwH2kd+G8b6xmpOU2BCpke+M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=zz9Kyvc8; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1720638939;
+	bh=XcRXiDRqA+ir3jqrK/0TX5hqWhgGqVuOsPns1Whd1o0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=zz9Kyvc8n8oCcnls3iEZbvezLgnMdf1CbKfrc+yJMK7zd9luGuMYw5A93UeUydrJW
+	 xXU7KD46J7LqS9jwBuwExwP1XPj+p+7FlwWFlF681L2se3YvzYaeL241EAZSYRMgyi
+	 CyjsUo3dvRw/KSyo4omFjJ42t1wKkt30FEbjUYFRCMHeKYzIpUNaKaqGkN8LrNsSmo
+	 Cx8eiTje1VZ+O7InF+MuPsNqQnCTYXZUB1TdoMwPXtsgyHVzmXdebUJZsSBnTmPmv6
+	 AICdiMttq8SN9pVvq3Sz0FhPZ3ahkBWCtNBngmYlFQ9Qj2fNjm2UTfFsVYW7rSfch8
+	 bdVLhuXzT4sfA==
+Received: from notapiano (zone.collabora.co.uk [167.235.23.81])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: nfraprado)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id E729C37810CD;
+	Wed, 10 Jul 2024 19:15:37 +0000 (UTC)
+Date: Wed, 10 Jul 2024 15:15:36 -0400
+From: =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <nfraprado@collabora.com>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, kernel@collabora.com,
+	Macpaul Lin <macpaul.lin@mediatek.com>,
+	Chunfeng Yun <chunfeng.yun@mediatek.com>,
+	Chen-Yu Tsai <wenst@chromium.org>
+Subject: Re: Probe failure of usb controller @11290000 on MT8195 after
+ next-20231221
+Message-ID: <375b2345-657a-4b8f-b5e3-dc16784ffde9@notapiano>
+References: <9fce9838-ef87-4d1b-b3df-63e1ddb0ec51@notapiano>
+ <064935d8-fbda-4eda-b013-8c8fc63b561c@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240710084715.1119935-1-yangcong5@huaqin.corp-partner.google.com>
- <20240710084715.1119935-5-yangcong5@huaqin.corp-partner.google.com> <D2LQJROQYIY3.2Q88EXS8HUDLQ@kernel.org>
-In-Reply-To: <D2LQJROQYIY3.2Q88EXS8HUDLQ@kernel.org>
-From: Doug Anderson <dianders@chromium.org>
-Date: Wed, 10 Jul 2024 12:12:57 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=WAosZPSKdpwR6pjOmiy4hih=jXaMg2guuVgmc+qj-Csw@mail.gmail.com>
-Message-ID: <CAD=FV=WAosZPSKdpwR6pjOmiy4hih=jXaMg2guuVgmc+qj-Csw@mail.gmail.com>
-Subject: Re: [PATCH v1 4/4] drm/panel: ili9806e: Break some CMDS into helper functions
-To: Michael Walle <mwalle@kernel.org>
-Cc: Cong Yang <yangcong5@huaqin.corp-partner.google.com>, quic_jesszhan@quicinc.com, 
-	neil.armstrong@linaro.org, linus.walleij@linaro.org, airlied@gmail.com, 
-	dmitry.baryshkov@linaro.org, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <064935d8-fbda-4eda-b013-8c8fc63b561c@collabora.com>
 
-Hi,
+On Fri, Jan 19, 2024 at 10:12:07AM +0100, AngeloGioacchino Del Regno wrote:
+> Il 18/01/24 19:36, Nícolas F. R. A. Prado ha scritto:
+> > Hi,
+> > 
+> > KernelCI has identified a failure in the probe of one of the USB controllers on
+> > the MT8195-Tomato Chromebook [1]:
+> > 
+> > [   16.336840] xhci-mtk 11290000.usb: uwk - reg:0x400, version:104
+> > [   16.337081] xhci-mtk 11290000.usb: xHCI Host Controller
+> > [   16.337093] xhci-mtk 11290000.usb: new USB bus registered, assigned bus number 5
+> > [   16.357114] xhci-mtk 11290000.usb: clocks are not stable (0x1003d0f)
+> > [   16.357119] xhci-mtk 11290000.usb: can't setup: -110
+> > [   16.357128] xhci-mtk 11290000.usb: USB bus 5 deregistered
+> > [   16.359484] xhci-mtk: probe of 11290000.usb failed with error -110
+> > 
+> > A previous message [2] suggests that a force-mode phy property that has been
+> > merged might help with addressing the issue, however it's not clear to me how,
+> > given that the controller at 1129000 uses a USB2 phy and the phy driver patch
+> > only looks for the property on USB3 phys.
+> > 
+> > Worth noting that the issue doesn't always happen. For instance the test did
+> > pass for next-20240110 and then failed again on today's next [3]. But it does
+> > seem that the issue was introduced, or at least became much more likely, between
+> > next-20231221 and next-20240103, given that it never happened out of 10 runs
+> > before, and after that has happened 5 out of 7 times.
+> > 
+> > Note: On the Tomato Chromebook specifically this USB controller is not connected
+> > to anything.
+> > 
+> > [1] https://linux.kernelci.org/test/case/id/659ce3506673076a8c52a428/
+> > [2] https://lore.kernel.org/all/239def9b-437b-9211-7844-af4332651df0@mediatek.com/
+> > [3] https://linux.kernelci.org/test/case/id/65a8c66ee89acb56ac52a405/
+> > 
+> > Thanks,
+> > Nícolas
+> 
+> Hey Nícolas,
+> 
+> I wonder if this is happening because of async probe... I have seen those happening
+> once in a (long) while on MT8186 as well with the same kind of flakiness and I am
+> not even able to reproduce anymore.
+> 
+> For MT8195 Tomato, I guess we can simply disable that controller without any side
+> effects but, at the same time, I'm not sure that this would be the right thing to
+> do in this case.
+> 
+> Besides, the controller at 11290000 is the only one that doesn't live behind MTU3,
+> but I don't know if that can ring any bell....
 
-On Wed, Jul 10, 2024 at 2:02=E2=80=AFAM Michael Walle <mwalle@kernel.org> w=
-rote:
->
-> On Wed Jul 10, 2024 at 10:47 AM CEST, Cong Yang wrote:
-> > Break select page cmds into helper function.
->
-> Why though? I don't find that anything easier to read. In fact, I
-> deliberately chose not to factor that out into a function. It's just
-> a sequence of magic commands, taken straight from the datasheet. So,
-> I'd like to keep it that way.
+An update on this issue: it looks like it only happens if "xhci-mtk
+11290000.usb" probes before "mtk-pcie-gen3 112f8000.pcie". What they have in
+common is that both of those nodes use phys that share the same t-phy block:
+pcie uses the usb3 phy while xhci uses the usb2 phy. So it seems that some of
+the initialization done by the pcie controller might be implicitly needed by the
+usb controller.
 
-The consensus of previous discussion on the lists was that folks
-agreed that we should, where possible, make it more obvious what these
-magic sequences of commands were doing. IMO separating out the page
-switch command helps. Certainly I'm always happy to hear other
-opinions, though.
+This should help to narrow down the issue and find a proper fix for it.
 
-
-> -michael
->
-> > Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-> > ---
-> >  drivers/gpu/drm/panel/panel-ilitek-ili9806e.c | 14 ++++++++++----
-> >  1 file changed, 10 insertions(+), 4 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/panel/panel-ilitek-ili9806e.c b/drivers/gp=
-u/drm/panel/panel-ilitek-ili9806e.c
-> > index e4a44cd26c4d..68fb9a1a4d80 100644
-> > --- a/drivers/gpu/drm/panel/panel-ilitek-ili9806e.c
-> > +++ b/drivers/gpu/drm/panel/panel-ilitek-ili9806e.c
-> > @@ -35,6 +35,12 @@ struct ili9806e_panel {
-> >       enum drm_panel_orientation orientation;
-> >  };
-> >
-> > +#define ILI9806E_DCS_SWITCH_PAGE     0xff
-> > +
-> > +#define ili9806e_switch_page(ctx, page) \
-> > +     mipi_dsi_dcs_write_seq_multi(ctx, ILI9806E_DCS_SWITCH_PAGE, \
-> > +                                  0xff, 0x98, 0x06, 0x04, (page))
-> > +
-> >  static const char * const regulator_names[] =3D {
-> >       "vdd",
-> >       "vccio",
-> > @@ -227,7 +233,7 @@ static void ili9806e_dsi_remove(struct mipi_dsi_dev=
-ice *dsi)
-> >  static void com35h3p70ulc_init(struct mipi_dsi_multi_context *ctx)
-> >  {
-> >       /* Switch to page 1 */
-> > -     mipi_dsi_dcs_write_seq_multi(ctx, 0xff, 0xff, 0x98, 0x06, 0x04, 0=
-x01);
-> > +     ili9806e_switch_page(ctx, 0x01);
-
-I think with your change you should remove the "Switch to page X"
-comments since they're now obvious. Other than that, I'm happy with:
-
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+Thanks,
+Nícolas
 
