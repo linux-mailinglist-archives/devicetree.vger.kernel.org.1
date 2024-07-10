@@ -1,91 +1,90 @@
-Return-Path: <devicetree+bounces-84767-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84768-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 443E092D789
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 19:35:56 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF21892D78D
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 19:36:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F32B228186F
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 17:35:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 22978B277C8
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 17:36:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3121D194A62;
-	Wed, 10 Jul 2024 17:35:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92880194C6B;
+	Wed, 10 Jul 2024 17:35:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="PoqUm5Wt"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="nGpVb0/t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
+Received: from mail-qk1-f177.google.com (mail-qk1-f177.google.com [209.85.222.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 923A334545
-	for <devicetree@vger.kernel.org>; Wed, 10 Jul 2024 17:35:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02198191F8E
+	for <devicetree@vger.kernel.org>; Wed, 10 Jul 2024 17:35:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720632951; cv=none; b=DyJHJ6BZF1lETHLxOzfmguuTxkBHeItT+XsBxOgdD8JwyN/KPlokxdhVabRp5Z8cGCRezGqhQRwKt+iLFuEVwqf/jGO78Cx1SLCJ8rGOlg72P1OPFvyWWSEWklOMcPLEc0NkQDXimaVYcIorF63mFw1cT8evVk5wsuL/tZb+v6s=
+	t=1720632959; cv=none; b=lsvqNwgsytnPRpGraJ4Fv8Nbig+G3WZwdcRWS2rRKI1vsIhRSvI+tTh46Xh9Jp03wiVrovlOyyS4ce5xu9IOGCMuFMm6AqdviEfVgV4ni48dAEHF6DPm1uBDHRdyll32bA+yNN1oOFOJtjtmKwRsHfbct8lkWjZqKM4eSmr08XM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720632951; c=relaxed/simple;
-	bh=qUtJuf7BpW7416xCDEnMAZ4qpPxi046SuSivO4rvOIw=;
+	s=arc-20240116; t=1720632959; c=relaxed/simple;
+	bh=JvlYBD4fzcDp97Xg4Q6bsG021KVmSIAGfMUuM50hu78=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=apP0GHaQhQUi+8SJy8Il5ooDgWy6ARP2neFBe8S8cD8/781mxC+q17xId3+eCXk/N7DspchpwzM18UluvTSXxEAawkm4UaCtN49I/AhjLcjuI7+G283GL1DPWZJlUnUy2sEzogXB8EtC4Zvsq1KwvkAlZqHaIuTyCUz7oqt3/Ew=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=PoqUm5Wt; arc=none smtp.client-ip=209.85.219.172
+	 To:Cc:Content-Type; b=J99AegsPjWCRHHuuMqpGppgFKSW3/lRSfiieVf6jxjsPVziwR7N/oMa7YYqUcK2qttsnJKM1ywPYpEKfzLhZ4H2G9bdGK3TKbgBPH86LrLbV6hPgfFI9w52ca6vTDA+Sw9cHJJqJqJmWQ3JTQwHM1qkCCIV2o8t8y2+fpbrYgaQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=nGpVb0/t; arc=none smtp.client-ip=209.85.222.177
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-e03a0faee1eso6730606276.1
-        for <devicetree@vger.kernel.org>; Wed, 10 Jul 2024 10:35:49 -0700 (PDT)
+Received: by mail-qk1-f177.google.com with SMTP id af79cd13be357-79f178e62d1so1763085a.1
+        for <devicetree@vger.kernel.org>; Wed, 10 Jul 2024 10:35:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1720632945; x=1721237745; darn=vger.kernel.org;
+        d=chromium.org; s=google; t=1720632954; x=1721237754; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=nq9tNUhoBsUEDC1UEIUaCv3t+k06QOX2ENZA+annY9M=;
-        b=PoqUm5WtbpSFgKvx+OFhMCC5edPrcTx1a6ehq9/botlMdxH9B+4MQypr2GzEVMrPzj
-         HQgBqLt8IeDCalcwG+wqpak1sMN3z4jWpodkxEOJZn0yrbXVxVTws51Q89/07qgjp8ng
-         Uo5pzYFGlSu5dcU3SWmc/o0jZXIFqK9mZZ3CM=
+        bh=crXHuoCnWWxv6iDdm0t07OpWrmAQmRLaORcG897D/1M=;
+        b=nGpVb0/tsVXbQ+yGJGB2q81eFfee2nAVw8vUWy+8SdV0zhBzXMSgJ8hpCeMt5N+jA1
+         jrQmGsu1TXAePYl1Fd1q64Zbc7f6GWNmhZEsQCqXTiwWJE0txlTpN1SE2tiV4s3iCteQ
+         PKJ2Gm3ZY+xXjVKACd3nIlJ1rHL3GjUUd8s5A=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720632945; x=1721237745;
+        d=1e100.net; s=20230601; t=1720632954; x=1721237754;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=nq9tNUhoBsUEDC1UEIUaCv3t+k06QOX2ENZA+annY9M=;
-        b=GzfdSopWc0B/vLoBcn+G7QLtVg443r6h7MnwZVedsQCqPcYzFRdcizbW/jc+jJ48o5
-         fLkMp/dVDjth71L7IhI53fdIlQ2ujbsHVbcJxGK3HMPKqGESE2p6t9prij50jj9ibqcv
-         gdU0yHbwhnsp3T47VkNn1yzOQjiKVoChOHV1ikbeyHYGwitXVXjOKqaurPGBfAIBdQOp
-         Nq+WE65BLim5F187d3Nl1rTcm0uQK2Gp+TIbh1vwW1PzOnUGpWCP5iqvRu/tYqK581zH
-         bUuxxGn8xf8woVpkX0KwvgpfSaPEWSSz6++MyO4xZrYl8vvBlBFmP1N6zgCM4GRFP5dg
-         23zw==
-X-Forwarded-Encrypted: i=1; AJvYcCVjUL6ZW5kP+AFGkw20LsRGqUAl/QvVL0bc3nzV8HlwtcjUzO4ak6zMLyV7wiotfxsSwqijOpLYZhvyIs5XQZ+bkLfG+9U/5nw4Fg==
-X-Gm-Message-State: AOJu0YzhDZWJn72wr3fnBfoTrEKvshut6WTskI2tr6s4aJmgYwsWlSdo
-	HWDuda3uTMpxge2P67YXn740D25kxrKFNaJ47f3fy856+ep9tK2tUMvUVyxq/kKy+hnbe5E4Mu4
-	OJQ==
-X-Google-Smtp-Source: AGHT+IGSOnMpGk1rDnRGVPMH3G12c+Q0Z0LpUdC6XWBlGeU6qXmOgBgrQIPxdv2cXZH+s+tcaZiRbg==
-X-Received: by 2002:a25:c54e:0:b0:dfd:ca03:29e4 with SMTP id 3f1490d57ef6-e041b073fa0mr7127768276.29.1720632945641;
-        Wed, 10 Jul 2024 10:35:45 -0700 (PDT)
-Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com. [209.85.160.182])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6b61ba7495csm18788396d6.92.2024.07.10.10.35.44
+        bh=crXHuoCnWWxv6iDdm0t07OpWrmAQmRLaORcG897D/1M=;
+        b=Fg9xdATK5LKL6MrhnJjjRiecxeu0pJUiXashGAzDERrA4A7u2NA++l2bRAOCRvqSoX
+         JoE8CZdO8tngy7pYTudQNN2z9VqKloVMRQ3a4A47Pse8DeFm22eaXAoDjSHXEqMoq7BY
+         47UdlhgBho2CpSEYQVvmNHdD6lvgbD0zKPX3NhwA7ZMjLjCAIc/RSyfjaZq01y3mtkPT
+         EZZiH7BoNTIhvEmlhOqe/Rpv3YlYaNEIhGRme8iZ0e7a0Ixdw15vZo+vusXRw107OMHy
+         GXG9NVy/0D1j9A6bTpBUIxCCzc2eV3VYtl6v3BCCXbGgVdWBeXPihsajOUpBXWuBmB3U
+         vfNA==
+X-Forwarded-Encrypted: i=1; AJvYcCUkr6leub8KX+v3pXWHunom11CrlRpl2JPEMzMV45kh3CXReT/DRca1dH6D1K7khbpb4ooV8sviDRKpySwGmVbuU/3wQ2LQhwSwzg==
+X-Gm-Message-State: AOJu0YxmTFPfdMYrp1Z0uoRGFVRChw++VCyIl+KuVXTjHlQo+bFNbxn2
+	+hEeTjQlk/qErzVEBYci8VfzQaGT5BX+8gIwNsUPUTjRYHwmOQe3swnulgQFaGLihvVrXLfWlWQ
+	pTw==
+X-Google-Smtp-Source: AGHT+IFUFf9W3GJxy4X3xrwc3Y1Bz2f+x5B3S0cAlNw2QUnYnmVlStzcUUlzpETB6NvYiB960KSF+g==
+X-Received: by 2002:a05:620a:1993:b0:79e:fc12:c4e4 with SMTP id af79cd13be357-79f19a1e34emr802350785a.28.1720632954415;
+        Wed, 10 Jul 2024 10:35:54 -0700 (PDT)
+Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com. [209.85.160.170])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-447f9b58da4sm22406151cf.48.2024.07.10.10.35.51
         for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Jul 2024 10:35:44 -0700 (PDT)
-Received: by mail-qt1-f182.google.com with SMTP id d75a77b69052e-44a8b140a1bso24481cf.0
-        for <devicetree@vger.kernel.org>; Wed, 10 Jul 2024 10:35:44 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUPiuOSnP/BhkNUVGluuCT9MeKLkgVgxmpoEF184SERSX3+sQegLCU13EBZBftRHjZWeKrHE0Gxi3GqNZYG+/PrhWlnJCt/lpzFag==
-X-Received: by 2002:ac8:5399:0:b0:447:f3ae:383b with SMTP id
- d75a77b69052e-44b1a14a434mr3218051cf.19.1720632943866; Wed, 10 Jul 2024
- 10:35:43 -0700 (PDT)
+        Wed, 10 Jul 2024 10:35:53 -0700 (PDT)
+Received: by mail-qt1-f170.google.com with SMTP id d75a77b69052e-447f8aa87bfso29971cf.0
+        for <devicetree@vger.kernel.org>; Wed, 10 Jul 2024 10:35:51 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUYgC9PoTbAvRTV4DKR8pXnF95P5Fzks4froHxahCUcJNXr0FQYPajaWM+uJRKxuIE4WlMrPsWU/bKbfjsjpp3QF+mIsoZIGn9mQQ==
+X-Received: by 2002:a05:622a:7604:b0:447:f5de:bd18 with SMTP id
+ d75a77b69052e-44b191f6ac5mr3688571cf.9.1720632951079; Wed, 10 Jul 2024
+ 10:35:51 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240710-x1e80100-crd-backlight-v1-0-eb242311a23e@linaro.org> <20240710-x1e80100-crd-backlight-v1-1-eb242311a23e@linaro.org>
-In-Reply-To: <20240710-x1e80100-crd-backlight-v1-1-eb242311a23e@linaro.org>
+References: <20240710-x1e80100-crd-backlight-v1-0-eb242311a23e@linaro.org> <20240710-x1e80100-crd-backlight-v1-2-eb242311a23e@linaro.org>
+In-Reply-To: <20240710-x1e80100-crd-backlight-v1-2-eb242311a23e@linaro.org>
 From: Doug Anderson <dianders@chromium.org>
-Date: Wed, 10 Jul 2024 10:35:28 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=XJuV12mStW3eUm5MHG8BA9W_fn0skN=BrtmqC+fnCZig@mail.gmail.com>
-Message-ID: <CAD=FV=XJuV12mStW3eUm5MHG8BA9W_fn0skN=BrtmqC+fnCZig@mail.gmail.com>
-Subject: Re: [PATCH 1/5] dt-bindings: display: panel: samsung,atna33xc20:
- Document ATNA45AF01
+Date: Wed, 10 Jul 2024 10:35:39 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=X5rJUNq_QUBf7WMrof+9rh9Jhb5zoqK=Y6jqUUi2Nt3g@mail.gmail.com>
+Message-ID: <CAD=FV=X5rJUNq_QUBf7WMrof+9rh9Jhb5zoqK=Y6jqUUi2Nt3g@mail.gmail.com>
+Subject: Re: [PATCH 2/5] drm/panel: samsung-atna33xc20: Add compatible for ATNA45AF01
 To: Stephan Gerhold <stephan.gerhold@linaro.org>
 Cc: Neil Armstrong <neil.armstrong@linaro.org>, Bjorn Andersson <andersson@kernel.org>, 
 	Konrad Dybcio <konrad.dybcio@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
@@ -101,58 +100,38 @@ Hi,
 On Wed, Jul 10, 2024 at 10:05=E2=80=AFAM Stephan Gerhold
 <stephan.gerhold@linaro.org> wrote:
 >
-> The Samsung ATNA45AF01 panel is an AMOLED eDP panel that has backlight
-> control over the DP AUX channel. While it works almost correctly with the
-> generic "edp-panel" compatible, the backlight needs special handling to
-> work correctly. It is similar to the existing ATNA33XC20 panel, just with
-> a larger resolution and size.
+> The Samsung ATNA45AF01 panel needs exactly the same non-standard power
+> sequence as the Samsung ATNA33XC20 panel for backlight to work properly.
+> Add the new "samsung,atna45af01" compatible to the driver to make it hand=
+le
+> these panels as well.
 >
-> Add a new "samsung,atna45af01" compatible to describe this panel in the D=
-T.
+> While ATNA45AF01 would also work with "samsung,atna33xc20" as a fallback
+> compatible, the original submission of the compatible in commit
+> 4bfe6c8f7c23 ("drm/panel-simple: Add Samsung ATNA33XC20") had the timings
+> and resolution hardcoded. These would not work for ATNA45AF01.
 >
 > Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
 > ---
->  .../devicetree/bindings/display/panel/samsung,atna33xc20.yaml       | 6 =
-+++++-
->  1 file changed, 5 insertions(+), 1 deletion(-)
+>  drivers/gpu/drm/panel/panel-samsung-atna33xc20.c | 1 +
+>  1 file changed, 1 insertion(+)
 >
-> diff --git a/Documentation/devicetree/bindings/display/panel/samsung,atna=
-33xc20.yaml b/Documentation/devicetree/bindings/display/panel/samsung,atna3=
-3xc20.yaml
-> index 765ca155c83a..d668e8d0d296 100644
-> --- a/Documentation/devicetree/bindings/display/panel/samsung,atna33xc20.=
-yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/samsung,atna33xc20.=
-yaml
-> @@ -14,7 +14,11 @@ allOf:
+> diff --git a/drivers/gpu/drm/panel/panel-samsung-atna33xc20.c b/drivers/g=
+pu/drm/panel/panel-samsung-atna33xc20.c
+> index 9a482a744b8c..fd56fd02df87 100644
+> --- a/drivers/gpu/drm/panel/panel-samsung-atna33xc20.c
+> +++ b/drivers/gpu/drm/panel/panel-samsung-atna33xc20.c
+> @@ -333,6 +333,7 @@ static void atana33xc20_remove(struct dp_aux_ep_devic=
+e *aux_ep)
 >
->  properties:
->    compatible:
-> -    const: samsung,atna33xc20
-> +    enum:
-> +      # Samsung 13.3" FHD (1920x1080 pixels) eDP AMOLED panel
-> +      - samsung,atna33xc20
-> +      # Samsung 14.5" WQXGA+ (2880x1800 pixels) eDP AMOLED panel
-> +      - samsung,atna45af01
+>  static const struct of_device_id atana33xc20_dt_match[] =3D {
+>         { .compatible =3D "samsung,atna33xc20", },
+> +       { .compatible =3D "samsung,atna45af01", },
 
-Seems OK, but a few thoughts:
-
-1. Is it worth renaming this file? Something like
-"samsung,atna-oled-panel.yaml"? I'd be interested in DT maintainer
-folks' opinions here.
-
-2. In theory you could make your compatible look like this:
-
-compatible =3D "samsung,atna45af01", "samsung,atna33xc20"
-
-...which would say "I have a 45af01 but if the OS doesn't have
-anything special to do that it would be fine to use the 33xc20
-driver". That would allow device trees to work without the kernel
-changes and would allow you to land the DT changes in parallel with
-the driver changes and things would keep working.
-
-...and, in fact, that would mean you _didn't_ need to add the new
-compatible string to the driver, which is nice.
+As per my response to patch #1, you don't need this change at all if
+you just add a fallback compatible. Later if there is anything special
+we need to do for this panel we can match against it, but right now
+there is no need.
 
 
 -Doug
