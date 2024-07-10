@@ -1,128 +1,125 @@
-Return-Path: <devicetree+bounces-84693-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84696-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A077692D2CD
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 15:30:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 892D192D2E6
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 15:34:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1F4B8B267DB
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 13:30:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 437E4281D3F
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 13:34:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAA15192B91;
-	Wed, 10 Jul 2024 13:30:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 690F1193090;
+	Wed, 10 Jul 2024 13:33:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="d56iI1PX"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="k2TSwLen"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D10B192479
-	for <devicetree@vger.kernel.org>; Wed, 10 Jul 2024 13:29:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEA411922C9;
+	Wed, 10 Jul 2024 13:33:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720618200; cv=none; b=kkjmrie9jZkkArA8/kpgS5yYocfQ9Vv0jiM95O6LIhvzj7nzH6MGqJLeuOLBe3GGjZYRNDpEITHUnFDJphyKfXX6jzyLHxrjsj7PNzulP+I462kW1m1YvtDHoZLs+0FEaikPp0EDNcsLeAUm4XFlAulPzpscn3KVAKAhCiTVCMY=
+	t=1720618431; cv=none; b=E8tlmXdd/T6sSN1w7X54mK2bhxDjNm9T10WHz7LQfFKqsLRkCAFeYssv9oyCu/qr9m/YzeVWVzwuuzrAYgMyjuMvM3If37n/gzDBIUaLPft2pcFw7QzjlVPPmq1QjuSYKpzq0aLtddOOfq+oLfJaiFdvmU4tP1bsCceXL2tUwyM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720618200; c=relaxed/simple;
-	bh=IGZDEaWyCwAa3u7RjvzRimnYIXIX4fHQIBThRXlSSLs=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=QqoFWjEzR9PZuDebifWZhUJGZQ8W+ZytSatVQgecpV0ahReWxD+zDmn5pNkBQao0G2pfUU165K+iBQ4YkKg0/APMqo5zHDebbkGMbJiqWw26JHsu/9bzyjwLNQVlYUvg4k3zhdVLhof1HYfNeE6omFAQffubtF7SQq02L5vuMkI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=d56iI1PX; arc=none smtp.client-ip=209.85.167.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-52ea1a69624so7215265e87.1
-        for <devicetree@vger.kernel.org>; Wed, 10 Jul 2024 06:29:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1720618197; x=1721222997; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=60aav+xK4jpl7xG8YPKnbprg8tIY6Nqk/IZH7bl4w4w=;
-        b=d56iI1PXKTwQdF2N6PtnK5BnF9MX8HZgC0AGsfIAT6RSrsAnZGkYCHgZJ/JdMsOsOS
-         WvpHUb0UaLswWIy8MMOSKHDOsnl8aO0ahfpoOP0zqPmi4Ch2zadu1GDoL1hAIXLn9qbL
-         VqyZjsX71C2YdyfQ1MM3MoFlmBtckPT/9VUxxE8MIXS6aypqF4veQMuCDiKYzzBb7JwP
-         +9/fjBWOU4u9Bcqa4+/KL4qp4agHbtVa6glqLB0E8Bc1WV4GWGimHV2AF8y+A5F3Aekr
-         LL6fzCOekvS6ii87TKi4uV2XZIr8x81jvhBwjce5p+g0IiwkJZyAh7+7nz0GcZTOlD8Z
-         8UiA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720618197; x=1721222997;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=60aav+xK4jpl7xG8YPKnbprg8tIY6Nqk/IZH7bl4w4w=;
-        b=E7QGSjHezqp1iv76eTWRizAOyZgAkYx5Q80GdC13zd1hw+FssATHGDBVTPc0cxOXy3
-         GJyq0a5ADpkJcAR+Eea8hLn9dFq3giYv4eqnIt9VzrD5ENHRWanxol1eG/HClIJBBtLG
-         Qg0QggbojlkAEc4D2cz264g6svJP7OI7zY9VXFf+73AwbaCSu/wcZsbsKXGS5lsEDXAF
-         yGWapQoKFD9+jwch1TCeZfZIhCq4CnQD+x8pgRovMG2d5tqzaf6HUN+rWuvZ5pTaAioP
-         gyrNW7pw44qqDau5DZls9MXdqaJJR+dwPOnv0Tiu1NK2ATlQ3LlVAlUQ6HO0lAlqaLsH
-         2vXA==
-X-Forwarded-Encrypted: i=1; AJvYcCX2G2Wq2SxCP4M8NiwdBLlA9L/xgH5K/x2woZKYhW02E7i3LIMM4A+SFa8T/ksOt42EwOhxxD/Crnzc/BqaaDHL44+BLJ59V4Rdrw==
-X-Gm-Message-State: AOJu0Yw01MIm0FNtMtfgR0b/CsJ9FTnRny48DMmoU8J2yZ5M76wXM2e8
-	JG0PZgHE9XZlhNBntqI/bZJcxYs/w+7aThn+hi3JvKwBqeMBZAGAvEiDQ+xTglk=
-X-Google-Smtp-Source: AGHT+IHBHuYCCPwlgq5edN/L9l0kJT3pRxlv0eRV0p1+UE+pPGfeFREyn6CNWYa3giyYGhc2Ub/T0Q==
-X-Received: by 2002:a05:6512:1285:b0:52c:818c:13b8 with SMTP id 2adb3069b0e04-52eb998fc87mr3918196e87.4.1720618196964;
-        Wed, 10 Jul 2024 06:29:56 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-367cde7e07fsm5304369f8f.17.2024.07.10.06.29.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Jul 2024 06:29:56 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
- airlied@gmail.com, mripard@kernel.org, dianders@google.com, 
- hsinyi@google.com, awarnecke002@hotmail.com, quic_jesszhan@quicinc.com, 
- dmitry.baryshkov@linaro.org, 
- Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20240709134754.28013-1-lvzhaoxiong@huaqin.corp-partner.google.com>
-References: <20240709134754.28013-1-lvzhaoxiong@huaqin.corp-partner.google.com>
-Subject: Re: [PATCH v6 0/5] Support Starry er88577 MIPI-DSI panel
-Message-Id: <172061819595.1968965.12553404194809762882.b4-ty@linaro.org>
-Date: Wed, 10 Jul 2024 15:29:55 +0200
+	s=arc-20240116; t=1720618431; c=relaxed/simple;
+	bh=JxC1b1DOzM6+22LaPEwtC9M+vPgX91o112/b/28+6Ic=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=ODJjfD1LWUW2siq20H9YCn1yXJxuU24QaJ2dSSOPyAavYIW+uGR7yJxLC4OvXd2eN/hyFq/rDy1i0HXIhvcMCwD1NC/83roXWqBDUdNrm6mARtpvnUH7EeJ7MfyVK8Aw2csDUU//MXhFQs0qKPCLf1A8phu1/89uC7w14RQZAvE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=k2TSwLen; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46A7ngLF026708;
+	Wed, 10 Jul 2024 13:33:45 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	/CHTQcGxnfbCSKtvZW1zamqa2/4lL+6xBB0Ei/bCngs=; b=k2TSwLenybgB6JfU
+	GvrIf9Hgr6+yl5QONA8DteaNYmwx7k79pdZdL+1u9GSSfsJ2XBN7tk8n4aI0VPep
+	qKUi/tCrv1mfaJV2apS1EdYBNHo/i4WWkOri8+YrgxKe+/LErT3HDOT8GkzxuIbe
+	6pVQSTzLOGP81etdxO1Z1JQ/CVS0alyrKc2s4xQERaydP6Ju2ZiNIT//1NZsVHOl
+	p3vf5/ujfyoyDk3v9EXCOho3CoxNVJbYiuQv6RQj0fgE2kxPmQigGvYfu0KFLG9V
+	sNgNq7nvAyA7Gh9YY+wwFcJIyKVd7YOyphPkdnRMRXFXokhQfAajiOl1RzBfSJK0
+	o0kXig==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4091jdkrcv-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 10 Jul 2024 13:33:45 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA02.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 46ADXjsB015226
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 10 Jul 2024 13:33:45 GMT
+Received: from [10.239.97.152] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 10 Jul
+ 2024 06:33:39 -0700
+Message-ID: <70cb6434-76af-42f7-9bb4-810ac561c0e3@quicinc.com>
+Date: Wed, 10 Jul 2024 21:33:37 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 08/13] media: qcom: camss: csiphy-3ph: Add Gen2 v1.2
+ two-phase MIPI CSI-2 DPHY init
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>, <rfoss@kernel.org>,
+        <todor.too@gmail.com>, <mchehab@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
+CC: <quic_eberman@quicinc.com>, <linux-media@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>
+References: <20240709160656.31146-1-quic_depengs@quicinc.com>
+ <20240709160656.31146-9-quic_depengs@quicinc.com>
+ <02e34bdd-3e84-4f93-b9a8-a814fcfd465b@linaro.org>
+Content-Language: en-US
+From: Depeng Shao <quic_depengs@quicinc.com>
+In-Reply-To: <02e34bdd-3e84-4f93-b9a8-a814fcfd465b@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: WKTpgsn9z9sADuTfwZP6HXZtzKU-smjN
+X-Proofpoint-ORIG-GUID: WKTpgsn9z9sADuTfwZP6HXZtzKU-smjN
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-10_09,2024-07-10_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 bulkscore=0
+ lowpriorityscore=0 adultscore=0 spamscore=0 malwarescore=0 mlxlogscore=901
+ mlxscore=0 priorityscore=1501 phishscore=0 clxscore=1015 impostorscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2406140001
+ definitions=main-2407100094
 
-Hi,
 
-On Tue, 09 Jul 2024 21:47:49 +0800, Zhaoxiong Lv wrote:
-> The Starry is a 10.1" WXGA TFT LCD panel. Because Starry-er88577
-> and boe-th101mb31ig002 have very similar inti_code, after
-> discussing with Dmitry Baryshkov, We will modify it based on the
-> panel-boe-th101mb31ig002-28a.c driver instead of using a separate
-> driver.
+
+On 7/10/2024 7:13 PM, Bryan O'Donoghue wrote:
+> On 09/07/2024 17:06, Depeng Shao wrote:
+>> +/* GEN2 1.2 2PH */
+>> +static const struct
+>> +csiphy_lane_regs lane_regs_sm8550[] = {
+>> +    {0x0E90, 0x0f, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0E98, 0x08, 0x00, CSIPHY_DEFAULT_PARAMS},
 > 
-> Changes between V6 and V5:
-> - PATCH 1/5: Corrected the use of "->init" in struct panel_desc, and modify indentation
-> - PATCH 2/5: No changes.
-> - PATCH 3/5: No changes.
-> - PATCH 4/5: Modify the commit information and "reset gpio" binding.
-> - PATCH 5/5: Add two lines of init_code (D1 and D3) to modify the internal resistance of the mipi channel.
-> - Link to v5: https://lore.kernel.org/all/20240704072958.27876-1-lvzhaoxiong@huaqin.corp-partner.google.com/
+> Definitely not DPHY 1.2 init sequence.
 > 
-> [...]
+> Could you update to something like /* GEN2 2.x - two phase 5 Gbps DPHY 
+> mode 4 lanes */
+> 
+> Since the PHY can be in DPHY or CPHY mode at different data-rates it 
+> would be nice to call out the exact mode we are upstreaming here.
+> 
+> ---
+> bod
 
-Thanks, Applied to https://gitlab.freedesktop.org/drm/misc/kernel.git (drm-misc-next)
 
-[1/5] drm/panel: boe-th101mb31ig002 : Make it compatible with other panel.
-      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/24179ff9a2e4524ce83014b8827a73ad03a25c13
-[2/5] drm/panel: boe-th101mb31ig002: switch to devm_gpiod_get_optional() for reset_gpio
-      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/7f58ebaccb67cb22b2936ba79c844f1e446dc73b
-[3/5] drm/panel: boe-th101mb31ig002: use wrapped MIPI DCS functions
-      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/a16b680a2140e6cbda41ac144564696c3ee2815f
-[4/5] dt-bindings: display: panel: Add compatible for starry-er88577
-      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/3808a15e3248820c0859d9b8a0f2c7e5c8259044
-[5/5] drm/panel: boe-th101mb31ig002: Support for starry-er88577 MIPI-DSI panel
-      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/e4bd1db1c1f771983393bf5574854dff26ca7532
+Yes, this isn't 1.2, it should be GEN2 2.1.2, thanks for catching this.
 
--- 
-Neil
-
+Thanks,
+Depeng
 
