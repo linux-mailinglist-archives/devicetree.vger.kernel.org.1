@@ -1,162 +1,122 @@
-Return-Path: <devicetree+bounces-84513-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84514-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE94792C8D6
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 05:03:37 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3F8492C973
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 05:56:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D293D1C226A4
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 03:03:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0DFB6B21501
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2024 03:56:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24F553D556;
-	Wed, 10 Jul 2024 03:03:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61D18381AD;
+	Wed, 10 Jul 2024 03:56:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PjZEXkQh"
+	dkim=pass (2048-bit key) header.d=xenosoft.de header.i=@xenosoft.de header.b="fCM6lj9T";
+	dkim=permerror (0-bit key) header.d=xenosoft.de header.i=@xenosoft.de header.b="scvggdjo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A40C364BA;
-	Wed, 10 Jul 2024 03:03:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.182
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720580593; cv=none; b=ZT1e1vkjhCc/klHi1hhps1WMnkr/aCz3tmQKoWsv8ppZPMZdxJN9IGhrTq8mG17c9Af2xy56ECd1CBlsb8Zb5XW5rE36Spd9LnX1GTgH6Udu9ctcSNS7Bh4ANPaTBk1Q1XuGZm4wjY7i4UwWGiPFv6DrltxokrfSGPV2TlTckxI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720580593; c=relaxed/simple;
-	bh=GfbEa+uUizZaGzhN5tqQlx1HsH4nAvdKwuYdZKmllR8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Rt8K7tZ3BWi4I10CIv+VTkHMvNS4mjilQMzEcTyhvn4vJPmReIrgJ4TI48pApu1kv9d8lzlqGbVGzff4yeO2VYMkqctswwRfO6y/xRhpKAbw++7RuppFsFl1D6XvT0hzXRRB5xPgdkv8azzjISrXb2MNmQ2UMCqyCkdmB6lqKmI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PjZEXkQh; arc=none smtp.client-ip=209.85.167.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f182.google.com with SMTP id 5614622812f47-3d9234b77dfso2201113b6e.0;
-        Tue, 09 Jul 2024 20:03:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1720580590; x=1721185390; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=KKkEn8gtIME2o7SskHC2V7w9XB0tpg/NcovnDfSPb3k=;
-        b=PjZEXkQhxPnEMnRRCvq5b5G1IcF+f9gmDK4v1lbZ366OW5kbFsy/x3l2dbSkXuQmhY
-         ntr1ijHbefLwrn70cbZaGsLUX320CCqJgWIZWYxtHXKi4BCh/0M2fGrewMgJSL1iRHAN
-         yPlfLGVCQVE7s0Km5QSB3KD3TI5Xa/mW72aQhXcxR4893ZMvTIMgvt/VQk63R3hAKUEW
-         8OslhbumcDLuVRtoxrtvkodU2xgqDGvHfqnaGQq0RgDIWLY8mHjyS6kO5JGzCR5hpnjx
-         qkEEkmP3mJJ7Z2SpV900k8uuxxR8AQWSnVB5iGEATZzJVIOl69LN47n4ILIjmKbb1CUK
-         kDVQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720580590; x=1721185390;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=KKkEn8gtIME2o7SskHC2V7w9XB0tpg/NcovnDfSPb3k=;
-        b=pj4X5gsFxtR+eg6dEddMJ8VxamEKIn3QYa2ib7qeGshe2QlchKmnz5n45mdmuMSRBK
-         XUNWW1xUztkL2hq8gZDs/qwTYkOxFZWqWGD4uM0VXhb6DzQ0SXUG+sKPWsumNgcX5MHa
-         nf0A9fqCEWAGs8RI8++QRzkU3L/+7bBVZG+8Tzm4xPqqjWyRB8zpFkCCnrZyresNOZLS
-         2JdG9dVFfuCqZJeTCOB1D6jR5+nfzUC+L+QMx1f95eWdB54RRu+2uIteiAiel/SPu+/y
-         CwZRDa6ww6uZ982mvEjVm6ziebZrjZnaMsZW6ODGBHxTKgt4GT7IN0z7vcjObM4OH5kY
-         5otQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUZXSWFke9NciJySGFFvpU5e9tu1CoyAr09K1c57MrhVpvWsIrQWAxbst+jz5N+1c/bmoPaFkDa8rO/CimAl+iPtPCNopmbARurIia0DEjjHdl8WHA6jJzfI/t5poaKGAjdbsRY9YgpDzGEBsf8+oLdOW9i9UrQ5WD+f4G/JUvTKdOA2A==
-X-Gm-Message-State: AOJu0YyfYdxSzl6QL0VkpL01dAaQ6wd0LtiwWWNywjCRoqpszdzsYlMX
-	+Kc3UrMM2SFDKIY2cZae5czy/RvL4iuXssEhQSVxu825HeV+RF93Y0BDhkz9g7K3U31d6RJrAGY
-	wuSp1LXWr0ghZ4i7heO5JY48MuNE=
-X-Google-Smtp-Source: AGHT+IFgagPufhfO3kVQfItv3SWrXC3htPT/1kAkqIC6JWUhjoj+56zpXjnNVV8XcysieMT0AiF5k6pFInYg5EvGmSk=
-X-Received: by 2002:a05:6808:bd4:b0:3d9:3649:908a with SMTP id
- 5614622812f47-3d93c0b5c09mr4527199b6e.58.1720580590556; Tue, 09 Jul 2024
- 20:03:10 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76CAF1799B;
+	Wed, 10 Jul 2024 03:56:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=85.215.255.52
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1720583774; cv=pass; b=pXXtSQf8aJaPYBeRj+x3rSUb4UGc9xgZsE6QhNot2xyska0Lh+twtxFs2L03cnjhSc7j2jvLe3WbgKFHLGzqblZQ8ck/iG5kPIMmu1qUs74P5sdNwhMlqNpXe/qKNnyvYgzV+WY8ZhIyhXhmwXaTxdkV1pczcDKrdqH+CGJuHPQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1720583774; c=relaxed/simple;
+	bh=JfISGwFRIWEgdJA6hzOo06B7wiZKNpm///RXaIBBGGY=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=FLjayOm5iCcTV8FK09NVPpLJw3ks3QvtWO3k4BFuOPzwIMlZVHrgu5J3Dba+8zi0ddxqi7Ksq0ZDT5+7QqFTNYwi36X+DsW9SgxzEYRtzQ4y24CWOpkrSLXUae+towqMWFHVj3eLZv51Rmr2u9fYFYS3L1Y/JCVwtL35Naq5eKU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=xenosoft.de; spf=none smtp.mailfrom=xenosoft.de; dkim=pass (2048-bit key) header.d=xenosoft.de header.i=@xenosoft.de header.b=fCM6lj9T; dkim=permerror (0-bit key) header.d=xenosoft.de header.i=@xenosoft.de header.b=scvggdjo; arc=pass smtp.client-ip=85.215.255.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=xenosoft.de
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=xenosoft.de
+ARC-Seal: i=1; a=rsa-sha256; t=1720583580; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=hoOnVnmAwl5/d6O9LWBGgLHtxLKdnVTiF88/W4WDqnUekf14Yd6qauuT9ix/8fa4hs
+    18KUEeaHMHFqKlgFtHU5qv81L8TdZODAr+ng6RrXbmTiMS3SABIPwiIhb/SeXYnYINI/
+    QVJhVAjdE95dBYV+Ns3/mQyjr8l2cnKwOjssCWjgewX8Q/MVF3EOAhXqt+lFptVWZQWn
+    VP4GrtURgsyaqkpCUq2BKmrJ/9Cb8fHpuZiBBzKo4v2OQB/tnBAEcmJgrWY4wei99HbE
+    dzOnpegCJ55xR3BYtWShJbRCFDAO+ewni/ugakPToNwtp+LTOReD/dczoQZEXYGHv3t9
+    ObGg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1720583580;
+    s=strato-dkim-0002; d=strato.com;
+    h=In-Reply-To:References:Cc:To:From:Subject:Date:Message-ID:Cc:Date:
+    From:Subject:Sender;
+    bh=KRsZudZaU66bfqcpsExsQgaeHpzwNOwn1WEuUI/OyRA=;
+    b=sFWNg31SL3rE48PT+jPyiDJqH2ETQKNEcRv8KnLvMkcLRR5PoG0QmUS81hX4piJuz+
+    9ObVjBq7OncAkHCi46XNlTfU8MNPUXtbcUFE9ZV11Aa4b9Y/ykh9gOpj3xH9guwWwZdO
+    e8LGQ1SmwT9JyZoXjtR3vZSCDA5FglX4LEGN8Oou7ndzf3FAiYNQGuOAt/Kx4/4pwj3K
+    uZNRbLUq9fGQQStAGG2K2Al+tDr+ztUyZEzGIMZ7nRm0+xWGUQAzKa/AGm6uKs2Gv5g+
+    R2suadLKjsqVpqUWt7plcSlzhUIgm4/rNiMo7NWGGcrzFlvg18+CcWYPfTbK8A3i5YmC
+    hSXA==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo01
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1720583580;
+    s=strato-dkim-0002; d=xenosoft.de;
+    h=In-Reply-To:References:Cc:To:From:Subject:Date:Message-ID:Cc:Date:
+    From:Subject:Sender;
+    bh=KRsZudZaU66bfqcpsExsQgaeHpzwNOwn1WEuUI/OyRA=;
+    b=fCM6lj9TSrbNvTu5XpoCXJ+W+IzmaDucjm8UV2Iops2Zmc1RvCcS4LiNbmCl9FCrvg
+    eX1qwJiImPWhFgEviVmpVCPD+vDBgLSuHmQgfzBUhbG4lmhVA2BEDqc8Ssuor6n4Ny4J
+    EjPRTpf1G/nfcKbfjejDFhLlfooT1nubOIa32+BcCzNdPqCLfXvZpIy4BAPHvaU5Xc46
+    PCnpJlMVVc+2N7NcJhH+1ckDREBP5Nmwt0Mr/Jt8FQdNqVkZMY9vWwBfEKB+A0ltO39T
+    R4K33F1FPp3Bsn/nPRl9b8j+BT6nGOysqoPGfBAyeMYrh0TlvNJR+q2WBlsoZ5mAu9iC
+    k7ew==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1720583580;
+    s=strato-dkim-0003; d=xenosoft.de;
+    h=In-Reply-To:References:Cc:To:From:Subject:Date:Message-ID:Cc:Date:
+    From:Subject:Sender;
+    bh=KRsZudZaU66bfqcpsExsQgaeHpzwNOwn1WEuUI/OyRA=;
+    b=scvggdjooBCng+3I0Y9aHPMwxcrFQR67GZncRNUHpSXuYrvcxw9uczkCVwhVtNQzdr
+    hf8T/fNvWKn9Q++3IQDg==
+X-RZG-AUTH: ":L2QefEenb+UdBJSdRCXu93KJ1bmSGnhMdmOod1DhGM4l4Hio94KKxRySfLxnHvJzedR43J0obSjfTFwxtSORXzhXD5BXQVVAX0YLHX9mRQ=="
+Received: from [IPV6:2a01:599:819:be6d:c234:9ffb:cfc:6d3e]
+    by smtp.strato.de (RZmta 50.5.0 AUTH)
+    with ESMTPSA id e0838906A3qwiWE
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+	(Client did not present a certificate);
+    Wed, 10 Jul 2024 05:52:58 +0200 (CEST)
+Message-ID: <c8010a06-9d8d-466a-9a83-ee25950f1885@xenosoft.de>
+Date: Wed, 10 Jul 2024 05:53:35 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240709123121.1452394-1-heiko@sntech.de>
-In-Reply-To: <20240709123121.1452394-1-heiko@sntech.de>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Wed, 10 Jul 2024 08:32:57 +0530
-Message-ID: <CANAwSgQGoeyy3V9hBNcxFynRgR-rUanUzVN41uFxu0-_OqKKZg@mail.gmail.com>
-Subject: Re: [PATCH 0/6] Binding and driver for "dumb" clock generators
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, quentin.schulz@cherry.de, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PowerPC] [PASEMI] Issue with the identification of ATA drives
+ after the of/irq updates 2024-05-29
+From: Christian Zigotzky <chzigotzky@xenosoft.de>
+To: Michael Ellerman <mpe@ellerman.id.au>, Marc Zyngier <maz@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, apatel@ventanamicro.com,
+ DTML <devicetree@vger.kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+ mad skateman <madskateman@gmail.com>, "R.T.Dickinson" <rtd2@xtra.co.nz>,
+ Matthew Leaman <matthew@a-eon.biz>, Darren Stevens
+ <darren@stevens-zone.net>, Christian Zigotzky <info@xenosoft.de>
+References: <aeaa9b78-5853-473e-b985-b10241e88e0d@xenosoft.de>
+ <8FDD860C-4DA4-46EF-BAD6-8F68837DA993@xenosoft.de>
+Content-Language: en-US
+In-Reply-To: <8FDD860C-4DA4-46EF-BAD6-8F68837DA993@xenosoft.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Heiko,
+Hi All,
 
-On Tue, 9 Jul 2024 at 18:02, Heiko Stuebner <heiko@sntech.de> wrote:
->
-> Rockchip boards with PCIe3 controllers inside the soc (rk3568, rk3588) have
-> external clock generators on the board to generate the needed 100MHz
-> reference clock the PCIe3 controller needs.
->
-> Often these clock generators need supplies to be enabled to run.
->
-> Modelling this clock has taken a number of shapes:
-> - The rk3568 Rock-3a modelled the generator-regulator as "phy-supply" [0]
->   &pcie30phy {
->         phy-supply = <&vcc3v3_pi6c_03>;
->         status = "okay";
->   };
->   which is of course not part of the binding
->
-> - On the Rock-5-ITX the supply of the clock generator is controlled by
->   the same gpio as the regulator supplying the the port connected to the
->   pcie30x4 controller, so if this controller probes first, both
->   controllers will just run. But if the pcie30x2 controller probes first
->   (which has a different supply), the controller will stall at the first
->   dbi read.
->
-> - Recent Theobroma-Systems boards (Jaguar and Tiger) modelled their
->   generator as a combination of fixed clock and gpio-gate, which works
->   because the generator's vdd-supply is always on and only the output-
->   enable pin needs to be toggled.
->
->
-> So this series attempts to improve the situation by allowing to model
-> these clock generators as actual entities in the devicetree, to not have
-> them just accidentially work or break bindings.
->
+The RC7 of kernel 6.10 boots without any problems [1] if we use the 
+second irq patch [2]. Is it possible to add this patch to the mainline 
+kernel?
 
-I was wondering if these changes apply to Radxa Rock 5b SbC, it does not have
-pi6c557 clock generator but the schematic supports GEN_CLK_100MHZ is
-input to CLKin0 which is generated via the VCC3V3_PI6C_05 (100MHz,3.3V,3225)
-regulator.
+Thanks,
+Christian
 
-[1] https://dl.radxa.com/rock5/5b/docs/hw/radxa_rock5b_v13_sch.pdf
-
-Thanks
--Anand
-
->
-> [0] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts#n605
->
-> Heiko Stuebner (6):
->   dt-bindings: clocks: add binding for generic clock-generators
->   clk: add driver for generic clock generators
->   arm64: dts: rockchip: fix the pcie clock generator on Rock 5 ITX
->   arm64: dts: rockchip: use clock-generator for pcie-refclk on
->     rk3588-jaguar
->   arm64: dts: rockchip: use clock-generator for pcie-refclk on
->     rk3588-tiger
->   arm64: dts: rockchip: add pinctrl for clk-generator gpio on
->     rk3588-tiger
->
->  .../bindings/clock/clock-generator.yaml       |  62 ++++++++
->  .../arm64/boot/dts/rockchip/rk3588-jaguar.dts |  13 +-
->  .../boot/dts/rockchip/rk3588-rock-5itx.dts    |  34 ++++-
->  .../arm64/boot/dts/rockchip/rk3588-tiger.dtsi |  21 +--
->  drivers/clk/Kconfig                           |   7 +
->  drivers/clk/Makefile                          |   1 +
->  drivers/clk/clk-generator.c                   | 133 ++++++++++++++++++
->  7 files changed, 251 insertions(+), 20 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/clock/clock-generator.yaml
->  create mode 100644 drivers/clk/clk-generator.c
->
-> --
-> 2.39.2
->
->
+[1] https://forum.hyperion-entertainment.com/viewtopic.php?p=58643#p58643
+[2] 
+https://github.com/chzigotzky/kernels/blob/main/patches/X1000/of_irq_v4.patch
 
