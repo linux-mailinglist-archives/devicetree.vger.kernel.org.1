@@ -1,96 +1,135 @@
-Return-Path: <devicetree+bounces-85117-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85118-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22A3292F004
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 21:57:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 887B592F015
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 22:04:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B37861F21125
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 19:57:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B98341C2139A
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 20:04:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0585419E81F;
-	Thu, 11 Jul 2024 19:57:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8EE716F0E7;
+	Thu, 11 Jul 2024 20:03:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CP4iRO7D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.3ffe.de (0001.3ffe.de [159.69.201.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1979B450FA;
-	Thu, 11 Jul 2024 19:57:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.69.201.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A2EA12E1CA;
+	Thu, 11 Jul 2024 20:03:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720727843; cv=none; b=SVCcL/2YMlc4vQrFba5iXlib38LN90gP28MCCilsIFfWyRs/f8Plbzz9+kHmUGbkI6oSmC5onl0IpWLh1IgY5M+pV9IGBKGZo3m1hV8CKtyOzhqbbXVYXg3aMWGCp0yaLI1xD/VSnq4w6ksZymNX+og1ig7lrt/nbj7KU8K9Jos=
+	t=1720728236; cv=none; b=ig1LLWlSS46y+OQPVB7JZB+jzSHdW5/4qBRELbWuXo2LGTLki5V3q/3wTzGlC8I79ohDaYYjc5D/MKZ6KRZ+QPgR75wChTGtSAN+4AP2aNklzPXlIy+tfCAlbunzRU8JJyWLPNPZU7ZDj8PckP2xDVMvKerApOSFauGpkLrWI28=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720727843; c=relaxed/simple;
-	bh=jKLIKzkKA3Yux1VKw/7LF7+AkuB0/6yE9JFIkqxZHvs=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:From:To:
-	 References:In-Reply-To; b=VIqQyjvGCtI52ecySFHVGlEI9FgYS7kTxr+Y0wpwmRr/bfNCO5hW0SxsVGgb7y0/gtAc6SQSNWCBUM3htj7DKQ24Tz+pZuOqbQvvt53r4A5JOIvIwFQOMm6h7R1BdDk4VcxE36K/+owCarU1S7H3S/Hnon6wd302bhYnEX5PbNM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org; spf=pass smtp.mailfrom=walle.cc; arc=none smtp.client-ip=159.69.201.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=walle.cc
-Received: from localhost (unknown [IPv6:2a02:810b:4340:4ee9:4685:ff:fe12:5967])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mail.3ffe.de (Postfix) with ESMTPSA id D28A739F8;
-	Thu, 11 Jul 2024 21:57:18 +0200 (CEST)
+	s=arc-20240116; t=1720728236; c=relaxed/simple;
+	bh=MydOLmn4tsc58jf8mTfT8rJyt1fE6WW3Aq9AAAEZl2I=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BWSNlS569Tu0FYWLDNMNRQGJZdNAP6nKo5DZM2t7YP69me8CWJbw42W98KQW3wAqeUSrZ5hWNkjlfBeOCJe39Nd7plGO9+XYW5OWwRbXQhDhaCRu5EFGprevEgDvlbsqJEHyge9ZETXfiJr4CQ2Z7NNRTKl47DHGORL02NysOOY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CP4iRO7D; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2143C116B1;
+	Thu, 11 Jul 2024 20:03:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720728236;
+	bh=MydOLmn4tsc58jf8mTfT8rJyt1fE6WW3Aq9AAAEZl2I=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=CP4iRO7DI8ej5/jS7utl7rgggWNrTey+CR14BQ4luX8o90XEkEdFFcHe1aOerXyxS
+	 6kdWR2fxDdvmER8g+QNZHZcffxbSH2bVW8lgXvVQwBm41SrYlswEdAWMRbv7q2QlS1
+	 1j63usIMpld4T8YqOa4KzvsV8wFbBeBMUKlSmTnODLbJ9yAXTlqpg9YjYdGL/jKj7m
+	 uRsVWbCrovYIBnktPDDuPgLeAh5qWAojN8fTA+yl4HSJASPglUDh3gMdWh8bohoy42
+	 xsIanflSye/FxkiceKajZsZ1wilnKNA9C71quwlOM4KA/Bky5HxSum8k3fss0Fm1Or
+	 I+ZieGL80dNfQ==
+Date: Thu, 11 Jul 2024 14:03:54 -0600
+From: Rob Herring <robh@kernel.org>
+To: "Aiqun Yu (Maria)" <quic_aiquny@quicinc.com>
+Cc: Trilok Soni <quic_tsoni@quicinc.com>,
+	Tengfei Fan <quic_tengfan@quicinc.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Wesley Cheng <quic_wcheng@quicinc.com>,
+	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	kernel@quicinc.com
+Subject: Re: [PATCH v2] dt-bindings: phy: qcom,usb-snps-femto-v2: Add
+ bindings for QCS9100
+Message-ID: <20240711200354.GA2482879-robh@kernel.org>
+References: <20240709-document_qcs9100_usb_hs_phy_compatible-v2-1-c84fbbafa9d6@quicinc.com>
+ <20240710162745.GA3212156-robh@kernel.org>
+ <3b8684f0-c89d-1a76-6bc5-93ced59dc51c@quicinc.com>
+ <51302de0-5e4c-4e2a-85a0-e22549baa13c@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 11 Jul 2024 21:57:18 +0200
-Message-Id: <D2MZ405LVTN8.3LTVN3KTUD6A3@kernel.org>
-Subject: Re: [PATCH v2 3/4] dt-bindings: mtd: macronix,mx25l12833f: add
- SPI-NOR chip
-Cc: "Tudor Ambarus" <tudor.ambarus@linaro.org>, "Jaime Liao"
- <jaimeliao@mxic.com.tw>, <leoyu@mxic.com.tw>, "Alvin Zhou"
- <alvinzhou@mxic.com.tw>, "Julien Su" <juliensu@mxic.com.tw>, "Erez Geva"
- <erezgeva@nwtime.org>, <linux-mtd@lists.infradead.org>, "Pratyush Yadav"
- <pratyush@kernel.org>, <linux-kernel@vger.kernel.org>, "Miquel Raynal"
- <miquel.raynal@bootlin.com>, "Richard Weinberger" <richard@nod.at>,
- "Vignesh Raghavendra" <vigneshr@ti.com>, <devicetree@vger.kernel.org>, "Rob
- Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>
-From: "Michael Walle" <mwalle@kernel.org>
-To: "Erez" <erezgeva2@gmail.com>, "Esben Haabendal" <esben@geanix.com>
-X-Mailer: aerc 0.16.0
-References: <20240629103914.161530-1-erezgeva@nwtime.org>
- <20240629103914.161530-4-erezgeva@nwtime.org>
- <1c457520-07b7-4bde-b040-e8bca959a4f5@linaro.org>
- <CANeKEMOODBNZA6efh0E0Ga_KaVs5Y3WLcUftRhNwYHhnXO=GNw@mail.gmail.com>
- <CANeKEMO42rJt5Ob4_HDcZ3eEMvuMOPvRaFaLwL8SA65NtxSV7A@mail.gmail.com>
- <1d56c3b2-7adf-45b9-a509-956340f3f17b@linaro.org>
- <CANeKEMMe-Onpn7xWQHgWz1Ps_uQPEMa7HrKA00HpoKjG+DCJNQ@mail.gmail.com>
- <3bafcbea-6aa5-43ca-9d12-3916be3fe03d@linaro.org>
- <CANeKEMM02-Jvb8Pd0fZJFnRg-hsAW+hckYWm11tZZXNMPSPJ=w@mail.gmail.com>
- <9b45cc73-2251-4085-af95-7ccd00dd6d3b@linaro.org>
- <CANeKEMP+mRefYZNb+TuBmOD7dC6=7Rg7D1EcfnjJoiaeaV28SQ@mail.gmail.com>
- <875xtd48ps.fsf@geanix.com>
- <CANeKEMNJ3_ET5pQo2wg7_GSLX+vE+dqW-CV=v2DnG10xcgSdzQ@mail.gmail.com>
-In-Reply-To: <CANeKEMNJ3_ET5pQo2wg7_GSLX+vE+dqW-CV=v2DnG10xcgSdzQ@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <51302de0-5e4c-4e2a-85a0-e22549baa13c@quicinc.com>
 
-Hi Erez,
+On Thu, Jul 11, 2024 at 06:05:57PM +0800, Aiqun Yu (Maria) wrote:
+> 
+> 
+> On 7/11/2024 12:45 AM, Trilok Soni wrote:
+> > On 7/10/2024 9:27 AM, Rob Herring wrote:
+> >> On Tue, Jul 09, 2024 at 08:46:19PM +0800, Tengfei Fan wrote:
+> >>> Document the compatible string for USB phy found in Qualcomm QCS9100
+> >>> SoC.
+> >>> QCS9100 is drived from SA8775p. Currently, both the QCS9100 and SA8775p
+> >>> platform use non-SCMI resource. In the future, the SA8775p platform will
+> >>> move to use SCMI resources and it will have new sa8775p-related device
+> >>> tree. Consequently, introduce "qcom,qcs9100-usb-hs-phy" to describe
+> >>> non-SCMI based USB phy.
+> >>>
+> >>> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
+> >>> ---
+> >>> Introduce support for the QCS9100 SoC device tree (DTSI) and the
+> >>> QCS9100 RIDE board DTS. The QCS9100 is a variant of the SA8775p.
+> >>> While the QCS9100 platform is still in the early design stage, the
+> >>> QCS9100 RIDE board is identical to the SA8775p RIDE board, except it
+> >>> mounts the QCS9100 SoC instead of the SA8775p SoC.
+> >>>
+> >>> The QCS9100 SoC DTSI is directly renamed from the SA8775p SoC DTSI, and
+> >>> all the compatible strings will be updated from "SA8775p" to "QCS9100".
+> >>> The QCS9100 device tree patches will be pushed after all the device tree
+> >>> bindings and device driver patches are reviewed.
+> >>
+> >> I'm not convinced this is not just pointless churn. Aren't we going to 
+> >> end up with 2 compatible strings for everything? SCMI should just change 
+> >> the providers, but otherwise the consumers are the same. I suppose if 
+> >> clocks are abstracted into power-domains (an abuse IMO) then the 
+> >> bindings change.
+> >>
+> >> Why do we need to support both SCMI and not-SCMI for the same chip?
+> > 
+> > IOT SKU of this SOC is using the non-SCMI solution and Auto SKU
+> > of this SOC is using the SCMI based solution due to additional
+> > safety requirements. 
+> 
+> More add-on information, IOT SKU which have qcs9100 soc mounted will
+> have firmware releases which support non-scmi solution.
+> And AUTO SKU which mounted with SA8775p will have different firmware
+> releases which support SCMI solution.
 
-No top posting please, see also
-https://subspace.kernel.org/etiquette.html
+Yes, I understand the difference. My question is why should upstream 
+support that? Normally, I wouldn't notice or care, but the churn of 
+renaming everything makes me notice. Why do the maintainers need to 
+review all these extra changes because QCom couldn't figure out their 
+plans?
 
-On Thu Jul 11, 2024 at 8:57 PM CEST, Erez wrote:
-> Yes, I think we should.
->
-> Reading the specification provided publicly by Macronix.
-> For all the JEDEC IDs with the no SFDP flag in drivers/mtd/spi-nor/macron=
-ix.c
-> All of them have a new version or a new chip with the same JEDEC ID
-> that supports SFDP.
-> There are 2 chips that Macronix does not provide spec. in public.
-> I can ask Macronix technical support on these 2 chips.
+So after you duplicate all the compatible strings, what's next? Changing 
+all the SA8775p bindings which is an ABI break? Presumably, some 
+bindings may not change at all? In that case, you don't need any rename.
+I have no visibility into what's coming next, so please educate me.
 
-We don't add flashes we cannot test.
+The minimal amount of changes here is you are stuck with the existing 
+identifiers for the non-SCMI SKU. Then you can add a "new SoC" for the 
+SCMI SKU. You might not like the names now, but you picked them and are 
+kind of stuck with them.
 
--michael
+Rob
 
