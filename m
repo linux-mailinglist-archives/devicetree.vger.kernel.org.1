@@ -1,61 +1,73 @@
-Return-Path: <devicetree+bounces-85109-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85110-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5368C92EF46
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 21:02:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76ECB92EF53
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 21:08:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0870A282AFD
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 19:02:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A937C1C22546
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 19:08:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4168516E894;
-	Thu, 11 Jul 2024 19:02:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A69D516EB56;
+	Thu, 11 Jul 2024 19:08:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="38RwiT9X"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="XihkwQLB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08A1E1EEF8;
-	Thu, 11 Jul 2024 19:02:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5989B288B5;
+	Thu, 11 Jul 2024 19:08:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720724527; cv=none; b=aTECLNGs9rXJSuw+fMDhM1PuzgxDhQ0+BDCcLhX1T/I9UBAxZ0OfMEq2j2T9RH3RdF52Y5FBZpcGmCvuOafsK2m2aLRBjXTngdetSLYlOSuMNTdmptAGQhtS+0aJNoaoJEnnE4PhBMVij1qRAUsUz/ErEigL7poxsxkuPAlzQiQ=
+	t=1720724934; cv=none; b=rYZlwtKnsSVXyjutyr/T5fmNF/tJtDjw+2EAjVLBG8JqiOS/s+hCEZlEzA7iukttqduPaVVj+oB6SwteIbfMSHMsyt6xa5nnJzzfvTjHgfMvz+RZMiIC2k6Rc6T8iSRnE0k3beUayhNZ0JfGKvvgRRV3Qj+o6t3uYyOCozuATF0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720724527; c=relaxed/simple;
-	bh=T5ur6kTMiFkf6ydxqgDppTo0id0QsIx/TC9h4lnYQlM=;
+	s=arc-20240116; t=1720724934; c=relaxed/simple;
+	bh=PkPQTbw7deeaqSIA2QxrV/rg07ycTK/FjG1yjB7MJ2g=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=u3osi+7dbOnJNMFet7fRoqNNtMiEWiodt+wRPczuBxE5i06e/lbQK6pUVQWTKHytrsNKBqAEM02NXZArGgYadsx+UkV4eq6xa8Ej9scQFkxBFQChP5SdlV0az/lJBdXhOFGwY2T4dhSzYFItsXMxMo/69IBneWo76dIsqvGVDmE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=38RwiT9X; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=oICfSKcVVEwr9lphhag1D//hdbq9wT1yKGoVIaAkzZM=; b=38RwiT9Xpuk8RpGPbWTjeK8nSv
-	Eb5BgasInFjvbdq/uyC7f6aRNrJYcawfB5gZMCPGJyQZPOfWiq89IbbPmLIk9GQWOhhsT/XxW+cSj
-	Us21iANKJpy8Oazhd6O1A6qfEBojrdrlpMkEDqmvZa9XrDBGCvysiJcamxBjIInX6jU8=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1sRz3E-002LP6-G2; Thu, 11 Jul 2024 21:01:56 +0200
-Date: Thu, 11 Jul 2024 21:01:56 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Kamil =?iso-8859-1?Q?Hor=E1k_=282N=29?= <kamilh@axis.com>
-Cc: florian.fainelli@broadcom.com, bcm-kernel-feedback-list@broadcom.com,
-	hkallweit1@gmail.com, linux@armlinux.org.uk, davem@davemloft.net,
-	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v11 4/4] net: phy: bcm-phy-lib: Implement BroadR-Reach
- link modes
-Message-ID: <885eec03-b4d0-4bd1-869f-c334bb22888c@lunn.ch>
-References: <20240708102716.1246571-1-kamilh@axis.com>
- <20240708102716.1246571-5-kamilh@axis.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Q6T6XHaTaAmN8dCnEBXO3T6pJwL2gKE9BufpShEagyvdSLL8yr0ms4J3eRP+Q+YCVMKTndotpL0m//QMiNdK6/3QF55N2/WS7AvXAnUReGMaTWDmuHk4v9k3yoGjKuu81i9YoIZVqZgPqTglgLezFFxRKXKLQVh+NXUWPFuvUJw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=XihkwQLB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 484EBC116B1;
+	Thu, 11 Jul 2024 19:08:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1720724933;
+	bh=PkPQTbw7deeaqSIA2QxrV/rg07ycTK/FjG1yjB7MJ2g=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=XihkwQLBuUN2nyJf4R0G/cEvacuTpXd+vUa2F/roD3Dxy54MUdghDUrbpTAs0Hxot
+	 28l0OAiwgRxbtCcyAL0H/FetkhAJEJNM8ViyiyhqwFF0/TNwUUpVqb+scSxRml2WqU
+	 ZyuctrXpC7kQZZ65ZVnaDs5hezpPhS3HqJxIEHFE=
+Date: Thu, 11 Jul 2024 21:08:48 +0200
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Lee Jones <lee@kernel.org>, Andy Shevchenko <andy.shevchenko@gmail.com>,
+	Simon Horman <horms@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+	UNGLinuxDriver@microchip.com,
+	Saravana Kannan <saravanak@google.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Lars Povlsen <lars.povlsen@microchip.com>,
+	Steen Hegelund <Steen.Hegelund@microchip.com>,
+	Daniel Machon <daniel.machon@microchip.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Horatiu Vultur <horatiu.vultur@microchip.com>,
+	Andrew Lunn <andrew@lunn.ch>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, netdev@vger.kernel.org,
+	linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	Allan Nielsen <allan.nielsen@microchip.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v3 6/7] mfd: Add support for LAN966x PCI device
+Message-ID: <2024071113-motocross-escalator-e034@gregkh>
+References: <20240627091137.370572-1-herve.codina@bootlin.com>
+ <20240627091137.370572-7-herve.codina@bootlin.com>
+ <20240711152952.GL501857@google.com>
+ <20240711184438.65446cc3@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,175 +76,37 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240708102716.1246571-5-kamilh@axis.com>
+In-Reply-To: <20240711184438.65446cc3@bootlin.com>
 
-> +static int bcm5481x_get_brrmode(struct phy_device *phydev, u8 *data)
->  {
-> -	int err, reg;
-> +	int reg;
->  
-> -	/* Disable BroadR-Reach function. */
->  	reg = bcm_phy_read_exp(phydev, BCM54810_EXP_BROADREACH_LRE_MISC_CTL);
-> -	reg &= ~BCM54810_EXP_BROADREACH_LRE_MISC_CTL_EN;
-> -	err = bcm_phy_write_exp(phydev, BCM54810_EXP_BROADREACH_LRE_MISC_CTL,
-> -				reg);
-> -	if (err < 0)
+On Thu, Jul 11, 2024 at 06:44:38PM +0200, Herve Codina wrote:
+> Hi Lee,
+> 
+> On Thu, 11 Jul 2024 16:29:52 +0100
+> Lee Jones <lee@kernel.org> wrote:
+> 
+> > On Thu, 27 Jun 2024, Herve Codina wrote:
+> > 
+> > > Add a PCI driver that handles the LAN966x PCI device using a device-tree
+> > > overlay. This overlay is applied to the PCI device DT node and allows to
+> > > describe components that are present in the device.
+> > > 
+> > > The memory from the device-tree is remapped to the BAR memory thanks to
+> > > "ranges" properties computed at runtime by the PCI core during the PCI
+> > > enumeration.
+> > > 
+> > > The PCI device itself acts as an interrupt controller and is used as the
+> > > parent of the internal LAN966x interrupt controller to route the
+> > > interrupts to the assigned PCI INTx interrupt.  
+> > 
+> > Not entirely sure why this is in MFD.
+> 
+> This PCI driver purpose is to instanciate many other drivers using a DT
+> overlay. I think MFD is the right subsystem.
 
-bcm_phy_read_exp() could fail. So you should keep the test. Also, the
-caller of this function does look at the return value.
+Please use the aux bus for that, that is what is was specifically
+designed for, and what it is being used for today.
 
-> +/**
-> + * bcm5481x_read_abilities - read PHY abilities from LRESR or Clause 22
-> + * (BMSR) registers, based on whether the PHY is in BroadR-Reach or IEEE mode
-> + * @phydev: target phy_device struct
-> + *
-> + * Description: Reads the PHY's abilities and populates
-> + * phydev->supported accordingly. The register to read the abilities from is
-> + * determined by current brr mode setting of the PHY.
-> + * Note that the LRE and IEEE sets of abilities are disjunct.
-> + *
-> + * Returns: 0 on success, < 0 on failure
-> + */
-> +static int bcm5481x_read_abilities(struct phy_device *phydev)
-> +{
-> +	int i, val, err;
-> +	u8 brr_mode;
-> +
-> +	for (i = 0; i < ARRAY_SIZE(bcm54811_linkmodes); i++)
-> +		linkmode_clear_bit(bcm54811_linkmodes[i], phydev->supported);
-> +
-> +	err = bcm5481x_get_brrmode(phydev, &brr_mode);
+thanks,
 
-> +static int bcm5481x_set_brrmode(struct phy_device *phydev, bool on)
-> +{
-> +	int reg;
-> +	int err;
-> +	u16 val;
-> +
-> +	reg = bcm_phy_read_exp(phydev, BCM54810_EXP_BROADREACH_LRE_MISC_CTL);
-> +
-> +	if (on)
-> +		reg |= BCM54810_EXP_BROADREACH_LRE_MISC_CTL_EN;
-> +	else
-> +		reg &= ~BCM54810_EXP_BROADREACH_LRE_MISC_CTL_EN;
-> +
-
-> +static int bcm54811_config_init(struct phy_device *phydev)
-> +{
-> +	struct device_node *np = phydev->mdio.dev.of_node;
-> +	bool brr = false;
-> +	int err, reg;
-> +
->  	err = bcm54xx_config_init(phydev);
->  
->  	/* Enable CLK125 MUX on LED4 if ref clock is enabled. */
-> @@ -576,29 +687,80 @@ static int bcm54811_config_init(struct phy_device *phydev)
->  			return err;
->  	}
->  
-> -	return err;
-> +	/* Configure BroadR-Reach function. */
-> +	brr = of_property_read_bool(np, "brr-mode");
-> +
-> +	/* With BCM54811, BroadR-Reach implies no autoneg */
-> +	if (brr)
-> +		phydev->autoneg = 0;
-> +
-> +	return bcm5481x_set_brrmode(phydev, brr);
->  }
-
-The ordering seems a bit strange here.
-
-phy_probe() will call phydrv->get_features. At this point, the PHY is
-in whatever mode it resets to, or maybe what it is strapped
-to. phydev->supported could thus be set to standard IEEE modes,
-despite the board design is actually for BroadR-Reach.
-
-Sometime later, when the MAC is connected to the PHY config_init() is
-called. At that point, you poke around in DT and find how the PHY is
-connected to the cable. At that point, you set the PHY mode, and
-change phydev->supported to reflect reality.
-
-I really think that reading DT should be done much earlier, maybe in
-the driver probe function, or maybe get_features. get_features should
-always return the correct values from the board.
-
-> +static int bcm5481_config_aneg(struct phy_device *phydev)
-> +{
-> +	u8 brr_mode;
-> +	int ret;
-> +
-> +	ret = bcm5481x_get_brrmode(phydev, &brr_mode);
-
-Rather than read it from the hardware every single time, could you
-store the DT value in bcm54xx_phy_priv ?
-
-> +/* Read LDS Link Partner Ability in BroadR-Reach mode */
-> +static int bcm_read_lpa(struct phy_device *phydev)
-
-This function seems to be missing an lds or lre prefix.
-
-> +static int bcm_read_status_fixed(struct phy_device *phydev)
-
-and here. Please make sure the naming is consistent. Anything which
-only accesses lre or lds registers should make that clear in its name.
-
-> +static int bcm54811_read_status(struct phy_device *phydev)
-> +{
-> +	u8 brr_mode;
-> +	int err;
-> +
-> +	err = bcm5481x_get_brrmode(phydev, &brr_mode);
-> +
-> +	if (err)
-> +		return err;
-> +
-> +	if (brr_mode) {
-> +		/* Get the status in BroadRReach mode just like
-> +		 *   genphy_read_status does in normal mode
-> +		 */
-> +
-> +		int err, old_link = phydev->link;
-> +
-> +		/* Update the link, but return if there was an error */
-> +
-> +		err = lre_update_link(phydev);
-> +		if (err)
-> +			return err;
-> +
-> +		/* why bother the PHY if nothing can have changed */
-> +		if (phydev->autoneg ==
-> +		    AUTONEG_ENABLE && old_link && phydev->link)
-> +			return 0;
-> +
-> +		phydev->speed = SPEED_UNKNOWN;
-> +		phydev->duplex = DUPLEX_UNKNOWN;
-> +		phydev->pause = 0;
-> +		phydev->asym_pause = 0;
-> +
-> +		err = bcm_read_master_slave(phydev);
-> +		if (err < 0)
-> +			return err;
-> +
-> +		/* Read LDS Link Partner Ability */
-> +		err = bcm_read_lpa(phydev);
-> +		if (err < 0)
-> +			return err;
-> +
-> +		if (phydev->autoneg ==
-> +		    AUTONEG_ENABLE && phydev->autoneg_complete) {
-> +			phy_resolve_aneg_linkmode(phydev);
-> +		} else if (phydev->autoneg == AUTONEG_DISABLE) {
-> +			err = bcm_read_status_fixed(phydev);
-> +			if (err < 0)
-> +				return err;
-> +		}
-
-This would probably look better if you pulled this code out into a
-helper bcm54811_lre_read_status().
-
-    Andrew
-
----
-pw-bot: cr
+greg k-h
 
