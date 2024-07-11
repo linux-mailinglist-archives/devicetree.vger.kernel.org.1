@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-85005-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85006-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94C8B92E81A
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 14:18:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A841292E823
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 14:19:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2204F1F23F88
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 12:18:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 483EB1F25A7C
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 12:19:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BE0B15B145;
-	Thu, 11 Jul 2024 12:17:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D320A15B132;
+	Thu, 11 Jul 2024 12:19:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Pn8Yq6Nx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GlO1MrKW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 085B414C5A1;
-	Thu, 11 Jul 2024 12:17:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1A0582C7E;
+	Thu, 11 Jul 2024 12:19:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720700264; cv=none; b=qm2IG7vVngzZ+nSaBKkNxM4kqJQ2XPz7u0H5zzxYagoC2k7xxgCQ1SA/WwBU10Y5I8fPv5JKPF4GDfdvQoY99afFT0cm8ULjC4Yzvp/dlAqAe5OXjeXLDC3smOJijJ4F8rchNf1dXnGQfFlPOJOSZNkYOqoU874Nj3ghmM/Ls38=
+	t=1720700350; cv=none; b=Tv4soP2tBiFEDWb4QOzcDWgd4UkDJ3wt2WQEdscWWCqNz7RlnBWa1iBWmwz8cRNGjeXxt7IZq/AsIReYbEeQ9M+TB78PTyvZBKFXEYxAwAQgrwsU7u/0BsDc9hck8lU/Yha9iHvo5xQKNYIRwh+oahboQ4G0Ifqlqg9AhW+Tgfc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720700264; c=relaxed/simple;
-	bh=V8ATJ6Xx5N5Bku7Mvd49jTeUfTO682e6YmL0bwqtHMQ=;
+	s=arc-20240116; t=1720700350; c=relaxed/simple;
+	bh=zTLqQJ07WGQdoYjY+AKx4g6PXliKHUZg2EFyIwRTmrE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DHYjQf+pdCKIjckpsHZnGYrJj9aKrXYEo9zP2eHs9bGIGuqs8ticTOB5dNwiE2gsZ2uQx2NNu7msHVXYki9MLi0ceGoFpQaxMZOEog7HeQ9yGexf9QPE4Za/hYDUJOs4QF2gKujF89YazEPRkIrNPP0v4KNVUenUmcBwDIy7Vd0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Pn8Yq6Nx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 574D4C116B1;
-	Thu, 11 Jul 2024 12:17:38 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=bCPCwqEarT+uW+ulurH0RGQuimG6b6KfyGVHj+ghmMavWAVOsIUihdCOIyC/gAXomGwIIWogR0Ssik6mkI+1U8yFWEdHSTJGo3pUOAnHGrV//1yAKqlEYgBX6IdtO/9y+zuxRzMCNB/fEzDTXi6lYLhoEYiFq9ZA10I485qv0lY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GlO1MrKW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7501CC116B1;
+	Thu, 11 Jul 2024 12:19:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720700263;
-	bh=V8ATJ6Xx5N5Bku7Mvd49jTeUfTO682e6YmL0bwqtHMQ=;
+	s=k20201202; t=1720700350;
+	bh=zTLqQJ07WGQdoYjY+AKx4g6PXliKHUZg2EFyIwRTmrE=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Pn8Yq6NxseRcYNSbLgTH4MS0sBnAPrLnv6vO7RJJ27mOwzsnA+tiDI8wpGWp+79qE
-	 vGh0r/Q0SxwnK4BicS2S0iVcPUx1yC0ZXbdtQCOoFeYND2mHVLbSV14PAP0/yIvCdu
-	 0OEamTz1l6vFbhJCtoaSIx0Aa/esv7Ur60wXrKS67OhUV4tz8la5DTQUsiPqp4DQpL
-	 0hxh6pCfTI9Sywrfu7qp8kyzHCuc5wXVBS9HO/QnbPFXPARH3ha4t+UY5l3jY/lVKp
-	 ViAAu6qnToGvxjJH4h5/rIQakVNuFN3U+vSlj+s5Nw+/WfiJIxwkAF3IidgXr3PVqQ
-	 9igC+XPBG96VA==
-Message-ID: <08b57750-536c-4dbb-9688-fa0622b0bbb3@kernel.org>
-Date: Thu, 11 Jul 2024 14:17:35 +0200
+	b=GlO1MrKW3xf+jFv1yY8ZJHKlZ8jsUBHL/UqDDmZ8K6RhqhDxTcnVdzrv2nt/qjFa1
+	 1xKcUNbMrkraWCBcTxjegJ2ptCzab4pWpnCH9hnoZgRydYoJAQksJiXdYlWFsP7OhS
+	 0glQDaU1rDC74dO1K9J/NmTqiO1bN53JIDOSN9fmidkjn/NDkvIzQ9I+H4IO1BSRYO
+	 fAsnT0L6fF+ZBAEk1z19wvmjQeRbBtXdpMHZSa9uiiEsewxxNuTfjQIrTykIn0etYb
+	 L6lUEDrdyDEkVDdobt3pL+KUq56Hx2U+4fHrbxQQc1baQo0MxdCmfxT0sMibTzl6lk
+	 A4wXk7kUs3ieg==
+Message-ID: <e5f639a5-d16e-4213-a369-8f9b2988ecd4@kernel.org>
+Date: Thu, 11 Jul 2024 14:19:02 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,23 +50,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 09/13] media: qcom: camss: Add CSID Gen3 support for
- SM8550
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Depeng Shao <quic_depengs@quicinc.com>, rfoss@kernel.org,
- todor.too@gmail.com, mchehab@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: quic_eberman@quicinc.com, linux-media@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, kernel@quicinc.com,
- Yongsheng Li <quic_yon@quicinc.com>
-References: <20240709160656.31146-1-quic_depengs@quicinc.com>
- <20240709160656.31146-10-quic_depengs@quicinc.com>
- <1da50dd1-b170-4775-94fc-19a10b7f9c47@kernel.org>
- <4c8095dd-4f96-4b0e-9282-8bdfb5badbc3@quicinc.com>
- <9255b3e4-874c-4919-b50a-919cf0f42f75@kernel.org>
- <064baf66-eecd-4982-864f-50b86b104ff6@quicinc.com>
- <4c26e896-69fa-413b-ace3-39c9698dd6aa@linaro.org>
+Subject: Re: [PATCH 3/4] arm64: defconfig: Enable hci_uart for Amlogic
+ Bluetooth
+To: Yang Li <yang.li@amlogic.com>, Marcel Holtmann <marcel@holtmann.org>,
+ Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Catalin Marinas
+ <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
+Cc: linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20240705-btaml-v1-0-7f1538f98cef@amlogic.com>
+ <20240705-btaml-v1-3-7f1538f98cef@amlogic.com>
+ <98f3e5d2-f0bc-46b8-8560-e732dcbe8532@kernel.org>
+ <5b59045f-feba-443d-b90e-5b070e14e154@amlogic.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -112,40 +111,20 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <4c26e896-69fa-413b-ace3-39c9698dd6aa@linaro.org>
+In-Reply-To: <5b59045f-feba-443d-b90e-5b070e14e154@amlogic.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 11/07/2024 14:00, Bryan O'Donoghue wrote:
-> On 11/07/2024 12:41, Depeng Shao wrote:
->>>> Yes, these are some sequences to initialize the HW.
->>>
->>> Hm? It's like you ignore the problem and just answer with whatever to
->>> shut up the reviewer. Instead of replying with the same, address the
->>> problem. Why ordering is not a problem here?
->>>
->>
->> Sorry, I didn't mean that, was trying to understand the problem, then 
->> just sent out the mail by mistake.
->> Do you mean we should use writel to ensure the strict sequences?
->> Thanks for catching this problem, this problem is also in the the 
->> existing camss driver. I will check all of them in this series, but the 
->> problem in some existing camss drivers, maybe Bryan from Linaro can help 
->> to fix them, since I don't have these devices to verify the modifications.
+On 11/07/2024 13:40, Yang Li wrote:
 > 
-> _relaxed is used I'm sure because that's what's always been used and 
-> what downstream does.
+>      arm64: defconfig: enable Amlogic bluetooth relevant drivers as modules
 > 
-> Is there a good reason for it ? None that I can think of.
-> 
-> Krzysztof is right, there's no good reason to use relaxed() here at all, 
-> you should drop it.
-> 
+>      CONFIG_BT_HCIUART_AML is the Bluetooth driver that enables support 
+> for Amlogic chips, including W155S2, W265S1, W265P1, and W265S2.
 
-In many cases relaxed will be fine, but in few might lead to tricky to
-debug issues thus people introducing msleep() or other workarounds.
-Usually init sequences are "sequences" for a reason, but of course here
-maybe it does not matter.
+This still does not answer why we would like to have it in defconfig,
+e.g. which mainline board uses it or benefits from it.
+
 
 Best regards,
 Krzysztof
