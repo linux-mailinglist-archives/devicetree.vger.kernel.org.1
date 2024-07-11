@@ -1,242 +1,167 @@
-Return-Path: <devicetree+bounces-85043-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85047-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E54C92EA5B
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 16:10:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B35892EA87
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 16:20:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 07334B25A2A
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 14:10:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CC9431C2171A
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 14:20:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EEAA167DA8;
-	Thu, 11 Jul 2024 14:10:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1DAA166309;
+	Thu, 11 Jul 2024 14:20:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="YPRyVZsl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vJcwOYmo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80FFF160887;
-	Thu, 11 Jul 2024 14:10:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B826815AD99;
+	Thu, 11 Jul 2024 14:20:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720707018; cv=none; b=iD7Ewzywaqifw2TQSeKsUK5m0zUehQ0bO+E3mTQ2gMtF84PhRkrwRYF7+/E4f8J0l4TIJSytw9vvXiLdn5cQ8eR2FPHsHNldZs33KeiL9pJwil+wjADDEAInhYfzaMDP5IP/KynyVVDWnKGcA3ddMmlhjw5uSdqB3NDfm22NdBw=
+	t=1720707614; cv=none; b=PBWuUAT+1jqGWLnJ2Pzf5xii/0ES+lH/t9JWH4PW8TzX91BC4wuoBI1RuEwUyvPE7NH+8GJV6sMcrP+OQerNIY6nmmXBn26tyZ/oDFOggm7NZeUciLh9Rajyt8Z5OOgimqw6RHMwbVPSKXSsSnT+p0BiVpptfV0rvCeaZF0mCnk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720707018; c=relaxed/simple;
-	bh=UppB3BsxXDX6xFvEa/tdgF94kNizSSKvS8CjD2WKUFw=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=PSVLsT10SqKBxkQDHUsNQyw15lN391JYakLSvng4TQjuK3W1rSKw5tr42ekirvkScwfv2Aaqaqqq5lCL979wY1U7u0AfO5IqCZdpHRqmMTVSmXjuBrii09JjWGxndoLQ65sqXe2UpwGo9BlZsdQqMBBoGewivLlTkQZ/ycScP9Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=YPRyVZsl; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46BB0Uqd016528;
-	Thu, 11 Jul 2024 16:09:42 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	iLbomluoqVo15OHcbhEImrIzxINGFc7oFRacLoM3Ikk=; b=YPRyVZslhoqCJtOP
-	X3oRUTNl8+p+fAwyh5VEWG5/mYqAw8361tttZL6/cEJK/6zjaa+bIfxWG2DxRFfg
-	UAPF9kkV2aHaFyVN7k6umDPL80raEj9hZOP5nd5/jK88cM6iOfDq0b1FRm1w/Sqs
-	1FfWOUq+8qUo5AnSDuyuoWIMFKHGKe5Ob+mNpON5MCA/aD223YzOkZPdMSmvtGL7
-	9eMKkloglfx/Advgx7LGfpKFwlvM4JYQIYQ+e9BbJMjkAoGhyOHXKOKH8xRtXRiI
-	jiQVC+Mrkamc3MyMQV+KOA8zbdeN13g8bF1s/UjIVDzSnjUwirvPPx2v8ne/A1ty
-	4x31Mg==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 406whhx7r8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 11 Jul 2024 16:09:41 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 7B5C040047;
-	Thu, 11 Jul 2024 16:09:37 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id C537423D40B;
-	Thu, 11 Jul 2024 16:09:00 +0200 (CEST)
-Received: from localhost (10.48.86.111) by SHFDAG1NODE1.st.com (10.75.129.69)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Thu, 11 Jul
- 2024 16:09:00 +0200
-From: Valentin Caron <valentin.caron@foss.st.com>
-To: Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>
-CC: <linux-rtc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        Amelie Delaunay <amelie.delaunay@foss.st.com>,
-        Valentin Caron
-	<valentin.caron@foss.st.com>
-Subject: [PATCH 4/4] rtc: stm32: add alarm A out feature
-Date: Thu, 11 Jul 2024 16:08:43 +0200
-Message-ID: <20240711140843.3201530-5-valentin.caron@foss.st.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240711140843.3201530-1-valentin.caron@foss.st.com>
-References: <20240711140843.3201530-1-valentin.caron@foss.st.com>
+	s=arc-20240116; t=1720707614; c=relaxed/simple;
+	bh=/VstGtV+katcjRzUb0Jru+O6vxW9u7IvFm83js3uw3A=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=tj6g0INOtk48gS0MPEK5mFjpkTRE2pdKelykVTJwRwhCFYgByjOvV6zBdYOohsQ6RFwLKIpiRgpcI3Y2jTZbQvzA+lRB+YkMwGFSXubfHrK74Xzdfh9jr7BlZ/0wQttMHOGeMFNXMDab532Ib2kmqo4mp6NRpD2Qq0KeeC9sW/o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vJcwOYmo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 393CEC4AF07;
+	Thu, 11 Jul 2024 14:20:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720707614;
+	bh=/VstGtV+katcjRzUb0Jru+O6vxW9u7IvFm83js3uw3A=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=vJcwOYmoolGfg+xrhiOj/Bwvsa4Rw4RlmbK66NDCTgsDnaqS4259wWDNRltsFvJJU
+	 brxQtfc9Q513Xm43hZy/QRv6Zk1q7apIu4xko3U+V7uPbVjj3OKXAnSq47ZN4SVue2
+	 XfhQWtTVALMCig3tt3IbTCbvmMUx78JPeeU2xUMfB/vtb+dckrHbtzjYh2sVbb7nkK
+	 /UBss9AYOvMzCjwsje1syhYUrgNEiH3awy8ZlC53Np63wHpTNBIL5ssI14bIi/j7oY
+	 WFaL0VLCoPp7OWdINwjaea1L+DshjHxZECJ210qRQTEv1vXS+2poLgoUJpBmsGte6K
+	 0tWqrNS7MsOhQ==
+Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2eeb1051360so7886391fa.0;
+        Thu, 11 Jul 2024 07:20:14 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXsftutfRPQ70BBhK+s875bITOXA/1C6hCpJTO1bLtCrRep1yC1GeTxUji0gNkOv1Bz3lJun86LEpRPE2X3x6mCFDE9+ZFG0fD7UauRWtdL2W0kEwdvdj0rTYXNAxnOzE9fsCo48ZgI+g==
+X-Gm-Message-State: AOJu0Yyw9nD5PiUap6rco4565LLZNnK+iAPjwRYkc8PoAdTh2O59lRhQ
+	HNSs3DxaycD7t05hpjuNajBXxY46GpaJ3Jw2QW8LkYHIJ6wQJLiPOWhBRZfO2CsfuHTUqEkc4rU
+	fVS8d0GuNWmxuinneDZAsKUJO7Q==
+X-Google-Smtp-Source: AGHT+IE0CAYjyGnb5JatMHqj5ndbAwxzfnxdyxt2dr39gp4FD8KncQturA2vW4998XBh3dHYzOnJmewDL3lOw+gAh4U=
+X-Received: by 2002:a05:6512:54c:b0:524:43b2:d326 with SMTP id
+ 2adb3069b0e04-52eb99a273amr5209274e87.37.1720707612501; Thu, 11 Jul 2024
+ 07:20:12 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-07-11_10,2024-07-11_01,2024-05-17_01
+References: <20240711-b4-upstream-j742s2-v1-1-8b9e41c18f91@ti.com>
+In-Reply-To: <20240711-b4-upstream-j742s2-v1-1-8b9e41c18f91@ti.com>
+From: Rob Herring <robh@kernel.org>
+Date: Thu, 11 Jul 2024 08:19:59 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJABHM9StutsYPjArjhnQ5vVyYK-ASd62iO6+jNBZVqig@mail.gmail.com>
+Message-ID: <CAL_JsqJABHM9StutsYPjArjhnQ5vVyYK-ASd62iO6+jNBZVqig@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: ti: Introduce J742S2 SoC and EVM
+To: Manorit Chawdhry <m-chawdhry@ti.com>
+Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Udit Kumar <u-kumar1@ti.com>, 
+	Neha Malcom Francis <n-francis@ti.com>, Aniket Limaye <a-limaye@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-STM32 RTC can pulse some SOC pins when an RTC alarm expires.
-This patch adds this functionality for alarm A. The pulse can out on three
-pins RTC_OUT1, RTC_OUT2, RTC_OUT2_RMP (PC13, PB2, PI8 on stm32mp15)
-(PC13, PB2, PI1 on stm32mp13) (PC13, PF4/PF6, PI8 on stm32mp25).
+On Wed, Jul 10, 2024 at 11:26=E2=80=AFPM Manorit Chawdhry <m-chawdhry@ti.co=
+m> wrote:
+>
+> This series add the Linux support for our new family of device J742S2.
+> This device is a subset of J784S4 and shares the same memory map and
+> thus the nodes are being reused from J784S4 to avoid duplication.
+>
+> Here are some of the salient features of the J742S2 automotive grade
+> application processor:
+>
+> The J742S2 SoC belongs to the K3 Multicore SoC architecture platform,
+> providing advanced system integration in automotive, ADAS and industrial
+> applications requiring AI at the network edge. This SoC extends the K3
+> Jacinto 7 family of SoCs with focus on raising performance and
+> integration while providing interfaces, memory architecture and compute
+> performance for multi-sensor, high concurrency applications.
+>
+> Some highlights of this SoC are:
+> * Up to Four Arm=C2=AE Cortex=C2=AE-A72 microprocessor subsystem at up to=
+ 2.0GHz,
+>   3 C7x floating point vector DSPs with Up to Two Deep-learning matrix
+>   multiply accelerator (MMAv2),
+> * 3D GPU: Automotive grade IMG BXS-4-64 MC1
+> * Vision Processing Accelerator (VPAC) with image signal processor and
+>   Depth and Motion Processing Accelerator (DMPAC)
+> * Three CSI2.0 4L RX plus two CSI2.0 4L TX, two DSI Tx, one eDP/DP and
+>   one DPI interface.
+> * Integrated gigabit ethernet switch, up to 4 ports ,two ports
+>   support 10Gb USXGMII; One 4 lane PCIe-GEN3 controllers, USB3.0
+>   Dual-role device subsystems, Up to 20 MCANs, among other peripherals.
+>
+> ( Refer Table 2-1 for Device comparison with J7AHP )
+>
+> Link: https://www.ti.com/lit/pdf/spruje3 (TRM)
+> Link: https://www.ti.com/lit/ug/sprujd8/sprujd8.pdf (EVM user guide)
+> Link: https://www.ti.com/lit/zip/SPAC001 (Schematics)
+> ---
+> The series adds support for J742S2 family of SoCs. Also adds J742S2 EVM
+> Support and re-uses most of the stuff from the superset device J784s4.
+>
+> Signed-off-by: Manorit Chawdhry <m-chawdhry@ti.com>
+> ---
+>  arch/arm64/boot/dts/ti/Makefile            |  3 ++
+>  arch/arm64/boot/dts/ti/k3-j742s2-evm.dts   | 22 ++++++++++++++
+>  arch/arm64/boot/dts/ti/k3-j742s2-main.dtsi | 47 ++++++++++++++++++++++++=
+++++++
+>  arch/arm64/boot/dts/ti/k3-j742s2.dtsi      | 18 ++++++++++++
+>  4 files changed, 90 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Mak=
+efile
+> index e20b27ddf901..4d0688c5cff7 100644
+> --- a/arch/arm64/boot/dts/ti/Makefile
+> +++ b/arch/arm64/boot/dts/ti/Makefile
+> @@ -119,6 +119,9 @@ dtb-$(CONFIG_ARCH_K3) +=3D k3-j784s4-evm-pcie0-pcie1-=
+ep.dtbo
+>  dtb-$(CONFIG_ARCH_K3) +=3D k3-j784s4-evm-quad-port-eth-exp1.dtbo
+>  dtb-$(CONFIG_ARCH_K3) +=3D k3-j784s4-evm-usxgmii-exp1-exp2.dtbo
+>
+> +# Boards with J742S2 SoC
+> +dtb-$(CONFIG_ARCH_K3) +=3D k3-j742s2-evm.dtb
+> +
+>  # Build time test only, enabled by CONFIG_OF_ALL_DTBS
+>  k3-am625-beagleplay-csi2-ov5640-dtbs :=3D k3-am625-beagleplay.dtb \
+>         k3-am625-beagleplay-csi2-ov5640.dtbo
+> diff --git a/arch/arm64/boot/dts/ti/k3-j742s2-evm.dts b/arch/arm64/boot/d=
+ts/ti/k3-j742s2-evm.dts
+> new file mode 100644
+> index 000000000000..98088ccfd76d
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/ti/k3-j742s2-evm.dts
+> @@ -0,0 +1,22 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (C) 2024 Texas Instruments Incorporated - https://www.ti.co=
+m/
+> + *
+> + * EVM Board Schematics: https://www.ti.com/lit/zip/SPAC001
+> + */
+> +
+> +#include "k3-j784s4-evm.dts"
+> +#include "k3-j742s2.dtsi"
 
-This patch only adds the functionality for devices which are using
-st,stm32mp1-rtc and st,stm32mp25-rtc compatible.
+The structure of this is weird and fragile. You delete nodes in
+k3-j742s2.dtsi which are defined indirectly (I assume) by
+k3-j784s4-evm.dts. When there's a 2nd board for this SoC, you are
+going to have to duplicate everything here. k3-j742s2.dtsi should
+include k3-j742s4.dtsi. And then you may need a common EVM board .dtsi
+to share.
 
-Add "alarm-a" in pinmux functions.
-
-Signed-off-by: Valentin Caron <valentin.caron@foss.st.com>
----
- drivers/rtc/rtc-stm32.c | 60 +++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 60 insertions(+)
-
-diff --git a/drivers/rtc/rtc-stm32.c b/drivers/rtc/rtc-stm32.c
-index a57d494b229c..802c1412e064 100644
---- a/drivers/rtc/rtc-stm32.c
-+++ b/drivers/rtc/rtc-stm32.c
-@@ -47,8 +47,10 @@
- #define STM32_RTC_CR_ALRAE		BIT(8)
- #define STM32_RTC_CR_ALRAIE		BIT(12)
- #define STM32_RTC_CR_OSEL		GENMASK(22, 21)
-+#define STM32_RTC_CR_OSEL_ALARM_A	FIELD_PREP(STM32_RTC_CR_OSEL, 0x01)
- #define STM32_RTC_CR_COE		BIT(23)
- #define STM32_RTC_CR_TAMPOE		BIT(26)
-+#define STM32_RTC_CR_TAMPALRM_TYPE	BIT(30)
- #define STM32_RTC_CR_OUT2EN		BIT(31)
- 
- /* STM32_RTC_ISR/STM32_RTC_ICSR bit fields */
-@@ -158,6 +160,7 @@ struct stm32_rtc_data {
- 	bool need_accuracy;
- 	bool rif_protected;
- 	bool has_lsco;
-+	bool has_alarm_out;
- };
- 
- struct stm32_rtc {
-@@ -245,6 +248,47 @@ struct stm32_rtc_pinmux_func {
- 	int (*action)(struct pinctrl_dev *pctl_dev, unsigned int pin);
- };
- 
-+static int stm32_rtc_pinmux_action_alarm(struct pinctrl_dev *pctldev, unsigned int pin)
-+{
-+	struct stm32_rtc *rtc = pinctrl_dev_get_drvdata(pctldev);
-+	struct stm32_rtc_registers regs = rtc->data->regs;
-+	unsigned int cr = readl_relaxed(rtc->base + regs.cr);
-+	unsigned int cfgr = readl_relaxed(rtc->base + regs.cfgr);
-+
-+	if (!rtc->data->has_alarm_out)
-+		return -EPERM;
-+
-+	cr &= ~STM32_RTC_CR_OSEL;
-+	cr |= STM32_RTC_CR_OSEL_ALARM_A;
-+	cr &= ~STM32_RTC_CR_TAMPOE;
-+	cr &= ~STM32_RTC_CR_COE;
-+	cr &= ~STM32_RTC_CR_TAMPALRM_TYPE;
-+
-+	switch (pin) {
-+	case OUT1:
-+		cr &= ~STM32_RTC_CR_OUT2EN;
-+		cfgr &= ~STM32_RTC_CFGR_OUT2_RMP;
-+		break;
-+	case OUT2:
-+		cr |= STM32_RTC_CR_OUT2EN;
-+		cfgr &= ~STM32_RTC_CFGR_OUT2_RMP;
-+		break;
-+	case OUT2_RMP:
-+		cr |= STM32_RTC_CR_OUT2EN;
-+		cfgr |= STM32_RTC_CFGR_OUT2_RMP;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	stm32_rtc_wpr_unlock(rtc);
-+	writel_relaxed(cr, rtc->base + regs.cr);
-+	writel_relaxed(cfgr, rtc->base + regs.cfgr);
-+	stm32_rtc_wpr_lock(rtc);
-+
-+	return 0;
-+}
-+
- static int stm32_rtc_pinmux_lsco_available(struct pinctrl_dev *pctldev, unsigned int pin)
- {
- 	struct stm32_rtc *rtc = pinctrl_dev_get_drvdata(pctldev);
-@@ -307,6 +351,7 @@ static int stm32_rtc_pinmux_action_lsco(struct pinctrl_dev *pctldev, unsigned in
- 
- static const struct stm32_rtc_pinmux_func stm32_rtc_pinmux_functions[] = {
- 	STM32_RTC_PINMUX("lsco", &stm32_rtc_pinmux_action_lsco, "out1", "out2_rmp"),
-+	STM32_RTC_PINMUX("alarm-a", &stm32_rtc_pinmux_action_alarm, "out1", "out2", "out2_rmp"),
- };
- 
- static int stm32_rtc_pinmux_get_functions_count(struct pinctrl_dev *pctldev)
-@@ -763,6 +808,7 @@ static const struct stm32_rtc_data stm32_rtc_data = {
- 	.need_accuracy = false,
- 	.rif_protected = false,
- 	.has_lsco = false,
-+	.has_alarm_out = false,
- 	.regs = {
- 		.tr = 0x00,
- 		.dr = 0x04,
-@@ -788,6 +834,7 @@ static const struct stm32_rtc_data stm32h7_rtc_data = {
- 	.need_accuracy = false,
- 	.rif_protected = false,
- 	.has_lsco = false,
-+	.has_alarm_out = false,
- 	.regs = {
- 		.tr = 0x00,
- 		.dr = 0x04,
-@@ -822,6 +869,7 @@ static const struct stm32_rtc_data stm32mp1_data = {
- 	.need_accuracy = true,
- 	.rif_protected = false,
- 	.has_lsco = true,
-+	.has_alarm_out = true,
- 	.regs = {
- 		.tr = 0x00,
- 		.dr = 0x04,
-@@ -847,6 +895,7 @@ static const struct stm32_rtc_data stm32mp25_data = {
- 	.need_accuracy = true,
- 	.rif_protected = true,
- 	.has_lsco = true,
-+	.has_alarm_out = true,
- 	.regs = {
- 		.tr = 0x00,
- 		.dr = 0x04,
-@@ -878,6 +927,17 @@ MODULE_DEVICE_TABLE(of, stm32_rtc_of_match);
- static void stm32_rtc_clean_outs(struct stm32_rtc *rtc)
- {
- 	struct stm32_rtc_registers regs = rtc->data->regs;
-+	unsigned int cr = readl_relaxed(rtc->base + regs.cr);
-+
-+	cr &= ~STM32_RTC_CR_OSEL;
-+	cr &= ~STM32_RTC_CR_TAMPOE;
-+	cr &= ~STM32_RTC_CR_COE;
-+	cr &= ~STM32_RTC_CR_TAMPALRM_TYPE;
-+	cr &= ~STM32_RTC_CR_OUT2EN;
-+
-+	stm32_rtc_wpr_unlock(rtc);
-+	writel_relaxed(cr, rtc->base + regs.cr);
-+	stm32_rtc_wpr_lock(rtc);
- 
- 	if (regs.cfgr != UNDEF_REG) {
- 		unsigned int cfgr = readl_relaxed(rtc->base + regs.cfgr);
--- 
-2.25.1
-
+Rob
 
