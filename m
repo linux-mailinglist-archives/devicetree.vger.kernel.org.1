@@ -1,166 +1,239 @@
-Return-Path: <devicetree+bounces-84905-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84906-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98D5092E348
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 11:17:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D92BF92E354
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 11:20:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 23B6AB21390
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 09:17:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8E8D8283AC5
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 09:20:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D120412C559;
-	Thu, 11 Jul 2024 09:17:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC67B14F111;
+	Thu, 11 Jul 2024 09:20:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kmq/9PBp"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZCWGq6zS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A731BDDDF;
-	Thu, 11 Jul 2024 09:17:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D1111527AA;
+	Thu, 11 Jul 2024 09:20:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720689438; cv=none; b=qY/TXwDl+Pj6twwxIwcHMnI3sA3gXwOr/tlqrC/DWtE+ccmJO0d2TjxOJmRe0ESs30ochwIiKN6EHeKHE3xGdT0n9U4tk08tLj0IqbMdp7+EAxMiyDf3nBxXX0KX/IP7y82a7Fyn5N3nvDXCCL9aUIi51Aoxye/GmPSAYACB0p0=
+	t=1720689622; cv=none; b=bBR6uN0f8wwZ6IulknT2xWZfGTofp4lBclKHIXAzy1sfgqWK2+OS24Ph1PCQ70jLYQPWeiLRV8XHrzQFKzl1dzQtNIvVof14nKKzMQL5jv7GzqFdy9SR+CttaN0CTH3I3b/X0XbjqxS4NKMy3dq485XxI+xFIl4nJFVzz6Li/30=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720689438; c=relaxed/simple;
-	bh=tECCGwY1OlgusfgCcr1+rEQ9zmP+52bDi0SwX5GW63M=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=L4/y9yRPbO8JmdSIv20sx3GslQjIHl9Y1Pc6reU1C6Zi8214UdAsBxOQmmS8sBp0epyLGW2RSln4d1wne3hwHSPVnC+4n1RSH8AXoPKX78QH93q3Vo5eakcPB6Jz9NgzglL8VuzTIkfHarigyyaQmjizpPLehQQ6xvBBkdDIcBg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kmq/9PBp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62D60C4AF07;
-	Thu, 11 Jul 2024 09:17:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720689438;
-	bh=tECCGwY1OlgusfgCcr1+rEQ9zmP+52bDi0SwX5GW63M=;
-	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
-	b=kmq/9PBpQ8BJOQVUc1LTq9N5hu05r+SjaQ5IjQeqtpn4oKx9JlD0WFzXJOcA0BSbz
-	 cT0Aa5xzcsM5pT9zfnwRLaOsQ+923E7BliozltUWLTKe/6Y1WwBd382plU+LvKdrbW
-	 Bs2EMmBdmmB5UtaMFcvOwA/vS3uNJn6LwDf7ZL0y3vDYK593i72GCeosaTvZxPjyfg
-	 oQq+zOIZW3XEGuZbvwAsmXTLhyf7G9VrhKHBlgBb6B62RhJgI0UsXqfd9T6bpfk6gJ
-	 vkyP2r3xoS9GNlVpbiPXyo+rYLxNilWn9mB2c3QruN/vdzelPssUzsu8a55T0Mf3dz
-	 tKq/5FIBEsufA==
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2ebe40673d8so8537261fa.3;
-        Thu, 11 Jul 2024 02:17:18 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUdd3ywy1/yOTrUB0aoJkilRVEDgSO1EPfMjLHwjVKq4iy+4moGqGCBCi4mQr7zYP2jqLwILJFVEGNzUVA9ZeTJpOgVp/35uUNvBBbKm+wnGDzZEv78PfJq+UsT9PLNSrKTjykegFjBXQ==
-X-Gm-Message-State: AOJu0YxSkqLHqFttQ1nkJgxUQKexAuObGA1IyaCmhuP6eSKhYvLaHNzz
-	vin1ec/6xuy70FciR91q/2cfpUOZjQfkgPHaw1f0Cg+Kmew4pWNk2LJ4uU5tAl/rQ+547URDgEX
-	yCeeRLI66/LyTpU82lDL+zdZHQx0=
-X-Google-Smtp-Source: AGHT+IGfyS6XEu/kHP9VNipjsPb7FnGJXyJ4CUOh/ZKrY8VHjEHaEg8CWd8+NAhyz3x/GgZTCAkP6MA3bw4fTqw/TO4=
-X-Received: by 2002:a2e:9e54:0:b0:2ec:6608:a3af with SMTP id
- 38308e7fff4ca-2eeb3103d02mr48694601fa.31.1720689436392; Thu, 11 Jul 2024
- 02:17:16 -0700 (PDT)
+	s=arc-20240116; t=1720689622; c=relaxed/simple;
+	bh=gwvvVLcKzF8lKnY96RVzXjOMU6Nj0tPSKdiRsfBXs4o=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=is46Iq72O+PAnSpeQNCoylRa8y0NuchKFfGp0XhTsRqoJzFCARCq6cXb+8N1cqboVrUnz6ciQshihbDjq7tJ94wKG1LO7WDbwJK2kTl17aFeQD3Dyr0rsfzkpi1BJlO4BAg17kNpMSkw3g+71Zn7A8NNZHeuipl3rcp9OOLXdr0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZCWGq6zS; arc=none smtp.client-ip=209.85.208.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2eea7e2b0e6so7144051fa.3;
+        Thu, 11 Jul 2024 02:20:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1720689619; x=1721294419; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=veH0AMOxhpArs3tYp8swPvMrbzFjXttVAA+G9fEZU0s=;
+        b=ZCWGq6zSyIXcXrbwVk37vb4SRcca6taUQ2alAhTEcCHMw1j1xRuudSISDLTUNVhLC4
+         7/PFf12CaaY0xW9TYYHHF7FzhTS/t7ccX155gxNzt8uVSqMA+9Nz9Ipj/uqP7qTkxwDu
+         PcoD6aRoMZOhr31fGSGH8KjclEADSoCyJ3WgdOCYGiHQIRX68qJXyf6h6Ki5L5UJLvu+
+         3E6OZniUILgmz0ptbzNEUuqMdMC1gSExzlDjt+MZb8/tF0wHXwhglifY0GXyZUzgY/dh
+         ocY3YraW+0ptR+EbyDPXu0TxVKHT8GT/shkJfG1DM/Q+qZ3YrEgj+c3lYCm0hbhjFlQT
+         PPOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720689619; x=1721294419;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=veH0AMOxhpArs3tYp8swPvMrbzFjXttVAA+G9fEZU0s=;
+        b=sJDD3QJAhdQnCmugy48u88PbgPiseXmYUS4ecOYbEzntLA/QbpnaPOeIVUxqqQH9Vx
+         6wq+57zm50gyAuAT5BHU/FSszsZKalR9DJer1UH3qfa3T0a6+LXaMfcBXcWs9iX/caGU
+         TVcNnncr49DCjBsByZcRSlF8x2nk5XvfB1jcehwN/vac7KgE3gRr/FRI+aVCXnMvCCVL
+         eGdgbWw40M2R1ZMD15wIZm4lCHBAjhONwJ2oSdXSbIsoG4wEY0Yhlf+JbWHyTqaPQyLL
+         pZxsb+oPtWcIi2HeNge6BI/i240hYoyWqdZFN6EJ6Uq3ChnOlica2wzRHaxi9MXLl1o7
+         eTug==
+X-Forwarded-Encrypted: i=1; AJvYcCXjgMGlFNVzXh4DOkj72YHuWrC9HgS2UIURm0NrDNAPFYOMxgL7JWpeKaJd4p5WQQLUSlrTxbfcLhgM0xvWnCehnKmvR+fzAdFRqmJYEjNmaS4k3uP9oQbfVX4J41ODDO9nJf0KVxxeyQH9RXfor6IVkBXK+GqrbGk/7zfL3lh0uYUFBg==
+X-Gm-Message-State: AOJu0YwT8rBjP8kP8G9q5FgOKwFwa8st6Zg2Jw1FYSIKB0VUofLrc4fN
+	TRaS84g1lOjEQVDdR9FciPRP//focPkU9v0wez+m3JrvTDgeq6/f
+X-Google-Smtp-Source: AGHT+IFNF3nE9tcbqgLUaGvr4jaJp7NNEj5UW6Mh4jCkQTmKxAAjFECZKcf2WAsdzOsFmkmOm0DtOA==
+X-Received: by 2002:a05:6512:3f0a:b0:52c:ebd0:609 with SMTP id 2adb3069b0e04-52eb999116cmr5720327e87.7.1720689618767;
+        Thu, 11 Jul 2024 02:20:18 -0700 (PDT)
+Received: from nsa.fritz.box ([2001:a61:359b:e801:d44:32b3:6924:10d1])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-367cdfab141sm7212348f8f.96.2024.07.11.02.20.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 11 Jul 2024 02:20:18 -0700 (PDT)
+Message-ID: <ccce603d36fa2fd590b563955bcd2cda085773e5.camel@gmail.com>
+Subject: Re: [PATCH 2/2] iio: dac: support the ad8460 Waveform DAC
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Jonathan Cameron <Jonathan.Cameron@Huawei.com>, "Tinaco, Mariel"
+	 <Mariel.Tinaco@analog.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, "linux-iio@vger.kernel.org"
+ <linux-iio@vger.kernel.org>, "devicetree@vger.kernel.org"
+ <devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+ <linux-kernel@vger.kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, Mark
+ Brown <broonie@kernel.org>, "Hennerich, Michael"
+ <Michael.Hennerich@analog.com>,  Marcelo Schmitt
+ <marcelo.schmitt1@gmail.com>, Dimitri Fedrau <dima.fedrau@gmail.com>,
+ Guenter Roeck <linux@roeck-us.net>, Nuno Sa <nuno.sa@analog.com>
+Date: Thu, 11 Jul 2024 11:20:17 +0200
+In-Reply-To: <20240708170504.00006c9d@Huawei.com>
+References: <20240510064053.278257-1-Mariel.Tinaco@analog.com>
+	 <20240510064053.278257-3-Mariel.Tinaco@analog.com>
+	 <20240511174405.10d7fce8@jic23-huawei>
+	 <SJ0PR03MB62241801F72B21EEC9CDCCBD91D42@SJ0PR03MB6224.namprd03.prod.outlook.com>
+	 <20240628194546.2f608365@jic23-huawei>
+	 <SJ0PR03MB62246270CC24E70732D0288F91DA2@SJ0PR03MB6224.namprd03.prod.outlook.com>
+	 <20240708170504.00006c9d@Huawei.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.2 (3.52.2-1.fc40) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240711060939.1128-1-linux.amoon@gmail.com> <a8c1f49e-bf25-4fd3-a16f-13088f75767f@kwiboo.se>
-In-Reply-To: <a8c1f49e-bf25-4fd3-a16f-13088f75767f@kwiboo.se>
-Reply-To: wens@kernel.org
-From: Chen-Yu Tsai <wens@kernel.org>
-Date: Thu, 11 Jul 2024 17:17:04 +0800
-X-Gmail-Original-Message-ID: <CAGb2v65iR9BdAX43gfpBOeKF_B5PFm+RhPwu5FHUfRxCMeqh-w@mail.gmail.com>
-Message-ID: <CAGb2v65iR9BdAX43gfpBOeKF_B5PFm+RhPwu5FHUfRxCMeqh-w@mail.gmail.com>
-Subject: Re: [PATCH v2] arm64: dts: rockchip: Add missing pinctrl for PCIe30x4 node
-To: Jonas Karlman <jonas@kwiboo.se>, Heiko Stuebner <heiko@sntech.de>
-Cc: Anand Moon <linux.amoon@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jul 11, 2024 at 4:44=E2=80=AFPM Jonas Karlman <jonas@kwiboo.se> wro=
-te:
->
-> Hi Anand,
->
-> On 2024-07-11 08:09, Anand Moon wrote:
-> > Add missing pinctrl settings for PCIe 3.0 x4 clock request and wake
-> > signals.Each component of PCIe communication have the following control
-> > signals: PERST, WAKE, CLKREQ, and REFCLK. These signals work to generat=
-e
-> > high-speed signals and communicate with other PCIe devices.
-> > Used by root complex to endpoint depending on the power state.
-> >
-> > PERST is referred to as a fundamental reset. PERST should be held low
-> > until all the power rails in the system and the reference clock are sta=
-ble.
-> > A transition from low to high in this signal usually indicates the
-> > beginning of link initialization.
-> >
-> > WAKE signal is an active-low signal that is used to return the PCIe
-> > interface to an active state when in a low-power state.
-> >
-> > CLKREQ signal is also an active-low signal and is used to request the
-> > reference clock.
-> >
-> > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-> > ---
-> > V2: Update the commit messge to describe the changs.
-> >     use pinctl group as its pre define in pinctl dtsi
-> > ---
-> >  arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts | 6 +-----
-> >  1 file changed, 1 insertion(+), 5 deletions(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm=
-64/boot/dts/rockchip/rk3588-rock-5b.dts
-> > index 2e7512676b7e..ab3a20986c6a 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> > @@ -301,7 +301,7 @@ &pcie30phy {
-> >
-> >  &pcie3x4 {
-> >       pinctrl-names =3D "default";
-> > -     pinctrl-0 =3D <&pcie3_rst>;
-> > +     pinctrl-0 =3D <&pcie30x4m1_pins>;
->
-> Use of the existing pcie30x4m1_pins group may not be fully accurate for
-> the PERST pin. The use of reset-gpios indicate that the PERST pin is
-> used with GPIO function and the driver will implicitly change the
-> function from perstn_m1 to GPIO. So this may not be best representation
-> of the hw, hence my initial suggestion, something like:
->
->         pcie30x4_pins: pcie30x4-pins {
->                 rockchip,pins =3D
->                         <4 RK_PB4 4 &pcfg_pull_none>,
->                         <4 RK_PB6 RK_FUNC_GPIO &pcfg_pull_none>,
->                         <4 RK_PB5 4 &pcfg_pull_none>;
->         };
->
-> Similar change should probably also be done for pcie2x1l0 and pcie2x1l2,
-> not just pcie3x4.
+On Mon, 2024-07-08 at 17:05 +0100, Jonathan Cameron wrote:
+> On Mon, 8 Jul 2024 05:17:55 +0000
+> "Tinaco, Mariel" <Mariel.Tinaco@analog.com> wrote:
+>=20
+> > > -----Original Message-----
+> > > From: Jonathan Cameron <jic23@kernel.org>
+> > > Sent: Saturday, June 29, 2024 2:46 AM
+> > > To: Tinaco, Mariel <Mariel.Tinaco@analog.com>
+> > > Cc: linux-iio@vger.kernel.org; devicetree@vger.kernel.org; linux-
+> > > kernel@vger.kernel.org; Lars-Peter Clausen <lars@metafoo.de>; Rob Her=
+ring
+> > > <robh@kernel.org>; Krzysztof Kozlowski <krzk+dt@kernel.org>; Conor Do=
+oley
+> > > <conor+dt@kernel.org>; Liam Girdwood <lgirdwood@gmail.com>; Mark Brow=
+n
+> > > <broonie@kernel.org>; Hennerich, Michael <Michael.Hennerich@analog.co=
+m>;
+> > > Marcelo Schmitt <marcelo.schmitt1@gmail.com>; Dimitri Fedrau
+> > > <dima.fedrau@gmail.com>; Guenter Roeck <linux@roeck-us.net>
+> > > Subject: Re: [PATCH 2/2] iio: dac: support the ad8460 Waveform DAC
+> > >=20
+> > > [External]
+> > > =C2=A0=20
+> > > > > > +};
+> > > > > > +
+> > > > > > +static int ad8460_get_powerdown_mode(struct iio_dev *indio_dev=
+,
+> > > > > > +				=C2=A0=C2=A0=C2=A0=C2=A0 const struct iio_chan_spec *chan)=
+ {
+> > > > > > +	return 0;=C2=A0=20
+> > > > >=20
+> > > > > Why have the stubs in here?=C2=A0=20
+> > > >=20
+> > > > Should I move the stubs to a different place in the code or remove
+> > > > them altogether since there is only a single powerdown mode availab=
+le=C2=A0=20
+> > > Ah. I'd not really understood what was going on here.=C2=A0 This is f=
+ine as is.
+> > > =C2=A0=20
+> > > > > AD8460_HVDAC_DATA_WORD_HIGH(index),=C2=A0=20
+> > > > > > +			=C2=A0=C2=A0=C2=A0 ((val >> 8) & 0xFF));=C2=A0=20
+> > > > >=20
+> > > > > bulk write? or do these need to be ordered?=C2=A0=20
+> > > >=20
+> > > > For this I used bulk read/write this way.
+> > > >=20
+> > > > static int ad8460_set_hvdac_word(struct ad8460_state *state,
+> > > > 				 int index,
+> > > > 				 int val)
+> > > > {
+> > > > 	u8 regvals[AD8460_DATA_BYTE_WORD_LENGTH];=C2=A0=20
+> > > regmap bulk accesses (when spi anyway) should be provided with DMA sa=
+fe
+> > > buffers.
+> > > Easiest way to do that is add one with __aligned(IIO_DMA_MINALIGN) to=
+ the
+> > > end of the ad8460_state structure.=C2=A0 Possibly you'll need a lock =
+to protect it -
+> > > I
+> > > haven't checked.=C2=A0=20
+> > > >=20
+> > > > 	regvals[0] =3D val & 0xFF;
+> > > > 	regvals[1] =3D (val >> 8) & 0xFF;=C2=A0=20
+> > >=20
+> > > That is an endian conversion so use appropriate endian function to fi=
+ll it
+> > > efficiently and document clearly what is going on.
+> > >=20
+> > >=20
+> > > 	put_unaligned_le16()
+> > > =C2=A0=20
+> > > >=20
+> > > > 	return regmap_bulk_write(state->regmap,=C2=A0=20
+> > > AD8460_HVDAC_DATA_WORD_LOW(index),=C2=A0=20
+> > > > 				 regvals,=C2=A0=20
+> > > AD8460_DATA_BYTE_WORD_LENGTH); }=C2=A0=20
+> > > >=20
+> > > > =C2=A0
+> > > > > > +}=C2=A0=20
+> > > =C2=A0=20
+> > > > > > +	state->regmap =3D devm_regmap_init_spi(spi,
+> > > > > > &ad8460_regmap_config);
+> > > > > > +	if (IS_ERR(state->regmap))
+> > > > > > +		return dev_err_probe(&spi->dev, PTR_ERR(state->regmap),
+> > > > > > +				=C2=A0=C2=A0=C2=A0=C2=A0 "Failed to initialize regmap");
+> > > > > > +
+> > > > > > +	ret =3D devm_iio_dmaengine_buffer_setup_ext(&spi->dev, indio_=
+dev,
+> > > > > > +"tx",
+> > > > > > +=C2=A0=20
+> > > > > IIO_BUFFER_DIRECTION_OUT);
+> > > > >=20
+> > > > > Ah. I take back my binding comment. I assume this is mapping some
+> > > > > non standard interface for the parallel data flow?=C2=A0=20
+> > > >=20
+> > > > Yes, the HDL side doesn't follow yet the standard IIO backend from
+> > > > which this driver was tested=C2=A0=20
+> > >=20
+> > > Hmm. I'd like to see this brought inline with the other iio backend d=
+rivers if
+> > > possible.=C2=A0=20
+> >=20
+> > Does this mean that we would need to implement an AXI IP core on the
+> > FPGA side to be able to test this?
+>=20
+> Don't think so.=C2=A0 That framework is meant to support any equivalent I=
+P.
+> So whatever you have should be supportable. Maybe it's somewhat of a stub
+> driver though if there isn't anything controllable.
+>=20
+> It's Nuno's area of expertise though +CC.
+>=20
 
-Can we consider implementing strict mode in the pinctrl driver so we don't
-have to keep doing this GPIO + pinmux dance?
+Hi Jonathan,
 
-ChenYu
+Yeah, I did reply David (IIRC) about the very same question. In the design/=
+HW Mariel
+is working on the DAC is directly connected to the DMA core which is handle=
+d already
+by a proper dma controller driver. So in this case I'm really not seeing th=
+e backend
+need right now (maybe in the future we may have another design for this dev=
+ice that
+could justify for a backend device but no idea on that).
 
+As you mention, we could very well do a stub platform driver so we can use =
+the
+backend framework (like dma-backend or something) that could pretty much be=
+ a stub
+for the DMA controller. But is it worth it though? We'd actually be "lying"=
+ in terms
+of HW description as the DMA is a property of the actual converter.
 
-> Regards,
-> Jonas
->
-> >       reset-gpios =3D <&gpio4 RK_PB6 GPIO_ACTIVE_HIGH>;
-> >       vpcie3v3-supply =3D <&vcc3v3_pcie30>;
-> >       status =3D "okay";
-> > @@ -341,10 +341,6 @@ pcie2_2_rst: pcie2-2-rst {
-> >       };
-> >
-> >       pcie3 {
-> > -             pcie3_rst: pcie3-rst {
-> > -                     rockchip,pins =3D <4 RK_PB6 RK_FUNC_GPIO &pcfg_pu=
-ll_none>;
-> > -             };
-> > -
-> >               pcie3_vcc3v3_en: pcie3-vcc3v3-en {
-> >                       rockchip,pins =3D <1 RK_PA4 RK_FUNC_GPIO &pcfg_pu=
-ll_none>;
-> >               };
-> >
-> > base-commit: 34afb82a3c67f869267a26f593b6f8fc6bf35905
->
->
+- Nuno S=C3=A1
+
 
