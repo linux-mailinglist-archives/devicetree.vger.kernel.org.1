@@ -1,124 +1,134 @@
-Return-Path: <devicetree+bounces-84867-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84868-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9433192E067
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 08:58:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76BD392E07F
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 09:00:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 53BD0281E61
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 06:58:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A93571C227DE
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 07:00:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8597013C80C;
-	Thu, 11 Jul 2024 06:57:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="iiAVYWt/"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8492D13C80C;
+	Thu, 11 Jul 2024 06:59:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtpbguseast3.qq.com (smtpbguseast3.qq.com [54.243.244.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09A411311B6;
-	Thu, 11 Jul 2024 06:57:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12A0B12FB0B
+	for <devicetree@vger.kernel.org>; Thu, 11 Jul 2024 06:59:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.243.244.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720681068; cv=none; b=JGplnQ49QN3JjalsVPA208zrjr+rWocNDQcs1QEYEn0JREv+qvA7ewA9mFiLu3rhCavVIYDFrCgaOxIhdIf2k3MCyZp0ANfEbhrEGQksGtJn4COJLg7G9HV8koXmoPzGxl+cVMZMvV4SAiAWLi6gDl0b7k2RQpgJgljuq0kUjRU=
+	t=1720681175; cv=none; b=r+0Kj5vYhnBr+WjbUMIQZColAp9aizBSl5d8buETd6f3vRqdNStVEDJkgIysvEsBk+yyTQIUz2k+hZSjzoGSIjwTnESRfol1DGnObmH9q4Y0S/TQ6hTak4jMS/jD76QJQ1i7+UJBHI48rCSFMiCt++cIBjS9rG8ZLm4QgL22EAk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720681068; c=relaxed/simple;
-	bh=uWymqDSon2CSXk55pUNRBKKppMvTwwsTROmbIcw7vjA=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=HUi4/dPmNPkV2j28THZOXKAzXlfsuhhMrHRNZRDoSMgOVtY2o98/1JoQqJdLWJN0HIEuTBUxSc2SFOJ0sObNXq5KOmC8uo0LP4qeWdYuXaz1UsAI0hHqc4UA6TjziCQgY5Md8GV6IAHPrI/smEpvTBJ+cieM4TwrL7sLtx7ip38=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=iiAVYWt/; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46B4mmAO007428;
-	Thu, 11 Jul 2024 06:57:42 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	kITZnJLZKcK3CjT974AcnPC6vDsu0JNzqV7gmcgEJHk=; b=iiAVYWt/UB5PGC6/
-	ALBFHyV9i249eqbid/OuKSb41r2MjCZsPj2qJ06tytOUCHmdQvlpCQPhZEVOBNqA
-	vkkY0Jh3XevrHzamEmXmgcEQeJR2+AOv0sZ1BDaidiGW4FG2izOkHz5lNvmkkKhZ
-	CE4g1gqYXng5AezAfPIQDAohWCfYHKk3TMtHbW2mhZDDphypgMi2gSvstivymzl0
-	4UfgL1kRnq/nsMiSvDxl+qQlb4yj7pBx7LEhijwBKoh+38uyC8ENmu7cb5JLaoY7
-	aogvD1ZO7avpogNTjWzqReUt8PZby12FRv69lLaW2BbpPnU8/UJBzQsYz/8BEkj8
-	Y+uMLQ==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 406wg43rea-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 11 Jul 2024 06:57:42 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA04.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 46B6vfsh029111
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 11 Jul 2024 06:57:41 GMT
-Received: from hu-varada-blr.qualcomm.com (10.80.80.8) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 10 Jul 2024 23:57:37 -0700
-From: Varadarajan Narayanan <quic_varada@quicinc.com>
-To: <gregkh@linuxfoundation.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <quic_wcheng@quicinc.com>,
-        <johan+linaro@kernel.org>, <quic_kriskura@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC: Varadarajan Narayanan <quic_varada@quicinc.com>
-Subject: [PATCH v0 2/2] arm64: dts: qcom: ipq5332: Fix interrupt trigger type for usb
-Date: Thu, 11 Jul 2024 12:26:15 +0530
-Message-ID: <20240711065615.2720367-2-quic_varada@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240711065615.2720367-1-quic_varada@quicinc.com>
-References: <20240711065615.2720367-1-quic_varada@quicinc.com>
+	s=arc-20240116; t=1720681175; c=relaxed/simple;
+	bh=cPytpnewoUTFjb6OMp65jCSkzeRZiS5AUrv8UVA2Z74=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=OH47UuyvzSm3PqqViQ+eMOCSGpAa64Y91O0BFSo+Bj+eo57OQiRcyVNy06aoYdBTR/fIHZc9FC/wVKlwGF33OehYTU6w0QK6cx+tIMujWX2WzRo4f9j8amYKwRezCipFXoiNLhEDXlAwDDgAJRwA2hvi1Eu8+D1fHAKVtT92fSs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.243.244.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
+X-QQ-mid: bizesmtpsz11t1720681090th3mvk
+X-QQ-Originating-IP: bSVVFY8/91zRJ0m7UHcUYHAwbF4BR0zePOfCPrJv3bQ=
+Received: from [192.168.159.131] ( [106.150.157.243])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Thu, 11 Jul 2024 14:58:08 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 16758398603850431300
+Message-ID: <DFED8CF3B42049F8+44664265-ab1e-4d45-833c-41c370e4360b@radxa.com>
+Date: Thu, 11 Jul 2024 15:58:07 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: C8pBg98kCxrF0cgxFnN-mIZg1APYmqen
-X-Proofpoint-GUID: C8pBg98kCxrF0cgxFnN-mIZg1APYmqen
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-07-11_03,2024-07-10_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- mlxlogscore=609 clxscore=1015 impostorscore=0 malwarescore=0 mlxscore=0
- bulkscore=0 spamscore=0 adultscore=0 suspectscore=0 lowpriorityscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2406140001 definitions=main-2407110046
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] arm64: dts: amlogic: change product name for Radxa
+ ZERO 2 (Pro)
+To: Krzysztof Kozlowski <krzk@kernel.org>, neil.armstrong@linaro.org
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ khilman@baylibre.com, jbrunet@baylibre.com,
+ martin.blumenstingl@googlemail.com, devicetree@vger.kernel.org,
+ linux-amlogic@lists.infradead.org
+References: <20240711034035.3921122-1-naoki@radxa.com>
+ <20240711034035.3921122-2-naoki@radxa.com>
+ <1fece7cc-fa01-4bea-ac73-a975e042c669@kernel.org>
+Content-Language: en-US
+From: FUKAUMI Naoki <naoki@radxa.com>
+In-Reply-To: <1fece7cc-fa01-4bea-ac73-a975e042c669@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: bizesmtpsz:radxa.com:qybglogicsvrgz:qybglogicsvrgz8a-1
 
-Trigger type is incorrectly specified as IRQ_TYPE_EDGE_BOTH
-instead of IRQ_TYPE_LEVEL_HIGH. This trigger type is not
-supported for SPIs and results in probe failure with -EINVAL.
+Hi,
 
-Fixes: 927173bf8a0e ("arm64: dts: qcom: Add missing interrupts for qcs404/ipq5332")
-Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
----
- arch/arm64/boot/dts/qcom/ipq5332.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+thanks for your reply.
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq5332.dtsi b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-index 7a39e66d51f1..ff8ad1036ac7 100644
---- a/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-@@ -322,8 +322,8 @@ usb: usb@8af8800 {
- 			reg = <0x08af8800 0x400>;
- 
- 			interrupts = <GIC_SPI 62 IRQ_TYPE_LEVEL_HIGH>,
--				     <GIC_SPI 53 IRQ_TYPE_EDGE_BOTH>,
--				     <GIC_SPI 52 IRQ_TYPE_EDGE_BOTH>;
-+				     <GIC_SPI 53 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 52 IRQ_TYPE_LEVEL_HIGH>;
- 			interrupt-names = "pwr_event",
- 					  "dp_hs_phy_irq",
- 					  "dm_hs_phy_irq";
--- 
-2.34.1
+On 7/11/24 15:24, Krzysztof Kozlowski wrote:
+> On 11/07/2024 05:40, FUKAUMI Naoki wrote:
+>> a while ago, we changed product name (hardware is same),
+>>
+>> from: Radxa ZERO2
+>>    to: Radxa ZERO 2 Pro
+>>
+>> this patch reflect the change in dts.
+>>
+>> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+>> ---
+>>   arch/arm64/boot/dts/amlogic/Makefile                        | 2 +-
+>>   ...-g12b-radxa-zero2.dts => meson-g12b-radxa-zero-2pro.dts} | 6 +++---
+>>   2 files changed, 4 insertions(+), 4 deletions(-)
+>>   rename arch/arm64/boot/dts/amlogic/{meson-g12b-radxa-zero2.dts => meson-g12b-radxa-zero-2pro.dts} (98%)
+>>
+>> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
+>> index 29417f04f886..5694ad0edcde 100644
+>> --- a/arch/arm64/boot/dts/amlogic/Makefile
+>> +++ b/arch/arm64/boot/dts/amlogic/Makefile
+>> @@ -31,7 +31,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-g12b-odroid-go-ultra.dtb
+>>   dtb-$(CONFIG_ARCH_MESON) += meson-g12b-odroid-n2-plus.dtb
+>>   dtb-$(CONFIG_ARCH_MESON) += meson-g12b-odroid-n2.dtb
+>>   dtb-$(CONFIG_ARCH_MESON) += meson-g12b-odroid-n2l.dtb
+>> -dtb-$(CONFIG_ARCH_MESON) += meson-g12b-radxa-zero2.dtb
+>> +dtb-$(CONFIG_ARCH_MESON) += meson-g12b-radxa-zero-2pro.dtb
+>>   dtb-$(CONFIG_ARCH_MESON) += meson-g12b-s922x-bananapi-m2s.dtb
+>>   dtb-$(CONFIG_ARCH_MESON) += meson-g12b-s922x-khadas-vim3.dtb
+>>   dtb-$(CONFIG_ARCH_MESON) += meson-g12b-ugoos-am6.dtb
+>> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero-2pro.dts
+>> similarity index 98%
+>> rename from arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts
+>> rename to arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero-2pro.dts
+>> index 8445701100d0..5514ca9a62fb 100644
+>> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts
+>> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero-2pro.dts
+>> @@ -16,8 +16,8 @@
+>>   #include <dt-bindings/sound/meson-g12a-tohdmitx.h>
+>>   
+>>   / {
+>> -	compatible = "radxa,zero2", "amlogic,a311d", "amlogic,g12b";
+>> -	model = "Radxa Zero2";
+>> +	compatible = "radxa,zero-2pro", "amlogic,a311d", "amlogic,g12b";
+> 
+> Keep old compatible.
 
+which is better?
+
+compatible = "radxa,zero2", "amlogic,a311d", "amlogic,g12b"; (no change)
+  or
+compatible = "radxa,zero-2pro", "radxa,zero2", "amlogic,a311d", 
+"amlogic,g12b"; (keep old one)
+
+Best regards,
+
+--
+FUKAUMI Naoki
+Radxa Computer (Shenzhen) Co., Ltd.
+
+> Best regards,
+> Krzysztof
+> 
+> 
 
