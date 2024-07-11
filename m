@@ -1,199 +1,238 @@
-Return-Path: <devicetree+bounces-85108-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85109-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B935892EF3E
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 20:58:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5368C92EF46
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 21:02:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DCD7F1C225AD
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 18:58:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0870A282AFD
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 19:02:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C648016E88D;
-	Thu, 11 Jul 2024 18:58:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4168516E894;
+	Thu, 11 Jul 2024 19:02:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hNlLmHTl"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="38RwiT9X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D5A874297;
-	Thu, 11 Jul 2024 18:58:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08A1E1EEF8;
+	Thu, 11 Jul 2024 19:02:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720724317; cv=none; b=JRSBfAQUQzewUNnmJ+n+3hPP1o+0IeUWWpsWtRxThebFg0snYaSkMjfu4xOx3QVR2QHRuC20V2dIkf+ie6zAzLCMY//yOrp6De2+DVZ/SVG1SR55qWlc0EuuGZLx3ymZks+lYkO5boWzu64aFhwj6m0IILV3kSDxfKMq6KyyUjk=
+	t=1720724527; cv=none; b=aTECLNGs9rXJSuw+fMDhM1PuzgxDhQ0+BDCcLhX1T/I9UBAxZ0OfMEq2j2T9RH3RdF52Y5FBZpcGmCvuOafsK2m2aLRBjXTngdetSLYlOSuMNTdmptAGQhtS+0aJNoaoJEnnE4PhBMVij1qRAUsUz/ErEigL7poxsxkuPAlzQiQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720724317; c=relaxed/simple;
-	bh=lTJyaO3NRh1SLmZ3yrTny929BvkSro0S61px1Myed5Q=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=HhoLmtn+JLIdGafX01OiH2g+6GohaDjYOgPi3DDvg8uzAtd0jqRRAJR+8UQ1/Oz3F+g6nM+3fFBH122Gt15rpm2fZpppYYF8rQB2S6StgcPC+oLNnJORMizGVXRuzPk5b8Zkvlsaq3mrrJXaMrsWNSU0Y7wTbgQnUq3LUsOHQD0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hNlLmHTl; arc=none smtp.client-ip=209.85.208.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-58bac81f3f9so1603651a12.2;
-        Thu, 11 Jul 2024 11:58:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1720724314; x=1721329114; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=7BPXidIi57y7av2TEkb5R0zgpsgd6KdF8/DSPaJwaQ8=;
-        b=hNlLmHTl5r+v24odrwNK2Oug2conLzA6Y9/P2HbintnfFj6UeQvo8daqZfW6MWN2bD
-         RWzrtoNinKMB1ozayr0Tut0pJ2/w9tih+cfdpU/JIugJr+hEPIsa14z7cDTh6ZJGliii
-         cvWhUPrY40gFbcuwctUUBRSuuuC2Pxkw2+OkiwYekE0GQFkmJoLCvFUzk/A58KVd8O3s
-         BvlwcaTNtHXxZ6GC6Yuk8b6O+TTq0IL/V913mMm9vpyHETEGjvw96GTaiOdj2UW6xp5q
-         81czuC7FfkVsmIwTSzf8pQ3vDK+wZmWXz7jr7xBAxKG5BmA0kCITJF7ypS3I+4lGl1Tg
-         rkiQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720724314; x=1721329114;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=7BPXidIi57y7av2TEkb5R0zgpsgd6KdF8/DSPaJwaQ8=;
-        b=RHibCS5Qe0jUhd0rNh6yIflYhbRadyFF0pq4CwWp3asZBdqLn2IvO5yGZaSjiozRFb
-         0O7LVgwyLT8iKCwrmNQ5+ASBDitdNhIiGpotM+FB1+zYPxSsKbo25TQTyXt4Lfq4kRNR
-         9wNrrj/aWU5CieZ8CCvJ3nq1TCD+3U1mrxLANULd6QiM72PKlSsrnTmMin20GcDr2eYO
-         cl4qVDZP2Bo95mrZwiRIB1JjIL5tI5iaWUKQmMVmIp3HvtrmtOtxxvXqV482fGXeOUeH
-         d0UDZKbdBKaabsymeLJLfZqyahngnaEYUBdUnCSNQ1tkllTIooKMHRdZTQy4r/yI3eE4
-         JvUw==
-X-Forwarded-Encrypted: i=1; AJvYcCW/Rg1f1g1RETKaBGvQ+1xkcfs3x2Lp+6E1qJQBB46A3X4vKGoTghFyZN3RFZzNYx0JtJIAeM8M4DRNJRTbEjOQoT5+KBRSu68G9Gt3FtXOqoVW26JGDhw2rpMLVS8u7RVbSczWkAgOOQ==
-X-Gm-Message-State: AOJu0YzujKXwV+tzk0gp0k4Ypkr4kSX86vvR5kEKa6HycPlzZ7ZOe6TA
-	ULAikUYY1f7Eem+hzuZT1MLJUfzINHPUPqjBdKXw7BXVP5LuQEMULwjlEIYqhdWZdEkGuT2pBgI
-	weuBqE3AOixO3AMei6I+1NHQvKA==
-X-Google-Smtp-Source: AGHT+IHUue7KlCkosbibWLlrwqSbPA31mFvvX7MrL47CNXsBcvVqQiOnEkanbSXVw3FeHULhCh5GuIhNrpSRu3Msg64=
-X-Received: by 2002:a05:6402:34d5:b0:57c:a49f:ddd4 with SMTP id
- 4fb4d7f45d1cf-594b9ee10d4mr6979931a12.17.1720724313998; Thu, 11 Jul 2024
- 11:58:33 -0700 (PDT)
+	s=arc-20240116; t=1720724527; c=relaxed/simple;
+	bh=T5ur6kTMiFkf6ydxqgDppTo0id0QsIx/TC9h4lnYQlM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=u3osi+7dbOnJNMFet7fRoqNNtMiEWiodt+wRPczuBxE5i06e/lbQK6pUVQWTKHytrsNKBqAEM02NXZArGgYadsx+UkV4eq6xa8Ej9scQFkxBFQChP5SdlV0az/lJBdXhOFGwY2T4dhSzYFItsXMxMo/69IBneWo76dIsqvGVDmE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=38RwiT9X; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=oICfSKcVVEwr9lphhag1D//hdbq9wT1yKGoVIaAkzZM=; b=38RwiT9Xpuk8RpGPbWTjeK8nSv
+	Eb5BgasInFjvbdq/uyC7f6aRNrJYcawfB5gZMCPGJyQZPOfWiq89IbbPmLIk9GQWOhhsT/XxW+cSj
+	Us21iANKJpy8Oazhd6O1A6qfEBojrdrlpMkEDqmvZa9XrDBGCvysiJcamxBjIInX6jU8=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1sRz3E-002LP6-G2; Thu, 11 Jul 2024 21:01:56 +0200
+Date: Thu, 11 Jul 2024 21:01:56 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Kamil =?iso-8859-1?Q?Hor=E1k_=282N=29?= <kamilh@axis.com>
+Cc: florian.fainelli@broadcom.com, bcm-kernel-feedback-list@broadcom.com,
+	hkallweit1@gmail.com, linux@armlinux.org.uk, davem@davemloft.net,
+	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v11 4/4] net: phy: bcm-phy-lib: Implement BroadR-Reach
+ link modes
+Message-ID: <885eec03-b4d0-4bd1-869f-c334bb22888c@lunn.ch>
+References: <20240708102716.1246571-1-kamilh@axis.com>
+ <20240708102716.1246571-5-kamilh@axis.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240629103914.161530-1-erezgeva@nwtime.org> <20240629103914.161530-4-erezgeva@nwtime.org>
- <1c457520-07b7-4bde-b040-e8bca959a4f5@linaro.org> <CANeKEMOODBNZA6efh0E0Ga_KaVs5Y3WLcUftRhNwYHhnXO=GNw@mail.gmail.com>
- <CANeKEMO42rJt5Ob4_HDcZ3eEMvuMOPvRaFaLwL8SA65NtxSV7A@mail.gmail.com>
- <1d56c3b2-7adf-45b9-a509-956340f3f17b@linaro.org> <CANeKEMMe-Onpn7xWQHgWz1Ps_uQPEMa7HrKA00HpoKjG+DCJNQ@mail.gmail.com>
- <3bafcbea-6aa5-43ca-9d12-3916be3fe03d@linaro.org> <CANeKEMM02-Jvb8Pd0fZJFnRg-hsAW+hckYWm11tZZXNMPSPJ=w@mail.gmail.com>
- <9b45cc73-2251-4085-af95-7ccd00dd6d3b@linaro.org> <CANeKEMP+mRefYZNb+TuBmOD7dC6=7Rg7D1EcfnjJoiaeaV28SQ@mail.gmail.com>
- <875xtd48ps.fsf@geanix.com>
-In-Reply-To: <875xtd48ps.fsf@geanix.com>
-From: Erez <erezgeva2@gmail.com>
-Date: Thu, 11 Jul 2024 20:57:57 +0200
-Message-ID: <CANeKEMNJ3_ET5pQo2wg7_GSLX+vE+dqW-CV=v2DnG10xcgSdzQ@mail.gmail.com>
-Subject: Re: [PATCH v2 3/4] dt-bindings: mtd: macronix,mx25l12833f: add
- SPI-NOR chip
-To: Esben Haabendal <esben@geanix.com>
-Cc: Tudor Ambarus <tudor.ambarus@linaro.org>, Jaime Liao <jaimeliao@mxic.com.tw>, leoyu@mxic.com.tw, 
-	Alvin Zhou <alvinzhou@mxic.com.tw>, Julien Su <juliensu@mxic.com.tw>, 
-	Erez Geva <erezgeva@nwtime.org>, linux-mtd@lists.infradead.org, 
-	Pratyush Yadav <pratyush@kernel.org>, Michael Walle <mwalle@kernel.org>, linux-kernel@vger.kernel.org, 
-	Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240708102716.1246571-5-kamilh@axis.com>
 
-Yes, I think we should.
+> +static int bcm5481x_get_brrmode(struct phy_device *phydev, u8 *data)
+>  {
+> -	int err, reg;
+> +	int reg;
+>  
+> -	/* Disable BroadR-Reach function. */
+>  	reg = bcm_phy_read_exp(phydev, BCM54810_EXP_BROADREACH_LRE_MISC_CTL);
+> -	reg &= ~BCM54810_EXP_BROADREACH_LRE_MISC_CTL_EN;
+> -	err = bcm_phy_write_exp(phydev, BCM54810_EXP_BROADREACH_LRE_MISC_CTL,
+> -				reg);
+> -	if (err < 0)
 
-Reading the specification provided publicly by Macronix.
-For all the JEDEC IDs with the no SFDP flag in drivers/mtd/spi-nor/macronix.c
-All of them have a new version or a new chip with the same JEDEC ID
-that supports SFDP.
-There are 2 chips that Macronix does not provide spec. in public.
-I can ask Macronix technical support on these 2 chips.
+bcm_phy_read_exp() could fail. So you should keep the test. Also, the
+caller of this function does look at the return value.
 
-Erez
+> +/**
+> + * bcm5481x_read_abilities - read PHY abilities from LRESR or Clause 22
+> + * (BMSR) registers, based on whether the PHY is in BroadR-Reach or IEEE mode
+> + * @phydev: target phy_device struct
+> + *
+> + * Description: Reads the PHY's abilities and populates
+> + * phydev->supported accordingly. The register to read the abilities from is
+> + * determined by current brr mode setting of the PHY.
+> + * Note that the LRE and IEEE sets of abilities are disjunct.
+> + *
+> + * Returns: 0 on success, < 0 on failure
+> + */
+> +static int bcm5481x_read_abilities(struct phy_device *phydev)
+> +{
+> +	int i, val, err;
+> +	u8 brr_mode;
+> +
+> +	for (i = 0; i < ARRAY_SIZE(bcm54811_linkmodes); i++)
+> +		linkmode_clear_bit(bcm54811_linkmodes[i], phydev->supported);
+> +
+> +	err = bcm5481x_get_brrmode(phydev, &brr_mode);
 
-"RDID"    "Part."         "Size"              "Status"          "SFDP
-status according to spec. or new chip replacing with same RDID and
-SFDP supported according to spec."
-c22012  MX25L2005(A)  SZ_256K =  2Mb    EOL             MX25L2006E
-c22013  MX25L4005A    SZ_512K =  4Mb    EOL             MX25L4006E
-c22533  MX25U4035     SZ_512K =  4Mb    EOL             MX25U4033E
-c22534  MX25U8035     SZ_1M   =  8Mb    EOL             MX25U8033E
-c22016  MX25L3205D    SZ_4M   =  32Mb   EOL             MX25L3233F
-c22017  MX25L6405D    SZ_8M   =  64Mb   EOL             MX25L6406E / MX25L6433F
-c22018  MX25L12805D   SZ_16M  =  128Mb  EOL             MX25L12833F
-c22538  MX25U12835F   SZ_16M  =  128Mb  EOL             MX25U12832F
-c2253a  MX66U51235F   SZ_64M  =  512Mb  EOL             MX25U51245G
-c22532  MX25U2033E    SZ_256K =  2Mb    EOL             Have-SFDP!
-c22010  MX25L512E     SZ_64K  =  512Kb  NO_REC          Have-SFDP!
-c22015  MX25L1606E    SZ_2M   =  16Mb   NO_REC          Have-SFDP!
-c22536  MX25U3235F    SZ_4M   =  32Mb   NO_REC          Have-SFDP!
-c22816  MX25R3235F    SZ_4M   =  32Mb   NO_REC          Have-SFDP!
-c22537  MX25U6435F    SZ_8M   =  64Mb   NO_REC          Have-SFDP!
-c22019  MX25L25635E   SZ_32M  =  256Mb  NO_REC          Have-SFDP!
-c22539  MX25U25635F   SZ_32M  =  256Mb  NO_REC          Have-SFDP!
-c2201a  MX66L51235F   SZ_64M  =  512Mb  NO_REC          Have-SFDP!
-c2253a  MX25U51245G   SZ_64M  =  512Mb  PROD            Have-SFDP!
-c22314  MX25V8035F    SZ_1M   =  8Mb    PROD            Have-SFDP!
-c22815  MX25R1635F    SZ_2M   =  16Mb   PROD            Have-SFDP!
-c2201b  MX66L1G45G    SZ_128M =  1Gb    PROD            Have-SFDP!
-c2253c  MX66U2G45G    SZ_256M =  2Gb    PROD            Have-SFDP!
-c2261b  MX66L1G55G    SZ_128M =  1Gb    NO_REC          Spec. is not public
-c29e16  MX25L3255E    SZ_4M   =  32Mb   PROD            Spec. is not public
+> +static int bcm5481x_set_brrmode(struct phy_device *phydev, bool on)
+> +{
+> +	int reg;
+> +	int err;
+> +	u16 val;
+> +
+> +	reg = bcm_phy_read_exp(phydev, BCM54810_EXP_BROADREACH_LRE_MISC_CTL);
+> +
+> +	if (on)
+> +		reg |= BCM54810_EXP_BROADREACH_LRE_MISC_CTL_EN;
+> +	else
+> +		reg &= ~BCM54810_EXP_BROADREACH_LRE_MISC_CTL_EN;
+> +
 
-EOL     End of Life
-PROD    Production
-NO_REC  Not recommend
+> +static int bcm54811_config_init(struct phy_device *phydev)
+> +{
+> +	struct device_node *np = phydev->mdio.dev.of_node;
+> +	bool brr = false;
+> +	int err, reg;
+> +
+>  	err = bcm54xx_config_init(phydev);
+>  
+>  	/* Enable CLK125 MUX on LED4 if ref clock is enabled. */
+> @@ -576,29 +687,80 @@ static int bcm54811_config_init(struct phy_device *phydev)
+>  			return err;
+>  	}
+>  
+> -	return err;
+> +	/* Configure BroadR-Reach function. */
+> +	brr = of_property_read_bool(np, "brr-mode");
+> +
+> +	/* With BCM54811, BroadR-Reach implies no autoneg */
+> +	if (brr)
+> +		phydev->autoneg = 0;
+> +
+> +	return bcm5481x_set_brrmode(phydev, brr);
+>  }
 
+The ordering seems a bit strange here.
 
-On Wed, 10 Jul 2024 at 16:34, Esben Haabendal <esben@geanix.com> wrote:
->
-> Erez <erezgeva2@gmail.com> writes:
->
-> > On Wed, 3 Jul 2024 at 09:12, Tudor Ambarus <tudor.ambarus@linaro.org> wrote:
-> >> On 7/3/24 12:16 AM, Erez wrote:
-> >>> On Tue, 2 Jul 2024 at 07:00, Tudor Ambarus <tudor.ambarus@linaro.org> wrote:
-> >>>
-> >>> The table below uses fixed width characters.
-> >>>
-> >>> ID      Part.         Size              Status          SFDP status
-> >>> according to spec.
-> >>>                                                         New chip with
-> >>> SFDP for EOL
-> >>> c22012  MX25L2005(A)  SZ_256K =  2Mb    EOL             MX25L2006E
-> >>> c22532  MX25U2033E    SZ_256K =  2Mb    EOL
-> >>> c22013  MX25L4005A    SZ_512K =  4Mb    EOL
-> >>> c22533  MX25U4035     SZ_512K =  4Mb    EOL
-> >>> c22534  MX25U8035     SZ_1M   =  8Mb    EOL
-> >>> c22016  MX25L3205D    SZ_4M   =  32Mb   EOL             MX25L3233F
-> >>> c29e16  MX25L3255E    SZ_4M   =  32Mb   EOL
-> >>> c22017  MX25L6405D    SZ_8M   =  64Mb   EOL
-> >>> c22018  MX25L12805D   SZ_16M  =  128Mb  EOL             MX25L12833F
-> >>> c22538  MX25U12835F   SZ_16M  =  128Mb  EOL
-> >>> c2253a  MX66U51235F   SZ_64M  =  512Mb  EOL             MX25U51245G
-> >>> c22010  MX25L512E     SZ_64K  =  512Kb  NO_REC          Have-SFDP!
-> >>> c22015  MX25L1606E    SZ_2M   =  16Mb   NO_REC          Have-SFDP!
-> >>> c22536  MX25U3235F    SZ_4M   =  32Mb   NO_REC          Have-SFDP!
-> >>> c22816  MX25R3235F    SZ_4M   =  32Mb   NO_REC          Have-SFDP!
-> >>> c22537  MX25U6435F    SZ_8M   =  64Mb   NO_REC          Have-SFDP!
-> >>> c22019  MX25L25635E   SZ_32M  =  256Mb  NO_REC          Have-SFDP!
-> >>> c22539  MX25U25635F   SZ_32M  =  256Mb  NO_REC          Have-SFDP!
-> >>> c2201a  MX66L51235F   SZ_64M  =  512Mb  NO_REC          Have-SFDP!
-> >>> c2261b  MX66L1G55G    SZ_128M =  1Gb    NO_REC          Spec. is not public
-> >>> c22314  MX25V8035F    SZ_1M   =  8Mb    PROD            Have-SFDP!
-> >>> c22815  MX25R1635F    SZ_2M   =  16Mb   PROD            Have-SFDP!
-> >>> c2201b  MX66L1G45G    SZ_128M =  1Gb    PROD            Have-SFDP!
-> >>> c2253c  MX66U2G45G    SZ_256M =  2Gb    PROD            Have-SFDP!
-> >>> c2253a  MX25U51245G   SZ_64M  =  512Mb  PROD            Have-SFDP!
-> >>>
-> >>> EOL     End of Life
-> >>> PROD    Normal Production
-> >>> NO_REC  Not recommend for new design
-> >>>
-> >>>
-> >>
-> >> not sure what you want me to do with these.
-> >
-> > That we can read SFDP for all chips from Macronix.
-> > Only old chips before 2010 do not have SFDP.
->
-> So, should we try and identify new chips (with SFDP) that re-use the ID of all the
-> above mentioned EOL chips that does not have SFDP?
->
-> As I read the communication from Macronix, then we should expect new
-> chips re-using the ID for all of them. It is just a matter of digging.
->
-> /Esben
+phy_probe() will call phydrv->get_features. At this point, the PHY is
+in whatever mode it resets to, or maybe what it is strapped
+to. phydev->supported could thus be set to standard IEEE modes,
+despite the board design is actually for BroadR-Reach.
+
+Sometime later, when the MAC is connected to the PHY config_init() is
+called. At that point, you poke around in DT and find how the PHY is
+connected to the cable. At that point, you set the PHY mode, and
+change phydev->supported to reflect reality.
+
+I really think that reading DT should be done much earlier, maybe in
+the driver probe function, or maybe get_features. get_features should
+always return the correct values from the board.
+
+> +static int bcm5481_config_aneg(struct phy_device *phydev)
+> +{
+> +	u8 brr_mode;
+> +	int ret;
+> +
+> +	ret = bcm5481x_get_brrmode(phydev, &brr_mode);
+
+Rather than read it from the hardware every single time, could you
+store the DT value in bcm54xx_phy_priv ?
+
+> +/* Read LDS Link Partner Ability in BroadR-Reach mode */
+> +static int bcm_read_lpa(struct phy_device *phydev)
+
+This function seems to be missing an lds or lre prefix.
+
+> +static int bcm_read_status_fixed(struct phy_device *phydev)
+
+and here. Please make sure the naming is consistent. Anything which
+only accesses lre or lds registers should make that clear in its name.
+
+> +static int bcm54811_read_status(struct phy_device *phydev)
+> +{
+> +	u8 brr_mode;
+> +	int err;
+> +
+> +	err = bcm5481x_get_brrmode(phydev, &brr_mode);
+> +
+> +	if (err)
+> +		return err;
+> +
+> +	if (brr_mode) {
+> +		/* Get the status in BroadRReach mode just like
+> +		 *   genphy_read_status does in normal mode
+> +		 */
+> +
+> +		int err, old_link = phydev->link;
+> +
+> +		/* Update the link, but return if there was an error */
+> +
+> +		err = lre_update_link(phydev);
+> +		if (err)
+> +			return err;
+> +
+> +		/* why bother the PHY if nothing can have changed */
+> +		if (phydev->autoneg ==
+> +		    AUTONEG_ENABLE && old_link && phydev->link)
+> +			return 0;
+> +
+> +		phydev->speed = SPEED_UNKNOWN;
+> +		phydev->duplex = DUPLEX_UNKNOWN;
+> +		phydev->pause = 0;
+> +		phydev->asym_pause = 0;
+> +
+> +		err = bcm_read_master_slave(phydev);
+> +		if (err < 0)
+> +			return err;
+> +
+> +		/* Read LDS Link Partner Ability */
+> +		err = bcm_read_lpa(phydev);
+> +		if (err < 0)
+> +			return err;
+> +
+> +		if (phydev->autoneg ==
+> +		    AUTONEG_ENABLE && phydev->autoneg_complete) {
+> +			phy_resolve_aneg_linkmode(phydev);
+> +		} else if (phydev->autoneg == AUTONEG_DISABLE) {
+> +			err = bcm_read_status_fixed(phydev);
+> +			if (err < 0)
+> +				return err;
+> +		}
+
+This would probably look better if you pulled this code out into a
+helper bcm54811_lre_read_status().
+
+    Andrew
+
+---
+pw-bot: cr
 
