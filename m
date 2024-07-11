@@ -1,74 +1,48 @@
-Return-Path: <devicetree+bounces-85000-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85001-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCC9A92E7D1
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 14:00:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E20D92E7C5
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 13:58:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2DB57B27021
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 11:57:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 59C0F288A79
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 11:58:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 501A815B14F;
-	Thu, 11 Jul 2024 11:56:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8155315A84A;
+	Thu, 11 Jul 2024 11:58:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Wu5gLYPp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FaA63Xir"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F47115FD15;
-	Thu, 11 Jul 2024 11:56:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 423B5156F2D;
+	Thu, 11 Jul 2024 11:58:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720698987; cv=none; b=OK4VSi1p19crZSwCtaPkUi+pDhvshJHdV9Kpy0ozvf88Uchu7iTJnmTQ/mlZFvvjzEY07eVbE6pS3qJaQftf0ZYkeUwqwPLveLgbCiL0XRUHTcNrkIjvyJ0DazObv54OK940LlRfDl3Wt4WiSnM7mb37odLx7/Z0bpFjRlBcVrI=
+	t=1720699120; cv=none; b=UxDVwTyhhwTQKJbXh4V5YP1FKWF4rT0spjCBMumvHoDwr09t78R+K7dAOqWvnshq56PuNWMUrhmZ62lQ9zQhSrEdK8LWaoaPpNUK+KnzdDHRXZMLasP8GGIUuPmvhwuwpaDD6ow5Cv0mMyq6E9jRcdlP/II9mS4oqElxxrkmH7Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720698987; c=relaxed/simple;
-	bh=yL9nOzO4JRO8ARg6ThjkeEd3noDQcACDauD3MhB+qEs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=g3HiBDSXkv8lflGAo/Cx3qANjwEMLkbgoB8Q4hOq6gaEhkGQ/2PhJgi6ZVnxyuwUn+0XoLrVGJuxhz8oPSEViAhXc2MIMher8p1o+Hmm7EZMPXqP/Sh5gTvCwvGQkfxvVlqFzDso6ALQhh3xGa8pCqp/R08z75If6ilvwjcuAbs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Wu5gLYPp; arc=none smtp.client-ip=209.85.208.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-58b447c513aso1004573a12.2;
-        Thu, 11 Jul 2024 04:56:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1720698984; x=1721303784; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Bq2MHRWMRpRuHietDcISXO0+46WBW+IZOyTMBnJpPCI=;
-        b=Wu5gLYPpgFuDi4hbCp3s/vtJsRdjWnVK4nT01m6LW0HfV71c0I52g64jvVy38+3bPk
-         u4GB6/v/U7ZPvtmUsMXH09ZLVj4YYKU8YMpkzK+OOQ3GPmdX1TBc4NrYq17J/HZmmGTP
-         /kgp4olgGNbe48rjaHWynhGnTaQXOUSRjpT2chzCn+4bQqIIl8LAox4pc5TDsNHsRgGK
-         zb2T7UM30UYgHhQZyn34VCNC/663836M4h5ZAzdET1mqxkP0UPK+ldby0BguvK5cyX9U
-         Bktdg05ISL5l31NmM3J+fE0rGdOldIgBIks98wX7AHHvDlgHbXOY2fOCwxFusPfFFBPN
-         jsRg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720698984; x=1721303784;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Bq2MHRWMRpRuHietDcISXO0+46WBW+IZOyTMBnJpPCI=;
-        b=uYZYFAMHGLhF03UbtD05J75RwX1GiL1KswvMW5RJzW82EiTfoMjDP0iKstesRgZ9/7
-         mj5r3I80mfhKepbzyoR7ksHn8o17TjtFkaxnX3T18Ty2QzOJcwjbi6af+I6hCjGfXWpj
-         GjamECdPBjSIHvd550ctwJEetG/HIfXkFsfSzDlIKflODGWwiSeXhah1ahXSvA0UXOX0
-         iQtbu+KhVGIhCE73bX6pPHc5dD/5axxYTNMIxjgB7bHfBjidPKtoy1qdgX1YSfJaibbr
-         bRL5yzZe7GYtI2koAMbtUhWUDD/7MnEABBZvD2/rjsQFHDNJqmVQ6igzyR/Pw5n7+oF1
-         Rp6Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXqLNNTJ/tHa9NcrB8wTAO3LOFkaZPrF9MUhBmQCXVeMNulljjrIlUdOVTh5U1sseaLFaQ9hCPDaz68CzSDBTLmAnArPG343eY/HpIzpo26ly1yzCPBdr7BXXJIR1VToZdLXJ7rsn33pA==
-X-Gm-Message-State: AOJu0YyEZt7qqfchiRavWoUaOkEX6Wl3Z64EJjsPX5SY8egof4/m70kw
-	y+oZ3CRwM06LNCVM0bPIkiF213/r7D0kxeFkOqgnQrY9bY1UCdkYv0UC
-X-Google-Smtp-Source: AGHT+IFPclGUkdX7WZ6l5h3IecZRqbFpN4dthUnDLTpOivMTp7878y/TTqx+pJJ4Japsfg+fOBaMSA==
-X-Received: by 2002:a17:907:3d88:b0:a72:4c33:6ba6 with SMTP id a640c23a62f3a-a780b51309amr713941966b.0.1720698983425;
-        Thu, 11 Jul 2024 04:56:23 -0700 (PDT)
-Received: from ?IPV6:2a02:810b:f40:4600:2315:3572:6db8:dada? ([2a02:810b:f40:4600:2315:3572:6db8:dada])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a780a86f636sm248691666b.208.2024.07.11.04.56.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Jul 2024 04:56:23 -0700 (PDT)
-Message-ID: <1cc5ca06-bb40-4787-9e97-a12d79e54d7b@gmail.com>
-Date: Thu, 11 Jul 2024 13:56:20 +0200
+	s=arc-20240116; t=1720699120; c=relaxed/simple;
+	bh=HguvgwvBpfqOovw/jwg7IosK9ScAa4vcIicrJd3hq3A=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=XgHUw18zmJXdmVSpUAM6MvWfjdCAufarwS/yglkh9Efdv7pPCEUseHE1Qfju04xBoSuBBDkRb2ZXmwO0vsn9S+il9h1RMcQYQ9Nlbkht2pO50rsfLF3dwQvzoz9E+rJDGbYAU/5bXEg+71PFW796zzONhav0EM4F1v1CK6ejqvI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FaA63Xir; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 220DEC32786;
+	Thu, 11 Jul 2024 11:58:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720699119;
+	bh=HguvgwvBpfqOovw/jwg7IosK9ScAa4vcIicrJd3hq3A=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=FaA63XirlsuMviOf8i7MJTazgVYL2Ch6vFUDsvIOJ2sozDymDwiiVBf8PBGbMSO9N
+	 CokXW15chmFXFbymH71lS85ijqE40UnOYtcHGE3jrs2slFFSFJK90RUXCKC7QHTTaZ
+	 22UGZAhYYwDi/oowJwgDWqUYysNtCOkaylo/pRDN6i3fELtXNwtN++oXwRdVKU4pyk
+	 LkLxvpa2AWxchzkPwqAuCJmOw2Y2HuF0/4l7ZGZjj/hpdTBWGiqxZ1dWb/U5sRjk7n
+	 zlpQlF7xti3TilxjyI57eYWJA0INQSj/xm09mICJP/kTeLY/2BBTtWzANbh94WdZMW
+	 /zoZMT+BWS6OQ==
+Message-ID: <ae98e21f-91ac-4878-8cab-916b24e927e5@kernel.org>
+Date: Thu, 11 Jul 2024 13:58:31 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,135 +50,103 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: rockchip: Add missing pinctrl for PCIe30x4
- node
-To: wens@kernel.org
-Cc: Jonas Karlman <jonas@kwiboo.se>, Heiko Stuebner <heiko@sntech.de>,
- Anand Moon <linux.amoon@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20240711060939.1128-1-linux.amoon@gmail.com>
- <a8c1f49e-bf25-4fd3-a16f-13088f75767f@kwiboo.se>
- <CAGb2v65iR9BdAX43gfpBOeKF_B5PFm+RhPwu5FHUfRxCMeqh-w@mail.gmail.com>
- <e3410560-6dec-41de-ab14-441dbe8e5bb1@gmail.com>
- <CAGb2v66gmZGh-_7r6+ifeH-OfU4npxZNWucS-GhtL91LCSvqvQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: interconnect: Add Qualcomm IPQ5332
+ support
+To: Varadarajan Narayanan <quic_varada@quicinc.com>, andersson@kernel.org,
+ mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, gregkh@linuxfoundation.org,
+ konrad.dybcio@linaro.org, djakov@kernel.org, quic_wcheng@quicinc.com,
+ linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-usb@vger.kernel.org, linux-pm@vger.kernel.org
+References: <20240711113239.3063546-1-quic_varada@quicinc.com>
+ <20240711113239.3063546-2-quic_varada@quicinc.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Alex Bee <knaerzche@gmail.com>
-In-Reply-To: <CAGb2v66gmZGh-_7r6+ifeH-OfU4npxZNWucS-GhtL91LCSvqvQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
+ QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
+ gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
+ /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
+ iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
+ VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
+ 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
+ xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
+ eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
+ AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
+ MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
+ Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
+ ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
+ vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
+ oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
+ lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
+ t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
+ uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
+ 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
+ 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
+In-Reply-To: <20240711113239.3063546-2-quic_varada@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+On 11/07/2024 13:32, Varadarajan Narayanan wrote:
+> Add interconnect-cells to clock provider so that it can be
+> used as icc provider.
+> 
+> Add master/slave ids for Qualcomm IPQ5332 Network-On-Chip
+> interfaces. This will be used by the gcc-ipq5332 driver
+> for providing interconnect services using the icc-clk
+> framework.
+> 
+> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
 
-Am 11.07.24 um 13:38 schrieb Chen-Yu Tsai:
-> On Thu, Jul 11, 2024 at 7:13 PM Alex Bee <knaerzche@gmail.com> wrote:
->> Am 11.07.24 um 11:17 schrieb Chen-Yu Tsai:
->>> On Thu, Jul 11, 2024 at 4:44 PM Jonas Karlman <jonas@kwiboo.se> wrote:
->>>> Hi Anand,
->>>>
->>>> On 2024-07-11 08:09, Anand Moon wrote:
->>>>> Add missing pinctrl settings for PCIe 3.0 x4 clock request and wake
->>>>> signals.Each component of PCIe communication have the following control
->>>>> signals: PERST, WAKE, CLKREQ, and REFCLK. These signals work to generate
->>>>> high-speed signals and communicate with other PCIe devices.
->>>>> Used by root complex to endpoint depending on the power state.
->>>>>
->>>>> PERST is referred to as a fundamental reset. PERST should be held low
->>>>> until all the power rails in the system and the reference clock are stable.
->>>>> A transition from low to high in this signal usually indicates the
->>>>> beginning of link initialization.
->>>>>
->>>>> WAKE signal is an active-low signal that is used to return the PCIe
->>>>> interface to an active state when in a low-power state.
->>>>>
->>>>> CLKREQ signal is also an active-low signal and is used to request the
->>>>> reference clock.
->>>>>
->>>>> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
->>>>> ---
->>>>> V2: Update the commit messge to describe the changs.
->>>>>       use pinctl group as its pre define in pinctl dtsi
->>>>> ---
->>>>>    arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts | 6 +-----
->>>>>    1 file changed, 1 insertion(+), 5 deletions(-)
->>>>>
->>>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
->>>>> index 2e7512676b7e..ab3a20986c6a 100644
->>>>> --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
->>>>> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
->>>>> @@ -301,7 +301,7 @@ &pcie30phy {
->>>>>
->>>>>    &pcie3x4 {
->>>>>         pinctrl-names = "default";
->>>>> -     pinctrl-0 = <&pcie3_rst>;
->>>>> +     pinctrl-0 = <&pcie30x4m1_pins>;
->>>> Use of the existing pcie30x4m1_pins group may not be fully accurate for
->>>> the PERST pin. The use of reset-gpios indicate that the PERST pin is
->>>> used with GPIO function and the driver will implicitly change the
->>>> function from perstn_m1 to GPIO. So this may not be best representation
->>>> of the hw, hence my initial suggestion, something like:
->>>>
->>>>           pcie30x4_pins: pcie30x4-pins {
->>>>                   rockchip,pins =
->>>>                           <4 RK_PB4 4 &pcfg_pull_none>,
->>>>                           <4 RK_PB6 RK_FUNC_GPIO &pcfg_pull_none>,
->>>>                           <4 RK_PB5 4 &pcfg_pull_none>;
->>>>           };
->>>>
->>>> Similar change should probably also be done for pcie2x1l0 and pcie2x1l2,
->>>> not just pcie3x4.
->>> Can we consider implementing strict mode in the pinctrl driver so we don't
->>> have to keep doing this GPIO + pinmux dance?
->>>
->> This is not about drivers, this is DT which is independent from drivers.
->> Jonas and I had discussion recently on u-boot mailing list with somebody
->> using Open/FreeBSD about exact that topic. Pinctrl mux settings should be
->> very explicit, even if it is not required by the linux-driver.
-> The hardware also prevents you from using GPIOs with any other mux setting.
-> That is already implied by the compatible string and doesn't need to be
-> spelled out. The strict driver mode merely enforces this hardware limitation
-> without the very explicit setting. One could also say that the driver is
-> wrong to support conflicting settings.
->
->
-> ChenYu
-"The" driver is in fact not correct here, since it's two actually two
-drivers: pinctrl and gpio, two subsystems and separate HW blocks (not very
-clear, but it's at least configured in different mmio regions). So with
-what you are suggesting you want one driver to implicitly configure the
-other and expect every OS to have such methods? Broad ...
+That's another patchset from Qualcomm where tags get ignored. Maybe it's
+the same team? You have very good internal guideline, so read it before
+posting.
 
-Alex
+Expecting us to do the same review we already did, is a waste of
+community resources.
 
->
->> Alex
->>
->>> ChenYu
->>>
->>>
->>>> Regards,
->>>> Jonas
->>>>
->>>>>         reset-gpios = <&gpio4 RK_PB6 GPIO_ACTIVE_HIGH>;
->>>>>         vpcie3v3-supply = <&vcc3v3_pcie30>;
->>>>>         status = "okay";
->>>>> @@ -341,10 +341,6 @@ pcie2_2_rst: pcie2-2-rst {
->>>>>         };
->>>>>
->>>>>         pcie3 {
->>>>> -             pcie3_rst: pcie3-rst {
->>>>> -                     rockchip,pins = <4 RK_PB6 RK_FUNC_GPIO &pcfg_pull_none>;
->>>>> -             };
->>>>> -
->>>>>                 pcie3_vcc3v3_en: pcie3-vcc3v3-en {
->>>>>                         rockchip,pins = <1 RK_PA4 RK_FUNC_GPIO &pcfg_pull_none>;
->>>>>                 };
->>>>>
->>>>> base-commit: 34afb82a3c67f869267a26f593b6f8fc6bf35905
->>>>
->>> _______________________________________________
->>> Linux-rockchip mailing list
->>> Linux-rockchip@lists.infradead.org
->>> http://lists.infradead.org/mailman/listinfo/linux-rockchip
+<form letter>
+This is a friendly reminder during the review process.
+
+It looks like you received a tag and forgot to add it.
+
+If you do not know the process, here is a short explanation:
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions, under or above your Signed-off-by tag. Tag is "received", when
+provided in a message replied to you on the mailing list. Tools like b4
+can help here. However, there's no need to repost patches *only* to add
+the tags. The upstream maintainer will do that for tags received on the
+version they apply.
+
+https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
+
+If a tag was not added on purpose, please state why and what changed.
+</form letter>
+
+Best regards,
+Krzysztof
+
 
