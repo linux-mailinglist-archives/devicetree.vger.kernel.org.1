@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-85136-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85137-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 501E692F0C1
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 23:13:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 12B7392F0CB
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 23:14:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0F98F281393
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 21:13:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9598B28362E
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 21:14:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBDAE19EEC7;
-	Thu, 11 Jul 2024 21:13:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DA9319E7F9;
+	Thu, 11 Jul 2024 21:14:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IKohomAq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OwaEH00l"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B1851509BC;
-	Thu, 11 Jul 2024 21:13:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50E9D51004;
+	Thu, 11 Jul 2024 21:14:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720732416; cv=none; b=mX4r751FJWGhbSZ0V3PYDH62uqGXsAEW2wHEWdRgdDjFqNCCR6ozX8i+pBRwPrF/uCSnygOZU+bf5Sf3eMBbiR6mmloVQX/1GiB2RTwDO2HzPX0ff0YfaGc7/jQKeTcgqgngCT+d7RWvHhX1muDdXWbHJ1EPmPt3KW1yR2bFGn0=
+	t=1720732474; cv=none; b=m1liY7xuY98dnmN1EnSsSAf9HQesv9ZJwTjVpO5Ak187GWnAgtHI6eISG8wETEuZHJESy1rTP9NtrFGLKlUvFPi1tljFpHN2gMaA1e37cn0JxlxN9i+KQ+uWICl6DhzYRikkIx9/ah5WHzYRhiO4olGwUx1eznpfp38ItgmUt8g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720732416; c=relaxed/simple;
-	bh=zD3H2nNg/pVAuxwarSoosSrcXFyYiiavlKTZ20sCeM0=;
+	s=arc-20240116; t=1720732474; c=relaxed/simple;
+	bh=PqmkKClzKA9/SBnHkaebvSMhSF4dVf6/yT6uauqZ1ac=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=U+4rZebtr5BPCuik5jGrNTLzTMKpD2A4i3shmr00ZeKJb5M9B2IWX3kJegKSk2hVhoZaRHYVq+RU5P/PZHFzQFMFNfMfyZDnCIu6RPOrtIVn9h7ee16zKkEwO/h81F0A/TTABb0J2x1DpiH8ZnuWVpY0tYo/IK7gCe8LkcsR9Ro=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IKohomAq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03340C116B1;
-	Thu, 11 Jul 2024 21:13:35 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=MllbonL/9cApT60aoVWQ34c6MurI2JW/GH1SOaD6OmYOCwoCO5yPBPyqYl9Bx7xMl21xW3SOboGzNKFFwUrUtwLeVflPpBBkrGm4oEwc62uNRRKuuzL3LyVRj5ZCKwlw7ugo93d4EobUkEjkEFCOs9Z8X35eWpcz9oJB4r0DBQY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OwaEH00l; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6926C116B1;
+	Thu, 11 Jul 2024 21:14:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720732416;
-	bh=zD3H2nNg/pVAuxwarSoosSrcXFyYiiavlKTZ20sCeM0=;
+	s=k20201202; t=1720732473;
+	bh=PqmkKClzKA9/SBnHkaebvSMhSF4dVf6/yT6uauqZ1ac=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=IKohomAqoc4gxipkRO1NgxAokKA94Gmr8tOd2ACAmsEj27nT89p91hNF3B/Ba15m5
-	 BokRn8jrE7DZ5UpFkC+yZJ4B21K1265XiHkcFaFj+QfTd0ydjtJVUp/y7z7YRepd0o
-	 ssB0uFPV14oMw58KotNoUISsF+Dz+liGFUSuZEOqYFXLhJY/a9n1nYWRnSRfqrkS8O
-	 PH8feg45iCzaqaalMckvM4D6v2i79rAmDIHsP1KqBZVNbmeyvWtkAohtiAAVd0ZTqX
-	 pdVEP+U+l246KAY3vm7mzDQa/B+aY5ZMlsDg+xE+GnsbV+EOJ3rstuj9PFC/At4R9D
-	 lkTts2tve+/Lg==
-Date: Thu, 11 Jul 2024 15:13:34 -0600
+	b=OwaEH00lPYizGDKn3Lj426vXvs6iS3F3txCwEPg5beVfkBvD61hOq1JKCd1ngTNsN
+	 XWu+VztjQPRqlkgQeFN1wOnBvlwvq6LNriLsQmFIBKKvTo9rc+SkAGBTl9ZXEFzKFG
+	 7MXRi+f1EA1TxV67rs7xvM0CgJwVJD6lZO5rDvfd69tV8avxM05k+5n7ach+cUVUti
+	 E6rVlxpW4vjtGQpmS0vgoBxdkDZ6zN+DcBHP2yR2+MiAeQkK5MxarHPOtl7UDG2cCy
+	 W/Zht9tvzw6GoSsEmIBur7LTi0ZYritzCsDbO2Ps3nZYdp5YY3PfWZ+GbF9hOLM89F
+	 U9q+Xi8IwMJdg==
+Date: Thu, 11 Jul 2024 15:14:32 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Chris Packham <chris.packham@alliedtelesis.co.nz>
-Cc: linux-mips@vger.kernel.org, devicetree@vger.kernel.org, bert@biot.com,
-	sander@svanheule.net, daniel.lezcano@linaro.org,
-	paulburton@kernel.org, kabel@kernel.org, tsbogend@alpha.franken.de,
-	conor+dt@kernel.org, peterz@infradead.org, john@phrozen.org,
-	linux-kernel@vger.kernel.org, krzk+dt@kernel.org,
-	tglx@linutronix.de, mail@birger-koblitz.de, ericwouds@gmail.com
-Subject: Re: [PATCH v5 06/10] dt-bindings: interrupt-controller:
- realtek,rtl-intc: Add rtl9300-intc
-Message-ID: <172073241371.3019767.1008127650947227633.robh@kernel.org>
-References: <20240710043524.1535151-1-chris.packham@alliedtelesis.co.nz>
- <20240710043524.1535151-7-chris.packham@alliedtelesis.co.nz>
+To: Animesh Agarwal <animeshagarwal28@gmail.com>
+Cc: Richard Fitzgerald <rf@opensource.cirrus.com>,
+	patches@opensource.cirrus.com, Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	alsa-devel@alsa-project.org, David Rhodes <david.rhodes@cirrus.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, linux-sound@vger.kernel.org,
+	Daniel Baluta <daniel.baluta@nxp.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ASoC: dt-bindings: cirrus,cs42xx8: Convert to dtschema
+Message-ID: <172073247178.3021175.15222505507624018342.robh@kernel.org>
+References: <20240710072756.99765-1-animeshagarwal28@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,34 +63,21 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240710043524.1535151-7-chris.packham@alliedtelesis.co.nz>
+In-Reply-To: <20240710072756.99765-1-animeshagarwal28@gmail.com>
 
 
-On Wed, 10 Jul 2024 16:35:20 +1200, Chris Packham wrote:
-> Add a compatible string for the interrupt controller found on the
-> rtl930x SoCs. The interrupt controller has registers for VPE1 so these
-> are added as a second reg cell.
+On Wed, 10 Jul 2024 12:57:52 +0530, Animesh Agarwal wrote:
+> Convert the Cirrus Logic CS42448/CS42888 audio CODEC bindings to DT
+> schema format. Set power supply properties to required only for CS42888.
 > 
-> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> Cc: Daniel Baluta <daniel.baluta@nxp.com>
+> Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
 > ---
-> 
-> Notes:
->     Changes in v5:
->     - set reg::minItems = 2 when compatible == "rtl9300-intc"
->     Changes in v4:
->     - None
->     Changes in v3:
->     - Add reg::minItems where required
->     Changes in v3:
->     - Use items to describe the regs property
->     Changes in v2:
->     - Set reg:maxItems to 2 to allow for VPE1 registers on the rtl9300. Add
->       a condition to enforce the old limit on other SoCs.
->     - Connor and Krzysztof offered acks on v1 but I think the changes here
->       are big enough to void those.
-> 
->  .../realtek,rtl-intc.yaml                     | 20 ++++++++++++++++++-
->  1 file changed, 19 insertions(+), 1 deletion(-)
+>  .../bindings/sound/cirrus,cs42xx8.yaml        | 81 +++++++++++++++++++
+>  .../devicetree/bindings/sound/cs42xx8.txt     | 34 --------
+>  2 files changed, 81 insertions(+), 34 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/sound/cirrus,cs42xx8.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/sound/cs42xx8.txt
 > 
 
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
