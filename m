@@ -1,48 +1,75 @@
-Return-Path: <devicetree+bounces-84914-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84915-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFC1A92E3B1
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 11:45:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B88C892E3C7
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 11:51:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 908D9281643
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 09:45:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 744CA284B48
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 09:51:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10758157476;
-	Thu, 11 Jul 2024 09:45:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 160DE156641;
+	Thu, 11 Jul 2024 09:51:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="rF3Pg+X9"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DANXKutz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [167.172.40.54])
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EC9715746A
-	for <devicetree@vger.kernel.org>; Thu, 11 Jul 2024 09:45:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=167.172.40.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D294152E13
+	for <devicetree@vger.kernel.org>; Thu, 11 Jul 2024 09:51:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720691113; cv=none; b=jF/emNW5NpzHrXOH2tZj3QrgjJl+j5NAGp3Hq//mpXlfaWjgN/HAz3yv6b4H8I/b9tlAs53hOEbNDbvC1ntDvKJVhTdcFl5DjGfmn3eNss6MdWNecns05O772ciCONtgA95YxkK0U+3zzAnyb2Jo9XR59VKR2SMa2c13kItpUYk=
+	t=1720691511; cv=none; b=Rf+5dFXYyzvPOoOhHTb6vk3bpHE7vhna/LoaesaG+7d13+bzmHbLGvlNLZSOjsvicmQuUAOWBCU7dWyU0jFqipikfQhIcAeabjgPaSm47NB5DgcJ5+REg0yCLO010oRwFGmCOWNXlHUe4iNM/SOJTt9Pqt1J23P8KEPlxfjIbQ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720691113; c=relaxed/simple;
-	bh=Oy7W7l6eQOf3PSHMcjeyj4fuNeSFdBFQ9Uq+63xIoT0=;
+	s=arc-20240116; t=1720691511; c=relaxed/simple;
+	bh=6W/qVczYJkuz3Z8DNHsspunOTZVIxcTUdrjw9u/h48E=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=U4hg4wgNXk+81twvYci7TOZLDRWSCCpfT0j2rineHPufs6nvFDr6OJGzc7bahws2oh1s8LPQ1UoTISBSdaO3nMSsssBJw1tpDoLH5hejqVM6C73U4jqugTlBPgotBYTi0O0GZ1HTMgCkrk+5PFzQ1YkytbG1PRpOI9qvSuNe7i0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=rF3Pg+X9; arc=none smtp.client-ip=167.172.40.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1720691095;
- bh=3VTjqdTB2Skdm6LlNLhdmYkYJnJbA0EzPLhUN0GVP+4=;
- b=rF3Pg+X9lOhYwAMLGxuumuQvC1B3YyghSZm2SvKm0O7v3nMcKx5DL20CX7XzEVZOk0bxGi5Lu
- 4V1DwIElHMP6bkYS/eQn+PIOXmD3KjzVy38PCHhUGKJJDAI5R18ed1kiQaNvdtf+mJ9+UsQZvoS
- fhKpgaor7sz+HxysQE876AX3uyJUb7ADjNK8rfIIX4j36Y3qoiXz25T2uE+IWBmM39HmKx/wz7R
- 44sMvhvu1h2fUZF4p2jdd1vhGJmu0K87iXfzmkm3aIa5xslML1OdFXoGXnnf88QkGoUL94lyel7
- MzVL9JhC/gSPlkMdd4s1nymhmS0Kr9FcyQfoRClSXpZQ==
-Message-ID: <6250fa05-7a06-4fa1-a2be-9cb66a2d2822@kwiboo.se>
-Date: Thu, 11 Jul 2024 11:44:46 +0200
+	 In-Reply-To:Content-Type; b=kMt4zZc3YrG19uxvlmvkqUheZ4nSi3QcOMRQGTOqYN+ocGQv0D/uQ4ZTEvfQXAmkNmtjiqfx3o5e3U0GKHNAAIBpIFwhmYCyIzcuxRX2T/RTqzULQsAWEprmYCP7E6Ov/kgwM63ZP3GiNjSbBvC4gZXY0CvTKhE30+hybrYtYqI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DANXKutz; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-42679f33fefso4518895e9.2
+        for <devicetree@vger.kernel.org>; Thu, 11 Jul 2024 02:51:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1720691508; x=1721296308; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=p4smDoC8Q8mWiYpTnz73mXw1qS9kVwzA6CajD1cC+rw=;
+        b=DANXKutzYjdK7YMIIU2/uRYJQOBKdH9z4XEXz3WWyFgEMmIr5YOHqNToBg+454eo3e
+         IzptyStDAd9Z8sHwxecJuLsgtrNYwL+gh8aVy5fDXoDA8AeVAmQDPNTUt6Zp1rwf7wIo
+         Ixaug0kgOmnW+AUaPar+u4QKrBPqvJzXf9+WIzfGtUANmILxxqyrOTAv39TyEZIpu5ZI
+         SCLysRR7aOz8+8EfCi//XY+RBYYbZFIAY2+V4UjiLhWHZTX198XzD8E2gwxyS9vF/yOr
+         QVXNStei7cHeffZbbagp7/L+R6uH5FDIWJskNTcD+1s3S61IWEJPIjvd5CyHtMK7FBfV
+         ahDA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720691508; x=1721296308;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=p4smDoC8Q8mWiYpTnz73mXw1qS9kVwzA6CajD1cC+rw=;
+        b=ghaXubTxB+12Ph+IPEuZml9sQL+N7rwdd3nDGDAwUDu/iktHd/dg9/05pyQn+st+/L
+         mmIdvlgsHwjwHBHVFqi6UMuEeOBC2snV57Wmp9sh2dK7ZBj4ZhzUr/oloB0WqsWH5W4B
+         loymio44OUw+yqgazKjA9UXHbkiZTwejc6WWG0OnZV0PIAmlElpvh+n0ZbqOgRjlT1kt
+         L7/w63LlTyIDUC2/EbgqagpYJvTdNO3vLOpP+ghryY4OwyJbzkO2DoTYkvbfAaUEI7Hj
+         89dB2qpJG0jULBeC878VyDPpswNTKcf+eeHkWGLJZzb+AvmEKdS50h5oxow0GEm3Zj4V
+         vZaA==
+X-Forwarded-Encrypted: i=1; AJvYcCVPHiSyq9iCH0YHVNq/s2e05/ikFWEt1lzGgtYYzm6UJNlycIpoCo2s//OTyKMXCoZOFIsnMNUJVUDgv76pSsVbjdSbl70WWOEEWA==
+X-Gm-Message-State: AOJu0Yw70CxngB8/+qWUh4Y/lTOjZOpKBCu0JDo58ZxDGOgXqujPBBB6
+	4n+rtjfdyi/4T0SbOcK3uKyX0iflA8SYMCBvizDna3fpZEIdXCH8QyiUblugxZDABc7ApOSqx4P
+	NOKE=
+X-Google-Smtp-Source: AGHT+IFtPH1XXTzpe+ZeiotMiBUKnIw0rtLtXdrEEVTNTDfCBJZjKL4CcUCeuZDut/QwViYvR4OaUg==
+X-Received: by 2002:adf:ea8d:0:b0:367:99fd:a9a8 with SMTP id ffacd0b85a97d-367cea73735mr5694718f8f.26.1720691507676;
+        Thu, 11 Jul 2024 02:51:47 -0700 (PDT)
+Received: from [192.168.0.16] ([176.61.106.227])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-367cde7e19dsm7274556f8f.15.2024.07.11.02.51.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 11 Jul 2024 02:51:47 -0700 (PDT)
+Message-ID: <f4072105-e0e2-46c8-82ed-92105b43a345@linaro.org>
+Date: Thu, 11 Jul 2024 10:51:48 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,151 +77,47 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: rockchip: Add missing pinctrl for PCIe30x4
- node
-To: Anand Moon <linux.amoon@gmail.com>
-Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20240711060939.1128-1-linux.amoon@gmail.com>
- <a8c1f49e-bf25-4fd3-a16f-13088f75767f@kwiboo.se>
- <CANAwSgQCn3jgiruiLs0cu-C+DguLtnk=msboAh8jNSF4P28gjA@mail.gmail.com>
+Subject: Re: [PATCH v2 5/6] clk: qcom: Add camera clock controller driver for
+ SM8150
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ "Satya Priya Kakitapalli (Temp)" <quic_skakitap@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Abhishek Sahu <absahu@codeaurora.org>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@codeaurora.org>,
+ linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ Ajit Pandey <quic_ajipan@quicinc.com>,
+ Imran Shaik <quic_imrashai@quicinc.com>, Taniya Das <quic_tdas@quicinc.com>,
+ Jagadeesh Kona <quic_jkona@quicinc.com>
+References: <20240702-camcc-support-sm8150-v2-0-4baf54ec7333@quicinc.com>
+ <20240702-camcc-support-sm8150-v2-5-4baf54ec7333@quicinc.com>
+ <xbe7kmaxhfwy26qzxrmwgiijaaiap4kdkruaxjs6ymihaw5taf@hvj57wyncfea>
+ <cc1957af-17bc-cd71-e6da-013e3a740014@quicinc.com>
+ <CAA8EJpqmJZJfd2famarx-FKFb1_+-nZM3N+FwK_hiOurG8n9=A@mail.gmail.com>
 Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <CANAwSgQCn3jgiruiLs0cu-C+DguLtnk=msboAh8jNSF4P28gjA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <CAA8EJpqmJZJfd2famarx-FKFb1_+-nZM3N+FwK_hiOurG8n9=A@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Report-Abuse-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-ForwardEmail-Version: 0.4.40
-X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 167.172.40.54
-X-ForwardEmail-ID: 668fa9943d24780caa1a7dec
 
-Hi Anand,
-
-On 2024-07-11 11:09, Anand Moon wrote:
-> Hi Jonas,
-> 
-> Thanks for your review comments.
-> 
-> On Thu, 11 Jul 2024 at 14:13, Jonas Karlman <jonas@kwiboo.se> wrote:
+On 10/07/2024 23:10, Dmitry Baryshkov wrote:
+>>> - Why is cam_cc_gdsc_clk not modelled in the clock framework?
 >>
->> Hi Anand,
->>
->> On 2024-07-11 08:09, Anand Moon wrote:
->>> Add missing pinctrl settings for PCIe 3.0 x4 clock request and wake
->>> signals.Each component of PCIe communication have the following control
->>> signals: PERST, WAKE, CLKREQ, and REFCLK. These signals work to generate
->>> high-speed signals and communicate with other PCIe devices.
->>> Used by root complex to endpoint depending on the power state.
->>>
->>> PERST is referred to as a fundamental reset. PERST should be held low
->>> until all the power rails in the system and the reference clock are stable.
->>> A transition from low to high in this signal usually indicates the
->>> beginning of link initialization.
->>>
->>> WAKE signal is an active-low signal that is used to return the PCIe
->>> interface to an active state when in a low-power state.
->>>
->>> CLKREQ signal is also an active-low signal and is used to request the
->>> reference clock.
->>>
->>> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
->>> ---
->>> V2: Update the commit messge to describe the changs.
->>>     use pinctl group as its pre define in pinctl dtsi
->>> ---
->>>  arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts | 6 +-----
->>>  1 file changed, 1 insertion(+), 5 deletions(-)
->>>
->>> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
->>> index 2e7512676b7e..ab3a20986c6a 100644
->>> --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
->>> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
->>> @@ -301,7 +301,7 @@ &pcie30phy {
->>>
->>>  &pcie3x4 {
->>>       pinctrl-names = "default";
->>> -     pinctrl-0 = <&pcie3_rst>;
->>> +     pinctrl-0 = <&pcie30x4m1_pins>;
->>
->> Use of the existing pcie30x4m1_pins group may not be fully accurate for
->> the PERST pin. The use of reset-gpios indicate that the PERST pin is
->> used with GPIO function and the driver will implicitly change the
->> function from perstn_m1 to GPIO. So this may not be best representation
->> of the hw, hence my initial suggestion, something like:
->>
->>         pcie30x4_pins: pcie30x4-pins {
->>                 rockchip,pins =
->>                         <4 RK_PB4 4 &pcfg_pull_none>,
->>                         <4 RK_PB6 RK_FUNC_GPIO &pcfg_pull_none>,
->>                         <4 RK_PB5 4 &pcfg_pull_none>;
->>         };
->>
->> Similar change should probably also be done for pcie2x1l0 and pcie2x1l2,
->> not just pcie3x4.
->>
-> 
-> Ok but it is better to update this in rk3588s-pinctrl.dtsi otherwise
-> the pcie30x4m1_pins
-> will not be used at all on all the boards
+>> This clock is kept enabled from probe, hence not required to be modelled
+>> explicitly.
+> Yes, I'm asking why it's kept up enabled from probe rather than via
+> clock framework?
 
-I agree that it is unfortunate that the PERST pin is included in the
-groups in pinctrl.dtsi, however, for pcie ep mode the pins should more
-than likely be using the perstn_m1 function and not GPIO, so there are
-uses for the existing pin groups for ep mode.
+FWIW my preference is to do it as Dmitry is suggesting here.
 
-In my opinion using pcie30x4m1_pins as-is and having implicitly changing
-to GPIO function when driver/usage in the software require it is an okay
-description of the hw.
+I'm not a big fan of hitting the register and leaving it as-is, would 
+much prefer to move to the model of having the CCF do it - so that for 
+example the clock appears in the /sys clock summary.
 
-However, seeing how use of pcie ep is described using its own node in DT
-I can understand that for rc mode the pin should be changed to GPIO to
-properly describe the expected usage.
-
-When I tried to add similar implicit change to use GPIO function in
-U-Boot to fix system freeze when improper pinctrl was used, it resulted
-in some discussions, see [1] ;-)
-
-[1] https://lore.kernel.org/u-boot/20240511112821.1156519-1-jonas@kwiboo.se/t/#u
-
-> I will update the PERST pin to RK_FUNC_GPIO on all the pcie2x1l0,
-> pcie2x1l2 and  pcie30x4
-> is this ok for you?
-
-This should probably be reworked in pinctrl.dtsi together with all
-affected boards and/or use a group override in the board dts.
-
-Regards,
-Jonas
-
-> 
->> Regards,
->> Jonas
-> 
-> Thanks
-> -Anand
->>
->>>       reset-gpios = <&gpio4 RK_PB6 GPIO_ACTIVE_HIGH>;
->>>       vpcie3v3-supply = <&vcc3v3_pcie30>;
->>>       status = "okay";
->>> @@ -341,10 +341,6 @@ pcie2_2_rst: pcie2-2-rst {
->>>       };
->>>
->>>       pcie3 {
->>> -             pcie3_rst: pcie3-rst {
->>> -                     rockchip,pins = <4 RK_PB6 RK_FUNC_GPIO &pcfg_pull_none>;
->>> -             };
->>> -
->>>               pcie3_vcc3v3_en: pcie3-vcc3v3-en {
->>>                       rockchip,pins = <1 RK_PA4 RK_FUNC_GPIO &pcfg_pull_none>;
->>>               };
->>>
->>> base-commit: 34afb82a3c67f869267a26f593b6f8fc6bf35905
->>
-
+---
+bod
 
