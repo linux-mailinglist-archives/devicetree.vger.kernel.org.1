@@ -1,231 +1,180 @@
-Return-Path: <devicetree+bounces-85018-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85019-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 336DF92E88A
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 14:50:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C151C92E898
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 14:57:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 569FB1C224C6
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 12:50:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E3E171C20B16
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 12:57:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E72E815E5BD;
-	Thu, 11 Jul 2024 12:50:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF06715DBC6;
+	Thu, 11 Jul 2024 12:57:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bZ3toTfq"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=fu-berlin.de header.i=@fu-berlin.de header.b="ZagcQCku"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from outpost1.zedat.fu-berlin.de (outpost1.zedat.fu-berlin.de [130.133.4.66])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB52315DBD8;
-	Thu, 11 Jul 2024 12:50:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D9B4155C95;
+	Thu, 11 Jul 2024 12:57:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=130.133.4.66
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720702204; cv=none; b=D36+87KYQGA5oOHx861yQnsz22SrejUDFN77VyIJqll+pzBZmTinT4rp1WylF2SfSjPa0yrlgqaiKTE36t4ZPUZ7xk5emlc8NQw6388nv5l9dRgPdSd8DGTEgOJZZsM/UoE9O/yFWjCPYCdE+kRaFHk6zPso+gYw/hs/tUAD9vY=
+	t=1720702656; cv=none; b=WKtQ+JRPLK9SRYGEC/0d7SEwuFLq+Zlf5lOpMdYx+e4CndtOrh5giu4mNC2KU5xj6BU63V2kSFAhi1euqgfLKecsteyjIKXbkgQjStyvk24GNmHucBrzpF5xgZwf17wLra6zOUfjuTCldCvoKcghzwV7JI0b863ICxxXswSzxgQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720702204; c=relaxed/simple;
-	bh=LChaZQrDDIvn0psEh8DZJO9LEOgGVb1xHMb/crsN88M=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=EuiCQNxF9ge+4cOGg7LkGv6mfFOewUZi+eR4AcxoZwZ1Yc0yRnymWViZrieBy39MPHNY8voZFFSfDoXvhuAP+v52K+mkAZIax+zOHJz4gWutPEfRCJoooLX0CDV3FULpClP04RLc1EVac6vOvJnw0yj93EZ+GaQTButRHhfuRPw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bZ3toTfq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 3E2B4C4AF0A;
-	Thu, 11 Jul 2024 12:50:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720702204;
-	bh=LChaZQrDDIvn0psEh8DZJO9LEOgGVb1xHMb/crsN88M=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=bZ3toTfq37IOsGeGswVa2TiiC3WZnEZPBakMzYZBaSP+dHzanLvdSYBDihohKZ+/G
-	 NPzrFkun/bDfo/sTxarufr4Mu8jDj1MhzJImWOHjAIaIb0E9FnWOZJJxcTAWDUxrKk
-	 EInjlRq3rSGQmEMH5nFBEivvyq0qIr7pu3vBi5zqQsGo6EYEBBdc3Vu2qwjDI6QYp1
-	 8v5B3dfxSatal9gl/YZQm6Fcb+LtBUjFhrhoYx9OIzJ/ImPQgrJjN3eJ8Lq09Iwtxk
-	 ZaDEMarBQ0HQw7sKN7NWiWXdaDPDSFJnijZI9USbWKviaXcEOGpk5JcFq09b/x/EYX
-	 0+D88HXVUSKkg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2B48BC3DA4D;
-	Thu, 11 Jul 2024 12:50:04 +0000 (UTC)
-From: Pieterjan Camerlynck via B4 Relay <devnull+pieterjanca.gmail.com@kernel.org>
-Date: Thu, 11 Jul 2024 14:49:51 +0200
-Subject: [PATCH v4 2/2] leds: leds-pca995x: Add support for NXP PCA9956B
+	s=arc-20240116; t=1720702656; c=relaxed/simple;
+	bh=IgnTnnjkD8FFGi6ivzy/g9+noQ1C0Ks2nR19HopGtQc=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=Ltwn991fJJKAYGT0cT3egnR3ibbLQSTXiS2UBElbGmIaHUi2Pkb7FPgWmkf2OtjaWqdw8Tw8c6X1cku8fhdPemGE2Hgy5zSoRouiBunLc9PLofXWV26kPpug14DxQmK1AKtqdTd/LzgBHzZaNu3eWPNNi0HCG1cGAnFdcD1NR6I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=physik.fu-berlin.de; spf=pass smtp.mailfrom=zedat.fu-berlin.de; dkim=pass (2048-bit key) header.d=fu-berlin.de header.i=@fu-berlin.de header.b=ZagcQCku; arc=none smtp.client-ip=130.133.4.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=physik.fu-berlin.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=zedat.fu-berlin.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=fu-berlin.de; s=fub01; h=MIME-Version:Content-Transfer-Encoding:
+	Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
+	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=UP29LTmvlHTs/OoBfoU8insLR5ShRbL+0hC3P+TNI/s=; t=1720702652; x=1721307452; 
+	b=ZagcQCkubL7WN9c6ifIlQ7V4f1nvNypRwbpsOr6yNJz/zLKkc5CVkwSmdVykIAiceMjcd+tlFhi
+	Z6esyr52TZWMGkYUYwtfh4H7TJxIH53oxLXtYWkJqIjS35ZZHJ2g53M3oeryf9QNQolTvtRVjoF6O
+	u+FRxbjhG18U6NMR7SiNrhLOGniHRXNrKp+vU+UWbYbCUI9ApaVeOTAiS/WjNP3zByje+XK+Sk3YG
+	Kclf0XoiA/XnE0aNwqxLeSwyjkoa6HNjucmI1UC1H5o1HeWUMK9OZsjmHNhQVuyvxZtxcmS/Z4ZIG
+	fwhQz6fKZeF1nxzzy9c4NHDkCvz66FCT+fvg==;
+Received: from inpost2.zedat.fu-berlin.de ([130.133.4.69])
+          by outpost.zedat.fu-berlin.de (Exim 4.98)
+          with esmtps (TLS1.3)
+          tls TLS_AES_256_GCM_SHA384
+          (envelope-from <glaubitz@zedat.fu-berlin.de>)
+          id 1sRtMO-00000003KGI-40qJ; Thu, 11 Jul 2024 14:57:20 +0200
+Received: from p5b13a475.dip0.t-ipconnect.de ([91.19.164.117] helo=[192.168.178.20])
+          by inpost2.zedat.fu-berlin.de (Exim 4.98)
+          with esmtpsa (TLS1.3)
+          tls TLS_AES_256_GCM_SHA384
+          (envelope-from <glaubitz@physik.fu-berlin.de>)
+          id 1sRtMO-00000001SHj-2Zok; Thu, 11 Jul 2024 14:57:20 +0200
+Message-ID: <cb7a69949c08be858b107a2b8184d1da92d794a0.camel@physik.fu-berlin.de>
+Subject: Re: [DO NOT MERGE v8 20/36] serial: sh-sci: fix SH4 OF support.
+From: John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>
+To: Yoshinori Sato <ysato@users.sourceforge.jp>, linux-sh@vger.kernel.org
+Cc: Damien Le Moal <dlemoal@kernel.org>, Niklas Cassel <cassel@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,  Geert Uytterhoeven
+ <geert+renesas@glider.be>, Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>,  David Airlie <airlied@gmail.com>, Daniel
+ Vetter <daniel@ffwll.ch>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, Thomas Gleixner
+ <tglx@linutronix.de>, Bjorn Helgaas <bhelgaas@google.com>,  Lorenzo
+ Pieralisi <lpieralisi@kernel.org>, Krzysztof =?UTF-8?Q?Wilczy=C5=84ski?=
+ <kw@linux.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby
+ <jirislaby@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, Daniel Lezcano
+ <daniel.lezcano@linaro.org>, Rich Felker <dalias@libc.org>, Lee Jones
+ <lee@kernel.org>, Helge Deller <deller@gmx.de>, Heiko Stuebner
+ <heiko.stuebner@cherry.de>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Chris Morgan <macromorgan@hotmail.com>, Sebastian Reichel <sre@kernel.org>,
+ Linus Walleij <linus.walleij@linaro.org>, Arnd Bergmann <arnd@arndb.de>,
+ Masahiro Yamada <masahiroy@kernel.org>, Baoquan He <bhe@redhat.com>, Andrew
+ Morton <akpm@linux-foundation.org>, Guenter Roeck <linux@roeck-us.net>,
+ Kefeng Wang <wangkefeng.wang@huawei.com>, Stephen Rothwell
+ <sfr@canb.auug.org.au>, Azeem Shaikh <azeemshaikh38@gmail.com>, Guo Ren
+ <guoren@kernel.org>, Max Filippov <jcmvbkbc@gmail.com>,  Jernej Skrabec
+ <jernej.skrabec@gmail.com>, Herve Codina <herve.codina@bootlin.com>, Andy
+ Shevchenko <andriy.shevchenko@linux.intel.com>, Anup Patel
+ <apatel@ventanamicro.com>,  Jacky Huang <ychuang3@nuvoton.com>, Hugo
+ Villeneuve <hvilleneuve@dimonoff.com>, Jonathan Corbet <corbet@lwn.net>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>, Uwe
+ =?ISO-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+ Christophe JAILLET <christophe.jaillet@wanadoo.fr>, Sam Ravnborg
+ <sam@ravnborg.org>, Javier Martinez Canillas <javierm@redhat.com>, Sergey
+ Shtylyov <s.shtylyov@omp.ru>, Laurent Pinchart
+ <laurent.pinchart+renesas@ideasonboard.com>, linux-ide@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, linux-pci@vger.kernel.org, 
+ linux-serial@vger.kernel.org, linux-fbdev@vger.kernel.org
+Date: Thu, 11 Jul 2024 14:57:18 +0200
+In-Reply-To: <57525900a4876323467612d73eded183315c1680.1716965617.git.ysato@users.sourceforge.jp>
+References: <cover.1716965617.git.ysato@users.sourceforge.jp>
+	 <57525900a4876323467612d73eded183315c1680.1716965617.git.ysato@users.sourceforge.jp>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.3 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240711-pca995x-v4-2-702a67148065@gmail.com>
-References: <20240711-pca995x-v4-0-702a67148065@gmail.com>
-In-Reply-To: <20240711-pca995x-v4-0-702a67148065@gmail.com>
-To: Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Isai Gaspar <isaiezequiel.gaspar@nxp.com>, Marek Vasut <marex@denx.de>
-Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Pieterjan Camerlynck <pieterjanca@gmail.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1720702203; l=4852;
- i=pieterjanca@gmail.com; s=20240709; h=from:subject:message-id;
- bh=T4iJuBVE1eU6/XQMFNfp3e4U02iQNfiueccUGicFjdY=;
- b=dM5AR45rO16uxS9wb8YOLntCo6aQIxBImqozba3Dg5YYianG3AQ1qdQexYHr4ixwL5o9kv4HK
- ZJ9CqNClfIdAtpZsdPIMFR7Tj0yPx2FJkWxBWfdzJlyvyp92JhA2JlN
-X-Developer-Key: i=pieterjanca@gmail.com; a=ed25519;
- pk=gSAHfvqQjVhNa1MhUClqbt7d3S+fviKz6FdQVaWFRyM=
-X-Endpoint-Received: by B4 Relay for pieterjanca@gmail.com/20240709 with
- auth_id=182
-X-Original-From: Pieterjan Camerlynck <pieterjanca@gmail.com>
-Reply-To: pieterjanca@gmail.com
+X-Original-Sender: glaubitz@physik.fu-berlin.de
+X-ZEDAT-Hint: PO
 
-From: Pieterjan Camerlynck <pieterjanca@gmail.com>
+Hi Yoshinori,
 
-Add support for PCA9956B chip, which belongs to the same family.
+On Wed, 2024-05-29 at 17:01 +0900, Yoshinori Sato wrote:
+> - Separated RZ's earlycon initialization from normal SCIF.
+> - fix earlyprintk hung (NULL pointer reference).
+> - fix SERIAL_SH_SCI_EARLYCON enablement
 
-This chip features 24 instead of 16 outputs, so add a chipdef struct to
-deal with the different register layouts.
+I feel like this could actually be split into three patches.
 
-Reviewed-by: Marek Vasut <marex@denx.de>
-Signed-off-by: Pieterjan Camerlynck <pieterjanca@gmail.com>
----
- drivers/leds/leds-pca995x.c | 59 ++++++++++++++++++++++++++++++---------------
- 1 file changed, 39 insertions(+), 20 deletions(-)
+Adrian
 
-diff --git a/drivers/leds/leds-pca995x.c b/drivers/leds/leds-pca995x.c
-index 78215dff1499..686b77772cce 100644
---- a/drivers/leds/leds-pca995x.c
-+++ b/drivers/leds/leds-pca995x.c
-@@ -19,10 +19,6 @@
- #define PCA995X_MODE1			0x00
- #define PCA995X_MODE2			0x01
- #define PCA995X_LEDOUT0			0x02
--#define PCA9955B_PWM0			0x08
--#define PCA9952_PWM0			0x0A
--#define PCA9952_IREFALL			0x43
--#define PCA9955B_IREFALL		0x45
- 
- /* Auto-increment disabled. Normal mode */
- #define PCA995X_MODE1_CFG		0x00
-@@ -34,17 +30,38 @@
- #define PCA995X_LDRX_MASK		0x3
- #define PCA995X_LDRX_BITS		2
- 
--#define PCA995X_MAX_OUTPUTS		16
-+#define PCA995X_MAX_OUTPUTS		24
- #define PCA995X_OUTPUTS_PER_REG		4
- 
- #define PCA995X_IREFALL_FULL_CFG	0xFF
- #define PCA995X_IREFALL_HALF_CFG	(PCA995X_IREFALL_FULL_CFG / 2)
- 
--#define PCA995X_TYPE_NON_B		0
--#define PCA995X_TYPE_B			1
--
- #define ldev_to_led(c)	container_of(c, struct pca995x_led, ldev)
- 
-+struct pca995x_chipdef {
-+	unsigned int num_leds;
-+	u8 pwm_base;
-+	u8 irefall;
-+};
-+
-+static const struct pca995x_chipdef pca9952_chipdef = {
-+	.num_leds	= 16,
-+	.pwm_base	= 0x0a,
-+	.irefall	= 0x43,
-+};
-+
-+static const struct pca995x_chipdef pca9955b_chipdef = {
-+	.num_leds	= 16,
-+	.pwm_base	= 0x08,
-+	.irefall	= 0x45,
-+};
-+
-+static const struct pca995x_chipdef pca9956b_chipdef = {
-+	.num_leds	= 24,
-+	.pwm_base	= 0x0a,
-+	.irefall	= 0x40,
-+};
-+
- struct pca995x_led {
- 	unsigned int led_no;
- 	struct led_classdev ldev;
-@@ -54,7 +71,7 @@ struct pca995x_led {
- struct pca995x_chip {
- 	struct regmap *regmap;
- 	struct pca995x_led leds[PCA995X_MAX_OUTPUTS];
--	int btype;
-+	const struct pca995x_chipdef *chipdef;
- };
- 
- static int pca995x_brightness_set(struct led_classdev *led_cdev,
-@@ -62,10 +79,11 @@ static int pca995x_brightness_set(struct led_classdev *led_cdev,
- {
- 	struct pca995x_led *led = ldev_to_led(led_cdev);
- 	struct pca995x_chip *chip = led->chip;
-+	const struct pca995x_chipdef *chipdef = chip->chipdef;
- 	u8 ledout_addr, pwmout_addr;
- 	int shift, ret;
- 
--	pwmout_addr = (chip->btype ? PCA9955B_PWM0 : PCA9952_PWM0) + led->led_no;
-+	pwmout_addr = chipdef->pwm_base + led->led_no;
- 	ledout_addr = PCA995X_LEDOUT0 + (led->led_no / PCA995X_OUTPUTS_PER_REG);
- 	shift = PCA995X_LDRX_BITS * (led->led_no % PCA995X_OUTPUTS_PER_REG);
- 
-@@ -104,11 +122,12 @@ static int pca995x_probe(struct i2c_client *client)
- 	struct fwnode_handle *led_fwnodes[PCA995X_MAX_OUTPUTS] = { 0 };
- 	struct fwnode_handle *np, *child;
- 	struct device *dev = &client->dev;
-+	const struct pca995x_chipdef *chipdef;
- 	struct pca995x_chip *chip;
- 	struct pca995x_led *led;
--	int i, btype, reg, ret;
-+	int i, reg, ret;
- 
--	btype = (unsigned long)device_get_match_data(&client->dev);
-+	chipdef = device_get_match_data(&client->dev);
- 
- 	np = dev_fwnode(dev);
- 	if (!np)
-@@ -118,7 +137,7 @@ static int pca995x_probe(struct i2c_client *client)
- 	if (!chip)
- 		return -ENOMEM;
- 
--	chip->btype = btype;
-+	chip->chipdef = chipdef;
- 	chip->regmap = devm_regmap_init_i2c(client, &pca995x_regmap);
- 	if (IS_ERR(chip->regmap))
- 		return PTR_ERR(chip->regmap);
-@@ -170,21 +189,21 @@ static int pca995x_probe(struct i2c_client *client)
- 		return ret;
- 
- 	/* IREF Output current value for all LEDn outputs */
--	return regmap_write(chip->regmap,
--			    btype ? PCA9955B_IREFALL : PCA9952_IREFALL,
--			    PCA995X_IREFALL_HALF_CFG);
-+	return regmap_write(chip->regmap, chipdef->irefall, PCA995X_IREFALL_HALF_CFG);
- }
- 
- static const struct i2c_device_id pca995x_id[] = {
--	{ "pca9952", .driver_data = (kernel_ulong_t)PCA995X_TYPE_NON_B },
--	{ "pca9955b", .driver_data = (kernel_ulong_t)PCA995X_TYPE_B },
-+	{ "pca9952", .driver_data = (kernel_ulong_t)&pca9952_chipdef },
-+	{ "pca9955b", .driver_data = (kernel_ulong_t)&pca9955b_chipdef },
-+	{ "pca9956b", .driver_data = (kernel_ulong_t)&pca9956b_chipdef },
- 	{}
- };
- MODULE_DEVICE_TABLE(i2c, pca995x_id);
- 
- static const struct of_device_id pca995x_of_match[] = {
--	{ .compatible = "nxp,pca9952",  .data = (void *)PCA995X_TYPE_NON_B },
--	{ .compatible = "nxp,pca9955b", .data = (void *)PCA995X_TYPE_B },
-+	{ .compatible = "nxp,pca9952", .data = &pca9952_chipdef },
-+	{ .compatible = "nxp,pca9955b", . data = &pca9955b_chipdef },
-+	{ .compatible = "nxp,pca9956b", .data = &pca9956b_chipdef },
- 	{},
- };
- MODULE_DEVICE_TABLE(of, pca995x_of_match);
+> Signed-off-by: Yoshinori Sato <ysato@users.sourceforge.jp>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+>  drivers/tty/serial/Kconfig  | 2 +-
+>  drivers/tty/serial/sh-sci.c | 6 +++---
+>  2 files changed, 4 insertions(+), 4 deletions(-)
+>=20
+> diff --git a/drivers/tty/serial/Kconfig b/drivers/tty/serial/Kconfig
+> index 4fdd7857ef4d..eeb22b582470 100644
+> --- a/drivers/tty/serial/Kconfig
+> +++ b/drivers/tty/serial/Kconfig
+> @@ -664,7 +664,7 @@ config SERIAL_SH_SCI_EARLYCON
+>  	depends on SERIAL_SH_SCI=3Dy
+>  	select SERIAL_CORE_CONSOLE
+>  	select SERIAL_EARLYCON
+> -	default ARCH_RENESAS
+> +	default ARCH_RENESAS || SUPERH
+> =20
+>  config SERIAL_SH_SCI_DMA
+>  	bool "DMA support" if EXPERT
+> diff --git a/drivers/tty/serial/sh-sci.c b/drivers/tty/serial/sh-sci.c
+> index f738980a8b2c..068f483401e3 100644
+> --- a/drivers/tty/serial/sh-sci.c
+> +++ b/drivers/tty/serial/sh-sci.c
+> @@ -2723,7 +2723,7 @@ static int sci_remap_port(struct uart_port *port)
+>  	if (port->membase)
+>  		return 0;
+> =20
+> -	if (port->dev->of_node || (port->flags & UPF_IOREMAP)) {
+> +	if (dev_of_node(port->dev) || (port->flags & UPF_IOREMAP)) {
+>  		port->membase =3D ioremap(port->mapbase, sport->reg_size);
+>  		if (unlikely(!port->membase)) {
+>  			dev_err(port->dev, "can't remap port#%d\n", port->line);
+> @@ -3551,8 +3551,8 @@ static int __init hscif_early_console_setup(struct =
+earlycon_device *device,
+> =20
+>  OF_EARLYCON_DECLARE(sci, "renesas,sci", sci_early_console_setup);
+>  OF_EARLYCON_DECLARE(scif, "renesas,scif", scif_early_console_setup);
+> -OF_EARLYCON_DECLARE(scif, "renesas,scif-r7s9210", rzscifa_early_console_=
+setup);
+> -OF_EARLYCON_DECLARE(scif, "renesas,scif-r9a07g044", rzscifa_early_consol=
+e_setup);
+> +OF_EARLYCON_DECLARE(rzscifa, "renesas,scif-r7s9210", rzscifa_early_conso=
+le_setup);
+> +OF_EARLYCON_DECLARE(rzscifa, "renesas,scif-r9a07g044", rzscifa_early_con=
+sole_setup);
+>  OF_EARLYCON_DECLARE(scifa, "renesas,scifa", scifa_early_console_setup);
+>  OF_EARLYCON_DECLARE(scifb, "renesas,scifb", scifb_early_console_setup);
+>  OF_EARLYCON_DECLARE(hscif, "renesas,hscif", hscif_early_console_setup);
 
--- 
-2.45.2
-
-
+--=20
+ .''`.  John Paul Adrian Glaubitz
+: :' :  Debian Developer
+`. `'   Physicist
+  `-    GPG: 62FF 8A75 84E0 2956 9546  0006 7426 3B37 F5B5 F913
 
