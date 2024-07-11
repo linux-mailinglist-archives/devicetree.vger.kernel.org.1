@@ -1,145 +1,153 @@
-Return-Path: <devicetree+bounces-84852-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84853-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A35E92DFE0
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 08:10:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 382F392DFEB
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 08:15:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 968A828228E
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 06:10:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DE72A281BC8
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 06:15:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D06E012B171;
-	Thu, 11 Jul 2024 06:10:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B26782C76;
+	Thu, 11 Jul 2024 06:15:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Rpeeg29y"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZAKBJ+03"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6496884DFF;
-	Thu, 11 Jul 2024 06:10:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C31908003F
+	for <devicetree@vger.kernel.org>; Thu, 11 Jul 2024 06:14:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720678201; cv=none; b=R1SxVN9YTfF8hocV2UtMcSIBvgdKC//mGRGmCgAMfsVRf6oSJsaWnA0A+hrNkMdetGC07mwfj06qMmfaTJHLqnVt7fiwdfqddopHbYM2+Xc+A4c+iSQ6es4Q+vrmph59qUO9DgIwO/8Grhl6ZMGlL7QGljmIldzJjHwhxyr23wg=
+	t=1720678501; cv=none; b=Aof0VkiQW/4tYiuTdq5N4iHa93KcfqMaQrEJMK/VQbsxxn4IIoNIeBjP+ss6apoMI34gFj99SxNqmGuTqjWZNgFtcqMmlexra5ioFFYVIIACkFXwMmTSPRSHMsXOaMFZqmSVWXMCtX/fAmI5OySlmk4LkvYGi54ADpB0sKvfTN8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720678201; c=relaxed/simple;
-	bh=Jtad3SbGErvDHkwgM6uh1x4KS5053h9Vfx/xHaVDGQg=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=VoVw2o+2wgngXTIRWfysFWzFRJ46PwkQj2Dun8Vq0tr8v7Wz/shuwUgFKKHfMJvwuwiNZD4cbTv/kBNrq5ecUC5uvDB4valFJB9ILkjmojirUSb7bDVhrTiaQzWK669q3ozYzpLUDpxsfovP/PsKWNEGe6IReaArlsIHuSD9rTs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Rpeeg29y; arc=none smtp.client-ip=209.85.214.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-1fb05ac6b77so3297785ad.0;
-        Wed, 10 Jul 2024 23:10:00 -0700 (PDT)
+	s=arc-20240116; t=1720678501; c=relaxed/simple;
+	bh=x93dtdtgjqICi5YTryd4ySyRs8zvVKGeiVnU2tAH3ps=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Bem+0G4wWHlKS7RW/l0fZcMPuNrArImcBlcQYCAtWEsQqxhlxHTJz9ep+7BUcipShduxwu5IkJQapxoMLeM63lBgLxIP39r1HuedgnJdg0JLC9ujM+0nS/0r2LxX3Y7p2jWFlT8Hfep2/42OMNEaeDz1hmRbyHi2ANDNH+PIrlg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ZAKBJ+03; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-42565670e20so9281435e9.0
+        for <devicetree@vger.kernel.org>; Wed, 10 Jul 2024 23:14:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1720678200; x=1721283000; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=amL0i3U0AlpayuDFzxy6krwzUQYPva5CT6eMHJ9zRTU=;
-        b=Rpeeg29yG5TycvUzdl5LB+JFZyNmj3Dt/zxUV4A0yDt2JDOaxlzzIQLHhUP/c4TnDW
-         MK8DwRxpKzrsW7xKJdRg0mpf95dWmNcMRpoqE4mshSsPe5LoOkf+T0qZJ3iW7d8wyZkv
-         epAs8otVTt+cZCOX9V3LggKXE92phe6kfogjV2oMutAgcjgyWBjx0Jxll/9L9jD7HzXN
-         iDZLm32WAxt6t0kTEa5GpnXvmTaUYs58WNue9CrRIf84mK6yYzQ+U9HEdKLJ3rGxQyoX
-         /myGgdfBBp4tsANa077Q0NQSR1bYec8FqrJ2kxh71kZgQXx5lA5yRp8Zv+j9geKIlqgG
-         /mKA==
+        d=linaro.org; s=google; t=1720678498; x=1721283298; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=p2Rl2+dd6QxHyiNKQxsyOzmIl6p3bvxYSe/W6Fkw2yo=;
+        b=ZAKBJ+03oWvmgrAllzZ6xI1ps6OXksLcghepnpUnfIoGv+lyG4dBeH7M9QuflakdCn
+         07Hbeq9eILBxxCf6FijROwY3+1mDoELmWVjYB3ZxjMK1uU/Aw7IUnvmmXibFrKae0pVc
+         d6J+feJxOArn6oDU+wguaH7RKLG87ptI8MqGJTZDBQnWIbcPgvj5W1N/w4AVoiAe1uLW
+         PhFLYzppsnelR7KCjILMpW4UIJQXfRQ/dGi6xwPcvJfEOa36vtfw3LhV4OK8gwVPkyxh
+         OcyokA3RJhDJ1oZVxnMpkCe7v75MgNKgJh/2CgUxYZ/Em6KYEcxujoChRNzzQG5nYriZ
+         wSTg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720678200; x=1721283000;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1720678498; x=1721283298;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=amL0i3U0AlpayuDFzxy6krwzUQYPva5CT6eMHJ9zRTU=;
-        b=wlwh5Mdgl+yDajbytyHhZ0KgS8aEhY4FUDw9jlTrb8312uYSCrKzXXHDVq+TrCfpDU
-         Csd/AioQKqpPgb7GEc3YgrabR8lBUT3SbE/pUoQwxUvM4mx79LGK5XhdXZFEERZ31RqY
-         7MU1GkAo4RGtrD7snboc5Qz0o7G1q89YdLuzDRKhdEIG28SEOGucct75hDp/zYGN1MT6
-         nGuHUDdcNVQpUDEAyENNWjBtATl3B9T0DEmxD0LrIAPwexBEPtAnhPGypDVND/kECMRY
-         qeLZTutNHrGwPyg+Q74aJnR2iWEHQZe7KX83v1Y58dUw7ri4hWjjZqhCD3orxwnmtNlH
-         PAeg==
-X-Forwarded-Encrypted: i=1; AJvYcCWXI9RS2uVTCK7lVOSO9pKGLR6QkHQJkld9G9gnNIjBL0P7ipOKf6l0CtT/7awdjbYudhfJS9PYEoFvenwf/1L2e85XVle8yQodruLLjTkOuYLa4UloNb2x4M3n/xMu8L3IowzzuD/wnA==
-X-Gm-Message-State: AOJu0Yy4OxZsWTbsNFTHlBq0CKJc6ozgBRc/1DvnLo8mTGi5eADwYERZ
-	RsHRt9O1swa+tSvdw+/W+a/KgCt0OGC1Qfp8Ch+INlrobOfWf6V/
-X-Google-Smtp-Source: AGHT+IHNgkIOVxrxv50voAuFb/D8XfO6THqHTM2xrFSPja8CeSVW1OiVWX4BVgbQ7OUzpTaC3rvmOw==
-X-Received: by 2002:a17:902:e30a:b0:1fb:76d9:fe84 with SMTP id d9443c01a7336-1fbb6f0ce0bmr44688475ad.65.1720678199544;
-        Wed, 10 Jul 2024 23:09:59 -0700 (PDT)
-Received: from localhost.localdomain ([113.30.217.222])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1fbb6acf681sm42710165ad.267.2024.07.10.23.09.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Jul 2024 23:09:59 -0700 (PDT)
-From: Anand Moon <linux.amoon@gmail.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>
-Cc: Anand Moon <linux.amoon@gmail.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2] arm64: dts: rockchip: Add missing pinctrl for PCIe30x4 node
-Date: Thu, 11 Jul 2024 11:39:34 +0530
-Message-ID: <20240711060939.1128-1-linux.amoon@gmail.com>
-X-Mailer: git-send-email 2.44.0
+        bh=p2Rl2+dd6QxHyiNKQxsyOzmIl6p3bvxYSe/W6Fkw2yo=;
+        b=b9fc3Lr/rc5+m3rxBzBxFcGth/fpO4kHuITZntSU3J1JYA8cEVqOmFdn8IFi5yp4tw
+         rUJTuMzt8UMUL54RFeWzjB2XoyUVcD72mwEeW6ztuRcrv5YoC85GF9p0xbDadpiisB/h
+         AEiqbDPpomsjqnnqvN1ASus3P48Th5V8UZUqiCLNEDgO1XnncYCP3XPFACYOFIHBpLjz
+         gWRzSfldH7ScQSzQesD3TNqNulheYWx9i5dnEaIF+MGOLQCQqXY3gatsAht/LW1QeJP/
+         4NdVH91/ArpXNK4dMnfRjIdDBk8qLNTQqhHifSEsGYrbLHziMYK+T2wh77On/gAjSjAR
+         LZPA==
+X-Forwarded-Encrypted: i=1; AJvYcCVT51LTOeKPAM5b8bQFfJAqURVlKubXR2ixtRiLjj+QmK4uilGrvF3q+qDtctdRprMP7DJ4D6HJjKB/J76126ViTa9uYr+Tfz4JsA==
+X-Gm-Message-State: AOJu0YzOjP8pEcZfr+buRz7J45Pn3Gna8hEV/61wDI6li2WSVEdjxman
+	eANmAsC0p3qVFpluv/+BHfMDZ9aMGJJfmSKqdwBY8bH/LvYiPVIzFT02oCfD5Bs=
+X-Google-Smtp-Source: AGHT+IHmsUmU+Irw8Wa1o1Hes8dCOBKIG62T/Nrs6dqgaSc4l8HN0kN+wwBwW8PMjlRRKwxnMtxKXw==
+X-Received: by 2002:a05:600c:3049:b0:424:8836:310c with SMTP id 5b1f17b1804b1-427981b76bcmr11447385e9.5.1720678498138;
+        Wed, 10 Jul 2024 23:14:58 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.137])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4279772508fsm27554435e9.42.2024.07.10.23.14.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 10 Jul 2024 23:14:57 -0700 (PDT)
+Message-ID: <17ce46e8-b964-4b19-9789-65d969104a5c@linaro.org>
+Date: Thu, 11 Jul 2024 08:14:56 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: pwm: at91: Add sama7d65 compatible string
+To: nicolas.ferre@microchip.com, Conor Dooley <conor.dooley@microchip.com>,
+ Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+ ukleinek@kernel.org
+Cc: Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-pwm@vger.kernel.org
+References: <20240710163651.343751-1-nicolas.ferre@microchip.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240710163651.343751-1-nicolas.ferre@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Add missing pinctrl settings for PCIe 3.0 x4 clock request and wake
-signals.Each component of PCIe communication have the following control
-signals: PERST, WAKE, CLKREQ, and REFCLK. These signals work to generate
-high-speed signals and communicate with other PCIe devices.
-Used by root complex to endpoint depending on the power state.
+On 10/07/2024 18:36, nicolas.ferre@microchip.com wrote:
+> From: Nicolas Ferre <nicolas.ferre@microchip.com>
+> 
+> Add compatible string for sama7d65. Like sama7g5, it currently binds to
+> "atmel,sama5d2-pwm" compatibility string for this driver, so add an
+> "enum" to reflect that.
+> 
+> Signed-off-by: Nicolas Ferre <nicolas.ferre@microchip.com>
 
-PERST is referred to as a fundamental reset. PERST should be held low
-until all the power rails in the system and the reference clock are stable.
-A transition from low to high in this signal usually indicates the
-beginning of link initialization.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-WAKE signal is an active-low signal that is used to return the PCIe
-interface to an active state when in a low-power state.
-
-CLKREQ signal is also an active-low signal and is used to request the
-reference clock.
-
-Signed-off-by: Anand Moon <linux.amoon@gmail.com>
----
-V2: Update the commit messge to describe the changs.
-    use pinctl group as its pre define in pinctl dtsi
----
- arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts | 6 +-----
- 1 file changed, 1 insertion(+), 5 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-index 2e7512676b7e..ab3a20986c6a 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-@@ -301,7 +301,7 @@ &pcie30phy {
- 
- &pcie3x4 {
- 	pinctrl-names = "default";
--	pinctrl-0 = <&pcie3_rst>;
-+	pinctrl-0 = <&pcie30x4m1_pins>;
- 	reset-gpios = <&gpio4 RK_PB6 GPIO_ACTIVE_HIGH>;
- 	vpcie3v3-supply = <&vcc3v3_pcie30>;
- 	status = "okay";
-@@ -341,10 +341,6 @@ pcie2_2_rst: pcie2-2-rst {
- 	};
- 
- 	pcie3 {
--		pcie3_rst: pcie3-rst {
--			rockchip,pins = <4 RK_PB6 RK_FUNC_GPIO &pcfg_pull_none>;
--		};
--
- 		pcie3_vcc3v3_en: pcie3-vcc3v3-en {
- 			rockchip,pins = <1 RK_PA4 RK_FUNC_GPIO &pcfg_pull_none>;
- 		};
-
-base-commit: 34afb82a3c67f869267a26f593b6f8fc6bf35905
--- 
-2.44.0
+Best regards,
+Krzysztof
 
 
