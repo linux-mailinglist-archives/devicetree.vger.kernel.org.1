@@ -1,137 +1,158 @@
-Return-Path: <devicetree+bounces-85054-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85055-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 211AE92EAEE
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 16:40:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6540592EAF8
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 16:44:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 51EEB1C2128C
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 14:40:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 968F31C21AD6
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 14:44:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EE301662FE;
-	Thu, 11 Jul 2024 14:40:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A9C6168C33;
+	Thu, 11 Jul 2024 14:44:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com [209.85.219.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E5658479;
-	Thu, 11 Jul 2024 14:40:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.175
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76E171684A6
+	for <devicetree@vger.kernel.org>; Thu, 11 Jul 2024 14:44:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720708823; cv=none; b=HjkR02Y5hP0lgtQCFzShG3XUc5gfytJyNw/SY4YTchydllFU3ojVLsGndE9WiEynX66+CkIELqgrW/Htq+TGt/5G7jtss3sn6I2SRawIkvt8Vx8TrHqKlPuE0Ng7eCxXCZHEe3mDA9h66yqDQ4xqJszCKFiUYyNPKxXT/tZoVBs=
+	t=1720709072; cv=none; b=D9APq46J9eoZzs9VsemvZksGHWnAg6ldkfSfjpKCE6zJ5IwinbaLnctfdbuGJrLotK+ahg17AwsRKgPsymuyfyFVTr0mx82nCroR8aCxibRFA7nNqJ74ifQ5/2F604nkStlnHqxkFv3/+3JIiWkrq5y90oaAT66xMXuReqiwUl4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720708823; c=relaxed/simple;
-	bh=Sky3Rq4GEoaMq3zTjqiruAw7uR4MXgaAjM9ZpP+LfKQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=g7chZAuSkGOGxBSSqNKH7gOusTpnXrhZgHJkWxL6mLo4yquIrJb+564MyCi9E0eXHlvy9SyGbnzl/hqn7jqWHja8PwSex1aEDWY4NWcKoaE4a49Vg5RO+KF+/RGaSNeMyK6kGudUpc6TDpWDMJXwUWceORJPD+fLeNBvsLe3NpI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-e0365588ab8so917769276.1;
-        Thu, 11 Jul 2024 07:40:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720708819; x=1721313619;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=B0dzyKqHqO0/d9+D3hn6zGXqfLpmzgD1JydtbOq1+9w=;
-        b=RwrhrwOl6yd4u1Tx7SF/ufXKaW/o5I98YIg+Wb7geEyY6MoLW1obbEDybhBldLaHYC
-         l91cvZ2vUUtkrA+UOUqUZHrbwLn9Pe1B1CVnfkRy46KEbD+i1Nos4D7vE240vXXwe2Sr
-         churfS6BLKg5fQDfJxgUGiqVif8F5FHWQzSecfzkJPWLEM69oxkAMU8CPEBoajwWVfuM
-         xn7asbmowD0aI/1cN5dcdQ3flOHles52GkO5PdOMpwubRVHFy5aNWdFopNEs83LpC7jm
-         pOXwyTQB4DLGNmbWAyOhtIXS5En3pLYQqtOTaathlcB7yiKY09b83bDy3ljypiYHj7R9
-         CxgQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVeWO+i/NDzJ2fcix/CGixOyz648u8lZfbr4P49jPiPF2yejpPzQbBvzXBshIprk6FYL2VbHGRH74tkCYCXPuaWxjTmMzXLZZEQnRF4VHThTKB2rhYxypZ9GnKlgOuKLcrsEHgXgXwiBMFw/Cka
-X-Gm-Message-State: AOJu0YxwfS6VoNac7049OAYvIOYsDNjDMolvineOg/9Eft+4jJShNMwe
-	XVh6Um1pKInJ/ob0dByCg+PhcCrmdt6uLSZsy2U9Q3FLuPSjB4BTuySDs3hG
-X-Google-Smtp-Source: AGHT+IEG2Hd643WQhqYGtVBuFzfiwv+pBO2/m+FHoN8ktWUT3/L6eXQovYk0SjwFHZRmAcgewt8Qgw==
-X-Received: by 2002:a25:a341:0:b0:e03:4ee5:8c0e with SMTP id 3f1490d57ef6-e041b17827fmr8294203276.63.1720708818929;
-        Thu, 11 Jul 2024 07:40:18 -0700 (PDT)
-Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com. [209.85.128.178])
-        by smtp.gmail.com with ESMTPSA id 3f1490d57ef6-e041a99b68asm1012096276.55.2024.07.11.07.40.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Jul 2024 07:40:18 -0700 (PDT)
-Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-6512866fa87so10223447b3.2;
-        Thu, 11 Jul 2024 07:40:18 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCU6GN3FaVMheUDmmcOf1ZcF35vxHWriqiV5FkbienPyqHPo2makFMnjkEHsZG5/QDwyHgnpExuSJqLhj0TpbwbP7f6fG3CyKGiav6RWjK9QdpeJCxco1RbYJlE8BeUst/mU3MlaB49n37mKIjNJ
-X-Received: by 2002:a0d:f981:0:b0:64a:f40d:5fd2 with SMTP id
- 00721157ae682-658eed5debcmr93730157b3.12.1720708818086; Thu, 11 Jul 2024
- 07:40:18 -0700 (PDT)
+	s=arc-20240116; t=1720709072; c=relaxed/simple;
+	bh=e5TcSYq9SmOCbUefKhxL8wUuPTaj8MsKosGv97sT8oU=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=h43g8HkkNzNkbYcxBUb+cvz0boz6CJt77rSUhoRXbib2tOJk9Xp2VDC0tX7fRwsVRUVfj8q/cm/URh3RUf3udxkRS1s5WCtVgV48yRbrF72GYH28QNWAqkgi5m4VHFRgVs2SakEbvV/uvAIVzOFLI/IALdGuDTa0xQQzI2B/x18=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1DB831007;
+	Thu, 11 Jul 2024 07:44:54 -0700 (PDT)
+Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5530F3F766;
+	Thu, 11 Jul 2024 07:44:27 -0700 (PDT)
+Date: Thu, 11 Jul 2024 15:44:24 +0100
+From: Andre Przywara <andre.przywara@arm.com>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Chris Morgan <macroalpha82@gmail.com>, linux-sunxi@lists.linux.dev,
+ ryan@testtoast.com, jernej.skrabec@gmail.com, samuel@sholland.org,
+ wens@csie.org, krzk+dt@kernel.org, Chris Morgan <macromorgan@hotmail.com>,
+ conor+dt@kernel.org, mripard@kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH V3 0/4] Add Anbernic RG35XX-SP
+Message-ID: <20240711154424.32e86cee@donnerap.manchester.arm.com>
+In-Reply-To: <172070684741.2129319.15850493754001416062.robh@kernel.org>
+References: <20240710231718.106894-1-macroalpha82@gmail.com>
+	<172070684741.2129319.15850493754001416062.robh@kernel.org>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240616105402.45211-1-biju.das.jz@bp.renesas.com> <20240616105402.45211-5-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20240616105402.45211-5-biju.das.jz@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 11 Jul 2024 16:40:04 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdX5ayWbLEEa6nAipECVB6H9eCpRg21pu3zYrTdiER0F+Q@mail.gmail.com>
-Message-ID: <CAMuHMdX5ayWbLEEa6nAipECVB6H9eCpRg21pu3zYrTdiER0F+Q@mail.gmail.com>
-Subject: Re: [PATCH v4 4/6] regulator: Add Renesas RZ/G2L USB VBUS regulator driver
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Biju Das <biju.das.au@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Hi Biju,
+On Thu, 11 Jul 2024 08:20:24 -0600
+"Rob Herring (Arm)" <robh@kernel.org> wrote:
 
-On Sun, Jun 16, 2024 at 12:54=E2=80=AFPM Biju Das <biju.das.jz@bp.renesas.c=
-om> wrote:
-> As per the RZ/G2L HW manual, VBUSEN can be controlled by the VBOUT
-> bit of the VBUS Control Register. This register is mapped in the reset
-> framework. The reset driver expose this register as regmap and instantiat=
-es
-> this driver. The consumer will use the regulator API to control the VBOUT
-> bit as the control need to be done in the atomic context.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+Hi,
 
-Thanks for your patch, which is now commit 84fbd6198766336f
-("regulator: Add Renesas RZ/G2L USB VBUS regulator driver")
-in regulator/for-next.
+> On Wed, 10 Jul 2024 18:17:14 -0500, Chris Morgan wrote:
+> > From: Chris Morgan <macromorgan@hotmail.com>
+> > 
+> > Add support for the Anbernic RG35XX-SP handheld gaming device. The
+> > Anbernic RG35XX-SP is a clamshell device, but hardware wise is very
+> > similar to the RG35XX-Plus. The RG35XX-SP has a lid-switch and an
+> > external RTC that necessitate a distinct device tree.
+> > 
+> > Please note that this series may have a soft pre-requisite on the patch
+> > series here [1].
+> > 
+> > [1] https://lore.kernel.org/linux-sunxi/20240418000736.24338-1-andre.przywara@arm.com/
+> > 
+> > Changes from V2:
+> >  - Corrected commit message for device tree bindings.
+> >  - Added a fixes tag to i2c pinmux additions in sun50i-h616.dtsi file
+> >    based on recommendation from Andre Przywara.
+> > 
+> > Changes from V1:
+> >  - Switched all RG35XX devices from the r_rsb bus to the r_i2c bus for
+> >    the PMIC to keep it consistent.
+> >  - Added missing pinctrl nodes in sun50i-h616.dtsi file for the r_i2c
+> >    bus.
+> >  - Modified devicetree documentation to keep definition of the RG35XX
+> >    series consistent with other Allwinner devices.
+> > 
+> > Chris Morgan (4):
+> >   dt-bindings: arm: sunxi: Add Anbernic RG35XXSP
+> >   arm64: dts: allwinner: h616: Add r_i2c pinctrl nodes
+> >   arm64: dts: allwinner: h616: Change RG35XX Series from r_rsb to r_i2c
+> >   arm64: dts: allwinner: h700: Add Anbernic RG35XX-SP
+> > 
+> >  .../devicetree/bindings/arm/sunxi.yaml        |  9 +++--
+> >  arch/arm64/boot/dts/allwinner/Makefile        |  3 +-
+> >  .../arm64/boot/dts/allwinner/sun50i-h616.dtsi |  2 ++
+> >  .../sun50i-h700-anbernic-rg35xx-2024.dts      |  6 ++--
+> >  .../sun50i-h700-anbernic-rg35xx-sp.dts        | 34 +++++++++++++++++++
+> >  5 files changed, 48 insertions(+), 6 deletions(-)
+> >  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-sp.dts
+> > 
+> > --
+> > 2.34.1
+> > 
+> > 
+> >   
+> 
+> 
+> My bot found new DTB warnings on the .dts files added or changed in this
+> series.
 
-> --- a/drivers/regulator/Kconfig
-> +++ b/drivers/regulator/Kconfig
-> @@ -1634,6 +1634,15 @@ config REGULATOR_UNIPHIER
->         help
->           Support for regulators implemented on Socionext UniPhier SoCs.
->
-> +config REGULATOR_RZG2L_VBCTRL
-> +       tristate "Renesas RZ/G2L USB VBUS regulator driver"
-> +       depends on ARCH_RZG2L || COMPILE_TEST
-> +       depends on OF
-> +       select REGMAP_MMIO
-> +       default ARCH_RZG2L
+That is a problem of an existing .dts files in the tree, namely
+sun50i-h700-anbernic-rg35xx-2024.dts. It describes the "boost" regulator,
+but the three patches adding that didn't make it in this time.
+So how do we deal with that? 
+This small binding patch would solve this particular problem:
+https://lore.kernel.org/linux-sunxi/20240418000736.24338-4-andre.przywara@arm.com/
+It has an ACK from Lee and Krzysztof, but I guess it's too late now for
+6.10? Do we just ignore it for now and push it as a fix after -rc1?
 
-As the "rzg2l-usb-vbus-regulator" platform device is only created by
-drivers/reset/reset-rzg2l-usbphy-ctrl.c, perhaps this should be made
-stricter by using "default RESET_RZG2L_USBPHY_CTRL"?
+Cheers,
+Andre
 
-Alternatively, RESET_RZG2L_USBPHY_CTRL could select
-RESET_RZG2L_USBPHY_CTRL if REGULATOR.  Can RESET_RZG2L_USBPHY_CTRL
-work without REGULATOR_RZG2L_VBCTRL?  If not, RESET_RZG2L_USBPHY_CTRL
-should depend on REGULATOR, too.
+> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+> are fixed by another series. Ultimately, it is up to the platform
+> maintainer whether these warnings are acceptable or not. No need to reply
+> unless the platform maintainer has comments.
+> 
+> If you already ran DT checks and didn't see these error(s), then
+> make sure dt-schema is up to date:
+> 
+>   pip3 install dtschema --upgrade
+> 
+> 
+> New warnings running 'make CHECK_DTBS=y
+> allwinner/sun50i-h700-anbernic-rg35xx-2024.dtb
+> allwinner/sun50i-h700-anbernic-rg35xx-sp.dtb' for
+> 20240710231718.106894-1-macroalpha82@gmail.com:
+> 
+> arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dtb:
+> pmic@34: regulators: 'boost' does not match any of the regexes:
+> '^(([a-f])?ldo[0-9]|dcdc[0-7a-e]|ldo(_|-)io(0|1)|(dc1)?sw|rtc(_|-)ldo|cpusldo|drivevbus|dc5ldo)$',
+> 'pinctrl-[0-9]+' from schema $id:
+> http://devicetree.org/schemas/mfd/x-powers,axp152.yaml#
+> arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-sp.dtb:
+> pmic@34: regulators: 'boost' does not match any of the regexes:
+> '^(([a-f])?ldo[0-9]|dcdc[0-7a-e]|ldo(_|-)io(0|1)|(dc1)?sw|rtc(_|-)ldo|cpusldo|drivevbus|dc5ldo)$',
+> 'pinctrl-[0-9]+' from schema $id:
+> http://devicetree.org/schemas/mfd/x-powers,axp152.yaml#
+> 
+> 
+> 
+> 
+> 
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
