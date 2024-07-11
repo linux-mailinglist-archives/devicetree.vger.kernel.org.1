@@ -1,114 +1,171 @@
-Return-Path: <devicetree+bounces-85058-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85059-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03D1992EB32
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 17:01:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EC8E92EB62
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 17:14:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B72B02833F2
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 15:01:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 378431F2411D
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 15:14:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB0A7155C95;
-	Thu, 11 Jul 2024 15:01:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EQMEc+IV"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5956216B751;
+	Thu, 11 Jul 2024 15:14:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81808154BE8;
-	Thu, 11 Jul 2024 15:01:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14A9616B750;
+	Thu, 11 Jul 2024 15:14:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720710078; cv=none; b=obFXT04z/SzX1Kcj6HeWQ+PTEjbgEPagM4+cxj6tFcTCPz/AekfO+E1mGkjDTuxQ6aPJKQa2I8q36L6iZb18Ja6DoCLShVnXoRM2aZGxgEtmszskIhMlTCnv/Hz0yct7gIMMb5F0saeULqZT/0QDJ1kgeYgfCdiYfpXTOwB5bc0=
+	t=1720710874; cv=none; b=IvmFP4vrtAbd9eKgJrM7hbkNJs+qy2C3jdTGOhq8MwVyzaMhzvSvPvelxEVcSGKcX1vM4DDb5WNSbY/C+9wvP7FtRJ62WhC5zQl1MuTr6zgyo5dPFnLEcBRb4OqjGOpPWn1zqLr9xMnpLAy+nABmccUKfRldxY9SH5oAlkdK3Fw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720710078; c=relaxed/simple;
-	bh=cbO/KRhRU5RpiqktSyiEnIwlpQFVvKQFp96GPxVwHr4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WG5cu0CMpQMa0HKcAEyBMwwHfpXBu+YWc3ngwT8pG0JYslHOa/1boAaLBvj91DtWB0oRSQH8bieq3UjjUvBuNlyQFiSozf61rCRVBqRG28JTSvF34u7lC2q8NPDP2iDo7kn91ARSgkRitIxAM6r7waCYYhTMnTzHb9SoqlJCcaE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EQMEc+IV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00F32C116B1;
-	Thu, 11 Jul 2024 15:01:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720710078;
-	bh=cbO/KRhRU5RpiqktSyiEnIwlpQFVvKQFp96GPxVwHr4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EQMEc+IVmXqEhb86jpWSVanbwrjG+orKHT0VuzmeJWWHXKS6WE4s/qX6nztJgkr3y
-	 8xvWfllsUCRyOeES1NySCFe6TPp3osxfajxGOiWrsrkl/Afg435V0wU7pefuWRvmH9
-	 qFRK+bwlarIw+MTN4Up7sHB/Dhlp3zFBOJtvknyYeRI1gXuI1a/bW2T4zmHoiGFibs
-	 KZ56g9E0jE5Qhdwcf4746cqwdNYFqqV8p4tUMXrrXzI8QQAsPwZgxtV3TAcSiJnjza
-	 XKSJDT6PyOVba5EpLZGoGb1bHl6t44ctA5/VZI60wxvL7I91Ehage8wbZEL+A0VZFc
-	 fDD8mN1dmkieA==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1sRvIJ-000000002bU-2meG;
-	Thu, 11 Jul 2024 17:01:15 +0200
-Date: Thu, 11 Jul 2024 17:01:15 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: Johan Hovold <johan+linaro@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Abel Vesa <abel.vesa@linaro.org>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: Re: [PATCH] arm64: dts: qcom: x1e80100: enable GICv3 ITS for PCIe
-Message-ID: <Zo_zu-RmbZyKijVQ@hovoldconsulting.com>
-References: <20240711090250.20827-1-johan+linaro@kernel.org>
- <f7e74a6f-0548-4caa-a8fc-8180c619c9aa@linaro.org>
- <Zo-ssBBDbHRLtAwG@hovoldconsulting.com>
+	s=arc-20240116; t=1720710874; c=relaxed/simple;
+	bh=E2/ZGPEcI1Rw3PXVmpTzOifaaKG2qjpVrpRBa1H77OM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=AmVDSqXKEIf8yIFVuyilT9Z6yxQcTBeI28uyl6kJLaZ+396F5vyYCm8sb56dbEoMdfO8jhH1iZTaNq8G8VlO/DBjd+2LsjgNDwkIxICjBqC38EffiGcXu6ojuAT3wNd9ptpQTNt/tqmLvHFRnr7T9g+tMv+qa94WH1TyDXtYX9c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-64f4c11d2c9so8820887b3.2;
+        Thu, 11 Jul 2024 08:14:31 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720710870; x=1721315670;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=TG1IUAibKVepFJDLQ5uiThldezvK+l5iRWwuzpOK2ok=;
+        b=ILwOi0fcLm7fRXHSZfHr5jMlnNJOdPcbjJLDHxPVxt+plCI0KQEiFlaAbLBK1AVmuD
+         T9kW+qJEA4F0c/qcjpuYtFRu0IDrE9AC23e411LoRSrzMtb2WLlpS77vWhVbIA3A1S7E
+         kc9trUGqrBAEQDJN9a2XJbC3ZCIb4lAZA/17SMTGdjy+N4tv9pGVCQHGrbs10u/3MM5Y
+         dmRWM2i2q0QXjqkffGYDrQyprpsL9ldoCHbwYmEjNlarTR6N+GhqJ02Nwwd6gP5JC8UD
+         wgX4z7LJuMAxfM+SIxUTpTSX9Gca/43xJ8mcun1cu0jEk53xytEBjT/00DyyaYRlRVyP
+         IBFQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXyTgJ1vOmhLDEOJXZ91/DPDjPqRxcvcb7v/FeKXrDflUFHpG3rCkYOOf86Ef08KFT2oK/1LDKFNWOS5mVb8QrrOzMLsZhz1wbI3Y36YtMaAsV12ot2/9jZnKfDU1BSaf+1EMtwKTLYYfxlO/Yq
+X-Gm-Message-State: AOJu0Yyvv1H1yfoqV7txo/KKV75JNEjHzRLgP+weL+Jki6qZ4CW1M+o9
+	/w9W8cPoX1zC6q/1dhK2n/05DFYXSez7vzWSuYwYjj8Re02YQwgLDd7vHake
+X-Google-Smtp-Source: AGHT+IGIizVSXzstb/zW1oCYPoNHmeMK18xzJuTrvxZBhwfFkCINrREeGE4H7nmIUgB7L5xqo8FKgA==
+X-Received: by 2002:a05:690c:d8c:b0:650:9c5e:f6db with SMTP id 00721157ae682-658eed60aabmr115717467b3.18.1720710869993;
+        Thu, 11 Jul 2024 08:14:29 -0700 (PDT)
+Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com. [209.85.219.173])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-658e74919b9sm11074567b3.141.2024.07.11.08.14.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 11 Jul 2024 08:14:29 -0700 (PDT)
+Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-dfef5980a69so1049522276.3;
+        Thu, 11 Jul 2024 08:14:29 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXK+ydQfUU02GA7fU7FIEjBdb+bDEd9zx+C9x7fha371qBjLdeUFNhSWmnBrGSS/Dk0N5OaTW1FooBWd/7tZPF6G1MkEQwBx1ZJunBuRkduhYuQaZ0pSUZ4oiOE5zNCAJgvpXZASmRHj23VEL+Q
+X-Received: by 2002:a25:c883:0:b0:dff:3308:b921 with SMTP id
+ 3f1490d57ef6-e041b0f5f31mr9950761276.31.1720710869408; Thu, 11 Jul 2024
+ 08:14:29 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Zo-ssBBDbHRLtAwG@hovoldconsulting.com>
+References: <20240616105402.45211-1-biju.das.jz@bp.renesas.com>
+ <20240616105402.45211-5-biju.das.jz@bp.renesas.com> <CAMuHMdX5ayWbLEEa6nAipECVB6H9eCpRg21pu3zYrTdiER0F+Q@mail.gmail.com>
+ <TY3PR01MB1134692D0F5D291398FCE5F1086A52@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+In-Reply-To: <TY3PR01MB1134692D0F5D291398FCE5F1086A52@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 11 Jul 2024 17:14:17 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVc40j9qvmyFpVpKcd_uSrjFj6s5-RmgXZgp2w8HYCGfg@mail.gmail.com>
+Message-ID: <CAMuHMdVc40j9qvmyFpVpKcd_uSrjFj6s5-RmgXZgp2w8HYCGfg@mail.gmail.com>
+Subject: Re: [PATCH v4 4/6] regulator: Add Renesas RZ/G2L USB VBUS regulator driver
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, 
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
+	"biju.das.au" <biju.das.au@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-[ +CC: Mani ]
+Hi Biju,
 
-On Thu, Jul 11, 2024 at 11:58:08AM +0200, Johan Hovold wrote:
-> On Thu, Jul 11, 2024 at 11:54:15AM +0200, Konrad Dybcio wrote:
-> > On 11.07.2024 11:02 AM, Johan Hovold wrote:
-> > > The DWC PCIe controller can be used with its internal MSI controller or
-> > > with an external one such as the GICv3 Interrupt Translation Service
-> > > (ITS).
-> > > 
-> > > Add the msi-map properties needed to use the GIC ITS. This will also
-> > > make Linux switch to the ITS implementation, which allows for assigning
-> > > affinity to individual MSIs.
+On Thu, Jul 11, 2024 at 4:58=E2=80=AFPM Biju Das <biju.das.jz@bp.renesas.co=
+m> wrote:
+> > -----Original Message-----
+> > From: Geert Uytterhoeven <geert@linux-m68k.org>
+> > Sent: Thursday, July 11, 2024 3:40 PM
+> > Subject: Re: [PATCH v4 4/6] regulator: Add Renesas RZ/G2L USB VBUS regu=
+lator driver
+> >
+> > Hi Biju,
+> >
+> > On Sun, Jun 16, 2024 at 12:54=E2=80=AFPM Biju Das <biju.das.jz@bp.renes=
+as.com> wrote:
+> > > As per the RZ/G2L HW manual, VBUSEN can be controlled by the VBOUT bi=
+t
+> > > of the VBUS Control Register. This register is mapped in the reset
+> > > framework. The reset driver expose this register as regmap and
+> > > instantiates this driver. The consumer will use the regulator API to
+> > > control the VBOUT bit as the control need to be done in the atomic co=
+ntext.
+> > >
+> > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> >
+> > Thanks for your patch, which is now commit 84fbd6198766336f
+> > ("regulator: Add Renesas RZ/G2L USB VBUS regulator driver") in regulato=
+r/for-next.
 
-> > X1E CRD throws tons of correctable errors with this on PCIe6a:
+> > > --- a/drivers/regulator/Kconfig
+> > > +++ b/drivers/regulator/Kconfig
+> > > @@ -1634,6 +1634,15 @@ config REGULATOR_UNIPHIER
+> > >         help
+> > >           Support for regulators implemented on Socionext UniPhier So=
+Cs.
+> > >
+> > > +config REGULATOR_RZG2L_VBCTRL
+> > > +       tristate "Renesas RZ/G2L USB VBUS regulator driver"
+> > > +       depends on ARCH_RZG2L || COMPILE_TEST
+> > > +       depends on OF
+> > > +       select REGMAP_MMIO
+> > > +       default ARCH_RZG2L
+> >
+> > As the "rzg2l-usb-vbus-regulator" platform device is only created by dr=
+ivers/reset/reset-rzg2l-
+> > usbphy-ctrl.c, perhaps this should be made stricter by using "default R=
+ESET_RZG2L_USBPHY_CTRL"?
+>
+> OK.
+> >
+> > Alternatively, RESET_RZG2L_USBPHY_CTRL could select RESET_RZG2L_USBPHY_=
+CTRL if REGULATOR.  Can
+> > RESET_RZG2L_USBPHY_CTRL work without REGULATOR_RZG2L_VBCTRL?  If not, R=
+ESET_RZG2L_USBPHY_CTRL should
+> > depend on REGULATOR, too.
+>
+> Yes, from functionality point it works for both host and device mode with=
+out REGULATOR_RZG2L_VBCTRL.
+> From specification point, some customers reported on device mode, VBUS is=
+ showing 5V.
+> So, by adding vbus regulator, I am controlling this voltage and forcing t=
+o 0 for device mode
+> and 5V for host mode.
+>
+> Please share your input how to proceed.
 
-> What branch are you using? Abel reported seeing this with his branch
-> which has a few work-in-progress patches that try to enable 4-lane PCIe.
-> 
-> There are no errors with my wip branch based on rc7, and I have the same
-> drive as Abel.
+As it works without, I think changing the default of
+REGULATOR_RZG2L_VBCTRL from ARCH_RZG2L to RESET_RZG2L_USBPHY_CTRL is
+the most appropriate option.
 
-For some reason I don't get these errors on my machine, but this has now
-been confirmed by two other people running my rc branch (including Abel)
-so something is broken here, for example, with the PHY settings.
+Gr{oetje,eeting}s,
 
-I saw five correctable errors once, when running linux-next, but it took
-several minutes and they were still minutes apart.
+                        Geert
 
-> Also note that the errors happen also without this patch applied, they
-> are just being reported now.
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-I guess we need to track down what is causing these errors before
-enabling ITS (and thereby the error reporting). 
-
-At least L0s is not involved here, as it was with sc8280xp, as the
-NVMe controllers in question do not support it.
-
-Perhaps something is off because we're running the link at half width?
-
-Johan
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
