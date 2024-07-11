@@ -1,130 +1,114 @@
-Return-Path: <devicetree+bounces-85057-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85058-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E538592EB2C
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 17:00:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03D1992EB32
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 17:01:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A2B75284BAF
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 15:00:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B72B02833F2
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 15:01:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5AD3155C95;
-	Thu, 11 Jul 2024 15:00:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB0A7155C95;
+	Thu, 11 Jul 2024 15:01:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="OHjL7T02"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EQMEc+IV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2588B1E49B;
-	Thu, 11 Jul 2024 15:00:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81808154BE8;
+	Thu, 11 Jul 2024 15:01:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720710031; cv=none; b=srhKXqlkOOUjWcXD+8ukatDWaSAtI4YKAxoWz2zidWK376L3bC7gpp46rNE7UmBZKvrIM5ctYHj2lOPvp5zFIhflV92FiJHie8vPNBQ5MJhVUXpxAnjL9lcd1L/lLtMEjqIiSJViT5y4lpfzynsp3/L42oBC8qK1bIrLG8bi0IM=
+	t=1720710078; cv=none; b=obFXT04z/SzX1Kcj6HeWQ+PTEjbgEPagM4+cxj6tFcTCPz/AekfO+E1mGkjDTuxQ6aPJKQa2I8q36L6iZb18Ja6DoCLShVnXoRM2aZGxgEtmszskIhMlTCnv/Hz0yct7gIMMb5F0saeULqZT/0QDJ1kgeYgfCdiYfpXTOwB5bc0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720710031; c=relaxed/simple;
-	bh=itsb3ZhOZhDxbRFDuhwPmOmd5B61fMqvju+ZGjeXyag=;
+	s=arc-20240116; t=1720710078; c=relaxed/simple;
+	bh=cbO/KRhRU5RpiqktSyiEnIwlpQFVvKQFp96GPxVwHr4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eN0XkRhYm9LRBpcB7gb7tS/BPdBBhowVYM6ZoYu8BChQq29uIkqfSwmV44Z6R+voxjeSuTqVRMbog7G+r4ah4RASWTdhnNQ/7ztjtg0VOil/oZxNRkBn0fXc6ARgVf2GgTQ7ssyQLg9YKY5TqUy8qKAbD/ZSXYWmoCRQdaQRsuc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=OHjL7T02; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1720710028;
-	bh=itsb3ZhOZhDxbRFDuhwPmOmd5B61fMqvju+ZGjeXyag=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=WG5cu0CMpQMa0HKcAEyBMwwHfpXBu+YWc3ngwT8pG0JYslHOa/1boAaLBvj91DtWB0oRSQH8bieq3UjjUvBuNlyQFiSozf61rCRVBqRG28JTSvF34u7lC2q8NPDP2iDo7kn91ARSgkRitIxAM6r7waCYYhTMnTzHb9SoqlJCcaE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EQMEc+IV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00F32C116B1;
+	Thu, 11 Jul 2024 15:01:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720710078;
+	bh=cbO/KRhRU5RpiqktSyiEnIwlpQFVvKQFp96GPxVwHr4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OHjL7T02nlYOYz3aiCp07/l5asG9Ed/PCld4oMyOu9qgYD9chneaaV+4joG//kLzR
-	 uPA0SbAC4zTnxeBabO21Z92YcFXP8GopO91sC+WpEBecjQQUNfyjPxa0cNzLPnOIsx
-	 ieumt/wiGFAX/adpNibPQA1gUmaQJXET1ARhukYEY91NAjTHMCGk9Sk1oSkSyS/QkC
-	 3+xwLLD1T3LsPOSkHg0m8rUieNOAt/JD9oHIe6VgtZifSmxMw3/je2rTi+gbld9vF6
-	 qT28i+0F/b5HiJrZRs6yS4ZlOaiMAqaezQJhJSGlDW5meKRIAdl0IP4ZV5/PDW79mI
-	 lkfCqdfF1U3cg==
-Received: from notapiano (zone.collabora.co.uk [167.235.23.81])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nfraprado)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id DC6FA3780627;
-	Thu, 11 Jul 2024 15:00:25 +0000 (UTC)
-Date: Thu, 11 Jul 2024 11:00:23 -0400
-From: =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <nfraprado@collabora.com>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: linux-mediatek@lists.infradead.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, matthias.bgg@gmail.com,
-	tinghan.shen@mediatek.com, seiya.wang@mediatek.com,
+	b=EQMEc+IVmXqEhb86jpWSVanbwrjG+orKHT0VuzmeJWWHXKS6WE4s/qX6nztJgkr3y
+	 8xvWfllsUCRyOeES1NySCFe6TPp3osxfajxGOiWrsrkl/Afg435V0wU7pefuWRvmH9
+	 qFRK+bwlarIw+MTN4Up7sHB/Dhlp3zFBOJtvknyYeRI1gXuI1a/bW2T4zmHoiGFibs
+	 KZ56g9E0jE5Qhdwcf4746cqwdNYFqqV8p4tUMXrrXzI8QQAsPwZgxtV3TAcSiJnjza
+	 XKSJDT6PyOVba5EpLZGoGb1bHl6t44ctA5/VZI60wxvL7I91Ehage8wbZEL+A0VZFc
+	 fDD8mN1dmkieA==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1sRvIJ-000000002bU-2meG;
+	Thu, 11 Jul 2024 17:01:15 +0200
+Date: Thu, 11 Jul 2024 17:01:15 +0200
+From: Johan Hovold <johan@kernel.org>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: Johan Hovold <johan+linaro@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Abel Vesa <abel.vesa@linaro.org>, linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, wenst@chromium.org
-Subject: Re: [PATCH] arm64: dts: mediatek: mt8195: Add power domain to
- secondary XHCI
-Message-ID: <4ac0e464-5ef6-445d-a784-fe367ea23a2d@notapiano>
-References: <20240711093230.118534-1-angelogioacchino.delregno@collabora.com>
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: Re: [PATCH] arm64: dts: qcom: x1e80100: enable GICv3 ITS for PCIe
+Message-ID: <Zo_zu-RmbZyKijVQ@hovoldconsulting.com>
+References: <20240711090250.20827-1-johan+linaro@kernel.org>
+ <f7e74a6f-0548-4caa-a8fc-8180c619c9aa@linaro.org>
+ <Zo-ssBBDbHRLtAwG@hovoldconsulting.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240711093230.118534-1-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <Zo-ssBBDbHRLtAwG@hovoldconsulting.com>
 
-On Thu, Jul 11, 2024 at 11:32:30AM +0200, AngeloGioacchino Del Regno wrote:
-> The secondary XHCI controller, using a PHY that is shared between
-> it and the secondary PCI-Express controller, gets powered by the
-> PCIE_MAC_P1 power domain.
+[ +CC: Mani ]
+
+On Thu, Jul 11, 2024 at 11:58:08AM +0200, Johan Hovold wrote:
+> On Thu, Jul 11, 2024 at 11:54:15AM +0200, Konrad Dybcio wrote:
+> > On 11.07.2024 11:02 AM, Johan Hovold wrote:
+> > > The DWC PCIe controller can be used with its internal MSI controller or
+> > > with an external one such as the GICv3 Interrupt Translation Service
+> > > (ITS).
+> > > 
+> > > Add the msi-map properties needed to use the GIC ITS. This will also
+> > > make Linux switch to the ITS implementation, which allows for assigning
+> > > affinity to individual MSIs.
+
+> > X1E CRD throws tons of correctable errors with this on PCIe6a:
+
+> What branch are you using? Abel reported seeing this with his branch
+> which has a few work-in-progress patches that try to enable 4-lane PCIe.
 > 
-> Add this power domain to the usb@11290000 node to fix probe.
-> 
-> Fixes: 37f2582883be ("arm64: dts: Add mediatek SoC mt8195 and evaluation board")
-> Reported-by: Nícolas F. R. A. Prado <nfraprado@collabora.com> #KernelCI
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> There are no errors with my wip branch based on rc7, and I have the same
+> drive as Abel.
 
-Hi Angelo,
+For some reason I don't get these errors on my machine, but this has now
+been confirmed by two other people running my rc branch (including Abel)
+so something is broken here, for example, with the PHY settings.
 
-thanks for the patch, but unfortunately it doesn't fix the issue:
+I saw five correctable errors once, when running linux-next, but it took
+several minutes and they were still minutes apart.
 
-[   10.772128] mtk-pcie-gen3 112f8000.pcie: host bridge /soc/pcie@112f8000 ranges:
-[   10.788914] mtk-pcie-gen3 112f8000.pcie:       IO 0x0024000000..0x00241fffff -> 0x0024000000
-[   10.802111] mtk-pcie-gen3 112f8000.pcie:      MEM 0x0024200000..0x0027ffffff -> 0x0024200000
-[   10.941278] mtk-pcie-gen3 112f8000.pcie: PCI host bridge to bus 0000:00
+> Also note that the errors happen also without this patch applied, they
+> are just being reported now.
 
-[   10.785937] xhci-mtk 11290000.usb: uwk - reg:0x400, version:104
-[   10.796352] xhci-mtk 11290000.usb: xHCI Host Controller
-[   10.810530] xhci-mtk 11290000.usb: new USB bus registered, assigned bus number 5
-[   10.844258] xhci-mtk 11290000.usb: clocks are not stable (0x1003d0f)
-[   10.844262] xhci-mtk 11290000.usb: can't setup: -110
-[   10.844266] xhci-mtk 11290000.usb: USB bus 5 deregistered
-[   10.861969] xhci-mtk 11290000.usb: probe with driver xhci-mtk failed with error -110
+I guess we need to track down what is causing these errors before
+enabling ITS (and thereby the error reporting). 
 
-In fact it seems to have made the issue more frequent, as it happened every time
-for the 5 boots I tried.
+At least L0s is not involved here, as it was with sc8280xp, as the
+NVMe controllers in question do not support it.
 
-But that gives me idea to try booting with clk_ignore_unused and
-pd_ignore_unused. I'll update the report with the results.
+Perhaps something is off because we're running the link at half width?
 
-Thanks,
-Nícolas
-
-> ---
->  arch/arm64/boot/dts/mediatek/mt8195.dtsi | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> index 2ee45752583c..96ad1b14626e 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> @@ -1445,6 +1445,7 @@ xhci1: usb@11290000 {
->  			reg-names = "mac", "ippc";
->  			interrupts = <GIC_SPI 530 IRQ_TYPE_LEVEL_HIGH 0>;
->  			phys = <&u2port1 PHY_TYPE_USB2>;
-> +			power-domains = <&spm MT8195_POWER_DOMAIN_PCIE_MAC_P1>;
->  			assigned-clocks = <&topckgen CLK_TOP_USB_TOP_1P>,
->  					  <&topckgen CLK_TOP_SSUSB_XHCI_1P>;
->  			assigned-clock-parents = <&topckgen CLK_TOP_UNIVPLL_D5_D4>,
-> -- 
-> 2.45.2
-> 
+Johan
 
