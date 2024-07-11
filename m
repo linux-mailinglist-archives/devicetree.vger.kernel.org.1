@@ -1,114 +1,129 @@
-Return-Path: <devicetree+bounces-85091-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85092-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D194C92ED57
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 19:00:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9794292ED73
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 19:09:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 012C41C221BA
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 17:00:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4E4421F2354E
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 17:09:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1D3516DC29;
-	Thu, 11 Jul 2024 16:59:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7249816D4ED;
+	Thu, 11 Jul 2024 17:09:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YutO4poH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="npMBJKAK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B666616D9C5;
-	Thu, 11 Jul 2024 16:59:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40E6A450FA;
+	Thu, 11 Jul 2024 17:09:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720717164; cv=none; b=I7Aa60+8xpCAGyrhFzQhdVuLTGIK4U6gUD8AZNZCFtlOZvijb9qYI79J0URf40iRUzNQ/l0lU4FPckd0tSfY/yfK035oL3f8VjPx28atHRuwBZftoBPZU+ZsOV0WuCY0snQkenntNjlAQj4MbfjyyOqRhNof429C5SV6vuNOSPM=
+	t=1720717760; cv=none; b=AshVg+WkTIP4hmp+l5XC+48fVfQfxHcMIWpfitpRxS3bJxFAuPgKFoOPswVaUWX3KTvUCgKTGzYus3CrIDTk8tODK9Bv/5OaKEH8vaRxhhYANWQrtfX1l8q/PHpU+k9u2fYtjImkdkosPHUig9QNcViBCSokVwpIMSPRDc77N+E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720717164; c=relaxed/simple;
-	bh=Z8VGan5F8QzSJ03qkchy06gXKvp+W67s71nEoYeZ9M4=;
+	s=arc-20240116; t=1720717760; c=relaxed/simple;
+	bh=4AsmtB1c0/haUg/T+xK8LCVjZIWcIFk1GR+agnIeol0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ut0iWTdifiekBQvBFWIKnYxtW/xGPeUo+v2X0e5bieqSE61tyjXNIq2DJFo+s7wErYAo8qqHn0kd9qc3jd5Ik09nNhpp5/j57WGkq8r6js2rSTDx7FdtuHEQ5CJJITmLYmAgdt66q2pdZ+LAGgzZdRT46Lzxetgt7iNsNyhjVm4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YutO4poH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 844D9C116B1;
-	Thu, 11 Jul 2024 16:59:24 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=fpbU9eEF5zr1N9qaNnnqHQqXoZxNh8pj0gMg7htuGhDJfnghrjM2uxVG5sF57HKbIl785aJv/1R+dSFlkZL4+YHSJyEl5/OoUt2Wr9Mr2MO7aTDPszsUYm2yCWjMi3xeN4xLshBkBCZmfqMpmApazpmisFyospbeLeqVX3vH2Aw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=npMBJKAK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3EF51C116B1;
+	Thu, 11 Jul 2024 17:09:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720717164;
-	bh=Z8VGan5F8QzSJ03qkchy06gXKvp+W67s71nEoYeZ9M4=;
+	s=k20201202; t=1720717759;
+	bh=4AsmtB1c0/haUg/T+xK8LCVjZIWcIFk1GR+agnIeol0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YutO4poH5OebnHWJZBkw/SUknN7eI1qeO6iPc9Gmw58ywvIIwUTkoWfAmZ0ySW62L
-	 s1eDnKyKkgDZL0X13FwMgvDmocGiPq9lCL3xWZnr+W7GOJv+00kcMVvXrUygfwmB9h
-	 UQpWMm1wb7DDVOH5CEz65KvebDbyiA3Z5hR3EeZdHQ1eiP9aOhoPzhK65NHMCrEdvw
-	 BysbBNZHQjw5i4BUowRrjSuO8shgvatgFPlpb2xeYBMHjpYI3oNdmBgY5dVSOEtvUI
-	 IMdkZwblsgXtn8zrIiBM6WaoFMIz9EsT8YZD3ED28uXH188OnajJQT0TbPI8RXD2Nx
-	 52SWJjj9nszSg==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1sRx8c-000000005Xb-1zFe;
-	Thu, 11 Jul 2024 18:59:22 +0200
-Date: Thu, 11 Jul 2024 18:59:22 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc: Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Johan Hovold <johan+linaro@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	b=npMBJKAK7s69Z/WDXZvryOrC1AXCklNKsLLxOCs3gsJfApoz0/Ox9lYee1sJ6JwFC
+	 lzx5PgO1lGRj2EKUh3icE9RHKreJLdJFw+BKutxdCPSHRfth/k1X0ATH8iFfNL9fcK
+	 AI83yw0uN4QfyYXRNmqakAMB+ri/2WvgtUJy8Mjvte/exqSdq9GP9l6B0P7O2MzXBy
+	 YOUJ1fOXUHj22VvxXuP2nytibhRZMRTAMgjS3uLsA1nwarmZ1yF+vWOcbIiKCKhuJR
+	 dY8lY7THLhQ9ec1bS3ImuG5ExziA3ve8s3lT6skT1KkhFWulvX1K9EsKrDDU/OQ5Bc
+	 qrs9k3Yd9wRMQ==
+Date: Thu, 11 Jul 2024 18:09:10 +0100
+From: Lee Jones <lee@kernel.org>
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Markus Elfring <Markus.Elfring@web.de>,
+	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>,
+	devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
+	netdev@vger.kernel.org, UNGLinuxDriver@microchip.com,
+	linux-arm-kernel@lists.infradead.org,
+	Andy Shevchenko <andy.shevchenko@gmail.com>,
+	Arnd Bergmann <arnd@arndb.de>, Bjorn Helgaas <bhelgaas@google.com>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Abel Vesa <abel.vesa@linaro.org>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: x1e80100: enable GICv3 ITS for PCIe
-Message-ID: <ZpAPaker8mulvKCj@hovoldconsulting.com>
-References: <20240711090250.20827-1-johan+linaro@kernel.org>
- <f7e74a6f-0548-4caa-a8fc-8180c619c9aa@linaro.org>
- <Zo-ssBBDbHRLtAwG@hovoldconsulting.com>
- <Zo_zu-RmbZyKijVQ@hovoldconsulting.com>
- <20240711161947.GA4434@thinkpad>
- <20240711164153.GA4992@thinkpad>
+	Daniel Machon <daniel.machon@microchip.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Lars Povlsen <lars.povlsen@microchip.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Simon Horman <horms@kernel.org>,
+	Steen Hegelund <Steen.Hegelund@microchip.com>,
+	LKML <linux-kernel@vger.kernel.org>,
+	Allan Nielsen <allan.nielsen@microchip.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Horatiu Vultur <horatiu.vultur@microchip.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v3 1/7] mfd: syscon: Add reference counting and device
+ managed support
+Message-ID: <20240711170910.GN501857@google.com>
+References: <20240627091137.370572-2-herve.codina@bootlin.com>
+ <91cfc410-744f-49f8-8331-733c41a43121@web.de>
+ <20240711182528.1402892d@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240711164153.GA4992@thinkpad>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240711182528.1402892d@bootlin.com>
 
-On Thu, Jul 11, 2024 at 10:11:53PM +0530, Manivannan Sadhasivam wrote:
-> On Thu, Jul 11, 2024 at 09:49:52PM +0530, Manivannan Sadhasivam wrote:
-> > On Thu, Jul 11, 2024 at 05:01:15PM +0200, Johan Hovold wrote:
+On Thu, 11 Jul 2024, Herve Codina wrote:
 
-> > > > Also note that the errors happen also without this patch applied, they
-> > > > are just being reported now.
-
-> > > Perhaps something is off because we're running the link at half width?
+> Hi Markus,
+> 
+> On Thu, 11 Jul 2024 18:09:26 +0200
+> Markus Elfring <Markus.Elfring@web.de> wrote:
+> 
+> > …
+> > > +++ b/drivers/mfd/syscon.c  
+> > …
+> > > +static struct syscon *syscon_from_regmap(struct regmap *regmap)  
+> > +{
+> > > +	struct syscon *entry, *syscon = NULL;
+> > > +
+> > > +	spin_lock(&syscon_list_slock);
+> > > +
+> > > +	list_for_each_entry(entry, &syscon_list, list)  
+> > …
+> > > +	spin_unlock(&syscon_list_slock);
+> > > +
+> > > +	return syscon;
+> > > +}  
+> > …
 > > 
-> > My hunch is the PHY settings. But Abel cross checked the PHY settings with
-> > internal documentation and they seem to match. Also, Qcom submitted a series
-> > that is supposed to fix stability issues with Gen4 [1]. With this series, Gen 4
-> > x4 setup is working on SA8775P-RIDE board as reported by Qcom. But Abel
-> > confirmed that it didn't help him with the link downgrade issue.
+> > Under which circumstances would you become interested to apply a statement
+> > like “guard(spinlock)(&syscon_list_slock);”?
+> > https://elixir.bootlin.com/linux/v6.10-rc7/source/include/linux/spinlock.h#L561
 > > 
-> > Perhaps you can give it a try and see if it makes any difference for
-> > this issue?
+> 
+> I used the spin_{lock,unlock}() pattern call already present in syscon.c.
+> Of course, I can add a new patch in this series converting syscon.c to
+> the guard() family and use guard() in my introduced lock/unlock.
+> 
+> Lee, any opinion ?
 
-If there are known issues with running at Gen4 speed without that
-series, then it seems quite likely that doing so anyway could also cause
-correctable errors.
+I'm intentionally leaving this one for Arnd.
 
-Unfortunately, I get a hypervisor reset when I tried booting with that
-series so there appears to be some implicit dependency on something
-else (e.g. the 4l stuff).
-
-> One thing I confirmed is, we definitely need different PHY sequence for using
-> 2L. The current PHY settings are for 4L, so limiting the lane count from the
-> controller is going to be problematic. And AER errors might be due to that as
-> well.
-
-Another good point. But we currently use the
-"qcom,x1e80100-qmp-gen4x2-pcie-phy" settings. Shouldn't those be for x2,
-and then Abel has another series that adds the x4 settings? Or are you
-saying that the currently merged "gen4x2" settings are really for 4l?
-
-Johan
+-- 
+Lee Jones [李琼斯]
 
