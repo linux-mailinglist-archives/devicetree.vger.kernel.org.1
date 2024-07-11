@@ -1,144 +1,148 @@
-Return-Path: <devicetree+bounces-85066-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85067-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97A1F92EBEB
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 17:47:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F5A692EBF8
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 17:51:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0E87D1F24AB9
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 15:47:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EA25D1F24632
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 15:51:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69D6815FCEA;
-	Thu, 11 Jul 2024 15:47:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9597616C6A2;
+	Thu, 11 Jul 2024 15:51:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="I1RFhTyJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UfBp3l6R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD0618479;
-	Thu, 11 Jul 2024 15:47:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60BE68479;
+	Thu, 11 Jul 2024 15:51:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720712849; cv=none; b=QgwQkUS0lWIdJYCmgJYjJ0Fh2EygKdr4GzgU5M1fqsyhD9x3iF+cRUCH0eGyE7D+/C9Id7p9IxYquFmfy3DH8YuaMkIPkGWRMXgGB4KOINxN5nnaX1YrYov52xN+32uVWO188OlxIIJyVTqy0S9SDBYOs00FVbvwgZiJGHjThjI=
+	t=1720713081; cv=none; b=mKZZShUB41uMTVpAlgNHHpmzMbkEil7R1P8R9wZHpYMpYLPWdfyWH39AAY5LYdTKtoZPZSrhApLPjnn9AIgVWVQB5KESC9W2xtBQD50Argos6XhMr+EWyjlfo80LyljnjYD9XDQbPFNiEOAZXR78Z8un/Ch6stXM+1bkUxg5XDI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720712849; c=relaxed/simple;
-	bh=L+LYclixtCcrtlqbI+TdhTA4XOTPSUYDQzsfnwjFUJo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gL6oRab9ROmV7jM9ER4gpe7xG5/QxGF1oUjZEcDO+cD2KvrYI6PGY2cHAriJTBwV9bAtj8bzQS8+LVF5jHfhg3qEGuANIL2Kr2HCxljr+kACFwn8H6I5UKLsJ2d/tAwnZpydRD6EcyY2oRK+EJx4d8ywQb1WxoFZhf2MCEsnAg8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=I1RFhTyJ; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1720712846;
-	bh=L+LYclixtCcrtlqbI+TdhTA4XOTPSUYDQzsfnwjFUJo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=I1RFhTyJH74XM5imDRCJNROAmCZgab1GXYa2MWRxwmRrHCozts5rTL0A0IYQsdxsk
-	 stdikU3aRtK6JUZzo9eBZpz7v9mupwSECQO7BUqWdhsa+PuEVfNj5CI/5qYfJHheiV
-	 6rk1rUuIhsdsk269Kb6VEA6P+t2ssW7YFOlZLGtSJ9eDkpQBmyFjhUqYGbes4b3DSR
-	 jl1SSKKXZiDhmkyadI+/TrUGWa2RsjuSHn+wybOsfRhG+F96b7xGUsti7d2zfCKyUy
-	 R+a4h+TaWN2Tw0XsoiP3DW+guDEhXvQ1KhjyXbqdTMeigN92JCT6IRig/u2GU0DlBv
-	 nDjDrwTafHbCg==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 5426F3782207;
-	Thu, 11 Jul 2024 15:47:25 +0000 (UTC)
-Message-ID: <f9e2605d-3931-4b59-81e9-8fe9329f05cb@collabora.com>
-Date: Thu, 11 Jul 2024 17:47:24 +0200
+	s=arc-20240116; t=1720713081; c=relaxed/simple;
+	bh=Kdn4yBHek2NTiF7hAs11T2gTBUI2nFR7JGBd9fLx2MY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=nc8js9N49Kdu4oqKXJMTQ9UxocYOlDBp7LBXd/Mytck6gH3R2P4C1xb5tX/2lXZ4r2qorc+0QsmvDVe9t6tgY8IJgXTpysHzjQ98L3ms01cRyQ3SG/Jim7W6tByH9+a7WER9EGMoUmazpHtqmDg2zpUjumhmZO7x1kfTYb8nRqk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UfBp3l6R; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F93EC4AF0B;
+	Thu, 11 Jul 2024 15:51:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720713081;
+	bh=Kdn4yBHek2NTiF7hAs11T2gTBUI2nFR7JGBd9fLx2MY=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=UfBp3l6R84Er64lHrZ1+8IF9Xw6KD1q9Q82537YVxCbY0JmVUAWe/9DYpjS/XjLa0
+	 WIQ32JUL7Jdj2/DxWMIgU2gHGLOYhhuET58fy/87CX7nAPM/98lyJ3oAE36dFW8jh1
+	 Z/LYm8V5mOLF9vhtGRuKaGDDy+VZvQwJq7KwYcNn94BjCV4yVgzmyWya8WORlibYsq
+	 c3vyO0eBulE1WXIxJWR3zEJpK0Dm0/L7lYfO0pgvbQTjAhTOzg1TSemTkf3PCE9BM+
+	 V7ZFlgcyL8Cp38U8UAi1lLbQuKl1kM0XzbT9i/hYm89MeHxrQVFmHyBTBOswitS37s
+	 b4cVPtT2FiWZg==
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-52e97e5a84bso1513114e87.2;
+        Thu, 11 Jul 2024 08:51:21 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUvg40gpMuu69toi5iXnKTThfGwz/sOw1yIZxQokh6x5WuBnsmKPhuFhzd8ZQ3tMHtftKixzmeuDsr1k1aYn+iGxlWRc3l31CIw3sy2npSCOgkXTkh0aHBXMIepZI4jpLYWkFFgLJmsFhDvLxHnOBB3MryHADOUbz/bNjhXMmZ8irYSvz1bRMotIG+Q1548HRhvnSi/jguDUcLxtrcGzagE2EG5UwKzZYEEBKDo4BBX9U6MqmyenqkOnvgyEfa+cmyLNTio
+X-Gm-Message-State: AOJu0YxpK3edfNUKQ25ziARP2xbXR8ySaXF5Xv8n/gnRjnhmg56TyKYI
+	D/5uM1eJF6DFonsLa26om+O9odnsdWhc2Ge1yfUfHwUfjZmHetNTf+ytss34zcbc4GadrhKgL0n
+	5pXhj15WhHz/FjsI0FrXiEwraMg==
+X-Google-Smtp-Source: AGHT+IElxwI3DTbhcXoQnMJVlvwdauqS5RzGBQrc6N5zhGBYTcZbAbeLzaogiu4kSAPR8XV9dXyCGWkOpYxcz6H0KgM=
+X-Received: by 2002:a05:6512:b18:b0:52c:dd25:9ac6 with SMTP id
+ 2adb3069b0e04-52eb99a3439mr7754037e87.29.1720713079582; Thu, 11 Jul 2024
+ 08:51:19 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: mediatek: mt8195: Add power domain to
- secondary XHCI
-To: =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>
-Cc: linux-mediatek@lists.infradead.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, matthias.bgg@gmail.com, tinghan.shen@mediatek.com,
- seiya.wang@mediatek.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- wenst@chromium.org
-References: <20240711093230.118534-1-angelogioacchino.delregno@collabora.com>
- <4ac0e464-5ef6-445d-a784-fe367ea23a2d@notapiano>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <4ac0e464-5ef6-445d-a784-fe367ea23a2d@notapiano>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20240710-gs101-non-essential-clocks-2-v3-0-5dcb8d040d1c@linaro.org>
+ <20240710-gs101-non-essential-clocks-2-v3-1-5dcb8d040d1c@linaro.org>
+In-Reply-To: <20240710-gs101-non-essential-clocks-2-v3-1-5dcb8d040d1c@linaro.org>
+From: Rob Herring <robh@kernel.org>
+Date: Thu, 11 Jul 2024 09:51:06 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLsZAEx-c_12RPcR+HCjPcA_d12oKgZ7frX2Wo47sGTnA@mail.gmail.com>
+Message-ID: <CAL_JsqLsZAEx-c_12RPcR+HCjPcA_d12oKgZ7frX2Wo47sGTnA@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: serial: samsung: fix maxItems for
+ gs101 & document earlycon requirements
+To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Peter Griffin <peter.griffin@linaro.org>, Sylwester Nawrocki <s.nawrocki@samsung.com>, 
+	Chanwoo Choi <cw00.choi@samsung.com>, Alim Akhtar <alim.akhtar@samsung.com>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Sam Protsenko <semen.protsenko@linaro.org>, Tudor Ambarus <tudor.ambarus@linaro.org>, 
+	Will McVicker <willmcvicker@google.com>, kernel-team@android.com, 
+	linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Il 11/07/24 17:00, Nícolas F. R. A. Prado ha scritto:
-> On Thu, Jul 11, 2024 at 11:32:30AM +0200, AngeloGioacchino Del Regno wrote:
->> The secondary XHCI controller, using a PHY that is shared between
->> it and the secondary PCI-Express controller, gets powered by the
->> PCIE_MAC_P1 power domain.
->>
->> Add this power domain to the usb@11290000 node to fix probe.
->>
->> Fixes: 37f2582883be ("arm64: dts: Add mediatek SoC mt8195 and evaluation board")
->> Reported-by: Nícolas F. R. A. Prado <nfraprado@collabora.com> #KernelCI
->> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> 
-> Hi Angelo,
-> 
-> thanks for the patch, but unfortunately it doesn't fix the issue:
-> 
-> [   10.772128] mtk-pcie-gen3 112f8000.pcie: host bridge /soc/pcie@112f8000 ranges:
-> [   10.788914] mtk-pcie-gen3 112f8000.pcie:       IO 0x0024000000..0x00241fffff -> 0x0024000000
-> [   10.802111] mtk-pcie-gen3 112f8000.pcie:      MEM 0x0024200000..0x0027ffffff -> 0x0024200000
-> [   10.941278] mtk-pcie-gen3 112f8000.pcie: PCI host bridge to bus 0000:00
-> 
-> [   10.785937] xhci-mtk 11290000.usb: uwk - reg:0x400, version:104
-> [   10.796352] xhci-mtk 11290000.usb: xHCI Host Controller
-> [   10.810530] xhci-mtk 11290000.usb: new USB bus registered, assigned bus number 5
-> [   10.844258] xhci-mtk 11290000.usb: clocks are not stable (0x1003d0f)
-> [   10.844262] xhci-mtk 11290000.usb: can't setup: -110
-> [   10.844266] xhci-mtk 11290000.usb: USB bus 5 deregistered
-> [   10.861969] xhci-mtk 11290000.usb: probe with driver xhci-mtk failed with error -110
-> 
-> In fact it seems to have made the issue more frequent, as it happened every time
-> for the 5 boots I tried.
-> 
+On Wed, Jul 10, 2024 at 7:29=E2=80=AFAM Andr=C3=A9 Draszik <andre.draszik@l=
+inaro.org> wrote:
+>
+> While gs101 needs exactly two clocks for the UART, the schema doesn't
+> currently limit the maximum number to this and instead the default of
+> five from this schema is applied.
+>
+> Update the schema accordingly.
+>
+> Also, as pointed out in [1] before, the hand-over between earlycon and
+> serial console is fragile due to clocking issues, at least on Google
+> Tensor gs101. Therefore, document the clocking requirements for
+> earlycon in the description for posterity, so the information is not
+> lost.
+>
+> Link: https://lore.kernel.org/all/d45de3b2bb6b48653842cf1f74e58889ed6783a=
+e.camel@linaro.org/ [1]
+> Signed-off-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/serial/samsung_uart.yaml | 14 ++++++++=
+++++++
+>  1 file changed, 14 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/serial/samsung_uart.yaml b=
+/Documentation/devicetree/bindings/serial/samsung_uart.yaml
+> index 0f0131026911..2435c3d92158 100644
+> --- a/Documentation/devicetree/bindings/serial/samsung_uart.yaml
+> +++ b/Documentation/devicetree/bindings/serial/samsung_uart.yaml
+> @@ -145,6 +145,20 @@ allOf:
+>          - samsung,uart-fifosize
+>        properties:
+>          reg-io-width: false
 
-Oddly this did fix the issue on my Tomato R3.... but there's clearly something else
-that is going on.
+blank line between properties
 
-Let's keep trying.
+> +        clocks:
+> +          description: |
+> +            Note that for earlycon to work, the respective ipclk and pcl=
+k need
+> +            to be running! The bootloader normally leaves them enabled, =
+but the
+> +            serial driver will start handling those clocks before the co=
+nsole
+> +            driver takes over from earlycon, breaking earlycon. If early=
+con is
+> +            required, please revert the patch "clk: samsung: gs101: don'=
+t mark
+> +            non-essential (UART) clocks critical" locally first to mark =
+them
+> +            CLK_IS_CRITICAL and avoid this problem.
 
-Thanks!
-Angelo
+That's a whole bunch of details that are Linux specific which have
+little to do with the binding.
 
-> But that gives me idea to try booting with clk_ignore_unused and
-> pd_ignore_unused. I'll update the report with the results.
-> 
-> Thanks,
-> Nícolas
-> 
->> ---
->>   arch/arm64/boot/dts/mediatek/mt8195.dtsi | 1 +
->>   1 file changed, 1 insertion(+)
->>
->> diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
->> index 2ee45752583c..96ad1b14626e 100644
->> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
->> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
->> @@ -1445,6 +1445,7 @@ xhci1: usb@11290000 {
->>   			reg-names = "mac", "ippc";
->>   			interrupts = <GIC_SPI 530 IRQ_TYPE_LEVEL_HIGH 0>;
->>   			phys = <&u2port1 PHY_TYPE_USB2>;
->> +			power-domains = <&spm MT8195_POWER_DOMAIN_PCIE_MAC_P1>;
->>   			assigned-clocks = <&topckgen CLK_TOP_USB_TOP_1P>,
->>   					  <&topckgen CLK_TOP_SSUSB_XHCI_1P>;
->>   			assigned-clock-parents = <&topckgen CLK_TOP_UNIVPLL_D5_D4>,
->> -- 
->> 2.45.2
->>
+> +          maxItems: 2
+> +        clock-names:
+> +          items:
+> +            - const: uart
+> +            - const: clk_uart_baud0
 
+Which clock is pclk and ipclk? 'baud' would be sufficient for the
+name. 'clk_' and 'uart' are redundant because it's all clocks and they
+are all for the uart.
 
+Rob
 
