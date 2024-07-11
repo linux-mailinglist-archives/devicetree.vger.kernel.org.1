@@ -1,206 +1,270 @@
-Return-Path: <devicetree+bounces-85096-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85097-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E781492ED9D
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 19:18:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DE4492EE89
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 20:13:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6BD9C1F218C6
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 17:18:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 283222811AB
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 18:13:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FF9316DC0F;
-	Thu, 11 Jul 2024 17:18:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D548416D9A9;
+	Thu, 11 Jul 2024 18:13:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HPhufKhj"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="x6c9Ar9c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com [209.85.215.171])
+Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0238D512;
-	Thu, 11 Jul 2024 17:18:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38DC916C6BD
+	for <devicetree@vger.kernel.org>; Thu, 11 Jul 2024 18:13:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720718297; cv=none; b=BseypYeoSiYGAqhcn1xVOVozeENcvkK1eGDqIVA/pLw24+X0JdI9rdanYJfQJXyXdKyvXMklHBBA7r1Mj26QzX5BkrjIm3S0k25Grg7lBUNi2TEAU+6ymTtzHiXXRLs+WOsfLfEiPiVmp36hIo+mFPNH2RrTcpoEkiq44VHf0VA=
+	t=1720721602; cv=none; b=YjCOJhcUPro1yZitXvZ1m6UOLD98/K8gld7iaxOfZlrUbsAvTdRg/mIn5g/Vg8odfsgIl2TanEjU10Okeq3UBXLp8eQiitsAgl8Z6cknGxclNL4CYw9E3UwTCJMBB9KCJN4YHY5h6Jju2rkzO0vIVtB5eAP1ncwKjaXYHYBQ2WI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720718297; c=relaxed/simple;
-	bh=2KPwA0YgHJPBApB0LAdHxCOl16/1G1yHfY7JRbOp7VU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SptZLMQ9krllviaOvFiTPBlYe3RSCkvmQNSTN017AH74oluHPrv1OCZdWzx3ciYoL8KIugJezFko4pH4jhyf/7Y2TfMUzGTG7J6sZc7CAL5Ou7Sr+pLfCwc4/6jwWbfXQDrUp0YKFTf/EC2Kvt/w72lI+gHZGsEcpgls666X180=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HPhufKhj; arc=none smtp.client-ip=209.85.215.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f171.google.com with SMTP id 41be03b00d2f7-7669d62b5bfso771762a12.1;
-        Thu, 11 Jul 2024 10:18:15 -0700 (PDT)
+	s=arc-20240116; t=1720721602; c=relaxed/simple;
+	bh=/dG2UvQ+EH+yqXZlVbqRDI/un7i5XAyyN6aOd95/g/E=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Qz63tRHb4p+xzic+WOmSSBSWO/UPyZ00DWLu/ULqis9i2OIfiCq/2GuRX8pqoCTqh4ewSM23u6ZIRJSw4Q6m8OsIYuxPZnBc1L0h8N15BS639l3X9uL7yz6B553emzvYU23J+JSvb2jxgf5oStdYftaPRwwSH9tB6VMm/tKcriY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=x6c9Ar9c; arc=none smtp.client-ip=209.85.128.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-6561850a7bcso11920287b3.3
+        for <devicetree@vger.kernel.org>; Thu, 11 Jul 2024 11:13:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1720718295; x=1721323095; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=tYmzgqsSkkD0Gz50701/4Z6SMa5XZZYUoWansf9Hxzg=;
-        b=HPhufKhjF8xqRK8Pe2Or902g1uGMBpsDmHUyCzxi+uc6nDoblmbEtuYvuoUKMdmdpt
-         +/lcB1FB2XoVdXLBldZS/zunT7E4vrOGq5yJ8m+tk79r+pIyoKnQwym//jD5M8dDEIXB
-         ZElRx/hegCNOJMsIXI9AB5sthfmVhYzUV3ZmjhNS8BuQucjw0q719+ydHNZWG8GWMR47
-         GDQCbcDkCuneL2/6pAVrhZqau/F6GFxE3NdnlY/AjjZ3lHUFOkuo9so1y0JUp8j/5xFX
-         G1Ld90NMVfROasHro9bYeuMFF+FxyTZESOsR4+l1Jg43Zr16aFgudfGPJRDKAp8qYlh5
-         qRPA==
+        d=google.com; s=20230601; t=1720721600; x=1721326400; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=nyJ6P+FkdwGhVRPUnMvVBafw0z1eayMg2GyL0TyLrvU=;
+        b=x6c9Ar9ckdFW3hKUFiVdTDuAj9/vIslMcR8xWNTjijnNRO94C5jfz24UgpVzmUEr6R
+         TzgxuyVAWkE198HkDME6Xtw9PVLSqWzQXmUjF77njHs81cF6EEkDUXG36+rOKtKgfP6n
+         oSP3V+lJVOK/QzHWXXN+61b8gCWzFJLbc9JlyrBzrliBMSSKluZ5YIR/KnpoE1QZsjIi
+         KCJuu32G55jiu0B81CH8sr6aGh77uIiZCxioiB/hh4Mz21jA/fd7Y1OVHnl6uwKc7svr
+         c+Lb/hgzbPoWpYcOmHnmXgJ7qH4K8r76vRFs/qR/jJqO1VzNCfP9LANAulNBE5rXeo8o
+         RCvw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720718295; x=1721323095;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tYmzgqsSkkD0Gz50701/4Z6SMa5XZZYUoWansf9Hxzg=;
-        b=EXFAzDF1O3Ccl2OUvsrumEWa72VXxBB7Raou6jMFX0km7pEeI71IkIr8m0IGGDm8Gd
-         CyATrsa2zLebtZAR9IAtpDsnp5bZXdUNgPnbe6qf/8hYe0afIkDgELP+aXgKycinqP6I
-         UTS9F7rt097dZwIa/dSUFYRKHY+lB/W8zLZuFFXV7ZUcg3ZQlBF89TLR4kNcxdww82uS
-         Dd7KCDrPR69Ft0HVnEBuh3MCXH3wMEsNni8HqWWmzunfBFdAdkey9mHZ0SbTPR/4ZUuZ
-         aqsWEdli2EBOgf77YISRnwGVpKetxbOiOmQN9dIALcer1O+zGW0NKq4So4dIAZbp5Z14
-         ai7A==
-X-Forwarded-Encrypted: i=1; AJvYcCVFBs6Cq7WGLp3lP5LNqOkFdBhg7BhgkH9ytkRbQsMgDZWX+HzBlG9OdhIyrRZ4GWKO8HGkACQo+jjMqsJb0tS4wsd5qSq4AukJwziuCt0neEhDyvfvVUCnx6rrBlw3Y/Eye+dh+5rV2mwJ6lgr5z1iL5QM7J/J5lhYfaVSDRUDmFHOIKHC
-X-Gm-Message-State: AOJu0YwwjTQWxNxmbGtIhRYc3GnhVjoGqA2wKd/BLaI6BklfXgO7DauY
-	L3msnnEgQEhDcWMpYNQojjy1GFqiysSls2ImVwOFQZt8iCu8NBbu
-X-Google-Smtp-Source: AGHT+IHobCwPAmLnXNHYHhGfAxZHsdEZd1CJJ7Sexcs7TnxufAkOrvXDNpfYYX+e4fxgoQm7f5Njiw==
-X-Received: by 2002:a05:6a21:e8b:b0:1c3:a9b8:a9bf with SMTP id adf61e73a8af0-1c3a9b8b006mr4808186637.51.1720718294820;
-        Thu, 11 Jul 2024 10:18:14 -0700 (PDT)
-Received: from google.com ([2620:15c:9d:2:4761:5ea8:2da4:8299])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-70b43899614sm6148863b3a.17.2024.07.11.10.18.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Jul 2024 10:18:14 -0700 (PDT)
-Date: Thu, 11 Jul 2024 10:18:11 -0700
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Javier Carrasco <javier.carrasco@wolfvision.net>
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bastian Hecht <hechtb@gmail.com>,
-	Michael Riesch <michael.riesch@wolfvision.net>,
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Jeff LaBundy <jeff@labundy.com>
-Subject: Re: [PATCH v10 2/4] Input: touch-overlay - Add touchscreen overlay
- handling
-Message-ID: <ZpAT01jr9rS55t_B@google.com>
-References: <20240626-feature-ts_virtobj_patch-v10-0-873ad79bb2c9@wolfvision.net>
- <20240626-feature-ts_virtobj_patch-v10-2-873ad79bb2c9@wolfvision.net>
- <Zox_cVYsErrLu4Mq@google.com>
- <d8734538-81f4-4883-bd29-2f8b682c3d1c@wolfvision.net>
+        d=1e100.net; s=20230601; t=1720721600; x=1721326400;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=nyJ6P+FkdwGhVRPUnMvVBafw0z1eayMg2GyL0TyLrvU=;
+        b=ACm1+Z+Fj8vp3/qfZ8cjj2TYKfIBDmaWytHlF2o0QOB0N9FVdy3qjAgASBDhlnTcTp
+         /sJPLexceAYM002PewJd/LYujXU1deQeZ/jYqOzGpOmCAcy/lrqrWDLXxlWZR8+foDVG
+         vCodGUPn6rBOzzto6dw1AJxz0fztjnmv1xxf02u5ywLyxSZ7UxjIuOVlcOBWjvn0BKLi
+         omdozHKhoOT6jZ2EuPizmKkoBVeLfSieQ2epT3b5+zC6XwPzZAIdk3mMI6ZTpn0GK7YW
+         QFH/ObD7yKpMGizq08x1vzIRRj8iPrFlqzKTeUtqA/MxER4dSd5O/c5StHdHczR13CwM
+         Qtkw==
+X-Forwarded-Encrypted: i=1; AJvYcCUaVRTZAGyGD288W5yo/NUsmx3s1QQ3dlpd57xFNYvxk6oZwP2B4C5ME1O7De/TOQFWwYIV0HmNqbjSU3hyKz8XNppr8+KboeSnrA==
+X-Gm-Message-State: AOJu0Yw1KZ2NLJWkFbzP9NQ07Pn6KIidQarZRexlmCDJetbuHy/wuLd3
+	UWQj507V5U9PBomjodHjMgHHw3E/5+Xl968gHcBtaszNnvmFANsSaTvOPzo78hF1dQGX3GW7Nsu
+	gFwBGAgZkZZ07orfJdXaDOWwF2DWi+MZ+cFbj
+X-Google-Smtp-Source: AGHT+IEEQU5biwkInlxNgBrM2IpMWrKKZsCPM/P2i2VC7zYaPlXK0eCVtc6vDTBA+rUofvGyIoZFTCjIctuVqbLEHM4=
+X-Received: by 2002:a05:690c:6112:b0:631:ffc1:4397 with SMTP id
+ 00721157ae682-658ef34a2e9mr120082367b3.29.1720721599990; Thu, 11 Jul 2024
+ 11:13:19 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <d8734538-81f4-4883-bd29-2f8b682c3d1c@wolfvision.net>
+References: <20240702191650.57364-1-tmaimon77@gmail.com> <20240702191650.57364-3-tmaimon77@gmail.com>
+In-Reply-To: <20240702191650.57364-3-tmaimon77@gmail.com>
+From: Benjamin Fair <benjaminfair@google.com>
+Date: Thu, 11 Jul 2024 11:12:42 -0700
+Message-ID: <CADKL2t4F20iFdwxDH0PXCa8-HO_cDhYzu+ObyzwaazWWkKj-tg@mail.gmail.com>
+Subject: Re: [PATCH v26 2/3] reset: npcm: register npcm8xx clock auxiliary bus device
+To: Tomer Maimon <tmaimon77@gmail.com>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de, 
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, tali.perry1@gmail.com, 
+	joel@jms.id.au, venture@google.com, yuenn@google.com, 
+	openbmc@lists.ozlabs.org, linux-clk@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Wed, Jul 10, 2024 at 02:16:13PM +0200, Javier Carrasco wrote:
-> On 09/07/2024 02:08, Dmitry Torokhov wrote:
-> > Hi Javier,
-> > 
-> > On Wed, Jun 26, 2024 at 11:56:14AM +0200, Javier Carrasco wrote:
-> >> Some touch devices provide mechanical overlays with different objects
-> >> like buttons or clipped touchscreen surfaces.
-> > 
-> > Thank you for your work. I think it is pretty much ready to be merged,
-> > just a few small comments:
-> > 
-> >>
-> >> In order to support these objects, add a series of helper functions
-> >> to the input subsystem to transform them into overlay objects via
-> >> device tree nodes.
-> >>
-> >> These overlay objects consume the raw touch events and report the
-> >> expected input events depending on the object properties.
-> > 
-> > So if we have overlays and also want to invert/swap axis then the
-> > overlays should be processed first and only then
-> > touchscreen_set_mt_pos() or touchscreen_report_pos() should be called?
-> > 
-> > But then it will not work if we need help frm the input core to assign
-> > slots in cases when touch controller does not implement [reliable]
-> > contact tracing/identification.
-> > 
-> > I think this all needs to be clarified.
-> > 
-> 
-> I think this is the most critical point from your feedback.
-> 
-> So far, touch-overlay processes the coordinates of input_mt_pos elements
-> before passing them to touchscreen_set_mt_pos(). As you pointed out,
-> that means that it does not act on the slots i.e. it assumes that the
-> controller does the contact tracing and pos[i] is assigned to slot[i],
-> which is wrong.
-> 
-> Current status:
-> [Sensor]->[touch-overlay(filter + button
-> events)]->[touchscreen_set_mt_pos()]->[input_mt_assign_slots()]->[report
-> MT events]
-> 
-> If I am not mistaken, I would need a solution that processes the
-> coordinates associated to assigned slots via input_mt_assign_slots().
-> Then I would have to avoid generating MT events from slots whose
-> coordinates are outside of the overlay frame (ignored) or on overlay
-> buttons (generating button press/release events instead).
-> 
-> But once input_mt_assign_slots() is called, it is already too late for
-> that processing, isn't it? Unless assigned slots filtered by
-> touch-overlay are kept from generating MT events somehow, but still used
-> to keep contact tracing.
-> 
-> Any suggestion on this respect would be more than welcome.
+On Tue, 2 Jul 2024 at 12:17, Tomer Maimon <tmaimon77@gmail.com> wrote:
+>
+> Add NPCM8xx clock controller auxiliary bus device registration.
+>
+> The NPCM8xx clock controller is registered as an aux device because the
+> reset and the clock controller share the same register region.
+>
+> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
 
-The driver is in control which slots to emit the events for, so it can
-skip reporting if it wants. Consider the st1232 for which you are making
-these adjustments:
+I booted a kernel with this driver and verified that basic
+functionality works fine.
 
-	for (i = 0; i < ts->chip_info->max_fingers; i++) {
-		u8 *buf = &ts->read_buf[i * 4];
+Tested-by: Benjamin Fair <benjaminfair@google.com>
 
-		if (buf[0] & BIT(7)) {
-			unsigned int x = ((buf[0] & 0x70) << 4) | buf[1];
-			unsigned int y = ((buf[0] & 0x07) << 8) | buf[2];
-
-			touchscreen_set_mt_pos(&pos[n_contacts],
-					       &ts->prop, x, y);
-
-			/* st1232 includes a z-axis / touch strength */
-			if (ts->chip_info->have_z)
-				z[n_contacts] = ts->read_buf[i + 6];
-
-			n_contacts++;
-		}
-	}
-
-	input_mt_assign_slots(input, slots, pos, n_contacts, 0);
-	for (i = 0; i < n_contacts; i++) {
-		input_mt_slot(input, slots[i]);
-		input_mt_report_slot_state(input, MT_TOOL_FINGER, true);
-		input_report_abs(input, ABS_MT_POSITION_X, pos[i].x);
-		input_report_abs(input, ABS_MT_POSITION_Y, pos[i].y);
-		if (ts->chip_info->have_z)
-			input_report_abs(input, ABS_MT_TOUCH_MAJOR, z[i]);
-	}
-
-Can you call touch_overlay_process_event() from the 2nd for() loop,
-something like this:
-
-	for (i = 0; i < n_contacts; i++) {
-		if (touch_overlay_process_event(&ts->touch_overlay_list,
-						input,
-						&pos[i].x, &pos[i].y))
-			continue;
-
-		input_mt_slot(input, slots[i]);
-		...
-	}
-
-Note that you will no longer able to rely on the input core to drop
-"unused" slots because you may need to generate "key up" events for
-them, but you do have access to input_mt_is_active() and
-input_mt_is_used() so you can implement what you need.
-
-Thanks.
-
--- 
-Dmitry
+> ---
+>  drivers/reset/Kconfig               |  1 +
+>  drivers/reset/reset-npcm.c          | 74 ++++++++++++++++++++++++++++-
+>  include/soc/nuvoton/clock-npcm8xx.h | 16 +++++++
+>  3 files changed, 90 insertions(+), 1 deletion(-)
+>  create mode 100644 include/soc/nuvoton/clock-npcm8xx.h
+>
+> diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
+> index 7112f5932609..31ec8795c105 100644
+> --- a/drivers/reset/Kconfig
+> +++ b/drivers/reset/Kconfig
+> @@ -148,6 +148,7 @@ config RESET_MESON_AUDIO_ARB
+>  config RESET_NPCM
+>         bool "NPCM BMC Reset Driver" if COMPILE_TEST
+>         default ARCH_NPCM
+> +       select AUXILIARY_BUS
+>         help
+>           This enables the reset controller driver for Nuvoton NPCM
+>           BMC SoCs.
+> diff --git a/drivers/reset/reset-npcm.c b/drivers/reset/reset-npcm.c
+> index 8935ef95a2d1..aa68b947226a 100644
+> --- a/drivers/reset/reset-npcm.c
+> +++ b/drivers/reset/reset-npcm.c
+> @@ -1,6 +1,7 @@
+>  // SPDX-License-Identifier: GPL-2.0
+>  // Copyright (c) 2019 Nuvoton Technology corporation.
+>
+> +#include <linux/auxiliary_bus.h>
+>  #include <linux/delay.h>
+>  #include <linux/err.h>
+>  #include <linux/io.h>
+> @@ -10,11 +11,14 @@
+>  #include <linux/property.h>
+>  #include <linux/reboot.h>
+>  #include <linux/reset-controller.h>
+> +#include <linux/slab.h>
+>  #include <linux/spinlock.h>
+>  #include <linux/mfd/syscon.h>
+>  #include <linux/regmap.h>
+>  #include <linux/of_address.h>
+>
+> +#include <soc/nuvoton/clock-npcm8xx.h>
+> +
+>  /* NPCM7xx GCR registers */
+>  #define NPCM_MDLR_OFFSET       0x7C
+>  #define NPCM7XX_MDLR_USBD0     BIT(9)
+> @@ -89,6 +93,7 @@ struct npcm_rc_data {
+>         const struct npcm_reset_info *info;
+>         struct regmap *gcr_regmap;
+>         u32 sw_reset_number;
+> +       struct device *dev;
+>         void __iomem *base;
+>         spinlock_t lock;
+>  };
+> @@ -372,6 +377,67 @@ static const struct reset_control_ops npcm_rc_ops = {
+>         .status         = npcm_rc_status,
+>  };
+>
+> +static void npcm_clock_unregister_adev(void *_adev)
+> +{
+> +       struct auxiliary_device *adev = _adev;
+> +
+> +       auxiliary_device_delete(adev);
+> +       auxiliary_device_uninit(adev);
+> +}
+> +
+> +static void npcm_clock_adev_release(struct device *dev)
+> +{
+> +       struct auxiliary_device *adev = to_auxiliary_dev(dev);
+> +       struct npcm_clock_adev *rdev = to_npcm_clock_adev(adev);
+> +
+> +       kfree(rdev);
+> +}
+> +
+> +static struct auxiliary_device *npcm_clock_adev_alloc(struct npcm_rc_data *rst_data, char *clk_name)
+> +{
+> +       struct npcm_clock_adev *rdev;
+> +       struct auxiliary_device *adev;
+> +       int ret;
+> +
+> +       rdev = kzalloc(sizeof(*rdev), GFP_KERNEL);
+> +       if (!rdev)
+> +               return ERR_PTR(-ENOMEM);
+> +
+> +       rdev->base = rst_data->base;
+> +
+> +       adev = &rdev->adev;
+> +       adev->name = clk_name;
+> +       adev->dev.parent = rst_data->dev;
+> +       adev->dev.release = npcm_clock_adev_release;
+> +       adev->id = 555u;
+> +
+> +       ret = auxiliary_device_init(adev);
+> +       if (ret) {
+> +               kfree(rdev);
+> +               return ERR_PTR(ret);
+> +       }
+> +
+> +       return adev;
+> +}
+> +
+> +static int npcm8xx_clock_controller_register(struct npcm_rc_data *rst_data, char *clk_name)
+> +{
+> +       struct auxiliary_device *adev;
+> +       int ret;
+> +
+> +       adev = npcm_clock_adev_alloc(rst_data, clk_name);
+> +       if (IS_ERR(adev))
+> +               return PTR_ERR(adev);
+> +
+> +       ret = auxiliary_device_add(adev);
+> +       if (ret) {
+> +               auxiliary_device_uninit(adev);
+> +               return ret;
+> +       }
+> +
+> +       return devm_add_action_or_reset(rst_data->dev, npcm_clock_unregister_adev, adev);
+> +}
+> +
+>  static int npcm_rc_probe(struct platform_device *pdev)
+>  {
+>         struct npcm_rc_data *rc;
+> @@ -392,6 +458,7 @@ static int npcm_rc_probe(struct platform_device *pdev)
+>         rc->rcdev.of_node = pdev->dev.of_node;
+>         rc->rcdev.of_reset_n_cells = 2;
+>         rc->rcdev.of_xlate = npcm_reset_xlate;
+> +       rc->dev = &pdev->dev;
+>
+>         ret = devm_reset_controller_register(&pdev->dev, &rc->rcdev);
+>         if (ret) {
+> @@ -413,7 +480,12 @@ static int npcm_rc_probe(struct platform_device *pdev)
+>                 }
+>         }
+>
+> -       return ret;
+> +       switch (rc->info->bmc_id) {
+> +       case BMC_NPCM8XX:
+> +               return npcm8xx_clock_controller_register(rc, "clk-npcm8xx");
+> +       default:
+> +               return ret;
+> +       }
+>  }
+>
+>  static struct platform_driver npcm_rc_driver = {
+> diff --git a/include/soc/nuvoton/clock-npcm8xx.h b/include/soc/nuvoton/clock-npcm8xx.h
+> new file mode 100644
+> index 000000000000..139130e98c51
+> --- /dev/null
+> +++ b/include/soc/nuvoton/clock-npcm8xx.h
+> @@ -0,0 +1,16 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +#ifndef __SOC_NPCM8XX_CLOCK_H
+> +#define __SOC_NPCM8XX_CLOCK_H
+> +
+> +#include <linux/auxiliary_bus.h>
+> +#include <linux/container_of.h>
+> +
+> +struct npcm_clock_adev {
+> +       void __iomem *base;
+> +       struct auxiliary_device adev;
+> +};
+> +
+> +#define to_npcm_clock_adev(_adev) \
+> +       container_of((_adev), struct npcm_clock_adev, adev)
+> +
+> +#endif
+> --
+> 2.34.1
+>
 
