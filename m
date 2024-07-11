@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-84862-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84863-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0233792E013
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 08:27:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C9BD92E03C
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 08:35:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ADD3C282738
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 06:27:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F0A6328345B
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 06:35:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD56A84DEA;
-	Thu, 11 Jul 2024 06:27:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 480ED8249A;
+	Thu, 11 Jul 2024 06:35:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ehe1eXW/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ntrezK/z"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 875FB83CDB;
-	Thu, 11 Jul 2024 06:27:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F5FC1C68E;
+	Thu, 11 Jul 2024 06:35:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720679230; cv=none; b=BwHMQu2UPM8c1m4O5Nf796Uv/W4hLGCOaUWnIitkuRvICwuzCuY/VZXjxNzuzgHBCrWjTjzmmndEU5E8ABhp42m3H5aLRGfQr5Vj+5GlzpxH0ZsAw62fz436zNDfExF+7extqduiiXxYuY106nE6XsXaa9TG0YFFs7CtdPRT8xs=
+	t=1720679715; cv=none; b=SpF7Tm4HcCuDDP5BeCwn4pfVP4WHRZ8CMgCGT91hYUbqPMbedkDK/3Q6QdQ20z8N2aAkpj5vMXwhAB71zgpwOHK74BlEOcI03RWILYNi3W5jBH/RkDSe2UV+7B5/SFxxOk2iXeRDC4Cj7CFX6EMiNw66fAz4On2Asm/jSF6uwXk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720679230; c=relaxed/simple;
-	bh=94EpK8AfuiCjM4ymA1InsAcetALr2xnbHV4v3CDac64=;
+	s=arc-20240116; t=1720679715; c=relaxed/simple;
+	bh=QnQL8wf1URTmQdBNcrTnQ+T5GUOqjOmogM1/F3TqdfA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=anQscTjoMCCW8BF8K/L9TroqYC+IF+uH6FE2kZZ9FpZXopuIGHtKYonIWtI7zdh/ymSaaaUzXsWJ75yg+DqjOBavNyicqmTI/vBenvk5/EjeWrvfLCRy1nlZze2xDt+Zq/gK3HKKawaMI/k7cpLj7RsyKyot1przrkODGr6MDmQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ehe1eXW/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37963C116B1;
-	Thu, 11 Jul 2024 06:27:04 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=VPWK/CgL2REkacUcAMKKIOG5zqD9SaQyPrNR5B1CwB7+akmhlRMxPSNIHm+/rJpcyduKytWbYsEpMDz5o9wnPRuDIqbmvuE/6No+8fXHkGBYw/tA5ZSa93r5RkhIgmlU5mSYS1DUSF9lqU4oPOleO4DalUMqDlwWBLdYKpIF3Yw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ntrezK/z; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 482F7C116B1;
+	Thu, 11 Jul 2024 06:35:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720679230;
-	bh=94EpK8AfuiCjM4ymA1InsAcetALr2xnbHV4v3CDac64=;
+	s=k20201202; t=1720679714;
+	bh=QnQL8wf1URTmQdBNcrTnQ+T5GUOqjOmogM1/F3TqdfA=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Ehe1eXW/87eDOZVyoqym61fsr4nXnfTfC6AKlvK3bkfTCX4h3gPiGPPwZQP7n2C+g
-	 YNR74wiUgw9cc0a1jdDK1I2gTiyl5dBLDcpVHqfQsVxJpuqpFK1cPMvBEY1MDewpDo
-	 swm0qgt6nN/tGld3gB8c3xvO6SKGgG5Up6QG5hpvUbFs9NuLnfR7Du3Nq+wV7SvniX
-	 jQcn30+azMEM9IG4sBzBLZVzmdtRClowS4dWMWRJNzvCPFlhLfMA1KBE8RNouzfx//
-	 xYs0M736kDF3PXp5N2S+1P711lFwOy9lbbHOxd+n9Jzw0iK9RlT2okomS3ocKeoSW6
-	 yu+jMEVLt6Rkw==
-Message-ID: <b6228510-0f28-4bb3-94ca-9dd274d47958@kernel.org>
-Date: Thu, 11 Jul 2024 08:27:03 +0200
+	b=ntrezK/zX/Gz4shyuXUKol3zebR1TY2jvMA5OAMJQG3NPT+j2BLmX1g29d9cGzkDD
+	 8/48SvBnpp2OgS3PlH9mKPgvw/2zhem5ydS1sqMTIS5GtfWXjzu3eDXKzgcgvnPIHb
+	 HkqBYhk91mw8czkyRULz20b85/T3fn5FmBIC/UiH1Oa2HBho/bHYHd/htnvvVLwku8
+	 qd0ah1w6q3QvWRE4GPUCazaX39g1itzCV/5SqiC2CA4iOO1QqHmxiUn+XBYOg8wYcU
+	 AuCsmwJ7Dmd/zj/mDv6gPaBll2oeCNofyxrerk2ciOMn7zbvwlQxshtj9lLV1VBHSn
+	 f44nJi1THonug==
+Message-ID: <e387cb4d-f700-41f1-826a-ef6ff71f2589@kernel.org>
+Date: Thu, 11 Jul 2024 08:35:08 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,22 +50,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/5] dt-bindings: display: panel: samsung,atna33xc20:
- Document ATNA45AF01
-To: Doug Anderson <dianders@chromium.org>,
- Stephan Gerhold <stephan.gerhold@linaro.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Jessica Zhang <quic_jesszhan@quicinc.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>,
- Johan Hovold <johan@kernel.org>
-References: <20240710-x1e80100-crd-backlight-v1-0-eb242311a23e@linaro.org>
- <20240710-x1e80100-crd-backlight-v1-1-eb242311a23e@linaro.org>
- <CAD=FV=XJuV12mStW3eUm5MHG8BA9W_fn0skN=BrtmqC+fnCZig@mail.gmail.com>
+Subject: Re: [PATCH V3 1/4] dt-bindings: arm: sunxi: Add Anbernic RG35XXSP
+To: Chris Morgan <macroalpha82@gmail.com>, linux-sunxi@lists.linux.dev
+Cc: devicetree@vger.kernel.org, mripard@kernel.org, ryan@testtoast.com,
+ andre.przywara@arm.com, samuel@sholland.org, jernej.skrabec@gmail.com,
+ wens@csie.org, conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
+ Chris Morgan <macromorgan@hotmail.com>
+References: <20240710231718.106894-1-macroalpha82@gmail.com>
+ <20240710231718.106894-2-macroalpha82@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,51 +103,21 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <CAD=FV=XJuV12mStW3eUm5MHG8BA9W_fn0skN=BrtmqC+fnCZig@mail.gmail.com>
+In-Reply-To: <20240710231718.106894-2-macroalpha82@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 10/07/2024 19:35, Doug Anderson wrote:
-> Hi,
+On 11/07/2024 01:17, Chris Morgan wrote:
+> From: Chris Morgan <macromorgan@hotmail.com>
 > 
-> On Wed, Jul 10, 2024 at 10:05 AM Stephan Gerhold
-> <stephan.gerhold@linaro.org> wrote:
->>
->> The Samsung ATNA45AF01 panel is an AMOLED eDP panel that has backlight
->> control over the DP AUX channel. While it works almost correctly with the
->> generic "edp-panel" compatible, the backlight needs special handling to
->> work correctly. It is similar to the existing ATNA33XC20 panel, just with
->> a larger resolution and size.
->>
->> Add a new "samsung,atna45af01" compatible to describe this panel in the DT.
->>
->> Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
->> ---
->>  .../devicetree/bindings/display/panel/samsung,atna33xc20.yaml       | 6 +++++-
->>  1 file changed, 5 insertions(+), 1 deletion(-)
->>
->> diff --git a/Documentation/devicetree/bindings/display/panel/samsung,atna33xc20.yaml b/Documentation/devicetree/bindings/display/panel/samsung,atna33xc20.yaml
->> index 765ca155c83a..d668e8d0d296 100644
->> --- a/Documentation/devicetree/bindings/display/panel/samsung,atna33xc20.yaml
->> +++ b/Documentation/devicetree/bindings/display/panel/samsung,atna33xc20.yaml
->> @@ -14,7 +14,11 @@ allOf:
->>
->>  properties:
->>    compatible:
->> -    const: samsung,atna33xc20
->> +    enum:
->> +      # Samsung 13.3" FHD (1920x1080 pixels) eDP AMOLED panel
->> +      - samsung,atna33xc20
->> +      # Samsung 14.5" WQXGA+ (2880x1800 pixels) eDP AMOLED panel
->> +      - samsung,atna45af01
+> Add the Anbernic RG35XXSP variant device.
 > 
-> Seems OK, but a few thoughts:
+> The Anbernic RG35XXSP is almost identical to the RG35XX-Plus, but in a
+> clamshell form-factor with an external RTC and a lid switch.
 > 
-> 1. Is it worth renaming this file? Something like
-> "samsung,atna-oled-panel.yaml"? I'd be interested in DT maintainer
-> folks' opinions here.
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
 
-No, rather keep existing name, because it should be based on compatible.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
