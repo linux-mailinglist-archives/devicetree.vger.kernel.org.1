@@ -1,235 +1,123 @@
-Return-Path: <devicetree+bounces-84865-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84866-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6895592E05A
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 08:55:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C7F392E063
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 08:57:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 17A58280D77
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 06:55:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0743E2816CF
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 06:57:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46FD812E1C5;
-	Thu, 11 Jul 2024 06:55:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED1ED12E1FF;
+	Thu, 11 Jul 2024 06:57:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b="Yv0ln3Ci"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="B8PtdSML"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6826A12DD9B
-	for <devicetree@vger.kernel.org>; Thu, 11 Jul 2024 06:55:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D56912C54A;
+	Thu, 11 Jul 2024 06:57:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720680944; cv=none; b=LhZiGGl7y3hgZ1GrP2PLJRpHrDkQ3+zSw8LhEhIGFZe9+8yfKOfkBiTTJ8IJhPeEpPzM+OI3z1Sc0wSO+n7t70vkS1cMxpB5gAHyNqGpyCTlH+psNZFPJWa93iA80EPZy0tS2Lt68QCzTGwzRdmhcaJ2OrB8cq8enn56x3ZEXjc=
+	t=1720681064; cv=none; b=N53WA4ZljcAOLtEKp1uNJTqywUlu7LaeIEiTQr8l1jlkZ4PDE0N1Tymcm18vxTTeC/aVaT4TencjByVEm/MTS4sCwjYJ57am5iOX1jTUxHSey8akKV6fiXUr7GwDO4PEalCpnEcuH6QpoSKgO7Tvsyzs//BGnq89moHNgaYv24A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720680944; c=relaxed/simple;
-	bh=iEJSZWwibei49W28C7OkAYWo9n7vnO08kdlEvcJpxGo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=isNEgrHPyU8cIe0sye8hx4UBkEVhlnEES7bhilAzBcyEam4uq6fg+zW2cJjCodnQKO9yWPecgP9X2sNVdRS1PxmS194Eo+MlA8Vayr61CWWaKwf66kOnFlnodLuXPKScWWlIsUaYHTfrFECXe2jBmKNe8NkY0qdk6csP23acReA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tenstorrent.com; spf=pass smtp.mailfrom=tenstorrent.com; dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b=Yv0ln3Ci; arc=none smtp.client-ip=209.85.214.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tenstorrent.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tenstorrent.com
-Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-1fa55dbf2e7so3071545ad.2
-        for <devicetree@vger.kernel.org>; Wed, 10 Jul 2024 23:55:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tenstorrent.com; s=google; t=1720680941; x=1721285741; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=qj5fKPvxGvM7Ufw7p7EXOjC4sCCpwaohueruAgBqnWk=;
-        b=Yv0ln3Ci4lEz8nKwr+OyTAlWn28+KXzI8JSsx4OuGvK5iJ/T5ZzI7OSFux4IacNoyi
-         PEmvmGHac29c8q9QSD2AFtW2O8IBdwkPKQnNKqDM99/Bazat/E6RmKEfwz8CNLy+jq22
-         tmskqk0LNQVjAsPC1iyd1haMA8xvrdzQnbAWaeZ/3rq7oTQ36TdcvfefTdLqlv9sBcYB
-         LECQxRAGMHekhZtNObI2n7SYNhF11+CG8P9ipCoLnGSEzR6AD+waTur4D6D0Xu7sYRXG
-         FaDNcUDyluhOAfi2xXhieURzUMkt9cimVdEyjUuU2fjQlpytiQ7TAxhyK0/z/taaLOnd
-         wYhQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720680941; x=1721285741;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qj5fKPvxGvM7Ufw7p7EXOjC4sCCpwaohueruAgBqnWk=;
-        b=NkOqwath6RhltTRBcaKITJO26QZc08MEZjyXtjMX+7vHXeW6s6naMIEEmk+qYKGLZI
-         0aputJ7tV8bukbRyXZtuzBJBCfr/L09O6hwWxFavflCFCKh96ZogrI7LT4AQaCTErVEw
-         QZ86x3rkxH+t3twbg3Jv+ciBkteGIB2zMpAavk05jJ5TmK+krg6vv/1ribREVLJNan/v
-         OAfYafPlxnhkTvUH3rzmfHZrMYhOfeJifxZzg9uJf79Ao1SIDu7z4R/5cSOfPiIYmMxV
-         9eVTEi7mW0wQ/oWvfVEGjYZ5vnR8fqmQB5+ElryqrAjcbNvZUEHNngwnj+oY+nm2yzaZ
-         VR8g==
-X-Forwarded-Encrypted: i=1; AJvYcCVfkVPeJUKwhC5dQbwM4GLPQEnmN6qFEJk070UEzwmoBTnKEOjX1nt6Bu9WJTbzU75DHgYhh1elMfSWT5HsoG4Ws3jWYwubKHKs4Q==
-X-Gm-Message-State: AOJu0Yx8KZTkqeNgKlSnV6nczLVSZBtjrsNQc2pjVB5OSU5hUkIZqALT
-	dAE48FZ6KDWcaC425rI4kxPjtJw/W0dN/ZtfXusWUxAlKOAqxIkkP4P6UmnBcmw=
-X-Google-Smtp-Source: AGHT+IGb4ybc/OK3k0d6iCqvD55Ro9+I1kKUFnh6M3hL2RGrJ7WIIrCEMAeRoySTG0NPFBmMi9Af/g==
-X-Received: by 2002:a17:902:e2c5:b0:1fb:64da:b13a with SMTP id d9443c01a7336-1fbb6ec5f62mr49719405ad.59.1720680941493;
-        Wed, 10 Jul 2024 23:55:41 -0700 (PDT)
-Received: from x1 ([2601:1c2:1802:170:5ee9:fea0:d9de:cee8])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1fbb6a11a4csm43497305ad.15.2024.07.10.23.55.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Jul 2024 23:55:41 -0700 (PDT)
-Date: Wed, 10 Jul 2024 23:55:39 -0700
-From: Drew Fustini <dfustini@tenstorrent.com>
-To: Stephen Boyd <sboyd@kernel.org>
-Cc: Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor+dt@kernel.org>,
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-	Fu Wei <wefu@redhat.com>, Guo Ren <guoren@kernel.org>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Rob Herring <robh@kernel.org>,
-	Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
-	Yangtao Li <frank.li@vivo.com>, linux-riscv@lists.infradead.org,
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/7] clk: thead: Add support for T-Head TH1520
- AP_SUBSYS clocks
-Message-ID: <Zo+B6yzFwRwSkPpH@x1>
-References: <20240623-th1520-clk-v2-0-ad8d6432d9fb@tenstorrent.com>
- <20240623-th1520-clk-v2-2-ad8d6432d9fb@tenstorrent.com>
- <d36ff27b56b3e9c8ef490bfd9d24761d.sboyd@kernel.org>
+	s=arc-20240116; t=1720681064; c=relaxed/simple;
+	bh=rvFokjMcH2Ex/2sqj6Lvfn5GGs0uXi19tWJfPrxNctY=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Esif2zSRlRAehyDvCMe6uI8qJFqshjJ3PaoVZ3GuznOi74Mh3s9rXCWgT2NOaEXazyfcVkRheYLGqvqnDAzbTDQEHdQmsoQHtlGo0KUszbavL2JEY50kvRQbKlb2zGl5C47L+NKHMNO+PzWZ83ednYkzQPhePRRaH2El99aqNyo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=B8PtdSML; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46B4mjeQ014562;
+	Thu, 11 Jul 2024 06:57:38 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=jJQbWE0IuygwAYsyxFdL5S
+	xbT/d7/I46uvXwI+FP9GA=; b=B8PtdSMLSpRyI1T7HVRy/jV5srooMnHRrIRqB7
+	yuhTkppTtZGF7w/lr/OreXaT4FqNzD2kdHEhU5/aHeA2TyrK+Gtb2yybhTN4q9CW
+	qusiVkm6wIU+ofFm59Qpv9LrXVPf856rPoEzXJas6kptUkYHqiZpdV6FifCNevXH
+	SUfQ4eL2Fte7hWZbFjX+zQbakdH1hQNYeYuPaTWqwX9PHKczaIMe3RCpxXkUFRF/
+	UJnqiO+2yVoSA/qJCKrTPkatlRJz4eG9Yl/X2u08GC5EpmZljzlDK6NaP9kIi8Sl
+	I/Pvhymmwwj8I1AUsXBgvoi/tlJ+g4eYKR/9befh1ZrWYR+A==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 409kdtka78-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 11 Jul 2024 06:57:38 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA05.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 46B6vbOS022133
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 11 Jul 2024 06:57:37 GMT
+Received: from hu-varada-blr.qualcomm.com (10.80.80.8) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Wed, 10 Jul 2024 23:57:32 -0700
+From: Varadarajan Narayanan <quic_varada@quicinc.com>
+To: <gregkh@linuxfoundation.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <quic_wcheng@quicinc.com>,
+        <johan+linaro@kernel.org>, <quic_kriskura@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC: Varadarajan Narayanan <quic_varada@quicinc.com>
+Subject: [PATCH v0 1/2] dt-bindings: usb: qcom,dwc3: Add minItems for interrupt info
+Date: Thu, 11 Jul 2024 12:26:14 +0530
+Message-ID: <20240711065615.2720367-1-quic_varada@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <d36ff27b56b3e9c8ef490bfd9d24761d.sboyd@kernel.org>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: dHsWOK36fNf4snaCrKKEbTTV3Dj2YW_C
+X-Proofpoint-GUID: dHsWOK36fNf4snaCrKKEbTTV3Dj2YW_C
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-11_03,2024-07-10_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 clxscore=1011
+ impostorscore=0 mlxlogscore=610 lowpriorityscore=0 malwarescore=0
+ adultscore=0 suspectscore=0 phishscore=0 bulkscore=0 priorityscore=1501
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2406140001 definitions=main-2407110046
 
-On Wed, Jul 10, 2024 at 04:17:12PM -0700, Stephen Boyd wrote:
-> Quoting Drew Fustini (2024-06-23 19:12:32)
-> > diff --git a/drivers/clk/thead/clk-th1520-ap.c b/drivers/clk/thead/clk-th1520-ap.c
-> > new file mode 100644
-> > index 000000000000..982d4d40f783
-> > --- /dev/null
-> > +++ b/drivers/clk/thead/clk-th1520-ap.c
-> > @@ -0,0 +1,1086 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * Copyright (C) 2023 Jisheng Zhang <jszhang@kernel.org>
-> > + * Copyright (C) 2023 Vivo Communication Technology Co. Ltd.
-> > + *  Authors: Yangtao Li <frank.li@vivo.com>
-> > + */
-> > +
-> > +#include <dt-bindings/clock/thead,th1520-clk-ap.h>
-> 
-> Preferably include dt-bindings after linux includes.
+IPQ5332 has only three interrupts. Update min items
+accordingly for interrupt names to fix the following
+dt_binding_check errors.
 
-Okay, I will move it.
+	interrupt-names: ['pwr_event', 'dp_hs_phy_irq', 'dm_hs_phy_irq'] is too short
 
-> 
-> > +#include <linux/bitfield.h>
-> > +#include <linux/clk-provider.h>
-> > +#include <linux/device.h>
-> > +#include <linux/module.h>
-> > +#include <linux/platform_device.h>
-> > +#include <linux/regmap.h>
-> > +
-> > +#define TH1520_PLL_POSTDIV2    GENMASK(26, 24)
-> > +#define TH1520_PLL_POSTDIV1    GENMASK(22, 20)
-> > +#define TH1520_PLL_FBDIV       GENMASK(19, 8)
-> > +#define TH1520_PLL_REFDIV      GENMASK(5, 0)
-> > +#define TH1520_PLL_BYPASS      BIT(30)
-> > +#define TH1520_PLL_DSMPD       BIT(24)
-> > +#define TH1520_PLL_FRAC                GENMASK(23, 0)
-> > +#define TH1520_PLL_FRAC_BITS    24
-> [...]
-> > +
-> > +static unsigned long th1520_pll_vco_recalc_rate(struct clk_hw *hw,
-> > +                                               unsigned long parent_rate)
-> > +{
-> > +       struct ccu_pll *pll = hw_to_ccu_pll(hw);
-> > +       unsigned long div, mul, frac, rate = parent_rate;
-> > +       unsigned int cfg0, cfg1;
-> > +
-> > +       regmap_read(pll->common.map, pll->common.cfg0, &cfg0);
-> > +       regmap_read(pll->common.map, pll->common.cfg1, &cfg1);
-> > +
-> > +       mul = FIELD_GET(TH1520_PLL_FBDIV, cfg0);
-> > +       div = FIELD_GET(TH1520_PLL_REFDIV, cfg0);
-> > +       if (!(cfg1 & TH1520_PLL_DSMPD)) {
-> > +               mul <<= TH1520_PLL_FRAC_BITS;
-> > +               frac = FIELD_GET(TH1520_PLL_FRAC, cfg1);
-> > +               mul += frac;
-> > +               div <<= TH1520_PLL_FRAC_BITS;
-> > +       }
-> > +       rate = parent_rate * mul;
-> > +       do_div(rate, div);
-> 
-> 'rate' is only unsigned long, so do_div() isn't needed here. Perhaps if
-> 'parent_rate * mul' can overflow 32-bits then 'rate' should be
-> u64.
+Fixes: a5c7592366af ("dt-bindings: usb: qcom,dwc3: add SC8280XP binding")
+Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+---
+ Documentation/devicetree/bindings/usb/qcom,dwc3.yaml | 3 +++
+ 1 file changed, 3 insertions(+)
 
-Thanks for pointing that out. I will make 'rate' u64 as I believe
-'parent_rate * mul' could overflow:
+diff --git a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+index efde47a5b145..283bac1efba9 100644
+--- a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
++++ b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+@@ -432,8 +432,11 @@ allOf:
+     then:
+       properties:
+         interrupts:
++          minItems: 3
+           maxItems: 4
+         interrupt-names:
++          minItems: 3
++          maxItems: 4
+           items:
+             - const: pwr_event
+             - const: dp_hs_phy_irq
+-- 
+2.34.1
 
-The ref clock for all the PLLs on this SoC is intended to be 24 MHz
-(section 4.3.2 PLL Resources [1]). Thus it is expected that parent_rate
-will use 24 bits.
-
-'mul' is set to TH1520_PLL_FBDIV which is 12 bits. In DSMPD mode, 'mul'
-gets shifted left by TH1520_PLL_FRAC_BITS which is 24 bits.
-
-> > +       return rate;
-> > +}
-> > +
-> > +static unsigned long th1520_pll_postdiv_recalc_rate(struct clk_hw *hw,
-> > +                                                   unsigned long parent_rate)
-> > +{
-> > +       struct ccu_pll *pll = hw_to_ccu_pll(hw);
-> > +       unsigned long rate = parent_rate;
-> > +       unsigned int cfg0, cfg1;
-> > +
-> > +       regmap_read(pll->common.map, pll->common.cfg0, &cfg0);
-> > +       regmap_read(pll->common.map, pll->common.cfg1, &cfg1);
-> > +
-> > +       if (cfg1 & TH1520_PLL_BYPASS)
-> > +               return rate;
-> > +
-> > +       do_div(rate, FIELD_GET(TH1520_PLL_POSTDIV1, cfg0) *
-> 
-> Same, 'rate' is unsigned long. Did you get some compilation error
-> without this? How big is the divisor going to be? The fields are only
-> 3-bits wide, so the multiplication would fit into a u32 just fine. Given
-> that 'rate' is unsigned long though I think you can just put the
-> multiplication result into a local variable that's also unsigned long
-> and then just write the divide with unsigned longs
-> 
-> 	div = FIELD_GET(...) * FIELD_GET(...);
-> 
-> 	return rate / div;
-
-I didn't get any compiler errors. I had copied do_div() from another
-driver that I was looking at.
-
-You are right that TH1520_PLL_POSTDIV1 and TH1520_PLL_POSTDIV2 are both
-just 3 bits each. Thus I think the maximum divisor is 64. I'll change
-to the simpler "rate / div" that you suggest.
-
-> > +                    FIELD_GET(TH1520_PLL_POSTDIV2, cfg0));
-> > +
-> > +       return rate;
-> > +}
-> > +
-> > +static unsigned long ccu_pll_recalc_rate(struct clk_hw *hw,
-> > +                                        unsigned long parent_rate)
-> > +{
-> > +       unsigned long rate = parent_rate;
-> > +
-> > +       rate = th1520_pll_vco_recalc_rate(hw, rate);
-> > +       rate = th1520_pll_postdiv_recalc_rate(hw, rate);
-> > +
-> > +       return rate;
-> > +}
-> 
-> Please fold this in
-
-Will do.
-
-Thanks for the review,
-Drew
-
-[1] https://openbeagle.org/beaglev-ahead/beaglev-ahead/-/blob/main/docs/TH1520%20System%20User%20Manual.pdf
 
