@@ -1,232 +1,159 @@
-Return-Path: <devicetree+bounces-84877-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84878-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42ABF92E153
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 09:53:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C54692E158
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 09:54:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EC47E2814C5
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 07:53:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A04BA1F219BD
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 07:54:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D8E21514C8;
-	Thu, 11 Jul 2024 07:53:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O44X7OdD"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E575914B977;
+	Thu, 11 Jul 2024 07:54:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FDE814B081;
-	Thu, 11 Jul 2024 07:53:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BB4014B943;
+	Thu, 11 Jul 2024 07:53:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720684382; cv=none; b=oWzsASJwAziAUZrJKzwmhkhSvmf2Pm1FVqk+/tbJ0sRUGg0+6BgSLB4I36xwco+GdWki1zQTZftgZtPoQOyfShC3zusN3tnkthVBn2sXTZgNOU9GWLtlCK8ZJFwtokyf3wB8voayi3WDG49zZg3oAf7/AlW8LYsolVLMeeYS/Z8=
+	t=1720684441; cv=none; b=FhrojNOldj1AHV1veNQkQXXIYOdM2zjC3l/rxHl4LHjO9xTJGNllV31aQwWn7WlV7WDhn9CUJkDE9x1S7tCaWl819Lb6LQswQJQV5vogGPVSTRMoMPX0L804iFfFUv5PetHyGesSyLfrLG0r3yH26MScIrI13SrE+scHOorcMDQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720684382; c=relaxed/simple;
-	bh=PiblUI52yNW9vKaDDeU4Pqtw5WegncIKfin6nXZz0PA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Lfut8cCq5r4BdyVPT0J8elV7stCrhT59T9BfHEkjNhJBMOOjBI99hf/vZaSzpWTJu9eB5CVw0uZ7UcEXKxi0W+HEjBfi12p8WBvfAUNMwQJVciWxudIJ+Wptnr8CQfjVOlwh3DEV2YZDfXINYfHaiFWO4Cykj9f9QytfapNxlWw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O44X7OdD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 06C93C4AF0E;
-	Thu, 11 Jul 2024 07:53:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720684382;
-	bh=PiblUI52yNW9vKaDDeU4Pqtw5WegncIKfin6nXZz0PA=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=O44X7OdDYsb1RXrNgJjQNtGV0WkLvjVOmNpYw/sAYMfSB4KCU9ah85Ax24LU9mhVu
-	 fVAT67GuLnDpgTNYQAXP/2wtoOei8hsPjpRHj2VNYcxGDFzP7YNk9UUKDMRAftnlqY
-	 A0JgF1F3T2H5AAQRlpaOrqDiRmo2vuLW1ug+kF90kqQ3VpxwY3EAgbCBb0XlHry4aa
-	 ySnQF/pEGzgy/Z1AO3ebaqdDfS9S5yGPv/CIbB1QRA/onXVV35US131HZibW2AJjzP
-	 7TWUqPc5eJXMaYqEzHLnnFidoJJtLYRT1A/RPfFIXndfpKgACwwpwxAP/T+rT5sCCK
-	 rYwmwRk/CZUrg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EA3E0C3DA41;
-	Thu, 11 Jul 2024 07:53:01 +0000 (UTC)
-From: Pieterjan Camerlynck via B4 Relay <devnull+pieterjanca.gmail.com@kernel.org>
-Date: Thu, 11 Jul 2024 09:52:23 +0200
-Subject: [PATCH v3 2/2] leds: leds-pca995x: Add support for NXP PCA9956B
+	s=arc-20240116; t=1720684441; c=relaxed/simple;
+	bh=0BgnDHiX/TK+JQoHQMsUy+eteShtWavkLMpjkahy91M=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=JayWjUhQDYYEJGCFY4tH2VxIl8dePcVqMy0NhWgwQsa2hru0kzhgbgYcK6zSfPpfZPIGD3XY9cU/M5WEEF69v1HdXMYfOVkbA8jCU8I3wMuQBcmhtCBpSPuESE8mx5lnNOg43sFvZuauCZ6oVS7noUC0j42B4I1IJSxmRPs6MmA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-650b8e0a6ceso5874147b3.3;
+        Thu, 11 Jul 2024 00:53:59 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720684438; x=1721289238;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=5fRVbJjcNb5I05e6Xfep3Il3HTd1wTS3dEeZLYGEQtM=;
+        b=PHJazHFGAmjv8X4bkxbaxB44Cf7U0Ug2b5psUq5CJGn5i0U0CLxDGz8F5jjQU9QCV4
+         17RhVbblJNQVQlJIRArMzHv3oKlscj9Ue4B2SFZz1PIXZS4kgh3z7LfALD+1lZocL/8K
+         EAwHQA87fnqgR10yq2Ru06sm7qjQEKUkk0DuFG23Do/c4XLBmLw6jC2XIdivyLqeJLr1
+         55oMzKoSbmiEO9q/ewEHnWvyyrJPyi2JYGR1HvBFz3VKkYFCLWP87yzklgdNqmdPbg5I
+         drriOOcReUTkJklqDrvv9j6E6k6iVEjSS5o4QA39JwgRSknZZ+jq4ki7D0bM/v7u1mWH
+         1DKw==
+X-Forwarded-Encrypted: i=1; AJvYcCXDBMQYnO30WcFt0oqS5+NBuTIGoSB2HEVDciE2KtRgLUWF0zFTXEvoHOSXGuBbpblt/qcJlY9wsTVHGyvaU4Odt6C3fg4nRCHrXFfKXwSbFcH3G1aZCPGurxZq74xrH3PRnTEmJyrWr0f6X68e0MRQCbV9kW6YpsNVI3FykAQD4fRWov6yxohpMY3w/k5ZfDkKdPpIZn2oEsirL+t8kAJFzMdM1MtXVB//9NgkDrS9K868Rv7sxc2oKp5vF9CqEkAT
+X-Gm-Message-State: AOJu0YwSBnf3ov5Q802WsxFshwxxwxPp8CszsF+U6AUN4yZbH5vOdL9S
+	ev2P16PvMe6h9rlPOSj+rwZWWdpp50u9SMzb+Flz/F0qzbRs3HNAG6u0EXfi
+X-Google-Smtp-Source: AGHT+IEAVEVDvRPumjsbsdvUEKBWr+nCV0eoncFS6xMhbJf5JHh93sDmEHKqPscdEqfNwYteTbffWg==
+X-Received: by 2002:a25:6801:0:b0:e05:6d47:57a4 with SMTP id 3f1490d57ef6-e056d475973mr3452925276.10.1720684437720;
+        Thu, 11 Jul 2024 00:53:57 -0700 (PDT)
+Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com. [209.85.128.180])
+        by smtp.gmail.com with ESMTPSA id 3f1490d57ef6-e041a8acf85sm925002276.9.2024.07.11.00.53.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 11 Jul 2024 00:53:56 -0700 (PDT)
+Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-64789495923so5634487b3.0;
+        Thu, 11 Jul 2024 00:53:56 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCU4AQsv5jhWFuUQz0NAtfh4lw8g73dBZSHrV+2Jm5LEAFZta8ZV8wHZmu8OQpncIPgolXa65Dm91ZogINUS+8oBOSrfVVVC2FDeHGlbtTS4n85KK7/Tpv1WIPc5sO/3t7J1RUauL419dilUXE3zCfYrYa+78/2B6FkRUCIk1ofQ6LIXLmFLKwvn7x+mokD9Z2WTA/+qjwHZ2PrNpgTDLwkQ1ez7mskWCQ54pAkrunEGcxmjbkpACdSo6tMQDIJ7KYQe
+X-Received: by 2002:a81:8d49:0:b0:63b:df6e:3f6d with SMTP id
+ 00721157ae682-658f02f3720mr78529147b3.37.1720684436126; Thu, 11 Jul 2024
+ 00:53:56 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240711-pca995x-v3-2-a1bf1f3c3f5a@gmail.com>
-References: <20240711-pca995x-v3-0-a1bf1f3c3f5a@gmail.com>
-In-Reply-To: <20240711-pca995x-v3-0-a1bf1f3c3f5a@gmail.com>
-To: Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Isai Gaspar <isaiezequiel.gaspar@nxp.com>, Marek Vasut <marex@denx.de>
-Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Pieterjan Camerlynck <pieterjanca@gmail.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1720684380; l=4818;
- i=pieterjanca@gmail.com; s=20240709; h=from:subject:message-id;
- bh=t3Yv09GE0P6l7FuL2RlQhlG/arL9upBo2x5FcRzdH1U=;
- b=jEfm7fGU3wEmqjDcWRiVPcwpTpGvL3YbMk+MunWV1FV8KuEYKRtlcwbUzIL4pdCXTnJEcxe4P
- RuDad/xDls+DeZnPmnttvpM0zFzEYeXNNtchwZIw9jDzCLWZMl3aB4T
-X-Developer-Key: i=pieterjanca@gmail.com; a=ed25519;
- pk=gSAHfvqQjVhNa1MhUClqbt7d3S+fviKz6FdQVaWFRyM=
-X-Endpoint-Received: by B4 Relay for pieterjanca@gmail.com/20240709 with
- auth_id=182
-X-Original-From: Pieterjan Camerlynck <pieterjanca@gmail.com>
-Reply-To: pieterjanca@gmail.com
+References: <20240625121358.590547-1-claudiu.beznea.uj@bp.renesas.com>
+ <20240625121358.590547-10-claudiu.beznea.uj@bp.renesas.com>
+ <CAMuHMdX4hWou9OtdE8XgU7-U0ghJ6vk2kVqgT90U0ZjsxzR5DA@mail.gmail.com> <22db23bd-5872-49a0-990f-2a0e5f51bfb5@tuxon.dev>
+In-Reply-To: <22db23bd-5872-49a0-990f-2a0e5f51bfb5@tuxon.dev>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 11 Jul 2024 09:53:43 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWTYfK6aVi5BzBtQg_zQWjuZX7d7QHr3a4GAb+dQOWyvQ@mail.gmail.com>
+Message-ID: <CAMuHMdWTYfK6aVi5BzBtQg_zQWjuZX7d7QHr3a4GAb+dQOWyvQ@mail.gmail.com>
+Subject: Re: [PATCH v2 09/12] i2c: riic: Add support for fast mode plus
+To: claudiu beznea <claudiu.beznea@tuxon.dev>
+Cc: chris.brandt@renesas.com, andi.shyti@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, magnus.damm@gmail.com, 
+	mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de, 
+	wsa+renesas@sang-engineering.com, linux-renesas-soc@vger.kernel.org, 
+	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Pieterjan Camerlynck <pieterjanca@gmail.com>
+Hi Claudiu,
 
-Add support for PCA9956B chip, which belongs to the same family.
+On Wed, Jul 10, 2024 at 4:20=E2=80=AFPM claudiu beznea <claudiu.beznea@tuxo=
+n.dev> wrote:
+> On 28.06.2024 12:22, Geert Uytterhoeven wrote:
+> > On Tue, Jun 25, 2024 at 2:14=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.d=
+ev> wrote:
+> >> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> >>
+> >> Fast mode plus is available on most of the IP variants that RIIC drive=
+r
+> >> is working with. The exception is (according to HW manuals of the SoCs
+> >> where this IP is available) the Renesas RZ/A1H. For this, patch
+> >> introduces the struct riic_of_data::fast_mode_plus.
+> >>
+> >> Fast mode plus was tested on RZ/G3S, RZ/G2{L,UL,LC}, RZ/Five by
+> >> instantiating the RIIC frequency to 1MHz and issuing i2c reads on the
+> >> fast mode plus capable devices (and the i2c clock frequency was checke=
+d on
+> >> RZ/G3S).
+> >>
+> >> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> >
+> > Thanks for your patch!
+> >
+> >> --- a/drivers/i2c/busses/i2c-riic.c
+> >> +++ b/drivers/i2c/busses/i2c-riic.c
+> >> @@ -407,6 +413,9 @@ static int riic_init_hw(struct riic_dev *riic)
+> >>         riic_writeb(riic, 0, RIIC_ICSER);
+> >>         riic_writeb(riic, ICMR3_ACKWP | ICMR3_RDRFS, RIIC_ICMR3);
+> >>
+> >> +       if (info->fast_mode_plus && t->bus_freq_hz =3D=3D I2C_MAX_FAST=
+_MODE_PLUS_FREQ)
+> >> +               riic_clear_set_bit(riic, 0, ICFER_FMPE, RIIC_ICFER);
+> >
+> > Unless FM+ is specified, RIIC_ICFER is never written to.
+> > Probably the register should always be initialized, also to make sure
+> > the FMPE bit is cleared when it was set by the boot loader, but FM+
+> > is not to be used.
+>
+> Instead of clearing only this bit, what do you think about using
+> reset_control_reset() instead of reset_control_deassert() in riic_i2c_pro=
+be()?
+>
+> HW manuals for all the devices listed in
+> Documentation/devicetree/bindings/i2c/renesas,riic.yaml specifies that
+> ICFER_FMPE register is initialized with a default value by reset. All the
+> other registers are initialized with default values at reset (according t=
+o
+> HW manuals). I've checked it on RZ/G3S and it behaves like this.
 
-This chip features 24 instead of 16 outputs, so add a chipdef struct to
-deal with the different register layouts.
+RZ/A1 and RZ/A2M do not have reset controller support yet, so calling
+reset_control_reset() is a no-op on these SoCs.
 
-Signed-off-by: Pieterjan Camerlynck <pieterjanca@gmail.com>
----
- drivers/leds/leds-pca995x.c | 59 ++++++++++++++++++++++++++++++---------------
- 1 file changed, 39 insertions(+), 20 deletions(-)
+However, I overlooked that riic_init_hw() does an internal reset first
+by setting the ICCR1_IICRST bit in RIIC_ICCR1.
+Is that sufficient to reset the FMPE bit?
 
-diff --git a/drivers/leds/leds-pca995x.c b/drivers/leds/leds-pca995x.c
-index 78215dff1499..02cead01ff95 100644
---- a/drivers/leds/leds-pca995x.c
-+++ b/drivers/leds/leds-pca995x.c
-@@ -19,10 +19,6 @@
- #define PCA995X_MODE1			0x00
- #define PCA995X_MODE2			0x01
- #define PCA995X_LEDOUT0			0x02
--#define PCA9955B_PWM0			0x08
--#define PCA9952_PWM0			0x0A
--#define PCA9952_IREFALL			0x43
--#define PCA9955B_IREFALL		0x45
- 
- /* Auto-increment disabled. Normal mode */
- #define PCA995X_MODE1_CFG		0x00
-@@ -34,17 +30,38 @@
- #define PCA995X_LDRX_MASK		0x3
- #define PCA995X_LDRX_BITS		2
- 
--#define PCA995X_MAX_OUTPUTS		16
-+#define PCA995X_MAX_OUTPUTS		24
- #define PCA995X_OUTPUTS_PER_REG		4
- 
- #define PCA995X_IREFALL_FULL_CFG	0xFF
- #define PCA995X_IREFALL_HALF_CFG	(PCA995X_IREFALL_FULL_CFG / 2)
- 
--#define PCA995X_TYPE_NON_B		0
--#define PCA995X_TYPE_B			1
--
- #define ldev_to_led(c)	container_of(c, struct pca995x_led, ldev)
- 
-+struct pca995x_chipdef {
-+	unsigned int num_leds;
-+	u8 pwm_base;
-+	u8 irefall;
-+};
-+
-+static const struct pca995x_chipdef pca9952_chipdef = {
-+	.num_leds	= 16,
-+	.pwm_base	= 0x0a,
-+	.irefall	= 0x43,
-+};
-+
-+static const struct pca995x_chipdef pca9955b_chipdef = {
-+	.num_leds	= 16,
-+	.pwm_base	= 0x08,
-+	.irefall	= 0x45,
-+};
-+
-+static const struct pca995x_chipdef pca9956b_chipdef = {
-+	.num_leds	= 24,
-+	.pwm_base	= 0x0a,
-+	.irefall	= 0x40,
-+};
-+
- struct pca995x_led {
- 	unsigned int led_no;
- 	struct led_classdev ldev;
-@@ -52,9 +69,9 @@ struct pca995x_led {
- };
- 
- struct pca995x_chip {
-+	const struct pca995x_chipdef *chipdef;
- 	struct regmap *regmap;
- 	struct pca995x_led leds[PCA995X_MAX_OUTPUTS];
--	int btype;
- };
- 
- static int pca995x_brightness_set(struct led_classdev *led_cdev,
-@@ -62,10 +79,11 @@ static int pca995x_brightness_set(struct led_classdev *led_cdev,
- {
- 	struct pca995x_led *led = ldev_to_led(led_cdev);
- 	struct pca995x_chip *chip = led->chip;
-+	const struct pca995x_chipdef *chipdef = chip->chipdef;
- 	u8 ledout_addr, pwmout_addr;
- 	int shift, ret;
- 
--	pwmout_addr = (chip->btype ? PCA9955B_PWM0 : PCA9952_PWM0) + led->led_no;
-+	pwmout_addr = chipdef->pwm_base + led->led_no;
- 	ledout_addr = PCA995X_LEDOUT0 + (led->led_no / PCA995X_OUTPUTS_PER_REG);
- 	shift = PCA995X_LDRX_BITS * (led->led_no % PCA995X_OUTPUTS_PER_REG);
- 
-@@ -104,11 +122,12 @@ static int pca995x_probe(struct i2c_client *client)
- 	struct fwnode_handle *led_fwnodes[PCA995X_MAX_OUTPUTS] = { 0 };
- 	struct fwnode_handle *np, *child;
- 	struct device *dev = &client->dev;
-+	const struct pca995x_chipdef *chipdef;
- 	struct pca995x_chip *chip;
- 	struct pca995x_led *led;
--	int i, btype, reg, ret;
-+	int i, reg, ret;
- 
--	btype = (unsigned long)device_get_match_data(&client->dev);
-+	chipdef = device_get_match_data(&client->dev);
- 
- 	np = dev_fwnode(dev);
- 	if (!np)
-@@ -118,7 +137,7 @@ static int pca995x_probe(struct i2c_client *client)
- 	if (!chip)
- 		return -ENOMEM;
- 
--	chip->btype = btype;
-+	chip->chipdef = chipdef;
- 	chip->regmap = devm_regmap_init_i2c(client, &pca995x_regmap);
- 	if (IS_ERR(chip->regmap))
- 		return PTR_ERR(chip->regmap);
-@@ -170,21 +189,21 @@ static int pca995x_probe(struct i2c_client *client)
- 		return ret;
- 
- 	/* IREF Output current value for all LEDn outputs */
--	return regmap_write(chip->regmap,
--			    btype ? PCA9955B_IREFALL : PCA9952_IREFALL,
--			    PCA995X_IREFALL_HALF_CFG);
-+	return regmap_write(chip->regmap, chipdef->irefall, PCA995X_IREFALL_HALF_CFG);
- }
- 
- static const struct i2c_device_id pca995x_id[] = {
--	{ "pca9952", .driver_data = (kernel_ulong_t)PCA995X_TYPE_NON_B },
--	{ "pca9955b", .driver_data = (kernel_ulong_t)PCA995X_TYPE_B },
-+	{ "pca9952", .driver_data = (kernel_ulong_t)&pca9952_chipdef },
-+	{ "pca9955b", .driver_data = (kernel_ulong_t)&pca9955b_chipdef },
-+	{ "pca9956b", .driver_data = (kernel_ulong_t)&pca9956b_chipdef },
- 	{}
- };
- MODULE_DEVICE_TABLE(i2c, pca995x_id);
- 
- static const struct of_device_id pca995x_of_match[] = {
--	{ .compatible = "nxp,pca9952",  .data = (void *)PCA995X_TYPE_NON_B },
--	{ .compatible = "nxp,pca9955b", .data = (void *)PCA995X_TYPE_B },
-+	{ .compatible = "nxp,pca9952", .data = &pca9952_chipdef },
-+	{ .compatible = "nxp,pca9955b", . data = &pca9955b_chipdef },
-+	{ .compatible = "nxp,pca9956b", .data = &pca9956b_chipdef },
- 	{},
- };
- MODULE_DEVICE_TABLE(of, pca995x_of_match);
+Gr{oetje,eeting}s,
 
--- 
-2.45.2
+                        Geert
 
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
