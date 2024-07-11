@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-84873-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84874-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25C6F92E123
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 09:45:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF8D492E129
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 09:47:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5782F1C20B93
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 07:45:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4B9681F22757
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 07:47:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EB393BBE0;
-	Thu, 11 Jul 2024 07:45:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B704B13B59F;
+	Thu, 11 Jul 2024 07:47:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="So3KcCl6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WbAckB91"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE41717BDA
-	for <devicetree@vger.kernel.org>; Thu, 11 Jul 2024 07:45:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 824203BBE0;
+	Thu, 11 Jul 2024 07:47:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720683937; cv=none; b=Oqa4fNrhaz/jS3umqRvhYwsuiYSaNk1gTIfA+OagOaTI63o+BROxOj5kp9na6ITSJPWEiWI+RSXeddpYHKV/orloj8NxE5WAvtDzc/wqlNDfHeVRM5dTHzkCaoJZCYyc74xnK7j3qV/Adcx7JeIOd0agFZTuFzo+mL46kRHFRac=
+	t=1720684049; cv=none; b=U7y3cvUDtVsTYJ7P0bJxOUFH+AiZye7+upXA2zCLoulvQevvt+xTfEO9krXD25ATYIDJad4elLUbPNK0QO2ky9wN/E8LQGQZA9pRp51wZOjHMfr4LHIhpPzry2pnu/+42RHBc7/znfzZ5eqmJdZg46DrV5SpIQyKQvIc5sNkuc8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720683937; c=relaxed/simple;
-	bh=ZbFicuL62y6B2F82WVq5P6OTG/IWOizDCgKKBVoOOoY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=eUEE3s8EmHPs2d39e9qdaA5vPg6nXXyFtprEVY4lWc/WtRy/cioF8QJANjSx4kTRJfSxPPZQboMDFcsMHOvCJWxt8Z/xhKwPJs+MHnMKJJZytZlRNc5g2u7kmM+I/N2HS8hAvoRxbLzgTIPZbMIwziKtqOknjMw93rlOsry4G1A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=So3KcCl6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3BFA3C116B1;
-	Thu, 11 Jul 2024 07:45:34 +0000 (UTC)
+	s=arc-20240116; t=1720684049; c=relaxed/simple;
+	bh=G/QXT/TS6t1JMttblEdZxEhBeP1pp4I/BafnXbYVRrM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=HpwngNmVHq5k/FvPkFi0L12h8oeAoWtksJS55tkT78d7jdMJcskMeqpeDhJsCoHjSjjQ0dP2zAtHC5o9nnYKvNaSa02czSFIZe8/v79EtWi+1YKtsaFeqx6OSYny9Ith89bj+GbfVJ6kQwEuAIA3ZwnS6kXQjbdS3jCPP2ITEW8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WbAckB91; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37640C116B1;
+	Thu, 11 Jul 2024 07:47:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720683936;
-	bh=ZbFicuL62y6B2F82WVq5P6OTG/IWOizDCgKKBVoOOoY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=So3KcCl6WiGM3BIunPAE59drkLdQ1Sd/TYmTFek6pbxYkSP/TwGvVouNMQV6Rs4uh
-	 Mlllyl+/+BoIm1Kjs3fTEd5iV9TwCA/2+WNcAQLm+LI5IYj24Tj2Tsl1mW5d3KDxJb
-	 NIfQXOkOfTTyKoJPcKqEXac4SiUr99EiiAnjDAxBieqRuTSjoouwpJyPzEd69rCyQ1
-	 V+W/w+QrMBE3ps1eXYZM0/C+u21zv6IPE8unfKKjSuJb7vFyxe+vm5W5oNNmLLHPrh
-	 jid4UiuBbCSYul4yfijbczycK3OUeYAcDikZQGewIp7lc1bjSbYYmlr4zMglNTj1CQ
-	 yku99dPNEKu7Q==
-Message-ID: <0036cb62-7621-4458-9011-cae56208eefc@kernel.org>
-Date: Thu, 11 Jul 2024 09:45:31 +0200
+	s=k20201202; t=1720684049;
+	bh=G/QXT/TS6t1JMttblEdZxEhBeP1pp4I/BafnXbYVRrM=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=WbAckB91YVb8rc23sgHPfgFu4XHoUBgw50HtD2v6dwdwVAPetCKKTW3Jvpq1ji5uc
+	 A8qZ+fCJ7AnFWG6os/xH9fnjdlMnuxo/rXXjw2VyMBrXUmAukTo/hRLOg9UnhkkMv9
+	 ev3KojRwCEOx0Am2dGIv85Sdrfh/EMMp4+N8Jste+c5fxPoU0lsxrbzv3TA5iotGAe
+	 OSNJShEVwXQRsxiYd6FgMniGg+bU8LeTckff/ThatnEMMa4G0o/zjTVJc8V2D9pfG1
+	 zK3kbhgI58SHOCZfCmb3aqKy4wgWNzcqIOOhKB3UKB5LXctQ4hPSk9brjVCaEx8JEp
+	 zbSQBbJURyMNQ==
+Message-ID: <5fb21a62-9c9e-45ed-bf3f-c4d54f243886@kernel.org>
+Date: Thu, 11 Jul 2024 09:47:23 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: amlogic: change product name for Radxa
- ZERO 2 (Pro)
-To: FUKAUMI Naoki <naoki@radxa.com>, neil.armstrong@linaro.org
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- khilman@baylibre.com, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com, devicetree@vger.kernel.org,
- linux-amlogic@lists.infradead.org
-References: <20240711034035.3921122-1-naoki@radxa.com>
- <20240711034035.3921122-2-naoki@radxa.com>
- <1fece7cc-fa01-4bea-ac73-a975e042c669@kernel.org>
- <DFED8CF3B42049F8+44664265-ab1e-4d45-833c-41c370e4360b@radxa.com>
+Subject: Re: [PATCH v0 1/2] dt-bindings: usb: qcom,dwc3: Add minItems for
+ interrupt info
+To: Varadarajan Narayanan <quic_varada@quicinc.com>,
+ gregkh@linuxfoundation.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+ quic_wcheng@quicinc.com, johan+linaro@kernel.org, quic_kriskura@quicinc.com,
+ linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240711065615.2720367-1-quic_varada@quicinc.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,28 +104,46 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <DFED8CF3B42049F8+44664265-ab1e-4d45-833c-41c370e4360b@radxa.com>
+In-Reply-To: <20240711065615.2720367-1-quic_varada@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 11/07/2024 08:58, FUKAUMI Naoki wrote:
->>>   
->>>   / {
->>> -	compatible = "radxa,zero2", "amlogic,a311d", "amlogic,g12b";
->>> -	model = "Radxa Zero2";
->>> +	compatible = "radxa,zero-2pro", "amlogic,a311d", "amlogic,g12b";
->>
->> Keep old compatible.
+On 11/07/2024 08:56, Varadarajan Narayanan wrote:
+> IPQ5332 has only three interrupts. Update min items
+> accordingly for interrupt names to fix the following
+> dt_binding_check errors.
 > 
-> which is better?
+> 	interrupt-names: ['pwr_event', 'dp_hs_phy_irq', 'dm_hs_phy_irq'] is too short
 > 
-> compatible = "radxa,zero2", "amlogic,a311d", "amlogic,g12b"; (no change)
->   or
-> compatible = "radxa,zero-2pro", "radxa,zero2", "amlogic,a311d", 
-> "amlogic,g12b"; (keep old one)
+> Fixes: a5c7592366af ("dt-bindings: usb: qcom,dwc3: add SC8280XP binding")
 
-I propose not to change anything, at least based on your
-explanations/rationale.
+There is no ipq5332 at this commit, so I do not understand which bug are
+you fixing.
+
+> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> ---
+>  Documentation/devicetree/bindings/usb/qcom,dwc3.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+> index efde47a5b145..283bac1efba9 100644
+> --- a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+> +++ b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+> @@ -432,8 +432,11 @@ allOf:
+>      then:
+>        properties:
+>          interrupts:
+> +          minItems: 3
+>            maxItems: 4
+>          interrupt-names:
+> +          minItems: 3
+> +          maxItems: 4
+
+but x1e80100 has 4, right?
+
+>            items:
+>              - const: pwr_event
+>              - const: dp_hs_phy_irq
 
 Best regards,
 Krzysztof
