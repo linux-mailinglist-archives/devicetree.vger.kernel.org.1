@@ -1,158 +1,200 @@
-Return-Path: <devicetree+bounces-84976-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84977-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC19B92E742
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 13:42:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 074FC92E720
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 13:38:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4FC3CB2B569
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 11:37:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 10BAF1C2130F
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 11:38:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6AB316CD39;
-	Thu, 11 Jul 2024 11:33:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9180F14D6E4;
+	Thu, 11 Jul 2024 11:38:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="adMMNq9U"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KdMXCM/Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 592FC15F407;
-	Thu, 11 Jul 2024 11:33:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A2B6383B0;
+	Thu, 11 Jul 2024 11:38:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720697604; cv=none; b=FGyhlunQzAvTNYpM7Co4MJLF1JL8dmuKCfFlwvO30e0sBRGmnvjDX79ucWFlhrx8HBdQpgVmf009K3nm37DIxUKyQb+lg/nBioujTuALPuPTntCaq1NgD3SNU8d/U2dEf4EkppZ75IvboVCsSYYuRGeqGklMrQzVNPQpz0TOMlg=
+	t=1720697895; cv=none; b=lghhfeIZjrClzLe9Xd7fRVJEEeeNPuw9+Cf8eUfo9z+xB9tn9ZHjNbOkPybmBqS3NlzpzFdJYe3M9IHcsquDii7TM9F9yY6SxbdZ1F7fJxiZhLshBZGutLMqyMTLImqcsLsF8p6Uz4hEwMoGZxbBo/TVq34K/qa9CS46nbglKlU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720697604; c=relaxed/simple;
-	bh=V8PpKGvd8DyuYmIHy7YOTRp1qOgrbB6vlWM+4TKGa5U=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Cul+7sFrb8SlcEq5weYBBvbu6jOW3m9Yw76rRqTBqXq3FcX9mZzHGJ//OIrFOfykCz2aO2MnYLv/3bFoJewI7dncJai1wYAWd8edpSugU8J8OU/BpFJqpd0s4GXqoB++OH4yW1uyDaSU6JjlGwKoOdF3qQNEtnZiS/VksIAWlnQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=adMMNq9U; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46B4ndXD021870;
-	Thu, 11 Jul 2024 11:33:18 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	MtMoVviX81IClTs7nn8uR+E++UymYIJefIjPRcxroV4=; b=adMMNq9UEp0s0FX0
-	8DjIl3Sm/gwS2gIHj0gdLUbnX6Duoh5143/4X69z/K5Lj9mCA+ydwuxeLXLw+bqH
-	nfaslmQBGt/wCHF04hVt5CJ3A3M6qMDys8hEfz/+MkdPSC2G4Es7DpuDzqB1x7m2
-	/KqRs/371OLkrU/m6T8TC9cZoCQ0/lnZ9tKNQbszLTx64RvqUYRwDddFeyEgHip4
-	HQbHI2gJIyqAxMLme3er1A801AMCZRD+2RaKTamT4i+ZlsGcWUQHgbcbOMF33Ym8
-	gSJ9V11LBfdbpclqOdtrkAGiFZXDTFJqqUjZWVIMaIDP1S1FmuNXMBm0hezykHqP
-	GGMaGQ==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 406wmmvc4g-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 11 Jul 2024 11:33:18 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA01.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 46BBXH2Y018613
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 11 Jul 2024 11:33:17 GMT
-Received: from hu-varada-blr.qualcomm.com (10.80.80.8) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Thu, 11 Jul 2024 04:33:12 -0700
-From: Varadarajan Narayanan <quic_varada@quicinc.com>
-To: <andersson@kernel.org>, <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <gregkh@linuxfoundation.org>, <konrad.dybcio@linaro.org>,
-        <djakov@kernel.org>, <quic_wcheng@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>, <linux-pm@vger.kernel.org>
-CC: Varadarajan Narayanan <quic_varada@quicinc.com>
-Subject: [PATCH v2 4/4] arm64: dts: qcom: ipq5332: Add icc provider ability to gcc
-Date: Thu, 11 Jul 2024 17:02:39 +0530
-Message-ID: <20240711113239.3063546-5-quic_varada@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240711113239.3063546-1-quic_varada@quicinc.com>
-References: <20240711113239.3063546-1-quic_varada@quicinc.com>
+	s=arc-20240116; t=1720697895; c=relaxed/simple;
+	bh=gzjwilpCt6A2I2VABW8kvku49One7ZUnvij/YpLG/Ik=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=E4qM5Kta7KgEsSs0gg5AZodzlQ9JYaGOzC/s6BlbdSUFPOOTclV/OMpxTG3hQTJx/A7f2iThXIaMY/2ErLxeZVETp16FjwSsLD8YaWIY/Z9RSZD8BBs5e1my6KlP/y+1DjgUhQejziFCILAQgL8QD4IONK1ePpb9TAXbsS4p/KI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KdMXCM/Q; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08226C4AF0A;
+	Thu, 11 Jul 2024 11:38:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720697895;
+	bh=gzjwilpCt6A2I2VABW8kvku49One7ZUnvij/YpLG/Ik=;
+	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
+	b=KdMXCM/QcGtXg41MwyyaJoPvrB/AubK1mihkilTbRAQJSSOC5+M/U8jPO8Dhd7ej3
+	 ax8BV+6cpeNmHW8zD49/hrun8A+123yXroTzmSDuq7EOF5NiP4u/z5t1UFKX8MTfcP
+	 xuCV7P1kXpGOEaB/evpQtqqOaailxn5eUGJVsxRexXNoQMdECg9jodWhSODCEGCYhK
+	 Y/RL1gG6thZJ180AOeQN0X/FjaB+uffHkwyi2VK8Je9Wa95IUahNOpFXNC9axDYc8B
+	 mUkppzRMstgZPC8mpnbBHBuniUraD434MfME8BWCL+aUctFBJnRnr3MUSJEORn6V+K
+	 sK5Bx4s3VQxow==
+Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2eaae2a6dc1so11702961fa.0;
+        Thu, 11 Jul 2024 04:38:14 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUen7X9wFX1RnQNFXSX50R4/Dl/nELis2ONS9v88OP677pq+pnQCGZ5tczkmbukZkdG/Armm0AYDrbtBk6+fhWoUYG7GuLpVFh1S8HP6RMjDAgp4lw4LZG8FfdzvdjPwZ2vZzVJDi9nWA==
+X-Gm-Message-State: AOJu0YzA1SGJfRxuYZV9H+JVYAic8GVNvmWa5ca5SC5FyFulIidvQfKp
+	96JtURwHI8lhFYLt2RTNTh283mykhFF1T3qfmP8VzSVk3B9i8pfEEvgYAD8RDY3FlsSfAWq81kf
+	o3wi9fdxjLSpzc7jR6E/IdOrneWc=
+X-Google-Smtp-Source: AGHT+IEfmuPHxaXctRdUhUkgULwRV03dNp3jlTso3tk8TYKA+dY1WV8r9gBxTk683lKSiGskeDkmC+261sV9wDSTUt0=
+X-Received: by 2002:a2e:804a:0:b0:2ee:8f3d:e68d with SMTP id
+ 38308e7fff4ca-2eeb3188cddmr63837251fa.44.1720697893303; Thu, 11 Jul 2024
+ 04:38:13 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: LruPSK25B0FPTkRehdQHBUI0oVG3hAFB
-X-Proofpoint-ORIG-GUID: LruPSK25B0FPTkRehdQHBUI0oVG3hAFB
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-07-11_06,2024-07-11_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
- priorityscore=1501 lowpriorityscore=0 spamscore=0 bulkscore=0 adultscore=0
- impostorscore=0 suspectscore=0 malwarescore=0 mlxscore=0 mlxlogscore=999
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2406140001 definitions=main-2407110082
+References: <20240711060939.1128-1-linux.amoon@gmail.com> <a8c1f49e-bf25-4fd3-a16f-13088f75767f@kwiboo.se>
+ <CAGb2v65iR9BdAX43gfpBOeKF_B5PFm+RhPwu5FHUfRxCMeqh-w@mail.gmail.com> <e3410560-6dec-41de-ab14-441dbe8e5bb1@gmail.com>
+In-Reply-To: <e3410560-6dec-41de-ab14-441dbe8e5bb1@gmail.com>
+Reply-To: wens@kernel.org
+From: Chen-Yu Tsai <wens@kernel.org>
+Date: Thu, 11 Jul 2024 19:38:00 +0800
+X-Gmail-Original-Message-ID: <CAGb2v66gmZGh-_7r6+ifeH-OfU4npxZNWucS-GhtL91LCSvqvQ@mail.gmail.com>
+Message-ID: <CAGb2v66gmZGh-_7r6+ifeH-OfU4npxZNWucS-GhtL91LCSvqvQ@mail.gmail.com>
+Subject: Re: [PATCH v2] arm64: dts: rockchip: Add missing pinctrl for PCIe30x4 node
+To: Alex Bee <knaerzche@gmail.com>
+Cc: Jonas Karlman <jonas@kwiboo.se>, Heiko Stuebner <heiko@sntech.de>, Anand Moon <linux.amoon@gmail.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-IPQ SoCs dont involve RPM in managing NoC related clocks and
-there is no NoC scaling. Linux itself handles these clocks.
-However, these should not be exposed as just clocks and align
-with other Qualcomm SoCs that handle these clocks from a
-interconnect provider.
+On Thu, Jul 11, 2024 at 7:13=E2=80=AFPM Alex Bee <knaerzche@gmail.com> wrot=
+e:
+>
+> Am 11.07.24 um 11:17 schrieb Chen-Yu Tsai:
+> > On Thu, Jul 11, 2024 at 4:44=E2=80=AFPM Jonas Karlman <jonas@kwiboo.se>=
+ wrote:
+> >>
+> >> Hi Anand,
+> >>
+> >> On 2024-07-11 08:09, Anand Moon wrote:
+> >>> Add missing pinctrl settings for PCIe 3.0 x4 clock request and wake
+> >>> signals.Each component of PCIe communication have the following contr=
+ol
+> >>> signals: PERST, WAKE, CLKREQ, and REFCLK. These signals work to gener=
+ate
+> >>> high-speed signals and communicate with other PCIe devices.
+> >>> Used by root complex to endpoint depending on the power state.
+> >>>
+> >>> PERST is referred to as a fundamental reset. PERST should be held low
+> >>> until all the power rails in the system and the reference clock are s=
+table.
+> >>> A transition from low to high in this signal usually indicates the
+> >>> beginning of link initialization.
+> >>>
+> >>> WAKE signal is an active-low signal that is used to return the PCIe
+> >>> interface to an active state when in a low-power state.
+> >>>
+> >>> CLKREQ signal is also an active-low signal and is used to request the
+> >>> reference clock.
+> >>>
+> >>> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> >>> ---
+> >>> V2: Update the commit messge to describe the changs.
+> >>>      use pinctl group as its pre define in pinctl dtsi
+> >>> ---
+> >>>   arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts | 6 +-----
+> >>>   1 file changed, 1 insertion(+), 5 deletions(-)
+> >>>
+> >>> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/a=
+rm64/boot/dts/rockchip/rk3588-rock-5b.dts
+> >>> index 2e7512676b7e..ab3a20986c6a 100644
+> >>> --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+> >>> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+> >>> @@ -301,7 +301,7 @@ &pcie30phy {
+> >>>
+> >>>   &pcie3x4 {
+> >>>        pinctrl-names =3D "default";
+> >>> -     pinctrl-0 =3D <&pcie3_rst>;
+> >>> +     pinctrl-0 =3D <&pcie30x4m1_pins>;
+> >>
+> >> Use of the existing pcie30x4m1_pins group may not be fully accurate fo=
+r
+> >> the PERST pin. The use of reset-gpios indicate that the PERST pin is
+> >> used with GPIO function and the driver will implicitly change the
+> >> function from perstn_m1 to GPIO. So this may not be best representatio=
+n
+> >> of the hw, hence my initial suggestion, something like:
+> >>
+> >>          pcie30x4_pins: pcie30x4-pins {
+> >>                  rockchip,pins =3D
+> >>                          <4 RK_PB4 4 &pcfg_pull_none>,
+> >>                          <4 RK_PB6 RK_FUNC_GPIO &pcfg_pull_none>,
+> >>                          <4 RK_PB5 4 &pcfg_pull_none>;
+> >>          };
+> >>
+> >> Similar change should probably also be done for pcie2x1l0 and pcie2x1l=
+2,
+> >> not just pcie3x4.
+> >
+> > Can we consider implementing strict mode in the pinctrl driver so we do=
+n't
+> > have to keep doing this GPIO + pinmux dance?
+> >
+>
+> This is not about drivers, this is DT which is independent from drivers.
+> Jonas and I had discussion recently on u-boot mailing list with somebody
+> using Open/FreeBSD about exact that topic. Pinctrl mux settings should be
+> very explicit, even if it is not required by the linux-driver.
 
-Hence include icc provider capability to the gcc node so that
-peripherals can use the interconnect facility to enable these
-clocks. Change USB to use the icc-clk framework for the iface
-clock.
+The hardware also prevents you from using GPIOs with any other mux setting.
+That is already implied by the compatible string and doesn't need to be
+spelled out. The strict driver mode merely enforces this hardware limitatio=
+n
+without the very explicit setting. One could also say that the driver is
+wrong to support conflicting settings.
 
-Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
----
- arch/arm64/boot/dts/qcom/ipq5332.dtsi | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq5332.dtsi b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-index 573656587c0d..f58fd70be826 100644
---- a/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-@@ -8,6 +8,7 @@
- #include <dt-bindings/clock/qcom,apss-ipq.h>
- #include <dt-bindings/clock/qcom,ipq5332-gcc.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/interconnect/qcom,ipq5332.h>
- 
- / {
- 	interrupt-parent = <&intc>;
-@@ -208,6 +209,7 @@ gcc: clock-controller@1800000 {
- 			reg = <0x01800000 0x80000>;
- 			#clock-cells = <1>;
- 			#reset-cells = <1>;
-+			#interconnect-cells = <1>;
- 			clocks = <&xo_board>,
- 				 <&sleep_clk>,
- 				 <0>,
-@@ -327,11 +329,9 @@ usb: usb@8af8800 {
- 					  "dm_hs_phy_irq";
- 
- 			clocks = <&gcc GCC_USB0_MASTER_CLK>,
--				 <&gcc GCC_SNOC_USB_CLK>,
- 				 <&gcc GCC_USB0_SLEEP_CLK>,
- 				 <&gcc GCC_USB0_MOCK_UTMI_CLK>;
- 			clock-names = "core",
--				      "iface",
- 				      "sleep",
- 				      "mock_utmi";
- 
-@@ -342,6 +342,9 @@ usb: usb@8af8800 {
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			ranges;
-+			interconnects = <&gcc MASTER_SNOC_USB &gcc SLAVE_SNOC_USB>,
-+					<&gcc MASTER_SNOC_USB &gcc SLAVE_SNOC_USB>;
-+			interconnect-names = "usb-ddr", "apps-usb";
- 
- 			status = "disabled";
- 
--- 
-2.34.1
+ChenYu
 
+> Alex
+>
+> > ChenYu
+> >
+> >
+> >> Regards,
+> >> Jonas
+> >>
+> >>>        reset-gpios =3D <&gpio4 RK_PB6 GPIO_ACTIVE_HIGH>;
+> >>>        vpcie3v3-supply =3D <&vcc3v3_pcie30>;
+> >>>        status =3D "okay";
+> >>> @@ -341,10 +341,6 @@ pcie2_2_rst: pcie2-2-rst {
+> >>>        };
+> >>>
+> >>>        pcie3 {
+> >>> -             pcie3_rst: pcie3-rst {
+> >>> -                     rockchip,pins =3D <4 RK_PB6 RK_FUNC_GPIO &pcfg_=
+pull_none>;
+> >>> -             };
+> >>> -
+> >>>                pcie3_vcc3v3_en: pcie3-vcc3v3-en {
+> >>>                        rockchip,pins =3D <1 RK_PA4 RK_FUNC_GPIO &pcfg=
+_pull_none>;
+> >>>                };
+> >>>
+> >>> base-commit: 34afb82a3c67f869267a26f593b6f8fc6bf35905
+> >>
+> >>
+> >
+> > _______________________________________________
+> > Linux-rockchip mailing list
+> > Linux-rockchip@lists.infradead.org
+> > http://lists.infradead.org/mailman/listinfo/linux-rockchip
+>
 
