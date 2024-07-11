@@ -1,64 +1,65 @@
-Return-Path: <devicetree+bounces-85064-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85065-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D93CA92EBD8
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 17:41:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F4FF92EBE0
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 17:44:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 08D8E1C212F3
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 15:41:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F01032830A5
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 15:44:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E4221662FA;
-	Thu, 11 Jul 2024 15:41:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14AEE16A93F;
+	Thu, 11 Jul 2024 15:44:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Tedqk7W4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hvSASpCG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EE56171BA;
-	Thu, 11 Jul 2024 15:41:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCEA028FF;
+	Thu, 11 Jul 2024 15:44:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720712464; cv=none; b=dGNajr5dayZjNeLvEOMpVU0imwzULuss4RfYSezO3xPEWXVFwvZvMq3pn5D9NTptM6HWPFMMC6SQRRrNVS7a3UCY0hX7zqE8Pz5Ke23CEHYnqRu1BHMT1vwnYe6smSNRn+Ev1qgEKlaXAg9tpmxJTKeLl4LAKV0+4cRoCkcu688=
+	t=1720712643; cv=none; b=ocN6VWhsLPePtM0avEHK7p/Hps3TWv1TFDP7I2QDshzqeQxK6w2Dlis5VMwnBDkBOplJ/HY8Z+V3svDdMontn6RSOXXTLfHp1ruGyrFwPv2fTbK4+RdOCB3g8c+Mxf/aD0LefWwoxwk+Go3KUIVz71yISfrvwFrgwLzHH5RmHrI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720712464; c=relaxed/simple;
-	bh=MvnTZvYlvAJG+4eJfd/4pU9PjPA3LpeEu0NyvpIktlM=;
+	s=arc-20240116; t=1720712643; c=relaxed/simple;
+	bh=6xTQR2Dbjcsm8mmLfND+qt+uG4caLnLxEYW9q0IhclA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=relxDaiMEVSqWBp2v9MzkRqya3BGIc1MO2PlVv/rc4dasCfvM73XdnlJt4JNMwGtiiJXMMyaBWHa26jTsca5E3YNIO0ZktpHBr5Jw004w+0TCA2x0nT6xWRgrMSIMsqpfxGoEqw7flaQbMKOSBmF3sD+a0NEi9eyRNe7oXMPVdE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Tedqk7W4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E65ACC116B1;
-	Thu, 11 Jul 2024 15:41:00 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=hSgqywCjTIFSbOJ5kb9HIPKGcN0JAlZeicgdyaEbbju8Z7xL+C5bBHaiAxbDfzF7F5S8z8w+jyqMECJzm5/7x049ynQ66NRCIXj9Zdqke7SQW/5brDyEN4XLhi9lSUGuMMdwL8p5aEipCgIxUhN8IquZo1c21yxS6u/MtLjmJdA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hvSASpCG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5E50C116B1;
+	Thu, 11 Jul 2024 15:43:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720712463;
-	bh=MvnTZvYlvAJG+4eJfd/4pU9PjPA3LpeEu0NyvpIktlM=;
+	s=k20201202; t=1720712642;
+	bh=6xTQR2Dbjcsm8mmLfND+qt+uG4caLnLxEYW9q0IhclA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Tedqk7W41opP+LCc6/iGXIb8iBb6poMiWyRHQfNmGHiDC5JE6sE4R+hFX0Inzlav9
-	 FPmAbdCJ3zDU9xDuZtvObcQj55D/8ZXkNi92bc7wpDuNvMf8ak/hVsc1aOBky+vKrD
-	 dErKdJnFzdWoKJQzO829pV5WH/FxBIOR3HugSSHjlXW6+T0RXiJwV+sWXNwPR25ON/
-	 Q+yiIxe23SD/zVZB6vuLiGSvQwyTJJRKwWafsfoFAfyR1T1g1DKmYsVhHsxIQAYIW2
-	 IzeS/01teXFWubsoK203q2Uhv5qwSECzrIkVcFgEJcshVlwMe7Fa2lR2aspPTBsmr9
-	 kT9MlQc36cwWQ==
-Date: Thu, 11 Jul 2024 16:40:58 +0100
+	b=hvSASpCG+qlpSxPDAagbNeLae8GIo6nCRbVPtyf0j7PmqrLyyd7wRaSJxL8CbxXo4
+	 kzk25/ZUtNlFmUramS4UNr22Rg3ZnXweD6R0YGFEV8Mgeyxb0tTpzkrtO+5VruJqPe
+	 PxNFXSQ8yF9zbNu90uGCJ0iP44CEGbepG7we3zk11ijx8k13DMv1gC251DhPvs4KfG
+	 7t9gPdVfoP6f2rk+ZNlpJCWZT2HJROpJ4jAMsvp1csdC9rvdLvGllEO2ZVFl1ewbHU
+	 7whG72ZXbvrhFvwCx8chJFcqe0Rrn2Ib/ND1dAl9KLvsbT9C6fJc43g8O//G3tuYM6
+	 MwEycof8W0ung==
+Date: Thu, 11 Jul 2024 16:43:57 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Nicolas Ferre <nicolas.ferre@microchip.com>
-Cc: Varshini.Rajendran@microchip.com, tglx@linutronix.de, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org,
-	alexandre.belloni@bootlin.com, claudiu.beznea@tuxon.dev,
-	Dharma.B@microchip.com, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	maz@kernel.org
-Subject: Re: [PATCH v5 15/27] dt-bindings: interrupt-controller: Document the
- property microchip,nr-irqs
-Message-ID: <20240711-molasses-shut-1fc7d9fe6a0e@spud>
-References: <20240703102011.193343-1-varshini.rajendran@microchip.com>
- <20240703102814.196063-1-varshini.rajendran@microchip.com>
- <20240703-dentist-wired-bdb063522ef7@spud>
- <a41274c3-fd32-4eba-8240-bf95e41f63d9@microchip.com>
- <82ca4f3d-fa78-4617-823e-69f16a2c3319@microchip.com>
- <a5b78d97-c646-4915-8d6c-65f134ae08eb@microchip.com>
+To: Kim Seer Paller <kimseer.paller@analog.com>
+Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Dimitri Fedrau <dima.fedrau@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Michael Hennerich <michael.hennerich@analog.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+Subject: Re: [PATCH v6 3/6] dt-bindings: iio: dac: Generalize DAC common
+ properties
+Message-ID: <20240711-drew-skipper-a7a35e54ac2e@spud>
+References: <20240711114221.62386-1-kimseer.paller@analog.com>
+ <20240711114221.62386-4-kimseer.paller@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,107 +67,100 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="nDBBa4rtrpxCXD0u"
+	protocol="application/pgp-signature"; boundary="nV8N9lxMRcLUX4/B"
 Content-Disposition: inline
-In-Reply-To: <a5b78d97-c646-4915-8d6c-65f134ae08eb@microchip.com>
+In-Reply-To: <20240711114221.62386-4-kimseer.paller@analog.com>
 
 
---nDBBa4rtrpxCXD0u
+--nV8N9lxMRcLUX4/B
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jul 11, 2024 at 02:42:01PM +0200, Nicolas Ferre wrote:
-> Answering to myself (again) and to Conor...
+On Thu, Jul 11, 2024 at 07:42:18PM +0800, Kim Seer Paller wrote:
+> Introduce a generalized DAC binding that can be used by DACs that have
+> similar properties adding output-range-microamp and output-range-microvol=
+t.
 >=20
-> On 09/07/2024 at 16:06, Nicolas.Ferre@microchip.com wrote:
-> > On 09/07/2024 at 08:13, Varshini Rajendran - I67070 wrote:
-> > > On 03/07/24 9:11 pm, Conor Dooley wrote:
-> > > > On Wed, Jul 03, 2024 at 03:58:14PM +0530, Varshini Rajendran wrote:
-> > > > > Add the description and conditions to the device tree documentati=
-on
-> > > > > for the property microchip,nr-irqs.
-> > > > >=20
-> > > > > Signed-off-by: Varshini Rajendran<varshini.rajendran@microchip.co=
-m>
-> > > > This needs to be part of patch 14.
-> > > >=20
-> > > > > ---
-> > > > >     .../bindings/interrupt-controller/atmel,aic.yaml     | 12 +++=
-+++++++++
-> > > > >     1 file changed, 12 insertions(+)
-> > > > >=20
-> > > > > diff --git a/Documentation/devicetree/bindings/interrupt-controll=
-er/atmel,aic.yaml b/Documentation/devicetree/bindings/interrupt-controller/=
-atmel,aic.yaml
-> > > > > index 9c5af9dbcb6e..06e5f92e7d53 100644
-> > > > > --- a/Documentation/devicetree/bindings/interrupt-controller/atme=
-l,aic.yaml
-> > > > > +++ b/Documentation/devicetree/bindings/interrupt-controller/atme=
-l,aic.yaml
-> > > > > @@ -54,6 +54,10 @@ properties:
-> > > > >         $ref: /schemas/types.yaml#/definitions/uint32-array
-> > > > >         description: u32 array of external irqs.
-> > > > > +  microchip,nr-irqs:
-> > > > > +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> > > > > +    description: u32 array of nr_irqs.
-> > > > This makes no sense, did you just copy from above? Why would the nu=
-mber
-> > > > of irqs be an array? Why can't you determine this from the compatbl=
-e?
-> > > >=20
-> > > Sorry for the bad description. I will correct it in the next version.
-> > >=20
-> > > For the second part of the question, this change was done as a step to
-> > > resolve having a new compatible while having practically the same IP
-> > > pointed out in the v3 of the series [1]. It is kind of looping back to
-> > > the initial idea now. Even if this is added as a driver data, it
-> > > overrides the expectation from the comment in [1]. Please suggest. I
-> >=20
-> > In your v3 patch, indeed you were extracting the number of IRQs from the
-> > compatibility string (aka, from device tree...). It's my preferred
-> > solution as well.
-> >=20
-> > So, come back to v3 [1] and address what Conor said in v4 "...having
-> > specific $soc_aic5_of_init() functions for each SoC seems silly when
-> > usually only the number of interrupts changes. The number of IRQs could
-> > be in the match data and you could use aic5_of_init in your
-> > IRQCHIP_DECLARE directly"
+> Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
+> ---
+>  .../devicetree/bindings/iio/dac/dac.yaml      | 50 +++++++++++++++++++
+>  1 file changed, 50 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/dac/dac.yaml
 >=20
-> Well, after a brief talk with Varshini and a review of the code, I'm not =
-so
-> sure it's worth re-writing this part anymore Conor...
-> It'll need changing 3-4 files (2 drivers and the "common" .h/.c files,
-> because of the type change of ".data"); handling the special case of sama=
-5d2
-> (smr_cache thing) and touching lot more code than what is done in v3 of t=
-his
-> patch series.
->=20
-> Original design was probably not optimal, but well, it's simple,
-> understandable and except if there is a big benefit in moving, I would
-> prefer to keep it like this.
-> If you agree, we can ask Varshini to re-post a separated IRQ-focused seri=
-es
-> for handling sam9x75 changes.
+> diff --git a/Documentation/devicetree/bindings/iio/dac/dac.yaml b/Documen=
+tation/devicetree/bindings/iio/dac/dac.yaml
+> new file mode 100644
+> index 000000000000..a9787bbcd22b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/dac/dac.yaml
+> @@ -0,0 +1,50 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/dac/dac.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: IIO Common Properties for DAC Channels
+> +
+> +maintainers:
+> +  - Jonathan Cameron <jic23@kernel.org>
+> +
+> +description:
+> +  A few properties are defined in a common way for DAC channels.
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^channel(@[0-9a-f]+)?$"
+> +    description:
+> +      A channel index should match reg.
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  label:
+> +    description: Unique name to identify which channel this is.
+> +
+> +  output-range-microamp:
+> +    maxItems: 2
+> +    minItems: 2
+> +    description:
+> +      Specify the channel output full scale range in microamperes.
+> +
+> +  output-range-microvolt:
+> +    maxItems: 2
+> +    minItems: 2
+> +    description:
+> +      Specify the channel output full scale range in microvolts.
+> +
+> +oneOf:
+> +  - required:
+> +      - reg
+> +      - output-range-microamp
+> +  - required:
+> +      - reg
+> +      - output-range-microvolt
+> +
+> +required:
+> +  - reg
 
-I dunno, it's up to the folks that care about the driver whether they
-want to do restructuring, not me. The nr-irqs property stays NAKed though,
-since the information is determinable from the compatible.
+I think my suggestion was outright wrong, and caused Rob's bot to
+complain. Go back to what you had and,
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
-Thanks,
+Cheers,
 Conor.
 
---nDBBa4rtrpxCXD0u
+--nV8N9lxMRcLUX4/B
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZo/9CgAKCRB4tDGHoIJi
-0mx3AQCsqLkCivWDia6wN8hZKPu1StC5UsY51d1Rozwcn71YtgEArFLPqvA4ftRs
-hwFCmStS0rheTKUI+76oEvQMyLkXJw4=
-=Z7jH
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZo/9vQAKCRB4tDGHoIJi
+0vgzAPsFjVELwbDRZbfWEeqEHWdExIjuX+WPWijY5EBS7Zi4sQD7B/BLM5JhPO2q
+83li+n5FyWeNOuiIvwm00eSBPmH4Hgw=
+=1bv1
 -----END PGP SIGNATURE-----
 
---nDBBa4rtrpxCXD0u--
+--nV8N9lxMRcLUX4/B--
 
