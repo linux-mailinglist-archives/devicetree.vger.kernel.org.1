@@ -1,167 +1,110 @@
-Return-Path: <devicetree+bounces-84926-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84927-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9576D92E402
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 12:02:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BAD592E41F
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 12:04:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 55984284DAF
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 10:02:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D522F1F21A3C
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 10:04:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC31C1591E2;
-	Thu, 11 Jul 2024 10:01:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E3711581F9;
+	Thu, 11 Jul 2024 10:03:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ZE5BXLR5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SHC/rmrk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B02F1586F5;
-	Thu, 11 Jul 2024 10:01:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30802152533;
+	Thu, 11 Jul 2024 10:03:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720692106; cv=none; b=jYiVXuC9n8B0arjHxz0qKNlJ5L2QLaazjvc0MD6AsLxemXxUDVJaUbU43obN2yyx/r7rApm0K3f5GhQDtz5qkRiCqgnBAzEmOnZcSq8+DFHxR8nYnDzthMPs+raN4SxP4fNKZAqq6AKPaobsUPjP0Whbj15L/pl/gypUDOZ41wk=
+	t=1720692234; cv=none; b=oCxelkaGqvfWYx1KSG285eSe3mObgHvwA4k0LRMe2kmt3SZ6NMgGwyHhJRdDvfHnq09ZyjRvXTH9s7Qh7YMDIgh5oYyqAgTviX/5aj+Wau0BXzmg9bbogWzqBJb6K93M0fxyBLBxPIFYe+FWEdDz5cNnEcT/ES1FNOE3t+ql2n0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720692106; c=relaxed/simple;
-	bh=5KKw6M74A/DclraUTuoBJCsigKAUo94+LXOXkaaNZcc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=sDTTw8MSitIfaIHQ7xPG/ndz2mGCDDPj5XvcpmmCG1GJt7XH2oGOpfTjwi/OEMgsyZj2XqDqm8Z14GpSTbvgnfSgYr1A/byl/VIAIPoTlWdISxR8skNU4tkYNn4ndjsnYa9LCYIJBBhip9Ufk3llrhL1Ily+KcQunZlOapF7SFw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=ZE5BXLR5; arc=none smtp.client-ip=217.70.183.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 4CE8F24000B;
-	Thu, 11 Jul 2024 10:01:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1720692097;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ES8mi7d+KSw4EqedKB92e7v4sIMF0mwW3Ict+VP51AU=;
-	b=ZE5BXLR57bsa5m7g8Ihks6LcaGQ8UnM1nMs8mFExm5NEkou3gUFQKZ5WJlV6Hi/mb3mBig
-	VQ8y4xj4eCAKeWRL45ml+xuVcdRPNQO+QAqrvHBlQbxTMMyK3MHUDMsyoSyOEsL29K7QjM
-	KaOnaur4TlpZ8lYTSQGGW/B0HSRH/GCzEPAWsnBxzKHhCBVqD4E3JMaAS5reQ7aMDUPX78
-	uG1cyGb/JsYfIPC9EP0anORiJlLY/RduY1LULOrZVOoXlXr8gjEVCM4i5WF5w/9tgvKQYW
-	n5w0uZcDg/CWZjlcyFzBd2O/JPdBBBXTYkRRFZuoHAW53+dJ4qikKbQ45B2tXQ==
-From: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-Date: Thu, 11 Jul 2024 12:01:31 +0200
-Subject: [PATCH v4 4/4] riscv: dts: sophgo: Add LicheeRV Nano board device
+	s=arc-20240116; t=1720692234; c=relaxed/simple;
+	bh=bytiMLPV2lOGNSZcnjRWSwf1EM6gvvVUhRuOoOG5GjI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tyXql3hrUt1p0O45J56x8ac22UaKtjuRNbsx0k/5xkEVkCaQP3gyacLMwMWzCgie3Vo0Qa3/nL56aYc9CVRYQR6FeJ3T3fUOuhqZejLdaBN3FnikI+ufP7zlblV32Tm8Zn9h33LOtFQZzmN+YdFotjDKYB2srCu7WsYFiHy5QIc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SHC/rmrk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 579A5C116B1;
+	Thu, 11 Jul 2024 10:03:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720692233;
+	bh=bytiMLPV2lOGNSZcnjRWSwf1EM6gvvVUhRuOoOG5GjI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=SHC/rmrkFJBNnhHWjhfBtFBIlh534rct1k2taOIkDKk+101uvfPXDBsNvBncJHH69
+	 6xokRbwj/7Hx+p9lts6SZYwBYKDaQFm/D9krohWerkboJeYKAu3Ase4YYznVo3nOCb
+	 mCmvMl7jOA7ZiKV/Hjz2oyXNYDjjECFA7WTQKbMlc3j9Lp5A03CDYohnrx9+4o8aef
+	 5qim+/+1Flo7OSlt2K842XSmwyuZoWHFmv1Y9hmSIWRXyMAd0d/Lkc27CwiVcAiF3a
+	 xK4wzF9ezHzSwAp+P4h//HqsCb8jyjokeyil3cMRtNyoEjssQTWqOrR/buY2gMj9PV
+	 ubTvHOsL3Xy/g==
+Date: Thu, 11 Jul 2024 11:03:47 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Yixun Lan <dlan@gentoo.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Anup Patel <anup@brainfault.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>,
+	devicetree@vger.kernel.org, linux-serial@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Jesse Taube <jesse@rivosinc.com>,
+	Yangyu Chen <cyy@cyyself.name>,
+	Inochi Amaoto <inochiama@outlook.com>,
+	Meng Zhang <zhangmeng.kevin@spacemit.com>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	Meng Zhang <kevin.z.m@hotmail.com>, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v4 08/10] riscv: dts: add initial SpacemiT K1 SoC device
  tree
+Message-ID: <20240711-legwarmer-repent-b88851e1eefc@spud>
+References: <20240709-k1-01-basic-dt-v4-0-ae5bb5e56aaf@gentoo.org>
+ <20240709-k1-01-basic-dt-v4-8-ae5bb5e56aaf@gentoo.org>
+ <668f8cb0.630a0220.0385.4d00SMTPIN_ADDED_BROKEN@mx.google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240711-sg2002-v4-4-d97ec2367095@bootlin.com>
-References: <20240711-sg2002-v4-0-d97ec2367095@bootlin.com>
-In-Reply-To: <20240711-sg2002-v4-0-d97ec2367095@bootlin.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Paul Walmsley <paul.walmsley@sifive.com>, 
- Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@outlook.com>, 
- Chao Wei <chao.wei@sophgo.com>, Conor Dooley <conor@kernel.org>
-Cc: Albert Ou <aou@eecs.berkeley.edu>, Palmer Dabbelt <palmer@dabbelt.com>, 
- Samuel Holland <samuel.holland@sifive.com>, 
- Thomas Gleixner <tglx@linutronix.de>, 
- Daniel Lezcano <daniel.lezcano@linaro.org>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- =?utf-8?q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-riscv@lists.infradead.org, 
- Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-X-Mailer: b4 0.14.0
-X-GND-Sasl: thomas.bonnefille@bootlin.com
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="ofIF/HTzLj1NJtwG"
+Content-Disposition: inline
+In-Reply-To: <668f8cb0.630a0220.0385.4d00SMTPIN_ADDED_BROKEN@mx.google.com>
 
-LicheeRV Nano B [1] is an embedded development platform based on the SOPHGO
-SG2002 chip, the B(ase) version is deprived of Wifi/Bluetooth and Ethernet.
 
-Add only support for UART and SDHCI.
+--ofIF/HTzLj1NJtwG
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Link: https://wiki.sipeed.com/hardware/en/lichee/RV_Nano/1_intro.html [1]
+On Thu, Jul 11, 2024 at 07:40:53AM +0000, Yixun Lan wrote:
+> Hi All
+>=20
+> On 03:18 Tue 09 Jul     , Yixun Lan wrote:
+> > From: Yangyu Chen <cyy@cyyself.name>
+> >=20
+> > Banana Pi BPI-F3 motherboard is powered by SpacemiT K1[1].
 
-Signed-off-by: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
----
- arch/riscv/boot/dts/sophgo/Makefile                |  1 +
- .../boot/dts/sophgo/sg2002-licheerv-nano-b.dts     | 54 ++++++++++++++++++++++
- 2 files changed, 55 insertions(+)
+I seem to have got this message in my inbox 4 times.
 
-diff --git a/arch/riscv/boot/dts/sophgo/Makefile b/arch/riscv/boot/dts/sophgo/Makefile
-index 57ad82a61ea6..47d4243a8f35 100644
---- a/arch/riscv/boot/dts/sophgo/Makefile
-+++ b/arch/riscv/boot/dts/sophgo/Makefile
-@@ -1,4 +1,5 @@
- # SPDX-License-Identifier: GPL-2.0
- dtb-$(CONFIG_ARCH_SOPHGO) += cv1800b-milkv-duo.dtb
- dtb-$(CONFIG_ARCH_SOPHGO) += cv1812h-huashan-pi.dtb
-+dtb-$(CONFIG_ARCH_SOPHGO) += sg2002-licheerv-nano-b.dtb
- dtb-$(CONFIG_ARCH_SOPHGO) += sg2042-milkv-pioneer.dtb
-diff --git a/arch/riscv/boot/dts/sophgo/sg2002-licheerv-nano-b.dts b/arch/riscv/boot/dts/sophgo/sg2002-licheerv-nano-b.dts
-new file mode 100644
-index 000000000000..fc98b6a0ddf7
---- /dev/null
-+++ b/arch/riscv/boot/dts/sophgo/sg2002-licheerv-nano-b.dts
-@@ -0,0 +1,54 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright (C) 2024 Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include "sg2002.dtsi"
-+
-+/ {
-+	model = "LicheeRV Nano B";
-+	compatible = "sipeed,licheerv-nano-b", "sipeed,licheerv-nano", "sophgo,sg2002";
-+
-+	aliases {
-+		gpio0 = &gpio0;
-+		gpio1 = &gpio1;
-+		gpio2 = &gpio2;
-+		gpio3 = &gpio3;
-+		serial0 = &uart0;
-+		serial1 = &uart1;
-+		serial2 = &uart2;
-+		serial3 = &uart3;
-+		serial4 = &uart4;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+};
-+
-+&osc {
-+	clock-frequency = <25000000>;
-+};
-+
-+&sdhci0 {
-+	status = "okay";
-+	bus-width = <4>;
-+	no-1-8-v;
-+	no-mmc;
-+	no-sdio;
-+	disable-wp;
-+};
-+
-+&uart0 {
-+	status = "okay";
-+};
-+
-+&uart1 {
-+	status = "okay";
-+};
-+
-+&i2c0 {
-+	status = "okay";
-+};
+--ofIF/HTzLj1NJtwG
+Content-Type: application/pgp-signature; name="signature.asc"
 
--- 
-2.45.2
+-----BEGIN PGP SIGNATURE-----
 
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZo+uAwAKCRB4tDGHoIJi
+0npnAQDSIwrWnFT4oPX+7BLubmQIPoFzlorP/nRxCD2Rk1JVWgD+N7hX/QS8vNkV
+AxFOywvGmQe87lC62pC5eCo2LGpc8w0=
+=Mq4f
+-----END PGP SIGNATURE-----
+
+--ofIF/HTzLj1NJtwG--
 
