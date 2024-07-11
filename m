@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-84863-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84864-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C9BD92E03C
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 08:35:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B53C692E03D
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 08:35:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F0A6328345B
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 06:35:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E6F561C21351
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 06:35:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 480ED8249A;
-	Thu, 11 Jul 2024 06:35:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3C8084DE9;
+	Thu, 11 Jul 2024 06:35:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ntrezK/z"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mdV2jWON"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F5FC1C68E;
-	Thu, 11 Jul 2024 06:35:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 998E51C68E;
+	Thu, 11 Jul 2024 06:35:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720679715; cv=none; b=SpF7Tm4HcCuDDP5BeCwn4pfVP4WHRZ8CMgCGT91hYUbqPMbedkDK/3Q6QdQ20z8N2aAkpj5vMXwhAB71zgpwOHK74BlEOcI03RWILYNi3W5jBH/RkDSe2UV+7B5/SFxxOk2iXeRDC4Cj7CFX6EMiNw66fAz4On2Asm/jSF6uwXk=
+	t=1720679739; cv=none; b=rQuMRTitHujD0oYWLNQAnHAVQcKZacteBwLobErTq1fMPBFFGquiCTbgB/Jzl2WS7gC3JLP7jmZBkXF7DGx5IlHchNm64PLxCN3LJwFP0rtUUN25OMr/hDO7ypMO/7wpaHA/9/xVERnPQl3hfgHLwpKnWF1aGjxizAKYzjYekzw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720679715; c=relaxed/simple;
-	bh=QnQL8wf1URTmQdBNcrTnQ+T5GUOqjOmogM1/F3TqdfA=;
+	s=arc-20240116; t=1720679739; c=relaxed/simple;
+	bh=c3piDjoGzCASm9/QLTQogRR0dyuZpYLalUZP2VeH/nA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VPWK/CgL2REkacUcAMKKIOG5zqD9SaQyPrNR5B1CwB7+akmhlRMxPSNIHm+/rJpcyduKytWbYsEpMDz5o9wnPRuDIqbmvuE/6No+8fXHkGBYw/tA5ZSa93r5RkhIgmlU5mSYS1DUSF9lqU4oPOleO4DalUMqDlwWBLdYKpIF3Yw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ntrezK/z; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 482F7C116B1;
-	Thu, 11 Jul 2024 06:35:09 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=CctGIYefkC/JmdJND7uQVdHN6fwZsQQWVF1pEr5kxo6SGbJ/wPBv86rO4K1Vl4pXwqRUUcbsvT33cegVvwY1E9Yp4vIN1rCROau4OBRvO7tAYPIkZOmec+ej+KiejRicqObPuokVeDfh0mIoga4LBm4r02qEqI2O7YM76Uh/lv0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mdV2jWON; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1CA48C116B1;
+	Thu, 11 Jul 2024 06:35:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720679714;
-	bh=QnQL8wf1URTmQdBNcrTnQ+T5GUOqjOmogM1/F3TqdfA=;
+	s=k20201202; t=1720679739;
+	bh=c3piDjoGzCASm9/QLTQogRR0dyuZpYLalUZP2VeH/nA=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ntrezK/zX/Gz4shyuXUKol3zebR1TY2jvMA5OAMJQG3NPT+j2BLmX1g29d9cGzkDD
-	 8/48SvBnpp2OgS3PlH9mKPgvw/2zhem5ydS1sqMTIS5GtfWXjzu3eDXKzgcgvnPIHb
-	 HkqBYhk91mw8czkyRULz20b85/T3fn5FmBIC/UiH1Oa2HBho/bHYHd/htnvvVLwku8
-	 qd0ah1w6q3QvWRE4GPUCazaX39g1itzCV/5SqiC2CA4iOO1QqHmxiUn+XBYOg8wYcU
-	 AuCsmwJ7Dmd/zj/mDv6gPaBll2oeCNofyxrerk2ciOMn7zbvwlQxshtj9lLV1VBHSn
-	 f44nJi1THonug==
-Message-ID: <e387cb4d-f700-41f1-826a-ef6ff71f2589@kernel.org>
-Date: Thu, 11 Jul 2024 08:35:08 +0200
+	b=mdV2jWON4mGszN6Ps5jOIPyI9zVuqUrOPH6brZRBcApop1GAz+FlZQk873mt3Kja7
+	 1IF5FtPtLXZnH5MUFVgI4Rn+VkSvErLjEDOTdx1EtD7da1b/fUuHTMG/5UWSeWan/O
+	 SJxRxCNS2A+x0jQAu+Z6RbHbmg7CTwgJrfI6mYrXS7d6tGmd65TA3fYRfjxZVH5f6x
+	 ZaR95+IiKKa599bL6779Op7TKSD8hclwJaFX4SMWKuf2/QEtPhDk5pwjjwmfP0AFi7
+	 oVGBmoBYcqjNRw6KMJMhBKrHemj8yzLXEXEYwhRgZ/VUkPQG4rCob05E0+RD9HmLVH
+	 qOLkU656WsHNg==
+Message-ID: <45f32f0f-43fa-412f-9aa9-5afd93b421d0@kernel.org>
+Date: Thu, 11 Jul 2024 08:35:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,14 +50,13 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V3 1/4] dt-bindings: arm: sunxi: Add Anbernic RG35XXSP
-To: Chris Morgan <macroalpha82@gmail.com>, linux-sunxi@lists.linux.dev
-Cc: devicetree@vger.kernel.org, mripard@kernel.org, ryan@testtoast.com,
- andre.przywara@arm.com, samuel@sholland.org, jernej.skrabec@gmail.com,
- wens@csie.org, conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
- Chris Morgan <macromorgan@hotmail.com>
-References: <20240710231718.106894-1-macroalpha82@gmail.com>
- <20240710231718.106894-2-macroalpha82@gmail.com>
+Subject: Re: [PATCH] dt-bindings: trivial-devices: document the Sierra
+ Wireless mangOH Green SPI IoT interface
+To: Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240710-topic-mdm9615-mangoh-iotport-spi-bindings-v1-1-3efe20cfea8a@linaro.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -103,19 +102,18 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240710231718.106894-2-macroalpha82@gmail.com>
+In-Reply-To: <20240710-topic-mdm9615-mangoh-iotport-spi-bindings-v1-1-3efe20cfea8a@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 11/07/2024 01:17, Chris Morgan wrote:
-> From: Chris Morgan <macromorgan@hotmail.com>
+On 10/07/2024 19:02, Neil Armstrong wrote:
+> Document the Sierra Wireless mangOH Green SPI IoT interface as a trivial
+> device.
 > 
-> Add the Anbernic RG35XXSP variant device.
+> This fixes the following check:
+> qcom-mdm9615-wp8548-mangoh-green.dtb: /soc/gsbi@16200000/spi@16280000/spi@0: failed to match any schema with compatible: ['swir,mangoh-iotport-spi']
 > 
-> The Anbernic RG35XXSP is almost identical to the RG35XX-Plus, but in a
-> clamshell form-factor with an external RTC and a lid switch.
-> 
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
