@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-84859-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84860-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AAD992E007
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 08:24:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8136B92E008
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 08:25:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DEB5DB20CC3
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 06:24:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DC7AA282197
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 06:25:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CD60824AD;
-	Thu, 11 Jul 2024 06:24:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52A5B82C76;
+	Thu, 11 Jul 2024 06:25:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tZ/PdIkG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ON5/gIDn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 775CE1C14
-	for <devicetree@vger.kernel.org>; Thu, 11 Jul 2024 06:24:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 238B91C14;
+	Thu, 11 Jul 2024 06:25:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720679088; cv=none; b=m9xB+ygry9XYkJVDsyNaoVuP74L9tCJXfmXHucX05j8EAV+Ihtc2V8xIiNHxY+xArYVilDaBFNtryhSsTrAEGasuHrU4nb7Tx4cN3Wd5n9zkMHijdzB9hqx7ri8nNqfrV7dvRC+qRMBfl5sB8Stxi5nGSP49FnB+GIkx0lxsL9I=
+	t=1720679133; cv=none; b=WOr8WGlcURVbwagrPDDDY8GR9kYcUGWVd9rOsxeGlh96ErfJaAKr3zKlRFmbcNSHyRG41U58lEtR1mFSJ0xS5z9upEHz70mO7h6PFi02YvBLWyLUAnI2tobTAnO+Hwm23iEA9CdTRumEAs6tqHHb9tPdZFdc0z4T0wCANlsV0mY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720679088; c=relaxed/simple;
-	bh=xC7e13IMhj6Dg+z216j2wygrK73xGHrHm7xc0ccM8ok=;
+	s=arc-20240116; t=1720679133; c=relaxed/simple;
+	bh=YQfeuPN2HOffCv0MVzTXwIsDX0oyjlA8SwrOf5ZnO2k=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qeYCnReDqzAeeMB5CnENp84wtXFhxj+mVOlhXPVvBy5RhXMGBVO3er3hJfRv+E1KAWqlX1mdasHggEM0emGXvc2jMNaGEgEVwqZXKzT6rYK/SzfPL9VlHXPc9BHqfjd4DSGmTJZYAnCPz15uM88BWViDnFuOF7AtAIQiYIVm8Ns=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tZ/PdIkG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7FC74C116B1;
-	Thu, 11 Jul 2024 06:24:44 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=rqgfdsvmxcjp5s/BtErYPO9NNmYkvhpKImvTXiCVoJkiVVoKlJlDs2nY9sPlKxZkdQQ/MN+4fvPH07tujV86UGIQhmL/UT7ZUt0+xD0eg5bRgYKJGxPFrjGl4Td/S5q3cmg6IaWdqkExcL3fz62Nkyfk9a9NOfAQ2tXuowPzRcM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ON5/gIDn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41563C116B1;
+	Thu, 11 Jul 2024 06:25:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720679088;
-	bh=xC7e13IMhj6Dg+z216j2wygrK73xGHrHm7xc0ccM8ok=;
+	s=k20201202; t=1720679132;
+	bh=YQfeuPN2HOffCv0MVzTXwIsDX0oyjlA8SwrOf5ZnO2k=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=tZ/PdIkGxEzFAXGtiRGXWSvWjSEVJYBd/XH/XQVvML+cExmehevfbEy7Al+DjYu88
-	 QwwSFE8uCs4txTPWTj0NE2xCLP8cjiYL8amBbda8gN3tR3ow90ckhTmDBEhb7vpXEa
-	 7zasEkiOpPZpzj4nJKNRyk2jnUOY+a95q98oNuU1NnvSkwLN6mI5+sVfXavyvb0Qap
-	 I3drgotRXQ0jEBfYD4FisXA9IliZ82FOBiymZ3pAcsQWp/K6KlFldZiWuGndf1QWiL
-	 zvc7cURc84qoaLinkWva+DVUItq0UyZNnfCIyCajS6tUtWwEJko/YJTsSx4wBxEsrd
-	 7ELXKRbzoMALQ==
-Message-ID: <1fece7cc-fa01-4bea-ac73-a975e042c669@kernel.org>
-Date: Thu, 11 Jul 2024 08:24:42 +0200
+	b=ON5/gIDnPsfVCZ/QIqwJ4P9F562+8pwPRhjsP781+12O13KiubrqYxouc24RQ5+G4
+	 Kao00dsMVmIn7fs7FpTfU10zM+dYIetlhwnCCH6HDpWE4/LhBFiATYeIEfPOCAEQ19
+	 wkK9SSPmsyoZFYSyskfnXiWdcjvK1c0oTj2fBtRFMimJFHk0SzVg07lok5DwVYOQkq
+	 xB+/9dlhTmvFM5Hl/6y7wSw8wbWvKda9wVaGqKcJVc8DoIRd95CobPvwulz/+FXLVg
+	 SwD2E7KE78k2+dkb3MHa2OVhZL3lyA0Lmmwf8CoKr15r2sUEmsvMhYH5eql88/c6DH
+	 3mR8I+cFYnw+w==
+Message-ID: <00706b14-9366-4109-802c-c52aefb67cd0@kernel.org>
+Date: Thu, 11 Jul 2024 08:25:22 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: amlogic: change product name for Radxa
- ZERO 2 (Pro)
-To: FUKAUMI Naoki <naoki@radxa.com>, neil.armstrong@linaro.org
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- khilman@baylibre.com, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com, devicetree@vger.kernel.org,
- linux-amlogic@lists.infradead.org
-References: <20240711034035.3921122-1-naoki@radxa.com>
- <20240711034035.3921122-2-naoki@radxa.com>
+Subject: Re: [PATCH v2 2/3] dt-bindings: thermal: amlogic,thermal: add
+ optional power-domains
+To: George Stark <gnstark@salutedevices.com>, andi.shyti@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ neil.armstrong@linaro.org, khilman@baylibre.com, jbrunet@baylibre.com,
+ martin.blumenstingl@googlemail.com, glaroque@baylibre.com,
+ rafael@kernel.org, daniel.lezcano@linaro.org, rui.zhang@intel.com,
+ lukasz.luba@arm.com, b.galvani@gmail.com, mmkurbanov@sberdevices.ru
+Cc: linux-i2c@vger.kernel.org, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ kernel@salutedevices.com
+References: <20240710223214.2348418-1-gnstark@salutedevices.com>
+ <20240710223214.2348418-3-gnstark@salutedevices.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,55 +109,17 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240711034035.3921122-2-naoki@radxa.com>
+In-Reply-To: <20240710223214.2348418-3-gnstark@salutedevices.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 11/07/2024 05:40, FUKAUMI Naoki wrote:
-> a while ago, we changed product name (hardware is same),
+On 11/07/2024 00:32, George Stark wrote:
+> On newer SoCs, the thermal hardware can require a power domain to
+> operate so add corresponding optional property.
 > 
-> from: Radxa ZERO2
->   to: Radxa ZERO 2 Pro
-> 
-> this patch reflect the change in dts.
-> 
-> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
-> ---
->  arch/arm64/boot/dts/amlogic/Makefile                        | 2 +-
->  ...-g12b-radxa-zero2.dts => meson-g12b-radxa-zero-2pro.dts} | 6 +++---
->  2 files changed, 4 insertions(+), 4 deletions(-)
->  rename arch/arm64/boot/dts/amlogic/{meson-g12b-radxa-zero2.dts => meson-g12b-radxa-zero-2pro.dts} (98%)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-> index 29417f04f886..5694ad0edcde 100644
-> --- a/arch/arm64/boot/dts/amlogic/Makefile
-> +++ b/arch/arm64/boot/dts/amlogic/Makefile
-> @@ -31,7 +31,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-g12b-odroid-go-ultra.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-g12b-odroid-n2-plus.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-g12b-odroid-n2.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-g12b-odroid-n2l.dtb
-> -dtb-$(CONFIG_ARCH_MESON) += meson-g12b-radxa-zero2.dtb
-> +dtb-$(CONFIG_ARCH_MESON) += meson-g12b-radxa-zero-2pro.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-g12b-s922x-bananapi-m2s.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-g12b-s922x-khadas-vim3.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-g12b-ugoos-am6.dtb
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero-2pro.dts
-> similarity index 98%
-> rename from arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts
-> rename to arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero-2pro.dts
-> index 8445701100d0..5514ca9a62fb 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero-2pro.dts
-> @@ -16,8 +16,8 @@
->  #include <dt-bindings/sound/meson-g12a-tohdmitx.h>
->  
->  / {
-> -	compatible = "radxa,zero2", "amlogic,a311d", "amlogic,g12b";
-> -	model = "Radxa Zero2";
-> +	compatible = "radxa,zero-2pro", "amlogic,a311d", "amlogic,g12b";
+> Signed-off-by: George Stark <gnstark@salutedevices.com>
 
-Keep old compatible.
-
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
