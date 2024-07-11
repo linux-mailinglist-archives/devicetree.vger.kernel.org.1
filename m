@@ -1,123 +1,235 @@
-Return-Path: <devicetree+bounces-84864-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84865-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B53C692E03D
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 08:35:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6895592E05A
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 08:55:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E6F561C21351
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 06:35:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 17A58280D77
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 06:55:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3C8084DE9;
-	Thu, 11 Jul 2024 06:35:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46FD812E1C5;
+	Thu, 11 Jul 2024 06:55:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mdV2jWON"
+	dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b="Yv0ln3Ci"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 998E51C68E;
-	Thu, 11 Jul 2024 06:35:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6826A12DD9B
+	for <devicetree@vger.kernel.org>; Thu, 11 Jul 2024 06:55:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720679739; cv=none; b=rQuMRTitHujD0oYWLNQAnHAVQcKZacteBwLobErTq1fMPBFFGquiCTbgB/Jzl2WS7gC3JLP7jmZBkXF7DGx5IlHchNm64PLxCN3LJwFP0rtUUN25OMr/hDO7ypMO/7wpaHA/9/xVERnPQl3hfgHLwpKnWF1aGjxizAKYzjYekzw=
+	t=1720680944; cv=none; b=LhZiGGl7y3hgZ1GrP2PLJRpHrDkQ3+zSw8LhEhIGFZe9+8yfKOfkBiTTJ8IJhPeEpPzM+OI3z1Sc0wSO+n7t70vkS1cMxpB5gAHyNqGpyCTlH+psNZFPJWa93iA80EPZy0tS2Lt68QCzTGwzRdmhcaJ2OrB8cq8enn56x3ZEXjc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720679739; c=relaxed/simple;
-	bh=c3piDjoGzCASm9/QLTQogRR0dyuZpYLalUZP2VeH/nA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CctGIYefkC/JmdJND7uQVdHN6fwZsQQWVF1pEr5kxo6SGbJ/wPBv86rO4K1Vl4pXwqRUUcbsvT33cegVvwY1E9Yp4vIN1rCROau4OBRvO7tAYPIkZOmec+ej+KiejRicqObPuokVeDfh0mIoga4LBm4r02qEqI2O7YM76Uh/lv0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mdV2jWON; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1CA48C116B1;
-	Thu, 11 Jul 2024 06:35:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720679739;
-	bh=c3piDjoGzCASm9/QLTQogRR0dyuZpYLalUZP2VeH/nA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=mdV2jWON4mGszN6Ps5jOIPyI9zVuqUrOPH6brZRBcApop1GAz+FlZQk873mt3Kja7
-	 1IF5FtPtLXZnH5MUFVgI4Rn+VkSvErLjEDOTdx1EtD7da1b/fUuHTMG/5UWSeWan/O
-	 SJxRxCNS2A+x0jQAu+Z6RbHbmg7CTwgJrfI6mYrXS7d6tGmd65TA3fYRfjxZVH5f6x
-	 ZaR95+IiKKa599bL6779Op7TKSD8hclwJaFX4SMWKuf2/QEtPhDk5pwjjwmfP0AFi7
-	 oVGBmoBYcqjNRw6KMJMhBKrHemj8yzLXEXEYwhRgZ/VUkPQG4rCob05E0+RD9HmLVH
-	 qOLkU656WsHNg==
-Message-ID: <45f32f0f-43fa-412f-9aa9-5afd93b421d0@kernel.org>
-Date: Thu, 11 Jul 2024 08:35:34 +0200
+	s=arc-20240116; t=1720680944; c=relaxed/simple;
+	bh=iEJSZWwibei49W28C7OkAYWo9n7vnO08kdlEvcJpxGo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=isNEgrHPyU8cIe0sye8hx4UBkEVhlnEES7bhilAzBcyEam4uq6fg+zW2cJjCodnQKO9yWPecgP9X2sNVdRS1PxmS194Eo+MlA8Vayr61CWWaKwf66kOnFlnodLuXPKScWWlIsUaYHTfrFECXe2jBmKNe8NkY0qdk6csP23acReA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tenstorrent.com; spf=pass smtp.mailfrom=tenstorrent.com; dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b=Yv0ln3Ci; arc=none smtp.client-ip=209.85.214.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tenstorrent.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tenstorrent.com
+Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-1fa55dbf2e7so3071545ad.2
+        for <devicetree@vger.kernel.org>; Wed, 10 Jul 2024 23:55:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tenstorrent.com; s=google; t=1720680941; x=1721285741; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=qj5fKPvxGvM7Ufw7p7EXOjC4sCCpwaohueruAgBqnWk=;
+        b=Yv0ln3Ci4lEz8nKwr+OyTAlWn28+KXzI8JSsx4OuGvK5iJ/T5ZzI7OSFux4IacNoyi
+         PEmvmGHac29c8q9QSD2AFtW2O8IBdwkPKQnNKqDM99/Bazat/E6RmKEfwz8CNLy+jq22
+         tmskqk0LNQVjAsPC1iyd1haMA8xvrdzQnbAWaeZ/3rq7oTQ36TdcvfefTdLqlv9sBcYB
+         LECQxRAGMHekhZtNObI2n7SYNhF11+CG8P9ipCoLnGSEzR6AD+waTur4D6D0Xu7sYRXG
+         FaDNcUDyluhOAfi2xXhieURzUMkt9cimVdEyjUuU2fjQlpytiQ7TAxhyK0/z/taaLOnd
+         wYhQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720680941; x=1721285741;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=qj5fKPvxGvM7Ufw7p7EXOjC4sCCpwaohueruAgBqnWk=;
+        b=NkOqwath6RhltTRBcaKITJO26QZc08MEZjyXtjMX+7vHXeW6s6naMIEEmk+qYKGLZI
+         0aputJ7tV8bukbRyXZtuzBJBCfr/L09O6hwWxFavflCFCKh96ZogrI7LT4AQaCTErVEw
+         QZ86x3rkxH+t3twbg3Jv+ciBkteGIB2zMpAavk05jJ5TmK+krg6vv/1ribREVLJNan/v
+         OAfYafPlxnhkTvUH3rzmfHZrMYhOfeJifxZzg9uJf79Ao1SIDu7z4R/5cSOfPiIYmMxV
+         9eVTEi7mW0wQ/oWvfVEGjYZ5vnR8fqmQB5+ElryqrAjcbNvZUEHNngwnj+oY+nm2yzaZ
+         VR8g==
+X-Forwarded-Encrypted: i=1; AJvYcCVfkVPeJUKwhC5dQbwM4GLPQEnmN6qFEJk070UEzwmoBTnKEOjX1nt6Bu9WJTbzU75DHgYhh1elMfSWT5HsoG4Ws3jWYwubKHKs4Q==
+X-Gm-Message-State: AOJu0Yx8KZTkqeNgKlSnV6nczLVSZBtjrsNQc2pjVB5OSU5hUkIZqALT
+	dAE48FZ6KDWcaC425rI4kxPjtJw/W0dN/ZtfXusWUxAlKOAqxIkkP4P6UmnBcmw=
+X-Google-Smtp-Source: AGHT+IGb4ybc/OK3k0d6iCqvD55Ro9+I1kKUFnh6M3hL2RGrJ7WIIrCEMAeRoySTG0NPFBmMi9Af/g==
+X-Received: by 2002:a17:902:e2c5:b0:1fb:64da:b13a with SMTP id d9443c01a7336-1fbb6ec5f62mr49719405ad.59.1720680941493;
+        Wed, 10 Jul 2024 23:55:41 -0700 (PDT)
+Received: from x1 ([2601:1c2:1802:170:5ee9:fea0:d9de:cee8])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1fbb6a11a4csm43497305ad.15.2024.07.10.23.55.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 10 Jul 2024 23:55:41 -0700 (PDT)
+Date: Wed, 10 Jul 2024 23:55:39 -0700
+From: Drew Fustini <dfustini@tenstorrent.com>
+To: Stephen Boyd <sboyd@kernel.org>
+Cc: Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor+dt@kernel.org>,
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+	Fu Wei <wefu@redhat.com>, Guo Ren <guoren@kernel.org>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Rob Herring <robh@kernel.org>,
+	Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
+	Yangtao Li <frank.li@vivo.com>, linux-riscv@lists.infradead.org,
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/7] clk: thead: Add support for T-Head TH1520
+ AP_SUBSYS clocks
+Message-ID: <Zo+B6yzFwRwSkPpH@x1>
+References: <20240623-th1520-clk-v2-0-ad8d6432d9fb@tenstorrent.com>
+ <20240623-th1520-clk-v2-2-ad8d6432d9fb@tenstorrent.com>
+ <d36ff27b56b3e9c8ef490bfd9d24761d.sboyd@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: trivial-devices: document the Sierra
- Wireless mangOH Green SPI IoT interface
-To: Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240710-topic-mdm9615-mangoh-iotport-spi-bindings-v1-1-3efe20cfea8a@linaro.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240710-topic-mdm9615-mangoh-iotport-spi-bindings-v1-1-3efe20cfea8a@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <d36ff27b56b3e9c8ef490bfd9d24761d.sboyd@kernel.org>
 
-On 10/07/2024 19:02, Neil Armstrong wrote:
-> Document the Sierra Wireless mangOH Green SPI IoT interface as a trivial
-> device.
+On Wed, Jul 10, 2024 at 04:17:12PM -0700, Stephen Boyd wrote:
+> Quoting Drew Fustini (2024-06-23 19:12:32)
+> > diff --git a/drivers/clk/thead/clk-th1520-ap.c b/drivers/clk/thead/clk-th1520-ap.c
+> > new file mode 100644
+> > index 000000000000..982d4d40f783
+> > --- /dev/null
+> > +++ b/drivers/clk/thead/clk-th1520-ap.c
+> > @@ -0,0 +1,1086 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+> > + * Copyright (C) 2023 Jisheng Zhang <jszhang@kernel.org>
+> > + * Copyright (C) 2023 Vivo Communication Technology Co. Ltd.
+> > + *  Authors: Yangtao Li <frank.li@vivo.com>
+> > + */
+> > +
+> > +#include <dt-bindings/clock/thead,th1520-clk-ap.h>
 > 
-> This fixes the following check:
-> qcom-mdm9615-wp8548-mangoh-green.dtb: /soc/gsbi@16200000/spi@16280000/spi@0: failed to match any schema with compatible: ['swir,mangoh-iotport-spi']
+> Preferably include dt-bindings after linux includes.
+
+Okay, I will move it.
+
 > 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> > +#include <linux/bitfield.h>
+> > +#include <linux/clk-provider.h>
+> > +#include <linux/device.h>
+> > +#include <linux/module.h>
+> > +#include <linux/platform_device.h>
+> > +#include <linux/regmap.h>
+> > +
+> > +#define TH1520_PLL_POSTDIV2    GENMASK(26, 24)
+> > +#define TH1520_PLL_POSTDIV1    GENMASK(22, 20)
+> > +#define TH1520_PLL_FBDIV       GENMASK(19, 8)
+> > +#define TH1520_PLL_REFDIV      GENMASK(5, 0)
+> > +#define TH1520_PLL_BYPASS      BIT(30)
+> > +#define TH1520_PLL_DSMPD       BIT(24)
+> > +#define TH1520_PLL_FRAC                GENMASK(23, 0)
+> > +#define TH1520_PLL_FRAC_BITS    24
+> [...]
+> > +
+> > +static unsigned long th1520_pll_vco_recalc_rate(struct clk_hw *hw,
+> > +                                               unsigned long parent_rate)
+> > +{
+> > +       struct ccu_pll *pll = hw_to_ccu_pll(hw);
+> > +       unsigned long div, mul, frac, rate = parent_rate;
+> > +       unsigned int cfg0, cfg1;
+> > +
+> > +       regmap_read(pll->common.map, pll->common.cfg0, &cfg0);
+> > +       regmap_read(pll->common.map, pll->common.cfg1, &cfg1);
+> > +
+> > +       mul = FIELD_GET(TH1520_PLL_FBDIV, cfg0);
+> > +       div = FIELD_GET(TH1520_PLL_REFDIV, cfg0);
+> > +       if (!(cfg1 & TH1520_PLL_DSMPD)) {
+> > +               mul <<= TH1520_PLL_FRAC_BITS;
+> > +               frac = FIELD_GET(TH1520_PLL_FRAC, cfg1);
+> > +               mul += frac;
+> > +               div <<= TH1520_PLL_FRAC_BITS;
+> > +       }
+> > +       rate = parent_rate * mul;
+> > +       do_div(rate, div);
+> 
+> 'rate' is only unsigned long, so do_div() isn't needed here. Perhaps if
+> 'parent_rate * mul' can overflow 32-bits then 'rate' should be
+> u64.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Thanks for pointing that out. I will make 'rate' u64 as I believe
+'parent_rate * mul' could overflow:
 
-Best regards,
-Krzysztof
+The ref clock for all the PLLs on this SoC is intended to be 24 MHz
+(section 4.3.2 PLL Resources [1]). Thus it is expected that parent_rate
+will use 24 bits.
 
+'mul' is set to TH1520_PLL_FBDIV which is 12 bits. In DSMPD mode, 'mul'
+gets shifted left by TH1520_PLL_FRAC_BITS which is 24 bits.
+
+> > +       return rate;
+> > +}
+> > +
+> > +static unsigned long th1520_pll_postdiv_recalc_rate(struct clk_hw *hw,
+> > +                                                   unsigned long parent_rate)
+> > +{
+> > +       struct ccu_pll *pll = hw_to_ccu_pll(hw);
+> > +       unsigned long rate = parent_rate;
+> > +       unsigned int cfg0, cfg1;
+> > +
+> > +       regmap_read(pll->common.map, pll->common.cfg0, &cfg0);
+> > +       regmap_read(pll->common.map, pll->common.cfg1, &cfg1);
+> > +
+> > +       if (cfg1 & TH1520_PLL_BYPASS)
+> > +               return rate;
+> > +
+> > +       do_div(rate, FIELD_GET(TH1520_PLL_POSTDIV1, cfg0) *
+> 
+> Same, 'rate' is unsigned long. Did you get some compilation error
+> without this? How big is the divisor going to be? The fields are only
+> 3-bits wide, so the multiplication would fit into a u32 just fine. Given
+> that 'rate' is unsigned long though I think you can just put the
+> multiplication result into a local variable that's also unsigned long
+> and then just write the divide with unsigned longs
+> 
+> 	div = FIELD_GET(...) * FIELD_GET(...);
+> 
+> 	return rate / div;
+
+I didn't get any compiler errors. I had copied do_div() from another
+driver that I was looking at.
+
+You are right that TH1520_PLL_POSTDIV1 and TH1520_PLL_POSTDIV2 are both
+just 3 bits each. Thus I think the maximum divisor is 64. I'll change
+to the simpler "rate / div" that you suggest.
+
+> > +                    FIELD_GET(TH1520_PLL_POSTDIV2, cfg0));
+> > +
+> > +       return rate;
+> > +}
+> > +
+> > +static unsigned long ccu_pll_recalc_rate(struct clk_hw *hw,
+> > +                                        unsigned long parent_rate)
+> > +{
+> > +       unsigned long rate = parent_rate;
+> > +
+> > +       rate = th1520_pll_vco_recalc_rate(hw, rate);
+> > +       rate = th1520_pll_postdiv_recalc_rate(hw, rate);
+> > +
+> > +       return rate;
+> > +}
+> 
+> Please fold this in
+
+Will do.
+
+Thanks for the review,
+Drew
+
+[1] https://openbeagle.org/beaglev-ahead/beaglev-ahead/-/blob/main/docs/TH1520%20System%20User%20Manual.pdf
 
