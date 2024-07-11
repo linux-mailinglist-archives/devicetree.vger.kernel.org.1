@@ -1,172 +1,170 @@
-Return-Path: <devicetree+bounces-84842-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84843-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9834892DF10
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 06:13:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DCA592DF23
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 06:40:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 52AB02846DE
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 04:13:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E96211F22DF0
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 04:40:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2F7A1E49E;
-	Thu, 11 Jul 2024 04:13:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3CCB29CF0;
+	Thu, 11 Jul 2024 04:40:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="NpblMkig"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="faUUmdFt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f52.google.com (mail-oo1-f52.google.com [209.85.161.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A23817BBB;
-	Thu, 11 Jul 2024 04:13:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 489A017BBB;
+	Thu, 11 Jul 2024 04:40:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720671200; cv=none; b=PMrI3JnNqoMBlf12USYMXVjeT/wzqNEKfW9qpfLitbzXRGdJk55uC2XC/NjiJS9kyp2ZF38NMSehKZPbrmpsgw9sfjbvNYc6gmuOsNGmd4dae2mLvZA2FHP/uQuEBggrQ0OK0paouZVIKAanMwoBtvtZkP4S6ude7J054pbJZjs=
+	t=1720672809; cv=none; b=c7RtDGsncvHXG+g/AYayFg3KqU6GE1tDGGE4+ceFzDKz3R8iVveebKqKJ+zvC/L+a/rDHEMXQl3EZOePyY20JeUmXBvvQrLhB63xUhW/EHjE1GjUS8pzAqP0EMPGvkQLltSXpUpkcDqsQCTU5Tuo+e+b8PWk8xfftyV55VC2ZGQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720671200; c=relaxed/simple;
-	bh=eOaU90Sakb86O1wTszSDiKLUMO6y2138VCQ1E98y/Q8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=ZtCPiiwQ/VgB4vuVTRnddXVGVYbcTOn9lxANNSeo8AXN4m0mZEeNcNrnVbO9WSAT8ez501jZG+s97oD7Swa5W5vYLWFCTK8R9eKW8489+Xu/U6yTiQ1TiLp8ZCUCFzQW2iJGgnqb4r1uGDppOmTgwtTlMEw4benyVtkeD4kmITc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=NpblMkig; arc=none smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: e3011acc3f3b11efb5b96b43b535fdb4-20240711
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:Message-ID; bh=tRvWdH2sgEWMYZdUksWGlEzG3jsHq5MNinuSGFz8Ric=;
-	b=NpblMkigXzN5S9G2DSwzw1k0fGbyUVDauKYm3mULBHVA/wTpt41ErLPoFl1RDjk2RKRBKaXWIIVa4mFuoxhcQQJEith3L4/RQwu5f+kHVewph58v+0oj7MyddvoF+B0J/RAYofjq2MeN5a4TBhUSz9KUU0FtHRrcvYDYQ30iupk=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.40,REQID:b6a51dcd-6d0b-44be-98ee-51d71332c415,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:ba885a6,CLOUDID:bf19520d-46b0-425a-97d3-4623fe284021,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-	RL:1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,
-	SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
-X-UUID: e3011acc3f3b11efb5b96b43b535fdb4-20240711
-Received: from mtkmbs09n1.mediatek.inc [(172.21.101.35)] by mailgw01.mediatek.com
-	(envelope-from <macpaul.lin@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 187544350; Thu, 11 Jul 2024 12:13:11 +0800
-Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
- mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Thu, 11 Jul 2024 12:13:11 +0800
-Received: from [172.21.84.99] (172.21.84.99) by mtkmbs13n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.1118.26 via Frontend
- Transport; Thu, 11 Jul 2024 12:13:07 +0800
-Message-ID: <da27d957-866f-f055-9e83-cdc362d98dc7@mediatek.com>
-Date: Thu, 11 Jul 2024 12:13:04 +0800
+	s=arc-20240116; t=1720672809; c=relaxed/simple;
+	bh=sdExBqhbQDOS71TZoII4ug9fRelAQITJjMR9rEs7jQU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=CPUzAcb8PxEw/IfXsLerVA5Q6gBHfZKRuy6Ndv+xA9ZXA019oh4v2xIUnJrc+l/R2fBA4ClhJabBGVR8a9M+WiYjBz7YXB0rH42joCuITgKaj0iSwepamUUOZsreN4JK7CkyjovulEvY5/+zY8CnnOM3B94avlWxz1hQHX/zQrs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=faUUmdFt; arc=none smtp.client-ip=209.85.161.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oo1-f52.google.com with SMTP id 006d021491bc7-5c694d5c5adso223924eaf.3;
+        Wed, 10 Jul 2024 21:40:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1720672807; x=1721277607; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=1Od3R3bcGX+eiybg0jI2BEJpMtPiCU3KF2hR8eo1Z/4=;
+        b=faUUmdFtyodijyrQYyfFrbOZ8yvGsAynU6yIvIknhMJZcb4XpsgSX8FgJ4dTNW2EX1
+         OxI5A/Xxq6uStRnzf8PpRs0W+wT48hpokAyUlsMj+0ycEwZxW1tGvtYvcSIwGc9aA6LR
+         OovtMrBceUhYsORATCloWJfZRT51bCoM4oZbAfPDRB/FfBnvK/TquMMZEiWYIIdhY+Yf
+         DxG2NnPQSOF4d66UGzJML8WUZZTJhDnHS8lMXYb3Fw8pqMyEk+ipiwLnq0i6bCUWWdeE
+         KE9o1woGJHZq+h5U7D/yX3se9Dloe2F396bioJ5V+BKRM7ivz6skIOj8nMDekqOM+fTw
+         XQBA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720672807; x=1721277607;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1Od3R3bcGX+eiybg0jI2BEJpMtPiCU3KF2hR8eo1Z/4=;
+        b=C434+TbcLIDdNhzElLUayG1J+MERnViJ8zW/N05knJNuCOEoqfcTSRKs4+B/iKsjZF
+         mjeZKODBjMZwasUUvqAcm8XFgW3HrM9v4Xis/eegtPgQfg9+jh9JPDimfnbOmP47Q8DS
+         mK3BixwMQq7N5q0RzvZ24JfgPulWlQ4ouI4OuYFTw9Ur88+xAr4J4ixRSv9N3a/8pe+E
+         7ZnpeYUpa7Youd2RwAS1x+Bjw4EaAB9B2qIBJC4ro33imEgFERkxnD2bnI1os4E6CeaF
+         9VCHNs5ITjMv3qQgiil1IpTfmS5OJlQeNZTDSF0AQi9xMssYYOGPNey2UEyqhxYLKtPL
+         IMaQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXAY+MlI+9sy4SRvB40c69wc/54NLC12XJBUhVYWRMbboqLO42Jos3FQPDny0DKyb9xaS2efktSZ8i0chnZnwLQ0wIDUyXNODJF7OSgOZrKFMhH3MS5pK0n1m9yxeznax5icEvARt0tAA==
+X-Gm-Message-State: AOJu0YwbXk3k02qnAXwsUleFOD/745XrmXPpDJ35VCMY6fC262A8vlzX
+	nyqVCPJFncUpE221FMsV0VjyNbPil8YMitc2Uucl/yk7o8m93z19w+pfj6Qr+6Fj5cFJb2gNWJn
+	BP5pQcFXZMLdMovO/AJzvZmoiujIm7Txi
+X-Google-Smtp-Source: AGHT+IEE8wlvduAXJFfisR7I1tclcoNEn8rpUAB5g3dGOkqwD99eNjtH/GaAJE6cXZhxzKTWgoPhyzZTKR73rm0u4fc=
+X-Received: by 2002:a05:6820:179a:b0:5c6:9320:4f1e with SMTP id
+ 006d021491bc7-5c693204f51mr9884607eaf.6.1720672807275; Wed, 10 Jul 2024
+ 21:40:07 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: Probe failure of usb controller @11290000 on MT8195 after
- next-20231221
-Content-Language: en-US
-To: =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Chunfeng Yun <chunfeng.yun@mediatek.com>
-CC: Matthias Brugger <matthias.bgg@gmail.com>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-mediatek@lists.infradead.org>, <kernel@collabora.com>, Chen-Yu Tsai
-	<wenst@chromium.org>, Bear Wang <bear.wang@mediatek.com>, Pablo Sun
-	<pablo.sun@mediatek.com>
-References: <9fce9838-ef87-4d1b-b3df-63e1ddb0ec51@notapiano>
- <064935d8-fbda-4eda-b013-8c8fc63b561c@collabora.com>
- <375b2345-657a-4b8f-b5e3-dc16784ffde9@notapiano>
-From: Macpaul Lin <macpaul.lin@mediatek.com>
-In-Reply-To: <375b2345-657a-4b8f-b5e3-dc16784ffde9@notapiano>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20240710142001.7234-1-linux.amoon@gmail.com> <84dc40f4-1948-4eb7-b16e-8a79357c2622@kwiboo.se>
+ <CANAwSgQr2J_MU1idf5xGt4Q=gSLxLHJSEJGwnnPxWLhRjrx=6Q@mail.gmail.com>
+In-Reply-To: <CANAwSgQr2J_MU1idf5xGt4Q=gSLxLHJSEJGwnnPxWLhRjrx=6Q@mail.gmail.com>
+From: Anand Moon <linux.amoon@gmail.com>
+Date: Thu, 11 Jul 2024 10:09:50 +0530
+Message-ID: <CANAwSgQqCtURhjLJSmiN_5sJQVurcaSsDmb6uqN9jyry=w3yXA@mail.gmail.com>
+Subject: Re: [PATCH v1] arm64: dts: rockchip: Add missing pinctrl for PCIe30x4 node
+To: Jonas Karlman <jonas@kwiboo.se>
+Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
+Hi Jonas,
 
+On Wed, 10 Jul 2024 at 22:04, Anand Moon <linux.amoon@gmail.com> wrote:
+>
+> Hi Jonas,
+>
+> On Wed, 10 Jul 2024 at 20:11, Jonas Karlman <jonas@kwiboo.se> wrote:
+> >
+> > Hi Anand,
+> >
+> > On 2024-07-10 16:19, Anand Moon wrote:
+> > > Add missing pinctrl settings for PCIe 3.0 x4 clock request and wake
+> > > signals. Rename node from 'pcie3' to 'pcie30x4' to align with schematic
+> > > nomenclature.
+> > >
+> > > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> > > ---
+> > >  .../boot/dts/rockchip/rk3588-rock-5b.dts      | 20 +++++++++++++------
+> > >  1 file changed, 14 insertions(+), 6 deletions(-)
+> > >
+> > > diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+> > > index 2e7512676b7e..a9b55b7996cf 100644
+> > > --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+> > > +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+> > > @@ -301,7 +301,7 @@ &pcie30phy {
+> > >
+> > >  &pcie3x4 {
+> > >       pinctrl-names = "default";
+> > > -     pinctrl-0 = <&pcie3_rst>;
+> > > +     pinctrl-0 = <&pcie30x4_perstn_m1 &pcie30x4_clkreqn_m1 &pcie30x4_waken_m1>;
+> > >       reset-gpios = <&gpio4 RK_PB6 GPIO_ACTIVE_HIGH>;
+> > >       vpcie3v3-supply = <&vcc3v3_pcie30>;
+> > >       status = "okay";
+> > > @@ -340,14 +340,22 @@ pcie2_2_rst: pcie2-2-rst {
+> > >               };
+> > >       };
+> > >
+> > > -     pcie3 {
+> > > -             pcie3_rst: pcie3-rst {
+> > > -                     rockchip,pins = <4 RK_PB6 RK_FUNC_GPIO &pcfg_pull_none>;
+> > > -             };
+> > > -
+> > > +     pcie30x4 {
+> > >               pcie3_vcc3v3_en: pcie3-vcc3v3-en {
+> > >                       rockchip,pins = <1 RK_PA4 RK_FUNC_GPIO &pcfg_pull_none>;
+> > >               };
+> > > +
+> > > +             pcie30x4_clkreqn_m1: pcie30x4-clkreqn-m1 {
+> > > +                     rockchip,pins = <4 RK_PB4 RK_FUNC_GPIO &pcfg_pull_up>;
+> > > +             };
+> > > +
+> > > +             pcie30x4_waken_m1: pcie30x4-waken-m1 {
+> > > +                     rockchip,pins = <4 RK_PB5 RK_FUNC_GPIO &pcfg_pull_down>;
+> > > +             };
+> >
+> > Should these not be routed to the clkreqn_m1 and waken_m1 function
+> > instead of gpio function?
+> >
+> > E.g. something like:
+> >
+> >                 pcie30x4m1_pins: pcie30x4m1-pins {
+> >                         rockchip,pins =
+> >                                 <4 RK_PB4 4 &pcfg_pull_none>,
+> >                                 <4 RK_PB6 RK_FUNC_GPIO &pcfg_pull_none>,
+> >                                 <4 RK_PB5 4 &pcfg_pull_none>;
+> >                 };
+> >
+> > There are other rk35xx boards where only the perstn pin is configured
+> > and could use a similar fix.
+> >
+>
+> I understand this grouping for Gpio, but I am not very familiar with
+> this feature.
 
-On 7/11/24 03:15, Nícolas F. R. A. Prado wrote:
-> On Fri, Jan 19, 2024 at 10:12:07AM +0100, AngeloGioacchino Del Regno wrote:
->> Il 18/01/24 19:36, Nícolas F. R. A. Prado ha scritto:
->>> Hi,
->>>
->>> KernelCI has identified a failure in the probe of one of the USB controllers on
->>> the MT8195-Tomato Chromebook [1]:
->>>
->>> [   16.336840] xhci-mtk 11290000.usb: uwk - reg:0x400, version:104
->>> [   16.337081] xhci-mtk 11290000.usb: xHCI Host Controller
->>> [   16.337093] xhci-mtk 11290000.usb: new USB bus registered, assigned bus number 5
->>> [   16.357114] xhci-mtk 11290000.usb: clocks are not stable (0x1003d0f)
->>> [   16.357119] xhci-mtk 11290000.usb: can't setup: -110
->>> [   16.357128] xhci-mtk 11290000.usb: USB bus 5 deregistered
->>> [   16.359484] xhci-mtk: probe of 11290000.usb failed with error -110
->>>
->>> A previous message [2] suggests that a force-mode phy property that has been
->>> merged might help with addressing the issue, however it's not clear to me how,
->>> given that the controller at 1129000 uses a USB2 phy and the phy driver patch
->>> only looks for the property on USB3 phys.
->>>
->>> Worth noting that the issue doesn't always happen. For instance the test did
->>> pass for next-20240110 and then failed again on today's next [3]. But it does
->>> seem that the issue was introduced, or at least became much more likely, between
->>> next-20231221 and next-20240103, given that it never happened out of 10 runs
->>> before, and after that has happened 5 out of 7 times.
->>>
->>> Note: On the Tomato Chromebook specifically this USB controller is not connected
->>> to anything.
->>>
->>> [1] https://urldefense.com/v3/__https://linux.kernelci.org/test/case/id/659ce3506673076a8c52a428/__;!!CTRNKA9wMg0ARbw!jtg5drII8WUPwTiL4sWZiSRPXN-EBN8ctTGI85sirqvkmaUbA5z-wrLqPPfxlZZkQ7NItOWDT97OSdENT5oGHKY$
->>> [2] https://lore.kernel.org/all/239def9b-437b-9211-7844-af4332651df0@mediatek.com/
->>> [3] https://urldefense.com/v3/__https://linux.kernelci.org/test/case/id/65a8c66ee89acb56ac52a405/__;!!CTRNKA9wMg0ARbw!jtg5drII8WUPwTiL4sWZiSRPXN-EBN8ctTGI85sirqvkmaUbA5z-wrLqPPfxlZZkQ7NItOWDT97OSdENi-d0sVc$
->>>
->>> Thanks,
->>> Nícolas
->>
->> Hey Nícolas,
->>
->> I wonder if this is happening because of async probe... I have seen those happening
->> once in a (long) while on MT8186 as well with the same kind of flakiness and I am
->> not even able to reproduce anymore.
->>
->> For MT8195 Tomato, I guess we can simply disable that controller without any side
->> effects but, at the same time, I'm not sure that this would be the right thing to
->> do in this case.
->>
->> Besides, the controller at 11290000 is the only one that doesn't live behind MTU3,
->> but I don't know if that can ring any bell....
-> 
-> An update on this issue: it looks like it only happens if "xhci-mtk
-> 11290000.usb" probes before "mtk-pcie-gen3 112f8000.pcie". What they have in
-> common is that both of those nodes use phys that share the same t-phy block:
-> pcie uses the usb3 phy while xhci uses the usb2 phy. So it seems that some of
-> the initialization done by the pcie controller might be implicitly needed by the
-> usb controller.
-> 
-> This should help to narrow down the issue and find a proper fix for it.
-> 
-> Thanks,
-> Nícolas
+Already we have a group of this pincrtl in the pinctrl.dtsi,
+I will use this in my patch.
 
-'force-mode' should only applied to the boards which require XHCI 
-function instead of a PCIE port.
+[0] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/rockchip/rk3588s-pinctrl.dtsi?h=v6.10-rc7#n1775
 
-For example, mt8395-genio-1200-evk.dts requires property 'force-mode' to 
-fix probe issue for USBC @11290000.
-
-https://git.kernel.org/pub/scm/linux/kernel/git/mediatek/linux.git/commit/?h=v6.10-next/dts64&id=666e6f39faff05fe12bfc64c64aa9015135ce783
-
-'force-mode' should be no need for tomato boards and the behavior should 
-be the same as before.
-
-Another possibility is the firmware change on tomato boards. I'm not 
-sure if there is any changes on tomato's recent firmware for tphy of 
-this port, which could also be a reason causes this kind of failure.
-I don't have tomato boards on hand.
+Thanks for the tip.
 
 Thanks
-Macpaul Lin
+-Anand
 
