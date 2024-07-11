@@ -1,303 +1,172 @@
-Return-Path: <devicetree+bounces-84946-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84947-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7A5892E4DD
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 12:34:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60E2392E4E1
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 12:35:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3B1E71F225E1
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 10:34:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DB01E1F223B7
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 10:35:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F9D215AD9B;
-	Thu, 11 Jul 2024 10:33:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 569EA15884B;
+	Thu, 11 Jul 2024 10:35:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="eqsqXWsU"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="LGsxiFLG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2080.outbound.protection.outlook.com [40.107.223.80])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA5E715958E;
-	Thu, 11 Jul 2024 10:33:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.223.80
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720694024; cv=fail; b=Z2B+jAl9HXy8W07X60dtqde6Vvdank1W4BqgT9FirIkVpS3XIRJYSTVumKtvjTtRshCGc+5mfJXC8cHb294u+TObJz5GnEIhT0Vp8G/7j9TVsNvvUqanbgieLAKm7NHu+eK47d9uN6AEk83nd8cFANTyJ/5r3FG2U9HXLv688PA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720694024; c=relaxed/simple;
-	bh=aEP9//HJhri6/luYGIN3gPQz8tAOFxNPNqiJvuDfi6k=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=gmFwrqPcdkUqtu39Gra8UAkpZv6t0OIsSCHRWVAKOwa/NG6Y7P7YhVHPCRs+Ra7HxNP/lUhfVAc2M2+pbIxovbctBA1VMOGcasD9e6jAHTVTJrSUKHaWcP1GqfHjyokq+1nZC79ZaCB1hJdS617xOqFG6c7STvRy5u8g/rINrEQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=eqsqXWsU; arc=fail smtp.client-ip=40.107.223.80
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=JHwqY6rVGcOBzD2NraRA0OOBUYEQvqrCJkEDtJhCNIWyrsbqmfEhoirmZnmJFSvf2r7Uxz4rz9A/4D3PQbtrY5yC0rHyhAHmr4iA5RHRdSzeXhiVwcff4UpzEweLKY459GlA5SsMYLxdYAXgGLEi2iFjruLfgnaAAJ55Aeyhmp071hZBAmD1CmqWfmPpALk0CSQ2Qo6Rsnwba4wqJmlUYHXXQN9/BQWgAyThUqr02kLis2nWSaGK1aja2JUvRhOpPfejlBYLVvwDCE8lle51ZVFvSRKuCnlVuenYDTqhltRDAxbSofUwccZyD9XrH45NFvw+twWcM6OIVLWP2GPn0w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=18X7AL+gySGaAU6T4kRJemHzBS231JLwQEuirixxrqM=;
- b=yAP9JYLqMeustLgHE8yCVdvyOcILVJyGrSp4xWtzcxvORCctQWqfONrezlHMzaLYYlZRNGw6eq/tm8TbVjQzuJDqBYYCyw02iYrshOiIuTL1aBoY2EHg8xDSOCi3UKg1EfC++Bqg+noOO5+1ge4PD+Ghj6nrhu4oBYtcuDazQ+wBzOGV0rwU1xtfyJebBBSI17faecogCQMzwESW27GEqHpzu9U3Vlr3dPSgDNeQiVQ0qOK55IzRJEZpRVeOUOIXU1V5P9HxZU7YCbcET+zhDdBWttx99qjKdSltRLStD4wil3fOF7ER66QY3KAC0ZAaxYX6Y/8Og6vb2QmvhrUcLA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=linaro.org smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=18X7AL+gySGaAU6T4kRJemHzBS231JLwQEuirixxrqM=;
- b=eqsqXWsU+QqriSS3x31VZJ/sRsLltHrmlfPMVu1043oMzyZ0vA+3v8FxEhiKn75HiL5WXXeDZwvOc6+tdVozQLXvZ20SMRfZw/6inoukLs7gneiU3GilY3HYQgM+U3SGi7aa4Cdvib7P0Yt3wyRStZ0SGAbvobRFQ0Un9Z5m6D8=
-Received: from SJ0PR05CA0065.namprd05.prod.outlook.com (2603:10b6:a03:332::10)
- by CH3PR12MB7617.namprd12.prod.outlook.com (2603:10b6:610:140::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7762.20; Thu, 11 Jul
- 2024 10:33:39 +0000
-Received: from CO1PEPF000044F1.namprd05.prod.outlook.com
- (2603:10b6:a03:332:cafe::bf) by SJ0PR05CA0065.outlook.office365.com
- (2603:10b6:a03:332::10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7762.22 via Frontend
- Transport; Thu, 11 Jul 2024 10:33:38 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- CO1PEPF000044F1.mail.protection.outlook.com (10.167.241.71) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7762.17 via Frontend Transport; Thu, 11 Jul 2024 10:33:38 +0000
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 11 Jul
- 2024 05:33:36 -0500
-Received: from xhdlakshmis40.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
- Transport; Thu, 11 Jul 2024 05:33:32 -0500
-From: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
-To: Linus Walleij <linus.walleij@linaro.org>, Michal Simek
-	<michal.simek@amd.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, "Jay
- Buddhabhatti" <jay.buddhabhatti@amd.com>, Dhaval Shah
-	<dhaval.r.shah@amd.com>, Praveen Teja Kundanala
-	<praveen.teja.kundanala@amd.com>, Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<saikrishna12468@gmail.com>, <git@amd.com>, Sai Krishna Potthuri
-	<sai.krishna.potthuri@amd.com>
-Subject: [PATCH 3/3] pinctrl: pinctrl-zynqmp: Add support for Versal platform
-Date: Thu, 11 Jul 2024 16:03:17 +0530
-Message-ID: <20240711103317.891813-4-sai.krishna.potthuri@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240711103317.891813-1-sai.krishna.potthuri@amd.com>
-References: <20240711103317.891813-1-sai.krishna.potthuri@amd.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 926E7158D8F
+	for <devicetree@vger.kernel.org>; Thu, 11 Jul 2024 10:35:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.182
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1720694102; cv=none; b=gHGW6HRjpPuIn8VUUsRqwi7GQoBpqUJ4cpp82Ovb+RhPeFjpVVTyIoL+JaehU0ZDrg1l6Pl1suSAxo4z3PnJMAjUZsZVweTlYD95lhu72XjQ4oWS8i9NZHnCQTkmKIicRGArhqcwqMu0F5znAd0Jx6oiPrJCXcXEOh8u+BPpjJs=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1720694102; c=relaxed/simple;
+	bh=azTey6Mbe5LDqWSTEruz0j0tEwPtlNQpE18cgLltbe0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=X3OGwys3hW7JC9Nnl9AXiwzOQIWd07vTnbF1+IabQ732oJaoJlofwdDvfSc6XRSLvYBJxMZwqChZvpXNoeDyAOqJy/Wx4AZkZLPMKSLVy5RWKgnKDj64r79a0DPrZykH7fC7Tn8fealss+0qynIjoh0QBt5SkwWZpltNCVtKrq4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=LGsxiFLG; arc=none smtp.client-ip=209.85.167.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
+Received: by mail-oi1-f182.google.com with SMTP id 5614622812f47-3d91e390601so431495b6e.1
+        for <devicetree@vger.kernel.org>; Thu, 11 Jul 2024 03:35:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google; t=1720694099; x=1721298899; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=81XIkWS3ndQ7+PCCdHsExXmF1eARnUo6Gh7sCw+xD4Y=;
+        b=LGsxiFLGgctkcNa4uIYDdYdHDygJkyF6j1TZqjgI4gHz06/fyoJSAZoPB6ZlFFx0kd
+         VjZSnUt9cKEfBSxvYZyGVnP96WTtU8NA7imxRcwnGO9jiRK+pg0wP6+t1YPsxMbi++OE
+         m0zL7q5JwMCBT2ZNh5gR3p+JgQZayfjAJ+mRj2YRucc5/adO6bmsfn8wDwsQOyBx0LuC
+         hfXQW5rdiyj6lV/rIo0ynjHLlITt/YZ9GpW3QsmRm1n6d2BMql6V4YBNuh6MJyOtoe59
+         o6HSNbABbAId8FajB06EVDjhs5H7SBhsyFiGgtF733/qMTRkoaGwo+5v7snEu3mG1fPc
+         a2mQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720694099; x=1721298899;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=81XIkWS3ndQ7+PCCdHsExXmF1eARnUo6Gh7sCw+xD4Y=;
+        b=YFUlKejI4GsODSNOOuuTRda7nPj+c0vCqTYXphgxwRAXlASqDRc8Q4u7khZ/ZFNGeH
+         ieLBb5L+zb1Mqla7WBHJ1/PI9RtHaxBSqEQ5nzXSARWO4iHIypmV7xdfvz4xPQJZla58
+         +mfzh8DwxqU+VgejMqaCfMcuC1PF8LMVuUlxMuIWrovGXIJgB+fbk7b0gPe/HJhOPYr2
+         PiED1v+/yM9SCGaTT/+YVbzW/E3u9+4K9R2rFym67RjwckVfhhTs0yxRozEfldmXyytI
+         5yx0z/DyUA5fL9ByptJkwGjFZoMZppE01TkeBgUmQlxtZlJXLc9EAOF6ahoaSIB+YhR0
+         1ycA==
+X-Forwarded-Encrypted: i=1; AJvYcCUToTUxlL7zcTOl0+xZgUOT05SCFtwj1UzkomIpwPsC5jmJ/bFu45C6FWYIV97CN7Gg44arXRQc/TSqaW9vPCMwctcWAEuh9mppIg==
+X-Gm-Message-State: AOJu0Yzj0X3puyQBkwAVNflmkFp0tX/0p7ZPcpg69k2PnlCAuvD0yXOW
+	93k016uOoAS6xkku/g8/zIgxSIagQ0530ciceS2Mylp9FgIopVpcFJnS0OIQfTM3SmapgIGnpaJ
+	d0sjwEfT3MWnY88TomYRjW1EvLZJsbo0UfqYo4Q==
+X-Google-Smtp-Source: AGHT+IFJB5x3pYSD0y4Q5r4wWK4Y3rLRAWXELD1JUSAm8Ow50OC5okYZ99DPR11L57LtC71EXPAYdgoDHtJYINBxm0g=
+X-Received: by 2002:a05:6808:308d:b0:3d9:2415:da77 with SMTP id
+ 5614622812f47-3d93c073d69mr9586482b6e.25.1720694099522; Thu, 11 Jul 2024
+ 03:34:59 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-Received-SPF: None (SATLEXMB03.amd.com: sai.krishna.potthuri@amd.com does not
- designate permitted sender hosts)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PEPF000044F1:EE_|CH3PR12MB7617:EE_
-X-MS-Office365-Filtering-Correlation-Id: 06c9a0f9-0cb7-4287-9e6b-08dca194ed3a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|82310400026|376014|7416014|36860700013;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?D6Vyr14wr8nUSSwfrRa/4VTeZjiN9SL5WoxlTWhVUpDRWlk+5jakSHozdEnM?=
- =?us-ascii?Q?hAOr0YTGRLk2838Tgw4DfrlPrzqiA4EpPvv6X3AUI4FIsaqjzbeAjdsnMg8C?=
- =?us-ascii?Q?YLNxKGX5X4ehjVl7d8NPeJm4RPiiklE1xswK0t9TSFB7xglMbxZlrlJ5s6pk?=
- =?us-ascii?Q?TNiu1P8vdlTv9eH2Fjm5LTIUrMAsWCmuKfdNXE5WL3hYSWaJhHdxzyJr6gdP?=
- =?us-ascii?Q?NXKD+Gz7wi5QRvG2sjRwtQcey7Pt8QVj63zEHN6LChyomy6Q7poWQLbIO+aW?=
- =?us-ascii?Q?7wiozMx6C8T870xshJZUuCX+7T3wyEsOwHdV2RZWdjlgIE5O7Hbp9jv/aZlC?=
- =?us-ascii?Q?G61/CDXEbKiQkr/XuU8H65T2WwXpNym7jZ9oktGKMDJfuPp5rN0aZinqxAa+?=
- =?us-ascii?Q?oKMs/83DbGTRQPjfUsa3hzOD1GafHXpRUB3B3tf6ycFuCANuCjSMF1Fj6v3R?=
- =?us-ascii?Q?ugAVqI3s5yURSzMbF4BDK/TCcD32LsyP265WY+8d4/zOt+R2M/gjhZbx4qeR?=
- =?us-ascii?Q?nEHj1/Ahsd5pzb0bQegMs6I0U2vXHxq38CfZA2rlLPp9K3Sok+vHYtnSd4t4?=
- =?us-ascii?Q?afetyl08lppJ2fxK7gTaTO22V/Mm6lqjfN376Up81WOyrOaQg/0052h03yjm?=
- =?us-ascii?Q?ZfwVadYV19FgrF6eVnE8vSS+lD3Ou8IhvXiYtsosA4YvaLpKYXNuw9MzbBhX?=
- =?us-ascii?Q?kl/tvBTHeQse53LVQjB/taDZ+OUPPwWBSEHncYP2a91J9/NqGqKuQtXNI43G?=
- =?us-ascii?Q?GrQisLurE37w6W8mYHWWCZCjIwDg5HukNXuKMpLHphyMkifWAtm5UXKBE6xs?=
- =?us-ascii?Q?9LTmc9/RAqa8PceFpg4WPb1O7ELZalYcuGY+L7G48Dka3Z1GAK1BYJzpFv+B?=
- =?us-ascii?Q?ZArXV8mrgrh35GQ13mwSAoext7HrVaX/sKscXEsEDKFuIBwn8Hu+Jb4Ih7+y?=
- =?us-ascii?Q?6GRpNITlLwTDjdZGzKSpBg0/E/LCOApyBUP62nqW5Cj20Mp8DeU/nUo3JD4B?=
- =?us-ascii?Q?d8Yc31Q0u+ezZUPYXWa37FVhr7sQx+aASChqSVscX8+g1jnxDhJi6lf/9509?=
- =?us-ascii?Q?1JOdpsOOML3299pEzAVm9fbH+pzoRf9RKsf8Vfy18bxpE2o+borCxOZxzbfc?=
- =?us-ascii?Q?AvBAIci4Wa89xIKZA+VGQ7iG7NGylOpjM+HubD6ed4p5z34r8K5Czgx2524R?=
- =?us-ascii?Q?utgyw1yv6Pc+L6bScYm98nlMEYI4E9t3AI932JMOa5SveGBE+Yeb+vSCxg1l?=
- =?us-ascii?Q?7qSwASVugBgFjs0pjdxdbCIiMLU+GpkjQXaAfrBs+k9TiQhfLnMeQTuh6XL4?=
- =?us-ascii?Q?3qE+IoN6XdR38faABq4fsqqkD1IwDlEAYckwCQ3FYxiIudp+gDuzQMsThYfm?=
- =?us-ascii?Q?qXeDoRdM7Nf3JazLZFKo081hS7ELPoEoaWheEyt5VOVRrAT7MifYwh8yT/tm?=
- =?us-ascii?Q?z98hBTlF4VWi5TdfSKCWfollNp5+wyIO?=
-X-Forefront-Antispam-Report:
-	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(376014)(7416014)(36860700013);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jul 2024 10:33:38.3447
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 06c9a0f9-0cb7-4287-9e6b-08dca194ed3a
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	CO1PEPF000044F1.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB7617
+References: <20240628093711.11716-1-yongxuan.wang@sifive.com>
+ <20240628093711.11716-3-yongxuan.wang@sifive.com> <20240628-clamp-vineyard-c7cdd40a6d50@spud>
+ <402C3422-0248-4C0F-991E-C0C4BBB0FA72@jrtc27.com> <20240630-caboose-diameter-7e73bf86da49@spud>
+In-Reply-To: <20240630-caboose-diameter-7e73bf86da49@spud>
+From: Yong-Xuan Wang <yongxuan.wang@sifive.com>
+Date: Thu, 11 Jul 2024 18:34:49 +0800
+Message-ID: <CAMWQL2gpg-xN5xjshTaZT5844kKoZHDmLUQb8nXYYzw1RGbykQ@mail.gmail.com>
+Subject: Re: [PATCH v6 2/4] dt-bindings: riscv: Add Svade and Svadu Entries
+To: Conor Dooley <conor@kernel.org>
+Cc: Jessica Clarke <jrtc27@jrtc27.com>, LKML <linux-kernel@vger.kernel.org>, 
+	linux-riscv <linux-riscv@lists.infradead.org>, kvm-riscv@lists.infradead.org, 
+	kvm@vger.kernel.org, Greentime Hu <greentime.hu@sifive.com>, 
+	Vincent Chen <vincent.chen@sifive.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add Pinctrl support for Xilinx Versal platform.
-Driver checks for firmware support to retrieve the Pin information, if it
-is supported then proceed further otherwise it returns error saying
-operation not supported. Latest Xilinx Platform Management Firmware must
-be used to make use of the Pinctrl driver for Versal platform.
+Hi Conor and Jessica,
 
-Signed-off-by: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
----
- drivers/pinctrl/pinctrl-zynqmp.c | 91 ++++++++++++++++++++++++++++++--
- 1 file changed, 86 insertions(+), 5 deletions(-)
+On Sun, Jun 30, 2024 at 10:09=E2=80=AFPM Conor Dooley <conor@kernel.org> wr=
+ote:
+>
+> On Sat, Jun 29, 2024 at 02:09:34PM +0100, Jessica Clarke wrote:
+> > On 28 Jun 2024, at 17:19, Conor Dooley <conor@kernel.org> wrote:
+> > >
+> > > On Fri, Jun 28, 2024 at 05:37:06PM +0800, Yong-Xuan Wang wrote:
+> > >> Add entries for the Svade and Svadu extensions to the riscv,isa-exte=
+nsions
+> > >> property.
+> > >>
+> > >> Signed-off-by: Yong-Xuan Wang <yongxuan.wang@sifive.com>
+> > >> ---
+> > >> .../devicetree/bindings/riscv/extensions.yaml | 28 +++++++++++++++++=
+++
+> > >> 1 file changed, 28 insertions(+)
+> > >>
+> > >> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml=
+ b/Documentation/devicetree/bindings/riscv/extensions.yaml
+> > >> index 468c646247aa..c3d053ce7783 100644
+> > >> --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
+> > >> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
+> > >> @@ -153,6 +153,34 @@ properties:
+> > >>             ratified at commit 3f9ed34 ("Add ability to manually tri=
+gger
+> > >>             workflow. (#2)") of riscv-time-compare.
+> > >>
+> > >> +        - const: svade
+> > >> +          description: |
+> > >> +            The standard Svade supervisor-level extension for SW-ma=
+naged PTE A/D
+> > >> +            bit updates as ratified in the 20240213 version of the =
+privileged
+> > >> +            ISA specification.
+> > >> +
+> > >> +            Both Svade and Svadu extensions control the hardware be=
+havior when
+> > >> +            the PTE A/D bits need to be set. The default behavior f=
+or the four
+> > >> +            possible combinations of these extensions in the device=
+ tree are:
+> > >> +            1) Neither Svade nor Svadu present in DT =3D>
+> > >
+> > >>                It is technically
+> > >> +               unknown whether the platform uses Svade or Svadu. Su=
+pervisor may
+> > >> +               assume Svade to be present and enabled or it can dis=
+cover based
+> > >> +               on mvendorid, marchid, and mimpid.
+> > >
+> > > I would just write "for backwards compatibility, if neither Svade nor
+> > > Svadu appear in the devicetree the supervisor may assume Svade to be
+> > > present and enabled". If there are systems that this behaviour causes
+> > > problems for, we can deal with them iff they appear. I don't think
+> > > looking at m*id would be sufficient here anyway, since the firmware c=
+an
+> > > have an impact. I'd just drop that part entirely.
+> >
+> > Older QEMU falls into that category, as do Bluespec=E2=80=99s soft-core=
+s (which
+> > ours are derived from at Cambridge). I feel that, in reality, one
+> > should be prepared to handle both trapping and atomic updates if
+> > writing an OS that aims to support case 1.
+>
+> I guess that is actually what we should put in then, to use an
+> approximation of your wording, something like
+>         Neither Svade nor Svadu present in DT =3D> Supervisor software sh=
+ould be
+>         prepared to handle either hardware updating of the PTE A/D bits o=
+r page
+>         faults when they need updated
+> ?
 
-diff --git a/drivers/pinctrl/pinctrl-zynqmp.c b/drivers/pinctrl/pinctrl-zynqmp.c
-index 3c6d56fdb8c9..e2cfd3d512e8 100644
---- a/drivers/pinctrl/pinctrl-zynqmp.c
-+++ b/drivers/pinctrl/pinctrl-zynqmp.c
-@@ -10,6 +10,7 @@
- 
- #include <dt-bindings/pinctrl/pinctrl-zynqmp.h>
- 
-+#include <linux/bitfield.h>
- #include <linux/bitmap.h>
- #include <linux/init.h>
- #include <linux/module.h>
-@@ -44,6 +45,12 @@
- #define DRIVE_STRENGTH_8MA	8
- #define DRIVE_STRENGTH_12MA	12
- 
-+#define VERSAL_LPD_PIN_PREFIX		"LPD_MIO"
-+#define VERSAL_PMC_PIN_PREFIX		"PMC_MIO"
-+
-+#define VERSAL_PINCTRL_ATTR_NODETYPE_MASK	GENMASK(19, 14)
-+#define VERSAL_PINCTRL_NODETYPE_LPD_MIO		BIT(0)
-+
- /**
-  * struct zynqmp_pmux_function - a pinmux function
-  * @name:	Name of the pin mux function
-@@ -596,8 +603,12 @@ static int zynqmp_pinctrl_prepare_func_groups(struct device *dev, u32 fid,
- 			if (!groups[resp[i]].name)
- 				return -ENOMEM;
- 
--			for (pin = 0; pin < groups[resp[i]].npins; pin++)
--				__set_bit(groups[resp[i]].pins[pin], used_pins);
-+			for (pin = 0; pin < groups[resp[i]].npins; pin++) {
-+				if (of_device_is_compatible(dev->of_node, "xlnx,zynqmp-pinctrl"))
-+					__set_bit(groups[resp[i]].pins[pin], used_pins);
-+				else
-+					__set_bit((u8)groups[resp[i]].pins[pin] - 1, used_pins);
-+			}
- 		}
- 	}
- done:
-@@ -873,6 +884,70 @@ static int zynqmp_pinctrl_prepare_pin_desc(struct device *dev,
- 	return 0;
- }
- 
-+static int versal_pinctrl_get_attributes(u32 pin_idx, u32 *response)
-+{
-+	struct zynqmp_pm_query_data qdata = {0};
-+	u32 payload[PAYLOAD_ARG_CNT];
-+	int ret;
-+
-+	qdata.qid = PM_QID_PINCTRL_GET_ATTRIBUTES;
-+	qdata.arg1 = pin_idx;
-+
-+	ret = zynqmp_pm_query_data(qdata, payload);
-+	if (ret)
-+		return ret;
-+
-+	memcpy(response, &payload[1], sizeof(*response));
-+
-+	return 0;
-+}
-+
-+static int versal_pinctrl_prepare_pin_desc(struct device *dev,
-+					   const struct pinctrl_pin_desc **zynqmp_pins,
-+					   unsigned int *npins)
-+{
-+	u32 lpd_mio_pins = 0, attr, nodetype;
-+	struct pinctrl_pin_desc *pins, *pin;
-+	int ret, i;
-+
-+	ret = zynqmp_pm_is_function_supported(PM_QUERY_DATA, PM_QID_PINCTRL_GET_ATTRIBUTES);
-+	if (ret)
-+		return ret;
-+
-+	ret = zynqmp_pinctrl_get_num_pins(npins);
-+	if (ret)
-+		return ret;
-+
-+	pins = devm_kzalloc(dev, sizeof(*pins) * *npins, GFP_KERNEL);
-+	if (!pins)
-+		return -ENOMEM;
-+
-+	for (i = 0; i < *npins; i++) {
-+		ret = versal_pinctrl_get_attributes(i, &attr);
-+		if (ret)
-+			return ret;
-+
-+		pin = &pins[i];
-+		pin->number = attr;
-+		nodetype = FIELD_GET(VERSAL_PINCTRL_ATTR_NODETYPE_MASK, attr);
-+		if (nodetype == VERSAL_PINCTRL_NODETYPE_LPD_MIO) {
-+			pin->name = devm_kasprintf(dev, GFP_KERNEL, "%s%d",
-+						   VERSAL_LPD_PIN_PREFIX, i);
-+			lpd_mio_pins++;
-+		} else {
-+			pin->name = devm_kasprintf(dev, GFP_KERNEL, "%s%d",
-+						   VERSAL_PMC_PIN_PREFIX, i - lpd_mio_pins);
-+		}
-+
-+		if (!pin->name)
-+			return -ENOMEM;
-+	}
-+
-+	*zynqmp_pins = pins;
-+
-+	return 0;
-+}
-+
- static int zynqmp_pinctrl_probe(struct platform_device *pdev)
- {
- 	struct zynqmp_pinctrl *pctrl;
-@@ -882,9 +957,14 @@ static int zynqmp_pinctrl_probe(struct platform_device *pdev)
- 	if (!pctrl)
- 		return -ENOMEM;
- 
--	ret = zynqmp_pinctrl_prepare_pin_desc(&pdev->dev,
--					      &zynqmp_desc.pins,
--					      &zynqmp_desc.npins);
-+	if (of_device_is_compatible(pdev->dev.of_node, "xlnx,versal-pinctrl")) {
-+		ret = versal_pinctrl_prepare_pin_desc(&pdev->dev, &zynqmp_desc.pins,
-+						      &zynqmp_desc.npins);
-+	} else {
-+		ret = zynqmp_pinctrl_prepare_pin_desc(&pdev->dev, &zynqmp_desc.pins,
-+						      &zynqmp_desc.npins);
-+	}
-+
- 	if (ret) {
- 		dev_err(&pdev->dev, "pin desc prepare fail with %d\n", ret);
- 		return ret;
-@@ -907,6 +987,7 @@ static int zynqmp_pinctrl_probe(struct platform_device *pdev)
- 
- static const struct of_device_id zynqmp_pinctrl_of_match[] = {
- 	{ .compatible = "xlnx,zynqmp-pinctrl" },
-+	{ .compatible = "xlnx,versal-pinctrl" },
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, zynqmp_pinctrl_of_match);
--- 
-2.25.1
+Thank you! I will update in the next version.
 
+Regards,
+Yong-Xuan
 
