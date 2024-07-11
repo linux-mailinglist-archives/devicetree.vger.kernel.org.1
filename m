@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-84856-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84857-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E74D592DFF9
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 08:21:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DDFD92E004
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 08:23:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 67D141F22FEC
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 06:21:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 713F91C20E1C
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 06:23:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1976A8249A;
-	Thu, 11 Jul 2024 06:21:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97FC88003F;
+	Thu, 11 Jul 2024 06:23:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OT5DfYyE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W9KdPjOZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD9FB1C14;
-	Thu, 11 Jul 2024 06:21:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F4CF1C14;
+	Thu, 11 Jul 2024 06:23:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720678899; cv=none; b=GBoPiIhXjqa1EOWVMucRdIHnSI1THeRFJ5GabEvFpukN3W5wQHM3SsdLO3EUo+/ojf0fudVKyzOBdyEAOLTnZ/KRZqN5xUbDSbUCEeOX4UNnDS2xHVQDo5Xq9BkR4/Fp+OKA+Swr6XBbGE2wW+845OSD5silH6XsfNc7wG7jMwA=
+	t=1720679021; cv=none; b=kwLd6d/uqxUOF/82KZ8VLLUxrriUNsLMP1FiLMHaJSHv6mz04gfhiPv0fVPPRj7c2Sj+L+P6O/OYVV0u4N5YdYQeYU3PDiW6MqH/8N4vn4wKWbczSGXYBN0Eji7xTJ2V6bdOrmOly1IzpZCTFCgFZL6eKcs7cY0DViX/wVjfNkE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720678899; c=relaxed/simple;
-	bh=9Shl6MffKtYg+faCj77eGnW5QRGHcfbO3NAol1je+k4=;
+	s=arc-20240116; t=1720679021; c=relaxed/simple;
+	bh=VX6tZdcn1eWIikd+NxnAQ898JDXbRS2js5xrYfx6W2Y=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pqsgrRU5Uf50VlX1Nxr2gHZD8vN+g4jQemY9IyBhwRWHdu+JmofrKmF0iv7HNmLkwgKfG53uyhimGEJjoDPov3a8/fY6I8SGlQxQT4C+xmGfYxPtpK0+0ECjdtRZYC04CoxPkpzfZrKmt0g5twJesqtxElfQLOOObWqPvdorucY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OT5DfYyE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C154DC116B1;
-	Thu, 11 Jul 2024 06:21:32 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Mndg9mZABXwHeDtfaRk1rUn0PAawOnO6H6/whkr+bVD4ooGE8azVgcB/kYkfCzqahhlzkE9w7a7vc6iSsntf3JYpYpj4KFk+hVGpbZaqq2NHeXJyfSB1MRYE786WM7uHnExvPYRuHSbRdq4fvF4+RNeK2aF4diwriPZFVMRj1CA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W9KdPjOZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82663C116B1;
+	Thu, 11 Jul 2024 06:23:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720678898;
-	bh=9Shl6MffKtYg+faCj77eGnW5QRGHcfbO3NAol1je+k4=;
+	s=k20201202; t=1720679021;
+	bh=VX6tZdcn1eWIikd+NxnAQ898JDXbRS2js5xrYfx6W2Y=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=OT5DfYyEj9bmQ7SolyhQqoA3iu1+c3PGwXFqPlHZs7GXqA7JoS0MKmL/qtzCrr78p
-	 3nND2Ng3seL/6PYVldLrOQKdKjUdad+RHYdoBM6Hpg+jFYie05s+0CPVmm+2mWkSIz
-	 HGVNphuu1XF+xCC/159+uZ6Sl1ZGIpG+b/n/FB/2m5+i6hjNqQIAOkSKoTGTNmdP9W
-	 6loK0dLa1JF/peWi1zBWT0ppTu2dubAWZc9Mz7IFxFwi+ab4aQR9c2Ok6hywa6SLWB
-	 YmbNBk5ExE5LzeRN3rBhrCtID21rtkc/TQJK6ii4SU/HSZ20i60iulqeIQmg3GNIxD
-	 KH/4BPFYYWgxQ==
-Message-ID: <3cc6db43-4c3c-441a-8e2b-7de58ad0cce4@kernel.org>
-Date: Thu, 11 Jul 2024 08:21:30 +0200
+	b=W9KdPjOZgzButHGmd1p1HZTQZnbOO099saQn+n/JEC9kdkoKHttpPwpWKETdu9eoT
+	 Y/3Uc2HIr1jW8g0aCqRPlrIA1nWFrv6sDKN8egcRQA2aNTCD5WOxLg8D/CC6YswTE5
+	 95/YJZmXTclU2OC1Cf6NfISdFdvZ61hfkVhHXziwEnCf4MnlvwBPAeKAvMT73DaKMr
+	 LrKo34NjeYEbpx1UXgNcuE+Y1+7teDCOjXOtZap3mcGruzTAfKrGcTXPesM+LRvhgp
+	 sPjfu2Spjdc/4w3NfdWfj/pq5Fq+dOlbvYbsCwOknISrxwov9ZbCK2p4I+Riy29irW
+	 nVoJu0J+7KWaA==
+Message-ID: <663574d8-26f3-4b4e-b374-db3b5c184e53@kernel.org>
+Date: Thu, 11 Jul 2024 08:23:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,27 +50,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 02/12] dt-bindings: PCI: Cleanup of brcmstb YAML and
- add 7712 SoC
-To: Jim Quinlan <james.quinlan@broadcom.com>, linux-pci@vger.kernel.org,
- Nicolas Saenz Julienne <nsaenz@kernel.org>,
- Bjorn Helgaas <bhelgaas@google.com>,
- Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
- Cyril Brulebois <kibi@debian.org>, Stanimir Varbanov <svarbanov@suse.de>,
- bcm-kernel-feedback-list@broadcom.com, jim2101024@gmail.com
-Cc: Florian Fainelli <florian.fainelli@broadcom.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+Subject: Re: [PATCH] arm64: dts: ti: Introduce J742S2 SoC and EVM
+To: Manorit Chawdhry <m-chawdhry@ti.com>, Nishanth Menon <nm@ti.com>,
+ Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- "moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE"
- <linux-arm-kernel@lists.infradead.org>,
- "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE"
- <linux-rpi-kernel@lists.infradead.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
-References: <20240710221630.29561-1-james.quinlan@broadcom.com>
- <20240710221630.29561-3-james.quinlan@broadcom.com>
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Udit Kumar <u-kumar1@ti.com>,
+ Neha Malcom Francis <n-francis@ti.com>, Aniket Limaye <a-limaye@ti.com>
+References: <20240711-b4-upstream-j742s2-v1-1-8b9e41c18f91@ti.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -116,82 +104,105 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240710221630.29561-3-james.quinlan@broadcom.com>
+In-Reply-To: <20240711-b4-upstream-j742s2-v1-1-8b9e41c18f91@ti.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 11/07/2024 00:16, Jim Quinlan wrote:
-> o Change order of the compatible strings to be alphabetical
+On 11/07/2024 07:26, Manorit Chawdhry wrote:
+> This series add the Linux support for our new family of device J742S2.
 
-That's a cleanup. You can squash it with previous patch.
+This is a patch, not series. What Linux support are you adding? Where is
+it? I see only DTS, not Linux support.
 
-> o Describe resets/reset-names before using them in rules
+Please do not use "This commit/patch/change", but imperative mood. See
+longer explanation here:
+https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
 
-That's a new commit.
 
-> o Add in new resets for 7712 (swinit, bridge)
-> o Add in changes for 7712
+
+> This device is a subset of J784S4 and shares the same memory map and
+> thus the nodes are being reused from J784S4 to avoid duplication.
 > 
-> Signed-off-by: Jim Quinlan <james.quinlan@broadcom.com>
+> Here are some of the salient features of the J742S2 automotive grade
+> application processor:
+> 
+> The J742S2 SoC belongs to the K3 Multicore SoC architecture platform,
+> providing advanced system integration in automotive, ADAS and industrial
+> applications requiring AI at the network edge. This SoC extends the K3
+> Jacinto 7 family of SoCs with focus on raising performance and
+> integration while providing interfaces, memory architecture and compute
+> performance for multi-sensor, high concurrency applications.
+> 
+> Some highlights of this SoC are:
+> * Up to Four Arm® Cortex®-A72 microprocessor subsystem at up to 2.0GHz,
+>   3 C7x floating point vector DSPs with Up to Two Deep-learning matrix
+>   multiply accelerator (MMAv2),
+> * 3D GPU: Automotive grade IMG BXS-4-64 MC1
+> * Vision Processing Accelerator (VPAC) with image signal processor and
+>   Depth and Motion Processing Accelerator (DMPAC)
+> * Three CSI2.0 4L RX plus two CSI2.0 4L TX, two DSI Tx, one eDP/DP and
+>   one DPI interface.
+> * Integrated gigabit ethernet switch, up to 4 ports ,two ports
+>   support 10Gb USXGMII; One 4 lane PCIe-GEN3 controllers, USB3.0
+>   Dual-role device subsystems, Up to 20 MCANs, among other peripherals.
+
+Clean this up from marketing.
+
+> 
+> ( Refer Table 2-1 for Device comparison with J7AHP )
+> 
+> Link: https://www.ti.com/lit/pdf/spruje3 (TRM)
+> Link: https://www.ti.com/lit/ug/sprujd8/sprujd8.pdf (EVM user guide)
+> Link: https://www.ti.com/lit/zip/SPAC001 (Schematics)
 > ---
->  .../bindings/pci/brcm,stb-pcie.yaml           | 46 +++++++++++++++++--
->  1 file changed, 41 insertions(+), 5 deletions(-)
+> The series adds support for J742S2 family of SoCs. Also adds J742S2 EVM
+> Support and re-uses most of the stuff from the superset device J784s4.
 > 
-> diff --git a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> index 558a18fd2e77..dd7c76ec9ceb 100644
-> --- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> @@ -16,11 +16,12 @@ properties:
->            - brcm,bcm2711-pcie # The Raspberry Pi 4
->            - brcm,bcm4908-pcie
->            - brcm,bcm7211-pcie # Broadcom STB version of RPi4
-> -          - brcm,bcm7278-pcie # Broadcom 7278 Arm
->            - brcm,bcm7216-pcie # Broadcom 7216 Arm
-> -          - brcm,bcm7445-pcie # Broadcom 7445 Arm
-> +          - brcm,bcm7278-pcie # Broadcom 7278 Arm
->            - brcm,bcm7425-pcie # Broadcom 7425 MIPs
->            - brcm,bcm7435-pcie # Broadcom 7435 MIPs
-> +          - brcm,bcm7445-pcie # Broadcom 7445 Arm
-> +          - brcm,bcm7712-pcie # STB sibling SOC of Raspberry Pi 5
+> Signed-off-by: Manorit Chawdhry <m-chawdhry@ti.com>
+> ---
+>  arch/arm64/boot/dts/ti/Makefile            |  3 ++
+>  arch/arm64/boot/dts/ti/k3-j742s2-evm.dts   | 22 ++++++++++++++
+>  arch/arm64/boot/dts/ti/k3-j742s2-main.dtsi | 47 ++++++++++++++++++++++++++++++
+>  arch/arm64/boot/dts/ti/k3-j742s2.dtsi      | 18 ++++++++++++
+>  4 files changed, 90 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
+> index e20b27ddf901..4d0688c5cff7 100644
+> --- a/arch/arm64/boot/dts/ti/Makefile
+> +++ b/arch/arm64/boot/dts/ti/Makefile
+> @@ -119,6 +119,9 @@ dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm-pcie0-pcie1-ep.dtbo
+>  dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm-quad-port-eth-exp1.dtbo
+>  dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm-usxgmii-exp1-exp2.dtbo
 >  
->    reg:
->      maxItems: 1
-> @@ -95,6 +96,20 @@ properties:
->        minItems: 1
->        maxItems: 3
->  
-> +  resets:
-
-<form letter>
-This is a friendly reminder during the review process.
-
-It seems my or other reviewer's previous comments were not fully
-addressed. Maybe the feedback got lost between the quotes, maybe you
-just forgot to apply it. Please go back to the previous discussion and
-either implement all requested changes or keep discussing them.
-
-Thank you.
-</form letter>
-
-minItems
-
-> +    items:
-> +      - description: reset for phy reset calibration
-> +      - description: reset for PCIe/CPU bus bridge
-> +      - description: reset for soft PCIe core reset
-> +      - description: reset for external PCIe PERST# signal
+> +# Boards with J742S2 SoC
+> +dtb-$(CONFIG_ARCH_K3) += k3-j742s2-evm.dtb
 > +
-> +  reset-names:
+>  # Build time test only, enabled by CONFIG_OF_ALL_DTBS
+>  k3-am625-beagleplay-csi2-ov5640-dtbs := k3-am625-beagleplay.dtb \
+>  	k3-am625-beagleplay-csi2-ov5640.dtbo
+> diff --git a/arch/arm64/boot/dts/ti/k3-j742s2-evm.dts b/arch/arm64/boot/dts/ti/k3-j742s2-evm.dts
+> new file mode 100644
+> index 000000000000..98088ccfd76d
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/ti/k3-j742s2-evm.dts
+> @@ -0,0 +1,22 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (C) 2024 Texas Instruments Incorporated - https://www.ti.com/
+> + *
+> + * EVM Board Schematics: https://www.ti.com/lit/zip/SPAC001
+> + */
+> +
+> +#include "k3-j784s4-evm.dts"
+> +#include "k3-j742s2.dtsi"
+> +
+> +/delete-node/ &c71_3_dma_memory_region;
+> +/delete-node/ &c71_3_memory_region;
+> +
+> +/ {
+> +	model = "Texas Instruments J742S2 EVM";
 
-Same here
-
-> +    items:
-> +      - const: rescal
-> +      - const: bridge
-> +      - const: swinit
-> +      - const: perst
-
-
+Missing compatible and bindings.
 
 Best regards,
 Krzysztof
