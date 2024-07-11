@@ -1,159 +1,182 @@
-Return-Path: <devicetree+bounces-84878-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84879-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C54692E158
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 09:54:13 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BCCF92E169
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 09:58:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A04BA1F219BD
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 07:54:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DB9A5282DF0
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 07:58:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E575914B977;
-	Thu, 11 Jul 2024 07:54:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93CD214B955;
+	Thu, 11 Jul 2024 07:58:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WzMJQ9Xa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BB4014B943;
-	Thu, 11 Jul 2024 07:53:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C053214AD3A
+	for <devicetree@vger.kernel.org>; Thu, 11 Jul 2024 07:57:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720684441; cv=none; b=FhrojNOldj1AHV1veNQkQXXIYOdM2zjC3l/rxHl4LHjO9xTJGNllV31aQwWn7WlV7WDhn9CUJkDE9x1S7tCaWl819Lb6LQswQJQV5vogGPVSTRMoMPX0L804iFfFUv5PetHyGesSyLfrLG0r3yH26MScIrI13SrE+scHOorcMDQ=
+	t=1720684681; cv=none; b=VyJGfshjx6Sq+KBfEsn9Ex9EY6OZFx8IiSWJ63UJWin2+QG9a3dnAOJ44g+sKB0tQjGFdA25TlYFpL9WLZw4cf2fIIvHtapvnygvv8ov5g6R0PXh9L9QJmfMWY4ZbEclOyvE1sfFu1HxpuJ6fdgtGBVNnRWc1F3M27vMBSGTQOc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720684441; c=relaxed/simple;
-	bh=0BgnDHiX/TK+JQoHQMsUy+eteShtWavkLMpjkahy91M=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=JayWjUhQDYYEJGCFY4tH2VxIl8dePcVqMy0NhWgwQsa2hru0kzhgbgYcK6zSfPpfZPIGD3XY9cU/M5WEEF69v1HdXMYfOVkbA8jCU8I3wMuQBcmhtCBpSPuESE8mx5lnNOg43sFvZuauCZ6oVS7noUC0j42B4I1IJSxmRPs6MmA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-650b8e0a6ceso5874147b3.3;
-        Thu, 11 Jul 2024 00:53:59 -0700 (PDT)
+	s=arc-20240116; t=1720684681; c=relaxed/simple;
+	bh=Jl7LbtNor/AZBViMkDaQwErv9uJgZebfqcmGpbq16aM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jaBCtU9jHDLW/d9i9Wczhtlr1FggQwB6Pj5WoxuXIDo3W8JVXgpvqzD0ny8hsdYycl1YOkVOD5jcuICJSb1yNHCWc+uItxTCdj+MQFc9TA4K9Nn95La+TQzK6YEWcvJMjgglDOvYFTiKxIdr/E9DLD3bJ4bo0KxTrRxt1xUz5kQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WzMJQ9Xa; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-42122ac2f38so3323325e9.1
+        for <devicetree@vger.kernel.org>; Thu, 11 Jul 2024 00:57:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1720684678; x=1721289478; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=AgM361BYAq0iGbtkT3hQE7bNR8KxM3q/tLCmdGxIpCw=;
+        b=WzMJQ9Xanv3Ei7VL7UUI0vBdZAdHdaxJUKYTbV2fZnUy+8w3V+KhGiHgdaSbK7Yscx
+         pFwasuMTOiH0E9EtDYUuk+VAfbgaI8jlkFRshD4cGATOhXwOtUtQeIFB+l7+UMAdLj1Y
+         7xdO+cfoA7OQ8SxcNn4W2/uLog22hhGfc7JQrO6JONXW2q09xq6cVs/DxyJb9azweduR
+         /H1yv/Mcso3stU+bj+97tWLLAK89wNOZYMCtrodUHpgHUv5qNpQjyxWLUTRCCZkQlUFu
+         5c/dP+FurVvWmFQXZCCe4gYUm60Z2KD2KaqJT4rWzrBeUIJLyvTFrGJ5ZDNdsprAl4hs
+         Umnw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720684438; x=1721289238;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=5fRVbJjcNb5I05e6Xfep3Il3HTd1wTS3dEeZLYGEQtM=;
-        b=PHJazHFGAmjv8X4bkxbaxB44Cf7U0Ug2b5psUq5CJGn5i0U0CLxDGz8F5jjQU9QCV4
-         17RhVbblJNQVQlJIRArMzHv3oKlscj9Ue4B2SFZz1PIXZS4kgh3z7LfALD+1lZocL/8K
-         EAwHQA87fnqgR10yq2Ru06sm7qjQEKUkk0DuFG23Do/c4XLBmLw6jC2XIdivyLqeJLr1
-         55oMzKoSbmiEO9q/ewEHnWvyyrJPyi2JYGR1HvBFz3VKkYFCLWP87yzklgdNqmdPbg5I
-         drriOOcReUTkJklqDrvv9j6E6k6iVEjSS5o4QA39JwgRSknZZ+jq4ki7D0bM/v7u1mWH
-         1DKw==
-X-Forwarded-Encrypted: i=1; AJvYcCXDBMQYnO30WcFt0oqS5+NBuTIGoSB2HEVDciE2KtRgLUWF0zFTXEvoHOSXGuBbpblt/qcJlY9wsTVHGyvaU4Odt6C3fg4nRCHrXFfKXwSbFcH3G1aZCPGurxZq74xrH3PRnTEmJyrWr0f6X68e0MRQCbV9kW6YpsNVI3FykAQD4fRWov6yxohpMY3w/k5ZfDkKdPpIZn2oEsirL+t8kAJFzMdM1MtXVB//9NgkDrS9K868Rv7sxc2oKp5vF9CqEkAT
-X-Gm-Message-State: AOJu0YwSBnf3ov5Q802WsxFshwxxwxPp8CszsF+U6AUN4yZbH5vOdL9S
-	ev2P16PvMe6h9rlPOSj+rwZWWdpp50u9SMzb+Flz/F0qzbRs3HNAG6u0EXfi
-X-Google-Smtp-Source: AGHT+IEAVEVDvRPumjsbsdvUEKBWr+nCV0eoncFS6xMhbJf5JHh93sDmEHKqPscdEqfNwYteTbffWg==
-X-Received: by 2002:a25:6801:0:b0:e05:6d47:57a4 with SMTP id 3f1490d57ef6-e056d475973mr3452925276.10.1720684437720;
-        Thu, 11 Jul 2024 00:53:57 -0700 (PDT)
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com. [209.85.128.180])
-        by smtp.gmail.com with ESMTPSA id 3f1490d57ef6-e041a8acf85sm925002276.9.2024.07.11.00.53.56
+        d=1e100.net; s=20230601; t=1720684678; x=1721289478;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=AgM361BYAq0iGbtkT3hQE7bNR8KxM3q/tLCmdGxIpCw=;
+        b=LXXz4xyc7J21q9JiA/lAtOk1QiYf80zt8DHb7sx3QVkPp5Td3lp4AVZJPF12LR1dSn
+         7eemyPn93vEW5qO5pTKU0xDKjc5GIUTMmBdv0ICqFSg+L4zU0/Z9A2+wDLHRqvK2lA72
+         9vS0JjeEjS2AiJNbeMhyOINGaZCjlxlUv9L+VDYSV4pIhoYrHStP5IKdr1acuMb++o0y
+         BdqnFIm8XEJKdICecTDQTfNoWopo6WOO/jpeINPqmZxfc+Z+ugQjqczMsFKR8SsnwaA1
+         u39fsR3N7opJ2vn0lT1IvhN3oW8+p8RPTCOglk8BttK6U4M/QL9FArOs41X31+H6eDVY
+         6JyA==
+X-Forwarded-Encrypted: i=1; AJvYcCVxKULrCTEIT+1mByJRvxyAylLeaHOXQ5eGF9f+pxR6uL7p0nLxhHmFs6CYECGbvmwxYrMQDFqYE00WGfFkAYaNZ/oqyFUNm0Ifuw==
+X-Gm-Message-State: AOJu0Yy26c4b8ZazOeV+xrFqhsP1s+Nyuy0W9sBTPKcgdMaM99wV6wU+
+	96TYI/Ha2X6p/16pcWFKk75ijeiqJeiLqPoVrID/LygAe92XmNA4z3Kpg50MAyI=
+X-Google-Smtp-Source: AGHT+IHB0si76JZ9j6zbyRH35zyC5sWwKCluZCNVAxjobcDbOXwmVjBdrHMP2I2PmEw7TjfC4Y+S2Q==
+X-Received: by 2002:a05:600c:5584:b0:426:6252:61d9 with SMTP id 5b1f17b1804b1-427981c524amr13627265e9.11.1720684678022;
+        Thu, 11 Jul 2024 00:57:58 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.137])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4266f6f07dasm107187775e9.12.2024.07.11.00.57.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Jul 2024 00:53:56 -0700 (PDT)
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-64789495923so5634487b3.0;
-        Thu, 11 Jul 2024 00:53:56 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCU4AQsv5jhWFuUQz0NAtfh4lw8g73dBZSHrV+2Jm5LEAFZta8ZV8wHZmu8OQpncIPgolXa65Dm91ZogINUS+8oBOSrfVVVC2FDeHGlbtTS4n85KK7/Tpv1WIPc5sO/3t7J1RUauL419dilUXE3zCfYrYa+78/2B6FkRUCIk1ofQ6LIXLmFLKwvn7x+mokD9Z2WTA/+qjwHZ2PrNpgTDLwkQ1ez7mskWCQ54pAkrunEGcxmjbkpACdSo6tMQDIJ7KYQe
-X-Received: by 2002:a81:8d49:0:b0:63b:df6e:3f6d with SMTP id
- 00721157ae682-658f02f3720mr78529147b3.37.1720684436126; Thu, 11 Jul 2024
- 00:53:56 -0700 (PDT)
+        Thu, 11 Jul 2024 00:57:57 -0700 (PDT)
+Message-ID: <b288d373-a1bc-46b9-9a08-4d949d1bd2bc@linaro.org>
+Date: Thu, 11 Jul 2024 09:57:55 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240625121358.590547-1-claudiu.beznea.uj@bp.renesas.com>
- <20240625121358.590547-10-claudiu.beznea.uj@bp.renesas.com>
- <CAMuHMdX4hWou9OtdE8XgU7-U0ghJ6vk2kVqgT90U0ZjsxzR5DA@mail.gmail.com> <22db23bd-5872-49a0-990f-2a0e5f51bfb5@tuxon.dev>
-In-Reply-To: <22db23bd-5872-49a0-990f-2a0e5f51bfb5@tuxon.dev>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 11 Jul 2024 09:53:43 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWTYfK6aVi5BzBtQg_zQWjuZX7d7QHr3a4GAb+dQOWyvQ@mail.gmail.com>
-Message-ID: <CAMuHMdWTYfK6aVi5BzBtQg_zQWjuZX7d7QHr3a4GAb+dQOWyvQ@mail.gmail.com>
-Subject: Re: [PATCH v2 09/12] i2c: riic: Add support for fast mode plus
-To: claudiu beznea <claudiu.beznea@tuxon.dev>
-Cc: chris.brandt@renesas.com, andi.shyti@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, magnus.damm@gmail.com, 
-	mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de, 
-	wsa+renesas@sang-engineering.com, linux-renesas-soc@vger.kernel.org, 
-	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: non-dt-devices: document ltr,ltrf216a used
+ via ACPI PRP0001
+To: Rob Herring <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Marek Vasut <marex@denx.de>,
+ Jonathan Cameron <jic23@kernel.org>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>
+References: <20240709084401.21108-1-krzysztof.kozlowski@linaro.org>
+ <20240709170248.GA3803124-robh@kernel.org>
+ <CAL_JsqL-wLzHmYN9Lntth3TKgpjfj3jxoGD5T49gSkDSMR=S_Q@mail.gmail.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <CAL_JsqL-wLzHmYN9Lntth3TKgpjfj3jxoGD5T49gSkDSMR=S_Q@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi Claudiu,
+On 09/07/2024 22:48, Rob Herring wrote:
+> On Tue, Jul 9, 2024 at 11:15 AM Rob Herring <robh@kernel.org> wrote:
+>>
+>> On Tue, Jul 09, 2024 at 10:44:01AM +0200, Krzysztof Kozlowski wrote:
+>>> There is a device in the wild with non-updatable firmware coming with
+>>> ACPI tables with rejected "ltr,ltrf216a" compatible.  Linux kernel still
+>>> supports this device via ACPI PRP0001, however the compatible was never
+>>> accepted to bindings.  Lack of bindings causes checkpatch.pl warning
+>>> about undocumented compatible.
+>>
+>> Why do we care? For checkpatch.pl I really don't. That hack check I
+>> wrote makes any string in binding docs a documented compatible. I have a
+>> better check using the schema written, but that would make checkpatch
+>> dependent on dtschema tools. So maybe just time to drop this check from
+>> checkpatch as we have other ways to check and track this.
 
-On Wed, Jul 10, 2024 at 4:20=E2=80=AFPM claudiu beznea <claudiu.beznea@tuxo=
-n.dev> wrote:
-> On 28.06.2024 12:22, Geert Uytterhoeven wrote:
-> > On Tue, Jun 25, 2024 at 2:14=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.d=
-ev> wrote:
-> >> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> >>
-> >> Fast mode plus is available on most of the IP variants that RIIC drive=
-r
-> >> is working with. The exception is (according to HW manuals of the SoCs
-> >> where this IP is available) the Renesas RZ/A1H. For this, patch
-> >> introduces the struct riic_of_data::fast_mode_plus.
-> >>
-> >> Fast mode plus was tested on RZ/G3S, RZ/G2{L,UL,LC}, RZ/Five by
-> >> instantiating the RIIC frequency to 1MHz and issuing i2c reads on the
-> >> fast mode plus capable devices (and the i2c clock frequency was checke=
-d on
-> >> RZ/G3S).
-> >>
-> >> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> >
-> > Thanks for your patch!
-> >
-> >> --- a/drivers/i2c/busses/i2c-riic.c
-> >> +++ b/drivers/i2c/busses/i2c-riic.c
-> >> @@ -407,6 +413,9 @@ static int riic_init_hw(struct riic_dev *riic)
-> >>         riic_writeb(riic, 0, RIIC_ICSER);
-> >>         riic_writeb(riic, ICMR3_ACKWP | ICMR3_RDRFS, RIIC_ICMR3);
-> >>
-> >> +       if (info->fast_mode_plus && t->bus_freq_hz =3D=3D I2C_MAX_FAST=
-_MODE_PLUS_FREQ)
-> >> +               riic_clear_set_bit(riic, 0, ICFER_FMPE, RIIC_ICFER);
-> >
-> > Unless FM+ is specified, RIIC_ICFER is never written to.
-> > Probably the register should always be initialized, also to make sure
-> > the FMPE bit is cleared when it was set by the boot loader, but FM+
-> > is not to be used.
->
-> Instead of clearing only this bit, what do you think about using
-> reset_control_reset() instead of reset_control_deassert() in riic_i2c_pro=
-be()?
->
-> HW manuals for all the devices listed in
-> Documentation/devicetree/bindings/i2c/renesas,riic.yaml specifies that
-> ICFER_FMPE register is initialized with a default value by reset. All the
-> other registers are initialized with default values at reset (according t=
-o
-> HW manuals). I've checked it on RZ/G3S and it behaves like this.
+People still use checkpatch - both to actually test patches before
+sending and also to fix random existing issues.
 
-RZ/A1 and RZ/A2M do not have reset controller support yet, so calling
-reset_control_reset() is a no-op on these SoCs.
+>>
+>> However, I do care about 'make dt_compatible_check'. Besides these ACPI
+>> cases, there's a bunch of cases that we'll never have schemas for. Like
+>> everything from Sparc... Old PowerMac stuff... So I would like to
+>> 'document' them just to exclude from dt_compatible_check. So perhaps
+>> this should be generalized.
 
-However, I overlooked that riic_init_hw() does an internal reset first
-by setting the ICCR1_IICRST bit in RIIC_ICCR1.
-Is that sufficient to reset the FMPE bit?
+Sure, I can rewrite it to more generic.
 
-Gr{oetje,eeting}s,
+> 
+> Here's my list of what's really not documented. It's just a grep of
+> the bindings of each compatible found by 'make dt_compatible_check'.
+> Probably anything with SUNW, ibm, amcc, or mpc5 is never going to be
+> documented.
+> 
+> There are some false positives such as cases documented like "fsl,<chip>-guts".
 
-                        Geert
+I'll come with something, maybe incomplete but it could grow later.
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+Best regards,
+Krzysztof
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
