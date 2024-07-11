@@ -1,54 +1,63 @@
-Return-Path: <devicetree+bounces-85008-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85004-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E858492E842
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 14:28:26 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C98B92E80F
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 14:15:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A49952809A6
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 12:28:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 44D781F21E4D
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 12:15:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12BAA15B57C;
-	Thu, 11 Jul 2024 12:28:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C3FC15B12B;
+	Thu, 11 Jul 2024 12:14:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="rsbL5l1q"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="fhLaLL/s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6ADDB156F3C;
-	Thu, 11 Jul 2024 12:28:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E512C1459E3;
+	Thu, 11 Jul 2024 12:14:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720700902; cv=none; b=CWuZtnNyYGJzsHnhzM/6heGf4wWboTH80v0v9jY2bULidybaC+N2PMKNNAibNYcVrNpYGBJFRx50Du63L6WrC3CVwITUnOq/r4GqYCVbFIoJvjv33Ce40C1euWUHnDxC0vc6kWY8cZrq8rPi3Eg36uMgktF6tnZi7WexUJ2Oa9c=
+	t=1720700095; cv=none; b=VmeAFwm1zTX3aJb94m+JidBtq7NlMeugY9EgharAcuDb0dA8RRYq/KaY8ybdrTlJMCZ9h9mitD9Tte62i/ztkVrjkOV+x/seGd6BVf3SoO9HnEGCwIJV9DowaLdEGJ6b75v5bzo696OMiiQ89CtLfDQ2u6WHW9gLJ01m3SrsCQk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720700902; c=relaxed/simple;
-	bh=i4hyI/hy0o2C6P+eReJ4tkD49PMyVqhEhDDKVFDTbiM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tSaZD7FxC9NLL3QLigVYuWHycarIuM3bnqUxoah2H+EJWTTOhvziQ6yS5aB9seVElu6a1dSB417CH8gJbg4G8JlaVxZozThs6ByiUnF+rVORncHTznRso4eXN+bMMi44Q2UmVBfrWSkYG4d0t5Nk4mC8tgsc+ZlDlkCgky3whvE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=rsbL5l1q; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 757B787CDB;
-	Thu, 11 Jul 2024 14:28:12 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1720700893;
-	bh=NIzryQ37ZZoNVW+U0vbGNpcPRjx/Ml6ebapl6goqrtg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=rsbL5l1quHBJDTctuFf/JbNjErt2GHuDH7RbMyG9r2Fw1zSoB1oDDVbbFkNFpES0n
-	 wHFaqDRHwYP19WSXRR50zhgr2TY9zx91OFAEymfZbe0RHxxj6xb+U5M5Vilcqw4P3j
-	 6xI7VTdZk6wc57K6z3CCkeBF8gcEhh7+DxOTSXsec1oilpHAOJ8m11Gr7Ku68jE5K2
-	 5CE4zw9/tfVNT/VDO0P6rQDnUNm61kzc3yzOp46cGbDwCM7kzEjiKGwToToJt1Y+89
-	 BdBW0eP6G7vXhvTNmO7w9HhiSQDGDaSoaCi5uWEQryhCT9IpSGe82y/YJzyv+g/0Yp
-	 ISn6eZBQn5ixg==
-Message-ID: <1458500b-150f-4882-992c-02823cb8dcf8@denx.de>
-Date: Thu, 11 Jul 2024 13:47:02 +0200
+	s=arc-20240116; t=1720700095; c=relaxed/simple;
+	bh=+2uWj0TW4GlldsC+qipkR3Acziv42Se89VikG8AuyHM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Bse0kLFHMvfbf/O3xO/3qLdvoDTptqhZfDVoZwTvp+E7dttYjs0Co5JGw/WrLTf5yF0NMx9PuoQj/J9OkVT57u0Bqb8wpSzDiScl/2tcT8pKhr100G7ok5bwJbwJyVNrN0iRPu6YiGBlCjG3QKGbKDKNQP/V+nZBZO+Uu6p4hfA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=fhLaLL/s; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46B4xNVn017908;
+	Thu, 11 Jul 2024 12:14:49 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	X8//7qjuGHqtL4VrFh89QIdRBYFbHVqjps+nq4rZxgQ=; b=fhLaLL/s0KK9pYxs
+	DTivtA4Zy4kcDicbq63UAqFZLSrc9Oz7hHSEQ1Av1OvUZNsfCg0BVIBGNgeXkONE
+	f6E1ZrKEmpYFJCKRBvqI30mzK1OxS8qFnB+vzI8cqIWC1KiyrH64QVuYSY8Q5ZjZ
+	ciCP0FgPvKldHHPnDqOsCXZf7afMCnW//KmCIzH329+bOrZa6cXaNYottETSNGd2
+	reaPwb5eE+JYeKvug0NFY171GvSb8y45SrXdbBWQaEXOAc3/ahEyXOyqjwl9haM/
+	t9jb0i5ZDneL+87htM33opF0i6mRuzKuIHxcEVUHamB+XW+bKNLcmkAOhHaps/WN
+	PvvdJA==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40a8uhs1nf-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 11 Jul 2024 12:14:49 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA04.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 46BCEmCi029573
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 11 Jul 2024 12:14:48 GMT
+Received: from [10.239.97.152] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 11 Jul
+ 2024 05:14:42 -0700
+Message-ID: <1a6b8053-d053-4e84-a69a-c21d07f325bf@quicinc.com>
+Date: Thu, 11 Jul 2024 20:14:40 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,46 +65,84 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] leds: leds-pca995x: Add support for NXP PCA9956B
-To: pieterjanca@gmail.com, Pavel Machek <pavel@ucw.cz>,
- Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Isai Gaspar <isaiezequiel.gaspar@nxp.com>
-Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240711-pca995x-v3-0-a1bf1f3c3f5a@gmail.com>
- <20240711-pca995x-v3-2-a1bf1f3c3f5a@gmail.com>
+Subject: Re: [PATCH 09/13] media: qcom: camss: Add CSID Gen3 support for
+ SM8550
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Krzysztof Kozlowski
+	<krzk@kernel.org>, <rfoss@kernel.org>,
+        <todor.too@gmail.com>, <mchehab@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
+CC: <quic_eberman@quicinc.com>, <linux-media@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>,
+        Yongsheng Li
+	<quic_yon@quicinc.com>
+References: <20240709160656.31146-1-quic_depengs@quicinc.com>
+ <20240709160656.31146-10-quic_depengs@quicinc.com>
+ <1da50dd1-b170-4775-94fc-19a10b7f9c47@kernel.org>
+ <4c8095dd-4f96-4b0e-9282-8bdfb5badbc3@quicinc.com>
+ <9255b3e4-874c-4919-b50a-919cf0f42f75@kernel.org>
+ <064baf66-eecd-4982-864f-50b86b104ff6@quicinc.com>
+ <4c26e896-69fa-413b-ace3-39c9698dd6aa@linaro.org>
 Content-Language: en-US
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <20240711-pca995x-v3-2-a1bf1f3c3f5a@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: Depeng Shao <quic_depengs@quicinc.com>
+In-Reply-To: <4c26e896-69fa-413b-ace3-39c9698dd6aa@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: eAb3LG-DMK54KNfHIJ2ZvMlQd17Q5Ug3
+X-Proofpoint-ORIG-GUID: eAb3LG-DMK54KNfHIJ2ZvMlQd17Q5Ug3
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-11_08,2024-07-11_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ impostorscore=0 bulkscore=0 clxscore=1015 mlxscore=0 malwarescore=0
+ mlxlogscore=842 lowpriorityscore=0 suspectscore=0 spamscore=0 phishscore=0
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2406140001 definitions=main-2407110086
 
-On 7/11/24 9:52 AM, Pieterjan Camerlynck via B4 Relay wrote:
+Hi Bryan,
 
-[...]
+On 7/11/2024 8:00 PM, Bryan O'Donoghue wrote:
+> On 11/07/2024 12:41, Depeng Shao wrote:
+>>>> Yes, these are some sequences to initialize the HW.
+>>>
+>>> Hm? It's like you ignore the problem and just answer with whatever to
+>>> shut up the reviewer. Instead of replying with the same, address the
+>>> problem. Why ordering is not a problem here?
+>>>
+>>
+>> Sorry, I didn't mean that, was trying to understand the problem, then 
+>> just sent out the mail by mistake.
+>> Do you mean we should use writel to ensure the strict sequences?
+>> Thanks for catching this problem, this problem is also in the the 
+>> existing camss driver. I will check all of them in this series, but 
+>> the problem in some existing camss drivers, maybe Bryan from Linaro 
+>> can help to fix them, since I don't have these devices to verify the 
+>> modifications.
+> 
+> _relaxed is used I'm sure because that's what's always been used and 
+> what downstream does.
+> 
+> Is there a good reason for it ? None that I can think of.
+> 
+> Krzysztof is right, there's no good reason to use relaxed() here at all, 
+> you should drop it.
+> 
+> ---
+> bod
 
-> @@ -52,9 +69,9 @@ struct pca995x_led {
->   };
->   
->   struct pca995x_chip {
-> +	const struct pca995x_chipdef *chipdef;
->   	struct regmap *regmap;
->   	struct pca995x_led leds[PCA995X_MAX_OUTPUTS];
-> -	int btype;
+Sure, I will drop the _relaxed.
 
-Nitpick, maybe you can replace btype with chipdef in this place, without 
-reordering the structure ?
+Most io_write don't use _relaxed in the Qualcomm downstream camera 
+driver, but few strict timing required code really have this problem, I 
+will fix them.
 
->   };
->   
->   static int pca995x_brightness_set(struct led_classdev *led_cdev,
+Thanks for highlight it.
 
-In any case:
-
-Reviewed-by: Marek Vasut <marex@denx.de>
-
-Thanks !
+Thanks,
+Depeng
 
