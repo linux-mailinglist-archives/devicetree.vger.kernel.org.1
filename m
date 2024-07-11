@@ -1,257 +1,123 @@
-Return-Path: <devicetree+bounces-85037-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85038-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB2A092EA17
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 16:02:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94AEA92EA25
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 16:04:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5C7F21F21AF4
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 14:02:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C54EE1C20831
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 14:04:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B21881607A0;
-	Thu, 11 Jul 2024 14:02:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74448169AE3;
+	Thu, 11 Jul 2024 14:03:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L7dTomEw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E247148FE8;
-	Thu, 11 Jul 2024 14:02:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E59C168C26;
+	Thu, 11 Jul 2024 14:03:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720706523; cv=none; b=Dt+uhmm18pMmweQxr2MvVGqX/S8dNgIhTchJoFwJ051LBAqL/zLYMqkAO4I+hshvRPsK+ij/HUVQe0WQ2oh7+aOb0KJBJ6WulQMC2mfND5N46Kkh7W9j3Weph2CkskyILTpLgzYyDmjSAEjEeJt73j7ggY2SdsSLxn073nhLqnk=
+	t=1720706631; cv=none; b=NrESPk+7IdmQwWAhGsf0L17CN1fB4DHtRUJlgN60DAnnD4LM9uHb24qcyoAoyloMIaT5PHaQLZBBeoCyVZIjJxs/aIVxNlDhP8evnPDdYsxPwAPWN7a3UJ/JEnjB4D7z4eJJlyPPbmrH/gAHj/MMeJdldZhTmNFN4LCZ8rn4RDE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720706523; c=relaxed/simple;
-	bh=2JKn8yTk+sDGYeVvGEuG8XwEYm6R1GQpA2r8MI+me6w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HY7yYTPSI/OdYl2jEuwJN7DVI2gCM7zfybHT4gcXAZKkDd0KxQ0RzeDpw54TmJ1ptrvlkH7uJbsIvbCqEUju9323AuiSOvU92yaNNHq4OMFHGo3r81uOWd0/2kpvFTGFUvqOG2HAbBVL3El7AxbN+JuTNaYu4ycYcqJUOeL4d/A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0928FFEC;
-	Thu, 11 Jul 2024 07:02:26 -0700 (PDT)
-Received: from pluto (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id EF2C23F766;
-	Thu, 11 Jul 2024 07:01:57 -0700 (PDT)
-Date: Thu, 11 Jul 2024 15:01:55 +0100
-From: Cristian Marussi <cristian.marussi@arm.com>
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: Jonathan Corbet <corbet@lwn.net>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Cristian Marussi <cristian.marussi@arm.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Peng Fan <peng.fan@nxp.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org, arm-scmi@vger.kernel.org,
-	linux-rtc@vger.kernel.org, linux-input@vger.kernel.org
-Subject: Re: [PATCH v5 7/7] input: keyboard: support i.MX95 BBM module
-Message-ID: <Zo_l02sbfjv_64B2@pluto>
-References: <20240621-imx95-bbm-misc-v2-v5-0-b85a6bf778cb@nxp.com>
- <20240621-imx95-bbm-misc-v2-v5-7-b85a6bf778cb@nxp.com>
+	s=arc-20240116; t=1720706631; c=relaxed/simple;
+	bh=bAhLxlNctry+QWIwTfv4DQHd8VQxnMdjBGitAV+Z7AM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=e6UGQp0ef6j/m5VL9u/LHpekh7BpLU8Dl4kMGUuA3txoieidSo3q7hX10jM+XR9spjl9GRuxSzu3wd2JX91A+wRvgoEKUkxtvfxVrfOoMSCcH8YgnI0c5lkTz25oPirySti439EFCWMKa56T7JZvul5WFlA0+iwkFacguVjjmrQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L7dTomEw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4BCA2C4AF07;
+	Thu, 11 Jul 2024 14:03:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720706630;
+	bh=bAhLxlNctry+QWIwTfv4DQHd8VQxnMdjBGitAV+Z7AM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=L7dTomEw1mKnWpkpSno4McK1xeFUFH0WkwHOjBD9tTyt6KpwwRy5C47VFBPYBwS3g
+	 i3T2UIzs9oYNLjJad5Vji3gMZ2nw5n4jtSAQHVnfB+a59WBMbP1o5RFFNr1wgFOcgf
+	 XHcPxlxbY3+6brqnEa4QwH01TU8bHO5A3ZcU8Yf9njNQKarc7RG8ilf5J6KNXiAWld
+	 rFpwnRz8q3F3LDF5qj4/pB2VmwcM9KjH/4uenvi6W8xcGwmacKb171j9frC4pbOrB6
+	 nY6TFnlTM2CTe0461rj1PzGC6NWR/DNscNmQUsCJLWCcKEg1COgTjpF2uPtdC2X0TW
+	 D4aGAuF5c1Pnw==
+Message-ID: <39803186-7dec-45cf-881d-64ca37923223@kernel.org>
+Date: Thu, 11 Jul 2024 16:03:45 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240621-imx95-bbm-misc-v2-v5-7-b85a6bf778cb@nxp.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/5] ARM: dts: qcom: apq8064-pins: correct error in
+ drive-strength property
+To: Rayyan Ansari <rayyan.ansari@linaro.org>, linux-arm-msm@vger.kernel.org
+Cc: Bjorn Andersson <andersson@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org,
+ Rob Herring <robh@kernel.org>
+References: <20240711110545.31641-2-rayyan.ansari@linaro.org>
+ <20240711110545.31641-3-rayyan.ansari@linaro.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240711110545.31641-3-rayyan.ansari@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fri, Jun 21, 2024 at 03:04:42PM +0800, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
+On 11/07/2024 13:01, Rayyan Ansari wrote:
+> The "drive-strength" property was incorrectly spelt as "drive-strengh".
+> Correct this.
 > 
-> The BBM module provides BUTTON feature. To i.MX95, this module
-> is managed by System Manager and exported using System Management
-> Control Interface(SCMI). Linux could use i.MX SCMI BBM Extension
-> protocol to use BUTTON feature.
+> Signed-off-by: Rayyan Ansari <rayyan.ansari@linaro.org>
 
-Hi Peng,
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-one remarks down below.
+Best regards,
+Krzysztof
 
-> 
-> This driver is to use SCMI interface to enable pwrkey.
-> 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  drivers/input/keyboard/Kconfig          |  11 ++
->  drivers/input/keyboard/Makefile         |   1 +
->  drivers/input/keyboard/imx-sm-bbm-key.c | 225 ++++++++++++++++++++++++++++++++
->  3 files changed, 237 insertions(+)
-> 
-> diff --git a/drivers/input/keyboard/Kconfig b/drivers/input/keyboard/Kconfig
-> index 1d0c5f4c0f99..1c3fef7d34af 100644
-> --- a/drivers/input/keyboard/Kconfig
-> +++ b/drivers/input/keyboard/Kconfig
-> @@ -466,6 +466,17 @@ config KEYBOARD_IMX
->  	  To compile this driver as a module, choose M here: the
->  	  module will be called imx_keypad.
->  
-> +config KEYBOARD_IMX_BBM_SCMI
-> +	tristate "IMX BBM SCMI Key Driver"
-> +	depends on IMX_SCMI_BBM_EXT || COMPILE_TEST
-> +	default y if ARCH_MXC
-> +	help
-> +	  This is the BBM key driver for NXP i.MX SoCs managed through
-> +	  SCMI protocol.
-> +
-> +	  To compile this driver as a module, choose M here: the
-> +	  module will be called scmi-imx-bbm-key.
-> +
->  config KEYBOARD_IMX_SC_KEY
->  	tristate "IMX SCU Key Driver"
->  	depends on IMX_SCU
-> diff --git a/drivers/input/keyboard/Makefile b/drivers/input/keyboard/Makefile
-> index aecef00c5d09..624c90adde89 100644
-> --- a/drivers/input/keyboard/Makefile
-> +++ b/drivers/input/keyboard/Makefile
-> @@ -31,6 +31,7 @@ obj-$(CONFIG_KEYBOARD_IPAQ_MICRO)	+= ipaq-micro-keys.o
->  obj-$(CONFIG_KEYBOARD_IQS62X)		+= iqs62x-keys.o
->  obj-$(CONFIG_KEYBOARD_IMX)		+= imx_keypad.o
->  obj-$(CONFIG_KEYBOARD_IMX_SC_KEY)	+= imx_sc_key.o
-> +obj-$(CONFIG_KEYBOARD_IMX_BBM_SCMI)	+= imx-sm-bbm-key.o
->  obj-$(CONFIG_KEYBOARD_HP6XX)		+= jornada680_kbd.o
->  obj-$(CONFIG_KEYBOARD_HP7XX)		+= jornada720_kbd.o
->  obj-$(CONFIG_KEYBOARD_LKKBD)		+= lkkbd.o
-> diff --git a/drivers/input/keyboard/imx-sm-bbm-key.c b/drivers/input/keyboard/imx-sm-bbm-key.c
-> new file mode 100644
-> index 000000000000..907dad383b8f
-> --- /dev/null
-> +++ b/drivers/input/keyboard/imx-sm-bbm-key.c
-> @@ -0,0 +1,225 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Copyright 2024 NXP.
-> + */
-> +
-> +#include <linux/input.h>
-> +#include <linux/jiffies.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/rtc.h>
-> +#include <linux/scmi_protocol.h>
-> +#include <linux/scmi_imx_protocol.h>
-> +#include <linux/suspend.h>
-> +
-> +#define DEBOUNCE_TIME		30
-> +#define REPEAT_INTERVAL		60
-> +
-> +struct scmi_imx_bbm {
-> +	struct scmi_protocol_handle *ph;
-> +	const struct scmi_imx_bbm_proto_ops *ops;
-> +	struct notifier_block nb;
-> +	int keycode;
-> +	int keystate;  /* 1:pressed */
-> +	bool suspended;
-> +	struct delayed_work check_work;
-> +	struct input_dev *input;
-> +};
-> +
-> +static void scmi_imx_bbm_pwrkey_check_for_events(struct work_struct *work)
-> +{
-> +	struct scmi_imx_bbm *bbnsm = container_of(to_delayed_work(work),
-> +						  struct scmi_imx_bbm, check_work);
-> +	struct scmi_protocol_handle *ph = bbnsm->ph;
-> +	struct input_dev *input = bbnsm->input;
-> +	u32 state = 0;
-> +	int ret;
-> +
-> +	ret = bbnsm->ops->button_get(ph, &state);
-> +	if (ret) {
-> +		pr_err("%s: %d\n", __func__, ret);
-> +		return;
-> +	}
-> +
-> +	pr_debug("%s: state: %d, keystate %d\n", __func__, state, bbnsm->keystate);
-> +
-> +	/* only report new event if status changed */
-> +	if (state ^ bbnsm->keystate) {
-> +		bbnsm->keystate = state;
-> +		input_event(input, EV_KEY, bbnsm->keycode, state);
-> +		input_sync(input);
-> +		pm_relax(bbnsm->input->dev.parent);
-> +		pr_debug("EV_KEY: %x\n", bbnsm->keycode);
-> +	}
-> +
-> +	/* repeat check if pressed long */
-> +	if (state)
-> +		schedule_delayed_work(&bbnsm->check_work, msecs_to_jiffies(REPEAT_INTERVAL));
-> +}
-> +
-> +static int scmi_imx_bbm_pwrkey_event(struct scmi_imx_bbm *bbnsm)
-> +{
-> +	struct input_dev *input = bbnsm->input;
-> +
-> +	pm_wakeup_event(input->dev.parent, 0);
-> +
-> +	schedule_delayed_work(&bbnsm->check_work, msecs_to_jiffies(DEBOUNCE_TIME));
-> +
-> +	/*
-> +	 * Directly report key event after resume to make no key press
-> +	 * event is missed.
-> +	 */
-> +	if (READ_ONCE(bbnsm->suspended)) {
-> +		bbnsm->keystate = 1;
-> +		input_event(input, EV_KEY, bbnsm->keycode, 1);
-> +		input_sync(input);
-> +		WRITE_ONCE(bbnsm->suspended, false);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static void scmi_imx_bbm_pwrkey_act(void *pdata)
-> +{
-> +	struct scmi_imx_bbm *bbnsm = pdata;
-> +
-> +	cancel_delayed_work_sync(&bbnsm->check_work);
-> +}
-> +
-> +static int scmi_imx_bbm_key_notifier(struct notifier_block *nb, unsigned long event, void *data)
-> +{
-> +	struct scmi_imx_bbm *bbnsm = container_of(nb, struct scmi_imx_bbm, nb);
-> +	struct scmi_imx_bbm_notif_report *r = data;
-> +
-> +	if (r->is_button) {
-> +		pr_debug("BBM Button Power key pressed\n");
-> +		scmi_imx_bbm_pwrkey_event(bbnsm);
-> +	} else {
-> +		/* Should never reach here */
-> +		pr_err("Unexpected BBM event: %s\n", __func__);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int scmi_imx_bbm_pwrkey_init(struct scmi_device *sdev)
-> +{
-> +	const struct scmi_handle *handle = sdev->handle;
-> +	struct device *dev = &sdev->dev;
-> +	struct scmi_imx_bbm *bbnsm = dev_get_drvdata(dev);
-> +	struct input_dev *input;
-> +	int ret;
-> +
-> +	if (device_property_read_u32(dev, "linux,code", &bbnsm->keycode)) {
-> +		bbnsm->keycode = KEY_POWER;
-> +		dev_warn(dev, "key code is not specified, using default KEY_POWER\n");
-> +	}
-> +
-> +	INIT_DELAYED_WORK(&bbnsm->check_work, scmi_imx_bbm_pwrkey_check_for_events);
-
-To stay on the safe side I would issue a cancel_delayed_work_sync()
-somewhere along the remove() path of this driver...just to be sure
-there is not an  actively scheduled deleayed work queued while we are
-shutting down.....I maybe overly paranoic...but seems a safe thing to do O_o
-
-Thanks,
-Cristian
 
