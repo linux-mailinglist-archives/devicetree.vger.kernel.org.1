@@ -1,191 +1,160 @@
-Return-Path: <devicetree+bounces-85072-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85073-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C38C392EC61
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 18:11:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA00B92EC7F
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 18:19:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5204F1F22270
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 16:11:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 286B01F233FB
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 16:19:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EBBF16CD09;
-	Thu, 11 Jul 2024 16:11:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72A3E16CD1A;
+	Thu, 11 Jul 2024 16:19:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="pNMks953"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mbEW4lbV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
+Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com [209.85.216.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7683B16C857
-	for <devicetree@vger.kernel.org>; Thu, 11 Jul 2024 16:11:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E75C316C699
+	for <devicetree@vger.kernel.org>; Thu, 11 Jul 2024 16:19:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720714297; cv=none; b=N409vceNDPPviuM6GZB7ix7Svw2/m9FQ/0d6wocso3e/qcKCqXLxJSShoYLl+0fkeRoFKOYcV3b+x2cNH3+n8jbOwa70bJAUlfEbrm6hBGN0d6he993DNcDgHdUXWgNkKlCFLjdU57bypY4/bwsSo+K4YGpJ57hARTNkTy6/uZg=
+	t=1720714794; cv=none; b=gcVOwH8Ei9+cFjwET1IF4vwOYgpl7x73lMr1yeJynYKwpqROGk9J/F/y/PDuCmoZTVjhqolxLkb8kCCwaB7dmD0hc7cXQ6SHmDd/8xD61dsuHN3ro7Pv8B/bWM1aFqC7K6+5UcQ074Kk2vMOzAh/ilAVCgpwyDJNhHQrIBDzXJA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720714297; c=relaxed/simple;
-	bh=RRwESqfur9hjuj4i+nTtpR38U3Kz44Xajo3B8ZD7Kg4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WUY1Y1cW4Qzlk/w7rFvfXf57fLwfl+liuiS7YgABHfkhY+vZvuGrbf42FgmIxVU8UrS1ZZ9KMHMajbDNtxoMvNjhmEQlcb6CumS71FZwh/hkmkT+HIJTEnT1p2gW1YCRqvuba8kWrlYUP2duqyw+ekodaPH3pSPoQZgM9DEh57M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=pNMks953; arc=none smtp.client-ip=209.85.167.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oi1-f177.google.com with SMTP id 5614622812f47-3d9bcb47182so598612b6e.3
-        for <devicetree@vger.kernel.org>; Thu, 11 Jul 2024 09:11:35 -0700 (PDT)
+	s=arc-20240116; t=1720714794; c=relaxed/simple;
+	bh=j572HuMq147T8C8MRpPHgT+aMLgJgejQdQMvLVHwt30=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZsZBeSbiniVbPWm3K3R0XBaUVZ9Zx3nbAZ3U+J3I/+MFzgcwCT9FRMD1yXTIzRZPeR8gQ6VCNBAXOpJL+KXmmGY1rpnxyDuANVksYQL37Iy5i9hYdmiRu6M0jae8pBdpGulc2hRng81lithmGZmnuhxIYRWeA2QsboXSYeG8fRE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mbEW4lbV; arc=none smtp.client-ip=209.85.216.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pj1-f47.google.com with SMTP id 98e67ed59e1d1-2c8517aab46so922494a91.1
+        for <devicetree@vger.kernel.org>; Thu, 11 Jul 2024 09:19:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1720714294; x=1721319094; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=XoNnDXcZA2Pho5pGFkRE/EwXRyBHfQQdctIQQyizVyE=;
-        b=pNMks953QGk94QoHHKD0Lce0pwov1e4tScjATNeUNi8BzhU2pO288Al9WySil0ub4G
-         2kJYizs93Wfb/DWiJPI0Q0DFCsIUaAEWgbkBrPbMPlOW3FvbJkVXaioCYJl6qPVCWqc0
-         4Jt5vt50oCfbt1T4rgs/lODz/yDq1oHdoHsI1HUO1yxCGkvRJEjTb3DvRU3f2JjBvNy/
-         zvvbnvYcU/9h9T80DGT/BkmzEsf1UtCovL6AV42jcazxnv7MS+EXM1gydXLs6VUfwfI/
-         43cirTu0qvFQXnEbW0QbrAaPCWSz3eO9DDw19vAzsTs86ZCsBznTC8dhTC11fmtIPx1z
-         hCiA==
+        d=linaro.org; s=google; t=1720714792; x=1721319592; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=1AGMClvB41s+iwsgH79Eua1IbGQFm18N5jS+AOAWcdM=;
+        b=mbEW4lbVtIkxl5llZ2lOKVpc1mehq1jyr/UyFUp22Q+D/DvXKFDmgwknpZ8KciJRyO
+         gc2UnugiaMvPziAE7lHvFKQN/KFcE5XgGEjeFQKN4eQftGnW07NC1FSu8s+RebDD+Jft
+         WVFGtAq7ISg8wh5p+MCkAXSoH9SOQJTEbpeFyYha60dW9TIxFR4MLrGhkAIhfqcCuNQl
+         GcfxVz5vPd5Tsa99/+iU5yLIsmluQ4Ihz55r6v/Y5mxMBASZwBSsFpm+39yx6F1vR2vP
+         c86xPmu6RhjBl+GN0wvrJRq9XLI2f7O2AAR+yVTekeckM17Re9YOpSZGLnwOIMSKD1LB
+         LF7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720714294; x=1721319094;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1720714792; x=1721319592;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XoNnDXcZA2Pho5pGFkRE/EwXRyBHfQQdctIQQyizVyE=;
-        b=o728BcwVNOrFsreOdiZmkbPVDQ1poehvhcLCETDQOQTqUGsI/xzuRkLTTF1Rtmt9Eu
-         PWqipXNcM1mzi0BQ3WfB2YcY8CSai1rKk4jJH/WMdBT03XuMR1uuDUyTCXc8W9hxiaH3
-         hbHYB3CZGPbrTzRdy876VrAUAiJE0StWgmTW+oXOrY2rOPllEfVM38sahx5P+JInAohp
-         3LZuwgUpFaRiJdd38T5bLRBKjcehStrBvk70rwJH8whfrWp0iS0ygMMeJKnTKL4Ome/y
-         0BZXXV6zFuDuY5+d1xX+fli9jhAFdvCD2rCvIA5x+YuYvyfxNoySS8HKacGKSOX7PTD0
-         sRtA==
-X-Forwarded-Encrypted: i=1; AJvYcCVJxBIrqpWenRaL3fRgTliuP8syKKzC6y5BVY47MMIc/R7f0mYtqQdc6Qx0AWwRmsmMXQf10x4KrIxkjG8LXwV926YbKUWFNNcqAg==
-X-Gm-Message-State: AOJu0YwpqW9LRc35KezUb7c481fRK5aHpLwgA7yLqzHduWSbLHGIpJ03
-	H8XdL65mKBUCxyLrqsfIrbibGSiaIJ7kJRkWvwiBfi2baEERAC+Tfs9fdmm065s=
-X-Google-Smtp-Source: AGHT+IG5JmkBdbNyGrb7Fgc/ruuuW4qvTAb5wDj98aD29n/TX0gIJrTNfnFqyrY1biP0mOEFCNiCCA==
-X-Received: by 2002:a05:6808:15a3:b0:3da:a16e:1764 with SMTP id 5614622812f47-3daa16e1f72mr1604710b6e.4.1720714294529;
-        Thu, 11 Jul 2024 09:11:34 -0700 (PDT)
-Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-70374f882f0sm1251113a34.39.2024.07.11.09.11.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Jul 2024 09:11:34 -0700 (PDT)
-Message-ID: <14695107-a119-4f68-b55a-509cbcf8a64a@baylibre.com>
-Date: Thu, 11 Jul 2024 11:11:33 -0500
+        bh=1AGMClvB41s+iwsgH79Eua1IbGQFm18N5jS+AOAWcdM=;
+        b=PVW6F1yUXkhp4qoTyg6mrqgHdoExizfD5no5ab6AH6LHQWmrNA96KTf9V6GhKmt6/m
+         AP/aVpAQZlh7MEp90715r/GBNBx43+ReqDmhi+MneMmXOHG0ofkxt/0phjt9dRq2phS3
+         cCUfMMAo5/89xXUT74bvmPc5bPhZZ5EmW57Yb2lzBdACh71NR1ilMzfx1TZMAU2rD89A
+         b2Yf48uFeReu5VG4MFJM+qKrwN+vrG7LPQyU7JDepE3CVwZB8xTaQbeJcgfI4uTsuS7g
+         9a19BOSt1EXikDx7erv6hMyHcfMj7a49UszmYJ/dVPvX3/00KqHsLbdy9HDdHw4PP7rh
+         ueYA==
+X-Forwarded-Encrypted: i=1; AJvYcCUSisP5JK7nvF3MUCAtLIC9IUlQWF96KmL1fwv5C9Gq1jiX0XdNomPsnQrr+xCaspauMk/76M9E1yQ+nEAlDUeqIHL4VbRzN3lFvw==
+X-Gm-Message-State: AOJu0YyQNNE1OlEF8kMWWgBGEbPNpp21q8kPLTboXYHdId2o+n9ZVyzT
+	tlMOrAM6kNtd10pCTuVNbOv2vAIDm1dvT3nXvJ6f+RQCMwDu9adJ2VZsgYiQ7g==
+X-Google-Smtp-Source: AGHT+IGahlfHHkRsDhkkhgFzdLCYpTrk09/0DiL56RDxZm+D8+vubukWJs0Zk4n8L1sX5nNqOnWxew==
+X-Received: by 2002:a17:90b:612:b0:2c4:af69:5c39 with SMTP id 98e67ed59e1d1-2ca35c2946bmr7256786a91.13.1720714792174;
+        Thu, 11 Jul 2024 09:19:52 -0700 (PDT)
+Received: from thinkpad ([120.56.197.247])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2ca34e6e9c3sm5914081a91.20.2024.07.11.09.19.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 11 Jul 2024 09:19:51 -0700 (PDT)
+Date: Thu, 11 Jul 2024 21:49:47 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Johan Hovold <johan@kernel.org>
+Cc: Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Johan Hovold <johan+linaro@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Abel Vesa <abel.vesa@linaro.org>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: x1e80100: enable GICv3 ITS for PCIe
+Message-ID: <20240711161947.GA4434@thinkpad>
+References: <20240711090250.20827-1-johan+linaro@kernel.org>
+ <f7e74a6f-0548-4caa-a8fc-8180c619c9aa@linaro.org>
+ <Zo-ssBBDbHRLtAwG@hovoldconsulting.com>
+ <Zo_zu-RmbZyKijVQ@hovoldconsulting.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/3] iio: adc: ad4695: Add driver for AD4695 and
- similar ADCs
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Michael Hennerich <michael.hennerich@analog.com>,
- =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Jonathan Corbet <corbet@lwn.net>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org, Ramona Gradinariu <ramona.gradinariu@analog.com>
-References: <20240624-iio-adc-ad4695-v3-0-a22c302f06bf@baylibre.com>
- <20240624-iio-adc-ad4695-v3-2-a22c302f06bf@baylibre.com>
- <20240629202003.1b72f0d0@jic23-huawei>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <20240629202003.1b72f0d0@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <Zo_zu-RmbZyKijVQ@hovoldconsulting.com>
 
-On 6/29/24 2:20 PM, Jonathan Cameron wrote:
-> On Mon, 24 Jun 2024 17:01:54 -0500
-> David Lechner <dlechner@baylibre.com> wrote:
+On Thu, Jul 11, 2024 at 05:01:15PM +0200, Johan Hovold wrote:
+> [ +CC: Mani ]
+> 
+> On Thu, Jul 11, 2024 at 11:58:08AM +0200, Johan Hovold wrote:
+> > On Thu, Jul 11, 2024 at 11:54:15AM +0200, Konrad Dybcio wrote:
+> > > On 11.07.2024 11:02 AM, Johan Hovold wrote:
+> > > > The DWC PCIe controller can be used with its internal MSI controller or
+> > > > with an external one such as the GICv3 Interrupt Translation Service
+> > > > (ITS).
+> > > > 
+> > > > Add the msi-map properties needed to use the GIC ITS. This will also
+> > > > make Linux switch to the ITS implementation, which allows for assigning
+> > > > affinity to individual MSIs.
+> 
+> > > X1E CRD throws tons of correctable errors with this on PCIe6a:
+> 
+> > What branch are you using? Abel reported seeing this with his branch
+> > which has a few work-in-progress patches that try to enable 4-lane PCIe.
+> > 
+> > There are no errors with my wip branch based on rc7, and I have the same
+> > drive as Abel.
+> 
+> For some reason I don't get these errors on my machine, but this has now
+> been confirmed by two other people running my rc branch (including Abel)
+> so something is broken here, for example, with the PHY settings.
 > 
 
-...
+I saw AER errors on Abel's machine during probe with 4-lane PHY settings. And
+that might be the indication why the link width got downgraded to x2. This is
+still not yet resolved.
 
->> +
->> +/**
->> + * ad4695_read_one_sample - Read a single sample using single-cycle mode
->> + * @st: The AD4695 state
->> + * @address: The address of the channel to read
->> + *
->> + * Upon return, the sample will be stored in the raw_data field of @st.
->> + *
->> + * Context: can sleep, must be called with iio_device_claim_direct held
->> + * Return: 0 on success, a negative error code on failure
->> + */
->> +static int ad4695_read_one_sample(struct ad4695_state *st, unsigned int address)
->> +{
->> +	struct spi_transfer xfer[2] = { };
->> +	int ret;
->> +
->> +	ret = ad4695_set_single_cycle_mode(st, address);
->> +	if (ret)
->> +		return ret;
->> +
->> +	/*
->> +	 * Setting the first channel to the temperature channel isn't supported
->> +	 * in single-cycle mode, so we have to do an extra xfer to read the
->> +	 * temperature.
->> +	 */
->> +	if (address == AD4695_CMD_TEMP_CHAN) {
->> +		/* We aren't reading, so we can make this a short xfer. */
-> I'd be tempted to let the compiler figure out it can combine storage for xfer and
-> do something like
-> 		struct spi_transfer xfer[2] = {
-> 			{
-> 				.bits_per_word = 8,
-> 				.tx_buf = ...
+> I saw five correctable errors once, when running linux-next, but it took
+> several minutes and they were still minutes apart.
 > 
-> 			}, {
-> 			},
-> 		};
+> > Also note that the errors happen also without this patch applied, they
+> > are just being reported now.
 > 
-> 		st->cnv_cmd2 = ...
-> etc
+> I guess we need to track down what is causing these errors before
+> enabling ITS (and thereby the error reporting). 
 > 
-> Advantage is that it is clearly structured data.   Up to you though to
-> decide if this is worth doing. I don't care that much!
+> At least L0s is not involved here, as it was with sc8280xp, as the
+> NVMe controllers in question do not support it.
 > 
+> Perhaps something is off because we're running the link at half width?
 > 
->> +		st->cnv_cmd2 = AD4695_CMD_TEMP_CHAN << 3;
->> +		xfer[0].bits_per_word = 8;
->> +		xfer[0].tx_buf = &st->cnv_cmd2;
->> +		xfer[0].len = 1;
->> +		xfer[0].cs_change = 1;
->> +		xfer[0].cs_change_delay.value = AD4695_T_CONVERT_NS;
->> +		xfer[0].cs_change_delay.unit = SPI_DELAY_UNIT_NSECS;
->> +
->> +		/* Then read the result and exit conversion mode. */
->> +		st->cnv_cmd = AD4695_CMD_EXIT_CNV_MODE << 11;
->> +		xfer[1].bits_per_word = 16;
->> +		xfer[1].tx_buf = &st->cnv_cmd;
->> +		xfer[1].rx_buf = &st->raw_data;
->> +		xfer[1].len = 2;
->> +
->> +		return spi_sync_transfer(st->spi, xfer, 2);
->> +	}
-> 
-> then an else here to reduce the scope of another xfer structure.
 
-Tempting, but then I risk the complaint of else after return. :-)
+My hunch is the PHY settings. But Abel cross checked the PHY settings with
+internal documentation and they seem to match. Also, Qcom submitted a series
+that is supposed to fix stability issues with Gen4 [1]. With this series, Gen 4
+x4 setup is working on SA8775P-RIDE board as reported by Qcom. But Abel
+confirmed that it didn't help him with the link downgrade issue.
 
-I also realized that the second xfer above is the same as the one
-below, so could skip the return here and avoid some duplicated code
-(just need to add an index variable instead of hard-coding xfer[0]).
+Perhaps you can give it a try and see if it makes any difference for this issue?
 
-> 
->> +
->> +	/*
->> +	 * The conversion has already been done and we just have to read the
->> +	 * result and exit conversion mode.
->> +	 */
->> +	st->cnv_cmd = AD4695_CMD_EXIT_CNV_MODE << 11;
->> +	xfer[0].bits_per_word = 16;
->> +	xfer[0].tx_buf = &st->cnv_cmd;
->> +	xfer[0].rx_buf = &st->raw_data;
->> +	xfer[0].len = 2;
->> +
->> +	return spi_sync_transfer(st->spi, xfer, 1);
->> +}
+Meantime, I'm checking with Qcom contacts on this.
 
+- Mani
+
+[1] https://lore.kernel.org/linux-pci/20240320071527.13443-1-quic_schintav@quicinc.com/
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
