@@ -1,226 +1,206 @@
-Return-Path: <devicetree+bounces-85095-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85096-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 422AE92ED8C
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 19:12:34 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E781492ED9D
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 19:18:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 638EB1C21722
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 17:12:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6BD9C1F218C6
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 17:18:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 081C716DC02;
-	Thu, 11 Jul 2024 17:11:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FF9316DC0F;
+	Thu, 11 Jul 2024 17:18:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="oHtvmtoc"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HPhufKhj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2071.outbound.protection.outlook.com [40.107.93.71])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com [209.85.215.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6948A16D9C4;
-	Thu, 11 Jul 2024 17:11:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.93.71
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720717895; cv=fail; b=g39keOo/xTStppfyy5w0MwSE38yL0J/Gib9ZGG8jylN98rrp5UzB/2WFgdrOAtpyPAeg3TnBX+C93A3uaWjCHd4flgd5cwkuZL8ZSxzfs9DZL07oeOn3o2/Hvbg/nS4bmVrII80uFwT79x1AG3tSeOwiDEhQM+q4dKPy1jEE/gA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720717895; c=relaxed/simple;
-	bh=RT2KFS1TDiZsl5R/m1HisoICnymkzprZUOUet5+PdmU=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Ww9zB8hdrxfqxWxTekgz61qSlPJA2CMN9PwHdG6MLDj+BwB32YNiZwwnVPygIJWJTpwjJEtGc6hST3Bhxfo8vPV94rnUb6UGXIAkdAt1f8AqwvfYiWjqK4nNHYZ1giEkNVIEqBzHKs0wuinYzexkErJF8LoJrOdTdGTHE0DA/so=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=oHtvmtoc; arc=fail smtp.client-ip=40.107.93.71
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=xi8PEvFSDETQnjNBIX88zGi13xFy4YqwDRSkAoudlH/Je5ukwNPqPCfkz4DlDzdeiS5UgkyAedlxplwBvzC0uDYjFdVCAq1cpMZ+RAAMS5DAWOTY8riWLPsUTSEDHBZXNerMHYtAMjpqYK3WppXbowszJkOYWjwziFYORplDI3lzMdwJN7+ouzc+Hr+xYRSlzb+PBE9cJsUSj/PVdRV0A7TqsiyJpwfZW9RjzsaLubENEgQmgFiNVsz0ce7TXGJp0D6otw4aT21JoMcmLw8OY8b7LQUfuXmkeoYpb9S7KeH6zRJHS1dOqKSbipVQZWJl/2X68nO3Ucu7qVUrKbXiQg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+iayTMhLi4MgKWrl8aoPyRqSBPrdqO1LUaeh5xAvHE8=;
- b=ERRcyK5Sq1OesUxwIjIH4prxMzRqCEb8FgDs4Xp/0FY9wkeeQiS+nJqJaDXrk3lhrEzMw6KrY7Hti0wUoUUZLHg1J0pGdPPP9/7v37uuOlTTsh0b1MeduRTEQBbJU1o2dsEooI53ZFlKjtI//8J2hetOIBasPkQkFZ61j+yBKVv3KxUrbuA/+S4uKIrlHt0DQ8uDAH1DmNgEEWLpU1hGMexZxb+YDAh7FBq4XUmHLIawmZ7r4Ugl5/5UTwKNfqKQF1mwOhD0sucbPwdjaVujyTYlw64UqWTRxXuzPKqnSDt0eIfnOl9d34MtaMG3pVEiBgYakSyAVeArCpdySp8XXg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.160) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+iayTMhLi4MgKWrl8aoPyRqSBPrdqO1LUaeh5xAvHE8=;
- b=oHtvmtociEucBkl3ecTCSk1SvudEvQjYf4xT59/mM8JzjXmKmxM2DMI2pnfQmI25lxvFSEXju5zXb2lezJBqmmMTrkYLgZlwXMW3+y8SzkxcygIKwQl8Yjx6Z03drG/sjRnogU479cF9++2X+AgJEmzEC8NpIYmqsOk25nyKR7ehw73qmEXRH0fY3DpYPjW+42gmmYOrRtmk1cU7oK+7K0oZ4uxmRD+1xWXlUGWSyqC1QW2lz4CguvMcentQSvS1Pch5k9BV6IhnzCR2zINTVjLzJo/Y1pEggCJdufu4t/VtVrU7kYaItpI9AQ+2jAJZizD/H6R5hOuRC7MPt9IHcA==
-Received: from SJ0PR05CA0075.namprd05.prod.outlook.com (2603:10b6:a03:332::20)
- by DM6PR12MB4203.namprd12.prod.outlook.com (2603:10b6:5:21f::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7762.21; Thu, 11 Jul
- 2024 17:11:30 +0000
-Received: from SJ5PEPF000001CF.namprd05.prod.outlook.com
- (2603:10b6:a03:332:cafe::b4) by SJ0PR05CA0075.outlook.office365.com
- (2603:10b6:a03:332::20) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7762.19 via Frontend
- Transport; Thu, 11 Jul 2024 17:11:29 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.160) by
- SJ5PEPF000001CF.mail.protection.outlook.com (10.167.242.43) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7762.17 via Frontend Transport; Thu, 11 Jul 2024 17:11:29 +0000
-Received: from rnnvmail202.nvidia.com (10.129.68.7) by mail.nvidia.com
- (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Thu, 11 Jul
- 2024 10:11:11 -0700
-Received: from rnnvmail203.nvidia.com (10.129.68.9) by rnnvmail202.nvidia.com
- (10.129.68.7) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Thu, 11 Jul
- 2024 10:11:10 -0700
-Received: from l4tsclab4-2000.nvidia.com (10.127.8.12) by mail.nvidia.com
- (10.129.68.9) with Microsoft SMTP Server id 15.2.1544.4 via Frontend
- Transport; Thu, 11 Jul 2024 10:11:10 -0700
-From: Vedant Deshpande <vedantd@nvidia.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Thierry Reding
-	<thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, "Brad
- Griffis" <bgriffis@nvidia.com>, <devicetree@vger.kernel.org>,
-	<linux-tegra@vger.kernel.org>
-CC: Vedant Deshpande <vedantd@nvidia.com>
-Subject: [PATCH v2 2/2] arm64: tegra: enable same UARTs for Orin NX/Nano
-Date: Thu, 11 Jul 2024 17:11:01 +0000
-Message-ID: <20240711171101.2798971-3-vedantd@nvidia.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240711171101.2798971-1-vedantd@nvidia.com>
-References: <20240711171101.2798971-1-vedantd@nvidia.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0238D512;
+	Thu, 11 Jul 2024 17:18:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.171
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1720718297; cv=none; b=BseypYeoSiYGAqhcn1xVOVozeENcvkK1eGDqIVA/pLw24+X0JdI9rdanYJfQJXyXdKyvXMklHBBA7r1Mj26QzX5BkrjIm3S0k25Grg7lBUNi2TEAU+6ymTtzHiXXRLs+WOsfLfEiPiVmp36hIo+mFPNH2RrTcpoEkiq44VHf0VA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1720718297; c=relaxed/simple;
+	bh=2KPwA0YgHJPBApB0LAdHxCOl16/1G1yHfY7JRbOp7VU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SptZLMQ9krllviaOvFiTPBlYe3RSCkvmQNSTN017AH74oluHPrv1OCZdWzx3ciYoL8KIugJezFko4pH4jhyf/7Y2TfMUzGTG7J6sZc7CAL5Ou7Sr+pLfCwc4/6jwWbfXQDrUp0YKFTf/EC2Kvt/w72lI+gHZGsEcpgls666X180=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HPhufKhj; arc=none smtp.client-ip=209.85.215.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f171.google.com with SMTP id 41be03b00d2f7-7669d62b5bfso771762a12.1;
+        Thu, 11 Jul 2024 10:18:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1720718295; x=1721323095; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=tYmzgqsSkkD0Gz50701/4Z6SMa5XZZYUoWansf9Hxzg=;
+        b=HPhufKhjF8xqRK8Pe2Or902g1uGMBpsDmHUyCzxi+uc6nDoblmbEtuYvuoUKMdmdpt
+         +/lcB1FB2XoVdXLBldZS/zunT7E4vrOGq5yJ8m+tk79r+pIyoKnQwym//jD5M8dDEIXB
+         ZElRx/hegCNOJMsIXI9AB5sthfmVhYzUV3ZmjhNS8BuQucjw0q719+ydHNZWG8GWMR47
+         GDQCbcDkCuneL2/6pAVrhZqau/F6GFxE3NdnlY/AjjZ3lHUFOkuo9so1y0JUp8j/5xFX
+         G1Ld90NMVfROasHro9bYeuMFF+FxyTZESOsR4+l1Jg43Zr16aFgudfGPJRDKAp8qYlh5
+         qRPA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720718295; x=1721323095;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=tYmzgqsSkkD0Gz50701/4Z6SMa5XZZYUoWansf9Hxzg=;
+        b=EXFAzDF1O3Ccl2OUvsrumEWa72VXxBB7Raou6jMFX0km7pEeI71IkIr8m0IGGDm8Gd
+         CyATrsa2zLebtZAR9IAtpDsnp5bZXdUNgPnbe6qf/8hYe0afIkDgELP+aXgKycinqP6I
+         UTS9F7rt097dZwIa/dSUFYRKHY+lB/W8zLZuFFXV7ZUcg3ZQlBF89TLR4kNcxdww82uS
+         Dd7KCDrPR69Ft0HVnEBuh3MCXH3wMEsNni8HqWWmzunfBFdAdkey9mHZ0SbTPR/4ZUuZ
+         aqsWEdli2EBOgf77YISRnwGVpKetxbOiOmQN9dIALcer1O+zGW0NKq4So4dIAZbp5Z14
+         ai7A==
+X-Forwarded-Encrypted: i=1; AJvYcCVFBs6Cq7WGLp3lP5LNqOkFdBhg7BhgkH9ytkRbQsMgDZWX+HzBlG9OdhIyrRZ4GWKO8HGkACQo+jjMqsJb0tS4wsd5qSq4AukJwziuCt0neEhDyvfvVUCnx6rrBlw3Y/Eye+dh+5rV2mwJ6lgr5z1iL5QM7J/J5lhYfaVSDRUDmFHOIKHC
+X-Gm-Message-State: AOJu0YwwjTQWxNxmbGtIhRYc3GnhVjoGqA2wKd/BLaI6BklfXgO7DauY
+	L3msnnEgQEhDcWMpYNQojjy1GFqiysSls2ImVwOFQZt8iCu8NBbu
+X-Google-Smtp-Source: AGHT+IHobCwPAmLnXNHYHhGfAxZHsdEZd1CJJ7Sexcs7TnxufAkOrvXDNpfYYX+e4fxgoQm7f5Njiw==
+X-Received: by 2002:a05:6a21:e8b:b0:1c3:a9b8:a9bf with SMTP id adf61e73a8af0-1c3a9b8b006mr4808186637.51.1720718294820;
+        Thu, 11 Jul 2024 10:18:14 -0700 (PDT)
+Received: from google.com ([2620:15c:9d:2:4761:5ea8:2da4:8299])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-70b43899614sm6148863b3a.17.2024.07.11.10.18.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 11 Jul 2024 10:18:14 -0700 (PDT)
+Date: Thu, 11 Jul 2024 10:18:11 -0700
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Javier Carrasco <javier.carrasco@wolfvision.net>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bastian Hecht <hechtb@gmail.com>,
+	Michael Riesch <michael.riesch@wolfvision.net>,
+	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Jeff LaBundy <jeff@labundy.com>
+Subject: Re: [PATCH v10 2/4] Input: touch-overlay - Add touchscreen overlay
+ handling
+Message-ID: <ZpAT01jr9rS55t_B@google.com>
+References: <20240626-feature-ts_virtobj_patch-v10-0-873ad79bb2c9@wolfvision.net>
+ <20240626-feature-ts_virtobj_patch-v10-2-873ad79bb2c9@wolfvision.net>
+ <Zox_cVYsErrLu4Mq@google.com>
+ <d8734538-81f4-4883-bd29-2f8b682c3d1c@wolfvision.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-NVConfidentiality: public
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-NV-OnPremToCloud: ExternallySecured
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PEPF000001CF:EE_|DM6PR12MB4203:EE_
-X-MS-Office365-Filtering-Correlation-Id: 013cbcbd-f70d-47a1-1888-08dca1cc8182
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|1800799024|376014|36860700013;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?1r/SBkb8aUBhqttYMymcLVdVojNzhm8dA5Xy5ALQMPpKb813ettTrr8OSPo/?=
- =?us-ascii?Q?C3aR8/NHXqVRsAl8p1x6qPiW9HqqZ1qWuvRkIlYL5qXzePPxBdVC3YzngEDx?=
- =?us-ascii?Q?q4I50pdhvc5QaY1TYacZ8kY36S98M7dqvmtfqBAKecNRvBsU/STjyI2ZbQPi?=
- =?us-ascii?Q?bc7xop7MhxchCCftP2P0kG3wvl3/r8Y7zM3RtC2cxVDmLbODi/BGv0rMkuZW?=
- =?us-ascii?Q?EXfnn13TxczbKPDVQxI/HMppb0cMfzx1oKTRGR4hv+CZN0KXgvLCPz472gyV?=
- =?us-ascii?Q?6F7/4kHoun+J/GOgRtNpVXX0baFIVP3MkVxdezs5pTP0E43yKNsH04ZDs58z?=
- =?us-ascii?Q?81B8mRS5OqiSvR9zsZMBu4uoJOd0MAbuRTTpTr6Q8xs9MUmml8HPYWahfeWy?=
- =?us-ascii?Q?1dNQvPV4MedIaP3yIYiWZrdUdV69Pm9/qOsgCIgG6X7lpkTOcSSg2AtTz7Cs?=
- =?us-ascii?Q?Ma3faXNtDaueQ+nn7L3UO+iMGb5WKaKKKwx7nFsMsb5AoLjh8H++xKXC0jkL?=
- =?us-ascii?Q?g2xCH3iQAim/pnaefRodvX+JlQ1azcopu/tSvXnxw/z43aE4ErJl11KfvOPp?=
- =?us-ascii?Q?rxXo7ePlDkvdewHLbcO0XrBQ9KVXUVROAfaCAxgeFQ9KsbPoKp35OqfZgULL?=
- =?us-ascii?Q?jNlsptUSbcisloJUFb/uuMIzRFhLHiWXXSgf721IlKBRu5BNTLH2GjVuqp+R?=
- =?us-ascii?Q?HeIWdNKhiqVLyS36Br5kss3Ox6p8HSOrbBz62qj0xOm+obDBb+H20VOpACAj?=
- =?us-ascii?Q?p30SbRA062g9SdKnFDHe8hqNGc9z6/Ejnu4hTY9GQJyKaHuNW3vL3PAPkUVc?=
- =?us-ascii?Q?14b9ofmDKqw/tmTJ6zQxEHAFL7JjxW3P63vJwo7UdQhmYOFQUkf6RZXvnXtR?=
- =?us-ascii?Q?nT0XHUJN14bXH8TlcpuNJ17PWOrBlLKuWnUiH6kIRoXtbgGlMn57w2EiJKDP?=
- =?us-ascii?Q?Sv+SWU+njKS3hLMzHwtWV0t442vNr13WFMpN4fMfdjpOJZBxrH6E90A1cxX3?=
- =?us-ascii?Q?14rfRib0iD92KsiGx1MUVsGruL0k/lZjlHEQGzf1942TrG5hSJ+tdmxGrSV9?=
- =?us-ascii?Q?lvZpCpkL9Ex5473LfIEn5F5Z0M/Qp4NlMZoTnuzVS2vJEYwqLOQEQlsn4UIQ?=
- =?us-ascii?Q?0APjaL+j7Tx0g1k1nwFDUeThmSZhRB0YwjjLQyp35RyFCP3fQCy14bzi/cIW?=
- =?us-ascii?Q?fXxNmTwr3mefpukc0ANdqi68NavUTuZm7lk6lqPJABW8HmIrU7BZCaArRANK?=
- =?us-ascii?Q?uyhzDRQlu1i9zQrWoNT9ct5G1R6fAJQ5YmXR2+/yJkkuJUtYzy7b47YTsv7g?=
- =?us-ascii?Q?qPmcxDlTUMkK0lBIDFtf7w+t4CzejXsca0yvInRnyXSbs+85nLYB82SdnuFB?=
- =?us-ascii?Q?AxOuJhmTjzN2PsBNwAaH5NhYtBjDM6f42Ske0WCQGP4V2Xm2eunePZYNU1B+?=
- =?us-ascii?Q?295SmdSuz56Ee0kKWDyxwO8ZtlT8oE9V?=
-X-Forefront-Antispam-Report:
-	CIP:216.228.117.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge1.nvidia.com;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(376014)(36860700013);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jul 2024 17:11:29.6704
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 013cbcbd-f70d-47a1-1888-08dca1cc8182
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.160];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SJ5PEPF000001CF.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4203
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <d8734538-81f4-4883-bd29-2f8b682c3d1c@wolfvision.net>
 
-This patch ensures that Orin NX and Orin Nano enable an identical
-set of serial ports. UARTA/UARTE will be enabled by adding
-respective nodes to the board dtsi file.
+On Wed, Jul 10, 2024 at 02:16:13PM +0200, Javier Carrasco wrote:
+> On 09/07/2024 02:08, Dmitry Torokhov wrote:
+> > Hi Javier,
+> > 
+> > On Wed, Jun 26, 2024 at 11:56:14AM +0200, Javier Carrasco wrote:
+> >> Some touch devices provide mechanical overlays with different objects
+> >> like buttons or clipped touchscreen surfaces.
+> > 
+> > Thank you for your work. I think it is pretty much ready to be merged,
+> > just a few small comments:
+> > 
+> >>
+> >> In order to support these objects, add a series of helper functions
+> >> to the input subsystem to transform them into overlay objects via
+> >> device tree nodes.
+> >>
+> >> These overlay objects consume the raw touch events and report the
+> >> expected input events depending on the object properties.
+> > 
+> > So if we have overlays and also want to invert/swap axis then the
+> > overlays should be processed first and only then
+> > touchscreen_set_mt_pos() or touchscreen_report_pos() should be called?
+> > 
+> > But then it will not work if we need help frm the input core to assign
+> > slots in cases when touch controller does not implement [reliable]
+> > contact tracing/identification.
+> > 
+> > I think this all needs to be clarified.
+> > 
+> 
+> I think this is the most critical point from your feedback.
+> 
+> So far, touch-overlay processes the coordinates of input_mt_pos elements
+> before passing them to touchscreen_set_mt_pos(). As you pointed out,
+> that means that it does not act on the slots i.e. it assumes that the
+> controller does the contact tracing and pos[i] is assigned to slot[i],
+> which is wrong.
+> 
+> Current status:
+> [Sensor]->[touch-overlay(filter + button
+> events)]->[touchscreen_set_mt_pos()]->[input_mt_assign_slots()]->[report
+> MT events]
+> 
+> If I am not mistaken, I would need a solution that processes the
+> coordinates associated to assigned slots via input_mt_assign_slots().
+> Then I would have to avoid generating MT events from slots whose
+> coordinates are outside of the overlay frame (ignored) or on overlay
+> buttons (generating button press/release events instead).
+> 
+> But once input_mt_assign_slots() is called, it is already too late for
+> that processing, isn't it? Unless assigned slots filtered by
+> touch-overlay are kept from generating MT events somehow, but still used
+> to keep contact tracing.
+> 
+> Any suggestion on this respect would be more than welcome.
 
-Signed-off-by: Vedant Deshpande <vedantd@nvidia.com>
----
- .../nvidia/tegra234-p3768-0000+p3767-0000.dts   | 17 -----------------
- .../dts/nvidia/tegra234-p3768-0000+p3767.dtsi   | 14 ++++++++++++++
- 2 files changed, 14 insertions(+), 17 deletions(-)
+The driver is in control which slots to emit the events for, so it can
+skip reporting if it wants. Consider the st1232 for which you are making
+these adjustments:
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0000.dts b/arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0000.dts
-index 82a59e33c46c..5dc974bb360c 100644
---- a/arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0000.dts
-+++ b/arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0000.dts
-@@ -7,24 +7,7 @@ / {
- 	compatible = "nvidia,p3768-0000+p3767-0000", "nvidia,p3767-0000", "nvidia,tegra234";
- 	model = "NVIDIA Jetson Orin NX Engineering Reference Developer Kit";
- 
--	aliases {
--		serial1 = &uarta;
--		serial2 = &uarte;
--	};
--
- 	bus@0 {
--		serial@3100000 {
--			compatible = "nvidia,tegra194-hsuart";
--			reset-names = "serial";
--			status = "okay";
--		};
--
--		serial@3140000 {
--			compatible = "nvidia,tegra194-hsuart";
--			reset-names = "serial";
--			status = "okay";
--		};
--
- 		hda@3510000 {
- 			nvidia,model = "NVIDIA Jetson Orin NX HDA";
- 		};
-diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767.dtsi b/arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767.dtsi
-index 6d64a24fa251..81d4f4f12ab1 100644
---- a/arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767.dtsi
-@@ -9,6 +9,8 @@ / {
- 
- 	aliases {
- 		serial0 = &tcu;
-+		serial1 = &uarta;
-+		serial2 = &uarte;
- 	};
- 
- 	chosen {
-@@ -16,6 +18,18 @@ chosen {
- 	};
- 
- 	bus@0 {
-+		serial@3100000 {
-+			compatible = "nvidia,tegra194-hsuart";
-+			reset-names = "serial";
-+			status = "okay";
-+		};
-+
-+		serial@3140000 {
-+			compatible = "nvidia,tegra194-hsuart";
-+			reset-names = "serial";
-+			status = "okay";
-+		};
-+
- 		i2c@3160000 {
- 			status = "okay";
- 
+	for (i = 0; i < ts->chip_info->max_fingers; i++) {
+		u8 *buf = &ts->read_buf[i * 4];
+
+		if (buf[0] & BIT(7)) {
+			unsigned int x = ((buf[0] & 0x70) << 4) | buf[1];
+			unsigned int y = ((buf[0] & 0x07) << 8) | buf[2];
+
+			touchscreen_set_mt_pos(&pos[n_contacts],
+					       &ts->prop, x, y);
+
+			/* st1232 includes a z-axis / touch strength */
+			if (ts->chip_info->have_z)
+				z[n_contacts] = ts->read_buf[i + 6];
+
+			n_contacts++;
+		}
+	}
+
+	input_mt_assign_slots(input, slots, pos, n_contacts, 0);
+	for (i = 0; i < n_contacts; i++) {
+		input_mt_slot(input, slots[i]);
+		input_mt_report_slot_state(input, MT_TOOL_FINGER, true);
+		input_report_abs(input, ABS_MT_POSITION_X, pos[i].x);
+		input_report_abs(input, ABS_MT_POSITION_Y, pos[i].y);
+		if (ts->chip_info->have_z)
+			input_report_abs(input, ABS_MT_TOUCH_MAJOR, z[i]);
+	}
+
+Can you call touch_overlay_process_event() from the 2nd for() loop,
+something like this:
+
+	for (i = 0; i < n_contacts; i++) {
+		if (touch_overlay_process_event(&ts->touch_overlay_list,
+						input,
+						&pos[i].x, &pos[i].y))
+			continue;
+
+		input_mt_slot(input, slots[i]);
+		...
+	}
+
+Note that you will no longer able to rely on the input core to drop
+"unused" slots because you may need to generate "key up" events for
+them, but you do have access to input_mt_is_active() and
+input_mt_is_used() so you can implement what you need.
+
+Thanks.
+
 -- 
-2.25.1
-
+Dmitry
 
