@@ -1,124 +1,116 @@
-Return-Path: <devicetree+bounces-85079-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85080-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C9FF92ECFC
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 18:44:53 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD0CD92ED20
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 18:54:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8D7821C21C21
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 16:44:52 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4BF4CB21F23
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 16:54:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4291C16D4C6;
-	Thu, 11 Jul 2024 16:44:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EFA016D9BC;
+	Thu, 11 Jul 2024 16:54:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="P8v+jtd1"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="TmcQYI6l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C4F31474D3;
-	Thu, 11 Jul 2024 16:44:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1C8416D4F4;
+	Thu, 11 Jul 2024 16:54:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720716287; cv=none; b=cUCNQ+CHAqJIG2jrvzTnnfj+gmUeFvyEzTlKg3tHxuVRrZJ8ttLiUAAQIN2FIo0j9LW6iVlYfOANLtxpD5Oo0tVNL2JKrpd/daO2aJcpsGm1fcHLXITOeu83OWx2zlJvuiiETKjlgBjHm9CgT9q5Sdfvw3mQVbhyKuT+OyI6CQ8=
+	t=1720716881; cv=none; b=tvOgGcbM6kiL/D+/dluTFLXCQQSaLn3WQZcU3TCFvT3pqU6lDGVIDoHQE9L9K3BC6IrlPSa8C3aCTvqDCKBc/3XU+QwyP8qg5yLDW7QH1Gr7+VRpKsPhyVxne1oEAbY3LrquCagAXG9ZcCqJz1L4EFvf/cHlp8t603r7MMKGHXg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720716287; c=relaxed/simple;
-	bh=2vqenC3vyN4xU/GXyPVLXXzBBrBJTvgmVlmz9ziNDvM=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=o1wtoa8DqC3BD4QyMOyQYuefja6noPU34yZY4pUrjqF7L64CYgn0LgchfMocFKhTZkXx9TqQSjDtnNn4MczRrkrU5eq9KdgF6jW77LdZAwXX5HummZmLW1eOvc9lyXCP5ZbzdncuWD+31ToxTVhCQf5Vy0ca34keyD/OdhOU51U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=P8v+jtd1; arc=none smtp.client-ip=217.70.183.196
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 668B7E0004;
-	Thu, 11 Jul 2024 16:44:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1720716282;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=vybloJtqAMD3XBXViDgsQDiBzU52F1YzHw5VHYlk7nY=;
-	b=P8v+jtd1ys5EiH6FMRVDPUMNPab4NRp9wkAGbEK57+f4iby7pSGs18DQ8P4Y4ZLvuK5WLj
-	SQQ1kcxRfly3QwFY6kvql7ACeTUqF57HksCL4JJj4Fkf4v/J/gipIXtdkVgOEht7nCCpcH
-	hEPaFCptezq+Derxp7uiXWiOq1+bGEkLmF5fpqbhzgrbwsAqNmlwhxYGjUTsZA9avOX4tH
-	LwtljISqcHPjmdYuHF1pQYHr/9B1esqtLWTba+vvfMLxU/2lO970tOuj2sZRFMyqDBuGLK
-	9l0YwOfE2kna6alACHj/ngciu9N3lo4TKwV0QkCg2l8wMRw1lRswMsGlr3HVLw==
-Date: Thu, 11 Jul 2024 18:44:38 +0200
-From: Herve Codina <herve.codina@bootlin.com>
-To: Lee Jones <lee@kernel.org>
-Cc: Andy Shevchenko <andy.shevchenko@gmail.com>, Simon Horman
- <horms@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Arnd Bergmann
- <arnd@arndb.de>, UNGLinuxDriver@microchip.com, Saravana Kannan
- <saravanak@google.com>, Bjorn Helgaas <bhelgaas@google.com>, Philipp Zabel
- <p.zabel@pengutronix.de>, Lars Povlsen <lars.povlsen@microchip.com>, Steen
- Hegelund <Steen.Hegelund@microchip.com>, Daniel Machon
- <daniel.machon@microchip.com>, "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo
- Abeni <pabeni@redhat.com>, Horatiu Vultur <horatiu.vultur@microchip.com>,
- Andrew Lunn <andrew@lunn.ch>, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, netdev@vger.kernel.org,
- linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org, Allan
- Nielsen <allan.nielsen@microchip.com>, Luca Ceresoli
- <luca.ceresoli@bootlin.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>
-Subject: Re: [PATCH v3 6/7] mfd: Add support for LAN966x PCI device
-Message-ID: <20240711184438.65446cc3@bootlin.com>
-In-Reply-To: <20240711152952.GL501857@google.com>
-References: <20240627091137.370572-1-herve.codina@bootlin.com>
-	<20240627091137.370572-7-herve.codina@bootlin.com>
-	<20240711152952.GL501857@google.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1720716881; c=relaxed/simple;
+	bh=AFmcG/KEvllGzTWGQ+DiPSWbg3J8mbUzRHD1iS4cnLs=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=EokYA3TOmcpQxxxorPI9Qv6u0hHxmuYxRia5g8wfWLeIMthTh2whvssn191HQxCW/wu9obmH256h2clIfD4oTHD6Ecl840sDz7SmOUqAy7N2vNC+h7jvk7/iDUiGkfQYXxMw13GlnxPGEDNYOXQRbYbjp1v70LSOMjj6yfY+w7Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=TmcQYI6l; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1720716879; x=1752252879;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=AFmcG/KEvllGzTWGQ+DiPSWbg3J8mbUzRHD1iS4cnLs=;
+  b=TmcQYI6llWwxM96yjBctQbxFREFCpqOOb20BMRbvlfYZ0UEyiTjPiJKG
+   ory1r9dWZn/pLufOAz5EdZPFZfyEhyLNZKey5t4bgD/v/m6NsOWlH6fIV
+   UNclTbiEpl1U0cVuSV6ivUitqqKWQZcKUVUCCBU2Jwx/VSMuHPlNZTUB8
+   lO2SgxFIJ/G8z0qDkgWi6c+koPgVrf/FZW0N/XCIzwuBET5ql28o0Br4p
+   I5dFpvZsw4q5pxrGukJhaCESpehhXF4A4sLPDoZ+4WrkoTWnijCikTO1Q
+   vWrqXHj7vYDM1D9QQ54xXe812dEZHiyqIVYJ7JnAM2/gnelFkT9PfJGG1
+   Q==;
+X-CSE-ConnectionGUID: zM8v1C8oQ/SssnAxM3eiww==
+X-CSE-MsgGUID: hgIhfGcaQyqkhzbrf/VsWQ==
+X-IronPort-AV: E=Sophos;i="6.09,200,1716274800"; 
+   d="scan'208";a="29772050"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 11 Jul 2024 09:54:32 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Thu, 11 Jul 2024 09:54:01 -0700
+Received: from ROU-LL-M43238.amer.actel.com (10.10.85.11) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
+ 15.1.2507.35 via Frontend Transport; Thu, 11 Jul 2024 09:53:57 -0700
+From: <nicolas.ferre@microchip.com>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Mark Brown <broonie@kernel.org>, Rob Herring
+	<robh@kernel.org>, <devicetree@vger.kernel.org>
+CC: Tudor Ambarus <tudor.ambarus@linaro.org>, Claudiu Beznea
+	<claudiu.beznea@tuxon.dev>, Alexandre Belloni
+	<alexandre.belloni@bootlin.com>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-spi@vger.kernel.org>, "Nicolas
+ Ferre" <nicolas.ferre@microchip.com>
+Subject: [PATCH] dt-bindings: spi: at91: Add sama7d65 compatible string
+Date: Thu, 11 Jul 2024 18:54:02 +0200
+Message-ID: <20240711165402.373634-1-nicolas.ferre@microchip.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-GND-Sasl: herve.codina@bootlin.com
+Content-Type: text/plain
 
-Hi Lee,
+From: Nicolas Ferre <nicolas.ferre@microchip.com>
 
-On Thu, 11 Jul 2024 16:29:52 +0100
-Lee Jones <lee@kernel.org> wrote:
+Add compatible string for sama7d65. Like sam9x60 and sam9x7, it requires
+to bind to "atmel,at91rm9200-spi".
+Group these three under the same enum, sorted alphanumerically, and
+remove previously added item.
 
-> On Thu, 27 Jun 2024, Herve Codina wrote:
-> 
-> > Add a PCI driver that handles the LAN966x PCI device using a device-tree
-> > overlay. This overlay is applied to the PCI device DT node and allows to
-> > describe components that are present in the device.
-> > 
-> > The memory from the device-tree is remapped to the BAR memory thanks to
-> > "ranges" properties computed at runtime by the PCI core during the PCI
-> > enumeration.
-> > 
-> > The PCI device itself acts as an interrupt controller and is used as the
-> > parent of the internal LAN966x interrupt controller to route the
-> > interrupts to the assigned PCI INTx interrupt.  
-> 
-> Not entirely sure why this is in MFD.
+Signed-off-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+---
+ .../devicetree/bindings/spi/atmel,at91rm9200-spi.yaml     | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-This PCI driver purpose is to instanciate many other drivers using a DT
-overlay. I think MFD is the right subsystem.
+diff --git a/Documentation/devicetree/bindings/spi/atmel,at91rm9200-spi.yaml b/Documentation/devicetree/bindings/spi/atmel,at91rm9200-spi.yaml
+index 32e7c14033c2..d29772994cf5 100644
+--- a/Documentation/devicetree/bindings/spi/atmel,at91rm9200-spi.yaml
++++ b/Documentation/devicetree/bindings/spi/atmel,at91rm9200-spi.yaml
+@@ -18,10 +18,10 @@ properties:
+     oneOf:
+       - const: atmel,at91rm9200-spi
+       - items:
+-          - const: microchip,sam9x60-spi
+-          - const: atmel,at91rm9200-spi
+-      - items:
+-          - const: microchip,sam9x7-spi
++          - enum:
++              - microchip,sam9x60-spi
++              - microchip,sam9x7-spi
++              - microchip,sama7d65-spi
+           - const: atmel,at91rm9200-spi
+ 
+   reg:
+-- 
+2.39.2
 
-It acts as an interrupt controller because we need to have a bridge between the
-device-tree interrupt world and the the PCI world.
-This bridge is needed and specific to the driver in order to have resources
-available from the device-tree world present in the applied overlay.
-
-> 
-> Also I'm unsure of his current views, but Greg has voiced pretty big
-> feelings about representing PCI drivers as Platform ones in the past.
-
-PCI drivers as Plaform ones ?
-I probably missed something. Can you give me more details ?
-
-Best regards,
-Hervé
 
