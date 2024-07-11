@@ -1,139 +1,168 @@
-Return-Path: <devicetree+bounces-85077-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85078-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB21992ECE9
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 18:38:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C88192ECF4
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 18:42:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6D86B284D9A
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 16:38:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EDE721F238DC
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 16:42:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE00D16D32C;
-	Thu, 11 Jul 2024 16:38:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D9DD16D4C1;
+	Thu, 11 Jul 2024 16:42:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Bvhzre32"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oBZOlg9A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com [209.85.215.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C0D716B751;
-	Thu, 11 Jul 2024 16:38:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9005616D337
+	for <devicetree@vger.kernel.org>; Thu, 11 Jul 2024 16:41:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720715936; cv=none; b=btRgliq0LZY6aC1ChccaPIePNc/gol0A5zUPCXL2iV/EY9VXobIT8cCUvCxalJq0O0R8CKwSZ7znTWRB+WPH0c3eVNFCPMT15MwWN5IierHja3V1AAVhfPl8HUNaThJl3I85jdZymTjz2Gm5BiV2+nWGb13xV/xwAGG7+3Ru+WE=
+	t=1720716121; cv=none; b=EiyLWdMoY3ZUMaBQVMgoCmA+BV9ZdgP37TW+5e6yaaOW9IMjLgbLCyPa5A7GY/skGie+8K+jiMKfAPsFbilUWzaUV5sYxtQgucucb2xMUHowLLJJcZjy2FTsFnCpci+jo4FSpyaoqwfkqjiJA+kvvb3J9JUzNm53swxaDpUPDHQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720715936; c=relaxed/simple;
-	bh=UavMyNYF30mligF0aZsTuX6+8r35QoOCy1CLNriVcCY=;
+	s=arc-20240116; t=1720716121; c=relaxed/simple;
+	bh=a4QAtjiHvxxw1BzWC0fkN+pn/KINv2TovD4X0xhrjKA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Jwhv/cEJD0Gzr0e7E/J/VtDb68l4GhcwnFVifbgs1cOsuZQu5iOGWEEp9VmfVdAAZWj8NaC3tpFAkrGF98sKf36XGQaSpZ2TaciJGIYsJ1L/ryr36yiSVAF4yC4VbISIOQXtQv4zCijLWZ+65XqcAytgkbO7+QggKcc0+jNwk6E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Bvhzre32; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF90EC116B1;
-	Thu, 11 Jul 2024 16:38:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720715936;
-	bh=UavMyNYF30mligF0aZsTuX6+8r35QoOCy1CLNriVcCY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Bvhzre32EPArcVCo0Eotud0PYlBrGvFWmS7Mnyn9DEMnZSI4rRFdZaHaWG/I3EM2Q
-	 GHvtDsl8jMNtwbFaw2zRkN9IltKzUMMKJmHRcnr6NylGmUa1sEbEiXQKkpP/Zcmg5K
-	 aMwxW4hzbyWxC9pMJ4Fq2GdCgm1NBHQWnawmQeosZAEVjlwGIho2NSRXMjipkSZRDu
-	 TDKXVsBkETA832fccWdFXleBCy8hYramdv5EJY+mIF0jin8Qg+IrbNxthc0Df83Ieg
-	 cBAspqn3HecDX3XkBfQaUFPtNiusvJdcas3yZxm42DTJ3vkzB6hr7T04Tklx/mRoZO
-	 RoQgDqwtrlo6Q==
-Date: Thu, 11 Jul 2024 10:38:55 -0600
-From: Rob Herring <robh@kernel.org>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Frank Wunderlich <frank-w@public-files.de>,
-	Frank Wunderlich <linux@fw-web.de>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=aCwfrpUgt56sBKBR657ModC4vibqRYilxxgaEQ04rUo97aU9PvyckfWYpqPAbTIlvyls7JSdnIYuYBzUh7qc770SpJcRAPXOWWNsAzyLi80/RzWHvpdS0RZ3X3uv+QqeqFWPn6G7iOzoqxuX3DCaKj1Vkrgfyp69EWF0Xvxp2XA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=oBZOlg9A; arc=none smtp.client-ip=209.85.215.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pg1-f181.google.com with SMTP id 41be03b00d2f7-710437d0affso780329a12.3
+        for <devicetree@vger.kernel.org>; Thu, 11 Jul 2024 09:41:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1720716119; x=1721320919; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=Xt2lMN+078eDNF0Gw7yedN2yiedgJwwv9Vmf4vST3kk=;
+        b=oBZOlg9AefcNLihVUcRn+K/vLpUaipbc0qPiL+3RjI0Qk1d7sDyKk4miB9B0cZa8wh
+         3luq2aAKuL+HHfbVs7usoxdiqOmFdwiB2nATK1tLuQHZGUTJDTtAON+tR+Gy76/cRn23
+         k5qs1KeSme8kgt4LXi6/OiVPcofwcDsvDCgwqtmVWqZ2VPFEWmm16PytIaCNISqLfk9L
+         N6Gg4YAb1/P07PLI0ScnS+4h5EqG0jB7CaN6hcmQi3ETntdvFHfEl2zxWyExNJD7YIuV
+         iD4U7DkTpoILKr5HhMfMsY/B32lYBJxdy6axwqtq/I83phNmcoCpwzp9sam+O03Fz7y9
+         lPxw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720716119; x=1721320919;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Xt2lMN+078eDNF0Gw7yedN2yiedgJwwv9Vmf4vST3kk=;
+        b=B2QQReICAi2+sLT048Cl3zqiJx9BTgh5cm4e6aPX0RTUgIQzhrHLmzMO96jc41QCxk
+         2BzprZ9ffh1vPU64bhnuey5/MlIDxRaS8cZyD+dHjCQGcblbycUw6kEpVWpd9ZVFNDRd
+         GPbegdGN5C8TY/ODzqDs9ab6yxCe7HUNJnQOPTFH520x736vmhYsxGbQbNYV+3bWvqhG
+         PS6mUZOjqkDhZ8gSCXdvwUSG+DK5TbFZnXiEPtJokMs1prybmbiICAjfvp45VQQu9HmL
+         rnv1byyFWvDlby3TPfSOTCkTHtf4TGOgpBJ0TONQ15leCjDQVuKPDtcjkSJjg9qIGPmS
+         2lEA==
+X-Forwarded-Encrypted: i=1; AJvYcCXeQ759lcBEmF7qCoxqTXb8bGXwpLwm3lmQhNy6VVDGekdMmsmxd7gzyoi/WOE9YsArVYCKvS/YHB0DJH0SI30ftaiHCAHpHPTxLA==
+X-Gm-Message-State: AOJu0YyLO1PDhhXh4TgyT/cYVeD0hrXbnZxvvACbspjNsiS8nUJCA7AX
+	kc/Qnkfq8P0H2aJq/DIEeK7FDQr0vllXNXoVsEe+XDSkDl55qyQJIYDozB8qMg==
+X-Google-Smtp-Source: AGHT+IE9ctiXhLQ3czR4VOfyGCDYyva625XcHFB9wFJATFzLwz0WID1rY0XGQBXMeE8CJ9TdpU89MA==
+X-Received: by 2002:a05:6a20:2588:b0:1c0:f7a4:2c39 with SMTP id adf61e73a8af0-1c2984e3693mr10205344637.56.1720716118771;
+        Thu, 11 Jul 2024 09:41:58 -0700 (PDT)
+Received: from thinkpad ([120.56.197.247])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-70b438c7099sm5880532b3a.84.2024.07.11.09.41.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 11 Jul 2024 09:41:58 -0700 (PDT)
+Date: Thu, 11 Jul 2024 22:11:53 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Johan Hovold <johan@kernel.org>
+Cc: Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Johan Hovold <johan+linaro@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Daniel Golle <daniel@makrotopia.org>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-watchdog@vger.kernel.org
-Subject: Re: Aw: Re: [PATCH v1 0/4] add syscon requirement for mt7988
-Message-ID: <20240711163855.GA2369577-robh@kernel.org>
-References: <20240709101328.102969-1-linux@fw-web.de>
- <126053ef-3bfb-47c2-aa17-eb1d26d99102@collabora.com>
- <trinity-93a5ed81-b890-4d49-bfec-1bbb1219cb65-1720611282583@3c-app-gmx-bs04>
- <23369ea1-12d2-4386-a8ac-431620b75e2e@collabora.com>
+	Abel Vesa <abel.vesa@linaro.org>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: x1e80100: enable GICv3 ITS for PCIe
+Message-ID: <20240711164153.GA4992@thinkpad>
+References: <20240711090250.20827-1-johan+linaro@kernel.org>
+ <f7e74a6f-0548-4caa-a8fc-8180c619c9aa@linaro.org>
+ <Zo-ssBBDbHRLtAwG@hovoldconsulting.com>
+ <Zo_zu-RmbZyKijVQ@hovoldconsulting.com>
+ <20240711161947.GA4434@thinkpad>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <23369ea1-12d2-4386-a8ac-431620b75e2e@collabora.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240711161947.GA4434@thinkpad>
 
-On Wed, Jul 10, 2024 at 02:50:42PM +0200, AngeloGioacchino Del Regno wrote:
-> Il 10/07/24 13:34, Frank Wunderlich ha scritto:
-> > Hi
+On Thu, Jul 11, 2024 at 09:49:52PM +0530, Manivannan Sadhasivam wrote:
+> On Thu, Jul 11, 2024 at 05:01:15PM +0200, Johan Hovold wrote:
+> > [ +CC: Mani ]
 > > 
-> > > Gesendet: Mittwoch, 10. Juli 2024 um 12:45 Uhr
-> > > Von: "AngeloGioacchino Del Regno" <angelogioacchino.delregno@collabora.com>
-> > > Betreff: Re: [PATCH v1 0/4] add syscon requirement for mt7988
+> > On Thu, Jul 11, 2024 at 11:58:08AM +0200, Johan Hovold wrote:
+> > > On Thu, Jul 11, 2024 at 11:54:15AM +0200, Konrad Dybcio wrote:
+> > > > On 11.07.2024 11:02 AM, Johan Hovold wrote:
+> > > > > The DWC PCIe controller can be used with its internal MSI controller or
+> > > > > with an external one such as the GICv3 Interrupt Translation Service
+> > > > > (ITS).
+> > > > > 
+> > > > > Add the msi-map properties needed to use the GIC ITS. This will also
+> > > > > make Linux switch to the ITS implementation, which allows for assigning
+> > > > > affinity to individual MSIs.
+> > 
+> > > > X1E CRD throws tons of correctable errors with this on PCIe6a:
+> > 
+> > > What branch are you using? Abel reported seeing this with his branch
+> > > which has a few work-in-progress patches that try to enable 4-lane PCIe.
 > > > 
-> > > Il 09/07/24 12:13, Frank Wunderlich ha scritto:
-> > > > From: Frank Wunderlich <frank-w@public-files.de>
-> > > > 
-> > > > Some nodes require the syscon fallback at least in u-boot when using
-> > > > OF_UPSTREAM.
-> > > > 
-> > > > This is because uboot driver uses syscon_node_to_regmap in mtk_eth.c for
-> > > > "mediatek,toprgu", "mediatek,xfi_pll" and reset pointing to watchdog-node.
-> > > > 
-> > > 
-> > > I wonder what's the major blocker here to modify the u-boot driver to take
-> > > the upstream devicetree as-is, instead of using syscon_node_to_regmap?
+> > > There are no errors with my wip branch based on rc7, and I have the same
+> > > drive as Abel.
 > > 
-> > in uboot there is no driver for all syscon and to handle parallel 
-> > access this is done with the syscon fallback.
-> > 
-> > The syscon uclass is a small driver which is generic and only 
-> > handle the regmap in global context.
-> > 
-> > In theory it could be possible that regmap is aquired twice when 
-> > used from 2+ other drivers...to prevent this without
-> > adding the syscon fallback each syscon needs a dedicated driver 
-> > like in linux which does only syscon stuff (code
-> > duplication at its best :) ).
-> > 
-> > of course i can use regmap_init_mem in the uboot ethernet driver
-> > 
-> > https://elixir.bootlin.com/u-boot/latest/source/drivers/core/regmap.c#L242
-> > 
-> > like it's done once for syscon-uclass.
-> > 
-> > but i will cause issues when a second device tries to access this 
-> > regmap. So it was be much easier (for me) to add this
-> > fallback and not writing 3 device-drivers in uboot doing the 
-> > exactly same as syscon.
-> > 
-> > if you have a better idea how to handle it, let me know :)
+> > For some reason I don't get these errors on my machine, but this has now
+> > been confirmed by two other people running my rc branch (including Abel)
+> > so something is broken here, for example, with the PHY settings.
 > > 
 > 
-> I see. The problem is that, from your description, it looks like u-boot
-> uses that as a kind of workaround for concurrent access to MMIO...
+> I saw AER errors on Abel's machine during probe with 4-lane PHY settings. And
+> that might be the indication why the link width got downgraded to x2. This is
+> still not yet resolved.
 > 
-> ...looks like a good topic to discuss in the u-boot mailing lists.
+> > I saw five correctable errors once, when running linux-next, but it took
+> > several minutes and they were still minutes apart.
+> > 
+> > > Also note that the errors happen also without this patch applied, they
+> > > are just being reported now.
+> > 
+> > I guess we need to track down what is causing these errors before
+> > enabling ITS (and thereby the error reporting). 
+> > 
+> > At least L0s is not involved here, as it was with sc8280xp, as the
+> > NVMe controllers in question do not support it.
+> > 
+> > Perhaps something is off because we're running the link at half width?
+> > 
 > 
-> Definitely, the TOPRGU and the XFI PLL are not system controllers, so the actual
-> "syscon" definition would be wrong for these, that's it.
+> My hunch is the PHY settings. But Abel cross checked the PHY settings with
+> internal documentation and they seem to match. Also, Qcom submitted a series
+> that is supposed to fix stability issues with Gen4 [1]. With this series, Gen 4
+> x4 setup is working on SA8775P-RIDE board as reported by Qcom. But Abel
+> confirmed that it didn't help him with the link downgrade issue.
+> 
+> Perhaps you can give it a try and see if it makes any difference for this issue?
+> 
+> Meantime, I'm checking with Qcom contacts on this.
+> 
 
-While I'd prefer "syscon" never existed in the first place, I don't care 
-too much if it gets added here or not. U-boot's reasoning for wanting it 
-isn't really much better or worse than Linux's. Though if u-boot has 
-multiple drivers using it, seems like an abstraction is missing if Linux 
-doesn't need that.
+One thing I confirmed is, we definitely need different PHY sequence for using
+2L. The current PHY settings are for 4L, so limiting the lane count from the
+controller is going to be problematic. And AER errors might be due to that as
+well.
 
-Rob
+We need to investigate on enabling 4L.
 
+- Mani
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
