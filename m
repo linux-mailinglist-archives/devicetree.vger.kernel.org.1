@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-85158-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85159-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF49092F175
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 23:59:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8627E92F179
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 23:59:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 86E91283573
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 21:59:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 006BB1F262E4
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 21:59:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE6A919F485;
-	Thu, 11 Jul 2024 21:59:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 944531A01A6;
+	Thu, 11 Jul 2024 21:59:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="Hig+S9dP"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="pfC1G3PT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f50.google.com (mail-oo1-f50.google.com [209.85.161.50])
+Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5871419FA80
-	for <devicetree@vger.kernel.org>; Thu, 11 Jul 2024 21:59:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20B331A00E8
+	for <devicetree@vger.kernel.org>; Thu, 11 Jul 2024 21:59:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720735177; cv=none; b=EEyi8PLMS1MkSL0osu9iYhaLpZMR6XmLPHfO6pc2sfIi/d30QhxzWZDTf7oHLpHCHV4VPQeU+oVEQ+UiP617XGux9Td8ov/ul1imy/ysiqmxOSkyo2LKaLUje1x0841nBfIS3JjGDeh1B7dfeTykPtFeIGM0cUco86jNmTSUX3s=
+	t=1720735192; cv=none; b=BvyQZ0qs0azcK1rrVKSR6PSYF4QPatNvDdK3v6JQL+HKrdB5vlQrbbjz/6rZxtedKcNtSiFvanAyePSAtFxxU0QPZUdaakCxEhimg1BbnTtt+gfZUkhGyNHQoQvdinwyEdYk8YtOl5+cJaUgXjDzFClsKImm/6mw11ytV8KVWaE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720735177; c=relaxed/simple;
-	bh=ca1jKAECIV6Byh3TBFvq7NkUZMlXPCPQLpDdPf7SACY=;
+	s=arc-20240116; t=1720735192; c=relaxed/simple;
+	bh=rtEudnmqaObKSErfYuXzgGVkpGS2fa1Q0F9KuEQpFmI=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=HGgGyPXCNseKL3o7HXIVQcc+agdxxukC2yaifa2p3Vu0PHwt8ME6zGNOs+uoaH/3OTtWsaLGbVXgkeIjliP6mEqrDZSO0udwzopDCmATdoXpijowoRDBJS9NaSXhstuMUMauqfffhQYtwup5LtBhWGADZR9MoCwGfOMclr00yAU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=Hig+S9dP; arc=none smtp.client-ip=209.85.161.50
+	 MIME-Version; b=ogZd7jvoKw7aC11CdDIgVggL7AD+pk2Tuoodwf68D/oJy/egixnxMthjDr6DO7FQ18MlAfJ+aV4QLBPEDhqflNccw6Z9deJZmM7a34NCjNtpm7Ltd3zbQvYn434PKT2htfMUaCmlYLtlIofoxq1AsinFmUAgX61I3q7plPBd5mU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=pfC1G3PT; arc=none smtp.client-ip=209.85.210.180
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-oo1-f50.google.com with SMTP id 006d021491bc7-5c791729c36so740411eaf.3
-        for <devicetree@vger.kernel.org>; Thu, 11 Jul 2024 14:59:36 -0700 (PDT)
+Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-706524adf91so1207953b3a.2
+        for <devicetree@vger.kernel.org>; Thu, 11 Jul 2024 14:59:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1720735175; x=1721339975; darn=vger.kernel.org;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1720735190; x=1721339990; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=PCuLk9WlsPMixoO1aEt9S0RZ/RHTTquN74ekSzN2Uos=;
-        b=Hig+S9dPNO0afH9kH4Y8iGZfrcgKfNE6XdGa9hueYV+0uvytDSsfo7P+cLG6UFYQK9
-         igU2ytf/20BBZmvO2spWpDE7MdKmS7c7W3rFwZzg9K22QXy9xrzC4xbi6sAFlXePCGY/
-         BvyEQpMb1JRCA0MgOGdH6qHDfBalvzudIcaX8rbt416FvdVhAs9Agn+IAXn0LSqvkBpN
-         OwSjOkqGF5lmbFcuvMvP2aTHPK7BgosxLNvEn4TQYzGq38gZiZrIHNACmUj04NQbU00E
-         e5IPT/gqFM/4aYWWJsf5g4GcdLVc3XmiQCI7TzAlLZpc5+TiuEyXpT4cxIdPffkobsvp
-         OeOQ==
+        bh=RD4Jrv7yyOhSAoUDP5JzBFrS+BuW1YkOZl4khKRzO0g=;
+        b=pfC1G3PTVPR40W3g/qj43E8gOioo4wkzgIckQWdj+gSRFO6F5Aa/7uu3gkjCtmX2cx
+         8KFCk1d7rw7F2S3s3unToVan2iEImlRcCQmmfq7GLW75pDVUA+4jMZguzBhnKSvAFIlp
+         l/LFViq7rvTlOmNPjZoby508iMdsDXZirygxM6zHbrFZxjQUGOCosoQctH9nVmbGJwb4
+         9ykAy9BI0gzqz+AQSugkniwTknV5IBBTOpubwn7dDLJSsqmwWPYzNeM2ZUhu9UAytPMC
+         lr78pYfmnD8idsS7BT/3GiLOsWhQg2qf9k/RDrk8r0bvGFa+2DDI3X9jVbg8kiy+qoh3
+         oKTQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720735175; x=1721339975;
+        d=1e100.net; s=20230601; t=1720735190; x=1721339990;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=PCuLk9WlsPMixoO1aEt9S0RZ/RHTTquN74ekSzN2Uos=;
-        b=ga4PbWBrWNpRWdTahWd5jgKF+1aZI0kTmdt/xnd5Agqvf6UTvGzFbiVDNLYooD6JRK
-         IKpu82FC5gKAr2Fu70lyEhdf23MTKZ9y9labmwNKithqNT74pCgRarRf4H7uXgwASb7E
-         k9/gbJiY69fhVGxZBXSzl242flDTWiBx4PJ0uhDHiol8Dll3P8rwjPflVfauWgKvuJ35
-         eqDoIDStGFqU5SdXPQlDjk55xkmkJ5OKl8ZOthEi8khLFPVKoliyfFWiOLT83qHqh0Tj
-         ihHLMzKSxD5P6nljhonnD3T/wPL21q0g0lrseiKfJB/ul6dMZMkQLbQU31Ebmgt6TW9D
-         Fevw==
-X-Forwarded-Encrypted: i=1; AJvYcCUoFZ+k7b176mtfJF6JQOYWZLGomc2rV6XvjQ14UWcvUT7OnNyGT0euVvzugwx6HMQUxMDr2SQhtSB0kCtCVnung5jFFiZclx5tZw==
-X-Gm-Message-State: AOJu0Ywkd/hnpiU8obyRkTUvbOu2NNSsMushgL59rUOTZTZK0c2o3o7H
-	OVap38nyWlHPVj7je+WlnOmglIdmv7c2V7TsfOKf2jc8g7NKTkT/fAFlNz6/WUk=
-X-Google-Smtp-Source: AGHT+IGQzKvzyOpT3WBbfYdePwka94nZlful/AlQ4IvVGo33wfS/hf3/5q08XSlYkvfuRY3zO/SpoA==
-X-Received: by 2002:a05:6870:d8ce:b0:254:6e4e:23d7 with SMTP id 586e51a60fabf-25eaec3cf82mr8869452fac.50.1720735175401;
-        Thu, 11 Jul 2024 14:59:35 -0700 (PDT)
+        bh=RD4Jrv7yyOhSAoUDP5JzBFrS+BuW1YkOZl4khKRzO0g=;
+        b=rquiV1o6UUl3IiDvQXPvSLh+dZkeJlMJRbogGhH1a9cxfQQuNuzyZ48GwSHFwz/Y9i
+         AUn1DKaSdTa7KZZc2dpalcPzbNVRoUDDBy/LUSUBFt46Q6TPcm0PaHloLhih2LyzJJJ0
+         XHMxgKP9DXWX3TFS4fLUQm3bd7jhAZzQxuC+0WPnDQNfuO6V0D3AfMwYSGvIlQtN8yl2
+         RvyfgZAqu+mHBBpqXSD13QtCJH3CNCjRA69NoUqcpLP+4slLI8SQh0LAeQ0M0Xg/k2jY
+         plCITEBqLzbocb64mVvUiBG9Awjn76AwnavFudfMlgVr+rLzfI4XZko0UiNR21sOEiY0
+         H39A==
+X-Forwarded-Encrypted: i=1; AJvYcCUHKOr1QSbdvZyDYH2d47Gij7B6k+U0T38ZYxTxa8qjrfyM4OAsqW3xEFQ61YKLaF2gaRgXm/nbnSiYmGv+kvEP0Hjv25xmzVa1wQ==
+X-Gm-Message-State: AOJu0YxyXHTBDc2dOS3MEpDXdW4FwtkYVOm2ESjqR9h4uX9dyiLkM6wD
+	xsTveM51OCPE3LX4Qn8OswS3YhxzobG8WXkNjL4k9UXHyreePl/qoYnMZ4edQk0=
+X-Google-Smtp-Source: AGHT+IEHJqQluS13+YyzOtMS02Y+FGJBmzi/e2FwA3rgiR2aMvwi6CxYTAKSgFPQfTDX7y0MAGVisA==
+X-Received: by 2002:a05:6a00:4650:b0:706:4889:960d with SMTP id d2e1a72fcca58-70b43568937mr11530984b3a.16.1720735190283;
+        Thu, 11 Jul 2024 14:59:50 -0700 (PDT)
 Received: from jesse-desktop.. (pool-108-26-179-17.bstnma.fios.verizon.net. [108.26.179.17])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-70b43898b10sm6169431b3a.7.2024.07.11.14.59.20
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-70b43898b10sm6169431b3a.7.2024.07.11.14.59.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Jul 2024 14:59:35 -0700 (PDT)
+        Thu, 11 Jul 2024 14:59:50 -0700 (PDT)
 From: Jesse Taube <jesse@rivosinc.com>
 To: linux-riscv@lists.infradead.org
 Cc: Jonathan Corbet <corbet@lwn.net>,
@@ -101,10 +101,10 @@ Cc: Jonathan Corbet <corbet@lwn.net>,
 	linux-doc@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v4 2/7] dt-bindings: riscv: Add Zicclsm ISA extension description.
-Date: Thu, 11 Jul 2024 17:58:41 -0400
-Message-ID: <20240711215846.834365-3-jesse@rivosinc.com>
+	stable@vger.kernel.org
+Subject: [PATCH v4 3/7] RISC-V: Check scalar unaligned access on all CPUs
+Date: Thu, 11 Jul 2024 17:58:42 -0400
+Message-ID: <20240711215846.834365-4-jesse@rivosinc.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240711215846.834365-1-jesse@rivosinc.com>
 References: <20240711215846.834365-1-jesse@rivosinc.com>
@@ -116,39 +116,78 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add description for Zicclsm ISA extension.
+Originally, the check_unaligned_access_emulated_all_cpus function
+only checked the boot hart. This fixes the function to check all
+harts.
 
+Fixes: 71c54b3d169d ("riscv: report misaligned accesses emulation to hwprobe")
 Signed-off-by: Jesse Taube <jesse@rivosinc.com>
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Cc: stable@vger.kernel.org
 ---
 V1 -> V2:
  - New patch
 V2 -> V3:
- - No changes
+ - Split patch
 V3 -> V4:
- - No changes
+ - Re-add check for a system where a heterogeneous
+    CPU is hotplugged into a previously homogenous
+    system.
 ---
- Documentation/devicetree/bindings/riscv/extensions.yaml | 7 +++++++
- 1 file changed, 7 insertions(+)
+ arch/riscv/kernel/traps_misaligned.c | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Documentation/devicetree/bindings/riscv/extensions.yaml
-index cfed80ad5540..9f6aae1f5b65 100644
---- a/Documentation/devicetree/bindings/riscv/extensions.yaml
-+++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
-@@ -317,6 +317,13 @@ properties:
-             The standard Zicboz extension for cache-block zeroing as ratified
-             in commit 3dd606f ("Create cmobase-v1.0.pdf") of riscv-CMOs.
+diff --git a/arch/riscv/kernel/traps_misaligned.c b/arch/riscv/kernel/traps_misaligned.c
+index b62d5a2f4541..1a1bb41472ea 100644
+--- a/arch/riscv/kernel/traps_misaligned.c
++++ b/arch/riscv/kernel/traps_misaligned.c
+@@ -526,11 +526,11 @@ int handle_misaligned_store(struct pt_regs *regs)
+ 	return 0;
+ }
  
-+        - const: zicclsm
-+          description:
-+            The standard Zicclsm extension for misaligned support for all regular
-+            load and store instructions (including scalar and vector) but not AMOs
-+            or other specialized forms of memory access. Defined in the
-+            RISC-V RVA Profiles Specification.
+-static bool check_unaligned_access_emulated(int cpu)
++static void check_unaligned_access_emulated(struct work_struct *unused)
+ {
++	int cpu = smp_processor_id();
+ 	long *mas_ptr = per_cpu_ptr(&misaligned_access_speed, cpu);
+ 	unsigned long tmp_var, tmp_val;
+-	bool misaligned_emu_detected;
+ 
+ 	*mas_ptr = RISCV_HWPROBE_MISALIGNED_UNKNOWN;
+ 
+@@ -538,19 +538,16 @@ static bool check_unaligned_access_emulated(int cpu)
+ 		"       "REG_L" %[tmp], 1(%[ptr])\n"
+ 		: [tmp] "=r" (tmp_val) : [ptr] "r" (&tmp_var) : "memory");
+ 
+-	misaligned_emu_detected = (*mas_ptr == RISCV_HWPROBE_MISALIGNED_EMULATED);
+ 	/*
+ 	 * If unaligned_ctl is already set, this means that we detected that all
+ 	 * CPUS uses emulated misaligned access at boot time. If that changed
+ 	 * when hotplugging the new cpu, this is something we don't handle.
+ 	 */
+-	if (unlikely(unaligned_ctl && !misaligned_emu_detected)) {
++	if (unlikely(unaligned_ctl && (*mas_ptr != RISCV_HWPROBE_MISALIGNED_EMULATED))) {
+ 		pr_crit("CPU misaligned accesses non homogeneous (expected all emulated)\n");
+ 		while (true)
+ 			cpu_relax();
+ 	}
+-
+-	return misaligned_emu_detected;
+ }
+ 
+ bool check_unaligned_access_emulated_all_cpus(void)
+@@ -562,8 +559,11 @@ bool check_unaligned_access_emulated_all_cpus(void)
+ 	 * accesses emulated since tasks requesting such control can run on any
+ 	 * CPU.
+ 	 */
++	schedule_on_each_cpu(check_unaligned_access_emulated);
 +
-         - const: zicntr
-           description:
-             The standard Zicntr extension for base counters and timers, as
+ 	for_each_online_cpu(cpu)
+-		if (!check_unaligned_access_emulated(cpu))
++		if (per_cpu(misaligned_access_speed, cpu)
++		    != RISCV_HWPROBE_MISALIGNED_EMULATED)
+ 			return false;
+ 
+ 	unaligned_ctl = true;
 -- 
 2.45.2
 
