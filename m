@@ -1,161 +1,162 @@
-Return-Path: <devicetree+bounces-85163-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85164-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4E6792F19F
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 00:01:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4DF192F1BF
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 00:09:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 888F7284F12
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 22:01:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C75341C20C66
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 22:09:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D3391A071C;
-	Thu, 11 Jul 2024 22:00:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4671F19FA72;
+	Thu, 11 Jul 2024 22:09:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="JY1HB6n0"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="A4VMFwRi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
+Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCD3C1A08C3
-	for <devicetree@vger.kernel.org>; Thu, 11 Jul 2024 22:00:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8856342AB5;
+	Thu, 11 Jul 2024 22:09:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720735251; cv=none; b=LXkjzSJYMkK/lPhhoYtzC9TwSfDbuifmLVcH0Ud/y8my7jWkU6NBkKkkORrk7+zSoLsSkuV+z/TbMv7CR1SdrXhOJcfWzTr1U3AFpB8Sw6RLZGL8oqrq/kpyncTB6iYnb2yEhYgcEw+AradU82aydrf5768DX4rZVrurHDKrzWI=
+	t=1720735785; cv=none; b=ZcO9vaQ2bMIoYrsqOPqitvRPzxs4rt2lBLQzFqavwFDpgZQECgTND6c770PjCJAFI+k+XpO9JwHMf5Tq/7f/yd8oThIJGufzVprKG4y65bRatlwKfDO7Zw0Hy0MHmI+GK9vEpeRfVc+IaRU7UWotlSma6uuzfQfz4DXCEmA69aU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720735251; c=relaxed/simple;
-	bh=tsBFuB/PjfmD1aMuhYIz9kK3UffrpNSMuY1oBJAsP5E=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=iFTglnUA1DQwJdYF1BnYdFLLHTomfnj9HnuVhAIW9tAPKJqEyl7qnolVorp7SQMsdNXs0JYuRppFIX29xZzMrdGgqjKJZ2dt55BoE4+lhYNogqnnItyJsC6hl3EixRn/kqsMcfcXDiG3lL1n+gdvZQ7dDQaAi8F6s4kzdGf/Fp0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=JY1HB6n0; arc=none smtp.client-ip=209.85.160.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-25e0c0df558so667970fac.0
-        for <devicetree@vger.kernel.org>; Thu, 11 Jul 2024 15:00:49 -0700 (PDT)
+	s=arc-20240116; t=1720735785; c=relaxed/simple;
+	bh=W5Inl5jmmqDgsqYU4cWad24rVvPOEXg8O1plVzdBZQ4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=SxM22uioTxKroDC2ddvYAKaB2+TsUEFce89+9Uw+yrVyL725p+mZwy6EK3gfgW6KXpaF8gYAOiWqsdtOh1HsZcYv1gRi6cclEj9b9xwYweqvavaBVmGLTvk+n2E2BTx0aXNbG0Gca7Uh/F38CFPgg+KhZxfeWT7hJQjwCYBBpg4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=A4VMFwRi; arc=none smtp.client-ip=209.85.208.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2eeb1ba0468so15371871fa.0;
+        Thu, 11 Jul 2024 15:09:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1720735249; x=1721340049; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Y/pkJ+CYoKZVnlzYRMEGQL51DBzuBqhU5kxPKcWTdXk=;
-        b=JY1HB6n0h2el0okF6glngqQ5Xf5wn04r9+DOHOb0R5RN5VbgFQzW7tZfCmp8C1zjGF
-         0728kslRsXrv98FkT8m+JCz71QjwTGgIpy08QLFDM46xGnXWVgZ+dyQNHS3Mg4pXYyMn
-         TVw6sXHq20zcZNTI0s6MK3MVkntPNEMAaRF4Ye7TJn7fxSi9uTP/y4V79okhMuPlcjab
-         Y8ZGkOH9LTdm4cVi90PjaU3MRsG9GVRMguh9YzHvWqXhDnqORWILa/69k0hkpSVURrgr
-         4E0G8Fu/x+qeGWXsB3qRlXY8N5g2yQjdiamDE2EVIL4PQ7jGqwSYCGziV7DAg+5kPTXv
-         M8Zw==
+        d=gmail.com; s=20230601; t=1720735782; x=1721340582; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=KBJ0y3g1ruClksG7c8rC7Ii3NaLmFEryT+9N6mGNKtI=;
+        b=A4VMFwRiTAn/EQqf1xq6IGi13bIMQoFsKWkEWhXC/hhxq5H4BrtiFEVklm3Irb15W1
+         QPLFrf8q+I1suDF1RyQmVyrJybD6idOmsWodvdHIm2V+M1gfbW4kxwDaOyg+nJexc0M3
+         FGF/uzXRffSxYRX4RI3vv2+RZc/WHRg2oYU1Q3h1XxSBPZjUG6CtCwxZuLU1ILO9jUhV
+         5SZNYbpWknqt6YmkVVwTqWY3A0uzne8SkEFkgd2iTvJwojdmXd5KVoemeWevT6k+OQZa
+         xCe4qL/iwg30cMEtTUK7mu/vOVxcsU657XdSPrViA2pqFtvWpP1CmfbS6iXURDzl8c4x
+         Ec1Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720735249; x=1721340049;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Y/pkJ+CYoKZVnlzYRMEGQL51DBzuBqhU5kxPKcWTdXk=;
-        b=u05a0Dv5pFn5iB/SvdGEoyyC1kEPAZexDkxw1KHmAn74+wrvlcDuedQrbvUyjWCnLO
-         qOWHOZyJbkLfj8OkT5I01fZOjxDx9GuZdW2/n7h3I+8mtA3OZDIXvZUOtqdbVxF/jwi5
-         RIBhCtnm83andremHUzBGAI97HuvrlHNoCuNz15Hc6Fn64c6cQYGj4xS3rH4ZMZrUuXk
-         jr9cQPUkcebchTWGDmWr/0K6k0Lj+2ZRMGc3fB8ZeiCLBpMoRHFN/MY6rhSik+oH6e0Y
-         EL3vDmS/H1DYL4TevKzS3OCo6lbr3QBculdFQenusWRLxaGaiIEcBm8f5mfoSCmp4DES
-         z2qw==
-X-Forwarded-Encrypted: i=1; AJvYcCXbH71RIAwh3dlYNzDHtGUCqiY5KFiLQ4OeXpiLC6p1gqJ/0g6ZPMX09bKVoBtxIia+W5XCkW6nmGvJ49zpMIpY2RYl/O2m85k+JA==
-X-Gm-Message-State: AOJu0YxG5ITKIukJ6FGDIgwChqCR3ku0ToCxTBWEP3MIh03nujsb+CNy
-	FwDEBXfTygm8ZaX8Nmh6IR8OOSx7MBHSzD+sVMkbzmHjnK2zwDjHCoQ2Q5reKkM=
-X-Google-Smtp-Source: AGHT+IHeT6FLUowuVFqR9T9fPR4cUTBZzugpJS7X9OZIU/p57BGSiUAt3X+LIR8D5UvHFasnlUUxXw==
-X-Received: by 2002:a05:6870:9a0c:b0:254:a009:4c2f with SMTP id 586e51a60fabf-25eaebdf9e8mr8862381fac.37.1720735248677;
-        Thu, 11 Jul 2024 15:00:48 -0700 (PDT)
-Received: from jesse-desktop.. (pool-108-26-179-17.bstnma.fios.verizon.net. [108.26.179.17])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-70b43898b10sm6169431b3a.7.2024.07.11.15.00.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Jul 2024 15:00:48 -0700 (PDT)
-From: Jesse Taube <jesse@rivosinc.com>
-To: linux-riscv@lists.infradead.org
-Cc: Jonathan Corbet <corbet@lwn.net>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Conor Dooley <conor@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	=?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <cleger@rivosinc.com>,
-	Evan Green <evan@rivosinc.com>,
-	Andrew Jones <ajones@ventanamicro.com>,
-	Jesse Taube <jesse@rivosinc.com>,
-	Charlie Jenkins <charlie@rivosinc.com>,
-	Xiao Wang <xiao.w.wang@intel.com>,
-	Andy Chiu <andy.chiu@sifive.com>,
-	Eric Biggers <ebiggers@google.com>,
-	Greentime Hu <greentime.hu@sifive.com>,
-	=?UTF-8?q?Bj=C3=B6rn=20T=C3=B6pel?= <bjorn@rivosinc.com>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Costa Shulyupin <costa.shul@redhat.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Baoquan He <bhe@redhat.com>,
-	Anup Patel <apatel@ventanamicro.com>,
-	Zong Li <zong.li@sifive.com>,
-	Sami Tolvanen <samitolvanen@google.com>,
-	Ben Dooks <ben.dooks@codethink.co.uk>,
-	Alexandre Ghiti <alexghiti@rivosinc.com>,
-	"Gustavo A. R. Silva" <gustavoars@kernel.org>,
-	Erick Archer <erick.archer@gmx.com>,
-	Joel Granados <j.granados@samsung.com>,
-	linux-doc@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH v4 7/7] RISC-V: hwprobe: Document unaligned vector perf key
-Date: Thu, 11 Jul 2024 17:58:46 -0400
-Message-ID: <20240711215846.834365-8-jesse@rivosinc.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240711215846.834365-1-jesse@rivosinc.com>
-References: <20240711215846.834365-1-jesse@rivosinc.com>
+        d=1e100.net; s=20230601; t=1720735782; x=1721340582;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=KBJ0y3g1ruClksG7c8rC7Ii3NaLmFEryT+9N6mGNKtI=;
+        b=T0Odcis8Gy0/mj2VDxJOn0bNxcCD+sQ9cHqSWTOc3DWNLYthvx9+Ctmox+ks+tLRey
+         n0hLw1v/V28AjHIpvaLhYyEIzv3lBGQj9SFOkqOCqFZJEBwMCPON2udwkxaVCdpKwTGo
+         SsL9KgkdzLMFNEjf5LyL7s0olejgd6AiYLs+e8aUvt0mkfNsnZ0/BGimN6hlbplVpdR5
+         cO+/V8x/WFGBFecsEo0h7KtkrpZYdRI4lJ4B6piWdqPhJw8FU/fLSaIozv4VtUZ/h5Nl
+         D0BCsRTxYK1sX5LKWGu/QqJezri4tcvyr2KTOAzdiHl3tVJoIdGP59t1gnMfHH4FMTjq
+         KkHQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU0EtbLHFO9LNX00rqakIxrKnSpb84xyQ1f/ffoAjMsn8A2do52bjSYW50ffrY2fxpMvbUdo+TjvdZlaNL51q6+4evnPYT2ximIX/WJWyUm4JjUbTmGaO6gG3iGIxqP5SqkUNf72D0lAA==
+X-Gm-Message-State: AOJu0YwjxRsgxMQUWtwSVNfuSgre5HNpg/K4/gY3MxiOKT11uvhkDInq
+	Yex9PcPR+qsgoFEG/zo9a5r7Q2Obue10fuTNndTZH4smaEDwi3JfBb6+TN6jB0FwCzEZtTkq2dV
+	snQ29xzMS6U5DaDvJYyvGnSKnAg==
+X-Google-Smtp-Source: AGHT+IH9Ai9bYIEYD8w0b32hmLEFwAiKQ3UxPHulvoySXmj8ntnjYdf509mA6eeQGNEfme8k5ZSedfSwv9yzk9A1wPE=
+X-Received: by 2002:a2e:8297:0:b0:2ec:5b17:29a2 with SMTP id
+ 38308e7fff4ca-2eeb318aaf4mr57430711fa.32.1720735781263; Thu, 11 Jul 2024
+ 15:09:41 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20240629103914.161530-1-erezgeva@nwtime.org> <20240629103914.161530-4-erezgeva@nwtime.org>
+ <1c457520-07b7-4bde-b040-e8bca959a4f5@linaro.org> <CANeKEMOODBNZA6efh0E0Ga_KaVs5Y3WLcUftRhNwYHhnXO=GNw@mail.gmail.com>
+ <CANeKEMO42rJt5Ob4_HDcZ3eEMvuMOPvRaFaLwL8SA65NtxSV7A@mail.gmail.com>
+ <1d56c3b2-7adf-45b9-a509-956340f3f17b@linaro.org> <CANeKEMMe-Onpn7xWQHgWz1Ps_uQPEMa7HrKA00HpoKjG+DCJNQ@mail.gmail.com>
+ <3bafcbea-6aa5-43ca-9d12-3916be3fe03d@linaro.org> <CANeKEMM02-Jvb8Pd0fZJFnRg-hsAW+hckYWm11tZZXNMPSPJ=w@mail.gmail.com>
+ <9b45cc73-2251-4085-af95-7ccd00dd6d3b@linaro.org> <CANeKEMP+mRefYZNb+TuBmOD7dC6=7Rg7D1EcfnjJoiaeaV28SQ@mail.gmail.com>
+ <875xtd48ps.fsf@geanix.com> <CANeKEMNJ3_ET5pQo2wg7_GSLX+vE+dqW-CV=v2DnG10xcgSdzQ@mail.gmail.com>
+ <D2MZ405LVTN8.3LTVN3KTUD6A3@kernel.org>
+In-Reply-To: <D2MZ405LVTN8.3LTVN3KTUD6A3@kernel.org>
+From: Erez <erezgeva2@gmail.com>
+Date: Fri, 12 Jul 2024 00:09:01 +0200
+Message-ID: <CANeKEMNtXb4ZV7kcLbHY+Mti6dPV9UZ2wTyUq5z0qtmtNNqSVA@mail.gmail.com>
+Subject: Re: [PATCH v2 3/4] dt-bindings: mtd: macronix,mx25l12833f: add
+ SPI-NOR chip
+To: Michael Walle <mwalle@kernel.org>
+Cc: Esben Haabendal <esben@geanix.com>, Tudor Ambarus <tudor.ambarus@linaro.org>, 
+	Jaime Liao <jaimeliao@mxic.com.tw>, leoyu@mxic.com.tw, 
+	Alvin Zhou <alvinzhou@mxic.com.tw>, Julien Su <juliensu@mxic.com.tw>, 
+	Erez Geva <erezgeva@nwtime.org>, linux-mtd@lists.infradead.org, 
+	Pratyush Yadav <pratyush@kernel.org>, linux-kernel@vger.kernel.org, 
+	Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, 
+	Vignesh Raghavendra <vigneshr@ti.com>, devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 
-Document key for reporting the speed of unaligned vector accesses.
-The descriptions are the same as the scalar equivalent values.
+On Thu, 11 Jul 2024 at 21:57, Michael Walle <mwalle@kernel.org> wrote:
+>
+> Hi Erez,
+>
+> No top posting please, see also
+> https://subspace.kernel.org/etiquette.html
 
-Signed-off-by: Jesse Taube <jesse@rivosinc.com>
----
-V1 -> V2:
-  - New patch
-V2 -> V3:
- - Specify access width
-V3 -> V4:
- - Clarify we're talking about byte accesses using vector registers
- - Spell out _VECTOR_ in macros
----
- Documentation/arch/riscv/hwprobe.rst | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+It was a single question. Which I think can be answered in one reply.
+In cases where there are different parts in the mail, it makes sense
+to avoid top posting.
+I do not believe we need to be pedantic.
+The guidance is not holy, it is aimed to make communication more comprehensive.
 
-diff --git a/Documentation/arch/riscv/hwprobe.rst b/Documentation/arch/riscv/hwprobe.rst
-index 78acd37b6477..f83a13dc4cbc 100644
---- a/Documentation/arch/riscv/hwprobe.rst
-+++ b/Documentation/arch/riscv/hwprobe.rst
-@@ -238,3 +238,19 @@ The following keys are defined:
- 
- * :c:macro:`RISCV_HWPROBE_KEY_ZICBOZ_BLOCK_SIZE`: An unsigned int which
-   represents the size of the Zicboz block in bytes.
-+
-+* :c:macro:`RISCV_HWPROBE_KEY_VECTOR_MISALIGNED_PERF`: An enum value describing the
-+     performance of misaligned vector accesses on the selected set of processors.
-+
-+  * :c:macro:`RISCV_HWPROBE_VECTOR_MISALIGNED_UNKNOWN`: The performance of misaligned
-+    vector accesses is unknown.
-+
-+  * :c:macro:`RISCV_HWPROBE_VECTOR_MISALIGNED_SLOW`: 32-bit misaligned accesses using vector
-+    registers are slower than the equivalent quantity of byte accesses via vector registers.
-+    Misaligned accesses may be supported directly in hardware, or trapped and emulated by software.
-+
-+  * :c:macro:`RISCV_HWPROBE_VECTOR_MISALIGNED_FAST`: 32-bit misaligned accesses using vector
-+    registers are faster than the equivalent quantity of byte accesses via vector registers.
-+
-+  * :c:macro:`RISCV_HWPROBE_VECTOR_MISALIGNED_UNSUPPORTED`: Misaligned vector accesses are
-+    not supported at all and will generate a misaligned address fault.
--- 
-2.45.2
+>
+> On Thu Jul 11, 2024 at 8:57 PM CEST, Erez wrote:
+> > Yes, I think we should.
+> >
+> > Reading the specification provided publicly by Macronix.
+> > For all the JEDEC IDs with the no SFDP flag in drivers/mtd/spi-nor/macronix.c
+> > All of them have a new version or a new chip with the same JEDEC ID
+> > that supports SFDP.
+> > There are 2 chips that Macronix does not provide spec. in public.
+> > I can ask Macronix technical support on these 2 chips.
+>
+> We don't add flashes we cannot test.
 
+I did not suggest adding anything new.
+I refer to the list of chips we already have in drivers/mtd/spi-nor/macronix.c
+I presume someone tested them before adding them to the list in the past.
+And probably the old chip did not have the SFDP table back then.
+
+What I checked with the chip specifications is that all Macronix chips
+since 2010 have SFDP.
+
+The situation today is that all Macronix chips that are NOT in the
+Macronix table work based on the SFDP table.
+But new chips that use a JEDEC found in the Macronix table, skip the
+SFDP table and
+ use the setting of the old chip.
+
+So I suggest we read the SFDP table for all Macronix chips.
+Old Macronix chips that do not have SFDP will use the setting from the
+Macronix table. i.e backward compatible.
+While new chips which do have an SFDP table will work with the new
+setting we find in the table.
+
+Of course, we might have issues in parsing the SFDP table itself.
+So we fix them as developers report and send chip ID and part number
+with the SFDP table content.
+I do not see the point of "hiding" with the old setting.
+Anyhow, as we do not like the IDs table and keep it for backward-compatible,
+  so it only makes sense we should use the SFDP table as much as possible.
+
+My check was to ensure Tudor that all Macronix chips have SFDP whether
+they are in the IDs table or not
+ and we are not wasting a no-op on a chip which can not have an SFDP table.
+
+All I suggest is we add the new 'SPI_NOR_TRY_SFDP' flag, to all Macronix chips..
+Which will try to read the SFDP to any Macronix chip.
+
+Erez
+
+>
+> -michael
 
