@@ -1,116 +1,86 @@
-Return-Path: <devicetree+bounces-85080-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85081-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD0CD92ED20
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 18:54:58 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59ACE92ED2C
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 18:56:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4BF4CB21F23
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 16:54:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D714DB20CE5
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 16:56:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EFA016D9BC;
-	Thu, 11 Jul 2024 16:54:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA07316D4F1;
+	Thu, 11 Jul 2024 16:56:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="TmcQYI6l"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gC8G0XaH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1C8416D4F4;
-	Thu, 11 Jul 2024 16:54:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD26416CD39;
+	Thu, 11 Jul 2024 16:56:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720716881; cv=none; b=tvOgGcbM6kiL/D+/dluTFLXCQQSaLn3WQZcU3TCFvT3pqU6lDGVIDoHQE9L9K3BC6IrlPSa8C3aCTvqDCKBc/3XU+QwyP8qg5yLDW7QH1Gr7+VRpKsPhyVxne1oEAbY3LrquCagAXG9ZcCqJz1L4EFvf/cHlp8t603r7MMKGHXg=
+	t=1720716979; cv=none; b=nt20iitGh8O1Rx4Dm7AcJoT2mt3C15ZxvsRJl9Y82PrsO3Pp5J0UEoNBWYWEdYtXMnCaezZKLr4X+j+4uG/cG0UApjDdjmlU4DzHc0toAAUHB3jFs9zOGoNlODVrOAl7svsPrSzF/h26PmHkGLhLgpAYvF75w8uWD6pmkq9J3X8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720716881; c=relaxed/simple;
-	bh=AFmcG/KEvllGzTWGQ+DiPSWbg3J8mbUzRHD1iS4cnLs=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=EokYA3TOmcpQxxxorPI9Qv6u0hHxmuYxRia5g8wfWLeIMthTh2whvssn191HQxCW/wu9obmH256h2clIfD4oTHD6Ecl840sDz7SmOUqAy7N2vNC+h7jvk7/iDUiGkfQYXxMw13GlnxPGEDNYOXQRbYbjp1v70LSOMjj6yfY+w7Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=TmcQYI6l; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1720716879; x=1752252879;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=AFmcG/KEvllGzTWGQ+DiPSWbg3J8mbUzRHD1iS4cnLs=;
-  b=TmcQYI6llWwxM96yjBctQbxFREFCpqOOb20BMRbvlfYZ0UEyiTjPiJKG
-   ory1r9dWZn/pLufOAz5EdZPFZfyEhyLNZKey5t4bgD/v/m6NsOWlH6fIV
-   UNclTbiEpl1U0cVuSV6ivUitqqKWQZcKUVUCCBU2Jwx/VSMuHPlNZTUB8
-   lO2SgxFIJ/G8z0qDkgWi6c+koPgVrf/FZW0N/XCIzwuBET5ql28o0Br4p
-   I5dFpvZsw4q5pxrGukJhaCESpehhXF4A4sLPDoZ+4WrkoTWnijCikTO1Q
-   vWrqXHj7vYDM1D9QQ54xXe812dEZHiyqIVYJ7JnAM2/gnelFkT9PfJGG1
-   Q==;
-X-CSE-ConnectionGUID: zM8v1C8oQ/SssnAxM3eiww==
-X-CSE-MsgGUID: hgIhfGcaQyqkhzbrf/VsWQ==
-X-IronPort-AV: E=Sophos;i="6.09,200,1716274800"; 
-   d="scan'208";a="29772050"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 11 Jul 2024 09:54:32 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 11 Jul 2024 09:54:01 -0700
-Received: from ROU-LL-M43238.amer.actel.com (10.10.85.11) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.2507.35 via Frontend Transport; Thu, 11 Jul 2024 09:53:57 -0700
-From: <nicolas.ferre@microchip.com>
-To: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Mark Brown <broonie@kernel.org>, Rob Herring
-	<robh@kernel.org>, <devicetree@vger.kernel.org>
-CC: Tudor Ambarus <tudor.ambarus@linaro.org>, Claudiu Beznea
-	<claudiu.beznea@tuxon.dev>, Alexandre Belloni
-	<alexandre.belloni@bootlin.com>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-spi@vger.kernel.org>, "Nicolas
- Ferre" <nicolas.ferre@microchip.com>
-Subject: [PATCH] dt-bindings: spi: at91: Add sama7d65 compatible string
-Date: Thu, 11 Jul 2024 18:54:02 +0200
-Message-ID: <20240711165402.373634-1-nicolas.ferre@microchip.com>
-X-Mailer: git-send-email 2.39.2
+	s=arc-20240116; t=1720716979; c=relaxed/simple;
+	bh=J2KGe6N9vuh1r0d6oyilC4ZZOD6P1XoN9qwVxXKfAEk=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Scpx6VtwuvKCu6A1/GP47ugpi0kIxo3S0EG+squ9hE8li4VcKxyKUPEoLQQOGzQRNR7c9ZSbna0I/jIj2B9M2FUgbZCB4p/PUUZ/pIGE4RqjG+4hgnbCNTUWB+u9iEu7kiYevvMkbhvyzNjimbcyAEE++CftK/GK1lxAgO49KxA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gC8G0XaH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82C1DC116B1;
+	Thu, 11 Jul 2024 16:56:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720716979;
+	bh=J2KGe6N9vuh1r0d6oyilC4ZZOD6P1XoN9qwVxXKfAEk=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=gC8G0XaHHj0/YsNliAwpI7dr2QLw/AzFuKFrnQD5AXazPEnUapXefdRyCRH14fOXy
+	 Hn75jZg2TlBXsh9TH3wP/8VBsB8Kn4FyhPlLr8AI/FUvXhQjmYXumaKxBEVjHCliaD
+	 FjEtTJhzfn8vMxCZQjDrTrNqq9vMMWiu7b6a3UJES8NSxahtpRVKFiVyzOZ8Bx8/Ei
+	 bkmAm/kyS9mRoYU9gjHNe7O/JAOLZTWkZSyGYwQfayLKLrZyT6okH/6Jr1z4xuusJ+
+	 2MtF9amScndzR5EjL3OjORVcYFTQ/zApbgIbRXTu15etQ1JUv20NwXpnkYa/ra5uma
+	 Zz9pcAYCXp+hQ==
+Date: Thu, 11 Jul 2024 09:56:17 -0700
+From: Jakub Kicinski <kuba@kernel.org>
+To: <andrew@lunn.ch>, <hkallweit1@gmail.com>, <linux@armlinux.org.uk>
+Cc: "Kamil =?UTF-8?B?SG9yw6Fr?= (2N)" <kamilh@axis.com>,
+ <florian.fainelli@broadcom.com>, <bcm-kernel-feedback-list@broadcom.com>,
+ <davem@davemloft.net>, <edumazet@google.com>, <pabeni@redhat.com>,
+ <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+ <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v11 1/4] net: phy: bcm54811: New link mode for
+ BroadR-Reach
+Message-ID: <20240711095617.4100e7fa@kernel.org>
+In-Reply-To: <20240708102716.1246571-2-kamilh@axis.com>
+References: <20240708102716.1246571-1-kamilh@axis.com>
+	<20240708102716.1246571-2-kamilh@axis.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-From: Nicolas Ferre <nicolas.ferre@microchip.com>
+On Mon, 8 Jul 2024 12:27:13 +0200 Kamil Hor=C3=A1k (2N) wrote:
+> Introduce a new link mode necessary for 10 MBit single-pair
+> connection in BroadR-Reach mode on bcm5481x PHY by Broadcom.
+> This new link mode, 10baseT1BRR, is known as 1BR10 in the Broadcom
+> terminology. Another link mode to be used is 1BR100 and it is already
+> present as 100baseT1, because Broadcom's 1BR100 became 100baseT1
+> (IEEE 802.3bw).
+>=20
+> Signed-off-by: Kamil Hor=C3=A1k (2N) <kamilh@axis.com>
+> Reviewed-by: Florian Fainelli <florian.fainelli@broadcom.com>
+> ---
+>  drivers/net/phy/phy-core.c   | 3 ++-
+>  include/uapi/linux/ethtool.h | 1 +
+>  net/ethtool/common.c         | 3 +++
 
-Add compatible string for sama7d65. Like sam9x60 and sam9x7, it requires
-to bind to "atmel,at91rm9200-spi".
-Group these three under the same enum, sorted alphanumerically, and
-remove previously added item.
+> +	ETHTOOL_LINK_MODE_10baseT1BRR_Full_BIT		 =3D 102,
 
-Signed-off-by: Nicolas Ferre <nicolas.ferre@microchip.com>
----
- .../devicetree/bindings/spi/atmel,at91rm9200-spi.yaml     | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/spi/atmel,at91rm9200-spi.yaml b/Documentation/devicetree/bindings/spi/atmel,at91rm9200-spi.yaml
-index 32e7c14033c2..d29772994cf5 100644
---- a/Documentation/devicetree/bindings/spi/atmel,at91rm9200-spi.yaml
-+++ b/Documentation/devicetree/bindings/spi/atmel,at91rm9200-spi.yaml
-@@ -18,10 +18,10 @@ properties:
-     oneOf:
-       - const: atmel,at91rm9200-spi
-       - items:
--          - const: microchip,sam9x60-spi
--          - const: atmel,at91rm9200-spi
--      - items:
--          - const: microchip,sam9x7-spi
-+          - enum:
-+              - microchip,sam9x60-spi
-+              - microchip,sam9x7-spi
-+              - microchip,sama7d65-spi
-           - const: atmel,at91rm9200-spi
- 
-   reg:
--- 
-2.39.2
-
+Could we get an ack from phylib maintainers for the new mode?
 
