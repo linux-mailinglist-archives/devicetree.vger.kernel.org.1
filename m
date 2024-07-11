@@ -1,227 +1,140 @@
-Return-Path: <devicetree+bounces-85033-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85034-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5B5B92E99C
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 15:34:10 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1383592E9B2
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 15:36:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2B9A2B22AB6
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 13:34:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4C49DB20EAB
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 13:36:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A1B315FD16;
-	Thu, 11 Jul 2024 13:33:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6F1F1607BD;
+	Thu, 11 Jul 2024 13:36:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ldMwUvr7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7B114CE09;
-	Thu, 11 Jul 2024 13:33:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE5C74CE09
+	for <devicetree@vger.kernel.org>; Thu, 11 Jul 2024 13:36:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720704836; cv=none; b=DW95i0rF8bpUykCLmNTCcOXJYcTOKXKDRK9crPQAOL86kzIQZoQ1qtAG+htDba1Sm6VFZ/yaDhrLe8UjN5CPkIMEgfr98bbnCMaRJeF0c1HXwac9lKyGwu8e4Q8RDs8aGox8Fh5gb0b5Wu7hkJQnk5mhfij+mpMTt0SAQ5owwuQ=
+	t=1720704994; cv=none; b=I/TzIxryEO05VqLzja7Z9yJOIJxqvNfZ/n1keouDbPLT13av3+CZx46ZGqUXoghjGAVsw/DXi7FBskoMTWDvdVElVCG3aCSSeNrsaEIgpjGgaM1nxHcI9pycyeUKfFlCTracmMbXgCpVTpi1o3zy9i3lakEriVDFoa7h4gtrUoE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720704836; c=relaxed/simple;
-	bh=G0Y5MS/fG5nofaxo9KxIn5gYLBj3YWsywp6BEyBcgac=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aOARDFiSLkvEuxUnt5/PeJ/ZGyxdpJlelKM8J8E7z2Zw20ZpkjnquZoIQp01Qm3z5RCj2oMuYwX3C/FoigamOaNqMTdEmiIMqLZgdSBWJLYEvGTuuVgNBj/X44f2REPSXS5NCaFOuWekDcZKAIMQ8iHv8hrg2e+3YvmmnHWiKis=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 508CAFEC;
-	Thu, 11 Jul 2024 06:34:19 -0700 (PDT)
-Received: from pluto (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 0F8523F766;
-	Thu, 11 Jul 2024 06:33:49 -0700 (PDT)
-Date: Thu, 11 Jul 2024 14:33:39 +0100
-From: Cristian Marussi <cristian.marussi@arm.com>
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: Jonathan Corbet <corbet@lwn.net>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Cristian Marussi <cristian.marussi@arm.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Peng Fan <peng.fan@nxp.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org, arm-scmi@vger.kernel.org,
-	linux-rtc@vger.kernel.org, linux-input@vger.kernel.org
-Subject: Re: [PATCH v5 5/7] firmware: imx: add i.MX95 MISC driver
-Message-ID: <Zo_fM8c485SSnTDF@pluto>
-References: <20240621-imx95-bbm-misc-v2-v5-0-b85a6bf778cb@nxp.com>
- <20240621-imx95-bbm-misc-v2-v5-5-b85a6bf778cb@nxp.com>
+	s=arc-20240116; t=1720704994; c=relaxed/simple;
+	bh=ZJBtzydDNvnzwNjEXYE/Z8NIvItAF0eOwb6jFiFqgd8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=S+0x/hcoudjylvMyRSONIUl84SQqD6a9aSj62T/TDHFmngFODXZ2/RXw3Eu4l0fAKf8taqJMFMpRz8JxiiN6guvsVEYpYuSmLKrAAAhfYP2ByN/6NBdB4c1xwjaQLb2JgaZvgybstgFEMz40iPp1RcDwRN3YB8CkAvyrx26KaHQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ldMwUvr7; arc=none smtp.client-ip=209.85.208.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2ec61eeed8eso10774861fa.0
+        for <devicetree@vger.kernel.org>; Thu, 11 Jul 2024 06:36:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1720704990; x=1721309790; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=DVLJo0/MBfbDMXoMGmbxkF4EVNMrx/VG4OOfR+Do5os=;
+        b=ldMwUvr7K0mLW7Pabrb54oRls71XDYGeMkO2WSdBQESubbUUoACQQB3LT3W87fDnAn
+         GX83XU84qg3YtFvo5a0xGtFpeHk8SpABlYqFXiqTHrh+WjfsToPQvp14mASu9RXkaVQl
+         jBBQAK8LYW12TswA2/oJryXMMaTX0SsT0naJqV0+Z5K4CqabrhIFWxHQGoQ2ymDPZ2ZT
+         EA48tEqIS2eBdH9Tta9JmFNIbR2V2ZVM03wELFrmSivDNGs2pEMlGNpo0CKenUsnv9dh
+         x3VEK+Am+VJHmaySn0lSQS2b7Qgu+RcTsXTc/HJvtKfxNY/3xETWb69jzIqDTyg2q4nd
+         qMGg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720704990; x=1721309790;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=DVLJo0/MBfbDMXoMGmbxkF4EVNMrx/VG4OOfR+Do5os=;
+        b=FFN/cKbckGp8VUzjbOfRLSMH7zKp126hs+YMFSejgtrZWJAjknMIJqEgd31QWgwaht
+         Efcs7la/x5lQb/Z0L9yapV/GupGOWLJERdn0YCD/a6ai5WpOSTGIzZ61/YmHdVTbxQdA
+         BIEE+L7UEewNvtl6UD5D08SfQeieOeWIRH8VTF7E2u3EKxPmucQuQL9JeXinWkzL8mWZ
+         4gxUMKvH6vpCMqE+NW4C0OSrkdNngwaAgcrKcUKBtpzN//Qosu/MMUAqWD1qHku59i2D
+         C4EVCYtczei+ZBlVH/oPmBIctaDz3/eEwN/7mEl1YGGoXr2zxMGfC0wZrbVfh4gCBBCj
+         ILqQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUAzfaG0cyn5GN4FSJjKHg6k9yugp7IEpyHQKgphfwcAicVNL1NeES4vC7Roos2yOPJWsVoNCl3/KOydtT81kaxTOQyCAq1X5C5cQ==
+X-Gm-Message-State: AOJu0Yxduk5gHjjj2C1EBPcC2B++r4uF37PCkvDVy3DOxlh6P4b7ntJ5
+	kLFdYxoEIbrcTRkJk79JsDeufv3sDgQqmLhJ6fPyD82ph5JD92aU/cVIJaKvzzM=
+X-Google-Smtp-Source: AGHT+IGW1LfxEoPM8hrXbZlHQULLyAdwEerywPN0lSOYfjGLLYcyS8HeP866p3l1Hln9aIe3MLhEGg==
+X-Received: by 2002:a2e:b0d8:0:b0:2ec:419b:429e with SMTP id 38308e7fff4ca-2eeb30bbb7bmr52639441fa.2.1720704989535;
+        Thu, 11 Jul 2024 06:36:29 -0700 (PDT)
+Received: from [192.168.105.194] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-594bbe2d006sm3433632a12.31.2024.07.11.06.36.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 11 Jul 2024 06:36:28 -0700 (PDT)
+Message-ID: <b61f7707-8b9d-49b9-a5d8-62e0cca37dd8@linaro.org>
+Date: Thu, 11 Jul 2024 15:36:26 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240621-imx95-bbm-misc-v2-v5-5-b85a6bf778cb@nxp.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/5] ARM: dts: qcom: apq8064-pins: correct error in
+ drive-strength property
+To: Rayyan Ansari <rayyan.ansari@linaro.org>, linux-arm-msm@vger.kernel.org
+Cc: Bjorn Andersson <andersson@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org,
+ Rob Herring <robh@kernel.org>
+References: <20240711110545.31641-2-rayyan.ansari@linaro.org>
+ <20240711110545.31641-3-rayyan.ansari@linaro.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20240711110545.31641-3-rayyan.ansari@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fri, Jun 21, 2024 at 03:04:40PM +0800, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
+On 11.07.2024 1:01 PM, Rayyan Ansari wrote:
+> The "drive-strength" property was incorrectly spelt as "drive-strengh".
+> Correct this.
 > 
-> The i.MX95 System manager exports SCMI MISC protocol for linux to do
-> various settings, such as set board gpio expander as wakeup source.
-> 
-> The driver is to add the support.
-> 
-
-Hi,
-
-a small style nitpick down below.
-
-Other than that,
-
-LGTM.
-Reviewed-by: Cristian Marussi <cristian.marussi@arm.com>
-
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> Signed-off-by: Rayyan Ansari <rayyan.ansari@linaro.org>
 > ---
->  drivers/firmware/imx/Kconfig    |  11 ++++
->  drivers/firmware/imx/Makefile   |   1 +
->  drivers/firmware/imx/sm-misc.c  | 119 ++++++++++++++++++++++++++++++++++++++++
->  include/linux/firmware/imx/sm.h |  33 +++++++++++
->  4 files changed, 164 insertions(+)
-> 
-> diff --git a/drivers/firmware/imx/Kconfig b/drivers/firmware/imx/Kconfig
-> index 183613f82a11..477d3f32d99a 100644
-> --- a/drivers/firmware/imx/Kconfig
-> +++ b/drivers/firmware/imx/Kconfig
-> @@ -22,3 +22,14 @@ config IMX_SCU
->  
->  	  This driver manages the IPC interface between host CPU and the
->  	  SCU firmware running on M4.
-> +
-> +config IMX_SCMI_MISC_DRV
-> +	tristate "IMX SCMI MISC Protocol driver"
-> +	depends on IMX_SCMI_MISC_EXT || COMPILE_TEST
-> +	default y if ARCH_MXC
-> +	help
-> +	  The System Controller Management Interface firmware (SCMI FW) is
-> +	  a low-level system function which runs on a dedicated Cortex-M
-> +	  core that could provide misc functions such as board control.
-> +
-> +	  This driver can also be built as a module.
-> diff --git a/drivers/firmware/imx/Makefile b/drivers/firmware/imx/Makefile
-> index 8f9f04a513a8..8d046c341be8 100644
-> --- a/drivers/firmware/imx/Makefile
-> +++ b/drivers/firmware/imx/Makefile
-> @@ -1,3 +1,4 @@
->  # SPDX-License-Identifier: GPL-2.0
->  obj-$(CONFIG_IMX_DSP)		+= imx-dsp.o
->  obj-$(CONFIG_IMX_SCU)		+= imx-scu.o misc.o imx-scu-irq.o rm.o imx-scu-soc.o
-> +obj-${CONFIG_IMX_SCMI_MISC_DRV}	+= sm-misc.o
-> diff --git a/drivers/firmware/imx/sm-misc.c b/drivers/firmware/imx/sm-misc.c
-> new file mode 100644
-> index 000000000000..342e1254a356
-> --- /dev/null
-> +++ b/drivers/firmware/imx/sm-misc.c
-> @@ -0,0 +1,119 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Copyright 2024 NXP
-> + */
-> +
-> +#include <linux/firmware/imx/sm.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/scmi_protocol.h>
-> +#include <linux/scmi_imx_protocol.h>
-> +
-> +static const struct scmi_imx_misc_proto_ops *imx_misc_ctrl_ops;
-> +static struct scmi_protocol_handle *ph;
-> +struct notifier_block scmi_imx_misc_ctrl_nb;
-> +
-> +int scmi_imx_misc_ctrl_set(u32 id, u32 val)
-> +{
-> +	if (!ph)
-> +		return -EPROBE_DEFER;
-> +
-> +	return imx_misc_ctrl_ops->misc_ctrl_set(ph, id, 1, &val);
-> +};
-> +EXPORT_SYMBOL(scmi_imx_misc_ctrl_set);
-> +
-> +int scmi_imx_misc_ctrl_get(u32 id, u32 *num, u32 *val)
-> +{
-> +	if (!ph)
-> +		return -EPROBE_DEFER;
-> +
-> +	return imx_misc_ctrl_ops->misc_ctrl_get(ph, id, num, val);
-> +}
-> +EXPORT_SYMBOL(scmi_imx_misc_ctrl_get);
-> +
-> +static int scmi_imx_misc_ctrl_notifier(struct notifier_block *nb,
-> +				       unsigned long event, void *data)
-> +{
-> +	/*
-> +	 * notifier_chain_register requires a valid notifier_block and
-> +	 * valid notifier_call. SCMI_EVENT_IMX_MISC_CONTROL is needed
-> +	 * to let SCMI firmware enable control events, but the hook here
-> +	 * is just a dummy function to avoid kernel panic as of now.
-> +	 */
-> +	return 0;
-> +}
-> +
-> +static int scmi_imx_misc_ctrl_probe(struct scmi_device *sdev)
-> +{
-> +	const struct scmi_handle *handle = sdev->handle;
-> +	struct device_node *np = sdev->dev.of_node;
-> +	u32 src_id, flags;
-> +	int ret, i, num;
-> +
-> +	if (!handle)
-> +		return -ENODEV;
-> +
-> +	if (imx_misc_ctrl_ops) {
-> +		dev_err(&sdev->dev, "misc ctrl already initialized\n");
-> +		return -EEXIST;
-> +	}
-> +
-> +	imx_misc_ctrl_ops = handle->devm_protocol_get(sdev, SCMI_PROTOCOL_IMX_MISC, &ph);
-> +	if (IS_ERR(imx_misc_ctrl_ops))
-> +		return PTR_ERR(imx_misc_ctrl_ops);
-> +
-> +	num = of_property_count_u32_elems(np, "nxp,ctrl-ids");
-> +	if (num % 2) {
-> +		dev_err(&sdev->dev, "Invalid wakeup-sources\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	scmi_imx_misc_ctrl_nb.notifier_call = &scmi_imx_misc_ctrl_notifier;
-> +	for (i = 0; i < num; i += 2) {
-> +		ret = of_property_read_u32_index(np, "nxp,ctrl-ids", i, &src_id);
-> +		if (ret) {
-> +			dev_err(&sdev->dev, "Failed to read ctrl-id: %i\n", i);
-> +			continue;
-> +		}
-> +
-> +		ret = of_property_read_u32_index(np, "nxp,ctrl-ids", i + 1, &flags);
-> +		if (ret) {
-> +			dev_err(&sdev->dev, "Failed to read ctrl-id value: %d\n", i + 1);
-> +			continue;
-> +		}
-> +
-> +		ret = handle->notify_ops->devm_event_notifier_register(sdev, SCMI_PROTOCOL_IMX_MISC,
-> +								       SCMI_EVENT_IMX_MISC_CONTROL,
-> +								       &src_id,
-> +								       &scmi_imx_misc_ctrl_nb);
-> +		if (ret)
 
-missing {
-		dev_err(&sdev->dev, "Failed to register scmi misc event: %d\n", src_id);
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-	}
-
-
-Thanks,
-Cristian
+Konrad
 
