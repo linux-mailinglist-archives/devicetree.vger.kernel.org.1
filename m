@@ -1,123 +1,109 @@
-Return-Path: <devicetree+bounces-84915-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84916-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B88C892E3C7
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 11:51:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82E9B92E3D6
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 11:53:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 744CA284B48
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 09:51:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3E5702851CC
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 09:53:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 160DE156641;
-	Thu, 11 Jul 2024 09:51:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DANXKutz"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0982615747C;
+	Thu, 11 Jul 2024 09:53:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D294152E13
-	for <devicetree@vger.kernel.org>; Thu, 11 Jul 2024 09:51:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B7971514D1
+	for <devicetree@vger.kernel.org>; Thu, 11 Jul 2024 09:53:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720691511; cv=none; b=Rf+5dFXYyzvPOoOhHTb6vk3bpHE7vhna/LoaesaG+7d13+bzmHbLGvlNLZSOjsvicmQuUAOWBCU7dWyU0jFqipikfQhIcAeabjgPaSm47NB5DgcJ5+REg0yCLO010oRwFGmCOWNXlHUe4iNM/SOJTt9Pqt1J23P8KEPlxfjIbQ4=
+	t=1720691583; cv=none; b=uTS7KF6iXrW10msGXfLrzbIrvt3xyG0iqfdrMiNwvtaxW0YAIopsCKjOjq/pvahmMascA4DW1pnEflFf3llfUbDE/9YMWW/ap58P9WxbqIjw6yebLDZRafa87UA50WkJRpsd+ou8OczMt3NSqPPNCUNoIhHvRVBqPZgokOi1ej4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720691511; c=relaxed/simple;
-	bh=6W/qVczYJkuz3Z8DNHsspunOTZVIxcTUdrjw9u/h48E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kMt4zZc3YrG19uxvlmvkqUheZ4nSi3QcOMRQGTOqYN+ocGQv0D/uQ4ZTEvfQXAmkNmtjiqfx3o5e3U0GKHNAAIBpIFwhmYCyIzcuxRX2T/RTqzULQsAWEprmYCP7E6Ov/kgwM63ZP3GiNjSbBvC4gZXY0CvTKhE30+hybrYtYqI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DANXKutz; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-42679f33fefso4518895e9.2
-        for <devicetree@vger.kernel.org>; Thu, 11 Jul 2024 02:51:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1720691508; x=1721296308; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=p4smDoC8Q8mWiYpTnz73mXw1qS9kVwzA6CajD1cC+rw=;
-        b=DANXKutzYjdK7YMIIU2/uRYJQOBKdH9z4XEXz3WWyFgEMmIr5YOHqNToBg+454eo3e
-         IzptyStDAd9Z8sHwxecJuLsgtrNYwL+gh8aVy5fDXoDA8AeVAmQDPNTUt6Zp1rwf7wIo
-         Ixaug0kgOmnW+AUaPar+u4QKrBPqvJzXf9+WIzfGtUANmILxxqyrOTAv39TyEZIpu5ZI
-         SCLysRR7aOz8+8EfCi//XY+RBYYbZFIAY2+V4UjiLhWHZTX198XzD8E2gwxyS9vF/yOr
-         QVXNStei7cHeffZbbagp7/L+R6uH5FDIWJskNTcD+1s3S61IWEJPIjvd5CyHtMK7FBfV
-         ahDA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720691508; x=1721296308;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=p4smDoC8Q8mWiYpTnz73mXw1qS9kVwzA6CajD1cC+rw=;
-        b=ghaXubTxB+12Ph+IPEuZml9sQL+N7rwdd3nDGDAwUDu/iktHd/dg9/05pyQn+st+/L
-         mmIdvlgsHwjwHBHVFqi6UMuEeOBC2snV57Wmp9sh2dK7ZBj4ZhzUr/oloB0WqsWH5W4B
-         loymio44OUw+yqgazKjA9UXHbkiZTwejc6WWG0OnZV0PIAmlElpvh+n0ZbqOgRjlT1kt
-         L7/w63LlTyIDUC2/EbgqagpYJvTdNO3vLOpP+ghryY4OwyJbzkO2DoTYkvbfAaUEI7Hj
-         89dB2qpJG0jULBeC878VyDPpswNTKcf+eeHkWGLJZzb+AvmEKdS50h5oxow0GEm3Zj4V
-         vZaA==
-X-Forwarded-Encrypted: i=1; AJvYcCVPHiSyq9iCH0YHVNq/s2e05/ikFWEt1lzGgtYYzm6UJNlycIpoCo2s//OTyKMXCoZOFIsnMNUJVUDgv76pSsVbjdSbl70WWOEEWA==
-X-Gm-Message-State: AOJu0Yw70CxngB8/+qWUh4Y/lTOjZOpKBCu0JDo58ZxDGOgXqujPBBB6
-	4n+rtjfdyi/4T0SbOcK3uKyX0iflA8SYMCBvizDna3fpZEIdXCH8QyiUblugxZDABc7ApOSqx4P
-	NOKE=
-X-Google-Smtp-Source: AGHT+IFtPH1XXTzpe+ZeiotMiBUKnIw0rtLtXdrEEVTNTDfCBJZjKL4CcUCeuZDut/QwViYvR4OaUg==
-X-Received: by 2002:adf:ea8d:0:b0:367:99fd:a9a8 with SMTP id ffacd0b85a97d-367cea73735mr5694718f8f.26.1720691507676;
-        Thu, 11 Jul 2024 02:51:47 -0700 (PDT)
-Received: from [192.168.0.16] ([176.61.106.227])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-367cde7e19dsm7274556f8f.15.2024.07.11.02.51.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Jul 2024 02:51:47 -0700 (PDT)
-Message-ID: <f4072105-e0e2-46c8-82ed-92105b43a345@linaro.org>
-Date: Thu, 11 Jul 2024 10:51:48 +0100
+	s=arc-20240116; t=1720691583; c=relaxed/simple;
+	bh=y7Cnxvg2uhUsTVqpxt20HGLYNjuHntJRlTgTlzJc+MA=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=V16M1KclSCPhi+LjQSd2YimemRrZN4vN7+gXo34AA4tMsGrdJKycqnBUujSAytGQKi0b1Yn526iuh0SOl9Fdts4h1t/+En5OUZcWDqZD92GyFLJ8xcdkhlWUIWUsMmXnEbsqcu1vzb636tqX0+M0YvDRQtoAcvVL3NAhVYb7jFE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2EEE81007;
+	Thu, 11 Jul 2024 02:53:26 -0700 (PDT)
+Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 418FA3F766;
+	Thu, 11 Jul 2024 02:52:59 -0700 (PDT)
+Date: Thu, 11 Jul 2024 10:52:56 +0100
+From: Andre Przywara <andre.przywara@arm.com>
+To: Chris Morgan <macroalpha82@gmail.com>
+Cc: linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org,
+ mripard@kernel.org, ryan@testtoast.com, samuel@sholland.org,
+ jernej.skrabec@gmail.com, wens@csie.org, conor+dt@kernel.org,
+ krzk+dt@kernel.org, robh@kernel.org, Chris Morgan
+ <macromorgan@hotmail.com>, Philippe Simons <simons.philippe@gmail.com>
+Subject: Re: [PATCH V3 3/4] arm64: dts: allwinner: h616: Change RG35XX
+ Series from r_rsb to r_i2c
+Message-ID: <20240711105256.61d1f00e@donnerap.manchester.arm.com>
+In-Reply-To: <20240710231718.106894-4-macroalpha82@gmail.com>
+References: <20240710231718.106894-1-macroalpha82@gmail.com>
+	<20240710231718.106894-4-macroalpha82@gmail.com>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/6] clk: qcom: Add camera clock controller driver for
- SM8150
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- "Satya Priya Kakitapalli (Temp)" <quic_skakitap@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Abhishek Sahu <absahu@codeaurora.org>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@codeaurora.org>,
- linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- Ajit Pandey <quic_ajipan@quicinc.com>,
- Imran Shaik <quic_imrashai@quicinc.com>, Taniya Das <quic_tdas@quicinc.com>,
- Jagadeesh Kona <quic_jkona@quicinc.com>
-References: <20240702-camcc-support-sm8150-v2-0-4baf54ec7333@quicinc.com>
- <20240702-camcc-support-sm8150-v2-5-4baf54ec7333@quicinc.com>
- <xbe7kmaxhfwy26qzxrmwgiijaaiap4kdkruaxjs6ymihaw5taf@hvj57wyncfea>
- <cc1957af-17bc-cd71-e6da-013e3a740014@quicinc.com>
- <CAA8EJpqmJZJfd2famarx-FKFb1_+-nZM3N+FwK_hiOurG8n9=A@mail.gmail.com>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <CAA8EJpqmJZJfd2famarx-FKFb1_+-nZM3N+FwK_hiOurG8n9=A@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On 10/07/2024 23:10, Dmitry Baryshkov wrote:
->>> - Why is cam_cc_gdsc_clk not modelled in the clock framework?
->>
->> This clock is kept enabled from probe, hence not required to be modelled
->> explicitly.
-> Yes, I'm asking why it's kept up enabled from probe rather than via
-> clock framework?
+On Wed, 10 Jul 2024 18:17:17 -0500
+Chris Morgan <macroalpha82@gmail.com> wrote:
 
-FWIW my preference is to do it as Dmitry is suggesting here.
+Hi,
 
-I'm not a big fan of hitting the register and leaving it as-is, would 
-much prefer to move to the model of having the CCF do it - so that for 
-example the clock appears in the /sys clock summary.
+> From: Chris Morgan <macromorgan@hotmail.com>
+> 
+> Change the Anbernic RG35XX series to use the r_i2c bus for the PMIC
+> instead of the r_rsb bus. This is to keep the device tree consistent
+> as there are at least 3 devices (the RG35XX-SP, RG28XX, and RG40XX-H)
+> that have an external RTC on the r_i2c bus.
 
----
-bod
+The change itself looks alright, but I would like to see some Tested-by:s
+from people with those Allwinner Anbernic devices, since the change affects
+all of them.
+
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+
+Reviewed-by: Andre Przywara <andre.przywara@arm.com>
+
+Cheers,
+Andre
+
+> ---
+>  .../boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dts | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dts b/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dts
+> index ee30584b6ad7..e2bbd22bd80a 100644
+> --- a/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dts
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dts
+> @@ -201,12 +201,12 @@ &pio {
+>  	vcc-pi-supply = <&reg_cldo3>;
+>  };
+>  
+> -&r_rsb {
+> +&r_i2c {
+>  	status = "okay";
+>  
+> -	axp717: pmic@3a3 {
+> +	axp717: pmic@34 {
+>  		compatible = "x-powers,axp717";
+> -		reg = <0x3a3>;
+> +		reg = <0x34>;
+>  		interrupt-controller;
+>  		#interrupt-cells = <1>;
+>  		interrupt-parent = <&nmi_intc>;
+
 
