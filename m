@@ -1,78 +1,164 @@
-Return-Path: <devicetree+bounces-85185-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85188-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D37E92F2AD
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 01:39:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 416B692F2C3
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 01:46:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E9EB028311E
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 23:39:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F1D2528392B
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 23:46:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD5CD15A4B7;
-	Thu, 11 Jul 2024 23:39:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CD7F1A0AF3;
+	Thu, 11 Jul 2024 23:46:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HqtAbveb"
+	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="ThcWAICA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CE8976034;
-	Thu, 11 Jul 2024 23:39:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D77D14D2AC
+	for <devicetree@vger.kernel.org>; Thu, 11 Jul 2024 23:46:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720741142; cv=none; b=pXUmp9EYq+KhRQk0XL+zJ6fbpp8ipctfqk3/HvpSZASFNx/TowG8BNcRBFaMCw6tiDTTMxtDRgl3/S9f6+6ISs/UqENmWz7895Cm1Bpc8BdDjwEXKTTkxg4MaNXDs/aFTlwEGIPaomusqaXZ4qf8woLCBew/p/u212nkifIbbtc=
+	t=1720741582; cv=none; b=pw7EweFu8lSvrR3PlG1SRIupQ4H0XQqA7MTJtUwo2MqHogzQXUrzC6nvUIyjZmaz7/WSIAHoYSw11lXJDAKqHeXbER4vAfjDYmOFF1172dQ50/2tnRN1tNZZ1fPiA82523O1w5N9czvjDqfbiSGhFnNtvoIa0t0QeC3FHkYMcbM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720741142; c=relaxed/simple;
-	bh=Yk7HUr5GQdgB02Nt1DDc0rXfh22Cpu2JKupZSKBHLOs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=N0PpAVftiIfvx2J5vk4crOUfkmHS+s8Vvr0OsNVqiqTxuJJjRtff/MeKeR0E8KY3Np2xpBYOnAyTrkWjnh62Xbhj6NORkNjOh7DqGDXf1YWrP0mrzEXvPVIZBj6XhIFNwMFMpIXxzHSgVRcd5rG3KoGrPuHukeVZA77yeSHJZr8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HqtAbveb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5DACDC116B1;
-	Thu, 11 Jul 2024 23:39:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720741142;
-	bh=Yk7HUr5GQdgB02Nt1DDc0rXfh22Cpu2JKupZSKBHLOs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HqtAbvebFFypxquvSGVV1iT8R+y1E80OfCi1Ddu3BRDWHaHTTB6AK1ON9gSgiHJP6
-	 QhG6b8Ur/3LW4S27kYkQRDN6MioPoE1W8ZMovrWCEAwQHiOuPHHhcq/M8vGieMT6+L
-	 tBPWvdhgI+nlKBd9DbSKXqiFdh4jy0/tEV0yqYlKvwrAS6m38PE/fOCGcNV0G6r9J4
-	 ynlNkCklFbQ8TuCCqs5TCmLcjTZ9ngG7YzOt9uqDSwmBpJHDx9l1Nynm2am1/NM0MN
-	 65sLeiDpPEAMNJVNMYjJyeARKhK+pJvKZ3v1zCHHRG3M0X4GkjBp/85c+rtkoh9f+b
-	 j7KEvxWaMyTkA==
-Date: Fri, 12 Jul 2024 01:38:58 +0200
-From: Andi Shyti <andi.shyti@kernel.org>
-To: nicolas.ferre@microchip.com
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
-	Conor Dooley <conor.dooley@microchip.com>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>, Alexandre Belloni <alexandre.belloni@bootlin.com>, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: i2c: at91: Add sama7d65 compatible string
-Message-ID: <pivsmeqh26bdicgonegmrnmrzvzojznizewbmo3nseesx6lllj@mnxk7ot4b4mp>
-References: <20240710162615.332888-1-nicolas.ferre@microchip.com>
+	s=arc-20240116; t=1720741582; c=relaxed/simple;
+	bh=2lokm9uCl6o/abXtjtX/wmsJ5mYneFBL5sd2oqnz0PM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=czU7w18a+5IqeuI8JlgBblO+XxXzWdlffJ5CxeBwADfj0thuZTAP3IJLV1yUeP6y76jmBadfNQMpWUikfDFDEgFwE7K0m6rwEl918hcKRnIW1117un8oCGwKSiDxEjvBYY8GxZsu7L+sjBSFJb9VmwX8n3AbjdwXbMYFamsYdjg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=ThcWAICA; arc=none smtp.client-ip=202.36.163.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 7913D2C00BB;
+	Fri, 12 Jul 2024 11:46:16 +1200 (NZST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+	s=mail181024; t=1720741576;
+	bh=EKGPPthhjVJwEdnCORAyHfpXsGIZwcVoOJ6m2/X6BtA=;
+	h=From:To:Cc:Subject:Date:From;
+	b=ThcWAICAgwy575O78H9g8ZQevLUk4VqQnqxgYb9btjLsvjOZAI3gEBCy/DQ0pcmsO
+	 +SSD6g417oVqUijXYoN5cD56ch724kse+Ptq5va6zdWEABf0oWtKKH8XQFoiUXCFzW
+	 WP2WTYkRGctI/aIB1pxxo4vvWLWsIjqPWlYo5RtwROmSbUqMUHk+1WbUzS+bKioMtS
+	 n+/bK7LmY1rHifK/HiqraqeGxgYeVAnuV8268+JxtqB2uYvajy9WOUKBfYL/0Mcy3A
+	 01a4smN+xAipiYb0vUfortQIm+URivSDUd4KuNaMoGUcyqJXwv8tQNogh2VHCO3OVY
+	 RSQAdsD9MWLMg==
+Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+	id <B66906ec80000>; Fri, 12 Jul 2024 11:46:16 +1200
+Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
+	by pat.atlnz.lc (Postfix) with ESMTP id 3C12013EE2B;
+	Fri, 12 Jul 2024 11:46:16 +1200 (NZST)
+Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
+	id 36DDB28097C; Fri, 12 Jul 2024 11:46:16 +1200 (NZST)
+From: Chris Packham <chris.packham@alliedtelesis.co.nz>
+To: jdelvare@suse.com,
+	linux@roeck-us.net,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	ukleinek@kernel.org
+Cc: linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-pwm@vger.kernel.org,
+	Chris Packham <chris.packham@alliedtelesis.co.nz>
+Subject: [PATCH v5 0/3] hwmon: (adt7475) duty cycle configuration
+Date: Fri, 12 Jul 2024 11:46:11 +1200
+Message-ID: <20240711234614.3104839-1-chris.packham@alliedtelesis.co.nz>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240710162615.332888-1-nicolas.ferre@microchip.com>
+Content-Transfer-Encoding: quoted-printable
+X-SEG-SpamProfiler-Analysis: v=2.4 cv=PIKs+uqC c=1 sm=1 tr=0 ts=66906ec8 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=4kmOji7k6h8A:10 a=1vY5SClPdTbzMX9iZtUA:9 a=3ZKOabzyN94A:10
+X-SEG-SpamProfiler-Score: 0
+x-atlnz-ls: pat
 
-Hi Nicolas,
+I have a system that has very over spec'd fans so the amount of noise whe=
+n they
+run at 100% duty cycle is considerable. We have userspace monitoring tool=
+s that
+will configure appropriate fan control parameters but there is a bit of a=
+ delay
+between the kernel loading the driver and the userland tools catching up =
+to
+configure the fan control. This series adds device properties that allow =
+the
+PWM duty cycle to be specified via device properties so the PWM duty cycl=
+e can
+be reduced as soon as possible.
 
-On Wed, Jul 10, 2024 at 06:26:15PM GMT, nicolas.ferre@microchip.com wrote:
-> From: Nicolas Ferre <nicolas.ferre@microchip.com>
-> 
-> Add compatible string for sama7d65. Like sama7g5, it currently binds to
-> "microchip,sam9x60-i2c" compatible string for this driver.
-> 
-> Signed-off-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+This series attempts to setup the adt7475 as a pwm provider so that we ca=
+n
+specify these properties. The devicetree support was reasonably straight
+forward (example usage is in the binding patch). I struggled to get the A=
+CPI
+version working well and in the end the code had to distinguish between t=
+he
+of_node and other case. The ASL I've ended up with is
 
-pushed to i2c/i2c-host.
+    Device (ADT0)
+    {
+        Name (_HID, "PRP0001")
+        Name (_CRS, ResourceTemplate () {
+            I2cSerialBusV2 (0x2E, ControllerInitiated,
+                            100000, AddressingMode7Bit,
+                            "^^CH00", 0x00,
+                            ResourceConsumer, , Exclusive, )
+        })
+        Name (_DSD, Package () {
+            ToUUID (UUID_DEVICE_PROPERTIES),
+            Package () {
+                Package () { "compatible", "adi,adt7476" },
+                Package () { "#pwm-cells", 4 },
+            },
+        })
+        Device (FAN0)
+        {
+            Name (_ADR, 0)
+            Name (_DSD, Package () {
+                ToUUID (UUID_DEVICE_PROPERTIES),
+                Package () {
+                    Package () { "pwms", Package () { 0, 44444, 1, 22222 =
+} },
+                }
+            })
+        }
+        Device (FAN1)
+        {
+            Name (_ADR, 0)
+            Name (_DSD, Package () {
+                ToUUID (UUID_DEVICE_PROPERTIES),
+                Package () {
+                    Package () { "pwms", Package () { 2, 44444, 1, 22222 =
+} },
+                }
+            })
+        }
+    }
 
-Thanks,
-Andi
+If had to introduce a code path that parses that because try as I might I=
+ could
+not convince fwnode_property_get_reference_args() to fetch the informatio=
+n out
+of the ACPI data. If I've missed something obvious please let me know.
+
+Chris Packham (3):
+  dt-bindings: hwmon: Add adt7475 fan/pwm properties
+  dt-bindings: hwmon: adt7475: Deprecate adi,pwm-active-state
+  hwmon: (adt7475) Add support for configuring initial PWM state
+
+ .../devicetree/bindings/hwmon/adt7475.yaml    |  37 +++++-
+ drivers/hwmon/adt7475.c                       | 122 ++++++++++++++++++
+ 2 files changed, 157 insertions(+), 2 deletions(-)
+
+--=20
+2.45.2
+
 
