@@ -1,151 +1,267 @@
-Return-Path: <devicetree+bounces-84845-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84846-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DD8592DF49
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 07:05:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60C0792DF6B
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 07:26:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 15CD61F23622
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 05:05:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 126DD2826E4
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 05:26:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAC0C25601;
-	Thu, 11 Jul 2024 05:04:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB65B58AA5;
+	Thu, 11 Jul 2024 05:26:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="lrk13TXq"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ks7Ek/fw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D6D24EB55;
-	Thu, 11 Jul 2024 05:04:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E5561C3D;
+	Thu, 11 Jul 2024 05:26:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720674295; cv=none; b=QbhzCyDuXSW3I4Snvd6skWv7IBR7CGwRbvB+PjbPTSEaHj2ujW55tPncX4RVruYwez31h2FO74wE6FDPGScvwHok8KkxNxPNXyemR2oq0YhulZnUYTm9W0Qh8epSfIMymvKvnc6043BRMUFHAMG88X4yUlp7u3oGzoLx7uyEPzo=
+	t=1720675606; cv=none; b=tFR1z4ATXhXwbsBFDZOs+OBdjDeqshhpm5RofQHM8Zfncgpdry4cQe0I7V4l4zaqwv7SDbxwdJTpS02jtF2wc7JUYkWp63+nCRxQKbr/5lg0v/iGWjSJhjiGUjLB/S1W0XOk9lSqqIMHC61PkRjvSoohkgXUCmrSfpDjLX/1lFA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720674295; c=relaxed/simple;
-	bh=bmmiqnGMym0cd9eaRTuiQ/e0/Tdh4uIOIWOrVn6th5s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=jv3ZFkpAOaQja9+CvQxqT7UiQiR08XD0KZxs9iQgCyJWETT2mjOFc2mkIL6inKmngoyUXn9XpUxfjm+ULNt8ZPi7u78rzdxKd1EqGOIxAcwy37phybi3EEAqPk7I1+6KkuKW/kUXIZh5ycwPC/i03P6YBkwYrKF4gacEzlZxEYA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=lrk13TXq; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46B4n5RD004611;
-	Thu, 11 Jul 2024 05:04:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	UiiGhSGgBi1qiMkn7SfxdUtsB35BvZV/7EeGl5O4RSc=; b=lrk13TXq2aZ82Esc
-	jd5SOI/oxpCo4Qd7fZdaC4SIMU4ySOCF4ab2EYydP9bM/HpixLHHWgvmhfWfQcCF
-	9Z6pPjBg1FkASwQPJjE8XssGqvkIW0ilUouayOYLlr946ugZ4ZwM5hISEX6l+ZRm
-	0nGMe385N1kjJ1VgQ++372D1Gxechdv3tyLEsU9G8A+A5T1QtTsPPNRq9eF9aIR4
-	YE0SlHyx8zzNqlPTjNNFKAhC7tL3biVoFgDsDwnkQPrFXbJIaFTC36CgHkz/OJHo
-	m8YdtVgH3dygJbPyg3qMSkov4z41NV2ac3QFo8BAnzR9J5IJtbWCp9exOSXGnHNN
-	c3OBcQ==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 406we9355n-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 11 Jul 2024 05:04:49 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA01.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 46B54miY013308
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 11 Jul 2024 05:04:48 GMT
-Received: from [10.216.6.181] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 10 Jul
- 2024 22:04:44 -0700
-Message-ID: <fa189b4c-d407-4d48-9677-528f07f81efa@quicinc.com>
-Date: Thu, 11 Jul 2024 10:34:24 +0530
+	s=arc-20240116; t=1720675606; c=relaxed/simple;
+	bh=sRgIAHPbPKqzxulmJz3xHOn7iC1HbZdUZKFpu4fiGqI=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=s815UqGOHCXqFkfvskB9ZKGzJe0XHvxfgYMhGSSqcQrcI4M30hOo/UvC/dTGZpzGUJRYuGahMyjSK/NIqjr0nyDoSUmipKC/dOd6WAzTn19/UmecQBdk2bQTCOMdyaLPW9Xjhcxuy1C635hwu2x/iLo8kYRydbfQxYfz78Do3cU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=ks7Ek/fw; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 46B5QM0T038490;
+	Thu, 11 Jul 2024 00:26:22 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1720675582;
+	bh=0L9mOJEi4vQvykZ1Spo67bhERE5D3SGr0AJ01gDpG04=;
+	h=From:Date:Subject:To:CC;
+	b=ks7Ek/fwYVaHzaVJuSZTeVPC2dKoUSmTKh0rKqW8BSpkRnMqVz1D9ofap7m0BviJn
+	 RAeVglO8CbCEaaR39+umtpoK0jv/X/3LZBZsVF3cGPRkaulef53ayoR2UVjeijzoIC
+	 naa4Mmdq8P6MR6JZzEgWRXbLX68MmJwp09u3vTMA=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 46B5QMks107207
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 11 Jul 2024 00:26:22 -0500
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 11
+ Jul 2024 00:26:21 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 11 Jul 2024 00:26:21 -0500
+Received: from [127.0.1.1] (uda0497581.dhcp.ti.com [10.24.68.185])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 46B5QH6w073418;
+	Thu, 11 Jul 2024 00:26:18 -0500
+From: Manorit Chawdhry <m-chawdhry@ti.com>
+Date: Thu, 11 Jul 2024 10:56:14 +0530
+Subject: [PATCH] arm64: dts: ti: Introduce J742S2 SoC and EVM
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1] arm64: dts: qcom: sa8775p: Add UART node
-To: Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Krzysztof Kozlowski
-	<krzk@kernel.org>, <andersson@kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <conor+dt@kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC: <quic_msavaliy@quicinc.com>, <quic_anupkulk@quicinc.com>
-References: <20240710094149.13299-1-quic_vdadhani@quicinc.com>
- <2e309d52-8180-4922-9a5a-022fc8bf8ef5@kernel.org>
- <f5ed3285-82da-4ba8-9b4d-a0cc7323fde4@linaro.org>
-Content-Language: en-US
-From: Viken Dadhaniya <quic_vdadhani@quicinc.com>
-In-Reply-To: <f5ed3285-82da-4ba8-9b4d-a0cc7323fde4@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: NXiDcJW_jYI9lOXxVdsNPDzhOfMbWESO
-X-Proofpoint-GUID: NXiDcJW_jYI9lOXxVdsNPDzhOfMbWESO
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-07-11_02,2024-07-10_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 impostorscore=0
- bulkscore=0 spamscore=0 suspectscore=0 lowpriorityscore=0 phishscore=0
- priorityscore=1501 mlxlogscore=999 malwarescore=0 mlxscore=0 clxscore=1011
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2406140001
- definitions=main-2407110032
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Message-ID: <20240711-b4-upstream-j742s2-v1-1-8b9e41c18f91@ti.com>
+X-B4-Tracking: v=1; b=H4sIAPVsj2YC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDMyMD3SQT3dKC4pKi1MRc3SxzE6NiI13zpEQzUyMDS0NTUwMloMaCotS
+ 0zAqwodGxtbUAA68yHmQAAAA=
+To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero
+ Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Udit Kumar <u-kumar1@ti.com>,
+        Neha Malcom
+ Francis <n-francis@ti.com>,
+        Aniket Limaye <a-limaye@ti.com>, Manorit Chawdhry
+	<m-chawdhry@ti.com>
+X-Mailer: b4 0.14-dev
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1720675577; l=5566;
+ i=m-chawdhry@ti.com; s=20231127; h=from:subject:message-id;
+ bh=sRgIAHPbPKqzxulmJz3xHOn7iC1HbZdUZKFpu4fiGqI=;
+ b=HIaJWIhb7Y1dCtTB8ZrW1LfpifS/Bvfz4VNQAzXEcFt0VNwBlIDpSpSOFfuKd4XPwhbvldPbc
+ oAnDaZ/O/Q/BXx4wPLVRkzLv8yVEasNq+ElNRvbp7KHiTA7eMIdlpQI
+X-Developer-Key: i=m-chawdhry@ti.com; a=ed25519;
+ pk=fsr6Tm39TvsTgfyfFQLk+nnqIz2sBA1PthfqqfiiYSs=
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
+This series add the Linux support for our new family of device J742S2.
+This device is a subset of J784S4 and shares the same memory map and
+thus the nodes are being reused from J784S4 to avoid duplication.
 
+Here are some of the salient features of the J742S2 automotive grade
+application processor:
 
-On 7/10/2024 4:09 PM, Konrad Dybcio wrote:
-> On 10.07.2024 11:47 AM, Krzysztof Kozlowski wrote:
->> On 10/07/2024 11:41, Viken Dadhaniya wrote:
->>> Add missing UART configuration for sa8775.
->>>
->>> Signed-off-by: Viken Dadhaniya <quic_vdadhani@quicinc.com>
->>> ---
->>>   arch/arm64/boot/dts/qcom/sa8775p.dtsi | 231 ++++++++++++++++++++++++++
->>>   1 file changed, 231 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
->>> index 23f1b2e5e624..c107ee40341d 100644
->>> --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
->>> +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
->>> @@ -1,6 +1,7 @@
->>>   // SPDX-License-Identifier: BSD-3-Clause
->>>   /*
->>>    * Copyright (c) 2023, Linaro Limited
->>> + * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
->>>    */
->>>   
->>>   #include <dt-bindings/interconnect/qcom,icc.h>
->>> @@ -657,6 +658,21 @@
->>>   				status = "disabled";
->>>   			};
->>>   
->>> +			uart14: serial@880000 {
->>> +				compatible = "qcom,geni-uart";
->>> +				reg = <0x0 0x00880000 0x0 0x4000>;
->>> +				interrupts = <GIC_SPI 373 IRQ_TYPE_LEVEL_HIGH>;
->>> +				clocks = <&gcc GCC_QUPV3_WRAP2_S0_CLK>;
->>> +				clock-names = "se";
->>> +				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
->>> +						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
->>> +						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
->>> +						 &config_noc SLAVE_QUP_2 QCOM_ICC_TAG_ALWAYS>;
->>> +				interconnect-names = "qup-core", "qup-config";
->>> +				power-domains = <&rpmhpd SA8775P_CX>;
->>
->> All the clocks, interconenct and power domains look to me questionable.
->> AFAIK, most of it (if not all) is going to be removed.
-> 
-> Yeah.. I'm lukewarm on accepting any sa8775p changes until that qcs9100(?)
-> situation is squared out first
-> 
-> Konrad
+The J742S2 SoC belongs to the K3 Multicore SoC architecture platform,
+providing advanced system integration in automotive, ADAS and industrial
+applications requiring AI at the network edge. This SoC extends the K3
+Jacinto 7 family of SoCs with focus on raising performance and
+integration while providing interfaces, memory architecture and compute
+performance for multi-sensor, high concurrency applications.
 
-Thanks for clarification. Please help to sign-off or let me know in case 
-of any concern.
+Some highlights of this SoC are:
+* Up to Four Arm® Cortex®-A72 microprocessor subsystem at up to 2.0GHz,
+  3 C7x floating point vector DSPs with Up to Two Deep-learning matrix
+  multiply accelerator (MMAv2),
+* 3D GPU: Automotive grade IMG BXS-4-64 MC1
+* Vision Processing Accelerator (VPAC) with image signal processor and
+  Depth and Motion Processing Accelerator (DMPAC)
+* Three CSI2.0 4L RX plus two CSI2.0 4L TX, two DSI Tx, one eDP/DP and
+  one DPI interface.
+* Integrated gigabit ethernet switch, up to 4 ports ,two ports
+  support 10Gb USXGMII; One 4 lane PCIe-GEN3 controllers, USB3.0
+  Dual-role device subsystems, Up to 20 MCANs, among other peripherals.
+
+( Refer Table 2-1 for Device comparison with J7AHP )
+
+Link: https://www.ti.com/lit/pdf/spruje3 (TRM)
+Link: https://www.ti.com/lit/ug/sprujd8/sprujd8.pdf (EVM user guide)
+Link: https://www.ti.com/lit/zip/SPAC001 (Schematics)
+---
+The series adds support for J742S2 family of SoCs. Also adds J742S2 EVM
+Support and re-uses most of the stuff from the superset device J784s4.
+
+Signed-off-by: Manorit Chawdhry <m-chawdhry@ti.com>
+---
+ arch/arm64/boot/dts/ti/Makefile            |  3 ++
+ arch/arm64/boot/dts/ti/k3-j742s2-evm.dts   | 22 ++++++++++++++
+ arch/arm64/boot/dts/ti/k3-j742s2-main.dtsi | 47 ++++++++++++++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-j742s2.dtsi      | 18 ++++++++++++
+ 4 files changed, 90 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
+index e20b27ddf901..4d0688c5cff7 100644
+--- a/arch/arm64/boot/dts/ti/Makefile
++++ b/arch/arm64/boot/dts/ti/Makefile
+@@ -119,6 +119,9 @@ dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm-pcie0-pcie1-ep.dtbo
+ dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm-quad-port-eth-exp1.dtbo
+ dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm-usxgmii-exp1-exp2.dtbo
+ 
++# Boards with J742S2 SoC
++dtb-$(CONFIG_ARCH_K3) += k3-j742s2-evm.dtb
++
+ # Build time test only, enabled by CONFIG_OF_ALL_DTBS
+ k3-am625-beagleplay-csi2-ov5640-dtbs := k3-am625-beagleplay.dtb \
+ 	k3-am625-beagleplay-csi2-ov5640.dtbo
+diff --git a/arch/arm64/boot/dts/ti/k3-j742s2-evm.dts b/arch/arm64/boot/dts/ti/k3-j742s2-evm.dts
+new file mode 100644
+index 000000000000..98088ccfd76d
+--- /dev/null
++++ b/arch/arm64/boot/dts/ti/k3-j742s2-evm.dts
+@@ -0,0 +1,22 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Copyright (C) 2024 Texas Instruments Incorporated - https://www.ti.com/
++ *
++ * EVM Board Schematics: https://www.ti.com/lit/zip/SPAC001
++ */
++
++#include "k3-j784s4-evm.dts"
++#include "k3-j742s2.dtsi"
++
++/delete-node/ &c71_3_dma_memory_region;
++/delete-node/ &c71_3_memory_region;
++
++/ {
++	model = "Texas Instruments J742S2 EVM";
++
++	memory@80000000 {
++		/* 16G RAM */
++		reg = <0x00000000 0x80000000 0x00000000 0x80000000>,
++		      <0x00000008 0x80000000 0x00000003 0x80000000>;
++	};
++};
+diff --git a/arch/arm64/boot/dts/ti/k3-j742s2-main.dtsi b/arch/arm64/boot/dts/ti/k3-j742s2-main.dtsi
+new file mode 100644
+index 000000000000..4ac424d793e6
+--- /dev/null
++++ b/arch/arm64/boot/dts/ti/k3-j742s2-main.dtsi
+@@ -0,0 +1,47 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Copyright (C) 2024 Texas Instruments Incorporated - https://www.ti.com/
++ *
++ * EVM Board Schematics: https://www.ti.com/lit/zip/SPAC001
++ */
++
++/delete-node/ &c71_3;
++
++/delete-node/ &vpu1;
++
++&c71_0 {
++	firmware-name = "j742s2-c71_0-fw";
++};
++
++&c71_1 {
++	firmware-name = "j742s2-c71_1-fw";
++};
++
++&c71_2 {
++	firmware-name = "j742s2-c71_2-fw";
++};
++
++&main_r5fss0_core0 {
++	firmware-name = "j742s2-main-r5f0_0-fw";
++};
++
++&main_r5fss0_core1 {
++	firmware-name = "j742s2-main-r5f0_1-fw";
++};
++
++&main_r5fss1_core0 {
++	firmware-name = "j742s2-main-r5f1_0-fw";
++};
++
++&main_r5fss1_core1 {
++	firmware-name = "j742s2-main-r5f1_1-fw";
++};
++
++&main_r5fss2_core0 {
++	firmware-name = "j742s2-main-r5f2_0-fw";
++};
++
++&main_r5fss2_core1 {
++	firmware-name = "j742s2-main-r5f2_1-fw";
++};
++
+diff --git a/arch/arm64/boot/dts/ti/k3-j742s2.dtsi b/arch/arm64/boot/dts/ti/k3-j742s2.dtsi
+new file mode 100644
+index 000000000000..ceee5f03ed14
+--- /dev/null
++++ b/arch/arm64/boot/dts/ti/k3-j742s2.dtsi
+@@ -0,0 +1,18 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Copyright (C) 2024 Texas Instruments Incorporated - https://www.ti.com/
++ *
++ * EVM Board Schematics: https://www.ti.com/lit/zip/SPAC001
++ */
++
++/* Delta SoC file for j742s2 */
++/* Include this in the file where you want to convert j784s4 to j742s2 */
++
++/delete-node/ &cluster1;
++
++/delete-node/ &cpu4;
++/delete-node/ &cpu5;
++/delete-node/ &cpu6;
++/delete-node/ &cpu7;
++
++#include "k3-j742s2-main.dtsi"
+
+---
+base-commit: 523b23f0bee3014a7a752c9bb9f5c54f0eddae88
+change-id: 20240620-b4-upstream-j742s2-7ba652091550
+
+Best regards,
+-- 
+Manorit Chawdhry <m-chawdhry@ti.com>
 
 
