@@ -1,163 +1,199 @@
-Return-Path: <devicetree+bounces-85012-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85013-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CAD892E85D
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 14:34:49 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1745C92E86A
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 14:42:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9186C1C20CAA
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 12:34:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CA5CF284B74
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 12:42:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4EEA15FA66;
-	Thu, 11 Jul 2024 12:34:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F04E215ECCF;
+	Thu, 11 Jul 2024 12:42:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="WYMHyBRd"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="TYKoGEZX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04DFE15ECE8
-	for <devicetree@vger.kernel.org>; Thu, 11 Jul 2024 12:34:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 749AA15D5C7;
+	Thu, 11 Jul 2024 12:42:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720701257; cv=none; b=aDZOGfk3y8+K7NgMOO7pMzFcYOqZrq7vR/fcqW/KxRXqt71vcjwoTgNll1/onJOtha78WqnxMAeGMuS/vKdznZOg1ev92GGVtnBw5rsmK97A3UKWFoIRG/WoR8M+K6d9A/ei7CBPUDRcQ1Q+fnpywWF6TPbb2dcMSrPB6LPrXok=
+	t=1720701736; cv=none; b=qDCSgrgrhbacCf1gBAvpJ7jW7MJiUldn/ISRQvIHtPSt4RzDO2yzP8twvyXe6lTVph7/DuggPSp4awQkQsHViDK/pv6vRxSzI4z/OzOjypF5ksrpkXgvdc/1ScfGJPUvCiCFjr/IYmFXc0KAYegeAPwXKsFpP5IIIdDbs1AGLso=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720701257; c=relaxed/simple;
-	bh=Lnw6WVCoDGYqJbevISOZOc2dPUdG1/4V1rq5VXcFSC0=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=gizBtaY4QqzufdbgZCmbXi9jgphRmtJyDoK5VgD8WT3nyitI+7dEUCAW/p+bWC1hXIDU5IGLSgbB2xouFzk4K2OUTu+/Vblj4TVwcmItLbIZ/CHZVXQi32gAGgM5rHRvICkMgTEOugY6EkQZPEgMrtgE7cK1TNvXbfRC738ID/g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=WYMHyBRd; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-426717a2d12so5261145e9.0
-        for <devicetree@vger.kernel.org>; Thu, 11 Jul 2024 05:34:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1720701254; x=1721306054; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7TMSDdjSHMMbfEYs+qwLdoVucqWbdqXw+KkemXAy9e8=;
-        b=WYMHyBRdD+WcpJEKJhfjq24G/cxaxKn+6PbBsHZ/frENsbH+MQgqMgB3lmuEZvIv/T
-         BiGUfJASyaz0NtJ2e4G5eajoltVHGceerqVAbkCc5/VliQKjTHXg3k0UXJLCTWKJUIC4
-         QNNnyTQetHRc+3abPeVq2GFzR9Lz2OXdwWdYqmink4LFNYEYYV1D7HYWsxAGfMDfe0i+
-         ZnBtHCN0ghD2FFijBXEHWfxgNwoXRweEPrLRL3CwqbwOBpuHGhfdHtnM7uTJzXm1YZbU
-         aJZiTIMN9vEwlJzTUK4OYFpVynKMswCrvgoTuartJOk+sxHjvW4Kolv2yikrdnBgt+I3
-         5TtQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720701254; x=1721306054;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=7TMSDdjSHMMbfEYs+qwLdoVucqWbdqXw+KkemXAy9e8=;
-        b=I1T4f3IBrY/LlDQ2a26N28x7I1L0RFeoBhbws6bbgsgxMzEfuU35/6sQwOTublC7M/
-         vhAIt2/RKfWSKDbDQbAlbJS4FC87GNuYbKne5kR2imRsJNI2vU+qOlEW9mMFCxMVbE54
-         evRsPzf9P53uVc+RbCwwExa6FTzNyzfkRqm6kD/fRm8tTRVIwhi6UsqwigTtjFKhGzCO
-         n+BGstQzLaemIfSw+p/MHQL3850ZoyfTgm113sXdUpdWxJHgkTqJHkpQnVPpHfSGJK7K
-         2HB8pWiGKqu2Wqz/utuM4Zw8d0JLn/A14DN3iRyqgtMBeOsjda6qpTYSOQCGnUdFhWT+
-         7K0A==
-X-Forwarded-Encrypted: i=1; AJvYcCU1bZLJWeN1M6WgFZvQZoQcfuqngyIYbc5VDAXDisu2QKaMbe1B2vOE6GlkL0bTL9azIQpDVced7g6tIEkCdrIp7xgp06r4VGxAyA==
-X-Gm-Message-State: AOJu0YyZdM89s7s5ayQmhSsEvGwv4TsbNvEVefqnvI6P2J2IINx8nSBW
-	sru2sxVza9DBGGsESOxQvsUIg0vdUJd7Ww4EbuQFrn4RepBBDekyrFJnM88wrB8=
-X-Google-Smtp-Source: AGHT+IG3ie0L2yQcBYNCkX1wFuOkYRefHCR78VISFx6nmwufdVRAZ+HS8zHmnFUi0sv7+fPHPwtL+g==
-X-Received: by 2002:a05:600c:3b93:b0:426:5b19:d2b3 with SMTP id 5b1f17b1804b1-427981e0751mr26099585e9.14.1720701254480;
-        Thu, 11 Jul 2024 05:34:14 -0700 (PDT)
-Received: from claudiu-X670E-Pro-RS.. ([82.78.167.171])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4266f741fa6sm118583955e9.45.2024.07.11.05.34.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Jul 2024 05:34:14 -0700 (PDT)
-From: Claudiu <claudiu.beznea@tuxon.dev>
-X-Google-Original-From: Claudiu <claudiu.beznea.uj@bp.renesas.com>
-To: vkoul@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	geert+renesas@glider.be,
-	magnus.damm@gmail.com,
-	mturquette@baylibre.com,
-	sboyd@kernel.org,
-	biju.das.jz@bp.renesas.com
-Cc: dmaengine@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	claudiu.beznea@tuxon.dev,
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Subject: [PATCH 3/3] arm64: dts: renesas: r9a08g045: Add DMAC node
-Date: Thu, 11 Jul 2024 15:34:05 +0300
-Message-Id: <20240711123405.2966302-4-claudiu.beznea.uj@bp.renesas.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240711123405.2966302-1-claudiu.beznea.uj@bp.renesas.com>
-References: <20240711123405.2966302-1-claudiu.beznea.uj@bp.renesas.com>
+	s=arc-20240116; t=1720701736; c=relaxed/simple;
+	bh=rJsgesIVzhdyDoHii5bgpKooeyXaE1kjuc//pkbJjDk=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:CC:References:
+	 In-Reply-To:Content-Type; b=sCLk9cg/oHUJ7A/9v3LE2IX/EdOInI+762eriGZ/OvkJwZRqX98BPa6imNXSKVrggeqxDdYomrhzaP+Bw+9dz1uG6AbNer3xC/Zag3sffD1+1nyPAUnOrrk7Y7yuiEeS3mgT+yfiq4YcfmhZr0gkfUKJf/0pil0A5F6+aeKf9f8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=TYKoGEZX; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1720701734; x=1752237734;
+  h=message-id:date:mime-version:subject:from:to:cc:
+   references:in-reply-to:content-transfer-encoding;
+  bh=rJsgesIVzhdyDoHii5bgpKooeyXaE1kjuc//pkbJjDk=;
+  b=TYKoGEZXQs00/9nOZI9HADg35d6k3iR5k0zHTQPwYskByI1gWd1d459j
+   E0ocPB3uucCsC/6wEjOzdqcsZqmTVvh656ADmyTWxN7p4hqKAY8fpIRzV
+   AunwesM1L4iDYz7dOmxtb89VI1eKhASPQ2DvOCt3TLiK1Yk8kD34Oydz7
+   o7eV8lsNrCBn/y8eYrMRlL56sp6La8NHowAcfUmFArkHDVVikV5Gdub5f
+   /qZ3V79vOt/HrIxq9iJ5yrBmdC6V1PNOeHbhVl7VXzEEkUNzDkAdF30bq
+   6es4CKOrLc1Cp3ahmkdhEzDydwiwberDrF0XXTxwjxzEnT/iOy+8uOnU4
+   w==;
+X-CSE-ConnectionGUID: 4PLxtLmWRACg2xbxAfqrYQ==
+X-CSE-MsgGUID: HxPwORIfQxqRqGF1Ct77BQ==
+X-IronPort-AV: E=Sophos;i="6.09,200,1716274800"; 
+   d="scan'208";a="31789929"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 11 Jul 2024 05:42:13 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Thu, 11 Jul 2024 05:41:41 -0700
+Received: from [10.180.117.34] (10.10.85.11) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
+ Transport; Thu, 11 Jul 2024 05:41:38 -0700
+Message-ID: <a5b78d97-c646-4915-8d6c-65f134ae08eb@microchip.com>
+Date: Thu, 11 Jul 2024 14:42:01 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 15/27] dt-bindings: interrupt-controller: Document the
+ property microchip,nr-irqs
+Content-Language: en-US, fr-FR
+From: Nicolas Ferre <nicolas.ferre@microchip.com>
+To: <Varshini.Rajendran@microchip.com>, <conor@kernel.org>
+CC: <tglx@linutronix.de>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <alexandre.belloni@bootlin.com>,
+	<claudiu.beznea@tuxon.dev>, <Dharma.B@microchip.com>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <maz@kernel.org>
+References: <20240703102011.193343-1-varshini.rajendran@microchip.com>
+ <20240703102814.196063-1-varshini.rajendran@microchip.com>
+ <20240703-dentist-wired-bdb063522ef7@spud>
+ <a41274c3-fd32-4eba-8240-bf95e41f63d9@microchip.com>
+ <82ca4f3d-fa78-4617-823e-69f16a2c3319@microchip.com>
+Organization: microchip
+In-Reply-To: <82ca4f3d-fa78-4617-823e-69f16a2c3319@microchip.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Answering to myself (again) and to Conor...
 
-Add DMAC node.
+On 09/07/2024 at 16:06, Nicolas.Ferre@microchip.com wrote:
+> On 09/07/2024 at 08:13, Varshini Rajendran - I67070 wrote:
+>> On 03/07/24 9:11 pm, Conor Dooley wrote:
+>>> On Wed, Jul 03, 2024 at 03:58:14PM +0530, Varshini Rajendran wrote:
+>>>> Add the description and conditions to the device tree documentation
+>>>> for the property microchip,nr-irqs.
+>>>>
+>>>> Signed-off-by: Varshini Rajendran<varshini.rajendran@microchip.com>
+>>> This needs to be part of patch 14.
+>>>
+>>>> ---
+>>>>     .../bindings/interrupt-controller/atmel,aic.yaml     | 12 ++++++++++++
+>>>>     1 file changed, 12 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/interrupt-controller/atmel,aic.yaml b/Documentation/devicetree/bindings/interrupt-controller/atmel,aic.yaml
+>>>> index 9c5af9dbcb6e..06e5f92e7d53 100644
+>>>> --- a/Documentation/devicetree/bindings/interrupt-controller/atmel,aic.yaml
+>>>> +++ b/Documentation/devicetree/bindings/interrupt-controller/atmel,aic.yaml
+>>>> @@ -54,6 +54,10 @@ properties:
+>>>>         $ref: /schemas/types.yaml#/definitions/uint32-array
+>>>>         description: u32 array of external irqs.
+>>>>     
+>>>> +  microchip,nr-irqs:
+>>>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+>>>> +    description: u32 array of nr_irqs.
+>>> This makes no sense, did you just copy from above? Why would the number
+>>> of irqs be an array? Why can't you determine this from the compatble?
+>>>
+>> Sorry for the bad description. I will correct it in the next version.
+>>
+>> For the second part of the question, this change was done as a step to
+>> resolve having a new compatible while having practically the same IP
+>> pointed out in the v3 of the series [1]. It is kind of looping back to
+>> the initial idea now. Even if this is added as a driver data, it
+>> overrides the expectation from the comment in [1]. Please suggest. I
+> 
+> In your v3 patch, indeed you were extracting the number of IRQs from the
+> compatibility string (aka, from device tree...). It's my preferred
+> solution as well.
+> 
+> So, come back to v3 [1] and address what Conor said in v4 "...having
+> specific $soc_aic5_of_init() functions for each SoC seems silly when
+> usually only the number of interrupts changes. The number of IRQs could
+> be in the match data and you could use aic5_of_init in your
+> IRQCHIP_DECLARE directly"
 
-Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
----
- arch/arm64/boot/dts/renesas/r9a08g045.dtsi | 38 ++++++++++++++++++++++
- 1 file changed, 38 insertions(+)
+Well, after a brief talk with Varshini and a review of the code, I'm not 
+so sure it's worth re-writing this part anymore Conor...
+It'll need changing 3-4 files (2 drivers and the "common" .h/.c files, 
+because of the type change of ".data"); handling the special case of 
+sama5d2 (smr_cache thing) and touching lot more code than what is done 
+in v3 of this patch series.
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a08g045.dtsi b/arch/arm64/boot/dts/renesas/r9a08g045.dtsi
-index 741c9226581f..b9114d1714c9 100644
---- a/arch/arm64/boot/dts/renesas/r9a08g045.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a08g045.dtsi
-@@ -363,6 +363,44 @@ irqc: interrupt-controller@11050000 {
- 			resets = <&cpg R9A08G045_IA55_RESETN>;
- 		};
- 
-+		dmac: dma-controller@11820000 {
-+			compatible = "renesas,r9a08g045-dmac",
-+				     "renesas,rz-dmac";
-+			reg = <0 0x11820000 0 0x10000>,
-+			      <0 0x11830000 0 0x10000>;
-+			interrupts = <GIC_SPI 111 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 112 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 113 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 114 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 115 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 116 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 117 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 118 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 119 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 120 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 121 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 122 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 123 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 124 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 125 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 126 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 127 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "error",
-+					  "ch0", "ch1", "ch2", "ch3",
-+					  "ch4", "ch5", "ch6", "ch7",
-+					  "ch8", "ch9", "ch10", "ch11",
-+					  "ch12", "ch13", "ch14", "ch15";
-+			clocks = <&cpg CPG_MOD R9A08G045_DMAC_ACLK>,
-+				 <&cpg CPG_MOD R9A08G045_DMAC_PCLK>;
-+			clock-names = "main", "register";
-+			power-domains = <&cpg>;
-+			resets = <&cpg R9A08G045_DMAC_ARESETN>,
-+				 <&cpg R9A08G045_DMAC_RST_ASYNC>;
-+			reset-names = "arst", "rst_async";
-+			#dma-cells = <1>;
-+			dma-channels = <16>;
-+		};
-+
- 		sdhi0: mmc@11c00000  {
- 			compatible = "renesas,sdhi-r9a08g045", "renesas,rzg2l-sdhi";
- 			reg = <0x0 0x11c00000 0 0x10000>;
--- 
-2.39.2
+Original design was probably not optimal, but well, it's simple, 
+understandable and except if there is a big benefit in moving, I would 
+prefer to keep it like this.
+If you agree, we can ask Varshini to re-post a separated IRQ-focused 
+series for handling sam9x75 changes.
+
+Best regards,
+   Nicolas
+
+> I think that we can convince Marc/Thomas that it's the best option as it
+> prevents introducing another non-standard property to the DT, does not break
+> the ABI (and was used happily for years).
+> 
+> Best regards,
+>     Nicolas
+> 
+> [1]
+> https://lore.kernel.org/lkml/87ee1e3c365686bc60e92ba3972dc1a5@kernel.org/
+> 
+> 
+>> also read Rob's concerns on having a device tree property for number of
+>> irqs.
+>>
+>> [1]
+>> https://lore.kernel.org/lkml/87ee1e3c365686bc60e92ba3972dc1a5@kernel.org/
+>>
+>>> Thanks,
+>>> Conor.
+>>>
+>>>> +
+>>>>     allOf:
+>>>>       - $ref: /schemas/interrupt-controller.yaml#
+>>>>       - if:
+>>>> @@ -71,6 +75,14 @@ allOf:
+>>>>             atmel,external-irqs:
+>>>>               minItems: 1
+>>>>               maxItems: 1
+>>>> +  - if:
+>>>> +      properties:
+>>>> +        compatible:
+>>>> +          contains:
+>>>> +            const: microchip,sam9x7-aic
+>>>> +    then:
+>>>> +      required:
+>>>> +        - microchip,nr-irqs
+>>>>     
+>>>>     required:
+>>>>       - compatible
+>>>> -- 
+>>>> 2.25.1
+>>>>
+>>
+> 
 
 
