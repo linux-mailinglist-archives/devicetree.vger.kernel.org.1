@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-84901-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84902-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BE4B92E30B
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 11:05:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E6E392E312
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 11:05:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CD5C61C22F7F
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 09:05:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A2C941C20BB9
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 09:05:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95759157495;
-	Thu, 11 Jul 2024 09:04:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 192B815539A;
+	Thu, 11 Jul 2024 09:05:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ofjd8Evw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jH5FyGxF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C4EE155325;
-	Thu, 11 Jul 2024 09:04:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E40AC155308;
+	Thu, 11 Jul 2024 09:05:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720688644; cv=none; b=AJmqiKkurvsQX9Nl8XoMof2cYSGSdivc/VkU9g4NNS27n9wRj9b/RbCiUmGA9e51fy4d1XI/Su3He6yn9CHgEjcYMG8EcE9BXuMwioFZ9UvJHVkGOQn317TKPWYQnw2npOqlhzdFaoH15OmVwCqdSAod4LozYtjdcFQ70N3Eu5U=
+	t=1720688747; cv=none; b=NKMHVum9BIFvCTIASPCKgSHpiGKfJ/32rb72Zd0UjP4Brlwo0qxqDxPg8tfocEwHf32A0njZUHtFtRL+thCBTiys9DxWQbx6uiQJr5S5YDC5RwoOZarnDYa2vOqP9h7Ru9+lNS/1x9z/9YbrshBXGTfh8rKUJi0nNcVGwe0y2h4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720688644; c=relaxed/simple;
-	bh=126h7BgakOY9B1KfYSP3zvNqNuyJvooSnnG3eUr2Jjs=;
+	s=arc-20240116; t=1720688747; c=relaxed/simple;
+	bh=NWyzMVDXUKeLPeToQ/9acrPTXN/Uzd3RljPeeuoq4qE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MHPNuNqs/r2vumLajurl7YbwtAI8Lnatim2J6mmDiaMzsHx54+idu+S663Au5Yhh6fuQSMDW48fLeVrOcewsWF1/IksWhZVBPdPEKYKQLN9D+w4FeM8XOYdtm5T7qoLODJYw0VDn94lDcNIRbdKjzr5JHEXSkWtCHTuE1mRbbnw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ofjd8Evw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B10B8C116B1;
-	Thu, 11 Jul 2024 09:03:58 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=p2OqL+ewpMKI3q/KRUD2OYcSFvNgO5MYvSGeC+fpfu1/MLVE89Zf6+wmrLF9mh48s1Ne/pnFnsbP04O+tLOIA7UfDA1Vi9/CBRkwQFvCU9NsV2cfeXO9qBYmK/CO0GYgUI3VfzZ7p+xA1Vq1Rbw/oKiszR8CKnMaH5psgsu0LKU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jH5FyGxF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8F5FC4AF09;
+	Thu, 11 Jul 2024 09:05:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720688643;
-	bh=126h7BgakOY9B1KfYSP3zvNqNuyJvooSnnG3eUr2Jjs=;
+	s=k20201202; t=1720688746;
+	bh=NWyzMVDXUKeLPeToQ/9acrPTXN/Uzd3RljPeeuoq4qE=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Ofjd8EvwqYzxM1pRlxJSYcuKkKQYlhlm4EmBFdlvghdth1DEnvs54kch9ATYuIKzw
-	 ztI+O3Yis/ffYva50F7gcq55lI6jj2Os/24X/7CZNodVBZZDltSdBS+6dgm2V3eiCS
-	 jlLLGIUUAP9BeVG7MzzvIggH15pfhufvexsh5HjRjgwUDDVQY7klx4AN2LWy/JhRUG
-	 VCwVxdlL973OP//FnbfsiS6BLUOM+tpRrso3A7tN6XFJoczsyJbu9gBFfCV2qmahBo
-	 4u6xN8vt+jNh4l2GaJYYoNgsF6Ks/ZoIRk2/7uQlCp6uyF9vAZKNp3lIfgn0dtt4Gi
-	 SKMrAxGhGF23A==
-Message-ID: <5142d8af-2b05-4018-a9c5-0a8b99719b0d@kernel.org>
-Date: Thu, 11 Jul 2024 11:03:56 +0200
+	b=jH5FyGxFtY1wRriHBOlZRbhM+sPpzv324Mt4uFMqwJnw6wUSlTyPOqlZgvq2gAyFo
+	 pbxdMPEGFlsMeD4VpCfU2Vx9pQAr8mDhglklrrxqg9zCox3Z1AA2/ynqG0/4BxFHkE
+	 h/fegEOav8H1ld9sohx5wpd8FSyAI8w2AdXeTkR7wweHMaQoXTFjmaA5hqQF6XXpnQ
+	 FZmOFWfBlgYXPp4Sryr8ZZHtvO3guG8FXR+8Hl6pUIN180SmMgVib5Ym/LnhuWr/sa
+	 A+QIm4AUPxZEpuU8LUvXfzPcZlxfOACdEYalayK7G1vMLJ91RsClWTV1yqvYPQFcJc
+	 ecH9tvhW4nTBg==
+Message-ID: <4c1b7af7-e53c-492a-9c41-40cad78f7666@kernel.org>
+Date: Thu, 11 Jul 2024 11:05:37 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,25 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v0 1/2] dt-bindings: usb: qcom,dwc3: Add minItems for
- interrupt info
-To: Varadarajan Narayanan <quic_varada@quicinc.com>
-Cc: gregkh@linuxfoundation.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
- quic_wcheng@quicinc.com, johan+linaro@kernel.org, quic_kriskura@quicinc.com,
- linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240711065615.2720367-1-quic_varada@quicinc.com>
- <5fb21a62-9c9e-45ed-bf3f-c4d54f243886@kernel.org>
- <Zo+cDxiog/IXdt9S@hu-varada-blr.qualcomm.com>
+Subject: Re: [PATCH 2/4] drm/bridge: add Microchip DSI controller support for
+ sam9x7 SoC series
+To: Manikandan.M@microchip.com
+Cc: Hari.PrasathGE@microchip.com, andrzej.hajda@intel.com,
+ neil.armstrong@linaro.org, rfoss@kernel.org,
+ Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+ jernej.skrabec@gmail.com, airlied@gmail.com, daniel@ffwll.ch,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux@armlinux.org.uk, Nicolas.Ferre@microchip.com,
+ alexandre.belloni@bootlin.com, claudiu.beznea@tuxon.dev, arnd@arndb.de,
+ Jason@zx2c4.com, palmer@rivosinc.com, mpe@ellerman.id.au,
+ rdunlap@infradead.org, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20240704084837.168075-1-manikandan.m@microchip.com>
+ <20240704084837.168075-3-manikandan.m@microchip.com>
+ <9ef5a1ba-e404-46e0-8513-5fffbfb5618b@kernel.org>
+ <aeaeb5d4-5e55-4a7a-bce7-fa207ebf0616@microchip.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,20 +114,54 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <Zo+cDxiog/IXdt9S@hu-varada-blr.qualcomm.com>
+In-Reply-To: <aeaeb5d4-5e55-4a7a-bce7-fa207ebf0616@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 11/07/2024 10:47, Varadarajan Narayanan wrote:
+On 11/07/2024 10:30, Manikandan.M@microchip.com wrote:
+> Hi Krzysztof,
+> 
+> On 04/07/24 4:27 pm, Krzysztof Kozlowski wrote:
+>> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
 >>
->> but x1e80100 has 4, right?
+>> On 04/07/2024 10:48, Manikandan Muralidharan wrote:
+>>> Add the Microchip's DSI controller wrapper driver that uses
+>>> the Synopsys DesignWare MIPI DSI host controller bridge.
+>>>
+>>> Signed-off-by: Manikandan Muralidharan <manikandan.m@microchip.com>
+>>> ---
+>>
+>>
+>> ...
+>>
+>>> +
+>>> +#define HSTT(_maxfreq, _c_lp2hs, _c_hs2lp, _d_lp2hs, _d_hs2lp)       \
+>>> +{                                    \
+>>> +     .maxfreq = _maxfreq,            \
+>>> +     .timing = {                     \
+>>> +             .clk_lp2hs = _c_lp2hs,  \
+>>> +             .clk_hs2lp = _c_hs2lp,  \
+>>> +             .data_lp2hs = _d_lp2hs, \
+>>> +             .data_hs2lp = _d_hs2lp, \
+>>> +     }                               \
+>>> +}
+>>> +
+>>> +struct hstt hstt_table[] = {
+>>
+>> So more globals? No.
 > 
-> Yes. Will have a separate block for ipq5332. Went with min/max based
-> on one of the previous blocks that had min/max as two and three for
-> a group of SoCs.
-> 
+> In the sam9x7 datasheet, the high speed transition time for data and
+> clock lane at different freq for the DSI controller ranges are tabulated
+> with constant values.
+> I referred other similar platforms for the functionality and found 
+> similar way of implementation,  only a few had equations to derive the 
+> low power and high speed timings.I am not able to come up with a more 
+> efficient method. If there is something I am missing, please suggest.
+> TIA
 
-Did you even test it before sending?
+Yeah, this should not be a global. Nothing above suggests it.
+
+BTW, no W=1 clang warnings? Are you sure?
 
 Best regards,
 Krzysztof
