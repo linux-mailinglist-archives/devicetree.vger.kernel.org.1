@@ -1,206 +1,137 @@
-Return-Path: <devicetree+bounces-85053-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85054-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BB6292EADF
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 16:36:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 211AE92EAEE
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 16:40:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D5762B25B0D
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 14:36:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 51EEB1C2128C
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 14:40:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA28D167271;
-	Thu, 11 Jul 2024 14:36:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="XAkp2VoE"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EE301662FE;
+	Thu, 11 Jul 2024 14:40:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com [209.85.219.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3DC9166315;
-	Thu, 11 Jul 2024 14:36:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E5658479;
+	Thu, 11 Jul 2024 14:40:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720708609; cv=none; b=Wh/vW1EF9ZIuHIXGC3NXt772eImew7abgr3Ta2P4pmc+jFioeKTfMrgPnE46wS/EW+KjpUQsCXccxex1ZYC11d7M4La4lcmfKJ6SzBqvthDsTrA4SoEuOu2XvCa05XgDkKdwy2fh6/N3GT1qFf7Sak3/9RAkV1/8lUs4Qo+6jDk=
+	t=1720708823; cv=none; b=HjkR02Y5hP0lgtQCFzShG3XUc5gfytJyNw/SY4YTchydllFU3ojVLsGndE9WiEynX66+CkIELqgrW/Htq+TGt/5G7jtss3sn6I2SRawIkvt8Vx8TrHqKlPuE0Ng7eCxXCZHEe3mDA9h66yqDQ4xqJszCKFiUYyNPKxXT/tZoVBs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720708609; c=relaxed/simple;
-	bh=e/53LZcbPAgXqyNfp0YzmboD4F9EIVpKFs3GYIfQ1bY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=tT9hB2ZTnhBKgPcEkVZaNULT7UTmR6GiT+1TYBh5dpKSLgauIM9PKWbLUZMO9EnwXhCBsvapz2qP9bBvHn1J48m5Wz0zT8XtSMvzMXItgc06kMYOQCcalTsnqoYGhGSPuXNlNKnVuvoCgaLQIUSEZke79iwKzGzoEcpjK63an9w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=XAkp2VoE; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46BCbvIg011320;
-	Thu, 11 Jul 2024 14:36:43 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	NaHOyFtzZbHirL6K2xDpJmR6/Eicz/C2hY5Ifrwc5Bw=; b=XAkp2VoERq3wSkwo
-	fpgoarqHUZK3DUUd2H/aik70ONNMUCscBrwkZeIXi8Zu7kIJtdQ/jX0nxhqQ7Bxl
-	X4isCQsiBXywUAb4HA/yz0rCMC5cKYl4zCbPuVPDVVsROaX6gAIb40bgMOvjvqgl
-	bgYR5nI3OG+KKnbVCWUB2eoKFjFg1yAlIGiSn/q2afVhFTDgvbd1M19KVJTewTI5
-	kDPSElaYTxOpKydMUU1IIbuEeJDdtxb6mPMhQ3l4wyA43L/8rQBkKjRX1vGohj45
-	yqZXy+tqFscjKrDwJcRN0vw/zgH9clyPi5Ahd+Iq7R1EreDqsUFRmqbBGY4zUvFE
-	6Ldcsg==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 409vydtx6s-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 11 Jul 2024 14:36:42 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA01.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 46BEafFe029401
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 11 Jul 2024 14:36:41 GMT
-Received: from [10.239.97.152] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 11 Jul
- 2024 07:36:36 -0700
-Message-ID: <4151a353-1cc0-436d-a86e-8d489311c6ef@quicinc.com>
-Date: Thu, 11 Jul 2024 22:36:33 +0800
+	s=arc-20240116; t=1720708823; c=relaxed/simple;
+	bh=Sky3Rq4GEoaMq3zTjqiruAw7uR4MXgaAjM9ZpP+LfKQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=g7chZAuSkGOGxBSSqNKH7gOusTpnXrhZgHJkWxL6mLo4yquIrJb+564MyCi9E0eXHlvy9SyGbnzl/hqn7jqWHja8PwSex1aEDWY4NWcKoaE4a49Vg5RO+KF+/RGaSNeMyK6kGudUpc6TDpWDMJXwUWceORJPD+fLeNBvsLe3NpI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-e0365588ab8so917769276.1;
+        Thu, 11 Jul 2024 07:40:20 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720708819; x=1721313619;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=B0dzyKqHqO0/d9+D3hn6zGXqfLpmzgD1JydtbOq1+9w=;
+        b=RwrhrwOl6yd4u1Tx7SF/ufXKaW/o5I98YIg+Wb7geEyY6MoLW1obbEDybhBldLaHYC
+         l91cvZ2vUUtkrA+UOUqUZHrbwLn9Pe1B1CVnfkRy46KEbD+i1Nos4D7vE240vXXwe2Sr
+         churfS6BLKg5fQDfJxgUGiqVif8F5FHWQzSecfzkJPWLEM69oxkAMU8CPEBoajwWVfuM
+         xn7asbmowD0aI/1cN5dcdQ3flOHles52GkO5PdOMpwubRVHFy5aNWdFopNEs83LpC7jm
+         pOXwyTQB4DLGNmbWAyOhtIXS5En3pLYQqtOTaathlcB7yiKY09b83bDy3ljypiYHj7R9
+         CxgQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVeWO+i/NDzJ2fcix/CGixOyz648u8lZfbr4P49jPiPF2yejpPzQbBvzXBshIprk6FYL2VbHGRH74tkCYCXPuaWxjTmMzXLZZEQnRF4VHThTKB2rhYxypZ9GnKlgOuKLcrsEHgXgXwiBMFw/Cka
+X-Gm-Message-State: AOJu0YxwfS6VoNac7049OAYvIOYsDNjDMolvineOg/9Eft+4jJShNMwe
+	XVh6Um1pKInJ/ob0dByCg+PhcCrmdt6uLSZsy2U9Q3FLuPSjB4BTuySDs3hG
+X-Google-Smtp-Source: AGHT+IEG2Hd643WQhqYGtVBuFzfiwv+pBO2/m+FHoN8ktWUT3/L6eXQovYk0SjwFHZRmAcgewt8Qgw==
+X-Received: by 2002:a25:a341:0:b0:e03:4ee5:8c0e with SMTP id 3f1490d57ef6-e041b17827fmr8294203276.63.1720708818929;
+        Thu, 11 Jul 2024 07:40:18 -0700 (PDT)
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com. [209.85.128.178])
+        by smtp.gmail.com with ESMTPSA id 3f1490d57ef6-e041a99b68asm1012096276.55.2024.07.11.07.40.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 11 Jul 2024 07:40:18 -0700 (PDT)
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-6512866fa87so10223447b3.2;
+        Thu, 11 Jul 2024 07:40:18 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCU6GN3FaVMheUDmmcOf1ZcF35vxHWriqiV5FkbienPyqHPo2makFMnjkEHsZG5/QDwyHgnpExuSJqLhj0TpbwbP7f6fG3CyKGiav6RWjK9QdpeJCxco1RbYJlE8BeUst/mU3MlaB49n37mKIjNJ
+X-Received: by 2002:a0d:f981:0:b0:64a:f40d:5fd2 with SMTP id
+ 00721157ae682-658eed5debcmr93730157b3.12.1720708818086; Thu, 11 Jul 2024
+ 07:40:18 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 12/13] media: qcom: camss: Add sm8550 support
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>, <rfoss@kernel.org>,
-        <todor.too@gmail.com>, <mchehab@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <quic_eberman@quicinc.com>, <linux-media@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>
-References: <20240709160656.31146-1-quic_depengs@quicinc.com>
- <20240709160656.31146-13-quic_depengs@quicinc.com>
- <8cc2b819-8342-444e-8a31-582949cb9b3d@linaro.org>
-Content-Language: en-US
-From: Depeng Shao <quic_depengs@quicinc.com>
-In-Reply-To: <8cc2b819-8342-444e-8a31-582949cb9b3d@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: bHMMIb2sORyyuyAsB9DV8OdqAXrCk0gP
-X-Proofpoint-ORIG-GUID: bHMMIb2sORyyuyAsB9DV8OdqAXrCk0gP
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-07-11_10,2024-07-11_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 bulkscore=0
- priorityscore=1501 clxscore=1015 mlxlogscore=999 impostorscore=0
- suspectscore=0 spamscore=0 adultscore=0 malwarescore=0 mlxscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2406140001 definitions=main-2407110105
+References: <20240616105402.45211-1-biju.das.jz@bp.renesas.com> <20240616105402.45211-5-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20240616105402.45211-5-biju.das.jz@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 11 Jul 2024 16:40:04 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdX5ayWbLEEa6nAipECVB6H9eCpRg21pu3zYrTdiER0F+Q@mail.gmail.com>
+Message-ID: <CAMuHMdX5ayWbLEEa6nAipECVB6H9eCpRg21pu3zYrTdiER0F+Q@mail.gmail.com>
+Subject: Re: [PATCH v4 4/6] regulator: Add Renesas RZ/G2L USB VBUS regulator driver
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, 
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Biju Das <biju.das.au@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Bryan,
+Hi Biju,
 
+On Sun, Jun 16, 2024 at 12:54=E2=80=AFPM Biju Das <biju.das.jz@bp.renesas.c=
+om> wrote:
+> As per the RZ/G2L HW manual, VBUSEN can be controlled by the VBOUT
+> bit of the VBUS Control Register. This register is mapped in the reset
+> framework. The reset driver expose this register as regmap and instantiat=
+es
+> this driver. The consumer will use the regulator API to control the VBOUT
+> bit as the control need to be done in the atomic context.
+>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-On 7/10/2024 8:02 PM, Bryan O'Donoghue wrote:
-> On 09/07/2024 17:06, Depeng Shao wrote:
+Thanks for your patch, which is now commit 84fbd6198766336f
+("regulator: Add Renesas RZ/G2L USB VBUS regulator driver")
+in regulator/for-next.
 
->>
->> diff --git a/drivers/media/platform/qcom/camss/camss-csid.c 
->> b/drivers/media/platform/qcom/camss/camss-csid.c
->> index 858db5d4ca75..90fba25db4c6 100644
->> --- a/drivers/media/platform/qcom/camss/camss-csid.c
->> +++ b/drivers/media/platform/qcom/camss/camss-csid.c
->> @@ -1013,6 +1013,7 @@ int msm_csid_subdev_init(struct camss *camss, 
->> struct csid_device *csid,
->>   {
->>       struct device *dev = camss->dev;
->>       struct platform_device *pdev = to_platform_device(dev);
->> +    struct resource *top_res;
->>       int i, j;
->>       int ret;
->> @@ -1040,6 +1041,26 @@ int msm_csid_subdev_init(struct camss *camss, 
->> struct csid_device *csid,
->>           else
->>               csid->base = 
->> csid->res->parent_dev_ops->get_base_address(camss, id)
->>                    + VFE_480_CSID_OFFSET;
->> +    } else if (camss->res->version == CAMSS_8550) {
->> +        /* for titan 780, CSID lite registers are inside the VFE lite 
->> region,
->> +         * between the VFE "top" and "bus" registers. this requires
->> +         * VFE to be initialized before CSID
->> +         */
->> +        if (csid_is_lite(csid))
->> +            csid->base =  
->> csid->res->parent_dev_ops->get_base_address(camss, id);
->> +        else {
->> +            csid->base = devm_platform_ioremap_resource_byname(pdev, 
->> res->reg[0]);
->> +            /* CSID "top" is a new function in Titan780.
->> +             * CSID can connect to VFE & SFE(Sensor Front End).
->> +             * This connection is ontrolled by CSID "top" registers.
->> +             * CSID "top" registers at only one region.
->> +             */
->> +            top_res = platform_get_resource_byname(pdev, 
->> IORESOURCE_MEM, res->reg[1]);
->> +            csid->top_base = ioremap(top_res->start, 
->> resource_size(top_res));
->> +        }
-> 
-> If we just specify the csid lite regs in the dts, we don't need custom 
-> code to get a pointer to them.
-> 
+> --- a/drivers/regulator/Kconfig
+> +++ b/drivers/regulator/Kconfig
+> @@ -1634,6 +1634,15 @@ config REGULATOR_UNIPHIER
+>         help
+>           Support for regulators implemented on Socionext UniPhier SoCs.
+>
+> +config REGULATOR_RZG2L_VBCTRL
+> +       tristate "Renesas RZ/G2L USB VBUS regulator driver"
+> +       depends on ARCH_RZG2L || COMPILE_TEST
+> +       depends on OF
+> +       select REGMAP_MMIO
+> +       default ARCH_RZG2L
 
-Yes, we can get the csid lite reg directly, will update this part.
+As the "rzg2l-usb-vbus-regulator" platform device is only created by
+drivers/reset/reset-rzg2l-usbphy-ctrl.c, perhaps this should be made
+stricter by using "default RESET_RZG2L_USBPHY_CTRL"?
 
-> Similarly the csid->top_base = () should be generic not SoC specific, 
-> i.e. we should be able to add in CSID 980 without adding any custom code 
-> to camss-csid.c
-> 
+Alternatively, RESET_RZG2L_USBPHY_CTRL could select
+RESET_RZG2L_USBPHY_CTRL if REGULATOR.  Can RESET_RZG2L_USBPHY_CTRL
+work without REGULATOR_RZG2L_VBCTRL?  If not, RESET_RZG2L_USBPHY_CTRL
+should depend on REGULATOR, too.
 
-csid lite doesn't have top reg block, but you are right, this can be 
-generic, we can get csid->top_base if res->reg[1] isn't NULL.
+Gr{oetje,eeting}s,
 
+                        Geert
 
->> diff --git a/drivers/media/platform/qcom/camss/camss-vfe.c 
->> b/drivers/media/platform/qcom/camss/camss-vfe.c
->> index 83c5a36d071f..479474c1cd95 100644
->> --- a/drivers/media/platform/qcom/camss/camss-vfe.c
->> +++ b/drivers/media/platform/qcom/camss/camss-vfe.c
->> @@ -338,6 +338,7 @@ static u32 vfe_src_pad_code(struct vfe_line *line, 
->> u32 sink_code,
->>       case CAMSS_845:
->>       case CAMSS_8250:
->>       case CAMSS_8280XP:
->> +    case CAMSS_8550:
->>           switch (sink_code) {
->>           case MEDIA_BUS_FMT_YUYV8_1X16:
->>           {
->> @@ -408,6 +409,10 @@ int vfe_reset(struct vfe_device *vfe)
->>       reinit_completion(&vfe->reset_complete);
->> +    /* The reset has been moved to csid in 8550 */
->> +    if (vfe->camss->res->version == CAMSS_8550)
->> +        return 0;
->> +
-> 
-> Custom code for a specific SoC in camss.c camss-csid.c or camss-vfe.c 
-> indicates to me we need to do more work elsewhere.
-> 
-> This would do the same job for you.
-> 
-> static void vfe_global_reset(struct vfe_device *vfe)
-> {
->          /* VFE780 has no global reset, simply report a completion */
->          complete(&vfe->reset_complete);
-> }
-> 
-> const struct vfe_hw_ops vfe_ops_780 = {
->          .global_reset = vfe_global_reset,
-> 
->>       vfe->res->hw_ops->global_reset(vfe);
->>       time = wait_for_completion_timeout(&vfe->reset_complete
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-Sure, I will optimize this part.
-
-
-Thanks,
-Depeng
-
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
