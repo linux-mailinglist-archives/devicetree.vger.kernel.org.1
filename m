@@ -1,310 +1,154 @@
-Return-Path: <devicetree+bounces-85114-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85115-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A70C892EF78
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 21:16:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96FE992EFC0
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 21:37:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1C84DB21F9C
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 19:16:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4C57A281278
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 19:37:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0DD816EC13;
-	Thu, 11 Jul 2024 19:16:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A9B0186E25;
+	Thu, 11 Jul 2024 19:36:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="JmmgWgmd"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="mPRWHDAJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com [209.85.160.48])
+Received: from mail-qv1-f54.google.com (mail-qv1-f54.google.com [209.85.219.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A658116EB77
-	for <devicetree@vger.kernel.org>; Thu, 11 Jul 2024 19:15:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A27C1849C8
+	for <devicetree@vger.kernel.org>; Thu, 11 Jul 2024 19:36:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720725361; cv=none; b=MgcI82NfKfNf/vSek6I5DlikXq/AH1loIGnka3Vs2omIPMzAC9MF2+vupU62EQVol1RO5+d5TNqgj6zGB0hc4JuSBTBlV7HhNuFE7Y/cDs/BpOhKykdugN8qwqQhqZeD/h2qfJ8uA3e/ucVaMovhK7Ixcq9rOrc2NOyXh1GWO4o=
+	t=1720726615; cv=none; b=c186AkjKUfBGzQqO/+iiamzBT6oevtCOuCIqAmKDYL0INtl6CZPcffEeDbZ+4fccz/bDwfUvjs82RMsi1rH5TghqbAdzBbft9db36Fv68VqXfJ5hpIWfJ+oQG+rZqCBrdDoAxCjKv3O8NMETopfRAdoTcbt1VQjnotMLqrs/wkA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720725361; c=relaxed/simple;
-	bh=rfl4NqLSWlS05DBQ/b/yyrEHhOHNJuLHuF0KFUBQ8WQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=A217vcOhlWtJYKGZIO+V1imAoCSgpJndNn2aN4IWVfgDtQin+Dda4+HSWJGKUl0Ac/GAkaB3jANVhCN5/oliXcYTi8U3B27ewAnL/AWGAPL6YJc75jQpaiGP7YKwdG2kKqftxnD+k6fMC5yD3yvzcQSUjpdyKqNgnkuShl3SO+E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=JmmgWgmd; arc=none smtp.client-ip=209.85.160.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-25982aa59efso541099fac.3
-        for <devicetree@vger.kernel.org>; Thu, 11 Jul 2024 12:15:58 -0700 (PDT)
+	s=arc-20240116; t=1720726615; c=relaxed/simple;
+	bh=ZZ1bOBY3w2CQfG/2NQXLQUZGJruqNZ9i879RYUzCCAY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=dt2O3FnA0ULdP7optJ948hREiL/GvWbpPXoZHfUBFxnY2pxpt5SObKY294vDJzOB5bSg1bBABiULYUNqwn8DevfPsH2a/0hAIUgSgKBmUsWxUiqNMVA8zb6tnmgQb9rF5ZzfzJhHGQJXWp9BIm6Iuh7zPLDa35eOKsnUEoQHzC4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=mPRWHDAJ; arc=none smtp.client-ip=209.85.219.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-qv1-f54.google.com with SMTP id 6a1803df08f44-6b5f128b18bso7646566d6.0
+        for <devicetree@vger.kernel.org>; Thu, 11 Jul 2024 12:36:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1720725357; x=1721330157; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=chromium.org; s=google; t=1720726610; x=1721331410; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=FQsqhGLGVhBM8gUHS+cpX5FO8rzqQp9edFEv9d41aaM=;
-        b=JmmgWgmdmS0xJrmZvb2FgnJj5GF4iYM830PTlPlE62YxEYFus5eG5kL2lF55Dp2JZi
-         L1ceYnD9GcxutoEEjGcIRLd+uOJEkxR+PJ6cUtYAqFuafASFt88Cbk6iznfetJfuq5Y5
-         SagQug/pT7aw9myDa9XT8phPnh9cfNpHzj7jAqLbIvp9/L7jwUxccv/VcRhmpte3iooR
-         O6OUI9cfN+9XgmZBACHv+RZP9LuDvvZ76XG4YlHlmcLCB9Ptt9SyavRlr7Zb281jMycq
-         4gdtzNmIGn6MAfjJ181wnfVh8ZBb0/0t1mZ17xIxxLktRJazb9C7U24d0y+BVOL9CSqb
-         qdRA==
+        bh=nYCTn4/p66mHlGbWx9vmwvaVwx5YCoUoX/9c7g8wN78=;
+        b=mPRWHDAJX/xy2jrrLiOs31INp8qwPXEzXMqfhC27j89CgE7PLQ0CptJjVUZXoR78zy
+         ZjoJUKR0IB0gWnA8WlkRTreUvDGxYhAQpNaUgyU4PQX9kY9z7VZZLh3DoD0OsURmvn3w
+         O9oA5El7UwQ+AWsbVHjk6tiCq09FVJaztD7UQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720725357; x=1721330157;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1720726610; x=1721331410;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=FQsqhGLGVhBM8gUHS+cpX5FO8rzqQp9edFEv9d41aaM=;
-        b=QllYeUd1J7d6HiYzfMhnaA9YK4pd+0bbjPcjn+Lv6U5KAmgBf9L7JUDoIlYRbeoEHM
-         dXWfd4qVnbrM1ALW6KgFrulqrDQO7SpwaWI2G75YI7hgz07MYLDqH82E5KaBDHA7btKy
-         5S342XH0J5u4zOXH+JUZE7bmiGk9g7UKX9PKFTjcS/UQprk82kVRcnTmv3l3mFKO0aaI
-         hc5hbj02FeyHM+pUCGHF6K8OHHcOr5zb4eiIBZ1pPOgCqQKtBgF8muSsuQjg8XfymIkF
-         dnZQbYcS+Y8GkJv0rGESKjNoZHrG/pLBjhvtwtAGTn/2lLSmpbgVxcSMqpgGi5+XDH50
-         GTaA==
-X-Forwarded-Encrypted: i=1; AJvYcCWyZytG+U9P8Ae921z+Vg0ACkDuzw22L0wpECmYUa3i49HsmApdddmjV/yixf4pbQJtVsLURPbau9BcjEcbm7NxvCWHtQD4h21UJw==
-X-Gm-Message-State: AOJu0YxN0XJidM6mOlU6zzn+nq+o2sFXWjRI0C6cAIzmWi6HyFJfmHBP
-	o9nr+/DbfNa6HD3s2cnS+c11XeGWL2Gy+xxSzhs27jqEtVC7vWNqm6lmi2NevEc=
-X-Google-Smtp-Source: AGHT+IG0klzgerAO/xrKkUieBiUkvbWh4y2QvKVH/NtvFh0NkVz3/6q0epMkr/bBMKGH1LwyLmJt7g==
-X-Received: by 2002:a05:6870:6587:b0:25e:1ced:744 with SMTP id 586e51a60fabf-25eaebc7d95mr8337902fac.47.1720725357602;
-        Thu, 11 Jul 2024 12:15:57 -0700 (PDT)
-Received: from localhost.localdomain (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-25eaa083bbcsm1826670fac.26.2024.07.11.12.15.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Jul 2024 12:15:57 -0700 (PDT)
-From: David Lechner <dlechner@baylibre.com>
-To: Jonathan Cameron <jic23@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: David Lechner <dlechner@baylibre.com>,
-	Michael Hennerich <michael.hennerich@analog.com>,
-	=?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org
-Subject: [PATCH v4 3/3] Documentation: iio: Document ad4695 driver
-Date: Thu, 11 Jul 2024 14:15:43 -0500
-Message-ID: <20240711-iio-adc-ad4695-v4-3-c31621113b57@baylibre.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240711-iio-adc-ad4695-v4-0-c31621113b57@baylibre.com>
-References: <20240711-iio-adc-ad4695-v4-0-c31621113b57@baylibre.com>
+        bh=nYCTn4/p66mHlGbWx9vmwvaVwx5YCoUoX/9c7g8wN78=;
+        b=hL7nBIhf2lCUJ0DSParb09wE6Jgq2xVMmao5+C8IqhHdjCo0r5ryyn9MBr/w+ZVTI7
+         FWG96lp64WE3XLEFyp4GhFbaHdYUK2OfmC+PMcaW5NCJ5KGDXlT8mxLPYRNAW0JOJSYh
+         Plaf1hGpgt119cLT9FHD1G08qZcUN3AXTj0hn3f3hwa4QpsXSNP0NwFRvowl4FANu0It
+         GP9aHRNYZZrwxFM9qZ9j5W0YeSJSsoN9rg2r01dmNvWw/XIDPP3HlPjGpoOl7qIWKVZZ
+         l1FP6bH0xVHXkxjSbwhf77f0Rc4SQTDVggMVpwKe6uLEgKIZDk9w5o+dyuMTxQZkyMsW
+         Saiw==
+X-Forwarded-Encrypted: i=1; AJvYcCXVWtrifLgvqoxSFyiMmbdZfDyDWM5eeu67d5KLUCm0pDMdgAf7gO7MhQ9FCcTOYIg+lI2eebmc5cQMxidfQxb1eaOIJQu/RmZS0Q==
+X-Gm-Message-State: AOJu0Yx1819tv2cjJrrWq43GP5NiGSyUqVQ05h5Yxk0N6TsSe6rzjP20
+	0bZs7NHejFAW9waY8XsAb3QFz12wwdEecayDf7/Toe34dUkmdY0IDxbNI0mGi02qT9sOliJ68uc
+	=
+X-Google-Smtp-Source: AGHT+IH1Bm4J8IsKt3yDPzK9Mg6P8mw0l7vZQ580bti/u2VHZ4IcJTlaCLPrxi9qnlkf5e3PTnHjpw==
+X-Received: by 2002:a05:6214:224d:b0:6b5:9fad:aa3f with SMTP id 6a1803df08f44-6b61bc7f72amr123993176d6.2.1720726610129;
+        Thu, 11 Jul 2024 12:36:50 -0700 (PDT)
+Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com. [209.85.160.170])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6b61ba9f323sm28477606d6.132.2024.07.11.12.36.48
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 11 Jul 2024 12:36:49 -0700 (PDT)
+Received: by mail-qt1-f170.google.com with SMTP id d75a77b69052e-447df43324fso60631cf.1
+        for <devicetree@vger.kernel.org>; Thu, 11 Jul 2024 12:36:48 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUBhSs6NegG/CQbFqB6v7lcfaXBazNbZreN0UxvV/kLzQ0Gv0/gP8aeNVgQI2pv7NQhUq9nDtmM6jX+pls82r5u06rptCk1KLBaLw==
+X-Received: by 2002:a05:622a:1808:b0:447:e04d:51b1 with SMTP id
+ d75a77b69052e-44e793e5b1fmr549761cf.11.1720726608407; Thu, 11 Jul 2024
+ 12:36:48 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Mailer: b4 0.14.0
-Content-Transfer-Encoding: 8bit
+References: <20240710084715.1119935-1-yangcong5@huaqin.corp-partner.google.com>
+ <20240710084715.1119935-5-yangcong5@huaqin.corp-partner.google.com>
+ <D2LQJROQYIY3.2Q88EXS8HUDLQ@kernel.org> <CAD=FV=WAosZPSKdpwR6pjOmiy4hih=jXaMg2guuVgmc+qj-Csw@mail.gmail.com>
+ <D2M42ODWQPAU.I0BMEOLKUP29@kernel.org> <CAHwB_NJ+YEMoL18Sr9HFmTVH_ErDztyF7vxxPFAE0Y2ta3dO0A@mail.gmail.com>
+In-Reply-To: <CAHwB_NJ+YEMoL18Sr9HFmTVH_ErDztyF7vxxPFAE0Y2ta3dO0A@mail.gmail.com>
+From: Doug Anderson <dianders@chromium.org>
+Date: Thu, 11 Jul 2024 12:36:33 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=VNx5qEyWDvVz6AVDryqvw09tkYRYMjbFuUQS4Wvyok6Q@mail.gmail.com>
+Message-ID: <CAD=FV=VNx5qEyWDvVz6AVDryqvw09tkYRYMjbFuUQS4Wvyok6Q@mail.gmail.com>
+Subject: Re: [PATCH v1 4/4] drm/panel: ili9806e: Break some CMDS into helper functions
+To: cong yang <yangcong5@huaqin.corp-partner.google.com>
+Cc: Michael Walle <mwalle@kernel.org>, quic_jesszhan@quicinc.com, neil.armstrong@linaro.org, 
+	linus.walleij@linaro.org, airlied@gmail.com, dmitry.baryshkov@linaro.org, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The Analog Devices Inc. AD4695 (and similar chips) are complex ADCs that
-will benefit from a detailed driver documentation.
+Hi,
 
-This documents the current features supported by the driver.
+On Wed, Jul 10, 2024 at 6:09=E2=80=AFPM cong yang
+<yangcong5@huaqin.corp-partner.google.com> wrote:
+>
+> Hi,
+>
+> Michael Walle <mwalle@kernel.org> =E4=BA=8E2024=E5=B9=B47=E6=9C=8811=E6=
+=97=A5=E5=91=A8=E5=9B=9B 03:38=E5=86=99=E9=81=93=EF=BC=9A
+> >
+> > On Wed Jul 10, 2024 at 9:12 PM CEST, Doug Anderson wrote:
+> > > Hi,
+> > >
+> > > On Wed, Jul 10, 2024 at 2:02=E2=80=AFAM Michael Walle <mwalle@kernel.=
+org> wrote:
+> > > >
+> > > > On Wed Jul 10, 2024 at 10:47 AM CEST, Cong Yang wrote:
+> > > > > Break select page cmds into helper function.
+> > > >
+> > > > Why though? I don't find that anything easier to read. In fact, I
+> > > > deliberately chose not to factor that out into a function. It's jus=
+t
+> > > > a sequence of magic commands, taken straight from the datasheet. So=
+,
+> > > > I'd like to keep it that way.
+> > >
+> > > The consensus of previous discussion on the lists was that folks
+> > > agreed that we should, where possible, make it more obvious what thes=
+e
+> > > magic sequences of commands were doing. IMO separating out the page
+> > > switch command helps. Certainly I'm always happy to hear other
+> > > opinions, though.
+> >
+> > Fair enough, but in that case, one should take the datasheet (which
+> > you can find online) and replace all the magic numbers with the
+> > correct command names from it. E.g. 0xff is the ENEXTC register. To
+> > be clear, I'm not just talking about the "switch page command".
+> >
+> > As patch stands, I don't see much value, TBH. On the contrary, you
+> > make it harder to compare it with the Ortustech panel datasheet.
+> >
+> > just my 2c,
+> > -michael
+>
+> If all drivers replace all the magic numbers with the correct command nam=
+es,
+> it will be a huge amount of work (assuming that the datasheet can be foun=
+d).
+>  I am afraid I don't have enough time to complete it.  Thanks.
 
-Signed-off-by: David Lechner <dlechner@baylibre.com>
----
+Makes sense. I'd be interested in hearing the opinion of others in the
+DRM community about whether they'd prefer to land something long this
+patch as-is or drop it.
 
-v4 changes: none
-
-v3 changes:
-* Rework DT examples for DT bindings changes
-
-v2 changes:
-* Rework DT examples for DT bindings changes
-* Fix wrong MAINTAINERS update
----
- Documentation/iio/ad4695.rst | 155 +++++++++++++++++++++++++++++++++++++++++++
- Documentation/iio/index.rst  |   1 +
- MAINTAINERS                  |   1 +
- 3 files changed, 157 insertions(+)
-
-diff --git a/Documentation/iio/ad4695.rst b/Documentation/iio/ad4695.rst
-new file mode 100644
-index 000000000000..a33e573d61d6
---- /dev/null
-+++ b/Documentation/iio/ad4695.rst
-@@ -0,0 +1,155 @@
-+.. SPDX-License-Identifier: GPL-2.0-only
-+
-+=============
-+AD4695 driver
-+=============
-+
-+ADC driver for Analog Devices Inc. AD4695 and similar devices. The module name
-+is ``ad4695``.
-+
-+
-+Supported devices
-+=================
-+
-+The following chips are supported by this driver:
-+
-+* `AD4695 <https://www.analog.com/AD4695>`_
-+* `AD4696 <https://www.analog.com/AD4696>`_
-+* `AD4697 <https://www.analog.com/AD4697>`_
-+* `AD4698 <https://www.analog.com/AD4698>`_
-+
-+
-+Supported features
-+==================
-+
-+SPI wiring modes
-+----------------
-+
-+The driver currently supports the following SPI wiring configuration:
-+
-+4-wire mode
-+^^^^^^^^^^^
-+
-+In this mode, CNV and CS are tied together and there is a single SDO line.
-+
-+.. code-block::
-+
-+    +-------------+         +-------------+
-+    |          CS |<-+------| CS          |
-+    |         CNV |<-+      |             |
-+    |     ADC     |         |     HOST    |
-+    |             |         |             |
-+    |         SDI |<--------| SDO         |
-+    |         SDO |-------->| SDI         |
-+    |        SCLK |<--------| SCLK        |
-+    +-------------+         +-------------+
-+
-+To use this mode, in the device tree, omit the ``cnv-gpios`` and
-+``spi-rx-bus-width`` properties.
-+
-+Channel configuration
-+---------------------
-+
-+Since the chip supports multiple ways to configure each channel, this must be
-+described in the device tree based on what is actually wired up to the inputs.
-+
-+There are three typical configurations:
-+
-+An ``INx`` pin is used as the positive input with the ``REFGND``, ``COM`` or
-+the next ``INx`` pin as the negative input.
-+
-+Pairing with REFGND
-+^^^^^^^^^^^^^^^^^^^
-+
-+Each ``INx`` pin can be used as a pseudo-differential input in conjunction with
-+the ``REFGND`` pin. The device tree will look like this:
-+
-+.. code-block::
-+
-+    channel@0 {
-+        reg = <0>; /* IN0 */
-+    };
-+
-+If no other channel properties are needed (e.g. ``adi,no-high-z``), the channel
-+node can be omitted entirely.
-+
-+This will appear on the IIO bus as the ``voltage0`` channel. The processed value
-+(*raw × scale*) will be the voltage present on the ``IN0`` pin relative to
-+``REFGND``. (Offset is always 0 when pairing with ``REFGND``.)
-+
-+Pairing with COM
-+^^^^^^^^^^^^^^^^
-+
-+Each ``INx`` pin can be used as a pseudo-differential input in conjunction with
-+the ``COM`` pin. The device tree will look like this:
-+
-+.. code-block::
-+
-+    com-supply = <&vref_div_2>;
-+
-+    channel@1 {
-+        reg = <1>; /* IN1 */
-+        common-mode-channel = <AD4695_COMMON_MODE_COM>;
-+        bipolar;
-+    };
-+
-+This will appear on the IIO bus as the ``voltage1`` channel. The processed value
-+(*(raw + offset) × scale*) will be the voltage measured on the ``IN1`` pin
-+relative to ``REFGND``. (The offset is determined by the ``com-supply`` voltage.)
-+
-+The macro comes from:
-+
-+.. code-block::
-+
-+    #include <dt-bindings/iio/adi,ad4695.h>
-+
-+Pairing two INx pins
-+^^^^^^^^^^^^^^^^^^^^
-+
-+An even-numbered ``INx`` pin and the following odd-numbered ``INx`` pin can be
-+used as a pseudo-differential input. The device tree for using ``IN2`` as the
-+positive input and ``IN3`` as the negative input will look like this:
-+
-+.. code-block::
-+
-+    in3-supply = <&vref_div_2>;
-+
-+    channel@2 {
-+        reg = <2>; /* IN2 */
-+        common-mode-channel = <3>; /* IN3 */
-+        bipolar;
-+    };
-+
-+This will appear on the IIO bus as the ``voltage2`` channel. The processed value
-+(*(raw + offset) × scale*) will be the voltage measured on the ``IN1`` pin
-+relative to ``REFGND``. (Offset is determined by the ``in3-supply`` voltage.)
-+
-+VCC supply
-+----------
-+
-+The chip supports being powered by an external LDO via the ``VCC`` input or an
-+internal LDO via the ``LDO_IN`` input. The driver looks at the device tree to
-+determine which is being used. If ``ldo-supply`` is present, then the internal
-+LDO is used. If ``vcc-supply`` is present, then the external LDO is used and
-+the internal LDO is disabled.
-+
-+Reference voltage
-+-----------------
-+
-+The chip supports an external reference voltage via the ``REF`` input or an
-+internal buffered reference voltage via the ``REFIN`` input. The driver looks
-+at the device tree to determine which is being used. If ``ref-supply`` is
-+present, then the external reference voltage is used and the internal buffer is
-+disabled. If ``refin-supply`` is present, then the internal buffered reference
-+voltage is used.
-+
-+Unimplemented features
-+----------------------
-+
-+- Additional wiring modes
-+- Buffered reads
-+- Threshold events
-+- Oversampling
-+- Gain/offset calibration
-+- GPIO support
-+- CRC support
-diff --git a/Documentation/iio/index.rst b/Documentation/iio/index.rst
-index 9cb4c50cb20d..a12520b2138e 100644
---- a/Documentation/iio/index.rst
-+++ b/Documentation/iio/index.rst
-@@ -18,6 +18,7 @@ Industrial I/O Kernel Drivers
- .. toctree::
-    :maxdepth: 1
- 
-+   ad4695
-    ad7944
-    adis16475
-    adis16480
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 1e97a4b929c2..18846fe48b91 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1216,6 +1216,7 @@ L:	linux-iio@vger.kernel.org
- S:	Supported
- W:	https://ez.analog.com/linux-software-drivers
- F:	Documentation/devicetree/bindings/iio/adc/adi,ad4695.yaml
-+F:	Documentation/iio/ad4695.rst
- F:	drivers/iio/adc/ad4695.c
- F:	include/dt-bindings/iio/adi,ad4695.h
- 
-
--- 
-2.43.0
-
+-Doug
 
