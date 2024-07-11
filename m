@@ -1,92 +1,76 @@
-Return-Path: <devicetree+bounces-85128-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85129-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBFCB92F0A1
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 23:05:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 58B5992F0A5
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 23:06:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 23DD2B2105E
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 21:05:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B3533B21336
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 21:06:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB27519E804;
-	Thu, 11 Jul 2024 21:05:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NPZeZvQt"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 240E919F473;
+	Thu, 11 Jul 2024 21:05:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.naobsd.org (sakura.naobsd.org [160.16.200.221])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB6742836A;
-	Thu, 11 Jul 2024 21:05:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FEB019E7FB
+	for <devicetree@vger.kernel.org>; Thu, 11 Jul 2024 21:05:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=160.16.200.221
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720731907; cv=none; b=aEdxj5wCyOjiFuvSU8LI8N1hFwfajtM+Cd+6PLWq6OSvyecNQDx3huzsZs+lwrigMqpBTiYj6T0Fwa8BHQCrjuryYtYNUwMhvsTdYRK38W2ds0fYxouQCGTAuNWfshRrUpz73UdwHfAjMboWASgHDwpe8JbYndtjUMiZjZc0xZA=
+	t=1720731953; cv=none; b=VCWNB3S8Xynj+2p4NS+2vku+wyLpZpFhwIxxU00RGcpmO4ZWfHiX1O4GKK+rg/xiZ+YBuVevCG4VXsgHomUhbGjBIYwW/GV1iBI8Wx2M+fyis9uThzKDCNmRSm3dhV3QEFNz3pMPxSo3pC68r0W/MdgvaabPQ/KX3C0zsOC2wio=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720731907; c=relaxed/simple;
-	bh=3jqK9z5obIbcs9Jg0tepPrZ7iJhDnV/5fTFHtqahsiM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FE65U4mYGK0OsnISTJUTzsCA1am30NBvhZmURJ6FKEbOkuskJNp6chT+HKLoIwmI0/rSwJpCA26xqSK5GNp5f2RQI+edPPsLLGRbiHMYK1rwuyk0i8khKEQZoE8qJSbggRdAPk/klOvblHg2nbxH975t+njQfR3SC1UrrQBYbEE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NPZeZvQt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09008C116B1;
-	Thu, 11 Jul 2024 21:05:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720731907;
-	bh=3jqK9z5obIbcs9Jg0tepPrZ7iJhDnV/5fTFHtqahsiM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NPZeZvQtaPIV9G7RVDKYew/BcAyEXZtDiCl+23TNOJmmTCCdiYDv7r6TueyXI5r0b
-	 lWT7IL2elhrNFHwd/yicBTbnqC3WhggWCG5gn9gmVZ/Vhe5mWcKo1WgA7IXgr1guyp
-	 XMeLnas0cCqlW+WYBAP4WniquiRAaMcNHdP7i9v1O3YzvP34ukCAUze4jk1E/ivXyB
-	 jFyig1Ah2Xxo1DREs0S1/fp/2Or9BVNeVouCVCcGIrnAaw3rNspSESkLn0q4LUU2n/
-	 xF5gggMiwYsugXK+f9EF8F1p6IIyRddRSZE7QyHkzWcZzOSHPusHFnvYfRSJFkz5vS
-	 ZzQq7urgkx/Hg==
-Date: Thu, 11 Jul 2024 15:05:05 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: devicetree@vger.kernel.org, cristian.marussi@arm.com,
-	Peng Fan <peng.fan@nxp.com>, sudeep.holla@arm.com,
-	conor+dt@kernel.org, krzk+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org, arm-scmi@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH V3 1/2] dt-bindings: firmware: arm,scmi: introduce
- property mbox-rx-timeout-ms
-Message-ID: <172073190412.3008130.10566834515724904100.robh@kernel.org>
-References: <20240709140957.3171255-1-peng.fan@oss.nxp.com>
+	s=arc-20240116; t=1720731953; c=relaxed/simple;
+	bh=FUC4+YgL7UpuP60uGC5sNSA5bovP9fYj8ziun3rj56U=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ArXK20dJqk3SMxfskNncoLM8lu+sfgOpnsIxs30OHohMEqbFF322taN3XspdgNYAk3rM/1rVQE5G1Eu1VLc0nfhA1QeB3J59tRAEQj82VWKfijyFYHGay0C/9txSPg8obqkerYkER+fc1no9tsueUWUtmObeaSisUmiPMRzix4U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com; spf=fail smtp.mailfrom=radxa.com; arc=none smtp.client-ip=160.16.200.221
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=radxa.com
+Received: from secure.fukaumi.org ([10.0.0.2])
+	by mail.naobsd.org (8.14.4/8.14.4/Debian-4.1ubuntu1.1) with ESMTP id 46BL5VZm002297;
+	Fri, 12 Jul 2024 06:05:32 +0900
+From: FUKAUMI Naoki <naoki@radxa.com>
+To: heiko@sntech.de
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        FUKAUMI Naoki <naoki@radxa.com>
+Subject: [PATCH 1/2] arm64: dts: rockchip: add support for Radxa ROCK Pi E v3.0
+Date: Fri, 12 Jul 2024 06:05:25 +0900
+Message-ID: <20240711210526.40448-1-naoki@radxa.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240709140957.3171255-1-peng.fan@oss.nxp.com>
+Content-Transfer-Encoding: 8bit
 
+Radxa Pi E v3.0 is a compact networking SBC[1] using the Rockchip
+RK3288 chip.
 
-On Tue, 09 Jul 2024 22:09:56 +0800, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
-> 
-> System Controller Management Interface(SCMI) firmwares might have
-> different designs by SCMI firmware developers. So the maximum receive
-> channel timeout value might also varies in the various designs.
-> 
-> So introduce property mbox-rx-timeout-ms to let each platform could
-> set its own timeout value in device tree.
-> 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
-> 
-> V3:
->  Add minimum: 1, because 0 is invalid. maximum is not set,
->  because it is platform specific and unknown.
-> V2:
->  Drop defaults, update description.
-> 
->  Documentation/devicetree/bindings/firmware/arm,scmi.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
+[1] https://radxa.com/products/rockpi/pie
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+---
+ Documentation/devicetree/bindings/arm/rockchip.yaml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
+index 1ef09fbfdfaf..3caa4e6428be 100644
+--- a/Documentation/devicetree/bindings/arm/rockchip.yaml
++++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+@@ -782,6 +782,7 @@ properties:
+       - description: Radxa ROCK Pi E
+         items:
+           - const: radxa,rockpi-e
++          - const: radxa,rockpi-e-v3
+           - const: rockchip,rk3328
+ 
+       - description: Radxa ROCK Pi N8
+-- 
+2.43.0
 
 
