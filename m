@@ -1,143 +1,166 @@
-Return-Path: <devicetree+bounces-84904-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84905-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C2D692E331
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 11:15:02 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98D5092E348
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 11:17:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 46CEA1F2379B
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 09:15:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 23B6AB21390
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 09:17:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1A961534EA;
-	Thu, 11 Jul 2024 09:14:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D120412C559;
+	Thu, 11 Jul 2024 09:17:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="h7C7NGTU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kmq/9PBp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1EA115279A;
-	Thu, 11 Jul 2024 09:14:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A731BDDDF;
+	Thu, 11 Jul 2024 09:17:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720689297; cv=none; b=r66LIA2PswtDIPVPmChb4C/99hUq/WHdEiMsyKN2lfAl0lX6Mx4wBeVFwPOiJSyz1Wq34SesxvIyqEtqWt1d9k5EHS42GA5yYgjFSdxIltiUL7YPh9nVP8k8cbzlqZj+UVEJYzCrwed3PXea7BgzvY3zTHB7LVhVtgUFq0UN8Dg=
+	t=1720689438; cv=none; b=qY/TXwDl+Pj6twwxIwcHMnI3sA3gXwOr/tlqrC/DWtE+ccmJO0d2TjxOJmRe0ESs30ochwIiKN6EHeKHE3xGdT0n9U4tk08tLj0IqbMdp7+EAxMiyDf3nBxXX0KX/IP7y82a7Fyn5N3nvDXCCL9aUIi51Aoxye/GmPSAYACB0p0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720689297; c=relaxed/simple;
-	bh=jRL12pSR7nFD1GOyXrNM8OZHY88t8+G32DLgDdf7alM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lzHYY3Y2ab33Wmixh2geUfZJYhc2v0BxaYksH0lxW5DLYAzab2lxCBVURk8ZnbjHiy/NQA4GqZNAh5kM2LyDWgtHTV4yjGjAofRhOF8jhn2g4A5Wewf7XDg3w3RfX8QWDc16vqSWr1Mj9t364X5cmwEFplOqizTQqtv349GpalQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=h7C7NGTU; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1720689294;
-	bh=jRL12pSR7nFD1GOyXrNM8OZHY88t8+G32DLgDdf7alM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=h7C7NGTUZJJ4XSlQLWg9xIFx2MBR2kxeIb6LpmyMOwAmqqiLm8TYHzP2z9No4fvUz
-	 lRl0dCNeiz4ol+Vj5WUpZXucwLyzL0jQi5HdKgEL4QejAfjVKliEh6o/QDvXySkk1f
-	 UcyzqucgiWtI+OFKGxh18aXfq/sNMyfGW1iSX6dpBL5Fb57+739WYl1lnynEVPR/sZ
-	 vrzDxVd/YSW3xx77oBcM9g2soXI4kPZGs5BluBZxnA1atajYLzTzdTkeJvjKKkTfyd
-	 Y+2QNSTMkR+UvurfEKzL4A2bfGxQGOd15mbskKCOcVJu29j6qu6VTdELM9HciZScUr
-	 wWyUbCVbH9k/w==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 661A337821DB;
-	Thu, 11 Jul 2024 09:14:53 +0000 (UTC)
-Message-ID: <11d6aa8e-841d-4c84-8a49-e8915fc80587@collabora.com>
-Date: Thu, 11 Jul 2024 11:14:52 +0200
+	s=arc-20240116; t=1720689438; c=relaxed/simple;
+	bh=tECCGwY1OlgusfgCcr1+rEQ9zmP+52bDi0SwX5GW63M=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=L4/y9yRPbO8JmdSIv20sx3GslQjIHl9Y1Pc6reU1C6Zi8214UdAsBxOQmmS8sBp0epyLGW2RSln4d1wne3hwHSPVnC+4n1RSH8AXoPKX78QH93q3Vo5eakcPB6Jz9NgzglL8VuzTIkfHarigyyaQmjizpPLehQQ6xvBBkdDIcBg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kmq/9PBp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62D60C4AF07;
+	Thu, 11 Jul 2024 09:17:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720689438;
+	bh=tECCGwY1OlgusfgCcr1+rEQ9zmP+52bDi0SwX5GW63M=;
+	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
+	b=kmq/9PBpQ8BJOQVUc1LTq9N5hu05r+SjaQ5IjQeqtpn4oKx9JlD0WFzXJOcA0BSbz
+	 cT0Aa5xzcsM5pT9zfnwRLaOsQ+923E7BliozltUWLTKe/6Y1WwBd382plU+LvKdrbW
+	 Bs2EMmBdmmB5UtaMFcvOwA/vS3uNJn6LwDf7ZL0y3vDYK593i72GCeosaTvZxPjyfg
+	 oQq+zOIZW3XEGuZbvwAsmXTLhyf7G9VrhKHBlgBb6B62RhJgI0UsXqfd9T6bpfk6gJ
+	 vkyP2r3xoS9GNlVpbiPXyo+rYLxNilWn9mB2c3QruN/vdzelPssUzsu8a55T0Mf3dz
+	 tKq/5FIBEsufA==
+Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2ebe40673d8so8537261fa.3;
+        Thu, 11 Jul 2024 02:17:18 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUdd3ywy1/yOTrUB0aoJkilRVEDgSO1EPfMjLHwjVKq4iy+4moGqGCBCi4mQr7zYP2jqLwILJFVEGNzUVA9ZeTJpOgVp/35uUNvBBbKm+wnGDzZEv78PfJq+UsT9PLNSrKTjykegFjBXQ==
+X-Gm-Message-State: AOJu0YxSkqLHqFttQ1nkJgxUQKexAuObGA1IyaCmhuP6eSKhYvLaHNzz
+	vin1ec/6xuy70FciR91q/2cfpUOZjQfkgPHaw1f0Cg+Kmew4pWNk2LJ4uU5tAl/rQ+547URDgEX
+	yCeeRLI66/LyTpU82lDL+zdZHQx0=
+X-Google-Smtp-Source: AGHT+IGfyS6XEu/kHP9VNipjsPb7FnGJXyJ4CUOh/ZKrY8VHjEHaEg8CWd8+NAhyz3x/GgZTCAkP6MA3bw4fTqw/TO4=
+X-Received: by 2002:a2e:9e54:0:b0:2ec:6608:a3af with SMTP id
+ 38308e7fff4ca-2eeb3103d02mr48694601fa.31.1720689436392; Thu, 11 Jul 2024
+ 02:17:16 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: Probe failure of usb controller @11290000 on MT8195 after
- next-20231221
-To: =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, kernel@collabora.com,
- Macpaul Lin <macpaul.lin@mediatek.com>,
- Chunfeng Yun <chunfeng.yun@mediatek.com>, Chen-Yu Tsai <wenst@chromium.org>
-References: <9fce9838-ef87-4d1b-b3df-63e1ddb0ec51@notapiano>
- <064935d8-fbda-4eda-b013-8c8fc63b561c@collabora.com>
- <375b2345-657a-4b8f-b5e3-dc16784ffde9@notapiano>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <375b2345-657a-4b8f-b5e3-dc16784ffde9@notapiano>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20240711060939.1128-1-linux.amoon@gmail.com> <a8c1f49e-bf25-4fd3-a16f-13088f75767f@kwiboo.se>
+In-Reply-To: <a8c1f49e-bf25-4fd3-a16f-13088f75767f@kwiboo.se>
+Reply-To: wens@kernel.org
+From: Chen-Yu Tsai <wens@kernel.org>
+Date: Thu, 11 Jul 2024 17:17:04 +0800
+X-Gmail-Original-Message-ID: <CAGb2v65iR9BdAX43gfpBOeKF_B5PFm+RhPwu5FHUfRxCMeqh-w@mail.gmail.com>
+Message-ID: <CAGb2v65iR9BdAX43gfpBOeKF_B5PFm+RhPwu5FHUfRxCMeqh-w@mail.gmail.com>
+Subject: Re: [PATCH v2] arm64: dts: rockchip: Add missing pinctrl for PCIe30x4 node
+To: Jonas Karlman <jonas@kwiboo.se>, Heiko Stuebner <heiko@sntech.de>
+Cc: Anand Moon <linux.amoon@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Il 10/07/24 21:15, Nícolas F. R. A. Prado ha scritto:
-> On Fri, Jan 19, 2024 at 10:12:07AM +0100, AngeloGioacchino Del Regno wrote:
->> Il 18/01/24 19:36, Nícolas F. R. A. Prado ha scritto:
->>> Hi,
->>>
->>> KernelCI has identified a failure in the probe of one of the USB controllers on
->>> the MT8195-Tomato Chromebook [1]:
->>>
->>> [   16.336840] xhci-mtk 11290000.usb: uwk - reg:0x400, version:104
->>> [   16.337081] xhci-mtk 11290000.usb: xHCI Host Controller
->>> [   16.337093] xhci-mtk 11290000.usb: new USB bus registered, assigned bus number 5
->>> [   16.357114] xhci-mtk 11290000.usb: clocks are not stable (0x1003d0f)
->>> [   16.357119] xhci-mtk 11290000.usb: can't setup: -110
->>> [   16.357128] xhci-mtk 11290000.usb: USB bus 5 deregistered
->>> [   16.359484] xhci-mtk: probe of 11290000.usb failed with error -110
->>>
->>> A previous message [2] suggests that a force-mode phy property that has been
->>> merged might help with addressing the issue, however it's not clear to me how,
->>> given that the controller at 1129000 uses a USB2 phy and the phy driver patch
->>> only looks for the property on USB3 phys.
->>>
->>> Worth noting that the issue doesn't always happen. For instance the test did
->>> pass for next-20240110 and then failed again on today's next [3]. But it does
->>> seem that the issue was introduced, or at least became much more likely, between
->>> next-20231221 and next-20240103, given that it never happened out of 10 runs
->>> before, and after that has happened 5 out of 7 times.
->>>
->>> Note: On the Tomato Chromebook specifically this USB controller is not connected
->>> to anything.
->>>
->>> [1] https://linux.kernelci.org/test/case/id/659ce3506673076a8c52a428/
->>> [2] https://lore.kernel.org/all/239def9b-437b-9211-7844-af4332651df0@mediatek.com/
->>> [3] https://linux.kernelci.org/test/case/id/65a8c66ee89acb56ac52a405/
->>>
->>> Thanks,
->>> Nícolas
->>
->> Hey Nícolas,
->>
->> I wonder if this is happening because of async probe... I have seen those happening
->> once in a (long) while on MT8186 as well with the same kind of flakiness and I am
->> not even able to reproduce anymore.
->>
->> For MT8195 Tomato, I guess we can simply disable that controller without any side
->> effects but, at the same time, I'm not sure that this would be the right thing to
->> do in this case.
->>
->> Besides, the controller at 11290000 is the only one that doesn't live behind MTU3,
->> but I don't know if that can ring any bell....
-> 
-> An update on this issue: it looks like it only happens if "xhci-mtk
-> 11290000.usb" probes before "mtk-pcie-gen3 112f8000.pcie". What they have in
-> common is that both of those nodes use phys that share the same t-phy block:
-> pcie uses the usb3 phy while xhci uses the usb2 phy. So it seems that some of
-> the initialization done by the pcie controller might be implicitly needed by the
-> usb controller.
-> 
-> This should help to narrow down the issue and find a proper fix for it.
-> 
+On Thu, Jul 11, 2024 at 4:44=E2=80=AFPM Jonas Karlman <jonas@kwiboo.se> wro=
+te:
+>
+> Hi Anand,
+>
+> On 2024-07-11 08:09, Anand Moon wrote:
+> > Add missing pinctrl settings for PCIe 3.0 x4 clock request and wake
+> > signals.Each component of PCIe communication have the following control
+> > signals: PERST, WAKE, CLKREQ, and REFCLK. These signals work to generat=
+e
+> > high-speed signals and communicate with other PCIe devices.
+> > Used by root complex to endpoint depending on the power state.
+> >
+> > PERST is referred to as a fundamental reset. PERST should be held low
+> > until all the power rails in the system and the reference clock are sta=
+ble.
+> > A transition from low to high in this signal usually indicates the
+> > beginning of link initialization.
+> >
+> > WAKE signal is an active-low signal that is used to return the PCIe
+> > interface to an active state when in a low-power state.
+> >
+> > CLKREQ signal is also an active-low signal and is used to request the
+> > reference clock.
+> >
+> > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> > ---
+> > V2: Update the commit messge to describe the changs.
+> >     use pinctl group as its pre define in pinctl dtsi
+> > ---
+> >  arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts | 6 +-----
+> >  1 file changed, 1 insertion(+), 5 deletions(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm=
+64/boot/dts/rockchip/rk3588-rock-5b.dts
+> > index 2e7512676b7e..ab3a20986c6a 100644
+> > --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+> > +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+> > @@ -301,7 +301,7 @@ &pcie30phy {
+> >
+> >  &pcie3x4 {
+> >       pinctrl-names =3D "default";
+> > -     pinctrl-0 =3D <&pcie3_rst>;
+> > +     pinctrl-0 =3D <&pcie30x4m1_pins>;
+>
+> Use of the existing pcie30x4m1_pins group may not be fully accurate for
+> the PERST pin. The use of reset-gpios indicate that the PERST pin is
+> used with GPIO function and the driver will implicitly change the
+> function from perstn_m1 to GPIO. So this may not be best representation
+> of the hw, hence my initial suggestion, something like:
+>
+>         pcie30x4_pins: pcie30x4-pins {
+>                 rockchip,pins =3D
+>                         <4 RK_PB4 4 &pcfg_pull_none>,
+>                         <4 RK_PB6 RK_FUNC_GPIO &pcfg_pull_none>,
+>                         <4 RK_PB5 4 &pcfg_pull_none>;
+>         };
+>
+> Similar change should probably also be done for pcie2x1l0 and pcie2x1l2,
+> not just pcie3x4.
 
-This gave me a couple ideas to try... and it looks like I have resolved this issue.
+Can we consider implementing strict mode in the pinctrl driver so we don't
+have to keep doing this GPIO + pinmux dance?
 
-A commit will follow soon.
+ChenYu
 
-Thank you!
-Angelo
+
+> Regards,
+> Jonas
+>
+> >       reset-gpios =3D <&gpio4 RK_PB6 GPIO_ACTIVE_HIGH>;
+> >       vpcie3v3-supply =3D <&vcc3v3_pcie30>;
+> >       status =3D "okay";
+> > @@ -341,10 +341,6 @@ pcie2_2_rst: pcie2-2-rst {
+> >       };
+> >
+> >       pcie3 {
+> > -             pcie3_rst: pcie3-rst {
+> > -                     rockchip,pins =3D <4 RK_PB6 RK_FUNC_GPIO &pcfg_pu=
+ll_none>;
+> > -             };
+> > -
+> >               pcie3_vcc3v3_en: pcie3-vcc3v3-en {
+> >                       rockchip,pins =3D <1 RK_PA4 RK_FUNC_GPIO &pcfg_pu=
+ll_none>;
+> >               };
+> >
+> > base-commit: 34afb82a3c67f869267a26f593b6f8fc6bf35905
+>
+>
 
