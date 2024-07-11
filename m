@@ -1,607 +1,210 @@
-Return-Path: <devicetree+bounces-85130-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85131-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A024392F0A6
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 23:06:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA48292F0A9
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 23:09:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EA5A5B22E2C
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 21:06:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 076611C20C4F
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 21:09:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D03819F478;
-	Thu, 11 Jul 2024 21:05:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F052C19EEC5;
+	Thu, 11 Jul 2024 21:09:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="r7S9a3AH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.naobsd.org (sakura.naobsd.org [160.16.200.221])
+Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11011027.outbound.protection.outlook.com [52.101.65.27])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FE587F47B
-	for <devicetree@vger.kernel.org>; Thu, 11 Jul 2024 21:05:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=160.16.200.221
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720731953; cv=none; b=LwhawPhuXKmOgqSb+XGbAJiuscMZEqIKzixk6+OuYU0gA4nV6KXPV1DbAK+2BCWzam+8rsecGMMEz6A7ABAPwpPx5Sh4tuNJSAQipFBc7u7tQGq7fXFdfWNZkXp+3ZKKUifHUZhvgYsvEd19oiGn/TlTg8KmHlSaJbreVQV3i0c=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720731953; c=relaxed/simple;
-	bh=hPrqgoI44GBC65GwBolWGwdKqxxZa6bSNRZIDSMrNhQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ojWM82PIkRaLz4WKWo+CFRiwRpUFPlfVaVY700PenniUg9oazRyh6PFCV7TJW16fPWYrnxtCauGHtWwsTAzZ2u00Q//seRtmheUNEdPQssetB4SeACcXzkSfQr9DIo0WWoZit7/kX4/DyPqSEif0a9USuo7F7eqKZwR9vI9S8Vk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com; spf=fail smtp.mailfrom=radxa.com; arc=none smtp.client-ip=160.16.200.221
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=radxa.com
-Received: from secure.fukaumi.org ([10.0.0.2])
-	by mail.naobsd.org (8.14.4/8.14.4/Debian-4.1ubuntu1.1) with ESMTP id 46BL5VZn002297;
-	Fri, 12 Jul 2024 06:05:32 +0900
-From: FUKAUMI Naoki <naoki@radxa.com>
-To: heiko@sntech.de
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        FUKAUMI Naoki <naoki@radxa.com>
-Subject: [PATCH 2/2] arm64: dts: rockchip: add support for Radxa ROCK Pi E v3.0
-Date: Fri, 12 Jul 2024 06:05:26 +0900
-Message-ID: <20240711210526.40448-2-naoki@radxa.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240711210526.40448-1-naoki@radxa.com>
-References: <20240711210526.40448-1-naoki@radxa.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C8772836A;
+	Thu, 11 Jul 2024 21:09:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.27
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1720732168; cv=fail; b=H5TzRJkZCt0vWUl/KxKn96+lVudDS2AbqDHen0u3Xsb2YrhDftWP221akAgzdm5GPoKD7/TpMuolXC1bFv/njavf87IZh3h4FH9+ro/ToIMe4+YA0tJZ+JaQBF5Ns98rRDpmCzfaDv2NADawLfBls339ywYrJuk1fm+4GQ6k6K4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1720732168; c=relaxed/simple;
+	bh=GLxyVDVzcZ3UEl8gtKcSzBScsOuqQDWNx2DhjQXwyuI=;
+	h=From:Subject:Date:Message-Id:Content-Type:To:Cc:MIME-Version; b=rux6H50Jx9Op1FQm+9tg3HjTC8F7DwPkTA7xy0SW2HQ//mMfkpmyZ2uzH5zZQgSZJV5+eGhlQOsmT2P8KL+GshVMR8VluLI3wU3VxIzfpgLA7UNzzprD+ttlAFZHpIau3DI6PKmDn1J5QkWfPMldzvjy5KWFGp6r5iO0mG4WutQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=r7S9a3AH; arc=fail smtp.client-ip=52.101.65.27
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=iFjX5lXq58AGnZRcoVIRISasaZ6kiUPC5lg0N63OJRDjx2xuuuGM0j5R/c4SbHQpZKeMU9HYBwyIsJQdrir7jqiZ9eV7VOMESXKDxz3MvamQbaA3gs/o6pv1+BJcwBodf3lTxJyiUWHOl9DVtB2qBnKob3UyquDPn5AzqoYHYyrtl59dxy8kuytNQgFOUqHRR/wGtdDzvcK+cbi6jESy5DxDgvMJJuOI0+IKfRv9vm3O776CzHndPauc5EbGlPCuogfg07eDDswTTX/2jKZZ2zsAtJCUvYaUGwEPkVBVkxx0XJ9uuoeaNPuq4wtRdlaTJ+G5OWLhGhcd+czLs0RFuA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=pfqz+J11kO/oG2BWriRE0KCStDpXutGXgdlRzqyeQxU=;
+ b=lb8wwINDERfCILvo6jL4jFhuayFa0t+YneYs+SRH03uGjyXNVOVHsNjEdAPBVEG0t4kJmW/UGu3x8HRW2oVOKSCH5cM2uoRQn/GnZ8ogRwYQIYbA1cYfV5H5qiH1lUIMaOMZSiZ7JLv8oxCckE7rg9nQOd0PbTD21sbf73nxfZjXVPrTBkEzNUO2BWPxhAMf+vXwSOodYLB9vggnvnZ1CUghLsGCco1EJTbP6pzRr4SM0FKDUdSjxiX/RCjaJ+2kwFeROjnwC48BcMxEA9vq3hFtzSPfONquqz0+M7x2Eym6sv3MzR4G7zbuXGc40a3yUqb34xbWccocHEX2TxNV7g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=pfqz+J11kO/oG2BWriRE0KCStDpXutGXgdlRzqyeQxU=;
+ b=r7S9a3AHyCZXyNk63rCmvjyC6Uf2DBj1p2YvvpHv+kP1rHgOmvHzjHCRFMcX/4tnumS5WCmPckCBaO2+j9RUkxu4fak4l8ODUiakYdVzj563+8pExulyPHYyxSiJfymMP85i+ZcMfozo12dFODxqLN8ijHMvXhb+WXEAUredFJ4=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by AS8PR04MB8753.eurprd04.prod.outlook.com (2603:10a6:20b:42c::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7762.22; Thu, 11 Jul
+ 2024 21:09:22 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%2]) with mapi id 15.20.7741.033; Thu, 11 Jul 2024
+ 21:09:22 +0000
+From: Frank Li <Frank.Li@nxp.com>
+Subject: [PATCH 0/3] pwm: imx: add 32k clock for 8qm/qxp and workaround a
+ chip issue
+Date: Thu, 11 Jul 2024 17:08:55 -0400
+Message-Id: <20240711-pwm-v1-0-4d5766f99b8b@nxp.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOdJkGYC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDcwML3YLyXF1TS0vjVDMDo2TLJCMloMqCotS0zAqwKdGxtbUAwbHbp1U
+ AAAA=
+To: =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>
+Cc: linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Frank Li <Frank.Li@nxp.com>, 
+ Liu Ying <victor.liu@nxp.com>, Clark Wang <xiaoning.wang@nxp.com>, 
+ Jun Li <jun.li@nxp.com>
+X-Mailer: b4 0.13-dev-e586c
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1720732158; l=670;
+ i=Frank.Li@nxp.com; s=20240130; h=from:subject:message-id;
+ bh=GLxyVDVzcZ3UEl8gtKcSzBScsOuqQDWNx2DhjQXwyuI=;
+ b=2CFmPHUO5gRPqcrfevbLtg3QEgScFrEUIk4xOSiGMMjWGg3Eg/1y6FPEfo7pUwB108eQGSVD9
+ eagv46Eu5DCDIfYhJiFsBfVrc9L+H5ZbTF0fCnAU10/iVbM/g5yDiAK
+X-Developer-Key: i=Frank.Li@nxp.com; a=ed25519;
+ pk=I0L1sDUfPxpAkRvPKy7MdauTuSENRq+DnA+G4qcS94Q=
+X-ClientProxiedBy: SJ0PR13CA0234.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c1::29) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AS8PR04MB8753:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1e647e3d-37a5-43fb-def2-08dca1edbc99
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|1800799024|366016|52116014|7416014|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?VTZ0TmhTMkZlWWRML1hVZHM1aUVaNXRMd3BmT3JYY3dnSU9td0pkTXJMMk51?=
+ =?utf-8?B?OGtteHlCVVg2eEFWZjh5cEdSZWFRakFISGV5b09kQmRBVk9OdGsveTAzK2RO?=
+ =?utf-8?B?L2U4aGNhajM1U2VVWW9NZGhoa1c0b0NXQXF4OTZuVUFOVzFsY2pOVE5VQmxz?=
+ =?utf-8?B?bDloTVo3WitaaWNqYTFLV0JaMWhCZ1dZTUdveVhrcDVXbytNemRTOGwwT1JD?=
+ =?utf-8?B?NlNrN0N2UEJSaHZrMDhlVGkyNlFMeFZQeEY4ekVpT1dLZFBTd1M3VHBWMkVo?=
+ =?utf-8?B?L1RTSUlrTTA4WXo0ODJHcGJPcXA1clgrcGZNbjNhUjUwNzVxclNrT0RSMXAr?=
+ =?utf-8?B?OHJEcWVOYWxHZ1RvK1RNUlZFb3lrdkpLa1lDWXNlUFFnTXcrU1hHaFFuNjBI?=
+ =?utf-8?B?azZiK0JCVm1XZHJPcnppeEhuMm10aC9JUURnMndCaDRjYmZIOXRnTkc1SUNn?=
+ =?utf-8?B?eTl6VlUrYUZFZkgrSmVzSjR5K1VVTE4wbklYZDR4cDFLV2tHakd1N2s3MERk?=
+ =?utf-8?B?YkZmb3ZLRldqQ2ZiMm41czZITS9rN2hXSS9VM0svTDJpM3ZPSmxFUEpMejE5?=
+ =?utf-8?B?NUZmT0NUVTFTc1Z6UjQvV1IzWGREOUl3UkJEemhPVlV4Y2JBZ3Z6bE1ZV2Fm?=
+ =?utf-8?B?NkRCbVRUVng1SUxQUmhqZHF2aC9yQU52YWpnNzljT08xZlBCQk5yQ1FsM1d4?=
+ =?utf-8?B?a2xkaHk4dFlKZ2ZCUklBS3d2V05jZTFESlNTR2F2bXBuUlhjZjRoaytOWVN2?=
+ =?utf-8?B?ckp4dlZ1OW1jOUNiU0RRTGlEMnFUVW9XNWo3ekZtakhTQ3VTT2pQWSs5Lzhj?=
+ =?utf-8?B?UjRwZnpiWEpZUHFWMVMwN04vZE5tOURVUVVISUN0NXNtOHpBY09Ta3JTaUYw?=
+ =?utf-8?B?b0ZBTlByajVnQ3dtLzRiaHE3anFIcTZHbkdCRkpwd1pDWnRRekVlRWorMnp1?=
+ =?utf-8?B?RERWTXprUlpMWWZQWGRnamFZcVVNVzdmOWNwdzdYSkhiZzJuQ0gxcVdaVVpH?=
+ =?utf-8?B?NjlVL1c0eWtmZWRqOXM2ZmlZSzdObzVRWllqOXRTMFU1WklXVFQ5T290RVFh?=
+ =?utf-8?B?YlBOTGJJZGVDTitJTStIYkRkWVJIVFBPMG9SNlZMenk1azBMMHllUmVwL2lO?=
+ =?utf-8?B?SjZKWmh5ZFBGK1FleVQ0Z3dDRWEyOVVGSTk2dUhCL2NhMHZYckVMV0lTT3pK?=
+ =?utf-8?B?MnB1K0R0QmdmemhKTWhQZHJaS2V5ZkxmT1RqTUR5ZmxscnhKRmw4RzU5K3l0?=
+ =?utf-8?B?K2RHRDc3eTIwaFFuY245NGp5UzA1dHhIOVgrUmVPOVhtWTJHdWJlSnJGSGM2?=
+ =?utf-8?B?TFhNOUdIQmpXSHNLK0QxSjVMYUZ3N25iMGxUeWw2S2xrZ3cyellabU0xZHo1?=
+ =?utf-8?B?aUszdWJkR0QydEdyS3BWWWNkMXY4YWN2K1ZuRy95SnNLZXI0a015ZFVreTk1?=
+ =?utf-8?B?RnBTeDkxT0QvMFZkVWNwdnhya2VCQXZXRUlvUmhmQ25nOG1NQW9jYXg3TitD?=
+ =?utf-8?B?MjJtUnZPUWUzZ2h5Q05ZeHpTTWFweXRDaGhDaHQyWVJTdUk1dWpkekdVdTd1?=
+ =?utf-8?B?azg3bHRoRFQ2N0RaYzZxWTNVOE1adXk2SWgxU1NxWnpjMEpJeC94b2xZM044?=
+ =?utf-8?B?VEZueEtsM002dm9SbitiQjlRZzhlbnRmOUhaRElyVmEvdTNuUHMwOVcwa29D?=
+ =?utf-8?B?ZHQ4OFpWNUovMGIvNW1tUGZ3ckRlcVN1NlRuaWluV3VqVVE5alNneEt6dHZ4?=
+ =?utf-8?B?K3RYQU9jNGt4aS9FbHRQYmRMdW5FQ0NXQlZlUHdvd3BRVnhGUFNHZTFUd2hr?=
+ =?utf-8?B?MlY0b3BjNVhZNjZTQkVBc1JySW1QMGNRZnNuV0NRNDFMeHYxUkFqNVFObEN1?=
+ =?utf-8?B?TUkwQVZiMWxtNkxXT0xQc3BtVGpPcGxrS3VqdU4vNEdCemc9PQ==?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(366016)(52116014)(7416014)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?bURPKzVSZUU3ZUF0dkUrSHFnUncrcFBiWTBibG40dkxSbFBZR2VzRWU0Rmhm?=
+ =?utf-8?B?VFZGTDVsUmpUM2RBOHlWOUYvVEpSVzhnTitHbElsQWVmZjBoVGZQa0hoZTNG?=
+ =?utf-8?B?SVJFZ3BabFg5bU15Q0lpM0ZmT3JkQnVBblpiRkRTTDRVOEFLQTZLaFNQNUZB?=
+ =?utf-8?B?WDBuZVZwbEFtZnE2bDdzYXZ6Ym9kMjBiT0VnMGp3aGJweEkzNlRHa0dueEhy?=
+ =?utf-8?B?Wm1sWVFpSVBidGNUS1lFaHY2WkVUVjVISU5KRWttZ0U5bC9pU3AvMGJtSjJO?=
+ =?utf-8?B?dDNmNEg1M3QxbDAzeXhTcWRSK29IZ0JpTC9sMDlOZGZ6eFBKbit4TzhCdnAv?=
+ =?utf-8?B?MDRtV2VRTzJmUkYydFhtbyt3Tm13TVc2TEtUeEQ1SGVMaVNYVjBZeWMvTkp0?=
+ =?utf-8?B?UFM3OFBFakkxaHRhalB1ZEszTjgxVEt1bm1JeGFseUdaU1I5cVJSNHBSanQy?=
+ =?utf-8?B?MjlUTDdoME9LOVFudml6WW4zNzRKUS9pVjVCRWFodDZUQmg3MnpEOGlEVlhY?=
+ =?utf-8?B?YkJBMnEvMnBoS3Jld0FTSG11STdJRGhqVkpzOUhmNTYySCtkSnhKSURkVjJK?=
+ =?utf-8?B?cGFKSW1aMXdUOUxLTVJaSzhaQlBFZFJUUE95UEFuZ3IxdHlWMFRuM2QyM284?=
+ =?utf-8?B?ZVRpMWlsZzVrTm1TRDNsQkE0bkZJaU0va2ZvMDBKSk1qMy9yeTZsVm1EaXlF?=
+ =?utf-8?B?TDJPR3huMGRxMmcyaXI5Q2RpTVYrQmlNQ2RyWEFMdTFXSExEZW1nYTkwOE51?=
+ =?utf-8?B?cHVEdU1XV1VPcXF6NUk3TUk3YUMzanZNcm5VeHBYSGZTTzVHc0M3ZzA0VVRQ?=
+ =?utf-8?B?Sm5SZ1lOaW1GVk56ZWJrUENkMnd3SWtQbHVBVDQxV0ZLcDZJamJPdVo2dTBB?=
+ =?utf-8?B?ZUdheVdoTk9yT2dZVUdLcHdIaG1HMm05K2ZGUjNmdzA4Mk1MN1dTMUcwSmJH?=
+ =?utf-8?B?RnJLRjJvN3RKWVY4ZXRLdXJRQU9GWnd3YkdHa2pGTkpEWUREalUxRTVkOVRx?=
+ =?utf-8?B?WUFKbGwzcjVCdUk0NUY3clcxMkk0enVhcjdsZUZ1N0NVcWJvd3k4S1JHT1NB?=
+ =?utf-8?B?aTQxYjA1Nll1OVdFYlMyYytJVXlsaCtnWDJkblZNRWlVamExOVdvZFBHRXBN?=
+ =?utf-8?B?TEdMeGF0a3FoYzlhMzlhclR2N0lyaGVEcHlJUDJIMDlHVCtSdDBLNWd3d05L?=
+ =?utf-8?B?UjU3NWNwc2FMTEtmYUhUd2dZWWp2ejRvNGhoZTY4VGVaZmd2VVpEaTMxR3hQ?=
+ =?utf-8?B?UURaT0t5VktBZEE2K3ZLVEFrMEQxZmtBNFEzNUpldFd1ZjJibkxEbGhXeUJx?=
+ =?utf-8?B?N0YzU016bmhScVB0UUdRN2VkU0FJditJRThDWUtPQlczdXI5SWtFZFNVeHU4?=
+ =?utf-8?B?VE1aeVEzMTJQVTAyOGREdDVVdUpVMktZL0tsaWxKYkdETUxYR3hRYWY1RXJv?=
+ =?utf-8?B?ZFl6cGI5L0RNOVVXT0lsajZ6Z1B2bVJDY1VCR3JlWmNtUDRvWi81MzdqWkxv?=
+ =?utf-8?B?MjBYUTRiTURpTVd5MnNGWnRlT1JabG1rWjV2STlQbTkvUFdmSlRySU94OXc2?=
+ =?utf-8?B?eTFZM2ZIUFc5cFdkQ09RKzFiOFJGRXFWQ2xHNVJVaURzbmhSTlFaY1pSQVFZ?=
+ =?utf-8?B?RVJWL055WFFndk5pb1BTL2hnWFhDOVRkN21GRmtDT2NVOGlwNHFwcWtCQW1Y?=
+ =?utf-8?B?QmFuZ1F3Q0pxZlRrVDRHcDM1UDhrb0lCRDJuaUE5WDRvUVZONTJPTGJRNmxv?=
+ =?utf-8?B?a1FlRUswd2JCUktTejFBV052a2x5M3JLand0bXJsLzNWRWtzYTUzR2lsZjJU?=
+ =?utf-8?B?WkNzOUJMdzFURHp4SkpxSG1kSjdsWVRZdzV3M0ZkNTRhc0NQdUVCeEZ3MEJ6?=
+ =?utf-8?B?cFZPSlVpUE91eXJqYTBBOGpqZ3JXMmRETC9yMjJDRStLM2E2cC9GMFU5cU5S?=
+ =?utf-8?B?dnA1Wm9FVzFqRjBsZTl2bzNtSVI3NE9HUjlQSkJtMllNek5tdUEvd3FHSUE4?=
+ =?utf-8?B?RmR2K0w0Si9BdDA0TFdUVXovcG9MMUVDcVVva1E1RVNQRHhmSDAwd2k0QTFq?=
+ =?utf-8?B?Y1Q4WDFtSmxUVjkyT09QSGNWbTZIMXZMd21BQTBrSmJ6aU9jZU1TalR0dDVW?=
+ =?utf-8?Q?eZqWpnBxwKx5+EaE8cGx3UG5a?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1e647e3d-37a5-43fb-def2-08dca1edbc99
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jul 2024 21:09:22.4407
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 7RVXqhO+3OSkm05tX+VIkGYS4vaRt/N/HJncsPhxfByMG9zVlsM34BiEcgEuRXqkMSlEFm9mIKv3+Vu4Okajcg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8753
 
-Radxa Pi E v3.0 is a compact networking SBC[1] using the Rockchip
-RK3288 chip that ships in a number of RAM/eMMC/WiFi/BT configurations:
-
-- Rockchip RK3328 SoC
-- Quad A53 CPU
-- 512MB/1GB/2GB DDR4 RAM
-- 4/8/16/32GB eMMC
-- Micro SD Card slot
-- WiFi 4 and BT 4, or WiFi 5 and BT 5
-- 1x 1000M Ethernet supporting PoE with add‑on PoE HAT
-- 1x 100M Ethernet
-- 1x USB 3.0 Type-A port (Host)
-- 1x 4-ring 3.5mm headphone jack
-- 40 Pin GPIO header
-
-[1] https://radxa.com/products/rockpi/pie
-
-Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
 ---
- arch/arm64/boot/dts/rockchip/Makefile         |   1 +
- .../boot/dts/rockchip/rk3328-rock-pi-e-v3.dts |  15 +
- .../boot/dts/rockchip/rk3328-rock-pi-e.dts    | 460 +-----------------
- ...28-rock-pi-e.dts => rk3328-rock-pi-e.dtsi} |   5 -
- 4 files changed, 31 insertions(+), 450 deletions(-)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e-v3.dts
- rewrite arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts (97%)
- copy arch/arm64/boot/dts/rockchip/{rk3328-rock-pi-e.dts => rk3328-rock-pi-e.dtsi} (98%)
+Clark Wang (1):
+      pwm: imx27: workaround of the pwm output bug when decrease the duty cycle
 
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index 8fa469db400c..4f4777130b20 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -23,6 +23,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-nanopi-r2s.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-orangepi-r1-plus.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-orangepi-r1-plus-lts.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-rock64.dtb
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-rock-pi-e-v3.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-rock-pi-e.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-roc-cc.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-roc-pc.dtb
-diff --git a/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e-v3.dts b/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e-v3.dts
-new file mode 100644
-index 000000000000..ad9c4c562914
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e-v3.dts
-@@ -0,0 +1,15 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+
-+/dts-v1/;
-+
-+#include "rk3328-rock-pi-e.dtsi"
-+
-+/ {
-+	model = "Radxa ROCK Pi E v3.0";
-+	compatible = "radxa,rockpi-e-v3", "rockchip,rk3328";
-+
-+	aliases {
-+		mmc0 = &emmc;
-+		mmc1 = &sdmmc;
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts b/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
-dissimilarity index 97%
-index a608a219543e..0929df3c803a 100644
---- a/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
-@@ -1,445 +1,15 @@
--// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
--/*
-- * (C) Copyright 2020 Chen-Yu Tsai <wens@csie.org>
-- *
-- * Based on ./rk3328-rock64.dts, which is
-- *
-- * Copyright (c) 2017 PINE64
-- */
--
--/dts-v1/;
--
--#include <dt-bindings/gpio/gpio.h>
--#include <dt-bindings/input/input.h>
--#include <dt-bindings/leds/common.h>
--#include <dt-bindings/pinctrl/rockchip.h>
--
--#include "rk3328.dtsi"
--
--/ {
--	model = "Radxa ROCK Pi E";
--	compatible = "radxa,rockpi-e", "rockchip,rk3328";
--
--	aliases {
--		ethernet0 = &gmac2io;
--		ethernet1 = &gmac2phy;
--		mmc0 = &sdmmc;
--		mmc1 = &emmc;
--	};
--
--	chosen {
--		stdout-path = "serial2:1500000n8";
--	};
--
--	adc-keys {
--		compatible = "adc-keys";
--		io-channels = <&saradc 0>;
--		io-channel-names = "buttons";
--		keyup-threshold-microvolt = <1750000>;
--
--		/* This button is unpopulated out of the factory. */
--		button-recovery {
--			label = "Recovery";
--			linux,code = <KEY_VENDOR>;
--			press-threshold-microvolt = <10000>;
--		};
--	};
--
--	gmac_clkin: external-gmac-clock {
--		compatible = "fixed-clock";
--		clock-frequency = <125000000>;
--		clock-output-names = "gmac_clkin";
--		#clock-cells = <0>;
--	};
--
--	leds {
--		compatible = "gpio-leds";
--		pinctrl-0 = <&led_pin>;
--		pinctrl-names = "default";
--
--		led-0 {
--			color = <LED_COLOR_ID_BLUE>;
--			gpios = <&gpio3 RK_PA5 GPIO_ACTIVE_LOW>;
--			linux,default-trigger = "heartbeat";
--		};
--	};
--
--	vcc_sd: sdmmc-regulator {
--		compatible = "regulator-fixed";
--		gpio = <&gpio0 RK_PD6 GPIO_ACTIVE_LOW>;
--		pinctrl-names = "default";
--		pinctrl-0 = <&sdmmc0m1_pin>;
--		regulator-name = "vcc_sd";
--		regulator-boot-on;
--		vin-supply = <&vcc_io>;
--	};
--
--	vcc_host_5v: vcc-host-5v-regulator {
--		compatible = "regulator-fixed";
--		gpio = <&gpio3 RK_PA7 GPIO_ACTIVE_HIGH>;
--		pinctrl-names = "default";
--		pinctrl-0 = <&usb30_host_drv>;
--		enable-active-high;
--		regulator-name = "vcc_host_5v";
--		regulator-always-on;
--		regulator-boot-on;
--		vin-supply = <&vcc_sys>;
--	};
--
--	vcc_sys: vcc-sys {
--		compatible = "regulator-fixed";
--		regulator-name = "vcc_sys";
--		regulator-always-on;
--		regulator-boot-on;
--		regulator-min-microvolt = <5000000>;
--		regulator-max-microvolt = <5000000>;
--	};
--
--	vcc_wifi: vcc-wifi-regulator {
--		compatible = "regulator-fixed";
--		gpio = <&gpio0 RK_PA0 GPIO_ACTIVE_LOW>;
--		pinctrl-names = "default";
--		pinctrl-0 = <&wifi_en>;
--		regulator-name = "vcc_wifi";
--		regulator-always-on;
--		regulator-boot-on;
--		vin-supply = <&vcc_io>;
--	};
--};
--
--&analog_sound {
--	status = "okay";
--};
--
--&codec {
--	status = "okay";
--};
--
--&cpu0 {
--	cpu-supply = <&vdd_arm>;
--};
--
--&cpu1 {
--	cpu-supply = <&vdd_arm>;
--};
--
--&cpu2 {
--	cpu-supply = <&vdd_arm>;
--};
--
--&cpu3 {
--	cpu-supply = <&vdd_arm>;
--};
--
--&emmc {
--	bus-width = <8>;
--	cap-mmc-highspeed;
--	mmc-ddr-1_8v;
--	mmc-hs200-1_8v;
--	non-removable;
--	pinctrl-names = "default";
--	pinctrl-0 = <&emmc_clk>, <&emmc_cmd>, <&emmc_bus8>;
--	vmmc-supply = <&vcc_io>;
--	vqmmc-supply = <&vcc18_emmc>;
--	status = "okay";
--};
--
--&gmac2io {
--	assigned-clocks = <&cru SCLK_MAC2IO>, <&cru SCLK_MAC2IO_EXT>;
--	assigned-clock-parents = <&gmac_clkin>, <&gmac_clkin>;
--	clock_in_out = "input";
--	phy-handle = <&rtl8211>;
--	phy-mode = "rgmii";
--	phy-supply = <&vcc_io>;
--	pinctrl-names = "default";
--	pinctrl-0 = <&rgmiim1_pins>;
--	snps,aal;
--	snps,rxpbl = <0x4>;
--	snps,txpbl = <0x4>;
--	tx_delay = <0x26>;
--	rx_delay = <0x11>;
--	status = "okay";
--
--	mdio {
--		compatible = "snps,dwmac-mdio";
--		#address-cells = <1>;
--		#size-cells = <0>;
--
--		rtl8211: ethernet-phy@1 {
--			reg = <1>;
--			pinctrl-0 = <&eth_phy_int_pin>, <&eth_phy_reset_pin>;
--			pinctrl-names = "default";
--			interrupt-parent = <&gpio1>;
--			interrupts = <24 IRQ_TYPE_LEVEL_LOW>;
--			reset-assert-us = <10000>;
--			reset-deassert-us = <50000>;
--			reset-gpios = <&gpio1 RK_PC2 GPIO_ACTIVE_LOW>;
--		};
--	};
--};
--
--&gmac2phy {
--	status = "okay";
--};
--
--&gpio0 {
--	gpio-line-names =
--		/* GPIO0_A0 - A7 */
--		"", "", "", "", "", "", "", "",
--		/* GPIO0_B0 - B7 */
--		"", "", "", "", "", "", "", "",
--		/* GPIO0_C0 - C7 */
--		"", "", "", "", "", "", "", "",
--		/* GPIO0_D0 - D7 */
--		"", "", "", "pin-15 [GPIO0_D3]", "", "", "", "";
--};
--
--&gpio1 {
--	gpio-line-names =
--		/* GPIO1_A0 - A7 */
--		"", "", "", "", "", "", "", "",
--		/* GPIO1_B0 - B7 */
--		"", "", "", "", "", "", "", "",
--		/* GPIO1_C0 - C7 */
--		"", "", "", "", "", "", "", "",
--		/* GPIO1_D0 - D7 */
--		"", "", "", "", "pin-07 [GPIO1_D4]", "", "", "";
--};
--
--&gpio2 {
--	gpio-line-names =
--		/* GPIO2_A0 - A7 */
--		"pin-08 [GPIO2_A0]", "pin-10 [GPIO2_A1]", "pin-11 [GPIO2_A2]",
--		"pin-13 [GPIO2-A3]", "pin-27 [GPIO2_A4]", "pin-28 [GPIO2_A5]",
--		"pin-33 [GPIO2_A6]", "",
--		/* GPIO2_B0 - B7 */
--		"", "", "", "", "pin-26 [GPIO2_B4]", "", "", "pin-36 [GPIO2_B7]",
--		/* GPIO2_C0 - C7 */
--		"pin-32 [GPIO2_C0]", "pin-35 [GPIO2_C1]", "pin-12 [GPIO2_C2]",
--		"pin-38 [GPIO2_C3]", "pin-29 [GPIO2_C4]", "pin-31 [GPIO2_C5]",
--		"pin-37 [GPIO2_C6]", "pin-40 [GPIO2_C7]",
--		/* GPIO2_D0 - D7 */
--		"", "", "", "", "", "", "", "";
--};
--
--&gpio3 {
--	gpio-line-names =
--		/* GPIO3_A0 - A7 */
--		"pin-23 [GPIO3_A0]", "pin-19 [GPIO3_A1]", "pin-21 [GPIO3_A2]",
--		"", "pin-03 [GPIO3_A4]", "", "pin-05 [GPIO3_A6]", "",
--		/* GPIO3_B0 - B7 */
--		"pin-24 [GPIO3_B0]", "", "", "", "", "", "", "",
--		/* GPIO3_C0 - C7 */
--		"", "", "", "", "", "", "", "",
--		/* GPIO3_D0 - D7 */
--		"", "", "", "", "", "", "", "";
--};
--
--&i2c1 {
--	status = "okay";
--
--	rk805: pmic@18 {
--		compatible = "rockchip,rk805";
--		reg = <0x18>;
--		interrupt-parent = <&gpio0>;
--		interrupts = <2 IRQ_TYPE_LEVEL_LOW>;
--		#clock-cells = <1>;
--		clock-output-names = "xin32k", "rk805-clkout2";
--		gpio-controller;
--		#gpio-cells = <2>;
--		pinctrl-names = "default";
--		pinctrl-0 = <&pmic_int_l>;
--		rockchip,system-power-controller;
--		wakeup-source;
--
--		vcc1-supply = <&vcc_sys>;
--		vcc2-supply = <&vcc_sys>;
--		vcc3-supply = <&vcc_sys>;
--		vcc4-supply = <&vcc_sys>;
--		vcc5-supply = <&vcc_io>;
--		vcc6-supply = <&vcc_sys>;
--
--		regulators {
--			vdd_log: DCDC_REG1 {
--				regulator-name = "vdd_log";
--				regulator-always-on;
--				regulator-boot-on;
--				regulator-min-microvolt = <712500>;
--				regulator-max-microvolt = <1450000>;
--				regulator-ramp-delay = <12500>;
--
--				regulator-state-mem {
--					regulator-on-in-suspend;
--					regulator-suspend-microvolt = <1000000>;
--				};
--			};
--
--			vdd_arm: DCDC_REG2 {
--				regulator-name = "vdd_arm";
--				regulator-always-on;
--				regulator-boot-on;
--				regulator-min-microvolt = <712500>;
--				regulator-max-microvolt = <1450000>;
--				regulator-ramp-delay = <12500>;
--
--				regulator-state-mem {
--					regulator-on-in-suspend;
--					regulator-suspend-microvolt = <950000>;
--				};
--			};
--
--			vcc_ddr: DCDC_REG3 {
--				regulator-name = "vcc_ddr";
--				regulator-always-on;
--				regulator-boot-on;
--
--				regulator-state-mem {
--					regulator-on-in-suspend;
--				};
--			};
--
--			vcc_io: DCDC_REG4 {
--				regulator-name = "vcc_io";
--				regulator-always-on;
--				regulator-boot-on;
--				regulator-min-microvolt = <3300000>;
--				regulator-max-microvolt = <3300000>;
--
--				regulator-state-mem {
--					regulator-on-in-suspend;
--					regulator-suspend-microvolt = <3300000>;
--				};
--			};
--
--			vcc_18: LDO_REG1 {
--				regulator-name = "vcc_18";
--				regulator-always-on;
--				regulator-boot-on;
--				regulator-min-microvolt = <1800000>;
--				regulator-max-microvolt = <1800000>;
--
--				regulator-state-mem {
--					regulator-on-in-suspend;
--					regulator-suspend-microvolt = <1800000>;
--				};
--			};
--
--			vcc18_emmc: LDO_REG2 {
--				regulator-name = "vcc18_emmc";
--				regulator-always-on;
--				regulator-boot-on;
--				regulator-min-microvolt = <1800000>;
--				regulator-max-microvolt = <1800000>;
--
--				regulator-state-mem {
--					regulator-on-in-suspend;
--					regulator-suspend-microvolt = <1800000>;
--				};
--			};
--
--			vdd_10: LDO_REG3 {
--				regulator-name = "vdd_10";
--				regulator-always-on;
--				regulator-boot-on;
--				regulator-min-microvolt = <1000000>;
--				regulator-max-microvolt = <1000000>;
--
--				regulator-state-mem {
--					regulator-on-in-suspend;
--					regulator-suspend-microvolt = <1000000>;
--				};
--			};
--		};
--	};
--};
--
--&i2s1 {
--	status = "okay";
--};
--
--&io_domains {
--	pmuio-supply = <&vcc_io>;
--	vccio1-supply = <&vcc_io>;
--	vccio2-supply = <&vcc18_emmc>;
--	vccio3-supply = <&vcc_io>;
--	vccio4-supply = <&vcc_io>;
--	vccio5-supply = <&vcc_io>;
--	vccio6-supply = <&vcc_io>;
--	status = "okay";
--};
--
--&pinctrl {
--	ephy {
--		eth_phy_int_pin: eth-phy-int-pin {
--			rockchip,pins = <1 RK_PD0 RK_FUNC_GPIO &pcfg_pull_down>;
--		};
--
--		eth_phy_reset_pin: eth-phy-reset-pin {
--			rockchip,pins = <1 RK_PC2 RK_FUNC_GPIO &pcfg_pull_down>;
--		};
--	};
--
--	leds {
--		led_pin: led-pin {
--			rockchip,pins = <3 RK_PA5 RK_FUNC_GPIO &pcfg_pull_none>;
--		};
--	};
--
--	pmic {
--		pmic_int_l: pmic-int-l {
--			rockchip,pins = <2 RK_PA6 RK_FUNC_GPIO &pcfg_pull_up>;
--		};
--	};
--
--	usb3 {
--		usb30_host_drv: usb30-host-drv {
--			rockchip,pins = <3 RK_PA7 RK_FUNC_GPIO &pcfg_pull_none>;
--		};
--	};
--
--	wifi {
--		wifi_en: wifi-en {
--			rockchip,pins = <0 RK_PA0 RK_FUNC_GPIO &pcfg_pull_none>;
--		};
--	};
--};
--
--&sdmmc {
--	bus-width = <4>;
--	cap-sd-highspeed;
--	disable-wp;
--	pinctrl-names = "default";
--	pinctrl-0 = <&sdmmc0_clk>, <&sdmmc0_cmd>, <&sdmmc0_dectn>, <&sdmmc0_bus4>;
--	vmmc-supply = <&vcc_sd>;
--	status = "okay";
--};
--
--&saradc {
--	vref-supply = <&vcc_18>;
--	status = "okay";
--};
--
--&tsadc {
--	status = "okay";
--};
--
--&u2phy {
--	status = "okay";
--};
--
--&u2phy_host {
--	status = "okay";
--};
--
--&uart2 {
--	status = "okay";
--};
--
--&usbdrd3 {
--	dr_mode = "host";
--	status = "okay";
--};
--
--&usb_host0_ehci {
--	status = "okay";
--};
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+
-+/dts-v1/;
-+
-+#include "rk3328-rock-pi-e.dtsi"
-+
-+/ {
-+	model = "Radxa ROCK Pi E";
-+	compatible = "radxa,rockpi-e", "rockchip,rk3328";
-+
-+	aliases {
-+		mmc0 = &sdmmc;
-+		mmc1 = &emmc;
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts b/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dtsi
-similarity index 98%
-copy from arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
-copy to arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dtsi
-index a608a219543e..1da518fd31fd 100644
---- a/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dtsi
-@@ -17,14 +17,9 @@
- #include "rk3328.dtsi"
- 
- / {
--	model = "Radxa ROCK Pi E";
--	compatible = "radxa,rockpi-e", "rockchip,rk3328";
--
- 	aliases {
- 		ethernet0 = &gmac2io;
- 		ethernet1 = &gmac2phy;
--		mmc0 = &sdmmc;
--		mmc1 = &emmc;
- 	};
- 
- 	chosen {
--- 
-2.43.0
+Frank Li (1):
+      dt-bindings: pwm: imx: Add compatible string imx8qxp-mipi-pwm
+
+Liu Ying (1):
+      pwm: imx27: Add 32k clock for pwm in i.MX8QXP MIPI subsystem
+
+ Documentation/devicetree/bindings/pwm/imx-pwm.yaml | 29 ++++++-
+ drivers/pwm/pwm-imx27.c                            | 88 ++++++++++++++++++++--
+ 2 files changed, 106 insertions(+), 11 deletions(-)
+---
+base-commit: 366b147e98c933f02176e84d73eea4b503bc5362
+change-id: 20240708-pwm-5993e602c9b2
+
+Best regards,
+---
+Frank Li <Frank.Li@nxp.com>
 
 
