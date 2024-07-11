@@ -1,131 +1,137 @@
-Return-Path: <devicetree+bounces-84931-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84933-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF74E92E42F
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 12:08:13 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4892892E445
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 12:11:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2C9BA1C2177F
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 10:08:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A5C7AB21857
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 10:11:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2CDC1581FB;
-	Thu, 11 Jul 2024 10:08:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NvqPdDVK"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16B5C15747C;
+	Thu, 11 Jul 2024 10:10:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B29DD157E93;
-	Thu, 11 Jul 2024 10:08:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 611E014E2F1
+	for <devicetree@vger.kernel.org>; Thu, 11 Jul 2024 10:10:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720692491; cv=none; b=rj6TP6RPs7utmITChqPdxaIlqIbS5oLr8EOJoqCwBETnnb6apSOGFHn6D68cJYYQ9oy1AkaeRon9nlV7wDvMu7EfYIJfGX0xezuQNxW6SrBX5SfVr92ZAPV4lW5q3k5a4pFvGfYtWQcrspF+I8vMoLr6eju5tI4QzQy1ovYn5RE=
+	t=1720692657; cv=none; b=cLPJn/6LE+CjA1Kv3VkF+HEEGB6CemgEXrDxGeY+lqgpn4U8QOpCLE4AhtaewxeaNy/gRneXve5n7hVtdKz5lc5TTXpop8Ydud65VZ49A4ElwdM2moLh5RTWsCsdHdZUn8HtZEWyPiK+/hAAGvDiMVdJ36+gxMt0WJrZkS/ExsA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720692491; c=relaxed/simple;
-	bh=IE7Jm2h3fvmnUl3/nVlvbq8s6bGeaVicXQrKPfE1cSs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=k2H3lqmuI8uGtwQiarFdHYMXSf9gAkEkdJcJk/2DOdNIitWVoaBM+TOggc26s/eSF9OY21PkM2xxerudEe7xFL2kDhbl3SwSDP6bjkyAc5mv/pzbIwuegwQOgw9ScDcQ9fZmlfhumNDD5961e09OWXRMgGUjlMAWnKYuzy2T8XE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NvqPdDVK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59B5DC116B1;
-	Thu, 11 Jul 2024 10:08:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720692491;
-	bh=IE7Jm2h3fvmnUl3/nVlvbq8s6bGeaVicXQrKPfE1cSs=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=NvqPdDVKwO19QqGj4Nfk9FXIzAOoZ3mMzj8HyRzSI1wKSx9N0uthK3aO+F+ODt7A9
-	 zdwoU35pkkMO0XJfiLGHmJn39xwSUBVJ+PaoTf56vt6qKoiTUe+Ohw8Yahs4+LdkD+
-	 rC0lv5xXJjd3cjd6SwxsCghWO/V5jb8r9UgCgcVFT26Gk3hGFv4IiBgpZYB4yxdYcg
-	 nUvusoBvU71YRXLzGJm7VozNVj9UqeI+bsgVigDvW2VxlrdJoWc1bYybBZTj3YS6Ce
-	 X2drBuHrKbHA0jvJFstNVpvuWeWquJt+1bOYS1krqvP+pJ+ZrxRIZQDhg2jqyLlCHu
-	 rJ3f1ElzAHnrg==
-Message-ID: <52cefeb5-49c4-4446-813f-df9c1b99ca55@kernel.org>
-Date: Thu, 11 Jul 2024 19:08:08 +0900
+	s=arc-20240116; t=1720692657; c=relaxed/simple;
+	bh=RKoqHfGigndorqIK0+wPq33CUvtidQBPotJNDsI3/1c=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=gaEw/Pw3t+imaR7Uyx+9/wrn0O/RH07IulZ6yoscYPhOZD2fIxw51fUbqqYbH7P6p0Zzna+6MFxYEV9X2+l/4+2zk79tkASX+s+XOSWC9x4VglbjqJriFSTAUAM8m4lRHghCX7w0MxFPN9gpeR216DI+TuMHCm2l/lC1abHEUxM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 10BDE1007;
+	Thu, 11 Jul 2024 03:11:20 -0700 (PDT)
+Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 494843F766;
+	Thu, 11 Jul 2024 03:10:53 -0700 (PDT)
+Date: Thu, 11 Jul 2024 11:10:50 +0100
+From: Andre Przywara <andre.przywara@arm.com>
+To: Chris Morgan <macroalpha82@gmail.com>
+Cc: linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org,
+ mripard@kernel.org, ryan@testtoast.com, samuel@sholland.org,
+ jernej.skrabec@gmail.com, wens@csie.org, conor+dt@kernel.org,
+ krzk+dt@kernel.org, robh@kernel.org, Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [PATCH V3 4/4] arm64: dts: allwinner: h700: Add Anbernic
+ RG35XX-SP
+Message-ID: <20240711111050.68f324b1@donnerap.manchester.arm.com>
+In-Reply-To: <20240710231718.106894-5-macroalpha82@gmail.com>
+References: <20240710231718.106894-1-macroalpha82@gmail.com>
+	<20240710231718.106894-5-macroalpha82@gmail.com>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 3/4] ata: ahci_imx: Enlarge RX water mark for i.MX8QM
- SATA
-To: Richard Zhu <hongxing.zhu@nxp.com>, tj@kernel.org, cassel@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com
-Cc: linux-ide@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- imx@lists.linux.dev, kernel@pengutronix.de
-References: <1720685518-20190-1-git-send-email-hongxing.zhu@nxp.com>
- <1720685518-20190-4-git-send-email-hongxing.zhu@nxp.com>
-From: Damien Le Moal <dlemoal@kernel.org>
-Content-Language: en-US
-Organization: Western Digital Research
-In-Reply-To: <1720685518-20190-4-git-send-email-hongxing.zhu@nxp.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On 7/11/24 17:11, Richard Zhu wrote:
-> The RXWM(RxWaterMark) sets the minimum number of free location within
-> the RX FIFO before the watermark is exceeded which in turn will cause
-> the Transport Layer to instruct the Link Layer to transmit HOLDS to
-> the transmitting end.
-> 
-> Based on the default RXWM vaulue 0x20, RX FIFO overflow might be
-> observed on i.MX8QM MEK board, when some Gen3 SATA disks are used.
-> 
-> The FIFO overflow will result in CRC error, internal error and protocol
-> error, then the SATA link is not stable anymore.
-> 
-> To fix this issue, enlarge RX water mark setting from 0x20 to 0x29.
+On Wed, 10 Jul 2024 18:17:18 -0500
+Chris Morgan <macroalpha82@gmail.com> wrote:
 
-2 remarks:
+Hi,
 
-1) this seems to be a bug/problem fix, so this likely needs a backport to stable
-(Cc: stable tag) and a Fixes tag.
-
-2) What are these magic values 0x20 and 0x29 ? Where are they defined (SoC
-specs) ? Can you define the new value using a macro with a self-descriptive name ?
-
+> From: Chris Morgan <macromorgan@hotmail.com>
 > 
-> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+> The Anbernic RG35XXSP is almost identical to the RG35XX-Plus, but in a
+> clamshell form-factor. The key differences between the SP and the Plus
+> is a lid switch and an RTC on the same i2c bus as the PMIC.
+> 
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+
+Reviewed-by: Andre Przywara <andre.przywara@arm.com>
+
+Cheers,
+Andre
+
 > ---
->  drivers/ata/ahci_imx.c | 10 ++++++++++
->  1 file changed, 10 insertions(+)
+>  arch/arm64/boot/dts/allwinner/Makefile        |  3 +-
+>  .../sun50i-h700-anbernic-rg35xx-sp.dts        | 34 +++++++++++++++++++
+>  2 files changed, 36 insertions(+), 1 deletion(-)
+>  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-sp.dts
 > 
-> diff --git a/drivers/ata/ahci_imx.c b/drivers/ata/ahci_imx.c
-> index 0e9fddd02ee5f..9147cd14f587e 100644
-> --- a/drivers/ata/ahci_imx.c
-> +++ b/drivers/ata/ahci_imx.c
-> @@ -45,6 +45,10 @@ enum {
->  	/* Clock Reset Register */
->  	IMX_CLOCK_RESET				= 0x7f3f,
->  	IMX_CLOCK_RESET_RESET			= 1 << 0,
-> +	/* IMX8QM SATA specific control registers */
-> +	IMX8QM_SATA_AHCI_VEND_PTC			= 0xc8,
-> +	IMX8QM_SATA_AHCI_VEND_PTC_RXWM_MASK		= 0x7f,
-> +	IMX8QM_SATA_AHCI_VEND_PTC_RXWM			= 0x29,
->  };
->  
->  enum ahci_imx_type {
-> @@ -466,6 +470,12 @@ static int imx8_sata_enable(struct ahci_host_priv *hpriv)
->  	phy_power_off(imxpriv->cali_phy0);
->  	phy_exit(imxpriv->cali_phy0);
->  
-> +	/* RxWaterMark setting */
-> +	val = readl(hpriv->mmio + IMX8QM_SATA_AHCI_VEND_PTC);
-> +	val &= ~IMX8QM_SATA_AHCI_VEND_PTC_RXWM_MASK;
-> +	val |= IMX8QM_SATA_AHCI_VEND_PTC_RXWM;
-> +	writel(val, hpriv->mmio + IMX8QM_SATA_AHCI_VEND_PTC);
+> diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
+> index 0db7b60b49a1..00bed412ee31 100644
+> --- a/arch/arm64/boot/dts/allwinner/Makefile
+> +++ b/arch/arm64/boot/dts/allwinner/Makefile
+> @@ -49,5 +49,6 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h618-orangepi-zero2w.dtb
+>  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h618-orangepi-zero3.dtb
+>  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h618-transpeed-8k618-t.dtb
+>  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h700-anbernic-rg35xx-2024.dtb
+> -dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h700-anbernic-rg35xx-plus.dtb
+>  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h700-anbernic-rg35xx-h.dtb
+> +dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h700-anbernic-rg35xx-plus.dtb
+> +dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h700-anbernic-rg35xx-sp.dtb
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-sp.dts b/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-sp.dts
+> new file mode 100644
+> index 000000000000..0cf16dc903cd
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-sp.dts
+> @@ -0,0 +1,34 @@
+> +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +/*
+> + * Copyright (C) 2024 Ryan Walklin <ryan@testtoast.com>.
+> + * Copyright (C) 2024 Chris Morgan <macroalpha82@gmail.com>.
+> + */
 > +
->  	return 0;
->  
->  err_sata_phy_power_on:
-
--- 
-Damien Le Moal
-Western Digital Research
+> +#include <dt-bindings/input/gpio-keys.h>
+> +#include "sun50i-h700-anbernic-rg35xx-plus.dts"
+> +
+> +/ {
+> +	model = "Anbernic RG35XX SP";
+> +	compatible = "anbernic,rg35xx-sp", "allwinner,sun50i-h700";
+> +
+> +	gpio-keys-lid {
+> +		compatible = "gpio-keys";
+> +
+> +		lid-switch {
+> +			label = "Lid Switch";
+> +			gpios = <&pio 4 7 GPIO_ACTIVE_LOW>; /* PE7 */
+> +			linux,can-disable;
+> +			linux,code = <SW_LID>;
+> +			linux,input-type = <EV_SW>;
+> +			wakeup-event-action = <EV_ACT_DEASSERTED>;
+> +			wakeup-source;
+> +		};
+> +	};
+> +};
+> +
+> +&r_i2c {
+> +	rtc_ext: rtc@51 {
+> +		compatible = "nxp,pcf8563";
+> +		reg = <0x51>;
+> +	};
+> +};
 
 
