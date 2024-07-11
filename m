@@ -1,146 +1,102 @@
-Return-Path: <devicetree+bounces-84895-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84897-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EE5992E2AC
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 10:47:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5CD592E2C7
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 10:53:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E1473283EA0
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 08:47:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 03CBA1C215DC
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 08:53:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA7621514F3;
-	Thu, 11 Jul 2024 08:47:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="i3LtjVgC"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18EBC1527AC;
+	Thu, 11 Jul 2024 08:53:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtpbg154.qq.com (smtpbg154.qq.com [15.184.224.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FD6012BF02;
-	Thu, 11 Jul 2024 08:47:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BB0F152533
+	for <devicetree@vger.kernel.org>; Thu, 11 Jul 2024 08:53:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=15.184.224.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720687646; cv=none; b=rnnI8+5TJ2zu69aIm+B9KjGejC0dkgauFNKsw7gwAeBqoGEDVJHuhoI63Pawj6Aq9wVjNJ5SEDg0TytwcNc7ib9Na8PViQM94wgkl8QLJ+RWuzGUGV6XS6W4Wb1w879XZ50HBqcBU6JITDjt/wV4ZK6YwcywROvnkDqWswrOZ14=
+	t=1720688015; cv=none; b=snia3/jOPqU997AuRPHOJXQUDDyuJIr6YTy0HX+q2uXafsoBEPKVvEOjj+9xbU55oWZ9IdH8KwYYNcRGKASYPRLe/K+MuYNvQ2l6na+A8xGMl0+UrO6dJdXaaKGUPMqTe+fqsvOlXNca4y2Iv2CMW8zcskcBo7/qGIETYt5c2rk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720687646; c=relaxed/simple;
-	bh=d8GpfJ2Q1PfZDN0jCBnDHCEhlArsUTNAUFulOADfJEo=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nb5GuF7lR71VSKnYAme74PNRjYisziLa2nTXkrkeig8cQjRkktxUVMRRUoYTcJ/lPzs12y05OQeXyLLyshMhgaqqWDpweKefmVdWFNa2VAbHfL0YnPmq+pSp5sOPSOPv4KKNKvPAjt8KGNGm3JLHkwOKqkK1WHERIN1TK5RVy7Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=i3LtjVgC; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46B4mi5V007118;
-	Thu, 11 Jul 2024 08:47:21 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=pDWMgpKauJzTFZP1oKOt5i47
-	Al4+cP5bsW3pHJR+wK8=; b=i3LtjVgCf9OyOGwwKU8jNbIXSB2S0O3P524TOQBf
-	Vvd6K4UxZn3PEt6YHoqzVOmSbfNUgTWqmHPgh1EDZiuwubw+ug3Hh2yN9D+8sMYn
-	9EU8apPhfyg1KY8NC+iD6UN76FFPKx6ckejqDP9Ji6Q6j0ADe1XKATxdPkYfFtPG
-	j1ANFoF58WjBPgcjCk/N2wKFLUp2WLqc+rix8HWyFxnkKfIKlsQx2hFaQp6XJS0U
-	pDQ2cWztWSNnfyVprk+3uUi+xSIViHGdzhhLsk93XVx5LVxAXghujQSRETe6fhK0
-	qoUE7fBXCJ2Mv0mjMSARDJwxYWyOfPxmNuOk3gJnWPhmCA==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4091jdp2p5-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 11 Jul 2024 08:47:20 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA01.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 46B8lK1f018713
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 11 Jul 2024 08:47:20 GMT
-Received: from hu-varada-blr.qualcomm.com (10.80.80.8) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Thu, 11 Jul 2024 01:47:15 -0700
-Date: Thu, 11 Jul 2024 14:17:11 +0530
-From: Varadarajan Narayanan <quic_varada@quicinc.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: <gregkh@linuxfoundation.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <quic_wcheng@quicinc.com>,
-        <johan+linaro@kernel.org>, <quic_kriskura@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v0 1/2] dt-bindings: usb: qcom,dwc3: Add minItems for
- interrupt info
-Message-ID: <Zo+cDxiog/IXdt9S@hu-varada-blr.qualcomm.com>
-References: <20240711065615.2720367-1-quic_varada@quicinc.com>
- <5fb21a62-9c9e-45ed-bf3f-c4d54f243886@kernel.org>
+	s=arc-20240116; t=1720688015; c=relaxed/simple;
+	bh=BwJV9X992t17aXZ4TxP04aIFcPKsD4LG8is1SypDwXE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YYwA97Q8nqxJ2cOwNEW223Vqra4dkAg8DX18H7T/wIktKJLWnNETOouYr3IgCcxSgGnNSvHoQiwCI0s3jjIG6DMvTpQaPHlrCTSOKhgmN+yMPQUxeHjimhLRP/bP2sUG9ls8+5y41czbe1vTckhKNsgOFE4Et3cO21lfkAeB5aw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=15.184.224.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
+X-QQ-mid: bizesmtpsz10t1720687928tuqqho
+X-QQ-Originating-IP: E4fZjx0lwKjVA+66NREMxLTii2Uo+tFD1SBVSKoINNo=
+Received: from [192.168.159.131] ( [106.150.157.243])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Thu, 11 Jul 2024 16:52:06 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 4651650904875580075
+Message-ID: <895267B189BD693F+7a2f3db5-2e67-4905-b085-5726b56bbbab@radxa.com>
+Date: Thu, 11 Jul 2024 17:52:05 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <5fb21a62-9c9e-45ed-bf3f-c4d54f243886@kernel.org>
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: wl6Zn0K8xLOwam16kYEJ3VO2eRJP6dGX
-X-Proofpoint-ORIG-GUID: wl6Zn0K8xLOwam16kYEJ3VO2eRJP6dGX
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-07-11_05,2024-07-10_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 bulkscore=0
- lowpriorityscore=0 adultscore=0 spamscore=0 malwarescore=0 mlxlogscore=786
- mlxscore=0 priorityscore=1501 phishscore=0 clxscore=1015 impostorscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2406140001
- definitions=main-2407110061
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] arm64: dts: amlogic: change product name for Radxa
+ ZERO 2 (Pro)
+To: Krzysztof Kozlowski <krzk@kernel.org>, neil.armstrong@linaro.org
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ khilman@baylibre.com, jbrunet@baylibre.com,
+ martin.blumenstingl@googlemail.com, devicetree@vger.kernel.org,
+ linux-amlogic@lists.infradead.org
+References: <20240711034035.3921122-1-naoki@radxa.com>
+ <20240711034035.3921122-2-naoki@radxa.com>
+ <1fece7cc-fa01-4bea-ac73-a975e042c669@kernel.org>
+ <DFED8CF3B42049F8+44664265-ab1e-4d45-833c-41c370e4360b@radxa.com>
+ <0036cb62-7621-4458-9011-cae56208eefc@kernel.org>
+Content-Language: en-US
+From: FUKAUMI Naoki <naoki@radxa.com>
+In-Reply-To: <0036cb62-7621-4458-9011-cae56208eefc@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: bizesmtpsz:radxa.com:qybglogicsvrgz:qybglogicsvrgz8a-1
 
-On Thu, Jul 11, 2024 at 09:47:23AM +0200, Krzysztof Kozlowski wrote:
-> On 11/07/2024 08:56, Varadarajan Narayanan wrote:
-> > IPQ5332 has only three interrupts. Update min items
-> > accordingly for interrupt names to fix the following
-> > dt_binding_check errors.
-> >
-> > 	interrupt-names: ['pwr_event', 'dp_hs_phy_irq', 'dm_hs_phy_irq'] is too short
-> >
-> > Fixes: a5c7592366af ("dt-bindings: usb: qcom,dwc3: add SC8280XP binding")
->
-> There is no ipq5332 at this commit, so I do not understand which bug are
-> you fixing.
+Hi
 
-a5c7592366af introduced this interrupt and interrupt-names block. Later, 53c6d854be4e9 added ipq5332 to this section. Since a5c7592366af introduced the maxItems and I wanted to include minItems also (to accomodate ipq5332) I used a5c7592366af in the fixes tag. Will 53c6d854be4e9 be a more appropriate choice?
+On 7/11/24 16:45, Krzysztof Kozlowski wrote:
+> On 11/07/2024 08:58, FUKAUMI Naoki wrote:
+>>>>    
+>>>>    / {
+>>>> -	compatible = "radxa,zero2", "amlogic,a311d", "amlogic,g12b";
+>>>> -	model = "Radxa Zero2";
+>>>> +	compatible = "radxa,zero-2pro", "amlogic,a311d", "amlogic,g12b";
+>>>
+>>> Keep old compatible.
+>>
+>> which is better?
+>>
+>> compatible = "radxa,zero2", "amlogic,a311d", "amlogic,g12b"; (no change)
+>>    or
+>> compatible = "radxa,zero-2pro", "radxa,zero2", "amlogic,a311d",
+>> "amlogic,g12b"; (keep old one)
+> 
+> I propose not to change anything, at least based on your
+> explanations/rationale.
 
-> > Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> > ---
-> >  Documentation/devicetree/bindings/usb/qcom,dwc3.yaml | 3 +++
-> >  1 file changed, 3 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-> > index efde47a5b145..283bac1efba9 100644
-> > --- a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-> > +++ b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-> > @@ -432,8 +432,11 @@ allOf:
-> >      then:
-> >        properties:
-> >          interrupts:
-> > +          minItems: 3
-> >            maxItems: 4
-> >          interrupt-names:
-> > +          minItems: 3
-> > +          maxItems: 4
->
-> but x1e80100 has 4, right?
+I see, I don't touch anything which already exists.
+then, can I add new "Radxa ZERO 2 Pro" product?
 
-Yes. Will have a separate block for ipq5332. Went with min/max based
-on one of the previous blocks that had min/max as two and three for
-a group of SoCs.
+--
+FUKAUMI Naoki
+Radxa Computer (Shenzhen) Co., Ltd.
 
-
-Thanks
-Varada
-
-> >            items:
-> >              - const: pwr_event
-> >              - const: dp_hs_phy_irq
->
 > Best regards,
 > Krzysztof
+> 
+> 
 
