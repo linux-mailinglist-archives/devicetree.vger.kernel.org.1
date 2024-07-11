@@ -1,149 +1,146 @@
-Return-Path: <devicetree+bounces-84894-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84895-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DCA092E29F
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 10:43:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EE5992E2AC
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 10:47:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DF2A7285CD3
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 08:43:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E1473283EA0
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 08:47:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4F32152179;
-	Thu, 11 Jul 2024 08:43:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA7621514F3;
+	Thu, 11 Jul 2024 08:47:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="yf6OX+Ww"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="i3LtjVgC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [167.172.40.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A24D78283
-	for <devicetree@vger.kernel.org>; Thu, 11 Jul 2024 08:43:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=167.172.40.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FD6012BF02;
+	Thu, 11 Jul 2024 08:47:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720687416; cv=none; b=tPubBLz/Oq8QyL2MDXmDrN8bppGBLRmeuJfjHhIEa/5BiysGO82axYgdXsfqBx6H0H23c8ddyxG4RScIHncg+JpNKirp7YsRDVBx5rRwxze/anAW/UH5wqd8gwH21ylaD9KQMLIh1mcWHrtU3KpoIxuUS8P14emEPfxFsXTyGCg=
+	t=1720687646; cv=none; b=rnnI8+5TJ2zu69aIm+B9KjGejC0dkgauFNKsw7gwAeBqoGEDVJHuhoI63Pawj6Aq9wVjNJ5SEDg0TytwcNc7ib9Na8PViQM94wgkl8QLJ+RWuzGUGV6XS6W4Wb1w879XZ50HBqcBU6JITDjt/wV4ZK6YwcywROvnkDqWswrOZ14=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720687416; c=relaxed/simple;
-	bh=Z09fS+At1jYk0KAjNpfgIJN3HcOBE2BJSY3HNrlDiN0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=eH0hV5zWmsIe+hExD5d0whE8nkRjyIHXteHe+q65m1hXNaZvs/vPD38m6/yRcFDwf+vOregtWU8rmOqEGOJpnt/bCkyIiouj1xTehff+yshaR/lmbbV3k4sQJgJV4ZulA3FNL0mw6DcFYBvuAyYEmt5jdudTK3B16kThOKzmHDQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=yf6OX+Ww; arc=none smtp.client-ip=167.172.40.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1720687400;
- bh=1Q85VnghNs5hkwDn1aNHDbw1L6VAgcZyl3McRTNEi7Q=;
- b=yf6OX+Ww2wLBow47PAgktVj16q/QAQJEwX1+EQ4TiKsI3BKIDshfduZZ1aq5P97gris3Sc4zM
- v7dA3WnCPvBeQLgovi6OT/VH+VTVpYR917h/dBpGaxVBOcEm+J9/0EoEo7J91XVs87P2K8AqV+O
- SiUM0HxaVVrJ4Eg1mOzxAMJDnZOq+js8E2LktqXT8t/rzQSZpuVuBGkOk5B8JnKPQB1H2/sjLoI
- GRzSise/HR22UUMcdTOGNo86y6GdW4MxR0rlb2V0fSZeD3BbM8sM6M7uyo2D6ONGn7+6Wc0ljO8
- FZpfuyHXiiVrCJf87NRxr8nJH90l48x4mcP3zjsyJFng==
-Message-ID: <a8c1f49e-bf25-4fd3-a16f-13088f75767f@kwiboo.se>
-Date: Thu, 11 Jul 2024 10:43:10 +0200
+	s=arc-20240116; t=1720687646; c=relaxed/simple;
+	bh=d8GpfJ2Q1PfZDN0jCBnDHCEhlArsUTNAUFulOADfJEo=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nb5GuF7lR71VSKnYAme74PNRjYisziLa2nTXkrkeig8cQjRkktxUVMRRUoYTcJ/lPzs12y05OQeXyLLyshMhgaqqWDpweKefmVdWFNa2VAbHfL0YnPmq+pSp5sOPSOPv4KKNKvPAjt8KGNGm3JLHkwOKqkK1WHERIN1TK5RVy7Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=i3LtjVgC; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46B4mi5V007118;
+	Thu, 11 Jul 2024 08:47:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=pDWMgpKauJzTFZP1oKOt5i47
+	Al4+cP5bsW3pHJR+wK8=; b=i3LtjVgCf9OyOGwwKU8jNbIXSB2S0O3P524TOQBf
+	Vvd6K4UxZn3PEt6YHoqzVOmSbfNUgTWqmHPgh1EDZiuwubw+ug3Hh2yN9D+8sMYn
+	9EU8apPhfyg1KY8NC+iD6UN76FFPKx6ckejqDP9Ji6Q6j0ADe1XKATxdPkYfFtPG
+	j1ANFoF58WjBPgcjCk/N2wKFLUp2WLqc+rix8HWyFxnkKfIKlsQx2hFaQp6XJS0U
+	pDQ2cWztWSNnfyVprk+3uUi+xSIViHGdzhhLsk93XVx5LVxAXghujQSRETe6fhK0
+	qoUE7fBXCJ2Mv0mjMSARDJwxYWyOfPxmNuOk3gJnWPhmCA==
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4091jdp2p5-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 11 Jul 2024 08:47:20 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA01.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 46B8lK1f018713
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 11 Jul 2024 08:47:20 GMT
+Received: from hu-varada-blr.qualcomm.com (10.80.80.8) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Thu, 11 Jul 2024 01:47:15 -0700
+Date: Thu, 11 Jul 2024 14:17:11 +0530
+From: Varadarajan Narayanan <quic_varada@quicinc.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: <gregkh@linuxfoundation.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <quic_wcheng@quicinc.com>,
+        <johan+linaro@kernel.org>, <quic_kriskura@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v0 1/2] dt-bindings: usb: qcom,dwc3: Add minItems for
+ interrupt info
+Message-ID: <Zo+cDxiog/IXdt9S@hu-varada-blr.qualcomm.com>
+References: <20240711065615.2720367-1-quic_varada@quicinc.com>
+ <5fb21a62-9c9e-45ed-bf3f-c4d54f243886@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: rockchip: Add missing pinctrl for PCIe30x4
- node
-To: Anand Moon <linux.amoon@gmail.com>, Heiko Stuebner <heiko@sntech.de>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240711060939.1128-1-linux.amoon@gmail.com>
-Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <20240711060939.1128-1-linux.amoon@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Report-Abuse-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-ForwardEmail-Version: 0.4.40
-X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 167.172.40.54
-X-ForwardEmail-ID: 668f9b244502e8d75e871b7e
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <5fb21a62-9c9e-45ed-bf3f-c4d54f243886@kernel.org>
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: wl6Zn0K8xLOwam16kYEJ3VO2eRJP6dGX
+X-Proofpoint-ORIG-GUID: wl6Zn0K8xLOwam16kYEJ3VO2eRJP6dGX
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-11_05,2024-07-10_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 bulkscore=0
+ lowpriorityscore=0 adultscore=0 spamscore=0 malwarescore=0 mlxlogscore=786
+ mlxscore=0 priorityscore=1501 phishscore=0 clxscore=1015 impostorscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2406140001
+ definitions=main-2407110061
 
-Hi Anand,
+On Thu, Jul 11, 2024 at 09:47:23AM +0200, Krzysztof Kozlowski wrote:
+> On 11/07/2024 08:56, Varadarajan Narayanan wrote:
+> > IPQ5332 has only three interrupts. Update min items
+> > accordingly for interrupt names to fix the following
+> > dt_binding_check errors.
+> >
+> > 	interrupt-names: ['pwr_event', 'dp_hs_phy_irq', 'dm_hs_phy_irq'] is too short
+> >
+> > Fixes: a5c7592366af ("dt-bindings: usb: qcom,dwc3: add SC8280XP binding")
+>
+> There is no ipq5332 at this commit, so I do not understand which bug are
+> you fixing.
 
-On 2024-07-11 08:09, Anand Moon wrote:
-> Add missing pinctrl settings for PCIe 3.0 x4 clock request and wake
-> signals.Each component of PCIe communication have the following control
-> signals: PERST, WAKE, CLKREQ, and REFCLK. These signals work to generate
-> high-speed signals and communicate with other PCIe devices.
-> Used by root complex to endpoint depending on the power state.
-> 
-> PERST is referred to as a fundamental reset. PERST should be held low
-> until all the power rails in the system and the reference clock are stable.
-> A transition from low to high in this signal usually indicates the
-> beginning of link initialization.
-> 
-> WAKE signal is an active-low signal that is used to return the PCIe
-> interface to an active state when in a low-power state.
-> 
-> CLKREQ signal is also an active-low signal and is used to request the
-> reference clock.
-> 
-> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-> ---
-> V2: Update the commit messge to describe the changs.
->     use pinctl group as its pre define in pinctl dtsi
-> ---
->  arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts | 6 +-----
->  1 file changed, 1 insertion(+), 5 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> index 2e7512676b7e..ab3a20986c6a 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> @@ -301,7 +301,7 @@ &pcie30phy {
->  
->  &pcie3x4 {
->  	pinctrl-names = "default";
-> -	pinctrl-0 = <&pcie3_rst>;
-> +	pinctrl-0 = <&pcie30x4m1_pins>;
+a5c7592366af introduced this interrupt and interrupt-names block. Later, 53c6d854be4e9 added ipq5332 to this section. Since a5c7592366af introduced the maxItems and I wanted to include minItems also (to accomodate ipq5332) I used a5c7592366af in the fixes tag. Will 53c6d854be4e9 be a more appropriate choice?
 
-Use of the existing pcie30x4m1_pins group may not be fully accurate for
-the PERST pin. The use of reset-gpios indicate that the PERST pin is
-used with GPIO function and the driver will implicitly change the
-function from perstn_m1 to GPIO. So this may not be best representation
-of the hw, hence my initial suggestion, something like:
+> > Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> > ---
+> >  Documentation/devicetree/bindings/usb/qcom,dwc3.yaml | 3 +++
+> >  1 file changed, 3 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+> > index efde47a5b145..283bac1efba9 100644
+> > --- a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+> > +++ b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+> > @@ -432,8 +432,11 @@ allOf:
+> >      then:
+> >        properties:
+> >          interrupts:
+> > +          minItems: 3
+> >            maxItems: 4
+> >          interrupt-names:
+> > +          minItems: 3
+> > +          maxItems: 4
+>
+> but x1e80100 has 4, right?
 
-	pcie30x4_pins: pcie30x4-pins {
-		rockchip,pins =
-			<4 RK_PB4 4 &pcfg_pull_none>,
-			<4 RK_PB6 RK_FUNC_GPIO &pcfg_pull_none>,
-			<4 RK_PB5 4 &pcfg_pull_none>;
-	};
+Yes. Will have a separate block for ipq5332. Went with min/max based
+on one of the previous blocks that had min/max as two and three for
+a group of SoCs.
 
-Similar change should probably also be done for pcie2x1l0 and pcie2x1l2,
-not just pcie3x4.
 
-Regards,
-Jonas
+Thanks
+Varada
 
->  	reset-gpios = <&gpio4 RK_PB6 GPIO_ACTIVE_HIGH>;
->  	vpcie3v3-supply = <&vcc3v3_pcie30>;
->  	status = "okay";
-> @@ -341,10 +341,6 @@ pcie2_2_rst: pcie2-2-rst {
->  	};
->  
->  	pcie3 {
-> -		pcie3_rst: pcie3-rst {
-> -			rockchip,pins = <4 RK_PB6 RK_FUNC_GPIO &pcfg_pull_none>;
-> -		};
-> -
->  		pcie3_vcc3v3_en: pcie3-vcc3v3-en {
->  			rockchip,pins = <1 RK_PA4 RK_FUNC_GPIO &pcfg_pull_none>;
->  		};
-> 
-> base-commit: 34afb82a3c67f869267a26f593b6f8fc6bf35905
-
+> >            items:
+> >              - const: pwr_event
+> >              - const: dp_hs_phy_irq
+>
+> Best regards,
+> Krzysztof
 
