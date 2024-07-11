@@ -1,289 +1,173 @@
-Return-Path: <devicetree+bounces-85020-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85021-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62CA292E8C8
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 15:05:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19FAA92E8DD
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 15:08:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DB0B11F22B15
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 13:05:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4B4A31C20E75
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 13:08:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F9F316DC1C;
-	Thu, 11 Jul 2024 13:01:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UfGTR2c0"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4110415F3E0;
+	Thu, 11 Jul 2024 13:05:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 161B21649C6;
-	Thu, 11 Jul 2024 13:01:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACD7215EFA5;
+	Thu, 11 Jul 2024 13:05:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720702892; cv=none; b=NioTWPW9Z346Yl6Mm3a638s00Bnz4PplQ3ElFq2Ctkol8vzoFPO8siIuVHgzlfuxwcfUkQnvsZvQaaZ7e7w8lPb/RzvdoFu+O+eH37ax81lZ9271lztHCjE19WF3KyMGTE9xFHL7KoojiYkD/BmghHfdHnpybqCLRjW9aYHPpuI=
+	t=1720703114; cv=none; b=snJui1ZSB08k0vIhDWIMJI9MnAelQbvltRGs2rIt0BYJdUisByr9JiiWQNogVsQyEmnJaPFjKzBkn2weTzzwe6beamYXW8Tn3H4OZFcalGmgZS0G1nHV1Njfi3zuEcUEYJO+oekPdz/rZOg1M2vgRUkSVSBhEtEjcXXhRq9MwM8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720702892; c=relaxed/simple;
-	bh=uOUBrc14CXQROg0GmbJ1hvQ4vG6llgBZHgjoFUnDoIc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=DYMS/6FaGuKSZD1IShmHLzIUMbN/CgArc2y3GlREGk4cmUrFZL2LijDIT9rw2lf9Wf01SmDdalbgqG6PFl2oPCe4oKKzyQDSLsVyqU83nVFLiZ9E9ElnWBdkT2Lz/W4RFhXFX2lihoLQTSxSMW5cmsJ+2DIW6+51tqKqEUz4EZU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UfGTR2c0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD038C4AF14;
-	Thu, 11 Jul 2024 13:01:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720702891;
-	bh=uOUBrc14CXQROg0GmbJ1hvQ4vG6llgBZHgjoFUnDoIc=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=UfGTR2c0mb//LCl3P2O7CNxYS1jq+meVCxiysI/c4yHoxBpImL0G4Zc1lDs1aEKtu
-	 ayTJUZxhDgzWxfLnK0K0CoXJBFo1t4yhC03lX7V7mhWyqhPn30XvwruWZYj1aVIO2t
-	 Jj4QoAcDScH7LPYEhmyF9mD+hluVDCvmw5JF2OxE8Q3n3Z4THl6V5MhoUJAi0dWggL
-	 s+qAhMBCd4dIiHyoTBQlqfXACicIu9bDDeT5ngTxrItTlaMNOVpi+3YqN8V5zibydW
-	 oiiur5BzW+l3thUSd3proM6atufNgYcmwEad1olycZlUiM9bJH8kc+L3s/9p5htPbL
-	 S+qn2fHqXAw6g==
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-52ea5dc3c79so1224466e87.1;
-        Thu, 11 Jul 2024 06:01:31 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUxia98FvhooGmZAo9PIcd+wDxSR+R3Tl/+dowccy95LHTMgZfh75zcjG9FUn+SDjZTFeQfmhSmGmLHPpESj7edsNQ4yPlfUIkmBpiSmPmgBs/Z4Sc38xtnB27f5C/3Nf09TMs+P6V3PQ==
-X-Gm-Message-State: AOJu0Yy5yK4Bf+y0QYnEPKC8FCc8hERjH+P1JNedjvuTaiXy11te3+pf
-	d7IppgYUdEdCIAjY/zSw4BX9VtZpP+Cc4QqAME/41nRiREY9Zho+xgvwymsSL0JnuAF0ySRKgiW
-	RB0ZR70IiKmh3QnWHP3u2OEZ1iA==
-X-Google-Smtp-Source: AGHT+IFn0UuPbLvZfuVkRjfz8hCTYlGIAhdqofeNdcUZdjAmcJ5XNVj6CqaiTspw90VZm4f4AaYPBn/93x7fwhljHWI=
-X-Received: by 2002:a05:6512:3e19:b0:52c:e17c:3753 with SMTP id
- 2adb3069b0e04-52eb9991919mr6197731e87.5.1720702889933; Thu, 11 Jul 2024
- 06:01:29 -0700 (PDT)
+	s=arc-20240116; t=1720703114; c=relaxed/simple;
+	bh=eMvRGonZwmikOscaqZfGaScC+ufpuldxLid5Fo5rzTs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lAmwOUFAIQFZIR4uYFCLjP3GY3S7D9yKrtxcN1X+2hlBYZUaRVC2b2uXhhkszb+2eBybXHXpdfim3XmaZQJnZ3gdRqVCgx/uh3Y1s4YGBjFdC6yik3R9P/MTxgsiQ9ZkcSHvqnpAz47h8h8RZN90jbai/XKik+FLEoQakBmEY+c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1A97C1007;
+	Thu, 11 Jul 2024 06:05:35 -0700 (PDT)
+Received: from pluto (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 0D3C33F766;
+	Thu, 11 Jul 2024 06:05:06 -0700 (PDT)
+Date: Thu, 11 Jul 2024 14:04:58 +0100
+From: Cristian Marussi <cristian.marussi@arm.com>
+To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc: Jonathan Corbet <corbet@lwn.net>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Cristian Marussi <cristian.marussi@arm.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Peng Fan <peng.fan@nxp.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org, arm-scmi@vger.kernel.org,
+	linux-rtc@vger.kernel.org, linux-input@vger.kernel.org
+Subject: Re: [PATCH v5 2/7] dt-bindings: firmware: add i.MX95 SCMI Extension
+ protocol
+Message-ID: <Zo_Yen-dsozJtugS@pluto>
+References: <20240621-imx95-bbm-misc-v2-v5-0-b85a6bf778cb@nxp.com>
+ <20240621-imx95-bbm-misc-v2-v5-2-b85a6bf778cb@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240711085930.26252-1-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20240711085930.26252-1-krzysztof.kozlowski@linaro.org>
-From: Rob Herring <robh@kernel.org>
-Date: Thu, 11 Jul 2024 07:01:15 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+WdctoTMNoakiY5kh4nDoNx5h522s76LoHyD_yKYvvSg@mail.gmail.com>
-Message-ID: <CAL_Jsq+WdctoTMNoakiY5kh4nDoNx5h522s76LoHyD_yKYvvSg@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: incomplete-devices: document devices
- without bindings
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Marek Vasut <marex@denx.de>, 
-	Jonathan Cameron <jic23@kernel.org>, Sebastian Reichel <sebastian.reichel@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240621-imx95-bbm-misc-v2-v5-2-b85a6bf778cb@nxp.com>
 
-On Thu, Jul 11, 2024 at 2:59=E2=80=AFAM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> There are devices in the wild with non-updatable firmware coming with
-> ACPI tables with rejected compatibles, e.g. "ltr,ltrf216a".  Linux
-> kernel still supports this device via ACPI PRP0001, however the
-> compatible was never accepted to bindings.
->
-> There are also several early PowerPC or SPARC platforms using
-> compatibles for their OpenFirmware, but without in-tree DTS.  Often the
-> compatible is not correct in terms of Devicetree specification,
-> e.g. missing vendor prefix.
->
-> Finally there are also Linux-specific tools and test code with
-> compatibles.
->
-> Add a schema covering above cases purely to satisfy the DT schema and
-> scripts/checkpatch.pl checks for undocumented compatibles.  For
-> ltr,ltrf216a this also documents the consensus: compatible is allowed
-> only via ACPI PRP0001, but not bindings.
->
-> Link: https://lore.kernel.org/all/20240705095047.90558-1-marex@denx.de/
-> Link: https://lore.kernel.org/lkml/20220731173446.7400bfa8@jic23-huawei/T=
-/#me55be502302d70424a85368c2645c89f860b7b40
-> Cc: Marek Vasut <marex@denx.de>
-> Cc: Jonathan Cameron <jic23@kernel.org>
-> Cc: Sebastian Reichel <sebastian.reichel@collabora.com>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->
+On Fri, Jun 21, 2024 at 03:04:37PM +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
+> 
+
+LGTM.
+Reviewed-by: Cristian Marussi <cristian.marussi@arm.com>
+
+Thanks,
+Cristian
+
+> Add i.MX SCMI Extension protocols bindings for:
+> - Battery Backed Module(BBM) Protocol
+>   This contains persistent storage (GPR), an RTC, and the ON/OFF button.
+>   The protocol can also provide access to similar functions implemented via
+>   external board components.
+> - MISC Protocol.
+>   This includes controls that are misc settings/actions that must be exposed
+>   from the SM to agents. They are device specific and are usually define to
+>   access bit fields in various mix block control modules, IOMUX_GPR, and
+>   other GPR/CSR owned by the SM.
+> 
+> Reviewed-by: "Rob Herring (Arm)" <robh@kernel.org>
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
 > ---
->
-> Changes in v2:
-> 1. Rename to incomplete-devices.yaml
-> 2. Add many compatibles based on Rob's feedback, rewrite descriptions in
->    the schema.
-> ---
->  .../bindings/incomplete-devices.yaml          | 139 ++++++++++++++++++
->  1 file changed, 139 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/incomplete-devices.=
-yaml
->
-> diff --git a/Documentation/devicetree/bindings/incomplete-devices.yaml b/=
-Documentation/devicetree/bindings/incomplete-devices.yaml
+>  .../devicetree/bindings/firmware/arm,scmi.yaml     |  5 ++-
+>  .../bindings/firmware/nxp,imx95-scmi.yaml          | 43 ++++++++++++++++++++++
+>  2 files changed, 47 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> index 4d823f3b1f0e..47f0487e35de 100644
+> --- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> +++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> @@ -22,6 +22,9 @@ description: |
+>  
+>    [0] https://developer.arm.com/documentation/den0056/latest
+>  
+> +anyOf:
+> +  - $ref: /schemas/firmware/nxp,imx95-scmi.yaml
+> +
+>  properties:
+>    $nodename:
+>      const: scmi
+> @@ -284,7 +287,7 @@ properties:
+>      required:
+>        - reg
+>  
+> -additionalProperties: false
+> +unevaluatedProperties: false
+>  
+>  $defs:
+>    protocol-node:
+> diff --git a/Documentation/devicetree/bindings/firmware/nxp,imx95-scmi.yaml b/Documentation/devicetree/bindings/firmware/nxp,imx95-scmi.yaml
 > new file mode 100644
-> index 000000000000..d690d44560fd
+> index 000000000000..1a95010a546b
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/incomplete-devices.yaml
-> @@ -0,0 +1,139 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +++ b/Documentation/devicetree/bindings/firmware/nxp,imx95-scmi.yaml
+> @@ -0,0 +1,43 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright 2024 NXP
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/incomplete-devices.yaml#
+> +$id: http://devicetree.org/schemas/firmware/nxp,imx95-scmi.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Rejected or Incomplete Devices
+> +title: i.MX95 System Control and Management Interface(SCMI) Vendor Protocols Extension
 > +
 > +maintainers:
-> +  - Rob Herring <robh@kernel.org>
-> +
-> +description:
-> +  Some devices will not or should not get a proper Devicetree bindings, =
-but
-> +  their compatibles are present in Linux drivers for various reasons.
-> +
-> +  Examples are devices using ACPI PRP0001 with non-updatable firmware/AC=
-PI
-> +  tables or old PowerPC platforms without in-tree DTS.
-> +
-> +  Following list of devices is an incomplete schema with a goal to pass =
-DT schema
-> +  checks on undocumented compatibles but also reject any DTS file using =
-such
-> +  un-approved compatible.
-> +
-> +  Usage of any of following compatibles is not allowed in Devicetree sou=
-rces,
-> +  even if they come from immutable firmware.
+> +  - Peng Fan <peng.fan@nxp.com>
 > +
 > +properties:
-> +  compatible:
-> +    oneOf:
-> +      - description:
-> +          Rejected compatibles in Devicetree, but used in ACPI-based dev=
-ices
-> +          with non-updatable firmware/ACPI tables (via ACPI PRP0001)
-> +        enum:
-> +          - broadcom,bcm5241
-> +          - ltr,ltrf216a
+> +  protocol@81:
+> +    $ref: '/schemas/firmware/arm,scmi.yaml#/$defs/protocol-node'
+> +    unevaluatedProperties: false
 > +
-> +      - description: Incorrect compatibles used on Macintosh devices
-
-They were correct at the time. Rules/standards evolve though. I would
-just say 'Legacy" rather than "Incorrect".
-
-> +        enum:
-> +          - adm1030
-> +          - bmac+
-> +          - heathrow-media-bay
-> +          - keylargo-media-bay
-> +          - lm87cimt
-> +          - MAC,adm1030
-> +          - MAC,ds1775
-> +          - max6690
-> +          - ohare-media-bay
-> +          - ohare-swim3
-> +          - smu-sat
-> +          - swim3
+> +    properties:
+> +      reg:
+> +        const: 0x81
 > +
-> +      - description: Incorrect compatibles used on other PowerPC devices
-> +        enum:
-> +          - 1682m-rng
-> +          - IBM,lhca
-> +          - IBM,lhea
-> +          - IBM,lhea-ethernet
-
-> +          - mpc5200b-fec-phy
-> +          - mpc5200-serial
-> +          - mpc5200-sram
-
-Tell Grant he needs to document these. ;) JK
-
-> +          - ohci-bigendian
-> +          - ohci-le
-> +          - ohci-littledian
-
-Given the typo, I think we can just drop this one from the driver.
-
+> +  protocol@84:
+> +    $ref: '/schemas/firmware/arm,scmi.yaml#/$defs/protocol-node'
+> +    unevaluatedProperties: false
 > +
-> +      - description: Incorrect compatibles used on SPARC devices
-> +        enum:
-> +          - bq4802
-> +          - ds1287
-> +          - isa-m5819p
-> +          - isa-m5823p
-> +          - m5819
-> +          - sab82532
-> +          - SUNW,bbc-beep
-> +          - SUNW,bbc-i2c
-> +          - SUNW,CS4231
-> +          - SUNW,ebus-pic16f747-env
-> +          - SUNW,kt-cwq
-> +          - SUNW,kt-mau
-> +          - SUNW,n2-cwq
-> +          - SUNW,n2-mau
-> +          - SUNW,niusl
-> +          - SUNW,smbus-beep
-> +          - SUNW,sun4v-console
-> +          - SUNW,sun4v-pci
-> +          - SUNW,vf-cwq
-> +          - SUNW,vf-mau
+> +    properties:
+> +      reg:
+> +        const: 0x84
 > +
-> +      - description: Incomplete and incorrect compatibles for unknown de=
-vices
-> +        enum:
-> +          - electra-cf
-> +          - i2cpcf,8584
-> +          - virtio,uml
+> +      nxp,ctrl-ids:
+> +        description:
+> +          Each entry consists of 2 integers, represents the ctrl id and the value
+> +        items:
+> +          items:
+> +            - description: the ctrl id index
+> +              enum: [0, 1, 2, 3, 4, 5, 6, 7, 0x8000, 0x8001, 0x8002, 0x8003,
+> +                     0x8004, 0x8005, 0x8006, 0x8007]
+> +            - description: the value assigned to the ctrl id
+> +        minItems: 1
+> +        maxItems: 16
+> +        $ref: /schemas/types.yaml#/definitions/uint32-matrix
 > +
-> +      - description: Linux kernel unit tests and sample code
-> +        enum:
-> +          - audio-graph-card2-custom-sample
-> +          - compat1
-> +          - compat2
-> +          - compat3
-> +          - linux,spi-loopback-test
-> +          - mailbox-test
-> +          - regulator-virtual-consumer
-> +          - unittest-gpio
-> +          - unittest-pci
-
-We recently added "test" as a vendor prefix and don't complain if
-"test,.*" compatible is not documented. It's on my todo to change
-these. So I'd drop the unittest ones.
-
-> +
-> +      - description:
-> +          Devices on MIPS platform, without any DTS users.  These are
-> +          unlikely to get converted to DT schema.
-> +        enum:
-> +          - mti,ranchu
-> +
-> +      - description:
-> +          Devices on PowerPC platform, without any DTS users.  These are
-> +          unlikely to get converted to DT schema.
-> +        enum:
-> +          - fujitsu,coral
-> +          - fujitsu,lime
-> +          - fujitsu,MB86276
-> +          - fujitsu,MB86277
-> +          - fujitsu,MB86293
-> +          - fujitsu,MB86294
-> +          - fujitsu,mint
-> +          - ibm,axon-msic
-> +          - ibm,pmemory
-> +          - ibm,pmemory-v2
-> +          - ibm,power-rng
-> +          - ibm,ppc4xx-spi
-> +          - ibm,sdram-4xx-ddr2
-> +          - ibm,secureboot
-> +          - ibm,secureboot-v1
-> +          - ibm,secureboot-v2
-> +          - ibm,secvar-backend
-> +          - sgy,gpio-halt
-> +          - wrs,epld-localbus
-> +
-> +required:
-> +  - compatible
-> +  - broken-usage-of-incorrect-compatible
-> +
-> +additionalProperties: false
-> --
-> 2.43.0
->
->
+> +additionalProperties: true
+> 
+> -- 
+> 2.37.1
+> 
 
