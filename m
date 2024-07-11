@@ -1,281 +1,199 @@
-Return-Path: <devicetree+bounces-85107-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85108-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CF9492EF19
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 20:46:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B935892EF3E
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 20:58:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 83A93B22779
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 18:46:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DCD7F1C225AD
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 18:58:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAE2B16E895;
-	Thu, 11 Jul 2024 18:46:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C648016E88D;
+	Thu, 11 Jul 2024 18:58:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RmWBJHUn"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hNlLmHTl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3089816E88D;
-	Thu, 11 Jul 2024 18:46:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D5A874297;
+	Thu, 11 Jul 2024 18:58:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720723594; cv=none; b=JwG08d+rtMNFrx9aF+aBL5vVIfw/i8PBftwXRco+du75z6GJ/e/2V/U1QGxcpCx0lHsoOXpAF+DwDvdTSUBHW5yfYKKftNLLna31IbIVeQxkp1czd/1sF24OhmSrsgO8nC/TGqIr5cuurV0oltFBlOQ7XH19jJ574H237MVnYUU=
+	t=1720724317; cv=none; b=JRSBfAQUQzewUNnmJ+n+3hPP1o+0IeUWWpsWtRxThebFg0snYaSkMjfu4xOx3QVR2QHRuC20V2dIkf+ie6zAzLCMY//yOrp6De2+DVZ/SVG1SR55qWlc0EuuGZLx3ymZks+lYkO5boWzu64aFhwj6m0IILV3kSDxfKMq6KyyUjk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720723594; c=relaxed/simple;
-	bh=g1szUU6O5h5jZ13hX7mdGpmDkL9RT5EpovYh9YOU2+E=;
+	s=arc-20240116; t=1720724317; c=relaxed/simple;
+	bh=lTJyaO3NRh1SLmZ3yrTny929BvkSro0S61px1Myed5Q=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ag9HAA8TvgP4KMEb6QQ1d2pqHv/fqU8+tyRBOVBQ/iZSiFRops2d53XMEbVIyg70McYX9fdcSMJ1dSYgzcyyBY4HpqbqCR4yGcovEM9SXXBNx+chKBgx3+XOoPtYKvkYq0V4INu0R90uBpMMZUsB8fZFKuAcmQxpVQGk+WCF5Pc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RmWBJHUn; arc=none smtp.client-ip=209.85.128.176
+	 To:Cc:Content-Type; b=HhoLmtn+JLIdGafX01OiH2g+6GohaDjYOgPi3DDvg8uzAtd0jqRRAJR+8UQ1/Oz3F+g6nM+3fFBH122Gt15rpm2fZpppYYF8rQB2S6StgcPC+oLNnJORMizGVXRuzPk5b8Zkvlsaq3mrrJXaMrsWNSU0Y7wTbgQnUq3LUsOHQD0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hNlLmHTl; arc=none smtp.client-ip=209.85.208.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-63036fa87dbso8736827b3.1;
-        Thu, 11 Jul 2024 11:46:31 -0700 (PDT)
+Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-58bac81f3f9so1603651a12.2;
+        Thu, 11 Jul 2024 11:58:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1720723591; x=1721328391; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1720724314; x=1721329114; darn=vger.kernel.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=7AnrZ08vTP6o9S9SQ4qP+LVla/5fbZ409g1w9Y/pgfo=;
-        b=RmWBJHUnn6CFV8Bc1eIEGWZF7UeDRYfKZi4QRTSauZUQmrJ9CzTAZYq7anX8gUBkGL
-         IFJz5eawl0YA+zlZzwHzTw91MoGv/6B44N0rjviUcsoGGCKFSllskdInQwnWMsaegY33
-         LWKNaIGXsZzNmQ2AK2Lzhd1fweGCJRwO67nwirjwaNrCDv+S3SmDYUIyOy9w3Zn1NAY+
-         EJL2jpUT54jpAoReo2f1dXT9VV07Aix5MuUPyaIS36Ca0z1MeTpMZ7ymtven3TDeQsSH
-         WlUbNXKgK7sEi1ObKWmU6TVSl1BkY8L8cp9Hm3p8Sul/r9MU1ygFPfzg8V8T3nTP6crG
-         xAZg==
+        bh=7BPXidIi57y7av2TEkb5R0zgpsgd6KdF8/DSPaJwaQ8=;
+        b=hNlLmHTl5r+v24odrwNK2Oug2conLzA6Y9/P2HbintnfFj6UeQvo8daqZfW6MWN2bD
+         RWzrtoNinKMB1ozayr0Tut0pJ2/w9tih+cfdpU/JIugJr+hEPIsa14z7cDTh6ZJGliii
+         cvWhUPrY40gFbcuwctUUBRSuuuC2Pxkw2+OkiwYekE0GQFkmJoLCvFUzk/A58KVd8O3s
+         BvlwcaTNtHXxZ6GC6Yuk8b6O+TTq0IL/V913mMm9vpyHETEGjvw96GTaiOdj2UW6xp5q
+         81czuC7FfkVsmIwTSzf8pQ3vDK+wZmWXz7jr7xBAxKG5BmA0kCITJF7ypS3I+4lGl1Tg
+         rkiQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720723591; x=1721328391;
+        d=1e100.net; s=20230601; t=1720724314; x=1721329114;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=7AnrZ08vTP6o9S9SQ4qP+LVla/5fbZ409g1w9Y/pgfo=;
-        b=bF0YAPZPg23g/yIWBWzM3cPjiIDI9ylM1No3kWj6yQ/PlCTLpCT3Io91Hu9EE9YO8Y
-         xwfHGlc1xm5nUcYtsVt7+Gu5O7mSki6wf9PTyH7gHhu7H6MpRTrwUq61HwI4rnp5hXIw
-         Lj7Cvp7qKG6g2zAXw23La58SacPYhShMhJrZYGJeDeWuuVV9b3L5dA28kh2TGzbIugzL
-         CxbnQ4ce/b3e46WNECxmfmh6hHli9+NFrQVbMvcj2Ia+vV0UftD74iF5TvPIcnKM48VH
-         rCu2b4YbzI+L9Q3+Xklmg9g04YCY1ewmSP2mXrL+Kk+22R250Rlt1YCBVRNGV+m2jRLX
-         +m6Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXV3BYi1ToaGhOcuflXV+V5ccxHj+vC1RNPQDkUMHkMbW8uomS0ad06hL1NH5APBypXfAbytdnFxBSNON4XzAV0nrY78KeqndFW+c9UrgtmcemiJ4MQz7ai0EkIfls17F+6QI9ICnNy4zDz0N23nNUsbyxSK/n0XGVfT58V6ZybKTFWIg==
-X-Gm-Message-State: AOJu0Yxp3nuXrSicHwGjLsIk+P7eBAqKxOvZZHn63OAHbc8OGuT6hc0f
-	Blz6x2nFDMpaiRKm3woHsis/Bm3ZWZI2hkAlu/T+54/b5gdY+eFj6ezwXYnAEZ0Rp/Bx70+4r6m
-	loUaIk/xBkYqWi46Y8flGq7tpei4=
-X-Google-Smtp-Source: AGHT+IHyLGQM0uxkb0nc5QlB4xpEbd2pIqu3s2+nZvwNa5poPdc6GJlQIotFJGHAEgTCVpB/d8dZ/M0Dd5AajU7oZKg=
-X-Received: by 2002:a05:690c:6385:b0:64b:82d6:75b9 with SMTP id
- 00721157ae682-65dfcf9ba67mr4192027b3.7.1720723591129; Thu, 11 Jul 2024
- 11:46:31 -0700 (PDT)
+        bh=7BPXidIi57y7av2TEkb5R0zgpsgd6KdF8/DSPaJwaQ8=;
+        b=RHibCS5Qe0jUhd0rNh6yIflYhbRadyFF0pq4CwWp3asZBdqLn2IvO5yGZaSjiozRFb
+         0O7LVgwyLT8iKCwrmNQ5+ASBDitdNhIiGpotM+FB1+zYPxSsKbo25TQTyXt4Lfq4kRNR
+         9wNrrj/aWU5CieZ8CCvJ3nq1TCD+3U1mrxLANULd6QiM72PKlSsrnTmMin20GcDr2eYO
+         cl4qVDZP2Bo95mrZwiRIB1JjIL5tI5iaWUKQmMVmIp3HvtrmtOtxxvXqV482fGXeOUeH
+         d0UDZKbdBKaabsymeLJLfZqyahngnaEYUBdUnCSNQ1tkllTIooKMHRdZTQy4r/yI3eE4
+         JvUw==
+X-Forwarded-Encrypted: i=1; AJvYcCW/Rg1f1g1RETKaBGvQ+1xkcfs3x2Lp+6E1qJQBB46A3X4vKGoTghFyZN3RFZzNYx0JtJIAeM8M4DRNJRTbEjOQoT5+KBRSu68G9Gt3FtXOqoVW26JGDhw2rpMLVS8u7RVbSczWkAgOOQ==
+X-Gm-Message-State: AOJu0YzujKXwV+tzk0gp0k4Ypkr4kSX86vvR5kEKa6HycPlzZ7ZOe6TA
+	ULAikUYY1f7Eem+hzuZT1MLJUfzINHPUPqjBdKXw7BXVP5LuQEMULwjlEIYqhdWZdEkGuT2pBgI
+	weuBqE3AOixO3AMei6I+1NHQvKA==
+X-Google-Smtp-Source: AGHT+IHUue7KlCkosbibWLlrwqSbPA31mFvvX7MrL47CNXsBcvVqQiOnEkanbSXVw3FeHULhCh5GuIhNrpSRu3Msg64=
+X-Received: by 2002:a05:6402:34d5:b0:57c:a49f:ddd4 with SMTP id
+ 4fb4d7f45d1cf-594b9ee10d4mr6979931a12.17.1720724313998; Thu, 11 Jul 2024
+ 11:58:33 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240702191650.57364-1-tmaimon77@gmail.com> <20240702191650.57364-3-tmaimon77@gmail.com>
- <CADKL2t4F20iFdwxDH0PXCa8-HO_cDhYzu+ObyzwaazWWkKj-tg@mail.gmail.com>
-In-Reply-To: <CADKL2t4F20iFdwxDH0PXCa8-HO_cDhYzu+ObyzwaazWWkKj-tg@mail.gmail.com>
-From: Tomer Maimon <tmaimon77@gmail.com>
-Date: Thu, 11 Jul 2024 21:46:20 +0300
-Message-ID: <CAP6Zq1irF7iZkH6kTCfTNRWY0bzoRv5W65QKwXyDCfUU5TrQCA@mail.gmail.com>
-Subject: Re: [PATCH v26 2/3] reset: npcm: register npcm8xx clock auxiliary bus device
-To: Benjamin Fair <benjaminfair@google.com>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de, 
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, tali.perry1@gmail.com, 
-	joel@jms.id.au, venture@google.com, yuenn@google.com, 
-	openbmc@lists.ozlabs.org, linux-clk@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20240629103914.161530-1-erezgeva@nwtime.org> <20240629103914.161530-4-erezgeva@nwtime.org>
+ <1c457520-07b7-4bde-b040-e8bca959a4f5@linaro.org> <CANeKEMOODBNZA6efh0E0Ga_KaVs5Y3WLcUftRhNwYHhnXO=GNw@mail.gmail.com>
+ <CANeKEMO42rJt5Ob4_HDcZ3eEMvuMOPvRaFaLwL8SA65NtxSV7A@mail.gmail.com>
+ <1d56c3b2-7adf-45b9-a509-956340f3f17b@linaro.org> <CANeKEMMe-Onpn7xWQHgWz1Ps_uQPEMa7HrKA00HpoKjG+DCJNQ@mail.gmail.com>
+ <3bafcbea-6aa5-43ca-9d12-3916be3fe03d@linaro.org> <CANeKEMM02-Jvb8Pd0fZJFnRg-hsAW+hckYWm11tZZXNMPSPJ=w@mail.gmail.com>
+ <9b45cc73-2251-4085-af95-7ccd00dd6d3b@linaro.org> <CANeKEMP+mRefYZNb+TuBmOD7dC6=7Rg7D1EcfnjJoiaeaV28SQ@mail.gmail.com>
+ <875xtd48ps.fsf@geanix.com>
+In-Reply-To: <875xtd48ps.fsf@geanix.com>
+From: Erez <erezgeva2@gmail.com>
+Date: Thu, 11 Jul 2024 20:57:57 +0200
+Message-ID: <CANeKEMNJ3_ET5pQo2wg7_GSLX+vE+dqW-CV=v2DnG10xcgSdzQ@mail.gmail.com>
+Subject: Re: [PATCH v2 3/4] dt-bindings: mtd: macronix,mx25l12833f: add
+ SPI-NOR chip
+To: Esben Haabendal <esben@geanix.com>
+Cc: Tudor Ambarus <tudor.ambarus@linaro.org>, Jaime Liao <jaimeliao@mxic.com.tw>, leoyu@mxic.com.tw, 
+	Alvin Zhou <alvinzhou@mxic.com.tw>, Julien Su <juliensu@mxic.com.tw>, 
+	Erez Geva <erezgeva@nwtime.org>, linux-mtd@lists.infradead.org, 
+	Pratyush Yadav <pratyush@kernel.org>, Michael Walle <mwalle@kernel.org>, linux-kernel@vger.kernel.org, 
+	Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, 
+	Vignesh Raghavendra <vigneshr@ti.com>, devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 
-Hi Benjamin,
+Yes, I think we should.
 
-Highly appreciated!
+Reading the specification provided publicly by Macronix.
+For all the JEDEC IDs with the no SFDP flag in drivers/mtd/spi-nor/macronix.c
+All of them have a new version or a new chip with the same JEDEC ID
+that supports SFDP.
+There are 2 chips that Macronix does not provide spec. in public.
+I can ask Macronix technical support on these 2 chips.
 
-Thanks a lot
+Erez
 
-Tomer
+"RDID"    "Part."         "Size"              "Status"          "SFDP
+status according to spec. or new chip replacing with same RDID and
+SFDP supported according to spec."
+c22012  MX25L2005(A)  SZ_256K =  2Mb    EOL             MX25L2006E
+c22013  MX25L4005A    SZ_512K =  4Mb    EOL             MX25L4006E
+c22533  MX25U4035     SZ_512K =  4Mb    EOL             MX25U4033E
+c22534  MX25U8035     SZ_1M   =  8Mb    EOL             MX25U8033E
+c22016  MX25L3205D    SZ_4M   =  32Mb   EOL             MX25L3233F
+c22017  MX25L6405D    SZ_8M   =  64Mb   EOL             MX25L6406E / MX25L6433F
+c22018  MX25L12805D   SZ_16M  =  128Mb  EOL             MX25L12833F
+c22538  MX25U12835F   SZ_16M  =  128Mb  EOL             MX25U12832F
+c2253a  MX66U51235F   SZ_64M  =  512Mb  EOL             MX25U51245G
+c22532  MX25U2033E    SZ_256K =  2Mb    EOL             Have-SFDP!
+c22010  MX25L512E     SZ_64K  =  512Kb  NO_REC          Have-SFDP!
+c22015  MX25L1606E    SZ_2M   =  16Mb   NO_REC          Have-SFDP!
+c22536  MX25U3235F    SZ_4M   =  32Mb   NO_REC          Have-SFDP!
+c22816  MX25R3235F    SZ_4M   =  32Mb   NO_REC          Have-SFDP!
+c22537  MX25U6435F    SZ_8M   =  64Mb   NO_REC          Have-SFDP!
+c22019  MX25L25635E   SZ_32M  =  256Mb  NO_REC          Have-SFDP!
+c22539  MX25U25635F   SZ_32M  =  256Mb  NO_REC          Have-SFDP!
+c2201a  MX66L51235F   SZ_64M  =  512Mb  NO_REC          Have-SFDP!
+c2253a  MX25U51245G   SZ_64M  =  512Mb  PROD            Have-SFDP!
+c22314  MX25V8035F    SZ_1M   =  8Mb    PROD            Have-SFDP!
+c22815  MX25R1635F    SZ_2M   =  16Mb   PROD            Have-SFDP!
+c2201b  MX66L1G45G    SZ_128M =  1Gb    PROD            Have-SFDP!
+c2253c  MX66U2G45G    SZ_256M =  2Gb    PROD            Have-SFDP!
+c2261b  MX66L1G55G    SZ_128M =  1Gb    NO_REC          Spec. is not public
+c29e16  MX25L3255E    SZ_4M   =  32Mb   PROD            Spec. is not public
 
-On Thu, 11 Jul 2024 at 21:13, Benjamin Fair <benjaminfair@google.com> wrote:
+EOL     End of Life
+PROD    Production
+NO_REC  Not recommend
+
+
+On Wed, 10 Jul 2024 at 16:34, Esben Haabendal <esben@geanix.com> wrote:
 >
-> On Tue, 2 Jul 2024 at 12:17, Tomer Maimon <tmaimon77@gmail.com> wrote:
-> >
-> > Add NPCM8xx clock controller auxiliary bus device registration.
-> >
-> > The NPCM8xx clock controller is registered as an aux device because the
-> > reset and the clock controller share the same register region.
-> >
-> > Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+> Erez <erezgeva2@gmail.com> writes:
 >
-> I booted a kernel with this driver and verified that basic
-> functionality works fine.
+> > On Wed, 3 Jul 2024 at 09:12, Tudor Ambarus <tudor.ambarus@linaro.org> wrote:
+> >> On 7/3/24 12:16 AM, Erez wrote:
+> >>> On Tue, 2 Jul 2024 at 07:00, Tudor Ambarus <tudor.ambarus@linaro.org> wrote:
+> >>>
+> >>> The table below uses fixed width characters.
+> >>>
+> >>> ID      Part.         Size              Status          SFDP status
+> >>> according to spec.
+> >>>                                                         New chip with
+> >>> SFDP for EOL
+> >>> c22012  MX25L2005(A)  SZ_256K =  2Mb    EOL             MX25L2006E
+> >>> c22532  MX25U2033E    SZ_256K =  2Mb    EOL
+> >>> c22013  MX25L4005A    SZ_512K =  4Mb    EOL
+> >>> c22533  MX25U4035     SZ_512K =  4Mb    EOL
+> >>> c22534  MX25U8035     SZ_1M   =  8Mb    EOL
+> >>> c22016  MX25L3205D    SZ_4M   =  32Mb   EOL             MX25L3233F
+> >>> c29e16  MX25L3255E    SZ_4M   =  32Mb   EOL
+> >>> c22017  MX25L6405D    SZ_8M   =  64Mb   EOL
+> >>> c22018  MX25L12805D   SZ_16M  =  128Mb  EOL             MX25L12833F
+> >>> c22538  MX25U12835F   SZ_16M  =  128Mb  EOL
+> >>> c2253a  MX66U51235F   SZ_64M  =  512Mb  EOL             MX25U51245G
+> >>> c22010  MX25L512E     SZ_64K  =  512Kb  NO_REC          Have-SFDP!
+> >>> c22015  MX25L1606E    SZ_2M   =  16Mb   NO_REC          Have-SFDP!
+> >>> c22536  MX25U3235F    SZ_4M   =  32Mb   NO_REC          Have-SFDP!
+> >>> c22816  MX25R3235F    SZ_4M   =  32Mb   NO_REC          Have-SFDP!
+> >>> c22537  MX25U6435F    SZ_8M   =  64Mb   NO_REC          Have-SFDP!
+> >>> c22019  MX25L25635E   SZ_32M  =  256Mb  NO_REC          Have-SFDP!
+> >>> c22539  MX25U25635F   SZ_32M  =  256Mb  NO_REC          Have-SFDP!
+> >>> c2201a  MX66L51235F   SZ_64M  =  512Mb  NO_REC          Have-SFDP!
+> >>> c2261b  MX66L1G55G    SZ_128M =  1Gb    NO_REC          Spec. is not public
+> >>> c22314  MX25V8035F    SZ_1M   =  8Mb    PROD            Have-SFDP!
+> >>> c22815  MX25R1635F    SZ_2M   =  16Mb   PROD            Have-SFDP!
+> >>> c2201b  MX66L1G45G    SZ_128M =  1Gb    PROD            Have-SFDP!
+> >>> c2253c  MX66U2G45G    SZ_256M =  2Gb    PROD            Have-SFDP!
+> >>> c2253a  MX25U51245G   SZ_64M  =  512Mb  PROD            Have-SFDP!
+> >>>
+> >>> EOL     End of Life
+> >>> PROD    Normal Production
+> >>> NO_REC  Not recommend for new design
+> >>>
+> >>>
+> >>
+> >> not sure what you want me to do with these.
+> >
+> > That we can read SFDP for all chips from Macronix.
+> > Only old chips before 2010 do not have SFDP.
 >
-> Tested-by: Benjamin Fair <benjaminfair@google.com>
+> So, should we try and identify new chips (with SFDP) that re-use the ID of all the
+> above mentioned EOL chips that does not have SFDP?
 >
-> > ---
-> >  drivers/reset/Kconfig               |  1 +
-> >  drivers/reset/reset-npcm.c          | 74 ++++++++++++++++++++++++++++-
-> >  include/soc/nuvoton/clock-npcm8xx.h | 16 +++++++
-> >  3 files changed, 90 insertions(+), 1 deletion(-)
-> >  create mode 100644 include/soc/nuvoton/clock-npcm8xx.h
-> >
-> > diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
-> > index 7112f5932609..31ec8795c105 100644
-> > --- a/drivers/reset/Kconfig
-> > +++ b/drivers/reset/Kconfig
-> > @@ -148,6 +148,7 @@ config RESET_MESON_AUDIO_ARB
-> >  config RESET_NPCM
-> >         bool "NPCM BMC Reset Driver" if COMPILE_TEST
-> >         default ARCH_NPCM
-> > +       select AUXILIARY_BUS
-> >         help
-> >           This enables the reset controller driver for Nuvoton NPCM
-> >           BMC SoCs.
-> > diff --git a/drivers/reset/reset-npcm.c b/drivers/reset/reset-npcm.c
-> > index 8935ef95a2d1..aa68b947226a 100644
-> > --- a/drivers/reset/reset-npcm.c
-> > +++ b/drivers/reset/reset-npcm.c
-> > @@ -1,6 +1,7 @@
-> >  // SPDX-License-Identifier: GPL-2.0
-> >  // Copyright (c) 2019 Nuvoton Technology corporation.
-> >
-> > +#include <linux/auxiliary_bus.h>
-> >  #include <linux/delay.h>
-> >  #include <linux/err.h>
-> >  #include <linux/io.h>
-> > @@ -10,11 +11,14 @@
-> >  #include <linux/property.h>
-> >  #include <linux/reboot.h>
-> >  #include <linux/reset-controller.h>
-> > +#include <linux/slab.h>
-> >  #include <linux/spinlock.h>
-> >  #include <linux/mfd/syscon.h>
-> >  #include <linux/regmap.h>
-> >  #include <linux/of_address.h>
-> >
-> > +#include <soc/nuvoton/clock-npcm8xx.h>
-> > +
-> >  /* NPCM7xx GCR registers */
-> >  #define NPCM_MDLR_OFFSET       0x7C
-> >  #define NPCM7XX_MDLR_USBD0     BIT(9)
-> > @@ -89,6 +93,7 @@ struct npcm_rc_data {
-> >         const struct npcm_reset_info *info;
-> >         struct regmap *gcr_regmap;
-> >         u32 sw_reset_number;
-> > +       struct device *dev;
-> >         void __iomem *base;
-> >         spinlock_t lock;
-> >  };
-> > @@ -372,6 +377,67 @@ static const struct reset_control_ops npcm_rc_ops = {
-> >         .status         = npcm_rc_status,
-> >  };
-> >
-> > +static void npcm_clock_unregister_adev(void *_adev)
-> > +{
-> > +       struct auxiliary_device *adev = _adev;
-> > +
-> > +       auxiliary_device_delete(adev);
-> > +       auxiliary_device_uninit(adev);
-> > +}
-> > +
-> > +static void npcm_clock_adev_release(struct device *dev)
-> > +{
-> > +       struct auxiliary_device *adev = to_auxiliary_dev(dev);
-> > +       struct npcm_clock_adev *rdev = to_npcm_clock_adev(adev);
-> > +
-> > +       kfree(rdev);
-> > +}
-> > +
-> > +static struct auxiliary_device *npcm_clock_adev_alloc(struct npcm_rc_data *rst_data, char *clk_name)
-> > +{
-> > +       struct npcm_clock_adev *rdev;
-> > +       struct auxiliary_device *adev;
-> > +       int ret;
-> > +
-> > +       rdev = kzalloc(sizeof(*rdev), GFP_KERNEL);
-> > +       if (!rdev)
-> > +               return ERR_PTR(-ENOMEM);
-> > +
-> > +       rdev->base = rst_data->base;
-> > +
-> > +       adev = &rdev->adev;
-> > +       adev->name = clk_name;
-> > +       adev->dev.parent = rst_data->dev;
-> > +       adev->dev.release = npcm_clock_adev_release;
-> > +       adev->id = 555u;
-> > +
-> > +       ret = auxiliary_device_init(adev);
-> > +       if (ret) {
-> > +               kfree(rdev);
-> > +               return ERR_PTR(ret);
-> > +       }
-> > +
-> > +       return adev;
-> > +}
-> > +
-> > +static int npcm8xx_clock_controller_register(struct npcm_rc_data *rst_data, char *clk_name)
-> > +{
-> > +       struct auxiliary_device *adev;
-> > +       int ret;
-> > +
-> > +       adev = npcm_clock_adev_alloc(rst_data, clk_name);
-> > +       if (IS_ERR(adev))
-> > +               return PTR_ERR(adev);
-> > +
-> > +       ret = auxiliary_device_add(adev);
-> > +       if (ret) {
-> > +               auxiliary_device_uninit(adev);
-> > +               return ret;
-> > +       }
-> > +
-> > +       return devm_add_action_or_reset(rst_data->dev, npcm_clock_unregister_adev, adev);
-> > +}
-> > +
-> >  static int npcm_rc_probe(struct platform_device *pdev)
-> >  {
-> >         struct npcm_rc_data *rc;
-> > @@ -392,6 +458,7 @@ static int npcm_rc_probe(struct platform_device *pdev)
-> >         rc->rcdev.of_node = pdev->dev.of_node;
-> >         rc->rcdev.of_reset_n_cells = 2;
-> >         rc->rcdev.of_xlate = npcm_reset_xlate;
-> > +       rc->dev = &pdev->dev;
-> >
-> >         ret = devm_reset_controller_register(&pdev->dev, &rc->rcdev);
-> >         if (ret) {
-> > @@ -413,7 +480,12 @@ static int npcm_rc_probe(struct platform_device *pdev)
-> >                 }
-> >         }
-> >
-> > -       return ret;
-> > +       switch (rc->info->bmc_id) {
-> > +       case BMC_NPCM8XX:
-> > +               return npcm8xx_clock_controller_register(rc, "clk-npcm8xx");
-> > +       default:
-> > +               return ret;
-> > +       }
-> >  }
-> >
-> >  static struct platform_driver npcm_rc_driver = {
-> > diff --git a/include/soc/nuvoton/clock-npcm8xx.h b/include/soc/nuvoton/clock-npcm8xx.h
-> > new file mode 100644
-> > index 000000000000..139130e98c51
-> > --- /dev/null
-> > +++ b/include/soc/nuvoton/clock-npcm8xx.h
-> > @@ -0,0 +1,16 @@
-> > +/* SPDX-License-Identifier: GPL-2.0 */
-> > +#ifndef __SOC_NPCM8XX_CLOCK_H
-> > +#define __SOC_NPCM8XX_CLOCK_H
-> > +
-> > +#include <linux/auxiliary_bus.h>
-> > +#include <linux/container_of.h>
-> > +
-> > +struct npcm_clock_adev {
-> > +       void __iomem *base;
-> > +       struct auxiliary_device adev;
-> > +};
-> > +
-> > +#define to_npcm_clock_adev(_adev) \
-> > +       container_of((_adev), struct npcm_clock_adev, adev)
-> > +
-> > +#endif
-> > --
-> > 2.34.1
-> >
+> As I read the communication from Macronix, then we should expect new
+> chips re-using the ID for all of them. It is just a matter of digging.
+>
+> /Esben
 
