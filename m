@@ -1,59 +1,60 @@
-Return-Path: <devicetree+bounces-85135-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85136-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84D8B92F0B8
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 23:10:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 501E692F0C1
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 23:13:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 03F73B22BA0
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 21:10:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0F98F281393
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 21:13:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6BED19F486;
-	Thu, 11 Jul 2024 21:10:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBDAE19EEC7;
+	Thu, 11 Jul 2024 21:13:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Fg1qpoyF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IKohomAq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9617919F470;
-	Thu, 11 Jul 2024 21:10:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B1851509BC;
+	Thu, 11 Jul 2024 21:13:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720732216; cv=none; b=ca1VsfMUVLBtXjLnTocLwDYfi8/q+YTpZyX7vf4T2e4yoXLnt6Bo+C1lkrybh2qn1B6ezV4tza/Dn3ZTjDhUe9YD9fq3bVDCkX3DJh4o99O244x+uPaHN/nUEOATdVDccSkUSHxYmZGzzVBNyZEoZX8dQQrFyMDxkOxqvqlo5Ss=
+	t=1720732416; cv=none; b=mX4r751FJWGhbSZ0V3PYDH62uqGXsAEW2wHEWdRgdDjFqNCCR6ozX8i+pBRwPrF/uCSnygOZU+bf5Sf3eMBbiR6mmloVQX/1GiB2RTwDO2HzPX0ff0YfaGc7/jQKeTcgqgngCT+d7RWvHhX1muDdXWbHJ1EPmPt3KW1yR2bFGn0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720732216; c=relaxed/simple;
-	bh=UTRCsaBAwJ27kZVR9fIIRwXN90jfM8+V9iZaFILqX6w=;
+	s=arc-20240116; t=1720732416; c=relaxed/simple;
+	bh=zD3H2nNg/pVAuxwarSoosSrcXFyYiiavlKTZ20sCeM0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=h9WYLR5Os80DBpZaLN1FbE0mCh0bTY2gO3bZjuo9qDI0hqo5rqRfs7ww6ZoFU0pMcZXfOSOVU9r8x+LDWNklFD6uDHRwFm37UffmefkGYS8TrCr+F83fsgpYC+ugh2Fqx7LuF+j7K3YKrEoUQBkcBmEistwv8QNkHU3vaT+KVCk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Fg1qpoyF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2A88C116B1;
-	Thu, 11 Jul 2024 21:10:15 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=U+4rZebtr5BPCuik5jGrNTLzTMKpD2A4i3shmr00ZeKJb5M9B2IWX3kJegKSk2hVhoZaRHYVq+RU5P/PZHFzQFMFNfMfyZDnCIu6RPOrtIVn9h7ee16zKkEwO/h81F0A/TTABb0J2x1DpiH8ZnuWVpY0tYo/IK7gCe8LkcsR9Ro=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IKohomAq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03340C116B1;
+	Thu, 11 Jul 2024 21:13:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720732216;
-	bh=UTRCsaBAwJ27kZVR9fIIRwXN90jfM8+V9iZaFILqX6w=;
+	s=k20201202; t=1720732416;
+	bh=zD3H2nNg/pVAuxwarSoosSrcXFyYiiavlKTZ20sCeM0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Fg1qpoyFsQsZrFT8A+dixSkFvTM5ZfE0Hp7w0ZFs0Xl8bcAgcnD+LiDcpL48sTUxc
-	 NPWK5QxB2Wl19mLRAiQoan5+RuEBD9LbYpIeADvWqA5JHAbkfX62eZ3n/PJKzrLA3s
-	 LW7GSkmfmGZU/t/i1Xk4+YjjER1lLb6SaI5V3Bm2Kq+sv6a1dhzYBKJbouk0k+WqBe
-	 MvcBNj0FgF7uYizy4j6hWkboC2ne4UsP1bn0iWiGqb0z4DZT1xVZYjObb1crrT8PDW
-	 ogjih0CB5u8zSOxth5PqynhrwXpBgpPUBCFsLE/Y0cORU+OMgQG/UZS2proTJ/tlTm
-	 D/JTH9wG56EUQ==
-Date: Thu, 11 Jul 2024 15:10:14 -0600
-From: Rob Herring <robh@kernel.org>
-To: Igor Prusov <ivprusov@salutedevices.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>, prusovigor@gmail.com,
-	kernel@salutedevices.com, linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/6] ASoC: Add NTP8918 and NTP8835 codecs support
-Message-ID: <20240711211014.GA3008651-robh@kernel.org>
-References: <20240709221203.92167-1-ivprusov@salutedevices.com>
+	b=IKohomAqoc4gxipkRO1NgxAokKA94Gmr8tOd2ACAmsEj27nT89p91hNF3B/Ba15m5
+	 BokRn8jrE7DZ5UpFkC+yZJ4B21K1265XiHkcFaFj+QfTd0ydjtJVUp/y7z7YRepd0o
+	 ssB0uFPV14oMw58KotNoUISsF+Dz+liGFUSuZEOqYFXLhJY/a9n1nYWRnSRfqrkS8O
+	 PH8feg45iCzaqaalMckvM4D6v2i79rAmDIHsP1KqBZVNbmeyvWtkAohtiAAVd0ZTqX
+	 pdVEP+U+l246KAY3vm7mzDQa/B+aY5ZMlsDg+xE+GnsbV+EOJ3rstuj9PFC/At4R9D
+	 lkTts2tve+/Lg==
+Date: Thu, 11 Jul 2024 15:13:34 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc: linux-mips@vger.kernel.org, devicetree@vger.kernel.org, bert@biot.com,
+	sander@svanheule.net, daniel.lezcano@linaro.org,
+	paulburton@kernel.org, kabel@kernel.org, tsbogend@alpha.franken.de,
+	conor+dt@kernel.org, peterz@infradead.org, john@phrozen.org,
+	linux-kernel@vger.kernel.org, krzk+dt@kernel.org,
+	tglx@linutronix.de, mail@birger-koblitz.de, ericwouds@gmail.com
+Subject: Re: [PATCH v5 06/10] dt-bindings: interrupt-controller:
+ realtek,rtl-intc: Add rtl9300-intc
+Message-ID: <172073241371.3019767.1008127650947227633.robh@kernel.org>
+References: <20240710043524.1535151-1-chris.packham@alliedtelesis.co.nz>
+ <20240710043524.1535151-7-chris.packham@alliedtelesis.co.nz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,24 +63,36 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240709221203.92167-1-ivprusov@salutedevices.com>
+In-Reply-To: <20240710043524.1535151-7-chris.packham@alliedtelesis.co.nz>
 
-On Wed, Jul 10, 2024 at 01:11:57AM +0300, Igor Prusov wrote:
-> This series adds support for two NeoFidelity amplifiers. For both
-> amplifiers vendor provides software for equalizer and filters
-> configuration, which generates firmware files with registers values.
-> Since in both cases those files have same encoding, a common helper
-> module is added to get firmware via request_firmware() API and set
-> registers values.
+
+On Wed, 10 Jul 2024 16:35:20 +1200, Chris Packham wrote:
+> Add a compatible string for the interrupt controller found on the
+> rtl930x SoCs. The interrupt controller has registers for VPE1 so these
+> are added as a second reg cell.
 > 
-> V1: https://lore.kernel.org/all/20240709172834.9785-1-ivprusov@salutedevices.com/
+> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> ---
 > 
-> V1 -> V2:
->  - Fix dt_binding_check errors
+> Notes:
+>     Changes in v5:
+>     - set reg::minItems = 2 when compatible == "rtl9300-intc"
+>     Changes in v4:
+>     - None
+>     Changes in v3:
+>     - Add reg::minItems where required
+>     Changes in v3:
+>     - Use items to describe the regs property
+>     Changes in v2:
+>     - Set reg:maxItems to 2 to allow for VPE1 registers on the rtl9300. Add
+>       a condition to enforce the old limit on other SoCs.
+>     - Connor and Krzysztof offered acks on v1 but I think the changes here
+>       are big enough to void those.
+> 
+>  .../realtek,rtl-intc.yaml                     | 20 ++++++++++++++++++-
+>  1 file changed, 19 insertions(+), 1 deletion(-)
+> 
 
-Please implement the comments on v1. Please don't send new versions 
-right away and give people time to review. We're not all on the same 
-timezone, get busy on other tasks, take vacation, etc.
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-Rob
 
