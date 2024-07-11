@@ -1,59 +1,56 @@
-Return-Path: <devicetree+bounces-85051-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85052-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84FCF92EAA1
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 16:22:14 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9E6092EACD
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 16:34:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2F5151F23269
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 14:22:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2DE18B210B0
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 14:33:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 528E7166313;
-	Thu, 11 Jul 2024 14:22:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1096716131C;
+	Thu, 11 Jul 2024 14:33:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TaGDmrz9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UxZ3BMHM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B9B115ECCA;
-	Thu, 11 Jul 2024 14:22:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC190158DA8;
+	Thu, 11 Jul 2024 14:33:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720707724; cv=none; b=UcS7feD6U8/bpVfa83tFT9dO4dcWhQ5mLsrsPaw0kVfq0RfIphrdpNpja1p/6T6vR+vtY/gG2KGlnfvvvBMQZfSOsUKPPYFVfpNdrAArWYyCuOv4Tk9py6/8DSYp7C4rVIahh2p2oanHMz6yvQxU183vMP0fuWOL7mI9O2j2c1I=
+	t=1720708435; cv=none; b=PRB1+WifjEnV/H5sTH5D7MDlpNNGdHjzpauw1aJCQOwuFMdxUVK8SO22EUMmMVqLbEq/+j8wu6tMkDKzn19AkYX64XrMsDaUS0X4H+y8cQw8rpWmR/On4ziuwcyzqUFkl2jCgugxcpvBBACxvG7Vt7/m4u3PrO07aUOtVBJe/RM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720707724; c=relaxed/simple;
-	bh=emm6+EbZItXrO7yF1WpnKGlUtBuKXqxxto8yU37Omr4=;
+	s=arc-20240116; t=1720708435; c=relaxed/simple;
+	bh=8Ra/Y5v1rARhsoO0bv3pLK/R77pCMZPwXiKQi7lwrjA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hG3pCulh1VvOg1uxuZYYS8rzJtr+6OCY7EGI/1XCTi1Kvr9rUjc23nN2+dPkT/+hPgw+WkrlmX2G+j68rxLy3YpnE5pqdpZ9OB+DucwkK2QUWNkWfZWWMJi0fnX/riKpibAqTRJVyfaHMdh643v5Wxp5hbkK56XQlnOrjORhWDY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TaGDmrz9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6ECD4C116B1;
-	Thu, 11 Jul 2024 14:22:03 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=gL3pA6NJ93IBPBIaf7Ky3Uqi8y3OvMFtsCExQ9P62cpVY2e3bwPUY5ATqLo0oLQVur9lO34POSbTh1cNUSZy0MEmm4KxBA81C/Vn/dgaqizJydpoMryFYlghVU9EtWigi4FhCzw0FgEZIOYKfuIvj+Rvf2QQyNC03ufKKIyWCAg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UxZ3BMHM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4905DC116B1;
+	Thu, 11 Jul 2024 14:33:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720707723;
-	bh=emm6+EbZItXrO7yF1WpnKGlUtBuKXqxxto8yU37Omr4=;
+	s=k20201202; t=1720708434;
+	bh=8Ra/Y5v1rARhsoO0bv3pLK/R77pCMZPwXiKQi7lwrjA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=TaGDmrz9dCrSPEi9cqK180QE8Yu0jYyREA1wzAzLI9KaRQKX52HHnfSbBMmtFBqVM
-	 95PggXLdNv4of7mH/W3Z0ytVboG5F3i7GSen8SwJc0ALuqFpDU3Qqf5VVwZDlUcQwj
-	 7JwxgfFlaet4HaEq+IksUFJLTjgImva3jQFYQnMPJS4N2ysbOu3BhvwUbBMthhoSV8
-	 10XIyeKleNGUgAoKK7FVopmmunruUyZPLKxbm1ZEQhAanyXPeoJG24kbhmPnpr+ksF
-	 jJXVAsshooaG5lhXSSPQaHY8YLPfP4mGyOWY0vGAM/BsT5vrh3HT+bfYn9xu46VAzU
-	 LH80ryIsDY8Bg==
-Date: Thu, 11 Jul 2024 08:22:02 -0600
-From: Rob Herring <robh@kernel.org>
-To: Varadarajan Narayanan <quic_varada@quicinc.com>
-Cc: gregkh@linuxfoundation.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	andersson@kernel.org, konrad.dybcio@linaro.org,
-	quic_wcheng@quicinc.com, johan+linaro@kernel.org,
-	quic_kriskura@quicinc.com, linux-arm-msm@vger.kernel.org,
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+	b=UxZ3BMHMyepZ+ddcEaKgcLqR1EZmLwyWSCqPB5hqtTpUc3461IMdtlKSTgu2+k2uz
+	 /Na3s8WmdfKEJWLyBa1arhyxo0VLwPI057Xlp/L/9jM+yLSjWExI6WlXdYIqfspgQ3
+	 M68mAsYjmgl7KmVpwDohQz3om/46KeHqeMb5olh2yKNutnMZg7bUYGjmp0e9wtYUpO
+	 k4v34sOkKaY+TrZIGFd6b8cHevmfR/QkOYnAb7SUMGnNThsDvupZpbrS+LH/BMA1Ue
+	 Ep57zigKRYcMhtnE/yNCrGHc6pBhpQYyWKk4MLt0Hsa9G0JGSnlymYdjFkzN4FFz9t
+	 tT7nMcVPYSsrA==
+Date: Thu, 11 Jul 2024 08:33:53 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v0 1/2] dt-bindings: usb: qcom,dwc3: Add minItems for
- interrupt info
-Message-ID: <20240711142202.GA2256964-robh@kernel.org>
-References: <20240711065615.2720367-1-quic_varada@quicinc.com>
+Subject: Re: [PATCH] dt-bindings: trivial-devices: document the Sierra
+ Wireless mangOH Green SPI IoT interface
+Message-ID: <172070843090.2279442.10031624513067815201.robh@kernel.org>
+References: <20240710-topic-mdm9615-mangoh-iotport-spi-bindings-v1-1-3efe20cfea8a@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,14 +59,22 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240711065615.2720367-1-quic_varada@quicinc.com>
+In-Reply-To: <20240710-topic-mdm9615-mangoh-iotport-spi-bindings-v1-1-3efe20cfea8a@linaro.org>
 
-On Thu, Jul 11, 2024 at 12:26:14PM +0530, Varadarajan Narayanan wrote:
-> IPQ5332 has only three interrupts. Update min items
-> accordingly for interrupt names to fix the following
-> dt_binding_check errors.
 
-Patch version numbering starts at 1, not 0.
+On Wed, 10 Jul 2024 19:02:52 +0200, Neil Armstrong wrote:
+> Document the Sierra Wireless mangOH Green SPI IoT interface as a trivial
+> device.
+> 
+> This fixes the following check:
+> qcom-mdm9615-wp8548-mangoh-green.dtb: /soc/gsbi@16200000/spi@16280000/spi@0: failed to match any schema with compatible: ['swir,mangoh-iotport-spi']
+> 
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
 
-Rob
+Applied, thanks!
+
 
