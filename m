@@ -1,169 +1,178 @@
-Return-Path: <devicetree+bounces-84902-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84903-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E6E392E312
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 11:05:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D70092E329
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 11:10:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A2C941C20BB9
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 09:05:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E885A280DF5
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 09:10:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 192B815539A;
-	Thu, 11 Jul 2024 09:05:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B516E1534EA;
+	Thu, 11 Jul 2024 09:10:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jH5FyGxF"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aYFbomGL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f43.google.com (mail-oo1-f43.google.com [209.85.161.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E40AC155308;
-	Thu, 11 Jul 2024 09:05:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D63A2D02E;
+	Thu, 11 Jul 2024 09:10:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720688747; cv=none; b=NKMHVum9BIFvCTIASPCKgSHpiGKfJ/32rb72Zd0UjP4Brlwo0qxqDxPg8tfocEwHf32A0njZUHtFtRL+thCBTiys9DxWQbx6uiQJr5S5YDC5RwoOZarnDYa2vOqP9h7Ru9+lNS/1x9z/9YbrshBXGTfh8rKUJi0nNcVGwe0y2h4=
+	t=1720689007; cv=none; b=FqTmUMzODKBRIEJrsN8xWIlfTWyoq6GOO7n51ZLHdjoAWkK5Y+lRNS4bjw/uaMlFFr5PLUcF8DiE8JP7i6t2xFTtO4IPf6D8Vj+dhNtjRMlEhuAXsGm3MoOuUCet34otHjBJXEYs48KgpxtMbBal3vb2uC2tXc1aDYM2gKHhIWM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720688747; c=relaxed/simple;
-	bh=NWyzMVDXUKeLPeToQ/9acrPTXN/Uzd3RljPeeuoq4qE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=p2OqL+ewpMKI3q/KRUD2OYcSFvNgO5MYvSGeC+fpfu1/MLVE89Zf6+wmrLF9mh48s1Ne/pnFnsbP04O+tLOIA7UfDA1Vi9/CBRkwQFvCU9NsV2cfeXO9qBYmK/CO0GYgUI3VfzZ7p+xA1Vq1Rbw/oKiszR8CKnMaH5psgsu0LKU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jH5FyGxF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8F5FC4AF09;
-	Thu, 11 Jul 2024 09:05:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720688746;
-	bh=NWyzMVDXUKeLPeToQ/9acrPTXN/Uzd3RljPeeuoq4qE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=jH5FyGxFtY1wRriHBOlZRbhM+sPpzv324Mt4uFMqwJnw6wUSlTyPOqlZgvq2gAyFo
-	 pbxdMPEGFlsMeD4VpCfU2Vx9pQAr8mDhglklrrxqg9zCox3Z1AA2/ynqG0/4BxFHkE
-	 h/fegEOav8H1ld9sohx5wpd8FSyAI8w2AdXeTkR7wweHMaQoXTFjmaA5hqQF6XXpnQ
-	 FZmOFWfBlgYXPp4Sryr8ZZHtvO3guG8FXR+8Hl6pUIN180SmMgVib5Ym/LnhuWr/sa
-	 A+QIm4AUPxZEpuU8LUvXfzPcZlxfOACdEYalayK7G1vMLJ91RsClWTV1yqvYPQFcJc
-	 ecH9tvhW4nTBg==
-Message-ID: <4c1b7af7-e53c-492a-9c41-40cad78f7666@kernel.org>
-Date: Thu, 11 Jul 2024 11:05:37 +0200
+	s=arc-20240116; t=1720689007; c=relaxed/simple;
+	bh=+oy0Z7r4tpSnJtqI7rCdzd5clp5UFBQ7gpr3Bk9pXzA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=YAbRThmHkBaINUlUo5ysmIIYOe48VEOxQPPZ2zZrTBP8D/NoOFO+Lf3+9ef3ANb/cbLLYuMQDbApvWO988Pugcp7oBY2JH6ifH9PFhDL17YyeKCV5hIrhDkK78W5/jgZEl+BXFa+6ewTDP3ZgQvZMruTFfhMPPlukXdbugQh1QU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aYFbomGL; arc=none smtp.client-ip=209.85.161.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oo1-f43.google.com with SMTP id 006d021491bc7-5c66b53232aso309154eaf.1;
+        Thu, 11 Jul 2024 02:10:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1720689005; x=1721293805; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=XsucxGW9Y+TjxP5luc1qfbPrrug0CyYu7la7U7tC3b8=;
+        b=aYFbomGLR/CqFTB8jgTQRzuAEOnGo/MXGcWt7/rRINDxEWXGo9WjqHe2MlGoFfuP5Z
+         Ge+e3hZW5mixhFW/ifMsEAC82CJXkfHvtttittyuPGaMfIOQO6t4M8MyBoFUdBzW1ou4
+         cjqpuuVSZOr4/egRdgrFlntpV4NNgCFXXm2ipvLKk5IslIZG70Xe7oWdN6Ecdo0jJrcZ
+         7pUi/N6p3eUczdRuGhwVoQ2vZdfYtuSlv+X0sq61XKLYck/cID5zc+QInjQ7623lvx71
+         N6mfZBS7eHxMj4nifplCyxVadh05u0I2fxDFWDCVgi+MBplGtITaKShFc+eFj4BL+d3d
+         duhA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720689005; x=1721293805;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=XsucxGW9Y+TjxP5luc1qfbPrrug0CyYu7la7U7tC3b8=;
+        b=N1p4Yu2+49NSIcTz4qi3NECQdg3aBRVKHqK8U1TW8A94KReFdP0ZhwGzaNRU8or7p+
+         1L2wRdS5ohXFsZxWbOUJZ37+YqPyu4YI9YTZlDaSKcMZslQxz7B3ENSkzo6UFAdw+zox
+         r84VVoOwQwhULCHBT2eBWwUQaOtfZCXXiq9j17QEojbM4JtoqKkcK1FRvAMSgSir6btq
+         Bl7RbDnVGjy9MdnRPc2TqhA54j389nG/LLPJFXVjgkTlStRJg8dFYSjyCg2D62Mrugmc
+         S6Dsb9FrmljRqQAAACP8AVJYF2vt9R7QTjk//4tGTiSzPAJyf9OT7vVQuaMe+3N/ZyOl
+         TgwA==
+X-Forwarded-Encrypted: i=1; AJvYcCUcjSgADkcOpoFTNFzea9xsRn+MBtNA9KG3qVaK7FG/w3PEt6KfKFAnb7NNyKcxi0W3oOdpFo5/slH3NE7Cana8w8UZmgjw3ycQxj6crXr4d3snwvfJhjzyn/1UZ5+7Oh4F0JQ6/pDxhw==
+X-Gm-Message-State: AOJu0YyQAGBTGSmDvsXk4u4eB4JFdRoMsufGv9GeJANz/bLWVI543GFm
+	G6dYHrq4qe6cpQjWFgDmp6X7VR5FmqxgoGltDjEN61G/PvGYyRjBmZ0ecnMb3Cx+wJgUN3j4p5v
+	SCQYn8DRbMQA13K7e3/3oGkswnscRrEQT
+X-Google-Smtp-Source: AGHT+IGMwf9afo3OG1lHgS1ygbb9ZfnegCOtYS2szd+hQvD0ovzyg8NehAjnnLFB/W90zesnDvVLncGZ45ZwhA2XryA=
+X-Received: by 2002:a4a:51c1:0:b0:5c2:20eb:aebe with SMTP id
+ 006d021491bc7-5c68e49f1bamr8218134eaf.9.1720689005129; Thu, 11 Jul 2024
+ 02:10:05 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] drm/bridge: add Microchip DSI controller support for
- sam9x7 SoC series
-To: Manikandan.M@microchip.com
-Cc: Hari.PrasathGE@microchip.com, andrzej.hajda@intel.com,
- neil.armstrong@linaro.org, rfoss@kernel.org,
- Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
- jernej.skrabec@gmail.com, airlied@gmail.com, daniel@ffwll.ch,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux@armlinux.org.uk, Nicolas.Ferre@microchip.com,
- alexandre.belloni@bootlin.com, claudiu.beznea@tuxon.dev, arnd@arndb.de,
- Jason@zx2c4.com, palmer@rivosinc.com, mpe@ellerman.id.au,
- rdunlap@infradead.org, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20240704084837.168075-1-manikandan.m@microchip.com>
- <20240704084837.168075-3-manikandan.m@microchip.com>
- <9ef5a1ba-e404-46e0-8513-5fffbfb5618b@kernel.org>
- <aeaeb5d4-5e55-4a7a-bce7-fa207ebf0616@microchip.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <aeaeb5d4-5e55-4a7a-bce7-fa207ebf0616@microchip.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20240711060939.1128-1-linux.amoon@gmail.com> <a8c1f49e-bf25-4fd3-a16f-13088f75767f@kwiboo.se>
+In-Reply-To: <a8c1f49e-bf25-4fd3-a16f-13088f75767f@kwiboo.se>
+From: Anand Moon <linux.amoon@gmail.com>
+Date: Thu, 11 Jul 2024 14:39:48 +0530
+Message-ID: <CANAwSgQCn3jgiruiLs0cu-C+DguLtnk=msboAh8jNSF4P28gjA@mail.gmail.com>
+Subject: Re: [PATCH v2] arm64: dts: rockchip: Add missing pinctrl for PCIe30x4 node
+To: Jonas Karlman <jonas@kwiboo.se>
+Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On 11/07/2024 10:30, Manikandan.M@microchip.com wrote:
-> Hi Krzysztof,
-> 
-> On 04/07/24 4:27 pm, Krzysztof Kozlowski wrote:
->> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
->>
->> On 04/07/2024 10:48, Manikandan Muralidharan wrote:
->>> Add the Microchip's DSI controller wrapper driver that uses
->>> the Synopsys DesignWare MIPI DSI host controller bridge.
->>>
->>> Signed-off-by: Manikandan Muralidharan <manikandan.m@microchip.com>
->>> ---
->>
->>
->> ...
->>
->>> +
->>> +#define HSTT(_maxfreq, _c_lp2hs, _c_hs2lp, _d_lp2hs, _d_hs2lp)       \
->>> +{                                    \
->>> +     .maxfreq = _maxfreq,            \
->>> +     .timing = {                     \
->>> +             .clk_lp2hs = _c_lp2hs,  \
->>> +             .clk_hs2lp = _c_hs2lp,  \
->>> +             .data_lp2hs = _d_lp2hs, \
->>> +             .data_hs2lp = _d_hs2lp, \
->>> +     }                               \
->>> +}
->>> +
->>> +struct hstt hstt_table[] = {
->>
->> So more globals? No.
-> 
-> In the sam9x7 datasheet, the high speed transition time for data and
-> clock lane at different freq for the DSI controller ranges are tabulated
-> with constant values.
-> I referred other similar platforms for the functionality and found 
-> similar way of implementation,  only a few had equations to derive the 
-> low power and high speed timings.I am not able to come up with a more 
-> efficient method. If there is something I am missing, please suggest.
-> TIA
+Hi Jonas,
 
-Yeah, this should not be a global. Nothing above suggests it.
+Thanks for your review comments.
 
-BTW, no W=1 clang warnings? Are you sure?
+On Thu, 11 Jul 2024 at 14:13, Jonas Karlman <jonas@kwiboo.se> wrote:
+>
+> Hi Anand,
+>
+> On 2024-07-11 08:09, Anand Moon wrote:
+> > Add missing pinctrl settings for PCIe 3.0 x4 clock request and wake
+> > signals.Each component of PCIe communication have the following control
+> > signals: PERST, WAKE, CLKREQ, and REFCLK. These signals work to generate
+> > high-speed signals and communicate with other PCIe devices.
+> > Used by root complex to endpoint depending on the power state.
+> >
+> > PERST is referred to as a fundamental reset. PERST should be held low
+> > until all the power rails in the system and the reference clock are stable.
+> > A transition from low to high in this signal usually indicates the
+> > beginning of link initialization.
+> >
+> > WAKE signal is an active-low signal that is used to return the PCIe
+> > interface to an active state when in a low-power state.
+> >
+> > CLKREQ signal is also an active-low signal and is used to request the
+> > reference clock.
+> >
+> > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> > ---
+> > V2: Update the commit messge to describe the changs.
+> >     use pinctl group as its pre define in pinctl dtsi
+> > ---
+> >  arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts | 6 +-----
+> >  1 file changed, 1 insertion(+), 5 deletions(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+> > index 2e7512676b7e..ab3a20986c6a 100644
+> > --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+> > +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+> > @@ -301,7 +301,7 @@ &pcie30phy {
+> >
+> >  &pcie3x4 {
+> >       pinctrl-names = "default";
+> > -     pinctrl-0 = <&pcie3_rst>;
+> > +     pinctrl-0 = <&pcie30x4m1_pins>;
+>
+> Use of the existing pcie30x4m1_pins group may not be fully accurate for
+> the PERST pin. The use of reset-gpios indicate that the PERST pin is
+> used with GPIO function and the driver will implicitly change the
+> function from perstn_m1 to GPIO. So this may not be best representation
+> of the hw, hence my initial suggestion, something like:
+>
+>         pcie30x4_pins: pcie30x4-pins {
+>                 rockchip,pins =
+>                         <4 RK_PB4 4 &pcfg_pull_none>,
+>                         <4 RK_PB6 RK_FUNC_GPIO &pcfg_pull_none>,
+>                         <4 RK_PB5 4 &pcfg_pull_none>;
+>         };
+>
+> Similar change should probably also be done for pcie2x1l0 and pcie2x1l2,
+> not just pcie3x4.
+>
 
-Best regards,
-Krzysztof
+Ok but it is better to update this in rk3588s-pinctrl.dtsi otherwise
+the pcie30x4m1_pins
+will not be used at all on all the boards
+I will update the PERST pin to RK_FUNC_GPIO on all the pcie2x1l0,
+pcie2x1l2 and  pcie30x4
+is this ok for you?
 
+> Regards,
+> Jonas
+
+Thanks
+-Anand
+>
+> >       reset-gpios = <&gpio4 RK_PB6 GPIO_ACTIVE_HIGH>;
+> >       vpcie3v3-supply = <&vcc3v3_pcie30>;
+> >       status = "okay";
+> > @@ -341,10 +341,6 @@ pcie2_2_rst: pcie2-2-rst {
+> >       };
+> >
+> >       pcie3 {
+> > -             pcie3_rst: pcie3-rst {
+> > -                     rockchip,pins = <4 RK_PB6 RK_FUNC_GPIO &pcfg_pull_none>;
+> > -             };
+> > -
+> >               pcie3_vcc3v3_en: pcie3-vcc3v3-en {
+> >                       rockchip,pins = <1 RK_PA4 RK_FUNC_GPIO &pcfg_pull_none>;
+> >               };
+> >
+> > base-commit: 34afb82a3c67f869267a26f593b6f8fc6bf35905
+>
 
