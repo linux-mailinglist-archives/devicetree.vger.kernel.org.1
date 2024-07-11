@@ -1,131 +1,135 @@
-Return-Path: <devicetree+bounces-84872-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-84873-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1926992E10C
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 09:43:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25C6F92E123
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 09:45:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8F791B20C43
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 07:43:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5782F1C20B93
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2024 07:45:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E1E514B941;
-	Thu, 11 Jul 2024 07:43:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EB393BBE0;
+	Thu, 11 Jul 2024 07:45:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="N2dnexUb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="So3KcCl6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C97BE1474D3
-	for <devicetree@vger.kernel.org>; Thu, 11 Jul 2024 07:42:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE41717BDA
+	for <devicetree@vger.kernel.org>; Thu, 11 Jul 2024 07:45:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720683782; cv=none; b=ps1nUFTawuqPT0m7uSE/Ack3ssaDyl1pCeUsswEakjrnwcZF0VvYaaxsT7/3kP6wyaHopwviTNH4TBZ6WbgVgOo01V7Iqb8j1UBUE9TqNpcrcxab5AP/hsdyAaY3dtaZZSP7L2PkWGzgc5w/0451gNLZl+pWJR5PPFkuHwibbN4=
+	t=1720683937; cv=none; b=Oqa4fNrhaz/jS3umqRvhYwsuiYSaNk1gTIfA+OagOaTI63o+BROxOj5kp9na6ITSJPWEiWI+RSXeddpYHKV/orloj8NxE5WAvtDzc/wqlNDfHeVRM5dTHzkCaoJZCYyc74xnK7j3qV/Adcx7JeIOd0agFZTuFzo+mL46kRHFRac=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720683782; c=relaxed/simple;
-	bh=G81cigNbMK6zWyW2W1HCYkHinVRR6rcbhQNJ6dX3Y30=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Khbn2S0mbIiXIafkrBH+Qe2PPkeMnWwE1ToF0r+P3q5PDF6JOl2d27v0b3kLmc9Nm+pa5cwZAmauNGJHLWBsC/i6M5CLFsSuF7Blys0+lhxDPbJ6OZ4TO7W2AXIL6b40MhdyrtmtU+1BTHZmNfoZvtSJZYQs5nr2t4OG9AKvS88=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=N2dnexUb; arc=none smtp.client-ip=209.85.208.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-57ccd1111b0so448005a12.3
-        for <devicetree@vger.kernel.org>; Thu, 11 Jul 2024 00:42:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1720683777; x=1721288577; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=h+0UinpQWYDjXlEY0DNC8WhJW4LGHBJDtPZ/QPhsn/c=;
-        b=N2dnexUbiqGCFvm0Lq3uHVQ1PdaOmdTuNnJIskMtHNNo+3DdD81L9nx5HZMpPSdBbW
-         1V3E6+IDkNheCEKqq1swGimhT53ln4wd+99mgN1TkSZHC7ODyiWQsFTsMfx7gQte+J1h
-         QXEul4/DSYK9i4EX3Xt0ecrnzXS7cuoP1FK2A6WUiR+yXfy65BWFQ98v+QIIDs8rbTB3
-         HpaQ/aCgKsB/Erx0Sxc1PnI91gEYQQZP/c673NPimvECzzOeDmg2EHDra73wN/4MyAs/
-         AgezgWRnz/qJbELhMzkA1jK6Ga46X9DMtM9h+Nx6BcW7pjh99oo+Img2kNS2L+OZalMw
-         5YOg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720683777; x=1721288577;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=h+0UinpQWYDjXlEY0DNC8WhJW4LGHBJDtPZ/QPhsn/c=;
-        b=CBEJhwUfwi+9F0fWtsyxe+F5DJJA5914BWq1mm5C7UcztjN4ELFp1ULwRigFzqmaxT
-         7YBd4F2iK3Wq16sr4STn3aLeZRsVVRckdtKM5la+Ccv8bNUTNneob1Rv8h9zR4ytkF7q
-         W4qmDjIip7q9eRbaoyqHzugPx9c8g6ref9/Tiq2gCQATJArzgGIeHhX71ItjNkcG3gDG
-         WRO4C0NuBTuTDQ+2bS/DuHgJbLfm+PocWC6JK87mBIsYmC6NSE1k0Z61R8mv9G3jH6qm
-         L4mYpHtxYXMGMaJBe+JYsm3dqSNonpdjf2Il3xDQWUH/QARLzxP6OxpUxOt/z7/7d8+t
-         sBNA==
-X-Forwarded-Encrypted: i=1; AJvYcCVu/hcPtcAoOFpbD1LqlBInRU399usV1WZZeVjgwi8pxTHZM5noar5njreXD0KKyxR1/v6BayUKnyBvhz+xJoGTaTuzf3EyjisWYQ==
-X-Gm-Message-State: AOJu0Yy/HGEOzdKdEq/iDwYHFwHVbapWnNztlU/KO2bGXKnQ5zQNq3kx
-	5HhrwaH1/uOfLMZHD63Tj6ctY4s/5gsQ6SYKnxbghO3uHSLy5S8TO1TxZKgm6wQ=
-X-Google-Smtp-Source: AGHT+IFvTTSzRQIgpI5QuDDZSPJrH8SBm7+DLvvTVS9+yUrzFasx2IRMegwpJIpw057IqeT0V73jnA==
-X-Received: by 2002:a05:6402:31aa:b0:58f:44fa:a2b9 with SMTP id 4fb4d7f45d1cf-594bb1816femr6223127a12.16.1720683777236;
-        Thu, 11 Jul 2024 00:42:57 -0700 (PDT)
-Received: from localhost (p50915eb1.dip0.t-ipconnect.de. [80.145.94.177])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a780a7ff7aesm230826666b.102.2024.07.11.00.42.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Jul 2024 00:42:56 -0700 (PDT)
-Date: Thu, 11 Jul 2024 09:42:55 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-To: nicolas.ferre@microchip.com
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
-	Conor Dooley <conor.dooley@microchip.com>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>, Alexandre Belloni <alexandre.belloni@bootlin.com>, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-pwm@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: pwm: at91: Add sama7d65 compatible string
-Message-ID: <mcbg5x3a6h2qt3ivtmve3xrhczg5juwzht7vjhzhactskpateg@7cffoor3avcr>
-References: <20240710163651.343751-1-nicolas.ferre@microchip.com>
+	s=arc-20240116; t=1720683937; c=relaxed/simple;
+	bh=ZbFicuL62y6B2F82WVq5P6OTG/IWOizDCgKKBVoOOoY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=eUEE3s8EmHPs2d39e9qdaA5vPg6nXXyFtprEVY4lWc/WtRy/cioF8QJANjSx4kTRJfSxPPZQboMDFcsMHOvCJWxt8Z/xhKwPJs+MHnMKJJZytZlRNc5g2u7kmM+I/N2HS8hAvoRxbLzgTIPZbMIwziKtqOknjMw93rlOsry4G1A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=So3KcCl6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3BFA3C116B1;
+	Thu, 11 Jul 2024 07:45:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720683936;
+	bh=ZbFicuL62y6B2F82WVq5P6OTG/IWOizDCgKKBVoOOoY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=So3KcCl6WiGM3BIunPAE59drkLdQ1Sd/TYmTFek6pbxYkSP/TwGvVouNMQV6Rs4uh
+	 Mlllyl+/+BoIm1Kjs3fTEd5iV9TwCA/2+WNcAQLm+LI5IYj24Tj2Tsl1mW5d3KDxJb
+	 NIfQXOkOfTTyKoJPcKqEXac4SiUr99EiiAnjDAxBieqRuTSjoouwpJyPzEd69rCyQ1
+	 V+W/w+QrMBE3ps1eXYZM0/C+u21zv6IPE8unfKKjSuJb7vFyxe+vm5W5oNNmLLHPrh
+	 jid4UiuBbCSYul4yfijbczycK3OUeYAcDikZQGewIp7lc1bjSbYYmlr4zMglNTj1CQ
+	 yku99dPNEKu7Q==
+Message-ID: <0036cb62-7621-4458-9011-cae56208eefc@kernel.org>
+Date: Thu, 11 Jul 2024 09:45:31 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ua36aif6vqcebhyw"
-Content-Disposition: inline
-In-Reply-To: <20240710163651.343751-1-nicolas.ferre@microchip.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] arm64: dts: amlogic: change product name for Radxa
+ ZERO 2 (Pro)
+To: FUKAUMI Naoki <naoki@radxa.com>, neil.armstrong@linaro.org
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ khilman@baylibre.com, jbrunet@baylibre.com,
+ martin.blumenstingl@googlemail.com, devicetree@vger.kernel.org,
+ linux-amlogic@lists.infradead.org
+References: <20240711034035.3921122-1-naoki@radxa.com>
+ <20240711034035.3921122-2-naoki@radxa.com>
+ <1fece7cc-fa01-4bea-ac73-a975e042c669@kernel.org>
+ <DFED8CF3B42049F8+44664265-ab1e-4d45-833c-41c370e4360b@radxa.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <DFED8CF3B42049F8+44664265-ab1e-4d45-833c-41c370e4360b@radxa.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+On 11/07/2024 08:58, FUKAUMI Naoki wrote:
+>>>   
+>>>   / {
+>>> -	compatible = "radxa,zero2", "amlogic,a311d", "amlogic,g12b";
+>>> -	model = "Radxa Zero2";
+>>> +	compatible = "radxa,zero-2pro", "amlogic,a311d", "amlogic,g12b";
+>>
+>> Keep old compatible.
+> 
+> which is better?
+> 
+> compatible = "radxa,zero2", "amlogic,a311d", "amlogic,g12b"; (no change)
+>   or
+> compatible = "radxa,zero-2pro", "radxa,zero2", "amlogic,a311d", 
+> "amlogic,g12b"; (keep old one)
 
---ua36aif6vqcebhyw
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I propose not to change anything, at least based on your
+explanations/rationale.
 
-On Wed, Jul 10, 2024 at 06:36:51PM +0200, nicolas.ferre@microchip.com wrote:
-> From: Nicolas Ferre <nicolas.ferre@microchip.com>
->=20
-> Add compatible string for sama7d65. Like sama7g5, it currently binds to
-> "atmel,sama5d2-pwm" compatibility string for this driver, so add an
-> "enum" to reflect that.
->=20
-> Signed-off-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+Best regards,
+Krzysztof
 
-Applied to
-
-	https://git.kernel.org/pub/scm/linux/kernel/git/ukleinek/linux.git pwm/for=
--next
-
-with Krzysztof's Ack.
-
-Thanks
-Uwe
-
---ua36aif6vqcebhyw
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmaPjP0ACgkQj4D7WH0S
-/k4aFAgAjIU4ou60T/qTFOuMU6WCiCdJUwxmT3ZcyfcnqyXCF7wodIP0pXLAi3y0
-Yos6AbIDdjYfeV9gWG7S8yHpKLlg9kYaLmwZQDsJn5gr6OXg79QOwHeuYBf/hqjy
-IzB2LIojtcYGtB1GFNV5Ta8TF57vziklAPmFv7vdENreaIxS/0/6jfiX5uQmopLG
-a53zjm5Bnr2NmeGyoGdPuQy7/8JJogeCCpjWkGuELq62Zr/42dN/1SojCmTss1Yi
-xYhikLMnXypFHKcdgX77hBX+6rm7Cik7QqEN6UJHaACFl/KTI3x2cFKPDyIZfgZz
-YQdGsL6NqaiFAIX/KIyRmM+7ZFZDzg==
-=1TOl
------END PGP SIGNATURE-----
-
---ua36aif6vqcebhyw--
 
