@@ -1,97 +1,106 @@
-Return-Path: <devicetree+bounces-85433-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85434-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71228930063
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 20:20:10 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A51093006C
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 20:23:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9432E1C210E9
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 18:20:09 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2212AB21F84
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 18:23:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A00E18EB8;
-	Fri, 12 Jul 2024 18:16:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A29D18EA2;
+	Fri, 12 Jul 2024 18:23:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="sBhmwunQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lqHjmEZt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.web.de (mout.web.de [212.227.15.4])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAE08182C3;
-	Fri, 12 Jul 2024 18:16:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AD4A18C05;
+	Fri, 12 Jul 2024 18:23:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720808173; cv=none; b=pLBUJc/8r0KataBKqy66zgg90LMmjCAgEaJKznTHG+c6neUP3pBbrxRuEhW9YMNNO7YFqW+cNCshqKHhDlDOSOEkLf5LYsjf2lEmFssbTH0AtNoGrtpqdTbFCltoCko8rkit4vzxbGSc99mkzVkodPStoITFiNhVVoV88KhktsU=
+	t=1720808593; cv=none; b=jj8dHIdq7BTLPkg/Z7KSLqlssIH1/Evz8zJb2jWXDM7JXOdTKn/g5WVKfJJajC4NuzNho1cSncsMUaLoLvsk1Bqbnx2Qwng3HrODYUUhjX3AF/+A3ON7emG95DC8ZeebI3dtnFHba56TbRWJMm/5ZtqfPRCduBeYfedv3+hW61s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720808173; c=relaxed/simple;
-	bh=t8snUp8OlpFu84YVregM/JCFkWMWslnOdGZMoDXezMA=;
-	h=Message-ID:Date:MIME-Version:To:Cc:References:Subject:From:
-	 In-Reply-To:Content-Type; b=telkF/hHJXsXBXWWIca5KkOKnyXMBCEhKVMDt/IIV0PrceTd4G4a19wutrwFfINFH7U2nFddWz4Lv/HBuCCUHRvM+wAv8lD222xZQ5EPh+HTqFTFgnw+2VpZzKWVxUyBbSx32bSLGvgxFbtjdICX37t6unk+4OBYgQ8+vyNd0bo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=sBhmwunQ; arc=none smtp.client-ip=212.227.15.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
-	s=s29768273; t=1720808139; x=1721412939; i=markus.elfring@web.de;
-	bh=t8snUp8OlpFu84YVregM/JCFkWMWslnOdGZMoDXezMA=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:References:
-	 Subject:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
-	 cc:content-transfer-encoding:content-type:date:from:message-id:
-	 mime-version:reply-to:subject:to;
-	b=sBhmwunQYOeOrhcHiiqMEEhfttL86bQ6UpIJ7eurXNKlxyEXUHj72ldM7RkJK1/C
-	 HSvcDboK/o8S34W3v+z3vwAceoWMgW4xD2CKlZePx+F4kOGPNHK/T+PL8F2/2aZVX
-	 Paaa0DA6Yzet+1vGesTjcvmNfzElXDMZMoPVeHgkry5D5uRZzKhpao6rGM5h9BNAm
-	 I5NzoerbMTF3RaCzTo1XULvGUXtc1T5lmS+Mq0sptl0eZNNQoIYzQXtBTD5pnmlcY
-	 Itr2zHuXNGDUnyt+qmajJJz7pnu2wQ+LdkjLnF7lWZPnu04c+jbydEr9W6F3/mtx/
-	 UFxX5juKkLcYvBPx7A==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from [192.168.178.21] ([94.31.82.95]) by smtp.web.de (mrweb005
- [213.165.67.108]) with ESMTPSA (Nemesis) id 1MgRQJ-1rsRYi1UkB-00gF3g; Fri, 12
- Jul 2024 20:15:39 +0200
-Message-ID: <10a70b9a-4ae5-4293-9fee-317b46390179@web.de>
-Date: Fri, 12 Jul 2024 20:15:37 +0200
+	s=arc-20240116; t=1720808593; c=relaxed/simple;
+	bh=Z+TxIP9m7Ud+jklx9kndspNhNdQj31AH85wHorIAAuQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sEyy6VAnq4qVatz+nkb7QJbQEwGplhEBv0jmkF9uwQ1oSgmOqRDyvM2DDfRCVSgdxfUJn/ZNTTVdkOdzogspi9+HrVtMPsU4WUBLL9u+yMMzq9nr/PUx15YaPt2jQaYT75BCoC+xhVetpV1K0QIcULmiZCT8ZTWU+ECn2UcfsCc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lqHjmEZt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A2BDC32782;
+	Fri, 12 Jul 2024 18:23:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720808592;
+	bh=Z+TxIP9m7Ud+jklx9kndspNhNdQj31AH85wHorIAAuQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=lqHjmEZt5Vce3yIXpJCluqUd1suHMPVJWN2n9w4tT4iop/vVGQ1pYbG+Odcgdw+kk
+	 srmPxRA3cQU1QeYXe3TLwqcEVIUapLPmIBZQFTXrYtTsVTu1jkyyPASe56W8N95ibZ
+	 CooZijjQ7MJXA7/Yrbn9GluZudTIWIEOWOPOv0UoLAXKU6o6SjwsUQ364mtXEbZsa+
+	 m7DcLBMVh3AlMeSNxVbuzcGvXgpb4Z8762paM3nWTsBenH5VDsInONmC9FEnhQEYop
+	 7TSkJf15o/PDePUlLs8C83wPiTo/btLpr3WzT2U2DJDpp/o5EE83ARiKlkRYvc746Q
+	 kQ0J8YsAPZiOg==
+Date: Fri, 12 Jul 2024 12:23:11 -0600
+From: Rob Herring <robh@kernel.org>
+To: Dumitru Ceclan <dumitru.ceclan@analog.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	David Lechner <dlechner@baylibre.com>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Dumitru Ceclan <mitrutzceclan@gmail.com>
+Subject: Re: [PATCH v7 9/9] iio: adc: ad7173: Add support for AD411x devices
+Message-ID: <20240712182311.GA1454666-robh@kernel.org>
+References: <20240607-ad4111-v7-0-97e3855900a0@analog.com>
+ <20240607-ad4111-v7-9-97e3855900a0@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-To: Pankaj Gupta <pankaj.gupta@nxp.com>, devicetree@vger.kernel.org,
- linux-doc@vger.kernel.org, imx@lists.linux.dev, kernel@pengutronix.de,
- linux-arm-kernel@lists.infradead.org
-Cc: LKML <linux-kernel@vger.kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Fabio Estevam <festevam@gmail.com>, Jonathan Corbet <corbet@lwn.net>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>
-References: <20240712-imx-se-if-v5-0-66a79903a872@nxp.com>
-Subject: Re: [PATCH v5 0/5] Changes in v5:
-Content-Language: en-GB
-From: Markus Elfring <Markus.Elfring@web.de>
-In-Reply-To: <20240712-imx-se-if-v5-0-66a79903a872@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Provags-ID: V03:K1:RnONSGcbcr2GQOx/W/vt/PcQTj0CXwIS349iWWj5F/2VEFs7rgf
- 1wyaCcRS7m/gvK1PsNgspSi/TI7yFkPR0jKr/hAWhuX2CQxfWuP9Bl+qwVuTSl2BoSrGiYE
- XXxe5TygU/1NcgBIH1twGqP7yngMnjaJWoL7yOmBR3uah5jtqHMsh1fcnuZScBGmxj8Xt3M
- ouJUI1xNTK8AGskf2Ge1g==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:J+whdxPLS+w=;1+u74jRR5R8v8owJqhj4Udbaom0
- gn0WvXhiefGxk7qvXxJmgcorpzUD1SLyNDTYQfAYadbmKDTB5dvm/jqaiC0nQVz3X/QKm1oAN
- Swbtydo8YfFPHce0W76VpqbJM78L0CTtw9sKZwmxBq4W7Nz+lIUjp+C9drnmh87Qqzl2r11lV
- 0uRx0MsP+QvNG0st9Q5dYL5T4hGVoythYs+VTSJ2PnWs26KxG0hYVS021gL0vRaM6dPrhVSM1
- SjIkTbWzDZbRXat8LAvEc8n/vQ2TXXUqLjNqiwr4uA8uIy4Oxa7jdhMZt4jAFujwU1Mu6kEAa
- EIGp+daHUoH8S121f9dR0e/lBaEqIJ5+xEikiYldyXzhokdLtbpSWz8ctt4DioNN8Me0i8UGP
- mMM2E+938CHFba6EHEZVl4W2gcwWMIZsyxX+UAowfhtA3hfEAsyHw8dsZ+bc8gcX+NsXDNS+3
- QSx1t4IonG23OZbMpb5Gcf6WKKFAvP0Wt6kVt2wCqGq9Hizq79Ir7LG3FI5Ge9rrgNn3m92El
- 6diMjONEMuHqLEFAZHAiBPTPd5PxbehAS1s199q8w++wdLHr7IJQw/coHpxuugm7kpH76QeCT
- KKDqZOikl+O3oV/drKBEopwE6svqv04KPhZKJkH7h2jLgU8MFjxqi13Mb6F5DYreKyjP4c38o
- i1HtgnvmnDBgjYEuHF7mWHqQSl1rK/Ppm+W3Od9+npPkml9OGOfaDyAhWNBpJ/PyhBt5VrGpb
- STPkO0MsBuaCkFYriSwXPy7FbHlS2hF9D0gmhB8y6ah/BKGCcm+YgcwjL/OQijx/RwLCas3k5
- rcP9xgywgNqZR8Nl8fDC6m6g==
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240607-ad4111-v7-9-97e3855900a0@analog.com>
 
-Please choose more appropriate subjects (also for subsequent cover letter variations).
+On Fri, Jun 07, 2024 at 05:53:15PM +0300, Dumitru Ceclan wrote:
+> Add support for AD4111/AD4112/AD4114/AD4115/AD4116.
+> 
+> The AD411X family encompasses a series of low power, low noise, 24-bit,
+> sigma-delta analog-to-digital converters that offer a versatile range of
+> specifications.
+> 
+> This family of ADCs integrates an analog front end suitable for processing
+> both fully differential and single-ended, bipolar voltage inputs
+> addressing a wide array of industrial and instrumentation requirements.
+> 
+> - All ADCs have inputs with a precision voltage divider with a division
+>   ratio of 10.
+> - AD4116 has 5 low level inputs without a voltage divider.
+> - AD4111 and AD4112 support current inputs (0 mA to 20 mA) using a 50ohm
+>   shunt resistor.
+> 
+> Signed-off-by: Dumitru Ceclan <dumitru.ceclan@analog.com>
+> ---
 
-Regards,
-Markus
+[...]
+
+> @@ -1194,6 +1434,11 @@ static int ad7173_probe(struct spi_device *spi)
+>  }
+>  
+>  static const struct of_device_id ad7173_of_match[] = {
+> +	{ .compatible = "ad4111",	.data = &ad4111_device_info },
+> +	{ .compatible = "ad4112",	.data = &ad4112_device_info },
+> +	{ .compatible = "ad4114",	.data = &ad4114_device_info },
+> +	{ .compatible = "ad4115",	.data = &ad4115_device_info },
+> +	{ .compatible = "ad4116",	.data = &ad4116_device_info },
+
+These are all missing the 'adi,' vendor prefix. Please fix.
+
+>  	{ .compatible = "adi,ad7172-2", .data = &ad7172_2_device_info },
+>  	{ .compatible = "adi,ad7172-4", .data = &ad7172_4_device_info },
+>  	{ .compatible = "adi,ad7173-8", .data = &ad7173_8_device_info },
 
