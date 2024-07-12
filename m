@@ -1,109 +1,120 @@
-Return-Path: <devicetree+bounces-85347-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85348-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DCB992FBBB
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 15:48:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8403292FBC0
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 15:48:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D2DB428176D
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 13:48:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3951B1F215AB
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 13:48:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16A6516FF4E;
-	Fri, 12 Jul 2024 13:48:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F18A170855;
+	Fri, 12 Jul 2024 13:48:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="IK4LyMdj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5823FC12;
-	Fri, 12 Jul 2024 13:48:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7B1416F8F3;
+	Fri, 12 Jul 2024 13:48:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720792107; cv=none; b=VL0H2yhZjWWUD4g72P9ZZKBmw8wAX+PgiAnTFCDhUBQc63aFLIWPFDZkbr9c+3Eow2mlOSe3sfa1UOmdp5cm/gxkdrUdSHlDIsR/jRrCDFATqDgfMo0loAZj9vVnYwyxt7Zz7gk/6rV15Jsde72olddsToFvHE9LVe/Rm6z99fo=
+	t=1720792125; cv=none; b=HF3NmuftPHnHWOrE5TkOZVJsUdgJULsb1Soj60gcZ+x1/eNFnpZ+4/rN6Rx73EcZ9cdsTJgsgr7HMbmeoPo7KpnHVsFQXDCQt5r01cusIZIZJqIsR4o4S277dW54AFIXA5mjWmu4mJsM3ky06CwbFYy3BpQiTlt8Rh7CdQSapjw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720792107; c=relaxed/simple;
-	bh=yYs7MkrW0+QU3QEsKi7sNmspymkEpf3TgBrnpt7kn1Q=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Z+CMY4OwMKxp4Kfbs8j+f0yYND0sumq0iG/Y83k/LDT++ilZAmKbRf1/nbvSn3ZLI0hUXxjSfZFCH2kzQM40aVpdzOGWoaSfwmftRPEIVN1vou0ABHsJJ+03iirzh1NMe9x1NGzr6RUVgLiRP6xBuLZx2YYZc58VSASs1ullu5U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-650469f59d7so20977387b3.2;
-        Fri, 12 Jul 2024 06:48:24 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720792103; x=1721396903;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=442BdvzCkNEPOCEKPQXbGDECLpFWinxKnjTci7pd9gM=;
-        b=ev01vbGDqCrS42q0fS7XeI9QU1v0GNoIcC7ezufc0Mbvdf/j709IowAZgh5EnnHdfw
-         0ChtM6uOKiFSzFG1zj/8VT5MfiAVxUxJ2aNldCKxq7FNYvIBcRj2mljF+9kH6QhIv4q7
-         btUZpOuRrm/eSwxh8T3H3gCR8Vxgj8guSFDSHRQHfPKdfyxs2s0H7Utl+Qq5jc7VyftW
-         F3OH91edlYW5ygHhFq5RBQ0uUx4tqrwUnDXk/UxqJviR5l5zIBnm9Tf2bHKwSGZvQK8J
-         SdPfF5cOlNCExv/Fk1r1rNaQz7biaM4WG9viOsIfyqsny1zUlelTmJ5NgkntYi1na4If
-         KDtw==
-X-Forwarded-Encrypted: i=1; AJvYcCVGsKZyywnLzmRNCBX63JhIdm0j/OAmktny1pnJgOWNJmqsXgsHx0aRAKTpzxk5JAPbrzKwGxZ1WF/jkF43s9yd+R5EoOrANVjdWgG4nsgJ9bbp8J1ljRyWserCUQBy1MbYQ3lFjhM3Tf/eIF3MJbZpo03si/lAuglQHAdZnkwI3PsvCSlBTefYrFa6VnSVV2SDUjoondM44ky979gIk35qMBQGL79679V6uZEb0tJcpYX2eVTdc4WI5U/lGgvkr7M9
-X-Gm-Message-State: AOJu0YzJOvO8hzC1Jbzok5o9lo4cdaISLiBx2R5vc97DPCRmFzn8LlFH
-	f5aSDxGC9V7acODwptOJ6JkIVS7BY64l/c7CkwDSxKSbGoGugsublgG5DfSS
-X-Google-Smtp-Source: AGHT+IFFB42VJP8fv6OfeFMKry7hjXAB/2QigIi6hGKgTuUFG4230MziGertmjharB1YUmo7HubHxg==
-X-Received: by 2002:a05:690c:45c5:b0:61b:3454:8941 with SMTP id 00721157ae682-658f07d74aamr152888327b3.43.1720792102817;
-        Fri, 12 Jul 2024 06:48:22 -0700 (PDT)
-Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com. [209.85.128.178])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-658e4d2ad85sm14943267b3.41.2024.07.12.06.48.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Jul 2024 06:48:22 -0700 (PDT)
-Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-650469f59d7so20977097b3.2;
-        Fri, 12 Jul 2024 06:48:22 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWiK/33p+YvTqqY7cX11H+cJjJGXSXa2erXOxErAa8HTvB/kGL03fKHu3ET5qn8U4ZFyT4r2qv/jSxyKC7XeDhCzTyMPYyzhHYS5LWJ34rglK2K493JLqZAXDOgME3Mo+FGAHbfnDeLbjKm0EN1RJemIZEQ7sR0Vy5Dmsj+aJG60DI9zRjGGwKo4mZ4KbHCcPFaZIHRZK9TSZWWJgYV+Wk1pRZl5hwrBzOg+Kb9bG4MZbA0Ya3lnOWwRxHOvWnG/pWC
-X-Received: by 2002:a05:690c:7442:b0:64b:9f5f:67b2 with SMTP id
- 00721157ae682-658ef24c009mr138713557b3.31.1720792101940; Fri, 12 Jul 2024
- 06:48:21 -0700 (PDT)
+	s=arc-20240116; t=1720792125; c=relaxed/simple;
+	bh=igQITk/C+lEynHXIIzRXvteEHKFB84TMYY31COCnYsY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=O0VA/xT939bk1oRZpNDkKFSTO0vhTdWQqhzHDo5APzYUzrG7awYVB7ao/7TSJCDhMbpvjbSH/9lAlWdvXFfQzMKsFOGngtNB2gvnC2EGi1yz0AOzrwzi+/P0CW0YM083BcTzpLSxeGoviWICgkdE0+LEOKDlv3RYmC1cujZdWbQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=IK4LyMdj; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from ideasonboard.com (mob-5-90-56-63.net.vodafone.it [5.90.56.63])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 53C575A5;
+	Fri, 12 Jul 2024 15:48:07 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1720792087;
+	bh=igQITk/C+lEynHXIIzRXvteEHKFB84TMYY31COCnYsY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=IK4LyMdj9PVyhwaDHgXws8p7niLhBxYmt8AVvFv/388O5k6CI8xHoVub9wk3gGUPw
+	 tHxHhm1RPK520ImWcsNwNK1VzlM/HBxQD4L81dxObTXhgKc9h/WLZxHl/NySMrNcDS
+	 fSQlp12UiHhzfFYEhcYmg5Imf7tgSdJwyPTF4OTY=
+Date: Fri, 12 Jul 2024 15:48:38 +0200
+From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+To: Jai Luthra <j-luthra@ti.com>
+Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Sakari Ailus <sakari.ailus@linux.intel.com>, 
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>, Vaishnav Achath <vaishnav.a@ti.com>, 
+	Maxime Ripard <mripard@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org, 
+	devicetree@vger.kernel.org, Vignesh Raghavendra <vigneshr@ti.com>, 
+	Aradhya Bhatia <a-bhatia1@ti.com>, Devarsh Thakkar <devarsht@ti.com>, 
+	Changhuang Liang <changhuang.liang@starfivetech.com>, Jack Zhu <jack.zhu@starfivetech.com>, 
+	Julien Massot <julien.massot@collabora.com>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Subject: Re: [PATCH v2 05/13] media: ti: j721e-csi2rx: allocate DMA channel
+ based on context index
+Message-ID: <ttrv34fhuhma5bnwf7pxh77wpuhz5nhs3beeypog43swyx7wor@vofdkqcsvex4>
+References: <20240627-multistream-v2-0-6ae96c54c1c3@ti.com>
+ <20240627-multistream-v2-5-6ae96c54c1c3@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240711123405.2966302-1-claudiu.beznea.uj@bp.renesas.com> <20240711123405.2966302-2-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20240711123405.2966302-2-claudiu.beznea.uj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 12 Jul 2024 15:48:10 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdU1hqPeD91WhcY=JwUho6suwE1gRi6iWdOpYGvchioJLw@mail.gmail.com>
-Message-ID: <CAMuHMdU1hqPeD91WhcY=JwUho6suwE1gRi6iWdOpYGvchioJLw@mail.gmail.com>
-Subject: Re: [PATCH 1/3] clk: renesas: r9a08g045-cpg: Add DMA clocks and resets
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: vkoul@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	magnus.damm@gmail.com, mturquette@baylibre.com, sboyd@kernel.org, 
-	biju.das.jz@bp.renesas.com, dmaengine@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20240627-multistream-v2-5-6ae96c54c1c3@ti.com>
 
-On Thu, Jul 11, 2024 at 2:34=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.dev> =
-wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Hi Jai
+
+On Thu, Jun 27, 2024 at 06:40:00PM GMT, Jai Luthra wrote:
+> From: Pratyush Yadav <p.yadav@ti.com>
 >
-> Add the missing DMA clock and resets.
+> With multiple contexts, there needs to be a different DMA channel for
+> each context. Earlier, the DMA channel name was hard coded to "rx0" for
+> the sake of simplicity. Generate the DMA channel name based on its index
+> and get the channel corresponding to the context.
 >
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
+> Signed-off-by: Jai Luthra <j-luthra@ti.com>
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-clk for v6.12.
+Reviewed-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
 
-Gr{oetje,eeting}s,
+Thanks
+   j
 
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+> ---
+>  drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
+> index bffc8165fd33..361b0ea8e0d9 100644
+> --- a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
+> +++ b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
+> @@ -1027,6 +1027,7 @@ static int ti_csi2rx_init_dma(struct ti_csi2rx_ctx *ctx)
+>  	struct dma_slave_config cfg = {
+>  		.src_addr_width = DMA_SLAVE_BUSWIDTH_16_BYTES,
+>  	};
+> +	char name[32];
+>  	int ret;
+>
+>  	INIT_LIST_HEAD(&ctx->dma.queue);
+> @@ -1035,7 +1036,8 @@ static int ti_csi2rx_init_dma(struct ti_csi2rx_ctx *ctx)
+>
+>  	ctx->dma.state = TI_CSI2RX_DMA_STOPPED;
+>
+> -	ctx->dma.chan = dma_request_chan(ctx->csi->dev, "rx0");
+> +	snprintf(name, sizeof(name), "rx%u", ctx->idx);
+> +	ctx->dma.chan = dma_request_chan(ctx->csi->dev, name);
+>  	if (IS_ERR(ctx->dma.chan))
+>  		return PTR_ERR(ctx->dma.chan);
+>
+>
+> --
+> 2.43.0
+>
+>
 
