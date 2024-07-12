@@ -1,109 +1,106 @@
-Return-Path: <devicetree+bounces-85300-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85302-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1F9192F982
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 13:23:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 046F792F996
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 13:32:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9368F1F21F37
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 11:23:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AC6F728334A
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 11:32:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FE3C15E5CE;
-	Fri, 12 Jul 2024 11:23:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17933161939;
+	Fri, 12 Jul 2024 11:32:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from elvis.franken.de (elvis.franken.de [193.175.24.41])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C09AE624;
-	Fri, 12 Jul 2024 11:23:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.175.24.41
+Received: from out198-3.us.a.mail.aliyun.com (out198-3.us.a.mail.aliyun.com [47.90.198.3])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED419156F53;
+	Fri, 12 Jul 2024 11:32:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=47.90.198.3
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720783401; cv=none; b=Q8thfUzgCvDCLfwD+dAu77H0aRjOLyAZ3rjtD28g7PBZvsvfMSw14Q95IbHMBJJIuSqyFW2ERxshKHPiFvR2nlx9wpqx4VkKy89gB40l0PlZO/RIN5NCK7JYNZ64/ZZx/bIaVwcccpc4SqBuzK1GG1M5gjPlWXI8ZCT0TEnr42Y=
+	t=1720783957; cv=none; b=Kd186+mdTQ6XCUyilo4iO17Z61Ntl9RgHX1lHIKTCQWaOKjeW1rR7wBDI/CKU23bFfSBbQHQn1+GfzEtBl/yfLsU0xa7pAHv7TvGfuE1BZuhnLcbr5RB9qWMAxVtTmwWRo5QPPYp3RbKi1QSIfXvwDLuOXvx2RUUCKKSh3bxp60=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720783401; c=relaxed/simple;
-	bh=wb/37Rnyi2RsZUtH3sbD46Do0fPo09ABddJTvcslUVI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pL+wDJeYNyaLc8JUW03VEimrndedyaRrvKMB5cuhusKJCaWcPrIx8jzICTETFXmHJSvJxsS8EhAJEqbwyVyBVZ6oCOZqN9zQ8Tbfik4yZSUBnUCGLlB2jAbYP1sLaZVcqRRMWvsfxuzBFvTY1PaG4iJ5rXd6lAUbPmGlgNDCulc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alpha.franken.de; spf=pass smtp.mailfrom=alpha.franken.de; arc=none smtp.client-ip=193.175.24.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alpha.franken.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alpha.franken.de
-Received: from uucp by elvis.franken.de with local-rmail (Exim 3.36 #1)
-	id 1sSEMM-0003FX-00; Fri, 12 Jul 2024 13:22:42 +0200
-Received: by alpha.franken.de (Postfix, from userid 1000)
-	id 3996BC0120; Fri, 12 Jul 2024 13:20:56 +0200 (CEST)
-Date: Fri, 12 Jul 2024 13:20:56 +0200
-From: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-To: Chris Packham <chris.packham@alliedtelesis.co.nz>
-Cc: tglx@linutronix.de, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, daniel.lezcano@linaro.org,
-	paulburton@kernel.org, peterz@infradead.org, mail@birger-koblitz.de,
-	bert@biot.com, john@phrozen.org, sander@svanheule.net,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-mips@vger.kernel.org, kabel@kernel.org, ericwouds@gmail.com
-Subject: Re: [PATCH v5 00/10] mips: Support for RTL9302C
-Message-ID: <ZpERmHxcqF/gQRTi@alpha.franken.de>
-References: <20240710043524.1535151-1-chris.packham@alliedtelesis.co.nz>
+	s=arc-20240116; t=1720783957; c=relaxed/simple;
+	bh=AiGGL5G9Z0hWbcXZnuBJS1tPfi4zjidIWSJSHaWDukI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=lRgmvqz4wW6nMLZZn5BadSGZiD18ebd3zV7I6w01RN1/ey5G5WJonFKv1tNyQRW2skPGGaakRJ+3PiGOgzkUDRWJVMh30DLdHBPPwPMHswS8oydje11aTHSf9piTysxsq9LqRWIXoDC9qz5ijHOrpAScid9jjRx6UOWHHXVMVKI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=awinic.com; spf=pass smtp.mailfrom=awinic.com; arc=none smtp.client-ip=47.90.198.3
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=awinic.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=awinic.com
+X-Alimail-AntiSpam:AC=CONTINUE;BC=0.08030076|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.0128652-0.000250633-0.986884;FP=7877101106054591998|0|0|0|0|-1|-1|-1;HT=maildocker-contentspam033040106183;MF=wangshuaijie@awinic.com;NM=1;PH=DS;RN=12;RT=12;SR=0;TI=SMTPD_---.YOU1nrM_1720783926;
+Received: from awinic..(mailfrom:wangshuaijie@awinic.com fp:SMTPD_---.YOU1nrM_1720783926)
+          by smtp.aliyun-inc.com;
+          Fri, 12 Jul 2024 19:32:13 +0800
+From: wangshuaijie@awinic.com
+To: jic23@kernel.org,
+	lars@metafoo.de,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	waqar.hameed@axis.com,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: wangshuaijie@awinic.com,
+	liweilei@awinic.com,
+	kangjiajun@awinic.com
+Subject: [PATCH V3 0/2] Add support for Awinic SAR sensor
+Date: Fri, 12 Jul 2024 11:31:58 +0000
+Message-ID: <20240712113200.2468249-1-wangshuaijie@awinic.com>
+X-Mailer: git-send-email 2.41.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240710043524.1535151-1-chris.packham@alliedtelesis.co.nz>
+Content-Transfer-Encoding: 8bit
 
-On Wed, Jul 10, 2024 at 04:35:14PM +1200, Chris Packham wrote:
-> This series adds basic support for the RTL9302C reference board. Currently the
-> focus is on the CPU block stuff. I hope to get around to the DSA switch driver
-> eventually but this is a small start that lets me boot a mainline kernel on the
-> board I have. I initialiy started with code from openwrt but have paired it
-> down to just the clocksource driver and devicetree.
-> 
-> The first two patches in this series are fixing some complaints from make
-> dtbs_check for some existing realtek dts files. They can be applied on their
-> own if desired.
-> 
-> Chris Packham (10):
->   mips: dts: realtek: use "serial" instead of "uart" in node name
->   mips: dts: realtek: add device_type property to cpu node
->   dt-bindings: vendor-prefixes: Add Cameo Communications
->   dt-bindings: mips: realtek: Add rtl930x-soc compatible
->   dt-bindings: timer: Add schema for realtek,otto-timer
->   dt-bindings: interrupt-controller: realtek,rtl-intc: Add rtl9300-intc
->   clocksource: realtek: Add timer driver for rtl-otto platforms
->   mips: select REALTEK_OTTO_TIMER for Realtek platforms
->   mips: generic: add fdt fixup for Realtek reference board
->   mips: dts: realtek: Add RTL9302C board
-> 
->  .../realtek,rtl-intc.yaml                     |  20 +-
->  .../devicetree/bindings/mips/realtek-rtl.yaml |   4 +
->  .../bindings/timer/realtek,otto-timer.yaml    |  63 ++++
->  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
->  arch/mips/Kconfig                             |   1 +
->  arch/mips/boot/dts/realtek/Makefile           |   1 +
->  .../cameo-rtl9302c-2x-rtl8224-2xge.dts        |  73 +++++
->  arch/mips/boot/dts/realtek/rtl838x.dtsi       |   1 +
->  arch/mips/boot/dts/realtek/rtl83xx.dtsi       |   4 +-
->  arch/mips/boot/dts/realtek/rtl930x.dtsi       |  79 +++++
->  arch/mips/generic/Makefile                    |   1 +
->  arch/mips/generic/board-realtek.c             |  79 +++++
->  drivers/clocksource/Kconfig                   |  10 +
->  drivers/clocksource/Makefile                  |   1 +
->  drivers/clocksource/timer-rtl-otto.c          | 291 ++++++++++++++++++
->  include/linux/cpuhotplug.h                    |   1 +
->  16 files changed, 628 insertions(+), 3 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/timer/realtek,otto-timer.yaml
->  create mode 100644 arch/mips/boot/dts/realtek/cameo-rtl9302c-2x-rtl8224-2xge.dts
->  create mode 100644 arch/mips/boot/dts/realtek/rtl930x.dtsi
->  create mode 100644 arch/mips/generic/board-realtek.c
->  create mode 100644 drivers/clocksource/timer-rtl-otto.c
+From: shuaijie wang <wangshuaijie@awinic.com>
 
-applied patch 1-4, 6 and 8-10 to mips-next.
+Add drivers that support Awinic SAR (Specific Absorption Rate)
+sensors to the Linux kernel.
 
-Thomas.
+The AW9610X series and AW963XX series are high-sensitivity
+capacitive proximity detection sensors.
 
+This device detects human proximity and assists electronic devices
+in reducing SAR to pass SAR related certifications.
+
+The device reduces RF power and reduces harm when detecting human proximity.
+Increase power and improve signal quality when the human body is far away.
+
+This patch implements device initialization, registration,
+I/O operation handling and interrupt handling, and passed basic testing.
+
+shuaijie wang (2):
+  dt-bindings: iio: Add YAML to Awinic proximity sensor
+  Add support for Awinic proximity sensor
+
+ .../iio/proximity/awinic,aw96xxx.yaml         |  127 ++
+ drivers/iio/proximity/Kconfig                 |   10 +
+ drivers/iio/proximity/Makefile                |    2 +
+ drivers/iio/proximity/aw9610x.c               | 1150 ++++++++++
+ drivers/iio/proximity/aw963xx.c               | 1371 ++++++++++++
+ drivers/iio/proximity/aw_sar.c                | 1850 +++++++++++++++++
+ drivers/iio/proximity/aw_sar.h                |   23 +
+ drivers/iio/proximity/aw_sar_comm_interface.c |  550 +++++
+ drivers/iio/proximity/aw_sar_comm_interface.h |  172 ++
+ drivers/iio/proximity/aw_sar_type.h           |  371 ++++
+ 10 files changed, 5626 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/proximity/awinic,aw96xxx.yaml
+ create mode 100644 drivers/iio/proximity/aw9610x.c
+ create mode 100644 drivers/iio/proximity/aw963xx.c
+ create mode 100644 drivers/iio/proximity/aw_sar.c
+ create mode 100644 drivers/iio/proximity/aw_sar.h
+ create mode 100644 drivers/iio/proximity/aw_sar_comm_interface.c
+ create mode 100644 drivers/iio/proximity/aw_sar_comm_interface.h
+ create mode 100644 drivers/iio/proximity/aw_sar_type.h
+
+
+base-commit: 43db1e03c086ed20cc75808d3f45e780ec4ca26e
 -- 
-Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
-good idea.                                                [ RFC1925, 2.3 ]
+2.45.1
+
 
