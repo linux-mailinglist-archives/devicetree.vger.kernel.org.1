@@ -1,191 +1,148 @@
-Return-Path: <devicetree+bounces-85377-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85378-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3D9692FD18
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 17:01:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8684492FD21
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 17:04:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 99B741F23C69
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 15:01:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B7DD21C2317D
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 15:04:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4432216FF2A;
-	Fri, 12 Jul 2024 15:01:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84A32171E73;
+	Fri, 12 Jul 2024 15:04:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="umb0Tt+g"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TyMqm/d8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1EB117C6B;
-	Fri, 12 Jul 2024 15:01:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B3C58821;
+	Fri, 12 Jul 2024 15:04:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720796472; cv=none; b=QlKKV6mMtBWAhJfvUd0yIQpnx4/PbN2xhKgBxmxegAe112sRlac5v2F6qZjlYdWnrDplgdCbfCTMIUCR/7UnUNriQ5xvGIzB2y9Ol/uvh5cQwC/Q00e2UuWpRHxvP5nB3ZEuA9NVm9nHWdPYLzl7ksY7pS8eRJEpmMjps5D+jb0=
+	t=1720796678; cv=none; b=LWMl7HJhwoHbFjKKnIhDChcltRDgaUppuhw/wHym47J+SUpWaF3ZqRmdlAG9bA2YXT8YrPVWnNy7iwc0eXvC73FEFF7HxJd20sbKNCVwcx09Ba0bpWHqdd7oA3iu09pAQeuDHnRhV+3ZH/KPdt0xt8aH4yJLhVjrzLMwgH2PTe0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720796472; c=relaxed/simple;
-	bh=TELIwwG/3h5x8yMKF9Rhltm3vOa0nmrPuSIsFx4fOl4=;
+	s=arc-20240116; t=1720796678; c=relaxed/simple;
+	bh=z2ecqsPAYASZD2A2evVebbdkkv9mdIYLlaEA6NG5YZw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Q+koowrIC8+d8UECFREdBBTiDy7m7ywKzyBFdZMH7bSDhIiGrjwB/S6qz5OSicaYwNvr5y7TzJLzyZ1ZQfCqZlreee+tszg9dMNfR7MGgX3xYMO5iIzd62hUJ/l0hqL7DXr2IefWVljY51hr9CLUKktub5Nbn/VWwbgf8lbf9ZE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=umb0Tt+g; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from ideasonboard.com (mob-5-90-56-63.net.vodafone.it [5.90.56.63])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 86F9B7E3;
-	Fri, 12 Jul 2024 17:00:33 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1720796433;
-	bh=TELIwwG/3h5x8yMKF9Rhltm3vOa0nmrPuSIsFx4fOl4=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=T0b4pT2y0OZh6JKvOZtcF2qekj2/YjGRJKbukCZ1tOb4W/cbOHP8v8wLd/QrPMi+hJROkeC2IvvVaIeMuThWu8CfnIZWBGbphF0SMJGM3dEw3QhE+QKcNhxfYOOQaJQ0U9lI41raPwr18fZbPz3jWmZhgWy57Sp7sHNQPTo1f44=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TyMqm/d8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5CA80C32782;
+	Fri, 12 Jul 2024 15:04:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720796677;
+	bh=z2ecqsPAYASZD2A2evVebbdkkv9mdIYLlaEA6NG5YZw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=umb0Tt+gFjFgUggaku8u+sG6c75ZIEr1pkX32DIFdEOds/ULLoN0UHuy453SEPG1L
-	 JtC9UbOq5okLwgn2w/exZuTAFx80vAmXeenCVwAPPoZ4vLaYwfzKJnUe/fBH09sp+y
-	 Lcl6LSCX+9EM3F5iSdvgAjiouzkNizdbfZh4EXGc=
-Date: Fri, 12 Jul 2024 17:01:04 +0200
-From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-To: Jai Luthra <j-luthra@ti.com>
-Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Sakari Ailus <sakari.ailus@linux.intel.com>, 
-	Hans Verkuil <hverkuil-cisco@xs4all.nl>, Vaishnav Achath <vaishnav.a@ti.com>, 
-	Maxime Ripard <mripard@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org, 
-	devicetree@vger.kernel.org, Vignesh Raghavendra <vigneshr@ti.com>, 
-	Aradhya Bhatia <a-bhatia1@ti.com>, Devarsh Thakkar <devarsht@ti.com>, 
-	Changhuang Liang <changhuang.liang@starfivetech.com>, Jack Zhu <jack.zhu@starfivetech.com>, 
-	Julien Massot <julien.massot@collabora.com>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Subject: Re: [PATCH v2 09/13] media: ti: j721e-csi2rx: add support for
- processing virtual channels
-Message-ID: <gn4p7imootxlidam6uddits5i7zwo5azzzb3h3wcobxquqpczs@2msb66c5hs4y>
-References: <20240627-multistream-v2-0-6ae96c54c1c3@ti.com>
- <20240627-multistream-v2-9-6ae96c54c1c3@ti.com>
+	b=TyMqm/d8Wna5olkJvQxq07tM1rg4n7CbbqIxreylCwqv58A4WrUdzG1yYdIKyuych
+	 4sxAj/rbFSrs/r49THFKj1yOo62cxn2C/BrSic/9vdaJLgAGYZPSemgFt0y1yCTVnX
+	 UQz2gAT9fjhCbeGIlZR6dx7DCktrc/9ge+q8jSNqqt0CQdQm5I4bN6ANP4/SyAvvvx
+	 hZ+lS3heiz5y/LcOluBHT3WnMScRrQTymM83nRA/hcGFSXnBYuj4RbnaSzrkoD5g4q
+	 zrAAprMoAJcd7o9d8w6PfLD343Y0VpoVaEKzJS1jCUj5y9/LTalBP65POWjzdVMf0n
+	 M89ueiWOXpsSA==
+Date: Fri, 12 Jul 2024 17:04:34 +0200
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: Jakub Kicinski <kuba@kernel.org>
+Cc: netdev@vger.kernel.org, nbd@nbd.name, lorenzo.bianconi83@gmail.com,
+	davem@davemloft.net, edumazet@google.com, pabeni@redhat.com,
+	conor@kernel.org, linux-arm-kernel@lists.infradead.org,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, devicetree@vger.kernel.org,
+	catalin.marinas@arm.com, will@kernel.org, upstream@airoha.com,
+	angelogioacchino.delregno@collabora.com,
+	benjamin.larsson@genexis.eu, rkannoth@marvell.com,
+	sgoutham@marvell.com, andrew@lunn.ch, arnd@arndb.de,
+	horms@kernel.org
+Subject: Re: [PATCH v7 net-next 2/2] net: airoha: Introduce ethernet support
+ for EN7581 SoC
+Message-ID: <ZpFGAqM9p-1mGLhM@lore-desk>
+References: <cover.1720600905.git.lorenzo@kernel.org>
+ <8ca603f8cea1ad64b703191b4c780bab87cb7dff.1720600905.git.lorenzo@kernel.org>
+ <20240711181003.4089a633@kernel.org>
+ <ZpEz-o1Dkg1gF_ud@lore-desk>
+ <20240712072819.4f43062c@kernel.org>
+ <ZpFBLkYyMXtMgbA8@lore-desk>
+ <20240712080002.37c11d02@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="FrVz4LyIzcl3psSO"
 Content-Disposition: inline
-In-Reply-To: <20240627-multistream-v2-9-6ae96c54c1c3@ti.com>
+In-Reply-To: <20240712080002.37c11d02@kernel.org>
 
-Hi Jai
 
-On Thu, Jun 27, 2024 at 06:40:04PM GMT, Jai Luthra wrote:
-> Use get_frame_desc() to get the frame desc from the connected source,
-> and use the provided virtual channel instead of hardcoded one.
->
-> get_frame_desc() works per stream, but as we don't support multiple
-> streams yet, we will just always use stream 0. If the source doesn't
-> support get_frame_desc(), fall back to the previous method of always
-> capturing virtual channel 0.
->
-> Co-developed-by: Pratyush Yadav <p.yadav@ti.com>
-> Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
-> Signed-off-by: Jai Luthra <j-luthra@ti.com>
-> ---
->  .../media/platform/ti/j721e-csi2rx/j721e-csi2rx.c  | 39 ++++++++++++++++++++++
->  1 file changed, 39 insertions(+)
->
-> diff --git a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
-> index b4b4bb69c88a..c0916ca1a6f8 100644
-> --- a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
-> +++ b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
-> @@ -29,6 +29,7 @@
->  #define SHIM_DMACNTX_EN			BIT(31)
->  #define SHIM_DMACNTX_YUV422		GENMASK(27, 26)
->  #define SHIM_DMACNTX_SIZE		GENMASK(21, 20)
-> +#define SHIM_DMACNTX_VC			GENMASK(9, 6)
->  #define SHIM_DMACNTX_FMT		GENMASK(5, 0)
->  #define SHIM_DMACNTX_YUV422_MODE_11	3
->  #define SHIM_DMACNTX_SIZE_8		0
-> @@ -105,6 +106,8 @@ struct ti_csi2rx_ctx {
->  	struct media_pad		pad;
->  	u32				sequence;
->  	u32				idx;
-> +	u32				vc;
-> +	u32				stream;
->  };
->
->  struct ti_csi2rx_dev {
-> @@ -571,6 +574,7 @@ static void ti_csi2rx_setup_shim(struct ti_csi2rx_ctx *ctx)
->  	}
->
->  	reg |= FIELD_PREP(SHIM_DMACNTX_SIZE, fmt->size);
-> +	reg |= FIELD_PREP(SHIM_DMACNTX_VC, ctx->vc);
->
->  	writel(reg, csi->shim + SHIM_DMACNTX(ctx->idx));
->
-> @@ -844,6 +848,33 @@ static void ti_csi2rx_buffer_queue(struct vb2_buffer *vb)
->  	}
->  }
->
-> +static int ti_csi2rx_get_vc(struct ti_csi2rx_ctx *ctx)
-> +{
-> +	struct ti_csi2rx_dev *csi = ctx->csi;
-> +	struct v4l2_mbus_frame_desc fd;
-> +	struct media_pad *pad;
-> +	int ret, i;
-> +
-> +	pad = media_entity_remote_pad_unique(&csi->subdev.entity, MEDIA_PAD_FL_SOURCE);
-> +	if (!pad)
-> +		return -ENODEV;
-> +
-> +	ret = v4l2_subdev_call(csi->source, pad, get_frame_desc, pad->index,
-> +			       &fd);
-> +	if (ret)
-> +		return ret;
+--FrVz4LyIzcl3psSO
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Would it be better to fail at bound() time if the remote subdev
-doesn't support get_frame_desc ? you can use
+> On Fri, 12 Jul 2024 16:43:58 +0200 Lorenzo Bianconi wrote:
+> > > On Fri, 12 Jul 2024 15:47:38 +0200 Lorenzo Bianconi wrote: =20
+> > > > The Airoha eth SoC architecture is similar to mtk_eth_soc one (e.g =
+MT7988a).
+> > > > The FrameEngine (FE) module has multiple GDM ports that are connect=
+ed to
+> > > > different blocks. Current airoha_eth driver supports just GDM1 that=
+ is connected
+> > > > to a MT7530 DSA switch (I have not posted a tiny patch for mt7530 d=
+river yet).
+> > > > In the future we will support even GDM{2,3,4} that will connect to =
+differ
+> > > > phy modues (e.g. 2.5Gbps phy). =20
+> > >=20
+> > > What I'm confused by is the mentioned of DSA. You put the port in the
+> > > descriptor, and there can only be one switch on the other side, right=
+? =20
+> >=20
+> > do you mean fport in msg1 (airoha_dev_xmit())?
+> >=20
+> > 	fport =3D port->id =3D=3D 4 ? FE_PSE_PORT_GDM4 : port->id;
+> > 	msg1 =3D FIELD_PREP(QDMA_ETH_TXMSG_FPORT_MASK, fport) |
+> > 	       ...
+> >=20
+> > fport refers to the GDM port and not to the dsa user port. Am I missing
+> > something?
+>=20
+> Ooh, I see, reading what you explained previously now makes sense.
+> So only 1 of the ports goes to the DSA switch, and the other ones
+> are connected to SoC pins? A diagram would be worth a 1000 words ;)
 
-        if (!v4l2_subdev_has_op(subdev, pad, get_frame_desc)) {
+exactly, just GDM1 FE port is connected to the DSA switch.
+I will try to do my best for the diagram :)
 
-> +
-> +	if (fd.type != V4L2_MBUS_FRAME_DESC_TYPE_CSI2)
-> +		return -EINVAL;
-> +
-> +	for (i = 0; i < fd.num_entries; i++) {
+>=20
+> > > be in a setup like this :( It will have no way to figure out the real
+> > > egress rate given that each netdev only sees a (non-)random sample
+> > > of traffic sharing the queue :( =20
+> >=20
+> > do you prefer to remove BQL support?
+>=20
+> No strong preference, I worry it will do more harm than good in
+> this case. It's not what it's designed for basically. But without
+> testing it's all speculation, so up to you, users can always disable
+> using sysfs.
 
-        for (unsigned int i
+let me take a look to it again but, if it is not harmful, I would prefer
+to remove it and add it in the future if necessary.
 
-should num_entries be validated ?
+Regards,
+Lorenzo
 
-> +		if (ctx->stream == fd.entry[i].stream)
-> +			return fd.entry[i].bus.csi2.vc;
-> +	}
-> +
-> +	return -ENODEV;
-> +}
-> +
->  static int ti_csi2rx_start_streaming(struct vb2_queue *vq, unsigned int count)
->  {
->  	struct ti_csi2rx_ctx *ctx = vb2_get_drv_priv(vq);
-> @@ -864,6 +895,14 @@ static int ti_csi2rx_start_streaming(struct vb2_queue *vq, unsigned int count)
->  	if (ret)
->  		goto err;
->
-> +	ret = ti_csi2rx_get_vc(ctx);
-> +	if (ret == -ENOIOCTLCMD)
-> +		ctx->vc = 0;
+--FrVz4LyIzcl3psSO
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Ah, so you fallback to 0 in case the subdev doesn't support
-get_frame_desc. I'm not sure what would be better here maybe wait for
-other's opinions as well.
+-----BEGIN PGP SIGNATURE-----
 
-Personally I would fail earlier to make sure subdev drivers are forced
-to impement get_frame_desc
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZpFGAgAKCRA6cBh0uS2t
+rLaaAQCs3Dx/ZbyTEKnvJiV1lXvr4OpdqB5sQ8NeRm0lUoltUAEAm9VJeU8rmV/k
+KCyqk8Q9/767CSTrlgZjOh2sG848hQU=
+=r6VF
+-----END PGP SIGNATURE-----
 
-> +	else if (ret < 0)
-> +		goto err;
-> +	else
-> +		ctx->vc = ret;
-> +
->  	ti_csi2rx_setup_shim(ctx);
->
->  	ctx->sequence = 0;
->
-> --
-> 2.43.0
->
->
+--FrVz4LyIzcl3psSO--
 
