@@ -1,61 +1,57 @@
-Return-Path: <devicetree+bounces-85434-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85435-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A51093006C
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 20:23:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BE80930082
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 20:39:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2212AB21F84
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 18:23:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7D2161C21B2F
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 18:39:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A29D18EA2;
-	Fri, 12 Jul 2024 18:23:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B30791B5AA;
+	Fri, 12 Jul 2024 18:39:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lqHjmEZt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HK4+iWcw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AD4A18C05;
-	Fri, 12 Jul 2024 18:23:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C7B817BBF;
+	Fri, 12 Jul 2024 18:39:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720808593; cv=none; b=jj8dHIdq7BTLPkg/Z7KSLqlssIH1/Evz8zJb2jWXDM7JXOdTKn/g5WVKfJJajC4NuzNho1cSncsMUaLoLvsk1Bqbnx2Qwng3HrODYUUhjX3AF/+A3ON7emG95DC8ZeebI3dtnFHba56TbRWJMm/5ZtqfPRCduBeYfedv3+hW61s=
+	t=1720809564; cv=none; b=S28Gvv1xwIS0xNkTqLq/lARKiK0bTsK7yDzmasrXq8tGVsN+oft48U7P5w0udeQNQqF6ZxWcwBmtc3hBTkGTQWxqfyTUNDV7V/5PPjzAUDLErFC3UDmfNsFK0uE3AU2FJwHfWU8DUHt9Qd1NWJ4uJcSvvT84lTIVCXtUwLITs38=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720808593; c=relaxed/simple;
-	bh=Z+TxIP9m7Ud+jklx9kndspNhNdQj31AH85wHorIAAuQ=;
+	s=arc-20240116; t=1720809564; c=relaxed/simple;
+	bh=uAtuGSq/imfAYFWMSqAI9v13fXsZh3z6n7NkYOD+u1E=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sEyy6VAnq4qVatz+nkb7QJbQEwGplhEBv0jmkF9uwQ1oSgmOqRDyvM2DDfRCVSgdxfUJn/ZNTTVdkOdzogspi9+HrVtMPsU4WUBLL9u+yMMzq9nr/PUx15YaPt2jQaYT75BCoC+xhVetpV1K0QIcULmiZCT8ZTWU+ECn2UcfsCc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lqHjmEZt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A2BDC32782;
-	Fri, 12 Jul 2024 18:23:12 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZT2vVTRN+oACcW/jxKrugBwvQTw4JuwlkH8fEmAr6rE1WqNHMwz9oRZXFXroF8a6NRDFNBADG6pPuNsMYo613zt5p1rEVw5Q8u0P0OVqOGd6iZ6bqMxbhvIORra3TsmANUeKMoW6GbBodlIUjBLNk/O7Xs70Hj/N+5PEFALElZI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HK4+iWcw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC5A8C4AF07;
+	Fri, 12 Jul 2024 18:39:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720808592;
-	bh=Z+TxIP9m7Ud+jklx9kndspNhNdQj31AH85wHorIAAuQ=;
+	s=k20201202; t=1720809564;
+	bh=uAtuGSq/imfAYFWMSqAI9v13fXsZh3z6n7NkYOD+u1E=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lqHjmEZt5Vce3yIXpJCluqUd1suHMPVJWN2n9w4tT4iop/vVGQ1pYbG+Odcgdw+kk
-	 srmPxRA3cQU1QeYXe3TLwqcEVIUapLPmIBZQFTXrYtTsVTu1jkyyPASe56W8N95ibZ
-	 CooZijjQ7MJXA7/Yrbn9GluZudTIWIEOWOPOv0UoLAXKU6o6SjwsUQ364mtXEbZsa+
-	 m7DcLBMVh3AlMeSNxVbuzcGvXgpb4Z8762paM3nWTsBenH5VDsInONmC9FEnhQEYop
-	 7TSkJf15o/PDePUlLs8C83wPiTo/btLpr3WzT2U2DJDpp/o5EE83ARiKlkRYvc746Q
-	 kQ0J8YsAPZiOg==
-Date: Fri, 12 Jul 2024 12:23:11 -0600
-From: Rob Herring <robh@kernel.org>
-To: Dumitru Ceclan <dumitru.ceclan@analog.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	David Lechner <dlechner@baylibre.com>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Dumitru Ceclan <mitrutzceclan@gmail.com>
-Subject: Re: [PATCH v7 9/9] iio: adc: ad7173: Add support for AD411x devices
-Message-ID: <20240712182311.GA1454666-robh@kernel.org>
-References: <20240607-ad4111-v7-0-97e3855900a0@analog.com>
- <20240607-ad4111-v7-9-97e3855900a0@analog.com>
+	b=HK4+iWcwd6JRKIuUO1eYdYnpFGqrSAVCPqsjEFPut3mM5J1czVbzH+ioV8gdSTiIy
+	 OimjGcmdW4TFlDXY4lQ9VxqO6NPeiD60AC5aucfI/liCqZLy+Lqta5pkVVeb+VtAE6
+	 umYgY6GazodpWSeAr3xlRHC3gzkQfc8SR7xH7XSVo+wxL/q5q7HnRFfo9zUIP/Nf/+
+	 DDj4zKAxkE2wYlcNwqFfFvF/VSYQ+FcHx2LOPY04QXyEMMiSE84OrnfoLwq2WSaFCY
+	 v4E5keub1ZbSpocRR1fKr6SADmg/d9FRdfheYHxj2mIHNz8v51BQXDuIjsy7Lod3D8
+	 EazO5anKG0RAw==
+Date: Fri, 12 Jul 2024 12:39:22 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Marek Vasut <marex@denx.de>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	devicetree@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>
+Subject: Re: [PATCH v3] dt-bindings: incomplete-devices: document devices
+ without bindings
+Message-ID: <172080781462.1404657.13880263626115458163.robh@kernel.org>
+References: <20240712121146.90942-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,43 +60,52 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240607-ad4111-v7-9-97e3855900a0@analog.com>
+In-Reply-To: <20240712121146.90942-1-krzysztof.kozlowski@linaro.org>
 
-On Fri, Jun 07, 2024 at 05:53:15PM +0300, Dumitru Ceclan wrote:
-> Add support for AD4111/AD4112/AD4114/AD4115/AD4116.
+
+On Fri, 12 Jul 2024 14:11:46 +0200, Krzysztof Kozlowski wrote:
+> There are devices in the wild with non-updatable firmware coming with
+> ACPI tables with rejected compatibles, e.g. "ltr,ltrf216a".  Linux
+> kernel still supports this device via ACPI PRP0001, however the
+> compatible was never accepted to bindings.
 > 
-> The AD411X family encompasses a series of low power, low noise, 24-bit,
-> sigma-delta analog-to-digital converters that offer a versatile range of
-> specifications.
+> There are also several early PowerPC or SPARC platforms using
+> compatibles for their OpenFirmware, but without in-tree DTS.  Often the
+> legacy compatible is not correct in terms of current Devicetree
+> specification, e.g. missing vendor prefix.
 > 
-> This family of ADCs integrates an analog front end suitable for processing
-> both fully differential and single-ended, bipolar voltage inputs
-> addressing a wide array of industrial and instrumentation requirements.
+> Finally there are also Linux-specific tools and test code with
+> compatibles.
 > 
-> - All ADCs have inputs with a precision voltage divider with a division
->   ratio of 10.
-> - AD4116 has 5 low level inputs without a voltage divider.
-> - AD4111 and AD4112 support current inputs (0 mA to 20 mA) using a 50ohm
->   shunt resistor.
+> Add a schema covering above cases purely to satisfy the DT schema and
+> scripts/checkpatch.pl checks for undocumented compatibles.  For
+> ltr,ltrf216a this also documents the consensus: compatible is allowed
+> only via ACPI PRP0001, but not bindings.
 > 
-> Signed-off-by: Dumitru Ceclan <dumitru.ceclan@analog.com>
+> Link: https://lore.kernel.org/all/20240705095047.90558-1-marex@denx.de/
+> Link: https://lore.kernel.org/lkml/20220731173446.7400bfa8@jic23-huawei/T/#me55be502302d70424a85368c2645c89f860b7b40
+> Cc: Marek Vasut <marex@denx.de>
+> Cc: Jonathan Cameron <jic23@kernel.org>
+> Cc: Sebastian Reichel <sebastian.reichel@collabora.com>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
 > ---
+> 
+> Changes in v3:
+> 1. Incorrect->Legacy
+> 2. Drop ohci-littledian
+> 3. Drop unittest
+> 
+> Changes in v2:
+> 1. Rename to incomplete-devices.yaml
+> 2. Add many compatibles based on Rob's feedback, rewrite descriptions in
+>    the schema.
+> ---
+>  .../bindings/incomplete-devices.yaml          | 137 ++++++++++++++++++
+>  1 file changed, 137 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/incomplete-devices.yaml
+> 
 
-[...]
+Applied, thanks!
 
-> @@ -1194,6 +1434,11 @@ static int ad7173_probe(struct spi_device *spi)
->  }
->  
->  static const struct of_device_id ad7173_of_match[] = {
-> +	{ .compatible = "ad4111",	.data = &ad4111_device_info },
-> +	{ .compatible = "ad4112",	.data = &ad4112_device_info },
-> +	{ .compatible = "ad4114",	.data = &ad4114_device_info },
-> +	{ .compatible = "ad4115",	.data = &ad4115_device_info },
-> +	{ .compatible = "ad4116",	.data = &ad4116_device_info },
-
-These are all missing the 'adi,' vendor prefix. Please fix.
-
->  	{ .compatible = "adi,ad7172-2", .data = &ad7172_2_device_info },
->  	{ .compatible = "adi,ad7172-4", .data = &ad7172_4_device_info },
->  	{ .compatible = "adi,ad7173-8", .data = &ad7173_8_device_info },
 
