@@ -1,228 +1,208 @@
-Return-Path: <devicetree+bounces-85247-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85248-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2F7C92F71F
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 10:41:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FD4A92F74D
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 10:54:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B37FE2823B6
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 08:41:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B8E6E1F21FFA
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 08:54:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EC9013F43C;
-	Fri, 12 Jul 2024 08:41:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5332A1428E7;
+	Fri, 12 Jul 2024 08:54:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="j2hPc1UN"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="QmphOMJy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58FE713D605
-	for <devicetree@vger.kernel.org>; Fri, 12 Jul 2024 08:41:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 239E1143C6E;
+	Fri, 12 Jul 2024 08:54:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720773695; cv=none; b=XZt+hasGWUNE7Kq0mDpBmuLK2RwEzAHHqqIkCVAnsB/3PSotoHydnsW1W3LLpL/ojhAA7MXSd99ggfPjb944NIvCbUGQhjhqT4ZgjHIGHELV76bpzr3EHog1U2T54a+KBSE9vNq2LawoFfSLHXeFzrdAoJl4yJyyhiMSGz3fLTk=
+	t=1720774445; cv=none; b=h+6UxIHyeBZqBmcwwzslHJwBrIrJ0VLJ/vm8C+PuaNSSoGc5mp2G4FiDAeTu7XsVf+l0LNtog22F6CyAcqBNIi7esVpVwkrWE/ruKu7txYLrEkYJLtZNS7VPkvsS1vj882LkC7RQZddv33kVdkchg8jH6BwwP1URS+NtGm5YUrE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720773695; c=relaxed/simple;
-	bh=tZo066m0FJy5SUDIiOa0RWh9vniTTzGSzxhPvoOWvuE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 Cc:Content-Type; b=LHbvJILwRaT2OvTAP8Guf0R5AbZy2waMDSpIM5k12pUC0b5IfFwcGWqXqI7p7UvSWM9eFJ4oo5B0AwZPRpL5i3jTvlJZUkonJE7H2z5SEUnjB4YpzTz49p2QLEQAFcWSsXsSxAEbIzehaNCfDXRZGlEDQF6IMxIf/JHn3jtH0NQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=j2hPc1UN; arc=none smtp.client-ip=209.85.208.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-58bac81f40bso2392546a12.1
-        for <devicetree@vger.kernel.org>; Fri, 12 Jul 2024 01:41:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1720773692; x=1721378492; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wlAJm+hon9MJjqPdpWZb17dSrrSb4gCZfoNF5yzi3oQ=;
-        b=j2hPc1UNsddETWuhUlMvn7agodsmxVSZKKvGOxM2P/+TXbkbW+abC3+oI9Y1BnOzF4
-         qccEPiqImqSHvq8dzegRuLrLscc2EChwB6RNJTkHbOlIFhefPIM7nbU2NI8iuhA7jLya
-         YGJYg5SvFgN/lhu6eI9jt2EahOxJgTw/G120kjxtmZYAN8Ifme5joz7HfKcRQYgkdJYi
-         4Vhmt6a07REU9DmlFBNUkBZbfnfpH0ISL1Y+Wsxm22BDnHHMImIezNMuart63IqnSA8r
-         6KKySWaFozkiyKKDq7zZWm4GDgwmagxByBLMX/5u11B01PTklExESMdZuPk9Ml50a7QY
-         oc7g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720773692; x=1721378492;
-        h=content-transfer-encoding:cc:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wlAJm+hon9MJjqPdpWZb17dSrrSb4gCZfoNF5yzi3oQ=;
-        b=WaEaYqPlQFyyuCUsplswdqDkh8l0ez0euVi+dnxGqr0RaFr4r3hcnMvhLf8IBhl1/w
-         WJ0CG2+YfRAJ0W+gRwE2Moq6PkfFBRHb/bIZLX/21DMgYu1pA3ym+w5/gQZ/YD/5naT6
-         oq79vAvaNJ61FbG5/vrYPM4HPfKLEuuiu4e0QNvoeTeKWr9KkZh52u1e5gjsZiaKEzzb
-         sFMDSP7s+JLm4Yo4klUX6kkU7ISx1gDIwH2ckjMETapaDfy6HNoJB5MXHiZs9tKLjexC
-         7f0XCKq5hAUhrgcgp3OqATqkXDhst9yIKkn9J9PfMzqPeOYAElSsLDiV7jR9WoFK13hy
-         QoTA==
-X-Forwarded-Encrypted: i=1; AJvYcCU+me4d5h5TM6JS77yxrz3YppLvqFxW3dEe0LinigshYwHmzWIqsZofP2Jzox5Y2n4jMWVEABEEuUCthwIaw0EK4icxhffBWoCTog==
-X-Gm-Message-State: AOJu0YwHv1Oedte0KOYoSH8PY1neNyC3isK6yI4g/RaISIYnRScYaisJ
-	JWRQ3heM/3S2XH1jRCb/S6sx+3nDpKJHjVglVIQvmv3ImLvn0i+w2J7EIl2CH3DfS7oKtcchQjR
-	fkeEmoYwF+J2WG8CZVxXjepOZri0h2g==
-X-Received: by 2002:a05:6402:308e:b0:58e:3501:5c0a with SMTP id
- 4fb4d7f45d1cf-594baf8d6cfmt5938341a12.11.1720773691396; Fri, 12 Jul 2024
- 01:41:31 -0700 (PDT)
+	s=arc-20240116; t=1720774445; c=relaxed/simple;
+	bh=nzu9P56chtLJHXFd0G6YfkbOYTeF7ZT2/9zYmaF0cXM=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=Iyd44eevv8cLjIMtGzrW9Ti1FgM+b6fVeUBm0rSfdmuXqe4GVF2/qvzM96I7V9/0TK4fyZiai+WjHM7K7UZ6gwnG7qCDmfq/Y4S/S9TvlzoEsLZdrvjvVBoMc80C6SA2q9YNem5eAedOA3I1YcHLMfXyJUW9uWaMOWrwvMG5mz0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=QmphOMJy; arc=none smtp.client-ip=217.70.183.193
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id EFCE9240008;
+	Fri, 12 Jul 2024 08:53:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1720774440;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=fsHQolMQ5R8Bw8lyvu/s8i78XuwoHgIGYntfqvegxLE=;
+	b=QmphOMJyLr8bNOJrYEF2PyXSB1kJna1Xr6KPCQrZsM0j7/re2P3EpZXwebIRSjpLrARAEN
+	0DVubboteI1+PvXUIhWoI1frZjM7/OySGgJAtIU3xZEqSxvWLhRRFjq0LxdMtyv1ghkb5q
+	GypqilL6x1CJf2j1c0gl5ELMzldYHBjbta9hgc+IsR5VxgiGSDLDbArWTmzB7drmRIYpEA
+	4beKo8aamhtskPZfS412vBjPmZX2cCJkVbyw4YtO9VhQUdQhqykM8zaFVshe1oaKsxUcsj
+	KWx5ZztBd/xd/l1G2Bb7B0yc5GBXThNvVd8yJs2ewYWGLIH0xL9+adEhFlVl/g==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240705093503.215787-1-kanakshilledar@gmail.com> <20240705093503.215787-2-kanakshilledar@gmail.com>
-In-Reply-To: <20240705093503.215787-2-kanakshilledar@gmail.com>
-From: Kanak Shilledar <kanakshilledar@gmail.com>
-Date: Fri, 12 Jul 2024 14:11:18 +0530
-Message-ID: <CAGLn_=tT08KUX0J+WURq=EXKDPj=--Wg3qmCjnzGxNeMcz3NOg@mail.gmail.com>
-Subject: Re: [PATCH v3 1/1] riscv: dts: thead: add basic spi node
-Cc: Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
-	Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Drew Fustini <drew@pdp7.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Date: Fri, 12 Jul 2024 10:53:59 +0200
+From: Kamel BOUHARA <kamel.bouhara@bootlin.com>
+To: Marco Felsch <m.felsch@pengutronix.de>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Henrik Rydberg <rydberg@bitmath.org>, linux-input@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Jeff LaBundy
+ <jeff@labundy.com>, catalin.popescu@leica-geosystems.com,
+ mark.satterthwaite@touchnetix.com, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>, Gregory Clement
+ <gregory.clement@bootlin.com>, bsp-development.geo@leica-geosystems.com
+Subject: Re: [PATCH v16 3/3] Input: Add TouchNetix axiom i2c touchscreen
+ driver
+In-Reply-To: <20240703182202.draa63ghijbwarcs@pengutronix.de>
+References: <20240703142520.207066-1-kamel.bouhara@bootlin.com>
+ <20240703142520.207066-4-kamel.bouhara@bootlin.com>
+ <20240703182202.draa63ghijbwarcs@pengutronix.de>
+Message-ID: <2f4731ab266a091fddd819709b90d53b@bootlin.com>
+X-Sender: kamel.bouhara@bootlin.com
+Organization: Bootlin
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: kamel.bouhara@bootlin.com
 
-Hi,
-Any updates on this patch?
+Le 2024-07-03 20:22, Marco Felsch a écrit :
+> Hi Kamel,
+> 
+> thank you for the updated version please see my comment inline.
 
-Thanks and Regards,
-Kanak Shilledar
+Hi Marco,
 
-On Fri, Jul 5, 2024 at 3:05=E2=80=AFPM Kanak Shilledar <kanakshilledar@gmai=
-l.com> wrote:
->
-> created spi0 node with fixed clock. the spi0 node
-> uses synopsis designware driver and has the following
-> compatible "snps,dw-apb-ssi". the spi0 node is connected
-> to a SPI NOR flash pad which is left unpopulated on the back
-> side of the board.
->
-> Acked-by: Drew Fustini <drew@pdp7.com>
-> Signed-off-by: Kanak Shilledar <kanakshilledar@gmail.com>
-> ---
-> Changes in v3:
-> - Changed the position of "spi" to come after "serial" in
-> aliases for both the boards.
-> - Added Acked-by tag.
-> Changes in v2:
-> - Separated from a single patch file.
-> ---
->  .../boot/dts/thead/th1520-beaglev-ahead.dts      |  9 +++++++++
->  .../boot/dts/thead/th1520-lichee-module-4a.dtsi  |  4 ++++
->  .../riscv/boot/dts/thead/th1520-lichee-pi-4a.dts |  5 +++++
->  arch/riscv/boot/dts/thead/th1520.dtsi            | 16 ++++++++++++++++
->  4 files changed, 34 insertions(+)
->
-> diff --git a/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts b/arch/ri=
-scv/boot/dts/thead/th1520-beaglev-ahead.dts
-> index d9b4de9e4757..b4d2e1d69bdb 100644
-> --- a/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
-> +++ b/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
-> @@ -23,6 +23,7 @@ aliases {
->                 serial3 =3D &uart3;
->                 serial4 =3D &uart4;
->                 serial5 =3D &uart5;
-> +               spi0 =3D &spi0;
->         };
->
->         chosen {
-> @@ -52,6 +53,10 @@ &sdhci_clk {
->         clock-frequency =3D <198000000>;
->  };
->
-> +&spi_clk {
-> +       clock-frequency =3D <396000000>;
-> +};
-> +
->  &uart_sclk {
->         clock-frequency =3D <100000000>;
->  };
-> @@ -79,3 +84,7 @@ &sdio0 {
->  &uart0 {
->         status =3D "okay";
->  };
-> +
-> +&spi0 {
-> +       status =3D "okay";
-> +};
-> diff --git a/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi b/arc=
-h/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi
-> index 1365d3a512a3..6939bd36560c 100644
-> --- a/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi
-> +++ b/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi
-> @@ -33,6 +33,10 @@ &sdhci_clk {
->         clock-frequency =3D <198000000>;
->  };
->
-> +&spi_clk {
-> +       clock-frequency =3D <396000000>;
-> +};
-> +
->  &uart_sclk {
->         clock-frequency =3D <100000000>;
->  };
-> diff --git a/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts b/arch/ris=
-cv/boot/dts/thead/th1520-lichee-pi-4a.dts
-> index 9a3884a73e13..7738d2895c5a 100644
-> --- a/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts
-> +++ b/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts
-> @@ -20,6 +20,7 @@ aliases {
->                 serial3 =3D &uart3;
->                 serial4 =3D &uart4;
->                 serial5 =3D &uart5;
-> +               spi0 =3D &spi0;
->         };
->
->         chosen {
-> @@ -30,3 +31,7 @@ chosen {
->  &uart0 {
->         status =3D "okay";
->  };
-> +
-> +&spi0 {
-> +       status =3D "okay";
-> +};
-> diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/=
-thead/th1520.dtsi
-> index d2fa25839012..f962de663e7e 100644
-> --- a/arch/riscv/boot/dts/thead/th1520.dtsi
-> +++ b/arch/riscv/boot/dts/thead/th1520.dtsi
-> @@ -140,6 +140,12 @@ apb_clk: apb-clk-clock {
->                 #clock-cells =3D <0>;
->         };
->
-> +       spi_clk: spi-clock {
-> +               compatible =3D "fixed-clock";
-> +               clock-output-names =3D "spi_clk";
-> +               #clock-cells =3D <0>;
-> +       };
-> +
->         uart_sclk: uart-sclk-clock {
->                 compatible =3D "fixed-clock";
->                 clock-output-names =3D "uart_sclk";
-> @@ -183,6 +189,16 @@ clint: timer@ffdc000000 {
->                                               <&cpu3_intc 3>, <&cpu3_intc=
- 7>;
->                 };
->
-> +               spi0: spi@ffe700c000 {
-> +                       compatible =3D "thead,th1520-spi", "snps,dw-apb-s=
-si";
-> +                       reg =3D <0xff 0xe700c000 0x0 0x1000>;
-> +                       interrupts =3D <54 IRQ_TYPE_LEVEL_HIGH>;
-> +                       clocks =3D <&spi_clk>;
-> +                       #address-cells =3D <1>;
-> +                       #size-cells =3D <0>;
-> +                       status =3D "disabled";
-> +               };
-> +
->                 uart0: serial@ffe7014000 {
->                         compatible =3D "snps,dw-apb-uart";
->                         reg =3D <0xff 0xe7014000 0x0 0x100>;
-> --
-> 2.45.2
->
+Thanks for this new review :) !
+
+[...]
+
+>> +
+>> +struct axiom_data {
+>> +	struct axiom_devinfo devinfo;
+>> +	struct device *dev;
+>> +	struct gpio_desc *reset_gpio;
+> 			    ^
+> The reset is done within the probe so this can be dropped.
+> 
+
+Ack, thanks.
+
+>> +	struct i2c_client *client;
+> 			    ^
+> The client is never used. I would either store the client or the device
+> reference but not both.
+
+Sure, nice catch, I'll just keep the device reference here.
+
+> 
+>> +	struct input_dev *input_dev;
+>> +	u32 max_report_len;
+>> +	u8 rx_buf[AXIOM_COMMS_MAX_USAGE_PAGES * AXIOM_COMMS_PAGE_SIZE];
+> 
+> Is there a reason for having the rx_buf within the driver priv data?
+> IMHO it's more error probe since we never set it to zero before we use
+> the buffer. I would rather move the rx-buffer to the functions which
+> perform the read.
+
+Ok, there no real/technical reason to not move it to reading functions.
+
+> 
+>> +	struct axiom_u41_target targets[AXIOM_U41_MAX_TARGETS];
+>> +	struct axiom_usage_entry usage_table[AXIOM_U31_MAX_USAGES];
+>> +	bool usage_table_populated;
+> 		^
+> This can be an inline helper which checks the max_report_len e.g:
+> 
+> static inline bool axiom_usage_table_populated(struct axiom_data *ts)
+> {
+> 	return ts->max_report_len;
+> }
+> 
+
+Ack, just for my curiosity, is this for perfomance or clarity sake ?
+
+>> +	struct regmap *regmap;
+>> +	struct touchscreen_properties	prop;
+>> +};
+>> +
+
+[...]
+
+>> +static int axiom_i2c_probe(struct i2c_client *client)
+>> +{
+>> +	struct device *dev = &client->dev;
+>> +	struct input_dev *input_dev;
+>> +	struct axiom_data *ts;
+>> +	u32 poll_interval;
+>> +	int target;
+>> +	int error;
+>> +
+>> +	ts = devm_kzalloc(dev, sizeof(*ts), GFP_KERNEL);
+>> +	if (!ts)
+>> +		return -ENOMEM;
+>> +
+>> +	i2c_set_clientdata(client, ts);
+>> +	ts->client = client;
+>> +	ts->dev = dev;
+>> +
+>> +	ts->regmap = devm_regmap_init_i2c(client, &axiom_i2c_regmap_config);
+>> +	error = PTR_ERR_OR_ZERO(ts->regmap);
+>> +	if (error) {
+>> +		dev_err(dev, "Failed to initialize regmap: %d\n", error);
+>> +		return error;
+>> +	}
+>> +
+>> +	error = devm_regulator_get_enable(dev, "vddi");
+>> +	if (error)
+>> +		return dev_err_probe(&client->dev, error,
+>> +				     "Failed to enable VDDI regulator\n");
+>> +
+>> +	error = devm_regulator_get_enable(dev, "vdda");
+>> +	if (error)
+>> +		return dev_err_probe(&client->dev, error,
+>> +				     "Failed to enable VDDA regulator\n");
+>> +
+>> +	ts->reset_gpio = devm_gpiod_get_optional(dev, "reset", 
+>> GPIOD_OUT_HIGH);
+>> +	if (IS_ERR(ts->reset_gpio))
+>> +		return dev_err_probe(dev, PTR_ERR(ts->reset_gpio), "failed to get 
+>> reset GPIO\n");
+>> +
+>> +	/* Make sure the time after a power ON sequence is meet */
+>> +	if (ts->reset_gpio)
+>> +		axiom_reset(ts->reset_gpio);
+>> +	else
+> 
+> No else just:
+
+Fixed, thanks !
+
+> 
+>> +		msleep(AXIOM_STARTUP_TIME_MS);
+> 
+> 	msleep(AXIOM_STARTUP_TIME_MS);
+> 
+> and drop the msleep within the axiom_reset().
+> 
+> Regards,
+>   Marco
+
+[...]
+
+--
+Kamel Bouhara, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
 
