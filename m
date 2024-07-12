@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-85311-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85312-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5832292F9D3
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 14:01:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FEFF92F9DB
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 14:02:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D7D331F2274D
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 12:01:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C965C282335
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 12:02:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8168D16CD04;
-	Fri, 12 Jul 2024 12:01:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC21D15ECF8;
+	Fri, 12 Jul 2024 12:02:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Xdvsr3pa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MrYl3G4K"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51C2D15EFA6;
-	Fri, 12 Jul 2024 12:01:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF1DF26AED;
+	Fri, 12 Jul 2024 12:02:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720785674; cv=none; b=RUQcGM9qxOkACkznoEIUwy0japOD94ViEWwS9P8qtQVVZPY6w2GV0ZyinluO+b67rLfV1yPnjbyu3JaWPtQRTRoUHBN7w22xM7l2R4lGA9ceMAQBhxh12cny9q+saw/EQnVSH9QdZqkhP+Hh6PaUZ9j99jWN7Rv4qOfkSS/q/Pk=
+	t=1720785767; cv=none; b=b37kc66t05Lort4tF6M6aigpxRH3GOHw8ISRijbmnA8F5LFxz2mxx4hscs3Io7F/KLwu+kOIvhq8qqUZKpMiDx12GtyuvO8fFqk8d4+KhwGvNc3kCQ4LkhdMedGjtLI+Rxis0ucri4+dckpqx6X+LlNyZPdrbKP6gp0F4YNE1WM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720785674; c=relaxed/simple;
-	bh=m8gxeVTMeFpQG9BUlRSXLTmcL9t4lHKryB0B+cWJTAs=;
+	s=arc-20240116; t=1720785767; c=relaxed/simple;
+	bh=5rxqIu8eGYx5KmffsSFo9gVevBhAc4fDHQYpKo0bY0c=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rqFgM7vJqjKuXlgMsJtz69/axD2UT4MxI31oOws+EaLhG4qcH7SZGOrAgHUjV4E15mlmN+g94C2SuwG6zjuUGx2DaAcg++htcfZ9htmQPlurGWu1f/LjZi5LeAI9Fb0CeV5P8tvVg5IAXQDzJgoKQF3PzX6RGmX6gXHcWtfdDvc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Xdvsr3pa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD511C32782;
-	Fri, 12 Jul 2024 12:01:09 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=KRhn8EXJCI4PSyQ6Y7kNXovSBCJI9UUSCAWsnLM9swO4hRF5oQESvBLZ72CM0jZimddlSsucLWj3yt2KQnlsqktqn0el6wmnMmpxWsKN3W5BhNy28PIZ5gm5IiZF9P34Cl9wJdHSpbVG7EscMEpGCp/ZzSiAxWQyVMWyNXErbSc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MrYl3G4K; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 941DDC32782;
+	Fri, 12 Jul 2024 12:02:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720785673;
-	bh=m8gxeVTMeFpQG9BUlRSXLTmcL9t4lHKryB0B+cWJTAs=;
+	s=k20201202; t=1720785767;
+	bh=5rxqIu8eGYx5KmffsSFo9gVevBhAc4fDHQYpKo0bY0c=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Xdvsr3paoPtZWEZaqNQhOTsV/wBYIMfNJy3JLo0PtNZ7YS1oTQUErqheVhUU+eVWb
-	 aBCHp7K8HU8rqox8QUe2/EnmLY3GKg6M62S8+TBKRvYcX2NQaygUB+qPhKSaBxCXu5
-	 Ywcet5SycQTGGbQNcmsjBoyrETtr9BONcoaJYYflBGf++jaEaUYMoWhGorzhitSloV
-	 xR/AQnSUihaxQRdMcLoqCeRODWk6x8sYGGHp5AiGncpAAwDEHZT5t23ncqxobFcl3H
-	 DEfJ7gxQH5y6eoPS1u3bZ4Rk8sAf2x9fIDG/fRjlv5pU2Al5VpbtFCpdJOuokkGgbh
-	 eBq97Q63qMlSw==
-Message-ID: <dad53de8-eb62-4d9b-b760-dc2548f05232@kernel.org>
-Date: Fri, 12 Jul 2024 14:01:07 +0200
+	b=MrYl3G4KkVblErIuk4+J48p1sOgqd3ZMTPkMlZmMPsJNoNRUP6n0GdA/WovqpaX6H
+	 Cbv+u1fSHq0uKO72dazih+wgJcJbhnxU+ZH2Br6sA4PwfWl0Xd/J30lShfQBAQwO44
+	 rrqw+wnBKQuThnlOaV0GxKucCQRBXnFov3B4TdOhDjxK6z2V3oLDsXFNi7Heh8uDVx
+	 KSI4X5To3dpsodn2TJ1vh6tuIkc6IXZlQS2ptHeEgyTq2/0TlCswnSLi/baxmUGQKb
+	 UzxwW6AYa167FoeJJ3CQeRYEiOeEbI3zMLekmL/DTjvGn/WsPC6ul66xtsh2rRFtkh
+	 wTcQZ/LDouVlA==
+Message-ID: <b6cf55a8-5032-4db9-9431-b938158a1706@kernel.org>
+Date: Fri, 12 Jul 2024 14:02:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,14 +50,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V3 2/2] Add support for Awinic proximity sensor
-To: wangshuaijie@awinic.com, jic23@kernel.org, lars@metafoo.de,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- waqar.hameed@axis.com, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: liweilei@awinic.com, kangjiajun@awinic.com
-References: <20240712113200.2468249-1-wangshuaijie@awinic.com>
- <20240712113200.2468249-3-wangshuaijie@awinic.com>
+Subject: Re: [PATCH V2 0/5] Add support for Awinic SAR sensor
+To: wangshuaijie@awinic.com, jeff@labundy.com
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org,
+ dmitry.torokhov@gmail.com, kangjiajun@awinic.com, krzk+dt@kernel.org,
+ linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
+ liweilei@awinic.com, robh@kernel.org
+References: <ZmEnMPhKzqkJssQE@nixie71>
+ <20240712094925.2395733-1-wangshuaijie@awinic.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -103,304 +103,85 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240712113200.2468249-3-wangshuaijie@awinic.com>
+In-Reply-To: <20240712094925.2395733-1-wangshuaijie@awinic.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 12/07/2024 13:32, wangshuaijie@awinic.com wrote:
-> From: shuaijie wang <wangshuaijie@awinic.com>
+On 12/07/2024 11:49, wangshuaijie@awinic.com wrote:
+> Hi Jeff，
 > 
-> 1. Modify the structure of the driver.
-> 2. Change the style of the driver's comments.
-> 3. Remove unnecessary log printing.
-> 4. Modify the function used for memory allocation.
-> 5. Modify the driver registration process.
-> 6. Remove the functionality related to updating firmware.
-> 7. Change the input subsystem in the driver to the iio subsystem.
-> 8. Modify the usage of the interrupt pin.
-
-I don't understand why do you put some sort of changelog into commit
-msg. Please read submitting patches.
-
+> Thank you very much for your valuable suggestions. They are indeed a great help to me. 
 > 
-> Signed-off-by: shuaijie wang <wangshuaijie@awinic.com>
-> ---
-
-Please use subject prefixes matching the subsystem. You can get them for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching. For bindings, the preferred subjects are
-explained here:
-https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
-
->  drivers/iio/proximity/Kconfig                 |   10 +
->  drivers/iio/proximity/Makefile                |    2 +
->  drivers/iio/proximity/aw9610x.c               | 1150 ++++++++++
->  drivers/iio/proximity/aw963xx.c               | 1371 ++++++++++++
->  drivers/iio/proximity/aw_sar.c                | 1850 +++++++++++++++++
->  drivers/iio/proximity/aw_sar.h                |   23 +
->  drivers/iio/proximity/aw_sar_comm_interface.c |  550 +++++
->  drivers/iio/proximity/aw_sar_comm_interface.h |  172 ++
->  drivers/iio/proximity/aw_sar_type.h           |  371 ++++
->  9 files changed, 5499 insertions(+)
->  create mode 100644 drivers/iio/proximity/aw9610x.c
->  create mode 100644 drivers/iio/proximity/aw963xx.c
->  create mode 100644 drivers/iio/proximity/aw_sar.c
->  create mode 100644 drivers/iio/proximity/aw_sar.h
->  create mode 100644 drivers/iio/proximity/aw_sar_comm_interface.c
->  create mode 100644 drivers/iio/proximity/aw_sar_comm_interface.h
->  create mode 100644 drivers/iio/proximity/aw_sar_type.h
+> There are some issues with this driver, but I will do my utmost to improve it 
+> based on your advice. I will change the input subsystem in the driver to the 
+> IIO subsystem and place it in the IIO/proximity directory. I will also modify 
+> the structure of the driver to make it appear more reasonable.
 > 
-> diff --git a/drivers/iio/proximity/Kconfig b/drivers/iio/proximity/Kconfig
-> index 2ca3b0bc5eba..a60d3dc955b3 100644
-> --- a/drivers/iio/proximity/Kconfig
-> +++ b/drivers/iio/proximity/Kconfig
-> @@ -219,4 +219,14 @@ config VL53L0X_I2C
->  	  To compile this driver as a module, choose M here: the
->  	  module will be called vl53l0x-i2c.
->  
-> +config AWINIC_SAR
-> +	tristate "Awinic AW96XXX proximity sensor"
-> +	depends on I2C
-> +	help
-> +	  Say Y here to build a driver for Awinic's AW96XXX capacitive
-> +	  proximity sensor.
-> +
-> +	  To compile this driver as a module, choose M here: the
-> +	  module will be called awinic_sar.
-> +
->  endmenu
-> diff --git a/drivers/iio/proximity/Makefile b/drivers/iio/proximity/Makefile
-> index f36598380446..d4bd9edd8362 100644
-> --- a/drivers/iio/proximity/Makefile
-> +++ b/drivers/iio/proximity/Makefile
-> @@ -21,4 +21,6 @@ obj-$(CONFIG_SX_COMMON) 	+= sx_common.o
->  obj-$(CONFIG_SX9500)		+= sx9500.o
->  obj-$(CONFIG_VCNL3020)		+= vcnl3020.o
->  obj-$(CONFIG_VL53L0X_I2C)	+= vl53l0x-i2c.o
-> +obj-$(CONFIG_AWINIC_SAR)	+= awinic_sar.o
-> +awinic_sar-objs			:= aw_sar_comm_interface.o aw_sar.o aw9610x.o aw963xx.o
->  
+> On Wed, 5 Jun 2024 22:04:16 -0500, jeff@labundy.com wrote:
+>> Hi Shuaijie,
+>>
+>> On Wed, Jun 05, 2024 at 09:11:38AM +0000, wangshuaijie@awinic.com wrote:
+>>> From: shuaijie wang <wangshuaijie@awinic.com>
+>>>
+>>> Add drivers that support Awinic SAR (Specific Absorption Rate)
+>>> sensors to the Linux kernel.
+>>>
+>>> The AW9610X series and AW963XX series are high-sensitivity
+>>> capacitive proximity detection sensors.
+>>>
+>>> This device detects human proximity and assists electronic devices
+>>> in reducing SAR to pass SAR related certifications.
+>>>
+>>> The device reduces RF power and reduces harm when detecting human proximity.
+>>> Increase power and improve signal quality when the human body is far away.
+>>>
+>>> This patch implements device initialization, registration,
+>>> I/O operation handling and interrupt handling, and passed basic testing.
+>>
+>> Thank you for your submission! It's always great to see new devices
+>> introduced to the kernel. Maybe I can give some high-level feedback
+>> first.
+>>
+>> Unfortunately, I don't think we can review this driver in its current
+>> form; the style and structure are simply too different from what is
+>> expected in mainline. Many of these problems can be identified with
+>> checkpatch [1].
+>>
+>> To that point, I don't think this driver belongs as an input driver.
+>> The input subsystem tends to be a catch-all for sensors in downstream
+>> kernels, and some bespoke SOC vendor HALs tend to follow this approach,
+>> but that does not necessarily mean input is always the best choice.
+>>
+>> SAR devices are a special case where an argument could be made for the
+>> driver to be an input driver, or an IIO/proximity driver. If the device
+>> emits binary near/far events, then an input driver is a good choice;
+>> typically the near/far event could be mapped to a switch code such as
+>> SW_FRONT_PROXIMITY.
+>>
+>> If the device emits continuous proximity data (in arbitrary units or
+>> otherwise), however, IIO/proximity seems like a better choice here. This
+>> driver seems to report proximity using ABS_DISTANCE, which is kind of an
+>> abuse of the input subsystem, and a strong indicator that this driver
+>> should really be an IIO/proximity driver. If you disagree, I think we
+>> at least need some compelling reasoning in the commit message.
+>>
+>> Regardless of this choice, this driver should really only be 2-3 patches
+>> (not counting cover letter): one for the binding, and one for a single,
+>> homogenous driver for each of the two devices, unless they have enough
+>> in common that they can be supported by a single driver. Mainline tends
+>> to avoid vendor-specific (and especially part-specific) entire directories.
+>>
+>> I agree with Krzysztof's advice in one of the other patches; I think it
+>> would be best to study some existing drivers in mainline to gain a
+>> better sense of how they are organized, then use those as a model. If I
+>> may suggest, consider referring to drivers such as [2] and its cousins
+>> in the same directory; these are capacitive proximity sensors that can
+>> be used as buttons, but SAR devices tend to be built upon the same principle.
 
+Not much improved in v3 in this regard.
 
-
-> +
-> +static void aw_sar_power_deinit(struct aw_sar *p_sar)
-> +{
-> +	if (p_sar->power_enable) {
-> +		/*
-> +		 * Turn off the power output. However,
-> +		 * it may not be turned off immediately
-> +		 * There are scenes where power sharing can exist
-> +		 */
-> +		regulator_disable(p_sar->vcc);
-> +		regulator_put(p_sar->vcc);
-> +	}
-> +}
-> +
-> +static void aw_sar_power_enable(struct aw_sar *p_sar, bool on)
-> +{
-> +	int rc;
-> +
-> +	if (on) {
-> +		rc = regulator_enable(p_sar->vcc);
-> +		if (rc) {
-> +			dev_err(p_sar->dev, "regulator_enable vol failed rc = %d", rc);
-
-Again example of ugly code.
-
-> +		} else {
-> +			p_sar->power_enable = AW_TRUE;
-
-NAK.
-
-All this driver is some ancient, downstream or user-space-generic-code.
-Sorry, you already got such comment.
-
-First, your control of power seems like entire code is spaghetti.
-Basically, your control flow is random, no functions know when they are
-called. To solve this, you introduce "power_enable" so the functions can
-figure out if they are called with power enabled or not.
-
-That's just crappy and spaghetti design.
-
-This redefinition of true and false is a cherry on top. DO NOT EVER send
-such code. NEVER.
-
-You must clean up all such user-space/Windows/whatever you have there stuff.
-
-> +			msleep(20);
-> +		}
-> +	} else {
-> +		rc = regulator_disable(p_sar->vcc);
-> +		if (rc)
-> +			dev_err(p_sar->dev, "regulator_disable vol failed rc = %d", rc);
-> +		else
-> +			p_sar->power_enable = AW_FALSE;
-> +	}
-> +}
-> +
-> +static int regulator_is_get_voltage(struct aw_sar *p_sar)
-> +{
-> +	unsigned int cnt = 10;
-> +	int voltage_val;
-> +
-> +	while (cnt--) {
-> +		voltage_val = regulator_get_voltage(p_sar->vcc);
-
-What is that?
-
-Did you just forgot to set proper ramp delays?
-
-> +		if (voltage_val >= AW_SAR_VCC_MIN_UV)
-> +			return 0;
-> +		mdelay(1);
-> +	}
-> +	/* Ensure that the chip initialization is completed */
-> +	msleep(20);
-> +
-> +	return -EINVAL;
-> +}
-> +/* AW_SAR_REGULATOR_POWER_ON end */
-
-
-...
-
-> +static int aw_sar_regulator_power(struct aw_sar *p_sar)
-> +{
-> +	struct aw_sar_dts_info *p_dts_info = &p_sar->dts_info;
-> +	int ret = 0;
-> +
-> +	p_dts_info->use_regulator_flag =
-> +		of_property_read_bool(p_sar->i2c->dev.of_node, "awinic,regulator-power-supply");
-> +
-> +	/* Configure the use of regulator power supply in DTS */
-> +	if (p_sar->dts_info.use_regulator_flag == true) {
-> +		ret = aw_sar_regulator_power_init(p_sar);
-> +		if (ret != 0) {
-> +			dev_err(p_sar->dev, "power init failed");
-> +			return ret;
-> +		}
-> +		aw_sar_power_enable(p_sar, AW_TRUE);
-> +		ret = regulator_is_get_voltage(p_sar);
-> +		if (ret != 0) {
-> +			dev_err(p_sar->dev, "get_voltage failed");
-> +			aw_sar_power_deinit(p_sar);
-> +		}
-> +	}
-> +
-> +	return ret;
-> +}
-> +
-> +static int aw_sar_get_chip_info(struct aw_sar *p_sar)
-> +{
-> +	int ret;
-> +	unsigned char i;
-> +
-> +	for (i = 0; i < AW_SAR_DRIVER_MAX; i++) {
-> +		if (g_aw_sar_driver_list[i].p_who_am_i != NULL) {
-
-Sorry, this overall code is just ugly and with poor readability.
-Variables like "g_aw_sar_driver_list" are just not helping.
-
-The driver is really huge for a "simple" proximity sensor, so I wonder
-if this was somehow over-engineered or is not really simple, but quite
-complex sensor.
-
-Anyway, huge driver with poor code is not helping to review.
-
-
-> +
-> +
-> +/* Drive logic entry */
-> +static int aw_sar_i2c_probe(struct i2c_client *i2c)
-> +{
-> +	struct iio_dev *sar_iio_dev;
-> +	struct aw_sar *p_sar;
-> +	int ret;
-> +
-> +	if (!i2c_check_functionality(i2c->adapter, I2C_FUNC_I2C)) {
-> +		pr_err("check_functionality failed!\n");
-> +		return -EIO;
-> +	}
-> +
-> +	sar_iio_dev = devm_iio_device_alloc(&i2c->dev, sizeof(*p_sar));
-> +	if (!sar_iio_dev)
-> +		return -ENOMEM;
-> +	p_sar = iio_priv(sar_iio_dev);
-> +	p_sar->aw_iio_dev = sar_iio_dev;
-> +	p_sar->dev = &i2c->dev;
-> +	p_sar->i2c = i2c;
-> +	i2c_set_clientdata(i2c, p_sar);
-> +
-> +	/* 1.Judge whether to use regular power supply. If yes, supply power */
-> +	ret = aw_sar_regulator_power(p_sar);
-> +	if (ret != 0) {
-> +		dev_err(&i2c->dev, "regulator_power error!");
-> +		return ret;
-> +	}
-> +
-> +	/* 2.Get chip initialization resources */
-> +	ret = aw_sar_get_chip_info(p_sar);
-> +	if (ret != 0) {
-> +		dev_err(&i2c->dev, "chip_init error!");
-
-Not much improved.
-
-
-<form letter>
-This is a friendly reminder during the review process.
-
-It seems my or other reviewer's previous comments were not fully
-addressed. Maybe the feedback got lost between the quotes, maybe you
-just forgot to apply it. Please go back to the previous discussion and
-either implement all requested changes or keep discussing them.
-
-Thank you.
-</form letter>
-
-> +
-> +static const struct dev_pm_ops aw_sar_pm_ops = {
-> +	.suspend = aw_sar_suspend,
-> +	.resume = aw_sar_resume,
-> +};
-> +
-> +static const struct of_device_id aw_sar_dt_match[] = {
-> +	{ .compatible = "awinic,aw96103" },
-> +	{ .compatible = "awinic,aw96105" },
-> +	{ .compatible = "awinic,aw96303" },
-> +	{ .compatible = "awinic,aw96305" },
-> +	{ .compatible = "awinic,aw96308" },
-> +	{ },
-> +};
-> +
-> +static const struct i2c_device_id aw_sar_i2c_id[] = {
-> +	{ AW_SAR_I2C_NAME, 0 },
-
-Having device_id tables not in sync is usually bad sign. Why do you need
-i2c_device_id in the first place?
-
-> +	{ },
-> +};
-> +MODULE_DEVICE_TABLE(i2c, aw_sar_i2c_id);
-> +
-> +static struct i2c_driver aw_sar_i2c_driver = {
-> +	.driver = {
-> +		.name = AW_SAR_I2C_NAME,
-> +		.of_match_table = aw_sar_dt_match,
-> +		.pm = &aw_sar_pm_ops,
-> +	},
-> +	.probe = aw_sar_i2c_probe,
-> +	.remove = aw_sar_i2c_remove,
-> +	.shutdown = aw_sar_i2c_shutdown,
-> +	.id_table = aw_sar_i2c_id,
-> +};
-> +module_i2c_driver(aw_sar_i2c_driver);
-> +
-> +MODULE_DESCRIPTION("AWINIC SAR Driver");
-> +MODULE_LICENSE("GPL v2");
-> +MODULE_IMPORT_NS(AWINIC_PROX);
-
-
+Sorry, this code is not ready for review. There are so many trivial
+style issues, it's like someone sends us Windows drivers for Linux.
 
 Best regards,
 Krzysztof
