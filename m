@@ -1,76 +1,76 @@
-Return-Path: <devicetree+bounces-85447-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85448-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C959D93011D
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 21:53:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE32C930121
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 21:54:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7F2F9282A1A
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 19:53:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 769DA1F2380C
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 19:54:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78C2F39FEF;
-	Fri, 12 Jul 2024 19:53:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34B412C879;
+	Fri, 12 Jul 2024 19:54:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LVtLZ6G4"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="E74S57r8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99A38D26D
-	for <devicetree@vger.kernel.org>; Fri, 12 Jul 2024 19:53:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96B9044C87
+	for <devicetree@vger.kernel.org>; Fri, 12 Jul 2024 19:54:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720814012; cv=none; b=VuzfQOJdZtGS5n+fLKbllOEKRoXEMGbgSzjDYTpvouhZt3HDFi4hsurLquymGNGC9b8qqBv5Y3saFhcwE90mYelTr9WvxnaJsSirNzBXTcS1dNlwFr2wiecTAoAEMh/fkTf3Ed5vPlS8bo8QPkUY/nGppCmVQI7NFMPLXRf5N9o=
+	t=1720814056; cv=none; b=i7tWkU4KYMsYeqba6rmXpkSXb3fKOYOqJg7MDFURaLxCy7LYOvceeRXToLdZc8GC2abEhtQoN/6UvqyvbaZhXmrlnoEpSvJp9egKo8XHMbsb+/enyYArT5v6u9X4VL6+Wmc8UA0hp4VMaxc3axzjJAxTORCoSUbGokwrvRGXekk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720814012; c=relaxed/simple;
-	bh=StUJdV7TFg7NGKUMdDCwe2aGMaXQXh1UOAGwUqGnrkc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=I16vh9HKDLOfP8W8QiokfwSvFvzYjrTmCijXtsvho+eJJxgzsyFrSjZOYQRjyPdy1eJaXtQkqoazvb3rM6VEescekdATF2IzChnplmakl+/GeRJoNLp3SQ6WQZTwVWSThkWrqjFRD9Vp4DkT5dbyMze70X3Zyzzt5jOSJkB9NvI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LVtLZ6G4; arc=none smtp.client-ip=209.85.218.42
+	s=arc-20240116; t=1720814056; c=relaxed/simple;
+	bh=f5jO4v5h4HSSIUY7LAsod2tYpiu/afgmmVVLyhJ+j+Q=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=qUhaDCQrlhMrzyixfv79sGBr8cO7XJM/gvX8/3yUR+eaHeT62W6aN3pVPt/LCcgJnXTmvbsEZt5H95FjatanGT3qtlyXb8A7ikMu6mMkWyJV3qLueknt9EOnP/viGruq9ZQH8/k+HUyqWjImEQznRzNhb/G/uSoGD5hm0f+6GYs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=E74S57r8; arc=none smtp.client-ip=209.85.208.176
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a77e5929033so335246466b.0
-        for <devicetree@vger.kernel.org>; Fri, 12 Jul 2024 12:53:30 -0700 (PDT)
+Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-2eaae2a6dc1so36771401fa.0
+        for <devicetree@vger.kernel.org>; Fri, 12 Jul 2024 12:54:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1720814009; x=1721418809; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=CD9Gf2WFD/32n/g3oQVjierG/CJPtNZszx3tKsXb1rc=;
-        b=LVtLZ6G4KOHaaC2LmGk0n4LQn3QtScvHgY4BZzTL6DAMkIuldcqg+90wAJ7z20/YhS
-         nbo9bWT5LAKZMCgUo+yGgfvujb0xUgYwXjOaC5T6aN92PjXV2XfG7v4gUenRDTsDJSQa
-         KPSSMaZVRT31Y8rz/nEHH8W6SJ0e4iBzqcD3MvQOYmsapM8fRunpQeTW6BgBclLDv60T
-         pRjlDvLkSVJJ/oDLhBDCQKYNqRjJ1JzOBD5tzbjmTQEdnU6Xhq77ZSSz4AnDCLYJ6s67
-         c4WaQZwr4/+mVmAzrQQxnaEHhH7iRYT1cvNivH2ASTz7ruEEfqSYmwfRoyNMXjgkoYpt
-         27aQ==
+        d=linaro.org; s=google; t=1720814053; x=1721418853; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :references:cc:to:from:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=yFjv710SIVqWcm9hWgEm1m6RPWcEtHDSyAm3w4DCuwI=;
+        b=E74S57r82VLJfu0ugm5ApNaMsbLx/a969cDYcPbyWuiMz2BMn3q+RTn0oWYPorqb73
+         6jEUZkB7DzSMPwiUYvHf3QxQk/K0kilOeAu4zaSxf1psNgeqVK5H+c6wkL2/06qGn9Ay
+         v1WY/Y5OuMv2RhT1Re2rGV2SOjN27TvlxVMUZxOxooHcRFg85ISmRIHt9AOihM2As9Z/
+         Z26RmnAls7NzwcgwanXv+19OtXMBBj/MOQvFlECJ/ZgzaxeZzK1PvGzZnuscX4tsG6Hi
+         Vh9fDTAp3PciC/Rf6r6s/9earOk/rzqW8RXFswBjvFlj/BBhKP7/WOkA/6zukML6xQ5R
+         aT3A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720814009; x=1721418809;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CD9Gf2WFD/32n/g3oQVjierG/CJPtNZszx3tKsXb1rc=;
-        b=i7ERrdusIElfNrixQI4gRVhkUJ5rssb+4MnEG2IVNW/rI7WcKcpfpYr3Dk+XVvvE+J
-         Q+jVpTWaw4Pqg7fGI6TreXNNbMdvdTByy/1DpTmHD6YWYoUvQSPHXk6U/u/bvLEXZ1hB
-         Q9r6BIsJu+emXGinBZ1JudA3M1mYQ2QYk5YyMObXmRH1ARUZA79uDBIEz93HbX1ibfnx
-         sNAvF3RN2vkaAlbwIvGV3nk/ccfjRlV22B1861kNE+qs3nFeTLKtOTk9JXFX9nJfDS+T
-         we2mJ6ld58E7zKuw6+FkcLdY9GkqHlkgB4/OWoM6ha7DuTboap0xU3EJagOftTy4vM3r
-         pw7w==
-X-Forwarded-Encrypted: i=1; AJvYcCUMomu8DM9wIldme3DPDXbXQhHVoS14DF9bnSi6AWMiDT/aYX1yun55lafXmq5W2KZ6GTGVU47UK1OxkuH4NqMtUNNmwaCJ1ypYkg==
-X-Gm-Message-State: AOJu0YwKnv/AEeKBIiUjYMrNt0H17oHKb7YerjPaDzzluy1RJHfeL1NJ
-	D0jKQB+aASGC7EhhAUiRUGKdaRyiKIrF1qKy8gwiGgeabUQs4E4yzLoyBBpzTuuoSsfrvcrKxiv
-	K
-X-Google-Smtp-Source: AGHT+IGzHghaUPM+/bov9+aj6s70/HQdZmAWPCba2bpobclhNx22aZiNLnZzv0YAXaDzEBtl4s4OAA==
-X-Received: by 2002:a17:906:2650:b0:a6f:5698:ab5b with SMTP id a640c23a62f3a-a780b6882camr908158566b.8.1720814008716;
-        Fri, 12 Jul 2024 12:53:28 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1720814053; x=1721418853;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :references:cc:to:from:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=yFjv710SIVqWcm9hWgEm1m6RPWcEtHDSyAm3w4DCuwI=;
+        b=roDcxaYHkg84Db6yuAb3A9bf5wdn39ocETUqWyGDYbC55pQaZR0NX70EiIrgxjAEtV
+         XGAElKOaeuCo28VNgAXTdtFqb9aOpqcsa3ufTjC6DRjVNEkdgpZqpq5yf9hvqMqU7b7I
+         bEubi2J6jVzVxhQfnuLpbkzZ78/2m4hKz9VLSdakxpvAoFz3yO9+cbcKGcBhwnC8w1Ti
+         3w2ZxG/hxs8CAqiiP6AzoN/yFh/ixoNmNLg7+MMikgmQ8uK8WWSJOgDO++IuzKbuHAKh
+         okIn/6yTuuvCqMXeA2/9r0s/2ijbNV+NcmnaPxWUhqYPeQtl0FpeOx3PxK80mVwHVKJj
+         SfgQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWNjAQIo0sisynSxNo5HKnhviQNw2v0hfM8KqgCL0/vDN0uH500sCuPkzju60W7VpUOLryXJzkg6jy4M3NoneADiMKlzvbhrzOwxg==
+X-Gm-Message-State: AOJu0YxTveGQpZcaLLCX98shG07EWEEZRjSIBoX64UUTygctvyC7ii3Z
+	LRlpeRJE+ymNU4J83paexfA5REmmXmEeASjb649jk+A3THnzSsgSq6FSv6FwkIGNlxHlYQlbKdf
+	G
+X-Google-Smtp-Source: AGHT+IFrnDCE2DhRwi0ZogNbSJPfUmV9sglnkKeXIz6ZAQeinBlxJj0WQOuYW1N9sLJEFIuMyLmKjQ==
+X-Received: by 2002:a2e:a603:0:b0:2ee:9521:1443 with SMTP id 38308e7fff4ca-2eeb316b0a3mr95547971fa.35.1720814052500;
+        Fri, 12 Jul 2024 12:54:12 -0700 (PDT)
 Received: from [192.168.105.194] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a780a854592sm375063466b.146.2024.07.12.12.53.27
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a780a6e172csm373572866b.86.2024.07.12.12.54.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Jul 2024 12:53:28 -0700 (PDT)
-Message-ID: <2146ca56-6c2c-48a3-8e77-75aa04cb2b4c@linaro.org>
-Date: Fri, 12 Jul 2024 21:53:26 +0200
+        Fri, 12 Jul 2024 12:54:12 -0700 (PDT)
+Message-ID: <a05951f8-792d-4c83-802b-0350dd8760cb@linaro.org>
+Date: Fri, 12 Jul 2024 21:54:09 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,6 +80,7 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH 3/3] arm64: dts: qcom: msm8939-wingtech-wt82918: Add
  Lenovo Vibe K5 devices
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
 To: Nikita Travkin <nikita@trvn.ru>, Bjorn Andersson <andersson@kernel.org>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>
@@ -88,8 +89,8 @@ Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  =?UTF-8?B?QWRhbSBTxYJhYm/FhA==?= <asaillen@protonmail.com>
 References: <20240712-msm89xx-wingtech-init-v1-0-64f4aa1870bd@trvn.ru>
  <20240712-msm89xx-wingtech-init-v1-3-64f4aa1870bd@trvn.ru>
+ <2146ca56-6c2c-48a3-8e77-75aa04cb2b4c@linaro.org>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
  BB/OmIWU6X+LZW6P88ZmHe+KeyABLMP5s1tJNK1j4ntT7mECcWZDzafPWF4F6m4WJOG27kTJ
@@ -125,143 +126,27 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20240712-msm89xx-wingtech-init-v1-3-64f4aa1870bd@trvn.ru>
+In-Reply-To: <2146ca56-6c2c-48a3-8e77-75aa04cb2b4c@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 12.07.2024 6:04 PM, Nikita Travkin wrote:
-> From: Adam Słaboń <asaillen@protonmail.com>
-> 
-> This commit introduces multiple hardware variants of Lenovo Vibe K5.
-> 
-> - A6020a40 (msm8929-wingtech-wt82918hd)
-> - A6020a46/A6020l36 (msm8939-wingtech-wt82918)
-> - A6020a40 S616 H39 (msm8939-wingtech-wt82918hd)
-> 
-> These devices are added with support for many features, notably:
-> 
-> - Basic features like USB, mmc/sd storage, wifi, buttons, leds;
-> - Accelerometer;
-> - Touchscreen;
-> - Sound and modem.
-> 
-> Note that "HD" variant of K5 is based on msm8929 which is a lower bin
-> of msm8939 SoC. A simple dtsi is added for this soc along with the new
-> devices.
-> 
-> Unfortunately, despite the heavy similarities, the combination of minor
-> differences between variants make them incompatible between each other.
-> 
-> Signed-off-by: Adam Słaboń <asaillen@protonmail.com>
-> [Nikita: Minor cleanup, commit message]
-> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
-> ---
->  arch/arm64/boot/dts/qcom/Makefile                  |   3 +
->  .../boot/dts/qcom/msm8929-wingtech-wt82918hd.dts   |  17 ++
->  arch/arm64/boot/dts/qcom/msm8929.dtsi              |   5 +
->  .../boot/dts/qcom/msm8939-wingtech-wt82918.dts     |  16 ++
->  .../boot/dts/qcom/msm8939-wingtech-wt82918.dtsi    | 254 +++++++++++++++++++++
->  .../boot/dts/qcom/msm8939-wingtech-wt82918hd.dts   |  16 ++
->  6 files changed, 311 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index fd4c7c41ddc4..48ec781fa1d8 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -58,10 +58,13 @@ dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-wingtech-wt86518.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-wingtech-wt86528.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-wingtech-wt88047.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-yiming-uz801v3.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= msm8929-wingtech-wt82918hd.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-huawei-kiwi.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-longcheer-l9100.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-samsung-a7.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-sony-xperia-kanuti-tulip.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-wingtech-wt82918.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-wingtech-wt82918hd.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8953-motorola-potter.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8953-xiaomi-daisy.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8953-xiaomi-mido.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/msm8929-wingtech-wt82918hd.dts b/arch/arm64/boot/dts/qcom/msm8929-wingtech-wt82918hd.dts
-> new file mode 100644
-> index 000000000000..f9a358e852f8
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/msm8929-wingtech-wt82918hd.dts
-> @@ -0,0 +1,17 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +
-> +/dts-v1/;
-> +
-> +#include "msm8939-wingtech-wt82918.dtsi"
-> +#include "msm8929.dtsi"
-> +
-> +/ {
-> +	model = "Lenovo Vibe K5 (HD) (Wingtech WT82918)";
-> +	compatible = "wingtech,wt82918hd", "qcom,msm8929";
-> +	chassis-type = "handset";
-> +};
-> +
-> +&touchscreen {
-> +	touchscreen-size-x = <720>;
-> +	touchscreen-size-y = <1280>;
-> +};
-> diff --git a/arch/arm64/boot/dts/qcom/msm8929.dtsi b/arch/arm64/boot/dts/qcom/msm8929.dtsi
-> new file mode 100644
-> index 000000000000..c3d1d1ace2f6
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/msm8929.dtsi
-> @@ -0,0 +1,5 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +
-> +&opp_table {
-
-No way somebody called the gpu opp table "opp table"..
-
-> +	/delete-node/ opp-550000000;
-
-Looking at downstream, seems like there isn't a speedbin fuse for
-this :(
+On 12.07.2024 9:53 PM, Konrad Dybcio wrote:
+> On 12.07.2024 6:04 PM, Nikita Travkin wrote:
 
 [...]
 
-> +
-> +&blsp_i2c2 {
-> +	status = "okay";
-> +
-> +	accelerometer@68 {
-> +		compatible = "invensense,icm20608";
-> +		reg = <0x68>;
-> +
-> +		pinctrl-0 = <&accelerometer_default>;
-> +		pinctrl-names = "default";
 
-interesting choice to stick pintrl before interrupts
+>> +&pm8916_mpps {
+>> +	pwm_out: mpp4-state {
+>> +		pins = "mpp4";
+>> +		function = "digital";
+>> +		power-source = <PM8916_MPP_VPH>;
+>> +		output-low;
+>> +		qcom,dtest = <1>;
+> 
+> I think you meant qcom,dtest-output
 
-> +
-> +		interrupts-extended = <&tlmm 115 IRQ_TYPE_EDGE_FALLING>;
-> +
-> +		vdd-supply = <&pm8916_l17>;
-> +		vddio-supply = <&pm8916_l6>;
-> +
-> +		mount-matrix = "-1", "0", "0",
-> +				"0", "1", "0",
-> +				"0", "0", "1";
-> +	};
-> +};
-
-[...]
-
-> +&pm8916_mpps {
-> +	pwm_out: mpp4-state {
-> +		pins = "mpp4";
-> +		function = "digital";
-> +		power-source = <PM8916_MPP_VPH>;
-> +		output-low;
-> +		qcom,dtest = <1>;
-
-I think you meant qcom,dtest-output
-
-looks good otherwise
+No, I apparently found this in msm-3.10, ignore this comment
 
 Konrad
 
