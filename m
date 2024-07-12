@@ -1,181 +1,125 @@
-Return-Path: <devicetree+bounces-85400-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85401-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE2DD92FDB5
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 17:39:36 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B42892FDCF
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 17:45:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A528628308E
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 15:39:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B5614B210CF
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 15:45:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8A711741DC;
-	Fri, 12 Jul 2024 15:39:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EE9E15A4B3;
+	Fri, 12 Jul 2024 15:45:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="cvHB570J"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="Su8ukl/W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8144B1DFD8
-	for <devicetree@vger.kernel.org>; Fri, 12 Jul 2024 15:39:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74FA11802B;
+	Fri, 12 Jul 2024 15:45:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720798769; cv=none; b=BZwUnXH5W1/YXokAnQl3hIs8j/9Bdgz3GLVQtM9gIsBIQ07VU7toC/eFGFHhf7WWJwhhhEs7wTucBjJWJkd0Mhbz+GRXJ+Hn0FYnZ0MflR0woR10WaBAXHOVqkVJVkTqs3tVL9f2XoXxXySliA+auqOWXhbDWlkeD/rRlr4Q0rM=
+	t=1720799145; cv=none; b=PTuzUgWhz1Y6Mp082bEO7nFxOhwig4OaiZKbOJurLByv8Z+j6LaPx+sns6REiLZ4m33pTpkyON1W8G7wE18i/wFmgAQQJB9FiD5tDeR0zd+iQKA4ulgHcEORdKpiPpYeRqrot5qb7/JeuYnrD/yPoKu1AxTcj8Z1QK4m/2Lk81k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720798769; c=relaxed/simple;
-	bh=68/kltcLtm3c5q8IqHBsqqo8yQ9MYg9r+nGvbZAb6v8=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=jEwKYx2GppmT09dVRKPAMUFi9oZu1HVB/h38X07MLewRJDieEV946vYPz9KVityZ3bJXhLeWEbgG1A8iPhX61aP4fJvhcR1Ip9l9OoJ7WnPtbXAWTK27I+ere6kJNTfndfMt/ttcDbR/zpPn7g6/BJT0iYA2IHipFre57snwtew=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=cvHB570J; arc=none smtp.client-ip=209.85.167.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-52e94eaf5efso2740324e87.2
-        for <devicetree@vger.kernel.org>; Fri, 12 Jul 2024 08:39:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1720798765; x=1721403565; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=vXS6CNYAdyuDwfj4669MHWReU6UN/YmeD5dTtm16ne4=;
-        b=cvHB570JIU/T0Kc4UbAjc+leZuO7yBrsLKr9kziLLcpdaAb+yOvSTdi9rQjd267Nwc
-         zvn+ip+ghdBKIVk3WuQZstwnRpZ+GRciPeWD5bVIPNNuV2Nvy8M6mzkMZxhgrY5Bn9VH
-         ZDLBBmt2l1VGUfoFvaHNjwA6N75Ec8url3uZL6O8CcN2NFQ9i57o0c6hXG2rSf2FmFvV
-         QCeaur1zEnXYLL55W8dE96a6l6hTRvfGpZVMAmPaOFkG7rt/4zGvTm+JWc26LaRJCRrs
-         WNfejp1msyGDdUF+UGL9rczvsb0NaX9GY7G3IjGPnIePK9ZUB+HzHfzw2vK6LLXQAZZ4
-         2wSQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720798765; x=1721403565;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vXS6CNYAdyuDwfj4669MHWReU6UN/YmeD5dTtm16ne4=;
-        b=AE+/FrA31Ha2v+VFoeRI47ZbClX6ewE+6wj2moBm5mn/qO0XkSqUFQdKLqpZGJSvkw
-         Jj/Y06/g4V9mxOVar9AAhg9vZNGoF3mElzmBnOjipa64DHptQftFQGpxuptcDMO6VRZd
-         sEjSOCXzjEpPs/8L91fZd1Q6l16ZQhRdzEcpQgBvMc3B1OrHwhTNHPROYUdab6x7RkO7
-         MxluidN5c4uF7z3AaN/g/WAVIKdxYI+XYilhK/6MZ+z54jMaH91UsAu+7B7KAE7RBUJt
-         +ruajvG8GZCOGjCCl0VyLrLN6Nw9dOYiVRRjH900nDSsTORN/pOutiHA6TXFZ16ZOgYX
-         SWPg==
-X-Forwarded-Encrypted: i=1; AJvYcCWThNhakBO+jvGVfvkkGfyc3BWvM6p604EGyvbiy44N4mPc8RWV08Lj2JcNsWzbwrQr8fs0gsVVNz8XfS2NW8yNqbP0xO+S97quzg==
-X-Gm-Message-State: AOJu0YwNq+R3CNHfAVCfYnvTceWQaScLO68kFNO5oz3Ir//e86wL4Tib
-	VrX5e51Wzy1TkmBfdvS5+sOk2fd8gEz8QZkVW8/fzjIAtByoqEbowZb1BxFLNyA=
-X-Google-Smtp-Source: AGHT+IFt+v0z4s2SEnUzvpF3XhmKLoMZVPIgAXxpi9rthXghlv3Aylzcme0OH0Wr5YydJX6qYwmksw==
-X-Received: by 2002:a05:6512:750:b0:52c:d78b:d0b8 with SMTP id 2adb3069b0e04-52eb99a32c7mr6495989e87.39.1720798764436;
-        Fri, 12 Jul 2024 08:39:24 -0700 (PDT)
-Received: from [192.168.50.4] ([82.78.167.171])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4279f2ba545sm26557105e9.34.2024.07.12.08.39.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Jul 2024 08:39:23 -0700 (PDT)
-Message-ID: <7f99cb63-0c6b-460e-934b-4e7e8d84bb3a@tuxon.dev>
-Date: Fri, 12 Jul 2024 18:39:22 +0300
+	s=arc-20240116; t=1720799145; c=relaxed/simple;
+	bh=L2JKt6/Zlr5nDNVV0e3G0fjAh34YvW7l5yQ2teHM8ew=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QKL0cGwWQYfwrKwdbGhmXKQRiAgfu6i21Vex904VlUnTmnvLtd4Qa2WQSw1BiuWyp4X3qwQ/lTveYQQbWYuVsSQvEE+cI5Q9zY4fao0snrLGtp59qtFPK2ySY18m1hMP2FXgPIx4ZKAAHLY5QHIKzx9mMgtBO1bGRDTJfndbrE8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=Su8ukl/W; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+	In-Reply-To:References; bh=V+hVLKlnw9flmcT/HXHKBgl0FZ5CMsd/j0BjaZpZ8mU=; b=Su
+	8ukl/WTPEmSL5dqfZmLvkRyvijsIjBcyMnhJHWRxKocBTKwVt7ldFeewF1L0sxAaGY0gF8S9bg7S9
+	3KOm/AloB7s2XzoRJBnTA1DXugy2IYjpxwH7YjsmQEhKtC9S+9ub+VkMrDUJo0GkA65YqWDNrIYTe
+	2dl+0JPyk6T71fo=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1sSISe-002Psa-HP; Fri, 12 Jul 2024 17:45:28 +0200
+Date: Fri, 12 Jul 2024 17:45:28 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Kamil =?iso-8859-1?Q?Hor=E1k_=282N=29?= <kamilh@axis.com>
+Cc: florian.fainelli@broadcom.com, bcm-kernel-feedback-list@broadcom.com,
+	hkallweit1@gmail.com, linux@armlinux.org.uk, davem@davemloft.net,
+	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v11 4/4] net: phy: bcm-phy-lib: Implement BroadR-Reach
+ link modes
+Message-ID: <ca6a5b50-6b34-4455-bd22-cfe152df4728@lunn.ch>
+References: <20240708102716.1246571-1-kamilh@axis.com>
+ <20240708102716.1246571-5-kamilh@axis.com>
+ <885eec03-b4d0-4bd1-869f-c334bb22888c@lunn.ch>
+ <bc1ce748-7620-45b0-b1ad-17d77f6d6331@axis.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 0/9] watchdog: rzg2l_wdt: Add support for RZ/G3S
-Content-Language: en-US
-From: claudiu beznea <claudiu.beznea@tuxon.dev>
-To: wim@linux-watchdog.org, linux@roeck-us.net, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, p.zabel@pengutronix.de,
- geert+renesas@glider.be, magnus.damm@gmail.com
-Cc: biju.das.jz@bp.renesas.com, linux-watchdog@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org, claudiu.beznea.uj@bp.renesas.com
-References: <20240531065723.1085423-1-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20240531065723.1085423-1-claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <bc1ce748-7620-45b0-b1ad-17d77f6d6331@axis.com>
 
-Hi, watchdog maintainers,
+On Fri, Jul 12, 2024 at 05:10:48PM +0200, Kamil Horák (2N) wrote:
+> 
+> On 7/11/24 21:01, Andrew Lunn wrote:
+> > > +static int bcm5481x_get_brrmode(struct phy_device *phydev, u8 *data)
+> > >   {
+> > > -	int err, reg;
+> > > +	int reg;
+> > > -	/* Disable BroadR-Reach function. */
+> > >   	reg = bcm_phy_read_exp(phydev, BCM54810_EXP_BROADREACH_LRE_MISC_CTL);
+> > > -	reg &= ~BCM54810_EXP_BROADREACH_LRE_MISC_CTL_EN;
+> > > -	err = bcm_phy_write_exp(phydev, BCM54810_EXP_BROADREACH_LRE_MISC_CTL,
+> > > -				reg);
+> > > -	if (err < 0)
+> > bcm_phy_read_exp() could fail. So you should keep the test. Also, the
+> > caller of this function does look at the return value.
+> True - it can at least return -EOPNOTSUPP from __mdiobus_read()
+> Trying to handle it.
+> 
+> This neglect can be found elsewhere such as bcm-phy-ptp.c  and eg.
+> bcm54xx_config_init()
+> 
+> function. I feel that at least the latest one should be fixed but it would
+> be unrelated to bcm54811,
+> 
+> so leaving it as-is for now.
 
-Can you please let me know if there is anything you would like me to
-address for this series?
+In general PHY drivers are a bit hit and miss with checking error
+codes. If the first access works, it is very likely all further
+accesses will work. If they fail, the hardware is probably dead and
+there is little you can do about it other than report the error. So i
+would say probe, suspend and resume should always check the error
+codes, since that is where clock problems are likely to be. But after
+that it is good practice to check error codes, but a driver is
+unlikely to be NACKed because of missing checks.
 
-Thank you,
-Claudiu Beznea
+> Done. Now we rely on the DT setting and never read the PHY state. It is
+> vulnerable to external manipulation
+> 
+> of MDIO registers and PHY reset as both hardware and software (bit 15 of
+> register 0 in both
+> 
+> IEEE and LRE modes) reset switch to IEEE mode.
 
-On 31.05.2024 09:57, Claudiu wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> 
-> Hi,
-> 
-> Series adds watchdog support for Renesas RZ/G3S (R9A08G045) SoC.
-> 
-> Patches do the following:
-> - patch 1/9 makes the driver depend on ARCH_RZG2L || ARCH_R9A09G011
-> - patch 2/9 makes the driver depend on PM
-> - patches 3-7/9 adds fixes and cleanups for the watchdog driver
-> - patch 8/9 adds suspend to RAM to the watchdog driver (to be used by
->   RZ/G3S)
-> - patch 9/9 documents the RZ/G3S support
-> 
-> Thank you,
-> Claudiu Beznea
-> 
-> Changes in v9:
-> - dropped patch "watchdog: rzg2l_wdt: Power on the PM domain in
->   rzg2l_wdt_restart()" until further clarifications; this will not
->   impact any behavior as the RZ/G3S power domain support is not
->   instantiated
-> - on patch "watchdog: rzg2l_wdt: Remove reset de-assert from probe"
->   call pm_runtime_put() in case the reset deassert fails
-> 
-> Changes in v8:
-> - added patch 9
-> - collected tags
-> 
-> Changes in v7:
-> - updated the dependency on patch 2/9
-> 
-> Changes in v6:
-> - update patch 2/9 description
-> - fixed the dependency on COMPILE_TEST previously introduced in patch
->   2/9
-> 
-> Changes in v5:
-> - updated description of patch 2/9
-> - simplify the code in patch 2/9 by using on a new line:
->   depends on PM || COMPILE_TEST
-> 
-> Changes in v4:
-> - added patch "watchdog: rzg2l_wdt: Restrict the driver to ARCH_RZG2L and
->   ARCH_R9A09G011"
-> - collected tags
-> 
-> Changes in v3:
-> - make driver depend on PM not select it
-> - drop patches already accepted (patches 1, 10, 11 from v2)
-> - re-arranged the tags in patch 8/8 as they were messed by b4 am/shazam
-> 
-> Changes in v2:
-> - added patch "watchdog: rzg2l_wdt: Select PM"
-> - propagate the return status of rzg2l_wdt_start() to it's callers
->   in patch "watchdog: rzg2l_wdt: Use pm_runtime_resume_and_get()" 
-> - propagate the return status of rzg2l_wdt_stop() to it's callers
->   in patch "watchdog: rzg2l_wdt: Check return status of pm_runtime_put()" 
-> - removed pm_ptr() from patch "watchdog: rzg2l_wdt: Add suspend/resume support"
-> - s/G2UL/G2L in patch "dt-bindings: watchdog: renesas,wdt: Document RZ/G3S support"
-> - collected tags
-> 
-> Claudiu Beznea (9):
->   watchdog: rzg2l_wdt: Restrict the driver to ARCH_RZG2L and
->     ARCH_R9A09G011
->   watchdog: rzg2l_wdt: Make the driver depend on PM
->   watchdog: rzg2l_wdt: Use pm_runtime_resume_and_get()
->   watchdog: rzg2l_wdt: Check return status of pm_runtime_put()
->   watchdog: rzg2l_wdt: Remove reset de-assert from probe
->   watchdog: rzg2l_wdt: Remove comparison with zero
->   watchdog: rzg2l_wdt: Rely on the reset driver for doing proper reset
->   watchdog: rzg2l_wdt: Add suspend/resume support
->   dt-bindings: watchdog: renesas,wdt: Document RZ/G3S support
-> 
->  .../bindings/watchdog/renesas,wdt.yaml        |   1 +
->  drivers/watchdog/Kconfig                      |   3 +-
->  drivers/watchdog/rzg2l_wdt.c                  | 113 ++++++++++--------
->  3 files changed, 66 insertions(+), 51 deletions(-)
-> 
+I don't think this is any worse. With the old code you would of
+silently swapped to standard IEEE modes, which cannot work. Now you
+continue programming BRR registers, which just get ignored because it
+is no longer in that mode.
+
+But if somebody performed some sort of external manipulation, all bets
+are off anyway. 
+
+	Andrew
 
