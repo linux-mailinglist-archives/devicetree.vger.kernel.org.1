@@ -1,217 +1,182 @@
-Return-Path: <devicetree+bounces-85437-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85438-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE8AE9300A2
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 20:58:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 724889300C8
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 21:21:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 93D162840B7
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 18:58:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 21A91282C5C
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 19:20:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7346214F70;
-	Fri, 12 Jul 2024 18:58:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AFC121340;
+	Fri, 12 Jul 2024 19:20:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="oO7x3g1x"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="FyTVNHU1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010002.outbound.protection.outlook.com [52.101.69.2])
+Received: from mx0b-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E662224D1;
-	Fri, 12 Jul 2024 18:57:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.2
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720810682; cv=fail; b=uy+ovAyvqpkoLJm/HcC6hdhzKwMDWnPgyvUk6JLg9lwr+DAjM3l21wm0ifXzlmf0VzGU2XuMGf3w95fVsuOgsxBUvqBYSQPr4grNbmkk86sg1eqiLBZZ3L/GOsQvl5HvpFzcptuqUYoQ7MwmATYVE8RN9iH5rCRZR2SHIASxi0I=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720810682; c=relaxed/simple;
-	bh=HuHafaRoM0M8pCdiDLe4b7w3FgtSy2lD/VmhSmN34YE=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=OedJd3JaXki6OwuDirorw1LwGJ3F0OXLUoQxDtuHx7oPfbVUCPc6uZ9v+IO/LNKYim6kqaVmKR8eaz10jlILlNoD4o4nByT+jkXJGw3SmFZBLhe8SwuLbleRs48bGyaEn6EpVMpmLFhDt76BXhMGg/yCp1mrgI7LfHsQowwDzhs=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=oO7x3g1x; arc=fail smtp.client-ip=52.101.69.2
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=TMvu5IjY8AmvLEzY1LRl7kCs8li/rboQnreq3p9fVtRr8WPtZXEKginUEDXpyBpEMJpi5d+0EwgNbPC0YU4tJ6b1UCE4yVKgg9KBXahKy+oZB41rUSBoYu1YBhvTQB5G1Ek8qdNf9VFXf6M2VflBTpqNkidSZ1kNpZbbbVO5be7LpCELdXwmXSl4Qp+NjogG/3+99DeJVoaZp7a4+XiYFvs4/yb7QPldYF3f5f1rBb4MOermSkWD8VdbOJXhBT/6khBMoT8LazUpDQ6rQFWEWo8TFUZhUBO/zFbJldCo14tAWmtyK3Zu9FBXAyXhzexftfxKbxWdAkBfvnJqgs73Tw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5mFFeKbv/NHDpn3HFqRvUoC39WQiolBlh70dIYa5zdg=;
- b=vTJu46BiTEUq8VcZu1iHx2vBZ7kZld/56/qeR/eoiqMqiibLGp/4JVF16qndyoZ7GtQiz5vj9ViuWpDco66UOvmai2vIBwrfke4Sxe5ziAQPGdoSkbvT/UgjFHeyAu2Nk4CI809SwmVVG5eEWZXE/gTaYwSz9oT4zpI6iZwrS4jHlNuvb5+0FdgqC1kcudCnIKtJursldm3sYpeMow5fgVozPw+3qjGZPnIDCqWlVL2KK4aHOsNUjkGCC6Wu3XGdHUVlyuchQBoI+z0qqX1nSmuL3RdsTbE5hoF7UVc4CE0Kbip4zOiatCJ0NVMcHEO+2mdZ4SxJ3z2Myg0F6VSQaA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5mFFeKbv/NHDpn3HFqRvUoC39WQiolBlh70dIYa5zdg=;
- b=oO7x3g1xYF6yk/s8h0GFHfrTKU39TCXZ9kyWYnTXfUxTfSx/FRuha/v8p4P0zVoDvPPW6cdRCrYIwET4u3VCkr2S5JccSB76MFVNKO2TUhHzKHP68NlbXY8DdaT2nWGIgvxhIOEM+YlqdNg841EOwEXgE8KFLXUIeWmt7xGeToA=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by AS8PR04MB7589.eurprd04.prod.outlook.com (2603:10a6:20b:291::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7762.23; Fri, 12 Jul
- 2024 18:57:57 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%4]) with mapi id 15.20.7762.020; Fri, 12 Jul 2024
- 18:57:57 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: Damien Le Moal <dlemoal@kernel.org>,
-	Niklas Cassel <cassel@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-ide@vger.kernel.org (open list:LIBATA SUBSYSTEM (Serial and Parallel ATA drivers)),
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-kernel@vger.kernel.org (open list)
-Cc: imx@lists.linux.dev
-Subject: [PATCH v3 1/1] dt-bindings: ata: ahci-fsl-qoriq: add fsl,ls1046a-ahci and fsl,ls1012a-ahci
-Date: Fri, 12 Jul 2024 14:57:40 -0400
-Message-Id: <20240712185740.3819170-1-Frank.Li@nxp.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: BYAPR11CA0072.namprd11.prod.outlook.com
- (2603:10b6:a03:80::49) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A8C21B95B;
+	Fri, 12 Jul 2024 19:20:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1720812055; cv=none; b=Ze6VLhc7c817nm+Zw2e+bd4bgkqsLYMPWDVoB+Ql7mKWEkk/8tfiCO/6I3Arj7Zl0j/tX+LoP5wdos5BXTubvOE8jshyrGWM1cPs2DfsDPuGPeNNFbmR/gqYvJPUZFTU5XAUqJ4GdLVycrm2eU8N1/6mCLgFARU9vtXmRDxNk2k=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1720812055; c=relaxed/simple;
+	bh=THUpWrDo0OgbU7slolZtvkJhZMQ17aaiYCWO3LnLLlU=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=beso7kx72qbmoXEPux/2hbYgW/pZi/PrWOGDnTP/wHLu1ExrmITSnNAmKotY1SUYHMsqA/vlrgUhOt/GnzLJxnlWsUygTFnOvZvpOIYLIZ1E3Dg+iCFpnW4l/K/hoIp8UD+/uu0/89pyf9GZOYf17G1rDuHXA8I1f7WoZCTw6bk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=FyTVNHU1; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0375855.ppops.net [127.0.0.1])
+	by mx0b-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46CHYOpY007162;
+	Fri, 12 Jul 2024 15:20:23 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=lab2yG3e1sxorMpsMsndwrtH7zQ
+	aZ6/VGdPmhlRQiZQ=; b=FyTVNHU1a7oD+ZJn98wYKUTvJwTXy7l2ft0/dMmljHY
+	5Uc1mtBaN3cpCldj5PbueUoUChE288ASr8LexSD3gCcIVc6zmF9eb6DJwYNxG5AD
+	jcNV4eVgbqNlJWkQhtWpV4svfkx7nvZm7U36cceAwi8wIS0wqFOxLbCuNTL+xKJd
+	zVuoLpq72Aj3CR3Gq/A+nEvuYXMJAY8FqF/9cUJ/Fy304AZlI6w+kNL3TP+5v5gc
+	Jjc0dH06siMZ4YP8kHrUhMuC/Te60LCzd8PKfXcQGWhCJEVkd4UITVW+2zdMBCo8
+	wuIDaaJzu7lgWL79SEbJ2wbOI5wHm7yzgrbpMw4uzLA==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 40b2qp1gwc-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 12 Jul 2024 15:20:22 -0400 (EDT)
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 46CJKLbt009408
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 12 Jul 2024 15:20:21 -0400
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Fri, 12 Jul
+ 2024 15:20:20 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Fri, 12 Jul 2024 15:20:20 -0400
+Received: from work.ad.analog.com (HYB-hERzalRezfV.ad.analog.com [10.65.205.129])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 46CJK2GH004274;
+	Fri, 12 Jul 2024 15:20:05 -0400
+From: Marcelo Schmitt <marcelo.schmitt@analog.com>
+To: <broonie@kernel.org>, <lars@metafoo.de>, <Michael.Hennerich@analog.com>,
+        <jic23@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <nuno.sa@analog.com>, <dlechner@baylibre.com>, <corbet@lwn.net>,
+        <marcelo.schmitt1@gmail.com>
+CC: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-spi@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v7 0/7] Add support for AD4000 series of ADCs
+Date: Fri, 12 Jul 2024 16:20:00 -0300
+Message-ID: <cover.1720810545.git.marcelo.schmitt@analog.com>
+X-Mailer: git-send-email 2.30.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AS8PR04MB7589:EE_
-X-MS-Office365-Filtering-Correlation-Id: a7e84b01-51b7-409a-4bb5-08dca2a48af6
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|52116014|366016|1800799024|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?gjmnxk9ELiRu2o6A5cqqjEgGA8Fy9frIkxnxThaMxDbj4xj9uLzHcmKnGUP+?=
- =?us-ascii?Q?51Cia4xm0Symf83qkbO1lmDJCiYLJoc6mkhWj7TZYwreZHQJq20XnY+IRJqv?=
- =?us-ascii?Q?lTvPgtQJu58MZmgHbS6mJJG2TSSvrVbvz5UXZ6jGOn27d7WTlpyhmHRJDrjb?=
- =?us-ascii?Q?M6t2u4ZyzoEqHYQXvKrVNAZczEziAh77I2lP2Wj/ji383iJd3PP7w9R2nxtv?=
- =?us-ascii?Q?k8068k48vYkZDS3jiD8IFKTcZRL5LZIzeQAse/s5m2iRuKM2JpyKgzVDL3xV?=
- =?us-ascii?Q?duoFd+WainNn9DebonbKREFr2UFxN/LgYvYcm8HCo/xiCeLWB7v1mhYtn/1a?=
- =?us-ascii?Q?wokE3ImO/ZQuPog01MsvalFpLqVyCfT5Cr5CPSWCojTptYVJSM54l2AI9Sf0?=
- =?us-ascii?Q?urZoNAjpZs89VRzPkl84V4nyiWKFHYATK1fQA9PM0RLcZh7pGx5lNvVRGSsY?=
- =?us-ascii?Q?xIh5XA6rJZziEm9uPB+xmrr/nI7HIRDdju8DjeHTeHsUMoJTdfG9X8H5/ESA?=
- =?us-ascii?Q?LoHs3rkBJ/0fuO9rDCT65qC5IvkBcUTRf9E4SafhOn1VbTYhQgID/h1f3FqH?=
- =?us-ascii?Q?w1C3i28he2zOW2BFMJc0/fN+itzgOoPFSzx+Y+WWN+k9DOf9Z4lZHBsWsQ5n?=
- =?us-ascii?Q?ImcKSwZj+WFthTYAWijTk4oy5cdEpXKhW/YKQGNwOCXxz7O/Z8G2dyaKH7Qr?=
- =?us-ascii?Q?A/ZREgteL8j9T+iyvqXAguy3D7limapiFHQ6xK9Z2MWKQcTs0xWR+UR17r5Z?=
- =?us-ascii?Q?CKzoSNMsXMXfYCoHbfggMV8jMD6NsFzYD+yboNLnBHGVZd426aCs6v5CByrW?=
- =?us-ascii?Q?7088Bz16ZzsG3aJ9VKTprjWyIToX2yhozDxUn+zrVVoVLJLmY3qVr/Kh7gBt?=
- =?us-ascii?Q?RPehlypJycog5IJGV3pqweMm0lmOFGe5cvKrKr/R40vtiML5GrEZA/SrWqfl?=
- =?us-ascii?Q?7F5mfca8W79dFXw6G/AcCuaazPUpX204OX0xU90ZgEbTcYzaZCQevV87Trmn?=
- =?us-ascii?Q?W11HrFfastRMm3D9ls/TE/jTqKjppzOvfUZnELvWLDwW+Yfddl7AjUgoDTsX?=
- =?us-ascii?Q?99Su7N0V5yYLj9DARMz6zjhCjZJBcHX/5nbjqKXIMTwO2h0hB7ylHobtP3uZ?=
- =?us-ascii?Q?QVKas9WBsLprXy4PLcFvYGo1oXU36dqdGsDEV3or4dDTEttmCSyI3cK0kf3d?=
- =?us-ascii?Q?7OoTITTFc9Ic0koNQxOVJanLK5M+mb2RjRrdFH0jtebdcQU9ILhVSu5yDSzV?=
- =?us-ascii?Q?LqgIdRKUZRNfCmeIhyUSHbBtE/ljCRbo/dcaG2ciYW/WehiXe43f22QQ62Sy?=
- =?us-ascii?Q?zNOVDj+vQzPRjPwa93OufMr+R9Etzpbxi2yRdplleqqCKGAvPmOSdNNusPXv?=
- =?us-ascii?Q?fOBMZXbVBAauAoxjbjHG/+cjK5Pjwn/No6VBVakA67xio5NVww=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(52116014)(366016)(1800799024)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?6UVC76vbXY1FrauYqMoKGzu9p0QzG2qmJSC+moedL/ywr6QwHbDJjysFhDJe?=
- =?us-ascii?Q?BqThLcuj7SxeWJzBm0GWODEmc6CbiaB1nhYxe1wYjegSgS19nqMbqE79Dbj6?=
- =?us-ascii?Q?sF0U6ZgpiaVrMZ9zKMvQjQMkprUWQFAJEIBvevnbvHZpzcq0yXtkYvOMelCa?=
- =?us-ascii?Q?ehu0KEw8Qh3691DP7nLOZEXjjviKuDgzGqWvbVeZ8QIhv6laSx/ujNdi2YM1?=
- =?us-ascii?Q?IPZXGhfCNiEH7PeQg3Lfj3b8FvVIMiSvmaq7s6Y7LwJK/cxhBdDKWJb0kp7C?=
- =?us-ascii?Q?usjCtBG+VinbbdyHja7dZAtFc8E+EeQw4e6BYwCoE/A9qm879/4/kvK/AThH?=
- =?us-ascii?Q?hbTITgahcoW+HS/Pk+jMwvMLn2RZeQo841wwwCx8ajHlc0QZ3/j8QgDFfBxr?=
- =?us-ascii?Q?aSNzbJe/d7oZZ+QZauCeAYYxsTkONyBEEWb67/Oop0XoO+u5Soa06XMPtjBZ?=
- =?us-ascii?Q?0hymojSay9Gj8pzCi19D4k4eqfM4UwkcphMcTFuDIIxj0ffCVif19I4pdNq5?=
- =?us-ascii?Q?BNJRiLFSBO+8VTs8779ByV40y63oioPL477qeyPY/5PNAtAPfFf39ahv8hAX?=
- =?us-ascii?Q?KtaNKgxTI2qK68/LAhZDTs75YXTFdCDwJw3u0t9a4fWYIte/z053iEqHsbmO?=
- =?us-ascii?Q?NiLh5JoLRjuRlrN9n5X6SanBEtTdw1JQqG/JCNnXzj7mozWqfeJc5ZZ9tO9X?=
- =?us-ascii?Q?KmrIBmDFCPxe7WVSeOW9/6nt1+keeOwEbSvjdkIs6CxDWozd0Dpgnxk5nVLr?=
- =?us-ascii?Q?hCW0coVcBjmidbNNKBL3gKI4iP4+uoyVQlzlXFkXyECW6kH6jvbwBJQHptK7?=
- =?us-ascii?Q?p72840ybGWsP7EB/FtK2ibCx/+3xHZZakewY7/tqejPQmhWbUVUei3Bd1eNy?=
- =?us-ascii?Q?sM5CnU2G2fpwCg2hI+n2Fo1zeLNr4o9rMTAQUc530tQI+qNQCawUtgaviZQT?=
- =?us-ascii?Q?RxU+DFoT4Q4yB4APFHvGi6HGivXVyxzw9WQUShWfh5fYCgZhGrWRZfwZqWhM?=
- =?us-ascii?Q?U7+KXPkDu2AUhmhkxGSi6OgMPoTN9EvjV2yJ4wli1x5qykTviZOB/L87TEPk?=
- =?us-ascii?Q?yrYYYeWOp+W8Q/2ChNHHUz0S45NsOF7Z+/GA+0HiZG2J6yXIELJams7DzYDt?=
- =?us-ascii?Q?CbjbObHclIYvVRsV0ITHfR6gm5Dm/Qm8zgC5QFZT9w1PCQnLAKCpo1nSn05E?=
- =?us-ascii?Q?JrEytQ5DKBQdxm2O5c5YGTbwQvrVrg4uOp4C8I0daBlIWjPIptymv2876yq1?=
- =?us-ascii?Q?TarqRoloh9g4yyRHF2TX6LlORuvYnG7vkteRJO8Noi0sxKVggTbrlVRrGW5j?=
- =?us-ascii?Q?wJz7Xpg0p6DvU0GMMAt698atIcV7o+6oUv1XBugPSUfPmDhtTn0S5QlXh8Pc?=
- =?us-ascii?Q?2B3WqM1ZzS4FNAak4+UR+/PuRambhIGGSU8QFVjBqWig8TxLRJebbPncjMof?=
- =?us-ascii?Q?JmnGrUOZAuz7NKWKcOqJCFbNeFBMaC4owcPmH+uK7S4JuDHFg+IzeoWolBAC?=
- =?us-ascii?Q?rr8owpb+5LLZhf6HGx4SWr9NFksroKCbV2JTjJUPMTlBvXrE4rywoaYY8aao?=
- =?us-ascii?Q?56qni6Oy9hqSPGqd+PbKpbqnV50rszkERZtazAqT?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a7e84b01-51b7-409a-4bb5-08dca2a48af6
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jul 2024 18:57:57.1598
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 2o+o/wrROBZNSJaA30kQwP63S8ASRZCfyCgrpSFE59ps9MjvNr7HRiAm3nqES8MhBRUQ2q+aig4TEBrcdIkr9A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB7589
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: U4OmiQgC8yJToMuAcb4mHxqhycM2WacO
+X-Proofpoint-ORIG-GUID: U4OmiQgC8yJToMuAcb4mHxqhycM2WacO
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-12_15,2024-07-11_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 bulkscore=0
+ phishscore=0 impostorscore=0 mlxscore=0 malwarescore=0 suspectscore=0
+ mlxlogscore=999 adultscore=0 lowpriorityscore=0 priorityscore=1501
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2406140001 definitions=main-2407120130
 
-Add missing documented compatible strings 'fsl,ls1046a-ahci' and
-'fsl,ls1012a-ahci'. Allow 'fsl,ls1012a-ahci' to fallback to
-'fsl,ls1043a-ahci'.
+This patch series extends the SPI bitbang, gpio, and spi-engine controllers to
+support configurable MOSI line idle states.
+It then introduces the ad4000 driver which uses the MOSI idle configuration to
+provide improved support for the AD4000 series of ADCs.
+Documentation is added describing the new extension to the SPI protocol.
+The currently supported wiring modes for AD4000 devices were documented under
+IIO documentation directory.
 
-Fix below CHECK_DTB warnings
-arch/arm64/boot/dts/freescale/fsl-ls1012a-qds.dtb: sata@3200000: compatible:0: 'fsl,ls1012a-ahci' is not one of ['fsl,ls1021a-ahci', 'fsl,ls1043a-ahci', 'fsl,ls1028a-ahci', 'fsl,ls1088a-ahci', 'fsl,ls2080a-ahci', 'fsl,lx2160a-ahci']
-arch/arm64/boot/dts/freescale/fsl-ls1012a-qds.dtb: sata@3200000: compatible: ['fsl,ls1012a-ahci', 'fsl,ls1043a-ahci'] is too long
+Change log v6 -> v7:
+[Device tree]
+No changes to device tree from v6 to v7.
+[SPI]
+spi.c: Removed blank line added in code not related to MOSI idle feature.
+spi: bitbang: Rewrapped commit message.
+spi: bitbang: Rebased bitbang patch on top of spi for-next branch.
+[IIO]
+ad4000: Checked gain-milli read from dt and made it match one of supported gains or fail.
+ad4000: Added blank lines to improve code readability.
+ad4000: return 0; when known that no errors occurred.
 
-Fixes: e58e12c5c34c ("dt-bindings: ata: ahci-fsl-qoriq: convert to yaml format")
-Reviewed-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
-Change from v2 to v3
-- Add rob's review tag
-- Sort compatible string list
-- Add fix tag
-- Add two warnings in commit message.
-- Add - description: sata controller for ls1012a
+Link to v6: https://lore.kernel.org/linux-iio/cover.1719686465.git.marcelo.schmitt@analog.com/
+Link to v5: https://lore.kernel.org/linux-iio/cover.1719351923.git.marcelo.schmitt@analog.com/
+Link to v4: https://lore.kernel.org/linux-iio/cover.1718749981.git.marcelo.schmitt@analog.com/
+Link to v3: https://lore.kernel.org/linux-iio/cover.1717539384.git.marcelo.schmitt@analog.com/
+Link to v2: https://lore.kernel.org/linux-iio/cover.1712585500.git.marcelo.schmitt@analog.com/
+Link to v1: https://lore.kernel.org/linux-iio/cover.1711131830.git.marcelo.schmitt@analog.com/
 
-Change from v1 to v2
-- rework commit message to show fix CHECK_DTB warning.
----
- .../devicetree/bindings/ata/fsl,ahci.yaml     | 20 ++++++++++++-------
- 1 file changed, 13 insertions(+), 7 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/ata/fsl,ahci.yaml b/Documentation/devicetree/bindings/ata/fsl,ahci.yaml
-index 162b3bb5427ed..b58ea5a183082 100644
---- a/Documentation/devicetree/bindings/ata/fsl,ahci.yaml
-+++ b/Documentation/devicetree/bindings/ata/fsl,ahci.yaml
-@@ -11,13 +11,19 @@ maintainers:
- 
- properties:
-   compatible:
--    enum:
--      - fsl,ls1021a-ahci
--      - fsl,ls1043a-ahci
--      - fsl,ls1028a-ahci
--      - fsl,ls1088a-ahci
--      - fsl,ls2080a-ahci
--      - fsl,lx2160a-ahci
-+    oneOf:
-+      - description: sata controller for ls1012a
-+        items:
-+          - const: fsl,ls1012a-ahci
-+          - const: fsl,ls1043a-ahci
-+      - enum:
-+          - fsl,ls1021a-ahci
-+          - fsl,ls1028a-ahci
-+          - fsl,ls1043a-ahci
-+          - fsl,ls1046a-ahci
-+          - fsl,ls1088a-ahci
-+          - fsl,ls2080a-ahci
-+          - fsl,lx2160a-ahci
- 
-   reg:
-     minItems: 1
+Prerequisite patches to apply this series to IIO testing branch:
+
+c3358a746e078d0f9048732c90fdab4f37c00e0d "spi: bitbang: Convert unsigned to unsigned int"
+https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git/commit/?id=c3358a746e078d0f9048732c90fdab4f37c00e0d
+
+f261172d39f358dcecce13c310690d3937e0cca6 "spi: bitbang: Use typedef for txrx_*() callbacks"
+https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git/commit/?id=f261172d39f358dcecce13c310690d3937e0cca6
+
+6ecdb0aa4dca62d236a659426e11e6cf302e8f18 "spi: axi-spi-engine: Add SPI_CS_HIGH support"
+https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git/commit/?h=for-6.11&id=6ecdb0aa4dca62d236a659426e11e6cf302e8f18
+
+
+Prerequisite patches to apply the series to SPI for-next brach:
+
+ef60f9ca26d33d0f8e1a709771c61d3e96f64559 "docs: iio: add documentation for adis16480 driver"
+https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git/commit/?h=testing&id=ef60f9ca26d33d0f8e1a709771c61d3e96f64559
+
+
+Thanks,
+Marcelo
+
+Marcelo Schmitt (7):
+  spi: Enable controllers to extend the SPI protocol with MOSI idle
+    configuration
+  spi: bitbang: Implement support for MOSI idle state configuration
+  spi: spi-gpio: Add support for MOSI idle state configuration
+  spi: spi-axi-spi-engine: Add support for MOSI idle configuration
+  dt-bindings: iio: adc: Add AD4000
+  iio: adc: Add support for AD4000
+  Documentation: Add AD4000 documentation
+
+ .../bindings/iio/adc/adi,ad4000.yaml          | 197 +++++
+ Documentation/iio/ad4000.rst                  | 131 ++++
+ Documentation/iio/index.rst                   |   1 +
+ Documentation/spi/spi-summary.rst             |  83 ++
+ MAINTAINERS                                   |   9 +
+ drivers/iio/adc/Kconfig                       |  12 +
+ drivers/iio/adc/Makefile                      |   1 +
+ drivers/iio/adc/ad4000.c                      | 722 ++++++++++++++++++
+ drivers/spi/spi-axi-spi-engine.c              |  15 +-
+ drivers/spi/spi-bitbang.c                     |  24 +
+ drivers/spi/spi-gpio.c                        |  12 +-
+ drivers/spi/spi.c                             |   6 +
+ include/linux/spi/spi_bitbang.h               |   1 +
+ include/uapi/linux/spi/spi.h                  |   5 +-
+ 14 files changed, 1213 insertions(+), 6 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad4000.yaml
+ create mode 100644 Documentation/iio/ad4000.rst
+ create mode 100644 drivers/iio/adc/ad4000.c
+
+
+base-commit: 986da024b99a72e64f6bdb3f3f0e52af024b1f50
+prerequisite-patch-id: 76a35c35c2af889be2ff20052da02df561b3d71b
+prerequisite-patch-id: ce5abb83d4f04e72c69d0df4ded79077065cd649
+prerequisite-patch-id: b30f54a92e47dbad33ca7450089c7b19610e9cf2
 -- 
-2.34.1
+2.43.0
 
 
