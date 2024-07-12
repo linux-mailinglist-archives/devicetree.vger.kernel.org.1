@@ -1,218 +1,155 @@
-Return-Path: <devicetree+bounces-85430-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85431-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C100792FFCD
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 19:29:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 614C392FFDC
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 19:37:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ED49D1C20CAB
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 17:29:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 856211C20E02
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 17:37:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1DAB176246;
-	Fri, 12 Jul 2024 17:29:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF78D176AC7;
+	Fri, 12 Jul 2024 17:37:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="TvjdjphW"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oWyz6iGL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2ECB175558;
-	Fri, 12 Jul 2024 17:29:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37BA343AA9
+	for <devicetree@vger.kernel.org>; Fri, 12 Jul 2024 17:37:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720805384; cv=none; b=BhMTZBXxmJKcDtuElUyLtKFgCCJW5AQzMxVt2ENdbMP4E0uYlPUqfDU53QHyDX6bTbFc2TEoYA2xYopVWjaWDujpRYq0Uw4g2dDfAVev3QxmiTZ/WvQcibdnD8Oo3tsRaXdKD1k345KFnfuc0Fx2VLIREFaPS7IOm/11KE5pipY=
+	t=1720805833; cv=none; b=u6mb6F6gDTgM6m5uun/wWj6aych+XogNtNzrVCjzmJX+Mc0a90mM3e+GRGhcAnydX5V+HbSFQ67UKulqakFM/Ry3BdDRj34yGhRv/mfV90K50WXnmjAjy8RBEDbxq4vIIDUUz0b1a854cNwiJI72hCSf+ZEQazHpgmMhC3bbVNw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720805384; c=relaxed/simple;
-	bh=GqmJPE8sgqpX9VeGIOeO25JPzcNMk0gwXeLt6HY5sg0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fMpxrKbJWT6sc/vGVxM7swDwb1Gv9iu6iH/U2NClVfWlGgxWzOlLzgLmjnHRDDvPZD1VRGGQf/+OwGtOOLd1M1nJleL2WFRHKG7y92zcueRvaWlDf1AWR/9iatPKdcBvgS2ZhELRMXVaihinIIe3G/gJrCJ4Q/0AYt3ERq/7VsE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=TvjdjphW; arc=none smtp.client-ip=192.198.163.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1720805383; x=1752341383;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=GqmJPE8sgqpX9VeGIOeO25JPzcNMk0gwXeLt6HY5sg0=;
-  b=TvjdjphWGoCznkFgOjZXxBomUszNYtWMe0/PAUYdFO6vNFDtzq/JG0QP
-   RLh71PF7TzTHyonx1PRJpLeMivwf+p00akUftBROzqXIT8TpzqONH5FAX
-   7gOW9oJ+F3EZHQrk23AgeBL/dOZoN37P7sCVd02JBtGvMx3w7fAc8gnYv
-   e3p2bS5guqAR0p2VRZ985nS5ua4uZxNrlDSXWkYVZiIBik/BU30Z7LMh9
-   G7LfQ0RTjOpUqZ8JTpNkyOik5WWPdx5ozKaQJ9nORUxkOJCOHKt8sutuj
-   59dvPoahdO+Hlzfftn3qnF1r3hl2LiF7mHuzxDYP4HjzGaQIPbhqfzMQs
-   Q==;
-X-CSE-ConnectionGUID: 6E0cb7VJQE20qe6rmGZw1A==
-X-CSE-MsgGUID: ejwkNOdBRMKmABf5HmyyGg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11131"; a="43673616"
-X-IronPort-AV: E=Sophos;i="6.09,203,1716274800"; 
-   d="scan'208";a="43673616"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
-  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jul 2024 10:29:42 -0700
-X-CSE-ConnectionGUID: GBGCSghEQXOC50Rlkknqfg==
-X-CSE-MsgGUID: nkeYEaObR9GnHgZcyp6dBQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,203,1716274800"; 
-   d="scan'208";a="49636237"
-Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
-  by orviesa007.jf.intel.com with ESMTP; 12 Jul 2024 10:29:38 -0700
-Received: from kbuild by 68891e0c336b with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sSK5Q-000b4A-03;
-	Fri, 12 Jul 2024 17:29:36 +0000
-Date: Sat, 13 Jul 2024 01:29:33 +0800
-From: kernel test robot <lkp@intel.com>
-To: Chris Packham <chris.packham@alliedtelesis.co.nz>, jdelvare@suse.com,
-	linux@roeck-us.net, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, ukleinek@kernel.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
-	Chris Packham <chris.packham@alliedtelesis.co.nz>
-Subject: Re: [PATCH v5 3/3] hwmon: (adt7475) Add support for configuring
- initial PWM state
-Message-ID: <202407130140.VeUsxIqE-lkp@intel.com>
-References: <20240711234614.3104839-4-chris.packham@alliedtelesis.co.nz>
+	s=arc-20240116; t=1720805833; c=relaxed/simple;
+	bh=cMVBcb3+PuJ6p9sLI9kDQNdmjy4RrnCDMwKNx1ooWJQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=od03bv3BpEeD15qc3Kud042xelHAMAISQZNRn3SYkYoRPXo2Me9mBdqcSh3tuAAvXeuTFjsFuLcSXFoFEyFANu6LFdR2IsoCaj1Iug2CwSW63LsyDZY3CV6yjjONrjVhfRuxukFZwP7ift9Ah37dv/s4aBpT7fr+YugaUCAp6Vg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=oWyz6iGL; arc=none smtp.client-ip=209.85.218.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a77abe5c709so292584466b.2
+        for <devicetree@vger.kernel.org>; Fri, 12 Jul 2024 10:37:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1720805831; x=1721410631; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=cMVBcb3+PuJ6p9sLI9kDQNdmjy4RrnCDMwKNx1ooWJQ=;
+        b=oWyz6iGLDTuB6ZTPcLXE+jrWKZxtoODtFNJyCcF6JC0097YWEr8LRrW2i7z9KWI1ej
+         W4dXPP0PsDeSuCC8n1h+3VPBYjU05JnYwQUy+JmqGLPnSahsCNfRyMeza7yt+Dvs+3z/
+         5ZRSkT3We2CaBWutSr7TPGasq/s8XL7Rah0MUBlQtXdeVDE9mmTvVPSK5m/N2YSWxrFP
+         Y1t7WuuvrZwXJQXOLtA1RmSqRqzHEB/ZyaFt4HUvDNPT96+ZNr3ZjoLj2xfgOMxvwhTO
+         5YDbD2E4cMLHL5BF2ExdGpDg3nDLzb3pKiAI9WiH+jirr9Ezgm/6WWaAZ9PCz9uQLtEB
+         oNrA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720805831; x=1721410631;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=cMVBcb3+PuJ6p9sLI9kDQNdmjy4RrnCDMwKNx1ooWJQ=;
+        b=CdlGRekAOeZV/YO/jZqwL7oOrDuRlNq/uOJF3LmTfTK343JZezrWDwdTxXAIYgmaWP
+         tOjqNVJbLZEdIKnSgVlgyTHCPHNg7emwODkQNIzQSgh34ziRj41PAvYeDST6D3u7gEnb
+         Yq3EZXKr4D5dJ7u5OlVxs9A1IdFtTw78cm4GwkyVQCI6SIZ4RtkmQGz7GPZ4XJ3U06rS
+         cXj5JvCrTwKklUZlQJZZFLTU8c+dgEDtfd74WIHPZ2qbH5/94JQlPW5dg7ksJnFEitHg
+         gsgLviTVRJgAXjTksIAipF/Qw7NiDdd+EVDu0QYbWBX2oCYhCruh0uIpMsfIb44ebl7g
+         8d6g==
+X-Forwarded-Encrypted: i=1; AJvYcCWxc8bvtpWBpx6tNnFJcM1zmClnIjfjw+sfpzqeaibxSR4nQMuAKfcX8Ax9Ov9VRKmqLRybzclrlZcY0Ct8Q4zTBIUjHQvmnZvorA==
+X-Gm-Message-State: AOJu0YxgIRseQKZB/aB2n36q7PM0AgeUUWFSeVZn7CCoA8GGSP+XK55i
+	3G8zs5x3nC6DbWPXLvRgHYb6RR3bgCY+r/qSREKw+qLITDpmrH7HkDQrFcnUuIk=
+X-Google-Smtp-Source: AGHT+IEfeXDIhCuqN36CSi8OOwJ0E5Pxn3p4/TIJGAsYWwdtbecnDEpO9dxJ8D+oP/FHGwlUP0W8xg==
+X-Received: by 2002:a17:906:97c3:b0:a77:c2ac:947e with SMTP id a640c23a62f3a-a780b881d20mr848111866b.55.1720805830411;
+        Fri, 12 Jul 2024 10:37:10 -0700 (PDT)
+Received: from [192.168.105.194] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a780a6e37ffsm361340566b.76.2024.07.12.10.37.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 12 Jul 2024 10:37:09 -0700 (PDT)
+Message-ID: <13bd853c-ab27-4454-8ca3-1d27ad520e3b@linaro.org>
+Date: Fri, 12 Jul 2024 19:37:05 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240711234614.3104839-4-chris.packham@alliedtelesis.co.nz>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/5] dt-bindings: thermal: qcom: Add MBG thermal monitor
+ bindings
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
+ Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
+ Lukasz Luba <lukasz.luba@arm.com>, Amit Kucheria <amitk@kernel.org>,
+ Thara Gopinath <thara.gopinath@gmail.com>,
+ Bjorn Andersson <andersson@kernel.org>
+Cc: Kamal Wadhwa <quic_kamalw@quicinc.com>, Taniya Das
+ <quic_tdas@quicinc.com>, Jishnu Prakash <quic_jprakash@quicinc.com>,
+ linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-pm@vger.kernel.org, Ajit Pandey <quic_ajipan@quicinc.com>,
+ Imran Shaik <quic_imrashai@quicinc.com>,
+ Jagadeesh Kona <quic_jkona@quicinc.com>
+References: <20240712-mbg-tm-support-v1-0-7d78bec920ca@quicinc.com>
+ <20240712-mbg-tm-support-v1-2-7d78bec920ca@quicinc.com>
+ <7a834db9-4b46-4737-a6c4-52bd38610fca@kernel.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <7a834db9-4b46-4737-a6c4-52bd38610fca@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Chris,
+On 12.07.2024 7:25 PM, Krzysztof Kozlowski wrote:
+> On 12/07/2024 14:43, Satya Priya Kakitapalli wrote:
+>> Add bindings support for the MBG Temp alarm peripheral found on
+>> pm8775 pmics.
+>>
+>> Signed-off-by: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
+>> ---
 
-kernel test robot noticed the following build errors:
+Please also describe what MBG stands for and how it differs from the
+currently supported temp alarm that's been in use for the past 10 years
+on various PMICs
 
-[auto build test ERROR on groeck-staging/hwmon-next]
-[also build test ERROR on linus/master v6.10-rc7 next-20240712]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Chris-Packham/dt-bindings-hwmon-Add-adt7475-fan-pwm-properties/20240712-074936
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging.git hwmon-next
-patch link:    https://lore.kernel.org/r/20240711234614.3104839-4-chris.packham%40alliedtelesis.co.nz
-patch subject: [PATCH v5 3/3] hwmon: (adt7475) Add support for configuring initial PWM state
-config: arm-randconfig-002-20240712 (https://download.01.org/0day-ci/archive/20240713/202407130140.VeUsxIqE-lkp@intel.com/config)
-compiler: clang version 19.0.0git (https://github.com/llvm/llvm-project a0c6b8aef853eedaa0980f07c0a502a5a8a9740e)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240713/202407130140.VeUsxIqE-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202407130140.VeUsxIqE-lkp@intel.com/
-
-All errors (new ones prefixed by >>, old ones prefixed by <<):
-
-WARNING: modpost: missing MODULE_DESCRIPTION() in lib/math/prime_numbers.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in lib/find_bit_benchmark.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in lib/test_bpf.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in lib/test_ubsan.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in lib/test_min_heap.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in lib/test_static_keys.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in lib/test_static_key_base.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in lib/test_printf.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in lib/test_scanf.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in lib/test_bitmap.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in lib/test_maple_tree.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in lib/test_memcat_p.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in lib/test_free_pages.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in lib/atomic64_test.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in lib/asn1_decoder.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/pinctrl/pinctrl-mcp23s08_i2c.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/pinctrl/pinctrl-mcp23s08_spi.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/pinctrl/pinctrl-mcp23s08.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/pinctrl/meson/pinctrl-meson.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/video/backlight/rt4831-backlight.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/video/fbdev/goldfishfb.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8365-apmixedsys.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8365.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8365-cam.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8365-mfg.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/mediatek/clk-mt8365-venc.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/sunxi-ng/suniv-f1c100s-ccu.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/sunxi-ng/sun50i-a100-ccu.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/sunxi-ng/sun50i-a100-r-ccu.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/sunxi-ng/sun4i-a10-ccu.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/sunxi-ng/sun6i-a31-ccu.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/sunxi-ng/sun8i-r-ccu.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/sunxi-ng/sun9i-a80-ccu.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/sunxi-ng/sun9i-a80-de-ccu.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/sunxi-ng/sun9i-a80-usb-ccu.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/dma/qcom/hdma.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/dma/ti/omap-dma.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/soc/amlogic/meson-clk-measure.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/soc/qcom/spm.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/pmdomain/amlogic/meson-ee-pwrc.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/regulator/tps6286x-regulator.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/reset/hisilicon/hi6220_reset.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/tty/serial/8250/8250_base.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/tty/serial/8250/8250_pxa.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/tty/serial/8250/serial_cs.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/tty/serial/owl-uart.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/iommu/iova.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/gpu/drm/panel/panel-innolux-ej030na.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/gpu/drm/bridge/sil-sii8620.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/gpu/drm/bridge/sii9234.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/block/loop.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/block/ublk_drv.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/mfd/pcf50633-gpio.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/spi/spi-qup.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/usb/phy/phy-am335x-control.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/usb/phy/phy-am335x.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/usb/host/ohci-exynos.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/usb/host/xhci-pci-renesas.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/usb/class/usbtmc.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/usb/serial/mxuport.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/usb/serial/navman.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/usb/serial/symbolserial.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/usb/misc/yurex.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/usb/mon/usbmon.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/input/touchscreen/cyttsp_i2c_common.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/i2c/uda1342.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/platform/ti/vpe/ti-vpdma.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/leds/blink/leds-bcm63138.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/hid/hid-apple.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/hid/hid-belkin.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/hid/hid-bigbenff.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/hid/hid-cherry.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/hid/hid-dr.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/hid/hid-emsff.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/hid/hid-google-hammer.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/hid/hid-holtek-kbd.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/hid/hid-holtek-mouse.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/hid/hid-kensington.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/hid/hid-letsketch.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/hid/hid-logitech.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/hid/hid-lg-g15.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/hid/hid-logitech-dj.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/hid/hid-logitech-hidpp.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/hid/hid-pl.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/hid/hid-razer.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/hid/hid-redragon.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/hid/hid-retrode.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/hid/hid-xinmo.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/hid/hid-zpff.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/hid/hid-viewsonic.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/hid/hid-waltop.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/greybus/gb-es2.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/devfreq/governor_powersave.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/iio/adc/xilinx-ams.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/perf/fsl_imx8_ddr_perf.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/vdpa/vdpa.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/fsi/fsi-core.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/fsi/fsi-master-hub.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/fsi/fsi-master-aspeed.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/fsi/fsi-master-gpio.o
->> ERROR: modpost: "__aeabi_uldivmod" [drivers/hwmon/adt7475.ko] undefined!
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Konrad
 
