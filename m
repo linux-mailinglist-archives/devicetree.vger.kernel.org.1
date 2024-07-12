@@ -1,131 +1,166 @@
-Return-Path: <devicetree+bounces-85205-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85206-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7F9192F4DC
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 07:14:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77D3492F511
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 07:27:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 706B4B216D7
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 05:14:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9BFA31C22B9E
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 05:27:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59D4F17BB6;
-	Fri, 12 Jul 2024 05:14:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA701199B8;
+	Fri, 12 Jul 2024 05:24:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eX3CqWv2"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="jsOCNPzx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAAB218EA2;
-	Fri, 12 Jul 2024 05:14:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AB8E1BC20
+	for <devicetree@vger.kernel.org>; Fri, 12 Jul 2024 05:24:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720761257; cv=none; b=BtLAeVYblgwg/92RgA44xQc49YvCQIFlzpKy8DXvasFRHiJpIz/YYlxBtxORSs/mnEMzNsUDJf+K8F1Q7oNU10j/nMkHb05Zs7EQqs/GjOWVAKtFrMooi4eqCMpfdElcXNIH630lUc3/efCZEBWdW4hjv3QAINt/68iMGsX1Hbc=
+	t=1720761894; cv=none; b=qhbTqT3hk7Atyn6uQuvhIylnB8jbHoC/r0qM1BzRJazGnyMVt0EutnbLanNEWoyTeW/lThXlMXpsU55RNpKN7j+VfSRoRxUZo3lQ8fgBBZjqAZ5Z9G/t0ywHl8JUMuWPFMwjnlfwpcJqypzqxck0278mgZbnTLLKquvutiqXGvs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720761257; c=relaxed/simple;
-	bh=NMFC30txfsq92Dfx6kq9iMPwL95nsCp8lXcX7M2w2v0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=iyv4lyWY+QEds77mq7jGlrwzplzBckZ9UfYdydfnvfa6X7ZTkobZvaUOkCy2QnBQh4jIEwLdouQz0NxxqL1lA4D3uLxYUQ1HAjfGgSm95+MF7Lo0Am2Rn82PFn32LJO3iGz+q8yjCDu5eF3vJg+YZfXbmEydQBBlXf7dbEe87EA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eX3CqWv2; arc=none smtp.client-ip=209.85.208.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-2eeb2d60efbso18883901fa.1;
-        Thu, 11 Jul 2024 22:14:15 -0700 (PDT)
+	s=arc-20240116; t=1720761894; c=relaxed/simple;
+	bh=XHfigyBjT+CgXGMlCvld9DMNDHAk27FSPXgPpwiz43o=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CG+83GGtQxDJCNt3PP6D6vo537yv5N37iTKglgCySyvG6qMY4NEUCkWqMODX2eR4t1+KdO+mjylA+1OD3x5FffncFGciboAyp++Imebb6qXaMS33DkkdaKLd57aj2QyETuxwDCfdYJ3OUfsWp51P/FE4FvwgHcHnz3CYAMg7d0o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=jsOCNPzx; arc=none smtp.client-ip=209.85.208.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-58bac81f3f9so1995801a12.2
+        for <devicetree@vger.kernel.org>; Thu, 11 Jul 2024 22:24:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1720761254; x=1721366054; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=NMFC30txfsq92Dfx6kq9iMPwL95nsCp8lXcX7M2w2v0=;
-        b=eX3CqWv2/Xrp+5/Fq89disxghpmzDFu/b9n26Fy4r7C4GHFlG/OQkhe8w/GNv0e1qI
-         biyPCjJC/eBS4PMn+IXe9ubdWMlMFwnmm5qpJnfGUK8YOnIYjhkVTlBF4zXEGvtGYQAC
-         T/04PxF31UqC596IB1ZC0qIWi2nCqVVu5w3x8YDZ+QaVOglFYyQ94mXrSa7WHMFU5V0R
-         Ey/RNjejzxxxxeI5vq6BDwJE9i0MAg/vbSaEdri97XE6wENICvX0gc/QXqVNWQQJ7mSD
-         UtsODL6zZtsx7nZH/3TcdS/Hvn8pi8yZ7CT9BXjWCwElSJ2TDbaBYUAa5cnbgYBJHzKM
-         L3rw==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1720761891; x=1721366691; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=FGo+hSrAlPy13Ul/ZVnWIL7u/LbXO49zCpNTXIfAOyw=;
+        b=jsOCNPzxIwQ0wiDhaIMKvWpBOKmmhsl4JNTaEHZZffd6Y8NIZntn8sNefb1CS0H5El
+         2IqliBJ6g/PauXR4ubVKI93Bk27I9GMzBybjUWRSKlrblHvVjRfQvXC3mdBhIYo8vNtg
+         6tqzt3Hibqy+jlt1FAMXetj4O2dogURZhTLtrsOqqwKyyl60n59tL/gyjHMKJsxYs01+
+         91EruymJ/u11f+PsAbTnE46qe9oSbiQNReHBthdtF+jUS00VAUson4SYgzsh+gdNp/ko
+         GxbPLXW2Dm1wbu3lTmPJuCNUs/5tMnTqBQtxXzggHBjrCheKOwy6NQvQuCmWDTw/hP9Q
+         s7oA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720761254; x=1721366054;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=NMFC30txfsq92Dfx6kq9iMPwL95nsCp8lXcX7M2w2v0=;
-        b=gM6n0pmpZkWXcEWAfjKsqSpQ0iXvwLjt6FSAVkHNaRI+kQxHoi81Bq76b1jczyUNnr
-         FnxU1L+DQtuwN4RX2Jc2qOZU1WrjEqgfEvgyE4/g065UUMdHRJQMdxWO4O3Rhdw1mUla
-         Twoy7YS4PUtoF8AbVI2caH2WkHOuL94E1GTMtnGBRZPsJIE0eLJ85ggdTx8NUhcoA14l
-         IK/2d3iVxGZSoubpVqBYK6pN8bB8RFdgmO6BmeEXHYhUEJ3IIyv1hoPfHL9jQM2rIMAf
-         1WQj1gV2QQ0pWKhfclwL2oPzA1jsZU438CtOc5ltvc+iXx4QsBcrID8E1G1no4PIbWht
-         rgSg==
-X-Forwarded-Encrypted: i=1; AJvYcCVmtFMKuzgw95Kl1tYv//8ib3sMiewSzeclGeNVYB+eSrFnhiBE2Wx/DFanc+bPs8FW5eBO60lv1gipIwfYDu3Tf8Sr+Yq7vyJ0o9F/Dl5Foi36A52O4K+oJFtKi9I310CrAQoDtQP6LQ==
-X-Gm-Message-State: AOJu0YxiM2ekhWrkbPjHcIloGjupIDart+XVD6Rb0byMPV8RelzhsQ6V
-	3oKmaKxtGS+DFjCpX6ax9Yppg7bC8fnyHclcGiO6wePntTAWCihJ88/o8LSOXxgFSKQNrpMS+Wr
-	aX11eNl+9ypVVxLtQTRYC1GVciA==
-X-Google-Smtp-Source: AGHT+IGBI5iCwBB9eH/bc/39EcbPRi8ExzKrhHUNXI2RWEUigoA0xaqti8YY43MlF/6vgKlgBmBcjzhOS2wl0AeBzHk=
-X-Received: by 2002:a2e:990f:0:b0:2ec:5b10:685a with SMTP id
- 38308e7fff4ca-2eeb30e5dfamr67980611fa.17.1720761253525; Thu, 11 Jul 2024
- 22:14:13 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1720761891; x=1721366691;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=FGo+hSrAlPy13Ul/ZVnWIL7u/LbXO49zCpNTXIfAOyw=;
+        b=S8UOCE5WpygBY20V0jl89OkDbfrXcyTRd+Q6ASxuAJg1W6jfzcUAryf020fMJbB4UY
+         tiFPqrkajdN5U4HonDF0npbbNumw+DAlAQmkydzhKU8jtfGK4DFDMPxhtT9S/uXJh9Wx
+         bwaEa9fZD2gPpVUPeBGnuWSQlczTeLlkNYEn819eP9sZam85AS7jVaax1Im9rSS6LPE1
+         V6zWPyK/I3E5UiM4vM/LJHonwv+HuJpuJXobi3ADLCtE5tQ29R0NyGjAS3np9EkJpKwk
+         68Fpn6avbTJSVK2NsNhrI7qE7X0poRXhAKMuFyFNWWhL/b5iB/bwmP2dC2wAC656txju
+         ggjw==
+X-Forwarded-Encrypted: i=1; AJvYcCXdHlQZlGQl+IEx+SW5j90EDQEyHiZjy1aTWPU7c5RZYnuaBKKa20n9k7HSfvqYhca+ddjq8OSt98WgNenOYRCqL8cKb2eWCy7T/w==
+X-Gm-Message-State: AOJu0YyfHXd4HJNiu4DEtcAdbTZDTdNFBWTMjauU0ulkyXYkZKPnYxqV
+	odzVZsCR+E8XSJfPMhEuQ5mbDU3k08d5yWLE4jxDUsdsYxgDeKlGQ7Txc1hsUTk=
+X-Google-Smtp-Source: AGHT+IEd96HjaarzC2ykB4hyN1Fc9UhtgUOEzJTAlsfbZc1qt4dSfkTHdoOS6/uDl2YbmzC9DkaZsg==
+X-Received: by 2002:a17:906:28cf:b0:a77:e0ed:8c2 with SMTP id a640c23a62f3a-a780b89f6b5mr559350666b.71.1720761890635;
+        Thu, 11 Jul 2024 22:24:50 -0700 (PDT)
+Received: from localhost ([2a02:8071:b783:6940:d576:ed0d:77d7:71c7])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a797f300b05sm193858066b.134.2024.07.11.22.24.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 11 Jul 2024 22:24:50 -0700 (PDT)
+Date: Fri, 12 Jul 2024 07:24:47 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+To: Guenter Roeck <linux@roeck-us.net>
+Cc: Chris Packham <chris.packham@alliedtelesis.co.nz>, jdelvare@suse.com, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-pwm@vger.kernel.org
+Subject: Re: [PATCH v5 3/3] hwmon: (adt7475) Add support for configuring
+ initial PWM state
+Message-ID: <2oyfx2i7bsadqmlqtmqhc2ee6vn4r7knfyq5kizgdjx3zpov6c@isiflqgza2gc>
+References: <20240711234614.3104839-1-chris.packham@alliedtelesis.co.nz>
+ <20240711234614.3104839-4-chris.packham@alliedtelesis.co.nz>
+ <bd2b256b-5149-491a-a482-6e4488467fa5@roeck-us.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240629103914.161530-1-erezgeva@nwtime.org> <20240629103914.161530-4-erezgeva@nwtime.org>
- <1c457520-07b7-4bde-b040-e8bca959a4f5@linaro.org> <CANeKEMOODBNZA6efh0E0Ga_KaVs5Y3WLcUftRhNwYHhnXO=GNw@mail.gmail.com>
- <CANeKEMO42rJt5Ob4_HDcZ3eEMvuMOPvRaFaLwL8SA65NtxSV7A@mail.gmail.com>
- <1d56c3b2-7adf-45b9-a509-956340f3f17b@linaro.org> <CANeKEMMe-Onpn7xWQHgWz1Ps_uQPEMa7HrKA00HpoKjG+DCJNQ@mail.gmail.com>
- <3bafcbea-6aa5-43ca-9d12-3916be3fe03d@linaro.org> <CANeKEMM02-Jvb8Pd0fZJFnRg-hsAW+hckYWm11tZZXNMPSPJ=w@mail.gmail.com>
- <9b45cc73-2251-4085-af95-7ccd00dd6d3b@linaro.org> <CANeKEMP+mRefYZNb+TuBmOD7dC6=7Rg7D1EcfnjJoiaeaV28SQ@mail.gmail.com>
- <875xtd48ps.fsf@geanix.com> <CANeKEMNJ3_ET5pQo2wg7_GSLX+vE+dqW-CV=v2DnG10xcgSdzQ@mail.gmail.com>
- <D2MZ405LVTN8.3LTVN3KTUD6A3@kernel.org> <CANeKEMNtXb4ZV7kcLbHY+Mti6dPV9UZ2wTyUq5z0qtmtNNqSVA@mail.gmail.com>
- <D2N20HB4BIC4.O13SZINCMJ9P@kernel.org>
-In-Reply-To: <D2N20HB4BIC4.O13SZINCMJ9P@kernel.org>
-From: Erez <erezgeva2@gmail.com>
-Date: Fri, 12 Jul 2024 07:13:37 +0200
-Message-ID: <CANeKEMObi8G4yt=pScLQXxY_owa=sRAV0NRu=oEw-o1Ug344rg@mail.gmail.com>
-Subject: Re: [PATCH v2 3/4] dt-bindings: mtd: macronix,mx25l12833f: add
- SPI-NOR chip
-To: Michael Walle <mwalle@kernel.org>
-Cc: Esben Haabendal <esben@geanix.com>, Tudor Ambarus <tudor.ambarus@linaro.org>, 
-	Jaime Liao <jaimeliao@mxic.com.tw>, leoyu@mxic.com.tw, 
-	Alvin Zhou <alvinzhou@mxic.com.tw>, Julien Su <juliensu@mxic.com.tw>, 
-	Erez Geva <erezgeva@nwtime.org>, linux-mtd@lists.infradead.org, 
-	Pratyush Yadav <pratyush@kernel.org>, linux-kernel@vger.kernel.org, 
-	Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="fbml44lxa55gm2fp"
+Content-Disposition: inline
+In-Reply-To: <bd2b256b-5149-491a-a482-6e4488467fa5@roeck-us.net>
 
-On Fri, 12 Jul 2024 at 00:13, Michael Walle <mwalle@kernel.org> wrote:
->
-> On Fri Jul 12, 2024 at 12:09 AM CEST, Erez wrote:
-> > On Thu, 11 Jul 2024 at 21:57, Michael Walle <mwalle@kernel.org> wrote:
-> > >
-> > > Hi Erez,
-> > >
-> > > No top posting please, see also
-> > > https://subspace.kernel.org/etiquette.html
-> >
-> > It was a single question. Which I think can be answered in one reply.
-> > In cases where there are different parts in the mail, it makes sense
-> > to avoid top posting.
-> > I do not believe we need to be pedantic.
-> > The guidance is not holy, it is aimed to make communication more comprehensive.
-> >
-> > >
-> > > On Thu Jul 11, 2024 at 8:57 PM CEST, Erez wrote:
-> > > > Yes, I think we should.
->
-> Regarding top posting, what was the question here?
->
-> I don't see any context. So don't expect any reply from me.
 
-Fair point.
-I'll try better next time and write more comprehen answers.
-I do hope my reply on the second part was more informative.
+--fbml44lxa55gm2fp
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Erez
+On Thu, Jul 11, 2024 at 09:37:29PM -0700, Guenter Roeck wrote:
+> On 7/11/24 16:46, Chris Packham wrote:
+> > By default the PWM duty cycle in hardware is 100%. On some systems this
+> > can cause unwanted fan noise. Add the ability to specify the fan
+> > connections and initial state of the PWMs via device properties.
+> >=20
+> > Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> > ---
+> ...
+> > +static int adt7475_pwm_properties_parse_reference_args(struct fwnode_h=
+andle *fwnode,
+> > +						       struct adt7475_pwm_config *cfg)
+> > +{
+> > +	int ret;
+> > +	struct fwnode_reference_args args =3D {};
+> > +	int freq_hz;
+> > +	int duty;
+> > +
+> > +	ret =3D fwnode_property_get_reference_args(fwnode, "pwms", "#pwm-cell=
+s", 0, 0, &args);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	if (args.nargs !=3D 4) {
+> > +		fwnode_handle_put(args.fwnode);
+> > +		return -EINVAL;
+> > +	}
+> > +
+> > +	freq_hz =3D 1000000000UL / args.args[1];
+> > +	duty =3D 255 / (args.args[1] / args.args[3]);
+> > +
+> You'll need to validate args.args[1] and args.args[3] to ensure that ther=
+e are no
+> divide by 0 errors.
+>=20
+> On a side note,
+> 	a =3D b / (c / d) =3D=3D b / c * d (at least for d !=3D 0)
+> Since the result is defined for d =3D=3D 0, you'd only have to make sure
+> that args.args[1] > 0 and that the result for the duty cycle is <=3D 255.
 
->
-> -michael
+On a side side note: Depending on the actual values it might be
+beneficial to use
+
+	b * d / c
+
+instead. b * d might overflow, but in other cases (e.g. b =3D 7, c =3D 8, d
+=3D 8) the resulting precision is much better.
+
+Best regards
+Uwe
+
+--fbml44lxa55gm2fp
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmaQvhwACgkQj4D7WH0S
+/k5O9gf/SRj0PUdgLMLU7/WvQKY+E2t8EHpYd7Ezpg7XKdpfVoFl8mOROFQuPS9M
+AUghvoi+cNAapjf32YjAxAef+rAdcJTO9CANrvFYPcKsuLe9yy2OlJR5bP4tUfHp
+gHmrNspPISVFl9BTiJfx+EPzcFfQbP6G6QYEV6D7AoRH97OjG/lG8qKFkdJkK774
+Lhj107eoxG5FVpAU0hS+e6nNKgO4qUCS0UMJPVBM5mqdIPLkEasfyONZF126cOQd
+uQHHFduf1JeEaC5hZlIWpKW8clyFnMzlNReCUfXE5K1m4jDul76Eh1Zb8AQL1TJu
+9nA5zTUPZlrjGYIG+ZwgvQCiV1jy6A==
+=YCbH
+-----END PGP SIGNATURE-----
+
+--fbml44lxa55gm2fp--
 
