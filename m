@@ -1,109 +1,191 @@
-Return-Path: <devicetree+bounces-85376-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85377-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85F0292FD16
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 17:00:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E3D9692FD18
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 17:01:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3B0511F24340
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 15:00:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 99B741F23C69
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 15:01:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC5BE172BDA;
-	Fri, 12 Jul 2024 15:00:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4432216FF2A;
+	Fri, 12 Jul 2024 15:01:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G94/R3lL"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="umb0Tt+g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B311B173348;
-	Fri, 12 Jul 2024 15:00:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1EB117C6B;
+	Fri, 12 Jul 2024 15:01:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720796404; cv=none; b=Q3MSlMn5E8JoP5w3fSZbRIVHSlurAfevROU30j/V4aaO4xA3+LjQbOo/qQ3CeGS8WBIhafszI69XXxruHh4r5y6Il3VYzmNF7MQL0tKg6M1+EaFNPTF6eeafWsbgZnkEsQ0CLUveujngEbdPSWaGc14gaJs2KsoKKF4GWQU/L3g=
+	t=1720796472; cv=none; b=QlKKV6mMtBWAhJfvUd0yIQpnx4/PbN2xhKgBxmxegAe112sRlac5v2F6qZjlYdWnrDplgdCbfCTMIUCR/7UnUNriQ5xvGIzB2y9Ol/uvh5cQwC/Q00e2UuWpRHxvP5nB3ZEuA9NVm9nHWdPYLzl7ksY7pS8eRJEpmMjps5D+jb0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720796404; c=relaxed/simple;
-	bh=pLkYVWWa4KVYmUB7SuThwAZhsHjrcNB+hX34mYYBkrU=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=rad0KNHPhSKbtib30huwk3oufO1ds8xhIuyQGlWGQXG54xi28HVRtogsgdbW/xDHTtjLPzolrOE3gLT1vwKswoL0rZngcq6SKZ8Ldv+VICBf60hnJ5c0d6uGwwzacSayALBXF/Xzlf4C3DXCM78gB1kMD3IqUZPLzJeTeMK8xzE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G94/R3lL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7831CC32782;
-	Fri, 12 Jul 2024 15:00:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720796404;
-	bh=pLkYVWWa4KVYmUB7SuThwAZhsHjrcNB+hX34mYYBkrU=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=G94/R3lLY3+LV0geoU6JHl7pjmqr4IPDSqahqtDnYG5cqNo7tvR/0Njx7CZjJNe+b
-	 9oDsJlmmJdcxM63FbL81CdKuHdLHftDAT396o+nG8xHeQGRgbsAe2ywqRgWzIeNVux
-	 jEnkiCRB0xibLSL5t5tkRora7AFfW4mUHKLIkFoO34hZabrf6cJwqjxLZqc64NCVtP
-	 IQA8h7yKQV7odGEDD/0NF/K4f4DPjlGm5/SRe4B4oARWtTnXahSgVdUKJHHy/qBte8
-	 RhjXbIiye4W5LFb0x9gefTJEGUVrDL5p9gvK+j+CeT2+aX1ltjzJazQBI+D9hGa5nL
-	 kr4T/eV5BJlFg==
-Date: Fri, 12 Jul 2024 08:00:02 -0700
-From: Jakub Kicinski <kuba@kernel.org>
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: netdev@vger.kernel.org, nbd@nbd.name, lorenzo.bianconi83@gmail.com,
- davem@davemloft.net, edumazet@google.com, pabeni@redhat.com,
- conor@kernel.org, linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, catalin.marinas@arm.com, will@kernel.org,
- upstream@airoha.com, angelogioacchino.delregno@collabora.com,
- benjamin.larsson@genexis.eu, rkannoth@marvell.com, sgoutham@marvell.com,
- andrew@lunn.ch, arnd@arndb.de, horms@kernel.org
-Subject: Re: [PATCH v7 net-next 2/2] net: airoha: Introduce ethernet support
- for EN7581 SoC
-Message-ID: <20240712080002.37c11d02@kernel.org>
-In-Reply-To: <ZpFBLkYyMXtMgbA8@lore-desk>
-References: <cover.1720600905.git.lorenzo@kernel.org>
-	<8ca603f8cea1ad64b703191b4c780bab87cb7dff.1720600905.git.lorenzo@kernel.org>
-	<20240711181003.4089a633@kernel.org>
-	<ZpEz-o1Dkg1gF_ud@lore-desk>
-	<20240712072819.4f43062c@kernel.org>
-	<ZpFBLkYyMXtMgbA8@lore-desk>
+	s=arc-20240116; t=1720796472; c=relaxed/simple;
+	bh=TELIwwG/3h5x8yMKF9Rhltm3vOa0nmrPuSIsFx4fOl4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Q+koowrIC8+d8UECFREdBBTiDy7m7ywKzyBFdZMH7bSDhIiGrjwB/S6qz5OSicaYwNvr5y7TzJLzyZ1ZQfCqZlreee+tszg9dMNfR7MGgX3xYMO5iIzd62hUJ/l0hqL7DXr2IefWVljY51hr9CLUKktub5Nbn/VWwbgf8lbf9ZE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=umb0Tt+g; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from ideasonboard.com (mob-5-90-56-63.net.vodafone.it [5.90.56.63])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 86F9B7E3;
+	Fri, 12 Jul 2024 17:00:33 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1720796433;
+	bh=TELIwwG/3h5x8yMKF9Rhltm3vOa0nmrPuSIsFx4fOl4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=umb0Tt+gFjFgUggaku8u+sG6c75ZIEr1pkX32DIFdEOds/ULLoN0UHuy453SEPG1L
+	 JtC9UbOq5okLwgn2w/exZuTAFx80vAmXeenCVwAPPoZ4vLaYwfzKJnUe/fBH09sp+y
+	 Lcl6LSCX+9EM3F5iSdvgAjiouzkNizdbfZh4EXGc=
+Date: Fri, 12 Jul 2024 17:01:04 +0200
+From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+To: Jai Luthra <j-luthra@ti.com>
+Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Sakari Ailus <sakari.ailus@linux.intel.com>, 
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>, Vaishnav Achath <vaishnav.a@ti.com>, 
+	Maxime Ripard <mripard@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org, 
+	devicetree@vger.kernel.org, Vignesh Raghavendra <vigneshr@ti.com>, 
+	Aradhya Bhatia <a-bhatia1@ti.com>, Devarsh Thakkar <devarsht@ti.com>, 
+	Changhuang Liang <changhuang.liang@starfivetech.com>, Jack Zhu <jack.zhu@starfivetech.com>, 
+	Julien Massot <julien.massot@collabora.com>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Subject: Re: [PATCH v2 09/13] media: ti: j721e-csi2rx: add support for
+ processing virtual channels
+Message-ID: <gn4p7imootxlidam6uddits5i7zwo5azzzb3h3wcobxquqpczs@2msb66c5hs4y>
+References: <20240627-multistream-v2-0-6ae96c54c1c3@ti.com>
+ <20240627-multistream-v2-9-6ae96c54c1c3@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20240627-multistream-v2-9-6ae96c54c1c3@ti.com>
 
-On Fri, 12 Jul 2024 16:43:58 +0200 Lorenzo Bianconi wrote:
-> > On Fri, 12 Jul 2024 15:47:38 +0200 Lorenzo Bianconi wrote:  
-> > > The Airoha eth SoC architecture is similar to mtk_eth_soc one (e.g MT7988a).
-> > > The FrameEngine (FE) module has multiple GDM ports that are connected to
-> > > different blocks. Current airoha_eth driver supports just GDM1 that is connected
-> > > to a MT7530 DSA switch (I have not posted a tiny patch for mt7530 driver yet).
-> > > In the future we will support even GDM{2,3,4} that will connect to differ
-> > > phy modues (e.g. 2.5Gbps phy).  
-> > 
-> > What I'm confused by is the mentioned of DSA. You put the port in the
-> > descriptor, and there can only be one switch on the other side, right?  
-> 
-> do you mean fport in msg1 (airoha_dev_xmit())?
-> 
-> 	fport = port->id == 4 ? FE_PSE_PORT_GDM4 : port->id;
-> 	msg1 = FIELD_PREP(QDMA_ETH_TXMSG_FPORT_MASK, fport) |
-> 	       ...
-> 
-> fport refers to the GDM port and not to the dsa user port. Am I missing
-> something?
+Hi Jai
 
-Ooh, I see, reading what you explained previously now makes sense.
-So only 1 of the ports goes to the DSA switch, and the other ones
-are connected to SoC pins? A diagram would be worth a 1000 words ;)
+On Thu, Jun 27, 2024 at 06:40:04PM GMT, Jai Luthra wrote:
+> Use get_frame_desc() to get the frame desc from the connected source,
+> and use the provided virtual channel instead of hardcoded one.
+>
+> get_frame_desc() works per stream, but as we don't support multiple
+> streams yet, we will just always use stream 0. If the source doesn't
+> support get_frame_desc(), fall back to the previous method of always
+> capturing virtual channel 0.
+>
+> Co-developed-by: Pratyush Yadav <p.yadav@ti.com>
+> Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
+> Signed-off-by: Jai Luthra <j-luthra@ti.com>
+> ---
+>  .../media/platform/ti/j721e-csi2rx/j721e-csi2rx.c  | 39 ++++++++++++++++++++++
+>  1 file changed, 39 insertions(+)
+>
+> diff --git a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
+> index b4b4bb69c88a..c0916ca1a6f8 100644
+> --- a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
+> +++ b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
+> @@ -29,6 +29,7 @@
+>  #define SHIM_DMACNTX_EN			BIT(31)
+>  #define SHIM_DMACNTX_YUV422		GENMASK(27, 26)
+>  #define SHIM_DMACNTX_SIZE		GENMASK(21, 20)
+> +#define SHIM_DMACNTX_VC			GENMASK(9, 6)
+>  #define SHIM_DMACNTX_FMT		GENMASK(5, 0)
+>  #define SHIM_DMACNTX_YUV422_MODE_11	3
+>  #define SHIM_DMACNTX_SIZE_8		0
+> @@ -105,6 +106,8 @@ struct ti_csi2rx_ctx {
+>  	struct media_pad		pad;
+>  	u32				sequence;
+>  	u32				idx;
+> +	u32				vc;
+> +	u32				stream;
+>  };
+>
+>  struct ti_csi2rx_dev {
+> @@ -571,6 +574,7 @@ static void ti_csi2rx_setup_shim(struct ti_csi2rx_ctx *ctx)
+>  	}
+>
+>  	reg |= FIELD_PREP(SHIM_DMACNTX_SIZE, fmt->size);
+> +	reg |= FIELD_PREP(SHIM_DMACNTX_VC, ctx->vc);
+>
+>  	writel(reg, csi->shim + SHIM_DMACNTX(ctx->idx));
+>
+> @@ -844,6 +848,33 @@ static void ti_csi2rx_buffer_queue(struct vb2_buffer *vb)
+>  	}
+>  }
+>
+> +static int ti_csi2rx_get_vc(struct ti_csi2rx_ctx *ctx)
+> +{
+> +	struct ti_csi2rx_dev *csi = ctx->csi;
+> +	struct v4l2_mbus_frame_desc fd;
+> +	struct media_pad *pad;
+> +	int ret, i;
+> +
+> +	pad = media_entity_remote_pad_unique(&csi->subdev.entity, MEDIA_PAD_FL_SOURCE);
+> +	if (!pad)
+> +		return -ENODEV;
+> +
+> +	ret = v4l2_subdev_call(csi->source, pad, get_frame_desc, pad->index,
+> +			       &fd);
+> +	if (ret)
+> +		return ret;
 
-> > be in a setup like this :( It will have no way to figure out the real
-> > egress rate given that each netdev only sees a (non-)random sample
-> > of traffic sharing the queue :(  
-> 
-> do you prefer to remove BQL support?
+Would it be better to fail at bound() time if the remote subdev
+doesn't support get_frame_desc ? you can use
 
-No strong preference, I worry it will do more harm than good in
-this case. It's not what it's designed for basically. But without
-testing it's all speculation, so up to you, users can always disable
-using sysfs.
+        if (!v4l2_subdev_has_op(subdev, pad, get_frame_desc)) {
+
+> +
+> +	if (fd.type != V4L2_MBUS_FRAME_DESC_TYPE_CSI2)
+> +		return -EINVAL;
+> +
+> +	for (i = 0; i < fd.num_entries; i++) {
+
+        for (unsigned int i
+
+should num_entries be validated ?
+
+> +		if (ctx->stream == fd.entry[i].stream)
+> +			return fd.entry[i].bus.csi2.vc;
+> +	}
+> +
+> +	return -ENODEV;
+> +}
+> +
+>  static int ti_csi2rx_start_streaming(struct vb2_queue *vq, unsigned int count)
+>  {
+>  	struct ti_csi2rx_ctx *ctx = vb2_get_drv_priv(vq);
+> @@ -864,6 +895,14 @@ static int ti_csi2rx_start_streaming(struct vb2_queue *vq, unsigned int count)
+>  	if (ret)
+>  		goto err;
+>
+> +	ret = ti_csi2rx_get_vc(ctx);
+> +	if (ret == -ENOIOCTLCMD)
+> +		ctx->vc = 0;
+
+Ah, so you fallback to 0 in case the subdev doesn't support
+get_frame_desc. I'm not sure what would be better here maybe wait for
+other's opinions as well.
+
+Personally I would fail earlier to make sure subdev drivers are forced
+to impement get_frame_desc
+
+> +	else if (ret < 0)
+> +		goto err;
+> +	else
+> +		ctx->vc = ret;
+> +
+>  	ti_csi2rx_setup_shim(ctx);
+>
+>  	ctx->sequence = 0;
+>
+> --
+> 2.43.0
+>
+>
 
