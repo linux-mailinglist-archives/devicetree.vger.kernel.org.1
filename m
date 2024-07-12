@@ -1,86 +1,87 @@
-Return-Path: <devicetree+bounces-85217-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85226-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 789B792F5AE
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 08:50:25 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4367792F5D6
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 09:00:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9BFDE1C21BAC
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 06:50:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B89CA1F25A6E
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 07:00:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 707DB13D539;
-	Fri, 12 Jul 2024 06:50:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E507813D510;
+	Fri, 12 Jul 2024 07:00:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="jsSiJECI"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="WI6RcsfU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A12012DDBA;
-	Fri, 12 Jul 2024 06:50:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0164279CC;
+	Fri, 12 Jul 2024 07:00:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720767019; cv=none; b=bxDMz6B5u9qzUG8rozK7t8zRmcEC2RSHTQkmovrFFoTYNNrUObG9YIC3ziqdndAeQAAt6GO58knDmUq27HxPnHUH2t9BvKzMQ0EUBdul23NQ0a1U9nkCWNrINS418RJ3zf27Z42AdetGPuutmzSuGC4boJhFTIyDlbsEgDAlDrA=
+	t=1720767623; cv=none; b=lIEmuaUasMJY1eFNda47/+Nss7fyXZ61YJ3JeRLq3Vf9S4qmCIqGpCTeXXQbW9NTAz7cizvZ2riPPbL3JL80ZlEso9W8bIGcsEDVVvikm5WetS65nhMyUifTbcHDh9egMJAyqt+cjrI3Di+Sdim8AfeMEu0a/dqMMTFBo/mPfes=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720767019; c=relaxed/simple;
-	bh=eLi3fYikhmZmAiWojiYM4xhueLbPTdJEVJAlqd18vvM=;
+	s=arc-20240116; t=1720767623; c=relaxed/simple;
+	bh=YWNPe/Cqus+tfjanU3N91pMEW64VdJ0ekr/JmIA7dss=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SKLjEzU6qptcCmb6fbOKkVtsxNCxpuvYZIqI6oasp90wczAVDqMT8bNRmhSuK03R5mpg9t0rADOM4DUhSoEXoMIFYkr6DlbzQiBvxUGzjdOTQkMnfjIIccPguR1RpwNhbtAUHTMtNLGM1Qu+8gkNuUX8dGkzM6oXKfjYz7gffjc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=jsSiJECI; arc=none smtp.client-ip=192.198.163.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+	 Content-Type:Content-Disposition:In-Reply-To; b=Sv5cpBN6TsvrNk4b5zXRGihZf3Fym6e4bLe/DDQfe1lQ+taQb0/NZyZUU0DQSu4eVuyidQ/JCqX3M4IjwEYQ7Csx8zvLinlDAz5JaiN0Ux4sa1HszwXiSBMkgk4FtBNeX11Ub9Kr0XbLlXoSODno4N3aBvGF5Tee2386T2OEs+M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=WI6RcsfU; arc=none smtp.client-ip=192.198.163.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1720767018; x=1752303018;
+  t=1720767622; x=1752303622;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=eLi3fYikhmZmAiWojiYM4xhueLbPTdJEVJAlqd18vvM=;
-  b=jsSiJECIG9G6RiXle6UjcUB28iPH/DD/56hdg8SOgbi2mFJYHSYh4uZA
-   47cDT6NB2aj+FO7MZIvFaLLteabD+tZXIJ2/fEJtXGZ2U7GOd9pTEHe6F
-   85C0Ntf9HXoF0AWU2OtinN53m+BdPc0gJ5waayWUA7YoEAZSr5QppSU4h
-   DHP19IUXiqA+MGPhNu7apxGeUphGVnRuf9gL6XI6ZcxC1bGDK31vx8HZ3
-   3vpRzLzmd9pbrRFYlTv2Vfu1FXh4+pUarguRos+NLGxh0akzlsSK0lz2K
-   CdMR+XDiP+hUK178UHKHbhOhps7vHQZnB+vxi6tIHm4DwB9/U/IXk6n5m
+  bh=YWNPe/Cqus+tfjanU3N91pMEW64VdJ0ekr/JmIA7dss=;
+  b=WI6RcsfUJYerVsCrBK1/sxSMUDubFvLr3NfPBcx8CQpU7t+l/09otzj0
+   4hZOPsHT3JnL1I9tVQKnb6jo/WCtk492I0AkAXhv6+xIq9Tv/21vV8w/r
+   NUAc919tGH3HeMI2aWrayEkB77jr1optOzDRH45O5AVFl6tDtnnqvylii
+   Y6i1fF2jyMYX/M7qz/yjh5GnkEru041/HBrF450cYisuvgm2Vqj+JMHpI
+   XXk490a+pPCjpRG3dB/J5mXrfIdK0vgmNeVeG2gd60en7FFZP3KwW/2Ys
+   L1zHC3dI/u4cwC/i4VBZAwGLDECRquzUEuuVgq/y3ydibhkH1v9FFCZR7
    Q==;
-X-CSE-ConnectionGUID: J3icUbloQvir6/p1aoVPnQ==
-X-CSE-MsgGUID: e7bEg5rvRFar6pK4Uv2esw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11130"; a="21101407"
+X-CSE-ConnectionGUID: nqURL3xiSYSj7TGz8qYyWg==
+X-CSE-MsgGUID: jNmIUcBXRROVBbixHl2dZQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11130"; a="17904487"
 X-IronPort-AV: E=Sophos;i="6.09,202,1716274800"; 
-   d="scan'208";a="21101407"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Jul 2024 23:50:17 -0700
-X-CSE-ConnectionGUID: LvxdULpuRNimbwC0rZ2gzA==
-X-CSE-MsgGUID: b+ApyV3URIKQWbGRuPOesg==
+   d="scan'208";a="17904487"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jul 2024 00:00:21 -0700
+X-CSE-ConnectionGUID: mi4bSo3vRlSFpyPu1ivf5w==
+X-CSE-MsgGUID: 0+ybpHzeQB245fQdvrQzjg==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.09,202,1716274800"; 
-   d="scan'208";a="54009317"
-Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
-  by orviesa004.jf.intel.com with ESMTP; 11 Jul 2024 23:50:12 -0700
-Received: from kbuild by 68891e0c336b with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sSA6c-000aSv-0i;
-	Fri, 12 Jul 2024 06:50:10 +0000
-Date: Fri, 12 Jul 2024 14:49:54 +0800
-From: kernel test robot <lkp@intel.com>
-To: Tao Zhang <quic_taozha@quicinc.com>,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Mike Leach <mike.leach@linaro.org>,
-	James Clark <james.clark@arm.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
+   d="scan'208";a="53656048"
+Received: from yilunxu-optiplex-7050.sh.intel.com (HELO localhost) ([10.239.159.165])
+  by orviesa003.jf.intel.com with ESMTP; 12 Jul 2024 00:00:16 -0700
+Date: Fri, 12 Jul 2024 14:53:03 +0800
+From: Xu Yilun <yilun.xu@linux.intel.com>
+To: iansdannapel@gmail.com
+Cc: Moritz Fischer <mdf@kernel.org>, Wu Hao <hao.wu@intel.com>,
+	Xu Yilun <yilun.xu@intel.com>, Tom Rix <trix@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
-	Leo Yan <leo.yan@linux.dev>,
-	Alexander Shishkin <alexander.shishkin@linux.intel.com>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	Tao Zhang <quic_taozha@quicinc.com>, coresight@lists.linaro.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] coresight: Add source filtering for multi-port
- output
-Message-ID: <202407121454.IxYqSYDp-lkp@intel.com>
-References: <20240711081750.21792-3-quic_taozha@quicinc.com>
+	Heiko Stuebner <heiko.stuebner@cherry.de>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Sebastian Reichel <sre@kernel.org>,
+	Chris Morgan <macromorgan@hotmail.com>,
+	Michael Riesch <michael.riesch@wolfvision.net>,
+	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+	Andre Przywara <andre.przywara@arm.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	linux-fpga@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] fpga: Add Efinix Trion & Titanium serial SPI
+ programming driver
+Message-ID: <ZpDSz5dp+zFPYjVw@yilunxu-OptiPlex-7050>
+References: <20240620144217.124733-1-iansdannapel@gmail.com>
+ <20240628152348.61133-1-iansdannapel@gmail.com>
+ <20240628152348.61133-2-iansdannapel@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,146 +90,311 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240711081750.21792-3-quic_taozha@quicinc.com>
+In-Reply-To: <20240628152348.61133-2-iansdannapel@gmail.com>
 
-Hi Tao,
+On Fri, Jun 28, 2024 at 05:23:46PM +0200, iansdannapel@gmail.com wrote:
+> From: Ian Dannapel <iansdannapel@gmail.com>
+> 
 
-kernel test robot noticed the following build warnings:
+Please don't reply to the previous series when you post a new version.
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on linus/master v6.10-rc7 next-20240711]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> Add a new driver for loading binary firmware using "SPI passive
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Tao-Zhang/dt-bindings-arm-qcom-coresight-static-replicator-Add-property-for-source-filtering/20240711-162200
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20240711081750.21792-3-quic_taozha%40quicinc.com
-patch subject: [PATCH v2 2/3] coresight: Add source filtering for multi-port output
-config: arm-randconfig-004-20240712 (https://download.01.org/0day-ci/archive/20240712/202407121454.IxYqSYDp-lkp@intel.com/config)
-compiler: clang version 15.0.7 (https://github.com/llvm/llvm-project 8dfdcc7b7bf66834a761bd8de445840ef68e4d1a)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240712/202407121454.IxYqSYDp-lkp@intel.com/reproduce)
+Loading to some nvram or reporgraming to FPGA logic blocks.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202407121454.IxYqSYDp-lkp@intel.com/
+> programming" on Efinix FPGAs.
+> 
+> Signed-off-by: Ian Dannapel <iansdannapel@gmail.com>
+> ---
+>  drivers/fpga/Kconfig                    |   8 +
+>  drivers/fpga/Makefile                   |   1 +
+>  drivers/fpga/efinix-trion-spi-passive.c | 219 ++++++++++++++++++++++++
+>  3 files changed, 228 insertions(+)
+>  create mode 100644 drivers/fpga/efinix-trion-spi-passive.c
+> 
+> diff --git a/drivers/fpga/Kconfig b/drivers/fpga/Kconfig
+> index 37b35f58f0df..25579510e49e 100644
+> --- a/drivers/fpga/Kconfig
+> +++ b/drivers/fpga/Kconfig
+> @@ -83,6 +83,14 @@ config FPGA_MGR_XILINX_SPI
+>  	  FPGA manager driver support for Xilinx FPGA configuration
+>  	  over slave serial interface.
+>  
+> +config FPGA_MGR_EFINIX_SPI
+> +	tristate "Efinix FPGA configuration over SPI passive"
+> +	depends on SPI
+> +	help
+> +	  This option enables support for the FPGA manager driver to
+> +	  configure Efinix Trion and Titanium Series FPGAs over SPI
+> +	  using passive serial mode.
+> +
+>  config FPGA_MGR_ICE40_SPI
+>  	tristate "Lattice iCE40 SPI"
+>  	depends on OF && SPI
+> diff --git a/drivers/fpga/Makefile b/drivers/fpga/Makefile
+> index aeb89bb13517..1a95124ff847 100644
+> --- a/drivers/fpga/Makefile
+> +++ b/drivers/fpga/Makefile
+> @@ -18,6 +18,7 @@ obj-$(CONFIG_FPGA_MGR_TS73XX)		+= ts73xx-fpga.o
+>  obj-$(CONFIG_FPGA_MGR_XILINX_CORE)	+= xilinx-core.o
+>  obj-$(CONFIG_FPGA_MGR_XILINX_SELECTMAP)	+= xilinx-selectmap.o
+>  obj-$(CONFIG_FPGA_MGR_XILINX_SPI)	+= xilinx-spi.o
+> +obj-$(CONFIG_FPGA_MGR_EFINIX_SPI)	+= efinix-trion-spi-passive.o
+>  obj-$(CONFIG_FPGA_MGR_ZYNQ_FPGA)	+= zynq-fpga.o
+>  obj-$(CONFIG_FPGA_MGR_ZYNQMP_FPGA)	+= zynqmp-fpga.o
+>  obj-$(CONFIG_FPGA_MGR_VERSAL_FPGA)	+= versal-fpga.o
+> diff --git a/drivers/fpga/efinix-trion-spi-passive.c b/drivers/fpga/efinix-trion-spi-passive.c
+> new file mode 100644
+> index 000000000000..eb2592e788b9
+> --- /dev/null
+> +++ b/drivers/fpga/efinix-trion-spi-passive.c
+> @@ -0,0 +1,219 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Trion and Titanium Series FPGA SPI Passive Programming Driver
+> + *
+> + * Copyright (C) 2024 iris-GmbH infrared & intelligent sensors
+> + *
+> + * Ian Dannapel <iansdannapel@gmail.com>
+> + *
+> + * Manage Efinix FPGA firmware that is loaded over SPI using
+> + * the serial configuration interface.
+> + */
+> +
+> +#include <linux/delay.h>
+> +#include <linux/device.h>
+> +#include <linux/fpga/fpga-mgr.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/module.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/of.h>
+> +#include <linux/spi/spi.h>
+> +#include <linux/sizes.h>
+> +
+> +struct efinix_spi_conf {
+> +	struct spi_device *spi;
+> +	struct gpio_desc *cdone;
+> +	struct gpio_desc *creset;
+> +	struct gpio_desc *cs;
+> +};
+> +
+> +static int get_cdone_gpio(struct fpga_manager *mgr)
 
-All warnings (new ones prefixed by >>):
+Is it better use 'struct efinix_spi_conf *conf' as parameter?
 
->> drivers/hwtracing/coresight/coresight-platform.c:261:23: warning: more '%' conversions than data arguments [-Wformat-insufficient-args]
-                                     "Filter source %s is not a source device\n");
-                                                    ~^
-   include/linux/dev_printk.h:156:62: note: expanded from macro 'dev_warn'
-           dev_printk_index_wrap(_dev_warn, KERN_WARNING, dev, dev_fmt(fmt), ##__VA_ARGS__)
-                                                                       ^~~
-   include/linux/dev_printk.h:19:22: note: expanded from macro 'dev_fmt'
-   #define dev_fmt(fmt) fmt
-                        ^~~
-   include/linux/dev_printk.h:110:16: note: expanded from macro 'dev_printk_index_wrap'
-                   _p_func(dev, fmt, ##__VA_ARGS__);                       \
-                                ^~~
-   1 warning generated.
+Same for the following functions.
 
+> +{
+> +	struct efinix_spi_conf *conf = mgr->priv;
+> +	int ret;
+> +
+> +	ret = gpiod_get_value(conf->cdone);
+> +	if (ret < 0)
+> +		dev_err(&mgr->dev, "Error reading CDONE (%d)\n", ret);
+> +
+> +	return ret;
+> +}
+> +
+> +static void reset(struct fpga_manager *mgr)
 
-vim +261 drivers/hwtracing/coresight/coresight-platform.c
+Please unify the naming of the internal functions. You use
+'efinix_spi_apply_clk_cycles()' below.
 
-   185	
-   186	/*
-   187	 * of_coresight_parse_endpoint : Parse the given output endpoint @ep
-   188	 * and fill the connection information in @pdata->out_conns
-   189	 *
-   190	 * Parses the local port, remote device name and the remote port.
-   191	 *
-   192	 * Returns :
-   193	 *	 0	- If the parsing completed without any fatal errors.
-   194	 *	-Errno	- Fatal error, abort the scanning.
-   195	 */
-   196	static int of_coresight_parse_endpoint(struct device *dev,
-   197					       struct device_node *ep,
-   198					       struct coresight_platform_data *pdata)
-   199	{
-   200		int ret = 0;
-   201		struct of_endpoint endpoint, rendpoint;
-   202		struct device_node *rparent = NULL;
-   203		struct device_node *rep = NULL;
-   204		struct device *rdev = NULL;
-   205		struct fwnode_handle *rdev_fwnode;
-   206		struct coresight_connection conn = {};
-   207		struct coresight_connection *new_conn;
-   208	
-   209		do {
-   210			/* Parse the local port details */
-   211			if (of_graph_parse_endpoint(ep, &endpoint))
-   212				break;
-   213			/*
-   214			 * Get a handle on the remote endpoint and the device it is
-   215			 * attached to.
-   216			 */
-   217			rep = of_graph_get_remote_endpoint(ep);
-   218			if (!rep)
-   219				break;
-   220			rparent = of_coresight_get_port_parent(rep);
-   221			if (!rparent)
-   222				break;
-   223			if (of_graph_parse_endpoint(rep, &rendpoint))
-   224				break;
-   225	
-   226			rdev_fwnode = of_fwnode_handle(rparent);
-   227			/* If the remote device is not available, defer probing */
-   228			rdev = coresight_find_device_by_fwnode(rdev_fwnode);
-   229			if (!rdev) {
-   230				ret = -EPROBE_DEFER;
-   231				break;
-   232			}
-   233	
-   234			conn.src_port = endpoint.port;
-   235			/*
-   236			 * Hold the refcount to the target device. This could be
-   237			 * released via:
-   238			 * 1) coresight_release_platform_data() if the probe fails or
-   239			 *    this device is unregistered.
-   240			 * 2) While removing the target device via
-   241			 *    coresight_remove_match()
-   242			 */
-   243			conn.dest_fwnode = fwnode_handle_get(rdev_fwnode);
-   244			conn.dest_port = rendpoint.port;
-   245	
-   246			/*
-   247			 * Get the firmware node of the filter source through the
-   248			 * reference. This could be used to filter the source in
-   249			 * building path.
-   250			 */
-   251			conn.filter_src_fwnode =
-   252				fwnode_find_reference(&ep->fwnode, "filter-src", 0);
-   253			if (IS_ERR(conn.filter_src_fwnode))
-   254				conn.filter_src_fwnode = NULL;
-   255			else {
-   256				conn.filter_src_dev =
-   257				 coresight_find_csdev_by_fwnode(conn.filter_src_fwnode);
-   258				if (conn.filter_src_dev && (conn.filter_src_dev->type
-   259				    != CORESIGHT_DEV_TYPE_SOURCE))
-   260					dev_warn(&conn.filter_src_dev->dev,
- > 261					  "Filter source %s is not a source device\n");
-   262			}
-   263	
-   264			new_conn = coresight_add_out_conn(dev, pdata, &conn);
-   265			if (IS_ERR_VALUE(new_conn)) {
-   266				fwnode_handle_put(conn.dest_fwnode);
-   267				return PTR_ERR(new_conn);
-   268			}
-   269			/* Connection record updated */
-   270		} while (0);
-   271	
-   272		of_node_put(rparent);
-   273		of_node_put(rep);
-   274		put_device(rdev);
-   275	
-   276		return ret;
-   277	}
-   278	
+> +{
+> +	struct efinix_spi_conf *conf = mgr->priv;
+> +
+> +	gpiod_set_value(conf->creset, 1);
+> +	/* wait tCRESET_N */
+> +	usleep_range(5, 15);
+> +	gpiod_set_value(conf->creset, 0);
+> +}
+> +
+> +static enum fpga_mgr_states efinix_spi_state(struct fpga_manager *mgr)
+> +{
+> +	struct efinix_spi_conf *conf = mgr->priv;
+> +
+> +	if (conf->cdone && get_cdone_gpio(mgr) == 1)
+> +		return FPGA_MGR_STATE_OPERATING;
+> +
+> +	return FPGA_MGR_STATE_UNKNOWN;
+> +}
+> +
+> +static int efinix_spi_apply_clk_cycles(struct fpga_manager *mgr)
+> +{
+> +	struct efinix_spi_conf *conf = mgr->priv;
+> +	char data[13] = {0};
+> +
+> +	return spi_write(conf->spi, data, sizeof(data));
+> +}
+> +
+> +static int efinix_spi_write_init(struct fpga_manager *mgr,
+> +				 struct fpga_image_info *info,
+> +				 const char *buf, size_t count)
+> +{
+> +	struct efinix_spi_conf *conf = mgr->priv;
+> +
+> +	if (info->flags & FPGA_MGR_PARTIAL_RECONFIG) {
+> +		dev_err(&mgr->dev, "Partial reconfiguration not supported\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	/* reset with chip select active */
+> +	gpiod_set_value(conf->cs, 1);
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Why operating chip selective at SPI client driver? Isn't it the job for SPI
+controller?
+
+> +	usleep_range(5, 15);
+> +	reset(mgr);
+> +
+> +	/* wait tDMIN */
+> +	usleep_range(100, 150);
+> +
+> +	return 0;
+> +}
+> +
+> +static int efinix_spi_write(struct fpga_manager *mgr, const char *buf,
+> +			    size_t count)
+> +{
+> +	struct efinix_spi_conf *conf = mgr->priv;
+> +	int ret;
+> +
+> +	ret = spi_write(conf->spi, buf, count);
+> +	if (ret) {
+> +		dev_err(&mgr->dev, "SPI error in firmware write: %d\n",
+> +			ret);
+> +		return ret;
+> +	}
+> +
+> +	/* append at least 100 clock cycles */
+> +	efinix_spi_apply_clk_cycles(mgr);
+> +
+> +	/* release chip select */
+> +	gpiod_set_value(conf->cs, 0);
+
+Is it correct? What if there is remaining data to write?
+
+> +
+> +	return 0;
+> +}
+> +
+> +static int efinix_spi_write_complete(struct fpga_manager *mgr,
+> +				     struct fpga_image_info *info)
+> +{
+> +	struct efinix_spi_conf *conf = mgr->priv;
+> +	unsigned long timeout =
+> +		jiffies + usecs_to_jiffies(info->config_complete_timeout_us);
+> +	bool expired = false;
+> +	int done;
+> +
+> +	if (conf->cdone) {
+> +		while (!expired) {
+> +			expired = time_after(jiffies, timeout);
+> +
+> +			done = get_cdone_gpio(mgr);
+> +			if (done < 0)
+> +				return done;
+> +
+> +			if (done)
+> +				break;
+> +		}
+> +	}
+> +
+> +	if (expired)
+> +		return -ETIMEDOUT;
+> +
+> +	/* wait tUSER */
+> +	usleep_range(75, 125);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct fpga_manager_ops efinix_spi_ops = {
+> +	.state = efinix_spi_state,
+> +	.write_init = efinix_spi_write_init,
+> +	.write = efinix_spi_write,
+> +	.write_complete = efinix_spi_write_complete,
+> +};
+> +
+> +static int efinix_spi_probe(struct spi_device *spi)
+> +{
+> +	struct efinix_spi_conf *conf;
+> +	struct fpga_manager *mgr;
+> +
+> +	conf = devm_kzalloc(&spi->dev, sizeof(*conf), GFP_KERNEL);
+> +	if (!conf)
+> +		return -ENOMEM;
+> +
+> +	conf->spi = spi;
+> +
+> +	conf->creset = devm_gpiod_get(&spi->dev, "creset", GPIOD_OUT_HIGH);
+> +	if (IS_ERR(conf->creset))
+> +		return dev_err_probe(&spi->dev, PTR_ERR(conf->creset),
+> +				"Failed to get RESET gpio\n");
+> +
+> +	conf->cs = devm_gpiod_get(&spi->dev, "cs", GPIOD_OUT_HIGH);
+> +	if (IS_ERR(conf->cs))
+> +		return dev_err_probe(&spi->dev, PTR_ERR(conf->cs),
+> +				"Failed to get CHIP_SELECT gpio\n");
+> +
+> +	if (!(spi->mode & SPI_CPHA) || !(spi->mode & SPI_CPOL))
+> +		return dev_err_probe(&spi->dev, PTR_ERR(conf->cs),
+> +				"Unsupported SPI mode, set CPHA and CPOL\n");
+> +
+> +	conf->cdone = devm_gpiod_get_optional(&spi->dev, "cdone", GPIOD_IN);
+> +	if (IS_ERR(conf->cdone))
+> +		return dev_err_probe(&spi->dev, PTR_ERR(conf->cdone),
+> +				"Failed to get CDONE gpio\n");
+> +
+> +	mgr = devm_fpga_mgr_register(&spi->dev,
+> +				"Efinix SPI Passive Programming FPGA Manager",
+> +					&efinix_spi_ops, conf);
+> +
+> +	return PTR_ERR_OR_ZERO(mgr);
+> +}
+> +
+> +#ifdef CONFIG_OF
+> +static const struct of_device_id efnx_spi_of_match[] = {
+> +	{ .compatible = "efinix,trion-spi-passive", },
+> +	{ .compatible = "efinix,titanium-spi-passive", },
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(of, efnx_spi_of_match);
+> +#endif
+> +
+> +static const struct spi_device_id efinix_ids[] = {
+> +	{ "trion-spi-passive", 0 },
+> +	{ "titanium-spi-passive", 0 },
+> +	{},
+> +};
+> +MODULE_DEVICE_TABLE(spi, efinix_ids);
+> +
+> +
+
+remove the extra blank line.
+
+> +static struct spi_driver efinix_spi_passive_driver = {
+> +	.driver = {
+> +		.name = "efinix-fpga-spi-passive",
+> +		.of_match_table = of_match_ptr(efnx_spi_of_match),
+
+Is it OK remove CONFIG_OF & of_match_ptr()?
+
+Thanks,
+Yilun
+
+> +	},
+> +	.probe = efinix_spi_probe,
+> +	.id_table = efinix_ids,
+> +};
+> +
+> +module_spi_driver(efinix_spi_passive_driver);
+> +
+> +MODULE_LICENSE("GPL");
+> +MODULE_AUTHOR("Ian Dannapel <iansdannapel@gmail.com>");
+> +MODULE_DESCRIPTION("Load Efinix FPGA firmware over SPI passive");
+> -- 
+> 2.34.1
+> 
+> 
 
