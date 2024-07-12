@@ -1,74 +1,48 @@
-Return-Path: <devicetree+bounces-85232-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85233-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BFB692F67E
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 09:50:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 739B192F67F
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 09:50:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A3905B20A70
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 07:50:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2EC1228417D
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 07:50:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 248B3140E58;
-	Fri, 12 Jul 2024 07:49:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4ACBE142627;
+	Fri, 12 Jul 2024 07:49:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="GBeS11TK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EyUkElFw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3184013E020
-	for <devicetree@vger.kernel.org>; Fri, 12 Jul 2024 07:49:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22E6618E0E;
+	Fri, 12 Jul 2024 07:49:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720770555; cv=none; b=oyNsFdGTXkoLN4oP5hf+zLMF+8jwUiHvTVjVZDAaQ+Lzpxh7GsrAtkA6dPhbDZOnw3u0AwdcFpmRJXtpOwgu9HkCsWFn+CRv5t1WcLohUXJS3wlYlB8kZFW0TLdgAdiYF33UrK1WkV78Nz+3730KlkMX+/deK/q2tLziSmbe5sk=
+	t=1720770576; cv=none; b=bVXSIo5RWw18f6ExkDp7tMi75+QQIvjZEeHhI/4nfa9D996g05r5gPmKWriasVpv+0V98vlFa8wSzvcxTkV3p/dIGe6wwFE9FwwgQVRf2GfuWjbkKyCBDBl8nRkZrlIpwb5hqioLNlJw0KlumjFbTq+xv6b0Hudu66ST28xsBVI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720770555; c=relaxed/simple;
-	bh=GgyXeX6vRq/B+zT7c/I8o809APEqFYzIqOfSPZTJV4o=;
+	s=arc-20240116; t=1720770576; c=relaxed/simple;
+	bh=3Xy0AWoFKijnyeboEO/jP9e9E0N7YQrUq/9LCT+Bszw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hr2kBMAwb9nskBu74lXrnpcpEswtoKFr/DFXOBzwwE50aaXFKmXwkJQ37p/fAjr0UPvb4H8TAwRvcuRaQhhm617dDd3Zt9F27DXx+8UPCiEv0PWmcU/r2jtXat4gI+eN45JTfaT/GGY++bO8WX7ewgiVftI/gSZtS0My6tHYSk4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=GBeS11TK; arc=none smtp.client-ip=209.85.221.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-36785e72a48so883214f8f.3
-        for <devicetree@vger.kernel.org>; Fri, 12 Jul 2024 00:49:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1720770550; x=1721375350; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=gQ8ijy1w9qa1wZbbcvL0kjrbjKmo8bNSB+DJPQwcHnU=;
-        b=GBeS11TKS4Dv9SbQt0K/2wJJka/oijyLSL7jo67WmEc0CgUBWt0jTY6KaaQnYoJsEu
-         KaaBAZ3KLEXJopq9hqgRNVg3auTJ1qYEPBGzzU+fj8wJ/SMknu6T156AVDMyDhhfKNGJ
-         bmJ1k1hmNZ5ngZP18QheQsejDeV4XdF38TRL8NocmJITO2ZUtqWA5Lqzqzrps1EgFZtF
-         A+6peCmg4j+ekRtIw8f7pRneMlHEn3R+pV9lCG7nLuYCSc6E60fHeUXTGkKjjaD2nsjV
-         NZMsrgLyQehbPrWOQ1lPLnycoP/wshuOteyuuXK4Yaax1QvLsXYxvldzwMvTIwXAocqE
-         HG+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720770550; x=1721375350;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gQ8ijy1w9qa1wZbbcvL0kjrbjKmo8bNSB+DJPQwcHnU=;
-        b=KTBRsgwynVjvUdHI7eYBLKrdT3doqvNqEDCqxMVRyXAIbYmeV46pmqvQBnF92nSern
-         NzGUYc7dQ1sdv57THA4vYDbiX6ZyRZ9R4NgoQqzFYKoOSPilyRPTgndQojtnlA7rjL2E
-         F9uURF0sNHkpgiLdE+xYW2u2oOhzNUqvDQV0P50c//aDJx9mgUkA2I6jtCfUxeIo3Q+A
-         CsmbFENDqXl7RdgKcMyBATlV0BWhmtE4yTUYTrL12JwEl5Gj//et1HFwGtHfDmg5Pp6W
-         uWMvCq787pDpn45/HfgKVAkZ6bkOYZKsbFwNoW/ln4/SSC+wWWxxV2AnhcfLV/5ug59h
-         Q8YA==
-X-Forwarded-Encrypted: i=1; AJvYcCVyJnxxuMVpWkiEwJNdtuOXjiS9R7eUkKy7k2EbQxnjfz09mHMlKXNIieb6fFdaIA5EK00PDdx3Ln/OjursRapJykfwdbcljecFyw==
-X-Gm-Message-State: AOJu0YzghaOujTW5UsJDusbBHrCjKgAvRkkCnnqKGsOZjcICf/9ATvfu
-	1EH9TsnWBMDHp3Q5iFCJ4iM2Y38h0KTdGDXtscdk6I+j9WYKlq1jvMoh6j3EMwc=
-X-Google-Smtp-Source: AGHT+IGHj2HvbZP4hc88ihdmh15kc6PiOMtrsrZeH+p1UwP0kL1uZIIQk4Qau93XYXPUg/qe5DNZZw==
-X-Received: by 2002:a5d:654d:0:b0:367:8f98:c503 with SMTP id ffacd0b85a97d-367cea45cffmr6602885f8f.1.1720770550532;
-        Fri, 12 Jul 2024 00:49:10 -0700 (PDT)
-Received: from [192.168.50.4] ([82.78.167.171])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-367cdfa0613sm9565691f8f.88.2024.07.12.00.49.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Jul 2024 00:49:10 -0700 (PDT)
-Message-ID: <b5dd19d3-9a08-4187-b976-c197a2c0d9d7@tuxon.dev>
-Date: Fri, 12 Jul 2024 10:49:07 +0300
+	 In-Reply-To:Content-Type; b=OcaO2Bm7RIGX0g8+3xKZqIwv4Cw6D0ESdP0botsb2ogVj7OZyU9nM9PDEWmXAefkof8WgC4wKmGUTVWW4M6uXAETRx3E9vV2yu4KZkt49c+MGaGGNfG7FMamvEXpQjzncDGc52+Z+9gScKwLkB/DYqX3kNhAyWvfg2knHFwQJxE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EyUkElFw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5618BC3277B;
+	Fri, 12 Jul 2024 07:49:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720770575;
+	bh=3Xy0AWoFKijnyeboEO/jP9e9E0N7YQrUq/9LCT+Bszw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=EyUkElFwy7+NAT23KHxX9xUJBFkcxE+qLbe+jYilhf99phl3dejLA1LIRVoMSYMmS
+	 sp2lJj4xQGA/usW0p3GrbHODv4IFQNEZTa/yF7Uunjoteed5m2+Et9AKDdUoQ7K5Ph
+	 KrBKK0dAh6ISGC7XE5dGJ7dm5oBI/g9cYhZvxfKoH9ZoshSrd6MXm2IwRKdvm/kcxi
+	 Bm5PDKzbng+OZMTpwtpSSlm82GmKSSNhXLZVOHlNooEMeFOf429W+6xJvKqW1/OB6X
+	 bvdOnf9DqHZA/Vg0SuUD27zRocAyDlLREgMY4U0bBry3RE8WoZNSr4FrY0EXqz+t3K
+	 PgO8Q3X1M+LxA==
+Message-ID: <bc3b08ee-f500-458a-b23f-0be4bbe0ed8b@kernel.org>
+Date: Fri, 12 Jul 2024 09:49:30 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,88 +50,95 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 04/11] i2c: riic: Enable runtime PM autosuspend support
+Subject: Re: [PATCH 2/5] arm64: dts: amlogic: s4: add ao secure node
+To: xianwei.zhao@amlogic.com, Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20240712-soc_info-v1-0-05ba95929d5a@amlogic.com>
+ <20240712-soc_info-v1-2-05ba95929d5a@amlogic.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-To: Biju Das <biju.das.jz@bp.renesas.com>,
- Chris Brandt <Chris.Brandt@renesas.com>,
- "andi.shyti@kernel.org" <andi.shyti@kernel.org>,
- "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
- <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "geert+renesas@glider.be" <geert+renesas@glider.be>,
- "magnus.damm@gmail.com" <magnus.damm@gmail.com>,
- "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
- "wsa+renesas@sang-engineering.com" <wsa+renesas@sang-engineering.com>
-Cc: "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
- "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-References: <20240711115207.2843133-1-claudiu.beznea.uj@bp.renesas.com>
- <20240711115207.2843133-5-claudiu.beznea.uj@bp.renesas.com>
- <TY3PR01MB1134615117603F62796558D1486A62@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <e574e2a6-b231-4737-9501-342445923542@tuxon.dev>
- <TY3PR01MB1134611DB941585B340D09B7186A62@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-From: claudiu beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <TY3PR01MB1134611DB941585B340D09B7186A62@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240712-soc_info-v1-2-05ba95929d5a@amlogic.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-
-
-On 12.07.2024 10:45, Biju Das wrote:
-> Hi Claudiu,
+On 12/07/2024 08:54, Xianwei Zhao via B4 Relay wrote:
+> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 > 
->> -----Original Message-----
->> From: claudiu beznea <claudiu.beznea@tuxon.dev>
->> Sent: Friday, July 12, 2024 8:41 AM
->> Subject: Re: [PATCH v3 04/11] i2c: riic: Enable runtime PM autosuspend support
->>
->> Hi, Biju,
->>
->> On 12.07.2024 10:15, Biju Das wrote:
->>> Hi Claudiu,
->>>
->>>> -----Original Message-----
->>>> From: Claudiu <claudiu.beznea@tuxon.dev>
->>>> Sent: Thursday, July 11, 2024 12:52 PM
->>>> Subject: [PATCH v3 04/11] i2c: riic: Enable runtime PM autosuspend
->>>> support
->>>>
->>>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>>>
->>>> Enable runtime PM autosuspend support for the RIIC driver. With this,
->>>> in case there are consecutive xfer requests the device wouldn't be
->>>> runtime enabled/disabled after each consecutive xfer but after the
->>>> the delay configured by user. With this, we can avoid touching
->>>> hardware registers involved in runtime PM suspend/resume saving in this way some cycles. The
->> default chosen autosuspend delay is zero to keep the previous driver behavior.
->>>
->>> On the other hand, you are saving power. Currently the driver is
->>> highly optimized for Power usage.
->>>
->>> Before transfer turn on the clock
->>> After transfer turn off the clock, this is the optimal power usage correspond to suspend delay.
->>>
->>> By adding suspend delay, you are consuming power corresponding to that
->>> delay.
->>
->> The default delay is zero, see the following diff in this patch:
->>
->> @@ -479,6 +481,8 @@ static int riic_i2c_probe(struct platform_device *pdev)
->>
->>  	i2c_parse_fw_timings(dev, &i2c_t, true);
->>
->> +	pm_runtime_set_autosuspend_delay(dev, 0);
+> Add node for board info registers, which allows getting SoC family and
+> board revision.
 > 
-> I just provided justification, why you addes 0  msec here, compared to xx msec
-> in the original internal version.
-
-Isn't it in the commit description already?
-
-"The default chosen autosuspend delay is zero to keep the
-previous driver behavior."
-
+> For example, with MESON_GX_SOCINFO config enabled we can get the
+> following information for board with Amlogic S4 SoC:
+> soc soc0: Amlogic S4 (S805X2) Revision 37:a (2:1) Detecte
 > 
-> Cheers,
-> Biju
+> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> ---
+>  arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+> index c11c947fa18c..316905ec191c 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+> @@ -763,6 +763,12 @@ reset: reset-controller@2000 {
+>  				#reset-cells = <1>;
+>  			};
+>  
+> +			sec_ao: ao-secure@10220 {
+> +				compatible = "amlogic,meson-gx-ao-secure", "syscon";
+
+This is not gx, but s4, so incorrect compatible used. Same for all other
+patches.
+
+Best regards,
+Krzysztof
+
 
