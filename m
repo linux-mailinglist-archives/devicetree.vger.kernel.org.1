@@ -1,265 +1,192 @@
-Return-Path: <devicetree+bounces-85307-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85308-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6107792F9BE
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 13:55:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D769192F9C4
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 13:58:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 20779284653
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 11:55:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 589EF1F21ACF
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 11:58:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEBC916A940;
-	Fri, 12 Jul 2024 11:55:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ty1kIG97"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF52F16B395;
+	Fri, 12 Jul 2024 11:58:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C17722BB15;
-	Fri, 12 Jul 2024 11:55:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D3622BB15;
+	Fri, 12 Jul 2024 11:58:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720785317; cv=none; b=m+hYrByABN4nVW59fbcw3mYNDgNC9obOVK0x0CZJpjXvPR8HDUxzxuWxWYxzGgm+UUtvjQW5iFRjmZsMex2EuSCDU1ugYrVgqm6SoSJM6zG0JthGx1yp9BMrPFOPsDlXd5N3kED5nu004QqfkExRqz+IDeFT9PpC8BZX7avg/JU=
+	t=1720785529; cv=none; b=KLdpN3c/kzJ3Ul0qVoEdwwNcaScdk3TaRZ634qeOAcXuTdxFDrO4PZo5SeBN0gCQXoFDWeDxwGrYXW5DFjIr4Shwu4uxUGcPaCDQiRfXGkYM80rpn/yIMslZ1lKjAe7sYql4Fv6Axf0w2ldwz87b1gPJVjiqFjmtiD9hNEK97BQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720785317; c=relaxed/simple;
-	bh=fq00OrXm4ESVMWuGZ9q3xU0NyJQJ344Ed3WenbJSvWM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HYFPXIZIvhclCjFWv5ydtHJYUUvIyLqeoUXq4LNkXR8JP+OhdhZOypQddmXpJewKjKpVHVzuTb+VdaEK8ZIz+fToYQrUbflbBYh4K/DqZftoypifR8rswYS6MZ2dSI0mkqbL5DdjPuCK/6Y3AY/ohGx42wmjuCbiPl0mBr31xtk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ty1kIG97; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27700C32782;
-	Fri, 12 Jul 2024 11:55:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720785317;
-	bh=fq00OrXm4ESVMWuGZ9q3xU0NyJQJ344Ed3WenbJSvWM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ty1kIG97eg7DRj8rQBBQzrL88UKim2tOOZ3Lq4+89HBWUv9y1dB8ZDKswGAZwzGq9
-	 GKcoPGcmjhqDhz3K4Q0vaYHWgI+EDwpdQKu3i5FZDxoXPA1rrk48gIEyurRSIGhLDJ
-	 sgs8rYsE2aaXiJm3//QNSXqJWGEJg9bZvlp7kgoKS9LxpG1nq2Aoy0YdW9wBdAUT2K
-	 K7b6KeZbjuIyBJeEn6UiW0V0ElZ+I1oa5FtKnnTr+UAWkSqT0WHh/xPVDg886p48zR
-	 rG8t/WtKffMOuBlfpIK/itw+E8n40LAshM1PZ2ohHRZA0uu6jep4qCiyf9WIoN4QHI
-	 DKNYESZXvPtTA==
-Message-ID: <c466de06-cbc3-4ce7-90fe-4decc6e0fb89@kernel.org>
-Date: Fri, 12 Jul 2024 13:55:09 +0200
+	s=arc-20240116; t=1720785529; c=relaxed/simple;
+	bh=F9LIx206GqB1O/IHrgKAvGrDiPGQHnkr1OLpiJmiLSU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=kModg7aQJ2c0TqoNhLp/ZmSJ6u5tgeCLm5HSsqVhzGEVXHSy40ruJ4XSygRX5T1wbu6y0jnXOy3ir7L59dFe8b1f6Dq3kzrEN/4ArV3vtBR8ZKO2jtUhJnbwUp4Wyv17XYBwPD9/Y7h0ZZZelF5J8Xv/nQjKDUgMmAMlm9LclWk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-65011d9bd75so17727457b3.2;
+        Fri, 12 Jul 2024 04:58:47 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720785525; x=1721390325;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=XF2bMWPyZi6vd82Lf51WYkKA6W7bTYgSo8Lk2NaqG9s=;
+        b=M/ouNSmAV72CKfWsHamOM9jJDvHg3Kp5DZkldCrMmnRAe7TRoJBQzFe72kxB5imWTd
+         /aY1PgKkdXamAEyYwvGlbW588gkHLEbwqMgSeaV/PuPZGIQkWCejHZEexf530SdM5rT3
+         GIgPEo1TG7j05ZgEhkqAXRodYy+o73e1SPN3EMSJgXaKQ2/fRnEu5RFYV+v+I1OBVXgU
+         vG/WdFOREfcqQL5O+vaR+xaIbzmbdQR0nIA37YAi7qD4b2DhtXPv6MlxPmA8aRbA67qg
+         Hyq2FwfLcnLb3EnWNsZ5fmtaH6W2TlOLQeSDR0AuxYCGvxt+AYqDnDJ5AuR2PVYY6ev7
+         lPzQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWIbGjewZ9a2T9Sxi0IhK+xPhUdZHfTwB1N/YWAT5Mg5KoKHpdTjZVqAGBvRaGOHvUGhid0h9//k4aPLMq43BevwnyZZ2vwvLdppT3ka87MHLtHdrOgdroybbmNhh77RxMx1VM+7aqdamtqGr6wy9R/tjskzMRKmOC2wZlZiO2uNgM0+iftAvE683qbSbNTVD9hXvAQZafngfAQetWhUVxdjXh9FIiH
+X-Gm-Message-State: AOJu0YxiXjQvpulVX1yZr+ZLiaEnKN9UWfF/Kv6HN4hirHuHAijjL2x5
+	uovjJh6cEzZMGnKUonpDG/zOUMEJODiR0Ks6tslBWFNxElId7RIBDAKqRoKb
+X-Google-Smtp-Source: AGHT+IHMVexUihriVIjO5y24An32x9S5NmYPKOWAuIc8d4JSivrgTe8n5jyHkWUPr+3bIBtqICeOWA==
+X-Received: by 2002:a0d:ea11:0:b0:648:1eca:9e15 with SMTP id 00721157ae682-658ef249b0dmr114783687b3.25.1720785525176;
+        Fri, 12 Jul 2024 04:58:45 -0700 (PDT)
+Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com. [209.85.128.179])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-658e64ecf8asm14409917b3.100.2024.07.12.04.58.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 12 Jul 2024 04:58:43 -0700 (PDT)
+Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-65011d9bd75so17727067b3.2;
+        Fri, 12 Jul 2024 04:58:43 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWiOhWwic8clUzgEMX6WxFGHfTY1CguvZLe7EJh+k3DR1IPAqruaurCgmKlB7VTmkiMH9XQppYFLjKUTMmrlj6StcgTR/Cz2izkoxON0N6my4dHeEyxWUUhqVO1BqMDeDiVsDKMjIbeUYRiWoZ8vSPGBA/64qHSLHksGovfXPbmXnyAlIgRlgzaPiKMtYZhnKJCRGseiwbtP6iFctbn+6gQpOhM9Iqg
+X-Received: by 2002:a81:fe0d:0:b0:63b:ce8d:c7db with SMTP id
+ 00721157ae682-658ebcad38emr108725057b3.0.1720785523575; Fri, 12 Jul 2024
+ 04:58:43 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V3 1/2] dt-bindings: iio: Add YAML to Awinic proximity
- sensor
-To: wangshuaijie@awinic.com, jic23@kernel.org, lars@metafoo.de,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- waqar.hameed@axis.com, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: liweilei@awinic.com, kangjiajun@awinic.com
-References: <20240712113200.2468249-1-wangshuaijie@awinic.com>
- <20240712113200.2468249-2-wangshuaijie@awinic.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240712113200.2468249-2-wangshuaijie@awinic.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20240627161315.98143-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20240627161315.98143-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20240627161315.98143-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 12 Jul 2024 13:58:30 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdV4GUKc=LFStKHO47vPJLZs3Vmvz-L7L81bC5DmdK5ztA@mail.gmail.com>
+Message-ID: <CAMuHMdV4GUKc=LFStKHO47vPJLZs3Vmvz-L7L81bC5DmdK5ztA@mail.gmail.com>
+Subject: Re: [PATCH v3 1/3] dt-bindings: clock: renesas: Document RZ/V2H(P)
+ SoC CPG
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Magnus Damm <magnus.damm@gmail.com>, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 12/07/2024 13:31, wangshuaijie@awinic.com wrote:
-> From: shuaijie wang <wangshuaijie@awinic.com>
-> 
-> Add the awinic,aw96xxx.yaml file to adapt to the awinic proximity sensor driver.
-> Addressing the issues raised in the previous version.
-> 1. Add a description about the hardware device.
-> 2. Remove inappropriate configuration items.
-> 3. Modify the formatting issues.
+Hi Prabhakar,
 
-That's commit msg or changelog? Don't mix both. Read submitting patches.
-
-> 
-> Signed-off-by: shuaijie wang <wangshuaijie@awinic.com>
+On Thu, Jun 27, 2024 at 6:14=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail.c=
+om> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Document the device tree bindings for the Renesas RZ/V2H(P) SoC
+> Clock Pulse Generator (CPG).
+>
+> CPG block handles the below operations:
+> - Generation and control of clock signals for the IP modules
+> - Generation and control of resets
+> - Control over booting
+> - Low power consumption and power supply domains
+>
+> Also define constants for the core clocks of the RZ/V2H(P) SoC. Note the
+> core clocks are a subset of the ones which are listed as part of section
+> 4.4.2 of HW manual Rev.1.01 which cannot be controlled by CLKON register.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > ---
->  .../iio/proximity/awinic,aw96xxx.yaml         | 127 ++++++++++++++++++
->  1 file changed, 127 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/proximity/awinic,aw96xxx.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/proximity/awinic,aw96xxx.yaml b/Documentation/devicetree/bindings/iio/proximity/awinic,aw96xxx.yaml
-> new file mode 100644
-> index 000000000000..459cb1644d3c
+> v2->v3
+> - Dropped '|' for CPG description
+> - Dropped description for '#power-domain-cells' property
+> - Added 3 clock inputs for CPG
+> - Dropped label in example node
+> - Used 4 spaces for example node
+> - Renamed r9a09g057-cpg.h -> renesas,r9a09g057-cpg.h
+> - Merged adding renesas,r9a09g057-cpg.h in DT binding patch
+> - Updated commit message
+
+Thanks for the update!
+
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/proximity/awinic,aw96xxx.yaml
-> @@ -0,0 +1,127 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/input/awinic,aw96xxx.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Awinic's AW96XXX capacitive proximity sensor
-> +
-> +maintainers:
-> +  - Shuaijie Wang <wangshuaijie@awinic.com>
-> +
-> +description: |
-> +  Awinic's AW96XXX proximity sensor.
-> +  The specific absorption rate (SAR) is a metric that measures
-> +  the degree of absorption of electromagnetic radiation emitted by wireless
-> +  devices, such as mobile phones and tablets, by human tissue.
-> +  In mobile phone applications, the proximity sensor is primarily used to detect
-> +  the proximity of the human body to the phone. When the phone approaches the human body,
-> +  it will actively reduce the transmit power of the antenna to keep the SAR within a safe
-> +  range. Therefore, we also refer to the proximity sensor as a SAR sensor.
+> +++ b/Documentation/devicetree/bindings/clock/renesas,rzv2h-cpg.yaml
+> +  '#clock-cells':
+> +    description: |
+> +      - For CPG core clocks, the two clock specifier cells must be "CPG_=
+CORE"
+> +        and a core clock reference, as defined in
+> +        <dt-bindings/clock/renesas,r9a09g057-cpg.h>,
+> +      - For module clocks, the two clock specifier cells must be "CPG_MO=
+D" and
+> +        a module number.  The module number is calculated as the CLKON r=
+egister
+> +        offset index multiplied by 16, plus the actual bit in the regist=
+er
+> +        used to turn the CLK ON. For example, for CGC_GIC_0_GICCLK, the
+> +        calculation is (1 * 16 + 3) =3D 19.
 
-Wrap at 80 (see Coding style).
+Using hexadecimal for the final number may be more readable,
+also in the DTS?
 
+(1 * 16 + 3) =3D 0x13?
+
+> +    const: 2
 > +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - awinic,aw96103
-> +      - awinic,aw96105
-> +      - awinic,aw96303
-> +      - awinic,aw96305
-> +      - awinic,aw96308
+> +  '#power-domain-cells':
+> +    const: 0
 > +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
+> +  '#reset-cells':
 > +    description:
-> +      Generated by the device to announce that a close/far
-> +      proximity event has happened.
-> +    maxItems: 1
-> +
-> +  awinic,sar-num:
+> +      The single reset specifier cell must be the reset number. The rese=
+t number
+> +      is calculated as the reset register offset index multiplied by 16,=
+ plus the
+> +      actual bit in the register used to reset the specific IP block. Fo=
+r example,
+> +      for SYS_0_PRESETN, the calculation is (3 * 16 + 0) =3D 48.
 
-Drop the property. I already asked.
+(3 * 16 + 0) =3D 0x30?
 
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      Set the number of the SAR(Specific Absorption Rate) sensor.
-> +      It is set to 0 if one awinic sar chip is used.
-> +      If two awinic sar chips are used, awinic,sar-label in the first
-> +      awinic-sar should be set to 0 and awinic,sar-label in the second
-> +      awinic-sar should be set to 1.
-> +      In an application where a device utilizes multiple proximity sensors,
-> +      it is used to retrieve the names of the register configuration files
-> +      that the drivers need to load. For example: aw963xx_reg_0.bin/aw963xx_reg_1.bin
-> +
-> +  awinic,regulator-power-supply:
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/renesas,r9a09g057-cpg.h
+> @@ -0,0 +1,21 @@
+> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> + *
+> + * Copyright (C) 2024 Renesas Electronics Corp.
+> + */
+> +#ifndef __DT_BINDINGS_CLOCK_R9A09G057_CPG_H__
+> +#define __DT_BINDINGS_CLOCK_R9A09G057_CPG_H__
 
-It does not look like you tested the bindings, at least after quick
-look. Please run `make dt_binding_check` (see
-Documentation/devicetree/bindings/writing-schema.rst for instructions).
-Maybe you need to update your dtschema and yamllint.
+__DT_BINDINGS_CLOCK_RENESAS_R9A09G057_CPG_H__
 
-> +    description:
-> +      Choose if you want to use a regulator to power the chip. Then the
-> +      vccX-supply has to be set.
-> +
-> +  vcc0-supply:
-> +    description:
-> +      Optional regulator for chip, 1.7V-3.6V.
-> +      If two awinic sar chips are used, the first regulator
-> +      should set the ID to vcc0-supply and the second regulator
-> +      should set the ID to vcc1-supply.
-> +
-> +  awinic,channel-use-mask:
+[...]
 
-Aren't there existing IIO properties like this?
+> +#endif /* __DT_BINDINGS_CLOCK_R9A09G057_CPG_H__ */
 
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      The mask of channels used.
-> +      Configure according to the specific chip channel used.
-> +      Bit[31:0] Each bit represents a channel.
-> +      If the customer uses ch0 and ch2, then channel_use_mask=<0x05>
-> +      For a 3-channel chip, the maximum value is 0x07;
-> +      For a 5-channel chip, the maximum value is 0x1F;
-> +      For a 8-channel chip, the maximum value is 0xFF;
-> +
-> +  awinic,monitor-esd:
-> +    type: boolean
-> +    description:
-> +      Choose if you want to monitor ESD.
+__DT_BINDINGS_CLOCK_RENESAS_R9A09G057_CPG_H__
 
-Why this is a choice? How does this describe hardware.
+Gr{oetje,eeting}s,
 
-> +
-> +  awinic,pin-set-inter-pull-up:
-> +    type: boolean
-> +    description:
-> +      Choose if you want to set the interrupt pin to internal pull-up.
-> +
-> +  awinic,using-pm-ops:
-
-NAK, drop all such OS policies.
-
-> +    type: boolean
-> +    description:
-> +      Choose if you want to change the chip mode on suppend and resume.
-> +
-> +  awinic,use-plug-cail:> +    type: boolean
-> +    description:
-> +      Choose If you want to perform calibration when plugging and unplugging the charger.
-
-And why this is board dependent?
-
-> +
-> +  awinic,irq-mux:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [2, 5]
-> +    description:
-> +      You only need to set this configuration item if you are using AW96308 adn AW96305BFOR.
-> +      If CS2 is used as the interrupt pin, this item should be set to 2.
-> +      If CS5 is used as the interrupt pin, this item should be set to 5.
-> +
+                        Geert
 
 
-Best regards,
-Krzysztof
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
