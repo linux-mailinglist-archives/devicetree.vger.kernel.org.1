@@ -1,177 +1,202 @@
-Return-Path: <devicetree+bounces-85207-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85208-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9F5F92F51D
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 07:40:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A359D92F551
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 08:08:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3DA5A2838C4
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 05:40:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 592A6283E3B
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 06:08:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 784AE18037;
-	Fri, 12 Jul 2024 05:40:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB55713D2B7;
+	Fri, 12 Jul 2024 06:08:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="fK4qrFH+"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="mDsbVsSc";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="Iw3rgzXw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B15AEFC12;
-	Fri, 12 Jul 2024 05:40:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B51913CFB0;
+	Fri, 12 Jul 2024 06:08:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720762830; cv=none; b=SaKPjZWtKbUkUl7A8GWKzirgHJH87I3KxHN6k6zvutDYGiYmxCHkvLmIP4W+zJWMmqI3KnibjCWiX8SpRDc8aR9ZI0QwAjcNrVAXZ6qkUEoNPDL2eaS2225yqnql3MjBmmqn0RMvfJPmbbPHtW4rHdZx4GvK0ILqCxgoE9sKH7A=
+	t=1720764493; cv=none; b=UjJkuPGvJ1vcdSh2z1KxMqKlt6FGHz0xQp1EFVGiUQFCnYjg/S6UtSPR+I6HzLA29U5a+L3A1CimpGuskBEv0YLcwAOJxKsnYI+6naudabuYBKO6vKycurg5z6+ztTGH3oJbWiuSCd2N68p7vNrKXpzaMdqstijzQNk+rgd7JDk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720762830; c=relaxed/simple;
-	bh=hvyFx3I4Ha1qkqZiA0VG/4TdPG0Oy8Q8M9MNYd24II4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=gOuVLJqXwEC1c0cHE1793oB9cdTEpQSp/1/UuLjpJ4M058oOcjSfBEwWMn4aRi3WxuXCff/AbUl04gmiffoedCFB2JqfZeq4injGwlb9WMZU5nj56Q7YtPgl87NKYbihde6bnFvkdA5ys9ZSeARyWy378bfsn2ZQ0Ym9/9XDigA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=fK4qrFH+; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46C2eofX008746;
-	Fri, 12 Jul 2024 05:40:25 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	S+lQpm2m3jaaBULrxGFN2wLiGoIoLBtU+dUdkmZdDK4=; b=fK4qrFH+7aywWD6S
-	DGMS4440AsziEWMn+oUvITgxViF+mzLu9gekwL2pDW//seGzL+vbNW+Blcxl/km3
-	c5c9ItlWcY7aY0Hcn22Uy12PwClh6WB6U/fdJbviYlVD3Dd+2jlvUF7BbdXtXXc0
-	+6f60JQz0LbpMKLXiWnjL9owweXbVxx48cYzgCGeorVsBimTNsVS0fEXktpneaRl
-	ZGKjXHY9WIwh64nYRasfXFMmXdUluOPQLshOpLKTarpAuzcOldfcaR/Y6DA88Hui
-	zeElgSEXHTUDT9nW5K5/MMDBfl6s/CJUTZaTG1J+MUQbtY4IzUNoqIgX9aDTg0Oa
-	iCaQoA==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 406x51ef86-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 12 Jul 2024 05:40:24 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 46C5eI33002900
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 12 Jul 2024 05:40:18 GMT
-Received: from [10.239.132.204] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 11 Jul
- 2024 22:40:13 -0700
-Message-ID: <072da4b0-2d6c-4342-a1f4-451f4ff791fc@quicinc.com>
-Date: Fri, 12 Jul 2024 13:40:11 +0800
+	s=arc-20240116; t=1720764493; c=relaxed/simple;
+	bh=oOmEa1P3IKAGNFZfngYwKWSd+Br874qTAS3G64tjdgg=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=fpm5HMT6Rb5mbjpg+rbBFpJnyleVNEIwiiFxvNZWxQ9C6sZFQ5PJf8TAACLUczNkCy3tMs2grqu6ti7Et7Azh0nEEJEGWVGcRHrBgFUTTgow2N7eH4cT6XPXtimIdTl+emBwJqXkty2cBTpD3NeENGrWccLkVDfaju3W1/d5xjE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=mDsbVsSc; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=Iw3rgzXw reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1720764490; x=1752300490;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=9kkQv+TWA9nQxOn83JfnaiK6tbtRd6yY1Ho2RrmzOk8=;
+  b=mDsbVsScVdKKgYBwbcr1mDt3/KlIGcGMEqrMiJ3SalHS81TR9aGmz5z4
+   xmDQ7jvIcWAXOBUbZV+6O2fYBNuJQL7gC265XIpZmUnzegYOx9MwgWs1k
+   6lu59rINPvngFPARsxboe7VET1CD8cRtqtG3UA2OLH6dl7zBPPCsbSZ8P
+   I8Sl7aHdmUnbfFUB2jlFILZnlPevmfNx7uxqSFE50t6LbbsA+B+RUVK27
+   oWQFw5s2eJEI8d7W97jnFORjW2AHJJOFrD9in4G256YG84+VN31hoN8tw
+   ekK3RyM2Om7IqDqH6tqQB3QZk5yNVnW7NB6h4dl3BKR3NxEa1W4V/ygz7
+   g==;
+X-CSE-ConnectionGUID: ijGMlMZrQLCwQSsfFBkBGA==
+X-CSE-MsgGUID: WHEqB7i0TnWd7EzlQqfYBw==
+X-IronPort-AV: E=Sophos;i="6.09,202,1716242400"; 
+   d="scan'208";a="37873063"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 12 Jul 2024 08:08:07 +0200
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 52BBA164423;
+	Fri, 12 Jul 2024 08:08:00 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1720764482;
+	h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=9kkQv+TWA9nQxOn83JfnaiK6tbtRd6yY1Ho2RrmzOk8=;
+	b=Iw3rgzXwVxbizrITOLFdZrD4PgrE4WYEVXH2U1xJU22JJlPxDPwZT0Ln3X2D39D3/OVq0H
+	NMSJtR7dk2P5Q8q9IAUxKISScCl0yyqorESNhHIpls3ZEnzL4X8V4b841BSMvT9FZPkBL0
+	9OUkMah6RNN7JSX17Tr1Ab+uo/A6OFKOT3twFgTrppGv0UwHDFas0rC+HqKC+FGVWHLjh3
+	NgyIsu/WAQ1nC0jfM68bXOEhwTP9IioSK6S4L5rZqWwVpaN5btSdlmhhjg2oEPUmanRtwx
+	gaUKJ+srN3w/VIrpEQfA+9agpZmP1OY9BBh2xbh/NNSeyul+Io72Byez+gQF+g==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: linux-arm-kernel@lists.infradead.org
+Cc: York Sun <york.sun@nxp.com>, Borislav Petkov <bp@alien8.de>, Tony Luck <tony.luck@intel.com>, James Morse <james.morse@arm.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, Robert Richter <rric@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, linux-arm-kernel@lists.infradead.org, linux-edac@vger.kernel.org, linux-kernel@vger.kernel.org, Borislav Petkov <bp@suse.de>, devicetree@vger.kernel.org, imx@lists.linux.dev, Frank Li <Frank.li@nxp.com>
+Subject: Re: [PATCH 4/6] dt-bindings: memory: fsl: Add compatible string nxp, imx9-memory-controller
+Date: Fri, 12 Jul 2024 08:08:05 +0200
+Message-ID: <3238685.5fSG56mABF@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <ZpCiujvOKJpz6/JU@lizhi-Precision-Tower-5810>
+References: <20240709-imx95_edac-v1-0-3e9c146c1b01@nxp.com> <6068670.lOV4Wx5bFT@steina-w> <ZpCiujvOKJpz6/JU@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] dt-bindings: soc: qcom,aoss-qmp: Document the QCS9100
- AOSS channel
-To: Chris Lew <quic_clew@quicinc.com>, Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <kernel@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20240709-document_qcs9100_aoss_qmp_compatible-v2-1-6c7f35bc9ec3@quicinc.com>
- <24302005-d9a5-400e-a28c-40276a3f7250@quicinc.com>
-From: Tengfei Fan <quic_tengfan@quicinc.com>
-In-Reply-To: <24302005-d9a5-400e-a28c-40276a3f7250@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 7kv-dtF8Y_UZ0R4dBTVod6M61i7tHQDU
-X-Proofpoint-ORIG-GUID: 7kv-dtF8Y_UZ0R4dBTVod6M61i7tHQDU
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-07-12_03,2024-07-11_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 adultscore=0
- suspectscore=0 impostorscore=0 mlxlogscore=999 mlxscore=0 bulkscore=0
- priorityscore=1501 malwarescore=0 lowpriorityscore=0 phishscore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2406140001 definitions=main-2407120037
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Last-TLS-Session-Version: TLSv1.3
+
+Hi Frank,
+
+Am Freitag, 12. Juli 2024, 05:27:54 CEST schrieb Frank Li:
+> On Wed, Jul 10, 2024 at 09:18:16AM +0200, Alexander Stein wrote:
+> > Hi Frank,
+> >=20
+> > Am Dienstag, 9. Juli 2024, 22:23:05 CEST schrieb Frank Li:
+> > > iMX9 memory controller is similar with other layerscape chips. But so=
+me
+> > > register layout has a little bit difference, so add new compatible st=
+ring
+> > > 'nxp,imx9-memory-controller' for it.
+> >=20
+> > Is this controller the same for all i.MX9 SoC? E.g. i.MX91, i.MX93,
+> > i.MX95 and any future variants?
+>=20
+> So far it is the same. I can't prodicting future. Not plan to change it
+> yet.
+
+Okay, thanks for clarification. If DT maintainers are okay this way, I do n=
+ot object.
+
+Best regards,
+Alexander
+
+> Frank=20
+>=20
+> >=20
+> > Best regards,
+> > Alexander
+> >=20
+> > > imx9 need two 'reg', one for DDR controller and the other is ECC inje=
+ct
+> > > engine register space. Keep the same restriction for other compatible
+> > > string.
+> > >=20
+> > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > > ---
+> > >  .../bindings/memory-controllers/fsl/fsl,ddr.yaml   | 31 ++++++++++++=
++++++++++-
+> > >  1 file changed, 30 insertions(+), 1 deletion(-)
+> > >=20
+> > > diff --git a/Documentation/devicetree/bindings/memory-controllers/fsl=
+/fsl,ddr.yaml b/Documentation/devicetree/bindings/memory-controllers/fsl/fs=
+l,ddr.yaml
+> > > index 84f778a99546b..e0786153eec73 100644
+> > > --- a/Documentation/devicetree/bindings/memory-controllers/fsl/fsl,dd=
+r.yaml
+> > > +++ b/Documentation/devicetree/bindings/memory-controllers/fsl/fsl,dd=
+r.yaml
+> > > @@ -40,6 +40,7 @@ properties:
+> > >            - fsl,p1021-memory-controller
+> > >            - fsl,p2020-memory-controller
+> > >            - fsl,qoriq-memory-controller
+> > > +          - nxp,imx9-memory-controller
+> > > =20
+> > >    interrupts:
+> > >      maxItems: 1
+> > > @@ -51,13 +52,41 @@ properties:
+> > >      type: boolean
+> > > =20
+> > >    reg:
+> > > -    maxItems: 1
+> > > +    items:
+> > > +      - description: Controller register space
+> > > +      - description: Inject register space
+> > > +    minItems: 1
+> > > +
+> > > +  reg-names:
+> > > +    items:
+> > > +      - const: ctrl
+> > > +      - const: inject
+> > > +    minItems: 1
+> > > =20
+> > >  required:
+> > >    - compatible
+> > >    - interrupts
+> > >    - reg
+> > > =20
+> > > +allOf:
+> > > +  - if:
+> > > +      properties:
+> > > +        compatible:
+> > > +          contains:
+> > > +            enum:
+> > > +              - nxp,imx9-memory-controller
+> > > +    then:
+> > > +      properties:
+> > > +        reg:
+> > > +          minItems: 2
+> > > +        reg-names:
+> > > +          minItems: 2
+> > > +    else:
+> > > +      properties:
+> > > +        reg:
+> > > +          maxItems: 1
+> > > +        reg-names: false
+> > > +
+> > >  additionalProperties: false
+> > > =20
+> > >  examples:
+> > >=20
+> > >=20
+> >=20
+> >=20
+>=20
+>=20
+>=20
 
 
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
 
-On 7/11/2024 3:58 AM, Chris Lew wrote:
-> Hi Tengfei,
-> 
-> On 7/9/2024 7:24 AM, Tengfei Fan wrote:
->> Document the Always-On Subsystem side channel on the QCS9100 Platform.
->> QCS9100 is drived from SA8775p. Currently, both the QCS9100 and SA8775p
-> 
-> /s/drived/derived/
 
-ACK.
-
-> 
->> platform use non-SCMI resource. In the future, the SA8775p platform will
->> move to use SCMI resources and it will have new sa8775p-related device
->> tree. Consequently, introduce "qcom,qcs9100-aoss-qmp" to describe
->> non-SCMI based AOSS channel.
->>
-> 
-> Were there any differences between non-SCMI and SCMI based platforms 
-> specifically for the qcom_aoss.com driver?
-> 
-> 
->> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
->> ---
->> Introduce support for the QCS9100 SoC device tree (DTSI) and the
->> QCS9100 RIDE board DTS. The QCS9100 is a variant of the SA8775p.
->> While the QCS9100 platform is still in the early design stage, the
->> QCS9100 RIDE board is identical to the SA8775p RIDE board, except it
->> mounts the QCS9100 SoC instead of the SA8775p SoC.
->>
->> The QCS9100 SoC DTSI is directly renamed from the SA8775p SoC DTSI, and
->> all the compatible strings will be updated from "SA8775p" to "QCS9100".
->> The QCS9100 device tree patches will be pushed after all the device tree
->> bindings and device driver patches are reviewed.
->>
->> The final dtsi will like:
->> https://lore.kernel.org/linux-arm-msm/20240703025850.2172008-3-quic_tengfan@quicinc.com/
->>
->> The detailed cover letter reference:
->> https://lore.kernel.org/linux-arm-msm/20240703025850.2172008-1-quic_tengfan@quicinc.com/
->> ---
->> Changes in v2:
->>    - Split huge patch series into different patch series according to
->>      subsytems
->>    - Update patch commit message
->>
->> prevous disscussion here:
->> [1] v1: 
->> https://lore.kernel.org/linux-arm-msm/20240703025850.2172008-1-quic_tengfan@quicinc.com/
->> ---
->>   Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.yaml | 1 +
->>   1 file changed, 1 insertion(+)
->>
->> diff --git 
->> a/Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.yaml 
->> b/Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.yaml
->> index 7afdb60edb22..80e1a8b43586 100644
->> --- a/Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.yaml
->> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.yaml
->> @@ -25,6 +25,7 @@ properties:
->>     compatible:
->>       items:
->>         - enum:
->> +          - qcom,qcs9100-aoss-qmp
->>             - qcom,qdu1000-aoss-qmp
->>             - qcom,sa8775p-aoss-qmp
->>             - qcom,sc7180-aoss-qmp
->>
->> ---
->> base-commit: 0b58e108042b0ed28a71cd7edf5175999955b233
->> change-id: 20240709-document_qcs9100_aoss_qmp_compatible-a7376629ea6c
->>
->> Best regards,
-
--- 
-Thx and BRs,
-Tengfei Fan
 
