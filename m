@@ -1,300 +1,255 @@
-Return-Path: <devicetree+bounces-85403-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85404-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3251492FE02
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 17:59:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BBBCB92FE20
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 18:05:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DBF932819C5
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 15:59:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 71C02286676
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 16:05:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6306F1741F1;
-	Fri, 12 Jul 2024 15:59:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8092176254;
+	Fri, 12 Jul 2024 16:04:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="ipbKcPhs"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="qzotOr3C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11011043.outbound.protection.outlook.com [52.101.65.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4307212B171;
-	Fri, 12 Jul 2024 15:59:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720799945; cv=none; b=ZCi9xchuZdk5LAaUZjAknL4AhHoz1YXcfrAOCi96FWJXRx9rxhhmR84MS2ag5jJScL0sVvrhLFPHZ60yHfmZtSn5EWIQ5BeJ9g69K/IYzM9zVuSHSf408IreAOQLl987wfyUJn7t41cGHbu+RfMcHPRGOOlKaPe9ZC/r2Vut+mk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720799945; c=relaxed/simple;
-	bh=2Ugv1jiVfwwJ9oYOA6esGHBNP3BzQlNgxve8Nyki/Xk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DffUHpgw7uA2Zxe/4ARcXl2N5dB2NNDMQ2JQswUh4iyQEVOaKO+eIl8sAm6kly3HVbxqyW739TIVW6yjj/TU9Oe2j5J0dYcjsp8FW4tdSSbhWKGykkQ94FjZY5mevg7jKDGyu4/UpRNjdqHT7m2YELySKVlGtQoAXdIxudJuodg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=ipbKcPhs; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1720799941;
-	bh=2Ugv1jiVfwwJ9oYOA6esGHBNP3BzQlNgxve8Nyki/Xk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ipbKcPhsMsQG1xBWbTeLT9v1e+dwC5VvbBARfYvyMy9IvmazJSeQdQZAj4ykpcDxz
-	 OT63+K001JNu1cZ9LNXUDsQP5XPLVuZkD1WWFqQu40HLn7FDeDSNOZQcj0nvIHpGNq
-	 d68HIVnVGjq3/qdYIKFjf/gjtTSE9pJXTuDLuKlq8R8msvLg+byEeqhSm++9vITlI3
-	 FJwXux4BZUsfrOo7RKq+G0YOf/6CX8WIPyx1AbFD5kFmyezowZk79W8zmdtC2dWQ+L
-	 z5uecZIhtpKTQP26dEFJGmUXT9pziXErj9vbA3zzdViDAEIfeBzcSaY1NecpCFw/yY
-	 GIE3BZvB+N11A==
-Received: from notapiano (zone.collabora.co.uk [167.235.23.81])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nfraprado)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id D293F3782102;
-	Fri, 12 Jul 2024 15:58:58 +0000 (UTC)
-Date: Fri, 12 Jul 2024 11:58:56 -0400
-From: =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <nfraprado@collabora.com>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Macpaul Lin <macpaul.lin@mediatek.com>,
-	Chunfeng Yun <chunfeng.yun@mediatek.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, kernel@collabora.com,
-	Chen-Yu Tsai <wenst@chromium.org>,
-	Bear Wang <bear.wang@mediatek.com>,
-	Pablo Sun <pablo.sun@mediatek.com>
-Subject: Re: Probe failure of usb controller @11290000 on MT8195 after
- next-20231221
-Message-ID: <ea97fb15-684e-4009-b312-f39c2acdde5b@notapiano>
-References: <9fce9838-ef87-4d1b-b3df-63e1ddb0ec51@notapiano>
- <064935d8-fbda-4eda-b013-8c8fc63b561c@collabora.com>
- <375b2345-657a-4b8f-b5e3-dc16784ffde9@notapiano>
- <da27d957-866f-f055-9e83-cdc362d98dc7@mediatek.com>
- <2dba1638-f155-463b-8f87-421101b8f4f2@collabora.com>
- <521df3a8-5bc2-4e81-a819-02b755c88d3a@notapiano>
- <ac0d1ba5-1ed0-4d4d-a287-1d3e6efadc0a@collabora.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4DCE178384;
+	Fri, 12 Jul 2024 16:04:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.43
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1720800254; cv=fail; b=ggkBGq/4ogyXJZnm7braBSTGMSQmj4lqXMVArdj6iucI8rtZS/ggspqMlA/nc7ru1bqheU57Fr8n8JLma5xn53U3AWGIzv0z4nkFdsFvmGdBAOIQI8cLw62m8EVSFzf7a+33nHGA3BqdG5lyum5Y76b/XScyBK0TlbeewLJyo3A=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1720800254; c=relaxed/simple;
+	bh=TeMgV7gBaJHtEB1Q2TpmaoqTSxE3B4vt8oKxBhIrnJo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=KbDHwO/Y8R+xI8ebJNRStBjjo/MchdSleCq9FghwhgfIza3GCiBr4dl6rnPN+t6JGGwARTuQ9pZ6VWMsOEVal8O8lXmeq/XWBAMsXnEaYAwg+s11z3xZDNC95xersyjjI7PA+Jw7jLiE/IVCjLFtGWwlAmUeHxjW8Q8TtGRmUoE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=qzotOr3C; arc=fail smtp.client-ip=52.101.65.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=OUE1BVBM0IrcyYbhFoGRS0qEL1X29kvWOCrbr/WBywm70oeMfEL7w6b7RzEpufsk1SEo02ccG3H3wfCTzjGmuT701r0br1JfGuPJ8D9hrDnrBv2PaSqubJg6AXdWbEMDn0Xzjd5vS10cpzO5APpyJvIT6CgE+1x5ruoQz9SSGJUEUulmFkqW2wDAqJiKm8Kj9hkLZ9RtfL/V76BMCJnaFuwn/dDZfEULmA06Hzluhx4mPrJW4j1140lpH3EiZakac7W8d4vzVD1jnV5MIpTUX9DDLAgXHR9UkPU49I28gEVMu4cYphxVrbl8fjwKgdIccC8U+0C8hH3xlubM1WWK4w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Raii68rV9vt+Ewcx3OxV5GDmxJUukA/SGptLE+MXwBs=;
+ b=DHK1vMKcZc7+DtLCogO5niFyTxx9FoyOGb8iv1BM2glW6xg8qlD5zheUeAg3TzmFcjYNC1GbhQtKqyEQq65D9HIf9olWia9c/wr8QhVH6jfGm+GxKkjJ35K8PaW1UuqNfiRMsv0TWzEt530cc3JYdv9o026PnzJM3xpMfVN55Qy6jYmfjNQtxW0XpVUM6xGMtPvgaHyjtSk+UhgrBqj0cwEZrih07RNvh1tcerncqR3tpaO0ERaBj+IcXxW4gEGMf+piDefHd43l3J401qbkCJhAXM321NT1ZZKlFO1JA7X7AGGjSqg2mZpns/l32GA28pyf44enXzSzm/5tmcR1nw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Raii68rV9vt+Ewcx3OxV5GDmxJUukA/SGptLE+MXwBs=;
+ b=qzotOr3CfkO4G3iaHUiAP4ImSYRIy0LpfzhXqdL0PNuJNT6144VGIdI/Zrh+rgRyaZwAeuhi6fAfLiPxRGWv3WX5clXX2vUQVpDI7DqJJkb/l9TfHLtUDEcjYTGDN7VMLiaZoGPwZ4lBqrlLnxODKMhLvZyosOnjwiErXCzdX1U=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by DU0PR04MB9322.eurprd04.prod.outlook.com (2603:10a6:10:355::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7741.35; Fri, 12 Jul
+ 2024 16:04:10 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%4]) with mapi id 15.20.7762.020; Fri, 12 Jul 2024
+ 16:04:10 +0000
+Date: Fri, 12 Jul 2024 12:04:02 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Niklas Cassel <cassel@kernel.org>
+Cc: Damien Le Moal <dlemoal@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"open list:LIBATA SUBSYSTEM (Serial and Parallel ATA drivers)" <linux-ide@vger.kernel.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
+Subject: Re: [PATCH v2 1/1] dt-bindings: ata: ahci-fsl-qoriq: add
+ fsl,ls1046a-ahci and fsl,ls1012a-ahci
+Message-ID: <ZpFT8mdkQTrixIvA@lizhi-Precision-Tower-5810>
+References: <20240712142922.3292722-1-Frank.Li@nxp.com>
+ <ZpFJhk_HgQhGAQMU@ryzen.lan>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZpFJhk_HgQhGAQMU@ryzen.lan>
+X-ClientProxiedBy: SJ0PR05CA0027.namprd05.prod.outlook.com
+ (2603:10b6:a03:33b::32) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ac0d1ba5-1ed0-4d4d-a287-1d3e6efadc0a@collabora.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DU0PR04MB9322:EE_
+X-MS-Office365-Filtering-Correlation-Id: 89e835d7-0c16-400a-b000-08dca28c43f2
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|1800799024|366016|52116014|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?r1PGrZ7iJILn81M6PYdVSg2LV066Fyg7iIp2UuBUcW9/4p2hN2Gnqp6+vMMG?=
+ =?us-ascii?Q?apd4V1k2vMMERnddqJdrp73aj9sNhJIOhwKeqETW6VItc26c6iG0X3ludDco?=
+ =?us-ascii?Q?kEm/yVozQu7yBHIVe8ILkEydEXuycxKoGqT43pcYQ+hKc6Ff3yvvYmB9Cali?=
+ =?us-ascii?Q?fBZPspmy5KA6PgUxu8CRuieAgMtWniUjLBbH/tN20SvtFIeWmHeqb3G8mALV?=
+ =?us-ascii?Q?G/xio4FHY6+ACf0d9M0zFfxqVNxEDqvfBHUUjTaXZDGCAeEXYOCEUmKQait7?=
+ =?us-ascii?Q?hExCg2TnbvuSviqXvUSmP31YGbD52CXN0zRUXsA+Ce4vLZmbdBi810RaevdR?=
+ =?us-ascii?Q?OZFPjySM8zrKauSldpjmgPMsDCTIsakufhXV3tUewapvZY6Q2OZoMd62AbD2?=
+ =?us-ascii?Q?lGqJXUr84dh9AO40E7foBV7dldLZ/rLAnfwE03Jkl4R0QXpoOAAaavLs4qiM?=
+ =?us-ascii?Q?FhryGulq0rrxS62UXqfP7QisYt99RfVx+QxGaSqIJB+y7McnFn4oamyz2Hmp?=
+ =?us-ascii?Q?NELxbXgVukuqZ/L+rUuafMGOVSQ2i0JiNtvFnBoY5JaLMN645/mnfXgSPnRN?=
+ =?us-ascii?Q?rfWJTlOSzB3R8qKTRu7fqtQ0fni8qdatVtjgFjlY/KLc44gTJmkpjJkuvRUs?=
+ =?us-ascii?Q?dBTk/Po7pEGqBP6ymdr0klMRkG0D9eACr+KdzRkA/y/ydbZnGtBtFEjockIQ?=
+ =?us-ascii?Q?FTEWvGqTOjStiPneqPF/tPEnswB+/krhMhbKUS7c6QtS09r/aHVfnsvhX9X7?=
+ =?us-ascii?Q?vj+aU9M+FGEiM/uQ6+gIBwKMU+fxoxkuVIdaN51hVZC7r4AgRN8Xe6z1lDwl?=
+ =?us-ascii?Q?MMpQCwH1XE9Jo0Nx5OsvXMfuC0knFVwYjO5jkqPpuWcS3EEXvnWICxw6gAdx?=
+ =?us-ascii?Q?PcNotTWjWpqXMna0ZyHla/mm6j1w/b8eu4kTPB33yK/8vlYy/wesltuHkv+P?=
+ =?us-ascii?Q?/iZlxcwuTrYrx8NxOXV2ZOn4Su8SF3mbFqhy2rfgPuHmsy0Sj9mbVgf1/Vmv?=
+ =?us-ascii?Q?1+WEyT2lRS0T+6QpNzmNTnAtB8Ci0waZYV6kZdTxygB7s/LXrUVSc/NiGsFy?=
+ =?us-ascii?Q?gBzOWmZhTn6/XXJOHvXeIgiJF0D+SwLGqCOsqRYTRP3sQkkJqUNHBPCqHuQD?=
+ =?us-ascii?Q?J1x+vKS5bPqj7t03yFz8gIbKetAVF/WRZ3j7T0oGwlirFo2vuuFk2zhhCjoM?=
+ =?us-ascii?Q?KpO+CGsHFfPQqFJspW10h2BlgdytcvRPT7ch1kRikFYAfFOz6nxC9SpihvSD?=
+ =?us-ascii?Q?tCfEeL1lOaDi7T+tOSR1lG9A1gIAMTFGkoB2IkazndGL+z+KyhlKRv+QA1kb?=
+ =?us-ascii?Q?P8f2h4se/wjfd+EBCMJInzOjnQL56sL+nyqMbeqVm+SYzJP3qvY9au1LNZRI?=
+ =?us-ascii?Q?ytvqTuIpV51kzkjvhe9fv8Q7ZUsRCcBv6ccRn0+kLOpzzNL5Tw=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(366016)(52116014)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?Eu8hjH46I0QazvdG0jtIrqb6vjSwH5Zl+m2niyOKPwa3r7oQMUhCvUur52ih?=
+ =?us-ascii?Q?rgV/3yKYfqwasTVuldrExGkVhp/BgGsrqy/ZKaOeJKsvpeui9EnzEVFwoPRV?=
+ =?us-ascii?Q?Zgq7tfcBvqbsgK0/aF8NLyuQgblFYafA1l9w65XE9Z9OXELnhuiMsg0Yp9K2?=
+ =?us-ascii?Q?U6lV6CiRkJamCVRjFwN3SPXPDal4oHTxVFCTZ2i8L2z5ICrd9IIhYUQCVhaY?=
+ =?us-ascii?Q?10C34qHmTsLhmUAoY2nVll1jcrfa+ldEUgY/QtnUKSBya1aIze4Ki6DoShuE?=
+ =?us-ascii?Q?TOvZmzTo35O3pYYcThTKMjZvrzwUsEbui0UnTtS2zTaRmKzDkP7VeR/lRtRk?=
+ =?us-ascii?Q?aPO++p+DMpcE+wAO7EbIfD5e0JtNNQ/urhVN4N4H9fud9NrKfVqE8EAsdy2T?=
+ =?us-ascii?Q?lOKmZ/XbHYqjXPqiAJjAPXdqyMV8JPOg2bWa7ZR+tWFJPKDSmYVotrpeKAMG?=
+ =?us-ascii?Q?K56+fIgTrzqmlU10xkf1ikdeg3xmiOZ1kTaaOjk2+62kJ7Tw3qInraDrA4t/?=
+ =?us-ascii?Q?jN8kW7Pgs6ek3N4sB7BWKZg8LDiy9Fb5c1WaTVyPN19oCQX0Oy40D+o3gxNo?=
+ =?us-ascii?Q?DIeMQO+Vd5KUjV/tBKlkAcnaND3J/RmiLAJ7yvfQmiboa3MW3P880ibt2SMF?=
+ =?us-ascii?Q?bGMqykaT0L0jstvx9b69Ebh+SSfsnbiIyoEJOK41xOey1Pv1IO1+qLW4aJRm?=
+ =?us-ascii?Q?YReHuQyqoRvKcvQVmjVdRf1IZsFoiv6aJ+Y2bnE1/v8IeXbNI/T392XQSs5C?=
+ =?us-ascii?Q?1DndMP1Y7DhtCeIj0aNcw1QWENVeV0b4jNVBaiKc7jVPnVcjsDq1VVDLREqW?=
+ =?us-ascii?Q?se9VhHQ/uS5asGSLSCLSCdiUUfW/CMy8ipG/2KgDimFhFT4Q4gc3VNpBu/CR?=
+ =?us-ascii?Q?7JTcfSJ6/sI0zxhrU8LSHTbwFm2S/7biP+FrAM4RTwopnrx2Wa+VC6qgEoIc?=
+ =?us-ascii?Q?Wp59dCr8yHB33/H6Mul+8OFX/nK7NS4+tv2MvAisUZ6ckVlosPHK/PT75oe2?=
+ =?us-ascii?Q?KbHXxrbXo7BiSbSFYJ4WZa0RHd9P33JTgj02mVjvQjNIRz3DzKNZ7tWEj+jN?=
+ =?us-ascii?Q?eZihaiAA0RFNB2m3xQT3gBApi2LJuBClOmi5mMiudlFVfXCfoQ/QM14rhnU0?=
+ =?us-ascii?Q?sDjnl6Xo/qz1XrXJMvDZ1X6pYUMzSeCdyAtPylf7LtMtjxp7IjiSjCULlBGj?=
+ =?us-ascii?Q?FEKzRFSM8/8VeSJT3i0WAoAfzHwC9wvx7hpmTnJsgZlcxtHifrS9nv8j2MJm?=
+ =?us-ascii?Q?g3aEAoNYwWK338bYFYQLLbFlaF2SBI2Hma08zLzAWF+BakDkzibA6h0ttDfR?=
+ =?us-ascii?Q?9gQ5PQhNPCnEZOcU6422CcciDerhore+IpqmD4cvba+wQwCODulJcSCXuvOJ?=
+ =?us-ascii?Q?iJV0ohl47QJi4FQgDTUEAnUX1TFq5vMOsJofbmWEfj/FCoBSBb1BK11ErIpJ?=
+ =?us-ascii?Q?CS3H6BbBDbsv+bh0hgjANgG40oU7w5aOSVruA1VDEdo69NH81+th3M+p5IJq?=
+ =?us-ascii?Q?V0lpSPECJOLoe66vFvArXxdn7Tdgf/VbAbM/LOhnuVSeio/n6WvYSBndDl38?=
+ =?us-ascii?Q?pGcYgk/eJwf93r5Se3DpHUI6i6kfBV5WPbAigX6U?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 89e835d7-0c16-400a-b000-08dca28c43f2
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jul 2024 16:04:10.0066
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: DlxY8S1GEE5PDYRuI1lbcjhfe3om6j866NigL42z5tX4bmGaSWbCrePEingT5pqiKOSzotTSFwy+1H3dPdm8Fw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR04MB9322
 
-On Fri, Jul 12, 2024 at 10:12:39AM +0200, AngeloGioacchino Del Regno wrote:
-> Il 11/07/24 18:33, Nícolas F. R. A. Prado ha scritto:
-> > On Thu, Jul 11, 2024 at 11:21:14AM +0200, AngeloGioacchino Del Regno wrote:
-> > > Il 11/07/24 06:13, Macpaul Lin ha scritto:
-> > > > 
-> > > > 
-> > > > On 7/11/24 03:15, Nícolas F. R. A. Prado wrote:
-> > > > > On Fri, Jan 19, 2024 at 10:12:07AM +0100, AngeloGioacchino Del Regno wrote:
-> > > > > > Il 18/01/24 19:36, Nícolas F. R. A. Prado ha scritto:
-> > > > > > > Hi,
-> > > > > > > 
-> > > > > > > KernelCI has identified a failure in the probe of one of the USB controllers on
-> > > > > > > the MT8195-Tomato Chromebook [1]:
-> > > > > > > 
-> > > > > > > [   16.336840] xhci-mtk 11290000.usb: uwk - reg:0x400, version:104
-> > > > > > > [   16.337081] xhci-mtk 11290000.usb: xHCI Host Controller
-> > > > > > > [   16.337093] xhci-mtk 11290000.usb: new USB bus
-> > > > > > > registered, assigned bus number 5
-> > > > > > > [   16.357114] xhci-mtk 11290000.usb: clocks are not stable (0x1003d0f)
-> > > > > > > [   16.357119] xhci-mtk 11290000.usb: can't setup: -110
-> > > > > > > [   16.357128] xhci-mtk 11290000.usb: USB bus 5 deregistered
-> > > > > > > [   16.359484] xhci-mtk: probe of 11290000.usb failed with error -110
-> > > > > > > 
-> > > > > > > A previous message [2] suggests that a force-mode phy property that has been
-> > > > > > > merged might help with addressing the issue, however it's not clear to me how,
-> > > > > > > given that the controller at 1129000 uses a USB2 phy and the phy driver patch
-> > > > > > > only looks for the property on USB3 phys.
-> > > > > > > 
-> > > > > > > Worth noting that the issue doesn't always happen. For instance the test did
-> > > > > > > pass for next-20240110 and then failed again on today's next [3]. But it does
-> > > > > > > seem that the issue was introduced, or at least became much more likely, between
-> > > > > > > next-20231221 and next-20240103, given that it never happened out of 10 runs
-> > > > > > > before, and after that has happened 5 out of 7 times.
-> > > > > > > 
-> > > > > > > Note: On the Tomato Chromebook specifically this USB controller is not connected
-> > > > > > > to anything.
-> > > > > > > 
-> > > > > > > [1] https://urldefense.com/v3/__https://linux.kernelci.org/test/case/id/659ce3506673076a8c52a428/__;!!CTRNKA9wMg0ARbw!jtg5drII8WUPwTiL4sWZiSRPXN-EBN8ctTGI85sirqvkmaUbA5z-wrLqPPfxlZZkQ7NItOWDT97OSdENT5oGHKY$
-> > > > > > > [2] https://lore.kernel.org/all/239def9b-437b-9211-7844-af4332651df0@mediatek.com/
-> > > > > > > [3] https://urldefense.com/v3/__https://linux.kernelci.org/test/case/id/65a8c66ee89acb56ac52a405/__;!!CTRNKA9wMg0ARbw!jtg5drII8WUPwTiL4sWZiSRPXN-EBN8ctTGI85sirqvkmaUbA5z-wrLqPPfxlZZkQ7NItOWDT97OSdENi-d0sVc$
-> > > > > > > 
-> > > > > > > Thanks,
-> > > > > > > Nícolas
-> > > > > > 
-> > > > > > Hey Nícolas,
-> > > > > > 
-> > > > > > I wonder if this is happening because of async probe... I have seen those happening
-> > > > > > once in a (long) while on MT8186 as well with the same kind of flakiness and I am
-> > > > > > not even able to reproduce anymore.
-> > > > > > 
-> > > > > > For MT8195 Tomato, I guess we can simply disable that controller without any side
-> > > > > > effects but, at the same time, I'm not sure that this would be the right thing to
-> > > > > > do in this case.
-> > > > > > 
-> > > > > > Besides, the controller at 11290000 is the only one that doesn't live behind MTU3,
-> > > > > > but I don't know if that can ring any bell....
-> > > > > 
-> > > > > An update on this issue: it looks like it only happens if "xhci-mtk
-> > > > > 11290000.usb" probes before "mtk-pcie-gen3 112f8000.pcie". What they have in
-> > > > > common is that both of those nodes use phys that share the same t-phy block:
-> > > > > pcie uses the usb3 phy while xhci uses the usb2 phy. So it seems that some of
-> > > > > the initialization done by the pcie controller might be implicitly needed by the
-> > > > > usb controller.
-> > > > > 
-> > > > > This should help to narrow down the issue and find a proper fix for it.
-> > > > > 
-> > > > > Thanks,
-> > > > > Nícolas
-> > > > 
-> > > > 'force-mode' should only applied to the boards which require XHCI
-> > > > function instead of a PCIE port.
-> > > > 
-> > > > For example, mt8395-genio-1200-evk.dts requires property 'force-mode' to
-> > > > fix probe issue for USBC @11290000.
-> > > > 
-> > > > https://git.kernel.org/pub/scm/linux/kernel/git/mediatek/linux.git/commit/?h=v6.10-next/dts64&id=666e6f39faff05fe12bfc64c64aa9015135ce783
-> > > > 
-> > > > 'force-mode' should be no need for tomato boards and the behavior should
-> > > > be the same as before.
-> > > > 
-> > > > Another possibility is the firmware change on tomato boards. I'm not
-> > > > sure if there is any changes on tomato's recent firmware for tphy of
-> > > > this port, which could also be a reason causes this kind of failure.
-> > > > I don't have tomato boards on hand.
-> > > > 
-> > > 
-> > > Hello Macpaul,
-> > > 
-> > > it's just about the usb node missing a power domain: as the PCIE_MAC_P1 domain
-> > > seems to be shared between USB and PCIe, adding it to the USB node fixes the
-> > > setup phase.
-> > > 
-> > > I'll send a devicetree fix soon.
+On Fri, Jul 12, 2024 at 05:19:34PM +0200, Niklas Cassel wrote:
+> On Fri, Jul 12, 2024 at 10:29:22AM -0400, Frank Li wrote:
+> > Add missing documented compatible strings 'fsl,ls1046a-ahci' and
+> > 'fsl,ls1012a-ahci'. Allow 'fsl,ls1012a-ahci' to fallback to
+> > 'fsl,ls1043a-ahci'.
 > > 
-> > Hi,
+> > Fix below CHECK_DTB warnings
+> > arch/arm64/boot/dts/freescale/fsl-ls1012a-frwy.dtb: /soc/sata@3200000: failed to match any schema with compatible: ['fsl,ls1012a-ahci', 'fsl,ls1043a-ahci']
 > > 
-> > As I replied to that patch
-> > (https://lore.kernel.org/all/20240711093230.118534-1-angelogioacchino.delregno@collabora.com)
-> > it didn't fix the issue for me, but I have more updates:
+> > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > ---
+> > Change from v1 to v2
+> > - rework commit message to show fix CHECK_DTB warning.
+> > ---
+> >  .../devicetree/bindings/ata/fsl,ahci.yaml     | 19 ++++++++++++-------
+> >  1 file changed, 12 insertions(+), 7 deletions(-)
 > > 
-> > I confirmed the pcie was doing some required setup since disabling the pcie1
-> > node made the issue always happen, and that also made it easier to test.
-> > 
-> > I was able to track the issue down to the following clock:
-> > <&infracfg_ao CLK_INFRA_AO_PCIE_P1_TL_96M>
-> > 
-> > Adding it to the clocks property of the xhci1 node fixed the issue.
-> > 
+> > diff --git a/Documentation/devicetree/bindings/ata/fsl,ahci.yaml b/Documentation/devicetree/bindings/ata/fsl,ahci.yaml
+> > index 162b3bb5427ed..a244bc603549d 100644
+> > --- a/Documentation/devicetree/bindings/ata/fsl,ahci.yaml
+> > +++ b/Documentation/devicetree/bindings/ata/fsl,ahci.yaml
+> > @@ -11,13 +11,18 @@ maintainers:
+> >  
+> >  properties:
+> >    compatible:
+> > -    enum:
+> > -      - fsl,ls1021a-ahci
+> > -      - fsl,ls1043a-ahci
+> > -      - fsl,ls1028a-ahci
+> > -      - fsl,ls1088a-ahci
+> > -      - fsl,ls2080a-ahci
+> > -      - fsl,lx2160a-ahci
+> > +    oneOf:
+> > +      - items:
+> > +          - const: fsl,ls1012a-ahci
+> > +          - const: fsl,ls1043a-ahci
+> > +      - enum:
+> > +          - fsl,ls1021a-ahci
+> > +          - fsl,ls1043a-ahci
+> > +          - fsl,ls1046a-ahci
+> > +          - fsl,ls1028a-ahci
+> > +          - fsl,ls1088a-ahci
+> > +          - fsl,ls2080a-ahci
+> > +          - fsl,lx2160a-ahci
 > 
-> Clocks is what I tried first, and didn't do anything for me...
-> 
-> ..anyway, can you at this point try to run that solution on the multiple
-> devices that we have in the lab through KernelCI?
-> 
-> That would help validating that you're not facing the same false positive
-> as mine from yesterday...
+> I think that you should add the following Fixes-tag:
+> Fixes: e58e12c5c34c ("dt-bindings: ata: ahci-fsl-qoriq: convert to yaml format")
 
-Hi,
-
-I've ran 10 times with and 10 times without the following patch:
-
-  diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-  index 2ee45752583c..611afe4de968 100644
-  --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-  +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-  @@ -1453,9 +1453,10 @@ xhci1: usb@11290000 {
-                                   <&topckgen CLK_TOP_SSUSB_P1_REF>,
-                                   <&apmixedsys CLK_APMIXED_USB1PLL>,
-                                   <&clk26m>,
-  -                                <&pericfg_ao CLK_PERI_AO_SSUSB_1P_XHCI>;
-  +                                <&pericfg_ao CLK_PERI_AO_SSUSB_1P_XHCI>,
-  +                                <&infracfg_ao CLK_INFRA_AO_PCIE_P1_TL_96M>;
-                          clock-names = "sys_ck", "ref_ck", "mcu_ck", "dma_ck",
-  -                                     "xhci_ck";
-  +                                     "xhci_ck", "frmcnt_ck";
-                          mediatek,syscon-wakeup = <&pericfg 0x400 104>;
-                          wakeup-source;
-                          status = "disabled";
-
-In both cases I also had
-
-  diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-  index fe5400e17b0f..e50be8a82d49 100644
-  --- a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-  +++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-  @@ -613,7 +613,7 @@ flash@0 {
-   };
-  
-   &pcie1 {
-  -       status = "okay";
-  +       /* status = "okay"; */
-  
-          pinctrl-names = "default";
-          pinctrl-0 = <&pcie1_pins_default>;
-
-to make the issue always happen.
-
-For reproducibility purposes, this was tested on next-20240703 with the
-following config: http://0x0.st/XMGM.txt
-
-And the results confirm that every run (10/10) with the patch didn't experience
-the issue:
-
-   https://lava.collabora.dev/scheduler/job/14805738
-   https://lava.collabora.dev/scheduler/job/14805757
-   https://lava.collabora.dev/scheduler/job/14805759
-   https://lava.collabora.dev/scheduler/job/14805789
-   https://lava.collabora.dev/scheduler/job/14805791
-   https://lava.collabora.dev/scheduler/job/14805792
-   https://lava.collabora.dev/scheduler/job/14805795
-   https://lava.collabora.dev/scheduler/job/14805799
-   https://lava.collabora.dev/scheduler/job/14805816
-   https://lava.collabora.dev/scheduler/job/14805820
-
-While every run (10/10) without the patch experienced the issue:
-
-   https://lava.collabora.dev/scheduler/job/14805740
-   https://lava.collabora.dev/scheduler/job/14805758
-   https://lava.collabora.dev/scheduler/job/14805787
-   https://lava.collabora.dev/scheduler/job/14805790
-   https://lava.collabora.dev/scheduler/job/14805793
-   https://lava.collabora.dev/scheduler/job/14805796
-   https://lava.collabora.dev/scheduler/job/14805803
-   https://lava.collabora.dev/scheduler/job/14805818
-   https://lava.collabora.dev/scheduler/job/14805822
-   https://lava.collabora.dev/scheduler/job/14805876
-
-These runs are across different units of tomato-r2. I also tried on tomato-r3
-with the same result:
-without clock, fail: https://lava.collabora.dev/scheduler/job/14806546
-with clock, pass: https://lava.collabora.dev/scheduler/job/14806547
-
-So this definitely fixes it. Whether or not this is the right fix, or how to
-describe this clock, I'll need your and MediaTek's help to figure out.
-
-Thanks,
-Nícolas
+I am not sure if need it because e58e12c5c34c still not release yet.
+Needn't backport. You may squash into e58e12c5c34c if you like.
 
 > 
-> > I'm just not sure from a DT perspective what's the right way to describe this
-> > clock. The node doesn't have the frmcnt_ck, is this that clock? Or is it
-> > another clock that currently isn't described in the dt-bindings and driver?
-> > 
+> Considering that the commit that your are fixing is only in libata for-6.11,
+> and has thus never been in a released kernel version, perhaps the following
+> patch would be better (if it also solves the warnings):
 > 
-> That's the PCI-Express Root Port (RP) Transaction Layer (TL) clock... and I have
-> no idea why this has anything to do with USB.
+> diff --git a/Documentation/devicetree/bindings/ata/fsl,ahci.yaml b/Documentation/devicetree/bindings/ata/fsl,ahci.yaml
+> index 162b3bb5427e..8953b1847305 100644
+> --- a/Documentation/devicetree/bindings/ata/fsl,ahci.yaml
+> +++ b/Documentation/devicetree/bindings/ata/fsl,ahci.yaml
+> @@ -12,8 +12,10 @@ maintainers:
+>  properties:
+>    compatible:
+>      enum:
+> +      - fsl,ls1012a-ahci
+>        - fsl,ls1021a-ahci
+>        - fsl,ls1043a-ahci
+> +      - fsl,ls1046a-ahci
+>        - fsl,ls1028a-ahci
+>        - fsl,ls1088a-ahci
+>        - fsl,ls2080a-ahci
+
+driver have not support "fsl,ls1012a-ahci", which have to fall back to
+"fsl,ls1043a-ahci". and DTS already use 
+     compatible = "fsl,ls1012a-ahci", "fsl,ls1046a-ahci".
+
+It can't fix 1012's warning. Only fix 1046's warning.
+DT team also don't want to remove fsl,ls1012a-ahci in dts file.
+
 > 
-> MediaTek, is that a hardware quirk? What is the relation between this clock and
-> the USB controller at 11290000?
 > 
-> Thanks,
-> Angelo
+> This assumes that we can get the patch included before 6.11 final is released,
+> but considering that the merge window hasn't even opened yet, that should be
+> doable.
 > 
-> > Thanks,
-> > Nícolas
 > 
+> Thoughts from DT maintainers?
+
+Supposed through ata tree.
+
+> 
+> 
+> 
+> Kind regards,
+> Niklas
 
