@@ -1,283 +1,218 @@
-Return-Path: <devicetree+bounces-85328-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85329-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BD4192FA91
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 14:46:39 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AACA92FA99
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 14:47:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BBE641F22B30
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 12:46:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 84E66B21C29
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 12:47:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7447516F8F8;
-	Fri, 12 Jul 2024 12:45:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5864316F83D;
+	Fri, 12 Jul 2024 12:46:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="IJTjXy04"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="NSRq5EBl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFA0B16F85B;
-	Fri, 12 Jul 2024 12:45:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E1D716EBFC;
+	Fri, 12 Jul 2024 12:46:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720788315; cv=none; b=gf+Defsj8HUgKLbdauZ+XsNSyj4DWrdArBg/F6FAPerqyVLMKWe032eePvI+8diCrqt3tqIyrmJdRFPxaFXUmMfjAuofVkGBX75y1zYmeJu/2y9dLZTcB4DTZgQi7kCqW7iElVN/qQyt9MZRvvP25B0R5GCLXAGErMh11lxwSB8=
+	t=1720788391; cv=none; b=lc7V4tBSt9BQcZTMSQI8t1EnzAj8rFEvzLAIwaCwYWdF645MKK1SZlWIWCcm+nLi1ZVt9YAwfjv3dAZBq8H3iqj3a8rfTroWgeZZE3tA5xnEJbIzmPihhFWBz7bV8owvXdS0E4L2DbELvxw92SfY5rRle/nq6p2baVl7PAK7u88=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720788315; c=relaxed/simple;
-	bh=xT3vdgzfitnNc45nl9KNHLr746ozbECZ34w19TY+CLQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=a6odkT09twu/3EYxTUuzpyQLQotILpnVLZvIVXJ9IPzz+tmp3z7e5J5dH2RBXhzmXGonqLP28ux8KRdJcX24bRky+0Z6rLo19iUnAwcyv2Z9sHBgXrtn8QqLBfTqTGUF/ubUi7/AGvfLQkHQnV7GgLB/bjQ1+XDzgzi3xvwel+U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=IJTjXy04; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46CBAer6007447;
-	Fri, 12 Jul 2024 12:44:55 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	LRIVKzH1hSjxSuvugXYotptQy+3/BurYv3ZsB9X2wks=; b=IJTjXy04IXXlH8yO
-	yBJA8SrsIw4Gk9ZpePLi5+nOS+qRNnoUZyUSw17xA6Sdk+roi0qF9krwIBdmKEnD
-	dRGyCYXeOHAx55URoqRtFL9A+8MeC41nFariZgHFxkSi7Xn6TRXnU4RfhX/cRL4F
-	uoMU+fvP1rs+CGo3EGZGWs5Awf4gAFB8attTs/DiNfhMsZCeVGuBzpcb5EDvX6O9
-	F5y28ulHmXYCzTqYqKe4OchZLg/lGuZ4mKJH2kyyhVOPhmGZihWZjYkPMByvJ1NS
-	YZHc7hEhCYe9Yerji4YQ9Ao9v9auqOVS3ndHdD3tkNZdFtyCRhln+X0E00gF3hKP
-	RyI4Og==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40ac0gkh2f-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 12 Jul 2024 12:44:55 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA05.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 46CCirf0028069
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 12 Jul 2024 12:44:53 GMT
-Received: from hu-skakitap-hyd.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Fri, 12 Jul 2024 05:44:46 -0700
-From: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
-Date: Fri, 12 Jul 2024 18:13:32 +0530
-Subject: [PATCH 5/5] ARM: dts: qcom: Add support for MBG TM for pm8775 on
- SA8775P
+	s=arc-20240116; t=1720788391; c=relaxed/simple;
+	bh=Erx0gIUMC5sqOzJTfoUmK6Hj8OfOwuZt+Y0hxU1mY18=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZI25YuMAugGi8j++nXTuCwpXFka7cYn6/GmC51AVBWaChQL/qi+0aTCzZSBAB9PB7QS5DZ2+3CE9J2wD2PSvmIRQZQIZUhVlUBGmH8tYY+9LjaKjtJwZVPxqweyrm1Qj9at7FcR/PIODS6l21uFpvPE/2oZ95aHROz9NtMOdrUE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=NSRq5EBl; arc=none smtp.client-ip=192.198.163.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1720788389; x=1752324389;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Erx0gIUMC5sqOzJTfoUmK6Hj8OfOwuZt+Y0hxU1mY18=;
+  b=NSRq5EBlb7K1nWYJMVgbGsxa5K+WmXsTh/9iLhMO7sHQ26CMB7qBH5R+
+   erFAiW5u0y/6KdsbiX+amyULqvuHcVawEG92Hf1ZlNOBrLwD6YrzTbWEI
+   RwqDkuU+QK8IYx/tNm5x8qiEbXF8uh31uOU9uOkOuRaBKitd5FsqA9gYt
+   hrmn2UjxRGEmV5ZXcpMqeNvHu7KEbxblzBQwQE55YcC1uohi362e+d8Pw
+   xqcnh2uEHUevAttYnlSaWvwrunmXisZt9DaqWPUZGsA3q1uS0QjieeVau
+   UV7BxM1OOs58DjpIvXXm+V6RszjzwPe5w0tFLDXWyi9/bFi7TsPiw6BPI
+   w==;
+X-CSE-ConnectionGUID: ntrCyXSGS9KrCPMN/hLpoQ==
+X-CSE-MsgGUID: J3UFfIr9T5WHWSqejI+GiA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11131"; a="18092313"
+X-IronPort-AV: E=Sophos;i="6.09,202,1716274800"; 
+   d="scan'208";a="18092313"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jul 2024 05:46:28 -0700
+X-CSE-ConnectionGUID: EDVtn1l5QK2eRdquepR0IA==
+X-CSE-MsgGUID: 7jGGRIxoQjiXaAkF7BUY2A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,202,1716274800"; 
+   d="scan'208";a="86398888"
+Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
+  by orviesa001.jf.intel.com with ESMTP; 12 Jul 2024 05:46:24 -0700
+Received: from kbuild by 68891e0c336b with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sSFfJ-000am6-39;
+	Fri, 12 Jul 2024 12:46:21 +0000
+Date: Fri, 12 Jul 2024 20:45:52 +0800
+From: kernel test robot <lkp@intel.com>
+To: Chris Packham <chris.packham@alliedtelesis.co.nz>, jdelvare@suse.com,
+	linux@roeck-us.net, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, ukleinek@kernel.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
+	Chris Packham <chris.packham@alliedtelesis.co.nz>
+Subject: Re: [PATCH v5 3/3] hwmon: (adt7475) Add support for configuring
+ initial PWM state
+Message-ID: <202407122021.YFqdjjQS-lkp@intel.com>
+References: <20240711234614.3104839-4-chris.packham@alliedtelesis.co.nz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20240712-mbg-tm-support-v1-5-7d78bec920ca@quicinc.com>
-References: <20240712-mbg-tm-support-v1-0-7d78bec920ca@quicinc.com>
-In-Reply-To: <20240712-mbg-tm-support-v1-0-7d78bec920ca@quicinc.com>
-To: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
-        Amit Kucheria <amitk@kernel.org>,
-        "Thara
- Gopinath" <thara.gopinath@gmail.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-CC: Kamal Wadhwa <quic_kamalw@quicinc.com>,
-        Taniya Das
-	<quic_tdas@quicinc.com>,
-        Jishnu Prakash <quic_jprakash@quicinc.com>,
-        <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>,
-        Satya Priya Kakitapalli
-	<quic_skakitap@quicinc.com>,
-        Ajit Pandey <quic_ajipan@quicinc.com>,
-        "Imran
- Shaik" <quic_imrashai@quicinc.com>,
-        Jagadeesh Kona <quic_jkona@quicinc.com>
-X-Mailer: b4 0.13.0
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: nYXH9ngSNr5YB03qH1V5mF878LG88bvj
-X-Proofpoint-GUID: nYXH9ngSNr5YB03qH1V5mF878LG88bvj
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-07-12_09,2024-07-11_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 phishscore=0
- lowpriorityscore=0 adultscore=0 priorityscore=1501 mlxlogscore=823
- mlxscore=0 impostorscore=0 clxscore=1015 suspectscore=0 spamscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2406140001 definitions=main-2407120086
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240711234614.3104839-4-chris.packham@alliedtelesis.co.nz>
 
-Add support for MBG TM peripheral for pm8775 sail pmics on SA8775P.
+Hi Chris,
 
-Signed-off-by: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
----
- arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi | 120 ++++++++++++++++++++++++++++
- 1 file changed, 120 insertions(+)
+kernel test robot noticed the following build errors:
 
-diff --git a/arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi b/arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi
-index bd4f5f51e094..69910306885e 100644
---- a/arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi
-@@ -89,6 +89,62 @@ trip1 {
- 				};
- 			};
- 		};
-+
-+		pmm8654au_0_mbg_tm: pmm8654au_0_mbg_tz {
-+			polling-delay-passive = <100>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&pmm8654au_0_tz>;
-+
-+			trips {
-+				trip0 {
-+					temperature = <115000>;
-+					hysteresis = <5000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		pmm8654au_1_mbg_tm: pmm8654au_1_mbg_tz {
-+			polling-delay-passive = <100>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&pmm8654au_1_tz>;
-+
-+			trips {
-+				trip0 {
-+					temperature = <115000>;
-+					hysteresis = <5000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		pmm8654au_2_mbg_tm: pmm8654au_2_mbg_tz {
-+			polling-delay-passive = <100>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&pmm8654au_2_tz>;
-+
-+			trips {
-+				trip0 {
-+					temperature = <115000>;
-+					hysteresis = <5000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		pmm8654au_3_mbg_tm: pmm8654au_3_mbg_tz {
-+			polling-delay-passive = <100>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&pmm8654au_3_tz>;
-+
-+			trips {
-+				trip0 {
-+					temperature = <115000>;
-+					hysteresis = <5000>;
-+					type = "passive";
-+				};
-+			};
-+		};
- 	};
- 
- 	reboot-mode {
-@@ -180,6 +236,22 @@ reboot_reason: reboot-reason@48 {
- 		};
- 	};
- 
-+	pmm8654au_sail_0: pmic@1 {
-+		compatible = "qcom,pmm8654au", "qcom,spmi-pmic";
-+		reg = <0x1 SPMI_USID>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		pmm8654au_0_tz: qcom,mbg-tm@d700 {
-+			compatible = "qcom,spmi-mgb-tm";
-+			reg = <0xd700>;
-+			io-channels = <&pmm8654au_0_adc PM8775_ADC5_GEN3_DIE_TEMP(0)>;
-+			io-channel-names = "thermal";
-+			interrupts-extended = <&spmi_bus 0x1 0xd7 0x0 IRQ_TYPE_EDGE_RISING>;
-+			#thermal-sensor-cells = <0>;
-+		};
-+	};
-+
- 	pmm8654au_1: pmic@2 {
- 		compatible = "qcom,pmm8654au", "qcom,spmi-pmic";
- 		reg = <0x2 SPMI_USID>;
-@@ -226,6 +298,22 @@ pmm8654au_1_gpios: gpio@8800 {
- 		};
- 	};
- 
-+	pmm8654au_sail_1: pmic@3 {
-+		compatible = "qcom,pmm8654au", "qcom,spmi-pmic";
-+		reg = <0x3 SPMI_USID>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		pmm8654au_1_tz: qcom,mbg-tm@d700 {
-+			compatible = "qcom,spmi-mgb-tm";
-+			reg = <0xd700>;
-+			io-channels = <&pmm8654au_1_adc PM8775_ADC5_GEN3_DIE_TEMP(2)>;
-+			io-channel-names = "thermal";
-+			interrupts-extended = <&spmi_bus 0x3 0xd7 0x0 IRQ_TYPE_EDGE_RISING>;
-+			#thermal-sensor-cells = <0>;
-+		};
-+	};
-+
- 	pmm8654au_2: pmic@4 {
- 		compatible = "qcom,pmm8654au", "qcom,spmi-pmic";
- 		reg = <0x4 SPMI_USID>;
-@@ -272,6 +360,22 @@ pmm8654au_2_gpios: gpio@8800 {
- 		};
- 	};
- 
-+	pmm8654au_sail_2: pmic@5 {
-+		compatible = "qcom,pmm8654au", "qcom,spmi-pmic";
-+		reg = <0x5 SPMI_USID>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		pmm8654au_2_tz: qcom,mbg-tm@d700 {
-+			compatible = "qcom,spmi-mgb-tm";
-+			reg = <0xd700>;
-+			io-channels = <&pmm8654au_2_adc PM8775_ADC5_GEN3_DIE_TEMP(4)>;
-+			io-channel-names = "thermal";
-+			interrupts-extended = <&spmi_bus 0x5 0xd7 0x0 IRQ_TYPE_EDGE_RISING>;
-+			#thermal-sensor-cells = <0>;
-+		};
-+	};
-+
- 	pmm8654au_3: pmic@6 {
- 		compatible = "qcom,pmm8654au", "qcom,spmi-pmic";
- 		reg = <0x6 SPMI_USID>;
-@@ -317,4 +421,20 @@ pmm8654au_3_gpios: gpio@8800 {
- 			#interrupt-cells = <2>;
- 		};
- 	};
-+
-+	pmm8654au_sail_3: pmic@7 {
-+		compatible = "qcom,pmm8654au", "qcom,spmi-pmic";
-+		reg = <0x7 SPMI_USID>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		pmm8654au_3_tz: qcom,mbg-tm@d700 {
-+			compatible = "qcom,spmi-mgb-tm";
-+			reg = <0xd700>;
-+			io-channels = <&pmm8654au_3_adc PM8775_ADC5_GEN3_DIE_TEMP(6)>;
-+			io-channel-names = "thermal";
-+			interrupts-extended = <&spmi_bus 0x7 0xd7 0x0 IRQ_TYPE_EDGE_RISING>;
-+			#thermal-sensor-cells = <0>;
-+		};
-+	};
- };
+[auto build test ERROR on groeck-staging/hwmon-next]
+[also build test ERROR on linus/master v6.10-rc7 next-20240712]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Chris-Packham/dt-bindings-hwmon-Add-adt7475-fan-pwm-properties/20240712-074936
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging.git hwmon-next
+patch link:    https://lore.kernel.org/r/20240711234614.3104839-4-chris.packham%40alliedtelesis.co.nz
+patch subject: [PATCH v5 3/3] hwmon: (adt7475) Add support for configuring initial PWM state
+config: i386-randconfig-002-20240712 (https://download.01.org/0day-ci/archive/20240712/202407122021.YFqdjjQS-lkp@intel.com/config)
+compiler: clang version 18.1.5 (https://github.com/llvm/llvm-project 617a15a9eac96088ae5e9134248d8236e34b91b1)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240712/202407122021.YFqdjjQS-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202407122021.YFqdjjQS-lkp@intel.com/
+
+All errors (new ones prefixed by >>, old ones prefixed by <<):
+
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/gpu/drm/tests/drm_plane_helper_test.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/gpu/drm/tests/drm_probe_helper_test.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/gpu/drm/tests/drm_rect_test.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/gpu/drm/panel/panel-abt-y030xx067a.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/gpu/drm/panel/panel-novatek-nt39016.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/gpu/drm/panel/panel-orisetech-ota5601a.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/gpu/drm/bridge/lontium-lt9611.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/gpu/drm/bridge/lontium-lt9611uxc.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/gpu/drm/bridge/sil-sii8620.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/gpu/drm/bridge/sii9234.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/gpu/drm/drm_panel_orientation_quirks.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/gpu/drm/drm_mipi_dbi.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/gpu/drm/udl/udl.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/base/regmap/regmap-kunit.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/base/regmap/regmap-i2c.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/base/regmap/regmap-ram.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/base/regmap/regmap-raw-ram.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/base/regmap/regmap-slimbus.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/base/regmap/regmap-w1.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/misc/open-dice.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/mfd/rt4831.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/cxl/cxl_pci.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/cxl/cxl_mem.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/spi/spi-fsl-lib.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/firewire/uapi-test.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/firewire/packet-serdes-test.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/pcmcia/yenta_socket.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/usb/storage/uas.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/usb/serial/ch341.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/usb/serial/mxuport.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/usb/serial/navman.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/usb/serial/symbolserial.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/usb/misc/ezusb.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/usb/misc/isight_firmware.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/usb/misc/yurex.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/usb/mon/usbmon.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/usb/chipidea/ci_hdrc_msm.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/usb/gadget/libcomposite.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/usb/gadget/function/usb_f_acm.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/usb/gadget/function/usb_f_ss_lb.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/usb/gadget/function/u_serial.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/usb/gadget/function/usb_f_serial.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/usb/gadget/function/usb_f_obex.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/usb/gadget/function/usb_f_mass_storage.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/usb/gadget/function/usb_f_fs.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/usb/gadget/function/usb_f_hid.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/usb/gadget/function/usb_f_printer.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/usb/gadget/function/usb_f_tcm.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/usb/gadget/legacy/g_dbgp.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/i2c/busses/i2c-ccgx-ucsi.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/tuners/tda9887.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/firmware/google/framebuffer-coreboot.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/hid/hid-belkin.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/hid/hid-betopff.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/hid/hid-chicony.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/hid/hid-cypress.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/hid/hid-holtek-kbd.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/hid/hid-holtek-mouse.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/hid/hid-keytouch.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/hid/hid-kye.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/hid/hid-letsketch.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/hid/hid-logitech.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/hid/hid-lg-g15.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/hid/hid-logitech-hidpp.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/hid/hid-megaworld.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/hid/hid-primax.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/hid/hid-redragon.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/hid/hid-saitek.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/hid/hid-speedlink.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/hid/hid-gaff.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/hid/hid-tmff.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/hid/hid-uclogic.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/hid/hid-xinmo.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/hid/hid-zpff.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/hid/hid-zydacron.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/hid/hid-viewsonic.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/hid/hid-winwing.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/of/of_test.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/staging/greybus/gb-bootrom.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/staging/greybus/gb-hid.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/staging/greybus/gb-log.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/staging/greybus/gb-loopback.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/staging/greybus/gb-power-supply.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/staging/greybus/gb-raw.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/staging/greybus/gb-vibrator.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/staging/greybus/gb-gbphy.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/staging/greybus/gb-gpio.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/staging/greybus/gb-pwm.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/staging/greybus/gb-spi.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/staging/greybus/gb-spilib.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/staging/greybus/gb-uart.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/staging/greybus/gb-usb.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/platform/x86/siemens/simatic-ipc-batt.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/platform/x86/ibm_rtl.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/devfreq/governor_performance.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/perf/cxl_pmu.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/hwtracing/intel_th/intel_th_msu_sink.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/parport/parport.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/greybus/greybus.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/siox/siox-bus-gpio.o
+>> ERROR: modpost: "__udivdi3" [drivers/hwmon/adt7475.ko] undefined!
 
 -- 
-2.25.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
