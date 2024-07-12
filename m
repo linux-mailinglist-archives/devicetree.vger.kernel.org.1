@@ -1,93 +1,167 @@
-Return-Path: <devicetree+bounces-85345-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85350-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F13BF92FBB3
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 15:46:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A961A92FBC6
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 15:49:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2E9CF1C21D15
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 13:46:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DBCD51C2275A
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 13:49:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0255816F274;
-	Fri, 12 Jul 2024 13:46:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E75317108D;
+	Fri, 12 Jul 2024 13:49:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rIsqPTwS"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VWCWqkEp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f179.google.com (mail-vk1-f179.google.com [209.85.221.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D25742BB15
-	for <devicetree@vger.kernel.org>; Fri, 12 Jul 2024 13:46:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E05B716EB6E;
+	Fri, 12 Jul 2024 13:48:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720792014; cv=none; b=Tmi9rB+Bv/Ge7Fhy2BDj/HG+hctqQhJxFGN5WfnQJ/efLpYvGU7IwT2wZfCuTUGPoYYrjk42Zkv3HHoXRKncY2SstU1wF46YPRF0kathx74Xiylvo8ZlDfTv99QaynGSqqgrTUpsURBoaYveFwHCklc66eh58B3aXkKp0VRqcZM=
+	t=1720792140; cv=none; b=MNtuf9hoO23v+p8WVQGZfETFkKfJs1ERJUTYPHjpSAGESM8KF8/ZBBeJQS9vCPipcV8K420wSZPBVoT4Kr5vLLBivRhXibqOPEo4Kgp/wIqjwuwkbK5wXvI8yjGjXYNLDRE+z+WbDP3Zj1sQTU/pMe8p1sTXKQWfYE+Lxap0jaE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720792014; c=relaxed/simple;
-	bh=GD6ACwItdOdYKWCSinqqJ1Q4m+CiGf/Wmcn6qQyR3ds=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pRuLqu4iczIg4bA+bKlQkFy5KL6YteL6Wj4KZWqBYQ8M7839S5NVcaa98OAGkaBE7ZGtDPi4u5WcoHFS6XztSgzptWW2dzhfP00UcSW2m8/KxAU6ZWx5E4EcL3Dlbya/W1eFbGGbKjq3qWGWjMl1LL190jvoF7e8srX55OzkyiE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rIsqPTwS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 460EDC32782;
-	Fri, 12 Jul 2024 13:46:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720792014;
-	bh=GD6ACwItdOdYKWCSinqqJ1Q4m+CiGf/Wmcn6qQyR3ds=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rIsqPTwS6D7KEwXvOVH9NmzEM4StZ/5B7qjClnfXfOxdH+9u0SJcwwb4HPSsfJTpk
-	 nXXoep7wzmaDjxsTBwzzTEP2jOcjnKDs1IkqapD410W8Q1qG/64g22CdCIB/kuLUxZ
-	 tpuSxczh+CI33iRKh9quSlsUcNS/Bl6GfW9zk331ya+rQBy1DuhMNoGdWKqV5Rj0rC
-	 QYko9/BYBbDNAZwB05i6/CJbK8fKv+wFehXEgt34YNBKWXjneeeVhQAQe4atj/d7UY
-	 cL3mIBChE+7vi1ku1tuKrnX74kSHYsLyz/bFIrHN4t5c4xyDDiRDjP0Qpez/Y9d0tr
-	 2t3kVSc28uZPQ==
-Date: Fri, 12 Jul 2024 07:46:53 -0600
-From: Rob Herring <robh@kernel.org>
-To: FUKAUMI Naoki <naoki@radxa.com>
-Cc: heiko@sntech.de, krzk+dt@kernel.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH 1/2] arm64: dts: rockchip: add support for Radxa ROCK Pi
- E v3.0
-Message-ID: <20240712134653.GA593124-robh@kernel.org>
-References: <20240711210526.40448-1-naoki@radxa.com>
+	s=arc-20240116; t=1720792140; c=relaxed/simple;
+	bh=Tu42nau61uQUrM2WkU0xQHoUNzdUiCiLufs8uTvML20=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=dau1Na2BE8Z7EUCffRu2L8fcfzbSjdemTnUD+5NEeSBpXI720edKLKp3hjuNAIW+neY287n9I8v8GVVsOTgnNkDgUNuFuxRHebtn+bsVlMrOcpkew5eVNrn/FpA+Ca1auU7AtQDGMLeYcWSqyKr+aeoZBkkmSubzE/2L1/VQHh4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VWCWqkEp; arc=none smtp.client-ip=209.85.221.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f179.google.com with SMTP id 71dfb90a1353d-4ef76f04977so667966e0c.2;
+        Fri, 12 Jul 2024 06:48:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1720792137; x=1721396937; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=CNeMMGyKMUpPSQSPubxQiT+hSpfRpgXCDkgjBJjYMQA=;
+        b=VWCWqkEpmrLYYAAi6RSLkFhP9XA1iya9+W+R+f/5LhnSDKLjbXlEmtsmpbSayacbW3
+         qKXF5c4PDOJqvobdhwBVX7LjEvQAMeswibXu1OIBTKES1hbkML79KwflC5ie+imN9G3V
+         PvWsIvWts7YM38Cw/eDHULufuN54tGSwYc6IlWbzVJygJ1asntRTFi4OaZhZ29W89KOG
+         3w1HrRx2Lh5ixhsAof7L9cD3AxbWDqSePxOMWc73zvxtx2B+C87xs4rWNasrmwXsEogh
+         PXMmfTxOrNuNx/iF7Qq9u5jqzTmvDV7OlFlO9/1zo4Yh5ztCylOd1eLP01xK17KudiXd
+         S32g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720792137; x=1721396937;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=CNeMMGyKMUpPSQSPubxQiT+hSpfRpgXCDkgjBJjYMQA=;
+        b=JErKuJzgma2aDIcmr5TQcqSlviSd9vTeHizvHSY3CXxS/JEDls4QW8EtMRJ6lJ0f+f
+         jnoh4FuUklpQoKJAtLv7qhBoUbjAsO8pHNDC2UOjZncgUTO+N0smUbfk4KLBLljOZIYC
+         IvQKhgYb0YVF4JSeHLSv3+gyu8xZBA7t9eGIdGI4UgOWkFirIMTBaZF0Zov4Qp4TtRW2
+         uuYSegfTOJwut5I59lyVBUB9UBj7wcDG57g/4e+kNDEluMOhfY0dkoakBaNmDiBLsrKj
+         EFpwbWLrH+7zB13s748m7xHANB1U5cyMk/t8RD1XQRCZvBhvp9Wx/h1535bjYtI6wJ9m
+         Qx7w==
+X-Forwarded-Encrypted: i=1; AJvYcCUp4zKAVFjhSvjGfTXBDRFIf0Jq8w/00YrGx0f8sWqi04Lb/miJ4x9AXcOT8QDGdy2ekEpXRSQfWE9ChyakBnWP8YlGaN+KxqMOxTe1LERsqXQCBNsGdv9b0UzGN+5PthR8FzBYxpdHz5zZScxcy6L7kjgxnI7c5UAUdA+KURFh8Bzkj4Vf5Mc/mzj2N/3haC4ZsZk1RdqI3MVWxpvIQsFHxvqH0zaO
+X-Gm-Message-State: AOJu0Yzujh3AwkofQ0tmxar71oorpHpErfweHz8FT6J4t9l9yeMnaqak
+	x1wAyYf9CXpnJiFOE35XVD5EtYTJaDG9j2yQb2KvMkcUcEsRozQVKYR3g2fzbkY7yowopl8vgXF
+	L6Kd/SWIglwKYn6Qi9gu+zVmonwQ=
+X-Google-Smtp-Source: AGHT+IEVNhqRMz9n9crf1r6WaUvNgJ/dyDPHlu7D7kgnmKPUhB8R0X+CUwUXHsUwxzcfSlFGxKZUeQJI5wevih/Gk48=
+X-Received: by 2002:a05:6122:21ac:b0:4ef:52e2:6763 with SMTP id
+ 71dfb90a1353d-4f33f318833mr13257634e0c.13.1720792137495; Fri, 12 Jul 2024
+ 06:48:57 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240711210526.40448-1-naoki@radxa.com>
+References: <20240627161315.98143-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20240627161315.98143-2-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdV4GUKc=LFStKHO47vPJLZs3Vmvz-L7L81bC5DmdK5ztA@mail.gmail.com>
+In-Reply-To: <CAMuHMdV4GUKc=LFStKHO47vPJLZs3Vmvz-L7L81bC5DmdK5ztA@mail.gmail.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Fri, 12 Jul 2024 14:47:27 +0100
+Message-ID: <CA+V-a8t3GVMo8N=uBn58=S9=0MtuaCtxxN4OC5F-i7Vp8ntcpg@mail.gmail.com>
+Subject: Re: [PATCH v3 1/3] dt-bindings: clock: renesas: Document RZ/V2H(P)
+ SoC CPG
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Magnus Damm <magnus.damm@gmail.com>, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jul 12, 2024 at 06:05:25AM +0900, FUKAUMI Naoki wrote:
-> Radxa Pi E v3.0 is a compact networking SBC[1] using the Rockchip
-> RK3288 chip.
+Hi Geert,
 
-Subject is wrong. This is not a dts file. Use subject prefix matching 
-the subsystem.
+Thank you for the review.
 
-> 
-> [1] https://radxa.com/products/rockpi/pie
-> 
-> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
-> ---
->  Documentation/devicetree/bindings/arm/rockchip.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
-> index 1ef09fbfdfaf..3caa4e6428be 100644
-> --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
-> +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
-> @@ -782,6 +782,7 @@ properties:
->        - description: Radxa ROCK Pi E
->          items:
->            - const: radxa,rockpi-e
-> +          - const: radxa,rockpi-e-v3
->            - const: rockchip,rk3328
->  
->        - description: Radxa ROCK Pi N8
-> -- 
-> 2.43.0
-> 
+On Fri, Jul 12, 2024 at 12:58=E2=80=AFPM Geert Uytterhoeven
+<geert@linux-m68k.org> wrote:
+>
+<snip>
+> > +++ b/Documentation/devicetree/bindings/clock/renesas,rzv2h-cpg.yaml
+> > +  '#clock-cells':
+> > +    description: |
+> > +      - For CPG core clocks, the two clock specifier cells must be "CP=
+G_CORE"
+> > +        and a core clock reference, as defined in
+> > +        <dt-bindings/clock/renesas,r9a09g057-cpg.h>,
+> > +      - For module clocks, the two clock specifier cells must be "CPG_=
+MOD" and
+> > +        a module number.  The module number is calculated as the CLKON=
+ register
+> > +        offset index multiplied by 16, plus the actual bit in the regi=
+ster
+> > +        used to turn the CLK ON. For example, for CGC_GIC_0_GICCLK, th=
+e
+> > +        calculation is (1 * 16 + 3) =3D 19.
+>
+> Using hexadecimal for the final number may be more readable,
+> also in the DTS?
+>
+> (1 * 16 + 3) =3D 0x13?
+>
+Agreed I will update the value to hex.
+
+> > +    const: 2
+> > +
+> > +  '#power-domain-cells':
+> > +    const: 0
+> > +
+> > +  '#reset-cells':
+> > +    description:
+> > +      The single reset specifier cell must be the reset number. The re=
+set number
+> > +      is calculated as the reset register offset index multiplied by 1=
+6, plus the
+> > +      actual bit in the register used to reset the specific IP block. =
+For example,
+> > +      for SYS_0_PRESETN, the calculation is (3 * 16 + 0) =3D 48.
+>
+> (3 * 16 + 0) =3D 0x30?
+>
+OK.
+
+> > --- /dev/null
+> > +++ b/include/dt-bindings/clock/renesas,r9a09g057-cpg.h
+> > @@ -0,0 +1,21 @@
+> > +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > + *
+> > + * Copyright (C) 2024 Renesas Electronics Corp.
+> > + */
+> > +#ifndef __DT_BINDINGS_CLOCK_R9A09G057_CPG_H__
+> > +#define __DT_BINDINGS_CLOCK_R9A09G057_CPG_H__
+>
+> __DT_BINDINGS_CLOCK_RENESAS_R9A09G057_CPG_H__
+>
+> [...]
+>
+> > +#endif /* __DT_BINDINGS_CLOCK_R9A09G057_CPG_H__ */
+>
+> __DT_BINDINGS_CLOCK_RENESAS_R9A09G057_CPG_H__
+>
+Oops, I missed updating it after the file name change.
+
+Cheers,
+Prabhakar
 
