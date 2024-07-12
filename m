@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-85233-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85234-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 739B192F67F
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 09:50:36 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E99492F685
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 09:52:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2EC1228417D
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 07:50:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BF92B1C20EAB
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 07:52:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4ACBE142627;
-	Fri, 12 Jul 2024 07:49:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18B2C13B2BB;
+	Fri, 12 Jul 2024 07:52:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EyUkElFw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Du9tnVnN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22E6618E0E;
-	Fri, 12 Jul 2024 07:49:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E786313E02A
+	for <devicetree@vger.kernel.org>; Fri, 12 Jul 2024 07:52:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720770576; cv=none; b=bVXSIo5RWw18f6ExkDp7tMi75+QQIvjZEeHhI/4nfa9D996g05r5gPmKWriasVpv+0V98vlFa8wSzvcxTkV3p/dIGe6wwFE9FwwgQVRf2GfuWjbkKyCBDBl8nRkZrlIpwb5hqioLNlJw0KlumjFbTq+xv6b0Hudu66ST28xsBVI=
+	t=1720770761; cv=none; b=D22apynCwOxLxjX/m904QiwQsdzcnEIvJcXKYIeYyrqK3Yp68R83XPaR+seHGO5MJ0CfPnU8Ew1NeMPrM05IFwl/bzqwWp8ygGIhR8b6o3Xq7Sd9mXcFwLYIHHoyIzSwQCIcBYy81TeJErJNPFjjH0syNOSLC7/aR06Mx6aGXIw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720770576; c=relaxed/simple;
-	bh=3Xy0AWoFKijnyeboEO/jP9e9E0N7YQrUq/9LCT+Bszw=;
+	s=arc-20240116; t=1720770761; c=relaxed/simple;
+	bh=eO2ux8AXhbGTaeENzHGlzTR/FgbGlqXN2zWzFrDzLtw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OcaO2Bm7RIGX0g8+3xKZqIwv4Cw6D0ESdP0botsb2ogVj7OZyU9nM9PDEWmXAefkof8WgC4wKmGUTVWW4M6uXAETRx3E9vV2yu4KZkt49c+MGaGGNfG7FMamvEXpQjzncDGc52+Z+9gScKwLkB/DYqX3kNhAyWvfg2knHFwQJxE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EyUkElFw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5618BC3277B;
-	Fri, 12 Jul 2024 07:49:32 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=cBXZPEgfrfCex0/CW3owPKAyIuoX8yyS6DG6ZD/avOzrGm05MaHc+a6E6vZ7jj1fkGjs29keM0Zp+BGF5gsxWG4BIwlvHk/Di7dZpkmVWgLC71DB5kJT8Qkq4g334ZnUVWyyUG31OZwG3eh1AsQn8TrMcFGeSkudrpNu4C68G4Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Du9tnVnN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09746C4AF07;
+	Fri, 12 Jul 2024 07:52:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720770575;
-	bh=3Xy0AWoFKijnyeboEO/jP9e9E0N7YQrUq/9LCT+Bszw=;
+	s=k20201202; t=1720770760;
+	bh=eO2ux8AXhbGTaeENzHGlzTR/FgbGlqXN2zWzFrDzLtw=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=EyUkElFwy7+NAT23KHxX9xUJBFkcxE+qLbe+jYilhf99phl3dejLA1LIRVoMSYMmS
-	 sp2lJj4xQGA/usW0p3GrbHODv4IFQNEZTa/yF7Uunjoteed5m2+Et9AKDdUoQ7K5Ph
-	 KrBKK0dAh6ISGC7XE5dGJ7dm5oBI/g9cYhZvxfKoH9ZoshSrd6MXm2IwRKdvm/kcxi
-	 Bm5PDKzbng+OZMTpwtpSSlm82GmKSSNhXLZVOHlNooEMeFOf429W+6xJvKqW1/OB6X
-	 bvdOnf9DqHZA/Vg0SuUD27zRocAyDlLREgMY4U0bBry3RE8WoZNSr4FrY0EXqz+t3K
-	 PgO8Q3X1M+LxA==
-Message-ID: <bc3b08ee-f500-458a-b23f-0be4bbe0ed8b@kernel.org>
-Date: Fri, 12 Jul 2024 09:49:30 +0200
+	b=Du9tnVnNYSGY8lg6G9HUVlk/mNIJGTVaGQF0oOlHS/Hs0DSmalPsf3UkW/7rR2ExK
+	 M3ucFC7J8yPYW4aDBqX3x3sMla/j12tVTyTFo7qqyH1cQZKx3t7313llhBD+1b0bOK
+	 SZCeDnKjJQHAuVsofnNGZJlPnEkHxGsnwYkffy4zOahwekLWcSn1bPQeM49cX4u6Z1
+	 Cod5TZUhiSGqt1Gu7n80ZXa/y0C85q6Sne6DS0GusKDF/EmBrGT0KJmvoZJXnqjeN/
+	 aZ8zaIH+69LBSH+HihqSqXF+G+6wzReSX/+2kiyLBkj9f7UFNvRjjYdBWFtkp6cD7T
+	 s/livV6F4kjiw==
+Message-ID: <cb18f4bc-ed81-4a4c-8545-94a2950af0b2@kernel.org>
+Date: Fri, 12 Jul 2024 09:52:36 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/5] arm64: dts: amlogic: s4: add ao secure node
-To: xianwei.zhao@amlogic.com, Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20240712-soc_info-v1-0-05ba95929d5a@amlogic.com>
- <20240712-soc_info-v1-2-05ba95929d5a@amlogic.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: arm: amlogic: add support for Radxa
+ ZERO 2 Pro
+To: FUKAUMI Naoki <naoki@radxa.com>, neil.armstrong@linaro.org
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ khilman@baylibre.com, jbrunet@baylibre.com,
+ martin.blumenstingl@googlemail.com, devicetree@vger.kernel.org,
+ linux-amlogic@lists.infradead.org
+References: <20240711202013.26573-1-naoki@radxa.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,38 +103,40 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240712-soc_info-v1-2-05ba95929d5a@amlogic.com>
+In-Reply-To: <20240711202013.26573-1-naoki@radxa.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 12/07/2024 08:54, Xianwei Zhao via B4 Relay wrote:
-> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+On 11/07/2024 22:20, FUKAUMI Naoki wrote:
+> Radxa ZERO 2 Pro is a ultra tiny high performance SBC[1] using the
+> Amlogic A311D chip.
 > 
-> Add node for board info registers, which allows getting SoC family and
-> board revision.
+> [1] https://radxa.com/products/zeros/zero2pro
 > 
-> For example, with MESON_GX_SOCINFO config enabled we can get the
-> following information for board with Amlogic S4 SoC:
-> soc soc0: Amlogic S4 (S805X2) Revision 37:a (2:1) Detecte
+> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
 > 
-> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> ---
->  arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-> index c11c947fa18c..316905ec191c 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-> @@ -763,6 +763,12 @@ reset: reset-controller@2000 {
->  				#reset-cells = <1>;
->  			};
->  
-> +			sec_ao: ao-secure@10220 {
-> +				compatible = "amlogic,meson-gx-ao-secure", "syscon";
+> Changes in v2:
+> - none
 
-This is not gx, but s4, so incorrect compatible used. Same for all other
-patches.
+That's not a correct commit msg. Apply it and you will see... Also,
+won't pass SoB or checkpatch tests. Missing ---.
+
+> ---
+>  Documentation/devicetree/bindings/arm/amlogic.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
+> index 0647851ae1f5..66745b4f5eca 100644
+> --- a/Documentation/devicetree/bindings/arm/amlogic.yaml
+> +++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
+> @@ -157,6 +157,7 @@ properties:
+>                - bananapi,bpi-m2s
+>                - khadas,vim3
+>                - libretech,aml-a311d-cc
+> +              - radxa,zero-2pro
+>                - radxa,zero2
+>            - const: amlogic,a311d
+>            - const: amlogic,g12b
 
 Best regards,
 Krzysztof
