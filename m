@@ -1,166 +1,177 @@
-Return-Path: <devicetree+bounces-85206-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85207-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77D3492F511
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 07:27:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9F5F92F51D
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 07:40:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9BFA31C22B9E
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 05:27:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3DA5A2838C4
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 05:40:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA701199B8;
-	Fri, 12 Jul 2024 05:24:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 784AE18037;
+	Fri, 12 Jul 2024 05:40:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="jsOCNPzx"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="fK4qrFH+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AB8E1BC20
-	for <devicetree@vger.kernel.org>; Fri, 12 Jul 2024 05:24:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B15AEFC12;
+	Fri, 12 Jul 2024 05:40:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720761894; cv=none; b=qhbTqT3hk7Atyn6uQuvhIylnB8jbHoC/r0qM1BzRJazGnyMVt0EutnbLanNEWoyTeW/lThXlMXpsU55RNpKN7j+VfSRoRxUZo3lQ8fgBBZjqAZ5Z9G/t0ywHl8JUMuWPFMwjnlfwpcJqypzqxck0278mgZbnTLLKquvutiqXGvs=
+	t=1720762830; cv=none; b=SaKPjZWtKbUkUl7A8GWKzirgHJH87I3KxHN6k6zvutDYGiYmxCHkvLmIP4W+zJWMmqI3KnibjCWiX8SpRDc8aR9ZI0QwAjcNrVAXZ6qkUEoNPDL2eaS2225yqnql3MjBmmqn0RMvfJPmbbPHtW4rHdZx4GvK0ILqCxgoE9sKH7A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720761894; c=relaxed/simple;
-	bh=XHfigyBjT+CgXGMlCvld9DMNDHAk27FSPXgPpwiz43o=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CG+83GGtQxDJCNt3PP6D6vo537yv5N37iTKglgCySyvG6qMY4NEUCkWqMODX2eR4t1+KdO+mjylA+1OD3x5FffncFGciboAyp++Imebb6qXaMS33DkkdaKLd57aj2QyETuxwDCfdYJ3OUfsWp51P/FE4FvwgHcHnz3CYAMg7d0o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=jsOCNPzx; arc=none smtp.client-ip=209.85.208.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-58bac81f3f9so1995801a12.2
-        for <devicetree@vger.kernel.org>; Thu, 11 Jul 2024 22:24:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1720761891; x=1721366691; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=FGo+hSrAlPy13Ul/ZVnWIL7u/LbXO49zCpNTXIfAOyw=;
-        b=jsOCNPzxIwQ0wiDhaIMKvWpBOKmmhsl4JNTaEHZZffd6Y8NIZntn8sNefb1CS0H5El
-         2IqliBJ6g/PauXR4ubVKI93Bk27I9GMzBybjUWRSKlrblHvVjRfQvXC3mdBhIYo8vNtg
-         6tqzt3Hibqy+jlt1FAMXetj4O2dogURZhTLtrsOqqwKyyl60n59tL/gyjHMKJsxYs01+
-         91EruymJ/u11f+PsAbTnE46qe9oSbiQNReHBthdtF+jUS00VAUson4SYgzsh+gdNp/ko
-         GxbPLXW2Dm1wbu3lTmPJuCNUs/5tMnTqBQtxXzggHBjrCheKOwy6NQvQuCmWDTw/hP9Q
-         s7oA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720761891; x=1721366691;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FGo+hSrAlPy13Ul/ZVnWIL7u/LbXO49zCpNTXIfAOyw=;
-        b=S8UOCE5WpygBY20V0jl89OkDbfrXcyTRd+Q6ASxuAJg1W6jfzcUAryf020fMJbB4UY
-         tiFPqrkajdN5U4HonDF0npbbNumw+DAlAQmkydzhKU8jtfGK4DFDMPxhtT9S/uXJh9Wx
-         bwaEa9fZD2gPpVUPeBGnuWSQlczTeLlkNYEn819eP9sZam85AS7jVaax1Im9rSS6LPE1
-         V6zWPyK/I3E5UiM4vM/LJHonwv+HuJpuJXobi3ADLCtE5tQ29R0NyGjAS3np9EkJpKwk
-         68Fpn6avbTJSVK2NsNhrI7qE7X0poRXhAKMuFyFNWWhL/b5iB/bwmP2dC2wAC656txju
-         ggjw==
-X-Forwarded-Encrypted: i=1; AJvYcCXdHlQZlGQl+IEx+SW5j90EDQEyHiZjy1aTWPU7c5RZYnuaBKKa20n9k7HSfvqYhca+ddjq8OSt98WgNenOYRCqL8cKb2eWCy7T/w==
-X-Gm-Message-State: AOJu0YyfHXd4HJNiu4DEtcAdbTZDTdNFBWTMjauU0ulkyXYkZKPnYxqV
-	odzVZsCR+E8XSJfPMhEuQ5mbDU3k08d5yWLE4jxDUsdsYxgDeKlGQ7Txc1hsUTk=
-X-Google-Smtp-Source: AGHT+IEd96HjaarzC2ykB4hyN1Fc9UhtgUOEzJTAlsfbZc1qt4dSfkTHdoOS6/uDl2YbmzC9DkaZsg==
-X-Received: by 2002:a17:906:28cf:b0:a77:e0ed:8c2 with SMTP id a640c23a62f3a-a780b89f6b5mr559350666b.71.1720761890635;
-        Thu, 11 Jul 2024 22:24:50 -0700 (PDT)
-Received: from localhost ([2a02:8071:b783:6940:d576:ed0d:77d7:71c7])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a797f300b05sm193858066b.134.2024.07.11.22.24.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Jul 2024 22:24:50 -0700 (PDT)
-Date: Fri, 12 Jul 2024 07:24:47 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-To: Guenter Roeck <linux@roeck-us.net>
-Cc: Chris Packham <chris.packham@alliedtelesis.co.nz>, jdelvare@suse.com, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pwm@vger.kernel.org
-Subject: Re: [PATCH v5 3/3] hwmon: (adt7475) Add support for configuring
- initial PWM state
-Message-ID: <2oyfx2i7bsadqmlqtmqhc2ee6vn4r7knfyq5kizgdjx3zpov6c@isiflqgza2gc>
-References: <20240711234614.3104839-1-chris.packham@alliedtelesis.co.nz>
- <20240711234614.3104839-4-chris.packham@alliedtelesis.co.nz>
- <bd2b256b-5149-491a-a482-6e4488467fa5@roeck-us.net>
+	s=arc-20240116; t=1720762830; c=relaxed/simple;
+	bh=hvyFx3I4Ha1qkqZiA0VG/4TdPG0Oy8Q8M9MNYd24II4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=gOuVLJqXwEC1c0cHE1793oB9cdTEpQSp/1/UuLjpJ4M058oOcjSfBEwWMn4aRi3WxuXCff/AbUl04gmiffoedCFB2JqfZeq4injGwlb9WMZU5nj56Q7YtPgl87NKYbihde6bnFvkdA5ys9ZSeARyWy378bfsn2ZQ0Ym9/9XDigA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=fK4qrFH+; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46C2eofX008746;
+	Fri, 12 Jul 2024 05:40:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	S+lQpm2m3jaaBULrxGFN2wLiGoIoLBtU+dUdkmZdDK4=; b=fK4qrFH+7aywWD6S
+	DGMS4440AsziEWMn+oUvITgxViF+mzLu9gekwL2pDW//seGzL+vbNW+Blcxl/km3
+	c5c9ItlWcY7aY0Hcn22Uy12PwClh6WB6U/fdJbviYlVD3Dd+2jlvUF7BbdXtXXc0
+	+6f60JQz0LbpMKLXiWnjL9owweXbVxx48cYzgCGeorVsBimTNsVS0fEXktpneaRl
+	ZGKjXHY9WIwh64nYRasfXFMmXdUluOPQLshOpLKTarpAuzcOldfcaR/Y6DA88Hui
+	zeElgSEXHTUDT9nW5K5/MMDBfl6s/CJUTZaTG1J+MUQbtY4IzUNoqIgX9aDTg0Oa
+	iCaQoA==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 406x51ef86-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 12 Jul 2024 05:40:24 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 46C5eI33002900
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 12 Jul 2024 05:40:18 GMT
+Received: from [10.239.132.204] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 11 Jul
+ 2024 22:40:13 -0700
+Message-ID: <072da4b0-2d6c-4342-a1f4-451f4ff791fc@quicinc.com>
+Date: Fri, 12 Jul 2024 13:40:11 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="fbml44lxa55gm2fp"
-Content-Disposition: inline
-In-Reply-To: <bd2b256b-5149-491a-a482-6e4488467fa5@roeck-us.net>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] dt-bindings: soc: qcom,aoss-qmp: Document the QCS9100
+ AOSS channel
+To: Chris Lew <quic_clew@quicinc.com>, Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <kernel@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20240709-document_qcs9100_aoss_qmp_compatible-v2-1-6c7f35bc9ec3@quicinc.com>
+ <24302005-d9a5-400e-a28c-40276a3f7250@quicinc.com>
+From: Tengfei Fan <quic_tengfan@quicinc.com>
+In-Reply-To: <24302005-d9a5-400e-a28c-40276a3f7250@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 7kv-dtF8Y_UZ0R4dBTVod6M61i7tHQDU
+X-Proofpoint-ORIG-GUID: 7kv-dtF8Y_UZ0R4dBTVod6M61i7tHQDU
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-12_03,2024-07-11_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 adultscore=0
+ suspectscore=0 impostorscore=0 mlxlogscore=999 mlxscore=0 bulkscore=0
+ priorityscore=1501 malwarescore=0 lowpriorityscore=0 phishscore=0
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2406140001 definitions=main-2407120037
 
 
---fbml44lxa55gm2fp
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jul 11, 2024 at 09:37:29PM -0700, Guenter Roeck wrote:
-> On 7/11/24 16:46, Chris Packham wrote:
-> > By default the PWM duty cycle in hardware is 100%. On some systems this
-> > can cause unwanted fan noise. Add the ability to specify the fan
-> > connections and initial state of the PWMs via device properties.
-> >=20
-> > Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
-> > ---
-> ...
-> > +static int adt7475_pwm_properties_parse_reference_args(struct fwnode_h=
-andle *fwnode,
-> > +						       struct adt7475_pwm_config *cfg)
-> > +{
-> > +	int ret;
-> > +	struct fwnode_reference_args args =3D {};
-> > +	int freq_hz;
-> > +	int duty;
-> > +
-> > +	ret =3D fwnode_property_get_reference_args(fwnode, "pwms", "#pwm-cell=
-s", 0, 0, &args);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	if (args.nargs !=3D 4) {
-> > +		fwnode_handle_put(args.fwnode);
-> > +		return -EINVAL;
-> > +	}
-> > +
-> > +	freq_hz =3D 1000000000UL / args.args[1];
-> > +	duty =3D 255 / (args.args[1] / args.args[3]);
-> > +
-> You'll need to validate args.args[1] and args.args[3] to ensure that ther=
-e are no
-> divide by 0 errors.
->=20
-> On a side note,
-> 	a =3D b / (c / d) =3D=3D b / c * d (at least for d !=3D 0)
-> Since the result is defined for d =3D=3D 0, you'd only have to make sure
-> that args.args[1] > 0 and that the result for the duty cycle is <=3D 255.
+On 7/11/2024 3:58 AM, Chris Lew wrote:
+> Hi Tengfei,
+> 
+> On 7/9/2024 7:24 AM, Tengfei Fan wrote:
+>> Document the Always-On Subsystem side channel on the QCS9100 Platform.
+>> QCS9100 is drived from SA8775p. Currently, both the QCS9100 and SA8775p
+> 
+> /s/drived/derived/
 
-On a side side note: Depending on the actual values it might be
-beneficial to use
+ACK.
 
-	b * d / c
+> 
+>> platform use non-SCMI resource. In the future, the SA8775p platform will
+>> move to use SCMI resources and it will have new sa8775p-related device
+>> tree. Consequently, introduce "qcom,qcs9100-aoss-qmp" to describe
+>> non-SCMI based AOSS channel.
+>>
+> 
+> Were there any differences between non-SCMI and SCMI based platforms 
+> specifically for the qcom_aoss.com driver?
+> 
+> 
+>> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
+>> ---
+>> Introduce support for the QCS9100 SoC device tree (DTSI) and the
+>> QCS9100 RIDE board DTS. The QCS9100 is a variant of the SA8775p.
+>> While the QCS9100 platform is still in the early design stage, the
+>> QCS9100 RIDE board is identical to the SA8775p RIDE board, except it
+>> mounts the QCS9100 SoC instead of the SA8775p SoC.
+>>
+>> The QCS9100 SoC DTSI is directly renamed from the SA8775p SoC DTSI, and
+>> all the compatible strings will be updated from "SA8775p" to "QCS9100".
+>> The QCS9100 device tree patches will be pushed after all the device tree
+>> bindings and device driver patches are reviewed.
+>>
+>> The final dtsi will like:
+>> https://lore.kernel.org/linux-arm-msm/20240703025850.2172008-3-quic_tengfan@quicinc.com/
+>>
+>> The detailed cover letter reference:
+>> https://lore.kernel.org/linux-arm-msm/20240703025850.2172008-1-quic_tengfan@quicinc.com/
+>> ---
+>> Changes in v2:
+>>    - Split huge patch series into different patch series according to
+>>      subsytems
+>>    - Update patch commit message
+>>
+>> prevous disscussion here:
+>> [1] v1: 
+>> https://lore.kernel.org/linux-arm-msm/20240703025850.2172008-1-quic_tengfan@quicinc.com/
+>> ---
+>>   Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.yaml | 1 +
+>>   1 file changed, 1 insertion(+)
+>>
+>> diff --git 
+>> a/Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.yaml 
+>> b/Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.yaml
+>> index 7afdb60edb22..80e1a8b43586 100644
+>> --- a/Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.yaml
+>> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.yaml
+>> @@ -25,6 +25,7 @@ properties:
+>>     compatible:
+>>       items:
+>>         - enum:
+>> +          - qcom,qcs9100-aoss-qmp
+>>             - qcom,qdu1000-aoss-qmp
+>>             - qcom,sa8775p-aoss-qmp
+>>             - qcom,sc7180-aoss-qmp
+>>
+>> ---
+>> base-commit: 0b58e108042b0ed28a71cd7edf5175999955b233
+>> change-id: 20240709-document_qcs9100_aoss_qmp_compatible-a7376629ea6c
+>>
+>> Best regards,
 
-instead. b * d might overflow, but in other cases (e.g. b =3D 7, c =3D 8, d
-=3D 8) the resulting precision is much better.
-
-Best regards
-Uwe
-
---fbml44lxa55gm2fp
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmaQvhwACgkQj4D7WH0S
-/k5O9gf/SRj0PUdgLMLU7/WvQKY+E2t8EHpYd7Ezpg7XKdpfVoFl8mOROFQuPS9M
-AUghvoi+cNAapjf32YjAxAef+rAdcJTO9CANrvFYPcKsuLe9yy2OlJR5bP4tUfHp
-gHmrNspPISVFl9BTiJfx+EPzcFfQbP6G6QYEV6D7AoRH97OjG/lG8qKFkdJkK774
-Lhj107eoxG5FVpAU0hS+e6nNKgO4qUCS0UMJPVBM5mqdIPLkEasfyONZF126cOQd
-uQHHFduf1JeEaC5hZlIWpKW8clyFnMzlNReCUfXE5K1m4jDul76Eh1Zb8AQL1TJu
-9nA5zTUPZlrjGYIG+ZwgvQCiV1jy6A==
-=YCbH
------END PGP SIGNATURE-----
-
---fbml44lxa55gm2fp--
+-- 
+Thx and BRs,
+Tengfei Fan
 
