@@ -1,63 +1,74 @@
-Return-Path: <devicetree+bounces-85454-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85455-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAE5293016A
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 23:03:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45F35930174
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 23:08:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2F154B2194C
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 21:03:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 74E611C211B0
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 21:08:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F43B34CE5;
-	Fri, 12 Jul 2024 21:03:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CC5149626;
+	Fri, 12 Jul 2024 21:07:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="UHy4r4np"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="M+KXEAFw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5D6D47F41;
-	Fri, 12 Jul 2024 21:03:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61304487B3
+	for <devicetree@vger.kernel.org>; Fri, 12 Jul 2024 21:07:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720818218; cv=none; b=cgLCQIMrmwYQ77OlXiIeLiTScKpeaMwZVGS7nLZ5W9285jLiTPcrvUyjEmQsf4bT1nqO+Yn9X4DVGQW7iAVCiBNaIn3E5Ev8HgQ6Egmq8h2Ki2altzzHro5+5xBi7QXGeXxc230rFQ57j/d4EqloqJ/2u+iPJCkJq/RwTZ1r46o=
+	t=1720818477; cv=none; b=OH/z/cG9epqg4idSR4iGQEtvsbB7IAoWWwokpgLbgqzj9imfefIs2c6wYLSekkeaLMP5RQwazDaRGCG/M/npefTLfPnp+E7h0KX8j52P6QpE4hsTAcvw8ZFk9YsYGIAuN63HJWlHi3j/Es8ZI8QoM2P6kGRsHWTM7sxfF86qCXs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720818218; c=relaxed/simple;
-	bh=xzSr4rTygjq40NySqIzPz/YhF/sBRLmGmXQ9xrTIJYQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=SlEWNO/BXmh35zCmzPeU8oMv+aU4nOlNHuPt+rEw7oe68LV7N0JLc5xLdPTTXXH42uBOf2+SswOWYFgSZF9p7WkxNZbvmwcXiEDtrI6rJs6RqH2eabVuAyQ6Ba+6+WN6ftoyhvTZeueFc89ATCbZyAKEA+0Ti0IjHGXq8GjR37w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=UHy4r4np; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46CEB3ul009130;
-	Fri, 12 Jul 2024 21:03:20 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	BQNyKzaB1t/sXuLQaAphOIYHQ+AM6KkZNjTtrGtunoc=; b=UHy4r4npUwwJ7u/O
-	LF4+qrCtnkF+igi18P0qDQ/4f6s8LzL5eOUT6X0XSjO4SYtIBBtX2ESUZcpjRdFs
-	zjizt+Gpbtq+Pxw3eI8QAU/b8/JeN1C9wvJqokoIlLCYzic0GzhJJPKfRcCL2j4r
-	CeWEdADKTML95pCOHMKjBIURkfJsIeDH9dpW28XoZQYMTcOZdd23jTqApn4SNno7
-	ZXMJ5WfR04lLYorOuaOygdm22lPm1VBILCyQnlm3sunR9lJ15L3/LYZcmuL83Em/
-	j+Jux4Djq8cpXYyoTBWUDz90D1cTqexUlV0RWvSPCwHt/WMjzjIJa6BHLHaD752a
-	xJxibg==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4091jdtjxv-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 12 Jul 2024 21:03:19 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA04.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 46CL3Iq3032258
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 12 Jul 2024 21:03:18 GMT
-Received: from [10.71.108.229] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 12 Jul
- 2024 14:03:18 -0700
-Message-ID: <4f1a3bcb-31b0-4688-b6e5-92a940cf2881@quicinc.com>
-Date: Fri, 12 Jul 2024 14:03:17 -0700
+	s=arc-20240116; t=1720818477; c=relaxed/simple;
+	bh=7Cm88/6Mbf88RzoSxmJ3Qlv7IJR9YSotepXJlOAWIic=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=BbJZ4O+jIauuzbzRiOimQthOgx9mLVq6BbQob5R2IL8IvWTFUxXlb79idZI6xgqW+8eO6NMRYd+cOvVtHu+mxQYlsrTnGhl9Ehr3nhHLYTYo3A5uSCgM+Gtj0DonYKgoYWj6c9iBOk/9Ih1Yh6id+wV6QTw2ir5GA6GAD9IWyqk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=M+KXEAFw; arc=none smtp.client-ip=209.85.160.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-25dfb580d1fso1208769fac.2
+        for <devicetree@vger.kernel.org>; Fri, 12 Jul 2024 14:07:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1720818474; x=1721423274; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=fq4KkMj11vqcNNXM8EwtAU8v4pHupusWEImjez7Pt5o=;
+        b=M+KXEAFwnDkvZpiCGJ1fZBhp+ECUJoLb+t8gUqddAEjESnorNvqc4x5Yy2ZzYdLqhu
+         yErgtzqaO5hT4C+kbLqYPy8uWwG8o9NbqWHM7tQ5SuzB1B/zhe8AnLDHwgSnnFHapPdv
+         9WpqEDpSul9u+Ut79lBDy/OPydoss4c2vieQ9SPLRrYJyLFsQlSGoNeqVx0H9mBdZ2FO
+         CEHjw2pQnKzg2ae7NeUy3I0xcUmoJKnJ7gz3PMzTjUUnGLh7cWEQD0jIRLal5H01G0u3
+         A75XB0EG7mJDIqBfjdQhNrRu/T5JnOev6OrLrFCkhwWOdYB7lXtZR8mt2Yu4UokMU8+6
+         CVUQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720818474; x=1721423274;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=fq4KkMj11vqcNNXM8EwtAU8v4pHupusWEImjez7Pt5o=;
+        b=f4HekzgPbGqCUFUV0DAdSggmkTtDPDWNphbhx3C4RDHXyl46IH0U5XKM3/TiG8ffI5
+         +SctO29JrPgSXaLMVrAGsFxA9IOFWUG5ywy6+r9cMhjDhHg4h48Gfp8PRBi8u2EwsmNq
+         fetVrxeIqOxdSVjFFGN0UvCqld9BPQPejdyNediJTVFZUfe2pSMeu8fLlt6NN2HEwLI9
+         ksaHHkK1+ayNjplvPlgUFC+uE4z6K09Ywxn2Z5EXsZDvMk77qc6aKZ/XBL2srUDDOCtR
+         YWvsRQJSyLvMDv3iai+c8TVv8U3XT3IcpsVPidYIEb2DQjRwIzv3loBGIXKGMSoz7px9
+         gq4w==
+X-Forwarded-Encrypted: i=1; AJvYcCUlqq47LjTjIVQi575pgrDxqRSPAVJtCiGi+iqGzMC06JkJbpIiMOl5EZ1BS1pgWC4tWHPWFTVMU6SAb5fDqlSqMX8qlBvPxgsueQ==
+X-Gm-Message-State: AOJu0YzeXysDb0eaHbnXH66gxSPToaKljryPXyfwhoBVg7Pua7TyLCLW
+	2PZ+SDiVzqyfiF8Fn0AhwL+xx7puM21UQSgOMCqXLqDOUkaVq/xGVcABVsKHQWE=
+X-Google-Smtp-Source: AGHT+IEoXuUJo/PhE68eMUnJlCNcQbocfp7ikjcwp+WLVN3kx8wks5LBo4mswSpy1LlRkxQBiHpZ5Q==
+X-Received: by 2002:a05:6870:700e:b0:24f:d498:5e01 with SMTP id 586e51a60fabf-25eaec6da3bmr11467594fac.57.1720818474317;
+        Fri, 12 Jul 2024 14:07:54 -0700 (PDT)
+Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-704495a9e0asm1130090a34.81.2024.07.12.14.07.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 12 Jul 2024 14:07:53 -0700 (PDT)
+Message-ID: <5d1f63b1-5196-423a-a967-5fb2d9fef979@baylibre.com>
+Date: Fri, 12 Jul 2024 16:07:52 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,127 +76,30 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] drm/panel: simple: add Innolux G070ACE-LH3 LVDS
- display support
-To: Steffen Trumtrar <s.trumtrar@pengutronix.de>,
-        Neil Armstrong
-	<neil.armstrong@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maarten
- Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard
-	<mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie
-	<airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>
-CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <kernel@pengutronix.de>
-References: <20240712-b4-v6-10-topic-innolux-v1-0-bb0acf273d0d@pengutronix.de>
- <20240712-b4-v6-10-topic-innolux-v1-2-bb0acf273d0d@pengutronix.de>
+Subject: Re: [PATCH v7 5/7] dt-bindings: iio: adc: Add AD4000
+To: Marcelo Schmitt <marcelo.schmitt@analog.com>, broonie@kernel.org,
+ lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ nuno.sa@analog.com, corbet@lwn.net, marcelo.schmitt1@gmail.com
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-spi@vger.kernel.org, linux-doc@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>
+References: <cover.1720810545.git.marcelo.schmitt@analog.com>
+ <98c82e0a2a868a1578989fe69527347aa92083d7.1720810545.git.marcelo.schmitt@analog.com>
 Content-Language: en-US
-From: Jessica Zhang <quic_jesszhan@quicinc.com>
-In-Reply-To: <20240712-b4-v6-10-topic-innolux-v1-2-bb0acf273d0d@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <98c82e0a2a868a1578989fe69527347aa92083d7.1720810545.git.marcelo.schmitt@analog.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: jWJj7v02I0_F3zGgfULG9Tfor_3n9vKU
-X-Proofpoint-ORIG-GUID: jWJj7v02I0_F3zGgfULG9Tfor_3n9vKU
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-07-12_16,2024-07-11_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 bulkscore=0
- lowpriorityscore=0 adultscore=0 spamscore=0 malwarescore=0 mlxlogscore=999
- mlxscore=0 priorityscore=1501 phishscore=0 clxscore=1011 impostorscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2406140001
- definitions=main-2407120143
 
-
-
-On 7/12/2024 4:05 AM, Steffen Trumtrar wrote:
-> The G070ACE-LH3 is a 7" TFT Color LCD module with WLED backlight.
+On 7/12/24 2:22 PM, Marcelo Schmitt wrote:
+> Add device tree documentation for AD4000 series of ADC devices.
 > 
-> https://www.data-modul.com/sites/default/files/products/G070ACE-LH3-specification-12058417.pdf
-> 
-> Signed-off-by: Steffen Trumtrar <s.trumtrar@pengutronix.de>
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
 > ---
->   drivers/gpu/drm/panel/panel-simple.c | 35 +++++++++++++++++++++++++++++++++++
->   1 file changed, 35 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
-> index dcb6d0b6ced06..d3ce78643fd86 100644
-> --- a/drivers/gpu/drm/panel/panel-simple.c
-> +++ b/drivers/gpu/drm/panel/panel-simple.c
-> @@ -2509,6 +2509,38 @@ static const struct panel_desc innolux_g070y2_l01 = {
->   	.connector_type = DRM_MODE_CONNECTOR_LVDS,
->   };
->   
-> +static const struct display_timing innolux_g070ace_lh3_timing = {
-> +	.pixelclock = { 25200000, 25400000, 35700000 },
-> +	.hactive = { 800, 800, 800 },
-> +	.hfront_porch = { 32, 32, 32 },
-> +	.hback_porch = { 31, 31, 31 },
-> +	.hsync_len = { 1, 1, 1 },
 
-Hi Steffen,
+Reviewed-by: David Lechner <dlechner@baylibre.com>
 
-The min/max horizontal and vertical porches here don't seem to add up to 
-the min/max [HV]blanks specified in the datasheet linked in the commit 
-msg. Any reason for that?
 
-Thanks,
-
-Jessica Zhang
-
-> +	.vactive = { 480, 480, 480 },
-> +	.vfront_porch = { 5, 5, 5 },
-> +	.vback_porch = { 4, 4, 4 },
-> +	.vsync_len = { 1, 1, 1 },
-> +	.flags = DISPLAY_FLAGS_DE_HIGH,
-> +};
-> +
-> +static const struct panel_desc innolux_g070ace_lh3 = {
-> +	.timings = &innolux_g070ace_lh3_timing,
-> +	.num_timings = 1,
-> +	.bpc = 8,
-> +	.size = {
-> +		.width = 152,
-> +		.height = 91,
-> +	},
-> +	.delay = {
-> +		.prepare = 10,
-> +		.enable = 450,
-> +		.disable = 200,
-> +		.unprepare = 510,
-> +	},
-> +	.bus_format = MEDIA_BUS_FMT_RGB888_1X7X4_SPWG,
-> +	.bus_flags = DRM_BUS_FLAG_DE_HIGH,
-> +	.connector_type = DRM_MODE_CONNECTOR_LVDS,
-> +};
-> +
->   static const struct drm_display_mode innolux_g070y2_t02_mode = {
->   	.clock = 33333,
->   	.hdisplay = 800,
-> @@ -4599,6 +4631,9 @@ static const struct of_device_id platform_of_match[] = {
->   	}, {
->   		.compatible = "innolux,g070ace-l01",
->   		.data = &innolux_g070ace_l01,
-> +	}, {
-> +		.compatible = "innolux,g070ace-lh3",
-> +		.data = &innolux_g070ace_lh3,
->   	}, {
->   		.compatible = "innolux,g070y2-l01",
->   		.data = &innolux_g070y2_l01,
-> 
-> -- 
-> 2.45.1
-> 
 
