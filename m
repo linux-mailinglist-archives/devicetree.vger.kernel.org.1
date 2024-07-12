@@ -1,334 +1,95 @@
-Return-Path: <devicetree+bounces-85249-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85250-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D119792F751
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 10:55:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4F5592F76D
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 10:58:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5F1C11F21300
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 08:55:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 020561C20749
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 08:58:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A48214373A;
-	Fri, 12 Jul 2024 08:54:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7128A1428F9;
+	Fri, 12 Jul 2024 08:57:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="p+FR6TMe"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="JPD76uEA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD8EA142634
-	for <devicetree@vger.kernel.org>; Fri, 12 Jul 2024 08:54:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C44585C56;
+	Fri, 12 Jul 2024 08:57:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720774472; cv=none; b=cBZaoE0NSKxkb7T/LWcgkQhQL4uuMsq3LhKdqNjQ6T++24U/+baeKcTdALxOaeZTnE2aYyJESzBMv+ZRMlw2mhi5+k2QuMDOXhS/kG1A1tLQgOObcqbxXuVFrpOZ818s7PQpJl+5nT43iOpsQKofz5+tTnXl8NW/NhKQ6UQiUd4=
+	t=1720774676; cv=none; b=gxQWr/8/4MXwj9J9ueLyFIrncBeqpzsN2SaJuoi5kSshkKHLVt7atIfgxyZMecq28vcND8P9/WNpycrHMJJ+kuxeK23s1jN73EGG7vVsMJPfr+O9IVdVp8onUbBdfgbf0Qu6eiaKHEGnyIUdVZQ1U8UM0GFelUqt0ID4Tq4TadQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720774472; c=relaxed/simple;
-	bh=Wbb1FijNhfNROnsYW4E19syqV9gjAepOgcjzWx0x5AU=;
+	s=arc-20240116; t=1720774676; c=relaxed/simple;
+	bh=ZDPJYP6gEFHp66c3ESY9RhdT01J6PR01gUJB4J2mFHM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hNY7E3prlcayVbowpHe0aEeQzkwglQKrLjqI9DFNRE0WtkwqDDgAEXcjQ9DYOZ6W65vlVAS0sxM8CMCx0T75rZ2vynoc5Sa2DCz/EVJ2+bnTeLq8Jfi6Mj2q1QJ1K2htmpUxSgn9H6g9lDC4D+IctlJ42A7j3teGGnuUvKyg5r0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=p+FR6TMe; arc=none smtp.client-ip=209.85.221.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-36798ea618bso1021957f8f.0
-        for <devicetree@vger.kernel.org>; Fri, 12 Jul 2024 01:54:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1720774468; x=1721379268; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Y9InJSzy0ES6bg+8MGtn3MK1Bwf9ZBDLRJ2XsmfgOvc=;
-        b=p+FR6TMexOC0wwTjPHpxlHihnG81Ytf9J7jEI/CuNNWmhtyx+4joA3Sh1Tz9D38/C/
-         Fe3z3DRtKKOM+gANOVE4/bqjudVV6QQtSp9fiSXcRMsdpdHOmCAxGjIxGfH9Z3wFA5rg
-         zk5ZzmHVK26uhMT3NhsSN+RhpZksBdvBvVgoFsvAdkEHqQqDbS068nPMzxeC1W1xkY1g
-         yLg5GppgxEdbjKgH2bgtBN0nvlMN/Qw+19NmAqrU8WF/aFag2fjVmllU3BkYq6VdHhRa
-         /ocZO+oS2zbxXTqdu0jGkPDx+QXE2Eyccc4Lhs2Mob6h74HIiOMKEjjvAWdftyF2LQdc
-         v4fg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720774468; x=1721379268;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Y9InJSzy0ES6bg+8MGtn3MK1Bwf9ZBDLRJ2XsmfgOvc=;
-        b=SafJIz5G1vfc6o/kcjc0SiQydj0tk38zTyvZO8Da7z5vr6Z9f/X3+BpLq8ZFLWYKuz
-         Aq8TMoXH748XoStHMlV+vseQIfoaK0EwI0q9j8VsUEFsC5V1vIZfbYWjfttm0N6NldLS
-         zOKR50iOwOvYJMCVMPCUrbtZHkRpVT8XOkJ9fSfK84V/SKlSgPdazMDxalBsuARuWJaO
-         8XnnOETzYvlqHxSjuH7hBKygBA8FOUVJToh5YKtw8+PysBoy/IaVryKZ0WQj1O0AvQDG
-         A72JiXPRuLfslU5dDTzvlVsaowCgwH3sC1JTgsI8dDghlx5KTD9hzT1af4xZ/g1lO+Md
-         4qBA==
-X-Forwarded-Encrypted: i=1; AJvYcCWvGZZDOZMXJOTwiVoCX6ux1L3p+IH5pUJXXKfPRWmzOC5T9Z/QRdzPHqQg1rR1ae5M4NOiQdkk0JdgXQ+RFFTNbSR1JKn9fUoRNQ==
-X-Gm-Message-State: AOJu0YzluGfBmyOAF29lsIte+CE8jWd0aL0hx667A7woX43WKjGidv2a
-	fEOhXethcJz0OS7PWWUGTePw6686EbDapi9bIWUm7v8ZzrZeeuDqqcN6KeBPZvs=
-X-Google-Smtp-Source: AGHT+IHD4MV1Mmsw+K5iradfuCMgKB56j98M6M1zcRyASCH4zkXlQMd8jezMCRK6rG3ByRTw0+9ZzA==
-X-Received: by 2002:adf:eb81:0:b0:367:9ce3:167a with SMTP id ffacd0b85a97d-367ceadb3e7mr7065472f8f.64.1720774468043;
-        Fri, 12 Jul 2024 01:54:28 -0700 (PDT)
-Received: from localhost (p50915eb1.dip0.t-ipconnect.de. [80.145.94.177])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-367cdfa067dsm9712869f8f.78.2024.07.12.01.54.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Jul 2024 01:54:27 -0700 (PDT)
-Date: Fri, 12 Jul 2024 10:54:26 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-To: Farouk Bouabid <farouk.bouabid@cherry.de>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Quentin Schulz <quentin.schulz@cherry.de>, Heiko Stuebner <heiko@sntech.de>, linux-pwm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH 2/6] pwm: add mule pwm-over-i2c driver
-Message-ID: <5hd7fndgivgusx76wq6mbvgefngd3tllqsfsk6pppbphchczte@ujagkep4miet>
-References: <20240529-buzzer_support-v1-0-fd3eb0a24442@cherry.de>
- <20240529-buzzer_support-v1-2-fd3eb0a24442@cherry.de>
+	 Content-Type:Content-Disposition:In-Reply-To; b=qiMICaO9BpCNMlBylaY2aAlZIsFhqBGhwtOjgdKxLsb0tUevz5/SyEPVCuY9Pv8pj9+O3lyyEXrdeLQjE9bfSu959p5zbE8FyubLe/a+walgsX03pkz0wdQU7qJ8FyzcReLY8dj66lXfHamMmd+6+hKu3vygKqPeulAvsSK9+l4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=JPD76uEA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70DECC4AF07;
+	Fri, 12 Jul 2024 08:57:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1720774676;
+	bh=ZDPJYP6gEFHp66c3ESY9RhdT01J6PR01gUJB4J2mFHM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=JPD76uEAdymfQ6rUYx7G7vVoXJ1i2ObDyz6P+jHwzw+AlM/MpAYOICVasBqnWnPyt
+	 bt8SzfCuc1oYrNxwSmtgbxvUGgZB+U5m5idnQ2RM20MPreSDu1sJMR6OjzY1gP8tcu
+	 iMvDNLxzaUpNRCY8Rgw4pW1A/YQyI82ki/+x48qE=
+Date: Fri, 12 Jul 2024 10:57:53 +0200
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Rob Herring <robh@kernel.org>
+Cc: Herve Codina <herve.codina@bootlin.com>, Lee Jones <lee@kernel.org>,
+	Andy Shevchenko <andy.shevchenko@gmail.com>,
+	Simon Horman <horms@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+	UNGLinuxDriver@microchip.com,
+	Saravana Kannan <saravanak@google.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Lars Povlsen <lars.povlsen@microchip.com>,
+	Steen Hegelund <Steen.Hegelund@microchip.com>,
+	Daniel Machon <daniel.machon@microchip.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Horatiu Vultur <horatiu.vultur@microchip.com>,
+	Andrew Lunn <andrew@lunn.ch>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, netdev@vger.kernel.org,
+	linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	Allan Nielsen <allan.nielsen@microchip.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v3 6/7] mfd: Add support for LAN966x PCI device
+Message-ID: <2024071226-cherisher-stumble-56e7@gregkh>
+References: <20240627091137.370572-1-herve.codina@bootlin.com>
+ <20240627091137.370572-7-herve.codina@bootlin.com>
+ <20240711152952.GL501857@google.com>
+ <20240711184438.65446cc3@bootlin.com>
+ <2024071113-motocross-escalator-e034@gregkh>
+ <CAL_Jsq+1r3SSaXupdNAcXO-4rcV-_3_hwh0XJaBsB9fuX5nBCQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="wbrgntclef5fmbs4"
-Content-Disposition: inline
-In-Reply-To: <20240529-buzzer_support-v1-2-fd3eb0a24442@cherry.de>
-
-
---wbrgntclef5fmbs4
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <CAL_Jsq+1r3SSaXupdNAcXO-4rcV-_3_hwh0XJaBsB9fuX5nBCQ@mail.gmail.com>
 
-Hello,
+On Thu, Jul 11, 2024 at 02:33:26PM -0600, Rob Herring wrote:
+> In this case, all the child devices are already supported as platform
+> devices. There would be zero benefit to add all the boilerplate to
+> make their drivers both platform and aux bus drivers. Plus there is
+> zero DT support in aux bus.
 
-On Wed, May 29, 2024 at 12:10:31PM +0200, Farouk Bouabid wrote:
-> Mule is a device that can output a PWM signal based on I2C commands.
->=20
-> Add pwm driver for Mule PWM-over-I2C controller.
->=20
-> Signed-off-by: Farouk Bouabid <farouk.bouabid@cherry.de>
-> ---
->  drivers/pwm/Kconfig    |  10 +++++
->  drivers/pwm/Makefile   |   1 +
->  drivers/pwm/pwm-mule.c | 115 +++++++++++++++++++++++++++++++++++++++++++=
-++++++
->  3 files changed, 126 insertions(+)
->=20
-> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-> index 4b956d661755..eb8cfa113ec7 100644
-> --- a/drivers/pwm/Kconfig
-> +++ b/drivers/pwm/Kconfig
-> @@ -425,6 +425,16 @@ config PWM_MICROCHIP_CORE
->  	  To compile this driver as a module, choose M here: the module
->  	  will be called pwm-microchip-core.
-> =20
-> +config PWM_MULE
-> +	tristate "Mule PWM-over-I2C support"
-> +	depends on I2C && OF
+It is by design that there is 0 DT support in aux bus :)
 
-It would be easy to drop the hard dependency on OF. Please do that.
+But ok, I'll trust you on this usage...
 
-Given that that part doesn't seem to be available for individual sale, I
-suggest to add something like:
-
-	depends on (ARM64 && ARCH_ROCKCHIP) || COMPILE_TEST
-
-to not annoy people configuring a kernel for x86 or s390.
-
-> +	help
-> +	  PWM driver for Mule PWM-over-I2C controller. Mule is a device
-> +	  that can output a PWM signal based on I2C commands.
-
-How is that different from a PWM that is an ordinary I2C device? If
-there is no difference, I'd just call this "an I2C device". Also "can
-output a PWM signal" is a given for PWM drivers :-)
-
-> +	  To compile this driver as a module, choose M here: the module
-> +	  will be called pwm-mule.
-> +
->  config PWM_MXS
->  	tristate "Freescale MXS PWM support"
->  	depends on ARCH_MXS || COMPILE_TEST
-> diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
-> index c5ec9e168ee7..cdd736ea3244 100644
-> --- a/drivers/pwm/Makefile
-> +++ b/drivers/pwm/Makefile
-> @@ -38,6 +38,7 @@ obj-$(CONFIG_PWM_MESON)		+=3D pwm-meson.o
->  obj-$(CONFIG_PWM_MEDIATEK)	+=3D pwm-mediatek.o
->  obj-$(CONFIG_PWM_MICROCHIP_CORE)	+=3D pwm-microchip-core.o
->  obj-$(CONFIG_PWM_MTK_DISP)	+=3D pwm-mtk-disp.o
-> +obj-$(CONFIG_PWM_MULE)		+=3D pwm-mule.o
->  obj-$(CONFIG_PWM_MXS)		+=3D pwm-mxs.o
->  obj-$(CONFIG_PWM_NTXEC)		+=3D pwm-ntxec.o
->  obj-$(CONFIG_PWM_OMAP_DMTIMER)	+=3D pwm-omap-dmtimer.o
-> diff --git a/drivers/pwm/pwm-mule.c b/drivers/pwm/pwm-mule.c
-> new file mode 100644
-> index 000000000000..e8593a48b16e
-> --- /dev/null
-> +++ b/drivers/pwm/pwm-mule.c
-> @@ -0,0 +1,115 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Mule PWM-over-I2C controller driver
-> + *
-> + * Copyright (C) 2024 Theobroma Systems Design und Consulting GmbH
-
-Is there a publicly available datasheet? I guess not. (I ask because
-adding a link there to such a document would be nice.)
-
-> + */
-> +
-> +#include <linux/i2c.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/pwm.h>
-> +#include <linux/regmap.h>
-> +
-> +struct mule_pwm {
-> +	struct mutex lock;
-> +	struct regmap *regmap;
-> +};
-> +
-> +static const struct regmap_config pwm_mule_config =3D {
-> +	.reg_bits =3D 8,
-> +	.val_bits =3D 8,
-> +};
-> +
-> +#define MULE_PWM_DCY_REG	0x0
-> +#define MULE_PWM_FREQ_L_REG	0x1	/* LSB register */
-> +#define MULE_PWM_FREQ_H_REG	0x2	/* MSB register */
-> +
-> +#define NANOSECONDS_TO_HZ(x) (1000000000UL/(x))
-
-Don't introduce such a macro if you only use it once. Having the
-division in the function results in code that is easier to read (IMHO).
-
-> +static int pwm_mule_apply(struct pwm_chip *chip, struct pwm_device *pwm,
-> +			      const struct pwm_state *state)
-> +{
-> +	struct mule_pwm *priv =3D pwmchip_get_drvdata(chip);
-> +	u8 duty_cycle;
-> +	u64 freq;
-> +	int ret;
-> +
-> +	freq =3D NANOSECONDS_TO_HZ(state->period);
-> +
-> +	if (freq > U16_MAX) /* Frequency is 16-bit wide */ {
-> +		dev_err(chip->dev,
-> +			"Failed to set frequency: %llu Hz: out of 16-bit range\n", freq);
-> +		return -EINVAL;
-> +	}
-
-You're supposed to configure the biggest possible period not bigger than
-the requested period. So this should be:
-
-	/*
-	 * The period is configured using a 16 bit wide register holding
-	 * the frequency in Hz.
-	 */
-	unsigned int period =3D min_t(u64, state->period, NSEC_PER_SEC);
-	unsigned int freq =3D DIV_ROUND_UP(NSEC_PER_SEC, period);
-
-	if (freq > U16_MAX)
-		return -EINVAL;
-
-> +	if (state->enabled)
-> +		duty_cycle =3D pwm_get_relative_duty_cycle(state, 100);
-
-This is wrong for two reasons:
-
- - It uses rounding to the nearest duty_cycle, however you're supposed
-   to round down.
- - It uses the requested period instead of the real one.
-
-I wonder why the hardware doesn't use the whole 8 bits here.
-
-> +	else
-> +		duty_cycle =3D 0;
-> +
-> +	mutex_lock(&priv->lock);
-
-If you use the guard helper, you don't need to resort to goto for error
-handling.
-
-> +	ret =3D regmap_bulk_write(priv->regmap, MULE_PWM_FREQ_L_REG, &freq, 2);
-> +	if (ret) {
-> +		dev_err(chip->dev,
-> +			"Failed to set frequency: %llu Hz: %d\n", freq, ret);
-> +		goto out;
-> +	}
-> +
-> +	ret =3D regmap_write(priv->regmap, MULE_PWM_DCY_REG, duty_cycle);
-> +	if (ret)
-> +		dev_err(chip->dev,
-> +			"Failed to set duty cycle: %u: %d\n", duty_cycle, ret);
-
-Please document how the hardware behaves here in a "Limitations" section
-as several other drivers do. Questions to answer include: Does it
-complete a period when the parameters are updated? Can it happen that a
-glitch is emitted while MULE_PWM_FREQ_[LH]_REG is updated but
-MULE_PWM_DCY_REG isn't yet? Maybe updating MULE_PWM_FREQ_[LH]_REG isn't
-even atomic? "Doesn't support disabling, configures duty_cycle=3D0 when
-disabled is requested."
-
-Maybe write all three registers in a bulk write, then you might even be
-able to drop the lock.
-
-Also please fail silently.
-
-> +out:
-> +	mutex_unlock(&priv->lock);
-> +	return ret;
-> +}
-> +
-> +static const struct pwm_ops pwm_mule_ops =3D {
-> +	.apply =3D pwm_mule_apply,
-
-Is .get_state not possible to implement (then please document that with a r=
-eason)?
-
-> +};
-> +
-> +static int pwm_mule_probe(struct i2c_client *client)
-> +{
-> +	struct device *dev =3D &client->dev;
-> +	struct pwm_chip *chip;
-> +	struct mule_pwm *priv;
-> +
-> +	chip =3D devm_pwmchip_alloc(dev, 1, sizeof(*priv));
-> +	if (IS_ERR(chip))
-> +		return PTR_ERR(chip);
-> +
-> +	priv =3D pwmchip_get_drvdata(chip);
-> +
-> +	mutex_init(&priv->lock);
-> +
-> +	priv->regmap =3D devm_regmap_init_i2c(client, &pwm_mule_config);
-> +	if (IS_ERR(priv->regmap))
-> +		return dev_err_probe(dev, PTR_ERR(priv->regmap),
-> +				     "Failed to allocate i2c register map\n");
-> +
-> +	chip->ops =3D &pwm_mule_ops;
-> +
-> +	return devm_pwmchip_add(dev, chip);
-
-Error message if this fails, please.
-
-> +}
-
-Best regards
-Uwe
-
---wbrgntclef5fmbs4
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmaQ70AACgkQj4D7WH0S
-/k7/gQf/Q+SdZqNCkDwpvZRbQGIjpyKxHGDP30YB3HC97oU7mrFiybp5l20eBhSh
-n/WDFCvdBYeiKsMLuWgN7RVITqfHJNa0gT22Lhf6l0Sco1ZykjQDuAVPbkNyp/jd
-FFf+EFHa3QhLAxsCvCNc18TvnBImTasMPFQ1preymMa/ISA93OAL4paT5+7Pix/R
-zdD0oPZjQ3tul9MJhqOUBtPdh+QcRaYx9a8shRzmk6FMBAZFSVq0lwErIAgI7Zp7
-InKTINIO9Y/f+xLeMqi3X+cLzCOBY7AaqFGbOPNnyFKCRZYDH88knYaUSAzh4V49
-eqzPSd6OEKPEdcD5vCj1jt1Fcdna+A==
-=gYdx
------END PGP SIGNATURE-----
-
---wbrgntclef5fmbs4--
+greg k-h
 
