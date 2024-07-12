@@ -1,766 +1,113 @@
-Return-Path: <devicetree+bounces-85288-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85289-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8521D92F8FE
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 12:30:26 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36F4D92F905
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 12:34:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 39812285E8F
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 10:30:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B3B4EB21F03
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 10:34:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97F2D16191E;
-	Fri, 12 Jul 2024 10:30:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 549A2155735;
+	Fri, 12 Jul 2024 10:34:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MQUQDzEq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbg154.qq.com (smtpbg154.qq.com [15.184.224.54])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D974515B0FE
-	for <devicetree@vger.kernel.org>; Fri, 12 Jul 2024 10:30:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=15.184.224.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 229FBD512;
+	Fri, 12 Jul 2024 10:34:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720780211; cv=none; b=CSTFj9I2/qGYsBVJq5l5W/EI7gf6P/IbmGzebS1Gu9QHdno6KS6p3tgU2HU0SzLSRfumspiS1Vm44szgVfk5rZc3oVq58olaoYY/rjNJx3St2519chbfYy7NZqLv+XBiEdNuNpu9X2I98U04u7fy4kmzYdTHt1XzEwXe01hcjsU=
+	t=1720780449; cv=none; b=rwZp9b971IqL9PPj6zmw+saeHMvk5puH+r2ckJcbuzNEPZuqN+HPCONWGQm1sbgR0u8V5HsyV9yUqITJSmCAshdzOrDOfVheCByJ6tJjoc15YIjCY7XYWEgbqktfIjr8BWYLg1CXXU8faFD8sGSSTQ8Ylz5u1wQ7flSWVBtf7So=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720780211; c=relaxed/simple;
-	bh=tGROjROEnTZXLwUR+i/cNd/25cqPPDn6r5nGkZeLPE4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=crfBRKTcYUtoUH/Y+QnT+d61ZorBvnO12hlXIPVuAuifZmUHw6AN+Afm1hwg/JOPRBdrzjNbcVKtUOzjKZs2km1Xuw/+QW9qnT9Q0pjzToblFHtH3hAnXpqJDV/eXbhwmYZEMSSbYFbJeEj+Wi/aSc5jdeQaEx4IbBjE/rZWOVw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=15.184.224.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
-X-QQ-mid: bizesmtpsz2t1720780089tn31irv
-X-QQ-Originating-IP: mANYD5wfPLDRdQfpqOzFfXAmEjfNCvVc5JHLP9DFjpw=
-Received: from [192.168.159.131] ( [106.150.157.243])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Fri, 12 Jul 2024 18:28:06 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 14237794480222362925
-Message-ID: <6FB6AF7834EDC3B3+e947bfb7-7a22-43ff-9c62-5722920d8aeb@radxa.com>
-Date: Fri, 12 Jul 2024 19:28:05 +0900
+	s=arc-20240116; t=1720780449; c=relaxed/simple;
+	bh=tq4rb/Jo7ZVGqX1PpVuZm2HtEQ+odwrnEVHLJeesCkY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iCmmZpy2ASjl7S0eijrd1mpx+5pGHJWYKHNQgljV3ArdobRUmXLvZcWqxP23KsnzG3G7JTQzjqrobg290kUaPfETNeroQl6c1lSy+sDqNY9EBJQo1wrWprwMku67abO7jQLIx4dYVfOMx81DHBCl2kDc2USArjJFq10hdz54DcQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MQUQDzEq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14B89C32782;
+	Fri, 12 Jul 2024 10:34:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1720780448;
+	bh=tq4rb/Jo7ZVGqX1PpVuZm2HtEQ+odwrnEVHLJeesCkY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=MQUQDzEqJFDg6VE7+0eam/OnRwDGVW8EAE41L2coocaKPQ5ATP0tbuL179yoxWYc4
+	 X/XAY3K8xQdsPDGmuZbvNK2UPGs7y+/8I0wb9ASkfdLUfBJXMw4BBac8Xhu8qJjcMa
+	 +7En0bRkb9xnk302rcp5OWKUssdx1keqSAu8mwVJxEl2IkeNJwLuUgMcrmx9Gv5iRU
+	 KnWRvsXJgoIg6wNo2ZqUN3DqwoD8dXxe+eq1P14ropnaEl/2R5xfsdufwiatEa8GS6
+	 +Wu7t4+JhfW7/Mk6P3YReJ0+ikRL687DST6tdNStph8mPjgwYzP0FABf7xLaeR8ED7
+	 579x8rdhOCTWA==
+Date: Fri, 12 Jul 2024 12:34:01 +0200
+From: Niklas Cassel <cassel@kernel.org>
+To: Francesco Dolcini <francesco@dolcini.it>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Siddharth Vadapalli <s-vadapalli@ti.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Francesco Dolcini <francesco.dolcini@toradex.com>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
+	linux-pci@vger.kernel.org
+Subject: Re: [PATCH v1 0/2] PCI: ti: k3: Fix TI J721E PERST# polarity
+Message-ID: <ZpEGmeJUJxrDFQWa@ryzen.lan>
+References: <20240703100036.17896-1-francesco@dolcini.it>
+ <Zo_qbspq0vA_p8VC@ryzen.lan>
+ <20240711152531.GA35875@francesco-nb>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] arm64: dts: amlogic: add support for Radxa ZERO 2
- Pro
-To: neil.armstrong@linaro.org,
- Christian Hewitt <christian@hewittfamily.org.uk>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- devicetree <devicetree@vger.kernel.org>,
- AML <linux-amlogic@lists.infradead.org>
-References: <20240711202013.26573-1-naoki@radxa.com>
- <20240711202013.26573-2-naoki@radxa.com>
- <D60FBED7-C930-41F6-A2C6-12C2CAC62F5D@hewittfamily.org.uk>
- <E799C1884844F5FB+df8c5d6d-c623-4960-b974-80b1953cb748@radxa.com>
- <182477e0-3be4-4de0-a8e8-3e6562b16d53@linaro.org>
-Content-Language: en-US
-From: FUKAUMI Naoki <naoki@radxa.com>
-In-Reply-To: <182477e0-3be4-4de0-a8e8-3e6562b16d53@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: bizesmtpsz:radxa.com:qybglogicsvrgz:qybglogicsvrgz8a-1
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240711152531.GA35875@francesco-nb>
 
-Hi
-
-On 7/12/24 19:13, Neil Armstrong wrote:
-> On 12/07/2024 07:01, FUKAUMI Naoki wrote:
->> Hi,
->>
->> On 7/12/24 13:55, Christian Hewitt wrote:
->>>> On 12 Jul 2024, at 12:20 AM, FUKAUMI Naoki <naoki@radxa.com> wrote:
->>>>
->>>> Radxa ZERO 2 Pro is a ultra tiny high performance SBC[1] using the
->>>> Amlogic A311D chip that ships in a number of eMMC configurations:
->>>>
->>>> - Amlogic A311D SoC
->>>> - Quad A73 + Dual A53 CPU
->>>> - Mali G52-MP4 GPU
->>>> - NPU (5 TOPs)
->>>> - 4GB LPDDR4 RAM
->>>> - 32/64/128GB eMMC
->>>> - micro SD Card slot
->>>> - Wi-Fi 5 and BT 5.0
->>>> - 1x USB 2.0 Type-C port (OTG)
->>>> - 1x USB 3.0 Type-C port (Host)
->>>> - Micro HDMI 2.0
->>>> - MIPI DSI
->>>> - MIPI CSI
->>>> - 40 Pin GPIO header
->>>>
->>>> [1] https://radxa.com/products/zeros/zero2pro
->>>
->>>                                           ^^^
->>> The Radxa website team uses this :)
->>
->> please open link in browser.
->> (I'm not talking about URL)
+On Thu, Jul 11, 2024 at 05:25:31PM +0200, Francesco Dolcini wrote:
+> Hello Niklas,
 > 
-> Yeah so the marketing name is "Zero 2 Pro", so the dt file should either 
-> be:
-> - meson-g12b-radxa-zero-2-pro.dts
-> or
-> - meson-g12b-radxa-zero2-pro.dts
-> for consistency.
-
-thanks for pointing.
-(btw, ZERO, not Zero)
-
-Best regards,
-
---
-FUKAUMI Naoki
-Radxa Computer (Shenzhen) Co., Ltd.
-
-> Neil
+> On Thu, Jul 11, 2024 at 04:21:34PM +0200, Niklas Cassel wrote:
+> > On Wed, Jul 03, 2024 at 12:00:34PM +0200, Francesco Dolcini wrote:
+> > > From: Francesco Dolcini <francesco.dolcini@toradex.com>
+> > > 
+> > > Fix PCIe PERST# signal polarity in TI J721E used on TI K3 machines.
+> > > 
+> > > PCIe PERST# needs to be de-asserted for PCIe to work, however, the driver is
+> > > doing the opposite and the device tree files are defining the signal with the
+> > > wrong polarity to cope with that. Fix both the driver and the affected DT
+> > > files.
+> > 
+> > While I understand why you want to fix this,
+> > I'm not sure if you can actually do so without breaking device tree backwards
+> > compatibility.
 > 
->>
->> -- 
->> FUKAUMI Naoki
->> Radxa Computer (Shenzhen) Co., Ltd.
->>
->>>>
->>>> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
->>>>
->>>> Changes in v2:
->>>> - fix dtb build error
->>>> ---
->>>> arch/arm64/boot/dts/amlogic/Makefile          |   1 +
->>>> .../amlogic/meson-g12b-radxa-zero-2pro.dts    |  14 +
->>>
->>> If it’s a Radxa Zero 2 ‘Pro’ then meson-g12b-zero2-pro.dts
->>> or meson-g12b-zero2pro.dts would be appropriate. The Zero
->>> ‘2pro’ filename is giving me OCD twitches.
->>>
->>> CH.
->>>
->>>> .../dts/amlogic/meson-g12b-radxa-zero2.dts    | 527 +-----------------
->>>> ...-zero2.dts => meson-g12b-radxa-zero2.dtsi} |   6 +-
->>>> 4 files changed, 30 insertions(+), 518 deletions(-)
->>>> create mode 100644 
->>>> arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero-2pro.dts
->>>> rewrite arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts (98%)
->>>> copy arch/arm64/boot/dts/amlogic/{meson-g12b-radxa-zero2.dts => 
->>>> meson-g12b-radxa-zero2.dtsi} (98%)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/amlogic/Makefile 
->>>> b/arch/arm64/boot/dts/amlogic/Makefile
->>>> index 29417f04f886..4f95721698d0 100644
->>>> --- a/arch/arm64/boot/dts/amlogic/Makefile
->>>> +++ b/arch/arm64/boot/dts/amlogic/Makefile
->>>> @@ -31,6 +31,7 @@ dtb-$(CONFIG_ARCH_MESON) += 
->>>> meson-g12b-odroid-go-ultra.dtb
->>>> dtb-$(CONFIG_ARCH_MESON) += meson-g12b-odroid-n2-plus.dtb
->>>> dtb-$(CONFIG_ARCH_MESON) += meson-g12b-odroid-n2.dtb
->>>> dtb-$(CONFIG_ARCH_MESON) += meson-g12b-odroid-n2l.dtb
->>>> +dtb-$(CONFIG_ARCH_MESON) += meson-g12b-radxa-zero-2pro.dtb
->>>> dtb-$(CONFIG_ARCH_MESON) += meson-g12b-radxa-zero2.dtb
->>>> dtb-$(CONFIG_ARCH_MESON) += meson-g12b-s922x-bananapi-m2s.dtb
->>>> dtb-$(CONFIG_ARCH_MESON) += meson-g12b-s922x-khadas-vim3.dtb
->>>> diff --git 
->>>> a/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero-2pro.dts 
->>>> b/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero-2pro.dts
->>>> new file mode 100644
->>>> index 000000000000..62e44de9a550
->>>> --- /dev/null
->>>> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero-2pro.dts
->>>> @@ -0,0 +1,14 @@
->>>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->>>> +
->>>> +/dts-v1/;
->>>> +
->>>> +#include "meson-g12b-radxa-zero2.dtsi"
->>>> +
->>>> +/ {
->>>> + compatible = "radxa,zero-2pro", "amlogic,a311d", "amlogic,g12b";
->>>> + model = "Radxa ZERO 2 Pro";
->>>> +};
->>>> +
->>>> +&sound {
->>>> + model = "RADXA-ZERO-2PRO";
->>>> +};
->>>> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts 
->>>> b/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts
->>>> dissimilarity index 98%
->>>> index 8445701100d0..b4734cb63aaa 100644
->>>> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts
->>>> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts
->>>> @@ -1,513 +1,14 @@
->>>> -// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->>>> -/*
->>>> - * Copyright (c) 2019 BayLibre, SAS
->>>> - * Author: Neil Armstrong <narmstrong@baylibre.com>
->>>> - * Copyright (c) 2019 Christian Hewitt <christianshewitt@gmail.com>
->>>> - * Copyright (c) 2022 Radxa Limited
->>>> - * Author: Yuntian Zhang <yt@radxa.com>
->>>> - */
->>>> -
->>>> -/dts-v1/;
->>>> -
->>>> -#include "meson-g12b-a311d.dtsi"
->>>> -#include <dt-bindings/input/input.h>
->>>> -#include <dt-bindings/leds/common.h>
->>>> -#include <dt-bindings/gpio/meson-g12a-gpio.h>
->>>> -#include <dt-bindings/sound/meson-g12a-tohdmitx.h>
->>>> -
->>>> -/ {
->>>> - compatible = "radxa,zero2", "amlogic,a311d", "amlogic,g12b";
->>>> - model = "Radxa Zero2";
->>>> -
->>>> - aliases {
->>>> - serial0 = &uart_AO;
->>>> - serial2 = &uart_A;
->>>> - };
->>>> -
->>>> - chosen {
->>>> - stdout-path = "serial0:115200n8";
->>>> - };
->>>> -
->>>> - memory@0 {
->>>> - device_type = "memory";
->>>> - reg = <0x0 0x0 0x0 0x80000000>;
->>>> - };
->>>> -
->>>> - fan0: pwm-fan {
->>>> - compatible = "pwm-fan";
->>>> - #cooling-cells = <2>;
->>>> - cooling-levels = <0 64 128 192 255>;
->>>> - pwms = <&pwm_AO_ab 0 40000 0>;
->>>> - };
->>>> -
->>>> - gpio-keys-polled {
->>>> - compatible = "gpio-keys-polled";
->>>> - poll-interval = <100>;
->>>> - power-button {
->>>> - label = "power";
->>>> - linux,code = <KEY_POWER>;
->>>> - gpios = <&gpio_ao GPIOAO_3 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
->>>> - };
->>>> - };
->>>> -
->>>> - leds {
->>>> - compatible = "gpio-leds";
->>>> -
->>>> - led-green {
->>>> - color = <LED_COLOR_ID_GREEN>;
->>>> - function = LED_FUNCTION_STATUS;
->>>> - gpios = <&gpio GPIOA_12 GPIO_ACTIVE_HIGH>;
->>>> - linux,default-trigger = "heartbeat";
->>>> - };
->>>> - };
->>>> -
->>>> - hdmi-connector {
->>>> - compatible = "hdmi-connector";
->>>> - type = "a";
->>>> -
->>>> - port {
->>>> - hdmi_connector_in: endpoint {
->>>> - remote-endpoint = <&hdmi_tx_tmds_out>;
->>>> - };
->>>> - };
->>>> - };
->>>> -
->>>> - emmc_pwrseq: emmc-pwrseq {
->>>> - compatible = "mmc-pwrseq-emmc";
->>>> - reset-gpios = <&gpio BOOT_12 GPIO_ACTIVE_LOW>;
->>>> - };
->>>> -
->>>> - sdio_pwrseq: sdio-pwrseq {
->>>> - compatible = "mmc-pwrseq-simple";
->>>> - reset-gpios = <&gpio GPIOX_6 GPIO_ACTIVE_LOW>;
->>>> - clocks = <&wifi32k>;
->>>> - clock-names = "ext_clock";
->>>> - };
->>>> -
->>>> - ao_5v: regulator-ao-5v {
->>>> - compatible = "regulator-fixed";
->>>> - regulator-name = "AO_5V";
->>>> - regulator-min-microvolt = <5000000>;
->>>> - regulator-max-microvolt = <5000000>;
->>>> - regulator-always-on;
->>>> - };
->>>> -
->>>> - vcc_1v8: regulator-vcc-1v8 {
->>>> - compatible = "regulator-fixed";
->>>> - regulator-name = "VCC_1V8";
->>>> - regulator-min-microvolt = <1800000>;
->>>> - regulator-max-microvolt = <1800000>;
->>>> - vin-supply = <&vcc_3v3>;
->>>> - regulator-always-on;
->>>> - };
->>>> -
->>>> - vcc_3v3: regulator-vcc-3v3 {
->>>> - compatible = "regulator-fixed";
->>>> - regulator-name = "VCC_3V3";
->>>> - regulator-min-microvolt = <3300000>;
->>>> - regulator-max-microvolt = <3300000>;
->>>> - vin-supply = <&vddao_3v3>;
->>>> - regulator-always-on;
->>>> - /* FIXME: actually controlled by VDDCPU_B_EN */
->>>> - };
->>>> -
->>>> - vddao_1v8: regulator-vddao-1v8 {
->>>> - compatible = "regulator-fixed";
->>>> - regulator-name = "VDDIO_AO1V8";
->>>> - regulator-min-microvolt = <1800000>;
->>>> - regulator-max-microvolt = <1800000>;
->>>> - vin-supply = <&vddao_3v3>;
->>>> - regulator-always-on;
->>>> - };
->>>> -
->>>> - vddao_3v3: regulator-vddao-3v3 {
->>>> - compatible = "regulator-fixed";
->>>> - regulator-name = "VDDAO_3V3";
->>>> - regulator-min-microvolt = <3300000>;
->>>> - regulator-max-microvolt = <3300000>;
->>>> - vin-supply = <&ao_5v>;
->>>> - regulator-always-on;
->>>> - };
->>>> -
->>>> - vddcpu_a: regulator-vddcpu-a {
->>>> - /*
->>>> - * MP8756GD Regulator.
->>>> - */
->>>> - compatible = "pwm-regulator";
->>>> -
->>>> - regulator-name = "VDDCPU_A";
->>>> - regulator-min-microvolt = <730000>;
->>>> - regulator-max-microvolt = <1022000>;
->>>> -
->>>> - pwm-supply = <&ao_5v>;
->>>> -
->>>> - pwms = <&pwm_ab 0 1250 0>;
->>>> - pwm-dutycycle-range = <100 0>;
->>>> -
->>>> - regulator-boot-on;
->>>> - regulator-always-on;
->>>> - };
->>>> -
->>>> - vddcpu_b: regulator-vddcpu-b {
->>>> - /*
->>>> - * Silergy SY8120B1ABC Regulator.
->>>> - */
->>>> - compatible = "pwm-regulator";
->>>> -
->>>> - regulator-name = "VDDCPU_B";
->>>> - regulator-min-microvolt = <730000>;
->>>> - regulator-max-microvolt = <1022000>;
->>>> -
->>>> - pwm-supply = <&ao_5v>;
->>>> -
->>>> - pwms = <&pwm_AO_cd 1 1250 0>;
->>>> - pwm-dutycycle-range = <100 0>;
->>>> -
->>>> - regulator-boot-on;
->>>> - regulator-always-on;
->>>> - };
->>>> -
->>>> - sound {
->>>> - compatible = "amlogic,axg-sound-card";
->>>> - model = "RADXA-ZERO2";
->>>> - audio-aux-devs = <&tdmout_b>;
->>>> - audio-routing = "TDMOUT_B IN 0", "FRDDR_A OUT 1",
->>>> - "TDMOUT_B IN 1", "FRDDR_B OUT 1",
->>>> - "TDMOUT_B IN 2", "FRDDR_C OUT 1",
->>>> - "TDM_B Playback", "TDMOUT_B OUT";
->>>> -
->>>> - assigned-clocks = <&clkc CLKID_MPLL2>,
->>>> -  <&clkc CLKID_MPLL0>,
->>>> -  <&clkc CLKID_MPLL1>;
->>>> - assigned-clock-parents = <0>, <0>, <0>;
->>>> - assigned-clock-rates = <294912000>,
->>>> -       <270950400>,
->>>> -       <393216000>;
->>>> -
->>>> - dai-link-0 {
->>>> - sound-dai = <&frddr_a>;
->>>> - };
->>>> -
->>>> - dai-link-1 {
->>>> - sound-dai = <&frddr_b>;
->>>> - };
->>>> -
->>>> - dai-link-2 {
->>>> - sound-dai = <&frddr_c>;
->>>> - };
->>>> -
->>>> - /* 8ch hdmi interface */
->>>> - dai-link-3 {
->>>> - sound-dai = <&tdmif_b>;
->>>> - dai-format = "i2s";
->>>> - dai-tdm-slot-tx-mask-0 = <1 1>;
->>>> - dai-tdm-slot-tx-mask-1 = <1 1>;
->>>> - dai-tdm-slot-tx-mask-2 = <1 1>;
->>>> - dai-tdm-slot-tx-mask-3 = <1 1>;
->>>> - mclk-fs = <256>;
->>>> -
->>>> - codec {
->>>> - sound-dai = <&tohdmitx TOHDMITX_I2S_IN_B>;
->>>> - };
->>>> - };
->>>> -
->>>> - /* hdmi glue */
->>>> - dai-link-4 {
->>>> - sound-dai = <&tohdmitx TOHDMITX_I2S_OUT>;
->>>> -
->>>> - codec {
->>>> - sound-dai = <&hdmi_tx>;
->>>> - };
->>>> - };
->>>> - };
->>>> -
->>>> - wifi32k: clock-0 {
->>>> - compatible = "pwm-clock";
->>>> - #clock-cells = <0>;
->>>> - clock-frequency = <32768>;
->>>> - pwms = <&pwm_ef 0 30518 0>; /* PWM_E at 32.768KHz */
->>>> - };
->>>> -};
->>>> -
->>>> -&arb {
->>>> - status = "okay";
->>>> -};
->>>> -
->>>> -&cec_AO {
->>>> - pinctrl-0 = <&cec_ao_a_h_pins>;
->>>> - pinctrl-names = "default";
->>>> - status = "disabled";
->>>> - hdmi-phandle = <&hdmi_tx>;
->>>> -};
->>>> -
->>>> -&cecb_AO {
->>>> - pinctrl-0 = <&cec_ao_b_h_pins>;
->>>> - pinctrl-names = "default";
->>>> - status = "okay";
->>>> - hdmi-phandle = <&hdmi_tx>;
->>>> -};
->>>> -
->>>> -&clkc_audio {
->>>> - status = "okay";
->>>> -};
->>>> -
->>>> -&cpu0 {
->>>> - cpu-supply = <&vddcpu_b>;
->>>> - operating-points-v2 = <&cpu_opp_table_0>;
->>>> - clocks = <&clkc CLKID_CPU_CLK>;
->>>> - clock-latency = <50000>;
->>>> -};
->>>> -
->>>> -&cpu1 {
->>>> - cpu-supply = <&vddcpu_b>;
->>>> - operating-points-v2 = <&cpu_opp_table_0>;
->>>> - clocks = <&clkc CLKID_CPU_CLK>;
->>>> - clock-latency = <50000>;
->>>> -};
->>>> -
->>>> -&cpu100 {
->>>> - cpu-supply = <&vddcpu_a>;
->>>> - operating-points-v2 = <&cpub_opp_table_1>;
->>>> - clocks = <&clkc CLKID_CPUB_CLK>;
->>>> - clock-latency = <50000>;
->>>> -};
->>>> -
->>>> -&cpu101 {
->>>> - cpu-supply = <&vddcpu_a>;
->>>> - operating-points-v2 = <&cpub_opp_table_1>;
->>>> - clocks = <&clkc CLKID_CPUB_CLK>;
->>>> - clock-latency = <50000>;
->>>> -};
->>>> -
->>>> -&cpu102 {
->>>> - cpu-supply = <&vddcpu_a>;
->>>> - operating-points-v2 = <&cpub_opp_table_1>;
->>>> - clocks = <&clkc CLKID_CPUB_CLK>;
->>>> - clock-latency = <50000>;
->>>> -};
->>>> -
->>>> -&cpu103 {
->>>> - cpu-supply = <&vddcpu_a>;
->>>> - operating-points-v2 = <&cpub_opp_table_1>;
->>>> - clocks = <&clkc CLKID_CPUB_CLK>;
->>>> - clock-latency = <50000>;
->>>> -};
->>>> -
->>>> -&cpu_thermal {
->>>> - trips {
->>>> - cpu_active: cpu-active {
->>>> - temperature = <70000>; /* millicelsius */
->>>> - hysteresis = <2000>; /* millicelsius */
->>>> - type = "active";
->>>> - };
->>>> - };
->>>> -
->>>> - cooling-maps {
->>>> - map2 {
->>>> - trip = <&cpu_active>;
->>>> - cooling-device = <&fan0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
->>>> - };
->>>> - };
->>>> -};
->>>> -
->>>> -&frddr_a {
->>>> - status = "okay";
->>>> -};
->>>> -
->>>> -&frddr_b {
->>>> - status = "okay";
->>>> -};
->>>> -
->>>> -&frddr_c {
->>>> - status = "okay";
->>>> -};
->>>> -
->>>> -&gpio {
->>>> - gpio-line-names =
->>>> - /* GPIOZ */
->>>> - "PIN_27", "PIN_28", "PIN_7", "PIN_11", "PIN_13", "PIN_15", 
->>>> "PIN_18", "PIN_40",
->>>> - "", "", "", "", "", "", "", "",
->>>> - /* GPIOH */
->>>> - "", "", "", "", "PIN_19", "PIN_21", "PIN_24", "PIN_23",
->>>> - "",
->>>> - /* BOOT */
->>>> - "", "", "", "", "", "", "", "",
->>>> - "", "", "", "", "EMMC_PWRSEQ", "", "", "",
->>>> - /* GPIOC */
->>>> - "", "", "", "", "", "", "SD_CD", "PIN_36",
->>>> - /* GPIOA */
->>>> - "PIN_32", "PIN_12", "PIN_35", "", "", "PIN_38", "", "",
->>>> - "", "", "", "", "LED_GREEN", "PIN_31", "PIN_3", "PIN_5",
->>>> - /* GPIOX */
->>>> - "", "", "", "", "", "", "SDIO_PWRSEQ", "",
->>>> - "", "", "", "", "", "", "", "",
->>>> - "", "BT_SHUTDOWN", "", "";
->>>> -};
->>>> -
->>>> -&gpio_ao {
->>>> - gpio-line-names =
->>>> - /* GPIOAO */
->>>> - "PIN_8", "PIN_10", "", "BTN_POWER", "", "", "", "PIN_29",
->>>> - "PIN_33", "PIN_37", "FAN", "",
->>>> - /* GPIOE */
->>>> - "", "", "";
->>>> -};
->>>> -
->>>> -&hdmi_tx {
->>>> - status = "okay";
->>>> - pinctrl-0 = <&hdmitx_hpd_pins>, <&hdmitx_ddc_pins>;
->>>> - pinctrl-names = "default";
->>>> - hdmi-supply = <&ao_5v>;
->>>> -};
->>>> -
->>>> -&hdmi_tx_tmds_port {
->>>> - hdmi_tx_tmds_out: endpoint {
->>>> - remote-endpoint = <&hdmi_connector_in>;
->>>> - };
->>>> -};
->>>> -
->>>> -&ir {
->>>> - status = "disabled";
->>>> - pinctrl-0 = <&remote_input_ao_pins>;
->>>> - pinctrl-names = "default";
->>>> -};
->>>> -
->>>> -&pwm_ab {
->>>> - pinctrl-0 = <&pwm_a_e_pins>;
->>>> - pinctrl-names = "default";
->>>> - clocks = <&xtal>;
->>>> - clock-names = "clkin0";
->>>> - status = "okay";
->>>> -};
->>>> -
->>>> -&pwm_ef {
->>>> - pinctrl-0 = <&pwm_e_pins>;
->>>> - pinctrl-names = "default";
->>>> - clocks = <&xtal>;
->>>> - clock-names = "clkin0";
->>>> - status = "okay";
->>>> -};
->>>> -
->>>> -&pwm_AO_ab {
->>>> - pinctrl-0 = <&pwm_ao_a_pins>;
->>>> - pinctrl-names = "default";
->>>> - clocks = <&xtal>;
->>>> - clock-names = "clkin0";
->>>> - status = "okay";
->>>> -};
->>>> -
->>>> -&pwm_AO_cd {
->>>> - pinctrl-0 = <&pwm_ao_d_e_pins>;
->>>> - pinctrl-names = "default";
->>>> - clocks = <&xtal>;
->>>> - clock-names = "clkin1";
->>>> - status = "okay";
->>>> -};
->>>> -
->>>> -&saradc {
->>>> - status = "okay";
->>>> - vref-supply = <&vddao_1v8>;
->>>> -};
->>>> -
->>>> -/* SDIO */
->>>> -&sd_emmc_a {
->>>> - status = "okay";
->>>> - pinctrl-0 = <&sdio_pins>;
->>>> - pinctrl-1 = <&sdio_clk_gate_pins>;
->>>> - pinctrl-names = "default", "clk-gate";
->>>> - #address-cells = <1>;
->>>> - #size-cells = <0>;
->>>> -
->>>> - bus-width = <4>;
->>>> - cap-sd-highspeed;
->>>> - max-frequency = <100000000>;
->>>> -
->>>> - non-removable;
->>>> - disable-wp;
->>>> -
->>>> - /* WiFi firmware requires power to be kept while in suspend */
->>>> - keep-power-in-suspend;
->>>> -
->>>> - mmc-pwrseq = <&sdio_pwrseq>;
->>>> -
->>>> - vmmc-supply = <&vddao_3v3>;
->>>> - vqmmc-supply = <&vddao_1v8>;
->>>> -
->>>> - brcmf: wifi@1 {
->>>> - reg = <1>;
->>>> - compatible = "brcm,bcm4329-fmac";
->>>> - };
->>>> -};
->>>> -
->>>> -/* SD card */
->>>> -&sd_emmc_b {
->>>> - status = "okay";
->>>> - pinctrl-0 = <&sdcard_c_pins>;
->>>> - pinctrl-1 = <&sdcard_clk_gate_c_pins>;
->>>> - pinctrl-names = "default", "clk-gate";
->>>> -
->>>> - bus-width = <4>;
->>>> - cap-sd-highspeed;
->>>> - max-frequency = <50000000>;
->>>> - disable-wp;
->>>> -
->>>> - cd-gpios = <&gpio GPIOC_6 GPIO_ACTIVE_LOW>;
->>>> - vmmc-supply = <&vddao_3v3>;
->>>> - vqmmc-supply = <&vddao_3v3>;
->>>> -};
->>>> -
->>>> -/* eMMC */
->>>> -&sd_emmc_c {
->>>> - status = "okay";
->>>> - pinctrl-0 = <&emmc_ctrl_pins>, <&emmc_data_8b_pins>, <&emmc_ds_pins>;
->>>> - pinctrl-1 = <&emmc_clk_gate_pins>;
->>>> - pinctrl-names = "default", "clk-gate";
->>>> -
->>>> - bus-width = <8>;
->>>> - cap-mmc-highspeed;
->>>> - mmc-ddr-1_8v;
->>>> - mmc-hs200-1_8v;
->>>> - max-frequency = <200000000>;
->>>> - disable-wp;
->>>> -
->>>> - mmc-pwrseq = <&emmc_pwrseq>;
->>>> - vmmc-supply = <&vcc_3v3>;
->>>> - vqmmc-supply = <&vcc_1v8>;
->>>> -};
->>>> -
->>>> -&tdmif_b {
->>>> - status = "okay";
->>>> -};
->>>> -
->>>> -&tdmout_b {
->>>> - status = "okay";
->>>> -};
->>>> -
->>>> -&tohdmitx {
->>>> - status = "okay";
->>>> -};
->>>> -
->>>> -&uart_A {
->>>> - status = "okay";
->>>> - pinctrl-0 = <&uart_a_pins>, <&uart_a_cts_rts_pins>;
->>>> - pinctrl-names = "default";
->>>> - uart-has-rtscts;
->>>> -
->>>> - bluetooth {
->>>> - compatible = "brcm,bcm43438-bt";
->>>> - shutdown-gpios = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
->>>> - max-speed = <2000000>;
->>>> - clocks = <&wifi32k>;
->>>> - clock-names = "lpo";
->>>> - };
->>>> -};
->>>> -
->>>> -&uart_AO {
->>>> - status = "okay";
->>>> - pinctrl-0 = <&uart_ao_a_pins>;
->>>> - pinctrl-names = "default";
->>>> -};
->>>> -
->>>> -&usb {
->>>> - status = "okay";
->>>> -};
->>>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->>>> +
->>>> +/dts-v1/;
->>>> +
->>>> +#include "meson-g12b-radxa-zero2.dtsi"
->>>> +
->>>> +/ {
->>>> + compatible = "radxa,zero2", "amlogic,a311d", "amlogic,g12b";
->>>> + model = "Radxa ZERO2";
->>>> +};
->>>> +
->>>> +&sound {
->>>> + model = "RADXA-ZERO2";
->>>> +};
->>>> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts 
->>>> b/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dtsi
->>>> similarity index 98%
->>>> copy from arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts
->>>> copy to arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dtsi
->>>> index 8445701100d0..b73c4a423dfd 100644
->>>> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts
->>>> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dtsi
->>>> @@ -16,9 +16,6 @@
->>>> #include <dt-bindings/sound/meson-g12a-tohdmitx.h>
->>>>
->>>> / {
->>>> - compatible = "radxa,zero2", "amlogic,a311d", "amlogic,g12b";
->>>> - model = "Radxa Zero2";
->>>> -
->>>> aliases {
->>>> serial0 = &uart_AO;
->>>> serial2 = &uart_A;
->>>> @@ -167,9 +164,8 @@ vddcpu_b: regulator-vddcpu-b {
->>>> regulator-always-on;
->>>> };
->>>>
->>>> - sound {
->>>> + sound: sound {
->>>> compatible = "amlogic,axg-sound-card";
->>>> - model = "RADXA-ZERO2";
->>>> audio-aux-devs = <&tdmout_b>;
->>>> audio-routing = "TDMOUT_B IN 0", "FRDDR_A OUT 1",
->>>> "TDMOUT_B IN 1", "FRDDR_B OUT 1",
->>>> -- 
->>>> 2.43.0
->>>>
->>>>
->>>> _______________________________________________
->>>> linux-amlogic mailing list
->>>> linux-amlogic@lists.infradead.org
->>>> http://lists.infradead.org/mailman/listinfo/linux-amlogic
->>>
->>>
-> 
-> 
+> I understand this, and at the same time I know that this was done in the
+> past for exactly the same reason, see for example commit 87620512681a
+> ("PCI: apple: Fix PERST# polarity").
+
+If you knew about it, I think that you should have stated that your are
+breaking DT compatibility in the commit message, while also explaining it
+is acceptable in your specific case.
+
+I didn't know that there were other examples of drivers doing this.
+Looking at your example, it seems that both:
+1e33888fbe44 ("PCI: apple: Add initial hardware bring-up")
+and
+87620512681a ("PCI: apple: Fix PERST# polarity")
+
+were first included in v5.16, so there was never a kernel release
+with only one of the commits.
+
+Anyway, I will eagerly await the DT maintainers feedback on this series.
+
+
+Kind regards,
+Niklas
 
