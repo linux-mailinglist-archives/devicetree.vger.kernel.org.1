@@ -1,172 +1,144 @@
-Return-Path: <devicetree+bounces-85245-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85246-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE32B92F6CF
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 10:21:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66DED92F713
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 10:39:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 57CF81F22A6E
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 08:21:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 21FDC282706
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 08:39:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C29C61411E3;
-	Fri, 12 Jul 2024 08:21:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F45114387B;
+	Fri, 12 Jul 2024 08:39:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b="D6UzQg9P"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="BtVV/AGU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from www530.your-server.de (www530.your-server.de [188.40.30.78])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDCF82E3E5;
-	Fri, 12 Jul 2024 08:21:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.30.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F22C01422DE
+	for <devicetree@vger.kernel.org>; Fri, 12 Jul 2024 08:39:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720772472; cv=none; b=pbHbDJZWCFcsfTVhO9zo3wf1T/ahDYlj+xnwQEVyBBHvc4W3nSOwoqw2+RRI9D25qZf4i6HCU/egNxubvjxbFqb3ck9lGphpgdz6lCa2Er4k/HJpsg/0gTh6d762kD2oIRf32X8ydMX183Oy3cPblfFEgL1ygO8tSIS99ApoH+k=
+	t=1720773554; cv=none; b=E9U6GBR6bCf4kiXnBjHq0F3wB5OQkq2M11/2oQdwXRRztnXyA6hjdGBwkJxugqoU/14eLA8d9lQ2MZv7b9D8Kw8BZzEcPtQ8B9JfokJK1+egm/VCcLr/xpWF1F9uafwSim8ETTKrROP6ieME26DRl7MgHci3kTXAWAXQkQK4TjY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720772472; c=relaxed/simple;
-	bh=lcIxnxTVnl7eemhsDeBtjmieMiTqljeGdfc5S4iHFWY=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=NuG2VTfiw7qNw6bgMWvauFpW24ECTBvlG5Eg6umL1l0k5wGTYVuBBgcbBlyokL+/3IrychFj2DJ4JWalLlA1JCYHZ81GEppprZvG1WWfS2fkW1TW7Zaq5UC7/bzyO1/Xm4Cx6wDTnPWGYCjqG4w4UDQTXQ8TPNkHoWydFJyF4RM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com; spf=pass smtp.mailfrom=geanix.com; dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b=D6UzQg9P; arc=none smtp.client-ip=188.40.30.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=geanix.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=geanix.com;
-	s=default2211; h=Content-Type:MIME-Version:Message-ID:Date:References:
-	In-Reply-To:Subject:Cc:To:From:Sender:Reply-To:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=lcIxnxTVnl7eemhsDeBtjmieMiTqljeGdfc5S4iHFWY=; b=D6UzQg9PXsMWYd67Vt5J9PuK0P
-	1xQqh0XjxrgQYSaLeHw1dXhozg6f51dU3KeMOV/HzXN+rZhUlCpwah3Lx/MyZom2RsQY+eI6NLECY
-	4vi2c9G7q+TbVu2ofATbYF1nhYnhnAhsUhy7PIBGjDeGx7VIHg6up+cINV1dOESIeoD55mOoRmeb+
-	KVpC+9Bjzv0/b4UUSCSJFpVSIABLnnNYaQ1hOEUiElTSIKCH+P3S35GTvWVjC8yD53emrZBPqMkGW
-	mSperykogVaW/4N8l3pYPrpSi1FMBjB46zbpRjGPnAGioY6BgXLUttvNCxgTeQKdR7Y2wYbE2LV/z
-	AGINDtmQ==;
-Received: from sslproxy07.your-server.de ([78.47.199.104])
-	by www530.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <esben@geanix.com>)
-	id 1sSBWT-0001oA-Qt; Fri, 12 Jul 2024 10:20:57 +0200
-Received: from [87.49.147.209] (helo=localhost)
-	by sslproxy07.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <esben@geanix.com>)
-	id 1sSBWS-000Q04-2s;
-	Fri, 12 Jul 2024 10:20:56 +0200
-From: Esben Haabendal <esben@geanix.com>
-To: Erez <erezgeva2@gmail.com>
-Cc: Michael Walle <mwalle@kernel.org>,  Tudor Ambarus
- <tudor.ambarus@linaro.org>,  Jaime Liao <jaimeliao@mxic.com.tw>,
-  leoyu@mxic.com.tw,  Alvin Zhou <alvinzhou@mxic.com.tw>,  Julien Su
- <juliensu@mxic.com.tw>,  Erez Geva <erezgeva@nwtime.org>,
-  linux-mtd@lists.infradead.org,  Pratyush Yadav <pratyush@kernel.org>,
-  linux-kernel@vger.kernel.org,  Miquel Raynal <miquel.raynal@bootlin.com>,
-  Richard Weinberger <richard@nod.at>,  Vignesh Raghavendra
- <vigneshr@ti.com>,  devicetree@vger.kernel.org,  Rob Herring
- <robh@kernel.org>,  Krzysztof Kozlowski <krzk+dt@kernel.org>,  Conor
- Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH v2 3/4] dt-bindings: mtd: macronix,mx25l12833f: add
- SPI-NOR chip
-In-Reply-To: <CANeKEMNtXb4ZV7kcLbHY+Mti6dPV9UZ2wTyUq5z0qtmtNNqSVA@mail.gmail.com>
-	(Erez's message of "Fri, 12 Jul 2024 00:09:01 +0200")
-References: <20240629103914.161530-1-erezgeva@nwtime.org>
-	<20240629103914.161530-4-erezgeva@nwtime.org>
-	<1c457520-07b7-4bde-b040-e8bca959a4f5@linaro.org>
-	<CANeKEMOODBNZA6efh0E0Ga_KaVs5Y3WLcUftRhNwYHhnXO=GNw@mail.gmail.com>
-	<CANeKEMO42rJt5Ob4_HDcZ3eEMvuMOPvRaFaLwL8SA65NtxSV7A@mail.gmail.com>
-	<1d56c3b2-7adf-45b9-a509-956340f3f17b@linaro.org>
-	<CANeKEMMe-Onpn7xWQHgWz1Ps_uQPEMa7HrKA00HpoKjG+DCJNQ@mail.gmail.com>
-	<3bafcbea-6aa5-43ca-9d12-3916be3fe03d@linaro.org>
-	<CANeKEMM02-Jvb8Pd0fZJFnRg-hsAW+hckYWm11tZZXNMPSPJ=w@mail.gmail.com>
-	<9b45cc73-2251-4085-af95-7ccd00dd6d3b@linaro.org>
-	<CANeKEMP+mRefYZNb+TuBmOD7dC6=7Rg7D1EcfnjJoiaeaV28SQ@mail.gmail.com>
-	<875xtd48ps.fsf@geanix.com>
-	<CANeKEMNJ3_ET5pQo2wg7_GSLX+vE+dqW-CV=v2DnG10xcgSdzQ@mail.gmail.com>
-	<D2MZ405LVTN8.3LTVN3KTUD6A3@kernel.org>
-	<CANeKEMNtXb4ZV7kcLbHY+Mti6dPV9UZ2wTyUq5z0qtmtNNqSVA@mail.gmail.com>
-Date: Fri, 12 Jul 2024 10:20:56 +0200
-Message-ID: <878qy7vx5j.fsf@geanix.com>
-User-Agent: Gnus/5.13 (Gnus v5.13)
+	s=arc-20240116; t=1720773554; c=relaxed/simple;
+	bh=HyKnjgHnajVWdAjv50AK0JmCEqgbEGPN3v54AqK7auo=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=glqdCusGbNXEulX+I44kRxRmCIEhdfFrUPiLTjkQnwpPxYrj/PgMsLxoNjZDcx/wnmV48qmC8OriE7JFidGP94NS6HNlW62oJROhx66Njy6Z1ZpDdmhvKQ5sKQq+nqOngS2PxENZxAkOaRj0bWAnFxSyxmvr88y9BAmGQbGDODg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=BtVV/AGU; arc=none smtp.client-ip=209.85.210.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
+Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-70b04cb28acso1454599b3a.0
+        for <devicetree@vger.kernel.org>; Fri, 12 Jul 2024 01:39:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google; t=1720773552; x=1721378352; darn=vger.kernel.org;
+        h=references:in-reply-to:message-id:date:subject:cc:to:from:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=s8FxVWkBbUSRwzKSDXaD3IouygOhaOZodT8e7MKio/0=;
+        b=BtVV/AGUzPc9mO+Esgacpo5S+0MRDepHc/tmeP9jDd6NCJELeWOB0QgCXwySQJAxc9
+         gZvL6R3TO5rNwfuH4tdYCnYzLvIQ6v1RcVQopnvg0F68RYBAX4j1GgARqnDJs53eQTEN
+         +jDoRMR5r0s+IDF7WSXhfGdDJBZOKybNql91JFKgn/X69Eadvd96gb+dpYx5xyIALhV6
+         8WwoPvmx5TLYXkdqOl5n3byFByf57a0w+Q7TxvTooWNVq3j2hdysGVnN2QohTMSihP9a
+         NK/cafxRWzM8c0KQWSkpaQp/8+dIFN+LkNEBnCQDE2HEHVzVweVIKK7qkiCXKmKgwIVg
+         dLGA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720773552; x=1721378352;
+        h=references:in-reply-to:message-id:date:subject:cc:to:from
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=s8FxVWkBbUSRwzKSDXaD3IouygOhaOZodT8e7MKio/0=;
+        b=m2YPWtXPlr1Du9Njxz5W0Z6dz0YS858XkcQ8/yVXGEWOT3x3chje4q5C18k7XCorAQ
+         3YkL1d4kNaUxp0G6dpt2OE1F54PVyvSbdRd5qgVKdfGEjUd3caw9kLPCYxXQjEI5XZTH
+         EN+7XKkaeaySmsufY0AAi+rzgl1RJcMKcTNm2L5sSHvxcwo0uWvaml8+gp5gg2mbxpW+
+         ry5rc/mGGyP6/anHsb5kR15b0qzNnnGiUEEOgsnZwEZMZqlVND4lOBOlzkn1zgeyO3dW
+         C8W7yOYDDObodac+8HQGevgD3ZXy0WCcQhIfLyw0vxBRR3JOEKfUwyVF8Z4PTI9BLeGD
+         tSvw==
+X-Forwarded-Encrypted: i=1; AJvYcCWmHng3TiyvcRLTA4aHVAeCOgN/BoV/6SzItQKD0ULheHxedrVabBKGyjfpHvgc/z/p5mtIHCs73Mrpxwcwc5UoQxGpT3xlOHnhmg==
+X-Gm-Message-State: AOJu0Yw5naxySja6TwJB6ad9yQXlUSp7W15bRdNfiayJyGdq2ZY/8U5a
+	k+Gtc+94TcRKPl9tpXBHqkKewrC51mA9BZDPJ7tM/IUh+6uQHrKUXzDufoE3h5Q=
+X-Google-Smtp-Source: AGHT+IGFZpUIicB4zZC9hrvnR3WIEBPWN8+7c0RwydpX4SwJwlx7pWYViWf5LIEdN2ZgdD/fy0d2ww==
+X-Received: by 2002:a05:6a00:8d95:b0:70a:f521:52da with SMTP id d2e1a72fcca58-70b6c976927mr2334016b3a.16.1720773552263;
+        Fri, 12 Jul 2024 01:39:12 -0700 (PDT)
+Received: from hsinchu26.internal.sifive.com (59-124-168-89.hinet-ip.hinet.net. [59.124.168.89])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-70b438c7099sm6894194b3a.84.2024.07.12.01.39.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 12 Jul 2024 01:39:12 -0700 (PDT)
+From: Yong-Xuan Wang <yongxuan.wang@sifive.com>
+To: linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	kvm-riscv@lists.infradead.org,
+	kvm@vger.kernel.org
+Cc: greentime.hu@sifive.com,
+	vincent.chen@sifive.com,
+	Yong-Xuan Wang <yongxuan.wang@sifive.com>,
+	Conor Dooley <conor@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	devicetree@vger.kernel.org
+Subject: [PATCH v7 2/4] dt-bindings: riscv: Add Svade and Svadu Entries
+Date: Fri, 12 Jul 2024 16:38:46 +0800
+Message-Id: <20240712083850.4242-3-yongxuan.wang@sifive.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20240712083850.4242-1-yongxuan.wang@sifive.com>
+References: <20240712083850.4242-1-yongxuan.wang@sifive.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-Authenticated-Sender: esben@geanix.com
-X-Virus-Scanned: Clear (ClamAV 0.103.10/27333/Thu Jul 11 10:35:59 2024)
 
-Erez <erezgeva2@gmail.com> writes:
+Add entries for the Svade and Svadu extensions to the riscv,isa-extensions
+property.
 
-> On Thu, 11 Jul 2024 at 21:57, Michael Walle <mwalle@kernel.org> wrote:
->> On Thu Jul 11, 2024 at 8:57 PM CEST, Erez wrote:
->> > Yes, I think we should.
->> >
->> > Reading the specification provided publicly by Macronix.
->> > For all the JEDEC IDs with the no SFDP flag in drivers/mtd/spi-nor/macronix.c
->> > All of them have a new version or a new chip with the same JEDEC ID
->> > that supports SFDP.
->> > There are 2 chips that Macronix does not provide spec. in public.
->> > I can ask Macronix technical support on these 2 chips.
->>
->> We don't add flashes we cannot test.
->
-> I did not suggest adding anything new.
-> I refer to the list of chips we already have in drivers/mtd/spi-nor/macronix.c
-> I presume someone tested them before adding them to the list in the past.
-> And probably the old chip did not have the SFDP table back then.
->
-> What I checked with the chip specifications is that all Macronix chips
-> since 2010 have SFDP.
->
-> The situation today is that all Macronix chips that are NOT in the
-> Macronix table work based on the SFDP table.
-> But new chips that use a JEDEC found in the Macronix table, skip the
-> SFDP table and use the setting of the old chip.
+Signed-off-by: Yong-Xuan Wang <yongxuan.wang@sifive.com>
+---
+ .../devicetree/bindings/riscv/extensions.yaml | 28 +++++++++++++++++++
+ 1 file changed, 28 insertions(+)
 
-Not entirely true.
+diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Documentation/devicetree/bindings/riscv/extensions.yaml
+index 468c646247aa..e91a6f4ede38 100644
+--- a/Documentation/devicetree/bindings/riscv/extensions.yaml
++++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
+@@ -153,6 +153,34 @@ properties:
+             ratified at commit 3f9ed34 ("Add ability to manually trigger
+             workflow. (#2)") of riscv-time-compare.
+ 
++        - const: svade
++          description: |
++            The standard Svade supervisor-level extension for SW-managed PTE A/D
++            bit updates as ratified in the 20240213 version of the privileged
++            ISA specification.
++
++            Both Svade and Svadu extensions control the hardware behavior when
++            the PTE A/D bits need to be set. The default behavior for the four
++            possible combinations of these extensions in the device tree are:
++            1) Neither Svade nor Svadu present in DT => It is technically
++               unknown whether the platform uses Svade or Svadu. Supervisor
++               software should be prepared to handle either hardware updating
++               of the PTE A/D bits or page faults when they need updated.
++            2) Only Svade present in DT => Supervisor must assume Svade to be
++               always enabled.
++            3) Only Svadu present in DT => Supervisor must assume Svadu to be
++               always enabled.
++            4) Both Svade and Svadu present in DT => Supervisor must assume
++               Svadu turned-off at boot time. To use Svadu, supervisor must
++               explicitly enable it using the SBI FWFT extension.
++
++        - const: svadu
++          description: |
++            The standard Svadu supervisor-level extension for hardware updating
++            of PTE A/D bits as ratified at commit c1abccf ("Merge pull request
++            #25 from ved-rivos/ratified") of riscv-svadu. Please refer to Svade
++            dt-binding description for more details.
++
+         - const: svinval
+           description:
+             The standard Svinval supervisor-level extension for fine-grained
+-- 
+2.17.1
 
-Those that entries in the Macronix table that has SPI_NOR_DUAL_READ
-and/or SPI_NOR_QUAD_READ in no_sfdp_flags is caught by
-the magic flags matching in spi_nor_init_params_deprecated() and will
-have spi_nor_parse_sfdp() called from
-spi_nor_sfdp_init_params_deprecated(). So flashes reusing ID for these
-will have the SFDP tables parsed.
-
-The rest of the entries in the Macronix table is not so lucky. When a
-replacement chip (with the same ID) is used, it will not be configured
-with the values found in SFDP table.
-
-> So I suggest we read the SFDP table for all Macronix chips.
-
-Based on their strategy of re-using flash ID, I think this is a sane
-approach.
-
-> Old Macronix chips that do not have SFDP will use the setting from the
-> Macronix table. i.e backward compatible.
-> While new chips which do have an SFDP table will work with the new
-> setting we find in the table.
-
-Yes, if we apply the new SPI_NOR_TRY_SFDP flag to the matching table
-entries.
-
-> Of course, we might have issues in parsing the SFDP table itself.
-> So we fix them as developers report and send chip ID and part number
-> with the SFDP table content.
-> I do not see the point of "hiding" with the old setting.
-> Anyhow, as we do not like the IDs table and keep it for backward-compatible,
-> so it only makes sense we should use the SFDP table as much as possible.
->
-> My check was to ensure Tudor that all Macronix chips have SFDP whether
-> they are in the IDs table or not and we are not wasting a no-op on a
-> chip which can not have an SFDP table.
->
-> All I suggest is we add the new 'SPI_NOR_TRY_SFDP' flag, to all
-> Macronix chips.. Which will try to read the SFDP to any Macronix chip.
-
-Makes sense. But obviously comes with a risk as we won't be able to
-test all chips for regression when doing that.
-
-/Esben
 
