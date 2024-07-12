@@ -1,365 +1,202 @@
-Return-Path: <devicetree+bounces-85193-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85194-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9635792F349
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 03:10:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95D4092F36F
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 03:27:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 91982B20F3D
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 01:10:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 890731C21735
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 01:27:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B1771C2E;
-	Fri, 12 Jul 2024 01:10:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D456520E6;
+	Fri, 12 Jul 2024 01:27:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ST+XM9Ce"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="p67Ft2KF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from IND01-BMX-obe.outbound.protection.outlook.com (mail-bmxind01olkn2047.outbound.protection.outlook.com [40.92.103.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F65B10E3;
-	Fri, 12 Jul 2024 01:10:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720746606; cv=none; b=MXj/gza276DZ/5YVJaWvSaBrSQPsir4YRQVLHFTvMoyULJzDr3SQW/p8To5xJkheyU5BbgjnEwcG4dgKFoYXQzrvqa8rWaJMq7bH6dfckTGZbGeRqtPnKoF6fAwj/gD4IqUlsgTBy/rPyeXULd+NST/ZZz1Ful46B7zDGrjf+PY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720746606; c=relaxed/simple;
-	bh=pbT57k7QB3HrURFKNbnnjOrCHWNpdlLB7IX4cdo349Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=J+tsyWI4owyWXDMn1Rom/zqtFqBuSz2dF32BU6fofCZDwr0FythPl3gz3V3xH4ufPPnv5UIo4QLtoRcSXmp4cer230C2p67oRH/VIj4e6eGf50enshvFv4oaBQZaHTPCyD/2fIH6CjyQmfRAtvydbr5HAeB+zYF1xh27LaPA92Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ST+XM9Ce; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A07D7C116B1;
-	Fri, 12 Jul 2024 01:10:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720746605;
-	bh=pbT57k7QB3HrURFKNbnnjOrCHWNpdlLB7IX4cdo349Y=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=ST+XM9Cem5GiFdrAEFwqLg7T7ZfCDV8jJrMm/RoTB63Vh3YdxODXNzYhSx/ok+chE
-	 RRJXstoI1etRNXR0PA6cJf14UqTikoMaTJXB+6C5pyAFx7t66kqU+M4ERxIRS6aXcs
-	 iPH0ApcNqhmrDSO7Yi6rejwLM0MiQXrSc2HBRbp7L4gmWQAxBAa2flkx3OGTmrwx7U
-	 g64mkkgB9c5Fih4oECA8B2v+YnvriA5kYnQHE4mTbhXR7884pYiOHTIIloTdsLf44M
-	 A4CMm3m3F4H3joPigcm/ViL/wzUDmX5pC9c8qJKu/Q+wKzQieOQ9H8rAtkc/ujqwb4
-	 HAM3teTMqmwpQ==
-Date: Thu, 11 Jul 2024 18:10:03 -0700
-From: Jakub Kicinski <kuba@kernel.org>
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: netdev@vger.kernel.org, nbd@nbd.name, lorenzo.bianconi83@gmail.com,
- davem@davemloft.net, edumazet@google.com, pabeni@redhat.com,
- conor@kernel.org, linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, catalin.marinas@arm.com, will@kernel.org,
- upstream@airoha.com, angelogioacchino.delregno@collabora.com,
- benjamin.larsson@genexis.eu, rkannoth@marvell.com, sgoutham@marvell.com,
- andrew@lunn.ch, arnd@arndb.de, horms@kernel.org
-Subject: Re: [PATCH v7 net-next 2/2] net: airoha: Introduce ethernet support
- for EN7581 SoC
-Message-ID: <20240711181003.4089a633@kernel.org>
-In-Reply-To: <8ca603f8cea1ad64b703191b4c780bab87cb7dff.1720600905.git.lorenzo@kernel.org>
-References: <cover.1720600905.git.lorenzo@kernel.org>
-	<8ca603f8cea1ad64b703191b4c780bab87cb7dff.1720600905.git.lorenzo@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA55B79D0;
+	Fri, 12 Jul 2024 01:27:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.103.47
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1720747642; cv=fail; b=XGu2to8wxEuYnQzrs8aH7+EKBBTRdPj/GgkFptoU+GNSk6px31oJA5paPhGFvtdi2uzhuoyAcLRcPOB+U7mhJycHbb+vSSZVctzQKR0gWRvGkJrfO0gXWrsuq05Q2qhOWT0ikQlnszYO+wUUJye5fMtGVHFGJSkQ29TvUcQSFLo=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1720747642; c=relaxed/simple;
+	bh=gYbCTlkaSrK3nLnW51oDymNOSpz29kO92uf80NKl90c=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=fmfUuFGehEx4jDauct0CD4qF//SFGBMXa46zI7KuE/ePo487NepRqJNilhUk3cgTuw8rVGP55XUu2ze7/dLQHJL7YtlOz2OPo0VwEkvfDjUh7UxsrgTvQxzB8pusi0DHNxbytSgfSI82psUN1c99undpyNMl4GFTSjAcTqUHRjc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=p67Ft2KF; arc=fail smtp.client-ip=40.92.103.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=mDA2EeZXgwdBZutHMl+2Vk162bhJs8kYvNVPC61emnovS8DzGU+Tzbp3CLD6piUBLO3vdBGT1A3j/k1HLrZ6cCT/XpXwxcDCST+cHny5H18WuIx6zevnSZqVJzlc0o0+fb8xdwRDTX/4zmj52NAl3NyoFbmBuOP0QcqteRwFb81gLnVWqPOaO5ilSpedLMpj4y9+c2GDQ+jteEQ2TKNb6v1SeF4OxOhPzYpaDpETIWtmS5Tt/ohQEuoe/qm6+n4nOb4bJBxuGhQyd/HUAAwSQzRRRylqOUIhdVaV1lik0FgTOv1ISo4hV9VZZ1+cn80ygPY8zMPPYnphfISx7d7eMg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=IeSHRa69gSaT/Iz9uheBurlGd/xAzO8phN9WvKbBeW8=;
+ b=y235QmBvb00oJf4m/71sdOkdtm4SRUIa29Aw1QpdL9ZGB3p7kJ3gzmecMLiRPM9MKzPbtoEG8OuEEmj1zmo9EA2OBNamxyvdeobk+/IvEOpa8q0QIUTcSX84JPbBTycz21aOny3PddoXM7Uvq2AoPUJhmILUzj75GpN9nzXbbDFJBGTlYnAFXSWe+rPBNAsdY4NI2QzinU0BEU9G7JKU0TneP5Ya0e8OVvUyBnjmz46mB1e2/znkgMySI5zejWXNElHUdcSPluHcnV64B1ysHlO5eUvmFb1s5pj2UIDlYQ+hGPRNYssE9+E/04R2FEcimyuMxQsbOUiyX9JgZVIVEA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=IeSHRa69gSaT/Iz9uheBurlGd/xAzO8phN9WvKbBeW8=;
+ b=p67Ft2KF0l0NG5jnck1hXt5Ic60A3ybdgjkyEOTCVt25788ufIu1JuWq7lzUyvAKyJ/ZeGMomDIC2sVF4z45M2/+3i33r9iPkhlJm6uHfG7f1sn3nVg9PICXKWgD+jbKqE/eo3/g8r4tYhdIK8MHTqmb7XJbgWokdWB2IhNt9+zwuZmq6WQ+Wxq2GEWvw5mBtpe5w5hZarhXL3kwWmyR2ebHz9vDDLgmL6AbwWbjybLGci1qdQ41KWvt2ZqrvCuAOEjjHh1WPunwZywoLRJW8Z4zjMVInAu4gHqUNxRSEa0dJC2DWVSJonOWceZAMBJaqZoSh2pevpHT5k6DcgK/Ug==
+Received: from MA0P287MB2822.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:138::5)
+ by PN2P287MB1407.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:127::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7762.23; Fri, 12 Jul
+ 2024 01:27:12 +0000
+Received: from MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+ ([fe80::a94:ad0a:9071:806c]) by MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+ ([fe80::a94:ad0a:9071:806c%5]) with mapi id 15.20.7762.020; Fri, 12 Jul 2024
+ 01:27:12 +0000
+Message-ID:
+ <MA0P287MB2822406AE122B7257B8C57F1FEA62@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
+Date: Fri, 12 Jul 2024 09:27:06 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 0/4] Add board support for Sipeed LicheeRV Nano
+To: Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Paul Walmsley
+ <paul.walmsley@sifive.com>, Inochi Amaoto <inochiama@outlook.com>,
+ Chao Wei <chao.wei@sophgo.com>, Conor Dooley <conor@kernel.org>
+Cc: Albert Ou <aou@eecs.berkeley.edu>, Palmer Dabbelt <palmer@dabbelt.com>,
+ Samuel Holland <samuel.holland@sifive.com>,
+ Thomas Gleixner <tglx@linutronix.de>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ =?UTF-8?Q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-riscv@lists.infradead.org, Conor Dooley <conor.dooley@microchip.com>
+References: <20240711-sg2002-v4-0-d97ec2367095@bootlin.com>
+From: Chen Wang <unicorn_wang@outlook.com>
+In-Reply-To: <20240711-sg2002-v4-0-d97ec2367095@bootlin.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-TMN: [cuj/tQW+JT1Q8m2hZW1RrqtRtejeOrzW]
+X-ClientProxiedBy: SI1PR02CA0019.apcprd02.prod.outlook.com
+ (2603:1096:4:1f4::15) To MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:138::5)
+X-Microsoft-Original-Message-ID:
+ <9758f109-5b13-4a35-ad58-6db0b61b2df3@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MA0P287MB2822:EE_|PN2P287MB1407:EE_
+X-MS-Office365-Filtering-Correlation-Id: 083be0e6-adcc-4f18-9424-08dca211c119
+X-Microsoft-Antispam:
+	BCL:0;ARA:14566002|19110799003|8060799006|461199028|4302099013|440099028|3412199025|1602099012;
+X-Microsoft-Antispam-Message-Info:
+	mtdGjbvLLFX8W9VUvu5G9Y3d1ndZbWQ+TSJ2hsUZTfADGFoCMZS4225DPLrCOXgyzVoYtbHQijHYZFz02FZAuVi6xlb+/6g/exvNUE2DiP9GEAt4URmDDcpdcs8WVVYr1IpiM9g1bJIzI6bXDd1uhuqZhd+YFuaDSgr9IXrLUpRxyS6whLCaxeTDIfvuGeesAmteyIjU9mnOrJOuXKkIGrBh5a6bxtr9IYnVLzZ3vHHX3h+ogStmnFNga1F8z7tof9uHOty+Sx+rEeOXuCIX2mnXCqnPf/p624tj3lWyQXJ0vsfgIweP4qKECz8QBSkhAy1ioTe73Ztta2wZ1dW5V2AOWLj+kexQCL3wG6V2yrONBYAtjL99j68jwFWRH60SMRvI7iymqTaKkUhtfYJH4+MtaLrQ1/KQ/Z9D5o7QAAnK23D2W/SLzSjqdtiv9vWOYOaUg0I/GVIN8SR0CetGJr+8qWMEdDpR1N/pA5ruqH+ReuyQYC6jYrkkZlokRVX4/5vbToyo21aNlZRBuKPvAtRRYBPUOA3qfm7Z5pLCVKODdyLySlXM5labFh+dSh4t+bQX5cdL981/eyJ0Qq14i7jUxwmgeBfhHsSP2CPB7YQVZGhgJ8uTs6QCEL4DS6d0JuAu8KJgMGm3EVCv8VaSQyYK7p3SBTd2J4812eHXUtbFx/1cwmSnGUN5grEyUKP3Jlbh0WDtzAz2uYRpZ2D5pfV8qx5GS8eXCor4C7yEI9mqgX8tG7dmMxe7m4KRs4NiJTT2/Et0u+aQF/CU1Ka+/g==
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?ZnJkUjhSWlZ5QzBsc3B2ckhyZkNLK2oydldQUVlWVmNHTzlQNlRPTTZubURP?=
+ =?utf-8?B?UGFZbElFRmtzc1VhZjk3NkxnUkRBblVSUk1ZK1g3dnZrL2xFTmdjdGNqN3dy?=
+ =?utf-8?B?U0hSZnFjRjNJSFlOK1A3Z201V1NmVXd3QnlGdDR5YTB2MVIzeVpNRTd1RndV?=
+ =?utf-8?B?VUs2aVlMYlQwelRTNC8xaEFaOWZzelpnMnZnVEREQmNaUnc3N2pKVStpOVZG?=
+ =?utf-8?B?TmFHdVNLS2YyVjR1dzFvQmJoRkp1TWErNW1wYmRMNFQ4bDVmZENDQ1JTT3ZX?=
+ =?utf-8?B?Ulczd1IyUHBLM3pmQ1FQb1JlUHRSSVZTRWFQaVFjaSsycndWM1Z3Ymx1TEFs?=
+ =?utf-8?B?WnlQSmY2aEhXZGM5VUt3dmNkVng1V2NOVC8wYnkyMG9OK25JdjVHeVl3V3NK?=
+ =?utf-8?B?c3RpanUxK3puLytYbGpzVkVHMjdrSWlRbjM0WFhJVU1sQjA3TVQ4SjZNV1RW?=
+ =?utf-8?B?L3VGR3M2WTBpdmVNVm5jMjZoNFRwL003U1FhaStrVFE2TFBIMEQ0c214KzMy?=
+ =?utf-8?B?ZURIZVpGcWdmeXVReVp0TFZYYk5SVi9aM2pTTzVweXpyRmFrYWZpMEY3OWl2?=
+ =?utf-8?B?WnFBSjJjcWJvZnZ2WVUyWkpLYys0V2FmZTdnSlgwa2VoSnk0aGxvTTR6eWVq?=
+ =?utf-8?B?a1N2NnNzU1lITHBtTUx4aHpmQXUxVzZRSzI4YmU1UjJ2eEg4RzdoRTgwQ0JS?=
+ =?utf-8?B?QjBmNmdOK1Q4WXFBSStXZmZ2VElXRlB0WDhWKy9vbXR3K1VtUjdqUTlLN20r?=
+ =?utf-8?B?R2hsSmhuaEFPaDNSQ2NMQlhZREpVUHJpaCtwYVUyTHpoNVFyemwyNXlOaVNL?=
+ =?utf-8?B?b1ROMkVqWGt6eEphQk5icUoxcTZKSk9rS1YzdjhLMnFYYXNxU3F1WGJUSWRo?=
+ =?utf-8?B?QmJyTG1pTElWQjBrOVVRNlN3N0NWYmJRUUgwNkJLNk91VTVPZDVUb21wNXJQ?=
+ =?utf-8?B?dXpwTDhQTVl2R25CODNQZEZFR1VkQmlKOTE0L2FFb3hsd1Q2K09sYlFpdFZM?=
+ =?utf-8?B?NjIydGJhLzhPR0JNRm5PdjVsT3RNY0dBZTZnNm9sbVdsY1VnQzRJUmZEWFZC?=
+ =?utf-8?B?Q2FhZU5rMkVpczROdDRmdksyU0VXanJxSlQvVnZTU1QyeVUrYXFMWUk0bmda?=
+ =?utf-8?B?OEI2RHRna0NvcHdnbWtydkdRVExleG13YjEySUVwOEZMMGs0RzliWURqZDdS?=
+ =?utf-8?B?OEVxK3poaFFrQzZCRmcybzFFeXNDdCtkWmtXQW9USzhQU2pCZGU2L1FIL09U?=
+ =?utf-8?B?SmlFdUVCMjl6RkI2TmhsYWx5a0FXUUVtY21zdW05bzJvcGJDTmdnc2JaamRw?=
+ =?utf-8?B?RnFBd3ZNYVI3SmF3ekMyZjA2UFlVUmxvbVgrUnM2Y1d6U1JJOHJqWU8zby9E?=
+ =?utf-8?B?clNMdS9GTG9hVzJEU3p1b0twMWYzZHZkd0w2WFNBYlNRSHA1eHBUSkh6SFdC?=
+ =?utf-8?B?QTRhdXN1Y1pVVU8wVXNla3drcko2L2IybnBjb3NseVNBelppMXMyWDAvRjdF?=
+ =?utf-8?B?YWZQZ1hmZkZmSDJSV1Zrek1zWlh5SFRmY1Qrb2JPWEwyMU5tU1l6OTg1R3pB?=
+ =?utf-8?B?TE9seWIyOVdkd2pyVlJ3YVNwRWtzMFJwNXozUTBhRXBmcEUyaEwxMGNGUWM4?=
+ =?utf-8?B?TFFKdUVOTmczMU5RTHR6ZDBPSWNQSUxraWZxM252bVd4cFQ0QXNKV2lIdmFj?=
+ =?utf-8?Q?C0IBClaKvxVkaO0Szhr3?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 083be0e6-adcc-4f18-9424-08dca211c119
+X-MS-Exchange-CrossTenant-AuthSource: MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jul 2024 01:27:12.2888
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN2P287MB1407
 
-On Wed, 10 Jul 2024 10:47:41 +0200 Lorenzo Bianconi wrote:
-> Add airoha_eth driver in order to introduce ethernet support for
-> Airoha EN7581 SoC available on EN7581 development board (en7581-evb).
-> en7581-evb networking architecture is composed by airoha_eth as mac
-> controller (cpu port) and a mt7530 dsa based switch.
-> EN7581 mac controller is mainly composed by Frame Engine (FE) and
-> QoS-DMA (QDMA) modules. FE is used for traffic offloading (just basic
-> functionalities are supported now) while QDMA is used for DMA operation
-> and QOS functionalities between mac layer and the dsa switch (hw QoS is
-> not available yet and it will be added in the future).
-> Currently only hw lan features are available, hw wan will be added with
-> subsequent patches.
 
-It seems a bit unusual for DSA to have multiple ports, isn't it?
-Can you explain how this driver differs from normal DSA a little=20
-more in the commit message?
+On 2024/7/11 18:01, Thomas Bonnefille wrote:
+> The LicheeRV Nano is a RISC-V SBC based on the Sophgo SG2002 chip. Adds
+> minimal device tree files for this board to make it boot to a basic
+> shell.
+>
+> Signed-off-by: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+> ---
+> Changes in v4:
+> - Add correct bindings configuration for SG2002 sdhci
+> - Drop commit "dt-bindings: timer: Add SOPHGO SG2002 clint" because it
+>    has already been merged in Daniel Lezcano git tree.
+> - Link to v3: https://lore.kernel.org/r/20240709-sg2002-v3-0-af779c3d139d@bootlin.com
+>
+> Changes in v3:
+> - Remove /dts-v1/ directive from sg2002.dtsi file
+> - Add disable-wp property to sdhci node to avoid having a write
+>    protected SD card
+> - Drop changes in cv18xx.dtsi and cv1800b.dtsi
+> - Add fallback compatible to cv1800b in SDHCI node of sg2002.dtsi
+> - Link to v2: https://lore.kernel.org/r/20240612-sg2002-v2-0-19a585af6846@bootlin.com
+>
+> Changes in v2:
+> - Add SDHCI support
+> - Change device tree name to match the Makefile
+> - Add oscillator frequency
+> - Add aliases to other UARTs
+> - Add aliases to GPIOs
+> - Move compatible for SDHCI from common DT to specific DT
+> - Link to v1: https://lore.kernel.org/r/20240527-sg2002-v1-0-1b6cb38ce8f4@bootlin.com
+>
+> ---
+> Thomas Bonnefille (4):
+>        dt-bindings: interrupt-controller: Add SOPHGO SG2002 plic
+>        dt-bindings: riscv: Add Sipeed LicheeRV Nano board compatibles
+>        riscv: dts: sophgo: Add initial SG2002 SoC device tree
+>        riscv: dts: sophgo: Add LicheeRV Nano board device tree
+>
+>   .../interrupt-controller/sifive,plic-1.0.0.yaml    |  1 +
+>   .../devicetree/bindings/riscv/sophgo.yaml          |  5 ++
+>   arch/riscv/boot/dts/sophgo/Makefile                |  1 +
+>   .../boot/dts/sophgo/sg2002-licheerv-nano-b.dts     | 54 ++++++++++++++++++++++
+>   arch/riscv/boot/dts/sophgo/sg2002.dtsi             | 32 +++++++++++++
+>   5 files changed, 93 insertions(+)
+> ---
+> base-commit: d20f6b3d747c36889b7ce75ee369182af3decb6b
+> change-id: 20240515-sg2002-93dce1d263be
+>
+> Best regards,
+Hi, Thomas,
 
-> +static void airoha_dev_get_stats64(struct net_device *dev,
-> +				   struct rtnl_link_stats64 *storage)
-> +{
-> +	struct airoha_gdm_port *port =3D netdev_priv(dev);
-> +
-> +	mutex_lock(&port->stats.mutex);
+This stuff is already too late for 6.11 as I already sent my PRs. I will 
+handle this next period.
 
-can't take sleeping locks here :( Gotta do periodic updates from=20
-a workqueue or spinlock. there are callers under RCU (annoyingly)
+Cheers,
 
-> +	airoha_update_hw_stats(port);
-> +	storage->rx_packets =3D port->stats.rx_ok_pkts;
-> +	storage->tx_packets =3D port->stats.tx_ok_pkts;
-> +	storage->rx_bytes =3D port->stats.rx_ok_bytes;
-> +	storage->tx_bytes =3D port->stats.tx_ok_bytes;
-> +	storage->multicast =3D port->stats.rx_multicast;
-> +	storage->rx_errors =3D port->stats.rx_errors;
-> +	storage->rx_dropped =3D port->stats.rx_drops;
-> +	storage->tx_dropped =3D port->stats.tx_drops;
-> +	storage->rx_crc_errors =3D port->stats.rx_crc_error;
-> +	storage->rx_over_errors =3D port->stats.rx_over_errors;
-> +
-> +	mutex_unlock(&port->stats.mutex);
-> +}
-> +
-> +static netdev_tx_t airoha_dev_xmit(struct sk_buff *skb,
-> +				   struct net_device *dev)
-> +{
-> +	struct skb_shared_info *sinfo =3D skb_shinfo(skb);
-> +	struct airoha_gdm_port *port =3D netdev_priv(dev);
-> +	int i, qid =3D skb_get_queue_mapping(skb);
-> +	struct airoha_eth *eth =3D port->eth;
-> +	u32 nr_frags, msg0 =3D 0, msg1;
-> +	u32 len =3D skb_headlen(skb);
-> +	struct netdev_queue *txq;
-> +	struct airoha_queue *q;
-> +	void *data =3D skb->data;
-> +	u16 index;
-> +	u8 fport;
-> +
-> +	if (skb->ip_summed =3D=3D CHECKSUM_PARTIAL)
-> +		msg0 |=3D FIELD_PREP(QDMA_ETH_TXMSG_TCO_MASK, 1) |
-> +			FIELD_PREP(QDMA_ETH_TXMSG_UCO_MASK, 1) |
-> +			FIELD_PREP(QDMA_ETH_TXMSG_ICO_MASK, 1);
-> +
-> +	/* TSO: fill MSS info in tcp checksum field */
-> +	if (skb_is_gso(skb)) {
-> +		if (skb_cow_head(skb, 0))
-> +			goto error;
-> +
-> +		if (sinfo->gso_type & (SKB_GSO_TCPV4 | SKB_GSO_TCPV6)) {
-> +			__be16 csum =3D cpu_to_be16(sinfo->gso_size);
-> +
-> +			tcp_hdr(skb)->check =3D (__force __sum16)csum;
-> +			msg0 |=3D FIELD_PREP(QDMA_ETH_TXMSG_TSO_MASK, 1);
-> +		}
-> +	}
-> +
-> +	fport =3D port->id =3D=3D 4 ? FE_PSE_PORT_GDM4 : port->id;
-> +	msg1 =3D FIELD_PREP(QDMA_ETH_TXMSG_FPORT_MASK, fport) |
-> +	       FIELD_PREP(QDMA_ETH_TXMSG_METER_MASK, 0x7f);
-> +
-> +	if (WARN_ON_ONCE(qid >=3D ARRAY_SIZE(eth->q_tx)))
-> +		qid =3D 0;
+Chen
 
-Hm, how? Stack should protect against that.
 
-> +	q =3D &eth->q_tx[qid];
-> +	if (WARN_ON_ONCE(!q->ndesc))
-> +		goto error;
-> +
-> +	spin_lock_bh(&q->lock);
-> +
-> +	nr_frags =3D 1 + sinfo->nr_frags;
-> +	if (q->queued + nr_frags > q->ndesc) {
-> +		/* not enough space in the queue */
-> +		spin_unlock_bh(&q->lock);
-> +		return NETDEV_TX_BUSY;
-
-no need to stop the queue?
-
-> +	}
-> +
-> +	index =3D q->head;
-> +	for (i =3D 0; i < nr_frags; i++) {
-> +		struct airoha_qdma_desc *desc =3D &q->desc[index];
-> +		struct airoha_queue_entry *e =3D &q->entry[index];
-> +		skb_frag_t *frag =3D &sinfo->frags[i];
-> +		dma_addr_t addr;
-> +		u32 val;
-> +
-> +		addr =3D dma_map_single(dev->dev.parent, data, len,
-> +				      DMA_TO_DEVICE);
-> +		if (unlikely(dma_mapping_error(dev->dev.parent, addr)))
-> +			goto error_unmap;
-> +
-> +		index =3D (index + 1) % q->ndesc;
-> +
-> +		val =3D FIELD_PREP(QDMA_DESC_LEN_MASK, len);
-> +		if (i < nr_frags - 1)
-> +			val |=3D FIELD_PREP(QDMA_DESC_MORE_MASK, 1);
-> +		WRITE_ONCE(desc->ctrl, cpu_to_le32(val));
-> +		WRITE_ONCE(desc->addr, cpu_to_le32(addr));
-> +		val =3D FIELD_PREP(QDMA_DESC_NEXT_ID_MASK, index);
-> +		WRITE_ONCE(desc->data, cpu_to_le32(val));
-> +		WRITE_ONCE(desc->msg0, cpu_to_le32(msg0));
-> +		WRITE_ONCE(desc->msg1, cpu_to_le32(msg1));
-> +		WRITE_ONCE(desc->msg2, cpu_to_le32(0xffff));
-> +
-> +		e->skb =3D i ? NULL : skb;
-> +		e->dma_addr =3D addr;
-> +		e->dma_len =3D len;
-> +
-> +		airoha_qdma_rmw(eth, REG_TX_CPU_IDX(qid), TX_RING_CPU_IDX_MASK,
-> +				FIELD_PREP(TX_RING_CPU_IDX_MASK, index));
-> +
-> +		data =3D skb_frag_address(frag);
-> +		len =3D skb_frag_size(frag);
-> +	}
-> +
-> +	q->head =3D index;
-> +	q->queued +=3D i;
-> +
-> +	txq =3D netdev_get_tx_queue(dev, qid);
-> +	netdev_tx_sent_queue(txq, skb->len);
-> +	skb_tx_timestamp(skb);
-> +
-> +	if (q->ndesc - q->queued < q->free_thr)
-> +		netif_tx_stop_queue(txq);
-> +
-> +	spin_unlock_bh(&q->lock);
-> +
-> +	return NETDEV_TX_OK;
-> +
-> +error_unmap:
-> +	for (i--; i >=3D 0; i++)
-> +		dma_unmap_single(dev->dev.parent, q->entry[i].dma_addr,
-> +				 q->entry[i].dma_len, DMA_TO_DEVICE);
-> +
-> +	spin_unlock_bh(&q->lock);
-> +error:
-> +	dev_kfree_skb_any(skb);
-> +	dev->stats.tx_dropped++;
-> +
-> +	return NETDEV_TX_OK;
-> +}
-> +
-> +static const char * const airoha_ethtool_stats_name[] =3D {
-> +	"tx_eth_bc_cnt",
-> +	"tx_eth_mc_cnt",
-
-struct ethtool_eth_mac_stats
-
-> +	"tx_eth_lt64_cnt",
-> +	"tx_eth_eq64_cnt",
-> +	"tx_eth_65_127_cnt",
-> +	"tx_eth_128_255_cnt",
-> +	"tx_eth_256_511_cnt",
-> +	"tx_eth_512_1023_cnt",
-> +	"tx_eth_1024_1518_cnt",
-> +	"tx_eth_gt1518_cnt",
-
-struct ethtool_rmon_stats=20
-
-> +	"rx_eth_bc_cnt",
-> +	"rx_eth_frag_cnt",
-> +	"rx_eth_jabber_cnt",
-
-those are also covered.. somewhere..
-
-> +	"rx_eth_fc_drops",
-> +	"rx_eth_rc_drops",
-> +	"rx_eth_lt64_cnt",
-> +	"rx_eth_eq64_cnt",
-> +	"rx_eth_65_127_cnt",
-> +	"rx_eth_128_255_cnt",
-> +	"rx_eth_256_511_cnt",
-> +	"rx_eth_512_1023_cnt",
-> +	"rx_eth_1024_1518_cnt",
-> +	"rx_eth_gt1518_cnt",
-> +};
-> +
-> +static void airoha_ethtool_get_drvinfo(struct net_device *dev,
-> +				       struct ethtool_drvinfo *info)
-> +{
-> +	struct airoha_gdm_port *port =3D netdev_priv(dev);
-> +	struct airoha_eth *eth =3D port->eth;
-> +
-> +	strscpy(info->driver, eth->dev->driver->name, sizeof(info->driver));
-> +	strscpy(info->bus_info, dev_name(eth->dev), sizeof(info->bus_info));
-> +	info->n_stats =3D ARRAY_SIZE(airoha_ethtool_stats_name) +
-> +			page_pool_ethtool_stats_get_count();
-> +}
-> +
-> +static void airoha_ethtool_get_strings(struct net_device *dev, u32 sset,
-> +				       u8 *data)
-> +{
-> +	int i;
-> +
-> +	if (sset !=3D ETH_SS_STATS)
-> +		return;
-> +
-> +	for (i =3D 0; i < ARRAY_SIZE(airoha_ethtool_stats_name); i++)
-> +		ethtool_puts(&data, airoha_ethtool_stats_name[i]);
-> +
-> +	page_pool_ethtool_stats_get_strings(data);
-> +}
-> +
-> +static int airoha_ethtool_get_sset_count(struct net_device *dev, int sse=
-t)
-> +{
-> +	if (sset !=3D ETH_SS_STATS)
-> +		return -EOPNOTSUPP;
-> +
-> +	return ARRAY_SIZE(airoha_ethtool_stats_name) +
-> +	       page_pool_ethtool_stats_get_count();
-> +}
-> +
-> +static void airoha_ethtool_get_stats(struct net_device *dev,
-> +				     struct ethtool_stats *stats, u64 *data)
-> +{
-> +	int off =3D offsetof(struct airoha_hw_stats, tx_broadcast) / sizeof(u64=
-);
-> +	struct airoha_gdm_port *port =3D netdev_priv(dev);
-> +	u64 *hw_stats =3D (u64 *)&port->stats + off;
-> +	struct page_pool_stats pp_stats =3D {};
-> +	struct airoha_eth *eth =3D port->eth;
-> +	int i;
-> +
-> +	BUILD_BUG_ON(ARRAY_SIZE(airoha_ethtool_stats_name) + off !=3D
-> +		     sizeof(struct airoha_hw_stats) / sizeof(u64));
-> +
-> +	mutex_lock(&port->stats.mutex);
-> +
-> +	airoha_update_hw_stats(port);
-> +	for (i =3D 0; i < ARRAY_SIZE(airoha_ethtool_stats_name); i++)
-> +		*data++ =3D hw_stats[i];
-> +
-> +	for (i =3D 0; i < ARRAY_SIZE(eth->q_rx); i++) {
-> +		if (!eth->q_rx[i].ndesc)
-> +			continue;
-> +
-> +		page_pool_get_stats(eth->q_rx[i].page_pool, &pp_stats);
-> +	}
-> +	page_pool_ethtool_stats_get(data, &pp_stats);
-
-We can't use the netlink stats because of the shared DMA / shared
-device? mlxsw had a similar problem recently:
-
-https://lore.kernel.org/all/20240625120807.1165581-1-amcohen@nvidia.com/
-
-Can we list the stats without a netdev or add a new netlink attr
-to describe such devices? BTW setting pp->netdev to an unregistered
-device is probably a bad idea, we should add a WARN_ON() for that
-if we don't have one =F0=9F=98=AE=EF=B8=8F
-
-> +	for_each_child_of_node(pdev->dev.of_node, np) {
-> +		if (!of_device_is_compatible(np, "airoha,eth-mac"))
-> +			continue;
-> +
-> +		if (!of_device_is_available(np))
-> +			continue;
-> +
-> +		err =3D airoha_alloc_gdm_port(eth, np);
-> +		if (err) {
-> +			of_node_put(np);
-> +			goto error;
-> +		}
-> +	}
-> +
-> +	airoha_qdma_start_napi(eth);
-
-Are you sure starting the NAPI after registration is safe?
-Nothing will go wrong if interface gets opened before
-airoha_qdma_start_napi() gets to run?
-
-Also you don't seem to call napi_disable(), NAPI can reschedule itself,
-and netif_napi_del() doesn't wait for quiescence.
 
