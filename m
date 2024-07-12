@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-85234-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-85235-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E99492F685
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 09:52:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1FFA92F689
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 09:53:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BF92B1C20EAB
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 07:52:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7CE3E1F23CCB
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2024 07:53:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18B2C13B2BB;
-	Fri, 12 Jul 2024 07:52:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 430161411E3;
+	Fri, 12 Jul 2024 07:52:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Du9tnVnN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jy2bkS2Y"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E786313E02A
-	for <devicetree@vger.kernel.org>; Fri, 12 Jul 2024 07:52:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B07A140E25
+	for <devicetree@vger.kernel.org>; Fri, 12 Jul 2024 07:52:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1720770761; cv=none; b=D22apynCwOxLxjX/m904QiwQsdzcnEIvJcXKYIeYyrqK3Yp68R83XPaR+seHGO5MJ0CfPnU8Ew1NeMPrM05IFwl/bzqwWp8ygGIhR8b6o3Xq7Sd9mXcFwLYIHHoyIzSwQCIcBYy81TeJErJNPFjjH0syNOSLC7/aR06Mx6aGXIw=
+	t=1720770773; cv=none; b=DHKcmo25BjTWTzm00Lh8bkbbC+a34lszyyHjTnrKtdsuYyWveGThW7IwH2aqOyGI/6gmq5O1liABhxNCGvS7T+yuVmNMVChywT1TrCZahusD2h9fuvukfC/3agAvK0aQeSfE2qdxitF3qmgraCw6fNzYxttVHydbMQqz9OhsDfs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1720770761; c=relaxed/simple;
-	bh=eO2ux8AXhbGTaeENzHGlzTR/FgbGlqXN2zWzFrDzLtw=;
+	s=arc-20240116; t=1720770773; c=relaxed/simple;
+	bh=l/ZxZT4ezf8rEL+Vsox4YpF3uh/dG8CumhNw96tEy44=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cBXZPEgfrfCex0/CW3owPKAyIuoX8yyS6DG6ZD/avOzrGm05MaHc+a6E6vZ7jj1fkGjs29keM0Zp+BGF5gsxWG4BIwlvHk/Di7dZpkmVWgLC71DB5kJT8Qkq4g334ZnUVWyyUG31OZwG3eh1AsQn8TrMcFGeSkudrpNu4C68G4Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Du9tnVnN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09746C4AF07;
-	Fri, 12 Jul 2024 07:52:37 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=TY794UuA4+m55iT+L+A11B3YqDcyZvP2T1fFI+t/4l9svl0EXAB68wJLX80ug0iCXHFv3EXnafNF/QdB8/KDUdU08+ZrVn1SVdCwCLhFAnyu6b3aIIGDavhNUXJrx/Y8oMfqLoHAPMPIDJqNVL2+e6LY2A9owBW6JCKUU68bVU8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jy2bkS2Y; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9FF1C3277B;
+	Fri, 12 Jul 2024 07:52:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1720770760;
-	bh=eO2ux8AXhbGTaeENzHGlzTR/FgbGlqXN2zWzFrDzLtw=;
+	s=k20201202; t=1720770772;
+	bh=l/ZxZT4ezf8rEL+Vsox4YpF3uh/dG8CumhNw96tEy44=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Du9tnVnNYSGY8lg6G9HUVlk/mNIJGTVaGQF0oOlHS/Hs0DSmalPsf3UkW/7rR2ExK
-	 M3ucFC7J8yPYW4aDBqX3x3sMla/j12tVTyTFo7qqyH1cQZKx3t7313llhBD+1b0bOK
-	 SZCeDnKjJQHAuVsofnNGZJlPnEkHxGsnwYkffy4zOahwekLWcSn1bPQeM49cX4u6Z1
-	 Cod5TZUhiSGqt1Gu7n80ZXa/y0C85q6Sne6DS0GusKDF/EmBrGT0KJmvoZJXnqjeN/
-	 aZ8zaIH+69LBSH+HihqSqXF+G+6wzReSX/+2kiyLBkj9f7UFNvRjjYdBWFtkp6cD7T
-	 s/livV6F4kjiw==
-Message-ID: <cb18f4bc-ed81-4a4c-8545-94a2950af0b2@kernel.org>
-Date: Fri, 12 Jul 2024 09:52:36 +0200
+	b=jy2bkS2Yk3HnjBii+xcLqbGX8rqGDe24QTJSUAFP5ZBBJ4NjZnoB8xEsuqY0YHBA4
+	 kMhfgbDZJUyMXdLmF9i6x3J3DREMP7ryW2wiHpgEQidp9ST1OO1RY5n5i1lBuuiK2+
+	 iM/MiIH6tG42oy1uH4UuKzn4VF7IC8JdSMDDxkezrx60s4RHBTfS2qvITcF1xugrLr
+	 ybAjklbo1NM/ZBkks7gf+qLhu5Oegtz5gVAdNLnf5nm+gwXef6cpv+V9XydanKbNee
+	 W8uhEBKxaqm1Lyo072VtD8rl7wd49UXhFV5WAdc0FtyWbb42l+bUfSs8c7XgwbK11P
+	 iVtexKgSohhPw==
+Message-ID: <c008b62f-9bf2-4f1e-ad9d-b934721a6bd0@kernel.org>
+Date: Fri, 12 Jul 2024 09:52:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,14 +50,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: arm: amlogic: add support for Radxa
- ZERO 2 Pro
+Subject: Re: [PATCH v2 2/2] arm64: dts: amlogic: add support for Radxa ZERO 2
+ Pro
 To: FUKAUMI Naoki <naoki@radxa.com>, neil.armstrong@linaro.org
 Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
  khilman@baylibre.com, jbrunet@baylibre.com,
  martin.blumenstingl@googlemail.com, devicetree@vger.kernel.org,
  linux-amlogic@lists.infradead.org
 References: <20240711202013.26573-1-naoki@radxa.com>
+ <20240711202013.26573-2-naoki@radxa.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -103,40 +104,37 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240711202013.26573-1-naoki@radxa.com>
+In-Reply-To: <20240711202013.26573-2-naoki@radxa.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 11/07/2024 22:20, FUKAUMI Naoki wrote:
 > Radxa ZERO 2 Pro is a ultra tiny high performance SBC[1] using the
-> Amlogic A311D chip.
+> Amlogic A311D chip that ships in a number of eMMC configurations:
+> 
+> - Amlogic A311D SoC
+> - Quad A73 + Dual A53 CPU
+> - Mali G52-MP4 GPU
+> - NPU (5 TOPs)
+> - 4GB LPDDR4 RAM
+> - 32/64/128GB eMMC
+> - micro SD Card slot
+> - Wi-Fi 5 and BT 5.0
+> - 1x USB 2.0 Type-C port (OTG)
+> - 1x USB 3.0 Type-C port (Host)
+> - Micro HDMI 2.0
+> - MIPI DSI
+> - MIPI CSI
+> - 40 Pin GPIO header
 > 
 > [1] https://radxa.com/products/zeros/zero2pro
 > 
 > Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
 > 
 > Changes in v2:
-> - none
+> - fix dtb build error
 
-That's not a correct commit msg. Apply it and you will see... Also,
-won't pass SoB or checkpatch tests. Missing ---.
-
-> ---
->  Documentation/devicetree/bindings/arm/amlogic.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
-> index 0647851ae1f5..66745b4f5eca 100644
-> --- a/Documentation/devicetree/bindings/arm/amlogic.yaml
-> +++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
-> @@ -157,6 +157,7 @@ properties:
->                - bananapi,bpi-m2s
->                - khadas,vim3
->                - libretech,aml-a311d-cc
-> +              - radxa,zero-2pro
->                - radxa,zero2
->            - const: amlogic,a311d
->            - const: amlogic,g12b
+Same problem.
 
 Best regards,
 Krzysztof
